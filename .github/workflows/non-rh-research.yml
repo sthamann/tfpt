@@ -1,0 +1,53 @@
+name: Non-RH Research Contracts
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/theory-contracts/**'
+      - 'verification/**'
+      - 'tex-artefacts/toe_round7_charged_disorder.tex'
+      - '.github/workflows/non-rh-research.yml'
+  pull_request:
+    paths:
+      - 'experiments/theory-contracts/**'
+      - 'verification/**'
+      - 'tex-artefacts/toe_round7_charged_disorder.tex'
+      - '.github/workflows/non-rh-research.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-research:
+    name: Round27 sources and regressions (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - name: Install the repository dependencies
+        run: pip install -r requirements.txt
+      - name: Immutable Round10–27 saved-record integrity
+        shell: bash
+        run: |
+          for round in {10..27}; do
+            python -B "experiments/theory-contracts/run_round${round}.py" --check-manifests
+          done
+      - name: Current two checkers and 29 prerequisite reruns
+        run: python -B experiments/theory-contracts/run_round27.py
+      - name: Isolated runner and formula mutation regressions
+        run: python -B experiments/theory-contracts/test_round27_runner.py
+      - name: Optimized regressions cannot suppress the checks
+        run: python -B -OO experiments/theory-contracts/test_round27_runner.py
+
+      # These jobs check bounded mathematical artifacts and their provenance.
+      # PASS is not physical T1–T8 closure or an independent proof certificate.

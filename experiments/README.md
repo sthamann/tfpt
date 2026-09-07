@@ -1,5 +1,241 @@
 # TFPT Experiments
 
+Neu (2026-09-07), **NON-RH / Round 27, unpromotierte Theoriearbeit**:
+[Vollständige Referenz und kontrollierte verkürzte Erinnerung](theory-contracts/ROUND27_STATUS.md).
+Der künstliche zusätzliche Ladungsfaktor fällt aus den Vorzeichen-,
+Erinnerungs- und Hop-Fehlergrenzen heraus, ohne Originalphasen zu entfernen.
+Im bisherigen Vergleichsfall genügen jetzt K2670/P354 statt K4096/P962.
+Ein zweites, ausdrücklich schwach gekoppeltes Beispiel auf L9 zertifiziert
+25 statt 33 Zeitabstände im quadratischen Erinnerungskern mit höchstens
+0,2045% summiertem Erinnerungsfehler und insgesamt unter1% Abschneidefehler.
+Die volle Determinante bleibt erhalten; die vollständige Zustandssumme
+ist NICHT ausgerechnet. Keine effiziente Signlösung oder T1-T8-Promotion.
+
+Neu (2026-09-07), **NON-RH / Round 26, unpromotierte Theoriearbeit**:
+[Kontrollierte Verlaufssumme und tatsächliche Vorzeichen-Obstruktion](theory-contracts/ROUND26_STATUS.md).
+Für das neutrale g=0-Modell bei endlichem Volumen und Zeitregulator ist
+die vollständige vorzeichenbehaftete Verlaufssumme absolut konvergent,
+mit positivem unteren Normierungsvergleich und expliziten Fehlergrenzen
+für Zustandssumme sowie beschränkte einzeitige Ladungsobservablen.
+Ladungs- und gesamte Hop-Tails sind kontrolliert, ohne kleines J anzunehmen.
+Der exakte Schrankenplaner zertifiziert für N27/T3/beta1/J0,1 die Grenzen
+K4096/P962 für unter1% Abschneidefehler bei voller Skalar-Erinnerung.
+Die Zustandssumme ist NICHT ausgerechnet; die naive Kostenhülle ist riesig.
+Eine echte negative Vier-Hop-Schleife kann durch diagonale Basisphasen
+nicht beseitigt werden; daraus folgt kein universelles Simulations-No-go.
+Zwei Prüfer (22/14 Gruppen), 27 Voraussetzungen, 33 Regressionen.
+Keine TOE-/T1-T8-/empirische Promotion, kein Commit/Push/Release.
+
+Neu (2026-09-07), **NON-RH / Round 25, unpromotierte Theoriearbeit**:
+[Bewegte Ladungsverläufe: kontrollierte Erinnerung und exakte Determinante](theory-contracts/ROUND25_STATUS.md).
+Der skalare Wechselwirkungskern hat am endlichen euklidischen Zeitregulator
+eine explizite exponentielle Erinnerungsschranke, auch bei abrupt bewegten
+Ladungen beliebiger Größe. Für dieses bedingte Ergebnis ist kein kleines
+Hopping nötig. Ein endliches Zeitfenster erhält bei erklärtem Fehlerabstand
+die Positivität; daraus folgt noch kein Hamiltonian in physikalischer Zeit.
+Die Determinante bleibt vollständig erhalten; ihr gemischter Einfluss
+getrennter Ladungsänderungen ist zusätzlich beschränkt. Ihre exakte Rechnung
+und die induzierte Wirkung benötigen pro Zelle O(T d³) statt generisch
+O(T³ d³) Rechenoperationen, mit periodischem Zeitabschluss und signierten
+Ladungsänderungen. Die Summe aller Verläufe und volle Gravitation bleiben offen.
+Zwei Prüfer (39/25 Gruppen), 25 Voraussetzungen, 33 Regressionen.
+Keine TOE-/T1-T8-/empirische Promotion, kein Commit/Push/Release.
+
+Neu (2026-09-07), **NON-RH / Round 24, unpromotierte Theoriearbeit**:
+[Kontrollierte endliche Dichte und lokale Skalar-Elimination](theory-contracts/ROUND24_STATUS.md).
+Eine erklärte homogene Ladungs-/Skalarpräparation hat endliche Dichten,
+die exakte Massenverschiebung m_*²=m²+2u e(p) und eine volumenbeschränkte
+Fehlerschranke für volle Dynamik und positive Uhr. Das verlangt weiterhin
+J<=O(N^-2); es ist kein allgemeiner wechselwirkender Kontinuumslimes.
+Im ursprünglichen lokalen Modell lassen sich skalare Zellinneren exakt
+integrieren, wenn die Randflächen erhalten bleiben. Räumliche Reichweite,
+ladungsabhängige Determinante und zeitliche Erinnerung werden mitgeführt.
+Für bewegte Ladungen gilt dies pro Verlauf am endlichen Zeitregulator;
+die kontrollierte zeitlokale Näherung ist auf statische Profile begrenzt.
+Zwei Prüfer (33/21 Gruppen), 23 Voraussetzungen, 29 Regressionen.
+Keine TOE-/T1-T8-/empirische Promotion, kein Commit/Push/Release.
+
+Neu (2026-09-07), **NON-RH / Round 23, unpromotierte Theoriearbeit**:
+[Exakter Lokalitätstest und kontrollierter Dynamikvergleich](theory-contracts/ROUND23_STATUS.md).
+Für das tatsächliche Ladungsband mit endlich vielen skalaren Quanten ist
+der Unterschied zwischen ursprünglicher und gemittelter Zeitentwicklung
+für alle Zeiten explizit beschränkt, ohne die Wechselwirkung abzuschneiden.
+Auch die positive Wurzel-Uhr ist mit ihrer erhaltenen Energieschranke erfasst.
+Der kleine Fehler gilt im dünn besetzten, mit dem Volumen schwächer gekoppelten
+Bereich, nicht als Kontinuumsbeweis bei endlicher Dichte. Zugleich zeigt ein
+exakter Test mit lokalen neutralen Ladungsmessungen: Die globale Mittelung
+liefert keinen lokalen Stress und verletzt die angegebene einheitliche
+exponentielle Lokalitätsschranke. Gleiche niedrigmodige Kompression bedeutet
+nicht gleiche Dynamik; ein entfernter harter Paarprozess ist explizit geprüft.
+Zwei Prüfer, 21 Voraussetzungen, 28 Regressionen; keine TOE-/T1-T8-/empirische
+Promotion, kein Commit/Push/Release.
+
+Neu (2026-09-07), **NON-RH / Round 22, unpromotierte Theoriearbeit**:
+[Positive Ladungsbewegung und konstruktive Gesamtimpuls-Alternative](theory-contracts/ROUND22_STATUS.md).
+Ein explizit geändertes gemeinsames positives Modell erhält kontinuierlichen
+Gesamtimpuls und echte Ladungs-Skalar-Wechselwirkung auf dem vollständigen
+Ladungsraum. Die endliche Konstruktion mittelt ganze positive Quadrate;
+auf L=3 genügen exakt 343 gewichtete Konjugate. Der Preis sind räumliche
+Nichtlokalität und geänderte erste Wechselwirkungsterme, kein gelöster lokaler
+relativistischer Energie-Impuls-Tensor. Im unveränderten Modell ist außerdem
+ein bewegliches Ladungsband bei echt positivem Hopping kontrolliert; zwei
+exakte Resonanzen schließen die untersuchte reguläre gemischte Impulsreparatur
+auch dort aus. Drei Prüfer, 18 Voraussetzungen, 27 Regressionen; keine
+TOE-/T1-T8-/empirische Promotion, kein Commit/Push/Release.
+
+Neu (2026-09-07), **NON-RH / Round 21, unpromotierte Theoriearbeit**:
+[Vollständige Hopping-Gravitationskorrektur und exakte Impuls-Reparaturtests](theory-contracts/ROUND21_STATUS.md).
+Die zuvor nur erstordentlich bestimmte Gravitationskorrektur ist für jede
+endliche Dressing-Stärke definiert, einschließlich positiver Hopping-Energie,
+E8-Phasen und korrekter ursprünglicher Gravitations-Nullmodenbedingung.
+Ein reiner Ladungsimpuls kann die skalare Kraft bei keiner Hopping-Stärke
+ausgleichen. Ein separater Quantentest schließt bei verschwindendem Hopping
+auch beliebige reguläre erste gemischte Korrekturen zum vorgegebenen freien
+Impuls aus. Das ist kein allgemeines Verbot anderer Generatoren oder einer
+nichtperturbativen Lösung. Zwei Prüfer, 16 Voraussetzungen, 25 Regressionen;
+keine TOE-/T1–T8-/empirische Promotion, kein Commit/Push/Release.
+
+Neu (2026-09-07), **NON-RH / Round 20, unpromotierte Theoriearbeit**:
+[Lokale Ladungsbewegung im gemeinsamen positiven Modell](theory-contracts/ROUND20_STATUS.md).
+Die exakte räumliche Synchronisierung wird aufgehoben: Eine vollständige
+E8-Ladungsspezies pro Ort ermöglicht positive Nachbar-Wechselwirkung mit
+echtem Transport und exakter Gesamtladungserhaltung. Die neue skalare
+Energieübertragung, lokale Energiebilanz, Quantendomäne, Quellencompletion
+und Uhr bleiben im selben Modell berücksichtigt. Ein vollständiger
+relativistischer Energie-Impuls-Tensor folgt daraus noch nicht; der alte
+Gravitationsvertex erhält einen zusätzlichen Hopping-Term.
+Vier Prüfer, zwölf Voraussetzungen, 23 Infrastruktur-/Quellenmutationstests;
+keine mikroskopische TOE-/T1–T8-/empirische Promotion, kein Commit/Push/Release.
+
+Neu (2026-09-07), **NON-RH / Round 19, unpromotierte Theoriearbeit**:
+[Gekoppeltes positives Modell, ein vollständiger E8-Ladungsraum und physikalische Messgrößen](theory-contracts/ROUND19_STATUS.md).
+Eine positive lokale Skalar-Ladungs-Wechselwirkung liefert echte beidseitige
+Rückwirkung und einen exakten kurzzeitigen Verschränkungsnachweis. Zusätzliche
+lokale vollständige Rahmen ermöglichen genau eine E8-Kopie ohne verbleibende
+Orientierungs-/Holonomiesektoren; diese neuen Felder sind ausdrücklich gewählt.
+Native endlichreichweitige Gravitations-Ableitungsobservablen und endliche
+gemischte Messprotokolle sind kontrolliert. Quellen, Kraftrest, unbeschränkte
+Ladungssektoren und Uhr-Norm bleiben im gemeinsamen Modell berücksichtigt.
+Vier Prüfer, acht Voraussetzungen, 22 Infrastrukturtests; keine vollständige
+TOE/T1–T8-/empirische Promotion. Lokal, ohne Commit/Push/Paper-Web-Release.
+
+Neu (2026-09-06), **NON-RH / Round 18, unpromotierte Theoriearbeit**:
+[Lokale volle Zwangscompletion in ausdrücklich neuen Feldern](theory-contracts/ROUND18_STATUS.md).
+Eine kanonische Vorbehandlung entfernt die inversen räumlichen Operatoren aus
+den tatsächlichen Quellen. Blockweise Stabilisierung liefert damit einen
+vollständigen endlichreichweitigen Generator mit kontrollierter Quantendynamik
+und positiver physikalischer Reduktion. Die Zuordnung zum ursprünglichen
+Gravitations-Feldsystem bleibt nichtlokal; höhere Kopplungsordnungen ändern sich.
+Zusätzlich: exakte Quellen-Auslese mit unvermeidlicher Zusatzenergie sowie ein
+dreidimensionaler lokaler Ladungsansatz mit 24 harmonischen ganzzahligen Moden.
+Vier neue Prüfer, fünf Voraussetzungen; keine gemeinsame mikroskopische
+TOE-/T1–T8-/empirische Promotion. Lokal, ohne Commit/Push/Paper-Web-Release.
+
+Neu (2026-09-06), **NON-RH / Round 17, unpromotierte Theoriearbeit**:
+[Volle Quelldynamik, gemeinsame Uhr-Einbettung und lokale Ladungsenergie](theory-contracts/ROUND17_STATUS.md).
+Die ursprüngliche Gauß-Einbettung trägt nun auch die vollständige stabilisierte
+Quelldynamik im sequenziellen Quantengrenzwert. Eine exakte Einbettung verbindet
+Uhr, Zwangsgruppe, angepasste homogene Impulse und positive physikalische Norm.
+Separat realisiert ein U(1)^8-Rotor-Ring die volle Ladungsenergie mit lokalen
+Gauß-Bedingungen und unverändertem Kokzyklus. Seine geladenen Operatoren bleiben
+Umlaufoperatoren; die volle Zwangscompletion bleibt räumlich global.
+Drei neue Prüfer und sechs Voraussetzungen; kein gemeinsamer lokaler
+mikroskopischer 3+1D-Abschluss und keine T1–T8-/empirische Promotion.
+Lokal integriert; kein Commit, Push oder Release dieser Runde.
+
+Neu (2026-09-06), **NON-RH / Round 16, unpromotierte Theoriearbeit**:
+[Ursprünglicher Vertex und Uhr gemeinsam; Zusatzmoden und voller Ladungslift](theory-contracts/ROUND16_STATUS.md).
+Ein expliziter messbarer Variablenwechsel verbindet jetzt den tatsächlichen
+Round15-Operator mit Spur-Uhr, relationalen Impulsen und positiver gemeinsamer
+Norm, ohne den ersten Kopplungsterm zu verändern. Der lokale Quantengrenzwert
+ist auch mit dem gewichteten Uhr-Skalarprodukt verträglich; normalisierte
+Zusatzmoden besitzen kontrollierte Fehler samt Energie- und Ausdehnungskosten.
+Ein voller neutraler Ladungslift behebt die vierte-Potenz-Diskrepanz des
+Transporters, fügt aber unbegrenzte Ladungsregister und globale Energie hinzu.
+Drei neue Prüfer und sechs Voraussetzungen; keine gemeinsame mikroskopische
+TOE-Herleitung, keine empirische oder öffentliche Promotion.
+
+Neu (2026-09-06), **NON-RH / Round 15, unpromotierte Theoriearbeit**:
+[Minimale Stabilisierung, ursprünglicher Vertex, lokaler Parent und acht Kanäle](theory-contracts/ROUND15_STATUS.md).
+Die positive quartische Ergänzung ist als eindeutig kleinste stabilisierende
+Korrektur der festgelegten Klasse hergeleitet. Eine neue Quantenkonstruktion
+erhält nun auch den ursprünglichen ersten Kopplungsterm. Eine lokale dynamische
+Familie erreicht den positiven TT-Sektor in einem bewiesenen singulären
+Quantengrenzwert, behält aber zusätzliche freie Moden. Die eingefrorene
+Materieladung besitzt eine explizite Achtkanal-/GSO-Realisierung; der separate
+Halbfluss-Transporter ist nicht mit dem Skalierungsfeld identifiziert.
+Vier neue Prüfer mit getrennten Voraussetzungen und Nachweisen. Kein gemeinsamer
+mikroskopischer TOE-Nachweis, keine empirische oder öffentliche Promotion.
+
+Neu (2026-09-06), **NON-RH / Round 14, unpromotierte Theoriearbeit**:
+[Gemeinsames endliches Quanten-Constraint-Modell](theory-contracts/ROUND14_STATUS.md).
+Eine ausdrücklich gewählte Vervollständigung verbindet jetzt selbstadjungierte
+Dynamik, exakte Constraint-Erhaltung, Hilfsfeldreduktion, Spur-Uhr und positives
+physikalisches Skalarprodukt in einer gemeinsamen Konstruktion. Die notwendige
+Änderung verschwindet auf der Gravitations-Constraint-Fläche; freier Hamiltonian
+und gewählte reduzierte Wechselwirkung bleiben erhalten, der erste Kopplungsterm
+außerhalb dieser Fläche ändert sich aber tatsächlich. Kein unbekannter
+wechselwirkender Grenzoperator wird vorausgesetzt. Die mikroskopische TFPT-Auswahl,
+Lokalität und vollständigen T1–T8 bleiben offen. Sieben neue Checker plus sechs
+Voraussetzungen; lokale Integration, keine empirische oder öffentliche Promotion.
+
+Neu (2026-09-06), **NON-RH / Round 13, unpromotierte Theoriearbeit**:
+[Schwache Constraints, lokale Lösungen und exakte Uhr-Alternative](theory-contracts/ROUND13_STATUS.md).
+Die bisher offene schwache Fortsetzung der alten drei Gesamtimpulse ist am
+unveränderten Modell auf einer ganzen regulären Nulltorus-Umgebung widerlegt;
+der Beweis berücksichtigt die verschobene Constraint-Fläche. Kleine lokale
+Patches besitzen dagegen exakte Konstruktionen. Mit der bereits postulierten
+Spur-Uhr sind neue uhrabhängige Constraints und ihr gemeinsames physikalisches
+Skalarprodukt vollständig definiert, ohne den quadratischen Uhroperator zu
+ersetzen. Die globale physikalische Auswahl bleibt offen. Für unreduzierte
+Quantendomänen liegen nun kovariante Näherungen und scharfe Auswahlbedingungen
+vor, aber noch kein bewiesener selbstadjungierter Grenzwert. Kein T1–T8-Gate
+geschlossen, keine empirische Evidenz, kein Commit/Push oder öffentlicher Release.
+
+Neu (2026-09-06), **NON-RH / Round 12, unpromotierte Theoriearbeit**:
+[Relationale Observablen, Impulsdeformation und unreduzierte Quantendomänen](theory-contracts/ROUND12_STATUS.md).
+Ein endliches Referenzsystem rekonstruiert die ursprüngliche Observable-Algebra
+exakt, übernimmt aber auch deren Fernantwort. Die vollständige kanonische
+Tensorverschiebung beseitigt die Wechselwirkung nicht. Für den festgelegten
+Gesamtimpuls ist die erste Korrektur konstruierbar; ein exakt geprüfter Resonanzterm
+verhindert die glatte starke Erhaltung in zweiter Ordnung. Schwache Constraint-
+Schließung ist damit nicht ausgeschlossen. Für den tatsächlichen unreduzierten
+Quantenoperator ist nun die Existenz messbar gewählter selbstadjungierter
+Erweiterungen bewiesen, nicht deren physikalische Auswahl oder Constraint-Erhaltung.
+Alle T1–T8 bleiben offen. Lokale Integration mit Beweisen und Prüfprotokollen,
+keine empirische Evidenz, kein Paper-/Website-Release oder Commit/Push dieser Runde.
+
+Neu (2026-09-06), **NON-RH / Round 11, unpromotierte Theoriearbeit**:
+[Gemeinsame Rand-Symmetrien, gemischte Constraints und homogene Teilmodelle](theory-contracts/ROUND11_STATUS.md).
+Konstruiert sind die simultane Viereruhr-/Inversionswirkung, die Vertraeglichkeit
+von Constraint-Dressing und Hilfsfeldelimination, die vollstaendige homogene
+Hilfsfeldreduktion und das positive Skalarprodukt des bedingten Quanten-Uhrmodells.
+Die exakte endliche Translationsprojektion erlaubt eine konsistente Alternative;
+der alte kontinuierliche Gesamtimpuls wird dagegen von der gewaehlten
+Wechselwirkung nachweislich nicht erhalten. Eine exakte Quellenpruefung begrenzt
+die Lokalitaet auf der bisherigen Skalaralgebra. Kein vollstaendiges T-Gate
+geschlossen, keine empirische Evidenz; lokale Integration, kein Commit/Push.
+
+Neu (2026-09-06), **NON-RH / Round 10, unpromotierte Theoriearbeit**:
+[Lokale positive Hilfsfeld-Darstellung](theory-contracts/local-positive-auxiliary/README.md)
+des zuvor gewählten TT-Wechselwirkungsterms mit unprojizierter lokaler Quelle
+und positivem gekoppeltem Energiequadrat;
+[konkretes CY-Randbündel und lokaler Randoperator](theory-contracts/cy-seam-round10/README.md)
+mit exakter Symmetriewirkung, identischen Spektren der vier Charaktersektoren
+und kontrollierter relativer Determinante. Kein gemeinsamer mikroskopischer
+TFPT-Ursprung konstruiert, kein T-Gate geschlossen, keine empirische Evidenz.
+
+Neu (2026-09-06), **NON-RH / Round 9, unpromotierte Theoriearbeit**:
+[Vier Materie-/Gravitations-Contracts](theory-contracts/README.md)
+mit vollständigen Teilbeweisen zu Stromalgebra, endlicher unitärer
+Zwangskorrektur, klassischer Hamilton-Stabilisierung mit erhaltenem erstem
+Kopplungsterm, gewählter positiver selbstadjungierter Quantendynamik im
+endlichen reduzierten Modell, bedingtem homogenen Energieempfänger und
+Quellenantwort. Die Ergänzung ist im Allgemeinen nichtlokal; vollständige
+unreduzierte Quantendynamik, homogene Vervollständigung und ein gemeinsamer
+mikroskopischer TFPT-Ursprung sind damit nicht bewiesen.
+Kein T-Gate geschlossen, keine empirische Scorecard-Zeile.
+
 Neu (2026-09-06), **reiner Theorie-Contract, nicht in der empirischen Scorecard**:
 [Freier 3D-Skalar auf dem gestaggerten Gitter](theory-contracts/free-scalar-3d/README.md)
 mit vollständiger lokaler Herleitung, symmetrischem Spannungstensor bei

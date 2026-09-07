@@ -34,6 +34,18 @@ falsifiable test surfaces**
 verification engines (Python + Wolfram + Lean), and a versioned status ledger that types every
 claim — including its **explicit open problems and falsification criteria**.
 
+## Non-RH research update — 7 September 2026
+
+The [research contracts through Round27](experiments/theory-contracts/ROUND27_STATUS.md)
+now accompany the updated papers and [public research overview](https://www.fixpoint-theory.com/verification#non-rh-round27).
+The latest finite-regulator result removes an artificial charge factor from
+the signed-history error bounds, improves certified charge/hop cutoffs, and
+supplies a nonzero quadratic-memory cutoff after the signed sum. It does
+not evaluate the complete interacting partition or close the physical
+T1–T8 gates. Earlier round records retain their original local-only wording
+as historical provenance; this integration ships the archive without
+rewriting those source-pinned snapshots.
+
 ## Video
 
 [![TFPT in 5½ minutes](website/public/intro/tfpt-intro-poster.jpeg)](https://www.fixpoint-theory.com/#intro-video)

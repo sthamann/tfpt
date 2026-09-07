@@ -1,47 +1,46 @@
-"""v472 -- ALPHA.QUILLEN.DETLINE.01: the determinant line over the U(1)-twist
-moduli of the collar model carries curvature = the inflow level (the finite
-Quillen/Dai-Freed shadow of the v470 bridge lemma, computed).
+"""v472 -- ALPHA.QUILLEN.DETLINE.01: occupied-state Berry line over the
+U(1)-twist moduli of the finite collar model. Its FHS Chern integer
+matches the Bloch Chern number. The continuum Quillen comparison stays open.
 
-ALPHA.QUILLEN.EXACT.01 names the alpha^3 level as the curvature/holonomy of
-the DETERMINANT LINE over the U(1) seam moduli (Dai-Freed section, Quillen /
-Bismut-Freed curvature).  v470 computed the bulk Chern invariant C = 1 of the
-collar phase -- but over the Bloch BRILLOUIN ZONE, the translation-invariant
-shortcut, not the Quillen-shaped object itself.  This module computes the
-Quillen-shaped object at the finite level: the SAME collar Hamiltonian
-h(k) = sin kx SX + sin ky SY + (M - cos kx - cos ky) SZ (v367/v470), put in
-real space on an L x L torus with TWISTED boundary conditions -- the twist
-torus (theta_x, theta_y) IS the moduli space of flat U(1) connections -- and
-the Fukui-Hatsugai-Suzuki curvature of the determinant line of the occupied
-one-particle frame (the free-fermion many-body ground state) over that torus.
+The SAME collar Hamiltonian
+h(k) = sin kx SX + sin ky SY + (M - cos kx - cos ky) SZ (v367/v470)
+is put in real space on an L x L torus with twisted boundary conditions.
+Over the twist torus, P = 1_{(-infinity,0)}(H) defines the occupied bundle;
+L_occ = det Ran P is its determinant (many-body ground-state) LINE.
+The FHS links use local occupied frames. A gap defines a smooth projector
+and a ground-state ray, not a global nonvanishing Slater-vector section.
+A nonzero first Chern class excludes a global nonvanishing section of L_occ.
+Keep the sign convention explicit: the FHS continuum convention is
+C_Berry = integral F_occ/(2*pi*i), A_occ = trace(U^dagger dU).
+With nabla = d + A_occ and c1 = i F_occ/(2*pi), c1[B] = -C_Berry.
+Identifying a finite-mesh C_FHS with C_Berry also requires mesh control.
 
   [E] 1. BLOCH LEVEL RE-VERIFIED: FHS Chern over the BZ gives C(M=1) = 1,
         C(M=3) = 0, C(M=-1) = -1 (the v470/v367 integers).
-  [E] 2. THE QUILLEN-SHAPED OBJECT COMPUTED: the det-line Chern over the
-        TWIST moduli = 1 at M = 1, exactly (to 1e-9), for L = 4 AND L = 6 --
-        size-independent, as an integer must be.
-  [E] 3. CONTROLS: trivial collar M = 3 gives 0; orientation flip M = -1
-        gives -1 -- the det-line curvature tracks the phase, not the mesh.
-  [E] 4. TWO TORI, ONE LEVEL: the twist-moduli integer equals the Bloch-BZ
-        integer for all three M -- the Niu-Thouless-Wu identification,
-        exhibited on the collar model that realises S3 (v460/v461).
-  [E] 5. SECTION GLOBALLY DEFINED: the Fermi gap stays open (= 2.0) over the
-        whole twist torus at M = 1 -- the Dai-Freed section has no zero, so
-        the holonomy reading is globally valid.
-  [C] 6. THE READING: det-line holonomy over the U(1) moduli = inflow level
-        k0 = 1 -- the v470 bridge lemma ("delta log det_zeta(seam) = the
-        inflow response") holds VERBATIM at the finite/model level, where
-        log det of the occupied frame replaces log det_zeta.  Cited frame:
-        Quillen 1985 / Bismut-Freed CMP 106 (1986) (det-line curvature),
-        Dai-Freed JMP 35 (1994) (section/holonomy), Niu-Thouless-Wu PRB 31
-        (1985) (twist-space Chern = response), FHS JPSJ 74 (2005) (lattice
-        curvature).
-  [O] 7. NOT CLOSED: the abstract-seam zeta-determinant identification (the
-        continuum leg, = the SEAM.EQUIV.01 face); ALPHA.QUILLEN.EXACT.01
-        stays [O]; alpha^-1 = 137.0359992168 stays [E] regardless.
+  [E] 2. OCCUPIED BERRY LINE COMPUTED: twist-torus C_FHS = 1 at
+        M = 1, to 1e-9, for L = 4 AND L = 6.
+  [E] 3. CONTROLS: M = 3 gives 0 and M = -1 gives -1.
+  [E] 4. TWO TORI, ONE INTEGER: twist and Bloch Chern numbers agree for
+        all three M (the finite Niu-Thouless-Wu response check).
+  [E] 5. SAMPLED GAP: the gap stays open at every sampled twist for M=1.
+        The global bound also follows analytically from
+        |d(k)|^2 = 1 + 2(1-cos kx)(1-cos ky) >= 1, hence gap >= 2.
+        This neither constructs a Dai-Freed vector nor trivializes L_occ.
+  [C] 6. INTEGRATED RESPONSE: |C_FHS| = k0 = 1 in this collar model.
+        An integrated Chern number does not determine individual
+        holonomies or identify the exact zeta-determinant variation.
+  [O] 7. CONTINUUM COMPARISON: specify a chiral Fredholm family D^+,
+        its Quillen line (including its zero locus), and a comparison
+        with L_occ at the level of metrics and connections. A Dai-Freed
+        vector requires filling data and lives in the pulled-back inverse
+        boundary line. Norm-resolvent convergence and a gap alone do not
+        control the ultraviolet contribution to a zeta determinant.
+        ALPHA.QUILLEN.EXACT.01 stays [O]; the alpha-value claim is unchanged.
 
-Structurally the same manoeuvre as v471 for the replica side of
-SEAM.THEOREM.01: the named open lemma exercised on a real finite operator.
-Numerical (dense eigh + FHS on the twist grid), Python-only by nature.
+References: FHS JPSJ 74 (2005), Niu-Thouless-Wu PRB 31 (1985);
+Quillen (1985), Bismut-Freed CMP 106 (1986), Dai-Freed JMP 35 (1994)
+for the distinct continuum determinant-line structures.
+Numerical routines: dense eigh and FHS on the twist grid.
 """
 import numpy as np
 
@@ -86,8 +85,8 @@ def _occupied_frame(L, M, thx, thy):
 
 
 def detline_chern(L, M, n_grid=N_GRID):
-    """FHS Chern number of the determinant line of the occupied frame over
-    the twist torus -- the finite Quillen curvature.  Returns (C, min_gap)."""
+    """FHS Chern number of the occupied-state Berry line over the twist
+    torus. Returns (C, min_gap_on_sampled_twists); no global section test."""
     ths = np.linspace(0, 2 * np.pi, n_grid, endpoint=False)
     frames, min_gap, n_ref = {}, np.inf, None
     for i, tx in enumerate(ths):
@@ -138,8 +137,8 @@ def bloch_chern(M, N=24):
 
 def run():
     reset()
-    print("v472 ALPHA.QUILLEN.DETLINE.01: det line over the U(1)-twist moduli "
-          "carries curvature = the inflow level (finite Quillen shadow) [E]/[C]/[O]")
+    print("v472 ALPHA.QUILLEN.DETLINE.01: occupied Berry line over U(1) twists; "
+          "integrated Chern response (continuum comparison open) [E]/[C]/[O]")
 
     # 1. Bloch level re-verified
     c_bz = {M: bloch_chern(M) for M in (1.0, 3.0, -1.0)}
@@ -148,13 +147,13 @@ def run():
           abs(c_bz[1.0] - 1) < TOL and abs(c_bz[3.0]) < TOL
           and abs(c_bz[-1.0] + 1) < TOL)
 
-    # 2. the Quillen-shaped object over the twist moduli
+    # 2. the occupied-state Berry line over the twist moduli
     res = {(M, L): detline_chern(L, M) for M in (1.0, 3.0, -1.0) for L in (4, 6)}
     for (M, L), (c, gap) in sorted(res.items()):
         print("   M = %+d, L = %d:  C_detline = %+.9f  (min Fermi gap %.2f)"
               % (int(M), L, c, gap))
-    check("QUILLEN OBJECT COMPUTED [E]: det-line Chern over the TWIST moduli "
-          "= 1 exactly at M = 1, for L = 4 AND L = 6 (size-independent)",
+    check("OCCUPIED BERRY LINE [E]: twist C_FHS = 1 within tolerance "
+          "at M = 1 for L = 4 AND L = 6",
           all(abs(res[(1.0, L)][0] - 1) < TOL for L in (4, 6)))
 
     # 3. controls
@@ -168,17 +167,15 @@ def run():
           "for all three M (Niu-Thouless-Wu, exhibited on the S3 collar model)",
           all(round(res[(M, 6)][0]) == round(c_bz[M]) for M in (1.0, 3.0, -1.0)))
 
-    # 5. globally defined section
-    check("SECTION GLOBALLY DEFINED [E]: Fermi gap = 2.0 open over the WHOLE "
-          "twist torus at M = 1 (no det-line zero -- the Dai-Freed section "
-          "exists globally)",
+    # 5. sampled gap; no inference of a global nonvanishing section
+    check("SAMPLED FERMI GAP [E]: gap > 1.9 at M = 1 on all sampled twists "
+          "for L = 4,6; this is not a global-section or Dai-Freed test",
           all(res[(1.0, L)][1] > 1.9 for L in (4, 6)))
 
-    # 6. the reading (bridge lemma at the finite level)
-    check("THE READING [C]: det-line holonomy over the U(1) moduli = inflow "
-          "level k0 = |C| = 1 -- the v470 bridge lemma holds verbatim at the "
-          "finite/model level (Quillen 1985; Bismut-Freed CMP 106 (1986); "
-          "Dai-Freed JMP 35 (1994); Niu-Thouless-Wu PRB 31 (1985))",
+    # 6. integrated response; individual holonomies are not computed here
+    check("INTEGRATED RESPONSE [C]: occupied C_FHS = k0 = 1 "
+          "in the collar model; Quillen connections, individual holonomies "
+          "and exact zeta-determinant variation are not identified here",
           round(res[(1.0, 6)][0]) == 1)
 
     # 7. honest [O]
@@ -186,8 +183,8 @@ def run():
           "(continuum leg, = the SEAM.EQUIV.01 face) stays open; "
           "ALPHA.QUILLEN.EXACT.01 stays [O]; alpha^-1 stays [E]", True)
 
-    return summary("v472 det line over the U(1) moduli = inflow level "
-                   "(finite Quillen shadow) [E]/[C]/[O]")
+    return summary("v472 occupied Berry line: twist Chern = Bloch Chern "
+                   "(continuum Quillen comparison open) [E]/[C]/[O]")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,64 @@
+{
+  "schema": "tfpt.theory-contract-validation.v1",
+  "verified_at_utc": "2026-09-06 08:28:49 UTC",
+  "evidence_type": "unpromoted_pure_math_proof_and_computational_regressions",
+  "repository_base": "a21616c41bc9503f5a21ee79c42c4224f6a3d0b0",
+  "git_ref_observation": "HEAD and local origin/main tracking ref match the base; no fresh remote fetch in final research snapshot.",
+  "run_working_directory": "/Users/stefanhamann/Projekte/tfpt-theoryv4",
+  "runtime": {
+    "python": "3.14.3",
+    "sympy": "1.14.0",
+    "mpmath": "1.3.0"
+  },
+  "proof": {
+    "path": "experiments/theory-contracts/prescribed-source-kubo/README.md",
+    "sha256": "fd6026f4a43b7d30f3dc154ebbe096acf6683495ca89126981655a22945684d8"
+  },
+  "source_inputs": [
+    {
+      "path": "tex-artefacts/toe_round7_matter_coupling.tex",
+      "sha256": "ee6ffffd298f37e50cc9e4ed2590bb0dc7927aa29a655e770763f9f2be7875c8"
+    },
+    {
+      "path": "verification/v1035_matter_coupling.py",
+      "sha256": "ca574ba9d25952b3f004381d67091423c22234a256772902d900e46bceb20e56"
+    },
+    {
+      "path": "experiments/theory-contracts/free-scalar-3d/README.md",
+      "sha256": "467ab73b43cf1df335cb732e3fac452d0870be00a04f9ed7140fdb9c96bbc5d1"
+    },
+    {
+      "path": "experiments/theory-contracts/free-scalar-3d/free_scalar_ward.py",
+      "sha256": "6a07fde8b3c5336abac603e1979326784d9a2c451e5a5c68b4f03f9c7aed4d81"
+    }
+  ],
+  "counts": {
+    "exact_passed": 24,
+    "exact_total": 24,
+    "floating_passed": 2,
+    "floating_total": 2
+  },
+  "runs": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 experiments/tfpt-discovery/.venv/bin/python experiments/theory-contracts/prescribed-source-kubo/kubo_source_checker.py",
+      "path": "experiments/theory-contracts/prescribed-source-kubo/kubo_source_checker.py",
+      "sha256": "d1185fb68ed405cbf82108af3255a1d9dbdd1185df4a3b00cac515d27cd3f654",
+      "exit_code": 0,
+      "exact_checks": 24,
+      "stdout": "\nGENERAL NONZERO FIBRE\nPASS [exact] Kq Kp Kq = r^4 P_TT\nPASS [exact] the source drive is transverse\nPASS [exact] the Ward equations fix trace(J)=-(rho_ddot+r^2 rho)\nPASS [exact] J splits exactly into radiative TT and affine scalar pieces\nPASS [exact] P_TT J = r^2 P_TT tau\nPASS [exact] B E_aff = 0\nPASS [exact] trace(E_aff)=g rho\nPASS [exact] E_aff''+r^2 E_aff equals minus g times the scalar drive\nPASS [exact] trace(F_aff)=g rho_dot\n\nONE PHYSICAL OSCILLATOR: CCR, KUBO SIGN, WEYL SHIFT\nPASS [exact] [q(t),q(t')]=-i sin(r Delta)/r\nPASS [exact] [E(t),q(t')]=-i r sin(r Delta)\nPASS [exact] -i[E,H_int] has the retarded minus sign\nPASS [exact] Weyl displacement gives the same retarded q shift\nPASS [exact] the third Magnus commutator vanishes for linear forcing\n\nNON-TT CONSERVED SOURCE: SCALAR TERM CANNOT HIDE\nPASS [exact] the explicit source obeys dot rho+i k.j=0\nPASS [exact] the explicit source obeys dot j+i B.tau=0\nPASS [exact] its stress has zero TT projection\nPASS [exact] its Kubo radiative drive is exactly zero\nPASS [exact] its full curvature response is nonzero for rho nonzero\nPASS [exact] the affine response has the required sourced trace\nPASS [exact] a TT-only response violates the scalar constraint\nPASS [exact] Kq q_aff=E_aff and -s.q_aff+g rho=0\nPASS [exact] Kp p_aff=dot(q_aff)\nPASS [exact] the longitudinal momentum constraint is satisfied\n\nRETARDED INTEGRAL REGRESSION\nPASS [float] Green convolution reproduces rho with compatible initial data: error=6.682e-52\nPASS [float] explicit smooth-source infinite-volume coherent norm is pi/2: error=0.000e+00\n\nSUMMARY: exact 24/24; floating regressions 2/2\nSCOPE: prescribed c-number source on the zero-mean free tensor Fock target; TT Weyl/Kubo response plus affine scalar curvature; NO RH CLAIM; T1-T8 remain open\n"
+    }
+  ],
+  "scope_limits": [
+    "Prescribed c-number forcing of the free zero-mean tensor target, not dynamical quantum matter.",
+    "TT displacement alone is incomplete: affine scalar curvature is necessary.",
+    "No homogeneous source reception, nonlinear backreaction, or full sourced Weyl/Riemann reconstruction."
+  ],
+  "claim_changes": {
+    "T1_T8": "none",
+    "empirical_scorecard": "none",
+    "ledger": "none",
+    "verification_suite": "none",
+    "papers_and_website": "none"
+  },
+  "computational_cost_scope": "Finite symbolic instances and explicitly scoped analytic proofs; no large-volume or continuum convergence inferred."
+}

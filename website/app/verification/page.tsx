@@ -11,6 +11,7 @@ import { UniversalGapLab } from "@/components/UniversalGapLab";
 import { SuiteTimeline } from "@/components/SuiteTimeline";
 import { ResidualChain } from "@/components/ResidualChain";
 import { OpenGates } from "@/components/OpenGates";
+import { NonRhResearchUpdate } from "@/components/NonRhResearchUpdate";
 import { SCRIPT_TOTAL } from "@/lib/suite";
 import { REPO_URL, SITE_URL } from "@/lib/utils";
 
@@ -505,6 +506,7 @@ export default function VerificationPage() {
       </section>
 
       {/* Open interfaces — moved from homepage archive */}
+      <NonRhResearchUpdate />
       <OpenGates />
 
       {/* The interactive DAG */}

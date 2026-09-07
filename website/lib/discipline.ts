@@ -80,7 +80,7 @@ export const DISCIPLINE: DisciplineStats =
     "checkSites": 16647,
     "mustfailOccurrences": 9127,
     "mustfailModules": 544,
-    "eMarks": 4584,
+    "eMarks": 4583,
     "cMarks": 1563,
     "seededModules": 205,
     "sympyModules": 539
@@ -114,7 +114,7 @@ export const DISCIPLINE: DisciplineStats =
       "Jacobi": 68,
       "Hecke": 39,
       "Construction A": 12,
-      "Suzuki": 32,
+      "Suzuki": 31,
       "Weil": 113,
       "Eisenstein": 34
     },

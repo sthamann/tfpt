@@ -60,6 +60,7 @@ TEX = [
     "tex-artefacts/toe_round7_charged_disorder.tex",
     "tex-artefacts/toe_round7_parent_mirror.tex",
     "tex-artefacts/toe_round7_matter_coupling.tex",
+    "tex-artefacts/toe_round27_full_reference.tex",
     "tfpt_1_architecture_e8.tex", "tfpt_2_standard_model.tex",
     "tfpt_3_e8_audit_bootstrap.tex", "tfpt_4_frontier.tex", "tfpt_5_redteam.tex",
     "tfpt_horizon_readouts.tex", "tfpt_research_contracts.tex",
@@ -86,6 +87,13 @@ FIG = ["figures/action_tower.pdf", "figures/alpha_ablation.pdf",
 
 def collect():
     files = list(TEX) + list(FIG)
+    # Include the shipped unpromoted research archive in the release identity.
+    research = os.path.join(ROOT, "experiments", "theory-contracts")
+    for current, dirs, names in os.walk(research):
+        dirs[:] = sorted(d for d in dirs if d not in {"__pycache__", ".venv"})
+        for name in sorted(names):
+            if name.endswith((".py", ".md", ".json", ".txt")):
+                files.append(os.path.relpath(os.path.join(current, name), ROOT).replace(os.sep, "/"))
     vdir = os.path.join(ROOT, "verification")
     for f in sorted(os.listdir(vdir)):
         # .json covers the frozen blind-prediction registry (REG.FREEZE.01)

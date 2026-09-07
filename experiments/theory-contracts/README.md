@@ -1,5 +1,447 @@
 # theory-contracts — pure-math contracts (NOT empirical scorecard rows)
 
+Publication integration, 2026-09-07: the archive through Round27 is included
+with the updated Research Contracts and Frontier papers and public website.
+Earlier per-round local-only/no-release statements describe their creation
+snapshots; they are preserved for hash consistency, not current publication
+status. No research result is promoted to a physical or empirical gate.
+
+## Non-RH full-reference control and nonzero summed memory — Round27 (2026-09-07)
+
+[Round27 overview](ROUND27_STATUS.md) removes the artificial charge-entropy
+factor from the original finite-regulator sign, memory and hop budgets:
+all-block pinching and joint scalar/charge Holder give Zabs/Z<=exp(48 beta N J).
+The actual E8 negative loop, every charge sector and full scalar determinants
+are retained. The exponential extensive factor is still NOT a sign cure.
+
+The comparison planner improves K4096/P962 to K2670/P354, with an equal-search
+comparison against the old bounds. A second declared weak-hopping example
+on L9 certifies a genuine nonzero quadratic-memory cutoff after the signed
+sum: 25/33 temporal offsets, <=0.2045% memory error and <1% combined omission
+error. Full determinants and prohibitively large charge sums remain; no
+complete partition, continuum, real-time or T1-T8 closure is claimed.
+
+## Non-RH summed-history control and actual negative loop — Round26 (2026-09-07)
+
+[Round26 overview](ROUND26_STATUS.md) proves absolute convergence and a
+positive lower partition reference for the full neutral original g=0
+history expansion at finite volume and Euclidean time regulator.
+Conditional errors now reach the summed partition and bounded one-time
+charge observables, retaining the large cancellation budget.
+
+Explicit charge-box and total-hop-order tails give a finite summation
+scheme at arbitrary fixed J. The rational planner certifies an omission
+target; it does NOT evaluate the full interacting partition. Its naive
+candidate envelope is prohibitively large, and no efficient sign cure,
+volume-uniform continuum or real-time reconstruction is claimed.
+
+An actual E8 four-hop loop has phase -1, including its positive full
+scalar Gaussian factor. This excludes diagonal configuration rephasing
+as a stoquastic cure, not arbitrary representations or regroupings.
+
+See [sum proof](history-sum-control-round26/PROOF.md),
+[sign proof](cocycle-sign-obstruction-round26/PROOF.md),
+[review](ROUND26_REVIEW.md), [planner](round26_algebra.py) and
+[aggregate evidence](ROUND26_VALIDATION.json). Two checkers (22/14 groups,
+twelve pins each), 27 prerequisite reruns and 33 regression fixtures.
+No T1-T8/TOE/RH/empirical promotion or paper/web release.
+
+## Non-RH moving-history memory and exact determinant solver — Round25 (2026-09-07)
+
+[Round25 overview](ROUND25_STATUS.md) controls the original g=0 scalar
+memory kernel for arbitrary moving integer charge histories at the finite
+Euclidean time regulator. A lower-gap ordered-walk argument gives a
+volume-uniform exponential tail, with a positivity margin for temporal
+truncation and a finite physical memory scale. No small-J condition enters
+this conditional theorem; no real-time reconstruction follows from it.
+
+The charge-dependent determinant remains a full-history functional.
+Its mixed response to separated potential changes has a squared-Green
+bound retaining update magnitudes. An exact recursive solver computes the
+determinant and induced scalar action in O(T d^3) arithmetic per cell,
+with periodic time restored and signed original E8 updates retained.
+The infinite history sum, sign cancellations and full gravity remain open.
+
+See [memory proof](moving-history-memory-round25/PROOF.md),
+[solver proof](history-determinant-solver-round25/PROOF.md),
+[review](ROUND25_REVIEW.md), [implementation](round25_algebra.py) and
+[aggregate evidence](ROUND25_VALIDATION.json). Two checkers (39/25 groups,
+ten pins each), 25 prerequisite reruns and 33 separate regression fixtures.
+No T1-T8/TOE/RH/empirical promotion or paper/web release.
+
+## Non-RH finite-density preparation and local Gaussian elimination — Round24 (2026-09-07)
+
+[Round24 overview](ROUND24_STATUS.md) extends the comparison to a declared
+homogeneous extensive-charge/extensive-scalar preparation on g=nu=0.
+With lambda_N=N u, the background gives m_*²=m²+2u e(p). A full-dynamics
+and positive-clock error bound is uniform in volume at fixed density.
+The hopping window still shrinks as N^(-2); a vanishing error freezes
+charge fluctuations rather than proving an interacting continuum.
+
+A separate exact construction eliminates scalar cell interiors from the
+ORIGINAL local g=0 model, retaining boundary faces, finite spatial range,
+the charge-dependent determinant and temporal memory. Static profiles
+admit a controlled frequency expansion with an induced kinetic matrix.
+For moving charges the result is per history at a finite time regulator;
+the charge-history sum, time-local approximation and continuum remain open.
+
+See [finite-density proof](finite-density-background-round24/PROOF.md),
+[local elimination proof](local-gaussian-elimination-round24/PROOF.md),
+[review](ROUND24_REVIEW.md), [runner](run_round24.py) and
+[validation](ROUND24_VALIDATION.json). Two checkers (33/21 groups, 13 pins
+each), 23 prerequisite reruns and 29 separate regression fixtures.
+No T1-T8/TOE/RH/empirical promotion or paper/web release.
+
+## Non-RH locality test and controlled dilute dynamics — Round23 (2026-09-07)
+
+[Round23 overview](ROUND23_STATUS.md) gives a full-dynamics comparison bound
+for the original model and its translation average, on the declared exact
+charge-band/few-quanta preparation. The error is bounded for every time,
+without truncating either Hamiltonian; the vanishing regime is dilute and
+requires J at most of order N^(-2), not a finite-density continuum.
+The retained positive gap also controls the corresponding square-root clock
+comparison in the common canonical initial-data chart.
+
+- [Locality test](translation-locality-round23/PROOF.md): bounded neutral
+  local projectors detect the nonlocal momentum AND a nonzero first-order
+  dynamical coupling at arbitrary separation. The stated uniform exponential
+  locality bound fails on the original net; no local stress identification.
+- [Soft compression and dynamics](soft-sector-round23/PROOF.md): exact
+  no-alias forms at 4 kappa<L, explicit all-time few-quanta comparison,
+  and a nonzero hard-pair escape difference despite equal compression.
+  Physical/reference vacua and spectator projections are kept distinct.
+
+Two checkers (38/49 groups), 21 prerequisites and 28 infrastructure/source/
+semantic fixtures. No microscopic, local-stress, finite-density continuum,
+T1-T8/RH or empirical promotion; local without commit/push/release.
+
+## Non-RH positive hopping and constructive global momentum — Round22 (2026-09-07)
+
+[Round22 overview](ROUND22_STATUS.md) constructs a positive, interacting
+continuous-translation alternative on the full common parent. Averaging
+complete squares retains all charge configurations and all 35 continuous
+species. At L=3, 343 positive conjugates give the exact finite prescription.
+Global momentum is conserved, but the interaction changes and becomes
+spatially nonlocal; this is not a local relativistic stress construction.
+
+- [Full-carrier moving-charge band](positive-hopping-band-round22/PROOF.md):
+  exact isolated states at positive hopping, controlled unbounded-source
+  matrix elements and a separately certified nonflat-dispersion interval.
+- [Positive-J momentum obstruction](positive-hopping-momentum-round22/PROOF.md):
+  two incompatible resonances exclude arbitrary regular first mixed repairs
+  in the declared additive-seed class, without taking J to zero.
+- [Changed positive translation completion](translation-completion-round22/PROOF.md):
+  explicit Fourier squares, closed quantum realization, exact global symmetry,
+  a nonzero retained exchange and a precisely removed original vertex.
+
+Three exact checkers (25/27/24 groups), 18 prerequisites and 27 infrastructure/
+source/semantic mutation fixtures. No microscopic, local-stress, chiral,
+continuum, T1-T8/RH or empirical promotion; local without commit/push/release.
+
+## Non-RH complete hopping dressing and momentum obstructions — Round21 (2026-09-07)
+
+[Round21 overview](ROUND21_STATUS.md) completes the added charge-hopping
+gravity dressing at every real coupling, with original E8 phases, positive
+bounded hopping, transported domains and the original mean-zero gravity chart.
+An exact cubic witness shows that original edge support fails at third order.
+
+- [Complete dressed hopping](dressed-hopping-round21/PROOF.md): explicit
+  sector-resolved scalar evolution, correct noncommuting higher orders,
+  finite canonical-matrix recipe and retained metaplectic sign.
+- [Momentum repair tests](charge-momentum-round21/PROOF.md): charge-only
+  additive momentum is impossible at every J under the stated conditions.
+  At J=0, a genuine quantum resonance also excludes arbitrary regular mixed
+  first corrections to the specified free seed. Neither is an all-J,
+  all-generator no-go; crystal momentum survives but is not local stress.
+
+Two exact checkers (32/63 groups), 16 prerequisites and 25 infrastructure/
+source/order mutation tests. No microscopic, stress, chiral, continuum,
+T1–T8/RH or empirical promotion; local research without commit/push/release.
+
+## Non-RH local charge motion and coupled energy balance — Round20 (2026-09-07)
+
+[Round20 overview](ROUND20_STATUS.md) constructs actual local charge-changing
+motion on the common positive parent, with a necessary model change:
+exact spatial synchronization is removed; one full E8 module survives
+at each site instead of one global module.
+
+- [Local transport](local-charge-transport-round20/PROOF.md): faithful
+  on-site charged fields, positive neighbor hopping, complete cocycle,
+  exact charge continuity and the synchronization obstruction.
+- [Coupled domains and sources](hopping-source-domain-round20/PROOF.md):
+  charge-mixing self-adjoint dynamics, bounded-Dyson Gaussian limits,
+  local source forms, proper clock, and the added gravity-dressing term.
+- [Propagation](charge-propagation-round20/PROOF.md): bounded regional
+  charge flow, finite-volume all-order transition tail, correct L=2
+  multiplicity and a separately bounded but nonlocal square-root clock.
+- [Energy balance](scalar-charge-energy-round20/PROOF.md): actual scalar
+  transfer source, total cancellation and local energy-current identity
+  on its stated core/weak domain, not a complete relativistic stress tensor.
+
+Four exact checkers, twelve prior prerequisites and 23 infrastructure/source
+mutation fixtures. Added local degrees of freedom and hopping laws are
+declared, not microscopically derived. No chiral/continuum/T1–T8/RH/empirical
+promotion; local research without commit/push/release.
+
+## Non-RH coupled positive parent and physical readout bridge — Round19 (2026-09-07)
+
+[Round19 overview](ROUND19_STATUS.md) combines the scalar/gravity base and
+the complete charge carrier with an actual positive local interaction:
+
+- [Coupled parent](coupled-charge-parent-round19/PROOF.md): one self-adjoint
+  positive model, joint constraint reduction, reciprocal response and an
+  exact short-time entanglement coefficient.
+- [Single-copy charge selection](cubic-charge-selection-round19/PROOF.md):
+  full local finite frames remove orientation and holonomy multiplicities,
+  retaining one complete E8 module. Added fields and a changed native net
+  are explicit; charge-changing operators remain volume-wide.
+- [Physical observables](physical-observable-bridge-round19/PROOF.md):
+  exact quotient algebra, native finite-range derivative-TT Weyls and finite
+  mixed readout-protocol convergence through the original Gaussian encoding.
+- [Coupled source domains](coupled-source-domain-round19/PROOF.md): exact
+  mass profile and force residual, countable electric-sector dynamics and
+  correct energy-dependent clock normalization.
+
+Four checkers, eight prerequisites, independent cross-reviews and 22 runner
+fixtures. This closes specified finite-model interfaces, not microscopic
+TFPT selection, local charged matter, chirality or a relativistic continuum.
+No T1–T8/RH/empirical promotion; local research without commit/push/release.
+
+## Non-RH finite-range full completion in declared new fields — Round18 (2026-09-06)
+
+[Round18 overview](ROUND18_STATUS.md) constructs a full local source-stabilized
+generator in an explicit new canonical field chart, beyond the local-base
+result of Round17:
+
+- [Preconditioned local parent](preconditioned-local-parent-round18/PROOF.md):
+  actual finite-range source stencils, 39 pairs/site, complete quantum
+  dynamics, positive reduction and clock connection. The inverse chart to
+  native gravity is nonlocal; the old global stabilizer is changed.
+- [Cellwise stability theorem](local-source-stability-round18/PROOF.md):
+  invariant active domains, continuity across zero weights and the original
+  Gaussian dynamical limit.
+- [Auxiliary source readouts](auxiliary-source-obstruction-round18/PROOF.md):
+  exact first moments in a positive commuting dilation, with quantified
+  unavoidable squared-energy noise; no universal local-parent no-go.
+- [3D electric Hodge charge parent](charge-hodge-round18/PROOF.md):
+  local integer penalty reduces Gauss fluxes to three E8-metric copies;
+  one-copy cubic selection and charged-field locality remain unresolved.
+
+Four new checkers and five prerequisites, with typed counts and source
+provenance. The new local field net is not yet identified with the required
+TFPT microscopic observables or a common chiral charged 3+1D theory.
+No T1--T8, RH or empirical promotion; no commit/push/release this round.
+
+## Non-RH full source dynamics, joint clock embedding and local charge energy — Round17 (2026-09-06)
+
+[Round17 overview](ROUND17_STATUS.md) connects the original Gaussian
+local-base embedding to the full stabilized source dynamics, with the
+sequential quantum limit proved on the actual ordered scalar sources:
+
+- [Full constraint-parent and clock](full-constraint-parent-round17/PROOF.md):
+  exact clock/constraint and positive-norm embedding, compatible displaced
+  homogeneous momenta; full first-vertex recovery only in the limit.
+- [Direct source-limit theorem](adiabatic-source-round17/PROOF.md):
+  Gaussian fourth-order commutators, common form core, varying-space energy
+  control and full-norm compact-time convergence.
+- [Local charge-energy parent](local-charge-parent-round17/PROOF.md):
+  exact U(1)^8 rotor/Gauss realization of the complete E8-metric charge energy
+  and cocycle. Charged operators still wind around the entire cycle.
+
+Three new checkers, six prerequisites and separately typed runner fixtures
+are recorded with source digests. The global constraint-square completion
+is still nonlocal; the two parents are not one microscopic 3+1D theory.
+No T1--T8, RH or empirical promotion; local research, no commit/push/release.
+
+## Non-RH original vertex and clock together, spectators and charged lift — Round16 (2026-09-06)
+
+[Round16 overview](ROUND16_STATUS.md) closes the declared finite model's
+vertex/clock compatibility gap without replacing its Round15 Hamiltonian:
+
+- [Joint vertex/clock construction](clock-vertex-round16/PROOF.md): an explicit
+  measurable characteristic unitary, controlled physical trace, transported
+  clock tube and joint positive norm retain the original first vertex.
+- [Local-parent clock and spectators](spectator-clock-round16/PROOF.md): the
+  quantum limit passes through the quadratic clock with its correct norm;
+  normalized spectator packets have explicit energy, error and spread costs.
+- [Full neutral-charge lift](charged-lift-round16/PROOF.md): a displayed
+  lattice/cocycle unitary makes four charged steps the actual neutral shift,
+  at the price of new infinite charge registers and global energy input.
+
+`run_round16.py` separates three new checkers from six unchanged prerequisites.
+No common microscopic parent, local charged scaling limit or full T1--T8
+closure is inferred. Local research integration, no public promotion.
+
+## Non-RH sharp stability, original vertex, local parent and eight channels — Round15 (2026-09-06)
+
+[Round15 overview](ROUND15_STATUS.md) supplies four new bounded constructions:
+
+- [Sharp stability selection](minimal-stability-round15/PROOF.md): the current
+  positive quartic is the unique least stabilizer in the declared correction
+  class, with actual quantum necessity, not only a square-completion ansatz.
+- [Original-vertex quantum completion](vertex-preserving-round15/PROOF.md):
+  new second-ideal source squares give all-time constraint-covariant dynamics
+  and the same positive reduced norm while retaining the original first vertex.
+- [Local dynamical family](local-parent-round15/PROOF.md): a positive local
+  35-pair/site model has a proved norm-preserving quantum TT limit, with explicit
+  singular limits, energy subtraction and surviving extra free modes.
+- [Eight-channel lattice/GSO bridge](matter-geometry-round15/PROOF.md): sourced
+  A3=D3 identification, four grades, cocycle and charged corners; a separate
+  modified QWZ half-flux code is not falsely identified with the vertex field.
+
+`run_round15.py` separates four new checkers from six unchanged prerequisites;
+exact groups, floating source-matrix checks and infrastructure tests stay typed.
+The shared microscopic parent, charged scaling limit, continuum locality and
+complete T1–T8 remain unproved. Local integration only; no public promotion.
+
+## Non-RH common finite quantum constraint model — Round14 (2026-09-06)
+
+[Round14 overview](ROUND14_STATUS.md) constructs one declared finite scalar/TT
+model with a self-adjoint Hamiltonian, exact constraint propagation, auxiliary
+reduction, trace clock, joint positive physical norm and Dirac observables.
+
+- [First-class completion](firstclass-completion-round14/PROOF.md): an explicit
+  constraint-ideal change keeps the complete free Hamiltonian and chosen reduced
+  interaction, while allowing an exact all-time unitary group and Schwartz core.
+  The old first off-shell vertex is genuinely changed.
+- [Combined auxiliary reduction](auxiliary-domain-round14/COMBINED.md): one
+  transported domain construction, noncommuting-source corrections and a
+  separately declared gauge-unfixing give the exact physical norm and dynamics.
+- [Joint clock and constraint model](joint-constraint-model-round14/PROOF.md):
+  the correct transported spectral tube, full semidirect group, absolutely
+  convergent joint averaging and nonzero physical space are constructed together.
+- The unchanged model receives independent [domain](common-domain-round14/PROOF.md),
+  [full-system escape](escape-round14/PROOF.md) and
+  [Galerkin error-control](galerkin-control-round14/PROOF.md) results. None
+  substitutes for the completed model or proves an unchanged-family propagator.
+
+`run_round14.py` separates seven new checkers from six unchanged prerequisites.
+This closes the stated finite conditional quantum construction, not microscopic
+TFPT selection, locality, complete T1–T8, empirical evidence or a public release.
+
+## Non-RH weak constraints and exact clock alternatives — Round13 (2026-09-06)
+
+[Round13 overview](ROUND13_STATUS.md) resolves the precise weak-deformation
+question left open by Round12 and constructs alternatives with explicit costs:
+
+- [Regular-torus weak obstruction](weak-constraints-round13/PROOF.md): arbitrary
+  smooth structure functions and the displaced common zero surface are included;
+  the fixed global time-independent three-momentum completion still fails.
+- [Exact local construction](weak-local-construction-round13/PROOF.md): a
+  parameter-dependent canonical flow gives exact coisotropic constraints near
+  an actual regular source point, not a global identification across recurrent tori.
+- [Clock-assisted joint model](clock-shell-round13/README.md): global classical
+  relational charges and self-adjoint commuting quantum constraints on a specified
+  negative-sheet spectral tube of the unchanged quadratic clock. This changes
+  the momentum prescription and does not derive a physical spatial current.
+- [Covariant unreduced domains](covariant-domain-round13/README.md): actual affine
+  characteristic form, kinetic and spectral selection conditions, and covariant
+  Hermite-Galerkin approximants. Their required self-adjoint strong-resolvent
+  limit at nonzero coupling remains unproved.
+
+`run_round13.py` records new checkers and unchanged prerequisites separately.
+No microscopic clock/state selection, physical locality, complete T1–T8 closure,
+empirical scorecard entry or public release is inferred.
+
+## Non-RH observables, momentum deformation and quantum domains — Round12 (2026-09-06)
+
+[Round12 overview](ROUND12_STATUS.md) contains four new contracts with complete
+restricted proofs and independently reviewed exact controls:
+
+- [Relational observables](relational-observables-round12/README.md): an explicit
+  ideal finite reference reconstructs the original physical operator algebra,
+  states and dynamics. Its transported remote response cannot be canceled for
+  all states by adding a finite reference-only Hamiltonian.
+- [Canonical tensor shear](canonical-shear-round12/PROOF.md): exact global
+  canonical/unitary transformation, including kinetic terms and Weyl readouts;
+  an actually free alternative changes the prescribed first coupling vertex.
+- [Momentum deformation](momentum-deformation-round12/PROOF.md): first-order
+  repair exists; an exact static-plus-exchange resonance obstructs every smooth
+  strongly conserved deformation of the fixed seed at second order, for all
+  finite nonnegative masses and side lengths divisible by six. Weak constraint
+  closure is a separate open question.
+- [Unreduced quantum domain](unreduced-domain-round12/README.md): measurable
+  self-adjoint extension existence for the actual seed Weyl expression, with
+  correct quantum ordering and free-limit continuity. No extension is bounded
+  below; physical selection and strong constraint propagation remain open.
+
+`run_round12.py` runs five new checkers and six prerequisites separately.
+No shared microscopic TFPT parent or complete T1–T8 closure is inferred.
+All work remains local, unpromoted and outside the empirical scorecard.
+
+## Non-RH joint constructions and actual-source audit — Round11 (2026-09-06)
+
+[Round11 overview](ROUND11_STATUS.md) continues the open dependencies with four
+new reproducible research contracts:
+
+- [Joint CY boundary symmetries](cy-joint-equivariance-round11/README.md): honest
+  clock/inversion action with two exact lift choices and joint spectral refinement.
+- [Mixed constraints](mixed-constraints-round11/README.md): canonical dressing and
+  second-class elimination commute, with exact first-vertex and domain boundaries.
+- [Homogeneous auxiliary completion and conditional quantum clock](homogeneous-completion-round11/README.md):
+  all auxiliary modes stabilized; group-averaged positive clock norm and consistent
+  finite-translation invariant restriction, not derived gravitational zero modes.
+- [Actual scalar locality and momentum audit](reduced-locality-round11/README.md):
+  an all-size same-algebra finite-range obstruction and a strict cubic counterexample
+  to conservation of the old centered-difference total momentum under the chosen
+  interaction. A different observable algebra or parent is not ruled out.
+
+`run_round11.py` runs the bounded checks and records prerequisites separately.
+The geometric and dynamical models are not identified with one shared microscopic
+TFPT parent. No T1-T8 status change, empirical scorecard row or release promotion.
+
+## Non-RH local auxiliary and CY boundary continuation — Round 10 (2026-09-06)
+
+Two further research folders sharpen the preceding results without merging
+unrelated models or promoting any physical T1–T8 status:
+
+- [Local positive auxiliaries](local-positive-auxiliary/README.md): local
+  first-order constraints accept the unprojected scalar stress and produce
+  the exact positive TT inverse-Laplacian term after elimination. The entire
+  coupled potential is already a square on the constraint surface. The
+  homogeneous sector requires five explicitly nondynamical traceless slack
+  values, not a claimed physical energy receiver. See its supplements for
+  the finite auxiliary reduction and actual reduced quantum-domain scope.
+- [CY seam](cy-seam-round10/README.md): coherent rank-four boundary bundle,
+  twisted orientation and an explicit local self-adjoint elliptic operator.
+  All four character restrictions have identical spectra. Relative
+  determinant cancellation is proved algebraically; an explicit family
+  prevents deleting the extra factor or inferring analytic holonomy.
+
+The local auxiliary construction is a representation of the **chosen**
+Round-9 completion, not its derivation from a common microscopic TFPT parent.
+The CY bundle is likewise not identified with that parent or its seam.
+All new statements remain unpromoted theory contracts. Reproduce the
+bounded combined checks with `python experiments/theory-contracts/run_round10.py`
+from the repository root; retained manifests keep evidence types distinct.
+
+## Non-RH matter/gravity continuation — Round 9 (2026-09-06)
+
+Four unpromoted research contracts extend the free scalar below. Their full
+proofs state hypotheses and exclusions; exact check counts are regressions,
+not a substitute for those proofs or for independent physical evidence.
+
+| Contract | Established result | Remaining boundary |
+| --- | --- | --- |
+| [Matter current algebra](matter-current-algebra/README.md) | Exact energy-density bracket; increasing current support; fixed-current onsite potentials must be quadratic. | Does not exclude modified currents, extra generators, or another interacting regulator. |
+| [Constraint dressing](constraint-dressing/README.md) | Explicit `g^2` correction; real-space nonzero-mode chart; finite quadratic all-`g` unitary constraints; matched classical Hamiltonian; chosen positive self-adjoint reduced quantum completion. | Generally nonlocal; added second-order interaction not microscopically derived; no full unreduced quantum-domain theorem or homogeneous receiver. |
+| [Homogeneous trace receiver](homogeneous-receiver/README.md) | Conditional positive reduced Hamiltonian for `A>0` and zero total momentum. | New global constraint is postulated, not derived; intrinsic clock degenerates at the vacuum; nonzero total momentum is not received. |
+| [Prescribed-source Kubo response](prescribed-source-kubo/README.md) | Exact finite-volume coherent response plus required non-radiative affine curvature. | Prescribed c-number source and free tensor target only, not dynamical quantum matter or nonlinear gravity. |
+
+The matched classical Hamiltonian is `H_match=exp(gD_S)(H_f+gW)` with
+`W=V_1-D_S H_f` gauge invariant by the first Ward identity, so
+`V_2=D_S V_1-D_S^2 H_f/2`. This resolves the **nonlocal classical
+stabilization construction**. An additional invariant operator-square term
+gives a positive self-adjoint finite reduced model, but is nonlocal and newly
+chosen. Locality and microscopic derivation remain open. All T1–T8 statuses
+remain unchanged. These artifacts are excluded
+from the empirical scorecard, published papers, claim ledger and main suite.
+
+Repository re-runs: **205 exact checks and 2 floating regressions passed**
+across the four new contracts; the unchanged free-scalar input passed its
+separate **68 exact checks**. Per-contract `validation.json` files retain
+commands, source/proof hashes, exit codes and full checker transcripts.
+
 ## Free scalar in three dimensions (2026-09-06)
 
 [free-scalar-3d/README.md](free-scalar-3d/README.md) contains a complete finite-range

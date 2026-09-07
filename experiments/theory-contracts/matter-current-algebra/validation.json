@@ -1,0 +1,70 @@
+{
+  "schema": "tfpt.theory-contract-validation.v1",
+  "verified_at_utc": "2026-09-06 08:28:49 UTC",
+  "evidence_type": "unpromoted_pure_math_proof_and_computational_regressions",
+  "repository_base": "a21616c41bc9503f5a21ee79c42c4224f6a3d0b0",
+  "git_ref_observation": "HEAD and local origin/main tracking ref match the base; no fresh remote fetch in final research snapshot.",
+  "run_working_directory": "/Users/stefanhamann/Projekte/tfpt-theoryv4",
+  "runtime": {
+    "python": "3.14.3",
+    "sympy": "1.14.0",
+    "mpmath": "1.3.0"
+  },
+  "proof": {
+    "path": "experiments/theory-contracts/matter-current-algebra/README.md",
+    "sha256": "3b4ac6c1bb5290a6b70f4a349169667c3dc6f902d4ddae7a72887bd823aa9c76"
+  },
+  "source_inputs": [
+    {
+      "path": "tex-artefacts/toe_round7_matter_coupling.tex",
+      "sha256": "ee6ffffd298f37e50cc9e4ed2590bb0dc7927aa29a655e770763f9f2be7875c8"
+    },
+    {
+      "path": "verification/v1035_matter_coupling.py",
+      "sha256": "ca574ba9d25952b3f004381d67091423c22234a256772902d900e46bceb20e56"
+    },
+    {
+      "path": "experiments/theory-contracts/free-scalar-3d/README.md",
+      "sha256": "467ab73b43cf1df335cb732e3fac452d0870be00a04f9ed7140fdb9c96bbc5d1"
+    },
+    {
+      "path": "experiments/theory-contracts/free-scalar-3d/free_scalar_ward.py",
+      "sha256": "6a07fde8b3c5336abac603e1979326784d9a2c451e5a5c68b4f03f9c7aed4d81"
+    }
+  ],
+  "counts": {
+    "exact_passed": 22,
+    "exact_total": 22,
+    "floating_passed": 0,
+    "floating_total": 0
+  },
+  "runs": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 experiments/tfpt-discovery/.venv/bin/python experiments/theory-contracts/matter-current-algebra/current_algebra.py",
+      "path": "experiments/theory-contracts/matter-current-algebra/current_algebra.py",
+      "sha256": "7217785e71e11a5e6f914a6697ea17b26d29ee14840770cdacba57e7e59b39b9",
+      "exit_code": 0,
+      "exact_checks": 22,
+      "stdout": "[PASS] generic edge: lapse-lapse bracket equals J[beta]\n[PASS] generic edge: reversed bracket sign is rejected\n[PASS] generic edge: mass cancels for arbitrary smearings\n[PASS] actual 3^3 source: lapse-lapse bracket closes exactly\n[PASS] actual source: closure is nonzero, not a commuting-smearing test\n[PASS] actual source: global momentum 0 is conserved in free theory\n[PASS] actual source: global momentum 1 is conserved in free theory\n[PASS] actual source: global momentum 2 is conserved in free theory\n[PASS] generic current bracket: distance-two coefficient\n[PASS] distance-two coefficient is not identically zero\n[PASS] every original smeared current has zero distance-two coefficient\n[PASS] current operators annihilate constant fields\n[PASS] current ordering trace is zero\n[PASS] full canonical current bracket has the stated commutator sign\n[PASS] nonconstant shifts give a nonzero current bracket\n[PASS] localized edge commutator reaches two links\n[PASS] nested edge commutator reaches three links\n[PASS] degree-six potential census leaves exactly constant/linear/quadratic\n[PASS] arbitrary C1 potential: three-value condition forces affine derivative\n[PASS] allowed general quadratic potential admits exact local pressure\n[PASS] quartic local defect factors exactly\n[PASS] historical four-site quartic obstruction is -17/2\nCOUNTS: 22/22 exact checks passed\nVERDICT: EXACT_LAPSE_LAPSE_CLOSURE; CURRENT_RANGE_GROWTH; FIXED_CURRENT_ONSITE_POTENTIAL_MUST_BE_QUADRATIC; NO_NONLINEAR_GRAVITY_CLAIM\n"
+    }
+  ],
+  "scope_limits": [
+    "Fixed scalar density/current and onsite potentials only; modified currents and other regulators not excluded.",
+    "Universal statements require README proofs; fixed-size checks are regressions.",
+    "No empirical evidence or nonlinear gravity completion."
+  ],
+  "claim_changes": {
+    "T1_T8": "none",
+    "empirical_scorecard": "none",
+    "ledger": "none",
+    "verification_suite": "none",
+    "papers_and_website": "none"
+  },
+  "baseline_recheck": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 experiments/tfpt-discovery/.venv/bin/python experiments/theory-contracts/free-scalar-3d/free_scalar_ward.py",
+    "exact_checks": 68,
+    "exit_code": 0,
+    "stdout": "\nLOCAL Z^3 POLYNOMIAL IDENTITIES\n[PASS] fixed energy density/current obey exact energy Ward identity\n[PASS] axis 0: repaired symmetric stress obeys exact momentum Ward identity\n[PASS] axis 0: naive averaged longitudinal square is a genuine polynomial mutant\n[PASS] axis 0: one-sided off-diagonal average is a Ward mutant\n[PASS] axis 1: repaired symmetric stress obeys exact momentum Ward identity\n[PASS] axis 1: naive averaged longitudinal square is a genuine polynomial mutant\n[PASS] axis 1: one-sided off-diagonal average is a Ward mutant\n[PASS] axis 2: repaired symmetric stress obeys exact momentum Ward identity\n[PASS] axis 2: naive averaged longitudinal square is a genuine polynomial mutant\n[PASS] axis 2: one-sided off-diagonal average is a Ward mutant\n[PASS] tau_01 equals tau_10 on the same plaquette\n[PASS] asymmetric mutant really violates tau_01=tau_10\n[PASS] tau_02 equals tau_20 on the same plaquette\n[PASS] asymmetric mutant really violates tau_02=tau_20\n[PASS] tau_12 equals tau_21 on the same plaquette\n[PASS] asymmetric mutant really violates tau_12=tau_21\n[PASS] tau_01 has the compact plaquette-diagonal formula\n[PASS] tau_02 has the compact plaquette-diagonal formula\n[PASS] tau_12 has the compact plaquette-diagonal formula\n\nREAL-SPACE SUPPORT / MASK AUDIT\n[PASS] rho uses only the site and six nearest-neighbour phi sites\n[PASS] rho uses only onsite pi\n[PASS] j_0 uses only its link endpoints (phi)\n[PASS] j_0 uses only its link endpoints (pi)\n[PASS] tau_00 has radius-one site support\n[PASS] j_1 uses only its link endpoints (phi)\n[PASS] j_1 uses only its link endpoints (pi)\n[PASS] tau_11 has radius-one site support\n[PASS] j_2 uses only its link endpoints (phi)\n[PASS] j_2 uses only its link endpoints (pi)\n[PASS] tau_22 has radius-one site support\n[PASS] tau_01 uses exactly the four corners of its plaquette\n[PASS] tau_02 uses exactly the four corners of its plaquette\n[PASS] tau_12 uses exactly the four corners of its plaquette\n\nPERIODIC GLOBAL / HOMOGENEOUS MODES\n[PASS] periodic total energy is exactly conserved\n[PASS] periodic total lattice momentum P_0=sum j_0 is conserved\n[PASS] axis 0: every periodic stress divergence has zero homogeneous mode\n[PASS] P_0 equals the centered-difference translation charge\n[PASS] periodic total lattice momentum P_1=sum j_1 is conserved\n[PASS] axis 1: every periodic stress divergence has zero homogeneous mode\n[PASS] P_1 equals the centered-difference translation charge\n[PASS] periodic total lattice momentum P_2=sum j_2 is conserved\n[PASS] axis 2: every periodic stress divergence has zero homogeneous mode\n[PASS] P_2 equals the centered-difference translation charge\n[PASS] homogeneous scalar mode has zero current\n\nBILINEAR FOURIER / RECIPROCAL-AXIS GLUING\n[PASS] rho: actual bilinear vertex obeys all three staggered Bloch transitions\n[PASS] j0: actual bilinear vertex obeys all three staggered Bloch transitions\n[PASS] j1: actual bilinear vertex obeys all three staggered Bloch transitions\n[PASS] j2: actual bilinear vertex obeys all three staggered Bloch transitions\n[PASS] tau00: actual bilinear vertex obeys all three staggered Bloch transitions\n[PASS] tau01: actual bilinear vertex obeys all three staggered Bloch transitions\n[PASS] tau02: actual bilinear vertex obeys all three staggered Bloch transitions\n[PASS] tau11: actual bilinear vertex obeys all three staggered Bloch transitions\n[PASS] tau12: actual bilinear vertex obeys all three staggered Bloch transitions\n[PASS] tau22: actual bilinear vertex obeys all three staggered Bloch transitions\n\nFINITE PERIODIC QUANTUM WEYL LIFT\n[PASS] Hamiltonian and every rho/j/tau symbol are quadratic\n[PASS] Weyl Heisenberg bracket equals the classical Poisson bracket for rho\n[PASS] Weyl Heisenberg bracket equals the classical Poisson bracket for j0\n[PASS] Weyl Heisenberg bracket equals the classical Poisson bracket for j1\n[PASS] Weyl Heisenberg bracket equals the classical Poisson bracket for j2\n[PASS] Weyl Heisenberg bracket equals the classical Poisson bracket for tau00\n[PASS] Weyl Heisenberg bracket equals the classical Poisson bracket for tau11\n[PASS] Weyl Heisenberg bracket equals the classical Poisson bracket for tau22\n[PASS] Weyl Heisenberg bracket equals the classical Poisson bracket for tau01\n[PASS] Weyl Heisenberg bracket equals the classical Poisson bracket for tau02\n[PASS] Weyl Heisenberg bracket equals the classical Poisson bracket for tau12\n[PASS] axis 0: current factors have zero canonical bracket\n[PASS] axis 1: current factors have zero canonical bracket\n[PASS] axis 2: current factors have zero canonical bracket\n\nCOUNTS: 68/68 exact checks passed\nVERDICT: FIXED_RHO_J_ADMIT_FINITE_RANGE_SYMMETRIC_FULL_3D_FREE_SCALAR_STRESS; EXACT_CLASSICAL_AND_WEYL_QUANTUM_WARD_IDENTITIES; FREE_PERIODIC_SCALAR_ONLY\n"
+  },
+  "computational_cost_scope": "Fixed symbolic edge identities, 27-site free-scalar instance and seven-site current matrices; universal classification proved in README."
+}
