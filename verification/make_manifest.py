@@ -25,6 +25,7 @@ manifest had not been regenerated after a final ledger edit.  RELEASE RULE:
 """
 import hashlib
 import os
+import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -85,15 +86,30 @@ FIG = ["figures/action_tower.pdf", "figures/alpha_ablation.pdf",
        "figures/safeguard_null_model.pdf"]
 
 
-def collect():
-    files = list(TEX) + list(FIG)
-    # Include the shipped unpromoted research archive in the release identity.
-    research = os.path.join(ROOT, "experiments", "theory-contracts")
+def collect_research(root):
+    """Hash the shipped research archive, never ignored or unstaged local runs.
+
+    Stage new research files before generating a release manifest. An exported
+    non-Git bundle already contains only shipped files and can be walked directly.
+    """
+    suffixes = (".py", ".md", ".json", ".txt")
+    if os.path.exists(os.path.join(root, ".git")):
+        names = subprocess.check_output(
+            ["git", "ls-files", "-z", "--cached", "--", "experiments/theory-contracts"],
+            cwd=root).decode().split("\0")
+        return sorted(name for name in names if name.endswith(suffixes))
+    files = []
+    research = os.path.join(root, "experiments", "theory-contracts")
     for current, dirs, names in os.walk(research):
         dirs[:] = sorted(d for d in dirs if d not in {"__pycache__", ".venv"})
         for name in sorted(names):
-            if name.endswith((".py", ".md", ".json", ".txt")):
-                files.append(os.path.relpath(os.path.join(current, name), ROOT).replace(os.sep, "/"))
+            if name.endswith(suffixes):
+                files.append(os.path.relpath(os.path.join(current, name), root).replace(os.sep, "/"))
+    return files
+
+
+def collect():
+    files = list(TEX) + list(FIG) + collect_research(ROOT)
     vdir = os.path.join(ROOT, "verification")
     for f in sorted(os.listdir(vdir)):
         # .json covers the frozen blind-prediction registry (REG.FREEZE.01)

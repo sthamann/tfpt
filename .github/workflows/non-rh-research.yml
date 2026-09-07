@@ -36,6 +36,8 @@ jobs:
           cache: pip
       - name: Install the repository dependencies
         run: pip install -r requirements.txt
+      - name: Research release manifest excludes local-only artifacts
+        run: python -B verification/test_make_manifest.py
       - name: Immutable Round10–27 saved-record integrity
         shell: bash
         run: |
