@@ -2,6 +2,23 @@
 
 > Three levels of depth, from a 30-second headline check to a full release rebuild.
 
+## Post-Round27 research archive (9 September 2026)
+
+The [research map](../experiments/theory-contracts/RESEARCH_2026-09-09.md)
+separates the new source-field, compact-parent and compiler/Clock results.
+To rerun the charged-field dependency chain and the newly shipped test modules
+without overwriting immutable historical validation records:
+
+```sh
+python -B experiments/theory-contracts/microscopic-charged-car-limit/run_verification.py --output /tmp/tfpt-charged-rerun.json
+python -B experiments/theory-contracts/run_consolidation_20260909.py --output /tmp/tfpt-consolidation-rerun.json
+```
+
+The first runner has 131 tests per mode (ordinary and optimized Python).
+Neither runner executes every core module or repeats the large digit-data
+and timing experiments. Their reports are execution evidence, not external
+mathematical review, a common-parent construction or closure of T1–T8.
+
 ## The one command
 
 ```bash

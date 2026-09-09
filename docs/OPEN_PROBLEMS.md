@@ -3,6 +3,31 @@
 > The honest frontier. If you want to *close* one of these, see the "Try to break TFPT" section
 > of the [README](../README.md#try-to-break-tfpt) and open a claim challenge.
 
+## Current research frontier — 9 September 2026
+
+**All T1–T8 remain open.** The [consolidation and acceptance map](../experiments/theory-contracts/RESEARCH_2026-09-09.md)
+supersedes older summaries as the current research entry point. New progress:
+integer charged fields from the actual filled QWZ sea, neutral four-point
+collision control, full dynamics and neutral ground-state representations
+for a separate compact-U(1) test parent, and exact Clock/cocycle restrictions.
+
+The first missing T2 step is now a renormalized, smeared **half-charge
+inter-sector field** with source energy and adjoint control, followed by
+source-derived eight-channel E8 and family/Clock identification. Neutral
+determinants, integer CAR fields and a formal E8 charge lattice are not
+interchangeable proofs of that step. For T3–T8 the same selected 3+1D parent
+is still missing. The prototype's scalar momentum symbol cannot acquire a
+Weyl node by scalar retuning alone. Wilson spectral bounds do not prove a
+mass gap, and periodic ground-state cluster points do not select a unique state.
+
+**Reading older seam reductions below:** “closed modulo cited theorems”
+describes a conditional target-net route. It does not mean that the actual
+microscopic charged seam has been identified, nor that only invoking a
+continuum theorem would complete T2. The original source hypotheses and
+the physical source-to-target bridge must both be discharged.
+
+## Earlier status and conditional compiler accounting
+
 > **Strict TOE status (2026-09-05).** `TFPT.TOE.COMPLETE.01` and every physical gate T1–T8
 > remain open (`[O]`). Round 4 (`v1026`–`v1030`) proves the relaxed uniform TEL-B norm
 > below 2.995906 for all even N≥16 and adds scoped algebraic/constraint results.

@@ -34,7 +34,23 @@ falsifiable test surfaces**
 verification engines (Python + Wolfram + Lean), and a versioned status ledger that types every
 claim — including its **explicit open problems and falsification criteria**.
 
-## Non-RH research update — 7 September 2026
+## Research consolidation — 9 September 2026
+
+The [new consolidated research map](experiments/theory-contracts/RESEARCH_2026-09-09.md)
+connects the post-Round27 archive to the updated papers and
+[public overview](https://www.fixpoint-theory.com/verification#research-20260909).
+The original filled QWZ strip now supports a source-based charged CAR field
+limit with both adjoints and energy control. A separate compact-U(1) test
+parent has all-time lattice dynamics and neutral physical ground-state
+representations. Clock, cocycle and parent-selection audits identify the
+remaining source-to-E8 bridge. These constructions are **not yet one derived
+microscopic theory**; all physical T1–T8 gates remain open.
+
+Earlier records keep their source-pinned historical wording. Related
+double-cover, inter-sheet and prime-event investigations are shipped with
+their own scope and negative controls, not as TOE or RH solutions.
+
+### Earlier non-RH update — 7 September 2026
 
 The [research contracts through Round27](experiments/theory-contracts/ROUND27_STATUS.md)
 now accompany the updated papers and [public research overview](https://www.fixpoint-theory.com/verification#non-rh-round27).

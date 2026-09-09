@@ -1,0 +1,22 @@
+# Frozen next-prime prediction protocol, 2026-09-08
+
+Written before extending the digit data or computing model outcomes. This is a new bounded experiment after the exact Fourier-cost gate, not another spectral re-encoding.
+
+Question: Can fixed features of the decimal digits at prime positions predict the next prime gap better than a fixed arithmetic predictor on a disjoint, previously unread digit range? Prediction means held-out statistical prediction; the prime gaps are mathematically computable and this is not a faster prime-generation algorithm.
+
+Train at all primes 2,000,001<=p<=2,200,000. Validate at all primes 5,000,001<=p<=5,200,000. Decimal positions count from 1 after the point. B_p is exactly p digits starting at p, indices [p-1,2p-1). Training digit reads are confined to [2,000,001,4,399,999]; validation reads to [5,000,001,10,399,999]. Both start after the previous two-million-digit data. Generate 10,400,000 decimal digits each of pi, e and sqrt(2), repeat pi with increased precision, and compare each old two-million prefix to its stored hash-verified predecessor. MPFR precision repetition is a stability check, not an independent algorithm for the new suffix.
+
+Target y_p=log((next_prime(p)-p)/log(p)). The arithmetic baseline is ridge regression with an intercept, standardized features, penalty 100 on slopes: log(p), four preceding log(gap/log(p)) values, and categorical residues modulo 30,7,11,13,17,19 (all categories except zero; impossible/constant training columns get scale 1). Only primes <=p and p itself enter baseline features; no next-gap or future-prime labels. All fitting and scaling use training data only.
+
+Two prespecified digit feature families, each fit by a separate ridge residual correction (penalty 100) to the fixed baseline's training residuals:
+
+1. `short`: the 32 successive individual decimal digits beginning at p, plus the 10 histogram counts in that 32-digit window (42 columns).
+2. `short_long`: those 42 columns plus four long-block values: centered digit sum over B_p normalized by sqrt(8.25*p), centered sum of squared digits normalized by sqrt(721.05*p), and centered sums of the first floor(p/2) and remaining digits, normalized by their own IID standard deviations. E[D]=4.5, E[D²]=28.5, Var(D)=8.25, Var(D²)=721.05.
+
+Predict baseline + digit residual prediction, with all scalers/intercepts learned only on training data. No joint baseline refitting or hyperparameter choice after outcomes. Primary score is relative held-out MSE reduction versus arithmetic baseline. Also report training reduction and validation halves p<=5,100,000 and p>5,100,000; halves are descriptive consistency checks, not separately optimized models. e and sqrt(2) are descriptive controls.
+
+Calibrate both pi scores on 999 full IID uniform decimal streams, seed 202609084401. Preserve the exact prime positions and all overlaps, run the entire feature/scaling/fitting pipeline for every stream. One-sided add-one Monte Carlo p=(1+number(null improvement>=pi improvement))/1000. Holm correction over the two primary feature families. Whole-stream simulations, not independent resampling of overlapping blocks or individual prime rows. A candidate requires >=1% relative validation MSE reduction, Holm p<.05, and positive improvement in BOTH validation halves. This is an internally frozen protocol, not an external preregistration; the uniform-digit null is a model, not a theorem about pi.
+
+Positive control: in a separate random stream (seed 202609084402), set the digit at each train/validation prime position to 9 if its target exceeds the TRAINING target median and 0 otherwise. Deliberate injected target information is used only to check sensitivity, never as evidence of a real pi signal. Evaluate by the same fitted models and same null distribution. The strong planted control must pass the candidate rule; otherwise mark the detector inconclusive.
+
+Audit: independent SymPy prime checks and preceding/next gap checks on fixed boundary and seeded sampled rows; arbitrary-precision direct digit slicing against cumulative-sum features including endpoints; direct ridge normal-equation calculation and invariance of fitted parameters to validation-target changes; full data/protocol/code hashes. Report all outcomes, generation, feature/model/null times, local environment, and the finite model-family/data-scope limitations. No result is an RH proof or a factorization improvement.

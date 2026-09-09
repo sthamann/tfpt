@@ -62,6 +62,7 @@ TEX = [
     "tex-artefacts/toe_round7_parent_mirror.tex",
     "tex-artefacts/toe_round7_matter_coupling.tex",
     "tex-artefacts/toe_round27_full_reference.tex",
+    "tex-artefacts/toe_research_20260909.tex",
     "tfpt_1_architecture_e8.tex", "tfpt_2_standard_model.tex",
     "tfpt_3_e8_audit_bootstrap.tex", "tfpt_4_frontier.tex", "tfpt_5_redteam.tex",
     "tfpt_horizon_readouts.tex", "tfpt_research_contracts.tex",
@@ -92,7 +93,7 @@ def collect_research(root):
     Stage new research files before generating a release manifest. An exported
     non-Git bundle already contains only shipped files and can be walked directly.
     """
-    suffixes = (".py", ".md", ".json", ".txt")
+    suffixes = (".py", ".md", ".json", ".txt", ".cpp", ".hpp", ".sha256")
     if os.path.exists(os.path.join(root, ".git")):
         names = subprocess.check_output(
             ["git", "ls-files", "-z", "--cached", "--", "experiments/theory-contracts"],

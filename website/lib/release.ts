@@ -27,16 +27,16 @@ export interface ReleaseAsset {
 
 const COMMON = {
   version: "TFPT 5.4",
-  releaseDate: "2026-09-07",
+  releaseDate: "2026-09-09",
 };
 
 export const RELEASE_ASSETS: Record<string, ReleaseAsset> = {
   "/papers/introduction.pdf": {
     href: "/papers/introduction.pdf",
     ...COMMON,
-    bytes: 5486634,
+    bytes: 5489951,
     sha256:
-      "68c95ae0b10ee2b97b47a829d353b341bec2c5a2e0b6393e92e672dc572267ce",
+      "9c0f89499e6e91a9c15e4b4bf715407bc4328069b6427661c0960e1b740bfde2",
     changelog:
       "Compiler-closure reading guide: two axioms, the dependency DAG, the predictions and the proof ledger.",
   },
@@ -70,9 +70,9 @@ export const RELEASE_ASSETS: Record<string, ReleaseAsset> = {
   "/papers/tfpt_4_frontier.pdf": {
     href: "/papers/tfpt_4_frontier.pdf",
     ...COMMON,
-    bytes: 855551,
+    bytes: 857060,
     sha256:
-      "e18575fbfbc47872cf1457bc9975e570912ebd3212a22491c29c2bac0f7ead62",
+      "25a2270b59db02590424b48b8b6c410a07bd355bf51136057b5d5d67fe79cc7f",
     changelog:
       "Honest status of η_B, m_p/m_e, Koide, dark matter and full quantum gravity — not forced onto the ladder.",
   },
@@ -97,9 +97,9 @@ export const RELEASE_ASSETS: Record<string, ReleaseAsset> = {
   "/papers/tfpt_research_contracts.pdf": {
     href: "/papers/tfpt_research_contracts.pdf",
     ...COMMON,
-    bytes: 2902435,
+    bytes: 2921039,
     sha256:
-      "ded9364ff8495d92ce34f938101e19bc754f27cc8b0f175b8304deeaa0c0d9ec",
+      "cd1e9cfb45262ab19d9bea97ff7a6bd9c10eab6b227902c33d1dc76dc6fdc01a",
     changelog:
       "Research contracts separate compiler Rest = v_geo ⊕ G_net ⊕ F_transfer from Rest_TOE. Round 4 (v1026–v1030) closes the relaxed TEL-B norm at fixed M=1, Ny=8: ||R_N||HS < 2.995906 < 3 for every even N≥16, with the former CF/DG estimates discharged for this bound by native v1026 using v1022/v1025. It also adds narrow T3/T4/T6–T8 identities and counterbounds, but closes no T-gate: FE-GEN/ALG-EXH, T1–T8, TFPT.TOE.COMPLETE.01 and the shared complete 3+1D parent remain [O]. The v1029 tensor target requires global zero-mode removal and is not a TFPT embedding. Round 7 (v1031–v1035; 233 typed checks) adds full free quantum/covariant curvature proofs, auxiliary charged corners, the factorized mirror bound and prescribed-source Ward identities. Microscopic TFPT emergence and universal nonlinear interaction remain open; v1033/v1034 require full repository sources. Wave 4: v998–v1001 + lattice-fundamental quasilocal-family amendment + ALPHA relative-det note.",
   },
@@ -142,9 +142,9 @@ export const RELEASE_ASSETS: Record<string, ReleaseAsset> = {
   "/papers/changelog.pdf": {
     href: "/papers/changelog.pdf",
     ...COMMON,
-    bytes: 3328374,
+    bytes: 3330562,
     sha256:
-      "b9e39c8149c31ce5fd442deccbda558f95e37f6b95de77208a91ff50e92356e5",
+      "67a60a3b8c514cba365c91e4ebe07baa2415f7191d7363cc229cfe05bbee0a2f",
     changelog:
       "The canonical dated changelog of every change to the theory, the suite, the papers and the website.",
   },

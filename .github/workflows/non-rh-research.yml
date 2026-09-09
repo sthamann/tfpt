@@ -21,9 +21,9 @@ permissions:
 
 jobs:
   bounded-research:
-    name: Round27 sources and regressions (Python ${{ matrix.python }})
+    name: Research sources and regressions (Python ${{ matrix.python }})
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
     strategy:
       fail-fast: false
       matrix:
@@ -50,6 +50,8 @@ jobs:
         run: python -B experiments/theory-contracts/test_round27_runner.py
       - name: Optimized regressions cannot suppress the checks
         run: python -B -OO experiments/theory-contracts/test_round27_runner.py
+      - name: Post-Round27 bounded test inventory in both modes (large replays separate)
+        run: python -B experiments/theory-contracts/run_consolidation_20260909.py --output /tmp/tfpt-consolidation-rerun.json
 
       # These jobs check bounded mathematical artifacts and their provenance.
       # PASS is not physical T1–T8 closure or an independent proof certificate.

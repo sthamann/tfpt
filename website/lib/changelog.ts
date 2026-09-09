@@ -42,6 +42,17 @@ export const CHANGELOG_MACROS: Record<string, string> =
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    "date": "2026-09-09",
+    "dateLabel": "2026-09-09",
+    "heading": [
+      {
+        "k": "t",
+        "v": "(CLXII): Source fields, full lattice dynamics and Clock/E8 bridge consolidated"
+      }
+    ],
+    "items": []
+  },
+  {
     "date": "2026-09-07",
     "dateLabel": "2026-09-07",
     "heading": [

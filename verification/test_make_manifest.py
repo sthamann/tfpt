@@ -40,6 +40,21 @@ class ResearchManifestTests(unittest.TestCase):
                 with self.assertRaises(OSError):
                     manifest.collect_research(tmp)
 
+    def test_native_research_sources_and_source_pins_are_shipped(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            research = root / "experiments/theory-contracts"
+            research.mkdir(parents=True)
+            names = ("group.cpp", "orbits.hpp", "executed-sources.sha256")
+            for name in names:
+                (research / name).write_text("source fixture\n")
+            expected = sorted("experiments/theory-contracts/" + name for name in names)
+            self.assertEqual(manifest.collect_research(tmp), expected)
+            subprocess.run(["git", "init", "-q", str(root)], check=True)
+            subprocess.run(["git", "-C", str(root), "add", *expected], check=True)
+            (research / "unpublished.cpp").write_text("local only\n")
+            self.assertEqual(manifest.collect_research(tmp), expected)
+
 
 if __name__ == "__main__":
     unittest.main()

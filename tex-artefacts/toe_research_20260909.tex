@@ -1,0 +1,215 @@
+% Consolidated research snapshot; historical source-pinned records stay unchanged.
+\section*{Research consolidation: source fields, dynamics and the remaining bridge (2026-09-09)}
+\addcontentsline{toc}{section}{Research consolidation: source fields and dynamics (2026-09-09)}
+\label{sec:research-20260909}
+\noindent\textbf{Status and provenance.}
+The research archive after Round~27 is now integrated, including the
+Round~28--50 development chain and the subsequent named branches.
+These are written, model-specific arguments accompanied by executable
+controls, not newly formalized or independently reviewed theorems.
+All physical T1--T8 gates and \texttt{TFPT.TOE.COMPLETE.01} remain \mO.
+The source map, prerequisites and reproduction entry points are collected in
+\path{experiments/theory-contracts/RESEARCH_2026-09-09.md}.
+Historical records retain their original local/uncommitted labels and
+hashes; the integration does not retroactively change their provenance.
+
+\subsection*{1. A charged field from the original filled microscopic sea}
+Fix the original complex, number-conserving QWZ strip at width eight,
+mass one and holonomy sector $r=1$. Its one-particle space has dimension
+$16N$ over $\mathbb C$; it is not the compiler's sixteen real Majoranas.
+Write $P_N$ for its negative-energy projector of rank $8N$ and
+$\Omega_N$ for the actually filled sea. Set
+\[
+ D_N=\frac{N}{2\pi}h_N,\qquad
+ \mathcal H_N=d\Gamma(D_N)-\operatorname{Tr}(P_ND_N),\qquad
+ Q_N=\mathcal N-8N.
+\]
+Here $\mathcal H_N\geq0$ on the full finite Fock space, including charged
+sectors. For a smooth periodic function $g$ use the physical top row,
+not an auxiliary charge register:
+\[
+ (R_Ng)(x,y)=N^{-1/2}e^{-i\pi x/(2N)}g(x/N)
+       \delta_{y,7}\chi_+,\qquad \Psi_N(g)=a_N(R_Ng),
+ \quad \chi_+=2^{-1/2}(1,1)^T.
+\]
+These fields obey exact CAR, have charge $-1$, and are supported on the
+sampled support of $g$. Their adjoints have charge $+1$.
+For $k=j-\tfrac14$, $p=2\pi k/N$, $\rho=1-\cos p$ and the normalized
+top-row mode $r_{N,j}$, the original strip action gives
+\[
+ \|D_Nr_{N,j}\|\leq |k|,\qquad
+ \|(D_N+k)r_{N,j}\|
+ \leq\frac{\pi k^2}{N}+\frac{2\pi^2|k|^3}{3N^2}.
+\]
+Indeed $h(p)\chi_+$ on the top row has the two orthogonal components
+$-\sin p\,\chi_+$ and $\rho\chi_-$; its norm is
+$2|\sin(p/2)|$. This is a bound on the actual microscopic action,
+not a fitted edge dispersion.
+
+The geometric edge quasi-mode has amplitude proportional to
+$\rho^{7-y}\chi_+$ and residual $\rho^8$. For
+$|j|\leq M_N=\min(\lfloor N/8\rfloor,\lfloor\sqrt N\rfloor)$,
+projection onto $P_N$ for
+$j\geq1$ and onto $1-P_N$ for $j\leq0$ produces an isometry $J_N$ with
+$P_NJ_N=J_NP_{\rm cur}$ exactly and
+$\|J_Ne_j-r_{N,j}\|\leq4\rho_j$.
+The discarded occupation of the raw top-row vector is at most
+$9\rho_j^2$, hence $O(N^{-4})$ for each fixed label.
+If $g=\sum_j f_je^{2\pi ijx}$, the locality-to-polarization comparison is
+\[
+ \|R_Ng-J_N\Pi_{M_N}f\|
+ \leq4\rho_*\|\Pi_{M_N}f\|_2+
+             \sum_{|j|>M_N}|f_j|\longrightarrow0.
+\]
+The last term is an $\ell^1$ alias tail; replacing it by an unqualified
+$\ell^2$ tail would not justify sampled locality.
+
+Second quantization relative to the filled sea maps the target vacuum,
+particles and holes into the same source Fock space. With
+$a_j=b_j$ for $j\leq0$ and $a_j=d_j^*$ for $j\geq1$, the target is
+\[
+ H=\sum_j |j-\tfrac14|\,n_j^{\rm exc},\qquad
+ Q=\sum_{j\leq0}n_j^b-\sum_{j\geq1}n_j^d.
+\]
+The resulting contractions intertwine both field adjoints and charge in
+the limit on the common finite-energy core. Orthogonality of momentum
+residuals bounds the $k$-excitation generator error by $k$ times the
+one-particle error, not by the $8N$ sea occupation. Since each excitation
+costs at least $1/4$, $k\leq\lfloor4E\rfloor$ on an energy-$E$ core.
+For $S_m=\sum_j|j-\tfrac14|^m|f_j|$ one also obtains the uniform bounds
+\[
+ \|\Psi_N(g)\|\leq S_0,\quad
+ \|[\mathcal H_N,\Psi_N(g)]\|\leq S_1,\quad
+ \text{time-transport error}\leq
+ |t|\left(\frac{\pi S_2}{N}+\frac{2\pi^2 S_3}{3N^2}\right),
+\]
+with transported test function
+$g_t(x)=e^{it/4}g(x-t/(2\pi))$ in the source convention.
+All fixed smooth finite field words and their vacuum moments follow by
+bounded-product convergence. The top-edge charge-sector minima are
+\[
+ E_{\rm top}(q)=q^2/2-q/4,\qquad q\in\mathbb Z.
+\]
+They are not minima over both edges of the whole cylinder.
+The microscopic holonomy term has not been removed to fit a target.
+Full proof and controls: \path{microscopic-charged-car-limit/} in the archive.
+
+\subsection*{2. Neutral multipoint limits, without changing the source}
+For the same strip and filled projector, the alternating four-word
+$U_a^*U_bU_c^*U_d$ cancels the outer history ramps. Normal ordering is
+the actual finite-sea trace subtraction. Positive heat regularization,
+Jensen and Cauchy--Schwarz give uniform $L^p$ bounds for $1<p<2$ on the
+full four-endpoint torus, including collisions. They promote the
+separated-point limit to an $L^1$ limit.
+At physical $\delta=4N^{-3/4}$ an auxiliary Fourier window of order
+$N^{1/4}\log N$ improves the normalized grid error to
+$O(N^{-3/4}\log^3N)$; the interpolation contribution is
+$O(N^{-5/8})$. This changes only the comparison window, not the physical
+source. Ordered analytic branches retain, for example, the quarter-circle
+phase $e^{i\pi/8}$. Pair-Gram positivity uses the corresponding reversed
+pair ordering; it is not a proof of Osterwalder--Schrader positivity.
+The even-word grid estimate for length $L<28$ has bound
+$O(N^{(L-28)/32}\log^3N)$; higher collision control is not thereby proved.
+See \path{microscopic-fourpoint-limit/} and \path{current-fourpoint-limit/}.
+
+\subsection*{3. Full lattice dynamics and a physical neutral ground representation}
+A different, explicitly declared compact-$U(1)$ rotor/CAR test parent
+keeps $a=1/12$, $\eta=1/2$, $\beta=1/4$, $\kappa=1/100$, $M=4$ and
+all integer electric fluxes. It is not selected by the TFPT compiler.
+The all-electric source majorant has contraction
+\[
+ \rho(T)=\frac{77T}{96}+\frac{53T^2}{14400},\qquad
+ \rho(1)=\frac{11603}{14400}<1.
+\]
+The subsequent all-observable argument counts all three vertices of
+each two-step hopping footprint. Its directed incidence is $J=69/32$,
+and an $s$-cell observable has connected-series majorant
+$q^n(s/2)_n/n!$, $q=4J|t|$. At $|t|=1/16$, $q=69/128<1$.
+Finite-volume maps therefore converge in norm on bounded local operators,
+uniformly on compact time intervals, and compose to all-time
+automorphisms of the full bounded quasi-local algebra.
+\emph{Continuity qualification:} this group is not point-norm continuous
+on that full algebra. Unbounded electric flux gives an explicit rotor,
+and also neutral Wilson-loop, counterexample. Its maximal continuous
+subalgebra equals the free onsite continuous subalgebra and is proper,
+not norm dense in the full algebra.
+
+Normalized periodic neutral ground-space projectors have locally
+trace-norm compact subsequences. Their limits are locally normal,
+stationary states with a strongly implemented dynamics and nonnegative
+generator on the neutral physical cyclic representation. This is not
+positive energy for arbitrary charged fields, nor uniqueness of the state.
+The bare all-low, zero-electric preparation is not a ground state.
+A hole/square-completion estimate improves the electric bound to
+\[
+ \sum_{a=1}^3\langle E_{x,a}^2\rangle\leq C_*=
+ \frac{1706590130}{3033378777}\simeq0.562604,
+ \qquad \langle n_{H,x}\rangle\leq\frac{32}{9075}.
+\]
+For the elementary neutral Wilson loop $W$ and
+$S=\sum_{\ell\in\partial p}p_\ell E_\ell$, the full Hamiltonian obeys
+$W^*HW-H=\kappa(S+2)$. Its limiting positive spectral measure has
+$m_1=1/50$ and $m_2\leq\kappa^2(16C_*/3+4)$, giving positive-energy
+weight at least $0.571383$ and positive spectral infimum at most
+$0.035003$ in the declared Hamiltonian units. This is neither a positive
+gap lower bound, a mass prediction nor a continuum limit.
+See \path{observable-dynamics/}, \path{neutral-ground-state/} and
+\path{ground-state-loop-response/}.
+
+\subsection*{4. What the compiler, Clock and lattice audits actually decide}
+The charge-sign quotient $L/(1+J)L$ loses commutator information.
+The minimal additive refinement is the eight-bit symplectic space
+$L/2L$, with four-dimensional kernel $(1+J)L/2L$.
+There are 64 quadratic-form-preserving sections, four compatible with
+the family marking; the deck exchanges complementary sections.
+The full target on $\ell^2(E_8)$ has charge shifts, cocycle and
+$H_0|\mu\rangle=|\mu|^2|\mu\rangle/2$, but is not a microscopic
+identification. The spinor charge maps to
+$s=(1/2,\ldots,1/2)$, so $|s|^2/2=1$.
+Its order-four quotient grading must retain actual charge carry:
+$U_s^2=-U_{2s}$ and $U_s^4=U_{4s}$, not the identity.
+
+For the compact parent, every site-fixed, rotor-independent diagonal
+phase symmetry of the actual low/high hoppings has
+$h_x=l_x=q_x$ and link phase $q_v-q_u$. Its implementation is
+$e^{-i\theta\sum_xq_x}e^{-i\theta\sum_xq_xG_x}$, hence only a scalar
+on $G_x=0$. The distinct onsite energies reduce site-fixed internal
+$U(2)$ mixing to this diagonal class. In addition, paired low/high
+characters have even multiplicities, whereas the source Clock has
+multiplicities $(5,1,1,1)$. There is no eight-mode intertwiner in that
+class. Spatial, flux-dressed or particle--hole actions are not excluded.
+
+The compiler's scalar quadratic Majorana dynamics and Gaussian
+elimination do not produce a connected quartic vertex. In contrast,
+the actual rotor double commutator has a nonzero quartic component.
+That fact does not identify it with a selected effective compiler
+interaction. The frozen compact-parent matter symbol factors through
+$x(k)=\sum_i\cos k_i/6$; its Pauli Jacobian has rank at most one and its
+band separation is at least $55/16$. Retuning scalar functions of $x$
+cannot supply a three-direction Weyl node.
+See \path{charged-cocycle-lift/}, \path{clock-rotor-joint-charge/},
+\path{clock-interaction-provenance/} and \path{parent-selection-audit/}.
+
+\subsection*{5. The next closure test is one source-to-source bridge}
+The integer charged CAR field is substantial progress beyond neutral
+determinants, but is not yet the half-charged $E_8$ spin field.
+A sharp half-twist has a divergent polarization Hilbert--Schmidt sum
+$\sum_{k\geq1}k/[\pi^2(k+1/2)^2]$. Its unrenormalized unitary limit is
+therefore not justified. The next construction must provide a
+renormalized, smeared inter-sector field, both adjoints, source energy
+bounds and charge/cocycle carry, and then identify the eight channels
+and their family/Clock marking from the same source. Appending eight
+independent copies or a formal lattice register would assume this bridge.
+
+The accompanying double-cover, origin-cascade and prime-event studies
+are archived separately. Exact clock/interaction readouts are finite
+algebraic results; a sheet flip alone does not yield an Euler product,
+RH positivity or a factoring advantage. The old logarithmic cascade
+telescopes and retains its separate scale choice. No arithmetic or
+physical marker is promoted by those observations.
+T1 still requires principle and compiler selection; T2 the microscopic
+charged $E_8$ seam; T3 one selected local $3{+}1$D parent; T4 a chiral
+anomaly-consistent gauge theory; T5 its physical continuum and scattering;
+T6 complete couplings and neutrino data; T7 universally coupled quantum
+spin two; and T8 a selected state and common source functional.
+Separate constructions are not their common-parent solution.

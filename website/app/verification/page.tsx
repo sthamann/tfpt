@@ -153,7 +153,7 @@ const REVIEWER_MAP: { label: string; marker: string; tone: string; items: string
     items: [
       "P1, P2 — declared inputs, reduced to the anchor a=(1,1,2)+π (not free dials)",
       "v_geo — the one dimensionful scale (metrology primitive, No-Unit Theorem)",
-      "SEAM.EQUIV.01 — [C] closed modulo cited theorems (lattice v367/v368 + S3 stack v376–v379, ground-state witnesses v489/v490, Lean FORM.SEAM.MMST.01); the only [O] residual is the cited continuum scaling-limit existence (v336; extension leg on the peer-reviewed crossed-product package, realisation at invariant level, v469; stays [O])",
+      "SEAM.EQUIV.01 — conditional target-net reductions (v367/v368, v376–v379, v489/v490, FORM.SEAM.MMST.01) do not yet identify the actual microscopic charged seam. The source half-charge field, marked E8 extension and scaling-limit bridge remain open; all physical T1–T8 remain [O].",
     ],
   },
   {
@@ -344,12 +344,12 @@ export default function VerificationPage() {
               a two-input discrete compiler whose algebraic kernel derives the Standard-Model skeleton
               and several dimensionless readouts, with every physical transfer layer explicitly typed
             </span>{" "}
-            — and the keystone SEAM.EQUIV.01 (the raw RP seam = the holomorphic (E₈)₁ net at τ=i) is
-            closed modulo cited theorems: the target net is pinned at every computable level (lattice
-            v367/v368 + S3 stack v376–v379, ground-state witnesses v489/v490) and Lean-pinned (FORM.SEAM.MMST.01) to the published MMST/Adamo
-            theorems, so the AQFT closure to (E₈)₁ follows modulo the cited continuum-existence residual
-            (v336; extension leg on the peer-reviewed crossed-product package, realisation at invariant
-            level, v469; stays [O]); its conformal-deck face QGEO.SYM.01 is a corollary.
+            — with conditional target-net routes to (E₈)₁, not a completed identification of
+            the physical seam. Their cited theorems still require the actual source hypotheses.
+            The 9 September source-field advance supplies integer charged CAR fields;
+            the half-charge extension, family/Clock marking and common 3+1D parent remain open.
+            Historical reductions below describe their stated finite or conditional lane,
+            not closure of the physical T1–T8 gates.
           </p>
         </div>
       </section>
