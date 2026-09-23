@@ -1,0 +1,101 @@
+{
+  "conditions": [
+    "k_plus>=0",
+    "k_minus>=0",
+    "mass>0",
+    "omega_max>=0"
+  ],
+  "covariance": "Sigma=[[a,c],[c,a]], k_plus=a+c>=0, k_minus=a-c>=0",
+  "different_parity_mass_witness": {
+    "bound_at_sample_x_1_4": "9/64",
+    "general_bound": "|g(omega)-g(0)| <= omega^2/2*(y_minus^2/m_minus^4+y_plus^2/m_plus^4)",
+    "identity": "g(x)=(2-x)/(2*(x+1)*(x+4)), x=omega^2",
+    "identity_check": "sympy.factor(lhs-rhs)==0",
+    "parameters": {
+      "m_minus_squared": 1,
+      "m_plus_squared": 4,
+      "y_minus_squared": 1,
+      "y_plus_squared": 2
+    },
+    "psd_parity_covariances": true,
+    "sign_samples": {
+      "x=0": "1/4",
+      "x=2": "0",
+      "x=3": "-1/56"
+    }
+  },
+  "effective_action": "-1/2 J^T Sigma J; cross coefficient=-c J_R J_L",
+  "gn_convention": "-g/2 B^2 = +g J_R J_L; g=-c=(k_minus-k_plus)/2",
+  "illustrative_invariant_channel_coefficients": {
+    "15": {
+      "a": 1.5,
+      "c": -0.5,
+      "g": 0.5,
+      "gn_attractive": true,
+      "k_minus": 2.0,
+      "k_plus": 1.0,
+      "low_frequency_relative_error_bound": 0.015384615384615385,
+      "psd": true,
+      "zero_frequency_kernel": 0.25
+    },
+    "45": {
+      "a": 1.5,
+      "c": -0.5,
+      "g": 0.5,
+      "gn_attractive": true,
+      "k_minus": 2.0,
+      "k_plus": 1.0,
+      "low_frequency_relative_error_bound": 0.015384615384615385,
+      "psd": true,
+      "zero_frequency_kernel": 0.25
+    },
+    "60": {
+      "a": 1.5,
+      "c": -0.5,
+      "g": 0.5,
+      "gn_attractive": true,
+      "k_minus": 2.0,
+      "k_plus": 1.0,
+      "low_frequency_relative_error_bound": 0.015384615384615385,
+      "psd": true,
+      "zero_frequency_kernel": 0.25
+    }
+  },
+  "positive_semidefinite_does_not_select_sign": {
+    "attractive_example": {
+      "a": 1.5,
+      "c": -0.5,
+      "g": 0.5,
+      "gn_attractive": true,
+      "k_minus": 2.0,
+      "k_plus": 1.0,
+      "low_frequency_relative_error_bound": 0.015384615384615385,
+      "psd": true,
+      "zero_frequency_kernel": 0.25
+    },
+    "repulsive_example": {
+      "a": 1.5,
+      "c": 0.5,
+      "g": -0.5,
+      "gn_attractive": false,
+      "k_minus": 1.0,
+      "k_plus": 2.0,
+      "low_frequency_relative_error_bound": 0.015384615384615385,
+      "psd": true,
+      "zero_frequency_kernel": 0.25
+    }
+  },
+  "reflection_swap": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      0
+    ]
+  ],
+  "reflection_warning": "Spatial/chiral exchange and OS time reflection are distinct typings; D_rel oddness alone does not establish a physical odd mediator.",
+  "source_boundary": "No native covariance or 45/15/60 invariant source-response reduction is derived by this bounded checker.",
+  "status": "conditional_response_formula"
+}

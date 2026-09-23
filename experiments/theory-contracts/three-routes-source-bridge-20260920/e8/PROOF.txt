@@ -1,0 +1,236 @@
+Herkunftstest der konkreten E8-Randrekonstruktion
+Stand: 2026-09-20
+
+VERDICT
+
+NATIVE_CJ_LATTICE_AND_VOA_LIFTS_EXIST_NULL_TERM_STABLE_BUT_FIXED_U1_IS_ROTATED
+
+Der Kandidat besteht den bisher fehlenden strukturellen Clock-Test teilweise
+konstruktiv: Die im Projekt gepinnten E8-Matrizen C und J besitzen ganzzahlige
+Lifts auf das rekonstruierte Z^(9,1)-Operatorgitter. Beide erhalten K, V_* und
+die Wechselwirkungsrichtung n. Auf dem E8-Lattice-VOA existieren individuelle
+Kokyklus-Lifts ohne Ordnungsverdopplung; ihre Vorzeichen lassen sich so wählen,
+dass die gemeinsame Relation C-hat^15 = J-hat^2 gilt.
+
+Die feste mikroskopische Gesamtteilchenzahl wird jedoch von keinem der beiden
+Clocks erhalten. Daher sind diese Lifts mit der gegenwärtigen Ladungsmarkierung
+exakte Weyl-/Clock-Dualitäten, die den U(1)-Generator mitdrehen. Sie sind keine
+internen U(1)-kommutierenden Symmetrien und damit ohne zusätzliche Herleitung
+keine physische Zeitentwicklung. Das widerlegt den Randkandidaten nicht; es
+schließt genau diese stärkere Interpretation aus.
+
+1. Festgelegte Daten und Konvention
+
+K = diag(1,1,1,1,1,1,1,1,1,-1),
+n = (1,1,1,-1,-1,-1,-1,-1,-1,3)^T,
+t = (1,1,1,1,1,1,1,1,1,1)^T.
+
+Der lokale Vertex ist V_p = kappa_p exp(i p^T K phi). In dieser Konvention ist
+seine mikroskopische Teilchenzahl Q(p)=t^T p. Der Cosinus V_n+V_-n ist neutral,
+weil t^T n=0, und selbstnull, weil n^T K n=0.
+
+Mit den acht im Vorgängertext angegebenen E8-Einfachwurzeln als Spalten von B,
+e=e_1 und v=n-e lautet der vollständige Basiswechsel
+
+W = (F(B_1),...,F(B_8),e,v),    det W=-1.
+
+Exakt gilt
+
+W^T K W = G_E8 + diag(1,-1),
+W^T V_* W = G_E8 + I_2,
+W^{-1} n = (0^8,1,1)^T,
+W^T t = (-2,2,0,0,0,0,0,0,1,-1)^T.
+
+Die letzte Gleichung ist der neue entscheidende Ladungstest. Die E8-Ladung
+verschwindet nicht. Ihr Anomalienormwert ist
+
+q_E8^T G_E8^{-1} q_E8 = 8,
+
+während das massive Paar (1,-1) den Wert 1^2-(-1)^2=0 trägt. Der gesamte Wert
+t^T K^{-1}t=8 liegt somit im E8-Sektor. Das ist kein Artefakt des gewählten
+Vertreters modulo n: Q(n)=0, also ändert p -> p+k n keine Ladung.
+
+Die konkrete Spinorwurzel b=F((1/2)^8) trägt Q(b)=4. Sie ist deshalb nicht ohne
+ein zusätzliches Ladungswörterbuch das regionale Halb-Ladungsfeld der
+ursprünglichen Quelle. Der bisherige source-edge-charge-transport-Contract sagt
+ohnehin ausdrücklich, dass dieses lokale Halb-Feld noch nicht konstruiert ist.
+Unter den 240 E8-Wurzelströmen ist die tatsächliche Ladungsverteilung
+Q=-4:1, -2:56, 0:126, +2:56, +4:1. Die physische U(1)-Markierung wählt also
+einen nichttrivialen Cartangenerator innerhalb des E8-Stromnetzes.
+
+2. Tatsächliche native C- und J-Matrizen
+
+Die Matrix C wird unverändert aus
+experiments/theory-contracts/compiler-integral-triality-20260918/certificate.json
+gelesen. Exakt gelten
+
+C^30=I, C^15=-I, charpoly(C)=Phi_30.
+
+Für die dort gepinnte Gauß-Struktur J gelten
+
+J^4=I, J^2=-I.
+
+Beide sind orthogonale Automorphismen aller 240 E8-Wurzeln. Sie kommutieren
+nicht. Die ältere CLOCKS_INCOMPATIBLE-Aussage besagt daher korrekt, dass C nicht
+J-linear ist und beide keinen gemeinsamen Eigenrahmen besitzen. Sie verbietet
+aber nicht, dass ein entarteter isotroper Hamiltonoperator unter beiden getrennt
+invariant ist.
+
+Setze für A=C,J
+
+A_B = B^{-1} A B,
+S_A = W diag(A_B,I_2) W^{-1}.
+
+Der Checker beweist exakt:
+
+- A_B und S_A sind ganzzahlig und unimodular;
+- S_A^T K S_A=K;
+- S_A^T V_* S_A=V_*;
+- S_A n=n;
+- S_A F(p)=F(Ap) für alle 240 Wurzeln.
+
+Damit bleibt der Cosinus als Operatorrichtung erhalten. Das ist zunächst eine
+Gitter- und quadratische Hamilton-Invarianz; Abschnitt 3 ergänzt den kleinsten
+notwendigen Kokyklus-Test.
+
+Der U(1)-Test fällt dagegen exakt negativ aus:
+
+S_C^T t-t = (0,2,2,-4,-4,-4,-4,-2,-2,-8)^T,
+S_J^T t-t = (0,-2,0,-2,0,-2,0,-2,-2,-2)^T.
+
+Auch keine nichttriviale Potenz C^k, 1<=k<30, und keine nichttriviale Potenz
+J^k, 1<=k<4, erhält t. Die physische U(1)-Markierung bricht beide Zyklen daher
+vollständig, falls sie als interne Symmetrien verstanden werden.
+
+3. Kleinster Kokyklus-Lift
+
+Auf der E8-Einfachwurzelbasis wurde der bimultiplikative Standardkokyklus
+
+epsilon(x,y)=(-1)^(x^T L y)
+
+gewählt, wobei L modulo zwei die untere Dreieckshälfte von G_E8 und auf der
+Diagonale G_ii/2 enthält. Für A=C,J ist
+
+D_A = A_B^T L A_B-L mod 2
+
+symmetrisch mit verschwindender Diagonale. Daher repariert die explizite
+quadratische Ko-Kette
+
+eta_A(x)=(-1)^[sum_{i<j} (D_A)_ij x_i x_j + ell_A dot x]
+
+den Kokyklus. Der Checker prüft die Polarisationsidentität auf allen 256^2
+Restklassenpaaren. Für C und J gibt es Lifts der Ordnungen 30 und 4. Mit
+ell_C=0 existieren 16 Wahlen von ell_J, für die zusätzlich
+
+C-hat^15 = J-hat^2 = (-I)-hat
+
+ohne zusätzliche lineare Phase gilt.
+
+Das Resultat ist bewusst eng: Es konstruiert individuelle Lifts und die eine
+gemeinsame Zentralrelation. Es prüft keine Sektion sämtlicher gemischter
+Relationen der von C und J erzeugten Gruppe. Es ist außerdem ein Lift auf dem
+rekonstruierten E8-Lattice-VOA, tensiert mit der Identität auf dem massiven
+Paar. Ein mikroskopischer QWZ-Klein-Faktor-Lift mit der ursprünglichen
+Spinstruktur folgt daraus noch nicht.
+
+4. Was gemeinsame C/J-Kovarianz tatsächlich an V auswählt
+
+Im acht-dimensionalen E8-Sektor hat der Raum reeller symmetrischer Metriken
+
+dim Sym(E8)^C = 4,
+dim Sym(E8)^J = 16,
+dim Sym(E8)^{C,J} = 1.
+
+Gemeinsame Kovarianz erzwingt dort also ein skalares Vielfaches der
+E8-Metrik. Weil beide Lifts auf dem massiven Paar als Identität gewählt sind,
+bleibt dessen beliebige positive symmetrische 2x2-Metrik frei (drei Parameter).
+Die volle gemeinsam kovariante positive Energiefamilie hat daher vier
+Parameter, beziehungsweise drei Verhältnisse nach Entfernung eines
+Gesamtmaßstabs. V_* wählt davon den Punkt G_E8 + I_2. Die Clocks erklären den
+isotropen E8-Block, aber nicht die massive Paarmetrik oder ihre Abstimmung auf
+den freien Diracpunkt.
+
+5. Stabilität der Nullwechselwirkung am gewählten V_*
+
+Schreibe einen ganzzahligen Operator im W-Rahmen als x=(r,a,b) mit r in E8.
+Selbstnullheit und Skalendimension lauten
+
+r^2+a^2-b^2=0,
+Delta=(r^2+a^2+b^2)/2=b^2.
+
+Für 0<Delta<2 folgt aus der Ganzzahligkeit |b|=1. Da E8 positiv und gerade ist,
+erzwingt r^2+a^2=1 bereits r=0 und |a|=1. Die tatsächliche Teilchenzahl ist
+
+Q(r,a,b)=q_E8(r)+a-b.
+
+Neutralität gibt damit a=b. Somit sind die einzigen relevanten neutralen
+primitiven selbstnullen Richtungen exakt +(0^8,1,1) und -(0^8,1,1), also
++n und -n. Beide Clocks fixieren n. Der gewünschte Cosinus ist folglich in der
+angegebenen Störungsklasse stabil und eindeutig. Das ist kein Stabilitätssatz
+gegen alle mikroskopischen, nichtbosonisierten oder nichtlokalen Störungen.
+
+6. Herkunftsurteil und kleinste konsistente Fortsetzung
+
+Die erste gebrochene Kante ist nicht mehr C/J -> E8-Gitter oder C/J -> n.
+Diese beiden Kanten tragen. Gebrochen ist
+
+native Clock als interne physische Symmetrie -> feste mikroskopische U(1)-Ladung.
+
+Die kleinste konsistente Lesart ohne neue Freiheitsgrade ist:
+
+- C und J wirken als kinematische Weyl-/Clock-Dualitäten des E8-Stromnetzes;
+- die physische Ladungsmarkierung t wählt eine Cartanrichtung und bricht diese
+  Dualitäten;
+- eine Anwendung der Clock muss dann auch den U(1)-Generator beziehungsweise
+  den Hintergrund der mikroskopischen U(1)-Ladung mittransformieren und ist
+  keine Zeitentwicklung bei festgehaltenem Hintergrund dieser Quellenladung.
+  Diese Teilchenzahl ist hier weder als elektromagnetische Ladung noch als
+  Standardmodell-Hyperladung identifiziert.
+
+Soll eine Clock stattdessen eine interne ladungserhaltende Symmetrie oder die
+physische Zeit sein, muss TFPT eine andere Ladungsmarkierung, einen größeren
+Sektor oder eine andere konkrete Clockwirkung herleiten. Im festen W-Split kann
+die Ladung nicht einfach in das massive Paar verschoben werden: ihr E8-Anteil
+ist nichtnull und trägt den gesamten Normwert 8. Ein abstraktes Z4 oder die
+A3-Viertelperiode identifiziert außerdem nicht automatisch die hier gepinnte
+Gauß-Matrix J; dafür fehlt weiterhin der explizite Intertwiner.
+
+Nicht hergeleitet bleiben W, das zusätzliche Gegenläuferpaar, n, der konkrete
+Punkt V_*, sein mikroskopischer Skalengrenzwert, der QWZ-Klein-Faktor-Lift und
+die Identifikation des charge-four E8-Spinorstroms mit dem regionalen
+Halb-Ladungsfeld. Deshalb ist dies ein neuer konstruktiver Kompatibilitäts- und
+Selektionssatz mit einem scharf begrenzten U(1)-Obstruktionssatz, keine
+P1/P2-Herkunftsherleitung und kein T1-T8-Abschluss.
+
+7. Reproduktion und Quellen
+
+Aus diesem Ordner:
+
+python3 -B check_native_clocks.py
+
+Aktuelles Resultat: 44/44 exakte Checks PASS. Maschinenlesbar: RESULTS.json.
+
+Primärliteratur, konsultiert am 2026-09-20:
+
+- J. Cano et al., Bulk-Edge Correspondence in 2+1-Dimensional Abelian
+  Topological Phases, Phys. Rev. B 89, 115116 (2014),
+  https://doi.org/10.1103/PhysRevB.89.115116 , arXiv:1310.5708.
+  Relevant: mehrere stabile Kantenphasen; K- und Ladungsvektor transformieren
+  gemeinsam; im E8-Rahmen ist der Ladungsvektor nicht null.
+
+- J. Cano et al., Chirality-Protected Majorana Zero Modes at the Gapless Edge
+  of Abelian Quantum Hall States, Phys. Rev. B 92, 195152 (2015),
+  https://doi.org/10.1103/PhysRevB.92.195152 , arXiv:1505.07825.
+  Relevant: I8/E8-Kanten, nichtchirales Zusatzpaar, charge-preserving
+  Gapping-Terme; Eq. (1)-(4) und der E8-Ladungsvektor.
+
+- S. Moller and N. R. Scheithauer, Dimension Formulae and Generalised Deep
+  Holes of the Leech Lattice Vertex Operator Algebra (2021),
+  https://arxiv.org/abs/1910.04947 . Relevant: Kokyklus-Liftgleichung,
+  1 -> Hom(L,{+-1}) -> O(L-hat) -> O(L) -> 1 und das Kriterium fuer
+  Ordnungsverdopplung. Der Checker konstruiert die hier verwendeten Ko-Ketten
+  zusätzlich explizit.
+
+Lokale Quellpins und vollständige Matrizen stehen in RESULTS.json. Repository,
+Ledger und Theoriegraph wurden nicht verändert; das Artefakt bleibt im
+Experiments-/Arbeitsbereich und ist nicht promoviert.

@@ -1,0 +1,351 @@
+ALTERNATING PACKET COVERINGS AND DOMAIN-WALL AUDIT
+19 September 2026
+Verdict: EXACT M4 ALTERNATING-SECTOR EXCLUSION AT WEAK COUPLING; NO DIRAC CLAIM
+
+Question
+========
+
+Do the symbolic chains
+
+  Omega s Omega s ...       and       s Omega s Omega ...
+
+define actual Hilbert vectors, what are their exact trial energies and
+leakages, and can an adjacent Omega Omega splice be used as a mobile domain
+wall?
+
+1. The labels must be matchings
+===============================
+
+Omega_e is the normalized state of source register e and both matter registers
+at the endpoints of edge e,
+
+  Omega_e=240^(-1/2) sum_alpha
+          |alpha>_e |psi_alpha>_e |psi_alpha>_(e+1).
+
+It consumes both endpoint matter factors.  Therefore a product of several
+Omega packets exists only when their edges form a matching M: no two selected
+edges may be adjacent.  Every unselected source is put in
+
+  s=240^(-1/2) sum_alpha |alpha>,
+
+and every matter vertex not incident to M needs an explicit C4 state.  The
+Omega/s string alone is incomplete whenever such a free vertex remains.
+
+The one-matter marginal of Omega is exactly I4/4.  The native source moment is
+
+  mean_l(r_l tensor r_l)=(I+Swap)/5.                              (1)
+
+Both identities are reconstructed from the pinned 240 roots in
+variational_checker.py.
+
+2. Exact alternating trial energy and leakage
+=============================================
+
+Let the open chain have m source edges and m+1 matter vertices.  Write u for
+the number of uniform-source edges.  For either alternating covering, and also
+for the single admissible ss wall described below, every uniform-source edge
+has at least one endpoint with reduced state I4/4.  On such an edge,
+
+  <L_e>=3/4,       <L_e^2>=3/5,
+  <H_E,e>=3/4,     <H_E,e^2>=3/2,
+  <L_e H_E,e>=3/5.                                             (2)
+
+The distinct-edge connected contractions vanish.  This follows from the
+conditional projective moment E_alpha |<psi_alpha|psi_beta>|^2=1/4; it remains
+true for the two adjacent s edges of the valid wall.  For the overlap coupling
+V_e,e+1=1-Re<psi_alpha|psi_beta>, the even-source compression is the identity,
+E[(Re z)^2]=1/8, and distinct-link connected contractions vanish.
+
+For
+
+  H=kappa sum_e L_e + J sum_e H_E,e + mu sum_(e=1)^(m-1) V_e,e+1,
+
+the exact expectation and residual norm of these factorized trial vectors are
+
+  E_trial = (3/4)(kappa+J) u + mu(m-1),                           (3)
+
+  ||(H-E_trial)Phi||^2
+    = u(3kappa^2+6kappa J+75J^2)/80 + mu^2(m-1)/8.               (4)
+
+Equation (4) is leakage, so these states are generally not eigenstates.  It is
+not an energy-error bound and does not prove a ground state.
+
+For packets on odd-numbered edges,
+
+  |M|=ceil(m/2),   u=floor(m/2).
+
+For packets on even-numbered edges,
+
+  |M|=floor(m/2),  u=ceil(m/2).
+
+The last formula has one boundary exception: it applies to this shifted
+orientation for m>=2.  At m=1 there is no packet, so both endpoint matter
+vectors are free.  If they are chi_1,chi_2, the exact energy is
+
+  (kappa+J)(4-|<chi_1|chi_2>|^2)/5,
+
+and the fixed leakage formula (4) is not asserted.
+
+Thus the two orientations have equal trial energy only for even m.  For odd m,
+the odd-edge orientation has one extra packet and lies lower by
+3(kappa+J)/4.  The mu term does not remove this difference at first order.
+
+The boundary bookkeeping matters:
+
+* m=4: each orientation has two packets and one free C4 matter register, at
+  opposite ends.
+* m=5: the odd-edge orientation has three packets and no free matter; the
+  shifted orientation has only two packets and two free matter registers.
+
+3. The whole alternating sector is already excluded at m=4
+============================================================
+
+This comparison is stronger than testing the two alternating product vectors.
+Let P_alt contain the complete source irreps
+
+  A=(barSym2,1,barSym2,1),
+  B=(1,barSym2,1,barSym2).
+
+The pinned exact .23 theorem says that a two-edge mixed
+(barSym2,1) sector has bottom
+
+  E_*=(6-sqrt(6))/5.
+
+Write H_0=kappa sum_e L_e.  On A, split it into the pairs
+(L_1+L_2)+(L_3+L_4).  Each pair obeys the operator lower bound E_* kappa on
+its complete local Hilbert space.  The bounds can be added even though the
+pairs share the middle matter register: extending each valid operator
+inequality by the identity preserves it.  Reflection gives the same result
+on B.  Therefore
+
+  P_alt H_0 P_alt >= 2(6-sqrt(6))kappa/5 P_alt
+                  = 1.420204... kappa P_alt.                 (M4.1)
+
+There is an explicit normalized state outside P_alt,
+
+  Gamma=Omega_(R1,AB) tensor Phi_(R2,C) tensor s_(R3)
+        tensor Omega_(R4,DE),
+
+  Phi=240^(-1/2) sum_beta |beta>|psi_beta>.
+
+Phi has source charge one in the pinned convention
+T|ell;s>=i^(-s)|ell;s>.  It is invariant under the joint source--matter
+reflection.  Together with mean_l r_l=I4/2 and
+r_beta psi_beta=-psi_beta, this gives exactly
+
+  <L_2>=1/2,  <H_E,2>=3/2,
+  <L_3>=3/4,  <H_E,3>=3/4,
+
+while edges 1 and 4 annihilate their Omega packets.  Every source marginal is
+uniform on the oriented roots, so each of the three V links has expectation
+one.  Hence
+
+  <Gamma|H|Gamma>=5kappa/4+9J/4+3mu.                         (M4.2)
+
+On P_alt the nonidentity part of every V link changes two even source charges
+to odd charges.  Thus P_alt V P_alt=3P_alt.  Positivity of H_E and (M4.1) give
+
+  P_alt H P_alt >= [2(6-sqrt(6))kappa/5+3mu]P_alt.             (M4.3)
+
+Comparison of (M4.2) and (M4.3) proves that no state confined to P_alt can be
+a full ground state whenever
+
+  J/kappa < (23-8sqrt(6))/45 = 0.07565... .                    (M4.4)
+
+This conclusion is independent of mu and uses no unproved full-chain gap.
+It rules out the proposed dominant alternating source sector already on four
+edges in the weak-coupling regime.  It does not rule out every possible form
+of bond order.
+
+There is also a quantitative consequence for any normalized ground vector.
+H_0 preserves P_alt.  The four positive event terms give
+||Q H_E P_alt||<=8.  The three overlap links produce six mutually orthogonal
+two-odd charge targets, each with coefficient 1/2, and the target sets from A
+and B are disjoint, so
+
+  ||Q V P_alt||<=sqrt(3/2).
+
+The H_E output retains all-even charges and is orthogonal to the V output.
+With
+
+  b^2=64J^2+(3/2)mu^2,
+  d=[(23-8sqrt(6))/20]kappa-9J/4,
+
+the projected eigenvalue equation gives, when d>0,
+
+  ||P_alt psi_0||^2 <= b^2/(d^2+b^2).                          (M4.5)
+
+At J=mu=kappa/200 the right side is 0.06087..., below 0.061.  This is an
+upper bound, not a determination of the ground vector.
+
+4. The m=3 alternating product is not an eigenvector
+====================================================
+
+For
+
+  u=Omega_(R1,AB) tensor s_(R2) tensor Omega_(R3,CD),
+  w=Swap_BC u,
+
+the exact full-vector action at J=mu=0 is
+
+  H_L u = kappa(4u-w)/5,       <u|w>=1/4.                         (5)
+
+Therefore
+
+  <H_L>=3kappa/4,
+  (H_L-3kappa/4)u=kappa(u/20-w/5)
+                 =-kappa sqrt(15) v/20,
+
+where v=(4w-u)/sqrt15 is normalized and orthogonal to u.  The leakage is
+
+  ||(H_L-3kappa/4)u||^2=3kappa^2/80.                              (6)
+
+The first reorganization is the matter swap B<->C.  Both u and w retain the
+same individual source-charge pattern (2,0,2).  This is not motion or mixing of
+the Omega/s source pattern.  At J>0 further relaxation can occur inside that
+same conserved source sector.
+
+5. Adjacent Omega Omega is not an admissible wall
+=================================================
+
+Let Q_left and Q_right be the two local rank-one Omega projectors on adjacent
+edges.  Their shared matter marginal is I4/4, hence
+
+  ||Q_left Q_right||=1/4 < 1.                                    (7)
+
+They have no common range.  No Hilbert vector is simultaneously the two local
+Omega packets, so the symbolic motif Omega Omega is not a product state.  A
+sequentially projected frustrated vector can be nonzero, but it is not an
+Omega Omega covering.  Using the exact local gap2kappa/5 from .17 gives the
+existing lower bound3kappa/10 for the sum of the two overlapping local
+Hamiltonians; simultaneous zero energy is impossible.
+
+The admissible splice between the two alternating matchings is instead
+
+  ... Omega s | s Omega ...
+
+with two consecutive uniform sources and one explicit free matter state c in
+C4 at their shared vertex.  It has four internal trial states.  Relative to
+the alternating covering with one more packet, this wall raises (3) by
+
+  Delta E_trial=3(kappa+J)/4.                                    (8)
+
+It raises the L/H_E part of the leakage variance by
+
+  (3kappa^2+6kappa J+75J^2)/80.                                  (9)
+
+These are variational costs, not a physical mass.
+
+6. Pattern motion begins outside first order
+============================================
+
+Omega has individual source charge2 and s has charge0.  Both sum L and sum H_E
+preserve every individual source charge for arbitrary J.  Consequently
+different Omega/s coverings have exactly zero matrix element at mu=0, even
+though a trial vector can relax within its fixed pattern sector.
+
+Let P_even retain source charges0 or2 at every edge.  Re z changes the two
+participating source charges to odd values, so exactly
+
+  P_even V_e,e+1 P_even=P_even,
+  P_even H P_even=P_even(H_L+J H_E)P_even+mu(m-1)P_even.          (10)
+
+There is no first-order covering-to-cover hopping from V.
+
+The first nonzero bounded local connection can be calculated without a
+resolvent.  On a two-edge, three-matter segment define
+
+  |L_c>=Omega_(R1,AB) tensor s_(R2) tensor |c>_C,
+  |R_d>=s_(R1) tensor |d>_A tensor Omega_(R2,BC).
+
+Exact 240-root contraction gives
+
+  <R_d|V|L_c>=0,
+  <R_d|V^2|L_c>=delta_dc/160.                                    (11)
+
+All cross terms in H^2 are excluded by the individual source charges, hence
+
+  <R_d|H^2|L_c>=mu^2 delta_dc/160,
+
+and the short-time amplitude is
+
+  <R_d|exp(-itH)|L_c>=-mu^2 t^2 delta_dc/320+O(t^3).              (12)
+
+Equation (12) is a second time derivative through odd intermediate source
+sectors.  It is not a first-order tight-binding matrix element, not a
+Schrieffer-Wolff/resolvent coefficient, and not a Dirac dispersion or mass.
+A mobile wall requires the intermediate spectrum, an isolated low-energy
+wall subspace and a controlled effective Hamiltonian.  None is supplied by
+the Omega/s labels alone.
+
+7. A completed Phi core gives the valid finite trial band
+==========================================================
+
+The free C4 matter register of a bare ss wall can be completed by the same
+charge-one Phi packet.  For m=2r edges and a=0,...,m-1, use zero-based edge
+indices and set
+
+  v=2 ceil(a/2).
+
+Put Phi on source edge a and bind it to matter vertex v.  Put Omega on every
+even edge below v and every odd edge above v, and put s on all remaining
+sources.  The Omega edges form a matching, avoid v, and together with Phi
+cover all m+1 matter registers exactly once.  The m source-charge patterns
+are orthogonal and have representative total charge m+1.  For m=4 they are
+
+  (1,2,0,2), (2,1,0,2), (2,0,1,2), (2,0,2,1).                 (C.1)
+
+Each state contains r Omega packets, one Phi edge and r-1 uniform-source
+edges.  The exact diagonal energy is
+
+  E_core=(3r-1)kappa/4+3(r+1)J/4+mu(m-1).                     (C.2)
+
+Two adjacent core positions are connected either by
+Phi Omega <-> Omega Phi or by Phi s <-> s Phi around the same vacancy.  Both
+matrix elements reduce to
+
+  -E[Re(z) conjugate(z)]=-1/8.
+
+Nonadjacent charge patterns cannot be connected by one V link.  Therefore the
+exact Galerkin compression onto these m orthonormal trial states is
+
+  P_core H P_core=E_core I_m-(mu/8) A_path_m.                  (C.3)
+
+For m=2 this is the existing pair mode.  For m>=4 it is not an invariant
+subspace: every one of the r-1 uniform edges has the exact H_0 residual
+variance 3kappa^2/80, with vanishing cross covariance.  Thus
+
+  ||(I-P_core)H_0|a>||^2=3(r-1)kappa^2/80.                    (C.4)
+
+Equation (C.3) is a constructive finite trial band and identifies the correct
+Phi-completed wall core.  Because of (C.4), it is not yet a controlled
+low-energy effective Hamiltonian or a Dirac limit.
+
+8. Evidence boundary
+====================
+
+EXACT here:
+
+* admissible matching condition and free-matter counts;
+* equations (1)-(12), (M4.1)-(M4.5), and (C.1)-(C.4);
+* arbitrary-open-chain alternating expectations and leakage;
+* no first-order pattern hopping;
+* the local V^2 covering connection;
+* the four-edge whole-sector exclusion and alternating-weight bound;
+* the completed Phi-core Galerkin compression and its external leakage.
+
+NOT established:
+
+* either alternating trial is a ground state;
+* any all-chain exclusion beyond the exact m=4 weak-coupling result;
+* an adjacent Omega Omega state;
+* a protected or mobile domain wall;
+* a hopping coefficient after spectral elimination;
+* a Dirac particle, mass, continuum limit or new Hamiltonian.
+
+Artifacts
+=========
+
+  variational_checker.py   pinned exact finite/moment checker
+  variational_result.json  machine-readable formulas and evidence labels
+

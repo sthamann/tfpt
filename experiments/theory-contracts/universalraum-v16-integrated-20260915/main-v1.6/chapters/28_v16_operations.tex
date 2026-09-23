@@ -1,0 +1,107 @@
+\chapter{v1.6: Von inneren Operationen zu wirklicher Bewegung}
+\label{ch:v16-operations}
+\section{Drei Indizes, die nicht vermischt werden dürfen}
+Die zweite neue Eingabe unterscheidet selbst einen möglichen Ort $x$, eine $A_3$-Richtung und ein $E_8$-Wurzellabel. Diese Trennung ist der richtige Ausgangspunkt. Ein inneres Label kann eine Transformation oder Ladung kennzeichnen, ohne einen räumlichen Platz zu bezeichnen. Eine räumliche Verschiebung braucht dagegen eine Wirkung auf eine Orts- oder Nachbarschaftsalgebra. Ein Operator, der beide enthält, muss beide Wirkungen tatsächlich ausführen.
+
+Für eine skalierende Ausführung wäre beispielsweise
+\begin{equation}
+\mathcal H=\ell^2(\Lambda)\otimes\mathcal H_{\mathrm{intern}}
+\end{equation}
+eine mögliche Darstellung. Sie darf als Prüfmodell angesetzt werden. Sie gilt nicht als aus TFPT abgeleitet, solange $\Lambda$, die Tensorzerlegung und die Zugriffsregeln zusätzliche Eingaben sind. Genau diese Unterscheidung wird im Folgenden an einer positiven, kleinen Rechnung festgemacht.
+
+\section{Die positive neue Rechnung: Walk-Amplituden aus dem Matrixkern}
+Verwende die hermiteschen Compiler-Matrizen $\alpha_j=-au_j$ aus Kapitel~\ref{ch:v16-matrix}. Sie erfüllen die Pauli-Relationen. Für $\epsilon\in\{-1,1\}^3$ definiere
+\begin{equation}
+A_\epsilon=\frac18(I+\epsilon_1\alpha_1)(I+\epsilon_2\alpha_2)(I+\epsilon_3\alpha_3).
+\label{eq:v16-walkA}
+\end{equation}
+Alle acht Matrizen sind von Rang eins; $Q(A_\epsilon)=1/4$. Der kleinste positive ganzzahlige Faktor, der sie in die maximale Ordnung $M$ bringt, ist in allen acht Fällen vier. Dies wurde mit exakt ausmultiplizierten gaußschen Komponenten geprüft. Eine anfängliche symbolische Nichtvereinfachung eines Eintrags ist durch einen expliziten Matrix-Regressionscheck korrigiert; sie ist kein Unterschied zwischen den acht Richtungen.
+
+Setzt man dimensionlose Impulse $k_j$ an, so gilt exakt
+\begin{align}
+U(k)&=e^{-ik_1\alpha_1}e^{-ik_2\alpha_2}e^{-ik_3\alpha_3}
+=\sum_\epsilon e^{-i\epsilon\cdot k}A_\epsilon,\\
+U(k)^\dagger U(k)&=U(k)U(k)^\dagger=I.
+\end{align}
+Der neue Prüfer kontrolliert unabhängig alle 27 Laurent-Koeffizienten beider Unitaritätsgleichungen. Die Ableitungen bei $k=0$ sind die ursprünglichen $\alpha_j$:
+\begin{equation}
+U(k)=I-i\sum_j k_j\alpha_j+O(|k|^2).
+\end{equation}
+Damit müssen die inneren zweikomponentigen Übergangsmatrizen nicht als beliebige neue Matrizen hinzugefügt werden. Sie sind rationale Polynome der vorhandenen Quelle. Das ist eine konkrete Verbindung, keine bloße gemeinsame Dimensionszahl. \src{Frischer Prüfer V16-N, 279 Guards einschließlich Casimir- und Zustandsprüfungen}
+
+\section{Der entscheidende verbleibende Pfeil}
+Eine Bewegung erhält man erst aus
+\begin{equation}
+\mathcal U=\sum_\epsilon T_\epsilon\otimes A_\epsilon,
+\qquad T_\epsilon\ket{x}=\ket{x+\epsilon},
+\end{equation}
+auf dem entsprechend skalierten BCC-Gitter. Entfernt man die Ortsoperationen oder wertet nur den inneren Block aus, bleibt
+\begin{equation}
+\boxed{\sum_\epsilon A_\epsilon=I.}
+\label{eq:v16-no-motion}
+\end{equation}
+Die Identität ist der kleinste scharfe Test gegen eine überstarke Herkunftsbehauptung: Innere Rechenregeln allein verschieben keinen Ort.
+
+Auch \eqref{eq:v16-walkA} ist nicht automatisch ein primitives physisches Gate. Summen, Produkte, Viertelnormierung, kohärente Richtungswahl und die vollständige unitäre Erweiterung müssen als Ressourcen behandelt werden. Eine einzelne Rang-eins-Matrix ist keine deterministische unitäre Zeitentwicklung. $4A_\epsilon\in M$ bedeutet Integralkompatibilität, nicht kostenfreie Implementierbarkeit.
+
+\begin{bild}{Bildlich: das Lenkrad ist gefunden, die Straße noch nicht}
+Die Matrizen liefern eine sehr einfache Regel dafür, wie zwei innere Amplituden die Richtung eines Schrittes mitbestimmen könnten. Die neue Rechnung verbindet dieses Lenkrad mit dem vorhandenen Compiler. Aber eine Straße entsteht erst, wenn die Quelle wirklich unterschiedliche Plätze und die Übergänge zwischen ihnen bereitstellt. Der nächste Versuch muss deshalb einen Platzwechsel zeigen, nicht nochmals nur das Lenkrad drehen.
+\end{bild}
+
+\section{Was die A\texorpdfstring{$_3$}{3}-Geometrie bereits festlegt}
+In einer orthogonalen Darstellung sind die vier Fundamentalgewichte
+\begin{equation}
+w_1=\tfrac12(1,1,1),\quad w_2=\tfrac12(1,-1,-1),\quad
+w_3=\tfrac12(-1,1,-1),\quad w_4=\tfrac12(-1,-1,1).
+\end{equation}
+Es gilt $w_i\cdot w_j=\delta_{ij}-1/4$ und $\sum_iw_i=0$. Ihre zwölf Differenzen sind die $A_3$-Wurzeln in einer FCC-Realisierung. Das duale Gewichtsgitter ist BCC. Vier Gewichte sind ein Tetraeder; erst ihre positiven und negativen Richtungen ergeben die acht benannten nächsten Schritte. Wurzelgitter und Gewichtsgitter haben Zellvolumen zwei beziehungsweise $1/2$, also Index vier.
+
+Ein Lift dieser Richtungen in die volle markierte $E_8$-Struktur muss zusätzliche Daten erhalten. Ein bloßes $(0,w_i)$ erfüllt nicht die diagonale Verklebungsklasse. Für einen konkret untersuchten geschlossenen Lift liefert die Gram-Matrix
+\begin{equation}
+\begin{pmatrix}2&0&-1&-1\\0&2&-1&-1\\-1&-1&2&0\\-1&-1&0&2\end{pmatrix}
+\end{equation}
+Rang drei, aber eine andere induzierte Metrik als die unveränderte BCC-Gewichtslesart. Unter den gleichzeitig verlangten Bedingungen -- nur Grad-1-Schritte, neutrale $D_5$-Differenzen und geschlossener Weg -- kann der benannte feste Lift nicht alle Ziele erfüllen. Dies ist eine Schranke für diesen Liftvertrag, kein Ausschluss jeder erweiterten Realisierung.
+
+Die native Lie-Klammer darf außerdem nicht durch die assoziative Multiplikation von Ortsverschiebungen ersetzt werden: Eine geeignete geschlossene Wurzelfolge endet in einer Cartanwirkung, nicht im Identitätsoperator. Eine Kartenzeichnung mit gleichem Endpunkt genügt nicht; der gesamte innere Wegoperator muss mitgeprüft werden. \src{V16-U2, V16-C; frischer Kompatibilitätsreplay}
+
+\section{Die vier Weyl-Knoten und die nicht gelöste Chiralität}
+Für die Knotentabelle wird ausdrücklich die Standardkonvention
+\begin{equation}
+U(k)=e^{-ik_xX}e^{-ik_yY}e^{-ik_zZ}
+\end{equation}
+mit den üblichen Pauli-Matrizen benutzt. Sie ist durch Umbenennung der inneren Achsen mit der Produktbauform verbunden; ein Orientierungswechsel darf Chiralitätsvorzeichen nicht unbemerkt umdefinieren. Die reziproke Gittergruppe ist $\pi\{m\in\Z^3:\sum_i m_i\text{ gerade}\}$. Modulo dieser Gruppe bleiben genau vier Knoten:
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+$k/\pi$ & $U(k)$ & $\det Dn$ & Zentrierte Chiralität\\\midrule
+$(0,0,0)$ & $+I$ & $+1$ & $+1$\\
+$(1,0,0)$ & $-I$ & $-1$ & $+1$\\
+$(1/2,1/2,1/2)$ & $-I$ & $+1$ & $-1$\\
+$(-1/2,-1/2,-1/2)$ & $+I$ & $-1$ & $-1$\\\bottomrule
+\end{tabular}
+\end{center}
+Dabei ist $U=uI-in\cdot\sigma$ und am Knoten $U(k_0+q)=s[I-iH_{\mathrm{loc}}(q)]+O(q^2)$, $s=\pm1$. Der lokale Generator hat Koeffizienten $sDn\,q$. Die Zentrierung bei Quasienergie $\pi$ ist notwendig. Je ein Paar entgegengesetzter Chiralität liegt bei Quasienergie null und bei $\pi$. Falten ändert die Beschriftung, entfernt aber keine Zustände.
+
+Die bekannte Klassifikation isotroper zweikomponentiger Walks untersucht ausdrücklich bereits angenommene Dimensionen $d=1,2,3$. Sie liefert im dreidimensionalen Fall die entsprechenden Weyl-Lösungen, wählt aber nicht $d=3$ aus allen möglichen Quellen aus. \href{https://arxiv.org/abs/1708.00826}{D'Ariano, Erba und Perinotti [V16-E1]}
+
+Auch ein einziger gemeinsamer Operator erzwingt nicht gleiche Lichtgeschwindigkeiten: $D(k)=\operatorname{diag}(v_1k\cdot\sigma,v_2k\cdot\sigma)$ hat für $v_1\ne v_2$ zwei Kegel. Derselbe Takt beseitigt ihr Verhältnis nicht. Der negative Test gehört neben die positive Weyl-Näherung, nicht in eine spätere Fußnote.
+
+\section{Der native signierte Vertiz und die einfache Feldalternative}
+Die bisherige native Bank verwendet 64 Fermionmoden in $(16,4)$ und 60 Vermittler in $(10,6)$. Ihr Paarungstensor $W:\Lambda^2\C^{64}\to\C^{60}$ besitzt 480 nichtverschwindende ungeordnete Paarungen und
+\begin{equation}
+WW^\dagger=8I_{60}.
+\end{equation}
+Die unabhängige Rekonstruktion aus Außenalgebra-Vorzeichen trifft den gepinnten Tensor exakt. Ersetzt man die relevanten Spinorvorzeichen durch positive Beträge, bleibt die Zeilengrammatrix gleich, aber der Kreuzterm zum ursprünglichen Tensor wird null. Auf demselben ursprünglichen hellen Eingang hat das native schwach gekoppelte Einpaarmodell bei $g/\Delta=1/20$ maximale Konversionswahrscheinlichkeit $2/27$, die positive Ersatzversion null. Gleiche Normdaten sind daher keine dynamische Gleichheit.
+
+Die genau passende $E_8$-Phasenkonvention ist eine algebraische Brücke. Im gemeinsamen Wurzelmodell ist ein bilinearer Gitterkokzyklus ausdrücklich geprüft, einschließlich sämtlicher 57600 Wurzelpaar-Kommutatorzeichen. Der frühere native Phasenadapter ist davon als eigener Herkunftsschritt zu unterscheiden; nicht jeder Kokzyklustest rekonstruiert automatisch die Zuordnung zum physischen Fockoperator.
+
+Eine besonders einfache bekannte Feldbeschreibung benutzt acht freie bosonische Felder, das $E_8$-Gitter und seinen Kokzyklus. Für eine Wurzel $\alpha$ hat
+\begin{equation}
+E_\alpha(z)=c_\alpha :e^{i\alpha\cdot\phi(z)}:
+\end{equation}
+Gewicht $\alpha^2/2=1$. Bei $\alpha\cdot\beta=-1$ steht im einfachen Pol des Operatorprodukts der entsprechende signierte Wurzelgenerator. Dieses Standardwerkzeug erklärt eine kompakte gemeinsame \emph{Algebra}; es ist keine neu entdeckte vollständige TFPT-Dynamik. \href{https://arxiv.org/html/0912.0117v1}{Mason und Tuite, Gitter-Vertexalgebren [V16-E2]}
+
+Die Nullmode eines solchen Stroms wirkt auf Gewicht-1-Zustände. Zwei negative Erzeugermoden liegen dagegen in einer anderen Energiegradebene. Die physische Reaktion $b^\dagger ff$ wird durch die gleiche Strukturkonstante nicht automatisch identifiziert. Ebenso sind 16 freie Majoranas, ihre gerade Unteralgebra $V_{D_8}$ und die spinorielle Erweiterung $V_{E_8}$ unterschiedliche Feldräume. Gleiche Zentralzahl acht ersetzt ihre Sektor- und Paritätszuordnung nicht. \href{https://arxiv.org/abs/2212.14559}{Lim, Mulligan und Teo [V16-E3]}
+
+\section{Warum die Familienfrage offen bleibt}
+Im selben $E_8$-Wurzelmodell sind $D_5$ und $A_3$ wechselseitige Zentralisatoren; für eine ausgewählte $A_2$-Unteralgebra ist der Zentralisator $E_6$. Die Zerlegung $E_6\times SU(3)$ ist richtig, aber sie setzt eine andere Auswahl als eine automatisch erhaltene dreifache $\mathrm{Spin}(10)$-Familie voraus. Die frische Kompatibilitätsrechnung behandelt diese Einbettungen im selben Wurzelsystem und bestätigt die angegebenen Verzweigungsdimensionen. Sie liefert weder einen Vierdimensionalitätsnachweis noch einen chiralen Drei-Familien-Index. Die entsprechende starke Aussage der Eingabe wird deshalb nicht übernommen.

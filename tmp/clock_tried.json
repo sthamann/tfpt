@@ -1,0 +1,137 @@
+[
+  {
+    "kind": "rh",
+    "node": {
+      "attrs": {
+        "failure_class": "NOT_APPLICABLE",
+        "family": "CM_CURVE_GEOMETRY",
+        "firewall": "rh-catalog",
+        "mechanism": "THE CANDIDATE: the cyclic Z/3-cover y^3 = x^4 - 1, branched at the four mu4 points (local monodromy order 3 -- the research contract's 'four order-three cusp monodromies with D4",
+        "outcome": "OPEN",
+        "question": "QGEO.COVER -- Strategy I/II, first executed step: the mu3-cover of P^1 branched at mu4 (the curve y^3 = x^4 - 1) carries FOUR independent compiler fingerprints, machine-checked.",
+        "round": ""
+      },
+      "id": "rh:experiments/tfpt-discovery/mu4_cover_model_probe.py",
+      "label": "experiments/tfpt-discovery/mu4_cover_model_probe.py",
+      "type": "rh"
+    }
+  },
+  {
+    "kind": "rh",
+    "node": {
+      "attrs": {
+        "failure_class": "NOT_APPLICABLE",
+        "family": "WEIL_POSITIVITY_WINDOWS",
+        "firewall": "rh-catalog",
+        "mechanism": "(The first of the two named v617 bedrock residues, made conditional.) v617 established that the conformal seam axioms force the base (mu4 marks, Mobius-rigid) and the uniform weights, LEAVING the",
+        "outcome": "OPEN",
+        "question": "Discovery probe: the cyclic-N census -- the seam admits N = 3 and N = 5 as Lorentz orders, and the compiler's machine-checked integral constants pin N = 3.",
+        "round": ""
+      },
+      "id": "rh:experiments/tfpt-discovery/cyclic_n_census_probe.py",
+      "label": "experiments/tfpt-discovery/cyclic_n_census_probe.py",
+      "type": "rh"
+    }
+  },
+  {
+    "kind": "lean",
+    "node": {
+      "attrs": {
+        "claim_boundary": false,
+        "declarations": [
+          {
+            "doc": "The order-4 clock Möbius map `ρ : z ↦ i z` (rotation of the square; fixed",
+            "kind": "def",
+            "name": "rho",
+            "signature": "def rho (z : ℂ) : ℂ := Complex.I * z"
+          },
+          {
+            "doc": "Its inverse `ρ⁻¹ : z ↦ -i z`.",
+            "kind": "def",
+            "name": "rhoInv",
+            "signature": "def rhoInv (z : ℂ) : ℂ := -Complex.I * z"
+          },
+          {
+            "doc": "The four `μ₄` marks `{1, i, -1, -i}`.",
+            "kind": "def",
+            "name": "mu4",
+            "signature": "def mu4 : List ℂ := [1, Complex.I, -1, -Complex.I]"
+          },
+          {
+            "doc": "`i⁴ = 1`.",
+            "kind": "theorem",
+            "name": "I_pow_four",
+            "signature": "theorem I_pow_four : (Complex.I) ^ 4 = 1 := by"
+          },
+          {
+            "doc": "`i⁻¹ = -i`.",
+            "kind": "theorem",
+            "name": "inv_I'",
+            "signature": "theorem inv_I' : (Complex.I)⁻¹ = -Complex.I := by"
+          },
+          {
+            "doc": "`ρ⁴ = id`: the clock has order dividing 4.",
+            "kind": "theorem",
+            "name": "rho_pow_four",
+            "signature": "theorem rho_pow_four (z : ℂ) : rho (rho (rho (rho z))) = z := by"
+          },
+          {
+            "doc": "`ρ² ≠ id`: the clock has order EXACTLY 4 (`ρ²(1) = -1 ≠ 1`).",
+            "kind": "theorem",
+            "name": "rho_order_exactly_four",
+            "signature": "theorem rho_order_exactly_four : rho (rho 1) ≠ 1 := by"
+          },
+          {
+            "doc": "`σ² = id`: the reflection is an involution.",
+            "kind": "theorem",
+            "name": "sigma_invol",
+            "signature": "theorem sigma_invol (z : ℂ) : sigma (sigma z) = z := by"
+          },
+          {
+            "doc": "The defining dihedral relation `σ ρ σ = ρ⁻¹`: with `ρ⁴ = id`, `σ² = id` this",
+            "kind": "theorem",
+            "name": "sigma_rho_sigma",
+            "signature": "theorem sigma_rho_sigma (z : ℂ) : sigma (rho (sigma z)) = rhoInv z := by"
+          },
+          {
+            "doc": "A non-fixed point `a ≠ 0` has orbit `{a, ia, -a, -ia}` under `ρ`, and the",
+            "kind": "theorem",
+            "name": "orbit_scales_to_mu4",
+            "signature": "theorem orbit_scales_to_mu4 (a : ℂ) (ha : a ≠ 0) :"
+          },
+          {
+            "doc": "`σ` permutes `μ₄`: it fixes `1, -1` and swaps `i ↔ -i` (the integer-model",
+            "kind": "theorem",
+            "name": "sigma_perm_mu4",
+            "signature": "theorem sigma_perm_mu4 :"
+          },
+          {
+            "doc": "**Order-4 multiplier classification.** A multiplier Möbius map `z ↦ ζ z` has",
+            "kind": "theorem",
+            "name": "mult_order_four_iff",
+            "signature": "theorem mult_order_four_iff (ζ : ℂ) :"
+          },
+          {
+            "doc": "**`QGEO.UNIFORM.01` normal form, bundled.** The constructive uniformisation",
+            "kind": "theorem",
+            "name": "uniformisation_normal_form",
+            "signature": "theorem uniformisation_normal_form :"
+          }
+        ],
+        "header_comment": "TFPT Carrier — Möbius Uniformisation (QGEO.UNIFORM.01, the geometric half) -------------------------------------------------------------------------- Formalises the CONSTRUCTIVE NORMAL FORM of `QGEO.UNIFORM.01` (`verification/v177_seam_marking_kernel.py`, node UNIFORM): a genus-0 curve with four reduced marks and a faithful order-4 conformal automorphism rotating them cyclically is Möbius-equiv...",
+        "imports_repo": [],
+        "module": "TfptCarrier.MobiusUniformisation",
+        "n_axioms": 0,
+        "n_defs": 3,
+        "n_imports_mathlib": 2,
+        "n_sorry": 0,
+        "n_theorems": 10,
+        "namespace": "TFPT.Carrier.MobiusUniformisation",
+        "toolchain": "leanprover/lean4:v4.29.1"
+      },
+      "id": "lean:experiments/lean4-carrier-rigidity/TfptCarrier/MobiusUniformisation.lean",
+      "label": "experiments/lean4-carrier-rigidity/TfptCarrier/MobiusUniformisation.lean",
+      "type": "lean"
+    }
+  }
+]

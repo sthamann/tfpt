@@ -1,0 +1,96 @@
+INDEPENDENT REVIEW OF SOURCE_LINE_PROOF.txt
+20 September 2026
+
+Verdict: PASS for S1--S9 with the stated joint scaling and CAR-word scope.
+No normalization or time-sign correction is required.  This is a direct
+one-copy source limit, not a rank-eight construction or a full local-net
+theorem.
+
+1. Source symbol and residual (S1--S2)
+======================================
+
+The imported blocks give
+
+  SZ + exp(-ip)TX + exp(ip)TX^dagger
+    = (1-cos p)SZ-sin p SX.
+
+The top vector has SX eigenvalue +1, SZ r_top=chi_top, and the transverse
+term vanishes because TY^dagger r_top=0.  Hence S1 has the correct signs.
+After D_a=h(ak)/a, the residual components along the orthonormal vectors
+r_top and chi_top are k-sin(ak)/a and (1-cos(ak))/a.  The stated epsilon is
+a valid triangle bound on their Euclidean norm.  source_exact_check.py
+independently verifies the exact squared norm against the imported source.
+
+2. Occupation and time sign (S3--S6)
+====================================
+
+The spectral-projector estimate is correct on both sides of zero.  For k>0,
+the target energy -k is negative and the wrong spectrum [0,infinity) is at
+distance at least k; for k<0, the wrong negative spectrum is at distance at
+least |k| from -k>0.  The strict projector 1_(D<0) treats a possible zero
+eigenvalue on the correct, bounded side.  The shifted finite mesh contains no
+k=0.
+
+The time sign is also correct:
+
+  D_a r_top approximately -k r_top
+  implies exp(-itD_a)r_top approximately exp(+itk)r_top.
+
+Duhamel gives |t| epsilon without a gap assumption.  Splitting the matrix
+element into the unitary residual and the occupation error gives S5, and
+epsilon^2/k^2=(a|k|/2+a^2 k^2/6)^2 gives exactly the uniform bound S6.
+
+3. Fourier normalization and the joint limit (S7--S9)
+======================================================
+
+The seam phase i^r obeys exp(ipN)=i^(-r) in the source hopping convention,
+so p=2pi(j-r/4)/N and k=(j-r/4)/R have the stated sign.  The physical
+circumference is Na=2piR, hence the k-mesh spacing is 1/R.  Therefore
+R^(-1/2) in S7 is the correct unitary Riemann-sum normalization and gives S8.
+Using N=2piR/a with the normalized discrete inverse Fourier transform also
+reproduces the stated local real-space scale sqrt(a) f(ax).
+
+The proof of S9 is sufficient for Schwartz f,g in the declared joint limit
+
+  R -> infinity,  a -> 0,  pi/a -> infinity.
+
+On a fixed band, S6 is uniform on bounded time intervals.  The shifted
+Riemann sum crosses only one bounded jump at k=0, which does not affect the
+limit and is O(1/R) for the smooth band weight.  Outside the band,
+|<r,P exp(-itD)r>|<=1; shifted Riemann sums of the Schwartz majorant are
+uniformly small for sufficiently large R, while pi/a -> infinity removes the
+Brillouin cutoff.  This closes the advertised band-then-tail argument.
+
+Removing P gives the full time-dependent CAR kernel; subtracting S9 gives
+the complementary covariance.  Gauge-invariant quasifreeness then reduces
+every fixed finite charged word to finitely many convergent two-point
+kernels.  The result is uniform only for a fixed number of insertions and
+bounded times, as claimed.
+
+4. Locality and channel count
+=============================
+
+The locality conclusion is exactly graded CAR locality for the declared
+smeared embeddings: disjoint limiting real-space supports have zero CAR
+pairing.  It does not establish convergence of all source observables,
+bounded local algebras, Haag duality, a completed conformal net, or a
+source-to-E8 intertwiner.  SOURCE_LINE_PROOF.txt states this boundary
+correctly.
+
+The exact identities h(0)^3=h(0), rank h(0)=14 and trace h(0)=0 imply
+multiplicities 7,2,7 at -1,0,+1.  The complete zero projector is the two
+edge-row span, and its derivative compression diag(-1,+1) gives one
+low-momentum chiral branch per edge.  This is a low-momentum statement for
+the fixed width-eight source.  It neither turns the eight spatial rows into
+species nor excludes different sources or unrelated high-momentum scalings.
+
+5. Replay
+=========
+
+  python3 -OO source_exact_check.py  -> PASS, 15 active require guards
+  python3 -OO review_checker.py      -> PASS, 6 active require guards
+
+review_checker.py no longer uses scientific assert statements; its guards
+remain active under -O and -OO.  The numerical source-line run remains
+correctly labelled diagnostic-only.  No canonical TFPT file or claim status
+is changed by this review.

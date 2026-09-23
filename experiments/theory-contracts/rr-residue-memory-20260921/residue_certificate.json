@@ -1,0 +1,191 @@
+{
+  "checks": [
+    {
+      "details": {
+        "nonzero": 480,
+        "role": "integrity pin only; no geometric/native self-energy identification",
+        "row_gram": "8 I60",
+        "sha256": "3f00a0892157a691e4ef26920c3702772c7bf76a250fad98ff04a079bb64b763",
+        "shape": [
+          60,
+          2016
+        ]
+      },
+      "id": "native_tensor_pin",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "kernel_q": "C*1",
+        "q_a": "Res_a(f dz/z) = Res_a(f)/a",
+        "rank_E": 5,
+        "rank_q": 4,
+        "sequence": "0 -> C*1 -> E -> C^4 tensor chi -> 0"
+      },
+      "id": "residue_exact_sequence",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "canonicity_scope": "canonical relative to marked z and the specified R,S action",
+        "decomposition": "E = 1 direct-sum (F4 tensor chi)",
+        "ell": "(f(0)+f(infinity))/2",
+        "ell_l_a": 0,
+        "inverse_basis": "l_a(z)=a/(z-a)+1/2",
+        "q_b(l_a)": "delta_ab",
+        "reflection_character": -1,
+        "rotation_character": 1
+      },
+      "id": "canonical_d4_splitting",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "basis": [
+          "dz/P",
+          "z dz/P",
+          "z^2 dz/P"
+        ],
+        "carrier_dark_module": "(F4 augmentation) tensor chi",
+        "conclusion": "common divisor and residue target, but no fixed-R,S D4 identification without the explicit chi twist",
+        "dimension": 3,
+        "module": "plain F4 augmentation",
+        "reflection_traces": {
+          "plain_family": 1,
+          "twisted_carrier_dark": -1
+        },
+        "residue_columns": "(a^k/4)_a, k=1,2,3",
+        "sequence": "0 -> H0(Omega1) -> H0(Omega1(log D)) -> ker(sum:C4->C) -> 0"
+      },
+      "id": "logarithmic_family_residues",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "H_on_1": "4 z^4/P",
+        "q_H_1": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "quotient_time": "does not descend because ker(q)=C*1 is not H-invariant",
+        "raw_operator": "z*d/dz is not an endomorphism of E (double poles)",
+        "reflection": "S H S = 4 I - H; S(H-2I)S=-(H-2I)",
+        "rotation": "[H,R]=0",
+        "transported_operator": "H=J^-1(z*d/dz)J=z*d/dz+4z^4/P"
+      },
+      "id": "hardy_non_descent",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "Hardy_Gram": "diag(2, 4 I4 - J4/2)",
+        "bright_directions": [
+          "constant line",
+          "uniform mark direction"
+        ],
+        "coupling_rank": 1,
+        "dark_dimension": 3,
+        "dark_spectrum": [
+          1,
+          2,
+          3
+        ],
+        "full_spectrum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "normalized_bright_block": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "id": "hardy_bright_dark_decomposition",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "Sigma_geom": "J4/(lambda-2) = 4 P_u/(lambda-2)",
+        "formula": "P_mark (lambda-H)^-1 P_mark = [lambda-M-J4/(lambda-2)]^-1",
+        "rank": 1,
+        "schur_complement_verified": "Matrix([[lambda - 2 - 1/(lambda - 2), -I/2 - 1/(lambda - 2), -1/(lambda - 2), I/2 - 1/(lambda - 2)], [I/2 - 1/(lambda - 2), lambda - 2 - 1/(lambda - 2), -I/2 - 1/(lambda - 2), -1/(lambda - 2)], [-1/(lambda - 2), I/2 - 1/(lambda - 2), lambda - 2 - 1/(lambda - 2), -I/2 - 1/(lambda - 2)], [-I/2 - 1/(lambda - 2), -1/(lambda - 2), I/2 - 1/(lambda - 2), lambda - 2 - 1/(lambda - 2)]])",
+        "warning": "Sigma_geom is not identified with the native Sigma_2"
+      },
+      "id": "projected_resolvent",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "compressed_uniform_amplitude": "exp(-2 i t) cos(2t)",
+        "constant_leak_amplitude": "-i exp(-2 i t) sin(2t)",
+        "interpretation": "continuous quotient projection is open, while the discrete quarter-rotation preserves the quotient",
+        "loss_operator_on_marks": "sin^2(2t) P_u",
+        "t_pi_over_2": "complete return; exp(-i*pi*H/2)=R^-1",
+        "t_pi_over_4": "uniform mark component leaks completely to the constant line"
+      },
+      "id": "exact_leak_and_return",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "Hardy_case": "beta=4",
+        "R_minus_line": "span(z^2/P), S-odd",
+        "assumptions": [
+          "exp(i*pi*Hprime/2)=R",
+          "S Hprime S = beta I - Hprime"
+        ],
+        "conclusion": "contradiction: ker(q)=C*1 cannot be Hprime-invariant",
+        "forced_on_R_minus_line": "Hprime=beta/2 and exp(i*pi*beta/4)=-1",
+        "if_constant_kernel_invariant": "Hprime*1=(beta/2)*1 and exp(i*pi*beta/4)=+1",
+        "robustness": "changing the compatible norm or choosing another logarithm with both stated properties cannot remove the uniform quotient loss"
+      },
+      "id": "affine_reflection_clock_obstruction",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "R_even_constraint": "c+|v| and c-|v| are in 4Z, hence |v| = 2 mod 4",
+        "R_minus_constraint": "c = 2 mod 4",
+        "additional_assumptions": [
+          "Hprime is self-adjoint",
+          "the metric is D4-unitary",
+          "exp(i*pi*Hprime/2)=R",
+          "S Hprime S = 2 c I - Hprime"
+        ],
+        "invariant_dark_sector": "the three nontrivial R characters remain continuously closed",
+        "normalized_R_even_block": "[[c,v],[conjugate(v),c]] on [constant S+, uniform-mark S-]",
+        "scope": "finite representation theorem under the four explicit assumptions; no physical clock selection",
+        "t_pi_over_4": "cos(pi|v|/4)=0: complete exchange of constant and uniform-mark lines"
+      },
+      "id": "universal_quarter_exchange",
+      "status": "PASS"
+    }
+  ],
+  "schema_version": 1,
+  "scope": "Exact local algebra on the marked divisor, D4 covariance, logarithmic residues, Hardy Gram, projected resolvent, and bright-channel evolution. No quantum CAR, local field, spacetime coordinate, independent-family, or native-self-energy identification.",
+  "status": "PASS_EXACT_SCOPED",
+  "summary": {
+    "complete_leak_time": "pi/4",
+    "complete_return_time": "pi/2",
+    "continuous_quotient_time": "REJECTED",
+    "d4_splitting": "CANONICAL_RELATIVE_TO_MARKED_z_AND_R_S",
+    "fail_count": 0,
+    "family_rank_three": "LOG_RESIDUE_AUGMENTATION",
+    "memory_channel_rank": 1,
+    "pass_count": 10,
+    "physical_local_field_gate_closed": false,
+    "reflection_twist_required": true,
+    "residue_exact_sequence": true
+  },
+  "verdict": "CANONICAL_MARKED_RESIDUE_SEQUENCE_WITH_REFLECTION_TWIST; LOG_FAMILY_IS_THE_PLAIN_AUGMENTATION_MODULE; HARDY_TIME_FAILS_TO_DESCEND_BY_ONE_CANONICAL_BRIGHT_MEMORY_CHANNEL; DISCRETE_QUARTER_STEP_RETURNS_EXACTLY"
+}

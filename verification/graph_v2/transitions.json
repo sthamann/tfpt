@@ -1,0 +1,268 @@
+{
+ "schema_version": 2,
+ "meta": {
+  "doc": "Punkt 2: Uebergang zwischen Konstruktionen als pruefbares Objekt.",
+  "created": "2026-09-17",
+  "note": "leeres Geruest — Inhalt kommt in Phase 3 (kuratiert oder llm_extract mit provenance.reviewed=false)"
+ },
+ "records": [
+  {
+   "id": "TRANS.D4RAW.BANK.01",
+   "from": "raw 256-mode seam space",
+   "to": "W-Vierbank",
+   "map": "gesuchter D4-äquivarianter Intertwiner X: V_raw -> V_bank mit X rho_raw = rho_bank X und X sigma_raw = sigma_bank X (Ordnung-8-Generatoren rho_bank=T^3, sechs vorhandene Spiegel-Lifts)",
+   "preserves": [
+    "beide Seiten realisieren exakt dieselbe Ordnung-16-Gruppe mit r^8=1, r^4=-I, ..."
+   ],
+   "fails_to_preserve": [
+    "Eindeutigkeit der Brücke (Hom-Raum 8192-dimensional statt 1-dimensional)",
+    "Auswahl eines der sechs Spiegel-Lifts",
+    "kanonisches Anfügen der festen inneren W-Kovarianz"
+   ],
+   "status": "obstructed",
+   "checked_by": [
+    "contract:universalraum-d4-torsor-seam-20260917"
+   ],
+   "counterexample": "dim Hom_D4 = 8192 für alle sechs Lifts (d4-torsor-seam-20260917)",
+   "notes": "134/134 Bedingungen PASS, Verdict PARTIAL; Hom-Raum nicht null, aber um Faktor 8192 von der benötigten Eindeutigkeit entfernt; erster ungelöster Pfeil: intertwiner_nicht_eindeutig. Nächster Schritt: Schnitt mit bereits nativer zusätzlicher Algebra (W-Kovarianz, Spin(10)xSU(4)-Casimir, Clock, Link...",
+   "provenance": {
+    "source": "llm_extract",
+    "model": "kimi-k3",
+    "date": "2026-09-17",
+    "reviewed": false
+   }
+  },
+  {
+   "id": "TRANS.BOUNDARY.MODULAR.01",
+   "from": "Randnetz",
+   "to": "modulare Dynamik",
+   "map": "v438-Zeuge: K reelle Diagonalmatrix, P Raising-Shift; Ausgabe behauptet reelle Streckung Delta^(it) P Delta^(-it) = exp(-t) P, getestet wird exp(i t K) P exp(-i t K) = exp(i t) P",
+   "preserves": [
+    "[K,P]=P exakt",
+    "getestete Phasendrehung exp(it) P mit Rest 3.885780586188048e-16 bei t=0.37"
+   ],
+   "fails_to_preserve": [
+    "gedruckte reelle Streckung exp(-t) P (Rest 0.43489413138931043)",
+    "Selbstadjungiertheit P=P* (Defekt 1.0; symmetrisiertes P hat min Eigenwert -0...",
+    "gemeinsames Standardpaar (Boolean standard_pair kombiniert Zeugnisse verschie..."
+   ],
+   "status": "obstructed",
+   "checked_by": [
+    "contract:modular-source-selection-audit-20260917",
+    "v438_seam_hsmi_borchers"
+   ],
+   "counterexample": "Normargument: fuer beschraenktes P und unitaeres U gilt ||UPU*||=||P||; UPU*=aP mit 0<a<1 erzwingt P=0, sogar ||UPU*-aP|| >= (1-a)||P|| = 0.3092656693626453 bei ||P||=1, a=exp(-0.37). Ein exakter n...",
+   "notes": "v438 prüft exp(it) statt exp(-t); Phasenrest 3.89e-16 vs reeller Rest .434894",
+   "provenance": {
+    "source": "llm_extract",
+    "model": "kimi-k3",
+    "date": "2026-09-17",
+    "reviewed": false
+   }
+  },
+  {
+   "id": "TRANS.SEAMCAR.E8CURRENT.01",
+   "from": "Seam-CAR",
+   "to": "E8-Ströme",
+   "map": "keine konstruierte Abbildung vorhanden; direkte (lineare/Bogoliubov-) Gleichsetzung der freien gaußschen Seam-CAR-Felder ist widerlegt; lokale E8-Simple-Current-Erweiterung, die die Feldalgebra erweitert statt nur CAR-Moden umzubenennen, ist nicht ausgeschlossen, aber nicht konstruiert",
+   "preserves": [],
+   "fails_to_preserve": [
+    "jede bisher geprüfte direkte Identifikation (Zustandserhalt scheitert bereits..."
+   ],
+   "status": "missing",
+   "checked_by": [
+    "contract:universalraum-source-equivalence-decision-20260915"
+   ],
+   "counterexample": "",
+   "notes": "direkte Gleichsetzung REFUTED (source-equivalence-decision-20260915); notes aus Quelle",
+   "provenance": {
+    "source": "llm_extract",
+    "model": "kimi-k3",
+    "date": "2026-09-17",
+    "reviewed": false
+   }
+  },
+  {
+   "id": "TRANS.D4POINT.TORSOR.01",
+   "from": "D4-äquivariante Auswahl eines einzelnen markierten Punkts",
+   "to": "Markierungsraum M = Z4 x {+1,-1} (frei-transitiver D4-Torsor)",
+   "map": "D4-äquivariante Abbildung vom Einpunkt-Raum nach M (vollständige Enumeration der D4-Aktion)",
+   "preserves": [],
+   "fails_to_preserve": [
+    "Existenz eines globalen Fixpunkts",
+    "D4-äquivariante Einzelpunktauswahl samt Orientierung"
+   ],
+   "status": "obstructed",
+   "checked_by": [
+    "contract:universalraum-d4-torsor-seam-20260917"
+   ],
+   "counterexample": "|D4|=8 wirkt frei transitiv auf M, daher kein globaler Fixpunkt und keine D4-äquivariante Abbildung vom Einpunkt-Raum nach M (d4-torsor-seam-20260917)",
+   "notes": "Exakter No-go gegen rein D4-symmetrische Basispunkt-plus-Orientierungs-Auswahl. Rotationsquotient hat exakt zwei Bahnen (zwei Orientierungen), Spiegelung vertauscht sie. MARKS.01 muss die ganze äquivariante Familie tragen, zusätzliche strukturbrechende Daten liefern oder einen Teil der Markierung...",
+   "provenance": {
+    "source": "llm_extract",
+    "model": "kimi-k3",
+    "date": "2026-09-17",
+    "reviewed": false
+   }
+  },
+  {
+   "id": "TRANS.BASEPOINT.SPECTRAL.01",
+   "from": "vier durch die Stationsuhr transportierte Basispunkte",
+   "to": "endliche Invarianten der transportierten Stations-, Vierbank- und Transfer-Operatoren",
+   "map": "Transport durch die eingefrorene antiperiodische Rotationswirkung (rho_raw = R_station x I64), exakter Vergleich pro Basispunkt",
+   "preserves": [
+    "Stationsspiegel-Spurpotenzen (0,4,0,4)",
+    "Zweinachbar-Quellen-Gramspuren (2,4,8,16)",
+    "mark-lokale W-Bank-Metrikspuren (480,3840,30720)",
+    "Bankuhr-Spurpotenzen (0,0,0,-64,0,0,0,64,0,0,0,-256)",
+    "W W^T = 8 I_60",
+    "Transfer-Spektrum {1, 64/729, 1/729}"
+   ],
+   "fails_to_preserve": [
+    "Basispunktidentität (die vier Markierungen werden nicht unterschieden)"
+   ],
+   "status": "established",
+   "checked_by": [
+    "contract:universalraum-d4-torsor-seam-20260917"
+   ],
+   "counterexample": "",
+   "notes": "Die Lesart 'Basispunkt als Eichrepräsentant' überlebt diesen endlichen Test; bewiesen ist nur unitäre/spektrale Äquivalenz der transportierten Operatoren, nicht eine physische Eichsymmetrie.",
+   "provenance": {
+    "source": "llm_extract",
+    "model": "kimi-k3",
+    "date": "2026-09-17",
+    "reviewed": false
+   }
+  },
+  {
+   "id": "TRANS.C4POINTING.CHIRALSECTOR.01",
+   "from": "C4-Pointing des 256-Moden-Raums (A = T^18)",
+   "to": "chiraler Orientierungssektor / paritätskonjugierte Sektoren",
+   "map": "präregistrierter endlicher T4-Mechanismus: Chiralitätsindex, Determinante und Pfaffian von A = T^18 zur Unterscheidung der Pointings T^18 und T^6 = -T^18",
+   "preserves": [
+    "A^T = -A",
+    "A^2 = -I",
+    "tr(A) = tr(-A) = 0",
+    "Eigenwerte +i und -i je 128-fach"
+   ],
+   "fails_to_preserve": [
+    "Unterscheidung der zwei Pointings T^18 und -T^18",
+    "chiraler Index (128-128=0)"
+   ],
+   "status": "obstructed",
+   "checked_by": [
+    "contract:universalraum-d4-torsor-seam-20260917"
+   ],
+   "counterexample": "Chiralitätsindex 128-128=0; det(A)=det(-A)=1; Pf(-A)=(-1)^128 Pf(A)=Pf(A) — der endliche T4-Mechanismus ist widerlegt (d4-torsor-seam-20260917)",
+   "notes": "Ein chiraler Sektor müsste aus zusätzlicher Dynamik, Randanomalie oder einem anderen wohldefinierten Operator kommen; er steckt nicht in der bloßen C4-Pointing des 256-Moden-Raums.",
+   "provenance": {
+    "source": "llm_extract",
+    "model": "kimi-k3",
+    "date": "2026-09-17",
+    "reviewed": false
+   }
+  },
+  {
+   "id": "TRANS.RAWKERNEL.GDELTA.01",
+   "from": "roher Seam-Kernel (dimensionslose Invarianten)",
+   "to": "physisches g/Delta",
+   "map": "nicht vorhanden; Checker meldet g_delta_from_raw_kernel = NOT_AVAILABLE",
+   "preserves": [
+    "lambda = {1, 64/729, 1/729}",
+    "Delta = 6 log(3/2)",
+    "mass ratio = log(3)/log(3/2)"
+   ],
+   "fails_to_preserve": [
+    "physische Kopplung g/Delta"
+   ],
+   "status": "missing",
+   "checked_by": [
+    "contract:universalraum-d4-torsor-seam-20260917"
+   ],
+   "counterexample": "",
+   "notes": "KERNEL.01 bleibt eine echte fehlende Eingabe; der gepinnte Parent führt den Raw-Seam→W-Intertwiner weiterhin als false. Weder der Modellprüfpunkt 1/20 noch g_car=5 wurde als Kopplung umetikettiert; No-Unit-Satz und QGEO.KERNEL.01 bleiben bindend.",
+   "provenance": {
+    "source": "llm_extract",
+    "model": "kimi-k3",
+    "date": "2026-09-17",
+    "reviewed": false
+   }
+  },
+  {
+   "id": "TRANS.GAUSSCAR.NATIVEMODEL.01",
+   "from": "freies gaußsches Seam-CAR-Modell (lineare/Bogoliubov-artige zustandserhaltende Feldzuordnung)",
+   "to": "natives 64-CAR/60-CCR-Wechselwirkungsmodell H = Delta Nb + g Summe_A (b_A^dag P_A + P_A^dag b_A)",
+   "map": "lineare oder Bogoliubov-artige Identifikation mit derselben vollen Kovarianz, wobei dieselbe Zuordnung den Zustand erhält",
+   "preserves": [
+    "volle Zweipunkt-Kovarianz"
+   ],
+   "fails_to_preserve": [
+    "Fermionzahl-Parität des Grundzustands",
+    "helle Zwei-Loch-Struktur des nativen W-Kanals (gegen rein zahl-/paritätsabhän..."
+   ],
+   "status": "obstructed",
+   "checked_by": [
+    "contract:universalraum-source-equivalence-decision-20260915"
+   ],
+   "counterexample": "Am Prüfpunkt g/Delta=1/20: Prob_native(ungerade Fermionzahl)=0 exakt, Prob_Gauss_mit_gleicher_Kovarianz(ungerade Fermionzahl)>0.47684946; zudem entsteht ein echter verbundener Vierpunktterm für jed...",
+   "notes": "Scope: gilt in der genau definierten 64-CAR/60-CCR-Modellklasse, nicht für jede E8-Quelle oder alle nichtlinearen Feldwörterbücher. Verdict REFUTED bezieht sich auf die Adapterhypothese, nicht auf QGEO.KERNEL.01 oder TFPT insgesamt. Auch die Paritätsprojektion ('nur gerade auswählen') repariert d...",
+   "provenance": {
+    "source": "llm_extract",
+    "model": "kimi-k3",
+    "date": "2026-09-17",
+    "reviewed": false
+   }
+  },
+  {
+   "id": "TRANS.FINITEPAIR.HSMI.01",
+   "from": "endliche Standardpaar-Algebra (K=diag(n), P Raising-Shift, J: n->-n) plus sl(2,R)-Lowest-Weight-Positivitätszeuge",
+   "to": "+halbseitige modulare Inklusion mit geometrischem modularem Fluss (Borchers/Wiesbrock/Longo)",
+   "map": "Borchers-Theorem: ein Standardpaar mit P>=0, [K,P]=P und Reflexion J (JKJ=-K, JPJ=-P) macht den modularen Fluss geometrisch (ax+b/Moebius), ohne Kovarianzannahme",
+   "preserves": [
+    "[K,P]=P exakt auf der endlichen Leiter",
+    "J^2=I, JKJ=-K, JPJ=P^dagger exakt",
+    "Positive Energie: P_line = L0-(L+ + L-)/2 positiv in der unitären Lowest-Weig..."
+   ],
+   "fails_to_preserve": [
+    "Positivität und exakte Relation in EINER endlichen Matrix (die positive-energ...",
+    "gemeinsame Kontinuumsmontage der Zeugen (1,2,3) in ein Standardpaar — dieselb..."
+   ],
+   "status": "partial",
+   "checked_by": [
+    "v438_seam_hsmi_borchers",
+    "contract:modular-source-selection-audit-20260917"
+   ],
+   "counterexample": "",
+   "notes": "v438-Verdict [C]/[O]: intrinsische BW-Reduktion via Borchers/Wiesbrock, keine Schließung; SEAM.EQUIV.01 bleibt [O]. Der Audit bestätigt: der echte kontinuierliche HSMI-Satz (und mögliche nichtlineare E8-Feldadapter) bleibt viable; widerlegt ist nur die Bezeichnung des endlichen Phasenzertifikats,...",
+   "provenance": {
+    "source": "llm_extract",
+    "model": "kimi-k3",
+    "date": "2026-09-17",
+    "reviewed": false
+   }
+  },
+  {
+   "id": "TRANS.TARGETOP.RAWSELECT.01",
+   "from": "zielseitig transportierte W-/Casimir-/Clock-Operatoren",
+   "to": "unabhängige Selektion des rohen D4-Intertwiners (Schnitt des 8192-dim Hom-Raums)",
+   "map": "Zusatzbedingungen X A_raw = A_bank X, wobei der fehlende rohe Operator nachträglich als A_raw = X^{-1} A_bank X definiert wird (Paarkanal: W_raw = Y^{-1} W_bank (Lambda^2 X))",
+   "preserves": [],
+   "fails_to_preserve": [
+    "Diskriminationskraft: die Intertwiner-Gleichung wird identisch erfüllt (Tauto...",
+    "Unabhängigkeit der Selektion (der Zieloperator selektiert nicht seine eigene ..."
+   ],
+   "status": "obstructed",
+   "checked_by": [
+    "contract:modular-source-selection-audit-20260917"
+   ],
+   "counterexample": "Für beliebiges invertierbares X gilt X A_raw = A_bank X mit A_raw := X^{-1} A_bank X identisch; analog Y W_raw = W_bank (Lambda^2 X). Target-only transportierte W/Casimir-Operatoren sind als unabhä...",
+   "notes": "Konsequenz: der rohe Operator muss zuerst aus dem ursprünglichen Kernel und dessen Algebra kommen. Umgekehrt ist dim Hom>1 allein kein Beweis für physisch verschiedene Welten; ob der Rest Eichfreiheit ist, entscheidet ein gemeinsamer zustands-/operations-/lokalitätserhaltender Vergleich. Gerechtf...",
+   "provenance": {
+    "source": "llm_extract",
+    "model": "kimi-k3",
+    "date": "2026-09-17",
+    "reviewed": false
+   }
+  }
+ ]
+}

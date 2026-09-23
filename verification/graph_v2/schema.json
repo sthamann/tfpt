@@ -1,0 +1,72 @@
+{
+  "schema_version": 2,
+  "doc": "TFPT Theorie-Graph v2 — Sidecar-Quellen, die build_theory_graph.py in den Graphen merged. Alle Dateien sind SOURCES (kuratiert oder LLM-extrahiert mit provenance.reviewed=false bis zur Prüfung). Regeln: (1) premises sind IMMER konjunktive Mengen — aus 'A und B und C => D' werden keine drei Einzelbeweise; (2) nichts erfinden: fehlende Felder = leer lassen, niemals raten; (3) jede LLM-Extraktion traegt provenance{source:'llm_extract', model, date, reviewed:false}; (4) IDs muessen gegen den Graphen aufloesbar sein (claim_id im Ledger, contract-Slug, transition/constraint/failure-IDs hier eindeutig).",
+  "files": {
+    "claim_contracts.json": {"record": "claim_contract", "key": "claim_id"},
+    "transitions.json": {"record": "transition", "key": "id"},
+    "constraints.json": {"record": "constraint", "key": "id"},
+    "failure_scopes.json": {"record": "failure_scope", "key": "id"}
+  },
+  "claim_contract": {
+    "doc": "Punkt 1: praeziser mathematischer Vertrag pro wichtigem Claim.",
+    "fields": {
+      "claim_id": "existierende Ledger-ID (Pflicht, eindeutiger Schluessel)",
+      "statement": "genaue Aussage in einem Satz, inkl. Quantoren und Grenzwert",
+      "quantifiers": ["forall ...", "exists ..."],
+      "limit": "finite | N→∞ | continuum | n/a + kurzer Zusatz",
+      "premises": ["KONJUNKTIVE Menge — alle zusammen noetig, keine Einzelzerlegung"],
+      "chosen_structures": ["zusaetzlich gewaehlte Strukturen, die NICHT aus P1/P2 erzwungen sind"],
+      "objects": [{"kind": "space|algebra|state|operator|representation|map|number", "name": "..."}],
+      "epistemic": "proved | machine_checked | numerical | assumed | physically_identified | open",
+      "proof": {"script": "vN_*.py oder lean4-Target oder null", "checked_relation": "welche Beziehung exakt geprueft wird", "scope": "Geltungsbereich des Nachweises", "source_ref": "Paper-Section / Ledger-Zeile"},
+      "provenance": {"source": "manual|llm_extract", "model": "...", "date": "YYYY-MM-DD", "reviewed": false}
+    }
+  },
+  "transition": {
+    "doc": "Punkt 2: Uebergang zwischen zwei Konstruktionen als pruefbares Objekt. Fehlende Eigenschaften bleiben sichtbar (fails_to_preserve), ein 'missing'-Map ist ein ehrlicher Zustand.",
+    "fields": {
+      "id": "TRANS.<VON>.<ZU>.NN",
+      "from": "claim_id | contract:<slug> | object-Name",
+      "to": "dto",
+      "map": "konkrete Abbildung (Formel/Konstruktion) oder 'missing'",
+      "preserves": ["group_action|charges|adjunction|product_structure|state|locality|dynamics|spectrum|..."],
+      "fails_to_preserve": ["..."],
+      "status": "established | partial | missing | obstructed",
+      "checked_by": ["contract:<slug> | vN_*.py | claim_id"],
+      "counterexample": "bekanntes Gegenbeispiel/Mutation oder null",
+      "notes": "1-2 Saetze",
+      "provenance": {"source": "manual|llm_extract", "model": "...", "date": "...", "reviewed": false}
+    }
+  },
+  "constraint": {
+    "doc": "Punkt 3: gemeinsamer Bedingungsraum — unabhaengig begruendete Anforderungen an dasselbe Ursprungsobjekt. Getrennt vom gerichteten Beweisgraphen (depends_on bleibt azyklisch, Audit prueft).",
+    "fields": {
+      "id": "CONS.<BEREICH>.NN",
+      "on_object": "geteiltes Objekt (z.B. 'seam carrier', 'raw 256-mode space')",
+      "requirement": "praezise Anforderung",
+      "raised_by": "claim_id | transition-id | contract:<slug>",
+      "independent_of": ["andere constraint-ids, die unabhaengig begruendet sind"],
+      "provenance": {"source": "manual|llm_extract", "model": "...", "date": "...", "reviewed": false}
+    }
+  },
+  "failure_scope": {
+    "doc": "Punkt 5: Gedaechtnis mit Reichweite. Verhindert Wiederholung UND voreilige Generalisierung. Negationen korrekt: 'nicht widerlegt' ist kein Ausschluss.",
+    "fields": {
+      "id": "FAIL.<THEMA>.NN",
+      "target": "ausgeschlossene Hypothese/Ansatzklasse (praezise, eng)",
+      "approach_class": "die Klasse, die tatsaechlich scheitert (z.B. 'lineare gaußsche Quellenabbildung')",
+      "excluded_under": ["Voraussetzungen, unter denen der Ausschluss gilt"],
+      "not_excluded": ["was ausdruecklich NICHT ausgeschlossen ist (Reichweiten-Guard)"],
+      "retry_condition": "was sich aendern muesste, damit ein neuer Versuch gerechtfertigt ist",
+      "evidence": ["contract:<slug> | rh:<id> | claim_id"],
+      "provenance": {"source": "manual|llm_extract", "model": "...", "date": "...", "reviewed": false}
+    }
+  },
+  "proof_binding": {
+    "doc": "Punkt 6: Nachweis an Aussage gebunden. Builder hasht das Skript; bei Hash-Aenderung markiert theorycat recheck den Claim als 'erneut zu pruefen' (NICHT als falsch). Lebt in claim_contract.proof + Script-Node-Attr script_sha256.",
+    "fields": {
+      "script_sha256": "vom Builder gesetzt",
+      "mutation_tests": ["bekannte Mutation, die der Checker erkennen muss (z.B. Phasendrehung vs Streckung vertauscht)"]
+    }
+  }
+}

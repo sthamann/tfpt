@@ -1,0 +1,219 @@
+UR.SOURCE.STATIC_REGISTER.01
+2026-09-20. PARTIAL: exact conditional source-reduction result; no TOE closure.
+
+Question and decisive test
+-------------------------
+Can the existing static four-phase register supply the missing coherent
+fermion interaction merely by retaining and then tracing its phase sectors?
+The required output is a reversible evolution on the same full matter
+operator algebra, including its charged fields. A non-Gaussian mixture, a
+single prepared state, or an effective operator on a newly chosen code
+subspace is not this output. This question is the register-trace possibility
+left explicitly separate in clock-interaction-provenance, section 3.
+
+The source is verification/v1033_charged_disorder.py, functions
+register_hamiltonian and seam_forward. It has
+
+ H_R = sum_(r=0)^3 Pi_r tensor h_r,
+ h_r = b + i^r a + (-i)^r a^dagger,
+ Pi_r=|r><r|,  Z=diag(1,i,-1,-i).
+
+Its shift appears in the disorder observable, not in H_R. Thus every Pi_r
+is conserved. This source is written on C4 tensor the one-particle space V.
+When we discuss elementary many-fermion fields below, the lift to
+C4 tensor Fock(V), with H_r=dGamma(h_r)+s_r I, is an explicit conditional
+extension. It is NOT Fock(C4 tensor V), and is not selected by the source.
+No new Hamiltonian, reset law, or ground-state selection is inserted.
+
+1. Exact inclusive channel, including register coherences
+-------------------------------------------------------
+Let the initially independent register have any density matrix sigma and
+the matter input any density matrix rho. For a time-independent block H_r,
+U_r(t)=exp(-it H_r); the proof also allows blockwise time-dependent
+quadratic H_r(t), with their actual time-ordered unitaries. Then
+
+ U(t)(sigma tensor rho)U(t)^dagger
+   = sum_(r,s) sigma_rs |r><s| tensor U_r rho U_s^dagger,
+
+ Phi_t(rho)=Tr_R(...)=sum_r p_r U_r rho U_r^dagger,
+ p_r=sigma_rr.
+
+All offdiagonal register coherences vanish in this inclusive trace. A pure
+coherent register is covered, not only a classical initial mixture. The
+joint state may nevertheless be entangled; only its reduced channel is
+being characterized.
+
+2. When this channel is unitary
+------------------------------
+Suppose Phi_t(rho)=V rho V^dagger for every input rho on the full matter
+space. Its unnormalized Choi matrix is
+
+ J(Phi_t)=sum_r p_r |U_r>><<U_r|=|V>><<V|.
+
+For any vector w orthogonal to |V>>, positivity gives
+ sum_r p_r |<<w|U_r>>|^2=0.
+Therefore every U_r with p_r>0 is proportional to V; unitarity fixes the
+proportionality to a phase. Conversely proportional occupied branches
+plainly give a unitary channel. This is an elementary standard quantum-
+channel fact, proved here to fix its exact application and assumptions.
+
+Under the conditional quadratic Fock lift, every U_r is a fermionic
+Gaussian unitary, since its conjugation acts linearly on the elementary
+CAR fields. Any proportional V has the same action. Hence:
+
+ A deterministic unitary obtained from this static register on the full
+ elementary CAR algebra is Gaussian, up to a scalar phase.
+
+If the reduced channel is unitary over a time interval starting at zero,
+its infinitesimal generator is the quadratic average sum p_r H_r up to a
+scalar. A nonquadratic choice of a matrix logarithm at one isolated
+recurrence time does not establish such a continuous interaction.
+
+The distinction from the earlier purely fermionic Gaussian-integration
+theorem matters: Phi_t need not itself be a Gaussian channel. What is
+excluded is a non-Gaussian UNITARY channel from these ingredients.
+
+3. Coherent return, memory and measurements
+-----------------------------------------
+If the register returns to an input-independent state and the matter
+undergoes the same unitary for every input, its reduced channel is already
+covered by section 2. Any register-only trace-preserving operation performed
+after the last joint interaction leaves the matter marginal unchanged.
+A final register rotation or unconditioned reset therefore cannot evade
+the result. We do not claim that repeated resets at intermediate times
+are the same process as retention: with the same static branch structure
+they give mixtures of products of Gaussian unitaries instead, which obey
+the same rank-one implication whenever the total channel is unitary.
+
+For a pure initial register with amplitudes a_r, postselection of a final
+register vector m produces K_m=sum_r <m|r>a_r U_r. Such coherent sums need
+not be Gaussian. This is a conditional instrument, not the inclusive
+channel above. A proposed measurement/feed-forward or additional control
+must be specified and physically derived; it is not supplied by a shift
+being present merely as an observable.
+
+Initial correlations restrict the admissible input family and need not
+define the same completely positive map on arbitrary matter inputs. Also,
+on an encoded subspace or a fixed superselection block the branch unitaries
+may agree there without agreeing on the full CAR algebra. These cases are
+outside the claimed exclusion. A physical reconstruction using them must
+transport its charged-sector intertwiners and time, not only neutral traces.
+
+4. A source-level purity diagnostic
+----------------------------------
+For a pure matter input P=|psi><psi|, write Hbar=sum_r p_r H_r. Taylor
+expansion gives
+
+ Phi_t(P)=P-it[Hbar,P]
+          -t^2/2 sum_r p_r[H_r,[H_r,P]]+O(t^3),
+
+ Tr Phi_t(P)^2 = 1-2t^2 sum_r p_r Var_psi(H_r-Hbar)+O(t^3).
+
+One proof differentiates Tr rho(t)^2 twice at zero and uses
+ Tr(P[H,[H,P]])=2 Var_psi(H). The difference of second moments is
+ sum_r p_r Var(H_r)-Var(Hbar)=sum_r p_r Var(H_r-Hbar).
+No commutativity of H_r or of Hbar with H_r is assumed.
+
+For the uniform four phases, H_r=B+i^r A+(-i)^r A^dagger and Hbar=B.
+Since the averages of i^r and i^(2r) vanish,
+
+ sum_r p_r Var_psi(H_r-Hbar)
+  = <AA^dagger+A^dagger A>_psi-2|<A>_psi|^2.
+
+The checker uses the actual original source at nx=3, ny=1 and a single
+particle in the departing seam orbital. These are a diagnostic size and
+preparation, not a predicted vacuum. The original seam matrix has squared
+column norm 1/2, and on this vector A^dagger psi=0 and <A>=0. Thus
+
+ Tr rho_matter(t)^2 = 1-t^2+O(t^3)
+
+in the source's dimensionless time convention. This is an exact Taylor
+coefficient, not a bound or a calibrated prediction at macroscopic time.
+The on-site and nonseam terms are retained: their common B contribution
+cancels from this purity coefficient, not from the full dynamics.
+
+5. Real four-point non-Gaussianity without a coherent quartic Hamiltonian
+----------------------------------------------------------------------
+On the conditional Fock lift of the same one-particle preparation the
+state has N_f=1 at all times. Let C_ij=<c_i^dagger c_j>. Then
+
+ sum_(i<j)<n_i n_j>=0,  Tr C=1,
+ sum_(i<j)(C_ii C_jj-C_ij C_ji)=(1-Tr C^2)/2.
+
+The total Wick defect is therefore exactly
+
+ D4 = sum_(i<j)[<n_i n_j>-(C_ii C_jj-C_ij C_ji)]
+    = -(1-Tr rho_matter^2)/2
+    = -t^2/2+O(t^3)
+
+for the diagnostic above. The state really fails Wick factorization after
+the register is discarded. This does not contradict section 2: the
+evolution is a mixture, not a closed unitary interaction on the matter.
+It directly tests why an observed connected four-point contribution is
+not by itself the missing Hamiltonian derivation.
+
+More generally, when each occupied branch is gauge-invariant quasifree,
+the reduced fourth cumulant equals
+
+ Cov_p(C^(r)_ik,C^(r)_jl)-Cov_p(C^(r)_il,C^(r)_jk)
+
+with the convention <c_i^dagger c_j^dagger c_l c_k>. It measures branch
+covariance. No assertion that a convex mixture of Gaussian states is
+Gaussian is made.
+
+6. Consequence for the original research question
+------------------------------------------------
+Keeping a full determinant, a coherent initial register and its four
+phases does not alone manufacture a reversible nonquadratic field
+generator. The unchanged v1033 source has static sectors. To escape this
+specific construction one must change an explicit premise: derive sector-
+changing dynamics, supply an actual nonquadratic branch, or construct a
+different encoded/charged-sector realization with its state and common
+time. A nonzero [H,Pi_r] is a useful necessary structural change for the
+first of these routes, not a sufficient proof of an interaction, E8 phase,
+vacuum selection or relativistic limit.
+
+Conserved Pi_r does not mean every register observable is stationary. For
+S=sum_r |r+1><r|, the full Heisenberg evolution is exactly
+
+ S(t)=sum_r |r+1><r| tensor U_(r+1)(t)^dagger U_r(t).
+
+There is therefore a genuine sector-changing PROBE response in the full
+source algebra even when no such transition occurs in the Hamiltonian.
+The original disorder construction already uses this distinction. Our
+theorem does not exclude that response, call the entire joint model free,
+or demand that every physically valid reduced description be closed and
+unitary. It excludes the claimed deterministic matter-only interaction
+in the specified reduction. Approximate infrared dynamics in a correlated
+encoded sector requires a separate error-controlled argument.
+
+The existing relative-phase compiler coupling and the electric rotor are
+separate examples with genuinely noncommuting source dynamics. Their
+source/charge/time map into the boundary theory remains unproved. This
+result does not transfer their properties to v1033, nor derive their
+couplings from P1/P2. It also does not exclude open-system descriptions of
+an interacting world or a nontrivial encoded infrared sector.
+
+The independent inventory in SOURCE_INTERACTION_INVENTORY.txt records why
+the native 64-CAR/60-CCR pair-Casimir identity is not a new origin solution:
+it was already documented in a declared bank model. Its finite global
+generators are not automatically affine D8/E8 currents. No new novelty
+claim is made for that identity.
+
+Verdict PARTIAL. The exact static-register route is classified for the
+stated matter algebra; source selection and all physical T1-T8 gates stay
+open. Standard mathematics is used as a source-specific acceptance test.
+
+Literature and verification boundary
+------------------------------------
+Sergey Bravyi, Lagrangian representation for fermionic linear optics,
+https://arxiv.org/abs/quant-ph/0404180, gives the standard Gaussian/FLO
+framework. Mark Girard et al., On the mixed-unitary rank of quantum
+channels, https://arxiv.org/abs/2003.14405, gives the mixed-unitary/Choi-rank
+framework. The short rank-one proof above is fully written out; these
+papers do not establish a TFPT source identification.
+
+The attached exact finite checker controls the original block structure
+and the purity/Wick witness. The dimension-independent rank-one theorem
+is an analytic argument. Internal review and finite checks are not an
+external peer review or a proof-assistant formalization.

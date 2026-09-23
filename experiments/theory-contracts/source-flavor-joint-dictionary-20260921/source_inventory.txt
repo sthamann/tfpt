@@ -1,0 +1,144 @@
+PRIMITIVE TFPT SOURCE INVENTORY — 2026-09-21
+
+Verdict
+=======
+
+The strongest actually specified *primitive* datum is still P1: an oriented
+seam Sigma carrying a primitive reflection-positive scalar boundary kernel,
+unit winding [u_Sigma]=1 and normalization c3=1/(8 pi).  This is not an
+explicit kernel K(x,y), not a field alphabet/algebra, and not a charged
+insertion functional.  The strongest actually specified *charged source* is a
+later chosen free QWZ-CAR realization (CAR fields, Slater covariance P_N,
+one-particle generator D_N, embedding R_N and all Wick correlators).  It is a
+complete Gaussian charged source for one complex CAR species inside that
+model, but no current derivation selects it from P1/P2.
+
+The three-state transfer T is a compression/readout: it fixes a stationary
+vector and a dissipative Markov logarithm on a 3-dimensional space.  It does
+not specify the underlying charged algebra, all source insertions, the charged
+state, or reversible physical time.  The operator identity that would attach
+it to the raw source, C_Sigma = I^{-1} C_mu4 I, remains QGEO.KERNEL.01 [O].
+
+Exact primitive/charged data
+============================
+
+1. P1 gives only orientation, RP, unit winding and c3=1/(8 pi):
+   tfpt_1_architecture_e8.tex:163-176.  The ledger keeps it a declared input:
+   verification/status_ledger.csv:2.  Later "one kernel is the whole net"
+   statements assume the free/quasifree 16-Majorana net and Wick/Pfaffian
+   factorization: tfpt_1_architecture_e8.tex:1608-1625.
+
+2. No primitive charged functional W_Sigma[eta-bar,eta,J] is supplied.  The
+   explicit QWZ substitute is
+     h_N, P_N=1_{(-inf,0)}(h_N), D_N=N h_N/(2pi),
+     H_N=dGamma(D_N)-Tr(P_ND_N), Psi_N(f)=a_N(R_N f),
+   with covariance P_N, source time D_N and exact Wick correlators.  See
+   primitive-charged-source-response-20260921/CORRELATORS.md:6-54,56-102,
+   104-164.  It is explicitly a pre-existing QWZ realization, not P1-derived.
+
+3. The native RR/W bank and the QWZ source are different sourced objects.  The
+   exact family subspace is U=ker(sum:C^4->C), and the W interaction restricts
+   invariantly to it, but the retained native ground state lies at Z=16, not in
+   ker Z.  See rr-three-family-state-20260921/HERLEITUNG.md:15-27,31-60,
+   62-90,124-132.  Thus further W response moments do not supply the missing
+   primitive selection.
+
+Unitary D4 versus OS reflection
+===============================
+
+These are not the same structure in the original sources.
+
+* The marked-sphere D4 is holomorphic/linear: rho:z->iz and sigma:z->1/z.
+  It acts by permutation/unitary pullback on residues, with sigma*w1=w3 and
+  sigma*w2=w2.  See verification/v177_seam_marking_kernel.py:19-34,69-112
+  and tfpt_1_architecture_e8.tex:5173-5196.
+
+* The OS reflection is anti-linear/antiunitary: the seam-circle family D is
+  z->mu conjugate(z), and on Fock space Theta=U_r K, Theta^2=+1, inverting the
+  clock.  It is explicitly distinguished from the deck involution.  See
+  tfpt_research_contracts.tex:12148-12171,12173-12182,12234-12255 and
+  12323-12337,12364-12375.
+
+On the unit circle sigma(z)=1/z and conjugate(z) have the same point action for
+mu=1, but their action on complex fields/differentials differs by conjugation.
+An intertwining real structure must be proved; pointwise coincidence is not an
+operator identification.
+
+Does the primitive kernel already split the three families?
+===========================================================
+
+The residue representation is canonically
+  U = B_alt (+) E_plane,       dimensions 1+2,
+where B_alt is spanned by (1,-1,1,-1) and E_plane by
+(1,0,-1,0),(0,1,0,-1).  A D4-equivariant Hermitian operator on U therefore has
+the form lambda_B P_B + lambda_E P_E.
+
+A genuine non-scalar candidate is already present: the geometric Green matrix
+G_ij=-log|p_i-p_j| on the four marks.  With any common diagonal regularization
+d its eigenvalues on U are
+  lambda_B=d,              lambda_E=d+log 2 (multiplicity 2),
+so lambda_B-lambda_E=-log 2 independently of d.  The paper records this
+regularization-independent D4 anisotropy explicitly:
+tfpt_1_architecture_e8.tex:1928-1959 and 5365-5374.
+
+But this does not yet answer the source question.  The text uses the canonical
+residue pairing, not G, for the E8 A3 metric, and does not identify G with the
+raw P1 Calderon operator.  QGEO.KERNEL.01 still asks for the raw operator
+identity, not a shared spectrum (verification/status_ledger.csv:257;
+verification/v177_seam_marking_kernel.py:35-42,130-136).  QGEO.STATE.01 proves
+only character-block diagonality/clock conservation; the bounded sub-principal
+symbol remains open (status_ledger.csv:272;
+verification/v199_seam_state_invariance.py:13-30,75-94).  Hence there is no
+proved source-prescribed anisotropic family insertion yet—only a very specific
+existing candidate with a one-scalar unresolved identification.
+
+Ranking the interaction candidates
+==================================
+
+1. Primitive source restriction first.  Without the raw-kernel-to-U map, every
+   later interaction channel is conditional on a source choice.
+
+2. The symmetric affine-E8 current product is the best existing *conditional*
+   flavor coefficient candidate.  Its exact positive image is
+     (10,10) (+) (120,6), dimensions 100+720,
+   and it has the correct total exchange symmetry for same-handed Weyl scalar
+   bilinears.  It avoids the alternating-W direct-use obstruction.  See
+   symmetric-source-product-audit-20260921/ERGEBNIS.md:19-30,53-66.
+   Under an already assumed D8_1 source it has an exact four-Majorana even-CAR
+   realization, but those composites are bosonic coefficients, not the 64
+   charged matter fields; L0 is scalar on the image and yields no hierarchy.
+   See symmetric-source-car-interface-20260921/CAR_INTERFACE_REVIEW.md:8-18,
+   140-178,209-213.
+
+3. Native antisymmetric W response is not justified as the unique target for
+   the full origin problem.  The direct same-handed scalar use with one family
+   vector vanishes/rank-drops, while the symmetric product supplies a genuine
+   alternative.  See source-flavor-origin-20260920/FLAVOR_REVIEW.txt:115-175.
+   W remains valid for its own RR pair-conversion bank, but more W moments
+   cannot decide why the primitive source selected that bank or Flavor.
+
+One decisive constructive derivation to pursue
+===============================================
+
+Derive the raw P1 Calderon restriction to the existing residue module, without
+inserting the target transfer, W, or a desired Yukawa matrix:
+
+  (a) construct from the raw OS boundary data a residue/evaluation map
+      R_Sigma : H_OS -> U=ker(sum);
+  (b) prove separately that rotation is unitary and OS reflection antiunitary,
+      and that together they induce the same real D4 module on U;
+  (c) compute K_U=R_Sigma C_Sigma R_Sigma^* and its two Schur coefficients
+      lambda_B, lambda_E on 1+2;
+  (d) test whether K_U equals the already present geometric Green restriction,
+      in particular lambda_B-lambda_E=-log 2, using P1 normalization rather
+      than fitting the value.
+
+This is the smallest non-arbitrary gate.  If the map does not exist or
+lambda_B=lambda_E, the primitive source supplies no family anisotropy and the
+W/symmetric channels remain unselected downstream options.  If it exists and
+is non-scalar, it is the first source-derived family insertion.  Only then is
+it justified to project the charged three-point/1PI response onto the exact
+100 and 720 symmetric current-product projectors and ask which channel the
+same OS/GNS source and time actually populate.
+
+No paper, ledger, graph or repository file was changed.

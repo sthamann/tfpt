@@ -1,0 +1,111 @@
+\chapter{v1.6: Die konsolidierte endliche Ausführung}
+\label{ch:v16-labor}
+\section{Was neu in dieses Hauptbuch eingeht}
+Die vorläufigen Markdown-Berichte vom 14. September mit Versionsnummer 1.6 waren noch kein aktualisiertes vollständiges PDF. Dieses Kapitel übernimmt ihre wesentlichen Ergebnisse mit ihren jeweiligen Voraussetzungen. Es ersetzt nicht die früheren Beweise, sondern trennt überholte Engpässe, jetzt gelöste endliche Aufgaben und weiterhin fehlende physische Herkunft. Die großen Spektral- und Kosmologieläufe werden hier als dokumentierte Vorbefunde übernommen; frisch wiederholte Prüfungen dieser Revision sind im Evidenzanhang separat aufgeführt. \src{V16-P1 bis V16-P3}
+
+\section{Ein einziger erfolgreicher Record erzeugt die Zelle exakt}
+Vier Ququarts werden durch acht Bits kodiert; das erste Bit jedes Ququarts ist niederwertig. Mit dem Swap $S_{ij}$ und $P^-_{ij}=(I-S_{ij})/2$ sei
+\begin{align}
+\ket\Omega&=\frac1{\sqrt{24}}\sum_{\pi\in S_4}\operatorname{sgn}(\pi)
+\ket{\pi(0),\pi(1),\pi(2),\pi(3)},\\
+\ket\xi&=\frac14\sum_{d=0}^3\sum_{u,v=0}^1(-1)^{u+v}
+\ket{d,\ d\oplus2\oplus u,\ d\oplus1\oplus2v,\ d\oplus3\oplus u\oplus2v}.
+\end{align}
+$\xi$ ist ein Stabilizerzustand. Seine Herstellung aus acht Nullbits benötigt die folgende zeitlich geordnete Schaltung: H auf 0, 1, 2, 5; Z auf 2, 5; CNOT $0\to2$, $1\to3$, $0\to4$, $1\to5$, $2\to6$, $5\to7$; schließlich X auf 3, 4, 6, 7. Innerhalb jedes der vier angegebenen Blöcke gilt die geschriebene Reihenfolge; unabhängige Gatter dürfen parallel ausgeführt werden.
+
+Die vollständige Vektoridentität lautet
+\begin{equation}
+P^-_{03}\ket\xi=-\sqrt{3/8}\ket\Omega.
+\label{eq:v16-seed}
+\end{equation}
+Sie lässt sich ohne numerische Toleranz als $(I-S_{03})\xi_{\mathrm{num}}=-\Omega_{\mathrm{num}}$ auf allen 256 Komponenten prüfen, mit $\xi_{\mathrm{num}}=4\xi$ und $\Omega_{\mathrm{num}}=\sqrt{24}\Omega$. Die 16 Ausgangswörter von $\xi$ enthalten zwölf Permutationen und vier Kollisionswörter. Die antisymmetrische Auswahl entfernt die Kollisionen und ergänzt die benötigten Vorzeichen.
+
+Der benannte Record ist
+\begin{equation}
+R_{ij}=P^+_{ij}\otimes I_{\mathrm{ptr}}+P^-_{ij}\otimes X_{\mathrm{ptr}}.
+\end{equation}
+Pointerstart 0, Anwendung von $R_{03}$ und Pointerausgang 1 erzeugen exakt $\Omega$ mit Wahrscheinlichkeit $3/8$. Ausgang 0 hat Wahrscheinlichkeit $5/8$ und wird als Fehlversuch gezählt. Wiederholungen benötigen im Mittel $8/3$ Versuche; eine endliche deterministische Präparation folgt daraus nicht.
+
+\begin{bild}{Die echte Vereinfachung}
+Früher wurde das gewünschte Muster schrittweise herausgefiltert. Jetzt gibt es einen einfach herstellbaren Eingang, aus dem genau eine passende Auswahl das Muster vollständig herauslöst. Vereinfacht ist der Ablauf, nicht die Herkunft des Auswahlgeräts: Der kohärente Record, seine Adressierung und die Versorgung mit Hilfsregistern bleiben zu erklären.
+\end{bild}
+
+\section{Schlussprüfung und Mehrzeitvergleich ohne versteckte Ausbeute}
+Die adjungierte Vorbereitung liefert eine aus Operationen zusammengesetzte Schlussprüfung. Man fordert einen neuen Record-Ausgang 1, führt die inverse $\xi$-Schaltung aus und liest acht Nullbits aus. Der erfolgreiche Krausoperator und sein Effekt sind
+\begin{equation}
+K_{\mathrm{end}}=-\sqrt{3/8}\ket{0^8}\bra\Omega,
+\qquad K_{\mathrm{end}}^\dagger K_{\mathrm{end}}=\frac38 P_\Omega.
+\end{equation}
+Der Effekt ist nicht als primitive perfekte Messung eingesetzt. Er wird aus der Schaltung berechnet. Die Messung ist destruktiv und akzeptiert selbst $\Omega$ nur mit Effizienz $3/8$.
+
+Nach erfolgreicher Vorbereitung folgt die Permutation $C=(0\,1\,2)$ am ersten Ququart, zweimal $R_{01}$ und danach $C^{-1}$. Im behaltenen Fall wird derselbe \emph{unvermessene kohärente} Pointer zweimal benutzt; $R^2=I$. Im frischen Fall werden zwei unabhängige Pointer verwendet und ihre Ausgänge vollständig summiert. Abschließend erfolgt die beschriebene Schlussprüfung.
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Normierung & Behalten & Frisch\\\midrule
+Rohwahrscheinlichkeit einschließlich Start und Ende & $9/64$ & $153/2048$\\
+Nur auf Start konditioniert & $3/8$ & $51/256$\\
+Zusätzlich Ende kalibriert & $1$ & $17/32$\\\bottomrule
+\end{tabular}
+\end{center}
+Eine Messung des behaltenen Pointers zwischen den beiden Records wäre ein anderer Versuch. Ein gespeichertes klassisches Bit ersetzt das kohärente Register nicht. Abbrüche, nicht akzeptierte Schlussausgänge und alle übrigen Zweige gehören zur Normierung.
+
+Der feste-$\Delta$-Makrovertrag aus v1.5 kostet $70\pi\hbar/\Delta$ Hamiltonzeit pro Record einschließlich der endlichen Q-Fenster. Ein nicht abgebrochener Vier-Record-Versuch kostet damit $280\pi\hbar/\Delta$. Präparation bis zum Erfolg plus ein anschließender Echo-und-Endversuch benötigt im Mittel $(17/3)70\pi\hbar/\Delta$. Zeiten für $\xi$, $C$, Auslesung, Reset und Schaltsteuerung sind darin nicht enthalten. Diese Buchhaltung darf nicht als vollständig autonomer Betrieb ausgegeben werden.
+
+\section{Optimalität und eine präzise Ressourcengrenze}
+Innerhalb der reinen oder gemischten Acht-Bit-Stabilizerzustände gilt
+\begin{equation}
+\max_{\rho\in\mathrm{Stab}}\Tr(P_\Omega\rho)=3/8.
+\end{equation}
+Der dokumentierte Beweis reduziert auf einen Vier-Bit-Stabilizercode mit sechs vorzeichenbehafteten Trägern. Unter allen 307 affinen Unterräumen von $\mathbb F_2^4$ sind die maximalen Schnittgrößen für Dimension $k=0,\ldots,4$ gleich $1,2,3,4,6$. Die Schranke $|\mathrm{Schnitt}|^2/(6\cdot2^k)\le3/8$ gilt in jeder Dimension und wird durch $\xi$ erreicht. Das ist ein Satz für den benannten Ressourcenvertrag, nicht für jede Quantenpräparation.
+
+Für den vollständigen akzeptierten Zweig liefert der Zeuge
+\begin{equation}
+W_{\mathrm{flag}}=\ket{\mathrm{acc}}\bra{\mathrm{acc}}\otimes(P_\Omega-3I/8)
+\end{equation}
+den Wert $15/64$. Vollständige Stabilizerinstrumente auf Stabilizereingängen haben dagegen Erwartung höchstens null. Der Spektraldurchmesser des Zeugen ist eins; damit ist auch ein Abstand von mindestens $15/64$ in halber Diamantnorm belegt. Der Erfolgszweig bleibt unnormiert, sodass Postselektion den Ressourcenvergleich nicht verfälscht.
+
+Die ältere K-Filterfolge bleibt als Kontrollidentität erhalten:
+\begin{equation}
+p_n=\frac38+\frac3{128}64^{-(n-1)},\qquad
+1-F_n=\frac1{1+2^{6n-2}},\quad n\ge1.
+\end{equation}
+Für die konkrete Präparation \eqref{eq:v16-seed} ist sie nicht mehr nötig. Ebenso enthält der Record eine bekannte universellere kontrollierte Logik: Pointer-H, Record, Pointer-H ergeben einen kontrollierten Swap; zusammen mit zwei passenden CNOTs entsteht Toffoli. Daraus folgt weder ein neuer Faktorisierungsalgorithmus noch ein günstiger Gesamtaufwand.
+
+\section{Spektren: ein vollständiges Teilproblem, nicht alle Focksektoren}
+Der dokumentierte C16-Nachweis betrifft den \emph{gesamten 24024-dimensionalen Singulettsektor des kantenlokalen, abgeschnittenen Operators}
+\begin{equation}
+H_{\mathrm{tr}}=H_0+F_4/800.
+\end{equation}
+Unterhalb $12{,}45J$ liegen exakt fünf Eigenwerte: ein nichtentarteter Grundzustand und das folgende Viererband. Die zertifizierten Intervalle lauten
+\begin{align}
+11{,}960507412J&<E_0<11{,}960507414J,\\
+12{,}4469215409J&<E_1<12{,}4470238436J,
+\end{align}
+mit Lücke größer als $0{,}4864141269280J$. Alle 18 Symmetrietypen wurden im dokumentierten Zertifikat erfasst; die elf übrigen Typen mit zusammen 22260 Dimensionen liegen oberhalb der verwendeten Schwelle, die schwächste betreffende Untergrenze beträgt $13{,}10732519J$.
+
+\begin{grenze}{Die drei Grenzen des Spektralbefunds}
+Vollständiger Singulettsektor ist nicht vollständiger Hilbertraum. $H_{\mathrm{tr}}$ ist nicht der volle mikroskopische Hamiltonoperator. Ein zertifiziertes Intervall dieses Operators zertifiziert keine vorherige Ritz-/Temple-Aussage eines anderen Operators. Die neueste Worker-Eingabe nennt für andere große Sektoren teilweise noch ausstehende Prüfungen; diese Revision meldet sie nicht stillschweigend als erledigt.
+\end{grenze}
+
+\section{Was bereits wirklich transportiert wurde}
+In einer ausdrücklich gesetzten Dreiplatz-Wedge-Anordnung mit 112 Zuständen erzeugen die ursprünglichen Vertizes Transport. Für den relevanten Übergang gilt $\rank(B_{12}B_{01}^\dagger)=24$, und die nichtverschwindenden Eigenwerte des angegebenen $B^\dagger B$ sind $1$ mit Vielfachheit 20 und $4$ mit Vielfachheit 4. Die dokumentierte Wahrscheinlichkeit beträgt ungefähr $2{,}95072\cdot10^{-6}$ für $t/\Delta=0{,}05$ und Entwicklungszeit $\hbar/\Delta$. Das ist ein positiver Test innerhalb des vorgegebenen Platz- und Q-Vertrags, keine Herkunft der Plätze.
+
+Eine zweite Rechnung komprimiert zwei nackte Sterne auf jeweils 31 Zustände: $\Omega$ plus das erste 30er-Band. Auf den 961 Zuständen der Paar-Kompression erzeugt die ursprüngliche Blattkopplung $\lambda P^+$ einen Übergang $\lambda/9$ mit Rang 15. Die anderen 15 Richtungen sind dunkel, die entsprechende zentrale Kopplung liefert null. Der Paarerzeugungsanteil hat Norm $\lambda\sqrt{15}/9$, die Erwartung $5\lambda/8$; pro hellem Kanal ist die Amplitude $\lambda/9$. Für die dokumentierte Normierung $\lambda=J$ liegen die beiden niedrigsten komprimierten Energien numerisch bei $0{,}41666666666666646J$ und $0{,}75207294645443J$.
+
+Diese beiden Befunde werden nicht mit dem Voll-Fock-Modell mit 64 Fermion- und 60 Bosonmoden identifiziert. Sie liefern Vergleichsziele: Ein gemeinsamer Quelloperator müsste die jeweilige Reduktion ausdrücklich begründen und die vernachlässigten Zustände kontrollieren.
+
+\section{Fehlerrechnung und gekoppelte Kosmologieprobe}
+Die dokumentierte Robustheitsrechnung normiert erst nach Aufsummieren der vollständigen Zweige. Bei $\delta H/\Delta=10^{-6}$ und $q=10^{-7}$ ergibt sie unter den übrigen Idealannahmen Präparationsinfidelität höchstens $3{,}95914\cdot10^{-7}$. Für $\delta H/\Delta=10^{-5}$ und $q=10^{-4}$ bleibt die Vier-Record-Rohtrennung mindestens $0{,}05431202432$. Der alte F9-Filter mit dem neuen Eingang $\xi$ hatte dagegen ungefähr $1{,}67\%$ akzeptierten Fehler und wird nicht als Ersatz für das Ein-Record-Protokoll benutzt.
+
+Die kosmologische Rechnung integriert den vollständigen Hintergrund sowie die skalaren Mukhanov--Sasaki- und Tensor-Moden der benannten Starobinsky-Branche mit $M^2=c_3^7$. Verwendet werden die ausdrücklich eingefrorenen Referenzzentralwerte $\ln(10^{10}A_s)=3{,}062$ und $n_s=0{,}9752$ aus dem angegebenen ACT-P-ACT-LB-Vergleich. Sie sind keine in dieser Revision aktualisierte globale Datenauswertung. \href{https://arxiv.org/abs/2503.14452}{ACT-Kollaboration, 2025 [V16-E4]}
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Angepasste Größe & $N$ & $n_s$ & $r$\\\midrule
+$A_s$ & $54{,}24134$ & $0{,}96442129$ & $0{,}00364472$\\
+$n_s$ & $78{,}53130$ & $0{,}9752$ & $0{,}00179288$\\\bottomrule
+\end{tabular}
+\end{center}
+Die Amplituden sind dabei $2{,}1370255\cdot10^{-9}$ beziehungsweise $4{,}3792172\cdot10^{-9}$, also im zweiten Fall um Faktor $2{,}04921$ größer. Eine vorgeschlagene Nachanpassung von $c_3$ um etwa $-9{,}61\%$ verändert zugleich die elektromagnetische Ausgabe zu $\alpha^{-1}\simeq167{,}803$ statt des im Programm benutzten Wertes $137{,}03599921684$. Der gekoppelte Seed darf nicht pro Ausgabe unabhängig nachgestellt werden. Ohne vollständige Likelihood, Reheating-Vertrag und Unsicherheiten ist dies eine konkrete Modellspannung, kein umfassender Ausschluss von TFPT.

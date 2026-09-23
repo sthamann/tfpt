@@ -1,0 +1,669 @@
+{
+  "modules": {
+    "cross_gate.py": {
+      "checker_status": "PASS",
+      "checks": [
+        "cross.identical_parent_id_all_modules",
+        "cross.parent_model_module_export_matches_run",
+        "cross.exactly_T1_T8_once",
+        "cross.no_duplicate_gate_ids",
+        "cross.obligations_json_exactly_T1_T8",
+        "cross.parent_spec_required_top_level_keys",
+        "cross.parent_spec_verdict_required_keys",
+        "cross.parent_spec_absent_contains_T1_T8_labels",
+        "cross.toe_complete_false",
+        "cross.closed_gate_ids_empty"
+      ],
+      "closed_gate_ids": [],
+      "cross_gate_own_checks": 10,
+      "exact_checks": 10,
+      "expected_gate_ids": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7",
+        "T8"
+      ],
+      "gate_statuses": {
+        "T1": "partial",
+        "T2": "partial",
+        "T3": "partial",
+        "T4": "partial",
+        "T5": "partial",
+        "T6": "partial",
+        "T7": "partial",
+        "T8": "partial"
+      },
+      "gates_t1_t4_ids": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "gates_t5_t8_ids": [
+        "T5",
+        "T6",
+        "T7",
+        "T8"
+      ],
+      "hypothesis": "cross-gate integrity holds: identical canonical parent_id, exactly T1..T8 once, obligations/spec structures present; all T1-T8 closures remain false; toe_complete is False",
+      "module_counts": {
+        "gates_t1_t4": 24,
+        "gates_t5_t8": 29,
+        "parent_model": 10,
+        "seam_lift": 52
+      },
+      "obligations_gate_ids": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7",
+        "T8"
+      ],
+      "parent_id": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+      "parent_ids": {
+        "gates_t1_t4": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+        "gates_t5_t8": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+        "parent_model": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+        "seam_lift": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f"
+      },
+      "parent_spec_required_keys": [
+        "spec_id",
+        "version",
+        "date",
+        "description",
+        "constants",
+        "operators",
+        "derived",
+        "assumed",
+        "absent",
+        "verdict"
+      ],
+      "parent_spec_verdict_required_keys": [
+        "raw_seam_to_w_intertwiner",
+        "closed_gate_ids",
+        "selection",
+        "status_pass_means"
+      ],
+      "status": "PASS",
+      "toe_complete": false
+    },
+    "gates_t1_t4.py": {
+      "checker_status": "PASS",
+      "closed_gate_ids": [],
+      "exact_checks": 24,
+      "gates": [
+        {
+          "checks": [
+            "t1.primitives_all_typed",
+            "t1.target_derived_mutation_rejected",
+            "t1.origin_selection_absent"
+          ],
+          "closed_in_package": false,
+          "evidence": {},
+          "exact_checks": 3,
+          "gate_id": "T1",
+          "killed_routes": [
+            "derive-primitive-from-target (target-derived mutation)"
+          ],
+          "missing": [
+            "origin selection (which primitive fixes the origin)"
+          ],
+          "open_gaps": [
+            "origin selection (which primitive fixes the origin)"
+          ],
+          "parent_id": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+          "proven": [
+            "primitive grammar records are typed over a fixed alphabet",
+            "target-derived mutation is rejected by the typing validator"
+          ],
+          "status": "partial"
+        },
+        {
+          "checks": [
+            "t2.seam_result_consumed",
+            "t2.raw_seam_to_w_intertwiner_absent_open_blocker",
+            "t2.J_eta_involution_eta=1",
+            "t2.J_eta_involution_eta=-1",
+            "t2.L_eta_orthogonal_involution_eta=1",
+            "t2.L_eta_orthogonal_involution_eta=-1",
+            "t2.R_eta_covariance_partial_identity_eta=1",
+            "t2.R_eta_covariance_partial_identity_eta=-1",
+            "t2.same_vertex_pair_bank_detects_b2_eta=1",
+            "t2.same_vertex_pair_bank_detects_b2_eta=-1",
+            "t2.absent_half-charge",
+            "t2.absent_energy",
+            "t2.absent_scaling"
+          ],
+          "closed_in_package": false,
+          "evidence": {},
+          "exact_checks": 13,
+          "gate_id": "T2",
+          "killed_routes": [
+            "same-vertex pair-bank reflection with nonzero neighbour mixing"
+          ],
+          "missing": [
+            "raw seam -> four 64-mode W-bank intertwiner (open blocker, absent in seam_lift; NOT a killed route)",
+            "Half-Charge",
+            "energy / adjoints",
+            "scaling limit"
+          ],
+          "open_gaps": [
+            "raw seam -> four 64-mode W-bank intertwiner (open blocker, absent in seam_lift; NOT a killed route)",
+            "Half-Charge",
+            "energy / adjoints",
+            "scaling limit"
+          ],
+          "parent_id": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+          "proven": [
+            "J_eta(eta=1) is an involution (J^2 = I)",
+            "J_eta(eta=-1) is an involution (J^2 = I)",
+            "L_eta(eta=1) is an orthogonal involution (L^H L = I)",
+            "L_eta(eta=-1) is an orthogonal involution (L^H L = I)",
+            "R_eta(eta=1) is an orthogonal covariance operator (R^T R = I)",
+            "R_eta(eta=-1) is an orthogonal covariance operator (R^T R = I)",
+            "same-vertex pair-bank action leaves the exact b^2 obstruction"
+          ],
+          "status": "partial"
+        },
+        {
+          "checks": [
+            "t3.same_local_normalization",
+            "t3.global_gram_determinant_differs",
+            "t3.spectral_invariant_differs",
+            "t3.spatial_dimension_absent"
+          ],
+          "closed_in_package": false,
+          "evidence": {},
+          "exact_checks": 4,
+          "gate_id": "T3",
+          "killed_routes": [
+            "local-normalization-fixes-chart (Gram determinant differs)",
+            "local-normalization-fixes-spectrum (spectral invariant differs)"
+          ],
+          "missing": [
+            "declared spatial_dimension (3+1D common parent selection)"
+          ],
+          "open_gaps": [
+            "declared spatial_dimension (3+1D common parent selection)"
+          ],
+          "parent_id": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+          "proven": [
+            "the two charts share the same local normalization",
+            "global Gram determinant distinguishes the charts (detA=1/2, detB=20/27)",
+            "spectral invariant distinguishes the charts (trA2=9/2, trB2=11/3)"
+          ],
+          "status": "partial"
+        },
+        {
+          "checks": [
+            "t4.commuting_scalar_antisymmetric_bilinear_zero",
+            "t4.mirror_representation_mismatch_2d_rotation_ansatz",
+            "t4.absent_native",
+            "t4.absent_interacting"
+          ],
+          "closed_in_package": false,
+          "evidence": {},
+          "exact_checks": 4,
+          "gate_id": "T4",
+          "killed_routes": [
+            "commuting-scalar antisymmetric bilinear as a chiral measure",
+            "interacting mirror operator within the 2D rotation ansatz (representation mismatch, scoped)"
+          ],
+          "missing": [
+            "native chiral measure",
+            "interacting mirror gap (outside the 2D rotation ansatz)"
+          ],
+          "open_gaps": [
+            "native chiral measure",
+            "interacting mirror gap (outside the 2D rotation ansatz)"
+          ],
+          "parent_id": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+          "proven": [
+            "commuting scalar amplitudes cannot realize this antisymmetric bilinear; fermionic/Grassmann constructions remain open",
+            "no non-trivial involution commutes with R_theta within the 2D rotation ansatz (only +-I survive in that centralizer)"
+          ],
+          "status": "partial"
+        }
+      ],
+      "hypothesis": "finite exact witnesses narrow gates T1-T4 but all four full gates remain open; closure is not fabricated",
+      "not_closed": [
+        "T1: origin selection absent",
+        "T2: raw-seam -> W intertwiner absent (open blocker) and half-charge absent",
+        "T3: selected 3+1D common parent absent",
+        "T4: native chiral measure and interacting mirror gap absent (T4 mirror kill scoped to the 2D rotation ansatz)"
+      ],
+      "parent_id": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+      "parent_interface_source": "live"
+    },
+    "gates_t5_t8.py": {
+      "checker_status": "PASS",
+      "checks": [
+        "T5: s_min(1) = 1 - cos(pi) = 2",
+        "T5: s_min(2) = 1 - cos(pi/2) = 1",
+        "T5: s_min(3) = 1 - cos(pi/3) = 1/2",
+        "T5: s_min(4) = 1 - cos(pi/4) = 1 - sqrt(2)/2",
+        "T5: s_min(L) strictly decreasing for L = 1..8",
+        "T5: lim_{L->+inf} s_min(L) = 0",
+        "T5: inf_L s_min(L) = 0 (no uniform positive lower bound)",
+        "T5: operator-state instrument absent from parent_model",
+        "T5: scattering instrument absent from parent_model",
+        "T6: all three dark N=3 blocks share total Casimir 45",
+        "T6: the three dark blocks have pairwise distinct (C_Spin10, C_SU4) pairs",
+        "T6: fixed-sum Casimir-pair variation has rank one",
+        "T6: six clock-inverting slot reflections are candidate lifts (no unique selection)",
+        "T6: witness is representation-theoretic, no observed data fitted",
+        "T6: closure false (non-unique / underselected parameter transfer)",
+        "T7: (1,0)+(0,1) != (2,0)+(0,2) (highest weights differ)",
+        "T7: (1,0)+(0,1) helicities {+1,-1} != spin-2 helicities {+2,-2}",
+        "T7: dim(1,0) = 2 != dim(2,0) = 3",
+        "T7: mediator is antisymmetric 2-form, not symmetric traceless rank-2",
+        "T7: free spin-2 witness is prescribed/conditional, not dynamical",
+        "T7: universal dynamic coupling absent from parent_model",
+        "T8: ground margin = 8223/31250 (exact rational)",
+        "T8: ground margin > 0",
+        "T8: ground margin decimal = 0.263136",
+        "T8: positive margin => unique-GS selection insufficient",
+        "T8: untwisted asymmetric frame obstruction a^2-b^2 = -7/25 (nonzero)",
+        "T8: native state absent from parent_model",
+        "T8: native instrument absent from parent_model",
+        "T8: native record absent from parent_model"
+      ],
+      "closed_gate_ids": [],
+      "constants": {
+        "L": 4,
+        "M": 1920,
+        "four_bank_total_charge": 256,
+        "inner_fermion_dim": 64,
+        "pair_modes": 60,
+        "pair_norm": 8,
+        "q_local_bound_coefficient": "15/2",
+        "seam_sites": 16
+      },
+      "exact_checks": 29,
+      "gates": {
+        "T5": {
+          "checks": [
+            "T5: s_min(1) = 1 - cos(pi) = 2",
+            "T5: s_min(2) = 1 - cos(pi/2) = 1",
+            "T5: s_min(3) = 1 - cos(pi/3) = 1/2",
+            "T5: s_min(4) = 1 - cos(pi/4) = 1 - sqrt(2)/2",
+            "T5: s_min(L) strictly decreasing for L = 1..8",
+            "T5: lim_{L->+inf} s_min(L) = 0",
+            "T5: inf_L s_min(L) = 0 (no uniform positive lower bound)",
+            "T5: operator-state instrument absent from parent_model",
+            "T5: scattering instrument absent from parent_model"
+          ],
+          "closed_in_package": false,
+          "evidence": {
+            "decreasing_sequence_verified": true,
+            "exact_values": {
+              "1": "2",
+              "2": "1",
+              "3": "1/2",
+              "4": "1 - sqrt(2)/2",
+              "5": "3/4 - sqrt(5)/4",
+              "6": "1 - sqrt(3)/2",
+              "7": "1 - cos(pi/7)",
+              "8": "1 - sqrt(sqrt(2) + 2)/2"
+            },
+            "formula": "s_min(L) = 1 - cos(pi/L)",
+            "infimum": "0",
+            "no_uniform_positive_gap": true,
+            "symbolic_limit": "0"
+          },
+          "exact_checks": 9,
+          "gate_id": "T5",
+          "killed_routes": [
+            "naive-cycle-uniform-gap"
+          ],
+          "missing": [
+            "operator-state",
+            "scattering"
+          ],
+          "open_gaps": [
+            "continuum / thermodynamic limit of the native cycle",
+            "operator-state instrument at the parent",
+            "scattering instrument at the parent"
+          ],
+          "parent_id": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+          "proven": [
+            "s_min(L)=1-cos(pi/L) exact and strictly decreasing for L=1..8",
+            "lim_{L->+inf} s_min(L) = 0 (no uniform positive lower bound)"
+          ],
+          "status": "partial",
+          "summary": "s_min(L)=1-cos(pi/L) is exact, strictly decreasing and tends to 0; the naive-cycle-uniform-gap route is killed; OS/scattering absent."
+        },
+        "T6": {
+          "checks": [
+            "T6: all three dark N=3 blocks share total Casimir 45",
+            "T6: the three dark blocks have pairwise distinct (C_Spin10, C_SU4) pairs",
+            "T6: fixed-sum Casimir-pair variation has rank one",
+            "T6: six clock-inverting slot reflections are candidate lifts (no unique selection)",
+            "T6: witness is representation-theoretic, no observed data fitted",
+            "T6: closure false (non-unique / underselected parameter transfer)"
+          ],
+          "closed_in_package": false,
+          "evidence": {
+            "closure": false,
+            "multiple_candidates_witness": {
+              "count": 6,
+              "kind": "clock-inverting slot reflections",
+              "unique_lift_selected": false
+            },
+            "non_uniqueness_witness": {
+              "dark_blocks": {
+                "block_1200_20": {
+                  "C_SU4": "39",
+                  "C_Spin10": "141"
+                },
+                "block_560_20": {
+                  "C_SU4": "63",
+                  "C_Spin10": "117"
+                },
+                "block_672_4": {
+                  "C_SU4": "15",
+                  "C_Spin10": "165"
+                }
+              },
+              "fixed_sum_pair_variation_rank": 1,
+              "kind": "shared total Casimir does not select among sectors",
+              "shared_total_casimir_quarter_normalised": "45"
+            },
+            "observed_data_fitted": false,
+            "required_conditions": [
+              "common normalized transfer / Detline functional W[J] shared by all four transfer interfaces (poles, eta_B, relic, m_p/m_e)",
+              "gauge couplings read from the same W[J] (no separate bridge)",
+              "family masses and neutrino texture read from the same W[J]",
+              "no observational fitting: witness is representation-theoretic / algebraic, not fitted to measured couplings or family data"
+            ]
+          },
+          "exact_checks": 6,
+          "gate_id": "T6",
+          "killed_routes": [],
+          "missing": [
+            "common normalized transfer / Detline functional W[J] shared by all four transfer interfaces",
+            "gauge couplings read from the same W[J]",
+            "family masses and neutrino texture read from the same W[J]",
+            "unique lift selection from the six candidates"
+          ],
+          "open_gaps": [
+            "common normalized W[J] transfer functional",
+            "gauge couplings from a single W[J]",
+            "masses / neutrino texture from a single W[J]",
+            "unique lift selection from the six candidates"
+          ],
+          "parent_id": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+          "proven": [
+            "three dark N=3 blocks share total Casimir 45 (quarter-normalised)",
+            "the three dark blocks have pairwise distinct (C_Spin10, C_SU4) pairs with rank-one variation at fixed total -> total Casimir does not select a sector"
+          ],
+          "status": "partial",
+          "summary": "T6-specific required conditions (common normalized W[J] transfer, gauge couplings, masses/neutrino texture, no observational fitting) are declared; one shared total Casimir leaves three distinct sectors and six candidate lifts remain; closure is false."
+        },
+        "T7": {
+          "checks": [
+            "T7: (1,0)+(0,1) != (2,0)+(0,2) (highest weights differ)",
+            "T7: (1,0)+(0,1) helicities {+1,-1} != spin-2 helicities {+2,-2}",
+            "T7: dim(1,0) = 2 != dim(2,0) = 3",
+            "T7: mediator is antisymmetric 2-form, not symmetric traceless rank-2",
+            "T7: free spin-2 witness is prescribed/conditional, not dynamical",
+            "T7: universal dynamic coupling absent from parent_model"
+          ],
+          "closed_in_package": false,
+          "evidence": {
+            "antisymmetric_2form": true,
+            "free_helicity_witness": {
+              "conditional": true,
+              "dynamical": false,
+              "prescribed_source": true
+            },
+            "mediator_type": {
+              "helicities": [
+                1,
+                -1
+              ],
+              "irreps": [
+                "(1,0)",
+                "(0,1)"
+              ]
+            },
+            "spin2_type": {
+              "helicities": [
+                2,
+                -2
+              ],
+              "irreps": [
+                "(2,0)",
+                "(0,2)"
+              ]
+            },
+            "symmetric_traceless_rank2": false,
+            "type_mismatch": true,
+            "universal_dynamic_coupling_present": false
+          },
+          "exact_checks": 6,
+          "gate_id": "T7",
+          "killed_routes": [
+            "uniform-mediator-as-dynamical-spin-2"
+          ],
+          "missing": [
+            "dynamical massless spin 2",
+            "universal dynamic coupling"
+          ],
+          "open_gaps": [
+            "dynamical massless spin-2 mediator",
+            "universal dynamic coupling at the parent"
+          ],
+          "parent_id": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+          "proven": [
+            "(1,0)+(0,1) != (2,0)+(0,2): uniform mediator is an antisymmetric 2-form, not symmetric traceless rank-2",
+            "free spin-2 witness is prescribed/conditional, not dynamical"
+          ],
+          "status": "partial",
+          "summary": "The only uniform mediator type (1,0)+(0,1) is an antisymmetric tensor B_{mu nu} (helicities +/-1), not massless spin 2 (2,0)+(0,2) (helicities +/-2); the free helicity witness is prescribed/conditional; a universal dynamic coupling is absent."
+        },
+        "T8": {
+          "checks": [
+            "T8: ground margin > 0",
+            "T8: ground margin decimal = 0.263136",
+            "T8: positive margin => unique-GS selection insufficient",
+            "T8: untwisted asymmetric frame obstruction a^2-b^2 = -7/25 (nonzero)",
+            "T8: native state absent from parent_model",
+            "T8: native instrument absent from parent_model",
+            "T8: native record absent from parent_model"
+          ],
+          "closed_in_package": false,
+          "evidence": {
+            "ground_margin_decimal": "0.263136000000",
+            "ground_margin_exact": "8223/31250",
+            "positive": true,
+            "unique_gs_selection_sufficient": false,
+            "untwisted_asymmetric_frame": {
+              "a": "3/5",
+              "b": "4/5",
+              "obstruction": "-7/25"
+            }
+          },
+          "exact_checks": 7,
+          "gate_id": "T8",
+          "killed_routes": [
+            "unique-gs-energy-gap-as-sufficient-selector"
+          ],
+          "missing": [
+            "native_state",
+            "native_instrument",
+            "native_record"
+          ],
+          "open_gaps": [
+            "state selection functional beyond the energy gap",
+            "native state preparation",
+            "native instrument channel",
+            "native record channel"
+          ],
+          "parent_id": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+          "proven": [
+            "untwisted asymmetric ground margin = 8223/31250 > 0 (exact)",
+            "untwisted asymmetric frame obstruction a^2-b^2 = -7/25 (nonzero)"
+          ],
+          "status": "partial",
+          "summary": "Untwisted asymmetric ground-margin 8223/31250 > 0 proves unique-ground-state selection insufficient; native state/instrument/record absent."
+        }
+      },
+      "parent_id": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+      "summary": "T5-T8 gate slice: no gate closed. T5 kills the naive-cycle-uniform-gap route (s_min(L)=1-cos(pi/L) -> 0). T6 declares T6-specific required conditions (common normalized W[J] transfer, gauge couplings, masses/neutrino texture, no observational fitting) and shows that one total Casimir leaves three distinct sectors and six candidate lifts (closure false). T7 fixes the only uniform mediator as the antisymmetric tensor (1,0)+(0,1), not spin 2; the free helicity witness is prescribed/conditional. T8 records the untwisted asymmetric ground-margin 8223/31250 > 0, proving unique-GS selection insufficient. OS/scattering, native state/instrument/record and a universal dynamic coupling are absent."
+    },
+    "parent_model.py": {
+      "checks": [
+        "R^4 = eta I  eta=1",
+        "J^2 = I  eta=1",
+        "J R J = R^-1  eta=1",
+        "L^2 = I  eta=1",
+        "U commutes with R  eta=1",
+        "R^4 = eta I  eta=-1",
+        "J^2 = I  eta=-1",
+        "J R J = R^-1  eta=-1",
+        "L^2 = I  eta=-1",
+        "U commutes with R  eta=-1"
+      ],
+      "closed_gate_ids": [],
+      "constants": {
+        "L": 4,
+        "M": 1920,
+        "four_bank_total_charge": 256,
+        "inner_fermion_dim": 64,
+        "pair_modes": 60,
+        "pair_norm": 8,
+        "q_local_bound_coefficient": "15/2",
+        "seam_sites": 16
+      },
+      "exact_checks": 10,
+      "operators": {
+        "J_eta": "signed vertex reflection, J^2 = I, J R J = R^-1",
+        "L_eta": "induced edge reflection L = R J, L^2 = I",
+        "R_eta": "clock, R^4 = eta I",
+        "U_eta": "two-weight source frame a I + b R"
+      },
+      "parent_id": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+      "raw_seam_to_w_intertwiner": false,
+      "status": "PASS"
+    },
+    "seam_lift.py": {
+      "checks": [
+        "R^4 = eta I  eta=1",
+        "J^2 = I  eta=1",
+        "J R J = R^-1  eta=1",
+        "L^2 = I  eta=1",
+        "unsigned vertex->edge incidence with orientation reversal  eta=1",
+        "UJ relation (reflection exchanges weights)  eta=1",
+        "balanced pair covariance row 0  eta=1",
+        "balanced pair covariance row 1  eta=1",
+        "balanced pair covariance row 2  eta=1",
+        "balanced pair covariance row 3  eta=1",
+        "pair mismatch exactly a^2-b^2  row 0  eta=1",
+        "pair mismatch exactly a^2-b^2  row 0  eta=1",
+        "pair mismatch exactly a^2-b^2  row 1  eta=1",
+        "pair mismatch exactly a^2-b^2  row 1  eta=1",
+        "pair mismatch exactly a^2-b^2  row 2  eta=1",
+        "pair mismatch exactly a^2-b^2  row 2  eta=1",
+        "pair mismatch exactly a^2-b^2  row 3  eta=1",
+        "pair mismatch exactly a^2-b^2  row 3  eta=1",
+        "pair reflection forces equal magnitudes  eta=1",
+        "same-vertex reflection detects nonzero neighbour weight b^2  eta=1",
+        "same-vertex reflection permits onsite-only source  eta=1",
+        "balanced frame twist discriminates rank  eta=1",
+        "unequal frame individually CAR normalised  eta=1",
+        "unequal frame no linear spectator  eta=1",
+        "R^4 = eta I  eta=-1",
+        "J^2 = I  eta=-1",
+        "J R J = R^-1  eta=-1",
+        "L^2 = I  eta=-1",
+        "unsigned vertex->edge incidence with orientation reversal  eta=-1",
+        "UJ relation (reflection exchanges weights)  eta=-1",
+        "balanced pair covariance row 0  eta=-1",
+        "balanced pair covariance row 1  eta=-1",
+        "balanced pair covariance row 2  eta=-1",
+        "balanced pair covariance row 3  eta=-1",
+        "pair mismatch exactly a^2-b^2  row 0  eta=-1",
+        "pair mismatch exactly a^2-b^2  row 0  eta=-1",
+        "pair mismatch exactly a^2-b^2  row 1  eta=-1",
+        "pair mismatch exactly a^2-b^2  row 1  eta=-1",
+        "pair mismatch exactly a^2-b^2  row 2  eta=-1",
+        "pair mismatch exactly a^2-b^2  row 2  eta=-1",
+        "pair mismatch exactly a^2-b^2  row 3  eta=-1",
+        "pair mismatch exactly a^2-b^2  row 3  eta=-1",
+        "pair reflection forces equal magnitudes  eta=-1",
+        "same-vertex reflection detects nonzero neighbour weight b^2  eta=-1",
+        "same-vertex reflection permits onsite-only source  eta=-1",
+        "balanced frame twist discriminates rank  eta=-1",
+        "balanced rank selects eta=-1 (no linear spectator)",
+        "unequal frame individually CAR normalised  eta=-1",
+        "unequal frame no linear spectator  eta=-1",
+        "untwisted asymmetric ground gap coefficient lower bound",
+        "untwisted asymmetric candidate has unique full ground at weak g",
+        "state compatibility only conditional on H invariance + unique GS"
+      ],
+      "closed_gate_ids": [],
+      "exact_checks": 52,
+      "hypothesis": "NS/mark seam geometry induces the shifted edge action L=R J; raw seam -> four 64-mode W-bank identification unproved (False)",
+      "killed": [
+        "clock+unique ground selects eta (countermodel has unique ground too)"
+      ],
+      "missing": [
+        "raw seam -> four 64-mode W-bank intertwiner",
+        "physical source selection from TFPT",
+        "native preparation / record instrument",
+        "physical g/Delta parameter value",
+        "3+1D spacetime dimension",
+        "chirality measure",
+        "spin-2 dynamics",
+        "native instruments",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7",
+        "T8"
+      ],
+      "parent_id": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+      "proven": [
+        "R^4=eta I (eta=1)",
+        "J^2=I (eta=1)",
+        "JRJ=R^-1 (eta=1)",
+        "L^2=I (eta=1)",
+        "unsigned vertex->edge incidence reverses orientation (eta=1)",
+        "UJ relation exchanges weights (eta=1)",
+        "balanced pair covariance (eta=1)",
+        "pair mismatch forces a^2-b^2 (eta=1)",
+        "same-vertex negative control b^2 (eta=1)",
+        "unequal frame no linear spectator (eta=1)",
+        "R^4=eta I (eta=-1)",
+        "J^2=I (eta=-1)",
+        "JRJ=R^-1 (eta=-1)",
+        "L^2=I (eta=-1)",
+        "unsigned vertex->edge incidence reverses orientation (eta=-1)",
+        "UJ relation exchanges weights (eta=-1)",
+        "balanced pair covariance (eta=-1)",
+        "pair mismatch forces a^2-b^2 (eta=-1)",
+        "same-vertex negative control b^2 (eta=-1)",
+        "unequal frame no linear spectator (eta=-1)",
+        "balanced rank selects eta=-1 (conditional on joint reflection)",
+        "untwisted asymmetric countermodel also has unique full ground at weak g",
+        "state compatibility conditional on H invariance + unique GS"
+      ],
+      "raw_seam_to_w_intertwiner": false,
+      "selection": "joint vertex+edge reflection + exclusion of free fermion directions selects eta=-1; clock+unique ground alone do NOT",
+      "status": "PASS"
+    }
+  },
+  "parent_id": "tfpt-universalraum-common-parent-t1-t8-20260915:0804f4a5bc73a17f",
+  "status": "PASS"
+}

@@ -1,0 +1,326 @@
+UR.SOURCE.CHARGED_REGISTER.01 -- 2026-09-20 -- PARTIAL
+
+Question and changed premise
+============================
+The static-register contract classified a product preparation followed by
+an inclusive register trace. It explicitly left correlated charged-sector
+encodings open. We now construct one on the SAME assumed Fock lift, with
+the SAME Hamiltonian. The test is full CAR, charge, isometry and time
+transport, followed by an independent locality test. No additional
+Hamiltonian, auxiliary mode, parameter fit or continuum phase is introduced.
+
+Source and first extra choice
+=============================
+The original v1033_charged_disorder.py defines a one-particle register
+Hamiltonian and an endpoint disorder operator. Let z=i, Pi_r=|r><r|,
+Z|r>=z^r|r>, S|r>=|r+1 mod4>. Its source blocks have the form
+
+ h_r=b+z^r a+z^(-r) a^dagger,   b=b^dagger.
+
+Here a is the original forward seam hopping; no coefficient is changed.
+As in the preceding contract, the common lift
+
+ H_R=sum_r Pi_r tensor dGamma(h_r)
+ on C4 tensor Fock(V)
+
+is CONDITIONAL. The original one-particle computation does not select this
+lift, its preparation or the physical observable algebra. This is distinct
+from Fock(C4 tensor V). N denotes total matter occupation; a fixed filled-
+sea subtraction changes neither [N,c_j]=-c_j nor the proof and only relabels
+the central sector modulo four. No filled sea or vacuum is selected here.
+
+1. Full charged CAR without discarding the register
+==================================================
+Define
+
+ F_j=S tensor c_j,   C=Z tensor z^N.
+
+Since S is unitary, {F_j,F_k}=0 and {F_j,F_k^dagger}=delta_jk I. Also
+[N,F_j]=-F_j and F_j is odd under the original matter parity. Since
+ZS=zSZ and z^N c_j=z^(-1)c_j z^N, [C,F_j]=[C,F_j^dagger]=0.
+Moreover [C,H_R]=0, because every source block preserves N.
+
+For each s in Z4 define the isometry on all occupation sectors by
+
+ J_s |psi_N> = |s-N mod4> tensor |psi_N>.
+
+Its image is exactly the C=z^s eigenspace. The four images are orthogonal
+and sum to the full source Hilbert space. Direct calculation gives
+
+ F_j J_s=J_s c_j,    F_j^dagger J_s=J_s c_j^dagger,
+ H_R J_s=J_s H_s,
+ H_s=B+z^(s-N) A+z^(-s+N) A^dagger,
+ B=dGamma(b), A=dGamma(a).                              (1)
+
+The phases commute with A because [N,A]=0. Equation (1) is a genuine
+same-time intertwiner, not just an equality of compressed expectation
+values. It implies exp(-it H_R)J_s=J_s exp(-it H_s) for every real time.
+All finite-time charged products and adjoints are transported. The sum
+over the four J_s is a unitary identification of the full source with four
+copies of this charged Fock representation.
+
+No unique s is selected by the dynamics. Keeping all four copies loses
+nothing; choosing one representation as a physical sector is extra state/
+observable input. The C4 register has not become four physical families.
+The word central refers to the constructed CAR algebra, not to the entire
+original source algebra: the original disorder D changes s, as below.
+
+2. Connection to the actual endpoint disorder, including its phase factor
+========================================================================
+The original source uses the sharp arc
+
+ u=diag(z^q_j), q_j in {0,1}, u^4=I,
+ D=S tensor Gamma(u)
+
+Here q_j labels whether orbital j belongs to the phase arc; it is not an
+electric charge assignment. The charged-field statement uses [N,F_j]=-F_j.
+
+after the conditional Fock lift. D preserves matter number and is even.
+It is not by itself a charged fermion. Simply setting d_j=D(I tensor c_j)
+fails CAR for sites on opposite sides of the arc. In fact
+
+ {d_j,d_k}=(z^q_j-z^q_k) S^2 tensor Gamma(u)^2 c_j c_k.   (2)
+
+This is nonzero for q_j=1,q_k=0 and j!=k. Equal dimensions or multiplying
+an endpoint by an odd field does not establish the desired field algebra.
+
+All ingredients for an exact canonical completion are already in the
+declared source algebra. Define the unitary
+
+ T=sum_r Pi_r tensor Gamma(u)^r.
+
+Then
+
+ F_j^u=T F_j T^dagger
+      =S Z^(-q_j) tensor Gamma(u)c_j
+      =D (Z^(-q_j) tensor c_j).                        (3)
+
+The factor Z^(-q_j) is forced by this common conjugation, not fitted to a
+correlation. The r=3 to r=0 step is included because Gamma(u)^4=I.
+Conjugation proves both CAR relations on the full space, including mixed
+adjoints. T commutes with C, N and matter parity.
+
+Set J_s^u=TJ_s. Then F_j^u J_s^u=J_s^u c_j and the adjoint relation holds.
+The SAME original H_R gives
+
+ H_R J_s^u=J_s^u H_s^u,
+ H_s^u restricted to N = dGamma(u^(-r)h_r u^r),
+ r=s-N mod4.                                          (4)
+
+Thus (3) supplies an exact charged field extension of the supplied
+disorder operator, with charge, normalization and time carried together.
+It does not identify these fields with the 64 native Spin10 x SU4 modes
+or the continuum E8 spinor fields. Those group dictionaries are different
+and have separate proved obstructions.
+
+The original disorder itself is retained by the four-sector dictionary:
+
+ D J_s^u = J_(s+1 mod4)^u,       C D = z D C.          (4a)
+
+Indeed on the N block D changes |r> Gamma(u)^r|psi_N> to
+|r+1> Gamma(u)^(r+1)|psi_N>; Gamma(u)^4=I handles the wrap.
+C is conserved by H_R and central relative to the F_j^u, but it is NOT
+central relative to D. The s labels are therefore not superselection
+sectors of the full original observable algebra containing D. Retaining
+only one s would lose this supplied observable, even though H_R preserves
+that state subspace. It is not justified as a gauge reduction here.
+
+Its unchanged time response is explicitly
+
+ [H_R,D]J_s^u = J_(s+1)^u (H_(s+1)^u-H_s^u).         (4b)
+
+Using (5), the difference in (4b) is
+(z-1) z^(s-N) A' + (z^(-1)-1) z^(-s+N) A'^dagger.
+This recovers the original endpoint response together with the charged
+field dictionary; D was neither discarded nor inserted as a new term in H.
+
+3. What energy (4) actually induces
+==================================
+For the source sharp arc from x=0 through its stated endpoint, conjugation
+u^(-r)h_r u^r cancels the phase on the old closing seam. The phase appears
+instead on the forward bond leaving that endpoint. All original other
+hoppings and onsite terms remain unchanged. Write that exact matrix as
+
+ h'_r=b'+z^r a'+z^(-r)a'^dagger.
+
+Then
+
+ H_s^u=B'+z^(s-N)A'+z^(-s+N)A'^dagger.                 (5)
+
+Here the phase depends on TOTAL matter number. On every fixed N sector,
+(5) is still the exterior-power evolution of one fixed one-particle
+Hamiltonian h'_(s-N). In particular every N-particle Slater determinant
+stays a Slater determinant. No collision-generated bound state or local
+many-particle force follows from (5).
+
+Nevertheless (5) is generally not one quadratic Hamiltonian on the FULL
+CAR space across all occupations. Vacuum and N=1 fix a putative quadratic
+number-preserving operator uniquely as dGamma(h'_(s-1)); the actual N=2
+block uses h'_(s-2), which differs. Pairing terms cannot fix this mismatch
+while preserving N as the actual source does.
+
+For an offdiagonal cut hop a'_(ab)c_a^dagger c_b one may display the exact
+finite normal-ordered occupation expansion:
+
+ z^(s-N)c_a^dagger c_b
+ = z^(s-1)c_a^dagger c_b
+   product_(j!=a,b)[1+(z^(-1)-1)n_j].                  (6)
+
+The N=1 coefficient is z^(s-1); a spectator changes it to z^(s-2).
+Thus four-fermion and higher terms really occur in these coordinates.
+Their coefficients are fixed by the original holonomy and the chosen
+encoding; they are not an independently added interaction. This is a
+number-dependent boundary condition, not evidence of an independent
+massive mediator or a newly derived bulk scattering theory.
+
+The finite checker uses the actual source with nx=3, ny=1, arc endpoint0.
+For s=0, the forward cut coefficient a'_(2,0)=-1/2 gives matrix elements
+
+ <2|H_0^u|0>=i/2,
+ <2,4|H_0^u|0,4>=1/2.
+
+Here |0> in the first expression means the ONE-PARTICLE orbital labelled0,
+not the vacuum. Ordered two-particle states use c_a^dagger c_b^dagger with
+a<b. The difference (1-i)/2 is a same-source, exact nonquadratic witness.
+Neither the test size nor s=0 is claimed as a selected physical sector.
+
+4. The charged locality test
+===========================
+Let H_cut=z^(s-N)A'+z^(-s+N)A'^dagger. For any mode c_j outside the cut,
+[A',c_j]=[A'^dagger,c_j]=0. Directly from the number commutator,
+
+ [H_cut,c_j]
+  =(z-1)c_j z^(s-N)A'
+   +(z^(-1)-1)c_j z^(-s+N)A'^dagger.                  (7)
+
+This expression generally contains the cut hopping although j is outside
+its support. A further commutator with the occupation of a cut endpoint
+is nonzero. The original local b' contribution cannot cancel this at
+arbitrarily separated j and endpoint, because its range is fixed. The
+coefficient in (7) has no suppression by their spatial distance.
+
+The small-ring check isolates H_cut; it does NOT call the three-site ring
+a test of large spatial separation. It verifies the nonzero double
+commutator and, as a distinguishing control,
+
+ [H_cut,c_j^dagger c_k]=0
+
+when both modes are outside the cut. This control follows for every such
+neutral bilinear because it commutes with N, A' and A'^dagger. Equation
+(7) proves the general support statement without a size extrapolation.
+
+The source of the nonlocality is visible: F_j^u in (3) itself contains the
+global register and arc string. The J_s^u dictionary preserves algebra
+and time, but does NOT preserve the assignment of ordinary local charged
+CAR algebras to each physical site. Charge-neutral and charged locality
+tests therefore give different answers. No violation of locality by the
+original source net is inferred from a nonlocal change of variables.
+
+There is also a positive locality statement. Let O_X and O_Y be bounded
+local NUMBER-NEUTRAL observables, so both commute with N. On each N sector
+their evolution is exactly that of dGamma(h'_(s-N)). Their full commutator
+is block diagonal in N and its norm is the maximum of those block norms.
+Any common finite-range propagation bound for the four original local
+Hamiltonians therefore applies to the neutral observables under H_s^u.
+For the finite-degree QWZ lattice the four link phases have equal modulus;
+the usual Lieb-Robinson constants can be chosen uniformly in r, N and
+system size. This is inheritance of the standard local bound, not a
+new derivation of relativistic light speed. It holds for neutral local
+polynomials, not merely the single bilinear checked in the example.
+Precisely, this is a bound on neutral-observable commutators. Across all
+N sectors, the evolved expression can still contain the central global
+factors z^N. A commutator bound alone does not establish norm approximation
+by ordinary finite-support neutral polynomials without those factors, or
+a thermodynamic observable-net construction.
+
+Nonlocal charged fields are not by themselves a physical contradiction:
+in gauge theories charged operators may need strings. What fails here
+is the stronger identification with the ordinary site-local charged CAR
+net. The single conserved global C is not a local Gauss constraint, and
+this construction has not supplied local gauge fields or an interacting
+observable net beyond the fixed-number free sectors. Neutral locality
+does not by itself fill that remaining physical origin requirement.
+
+4a. A bulk limit that can actually be decided
+============================================
+There is a stronger consequence for the original finite-range cylinders
+of FIXED bounded width, as the circumference grows. Put K_r=dGamma(h'_r)
+and choose the untwisted K_0 as reference. W_r=K_r-K_0 is supported on the
+marked cut Y, with a norm bounded independently of the circumference.
+For every number-neutral local O_X, the exact block formula implies
+
+ ||tau_t^(H_s^u)(O_X)-tau_t^(K_0)(O_X)||
+ <= max_r ||tau_t^(K_r)(O_X)-tau_t^(K_0)(O_X)||.       (8)
+
+This is an operator-norm bound on the finite Fock space, not just a
+statewise expectation comparison: both sides on the left are block
+diagonal in N and each block is a restriction of one right-hand term.
+The Duhamel identity and a uniform finite-range bound give
+
+ ||tau_t^(K_r)(O_X)-tau_t^(K_0)(O_X)||
+ <= integral_0^|t| ||[W_r,tau_u^(K_0)(O_X)]|| du
+ <= C_X (exp(v |t|)-1) exp(-a dist(X,Y)),              (9)
+
+with positive constants independent of circumference and N. v here is the
+rate in the exponential estimate; no identification with light speed is
+made. Fixed width bounds the number and norm of cut terms. Increasing
+width would instead require the corresponding summable boundary estimate.
+
+Consequently, for fixed observation times and regions whose distance from
+the cut tends to infinity, the neutral local dynamics converges in norm
+to that of the UNTWISTED FREE SOURCE. In this precise bulk limit the
+number-dependent boundary phase cannot supply a new local interaction.
+This does not assert that arbitrary initial states become Gaussian:
+pre-existing state correlations and winding/cut observables are separate.
+It also says nothing about time scales growing enough to reach the cut,
+or about changing the original Hamiltonian or observable dictionary.
+
+Equations (8)-(9) are an analytic all-size argument under stated locality
+assumptions. The nx=3 certificate is not presented as a numerical test of
+this limit. This conclusion is a useful stopping criterion for the proposed
+interaction mechanism: enlarging the same free source while moving its
+cut away cannot turn the encoded boundary phase into a local bulk force.
+
+5. Relation to the last result and to the full TFPT target
+========================================================
+There is no contradiction with UR.SOURCE.STATIC_REGISTER.01. That theorem
+used a product preparation and discarded the register. The present
+encoding correlates register and total occupation, retains its charged
+transitions and is a representation of a different declared field algebra.
+It is not a demonstration that the original source selects this encoding.
+
+This is a positive full-CAR/state/time construction in the conditional
+lift, plus a precise limit on its physical interpretation. It narrows
+the remaining problem: a successful common source must also supply the
+physical local observable net, a compatible dictionary for charged fields
+(including any necessary strings), and derive its chosen dynamics and
+state. A formally quartic expression in correlated coordinates is not
+enough. Nor is attractive native-bank binding a compulsory target just
+because a separate auxiliary bank model exhibited it.
+
+The current source-pair-transfer result compares a different conditional
+E8 composite field algebra with the native bank. Nothing here changes its
+vacuum, adds its missing mediator or transfers its 64-field group action.
+The original source selection, all physical T1-T8 gates, chirality,
+3+1D propagation and gravity remain open.
+
+Prior art and evidence boundary
+==============================
+Charge sectors and twisted boundary conditions being exchanged by an
+enlarged intertwiner is an established phenomenon; see O'Brien, Lootens,
+Verstraete, Local Jordan-Wigner transformations on the torus,
+https://arxiv.org/abs/2404.07727. Their locality-preserving construction on
+a different system does not prove locality for the present dictionary.
+Occupation-dependent hopping also occurs in established statistical
+transmutation models, e.g. Keilmann et al., arXiv:1009.2036. We do not
+identify this globally twisted QWZ source with their local anyon model.
+For the inherited finite-range propagation framework see Nachtergaele
+and Sims, Lieb-Robinson Bounds in Quantum Many-Body Physics,
+https://arxiv.org/abs/1004.2086. The blockwise transfer argument above is
+the only additional step used for the present neutral algebra.
+
+The concrete contribution is the explicit v1033 source dictionary,
+the required phase factor in (3), the unchanged time in (4), and the
+locality test (7). The bounded prior-coverage inventory is not a universal
+novelty claim. Source-pinned finite checks corroborate the written
+all-dimension identities; they are not proof-assistant formalization.

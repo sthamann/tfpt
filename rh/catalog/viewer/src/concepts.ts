@@ -231,7 +231,17 @@ function paintGaps(host: HTMLElement, state: AppState): void {
     }
     state.highlightConceptChain(ids, ekeys);
   };
-  host.innerHTML = `<h2>Gaps</h2><p class="muted">Exploration map only; no RH claim.</p>`;
+  host.innerHTML = `<h2>Gaps</h2><p class="muted">Research navigation, not a proof chain. Paths traverse relations in both directions; “alive” is not a demonstrated RH route.</p><p><a href="data/proof_obligations.json" target="_blank" rel="noopener">Open proof obligations (all prerequisites required)</a></p>`;
+  const freshness = document.createElement("p");
+  freshness.className = "muted";
+  freshness.textContent = "Research source snapshot: loading; not yet verified in this view.";
+  host.append(freshness);
+  fetch("data/research_status.json")
+    .then((response) => { if (!response.ok) throw new Error("snapshot unavailable"); return response.json(); })
+    .then((s) => {
+      if (freshness.isConnected) freshness.textContent = `Snapshot ${s.generated_at}: ${s.source_groups} external research groups; ${s.source_groups_curated} source-reviewed, ${s.source_groups_need_review} awaiting review. File freshness is not proof verification. This is a saved snapshot, not a live scan.`;
+    })
+    .catch(() => { if (freshness.isConnected) freshness.textContent = "Research source snapshot unavailable; freshness unknown."; });
   const sections: { title: string; open: boolean; rows: { label: string; ids: string[] }[] }[] = [
     { title: "G1 zero attempts", open: true, rows: (g.G1 || []).map((x) => ({ label: `${nameOf(x.id)} · ${x.type}`, ids: [x.id] })) },
     { title: "G2 unused criteria", open: false, rows: (g.G2 || []).map((x) => ({ label: `${nameOf(x.id)} · ${x.status}`, ids: [x.id] })) },

@@ -1,0 +1,28 @@
+{
+  "object": "Direct odd-window infimum m(L)=inf{Q_J(F)/||F||^2 : F odd, supp F in (-L/2,L/2)} of the ORIGINAL Weil form Q=E+a0||f||^2-2 sum_{log n<L} w_n C_f(log n)+P (Q061 sec. 1 normalization), computed as Ritz upper bounds in odd Legendre bases N<=320 for L in {9/4,12/5,5/2,3,4}, with an explicit-formula control Q(f)=sum_rho |fhat(gamma)|^2 on a smooth odd test function; plus the exact lemma load(v) >= |<f,Xv>|^2/(Q_I(f)-mu0||f||^2) for the shell attachment load of Q061 eq. 14, yielding load(P_S F) >= d_new(P_S F) - (Q_J(F)-mu0||F||^2) for every odd big-window F.",
+  "target": "boundary_window",
+  "method": "float64 Ritz eigenvalues of the original form (real-space Gamma triangle + exterior potential, exact prime translations, rank-2 poles) with explicit-formula cross-check against 600 zeta zeros; exact Cauchy-Schwarz lemma on the inherited certificate structure (P160 W=I, M>0, C_s>0)",
+  "scope": "Odd real functions with zero extension; Ritz values are UPPER bounds on m(L); float64 noise floor ~1e-12; no rigorous tail control; the lemma uses only the quoted inequalities (2),(5),(6),(14) of Q061/Q063 and holds for every f in Dom Q_I, v in Dom Q_S. No statement about the full comparison (14), which is shown to be equivalent to mu0-shifted window positivity direction-wise.",
+  "domain": "operator-theory",
+  "difference": "Prior kills LOSSY_CONSTANT (r490) and NO_BRIDGE rounds concern replacing the form by constants or importing physical norms; here the ORIGINAL form is evaluated and the constant-floor gate itself is shown to be structurally unpassable because the shell floor c_S discards the shell share of near-null (Fourier-concentrated below gamma_1=14.13) directions. This does not revive any killed route and does not assert negative Weil energy: lambda_min is at the noise floor, consistent with m(L)~e^{-gamma_1 L}>0 under RH.",
+  "next_test": "Compute, for the actual near-null eigenvectors F_k at L=12/5, the shell mass r_k=||P_S F_k||^2 and check Q_J(F_k)/r_k < c_S-7/10 = 0.01162 (refutes the constant gate) and Q_S(P_S F_k)/||P_S F_k||^2 >= c_S (independent check of the Q061 floor). Then reformulate the window obligation as exact-arithmetic positivity of the finitely many prolate-type directions with precision e^{-gamma_1 L}.",
+  "stop_condition": "Stop the constant-floor gate (tau<c_S) and every correctly certified finite-plus-tail version of it once one odd F with Q_J(F)/||P_S F||^2 < c_S - tau is exhibited. Do not infer negative Weil energy, RH, or failure of the full comparison (14) from this; do not promote any positive lambda_min as a certificate.",
+  "obligations": [
+    "Exhibit the near-null shell-share numbers r_k and q_k=lambda_k/r_k for L=12/5 (float64; noise floor stated).",
+    "Independent evaluation of Q_S on the actual shell restrictions against the proven floor c_S=0.71162.",
+    "Rigorous (interval or exact) upper bound on m(9/4) and m(12/5) via the explicit formula and verified zeros, to replace the float64 noise-floor statement.",
+    "Independent audit of the lemma's use of the inherited certificate inequality (2) and of the split identity (1).",
+    "No Lean adapter supplied; no sealed promotion."
+  ],
+  "sources": [
+    "rh/catalog/research_engine/experiments/odd-window-direct-infimum-20260910/probe.py",
+    "rh/catalog/research_engine/experiments/odd-window-direct-infimum-20260910/result.json",
+    "rh/catalog/research_engine/experiments/odd-window-direct-infimum-20260910/LOAD_BOUND.md",
+    "Universalraum-TFPT consolidated report 2026-09-10: Q060 (fc190bbb...), Q061 (fbe2285a...), Q062 (0d0da041...), Q063 (ce184b31...)"
+  ],
+  "asserted_claims": [],
+  "finite_only": true,
+  "claims_global": false,
+  "proof_accepted": false,
+  "RH_proved": false
+}

@@ -1,0 +1,194 @@
+INDEPENDENT AUDIT: FINITE-WINDOW CAR CURRENTS AND COMMON TIME LIMIT
+Date: 2026-09-20
+
+Input
+-----
+Audited text:
+  /Users/stefanhamann/.codex/attachments/
+  1124b2d0-3a04-43ee-b2d5-291ff850a872/pasted-text.txt
+SHA-256:
+  64709ed910b4736560c86222cc42a09c8e1c5a4bb6bdb7f7010df947f90b7d77
+
+Verdict
+-------
+The affine CAR-current formulas are exact after taking the inductive limit on
+the finite-particle/hole core.  They are not identities on the whole Fock
+space of a fixed finite window: explicit edge operators remain.  The pair
+formula is valid on that core only for a != b.  For a=b the pair operator is
+identically zero, so the displayed nonzero right-hand side is false.
+
+The sine dispersion admits the claimed common-current frequency estimate for
+M=floor(L^(1/3)).  The same Hamiltonians converge to the linear generator on
+each fixed finite-excitation core.  These are conditional facts about the
+specified free CAR model.  They neither derive eight identical copies nor
+construct the missing native transition TRANS.SEAMCAR.E8CURRENT.01.
+
+Conventions
+-----------
+W_M={-M+1/2,...,M-1/2}.  The sea vacuum Omega has every r<0 occupied and every
+r>0 empty.  Let p(r)=1 for r<0 and 0 otherwise, and use
+
+  :c^*_(a,r)c_(b,s): = c^*_(a,r)c_(b,s)-delta_ab delta_rs p(r) I.
+
+For integer n,
+
+  E_n^(ab)(M) = sum_(r,r+n in W_M) :c^*_(a,r)c_(b,r+n):,
+  A_n^(ab)(M) = sum_(r,n-r in W_M) c_(a,r)c_(b,n-r).
+
+1. Adjoint and vacuum response
+------------------------------
+Changing variables s=r+n in the finite sum gives exactly
+
+  (E_n^(ab)(M))^* = E_(-n)^(ba)(M).
+
+For n>0, E_n Omega=0.  In E_(-n) Omega only the n half-integer modes
+0<r<n cross the Fermi surface.  The resulting particle-hole states are
+orthonormal.  Therefore, once M>n,
+
+  ||E_(-n)^(ab) Omega||^2 = n.
+
+The checker verifies this with exact integer amplitudes for n=1,2,3.
+
+2. Current commutator and the finite-window edge term
+------------------------------------------------------
+The elementary CAR identity is
+
+ [c^*_(a,r)c_(b,r+m), c^*_(c,s)c_(d,s+n)]
+ = delta_bc delta_(r+m,s) c^*_(a,r)c_(d,s+n)
+   -delta_ad delta_(s+n,r) c^*_(c,s)c_(b,r+m).
+
+In an infinite sum, normal ordering then yields
+
+ [E_m^(ab),E_n^(cd)]
+ = delta_bc E_(m+n)^(ad)-delta_ad E_(m+n)^(cb)
+   +m delta_(m+n,0) delta_ad delta_bc I.                 (1)
+
+The scalar is not inserted by hand.  If m+n=0, it is
+
+  sum_r [p(r)-p(r+m)] = m.                              (2)
+
+In a finite window the first surviving sum requires all of
+r, r+m, r+m+n to lie in W_M.  The first E on the right of (1) requires only
+r and r+m+n.  The second sum likewise requires s, s+n, s+n+m, whereas its E
+requires only the two endpoints.  Hence the exact finite formula is (1) plus
+an edge operator B_(m,n;M), supported where the omitted intermediate mode has
+left W_M.  B is generally nonzero on the full finite Fock space.
+
+Let D_R be the span of states whose occupation differs from the sea only for
+|r|<=R.  A sufficient cutoff is
+
+  M-1/2 > R+|m|+|n|.                                    (3)
+
+Every monomial in B then lies beyond the excitation support and has both
+endpoints on the same side of the Fermi surface.  Its normal-ordered action on
+D_R is zero.  Equations (1)-(2) therefore stabilize on D_R.
+
+The exact checker tests the genuinely off-diagonal central bracket
+
+ [E_1^(01),E_(-1)^(10)] = E_0^(00)-E_0^(11)+I
+
+and the noncentral bracket with m=n=1 and output mode 2 on all 16 basis states
+of D_(1/2) at M=4.  It also exhausts all 256 states at M=2 and finds an
+explicit state where the first finite-window identity fails.
+
+3. Pair bracket and the a=b correction
+---------------------------------------
+For a != b, direct CAR reduction has no exchange-flavor contraction and gives
+
+ [A_n^(ab)(M),A_n^(ab)(M)^*]
+ = sum_(r in S_(n,M)) [I-N_(a,r)-N_(b,n-r)],             (4)
+
+where S_(n,M)={r in W_M : n-r in W_M}.  After normal ordering, the scalar in
+(4) is
+
+ sum_(r in S) [1-p(r)-p(n-r)] = n                       (5)
+
+for M>|n|.  Thus the exact finite formula is
+
+ [A_n^(ab)(M),A_n^(ab)(M)^*]
+ = nI-E_0^(aa)(M)-E_0^(bb)(M)
+   + sum_(r in W_M\S) (:N_(a,r):+:N_(b,r):).             (6)
+
+The last sum is the finite-window boundary charge.  It vanishes on D_R if
+
+  M-1/2 > R+|n|.                                        (7)
+
+This proves the stated pair identity on the stabilized core for a != b, and
+also shows why it is not a global finite-window identity.
+
+For a=b, pair the summand labelled r with the one labelled n-r:
+
+  c_(a,r)c_(a,n-r)+c_(a,n-r)c_(a,r)=0.
+
+The fixed-point term, if present, is c_(a,r)^2=0.  Consequently
+
+  A_n^(aa)(M)=0                                         (8)
+
+for every M and n.  The proposed right-hand side is not zero; on Omega it is
+n Omega.  The condition a != b is therefore essential, not cosmetic.
+
+4. Common time estimate
+-----------------------
+Let
+
+  H_(L,M)=sum_(a,r in W_M) e_L(r):N_(a,r):,
+  e_L(r)=L/(2*pi) sin(2*pi*r/L).
+
+For r,r+n in W_M,
+
+ |e_L(r)-e_L(r+n)+n|
+ = |integral_r^(r+n) [1-cos(2*pi*s/L)] ds|
+ <= 2*pi^2 |n| M^2/L^2,                                (9)
+
+using 1-cos x<=x^2/2 and |s|<M.  There are at most 2M bilinears and each has
+operator norm at most one, so the triangle inequality gives
+
+ ||[H_(L,M),E_n^(ab)(M)]+n E_n^(ab)(M)||
+ <= 4*pi^2 |n| M^3/L^2.                                (10)
+
+With M=floor(L^(1/3)), M^3<=L, hence (10) is bounded by
+
+  4*pi^2 |n|/L -> 0.                                   (11)
+
+This is a full finite-Fock operator-norm bound, so it is stronger than merely
+checking matrix elements on D_R.
+
+There is also a direct common-generator statement.  Put
+
+  H_0=sum_(a,r) r:N_(a,r):.
+
+Since |sin x-x|<=|x|^3/6,
+
+  |e_L(r)-r| <= (2*pi^2/3)|r|^3/L^2.                   (12)
+
+On the subspace D_(R,q) with at most q particle/hole deviations supported in
+|r|<=R, normal ordering cancels the sea contribution and
+
+ ||(H_(L,M)-H_0)|D_(R,q)||
+ <= (2*pi^2/3) q R^3/L^2.                              (13)
+
+For fixed R,q, any M>R contains the whole core, and (13) tends to zero.  Thus
+the same limiting generator produces the frequencies in (11); no separate
+mode-dependent clock is needed inside this conditional model.
+
+5. Reproducibility and scope
+----------------------------
+Run:
+
+  python3 car_audit.py
+
+The script uses sparse dictionaries and exact integer CAR signs for every
+Fock-space algebra check.  Its JSON records:
+
+  - exhaustive 256-state checks at M=2;
+  - 16 exact D_(1/2) core states at M=4;
+  - adjoints, two off-diagonal current brackets, n=1,2,3 vacuum norms;
+  - the a!=b pair bracket and the a=b countercontrol;
+  - explicit finite-window edge witnesses;
+  - numerical samples of the independently proved analytic bounds (9)-(11).
+
+The result is a reference-model theorem.  It does not identify these fermions
+with the original seam source, select eight equal species from P1/P2, prove a
+local E8 extension, or promote any physical TFPT claim.  The current theory
+graph records source-rg-clock-bridge-20260920 as PARTIAL and
+TRANS.SEAMCAR.E8CURRENT.01 as missing; this audit does not change either.

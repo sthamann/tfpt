@@ -1,0 +1,98 @@
+{
+  "contract": "source-sector-reconstruction-20260920",
+  "date": "2026-09-20",
+  "research_id": "UR.SOURCE.SECTOR_RECONSTRUCTION.01",
+  "question": "Can the original charged fermionic Gamma NS/R sectors and their odd-field response be reconstructed from the fixed even neighbor L_h with inherited charges, parity, and assigned time?",
+  "verdict": "PARTIAL",
+  "verdict_enum": [
+    "PASS",
+    "PARTIAL",
+    "FAIL"
+  ],
+  "mathematical_verdict": "EXACT_CONDITIONAL_FOUR_SECTOR_TRACE_AND_INTERTWINER_RECONSTRUCTION; NATIVE_SOURCE_AND_HAMILTONIAN_SELECTION_OPEN",
+  "claims_tested": [],
+  "gates": [],
+  "physical_gates_closed": [],
+  "complete_TFPT_solution": false,
+  "checker": "checker.py",
+  "proof": "PROOF.txt",
+  "certificate": "certificate.json",
+  "source_manifest": "source_manifest.json",
+  "firewall": "experiments",
+  "promotion": false,
+  "relations": [
+    {
+      "type": "extends",
+      "target": "source-charged-lift-20260920"
+    },
+    {
+      "type": "uses",
+      "target": "source-clifford-grade-20260920"
+    },
+    {
+      "type": "uses",
+      "target": "source-graded-locality-20260920"
+    },
+    {
+      "type": "uses",
+      "target": "source-dynamics-selection-20260920"
+    },
+    {
+      "type": "uses",
+      "target": "charged-sector-memory-gate-20260920"
+    }
+  ],
+  "summary_de": "Bedingte Viersektoren-Rekonstruktion des urspruenglichen Gamma-NS/R-Randraums aus dem geraden Nachbarn L_h: eta-Twist, f+L_h, Arf-/S-Vorzeichen, Gamma-Cocycle und 0<->f sowie h<->h+f Intertwiner reproduzieren die geladenen Feldantworten unter einem gemeinsam vorgegebenen Hamiltonian. Die Konstruktion waehlt weder L_h noch V_c und leitet weder native Quelle noch Hamiltonoperator oder physische T1-T8-Gates her.",
+  "assumptions": [
+    "Fixed rank-ten lattice dictionary, its Gamma0 gluing, inherited vertex cocycles and compact 9R/1L field quantization",
+    "A common sector-preserving Hamiltonian/domain exists on all four modules and the original odd intertwiners are retained",
+    "Standard eta-twisted lattice-module construction and the selected Arf/spin convention",
+    "Interacting trace identities require a common regulated or self-adjoint realization"
+  ],
+  "kills": [
+    "Treat four partition traces without intertwiners as a fermion reconstruction",
+    "Treat the twisted sector as a new native source or a local field of the full T(E8) extension",
+    "Infer V_c, a cosine coefficient, an RG flow, or a physical vacuum from sector closure",
+    "Claim that QHP=0 prevents a charged field response when Q V_x P is nonzero"
+  ],
+  "leaves_open": [
+    "Native finite-source operator, state and time map into the four-sector continuum construction",
+    "Source selection of the even neighbor, spin structure, V_c or any interaction coefficient",
+    "Physical flux/gauge interpretation and all T1-T8 closures",
+    "A complete 3+1D dynamics and anomaly/gravitation derivation"
+  ],
+  "not_claimed": [
+    "No new Hamiltonian or physical gate is introduced",
+    "No claim that odd Gamma fields are mutually local with every T(E8) current",
+    "Finite exact controls are not a proof-assistant formalization or empirical evidence"
+  ],
+  "source_pins": [
+    {
+      "path": "experiments/theory-contracts/source-charged-lift-20260920/PROOF.txt",
+      "role": "fixed charged-lift lattice and even-neighbor input"
+    },
+    {
+      "path": "experiments/theory-contracts/source-clifford-grade-20260920/PROOF.md",
+      "role": "finite twist and conditional charged-field boundary"
+    },
+    {
+      "path": "experiments/theory-contracts/source-graded-locality-20260920/PROOF.txt",
+      "role": "four-class gluing and locality boundary"
+    },
+    {
+      "path": "experiments/theory-contracts/source-dynamics-selection-20260920/PROOF.txt",
+      "role": "V0/Vc and common-dynamics boundary"
+    },
+    {
+      "path": "experiments/theory-contracts/charged-sector-memory-gate-20260920/PROOF.txt",
+      "role": "QHP versus charged-field response distinction"
+    }
+  ],
+  "literature": [
+    {
+      "title": "Burbano, Kulp, Neuser, arXiv:2112.14323",
+      "url": "https://arxiv.org/abs/2112.14323",
+      "scope": "spin-structure and GSO context; general prior input"
+    }
+  ]
+}

@@ -1,0 +1,353 @@
+UNABHÄNGIGER REVIEW: GELADENE C4-REGISTERKODIERUNG
+Datum: 2026-09-20
+
+Geprüfte Herkunftsdateien
+========================
+
+1. verification/v1033_charged_disorder.py
+   SHA-256 01c64748c70784b17cf1c61b7bd2b4c51a69c19c4a2274f09028892eab5cb83f
+2. experiments/theory-contracts/clock-interaction-provenance/README.md
+   SHA-256 e40e116d86ee092e26317b2972cff8795fa7a1d22eb6a250e03f1f8c5252fa4c
+
+Der v1033-Quellcode stellt die vier statischen Einteilchenblöcke und den
+zyklischen Registershift als Observable bereit. Der hier geprüfte gemeinsame
+Fock-Lift und die geladene Kodierung sind eine ausdrücklich geänderte
+Voraussetzung, kein bereits in v1033 bewiesener physischer Lift.
+
+Gesamturteil
+============
+
+PASS für die exakte Algebra, Sektorzerlegung und Intertwining-Formeln. Die
+Konstruktion umgeht den früheren Random-Unitary-Kanalsatz tatsächlich, weil sie
+keinen Produktzustand sigma_R tensor rho ausführt und danach das Register
+traced. Sie kodiert stattdessen die Teilchenzahl modulo vier korreliert in das
+Register und benutzt die gedressten CAR-Felder F_i=S tensor c_i.
+
+Der Preis ist ebenfalls exakt: Im gewöhnlichen Materiewörterbuch wird die
+statische Seam-Phase zu einem globalen z^N-String. H_s ist auf jedem festen
+N-Sektor quadratisch, auf dem v1033-Einteilchensektor insbesondere nur ein
+gewöhnlicher Einteilchen-Hamiltonoperator. Die Konstruktion liefert daher
+keine lokale quartische Kollision, keine Bindungsdynamik und keine native
+physische Auswahl der Kodierung.
+
+1. Algebraische Konventionen
+============================
+
+Setze z=i und
+
+  Z=sum_(r=0)^3 z^r Pi_r,
+  S|r>=|r+1 mod4>,
+  N=sum_i c_i^dagger c_i.
+
+Dann gelten
+
+  ZS=z SZ,
+  z^N c_i=z^(-1)c_i z^N,
+  z^N c_i^dagger=z c_i^dagger z^N.                  (1)
+
+Der statische bedingte Fock-Hamiltonoperator ist
+
+  H=sum_r Pi_r tensor dGamma(h_r),
+  h_r=b+z^r a+z^(-r)a^dagger.                        (2)
+
+Hier müssen b=b^dagger und die zweite Seam-Komponente tatsächlich a^dagger
+sein, damit jeder h_r hermitesch ist. Alle dGamma(h_r) erhalten N.
+
+2. Die gedressten Felder sind eine vollständige CAR-Darstellung
+===============================================================
+
+Definiere
+
+  F_i=S tensor c_i,
+  F_i^dagger=S^dagger tensor c_i^dagger.
+
+Da S auf einem getrennten Faktor wirkt und unitär ist,
+
+  {F_i,F_j}=0,
+  {F_i,F_j^dagger}=delta_ij I.                       (3)
+
+Das ist die volle CAR, nicht nur ihre gerade Unteralgebra. Der Registershift
+in jedem ungeraden Feld ist wesentlich; die nackten I tensor c_i würden die
+unten definierten C-Sektoren wechseln.
+
+Setze ferner
+
+  C=Z tensor z^N.                                    (4)
+
+Mit (1) heben sich die Register- und Teilchenzahlphasen exakt auf:
+
+  [C,F_i]=[C,F_i^dagger]=0.
+
+Weil Z mit allen Pi_r und z^N mit allen zahlenerhaltenden dGamma(h_r)
+kommutiert, gilt auch
+
+  [C,H]=0.                                           (5)
+
+C ist somit eine erhaltene Z4-Ladung der bedingt gelifteten Theorie.
+
+3. Exakte Sektorisometrien und Hamiltonintertwiner
+==================================================
+
+Für s in Z4 definiere auf jedem N-Teilchenvektor
+
+  J_s |psi_N>=|s-N mod4> tensor |psi_N>.             (6)
+
+Die Bilder der J_s sind genau die vier Eigenräume von C mit Eigenwert z^s.
+Jedes J_s ist eine unitäre Identifikation der gesamten Materie-Fockfläche mit
+diesem Eigenraum, und
+
+  C4 tensor Fock(V)=direct-sum_(s=0)^3 im J_s.        (7)
+
+Die CAR-Intertwiner folgen ohne Zusatzphase:
+
+  F_i J_s=J_s c_i,
+  F_i^dagger J_s=J_s c_i^dagger.                     (8)
+
+Beim Annihilieren sinkt N um eins und S erhöht den Registerindex um eins;
+beim Erzeugen geschehen beide Änderungen umgekehrt. Deshalb bleibt s=r+N
+modulo vier fest.
+
+Auf der gewöhnlichen Materie-Fockfläche lautet der sektorielle Hamiltonoperator
+
+  H_s=dGamma(b)
+      +z^(s-N)dGamma(a)
+      +z^(-s+N)dGamma(a^dagger).                     (9)
+
+Da alle drei dGamma-Terme N erhalten, ist die Reihenfolge der Funktionen von
+N in (9) unproblematisch. Direkt aus r=s-N folgt
+
+  H J_s=J_s H_s.                                     (10)
+
+Die Formeln (7)--(10) rekonstruieren den gesamten bedingt gelifteten
+Register-Fock-Raum und seine Dynamik; es wird kein Register getraced und kein
+beliebiger Projektions-Hamiltonoperator eingesetzt. Die Wahl nur eines
+s-Sektors wäre allerdings eine zusätzliche Supersektor-/Präparationswahl. Erst
+alle vier Sektoren zusammen sind der vollständige geliftete Quellraum.
+
+4. Warum dies die frühere statische Kanalbarriere nicht widerlegt
+=================================================================
+
+Der Random-Unitary-Satz begann mit einem unkorrelierten Produktzustand
+sigma_R tensor rho und verwarf das Register. J_s rho J_s^dagger ist dagegen
+zwischen Registerindex und N modulo vier korreliert. Außerdem werden die
+physischen ungeraden Felder zu S tensor c_i geändert. Damit ist eine Prämisse
+des früheren Satzes bewusst aufgegeben.
+
+Traced man das Register nach der Kodierung dennoch aus, werden Kohärenzen
+zwischen unterschiedlichen N-Klassen modulo vier im gewöhnlichen
+c_i-Wörterbuch dephasiert. Die exakte Rekonstruktion lebt daher auf dem
+kodierten Gesamt-/Sektorraumsystem und seiner F_i-Algebra, nicht als gewöhnlich
+reduzierter Materiekanal nach Registertrace.
+
+5. Operatorgrad und Nichtlokalität im gewöhnlichen Materiewörterbuch
+====================================================================
+
+Schreibe B=dGamma(b) und A=dGamma(a). Dann
+
+  H_s=B+z^s z^(-N) A+z^(-s) z^N A^dagger.           (11)
+
+Auf einem festen N-Sektor sind die Faktoren z^(+-N) Skalare; H_s ist dort
+genau quadratisch. Insbesondere ist die ursprüngliche v1033-Quelle bei N=1
+weiterhin nur ein Einteilchenproblem mit einer fest verschobenen Seam-Phase.
+
+Auf dem ganzen Fockraum ist z^N dagegen ein globaler Mod-4-String:
+
+  z^(-N)=product_k [1+(z^(-1)-1)n_k].                (12)
+
+Eine Expansion von (11) enthält daher CAR-Monome vieler gerader Grade. Das
+ist ein zahlsektorabhängiger globaler Boundaryterm, keine lokal erzeugte
+quartische Paarwechselwirkung. Er kann Phasen zwischen verschiedenen
+N-Sektoren ändern, bewirkt innerhalb eines festen N-Sektors aber nur die
+zweite Quantisierung eines Einteilchenoperators. Aus ihm folgt keine
+bulk-lokale Kollision oder Bindung.
+
+Die Nichtlokalität ist direkt sichtbar. Für einen Modus j außerhalb des
+Seam-Supports sei [A,c_j]=0. Aus
+
+  [z^(-N),c_j]=(z-1)c_j z^(-N)
+
+folgt trotzdem
+
+  [z^(-N)A,c_j]=(z-1)c_j z^(-N)A.                   (13)
+
+Der Heisenbergkommutator eines weit entfernten nackten c_j enthält also den
+Seam-Operator A. Der konjugierte Term besitzt analog den Faktor
+(z^(-1)-1)c_j z^N A^dagger. Die Kodierung ist exakt, aber im gewöhnlichen
+Materiewörterbuch räumlich global. Ob die gedressten F_i physisch lokal sind,
+benötigt ein zusätzliches mikroskopisches Operatorwörterbuch.
+
+6. Warum ein positionsabhängig gedresstes gewöhnliches Feld meist keine CAR ist
+=============================================================================
+
+Man kann den Registershift nicht beliebig mit einer ortsabhängigen
+Einteilchenphase u kombinieren. Sei Gamma(u) ihre Fockhebung und u diagonal
+mit u e_i=exp(i theta_i)e_i. Für
+
+  G_i=S Gamma(u)c_i
+
+gilt bereits für i ungleich j
+
+  {G_i,G_j}
+   =[exp(i theta_i)-exp(i theta_j)]
+     S^2 Gamma(u)^2 c_i c_j,                         (14)
+
+bis auf die äquivalente gemeinsame Konventionsphase. Ebenso enthält
+{G_i,G_j^dagger} einen zu 1-exp(i(theta_j-theta_i)) proportionalen
+offdiagonalen Bilinearterm. Bei positionsabhängigen Phasen verletzt G_i daher
+im Allgemeinen die gewöhnliche CAR. Eine räumlich konstante Phase ist ein
+Sonderfall; weitere Dressings benötigen eine eigens geprüfte Index- und
+Kokykelstruktur.
+
+### Kanonische Vervollständigung für den tatsächlichen Sharp-Arc-Operator
+
+Für den vorhandenen Sharp-Arc-Operator ist die zusätzliche Struktur besonders:
+
+  u e_j=z^(q_j)e_j,  q_j in {0,1},  u^4=I.
+
+Sei Gamma(u) seine zahlenerhaltende Fockhebung und
+
+  T=sum_r Pi_r tensor Gamma(u)^r.                     (15)
+
+T ist unitär. Weil Gamma(u)^4=I, ist die Definition auch über den
+Registerübergang r=3 nach 0 konsistent. Konjugiert man die bereits kanonischen
+Felder, erhält man automatisch wieder eine CAR-Darstellung:
+
+  F_j^u=T(S tensor c_j)T^dagger
+       =S Z^(-q_j) tensor Gamma(u)c_j.                (16)
+
+Das Vorzeichen und die Operatorreihenfolge in (16) sind wesentlich. Auf
+|r> liefert die rechte Seite zunächst z^(-r q_j) aus Z^(-q_j) und zusätzlich
+z^(-q_j) aus Gamma(u)c_j=z^(-q_j)c_j Gamma(u). Der Gesamtfaktor ist
+z^(-(r+1)q_j), genau wie in der direkten T-Konjugation. Für r=3,q_j=1 ist
+dies z^(-4)=1; damit ist auch der Wrap explizit korrekt.
+
+Der naive source-nahe Ausdruck
+
+  (S tensor Gamma(u))(I tensor c_j)
+
+fehlt genau der Registerphase Z^(-q_j) und verletzt bei ortsabhängigen q_j im
+Allgemeinen die CAR, wie (14) zeigt. Der korrigierende Faktor verwendet nur
+die bereits vorhandenen algebraischen Operatoren Z und den Sharp-Arc-Lift;
+er ist kein neuer Hamiltonterm. Seine physische Implementierung oder Auswahl
+ist damit noch nicht hergeleitet.
+
+Setze nun
+
+  J_s^u=T J_s.                                        (17)
+
+Dann folgt unmittelbar aus unitärer Konjugation und (8)
+
+  F_j^u J_s^u=J_s^u c_j,
+  (F_j^u)^dagger J_s^u=J_s^u c_j^dagger.             (18)
+
+T kommutiert mit C, weil es blockdiagonal im Register ist und Gamma(u) die
+Teilchenzahl erhält. Die Bilder von J_s^u bleiben daher dieselben vier
+C-Eigenwertsektoren.
+
+Für die Zeitentwicklung bleibt der ursprüngliche statische H unverändert;
+nur die Kodierung wird geändert. Deshalb ist der relevante transformierte
+Operator im Materiewörterbuch T^dagger H T. In Registerblock r gilt
+
+  T^dagger H T |_r=dGamma(h'_r),
+  h'_r=u^(-r) h_r u^r.                               (19)
+
+Somit
+
+  H J_s^u=J_s^u H_s^u,
+  H_s^u=dGamma(h'_(s-N)).                             (20)
+
+Würde man stattdessen auch H aktiv als T H T^dagger konjugieren, bliebe der
+effektive H_s unverändert. Diese beiden Bilder dürfen nicht vermischt werden;
+(19)--(20) sind korrekt, weil H fest und J_s^u=TJ_s gewählt ist.
+
+Die bekannte Sharp-Arc-Konjugation verschiebt damit die Seam-Phase zum
+Arc-Endpunkt. Die frühere Lokalitätsgrenze verschwindet nicht: h'_(s-N) hängt
+weiter global von N modulo vier ab. Selbst für einen nackten Modus weit vom
+neuen Endpunkt erzeugt der Kommutator mit dem N-abhängigen Cut-Term einen
+Faktor analog (13), der den Endpunktoperator enthält. Auf festem N bleibt die
+Dynamik weiterhin quadratisch.
+
+7. Reichweite
+=============
+
+Exakt bewiesen:
+
+* vollständige CAR der F_i;
+* erhaltene Z4-Ladung C;
+* orthogonale Zerlegung in vier vollständige C-Sektoren;
+* unitäre Intertwiner J_s für CAR und H;
+* exakter globaler N-mod-4-String in der gewöhnlichen Materiedarstellung;
+* Quadratik auf jedem festen N-Sektor und Nichtlokalität relativ zu nackten
+  Materiefeldern.
+* kanonische CAR-Vervollständigung des tatsächlichen Sharp-Arc-Dressings durch
+  den notwendigen Registerfaktor Z^(-q_j), einschließlich korrektem Wrap und
+  Hamiltonintertwiner.
+
+Nicht bewiesen:
+
+* dass der ursprüngliche v1033-Einteilchenbau den gemeinsamen Fock-Lift, die
+  J_s-Präparation oder F_i als physische lokale Felder auswählt;
+* eine lokale quartische Wechselwirkung, Teilchenbindung oder Streuung;
+* Mess-/Trace-Dynamik, autonome Sektorpräparation oder eine
+  mikroskopische Defektleitung;
+* eine globale TOE-, 3+1d- oder Gravitationsaussage.
+
+Endverdict: PASS als exakte, unter geänderter korrelierter Prämisse gültige
+Registerkodierung. PARTIAL als physischer Wechselwirkungs- oder Herkunftsweg.
+
+
+ADDENDUM: NEUTRALE KAUSALALGEBRA UND GAUSS-GRENZE
+=================================================
+
+Die Nichtlokalität der ungeraden gedressten Felder ist nicht automatisch ein
+physischer Widerspruch: In einer lokalen Eichtheorie können geladene Felder nur
+als String-Endpunkte oder gedresste Operatoren existieren. Aus der vorliegenden
+Konstruktion folgt jedoch bereits eine engere positive Lokalitätsaussage für
+die zahlneutrale Observablealgebra.
+
+Jede zahlneutrale lokale Observable O erfüllt [N,O]=0. Im N-Teilchenblock ist
+
+  H_s^u|_N=dGamma(h'_(s-N))|_N.
+
+Damit wird O in diesem Block durch genau einen der vier lokalen quadratischen
+Hamiltonoperatoren h'_r entwickelt. Für das vorhandene Sharp-Arc-u ist
+h'_r=u^(-r)h_r u^r eine onsite-diagonale Phasenkonjugation: Sie vergrößert die
+Hoppingreichweite nicht und ändert keine Beträge der lokalen Kopplungen. Auch
+die vier ursprünglichen Boundaryphasen haben Betrag eins.
+
+Besitzt die zugrunde liegende finite-range Quelle für jeden der vier h'_r
+einen Lieb-Robinson- beziehungsweise endlichen Ausbreitungsbound, kann man die
+Konstanten durch das Maximum über r=0,1,2,3 einheitlich wählen. Weil
+r=s-N modulo vier nur diese vier Werte annimmt, gilt derselbe uniforme Bound
+auf der direkten Summe aller N-Blöcke für neutrale lokale O. Auf dem endlichen
+v1033-Zylinder ist dies unmittelbar; für einen unendlichen Grenzraum wären die
+üblichen volumenunabhängigen Beschränktheits- und Summierbarkeitsannahmen
+zusätzlich festzuhalten.
+
+Dies beweist eine neutrale kausale Unteralgebra mit derselben bereits
+zugewiesenen Zeit. Es beweist keine lokalitätsbewahrende volle ungerade
+CAR-Netzstruktur: Ungerade Felder wechseln N und sehen dadurch verschiedene
+h'_r; ihre Strings und die in (13) gezeigten Fernkommutatoren bleiben bestehen.
+
+Ebenso wichtig: „auf jedem festen N frei/quadratisch“ bedeutet nicht, dass ein
+einziger N-unabhängiger Einteilchenoperator h mit
+
+  H_s^u=dGamma(h)+scalar
+
+auf dem ganzen Fockraum existiert. Global ist H_s^u die direkte Summe vier
+verschiedener, von N modulo vier gewählter quadratischer Blöcke und enthält im
+gewöhnlichen CAR-Wörterbuch die z^(+-N)-Strings. Neutralblock-Dynamik ist
+quasifrei; die volle, durch ungerade Felder verbundene CAR-Dynamik ist damit
+nicht zu einer gewöhnlichen N-unabhängigen Quadratik geworden.
+
+Schließlich ist C nur eine einzelne globale erhaltene Z4-Ladung. Eine lokale
+Gauss-Struktur würde eine Familie lokaler Zwangsoperatoren G_x, lokale
+Eichredundanz, eine Ladungs-Divergenz-Beziehung zu Linkflüssen sowie ein
+Wörterbuch für lokale eichinvariante Observablen und Wilson-Endpunkte
+verlangen. C liefert keine dieser ortsaufgelösten Daten. Es klassifiziert vier
+globale Sektoren, ist aber noch kein lokales Gauss-Gesetz und erzeugt weder ein
+Eichfeld noch neue Bulk-Streuung.
+
+Addendum-Verdict: PASS für die uniforme neutrale Lokalitäts-/Kausalaussage
+unter den bestehenden finite-range-Annahmen; weiterhin offen sind eine lokale
+Gauge-Vervollständigung und eine lokale volle geladene Feldalgebra.

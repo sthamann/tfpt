@@ -1,0 +1,167 @@
+INDEPENDENT REVIEW — OPEN-CHAIN ORDER/FESHBACH ARGUMENT
+19 September 2026
+
+Reviewed inputs
+---------------
+
+  /Users/stefanhamann/Documents/Codex/2026-09-18/unte-2/
+    work/chain_spatial_gate_20260919/chain_order_proof.txt
+    work/chain_spatial_gate_20260919/chain_order_check.py
+    work/chain_spatial_gate_20260919/certificate.json
+
+Verdict
+-------
+
+PASS_WITH_CLARIFICATION for the stated result:
+
+  - first nonscalar event order m, equivalently strong-lock power
+    mu^(-(m-1));
+  - coefficient -a_m[A32+c_m F];
+  - unique full ground state for every fixed finite m and sufficiently large
+    mu;
+  - no explicit threshold and no threshold uniform in m.
+
+No new Hamiltonian is introduced by this review.  The conclusion remains
+conditional on the defined pure-root, pure-permutation open chain.
+
+The only wording that should be strengthened is the folded-term sentence in
+section 3.  It is too quick to say merely that every folded term is a
+polynomial in lower scalar P0 blocks: lower-order operators can have
+rectangular P0-to-excited-matter blocks.  Those blocks do not invalidate the
+result, because source-event counting closes the apparent gap more strongly,
+as follows.
+
+1. Two-stage Feshbach audit, including excited matter
+-----------------------------------------------------
+
+Write H=mu V+A, where A=kappa sum L_i+J sum HE_i.  Let P be the kernel of V:
+all source labels are aligned, while the matter state is arbitrary.  Let P0
+be the 240-dimensional bottom eigenspace of PAP and P1=P-P0.
+
+For fixed m, PAP has bottom value 3 kappa m/4, one matter vector
+psi_alpha^(m+1) for each aligned root alpha, and a positive separation from
+P1.  Positivity of the HE_i terms cannot add a bottom vector.  This part of
+the proof and the edge-spectrum replay are sound.
+
+The first Feshbach map onto P has an expansion in epsilon=1/mu.  Its
+irreducible coefficient K_r at epsilon^r contains r+1 insertions of A and has
+only Q=1-P intermediate states.  HE and all source-diagonal pieces preserve
+every source label.  One L_i insertion can change only source i.
+
+Therefore an aligned-source matrix element alpha->beta with beta!=alpha
+requires at least m L insertions, independently of the intermediate matter
+state.  In particular:
+
+  - K_r is diagonal in the aligned root label for r<m-1;
+  - at r=m-1, an offdiagonal term contains exactly m L insertions, one at
+    every source site;
+  - after any proper subset of those m insertions the source configuration is
+    not aligned, so the minimal path cannot pass through P1 or any other
+    aligned-source matter block before its final endpoint.
+
+Now perform the second reduction from P to P0.  Lower-order P0-P1 couplings
+may exist, but every such lower-order segment is diagonal in the aligned root
+label.  Products of them through P1 can change the common scalar energy, but
+remain diagonal in alpha; native transitivity makes the final P0 diagonal
+entry independent of alpha.  To create an offdiagonal folded contribution,
+at least one irreducible segment must itself change alpha to beta.  That
+segment already costs r>=m-1.  At total order m-1 there is no remaining order
+for an additional P1 segment.  Hence the displayed minimal path is the
+complete nonscalar coefficient at epsilon^(m-1).
+
+This event-count argument explicitly answers the review question: scalar
+lower-order terms coupled to aligned-source excited matter cannot produce an
+earlier nonscalar alpha hopping, and they do not modify the leading
+nonscalar coefficient.
+
+2. Ordered path integral
+------------------------
+
+The identity
+
+  sum_sigma prod_(k=1..m-1) 1/b(S_k) = 2^(m-1)
+
+is correct for the open path.
+
+With t_1=0, the path-edge differences x_i=t_(i+1)-t_i give a triangular
+unit-determinant map from R^(m-1) to R^(m-1).  Thus the full integral factors
+into m-1 copies of int_R exp(-|x|)dx=2.
+
+The regions defined by the m! possible orderings of t_1,...,t_m partition the
+anchored space up to measure-zero boundaries.  In the chamber whose first k
+vertices form S_k, the coefficient of the kth positive time gap is exactly
+the number b(S_k) of path edges crossing that cut.  Integration over the
+positive gaps gives prod_k 1/b(S_k).  Summing the chambers therefore gives
+2^(m-1).  Anchoring t_1=0 removes the translation zero mode and introduces no
+missing volume factor.
+
+3. Matter factor and native transition classes
+-----------------------------------------------
+
+At leading order all m source changes use the unique reflection r sending
+alpha to the chosen nonfixed beta.  The two end registers are acted on once
+and end in psi_beta.  Each of the m-1 internal registers is acted on twice;
+r^2=I leaves psi_alpha, whose overlap with the final psi_beta is
+
+  t=<psi_beta,psi_alpha>.
+
+The matter factor is therefore exactly t^(m-1), independent of event order.
+The lock denominator for a proper subset S is mu(1-t)b(S).  Combining this
+with the ordered path identity gives the stated coefficients:
+
+  t=1/2 : a_m,
+  t=0   : 0,
+  t=-1  : (-1/2)^(m-1) a_m.
+
+The Feshbach and L-event signs multiply to minus for every m.  The m=2 result
+reduces to -(kappa^2/mu)(2A32-F)/3600, agreeing with the pinned independent
+m=2 certificate.
+
+4. Fixed-m uniqueness and its exact boundary
+---------------------------------------------
+
+For fixed finite m, the P0/P1 matter separation is positive, the off-lock
+separation grows with mu, and the finite-dimensional Feshbach map is analytic
+near epsilon=0.  The leading nonscalar operator has a simple extremal level;
+its next level is separated by
+
+  a_m [16+2(-1/2)^(m-1)] > 0.
+
+The omitted terms are smaller by one power of 1/mu for fixed m.  Standard
+finite-dimensional analytic perturbation therefore supplies some finite
+mu_0(m,kappa,J) above which the full ground state is simple.
+
+This is only an existence statement.  The proof provides neither an explicit
+remainder constant nor a usable or m-uniform mu_0.  Since a_m itself decreases
+rapidly with m, no thermodynamic gap, propagating mode or spatial continuum
+follows.
+
+5. Replay verification
+-----------------------
+
+The supplied checker was run normally and with Python -OO:
+
+  normal/-OO stdout byte-identical: PASS
+  certificate byte-identical before, after normal, and after -OO: PASS
+  certificate SHA-256:
+    988786fdba296e570d8134f12b22530f7ca56cd492788191f3864c292dbc58c3
+  check evaluations: 24,432
+  distinct checks: 107
+  exact subset-DP replay: m=2,...,10
+
+The separate spatial-response checker was also run normally and with -OO;
+stdout was byte-identical.  Its 240-root/60-ray arithmetic, reflection
+histogram, Schur constants, rational moments and all-m coefficient formulas
+are exact.  Its 2,016 q-profile evaluations are now explicitly labeled a
+NUMERIC replay, with maximum floating error 4.55e-13, of the separately
+proved exact geometric-sum identity.  They are not presented as exact
+machine arithmetic.
+
+Final boundary
+--------------
+
+The all-m leading-order theorem survives the excited-matter and folded-term
+audit.  What is proved is a fixed-m asymptotic selection theorem for the
+specified repeated finite Hamiltonian.  Physical origin, current lifts,
+preparation, an m-uniform finite-lock theorem, dispersion, continuum and all
+T1-T8 claims remain open.

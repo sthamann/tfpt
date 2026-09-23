@@ -1,0 +1,269 @@
+NATIVE CONDITIONAL VARIANCES AND COMPLETE FOUR-SOURCE PHASE REDUCTION
+Supplement to UR.COMPILER.RELAXED_WALL.26
+
+Every number below is in kappa units at J=mu=0. This supplement uses the
+native class certificates in source_classes, the complete pair certificates
+pair22_audit and q21_audit, and the written invariant-core proof PROOF.txt.
+Its purpose is to compare every source class, not to restrict the full source
+by fiat. A source phase q is an internal Fourier label, not a spatial index.
+
+1. Exact conditional variances
+
+Let E denote normalized partial trace over one, or both, matter registers of
+a local L. Its operator variance is E(L^2)-E(L)^2. The supplied checker builds
+L=N/240 with N Gaussian integral from the actual sixty reflections. For
+trace dimension d=4 or16, it forms
+
+  Var=[d Tr(N^2)-Tr(N)^2]/(d^2 240^2).
+
+After dividing an explicitly computed common integer factor, the numerator
+is Hermitian Gaussian integral. Its polynomial is checked using exact integer
+arithmetic in binary64: an explicit product of Gaussian row-l1 norms bounds
+every intermediate integer below2^53. No rounded eigenvalues are used to
+prove the following upper bounds or band containments.
+
+  phase  one-matter conditional variance bands            maximum
+  0      1/80,11/720,7/400,3/80                             3/80
+  1      0,2/225,1/75,4/225,2/75                           2/75
+  3      1/100,1/60,7/300,1/20                              1/20
+
+  phase  both-matter conditional variance bands           maximum
+  0      11/720,7/400,29/1200,3/80                          3/80
+  1,3    17/960,31/1600,11/320                             11/320
+
+For phase0 with both matter registers traced, the uniform source is the
+only possible contributor to the largest band3/80. A separate polynomial
+on the full source complement (projector numerator60I-ones) proves the
+stronger variance bound29/1200 on every nontrivial phase0 source.
+
+The associated means are also checked exactly:
+
+  E_one L=I-B_q/2,          E_both L=I-C_q/4,
+
+where B_q=mean R_l(q) tensor r_l and C_q=mean R_l(q).
+The source classes are invariant eigenspaces of the exact central C_q.
+
+2. Comparison method and covariance
+
+Choose two disjoint Omega packet projectors on nonadjacent B=barSym2
+sources; let P be their product, Q=I-P. On Q, at least one outer B local
+term costs2/3. All remaining local floors are retained. Let A and C be
+lower bounds for PHP and QHQ, and b^2 bound ||QHP||^2. Then
+
+  H >= (A+C-sqrt((A-C)^2+4b^2))/2.
+
+To exceed U=391/320 it is enough to check A>U, C>U,
+(A-U)(C-U)>b^2. All stated scalar comparisons are checked algebraically.
+
+There are two DIFFERENT covariance geometries. For central configurations,
+the two remaining terms use separate legs from independent outer packets.
+Tracing those two independent legs factorizes the conditional product even
+when the terms share the remaining middle register C. Their connected cross
+covariance vanishes and the variances add.
+
+For boundary/bridge configurations, the two terms instead touch BOTH legs
+of the same Omega packet. Their joint marginal is P_sym/10; the covariance
+does not generally vanish. For arbitrary operator-valued X,Y acting on the
+two legs, after subtracting their normalized trace means, the contraction is
+
+  E_Omega(X_B Y_C)-E_B X E_C Y
+    =(1/5) E_4[(X-E_4 X)(Y-E_4 Y)].
+
+The external operator factors act on disjoint spaces. Identifying the two
+4-dimensional leg indices on the right gives the usual product in the
+normalized partial-trace algebra. Operator Cauchy-Schwarz bounds the norm
+by sqrt(v_X v_Y)/5. Tracing the second independent packet leg first can only
+reduce the bridge variance by the Kadison inequality. Therefore the valid
+boundary bound, INCLUDING both ordered cross terms, is
+
+  b^2 <= v1+v2+(2/5)sqrt(v1 v2).                            (2.1)
+
+For the uniform source bridge, its partially traced operator is exactly3I/4,
+so its cross covariance really vanishes. For a nontrivial phase0 bridge,
+v2<=29/1200 and v1<=2/75 imply the full bound (2.1) is at most77/1200.
+This is why the common77/1200 core bound remains valid, including arbitrary
+phase0 source classes. The checker verifies this scalar comparison exactly.
+The raw variance bounds must not simply be added for a nonuniform bridge.
+
+3. All total-phase zero candidates are excluded
+
+The earlier pair/local bounds leave six strings:1232,2123,2132,2312,2321,
+3212. In all of these the phase2 sources must be B: replacing either with
+X costs at least2/5 in addition to the phase1 andphase3 floors1/2 each.
+If the phase1 source is not bar4, its adjacent21 pair is at least zeta or
+7/10, and the other23 pair is at least gamma. Here
+
+  zeta=37/30-sqrt71/15 >.6715,
+  gamma=4/3-sqrt445/30 >.6301.
+
+Their sum already exceeds U. Only the canonical bar4 needs the following
+recoupling comparison; the phase3 source is still completely unrestricted.
+
+2132/2312: put P on the two outer Omega packets. In a phase3 central class
+c in{1/6,3/10,1/2}, with local floors respectively{7/10,1/2,7/10},
+
+  PHP=19I/10-(2/5)P_Phi-B3/2.
+
+The full phase3 single-matter operator satisfies0<=B3<=2/5 and
+P_Phi B3 P_Phi=(c/2)P_Phi. The resolvent chord inequality gives
+
+  A=8/5-sqrt(1+10c)/10,
+  C=7/6+floor(q3),         b^2<=23/300.
+
+The corresponding lower bounds are respectively1.301135...,1.226015...,
+1.233891..., all strictly larger than U. The chord follows by setting
+lambda=3/10+sqrt(1+10c)/10 and p=5c/4:
+
+  (1-p)/lambda+p/(lambda-1/5)=5/2.
+
+1232/2321: P is on Omega edges2,4 or their mirrors. The phase3 source is a
+bridge between independent packet legs, and the phase1 bar4 is at the end.
+Thus
+
+  A=3/2-c/4,
+  C=7/6+floor(q3),         b^2<=2/75+11/320+(2/5)sqrt((2/75)(11/320)).
+
+All three class comparisons again exceed U.
+
+2123/3212: use instead the unique21 pair ground projector P. Its ground
+energy is1/2 and its complete canonical B/bar4 gap is
+
+  g=(8-sqrt10)/15.
+
+The remaining B/q3 pair operator T lies in[a,b]=[63/100,77/30]. Its
+compression into the pure21 ground traces the shared matter, giving
+PTP>=5/4. For E=U-1/2, the exact resolvent chord satisfies
+
+  (b-5/4)/(b-a)/(a+g-E)+(5/4-a)/(b-a)/(b+g-E)<1/g.
+
+The Birman-Schwinger comparison therefore proves H>U. This proof does not
+apply to the reversed order of the q3 and B inside this pair; those cases
+were separately handled above.
+
+4. All total-phase two candidates are excluded
+
+The remaining strings are1212,2112,2121. An X source costs2/5 above the two
+phase1 floors and is excluded. If neither phase1 source is bar4, disjoint
+pair bounds zeta or7/10 exclude the state. If both are bar4, q21_audit proves
+
+  H >=7/5-sqrt10/20=1.241886... >U.
+
+This uses the exact pure21 ground projectors and their shared-matter
+principal overlap1/4; the full canonical pair gap is g above.
+
+If precisely one phase1 source is bar4, let the other class have parameters
+(c,local_floor,B_min,B_max) equal to
+
+  (1/6,1/2,-1/15,1/3) or(3/10,7/10,1/15,3/5).
+
+For1212/2121, placing P on the two Omega packets gives:
+
+  bar4 outside / other bridge: A=3/2-c/4;
+  other outside / bar4 bridge: A=15/8-B_max/2;
+  C=7/6+local_floor,            b^2<=2/75+11/320+(2/5)sqrt((2/75)(11/320)).
+
+For2112, both remaining terms meet the leftover matter. Shift B by B_min
+and apply the same resolvent chord. With
+
+  a=2/5, b=(B_max-B_min)/2,
+  p=(c/4-B_min/2)/b,
+  lambda=(a+b+sqrt((a-b)^2+4abp))/2,
+
+one obtains
+
+  A=19/10-B_min/2-lambda,
+  C=7/6+local_floor,            b^2<=4/75.
+
+Every comparison exceeds U. Thus no hidden phase1 central class was omitted.
+
+5. The entire total-phase one ground pair is now determined
+
+The previous local/pair enumeration leaves six phase strings:
+0212,1202,2012,2021,2102,2120. An X again costs enough to be excluded.
+
+For0212/2120, P is on the two Omega packets. A general phase0 source is at
+the end and the phase1 source is the bridge. Since B0<=1/2 and C1<=1/2,
+
+  A=13/8, C=53/30, b^2<=3/80+11/320+(2/5)sqrt((3/80)(11/320)),
+
+which exceeds U in the comparison test.
+
+For the four core patterns, all non-bar4 phase1 classes are excluded with
+
+  A=7/4-B1_max/2,
+  C=19/15+phase1_floor,
+  b^2<=77/1200.
+
+For the boundary cores1202/2021, any nontrivial phase0 source has C0<=3/5.
+With bar4 at the end this yields
+
+  A=27/20, C=53/30, b^2<=77/1200,
+
+whose lower bound is(187-sqrt1549)/120=1.2303555... >U.
+
+For the central cores2102/2012, the nontrivial phase0 classes are:
+
+  dimension9: B0=I/6, hence A=17/12;
+  dimension5: B0=3I/10, hence A=27/20;
+  dimension45: -I/10<=B0<=I/2, P_Phi B0 P_Phi=P_Phi/10.
+
+For dimension45 shift B0 by1/10 and apply the chord with
+ a=2/5,b=3/10,p=1/3. If lambda=(a+b+sqrt((a-b)^2+4abp))/2,
+then A=39/20-lambda. In all three cases C=53/30 and b^2<=77/1200
+suffice to exceed U.
+
+Only the four fully specified source modules of PROOF.txt remain in K=1:
+bar4,B,1,B and its mirror; B,bar4,1,B and its mirror. The two central grounds
+have energy lambda_center=1.221493930352475... and the boundary grounds
+have energy1.228220211291865.... Their complete fixed-module complements
+are above1.448. Therefore, in the ENTIRE total-phase K=1 block of the full
+240^4 4^5-dimensional Hilbert space, the lowest space is exactly the two
+central relaxed cores. The gap above this doublet is conservatively greater
+than d kappa with d=381/10^6: every excluded state exceeds391/320 and the
+boundary states also exceed that threshold. No source module was discarded
+within this K=1 statement.
+
+6. Positive couplings inside this same complete K=1 block
+
+The full Hamiltonian preserves total phase. On the two-dimensional H0 ground
+space in K=1, mirror symmetry makes the event compression a scalar tau I.
+Each diagonal V term is exactly I by individual charge selection, so
+
+  PHP=[lambda_center kappa+J tau+3mu] I-(mu eta/8) sigma_x,
+
+where eta>=721/779>0 is proved in PROOF.txt. No value of tau is needed for
+the splitting comparison.
+
+Along J=mu=epsilon kappa, W=H-H0 is positive and ||W||<=14epsilon kappa:
+four event terms have norm at most2, and three distance terms at most2.
+The two low eigenvalues remain below lambda_center kappa+14epsilon kappa.
+Schur elimination of the complete K=1 complement shifts their compressed
+values by norm at most
+
+  r kappa=196epsilon^2 kappa/(d-14epsilon).
+
+The conservative inequality
+
+  (721/3116)epsilon-2r>=epsilon/8
+
+holds for0<epsilon<=10^-8, as the checker verifies at its worst endpoint.
+The third K=1 level remains well above this pair. Thus the FULL K=1 block
+has exactly one ground and gap at least mu/8 in this positive range. This
+is a real controlled finite-sector continuation, not a dispersion or a
+whole-model vacuum theorem. The small upper epsilon is a conservative proof
+constant, not a predicted physical coupling.
+
+7. What is still unresolved globally
+
+All K=0 and K=2 candidates are above U. In K=1 only the above four modules
+survive, with exactly known sector grounds. In K=3, the remaining phase
+strings are1222,2122,2212,2221: one phase1 source and three phase2 sources.
+They include ten coarse masks listed in global_bounds.json. Their lower
+bounds do not yet exclude energies below lambda_center kappa. Therefore
+the full m4 ground has NOT been determined, and the positive K=1 theorem
+must not be promoted to the full source model. This remaining comparison is
+explicit and includes the distinctive finite source information.
+
+The first two-source global theorem is independently closed by q21_audit
+and pair22_audit. The larger K=3 competition remains a separate task; the
+former result cannot substitute for it.

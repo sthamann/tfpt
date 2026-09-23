@@ -1,0 +1,224 @@
+NEW RESPONSE PAIR AUDIT — 19 September 2026
+
+VERDICT
+
+The reported local spectrum, the 4(m+1) Bell-chain ground states, and the
+uniform lower gap 7 kappa/45 are exact for the invariant source-bar4 sector
+of the existing J=mu=0 pure-permutation Hamiltonian.
+
+There is one essential scope correction.  The energy kappa m/2 is the ground
+energy of that reduced sector.  It is not the ground energy of the original
+full 240-source-label Hamiltonian.  In the full phase-free source space an
+explicit alternating aligned-packet state has expectation
+
+  E_trial = (3 kappa/4) floor(m/2) < kappa m/2.
+
+Thus the pair sector is an exact, uniformly gapped solvable sector, while the
+full source problem has lower states.  Nothing here transports to the
+phase-faithful E8 current lift.
+
+
+1. Pinned definition and factor order
+
+The replay imports only
+
+  /Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/
+  theory-contracts/compiler-correlated-event-clock-20260919/source_channel.py
+
+with SHA256
+
+  3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593.
+
+It reconstructs the original sixty Gaussian E8 rays z, |z|^2=4, and their
+reflections
+
+  r = I - |z><z|/2.
+
+In the invariant coordinate-source subspace the local factor order is
+
+  A tensor B tensor C = matter-left 4 tensor source bar4 tensor matter-right 4
+
+and
+
+  K = (1/60) sum_r r tensor bar(r) tensor r,
+  L = I-K.
+
+No coupling or Hamiltonian term is added.
+
+
+2. Exact local 64-dimensional calculation
+
+Let |Phi>=(1/2) sum_i |i,i>, let
+
+  P = |Phi><Phi|_(AB) tensor I_C,
+  Q = I_A tensor |Phi><Phi|_(BC),
+
+and let S exchange A and C.  Direct exact summation over the sixty pinned
+reflections gives
+
+  K = I/30 + (2/15)S + (8/15)(P+Q)
+      - (4/15)(PS+SP).                                  (1)
+
+The local bottom projector is exactly
+
+  P0 = (16/15)(P+Q) - (4/15)(PS+SP).                    (2)
+
+Its range is the eight-dimensional sum
+
+  |Phi>_(AB) tensor C4  +  C4 tensor |Phi>_(BC).
+
+For the natural four-vector bases A_c and B_d of these two families,
+
+  <A_c|B_d> = delta_cd/4.                               (3)
+
+The Gram eigenvalues are 3/4 and 5/4, each fourfold, so the sum is direct.
+Outside this Bell sum, the S-even and S-odd dimensions are respectively 36
+and 20.  Equation (1) acts there by 1/6 and -1/10, and acts on the Bell sum
+by 1/2.  Therefore
+
+  spec(L) = { 1/2 x 8, 5/6 x 36, 11/10 x 20 }.          (4)
+
+The replay independently verifies the cubic annihilating polynomial, the
+three eigenspace ranks, and
+
+  tr L   = 56,
+  tr L^2 = 256/5,
+  tr L^3 = 3634/75.
+
+It also verifies (1) and (2) entry by entry over the exact Gaussian
+rationals.
+
+
+3. Open reduced-source chain
+
+For m edges, use global order
+
+  M0,S0,M1,S1,...,S_(m-1),Mm.
+
+For every free position j=0,...,m and colour c=1,...,4, define Psi_(j,c) by
+pairing S_e with M_e when e<j, pairing S_e with M_(e+1) when e>=j, and
+putting |c> in the sole unpaired register M_j.
+
+On each edge, the Bell pair is fixed by r tensor bar(r).  The remaining
+matter action averages to
+
+  (1/60) sum_r r = I/2.
+
+This is an operator identity, so it remains true when that matter register
+is Bell-paired to the adjacent source.  Hence every individual edge obeys
+
+  L_e Psi_(j,c) = (1/2) Psi_(j,c),
+
+and
+
+  H_m Psi_(j,c) = (kappa m/2) Psi_(j,c).                 (5)
+
+Equation (4) gives L_e >= I/2.  Thus (5) is the exact reduced-sector ground
+energy, not merely an eigenvalue.
+
+The tensor contraction is
+
+  <Psi_(j,c)|Psi_(k,d)> = delta_cd 4^(-|j-k|).           (6)
+
+Each colour block is the Toeplitz matrix q^|j-k| with q=1/4 and determinant
+
+  (1-q^2)^m = (15/16)^m > 0.
+
+Therefore all 4(m+1) displayed ground states are linearly independent.  This
+is a lower bound on ground multiplicity; no equality claim is needed.  The
+replay checks every entry of (6) sparsely for m=1,...,6 and the determinant
+identity through m=10, without constructing a full chain matrix.
+
+
+4. Uniform reduced-sector gap
+
+Let p_e=I-P0_e.  From (4),
+
+  L_e-I/2 >= (1/3)p_e.                                  (7)
+
+For adjacent edges the exact 128-dimensional generalized overlap block of
+the two rank-128 embedded P0 ranges has squared principal cosines
+
+  1       x 12,
+  16/225  x 56,
+  1/225   x 4,
+  0       x 56.
+
+The nontrivial principal cosines of the complementary p_e ranges are the
+same.  Consequently their largest nontrivial value is
+
+  c = 4/15.                                             (8)
+
+The two-projection canonical form gives
+
+  {p_e,p_(e+1)} >= -c(p_e+p_(e+1)).
+
+Nonadjacent projectors commute.  With R=sum_e p_e, every interior p_e occurs
+in two adjacent pairs, so
+
+  R^2 >= (1-2c)R = (7/15)R.                             (9)
+
+The kernels of R and sum_e(L_e-I/2) are both the intersection of the local
+P0 ranges.  Combining (7)-(9) yields the exact all-m lower bound
+
+  gap(H_m above kappa m/2) >= 7 kappa/45.                (10)
+
+This is a lower bound; the audit does not claim it is the exact first gap.
+
+
+5. Full 240-source variational control
+
+The reduction above must not be confused with the complete phase-free
+source register.  Put psi_alpha=alpha/2 for the 240 oriented roots and define
+the normalized three-factor packet
+
+  Omega_e = 240^(-1/2) sum_alpha
+              |alpha>_(S_e) |psi_alpha>_(M_e)
+                                  |psi_alpha>_(M_(e+1)). (11)
+
+For the phase-free source permutation R_r,
+
+  (R_r tensor r tensor r) Omega_e = Omega_e             (12)
+
+for every one of the sixty events.  Thus a selected packet edge has exactly
+zero energy.  Its one-matter marginal is I/4 because
+
+  sum_alpha |psi_alpha><psi_alpha| = 60 I.
+
+Select the disjoint edges 0,2,4,... and place (11) on them.  Put the uniform
+source vector on every intervening edge.  On an internal intervening edge the
+two matter marginals come from distinct packets and are I/4 tensor I/4.
+Since tr(r)=2, the event expectation is (2/4)^2=1/4, hence L contributes
+3/4.  If m is even, the last intervening edge has one packet marginal I/4
+and one arbitrary pure boundary vector; using average_r r=I/2 gives the same
+1/4 event expectation.
+
+There are floor(m/2) intervening edges.  Therefore
+
+  <H_m> = (3 kappa/4) floor(m/2) < kappa m/2             (13)
+
+for every m>=1.  Equation (13) does not contradict (5): (11) uses the full
+240-dimensional source register and lies outside the reduced source-bar4
+sector.
+
+
+6. Replay and boundaries
+
+Files:
+
+  new_response_pair_audit.py
+  new_response_pair_audit.json
+  new_response_pair_audit.txt
+
+Normal Python and python -OO produce byte-identical JSON with
+
+  verdict = EXACT_REDUCED_PAIR_GROUND_SECTOR_AND_FULL_SOURCE_VARIATIONAL_CONTROL
+  checks  = 148391.
+
+The largest diagonalization surrogate is the exact 128-dimensional adjacent
+overlap block.  No large open-chain Hamiltonian is formed.
+
+Scope: the exact finite J=mu=0 pure-permutation model and its invariant
+source-bar4 reduction.  This audit does not cover the phase-faithful current
+lift, mixed-640 sector, leakage, thermodynamic limit, critical phases,
+preparation, continuum physics, or a TOE claim.

@@ -1,0 +1,67 @@
+STATIC REGISTER TRACE — v1033
+==============================
+
+Scope
+-----
+This is a finite exact check of the already existing v1033 register
+Hamiltonian. It does not add a Hamiltonian term, choose a new interaction,
+or claim a native source-derived non-Gaussian dynamics. The source is pinned
+by SHA-256 in certificate.json. The matter space is the exact one-particle
+QWZ space at nx=3, ny=1, with the original periodic-x/open-y convention.
+
+Source form
+-----------
+For r=0,1,2,3 the exact source blocks are
+
+  h_r = h_base + i^r TX_seam + i^{-r} TX_seam^dagger,
+  H_R = sum_r |r><r| tensor h_r
+      = I tensor h_base + Z tensor TX_seam
+        + Z^dagger tensor TX_seam^dagger,
+  Z = diag(1,i,-1,-i).
+
+The independent SymPy reconstruction is checked against the source formula
+in verification/v1033_charged_disorder.py and against the pinned text of
+clock-interaction-provenance/README.md. All four phase projectors commute
+with H_R. The current contract explicitly says that the shift is an
+observable and leaves the register/Fock trace lift as an open conditional
+question; this checker tests that static trace route only.
+
+Trace result
+------------
+The register starts independently and uniformly, p_r=1/4. The matter state
+is one particle in the departing seam orbital (x=2,y=0,spin=0). Exact
+short-time expansion gives
+
+  rho(t) = sum_r p_r exp(-i t h_r) rho exp(i t h_r),
+  2 sum_r p_r Var_psi(h_r-h_bar) = 1,
+  Tr rho(t)^2 = 1 - t^2 + O(t^3).
+
+Here ||TX column||^2=1/2, so the coefficient is exact rather than a
+floating-point estimate. Register off-diagonal matrix units E_ab with a!=b
+have zero partial trace, while E_aa gives the corresponding U_a rho U_a^dagger.
+Thus the trace is a random-unitary channel with the diagonal register weights.
+
+Four-point consequence
+----------------------
+The output remains in the one-particle sector, so every actual pair
+occupation <n_i n_j> vanishes for i<j. With C_ij=<c_i^dagger c_j>,
+C is the transpose of the one-particle density matrix, and the exact
+order-two Wick defect is
+
+  sum_{i<j} [<n_i n_j>-(C_ii C_jj-C_ij C_ji)]
+    = -t^2/2 + O(t^3)
+    = -(1-Tr rho(t)^2)/2 + O(t^3).
+
+This is a non-Gaussian four-point response of the traced static-register
+channel. It is not evidence for a closed quartic Hamiltonian: each sector
+h_r is still the original quadratic QWZ Hamiltonian, and the result depends
+on the explicitly conditional C4 tensor Fock(V) register lift and trace.
+
+Inventory boundary
+------------------
+The graph search still lists the relevant clock/register contracts as
+PARTIAL. The existing clock-interaction-provenance README, section 3,
+records the trace route as open; this certificate supplies the finite static
+calculation for the specified state and uniform register preparation. It
+does not establish a physical register preparation, a source-selected trace,
+a native non-Gaussian Hamiltonian, or a full interacting continuum.

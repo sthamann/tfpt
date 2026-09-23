@@ -1,0 +1,49 @@
+{
+  "checks": [
+    "1a: flagship shape S=367, N_w=184",
+    "1: wall reproduced: lam184=0.99983248, lam185=1.00003660",
+    "2a: Q_184 = I - B^T B PSD (min eig 1.675e-04) -- the wall",
+    "2b: Q_185 fails (min eig -3.660e-05) -- one degree past",
+    "3: removing archimedean boundary terms moves lambda_max by 16134458008948506898187034748206977972177096146944.0000 (same-depth contract value 0.99983248) -- boundary terms are load-bearing, not decorative",
+    "4a: nu has S_- = 104 atoms",
+    "4b: nu-Gram at depth 150 is singular: rank 103 <= 104",
+    "4c: consistent extension lies in the range (1.8e-11)",
+    "4d: foreign extension column is out of range (5.6e-01)",
+    "4e: with a null-space lever (5.67e-02) the extended block is indefinite for EVERY diagonal c: ['-2.12e-01', '-2.99e-02', '-2.22e-08']",
+    "5a: finite block represented: ||L L^T - Q_184|| = 5.55e-16",
+    "5b: no positive representation exists one degree deeper -- the dense continuation carries the arithmetic, not the finite factor"
+  ],
+  "count": 12,
+  "wall": {
+    "lam_184": 0.9998324840607293,
+    "lam_185": 1.000036599945594
+  },
+  "moment_form": {
+    "min_eig_Q184": 0.000167515939271605,
+    "min_eig_Q185": -3.659994559309854e-05
+  },
+  "no_archimedean": {
+    "S": 367,
+    "lam_max_same_depth": 1.6134458008948507e+49,
+    "shift": 1.6134458008948507e+49
+  },
+  "image_condition": {
+    "depth": 150,
+    "rank_nu": 103,
+    "defect_consistent": 1.8006858613832085e-11,
+    "defect_foreign_column": 0.5599590175896779,
+    "null_space_lever": 0.05669863762803826,
+    "indefinite_for_all_c": [
+      -0.21208031140136324,
+      -0.02992940359769831,
+      -2.2243354706438054e-08
+    ]
+  },
+  "cholesky": {
+    "recon_error_at_Nw": 5.551115123125783e-16
+  },
+  "conclusion": "the three Beilage-E requirements are each load-bearing with a number: same boundary terms (3), exact null-space coupling (4), dense continuation with the true arithmetic (5). A finite positive factor alone is circular for the claim.",
+  "scope": "representation-requirement measurements on the L* object; NO RH CLAIM in either direction",
+  "checker_sha256": "64b81921ba240cb0f3c83dae3cb427f4740f3ef6b3c96d0cee2b03bf8ed2bfce",
+  "seconds": 0.03623318672180176
+}

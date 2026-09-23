@@ -1,0 +1,158 @@
+INDEPENDENT AUDIT — FLUX_PROOF_REVIEW
+Date: 2026-09-20
+
+Scope and verdict
+-----------------
+I checked the analytic review against the actual 16x16 W=8 block and the
+source-edge-charge-transport proof/checker. I found no counterexample to the
+conditional spectral-flow conclusion. The result is valid under the stated
+external uniform Peierls drive and unscaled hopping-time convention. Two
+proof obligations should nevertheless be made explicit before calling it a
+fully closed analytic certificate: (i) the global construction of the
+projectorwise commutator solver X, including its patching through all possible
+bulk degeneracies, and (ii) the exact target-variance lemma for the rank-2
+edge defect. Both are repairable; neither changes the first open physical
+arrow (source selection of the drive/intersector field).
+
+1. Actual 16x16 block and zero crossing
+-----------------------------------------
+The checked source block is the exact SX-basis matrix
+
+    h(p) = [[-sin(p) I, D(rho)], [D(rho)*, sin(p) I]],
+    D(rho)=rho I-S, rho=1-cos(p), W=8.
+
+The characteristic identity from the source proof is det D=rho^8. Thus the
+only zero of the one-particle spectrum is p=0 modulo 2pi. At rho=0 the
+massive singular values are seven copies of one and one singular value is
+zero, so the negative massive cluster is an isolated rank-7 projector. This
+handles internal degeneracies correctly: no basis inside the rank-7 cluster
+is needed, and all commutator equations only use P-to-(1-P) matrix elements.
+
+The only potentially small cross-P gap is the top/bottom pair. The source
+residual gives the signed edge coupling d(rho)=rho^8 a(rho), with a(0)>0;
+therefore d(p)=O(p^16). The geometrically marked edge projector has mixing
+theta(p)=1/2 atan(d(p)/sin p)=O(p^15), theta'(p)=O(p^14). Consequently the
+singular pair in X is O(p^13), and its p derivative is O(p^12). This is the
+right mechanism for crossing the gapless point without inventing a minimum
+gap.
+
+Adversarial point: the review says that A,B,D are finite on the compact
+momentum circle, but it does not spell out a finite patching argument. The
+needed construction is: use the marked edge chart only on a fixed
+neighbourhood of p=0, use the rank-8 negative spectral projector on the
+complement, and use rank-projector resolvent calculus on every compact region
+where the P/(1-P) gap is positive. Internal massive degeneracies then remain
+irrelevant. With this patching stated, the claimed N-independent A,B,D follow.
+Without it, “compact circle” alone is a proof shortcut rather than a complete
+uniform-constant derivation.
+
+2. Kato estimate and N,T powers
+-------------------------------
+With v=dp/ds=-2pi/N, X_s=v X_p and d_s X_s=v^2 d_p X_p. The displayed
+one-integration-by-parts bound gives per block
+
+    e_N <= 8pi A/(N T_N) + 8pi^2(B+D A)/(N^2 T_N).
+
+Rank at most 16 gives trace norm at most 16 e_N per block; orthogonal block
+addition gives Hilbert-Schmidt norm at most 4 sqrt(N) e_N globally. Hence
+
+    ||Gamma-P_drive||_1 = O(T_N^-1),
+    ||Gamma-P_drive||_2 = O((T_N sqrt(N))^-1),
+
+and T_N=sqrt(N) yields O(N^-1/2) and O(N^-1), respectively. The powers and
+the trace-rate arithmetic are consistent. A usual bulk degeneracy does not
+spoil this because the rank-7 cluster is treated as one projector; only
+cross-cluster denominators occur.
+
+The estimate is conditional on the stated Kato Hamiltonian and on the
+externally prescribed f(s). It does not prove a physical adiabatic theorem
+for a self-selected source.
+
+3. +1/2 and +1 full-sea charge
+-------------------------------
+The source-edge proof supplies the static finite-sea identity
+
+    Tr[(P_(3/4)-P_(1/4)) T_cut] = 1/2 + O(N^-1)
+
+with all seven massive occupied modes retained. The drive estimate transfers
+this to the actually evolved covariance with an additional O(N^-1/2) trace
+error. Thus the first half-transport is +1/2+O(N^-1/2).
+
+For the full cycle, p_j(5/4)=p_(j-1)(1/4). Since T_cut is circumference
+translation-invariant, the static sea contribution cancels exactly at finite
+N. The only defect is the tracked j=1 top-particle/bottom-hole pair at the
+end point. The source edge profile gives top weight 1-O(N^-16) and bottom
+weight O(N^-16) for cut=4, so the static defect is 1+O(N^-16), and the drive
+adds O(N^-1/2). The claimed +1 limiting full-sea charge is therefore
+correct under the external drive. Total charge remains exactly fixed because
+the covariance rank remains 8N.
+
+4. Variance Lipschitz lemma
+---------------------------
+For Hermitian contractions 0<=A<=I and positive contractions C,P, define
+
+    Var_C(A)=Tr(C A^2) - (Tr(C A))^2
+             =Tr(C A (I-C) A).
+
+Writing x=Tr(CA), y=Tr(PA),
+
+    |Tr((C-P)A^2)| <= ||C-P||_1,
+    |x^2-y^2| <= |x-y| |x+y| <= 2||C-P||_1.
+
+Therefore
+
+    |Var_C(A)-Var_P(A)| <= 3 ||C-P||_1.
+
+This is valid for the Gaussian filtered regional operator because it is a
+convex time average of the projection T_cut, hence a positive contraction.
+It applies directly with C=Gamma_N(1) and P=P_drive,N(1), giving a vanishing
+variance correction O(N^-1/2). The same argument applies at the half point.
+
+5. Rank-2 edge target variance
+------------------------------
+Let P_f be the final negative-sea projector, u the tracked positive top edge
+mode and v the tracked negative bottom edge mode, and
+
+    P_* = P_f + |u><u| - |v><v|.
+
+For the static regional projection T_cut, the edge estimates imply
+
+    ||(I-T_cut)u||^2 = 1-<u,T_cut u> = O(N^-16),
+    ||T_cut v||^2 = <v,T_cut v> = O(N^-16).
+
+Since the filtered operator A_f is the Gaussian dephasing of T_cut in the
+final energy basis, each eigenmode variance is no larger than the static
+one: for an eigenvector w,
+
+    Var_w(A_f)=sum_z |<z,T_cut w>|^2 exp(-(E_z-E_w)^2/delta^2)
+                - <w,T_cut w>^2
+              <= Var_w(T_cut).
+
+Decomposing the Slater variance into occupied-to-unoccupied matrix elements,
+the rank-2 replacement changes the already controlled sea variance only by
+the two edge rows/columns above; removal of the v-row can only remove a
+nonnegative contribution. Thus
+
+    Var_{P_*}(A_f) <= Var_{P_f}(A_f) + O(N^-16).
+
+This is the precise meaning of “static bound + O(N^-16)”: it is a filtered
+target bound with the existing full-sea filtered variance as the base. The
+unfiltered full-sea variance is instead O(N) in the source checker and must
+not be called O(N^-16). Finally,
+
+    Var_{Gamma_N(1)}(A_f)
+      <= Var_{P_*}(A_f) + 3||Gamma_N(1)-P_*||_1
+
+vanishes, because the proof gives ||Gamma-P_drive||_1=O(N^-1/2) and the
+target defect is the same P_drive projector. The rank-2 edge contribution is
+therefore O(N^-16) on top of the filtered sea bound, not a replacement for
+the sea estimate.
+
+6. Remaining boundary
+----------------------
+The proof closes a source-native, globally driven spectral-flow statement.
+It does not derive the Peierls path, its speed, or the common physical time
+from P1/P2. It also does not construct a local intersector field, its adjoint,
+or the microscopic C/J and carry realization. The first open arrow remains
+the source-derived local charged operator; the spectral-flow result is a
+conditional input to that construction.

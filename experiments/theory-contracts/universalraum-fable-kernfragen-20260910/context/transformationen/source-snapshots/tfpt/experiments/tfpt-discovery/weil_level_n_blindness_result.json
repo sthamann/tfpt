@@ -1,0 +1,107 @@
+{
+ "contract": "ARITH.LEVELN.BLIND.01",
+ "fence": "Exploration; no RH claim; no factoring claim",
+ "file_sha256": "6de4fddcce765e79a0a43a0c8f17a895b8609896b533a653dfad2783ccd9a086",
+ "gates": {
+  "G-verdict-enum": true,
+  "S1a-atoms-identical-below-min(p,q)": true,
+  "S1b-first-deviation-is-a-factor": true,
+  "S1c-window-delta-zero-below-log-p": true,
+  "S1d-window-delta-nonzero-above-log-p": true,
+  "S2-test-primes": true,
+  "S2a-phi(N)-inverts-to-factors": true,
+  "S2b-E8-shell-r8(N)=240sigma3(N)-inverts-to-factors": true,
+  "S2c-r8-small-shells-are-E8": true,
+  "S2d-coprime-density-fails-for-sublinear-X": true,
+  "S2e-coprime-density-recovers-at-X=8N": true,
+  "S3a-reciprocity-(n/N)=f(N mod n)-below-p": true,
+  "S3b-jacobi-plus-one-hides-non-residues": true,
+  "S3c-ambiguous-classes-count-2^(t-1)": true,
+  "S3d-ambiguous-forms-ARE-the-factorisation": true,
+  "S3e-lagrange-g^h=1-all-classes": true,
+  "S3f-h-known-implies-poly-time-factor": true,
+  "S3g-L(1,chi)-partial-sum-readout-not-certified-below-sqrt(N)": true,
+  "S4a-unique-admissible-sector-reached": true,
+  "S4b-sector-attractor-is-not-the-factor": true,
+  "S4c-consistent-with-basin-counting": true,
+  "S5a-residue-mod-3-ambiguous-for-N=1-mod-3": true,
+  "S5b-that-bit-is-QR(-3,N)": true,
+  "S5c-jacobi-cannot-split-it": true
+ },
+ "moduli": {
+  "N_BIG_digits": 43,
+  "N_SMALL": 1022117,
+  "RSA260_bits": 862
+ },
+ "result_sha": "7236a3fae17bee59dfea82ce7aea5b25db585ff401b8d8b13bb1e43e63143a7c",
+ "round": 640,
+ "sections": {
+  "s1": {
+   "delta_above": 0.005999728454387565,
+   "delta_below": 0.0,
+   "first_deviation": 1009,
+   "log_p_rsa260": 298.74643482133644
+  },
+  "s2": {
+   "bits_needed": {
+    "N_BIG": 34.8802449963173,
+    "N_SMALL": 4.989355229553179,
+    "RSA260": 215.5
+   },
+   "coprime_density_exact": {
+    "0.5": false,
+    "0.75": false,
+    "1.0": true,
+    "2.0": true,
+    "8.0": true
+   }
+  },
+  "s3": {
+   "ambiguous": 4,
+   "factor_rate_given_h": 0.9375,
+   "first_coincidence_X": 137,
+   "h": 928,
+   "pinned": {
+    "1000": false,
+    "10000": false,
+    "100000": false,
+    "1000000": true,
+    "4000000": true
+   },
+   "stable_from_X": 520119,
+   "v2_h": 5
+  },
+  "s4": {
+   "0.0": {
+    "factor_pairs": 0.0,
+    "integer_points": 0.01,
+    "n_factor": 0,
+    "on_manifold": 1.0
+   },
+   "0.35": {
+    "factor_pairs": 0.0,
+    "integer_points": 0.89,
+    "n_factor": 0,
+    "on_manifold": 0.97
+   },
+   "basin_expect": 0.001978243237826389,
+   "poisson_p_null": 0.13831200530471802
+  },
+  "s5": {
+   "by_residue": {
+    "1": [
+     0,
+     1
+    ],
+    "2": [
+     0
+    ]
+   },
+   "n_pairs": 2850,
+   "qr_consistent": true
+  }
+ },
+ "tag": "r640",
+ "verdict": "NO_SHORTCUT_FOUND",
+ "why": "in the four implemented readouts no factor path cheaper than the known routes; exact phi(N) / sigma_3(N) factor N by explicit reduction, h(-4N) given exactly factors N with class-group arithmetic; no universal dichotomy and no lower bound for other TFPT constructions is claimed (weak-relation routes untested)"
+}

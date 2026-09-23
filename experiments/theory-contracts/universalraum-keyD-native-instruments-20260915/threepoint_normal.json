@@ -1,0 +1,56 @@
+{
+  "T1_T8_closed": [],
+  "car_null_lemma": {
+    "consequence": "the literal removal-tagged 3-point intervention signal Delta n_s(t) = <..f_r^dag e^{iHt} n_s e^{-iHt} f_r..> - <..f_r^dag Z_r e^{iHt} n_s e^{-iHt} Z_r f_r..> vanishes identically for every state, every r, s, t, every H",
+    "no_go_extension": "extends exactly - mechanism is CAR absorption at the removal event, not symmetry",
+    "operator_identities": [
+      "Z_r f_r = f_r",
+      "f_r^dag Z_r = f_r^dag",
+      "n_r f_r = 0"
+    ],
+    "sector_identities_checked": 576,
+    "sectors": "N = 1 -> 0, N = 2 -> 1, N = 3 -> 2, all 64 modes, exact integer sparse",
+    "star_state_level": "tagged = untagged for all 16 x 16 star mode pairs; any single-mode tag at removal time is a global phase on the one-fermion removal state"
+  },
+  "checker_sha256": "b59a415cbb0c8a5b47451db136e0f71a2105561b431404ff85321e7a263101ed",
+  "dependency_sha256": "380577f85d2afa8b50f91a0991769eaf8267ee5c09f327d87f17e1b4c0af1672",
+  "exact_guards": 1801,
+  "guards": 1810,
+  "midpoint_three_point_bright": {
+    "diagonal": "+21x/128 (same leaf)",
+    "off_diagonal": "-3x/128 for all 56 ordered leaf pairs (r != s leaves); strictly negative for every g != 0",
+    "state": "|B> = (1/sqrt 8) sum_q sigma_q |leaf q> (star-symmetric bright state)",
+    "sum_rule": "diagonal + 7 * off-diagonal = 0 exactly (N_f conservation)",
+    "verdict": "the star-symmetric state does NOT kill the off-diagonal intervention signal: the symmetry no-go does not extend to the native midpoint 3-point protocol at star level; a native symmetric-state witness exists at block level"
+  },
+  "numeric_test_point": {
+    "Delta": 1,
+    "boson_seed_signal": "2.7820733415024e-06",
+    "bright_diagonal": "0.0023047487579788",
+    "bright_off_diagonal": "-0.0003292498225684",
+    "g": "1/20",
+    "product_delta_45": "-0.0008731815070419",
+    "x": "0.014047992429585"
+  },
+  "numerical_guards": 9,
+  "runtime_seconds": 9.037,
+  "scope": "exact star block (9 dims) and exact sparse sector maps through N=3; numeric full-N=2 cross-check flagged; no N=64 ground-state vector; the true-singlet 3-point question remains open beyond block level",
+  "status": "PASS",
+  "task": "native 3-point intervention on the exact star block",
+  "two_point_star_analog": {
+    "mode_to_mode_structure": "absent, consistent with the ground-state no-go form",
+    "value": "C^B_{rs}(t) = delta_rs/8, time-independent (H = 0 on N=1)"
+  },
+  "v168_reproduction": {
+    "boson_seed_signal": "(1-d^2)(1+d^2-2d sin(pi d/2))/128 > 0 for 0 < d < 1",
+    "native_steps_only": [
+      "star-internal evolution U_T",
+      "phase Z_4",
+      "occupation readout n_5"
+    ],
+    "negative_interval": "0 < g^2 <= 3 Delta^2/32  <=>  0 < x <= 2",
+    "product_diagonal": "7x(64-25x)/1024",
+    "product_state_delta": "x(25x-64)/1024",
+    "reduction_3x3": "h3, z3 = diag(-1,1,1), e3 = diag(0,1/7,0) cross-validated against the 9x9 star"
+  }
+}

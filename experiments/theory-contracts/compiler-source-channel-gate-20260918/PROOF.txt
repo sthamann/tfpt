@@ -1,0 +1,208 @@
+Actual source channel gate and marked clock dictionary
+2026-09-18. UR.COMPILER.SOURCE_CHANNEL_GATE.07. Verdict: PARTIAL.
+
+Question and decision
+---------------------
+Can the ORIGINAL one-copy width-eight QWZ source supply the eight independent
+local current channels needed by the earlier E8 construction? The relevant
+test is independence of the leading currents in its established chiral CAR
+limit, not the number of transverse components in a finite matrix. If the
+rank is one, stop optimizing that one-copy charged-field candidate as though
+it established the rank-eight source. This is not an exclusion of other TFPT
+sources or interacting emergent constructions.
+
+1. Original source and exact low-energy inventory
+------------------------------------------------
+Use verification/v1033_charged_disorder.py through the PINNED, transitive
+adapter of microscopic-charged-car-limit/checker.py. No hopping, mass, width,
+state or number of copies is changed. The fixed source has mass 1, width 8,
+one complex CAR copy, and its actual filled negative-energy sea. The old
+v367 BdG/Majorana interpretation is a separate copy-count convention.
+
+For its 16-component transverse Bloch matrix, put H0=h(0), X=diag(sigma_x),
+Z=diag(sigma_z). Exact Gaussian-rational source entries give
+
+  h(p)=H0-sin(p) X+(1-cos(p)) Z,
+  H0^3=H0, rank(H0)=14, {X,H0}={X,Z}=0.
+
+Thus the zero eigenspace of H0 is exactly two-dimensional. Its normalized
+vectors are r_top=(0,...,0,1,1)/sqrt(2) and
+r_bottom=(1,-1,0,...,0)/sqrt(2). On this space h'(0) has eigenvalues -1,+1.
+The other fourteen eigenvalues of H0 are separated from zero by 1. Moreover
+
+  h(p)^2=sin(p)^2 I+[H0+(1-cos(p))Z]^2.
+
+For real p, a zero requires sin(p)=0. H0+2Z is invertible, excluding p=pi.
+There are no additional Fermi crossings elsewhere in the Brillouin circle.
+Consequently the fixed-width, finite rescaled-energy inventory contains
+one complex chiral channel on each edge, of opposite orientation. This
+inventory does not identify two opposite boundaries as co-propagating
+internal flavours.
+
+2. All fixed transverse bilinear currents, not just row counting
+---------------------------------------------------------------
+In the ESTABLISHED top-edge chiral CAR limit, a fixed transverse matrix B
+has leading current coefficient b(B)=r_top^* B r_top. Therefore the
+normalized central/vacuum Gram of these leading weight-one currents is
+
+  G(B,C)=b(B) conjugate(b(C)).
+
+For the full basis of 256 transverse matrix units E_ij, b has four nonzero
+entries 1/2 and squared norm 1. Its outer product has exact rank 1. For the
+eight row-density matrices, b=(0,0,0,0,0,0,0,1). Eight rows do not yield eight
+independent currents. This concerns the leading current algebra inside the
+specified chiral scaling limit; it does not equate a projection with the
+unfiltered ultraviolet covariance of microscopic bilinears. Derivative
+fields, the opposite edge and massive excitations have not been relabelled
+as further weight-one channels.
+
+The prior microscopic-charged-car-limit proof supplies actual polarized
+columns j_j, with ||j_j-r_top||<=4 rho_j, rho_j=1-cos(2 pi(j-1/4)/N).
+For ||B||<=1, |j_j^* B j_k-b(B)|<=8 rho_max. The product error is at most
+16 rho_max. The normalized mode-3 row Gram from the three sea crossings
+j=-2,-1,0 to j+3 therefore obeys the conservative bound
+
+  ||G_N-G_limit|| <= 128 rho_max -> 0.
+
+This is a fixed-mode analytic estimate. The numerical source checks at
+N=64,128,256,512 give errors about 7.33082e-4, 4.61625e-5, 2.89056e-6,
+1.80745e-7. These corroborate the bound; they are not a fitted universal
+rate or a proof of a full interacting continuum. Tiny negative floating
+eigenvalues are rounding in a sum of positive outer products.
+
+3. Where the independent channels entered the older lattice realization
+-----------------------------------------------------------------------
+verification/v367_seam_s3_lattice.py, run(), explicitly chooses
+
+  N_Maj=2**(g_car-1)=16,
+  c_minus=N_Maj*abs(Chern)/2=8.
+
+That is a collection of independent Majorana copies. It is not derived by
+counting the transverse rows of v1033. The compiler identity dim(S+)=16
+supplies an algebraic number; an action-, charge-, grading- and state-
+preserving source identification is still required to turn it into these
+physical copies. A free complex CAR channel and a BdG Majorana channel
+must also not be counted with the same central-charge convention.
+
+The corresponding Lean file TfptCarrier/SeamEdgeChern.lean defines nMaj
+by the same numerical formula. Its exact arithmetic statements do not
+construct the local fields or a representation intertwiner. It was read,
+not rebuilt in this contract.
+
+The smallest representation test makes the missing identification explicit.
+Take the original 128 half-root coordinates in the native .03 certificate,
+fix one three-coordinate family weight, and retain the first five entries.
+There are 16 doubled D5 weights r, all with one chirality. None of -r is in
+that same set. The central rotation by pi in all five Cartan planes acts
+by i^(sum r_j), a common +i or -i on that entire complex half-spinor.
+Its trace is therefore +16i or -16i. No real 16-dimensional representation
+can have that character: a real matrix has a real trace. Equivalently, a
+real representation's complex weights must be invariant under conjugation.
+The underlying real space of this complex S+ has dimension 32. Compact
+Spin(10) here must not be changed silently into Lorentzian Spin(9,1).
+
+This excludes only a literal action-preserving identification of this S+
+with 16 real linear Majorana fields. It does not exclude spinorial sectors
+emerging as composite/twist fields from a different real-vector carrier.
+Indeed that CORRECT arrangement already exists in v113_quasifree_kernel:
+
+  real vector V16 restricted to Spin(10) x Spin(6) = (10,1) + (1,6),
+  chiral c = 10/2 + 6/2 = 8,
+  product spin fields have weights 10/16 + 6/16 = 5/8 + 3/8 = 1.
+
+In the chosen D5+D3 split the vector weights are +/-e_j, splitting into
+ten and six, not a D5 half-spinor. The resulting even Fock spinor has
+dimension 128, with the previously proved (16,4)+(conjugate16,conjugate4)
+branching. Thus the compiler's 16-state half-spinor is an algebraic output
+sector in this construction, not its list of 16 elementary real fields.
+v113 explicitly keeps the free carrier-net/R2 identification conditional.
+The first missing physical input is not the abstract 5+3 lattice count;
+it is its realization as independent local fields with the stated source
+action, state and scaling. The correct old dictionary has not been lost.
+
+For the established exterior-algebra construction see Baez and Huerta,
+The Algebra of Grand Unified Theories, section 3.2:
+https://www.math.tecnico.ulisboa.pt/~jhuerta/guts/node17.html
+The explicit weight/center obstruction above is proved here from the
+pinned native coordinates; it is not claimed as new representation theory.
+
+The present test executes the source-channel question already proposed in
+microscopic-twist-charge-test/FUNDAMENTAL_REVIEW.md. It does not claim the
+general phenomenon of a single QWZ chiral edge as a new discovery.
+
+4. New connection: the marked geometric deck and the existing glue clock
+-----------------------------------------------------------------------
+Use the full charge lattice L=E8 in the standard D8 coordinate realization,
+with L0=D5 plus D3. The half-twist-grade-carry contract already established
+the dual glue clock G, acting on |q> by i^k(q), k(q)=2 sum_(j=0)^4 q_j mod 4.
+Its square is the D8 grading: +1 on integral charges, -1 on half-integral
+charges. The marked .05 seam deck T and the family rotation A act by
+
+  t(q)=4q_5+3q_6+5q_7 mod 4,
+  a(q)=q_7-q_6 mod 4.
+
+All exponents are integral on L. Their difference is
+
+  t(q)-2k(q)-a(q)=4[sum_(j=5)^7 q_j-sum_(j=0)^4 q_j] in 4Z.
+
+The bracketed term is integral for both integral and uniformly half-integral
+E8 charges. Hence, on the FULL charge lattice, exactly,
+
+  T=G^2 A.
+
+The source-marked reflection F exchanges coordinates 6 and 7 with its
+previously checked cocycle signs. Diagonal characters make those signs
+cancel in conjugation: FGF^-1=G and FAF^-1=A^-1. Thus FTF^-1=T^-1.
+The checker verifies the character identity on all 240 original roots as
+an independent convention check. Including the eight Cartan directions,
+G has multiplicities (60,64,60,64), T has (70,56,66,56); their traces are
+0 and 4. They cannot be identified as conjugate clocks on this adjoint.
+
+This connects two existing descriptions without adding a clock parameter.
+It is an algebraic intertwining statement, not yet a physical microscopic
+clock/source intertwiner. G, the charged translation U_lambda, geometric
+T, the source holonomy register and a separate root-space J are distinct.
+In particular U_lambda^4=U_(4lambda), not I on the full charge lattice.
+
+5. Important inherited correction, not a new discovery
+------------------------------------------------------
+half-twist-grade-carry (2026-09-08) already has lambda=(1/2)^8 of weight 1,
+integer charge carry, L/L0=Z4 and L/D8=Z2. The correct extension chain is
+
+  (D5)_1 x (A3)_1 --index 2--> (D8)_1 --index 2--> (E8)_1.
+
+The overall first-to-last index is 4; the last step has index 2. The literal
+remaining-theorem wording in articles/2026-08-28/
+psi_lambda_convergence_theorem_en.tex asks for an order-four DHR class over
+the SO(16)_1 bilinear net. That base-algebra typing is wrong: every D8
+discriminant class has order dividing 2. The order-four class belongs over
+L0, before the first extension. The v367 index-four SO(16)->E8 sentence
+has the same issue; v469 already contains the index-two correction.
+
+Primary literature: Jens Boeckenhauer, An Algebraic Formulation of Level One
+Wess-Zumino-Witten Models, hep-th/9507047, Theorem 7.1. For N divisible by 4
+the SO(N)_1 fusion group is Z2 x Z2; for N=4k+2 it is Z4.
+https://arxiv.org/html/hep-th/9507047
+
+The known common quarter charge lambda/2 has weight 1/4, and nonintegral
+pairing with 56 D8 roots. It cannot replace the relatively local half-charge
+extension merely because its register has four values. This fact is replayed
+here to keep the target correctly typed, not promoted as a new finding.
+
+6. Consequence for the requested full origin
+-------------------------------------------
+The first missing interface in THIS microscopic route is a source-derived
+local rank-eight current algebra with the original marked action and state.
+The eight transverse rows do not supply it. Selection of independent copies
+must be derived, or a different source must provide the required algebra.
+The algebraic D5+A3 closure and marked clock dictionary constrain that task;
+they do not on their own construct physical local degrees of freedom.
+
+The earlier affine-vacuum response and E6 cubic remain exact under their
+E8-vacuum premise. They cannot be used to establish that very premise by
+circular reasoning. The original uniform Hilbert-Schmidt seam estimate is
+also retained; it is not being reopened as the principal unsolved step.
+
+This result closes NO physical T1--T8 gate, proves no TOE, and excludes no
+entire TFPT class. It rules out the specific width-as-eight-channels reading
+and gives an exact marked-clock connection for a future source dictionary.

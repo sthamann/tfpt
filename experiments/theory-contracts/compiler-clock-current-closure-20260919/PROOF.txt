@@ -1,0 +1,202 @@
+UR.COMPILER.CLOCK_CURRENT_CLOSURE.22
+Verdict: PARTIAL — EXACT_CLOCK_ROOT_MIXING_AND_MINIMAL_E8_COMPLETION;
+         CONDITIONAL_LOCAL_IMPLEMENTATION
+
+Question
+--------
+In the original v1 E8 coordinates, does the actual compiler clock C preserve
+the existing D8 current subsystem, or does clock covariance force the
+half-spinor/Ramond currents?  This is a fixed-dictionary representation test.
+It is not a construction of a detector, a Hamiltonian, or a raw-source field.
+
+Pinned coordinate dictionary
+----------------------------
+The pinned v1 function produces exactly
+
+  112 integer roots  +/-e_i +/-e_j                       (D8 roots),
+  128 half-integer roots with even minus parity          (selected spinor),
+  240 roots total                                        (selected E8).
+
+The 120-dimensional D8 current algebra is 112 root spaces plus the common
+rank-eight Cartan.  The root count is therefore 112, not 120.  The pinned .21
+source24 set is a 24-element subset of the selected even-parity half-spinor
+set, and its recorded charge class is (3,3).
+
+Exact root census
+-----------------
+For the actual C matrix:
+
+  source                    target D8 roots     target selected spinor
+  D8 roots (112)                    56                     56
+  selected spinor (128)             56                     72
+
+For the actual J matrix:
+
+  source                    target D8 roots     target selected spinor
+  D8 roots (112)                   112                      0
+  selected spinor (128)              0                    128
+
+The rank-eight Cartan subspace maps to itself, but its eight displayed basis
+vectors are not pointwise fixed (C has no eigenvalue 1).  Thus the adjoint-current
+census, with Cartan included on the D8 side, is
+
+  C:  D8 current 120 -> 64 D8 current + 56 spinor current,
+      spinor 128    -> 56 D8 current + 72 spinor current;
+  J:  D8 current 120 -> 120 D8 current,
+      spinor 128    -> 128 spinor current.
+
+An explicit C witness is
+
+  (-1,0,0,0,0,-1,0,0)
+      -> (1/2,1/2,1/2,1/2,1/2,1/2,-1/2,-1/2).
+
+An explicit reverse-sector witness is
+
+  (1/2,-1/2,1/2,-1/2,-1/2,-1/2,1/2,1/2)
+      -> (-1,0,0,1,0,0,0,0).
+
+Clock closure
+-------------
+For U_n = union_{k=0}^n C^k(D8 roots), the exact cumulative census is
+
+  n                  0    1    2    3    4    5    6    7    8
+  D8 roots         112  112  112  112  112  112  112  112  112
+  spinor roots       0   56   88  108  116  122  124  126  128
+  total            112  168  200  220  228  234  236  238  240
+
+The first n for which U_n is the complete selected E8 root system is n=8.
+This is the smallest clock-power completion for this fixed D8 seed and actual
+C, not a general minimality theorem for all possible generators.
+
+There is also a shorter algebraic closure statement.  Start with all D8 roots
+and one displayed spinor root together with its negative.  Repeatedly add two
+active roots whenever their sum is an E8 root.  The support sizes are
+
+  114 -> 170 -> 240.
+
+For Chevalley root spaces, a pair whose sum is a root has a nonzero bracket.
+Consequently the D8 current algebra plus one spinor current and its adjoint
+generates all selected E8 root spaces.  This statement concerns Lie-algebra
+support.  It does not select cocycle phases or construct a local field
+implementation.
+
+Fixed-dictionary obstruction
+----------------------------
+The actual C has characteristic polynomial
+
+  Phi_30(x) = x^8 + x^7 - x^5 - x^4 - x^3 + x + 1.
+
+An automorphism of the fixed D8 root system acts on its Cartan reflection
+coordinates by a signed permutation.  A signed cycle of length l contributes
+x^l-1 or x^l+1.  Exhaustive exact enumeration of all signed cycle types of
+total dimension eight finds no characteristic polynomial Phi_30.  The actual
+J is itself a signed-permutation matrix and passes this control.
+
+Therefore C is not an automorphism of the fixed source D8 root system and
+cannot be the same Gaussian linear action on the fixed 16-Majorana carrier
+while also realizing the specified action on its chosen Cartan/root
+dictionary.  This says nothing about a changed Cartan, an abstract conjugate
+compact D8 subgroup, or a nonlinear action on the E8 simple-current
+extension.
+
+The 60-ray quotient does not retain C
+-------------------------------------
+The original 60 rays are the 60 four-element J-orbits of the 240 full roots.
+For C to descend to this quotient, all four representatives of each source
+J-orbit would have to land in one common target J-orbit.  Exact enumeration
+gives the target-orbit multiplicity histogram
+
+  number of distinct target J-orbits = 2 : 60 source orbits.
+
+Thus C fails the fixed-J, same-label descent criterion on every one of the 60 rays.  For the
+explicit D8 witness above, its four J-related representatives map under C to
+a spinor pair and a D8 pair belonging to two different target J-orbits.  A
+process intended to retain both actual clocks cannot use only the 60-ray
+label with a frozen J frame as its complete state.
+
+There is a canonical moving-frame quotient alternative.  Put J'=C J C^-1.
+If beta=J^k alpha, then C beta=(J')^k C alpha, so
+
+  ([alpha]_J, J) -> ([C alpha]_(J'), J')
+
+is well-defined.  A covariant process may therefore transport this relational
+frame rather than store a literal 240-root register; retaining the full-root
+representative or equivalent phase/current-lift data are other options.  The
+checker does not derive a physical or dynamical rule that selects and carries
+J'.  This is a fixed-frame quotient obstruction, not a derivation of a
+particular record carrier.
+
+Chirality control
+-----------------
+C preserves the selected even-parity E8 extension.  Applied to the 128 roots
+of the opposite odd half-spinor chirality, C sends all 128 to quarter-entry
+vectors outside both standard E8 root systems.  J preserves both chirality
+extensions.  Thus the actual C and the pinned .21 source24 are compatible in
+this coordinate dictionary.  This is only a compatibility rejection of the
+opposite chirality: C was itself constructed from the already selected E8
+simple-root system containing an even half-spinor root, so reversing this
+comparison would be circular and cannot independently derive chirality.
+
+What is gained
+--------------
+Conditionally, if the actual C is implemented locally and covariantly on the
+existing fixed D8 current net, closure under that same clock cannot stop at
+D8: one clock step already requires 56 selected Ramond root spaces, powers
+through eight require all 128, and D8 brackets with any one such current and
+its adjoint close all 240 E8 roots.  The smallest clock-covariant current
+completion of that pinned source dictionary is therefore the selected E8
+current algebra.
+
+What is not gained
+------------------
+The test does not derive a local unitary/field implementation of C, a raw
+seam or source process, a state or preparation rule, a Hamiltonian, an event
+instrument, spacetime propagation, or a 3+1-dimensional physical dictionary.
+An E8 current symmetry may act nonlinearly on the free-fermion extension; the
+fixed-carrier Gaussian obstruction does not exclude that possibility.
+
+Prior-result boundary
+---------------------
+Earlier contracts already establish the 248=120+128 decomposition, the
+D8/E8 extension tower, actual C/J triality lifts, and source24 Ramond typing.
+The new result here is the exact actual-C/J transition census, the first-full
+C-power n=8, the one-spinor bracket closure in the pinned coordinates, and the
+fixed-dictionary Gaussian obstruction.  No general D8_1 -> E8_1 theorem is
+claimed as new.
+
+The separate source_origin_audit.txt establishes the premise boundary in more
+detail.  The existing finite C matrices act on target roots/character spaces;
+the current repository does not yet implement them as local, normal,
+vacuum-preserving automorphisms of the raw seam net.  Hence the positive
+completion statement here is conditional, not a source derivation.
+
+Published mathematical context
+------------------------------
+Yan-Jun Chu and Zhu-Jun Zheng, "Vertex Operator Algebra Analogue of Embedding
+D8 into E8", arXiv:0808.1458, explicitly construct the level-one embedding
+and identify E8_1 as the extension of D8_1 by its half-spinor simple module.
+Chongying Dong and Kiyokazu Nagatomo, "Automorphism Groups and Twisted Modules
+for Lattice Vertex Operator Algebras", arXiv:math/9808088, is cited for the
+general lattice-isometry/VOA-automorphism lift context.  Neither reference
+supplies this repository's actual C/J census or the missing raw local C map.
+
+Pinned sources
+--------------
+experiments/theory-contracts/compiler-integral-triality-20260918/certificate.json
+  sha256 a342f865bec164ae6dd54e9e7b7c7cc991efcf7a939dda2ecab586b4a6c6cfe3
+verification/v1_e8_glue.py
+  sha256 1978d66a85974e5fa189cf4dec507f9be4c4dcc113e90eb1b33a9aae9259a0d7
+experiments/theory-contracts/compiler-current-product-20260919/spin_source_origin_check.py
+  sha256 0dafc08c382ce6e26711c0d0f89700572bac0f5e520128c211db2e8f349abb14
+experiments/theory-contracts/compiler-current-product-20260919/spin_source_origin_check.json
+  sha256 5ca3a63a16ca73ce64985bfb17cd253525e9c663edfb12f0cb7ba86a4be644f9
+verification/v113_quasifree_kernel.py
+  sha256 a033fe9c292d22b5bbc343aa0d8e352df14a0918e4124fd7596bf7f81e01ff51
+
+Replay
+------
+python3 -B experiments/theory-contracts/compiler-clock-current-closure-20260919/checker.py
+python3 -B -OO experiments/theory-contracts/compiler-clock-current-closure-20260919/checker.py
+
+The exact JSON contains every census, witness, closure layer, source pin, and
+guard label.  T1-T8 closed: none.

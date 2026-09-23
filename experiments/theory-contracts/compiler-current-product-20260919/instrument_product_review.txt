@@ -1,0 +1,161 @@
+INDEPENDENT REVIEW — CURRENT PRODUCT READOUT
+Date: 2026-09-19
+Verdict: EXACT_CANONICAL_GRADE2_BELL_FILTER; NO_AUTOMATIC_PHYSICAL_INSTRUMENT
+
+Scope
+-----
+This review checks only the new current_product_readout identity and its
+operative consequence against the already established absorption-instrument
+result.  It introduces no new Hamiltonian or source model.
+
+1. Algebraic identity
+---------------------
+Let R_l=chi_l tensor psi_l^2 be the sixty normalized vectors in the actual
+50-dimensional grade-two product space, and
+
+  G=sum_l |R_l><R_l|,
+  P=F10 F10^dagger.
+
+The checker establishes exactly
+
+  G=(3/4) I_50+(9/4)P,
+
+with spectrum 3 of multiplicity 10 and 3/4 of multiplicity 40.  Therefore
+
+  P_F=(4G-3I_50)/9=P.
+
+This implication is exact: on the 3-eigenspace the polynomial is one, on the
+3/4-eigenspace it is zero.  Hence P_F is the rank-ten orthogonal spectral
+projector of G, and the response gap is 3-3/4=9/4.  The key gain is that the
+old Bell subspace can now be recovered from the native sixty-product response
+G itself.  Its range is no longer merely a separately displayed F10 image.
+
+For every native label,
+
+  F10^dagger R_l=conjugate(psi_l^2)/sqrt(2),
+  P_F R_l=F10 conjugate(psi_l^2)/sqrt(2),
+  ||P_F R_l||^2=1/2.
+
+Define the normalized projected vector
+
+  B_l=sqrt(2) P_F R_l=F10 conjugate(psi_l^2).
+
+Then B_l is exactly the old Bell-source ray, including the checked phase-
+faithful conversion to the original Pauli Bell basis.  Summing the projected
+branches gives
+
+  sum_l |P_F R_l><P_F R_l|=P_F G P_F=3P_F,
+  sum_l |B_l><B_l|=6P_F,
+
+which is the expected sixty-ray tight frame on the ten-dimensional Bell
+subspace.  Thus the conclusion is stronger than a common dimension or a
+matching spectrum: all sixty labeled rays project to the old rays with one
+label-independent success probability.
+
+Normal and python -OO runs of current_product_readout_check.py produced the
+same JSON hash
+
+  22b721c7905e3eeac18c962df5d3a1ac13c84eba03930baee421d4cbf704401d.
+
+2. Affine-current qualification
+-------------------------------
+The coordinate checker correctly says that it does not by itself establish
+the affine embedding.  The separate current-bracket dictionary supplies the
+missing qualification: the 50 vectors form an exact orthonormal set of
+normalized affine grade-two product states after the E8_1 null quotient.
+They are not a weight-count proxy.
+
+For each completed source direction w24_(l,s), the same-outcome square obeys
+
+  J_-1(w24_(l,s))^2 Omega
+    = s 2 sqrt(5/36) J_-1(w20_l)J_-1(w4_l)Omega,
+  ||J_-1(w24_(l,s))^2 Omega||^2=5/9.
+
+The normalized nonzero square is the R_l product direction, up to the sheet's
+irrelevant overall sign.  Consequently the squared norm of its Bell-projected
+part is exactly
+
+  (5/9)(1/2)=5/18.
+
+This is a genuine same-current, grade-two response amplitude inside the
+assumed affine E8_1 vacuum.  It is not a Gaussian-oscillator inference.  It
+also does not derive the raw seam-to-E8_1 current map; the spin-source review's
+N2/N1 and QGEO.KERNEL.01 obligations remain upstream.
+
+3. Exact operative gain
+-----------------------
+The response now canonically singles out a two-outcome projective filter on
+the grade-two product sector:
+
+  success: rho -> P_F rho P_F,
+  reject:  rho -> (I-P_F) rho (I-P_F).
+
+No continuous coefficient or new Hamiltonian term is needed to specify this
+filter: P_F is a polynomial in the native response G.  If the incoming branch
+is the labeled product preparation
+
+  R_l-map: c -> c |R_l><R_l|,
+
+then the successful branch satisfies the exact CP-map identity
+
+  (P_F filter) o (R_l-map)
+    = (1/2) [c -> c |B_l><B_l|].
+
+After conditioning on success, the output state is exactly the old Bell-source
+state B_l for every l.  This is the precise instrument-level gain: the native
+grade-two product branch and the old Bell preparation instrument agree after
+one common, label-independent projector and the fixed success factor 1/2.
+The result holds for all sixty labels, not only for uniform averages.
+
+Equivalently, one may follow the yes/no filter by the old sixty-effect Bell
+POVM on ran(P_F).  Algebraically this gives a complete readout on the 50-space
+after adding the reject outcome.  The top-response subspace and its label
+dictionary are now source-defined within the conditional affine theory.
+
+4. What is not gained
+---------------------
+The result does not make every instrument with the .20 effects equal.  A POVM
+effect or projector fixes probabilities, not output maps.  Even with effect
+P_F, one may append an arbitrary isometry or unitary on the successful output.
+The displayed rho -> P_F rho P_F update is the canonical square-root/Lueders
+choice, but its physical execution is not forced by the spectral identity.
+
+In particular:
+
+* The previously proved current-annihilation instrument remains different.
+  It maps a grade-one one-current state to Omega.  P_F acts within a grade-two
+  product space and returns a Bell-sector grade-two state.  The new result does
+  not turn the absorption output into the Bell output.
+
+* Equality above is an equality of label-conditioned preparation branches
+  after projection.  It is not an equality of instruments on arbitrary
+  unknown inputs with different domains and codomains.
+
+* G is a frame/response operator.  It is not a Hamiltonian, a ground-state
+  selector, a prepared density matrix, or proof that nature measures its
+  spectral projector.  Replacing it by an energy term would be an added model.
+
+* The exact probability 1/2 is conditional on an R_l incident branch.  The
+  source still does not supply the occurrence distribution of l, preparation
+  of the grade-two square, event times/rates, refresh, retained record, or an
+  apparatus that implements the P_F filter.
+
+* Nothing here identifies this filter with the .13 C60 reflection/stay-jump
+  instrument, the .08 root-operation process, or the deployed transport clock.
+
+* Gauge-neutral dressing, localization, raw seam realization, 3+1D uplift and
+  all T1-T8 physical gates remain open.
+
+5. Correct status
+-----------------
+The strongest justified statement is:
+
+  Conditional on the existing affine E8_1 current representation, the square
+  of each completed native current has a nonzero normalized grade-two product
+  state whose source-defined top-response projector returns exactly the old
+  Bell-source ray with probability 1/2.  The projector is recovered as
+  P_F=(4G-3I)/9 and requires no new Hamiltonian parameter.
+
+This closes a readout-subspace and postselected-state dictionary.  It does not
+derive a physical detector/filter, preparation or multitime process, and it
+does not close a TOE or T1-T8 gate.

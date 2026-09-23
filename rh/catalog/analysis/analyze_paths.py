@@ -649,7 +649,19 @@ def t5_conflicts(curated):
     by_stem = defaultdict(list)
     by_led = defaultdict(list)
     for rec in curated:
-        by_stem[object_stem(rec.get("path"))].append(rec)
+        path = rec.get("path") or ""
+        stem = object_stem(path)
+        # Paper clauses are distinct assertions, not the source document's
+        # filename stem. Still compare repeated claims and shared ledger IDs.
+        if rec.get("role") == "paper_claim":
+            stem = path
+        # Campaign documentation is not the same mathematical object merely
+        # because both files are called README/PROOF. Keep real ledger links.
+        if rec.get("role") == "external_research_group" or stem.lower() in {
+            "readme", "proof", "contract", "next_gate"
+        }:
+            stem = os.path.join(os.path.dirname(path), stem)
+        by_stem[stem].append(rec)
         for lid in rec.get("ledger_ids") or []:
             by_led[lid].append(rec)
 

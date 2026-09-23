@@ -4,6 +4,7 @@ import importlib.util
 import json
 import math
 from pathlib import Path
+import sys
 import unittest
 from unittest.mock import patch
 
@@ -12,6 +13,8 @@ from scipy import sparse
 import sympy as sp
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent))
+from record_portability import portable_source_record
 spec = importlib.util.spec_from_file_location("clock_response_checked", HERE/"checker.py")
 r = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(r)
@@ -123,7 +126,7 @@ class ClockResponse(unittest.TestCase):
         saved = json.loads((HERE/"validation.json").read_text())
         self.assertEqual(saved["checker_sha256"], hashlib.sha256((HERE/"checker.py").read_bytes()).hexdigest())
         for key, value in self.exact.items():
-            self.assertEqual(saved[key], value)
+            self.assertEqual(portable_source_record(saved[key]), portable_source_record(value))
         for key in ("grandcanonical_Gibbs_preparation_TFPT_selected", "crossing_parameter_window_TFPT_selected",
                     "original_source_point_slow_vacuum_response", "physical_hyperbolic_or_prime_dynamics_from_ratio", "RH_proved"):
             self.assertFalse(saved["scope"][key])

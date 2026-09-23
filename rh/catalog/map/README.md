@@ -2,6 +2,12 @@
 
 Typed research documentation only. **No claim for or against RH.**
 
+For current external-source coverage and one complete rebuild, use
+`../RESEARCH_REFRESH.md`. The September 9 extension is curated in
+`research_seeds_20260909.py`, imported by `make_seeds.py`. Unreviewed source
+groups stay drafts. Navigation paths are undirected research connections,
+not directed proofs; the separate follow-up contracts require all premises.
+
 This layer maps mathematical objects, criteria, theorems, TFPT structures,
 barriers, and open questions. Catalog attempt records remain external and are
 referenced by their stable `path`; they are never duplicated as concept nodes.

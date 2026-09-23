@@ -1,0 +1,43 @@
+DOMAIN-WALL LOCAL RESOLVENT TEST
+
+status: PASS_NUMERICAL_BARE_WALL_RESOLVENT_STEP
+verdict: NONZERO_SECOND_ORDER_BARE_WALL_STEP_IN_BOUNDED_PATCH
+kappa: 1
+E*: (6-sqrt(6))/5 = 0.710102051443364
+
+The exact relaxed 20 and 02 quartet states were reconstructed analytically.
+Maximum H0 eigenstate residual: 7.518e-16
+
+Charge routing under one V:
+  20 -> 11,33
+  02 -> 11,33
+  20 -> 02 directly: zero
+
+Bare-packet convention check:
+  <u_02|V^2|u_20> = I_4/160 to max error 1.995e-16
+
+Resolved Schur kernel K_RL=<R|V Q(H0-E*)^-1 Q V|L>:
+  sector 11: 0.028997881210092 * I_4
+  sector 33: 7.510005868593440e-19 * I_4
+  total:     0.028997881210092 * I_4
+  scalar-identity max error: 4.406e-16
+
+Requested hopping T_LR=-K_RL:
+  T_LR = -0.028997881210092 * I_4
+
+Second-order diagonal energy correction:
+  delta E_20 = -0.237908418568375
+  delta E_02 = -0.237908418568406
+  mirror difference = 3.100e-14
+
+Numerics:
+  observed intermediate floors: E_11=1.000000000000003, E_33=1.200000000000005
+  maximum shifted-solve residual: 1.920e-14
+  maximum forward/reverse reciprocity error: 2.304e-15
+  CG iterations per colour: 11 L/R=[3, 3, 3, 3]/[3, 3, 3, 3]; 33 L/R=[3, 3, 3, 3]/[3, 3, 3, 3]
+
+Boundary:
+  This is an actual local second-order Schur matrix element for the relaxed
+  bare-wall patch.  It omits the Phi-dressed complete core, where the free four
+  is absorbed and direct first-order hops occur.  It is not a proof of an
+  isolated full-chain quartet manifold, a global vacuum, or an SSH/Dirac limit.

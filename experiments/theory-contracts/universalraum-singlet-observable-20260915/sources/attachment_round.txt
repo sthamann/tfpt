@@ -1,0 +1,253 @@
+A. Rahmen der Runde v1.6.3
+Ausgangspunkt ist v1.6.2 §14 mit den vier Prioritäten in deiner Reihenfolge: (1) Operationssatz und Kommutant, (2) nativer Grundzustand und geladene Antwort darauf, (3) Feldwörterbuch am Tensor, (4) räumliche Skalierung erst danach. (4) ist ausdrücklich nicht Gegenstand. Modell unverändert: H = ΔN_b + gΣ_A(b_A†P_A + P_A†b_A), P_A = Σ_{i<j}W_{A,ij}f_jf_i, 64 Fermionmoden, 60 Bosonmoden, N = N_f + 2N_b. Kein neuer Term.
+
+Fundament common.py (PASS, 6 Prüfgruppen): Tensor W repo-lokal, SHA 3f00a089…; WWᵀ = 8·I₆₀; 60 Kanäle × 8 disjunkte Paare auf 16 Moden, jede Mode in genau 15 Kanälen; Gewichtserhaltung q_i+q_j = q_A auf allen 480 Paaren; Casimir-Identität 8WᵀW + 𝒞_S + 𝒞_C − 120·I = 0 auf allen 2016 Zweiteilchenzuständen; induzierte Bosongeneratoren X_B = WΛ²(X)Wᵀ/8 gaußganzzahlig mit exakter Kovarianz; gepinnter Clock (SHA 9bf99de7…) mit Periode 6, Slot-Permutation [2,0,1,4,3], Vorzeichen −1, WΛ²G_F = G_B·W exakt.
+
+B. Operationssatz und Kommutant (operations_commutant.py, PASS, 162 Guards, 0 Bareiss-Fallbacks)
+Frage: Welche „unsichtbare“ Freiheit bleibt, wenn nur bestimmte Operationen verfügbar sind? Gemessen als Dimension des Kommutanten der von der Stufe erzeugten Algebra auf dem N-Sektor. Kleiner Kommutant = mehr unterscheidbar.
+
+Spektralzertifikat N=3 (exakt): S = C₃C₃ᵀ annulliert durch ∏(S−r) für r ∈ {0,7,10,12} (Residuum 0 nnz), Multiplizitäten 64/2880/576/320 aus rationalen Projektorspuren, tr S = 29760, tr S² = 244800.
+
+Irreduzibel-Zerlegung (Höchstgewichtsvektoren, exakt; Gewichte in verdoppelten Koordinaten):
+
+Sektor	Block	Dim	Zerlegung unter so(10)⊕su(4)	Casimir (𝒞_S, 𝒞_C)
+N=2
+helle Paare↔Bosonen
+60
+(10, 6) ×1
+(36, 20)
+N=2
+dunkle Paare
+1956
+(120, 10) ⊕ (126, 6), je ×1
+(84,36), (100,20)
+N=3
+dunkle Tripel = ker C₃
+37888
+(560, 20″) ⊕ (1200, 20) ⊕ (672, 4̄), je ×1
+(117,63), (141,39), (165,15)
+N=3
+ker S (der χ-Raum)
+64
+(16, 4̄) ×1
+(45, 15)
+N=3
+λ=12
+320
+(16, 20) ×1
+(45, 39)
+N=3
+λ=10
+576
+(144, 4̄) ×1
+(85, 15)
+N=3
+λ=7
+2880
+(144, 20) ×1
+(85, 39)
+Alle Multiplizitäten sind 1; Summenprobe über Weyl-Dimensionsformel bestanden. Meine vorab formulierte Hypothese stimmt in allen Blöcken.
+
+Kommutanten-Leiter:
+
+Stufe (verfügbare Operationen)	N=2	N=3
+A: nur {X, N_b} (die zwei bisher geprüften Kontrollen)
+3 829 536
+1 444 233 216
+B: A + Clock (Ordnung 6)
+641 760
+240 742 144
+Cc: A + 15 su(4)-Generatoren
+30 376
+2 247 168
+Cs: A + 45 so(10)-Generatoren
+172
+1 648
+C: A + alle 60 Generatoren
+3
+7
+D: B + C
+3
+7
+volle Algebra B(H_N)
+1
+1
+Lesart: Die zwei Kontrollen lassen ~1,4·10⁹ unsichtbare Freiheitsgrade in N=3; der Clock allein reduziert um einen Faktor 6 (seine Eigenwertmultiplizitäten sind fast gleichverteilt, z.B. 6384/6280/6280/6384/6280/6280 auf dem Dunkelraum); erst die volle innere Symmetrie als Operationssatz kollabiert alles auf 7 Skalare — je einen pro (Energieblock, Irrep). so(10) ist dabei die weit wirksamere Hälfte (1648 vs. 2,2 Mio). Das ist genau die in v1.6.2 §10.3 geforderte Abgrenzung: Mehrfachwiederholung der zwei Kontrollen beseitigt nichts; die Existenz der Symmetrieoperationen als Operationen ist damit nicht bewiesen, aber ihr Effekt ist jetzt exakt beziffert.
+
+Clock-Befund: Der Clock wirkt auf keinem irreduziblen Block als Skalar (er verschiebt Gewichte, Zeuge z.B. [−2,−2,0,−2,0]); er liegt also nicht in der zusammenhängenden Symmetriegruppe, sondern ist ein äußeres Element (Slot-Permutation). D = C gilt trotzdem, weil alle Multiplizitäten 1 sind und der Clock jeden Block in sich abbildet.
+
+C. Nativer Grundzustand N=64 (native_ground_state.py, PASS, 128 Guards: 119 exakt, 9 numerisch)
+C.1 Lochbild (Operatoridentität, geguardet). Mit h_i = f_i† ist |F⟩ = f_0†…f_63†|0⟩ das Lochvakuum und P_A = −Q_A†, Q_A† = Σ_{i<j}W_{A,ij}h_i†h_j†. Unter (−1)^{N_b}: H ≅ H_hole = ΔN_b + gΣ(b_A†Q_A† + Q_Ab_A). Die Teilchen-Loch-Unitäre trägt das Vorzeichen s(μ) = (−1)^{i+j} pro Zweilochzustand; Negativkontrolle: ohne s(μ) ist die Komplement-Abbildung keine Identität.
+
+C.2 Exakte Krylov-Kette v_n = (T†)ⁿ|F⟩, T† = Σb_A†Q_A†:
+
+n	Einträge in v_n	ν_n = ‖v_n‖²	ν_n/ν_{n−1}
+0
+1
+1
+—
+1
+480
+480
+480
+2
+108 240
+439 680
+916 = 4·229
+3
+15 252 960
+575 078 400
+299520/229 ≈ 1307,95
+4
+(nicht speicherbar)
+952 296 652 800 (Spurnetzwerk)
+≈ 1656,0
+ν₃ wurde zweifach unabhängig erhalten: durch die 15-Millionen-Einträge-Vektorrechnung und durch die Onishi/Wick-Spurnetzwerkformel (Abschnitt E). Exakte Übereinstimmung.
+
+C.3 Exakte Guards: T v₁ = 480 v₀; T v₂ = 916 v₁ (Eindeutigkeit des Ein-Boson-Singuletts (60⊗Λ²64̄)^G, zuvor gruppentheoretisch vorhergesagt); Adjungiertheit ⟨v₂|Tv₃⟩ = ν₃; v₁, v₂ werden von 3 so(10)- und 3 su(4)-Generatoren annulliert (Singuletts); ⟨v₁|Σ_A Q_AQ_A†|v₁⟩ = 458·480 = 219 840 — bestätigt die korrigierte Formel Σ_A Q_AQ_A† = 480 − (15N_h + C_std^{Loch})/2 mit dem Loch-Casimir 14 der (10,6) (meine erste Annahme „480 − 15k“ war falsch und ist durch die Rechnung ersetzt).
+
+C.4 Schließungstest. T v₃ = α v₂ + w₂ mit α = 299520/229 und w₂ ⊥ v₂, ‖w₂‖² = 5001523200/229 ≈ 2,184·10⁷ (exakt, Pythagoras-Identität ‖w₂‖² = ‖Tv₃‖² − ν₃²/ν₂ als Guard). Defekt ‖w₂‖²/‖Tv₃‖² = 2,90·10⁻⁵. Folge: Der Zwei-Boson-Singulettraum ist > 1-dimensional, die Kette ist exakt nicht geschlossen und das Modell nicht allein durch die ν_n lösbar; numerisch ist die Korrektur vernachlässigbar (Kopplung g·√(‖w₂‖²/ν₃) = 0,195g, Energieänderung in der 6. Stelle).
+
+C.5 Exakte Ritz-Matrix (Δ=1, g herausfaktorisiert, Basis v₀…v₃, w₂): Diagonale 0, 1, 2, 3, (2 für w₂); Nebendiagonalen 4√30, 2√229, 48√29770/229; w₂ koppelt nur an v₃ mit 3√598377/11908.
+
+C.6 Ritz-Obergrenzen E_K(64) (rigoros, Rayleigh–Ritz):
+
+g/Δ	K=1	K=2	K=3 (+w₂)	Störungstheorie 2. Ordnung −480g²
+1/20
+−0,704159
+−0,985178
+−1,094232
+−1,2
+1/40
+−0,241620
+−0,288824
+−0,295357
+−0,3
+1/100
+−0,045894
+−0,047851
+−0,047894
+−0,048
+1/400
+−0,002991
+−0,003000
+−0,003000
+−0,003
+Bei g/Δ = 1/20 ist die Kette nicht konvergiert (Kopplungen ≈ 1,1Δ … 1,6Δ je Stufe); dafür laufen ν₅ (und mit ν₄ die Verlängerung auf K=5). Bei ≤ 1/40 ist die Konvergenz praktisch erreicht.
+
+C.7 Observablen bei g/Δ = 1/20 auf dem K=3-Ritz-Zustand Ω (Näherung): ⟨N_b⟩ = 0,8421 (Hellmann–Feynman ∂E/∂Δ = 0,8421 ✓); Überlapp |⟨F|Ω⟩|² = 0,397; Bosonzahlverteilung p₀…p₃ = 0,397 / 0,397 / 0,172 / 0,034; Shannon-Untergrenze der Boson–Loch-Verschränkung 1,66 bit (rigorose Untergrenze, da die reduzierte Bosondichte in N_b blockdiagonal ist). Worker-Behauptungen „Überlapp > 1/4“ und „> 0,811 bit“: konsistent, aber nicht konvergiert.
+
+C.8 Geladene Ein-Teilchen-Antwort auf Ω (Guard auf r = 0, 5, 63, Transitivität): Entnahme f_r|Ω⟩ (nach N=63): Z_h = 1 − ⟨N_b⟩/32 = 0,97368; Addition f_r†|Ω⟩ (nach N=65): Z_add = ⟨N_b⟩/32 = 0,02632; Z_h + Z_add = 1 exakt. Mittlere Anregungsenergie der Entnahme ε_h = 0,0311Δ, der Addition ε_add = 1,1497Δ. Kompositnorm Z_χ = 23⟨N_b⟩/480 = 0,0404 (v1.6.2-N=4-Referenz 0,0301 — anderer Zustand, nur zur Einordnung).
+
+C.9 Sektorauswahl und Worker-Behauptung. Untergrenzen aus H ≥ (1−θ)ΔN_b − (15g²/2θΔ)N_f (Casimir-Identität + quadratische Ergänzung), korrekt als max_θ min_{N_b}:
+
+g/Δ	Ritz E(64)	schärfster Konkurrent	N=64 bewiesen global?
+1/400
+−0,0029996
+N=63: −0,0029531
+ja
+1/100
+−0,047894
+N=63: −0,04725
+ja
+1/40
+−0,295357
+N=63: −0,2953125
+ja (Abstand 4,5·10⁻⁵)
+1/20
+−1,094232
+N=66: −1,2; N=62: −1,1625
+nein
+Bewiesener Bereich mit diesen Schranken: g/Δ ≤ 0,0251 (Bisektion). Die Worker-Behauptung „eindeutiger N=64-Singulett-Grundzustand für 0 < |g|/Δ ≤ 1/20“ ist damit nicht reproduziert und nicht widerlegt: Die verwendeten Untergrenzen sind zu grob; bei 1/20 müsste E(64) < −1,2 (gegen N ≥ 66) und < −1,1625 (gegen N=62) gezeigt werden. Ob die konvergierte Kette dorthin kommt, entscheidet der laufende ν₅-Schritt. Chemisches Potential: μ* = −E/64 = 0,0171Δ < Δ/50, die frühere Aussage „μ = Δ/50 wählt den leeren Zustand“ bleibt konsistent.
+
+D. Feldwörterbuch am Tensor (field_dictionary.py, PASS, 29 Guards)
+D.1 Allgemeine Regel (bewiesen, auf allen 60 Zeilen explizit nachgerechnet): Für Grassmann-Felder ψ_{I,a} koppelt der antisymmetrische Tensor W_{IJ} genau an den symmetrischen Teil des Spinorkerns K_{ab}.
+
+Zuordnung	Spinorkern K	Symmetrie	Kopplung an W
+gleichhändige Weyl, Boson Skalar (0,0)
+ε_{αβ}
+antisym.
+0 (60/60 Zeilen)
+gleichhändige Weyl, Boson (1,0)
+σ^{μν}ε
+sym.
+≠ 0 (Koeffizientenrang 32 je Komponente)
+Dirac/Majorana, Skalar C
+antisym.
+0
+Dirac/Majorana, Pseudoskalar Cγ⁵
+antisym.
+0
+Dirac/Majorana, Axialvektor Cγ^μγ⁵
+antisym.
+0
+Dirac/Majorana, Vektor Cγ^μ
+sym.
+≠ 0
+Dirac/Majorana, Tensor Cσ^{μν}
+sym.
+≠ 0
+Der Vermittler kann also nur ein Vektor- oder antisymmetrisches Tensorfeld sein, niemals Skalar/Pseudoskalar/Axialvektor. Er trägt U(1)_N-Ladung 2 (komplexes Feld); Vorbehalt (kein Satz): ein masseloser geladener Vektor ist kein konsistentes freies Eichfeld.
+
+D.2 Chiralitätsgradierungen. Trägergraph: 64 Moden, 480 Kanten, Grad 15, dreiecksfrei, nicht bipartit — ungerader Zyklus [16, 45, 0, 30, 37] (Länge 5, alle Kanten geprüft; unabhängig per BFS bestätigt). Folge: Es gibt keine globale Chiralitätsaufteilung, unter der alle 60 Bosonen Vektoren wären. Für jede der 44 getesteten G-kovarianten Gradierungen ist jeder Kanal rein (0 gemischte Kanäle), aber der Bosonmultiplett zerfällt in Typen:
+
+Gradierung	Vektor-Kanäle	Tensor-Kanäle	Stabilisator-Dim.	Kommutant der 64
+Identität (keine Aufspaltung)
+0
+60
+60
+1 (Schur; direkt gegengeprüft)
+Pati–Salam-Spinorsplit Γ_pq (10 Varianten)
+24
+36
+36 = so(6)⊕so(4)⊕su(4)
+2
+Farbsplit (3 Varianten)
+40
+20
+52 = so(10)⊕(su(2)²⊕u(1))
+2
+gemischt (30 Varianten)
+32
+28
+28
+4
+Ein einheitlicher Lorentztyp für alle 60 Vermittler erzwingt die gleichhändige Zuordnung → nur (1,0)⊕(0,1), also ein antisymmetrischer Tensor B_{μν}. Das ist kein symmetrisches Spin-2-Feld. Kinetische Terme: einer pro irreduziblem Block des Stabilisators (1, 2 oder 4), keine Familienaufspaltung 4 → 1+3.
+
+E. Spurnetzwerk-Normen (norms_by_traces.py, läuft: n=5)
+Methode: ν_n/(n!)² = Σ_{|m|=n} ‖Q†^m F‖²/m! über bosonische Kohärenzzustände, Onishi-Determinante det(1 − M̄M)^{1/2} = exp(−½Σ_k tr((M̄M)^k)/k) und Wick-Paarung → Summe über Zyklentypen und Permutationen von Spurnetzwerken; alle Vorfaktoren exakte Fraction. Auswertung auf dem Φ-Tensor Φ_{ij,kl} = Σ_A(M_A){ij}(M_A){kl} (Einträge in {−1,0,1}, geguardet) mit optimalem Pfad; Exaktheit über a-priori-Schranke < 2⁵³ pro Schritt, sonst Fallback modulo fünf Primzahlen < 2¹³ mit CRT (Eindeutigkeit über |Netzwerk| ≤ 60ⁿ·64^{#Zyklen}). Validierung: ν₁ = 480, ν₂ = 439 680 (brute force im Besetzungsbild), ν₃ = 575 078 400 (identisch mit der Vektorrechnung), CRT-Route allein reproduziert ν₃. n=4 in 22 s (112 kanonische Netzwerke), ν₄ = 952 296 652 800. n=5 läuft seit 17 CPU-Minuten.
+
+F. Reparaturen an den Worker-Skripten (relevant für die Bewertung der Zahlen)
+Vor dem Cursor-Absturz hinterlassene Skripte hatten folgende Fehler, alle behoben und durch Guards abgesichert: Zyklus-Slots im Spurnetzwerk (ergab ν₂ = 466560 statt 439680); Bosonengewicht ∏m_A! konstant 1; T wirkte bei wiederholtem Boson doppelt (Faktor 4 statt 2 → T nicht adjungiert zu T†, ⟨v₁|Tv₂⟩ = 453120 statt 439680); Merge-Join mit inkonsistenter Ordnung für Loch in Mode 63; Teilchen-Loch-Guard ohne s(μ); Guard ⟨v₁|ΣQQ†|v₁⟩ als Norm der Summe statt Summe der Normen; Sektorschranke min-max statt max-min (unzulässig optimistisch) und als Stub; w₂-Norm um q² = 229² skaliert und an falsches Kettenglied gekoppelt; sympy-Eigenwerte für ≥5×5 Radikalmatrizen (Hänger); JSON-Tupelschlüssel; Schur-Kommutant über instabile inkrementelle SVD; ungültiger „ungerader“ 4-Zyklus-Zeuge; komplexe Generatoren mit vermischten Real-/Imaginärteilen im Singulett-Guard.
+
+Nebenbefund: Das replay_manifest.json der Vorrunde v1.6.2 war um 10:06 durch einen Lauf ohne Zugriff auf den gesperrten Documents-Tensorpfad auf FAIL gesetzt und normal.json geleert. Aus den intakten optimized.json (PASS-Bedingung war Byteidentität) rekonstruiert; Summen 27143/27139/4 stimmen mit dem Delivery-Manifest.
+
+G. Einordnung gegenüber T1–T8
+Tor	Beitrag dieser Runde	Weiter offen
+T1
+Exakte Kommutanten-Leiter A→B→Cc→Cs→C; Clock als äußeres Element identifiziert
+Welche Symmetrieoperationen der Compiler tatsächlich bereitstellt
+T2
+Lochbild bewiesen; Z_h + Z_add = 1; ε_h, ε_add auf dem Ritz-Zustand
+Konvergierter Zustand, Renormierung, Grenzraum
+T3
+—
+räumlicher Träger (ausgeklammert)
+T4
+Vollständige Kern-Symmetrieregel; Nichtbipartitheit → kein einheitliches Vektor-Wörterbuch
+chirales Maß, Anomalien
+T5
+Exakte Krylov-Kette, ν₁…ν₄ zweifach unabhängig
+Kontinuumslimes
+T7
+(1,0)⊕(0,1) ist B_{μν}, kein Spin 2
+dynamischer Spin 2
+T8
+Sektorauswahl bewiesen für g/Δ ≤ 0,0251; Worker-Bereich 1/20 nicht reproduziert; μ*-Fenster
+Zustandsfunktional, native Präparation
+Kein Tor geschlossen. Keine RH-, Faktorisierungs- oder P-vs-NP-Aussage.
+
+H. Was noch aussteht
+ν₅ (läuft) → Verlängerung der Ritz-Kette auf K=5, Neubewertung von E(64) bei 1/20 und der Sektorfrage.
+replay.py über alle fünf Prüfer normal + -OO mit Byteidentität, replay_manifest.json.
+RESULTS.md / EINFACH_ERKLAERT.md, Kopie nach universal_room/new/ als v1.6.3, Eintrag in universal_room/README.md.

@@ -1,0 +1,111 @@
+\chapter{Ein engeres Bild und ein neues berechenbares Puzzleteil}
+\label{ch:shadow-synthesis}
+Die zusammengetragenen Schatten sprechen am stärksten für eine Struktur von \emph{Zusammensetzungen und gemeinsamen Antworten}. Arithmetik verlangt eindeutig kombinierbare primitive Faktoren. Quantenphänomene verlangen Phasen, Kontexte und eine besondere Zusammensetzung von Teilsystemen. Raumzeit verlangt eine skalenstabile Ordnung von Nachbarschaften, Signalwegen und Anfangsdaten. Keine dieser Forderungen wird durch die Zahl der anderen automatisch erfüllt.
+
+\begin{grenze}{Versionsgrenze der arithmetischen Fortsetzung}
+Die folgenden Prim-/Pauli-Modelle und RH-Einordnungen sind der bewahrte Stand v1.1. Die neue gemeinsame Ausführung vereinigt einen endlichen Zell-, Register- und Präparationsprozess, nicht diese arithmetische Zuordnung. Ihre Verbindung, ein RH-Beweis, effiziente Faktorisierung oder P=NP folgt daraus nicht.
+\end{grenze}
+\section{Eine engere Arbeitshypothese}
+Die bildhafte Aussage \glqq Alles ist aus Primzahlen gebaut\grqq{} lässt sich zu einer brauchbareren Hypothese präzisieren:
+\begin{quote}
+Ein möglicher gemeinsamer Ursprung besitzt elementare, zusammensetzbare Operationen. In einem kommutativen arithmetischen Schatten erscheinen primitive Faktoren. Vor dieser Auslesung bleiben zusätzliche Phasen, Kontexte und Aufzeichnungen erhalten. Räumliche Nachbarschaft und Zeitordnung müssten aus den erlaubten gemeinsamen Operationen entstehen.
+\end{quote}
+\status{Hypothese.} Diese Formulierung identifiziert Primzahlen mit einer Art primitiver \emph{Zusammensetzbarkeit}, nicht mit einer festgelegten Liste von Elementarteilchen. Sie ist enger als ein beliebiges \glqq alles hängt zusammen\grqq{}, weil sie konkrete Relationen und gemischte Antworten verlangt. Sie bleibt weiter als ein eindeutiges fertiges Modell.
+
+Formal bietet sich eine Algebra von Operationswörtern mit einem positiven normierten Funktional $\omega$ an. Für Wörter $w_i$ muss
+\[
+ M_{ij}=\omega(w_i^\dagger w_j)\succeq0,\qquad\omega(1)=1
+\]
+gelten. Daraus lässt sich eine Hilbertraumdarstellung rekonstruieren. Die Wahl der Wortrelationen, des Zustands und des physikalischen Zugriffs wird dadurch noch nicht erklärt. Insbesondere muss das signierte arithmetische Funktional erst mit dem passenden Objekt \emph{identifiziert} werden; ein beliebiges positives $M$ erfüllt RH nicht.
+
+\section{Ein konstruktiver Versuch: gleiche Zahl, verschiedene Phasen}
+Die folgenden Formeln sind eine neue Anschlusskonstruktion für dieses Buch. Ihre Zutaten sind Standardoperatoren; sie beanspruchen keine neue allgemeine mathematische Entdeckung. Sie zeigen jedoch exakt, dass ein gemeinsamer arithmetischer Endpunkt unterschiedliche kohärente Geschichten besitzen kann.
+
+Wir nehmen den Raum $\ell^2(\mathbb N_{>0})\otimes\C^4$. Der erste Faktor besitzt Basiszustände $\ket n$, der zweite ist der bereits bekannte Zwei-Qubit-Raum. Definiere
+\[
+ S_m\ket n=\ket{mn},\qquad H_{\mathrm{ar}}\ket n=(\log n)\ket n.
+\]
+Die $S_m$ sind Isometrien und erfüllen $S_mS_n=S_{mn}$. Auf dem natürlichen Definitionsbereich gilt
+\[
+ [H_{\mathrm{ar}},S_m]=(\log m)S_m,
+ \qquad e^{itH_{\mathrm{ar}}}S_me^{-itH_{\mathrm{ar}}}=m^{it}S_m.
+\]
+Der unbeschränkte logarithmische Generator ist hier ausdrücklich eingesetzt. Diese Konstruktion umgeht nicht das Hindernis eines endlichen festen Uhralphabets; sie verwendet dessen Voraussetzung gar nicht.
+
+Nun heften wir an die Multiplikation mit 2 und 3 zwei vorhandene lokale Operationen:
+\begin{equation}
+ \widetilde S_2=S_2\otimes(X\otimes I),\qquad
+ \widetilde S_3=S_3\otimes(Z\otimes I).
+\end{equation}
+Da $XZ=-ZX$, gilt
+\begin{equation}
+ \widetilde S_2\widetilde S_3=-\widetilde S_3\widetilde S_2.
+ \label{eq:arithmetic-projective}
+\end{equation}
+Die beiden Wege $1\to2\to6$ und $1\to3\to6$ führen zum gleichen Zahlzustand und, einzeln betrachtet, zum gleichen lokalen Strahl. Der Unterschied ist eine relative Phase von $-1$. Eine reine Endpunktzählung sieht ihn nicht.
+
+\begin{figure}[H]\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[box] (one) at (0,0) {$1,\ \ket\psi$};
+\node[box] (two) at (4,1.4) {$2,\ X\ket\psi$};
+\node[box] (three) at (4,-1.4) {$3,\ Z\ket\psi$};
+\node[box,text width=29mm] (six) at (8,0) {$6$\\gleicher Strahl};
+\draw[arr] (one)--node[above left,font=\small] {$\times2,\ X$}(two);
+\draw[arr] (one)--node[below left,font=\small] {$\times3,\ Z$}(three);
+\draw[arr] (two)--node[above right,font=\small] {$\times3,\ Z$}(six);
+\draw[arr] (three)--node[below right,font=\small] {$\times2,\ X$}(six);
+\node[openbox,text width=105mm] at (4,-3.1) {Kohärentes Zusammenführen sieht das Minuszeichen.\\Unabhängige Endpunktmessungen verlieren es.};
+\end{tikzpicture}
+\caption{Ein arithmetischer Schatten mit nichttrivialer Quantenphase. Die Auswahl $2\mapsto X$, $3\mapsto Z$ ist gesetzt. Die daraus folgende Wegabhängigkeit ist exakt.}
+\end{figure}
+
+\subsection{Eine vollständig bestimmte Vorhersage im Modell}
+Ein Kontrollqubit speichert kohärent, welcher der beiden Wege durchlaufen wurde. Setze $w_0=\widetilde S_2\widetilde S_3\ket{1,\psi}$ und $w_1=\widetilde S_3\widetilde S_2\ket{1,\psi}=-w_0$. Nach einer Hadamard-Auslesung des Kontrollqubits gelten
+\[
+ P_+=\tfrac14\|w_0+w_1\|^2=0,
+ \qquad P_-=\tfrac14\|w_0-w_1\|^2=1.
+\]
+Ohne die lokalen $X,Z$-Markierungen wäre $w_0=w_1$ und damit $P_+=1$. Die neue Rechnung kontrolliert dies im Zahlfenster $1\leq n\leq12$ exakt. Die benutzten Wege ab $n=1$ verlassen dieses Fenster nicht. Die abgeschnittenen $S_m$ sind außerhalb dieses ausgewählten Unterraums keine Isometrien; daraus wird keine globale endliche Unitarität behauptet. Eine reale Schaltung müsste die kontrollierten Isometrien mit zusätzlichen Registern reversibel realisieren und deren Kosten ausweisen.
+
+\subsection{Was damit gelöst ist und was nicht}
+Gelöst ist eine kleine \emph{Kompatibilitätsfrage}: Unbegrenzte arithmetische Zusammensetzung und ein endlicher lokaler Quantenbaukasten lassen sich in einem expliziten gemeinsamen Modell verbinden. Der rein arithmetische Schatten kann kommutativ sein, während kohärent zugängliche Wegrelationen eine nichttriviale Phase behalten. Das passt genau zum Motiv der vorherigen Echoexperimente.
+
+Die Schleifenphase ist stärker als ein beliebiger Wechsel der lokalen Basis. Transformiert man Zustände und Operatoren an den Knoten konsistent, bleibt die zentrale relative Phase einer geschlossenen Vergleichsschleife erhalten. Sie verschwindet nicht dadurch, dass man einzelne Knoten neu beschriftet. Dagegen ist die globale Phase einer \emph{einzeln} durchlaufenen Geschichte nicht beobachtbar; der Interferenzvergleich ist wesentlich.
+
+Offen bleiben die Auswahl der Primmarkierungen aus TFPT, eine kanonische Fortsetzung auf alle Primzahlen, der richtige gemeinsame Zustand und die physikalische Realisierung. Für allgemeine Primzahlen könnte man Pauli-Labels wählen; eine solche willkürliche Tabelle wäre aber gerade keine Herleitung. Ebenso liefert die Konstruktion weder die signierte Weil-Positivität noch drei Raumdimensionen, Gravitation oder einen Faktorisierungsgewinn.
+
+\section{Warum getrennte passende Modelle noch keine gemeinsame Quelle sind}
+Man könnte einen arithmetischen Raum, ein Quantensystem und ein geometrisches Modell einfach nebeneinanderstellen:
+\[
+ \mathcal H_{\mathrm{ar}}\otimes\mathcal H_{\mathrm{q}}\otimes\mathcal H_{\mathrm{geo}}.
+\]
+Bei Produktzustand und unabhängig wirkenden Operationen passen dann vielleicht alle Einzelstatistiken. Der gemeinsame Ursprung wäre dadurch nicht erklärt. Nötig sind gemeinsame Relationen und überprüfbare Antworten auf gemischte Eingriffe. Die oben konstruierte Wegphase ist ein kleines Beispiel einer solchen Antwort.
+
+Eine weitere mögliche Diagnose ist $C(A,B)=\omega(AB)-\omega(A)\omega(B)$ für festgelegte Observablen aus zwei Sektoren. Ein nichtverschwindendes $C$ widerlegt deren einfache Produktbeschreibung in diesem Zustand. Ein einzelnes verschwindendes $C$ beweist umgekehrt keine vollständige Unabhängigkeit; dafür braucht man eine hinreichend vollständige Klasse von Tests. Auch Korrelation allein erklärt noch keine gemeinsame Herkunft der Gesetze.
+
+\begin{figure}[H]\centering
+\begin{tikzpicture}[node distance=8mm]
+\node[box,text width=43mm] (a) {Arithmetische Sicht\\Faktoren, Spuren, alle Skalen};
+\node[box,text width=43mm,right=24mm of a] (q) {Quantensicht\\Phasen, Kontexte, Register};
+\node[openbox,text width=104mm,below=15mm of a.south east,anchor=north] (m) {Gemeinsame Operationsrelationen und gemischte Antworten\\Wegphase ist ein endliches Beispiel; native Auswahl bleibt offen};
+\node[box,text width=104mm,below=12mm of m] (g) {Raumzeit und Makrophysik\\Nachbarschaft, Kausalität, stabile Dimension, universelle Kopplung};
+\draw[arr] (a.south)--(m.north west);\draw[arr] (q.south)--(m.north east);\draw[hyp] (m)--(g);
+\end{tikzpicture}
+\caption{Die stärkere Universalraum-Hypothese sitzt in den gemeinsamen Beziehungen. Der gestrichelte Übergang zur Raumzeit verlangt weiterhin eine echte Ableitung.}
+\end{figure}
+
+\Needspace{140pt}
+\section{Welche Puzzleteile jetzt enger gefasst sind}
+\begin{longtable}{L{37mm}L{60mm}L{51mm}}
+\toprule\textbf{Gewonnene Präzisierung}&\textbf{Konkretes Ergebnis}&\textbf{Nächste fehlende Bedingung}\\\midrule\endhead
+Logarithmische Skala&Multiplikative Additivität plus Monotonie erzwingen $c\log n$.&Native Begründung der Ordnung und Energieskala.\\
+Unbegrenzte Primfamilie&Endlich viele additive Grundtakte tragen nicht alle $\log p$.&Eine passende wachsende Familie oder reichere Dynamik.\\
+Arithmetik und Phase&Zwei Multiplikationswege können eine messbare Schleifenphase behalten.&Die Prim-/Pauli-Markierung aus der Quelle auswählen.\\
+Kontextualität&Das vorhandene Pauli-System besitzt den exakten Mermin-Widerspruch.&Physikalisch zugängliche Interventionen und Präparationen.\\
+Spektrum und Raum&Gleiche Eigenwerte können verschiedene lokale Verschränkung tragen.&Gemeinsame Algebra, Zustandszuordnung und lokale Antworten.\\
+Dimension&Eine skalierte Rückkehrfunktion liefert einen prüfbaren Dimensionsbegriff.&Native Größenfamilie mit stabilem Plateau und Ausbreitung.\\
+RH und Positivität&Positive Einzelobjekte erzwingen kein positives signiertes Gesamtobjekt.&Exakte Identifikation, gemischte Kontrolle, sämtliche Tests und Ränder.\\
+Experimenteller Zeta-Schatten&Kleine Rohamplitude kann allein aus wachsender Normierung folgen.&Kontrollierte Rückskalierung und vollständige Ressourcenrechnung.\\\bottomrule
+\end{longtable}
+
+Diese Fortsetzung schließt also mehrere kleine logische Lücken und liefert einen neuen endlichen Interferenztest. Sie schließt nicht die gesamte Theorie. Der aussichtsreichste nächste Schritt ist, für \emph{eine} native TFPT-Operationsfamilie die arithmetische Zusammensetzung und die kohärente Wegphase gemeinsam abzuleiten, anschließend die gemischte Antwort unabhängig zu berechnen und erst dann den Grenzwert auszubauen. Eine zusätzliche passende Zahl wäre weniger aussagekräftig als diese vollständig bestimmte Verbindung.

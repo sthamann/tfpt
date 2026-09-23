@@ -3,12 +3,15 @@ import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import sys
 import unittest
 from unittest.mock import patch
 
 import sympy as sp
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent))
+from record_portability import portable_source_record
 spec = importlib.util.spec_from_file_location("involution_checked", HERE/"checker.py")
 r = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(r)
@@ -91,7 +94,8 @@ class InvolutionTypes(unittest.TestCase):
         saved = json.loads((HERE/"validation.json").read_text())
         self.assertEqual(saved["checker_sha256"], hashlib.sha256((HERE/"checker.py").read_bytes()).hexdigest())
         self.assertEqual(saved["charged_sign_representation"], json.loads(json.dumps(self.charged)))
-        self.assertEqual(saved["Majorana_source"], self.source)
+        self.assertEqual(portable_source_record(saved["Majorana_source"]),
+                         portable_source_record(self.source))
         self.assertTrue(saved["scope"]["whole_16D_invertible_intertwiner_excluded"])
         for key in ("all_larger_or_infinite_field_embeddings_excluded",
                     "antiunitary_or_Bogoliubov_maps_excluded",

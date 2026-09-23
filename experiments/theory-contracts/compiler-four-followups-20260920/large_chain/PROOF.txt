@@ -1,0 +1,199 @@
+NATIVE PERIODIC PACKET GRAMMAR AND ITS CRITICAL COMPRESSION
+20 September 2026 | follow-up 4 | exact compression, not a full-model EFT
+
+1. THE CHANGE OF QUESTION
+
+The earlier one-wall core was not invariant and its folded linear crossing
+lay above a quadratic band minimum. This calculation does not reuse that
+identification. It includes every assignment of matter registers to incident
+sources, so native local moves can create and annihilate pairs of walls as
+well as transport them. The geometry is still chosen: an even simple ring of
+N>=4 matter registers and N sources. Couplings remain the same J,kappa,mu.
+
+2. ACTUAL STATES AND THE PHASE DICTIONARY
+
+Let sigma_v=+1 mean that matter v belongs to source edge v, and sigma_v=-1
+mean that it belongs to edge v-1 (indices modulo N). Edge e receives
+
+  n_e=1+(sigma_e-sigma_(e+1))/2 in {0,1,2}
+
+registers. Put its source and these assigned registers in the native packet
+
+  |P_n>=240^(-1/2) sum_alpha |alpha> |psi_alpha>^(tensor n).
+
+For n=0,1,2 these are exactly s,Phi,Omega. Every matter register belongs to
+one packet, so their product |Psi_sigma> is a valid normalized full-space
+vector. No middle register is copied. All assignments have total source
+quarter-phase K=N mod4. Unlike completing a single open-chain vacancy with
+Phi, pair creation on the ring does not change the conserved total charge.
+
+On the ring n0=n2=(N-n1)/2. Alternating sigma gives Omega,s,Omega,s,... .
+Equal neighbouring sigma gives a Phi source: a defect of the alternating
+packet order. Such defects occur in pairs for even N.
+
+3. THE BASIS IS ALMOST, BUT NOT EXACTLY, ORTHONORMAL
+
+Distinct individual phase strings are orthogonal. The only different
+assignments with the same phase string are sigma=all+ and sigma=all-, each
+with n_e=1 on every edge. Their overlap is a directed loop of N independent
+root overlaps. The native first moment E|psi><psi|=I4/4 gives
+
+  s_N=<Psi_all+|Psi_all->=4^(1-N).
+
+Thus the exact Gram matrix is
+
+  G=I+s_N F,
+  F=|all+><all-|+|all-><all+|.
+
+All eigenvalues are positive. The actual orthonormal compression is therefore
+G^(-1/2) K G^(-1/2), not K alone, where K_(sigma,tau)=<Psi_sigma|H|Psi_tau>.
+
+4. MATRIX ELEMENTS OF THE ORIGINAL HAMILTONIAN
+
+The native moments give the following diagonal energies per source:
+
+  packet         kappa L       J H_E
+  Omega              0            0
+  Phi           kappa/2         3J/2
+  s bridge      3kappa/4         3J/4
+
+For Phi, simultaneous source/bound-register reflection fixes the invariant
+pair and the other register sees mean r=I/2. For an s bridge, the endpoints
+belong to different packets and have independent I4/4 marginals; the native
+reflection average is (I+Swap)/5. The event expectation follows because a
+bound register has r eigenvalue -1, while an independent marginal has mean
+r expectation 1/2. Every V contributes diagonal energy mu.
+
+The diagonal sum is
+
+  E_ref + delta n1,
+  E_ref=3N(kappa+J)/8+mu N,  delta=(kappa+9J)/8.
+
+L and H_E preserve each source phase. Their only additional off-diagonal
+matrix element is between all+ and all-. Every L acts as 1/2 on these
+all-Phi states, so its sum has cross element kappa N s_N/2. For H_E this
+cross element is zero: at the two incident registers the bra has one bound
+root and the ket has the other; the two reflection factors each contribute
+-1 to the corresponding overlap, reproducing the identity term exactly.
+
+The nonconstant part of V transfers one unit of phase between adjacent
+sources. Reassigning one matter register gives a two-edge overlap loop:
+
+  <Psi_flipped|mu V|Psi_sigma>=-mu/(2*4)=-mu/8.
+
+This applies equally to wall transport and wall-pair creation/annihilation.
+There is one finite-ring correction. Reassigning N-1 registers all in the
+same direction closes a loop of length N with one V overlap. Its amplitude
+is -mu s_N/2. The only such links join a uniform assignment to the N states
+with one register still assigned as before. Let C be the symmetric adjacency
+matrix of these 2N unordered links. No other matrix elements survive.
+
+Consequently, with computational spin operators X_v,Z_v,
+
+  H_I=E_ref I+delta sum_e(1+Z_e Z_(e+1))/2-(mu/8)sum_v X_v,
+
+  K=H_I+s_N[(kappa N/2+mu N)F-(mu/2)C].                 (1)
+
+This is an exact native matrix-element identity for every even N>=4, not a
+Hamiltonian term chosen to obtain Ising behaviour. The checker independently
+contracts all overlaps for all pairs of assignments at N=4,6,8. Quarter-phase
+balance removes unbalanced graphs; each surviving graph is a directed loop
+evaluated with the native first moment. The all-N statement follows from
+classifying the changed-register intervals as just described.
+
+5. CONTROLLED RING CORRECTION; UNCONTROLLED COMPLEMENT
+
+The Gram correction and exceptional links vanish in operator norm. Using
+||F||=1, ||C||<=N, ||G^(-1/2)||=(1-s_N)^(-1/2), one obtains
+
+  ||G^(-1/2)KG^(-1/2)-H_I||
+    <= N s_N/(1-s_N) [kappa+3J/2+21mu/8].                (2)
+
+For example ||H_I||<=N[kappa/2+3J/2+9mu/8]; multiplying this by
+s_N/(1-s_N) bounds the Gram contribution. The remaining term is bounded by
+N s_N[kappa/2+3mu/2]/(1-s_N). Thus (2) holds at fixed couplings and tends
+to zero exponentially with N. It controls the COMPLETE packet compression,
+including its low eigenvalues, but says nothing yet about the orthogonal
+complement in the microscopic Hilbert space.
+
+That distinction is substantial. Consider a Neel assignment, with N/2 Omega
+packets and N/2 s bridges. Project source modules onto precisely these Omega
+and uniform modules. H_E on an s source has the same matter operator as L,
+(4I-Swap)/5, and it annihilates each Omega packet. In this module sector
+H0+J H_E therefore acts through bridges with coefficient kappa+J.
+
+Each bridge has swap mean1/4 and variance15/16, giving energy variance3/80.
+For N>=6 distinct bridges have zero covariance: if they meet one Omega pair,
+their other endpoints trace to independent I4/4; if disjoint this is immediate.
+N=4 is a separate two-packet loop with a small additional covariance.
+
+The entire packet span in this particular phase string contains only the
+original Neel vector. V changes phase strings and cannot cancel the residual
+just found. If P denotes the orthogonal projector onto the whole packet span,
+
+  ||(I-P)H|Psi_Neel>||^2 >= 3N(kappa+J)^2/160, N>=6.    (3)
+
+The exact N=4 coefficient is39/500 instead of3N/160. The permutation-trace
+checker evaluates the actual product density (I+Swap)/20 on each Omega pair
+for N=4,6,8,10,12, independently reproducing (3).
+
+Equation (3) refutes invariance of the bare assignment space. It does not
+exclude a dressed low-energy space or an Ising universality class. A norm of
+an extensive residual alone also cannot determine errors in intensive
+observables. What is missing is a separated complementary spectrum and a
+uniform elimination/control theorem for energies and responses near the
+candidate point. Neither (1) nor (2) supplies it.
+
+6. A GROUND-CRITICAL CANDIDATE, NOT THE OLD MIDBAND CROSSING
+
+After a staggered spin rotation, H_I is the standard ferromagnetic
+transverse-field Ising chain with
+
+  K_I=(kappa+9J)/16,   h=mu/8.
+
+The known exact Ising solution gives bulk excitation dispersion
+
+  epsilon(q)=2 sqrt(K_I^2+h^2-2 K_I h cos q).
+
+At h=K_I, equivalently
+
+  2mu=kappa+9J,                                         (4)
+
+the compression has gapless linear excitations epsilon(q)~2K_I|q| about its
+own thermodynamic ground state. Equation (2) shows that the native packet
+compression has the same limiting spectrum as this Ising family. This is
+different from folding a massive one-wall band and calling its middle a
+vacuum. The native operator sum_e(-1)^e(n_e-1)/N is represented exactly by
+sum_e(-1)^e Z_e/N: it detects the alternating packet order.
+
+The previous ray J=mu cannot satisfy (4) for kappa>0 and mu>=0. Even this
+restricted variational description therefore points away from that ray.
+An explicit positive test point is kappa=1, J=1/100, mu=109/200. Numerical
+diagonalization of the full packet compression at N=4,6,8,10,12 controls its
+Gram corrections and finite-size gap. These are labelled compression
+eigenvalues, never full-source eigenvalues. The exact Ising finite-ring gap
+at criticality is2K_I tan(pi/(4N)); N times the gap tends to pi K_I/2.
+
+The linear branch belongs at present to the compression only. No full-model
+critical point, full vacuum, physical speed of light, chirality, fermion
+statistics, three-dimensional space or gravitational sector follows. These
+coefficients use only native first/second moments shared by isotropic sources,
+so they also do not yet distinguish the special higher E8 structure.
+
+Primary source for the Ising solution:
+P. Pfeuty, The one-dimensional Ising model with a transverse field,
+Annals of Physics57 (1970),79-90, DOI10.1016/0003-4916(70)90270-8.
+https://www.math.ucdavis.edu/~bxn/pfeuty1970.pdf
+This known solution is used after deriving (1); it is not claimed as new.
+
+7. DECISION FOR THE FOUR FOLLOW-UPS
+
+There is now a concrete all-size variational grammar in which changing
+bindings naturally gives pair creation and an Ising critical candidate.
+The full native complement matters at order kappa+J and remains uneliminated.
+The finite four-source proof, the common-clock/current bridge, and the need
+to preserve distinct local observable algebras are therefore relevant to
+this candidate, not separate decorative checks. The next decisive step is
+to control the dressed packet family over the actual same-H vacuum and test
+its local phase response at fixed couplings near (4). Without that result,
+calling the Ising critical line the universal solution would be false.

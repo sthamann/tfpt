@@ -1,0 +1,96 @@
+\chapter{Was mit Universalraum gemeint ist}
+\label{ch:idee}
+\section{Kein zusätzlicher Behälter}
+Wenn wir gewöhnlich von Raum sprechen, denken wir an eine Bühne: Hier steht ein Tisch, dort fliegt ein Teilchen, und die Uhr läuft im Hintergrund. Die Universalraum-Idee dreht diese Reihenfolge um. Vielleicht sind zuerst Beziehungen und mögliche Veränderungen da. Eine Bühne mit Entfernungen und einer Uhr entsteht erst, wenn viele dieser Beziehungen ein beständiges Muster bilden.
+
+Ein gutes Bild ist ein Verkehrsnetz, bevor man eine Landkarte zeichnet. Man weiß, welche Station eine andere erreichen kann, wie viele Zwischenschritte nötig sind und welche Wege einander beeinflussen. Aus solchen Beziehungen lässt sich eine Karte rekonstruieren. Dafür muss nicht vorher eine Fläche existieren, auf die man die Stationen setzt. In der Physik wäre die Aufgabe allerdings wesentlich anspruchsvoller: Die Verbindungen müssten komplexe Phasen, Wahrscheinlichkeiten, Teilchensymmetrien und eine gemeinsame kausale Ordnung tragen.
+
+Das Wort \emph{universal} ist deshalb zunächst ein Anspruch an die gemeinsame Beschreibung. Es bedeutet weder, dass jeder beliebige mathematische Raum darin schon enthalten ist, noch, dass alle denkbaren Vorgänge technisch steuerbar wären. Der Kandidat soll verschiedene heute getrennte Ansichten aus derselben Prozessstruktur erklären.
+
+\section{Die fünf Bestandteile}
+Eine ausreichend konkrete Fassung benötigt mindestens:
+\begin{enumerate}
+\item \textbf{Zustände:} Was ist gegeben, einschließlich relevanter Korrelationen?
+\item \textbf{Operationen:} Welche Veränderungen sind erlaubt?
+\item \textbf{Zusammensetzung:} Wie dürfen Vorgänge hintereinander und nebeneinander verbunden werden?
+\item \textbf{Aufzeichnungen:} Welche Spuren bleiben erhalten und dürfen später erneut benutzt werden?
+\item \textbf{Auslesung:} Welche Ergebnisse sind mit welchen Wahrscheinlichkeiten beobachtbar?
+\end{enumerate}
+In einer quantenmechanischen Ausführung können Zustände und Aufzeichnungen gemeinsam in einer größeren Dichtematrix stehen. Ein Prozessraum ist deshalb kein Gegenbegriff zu jedem Zustandsraum. Der entscheidende Unterschied ist, ob der gerade betrachtete Zustand wirklich alle für spätere Experimente nötigen Informationen enthält. \src{S01, §9; S05, §11; S06}
+
+\begin{figure}[H]\centering
+\begin{tikzpicture}
+\node[box,text width=115mm] (u) at (4.8,0) {Gemeinsamer Prozess\\Zustand + Operationen + Zusammensetzung + Aufzeichnungen};
+\node[box,text width=32mm] (a) at (0,-2) {Algebraische Ansicht\\Symmetrien, Ladungen};
+\node[box,text width=32mm] (b) at (4.8,-2) {Statistische Ansicht\\Häufigkeiten, Dichtematrix};
+\node[openbox,text width=32mm] (c) at (9.6,-2) {Physikalische Ansicht\\Raumzeit, Felder};
+\draw[arr] (u.south) -- (a.north);
+\draw[arr] (u.south) -- (b.north);
+\draw[hyp] (u.south) -- (c.north);
+\end{tikzpicture}
+\caption{Ein Objekt kann mehrere Ansichten besitzen. Durchgezogene Pfeile stehen hier für konkrete endliche Auslesungen; der gestrichelte Pfeil zur vollständigen Physik ist das offene Programm. Die Grafik ist eine Landkarte der Behauptungen, keine Abbildung eines beobachteten Universalraums.}
+\end{figure}
+
+\section{Wann zwei Beschreibungen wirklich dasselbe sagen}
+Zwei Uhren können jetzt beide zwölf anzeigen und trotzdem verschieden weiterlaufen. Eine ist aufgezogen, die andere steht kurz vor dem Stillstand. Wer nur das Zifferblatt betrachtet, sieht den Unterschied noch nicht. Ein späterer Blick unterscheidet sie.
+
+Die entsprechende präzise Regel lautet:
+\begin{equation}
+h\sim h'\quad\Longleftrightarrow\quad
+p(f\mid h)=p(f\mid h')\ \text{für jede erlaubte zukünftige Eingriffsfolge }f.
+\label{eq:op}
+\end{equation}
+$h$ und $h'$ stehen für Zustände oder Vorgeschichten. Man darf sie erst dann zusammenfassen, wenn kein zugelassenes Zukunftsexperiment sie unterscheiden kann. Damit ist \emph{minimal} keine Frage nach der schönsten Zahl, sondern nach dem benötigten Informationsumfang für eine genau festgelegte Klasse von Experimenten.
+
+Wird später ein zusätzlicher Zugriff auf alte Register erlaubt, können vorher gleiche Beschreibungen auseinanderfallen. Das ist keine Inkonsistenz. Man hat sein Experimentiervermögen erweitert. So wie zwei verschlossene Maschinen gleich aussehen können, bis man sie öffnen darf.
+
+\section{TFPT als Grammatik und als Übersetzung}
+\input{revisions/01_idea}
+
+TFPT liefert eine reichhaltige Grammatik: Träger, Darstellungen, Gitter, markierte Symmetrien, Projektoren und kurze wiederverwendete Zahlenformeln. Die Metapher vom \emph{Compiler} meint eine Übersetzung zwischen diesen Beschreibungen. Sie sagt nicht, dass bereits ein kosmisches Computerprogramm identifiziert ist.
+
+Die beiden Forschungsrichtungen sind deshalb miteinander vereinbar:
+\begin{align}
+(\text{TFPT-Daten},\theta)&\longmapsto U_{\theta},\label{eq:vorwaerts}\\
+U&\overset{\mathcal P}{\longmapsto}\text{TFPT-Auslesung}.
+\end{align}
+$\theta$ sammelt die noch zusätzlichen Angaben: Kopplungen, Zustand, Registerprotokoll, Zeit- und Grenzwertstruktur. Die erste Richtung baut eine Ausführung. Die zweite liest ihre Struktur aus. Eine echte Umkehrung verlangt, dass die Auslesung ausreichend vollständig ist. Das ist für die bislang betrachteten kleinen Schatten gerade nicht der Fall.
+
+\begin{grenze}{Die Fixpunkt-Idee bleibt eine Hypothese}
+Die Formel $\mathcal P\mathcal R(T)\simeq T$ bedeutet: Eine Rekonstruktion liefert die vorgegebenen Daten zurück. Das ist ein sinnvoller Konsistenztest. Sie beweist weder die Eindeutigkeit der Rekonstruktion noch ihre physikalische Auswahl. Mehrere sehr unterschiedliche Maschinen können dieselbe Testausgabe erzeugen. Ein Fixpunkt kann außerdem existieren, ohne dynamisch erreicht zu werden.
+\end{grenze}
+
+\chapter{Wie die Idee entstanden ist}
+\section{Vom Wiedererkennen zur gemeinsamen Ursache}
+Die Anhänge zeigen keine einzige plötzliche Entdeckung, sondern eine Folge von Verschiebungen der Frage. Zuerst fällt auf, dass kleine geometrische und algebraische Daten in verschiedenen Rechnungen wiederkehren. Der Fünferträger führt zu einem 16-dimensionalen Spinor; die passenden Gitterfaktoren führen zu $E_8$; ein komplexer Viererträger zeigt 60 besondere Strahlen. Clocks, Ladungszuordnungen und Flavor-Formeln verwenden Teile derselben Architektur.
+
+Das motiviert die erste Vermutung: Vielleicht sind diese Ansichten keine voneinander unabhängigen Bausteine, sondern Übersetzungen eines gemeinsamen Objekts. Der Hermitesche-$2\times2$-Block liefert dafür ein besonders greifbares Beispiel: Seine Determinante sieht exakt wie ein Minkowski-Abstand aus. Aus einer wiederkehrenden Struktur wird so die Frage nach einem gemeinsamen Träger. \src{S09, Kap. 2--8; S10}
+
+\section{Warum Spektren und Einzelbilder nicht genügten}
+Die älteren, in S09 zusammengefassten Untersuchungen fanden mehrere Räume, die man nicht einfach gleichsetzen darf: eine Kommutantenalgebra, einen Majorana-/Fockraum, einen festen Teilchensektor, eine verdoppelte Familienbeschreibung und eingeschränkte Kanalmodelle. Manche lokalen Ansichten ließen verschiedene gemeinsame Dynamiken zu. Andere Tests konnten unter engeren Voraussetzungen ausgewählte Zustände bestimmen.
+
+Das war der entscheidende methodische Schritt: \textbf{Die Frage wurde von „Welcher Raum hat passende Zahlen?“ zu „Welche Unterschiede können spätere Vorgänge noch sichtbar machen?“ verschoben.} Ein Spektrum verliert Eigenvektoren, eine Norm verliert Phase und Richtung, eine Marginale verliert Korrelationen. Deshalb musste der gemeinsame Träger auch die erlaubte Fortsetzung und ihre Aufzeichnungen umfassen.
+
+\section{Die dokumentierte Entwicklung}
+\begin{longtable}{L{30mm}L{55mm}L{65mm}}
+\toprule
+\textbf{Etappe}&\textbf{Erkenntnis}&\textbf{Neue Frage}\\\midrule\endhead
+Vorarbeiten, in S09 rückblickend beschrieben&Mehrere algebraische Ansichten, Lorentzkegel, verborgene Richtungen, lokale und gemeinsame Kanäle.&Welche Informationen gehen beim Auslesen verloren?\\
+13. September: Compiler-Manuskript S09&60 Strahlen, 15 Kontexte, zwei Schatten desselben Prozesses; explizite Vormessung mit Register.&Wer wählt Kreuzkopplung, Kontextgewichte und Registerversorgung?\\
+Anschluss S08 und Inversion S07&Vierträgerzelle, Tick-Auslesung, Kettenhinweise; spätere Registerantworten unterscheiden gleiche Einzelbilder.&Ist TFPT eine unvollständige Auslesung eines größeren Prozesses?\\
+Gesamtsynthese S04&Beide Richtungen werden zu einer Fixpunkt-Idee verbunden.&Welche Übergänge sind bewiesen und welche nur als Herkunft interpretiert?\\
+Rekonstruktionen S05/S06 und Fortsetzung S01&Korrekte kleinere Quotienten, Grenzen der Zellhülle, Vermittler, alternative Uhren, Zweizellenformel.&Kann dieselbe Quelle Zustand, Wechselwirkung und Auslesung bestimmen?\\
+Gemeinsamer Ursprung S03&Kopplung bestimmt Energie, Verschränkung und ein dynamisches Signal im selben Modell.&Wie wird daraus lokale Ausbreitung und ein gemeinsamer physikalischer Grenzprozess?\\
+Präparation S02&Explizite Schaltung, Erfolgswahrscheinlichkeiten und Mehrzeitecho.&Woher kommen Nicht-Stabilizer-Ressource und Registerprotokoll?\\
+Fünf Fugen S11&Clebsch-Graph, Sektortrennung der Aufzeichnung, $\Z_4$-Erweiterung.&Welche neuen Auswahlbehauptungen halten genauer Prüfung stand?\\\bottomrule
+\end{longtable}
+Die Reihenfolge beschreibt die inhaltlichen Abhängigkeiten. Mehrere Texte entstanden am selben Tag; ein minutengenaues Forschungsprotokoll lässt sich daraus nicht ableiten.
+
+\section{Was von der anschaulichen Ursprungserzählung bleibt}
+Der eingefügte Gesprächstext spricht von einem Regelwerk mit Logbuch und von Raum und Materie als Mustern seiner Spuren. Das trifft die Forschungsintuition. Die Formulierung „TFPT ist die Grammatik, der Universalraum die Ausführung“ ist als Einstieg hilfreich.
+
+Zwei Zuspitzungen brauchen jedoch eine genaue Grenze. Erstens ist nicht belegt, dass bereits \emph{ein einziger} tieferer Prozess gefunden wurde. Zweitens folgt aus endlichen Gedächtniszeugen noch nicht, dass Raum, Zeit oder Gravitation aus diesem Prozess hergeleitet sind. Der tragende Fortschritt ist die präzisere Frage nach der gemeinsamen Ursache und eine Reihe kleiner, nachvollziehbarer Antworten.
+
+\begin{bild}{Warum die Idee trotzdem weiterträgt}
+Anfangs hatten wir mehrere passende Ansichten eines möglichen Bauplans. Jetzt können wir an einzelnen Stellen sagen, welche Verbindung nötig ist, welches Gedächtnis ein späteres Ergebnis ändert und welche Messung zwei Kandidaten unterscheidet. Die Idee ist dadurch weniger unbestimmt geworden. Ihr großer physikalischer Anspruch bleibt an konkrete nächste Nachweise gebunden.
+\end{bild}

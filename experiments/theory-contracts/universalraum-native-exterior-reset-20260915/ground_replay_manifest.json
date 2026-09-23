@@ -1,0 +1,171 @@
+{
+  "status": "PASS",
+  "scope": "declared native Fock H, no chemical-potential term",
+  "source_pins": {
+    "work/many_pair/general_identities.py": "32f3875e2130c4dd005a800d4f7afc30e3a6264f2833214ec9f27882bb950b14",
+    "work/many_pair/full_n4.py": "978f71369700b621d2af96d69eff433e8b899d249ccc3f346b1ba25142545dee",
+    "work/many_pair/two_pairs.py": "468fcc7c36a6567691a5fcd5a58bad24b5371db28d6bf747150a76c95aa2db00",
+    "work/many_pair/vacuum_moments.cpp": "2d30992cadb4ca7d8338cfd8d1194fd72cdabc2a948817de6f37a413cb0c8f17",
+    "work/many_pair/vacuum_sector.py": "437f9a53ac3b755ba390e13804a1e46a9a43c189bf6a59b741bb126d8da03552",
+    "work/many_pair/weak_coupling.py": "794554393c495ba395f34e6a58d490da821408d4f8effbc394653cd4cec4e80a",
+    "work/many_pair/moment_trace.py": "16d5eab3440f48c41ec8d05b32a51d68b8448c347ef908faaff6b176bde713f3",
+    "work/many_pair/pair_channels.txt": "ba3b7f773098759285c8c676c75c570e5535cfaea9535b7710b67a4b55a3ac76",
+    "outputs/simple_core/spinor_tensors.npz": "3f00a0892157a691e4ef26920c3702772c7bf76a250fad98ff04a079bb64b763"
+  },
+  "commands": [
+    {
+      "label": "compile",
+      "args": [
+        "/usr/bin/clang++",
+        "-std=c++20",
+        "-O3",
+        "work/many_pair/vacuum_moments.cpp",
+        "-o",
+        "work/many_pair/vacuum_moments"
+      ],
+      "exit_code": 0,
+      "seconds": 1.433
+    },
+    {
+      "label": "moment_2",
+      "args": [
+        "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/theory-contracts/universalraum-native-exterior-reset-20260915/ground_replay/work/many_pair/vacuum_moments",
+        "2"
+      ],
+      "exit_code": 0,
+      "seconds": 0.291
+    },
+    {
+      "label": "moment_3",
+      "args": [
+        "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/theory-contracts/universalraum-native-exterior-reset-20260915/ground_replay/work/many_pair/vacuum_moments",
+        "3"
+      ],
+      "exit_code": 0,
+      "seconds": 0.03
+    },
+    {
+      "label": "moment_4",
+      "args": [
+        "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/theory-contracts/universalraum-native-exterior-reset-20260915/ground_replay/work/many_pair/vacuum_moments",
+        "4"
+      ],
+      "exit_code": 0,
+      "seconds": 3.399
+    },
+    {
+      "label": "general_identities_normal",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "work/many_pair/general_identities.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.643
+    },
+    {
+      "label": "general_identities_optimized",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-OO",
+        "work/many_pair/general_identities.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.64
+    },
+    {
+      "label": "vacuum_sector_normal",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "work/many_pair/vacuum_sector.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.898
+    },
+    {
+      "label": "vacuum_sector_optimized",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-OO",
+        "work/many_pair/vacuum_sector.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.876
+    },
+    {
+      "label": "weak_coupling_normal",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "work/many_pair/weak_coupling.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.294
+    },
+    {
+      "label": "weak_coupling_optimized",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-OO",
+        "work/many_pair/weak_coupling.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.28
+    },
+    {
+      "label": "moment_trace_normal",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "work/many_pair/moment_trace.py"
+      ],
+      "exit_code": 0,
+      "seconds": 14.488
+    },
+    {
+      "label": "moment_trace_optimized",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-OO",
+        "work/many_pair/moment_trace.py"
+      ],
+      "exit_code": 0,
+      "seconds": 14.471
+    }
+  ],
+  "fresh_moment_enumeration": [
+    {
+      "order": 2,
+      "boson_configurations": 1830,
+      "squared_norm": 439680,
+      "sha256": "c174c4701b7bf9fb63c2259fdfef0ddea3cea433665c0223cd6697f632e53a0d"
+    },
+    {
+      "order": 3,
+      "boson_configurations": 37820,
+      "squared_norm": 575078400,
+      "sha256": "7d4fbf4f6e56470361ec0a5e6c918ab5416088b18ce2859ed0235ae01e40c0b6"
+    },
+    {
+      "order": 4,
+      "boson_configurations": 595665,
+      "squared_norm": 952296652800,
+      "sha256": "8c5a3cff4cb5468d27534e969702a11eff264a856a2b309d30af18b36ba7c332"
+    }
+  ],
+  "reports": {
+    "general_identities": {
+      "normal_optimized_sha256": "eef9a175db02bac0cf1c3052b8ff5beb8fbba9226920e05d27b348ef5f34710a",
+      "byte_identical": true
+    },
+    "vacuum_sector": {
+      "normal_optimized_sha256": "62430175cf40dc54a9b13aae95b62a1f09d80c1d402fb326183381adcf495b78",
+      "byte_identical": true
+    },
+    "weak_coupling": {
+      "normal_optimized_sha256": "e1cd19988edd33c6799ec6b80f0a52d56e1a532bfe1b56870623a4efaf06bd0c",
+      "byte_identical": true
+    },
+    "moment_trace": {
+      "normal_optimized_sha256": "8c928e0d48d33828eb3fff65d3b26df5efcec6c7ba5dfa85b5d7ffc9df7d52e7",
+      "byte_identical": true
+    }
+  }
+}

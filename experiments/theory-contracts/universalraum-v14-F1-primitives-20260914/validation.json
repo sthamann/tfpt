@@ -1,0 +1,310 @@
+{
+  "K_B7": {
+    "T_row_weights": {
+      "0": 47,
+      "1/14": 12,
+      "1/7": 1
+    },
+    "cost": {
+      "attempts": 1,
+      "bits": 0,
+      "gates": 0,
+      "note": "classical context kernel; one application, no quantum pulse",
+      "time": 0
+    },
+    "definition": "K = B/7 on 15 contexts; T = C^t K C/4 + (3/7) Pf on 60 rays",
+    "selected_point": {
+      "a": "1/7",
+      "b": "6/7",
+      "c": "0"
+    },
+    "source_derived": false
+  },
+  "Q_C_U_C": {
+    "Q_C": {
+      "cost": {
+        "attempts": 1,
+        "bits": 0,
+        "gates": 4,
+        "note": "four controlled reflections; 4-level register in pointer basis",
+        "time": 0
+      },
+      "definition": "I - 2 sum_j |j><j| \u2297 |b_j><b_j|",
+      "spectrum": {
+        "+1": 12,
+        "-1": 4
+      }
+    },
+    "U_C": {
+      "U_squared": "I",
+      "contexts": 15,
+      "cost": {
+        "attempts": 1,
+        "bits": 0,
+        "gates": 6,
+        "note": "A + Q_C + W; one 4-level register, no extra time pulse",
+        "time": 0
+      },
+      "definition": "(W \u2297 I) Q_C (A \u2297 I), A|0>=|+>, W = H^{\u22972} minus |0> phase"
+    }
+  },
+  "T1_T8_closed": [],
+  "allowed_input": "chi (two singlets, overlap 1/6)",
+  "checks": 399,
+  "clock": {
+    "cost": {
+      "attempts": 1,
+      "bits": 0,
+      "gates": 1,
+      "note": "one naked 3-cycle tick; time in clock steps, not \u0127/\u0394",
+      "time": 1
+    },
+    "definition": "C: 0->1->2->0, 3->3; permutation of the computational 4-level",
+    "idle_state": 3,
+    "order": 3
+  },
+  "error_budget": {
+    "amplitude_budget": 0.001,
+    "coefficient": 12691.31853599999,
+    "deltaH_plus_deltaE0_over_Delta": 7.879401948374521e-08,
+    "gate_error_note": "H, Q, Ures, measure, reset errors are a separate budget",
+    "infidelity_target": 1e-06,
+    "other_gate_errors_included": false,
+    "published_deltaH_plus_deltaE0_over_Delta": 7.88e-08,
+    "remaining_gates_assumed_ideal": true,
+    "state_error_formula": "4 \u03a3\u03c4j (\u03b4H+\u03b4E0)/\u0127",
+    "sum_tau": 3172.8296339999974,
+    "time_error_note": "phase error \u03a3 |\u03b4\u03c4j| (Ej-E0)/\u0127 is a separate budget",
+    "time_errors_included": false
+  },
+  "finite_gate_synthesis_claimed": false,
+  "hidden_target_projector_used_as_resource": false,
+  "inherited_source_prefix_checks": 1073,
+  "native_controls_derived": false,
+  "preparation": {
+    "chi_overlap": 0.1666666666666667,
+    "conditional_fresh": 0.5161051185094034,
+    "conditional_kept": 0.9714919877824064,
+    "input": "two elementary pair singlets chi; not Omega, not P0",
+    "preparation_probability": 0.16191533129706945,
+    "quotient_fresh_over_kept": "17/32",
+    "reset_attempts": 6.1760674050394835,
+    "unconditional_fresh": 0.08356533124756335,
+    "unconditional_kept": 0.15729944705423687,
+    "w": 0.9856429311786321
+  },
+  "primitives": [
+    {
+      "T_row_weights": {
+        "0": 47,
+        "1/14": 12,
+        "1/7": 1
+      },
+      "cost": {
+        "attempts": 1,
+        "bits": 0,
+        "gates": 0,
+        "note": "classical context kernel; one application, no quantum pulse",
+        "time": 0
+      },
+      "definition": "K = B/7 on 15 contexts; T = C^t K C/4 + (3/7) Pf on 60 rays",
+      "id": "K_B7",
+      "name": "Kontextwahl K=B/7",
+      "resource": true,
+      "selected_point": {
+        "a": "1/7",
+        "b": "6/7",
+        "c": "0"
+      },
+      "source_derived": false
+    },
+    {
+      "cost": {
+        "attempts": 1,
+        "bits": 0,
+        "gates": 4,
+        "note": "four controlled reflections; 4-level register in pointer basis",
+        "time": 0
+      },
+      "definition": "I - 2 sum_j |j><j| \u2297 |b_j><b_j|",
+      "id": "Q_C",
+      "name": "Q_C-Kopplung",
+      "resource": true,
+      "spectrum": {
+        "+1": 12,
+        "-1": 4
+      }
+    },
+    {
+      "U_squared": "I",
+      "contexts": 15,
+      "cost": {
+        "attempts": 1,
+        "bits": 0,
+        "gates": 6,
+        "note": "A + Q_C + W; one 4-level register, no extra time pulse",
+        "time": 0
+      },
+      "definition": "(W \u2297 I) Q_C (A \u2297 I), A|0>=|+>, W = H^{\u22972} minus |0> phase",
+      "id": "U_C",
+      "name": "U_C-Vormessung",
+      "resource": true
+    },
+    {
+      "cost": {
+        "attempts": 1,
+        "bits": 0,
+        "gates": 1,
+        "note": "one naked 3-cycle tick; time in clock steps, not \u0127/\u0394",
+        "time": 1
+      },
+      "definition": "C: 0->1->2->0, 3->3; permutation of the computational 4-level",
+      "id": "C",
+      "idle_state": 3,
+      "name": "nackte Ticks C (3-Zykel)",
+      "order": 3,
+      "resource": true
+    },
+    {
+      "cost": {
+        "attempts": 1,
+        "bits": 0,
+        "gates": 1,
+        "note": "physical full transfer; no extra quarter phases",
+        "time": "one resonant pulse (not a free spectral projector)"
+      },
+      "definition": "[[P_+, -i W^dagger], [-i W, 0]] on (C^4\u2297C^4) \u2295 C^6",
+      "id": "Ures",
+      "involution": false,
+      "name": "resonanter Record Ures",
+      "resource": true
+    },
+    {
+      "cost": {
+        "attempts": 1,
+        "bits": 1,
+        "gates": 1,
+        "note": "one occupation-controlled X; 1 pointer bit",
+        "time": 0
+      },
+      "definition": "I_16\u2297I_2 \u2295 I_6\u2297X  (copy mediator occupation into a bit)",
+      "id": "Q",
+      "name": "Belegungsabfrage Q",
+      "resource": true
+    },
+    {
+      "cost": {
+        "attempts": 1,
+        "bits": 1,
+        "gates": 1,
+        "note": "one controlled evolution; control bit not consumed",
+        "time": "\u03c4"
+      },
+      "definition": "|0><0|\u2297I + |1><1|\u2297exp(-i \u03c4 H/\u0127)",
+      "id": "c_exp",
+      "name": "controlled-exp(-i \u03c4 H/\u0127)",
+      "resource": true
+    },
+    {
+      "cost": {
+        "attempts": 1,
+        "bits": 1,
+        "gates": 3,
+        "note": "1 measured ancilla bit consumed per factor",
+        "time": "\u03c4 + 2 H"
+      },
+      "definition": "H; controlled-U; H; measure; accept 0 \u21d2 Kraus (I+U)/2",
+      "id": "Hadamard",
+      "name": "Hadamard-Test",
+      "resource": true
+    },
+    {
+      "cost": {
+        "attempts": 1,
+        "bits": 2,
+        "gates": 2,
+        "note": "one 4-level measure (2 classical bits) + one source Pauli",
+        "time": 0
+      },
+      "definition": "M_x = X_(a xor x) |x><x| = |a><x|; sum_x M_x^dagger M_x = I",
+      "id": "measure_reset",
+      "name": "Messung+Reset",
+      "resource": true
+    },
+    {
+      "cost": {
+        "attempts": 1,
+        "bits": 1,
+        "gates": 1,
+        "note": "one initialized unused bit",
+        "time": 0
+      },
+      "definition": "fresh |0> or measured classical bits as in measure_reset / measured_bit",
+      "id": "fresh_measured_bits",
+      "name": "frische/gemessene Bits",
+      "resource": true
+    }
+  ],
+  "protocol_costs": {
+    "Hadamard_tests_start_plus_end": 26,
+    "additional": "record pulses (Ures, Q) and reset attempts on top",
+    "controlled_H_calls_one_filter": 13,
+    "controlled_H_calls_start_plus_end": 26,
+    "measured_bits_one_filter": 13,
+    "measured_bits_start_plus_end": 26,
+    "occupation_heralds": 2,
+    "time_one_filter": 3172.8296339999974,
+    "time_start_plus_end": 6345.659267999995
+  },
+  "published": {
+    "deltaH_plus_deltaE0_over_Delta": 7.88e-08,
+    "fresh_17_w4_over_192": 0.08356533,
+    "fresh_over_kept": "17/32",
+    "kept_w4_over_6": 0.15729945,
+    "prep_w2_over_6": 0.16191533,
+    "reset_attempts": 6.1761,
+    "start_plus_end_controlled_H": 26,
+    "start_plus_end_time": 6345.659268,
+    "sum_tau_hbar_over_Delta": 3172.829634,
+    "w": 0.9856429312
+  },
+  "record": {
+    "Q": {
+      "cost": {
+        "attempts": 1,
+        "bits": 1,
+        "gates": 1,
+        "note": "one occupation-controlled X; 1 pointer bit",
+        "time": 0
+      },
+      "definition": "I_16\u2297I_2 \u2295 I_6\u2297X  (copy mediator occupation into a bit)"
+    },
+    "Ures": {
+      "cost": {
+        "attempts": 1,
+        "bits": 0,
+        "gates": 1,
+        "note": "physical full transfer; no extra quarter phases",
+        "time": "one resonant pulse (not a free spectral projector)"
+      },
+      "definition": "[[P_+, -i W^dagger], [-i W, 0]] on (C^4\u2297C^4) \u2295 C^6",
+      "involution": false
+    },
+    "quarter_phases_needed_for_U0_involution": true,
+    "quarter_phases_needed_for_record": false,
+    "record_identity": "Ures^dagger Q Ures = (P_+\u2297I + P_-\u2297X) \u2295 I_12"
+  },
+  "scope": "lab steps reduce onto a frozen primitive list with explicit costs; primitives themselves are not derived from P1/P2",
+  "star_filter": {
+    "Aj_definition": "(I + exp(-i \u03c4j (H-E0)/\u0127))/2,  \u03c4j = \u03c0 \u0127 / (Ej - E0)",
+    "dimension": 544,
+    "equals_P0_dressed": true,
+    "n_factors": 13,
+    "published_sum_tau": 3172.829634,
+    "six_factor_equals_projector": false,
+    "six_factor_max_leftover": 0.15522820139741864,
+    "sum_tau_hbar_over_Delta": 3172.8296339999974
+  },
+  "status": "PASS",
+  "verdict": "consistent"
+}

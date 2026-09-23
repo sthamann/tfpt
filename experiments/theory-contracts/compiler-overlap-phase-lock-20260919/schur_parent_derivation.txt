@@ -1,0 +1,61 @@
+INDEPENDENT PARENT DERIVATION: full-space strong-lock uniqueness
+The pure-permutation model is assumed; kappa>0,J>=0,lambda=mu/kappa,j=J/kappa.
+All norms below are operator norms. Full space dimension 240^2*4^3.
+
+H/kappa=lambda V+A, A=j(HE1+HE2)+L1+L2>=0, ||A||<=4j+4.
+P projects onto equal full source roots, retaining all64 matter states for
+each root; Q=I-P. Off-lock V>=Q/2. HE is source-diagonal and has no P-Q
+block. Each L has off-diagonal block norm<=1, so B=PAQ has ||B||<=2.
+
+For 0<=E<=3/2 and lambda>=6, QHQ-E>=lambda/2-3/2>=lambda/4.
+Resolvent identity gives first Schur complement
+
+ S1(E)=PAP-E-Dfull/lambda+R1(E),
+ Dfull=B(QVQ)^-1 Bdagger, ||Dfull||<=8,
+ ||R1(E)|| <= (128j+176)/lambda^2.
+
+Indeed inverse norms are 2/lambda and4/lambda, ||QAQ-E||<=4j+11/2,
+and ||B||^2<=4, hence4*2*4*(4j+11/2)=128j+176.
+
+The separately checked leading matter block PAP has ground energy3/2 with
+one aligned vector per root and gap>=1/6 for every j>=0. Denote its rank240
+ground projection P0 and P1=P-P0. Its mixing from Dfull and R1 is at most
+8/lambda+(128j+176)/lambda^2 <= 17/(2lambda)
+provided lambda>=1000(j+1), since then (128j+176)/lambda<=1/2.
+Also lambda>=102, so P1 S1(E) P1>=1/12 and its inverse norm<=12.
+A second Schur complement yields
+
+ S2(E)=(3/2-E)I240-D/lambda+R(E),
+ D=P0 Dfull P0,
+ ||R(E)|| <= [(128j+176)+12*(17/2)^2]/lambda^2
+           = (1043+128j)/lambda^2
+           <= (1100+128j)/lambda^2 = eps.
+
+Thus the report's stated rest bound follows with room to spare. No formal
+asymptotic truncation is used to infer the finite-lambda statement.
+
+The independent native calculation gives d0=216/3600=3/50 simple,
+d1=186/3600=31/600 next, and d0-d1=1/120. Put
+ e0=3/2-d0/lambda, e1=3/2-d1/lambda.
+
+Both eliminated Schur blocks are strictly positive throughout the relevant
+energy interval. Congruence preserves inertia: the number of full H
+levels below a trial energy equals the number of negative eigenvalues of
+S2(E). At the midpoint of e0 and e1, ||R||<=eps< (e1-e0)/2 forces exactly
+one negative eigenvalue. This proves a unique full-space ground level,
+including multiplicity, rather than just one approximate eigenvector.
+The same inertia argument and norm bound give
+ E0<=e0+eps and E1>=e1-eps, so
+ gap(H/kappa)>=1/(120lambda)-2eps.
+
+For lambda>=10^6(j+1),
+ lambda -480(1100+128j) >=472000+938560j>0,
+so 2eps<=1/(240lambda), and
+
+ gap(H)>=kappa^2/(240mu)>0.
+
+Limits: The actual native D and leading PAP must be verified, and are checked
+independently in this audit. This proof concerns only the explicitly chosen
+source-ket Hilbert model, potential and local operators. It neither derives
+these from P1/P2 nor preserves the proof automatically under E8 current lifts.
+The separate moderate-coupling numerical eigenvalues are not used here.

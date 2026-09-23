@@ -1,0 +1,774 @@
+{
+  "RH_proved": false,
+  "adapter_log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RuleAdapters.log",
+  "adapter_log_sha256": "5117c249cc8d19e8da9ab9ecc41105ff23b0de2a8a6cbb0912d368395e40edb7",
+  "adapter_sha256": "671c26d18fc3c4a18471b42ea5effadb3a7b78c7dbbeb4c48a823f02705bbb96",
+  "adapter_source": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RuleAdapters.lean",
+  "audits": {
+    "RH.fullWeil_separates_offCritical_zeros": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext",
+        "sorryAx"
+      ],
+      "name": "RH.fullWeil_separates_offCritical_zeros",
+      "standard_only": false,
+      "type": "RH.FullWeilSeparatesOffCriticalZeros"
+    },
+    "RH.gabor_primeSide_rational_criterion_iff_rh": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "name": "RH.gabor_primeSide_rational_criterion_iff_rh",
+      "standard_only": true,
+      "type": "(∀ (a ω : ℚ) (ha : 0 < ↑a),\n    0 ≤\n      RH.gaborPoleSide (RH.pureGaborTest (↑a) (↑ω) ha) - RH.gaborPrimeComb (RH.pureGaborTest (↑a) (↑ω) ha) +\n        RH.gaborArchSide (RH.pureGaborTest (↑a) (↑ω) ha)) ↔\n  RiemannHypothesis"
+    },
+    "RH.linearIndependent_log_primes": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "name": "RH.linearIndependent_log_primes",
+      "standard_only": true,
+      "type": "LinearIndependent ℚ fun p => Real.log ↑↑p"
+    },
+    "RH.log_ratio_irrational": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "name": "RH.log_ratio_irrational",
+      "standard_only": true,
+      "type": "∀ (p q : ℕ), Nat.Prime p → Nat.Prime q → p ≠ q → Irrational (Real.log ↑p / Real.log ↑q)"
+    },
+    "RH.lstar_canonical": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext",
+        "sorryAx"
+      ],
+      "name": "RH.lstar_canonical",
+      "standard_only": false,
+      "type": "∀ (w : RH.VonMangoldtWindow), RH.CanonicalWindow w → RH.LStar w"
+    },
+    "RH.mainWindow_iff_builtFromPrimeSource": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext",
+        "sorryAx"
+      ],
+      "name": "RH.mainWindow_iff_builtFromPrimeSource",
+      "standard_only": false,
+      "type": "∀ (w : RH.VonMangoldtWindow),\n  RH.MainWindow w ↔ ∃ s, RH.SourceExact s ∧ RH.RepresentsWindow w (RH.buildPrimeWindow s) s.mesh"
+    },
+    "RH.pair_terminal_dictionary": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext",
+        "sorryAx"
+      ],
+      "name": "RH.pair_terminal_dictionary",
+      "standard_only": false,
+      "type": "∀ (w : RH.VonMangoldtWindow), RH.CanonicalWindow w → RH.PairBound.terminalDrive w ^ 2 = 5 / 7 * w.q"
+    },
+    "RH.posDef_sub_rankOne_iff": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "name": "RH.posDef_sub_rankOne_iff",
+      "standard_only": true,
+      "type": "∀ {n : Type u_1} [inst : Fintype n] [inst_1 : DecidableEq n] {H : Matrix n n ℝ},\n  H.PosDef → ∀ (ℓ : n → ℝ), (H - Matrix.vecMulVec ℓ ℓ).PosDef ↔ ℓ ⬝ᵥ H⁻¹.mulVec ℓ < 1"
+    },
+    "RH.selectedMesh_five": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "RH.selectedMesh_five._native.native_decide.ax_1_1",
+        "propext"
+      ],
+      "name": "RH.selectedMesh_five",
+      "standard_only": false,
+      "type": "RH.selectedMesh 5 = 19"
+    },
+    "RH.terminal_q_canonical": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext",
+        "sorryAx"
+      ],
+      "name": "RH.terminal_q_canonical",
+      "standard_only": false,
+      "type": "∀ (w : RH.VonMangoldtWindow), RH.CanonicalWindow w → w.q < 1"
+    },
+    "RHProofSearch.arch_convergence_from_rate": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "name": "RHProofSearch.arch_convergence_from_rate",
+      "standard_only": true,
+      "type": "RHProofSearch.arch_rate → RHProofSearch.arch_convergence"
+    },
+    "RHProofSearch.arch_rate_from_weighted": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "name": "RHProofSearch.arch_rate_from_weighted",
+      "standard_only": true,
+      "type": "RHProofSearch.arch_weighted → RHProofSearch.arch_rate"
+    },
+    "RHProofSearch.arch_weighted_proved": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "name": "RHProofSearch.arch_weighted_proved",
+      "standard_only": true,
+      "type": "RHProofSearch.arch_weighted"
+    },
+    "RHProofSearch.bound_from_freq_and_native": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "name": "RHProofSearch.bound_from_freq_and_native",
+      "standard_only": true,
+      "type": "RHProofSearch.freq → RHProofSearch.native_positive → RHProofSearch.eventual_bound"
+    },
+    "RHProofSearch.gabor_from_rh": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "name": "RHProofSearch.gabor_from_rh",
+      "standard_only": true,
+      "type": "RHProofSearch.rh → RHProofSearch.gabor_positive"
+    },
+    "RHProofSearch.native_from_freq_and_bound": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "name": "RHProofSearch.native_from_freq_and_bound",
+      "standard_only": true,
+      "type": "RHProofSearch.freq → RHProofSearch.eventual_bound → RHProofSearch.native_positive"
+    },
+    "RHProofSearch.rh_from_gabor": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "name": "RHProofSearch.rh_from_gabor",
+      "standard_only": true,
+      "type": "RHProofSearch.gabor_positive → RHProofSearch.rh"
+    },
+    "TfptCarrier.CofinalWeil.weil_nonneg_of_cofinal": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "name": "TfptCarrier.CofinalWeil.weil_nonneg_of_cofinal",
+      "standard_only": true,
+      "type": "∀ {κ : ℕ → Type u_1} [inst : (m : ℕ) → Fintype (κ m)] {V : Type u_2} {A : (m : ℕ) → Matrix (κ m) (κ m) ℝ}\n  (H : TfptCarrier.CofinalWeil.CofinalHypothesis A) (sample : (m : ℕ) → V → κ m → ℝ) (QW : V → ℝ),\n  (∀ (v : V), Filter.Tendsto (fun m => TfptCarrier.CofinalWeil.ladderForm A sample m v) Filter.atTop (𝓝 (QW v))) →\n    ∀ (v : V), 0 ≤ QW v"
+    },
+    "TfptCarrier.GramCompactness.exists_subseq_posSemidef_limit": {
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "name": "TfptCarrier.GramCompactness.exists_subseq_posSemidef_limit",
+      "standard_only": true,
+      "type": "∀ {ι : Type u_1} [Fintype ι] (A : ℕ → Matrix ι ι ℝ) (C : ℝ),\n  (∀ (n : ℕ), (A n).PosSemidef) →\n    (∀ (n : ℕ) (i j : ι), |A n i j| ≤ C) →\n      ∃ G φ, StrictMono φ ∧ G.PosSemidef ∧ ∀ (i j : ι), Filter.Tendsto (fun n => A (φ n) i j) Filter.atTop (𝓝 (G i j))"
+    },
+    "TfptCarrier.SeamScalingLimit.seamScalingLimit": {
+      "axioms": [
+        "TfptCarrier.SeamScalingLimit.ChiralCFT_c8",
+        "TfptCarrier.SeamScalingLimit.CollarGappedQuasifree",
+        "TfptCarrier.SeamScalingLimit.SeamIsE8",
+        "TfptCarrier.SeamScalingLimit.adamo_holomorphic_e8",
+        "TfptCarrier.SeamScalingLimit.collar_gapped",
+        "TfptCarrier.SeamScalingLimit.mmst_scaling_limit"
+      ],
+      "name": "TfptCarrier.SeamScalingLimit.seamScalingLimit",
+      "standard_only": false,
+      "type": "TfptCarrier.SeamScalingLimit.SeamIsE8"
+    }
+  },
+  "code_hashes": {
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/catalog/proof_search/common.py": "38b74b2be0cd6464c2629de3051c5b9d10eabff010276ac8e796d2f9fba71f03",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/catalog/proof_search/kernel_audit.py": "2dd8e920a81dab6c93c6f8f4a8f9cb2625247f09ebf18e90af62fe07e22eff7c",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/catalog/proof_search/knowledge.json": "cc9c57f2836403ea4d9ee48da65a30b7d910b83503a0deb11f75aa3da68ff5ac"
+  },
+  "kernel_declarations_sha256": "2f0ae991e3b6d3183da0e2af560242db4f89d175361a17fb3c3d51434a1fab2f",
+  "knowledge_fingerprint": "a258abe1d0d3961c5332a70af584f357a9d37c94efa72989e8235caa188a5643",
+  "lean_version": "Lean (version 4.29.1, arm64-apple-darwin24.6.0, commit f72c35b3f637c8c6571d353742168ab66cc22c00, Release)",
+  "mathlib_cache_rebuilt": false,
+  "metadata_reviews": [
+    {
+      "next_knowledge_fingerprint": "a258abe1d0d3961c5332a70af584f357a9d37c94efa72989e8235caa188a5643",
+      "previous_knowledge_fingerprint": "de0b9805bcb13146f1e41b146bc38983a23538b2c6e5768f286b8293d4f27ff2",
+      "scope": "Explicit metadata review; exact adapter bytes and all proof inputs unchanged"
+    }
+  ],
+  "modules": [
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.Basic.log",
+      "module": "RH.Basic",
+      "seconds": 1.218,
+      "sha256": "ed6b3c1cd57c4fa6cf4562f9fd8a2583a1c627d2b8a063412ccc2e7d8932c48d",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Basic.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.Window.log",
+      "module": "RH.Window",
+      "seconds": 2.268,
+      "sha256": "6d084ac9d0c1cb45629c56504fed918d05a99bc33b943e2df5fd596eeb0fb93c",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Window.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.Source.log",
+      "module": "RH.Source",
+      "seconds": 3.857,
+      "sha256": "31cfcb0fe0fa9c2b723bf72f23ff6e38ed8add04d81bdf2cf00e49aa00a77d3d",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Source.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.Inertia.log",
+      "module": "RH.Inertia",
+      "seconds": 3.013,
+      "sha256": "7e03b045037371c1a8892dc04e284c4c86d528cd8967ae6921867bd31d9f06f9",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Inertia.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.Closure.log",
+      "module": "RH.Closure",
+      "seconds": 1.843,
+      "sha256": "7cc1936de0e1564421cd62c9fb5beb56a4968330331eb554beee403255f91234",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Closure.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.Augmented.log",
+      "module": "RH.Augmented",
+      "seconds": 2.201,
+      "sha256": "1f02b83f55715f8aacd9fd013c4eeba29a5ef9c862e7a21ba091866db75f2438",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Augmented.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.Recursion.log",
+      "module": "RH.Recursion",
+      "seconds": 1.613,
+      "sha256": "5a5968500747cd2a453aac39a81bcfd1bf4ec649dcb99f9ecdf2f65297e98d2d",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Recursion.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.PairBound.log",
+      "module": "RH.PairBound",
+      "seconds": 2.109,
+      "sha256": "688fc021078bcb964f822f3d082725be2ae4ccde1eb62c097e09238e64f010e2",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/PairBound.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.Elementwise.log",
+      "module": "RH.Elementwise",
+      "seconds": 2.963,
+      "sha256": "13e70d77f014d5aa031a4a71c0f35931a61a00b17e9add535cfbedc915aead1c",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Elementwise.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.Canonical.log",
+      "module": "RH.Canonical",
+      "seconds": 2.105,
+      "sha256": "8b33e7207134ff2ea274090acb9d6c5f3bc295036f554b91059c1794635fe0a8",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Canonical.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.DualResolvent.log",
+      "module": "RH.DualResolvent",
+      "seconds": 2.628,
+      "sha256": "d8365c27e6e812745dfd3f680422c387018d6c135a36f62e84b8bc5f602c18e5",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/DualResolvent.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.FaithfulFold.log",
+      "module": "RH.FaithfulFold",
+      "seconds": 1.957,
+      "sha256": "5792d1d9a4bb8180fef39ca1b0937546d86ee883a1e646631a3ae83b6409d5f0",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/FaithfulFold.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.Selected.log",
+      "module": "RH.Selected",
+      "seconds": 2.267,
+      "sha256": "8f8407e9851c895bc25719efe7ce3c600f784a96fc1b0d0013952b0ac6542ea4",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Selected.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.InnerBridges.log",
+      "module": "RH.InnerBridges",
+      "seconds": 2.352,
+      "sha256": "9558e70df88c903a71f64116b16fc1ecf54c78b428876cc2555ba63abc5c1b79",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/InnerBridges.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.SelectedArchErrorQuadraticRateClassical.log",
+      "module": "RH.SelectedArchErrorQuadraticRateClassical",
+      "seconds": 2.228,
+      "sha256": "528d4ec93242b8ab92eeff542ec331889429168ef8b91722e3dfcabf859962d7",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/SelectedArchErrorQuadraticRateClassical.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/WeightedKink.log",
+      "module": "WeightedKink",
+      "seconds": 5.315,
+      "sha256": "d52076178d274e26a0ba7bb977101cfe414725eee79c7fa83400e6c34b8fbf83",
+      "source": "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05/WeightedKink.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/NativeHinges.log",
+      "module": "NativeHinges",
+      "seconds": 3.779,
+      "sha256": "4e6ed666116f2f75fbfc85b04ef406d4daa47de731bc99cbe5b257de8715e466",
+      "source": "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05/NativeHinges.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/KinkIntegral.log",
+      "module": "KinkIntegral",
+      "seconds": 4.984,
+      "sha256": "a79522452ea8634fff03e2a10af79875b0a37355daeca5ceaea76f2288136564",
+      "source": "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05/KinkIntegral.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/ArchLagTranscription.log",
+      "module": "ArchLagTranscription",
+      "seconds": 16.502,
+      "sha256": "243e1682ec3c4f01b76ec6e6bf6437b8b55ac76af673548582ab7bc6178351a7",
+      "source": "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05/ArchLagTranscription.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/ArchRateClosure.log",
+      "module": "ArchRateClosure",
+      "seconds": 5.739,
+      "sha256": "56b0bbaaf2e020ce480f6c2134c21787878441fbc0b32f36320aa3d80ca16e65",
+      "source": "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05/ArchRateClosure.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.Haynsworth.log",
+      "module": "RH.Haynsworth",
+      "seconds": 3.02,
+      "sha256": "c8b5ac7c575a7723aa2217ba51259ea697bf32a9f7ea374bdb1d91b9feecc349",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Haynsworth.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.PivotCoordinate.log",
+      "module": "RH.PivotCoordinate",
+      "seconds": 3.345,
+      "sha256": "8c377a9a6d0828e8675fd122a8da1b5a2f708bb248cb1f458b5b2163f9748016",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/PivotCoordinate.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.OneDefect.log",
+      "module": "RH.OneDefect",
+      "seconds": 2.929,
+      "sha256": "b98e014dba828c52f6dab9ca1016147631e459d93c7f99b660cfa0dee55b614e",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/OneDefect.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GraphResolvent.log",
+      "module": "RH.GraphResolvent",
+      "seconds": 2.511,
+      "sha256": "213fdaf7080570de4aeb9283af9024680876529ea3bea19ff66cddcdad6e2d14",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GraphResolvent.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.FrequentlySelected.log",
+      "module": "RH.FrequentlySelected",
+      "seconds": 2.232,
+      "sha256": "99d8ed0e8c18ba3a60fc488b121e636a7ed1daac4b9a789548f0904d56c16a9e",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/FrequentlySelected.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/SeparatedTail.log",
+      "module": "SeparatedTail",
+      "seconds": 3.831,
+      "sha256": "ee2af8135043ed90bc8de6776aed73e16bca274466a24d150e7e4bfc9df85d9c",
+      "source": "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05/SeparatedTail.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/FrontierClosure.log",
+      "module": "FrontierClosure",
+      "seconds": 2.873,
+      "sha256": "f429cd48cba24f80f879d1318a35f7d9f61551a3a1ee2ffc01d47b608ae2d092",
+      "source": "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05/FrontierClosure.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.ExternalBridges.log",
+      "module": "RH.ExternalBridges",
+      "seconds": 46.076,
+      "sha256": "73886479d9e7ca1e0d2bd69419e29cf00e1377167763be0c8d47ad7991e5fdb0",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/ExternalBridges.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborIntegral.log",
+      "module": "RH.GaborIntegral",
+      "seconds": 3.009,
+      "sha256": "eb7c3e6719b0861086fea3cfbcbe5bc449387eae35e6f4890476e6462c11d929",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborIntegral.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.ZeroIncrement.log",
+      "module": "RH.ZeroIncrement",
+      "seconds": 2.308,
+      "sha256": "b7feaf83beaf3692947fd9a63ad64e08f79e7bae85c405e56b7bd40601958704",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/ZeroIncrement.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborThetaBound.log",
+      "module": "RH.GaborThetaBound",
+      "seconds": 10.133,
+      "sha256": "0fca5fe91604e47c7a432e22b3233ede8ba6ecb171fa6c91055f647554f446d5",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborThetaBound.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborSeparation.log",
+      "module": "RH.GaborSeparation",
+      "seconds": 21.163,
+      "sha256": "b10dac8cc99686ba56910411c61cb65f5c3dc1cfbd415f17f6376c2b89b9cff5",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborSeparation.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborInequality.log",
+      "module": "RH.GaborInequality",
+      "seconds": 7.595,
+      "sha256": "347ac18c2bbf59c14e51481c48e8386afdd7917f4be99a798bee3f1eb4e7c02d",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborInequality.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborHatAnalytic.log",
+      "module": "RH.GaborHatAnalytic",
+      "seconds": 11.447,
+      "sha256": "ef5c8edcaaa6e3aea4761a69a99f6d519e303984d383fcd1aee955265b45a8fd",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborHatAnalytic.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborDominance.log",
+      "module": "RH.GaborDominance",
+      "seconds": 20.299,
+      "sha256": "0d7a4d27555ae9af390d3188e99404596a17e43e2b74148a288d79db8405fbc5",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborDominance.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborDominanceProof.log",
+      "module": "RH.GaborDominanceProof",
+      "seconds": 14.177,
+      "sha256": "47e7bc37f0cf0dc51effa0e86e3ea64ecf43e4522b9da21feebb2ee1aa35223e",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborDominanceProof.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborDominanceAssembly.log",
+      "module": "RH.GaborDominanceAssembly",
+      "seconds": 10.263,
+      "sha256": "2b81b78a825dbbdb610561f76b5ba4bccba9e4203ee3cd5cb335bc80fe095c8a",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborDominanceAssembly.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborZeroSummable.log",
+      "module": "RH.GaborZeroSummable",
+      "seconds": 12.048,
+      "sha256": "9328efcdf05221dc9c6c7a108ba59a859b7d89ab7cb547d1dfd32ce81534d60b",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborZeroSummable.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborDominanceLog.log",
+      "module": "RH.GaborDominanceLog",
+      "seconds": 32.743,
+      "sha256": "fef4792b748004deffe17a3d20ffde7ebe462dd3b9be89d5ea60071954eec9f0",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborDominanceLog.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborFEMultiplicity.log",
+      "module": "RH.GaborFEMultiplicity",
+      "seconds": 9.338,
+      "sha256": "2eb8c5550b7a8a79b9b8704b584a6f4d033d9c9b8756e6cff982088da6e6757b",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborFEMultiplicity.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborSpectralBridge.log",
+      "module": "RH.GaborSpectralBridge",
+      "seconds": 104.682,
+      "sha256": "924a620c5e49313c46faad8456fc31bca061bff5a1661a02f79b609b69a368b8",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborSpectralBridge.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborArithmeticSeparator.log",
+      "module": "RH.GaborArithmeticSeparator",
+      "seconds": 17.524,
+      "sha256": "7adbe8e68ecb6affb8e4ba30d91cd562deb3c7d089202ad64c6eebf1bff68f10",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborArithmeticSeparator.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborExposedOrbit.log",
+      "module": "RH.GaborExposedOrbit",
+      "seconds": 18.432,
+      "sha256": "bd4da6e9d0f0e1a938df2e0416b5162846bdfa0a3a5b630c5eda06b3b63681fa",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborExposedOrbit.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborContourResidue.log",
+      "module": "RH.GaborContourResidue",
+      "seconds": 2.493,
+      "sha256": "f1b1eabcab488043242f19054e3d3c0e321e0488659893d9a8e66d6ff2a41647",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborContourResidue.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborHorizontalEdges.log",
+      "module": "RH.GaborHorizontalEdges",
+      "seconds": 2.654,
+      "sha256": "f5061203bf5eb414f175c9493f30bf799d21fc62e716384ed486e7b257b21c57",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborHorizontalEdges.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborVertical.log",
+      "module": "RH.GaborVertical",
+      "seconds": 3.022,
+      "sha256": "073012c424f566608ad32c17608159d24338072560f6b8d70c7a20d98121d10c",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborVertical.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborLeftVertical.log",
+      "module": "RH.GaborLeftVertical",
+      "seconds": 7.686,
+      "sha256": "55f7639bd09f2cecaaf700c54b6d9d9132c462cabd42d60806710416bd5be255",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborLeftVertical.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborAutocorrelation.log",
+      "module": "RH.GaborAutocorrelation",
+      "seconds": 9.257,
+      "sha256": "9b94c1759b2a2c3c2f09614f7ac9f11d3017151588b7291447b8952232cbd4a6",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborAutocorrelation.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborVerticalLimit.log",
+      "module": "RH.GaborVerticalLimit",
+      "seconds": 8.886,
+      "sha256": "e449b4d41b27ca30120de9037f90e9d5614448ec2a41c22bcc77ccbfa31f71ac",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborVerticalLimit.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborArchDigamma.log",
+      "module": "RH.GaborArchDigamma",
+      "seconds": 8.005,
+      "sha256": "b2c476f3a648774cfbc05cce79cbbccca8a8578ea3c538efe67329517cf3074b",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborArchDigamma.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborArchContour.log",
+      "module": "RH.GaborArchContour",
+      "seconds": 10.137,
+      "sha256": "d4d371c0a33d1cdda2fd9dd53267446fcc03163dec2496d45ff088aa0f11cf64",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborArchContour.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborExplicitFormula.log",
+      "module": "RH.GaborExplicitFormula",
+      "seconds": 13.358,
+      "sha256": "3be323f1619ea894ef4086d6c24d126ec3b1294e85e376cc391f7ba5dcbdcb50",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborExplicitFormula.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.GaborCountableCriterion.log",
+      "module": "RH.GaborCountableCriterion",
+      "seconds": 14.453,
+      "sha256": "a08543216a07b77629cbf70910de98d9ed4be48ace31baddca049268a260d22a",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborCountableCriterion.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/RH.PrimeLogIndependence.log",
+      "module": "RH.PrimeLogIndependence",
+      "seconds": 2.123,
+      "sha256": "e86415078fb70d3e79df98a332a79d9c2018f208652e37cd4417086146ae7eaf",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/PrimeLogIndependence.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/TfptCarrier.GramCompactness.log",
+      "module": "TfptCarrier.GramCompactness",
+      "seconds": 2.659,
+      "sha256": "5b3591aef417a42ae97028e9cc4ebd60157da856d1ecde31146c6716c62b81d8",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/lean4-carrier-rigidity/TfptCarrier/GramCompactness.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/TfptCarrier.SectorPositiveDescent.log",
+      "module": "TfptCarrier.SectorPositiveDescent",
+      "seconds": 2.344,
+      "sha256": "f1a308701fd802faaefbf6e2e2f780c0f73abedcd399ce41447087683791a4f8",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/lean4-carrier-rigidity/TfptCarrier/SectorPositiveDescent.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/TfptCarrier.ExcessSkeleton.log",
+      "module": "TfptCarrier.ExcessSkeleton",
+      "seconds": 2.276,
+      "sha256": "74f68f4284078fee3df2bb9462f147514a27c9a5c6db6b4e9c436b257816caee",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/lean4-carrier-rigidity/TfptCarrier/ExcessSkeleton.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/TfptCarrier.CofinalWeil.log",
+      "module": "TfptCarrier.CofinalWeil",
+      "seconds": 2.165,
+      "sha256": "b9c3c6c0c2eff46d60971bff84b6212538b53e1b00dccda0151bd5cd6341cd3c",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/lean4-carrier-rigidity/TfptCarrier/CofinalWeil.lean"
+    },
+    {
+      "exit_code": 0,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv/TfptCarrier.SeamScalingLimit.log",
+      "module": "TfptCarrier.SeamScalingLimit",
+      "seconds": 0.236,
+      "sha256": "bee4682972036d8f9944348a6259a07a1d610341ee5ee89e01905c5093275648",
+      "source": "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/lean4-carrier-rigidity/TfptCarrier/SeamScalingLimit.lean"
+    }
+  ],
+  "rules_are_conditional_not_premise_proofs": true,
+  "run_dir": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-proof-search-_gg17nhv",
+  "schema_version": 1,
+  "seconds": 589.265,
+  "source_hashes": {
+    "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05/ArchLagTranscription.lean": "243e1682ec3c4f01b76ec6e6bf6437b8b55ac76af673548582ab7bc6178351a7",
+    "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05/ArchRateClosure.lean": "56b0bbaaf2e020ce480f6c2134c21787878441fbc0b32f36320aa3d80ca16e65",
+    "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05/FrontierClosure.lean": "f429cd48cba24f80f879d1318a35f7d9f61551a3a1ee2ffc01d47b608ae2d092",
+    "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05/KinkIntegral.lean": "a79522452ea8634fff03e2a10af79875b0a37355daeca5ceaea76f2288136564",
+    "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05/NativeHinges.lean": "4e6ed666116f2f75fbfc85b04ef406d4daa47de731bc99cbe5b257de8715e466",
+    "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05/SeparatedTail.lean": "ee2af8135043ed90bc8de6776aed73e16bca274466a24d150e7e4bfc9df85d9c",
+    "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05/WeightedKink.lean": "d52076178d274e26a0ba7bb977101cfe414725eee79c7fa83400e6c34b8fbf83",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/lean4-carrier-rigidity/TfptCarrier/CofinalWeil.lean": "b9c3c6c0c2eff46d60971bff84b6212538b53e1b00dccda0151bd5cd6341cd3c",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/lean4-carrier-rigidity/TfptCarrier/ExcessSkeleton.lean": "74f68f4284078fee3df2bb9462f147514a27c9a5c6db6b4e9c436b257816caee",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/lean4-carrier-rigidity/TfptCarrier/GramCompactness.lean": "5b3591aef417a42ae97028e9cc4ebd60157da856d1ecde31146c6716c62b81d8",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/lean4-carrier-rigidity/TfptCarrier/SeamScalingLimit.lean": "bee4682972036d8f9944348a6259a07a1d610341ee5ee89e01905c5093275648",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/lean4-carrier-rigidity/TfptCarrier/SectorPositiveDescent.lean": "f1a308701fd802faaefbf6e2e2f780c0f73abedcd399ce41447087683791a4f8",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Augmented.lean": "1f02b83f55715f8aacd9fd013c4eeba29a5ef9c862e7a21ba091866db75f2438",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Basic.lean": "ed6b3c1cd57c4fa6cf4562f9fd8a2583a1c627d2b8a063412ccc2e7d8932c48d",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Canonical.lean": "8b33e7207134ff2ea274090acb9d6c5f3bc295036f554b91059c1794635fe0a8",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Closure.lean": "7cc1936de0e1564421cd62c9fb5beb56a4968330331eb554beee403255f91234",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/DualResolvent.lean": "d8365c27e6e812745dfd3f680422c387018d6c135a36f62e84b8bc5f602c18e5",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Elementwise.lean": "13e70d77f014d5aa031a4a71c0f35931a61a00b17e9add535cfbedc915aead1c",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/ExternalBridges.lean": "73886479d9e7ca1e0d2bd69419e29cf00e1377167763be0c8d47ad7991e5fdb0",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/FaithfulFold.lean": "5792d1d9a4bb8180fef39ca1b0937546d86ee883a1e646631a3ae83b6409d5f0",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/FrequentlySelected.lean": "99d8ed0e8c18ba3a60fc488b121e636a7ed1daac4b9a789548f0904d56c16a9e",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborArchContour.lean": "d4d371c0a33d1cdda2fd9dd53267446fcc03163dec2496d45ff088aa0f11cf64",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborArchDigamma.lean": "b2c476f3a648774cfbc05cce79cbbccca8a8578ea3c538efe67329517cf3074b",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborArithmeticSeparator.lean": "7adbe8e68ecb6affb8e4ba30d91cd562deb3c7d089202ad64c6eebf1bff68f10",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborAutocorrelation.lean": "9b94c1759b2a2c3c2f09614f7ac9f11d3017151588b7291447b8952232cbd4a6",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborContourResidue.lean": "f1b1eabcab488043242f19054e3d3c0e321e0488659893d9a8e66d6ff2a41647",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborCountableCriterion.lean": "a08543216a07b77629cbf70910de98d9ed4be48ace31baddca049268a260d22a",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborDominance.lean": "0d7a4d27555ae9af390d3188e99404596a17e43e2b74148a288d79db8405fbc5",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborDominanceAssembly.lean": "2b81b78a825dbbdb610561f76b5ba4bccba9e4203ee3cd5cb335bc80fe095c8a",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborDominanceLog.lean": "fef4792b748004deffe17a3d20ffde7ebe462dd3b9be89d5ea60071954eec9f0",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborDominanceProof.lean": "47e7bc37f0cf0dc51effa0e86e3ea64ecf43e4522b9da21feebb2ee1aa35223e",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborExplicitFormula.lean": "3be323f1619ea894ef4086d6c24d126ec3b1294e85e376cc391f7ba5dcbdcb50",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborExposedOrbit.lean": "bd4da6e9d0f0e1a938df2e0416b5162846bdfa0a3a5b630c5eda06b3b63681fa",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborFEMultiplicity.lean": "2eb8c5550b7a8a79b9b8704b584a6f4d033d9c9b8756e6cff982088da6e6757b",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborHatAnalytic.lean": "ef5c8edcaaa6e3aea4761a69a99f6d519e303984d383fcd1aee955265b45a8fd",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborHorizontalEdges.lean": "f5061203bf5eb414f175c9493f30bf799d21fc62e716384ed486e7b257b21c57",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborInequality.lean": "347ac18c2bbf59c14e51481c48e8386afdd7917f4be99a798bee3f1eb4e7c02d",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborIntegral.lean": "eb7c3e6719b0861086fea3cfbcbe5bc449387eae35e6f4890476e6462c11d929",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborLeftVertical.lean": "55f7639bd09f2cecaaf700c54b6d9d9132c462cabd42d60806710416bd5be255",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborSeparation.lean": "b10dac8cc99686ba56910411c61cb65f5c3dc1cfbd415f17f6376c2b89b9cff5",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborSpectralBridge.lean": "924a620c5e49313c46faad8456fc31bca061bff5a1661a02f79b609b69a368b8",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborThetaBound.lean": "0fca5fe91604e47c7a432e22b3233ede8ba6ecb171fa6c91055f647554f446d5",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborVertical.lean": "073012c424f566608ad32c17608159d24338072560f6b8d70c7a20d98121d10c",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborVerticalLimit.lean": "e449b4d41b27ca30120de9037f90e9d5614448ec2a41c22bcc77ccbfa31f71ac",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GaborZeroSummable.lean": "9328efcdf05221dc9c6c7a108ba59a859b7d89ab7cb547d1dfd32ce81534d60b",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/GraphResolvent.lean": "213fdaf7080570de4aeb9283af9024680876529ea3bea19ff66cddcdad6e2d14",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Haynsworth.lean": "c8b5ac7c575a7723aa2217ba51259ea697bf32a9f7ea374bdb1d91b9feecc349",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Inertia.lean": "7e03b045037371c1a8892dc04e284c4c86d528cd8967ae6921867bd31d9f06f9",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/InnerBridges.lean": "9558e70df88c903a71f64116b16fc1ecf54c78b428876cc2555ba63abc5c1b79",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/OneDefect.lean": "b98e014dba828c52f6dab9ca1016147631e459d93c7f99b660cfa0dee55b614e",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/PairBound.lean": "688fc021078bcb964f822f3d082725be2ae4ccde1eb62c097e09238e64f010e2",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/PivotCoordinate.lean": "8c377a9a6d0828e8675fd122a8da1b5a2f708bb248cb1f458b5b2163f9748016",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/PrimeLogIndependence.lean": "e86415078fb70d3e79df98a332a79d9c2018f208652e37cd4417086146ae7eaf",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Recursion.lean": "5a5968500747cd2a453aac39a81bcfd1bf4ec649dcb99f9ecdf2f65297e98d2d",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Selected.lean": "8f8407e9851c895bc25719efe7ce3c600f784a96fc1b0d0013952b0ac6542ea4",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/SelectedArchErrorQuadraticRateClassical.lean": "528d4ec93242b8ab92eeff542ec331889429168ef8b91722e3dfcabf859962d7",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Source.lean": "31cfcb0fe0fa9c2b723bf72f23ff6e38ed8add04d81bdf2cf00e49aa00a77d3d",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/Window.lean": "6d084ac9d0c1cb45629c56504fed918d05a99bc33b943e2df5fd596eeb0fb93c",
+    "/Users/stefanhamann/Projekte/tfpt-theoryv4/rh/lean/RH/ZeroIncrement.lean": "b7feaf83beaf3692947fd9a63ad64e08f79e7bae85c405e56b7bd40601958704"
+  },
+  "status": "FRESH_ADAPTERS_KERNEL_CHECKED"
+}

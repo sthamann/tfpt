@@ -1,0 +1,346 @@
+UR.COMPILER.LOCAL_CURRENT_ORIGIN.11
+19 September 2026 -- PARTIAL; no physical gate promoted
+
+QUESTION, INPUTS, AND RESULT
+
+The original task is a reconstruction of the physical TFPT/Universalraum from
+its original principles. The immediate question is whether the original source
+forces eight local current channels, their marked action, state and time,
+without introducing eight independent copies. During this investigation the
+user supplied a new coupled-cell MPS construction. We test that construction
+against this same question, rather than changing the objective to building a
+more elaborate one-dimensional model.
+
+The new construction's main mathematical claims survive independent replay:
+open ground dimension 16, periodic ground dimension 1 for the full Pauli
+cocycle, local three-site gap 7/12, global lower bound 1/6, and the exact
+1/4/16 cyclic-degeneracy law. Its interpretation can be sharpened: the
+compressed tensor has the full continuous PSU(4) symmetry, not just the finite
+source symmetry, and the same-channel equivalence of the 60- and 20-ray inputs
+persists at every chain length, including the ring closure. Closing more
+chains cannot repair this particular loss of source specificity.
+
+There is also a precise constructive reduction of the eight-current question:
+the TWO ORIGINAL matrices C and J already have scalar commutant. If they act
+on local currents with the same smearing and preserve the source vacuum, a
+single nonzero current response forces an eight-dimensional response space.
+The local implementation is essential. For the native four-dimensional
+memory, and for the neutral event registers of the new MPS, the central J
+acts trivially by conjugation; the required linear map is therefore zero.
+This identifies which source-to-field map must be constructed, rather than
+adding seven copies or inferring channels from an eight-dimensional label.
+
+Success criterion: derive the source-local map, or prove a necessary structure
+and decide a source candidate at its first defining identity. Stop criterion:
+do not optimize a stipulated model after its source identification fails.
+The criterion closes only conditional mathematical statements below. The
+physical local map, affine level, marked field extension and TOE remain open.
+
+PROVENANCE
+
+The pasted text is pinned in source_pins.json. Its internal citation markers
+10 and 11 do not resolve to downloadable proof/checker files in the available
+task record. Thus its reported earlier execution logs are NOT replayed here.
+The formulas are independently reconstructed. The 240 roots come from the
+actual v1_e8_glue.e8_roots source, not from a fitted design. The C,J matrices
+come from the pinned integral-triality certificate; that certificate's pins
+to the original clock sources are checked again. v456 is inspected as actual
+code. Source files and prior contracts remain unchanged.
+
+1. THE COUPLED-CELL TENSOR AND ITS TRANSFER
+
+Let P_0=I and P_1,...,P_15 be Hermitian two-qubit Paulis, normalized by
+Tr(P_a P_b)=4 delta_ab. Put c_0=1/2, c_a=1/sqrt(20) for a!=0 and
+B_a=c_a P_a. The proposed isometry and parent rule are added assumptions;
+they are not inferred from P1/P2 by this computation.
+
+The Pauli completeness identity is
+  sum_a P_a X P_a = 4 Tr(X) I.
+Consequently
+  E(X)=sum_a B_a X B_a^dagger=(X+Tr(X)I)/5,
+  sum_a B_a^dagger B_a=I.
+The entire operator basis is checked exactly. E has eigenvalues 1 on I and
+1/5 on all 15 traceless directions. The periodic MPS therefore satisfies
+  ||sum_word Tr(B_a1 ... B_an)|word>||^2
+     =Tr(E^n)=1+15*5^(-n).
+This trace is the trace of the 16-dimensional transfer superoperator.
+The transfer correlation scale is xi=1/log(5) in lattice cells. Some particular
+correlators can vanish or decay faster; this is the nontrivial transfer scale.
+
+2. ALL-LENGTH GROUND SPACES AND OPEN ISOSPECTRALITY
+
+Write the Pauli multiplication as e_a e_b=alpha(a,b)e_(a+b), with a,b in
+V=F2^4 and normalized U(1) cocycle alpha. The positive c_a never vanish.
+In each total-label sector t the allowed two-site vector is
+  q_t^alpha = D_t^(-1/2) sum_a c_a c_(a+t) alpha(a,a+t)|a,a+t>,
+  D_t=sum_a c_a^2 c_(a+t)^2.
+Different t have disjoint support. Q_2=sum_t |q_t><q_t| is an ORTHOGONAL
+rank-16 projector, and h=I-Q_2. For the full Pauli algebra this equals the
+two-site MPS parent projector obtained from B_a.
+
+For an open word define F_alpha by
+  e_a1 ... e_an = F_alpha(a1,...,an)e_(a1+...+an).
+Then U_n|word>=F_alpha(word)|word> is a diagonal UNITARY. If an adjacent pair
+is changed while preserving its total label, associativity says that the
+ratio of full word phases is the ratio of its local pair phases. Hence
+  U_n Q_j^0 U_n^dagger=Q_j^alpha
+simultaneously for every open bond. This proves complete open-chain spectral
+equivalence for every n; it is not an extrapolation of finite spectra.
+
+After dividing wavefunction coefficients by the positive product of c_a, the
+open local constraints let us replace any adjacent pair by the identity and
+its product, with the specified cocycle. Every allowed word amplitude is thus
+  f(e_a1 ... e_an)
+for one linear functional f on the 16-dimensional twisted group algebra A_alpha.
+Conversely each such f satisfies every open constraint. This gives exactly 16
+open ground states for n>=2. The injective MPS proof is equivalent for the
+full Pauli algebra M4(C).
+
+The cyclic closing bond additionally demands f(xy)=f(yx). It follows, for
+directed rings n>=3, that
+  dim ker H_ring=dim A_alpha/[A_alpha,A_alpha]=dim Z(A_alpha).
+If e_a e_b=(-1)^(b(a,b)) e_b e_a, a central basis element has label in rad b.
+Therefore
+  dim ker H_ring=|rad b|=2^(4-rank_F2 b).
+The full Pauli cocycle is nondegenerate and gives one state, represented by
+the matrix trace. Rank two gives four; rank zero gives sixteen. The independent
+64-form census gives 28 rank-four, 35 rank-two and one rank-zero form.
+
+Important type correction: when the cocycle is removed, the algebra is C^16,
+not M4(C). Sixteen linearly independent commuting 4x4 matrices cannot replace
+the same Paulis. The valid comparison is between the two specified algebraic
+parent constructions on the SAME 16-label physical cells, with different
+virtual algebra representations. It is not the same bond-four injective MPS
+with its multiplication phases erased inside M4(C).
+
+The physical-to-virtual one-site map is invertible but NONUNITARY, because
+c_0 differs from c_a. It preserves dimensions of constraint spaces, not
+energies. The open spectral equivalence above uses the separate U_n proof.
+
+3. AN EXACT SMALL CERTIFICATE FOR THE UNIFORM GAP
+
+No 4096-dimensional diagonalization is needed. The preceding open-word
+unitary removes alpha on three sites. Work in a fixed total-label sector
+c=a+b+d. The two allowed projection ranges each have dimension 16.
+Set w_a=c_a^2, D_0=1/10 and D_t=3/50 for t!=0. Their overlap matrix is
+  M_c(t,u)=sqrt(w_(c+t)/D_t) w_(c+t+u) sqrt(w_(c+u)/D_u).
+It is real symmetric and similar, via an invertible diagonal matrix, to
+  L_c(t,u)=w_(c+t+u) w_(c+u)/D_u,
+which has exact rational entries. This similarity is used only to compute
+eigenvalues of the symmetric overlap, not to change a physical Hamiltonian.
+
+Because w distinguishes only zero from nonzero labels, GL(4,2) relabeling
+reduces all sectors to c=0 and c!=0. Their exact characteristic polynomials are
+  c=0: (x-1)(x-1/6)^14(x-5/12),
+  c!=0: (x-1)(x-1/6)^6(x+1/6)^7(x^2+x/60-5/72).
+The last roots are (-1 +/- sqrt(1001))/120. Their absolute values are strictly
+below 5/12 (already sqrt(1001)<49 suffices). Singular values of the symmetric
+overlap are its absolute eigenvalues. There is one overlap singular value 1
+in each of the 16 total sectors and the largest remaining singular value is
+5/12. For two projections the nontrivial eigenvalues of 2-Q12-Q23 are
+1 +/- singular_value. The exact three-site gap is therefore 7/12.
+
+Writing h_j=I-Q_j, this gives
+  {h_j,h_(j+1)} >= -(5/12)(h_j+h_(j+1)).
+Nonoverlapping terms commute and their products are positive. Each h_j occurs
+in at most two adjacent pairs, so
+  H_n^2 >= H_n-(5/6)H_n=(1/6)H_n.
+For n=3 on a directed ring, every pair is adjacent and the same cyclic
+three-site estimate applies. Open n=2 is the single-projector case.
+This establishes the stated size-independent lower bound with fixed norm-one
+terms. It does NOT establish a gapless/chiral limit. Increasing n at fixed
+local normalization keeps all positive energies above 1/6. A different scaling
+or Hamiltonian would require a new derivation.
+
+4. SOURCE SPECIFICITY: WHY CLOSURE CANNOT RESTORE WHAT THIS RULE IGNORES
+
+Pair the standard real E8 coordinates into four complex coordinates and
+identify each root's four central phases. The actual v1 generator yields 60
+rank-one projectors. Direct exact evaluation of all 16 Pauli input operators
+gives
+  (1/60) sum_l (I-2P_l) X (I-2P_l)=E(X).
+There are 15 maximal commuting Pauli triples and six spreads of five disjoint
+triples. Each spread gives 20 distinct original ray projectors and exactly
+the SAME operator-valued channel E. This is checked for all six choices.
+
+For M_t=(1/N)sum_l P_l^(tensor t), exact moment purities are
+  original 60: t=2 1/10, t=3 1/20, t=4 1/32;
+  each 20:    t=2 1/10, t=3 1/16, t=4 17/320.
+Thus the geometries differ; their uniform reflection channels do not.
+
+The all-length implication is stronger than another small-chain countercheck.
+Two minimal Kraus families for the SAME channel differ by a unitary mixing
+on the 16-dimensional environment. If A_l=sum_a W_la B_a for an isometric
+embedding W, every closed word state obeys
+  |Psi_n(A)> = W^(tensor n)|Psi_n(B)>.
+For square unitary W the two-site support, its orthogonal projector and the
+whole parent Hamiltonian transform by W^(tensor 2) and W^(tensor n). Therefore
+EVERY open or periodic length has the same intrinsic compressed theory.
+For the uncompressed 20/60 registers these are isometric embeddings of the
+supported 16-dimensional local space; equality of the spectra of all extra
+uncompressed register excitations is NOT claimed.
+
+This statement does not discard a specified register measurement. W_60 and
+W_20 carry different distinguished label projectors. Those instruments can
+still distinguish the original alphabets. What is absent is a coupling of
+that distinguished source data to the proposed intrinsic parent Hamiltonian.
+A source-specific continuation must derive such a coupling or another native
+rule sensitive to these data. Merely repeating V and imposing the same parent
+closure cannot do it. The phase-free comparison of section 2 changes the
+multiplication algebra and is NOT a counterexample to same-channel equivalence.
+Universality or coarse graining may legitimately erase higher moments. This
+test rejects attributing a distinctive dynamics to those unused moments; it
+does not reject the model as a possible coarse description or its retained
+source-dependent measurements.
+
+5. THE ADDITIONAL CONTINUOUS SYMMETRY AND THE CENTRAL OBSTRUCTION
+
+For every U in U(4), conjugation fixes I and rotates the 15-dimensional
+traceless Hermitian matrix space orthogonally. Since all traceless c_a are
+equal, there is a physical unitary R(U)=1 plus Ad(U) such that
+  U B_b U^dagger=sum_a R(U)_ab B_a.
+Products telescope the intervening U^dagger U; taking their trace proves MPS
+invariance. Unitarity preserves the two-site support and its orthogonal
+projector, so the parent Hamiltonian has this symmetry too. The scalar center
+acts trivially; the effective continuous group is PSU(4).
+
+An exact additional U=diag((3+4i)/5,1,1,1) is checked on all 16 matrices.
+The universal argument holds for arbitrary U, not just this example. The
+virtual bond transforms as the fundamental 4; under PSU(4) it is projective.
+This connects the phase-sensitive open edges with the standard one-dimensional
+symmetry-protected-phase mechanism. It is an internal/global symmetry, not
+a derived local gauge field or a chiral E8 edge anomaly.
+
+Now consider the native Gaussian central generator z=iI_4. On amplitude
+labels V=C4 viewed as R8 it acts as J, with J^2=-I. On neutral matrices
+Ad_z(X)=X. A real-linear equivariant current candidate T:V -> M4(C) must satisfy
+  T(Jv)=T(v), hence T(-v)=T(v), hence T=0.
+The same obstruction holds on ANY finite tensor product of the neutral event
+registers. In the sequential isometry, retaining the terminal C4 memory adds
+only one common central phase; conjugation on its observable algebra is still
+trivial. Ring closure does not turn this action into a nontrivial local
+eight-dimensional current representation.
+
+This does NOT mean Pauli composition phases are unobservable. Relative word
+phases and the commutator cocycle are precisely what sections 2-3 retain. It
+distinguishes that fact from the action of a scalar group center on neutral
+observables. Nor is the native Gaussian J automatically the physically marked
+TFPT seam deck; their dictionary must be proved, not assumed from order four.
+
+A possible nonzero charged map would require relative sectors, for example
+z acting as i^q on H_q and off-diagonal Hom(H_q,H_(q+1)) transforming by i.
+This describes the missing type of object, not a newly selected TFPT model.
+It must come from the source before neutral bilinears, locality and the
+current anomaly can be inferred.
+
+6. THE POSITIVE RECONSTRUCTION REDUCTION USING THE ACTUAL TWO CLOCKS
+
+Let C,J be the actual REAL eight-dimensional vector matrices in the pinned
+clock certificate. Exact rational elimination gives
+  dim Comm(C)=8, dim Comm(J)=32, dim Comm(C,J)=1.
+The common commutant is R I_8 (and C I_8 after complexification). The symmetric
+C-invariant forms alone have dimension four; the second clock is essential.
+This is a direct application of the previously established clock rigidity,
+not a new exceptional-algebra discovery.
+
+Suppose a source supplies linear local fields j(v,f), a vacuum Omega and
+unitary implementations U_C,U_J, with
+  U_A Omega=Omega,
+  U_A j(v,f) U_A^dagger=j(A v,f), A=C,J.
+The SAME smearing/support f is important: these must act internally on the
+candidate channels, not move a mode into another coordinate or frequency.
+Assume the displayed field vectors are defined on the common vacuum domain.
+Then
+  G_f(v,w)=<j(v,f)Omega,j(w,f)Omega>
+satisfies A^T G_f A=G_f for both A. Since A is orthogonal, G_f commutes with
+C,J. Thus G_f=b_f I_8. Positivity gives b_f>=0; any one nonzero response gives
+b_f>0 and rank exactly eight. Neither eight pre-existing independent fields
+nor a full local E8 group action need be added to this CONDITIONAL lemma.
+
+If these implementations also commute with source time evolution, the mixed
+two-point kernels at arbitrary times likewise factor as
+  G_(f,g,t)(v,w)=b(f,g,t) (v,w).
+This forces common two-point time dependence; it does not choose the scalar
+kernel, higher correlations, a current commutator or a Hamiltonian. C and J
+do not commute with each other. Accordingly C cannot simultaneously be
+identified with physical time while J is assumed to commute with that time
+on a faithful current space. The extra time premise must be checked explicitly.
+
+For the MPS candidate, section 5 shows the first local equivariance identity
+already forces j=0. For the actual one-copy QWZ source, contract .07 already
+finds a rank-one leading-current Gram. Neither passes this source test. These
+are scoped source decisions, not a no-go against all TFPT field realizations.
+
+7. THE P1 SHORTCUT DOES NOT SUPPLY THE MISSING LOCAL IDENTITY
+
+v456 uses the correct statement that orientation reversal changes a Chern
+number's sign. It then treats the absence of reflection as forcing C!=0.
+The actual assignment is
+  s3_from_p1 = one_sided and two_sided_kills.
+It contains no Chern number of the proposed target. The same Boolean stays
+true if a target value C=0 is supplied. Reflection symmetry => C=0 does not
+imply absence of reflection => C!=0.
+
+The original Hamiltonian at M=3 supplies a small exact counterexample to the
+latter inference within this two-band family:
+  d(k)=(sin kx, sin ky, 3-cos kx-cos ky), d_z>=1.
+The homotopy d_s=(s sin kx,s sin ky,3-s cos kx-s cos ky), 0<=s<=1, remains
+gapped and contracts to a constant. Its occupied bundle has C=0 exactly.
+For square-lattice orientation-reversing point symmetries with a constant
+onsite unitary implementation, keeping the nonzero sigma_z constant term
+would require an improper three-dimensional rotation of the Pauli matrices,
+which no U(2) conjugation implements. This is a precise symmetry class; no
+claim about every conceivable momentum-dependent or antiunitary symmetry is
+needed. The original numerical Chern routine also returns zero within error.
+
+This refutes the absence-of-reflection inference. It is NOT offered as a
+complete countermodel satisfying every unformalized P1/P2 boundary condition.
+The magnitude c_-=2^(g_car-1)/2 is separately inserted in v456. P1's scalar
+self-linking normalization 1/(8pi) is not a construction of eight local fields.
+
+An integral primitive central extension of LE8, if actually derived at the
+source and in a positive-energy representation, could fix its level k=1.
+With the affine currents and Sugawara stress tensor, c=248/(1+30)=8 follows.
+The finite Pauli cocycle, the seam's unit winding, and that loop-group central
+extension are different objects. Their equality requires a transgression/
+operator map. It is not established by their integer labels or a closed MPS.
+
+WHAT THIS LEAVES AS THE ACTUAL NEXT DERIVATION
+
+The composition result supplies a valid rule for cyclic compatibility within
+the chosen parent construction. It does not select the source instrument,
+localization map, physical time, geometry, or critical field limit. The most
+specific missing object is a SOURCE-DERIVED charged/local operator map which
+retains the distinguished root/instrument data and correctly implements the
+native actions before taking neutral current bilinears. It must produce a
+nonzero current response with the required clock covariance and the actual
+central commutator. A label space, cyclic trace, finite projective edge, or
+uniformly gapped parent chain cannot stand in for that operator identity.
+
+This contract is an exact conditional reconstruction and source-exclusion
+result, plus an independent verification of the pasted model. It closes no
+T1-T8/TOE, RH, factoring or empirical claim. It does not change the ledger or
+declare P1/P2 inconsistent. Its value is the precise connection between the
+already known clock rigidity, coherent composition, neutral-observable
+quotient, and the first missing local-field identity.
+
+PRIMARY LITERATURE (theorems used, not evidence of TFPT source selection)
+
+Perez-Garcia et al., Matrix Product State Representations:
+https://arxiv.org/abs/quant-ph/0608197
+Schuch, Perez-Garcia, Cirac, Classifying quantum phases using MPS and PEPS:
+https://arxiv.org/abs/1010.3732
+Henriques, What Chern-Simons theory assigns to a point, definition 1 and loop
+group section (positive level is additional data):
+https://pmc.ncbi.nlm.nih.gov/articles/PMC5754777/
+Lu and Vishwanath, Theory and classification of interacting integer
+topological phases in two dimensions: A Chern-Simons approach:
+https://arxiv.org/abs/1205.3156
+
+REPLAY
+
+Run checker.py and python3 -OO checker.py --out <temporary-directory>.
+The source pins must agree; all proof-bearing checks remain active under -OO.
+The finite arithmetic uses exact rational/complex algebra. The M3 numerical
+Chern values are supplements to the analytic gapped homotopy. The all-n
+statements are proved above, not inferred by increasing finite n.

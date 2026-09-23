@@ -1,0 +1,140 @@
+M4 FULL-SOURCE ANALYTIC BOUNDS
+19 September 2026
+Verdict: EXACT FINITE CANDIDATE LIST; FULL GROUND STILL OPEN
+
+Question
+========
+
+Which four-source phase and coarse source-module sectors can still lie below
+the Phi-core energy using certified local, pair and projector-overlap bounds?
+Numerical full-sector floors and the reported full three-source complement
+theorem are not used as lower bounds.
+
+1. Exact variational upper bound
+================================
+
+The old boundary construction gives the exact eigenvalue
+
+  U_boundary=1/2+(8-sqrt(19))/5
+            =1.228220211291865... kappa.
+
+In the exact six-state phase2102 packet space, the integer coefficient vector
+
+  x=(6,1,0,0,0,0)^T
+
+has the exact Rayleigh quotient
+
+  (x^T G6 H6 x)/(x^T G6 x)=391/320=1.221875.                (1)
+
+Therefore the full m4 ground obeys E0<=391 kappa/320.  This rational witness
+does not need the separately Sturm-isolated smaller root near1.22149393035 in
+the same fixed module.  The fixed-module certificate does not prove that root
+is the full-source ground.
+
+2. Exact phase cut: 256 -> 67 -> 19
+====================================
+
+The exact one-edge floors are
+
+  ell(0)=3/5, ell(1)=1/2, ell(2)=0, ell(3)=1/2.              (2)
+
+They leave67 of256 phase strings below (1).  The new pair audit proves
+
+  floor(H_q22)=3/5,
+  floor(H_q23)=floor(H_q32)>=4/3-sqrt(445)/30,
+  floor(H_q20)=floor(H_q02)>=4/3-sqrt(394)/30.               (3)
+
+The q22 ground is a four-dimensional B tensor B branch.  Its exact boundary
+Gram is (11I+6Swap)/50, so two q22 pair-ground projectors sharing one matter
+register have overlap norm at most17/50.  With the certified q22 pair gap this
+gives
+
+  floor(H_2222)>=194/125-11sqrt(214)/500
+                 =1.2301677455... >391/320.                 (4)
+
+Maximizing disjoint singleton and pair bounds, together with (4), excludes48
+of the67 one-edge candidates.  Exactly19 phase strings remain:
+
+  total charge0:
+    1232 2123 2132 2312 2321 3212
+
+  total charge1:
+    0212 1202 2012 2021 2102 2120
+
+  total charge2:
+    1212 2112 2121
+
+  total charge3:
+    1222 2122 2212 2221.                                    (5)
+
+The total-charge counts are6,6,3,4.  Open-chain reversal groups this list into
+ten exact profile classes.  No q1/q3 interchange is used.  A string in (5) is
+only not excluded: its current component lower bounds need not be jointly
+attainable.
+
+3. Coarse representation refinement
+====================================
+
+The coarse exact labels are
+
+  B = barSym2 source module in q2, containing the unique Omega,
+  X = its invariant q2 orthogonal complement,
+  T = the trivial q0 source module,
+  Y = its invariant q0 orthogonal complement,
+  O = a q1 or q3 source module not further split in this enumeration.
+
+Every q2 source in X has local floor2/5.  Contract .23 additionally proves
+
+  floor(B,T)=floor(T,B)=(6-sqrt(6))/5.                       (6)
+
+For each mask, the checker maximizes certified disjoint singleton and pair
+bounds and applies the special full2222 overlap bound.  Of the528 coarse
+assignments belonging to the67 one-edge candidates,497 are excluded and31
+remain.  Their exact list is in global_bounds.json.
+
+The threshold separation is explicit:
+
+  largest proved lower bound among survivors
+    =17/10-sqrt(6)/5=1.2101020514...,
+
+  smallest proved lower bound among excluded assignments
+    =29/15-sqrt(445)/30=1.2301658963... .                    (7)
+
+The candidate list is unchanged if the exact fixed-module root1.2214939... is
+used instead of the rational upper (1).
+
+4. First remaining proof gap
+============================
+
+The independent audit closes q22, q23/q32 and q20/q02, but stops at19 phase
+patterns and31 coarse masks.  The first missing input is independent native
+certification of the supplied q21/q12 complement constant and its ground-
+projector overlap.  Those data would eliminate 1212,2112 and2121.  The
+remaining mixed patterns require bounded overlapping-pair or fixed-module
+Schur estimates.  A full m4 diagonalization is not required.
+
+5. Evidence boundary
+====================
+
+EXACT:
+
+* the rational full-space trial upper (1);
+* the local floors (2), complete pair bounds (3), phase2222 bound (4), and
+  19-string list (5);
+* the ten open-chain reversal classes, with no q1/q3 spectral symmetry claim;
+* the31-mask coarse enumeration using (6)-(7);
+* exclusion of every phase string and coarse mask not listed in the JSON.
+
+NOT ESTABLISHED:
+
+* which of the19 phase strings contains the full m4 ground;
+* that any of the31 coarse masks attains its current lower bound;
+* the supplied q21/q12 complement and later overlapping-pattern exclusions;
+* a thermodynamic vacuum, isolated wall, effective dispersion or Dirac field.
+
+Artifacts
+=========
+
+  global_bounds.py    exact enumeration and symbolic checks
+  global_bounds.json  complete phase and coarse representation candidate list
+  global_bounds.txt   this proof-boundary report

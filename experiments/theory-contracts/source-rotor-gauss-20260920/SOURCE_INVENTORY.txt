@@ -1,0 +1,356 @@
+# Rotor/Gauss origin inventory — 2026-09-20
+
+## Result
+
+The existing compact-U(1) rotor parent does contain a real noncentral
+electric-matter coupling and a well-defined Gauss-physical open-edge/tree
+sector. It therefore supplies more than a formal Gaussian determinant. It
+does **not** yet supply a coherent E8 transfer, an effective static
+interaction on the E8 channel lattice, or a selected low-energy vacuum/gap
+from TFPT/P1/P2. The previously checked site-fixed rotor-independent C6
+grade lift is not repeated here; its scope and exclusion remain exactly as
+documented in `clock-rotor-joint-charge/README.md:148-169`.
+
+The source-linked facts are:
+
+1. The parent is the unchanged two-species compact-U(1) model
+
+   ```text
+   H = kappa/2 sum_l E_l^2
+       + dGamma([[A+beta A^2, eta A], [eta A, M I]])
+   A_xy = a U_xy,
+   a=1/12, beta=1/4, eta=1/2, kappa=1/100, M=4.
+   ```
+
+   The ambient cubic low backtrack is `d=beta*a^2*6=1/96`. These are declared
+   model parameters, not source-selected TFPT constants.
+
+2. The physical preparation used throughout is one fermion per site, usually
+   the bare low mode, with `E_l=0` on every link. Arbitrary local L/H
+   coherence, mixtures, and entanglement remain in the same Gauss sector.
+   This is a specified reference/preparation family, not a selected vacuum or
+   the complete low-energy spectral space.
+
+3. On an open tree Gauss fixes all edge fluxes from occupations. On a two-site
+   edge the exact relation is especially simple and gives the requested
+   density formula below. A tree has no independent winding rotor; a cycle
+   retains one integer winding parameter and is a separate sector.
+
+4. A genuine induced quartic commutator was already proved in the earlier
+   provenance contract. It is a noncentral rotor commutator, not an inserted
+   free four-fermion term. Its controlled elimination into an effective static
+   interaction and its map to E8 remain open.
+
+5. Existing coherent transfer is only local L/H matter transfer with rotor
+   transporters. The exact high-mode source equation and finite-time edge/tree
+   checks do not construct a coherent E8 transfer or a common E8 field map.
+
+## 1. Parent, filling, and what “low energy” means here
+
+The unrotated parent is recorded in
+`local-window-round37/LOCAL_WINDOW.md:12-35` and repeated in
+`local-source-round38/LOCAL_SOURCE.md:48-89`:
+
+```text
+H = kappa/2 sum_l E_l^2
+    + dGamma([[A+beta A^2, eta A], [eta A, M I]])
+```
+
+with two fermion modes `L,H` per vertex and one unbounded integer rotor per
+oriented link. The reference charge is one per site. The bare reference has
+one low fermion per vertex and zero electric flux. The one-site low backtrack
+in the cubic ambient parent is `d=1/96`, while the high onsite mass is
+`M=4`. The high mode is therefore an excited species in the declared source
+equation; the documents do not derive a filled interacting ground state.
+
+The exact high-mode equation is
+
+```text
+d/dt tau_t(c_H,x)
+  = -i M tau_t(c_H,x)
+    -i eta a sum_(y~x) tau_t(U_xy c_L,y),
+```
+
+with integrated source `B_xy=U_xy c_L,y`. The `c_H` and `B` operators are
+gauge-covariant odd intermediate operators; their squared norm gives the
+physical even observable `n_H,x`. They are not a newly selected vacuum or a
+gauge-invariant E8 field.
+
+The matter-resummation contract states the same scope explicitly:
+initial `E=0` states have exactly one L/H fermion per site, with arbitrary
+species coherence on a finite patch and bare-low filling elsewhere; these are
+assumed preparations, not selected vacua. See
+`matter-resummation-round43/MATTER_RESUMMATION.md:9-40`.
+
+## 2. Exact Gauss reduction on the open two-site edge
+
+The source convention is
+
+```text
+G_x = N_L,x + N_H,x - 1 + div_x E,
+div E = sum_outgoing E - sum_incoming E.
+```
+
+This is recorded in `clock-rotor-joint-charge/README.md:73-100`; the code
+implements the same equation in
+`local-window-round37/checker.py:222-229`.
+
+Orient the one edge from site 0 to site 1 and call its integer flux `E`. With
+`N_i=N_L,i+N_H,i`, the two constraints are
+
+```text
+G0 = N0 - 1 + E = 0,
+G1 = N1 - 1 - E = 0.
+```
+
+Adding and solving gives the exact identities
+
+```text
+N0 + N1 = 2,
+E = 1 - N0 = N1 - 1,
+H_E = kappa/2 E^2 = kappa/2 (N0 - 1)^2.
+```
+
+This is a derivation from the declared Gauss law, not a selected flux ansatz.
+Each site has two modes, so the two-site fixed-charge sector consists of the
+`choose(4,2)=6` Fock masks. The complete benchmark confirms six physical
+states and checks `G0=G1=0` on every one, with no flux cutoff; see
+`local-source-round38/test_checker.py:173-180` and
+`local-source-round38/LOCAL_SOURCE.md:258-271`.
+
+The bare-low reference is the mask with one low fermion on each site:
+`N0=N1=1`, `E=0`. The other physical masks include a double occupancy and a
+hole, with the compensating flux fixed by the equations above. Thus the
+electric density energy is exactly zero for the reference and `kappa/2` for
+the `N0=0` or `N0=2` edge configurations.
+
+The same reduction generalizes to a rooted star with edges `0 -> j`. For the
+physical one-fermion-per-site sector, the exact Gauss equation is
+`N_i+div_i E=b_i` with `b_i=1`; on each leaf,
+
+```text
+E_(0->j) = N_j - 1.
+```
+
+Enumerating all masks with total particle number equal to the total reference
+charge gives the complete tree sector, not an assumed electric truncation.
+The six-leaf star has seven sites, seven fermions, 3,432 physical states and
+64,416 stored Hamiltonian entries. This is proved in
+`matter-resummation-round43/MATTER_RESUMMATION.md:132-183` and independently
+reported in `local-source-round38/LOCAL_SOURCE.md:258-271`.
+
+On a cycle, by contrast, Gauss leaves one integer winding `m`; the cycle
+formula and its tail bound are in
+`matter-resummation-round43/MATTER_RESUMMATION.md:146-179`. That winding is
+not present on the open edge/tree and must not be silently carried into the
+tree reduction.
+
+## 3. Exact reference gap/phase scale and its limit
+
+The local-source contract defines
+
+```text
+Delta = M - d + kappa/2
+      = 4 - 1/96 + 1/200
+      = 9587/2400.
+```
+
+It is the exact phase denominator in the high-mode source equation and the
+energy difference for the checked reference transfer. In the two-site test,
+start from the bare-low state and move one low fermion to a high mode while
+the edge flux changes to `E=-1`. The diagonal original-parent energy change is
+
+```text
+Delta = [M*(high occupation) + d*(low occupation)
+         + kappa E^2/2]_excited
+        - [same expression]_bare,
+```
+
+which is verified symbolically in
+`local-source-round38/test_checker.py:81-98`. This is the source's exact
+onsite/electric transfer scale, and the electric half-step is not omitted.
+
+It should not be called a proven many-body spectral gap of the full
+interacting edge or cubic parent. The test compares the diagonal original
+onsite parent energies; the hopping terms remain in the full benchmark
+Hamiltonian. The contract itself calls the result a phase gap and keeps the
+selected-vacuum and low-energy-spectral-reduction questions open; see
+`local-source-round38/README.md:33-42,87-98`.
+
+The finite edge and star are complete physical Gauss-sector evolutions at
+model time `t=1`. The bare-low high-occupation outputs are approximately
+`0.00036097226121...` on the edge and
+`0.00219096851702...` on the six-leaf star; equal coherent +/-i edge inputs
+produce distinct values near `0.5`. These are exact finite-parent benchmarks,
+not evidence for a selected low-energy E8 phase. See
+`local-source-round38/LOCAL_SOURCE.md:260-296`.
+
+## 4. Existing induced interaction: real, but not yet an effective E8 term
+
+The earlier `clock-interaction-provenance` audit already found the only
+relevant source-native non-Gaussian edge in this inventory. On an existing
+link,
+
+```text
+[E,U] = U,
+H_E = (kappa/2) E^2,
+Vhop = a (U c_1^* c_0 + U^* c_0^* c_1),
+a=1/12, kappa=1/100.
+```
+
+Because the rotor coefficient is noncentral,
+
+```text
+[Vhop,[H_E,Vhop]]
+ = kappa a^2 [n0+n1-2 n0 n1+2 E(n0-n1)],
+```
+
+and the pure quartic component is
+
+```text
+-2 kappa a^2 q0 q1 = -(1/7200) q0 q1.
+```
+
+The checker tests all 16 four-mode Fock masks, arbitrary integer flux, and
+the full original two-site hopping list; the coefficient survives. This is a
+genuine induced commutator component, not a free quartic term inserted by
+hand. Provenance and exact scope are in
+`clock-interaction-provenance/README.md:132-180`.
+
+The same source document states the decisive limitation: the commutator is
+not yet a static effective Hamiltonian. Its time ordering, Gauss reduction,
+controlled elimination, and coefficient in an actual low-energy theory remain
+to be derived. The parent has four L/H complex modes on two sites plus an
+infinite rotor; no map to the sixteen Clock Majoranas, the E8 boundary, or an
+E8 charge/grading dictionary has been proved. See
+`clock-interaction-provenance/README.md:175-187`.
+
+## 5. Existing coherent transfer and its boundary
+
+There is an established coherent local transfer mechanism. The exact source
+equation transports a low fermion through `U_xy` into the high mode while
+retaining the electric phase
+
+```text
+tau_s^0(U_l^sigma)
+ = U_l^sigma exp(i kappa s (sigma E_l + 1/2)).
+```
+
+For initial `E=0`, shifted-link flux states from different neighbors are
+orthogonal. The local source contract obtains the exact free-source norm
+
+```text
+q(t)=p_H+(eta a)^2 sum_(y~x) p_L,y
+     * 2(1-cos(Delta t))/Delta^2,
+```
+
+and encloses the full `n_H,x(t)` by explicit source-defect bounds. These are
+coherent L/H matter-transfer statements, not an E8 transfer. See
+`local-source-round38/LOCAL_SOURCE.md:131-177,192-249`.
+
+The later matter-resummation contract keeps the full free electric and onsite
+phases in the all-order matter-row representation, but explicitly leaves
+electric branches in a separate bound and does not evaluate the full cubic
+resummed readout. It also proves that the auxiliary row need not be a
+canonical full-Fock annihilator: the rotor coefficients do not commute, and
+the anticommutator acquires a quartic correction
+
+```text
+[t^4] <{P_infty(t),P_infty(t)^*}>_(LL,E0)
+  = - kappa g^2 (M-d)/6.
+```
+
+This is an obstruction to declaring the auxiliary row a full canonical field,
+not an E8 coherent-transfer theorem. See
+`matter-resummation-round43/MATTER_RESUMMATION.md:9-40,250-306`.
+
+The electric-propagation contract retains the M, E, MEM and MME branches of
+the same parent through fourth order and supplies fifth-order remainders. It
+is a controlled finite-time expansion on the named sectors, not a completed
+effective transfer or a full 3D gauge solver. See
+`electric-propagation-round42/ELECTRIC_PROPAGATION.md:8-60,145-205`.
+
+## 6. Prior charge backreaction and the scope of the cycle reduction
+
+The `common-engine-threeway` contract already contains the relevant
+charge-dependent rotor backreaction. On its four-edge open-square cell, the
+same native low transport keeps amplitude `1/12`, while a disjoint spectator
+dipole changes its diagonal transport cost from `+1/200` to `-1/200`.
+Both input states satisfy Gauss. The contract also states explicitly that
+the winding variable is integer-valued and must not be replaced by a freely
+minimized real number. This is an established prior result, not a new
+interaction or a new density-coupling derivation; see
+`common-engine-threeway/README.md:11-17,42-72,117-130`.
+
+That source does write an exact Hodge decomposition for the declared
+four-edge neutral plaquette. With one cycle vector `z`, its checker verifies
+
+```text
+e = e_long + z*lambda,
+e.e = q^T Lplus q + (z.z)*lambda^2,
+```
+
+while retaining the integer winding chart and checking all integer physical
+states. The implementation and returned provenance are in
+`common-engine-threeway/cell.py:124-185`.
+
+It does **not** already provide the proposed typed general connected-graph
+map in terms of arbitrary tree flux `E_T(rho)`, cycle-complement matrix `C`,
+and
+
+```text
+theta(rho) = (C^T C)^(-1) C^T E_T(rho),
+E = E_T(rho) + C w,
+```
+
+for an arbitrary graph and cycle rank. The existing record has one fixed
+plaquette cycle vector and a special neutral charge chart. The most useful
+extension, if pursued, is therefore a typed general cycle/complement map
+that preserves both the Gauss source charges and integer winding; this
+inventory does not construct that extension.
+
+## Verdict
+
+The existing rotor parent does establish:
+
+- a genuine noncentral electric coefficient algebra;
+- exact Gauss reduction on open trees and complete finite physical edge/star
+  sectors;
+- the actual bare-low, one-fermion-per-site reference filling;
+- the exact two-site identities
+  `N0+N1=2`, `E=1-N0`, and `H_E=kappa(N0-1)^2/2`;
+- a precise onsite/electric transfer scale `Delta=9587/2400`; and
+- local coherent L/H transfer together with an induced quartic commutator.
+- prior four-edge charge backreaction with integer-winding preservation, as
+  documented by `common-engine-threeway`.
+
+It does not yet establish:
+
+- a selected interacting low-energy vacuum or a many-body spectral gap;
+- a controlled static effective quartic interaction after Gauss reduction and
+  rotor elimination;
+- a coherent transfer acting on the E8 channel lattice or its glue/charges;
+- an intertwiner to the sixteen-Majorana Clock; or
+- a source-selected E8 phase.
+
+The strongest next source test is therefore a typed, controlled low-energy
+reduction of the already existing rotor commutator on the complete physical
+edge/tree sector, followed by an explicit charge/grading-preserving map to the
+candidate E8 operators. That is an extension of an existing parent, not a new
+interaction model. Until the reduction and dictionary are supplied, the
+quartic commutator is provenance evidence only.
+
+## Primary originals inspected (12)
+
+1. `experiments/theory-contracts/local-window-round37/LOCAL_WINDOW.md`
+2. `experiments/theory-contracts/local-window-round37/checker.py`
+3. `experiments/theory-contracts/clock-rotor-joint-charge/README.md`
+4. `experiments/theory-contracts/matter-resummation-round43/MATTER_RESUMMATION.md`
+5. `experiments/theory-contracts/local-source-round38/README.md`
+6. `experiments/theory-contracts/local-source-round38/LOCAL_SOURCE.md`
+7. `experiments/theory-contracts/local-source-round38/checker.py`
+8. `experiments/theory-contracts/local-source-round38/test_checker.py`
+9. `experiments/theory-contracts/electric-propagation-round42/ELECTRIC_PROPAGATION.md`
+10. `experiments/theory-contracts/clock-interaction-provenance/README.md`
+11. `experiments/theory-contracts/common-engine-threeway/README.md`
+12. `experiments/theory-contracts/common-engine-threeway/cell.py`

@@ -1,0 +1,125 @@
+\begin{titlepage}
+\vspace*{15mm}
+{\sffamily\color{teal}\large FORSCHUNGSUPDATE · 15. SEPTEMBER 2026\par}
+\vspace{16mm}
+{\sffamily\bfseries\color{navy}\fontsize{29}{35}\selectfont TFPT und Universalraum\par}
+\vspace{8mm}
+{\sffamily\color{navy}\LARGE Version 1.6\par}
+\vspace{12mm}
+{\sffamily\Large Der kleine Matrixkern,\par die tatsächlichen Operationen\par und die offene Zustandswahl\par}
+\vspace{16mm}
+Dieses Update enthält nur Änderungen gegenüber dem vollständigen Hauptdokument v1.5. Die ausführliche neue v1.6-Fassung bewahrt sämtliche bisherigen Kapitel und Abbildungen, integriert Korrekturen direkt in die Argumentation und ergänzt vollständige Rechnungen und eine aktualisierte T1--T8-Karte.
+\vfill
+{\sffamily Für Stefan Hamann\par Analyse, Rekonstruktion und Redaktion: Codex\par}
+\vspace{8mm}
+\begin{grenze}{Reichweite}
+Exakte endliche und modellbedingte Ergebnisse. Keine vollständige TOE, kein RH-Beweis und kein neuer Faktorisierungs- oder P-versus-NP-Abschluss. Übernommene ältere Großrechnungen und frisch wiederholte Prüfungen sind getrennt ausgewiesen.
+\end{grenze}
+\end{titlepage}
+
+\chapter*{Das Ergebnis in einem Bild}
+\addcontentsline{toc}{chapter}{Das Ergebnis in einem Bild}
+Der Baukasten ist tatsächlich kleiner geworden. Die markierte $E_8$-Struktur lässt sich in einer konkreten Ordnung komplexer $2\times2$-Matrizen darstellen. Dieselben inneren Matrizen liefern die Amplituden eines einfachen Weyl-Walks. Ein besonders kurzer Laborablauf erzeugt außerdem den Zellzustand $\Omega$ mit einem einzigen erfolgreichen Record.
+
+Der noch fehlende Schritt ist jetzt genauer benannt: Aus dem inneren Baukasten muss eine \emph{physisch ausgewählte Ausführung} entstehen, die Plätze verbindet, Energie und Zustand festlegt und ihre Aufzeichnungen selbst trägt. Ohne hinzugefügte Ortsverschiebungen tut der innere Walk räumlich nichts. Ohne Auswahlregel können symmetrisch gleichberechtigte Energien verschiedene Grundzustände ergeben.
+
+\section*{Eine notwendige Korrektur des letzten Status}
+Die Matrix-$E_8$-Spur war nicht erst neu zu entdecken. Ein vollständiger Beweis samt markierter Compiler-Abbildung lag bereits seit dem 9. September im Repository. Der vorherige Status hatte diesen Abschnitt nicht berücksichtigt. v1.6 korrigiert das, reproduziert den vorhandenen Prüfer und trennt den älteren Beweis von den neuen Anschlussrechnungen.
+
+\chapter*{1. Die Matrixbrücke ist bestätigt}
+Mit $D=\mathbb Z[i]$ und
+\[
+P=\begin{pmatrix}1&(1+i)^{-1}\\0&(1+i)^{-1}\end{pmatrix},\qquad
+M=P M_2(D)P^{-1}
+\]
+hat die maximale Ordnung unter
+\[
+Q(A)=\operatorname{Re}\operatorname{Tr}(AA^\dagger)
+\]
+ein positives gerades unimodulares Gitter vom Rang acht. Die vollständig begrenzte Wurzelsuche findet genau 240 Vektoren mit $Q=2$. Die markierte Isometrie erhält den gaußschen Anker, die Familienwirkung und den tatsächlichen Compiler-Code.
+
+Die kleineren Ordnungen $O\subset R\subset M$ haben Indizes vier und vier; ihre Gram-Determinanten sind 256, 16 und 1. Sie besitzen im betrachteten Modell dieselbe hermitesche Kegelansicht. Daher wählt diese Kegelansicht allein die maximale Ordnung nicht aus. Die einfache Vierteldrehung $q=\operatorname{diag}(i,1)$ liegt in $M$, aber nicht in $R$, und ist ein konkretes Ziel für einen nativen Operationsnachweis.
+
+Unter den 240 Wurzelmatrizen sind 96 unitär und 144 von Rang eins. Eine Wurzel ist nicht automatisch ein reversibles Gate; die positive Längenform ist keine multiplikative Norm. Das Ergebnis bestätigt eine konkrete algebraische Brücke, nicht die physische Eindeutigkeit des Objekts.
+
+\chapter*{2. Neue Rechnung: Compiler-Matrizen liefern den inneren Walk}
+Die drei hermiteschen Matrizen $\alpha_j=-au_j$ erfüllen die Pauli-Relationen. Für $\epsilon\in\{-1,1\}^3$ setze
+\[
+A_\epsilon=\frac18(I+\epsilon_1\alpha_1)(I+\epsilon_2\alpha_2)(I+\epsilon_3\alpha_3).
+\]
+Jede Matrix hat Rang eins und Normquadrat $1/4$; vier ist jeweils der kleinste ganzzahlige Faktor, der sie in $M$ bringt. Das Produkt
+\[
+U(k)=e^{-ik_1\alpha_1}e^{-ik_2\alpha_2}e^{-ik_3\alpha_3}
+\]
+ist für alle $k$ unitär und hat den linearen Grenzterm $I-i\sum_jk_j\alpha_j$. Sämtliche 27 Laurent-Koeffizienten beider Unitaritätsgleichungen wurden zusätzlich exakt geprüft.
+
+\begin{grenze}{Was noch nicht erzeugt wurde}
+Bewegung erfordert $\mathcal U=\sum_\epsilon T_\epsilon\otimes A_\epsilon$. Die räumlichen $T_\epsilon$ sind noch keine hergeleiteten Compileroperationen. Ohne sie gilt exakt $\sum_\epsilon A_\epsilon=I$. Auch eine lineare Kombination von Matrixwörtern ist erst dann ein physisches Gate, wenn Normierung, Kontrolle und Hilfsregister realisiert sind.
+\end{grenze}
+
+Die $A_3$-Fundamentalgewichte bilden tatsächlich das Tetraeder einer BCC-Gewichtsgeometrie; die zwölf Differenzen bilden das FCC-Wurzelgitter. Im vollen $E_8$-Lift müssen zusätzlich Grad, Metrik und Wegoperator stimmen. Eine geschlossene Ortszeichnung darf nicht die verbleibende Cartanwirkung eines nativen Lie-Produkts unterschlagen.
+
+\chapter*{3. Neue unabhängige Rechnung: die Zustandswahl bleibt echt}
+Für das native Modell mit 64 Fermion- und 60 Vermittlermoden gilt
+\[
+H=\Delta N_b+g\sum_A(b_A^\dagger P_A+P_A^\dagger b_A),\qquad N=N_f+2N_b.
+\]
+Die Identität
+\[
+\sum_A P_A^\dagger P_A=\frac{15N_f-C_{\mathrm{Spin}(10)}-C_{SU(4)}}2
+\]
+wurde unabhängig aus den Generatoren und allen 2016 Zweifermionenzuständen rekonstruiert. Weil beide Seiten normalgeordneten Grad höchstens vier haben und auch die Sektoren null und eins geprüft sind, gilt die Identität im gesamten fermionischen Fockraum.
+
+Für $H_\mu=H+\mu N$, $g=\Delta/20$ und $\mu=\Delta/50$ folgt durch Quadratvervollständigung
+\[
+\boxed{H_\mu\ge\Delta(N_f+2N_b)/800.}
+\]
+Das leere Vakuum ist eindeutig und hat eine bewiesene Anregungsuntergrenze. Bei $\mu=0$ existiert dagegen bereits im hellen Einpaarsektor eine negative Energie. Beide Modelle respektieren dieselben angegebenen inneren Symmetrien.
+
+Für einen festen präparierten Eingang und ausschließlich neutrale Operatoren $[O,N]=0$ bleibt die Heisenbergentwicklung trotzdem gleich. Grundzustandspräparation oder Ladungswechsel können unterscheiden. Der neue Satz erklärt deshalb präzise, weshalb neutrale Daten die physische Energie-/Zustandswahl noch nicht festlegen. Er ist keine nachträgliche Empfehlung, $\mu$ passend einzustellen.
+
+Bei mehreren Banken mit ausschließlich Vermittlerhopping bleibt zusätzlich jede lokale Fermionparität erhalten. Dadurch wird Paar- oder Vermittlertransport möglich, aber kein einzelnes Fermion von einer Bank zur anderen übertragen. Eine ungerade räumliche Operation oder eine begründete andere Teilchenidentifikation ist der nächste konkrete Test.
+
+\chapter*{4. Erstmals in die PDF-Linie integrierte Vorbefunde}
+Die vorläufigen Markdown-Berichte v1.6 vom 14. September enthielten bereits folgende weitergehende Ergebnisse. Sie sind nun im Hauptbuch mit Formeln, Ressourcen und Modellgrenzen enthalten; die großen zugehörigen Läufe wurden in dieser Revision nicht sämtlich wiederholt.
+
+\section*{Ein-Record-Präparation und vollständige Rohstatistik}
+Ein expliziter Acht-Bit-Stabilizereingang $\xi$ erfüllt $P^-_{03}|\xi\rangle=-\sqrt{3/8}|\Omega\rangle$. Ein erfolgreicher Record präpariert daher exakt $\Omega$ mit Wahrscheinlichkeit $3/8$. Die aus der rückwärtigen Schaltung aufgebaute Schlussprüfung hat ebenfalls Effizienz $3/8$.
+
+Die vollständige Vier-Record-Folge liefert roh $9/64$ bei kohärent behaltenem Register und $153/2048$ bei frischen Registern. Erst nach Kalibrierung erhält man die bekannten Rückkehrwerte $1$ und $17/32$. Lange Näherungsfilter sind für dieses Ziel nicht mehr nötig. Der Record selbst, seine Q-Kontrolle, Pointerversorgung und Reset sind weiterhin echte Ressourcen. Das Stabilizeroptimum $3/8$ und der vollständige Flagzeuge $15/64$ präzisieren diese Grenze.
+
+\section*{C16-Spektrum und zwei verschiedene Transportzeugen}
+Im vollständigen 24024-dimensionalen Singulettsektor des benannten abgeschnittenen kantenlokalen Operators sind genau fünf Zustände unter $12{,}45J$ zertifiziert, mit Grundzustandslücke größer als $0{,}4864141269280J$. Das ist kein Zertifikat sämtlicher Nicht-Singuletts oder des vollen mikroskopischen Operators.
+
+Ein 112-dimensionales Dreiplatz-Wedge-Modell liefert einen Rang-24-Transportkanal; eine 961-dimensionale Zweisterne-Kompression einen Rang-15-Kanal mit Amplitude $\lambda/9$ und ebenso vielen dunklen Richtungen. Beide sind positive endliche Ergebnisse auf vorgegebenen Architekturen. Sie werden nicht mit dem gesamten nativen Fockmodell gleichgesetzt.
+
+\section*{Die gemeinsam zu prüfende kosmologische Ausgabe}
+Die dokumentierte vollständige Modenrechnung der Starobinsky-Branche $M^2=c_3^7$ trifft die verwendeten Zentralwerte für Amplitude und Neigung nicht gleichzeitig. Anpassung an $A_s$ ergibt $N\simeq54{,}24$, $n_s\simeq0{,}96442$; Anpassung an $n_s=0{,}9752$ ergibt $N\simeq78{,}53$ und eine etwa 2,05-fach größere Amplitude. Ein Retuning von $c_3$ wirkt gleichzeitig auf die elektromagnetische Ausgabe. Dies ist eine benannte Modellspannung, kein vollständiger Likelihood-Ausschluss.
+
+\chapter*{5. Welche starken Schlussfolgerungen nicht halten}
+\begin{itemize}
+\item $\mu_4$ allein erzwingt keine zweidimensionale komplexe Darstellung und keine dreidimensionale physische Raumstruktur.
+\item Ein einfacher zweikomponentiger Weyl-Walk besitzt in der vollständig geprüften Zone vier Knoten. Bei Quasienergie null und $\pi$ bleibt je ein Paar entgegengesetzter Chiralität. Falten entfernt keine Spiegelzustände.
+\item Die $E_6\times SU(3)$-Verzweigung ist kein automatisch hergeleitetes Drei-Familien-Maß für das unverändert ausgewählte $\mathrm{Spin}(10)$-Modell.
+\item Die native signierte Kopplung ist nicht durch positive Beträge ersetzbar: gleiche Zeilengrammatrix, aber unterschiedliche helle Zustandsräume und Konversion.
+\item Die hellen Zweifermionenzustände haben in allen 60 Kanälen einen exakten Vierpunktdefekt $7/64$ gegenüber Wick bei gleichen Zweipunktdaten. Eine Majorana-Kovarianz allein reproduziert die native Dynamik nicht. Eine nichtlineare Randfeldübersetzung bleibt möglich, ist aber eigens zu konstruieren.
+\item Ein verschwundener Lie-Kommutator beweist kein Belegungsverbot. Eine innere Wurzeldimension bestimmt nicht die Zahl räumlicher Moden. Eine bosonische $E_8$-Vertexalgebra ist nicht schon das vollständige chirale physische Maß.
+\end{itemize}
+
+\chapter*{6. Die nächsten drei Abnahmen}
+\textbf{1. Tatsächlicher nativer Platzwechsel.} Ein einziges explizites Operationswort muss innere Markierungen, vollständige Normierung und eine nichttriviale räumliche Änderung erhalten. Keine nachträglich angefügten Shift- oder Hoppingterme als Herkunft ausgeben. Lokale Paritäten und geschlossene Wegoperatoren sind die ersten Negativtests.
+
+\textbf{2. Zustand und Energie derselben Ausführung.} Den erlaubten Sektor- und Präparationsvertrag festlegen und die $\mu N$-Freiheit aus einer Quellregel entscheiden. Gefordert ist eine gemeinsame Vorhersage der Rohstatistik, nicht nur ein gewünschter Grundzustand eines passend gewählten Operators.
+
+\textbf{3. Unverändert skalieren.} Erst die positive kleine Ausführung vergrößern; dann Stabilität, Ausbreitung, zusätzliche Moden, gemeinsamen Kegel und chiralen Index prüfen. Ein dynamischer Spin-2-Sektor ist ein eigener anschließender Nachweis.
+
+Die detaillierte T1--T8-Zuordnung steht im Hauptbuch. Vollständig geschlossen ist weiterhin keines der acht Tore. T1/T8 sind durch die Auswahlgegenproben schärfer beschrieben; T3 hat eine neue interne Operationsbrücke; T2/T4 bleiben Feld- und Chiralitätsaufgaben; T5 verlangt den gemeinsamen Grenzwert, T6 den vollständigen Kopplungs-/Neutrinotransfer, T7 dynamischen Spin 2.
+
+\section*{Prüfung und Quellen}
+Fünf Programme wurden normal und unter \texttt{-OO} ausgeführt; ihre JSON-Ausgaben waren jeweils bytegleich. Der neue Prüfer enthält 279 explizite Guards, die wiederholten nativen, Weyl- und Kompatibilitätsprüfer 534, 149 beziehungsweise 7369. Der vorhandene Matrixprüfer kontrolliert zusätzlich seine Quellenpins und die markierte Clockgrenze. Diese Zahlen zählen Bedingungen, nicht unabhängige Entdeckungen.
+
+Das begleitende Quellenpaket enthält die drei neuen Originaleingaben, die vorläufigen v1.6-Berichte, Beweise, Skripte, Ergebnisdateien und Prüfsummen. Die vollständige Quellenkarte steht im Evidenzanhang des Hauptbuches. Als externe Einordnung dienen insbesondere \href{https://arxiv.org/abs/1708.00826}{D'Ariano--Erba--Perinotti zum Weyl-Walk}, \href{https://arxiv.org/html/0912.0117v1}{Mason--Tuite zu Gitter-Vertexalgebren} und der eingefrorene \href{https://arxiv.org/abs/2503.14452}{ACT-Referenzvergleich}. Keine neue RH-, Hardware- oder globale empirische Zertifizierung wird behauptet.
+
+\begin{bild}{Kurzfazit}
+Weniger getrennte Bauteile, eine kürzere vollständige endliche Präparation und ein schärferer Test der Zustandswahl. Der entscheidende fehlende Zusammenhang ist die \emph{native räumliche Ausführung mit ihrer eigenen Zustands- und Energiewahl}. Genau dort setzt die nächste Forschung an.
+\end{bild}

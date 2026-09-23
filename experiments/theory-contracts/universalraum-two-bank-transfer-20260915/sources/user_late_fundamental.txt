@@ -1,0 +1,71 @@
+Eigene Runde abgeschlossen — alles direkt gerechnet (die Subagenten-Brücke blieb tot, also ohne Umweg über Arbeiter). Hier die vollständigen Lösungen pro Tor, mit ehrlichem Status je Punkt.
+
+## Summary (exakte Zahlen, alle Läufe reproduzierbar)
+
+Contract `experiments/theory-contracts/universalraum-fundamental-20260915/` (7 Dateien, nur dieser Ordner angelegt, sonst keine Edits):
+
+| Probe | Resultat |
+|---|---|
+| `t1_fixed.py` | **PASS 16/16** — so(10) Span 45, Lie-Abschluss mod Zentrum (ganzzahlige CAR-c-Zahlen), 16-dim irreduzibel; su(4) Span 15 irreduzibel; B(C⁶⁴) per Doppel-Kommutant; **q-Verdikt YES**; N=3-Kommutantenschranke **8.732.673 ≫ 1** |
+| `stabilizer.py` | 60 distinkte W-Zeilen; **innerer 4er-Zyklus exakter Automorphismus 60/60** (Z4); Shifts/Swap keine (30/6/12/18) |
+| `t5_twobank.py` | **PASS 6/6** — (H³)₄₁=8g²η, P₁→₄-Max 0.9989 bei t≈2484 ħ/Δ, Kegel-Lemma F'₊=F'₋ ⟺ ε=0 |
+| `t5_varresp.py` | Variationszustand E=−0.0196Δ, ⟨Nb⟩=0.0189; G_rs diagonal, 16 Moden depletiert, off-diagonal exakt 0, Spur=⟨Nf⟩=63.962 |
+| `opset_probe.py` / `gs_sanity_probe.py` | PASS 14/14 + 9/9 (übernommen, in Platz re-verifiziert) |
+
+Dabei zwei Fehler im verwaisten T1-Entwurf gefunden und gefixt: β-Kommutator-Spans nur 20 statt 45 (defekte Rekonstruktion → Bilinear-Bau) und 16-GB-Kronecker (OOM-Kill → Doppel-Kommutantensatz analytisch).
+
+## Die Lösungen: Tor für Tor
+
+**T1 — Operationssatz: algebraisch teil-geschlossen (bedingt), Rest exakt beengt.**
+- *Geschlossen (bedingt auf SU(4)×Spin(10)-nativ + Index-Map I=4s+a):* q ist **Wort** in den erweiterten Generatoren (Restfragen 1, 5 beantwortet — q kommt aus dem SU(4)-Faktor, nie aus R allein); 3-Fermion-Freiheit kollabiert 37888→1; E1-Split uniform 15/Kanal.
+- *Exakt beengt:* Kommutant ≤ 8.732.673, also **nicht** F(N)=1 — T1-Akzeptanz nicht erreicht. Fehlendes Stück präzise: explizite A3-Blockbasis zur Verfeinerung der M₂-Blöcke (2880, 576, 320) + 64 dunkle bF-Zustände.
+- *Neu:* exakte Z4-Familiensymmetrie von W (60/60) stützt die Index-Map a posteriori (Zirkularitätsvorbehalt: falls W so konstruiert wurde).
+
+**T8+T2 — Zustandswahl: Phasendiagramm exakt, Selektionstheorem, N=64-Sandwich neu.**
+- *Exakt:* globaler Minimierer von H+μN schaltet mit μ (leer bei μ≥0 mit Hμ≥ΔN/800 bei μ=Δ/50; helle Sektoren bei μ=0; N=5 schlägt Referenz; Referenz **nie** global). **Theorem:** H allein hat sektorübergreifend konkurrierende Minima → Eindeutigkeit ohne Selektionsdaten (Sektorgewichte, B-Präparation, Besetzungsmessung, Detektorkopplung) unmöglich.
+- *Neu (rigoros, bedingt auf Hμ-Schranke):* N=64-Sektor-Sandwich **−1.2Δ ≤ E₀ ≤ −0.0196Δ** (unten Operator-Ungleichung, oben 2×2-Variation mit ‖P|F⟩‖²=8 exakt). Variations-⟨Nb⟩=0.0189.
+- *Offen:* voller N=64-GS (Eindeutigkeit, Lücke, Singulett) — braucht CG-Serie jenseits N=2, die in keiner gepinnten Quelle existiert. B/R-Unerreichbarkeit exakt (pinned); minimale schließende Primitive benannt (u.a. Ladung-4-Op prüfen).
+- *T2 negativ-geschlossen (exakt):* χ als kanonisches Feld tot (N+3, Antikommutator null auf gefülltem Zustand); physikalisches Feld braucht dressed-Konstruktion + Renormierungsbedingung (offen, Bedingung formuliert).
+
+**T4 — Feldwörterbuch: Kill exakt, Anomalie-Obstruktion exakt, Dynamik klassifiziert.**
+- *Exakt:* Skalar-Null strukturell (B symmetrisch, W antisymmetrisch — keine Zahleneigenschaft); Anomalien des chiralen (16,4)-Spektrums: **SU(4)³=16, gravitativ=64** → Spiegel oder Inflow zwingend; minimale Fix: (16̄,4̄)-Spiegel (Verschärfung des Spiegel-Gap-Problems).
+- *Exakt klassifiziert:* reines (1,0)-Fundamentalfeld hat keinen lokalen kovarianten kinetischen Term — 3 Hörner: (i) Maxwell-Paar + Constraint, (ii) nicht-kovariante Hamilton-Form, (iii) Komposit J ohne Fundamental-Φ (nativ-kompatibel, OPE-Renormierung nötig). Spin(10)³-Freiheit als Literaturresultat markiert (Slansky, zum Nachrechnen offengelegt).
+- *Offen:* chirales Maß, Index, Spiegel-Gap (braucht T3-Geometrie).
+
+**T3 — Raumtransport: No-Go exakt, Dilemma scharf.**
+- *Exakt:* alle nativen Generatoren {X, Nb, E1, SU(4)/Spin(10)-Bilineare, η} sind Bank-Fermionparität-gerade, Banken sind Tensor-Kopien → **Inter-Bank-Einzeltransfer exakt 0** (Bank-Paritäts-Superselektion; verschärft v1.6.2 L502-503 zum Struktursatz).
+- *Dilemma (vollständig):* Horn A — native ungerade Inter-Bank-Primitive vorzeigen (χ ungerade-kubisch aber intra-bank; f_r ungerade aber extern); Horn B — beweisen, dass Bank-Lokalität sie verbietet → dann muss 3+1D ohne Einzel-Hopping emergieren (Akzeptanzkriterium selbst revisionsbedürftig).
+
+**T5 — Kontinuum: 2-Bank exakt neu, Kegel-Lemma exakt neu, Limes offen.**
+- *Neu exakt:* P₁→₄=0.9989 bei t≈2484 ħ/Δ; **Kegel ⟺ gaplos** (F'₊=F'₋ genau bei ε=0) → Trade-off: Kegelangleich braucht δ→0, Stabilitätsschranke −480g²L/δ braucht δ>0. Minimalausweg benannt: laufendes Gap δ(k)→0 mit IR-sicherer Renormierung.
+- *Offen:* B, Graph, h bleiben Eingaben (nicht aus Compiler); Cluster/Streuung/Kontinuumslimes brauchen T3+T4.
+
+**T7 — Spin-2: Klassifikation exakt, Obstruktion exakt.**
+- *Exakt:* ψψ→(1,0)+(0,0), ψ†ψ→(1/2,1/2); mit einer Ableitung kein (1,1)/(2,0) erreichbar → **kein Spin-2 bei Dim≤4 + 1 Ableitung**. Minimalrouten: (i) T_μν-Komposit (braucht emergente Diffeo — zirkulär vor T3/T5), (ii) 4-Fermion (irrelevant), (iii) neues Feld (nicht nativ). Universalität nur via (i) + emergentem Äquivalenzprinzip.
+
+**T6 — Eichung/Neutrino: Branching exakt, Z4-Kandidat neu, Konstanten offen.**
+- *Exakt:* (16,4) → 4 SM-Familien + 4 N^c; 4→3+1 unter SU(4)→SU(3)×U(1) (Aufspaltung braucht Symmetriebrechung — Schur verbietet kinetischen Ursprung); Z(SU(4))=Z4 exakt; **W-Z4-Automorphismus (60/60) als nativer Z4-Kandidat** (bedingt, neu — passt zum Fugen-Z4-Glue).
+- *Offen:* Kopplungskonstanten (α⁻¹ etc. bleiben 1.9σ-Koinzidenzen ohne RG-Ableitung), Neutrino-Massen/Seesaw.
+
+**Geladene Antwort:** auf N=64-Variationszustand exakt und neu (diagonal, 16-Moden-Depletion spiegelt W-Zeile); auf echtem GS blockiert bis GS-Repro — Reihenfolge eingehalten, keine Skalierung vorgezogen.
+
+## STATE
+
+```text
+GOAL          Vollständige Lösungen alle Tore T1-T8 (eigene Runde, direkt)
+HYPOTHESIS    none (nur Belege)
+VERIFIED      t1_fixed 16/16 (q YES, Kommutant ≤8.7M); stabilizer Z4 60/60;
+              t5_twobank 6/6 (P=0.9989@2484, Kegel⟺gaplos); varresp G diag,
+              E=-0.0196D, <Nb>=0.0189; N=64-Sandwich -1.2D≤E0≤-0.0196D (neu);
+              Anomalie SU4³=16/grav=64; T3-No-Go (Bank-Parität); T7-Klassifikation
+FILES         experiments/theory-contracts/universalraum-fundamental-20260915/ (7 Dateien)
+SUITE         kein run_all/audit (experiment-only); 6 Proben einzeln PASS
+FAILED        Exakt-Kommutant=F(N) (obere Schranke bleibt); N=64-Full-Diag (1.16e18);
+              Skalar-Weyl; χ-Feld; Einzel-Bank-Hopping; Spin-2 ≤dim4; Maß/Index/Gap
+NEXT          CG-Serie jenseits N=2 (GS-Repro) ODER A3-Blockbasis (T1-Vollschluss);
+              beides braucht neue Quellen, kein Grinding
+```
+
+**Ehrlicher Gesamtstand:** Kein Tor ist vollständig im starken Sinn geschlossen — aber jedes Tor hat jetzt entweder einen exakten Abschluss (T2-negativ, T3-No-Go, T4-Anomalie/Kill, T7-Klassifikation), eine teil-geschlossene Struktur mit exakter Schranke (T1, T8-Sandwich, T5-2-Bank) oder ein scharfes Dilemma mit benanntem fehlendem Stück statt diffusem „offen". Alle 39 Restfragen sind beantwortet, beengt oder auf genau eine fehlende Konstruktion/Quelle reduziert. Firewall eingehalten: kein `[E]`, kein Ledger/Papers/Website-Touch, NON-RH.
+
+Zwei Dinge brauchen neue Quellen, kein Weiterrechnen: die CG-Serie für den N=64-Singulett-Count und die explizite A3-Blockbasis für den T1-Vollschluss. Soll ich als Nächstes eine davon angehen (zuerst die billigere: A3-Blöcke via sparsen Casimir+Lanczos auf 45504-dim)?

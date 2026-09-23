@@ -1,0 +1,135 @@
+Exakter 1+3-Quartikanschluss im vorhandenen E8-Grad-1-Sektor
+19. September 2026
+
+ERGEBNIS
+
+Der alternative Anschluss ist exakt vorhanden. Dieselbe native
+W5-Unterdarstellung, die .12 in Sym^4(C4) konstruiert, liefert beim Split
+
+  C4^tensor4 = C4 tensor C4^tensor3
+
+eine 20-dimensionale Isometrie zwischen
+
+  [Lambda^4(W5)-Slot tensor 4_A3] subset (16_D5,4_A3)
+
+und dem externen Drei-Register-Raum Sym^3(C4). Der Quellslot liegt damit im
+bereits vorhandenen E8-Vakuumsektor bei affinem Grad1. Es wird kein
+240-dimensionaler orthogonaler Wurzelket-Raum mit einem E8-Stromraum
+identifiziert.
+
+
+1. EXPLIZITE ISOMETRIE
+
+Seien V_A, A=1,...,5, die fuenf nativen .12-Quartiken mit Normquadraten
+
+  n_A=(4,12,12,12,24).
+
+Im 1+3-Split besitzt jede Quartik eine Koeffizientenmatrix
+
+  K_A : Sym^3(C4) -> C4,    K_A in Mat_(4x20).
+
+In einer expliziten orthonormalen Monombasis von Sym^3(C4) gilt exakt
+
+  sum_A K_A^dagger K_A / n_A = I20/4.                   (1)
+
+Der Checker beweist (1) sowohl mit exakten algebraischen Quadratwurzeln als
+auch durch die rein ganzzahlige Identitaet
+
+  sum_A (24/n_A) K_A,raw^dagger K_A,raw
+    = sum_(pi in S3) U_pi = 6 P_Sym3.                   (2)
+
+Definiert man
+
+  F_(A,i),j = 2 K_A(i,j)/sqrt(n_A),
+
+so ist F eine quadratische 20x20-Matrix und
+
+  F^dagger F = F F^dagger = I20.                        (3)
+
+Damit ist
+
+  Xi = vec(F)/sqrt(20)                                  (4)
+
+ein normierter maximal verschraenkter Vektor zwischen dem 20-dimensionalen
+Quellslot und Sym^3(C4).
+
+
+2. GRUPPENWIRKUNG UND PHASEN
+
+Schreibe h=lambda g, d=det(g), lambda^4=d^(-1), und
+
+  A=R4(h)=d^(-1)R(g) in SO(5).
+
+Im Lambda^4-Slot der geraden Spin16-Darstellung wirkt unter der Hodge-
+Identifikation
+
+  Lambda^4(A) = d R(g).
+
+Der A3-Fundamentalpartner traegt h=lambda g, der externe Drei-Register-Raum
+Sym^3(h)=lambda^3 Sym^3(g). Der gesamte Skalar ist daher
+
+  d lambda^4 = 1.                                       (5)
+
+Uebrig bleibt genau die native Quartikwirkung
+
+  R(g) tensor g tensor Sym^3(g),
+
+unter der (4) invariant ist. Fuer jeden der fuenf nativen
+Reflexionserzeuger wird dies als exakte 20x20-Intertwineridentitaet geprueft.
+Zusaetzlich gilt dort exakt det R(g)=det g=-1.
+
+Fuer einen Reflexionsgenerator r ist d=-1. Die tatsaechliche Quellenwirkung
+im E8-Sektor hat den Skalar -lambda,
+
+  S=(-lambda)(R tensor r),
+
+waehrend der externe Raum lambda^3 Sym^3(r) traegt. Wegen lambda^4=-1 gilt
+(-lambda)lambda^3=1. Die kompensierte native Quellenwirkung ist damit
+
+  C=(-lambda)^(-1) S = R tensor r.                       (6)
+
+Die Phasenkorrektur ist also Bestandteil des exakten Anschlusses und wird
+nicht durch eine dimensionsgleiche Darstellung ersetzt.
+
+
+3. SECHZIGER READOUT
+
+Fuer die 60 phasenquotientierten nativen Strahlen und
+
+  v_l=psi_l^tensor3 in Sym^3(C4)
+
+gilt exakt die enge Rahmenidentitaet
+
+  sum_(l=1)^60 |v_l><v_l| = 3 I20.                       (7)
+
+Somit bilden
+
+  E_l=|v_l><v_l|/3
+
+ein POVM. Wegen rho_Sym3=I20/20 fuer den Zustand (4) ist
+
+  p_l=tr(rho_Sym3 E_l)=1/60                              (8)
+
+fuer alle 60 Labels.
+
+
+4. GRENZE
+
+Dies ist ein echter endlicher Operator- und Phasenanschluss im bereits
+vorhandenen Grad-1-Sektor (16_D5,4_A3). Er konstruiert keinen neuen
+Grundzustand, waehlt Xi nicht physisch aus und beweist keine Praeparation,
+keinen endlichen Stark-Lock-Satz, keine lokale Stromnetz-Einbettung und keine
+Dynamik. Insbesondere ist er logisch unabhaengig von der nackten
+240-Wurzelket-Konstruktion und ihrer Zweitordnungsaufspaltung D.
+
+
+ARTEFAKTE
+
+  quartic_1plus3_check.py
+    Exakter Checker der 1+3-Isometrie, Generatorwirkung, Phasen und des
+    60-Strahl-POVMs.
+
+  quartic_1plus3_check.json
+    Quellhashes, Gleichungen, Scope und aktive Pruefbedingungen.
+
+Keine Repository-Datei wurde geaendert.

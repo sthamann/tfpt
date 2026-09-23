@@ -1,0 +1,240 @@
+QWZ source energies, charged carry, and exact probe-dependent reduction
+UR.SOURCE.PROBE_CARRY.01 — 2026-09-20 — PARTIAL
+
+0. Provenance and separation
+
+The user supplied a report, not its executable bundle. Its content-reference
+tokens do not identify accessible source files. We independently replay
+the stated source formulas and inspect the corresponding existing TFPT
+contracts. This is not a replay of the report's claimed95 original files.
+The charge-carry construction was already recorded in half-twist-grade-carry
+(2026-09-08); no new discovery of that lattice structure is claimed.
+
+1. Original-source recurrence, sea and the finite-energy convention
+
+Use TX=sigma_x/(2i)-sigma_z/2, TY=sigma_y/(2i)-sigma_z/2, mass1,
+seam i^r, and k=2pi(n-r/4)/N. The strip symbol in the lower-edge convention
+has diagonal -sin(k)sigma_x+rho sigma_z, rho=1-cos k, and upper/lower
+transverse blocks TY* and TY. With u_-=(1,-1)/sqrt2 and u_+=(1,1)/sqrt2,
+the normalized b_y=NW rho^y u_- satisfies exactly
+
+  (h_W(k)-sin k)b=NW rho^W |W-1>u_+,
+  NW^2=1/(sum_(j=0)^(W-1)rho^(2j)).
+
+For rho<1, the residual is at most rho^W, and 1-NW^2<=rho^2.
+In the sigma_x basis, h^2 has blocks sin^2(k)I+BB* and sin^2(k)I+B*B,
+with B=rho I-S for a nilpotent shift S. Thus |h|>=|sin k|.
+At even N, r=2 (a chosen AP background), no momentum has sin k=0.
+The grand-canonical free Fock ground state is the unique filled-negative sea.
+Its gap satisfies
+
+  sin(pi/N)<=Delta_N<=sin(pi/N)+(1-cos(pi/N))^W.
+
+The upper bound is the quasimode spectral-distance bound at k=pi/N.
+At fixed particle number, a particle-hole gap involves BOTH excitation
+energies; the displayed bound is not that gap. The r=0 zero-mode ambiguity
+persists. Choosing r=2 does not derive it as the physical P1 background.
+
+For sin k!=0 the wrong spectral subspace is separated from the approximate
+edge energy by at least2|sin k|. Therefore
+
+  <b,P_wrong b><=NW^2 rho^(2W)/(4 sin^2 k).
+
+The supplied weaker bound is valid; at W8 the error is O(k^30).
+
+2. Current replay requires its low-momentum window
+
+For independent species a!=b, use E_-n=sum_r b*_(a,r)b_(b,r-n), restricted
+to both momenta in the declared window |r|<=M. With actual source eigenpairs
+(e_rj,u_rj), the vacuum spectral weights are
+
+  w_(r,j,l)=|<u_rj,b_r>|^2 |<u_(r-n),l,b_(r-n)>|^2,
+  e_rj>0, e_(r-n),l<0,
+  omega_(r,j,l)=N(e_rj-e_(r-n),l)/(2pi).
+
+Summing w, w omega, and w(omega-n)^2 reproduces the supplied table at
+W8,N256,M6=floor(N^(1/3)); M12 gives the same displayed digits.
+The table is a numerical diagnostic for these windowed currents.
+It is not an unfiltered full-source current theorem. A broad but still
+rho<1 window M63 gives mode1 weight1.1051616954 and mean9.5170742494;
+the high-energy tails matter. A naive all-Brillouin-zone continuation of
+b is separately labeled outside its edge-localization regime.
+No eight-species origin is proved; the fixed single strip has one channel
+per chirality, as already established in source-rg-clock-bridge.
+
+3. Completed fixed-width Fourier remainder for the sector energies
+
+Let F_W(k)=-(1/2)Tr|h_W(k)| and E_N(f)=sum_n F_W(2pi(n-f)/N).
+For each fixed finite W>=1, uniformly for 0<=f<=1,
+
+  E_N(f)-E_N(1/2)=(2pi/N)(f-1/2)^2+O_W(N^-3).          (1)
+
+For general f use its fractional part. The constant depends on W; no
+joint growing-width estimate is asserted.
+
+Proof. The positive energies are sqrt(sin^2 k+mu_j(rho)), with mu_j the
+eigenvalues of B*B. At rho0 the sole small eigenvalue is simple; all others
+are1. Since det B=rho^W, analytic spectral separation gives
+mu_0(rho)=rho^(2W)/q_W(rho), where q_W is analytic and q_W(0)=1. The sum
+of the massive energies is analytic near0 despite their degeneracies.
+Writing t=2sin(k/2), the small energy is
+
+  e_0(k)=|t| a_W(t^2),
+  a_W(u)=sqrt(1-u/4+u^(2W-1)/(2^(2W)q_W(u/2))),
+  a_W(0)=1.
+
+Use the globally periodic cusp g(k)=-2|sin(k/2)|. Then
+-e_0-g=-|t|(a_W(t^2)-1)=O(|k|^3). Consequently R_W=F_W-g is C^2 on
+the circle, and its third derivative is piecewise analytic with finite
+jump, hence of bounded variation. Away from0, h is invertible and its
+absolute-value trace is analytic; in particular B(2)=2I-S is invertible
+at pi. Subtracting -|sin k| globally would introduce a spurious pi cusp.
+Three integrations by parts and the BV Fourier estimate imply
+Rhat_W(m)=O_W(m^-4). Exactly,
+
+  ghat(0)=-4/pi, ghat(m)=1/[pi(m^2-1/4)] for m!=0,
+  Fhat_W(m)=1/(pi m^2)+O_W(m^-4).
+
+Absolute Fourier summability permits exact sampling aliasing:
+E_N(f)=N sum_l Fhat_W(lN) exp(-2pi i l f).
+The l0 term cancels in the difference, and the remainder is uniformly
+bounded by const_W N^-3 sum_(l!=0)|l|^-4. The leading sum is the Bernoulli
+identity sum_(l!=0)exp(-2pi i l f)/l^2=2pi^2 B2(f).
+Since B2(f)-B2(1/2)=(f-1/2)^2, (1) follows.
+
+The supplied scaled values relative to PERIODIC f0, independently replayed,
+are -0.18750176490295536 at f1/4 and -0.2500031374973095 at f1/2.
+The boxed formula instead references AP f1/2; these are consistent.
+For eight additional complex copies, periodic minus AP has limiting weight
+8/4=2 for the full strip. The one-edge value1 is consistent with the
+two-edge scaling decomposition, not an already constructed local field.
+
+4. Carry, cocycle and source charge
+
+The bijection (m,k)->m+ks identifies l2(D8) tensor C2 with l2(E8).
+T_s(m,0)=(m,1), T_s(m,1)=(m+2s,0) has
+[Q_a,T_s]=s_a T_s, T_s^2=T_(2s). With G(m,k)=(-1)^sum_(a<=5)m_a i^k,
+G T_s G^-1=i T_s: the second leg shifts that integer sum by5.
+The no-carry flip instead has phase -i on its return leg.
+
+This is the phase-free charge translation. In the inherited lattice
+cocycle convention the lift obeys U_s^2=epsilon(s,s)U_(2s), with
+epsilon(s,s)=-1. Rephasing can alter this sign, not remove the carry.
+
+The microscopic S_A=D_A^2=X^2 tensor (-1)^N_A is neutral under total
+occupation charges N_a: [N_a,S_A]=0. An equivariant field limit with the
+same charge action remains neutral. A product-stable unscaled limit of
+S_A^2=I retains that relation. Neither implies a charged T_s or vertex.
+Scalar renormalization cannot change neutrality. These are conditional
+obstructions to that direct identification, not to every renormalized field.
+
+Sector-dependent Wick charges, an opposite-edge compensator, or a genuinely
+nonmultiplicative field scaling can change the comparison; each requires
+its explicit charge map, products and locality theorem. A finite cyclic
+choice of charge origins telescopes to zero over a complete cycle and
+cannot produce persistent integer carry. Oriented flux spectral flow
+counts crossings but does not by itself define an insertion or prepare the
+new ground state at a gapless crossing.
+
+5. Stronger exact result for probe-dependent reduction
+
+Let theta be the actual E8/D8 coset grading, P=(1+theta)/2 the FULL D8
+module, Q=1-P the spinor module. This theta is not microscopic fermion
+parity. Let H strongly reduce P, including H=L0-delta.Q_charge.
+For self-adjoint spinor-odd probes A_a, theta A_a theta=-A_a, so
+P A_a P=Q A_a Q=0. Put H_P=PHP, D=QHQ, B_a=Q A_a P.
+
+For bounded probes (or at each fixed finite energy cutoff), real controls
+j_a give exactly
+
+  H[j]=[ H_P, sum_a j_a B_a* ; sum_a j_a B_a, D ],
+  mu_ab(dE)=B_a* dE_D(E) B_b,
+  Sigma(z;j)=sum_ab j_a j_b integral mu_ab(dE)/(z-E),
+  P(z-H[j])^-1P=[z-H_P-Sigma(z;j)]^-1.                (2)
+
+Use nonreal z for self-adjoint H[j], or specified common resolvent sets.
+The self-energy is EXACTLY quadratic in the sources, because the probes
+have no Q-to-Q corner. The inverse in (2) contains arbitrarily many
+returns; it is not a truncation to second-order projected response.
+This is an application of the standard Schur/Feshbach identity, not a new
+general projection method; see arXiv:2105.02058 and arXiv:0704.3244.
+
+For time-dependent real controls define B(t)=sum_a j_a(t)B_a. Eliminating q
+from i p'=H_P p+B(t)*q, i q'=Dq+B(t)p gives, for q(0)=0,
+
+  i p'(t)=H_P p(t)-i integral_0^t K_j(t,u)p(u)du,
+  K_j(t,u)=sum_ab j_a(t)j_b(u) integral exp(-iE(t-u))mu_ab(dE). (3)
+
+This is the exact projected propagator for all such probe histories.
+If q(0)!=0 add B(t)*exp(-itD)q(0). If probes have Q A Q!=0, D becomes
+probe-dependent and the unperturbed two-insertion mu no longer suffices.
+For unbounded continuum currents, these identities require a common
+self-adjoint realization, domains or form-domain control and well-posed
+time evolution. A finite-energy cutoff proves the bounded version, not
+those analytic prerequisites. The finite-energy lattice matrix element
+below is exact on the VOA core without claiming all global control limits.
+
+Crucially mu is OPERATOR-VALUED on the whole retained P space. Its single
+vacuum expectation does not specify its off-diagonal matrix elements or
+subsequent transitions. No autonomous event law, detector record or quantum
+instrument follows from (2)-(3) without further specified operations.
+The measure is positive as a matrix of operators:
+sum_ab conjugate(c_a)mu_ab c_b>=0. An individual off-diagonal carry entry
+is complex, not a separately positive measure. Q-readouts and initial-Q
+processes are not recovered just by the compressed propagator assertion.
+
+6. The carry is a nonzero off-diagonal response in that same measure
+
+Let V_s(z)=sum_n V_(s,n) z^(-n-1), s^2=2. On the VOA finite-energy core,
+
+  V_(s,-1)Omega=|s>, V_(s,-1)^2 Omega=0,
+  V_(s,-3)V_(s,-1)Omega=epsilon(s,s)|2s>.
+
+Indeed V_s(z)|s>=epsilon(s,s) z^2 exp(sum_(n>0)s_-n z^n/n)|2s>.
+These mode indices follow from charge and energy, including the cocycle.
+Take Hermitian probes A=V_(s,-1)+(V_(s,-1))*,
+B=V_(s,-3)+(V_(s,-3))*; the adjoint pieces annihilate the relevant first
+states by their negative output energies. Both are theta-odd. For H=L0,
+
+  <2s|mu_BA(dE)|Omega>=epsilon(s,s) delta_1(dE),
+  <2s|Sigma_BA(z)|Omega>=epsilon(s,s)/(z-1),
+  <2s|K_BA(t)|Omega>=epsilon(s,s) exp(-it).            (4)
+
+Here Sigma_BA and K_BA mean ORDERED cross components. For a real Hermitian
+perturbation j_A A+j_B B, the full mixed term also contains the reverse
+component mu_AB, whose <2s|...|Omega> atom is epsilon(s,s) delta_3.
+Thus its full mixed self-energy entry is
+j_A j_B epsilon(s,s)[1/(z-1)+1/(z-3)] for H=L0.
+For H_delta the two intermediate energies are1-delta.s and3-delta.s.
+
+The vacuum scalar <Omega|mu_BA|Omega> cannot detect this charge2s output.
+P must retain |2s> (L0 grade4, Z4 glue grade2); replacing P by the vacuum projection destroys
+the theta-odd two-block property because Q A Q can then be nonzero.
+
+Conformal grade is not automatically source frequency. For
+H_delta=L0-delta.Q_charge the intermediate energy is E_s=1-delta.s,
+and the final energy is E_2s=4-2delta.s. Replace1 in (4) by E_s.
+For the quarter-holonomy delta=s/2, E_s=0 and E_2s=2. The source-holonomy
+shift is not silently subtracted. At a pole use nonreal z; no gapped
+elimination is asserted. The separately studied growing-radius local
+limit can suppress that offset, but adds its own stated scaling assumption.
+Quadratic self-energy does not imply quadratic eigenvalue response:
+at E_s=0 the pole can give a splitting proportional to |j|. Furthermore,
+the actual Coxeter does not preserve this fixed D8 projector, as proved
+in charged-sector-memory-gate; (2) is not a new C/J-covariant source map.
+
+7. Verdict and remaining common-source map
+
+The report's QWZ recurrence, sea/gap and numerical values are confirmed
+with the stated window/sector conventions. Its fixed-W energy asymptotic
+now has an explicit Fourier remainder proof. Carry and the second-hit
+selection rule are correct, with the pinned cocycle phase restored.
+Equations (2)-(4) close the CONDITIONAL reference-space connection between
+spinor probes, carried charge and projected temporal response.
+
+They do not construct the microscopic charged probe, eight independent
+native channels, its C/J lifts, one-edge locality, a state preparation or
+the raw3+2 carrier. The original unperturbed Sigma=K=0 result is unchanged
+at j=0. The fixed one-copy low-energy inventory still cannot be relabeled
+as eight channels. Full3+1D matter/gravity, full-complement three-source
+ground energy and every physical T1-T8 gate remain open.

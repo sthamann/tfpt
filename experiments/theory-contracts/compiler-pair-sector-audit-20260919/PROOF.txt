@@ -1,0 +1,207 @@
+UR.COMPILER.PAIR_SECTOR_AUDIT.23
+19 September 2026
+Verdict: PARTIAL
+No T1-T8 gate is closed.
+
+Decision
+--------
+Two independently reconstructed results are exact in their stated finite
+sectors.
+
+First, the invariant source-bar4 reduction of the existing J=mu=0
+pure-permutation chain has an exactly solvable Bell-pair branch for every open
+chain length m, with a uniform positive gap bound.  That branch is not the
+global ground branch of the full 240-label source space: an explicit
+alternating full-source packet has lower variational energy.
+
+Second, the stated J=mu=0 mixed (barSym2(4),1) 640-dimensional sector has the
+reported fourfold Eminus ground branch and a rigorous whole-sector gap lower
+bound.  Its low square-root branch survives a complex-projective Haar control;
+the native E8 information lies in the complete local moment spectrum and its
+complement bound, rather than in the existence of Eminus alone.
+
+The common constructive connection is exact but finite: the 100-dimensional
+local symmetric block is the already existing C60 reflection channel, and the
+barSym2(4) source module and its sixty analysis rays are exactly those used by
+the pinned .21 F10/Bell10 readout.  This does not intertwine the
+pure-permutation Hamiltonian with affine-current dynamics.
+
+1. Reduced source-bar4 pair sector
+---------------------------------
+On matter-left 4 tensor source bar4 tensor matter-right 4, let
+
+  K=(1/60) sum_r r tensor bar(r) tensor r,   L=I-K,
+
+using the pinned sixty reflections.  Exact summation gives
+
+  spec(L)={1/2 x 8, 5/6 x 36, 11/10 x 20}.
+
+The eight-dimensional bottom space is the direct sum of the two Bell families
+
+  Bell(M_left,S) tensor M_right
+  plus M_left tensor Bell(S,M_right).
+
+Their cross-Gram matrix is delta_cd/4.  The exact projector and event mean are
+recorded in pair_sector_check.json and verified entry by entry.
+
+For an open chain of m edges, the states Psi_(j,c), j=0,...,m and c=1,...,4,
+pair every source left or right of the single unpaired matter position.  They
+satisfy for every m
+
+  H_m Psi_(j,c)=(kappa m/2) Psi_(j,c),
+  <Psi_(j,c),Psi_(k,d)>=delta_cd 4^(-|j-k|).
+
+Each colour Gram determinant is (15/16)^m, so at least 4(m+1) displayed ground
+states are independent in this reduced sector.  This is a lower bound on the
+ground multiplicity, not an equality claim.
+
+The adjacent local-bottom projectors have squared principal cosines
+
+  1 x 12, 16/225 x 56, 1/225 x 4, 0 x 56.
+
+The maximal nontrivial principal cosine is c=4/15.  The two-projection bound
+and the local spectral gap 1/3 therefore give, for every m,
+
+  gap(H_m above kappa m/2) >= (kappa/3)(1-2c)=7 kappa/45.
+
+The all-m theorem is analytic.  The checker additionally replays the sparse
+Gram entries through m=6 and Toeplitz determinants through m=10; it does not
+construct a full-chain Hamiltonian.
+
+2. Full 240-label variational control
+-------------------------------------
+The reduced-sector ground statement is kept in its confirmed scope.  In the
+full phase-free source space define on a selected edge
+
+  Omega_e=240^(-1/2) sum_alpha
+            |alpha>_S |psi_alpha>_Mleft |psi_alpha>_Mright.
+
+Each native event fixes Omega_e and its one-matter marginal is I/4.  Put such
+packets on alternating nonoverlapping edges and the uniform source state on
+the intervening edges.  Selected edges have zero energy and each intervening
+edge contributes 3 kappa/4.  Hence
+
+  <H_m>=(3 kappa/4) floor(m/2) < kappa m/2.
+
+Thus kappa m/2 is the exact reduced bar4-sector ground energy, not the global
+ground energy of the full 240-label phase-free Hamiltonian.
+
+3. Mixed 640-dimensional sector
+-------------------------------
+Let R1=barSym2(C4), dimension 10, and on R1 tensor A tensor B define
+
+  M=(1/60) sum_l barSym2(r_l) tensor r_l tensor r_l,
+  L1=I-M.
+
+The exact 160-dimensional local spectra are
+
+  spec(M) ={1 x1, 1/3 x9, 1/5 x60, 1/15 x45, -1/15 x45},
+  spec(L1)={0 x1, 2/3 x9, 4/5 x60, 14/15 x45, 16/15 x45}.
+
+The symmetric matter block bar10 tensor Sym2(4), dimension 100, has precisely
+the old C60 reflection-channel spectrum.  The 60-dimensional exterior block
+was computed separately, rather than inferred by dimension.
+
+Let Omega lie in barSym2(C4)_R tensor Sym2(C4), with Sym2(C4) the symmetric
+AB subspace inside C4_A tensor C4_B.  With P the packet range and S=Swap_BC,
+
+  P S P=P/4,
+
+so W=Ran(P)+S Ran(P) has dimension eight.  For H=L1+(4I-S)/5, its coefficient
+matrix on (P,SP) is
+
+       [ 4/5  -2/5 ]
+  h =  [            ],
+       [-1/5   8/5 ]
+
+with eigenvalues
+
+  Eminus=(6-sqrt(6))/5,  Eplus=(6+sqrt(6))/5,
+
+each with multiplicity four.
+
+On W_perp, L1>=2/3 and (4I-S)/5>=3/5, hence H>=19/15.  Also
+
+  Eplus >= 19/15   because 3 sqrt(6)>=1.
+
+Therefore the whole stated 640 sector has ground Eminus with multiplicity four
+and
+
+  gap >= 19/15-Eminus=(1+3 sqrt(6))/15.
+
+The value 19/15 is a complement lower bound, not a complete complement
+spectrum.
+
+4. Haar control
+---------------
+The native sixty-ray and complex-projective Haar reflection ensembles share
+the exact second moment
+
+  average(r tensor r)=(I+Swap)/5.
+
+That moment and Omega invariance already reproduce the same h and Eplus/minus.
+The Haar local moment instead has spectrum
+
+  {1 x1, 1/5 x30, 1/7 x84, -1/15 x45}.
+
+Its complement obeys H>=7/5 and Eplus>=7/5 because sqrt(6)>=1.  Thus the Haar
+ground remains Eminus with gap at least (1+sqrt(6))/5.  The source-specific
+native content is the differing full local spectrum, including the 1/3 and
+1/15 sectors, and the native 19/15 complement bound.  The 19/15 and 7/5 values
+are bounds, not complete spectra.
+
+5. Bell10 connection, phase, and physical boundary
+--------------------------------------------------
+The quadratic-coordinate map from the 240 oriented labels exactly intertwines
+the conjugate Sym2(4) action.  Its sixty normalized analysis rays are the tight
+frame bar(psi_l^2), and the pinned .21 certificate uses the same ray and basis:
+
+  F10^dagger(q_l tensor psi_l^2)=bar(psi_l^2)/sqrt(2).
+
+This is a source-action and ray identification, not a 10=10 dimension match.
+F10 provides a conditional finite state/readout identification with the
+grade-two current-product response space.  Its action phase must remain
+explicit.  The pinned .18 proof gives
+
+  (R_l tensor U_l) F10 = F10 bar(U_l),
+
+whereas the actual affine source operator is
+
+  S_l=i(R_l tensor U_l),
+  S_l F10=i F10 bar(U_l).
+
+Only the compensated finite action C_l=-i S_l matches the mixed-source
+bar(U_l) action.  The unmodified affine-current action therefore is not the
+mixed-source action.  Neither F10 nor this compensation transports the
+pure-permutation Hamiltonian, its state preparation, or its dynamics to
+affine-current dynamics.  Pure root-label permutations remain distinct from
+the phase-faithful .21 current operators.
+
+6. Reported but not replayed
+----------------------------
+The user supplied formulas, but no original checker or full-chain source code.
+The two packaged checkers are independent reconstructions from pinned
+repository inputs.  The following remain REPORTED/UNREPLAYED:
+
+* the general leakage formula
+    ||leak||^2=(3m/5)J^2+((m-1)/8)mu^2;
+* finite exact full-ground dimensions for m=1,...,5;
+* exact total ground multiplicity in the reduced chain;
+* saturation of either gap bound;
+* full-chain matrix diagonalizations, critical phases, and general leakage
+  beyond the reconstructed J=mu=0 sectors.
+
+For the leakage formula, an exact proof would require the missing residual to
+split linearly into orthogonal J and mu components with squared norms 3m/5 and
+(m-1)/8.  Open-chain term counting alone does not prove those identities.
+
+7. Replay and conclusion
+------------------------
+pair_sector_check.py independently evaluates 148391 exact guards.
+mixed_source_check.py independently evaluates 16261 exact guards after the
+two whole-gap and three pinned phase comparisons are included.  Normal and -OO replay certificates
+are byte-identical for both checkers.
+
+The result is exact finite-sector mathematics with a genuine connection to
+the existing C60/Bell10 data.  It does not derive a physical source process,
+instrument, Hamiltonian origin, current dynamics, continuum limit, or TOE.

@@ -1,0 +1,23 @@
+{
+  "RH_proved": false,
+  "cases": [
+    {
+      "classification": "MISSING_AND_PREMISE_REJECTED_BY_LEAN",
+      "exit_code": 1,
+      "log": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-lean-negative-controls-keehfq7o/MissingFreq.lean:5:66: error: Application type mismatch: The argument\n  hread\nhas type\n  RHSeparatedTail20260905.EventuallySelectedReadLowerBound\nbut is expected to have type\n  RH.frequently_selected_augDualResolvent_ge_half\nin the application\n  RHFrontierClosure20260905.eventual_bound_iff_weil_nonneg hread\n",
+      "name": "MissingFreq",
+      "source": "import FrontierClosure\ntheorem missingFreq\n    (hread : RHSeparatedTail20260905.EventuallySelectedReadLowerBound) :\n    ∀ f : RH.GridElement, 0 ≤ RH.weilForm f := by\n  exact (RHFrontierClosure20260905.eventual_bound_iff_weil_nonneg hread).mp hread\n"
+    },
+    {
+      "classification": "COMPILES_BUT_AXIOM_GATE_REJECTS",
+      "exit_code": 0,
+      "log": "'fakePositivity' depends on axioms: [assumedFreq, assumedRead, propext, Classical.choice, Quot.sound]\n",
+      "name": "AssumedFreq",
+      "source": "import FrontierClosure\naxiom assumedFreq : RH.frequently_selected_augDualResolvent_ge_half\naxiom assumedRead : RHSeparatedTail20260905.EventuallySelectedReadLowerBound\ntheorem fakePositivity : ∀ f : RH.GridElement, 0 ≤ RH.weilForm f :=\n  (RHFrontierClosure20260905.eventual_bound_iff_weil_nonneg assumedFreq).mp assumedRead\n#print axioms fakePositivity\n"
+    }
+  ],
+  "control_code_sha256": "e5b806be181f136e6131c71a5660099844991a7c8e8e60fdf2e9b6f9960f77c2",
+  "kernel_receipt_sha256": "b5ba09cfc5dd68c5c79659cdd63827655f579f185e7c3b24f43ace8a1762a3d0",
+  "status": "REAL_LEAN_NEGATIVE_CONTROLS_PASSED",
+  "temporary_work_dir": "/var/folders/nb/qnm6znn55875vj2nhcz5vjhc0000gn/T/rh-lean-negative-controls-keehfq7o"
+}

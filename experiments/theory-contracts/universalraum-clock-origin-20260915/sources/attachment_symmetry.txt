@@ -1,0 +1,102 @@
+Alles grün. Hier ist der komplette Stand mit allen Zahlen.
+
+---
+
+## Was mit dem Subagenten passiert ist
+
+Meine Einschätzung „23 Minuten, nichts geliefert" war falsch — er war nur langsam. Um 11:10:25 hat er seine Version von `operation_symmetry.py` geschrieben und meine parallel entstandene überschrieben. Das war im Ergebnis ein Glücksfall: **zwei vollständig unabhängige Rechnungen, die in jeder einzelnen Zahl übereinstimmen.** Seine Version ist gründlicher (944 statt 528 Guards) und misst die Eigenwertzuordnung durch Anwenden der sechzig gelifteten Lie-Erzeuger statt über Charakteristikpolynome. Die habe ich behalten.
+
+Eine Zahl aus meinem ursprünglichen Auftrag war falsch und wurde von beiden Rechnungen korrigiert: **C(560) = 117/4, nicht 29.**
+
+---
+
+## Der Operationssatz unter der Quellsymmetrie
+
+Der N=3-Sektor zerfällt unter Spin(10)×SU(4) in genau sieben Typen. Λ³(16,4) ist dabei multiplizitätsfrei — und das ist der Hebel, denn ein invarianter Unterraum gegebener Dimension kann dann nur auf eine Weise existieren.
+
+| Block | Dim | Rolle | S-Eigenwert | C(Spin10) | C(SU4) | C gesamt | Mult. in N=3 |
+|---|---:|---|---:|---:|---:|---:|:--:|
+| (1200, 20) | 24000 | dunkel | – | 141/4 | 39/4 | **45** | 1 |
+| (560, 20′) | 11200 | dunkel | – | 117/4 | 63/4 | **45** | 1 |
+| (672, 4̄) | 2688 | dunkel | – | 165/4 | 15/4 | **45** | 1 |
+| (144, 20) | 2880 | hell | 7 | 85/4 | 39/4 | 31 | 2 |
+| (144, 4̄) | 576 | hell | 10 | 85/4 | 15/4 | 25 | 2 |
+| (16, 20) | 320 | hell | 12 | 45/4 | 39/4 | 21 | 2 |
+| (16, 4̄) | 64 | χ (Bild von J†) | 0 | 45/4 | 15/4 | 15 | 1 |
+
+Daraus exakt: ker C₃ = 24000+11200+2688 = **37888**, im C₃ = 2880+576+320 = **3776**, und mit den Multiplizitäten (2,2,2,1,1,1,1) füllen die sieben Typen den Sektor: Σ mᵢ·dim = **45504**.
+
+Die drei hellen Typen kommen zweimal vor, je einmal in Λ³ und einmal in C⁶⁰⊗C⁶⁴ — genau diese Paare verbindet C₃. Nach Burnside trägt jedes Paar M₂⊗End(V), jeder Einzelblock End(V), also ist der Kommutant **C⁷, Dimension exakt 7 = 3 + 1 + 3**. Die erzeugte Algebra hat Dimension 743.583.744.
+
+Dass C₃ überhaupt verflicht, wird nicht vorausgesetzt: für alle sechzig Erzeuger ist nachgewiesen, dass **W ein invarianter Tensor** ist, und die vierzehn aufeinanderfolgenden Rotationen erzeugen so(10)⊕su(4).
+
+---
+
+## Das eigentlich neue Ergebnis: die Verfügbarkeitsfrage ist zur Hälfte entscheidbar
+
+Das ist der Punkt, an dem es interessant wird. Der Modellvertrag legt H = Δ·N_b + g(Q₊+Q₋) fest, also ist die **gesamte gewährte Dynamik eine Linearkombination von N_b und X**. Beide sind symmetrieinvariant — N_b offensichtlich, X weil W invarianter Tensor ist.
+
+Jedes Wort aus den gewährten Operationen liegt damit in der Verflechteralgebra, und die hat wegen m = (2,2,2,1,1,1,1) nur die Dimension Σmᵢ² = **16**. Die sechzig Erzeuger liegen nicht darin. **Keine noch so lange Komposition gewährter Dynamik erzeugt sie.** Die Symmetrie ist ein eigenständiges Primitiv.
+
+Und jetzt wird es eng: die gewährten Operationen erreichen 3·4 + 1 + 1 = **14** — das reproduziert die früher berichtete 14 strukturell statt als übernommene Zahl. Die invariante Decke ist 16.
+
+> **Der gesamte noch offene symmetrieverträgliche Spielraum ist genau zwei Dimensionen breit.**
+
+Und diese zwei Dimensionen haben einen Namen: die Trennung der drei dunklen Blöcke. Hier wird der Casimir-Befund operativ — alle drei tragen denselben Gesamtcasimir **45**, die eine erhaltene quadratische Invariante kann sie prinzipiell nicht unterscheiden. Getrennt gelesen trennt sie jeder der beiden sofort (141/4, 117/4, 165/4 beziehungsweise 39/4, 63/4, 15/4). Die strittige Fähigkeit ist damit exakt benannt: **Spin(10) und SU(4) als zwei getrennte Griffe ansprechen statt nur über ihre feste Summe.**
+
+| Vertrag | Algebra | Kommutant | invariant |
+|---|---:|---:|:--:|
+| gewährt: X und N_b | 14 | 1.444.233.216 | ja |
+| + beide Casimire getrennt lesbar | 16 | 717.398.016 | ja |
+| + die vollen sechzig Erzeuger | 743.583.744 | **7** | ja |
+| + Sechser-Clock-Lift | 84 | 240.742.144 | **nein** |
+
+Die Clockzeile steht bewusst außerhalb der Kette. Sie unterbietet die invariante Decke 717.398.016 — kein Widerspruch, sondern der Beweis, dass der Clock nicht invariant ist: er sitzt im Normalisator, nicht im Zentralisator. Clock und getrennte Casimire sind zwei verschiedene Teilverfeinerungen, keine Stufen derselben Leiter. Ob sie sich kombinieren lassen, ist offen.
+
+---
+
+## Feldwörterbuch: der Typ ist nicht gewählt, sondern erzwungen
+
+Ein Bilineares aus zwei gleichhändigen Weylfeldern spannt **exakt** (1,0) ⊕ (0,0) auf — drei symmetrische plus eine antisymmetrische Komponente, Rang 4, die Liste ist damit vollständig und nicht bloß eine Auswahl. Weil W in allen sechzig Kanälen antisymmetrisch ist, stirbt die skalare Option identisch, und der **(1,0)-selbstduale antisymmetrische Tensor ist erzwungen**. Ein Vektorvermittler scheitert an der Ladung: er bräuchte ψ†ψ mit Fermionzahl 0, während der b†-Term unter N = N_f + 2N_b genau −2 braucht.
+
+Damit ist die Typfrage entschieden — aber die Preisrechnung ist das eigentliche Ergebnis:
+
+| Option | Vermittlerkomponenten | Fermionkomponenten | Faktor Vermittler | Faktor Fermion |
+|---|---:|---:|:--:|:--:|
+| natives Modell | 60 | 64 | 1 | 1 |
+| §9.2, erzwungener (1,0) | **180** | 128 | ×3 | ×2 |
+| §9.3, Skalar + Hilfsdublett | 60 | **256** | ×1 | ×4 |
+
+Schon *jede* relativistische Lesart verdoppelt die Fermionen auf 128, allein weil ein Weylfeld zwei Komponenten hat. Darauf verdreifacht der erzwungene Tensortyp die Vermittler, während die skalare Reparatur stattdessen die Fermionen nochmals verdoppelt. **Keine Option erhält die nativen Zahlen 64 und 60 — und die beiden zahlen ihren Preis auf entgegengesetzten Seiten.**
+
+Daraus folgt etwas für die Reihenfolge deiner drei Punkte: die Wahl zwischen den Reparaturen lässt sich **an einem einzelnen Ort nicht treffen**. Beide brauchen Moden, die das native Ein-Ort-Modell nicht hat, und diese Zusatzmoden sind genau Lorentzkomponenten. Das Feldwörterbuch steht damit *hinter* der räumlichen Erweiterung, nicht davor.
+
+---
+
+## Was nicht erledigt ist
+
+**Die räumliche Skalierungsrechnung (a) habe ich nicht gerechnet.** Der Grund ist der eben genannte Befund: sie ist nicht mehr der letzte Schritt nach dem Wörterbuch, sondern dessen Voraussetzung. Die Lorentzkomponenten müssen vor der Entscheidung da sein, nicht danach. Ich wollte dir das vorlegen, bevor ich die Reihenfolge eigenmächtig umdrehe.
+
+Ebenfalls weiterhin offen und ausdrücklich nicht behauptet: ob die Symmetrie physisch verfügbar ist (gezeigt ist nur, dass mehr Dynamik das nicht klärt), ein Kinetikterm oder Positivitätsnachweis für den (1,0)-Vermittler, die native Herkunft der Zusatzkomponenten, sowie jede Präparation, Ressource und jedes Record. T1–T8 bleiben vollständig offen.
+
+---
+
+## Dateistand
+
+Drei neue Checker im Rundenordner, alle in `replay_response.py` eingehängt, alle byteidentisch unter `python3` und `python3 -OO`:
+
+```
+charged_response.py       PASS  831
+field_dictionary.py       PASS  250
+operation_boundary.py     PASS    6
+operation_symmetry.py     PASS  944   (neu)
+symmetry_availability.py  PASS   31   (neu)
+lorentz_types.py          PASS  152   (neu)
+pole_consolidation.py     PASS   81
+                        ─────────────
+                          PASS 2295
+```
+
+`RESULTS.md` hat die neuen Abschnitte 8.1 (Quellsymmetrie) und 8.2 (Verfügbarkeit), die alten 8.1/8.2 sind zu 8.3/8.4 gerückt. `EINFACH_ERKLAERT.md` und `README.md` sind nachgezogen. Die verwaiste `replay.py` aus der Zeit vor dem Crash ist gelöscht — sie verwies auf nie existierende Dateien. Ausgeliefert wurde nichts, wie von dir entschieden; `deliver.py` könnte ich ohnehin nicht ausführen, mein Prozess hat keinen Zugriff auf `~/Documents`.
+
+Der Abschnitt zum Lorentz-Preis steht bisher nur im Checker, noch nicht in `RESULTS.md` — den schreibe ich als §9.4 nach, wenn du mit der Darstellung einverstanden bist.

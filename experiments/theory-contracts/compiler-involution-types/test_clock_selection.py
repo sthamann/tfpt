@@ -2,11 +2,14 @@
 import importlib.util
 import json
 from pathlib import Path
+import sys
 import unittest
 
 import sympy as sp
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent))
+from record_portability import portable_source_record
 spec = importlib.util.spec_from_file_location("clock_selection_checked", HERE / "clock_selection.py")
 r = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(r)
@@ -30,7 +33,8 @@ class ClockSelection(unittest.TestCase):
     def test_saved_record_and_physical_boundary(self):
         result = r.record()
         saved = json.loads((HERE / "clock_selection_validation.json").read_text())
-        self.assertEqual(saved, json.loads(json.dumps(result)))
+        self.assertEqual(portable_source_record(saved),
+                         portable_source_record(json.loads(json.dumps(result))))
         self.assertEqual(result["exterior_square_grades"], {0:50, 1:4, 2:21, 3:20, 4:21, 5:4})
         self.assertFalse(result["scope"]["physical_Fock_polarization_or_charged_TFPT_lift_derived"])
         self.assertFalse(result["scope"]["Majorana_coordinates_identified_with_creation_modes"])

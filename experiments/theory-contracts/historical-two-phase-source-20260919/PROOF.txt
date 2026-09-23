@@ -1,0 +1,110 @@
+# Scoped proof record: historical two phases and the rank-one necessary structure
+
+This contract records a bounded source and consistency result. It is an
+experiment-firewall artefact and does not promote a physical claim.
+
+## Question and verdict
+
+The question is whether the historical distinction `a_top != a_QCD` survives
+the common-field consistency test, and what exact local structure a continuous
+two-phase realization must provide.
+
+Verdict: `PARTIAL`.
+
+The historical v2.7/v2.8 sources already assign the slow topological phase to
+CMB birefringence and the oscillating QCD axion to dark matter. The checked
+same-field bound excludes only the later or alternative *same-field reading*
+under its declared same-well, positive-energy, fixed-coupling assumptions. It
+does not refute the archived two-field TFPT branch, the compiler, or an
+independently derived boundary holonomy.
+
+## Exact scoped result
+
+For a single canonical massive QCD phase in one cosine well,
+
+```text
+beta <= |g0|/(2) * (Delta theta_emission + Delta theta_observer)
+```
+
+with the declared QCD relation and generous endpoint budgets gives
+
+```text
+beta_target = 0.004231289511395415 rad = 0.2424350309009295 deg
+beta_max(r=1) = 2.282511543675679e-18 rad = 1.307782781425069e-16 deg
+target / bound = 1.853786686476726e15.
+```
+
+The unavoidable potential energy in at least one endpoint is
+`1.1481519154814445e-8 GeV^4`, or `8.85740538200542e29` times the declared
+recombination comparison density. These values are a necessary consistency
+bound, not a cosmological likelihood or a claim about all axion/ALP models.
+
+For phases `theta`, positive-definite kinetic matrix `K`, QCD charge vector
+`N`, and photon vector `c`, with only the QCD rank-one quadratic term, a
+QCD-flat photon-active direction exists exactly when
+
+```text
+exists v: N^T v = 0 and c^T v != 0
+iff c not in span(N).
+```
+
+In canonical coordinates its photon coupling obeys
+
+```text
+g_L^2 = c^T K^-1 c - (c^T K^-1 N)^2/(N^T K^-1 N) >= 0.
+```
+
+The short proof is to pass to canonical coordinates
+`n=K^(-1/2)N` and `e=K^(-1/2)c`. The QCD mass operator is
+`chi*n*n^T`, hence has rank one for `N != 0`; its orthogonal complement is
+QCD-flat. The squared photon coupling projected to that complement is exactly
+the displayed `g_L^2`. Cauchy--Schwarz gives nonnegativity, with equality
+exactly when `e` is parallel to `n`, equivalently when `c` is parallel to `N`
+in the `K^(-1)` metric. Thus a nonzero light coupling requires the stated
+nonparallel alignment.
+
+For the same-well cosine bound, if endpoint separation is `delta` then at
+least one endpoint has `|theta| >= delta/2` by the triangle inequality.
+Because `1-cos(theta)` is monotone in `|theta|` on `[0,pi]`, that endpoint has
+potential at least `chi*(1-cos(delta/2))`; symmetric endpoints
+`theta_e=-delta/2`, `theta_o=delta/2` attain the bound. This is the exact
+minimax endpoint argument used by the numerical control.
+
+For the historical two-phase convention `N=(0,1)`, `c=(g0,0)` and
+`K=[[A,B],[B,D]]`, this yields `g_L^2=g0^2/A`,
+`m_H^2=chi*A/(A*D-B^2)`, and
+`g_H^2=g0^2*B^2/(A*(A*D-B^2))`. Thus kinetic mixing alone does not remove the
+QCD-null direction; the result still requires the source to derive `K`, `N`,
+`c`, all additional potential rows, and the compact phase lattice.
+
+The explicitly moving historical minimum also has the exact balance term
+
+```text
+dot(rho) + 3 H (rho+p)
+  = -Lambda4*phi0*sin(theta-phi0*s)*dot(s).
+```
+
+An externally prescribed `s(t)` is an open driven model. A closed source must
+provide the driver state and the opposite energy transfer. This is an
+identified missing source datum, not a completed dynamics derivation.
+
+## Reproduction
+
+Run from this directory:
+
+```bash
+python3 -B check_joint_constraints.py
+```
+
+The checker reports 17/17 `PASS` checks (13 symbolic and 4 numerical controls)
+and writes `joint_constraints.json`. The result is kept with the checker and
+the source manifest so a future graph rebuild can discover the exact scope.
+
+## Claim and gate boundary
+
+The contract references only existing ledger claims:
+`OBS.TRANSDUCTION.01`, `FTRANSFER.GENERATING.01`, and `FR.DM.02`.
+No new ledger claim is introduced. No T1--T8 gate is closed, and promotion is
+false. The remaining source obligations include the physical two-phase
+embedding, source-selected kinetic/anomaly data, additional potentials,
+cosmological state and the common real-time response.

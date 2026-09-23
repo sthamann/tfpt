@@ -1,0 +1,153 @@
+CHARGED REGISTER ENCODING — PRIOR COVERAGE INVENTORY
+=====================================================
+Date: 2026-09-20
+Scope: novelty and source fit only. No new Hamiltonian, no new phase, and
+no checker or repository contract is added here.
+
+Graph-first search
+------------------
+The code graph was queried before filesystem inspection for
+`register_hamiltonian`, charged/disorder functions, and CAR/register terms.
+The indexed source project is
+`Users-stefanhamann-Projekte-tfpt-theoryv4`. The relevant direct result is
+
+  verification.v1033_charged_disorder.register_hamiltonian
+  verification/v1033_charged_disorder.py:307-321
+
+The theory graph currently reports 5,937 nodes and 63,939 edges. The focused
+`tried` inventory contains PARTIAL contracts
+`source-driven-carry-20260920`, `source-probe-carry-20260920`,
+`source-local-line-20260920`, `charged-source-time-audit-20260920`, and
+`charged-sector-memory-gate-20260920`. The relevant `kills` output contains
+the existing NO_BRIDGE and STRUCTURAL_MISMATCH results; none is a direct
+test of the J_s/C/F_i encoding below.
+
+Files inspected (eight-file limit)
+-----------------------------------
+1. `verification/v1033_charged_disorder.py`
+2. `experiments/theory-contracts/source-driven-carry-20260920/PROOF.md`
+3. `experiments/theory-contracts/source-probe-carry-20260920/PROOF.txt`
+4. `experiments/theory-contracts/source-local-line-20260920/SOURCE_LINE_PROOF.txt`
+5. `experiments/theory-contracts/charged-source-time-audit-20260920/CAR_PROOF.txt`
+6. `experiments/theory-contracts/charged-sector-memory-gate-20260920/PROOF.txt`
+7. `experiments/theory-contracts/charged-cocycle-lift/README.md`
+8. `experiments/theory-contracts/charged-cocycle-lift/TEST_RESULTS.md`
+
+What v1033 actually supplies
+-----------------------------
+The source defines the four-sector one-body Hamiltonian
+
+  H_R = I tensor h_base + Z tensor h_forward
+        + Z^dagger tensor h_forward^dagger,
+  Z = diag(1,i,-1,-i),
+
+equivalently `sum_r |r><r| tensor h_r`, with
+`h_r = h_base + i^r a + i^(-r) a^dagger`. This is the exact source form in
+`v1033_charged_disorder.py:298-321`, also recorded in
+`clock-interaction-provenance/README.md:115-126`.
+
+The source's explicit disorder insertion is not the bare register shift.
+At `v1033_charged_disorder.py:379-417` it constructs
+
+  full_disorder = kron(shift, u),
+
+where `shift = roll(I_4, 1, axis=0)` and `u` is the sharp matter phase string
+from `sharp_arc_phase`. The commutator with the direct-sum source Hamiltonian
+is reduced to the far-endpoint residual. Thus the supplied operator is the
+one-body/register product `S tensor u`; on Fock space its number-preserving
+lift would be `S tensor Gamma(u)`. It is not the field operator `S tensor c_i`.
+
+The v1033 symbolic section does verify a finite Weyl relation and that the
+disorder string is even under canonical matter parity
+(`v1033_charged_disorder.py:191-229`). That parity statement concerns the
+existing phase-string insertion; it does not derive a full-CAR charged field.
+
+Status of the proposed J_s, C, and F_i construction
+----------------------------------------------------
+For the conditional tensor-product lift `C4 tensor Fock(V)`, let
+
+  F_i = S tensor c_i,
+  C = Z tensor i^N,
+  J_s |psi_N> = |s-N mod 4> tensor |psi_N>.
+
+The algebraic claims in the proposal are internally consistent under this
+explicit lift:
+
+* Since S is unitary, the F_i obey the full CAR:
+  `{F_i,F_j}=0` and `{F_i,F_j^dagger}=delta_ij`.
+* With `Z S Z^dagger = i S` and
+  `i^N c_i i^(-N) = -i c_i`, C commutes with every F_i.
+* H_R preserves N and is diagonal in the register basis, so C commutes with
+  H_R as well.
+* The encoded subspace selected by J_s is stable under F_i and F_i^dagger:
+  lowering N shifts the register by +1 and raising N shifts it by -1.
+* Direct compression gives
+
+    J_s^dagger H_R J_s
+      = dGamma(h_{s-N mod 4})
+      = dGamma(b + i^(s-N) a + i^(-s+N) a^dagger).
+
+  The apparent higher dependence on N is therefore a number-dependent
+  boundary holonomy of the encoding, while each fixed-N block remains free.
+
+This exact algebraic encoding was not found as a derivation in the inspected
+contracts or in the targeted graph/text search. It is consequently a new
+conditional representation choice, not an already documented source result.
+It also does not change H_R: J_s changes the embedding of the matter Fock
+space into register tensor Fock space.
+
+Why this does not identify the original disorder field
+-------------------------------------------------------
+The original `full_disorder` contains `Gamma(u)`, which acts on one-body
+orbitals and has support along the sharp string. Bare S alone changes only
+the register label. Replacing `S tensor Gamma(u)` by `S tensor c_i` changes
+both particle-number degree and source support. The source records the former
+as an even, number-preserving disorder observable; it does not supply the
+latter charged field.
+
+The endpoint-product question is therefore still open at the source level:
+one must specify how the matter string, its adjoint, and the register shift
+compose on the same Fock domain. The prior source-probe result explicitly
+warns that the microscopic `S_A=D_A^2` insertion is neutral under occupation
+charges (`source-probe-carry-20260920/PROOF.txt:124-137`) and that scalar or
+unscaled limits do not turn it into a charged vertex. A sector-dependent
+charge map or nonmultiplicative field scaling is listed there only as a
+further assumption.
+
+What existing charged-field work does establish
+-----------------------------------------------
+`source-local-line-20260920/SOURCE_LINE_PROOF.txt:97-146` gives a
+source-faithful local limit for one chiral channel: smeared top-row lattice
+annihilators have convergent CAR and finite word expectations in the declared
+quasifree state. It does not add a four-level register encoding, and it
+explicitly counts one channel per edge (`:167-176`).
+
+`charged-source-time-audit-20260920/CAR_PROOF.txt:14-24,154-194` proves
+finite-window CAR-current identities and a common free-CAR time limit on a
+specified core. It records the missing native transition
+`TRANS.SEAMCAR.E8CURRENT.01` and does not select eight native species or a
+register CAR lift.
+
+`charged-cocycle-lift/README.md:1-5,118-137,229-236` reconstructs the
+conditional E8 lattice charge-sign algebra and full integer zero-mode target.
+It explicitly separates this target from a microscopic seam realization.
+`charged-sector-memory-gate-20260920/PROOF.txt:4-18,60-81,128-158` likewise
+distinguishes an available off-diagonal sector current from autonomous
+Hamiltonian mixing or a source-derived instrument.
+
+The inspected material therefore supports the following precise verdict:
+
+  J_s/C/F_i is algebraically possible on an explicitly chosen
+  C4 tensor Fock(V) encoding, but it is not already derived from v1033.
+  v1033 supplies S tensor Gamma(u) as a number-preserving disorder
+  insertion, not S tensor c_i. The number-dependent twist is an embedding
+  effect in fixed-N free dynamics, not a demonstrated interacting source.
+
+Open source-fit gate
+--------------------
+The smallest next source test is an operator-domain comparison between the
+actual `S tensor Gamma(u)` and the proposed charged `S tensor c_i`: preserve
+the v1033 endpoint support, adjoints, CAR, matter-number grading, and the
+same H_R action. Until that map is supplied, the construction remains a
+conditional charged-field encoding and cannot be promoted to a native
+source-derived field or Hamiltonian.

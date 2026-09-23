@@ -1,0 +1,137 @@
+UR.COMPILER.VACUUM_CURRENT_CUBIC.06 -- exact internal result, physical origin open
+Date: 2026-09-18
+
+QUESTION AND DECISION
+The preceding contract found a two-parameter simplex of D4-invariant density
+operators on the marked four-dimensional family representation. Does the
+original affine E8 vacuum leave that same freedom in its current correlations?
+Success: evaluate the source vacuum functional on the actual source currents,
+with the same marked E8 roots and cocycle. Stop rather than build a replacement
+vacuum if the family representation is not a subsystem of the source vacuum.
+
+Answer: the current response Gram is fixed. It is not a physical reduced
+density operator of Omega. The source also fixes a nonzero three-current
+tensor, factorizing as the unique E6 cubic times the alternating family tensor.
+The former D4 state classification remains mathematically correct for a chosen
+four-level system; its interpretation as a necessary vacuum-selection problem
+does not follow from the original affine model.
+
+1. ORIGINAL SOURCE AND ADJOINT
+The checker extracts the unmodified Chevalley and Affine classes of v498 and
+the original root generator of v1, in the same pinned E8 chamber as contracts
+.03-.05. All original asserts are translated to unconditional checks so that
+python -OO does not disable them. No action, oscillator or Hamiltonian is added.
+
+In the source convention [e_a,e_-a]=-H_a and kappa(e_a,e_-a)=-1. Thus the
+compact adjoint is e_a^dagger=-e_-a, H_i^dagger=H_i. The full bracket
+anti-involution is checked, not inferred from root dimensions. The affine rule is
+
+ [J^a_m,J^b_n] = J^[a,b]_(m+n) + m k kappa(a,b) delta_(m+n,0).
+
+At k=1 the original vacuum obeys J^a_m Omega=0 for m>=0. Consequently
+
+ G_ab = <Omega|(J^a_-1)^dagger J^b_-1|Omega> = kappa(a^dagger,b).
+
+The full 248-by-248 Gram consists of I_240 on root vectors, the positive E8
+Cartan matrix on simple coroots, and zero cross blocks. The actual affine PBW
+engine evaluates every matrix entry. Positive Cartan principal minors are exact.
+This is a grade-one result; construction of the full unitary affine quotient
+is part of the original WZW/net premise, not newly proved by this finite check.
+
+2. FAMILY RESPONSE IS NOT A FAMILY VACUUM STATE
+The same marked 64 root currents are indexed by carrier dimension 16 and four
+last-three-coordinate weights. In doubled-root convention those weights are
+(-1,-1,-1), (-1,1,1), (1,-1,1), (1,1,-1). The last three are exactly the old
+48 carrier/family roots; the first is the determinant-complement sector.
+
+ G_(A,i)(B,j) = delta_AB delta_ij.
+ Sum_A G_(A,i)(A,j) = 16 delta_ij.
+
+Normalizing this response Gram gives I_4/4. Conditioning the Gram on the
+three marked family directions gives I_3/3. In the old D4 simplex notation this
+one normalized Gram has (a,b,c)=(1/4,1/4,1/2).
+
+Omega has grade zero. Every J_-1 Omega here has grade one, orthogonal to Omega;
+the vacuum's probability in that grade-one subspace is zero. Thus I_4/4 is NOT
+obtained by tracing a tensor factor of |Omega><Omega|. A prepared current
+superposition, non-vacuum state, detector coupling or thermal weighting is
+additional data; its populations are not fixed by this response calculation.
+Equal current norms do not predict equal particle abundances or masses.
+
+This also avoids mixing rotational Gibbs states, translation KMS states and
+the conformal vacuum. The source holomorphic KMS manuscript distinguishes
+these and begins with an existing net/vacuum representation. Its uniqueness
+statements do not manufacture the raw source state.
+
+3. THE ACTUAL CUBIC CORRELATION
+The same source vacuum and commutator give, exactly,
+
+ C(a,b,c)=<Omega|J^a_1 J^b_0 J^c_-1|Omega>=kappa(a,[b,c]).
+
+Restrict to the parent's (27,3) sector of E8 under E6+A2. Use the original A2
+root actions to transport one 27 basis into the other two, including every
+cocycle sign. No independent re-fitting of bases is done. Then
+
+ C_(A,i)(B,j)(C,k) = d_ABC epsilon_ijk.
+
+The factorization is checked on all 27^3 coefficient triples and all six
+distinct-family permutations, including all zeros. A2 Cartan neutrality
+excludes every repeated-family triple. There are 1,620 nonzero ordered
+amplitudes in the full 81-current sector. The original affine PBW engine
+independently evaluates these amplitudes. d is completely symmetric and has
+270 nonzero ordered entries. P(x)=d(x,x,x)/6 has 45 squarefree monomials with
+coefficients +/-1 in this source-adapted basis.
+
+Under 27=16_1+10_-2+1_4 these 45 monomials split into:
+ 40 of type 16_1 * 16_1 * 10_-2;
+  5 of type 10_-2 * 10_-2 * 1_4.
+The original seam deck and cocycle-corrected reflection from .05 preserve
+every nonzero amplitude. Their actions on the entire 27 blocks are used;
+applying only a family phase and omitting the E6 component would be wrong.
+
+4. UNIQUENESS, NOT JUST ONE FITTED CUBIC
+Enumerate ALL degree-three monomials in the 27 coordinates (with repetitions
+allowed initially). The rank-six E6 Cartan neutrality condition leaves 45.
+Impose invariance under all 72 original E6 root operators. The resulting
+integer Ward matrix has shape 1080 x 45, exact rank 44 and nullity one.
+Its kernel contains the cubic already extracted from the source currents.
+Hence its relative coefficients are forced; only common normalization remains.
+The source level and fixed current normalization supply that normalization.
+A negative control changing one relative sign fails the same Ward equations.
+
+This is an explicit source-level identification of a known E6 invariant, not
+the discovery of a new exceptional algebra or a new physical force. Independent
+literature: X. Xu, Polynomial Representation of E6 and Its Combinatorial and PDE
+Implications, arXiv:0811.1399; T. Deppisch, E6Tensors, arXiv:1605.05920.
+
+5. ORIGIN CHAIN AND THE REMAINING DERIVATION
+v154 supplies the simple-current extension conditional on the boundary net
+being the chosen D5_1 x A3_1 net. v175 checks its spectral/lattice ingredients
+and cites the existence theorems. v177 explicitly leaves the raw MARKS and
+KERNEL obligations open. The current status ledger still labels QGEO.KERNEL.01
+Open [O]. QGEO.NET.01 is described inside other ledger rows but has no standalone
+claim node in the current theory graph; an absent node is not a new proof.
+
+Thus the first unproved source implication relevant here is
+
+ RAW seam state + actual local charged operators
+     --> the marked affine E8 level-one vacuum current algebra used above.
+
+The two- and three-current tensors give a concrete target for that derivation.
+Matching a finite Gram alone is insufficient: an abelian current algebra can
+share the same positive Gram and have zero cubic tensor. Even matching these
+finite tensors is not yet equality of local nets; locality, all-mode operator
+relations, domains and generation have to be justified at the source.
+Quasi-free elementary fermions do NOT imply zero three-current correlations:
+their composite currents can be nonabelian. The operator dictionary matters.
+
+The conformal dimension-one currents are bosonic boundary operators. A 16
+internal representation is not by itself a 3+1D fermion. The 16*16*10 tensor
+is not a derived Yukawa coupling, Higgs sector or mass spectrum. Additional
+10+1 components, conjugate sectors, spacetime dynamics and gravity remain open.
+
+REPLAY AND FIREWALL
+Normal and -OO runs produce byte-identical certificate.json; pins include
+the original sources and parent certificates. Exact arithmetic is used after
+checked dyadic conversion of the original root generator. Experimental theory
+contract only. No ledger, paper, verification module or physical gate promoted.

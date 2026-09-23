@@ -1,0 +1,336 @@
+{
+  "assumptions": [
+    "E8 roots use the standard 8-dimensional realization: 112 integer roots and 128 half-sign roots with even minus parity.",
+    "The explicit F(r) used here is the parent-provided recovered finite-proof formula k=(a\u00b7r)/2, n=(a,-1,3), F=(r-ka,0,-2k); no local source path/hash for that proof was supplied.",
+    "For the q-family, b has (q^2-q)/2 plus signs and (q^2+q)/2 minus signs; signs are equivalent by an integral orthogonal map.",
+    "D_squared identity is rational-symbolic for k != 0 and formal nonzero pi; it is not an analytic bosonization proof.",
+    "The q=3 classification label uses the standard uniqueness of the positive-definite even unimodular rank-8 lattice; q=5 is left at the even-unimodular rank-24 level."
+  ],
+  "checks": [
+    {
+      "details": {
+        "construction": "112 integer \u00b1e_i\u00b1e_j plus 128 half-sign roots with even minus parity",
+        "count": 240,
+        "norm_squared_counts": {
+          "2": 240
+        }
+      },
+      "id": "e8_root_generation",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "a_squared": "8",
+        "matrix_equal_identity": true,
+        "shape": [
+          9,
+          8
+        ]
+      },
+      "id": "M_transpose_M",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "image_count": 240,
+        "norm_squared_counts": {
+          "2": 240
+        }
+      },
+      "id": "M_root_norms",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "count": 240,
+        "k_values": {
+          "-1": 28,
+          "-1/2": 56,
+          "-3/2": 8,
+          "0": 56,
+          "1": 28,
+          "1/2": 56,
+          "3/2": 8
+        },
+        "nonintegral_entries": 0
+      },
+      "id": "F_integral",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "g": [
+          1,
+          1,
+          1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -3
+        ],
+        "violations": 0
+      },
+      "id": "F_eichneutral",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "charge_values": {
+          "-2": 56,
+          "-4": 1,
+          "0": 126,
+          "2": 56,
+          "4": 1
+        },
+        "q_global": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "violations": 0
+      },
+      "id": "F_global_charge_transport",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "meaning": "global charge is invariant under shifts along n and can descend to the neutral quotient",
+        "q_global_dot_n": "0"
+      },
+      "id": "global_charge_orthogonal_to_massive_direction",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "projection": "p=y-(z/3)b with b=(a,-1)",
+        "violations": 0
+      },
+      "id": "F_projection_equals_Mr",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "identity": "x -> x+t*n leaves p and q_global because q_global\u00b7n=0; z -> z+3t",
+        "minimal_abs_z_by_residue": {
+          "0": 0,
+          "1": 1,
+          "2": 1
+        },
+        "scope": "integer F(r) representatives only; no claim about gauge-electric exponential dressing",
+        "tested_shifts": [
+          -2,
+          -1,
+          0,
+          1,
+          2
+        ],
+        "z_mod_3_counts": {
+          "0": 72,
+          "1": 84,
+          "2": 84
+        }
+      },
+      "id": "integer_coset_representatives",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "energy_counts": {
+          "1": 240
+        },
+        "identity_used": "h_neutral=(|y|^2-z^2)/2=|p|^2/2"
+      },
+      "id": "neutral_energy_is_one",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "energy_counts": {
+          "0": 1,
+          "1": 126,
+          "1/2": 56,
+          "2": 1,
+          "3/2": 56
+        },
+        "formula": "E=1-sum(r_i)/4"
+      },
+      "id": "quarter_holonomy_distribution",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "direct_vs_formula_violations": 0,
+        "formula": "h_free=||F||^2/2=1+z^2, z=F_10=-2k",
+        "nonzero_massive_charge_count": 184,
+        "weight_counts": {
+          "1": 56,
+          "10": 16,
+          "2": 112,
+          "5": 56
+        }
+      },
+      "id": "free_weight_distribution",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "assumption": "k != 0",
+        "mass_squared": "9*e^2/pi",
+        "symbolic_zero_matrix": true
+      },
+      "id": "D_squared_mass_identity",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "b_minus": 6,
+        "b_plus": 3,
+        "binary_check_scope": "all 0/1 residue classes grouped by plus/minus Hamming counts; universal congruence extends to all integral y",
+        "binary_neutral_residue_weight": 170,
+        "binary_parity_all_neutral_residues": true,
+        "binary_parity_universal_argument": "b_i == q == 1 (mod 2), so b\u00b7y=qz implies sum(y_i)+z == 0 (mod 2) for every integral y",
+        "binary_parity_violations": 0,
+        "binary_residue_count": 512,
+        "classification": "E8 (unique positive-definite even unimodular rank-8 lattice); 240 norm-2 vectors checked",
+        "even_lattice": true,
+        "gram_determinant": "1",
+        "gram_integral": true,
+        "leading_principal_minors_positive": true,
+        "norm2_vector_count": 240,
+        "norm2_vector_count_decomposition": {
+          "A8_differences": 72,
+          "triple_sign_groups": 168
+        },
+        "norm2_vector_count_is_240": true,
+        "q": 3,
+        "rank": 8
+      },
+      "id": "q3_projected_lattice",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "b_minus": 15,
+        "b_plus": 10,
+        "binary_check_scope": "all 0/1 residue classes grouped by plus/minus Hamming counts; universal congruence extends to all integral y",
+        "binary_neutral_residue_weight": 6643782,
+        "binary_parity_all_neutral_residues": true,
+        "binary_parity_universal_argument": "b_i == q == 1 (mod 2), so b\u00b7y=qz implies sum(y_i)+z == 0 (mod 2) for every integral y",
+        "binary_parity_violations": 0,
+        "binary_residue_count": 33554432,
+        "classification": "even unimodular positive-definite rank-24 lattice; type not identified",
+        "even_lattice": true,
+        "gram_determinant": "1",
+        "gram_integral": true,
+        "leading_principal_minors_positive": true,
+        "q": 5,
+        "rank": 24
+      },
+      "id": "q5_projected_lattice",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "completed_square_identity_on_witnesses": true,
+        "formula": "H=N+|r-v|^2/2-1/4, v=(1/4)^8",
+        "ground_candidate_count": 2,
+        "nearest_point_statement": "D8 and (1/2)^8+D8 each have the unique stated nearest representative to v; analytic lattice fact, not finite exhaustive enumeration",
+        "scope": "standard E8 lattice vacuum module with H=L0-Q/4; no global compact Maxwell state theorem",
+        "witness_distances_squared": {
+          "D8_candidate_0": "1/2",
+          "half_coset_candidate": "1/2"
+        },
+        "witness_energies": {
+          "r=(1/2)^8,q=4": "0",
+          "r=0,q=0": "0"
+        }
+      },
+      "id": "same_model_clock_ground_candidates",
+      "status": "PASS"
+    }
+  ],
+  "input_file": "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/theory-contracts/source-maxwell-field-transfer-20260921/INPUT.txt",
+  "input_sha256": "c700a96f5816cfb758e64e4e91ea63b9266848c93af66d2d0cc7dcda401a5f56",
+  "q_lattice_details": {
+    "q3": {
+      "b_minus": 6,
+      "b_plus": 3,
+      "binary_check_scope": "all 0/1 residue classes grouped by plus/minus Hamming counts; universal congruence extends to all integral y",
+      "binary_neutral_residue_weight": 170,
+      "binary_parity_all_neutral_residues": true,
+      "binary_parity_universal_argument": "b_i == q == 1 (mod 2), so b\u00b7y=qz implies sum(y_i)+z == 0 (mod 2) for every integral y",
+      "binary_parity_violations": 0,
+      "binary_residue_count": 512,
+      "classification": "E8 (unique positive-definite even unimodular rank-8 lattice); 240 norm-2 vectors checked",
+      "even_lattice": true,
+      "gram_determinant": "1",
+      "gram_integral": true,
+      "leading_principal_minors_positive": true,
+      "norm2_vector_count": 240,
+      "norm2_vector_count_decomposition": {
+        "A8_differences": 72,
+        "triple_sign_groups": 168
+      },
+      "norm2_vector_count_is_240": true,
+      "q": 3,
+      "rank": 8
+    },
+    "q5": {
+      "b_minus": 15,
+      "b_plus": 10,
+      "binary_check_scope": "all 0/1 residue classes grouped by plus/minus Hamming counts; universal congruence extends to all integral y",
+      "binary_neutral_residue_weight": 6643782,
+      "binary_parity_all_neutral_residues": true,
+      "binary_parity_universal_argument": "b_i == q == 1 (mod 2), so b\u00b7y=qz implies sum(y_i)+z == 0 (mod 2) for every integral y",
+      "binary_parity_violations": 0,
+      "binary_residue_count": 33554432,
+      "classification": "even unimodular positive-definite rank-24 lattice; type not identified",
+      "even_lattice": true,
+      "gram_determinant": "1",
+      "gram_integral": true,
+      "leading_principal_minors_positive": true,
+      "q": 5,
+      "rank": 24
+    }
+  },
+  "schema_version": 1,
+  "scope": "exact finite algebra only; no physical closure claim",
+  "summary": {
+    "all_finite_checks_pass": true,
+    "fail_count": 0,
+    "pass_count": 16,
+    "physical_closure": "NOT_CLAIMED"
+  },
+  "unverified": [
+    {
+      "id": "primitive_TFPT_origin",
+      "reason": "No derivation here that the TFPT P1/P2 source produces this compact Maxwell connection and field space.",
+      "status": "UNVERIFIED"
+    },
+    {
+      "id": "local_QFT_completion",
+      "reason": "Finite checks do not establish cocycles, large gauge transformations, charged operator dressing, or a controlled continuum limit.",
+      "status": "UNVERIFIED"
+    },
+    {
+      "id": "physical_time_closure",
+      "reason": "Neutral quotient energy is constant on these roots, while the quarter-holonomy distribution remains; no common physical clock is derived.",
+      "status": "UNVERIFIED"
+    },
+    {
+      "id": "q5_lattice_type",
+      "reason": "The q=5 construction is verified as even unimodular rank 24; no Niemeier/Leech type identification is attempted.",
+      "status": "UNVERIFIED"
+    }
+  ]
+}

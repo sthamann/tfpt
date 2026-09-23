@@ -1,0 +1,363 @@
+ROOT-SOURCE ORIGIN AUDIT — 2026-09-19
+Verdict: PARTIAL. Exact finite source/Bell bridge; its pure 240-root
+permutation is not an E8-current action, and no native preparation of the
+E8 grade-two (10_D5,10_A3) sector is supplied yet.
+
+Question
+Does the new 240-root source and its unique finite-group singlet Omega supply
+the missing physical source/preparation for the already constructed
+Bell10 -> A3_1 descendant -> E8-grade-two bridge?
+
+1. What the 60-versus-240 correction really proves
+
+The sixty-ray source is the quotient of the 240 Gaussian E8 roots by the
+central phase fibre {1,i,-1,-i}.  The pinned source actually reconstructs all
+240 roots and then chooses 60 canonical mu4 representatives
+(compiler-correlated-event-clock source_channel.py:39-68).  On the ray labels
+the central commutator of suitable words is erased, whereas the same words on
+two C4 registers retain the scalar -1.  Under the stated unmarked/full-
+symmetry premises the two joint lifts therefore anticommute, so every common
+energy eigenspace is even-dimensional.  This is a genuine obstruction to a
+unique ground state for that phaseless 60-label realization.  It is not a
+no-go for a marked source, a central reference register, or another linear
+lift.
+
+The 240-label construction resolves exactly this cocycle mismatch.  Let
+
+  C_R |alpha> = |i alpha>
+
+on H_R = l2(R(E8)).  For a ray representative z_l define
+
+  |l;q> = (1/2) sum_{k=0}^3 i^(q k) |i^k z_l>.
+
+The relevant state is
+
+  |l;2> = (|z_l>-|i z_l>+|-z_l>-|-i z_l>)/2,
+  C_R|l;2> = -|l;2>.
+
+If a native reflection sends z_l to i^s z_{l'}, its source action in sector 2
+is the signed permutation
+
+  R_m^(2)|l;2> = (-1)^s |l';2>.
+
+The pair vector v_l=(z_l/2) tensor (z_l/2) obeys the same law,
+
+  (r_m tensor r_m)v_l = (-1)^s v_l'.
+
+This is checked exactly for all source/reflection pairs in
+work/root_source_audit_20260919/response_check.py:16-43,81-91.  Thus the phase
+fibre supplies the compensating sign that the sixty projective labels lost.
+
+The first additional source premise is already here, before H_E or L_R:
+
+  H_R := l2(R(E8)), with 240 mutually orthogonal root-label kets, and
+  R_m|alpha> := |r_m alpha> as the physical source action.
+
+The E8 lattice theorem supplies 240 geometric roots, their norm, and the
+mu4 glue; it does not turn the roots into 240 orthogonal physical states
+(verification/v1_e8_glue.py:1-18,25-40,100-140).  Nor does it identify the
+pure permutation R_m with the adjoint/Chevalley action, including its root-
+space phases and Cartan action.  The submitted text correctly calls this a
+new quantization decision.  Choosing the common-reflection Laplacian L_R is a
+second, later premise.
+
+1b. Exact exclusion of the pure permutation as an E8_1 root-current action
+
+The 240 orthogonal labels might be compared with the 240 root currents in the
+grade-one E8_1 vacuum space.  That comparison fails for the PURE permutation
+action used by the source.  The smallest witness already occurs on three
+native Gaussian roots (in the source normalization, norm squared 4):
+
+  alpha=(1,1,1,1),
+  beta =(1,-1,-1,-1),
+  gamma=alpha+beta=(2,0,0,0),
+
+with Re<alpha,beta>=-2.  Direct reconstruction from the pinned source confirms
+that all three belong to the 240-root set.  The native coordinate-reflection
+word
+
+  g=diag(1,-1,-1,-1)=r_e1 r_e2 r_e3
+
+(with the three flipped coordinate rays) obeys
+
+  g alpha=beta,   g beta=alpha,   g gamma=gamma.           (1b.1)
+
+Let E_delta denote root-current/Chevalley root vectors.  Since gamma is a
+root,
+
+  [E_alpha,E_beta]=N_(alpha,beta) E_gamma,   N_(alpha,beta) != 0.
+
+If the source's pure permutation P_g were a Lie automorphism on those root
+currents, then applying it to this bracket would give
+
+  P_g [E_alpha,E_beta] = N E_gamma,
+
+whereas bracket preservation and (1b.1) require
+
+  [P_g E_alpha,P_g E_beta]
+    =[E_beta,E_alpha]=-N E_gamma.                          (1b.2)
+
+This is a contradiction over C.  Rephasing the root basis cannot repair it
+while the action remains pure: for F_delta=s_delta E_delta the new structure
+constants still satisfy N'_(beta,alpha)=-N'_(alpha,beta), and a coefficient-one
+swap repeats (1b.2).
+
+A genuine phased lift would have to act as
+
+  E_delta -> c_g(delta) E_(g delta)
+
+and this witness forces
+
+  c_g(gamma) = -c_g(alpha)c_g(beta).                      (1b.3)
+
+Thus at least one nontrivial root phase/sign is compulsory.  This is consistent
+with the existing native E8 lift rather than a new requirement invented for
+this audit: compiler-quartic-holonomy-20260919/checker.py:139-177 pulls the
+actual 240 E8 roots into D5+A3 coordinates and checks phase additivity on all
+13,440 nonzero root-sum brackets, including neutral opposite-root brackets.
+Its PROOF.txt:129-175 also records the phase-correct E8 lift and global Z4
+cocycle.  That contract does not identify its phased current lift with the
+source's coefficient-one permutation R_m; it shows precisely the additional
+cocycle data a current interpretation must carry.
+
+Therefore the pure 240-permutation register is exactly excluded as the native
+E8_1 root-current/Weyl action.  It remains a valid abstract pointer Hilbert
+space for the finite H_E,L_R model.  Promoting it to a current source requires
+replacing R_m by a phase-correct lift, adding the eight Cartan grade-one
+currents for the full 248-dimensional adjoint space, and rechecking Omega,
+positivity, the phase-sector decomposition and the revival with that changed
+operator.  None of those follow from the present finite certificate.
+
+2. Exact connection of Omega to Bell10 and to the A3_1 descendant
+
+Write psi_l=z_l/2 and v_l=psi_l tensor psi_l in Sym^2(C4).  Grouping the four
+phase lifts in the submitted definition of Omega gives, without approximation,
+
+  Omega
+   = (1/sqrt(240)) sum_{alpha} |alpha> |psi_alpha> |psi_alpha>
+   = (1/sqrt(60)) sum_{l=1}^{60} |l;2> tensor v_l.          (1)
+
+The exact projective second moment gives
+
+  sum_l |v_l><v_l| = 6 I_Sym2(C4).                         (2)
+
+This follows both from the pinned projective-design identity
+(source_channel.py:152-169) and the independent integer check
+(response_check.py:81-86).  Define
+
+  T : H_R,2 -> Sym^2(C4),
+  T|l;2> = v_l/sqrt(6).
+
+Then TT* = I_10: T is a canonical coisometry onto Bell10.  Fix the
+source-first column-vectorisation convention
+
+  vec_R(T) := sum_(l,a) T_(a l) |l>_R tensor |a>_Bell.
+
+With this convention,
+
+  Omega = (1/sqrt(10)) vec_R(T).                           (3)
+
+Consequently Omega has Schmidt rank 10 with ten weights 1/10 and
+
+  rho_AB = TT*/10 = I_Bell10/10 = P_sym/10,
+  rho_R  = (T* T)^T/10.                                   (3a)
+
+The source Schmidt support is therefore im(T^T), not in general im(T*).
+This distinction matters because the native frame vectors and the Bell
+matrices need not be real in the chosen Pauli-Bell basis.
+
+This is stronger than a dimension match.  T intertwines every native labelled
+reflection,
+
+  T R_m^(2) = G_m T,       G_m:=Sym^2(r_m).               (4)
+
+The source reflection matrices R_m^(2) are real signed symmetric involutions.
+Transposing (4) therefore gives
+
+  R_m^(2) T^T = T^T G_m^T.                               (4a)
+
+Thus im(T^T) carries the transpose, equivalently the dual/conjugate unitary
+Bell action.  One must not replace G_m^T by G_m merely because the source
+permutation is real: in the pinned Pauli-Bell basis G_m can have off-diagonal
+entries +/-i.
+
+Now apply the previously constructed current-descendant isometry
+
+  E : Sym^2(C4) -> D_10 subset L_A3_1(Lambda2),
+
+where D_10 is the horizontal 10 at affine grade one and h_A3=3/2.  Its explicit
+CAR formula, current-mode separator, SU4 equivariance and central phase are in
+work/current_origin_20260919.txt:127-234.  The exact lifted singlet is
+
+  Omega_aff := (I_R tensor E) Omega
+    = (1/sqrt(60)) sum_l |l;2> tensor E(v_l)
+    = (1/sqrt(10)) vec_R(E T).                            (5)
+
+Because the bounded affine involution V_m restricts to Sym^2(r_m) on E(Bell10),
+
+  (R_m^(2) tensor V_m) Omega_aff = Omega_aff              (6)
+
+for every one of the sixty events.  Equations (1)-(6) are the requested exact,
+directed operator connection.  The word "singlet" here means invariant under
+this finite diagonal reflection action.  It is not automatically an SU4
+singlet: 10 tensor 10 contains no SU4 scalar (the invariant evaluation pairs
+10bar with 10).  Equations (3a) and (4a) show precisely how the finite source
+partner supplies the dual/conjugate Bell action.  They do not extend that
+source action to a full SU4 representation.
+
+3. Why source sector 2 is not yet the E8 glue sector needed at grade two
+
+Four objects must not be identified by their dimensions:
+
+  object                                  dimension   actual action/meaning
+  --------------------------------------------------------------------------
+  H_R,2                                   60          signed root-label
+                                                      permutation of G31
+  im(T^T) inside H_R,2                    10          dual/conjugate finite
+                                                      Bell10 restriction
+  D_10=E(Bell10)                          10          horizontal SU4 10,
+                                                      A3_1 h=3/2
+  (10_D5,D_10_A3) in the E8 vacuum        100         Spin10 x SU4 block,
+                                                      total h=2
+
+The native E8 branching is
+
+  248=(45,1)+(1,15)+(10,6)+(16,4)+(16bar,4bar),
+
+and its root census is
+
+  240=40+12+60+64+64
+
+(tfpt_1_architecture_e8.tex:2001-2024).  The class-two ground block is the
+sixty-dimensional (10_D5,6_A3), while the Bell descendant replaces only the
+A3 ground 6 and gives the 100-dimensional (10_D5,10_A3) at total weight two
+(work/current_origin_20260919.txt:244-268).
+
+By contrast, the new phase decomposition comes from the permutation C_R on
+sixty free four-cycles, so every Fourier sector has dimension 60.  The actual
+E8 glue-centre eigenspaces have dimensions 60,64,60,64; on root spaces their
+census is 52,64,60,64, with the eight Cartan directions completing grade zero
+(outputs/quartik-transport-und-e8/PROOF.txt:116-150 and the architecture line
+2028).  Therefore equality of the sector-2 dimensions is suggestive but does
+not supply an intertwiner.
+
+The first missing representation equality is an explicit phase-faithful map
+
+  Q : H_R,2 -> 10_D5 tensor 6_A3
+
+satisfying, for every native event, the same Spin10 x SU4 lift and cocycle as
+the established E8 operator.  No inspected artifact defines Q.  In particular,
+the ten-dimensional Schmidt support im(T^T) is fixed by the Bell frame and
+carries the dual/conjugate finite Bell10 action; it has not been shown to be
+the D5 vector 10.
+Calling it 10_D5 would repeat the prohibited "10=10" identification.  If one
+first identifies all of H_R,2 with (10_D5,6_A3), one still needs a justified
+removal or preparation of the A3 6 factor; no invariant contraction
+6_A3 tensor 10_A3 -> 1 exists.  Conversely, extending the finite singlet to
+full SU4 would require the source Schmidt support to transform as 10bar_A3,
+not as 10_D5.
+
+Equivalently, to land (5) in the known E8 grade-two block one would have to add
+an isometry
+
+  D : im(T^T) -> 10_D5
+
+and use (D tensor E)Omega.  There is already an exact obstruction to the
+unmodified event-by-event version of this identification.  A native C4
+reflection r_m has eigenvalues (-1,+1,+1,+1), hence on Sym^2(C4)
+
+  spec(G_m) = {+1 sevenfold, -1 threefold},
+  det(G_m) = -1.                                          (7)
+
+The transpose/conjugate action G_m^T on im(T^T) has the same determinant.
+Every genuine Spin(10) vector action lands in SO(10), however, and therefore
+has determinant +1.  Since determinant is invariant under a ten-dimensional
+change of basis, no isometry D can satisfy
+
+  D G_m^T D^-1 = rho_10(s_m),       s_m in Spin(10),       (8)
+
+for even one native reflection, let alone all sixty.  A derived phase twist,
+a Pin(10) rather than Spin(10) extension, or a different joint action could
+alter the comparison, but each would be additional structure and must also
+respect the established Z4 glue.  Thus the naive Schmidt-support = D5-vector
+identification is rejected by operator action, not merely left open by a
+dimension warning.  An arbitrary non-equivariant D is not selected by the
+lattice roots, the mu4 phase, the projective design, or the common-reflection
+Laplacian.
+
+4. Preparation verdict
+
+The new source does not naturally prepare the E8 grade-two sector.
+
+First, even inside the finite 240-label model, the Hamiltonian commutes with
+the phase operator C_R (equivalently all four source sectors are dynamically
+invariant).  The uniform coherent root state
+
+  |u_240>=(1/sqrt(240)) sum_alpha |alpha>
+
+lies in sector 0 and can never evolve into the sector-2 ground vector Omega.
+More generally, for a closed autonomous H with ground projector Q_Omega,
+
+  Tr(Q_Omega rho(t)) = Tr(Q_Omega rho(0)).
+
+Uniqueness of the lowest eigenvector is therefore a spectral selection, not a
+unitary preparation rule.  Cooling, dissipation, an adiabatic initial
+condition, or an explicit sector-2 boundary preparation would be additional
+physics.  The response certificate states this same ground-population caveat
+(response_check.py:92-102).
+
+Second, even if Omega is supplied as an initial state, tracing out the source
+prepares I_D10/10, not a chosen pure Bell descendant.  Retaining the source
+gives the pure finite-group invariant Omega_aff in H_R,2 tensor D_10, which is
+not yet a vector of the E8 vacuum Hilbert space.  The extra map D above, a D5
+state/readout rule, and an actual preparation dynamics remain missing.
+
+This conclusion is independent of whether L_R has a later exact revival that
+restores earlier event steps at selected clock times.  A revival can repair a
+stroboscopic channel equality; it cannot move sector-0 initial data into the
+conserved sector 2 or create the absent D5 carrier map.
+
+5. Strongest positive bridge and decisive next test
+
+Positive result: the 240-root phase fibre supplies an exact signed source
+representation, Omega is the canonical maximally entangled coevaluation of
+the tight 60-vector Bell frame, and E transports its complete sixty-event
+action into the named A3_1 descendant.  This is a genuine operator bridge,
+not integer matching.  Its source representation is an abstract finite label
+representation; section1b excludes reading the coefficient-one permutation
+itself as the E8_1 root-current action.
+
+Open origin equality: construct from an existing native source operator, not
+by choosing an arbitrary ten-dimensional isometry, either
+
+  (a) Q:H_R,2 -> (10_D5,6_A3) with the full established E8 event lift, followed
+      by a source-derived operation that yields the D5 companion while placing
+      Bell10 in D_10.  This route must use the phase-correct current lift, not
+      the now-excluded pure root permutation; or
+
+  (b) a source-derived modification of the rejected raw D route -- for example
+      a justified phase/Pin extension or a different common action -- whose
+      resulting ten-dimensional action has the Spin10-vector determinant and
+      intertwines all sixty labels with the Z4 glue.
+
+The smallest representation test has therefore already rejected the
+unmodified route (b): one native generator has determinant -1 on the source
+Schmidt partner, versus determinant +1 in the Spin10 vector.  Route (a), or a
+fully specified modified joint action, still requires an explicit noncentral
+generator comparison beyond the common mu4 phase.  Passing that comparison
+would still leave the sector-2 preparation law and physical time/coupling
+choice to derive.
+
+Source set inspected (six decisive originals/artifacts)
+1. Attachment pasted-text.txt, complete 379-line proposal.
+2. compiler-correlated-event-clock-20260919/source_channel.py:39-68,112-169.
+3. work/root_source_audit_20260919/response_check.py and response_certificate.json.
+4. verification/v1_e8_glue.py:1-18,25-40,100-140.
+5. compiler-quartic-holonomy-20260919/checker.py:139-185 and
+   outputs/quartik-transport-und-e8/PROOF.txt:116-175.
+6. tfpt_1_architecture_e8.tex:2001-2028 and work/current_origin_20260919.txt:127-268.
+
+Theory-graph precheck: current graph 5896 nodes / 63672 edges; targeted
+search/tried/kills returned no dedicated root-source-sector contract.  The
+verdict above therefore rests on the cited originals and exact source
+artifacts, not on absence from the graph.

@@ -1,0 +1,333 @@
+UNABHÄNGIGER REVIEW: REKONSTRUKTION DER GELADENEN GAMMA-SEKTOREN
+Datum: 2026-09-20
+
+Geprüfter Ausgangsvertrag
+=========================
+
+  source-charged-lift-20260920/PROOF.txt
+  SHA-256 25fcbdd8f9dbce24b48584146b1670c0e3a7d17091bf8d48a24aff98864eb4c7
+
+Feste Daten:
+
+  D=Gamma_0^*/Gamma_0={0,f,h,c=f+h},
+  Q(0,f,h,c)=(0,1/2,0,0),  B(f,h)=-1/2 mod 1,
+  L_h=Gamma_0 union (h+Gamma_0).
+
+Haupturteil
+===========
+
+PASS für die algebraische Modul-, Spur- und Zeichenrekonstruktion, unter vier
+expliziten Voraussetzungen:
+
+1. M_0,M_h,M_f,M_c sind zunächst die vier irreduziblen Module des geraden
+   Untergitters Gamma_0. Als L_h-Strukturen bilden M_0+M_h die untwisted
+   L_h-Theorie und M_f+M_c ein eta-twisted Modul; die vier Summanden sind nicht
+   jeweils gewöhnliche Module des unimodularen L_h.
+2. Derselbe Hamiltonoperator muss aus einer gemeinsamen Darstellung der
+   Gamma_0-Vertexalgebra auf allen vier Modulen stammen. Bloße getrennte
+   Spektren oder vier beliebige Blockmatrizen reichen nicht.
+3. Die angegebene RR-Parität ist eine gewählte Spin-/Arf-Konvention. Die lokale
+   Gamma-Supervertexalgebra bestimmt ihr Gesamtvorzeichen nicht allein.
+4. Eine vollständige Feld- und Korrelatorrekonstruktion braucht die kompatiblen
+   Intertwiner und Kokykel. Der Standard-Gitterbau liefert sie, aber vier
+   Partitionsspuren allein tun es nicht.
+
+Innerhalb dieser Grenzen rekonstruiert der Bau die ursprüngliche ungerade
+Gamma-Theorie mit derselben paritätserhaltenden blockweisen Dynamik. Er macht
+die vollen T(E8)-Ströme nicht zugleich lokal zu den ungeraden Gamma-Feldern und
+liefert keine native Auswahl des Nachbargitters, der Spinstruktur oder der Zeit.
+
+1. Die eta-Wirkung und die vier Sektoren
+========================================
+
+Für l in L_h definiert
+
+  eta(V_l)=exp(2 pi i B(f,l)) V_l.
+
+Auf Gamma_0 ist B(f,l) ganzzahlig; auf h+Gamma_0 ist es wegen
+B(f,h)=-1/2 halbzahlig. Daher wirkt eta mit +1 auf M_0 und -1 auf M_h.
+Das ist eine wohldefinierte Ordnung-zwei-Automorphie von V_{L_h}.
+
+Das verschobene Impulsgitter f+L_h zerfällt als
+
+  (f+Gamma_0) union (c+Gamma_0)=M_f union M_c
+
+und ist das zugehörige eta-verdrehte Modul. Dabei ist f+L_h kein gewöhnliches
+untwisted L_h-Gittermodul: L_h ist selbstdual und B(f,h) ist nicht ganzzahlig.
+Diese terminologische Trennung verhindert eine scheinbare Vervierfachung der
+gewöhnlichen Module eines unimodularen Gitters.
+
+Seien A,B,C,D die Spuren über M_0,M_h,M_f,M_c mit demselben Hamiltonoperator
+und denselben erlaubten Einfügungen. Dann sind im unverdrehten Raum
+
+  Z_00=A+B,   Z_01=A-B.
+
+Im verdrehten Raum ist die natürliche Exponentialwirkung von f gleich + auf
+M_f und - auf M_c. Der modular kovariante Lift für die bosonischen
+Hintergrundspuren ist ihr Negatives, also
+
+  Z_10=C+D,   Z_11=D-C.                              (1)
+
+2. Warum das Minuszeichen in Z_11 richtig ist
+==============================================
+
+Für die vier Gamma_0-Klassen wirkt die modulare T-Transformation, abgesehen
+von der gemeinsamen Oszillator-/Gravitationsphase, mit
+
+  exp(2 pi i Q)=(+,+,-,+)
+
+auf (A,B,C,D). Deshalb gilt relativ
+
+  T: Z_10=C+D  ->  -C+D=Z_11,
+     Z_11=D-C  ->   D+C=Z_10.
+
+Das erzwingt das Vorzeichen in (1). Die gemeinsame Phase aus der Signatur
+sigma=9-1=8, in der üblichen Konvention exp(-2 pi i sigma/24), darf dabei
+nicht fortgelassen und als Anomaliefreiheit missverstanden werden; sie ist für
+alle vier relativen Sektoridentitäten gleich. Eine umgekehrte Chiralitäts-
+Konvention komplex-konjugiert diese gemeinsame Phase, nicht die relative
+Vorzeichenrechnung.
+
+Auch S stimmt: Die Diskriminanten-Fouriermatrix in der Reihenfolge
+(0,h,f,c) sendet
+
+  Z_00 -> Z_00,  Z_01 <-> Z_10,  Z_11 -> Z_11.
+
+Damit ist D-C keine frei gewählte kosmetische Korrektur, sondern der Lift, der
+zur quadratischen Form und zur bosonischen Modularwirkung passt.
+
+Der eta-invariante Teil des verdrehten Moduls ist bei diesem Lift M_c. Die
+gewöhnliche bosonische Orbifold-Erweiterung ist daher
+
+  M_0+M_c = Gamma_0 union (c+Gamma_0)=L_c,
+
+also der zweite gerade Nachbar. M_0+M_f wäre die ungerade Gamma-Erweiterung und
+keine bosonische lokale Gitter-VOA.
+
+3. Arf-Fouriertransformation und Spinspuren
+===========================================
+
+Mit a,b als räumlichem beziehungsweise zeitlichem Z2-Hintergrund und
+rho_x,rho_t als Spinstruktur liefert auf dem Torus
+
+  Z_spin(rho)=1/2 sum_(a,b)
+    (-1)^(ab+a rho_t+b rho_x) Z_ab.
+
+Einsetzen von (1) ergibt exakt
+
+  NSNS=A+C,
+  NSR =A-C,
+  RNS =B+D,
+  RR  =B-D.                                          (2)
+
+Die ersten beiden Spuren sind die unverdrehte Gamma-Supervertexalgebra
+
+  V_Gamma=M_0+M_f,
+
+ohne beziehungsweise mit Fermionparität. Die letzten beiden gehören zum
+Ramond-Modul M_h+M_c.
+
+Ramond-Paritätsambiguität: Der Paritätsoperator auf dem Ramond-Modul kann als
+Ganzes mit -1 multipliziert werden. Dann bleibt RNS=B+D gleich, während die
+eingefügte RR-Spur ihr Vorzeichen wechselt. Auf dem Torus ist das genau das
+Stapeln mit der invertierbaren Arf-Phase. Formel (2) ist daher korrekt für die
+angegebene, nicht zusätzlich mit Arf gestapelte Konvention; dieses RR-Zeichen
+wird nicht allein durch die lokale NS-Operatoralgebra von Gamma ausgewählt.
+
+4. Welche Dynamik wirklich blockweise übertragen wird
+======================================================
+
+Jeder Vertex-Shift aus Gamma_0 erhält jeden der vier Cosets. Dasselbe gilt für
+Oszillator-, Strom- und Ladungsterme. Ein gemeinsamer positiver generalisierter
+Metrikoperator V, einschließlich eines nur bedingt gewählten V_c, gibt daher
+auf allen vier Modulen dieselbe freie Bosonenquantisierung und wohldefinierte
+Block-Hamiltonoperatoren.
+
+Die Aussage gilt allgemeiner für einen paritätserhaltenden Hamiltonoperator,
+der als ein und dasselbe Element bzw. dieselbe wohldefinierte Deformation der
+Gamma_0-Vertexalgebra in allen vier Modulrepräsentationen wirkt. Sie gilt nicht
+allein deshalb, weil vier separat gewählte Hamiltonmatrizen isospektral sind.
+Bei Vertexwechselwirkungen müssen Kopplungen, Modenwirkung und Kokykel über die
+gemeinsame Modulstruktur transportiert werden.
+
+Falls der ursprüngliche Hamiltonoperator ungerade Gamma-Vertexterme enthält,
+sind die vier Blöcke nicht invariant: Ein ungerader Impuls in f+Gamma_0
+vertauscht M_0<->M_f und M_h<->M_c. Der geprüfte Blocksatz deckt deshalb exakt
+paritätserhaltende/even Dynamik ab, nicht beliebige fermionparitätsbrechende
+Quellterme.
+
+5. Ungerade Felder und Zweipunktfunktionen
+==========================================
+
+Für alpha in f+Gamma_0 gilt auf den Diskriminantenklassen
+
+  alpha: M_0 <-> M_f,     M_h <-> M_c.
+
+Die ursprünglichen Gamma-Kokykel liefern die Superaustauschzeichen im
+NS-Sektor. Der Standardbau für Gittermodule beziehungsweise seine abelschen
+Intertwiner erweitert dies auf das Ramond-Modul. Zwei Einfügungen eines
+ungeraden Feldes kehren in den Ausgangssektor zurück. Daher sind bei gemeinsam
+festgelegtem V und gemeinsamer Gamma_0-Dynamik die ursprünglichen freien
+Zweipunktfunktionen sowie sektorielle thermische Zweipunktspuren konstruierbar.
+
+Das folgt nicht aus A,B,C,D allein. Für ein wechselwirkendes H muss zusätzlich
+gezeigt oder definiert sein, dass dieselben Intertwiner auf gemeinsamer Domain
+existieren und H ihre Zeitentwicklung konsistent erzeugt. Höhere Korrelatoren,
+OPE-Assoziativität und eine vollständige native Feldabbildung dürfen nicht aus
+vier richtigen Spuren abgeleitet werden.
+
+Insbesondere bleiben T(E8)-Halbwurzelströme zu den ungeraden Gamma-Feldern
+nicht gegenseitig lokal. Die Sektorreassemblierung bewahrt diese Felder als
+verdrehte/Intertwiner-Felder relativ zur bosonischen Nachbartheorie; sie macht
+sie nicht gleichzeitig zu gewöhnlichen lokalen Feldern von V_{L_h}.
+
+6. q/Y-Chemiepotentiale und Quellmarkierungen
+==============================================
+
+Die vorhandenen linearen Markierungen erfüllen q.h=Y.h=0 sowie
+q.f=Y.f=1. Daher tragen M_0 und M_h dieselben h-relativen Markierungen, und
+M_f und M_c dieselbe zusätzliche f-Ladung. eta ist diagonal und kommutiert mit
+den entsprechenden Nullmoden. Die linearen Beziehungen (1) und (2) bleiben
+daher auch für mit q- und Y-Fugazitäten verfeinerte Spuren gültig.
+
+Das ist eine kinematische Erhaltung der vorhandenen Markierungen. Ein
+chemisches Potential beschreibt nur dann eine konservierte Quellladung, wenn
+der gemeinsame Hamiltonoperator tatsächlich mit q beziehungsweise Y
+kommutiert. Für Vertexdeformationen muss also jeder zugelassene Term unter der
+betreffenden Ladung neutral sein oder die Symmetrie anderweitig explizit
+nachgewiesen werden. Die Sektorrechnung allein erzwingt diese Neutralität nicht.
+
+7. Literatur- und Herkunftsgrenze
+=================================
+
+Burbano--Kulp--Neuser, arXiv:2112.14323, Abschnitt 3.5.2, gibt die allgemeine
+Fermionisierungsformel mit Arf-Kern und erklärt die zweite Wahl durch Stapeln
+mit der Arf-Phase. Das stützt die Fourier- und Ramond-Vorzeichenstruktur. Die
+konkrete Diskriminantenrechnung, das rangzehnige Gitter und die blockweise
+Dynamik folgen nicht aus dieser Literatur, sondern aus den hier festgelegten
+Gamma/Gamma_0/L_h-Daten.
+
+Gesamtverdict
+=============
+
+PASS für eine explizite Rekonstruktion der ungeraden Gamma-Supervertexalgebra,
+ihres Ramond-Moduls, ihrer Spinspuren und ihrer paritätserhaltenden gemeinsamen
+Gitterdynamik aus den vier Gamma_0-Sektoren. PARTIAL für eine vollständige
+physische Feldtheorie: Die RR-Konvention, Intertwiner/Kokykel, gemeinsame Zeit,
+Nachbargitterauswahl und native Quelle müssen als zusätzliche Daten festgelegt
+oder hergeleitet werden. Keine Folgerung auf 3+1 Dimensionen, vollständige
+Anomaliefreiheit oder native TFPT-Selektion.
+
+
+FINALER REVIEW DER VOLLSTÄNDIGEN BEWEISFASSUNG
+==============================================
+
+Geprüfte Datei:
+
+  /Users/stefanhamann/Documents/Codex/2026-09-18/unte-2/work/charged_sector_proof.txt
+  SHA-256 a5796f90f4fa079badc5a07c451f1ea1028fcff3f258ac3f6992c6ae8d65d7d6
+
+Urteil: PASS für die jetzt korrigierte konkrete Fassung. Eine frühere Fassung
+(SHA-256 bc9a17194d2057a3741e41f6d392071a4da5ea1e8131b5baa4a31987f8ed6499)
+enthielt die falsche Nebenbehauptung, der Arf-Kern sei in der angegebenen
+Zeilen-/Spaltenordnung selbstinvers. Mein voriger Review hat diesen Fehler
+übersehen. Die aktuelle Fassung ersetzt ihn korrekt durch inverse=transpose.
+Die Rekonstruktionsformeln selbst waren und bleiben richtig.
+
+Besonders geprüft:
+
+* Der Text behandelt das Lorentzgitter nicht als positiv definite chirale VOA.
+  Hilbertraum, thermische Spuren und Selbstadjungiertheit werden ausdrücklich
+  an die zuvor angenommene kompakte 9R/1L-Bosonenquantisierung mit positiver
+  generalisierter Metrik gebunden. Für Wechselwirkungen werden gemeinsamer
+  Regulator, gemeinsame Domain und eine selbstadjungierte Realisierung
+  vorausgesetzt; beliebige Kontinuums-Cosinusmodelle werden nicht behauptet.
+
+* Paragraph 3 verlangt exakt einen gemeinsamen Operatorausdruck H aus der
+  Gamma_0-Feldalgebra mit identischen Koeffizienten, Normalordnungen und
+  Nullmodenkonventionen in allen vier Modulen. Verteximpulse in Gamma_0
+  erhalten jeden Coset. Dass n,z in Gamma_0 liegen, genügt für die
+  Sektoridentität ihrer Cosinus-Terme, beweist aber weder Spektrum, Relevanz
+  noch Koeffizientenauswahl. Separate sektorabhängige Energieoffsets werden
+  korrekt als zusätzliche Dynamik ausgeschlossen.
+
+* Die Dyson-/Trace-Erweiterung ist richtig konditional formuliert: Sie gilt
+  für eine gemeinsame regulierte Entwicklung und konvergente Realisierung,
+  nicht allein aufgrund formaler gleicher Symbole. Die Fassung behauptet
+  weder identische Sektorspektren noch identische Vakua.
+
+* Die Zweipunktformel
+
+    C_d(tau)=Tr_{M_d}[e^{-(beta-tau)H_d} V_{-x}
+                       e^{-tau H_{d+f}} V_x]
+
+  hat die korrekte Blockfolge: V_x führt M_d nach M_{d+f}, die echte
+  Zwischenzeit läuft mit H_{d+f}, und V_{-x} kehrt nach M_d zurück. Die vier
+  bosonischen Liniennumeratoren haben dieselben Vorzeichen wie die
+  Partitionsspuren; der Arf-Kern liefert exakt C_0+C_f. Damit wird bei
+  übernommenen Gamma-Kokykeln und kompatiblen Intertwinern die tatsächliche
+  freie beziehungsweise bedingt gemeinsame Zeitabhängigkeit rekonstruiert.
+  Der Text leitet diese Intertwiner nicht fälschlich aus vier Zahlen ab.
+
+* Die ergänzte Projektoraussage ist korrekt: Für den geraden Hamiltonoperator
+  ist QHP=0, während ein ungerades Feld Q V_x P ungleich null haben kann. Die
+  geladene Zweipunktantwort enthält deshalb den echten Zwischenpropagator
+
+    P V_{-x} Q exp(-tau H_Q) Q V_x P
+
+  (in der thermischen Spur zusätzlich eingerahmt von der bereits in (6)
+  geschriebenen P-Block-Entwicklung). Eine verschwindende Feshbach-
+  Selbstenergie des Hamiltonoperators impliziert somit keine verschwindende
+  spektrale Antwort auf einen geladenen Probeoperator. Umgekehrt beweist diese
+  Probeantwort weder autonome Sektorübergänge noch Hamiltonian-memory oder eine
+  mikroskopische Präparation. Die Abgrenzung zum anders graduierten
+  UR.CHARGED_SECTOR_MEMORY.01 ist logisch konsistent.
+
+* Der konkrete V_c-Test stimmt algebraisch:
+
+    B(f,f)=1,  f^T V_c f=3,
+    (h_R,h_L)=(1,1/2),  Delta=3/2.
+
+  Damit ist die Zweipunktpotenz w_R^-2 w_L^-1 korrekt. Bei V_0 folgt dagegen
+  (h_R,h_L)=(1/2,0). Beide Metriken erlauben dieselbe Sektorreassemblierung;
+  folglich selektiert diese weder V_c noch die zugehörige Dynamik.
+
+* Für einen realzeitlichen Clock-Term nu Q_q und die Konvention
+  [Q_q,O_x]=q(x)O_x folgt bei [H,Q_q]=0 korrekt
+
+    O_x^{H+nu Q_q}(t)=exp(i nu q(x)t) O_x^H(t).
+
+  Die Fassung sagt außerdem ausdrücklich, dass chemische Hintergründe bei
+  modularen Transformationen mittransformiert werden müssen. Sie behauptet
+  keine stationäre E8-Symmetrie des geladenen Hamiltonoperators.
+
+* Die relative T-Matrix behält den gemeinsamen Gravitationsmultiplikator der
+  Signatur acht außerhalb der Diskriminantenmatrix. Das Vorzeichen D-C, die
+  vier Spinspuren, die Arf-Ambiguität und der gewöhnliche Orbifold A+D bleiben
+  damit konsistent. Es wird keine vollständig anomaliefreie eigenständige
+  Raumzeitpartition behauptet.
+
+* Die korrigierte lineare Algebra des Arf-Kerns wurde direkt geprüft. Für
+
+    H=(1/2)[[1,1,1,-1],[1,1,-1,1],
+             [1,-1,1,1],[1,-1,-1,-1]]
+
+  gilt H^T H=H H^T=I und daher H^{-1}=H^T, während H^2 ungleich I ist. Mit
+  M_B als Abbildung von (A,B0,C,D) auf die vier bosonischen Hintergründe und
+  M_F als Abbildung auf (NSNS,NSR,RNS,RR) gilt weiterhin exakt
+
+    H M_B=M_F.
+
+  Daher bleiben (3)--(4), die Orbifold-Summe und dieselbe Anwendung auf die
+  Zweipunktnumeratoren unverändert. Nur die frühere, für den Beweis nicht
+  benötigte Selbstinversitätsbehauptung war falsch.
+
+* Die T(E8)-Halbwurzelströme liegen in h+Gamma_0 und senden den rekonstruierten
+  NS-Raum 0+f nach h+c. Der Beweis bewahrt daher die vorherige
+  Lokalitätsobstruktion und macht diese Ströme nicht unzulässig zu lokalen
+  Operatoren innerhalb derselben ungeraden Gamma-NS-Theorie.
+
+Endgültige Bewertung der geschriebenen Fassung: exakte bedingte
+Sektor-, Spinspur-, Intertwiner- und Zeitrekonstruktion für die bereits
+gewählte kompakte Gitterfeldtheorie; weiterhin PARTIAL für native Quelle,
+Metrikauswahl, Defektpräparation, Kontinuumsmaß und 3+1-dimensionale Physik.

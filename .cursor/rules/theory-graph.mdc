@@ -1,0 +1,31 @@
+---
+description: Mandatory theory-graph usage — query before proposing, record verdicts after running (always on)
+alwaysApply: true
+---
+
+# Theory graph (verbindlich für alle Agents)
+
+Single query layer über Claims, Scripts, Papers, Predictions, Scorecard, Contracts und RH-Katalog:
+`verification/theory_graph.json` (generiert) + CLI `verification/theorycat.py`.
+Big picture: `verification/theory_primer.md` (generiert). SSOT für Status bleibt der Ledger.
+
+## Vor jeder Mechanismus-/Claim-/Experiment-Arbeit (Pflicht)
+
+1. `python verification/theorycat.py tried "<thema>"` — was wurde wann versucht, mit welchem Verdict.
+2. `python verification/theorycat.py kills "<thema>"` — was bereits getötet ist, inkl. `failure_class`.
+3. Bei RH/Weil/Hilbert–Pólya/Prime-Front zusätzlich `python rh/catalog/rhcat.py check-new` (bestehende Pflicht, AGENTS.md).
+4. Statusfragen nur über `theorycat.py claim <id>` / `dossier <id>` klären — nie aus Prosa erraten.
+5. Ein KILLED/REFUTED-Ansatz darf nur erneut laufen, wenn der Kill-Grund (`failure_class`) explizit adressiert wird — im Prompt/Contract zitieren.
+
+## Nach jeder Arbeit (Pflicht)
+
+- Neuer Ordner in `experiments/theory-contracts/` ⇒ **`contract_index.json`** mitschreiben
+  (Schema in `experiments/theory-contracts/README.md`). Ohne Datei erscheint der Contract im
+  Graphen ohne verwertbares Verdict — die Arbeit ist für Folge-Agents unsichtbar.
+- Handoffs/STATE-Blöcke referenzieren **Claim-IDs und Verdicts**, keine Nacherzählung.
+
+## Generated — nie hand-editieren
+
+`verification/theory_graph.json`, `verification/theory_primer.md`.
+Regenerieren: `python verification/build_theory_graph.py` (läuft in `bash build.sh gen`;
+Freshness-Gate `build_theory_graph.py --check` in `bash build.sh audit`).

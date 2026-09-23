@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "trace_GNS_checks": 1125,
+  "source_sigma_checks": 2764,
+  "normal_optimized_byte_identical": true,
+  "mutants_rejected": 3,
+  "runs": [
+    {
+      "script": "probe.py",
+      "flags": [],
+      "returncode": 0
+    },
+    {
+      "script": "probe.py",
+      "flags": [
+        "-OO"
+      ],
+      "returncode": 0
+    },
+    {
+      "script": "sigma_sources.py",
+      "flags": [],
+      "returncode": 0
+    },
+    {
+      "script": "sigma_sources.py",
+      "flags": [
+        "-OO"
+      ],
+      "returncode": 0
+    },
+    {
+      "mutant": "clock12_observable",
+      "returncode": 1,
+      "error": "RuntimeError: MUTANT: a global GNS process phase is not a twelve-period observable state"
+    },
+    {
+      "mutant": "same_sigma_chart",
+      "returncode": 1,
+      "error": "RuntimeError: MUTANT: distinct source sigma representations cannot be identified"
+    },
+    {
+      "mutant": "gluing_selects_rate",
+      "returncode": 1,
+      "error": "RuntimeError: MUTANT: normalization positivity covariance and gluing leave distinct rates"
+    }
+  ],
+  "script_hashes": {
+    "probe.py": "ef5b4cdeffdb666a570b08a3fc10a5d860d1c4aec8c818dc1a3fb3c49547cbfe",
+    "sigma_sources.py": "acb5a0a2c6b69240213be4a3d3dbb922338ea8e31a9d002806ab164bf7364242"
+  }
+}

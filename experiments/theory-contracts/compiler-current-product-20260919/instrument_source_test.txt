@@ -1,0 +1,214 @@
+UR.COMPILER.CURRENT_INSTRUMENT_SOURCE_TEST.20260919
+Date: 2026-09-19
+Verdict: EXACT_CONDITIONAL_ABSORPTION_INSTRUMENT; MULTITIME_PROCESS_NOT_SELECTED
+
+Question
+--------
+Does the source-current completion in UR.COMPILER.SPATIAL_RESPONSE.20 already
+determine a physically relevant instrument or multitime process when one uses
+the original affine current operators, rather than adding a detector model?
+
+Answer
+------
+It determines one narrow and useful instrument, conditional on the affine
+E8 level-one vacuum representation already assumed in .06/.20: the positive
+current mode is a canonical absorption Kraus bra on every fixed one-current
+source24 grade.  This is an exact same-source bridge from the .20 effects to
+post-measurement states.  It does not determine an event-time law, incident
+state, refresh, record, or the C60 reflection/stay-jump process.  Thus .20 is
+stronger than an effects-only construction but still does not close the
+physical source-process gate.
+
+1. Same-source construction
+---------------------------
+Let x=(l,s), let w_x be any of the 120 normalized .20 source24 directions,
+and let
+
+  i_n(a)=J_-n(a) Omega/sqrt(n),                 n>=1,
+  H_n^24=i_n(W24),
+  P_n^24=the projector onto H_n^24.
+
+The original affine relation used by .20 is
+
+  J_n(a^dagger) J_-n(b) Omega = n <a,b> Omega.
+
+Define an operator from H_n^24 to the vacuum line by
+
+  K_x = P_Omega J_n(w_x^dagger) P_n^24 / sqrt(5n).
+
+Then, for every b in W24,
+
+  K_x i_n(b) = <w_x,b> Omega/sqrt(5),
+  K_x^dagger K_x = |i_n(w_x)><i_n(w_x)|/5 = E_x^(n).
+
+Since the exact .20 frame identity is
+
+  sum_x |w_x><w_x| = 5 I_24,
+
+one has, on every fixed one-current source24 grade,
+
+  sum_x K_x^dagger K_x = P_n^24.
+
+Therefore {K_x} is a complete quantum instrument on that domain.  It uses the
+same w_x, the same current modes and the same vacuum as .20/.06.  No probe
+Hilbert space or detector Hamiltonian was introduced.
+
+There is also a limited canonicity statement.  If an outcome x is required to
+have effect E_x^(n), one Kraus operator, and output in the one-dimensional
+vacuum line, polar decomposition fixes K_x up to an outcome phase.  The
+current annihilator realizes exactly that operator.  This does not make the
+choice of absorption, rather than a grade-preserving event, compulsory.
+
+The native determinant covariance is inherited.  The source action permutes
+w_(l,s) up to its already checked phase and flips s under the five generating
+reflections; the phase cancels in K_x rho K_x^dagger, while Omega is invariant.
+Thus the absorption instrument is covariant under the same outcome action.
+
+2. Exact all-input recovery of the old source20 readout
+-------------------------------------------------------
+For input supported in the old W20 corner, the two sign outcomes have the same
+vacuum output and amplitudes
+
+  K_(l,+) i_n(b) = K_(l,-) i_n(b)
+                 = <w20_l,b> Omega/sqrt(6).
+
+Coarse-graining the sign therefore gives, for every W20 input density matrix,
+
+  I_l^abs(rho) = (1/3)<i_n(w20_l)|rho|i_n(w20_l)> |Omega><Omega|,
+
+with effect |i_n(w20_l)><i_n(w20_l)|/3.  This upgrades the .20 compression
+identity from equality of effects to equality of the coarse-grained
+absorption instrument.  It still does not identify any other instrument.
+
+3. Decisive contrast with the square-root instrument
+-----------------------------------------------------
+The same effects also admit the grade-preserving square-root operators
+
+  M_x = sqrt(E_x^(n))
+      = |i_n(w_x)><i_n(w_x)|/sqrt(5).
+
+For every input rho in H_n^24, K_x and M_x have identical outcome
+probabilities.  Their outputs and futures differ exactly:
+
+  absorption: K_x rho K_x^dagger / p_x = |Omega><Omega|,
+              L0 after the event = 0;
+
+  square root: M_x rho M_x^dagger / p_x
+               = |i_n(w_x)><i_n(w_x)|,
+               L0 after the event = n.
+
+Extend the positive-mode annihilators by zero on Omega and include vacuum as
+the no-click sector.  Without an intervening creation/refresh operation,
+
+  K_y K_x = 0
+
+for every x,y: after the first absorption the total probability of another
+source24 current event is zero.  By contrast, after the square-root update,
+
+  p_L(y|x)=|<w_y,w_x>|^2/5,
+  sum_y p_L(y|x)=1,
+  p_L(x|x)=1/5.
+
+The checker verifies the normalization for all 120 first outcomes using the
+actual exact .20 Gram matrix.  The repeated-outcome value 1/5 is already a
+quantitative same-source witness that equal effects do not determine the
+second event.  The two instruments also differ by an exact affine energy n
+(or 2 pi v n/L after the additional boundary calibration used by .20).
+
+4. What the current correlators do and do not fix
+-------------------------------------------------
+The original vacuum/current source fixes insertion amplitudes once an ordered
+operator word has been specified.  In particular its two-current contraction
+gives the Kraus bra above, and the .06 three-current amplitude
+
+  <Omega|J_1(a) J_0(b) J_-1(c)|Omega>=kappa(a,[b,c])
+
+fixes nonabelian response for that chosen insertion word.  Neither identity
+assigns occurrence probabilities or times to the insertions.  A vacuum
+correlator is not by itself a monitored trajectory law.
+
+The absorption instrument therefore has a clear physical reading: a prepared
+one-current quantum is removed into the vacuum and x records which source24
+direction absorbed it.  To repeat the event one must additionally specify a
+creation/refresh channel or a larger incident field state.  The choice of n
+and the preparation of the incident state remain additional as well.
+
+5. Why this is not the .13 or .08 process
+-----------------------------------------
+UR.COMPILER.CORRELATED_EVENT_CLOCK.13 uses Kraus operators built from the
+reflection matrices U_l and their D_l/(I-D_l) stay-jump refinement on the
+ten-dimensional Bell memory.  Its common-process result additionally assumes
+uniform event weights, a retained classical history frame, an outer mark and
+adaptive relational readout.  Those operators preserve/transform the memory;
+they are not the vacuum-target current annihilators K_x.  No original map is
+present from the 120 labels (l,s), or their sign-forgotten 60 labels, to the
+fixed D_l split and its event scheduler.
+
+UR.COMPILER.PROCESS_RECONSTRUCTION.08 likewise gives 60 projective 2x2 root
+operations.  Its simplest uniform unobserved instrument is completely
+depolarizing and fails to reproduce the native {1,2/3,1/3} transfer.  The
+current-absorption instrument neither repairs nor contradicts that result: it
+acts between an affine one-current grade and the vacuum, a different typed
+domain/codomain.
+
+The .20 reflection lift S_h supplies covariance of the outcome frame.  Treating
+S_h itself as the physical event would be a different, grade-preserving unitary
+process whose effects, output and event weights are not K_x.  Covariance does
+not select between these processes.
+
+6. First remaining origin choice
+--------------------------------
+Inside the assumed E8_1 vacuum current theory, no arbitrary detector is needed
+to obtain the absorption instrument.  The first additional process choice is
+now sharper:
+
+  Is a recorded physical event an absorbing positive-current insertion, a
+  grade-preserving/reflection event, or another dilation with the same effect?
+
+If absorption is selected, the next missing data are the incident state/grade,
+event-time or flux law, and refresh/record dynamics.  If repeated events are
+required without refresh, absorption is exactly obstructed by K_y K_x=0.
+The .13 retained-history clock is one explicit conditional answer for a
+different reflection instrument; it is not derived by .20.
+
+7. Qualification and verification
+----------------------------------
+Exact under the existing affine-current premise:
+
+* all 120 K_x effects equal the .20 effects and sum to P_n^24;
+* the sign-coarse-grained K_x instrument recovers the old W20 instrument for
+  every input;
+* absorption outputs Omega at grade zero;
+* the square-root instrument outputs i_n(w_x) at grade n;
+* K_y K_x=0 before refresh, whereas the square-root second-event law is the
+  exact frame Gram rule above.
+
+Still conditional/open:
+
+* raw seam -> local E8_1 vacuum current representation (QGEO.KERNEL.01 /
+  SEAM.EQUIV.01 obligations);
+* physical choice of absorption as the realized event;
+* preparation/flux, timing, refresh, record and multitime process;
+* any identification with the .13 C60 clock, 3+1D bulk matter or gravity.
+
+No T1-T8 gate is closed.
+
+Replay:
+
+  python3 -B work/current_process_gate_20260919/instrument_source_test_check.py
+  python3 -OO -B work/current_process_gate_20260919/instrument_source_test_check.py
+
+Both runs produced byte-identical instrument_source_test_check.json with
+status verdict above, 311 exact checks, 120 directions, frame bound 5 and
+Lueders repeated-outcome probability 1/5.  These are guard evaluations, not
+independent physical theorems.
+
+Primary local sources inspected
+-------------------------------
+* compiler-spatial-response-20260919: PROOF.txt, completion24_proof.txt,
+  completion24_check.py/json, current_mode_review.txt.
+* compiler-vacuum-current-cubic-20260918: PROOF.txt and certificate/checker.
+* compiler-correlated-event-clock-20260919: PROOF.txt and source_channel.py.
+* compiler-process-reconstruction-20260918: PROOF.txt and checker.
+* universalraum-keyD-native-instruments-20260915: RESULTS.md and native source
+  boundary; its charged-mode instrument is a separate finite-Fock contract.

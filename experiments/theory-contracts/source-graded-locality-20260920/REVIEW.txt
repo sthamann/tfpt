@@ -1,0 +1,567 @@
+Unabhängiger Review: Graduierung, Nullvektoren und massives Komplement
+20. September 2026
+
+Prüfgegenstand
+==============
+
+Contract: UR.SOURCE.BOUNDARY_SELECTION.01 (PARTIAL), zusammen mit
+UR.SOURCE.FLAVOR_ORIGIN.01 (PARTIAL).
+
+Feste bedingte Quelle:
+
+  L = Z^(9,1),  K = diag(1^9,-1),  B(x,y)=x^T K y,
+  n=(1,1,1,-1,-1,-1,-1,-1,-1,3),
+  z=e9-e10,
+  e_R=-e9,  m=n+e9,
+  L ~= E8 direct_sum I_(1,1) via W_aux=[F_aux(beta),e_R,m].
+
+Ein Vektor wird in dieser Zerlegung als x=(r,A,B) geschrieben. Dann
+
+  x^2 = r^2+A^2-B^2,
+  q(x)=q(r)-A+B,
+  Delta_eta(x) = [r^2+cosh(2eta)(A^2+B^2)
+                         +2sinh(2eta)AB]/2.
+
+Haupturteil
+===========
+
+Die drei vorgeschlagenen Sätze sind in ihrer präzisierten, bedingten Form
+korrekt. Sie schließen aber die gewünschte Verwendung des massiven
+Komplements als Ursprung leichter fermionischer Yukawa-Slots aus:
+
+* Im E8-Niederenergiesektor gibt es nur gerade lokale Operatoren. Ein
+  paritätserhaltendes Eliminieren des massiven Dirac-Paars erzeugt gerade
+  Kompositoperatoren und Koeffizienten, aber keinen neuen ungeraden
+  Hilbertraumsektor.
+* Das Komplement ist dennoch strukturell wesentlich: Es liefert genau die
+  fehlende halbe Monodromie, welche die getrennten I8- und E8-Cosets im
+  vollständigen lokalen Quellgitter wieder ganzzahlig verklebt. Das ist eine
+  exakte Lokalitäts-/Glue-Restauration, keine Massenerzeugung.
+* Der zweite vorhandene Cosinus z kann statt n eine fermionische I8-Randphase
+  auswählen. Am fein abgestimmten Konkurrenzpunkt kann eine neutrale
+  1+1-dimensionale Majorana kritisch werden; an I8/E8-Domänenwänden kann der
+  Standardsatz von Cano et al. bedingt übertragen werden. Weder Ergebnis
+  liefert die fehlenden geladenen 3+1D-Weyl-/SM-Fermionen oder ihre Yukawa-
+  Matrixelemente.
+
+Die erste scharfe Prämissengrenze lautet daher: "neutral" muss an jedem Satz
+explizit heißen, ob nur die Quellenzahl q, zusätzlich Hyperladung Y und Glue,
+oder die volle globale G_SM-Darstellung gemeint ist. Die universelle Schranke
+Delta>=4 ist für q-Neutralität scharf. Das angegebene Norm-4-Beispiel ist
+weder Y-neutral noch glue-invariant und beweist keine Schärfe der stärkeren
+Klasse.
+
+1. Lokale Parität und Niederenergieprojektion
+=============================================
+
+Satz 1a (exakt im festgelegten Gitter). Für x=(r,A,B) in E8 direct_sum
+I_(1,1) gilt
+
+  B(x,x) = r^2+A^2-B^2 = A+B  (mod 2),
+
+weil E8 gerade ist und t^2=t modulo 2. Folglich ist die lokale
+Fermionparität
+
+  (-1)^[B(x,x)] = (-1)^(A+B).
+
+Jeder reine E8-Vektor (A=B=0) ist gerade. Insbesondere ist der lokale
+D8-Spinorvertreter b_aux ein norm-2, gewicht-1 E8-Strom und kein ungerades
+Raumzeitfermion.
+
+Satz 1b (bedingt auf Gap, Spinstruktur und exakte Parität). Am bezeichneten
+Faktorisierungspunkt
+
+  H = H_(E8,1) + H_massive_Dirac
+
+sei P_low die Projektion auf Energien unterhalb des ersten ungeraden
+Dirac-Zustands, und der Komplementgrundzustand sei gerade. Für jeden ungeraden
+lokalen Operator O gilt dann
+
+  P_low O P_low = 0.
+
+Das ist reine Blockalgebra: P_low liegt vollständig im +1-Eigenraum der
+Parität, während O zwischen den beiden Paritätssektoren wechselt.
+
+Satz 1c (Schur-Komplement). Kommutiert der volle Hamiltonoperator mit der
+Parität und besteht der leichte Hilbertraum nur aus geraden Zuständen, dann
+wirkt auch
+
+  H_eff(E)=H_LL+H_LH (E-H_HH)^(-1) H_HL
+
+nur auf diesem geraden Raum. Das Eliminieren kann gerade Bilineare,
+Vierfermionterme und Koeffizienten induzieren. Es kann den Hilbertraum nicht
+um einen fehlenden ungeraden leichten Zustand erweitern.
+
+Notwendige Grenzen dieses Satzes:
+
+* Er verbietet keine emergenten Fermionen nach einem Gap-Schluss, in einer
+  anderen Randphase oder in einer erweiterten nichtlokalen/Twist-Sektortheorie.
+* Er ist kein Stabilitätssatz nach einem Gap-Schluss. Bei Nullmoden,
+  Domänenwänden oder einem Wechsel des leichten Projektors kann die
+  angenommene Projektion scheitern.
+* Eine Schur-Elimination kann Yukawa-Koeffizienten zwischen bereits
+  vorhandenen leichten ungeraden Feldern verändern. Sie kann diese externen
+  fermionischen Slots nicht erstmals erzeugen.
+
+Damit können die in UR.SOURCE.FLAVOR_ORIGIN.01 benötigten b- und c-Mischungen
+nur dann als Yukawa-Mischungen gelesen werden, wenn die leichten Fermionen
+vorher unabhängig konstruiert wurden. Die Randkonstruktion liefert sie nicht.
+
+2. Der gewöhnliche Nullvektor z
+================================
+
+Direkte Kontrolle:
+
+  z=e9-e10,
+  z^2=0,  q(z)=0,  Y(z)=0,  h.z=0,
+  B(n,z)=2.
+
+z ist nicht charakteristisch. Deshalb ist
+
+  (z^perp intersect Z^(9,1))/Z z ~= I8,
+
+während n charakteristisch ist und E8 hinterlässt.
+
+In der W_aux-Zerlegung besitzt z
+
+  r=-a=(-1,-1,-1,1,1,1,1,1),  r^2=8, q(r)=2,
+  A=-1, B=-3.
+
+Am symmetrischen E8-plus-Paar-Punkt V_aux (eta=0) gilt Delta(z)=9. In der
+gesamten Paar-Boost-Familie gilt exakt
+
+  Delta_eta(z)=4+5 cosh(2eta)+3 sinh(2eta) >= 8.
+
+Das Minimum 8 wird bei tanh(2eta)=-3/5 angenommen. Am ursprünglichen freien
+Metrikpunkt des I_(9,1)-Gitters gilt dagegen
+
+  Delta_free(z)=1,  Delta_free(n)=9.
+
+Die beiden Aussagen widersprechen sich nicht: Skalierungsdimensionen sind
+Eigenschaften des gewählten positiven Energiemodells, nicht nur des
+statistischen Gitters.
+
+3. Alle q-neutralen primitiven Nullvektoren im Block-Boost
+==========================================================
+
+Sei x=(r,A,B) primitiv, q-neutral und null, x != +/-n.
+
+Zuerst ist r ungleich null. Denn r=0 erzwingt aus Nullheit A=+/-B; aus
+q-Neutralität folgt A=B, und Primitivität lässt nur +/-n.
+
+Setze Q=q(r). Neutralität und Nullheit geben
+
+  Q=A-B,
+  r^2+(A-B)(A+B)=0,
+  A=(Q^2-r^2)/(2Q).
+
+Q=0 ist unmöglich. Hätte r^2=2, wäre r eine E8-Wurzel. Für solche Wurzeln
+nimmt q(r) nur 0,+/-2,+/-4 an. Für Q=+/-2 oder +/-4 ist die obige Formel für
+A nicht ganzzahlig; Q=0 wurde schon ausgeschlossen. Also gilt r^2>=4.
+
+Für jeden reellen eta ist die positive Paarform mindestens der Betrag der
+Lorentznorm:
+
+  cosh(2eta)(A^2+B^2)+2sinh(2eta)AB
+  >= |A^2-B^2| = r^2.
+
+Daher
+
+  Delta_eta(x) >= r^2 >= 4
+
+für alle Paar-Boosts, nicht nur in einem kleinen eta-Fenster.
+
+Schärfe bei ausschließlich q-Neutralität:
+
+  r=(1,1,1,-1,0,0,0,0), r^2=4, Q=2, A=0, B=-2
+
+ist primitiv, null, q-neutral und hat Delta_0=4. Die Schranke ist in genau
+dieser Klasse scharf.
+
+Dieses Beispiel ist in der stärkeren physischen Klasse unzulässig:
+
+  Y(x)=-7/2 !=0,  h.x=2 (mod 4).
+
+Für gleichzeitige q- und Y-Neutralität gibt es eine stärkere analytische
+Schranke. In der W_aux-Zerlegung gilt
+
+  Y(x)=Y8.r-A+B,
+  Y8=(-1/3,-1/3,-1/3,1/2,1/2,0,0,0).
+
+Aus q(x)=Y(x)=0 folgt daher Y8.r=q(r)=Q. Setze
+u=(1,1,1,1,1,1,1,1). Es gilt
+
+  u.Y8=0,  u^2=8,  Y8^2=5/6.
+
+Die orthogonalen Projektionen von r auf u und Y8 liefern mit Cauchy
+
+  r^2 >= Q^2/8 + Q^2/(5/6) = 53 Q^2/40.
+
+Auf E8 ist Q gerade und ungleich null. Somit ist r^2>5 für |Q|>=2. Wegen
+der Geradzahligkeit von E8 bleiben unterhalb 8 nur r^2=6 und Q=+/-2. Dann
+ist jedoch
+
+  A=(Q^2-6)/(2Q)=∓1/2
+
+nicht ganzzahlig. Daher gilt für jeden primitiven, gleichzeitig q- und
+Y-neutralen Nullvektor außer +/-n
+
+  r^2>=8,  Delta_eta>=8  für alle eta.
+
+z ist q- und Y-neutral sowie glue-invariant und erreicht die Schranke bei
+eta=-log(2)/2. Die stärkere Schranke 8 benötigt also Glue nicht zu ihrem
+Beweis; Glue schränkt die Klasse nur weiter ein.
+
+Als unabhängige endliche Gegenkontrolle ergab die vollständige Auflistung der
+ersten E8-Schalen:
+
+  r^2=4:  2160 Vektoren, 0 zugleich q/Y-neutral und glue-invariant;
+  r^2=6:  6720 Vektoren, 0 zugleich q/Y-neutral und glue-invariant;
+  r^2=8: 17520 Vektoren, genau 2, nämlich +/- der z-Klasse.
+
+Die Auflistung bestätigt den analytischen Satz und zeigt zusätzlich, dass auf
+Norm 8 in der q+Y+Glue-Klasse nur +/- der z-Klasse erscheinen. Die rein
+q-neutrale Schranke 4 bleibt davon getrennt.
+
+"Alle block-erhaltenden Boosts" bedeutet hier: der rein chirale E8-Block und
+die Blocktrennung bleiben fest, während der I_(1,1)-Block durch O(1,1)
+deformiert wird. Eine allgemeine E8/Paar-Mischung gehört nicht zu diesem Satz.
+
+4. Exakter gemeinsamer D8-Kern und die Rolle des Komplements
+============================================================
+
+Der stärkste neue Strukturzusammenhang ist der gemeinsame masselose Kern
+
+  L0 = n^perp intersect z^perp = T(D8),
+  T(p)=(p,-a.p/2,a.p/2),
+  a=(1,1,1,-1,-1,-1,-1,-1).
+
+Beweis: B(x,z)=0 setzt x10=-x9. B(x,n)=0 setzt
+x9=-a.p/2. Integrality ist äquivalent zu a.p gerade und wegen a_i ungerade
+zu sum_i p_i gerade. Die Gramform ist p.q; L0 ist also D8 mit Determinante 4.
+
+Die beiden Quotienten sind zwei verschiedene unimodulare Erweiterungen
+desselben D8-Kerns:
+
+  E8 = D8 union (s+D8),       s=(1/2,...,1/2),
+  I8 = D8 union (e1+D8).
+
+Im vollständigen Quellgitter lauten Vertreter dieser beiden Glue-Cosets
+
+  f_i=e_i=T(e_i)+a_i z/2,
+  b=T(s)+n/2 = b_aux.
+
+Die scheinbar nichtlokale halbe Paarung im gemeinsamen D8-Anteil wird durch
+das verworfene Komplement exakt kompensiert:
+
+  B(T(e_i),T(s)) = 1/2,
+  B(a_i z/2,n/2) = a_i/2,
+  B(f_i,b) = (1+a_i)/2 in Z.
+
+Für die drei Farbkoordinaten ist die volle Paarung 1, für die fünf übrigen 0.
+Jede der beiden projizierten Halbmonodromien ist -1; im vollständigen lokalen
+Quellgitter multiplizieren sie sich zu +1.
+
+Das bestätigt die Komplementidee in einem präzisen Sinn: Das massive Paar
+trägt die Lokalitätsphase, welche die beiden verschiedenen D8-Erweiterungen
+im gemeinsamen I_(9,1)-Gitter verträglich macht. Nach Projektion auf die
+E8-Phase bleibt daraus kein leichtes ungerades Feld übrig.
+
+Außerdem sind die I8-Fermionen nicht die gesuchten SM-Fermionen. Die acht
+komplexen chiralen I8-Moden sind die 16 reellen Vektorkomponenten von
+SO(16)_1. Sie sind nicht der komplexe Spin(10)-Halbspinor 16 einer
+Standardmodellfamilie. Gleiche Zahl 16 ersetzt die Darstellungsabbildung
+nicht.
+
+5. Konkurrenzpunkt der beiden vorhandenen Cosines
+==================================================
+
+Die folgende Konstruktion ist algebraisch korrekt, aber eine bedingte
+Diagnose, keine quellenselektierte Dynamik.
+
+Definiere
+
+  u=(n+z)/2,  v=(n-z)/2.
+
+Dann
+
+  u^2=+1, v^2=-1, B(u,v)=0,
+  q(u)=q(v)=Y(u)=Y(v)=0,
+  h.u=h.v=4.
+
+Aber u und v liegen nicht in Z^10. Da I_(9,1) unimodular ist, sind sie auch
+nicht im Dualgitter: Sie sind formale Fermion-/Twistfelder einer erweiterten
+Spinbeschreibung, keine lokalen mikroskopischen Vertices des ursprünglichen
+Gitters.
+
+Mit
+
+  V_crit = K+2 K v v^T K
+
+ist die Energieform positiv und
+
+  Delta_crit(n)=Delta_crit(z)=1,
+  Delta_crit(u)=Delta_crit(v)=1/2.
+
+Die beiden vorhandenen lokalen Cosines können an diesem Punkt, mit
+transportierten Cocyles und der richtigen globalen Sektorprojektion, als
+Dirac-Masse und p-Wellen-Paarung refermionisiert werden. Die beiden
+Majorana-Massen sind proportional zu
+
+  m_1 ~ g_n-g_z,  m_2 ~ g_n+g_z.
+
+In der kanonischen beta^2=4pi-SDSG-Normierung von Lecheminant et al. ist der
+gemeinsame Faktor pi: m_1=pi(g_n-g_z), m_2=pi(g_n+g_z). Die Übertragung dieses
+Faktors auf die hier benannten Kopplungen setzt die entsprechende
+Normalordnung/Cosinusnormierung voraus. Bei g_n=+/-g_z wird eine Majorana masselos: die übliche Ising-Kritikalität
+des N=2 selbstdualen sine-Gordon-Modells.
+
+Die globale Gluing-Bedingung darf dabei nicht weggelassen werden. Die
+Einzelfelder u,v sind nicht lokal; nur die zulässigen projizierten
+Operatorprodukte gehören zur ursprünglichen Theorie. Genau diese
+Sektor-/Randbedingungsfeinheit ist in der Standard-Refermionisierung relevant.
+
+Es gibt eine rationale K-Isometrie
+
+  S=I+2 v v^T K,
+
+die n und z vertauscht. S ist nicht ganzzahlig. Das ist unvermeidlich:
+Ganzzahlige O(K)-Isometrien erhalten die Eigenschaft "charakteristisch";
+n ist charakteristisch und z nicht. Somit kann keine integrale
+mikroskopische Dualität n und z vertauschen. Insbesondere folgt die
+Feinabstimmung g_n=g_z nicht aus dieser Reflexion und nicht aus der bisher
+gegebenen UV-Quelle.
+
+6. Was vom Standard-I8/E8-Domänenwallsatz übertragen werden darf
+================================================================
+
+Cano, Cheng, Barkeshli, Clarke und Nayak behandeln genau den gemeinsamen
+I8/E8-Randmechanismus der nu=8-IQH-Kante mit einem zusätzlichen
+gegenläufigen Modenpaar. In ihrer gemeinsamen Zehnmodentheorie entscheiden
+zwei konkurrierende primitive Null-Cosines darüber, ob I8 oder E8 masselos
+bleibt. Nach Vorzeichen-/Integralbasiswechsel ist dies dieselbe algebraische
+Kandidatenstruktur wie das vorliegende Paar (n,z).
+
+Unter ihren zusätzlichen physischen Voraussetzungen überträgt sich deshalb:
+
+* Räumliche Regionen, in denen n beziehungsweise z stark dominiert, tragen
+  die E8- beziehungsweise I8-Randphase.
+* Eine Domänenwand zwischen diesen Phasen trägt die zugehörige
+  Majorana-Nullmoden-/Paritätsdegenerationsstruktur.
+* Die Aussage bleibt eine Randtheorieaussage; ihr Schutz verwendet die
+  chirale 2D-Bulk-/Kantenstruktur, Lokalität, Paritätserhaltung und die
+  vollständige kompakte Feldidentifikation.
+
+Nicht übertragen werden dürfen:
+
+* Erzeugung der acht Kanäle und des Zusatzpaars aus P1/P2;
+* dynamische Bildung räumlicher I8/E8-Domänen oder die Wahl ihrer Kopplungen;
+* Relevanz/RG-Fluss vom konkreten mikroskopischen TFPT-Quellmodell;
+* eine UV-Symmetrie, welche g_n=g_z erzwingt;
+* 3+1D-Chiralität, Spin(10)-Materie, SM-Hyperladungsdarstellungen,
+  Yukawa-Koeffizienten oder Gravitation;
+* thermodynamische Stabilität außerhalb der Voraussetzungen des
+  Domänenwallmodells.
+
+Das Standardresultat ist daher ein echter bedingter Anschluss für denselben
+expliziten Randkandidaten. Es ist kein Beweis, dass TFPT diese Randphase oder
+ihre Domänen physisch erzeugt.
+
+7. Entscheidung zum Flavor-Komplement
+======================================
+
+Das massive Komplement kann drei Dinge leisten:
+
+1. die ganzzahlige Lokalitätsphase zwischen den I8- und E8-Glue-Cosets
+   wiederherstellen;
+2. nach Integration gerade effektive Operatoren/Koeffizienten erzeugen;
+3. bei Gap-Schluss oder Wechsel zur I8-/kritischen-/Domänenwandphase einen
+   neutralen 1+1D-Majorana-Kanal zulassen.
+
+Es leistet in der vorliegenden E8-Phase nicht:
+
+1. einen leichten ungeraden lokalen E8-Hilbertraumsektor;
+2. den Spin(10)-Halbspinor 16 mit den SM-Ladungen;
+3. source-derived b,c-Matrixelemente mit nichtverschwindenden Overlaps in
+   der Flavor-Schurformel;
+4. eine lokale 4D-Weyl-Yukawa-Kopplung.
+
+Damit lautet das belastbare Verdict:
+
+  NO für "das bereits massive Dirac-Komplement liefert innerhalb der
+  ausgewählten E8-Niederenergiephase die fehlenden leichten fermionischen
+  Yukawa-Slots".
+
+  CONDITIONAL YES nur für "dieselbe Zehnmoden-Randtheorie besitzt eine andere
+  I8-Phase, einen fein abgestimmten Ising/Majorana-Kritikalitätspunkt und
+  bedingte I8/E8-Domänenwand-Nullmoden".
+
+Der kleinste nächste Herkunftstest ist daher nicht ein weiterer Fit des
+massiven Schur-Komplements. Benötigt wird entweder (a) eine explizite
+source-derived ungerade lokale Modulstruktur mit korrekter
+Spin(10)/G_SM-Wirkung und nichtverschwindenden Mischoperatoren oder (b) eine
+source-derived räumliche/RG-Dynamik, die den Gap tatsächlich schließt oder
+I8/E8-Domänen erzeugt, plus eine gesonderte Abbildung dieser neutralen
+1+1D-Moden auf die verlangte 3+1D-Materie. Ohne diese Abbildung bleibt das
+Flavor-Origin-Problem offen.
+
+Prüfbelege
+==========
+
+* source-boundary-selection checker: PASS_EXACT_FINITE_CONTROLS, 138 Checks.
+* source-flavor-origin checker: PASS_EXACT_SCOPED_CONTROLS, 2648 Checks,
+  unique_candidates=1, direct_family_determinant=0.
+* Eigene exakte E8-Schalenauflistung: 2160 Norm-4-, 6720 Norm-6- und 17520
+  Norm-8-Vektoren; stärkere q/Y/Glue-Zahlen wie oben.
+* Eigene rationale Kontrolle von u,v,V_crit und S: u^2=1, v^2=-1,
+  u.v=0, S n=z, S z=n, Delta_crit(n)=Delta_crit(z)=1.
+
+Primärliteratur
+===============
+
+Jennifer Cano et al., "Chirality-Protected Majorana Zero Modes at the
+Gapless Edge of Abelian Quantum Hall States", Phys. Rev. B 92, 195152
+(2015), arXiv:1505.07825, besonders Abschnitte II, III, X und Anhang B:
+https://arxiv.org/abs/1505.07825
+
+P. Lecheminant, A. O. Gogolin, A. A. Nersesyan, "Criticality in self-dual
+sine-Gordon models", Nucl. Phys. B 639 (2002) 502-523,
+arXiv:cond-mat/0203294, Abschnitt II.2:
+https://arxiv.org/abs/cond-mat/0203294
+
+8. Abschließender Follow-up-Audit des konsolidierten Elternbeweises
+===================================================================
+
+Geprüfte Fassung:
+
+  experiments/theory-contracts/source-graded-locality-20260920/PROOF.txt
+
+Der zugehörige exakte Checker endet mit
+
+  PASS_EXACT_FINITE_CONTROLS_ONLY, 75/75 Checks.
+
+Der optionale source_manifest ist in diesem Contract nicht vorhanden und
+wird vom Checker ausdrücklich als übersprungen gemeldet. Das schwächt nicht
+die intern nachgerechneten Gitteridentitäten, ist aber keine externe
+Quellen-Pin-Bestätigung.
+
+8.1 Vollständiger Index-4-Glue: bestätigt
+------------------------------------------
+
+Neben L0=T(D8), det(L0)=4, ist die ganzzahlige neutrale Ebene
+
+  P0 = Gamma intersect span_R(n,z) = Z n + Z z,
+  Gram(P0)=[[0,2],[2,0]], det(P0)=-4.
+
+Die Behauptung P0=Zn+Zz ist exakt: Aus den ersten acht Komponenten von
+alpha n+beta z folgt alpha ganzzahlig; aus der neunten folgt anschließend
+beta ganzzahlig. L0 und P0 sind B-orthogonal. Somit hat
+
+  M=L0 direct_sum P0
+
+Gramdeterminante -16 und Index sqrt(16)=4 in der unimodularen Quelle Gamma.
+Äquivalent besitzt die ausgeschriebene 10x10-Basismatrix von M Determinante
++/-4.
+
+Für f=e1 und b=F_aux(s) gilt
+
+  2f,2b in M,
+  f notin M, b notin M, f+b notin M.
+
+Damit sind [f] und [b] zwei unabhängige Ordnung-2-Klassen. Weil Gamma/M
+genau Ordnung4 hat, erschöpfen
+
+  0, [f], [b], [f+b]
+
+alle Glue-Klassen. Die Formulierung "die vier Klassen erzeugen das ganze
+Gamma" ist daher bewiesen und keine bloße Determinantenvermutung.
+
+8.2 Analytische Eindeutigkeit des kürzesten Konkurrenten: bestätigt
+-------------------------------------------------------------------
+
+Die bereits bewiesene q/Y-Schranke erzwingt bei r^2=8 zunächst Q=+/-2.
+Für Q=2 folgen A=-1,B=-3. Die Glue-Bedingung lautet
+
+  2(c+w)-30 =0 (mod4).
+
+Für einen halbintegralen E8-Vektor ist c halbintegral und w ganzzahlig;
+2(c+w) ist daher ungerade und kann die Bedingung nicht erfüllen. r muss
+ganzzahlig sein. Aus q(r)=Y8.r=2 folgen
+
+  c=3t, w=4+2t, f=-2-5t.
+
+Die Block-Cauchy-Schranke
+
+  r^2 >= c^2/3+w^2/2+f^2/3
+      = (40t^2+44t+28)/3
+
+liegt nur für t=-1 bei höchstens8. Gleichheit zwingt konstante Einträge in
+jedem Block und damit
+
+  r=(-1,-1,-1,1,1,1,1,1)=-a.
+
+Zusammen mit A=-1,B=-3 ergibt dies genau z; Q=-2 ergibt -z. Damit ist z bis
+auf Vorzeichen der einzigartige primitive q/Y/Glue-neutrale Nullkonkurrent
+mit minimalem r^2=8. Diese Eindeutigkeit ist nun analytisch und benötigt die
+frühere Schalenauflistung nicht als Beweis.
+
+8.3 Exakter Transport der elementaren Quellfermionen: bestätigt
+----------------------------------------------------------------
+
+Für i<=8 und d_i den i-ten Einheitsvektor in R8 setze
+
+  r_i=d_i-(a_i/2)a.
+
+Direkte Rechnung ergibt
+
+  r_i in E8, r_i^2=2,
+  e_i^(10)=F_aux(r_i)-a_i m,
+  q(r_i)=1+a_i,
+  Y8.r_i=Y_i+a_i.
+
+Der massive Faktor -a_i m subtrahiert jeweils a_i und stellt damit die
+ursprüngliche Quellenzahl, Hyperladung und ungerade Parität wieder her. Die
+beiden übrigen elementaren Richtungen erfüllen
+
+  e9=-e_R,
+  e10=F_aux(a)+3m.
+
+Dies korrigiert jede zu starke Lesart des Paritätssatzes: Die vollständige
+Quelle besitzt sehr wohl lokale ungerade Fermionoperatoren. Für i<=8
+faktorisiert jeder von ihnen am bezeichneten freien Punkt in einen
+gewicht-eins-E8-Strom und einen ungeraden massiven Dirac-Faktor. Daher hat
+sein Spektralmaß keine Stütze unterhalb des schweren Einteilchen-Gaps, aber
+der Operator ist in der vollen Quelle vorhanden.
+
+Die belastbare Aussage lautet ausschließlich:
+
+  Für P_< auf 0<=E-E0<|M| gilt P_< O_odd P_<=0. Es gibt in diesem
+  Niederenergieraum keinen echten lokalen ungeraden Sektor.
+
+Sie lautet nicht "die Quelle enthält keine Fermionen". Auch für e10 wird
+hier keine zusätzliche Mehrfach-Schwellen-Numerologie behauptet; die exakte
+Gitteridentität genügt.
+
+8.4 Prüfung auf verbleibende Prosaüberdehnung
+---------------------------------------------
+
+Die konsolidierte PROOF-Fassung hält die entscheidenden Grenzen korrekt:
+
+* Der Gap-/Projektionssatz ist auf den ausdrücklich faktorisierten freien
+  Punkt, kompatible Spinstruktur und offenen ungeraden Schwellenabstand
+  beschränkt.
+* Die Feshbach-Aussage benutzt einen geraden leichten Projektor. Dann ist
+  P H Q_odd=0; nur gerade schwere Zwischenzustände können H_eff ändern.
+* Die I8-Fermionen werden korrekt als reeller SO(16)-Vektor
+  (10,1)+(1,6) typisiert, nicht als komplexer Spin(10)-Halbspinor 16 des SM.
+* Der Ising-Punkt, die Kopplungsgleichheit und räumliche Domänen bleiben
+  gewählte beziehungsweise offene Dynamik, keine UV-Folge.
+* Keine Herkunft von P1/P2, keine 3+1D-Chiralität und kein physischer
+  Yukawa-Ursprung werden behauptet.
+
+Damit bleibt das Schlussurteil unverändert, jetzt schärfer formuliert: Das
+Komplement enthält und transportiert die massiven Quellfermionen sowie ihre
+unverzichtbare Glue-Phase. Es kann im gapped E8-Niederenergieraum keinen
+genuin leichten ungeraden Yukawa-Leg erzeugen. Ein solcher Leg verlangt einen
+Gap-Schluss, einen anderen leichten Projektor/eine andere Phase oder eine
+gesondert hergeleitete höherdimensionale Feldabbildung.

@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "check_count": 775,
+  "normal_optimized_byte_identical": true,
+  "mutants_rejected": 3,
+  "detector_probe_sha256": "ea25f83b74646aae72f6558636123b2b5c7b756e04bdf4b108c55eb11d0f43f7",
+  "runs": [
+    {
+      "mode": "[]",
+      "returncode": 0
+    },
+    {
+      "mode": "['-OO']",
+      "returncode": 0
+    },
+    {
+      "mutant": "ideal_end",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: MUTANT: a detector-corrupted end must not be replaced by an ideal end"
+    },
+    {
+      "mutant": "correlated_detectors",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: MUTANT: perfectly correlated detector imperfections are not independent uses"
+    },
+    {
+      "mutant": "normalize_histories",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: MUTANT: independently normalizing hidden color histories changes the raw mass"
+    }
+  ]
+}

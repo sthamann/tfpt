@@ -1,0 +1,77 @@
+{
+  "spec_id": "tfpt-universalraum-common-parent-t1-t8-20260915",
+  "version": "research-note-1.6.10-core-slice",
+  "date": "2026-09-15",
+  "description": "Exact, dependency-light common parent model and the decisive Seam->J/L operator test for the TFPT/Universalraum spin-lift round v1.6.10. Sources: verify_reflection_selection.py (45 PASS checks) and verify_spin_lift.py in TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10; v622_seam_identification.py for the NS/mark seam geometry.",
+  "constants": {
+    "L": 4,
+    "inner_fermion_dim": 64,
+    "pair_modes": 60,
+    "pair_norm": 8,
+    "M": 1920,
+    "seam_sites": 16,
+    "four_bank_total_charge": 256,
+    "q_local_bound_coefficient": "15/2"
+  },
+  "operators": {
+    "R_eta": "four-station clock, R^4 = eta I (eta in {+1,-1})",
+    "J_eta": "signed vertex reflection, J^2 = I, J R J = R^-1",
+    "L_eta": "induced edge reflection L = R J, L^2 = I",
+    "U_eta": "two-weight source frame a I + b R"
+  },
+  "derived": [
+    "R^4 = eta I for eta in {+1,-1}",
+    "J^2 = I",
+    "J R J = R^-1 (dihedral relation)",
+    "L = R J satisfies L^2 = I (edge reflection involution)",
+    "induced vertex->edge reflection incidence: |J|^T D |L| = -D for source edges e -> e+1; reflection reverses orientation while fermionic lift signs remain separate",
+    "U = a I + b R commutes with the clock R",
+    "U J = L (b I + a R): reflection exchanges the two weights",
+    "balanced pair covariance: equal-magnitude frame (b = +-a) preserves the pair reflection row-by-row",
+    "pair mismatch is exactly a^2 - b^2 with quotient in {+1,-1}: the pair reflection forces equal magnitudes",
+    "same-vertex reflection (J U) differs from the shifted edge reflection (U J); its row-norm difference carries b^2 and vanishes only for b=0 (negative control)",
+    "balanced frame (a=b=sqrt(2)/2) rank is 3 for eta=+1 and 4 for eta=-1: the twist discriminates rank",
+    "balanced rank selects eta=-1 (no linear spectator) conditional on the joint vertex+edge reflection and the exclusion of free fermion directions",
+    "unequal frame (a=3/5, b=4/5) is individually CAR-normalised with positive Gram determinant (no linear spectator)",
+    "untwisted asymmetric countermodel ground gap coefficient lower bound = 8223/31250 > 0 at Delta=15/2*1/25, M=1920, t=1/10000",
+    "state compatibility of the seam action with the parent state is only conditional on H invariance + unique ground state"
+  ],
+  "assumed": [
+    "source frame composition q = (I + R_eta) f / sqrt(2) with R_eta^4 = eta I (explicit composition assumption, not a TFPT-derived spacetime geometry)",
+    "four-bank copy structure (four fermion banks + four boson banks); the copy structure is not the inner SU(4) family structure",
+    "the native W tensor is a pinned, unchanged integer tensor with shape (60, 2016), 480 nonzeros, W W^T = 8 I_60 (pair norm 8) and sum A^dagger A = 15 I_64",
+    "the seam geometry is the v622 NS circle: 16 Majorana sites at half-integer angles, four mark bonds at mu4 midpoints, cuts as diameters, straddle = through-mark",
+    "Hamiltonian contract: quartic Q = (60 N - Casimir)/8 on the full 64-mode Fock space, with the all-Fock Casimir identity 8 Q = 60 N - Casimir re-proved from the complete degree-four kernel",
+    "parameter range Delta > 0, 0 < |g|/Delta <= 1/2000 for ground uniqueness and 0 < |g|/Delta <= 1/10000 for the charged response control",
+    "the joint vertex+edge reflection is the selection rule (conditional theorem); abstract dihedral symmetry or reflection positivity alone do NOT supply the operator adapter"
+  ],
+  "absent": [
+    "raw seam -> four 64-mode W-bank intertwiner (unproved; stays False)",
+    "physical source selection from TFPT (the four-station rule is an explicit composition assumption, not derived from TFPT)",
+    "native preparation / record instrument (no native encoder or record derived)",
+    "physical g/Delta parameter value (only the small-coupling range is certified; the original 1/20 benchmark is NOT certified)",
+    "3+1D spacetime dimension (four stations are not a derived 3+1D world)",
+    "chirality measure (no chiral measure derived)",
+    "spin-2 dynamics (no dynamical spin-2 derived)",
+    "native instruments (no native preparation/record/actuator constructed)",
+    "full interacting four-bank ground at the original g/Delta = 1/20 (not certified)",
+    "T1: origin/selection (Ursprung und Auswahl) -- open",
+    "T2: half-charge/E8 (Half-Charge und E8-Feld) -- open",
+    "T3: 3+1D parent (Gemeinsamer 3+1D-Parent) -- open",
+    "T4: chirality (Chirale Materie) -- open",
+    "T5: continuum (Kontinuum und Dynamik) -- open",
+    "T6: parameters (Parameter und Spektren) -- open",
+    "T7: spin2 (Gravitation (Spin-2)) -- open",
+    "T8: state/instruments (Zustand und Instrumente) -- open"
+  ],
+  "verdict": {
+    "raw_seam_to_w_intertwiner": false,
+    "closed_gate_ids": [],
+    "selection": "joint vertex+edge reflection + exclusion of free fermion directions selects eta=-1; clock+unique ground alone do NOT select eta",
+    "status_pass_means": "checker integrity only; no gate is moved"
+  },
+  "dependencies": {
+    "python": ["sympy", "stdlib only (json, hashlib, sys)"],
+    "forbidden": ["numpy", "scipy"]
+  }
+}

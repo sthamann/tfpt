@@ -1,0 +1,132 @@
+BRIDGE REVIEW: Bell10 versus quartic carrier, and the phase-count boundary
+2026-09-19 — bounded read-only countercheck
+
+Verdict
+=======
+
+1. The new Bell store Sym^2(C^4) is not linearly equivariantly identifiable
+   with Lambda^2 W5 for the native source action.  The stated Pauli-kernel
+   element g=Z tensor I is an exact character/rank witness.
+
+2. The CP channels and the stopped channel are exactly blind to the scalar
+   lift U -> tilde U=-i U.  N mod 8 can be retained as a classical event-count
+   record, but Phi(z)^6 does not by itself create a coherent phase-sensitive
+   observable.  Such an observable requires a coherent reference branch or a
+   source-derived charged/off-diagonal sector on which the phase is relative.
+
+I. Direct .09/.12 representation check
+======================================
+
+The .09 original basis formula in
+outputs/komposition-und-auswahl/core.py constructs V subset (C^4)^tensor4 by
+the five exponent patterns
+
+  (4,0,0,0) and permutations,
+  (2,2,0,0) paired in the three displayed ways,
+  (1,1,1,1).
+
+Take
+
+  g = Z tensor I = diag(1,1,-1,-1),       det g = 1.
+
+Every monomial occurring in all five V columns has an even total exponent in
+the last two coordinates: 0, 2, or 4.  Therefore the native quartic action is
+
+  R4(g)=g^tensor4|W5 = I5,
+  Lambda^2 R4(g)=I10,
+  tr(Lambda^2 R4(g))=10.
+
+This was also evaluated directly from the exact .09 V matrix: g^tensor4 V=V
+entry by entry and the recovered 5x5 matrix is I5.  The .09 checker separately
+places all sixteen two-qubit Paulis, including g, in the actual quotient
+kernel, so the witness belongs to the reconstructed source group.
+
+On the Bell store, the action is the ordinary symmetric-square action.  Since
+g has eigenvalues (1,1,-1,-1),
+
+  tr Sym^2(g) = ((tr g)^2 + tr(g^2))/2 = (0+4)/2 = 2,
+
+with eigenvalue multiplicities +1 x6 and -1 x4.  Thus
+
+  tr Sym^2(g)=2 != 10=tr Lambda^2 R4(g).
+
+No invertible/full-rank equivariant linear map between these two 10-dimensional
+representations can exist.  More sharply, if T intertwines them, equivariance
+at g gives Sym^2(g)T=T, so im(T) lies in the six-dimensional +1 eigenspace and
+rank(T)<=6.  This witness does not claim Hom_G=0; it excludes the linear
+equivariant identification required to equate the two carriers.
+
+There is no determinant-normalisation ambiguity in this test.  The .12 formula
+uses h=lambda g with lambda^4 det(g)=1.  Here det(g)=1 and the native element g
+already lies in SU(4), so no -i correction is forced.  Choosing an additional
+determinant winding would be a different lifted path, not the action tested
+above.  Even multiplying g by a mu4 scalar would only multiply Sym^2(g) by
+lambda^2 while leaving R4(g) unchanged; its trace would be +/-2, still not 10.
+
+The Bell10-to-duad permutation dictionary remains valid as a ray/permutation
+statement.  It must not be upgraded to a linear representation equivalence
+with the separate Lambda^2 W5 carrier.
+
+II. Exact CP-channel blindness
+==============================
+
+For every density operator rho,
+
+  Ad_{-iU}(rho)=(-iU)rho(-iU)^dagger=U rho U^dagger=Ad_U(rho).
+
+For a history h of N paired Bell events,
+
+  tilde K_h=(-i)^N K_h,
+  tilde K_h rho tilde K_h^dagger=K_h rho K_h^dagger.
+
+Therefore C20, its stay/jump branch maps S and J, the stopped CPTP map
+
+  Phi=J(I-S)^(-1),
+
+and every count-resolved CP map are identical for U and tilde U=-iU.  Their
+diamond distance is zero.  The fundamental C4 word lift carries
+exp(-i*pi*N/4); its paired Bell action carries (-i)^N, but both are global
+history phases after passage to neutral conjugation channels.
+
+III. What Phi(z)^6 does and does not retain
+===========================================
+
+Let E_N be the CP, trace-nonincreasing map for histories in which six accepted
+jumps occur at total primitive-event count N.  Then
+
+  Phi(z)^6 = sum_{N>=6} z^N E_N.
+
+At eighth roots omega^k, inverse discrete Fourier transform recovers
+
+  E_[r] = sum_{N congruent r mod 8} E_N.
+
+Hence an experiment that records the binary instrument outcomes can retain N
+mod 8 classically.  This is sufficient to attach the bookkeeping value
+exp(-i*pi*N/4) to every record.  The fourth-root reduction similarly tracks
+the paired factor (-i)^N.
+
+For non-real z, Phi(z)^6 is generally not a CP channel; it is the Fourier or
+characteristic generating function of the count-resolved CP instrument.
+Neither it nor the inverse-Fourier classical sectors contain off-diagonal
+coherence between different N histories.  Multiplying each history Kraus
+operator by its scalar lift phase leaves every E_N unchanged.  Thus the phase
+cannot be inferred as a coherent observable from the stopped neutral channel.
+
+To make the lift phase observable one must add source-derived structure that
+turns it into a relative phase: for example a coherent control/reference path
+that does not acquire the phase, or charged sectors H_q with off-diagonal
+operators Hom(H_q,H_q') carrying different mu4 characters.  No such reference
+or charged observable is supplied by the Bell10 CP instrument or by the
+formal variable z.  The physical interpretation of the lift phase therefore
+remains open even though its N mod 8 bookkeeping is exact.
+
+Sources checked
+===============
+
+* outputs/komposition-und-auswahl/core.py and checker.py
+  (UR.COMPILER.QUARTIC_LIFT.09 basis and actual Pauli kernel)
+* outputs/quartik-transport-und-e8/PROOF.txt
+  (UR.COMPILER.QUARTIC_HOLONOMY.12 determinant lift, equations (5), (9), (10))
+* work/correlated_source_check/checker.py and certificate.json
+  (Bell10 Sym^2 action, marked instrument, and lift boundary)
+

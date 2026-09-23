@@ -1,0 +1,475 @@
+**Der nächste konkrete Anschluss ist eine lokale Randrekonstruktion. In einem ausdrücklich erweiterten Randmodell lassen sich die gesuchten Spinorströme jetzt als lokale Operatoren bauen, zusammen mit ihrer D8 Klammer, einem gemeinsamen Vakuum und derselben Zeitentwicklung.**
+
+Dafür musste ich eine bisherige Route ausschließen: Der globale Halbflusswechsel der freien Quelle beginnt energetisch zu hoch. Die Alternative funktioniert durch ein zusätzliches Paar gegenläufiger Randmoden und eine bestimmte Wechselwirkung.
+
+**Das ist eine ausgearbeitete Kandidatkonstruktion, noch keine Herleitung dieser Erweiterung aus P1/P2.** Der Unterschied ist entscheidend: Wir haben jetzt ein konkretes Modell, an dem sich die fehlende Herkunft prüfen lässt, statt nur einen abstrakten Zielraum.
+
+## 1. Warum die bisherige globale Flussroute nicht das gesuchte Feld liefern kann
+
+Die vorige Rechnung ergab für eine komplexe QWZ Kopie einschließlich beider Ränder:
+
+\[
+E_N(f)-E_N(1/2)
+=
+\frac{2\pi}{N}\left(f-\frac12\right)^2
++
+O_W(N^{-3}).
+\]
+
+Bei acht Kopien kostet der globale Wechsel vom antiperiodischen zum periodischen Sektor deshalb die skalierte Mindestenergie
+
+\[
+\boxed{
+\frac{N}{2\pi}
+\left(E_{0,\mathrm R}-E_{0,\mathrm{NS}}\right)
+=
+2+O_W(N^{-2}).
+}
+\]
+
+Diese Aussage stammt aus der vorherigen analytischen Quellenrechnung, nicht aus einer nachträglich eingesetzten konformen Gewichtszahl. :chatgpt-content-reference{index="0"}
+
+Daraus folgt eine stärkere Konsequenz:
+
+**Jeder Operator, der das Ausgangsvakuum vollständig in diesen globalen Zielsektor überführt, hat seine Antwort oberhalb dieser Schwelle. Er kann dort keine nichtverschwindende Linie bei skalierter Energie eins erzeugen.**
+
+Das gilt unabhängig davon, wie geschickt man den Operator normiert. Ein Vorfaktor verändert die Intensität, nicht den Energieträger. Ein separater Energieabzug für den anderen Rand würde dagegen den gemeinsamen Hamiltonoperator ändern.
+
+Die erneute numerische Kontrolle bei Streifenbreite acht liefert für die Schwelle:
+
+| Umfang \(N\) | Skalierte Mindestenergie des globalen Sektorwechsels |
+|---|---:|
+| 64 | 2,000401692 |
+| 256 | 2,000025100 |
+| 512 | 2,000006275 |
+
+Die analytische Formel begründet die Grenze; diese endliche Tabelle kontrolliert sie lediglich.
+
+**Damit scheidet eine konkrete Abkürzung aus:** Den globalen Halbflussstring besser zu normieren oder sein Ergebnis durch zwei zu teilen, konstruiert keinen lokalen einseitigen Spinorstrom.
+
+Andere lokale Defekte oder eine andere Randphase sind dadurch nicht ausgeschlossen. Dort habe ich weitergerechnet.
+
+## 2. Eine andere Randphase kann das fehlende Feld tatsächlich lokal machen
+
+Der allgemeine Mechanismus ist aus der Forschung bekannt: Eine fermionische topologische Phase kann verschiedene Randphasen besitzen. Bei acht chiralen Kanälen lässt sich durch zusätzliche gegenläufige Moden und geeignete Wechselwirkungen eine bosonische E8 Randphase erreichen. Cano und Kollegen haben diese Möglichkeit beschrieben. **Neu ist hier nicht dieser Mechanismus, sondern seine explizite Verbindung mit unserem festgelegten TFPT Klebegewicht und den bisherigen Operatortests.** :chatgpt-content-reference{index="1"}
+
+### Die zusätzliche Struktur
+
+Ich ergänze die acht rechten komplexen Randkanäle um genau ein rechtes und ein linkes komplexes Randfermion. Dieses Paar sitzt **am selben betrachteten Rand**. Es ist nicht der entfernte zweite Rand des ursprünglichen Streifens.
+
+Die zehn bosonisierten Felder besitzen die Statistikmatrix
+
+\[
+K=\operatorname{diag}(1,1,1,1,1,1,1,1,1,-1).
+\]
+
+Die Vorzeichen bezeichnen Ausbreitungsrichtungen, keine Raumzeitdimensionen. Die Energie wird separat durch eine positive Matrix bestimmt.
+
+Für einen ganzzahligen Vektor \(p\) ist der lokale Vertexoperator
+
+\[
+\mathcal V_p
+=
+\kappa_p:\!e^{ip^TK\phi}\!:
+\]
+
+definiert. \(\kappa_p\) enthält die fermionischen Vorzeichen. Die statistische Paarung lautet
+
+\[
+B(p,q)=p^TKq.
+\]
+
+Nun wähle ich die Wechselwirkung
+
+\[
+H_{\mathrm{int}}
+=
+-g\int dx\,\cos(n^TK\phi),
+\]
+
+mit
+
+\[
+\boxed{
+n=(1,1,1,-1,-1,-1,-1,-1,-1,3).
+}
+\]
+
+Drei Eigenschaften lassen sich unmittelbar prüfen:
+
+\[
+n^TKn=0,
+\qquad
+\sum_i n_i=0,
+\qquad
+\gcd(n_i)=1.
+\]
+
+Der Term ist also statistisch selbstnull, bezüglich der hier verwendeten Gesamtteilchenzahl neutral und primitiv.
+
+**Die Neutralität ist zunächst nur eine Eigenschaft dieses Quellenmodells. Die Gesamtteilchenzahl wird nicht mit der Hyperladung des Standardmodells gleichgesetzt.** Auch das zusätzliche Paar und die nichtoszillierende Wechselwirkung sind ausgewiesene Modellentscheidungen.
+
+## 3. Warum genau E8 übrig bleibt
+
+Hier reicht ein passender Dimensionsvergleich nicht. Deshalb habe ich den vollständigen ganzzahligen Basiswechsel konstruiert.
+
+Alle Komponenten von \(n\) sind ungerade. Somit gilt für jeden ganzzahligen Vektor \(p\)
+
+\[
+p^TKp\equiv p^TKn\pmod2.
+\]
+
+Ein zu \(n\) orthogonaler Operator besitzt daher gerade statistische Norm. Der nach Entfernung der massiven Richtung relevante Ladungsraum ist
+
+\[
+\Gamma
+=
+\frac{n^\perp\cap\mathbb Z^{9,1}}{\mathbb Zn}.
+\]
+
+Für diesen Quotienten liefert die Rechnung eine positive, ganzzahlige Grammatrix \(G_{E_8}\) mit Determinante eins. Genauer existiert eine ausgeschriebene ganzzahlige Matrix \(W\), deren Determinante \(-1\) ist, sodass
+
+\[
+\boxed{
+W^TKW
+=
+G_{E_8}\oplus
+\begin{pmatrix}
+1&0\\
+0&-1
+\end{pmatrix}.
+}
+\]
+
+Das ist ein invertierbarer ganzzahliger Wechsel des **gesamten** Operatorgitters. Es werden keine unerwünschten Ladungen durch eine willkürliche Projektion verschwinden gelassen.
+
+Die vollständige Matrix und ihre Herleitung stehen in der Forschungsnotiz. Der Prüfcode kontrolliert die Kongruenz mit exakter Arithmetik.
+
+### Eine Gegenprobe zeigt, was die Auswahl trägt
+
+Man könnte stattdessen das gewöhnliche zusätzliche Paar durch
+
+\[
+z=e_9-e_{10}
+\]
+
+auslücken. Auch dieser Vektor ist neutral und selbstnull. Danach blieben aber die ursprünglichen acht fermionischen Einheitsrichtungen übrig, also das ungerade Gitter \(I_8\), nicht E8.
+
+**Ein zusätzliches Paar und irgendeine Wechselwirkung wählen E8 nicht automatisch. Die besondere Richtung \(n\) trägt die Auswahl.**
+
+Das ist relevant für die Ursprungssuche: Wir dürfen nicht die Existenz einer geeigneten Richtung mit ihrer Auswahl durch TFPT verwechseln.
+
+## 4. Ein gemeinsamer Hamiltonoperator statt nur eines passenden Gitters
+
+Ein E8 Ladungsgitter allein wäre wieder nur die halbe Arbeit. Es muss dieselbe Dynamik tragen.
+
+Mit dem obigen Basiswechsel wähle ich ausdrücklich die positive Energiematrix
+
+\[
+\boxed{
+V_*
+=
+W^{-T}
+\left(G_{E_8}\oplus I_2\right)
+W^{-1}.
+}
+\]
+
+Ihre Eigenwerte sind
+
+\[
+1\quad\text{achtfach},
+\qquad
+17+12\sqrt2,
+\qquad
+17-12\sqrt2.
+\]
+
+Alle sind positiv. Das negative Vorzeichen der Statistikmatrix erzeugt somit keine negative Energie.
+
+Im neuen Feldrahmen zerfällt die Theorie exakt in den E8 Anteil und ein gewöhnliches rechtes und linkes Paar. Gleichzeitig wird der Wechselwirkungsexponent zu
+
+\[
+n^TK\phi=\chi_{\mathrm R}-\chi_{\mathrm L}.
+\]
+
+Am gewählten Punkt ist dieser Cosinus unter den üblichen Bosonisierungsbedingungen ein Diracmassenterm. Dabei müssen die vom ursprünglichen Fermiongitter getragenen Vorzeichen und Spinstrukturen erhalten bleiben; eine beliebige bosonische Sektorerweiterung wäre nicht gleichbedeutend. Die verwendete Identifikation mit dem freien massiven Fermionpunkt ist Standardphysik. :chatgpt-content-reference{index="2"}
+
+Damit erhalten wir auf diesem **lokalen Kontinuumkandidaten**
+
+\[
+\boxed{
+H_*
+=
+H_{E_8,1}
++
+H_{\mathrm{Dirac}}(m),
+\qquad m\neq0.
+}
+\]
+
+Das zusätzliche Paar besitzt die Dispersion
+
+\[
+\omega(k)=\sqrt{k^2+m^2}.
+\]
+
+Der E8 Teil bleibt masselos. Beide Teile besitzen nach Festlegung der Spinstruktur und Normalordnung einen gemeinsamen Produktvakuumzustand.
+
+**Das ist ein dynamischer Existenznachweis innerhalb des angegebenen Kontinuummodells. Es ist noch kein Grenzwertsatz für das wechselwirkende ursprüngliche QWZ Gitter.**
+
+### Der Preis der Konstruktion ist sichtbar
+
+Am ursprünglichen freien Punkt wäre die gewünschte Wechselwirkung stark irrelevant. Erst die geänderte Energiematrix macht sie relevant:
+
+| Wechselwirkung | Dimension am freien Punkt | Dimension bei \(V_*\) |
+|---|---:|---:|
+| Gewünschte E8 Richtung \(n\) | 9 | 1 |
+| Gewöhnliche Rückkehr zu \(I_8\) über \(z\) | 1 | 4 |
+
+„Relevant“ bedeutet hier: Eine kleine Kopplung wächst bei der Betrachtung größerer Längenskalen.
+
+Die Rechnung erklärt damit sowohl die Möglichkeit als auch ihre Grenze: **Die E8 Phase entsteht nicht automatisch durch eine beliebig kleine Störung der freien Quelle. Eine passende starke Wechselwirkung ist erforderlich.**
+
+Am gewählten Punkt lässt sich noch mehr zeigen. Unter allen neutralen lokalen Selbstnullcosinussen ist nur die Richtung \(\pm n\) relevant. In der zerlegten Basis besitzt ein solcher Vektor die Form \((r,a,b)\), mit \(r\in E_8\), und erfüllt
+
+\[
+r^2+a^2-b^2=0,
+\qquad
+\Delta=b^2.
+\]
+
+Aus \(0<\Delta<2\) folgt \(|b|=1\). Weil E8 gerade und positiv ist, müssen \(r=0\) und \(|a|=1\) gelten. Die Neutralität erzwingt schließlich \(a=b\).
+
+Das ist eine genaue Auswahl innerhalb dieser Störungsklasse. Es ist **kein** allgemeiner Stabilitätsbeweis gegen sämtliche mikroskopischen Veränderungen.
+
+## 5. Das gesuchte Spinorgewicht wird zu einem lokalen Operator
+
+Jetzt lässt sich das zuvor festgelegte TFPT Gewicht direkt anschließen:
+
+\[
+s=\left(\frac12,\ldots,\frac12\right),
+\qquad
+E_8=D_8\cup(s+D_8).
+\]
+
+Die vorige Fortsetzung hatte dafür einen ladungstreuen Shift konstruiert, aber noch keinen entsprechenden lokalen Operator der Quelle. :chatgpt-content-reference{index="3"}
+
+### Die explizite Abbildung
+
+Setze
+
+\[
+a=(1,1,1,-1,-1,-1,-1,-1),
+\qquad
+k(p)=\frac{a\cdot p}{2},
+\]
+
+und
+
+\[
+T(p)=(p_1,\ldots,p_8,-k(p),k(p)).
+\]
+
+Dann gilt
+
+\[
+B(Tp,Tq)=p\cdot q,
+\qquad
+B(n,Tp)=0.
+\]
+
+Für einen allgemeinen E8 Vektor liefert die lineare Abbildung
+
+\[
+\boxed{
+F(p)=T(p)-p_1n
+}
+\]
+
+einen **ganzzahligen** lokalen Operatorvektor, der vollständig im E8 Anteil liegt und keinen Anteil am massiven Paar besitzt.
+
+Für das gesuchte Spinorgewicht ergibt sich
+
+\[
+\boxed{
+b=F(s)
+=
+(0,0,0,1,1,1,1,1,1,-2).
+}
+\]
+
+Der zugehörige Operator lautet
+
+\[
+\boxed{
+\mathcal V_b
+=
+\kappa_b:
+e^{i(\phi_4+\phi_5+\phi_6+\phi_7+\phi_8+\phi_9+2\phi_{10})}:
+}
+\]
+
+und ist bei \(V_*\) ein reiner chiraler Strom mit Gewicht eins.
+
+In der ursprünglichen freien Basis hätte derselbe Operator Dimension fünf. **Die niedrige Energie ist also eine Eigenschaft der rekonstruierten Phase, nicht eine nachträgliche Umbenennung des freien Modells.**
+
+Die doppelte Kanalpotenz im letzten Feld ist in fermionischer Sprache mit Punktaufspaltung beziehungsweise Ableitungen zu verstehen. Sie ist nicht das identisch verschwindende naive Produkt \(\psi(x)^2\).
+
+### Das D8 Wörterbuch muss mitgehen
+
+Die Spinorladung bezieht sich auf die **rekonstruierte D8 Stromalgebra**. Sie bezieht sich nicht auf acht unverändert beibehaltene nackte Fermionzahloperatoren.
+
+Das zeigt die Rechnung konkret: Von den 112 nackten D8 Wurzeloperatoren kommutieren nur 56 mit der gewählten Wechselwirkungsrichtung. Die andere Hälfte benötigt eine explizite Ergänzung durch die zusätzlichen Moden.
+
+Damit wird auch verständlich, weshalb bisherige Gleichsetzungen am unveränderten Fermionwörterbuch scheitern konnten: **Nicht nur der Spinor kommt hinzu. Ein Teil der bisherigen Operatoren muss gleichzeitig korrekt mittransformiert werden.**
+
+Diese Änderung ist auf dem Kandidaten exakt angegeben. Ihre Übereinstimmung mit dem nativen TFPT Wörterbuch ist weiterhin zu prüfen.
+
+## 6. Klammer, Vakuumantwort und zweiter Eingriff funktionieren zusammen
+
+Für die zuvor verwendete D8 Wurzel
+
+\[
+\alpha=(-1,-1,0,\ldots,0)
+\]
+
+ergibt die gleiche Abbildung
+
+\[
+u=F(\alpha)
+=
+(0,0,1,-1,-1,-1,-1,-1,0,2).
+\]
+
+Zusammen mit dem Spinorvektor gilt
+
+\[
+u+b=(0,0,1,0,0,0,0,0,1,0),
+\qquad
+B(u,b)=-1.
+\]
+
+Nach einer explizit konstruierten Umphasung der fermionischen Vorzeichen in unsere bisherige E8 Konvention folgt
+
+\[
+\boxed{
+[\mathcal V_{u,0},\mathcal V_{b,-1}]
+=
+-i\,\mathcal V_{u+b,-1}\neq0.
+}
+\]
+
+Es ist derselbe nichtverschwindende Klammerpfad wie im abstrakten Zielmodell, jetzt aber mit ganzzahligen lokalen Vertretern der erweiterten Randtheorie.
+
+Die Rechnung umfasst alle 240 Wurzeln. Zusammen mit den acht Cartanströmen erhält man die 248 Ströme der E8 Algebra. Der Kokzyklusvergleich ist durch eine allgemeine Polarisationsidentität begründet und zusätzlich auf allen 57.600 geordneten Wurzelpaaren kontrolliert.
+
+### Derselbe Zustand trägt die Antwort
+
+Auf dem gemeinsamen Vakuum gilt
+
+\[
+(\mathcal V_{b,n})^\dagger
+=
+\mathcal V_{-b,-n},
+\]
+
+\[
+\|\mathcal V_{b,-n}\Omega\|^2=n,
+\qquad n>0,
+\]
+
+und auf einem Kreis der Länge \(L\)
+
+\[
+[H_*,\mathcal V_{b,n}]
+=
+-\frac{2\pi v}{L}n\,\mathcal V_{b,n}.
+\]
+
+Der massive Hamiltonanteil kommutiert mit diesen reinen E8 Strömen. **Klammer, positive Antwortnorm und Zeitfrequenz werden somit nicht aus verschiedenen Vakuummodellen zusammengesetzt.**
+
+Auch der anspruchsvollere Folgeeingriff funktioniert:
+
+\[
+\mathcal V_{b,-1}^{\,2}\Omega=0,
+\]
+
+aber
+
+\[
+\boxed{
+\mathcal V_{b,-3}\mathcal V_{b,-1}\Omega
+=
+|2b\rangle\otimes\Omega_{\mathrm{massiv}}
+\neq0.
+}
+\]
+
+Die doppelte Ladung hat Gewicht vier. Zwei Einsmoden reichen energetisch nicht aus; der passende zweite Modus erzeugt dagegen den richtigen geladenen Zustand. Genau dieses Kriterium hatten wir zuvor als trennenden Test formuliert. :chatgpt-content-reference{index="4"}
+
+### Der Ladungsübertrag ist kein zusätzliches Gedächtnislabel mehr
+
+Ein kürzerer lokaler Vertreter des Spinorgewichts ist
+
+\[
+\widehat s=(1,1,1,0,0,0,0,0,0,1).
+\]
+
+Für ihn gilt
+
+\[
+\boxed{
+2\widehat s=T(2s)+n.
+}
+\]
+
+Zwei Spinoreinsätze erzeugen also den echten ganzzahligen Ladungsübertrag **und** den neutralen Wechselwirkungsoperator.
+
+Die periodische Klassenrückkehr löscht die Ladung nicht. Die zusätzliche massive Variable erklärt vielmehr, wie Klassenrechnung und vollständige Operatorrechnung zusammenpassen.
+
+Auch die vierstufige Klebegraduierung lässt sich erhalten. Mit
+
+\[
+h=(2,2,2,2,2,0,0,0,3,3)
+\]
+
+definiere ich
+
+\[
+G\mathcal V_pG^{-1}=i^{h\cdot p}\mathcal V_p.
+\]
+
+Dann gelten
+
+\[
+h\cdot n=8,
+\qquad
+h\cdot b=1.
+\]
+
+Die Wechselwirkung ist invariant, der Spinor trägt Phase \(i\).
+
+**Dieses \(G\) ist die Klebegraduierung. Es ist nicht automatisch die geometrische \(J\) Wirkung, der ursprüngliche Flussclock oder die physische Zeit.** Gerade die Unterscheidung der tatsächlichen Clockwirkungen ist im Universalraum Bericht wesentlich. :chatgpt-content-reference{index="5"}
+
+## 7. Was damit gewonnen ist und wo die gemeinsame Ursprungstheorie noch ansetzen muss
+
+Der neue Befund lässt sich so zusammenfassen:
+
+> **Der fehlende Spinorstrom muss nicht als zusätzlicher elementarer Freiheitsgrad angesetzt werden. In einer geeigneten Randphase kann er ein lokaler zusammengesetzter Operator sein. Gleichzeitig werden die bisherige D8 Algebra, ihr Vakuum und ihre Dynamik mitrekonstruiert.**
+
+Das ist mehr als eine passende Zentralzahl oder ein gleicher Charakter. Die ganzzahligen lokalen Operatoren, ihre Phasen, Produkte, Energie und Vakuumantwort sind auf einem gemeinsamen Kandidaten angegeben.
+
+Es bleibt aber eine **gezielt gewählte** Konstruktion. Nicht aus P1/P2 hergeleitet sind bisher das zusätzliche Gegenläuferpaar, die konkrete Wechselwirkungsrichtung, die Energiematrix \(V_*\), die erforderliche Impulsverträglichkeit und die Übereinstimmung mit den nativen \(C,J\) Feldwirkungen.
+
+Die nächste Herkunftsfrage ist deshalb konkreter geworden:
+
+**Erzeugen die eigenen lokalen Freiheitsgrade und Wechselwirkungen der ursprünglichen Quelle eine zu dieser Randrekonstruktion äquivalente Phase?**
+
+Dafür genügt es nicht, irgendwo denselben E8 Unterraum zu finden. Das native Ladungs und Clockwörterbuch muss unter der Abbildung erhalten bleiben. Diese Forderung entspricht genau dem gemeinsamen Operatornachweis aus Kapitel 10 des Dossiers. :chatgpt-content-reference{index="6"}
+
+Die übrigen Grenzen verschiebe ich nicht durch dieses andere Modell. Der globale Dreiquellenboden ist weiterhin unbelegt. Die wechselwirkende kritische Phase der Wurzelpakete ist damit nicht bewiesen. Und eine lokale eindimensionale Randtheorie erzeugt noch keine dynamische dreidimensionale Geometrie, kein chirales Standardmodell in \(3+1\) Dimensionen und keinen universell gekoppelten Spin 2 Sektor. Diese gemeinsamen Herkunftsnachweise bleiben eigenständig. :chatgpt-content-reference{index="7"} :chatgpt-content-reference{index="8"}
+
+**Der Fortschritt dieser Runde ist ein lokaler dynamischer Kandidat anstelle eines nur abstrakten geladenen Referenzraums. Die offene Verbindung zur ursprünglichen Quelle ist dadurch prüfbarer geworden, nicht stillschweigend verschwunden.**
+
+Die vollständige Herleitung steht in der :chatgpt-content-reference{index="10"}. Das :chatgpt-content-reference{index="11"} enthält die exakten Basiswechsel, sämtliche Wurzelabbildungen, den Kokzyklusvergleich, die Gegenproben und die erneute Berechnung der globalen Flussschwelle. Die schriftlichen Argumente und die verwendete Standardbosonisierung sind dort von numerischen Kontrollen und den offenen TFPT Identifikationen getrennt.

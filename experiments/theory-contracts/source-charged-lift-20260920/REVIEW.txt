@@ -1,0 +1,285 @@
+UNABHÄNGIGER REVIEW: GELADENE LIFTS DES NEUTRALEN E8-QUOTIENTEN
+Datum: 2026-09-20
+
+Geprüfte feste Quellen
+======================
+
+1. source-clifford-grade-20260920/PROOF.md
+   SHA-256 7cfda722c50e6c7d17caccf038e0ffd42d326935f4301ecf466dd9dae2760276
+2. source-flux-index-20260920/PROOF.txt
+   SHA-256 55ad6f18bf4f69d8d194e74dff29d6679e4cd6fca4568aafaaf7d127ac7d4bef
+
+Die Prüfung bezieht sich auf die bereits festgelegten Daten
+
+  Gamma = Z^10,  K = diag(1^9,-1),
+  n = (a,-1,3),  a=(1,1,1,-1,-1,-1,-1,-1),  g=Kn,
+  F(r)=(r-(a.r)a/2,0,-a.r),
+  T(r)=(r,-a.r/2,a.r/2).
+
+Sie ist keine neue Herleitung dieser Daten aus nativer TFPT-Dynamik.
+
+Haupturteil
+===========
+
+PASS, aber nur als bedingter Strukturtest mit festem Quotientenlabel und festem
+geladenem Keim e9. Alle integralen additiven Schnitte des neutralen Quotienten
+sind exakt
+
+  S_lambda(r)=F(r)+(lambda.r)n,   lambda in E8.
+
+Keiner davon reproduziert auf dem ganzen E8 die durch T vorgegebene geladene
+Wirkung auf e9. Der formal nötige Parameter lambda=a/2 liegt im gegenüberliegenden
+Spinor-Coset und nicht im gewählten E8-Gitter. Auf D8 existiert der Schnitt T;
+D8 ist genau seine maximal mögliche Definitionsuntergruppe innerhalb dieses E8.
+
+Das Resultat ist stärker als der einzelne frühere T/F-Zeuge, aber enger als ein
+No-go für E8 oder Fermionen: Es schließt genau einen vollständigen integralen,
+fest gelabelten Lift mit derselben e9-Wirkung aus. Nichtlokale, verdrehte oder
+geladene Sektoren, ein anderes festes geladenes Feld und andere dynamische
+Realisierungen bleiben außerhalb des Satzes.
+
+1. Klassifikation aller Schnitte
+================================
+
+Aus dem geprüften Flux-Index-Vertrag gilt
+
+  ker(g dot)=F(E8)+Z n,        ker(g dot)/Z n = E8.
+
+Sei pi der Quotient nach Zn und S ein additiver Schnitt mit pi(S(r))=r. Dann
+liegt S(r)-F(r) in Zn. Also gibt es eindeutig eine additive Abbildung
+f:E8->Z mit
+
+  S(r)=F(r)+f(r)n.
+
+Da E8 unimodular und damit selbstdual ist, ist jedes solche ganzzahlige
+Funktional eindeutig f(r)=lambda.r mit lambda in E8. Umgekehrt erzeugt jedes
+lambda in E8 einen integralen Schnitt. Weil n null und zu F(E8) orthogonal ist,
+
+  B(S_lambda(r),S_lambda(s))=r.s.
+
+Die Isometriebedingung fügt somit keine weiteren Schnitte hinzu oder entfernt
+welche; sie folgt hier automatisch aus der Schnittform.
+
+2. Der geladene Wirkungstest erzwingt lambda=a/2
+=================================================
+
+Auf D8 ist
+
+  T(r)-F(r)=(a.r/2)n.
+
+Außerdem ist B(n,e9)=-1. Daher
+
+  B(S_lambda(r),e9)-B(T(r),e9)=-(lambda-a/2).r.
+
+Die einfachen Wurzeln des im Clifford-Vertrag benutzten D5+D3 haben Rang acht
+und spannen R^8. Gleiche Paarung mit dem festgehaltenen Keim e9 für alle diese
+einfachen Wurzeln erzwingt deshalb eindeutig lambda=a/2.
+
+Wichtige Präzisierung: „gleiche geladene Wirkung“ muss hier die gleiche
+Paarung bzw. den gleichen OPE-Exponenten mit e9 bedeuten. Nur die exponentierte
+gegenseitige Monodromie wäre zu schwach, weil ganzzahlige Unterschiede dieselbe
+Phase liefern können. Der Satz hält außerdem e9 fest; transformiert man e9
+zusammen mit dem ganzen Gitter, prüft man eine bloße Basisänderung.
+
+3. Warum a/2 nicht in E8 liegt und D8 exakt maximal ist
+=======================================================
+
+In der verwendeten Konvention
+
+  E8 = D8 union (s+D8),   s=(1/2,...,1/2).
+
+Es gilt
+
+  a/2-s=(0,0,0,-1,-1,-1,-1,-1),
+
+dessen Koordinatensumme ungerade ist. Daher a/2 notin E8; es liegt im anderen
+chiralen Spinor-Coset von D8.
+
+Für r in D8 ist a.r gerade, also a.r/2 ganzzahlig. Für r=s+d mit d in D8 ist
+
+  (a/2).s = (sum a)/4 = -1/2,
+
+während (a/2).d ganzzahlig ist. Somit ist a.r/2 auf dem gesamten Spinor-Coset
+halbzahlig. Der genaue Integritätsbereich von T innerhalb des gewählten E8 ist
+also D8. Da [E8:D8]=2, existiert keine echte Zwischenuntergruppe; D8 ist exakt
+der maximal fortsetzbare Unterverband.
+
+Eine vollständige Wurzelzählung bestätigt: 112 ganzzahlige D8-Wurzeln besitzen
+integrales T(r), alle 128 halbzahligen E8-Wurzeln nicht. Bei diesen 128 verlangt
+T(r)-F(r) eine halbzahlige Vielfache von n.
+
+Die Standardliteratur beschreibt dieselbe lokale Erweiterungsstruktur als
+E8-Level-1-VOA = D8-Vakuummodul plus ein gewähltes chirales Spinormodul. Siehe
+Chu und Zheng, arXiv:0808.1458v2, „Vertex Operator Algebra Analogue of Embedding
+D8 into E8“, insbesondere die Zerlegung in L_D8(1,0) und
+L_D8(1,omega_8). Das belegt die Spinor-Coset-Struktur, nicht den hier
+TFPT-spezifischen e9-Wirkungstest. Der gegenüberliegende Spinor ist relativ zu
+dieser lokalen Erweiterung kein Feld desselben gewöhnlichen E8-Gitter-VOA;
+als Modul, Twist- oder geladener Sektor ist er damit nicht allgemein verboten.
+
+4. Positive Familie: Eichler-Transvektionen
+===========================================
+
+Für lambda in E8, v=F(lambda) und g(x)=B(n,x) definiert
+
+  L_lambda(x)=x-g(x)v+B(x,v)n-(lambda^2/2)g(x)n
+
+eine ganzzahlige K-Isometrie von Gamma. Direktes Ausmultiplizieren benutzt
+B(n,v)=n^2=0 und v^2=lambda^2; alle Zusatzterme heben sich. E8 ist gerade,
+also ist lambda^2/2 ganzzahlig. Ferner ist L_lambda^{-1}=L_{-lambda} und
+L_lambda(n)=n. Auf dem neutralen E8-Teil gilt
+
+  L_lambda(F(r))=F(r)+(lambda.r)n=S_lambda(r).
+
+Damit ist jeder klassifizierte Schnitt nicht nur abstrakt, sondern durch eine
+integrale Eichler-Transvektion des ganzen Gitters erreichbar. Für
+lambda=e1-e2 gilt F(lambda)=(e1-e2,0,0), also q(F(lambda))=Y(F(lambda))=0;
+dieses Beispiel erhält die markierten q- und Y-Kovektoren.
+
+Diese Abbildungen sind Basisumbenennungen, wenn Gitter, Ladungen,
+Energiemetrik und Operatoridentifikationen gemeinsam transformiert werden.
+Hält man dagegen e9 oder andere Operatorlabels fest, ändert man die physische
+Zuordnung des E8-Stromsektors. Daraus folgt weder eine neue Quelle noch ein
+neues Hamiltonmodell.
+
+5. Minimaler lokaler Reparaturraum
+==================================
+
+Setze
+
+  Gamma_even={x in Gamma : g.x ist gerade},     h=n/2,
+  L=Gamma_even+Z h.
+
+Da n charakteristisch ist, gilt g.x = B(n,x) = x^2 mod 2. Somit ist
+Gamma_even genau der gerade Norm-Unterverband von Gamma und hat Index zwei.
+Weiter
+
+  B(h,x)=g.x/2.
+
+Daher ist Gamma_even exakt der größte Unterverband des ursprünglichen Gamma,
+der mit h ganzzahlig paart. Kein ungerader Originalvektor, insbesondere e9,
+ist mit h gegenseitig lokal. Das ist eine Aussage über die lokale
+Gittervertexalgebra; entsprechende Module oder gedresste/nichtlokale Felder
+sind nicht ausgeschlossen.
+
+L ist integral und gerade: Für x in Gamma_even ist x^2 gerade und B(h,x)
+ganzzahlig, während h^2=0. Weil det(Gamma_even)=4 und L/Gamma_even Ordnung zwei
+hat, ist |det L|=1. Seine Signatur bleibt (9,1), also ist L das gerade
+unimodulare Gitter II_{9,1}.
+
+Mit z=e9-e10 gilt
+
+  h^2=z^2=0,   B(h,z)=1,
+  B(T(E8),h)=B(T(E8),z)=0.
+
+Unter Verwendung einer E8-Basis hat die Zehn-Vektoren-Basis
+
+  T(E8-Basis), h, z
+
+Determinante +/-1 und Gram-Matrix E8 direct-sum U. Daher exakt
+
+  L = T(E8) direct-sum Z h direct-sum Z z  ~= E8 direct-sum U.
+
+Für jede der 128 halbzahligen Wurzeln ist T(r)-F(r)=(k+1/2)n. Sowohl F(r)
+als auch F(r)+kn haben gerade Norm und liegen in Gamma_even. Deshalb erzwingt
+jeder Verband, der Gamma_even und auch nur einen solchen T(r) enthält, bereits
+h. In diesem präzisen Sinn ist L die minimale lokale Gitterreparatur, die den
+vollen T(E8)-Lift bei Beibehaltung des gesamten geraden Originalsektors
+aufnimmt.
+
+Die Reparatur ist ein gerades bosonisches Nachbargitter von Gamma: Gamma und L
+teilen Gamma_even als Index-zwei-Unterverband. Sie kann nicht zugleich die
+ungeraden ursprünglichen Fermionvektoren als lokale Felder enthalten. Sie
+begründet keine Halbflussdynamik, kein Gauging, keinen Hamiltonian und keine
+Amplitude. Dafür wären zusätzliche physische Daten nötig.
+
+6. Endgültige Reichweite
+========================
+
+Exakt bewiesen:
+
+* vollständige Klassifikation aller integralen fest-gelabelten Schnitte;
+* eindeutiger, aber nichtintegraler Sollwert lambda=a/2 aus der festen
+  D5+D3-Wirkung auf e9;
+* D8 als exakter maximaler Integritätsbereich und 112/128-Aufteilung;
+* konstruktive Realisierung aller zulässigen Schnitte durch
+  Gitterisometrien;
+* eindeutige minimale gerade Nachbargitter-Reparatur unter Beibehaltung von
+  Gamma_even, mit L ~= E8 direct-sum U.
+
+Nicht bewiesen:
+
+* Auswahl von F, T, e9, Vc oder L aus nativer TFPT-Zeitentwicklung;
+* ein universelles Verbot von E8, Fermionen oder Spinorfeldern;
+* Gleichheit von Quotientenlabeln mit vollständiger Feldwirkung;
+* ein dynamischer Übergang, Gauging, Flusssektor oder eine lokale Kopplung,
+  die das Nachbargitter physisch realisiert.
+
+Gesamtverdict: PASS als scharfer bedingter Obstruktions- und Reparatursatz;
+PARTIAL als Ursprungsbrücke.
+
+
+FINALER PROSA-AUDIT DER ELTERNFASSUNG
+=====================================
+
+Geprüfte Datei:
+
+  /Users/stefanhamann/Documents/Codex/2026-09-18/unte-2/work/charged_lift_proof.txt
+  SHA-256 25fcbdd8f9dbce24b48584146b1670c0e3a7d17091bf8d48a24aff98864eb4c7
+
+Verdict: PASS für die vollständig geschriebene bedingte Beweisfassung. Keine
+materielle mathematische Korrektur ist erforderlich.
+
+Zusätzlich im Endtext geprüft:
+
+* Die Gewichtsformel
+
+    B(S_lambda(r),x)=r.(r_x+(A-B)lambda)
+
+  folgt aus B(n,e_R)=1 und B(n,m)=-1. Da r_x,lambda in E8 und A-B ganzzahlig
+  sind, liegt jedes so gelesene Gewicht eines ursprünglichen lokalen x im
+  gewählten E8. Das schließt den gegenüberliegenden c-Coset nur unter dem
+  festgehaltenen Quotienten-/Cartanwörterbuch aus.
+
+* Der Monodromiezeuge für eine halbzahlige E8-Wurzel ist korrekt:
+  a.r ist ungerade und F(r),x liegen im integralen Originalgitter, daher ist
+  exp(2 pi i B(T(r),x))=(-1)^(g.x). Weil g charakteristisch ist, stimmt dies
+  mit der Normparität von x überein. Der Text trennt diese Monodromieaussage
+  korrekt vom stärkeren exakten Paarungs-/Cartangewichtstest.
+
+* Für Gamma_0^*/Gamma_0 sind 0,f=e9,h=n/2,h+f vollständige Vertreter. Es gilt
+
+    Q(0),Q(f),Q(h),Q(h+f) = 0,1/2,0,0  mod 1,
+    B(h,f)=-1/2 mod 1.
+
+  Damit sind <h> und <h+f> exakt die beiden nichttrivialen isotropen
+  Ordnung-zwei-Erweiterungen und liefern zwei gerade unimodulare Nachbarn.
+  Gamma=Gamma_0+Zf ist dagegen die ungerade Erweiterung. Die Endfassung
+  behauptet folgerichtig keine unbedingte Eindeutigkeit.
+
+* Die gewünschte Einbettung T(E8) liegt nur im h-Nachbarn: Für eine
+  halbzahlige Wurzel ist T(r)=F(r)+(ungerade)h. Der h+f-Nachbar enthält diese
+  Klasse nicht. Diese Auswahl ist ausdrücklich durch das zuvor gewünschte T
+  bedingt und wird nicht als physikalische Sektorwahl ausgegeben.
+
+* Auf L_h verschwindet g auf T(E8) und h und nimmt auf z den Wert 2 an.
+  Deshalb ist g(L_h)=2Z. Der Funktional g/2 ist auf L_h ganzzahlig und wegen
+  (g/2).z=1 primitiv. Der Text zieht daraus korrekt weder ein Halbflussereignis
+  noch eine neue Bundle- oder Quelldynamik.
+
+* Die Eichler-Transvektionen werden nur dann als Koordinatenwechsel gewertet,
+  wenn Felder, Zustände und Energie gemeinsam transformiert werden. Bei
+  festgehaltenem e9 oder festgehaltener Zeit sind sie lediglich alternative
+  Wörterbücher. Damit wird keine Basiswahl als neue Physik ausgegeben.
+
+* Burbano--Kulp--Neuser, arXiv:2112.14323, behandelt in Abschnitten 3.5.2 und
+  3.5.3 tatsächlich Fermionisierung, Spinstruktur-Summen/GSO-Projektion und
+  die E8-Dualitätsdefekte. Die benachbarte Orbifold-Diskussion beschreibt auch
+  die Erweiterung eines invarianten Unter-VOA durch verdrehte Sektoren und im
+  D8-Beispiel die zwei isotropen E8-Erweiterungen. Der Endtext verwendet dies
+  korrekt nur als bekannte Vergleichsstruktur; der konkrete rangzehnige Satz
+  bleibt die direkte Rechnung dieses Vertrags.
+
+Endgültige Reichweite: exakte Lift-Obstruktion und exakte lokale
+Nachbargitter-Reparatur; weiterhin PARTIAL für native Auswahl, gemeinsame Zeit,
+geladene/verdrehte Feldsektoren und physische Dynamik.

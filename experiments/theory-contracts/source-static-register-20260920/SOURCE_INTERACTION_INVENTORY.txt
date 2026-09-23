@@ -1,0 +1,225 @@
+SOURCE-INTERACTION INVENTORY
+Date: 2026-09-20
+Scope: Bestand und Herkunft bereits vorhandener Wechselwirkungen. Keine neue
+Rand-Hamiltonfamilie, keine neue Phase und keine neue Kopplungskonstruktion.
+
+Graph- und Primerstand
+----------------------
+Der aktuelle Theoriegraph nennt in der relevanten letzten Contract-Liste
+`common-source-gauge-grade-transfer-20260920`,
+`source-operator-origin-20260920`, `clock-interaction-provenance` und
+`compiler-quartic-carry-20260919`; alle stehen auf PARTIAL. Der aktuelle
+Snapshot hat 5.935 Knoten, 63.927 Kanten und 239/245 Verträge mit Verdict.
+Die Codegraph-Suche wurde zuerst ausgeführt. Der TFPT-Hauptbestand war dort
+für die angefragte Suche nicht als verwendbares Projekt indiziert; die
+anschließende Prüfung erfolgte deshalb gezielt an den gepinnten Original-
+Artefakten. Diese Inventur liest acht einschlägige Dateien:
+
+  - experiments/theory-contracts/clock-interaction-provenance/README.md
+  - experiments/theory-contracts/clock-interaction-provenance/TEST_RESULTS.md
+  - experiments/theory-contracts/clock-interaction-provenance/contract_index.json
+  - experiments/theory-contracts/common-source-gauge-grade-transfer-20260920/ERGEBNIS.md
+  - experiments/theory-contracts/common-source-gauge-grade-transfer-20260920/REVIEW.md
+  - experiments/theory-contracts/source-operator-origin-20260920/ERGEBNIS.md
+  - experiments/theory-contracts/source-dynamics-selection-20260920/SOURCE_INVENTORY.txt
+  - experiments/theory-contracts/source-critical-local-fields-20260920/ERGEBNIS.md
+
+Stärkste bereits vorhandene nichtgaußsche Kante
+------------------------------------------------
+Die belastbarste vorhandene Wechselwirkung ist nicht im QWZ- oder
+16-Majorana-Modell, sondern im separaten kompakten U(1)-Rotorparent:
+
+  [E,U]=U,
+  H_E=(kappa/2) E^2,
+  V_hop=a (U c_1^* c_0 + U^* c_0^* c_1),
+  a=1/12, kappa=1/100.
+
+`clock-interaction-provenance/README.md:134-187` und
+`source-dynamics-selection-20260920/SOURCE_INVENTORY.txt:180-207` führen die
+Herkunft und die Grenze dieses Terms aus. Weil U(E+1/2) nichtzentral ist,
+enthält der exakte Doppelkommutator
+
+  [V_hop,[H_E,V_hop]] = ... - 2 kappa a^2 q_0 q_1 + ...,
+  -2 kappa a^2 q_0 q_1 = -(1/7200) q_0 q_1.
+
+Das ist ein tatsächlich aus vorhandenen Rotor- und Hoppingteilen gebildeter
+quartischer Kommutatoranteil. Er ist kein frei eingesetzter statischer
+Vierfermion-Hamiltonterm. Die Prüfung behält die vier ursprünglichen Low-/
+High-Moden, beliebigen ganzzahligen Rotorfluss und die vollständige
+Hoppingliste; laut `TEST_RESULTS.md:18-34` bleibt der Koeffizient auch nach
+der Projektion aller übrigen Kantenbeiträge erhalten.
+
+Die Quelle dieses Terms ist damit klar: nichtkommutierende elektrische
+Rotor-Koeffizienten. Offen bleiben die Zeitordnung, eine kontrollierte
+Gauss-Reduktion/Elimination und die physische Zuordnung des Rotorparents.
+Der Term lebt auf vier komplexen L/H-Moden an zwei Punkten plus einem
+unendlichen U(1)-Rotor. Es gibt bisher keine Abbildung auf die 16
+Clock-Majoranas, deren O-Ladung, Boundary-Support, E8-Ströme oder die
+`n/z`-Markierungen (`clock-interaction-provenance/README.md:183-187`).
+Das Contract-Verdict bleibt PARTIAL.
+
+Was die ursprünglichen Quellen tatsächlich festlegen
+-----------------------------------------------------
+1. Der QWZ-/Source-Rand ist one-body und gaußsch. Die feste Quelle ist
+   `H_N=dGamma(D_N)-Tr(P_N D_N)` mit `Q_N=dGamma(I)-8N`; ihre lokalen
+   Operatoren sind CAR-Erzeuger/Annihilatoren und tragen eine ganzzahlige
+   Ladung (`source-dynamics-selection-20260920/SOURCE_INVENTORY.txt:16-51`).
+   Sie liefert keine E8-Halbcharge, acht native Kanäle, keine
+   `I_(9,1)`-Energieform und keinen Quellwechselwirkungsterm.
+
+2. Die 16-Majorana-Quelle hat
+   `H(D)=(i/4) gamma^T D gamma`, `D=u A0+t A_int`, mit den festgepinnten
+   kommutierenden Quellmatrizen `[A0,A_int]=0`
+   (`clock-interaction-provenance/README.md:16-39`). Die exakten
+   CAR-Kommutatoren und der gesamte geprüfte quadratische Lie-/BCH-Abschluss
+   bleiben quadratisch; 14.400 geordnete Zellen enthalten keinen
+   quartischen Lie-Term (`TEST_RESULTS.md:18-24`).
+
+3. Der native Zweiquellen-Compiler hat die feste Form
+
+     H = kappa(L1+L2) + J(E1+E2) + mu V,
+     V(alpha,beta)=1-Re <psi_alpha|psi_beta>.
+
+   V ist auf Quelllabels diagonal und auf Materie skalar, also `[V,P]=0`
+   und `QVP=0`; die erste reale Leckage kommt aus L, mit dem exakten Zeugen
+   `||Q L1 P x||^2=1/7200`
+   (`source-dynamics-selection-20260920/SOURCE_INVENTORY.txt:146-177`).
+   Die Bedingungen `d>0` bzw. `d>2 kappa` kontrollieren eine endliche
+   Zweiquellenreduktion, wählen aber keine physische Kopplung oder
+   E8-Energie.
+
+4. Der vorhandene E8-/Flavor-Anschluss enthält einen nativen kubischen
+   Tensor und eine bereits vorhandene 3+2-Besetzungsmarkierung S. Das
+   markierte Objekt `Y_mark=(S d_H) tensor A(h)` korrigiert den
+   Austauschtyp auf den vorgesehenen up/down-Higgs-Slots
+   (`common-source-gauge-grade-transfer-20260920/ERGEBNIS.md:69-103`).
+   Das ist ein algebraisch brauchbarer Fermion-Massenkoeffizient, aber kein
+   neuer nichtgaußscher Hamiltonoperator. Die physische Abbildung und ein
+   unabhängiger Familienkanal bleiben offen.
+
+5. Für das gewählte Paar gilt in derselben Contractfamilie
+   `H=H_E8 tensor I + I tensor H_pair` und `QHP=0`
+   (`common-source-gauge-grade-transfer-20260920/ERGEBNIS.md:143-148`).
+   Das Paar ist damit in dieser Klasse dynamisch faktorisiert; sein
+   Ausintegrieren erzeugt keine fehlende Familienmischung. Das ist getrennt
+   von der Möglichkeit eines geladenen Feldintertwiners `Q V_x P != 0`.
+
+Prüfung der vorgeschlagenen Form sum_A P_A^dagger P_A
+-------------------------------------------------------
+Eine wichtige Korrektur zur Korpusabdeckung: In einem gezielten Treffer der
+historischen, konsolidierten Quellkomposition ist diese Paarbank bereits
+explizit definiert. Die Fundstelle ist
+
+  `/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/theory-contracts/`
+  `universalraum-source-composition-20260915/tmp/pdfs/`
+  `TFPT_Universalraum_Quellkomposition_Konsolidierung_2026-09-15_v1.6.9.md`.
+
+Dort steht der deklarierte Native-Bank-Operator
+
+  H_nat = Delta N_b + g sum_A (b_A^dagger P_A + P_A^dagger b_A),
+  P_A = sum_{i<j} W_{A,ij} f_j f_i,
+  N = N_f + 2 N_b,
+
+mit 64 CAR-Fermionen, 60 CCR-Bosonen, 480 signierten W-Einträgen,
+`W W^dagger = 8 I_60`, acht disjunkten Paaren je Zeile und den internen
+Darstellungen `(16,4)` bzw. `(10,6)` (gezielte Fundstellen
+`v1.6.9.md:3517-3529`, `4644-4655`, `7974`, `8703-8709`). Für diese Bank
+ist die Paaridentität bereits angegeben:
+
+  sum_A P_A^dagger P_A
+    = 1/2 (15 N_f - C_Spin(10) - C_SU(4))
+
+(`v1.6.9.md:6446-6450`), zusammen mit der exakten Fierz-Relation
+`sum_AB eta_AB P_A^dagger P_B^dagger = 0`
+(`v1.6.9.md:1975-1978`). Die tensorielle Vergleichsebene ist dort die
+interne `Lambda^2 C^64`-Darstellung: `W Lambda^2 G_F = G_B W` und die
+zugehörige Casimir-Identität sind ausdrücklich dokumentiert
+(`v1.6.9.md:7697-7700`, `8703-8709`).
+
+Dieser Treffer ist jedoch ein historisch konsolidiertes, deklariertes
+Bankmodell und kein Nachweis seiner Herkunft aus dem QWZ/P1/P2-Compiler.
+Eine weitere Fundstelle nennt dieselbe Konstruktion ausdrücklich eine
+"declared countermodel composition rule, not an original compiler output"
+(`v1.6.9.md:448-453`). Deshalb darf die Paaridentität nicht als neu
+hergeleitete Boson-Herkunft oder als bereits gelöster Source-Bridge verbucht
+werden. Die acht oben gelesenen aktuellen Contracts pinnen diese PDF-Stelle
+nicht als direkten Quellbeweis.
+
+Damit lautet der präzise Bestandstest: Ja, die konkrete Paar-Summe und ihre
+Casimir-/Fierzstruktur sind im weiteren Korpus bereits vorhanden. Nein, es
+ist dort nicht gezeigt, dass sie aus dem ursprünglichen QWZ/P1/P2-
+Bosonmodell entsteht oder dass ihre Tensorstruktur direkt die bedingten
+D8/E8-Randströme realisiert.
+
+Die nächstliegenden vorhandenen Objekte sind verschieden:
+
+* `clock-interaction-provenance/README.md:193-194` verweist auf ein
+  vorhandenes bosonisches TT-/Skalarmodell mit quadratischem Stress sigma
+  und bereits gesetztem g. Dort steht eine cubic/quartic Gesamtwirkung als
+  Modellinput; sie wird ausdrücklich nicht als hergeleiteter Clock-CAR-Term
+  behandelt.
+* `clock-interaction-provenance/README.md:203-214` definiert die bereits
+  klassifizierte quartische Richtung `K_pair=W+W*`, die O und N erhält und
+  mit H0 kommutiert. Sie wird nur als algebraisches Gegenbeispiel analysiert,
+  nicht in H0 eingesetzt und nicht als neuer Quellterm gezählt.
+* Der Rotorterm `q0 q1` oben entsteht als nichtkommutierender Doppel-
+  kommutator; er ist keine positive Paar-Summe und kein Bosonmodell-
+  Potential der Form `sum_A P_A^dagger P_A`.
+
+Die konkrete Paar-Summe ist somit als vorhandene interne Native-Bank-
+Identität abzulegen, während ihre ursprüngliche Boson-Herkunft und ihr
+Hamiltoniananschluss an die aktuelle native Quelle weiterhin unbelegt sind.
+
+Vergleich mit D8/E8-Strömen und bereits ausgeschlossene Brücken
+---------------------------------------------------------------
+Der bisherige Korpus vergleicht den Rotor-Quartikterm nicht tensorweise mit
+D8-/E8-Stromoperatoren. Die Native-Bank-Arbeit vergleicht W zwar mit den
+internen Spin(10)xSU(4)-Generatoren und der `Lambda^2 C^64`-Darstellung,
+aber nicht mit den bedingten D8-/E8-Randströmen. Die D8/E8-Arbeit fixiert stattdessen die bedingte
+Gitter-/Feldseite: `source-critical-local-fields-20260920/ERGEBNIS.md:54-136`
+gibt `T(D8)`, die c-Spinorfelder, ihre Parität und bedingte IR-Klassen an;
+`source-dynamics-selection-20260920/SOURCE_INVENTORY.txt:86-128` beschreibt
+die zusätzlich gewählte `V_aux`-Energie und nennt sie ausdrücklich nicht
+quellhergeleitet. Diese Quellen liefern kein `P_A`-Tensorprodukt und keine
+Gleichsetzung mit dem Rotor-Kommutator.
+
+Bereits ausgeschlossene oder getrennte Anschlüsse:
+
+* Quadratische 16-Majorana-Evolution, Lie-/BCH-Abschluss und reguläre
+  Grassmann-Gaussian-Elimination erzeugen keinen verbundenen Quartikterm
+  (`clock-interaction-provenance/README.md:42-109`; Verdict PARTIAL).
+* Der Registerterm `H_register=I tensor h_base+Z tensor h_forward+
+  Z* tensor h_forward*` hat kommutierende Registerkoeffizienten; sein
+  Shift ist nur ein Observable, kein elektrischer Clock-Generator
+  (`README.md:111-130`).
+* Der faktorielle E8/Paaranschluss mit `QHP=0` erzeugt keine fehlende
+  Familienmischung (`common-source-gauge-grade-transfer-20260920/ERGEBNIS.md:143-148`).
+* Die native 64CAR/60CCR-Quelle besitzt unter dem diagonalen
+  Spin(10)xSU(4)-Zentrum nur das triviale Vorzeichen, während die benötigten
+  lokalen ungeraden Randfelder das geerbte Minuszeichen tragen
+  (`source-operator-origin-20260920/ERGEBNIS.md:5-22`). Auch beliebige
+  Zusammensetzungen innerhalb dieser unveränderten Operatoralgebra beheben
+  den Gruppen-/Paritätsmismatch nicht.
+* Das vorhandene Rotorresultat ist eine echte Kandidatenkante, aber seine
+  Zuordnung zu Clock, D8/E8, Gausssektor und gemeinsamer Zeit ist weiterhin
+  offen (`source-operator-origin-20260920/ERGEBNIS.md:42-75`).
+
+Entscheidungsrelevanter Bestand
+-------------------------------
+Der stärkste bereits definierte nichtgaußsche Operator mit expliziter
+Boson-Fermion-Paarbank ist die deklarierte Native-Bank mit der obigen
+Casimir-/Fierzidentität. Der stärkste tatsächlich aus einer nicht-
+kommutierenden Quelle gebildete Term bleibt der Rotor-Doppelkommutator mit
+dem exakten Anteil `-q0 q1/7200`. Die native QWZ-/CAR-Quelle selbst bleibt
+gaußsch; der Compiler besitzt echte Reflexions-/Ereignisoperatoren, aber die
+Paarreduktion ist in der geprüften Klasse faktorisiert. Der native kubische
+Tensor ist ein markierter Massenkoeffizient, kein nachgewiesener
+Quell-Hamiltonterm.
+
+Der kleinste nächste Herkunftstest ist deshalb die bereits benannte
+Dictionary-Frage: Rotor-Elektrofeld und seine nichtkommutierende
+Transportwirkung müssen auf eine konkrete Clock-/D8-/E8-Operatorwirkung
+mit denselben O-/N-/Hyperladungsmarkierungen und demselben Zeitgenerator
+abgebildet werden. Eine nachträgliche Wahl von `sum_A P_A^dagger P_A` oder
+ein numerischer Abgleich des Koeffizienten `-1/7200` würde diese fehlende
+Abbildung nicht liefern.

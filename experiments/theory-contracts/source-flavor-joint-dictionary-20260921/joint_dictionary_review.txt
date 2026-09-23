@@ -1,0 +1,225 @@
+Abschließender Review-Nachtrag (Packaging-Klarstellung, 2026-09-21)
+
+Dieser endliche D4-Modulisomorphismus beweist nicht, dass der physische
+Generationenraum mit H^1 beziehungsweise dem Residuenraum identisch ist.
+G_X/4 ist eine primitive algebraische Gitternorm; sie ist weder die
+c3-Normierung noch eine Festlegung der physischen Quellenkovarianz. Der unten
+historisch vorgeschlagene direkte Test C_Sigma=M0 wird NICHT als zwingender
+Sollwert übernommen. Maßgeblich ist PROOF.md Abschnitt 6: Die primitive Quelle
+muss eine typisierte Karte nach U und ihre physische Zweipunktform liefern,
+ohne M0 einzusetzen; die bekannte Greenform ist davon verschieden.
+
+--- Ende des abschließenden Nachtrags; der folgende Review bleibt als
+Entstehungshistorie erhalten und ist in diesem Punkt superseded. ---
+
+Focused review: joint D4 residue/compiler dictionary
+Date: 2026-09-21
+Scope: read-only. No repository, ledger, paper, or graph changes.
+
+VERDICT
+
+The proposed X is a genuine constructive closure of the finite module-
+identification gap left by v146. It preserves the original later-paper D4:
+Sigma remains a reflection, not a half-turn. Unlike v69's simplified B, this
+construction transports the actual compiler Q and therefore its actual Q+,
+Q-, products, and relations simultaneously.
+
+It does not by itself derive the dictionary from primitive P1. The remaining
+source question is now sharply separated from the finite algebra: why the
+primitive seam selects this integral module embedding (and its normalization).
+
+1. Exact joint transport
+
+Let H have columns
+
+  h1=(1,0,0,-1), h2=(0,1,0,-1), h3=(0,0,1,-1),
+
+so the canonical residue Gram is
+
+  F=H^T H=[[2,1,1],[1,2,1],[1,1,2]], det F=4.
+
+For the square rotation and reflection in the question, their induced residue
+matrices are
+
+  Rh=[[-1,-1,-1],[1,0,0],[0,1,0]],
+  Sh=[[1,0,0],[-1,-1,-1],[0,0,1]].
+
+For every
+
+  X(a,b)=[[-a-2b,-a-4b,b],
+          [ a+2b,-a,   -b],
+          [ a+2b, a,    b]],
+
+one has exactly
+
+  Rh X = X G,
+  Sh X = X T_A,
+  det X = 4 b (a+2b)^2.
+
+Consequently
+
+  X Sigma X^-1 = Sh Rh,
+
+because Sigma=T_A G. Thus both geometric reflection classes are preserved:
+T_A maps to Sh, while Sigma maps to the adjacent reflection Sh Rh. This is
+the original D4 of v97/v98/v141/v146.
+
+At a=-1,b=1,
+
+  X=[[-1,-3,1],[1,1,-1],[1,-1,1]], det X=4,
+
+and direct calculation gives
+
+  X Q X^-1 = [[2,-3,-4],[0,2,1],[-1,0,2]],
+  X^T F X = [[4,0,0],[0,20,-8],[0,-8,4]].
+
+Since Qh is obtained by a single similarity and Sigma_h by the same X, both
+halves are transported jointly:
+
+  Qh,+ = X Q+ X^-1
+       = (Qh + Sigma_h Qh Sigma_h)/2,
+  Qh,- = X Q- X^-1
+       = (Qh - Sigma_h Qh Sigma_h)/2.
+
+All noncommutative words and projector incidences are therefore preserved.
+The earlier projector obstruction against v69's simplified B is irrelevant:
+this construction does not replace the actual Q- by that B.
+
+2. What v97/v98/v141/v146 already contained
+
+v97 already constructed T_A uniquely from the Q+ eigenlines plus the two
+anchor conditions T.1=1 and T.a=a, proved <T_A,Sigma>=D4, and solved the
+cyclic intertwiner equation to puncture homology. It found rational
+conjugacy, no GL(3,Z) conjugacy, and minimum cyclic-intertwiner determinant 2
+(verification/v97_sheet_conjugation_bridge.py:14-53,99-184). It did not impose
+the puncture reflection simultaneously.
+
+v98 established the exact internal integer D4 dictionary: G=T_A Sigma has
+the B1 line plus E plane, T_A and Sigma are the two reflection classes, and
+the Q+ grading aligns with the conjugacy classes. Its status still leaves the
+parabolic-geometric realization of the documented Q as GATE.QGEO
+(verification/v98_discriminant_dictionary.py:1-46,70-123).
+
+v141 selected the sheet-twisted cyclic character assignment (2,3,1) and
+constructed a Q+=1-line-preserving complex equivalence to -U. It explicitly
+leaves the premise that the integer D4 model is the parabolic geometry
+(verification/v141_deck_selection.py:1-56,78-147). It is a character-basis
+selection, not the real residue-lattice X above.
+
+v146 matched the Mobius actions class by class: delta on omega_k, inversion
+iota, T_A as the iota class, and Sigma as the delta-iota class. Its own
+recorded [P] residue is exactly the module identification "generation space
+= H1 with parabolic weights" (verification/v146_moebius_d4.py:1-40,
+70-115). It supplies the group-action target that X now meets, but no explicit
+joint real/integral X and no transport of Q.
+
+Therefore the new contribution is precise: it strengthens the previous
+separate class/character match into one joint lattice intertwiner and carries
+the full compiler operator through it.
+
+3. Are a,b already selected?
+
+D4 equivariance alone leaves two Schur scales, one on B1 and one on E. This
+is exactly the two-parameter X(a,b); invertibility only requires
+b(a+2b) != 0. So v97/v98/v141/v146 do not by themselves select a=-1,b=1.
+
+The original corpus nevertheless supplies two strong normalization facts:
+
+  - the residue lattice and its pairing are canonical, integral A3 data with
+    det F=4 (tfpt_1_architecture_e8.tex:1928-1959);
+  - v97 treats the least nonzero determinant of the cyclic lattice
+    intertwiner as the sheet index, rather than ignoring it
+    (verification/v97_sheet_conjugation_bridge.py:40-46,162-181).
+
+If the same primitive/minimal-index rule is applied to the FULL D4
+intertwiner, then
+
+  min |det X(a,b)| = 4
+
+for integral a,b. The minimizers are
+
+  (a,b)=(-1,1),(-3,1),(1,-1),(3,-1).
+
+Overall sign identifies the first/last and second/third. The remaining two
+are related by the already-owned central rotation:
+
+  X(-3,1)=X(-1,1) G^2.
+
+They induce exactly the same Gram. Thus minimal integral index selects ONE
+D4 orbit, and a=-1,b=1 is a valid canonical representative, not a fitted
+continuous choice.
+
+Equivalently, after removing the common factor 4, the induced form
+
+  M0=(1/4)X^T F X=[[1,0,0],[0,5,-2],[0,-2,1]]
+
+is the unique positive-definite integral unimodular D4-invariant Gram. The
+general invariant symmetric form is
+
+  M(u,v)=[[u-4v,0,0],[0,u,-2v],[0,-2v,v]],
+  det M=v(u-4v)^2;
+
+positive integral unimodularity forces v=1,u=5. This is a real uniqueness
+result available to the construction.
+
+Honest typing: the sources praise/use minimum lattice index, but none of the
+four bridge scripts explicitly declares "choose the minimum full-D4 index"
+as a primitive physical selection rule. Therefore the continuous a,b freedom
+is algebraically removed once the existing minimal-index convention is
+adopted; what remains physical is whether P1 selects that convention. It
+should not be reported merely as an unexplored two-parameter freedom.
+
+No already-established compiler Gram directly fixes a,b instead. The later
+cover program's v601 form J is a Hermitian Lorentz-signature (1,2) form on
+the mu3 cover and realizes the transposed/dual parabolic; it explicitly leaves
+the Weil-twisted RP comparison and seam-line identification open
+(verification/v601_equivariant_dual.py:2-62). It is not the positive residue
+Gram F transported here. v600 realizes the actual compiler pair on that
+cover but states canonicity open (verification/v600_joint_embedding.py:2-58).
+
+4. Does P1 specify a unique raw kernel function?
+
+No. The original P1 statement specifies one oriented seam, reflection
+positivity, unit winding, and the scalar normalization c3=1/(8pi)
+(tfpt_1_architecture_e8.tex:163-176). It supplies neither an argument space
+nor a formula C_Sigma(x,y), and later calls its analytic Calderon/winding
+premises imported hypotheses (tfpt_2_standard_model.tex:2413-2419).
+
+The papers do contain more explicit kernel constructions, but none is a
+unique raw P1 function:
+
+  - M=1+iA with A^2=-1 and P=M/2 is a finite quasifree/Calderon
+    polarization template; the paper explicitly keeps the premise merge
+    conditional (tfpt_1_architecture_e8.tex:1615-1636).
+  - K(x,y)=omega(theta(x)y) is an RP form on later integral orders and
+    depends on a declared state; those tested kernels are even reported
+    non-PSD in that application (tfpt_2_standard_model.tex:849-865).
+  - C_g=N_g^-1 and the metric-coupled K_g are explicit operator families,
+    but depend on g, its Laplace/Dirichlet-to-Neumann operator, projections,
+    h and T_grav (tfpt_2_standard_model.tex:3634-3666). They prove a
+    conditional RP/gap statement over a Calderon ball, not selection of one
+    primitive C_Sigma.
+
+So the correct statement is not "the paper has no kernel formulas". It has
+conditional templates and families. The precise missing primitive datum is a
+unique selected raw two-point/Calderon operator and its restriction to the
+residue lattice. That source-side restriction is what could justify the
+minimal-index X orbit and its Gram physically.
+
+RECOMMENDED NEXT DECISIVE CHECK
+
+Promote the finite statement only at its exact scope:
+
+  "There is one minimal-index integral D4 orbit of joint residue/compiler
+   dictionaries; representative X(-1,1) transports the actual Q, Sigma,
+   Q+/Q-, all words and the canonical residue Gram."
+
+Then test one source identity: does the raw P1 Calderon restriction on the
+three residue modes equal, up to the fixed c3 normalization,
+
+  M0=[[1,0,0],[0,5,-2],[0,-2,1]]
+
+in the generation basis? A yes supplies the physical normalization and closes
+the module interface. A different D4-invariant form M(u,v) identifies the
+actual relative B1/E scale. Absence of a selected raw kernel leaves this one
+ratio source-open while the finite dictionary itself remains exact.

@@ -1,0 +1,348 @@
+OPERATIONELLE NACHBARSCHAFT AUS NATIVEN ANTWORTEN
+20. September 2026
+
+Verdict
+=======
+
+PARTIAL_EXACT_OPERATIONAL_SINGLE_CELL_AND_COMPRESSION_NONINJECTIVITY.
+
+Der kleinste entscheidende Test hat zwei Teile. Erstens liefert der bereits
+kontrollierte native Zwei-Quellen-Zweig eine echte dynamische Antwort, die von
+einer statischen Korrelation verschieden ist. Zweitens reicht diese Antwort
+nicht zur Rekonstruktion mehrerer Orte: Die beobachtbaren Quadraturen erzeugen
+eine einzige M_2-Algebra. Im exakten Dreiquellenblock werden zwei verschiedene
+volle Paketprojektoren durch die Kompression auf denselben Operator abgebildet.
+Die Kompression ist daher auf diesem Operatorraum nicht injektiv. Das ist ein
+Informationsverlust, aber fuer sich allein noch kein Beweis, dass die volle
+native Dynamik nichtlokal ist.
+
+Das Ergebnis rekonstruiert genau eine relationale Zwei-Niveau-Zelle. Es
+rekonstruiert keinen Raum, keine Metrik und keine Dimension. Der erste fehlende
+Schritt ist nun scharf benannt: eine injektive Einbettung getrennter lokaler
+Algebren in den physischen Zustandsraum, zusammen mit einer nachgewiesenen
+Erhaltung ihrer Heisenberg-Antwort unter jeder verwendeten Kompression.
+
+
+1. Native Eingaben und Beweisstatus
+===================================
+
+Es werden keine neuen Quellregister, keine Reset-Instrumente und keine
+Impuls- oder Metrikannahmen eingefuehrt.
+
+Aus UR.COMPILER.RELAXED_WALL.26 wird der vollstaendige ungestoerte
+Zwei-Quellen-Satz fuer dasselbe native Modell wiederverwendet:
+
+  E0/kappa = 1/2,   Multiplizitaet = 2,
+  E1/kappa = 3/5,   Luecke = 1/10.                         (1)
+
+Der vorliegende Checker pinnt den .26-Vertrag und seinen q=22-Audit. Er spielt
+den 9958-Guard-Gesamtlauf von .26 nicht erneut ab. Deshalb bleibt diese Aussage
+eine explizit wiederverwendete exakte Voraussetzung und wird nicht als neuer
+unabhaengiger Vollraumbeweis ausgegeben.
+
+Aus UR.COMPILER.BOND_RESPONSE.24 werden die im Grunddublett exakt
+komprimierten Observablen und der fuehrende schwache Generator verwendet.
+Bis auf antwortirrelevante skalare Terme gilt
+
+  H_eff = -(mu/8) sigma_x,
+  O_D   = sigma_z,
+  W     = -(1/8) sigma_y.                                  (2)
+
+O_D ist die Differenz der beiden Bindungsanordnungen; W ist das vorhandene
+neutrale, austauschungsungerade Koordinatenbilinear. Gleichung (2) ist die
+exakte Dynamik des projizierten fuehrenden Generators. Sie ist keine exakte
+geschlossene Gleichung fuer den vollen Hamiltonoperator bei endlichem mu.
+
+Die in .24 hergeleiteten Vollraum-Schranken werden durch (1) auf demselben
+gepinnten Modell anwendbar. Fuer J=mu=epsilon kappa, 0<epsilon<=1/200, bleiben
+insbesondere die volle niedrige Luecke positiv und das W-Uebergangsmatrixelement
+mindestens
+
+  |<psi_odd|W|psi_even>| >= 941/52264 > 0.                 (3)
+
+Die einfache geschlossene Zeitformel weiter unten gilt fuer H_eff. (3) ist die
+endliche Vollraum-Stabilitaetsaussage; daraus wird keine exakte endliche
+Frequenzformel erfunden.
+
+
+2. Ein nichttautologisches Kriterium fuer Nachbarschaft
+======================================================
+
+Seien A_i vollstaendige lokale Matrixalgebren, die fuer i != j miteinander
+kommutieren, und sei ein Hamiltonoperator als Summe von Kantentermen und
+Vor-Ort-Termen gegeben,
+
+  H = sum_(ij in E) h_ij + sum_i h_i.                      (4)
+
+Fuer A in A_i und B in A_j wird der Heisenberg-Kommutator entwickelt als
+
+  [A(t),B]
+    = sum_(n>=0) (it)^n/n! [ad_H^n(A),B],
+  ad_H(A)=[H,A].                                           (5)
+
+Jeder Kommutator mit einem Kantenterm kann den Operatortraeger hoechstens um
+eine Kante vergroessern. Daher gilt fuer den Abstand d_E(i,j):
+
+  [ad_H^n(A),B]=0  fuer alle A in A_i, B in A_j und n<d_E(i,j).  (6)
+
+Fuer vollstaendige lokale Algebren kann eine echte Zweikoerperkopplung an
+einer Kante durch mindestens ein Paar A,B mit
+
+  [[H,A],B] != 0                                           (7)
+
+erkannt werden, nachdem reine Einteilchenanteile und die Konstante des
+Kantenterms abgezogen sind. Das ist kein Fit einer gewaehlten Antwortkurve:
+
+* Null versus nichtnull in (7) ist unter unabhaengigen lokalen Basiswechseln
+  invariant, weil der gesamte Kommutator nur unitaer konjugiert wird.
+* Vor-Ort-Terme und additive Energiekonstanten koennen (7) fuer i != j nicht
+  erzeugen.
+* Es wird ueber die ganze lokale Algebra quantifiziert, nicht ueber eine
+  nachtraeglich ausgesuchte einzelne Sonde.
+
+Der erste nichtnull Ordnungsindex
+
+  n_*(i,j)=min{n: es gibt A in A_i,B in A_j mit
+                    [ad_H^n(A),B] != 0}                    (8)
+
+erfuellt unter (4) n_* >= d_E. Gleichheit braucht zusaetzlich einen
+nichtausgeloeschten Zeugen auf einem kuerzesten Pfad. Symmetrien oder
+kommutierende aufeinanderfolgende Kopplungen koennen n_* vergroessern oder
+eine spezielle Sonde blind machen. Deshalb ist allein der erste nichtnull
+Zustandserwartungswert kein allgemeiner Distanzsatz.
+
+checker.py prueft (6) an der kleinsten vollstaendig deklarierten Kontrolle:
+Auf einer Dreiqubit-Kette 1--2--3 verschwindet die Endpunktantwort in den
+Ordnungen 0 und 1 und ist in Ordnung 2 nichtnull. Eine direkte 1--3-Kopplung
+macht Ordnung 1 nichtnull. Diese Dreiqubit-Kontrolle ist kein TFPT-Modell;
+sie prueft nur die Algebra des verwendeten Distanzkriteriums.
+
+Entscheidend ist der tatsaechliche Tensortraeger einer Observable, nicht ihr
+Quellenname. Fuer ausgedehnte Regionen S_A,S_B kann bereits ein einzelner
+Hamiltonterm Z die Antwort in Ordnung 1 erzeugen, wenn Z sowohl S_A als auch
+S_B schneidet. Die Distanz im blossen Quellknotenbild darf dann nicht in (6)
+eingesetzt werden.
+
+
+3. Kausalantwort ist nicht statische Korrelation
+================================================
+
+Der untere Zustand von (2) ist P_g=(I+sigma_x)/2. Direkt folgt
+
+  <O_D>_g = <W>_g = 0,
+  (1/2)<{O_D,W}>_g = 0.                                   (9)
+
+Die statische symmetrisierte Kreuzkorrelation ist also exakt null. Dennoch
+gilt die native Bewegungsgleichung
+
+  i[H_eff,O_D] = 2 mu W,                                  (10)
+
+und damit
+
+  O_D(t)=cos(mu t/4) sigma_z - sin(mu t/4) sigma_y.
+
+Fuer die retardierte Kubo-Antwort mit der hier verwendeten Konvention ergibt
+sich
+
+  chi_DW(t) = -i theta(t) <[O_D(t),W]>_g
+            = theta(t) cos(mu t/4)/4.                      (11)
+
+Hier ist die statische symmetrisierte Korrelation null, waehrend die
+dynamische Antwort nichtnull ist. Das trennt fuer diesen kontrollierten Zweig
+die konkrete kausale Suszeptibilitaet von einem blossen statischen
+Korrelationswert.
+
+Auch (11) allein ist zustandsabhaengig. Auf Operatorebene gilt
+
+  [O_D(t),W] = i cos(mu t/4) sigma_x/4.                    (12)
+
+Im maximal gemischten Zustand ist die Erwartung von (12) gleich null, obwohl
+der Operator nichtnull ist. Eine einzelne Zustandsantwort kann somit eine
+vorhandene dynamische Kopplung uebersehen. Fuer eine belastbare
+Nachbarschaftsrekonstruktion muss zuerst der volle Operator-Kommutator ueber
+die vollstaendigen lokalen Algebren getestet werden; Zustandserwartungen sind
+danach zusaetzliche Auslesungen.
+
+
+4. Was der kontrollierte Zweig wirklich rekonstruiert
+=====================================================
+
+Die vier Operatoren
+
+  I, O_D, W, [O_D,W]
+
+spannen die gesamte Matrixalgebra M_2 auf. Zugleich ist
+
+  [O_D,W]=i sigma_x/4 != 0.                               (13)
+
+O_D und W koennen daher keine Observablen zweier getrennter Orte sein, deren
+Algebren kommutieren. Sie sind zwei konjugierte Quadraturen derselben
+relationalen Bindungszelle. Die native Antwort beweist also eine interne
+dynamische Nachbarschaft innerhalb einer operationalen Zelle, aber keine
+Nachbarschaft zwischen mehreren raeumlichen Zellen.
+
+Das ist ein positives, jedoch schmales Ergebnis: Der Compilertraeger besitzt
+auf diesem Zweig einen echten antwortenden relationalen Freiheitsgrad. Seine
+Existenz ist mehr als eine statische Bindungskorrelation. Seine Algebra traegt
+aber noch keine nichttriviale Ortszerlegung.
+
+
+5. Vollsupport und exakte Nichtinjektivitaet der Kompression
+============================================================
+
+Der in .24 exakt rekonstruierte Dreiquellen-Zweipaketblock hat
+
+  H_B/kappa = (1/20) [[15,-sqrt(15)],[-sqrt(15),49]].      (14)
+
+Die elementaren Tensorfaktoren sind R1,R2,R3,A,B,C,D. Die beiden aeusseren
+Paketprojektoren und der mittlere native Term haben die Traeger
+
+  supp(Q1) = {R1,A,B},
+  supp(Q3) = {R3,C,D},
+  supp(L2) = {R2,B,C}.                                    (15)
+
+Q1 und Q3 liegen auf disjunkten Faktoren und kommutieren. L2 beruehrt jedoch
+ueber B den Traeger von Q1 und ueber C den Traeger von Q3. Im tatsaechlichen
+Wechselwirkungs-Hypergraphen verbindet daher bereits ein Hamiltonterm beide
+ausgedehnten Regionen. Eine Antwort in Ordnung 1 ist mit dem Vollsupport
+vereinbar. Der Abstand zwei im blossen Quellknotengraphen 1--2--3 ist fuer
+diese Paketobservablen keine Kommutator-Untergrenze.
+
+Nach Kompression auf den invarianten Zweipaketblock wirken beide Projektoren
+als
+
+  P_B Q1 P_B = P_B Q3 P_B = Q = diag(1,0).                (16)
+
+Die exakte Blockrechnung ergibt weiterhin
+
+  [Q,Q]=0,
+  [[H_B,Q],Q] = -sqrt(15) sigma_x/20 != 0.                 (17)
+
+Diese fruehe Antwort beweist wegen (15) keinen Lokalitaetsverlust. Sie zeigt im
+komprimierten Block einen Autokanal, weil beide Bilder Q sind.
+
+Der belastbare Befund ist stattdessen die Nichtinjektivitaet der
+Kompressionsabbildung
+
+  Phi_B(X)=P_B X P_B.                                      (18)
+
+Q1 und Q3 sind im Vollraum verschieden. Beide sind nichttriviale lokale
+Paketprojektoren auf disjunkten Tensorfaktoren. Waeren sie als Volloperatoren
+gleich, laege derselbe nichtskalare Operator in zwei disjunkten vollen
+Faktoralgebren; deren Schnitt besteht nur aus skalaren Vielfachen der
+Identitaet. Aequivalent kann man einen Produktvektor aus ran(Q1) und ker(Q3)
+waehlen, auf dem Q1-Q3 nicht verschwindet. Zusammen mit (16) folgt exakt
+
+  Q1-Q3 != 0,       Phi_B(Q1-Q3)=0.                        (19)
+
+Phi_B ist also schon auf dem Operatorraum span{I,Q1,Q3} nicht injektiv. Das
+beweist, dass Antworten allein innerhalb dieses Blocks die beiden
+Paketprojektoren nicht als verschiedene Orte rekonstruieren koennen. Es
+beweist weder, dass alle Vollraumobservablen sie nicht unterscheiden koennen,
+noch dass der volle Hamiltonoperator nichtlokal ist.
+
+Im unteren Blockeigenzustand sind sowohl die komprimierte statische Kovarianz
+als auch das inelastische Gewicht
+
+  Cov(P_B Q1 P_B,P_B Q3 P_B)=15/1216.                     (20)
+
+Die exakte retardierte Linie lautet
+
+  chi_31(t)=-(15/608) theta(t)
+             sin(2 sqrt(19) kappa t/5).                   (21)
+
+(20) belegt eine komprimierte Korrelation und (21) eine Blockantwort. Wegen
+(16) unterscheiden beide jedoch keinen Kreuzkanal von einem Autokanal. Der
+Dreiquellenblock bleibt genau wie in .24 typisiert: Seine Invarianz und Antwort
+sind exakt; der dort berichtete globale Komplementsatz wurde hier nicht
+unabhaengig wiederholt. Der Nichtinjektivitaetsbefund (19) benoetigt diesen
+globalen Grundzustandssatz nicht.
+
+
+6. Erste fehlende Abbildung
+===========================
+
+Vor einer Metrik oder Dimension wird eine operationelle Lokalisationsabbildung
+benoetigt:
+
+  iota_i : A_i -> B(H_phys),                              (22)
+
+mit folgenden Eigenschaften:
+
+1. iota_i ist fuer jeden Ort injektiv.
+2. [iota_i(A_i),iota_j(A_j)]=0 fuer i != j auf dem
+   Ausgangszeit-Schnitt.
+3. Der tatsaechliche Hamiltonoperator besitzt eine kontrollierte Zerlegung in
+   Terme mit diesen Traegern.
+4. Die Familie i -> iota_i bleibt gemeinsam unterscheidbar; insbesondere muss
+   eine Niedrigenergieabbildung entweder injektiv auf der beanspruchten
+   Ortsobservableklasse sein oder ihren Informationsverlust explizit
+   kontrollieren. Gleichung (19) zeigt, dass der vorliegende Block diese
+   Forderung fuer Q1,Q3 nicht erfuellt.
+
+Soll eine Kompression P benutzt werden, reicht eine Spektralluecke nicht. Fuer
+die beanspruchte Zeit- und Observableklasse braucht man eine Schranke der Form
+
+  || P[A_i(t),B_j]P
+     - [ exp(i H_eff t) P A_i P exp(-i H_eff t), P B_j P ] ||
+       <= epsilon_ij(t),                                  (23)
+
+mit explizitem Fehler und einem Zeitfenster. Die vorhandenen Schur- und
+Eigenvektorschranken kontrollieren bestimmte niedrige Linien. Sie liefern
+keine uniforme Version von (20) fuer vollstaendige lokale Algebren. Eine
+gewuenschte Distanz erst aus den komprimierten Antworten zu fitten, ohne
+(22)--(23), waere zirkulaer.
+
+Erst wenn (22) existiert und (23) kontrolliert ist, kann (5)--(8) eine
+operationelle Nachbarschaft rekonstruieren. Danach koennen Pfadlaengen,
+Skalierungsgrenzen und eine moegliche Metrik untersucht werden. Gegenwaertig
+ist die erste tragende Luecke die injektive Ortsalgebra, nicht die Wahl einer
+3D-Metrik.
+
+
+7. Literatur und Abgrenzung
+===========================
+
+Die Verwendung des retardierten Kommutators als lineare Antwort folgt der
+Originalarbeit von Ryogo Kubo, "Statistical-Mechanical Theory of Irreversible
+Processes. I", J. Phys. Soc. Jpn. 12 (1957) 570--586:
+https://doi.org/10.1143/JPSJ.12.570
+
+Der zustandsunabhaengige Operatorstandpunkt und die endliche Ausbreitung bei
+lokalen Wechselwirkungen stehen in der Tradition von Elliott H. Lieb und
+Derek W. Robinson, "The finite group velocity of quantum spin systems",
+Commun. Math. Phys. 28 (1972) 251--257:
+https://doi.org/10.1007/BF01645779
+
+Eine spaetere direkte Verbindung von Lieb-Robinson-Schranken mit der Erzeugung
+von Korrelation und Verschraenkung ist S. Bravyi, M. B. Hastings und
+F. Verstraete, Phys. Rev. Lett. 97 (2006) 050401:
+https://arxiv.org/abs/quant-ph/0603121
+
+Diese Literatur begruendet die Methodik, nicht ihre Identifikation mit TFPT.
+Die Gleichungen (9)--(18) sind die hier neu ausgefuehrten exakten endlichen
+Checks auf den gepinnten nativen Eingaben.
+
+
+8. Firewall
+===========
+
+Bewiesen beziehungsweise exakt geprueft sind:
+
+* eine nichtnull retardierte Antwort bei exakt verschwindender statischer
+  symmetrisierter Kreuzkorrelation im projizierten kontrollierten Zweig;
+* der Unterschied zwischen vollem Operator-Kommutator und einem blinden
+  Zustandserwartungswert;
+* die M_2-Abgeschlossenheit der nativen Bindungsquadraturen;
+* die Support-Ordnungsregel an einer minimalen deklarierten Kontrolle;
+* der tatsaechliche Vollsupport von Q1,Q3,L2 und damit die Zulassigkeit einer
+  Ordnung-1-Antwort;
+* die exakte Nichtinjektivitaet der Blockkompression auf
+  span{I,Q1,Q3}.
+
+Nicht bewiesen sind eine Nichtlokalitaet des vollen nativen Modells, eine
+physische Ortsalgebra, ein raeumlicher Graph, eine Metrik, drei Dimensionen,
+Lorentzsymmetrie, ein Lichtkegel, der globale Dreiquellen-Grundzustand, eine
+uniforme Niedrigenergie-Antwortschranke oder ein T1--T8-Tor. Das Ergebnis ist
+ein Theorievertrag im Experimente-Firewall, keine Promotion in Ledger, Papier
+oder TOE.

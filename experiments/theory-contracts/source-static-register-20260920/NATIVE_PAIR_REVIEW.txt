@@ -1,0 +1,206 @@
+UNABHÄNGIGER REVIEW: NATIVER PAARKANAL UND GLOBALER CASIMIR
+Datum: 2026-09-20
+
+Fragestellung
+=============
+
+Geprüft wird ausschließlich die endliche Darstellungstheorie und ihre
+Zweitquantisierung für
+
+  F=(bar16,bar4), dim F=64,
+  B=(10,6), dim B=60,
+  W: Lambda^2 F -> B.
+
+Es wird kein neuer Hamiltonoperator gewählt. Die Rechnung identifiziert eine
+bereits vorausgesetzte äquivariante Paarwechselwirkung mit endlichen globalen
+Spin(10)- und SU(4)-Casimirs. Sie ist keine affine Stromalgebra-, Sugawara- oder
+propagierende Feldtheorieaussage.
+
+Gesamturteil
+============
+
+PASS unter einer expliziten Normierungskonvention. Wenn die geordneten
+Keilbasisvektoren e_i wedge e_j, i<j, orthonormal sind, W W^dagger=w I_B gilt
+und P_A jedes ungeordnete Paar genau einmal annihiliert, dann ist auf dem
+gesamten endlichen CAR-Fockraum exakt
+
+  sum_A P_A^dagger P_A
+   = (w/16)[15 N-2(C2_Spin,total+C2_SU4,total)].       (1)
+
+Die Formel ist positiv, obwohl die rechte Seite nicht manifest positiv
+geschrieben ist, weil sie exakt die Summe positiver Paarkanal-Projektoren ist.
+Andere 1/2- oder 1/sqrt(2)-Konventionen in W und P ändern w; sie dürfen nicht
+mit dem hier benutzten geordneten i<j-Basismaß vermischt werden.
+
+1. Zerlegung und Casimirprojektor auf dem Zweiteilchenraum
+==========================================================
+
+Die Standardidentität
+
+  Lambda^2(V tensor U)
+   =(Lambda^2 V tensor Sym^2 U)
+     direct-sum (Sym^2 V tensor Lambda^2 U)
+
+liefert hier
+
+  Lambda^2 F
+   =(120,bar10) direct-sum (10,6) direct-sum (bar126,6),
+
+mit Dimensionen 1200+60+756=2016=binom(64,2). Die mögliche
+Chiralitätsbezeichnung des 126-Kanals ändert weder Dimension noch Casimir.
+
+Bei Langwurzelnorm zwei sind
+
+  C2_Spin(16)=45/8,      C2_SU4(4)=15/8,
+  C2_Spin(120)=21/2,     C2_SU4(10)=9/2,
+  C2_Spin(10)=9/2,       C2_SU4(6)=5/2,
+  C2_Spin(126)=25/2.
+
+Damit hat der gesamte Paar-Casimir C2_pair=C2_Spin+C2_SU4 auf den drei
+Summanden die Eigenwerte
+
+  15, 7, 15.
+
+Der B-Summand ist der einzige Eigenraum zum Eigenwert sieben. Folglich ist
+
+  Pi_B=(15-C2_pair)/8                                  (2)
+
+der orthogonale Projektor auf (10,6).
+
+Da W äquivariant und B irreduzibel ist, folgt aus W W^dagger=w I_B durch
+Schurs Lemma
+
+  W^dagger W=w Pi_B.                                   (3)
+
+Für einen nichtverschwindenden W ist w>0.
+
+2. Exakte Zweitquantisierung und sämtliche Faktoren
+====================================================
+
+Wähle orthonormale Basen von F und B und schreibe W_{A,ij} auf der
+orthonormalen Basis e_i wedge e_j, i<j. Mit einer konsistenten komplexen
+Konjugation kann man etwa
+
+  P_A=sum_{i<j} W_{A,ij} c_j c_i
+
+definieren. Dann wirkt sum_A P_A^dagger P_A auf dem Zweiteilchenraum exakt als
+W^dagger W und auf dem N-Teilchenraum als
+
+  w sum_{1<=r<s<=N} Pi_B^(rs).                         (4)
+
+Es gibt keinen zusätzlichen Faktor zwei: Im Testfall W=Identität auf dem
+gesamten Keilraum wird die linke Seite
+
+  sum_{i<j} c_i^dagger c_j^dagger c_j c_i
+   =N(N-1)/2,
+
+also genau die Anzahl ungeordneter Teilchenpaare.
+
+Sei c_F der Einteilchen-Casimir der direkten Produktalgebra. Hier
+
+  c_F=45/8+15/8=15/2.
+
+Für orthonormal normierte hermitesche Liegeneratoren und
+T^a_total=dGamma(t^a) gilt auf jedem N-Sektor
+
+  sum_{r<s} C2_pair^(rs)
+   =C2_total+c_F N(N-2),                               (5)
+
+weil jeder Einteilchen-Casimir in N-1 Paaren vorkommt und
+C2_total=N c_F+2 sum_{r<s} t_r.t_s ist.
+
+Setzt man (2) in (4) ein und verwendet (5), folgt
+
+  sum_A P_A^dagger P_A
+   =(w/8)[15 N(N-1)/2-C2_total-(15/2)N(N-2)]
+   =(w/16)[15N-2C2_total].
+
+Mit C2_total=C2_Spin,total+C2_SU4,total ist dies (1). Da die Herleitung auf
+jedem N-Sektor gilt und beide Seiten N erhalten, ist sie eine Operatoridentität
+auf der direkten Summe des vollständigen endlichen CAR-Fockraums. Sie ist
+nicht auf N=2 beschränkt. Für N=0 und N=1 verschwindet die rechte Seite wie
+erforderlich; bei N=2 reduziert sie sich unmittelbar auf w Pi_B.
+
+Verwendet man antihermitesche Liegeneratoren, muss der Casimir mit dem
+zusätzlichen üblichen Minuszeichen definiert werden. Ohne diese Konvention
+wäre das Vorzeichen in (1) scheinbar vertauscht.
+
+3. Exakte Quadratvervollständigung
+==================================
+
+Für reelles g und Delta>0 ist
+
+  H=Delta sum_A b_A^dagger b_A
+    +g sum_A(b_A^dagger P_A+P_A^dagger b_A)
+
+exakt gleich
+
+  Delta sum_A (b_A+g P_A/Delta)^dagger
+              (b_A+g P_A/Delta)
+   -(g^2/Delta) sum_A P_A^dagger P_A.                 (6)
+
+Für komplexes g stehen im ersten Faktor und im letzten Koeffizienten die
+entsprechenden komplex konjugierten Größen und |g|^2. Bosonen und Fermionpaare
+kommutieren miteinander, daher entstehen beim Ausmultiplizieren keine
+zusätzlichen Kreuzterme.
+
+Die neuen Größen
+
+  beta_A=b_A+g P_A/Delta
+
+sind jedoch keine kanonischen Bosonen:
+
+  [beta_A,beta_B^dagger]
+   =delta_AB+(g^2/Delta^2)[P_A,P_B^dagger]
+
+(für komplexes g mit |g|^2). Der zweite Term ist operatorwertig. Gleichung
+(6) ist deshalb eine exakte algebraische Identität, aber keine exakte
+Diagonalisation und keine Entkopplung eines freien verschobenen Bosons.
+
+Mit (1) kann der letzte Term exakt als globaler Casimir geschrieben werden:
+
+  -(g^2 w/(16 Delta))
+    [15N-2(C2_Spin,total+C2_SU4,total)].               (7)
+
+Auch (7) allein bestimmt das Spektrum von (6) nicht, weil der erste Term aus
+nichtkanonischen beta_A besteht.
+
+4. Bedingter groß-Delta-Grenzfall
+=================================
+
+Projiziert man auf den Nullbosonraum und nimmt als ungestörten
+Zwischensektor ausschließlich die konstante Einbosonenlücke Delta an, ergibt
+die zweite Ordnung der entarteten Störungstheorie
+
+  H_eff^(2)=-(g^2/Delta) sum_A P_A^dagger P_A.         (8)
+
+Dies ist genau die Casimirwechselwirkung (7). Die Aussage ist nur führend und
+bedingt: Vorhandene Fermionenergien, chemische Splittings oder weitere
+Wechselwirkungen verändern die Energienenner; bei endlichem Delta folgt (8)
+nicht als exakter eliminierter Hamiltonoperator. Insbesondere beweist die
+Quadratvervollständigung keine exakte freie Bosonabspaltung.
+
+5. Was mit „Strömen“ hier bewiesen ist
+======================================
+
+Die Operatoren in (1) sind die endlichen globalen Symmetriegeneratoren
+
+  T^a_total=dGamma(t^a)
+
+der 64-Moden-CAR-Darstellung. Ihr Casimir ist eine wohldefinierte endliche
+Fockraumgröße. Die Rechnung konstruiert keine ortsabhängigen Noetherströme,
+keine Kac-Moody-Moden, keinen affinen Level und keinen Sugawara-
+Energieimpulstensor. Eine spätere Identifikation mit propagierenden
+Feldströmen benötigt zusätzlich eine Orts-/Zeitdarstellung, lokale OPEs und
+die passende Normalordnung.
+
+Der Fortschritt ist daher präzise: Die vorausgesetzte native äquivariante
+Paarwechselwirkung misst exakt den (10,6)-Anteil jedes Fermionpaares, und die
+Summe dieses Kanals komprimiert auf N und die beiden globalen Casimirs. Dies
+liefert keine Quelle für W, keinen Wert von w oder g, keine Auswahl von Delta,
+keine Reparatur der früheren ungeraden Feldabbildung und keine native
+Kontinuums- oder Raumzeitdynamik.
+
+Endverdict: PASS für Projektor, vollständige Fockraumidentität und exakte
+Quadratvervollständigung; PARTIAL als physischer Strom- oder
+Niederenergieanschluss.

@@ -1,0 +1,142 @@
+Korrektur verifiziert: S0 jetzt **3 829 536 / 1 444 233 216** (deckt sich mit dem v1.6.2-Originalwert und der Parallelsession), 307 Guards, PASS in beiden Modi. Hier der ausführliche Zwischenbericht.
+
+---
+
+# Zwischenbericht: TFPT/Universalraum — fundamentale Lösung, Stand 15.09.2026, ~11:45
+
+## 0. Gesamtlage: zwei Spuren
+
+Es existieren jetzt **zwei Contract-Ordner**, die sich unabhängig auf denselben Kernpunkt zubewegt haben:
+
+| Ordner | Ursprung | Stand |
+|---|---|---|
+| `universalraum-operations-groundstate-20260915` | **diese Session** (meine drei Arbeitspakete) | WP-A + WP-C fertig, WP-B-Sonde läuft |
+| `universalraum-native-ground-response-20260915` | **Parallelsession** (andere Cursor-Sitzung, v1.6.4) | Grundzustand + geladene Antwort + Polsatz bereits konsolidiert |
+
+Die Parallelsession hat dabei einen extern eingegangenen **Polsatz v1.6.3** reproduziert (317 Prüfbedingungen, byteidentisch) und eigene Verschärfungen beigetragen. Beide Spuren validieren sich gegenseitig — mit einer unten dokumentierten Abweichung, die ich inzwischen korrigiert habe.
+
+**Modellvertrag (unverändert in beiden Spuren):** \(H=\Delta N_b+g\sum_A(b_A^\dagger P_A+P_A^\dagger b_A)\), \(P_A=\sum_{i<j}W_{A,ij}f_jf_i\), \(N=N_f+2N_b\), 64 Fermionmoden, 60 Bosonmoden, \(WW^\dagger=8I_{60}\), 480 Vertizes, Prüfpunkt \(g/\Delta=1/20\), kein \(\mu N\).
+
+---
+
+## 1. Fundament meiner Session: `native_source.py` (neu, npz-frei)
+
+Problem: der gepinnte Tensor (`spinor_tensors.npz`, SHA-256 `3f00a089…`) liegt unter `~/Documents` — **für die Agenten-Shell macOS-gesperrt** (TCC). Die bisherigen Verträge sind von dieser Shell nicht reproduzierbar.
+
+Lösung: vollständige in-repo-Rekonstruktion aller Objekte aus der Clifford/Außenalgebra-Konstruktion (die Rekonstruktion war in früheren Runden bereits byte-exakt gegen das npz geprüft worden). **17 Guards, PASS**, darunter die volle Zwei-Teilchen-Casimiridentität \(8W^\dagger W+4C_{\text{Spin}(10)}+4C_{\text{SU}(4)}=120\,I\) auf allen 2016 Paarzuständen. Exportiert: `W`, `J`, `C3`, Gewichte `FW/BW`, `BAR/ETA`, die 7 diskreten Symmetriegeneratoren, 60 Lie-Erzeuger, alle CAR-Helfer. Alle drei Checker bauen nur darauf.
+
+---
+
+## 2. WP-A: Der verfügbare Operationssatz (fertig, 307 exakte Guards)
+
+**Frage (v1.6.2 §10.3/§14):** Wie groß ist die unsichtbare Freiheit (Kommutant) unter dem tatsächlich verfügbaren Operationssatz?
+
+### Die Kommutanten-Leiter (N=3-Sektor, 45 504-dim)
+
+| Operationssatz | erzeugte Algebra | Kommutante |
+|---|---:|---:|
+| S0: {X, N_b} | 14 | **1 444 233 216** |
+| S1: + Spin(10)×SU(4)-Rahmen | 743 583 744 | **7** |
+| S2: + Clock-Lift | unverändert | 7 |
+| S3: + Modenbesetzungen {n_r, m_A} | M₄₅₅₀₄ (2 070 614 016) | **1** |
+| S4: + geladene f-Instrumente | M₄₇₅₈₀ (N=2∪N=3) | 1 |
+
+N=2 analog: 3 829 536 → 3 → 3 → 1.
+
+**Korrektur durch mich (Judge):** der Subagent hatte S0 als `Σ 2m²` statt `Σ m²` gerechnet (1 452 961 792 statt 1 444 233 216) — der Guard war eine Tautologie. Jetzt korrigiert und gegen den v1.6.2-Originalwert (`minimal_interfaces.py`) sowie die Parallelsession abgesichert; alle drei Quellen stimmen: **1 444 233 216**.
+
+### Die Isotypie-Zerlegung von N=3 (beide Spuren unabhängig, identisch)
+
+| Block | Dim | Mult | S-Eigenwert | (C_S, C_U) | Rolle |
+|---|---:|---:|---:|---|---|
+| (144, 20) | 2880 | 2 | **7** | (85, 39) | hell, X-gekoppelt |
+| (144, 4̄) | 576 | 2 | **10** | (85, 15) | hell, X-gekoppelt |
+| (16′, 20) | 320 | 2 | **12** | (45, 39) | hell, X-gekoppelt |
+| (16′, 4̄) | 64 | 1 | 0 (ker S) | (45, 15) | χ-Kompositblock |
+| (672, 4̄) | 2688 | 1 | — | (165, 15) | dunkel |
+| (1200, 20) | 24 000 | 1 | — | (141, 39) | dunkel |
+| (560, 20′) | 11 200 | 1 | — | (117, 63) | dunkel |
+
+Schur-Funktor-Zerlegung exakt geschält: Sym³(16) = 144⊕672, S₂₁(16) = 16′⊕144⊕1200, Λ³(16) = 560. In Λ³(16,4) multiplizitätsfrei; die drei hellen Typen kommen je zweimal vor (eine Kopie pro Seite, X-verknüpft). **Bemerkenswerter Befund (Parallelsession, von meiner Zerlegung bestätigt): alle drei dunklen Blöcke tragen denselben Gesamtcasimir 45** — die eine erhaltene Summeninvariante kann sie prinzipiell nicht trennen; getrennt gelesen (141/4, 117/4, 165/4 bzw. 39/4, 63/4, 15/4) trennen sie sofort.
+
+### Das Verfügbarkeits-Theorem (Parallelsession, `symmetry_availability.py`)
+
+Die gewährte Dynamik (Wörter aus X, N_b) liegt in der Verflechteralgebra (Dim Σmᵢ² = **16**); die 60 Lie-Erzeuger liegen **nicht** darin — keine Komposition gewährter Dynamik erzeugt sie. Die Symmetrie ist ein eigenständiges Primitiv: *gewährt oder nicht gewährt*. Der gesamte verbleibende symmetrieverträgliche Spielraum ist **exakt 2 Dimensionen breit** = die Fähigkeit, die drei dunklen Blöcke getrennt anzusprechen (= beide Casimire getrennt statt nur ihre Summe). Die Clock sitzt im Normalisator, nicht im Zentralisator (mit X, N_b allein: Algebra 84, Kommutant 240 742 144; über voller Symmetrie fügt sie nichts hinzu).
+
+**Antwort auf die §10.3-Frage:** die operative Mehrdeutigkeit ist auf die binäre Alternative „kontinuierliche Symmetrie verfügbar ja/nein" kollabiert — eingeklammert zwischen Kommutant **7** und **1 444 233 216**.
+
+---
+
+## 3. WP-C: Relativistisches Feldwörterbuch (fertig, 2161 exakte Guards, -OO-stabil)
+
+Am tatsächlichen Tensor, vor jeder Kontinuumsrechnung:
+
+| Kanal | Norm² pro Zeile | Status |
+|---|---:|---|
+| Skalar, gleichhändig ε_{αβ}ψψ | **0** (alle 60 Zeilen, exakt) | **verboten** |
+| Skalar, gepunktet (0,0) | 0 | verboten |
+| (1,0) symmetrisch {I, σˣ, σᶻ} | je 64, Summe **192** | erlaubt — der Vertex ist **rein (1,0)+h.c.** |
+| (0,1) konjugiert | je 64 | erlaubt |
+
+Korrektur meines Spec-Fehlers durch den Agenten: σʸ = −iε ist *anti*symmetrisch; die symmetrische Basis ist {I, σˣ, σᶻ}. Dimensionsidentität C(128,2) = 2080 + 3·2016 = 8128 exakt. Kompositfeld χ = Vermittler × Weyl: zerfällt (3/2,0)⊕(1/2,0), Projektoren Rang 4/2 exakt idempotent, flacher Spin-1/2-Anteil 1/3 (als Konvention deklariert). Bilineare: 4096 = 1 (Singulett) + 45 + 15 (Adjungierte) + 4035 (Rest, ehrlich unbestimmt). Schur-Folge: kinetischer Operator auf dem irreduziblen 64er-Multiplett = I₆₄ ⊗ d(p).
+
+**Konsequenz:** jede relativistische Vervollständigung muss den 60 Vermittlern eine selbstduale Tensor-/feldstärkeartige Lorentzstruktur ((1,0), 3 Komponenten pro internem Label) geben — **der skalare Kopplungskanal ist auf dem tatsächlichen Tensor exakt null und darf nicht wieder verwendet werden**. Die Parallelsession ergänzte eine minimale skalare Alternative mit extra alternierendem Hilfsindex (128 Komponenten) — ausdrücklich als *zusätzliches* Modell markiert, nicht als native Lösung.
+
+---
+
+## 4. WP-B: Nativer Grundzustand (Parallelsession v1.6.4 + meine laufende Sonde)
+
+**Reproduziert (Parallelsession, frische Enumeration statt Statusübernahme):**
+
+| k | Bosonkonfigurationen vollständig enumeriert | ‖Q₊ᵏF‖² |
+|---:|---:|---:|
+| 0 | analytisch | 1 |
+| 1 | 60 Kanäle / 480 Paare | 480 |
+| 2 | 1 830 | 439 680 |
+| 3 | 37 820 | 575 078 400 |
+| 4 | 595 665 | 952 296 652 800 |
+
+**Modellinterner Satz:** für \(0<|g|/\Delta\le 1/20\) ist der globale Grundzustand Ω **eindeutig, N=64, Spin(10)×SU(4)-invariant**; am Prüfpunkt \(-1{,}158089\,\Delta < E_0 < -1{,}129636\,\Delta\), Lücke \(> 0{,}007737\,\Delta\). (Der volle Grundzustandsvektor ist damit nicht ausgerechnet — ehrlich markiert.)
+
+**Meine Session beigesteuert (Sonde, Teil 1):** die **Z4-Zentrumsregel** — Singuletts existieren nur in Sektoren \(N\equiv 0 \bmod 4\) (SU(4)-Zentrumsphase i^N, niveauunabhängig, exakt an Basiszuständen geprüft). Das erklärt, warum die Sektorwahl nur unter N = …, 56, 60, 64, 68, … stattfindet; alle anderen Sektoren haben Casimir-Floors.
+
+**Noch laufend** ([WP-B Sonde](aa1ce128-e016-4c52-ae8f-04d625b04c23)): exakte Singulett-Multiplizitäten mult₁ (=1, der R-Zustand) und mult₂ (Gewicht-0-Unterraum + Casimir-Kern), die exakten Lanczos-Koeffizienten β₂², β₃² (Erwartung aus der Normsequenz: β₁²=480, β₂²=439680/480=**916**, β₃²=299520/229 ≈ 1307,95 — diese Verhältnisform gilt genau dann, wenn die Singuletts pro Niveau eindimensional bleiben, also ist mult₂ der Zwickel), Casimir-Floor c_min=56 auf Λ², Sektorfloors N=56…72, Gruppen-Census. Damit prüfe ich die Kernzahlen der Parallelsession unabhängig nach.
+
+---
+
+## 5. WP-D: Geladene Antwort auf dem Grundzustand (Parallelsession v1.6.4)
+
+Genau die geforderte „dieselbe geladene Antwort auf dem abgesicherten Zustand":
+
+- **Bewegungsgleichung (Operatoridentität, endlicher Teilchenkern):** \([H,f_r]=-gD_r\), \(D_r=\sum_{A,j}(M_A)_{rj}b_Af_j^\dagger\), Ladung −1 (nicht das frühere χ† mit Ladung +3). Kompositnorm: \(\langle\{D_r,D_s^\dagger\}\rangle=\delta_{rs}S\), \(S=15-\tfrac{7}{32}\bar b\).
+- **Exakte Spektralmomente:** \(Z_+=\bar b/32\), \(Z_-=1-\bar b/32\), \(a=(\Delta\bar b-E_0)/64\); \(m_0=1,\ m_1=0,\ m_2=g^2S,\ m_3=g^2(\Delta S+7a)\) (m₃ ist der eigene neue Schritt; unabhängig an der exakt lösbaren N=4/N=5-Antwort kontrolliert).
+- **Verschärfte rationale Schranken** (Polynom \(P(b)>0\), Wurzelisolation): \(0{,}842846<\bar b<1{,}245656\).
+- **Polsatz (v1.6.3, reproduziert):** isolierte Entnahmelinie, 64-fach entartet (duale 64), \(Z_{\text{low}}>0{,}880076280689\ldots\) — **mehr als 88 % des Spektralgewichts pro Mode** —, Polfenster \(0{,}007737<\epsilon/\Delta<0{,}039079764\), übrige Entnahmeenergien \(>0{,}379636\,\Delta\), Additionen \(>0{,}329636\,\Delta\).
+- **Zwei-Linien-Ausschluss:** eine exakte Zwei-Linien-Antwort erzwingt \(\epsilon_+-\epsilon_-=\Delta\), aber \(m_3/m_2=\Delta+7a/S>\Delta\) — Widerspruch. \(\Sigma_2\not\equiv0\) ist bewiesen; die Reststruktur ist unvermeidlich.
+
+---
+
+## 6. Kreuzvalidierung der beiden Spuren
+
+| Befund | Meine Session | Parallelsession | Status |
+|---|---|---|---|
+| N=3-Zerlegung (7 Blöcke, Mults 2,2,2,1,1,1,1) | ✓ | ✓ | **identisch** |
+| Casimirwerte (je Block) | (45,15), (85,15), … | C = (C_S+C_U)/4 = 15, 25, 45, 21, 31, 45, 45 | **identisch** (zwei Normierungen) |
+| Kommutant S1 (volle Symmetrie) | 7 | 7 | **identisch** |
+| Kommutant S0 (X, N_b) | ~~1 452 961 792~~ → **1 444 233 216** | 1 444 233 216 | **Diskrepanz gefunden + von mir korrigiert** |
+| Skalarkanal exakt null | ✓ (60 Zeilen, beide Chiralitäten) | ✓ | **identisch** |
+| Grundzustandsnormen | Sonde läuft (β₁²=480 ✓) | 1, 480, 439 680, 575 078 400, 952 296 652 800 | Abgleich läuft |
+
+---
+
+## 7. Offen / nächste Schritte (in der Reihenfolge der Direktive)
+
+1. **Sonde abschließen** (läuft): mult₂-Zertifikat, β-Kette, Sektorfloors → unabhängige Reproduktion der v1.6.4-Kernzahlen.
+2. **Volle 33-Niveau-Kette:** falls mult_k=1 weiter trägt, ist die Singulett-Kette durch die Normsequenz ‖Q₊ᵏF‖² (k≤32) bestimmt — dafür ist die Symmetriespur-Resummation nötig (die „vier Symmetriespuren" des Workers), nicht rohe Enumeration.
+3. **Σ₂ kontrollieren** (erster Norm-/Momentkoeffizient, N=63/64/65 gemeinsam) — die v1.6.4-Summenregeln sind die Akzeptanztests.
+4. **Feldtyp an der Quelle entscheiden:** (1,0)-Vermittler mit Kinetik *oder* nachgewiesene zweite Komponente für den skalaren Typ.
+5. **Präparationslücke:** zahlenerhaltende Kontrollen erreichen N=64 aus dem leeren Zustand nicht (Parallelsession, §8.3); imaginärzeitliches \(e^{-\tau H}F\) konvergiert mathematisch, braucht aber Instrumentenherleitung.
+6. **Räumliche Skalierung: bewusst NICHT begonnen** — gemäß deiner Direktive trägt sie erst nach Zustand + Feldwörterbuch.
+7. **Abschluss meines Contracts:** `replay.py` + `RESULTS.md` + README, wenn die Sonde zurück ist (inkl. des Erratums zum v1.6.2-Pluszeichen, das die Parallelsession dokumentiert hat).
+
+Kein T1–T8-Tor geschlossen, keine Promotion nach `verification/`, kein Ledger/Paper-Eingriff — alles bleibt im `experiments/`-Firewall.

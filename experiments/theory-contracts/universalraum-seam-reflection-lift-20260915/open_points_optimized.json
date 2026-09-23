@@ -1,0 +1,208 @@
+{
+  "P1_bank_placement": {
+    "centre": {
+      "banks": 1,
+      "components": 1,
+      "connected": true,
+      "free_fermion_directions": {
+        "+1": 3,
+        "-1": 3
+      }
+    },
+    "diagonals": {
+      "banks": 2,
+      "components": 2,
+      "connected": false,
+      "free_fermion_directions": {
+        "+1": 2,
+        "-1": 2
+      }
+    },
+    "edges": {
+      "banks": 4,
+      "components": 1,
+      "connected": true,
+      "free_fermion_directions": {
+        "+1": 1,
+        "-1": 0
+      }
+    },
+    "vertices": {
+      "banks": 4,
+      "components": 4,
+      "connected": false,
+      "free_fermion_directions": {
+        "+1": 0,
+        "-1": 0
+      }
+    }
+  },
+  "P2_source_class": {
+    "table": {
+      "support=1 sign=+1 eta=+1": {
+        "coefficients": [
+          "c0"
+        ],
+        "free_direction_forced": false
+      },
+      "support=1 sign=+1 eta=-1": {
+        "coefficients": [
+          "c0"
+        ],
+        "free_direction_forced": false
+      },
+      "support=2 sign=+1 eta=+1": {
+        "coefficients": [
+          "c0",
+          "c0"
+        ],
+        "free_direction_forced": true
+      },
+      "support=2 sign=+1 eta=-1": {
+        "coefficients": [
+          "c0",
+          "c0"
+        ],
+        "free_direction_forced": false
+      },
+      "support=2 sign=-1 eta=+1": {
+        "coefficients": [
+          "c0",
+          "-c0"
+        ],
+        "free_direction_forced": true
+      },
+      "support=2 sign=-1 eta=-1": {
+        "coefficients": [
+          "c0",
+          "-c0"
+        ],
+        "free_direction_forced": false
+      },
+      "support=3 sign=+1 eta=+1": {
+        "coefficients": [
+          "c0",
+          "c1",
+          "c0"
+        ],
+        "free_direction_forced": false
+      },
+      "support=3 sign=+1 eta=-1": {
+        "coefficients": [
+          "c0",
+          "c1",
+          "c0"
+        ],
+        "free_direction_forced": false
+      },
+      "support=3 sign=-1 eta=+1": {
+        "coefficients": [
+          "c0",
+          "0",
+          "-c0"
+        ],
+        "free_direction_forced": true
+      },
+      "support=3 sign=-1 eta=-1": {
+        "coefficients": [
+          "c0",
+          "0",
+          "-c0"
+        ],
+        "free_direction_forced": false
+      },
+      "support=4 sign=+1 eta=+1": {
+        "coefficients": [
+          "c0",
+          "c1",
+          "c1",
+          "c0"
+        ],
+        "free_direction_forced": true
+      },
+      "support=4 sign=+1 eta=-1": {
+        "coefficients": [
+          "c0",
+          "c1",
+          "c1",
+          "c0"
+        ],
+        "free_direction_forced": false
+      },
+      "support=4 sign=-1 eta=+1": {
+        "coefficients": [
+          "c0",
+          "c1",
+          "-c1",
+          "-c0"
+        ],
+        "free_direction_forced": true
+      },
+      "support=4 sign=-1 eta=-1": {
+        "coefficients": [
+          "c0",
+          "c1",
+          "-c1",
+          "-c0"
+        ],
+        "free_direction_forced": false
+      }
+    },
+    "twisted_survivors": 7,
+    "untwisted_survivors": [
+      "support=1 sign=+1 eta=+1",
+      "support=3 sign=+1 eta=+1"
+    ]
+  },
+  "P3_two_clocks": {
+    "internal_clock_period": 6,
+    "internal_clock_sign": -1,
+    "internal_slot_permutation": [
+      2,
+      0,
+      1,
+      4,
+      3
+    ],
+    "real_lifts_with_fourth_power_minus_one": 0,
+    "real_signed_slot_elements": {
+      "colour": 48,
+      "spinor": 3840
+    },
+    "verdict": "no REAL signed slot lift reaches G^4 = -I. The earlier conclusion that the negative-lift clock is therefore external to W is RETRACTED: the TFPT carrier clock is complex and native_mu4_clock.py finds it in the Cartan torus, with the seam sector structure and a real inverting involution of square +I"
+  },
+  "P4_seam_locality": {
+    "consequence": "a source that belongs to one gap can draw on two stations only, so support two is seam geometry and not an ansatz",
+    "gap_adjacency": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        3
+      ]
+    ]
+  },
+  "closed": [
+    "P1 one W bank per seam link is the unique D4-equivariant placement that is connected and spectator-free; vertices and diagonals disconnect the square and a single collective bank is rank one",
+    "P2 reflection covariance equals a palindromic coefficient vector; in the complete covariant class the untwisted lift is killed in five of seven families and the negative lift in none; on a seam link the untwisted lift always has a spectator",
+    "P3 no REAL signed slot lift reaches G^4 = -I -- a correct scan whose earlier interpretation was wrong; see native_mu4_clock.py for the retraction and the complex clock that does exist natively",
+    "P4 a seam gap has exactly two adjacent marks, so a gap-local source has support two"
+  ],
+  "exact_checks": 60,
+  "status": "PASS",
+  "still_open": [
+    "physical g/Delta: the proven windows 1/2000 and 1/10000 come from a two-state Ritz bound, not from a physical principle; this is a bound-quality problem",
+    "the two untwisted survivors of P2 are the disconnected on-site frame and the symmetric three-station frame; both are excluded by P1 and P4, not by P2 alone",
+    "3+1D spacetime, chiral measure and dynamical spin 2 are constructions, not checks; nothing here closes them"
+  ]
+}

@@ -1,0 +1,439 @@
+UR.SOURCE.GRADED_FLAVOR_AUDIT.20260920
+20 September 2026 -- exact bounded adjudication; PARTIAL
+
+Question and pinned scope
+=========================
+
+Does the already calculated source cubic or an already source-derived
+CAR/current operation supply the missing graded source-to-Yukawa map, a
+symmetric family tensor, or the complementary mixing required to lift the
+rank defect?  This audit uses pinned snapshots of:
+
+* UR.COMPILER.VACUUM_CURRENT_CUBIC.06;
+* the live draft UR.SOURCE.FLAVOR_ORIGIN.01;
+* UR.COMPILER.CURRENT_DESCENDANT.16 and CURRENT_PRODUCT.21; and
+* the implemented 96-dimensional finite triple v252.
+
+The source files are not edited.  `source_pins.json` fixes their bytes and the
+repository HEAD.  Cross-lane corrected-coframe and native-C/J quadratic-family
+artifacts are separately byte-pinned.  `checker.py` performs 104 exact bounded
+checks and writes `certificate.json`.  The stale theory-graph wrapper was not
+rebuilt.
+
+Verdict
+=======
+
+The latest source-flavor draft is correct on its narrow negative statement:
+the ungraded native bosonic tensor
+
+  C_(A,i)(B,j)(H,k) h_k = d_ABH epsilon_ijk h_k                  (1)
+
+cannot be substituted directly for a local zero-derivative all-left-handed
+Weyl Yukawa coefficient.  The internal E6 tensor d_ABH is symmetric, while
+the family factor is alternating, so (1) is alternating under the combined
+exchange (A,i)<->(B,j).  The Lorentz scalar of two left-handed Grassmann
+fields is symmetric in the complete component labels.  Their contraction is
+therefore zero.
+
+This applies to the actual common Spin(10)-16 times family inclusion, not only
+to two fields bearing the same informal species name.  Q, d^c, L and e^c are
+coordinates of the common left-handed multiplet.  Declaring two independently
+ordered field spaces could avoid this particular symmetrisation, but the
+source has not derived such a split, its grading, or its map to the common
+multiplet.  It cannot be inserted as a loophole.
+
+The original cubic itself remains valid.  It is a bosonic three-current
+correlator with ordered modes, where antisymmetry is supplied by the current
+bracket.  The audit does not refute the unique E6 cubic, its 45 monomials, its
+40 (16,16,10) slots, or its actual down/lepton coefficients.
+
+But that negative result is not the end of the existing algebra.  The fixed
+3+2 carrier already supplies a discrete weak-occupation mark S: +1 on the
+weak doublets Q,L and -1 on the singlets u^c,d^c,e^c,nu^c.  On both actual
+neutral-Higgs internal matrices d_H extracted from the 45 pinned monomials,
+
+  {S,d_H}=0.                                             (1a)
+
+Therefore S d_H is alternating internally.  Since A(h) is also alternating,
+
+  Y_mark(h) = (S d_H) tensor A(h)                        (1b)
+
+is symmetric on the complete internal-plus-family labels.  It also
+anticommutes with S.  Thus an already source-marked algebraic repair exists;
+an unknown independent symmetric family tensor is not required merely to fix
+exchange parity.
+
+This S is a weak-occupation mark, not CAR fermion parity, and not the
+restriction of the v252 grading to the all-left-handed source multiplet.  All
+source Weyl fields remain Grassmann odd.  In v252 the grading flips on
+antiparticles, so the all-left subspace made from left particle fields and
+charge-conjugated right fields has gamma=+ throughout.  The match to v252 is
+only obtained after the typed conversion from the all-left coefficient to the
+particle-space Hermitian Dirac operator, explained below.  No current-to-CAR
+or boson-to-fermion intertwiner follows from S.
+
+This is the strongest positive result of the audit.  It remains a conditional
+operator descent: the current source has not yet shown that its bosonic mode
+ordering becomes a local 3+1D fermion vertex with S inserted on the specified
+leg.  Its rank also remains deficient.  A second positive algebraic structure,
+the two-current contraction, repairs symmetry by a different route but has the
+same one-family null direction.  No inspected source operation supplies the
+nonzero complementary overlaps.
+
+1. Exact exchange statement
+===========================
+
+For one Higgs-family vector h define
+
+  A(h)_ij = epsilon_ijk h_k
+          = [[0,h3,-h2],[-h3,0,h1],[h2,-h1,0]].       (2)
+
+Then A(h)^T=-A(h), A(h)h=0, det A(h)=0 and
+
+  adj A(h) = h h^T.                                  (3)
+
+Let I=(A,i) and J=(B,j) be complete internal-plus-family indices.  For a
+left-handed scalar bilinear
+
+  B_IJ = psi_I^alpha psi_J^beta epsilon_(alpha beta),
+
+Grassmann exchange and spinor-epsilon exchange each contribute a minus sign,
+so B_JI=B_IJ.  But d_ABH A(h)_ij is alternating in I,J.  Summation therefore
+gives zero pairwise, including when I and J label different Standard-Model
+components inside the unified field.
+
+This matches the standard two-component-field rule that the Yukawa tensor is
+symmetric in its two left-handed fermion labels; see Dreiner, Haber and Martin,
+"Two-component spinor techniques and Feynman rules", arXiv:0812.1594,
+https://arxiv.org/abs/0812.1594.  The E6 tensor inventory and its physical
+Yukawa uses are separately documented by Deppisch, "E6Tensors",
+https://arxiv.org/abs/1605.05920.  These references support the field-theory
+typing; the TFPT coefficient and rank tests are the calculations here and in
+the pinned source certificate.
+
+There is a necessary precision at this point.  After gauge breaking, a charged
+Dirac mass is usually written as a rectangular block M_ch between the charge
+-1 left-handed fields and the charge +1 left-handed conjugate fields.  M_ch
+itself need not be symmetric.  The complete all-left-handed mass tensor is
+
+  [[0,M_ch],[M_ch^T,0]],                              (3a)
+
+which is symmetric.  Therefore an antisymmetric 3-by-3 A(h) is not forbidden
+as a rectangular Dirac block.  What is forbidden is substituting the entire
+native ordered-current tensor directly as the complete coefficient: its
+swapped current ordering supplies the opposite sign, whereas (3a) requires
+the transpose completion with the same coefficient.
+
+The carrier mark supplies the algebraic sign needed for precisely this
+completion.  On a doublet-to-singlet entry S contributes +, while on the
+swapped singlet-to-doublet entry it contributes -.  That minus combines with
+A(h)^T=-A(h), producing the same transposed coefficient required in (3a).
+What remains open is whether the physical source-to-field map actually applies
+this mark to the ordered current vertex.  The corrected auxiliary coframe gives
+representation slots in which the resulting rectangular 3+1 block is
+statistically consistent.  It does not generate its matrix elements.  The
+pinned C/J-invariant quadratic action in fact factorizes, so natural
+elimination of that pair produces no such mixing; Section 5 states the exact
+limit.
+
+2. Canonical marked one-vertex repair on the actual source slots
+================================================================
+
+The mark does not come from a continuous flavor fit.  For each actual Spin16
+weight in the pinned E6 basis, take its five carrier occupations.  The parity
+of the two weak occupations is odd exactly for Q and L and even exactly for
+u^c,d^c,e^c,nu^c.  Choosing odd -> + and even -> - defines S, up to an overall
+irrelevant sign.  There are eight states of each sign.
+
+The down-type neutral Higgs slot is pinned index 12 and the up-type slot is
+index 14.  Their actual symmetric 16-by-16 coefficient matrices d_d,d_u each
+have rank 8 and only connect opposite S sectors.  The checker verifies from
+the 45 monomials, without a guessed dictionary,
+
+  d_H^T=d_H,  rank d_H=8,  {S,d_H}=0,
+  (S d_H)^T=-S d_H.                                  (3b)
+
+It also verifies the actual charges and colours: the down slot contains one
+e^c-L pair and three colour-complementary Q-d^c pairs; the up slot contains
+one nu^c-L pair and three colour-complementary Q-u^c pairs.  Their
+hypercharges sum respectively to +1/2 and -1/2, cancelled by the selected
+neutral Higgs component.  This rules out a dimension-only identification.
+
+Combining (2) and (3b),
+
+  Y_mark(h)^T = Y_mark(h),
+  {S,Y_mark(h)}=0.                                   (3c)
+
+The relation to v252 requires care about the spaces.  On the all-left Weyl
+space
+
+  V_AL = V_L plus V_(R^c),
+
+a complex rectangular charged block M_ch is completed as the symmetric
+coefficient
+
+  C_AL = [[0,M_ch],[M_ch^T,0]].                      (3c1)
+
+After the ordinary charge-conjugation/relabeling R^c -> R, the v252 particle
+Hilbert space is
+
+  H_particle = H_L plus H_R,
+
+and its Hermitian Dirac operator is instead
+
+  D_particle = [[0,M_ch],[M_ch^dagger,0]].           (3c2)
+
+With gamma_particle=diag(+I,-I), equation (3c2) is Hermitian and
+{gamma_particle,D_particle}=0.  The source mark S becomes this +left/-right
+label after relabeling, but it was not v252 gamma on V_AL: v252 assigns + also
+to the R antiparticle states used for R^c.  The checker constructs both
+transpose and adjoint completions explicitly.  This is a typed algebraic
+conversion, not a derived source/96D intertwiner.
+
+The repair preserves rank.  For generic h,
+
+  rank Y_mark = rank(d_H) rank(A(h)) = 8*2 = 16 of 48. (3d)
+
+Every individual charged species block therefore still has family rank at
+most two.  S changes exchange type and grading, not the missing singular
+value or mass hierarchy.
+
+Conditional one-spurion strengthening.  Assume additionally that h is the
+only commuting family triplet spurion, the coefficient is defined for every
+h != 0, exactly SU(3)-equivariant, and has exact charge +1 under a continuous
+U(1) with h -> exp(i theta)h.  At h=r e3 the SU(2) stabilizer fixes exactly two lines in
+the space of two-lower-index bilinear coefficients.  Covariantly these are
+
+  f(h^dagger h) epsilon_ijk h_k,
+  g(h^dagger h) bar(h)_i bar(h)_j.                  (3e)
+
+The first has U(1) grade +1 and is A(h); the second is symmetric but has grade
+-2.  Neutral radial functions of h^dagger h do not change those grades.
+Thus exact grade +1 retains only A(h), and every such one-spurion coefficient
+has rank at most two.
+
+This is deliberately conditional.  The charges +1 and -2 coincide modulo
+three, so SU(3) triality alone does not exclude the symmetric line.  An
+independent charged spurion, a distinct derivative jet, a nonlocal field, or
+a coefficient not uniquely defined at nonzero h lies outside the lemma.
+Singular behavior only at h=0 does not evade the nonzero-orbit stabilizer
+argument.  The checker proves the two-dimensional stabilizer fixed space and
+both charge statements; it does not promote the extra U(1) or the one-spurion
+premise to source-derived facts.  The independent 12-check derivation in
+`joint/ONE_BACKGROUND.md` reaches the same conditional conclusion.
+
+3. Positive two-vertex contraction, and its exact limit
+========================================================
+
+The affine source has an invariant current two-point form.  Contracting two
+copies of the family vertex through a symmetric family propagator P gives
+
+  T(h;P) = A(h) P A(h)^T.                            (4)
+
+Equation (4) is symmetric for every P=P^T, so it has the correct exchange
+type for a left-handed bilinear.  With the canonical orthonormal current
+metric P=I,
+
+  T(h;I) = (h^T h) I - h h^T.                       (5)
+
+But T(h;P)h=0 and det T(h;P)=0.  A different vector k at the second vertex
+does not help a single contraction:
+
+  det[A(h) P A(k)^T]=0,                              (6)
+
+because each exterior factor has rank at most two.  Thus the positive
+two-vertex possibility repairs statistics but leaves one exactly massless
+family.  For h=k and P=I the two nonzero eigenvalues remain equal in the
+ordinary non-isotropic case.
+
+The obstruction survives an arbitrary matrix-valued internal propagator and
+same-vertex resummation.  For every F,
+
+  [A(h) F A(h)^T] h = 0,
+  [A(h) + A(h) F A(h)] h = 0.                       (6a)
+
+Thus any diagram whose external family legs retain the same A(h) has the same
+massless direction, regardless of what is resummed between them.  A genuinely
+different external vertex can evade (6a); equation (7) is the smallest exact
+witness.
+
+The rank obstruction is not universal to every sum of source channels.  Two
+noncollinear contractions can be full rank.  The exact witness
+
+  A(e1)A(e1)^T + A(e2)A(e2)^T = diag(1,1,2)          (7)
+
+has determinant 2.  Equation (7) is a target condition, not a derived TFPT
+Yukawa: the current source must independently produce both backgrounds,
+their relative weight and phase, the fermionic chirality flip, and the same
+3+1D local scaling limit.  Repeating the same h with different propagators
+cannot help, because A(h) remains the common exterior factor.
+
+The affine current identities used by the pinned source are standard current
+algebra.  The original reference is Knizhnik and Zamolodchikov, "Current
+Algebra and Wess-Zumino Model in Two Dimensions",
+https://strings.itp.ac.ru/Papers/knizhnik1984.pdf.  That theory supplies the
+bosonic current contraction; it does not itself turn (4) into a TFPT fermion
+mass term.
+
+4. Why canonical CAR, a derivative, and the native current descendant do not close it
+======================================================================================
+
+The canonical CAR two-point tensor pairs a family 3 with its conjugate bar3,
+delta_i^barj.  It is the kinetic/current channel.  A lower-lower delta_ij on
+3 tensor 3 is not SU(3)-invariant: the centre acts on it with charge two.
+Consequently the CAR metric alone is not the missing holomorphic symmetric
+family tensor.
+
+The native A3 current zero modes are grading-even.  Embedded on left and
+right particle chiral copies they commute with gamma.  They cannot themselves
+be the v252 Dirac/Yukawa block.  The marked tensor (1b), once converted by
+(3c1)-(3c2), passes the particle-space oddness test, but using it as a source
+interaction requires a current-to-field descent that inserts S on the vertex;
+this physical operation is not supplied by a current zero mode or its
+polynomial.  S is also distinct from CAR fermion parity: all components of the
+Weyl multiplet are fermion-odd, while S takes both signs inside that multiplet.
+A relative
+derivative can also reverse an exchange parity by contributing relative
+momentum, but it vanishes in the zero-momentum mass limit.  It defines a
+derivative interaction, not a zero-derivative Yukawa.
+
+CURRENT_DESCENDANT.16 and CURRENT_PRODUCT.21 provide a real positive result:
+an exact Sym^2(C4)=10 descendant and a response operator
+
+  G = (3/4) I_50 + (9/4) P_10.                       (8)
+
+This still does not select a coherent symmetric tensor.  G is an element of
+End(bar5 tensor Sym^2(C4)), not a vector in Sym^2(C4).  The SU(4) central
+element iI acts as -I on Sym^2(C4), so an SU(4)-invariant coherent vector in
+that 10 must be zero.  Restricting 4=3+1 only after choosing an anchor gives
+
+  Sym^2(4) = Sym^2(3) + 3 + 1,                       (9)
+
+but neither a vector in Sym^2(3) nor the cross-term 3 is selected by (8).
+
+An individual decomposable source ray v v^T also cannot serve as the desired
+complement.  Write v=(s,t) in 3+1 form.  Its blocks are
+
+  S=s s^T,  b=s t,  M=t^2,
+
+and, when M is nonzero,
+
+  S - b b^T/M = 0.                                  (10)
+
+The full 4-by-4 tensor remains rank one.  The uniformly averaged frame in
+(8) is a quadratic response operator and does not provide a coherent sum of
+rays with phases.  Choosing such a sum would be a new source-state rule.
+
+5. Complement theorem and the corrected pair's exact dynamical limit
+=====================================================================
+
+For the generous directed block used in the live draft,
+
+  M_full = [[A(h),b],[c^T,M]],  M != 0,
+
+the exact identities are
+
+  det M_full = -(h^T b)(c^T h),
+  det[A(h)-b c^T/M] = -(h^T b)(c^T h)/M.             (11)
+
+Both overlaps must be nonzero.  Multiplying the reduced determinant by M
+recovers the full determinant, so a phase residing only in M cancels from
+this full finite-block determinant.  The checker independently reproduces
+(11).  No pinned native current/CAR construction selects b and c, and the
+single Bell ray fails by (10).  More strongly, deriving either overlap only
+through the old exterior family vertex cannot work:
+
+  b=A(h)u  implies h^T b=0,
+  c^T=v^T A(h) implies c^T h=0.                     (11a)
+
+The complementary channel must therefore couple outside the image selected by
+the same A(h), or use a genuinely independent external source vertex.
+
+The corrected auxiliary coframe makes the pair kinematically admissible: its
+signed hypercharges are (-1,+1), rather than the old color-like
+(-1/3,+1/3), and it preserves the E8 split with a positive permutation-
+invariant energy example.  This is a representation result only.
+The two corrected ten-dimensional clock lifts do not preserve the fixed Y10
+marking.  They can therefore be carried in the same dictionary, but are not
+thereby internal hypercharge-preserving time evolutions.
+
+For both coframes, the pinned C/J-invariant quadratic energy family is exactly
+
+  V_W = blockdiag(a G_E8, M_2),                     (12)
+
+because the common invariant symmetric form on E8 is one-dimensional and the
+native C/J action has no fixed E8 vector that could form a cross block.  The
+only declared cosine is pair-only.  The corresponding restricted Hamiltonian
+therefore has the factor form
+
+  H = H_E8 tensor I + I tensor H_pair.              (13)
+
+Let P=I_E8 tensor |vac><vac|, where |vac> is an actual eigenvector of
+H_pair, and Q=I-P.  Then [H,P]=0 and
+
+  Q H P = 0.                                        (14)
+
+Natural Feshbach/Schur elimination of this massive pair consequently produces
+no E8-pair self-energy and no b,c mixing in the pinned restricted action.
+This does not say that b,c vanish in every field basis, nor does it exclude a
+source-derived nonfactorizing higher interaction.  The checker includes an
+explicit cross-term control with QHP nonzero to show exactly what additional
+operator structure would change (14).
+
+6. Exact missing operator contract
+==================================
+
+The remaining question is now small enough to state as an acceptance gate.
+A successful source-to-Yukawa descent must first realize the now-explicit
+candidate Y_mark=(S d_H) tensor A(h) as a local fermionic operator from the
+pinned common source, without taking Yukawa matrices as inputs.  It must then
+lift its rank by one of the following:
+
+  A. a source-selected sum of at least two independent two-vertex channels
+
+       Y = sum_r A(h_r) P_r A(k_r)^T,
+
+     with the actual source weights/phases and det Y != 0; or
+
+  B. an actual complementary graded channel with blocks b,c,M satisfying
+     (h^T b)(c^T h) != 0.
+
+Both routes require the ordered-sector descent just described: the bosonic
+current mode ordering must become one rectangular chiral block, S must supply
+the certified sign, and the source reality/adjoint must produce its transpose
+completion.  Merely writing S beside the finite tensor does not prove that
+the 3+1D source dynamics executes this operation.
+
+In either route the same constructed operator must pass all five tests:
+
+  1. EXCHANGE: Y is symmetric on the complete left-handed component labels
+     (already passed algebraically by Y_mark);
+  2. GRADE: after the typed conversion (3c1)-(3c2), the Hermitian particle
+     operator anticommutes with the v252 chirality grading (passed
+     algebraically; no source/96D intertwiner inferred);
+  3. REPRESENTATION: it intertwines the actual global gauge/family actions;
+  4. MASS: its zero-momentum family block has nonzero determinant and the
+     required nondegenerate singular spectrum; and
+  5. PROVENANCE: backgrounds, propagator, relative phases and normalization
+     are generated by the common source/state/time, with a local 3+1D limit.
+
+The smallest decisive next test is therefore not another mass fit.  It is to
+derive a nonfactorizing marked kernel from the common source and show either
+two independent external family channels or QHP != 0 for the actual massive
+pair.  Then evaluate the five quantities above and ablate each independent
+channel.  Failure of the typed grade, determinant, or QHP test stops the route
+before any CKM/PMNS or phase claim.
+
+Scope
+=====
+
+Exact under the pinned finite tensors and stated current-module premises:
+the canonical marked one-vertex repair (1a)--(3d), exchange parity, the
+two-vertex identities, same-external-leg rank obstruction, response-object
+typing, actual colour/charge slots, the transpose-to-adjoint v252 conversion,
+the corrected auxiliary charges, and QHP=0 for the restricted factorized
+quadratic action.  Conditional/open: physical marked current-to-field descent,
+rank-lifting source channel, nonfactorizing chirality-changing interaction,
+selection of multiple backgrounds or complement, locality, measure,
+continuum and observed couplings.  No T1--T8 gate is closed, no ledger/paper
+promotion is made, and no complete TFPT/TOE claim follows.

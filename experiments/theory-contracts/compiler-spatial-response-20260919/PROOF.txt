@@ -1,0 +1,307 @@
+UR.COMPILER.SPATIAL_RESPONSE.20 — 19 September 2026
+VERDICT: PARTIAL. Finite-chain audit and conditional native current connection.
+
+QUESTION
+Can the low source modes in the submitted open-chain continuation represent
+local propagating physics, and does the original source already provide a
+phase-faithful alternative connecting the same readout to spatial response?
+
+The decisive test is a specified local operator's spectral measure, followed
+by closure under the actual source current brackets. A small gap, a pure
+finite ground state, or a matching representation dimension does not suffice.
+No Hamiltonian term, phase diagram, bulk spacetime or preparation is invented
+in this contract. No T1–T8 gate is closed.
+
+1. AUDIT OF THE SUBMITTED ALL-LENGTH CHAIN
+
+The submitted text, rather than an independently available external package,
+is the source of the claims being audited. The operators were independently
+reconstructed from contract .19. Full proofs are in chain_order_proof.txt and
+spatial_response_proof.txt; the exact source is pinned in the checkers.
+
+For m>=2 source edges and m+1 shared C4 registers,
+
+ H_m = J sum HE_e + kappa sum L_e + mu sum (1-x_e.x_(e+1)),
+ L_e = I-(1/60) sum_r R_r^(e) tensor r^(e-1) tensor r^e,
+
+with native PURE root permutations R_r, J>=0, kappa>0 and mu>0, the claimed
+fixed-m leading gap is correct:
+
+ Delta_m = (kappa/60)(kappa/(30mu))^(m-1)
+           [16+2(-1/2)^(m-1)] + O_(m,J,kappa)(mu^-m).
+
+Each fixed finite m has a unique full ground state for sufficiently large mu.
+The proof requires all m sources to change and uses the exact ordered-cut
+identity sum_(sigma) prod_(k<m) 1/b(S_k) = 2^(m-1). This is a theorem for all
+m via a tree-edge integral, with separate exact subset checks through m=10.
+It is NOT an estimate uniform in m or a fixed-coupling thermodynamic claim.
+
+For the actual finite Hamiltonian, without a perturbation truncation,
+
+ <x_1.x_m> >= 1-3 kappa m(m-1)/(4mu),
+ mu>=3 kappa m^2 and unique ground => Delta_m<=8 kappa/(15m).
+
+The odd-m gap bound can be sharpened to 8 kappa m/(15m^2+1). The proof uses
+E0<=3kappa m/4, positivity, global source inversion, and the exact native
+average squared reflection displacement equal to one. The underlying local
+Hamiltonians remain model choices, not consequences of P1/P2.
+
+2. A DIRECT SPATIAL RESPONSE TEST, INCLUDING ITS LIMIT
+
+Use normalized real open-chain source profiles
+
+ q_n=pi n/m, w_e=sqrt(2/m) cos[q_n(e-1/2)], 1<=n<m,
+ O_(n,a)=sum_e w_e x_e^a.
+
+For the positive-frequency ground-state spectral measure of these Hermitian
+operators, summed over the eight INTERNAL root coordinates,
+
+ S0(q_n) = sum_a int S_aa(q_n,domega)
+          <= 3 kappa m/[8mu sin^2(q_n/2)],
+ S1(q_n) = sum_a int omega S_aa(q_n,domega) <= kappa/2.
+
+Indeed O_w=-sum_k W_k(x_(k+1)-x_k), W_k=sum_(e<=k)w_e;
+sum W_k^2=1/[4sin^2(q_n/2)] and positivity bounds the total gradient by
+3kappa m/(2mu). The second inequality is the double-commutator sum rule.
+
+At mu>=3kappa m^2, fixed dimensionless q away from zero has S0=O(1/m).
+Thus a finite-residue pole of these SOURCE COORDINATES cannot survive that
+joint limit. This is stronger than merely observing that the exactly locked
+subspace has zero matrix elements for every zero-sum source profile.
+
+Neither result settles a fixed-coupling phase diagram. Fixed mode number n
+has q_n~1/m and is not suppressed by the displayed bound. Likewise, if a
+lattice spacing is sent to zero, fixed physical momentum may correspond to
+q_n tending to zero; the bound must be rescaled before drawing a conclusion.
+
+Do not generalize to all observables. In the limiting register state,
+<Q_e>=1/4, <Q_e Q_f>=1/10 for distinct sites. A normalized zero-sum register
+profile has static variance 1/4-1/10=3/20, not zero. This does not prove it is
+low-frequency. It demonstrates why the measured operator must be specified.
+
+3. RETURN TO THE EXISTING AFFINE SOURCE, WITHOUT IDENTIFYING IT WITH THE CHAIN
+
+Contract .06 already established the actual E8 source current Gram and cubic
+using v498, including compact adjoint E_alpha^dagger=-E_-alpha in that source
+convention. It explicitly distinguished current response from a physical
+reduced vacuum state. We retain that distinction. The following is standard
+affine/Sugawara theory applied to the native .19 quartic map, not a newly
+discovered conformal theory or a proof of the microscopic seam's limit.
+
+Assume the existing unitary affine E8 level-one vacuum representation:
+
+ [J_p(a),J_q(b)] = J_(p+q)([a,b])+p kappa(a,b) delta_(p+q,0),
+ J_p(a)Omega=0 for p>=0.
+
+Use the positive Hermitian metric <a,b>=kappa(a^dagger,b). For EVERY integer
+n>=1, define
+
+ i_n(a)=J_-n(a)Omega/sqrt(n).
+
+Then exactly
+
+ <i_n(a),i_n(b)>=<a,b>,
+ J_0(b)i_n(a)=i_n([b,a]),
+ [L0,J_-n(a)]=n J_-n(a).
+
+The first identity follows because the zero-mode commutator annihilates
+Omega and only the central term remains. The second follows from the affine
+commutator. They are all-n arguments, not extrapolations from a few levels.
+The original PBW engine independently checks grades 1,2,3,5. The entire affine
+grade n is generally larger than this 248-dimensional one-current image.
+
+The native quartic 1+3 splitting from .19 supplies the exact unitary
+
+ F: conjugate(Sym3 C4) -> W20=Lambda4(C5) tensor C4,
+ F_(A,i),j = 2(K_A)_(i,j)/sqrt(n_A), n_A=(4,12,12,12,24).
+
+Thus F_n=i_n F carries the SAME readout coefficient geometry to every n.
+For v_l=psi_l^tensor3 and w_l=F conjugate(v_l),
+
+ sum_(l=1..60)|w_l><w_l|=3 I_W20,
+ <w_l,w_r>=<psi_r,psi_l>^3.
+
+The effects |i_n(w_l)><i_n(w_l)|/3 resolve the image of F_n. Add a complement
+effect if measuring the full affine Hilbert space. Preparing the algebraic
+purification Xi_n=sum_j F_n e_j tensor e_j/sqrt20 would give p_l=1/60 and
+conditional register vector v_l; neither preparation nor this detector is
+derived here. In particular Xi_n is an excited grade-n state, not Omega.
+
+4. PRECISE NONZERO-MOMENTUM RESPONSE
+
+Specify a boundary circle of circumference L and a velocity v, and use its
+conformal Hamiltonian H_b=(2pi v/L)(L0-c/24), c=248/(1+30)=8.
+These geometric and time calibrations are assumptions of this boundary
+description; they are not selected by the dimensionless finite compiler.
+
+Define a CREATION mode B_(l,n)=J_-n(w_l)/sqrt(L) and its actual Hilbert adjoint.
+With spectral projectors of H_b-E0, define the matrix-valued measure
+
+ S_lr^(n)(domega)=<Omega|B_(l,n)^dagger P_(H_b-E0)(domega) B_(r,n)|Omega>.
+
+Then
+
+ S_lr^(n)(domega)=(n/L)<psi_r,psi_l>^3 delta_(v q_n)(domega),
+ q_n=2pi n/L, n>=1.                                    (A)
+
+The delta is a Dirac MEASURE, so no Fourier-transform 2pi convention is hidden.
+Each diagonal residue is n/L=q_n/(2pi)>0. Superpositions over n propagate
+chirally under H_b. At a single fixed n, L0 is scalar and does not mix the
+internal readout directions. A wavepacket's preparation is separate.
+
+Equation (A) links the original triple-ray overlaps to a spatial response in
+the assumed current theory. It does NOT assert that the source coordinate
+operator of section 2 equals this current field. There is no operator map
+transporting the lock Hamiltonian, its off-lock states or its dynamics.
+
+The neutral boundary stress tensor provides another known check:
+||L_-n Omega||^2=c(n^3-n)/12 for n>=2. Global E8 zero modes commute with it.
+This is a 1+1-dimensional Virasoro excitation, not a 3+1-dimensional graviton.
+
+5. REQUIRED CURRENT COMPLETION IS VISIBLE IN ACTUAL BRACKETS
+
+The twenty source directions are not a closed E8 sector. With the original
+D5+A3 marking, Lambda4(C5) tensor 4 consists of doubled roots having exactly
+one minus sign in the first five coordinates and odd minus parity in the last
+three. The native Chevalley bracket, including its cocycle, shows:
+
+ twenty currents plus their adjoints -> 72 roots + 8 Cartan = A8, dimension80.
+
+The exact simple-root Cartan matrix is an eight-node chain with determinant9.
+Equivalently these are the off-diagonal 5x4 blocks of sl9; their products
+generate sl5+sl4+u1 and the two off-diagonal blocks. This is an INTERNAL
+subalgebra identification, not a prediction of an SU9 physical gauge group.
+
+The previously unused Lambda0(C5) tensor 4 directions are already present
+in the same (16,4) E8 grade-one module. Adding any one of their four root
+currents and its adjoint to the generated A8 closes to all 240 roots and the
+eight Cartan directions. The checker verifies the actual root closure and
+the nonzero original cocycle brackets, not just dimensions.
+
+This gives a precise operator-completion target for the readout: retain the
+old twenty directions while connecting the existing companion directions.
+It does not select a physical action or make a charged excitation a vacuum.
+
+5A. AN EXPLICIT PHASE-COVARIANT COMPLETION USING THAT EXISTING COMPANION
+
+The completion can be carried out without adding current degrees of freedom.
+Let W24=W20 direct-sum W4, W4=Lambda0(C5) tensor C4, and write
+
+ w_(l,s)=(sqrt(5/6) F conjugate(psi_l^tensor3),
+          s sqrt(1/6) psi_l), s=+1,-1.
+
+These are 120 normalized current directions in the existing 24-space. Their
+relative squared magnitudes 5:1 follow from the old frame identities 3I20
+and 15I4, provided one requires a normalized UNIFORM tight frame of this
+specified cubic-plus-linear form. This does not uniquely select an arbitrary
+physical detector. A common relative phase is a convention related by the
+existing exterior-degree Cartan N-5/2; no physical angle is predicted.
+
+The additional native identity sum_l psi_l^tensor4=0 is checked exactly.
+It implies that even either sign sheet alone is tight, but not covariant
+under the actual reflection lift. With d=det(g), h=lambda g, and the same
+quartic representation R(g) as .19, the ACTUAL E8 source action restricts to
+
+ S_h=lambda diag(d(R(g) tensor g), g).
+
+If g psi_l=zeta psi_lprime with zeta in mu4, then
+
+ S_h w_(l,s)=d lambda zeta w_(lprime,s d).
+
+Thus the required sign change is precisely the existing determinant
+character. The five original generating reflections exchange the two labels.
+All 600 generator/ray/sign relations are checked with exact coefficients.
+The label is part of the outcome set, not an extra tensor-factor qubit or a
+derived identification with the original P1 seam sheets.
+
+The effects E_(l,s)=|w_(l,s)><w_(l,s)|/5 obey
+
+ sum_(l,s) E_(l,s)=I24,
+ sum_l E_(l,s)=I24/2,
+ sum_s P20 E_(l,s) P20 = |w_l><w_l|/3.                  (B)
+
+The last equality reproduces the ENTIRE old .19 effect POVM for every input
+supported in W20, not only its uniform probabilities in a chosen state.
+It does not prove equality of measurement instruments or post-measurement
+states. Source24 is a generating current family, not an invariant E8 module.
+Its frame spans W24, so together with adjoints and current commutators it
+generates the full E8 algebra already identified above.
+
+All these vectors have the mode lifts i_n(w_(l,s)). With the explicit spectral
+measure convention of section4 their response is
+
+ S_(l,s;r,t)^(n)(domega) = (n/L) [
+     (5/6)<psi_r,psi_l>^3 + (s t/6)<psi_l,psi_r>
+   ] delta_(v q_n)(domega).                            (C)
+
+Equations (B) and (C) connect the original readout, the required phase action,
+the nonabelian current completion and spatial response in one CONDITIONAL
+boundary construction. They use the assumed E8_1 vacuum; they do not prove
+that the microscopic source selects this field representation or readout.
+The optional external space Sym3(C4) direct-sum conjugate(C4) and its F24
+purification are expressly chosen bookkeeping, not newly derived matter.
+Full proof, exact covariance and controls: completion24_proof.txt.
+
+6. NEUTRAL PAIRING DOES NOT REMOVE THE OPERATOR-CLOSURE REQUIREMENT
+
+For a root-monomial unitary lift S_g E_alpha=eta_g(alpha) E_(g alpha), the
+encoding Q|alpha>=E_alpha tensor conjugate(E_alpha) exactly intertwines
+S_g tensor conjugate(S_g) with the pure root permutation; phases cancel.
+But its 240-dimensional root-diagonal image is not stable under current
+zero modes. In the obligatory sl2 triple,
+
+ [ad_Ealpha,P_-alpha]E_-alpha = H_alpha,
+
+which leaves the root-diagonal image. The full invariant identity includes
+eight Cartan directions and is one singlet, not a root-label register.
+Therefore this phase cancellation cannot transfer the lock model unchanged
+to the full current source. The existing two-bank models also do not supply
+a uniquely selected physical adjoint-dual companion. See the source audit.
+
+7. WHERE THE PHYSICAL DERIVATION NOW HAS TO ACT
+
+The original research contract explicitly keeps SEAM.EQUIV.01 open. Its
+continuum target includes uniform energy bounds, convergence of local
+algebras, commuting the mu4 simple-current extension with the limit, and
+holomorphic reconstruction. In particular N1 the extension as a net, N2 the
+twist/spin fields, N3 the one-sided chiral edge, N4 the OS/holomorphy selector
+are not supplied by equation (A). Assuming E8_1 while proving that very raw
+seam identification would be circular.
+
+Even that seam target is 1+1 dimensional. The original contract separately
+requires SEAM.BULK4D.RECON.01; its spacetime uplift, chirality, couplings and
+universal gravitational response are not consequences of this calculation.
+The readout corner has nonzero hypercharge; zero mean charge is not a gauge
+singlet. A unique energetic ground does not prepare itself under autonomous
+unitary evolution, since its spectral projector commutes with H.
+
+The constructive result is the exact linkage of a specified native readout
+to propagating affine current response, with its required bracket completion
+identified. The old lock chain is audited and bounded; it is not advanced as
+an origin derivation merely because it selects a finite pure state.
+
+PRIMARY REFERENCES AND PRIOR RESULTS
+
+Knizhnik and Zamolodchikov, Current Algebra and Wess-Zumino Model in Two
+Dimensions, Nuclear Physics B247 (1984) 83–103, sections2–3:
+https://strings.itp.ac.ru/Papers/knizhnik1984.pdf
+Used for affine/Virasoro structure and Sugawara, not TFPT identification.
+
+Bravyi, DiVincenzo and Loss, Schrieffer-Wolff transformation for quantum
+many-body systems (2011): https://arxiv.org/abs/1105.0675
+Used as method context; the path coefficient and finite-m proof are written out.
+
+Dong and Nagatomo, Automorphism Groups and Twisted Modules for Lattice
+Vertex Operator Algebras: https://arxiv.org/abs/math/9808088
+Used to distinguish lattice lifts from full current automorphisms.
+
+Pinned local originals: contracts .06, .19, original v1/v498 engines,
+tfpt_research_contracts.tex seam handoff and dimension-typing requirements.
+The graph was used for prior-route discovery, not as a proof source.
+
+REPLAY SCOPE
+Exact finite matrix identities use unconditional checks under normal and -OO
+execution. The general theorems are written mathematical arguments with finite
+checks, not proof-assistant formalizations. The trigonometric profile replay
+is floating point; its general identity is proved by summation in the text.
+No physical claim promotion, full-suite claim or full TOE completion.

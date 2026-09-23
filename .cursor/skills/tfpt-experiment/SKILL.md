@@ -107,3 +107,12 @@ Confirm numbers here first; promote via **`promote-to-verification`** when load-
 - [ ] `build_evidence_scorecard.py` run if scorecard changed
 - [ ] No accidental edits to verification/ledger/papers
 - [ ] `experiments/next.txt` entry if user-visible research note
+
+## contract_index.json (Pflicht)
+
+Neuer Contract-Ordner ⇒ immer eine `contract_index.json` nach dem Schema in
+`experiments/theory-contracts/README.md` mitschreiben (contract, date, question,
+verdict + verdict_enum, claims_tested, gates, kills, checker, firewall).
+`build_theory_graph.py --check` (läuft in `bash build.sh audit`) wird ohne das
+File nicht rot — aber der Contract erscheint ohne Verdict im Theorie-Graphen
+(`theorycat.py tried <name>` zeigt dann `unknown`).

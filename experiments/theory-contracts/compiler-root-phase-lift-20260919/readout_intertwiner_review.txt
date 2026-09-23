@@ -1,0 +1,145 @@
+UNABHÄNGIGE PRÜFUNG DES QUARTIK-BELL-READOUT-INTERTWINERS
+Datum: 2026-09-19
+Verdict: EXACT_READOUT_INTERTWINER_POVM_SELECTION_OPEN
+
+Ergebnis
+--------
+Das enge Anschlusslemma trägt exakt. Für jede der beiden bereits im
+Grad-2-Charaktertest gefundenen W5-Kopien liefert dieselbe Konstruktion einen
+isometrischen Kanal vom dualen Bell10 in W5 tensor Bell10 und darauf ein
+kovariantes 60-Ausgänge-Readout. Bei Anwendung auf den normierten
+Quartiksingulettzustand Xi tritt jeder native Strahl mit Wahrscheinlichkeit
+1/60 auf; der bedingte externe Zustand ist genau der zugehörige Bell-Strahl
+v_l.
+
+Dies realisiert denselben endlichen 60-Strahlen-Datensatz in der positiven
+Grad-2-E8-Quelle. Es identifiziert keinen E8-Wurzelket mit einem Stromket und
+überträgt die frühere .17-Hamiltondynamik nicht.
+
+1. Quartikmatrizen und Xi
+-------------------------
+Die fünf integralen Quartiken V_A wurden im exakten Bell10 tensor Bell10-Split
+zu reellen symmetrischen 10x10-Matrizen K_A umgeformt. Ihre Frobeniusnormen
+sind
+
+  n_A = (4,12,12,12,24).
+
+Damit ist
+
+  Xi = (1/sqrt(5)) sum_A |A> tensor K_A/sqrt(n_A)
+
+normiert. Der Checker berechnet beide Bell-Reduktionen, nicht nur eine:
+
+  rho_Bell,intern = (1/5) sum_A K_A K_A^T/n_A = I_10/10,
+  rho_Bell,extern = (1/5) sum_A K_A^T K_A/n_A = I_10/10.
+
+Die Gleichheit beider Reduktionen folgt hier auch aus K_A^T=K_A, wurde aber
+für beide Seiten separat geprüft.
+
+2. Isometrie und Intertwining
+-----------------------------
+Definiere
+
+  F_(A i),j = sqrt(2/n_A) (K_A)_ij.
+
+Dann gilt exakt
+
+  F^* F = 2 sum_A K_A^T K_A/n_A = I_10.
+
+Zugleich ist die Koeffizientenmatrix von Xi bezüglich
+(W5 tensor Bell10)_Quelle gegen Bell10_extern gerade
+
+  Xi = F/sqrt(10).
+
+Für jede der 60 nativen Reflexionen sei U_r ihre Bell10-Wirkung und Rhat_r
+die Wirkung in der orthonormalen W5-Basis V_A/sqrt(n_A). Dann wurde geprüft
+
+  (Rhat_r tensor U_r) F = F conjugate(U_r).
+
+Die Prüfung vermeidet numerische Quadratwurzeln. Ist q=4T die ganzzahlige
+W5-Aktionsmatrix in der unnormierten Quartikbasis, so ist
+
+  (Rhat_r)_AB = sqrt(n_A/n_B) q_AB/4.
+
+Nach Multiplikation mit 96 wird jeder 10x10-Block des Intertwiners zur
+ganzzahligen Gaussianischen Identität
+
+  sum_B (24 n_A/n_B) q_AB U_r K_B
+    = 96 K_A conjugate(U_r).
+
+Alle 5 Blöcke für alle 60 Reflexionen, insgesamt 30000 skalare Einträge,
+stimmen exakt.
+
+3. Native 60-Strahlen-Auslese
+-----------------------------
+Für die normierten Bellkoordinaten
+
+  v_l = BellCoords(z_l tensor z_l/4)
+
+gilt exakt
+
+  ||v_l||=1,
+  sum_l |v_l><v_l| = 6 I_10.
+
+Die Einträge sind Gaussianische Halbzahlen; die Frame-Identität wird deshalb
+ohne Gleitkommatoleranz geprüft. Zudem werden alle 60x60 Reflexionswirkungen
+kontrolliert: U_r permutiert die Strahlen v_l mit der erwarteten quadrierten
+mu4-Phase. Damit sind es wirklich dieselben nativen 60 projektiven Labels.
+
+Setze
+
+  w_l = F conjugate(v_l),
+  M_l = |w_l><w_l|/6.
+
+Aus F^*F=I und der Frame-Identität folgt, und der Checker bestätigt direkt,
+
+  ||w_l||=1,
+  sum_l M_l = F F^* = Pi_F.
+
+Die 60 Effekte bilden daher ein vollständiges POVM auf dem zehn-dimensionalen
+Codesubraum ran(F). Auf dem ganzen 50-dimensionalen Raum W5 tensor Bell10 muss
+für ein vollständiges Messschema der Komplementausgang I-Pi_F ergänzt werden.
+Der Zustand Xi hat seine Quellstütze vollständig in ran(F), sodass dieser
+Komplementausgang auf Xi Wahrscheinlichkeit null besitzt.
+
+Für jeden Ausgang l gilt
+
+  (<w_l|/sqrt(6) tensor I) |Xi>
+      = |v_l>/sqrt(60).
+
+Also sind exakt
+
+  p_l = 1/60
+
+und der normierte externe bedingte Zustand ist v_l. Dies wurde für alle 60
+Ausgänge mit exakten Radikalen geprüft.
+
+4. Umfang und offene Auswahl
+----------------------------
+Bewiesen ist ein endlicher equivarianter Readout-Kanal innerhalb einer der
+beiden W5-Kopien des bereits ausgewiesenen Grad-2-Unterraums. Die zweite Kopie
+trägt dieselbe Rechnung separat.
+
+Nicht hergeleitet sind:
+
+  - warum die Physik gerade dieses POVM oder seine Implementierung auswählt,
+  - warum Xi_+ oder Xi_- präpariert wird,
+  - eine Verbindung dieses POVM mit der alten .17-Quellenbewegung,
+  - eine Identifikation von E8-Wurzelket und Stromket,
+  - Lokalität, Kontinuumsdynamik, physische Zeit oder TOE-Aussagen.
+
+Insbesondere folgt aus dem Intertwiner keine Übernahme der früheren
+phaselosen 3840-dimensionalen Spektren.
+
+Validierung
+-----------
+readout_intertwiner_check.py läuft normal und mit python -OO identisch durch.
+
+  check_evaluations: 4342
+  checker SHA256:
+    065e5ff389af28a8147a5fe2f476c2d7894360e121134d2561fd03e0a956642a
+  certificate SHA256:
+    ced50ef22d6a148b31383396b470decf42748d5274a010be54220ee49d0db776
+
+Die geprüften Eingaben sind durch SHA256 gepinnt. Keine Repository-Datei wurde
+verändert.

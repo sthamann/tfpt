@@ -1,0 +1,623 @@
+Prüfung der neutralen charakteristischen Nullrichtung in I_(9,1)
+================================================================
+
+Datum: 20. September 2026
+Gegenstand: Auswahl der Wechselwirkungsrichtung
+
+    n=(1,1,1,-1,-1,-1,-1,-1,-1,3)
+
+im erweiterten Randgitter mit
+
+    L=Z^10,
+    K=diag(1,1,1,1,1,1,1,1,1,-1).
+
+Urteil
+------
+
+Die elementare Gitteraussage ist exakt:
+
+* Jeder charakteristische ganzzahlige Vektor hat zehn ungerade Komponenten.
+* Ein von null verschiedener charakteristischer Nullvektor hat
+  |n_10|>=3.
+* Der kleinste euklidische Koordinatenwert ist ||n||_Euklid^2=18.
+* Bei n_10=3 besitzen dann die ersten neun Einträge Betrag eins; die
+  Neutralität sum_i n_i=0 erzwingt genau drei Plus- und sechs Minuszeichen.
+* Es gibt 84 solche Richtungen. Unter S_9 bilden sie eine einzige Bahn;
+  wegen cos(n.K.phi)=cos((-n).K.phi) ist auch das Gesamtvorzeichen keine
+  neue Wechselwirkung.
+
+Die konkrete Richtung im Attachment ist unter der tatsächlichen
+Koordinatentypisierung nicht eindeutig ausgewählt. Die ersten fünf
+Koordinaten sind der D5-Träger, aufgeteilt in Farbe 3 plus Schwach 2; die
+letzten drei ursprünglichen Koordinaten sind der A3-Familienblock. Koordinate
+9 ist der zusätzliche rechte und Koordinate 10 der zusätzliche linke Kanal.
+
+Die vorhandene Z4-Graduierung erzwingt, dass Koordinate 9 ein Minuszeichen
+trägt. Es bleiben 56 Richtungen mit drei Pluszeichen unter den ersten acht.
+Unter S5 x S3 zerfallen sie in vier Bahnen. Selbst die stärkere Forderung,
+dass die Richtung auf jedem der Blöcke Farbe 3, Schwach 2 und Familie 3
+konstant ist, lässt zwei Möglichkeiten:
+
+    plus auf Farbe 3,   alles andere minus; oder
+    plus auf Familie 3, alles andere minus.
+
+Der Vektor im Attachment ist die erste Möglichkeit. Z4 und die vorhandene
+3+2+3-Blockstruktur wählen zwischen diesen beiden Richtungen nicht. Eine
+weitere Wörterbuchbedingung ist erforderlich. Wird die orientierte
+Zielgraduierung
+
+    G_E8(p)=i^[2 sum_(i=1,...,5) p_i]
+
+einschließlich ihrer festen D8/Spinor-Zuordnung verlangt, wählt sie die
+Farbe-positive Richtung eindeutig: Die Familie-positive Richtung stimmt
+auf D8 überein, multipliziert aber den gesamten Spinorkoset zusätzlich mit
+-1. Diese Auswahl ist exakt unter dem fixierten Wörterbuch. Sie ist noch
+keine physische Herkunft, weil das Attachment selbst G ausdrücklich nicht
+automatisch mit geometrischem J, Flussclock oder Zeit identifiziert.
+
+Die zweite behauptete Eindeutigkeit ist ebenfalls exakt, aber konditional:
+Bei der nach n konstruierten Energiematrix V_* ist unter allen neutralen
+lokalen ganzzahligen Selbstnull-Cosinussen nur +/-n relevant. Dies wählt n
+nicht rückwirkend aus. Für jede anders eingebettete minimale Richtung kann
+eine entsprechend mittransformierte Energiematrix gebaut werden.
+
+Schließlich wählt n die Geschwindigkeit nicht. Selbst bei exakter
+E8-plus-massives-Paar-Zerlegung existiert eine kontinuierliche Familie
+positiver Energiematrizen. V_* ist ein besonders einfacher frei-fermionischer
+Punkt dieser Familie, keine durch n erzwungene Dynamik.
+
+
+1. Charakteristische Vektoren
+-----------------------------
+
+Ein Vektor n in L heißt charakteristisch, wenn
+
+    B(n,x)=n^T K x = B(x,x) mod 2                              (1)
+
+für alle x in L gilt. Modulo zwei ist -1=+1 und x_i^2=x_i.
+Daher lautet die rechte Seite
+
+    B(x,x)=sum_(i=1,...,10) x_i mod 2.
+
+Setzt man nacheinander die zehn Standardbasisvektoren für x ein, folgt
+
+    n_i=1 mod 2  für alle i.                                  (2)
+
+Umgekehrt impliziert (2) sofort (1). Somit gilt exakt
+
+    n charakteristisch  <=>  alle zehn Komponenten von n sind ungerade.
+
+Diese Bedingung hat eine eigenständige Gitterbedeutung. Für jedes
+x in n^perp gilt dann
+
+    x^T K x = x^T K n = 0 mod 2,
+
+also ist das orthogonale Restgitter gerade. Wenn die physische Forderung
+lautet, dass nach dem Auslücken nur bosonische, gerade lokale Operatoren
+bleiben, ist „charakteristisch“ die passende vorausgehende Bedingung. Wird
+sie dagegen nur eingeführt, weil E8 gewünscht ist, wäre sie keine
+unabhängige Herleitung.
+
+
+2. Kleinster charakteristischer Nullvektor
+------------------------------------------
+
+Die Nullbedingung ist
+
+    n_1^2+...+n_9^2-n_10^2=0.                                 (3)
+
+Nach (2) ist jede Komponente ungerade und damit von null verschieden. Also
+
+    n_1^2+...+n_9^2 >= 9.                                     (4)
+
+Auch |n_10| ist ungerade. |n_10|=1 widerspricht (3)-(4), daher
+
+    |n_10|>=3.                                                 (5)
+
+Für einen Nullvektor ist seine positive euklidische Koordinatennorm
+
+    ||n||_Euklid^2
+       = n_1^2+...+n_9^2+n_10^2
+       = 2 n_10^2.                                            (6)
+
+Aus (5) folgt
+
+    ||n||_Euklid^2>=18.                                       (7)
+
+Gleichheit in (7) verlangt |n_10|=3 und
+
+    n_1^2+...+n_9^2=9.
+
+Da neun positive ungerade Quadrate summiert werden, muss jedes davon eins
+sein. Die minimalen charakteristischen Nullvektoren sind daher genau
+
+    n_10=+/-3,  n_i=+/-1 für i=1,...,9.                        (8)
+
+Jeder ist primitiv. Die Minimalität in (6) ist allerdings keine Invariante
+des abstrakten Lorentzgitters unter allen O(9,1;Z)-Basiswechseln. Sie ist
+eine Aussage in der ausgezeichneten Fermionkanalbasis. Physikalisch kann sie
+als kleinste Fermionordnung beziehungsweise kleinste Skalendimension am
+ursprünglichen freien Punkt gelesen werden. Das ist ein plausibles
+Einfachheitsprinzip, aber eine zusätzliche Auswahlannahme. Am freien Punkt
+hat selbst dieser minimale Operator Dimension 18/2=9 und ist stark
+irrelevant; Minimalität allein erzeugt die neue Phase nicht.
+
+
+3. Neutralität und die 84 Richtungen
+------------------------------------
+
+Verwende die im Attachment ausdrücklich gesetzte Quellenladung
+
+    q(n)=sum_(i=1,...,10) n_i.                                 (9)
+
+Diese U(1)-Ladung ist nicht automatisch Standardmodell-Hyperladung. Für die
+Vorzeichenkonvention n_10=3 verlangt q(n)=0
+
+    sum_(i=1,...,9) n_i=-3.                                   (10)
+
+Sei a die Anzahl der Pluszeichen unter n_1,...,n_9. Dann ist die linke
+Seite von (10) gleich a-(9-a)=2a-9. Also
+
+    2a-9=-3  =>  a=3.                                         (11)
+
+Es gibt daher
+
+    binom(9,3)=84                                              (12)
+
+minimale neutrale charakteristische Nullvektoren mit n_10=3. S_9 wirkt
+transitiv auf den dreielementigen Plusmengen. Abstrakt sind alle 84 somit
+eine Bahn. Für n_10=-3 entsteht nach Gesamtvorzeichenwechsel dieselbe
+Cosinus-Wechselwirkung.
+
+Dieser Befund ist wichtig: Nullheit, Charakteristik, Primitivität,
+Neutralität und minimale Fermionordnung wählen noch keine einzelne
+eingebettete Richtung.
+
+
+4. Tatsächliche Typisierung und Z4-Auswahl
+-----------------------------------------
+
+Die neun positiven Richtungen sind tatsächlich
+
+    D5-Träger: Koordinaten 1,...,5 = Farbe 3 plus Schwach 2,
+    A3-Familie: Koordinaten 6,...,8 = Familie 3,
+    R: Koordinate 9 = zusätzlicher rechter Kanal.              (13)
+
+Der zusätzliche linke Kanal ist Koordinate 10. Die im Attachment angegebene
+Z4-Graduierung besitzt den Exponenten
+
+    h=(2,2,2,2,2,0,0,0,3,3).                                 (14)
+
+Für einen minimalen neutralen charakteristischen Nullvektor mit n_10=3
+seien die ersten neun Einträge +/-1. Sei e=1, wenn n_9=+1, und e=0, wenn
+n_9=-1. Weil die Summe der ersten fünf Vorzeichen ungerade ist, gilt
+
+    h.n
+      =2 sum_(i=1,...,5)n_i +3n_9+9
+      =2e mod 4.                                               (15)
+
+Die Wechselwirkung cos(n.K.phi) ist genau dann G-invariant, wenn h.n=0
+modulo 4. Gleichung (15) erzwingt daher
+
+    n_9=-1.                                                    (16)
+
+Die drei Pluszeichen aus Abschnitt 3 müssen vollständig unter den ersten
+acht Koordinaten liegen. Damit bleiben
+
+    binom(8,3)=56                                              (17)
+
+G-erlaubte Minimalrichtungen.
+
+Unter der gröberen Permutationsgruppe S5 x S3 werden sie allein durch
+
+    k=#Plus unter den ersten fünf D5-Koordinaten               (18)
+
+klassifiziert. Da insgesamt drei Pluszeichen vorhanden sind, sind genau
+
+    k=0,1,2,3                                                  (19)
+
+möglich: vier Bahnen. Der Vektor des Attachments liegt in der Bahn k=3.
+Die Z4-Graduierung plus D5/A3-Aufteilung wählt diese Bahn nicht aus.
+
+Verwendet man nur den permutationellen Teil der feineren P2-Typisierung,
+
+    S3_Farbe x S2_Schwach x S3_Familie,
+
+werden allgemeine Plusmengen durch die drei Pluszahlen
+
+    (a_Farbe,a_Schwach,a_Familie),
+    a_Farbe+a_Schwach+a_Familie=3                             (20)
+
+klassifiziert. Fordert man darüber hinaus, dass der Wechselwirkungsvektor
+selbst auf jedem dieser drei Blöcke invariant ist, muss jeder Block
+vollständig plus oder vollständig minus sein. Wegen der Blockgrößen 3,2,3
+und insgesamt genau drei Pluszeichen bleiben exakt zwei Richtungen:
+
+    n_Farbe=(+,+,+,-,-, -,-,-, -, 3),
+    n_Familie=(-,-,-,-,-, +,+,+, -, 3).                       (21)
+
+Beide sind primitiv, neutral, charakteristisch, null, minimal und
+G-invariant. Das Attachment verwendet n_Farbe. Weder Z4 noch die
+permutationelle 3+2+3-Struktur unterscheidet n_Farbe von n_Familie.
+
+Damit lautet die saubere Annahmenhierarchie:
+
+1. Erhaltung der gesetzten Gesamt-U(1)-Ladung,
+2. ein primitiver selbstnuller Gapping-Term,
+3. ein vollständig bosonischer gerader Restsektor,
+4. kleinste Fermionordnung in der vorhandenen Kanalbasis,
+5. Invarianz unter der gesetzten Z4-Graduierung,
+6. keine Markierung einzelner Kanäle innerhalb der Farb-, Schwach- und
+   Familienblöcke.
+
+Die Punkte 1-3 sind klare lokale Quellanforderungen. Punkt 4 ist ein
+Einfachheits-/Relevanzvorläufer. Die Punkte 5-6 sind vorhandene typisierte
+Strukturen, lassen aber immer noch die zwei Richtungen (21) offen. Eine
+weitere Bedingung darf nicht aus dem bereits gewünschten E8-Wörterbuch
+rückwärts eingesetzt werden.
+
+
+4a. Auswahl durch das fest orientierte D8/Spinor-Wörterbuch
+-----------------------------------------------------------
+
+Dieser Unterabschnitt prüft die zusätzliche, stärkere Voraussetzung, dass
+nicht nur die abstrakte E8-Isometrie, sondern die bereits fixierte
+Klebegraduierung erhalten bleiben muss:
+
+    G_E8(p)=i^[g(p)],
+    g(p)=2 sum_(i=1,...,5)p_i mod 4.                           (21a)
+
+Für eine der beiden Richtungen (21) schreibe
+
+    n=(a_1,...,a_8,-1,3),
+
+wobei a_i=+/-1. Der zu n orthogonale isometrische Lift eines E8-Vektors p
+ist
+
+    T_a(p)=(p_1,...,p_8,-a.p/2,+a.p/2),
+    F_n(p)=T_a(p)-(p_1/n_1)n.                                 (21b)
+
+Für p in D8 ist a.p gerade. Für den Spinorkoset macht gerade die zweite
+Termkombination F_n(p) ganzzahlig. Direktes Einsetzen ergibt
+
+    B(n,T_a(p))=0,
+    B(F_n(p),F_n(q))=p.q,
+    q(F_n(p))=sum_i p_i.                                      (21c)
+
+Der Lift erhält also Norm und gesetzte U(1)-Ladung. Außerdem verschwindet
+seine erste Koordinate, und für die Quellgraduierung h aus (14) gilt
+
+    h.F_n(p)
+      =2 sum_(i=1,...,5)p_i -(p_1/n_1)(h.n) mod 4.             (21d)
+
+Für die Farbe-positive Richtung ist
+
+    h.n_Farbe=8,  n_1=+1.
+
+Daher ist der zweite Term in (21d) für jedes E8-p ein Vielfaches von vier:
+
+    h.F_nFarbe(p)=g(p) mod 4.                                 (21e)
+
+Die vollständige orientierte D8/Spinor-Graduierung wird erhalten.
+
+Für die Familie-positive Richtung gilt dagegen
+
+    h.n_Familie=-4,  n_1=-1,
+
+und somit
+
+    h.F_nFamilie(p)=g(p)-4p_1 mod 4.                           (21f)
+
+Auf D8 ist p_1 ganzzahlig; beide Gradings stimmen dort überein. Auf dem
+gesamten Spinorkoset ist p_1 halbzahlig, also 4p_1=2 modulo 4. Deshalb
+
+    G(F_nFamilie(p_spinor))=-G_E8(p_spinor).                   (21g)
+
+Insbesondere wird das fest verlangte i des Spinorgewichts zu -i. Eine bloße
+Umphasung des Vertexoperators ändert seinen Eigenwert unter Konjugation mit
+G nicht. Auch die Ersetzung F_n(p)->F_n(p)+m n hilft nicht, weil h.n in
+beiden Fällen durch vier teilbar ist. Nur eine Vorverknüpfung mit einem
+weiteren Gitterautomorphismus könnte das Wörterbuch neu orientieren; das ist
+unter der Voraussetzung einer bereits fixierten Operatorabbildung nicht
+zulässig.
+
+Damit gilt die präzise bedingte Eindeutigkeit:
+
+    Minimalität + Neutralität + Charakteristik + G-Invarianz des Cosinus
+    + Blockinvarianz lassen zwei Richtungen; die fest orientierte
+    D8/Spinor-Gradierung wählt davon eindeutig n_Farbe.         (21h)
+
+Diese letzte Voraussetzung ist stärker als die abstrakte Forderung eines
+E8-Quotienten. Sie ist als Konsistenztest des vorhandenen Wörterbuchs
+wertvoll, aber nur dann eine Ursprungsselektion, wenn h und seine Orientierung
+unabhängig als tatsächliche Quellen- beziehungsweise Clockwirkung begründet
+sind. Das Attachment schließt diese Identifikation ausdrücklich noch nicht.
+
+Die beiden verbleibenden Richtungen sind auch kein gemeinsam pinnbares
+Nullpaar:
+
+    B(n_Farbe,n_Familie)=-12.                                 (21i)
+
+Sie sind konkurrierende bedingte Gapping-Richtungen, kein zweiter
+kommutierender Cosinus, der die Zweifachheit automatisch auflöst.
+
+
+4b. Symmetrischer exakt lösbarer Gaußpunkt
+------------------------------------------
+
+Der im Attachment verwendete konkrete Basiswechsel darf nicht als weitere
+Auswahlbegründung gelesen werden: Seine massive zeitartige Richtung
+m=n-e_1 zeichnet den ersten alten Farbkanal aus. Diese Asymmetrie ist für
+die Existenzkonstruktion nicht nötig.
+
+Für die bereits durch das feste Grading gewählte Farbe-positive Richtung
+setze stattdessen
+
+    a_0=-e_9,
+    m_0=n+e_9.                                                 (21j)
+
+Dann gilt exakt
+
+    a_0^T K a_0=+1,
+    m_0^T K m_0=-1,
+    a_0^T K m_0=0,
+    n=a_0+m_0.                                                 (21k)
+
+Die raumartige massive Richtung benutzt damit den ausdrücklich zusätzlich
+eingeführten rechten Kanal, nicht einen alten physikalischen Randkanal. Mit
+k=a.p/2 aus Abschnitt 4a definiere
+
+    F_aux(p)=T_a(p)-k n.                                      (21l)
+
+Für jedes p in E8 ist F_aux(p) ganzzahlig, orthogonal zu e_9 und m_0 und
+normerhaltend. Für das Spinorgewicht s=(1/2,...,1/2) wird insbesondere
+
+    F_aux(s)=(1,1,1,0,0,0,0,0,0,1).                          (21m)
+
+Der Spinorstrom besitzt an diesem Kandidaten also einen rein lokalen
+quartischen Vertreter. Wählt man als erste acht Spalten die Bilder einer
+einfachen E8-Basis und ergänzt -e_9 sowie m_0, erhält man eine unimodulare
+Matrix
+
+    W_aux=[F_aux(E8-Basis),-e_9,m_0],  det W_aux=+/-1,          (21n)
+
+mit der gleichen E8 direct_sum I_(1,1)-Grammatrix.
+
+Die zugehörige positive Energiematrix kann basisfrei geschrieben werden:
+
+    V_aux=K+2 K m_0 m_0^T K.                                 (21o)
+
+Ihre Eigenwerte sind eins mit Vielfachheit acht sowie
+17+12sqrt(2) und 17-12sqrt(2). Sie ist unter den Permutationen innerhalb
+Farbe 3, Schwach 2 und Familie 3 invariant; wegen des gleichen Vorzeichens
+auf den letzten fünf ursprünglichen Kanälen besitzt sie sogar die größere
+S3 x S5-Permutationssymmetrie dieses Koordinatenpunkts.
+
+Auch Ladung und orientiertes Grading bleiben erhalten:
+
+    q(F_aux(p))=sum_i p_i,
+    h.F_aux(p)=2sum_(i=1,...,5)p_i-8k
+              =g(p) mod 4,                                   (21p)
+
+weil k halb-ganzzahlig ist. Der Cosinus von n hat an V_aux Dimension eins.
+Damit ist die vorherige Auszeichnung von e_1 kein notwendiger Preis der
+lokalen Konstruktion.
+
+Dieser verbesserte Gaußpunkt stärkt den bedingten Existenznachweis, nicht
+die Herkunft: V_aux wird weiterhin nach Auswahl von n konstruiert. Weder
+P1/P2 noch die ursprüngliche QWZ-Quelle wählen dadurch V_aux gegenüber den
+kontinuierlichen Alternativen aus Abschnitt 8.
+
+
+5. Warum der Quotient dann E8 ist
+---------------------------------
+
+Sei n primitiv, null und charakteristisch. Der Quotient
+
+    Gamma_n=(n^perp cap I_(9,1))/Z n                           (17)
+
+hat Rang acht und positive Signatur. Die Unimodularität von I_(9,1) und die
+Primitivität von n geben einen unimodularen Quotienten. Die
+Charakteristikeigenschaft macht ihn nach Abschnitt 1 gerade. Somit ist
+Gamma_n ein positives gerades unimodulares Rang-8-Gitter. Bis auf Isometrie
+gibt es davon genau E8.
+
+Das gilt für jede der 84 minimalen Richtungen. E8 folgt also aus den
+strukturellen Eigenschaften des Restgitters; E8 unterscheidet die 84
+Einbettungen nicht. Auch nach Z4 und 3+2+3-Typisierung bleiben insbesondere
+die beiden symmetrischen Einbettungen (21) zu unterscheiden, solange die
+orientierte D8/Spinor-Abbildung aus Abschnitt 4a nicht als zusätzliche feste
+Voraussetzung eingesetzt wird.
+
+
+6. Gegenprobe z=e9-e10
+----------------------
+
+Der gewöhnliche Rückstreuvektor
+
+    z=e_9-e_10=(0,0,0,0,0,0,0,0,1,-1)                        (18)
+
+ist primitiv, neutral und null. Er ist nicht charakteristisch, weil seine
+ersten acht Komponenten gerade sind.
+
+Die Bedingung B(x,z)=0 lautet x_9+x_10=0. Nach Quotientieren der Richtung z
+bleiben die ersten acht ganzzahligen Koordinaten mit Grammatrix I_8. Daher
+
+    (z^perp cap I_(9,1))/Z z = I_8,                            (19)
+
+ein ungerades unimodulares Gitter. Die Gegenprobe bestätigt präzise, was
+die E8-Auswahl trägt: nicht „ein zusätzliches Paar“ und nicht bloß
+Nullheit/Neutralität, sondern die Charakteristik des Gapping-Vektors.
+
+
+7. Prüfung der Relevanz-Eindeutigkeit bei V_*
+------------------------------------------------
+
+Im angegebenen ganzzahligen W-Rahmen zerfällt ein lokaler Vektor als
+
+    (r,a,b),  r in E8,
+
+und ein neutraler Selbstnull-Cosinus erfüllt am geprüften Punkt
+
+    r^2+a^2-b^2=0,
+    Delta=b^2.                                                 (20)
+
+Für einen von null verschiedenen relevanten Operator gilt
+
+    0<Delta<2.
+
+Da b ganzzahlig ist, folgt |b|=1. Gleichung (20) wird
+
+    r^2+a^2=1.                                                 (21)
+
+E8 ist positiv und gerade, also ist r^2 eine nichtnegative gerade ganze
+Zahl. Die einzige Lösung von (21) ist daher
+
+    r=0,  |a|=1.                                               (22)
+
+Die im Attachment angegebene Neutralitätsform wählt a=b. Somit bleiben
+genau die beiden Gesamtvorzeichen +/-n. Die behauptete Eindeutigkeit bei
+festem V_* ist korrekt.
+
+Ihre logische Richtung muss jedoch erhalten bleiben. V_* wurde mit dem zu n
+gehörenden Basiswechsel W als
+
+    V_*=W^(-T)(G_E8 direct_sum I_2)W^(-1)                     (23)
+
+konstruiert. Die Eindeutigkeit lautet daher:
+
+    Bei dem für n gebauten exakt lösbaren Punkt ist n der einzige
+    relevante neutrale ganzzahlige Selbstnull-Cosinus.
+
+Sie lautet nicht:
+
+    Das ursprüngliche Quellenmodell wählt n, weil n bei V_* relevant ist.
+
+Die zweite Form wäre zirkulär. Für einen anderen minimalen Vektor n'=R n
+mit einer K-erhaltenden Kanalpermutation R kann man
+
+    V_*'=R V_* R^T                                             (24)
+
+konstruieren; dann besitzt n' dieselbe bedingte Eindeutigkeit. Erst eine
+unabhängig gegebene oder hergeleitete Energiematrix könnte Relevanz als
+Auswahlkriterium zwischen den Einbettungen verwenden.
+
+
+8. n wählt keine eindeutige Geschwindigkeit
+--------------------------------------------
+
+Auch nach Fixierung von n und W bleibt V kontinuierlich frei. Im W-Rahmen
+ist die Statistikmatrix
+
+    K'=G_E8 direct_sum diag(1,-1).
+
+Schon die zweiparametrige Familie
+
+    V'(v_E,v_m)=v_E G_E8 direct_sum v_m I_2,
+    v_E>0, v_m>0,                                               (25)
+
+ist positiv und hält E8 und das zusätzliche rechte/linke Paar exakt
+entkoppelt. Nach Rücktransformation
+
+    V(v_E,v_m)=W^(-T)V'(v_E,v_m)W^(-1)                         (26)
+
+bleiben das Operatorgitter, die Nullrichtung und die Zerlegung unverändert.
+Der gemeinsame Faktor setzt nur eine Zeiteinheit; selbst nach seiner
+Fixierung bleibt das Verhältnis v_E/v_m kontinuierlich.
+
+Am frei-fermionischen Paarpunkt ändern v_E und v_m die
+Ausbreitungsgeschwindigkeiten, nicht die Gitterauswahl. Darüber hinaus kann
+der Paarblock durch eine positive O(1,1)-kompatible Luttinger-Deformation
+
+    V_pair(eta)=v_m [ cosh(2 eta)  sinh(2 eta) ]
+                    [ sinh(2 eta)  cosh(2 eta) ],               (27)
+
+ersetzt werden. In einer offenen Umgebung von eta=0 bleibt der n-Cosinus
+relevant und erzeugt dieselbe gapped Randphase, obwohl seine
+Skalendimension kontinuierlich variiert. Der Punkt eta=0 ist der besonders
+einfache freie Diracmasspunkt; die Phase selbst ist nicht auf ihn reduziert.
+
+Die Relevanzklassifikation ist in einem expliziten Intervall stabil. Am
+Ausgangspunkt hat n Dimension eins; jeder andere neutrale ganzzahlige
+Selbstnullvektor hat wegen Delta=b^2 mindestens Dimension vier. Für die
+positive quadratische Form der Boost-Deformation gilt
+
+    exp(-2|eta|) Delta_0 <= Delta_eta
+                         <= exp(2|eta|) Delta_0.                (28)
+
+Ist
+
+    |eta| < (1/2) log 2,                                      (29)
+
+so bleibt Delta_eta(n)<2, während für alle anderen neutralen Nullrichtungen
+Delta_eta>2 gilt. In diesem ganzen offenen Intervall sind daher weiterhin
+nur +/-n relevant. Das ist eine robuste Aussage über Skalendimensionen im
+dekoppelten Gauß-/Luttinger-Kandidaten. Sie ist kein Beweis, dass eine
+beliebige mikroskopische Quelle entlang der vollständigen RG-Trajektorie in
+derselben gapped Phase bleibt.
+
+Selbst wenn volle E8-Stromsymmetrie einen gemeinsamen E8-Wert v_E fordert,
+bestimmt n weder v_E noch v_m, das Verhältnis, die Masse m oder die
+RG-Trajektorie. Daher sind zwei Fragen strikt getrennt:
+
+    Gitter-/Operatorauswahl: Welche Nullrichtung n wird gekoppelt?
+    Dynamikauswahl:          Welche positive Energiematrix V und Kopplung g
+                             realisiert die Phase?
+
+Die erste wird unter der zusätzlich fixierten orientierten Gradierung aus
+Abschnitt 4a eindeutig. Die zweite bleibt durch diese Eindeutigkeit offen.
+
+
+9. Beweisgrenze und nächster entscheidender Test
+------------------------------------------------
+
+Exakt bewiesen ist:
+
+* Klassifikation und Minimalwert der charakteristischen Nullvektoren,
+* 84 neutrale Minimalrichtungen als eine S9-Bahn,
+* 56 Z4-invariante Minimalrichtungen,
+* vier Bahnen unter S5xS3, gekennzeichnet durch k=0,1,2,3,
+* zwei blockinvariante Richtungen unter Farbe-3/Schwach-2/Familie-3,
+* eindeutige Auswahl von n_Farbe aus diesen beiden Richtungen durch das
+  fest orientierte D8/Spinor-Grading,
+* ein blockpermutationssymmetrischer exakt lösbarer Gaußpunkt V_aux ohne
+  Auszeichnung eines alten Farbkanals,
+* E8 statt I8 genau durch die Charakteristikeigenschaft,
+* bedingte Relevanz-Eindeutigkeit von +/-n am festgelegten V_*,
+* Stabilität dieser Relevanz-Eindeutigkeit für |eta|<log(2)/2,
+* kontinuierliche V-Freiheit trotz festem n und entkoppeltem E8+Massenpaar.
+
+Nicht bewiesen ist:
+
+* dass die ursprüngliche QWZ-/P1-P2-Quelle das zusätzliche Gegenläuferpaar
+  erzeugt,
+* dass die fest orientierte Gradierung h tatsächlich die native
+  geometrische J-, Flussclock- oder physische Quellenwirkung ist,
+* dass kleinste freie Fermionordnung das mikroskopische Auswahlprinzip ist,
+* dass die Quelle zu V_* oder überhaupt in dessen gapped Phase fließt,
+* dass die native C-, J-, Ladungs- und Clockwirkung unter W übereinstimmt.
+
+Der kleinste entscheidende Herkunftstest ist deshalb nicht eine weitere
+E8-Rechnung. Er lautet:
+
+    Ist die fest orientierte Gradierung h samt D8/Spinor-Wörterbuch bereits
+    vor der Randrekonstruktion als tatsächliche Quellen-, J- oder
+    Clockwirkung bestimmt, sodass ihr Vorzeichen auf dem Spinorkoset nicht
+    frei umorientiert werden darf?
+
+Nur ein positiver Nachweis dieser unabhängigen Orientierung würde die
+bedingte Auswahl n_Farbe in eine native Auswahl verwandeln. Eine Wahl von
+V_* oder eine nachträgliche Umorientierung des E8-Wörterbuchs kann diesen
+Test nicht ersetzen.
+
+Status:
+
+    EXACT_CONDITIONAL_SELECTION;
+    NATIVE_SOURCE_AND_VELOCITY_SELECTION_OPEN;
+    keine Änderung an T1-T8.
+
+Dieses Review verwendet die angehängte Kandidatkonstruktion als zu prüfende
+Voraussetzung. Es führt kein neues Hilfsmodell ein und ändert keine
+kanonischen Repository-Dateien. Der lokale Theoriegraph war in dieser
+Session wegen laufender Contract-Änderungen als stale gemeldet; das Urteil
+wird daher nicht als aktueller Ledger-/Graphabschluss ausgegeben.

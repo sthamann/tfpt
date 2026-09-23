@@ -1,0 +1,540 @@
+# TFPT / Universalraum: nativer Pol, Bewegungsgleichung und minimale Feldtypen
+
+**Konsolidierte Forschungsfortsetzung v1.6.4 · 15. September 2026**
+
+Diese Revision verbindet den während der Arbeit neu eingegangenen Polsatz
+v1.6.3 mit einer unabhängig begonnenen Untersuchung der nativen
+Bewegungsgleichung. Sie ergänzt die bisherigen Hauptdokumente; sie ist
+keine verkürzte Neufassung des vollständigen Hauptbuchs. Die vorhandenen
+Haupt- und Update-PDFs wurden in dieser Runde nicht verändert.
+
+## 1. Ergebnis in einem Satz
+
+Auf dem abgesicherten Grundzustand des festgelegten nativen Fockmodells
+existiert eine isolierte ursprüngliche Fermion-Entnahmelinie; nach
+Kombination beider Rechnungen trägt sie **mehr als 88,007628 % des gesamten
+normierten Spektralgewichts pro Mode**. Die zusätzliche Antwort ist jedoch
+nicht exakt auf eine einzige weitere Linie reduzierbar. Ihr erster
+Rückwirkungsschritt wird direkt von derselben ursprünglichen Wechselwirkung
+bestimmt.
+
+Am Prüfpunkt \(g/\Delta=1/20\), ausdrücklich ohne \(\mu N\)-Zusatz:
+
+| Größe | Eingegangene v1.6.3 | Konsolidierte strengere Grenze |
+|---|---:|---:|
+| Mittlere Bosonenzahl | \(0.77<\bar b<1.45\) | \(0.842846<\bar b<1.245656\) |
+| Energie der niedrigen Entnahmelinie | \(0.007737<\epsilon/\Delta<0.062277\) | \(0.007737<\epsilon/\Delta<0.039079764\) |
+| Gewicht dieser Linie im gesamten CAR-Maß | \(Z_{\rm low}>0.864972353\ldots\) | \(Z_{\rm low}>0.880076280689\ldots\) |
+| Obere Gewichtsgrenze | \(Z_{\rm low}<0.9759375\) | \(Z_{\rm low}<0.9736610625\) |
+| Übrige Entnahmeenergien | \(>0.379636\Delta\) | unverändert |
+| Sämtliche Additionsenergien | \(>0.329636\Delta\) | unverändert |
+
+Die Dezimalzahlen sind gerundete Darstellungen rationaler Schranken.
+Es sind weder exakte Polpositionen noch angepasste Zentralwerte. Der Pol
+steht im retardierten Spektrum bei negativer Frequenz \(-\epsilon\).
+Das niedrige Niveau im N=63-Hilbertraum ist 64-fach entartet; jede
+diagonale Modenantwort sieht dieselbe Linie.
+
+**Nicht bewiesen:** die physische Herleitung des Hamiltonoperators, sein
+vollständiger Operationssatz, native Präparation, räumliche Ausbreitung,
+ein vollständiges relativistisches Feldwörterbuch oder eine TOE. T1–T8
+bleiben als vollständige Aufgaben offen.
+
+## 2. Ein unveränderter Modellvertrag
+
+Es werden keine Hopping-, Massen-, Ladungs- oder Projektionsglieder zu H
+hinzugefügt:
+
+\[
+H=\Delta N_b+g(Q_++Q_-),\quad Q_+=\sum_A b_A^\dagger P_A,
+\quad Q_-=Q_+^\dagger,
+\]
+\[
+P_A=\sum_{i<j}W_{A,ij}f_jf_i,\quad N=N_f+2N_b,
+\quad WW^\dagger=8I_{60}.
+\]
+
+Es gibt 64 CAR-Fermionmoden, 60 CCR-Bosonmoden und 480 von null
+verschiedene reelle W-Einträge mit ihren ursprünglichen Vorzeichen.
+\(\Delta>0\), g ist reell; die Zahlen beziehen sich auf \(g/\Delta=1/20\).
+Die Tensorquelldatei ist durch SHA-256
+`3f00a0892157a691e4ef26920c3702772c7bf76a250fad98ff04a079bb64b763`
+fixiert.
+
+Die Fockrealisierung, H, der sektorenübergreifende Energievergleich und
+der Prüfparameter sind weiterhin Modellvoraussetzungen. Die geometrische
+oder arithmetische Herkunft eines W-Tensors leitet diese Voraussetzungen
+nicht allein her. Insbesondere sind die fünf elementaren CAR in einer
+Spinor-Matrixkonstruktion nicht mit den hier verwendeten 64 Fockmoden
+gleichzusetzen.
+
+## 3. Was tatsächlich erneut geprüft wurde
+
+### 3.1 Grundzustand: frische Berechnung statt bloßer Statusübernahme
+
+Die ursprünglichen Programme wurden mit fixierten Dateihashes in eine
+eigene Arbeitskopie übernommen. Die Paar-Konfigurationen wurden frisch
+mit neu kompiliertem Quellcode berechnet:
+
+| Ordnung | Vollständig enumerierte Bosonkonfigurationen | Normquadrat von \(Q_+^kF\) |
+|---|---:|---:|
+| 0 | analytischer Ausgangszustand | 1 |
+| 1 | 60 Kanäle / 480 Paare | 480 |
+| 2 | 1830 | 439680 |
+| 3 | 37820 | 575078400 |
+| 4 | 595665 | 952296652800 |
+
+Zusätzlich wurden unabhängige Wortentwicklungen, Überlaufgrenzen, die
+vollständige Zweikörper-Casimiridentität, rationale Sektorvergleiche und
+die unabhängige Symmetriespurrechnung wiederholt. Die vier ausgewählten
+ursprünglichen Zertifikate bestehen normal und unter `-OO` mit identischen
+JSON-Bytes. Dies ist eine gezielte erneute Grundzustandsprüfung, nicht die
+Behauptung, alle historischen Repository-Tests erneut ausgeführt zu haben.
+Der unveränderte alte Normprüfer gibt unter dem aktuellen NumPy eine
+ComplexWarning bei der Ganzzahlkonversion aus. Die neuen Prüfer bestätigen
+vor jeder Konversion exakt verschwindende Imaginärteile und ganzzahlige
+Realteile des gepinnten W. Die Warnung ist gespeichert und wird nicht
+als verlorener Tensoranteil oder als unterdrückter Prüffehler ausgegeben.
+
+Der modellinterne Satz bleibt bestehen: Für
+\(0<|g|/\Delta\le1/20\) ist der globale Grundzustand \(\Omega\)
+eindeutig, hat N=64 und ist Spin(10)×SU(4)-invariant. Am Zahlenprüfpunkt:
+
+\[
+-1.158089\Delta<E_0<-1.129636\Delta,
+\qquad \operatorname{gap}(H)>0.007737\Delta.
+\]
+
+Der volle Grundzustandsvektor ist damit nicht ausgerechnet. Die fünf
+Versuchsvektoren sind keine behauptete invariante Fünferbasis für H.
+
+### 3.2 Das neu eingegangene Polergebnis
+
+Der vollständige technische Bericht v1.6.3 und sein 248-zeiliger Prüfer
+wurden gelesen; Quellen, Bericht, Ergebnismatrix und Prüfpaket wurden
+unverändert archiviert. Der Prüfer wurde normal und optimiert wiederholt:
+**317 Prüfbedingungen, identische JSON-Bytes auch zum gelieferten Bericht**.
+
+Der Herkunftspin des Prüfers ist
+`fdbcabd244450c302182086d67c68284634c994e3fee026200c42c508f731654`.
+Er verwendet denselben ursprünglichen `verify_hole.py`-Quellstand wie
+die bisherige Fortsetzung. Die neuen eigenen Sektorvergleiche wurden
+zusätzlich unabhängig mit rationalen LDL-Pivots berechnet.
+
+Die Prüfzahlen zählen auch Komponenten und Wiederholungen; sie sind
+keine Zahl unabhängiger Entdeckungen. Die analytischen Argumente sind
+ausgeschrieben, aber nicht vollständig in einem Beweisassistenten formalisiert.
+
+## 4. Der einfache native Anschluss: Bewegungsgleichung statt Umdeutung
+
+Erweitere jede W-Zeile zur antisymmetrischen Matrix \(M_A\) mit
+\((M_A)_{ij}=W_{A,ij}\) für i<j. Definiere
+
+\[
+D_r=\sum_{A,j}(M_A)_{rj}b_Af_j^\dagger,
+\qquad \phi_r=D_r/\sqrt{15}.
+\]
+
+Direkte CAR/CCR-Normalordnung liefert **Operatoridentitäten auf dem
+endlichen Teilchenkern**, nicht nur Gleichheiten auf Testzuständen:
+
+\[
+\boxed{[H,f_r]=-gD_r,\qquad [H,f_r^\dagger]=gD_r^\dagger,}
+\]
+\[
+[N,D_r]=-D_r,\qquad \{f_r,D_s^\dagger\}=0.
+\]
+
+Der neue Vergleichsoperator hat also dieselbe Ladung −1 wie f.
+Er ist nicht das früher auf dem leeren Referenzzustand betrachtete
+\(\chi^\dagger\sim b^\dagger f^\dagger\) mit Ladung +3.
+Auf dem Grundzustand liegen \(f\Omega\) und \(D\Omega\) in N=63,
+\(\chi^\dagger\Omega\) dagegen in N=67. Neutrale Zeitentwicklung
+hebt diese Unterscheidung nicht auf.
+
+Die Normalordnungsprüfung erfasst alle 64 ursprünglichen f-Operatoren
+und die tatsächlichen W-Vorzeichen. Für die Kompositnorm gilt exakt
+
+\[
+\{D_r,D_s^\dagger\}=
+\sum_{A,B,j,k}(M_A)_{rj}(M_B)_{sk}
+\left(\delta_{AB}f_j^\dagger f_k+\delta_{jk}b_B^\dagger b_A\right).
+\]
+
+Mit \(\bar b=\langle N_b\rangle\) und der Grundzustandssymmetrie:
+
+\[
+\langle\{D_r,D_s^\dagger\}\rangle=\delta_{rs}S,
+\qquad S=15-\frac7{32}\bar b.
+\]
+
+\(\phi\) hat entsprechend Norm \(1-7\bar b/480\), nicht globale
+kanonische CAR. Der normierte Zustandserwartungswert ersetzt keine
+Operatorrelation.
+
+## 5. Dieselbe Antwort auf demselben Grundzustand
+
+Für Im z>0 und \(H_n=H|_{N=n}\):
+
+\[
+G_{rs}(z)=\langle\Omega|f_r(z+E_0-H_{65})^{-1}f_s^\dagger|\Omega\rangle
++\langle\Omega|f_s^\dagger(z-E_0+H_{63})^{-1}f_r|\Omega\rangle.
+\]
+
+Die innere Symmetrie macht G diagonal und alle Diagonalelemente gleich.
+Schreibe mit positiven Entnahme- und Additionsmaßen auf \(\epsilon>0\)
+
+\[
+G(z)=\int\frac{d\nu_+(\epsilon)}{z-\epsilon}
++\int\frac{d\nu_-(\epsilon)}{z+\epsilon}.
+\]
+
+Dann gelten exakt
+
+\[
+Z_+=\bar b/32,\quad Z_-=1-\bar b/32,
+\quad a:=\int\epsilon\,d\nu_+=\int\epsilon\,d\nu_-
+=\frac{\Delta\bar b-E_0}{64}.
+\]
+
+Für das gesamte signierte Spektralmaß:
+
+\[
+\boxed{m_0=1,\quad m_1=0,\quad m_2=g^2S,\quad
+m_3=g^2(\Delta S+7a).}
+\]
+
+Die ersten beiden Momente und die Kanalgewichte stimmen mit der
+eingegangenen unabhängigen Rechnung überein. **Das dritte Moment ist der
+zusätzliche eigene Schritt dieser Revision.**
+
+### 5.1 Herleitung des dritten Moments
+
+Setze \(\mathcal L A=[A,H]\). Stationarität macht diesen Operator
+symmetrisch in der positiven, nach Nullvektoren quotientierten Metrik
+\((A,B)=\langle\{A^\dagger,B\}\rangle\). Direkte Normalordnung ergibt
+
+\[
+\sum_r\{[D_r,X],D_r^\dagger\}=-14Q_+.
+\]
+
+Die beiden Beiträge sind \(16Q_+\) und \(-30Q_+\). Ihre Koeffizienten
+folgen aus den vollständig geprüften Kontraktionen
+\(\sum_{rj}M_{A,rj}M_{B,rj}=16\delta_{AB}\) und
+\(\sum_{Ar}M_{A,rj}M_{A,rk}=15\delta_{jk}\).
+Mit \([D,N_b]=D\) und
+\(\langle Q_+\rangle=(E_0-\Delta\bar b)/(2g)\) folgt die Formel.
+
+Als unabhängige Kontrolle wurden sämtliche Formeln einschließlich m3
+an der früher exakt geschlossenen N=4/N=5-Antwort symbolisch geprüft.
+Diese Kontrolle verwendet den früheren Referenzzustand nur als Test
+der Identitäten, nicht als Ersatz für den nativen Grundzustand.
+
+Die allgemeine Methode, Spektralmomente aus Bewegungsgleichungen zu
+gewinnen, ist etabliert; siehe
+[Freericks und Turkowski, Phys. Rev. B 80, 115119](https://arxiv.org/abs/0907.1284).
+Die hier angegebenen W-Kontraktionen und Konstanten wurden eigenständig
+für dieses Modell berechnet; die zitierte Arbeit beweist keine TFPT-Aussage.
+
+### 5.2 Neue engere Dichte- und Gewichtsgrenzen
+
+Positivität der beiden Antwort-Grammatrizen beziehungsweise zweimal
+Cauchy–Schwarz liefern
+
+\[
+m_2\ge a^2\left(\frac1{Z_-}+\frac1{Z_+}\right),
+\]
+\[
+\boxed{(\Delta\bar b-E_0)^2\le
+60g^2\bar b(32-\bar b)(1-7\bar b/480).}
+\]
+
+Mit der bereits bewiesenen Energieobergrenze und \(g/\Delta=1/20\)
+muss das folgende rationale Polynom positiv sein:
+
+\[
+P(b)=\frac7{3200}b^3-\frac{61}{50}b^2
++\frac{317591}{125000}b-\frac{79754843281}{62500000000}>0.
+\]
+
+Seine beiden im alten zulässigen Bereich liegenden Nullstellen liegen
+bei ungefähr 0.842846697 und 1.245655664. Exakte rationale Wurzelisolation
+ergibt die nach außen gerundete strenge Schranke
+
+\[
+\boxed{0.842846<\bar b<1.245656.}
+\]
+
+Damit:
+
+| Größe pro Mode | Strenges offenes Intervall |
+|---|---:|
+| Gesamtes Additionsgewicht | (0.0263389375, 0.03892675) |
+| Gesamtes Entnahmegewicht | (0.96107325, 0.9736610625) |
+| \(\langle\{\phi,\phi^\dagger\}\rangle\) | (0.981834183333…, 0.987708495833…) |
+| Frühere \(\chi\)-Kompositnorm, nicht \(\phi\) | (0.040386370833…, 0.059687683333…) |
+
+Das sind Erwartungswerte und integrierte Spektralgewichte, keine direkten
+Nachweise von Produktionsraten oder von bereits verfügbaren Messinstrumenten.
+
+## 6. Der Polsatz und seine zusätzliche Verschärfung
+
+Der eingegangene Beweis verwendet
+\(u_{k,r}=Q_+^kf_rF=f_rQ_+^kF\). Invarianz und Besetzung ergeben
+
+\[
+\langle u_{k,r},u_{k,s}\rangle=
+\delta_{rs}\frac{64-2k}{64}\|Q_+^kF\|^2.
+\]
+
+Die Normen lauten 1, 465, 412200, 521164800, 833259571200.
+Die daraus gebildete fünfdimensionale Variationsmatrix gibt 64 unabhängige
+Richtungen unter \(-1.095812\Delta\). Das gesamte N=63-Komplement des
+Nullbosonraums liegt über \(-3\Delta/4\). Minimax begrenzt den niedrigen
+Raum auf genau 64 Dimensionen; seine injektive symmetrieverträgliche
+Projektion auf die irreduzible duale 64 erzwingt ein einziges Energieniveau.
+
+Das beweist Existenz und Isolation. Seine Sichtbarkeit folgt aus den
+positiven Entnahmemomenten. Mit
+
+\[
+d=0.007737\Delta,\quad c=0.379636\Delta,
+\quad a_{\max}=\frac{1.245656+1.158089}{64}\Delta
+\]
+
+gilt
+
+\[
+Z_{\rm low}>\frac{c(1-1.245656/32)-a_{\max}}{c-d}
+=\frac{40912436089}{46487375000}
+=0.8800762806891118\ldots.
+\]
+
+Außerdem ist der niedrige Pol die kleinste Entnahmeenergie. Daher
+\(a\ge\epsilon_{\rm low}Z_-\), also bereits ohne vollständige
+Polauswertung
+
+\[
+\frac{\epsilon_{\rm low}}\Delta
+<\frac{1.245656+1.158089}{64-2(1.245656)}
+=\frac{2403745}{61508688}=0.039079763821332\ldots.
+\]
+
+Diese Verschärfungen entstehen aus dem **Zusammenführen kompatibler
+Beweise**, nicht aus einem neuen gewählten Parameter. Das Restgewicht
+des gesamten CAR-Maßes ist somit kleiner als 0.119923719311… .
+
+## 7. Einfache Organisation, aber keine falsche Zwei-Linien-Lösung
+
+Die ersten zwei orthonormalen Operatoren sind f und \(D/\sqrt S\).
+Die erste Resolventenreduktion hat deshalb die exakte Form
+
+\[
+\boxed{G(z)=\frac1{z-\displaystyle\frac{g^2S}{z-a_1-\Sigma_2(z)}}},
+\qquad a_1=\Delta+\frac{7a}{S}.
+\]
+
+\(\Sigma_2\) ist die Resolvente des verbleibenden nativen Operatorraums,
+gekoppelt an den dazu orthogonalen Rest von
+\(\mathcal L(D/\sqrt S)\). Es wurde kein äußeres Bad hinzugefügt.
+Dies ist eine genaue Ordnung der Rechnung, **keine abgeschlossene
+Berechnung von \(\Sigma_2\)** und keine Vereinigung sämtlicher TOE-Aufgaben
+in einer einzigen bereits gelösten Funktion.
+
+### 7.1 Warum man die Rückwirkung nicht exakt weglassen darf
+
+Angenommen, es gäbe nur je eine Entnahme- und Additionslinie mit
+Energien \(\epsilon_-,\epsilon_+\). Symmetrie macht diese für alle r gleich.
+Dann liefern die Bewegungsgleichungen auf demselben Grundzustand
+
+\[
+D_r\Omega=-\frac{\epsilon_-}{g}f_r\Omega,
+\qquad D_r^\dagger\Omega=\frac{\epsilon_+}{g}f_r^\dagger\Omega.
+\]
+
+Summe nach Multiplikation mit \(f_r^\dagger\) beziehungsweise \(f_r\)
+und N=64 ergeben
+
+\[
+H\Omega=\left[-32\epsilon_-+
+(\Delta-\epsilon_++\epsilon_-)N_b\right]\Omega.
+\]
+
+Ein Eigenzustand mit negativer Energie kann keine feste Bosonenzahl haben:
+Dann wäre \(\langle Q_++Q_-\rangle=0\) und seine Energie
+\(\Delta\langle N_b\rangle\ge0\). Daher sind \(\Omega\) und
+\(N_b\Omega\) unabhängig. Die angenommene Zweilinienform erzwingt
+\(\epsilon_+-\epsilon_-=\Delta\).
+
+Andererseits geben \(m_0=1,m_1=0\) für ein Zweilinienmaß
+\(m_3/m_2=\epsilon_+-\epsilon_-\). Die exakt bestimmte Formel lautet
+jedoch
+
+\[
+\frac{m_3}{m_2}=\Delta+7a/S>\Delta.
+\]
+
+Widerspruch. Damit ist \(\Sigma_2\not\equiv0\) bewiesen. Mindestens
+ein Kanal besitzt mehr als eine Energielinie. Der dominante isolierte
+Entnahmepol und diese unvermeidliche Reststruktur widersprechen einander nicht.
+Eine Zweilinienform könnte höchstens eine zu zertifizierende Näherung sein.
+
+## 8. Was der Operationssatz jetzt tatsächlich hergibt
+
+| Vertrag | Mathematisch abgesichert | Nicht dadurch verfügbar |
+|---|---|---|
+| Markierter endlicher Matrixcompiler | Matrizen, Ordnungen, konkrete endliche Syntheseidentitäten | Vollständiges Fockinstrument, Präparation, physischer Zeitgenerator |
+| H allein | Modellzeitentwicklung | Unabhängiges Schalten von X und \(N_b\) |
+| X und \(N_b\), wenn als Kontrollen gewährt | N=3-Kontrollalgebra der Dimension 14 | Beliebige Modenoperationen |
+| Zusätzlich dokumentierter vorzeichenrichtiger Clock-Lift | N=3-Kontrollalgebra der Dimension **84** | Vollständige Zustandsunterscheidung oder Ladung-eins-Instrument |
+
+Die neue Clock-Rechnung wurde übernommen und reproduziert. Die fünf
+Multiplizitätszeilen für die sechs Clockphasen sind:
+
+| Teilraum | 0 | 1 | 2 | 3 | 4 | 5 |
+|---|---:|---:|---:|---:|---:|---:|
+| Dunkle F3 | 6384 | 6280 | 6280 | 6384 | 6280 | 6280 |
+| Dunkle BF | 16 | 8 | 8 | 16 | 8 | 8 |
+| Aktiv 7 | 560 | 440 | 440 | 560 | 440 | 440 |
+| Aktiv 10 | 112 | 88 | 88 | 112 | 88 | 88 |
+| Aktiv 12 | 80 | 40 | 40 | 80 | 40 | 40 |
+
+Die aktiven Zeilen tragen zusätzlich einen Zweiniveaufaktor. Alle 45504
+N=3-Zustände sind erfasst; der Kommutant hat weiterhin Dimension
+240742144. Die alte Zahl 14 beschreibt den engeren Zweikontrollvertrag,
+nicht den jetzt zusätzlich geprüften Clockvertrag.
+
+### 8.1 Konkrete Präparationsgrenze
+
+Alle genannten Fockkontrollen erhalten N. Ein Wort aus ihnen und jeder
+einzeln zahlenerhaltende ausgewählte Messzweig bleiben im Ausgangssektor.
+Sie können aus dem leeren N=0-Zustand **nicht** den N=64-Grundzustand
+erzeugen. Diese Aussage betrifft zahlenerhaltende Krauszweige; eine bloß
+U(1)-kovariante offene Dynamik kann sehr wohl geladene Krausoperatoren haben.
+
+Auch aus dem voll besetzten F führt bloßes \(e^{-itH}\) nicht zur
+Konvergenz auf \(\Omega\): Der Grundzustandsüberlapp bleibt konstant.
+Normiertes \(e^{-\tau H}F\) konvergiert mathematisch mit der bewiesenen
+Lücke, benötigt aber eine gesonderte Instrument- und Ressourcenherleitung.
+
+### 8.2 Der kleinste konkrete Ladungstest
+
+Ein Kandidat ist eine explizite Referenzmode c mit
+\(T=\lambda(c^\dagger f_r+f_r^\dagger c)\). Sie erhält die gemeinsame
+Ladung, verändert aber die Ladung der ursprünglichen Bank. Der endliche
+Austausch- und Detuningtest ist exakt; **dieses T wurde nicht als neuer
+nativer Hamiltonterm eingeführt**.
+
+Für dieselbe N=64-Präparation unter \(H+\mu N\) gilt
+\(G_\mu(z)=G_0(z-\mu)\), insbesondere \(m_1=\mu\).
+Das misst nur gegen eine festgelegte Referenz: Ein gemeinsamer Zusatz
+\(\mu(N_{\rm Bank}+N_{\rm Referenz})\) bleibt unsichtbar. Die Spektral-
+schranken dieses Berichts gelten als Grundzustandsschranken nur für μ=0.
+
+## 9. Relativistisches Wörterbuch: Ausschluss und zwei präzise Alternativen
+
+Die Indexfrage darf nicht nachträglich durch einen Namen beantwortet werden.
+Die Konventionen für Zweikomponentenspinoren wurden mit
+[Dreiner, Haber und Martin](https://arxiv.org/abs/0812.1594) abgeglichen;
+die folgenden speziellen W-Tests sind eigene exakte Tensorrechnungen.
+
+### 9.1 Was nicht funktioniert
+
+Für 64 gleichhändige Weylfelder mit innerem Index I und einen skalaren
+Vermittler ist \(M_A\otimes\varepsilon_{\rm Lorentz}\) symmetrisch.
+Die Grassmann-Antisymmetrisierung verschwindet daher identisch, für alle
+60 W-Zeilen. Außerdem lässt die volle irreduzible innere Darstellung
+\(16\otimes4\) auf denselben 64 Komponenten nach Schur keine zusätzliche
+kommutierende nichttriviale Lorentzspinorwirkung zu.
+
+### 9.2 Bereits bekannter nichtverschwindender Typ
+
+Ein symmetrischer Lorentzspinortensor koppelt an das antisymmetrische M.
+Der Vermittler hat dann einen passenden dualen (1,0)-Typ samt adjungiertem
+Typ. Diese Variante besteht den algebraischen Nichtnulltest, aber noch
+keinen vollständigen Kinetik-, Positivitäts-, Constraints- oder Herkunftstest.
+
+### 9.3 Neue minimale skalare Alternative — ausdrücklich zusätzlich
+
+Will man zugleich W, gleiche Weylhand, lokale Bilinearität und einen
+skalaren Vermittler behalten, kann man einen **unabhängigen** Hilfsindex
+a=1,2 mit alternierender Form einführen:
+
+\[
+b_A^\dagger(M_A)_{IJ}\varepsilon_{ab}
+\varepsilon_{\alpha\beta}\psi_{I a\alpha}\psi_{J b\beta}
++\mathrm{h.c.}
+\]
+
+M und \(\varepsilon_{ab}\) sind jeweils antisymmetrisch; ihr Produkt
+ist als innerer Kopplungstensor symmetrisch. Zusammen mit der Lorentz-
+Epsilonform ist der Gesamttensor antisymmetrisch und nicht null.
+Alle 60 Kanäle bestehen den Test. Eine nichtverschwindende alternierende
+Form existiert nicht in Dimension eins; in Dimension zwei ist sie bis
+auf Normierung eindeutig. **In dieser eng benannten Klasse von
+Tensorfaktor-Reparaturen ist die binäre Ergänzung minimal.**
+
+Das ist noch keine gefundene native Lösung: Sie verdoppelt die inneren
+Weylkomponenten von 64 auf 128, zusätzlich zu deren Lorentzspinorindex.
+Ein Double-Cover-Minuszeichen stellt nicht automatisch zwei unabhängige
+Felder bereit. Auch Nambu-Umbenennung \((f,f^\dagger)\) genügt nicht:
+Das gemischte Produkt hat Ladung null statt −2, sodass derselbe
+\(b^\dagger ff\)-Ladungsvertrag nicht erhalten bleibt.
+
+Der entscheidende Quellenauftrag ist daher eng: Gibt es diese zweite
+gleichgeladene, CAR-unabhängige Komponente bereits im tatsächlichen
+Compilerprozess? Und liefert ihre Projektion genau das bisherige H und
+die geprüfte Antwort? Ohne beides bleibt die skalare Alternative ein
+zusätzliches Modell, nicht eine Erklärung des ursprünglichen.
+
+## 10. Nächste Schritte mit eindeutiger Erfolgskontrolle
+
+1. **Native Quelle des Austauschoperators bestimmen.** Ein tatsächliches
+   Operationswort mit Anfangszustand, Detektor, Adjungiertem, Ladungsbilanz
+   und Record angeben. Ein weiteres neutrales Wort oder bloßer
+   Algebraabschluss schließt diese Aufgabe nicht.
+2. **Den Rest der nativen Antwort kontrollieren.** Das nächste Ziel ist
+   \(\Sigma_2\) beziehungsweise sein erster Norm- und Momentkoeffizient,
+   gemeinsam in N=63,64,65. Die vorliegenden Summenregeln und Polschranken
+   sind zwingende Akzeptanztests. Den Rest auf null zu setzen ist exakt
+   ausgeschlossen; eine Näherung braucht eine Restfehlergrenze.
+3. **Die beiden Feldtypen an der Quelle entscheiden.** Entweder der
+   symmetrische Vermittler mit korrektem Adjungierten und Kinetik, oder
+   der skalare Typ mit wirklich nachgewiesener zweiter Komponente.
+   Erst Nichtnullkopplung, Symmetrie, Ladung, CAR und positive Kinetik
+   gemeinsam zählen als Feldadapter.
+4. **Erst danach zwei operational bestimmte Teile verbinden.** Für einen
+   tatsächlich hergeleiteten ungeraden Austausch wäre das projizierte
+   Ein-Loch-Transfermatrixelement proportional zum jetzt eingeschlossenen
+   Residuum. Ein solches formales Matrixelement beweist weder Verfügbarkeit
+   des Austauschs noch einen isolierten Zweibank-Gesamtraum oder höhere
+   Störungsordnungen. Eine räumliche Skalierung wurde hier nicht vorgezogen.
+
+| Tor | Nutzen dieser Revision | Entscheidender verbleibender Nachweis |
+|---|---|---|
+| T1 | Exakter Clock-Kontrollabschluss und engere Ressourcenfrage | Ursprüngliches vollständiges Operations- und Rahmenwörterbuch |
+| T2 | Geladene native Antwort, sichtbarer Pol, drittes Moment | Quelleneinbettung und renormiertes Half-Charge-Feld mit Energie/Adjungiertem |
+| T3 | Präzise Anforderung an ungeraden Austausch | Gemeinsamer operationaler räumlicher, schließlich 3+1D-Träger |
+| T4 | Falscher Skalartyp ausgeschlossen, minimale Alternativen | Chirales Maß, Anomalien, Spiegelkontrolle, vollständige Feldkinetik |
+| T5 | Pole und Reststruktur lokal kontrolliert | Gemeinsamer wechselwirkender Grenzwert, Clusterstruktur, Streuung |
+| T6 | Strengere interne/Lorentz-Indexbilanz | Familien, Massen und Kopplungen auf demselben physikalischen Träger |
+| T7 | Keine neue Spin-2-Konstruktion | Dynamischer Spin 2, Helizitäten und universelle Kopplung |
+| T8 | Eindeutiger Modellgrundzustand; Präparationslücke konkret | Primitive Zustandswahl, Ressourcen, Records und Instrumente |
+
+## 11. Erratum und Versionsdisziplin
+
+Im eigenen v1.6.2-Text fehlte in Abschnitt 5.2 zwischen Entnahme- und
+Additionsresolvente ein Pluszeichen. Richtig ist auf der dortigen
+N=4-Referenz
+\(G=Z_h/(z+\epsilon_h)+a^\dagger(z+E_--H_5)^{-1}a\).
+Die früheren Prüfrechnungen verwendeten die additive CAR-Gewichtsregel;
+der Darstellungsfehler wird hier ausdrücklich korrigiert. Die archivierte
+v1.6.2 wird nicht stillschweigend umgeschrieben.
+
+Die zugelieferte v1.6.3 bleibt ebenfalls unverändert. Ihre Pol- und
+Clockbefunde sind als übernommene und frisch reproduzierte Ergebnisse
+kenntlich. Die engeren Schranken, das dritte Moment, der Ausschluss der
+exakten Zweilinienantwort und die minimale skalare Hilfsindexalternative
+sind die eigenen zusätzlichen Ergebnisse dieser Konsolidierung.
+Kein literaturweiter Neuheitsanspruch, keine experimentelle Bestätigung
+und kein Gesamtabschluss werden behauptet.

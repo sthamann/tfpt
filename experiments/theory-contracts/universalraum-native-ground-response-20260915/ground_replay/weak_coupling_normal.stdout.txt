@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "scope": "native one-bank Fock Hamiltonian Delta>0",
+  "conclusion": "For every 0<abs(g)/Delta<=1/20 the global ground state is unique, has Nf+2Nb=64, and is a Spin10 x SU4 singlet.",
+  "threshold": "T(r)=-470 r^2/(1+17 r^2), r=abs(g)/Delta",
+  "proof": "negative five-dimensional trial determinant; all N<=63 and N>=68 polynomial comparisons; J66 concavity controls N65,66,67 and the codimension-one N64 complement; minmax and symmetry",
+  "certificates": [
+    {
+      "label": "negative trial determinant after removing positive x",
+      "Bernstein": [
+        "714480",
+        "410565959/480",
+        "98306357921/96000",
+        "62817909589921/51200000",
+        "6933776222025951/5120000000",
+        "3644347443789137993/3072000000000",
+        "163615733049903532069/409600000000000"
+      ]
+    },
+    {
+      "label": "all N<=63 above threshold",
+      "Bernstein": [
+        "93/2209",
+        "3843/110450",
+        "7215639/353440000"
+      ]
+    },
+    {
+      "label": "all N>=68 above threshold",
+      "Bernstein": [
+        "4",
+        "62/25",
+        "3043/2500",
+        "9713/50000"
+      ]
+    },
+    {
+      "label": "exceptional-sector concavity chord above threshold",
+      "Bernstein": [
+        "1",
+        "2/5",
+        "247/1200",
+        "341/1000"
+      ]
+    }
+  ],
+  "checks": [
+    "trial determinant has x factor",
+    "trial determinant strictly positive Bernstein coefficients",
+    "trial determinant denominator positive",
+    "low sectors strictly positive Bernstein coefficients",
+    "high-sector square-completion parameter below Delta throughout interval",
+    "high sectors strictly positive Bernstein coefficients",
+    "entire endpoint J66 strictly above -4/5",
+    "concavity chord strictly positive Bernstein coefficients",
+    "positive central charge term Delta N / 50 selects a unique empty ground state at g/Delta=1/20"
+  ],
+  "source_sha256": "794554393c495ba395f34e6a58d490da821408d4f8effbc394653cd4cec4e80a",
+  "state_selection_boundary": {
+    "comparison": "H_mu=H+mu N",
+    "mu_over_Delta": "1/50",
+    "new_ground_number": 0,
+    "same_dynamics_scope": "all observables commuting with N; relative energies inside each fixed N sector",
+    "implication": "the native N64 ground theorem assumes mu=0; the pair tensor alone does not select the cross-sector energy functional"
+  }
+}

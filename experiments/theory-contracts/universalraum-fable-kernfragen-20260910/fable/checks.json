@@ -1,0 +1,219 @@
+{
+  "status": "FABLE_KERNFRAGEN_CHECKS_MIXED_EVIDENCE",
+  "claims_not_made": [
+    "no RH statement",
+    "no factoring speedup",
+    "no TOE/T1-T8 closure",
+    "no derivation of the wall premise or of P1/P2 consequences",
+    "finite graphs (4-ring) do not establish a general TFPT dynamics"
+  ],
+  "evidence_classes": {
+    "exact_fraction": [
+      "leak_theorem",
+      "two_link_regression_witness",
+      "rotor_layer"
+    ],
+    "numpy_allclose_or_eig": [
+      "coverings",
+      "modular_covering"
+    ],
+    "mpmath_numeric": [
+      "gibbs_residues"
+    ]
+  },
+  "two_link_regression_witness": {
+    "start": [
+      75,
+      [
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "target": [
+      78,
+      [
+        1,
+        1,
+        0,
+        0
+      ]
+    ],
+    "amplitude": "-1/576",
+    "sequential_mutant_amplitude": "0"
+  },
+  "leak_theorem": {
+    "N_directed_links": 8,
+    "gamma_dagger_gamma_diagonal": "1/72",
+    "cubic_torus_formula": "6 N b^2 = N/96 for N sites (N_dir = 6N)",
+    "compressed_H_diagonal": [
+      "1/24",
+      "37/600",
+      "73/600",
+      "133/600"
+    ],
+    "electric_commutator_on_Omega0": "1/50",
+    "dressed_code": {
+      "bare_leak": "1/72",
+      "dressed_leak_diagonal": [
+        "1026808008239051162932690061875/30908197644274121699004267184252848",
+        "3546177178936113813664816038685973844655503303276875/106742702833347312820139327234802012556575838791211177008",
+        "521435577442137921222769279562009011349593453910570623475/15694894306632449268624941875452082398581183224947268922332848",
+        "79295403368416328740473517582420062720925/2386560006804626116864757693079188711670878544"
+      ],
+      "dressed_leak_float": [
+        3.322121917481888e-05,
+        3.322172930614849e-05,
+        3.322326147948549e-05,
+        3.322581587822098e-05
+      ],
+      "reduction_factor": [
+        418.07282314962214,
+        418.06640349448674,
+        418.04712332246254,
+        418.0149838846499
+      ],
+      "high_admixture_weight": [
+        0.0008696543664166269,
+        0.0008696707026392782,
+        0.0008697197133516642,
+        0.0008698014046876199
+      ],
+      "residual_leak_census_a0": {
+        "high=0,low=4": 2.862186538306893e-12,
+        "high=1,low=3": 1.8123050229010346e-05,
+        "high=2,low=2": 1.5098166083621995e-05
+      },
+      "note": "first-order source dressing by H itself; the residual leak is dominated by the LL hop (coefficient a) of the hole created by the LH admixture, i.e. by mobile dressed excitations; still extensive in volume"
+    }
+  },
+  "rotor_layer": {
+    "conjugation_law": "Ad_{exp(-it kE^2/2)}(L) = L * f_t(E), f_t(E) = exp(-itk(2E delta(E)+delta(E)^2)/2)",
+    "carry": "C = U^4 P_0 + (I-P_0), U = C L exactly; C and L are two-term shift/diagonal operators (finite normal form)",
+    "closed_algebra": "W*(L, l^inf(E)) = l^inf(Z; M_4) (bounded product of the q-blocks, not the c_0 sum); adding U: commutant scalar, von Neumann closure B(l^2(Z)); the NORM closure of finite sums sum_k U^k g_k(E) has finite bandwidth and does not contain S_m (m>1)",
+    "coupling_term": "8QR"
+  },
+  "coverings": {
+    "relations": [
+      "S_m U = U^m S_m",
+      "E S_m = m S_m E",
+      "E^2 S_m = m^2 S_m E^2",
+      "S_m S_k = S_mk",
+      "T_r = U^r S_4 Cuntz"
+    ],
+    "energy_scaling": "degree-m covering multiplies the electric energy kappa E^2/2 by m^2"
+  },
+  "gibbs_residues": {
+    "rows": [
+      {
+        "beta": "2.0",
+        "mass_mod4": [
+          "0.0625",
+          "0.653420154533",
+          "0.1875",
+          "0.0965798454669"
+        ],
+        "max_deviation_from_quarter": "0.40342"
+      },
+      {
+        "beta": "1.5",
+        "mass_mod4": [
+          "0.125",
+          "0.488686252801",
+          "0.228553390593",
+          "0.157760356606"
+        ],
+        "max_deviation_from_quarter": "0.238686"
+      },
+      {
+        "beta": "1.1",
+        "mass_mod4": [
+          "0.217637640824",
+          "0.304718852986",
+          "0.248878854944",
+          "0.228764651246"
+        ],
+        "max_deviation_from_quarter": "0.0547189"
+      },
+      {
+        "beta": "1.01",
+        "mass_mod4": [
+          "0.246558176123",
+          "0.255640852999",
+          "0.249988071595",
+          "0.247812899283"
+        ],
+        "max_deviation_from_quarter": "0.00564085"
+      },
+      {
+        "beta": "1.001",
+        "mass_mod4": [
+          "0.249653666525",
+          "0.250565795621",
+          "0.24999987997",
+          "0.249780657884"
+        ],
+        "max_deviation_from_quarter": "0.000565796"
+      },
+      {
+        "beta": "1.0001",
+        "mass_mod4": [
+          "0.249965345043",
+          "0.250056596685",
+          "0.249999998799",
+          "0.249978059473"
+        ],
+        "max_deviation_from_quarter": "5.65967e-5"
+      }
+    ],
+    "electric_energy_of_zeta_gibbs": {
+      "formula": "(kappa/2) zeta(beta-2)/zeta(beta) for beta>3; divergent for 1<beta<=3",
+      "beta_4": "0.00759908877318"
+    },
+    "unit_averaging_repair": "mu_beta = int_{Z-hat^x} u_* nu_beta du (Haar average over profinite units); same divisibility moments, unit-invariant",
+    "total_variation_remark": "d_TV(nu_beta, Haar) = 1 for every beta>1 and sup_m d_TV(nu_beta mod m, Unif_m) = 1; convergence is per fixed modulus / weak*, never uniform in the modulus",
+    "identification": "zeta-Gibbs and the report family mu_s share the divisibility moments Pr(n|X)=n^{-beta}; they are DIFFERENT residue laws at finite beta (mu_s is unit-invariant, zeta-Gibbs is not); both tend to Haar on Z-hat (equal-weight Z4 state) as beta->1+",
+    "finite_beta_unit_asymmetry": [
+      {
+        "beta": "2.0",
+        "omega(1)-omega(3)": "0.5568403091",
+        "mu_beta(1)-mu_beta(3)": "0"
+      },
+      {
+        "beta": "1.1",
+        "omega(1)-omega(3)": "0.07595420174",
+        "mu_beta(1)-mu_beta(3)": "0"
+      },
+      {
+        "beta": "1.001",
+        "omega(1)-omega(3)": "0.0007851377367",
+        "mu_beta(1)-mu_beta(3)": "0"
+      }
+    ],
+    "H_log_vs_H_E": "on the loop sector H_E = (kappa/2) exp(2 H_log) on |E|>0: same eigenbasis, incompatible Gibbs states"
+  },
+  "modular_covering": {
+    "N": 91,
+    "a": 2,
+    "order": 12,
+    "cycle_lengths": [
+      1,
+      3,
+      12
+    ],
+    "controlled_shifts_needed": 91,
+    "identification": "U_a is a separately constructed permutation of the Z_N clock with the same multiplicative composition law as the coverings S_a; the label map |n> -> |n mod N> is NOT a bounded Hilbert-space transfer l^2(Z) -> C^N (norm amplification ~ sqrt(K) on K states of one class), so 'reduction' is index reduction, not a physical isometry",
+    "operation_classes": "three distinct cases: carry C (finite normal form, shifts 0 and 4), finite U_a (in the shift/diagonal algebra of C^N with N/gcd(a-1,N) shift labels), unbounded coverings S_m (m>1; outside every finite normal form and outside the norm closure)",
+    "cost_note": "the number of shift labels is a complexity of this representation format, not a gate lower bound; a single U_a is distinct from the controlled exponentiation |j>|1> -> |j>|a^j mod N> (O(log N) controlled power multiplications plus their bit/gate/Fourier costs); no speedup is claimed and none is excluded by this bookkeeping"
+  },
+  "sources_sha256": {
+    "experiments/theory-contracts/universalraum-fable-kernfragen-20260910/BRIEFING.md": "048d3cc6ec6cd57e23363e6753af5d9beff236c660fff22239ae2d701fc1e516",
+    "experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/TFPT-Globaler-Quellabschluss.md": "ca7b13d0eafd0c6c8a4d56b35871ac6971877d3af3d1bcd5c75b792e759f1d93",
+    "experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/TFPT-Markierter-Ursprung-der-Kopplung.md": "7359b8b4f4203a98a7054b4ad74f1e1830bd4c329ecd172f9b9b346fa6d5b5dc",
+    "experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/Universalraum-Cap-und-physische-Dynamik.md": "cd07ca2b0b7672ea281988660382dbbd80714a37b86a5f7cc2875098ab63bb49",
+    "experiments/theory-contracts/universalraum-fable-kernfragen-20260910/context/Universalraum-Masterprogramm-Pruefung.md": "fe7616f01e18b93e49ba707e76064cc8c8336c31a01e8aeecd4bc25e636738f4",
+    "experiments/theory-contracts/det-wall-hh-rule/PROOF.md": "740cb5cd102fd768ba0b2331eba18348136640587f730b540a6d62532a067633",
+    "verification/v1027_signed_det_car_wall.py": "6679297c3c53a86f4ef7d40c169caab64708885e891e68db365acfadfe9f0f4d"
+  }
+}

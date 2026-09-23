@@ -1,0 +1,147 @@
+UNABHÄNGIGE PRÜFUNG DES STANDARDLIFT-LOCK-GATES
+Datum: 2026-09-19
+Verdict: EXACT_STANDARD_ORDER4_LIFT_PRESERVES_FIRST_PAP_BUT_REMOVES_HALF_OVERLAP_SECOND_ORDER_HOPS
+
+Kernaussage
+-----------
+Die vorgeschlagene Alternative ist in dem eng angegebenen Umfang exakt
+konsistent. Für jede der 60 nativen Gaussianischen E8-Reflexionen existieren
+genau vier F2-Charaktergauge-Lifts des zertifizierten Standardcocycles, deren
+Vorzeichen auf dem gesamten Fixgitter +1 ist. Diese Lifts sind nicht
+involutiv: Auf den Wurzelpaaren mit t=1/2 quadriert der Lift zu -1 und hat
+daher Ordnung vier.
+
+Für den positiven hermitesierten Einzelereignisterm
+
+  L_std = I - Re(Rhat_m tensor r_m tensor r_m)
+
+bleibt dadurch der erste verriegelte PAP-Block gleich dem phasenlosen Wert
+3/2. In zweiter Ordnung löschen sich jedoch alle 32 t=1/2-Übergänge pro
+Wurzel. Die vorgegebene perturbative Blockrechnung reduziert sich exakt auf
+
+  D_std = (25 I - F)/3600,
+
+wobei F die Antipodenpermutation alpha -> -alpha ist. Der Zähler hat das
+Spektrum 26 mit Multiplizität 120 und 24 mit Multiplizität 120.
+
+1. Existenz und Fixgitter, nicht nur Fixwurzeln
+----------------------------------------------
+Für jede Reflexion M wurden sämtliche 256 linearen F2-Charakterkorrekturen
+des im Phasenlift-Zertifikat gespeicherten quadratischen Lifts geprüft. Genau
+vier Korrekturen erfüllen
+
+  eta_M(alpha)=+1
+
+für alle 60 exakt fixierten Wurzeln.
+
+Dass dies auf dem gesamten Fixgitter gilt, folgt hier nicht aus einer bloßen
+Wurzelzählung. Exakt geprüft wurde für jede der 60 Reflexionen:
+
+  dim_F2 ker(M-I) = 6,
+  dim_F2 span{alpha mod 2 : M alpha=alpha, alpha Wurzel} = 6.
+
+Die Fixwurzelreste spannen also den gesamten mod-2-Fixraum. Die
+Liftquadratik ist auf diesem Raum linear, weil ihr Polar dort verschwindet;
+der Checker wertet sie zusätzlich direkt auf allen 64 Elementen dieses
+Fixraums aus. Sie ist für jede der vier Lösungen identisch null. Jeder
+integrale Fixgittervektor reduziert in diesen Raum, daher ist der Lift auf
+dem ganzen Fixgitter trivial.
+
+Das Hinzufügen eines linearen Charakters ändert den Cocycle-Polar nicht. Die
+Bracket-Kompatibilität des gepinnten Phasenlift-Zertifikats bleibt deshalb
+erhalten.
+
+2. Quadratbeziehung und Ordnung vier
+------------------------------------
+Für alle 60 Reflexionen, alle vier Standardlösungen und alle 240 Wurzeln wurde
+exakt geprüft:
+
+  sign_M(alpha) sign_M(M alpha)
+    = (-1)^(<alpha,M alpha>).
+
+Mit t=<alpha,M alpha>/2 ist die Zählung pro Reflexion und Standardlösung:
+
+  t= 1:   60 Wurzeln, Quadrat +1, exakt fixiert;
+  t= 1/2: 128 Wurzeln, Quadrat -1;
+  t= 0:   48 Wurzeln, Quadrat +1;
+  t=-1:    4 Wurzeln, Quadrat +1.
+
+Da t=1/2 tatsächlich vorkommt, ist jeder dieser Standardlifts von Ordnung
+vier. Auf einem t=1/2-Paar sind die beiden Liftzeichen entgegengesetzt. Daher
+verschwindet der entsprechende Quellenübergang in Re(Rhat_m) exakt. Für
+t=0 und t=-1 stimmen die Zeichen überein; diese Übergänge werden durch die
+Hermitesierung nicht auf dieselbe Weise gelöscht.
+
+3. Erster PAP-Block
+-------------------
+Jede volle Wurzel wird von genau 15 der 60 Reflexionen fixiert. Weil alle vier
+Standardgauge-Lifts auf dem Fixgitter +1 sind, gilt unabhängig von der Wahl
+der vier Lösungen für jede der 240 ausgerichteten Wurzeln
+
+  E^(1)_alpha/kappa = 2 - 15/30 = 3/2.
+
+Der Standardlift transportiert damit genau den phasenlosen ersten PAP-Block.
+Dies ist der Gegenfall zum zuvor geprüften involutiven F2-Repair: Dort ist
+mindestens ein Teil der Fixwurzelzeichen negativ, sodass der erste PAP-Block
+nicht unverändert bleibt.
+
+4. Zweite Ordnung im vollen Wurzellock
+--------------------------------------
+Für jede Wurzel erzeugen die 60 Reflexionen exakt
+
+  - 15 Selbsttreffer,
+  - 32 eindeutige Nichtselbstziele mit t=1/2,
+  - 12 eindeutige Nichtselbstziele mit t=0,
+  -  1 eindeutiges Antipodenziel mit t=-1.
+
+Nach der Hermitesierung verschwinden die 32 t=1/2-Hops vollständig. Die 12
+orthogonalen Ziele tragen im vorgegebenen zweiten Ordnungsfaktor
+2t/(1-t) den Wert null. Das Antipodenziel trägt -1. Der Rückkehrbeitrag ist
+
+  2*(12+1/2)=25.
+
+Damit folgt innerhalb genau dieser perturbativen Lock-Rechnung
+
+  D_std=(25 I-F)/3600.
+
+F besteht aus 120 disjunkten Zweierzyklen. Auf jedem Zweierblock lautet der
+Zähler [[25,-1],[-1,25]], also
+
+  26, Multiplizität 120,
+  24, Multiplizität 120.
+
+Nach Division durch 3600 sind dies 13/1800 beziehungsweise 1/150. Der
+2 A_32-Term der phasenlosen Matrix (153 I+2 A_32-F)/3600 wird somit nicht
+transportiert.
+
+5. Einordnung und genaue Grenze
+-------------------------------
+Die beiden geprüften natürlichen Liftwahlen scheitern an verschiedenen
+Stellen:
+
+  - Involutive F2-Repairs bewahren im vollen Wurzellock die vorgegebene
+    zweite Ordnung, verändern aber bereits den ersten PAP-Block.
+  - Die hier geprüften Standardlifts von Ordnung vier bewahren mit dem
+    hermitesierten positiven Ereignis den ersten PAP-Block, löschen aber die
+    32 halben Überlappungshops und verändern die zweite Ordnung.
+
+Damit ist die phasenlose Rechnung nicht zugleich durch beide Ordnungen
+transportiert. Dies ist kein All-Orders-Beweis für 120 Grundzustände, keine
+Bestimmung einer neuen vollen Lücke und kein No-Go für sämtliche möglichen
+U(1)-Lifts. Ebenfalls nicht geprüft ist eine global gruppenkompatible Auswahl
+der vier individuellen Standardgauge-Lösungen über alle Wortrelationen; der
+Test belegt die geforderte einzelne bracket-kompatible Reflexionswirkung und
+deren Lock-Blöcke.
+
+Validierung
+-----------
+standard_lift_lock_check.py läuft normal und mit python -OO byte-identisch im
+Textoutput sowie identisch im JSON-Zertifikat durch.
+
+  check_evaluations: 120977
+  checker SHA256:
+    2e7f3da0736ae9390b98f00ef983d9dfb83816102fe4dad3adf616ec4dfd9077
+  certificate SHA256:
+    ff53498776516f192d56f466c52496e6cb97ba02d561fd3be0772ac49382cf74
+
+Keine Repository-Datei wurde verändert.

@@ -1,0 +1,164 @@
+EXAKTE PHASENLIFTS DER 60 NATIVEN GAUSSIAN-E8-REFLEXIONEN
+Datum: 2026-09-19
+Verdict: EXACT_BRACKET_LIFTS_EXIST_CHARACTER_SECTION_OPEN
+
+1. Aussage
+----------
+Die reine Permutation der 240 E8-Wurzelräume ist nicht mit der E8-Lieklammer
+verträglich. Jede der 60 nativen Gaussian-Reflexionen besitzt jedoch exakt
+konstruierte Cocycle-Phasen, die sämtliche Wurzelklammern und die Adjunktion
+erhalten. Der vom Cocyclepolynom gelieferte Roh-Lift ist nicht immer eine
+Involution. Für jede einzelne Reflexion kann er durch einen Gittercharakter zur
+Involution korrigiert werden. Diese Korrektur ist sechsdimensional frei:
+Es gibt pro Reflexion genau 2^6=64 zulässige Charaktere.
+
+Damit ist die lokale Strukturfrage bestanden, aber noch kein gemeinsamer
+Charakterabschnitt für die von allen 60 Reflexionen erzeugte Gruppe hergeleitet.
+Insbesondere dürfen die phasenlosen .17-Spektren nicht übernommen werden.
+
+2. E8-Basis und Cocycle
+-----------------------
+Der Checker erzeugt aus den 60 gepinnten mu4-Strahlen zunächst alle 240
+Gaussianischen Wurzeln. Daraus wird eine explizite ganzzahlige einfache
+E8-Basis B gewählt. Ihre Gram-Matrix
+
+  G = Re(B* B)/2
+
+ist die E8-Cartanmatrix mit Diagrammkanten
+
+  0--1--2--3--4--5--6
+        |
+        7
+
+und det(G)=1. In den zugrunde liegenden acht reellen Koordinaten gilt
+|det(B)|=16, wie es wegen der Skalierung der nativen Wurzeln erforderlich ist.
+Alle 240 Wurzeln besitzen ganzzahlige Koordinaten in dieser Basis.
+
+Der geordnete Standardcocycle lautet
+
+  epsilon(x,y) = (-1)^c(x,y),       c(x,y)=x^T C y mod 2,
+
+wobei C untere Dreiecksform hat,
+
+  C_ii = G_ii/2 mod 2,
+  C_ij = G_ij mod 2 für i>j,
+  C_ij = 0 für i<j.
+
+Exakt geprüft sind auf allen 256x256 Paaren in L/2L
+
+  c(x,y)+c(y,x) = x^T G y mod 2,
+  c(x,x) = (x^T G x)/2 mod 2.
+
+3. Quadratische Reflexionsphasen
+--------------------------------
+Für eine native Reflexion mit ganzzahliger E8-Matrix M wird über F2
+
+  D_M = M^T C M - C
+
+gebildet. Weil M die Gram-Matrix erhält, ist D_M symmetrisch mit verschwindender
+Diagonale. Daher definiert sein striktes oberes Dreieck die quadratische Form
+
+  q_M(x) = sum_{i<j} (D_M)_ij x_i x_j mod 2.
+
+Mit eta_M(x)=(-1)^q_M(x) gilt
+
+  q_M(x)+q_M(y)+q_M(x+y)
+    = c(Mx,My)+c(x,y) mod 2.
+
+Das ist genau die fehlende Identität für
+
+  E_x -> eta_M(x) E_{Mx}
+
+als Lieautomorphismus. Der Checker prüft sie auf allen 65536 binären Paaren
+für jede der 60 Reflexionen und zusätzlich unmittelbar auf allen 13440
+geordneten nichtverschwindenden E8-Wurzelsummen. Insgesamt werden 806400
+Wurzelsummenklammern geprüft. Die 240 Gegenwurzelklammern pro Reflexion werden
+separat geprüft.
+
+Für den geordneten Cocycle ist auf Wurzeln
+
+  E_alpha^dagger = -E_{-alpha}.
+
+Da q_M(-alpha)=q_M(alpha), erhalten alle konstruierten Lifts diese Adjunktion.
+
+Der im Auftrag genannte Gegenzeuge wird reproduziert. Für
+
+  alpha=(1,1,1,1), beta=(1,-1,-1,-1), gamma=(2,0,0,0),
+  g=diag(1,-1,-1,-1)
+
+gilt alpha+beta=gamma, aber der Cocycle-Exponent springt unter der reinen
+Permutation von 0 auf 1. Die quadratische eta-Phase korrigiert genau dieses
+Vorzeichen.
+
+4. Liftquadrate und notwendige Charakterfreiheit
+-------------------------------------------------
+Das Quadrat des Roh-Lifts ist der lineare Charakter
+
+  s_M(x) = q_M(x)+q_M(Mx).
+
+In der ausgewiesenen Basis-/Cocyclegauge sind 20 Roh-Lifts bereits
+involutiv. Bei 12 weiteren ist das Quadrat auf 112 der 240 Wurzeln negativ,
+bei 28 weiteren auf 128 Wurzeln. Diese 40 Roh-Lifts haben auf der Wurzelalgebra
+Ordnung vier.
+
+Jede andere Liftphase mit demselben Polar ist
+
+  q_M(x) + a.x,    a in F2^8.
+
+Involutivität ist die lineare Gleichung
+
+  (I+M)^T a = s_M.
+
+Für jede der 60 Reflexionen hat sie Rang zwei und genau 64 Lösungen, also einen
+affinen Raum mit sechs freien Charakterbits. Das Zertifikat gibt pro Reflexion
+einen bloßen Koordinatenoffset und sechs Kernelgeneratoren an; damit sind alle
+64 Lösungen beschrieben. Der Offset ist keine physische Auswahl. Alle
+60*64*256 korrigierten Quadrate wurden auf L/2L geprüft, ebenso die Adjunktion
+für jede Korrektur.
+
+5. Kleinster Wortkern-Test
+--------------------------
+Um die Auswirkung der noch offenen Charakterwahl sichtbar zu machen, verwendet
+der Checker zusätzlich die reproduzierbare Konvention des jeweils kleinsten
+ganzzahligen affinen Offsets. Dies ist ausdrücklich nur eine Koordinatenwahl.
+
+Für die nativen Reflexionen 13 und 0 gilt nackt die Braidrelation
+
+  13,0,13 = 0,13,0.
+
+In der Kleinster-Offset-Konvention unterscheiden sich die beiden Liftwörter um
+den nichttrivialen Gittercharakter mit Bitmaske 209. Er wirkt auf 128 der 240
+Wurzelräume mit Minuszeichen. Die fünf nackten Generatoren 0,13,2,3,1 wirken
+transitiv auf allen 240 Wurzeln. Daher gibt es in dieser konkreten
+Liftkonvention keinen gemeinsamen invarianten Vektor, auch nicht nach Tensorieren
+mit einem Faktor, auf dem dieses nackte Relationswort als Identität wirkt, wie
+beim gepaarten r tensor r.
+
+Dieser Ausschluss ist noch nicht charaktergauge-unabhängig: Für die beiden
+Reflexionen wurden alle 64x64 involutiven Korrekturpaare geprüft. Es entstehen
+16 mögliche Braidcharaktere, jeder genau 256-mal; bei 256 Paaren ist der
+Braidcharakter trivial. Das einzelne Relationswort beweist daher keinen
+universellen Singulett-Ausschluss. Der nächste engste Ursprungstest ist die
+Existenz oder Obstruktion eines kohärenten Charakterabschnitts, der alle
+Gruppenrelationen gleichzeitig erfüllt.
+
+6. Validierung und Grenze
+-------------------------
+checker.py läuft normal und mit python -OO identisch durch:
+
+  15823 zusammengefasste Anforderungen,
+  806400 explizite nichtverschwindende Wurzelsummenklammern,
+  983040 korrigierte Quadratwerte auf L/2L.
+
+SHA256:
+  checker.py
+    0608ef41210b2e121bff57c414eac51320716e2a909a5573ee85ab3009e453aa
+  certificate.json
+    74c6743c54811449719ac0a91192a712dc4f8bcb2c281eaf6d7860e4018772cc
+  gepinnte .13-Quelle
+    3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593
+
+Bewiesen ist nur die endliche E8-Wurzelalgebra mit dem geordneten
+Gittercocycle. Nicht bewiesen oder ausgewählt sind ein kohärenter globaler
+Liftabschnitt, eine bevorzugte Charaktergauge, die .17-Hamiltonspektren, eine
+physische Quelle, Präparation, Lokalität, ein Kontinuum oder TOE-Physik.

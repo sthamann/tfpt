@@ -1,0 +1,74 @@
+{
+  "contract": "source-charged-lift-20260920",
+  "date": "2026-09-20",
+  "research_id": "UR.SOURCE.CHARGED_LIFT.01",
+  "question": "Can an integral additive section of the fixed neutral E8 quotient preserve the fixed charged-spinor action, and what minimal local lattice admits the full T(E8) lift?",
+  "verdict": "PARTIAL",
+  "verdict_enum": ["PASS", "PARTIAL", "FAIL"],
+  "mathematical_verdict": "EXACT_ALL_SECTION_CLASSIFICATION; T_RESTRICTION_LAMBDA_A_OVER_TWO_OUTSIDE_E8; MINIMAL_EVEN_NEIGHBOR; TWO_NEIGHBORS; NATIVE_SOURCE_ORIGIN_OPEN",
+  "key_results": {
+    "section_theorem": "S_lambda(r)=F(r)+(lambda.r)n for unique lambda in E8",
+    "T_obstruction": "T on spanning D8 forces lambda=a/2, outside E8",
+    "neighbors": "Gamma_even+Z(n/2) and Gamma_even+Z(n/2+e9) are both even unimodular neighbors",
+    "local_charged_fields": "original odd charge-one fields, including e9, are not local in the T(E8) repair",
+    "charge_normalization": "g(L_h)=2Z, so g/2 is primitive on the repaired lattice"
+  },
+  "claims_tested": [],
+  "gates": ["T1", "T3", "T4", "T8"],
+  "physical_gates_closed": [],
+  "complete_TFPT_solution": false,
+  "checker": "checker.py",
+  "proof": "PROOF.txt",
+  "review": "REVIEW.txt",
+  "certificate": "certificate.json",
+  "certificate_optimized": "certificate.optimized.json",
+  "source_manifest": "source_manifest.json",
+  "firewall": "experiments",
+  "promotion": false,
+  "relations": [
+    {"type": "extends", "target": "source-clifford-grade-20260920"},
+    {"type": "uses", "target": "source-flux-index-20260920"},
+    {"type": "uses", "target": "source-graded-locality-20260920"},
+    {"type": "uses", "target": "source-dynamics-selection-20260920"},
+    {"type": "uses", "target": "source-critical-local-fields-20260920"}
+  ],
+  "summary_de": "Fuer alle integralen additiven Schnitte des festgehaltenen neutralen E8-Quotienten gilt S_lambda(r)=F(r)+(lambda.r)n mit lambda in E8. Die gemeinsame T(D8)-Wirkung erzwingt lambda=a/2, das wegen der ungeraden Halbzeichenparitaet nicht in E8 liegt; T bleibt genau auf D8 integral. Eine minimale gerade Nachbarerweiterung Gamma_even+Z(n/2)=T(E8)+U ist gerade unimodular vom Signaturtyp (9,1), waehrend ein zweites gerades Nachbargitter existiert. Die Reparatur aendert den lokalen Feldraum und ist keine native Quell- oder Gaugedynamik.",
+  "assumptions": [
+    "Fixed Gamma=Z^10, K, F, T, n, z, q, Y and g dictionary",
+    "Additive lattice-vertex sections with fixed quotient root labels",
+    "Standard bilinear lattice locality and no arbitrary nonlocal dressing",
+    "The desired T(D8) charged action and seed e9 are conditional boundary inputs"
+  ],
+  "kills": [
+    "Infer a common charged E8 field action from identical neutral quotient labels alone.",
+    "Treat the half-integral T(E8) lifts as original Gamma-local fields without changing the local lattice.",
+    "Call the even-neighbor repair a native source sector, gauge flux event or physical fermionization result.",
+    "Treat the second even neighbor as excluded without the additional T(E8) requirement."
+  ],
+  "leaves_open": [
+    "Source-derived charged or twisted sectors and their operator/state/time map",
+    "Native interaction, gauge measure, flux process and amplitudes",
+    "Physical selection between local sectors and a common infrared dynamics",
+    "All T1-T8 physical closures and a complete TOE"
+  ],
+  "not_claimed": [
+    "No new Hamiltonian, vacuum, gauge field or QFT was constructed",
+    "E8 is an internal lattice/current structure, not a derived physical gauge group",
+    "The finite checker supplements the written general proof and is not a finite-search proof of the classification",
+    "No universal prohibition on fermions, spinors or twisted sectors"
+  ],
+  "source_pins": [
+    {"path": "experiments/theory-contracts/source-flux-index-20260920/PROOF.txt", "role": "fixed flux-index dictionary and neutral quotient"},
+    {"path": "experiments/theory-contracts/source-clifford-grade-20260920/PROOF.md", "role": "fixed T(D8) charged seed and prior T/F OPE comparison"},
+    {"path": "experiments/theory-contracts/source-graded-locality-20260920/PROOF.txt", "role": "full Gamma gluing and complement locality"},
+    {"path": "experiments/theory-contracts/source-dynamics-selection-20260920/PROOF.txt", "role": "transported charged fields and conditional energy context"},
+    {"path": "experiments/theory-contracts/source-critical-local-fields-20260920/ERGEBNIS.md", "role": "explicit charged local field context"}
+  ],
+  "literature": [
+    {
+      "title": "Fermionization and spin-structure/GSO reconstruction context",
+      "url": "https://arxiv.org/abs/2112.14323",
+      "scope": "general field-theory context only; does not identify the finite source with the conditional lattice"
+    }
+  ]
+}

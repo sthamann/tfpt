@@ -1,0 +1,164 @@
+Unabhaengige exakte Pruefung des neuen Zwei-Quellen-Ueberlappungsoperators
+19. September 2026
+
+KERNERGEBNIS
+
+Aus den gepinnten nativen 240 orientierten E8-Wurzeln folgt unter dem im
+Bericht genannten Stark-Lock-Modell exakt
+
+  D = (153 I + 2 A32 - F)/3600.                         (1)
+
+Dabei verbindet A32 genau die Wurzelpaare mit dem komplexen, nicht nur
+reellen, Ueberlapp
+
+  <psi_alpha,psi_beta> = 1/2,
+
+und F sendet alpha auf -alpha. A32 ist 32-regulaer, F ist eine fixpunktfreie
+Involution, und [A32,F]=0.
+
+Die behauptete Spektrenfolge von M=3600D stimmt exakt:
+
+  216^1, 186^8, 168^25, 162^40,
+  152^45, 146^72, 144^40, 136^9.                        (2)
+
+In der nativen, im Bericht verwendeten reellen Wurzelmatrix X_native mit
+Zeilennormquadrat4 gilt exakt
+
+  X_native^T X_native = 120 I8,   M X_native = 186 X_native. (3)
+
+Das bestaetigt den literal berichteten Wert120I. Nur bei einer zusaetzlichen
+Umnormierung auf E8-Wurzeln X=X_native/sqrt(2) mit Normquadrat2 wird daraus
+X^T X=60I8. Diese zweite Konvention war eine Pruefhypothese, kein Fehler des
+Nutzerberichts.
+
+
+1. TATSAECHLICHE ZWEITORDNUNGS-MATRIXELEMENTE
+
+Der getestete niedrige Raum hat die orthonormale Basis
+
+  e_alpha = |alpha,alpha>_(S_L,S_R)
+            tensor |psi_alpha>_A |psi_alpha>_B |psi_alpha>_C.
+
+Der Lock kostet fuer einen Zwischenzustand mit zwei verschiedenen
+Quellenlabels
+
+  V(alpha,beta)=1-Re<psi_alpha,psi_beta>.
+
+Auf jedes der beiden ueberlappenden Pakete wirkt der Mittelwert der 60
+nativen Reflexionsereignisse, jeweils mit Faktor1/60. Fuer jede feste
+orientierte Wurzel alpha verteilen sich die 60 Ereignisse exakt als
+
+  15: beta=alpha,
+  32: <psi_alpha,psi_beta>= 1/2,
+  12: <psi_alpha,psi_beta>= 0,
+   1: beta=-alpha, Ueberlapp=-1.
+
+Jedes nichttriviale Ziel wird von genau einer der 60 Reflexionen erreicht.
+Die 15 Fixierer bleiben im niedrigen Raum. Fuer die hier direkt aus der
+gepinnten .17-Quelle rekonstruierte nackte Wurzelpermutation geben sie von
+beiden Paketen zusammen in erster Ordnung nur den Skalar
+
+  2*15/60 = 1/2,
+
+also keine Aufspaltung.
+
+In zweiter Ordnung gibt die zweimalige Wirkung auf dasselbe Paket die
+Rueckkehramplitude1. Es gibt zwei Pakete, daher ist der Diagonalzaehler
+
+  2 [32/(1-1/2) + 12/(1-0) + 1/(1-(-1))]
+    = 2 [64+12+1/2]
+    = 153.                                                (4)
+
+Bei Wirkung auf beide Pakete existieren zwei Reihenfolgen. Nach beiden
+Reflexionen ist nur das gemeinsame Register B noch im alten Vektor; seine
+Projektion auf den neuen ausgerichteten Zustand liefert den Faktor
+<psi_beta,psi_alpha>. Der Zaehler pro Uebergang ist daher
+
+  2 <psi_beta,psi_alpha>
+  ----------------------- .                              (5)
+  1-Re<psi_alpha,psi_beta>
+
+(5) ist fuer Ueberlapp1/2 gleich2, fuer Ueberlapp0 gleich0 und fuer den
+Antipoden gleich-1. Zusammen mit (4) ergibt das genau (1). Die beiden
+Ereignismittel liefern den Nenner60^2=3600.
+
+Fuer einen positiven Lock-Hamiltonoperator lautet die uebliche
+Schrieffer-Wolff-Energiekorrektur -epsilon^2 D. Wenn die Erstordnung wie bei
+der nackten Permutation skalar bleibt, waehlt die Zweitordnungsenergie deshalb
+den groessten Eigenwert von D. Der eindeutige 216-Eigenvektor ist die
+gleichgewichtete kohaerente Summe der 240 e_alpha.
+
+Ein phasenkorrigierter E8-Stromlift muss hiervon getrennt werden. Verwendet man
+auf beiden Paketkanten denselben involutiven Vorzeichenlift, bleibt (1) in
+zweiter Ordnung unveraendert: Bei der Rueckkehr auf derselben Kante
+multiplizieren sich die beiden Liftzeichen zu1; bei den zwei verschiedenen
+Kanten tritt dasselbe Zeichen quadratisch auf. Der projizierte Erstordnungsterm
+PWP kann aber labelabhaengig werden und ist dann bereits die fuehrende
+Aufspaltung. In diesem Fall darf der einfache 216-Eigenvektor von D nicht als
+fuehrender Grundzustand ausgegeben werden. Das Vorzeichenspektrum von PWP wird
+in diesem Checker nicht erneut berechnet.
+
+
+2. EXAKTES SPEKTRUM OHNE GROSSE EIGENSUCHE
+
+Der Checker verwendet keine 3,6-Millionen-Zustands-Diagonalisierung und auch
+keine numerisch gerundeten Eigenwerte. Er prueft fuer die 240x240-Ganzzahlmatrix
+M das Polynom
+
+  product_(s in {136,144,146,152,162,168,186,216}) (M-sI)=0
+
+modulo vier Primzahlen. Deren Produkt ist groesser als das Doppelte einer
+deterministischen Ganzzahl-Schranke aus ||M||_infinity=218; CRT hebt die
+Null daher exakt nach Z. Die Multiplizitaeten werden aus acht modularen
+Spurmomenten per Vandermonde-System bestimmt. Weil sie zwischen0 und240
+liegen und der Modul groesser als240 ist, sind die ganzzahligen Werte in (2)
+eindeutig.
+
+Die acht Spalten der reellen E8-Wurzelmatrix liegen exakt im 186-Eigenraum.
+Da (2) dessen Multiplizitaet acht festlegt, sind sie der gesamte Raum.
+
+
+3. DREI-REGISTER-MOMENT UND BEDEUTUNG DER EINDEUTIGKEIT
+
+Fuer psi_alpha=z_alpha/2 gilt exakt
+
+  rho_ABC
+   = (1/240) sum_alpha |psi_alpha^tensor3><psi_alpha^tensor3|
+   = P_Sym3(C4)/20.                                      (6)
+
+Der Checker beweist (6) als ganzzahlige 64x64-Matrixidentitaet:
+
+  sum_alpha z_alpha^tensor3 (z_alpha^tensor3)^*
+    = 128 sum_(pi in S3) U_pi.
+
+Sofern D nach einem skalaren Erstordnungsterm die fuehrende Aufspaltung ist,
+ist sein eindeutiger oberer Eigenvektor ein reiner gemeinsamer Zustand von
+Quellen und Registern. Nach Ausspuren der orthogonalen Quellenlabels ist ABC
+jedoch die gemischte Rang-20-Dichte (6). "Eindeutig" darf daher weder als ein
+einzelner reiner, labelunabhaengiger ABC-Zustand noch ohne Pruefung des
+phasenkorrigierten Erstordnungsterms gelesen werden.
+
+
+4. GEPRUEFT GEGEN NUR BERICHTET
+
+Exakt aus gepinnten Projektinputs geprueft sind die 240 Wurzeln, alle 60
+Reflexionsuebergaenge, die vier Ueberlappklassen, die Herleitung (4)-(5), die
+Matrix (1), das vollstaendige Spektrum (2), der 186-E8-Raum und das Moment
+(6).
+
+Kein URL und kein externes Pruefpaket des neuen Berichts wurde mitgeliefert.
+Seine Provenienz konnte deshalb nicht geprueft werden. Die physische Wahl des
+Lock-Hamiltonoperators und der zwei Paketmittel, die Gueltigkeit ausserhalb
+der asymptotischen Zweitordnung, Praeparation, Lokalitaet, Kontinuumsdynamik
+und TOE-Auswahl folgen nicht aus dieser endlichen Rechnung.
+
+
+ARTEFAKTE
+
+  effective_check.py
+    Eigenstaendiger exakter Checker gegen die gepinnte native Quellenfunktion.
+
+  effective_check.json
+    Vollstaendiges Spektrum, CRT-Zertifikat, Quellhashes und Pruefbedingungen.
+
+Keine Repository-Datei wurde geaendert.

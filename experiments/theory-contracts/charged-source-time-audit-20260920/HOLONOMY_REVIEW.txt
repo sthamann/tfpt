@@ -1,0 +1,477 @@
+INDEPENDENT HOLONOMY / SPINOR REVIEW — 2026-09-20
+Reviewer scope: read-only audit of the conditional E8 target calculation.
+Verdict: MATHEMATICALLY CORRECT BUT ALREADY PRESENT; NEW CROSS-CONTRACT
+OBSTRUCTION, NOT A MICROSCOPIC CONSTRUCTION AND NOT A TOE RESULT.
+
+1. Short conclusion
+===================
+
+Carrying the actual top-edge quarter holonomy into eight stipulated identical
+channels gives
+
+  H_delta = L0 - Q_total/4 = L0 - (s.P)/2,
+  s=(1/2,...,1/2),  P|p>=p|p>,  Q_total=sum_i P_i.
+
+On the conditional E8 lattice L=D8 union (D8+s), this operator is positive,
+has exactly two zero-charge states p=0 and p=s, and has first positive energy
+1/2, including oscillators.  Its 240 root-state energy census is exactly
+
+  energy       0    1/2    1    3/2    2
+  roots        1     56   126    56    1.
+
+The eight Cartan oscillator states a^i_-1|0> add at energy 1.
+
+This spectrum is NOT new.  It is already proved, with the same formula,
+all-charge Cauchy argument, two vacua, root census, gap, charge carry and domain
+comparison, in
+
+  experiments/theory-contracts/half-charge-energy-bridge/README.md
+
+Sections 1--4.  Its exact regression suite currently passes 12/12 tests.  The
+later source-localized-spinor-20260919/PROOF.txt, Section 3, independently pins
+the actual one-copy source generator H_a=L0+(a-1/2)Q and hence H_1/4=L0-Q/4.
+The source checker itself proves only integer one-copy charges,
+E_top(q)=q^2/2-q/4.  Eight channels and the E8 half-charge coset remain added
+target premises.
+
+The genuinely useful consequence of combining these existing results with the
+actual C/J certificate is negative and sharper: the fixed nonzero holonomy is
+an internal Cartan chemical term.  It is invisible to number-conserving
+E^{ab} currents but visible to pair currents and spinor fields, and it is not
+covariant under either actual compiler clock C or J.  Therefore tests confined
+to E^{ab} can falsely suggest the common H=aL0+c rule.
+
+2. Independent proof of positivity, kernel and gap
+===================================================
+
+For a charge/oscillator basis vector write
+
+  x=|p|^2/2,  N=N_osc in Z_>=0,
+  H_delta(p,N)=N+x-(s.p)/2.
+
+Here |s|^2=2 and therefore |s/2|^2=1/2.  Every nonzero E8 lattice vector has
+|p|^2>=2, so x>=1.  Cauchy--Schwarz gives
+
+  (s.p)/2 <= |s/2| |p| = sqrt(x),
+  H_delta >= N+x-sqrt(x) >= 0.
+
+For zero energy, N=0.  If p is nonzero, both inequalities must be equalities.
+Since x>=1 and x-sqrt(x)=0 only at x=1, p must have norm squared two and be
+positively parallel to s/2.  Norm then fixes p=s.  Thus the only zero modes are
+p=0 and p=s.  The negative parallel vector -s has energy 2, not zero.
+
+For x>=2 the bound is x-sqrt(x)>=2-sqrt(2)>1/2.  Oscillators cost positive
+integers.  The root census below contains energy 1/2, so the full conditional
+target gap above the two-dimensional kernel is exactly 1/2.
+
+This proof uses the complete E8 lattice, not just a finite root enumeration.
+It does not prove that this lattice Hilbert space, its Hamiltonian or either
+zero state is realized or selected by the microscopic source.
+
+3. Independent root census
+===========================
+
+The 112 integer roots are +/-e_i +/-e_j, i<j.  Their coordinate sums and
+energies 1-(sum_i p_i)/4 are
+
+  sum +2: 28 roots at 1/2,
+  sum  0: 56 roots at 1,
+  sum -2: 28 roots at 3/2.
+
+The 128 spinor roots are (1/2)(+/-1,...,+/-1) with an even number k of minus
+signs.  Their energy is k/4.  For k=0,2,4,6,8 the multiplicities are
+1,28,70,28,1.  Adding the two families gives
+
+  {0:1, 1/2:56, 1:126, 3/2:56, 2:1}.
+
+An independent exact enumeration reproduced all 240 roots and this counter.
+The eight Cartan creation modes do not change P and hence remain at energy 1.
+
+4. Mode commutator and the convention that must be stated
+==========================================================
+
+Use charge momentum P and physics/affine mode labels for which
+
+  [P,V_{p,n}]=p V_{p,n},
+  [L0,V_{p,n}]=-n V_{p,n}.
+
+Then, on the common finite-energy core,
+
+  [H_delta,V_{p,n}]=(-n-(s.p)/2)V_{p,n}.              (1)
+
+For the E8 root currents this is unambiguous because every root field has
+ordinary conformal weight one.  If one instead uses the VOA nth-product
+convention Y(e^p,z)=sum_m (e^p)_m z^(-m-1), the L0 term is
+(|p|^2/2-1-m); equation (1) is recovered after translating the mode label.
+This convention warning prevents a spurious sign or h-1 discrepancy.
+
+The source orientation agrees with (1).  In microscopic-charged-car-limit,
+Psi=a(Rg) satisfies [Q,Psi]=-Psi and its adjoint has charge +1.  The r=1 top
+edge has a=1/4 and therefore H=L0-Q/4.  Reversing the background to r=3 gives
+the polynomial E_top,3(q)=q^2/2+q/4, i.e. the opposite chemical sign.  Thus
+ordinary charge conjugation p->-p exchanges the two background orientations:
+it maps H_delta to H_-delta.  It is not a symmetry of one fixed r=1 sector.
+
+5. The blind operator class
+===========================
+
+For a number-conserving bilinear current E^{ab}_n the lattice charge is
+p=e_a-e_b.  Since s.p=0,
+
+  [H_delta,E^{ab}_n]=-n E^{ab}_n,
+
+exactly as for L0.  Any frequency, bracket or time-response test using only
+these U(8)-type currents is blind to the quarter-holonomy term.
+
+The missing operators see it immediately:
+
+  pair current p=e_a+e_b:  [H_delta,V_{p,n}]=(-n-1/2)V_{p,n};
+  spinor p=s:              [H_delta,V_{s,n}]=(-n-1)V_{s,n};
+  conjugate p=-s:          [H_delta,V_{-s,n}]=(-n+1)V_{-s,n}.
+
+Consequently a common-frequency result proved on number-conserving E^{ab}
+does not establish a common-frequency action on the E8 extension.  A decisive
+source test must contain at least one operator with nonzero Q_total, its
+adjoint, and a nonzero bracket/composition path.  Pair currents already detect
+the problem; the spinor field tests the actual intersector carry.
+
+6. Fixed-holonomy failure of actual C/J covariance
+==================================================
+
+Let R be an orthogonal lattice clock.  A lift sending p to Rp takes H_delta to
+the Hamiltonian with the correspondingly rotated chemical vector.  A fixed
+background is invariant only if R fixes delta=s/2 (equivalently the appropriate
+transpose fixes it, depending on the active/passive convention).
+
+The actual exact clock certificate rules this out.  Each of C, J and compiler-c
+has zero fixed Cartan dimension.  More concretely,
+
+  C s=(0,-1,0,0,0,0,0,1),
+  J s=(-1/2,1/2,-1/2,1/2,-1/2,1/2,-1/2,1/2).
+
+Both are E8 roots.  Direct substitution gives
+
+  H_delta(s)=0,  H_delta(C s)=1,  H_delta(J s)=1.
+
+Thus neither clock can commute with this fixed H_delta.  The exact certificate
+also gives det(I-C)=1 and J^2=-I, so there is no nonzero fixed-vector repair
+inside the same Cartan space.  This is the concrete instance of the previously
+proved general rule: a diagonal affine derivation can contain alpha(h), but
+actual C covariance forces h=0.  Here h=-s/2 is nonzero.
+
+Do not confuse Coxeter C in this paragraph with ordinary charge conjugation.
+Both fail for a fixed oriented holonomy, but for different reasons: the clocks
+rotate s, while charge conjugation reverses it.
+
+7. Sector-relative constants do not preserve one scalar-frequency field
+==========================================================================
+
+Let Pi_0 project to the D8 sector and Pi_1 to the spinor coset D8+s, and try
+
+  H' = H_delta + c_0 Pi_0 + c_1 Pi_1.
+
+This can move the relative vacuum energies.  For example c_1-c_0=1 lifts the
+p=s target vacuum from zero to one.  However an intersector vertex V_p with
+p in D8+s toggles the two sectors.  On an input from sector b,
+
+  [c_0 Pi_0+c_1 Pi_1,V_p] Pi_b
+    =(c_(1-b)-c_b) V_p Pi_b.
+
+The two values are +(c_1-c_0) and -(c_1-c_0).  They are one state-independent
+scalar only when c_1=c_0, in which case the relative shift does nothing.
+Therefore a nontrivial sector constant cannot simultaneously
+
+  * remove the second vacuum,
+  * keep one scalar-frequency action on the full intersector field,
+  * retain its adjoint, and
+  * retain repeated charge carry/composition.
+
+One may restrict to a one-way component and absorb one sign into its mode
+label, but its adjoint has the opposite sign and the second application exposes
+the sector dependence.  That is a sector-covariance cocycle or a pair of
+oriented fields, not the single H=aL0+c action asserted in the attachment.
+It would need its own microscopic derivation and common-domain proof.
+
+8. What can be repaired, and what each repair costs
+====================================================
+
+(a) Co-transform the background.  Enlarge the theory to the C/J orbit of
+delta and let clocks permute background sectors.  This restores covariance of
+the family {H_Rdelta}, not invariance of one fixed source Hamiltonian.  A source
+construction, superselection rule and physical state must select or sum the
+backgrounds.
+
+(b) Pair opposite source orientations.  The actual r=1 and r=3 top sectors,
+or a top/bottom construction with compensating offsets, can cancel a total
+chemical term.  This may restore a global charge-conjugation action.  It does
+not derive eight channels, the E8 lattice restriction, the cocycle, or C/J
+implementers, and it cannot be replaced by deleting the compensating edge.
+
+(c) Demand physical C/J invariance on one affine E8 target.  Since the joint
+fixed Cartan space is zero, the only linear chemical vector is delta=0, leaving
+H=aL0+c after time calibration and vacuum normalization.  Getting delta=0 from
+the oriented quarter-holonomy source requires a derived compensation or
+spectral-flow dictionary; simply dropping -Q_total/4 erases the actual source.
+
+(d) Keep H_delta and accept the symmetry breaking.  This is a consistent
+positive target Hamiltonian with two ground states and the spectrum above, but
+then it is not the clock-covariant common E8 time assumed by the attachment.
+
+(e) Declare a shifted Virasoro element.  This is standard shifted-lattice-VOA
+mathematics, not a repair preserving the original unitary E8_1 conformal
+structure.  Dong--Mason's formula gives weights
+N+|p|^2/2-(h,p) and central charge rank(L)-12|h|^2.  Here h=s/2 has norm squared
+1/2, so c changes from 8 to 2; with the original adjoints the shifted Virasoro
+modes also fail the original unitary adjoint relation.  The same warning is
+already recorded in half-charge-energy-bridge Section 5.
+
+9. Novelty and claim boundary
+==============================
+
+ALREADY IDENTICAL IN THE LOCAL CORPUS:
+
+  * H=L0-Q_total/4 on eight uniform target channels;
+  * the two zero charges 0,s and exact gap 1/2;
+  * the root multiplicities 1,56,126,56,1;
+  * genuine unbounded lattice charge carry;
+  * distinction from ordinary L0 and from a microscopic half-charge field.
+
+STANDARD EXTERNAL MATHEMATICS:
+
+  Dong and Mason, "Shifted Vertex Operator Algebras", arXiv:math/0411526,
+  especially Theorem 3.1 and equation (3.9), gives the general shifted-lattice
+  grading N+|p|^2/2-(h,p) and changed central charge.  Thus the abstract shifted
+  spectrum is not novel beyond the source-specific choice h=s/2 and its TFPT
+  interpretation.
+
+POTENTIALLY NEW AS A CROSS-CONTRACT DIAGNOSIS:
+
+  * number-conserving current tests are exactly blind to -Q_total/4;
+  * the actual fixed C and J clocks move the zero-energy root s to roots of
+    energy 1, so the uniform source holonomy conflicts with fixed-background
+    clock covariance;
+  * sector-relative constants cannot restore both a unique vacuum and one
+    scalar-frequency intersector action with adjoint and charge carry.
+
+These points narrow the next acceptance gate.  They do not construct the
+native microscopic spinor field, select the eight copies, identify the raw P1
+kernel, produce a common 3+1D dynamics, or close T1--T8.  The result should be
+reported as a conditional target obstruction/integration of existing
+contracts, not as a new E8 spectrum or a TOE consequence.
+
+10. Smallest decisive follow-up
+===============================
+
+Construct from the actual source, on one common invariant core:
+
+  1. one nonzero-Q_total pair or spinor mode and its actual adjoint;
+  2. one charge-carry composition that crosses the D8/spinor sectors twice;
+  3. the physical C and J action, including whether they rotate a background
+     label or commute with one fixed Hamiltonian;
+  4. commutator frequencies under the unchanged microscopic time.
+
+Acceptance requires a single additive scalar-frequency law on all stated
+components, or an explicit sector/background-covariant replacement with its
+composition law.  Testing further E^{ab} currents alone cannot decide this
+because those currents are provably holonomy-blind.
+
+11. Follow-up: exact time-dependent clock transport at the target level
+=======================================================================
+
+The proposed construction is algebraically correct.  It gives an exact
+time-dependent covariant action on the already stipulated E8 target.  Its
+correct interpretation is crucial: it is Heisenberg transport of a chosen
+lattice lift, not a proof that the fixed clock is a symmetry of H_delta and not
+a derivation of either the clock or H_delta from the microscopic source.
+
+11.1 Sign and operator identities
+---------------------------------
+
+Let g be an orthogonal E8 lattice isometry and choose a normalized unitary
+lift
+
+  U_g |p> = eta_g(p) |g p>,  eta_g(0)=1,  |eta_g(p)|=1.
+
+With P a column of charge operators, this ket convention gives
+
+  U_g P U_g^dagger = g^(-1) P,
+  U_g H_delta U_g^dagger = H_(g delta),
+
+where H_delta=L0-delta.P and U_g commutes with L0 up to the natural action on
+oscillators.  Therefore U_g is a static intertwiner between the background
+Hamiltonians H_delta and H_(g delta).  It is a symmetry of one fixed
+Hamiltonian only when g delta=delta.
+
+Define, exactly as proposed,
+
+  W_g(t)=exp(i t H_delta) U_g exp(-i t H_delta).
+
+Since H_delta and H_(g delta) commute, their difference is
+
+  H_delta-H_(g delta)=(g delta-delta).P,
+
+and hence
+
+  W_g(t)=exp[i t (g delta-delta).P] U_g.                (2)
+
+On a charge ket,
+
+  W_g(t)|p>
+   =eta_g(p) exp{i t [E_delta(gp)-E_delta(p)]}|gp>,
+
+because
+
+  E_delta(gp)-E_delta(p)
+   =delta.p-delta.(gp)
+   =(g delta-delta).(g p).
+
+Thus both the sign and the placement of the phase in (2) are correct.  Moving
+the phase to the right of U_g instead gives the equivalent expression
+
+  W_g(t)=U_g exp[i t (delta-g^T delta).P].
+
+These formulas also make the earlier mismatch explicit rather than removing
+it: for p=s and g=C or J the phase frequency is E(gs)-E(s)=1.
+
+11.2 The inherited lattice-cocycle phase
+----------------------------------------
+
+Write the twisted lattice multiplication as
+
+  e_p e_q = epsilon(p,q) e_(p+q).
+
+A charge phase eta_g defines a lift of g as an algebra automorphism precisely
+when
+
+  epsilon(p,q) eta_g(p+q)
+   =eta_g(p) eta_g(q) epsilon(gp,gq).                   (3)
+
+For a normalized bilinear cocycle epsilon, the ratio between epsilon and its
+g-transform has the same commutator because g preserves the integral lattice
+pairing.  It is therefore a coboundary on the free lattice, and an inherited
+quadratic/character choice of eta_g can solve (3).  The choice is not unique:
+multiplying eta_g by a lattice character gives another lift.  This is the
+standard character kernel of lattice-isometry lifts, not a physical ambiguity
+resolved by the present Hamiltonian.
+
+The extra time factor is
+
+  chi_(g,t)(p)=exp{i t [delta.p-delta.(gp)]}.
+
+It is a character of p because the quadratic L0 contribution cancels under
+the orthogonal isometry.  Consequently eta_g,t=chi_(g,t) eta_g obeys the same
+cocycle equation (3).  The Heisenberg dressing therefore preserves all
+charge-addition and cocycle phases already present in the chosen lift.  It
+does not repair a wrong or absent eta_g.
+
+Adjunction must still be inherited rather than inferred from (3) alone.  With
+e_p^dagger=kappa(p)e_-p in the selected cocycle convention, the finite check is
+
+  conjugate(eta_g(p)) kappa(gp)
+   =kappa(p) eta_g(-p),
+
+with the exact placement of kappa fixed by that convention.  A root-pair
+enumeration tests only the enumerated set unless eta_g is given on a lattice
+basis and (3), bilinearity and the quadratic refinement prove its extension to
+all lattice charges.
+
+11.3 Composition and clock orders
+---------------------------------
+
+Conjugation by one common unitary evolution preserves products exactly:
+
+  W_g(t) W_h(t)
+   =exp(i t H_delta) U_g U_h exp(-i t H_delta).
+
+Thus, if the chosen lifts form an exact representation,
+
+  U_g U_h=U_(gh)  implies  W_g(t)W_h(t)=W_(gh)(t).
+
+More generally lattice lifts may satisfy
+
+  U_g U_h=K_(g,h)(P) U_(gh),
+
+where K_(g,h) is an inherited lattice character.  Since K(P) commutes with
+H_delta, the same character kernel appears after dressing:
+
+  W_g(t)W_h(t)=K_(g,h)(P)W_(gh)(t).
+
+No new projective or character defect is generated.  Likewise
+
+  W_g(t)^N=exp(i t H_delta) U_g^N exp(-i t H_delta).
+
+If the pinned finite lift checks establish U_C^30=I and U_J^4=I exactly, then
+W_C(t)^30=W_J(t)^4=I for every fixed t.  If the undressed powers close only to
+a character, the dressed powers close to that same character; time transport
+does not promote them to exact orders.
+
+11.4 What kind of symmetry this is
+----------------------------------
+
+In the Heisenberg convention alpha_t(A)=exp(i t H)A exp(-i t H), equation (2)
+is simply
+
+  W_g(t)=alpha_t(U_g).
+
+Every unitary U admits this construction for every Hamiltonian.  Therefore
+existence of W_g(t), preservation of its group law and preservation of lift
+orders are exact but kinematic facts.  They show that the clock operation can
+be transported consistently along the same target time evolution.  They do
+not show
+
+  [H_delta,U_g]=0,
+  alpha_t composed with Ad(U_g)=Ad(U_g) composed with alpha_t,
+  preservation of energy eigenspaces or of the two-dimensional ground space,
+  or selection of H_delta from a symmetry commutant.
+
+Indeed W_C(t) and W_J(t) still send the zero-energy charge ket |s> to the
+energy-one kets |Cs> and |Js>, up to the displayed time phase.  A phase cannot
+change their energy.  Calling W a fixed-H symmetry would therefore be false.
+
+There are two legitimate readings:
+
+  (a) Background covariance: U_g statically identifies the member H_delta of
+      a Hamiltonian family with H_(g delta).  Then g acts on the holonomy
+      background as well as on charge.
+
+  (b) Time-dependent frame: W_g(t) is the time-evolved implementation of the
+      chosen initial clock operation on one fixed Hilbert space.  The resulting
+      automorphism Ad(W_g(t)) is alpha_t Ad(U_g) alpha_-t.
+
+Neither reading is an ordinary conserved internal symmetry.  Under the
+standard Schrodinger convention i d|psi>/dt=H|psi>, the operator that maps a
+solution with initial datum |psi_0> to the solution with initial datum
+U_g|psi_0> is instead
+
+  S_g(t)=exp(-i t H_delta) U_g exp(i t H_delta)=W_g(-t).
+
+This too exists for every U_g.  It is useful bookkeeping for histories, but
+without an independently specified action on backgrounds, observables,
+sources and allowed controls it has no selection power.
+
+11.5 Exact target advance and strict boundary
+---------------------------------------------
+
+The constructive advance is real but narrow:
+
+  * fixed-clock noncommutation does not make the abstract clock action
+    inconsistent with target time evolution;
+  * the chosen cocycle lift has an exact time-dependent conjugate with the same
+    multiplication law, adjunction and possible character kernel;
+  * the clock mismatch is represented by an explicit Cartan character rather
+    than hidden or erased.
+
+It does not remove the two target vacua, restore fixed-background C/J
+invariance, prove that W_g(t) is local or generated by an allowed physical
+control, select vL0 from the larger Hamiltonian family, or construct the
+many-body source half-charge field.  In particular, the tautological existence
+of alpha_t(U_g) must not be reported as a derivation of common physical clocks
+from P1/P2.
+
+The strongest honest statement is:
+
+  GIVEN the conditional E8 target, H_delta and a pinned cocycle-compatible
+  lift U_g, there is an exact time-dependent covariant lift W_g(t) carrying the
+  same group/character law under the same target evolution.  Whether this
+  transported operation is a physical clock transformation of the raw source,
+  and whether the holonomy background must co-transform, remain open.

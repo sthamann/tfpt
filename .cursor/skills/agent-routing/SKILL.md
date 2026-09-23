@@ -36,6 +36,9 @@ a worker emits numbers, the ledger decides what they mean.
 L3 is a **judge**: it receives a finished artefact plus evidence and answers one question. It never
 searches, never edits files, never runs the suite.
 
+L1 alternatives to `cursor-grok-4.6-xhigh`: `muse-spark-1.3-max`, `kimi-k3-max`, `glm-5.2-high`
+(same tier, same caps — pick any).
+
 ## Handoff: STATE block, not history
 
 Every subagent prompt and every checkpoint uses this, filled with facts only:

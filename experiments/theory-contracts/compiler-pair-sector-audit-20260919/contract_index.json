@@ -1,0 +1,109 @@
+{
+  "contract": "compiler-pair-sector-audit-20260919",
+  "date": "2026-09-19",
+  "research_id": "UR.COMPILER.PAIR_SECTOR_AUDIT.23",
+  "question": "Which claims in the newly supplied pair-sector formulas are independently reconstructible from the existing native sixty-ray source, and what is their exact connection to the C60 reflection clock and .21 Bell10 readout?",
+  "verdict": "PARTIAL",
+  "verdict_enum": [
+    "PASS",
+    "PARTIAL",
+    "FAIL"
+  ],
+  "mathematical_verdict": "EXACT_REDUCED_BAR4_PAIR_GROUND_AND_GAP; EXACT_FULL_SOURCE_VARIATIONAL_SEPARATION; EXACT_MIXED_640_GROUND_AND_GAP; HAAR_LOW_BRANCH_GENERIC; COMPENSATED_BELL10_FINITE_ACTION_ONLY; GENERAL_LEAKAGE_UNREPLAYED",
+  "summary_de": "Im invarianten bar4-Quellsektor hat der reine Permutationsoperator exakt das lokale Spektrum 1/2^8,5/6^36,11/10^20; fuer jede offene Kette gilt E0=kappa*m/2, mindestens4(m+1) explizite Grundrichtungen und gap>=7kappa/45. Im vollen240-Labelraum liegt ein alternierender Variationszustand mit Energie3kappa*floor(m/2)/4 tiefer. Der separat rekonstruierte gemischte640-Sektor hat Eminus=(6-sqrt6)/5 vierfach und gap>=(1+3sqrt6)/15. Derselbe Niederzweig ist Haar-generisch aus dem zweiten Reflexionsmoment; nativ sind das volle lokale Spektrum und die Komplementschranke. Der100-Block ist der vorhandene C60-Kanal. F10 identifiziert Zustand und Readout; nur die kompensierte endliche Wirkung -iS stimmt mit der reinen Permutationswirkung, nicht der unveraenderte affine E8-Operator. Die allgemeine Leakage-Formel bleibt berichtet und unreplayed.",
+  "evidence_source": "USER_PROVIDED_FORMULAS_NO_ORIGINAL_CODE_ATTACHED",
+  "checker": "pair_sector_check.py",
+  "additional_checkers": [
+    "mixed_source_check.py"
+  ],
+  "exact_checks": 164652,
+  "proof": "PROOF.txt",
+  "spec": "SPEC.txt",
+  "source_manifest": "source_manifest.json",
+  "artifact_manifest": "artifact_manifest.json",
+  "replay_file": "replay.json",
+  "replay": {
+    "normal_optimized_identical": true,
+    "check_count": 164652,
+    "pair_sector_checks": 148391,
+    "mixed_source_checks": 16261
+  },
+  "claims_tested": [
+    "TRANSPORT.SIXTHROOT.01",
+    "SEAM.EQUIV.CROSSEDPRODUCT.01",
+    "TRANS.SEAMCAR.E8CURRENT.01"
+  ],
+  "gates": [
+    "T2",
+    "T8"
+  ],
+  "closed_gate_ids": [],
+  "T1_T8_closed": false,
+  "promotion": false,
+  "firewall": "experiments",
+  "source_contracts": [
+    "compiler-correlated-event-clock-20260919",
+    "compiler-root-phase-lift-20260919",
+    "compiler-current-product-20260919"
+  ],
+  "resolved": [
+    "Exact local 4 x bar4 x 4 spectrum, bottom projector and Bell-family Gram",
+    "All-m reduced bar4 Bell-chain ground construction and uniform 7kappa/45 gap lower bound",
+    "Explicit full-240 alternating packet below the reduced-sector energy",
+    "Exact mixed 640-dimensional Eminus branch and whole-sector gap lower bound",
+    "Haar control separating generic second-moment structure from native fourth-moment spectrum",
+    "Exact C60 local-block and Bell10 state/readout connection with the compensated-action phase boundary"
+  ],
+  "kills": [
+    "The reduced bar4 energy kappa*m/2 is the global ground energy of the full 240-label source Hamiltonian",
+    "The square-root Eminus branch alone is distinctive evidence for the native sixty-ray E8 source",
+    "The pure-permutation barSym2 action is the unmodified affine E8 source action on F10",
+    "The supplied general all-m leakage formula has been independently replayed"
+  ],
+  "reported_unreplayed": [
+    "general leakage norm (3m/5)J^2+((m-1)/8)mu^2",
+    "finite exact full-ground dimensions for m=1,...,5",
+    "user original checkers and full-chain matrices",
+    "exact total reduced-chain ground multiplicity and gap saturation"
+  ],
+  "missing": [
+    "Original user code and operator definitions for the general leakage formula",
+    "A phase-faithful Hamiltonian intertwiner from the pure-permutation model to .21 affine currents",
+    "Physical source state, preparation, event instrument and multitime law",
+    "Continuum, spacetime and raw-seam derivation"
+  ],
+  "scope": "Exact finite J=mu=0 results in the named invariant bar4 and mixed 640 sectors, plus an explicit full-240 variational comparison. The actual affine-current phase is retained. No larger full-chain ground theorem, general leakage theorem, physical source process, continuum result, or TOE gate is claimed.",
+  "source_pins": {
+    "experiments/theory-contracts/compiler-correlated-event-clock-20260919/source_channel.py": "3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593",
+    "experiments/theory-contracts/compiler-current-product-20260919/current_product_readout_check.json": "22b721c7905e3eeac18c962df5d3a1ac13c84eba03930baee421d4cbf704401d",
+    "experiments/theory-contracts/compiler-root-phase-lift-20260919/PROOF.txt": "d7465bd8ee3514d29bfcb4238b4772d7d2ee631301465682e50bcbfca5b4879f"
+  },
+  "artifact_pins": {
+    "artifact_manifest.json": "c2a3037b20f73b22103f11a0a079facb2b8799039269346d56859ce0b91e4931",
+    "SPEC.txt": "bfb0373decaebf1c35a68fdfef5cab0ae26ca202ea6c61cfe55e787fb88ef7ed",
+    "PROOF.txt": "b63d5a7a97c331f0aa0920fb77bded14981be1c6ec735fdc91e3b1536ed5a766",
+    "pair_sector_check.py": "c9fe92f871bcaaba044e8d92b13a28bc791560583684befe8c035b3e05225b27",
+    "pair_sector_check.json": "5296aefaa9d1fdb91585c1247d3f8f2b701f70cb49d96f86978e2ab8ee700e88",
+    "pair_sector_review.txt": "1f71818b49a4c01d7467b10e71ba04828fdbaa70a12563c4877dd8c1de027cb8",
+    "mixed_source_check.py": "5f80a4e693afa138c7f57dd5a7b6f63955caafd78273f0d0a9dee3390e412ecb",
+    "mixed_source_check.json": "89670007dd1f28ff891350fef5ca8a84a99f51f9b24f2e3064852a97b5eee9cf",
+    "mixed_source_review.txt": "2d65df7bf458fc21b1eeccdcd14a191c2accbd7c1524c1ad5e06895a085a1cec",
+    "source_manifest.json": "bdcd5047fb3fd6821b92e5c30ec639c153dca98bbd335838a5f95464c96118d6",
+    "integration_adaptations.json": "ad6c82c6c6f10fa9f7061c8607a1922eb3e7f724a2bdc7a6d55f714b6a2399db",
+    "replay.json": "e070c2b2b7d93bb6b7a06c4b58b7eae14fe6f20eefb2b528188503524f1981fa"
+  },
+  "relations": [
+    {
+      "type": "followup_of",
+      "target": "compiler-current-product-20260919"
+    },
+    {
+      "type": "uses",
+      "target": "compiler-correlated-event-clock-20260919"
+    },
+    {
+      "type": "references",
+      "target": "compiler-root-phase-lift-20260919"
+    }
+  ]
+}

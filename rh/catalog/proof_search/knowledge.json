@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "claim_boundary": "Reviewed search interfaces, not new positivity proofs",
+  "external_pack": "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05",
+  "imports": ["FrontierClosure", "RH.GaborCountableCriterion", "RH.PrimeLogIndependence", "TfptCarrier.CofinalWeil", "TfptCarrier.SeamScalingLimit"],
+  "goals": {
+    "arch_weighted": {"label": "Korrigierte gewichtete ARCH-Interpolation", "graph_id": "selected-arch-weighted-interpolation-estimate", "lean": "RH.SelectedArchWeightedInterpolationEstimate", "domain": "native_grid", "normalization": "production_arch", "extent": "eventually_per_fixed_test", "quantifiers": "forall_f_exists_C_K_forall_k_ge_K"},
+    "arch_rate": {"label": "Existenzielle ARCH-Rate", "graph_id": "selected-arch-error-rate-exists", "lean": "RH.SelectedArchErrorQuadraticRateExists", "domain": "native_grid", "normalization": "production_arch", "extent": "eventually_per_fixed_test", "quantifiers": "forall_f_exists_C_K_forall_k_ge_K"},
+    "arch_convergence": {"label": "ARCH-Fehler verschwindet pro festem Test", "graph_id": "selected-arch-error-convergence", "lean": "∀ f : RH.GridElement, Filter.Tendsto (fun k : ℕ => RH.selectedArchError k f) Filter.atTop (nhds 0)", "domain": "native_grid", "normalization": "production_arch", "extent": "per_fixed_test_limit", "quantifiers": "forall_f_tendsto"},
+    "freq": {"label": "FREQ-Kegelvoraussetzung", "graph_id": "frequently-selected-aug-dual-resolvent", "lean": "RH.frequently_selected_augDualResolvent_ge_half", "domain": "selected_native_windows", "normalization": "native_selected", "extent": "cofinal", "quantifiers": "frequently_at_top"},
+    "eventual_bound": {"label": "Eventuelle untere Read-Schranke", "graph_id": "eventual-selected-read-lower-bound", "lean": "RHSeparatedTail20260905.EventuallySelectedReadLowerBound", "domain": "native_grid", "normalization": "native_selected", "extent": "eventually_per_fixed_test", "quantifiers": "forall_test_eventually"},
+    "native_positive": {"label": "Nichtnegativität der nativen GridElement-Form", "graph_id": "native-grid-weil-positivity", "lean": "∀ f : RH.GridElement, 0 ≤ RH.weilForm f", "domain": "native_grid", "normalization": "native_selected", "extent": "all_tests", "quantifiers": "forall_f"},
+    "gabor_positive": {"label": "Vollständige rationale Gabor-Positivität", "graph_id": "gabor-prime-side-criterion", "lean": "∀ (a ω : ℚ) (ha : 0 < (a : ℝ)), 0 ≤ RH.gaborPoleSide (RH.pureGaborTest a ω ha) - RH.gaborPrimeComb (RH.pureGaborTest a ω ha) + RH.gaborArchSide (RH.pureGaborTest a ω ha)", "domain": "pure_gabor", "normalization": "pole_minus_prime_plus_arch", "extent": "all_rational_parameters", "quantifiers": "forall_a_omega_ha"},
+    "rh": {"label": "Riemannsche Hypothese", "graph_id": "riemann-hypothesis", "lean": "RiemannHypothesis", "domain": "riemann_zeta", "normalization": "mathlib_riemannHypothesis", "extent": "all_nontrivial_zeros", "quantifiers": "global"},
+    "arch_fixed_constant": {"label": "Alte vorgeschriebene archRateConst-Formel", "graph_id": "selected-arch-error-quadratic-rate", "status": "REFUTED", "domain": "native_grid", "normalization": "old_archRateConst", "extent": "prescribed_test_dependent_formula", "quantifiers": "forall_f_eventually_using_archRateConst_f"},
+    "boundary_window": {"label": "Vollständiges neues ungerades Fenster L=12/5", "graph_id": "full-boundary-attachment", "domain": "odd_form_complete", "normalization": "original_weil", "extent": "fixed_window_12/5", "quantifiers": "forall_vectors_in_complete_domain"},
+    "positive_bottom": {"label": "Keine erste Nullstelle des wirklichen Spektralbodens", "graph_id": "first-zero-exclusion", "domain": "actual_minimizers", "normalization": "original_weil", "extent": "all_admitted_windows", "quantifiers": "all_finite_L_after_start"},
+    "gabor_block_identity": {"label": "Exakte arithmetische Blockzerlegung inklusive Pole und Gamma", "status": "OPEN"},
+    "gabor_uniform_tail": {"label": "Bewiesener unendlicher arithmetischer Rest", "status": "OPEN"},
+    "gabor_boundary_regimes": {"label": "Vollständige Kontrolle der Gabor-Parametergrenzen", "status": "OPEN"},
+    "native_gabor_identity": {"label": "Exakter Native-zu-Gabor-Übergang mit Gauge und Testbereich", "status": "OPEN"},
+    "independent_source_audit": {"label": "Unabhängiger Audit der Originalform und ihres Bereichs", "status": "OPEN"},
+    "new_domain": {"label": "Zulässiger vollständiger neuer Formbereich", "status": "OPEN"},
+    "both_couplings": {"label": "Beide niedrigen und unendlichen hohen Randkopplungen", "status": "OPEN"},
+    "energy_dual_bound": {"label": "Vollständige Energie-Dualnorm-Schranke des neuen Rands", "status": "OPEN"},
+    "fixed_witness_replay": {"label": "Unabhängige Wiederholung mit gleicher Fehlerlast", "status": "OPEN"},
+    "positive_start": {"label": "Unabhängig bewiesener positiver Startwert", "status": "OPEN"},
+    "bottom_regularity": {"label": "Lokale absolute Stetigkeit des tatsächlichen Spektralbodens", "status": "OPEN"},
+    "minimizer_arithmetic": {"label": "Arithmetische Kontrolle tatsächlicher Minimierer", "status": "OPEN"},
+    "through_zero_bound": {"label": "Nullstellenunabhängige integrierbare Schranke durch eine erste Nullstelle", "status": "OPEN"},
+    "global_test_coverage": {"label": "Vollständige Paritäts-, Testklassen- und Grenzabdeckung", "status": "OPEN"},
+    "new_infinite_compactness": {"label": "Kompaktheit und Verträglichkeit einer wachsenden Raumfamilie", "status": "OPEN"}
+  },
+  "rules": [
+    {"id": "arch_weighted_proved", "requires": [], "conclusion": "arch_weighted", "proof": "exact RHArchRateClosure20260905.selectedArchWeightedInterpolationEstimate_holds"},
+    {"id": "arch_rate_from_weighted", "requires": ["arch_weighted"], "conclusion": "arch_rate", "proof": "exact RH.selectedArchErrorQuadraticRateExists_of_weightedInterpolationEstimate h0"},
+    {"id": "arch_convergence_from_rate", "requires": ["arch_rate"], "conclusion": "arch_convergence", "proof": "exact RH.selectedArchError_tendsto_zero_of_rateExists h0"},
+    {"id": "native_from_freq_and_bound", "requires": ["freq", "eventual_bound"], "conclusion": "native_positive", "proof": "exact (RHFrontierClosure20260905.eventual_bound_iff_weil_nonneg h0).mp h1"},
+    {"id": "bound_from_freq_and_native", "requires": ["freq", "native_positive"], "conclusion": "eventual_bound", "proof": "exact (RHFrontierClosure20260905.eventual_bound_iff_weil_nonneg h0).mpr h1"},
+    {"id": "rh_from_gabor", "requires": ["gabor_positive"], "conclusion": "rh", "proof": "exact RH.gabor_primeSide_rational_criterion_iff_rh.mp h0"},
+    {"id": "gabor_from_rh", "requires": ["rh"], "conclusion": "gabor_positive", "proof": "exact RH.gabor_primeSide_rational_criterion_iff_rh.mpr h0"}
+  ],
+  "audit_targets": [
+    "RH.linearIndependent_log_primes", "RH.log_ratio_irrational", "RH.posDef_sub_rankOne_iff",
+    "RH.selectedMesh_five", "RH.lstar_canonical", "RH.terminal_q_canonical", "RH.pair_terminal_dictionary",
+    "RH.mainWindow_iff_builtFromPrimeSource", "RH.fullWeil_separates_offCritical_zeros",
+    "TfptCarrier.CofinalWeil.weil_nonneg_of_cofinal", "TfptCarrier.GramCompactness.exists_subseq_posSemidef_limit",
+    "TfptCarrier.SeamScalingLimit.seamScalingLimit", "RH.gabor_primeSide_rational_criterion_iff_rh"
+  ],
+  "recipes": [
+    {"id": "gabor_arithmetic_blocks", "target": "gabor_positive", "requires": ["gabor_block_identity", "gabor_uniform_tail", "gabor_boundary_regimes"], "family": "arithmetic_cancellation", "priority": 1, "cost": 4, "difference": "A new source-side identity and a proved complete remainder; no heat-normalization-only inference."},
+    {"id": "gabor_via_native_adapter", "target": "gabor_positive", "requires": ["native_positive", "native_gabor_identity", "gabor_uniform_tail"], "family": "typed_form_transport", "priority": 2, "cost": 4, "difference": "Requires an explicit honest-gauge/domain bridge; does not identify native and Gabor forms by name."},
+    {"id": "complete_boundary_energy", "target": "boundary_window", "requires": ["independent_source_audit", "new_domain", "both_couplings", "energy_dual_bound", "fixed_witness_replay"], "family": "energy_dual_boundary", "priority": 2, "cost": 2, "difference": "Keeps both complete low and infinite-high couplings, unlike the omitted outer residual in r490."},
+    {"id": "minimizer_relative_flow", "target": "positive_bottom", "requires": ["independent_source_audit", "positive_start", "bottom_regularity", "minimizer_arithmetic", "through_zero_bound", "global_test_coverage"], "family": "minimizer_specific", "priority": 2, "cost": 5, "difference": "Actual minimizers or controlled minimizing sequences only, not the refuted whole-core inequality."}
+  ]
+}

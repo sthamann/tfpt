@@ -1,0 +1,101 @@
+{
+  "T1_T8_closed": false,
+  "already_known_not_new": [
+    "Native weak-coupling global singlet ground theorem",
+    "Same-mode free source exclusion by Q=2 null multiplicities",
+    "Geometric residue memory and continuous RR intertwiner"
+  ],
+  "assumptions": [
+    "64 CAR and 60 CCR modes in the full irreducible Fock representation, with no spectator factor",
+    "Self-adjoint H strongly commuting with Q=Nf+2Nb; nested identities on invariant algebraic finite-particle core",
+    "Both lower response tensors scalar with coefficients epsilon_f and epsilon_b",
+    "Native W pinned independently for the conditional target comparison; no primitive-source field selection claimed"
+  ],
+  "checker": "replay.py",
+  "claims_tested": [
+    "QGEO.KERNEL.01",
+    "SEAM.EQUIV.01"
+  ],
+  "complete_TFPT_solution": false,
+  "contract": "source-mixed-response-reconstruction-20260921",
+  "date": "20260921",
+  "exact_checks": {
+    "exact_rank": 325,
+    "filled_state_CAR_CCR_basis_cases": 24,
+    "finite_monomials": 326,
+    "native_invariant_checks": 2193,
+    "native_ordered_Gamma_components": 245760,
+    "normal_optimized_byte_identical": true
+  },
+  "firewall": "experiments",
+  "gates": [
+    "T1",
+    "T2",
+    "T8"
+  ],
+  "kills": [
+    "Native symmetry, RR K and Q<=3 dynamics alone imply full native W Hamiltonian",
+    "A zero mixed response defect on empty canonical vacuum excludes higher pure conversions",
+    "Irreducibility can be omitted from reconstruction up to a scalar",
+    "The affine cubic coefficient by itself proves a canonical Hamilton pair response"
+  ],
+  "mathematical_verdict": "EXACT_CONDITIONAL_FULL_FOCK_RECONSTRUCTION_AND_FILLED_STATE_CRITERION",
+  "not_derived": [
+    "Common graded source CAR/CCR field dictionary, physical time and state from P1/P2",
+    "Primitive-source values of the lower operator responses, D_F and nonzero g_F",
+    "Nonlinear source equivalence with the native Hamiltonian and absence of spectator dynamics",
+    "Spatial local chiral interacting continuum and all physical T1-T8 closures"
+  ],
+  "physical_gates_closed": [],
+  "promotion": false,
+  "question": "[UR.SOURCE.MIXED_RESPONSE.01] Do canonical lower responses and a single filled-state transition defect reconstruct the complete native interaction, and is the corresponding primitive-source value available?",
+  "relations": [
+    {
+      "target": "compiler-vacuum-current-cubic-20260918",
+      "type": "references"
+    },
+    {
+      "target": "common-source-gauge-grade-transfer-20260920",
+      "type": "references"
+    },
+    {
+      "target": "source-critical-local-fields-20260920",
+      "type": "references"
+    },
+    {
+      "target": "source-charged-extension-selection-20260921",
+      "type": "references"
+    },
+    {
+      "target": "universalraum-source-equivalence-decision-20260915",
+      "type": "references"
+    },
+    {
+      "target": "universalraum-native-ground-response-20260915",
+      "type": "references"
+    },
+    {
+      "target": "rr-continuous-clock-20260921",
+      "type": "references"
+    },
+    {
+      "target": "rr-residue-memory-20260921",
+      "type": "references"
+    }
+  ],
+  "research_id": "UR.SOURCE.MIXED_RESPONSE.01",
+  "resolved": [
+    "Polynomial ansatz unnecessary: lower responses force the finite pure-conversion hierarchy m<=32",
+    "D_F=0 iff the entire interaction is g_F X + conjugate(g_F) X^dagger, under the stated lower operator identities",
+    "Exact positive Gamma weight m^2(2m-1) alpha! on filled F",
+    "Native invariant V6=X^2+X^dagger^2 preserves lower responses, Q, RR K and Q<=3 dynamics but D_F=439680 eta^2 and E_Gamma=5276160 eta^2",
+    "Empty-vacuum ground requires epsilon_f,epsilon_b>=0 and 2epsilon_f epsilon_b>=8|g|^2; conditional native ground uniqueness transports under full source equivalence"
+  ],
+  "summary_de": "Unter vollen irreduziblen Fock- und Q-Domaenenannahmen erzwingen die unteren Antworten eine endliche Umwandlungshierarchie. Ein einziger positiver Uebergangsfehler am vollbesetzten Fermionzustand waehlt daraus exakt den nativen W-Generator. Quelle, Kopplung und Quellenwert dieses Fehlers sind nicht hergeleitet; die physischen T1-T8-Gates bleiben offen.",
+  "verdict": "PARTIAL",
+  "verdict_enum": [
+    "PASS",
+    "PARTIAL",
+    "FAIL"
+  ]
+}

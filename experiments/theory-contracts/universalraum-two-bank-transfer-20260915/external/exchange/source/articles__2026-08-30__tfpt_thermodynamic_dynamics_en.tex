@@ -1,0 +1,618 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\A}{\mathcal A}
+\newcommand{\Hh}{\mathcal H}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\id}{\mathbf 1}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\title{Thermodynamic Dynamics for the TFPT Finite-Range\\
+Master-Hamiltonian Class}
+\author{Proof memorandum for \texttt{QFT4D.LATTICE.FUNDAMENTAL.01}}
+\date{30 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We isolate the uniformly finite-dimensional, finite-range Hamiltonian class
+actually assembled by the TFPT \(2+1\)- and \(3+1\)-dimensional probes:
+electric and plaquette gauge terms, gauge-dressed fermion hopping, the
+DET16 mirror projector, and the seam clock and charge terms.  At the frozen
+\(2+1\)-dimensional coefficients the interaction has range \(R=2\), largest
+local term \(J=12/5\), and interaction moment
+\(\kappa=16043/450\).  A complete finite-range Lieb--Robinson argument gives
+\[
+ v_{\rm LR}=2e\kappa R=\frac{32086e}{225}
+ =387.639069990831.
+\]
+We then prove in norm, rather than assume, that the finite-volume
+Heisenberg dynamics form a Cauchy net on every local observable and hence
+define a strongly continuous thermodynamic-limit automorphism group.
+Gauss constraints are handled on the gauge-invariant subalgebra of the
+ambient quasilocal algebra; naive embeddings of projected physical Hilbert
+spaces are neither needed nor asserted.  Weak-* compactness gives at least
+one ground state and, for each positive inverse temperature, at least one
+KMS state.  The numeric twin passes all eight checks and measures velocity
+\(2.0\), well below the proved class bound.
+\end{abstract}
+
+\tableofcontents
+
+\section{The concrete uniformly local class}
+
+\subsection{Ambient tensor-product algebra}
+
+Let \(\Gamma=\Z^2\) with graph distance \(d\) and coordination \(z=4\).
+For a finite \(\Lambda\Subset\Gamma\), put
+\[
+ \Hh_\Lambda=\bigotimes_{x\in\Lambda}\Hh_x,\qquad
+ \A_\Lambda=\mathcal B(\Hh_\Lambda),
+ \qquad
+ \iota_{\Lambda,\Lambda'}(A)=A\otimes\id_{\Lambda'\setminus\Lambda}.
+\tag{1.1}\label{eq:ambient}
+\]
+One cell contains the four representative physical edge modes, a mirror
+Fock factor, the two positively oriented outgoing finite-group gauge links,
+and a four-state seam clock.  Thus
+\[
+ \dim\Hh_x=16\cdot 2^{n_{\rm mir}}\cdot 2^2\cdot4,
+ \qquad n_{\rm mir}\in\{4,16\}.
+\tag{1.2}\label{eq:localdim}
+\]
+The DET4 numerical analogue has dimension \(4096\); the full DET16 cell has
+dimension \(16\,777\,216\).  Only finiteness and a volume-independent upper
+bound are used below.  The quasilocal algebra is
+\[
+ \A=\overline{\bigcup_{\Lambda\Subset\Gamma}\A_\Lambda}^{\norm{\cdot}}.
+\tag{1.3}\label{eq:quasilocal}
+\]
+
+\begin{definition}[TFPT assembled interaction]
+For finite \(X\Subset\Gamma\), let \(\Phi(X)=\Phi(X)^*\), with
+\(\Phi(X)=0\) unless \(X\) is one of the supports in
+Table~\ref{tab:terms}.  The free-boundary finite-volume Hamiltonian is
+\[
+ H_\Lambda=\sum_{X\subseteq\Lambda}\Phi(X).
+\tag{1.4}\label{eq:H}
+\]
+Scalar multiples of the identity may be removed termwise, since they do
+not change \(e^{itH_\Lambda}Ae^{-itH_\Lambda}\).
+\end{definition}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}lXccc@{}}
+\toprule
+term & frozen operator and coefficient & \(\norm{\Phi(X)}\) & \(|X|\) &
+\(\diam X\)\\
+\midrule
+electric &
+\(\frac{g^2}{2}E_\ell^2,\ g=1.2\), with each positive link assigned to
+its tail cell & \(18/25=0.72\) & 1 & 0\\
+plaquette &
+\(\frac1{2g^2}(2-U_p-U_p^*)\); its dynamical representative is
+\(-\frac1{2g^2}(U_p+U_p^*)\) & \(25/36\) & 4 & 2\\
+hopping &
+\(-t\sum_{a=1}^4(c_{y,a}^*U_{xy}c_{x,a}+\mathrm{h.c.}),\ t=0.6\)
+& \(\leq4t=12/5\) & 2 & 1\\
+DET16 &
+\(2(\id-P_{\phi,x})\), where \(P_{\phi,x}\) is the rank-one
+Spin(10)-invariant determinant projector & \(2\) & 1 & 0\\
+seam clock &
+\(-0.5(\Psi_x+\Psi_x^*)\), \(\Psi_x^4=\id\) & \(1\) & 1 & 0\\
+seam charge &
+\(0.2(\Psi_x+\Psi_x^*) (n_{Q,x}-1/2)/2\) & \(1/10\) & 1 & 0\\
+staggered mass &
+\(0.2\sum_{a=1}^4(-1)^x(n_{x,a}-n^{\rm bg}_{x,a})\) & \(\leq4/5\) & 1 & 0\\
+\bottomrule
+\end{tabularx}
+\caption{Supports and norm bounds extracted from the frozen assembled
+models.  The positive plaquette term itself has norm at most
+\(2/g^2=25/18\); after deleting its scalar part, the norm relevant to
+dynamics and commutators is \(1/g^2=25/36\).}
+\label{tab:terms}
+\end{table}
+
+The determinant identity checked in
+\texttt{verification/v1002\_spin10\_mirror\_projector.py} gives
+\(P_{\phi,x}=P_{\phi,x}^*=P_{\phi,x}^2\), so its row has norm exactly
+two.  The clock and charge bounds follow from
+\(\norm{\Psi}=1\), \(\norm{(\Psi+\Psi^*)/2}=1\), and
+\(\norm{n_Q-1/2}=1/2\).
+
+\subsection{Uniform constants}
+
+Define the finite-range interaction moment
+\[
+ \kappa:=\sup_{x\in\Gamma}
+ \sum_{X\ni x}|X|\,\norm{\Phi(X)}.
+\tag{1.5}\label{eq:kappa}
+\]
+There are two assigned electric links, four plaquettes, and four bonds
+incident on a square-lattice cell.  Consequently
+\[
+\begin{aligned}
+ J&:=\sup_X\norm{\Phi(X)}=\frac{12}{5},\qquad R=2,\\
+ \kappa
+ &\leq
+ 2\frac{18}{25}
+ +4\cdot4\frac{25}{36}
+ +4\cdot2\frac{12}{5}
+ +2+1+\frac1{10}+\frac45\\
+ &=\frac{16043}{450}=35.651111111111\ldots .
+\end{aligned}
+\tag{1.6}\label{eq:constants}
+\]
+These bounds are independent of \(\Lambda\).  More generally, bounded
+degree, finite \(R\), finite local dimension and finite \(\kappa\) are the
+class hypotheses; the displayed numbers are the frozen assembled
+\(2+1\)-dimensional specialization.
+
+\section{The Lieb--Robinson theorem and explicit TFPT velocity}
+
+\begin{theorem}[Finite-range Lieb--Robinson theorem, full form used here]
+\label{thm:LRclassical}
+Let \((\Gamma,d)\) be a graph, let every local Hilbert space be finite
+dimensional with a uniform dimension bound, and let a self-adjoint
+interaction satisfy
+\[
+ \Phi(X)=0\quad\text{if }\diam X>R,\qquad
+ \sup_x\sum_{X\ni x}|X|\norm{\Phi(X)}=\kappa<\infty.
+\tag{2.1}\label{eq:LRhyp}
+\]
+For every finite \(\Lambda\), define
+\(\tau_t^\Lambda(A)=e^{itH_\Lambda}Ae^{-itH_\Lambda}\).
+If \(A\in\A_X\), \(B\in\A_Y\), and \(d(X,Y)>0\), then, uniformly in
+\(\Lambda\supset X\cup Y\),
+\[
+ \norm{[\tau_t^\Lambda(A),B]}
+ \leq
+ 2\norm A\norm B\,|X|\,
+ \exp\!\left[-\frac{d(X,Y)}R+2e\kappa|t|\right].
+\tag{2.2}\label{eq:LR}
+\]
+Thus an admissible Lieb--Robinson velocity is
+\[
+ v_{\rm LR}=2e\kappa R.
+\tag{2.3}\label{eq:vLR}
+\]
+The same assertion holds for even observables in a CAR algebra, because
+disjoint even local algebras commute.
+\end{theorem}
+
+\begin{proof}
+This is the original Lieb--Robinson iteration in the finite-range
+normalization \eqref{eq:LRhyp}; it is equivalent to the exponential
+Nachtergaele--Sims form.  We include the complete estimate.
+Differentiate the commutator after removing all Hamiltonian terms supported
+entirely away from its evolving support.  Duhamel iteration gives
+\[
+ \norm{[\tau_t^\Lambda(A),B]}
+ \leq2\norm A\norm B
+ \sum_{n\geq1}\frac{(2|t|)^n}{n!}\,a_n(X,Y),
+\tag{2.4}\label{eq:iteration}
+\]
+where \(a_n(X,Y)\) is the sum of
+\(\prod_{j=1}^n\norm{\Phi(Z_j)}\) over chains with
+\(Z_1\cap X\ne\varnothing\), \(Z_j\cap Z_{j-1}\ne\varnothing\), and
+\(Z_n\cap Y\ne\varnothing\).  Choosing one intersection site at each
+step and using \eqref{eq:LRhyp} yields
+\[
+ a_n(X,Y)\leq |X|\kappa^n.
+\tag{2.5}\label{eq:pathweight}
+\]
+Every member of a chain has diameter at most \(R\); hence no such chain can
+join \(X\) to \(Y\) unless \(nR\geq d(X,Y)\).  Put
+\(m=\lceil d(X,Y)/R\rceil\).  For \(n\geq m\),
+\(\mathbf1_{\{n\geq m\}}\leq e^{n-m}\), and therefore
+\[
+ \sum_{n\geq m}\frac{(2\kappa|t|)^n}{n!}
+ \leq e^{-m}\sum_{n\geq0}\frac{(2e\kappa|t|)^n}{n!}
+ \leq
+ e^{-d(X,Y)/R+2e\kappa|t|}.
+\tag{2.6}\label{eq:poissontail}
+\]
+Substitution in \eqref{eq:iteration} proves \eqref{eq:LR}.  Rewriting
+the exponent as
+\(-[d(X,Y)-2e\kappa R|t|]/R\) proves \eqref{eq:vLR}.  In the fermionic
+case all Hamiltonian terms and physical observables under consideration
+are even, so the initial disjoint-support commutator and every step of the
+iteration are ordinary commutators.
+\end{proof}
+
+The theorem is the finite-range specialization of Lieb and
+Robinson~\cite{LR1972} and of the exponential bounds of
+Nachtergaele and Sims~\cite{NS2006,NS2010}.  For the TFPT constants,
+\[
+ \boxed{
+ v_{\rm LR}=2e\frac{16043}{450}\,2
+ =\frac{32086e}{225}
+ =387.639069990831.}
+\tag{2.7}\label{eq:TFPTvelocity}
+\]
+This deliberately conservative class bound includes all four flavors,
+plaquettes, and onsite terms.  It is not a fitted physical signal speed.
+
+\section{Norm thermodynamic limit}
+
+\begin{theorem}[Thermodynamic-limit dynamics]
+\label{thm:dynamics}
+For every \(A\in\A_{\rm loc}:=\bigcup_{\Lambda}\A_\Lambda\), the net
+\[
+ \tau_t(A):=\lim_{\Lambda\uparrow\Gamma}\tau_t^\Lambda(A)
+\tag{3.1}\label{eq:limit}
+\]
+exists in norm, uniformly for \(t\) in compact real intervals and
+independently of the exhausting sequence.  It extends uniquely to a
+strongly continuous one-parameter group of \(C^*\)-automorphisms of
+\(\A\).
+\end{theorem}
+
+\begin{proof}
+We give the standard Bratteli--Robinson/Nachtergaele--Sims proof with an
+explicit Cauchy bound.  Let \(A\in\A_X\), and let
+\(\Lambda\subset\Lambda'\) contain the closed \(b\)-neighbourhood of \(X\).
+Write \(V=H_{\Lambda'}-H_\Lambda\), with both Hamiltonians embedded in
+\(\A_{\Lambda'}\).  Differentiating
+\(\tau_{t-s}^{\Lambda'}(\tau_s^\Lambda(A))\) gives
+\[
+ \tau_t^{\Lambda'}(A)-\tau_t^\Lambda(A)
+ =i\int_0^t
+ \tau_{t-s}^{\Lambda'}
+ \bigl([V,\tau_s^\Lambda(A)]\bigr)\,ds.
+\tag{3.2}\label{eq:duhamel}
+\]
+Every term \(Z\) in \(V\) reaches outside \(\Lambda\).  Since
+\(\diam Z\leq R\), \(d(X,Z)\geq\rho:=\max(0,b-R)\).
+Apply \eqref{eq:LR} termwise.  If \(q=e^{-1/R}\), then the square-lattice
+shell bound
+\[
+ \sum_{y:d(X,y)\geq\rho}e^{-d(X,y)/R}
+ \leq
+ 4|X|q^\rho
+ \left(\frac{\rho+1}{1-q}+\frac{q}{(1-q)^2}\right)
+ =:|X|S_R(\rho)
+\tag{3.3}\label{eq:shell}
+\]
+follows by assigning each \(y\) to a nearest point of \(X\) and using at
+most \(4(n+1)\) sites in shell \(n\).  Assign each interaction \(Z\) to a
+site \(y\in Z\) nearest \(X\).  Because \(\diam Z\leq R\),
+\(e^{-d(X,Z)/R}\leq e\,e^{-d(X,y)/R}\), while
+\(\sum_{Z\ni y}\norm{\Phi(Z)}\leq\kappa\).  Equations
+\eqref{eq:duhamel}--\eqref{eq:shell} therefore give, for \(t\geq0\),
+\[
+\begin{aligned}
+ \norm{\tau_t^{\Lambda'}(A)-\tau_t^\Lambda(A)}
+ &\leq
+ 2\norm A\,|X|\,e\kappa |X|S_R(\rho)
+ \int_0^t e^{2e\kappa s}\,ds\\
+ &=\norm A\,|X|^2S_R(\rho)
+ \bigl(e^{2e\kappa t}-1\bigr).
+\end{aligned}
+\tag{3.4}\label{eq:convergence}
+\]
+The same bound holds with \(|t|\).  For fixed \(T\), its right-hand side
+tends to zero as \(b\to\infty\), uniformly for \(|t|\leq T\).  Hence the
+finite-volume dynamics are a norm-Cauchy net on local observables; this
+also proves independence of the exhaustion.
+
+Each \(\tau_t^\Lambda\) is isometric, linear, multiplicative and
+star-preserving.  Norm limits preserve these properties.
+Applying the construction to \(-t\) shows that \(\tau_{-t}\) is the
+inverse, and taking limits in
+\(\tau_{s+t}^\Lambda=\tau_s^\Lambda\tau_t^\Lambda\) gives the group law.
+For local \(A\), continuity at \(t=0\) follows first in a fixed sufficiently
+large volume and then from the compact-time uniform limit.  Density of
+\(\A_{\rm loc}\) and isometry extend both \(\tau_t\) and strong continuity
+to all of \(\A\).  This is precisely the conclusion of the standard
+thermodynamic-dynamics theorem, commonly cited as
+Bratteli--Robinson, Theorem~6.2.11~\cite{BR}.
+\end{proof}
+
+\section{Gauss law and the correct consistent family}
+
+Let \(\mathcal G_{\rm loc}\) be the group of finitely supported local gauge
+transformations on the ambient field algebra, and let \(\alpha_g\) denote
+its action.  Define
+\[
+ \A^G=\{A\in\A:\alpha_g(A)=A\text{ for every }g\in\mathcal G_{\rm loc}\}.
+\tag{4.1}\label{eq:fixed}
+\]
+The electric and plaquette terms are gauge invariant; the hopping contains
+its parallel transporter; the determinant projector is a Spin(10) singlet;
+and the seam charge is neutral as assembled.  Thus
+\[
+ \alpha_g(\Phi(X))=\Phi(X),\qquad
+ \alpha_g\circ\tau_t^\Lambda=\tau_t^\Lambda\circ\alpha_g.
+\tag{4.2}\label{eq:gaugecov}
+\]
+
+\begin{proposition}[Compatible constrained dynamics]
+\label{prop:gauss}
+The ambient embeddings \eqref{eq:ambient} restrict to an inductive family
+of local gauge-invariant observables, \(\tau_t(\A^G)=\A^G\), and
+\(\tau_t|_{\A^G}\) is the thermodynamic dynamics of the constrained theory.
+For every finite region \(F\), let \(P_F\) be the product/Haar Gauss
+projection.  If \(A\) is gauge invariant and supported in the interior of
+\(F\), then
+\[
+ [\iota(A),P_F]=0,\qquad
+ P_F\iota(A)P_F=\iota(A)P_F.
+\tag{4.3}\label{eq:projectorcompat}
+\]
+\end{proposition}
+
+\begin{proof}
+If \(A\) is fixed by every local gauge transformation, so is
+\(A\otimes\id\); hence the ambient embedding preserves the fixed-point
+condition.  Equation \eqref{eq:gaugecov} implies that every
+\(\tau_t^\Lambda(A)\), and therefore its norm limit, is gauge invariant.
+This proves invariance and consistency of the restricted automorphism
+group.
+
+For a finite gauge group,
+\(P_F=\prod_{x\in F}|G|^{-1}\sum_{g\in G}U_x(g)\); for a compact group,
+replace each sum by normalized Haar integration.  Gauge invariance says
+\(U_x(g)\iota(A)U_x(g)^*=\iota(A)\) for every factor.  Thus \(\iota(A)\)
+commutes with each averaged projector and with their product, proving
+\eqref{eq:projectorcompat}.  This is the standard
+gauge-invariant-subalgebra treatment of the local Gauss law
+\cite{GrundlingLledo,GrundlingRudolph}.
+\end{proof}
+
+\begin{remark}[What is not compatible]
+The projected spaces \(P_\Lambda\Hh_\Lambda\) do not generally embed as
+\(P_\Lambda\Hh_\Lambda\otimes\Hh_{\Lambda'\setminus\Lambda}\subset
+P_{\Lambda'}\Hh_{\Lambda'}\): boundary Gauss laws correlate matter with
+new links and boundary flux sectors.  Therefore no naive tensor embedding
+of physical Hilbert spaces is claimed.  The honest constrained
+thermodynamic object is \(\A^G\), for which
+\eqref{eq:projectorcompat} is exactly the required projector--restriction
+commutation.  A constraint-violating operator need not commute with
+\(P_F\); the numeric mutant has commutator norm one.
+\end{remark}
+
+\section{Existence of equilibrium states}
+
+\begin{theorem}[Ground and KMS states]
+\label{thm:states}
+The infinite-volume system \((\A,\tau)\), and its invariant subalgebra
+\((\A^G,\tau|_{\A^G})\), have at least one ground state.  For every
+\(\beta\in(0,\infty)\), they have at least one \(\beta\)-KMS state.
+\end{theorem}
+
+\begin{proof}
+The state space \(S(\A)\) is weak-* compact.  Choose an exhaustion
+\(\Lambda_n\uparrow\Gamma\), a normalized ground vector of \(H_{\Lambda_n}\),
+and extend its vector state from \(\A_{\Lambda_n}\) to \(\A\).  Gauge-average
+the extension if necessary.  A subnet converges weak-* to a state
+\(\omega_\infty\).  If \(A\) is local, then for all sufficiently large
+\(n\), the finite-volume ground-state variational inequality gives
+\[
+ -i\,\omega_n(A^*\delta_{\Lambda_n}(A))
+ =\omega_n\!\left(A^*[H_{\Lambda_n},A]\right)\geq0.
+\tag{5.1}\label{eq:groundineq}
+\]
+For local \(A\), the commutator stabilizes to
+\(\delta(A)=i\sum_{X:X\cap\supp A\ne\varnothing}[\Phi(X),A]\).
+Passing to the weak-* limit proves the ground-state condition
+\(-i\omega_\infty(A^*\delta(A))\geq0\) on the local core, hence
+\(\omega_\infty\) is a ground state.
+
+For finite \(\beta\), take the finite Gibbs state
+\[
+ \omega_{n,\beta}(A)=
+ \frac{\operatorname{Tr}_{\Lambda_n}
+ (e^{-\beta H_{\Lambda_n}}A)}
+ {\operatorname{Tr}_{\Lambda_n}(e^{-\beta H_{\Lambda_n}})}
+\tag{5.2}\label{eq:gibbs}
+\]
+and any extension to \(\A\), again gauge-averaged if desired.  Weak-*
+compactness supplies a convergent subnet \(\omega_\beta\).
+To pass the KMS identity without assuming complex-time volume convergence,
+smear a local \(A\) with a Gaussian \(f\):
+\[
+ A_f=\int_{\mathbb R}f(t)\tau_t(A)\,dt,\qquad
+ A_{f,n}=\int_{\mathbb R}f(t)\tau_t^{\Lambda_n}(A)\,dt.
+\tag{5.3}\label{eq:smear}
+\]
+Theorem~\ref{thm:dynamics}, isometry, and the Gaussian tail imply
+\(A_{f,n}\to A_f\) in norm; the same holds after the imaginary translation
+of the entire Gaussian smear.  The finite Gibbs KMS identity
+\[
+ \omega_{n,\beta}(A_{f,n}B)
+ =\omega_{n,\beta}\!\left(B\tau_{i\beta}^{\Lambda_n}(A_{f,n})\right)
+\tag{5.4}\label{eq:finiteKMS}
+\]
+therefore passes to the subnet limit.  Gaussian-smeared local elements are
+a norm-dense entire analytic subalgebra.  Equation
+\eqref{eq:finiteKMS} on this core is equivalent to the full
+\(\beta\)-KMS condition, so \(\omega_\beta\) is a KMS state.
+Restriction gives states on \(\A^G\); alternatively, gauge averaging
+preserves both ground and KMS conditions because the gauge action commutes
+with \(\tau\).
+\end{proof}
+
+\section{Numeric twin}
+
+The companion
+\[
+ \texttt{experiments/tfpt-discovery/lieb\_robinson\_witness\_probe.py}
+\]
+uses the exact nearest-neighbour physical-edge sector of the assembled
+model while comparing it against the complete class constant
+\eqref{eq:TFPTvelocity}.  This is the same finite cone protocol as the
+earlier IR-universality witness.  It reports:
+\[
+\begin{array}{c|c}
+\toprule
+\text{quantity}&\text{value}\\
+\midrule
+v_{\rm LR}\text{ (proved class bound)}&387.639069990831\\
+v_{\rm measured}\text{ (commutator threshold }0.02)&2.000000000000\\
+\text{outside-cone leakage}&8.238\times10^{-3}\\
+\bottomrule
+\end{array}
+\tag{6.1}\label{eq:numericvelocity}
+\]
+For the one-site projector, \(t=10^{-3}\), and nested open volumes, the
+specialization of \eqref{eq:convergence} gives
+\[
+\begin{array}{c|cc}
+\toprule
+b&\norm{\tau_t^{\Lambda_b}(A)-\tau_t^{\Lambda_{64}}(A)}
+&S_2(b-2)(e^{2e\kappa t}-1)\\
+\midrule
+8&0&9.246214927512\times10^{-1}\\
+16&0&3.279645827421\times10^{-2}\\
+32&0&2.164381663985\times10^{-5}\\
+\bottomrule
+\end{array}
+\tag{6.2}\label{eq:numericconvergence}
+\]
+The zeros are numerical precision statements, not analytic finite-speed
+claims.  A \(1/r\) all-to-all mutant, which is outside
+\eqref{eq:LRhyp}, gives \(1.048309991863\times10^{-4}\) at \(b=32\),
+violating the inapplicable finite-range line by a factor \(4.843462\).
+The Gauss-positive control has
+\(\norm{[A,P_G]}=\norm{P_GAP_G-AP_G}=0\); the constraint-violating
+embedding has \(\norm{[A_{\rm bad},P_G]}=1\).  All eight checks pass.
+
+\section{Combined theorem and exact boundary}
+
+\begin{theorem}[Mandatory thermodynamic-dynamics leg]
+\label{thm:combined}
+For the TFPT master-Hamiltonian class \eqref{eq:H} with the frozen
+finite-dimensional local factors and coefficients of
+Table~\ref{tab:terms}:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item the finite-volume dynamics satisfy the uniform Lieb--Robinson bound
+\eqref{eq:LR} with the explicit estimate
+\(v_{\rm LR}=32086e/225\);
+\item the thermodynamic-limit dynamics exist in norm on all local
+observables and define a strongly continuous automorphism group;
+\item the group restricts consistently to the Gauss-invariant quasilocal
+algebra, with projector compatibility in the precise form
+\eqref{eq:projectorcompat}; and
+\item at least one thermodynamic ground state and at least one
+\(\beta\)-KMS state for every \(\beta>0\) exist.
+\end{enumerate}
+No continuum limit is used in any part of the proof.
+\end{theorem}
+
+\begin{proof}
+Part (i) is Theorem~\ref{thm:LRclassical} together with
+\eqref{eq:constants}.  Part (ii) is Theorem~\ref{thm:dynamics}, including
+the explicit norm-Cauchy estimate \eqref{eq:convergence}.  Part (iii) is
+Proposition~\ref{prop:gauss}; the warning following it excludes the false
+physical-Hilbert-space embedding.  Part (iv) is Theorem~\ref{thm:states}.
+\end{proof}
+
+\begin{center}
+\setlength{\fboxsep}{10pt}
+\fcolorbox{red!65!black}{red!3}{
+\begin{minipage}{0.91\textwidth}
+\textbf{BOUNDARY BOX --- what this does not give.}
+
+\smallskip
+This theorem does \emph{not} give uniqueness of the ground or KMS state;
+phase structure and spontaneous symmetry breaking remain undecided.  It
+does \emph{not} prove that the finite-volume spectral gap survives the
+thermodynamic limit.  It does \emph{not} establish an interacting
+continuum/scaling limit, Lorentz invariance, a common infrared light cone,
+or IR universality.  Those are precisely the remaining T3/T5 contents.
+The result proved here is the mandatory dynamics leg only: a uniformly
+local Hamiltonian class, a volume-independent Lieb--Robinson estimate,
+norm thermodynamic-limit dynamics, a compatible gauge-invariant
+quasilocal algebra, and existence (not uniqueness) of equilibrium states.
+\end{minipage}}
+\end{center}
+
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
+
+The amended contract makes the continuum limit optional but the
+thermodynamic limit mandatory.  The latter is now proved at the
+Hamiltonian-class level for the concrete finite-group, finite-local-space
+TFPT assembly.  The proof is insensitive to finite-volume boundary shape
+and does not infer thermodynamics from a finite scan.  Its explicit
+velocity is conservative, while the numerical witness checks the expected
+cone, the norm-convergence inequality, and both destructive mutants.
+The boundary box prevents this dynamics theorem from being misread as a
+gap, phase-uniqueness, or IR-universality theorem.
+
+\begin{thebibliography}{9}
+
+\bibitem{LR1972}
+E.~H.~Lieb and D.~W.~Robinson,
+\emph{The finite group velocity of quantum spin systems},
+Commun.\ Math.\ Phys.\ \textbf{28} (1972), 251--257,
+\href{https://doi.org/10.1007/BF01645779}
+{doi:10.1007/BF01645779}.
+
+\bibitem{NS2006}
+B.~Nachtergaele and R.~Sims,
+\emph{Lieb--Robinson bounds and the exponential clustering theorem},
+Commun.\ Math.\ Phys.\ \textbf{265} (2006), 119--130,
+\href{https://doi.org/10.1007/s00220-006-1556-1}
+{doi:10.1007/s00220-006-1556-1}.
+
+\bibitem{NS2010}
+B.~Nachtergaele and R.~Sims,
+\emph{Lieb--Robinson bounds in quantum many-body physics},
+Contemp.\ Math.\ \textbf{529} (2010), 141--176,
+\href{https://doi.org/10.1090/conm/529/10429}
+{doi:10.1090/conm/529/10429}.
+
+\bibitem{BR}
+O.~Bratteli and D.~W.~Robinson,
+\emph{Operator Algebras and Quantum Statistical Mechanics II},
+second edition, Springer, Berlin (1997), Theorem~6.2.11.
+
+\bibitem{GrundlingLledo}
+H.~Grundling and F.~Lled\'o,
+\emph{Local quantum constraints},
+Rev.\ Math.\ Phys.\ \textbf{12} (2000), 1159--1218.
+
+\bibitem{GrundlingRudolph}
+H.~Grundling and G.~Rudolph,
+\emph{QCD on an infinite lattice},
+Commun.\ Math.\ Phys.\ \textbf{349} (2017), 1163--1202,
+\href{https://doi.org/10.1007/s00220-013-1674-5}
+{doi:10.1007/s00220-013-1674-5}.
+
+\end{thebibliography}
+
+\end{document}

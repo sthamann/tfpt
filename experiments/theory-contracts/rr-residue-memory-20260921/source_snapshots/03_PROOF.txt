@@ -1,0 +1,226 @@
+UR.SOURCE.CHARGED_EXTENSION_SELECTION.01
+21 September 2026
+Charged fields, relative time and the origin of the Maxwell coefficient
+
+VERDICT: PARTIAL. Exact finite reconstruction obstruction under stated data;
+conditional static completion and an explicit sufficient state datum.
+No physical TFPT gate is closed. No complete TFPT solution is claimed.
+
+PURPOSE AND ORIGINAL INPUT
+
+The requested result is a common source-derived theory, not merely a neutral
+E8 boundary. The preceding Maxwell contract gives a conditional dynamical
+quotient of an already stipulated 9R+1L theory. The present question is whether
+restoring Clifford matrices already used in source construction supplies the
+missing charged fields and uniquely fixes their time and the gauge dynamics.
+
+Native source native_source.py builds six 8x8 Clifford matrices inside
+_gamma_pairs(3), but exports only their fifteen even products restricted to
+the four-dimensional even chirality. The prior family_intertwiner proof
+establishes P+ gamma_a P+=0 and the nonzero covariant maps P- gamma_a P+.
+Those maps are not executed local fields of its 64-CAR/60-CCR Hamiltonian.
+The already existing source-clifford-grade contract also distinguishes
+spinor STATES in the full finite source from spinor FIELD OPERATORS under
+conjugation. That exclusion is not a new result here.
+
+The full TFPT architecture, including P1/P2, compiler, E8 glue, clocks,
+alpha, flavor, spacetime and gravity, is not replaced by the example below.
+In particular we do NOT claim every member of the counterfamily satisfies
+all P1/P2 constraints or a hypothetical future common clock implementation.
+
+1. WHAT CAN BE RECOVERED STATICALLY
+
+Write S+=C4 for the retained family chirality. Its matrix algebra is A+=M4.
+The candidate full complex Clifford algebra is
+
+ B=Cl6(C)=M8,
+ B_even=End(S+) direct_sum End(S-)=M4 direct_sum M4,
+ B_odd=Hom(S+,S-) direct_sum Hom(S-,S+).
+
+If a six-dimensional Euclidean vector representation V and an irreducible
+graded Clifford representation c are required, with
+
+ c(v)*=c(v), {c(v),c(w)}=2<v,w>I,
+
+then this static completion is unique up to equivalence. The two chiral
+Spin(6) modules are 4 and bar4. The vector intertwiner is unique up to phase,
+with Clifford normalization fixing its magnitude; a rephasing removes the
+remaining phase. The native precompression construction already realizes it.
+
+This is conditional: the supplied M4 block alone does not require odd
+Clifford generators or retain the other central summand. Every unital
+*-endomorphism M4->M4 is injective by simplicity and onto by finite dimension,
+and is inner. This finite algebra cannot on its own supply a nontrivial
+localized charged-sector category.
+
+The chirality epsilon=P+-P- is an ALGEBRAIC grading. Identifying it with
+physical fermion parity and realizing its generators as localized fields
+requires a further field-theoretic map. Matrix oddness is insufficient.
+
+Doplicher--Roberts reconstruction concerns a LOCAL OBSERVABLE NET and its
+superselection structure, not this isolated finite matrix block. Its primary
+abstract states the net/locality and sector setting explicitly [L1]. No DR
+theorem is applied to the chiral 1+1D candidate here; its statistics and
+massless-sector issues would need their own treatment.
+
+2. EXACT LOSS OF RELATIVE SECTOR TIME
+
+Even grant the static completion. Let H+ and H- be self-adjoint finite
+Hamiltonians on the two blocks and let Delta be real. Define
+
+ H_Delta=H+ direct_sum (H-+Delta I).
+
+For every a=a+ direct_sum a- in B_even,
+
+ exp(it H_Delta) a exp(-it H_Delta)
+ = exp(it H+) a+ exp(-it H+)
+   direct_sum exp(it H-) a- exp(-it H-),                 (1)
+
+independently of Delta. For T=P- T P+,
+
+ alpha_t^Delta(T)=exp(it Delta) exp(it H-) T exp(-it H+). (2)
+
+Thus even the FULL even algebra and its time evolution do not determine
+the relative field energy. This is stronger than merely losing one block
+by compression. Adjunction holds exactly for every Delta. If the Spin
+action preserves chirality, the scalar sector shift preserves covariance.
+
+A particularly explicit state-preserving example is
+
+ H_Delta=Delta P-, Delta>0, rho=P+/4,
+ T=P- gamma_1 P+, T* T=P+, T T*=P-.
+
+Every even multi-time correlation is identical for all Delta, and rho is
+the same Spin-invariant ground-state density matrix. Nevertheless, for t>=0,
+
+ Tr(rho T* exp(-t H_Delta) T)=exp(-Delta t).             (3)
+
+Delta=1 and Delta=2 give different field gaps with the same retained state
+and all even dynamics. Both Hamiltonians are positive. Euclidean positivity
+here is finite quantum-mechanical positivity: the reflection kernel is a
+Gram kernel built from exp(-tH_Delta) A rho^(1/2). This is not a construction
+of a relativistic local net or a proof of physical charged-field locality.
+
+For fixed baseline blocks, (1)-(2) hold at any Delta. The ground-state
+example and general covariance statement have the stated restricted scope.
+They do not prove a universal impossibility theorem for TFPT.
+
+3. THE PRECISE EXTRA DATA THAT WOULD REMOVE THIS AMBIGUITY
+
+Suppose beta>0, both baseline H+,H- and their common normalization are known,
+and a FULL normalized Gibbs state on M8 is supplied. Set
+ Z+=Tr exp(-beta H+), Z-=Tr exp(-beta H-).
+Its central weights satisfy
+
+ w+=Z+/(Z+ + exp(-beta Delta) Z-),
+ w-=exp(-beta Delta) Z-/(Z+ + exp(-beta Delta) Z-).
+
+If both weights are nonzero, this gives exactly
+
+ Delta=beta^(-1) log[(Z- w+)/(Z+ w-)].                  (4)
+
+The normalized plus-corner state is exp(-beta H+)/Z+ for every Delta.
+In the simple example the full Gibbs weights are
+ w+=1/(1+exp(-beta Delta)), w-=1-w+.
+The KMS CONDITION on the even direct-sum algebra alone leaves its central
+mixture free: convex mixtures of component KMS states remain KMS. One must
+not confuse that condition with specifying the full Gibbs density on M8.
+At zero temperature the state in (3) cannot determine Delta.
+
+A sourced symmetry C with C P+ C^-1=P- and C H C^-1=H would also relate the
+two blocks. Such a symmetry could exclude an independent Delta P-. A clock
+acting only by block-diagonal phases cannot do so. The native BAR tensor
+operation has not been exhibited as that common block-exchanging symmetry
+with physical time. Likewise a known term -Q/4 does not in itself exclude
+an additional sector offset; a full sourced H=L0-Q/4 on both sectors would
+be stronger data and is not contradicted by this theorem.
+
+Consequently this contract identifies a recoverable missing datum, rather
+than asserting that no future source principle can select it. Equation (4)
+fixes only this scalar offset after the other data are supplied, not the
+whole charged field theory, localization, couplings or cosmological state.
+
+4. THE MAXWELL ORIGIN IS A SEPARATE SELECTION PROBLEM
+
+In the already declared 9R+1L candidate let a be the compact connection,
+normalized so integer charges couple to a and its holonomies have period
+2pi. At fixed charge lattice, choose e>0 and add
+
+ S_Maxwell=(1/(4e^2)) integral f_mu_nu f_mu_nu
+          =(1/(2e^2)) integral f_01^2                 (Euclidean 2D).
+
+Changing e preserves compactness and the anomaly cancellation 9-9=0.
+It also preserves the neutral E8 quotient but changes the previously
+derived Schwinger mass m^2=9e^2/pi. At fixed source length L, mL changes;
+this is not removed by a change of units or a rescaling of a that preserves
+its specified period and unit charge. Quantized charges and the continuous
+gauge coefficient are distinct data in the primary construction [L2].
+
+Even an induced quadratic response does not identify these two data.
+For the local nonzero-momentum charged boson Phi of the granted candidate,
+in a fixed zero-mode sector and with matched Euclidean conventions,
+
+ S[Phi,f]=1/2 <Phi,(-partial^2)Phi> + i c <Phi,f>,
+ c=3/sqrt(pi).
+
+Gaussian completion at fixed background f gives
+
+ S_ind[f]=c^2/2 <f,(-partial^2)^(-1)f>
+         =9/(2pi) <f,(-partial^2)^(-1)f>.              (5)
+
+Its kernel is nonlocal. It is not the bare local Maxwell term. Including
+the latter yields, for p!=0, the quadratic coefficient
+
+ 1/2 [1/e^2+9/(pi p^2)] |f(p)|^2.                    (6)
+
+Equations (5)-(6) are Gaussian identities within the supplied charged-boson
+action. They are not a native derivation of that action, an integral over
+all compact bundles, or a proof about its zero modes. A separately derived
+microscopic source and regulator could fix a local coefficient; the present
+Clifford completion and neutral quotient do not do so. The original free
+QWZ source and the separate rotor parent must not be silently identified
+with this ten-channel action. The existing rotor has its own specified
+link term and electric coefficient and different matter charges.
+
+5. CONSEQUENCE FOR THE REQUESTED COMPLETE SOLUTION
+
+The attempted repair was concrete: restore the original precompression
+Clifford maps, reconstruct charged fields, and use their response to select
+the Maxwell bridge. Static completion works conditionally. The inference
+from that completion and retained dynamics to a unique charged-field time
+fails by (1)-(3). The needed scalar state input is precisely exposed by (4).
+The neutral E8 structure and anomaly conditions also do not select e; (5)
+shows why the induced response alone is not the missing Maxwell input.
+
+The first missing native map must provide ALL of:
+ - a surviving charged representation and physically correct grading;
+ - one sourced time/state on both retained and charged fields;
+ - the compact connection, its measure and electric coefficient;
+ - compatible source clocks and the controlled local limit.
+
+These are prerequisites for using the Maxwell candidate as TFPT physics.
+They are not sufficient for three chiral families, a 3+1D local theory,
+gravity, the alpha-functional origin or absolute vacuum/initial-state data.
+Those remain separate common-source requirements. No values for the missing
+data have been chosen here merely to label the result complete.
+
+REPRODUCIBILITY AND EVIDENCE
+
+checker.py implements a finite independent Clifford/compression witness,
+not the original full source or a new physical model. Its exact identities
+support sections 1-3. Sections 2-4 contain the analytic arguments; finite
+checks alone do not establish a continuum field theory. source_manifest.json
+pins the original code and prior source contracts used to define the scope.
+This is an internal research contract, not independent external peer review.
+
+[L1] S. Doplicher and J. E. Roberts (1990), Why there is a field algebra with
+a compact gauge group describing the superselection structure in particle
+physics. Primary abstract inspected 2026-09-21:
+https://link.springer.com/article/10.1007/BF02097680
+
+[L2] H. Grosse and E. Langmann (2000), Chiral Schwinger models without gauge
+anomalies, hep-th/0004176v1, especially (1), (3), (5), (25). Their full model
+uses Dirac-flavor data on a cylinder; this citation supplies the declared
+gauge normalization and anomaly/mass framework, not a proof that the
+spectator-free TFPT candidate's global field net has been constructed.
+https://arxiv.org/html/hep-th/0004176

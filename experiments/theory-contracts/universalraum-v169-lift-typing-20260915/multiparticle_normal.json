@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "guards": 24,
+  "exact_guards": 24,
+  "numerical_guards": 0,
+  "checks": [
+    {
+      "name": "native_source.py byte pin (copy of universalraum-operations-groundstate-20260915)",
+      "kind": "exact"
+    },
+    {
+      "name": "reconstructed W tensor pin (npz archive pin 3f00a089... verified byte-exactly in earlier rounds)",
+      "kind": "exact"
+    },
+    {
+      "name": "native row Gram W W^T = 8 I_60 (re-guarded)",
+      "kind": "exact"
+    },
+    {
+      "name": "A B = e_00 exactly",
+      "kind": "exact"
+    },
+    {
+      "name": "dGamma(AB) - dGamma(A)dGamma(B) has exactly one nonzero entry",
+      "kind": "exact"
+    },
+    {
+      "name": "the single discriminating entry is [dG(AB)-dG(A)dG(B)]_{(0,1),(0,1)} = +1",
+      "kind": "exact"
+    },
+    {
+      "name": "exact identity dG(A)dG(B) - dG(AB) = cross(A,B) on Lambda^2",
+      "kind": "exact"
+    },
+    {
+      "name": "native Lie witness: dG(L0 L1) - dG(L0)dG(L1) has exactly 3968 nonzeros",
+      "kind": "exact"
+    },
+    {
+      "name": "the two native Lie generators do not commute (context for the cross term)",
+      "kind": "exact"
+    },
+    {
+      "name": "PRESERVED: [dG(L0), dG(L1)] = dG([L0, L1]) exactly (Lie homomorphism)",
+      "kind": "exact"
+    },
+    {
+      "name": "Pi = e_44 + e_5757 is a projector (Pi^2 = Pi)",
+      "kind": "exact"
+    },
+    {
+      "name": "dG(Pi)|4^57> = 2|4^57> (eigenvalue TWO on the seed pair)",
+      "kind": "exact"
+    },
+    {
+      "name": "dG(Pi)^2|4^57> = 4|4^57> != 2|4^57>",
+      "kind": "exact"
+    },
+    {
+      "name": "dG(Pi)^2 - dG(Pi) has exactly one nonzero entry, value +2 at the seed pair: Pi^2=Pi does NOT imply dG(Pi) is a projector",
+      "kind": "exact"
+    },
+    {
+      "name": "negative control: rank-ONE projector stays a projector on Lambda^2 (a wedge pair contains a fixed mode at most once); rank >= 2 is needed",
+      "kind": "exact"
+    },
+    {
+      "name": "Gamma(UV) = Gamma(U)Gamma(V) on Lambda^2 for all 49 generator pairs (exact integer)",
+      "kind": "exact"
+    },
+    {
+      "name": "Gamma(UV) = Gamma(U)Gamma(V) on the boson lift G_B for all 49 generator pairs (exact integer)",
+      "kind": "exact"
+    },
+    {
+      "name": "clock constructor source pin",
+      "kind": "exact"
+    },
+    {
+      "name": "passive clock has period six on the 64 modes",
+      "kind": "exact"
+    },
+    {
+      "name": "Gamma(L^k) = Gamma(L)^k for all six clock powers on Lambda^2 and G_B (exact)",
+      "kind": "exact"
+    },
+    {
+      "name": "Lambda^2(u_r) diagonal is (-1)^{n_r} on every pair",
+      "kind": "exact"
+    },
+    {
+      "name": "Z_r = Gamma(u_r): the phase is the passive Fock lift of the sign flip (typing identity)",
+      "kind": "exact"
+    },
+    {
+      "name": "Lambda^2(u_r) diagonal is (-1)^{n_r} on every pair",
+      "kind": "exact"
+    },
+    {
+      "name": "Z_r = Gamma(u_r): the phase is the passive Fock lift of the sign flip (typing identity)",
+      "kind": "exact"
+    }
+  ],
+  "multiparticle_verdicts": {
+    "dGamma_not_multiplicative": {
+      "counterexample": "A = e_01, B = e_10 matrix units on the native C64 carrier",
+      "discriminating_number": "[dG(AB)-dG(A)dG(B)]_{(0^1),(0^1)} = +1 (single nonzero entry)",
+      "native_lie_witness_nnz": 3968,
+      "cross_term_identity": "dG(A)dG(B) - dG(AB) = cross(A,B), cross(A,B)(v^w)=Av^Bw+Bv^Aw",
+      "preserved_relation": "[dG(A), dG(B)] = dG([A,B]) (Lie homomorphism)"
+    },
+    "projector_not_lifted": {
+      "counterexample": "Pi = e_44 + e_5757 (seed-pair modes of the marked process)",
+      "discriminating_number": "dG(Pi)|4^57> = 2|4^57>, dG(Pi)^2|4^57> = 4|4^57>; dG(Pi)^2 - dG(Pi) has one nonzero entry (+2)",
+      "negative_control": "rank-1 projector: dG(e_44)^2 = dG(e_44) on Lambda^2 (eigenvalues in {0,1}); rank >= 2 needed"
+    },
+    "gamma_functorial": {
+      "proved": "Gamma(UV) = Gamma(U)Gamma(V) on Lambda^2 and on G_B",
+      "scope": "all 49 declared-generator pairs plus all six clock powers; whole generated group by word-length induction"
+    }
+  },
+  "typing_consequence": "dGamma = additive second quantization (Lie-algebra representation, NOT multiplicative); Gamma = unitary Fock lift (group homomorphism, functorial); Z_r = Gamma(u_r) is a passive lift, n_r = dG(e_rr) is an additive lift; the two types must not be identified",
+  "checker_sha256": "3f527682ba94e03e3a87ace6130fe055c029181df3d054317ca684424557b808",
+  "runtime_seconds": 1.632
+}

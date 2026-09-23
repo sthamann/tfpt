@@ -1,0 +1,134 @@
+FULL q21/q12 GAP AUDIT
+19 September 2026
+Verdict: EXACT TWO-SOURCE GROUND DOUBLET AND GAP 1/10
+
+Question
+========
+
+Do the complete q21 and q12 sectors have a unique energy-1/2 channel with all
+other states above3/5, so that the former .24 full-ground Assumption G becomes
+an exact theorem?
+
+1. Exact source decomposition
+=============================
+
+Write the q2 source as B direct-sum X, where B=barSym2 contains the unique
+Omega packet.  The exact q1 source classes have dimensions36,20 and4.  Their
+relevant certified data are:
+
+  q1 dimension36: local L in [1/2,13/10], one-matter B1<=1/3;
+  q1 dimension20: local L>=7/10;
+  q1 dimension4:  bar4, with B1 eigenvalues1 and1/5, and the eigenvalue1
+                  invariant is exactly rank one.
+
+If the q2 source lies in X, the immediate floor is
+
+  2/5+1/2=9/10.                                             (1)
+
+2. Dimension36 chord bound
+===========================
+
+Against a q2-B packet, the normalized packet compression of the q1 local
+operator is
+
+  P L_q1 P = I-(1/2)B1 >=5I/6.
+
+The q2-B complement gap is g=2/3.  Bounding the decreasing convex resolvent
+
+  (L_q1+g-E)^-1
+
+by its endpoint chord on [1/2,13/10] and imposing the projection Schur
+threshold3/2 gives
+
+  E <= zeta=37/30-sqrt(71)/15
+           =0.6715900151... >3/5.                           (2)
+
+The checker verifies the chord saturation equation exactly.  The q1
+dimension20 class has the stronger direct floor7/10.
+
+3. The bar4 channel and its complement
+=======================================
+
+On the q2 packet range, the exact bar4 partial traces are
+
+  P L P =9I/10-P_Phi*(2/5),
+  Var(L)|_(Phi-perp)=2/75.
+
+The unique B1=1 invariant is Phi, so it gives one exact pair ground state at
+energy1/2.  On the15-dimensional packet component orthogonal to Phi the mean
+is9/10.  The orthogonal q2-packet complement has energy at least
+
+  2/3+1/2=7/6.
+
+The exact two-block lower comparison therefore gives
+
+  c21 = [9/10+7/6-sqrt((9/10-7/6)^2+4*(2/75))]/2
+      = (31-2sqrt(10))/30
+      =0.8225148227... .                                    (3)
+
+Thus the full q21 sector has a unique ground1/2 and complement floor
+
+  min(zeta,7/10,9/10,c21)=zeta>3/5.                         (4)
+
+Open-chain reversal gives the identical statement for q12.
+
+4. Full two-source theorem
+==========================
+
+The independently certified remaining pair bounds are
+
+  floor(q22)=3/5, attained with multiplicity4,
+  floor(q23)=floor(q32)>3/5,
+  floor(q20)=floor(q02)>3/5.
+
+Every other phase pair is already at least1 by the exact one-edge floors.
+Consequently the complete 3,686,400-dimensional two-source Hamiltonian has
+
+  E0=kappa/2, multiplicity2,
+  next energy=3kappa/5, multiplicity4,
+  exact gap=kappa/10.                                       (5)
+
+The two ground states are the mirror q21 and q12 Phi-Omega channels.  Equation
+(5) closes the former .24 unperturbed full-ground Assumption G without a
+million-dimensional diagonalization.
+
+5. All-bar4 double-pair exclusion at m4
+========================================
+
+Two disjoint q21/q12 ground projectors sharing one matter register have
+principal overlap1/4 because each shared-matter marginal is I4/4.  With
+
+  delta=c21-1/2,
+
+the sum of the two pair Hamiltonians obeys
+
+  H >=1+(1-1/4)delta
+     =7/5-sqrt(10)/20
+     =1.2418861169... >391/320.                              (6)
+
+Therefore the all-bar4 module assignments in phases1212,2112 and2121 cannot
+contain the m4 ground below the exact phase2102 trial upper.  This does not
+exclude other q1 source classes in those phase strings.
+
+Evidence boundary
+=================
+
+EXACT:
+
+* the q1 class band sets and one-matter maxima;
+* the native bar4 partial L, partial L-squared and variance identities;
+* the chord bound (2), complement constant (3), full theorem (5), and
+  all-bar4 double-pair bound (6).
+
+NOT CLAIMED:
+
+* a complete m4 ground-sector theorem;
+* exclusion of non-bar4 modules in phases1212,2112 or2121;
+* a thermodynamic vacuum, wall dispersion or Dirac field.
+
+Artifacts
+=========
+
+  q21_audit.py    exact symbolic checker over pinned native certificates
+  q21_audit.json  machine-readable theorem and proof boundary
+  q21_audit.txt   this report

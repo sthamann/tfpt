@@ -1,0 +1,58 @@
+UR.COMPILER.CLOCK_CURRENT_CLOSURE.22
+Verdict target: PARTIAL
+
+Question
+--------
+In the already fixed v1 E8 Cartan coordinates, does the actual compiler clock
+C preserve the existing D8 current dictionary, or does local clock covariance
+force the selected 128-current Ramond completion?  Does the old 60-ray
+J-orbit quotient retain enough information for the actual C action?
+
+Inputs
+------
+1. The exact actual C and J vector matrices from the pinned integral-triality
+   certificate.
+2. The original v1 E8 roots: 112 D8 roots and the selected 128 even-parity
+   half-spinor roots.
+3. The .21 source24 typing as a subset of the selected half-spinor roots.
+4. The fixed source D8/Cartan/Majorana dictionary.  No changed Cartan or
+   conjugate compact D8 subgroup is tested.
+
+Acceptance criteria
+-------------------
+A. Reconstruct the v1 roots from the pinned original function.
+B. Give the exact 2x2 C/J root-sector census and explicit witnesses.
+C. Find the first n for which union_{k=0}^n C^k(D8 roots) is all 240 roots.
+D. Check Chevalley root-support closure from D8 plus one spinor and adjoint.
+E. Check the signed-permutation obstruction only in the fixed source Cartan
+   coordinates, with J as a positive control.
+F. Check both half-spinor chiralities without treating the already selected C
+   matrix as an independent chirality derivation.
+G. Test whether C descends to the 60 four-root J-orbits.
+H. Replay normally and with -OO with byte-identical certificates.
+
+Success meaning
+---------------
+If A-H pass, then conditionally on an actual local covariant implementation
+of C, the smallest C-closed current completion of the fixed D8 seed is the
+selected E8 root system.  D8 plus any forced spinor root and its adjoint also
+generates the full E8 root support.  A 60-ray-only record is insufficient for
+simultaneous actual C/J covariance with a frozen J frame if C does not descend
+to that quotient.  A transported quotient frame J'=CJC^-1 remains possible.
+
+Stop and scope boundaries
+-------------------------
+Do not infer a local C implementation from the target-defined E8 clock
+matrix.  Do not infer raw-seam origin, a source state, a Hamiltonian, a
+preparation/event instrument, spacetime propagation, or a 3+1-dimensional
+field dictionary.  Do not infer an obstruction for a changed Cartan or an
+abstract conjugate compact D8 subgroup.  The published D8_1 to E8_1 extension
+is prior mathematics; the native actual-clock census is the derived result.
+
+Artifacts
+---------
+checker.py             exact rational/symbolic checker
+certificate.json       complete exact output
+PROOF.txt               proof interpretation and boundaries
+source_origin_audit.txt separate audit of the missing raw local implementation
+independent_review.txt  independent reconstruction and scope review

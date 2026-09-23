@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "collision_checks": 158,
+  "source_decode_prefix_checks": 2014,
+  "normal_optimized_byte_identical": true,
+  "mutants_rejected": 3,
+  "probe_sha256": "11cdc3cc284852148410641794b9d8299135cf707a95e12e8d3436b5b12c6f98",
+  "runs": [
+    {
+      "flags": [],
+      "returncode": 0
+    },
+    {
+      "flags": [
+        "-OO"
+      ],
+      "returncode": 0
+    },
+    {
+      "mutant": "reuse_equals_fresh",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: MUTANT: one-time channel equality does not determine environment reuse"
+    },
+    {
+      "mutant": "sign_invisible_with_filters",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: MUTANT: identical one-time channels need not have identical filtered multitime records"
+    },
+    {
+      "mutant": "pure_environment_dimension4",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: MUTANT: a mixed4D bath is not a pure4D Stinespring environment"
+    }
+  ]
+}

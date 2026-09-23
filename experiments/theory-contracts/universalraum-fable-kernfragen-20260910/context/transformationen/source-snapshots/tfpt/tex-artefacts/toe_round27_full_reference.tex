@@ -1,0 +1,198 @@
+% Integrated research snapshot, 2026-09-07. No physical gate promotion.
+\subsection*{Non-RH research through Round 27: a full-reference control theorem}
+\label{sec:toe-r27-reference}
+\addcontentsline{toc}{subsection}{Non-RH Round 27: full-reference control}
+
+\begin{keybox}[Progress in a specified model, not physical TOE completion]
+The previously local research contracts through Round~27 are now shipped
+with their proof sources, source-pinned checkers, negative controls and
+saved validation records under \path{experiments/theory-contracts/}.
+They extend the positive matter/constraint constructions to an interacting
+scalar/charge model, local charge transport, exact scalar elimination and
+controlled signed history sums. Additional off-shell fields, selections
+and limiting hypotheses remain explicit. These constructions are not a
+derived common microscopic TFPT parent. All T1--T8 gates and
+\texttt{TFPT.TOE.COMPLETE.01} remain \mO.
+\end{keybox}
+
+\paragraph{What the intermediate contracts establish.}
+The geometry branch realizes the proposed elliptic boundary data but
+exposes its unselected markings and symmetry enlargement; it supplies
+neither physical dimension selection nor a selected chiral measure.
+The local positive and constraint-domain branches distinguish the
+separated completion from the first-vertex-preserving completion, including
+their different off-shell terms and form domains. The charge branch retains
+the actual eight-channel Gram form and cocycle. Round~19 couples charge to
+the scalar mass in a positive local construction rather than merely adding
+independent tensor factors; its added frame/lock laws are not derived
+microscopically. Rounds~20--24 introduce local charge transport and identify
+the changed charge carrier, density assumptions and finite-volume limits.
+They do not turn the original global charged operation into a local
+operation by relabeling it. Rounds~25--27 below control the explicitly
+specified $g=0$ scalar/charge model at a finite Euclidean regulator.
+The separate proof files retain the hypotheses of each branch; results
+from incompatible completions are not combined into a single theorem.
+
+\paragraph{The common reference.}
+Fix $L\ge3$, $N=L^3$, $a,m>0$, $u,\nu\ge0$, $J\ge0$, a time step
+$\delta>0$, $T\ge3$ and $\beta=T\delta$. Every site's charge remains
+in $\mathbb Z^8$. The original signed hopping and potential are
+\[
+ \begin{aligned}
+ H_{\rm hop}&=\kappa I-JA_{\rm sign},&\quad \kappa&=48NJ,\\
+ D(n)&=\frac1N\sum_x e(n_x)+\nu\sum_{\langle xy\rangle}e(n_x-n_y),
+ &e(p)&=\tfrac12p^TGp,\\
+ V(n,\phi)&=D(n)+\tfrac12\phi^T A(n)\phi,
+ &A(n)&=-\Delta_a+m^2+2u\,\operatorname{diag}e(n_x).
+ \end{aligned}
+\]
+The $48N$ directed elementary shifts include their original phases.
+Thus $0\le H_{\rm hop}\le2\kappa I$. With $K_\phi=\sum_x\pi_x^2/2$,
+write the same symmetric primitive transfer as
+\[
+ \begin{gathered}
+ S=e^{-\delta K_\phi/2}e^{-\delta V/2},\qquad
+ Q=S^*e^{-\delta H_{\rm hop}}S,\qquad Q_D=S^*S,\qquad C=SS^*,\\
+ Z=\operatorname{Tr}Q^T,\qquad
+ Z_D=\operatorname{Tr}Q_D^T=\operatorname{Tr}C^T,\qquad
+ \theta=\beta\kappa.
+ \end{gathered}
+\]
+All traces in the next theorem may be restricted to any fixed total-charge
+sector. Scalar mass and charge coercivity give $0<Z_D<\infty$.
+Crucially, $Z_D$ includes \emph{all} constant charge profiles and their
+charge-dependent scalar determinants, not just the zero profile.
+
+\paragraph{Full-reference theorem and proof.}
+Let $Z_{\rm abs}$ be the sum of moduli before cancellation, resolved into
+elementary hopping words, initial charge profiles and scalar integrals.
+Then
+\begin{equation}
+ \boxed{e^{-\theta}Z_D\ \le\ Z\ \le\ Z_{\rm abs}\ \le\ Z_D,
+ \qquad \frac{Z_{\rm abs}}{Z}\le e^{\theta}.}
+ \label{eq:r27-reference}
+\end{equation}
+Every elementary hop changes the complete profile, hence
+$\langle n|A_{\rm sign}|n\rangle=0$. Scalar spectral Jensen gives
+$p_n=\langle n|e^{-\delta H_{\rm hop}}|n\rangle\ge e^{-\delta\kappa}$.
+Pinching $Q$ into its charge blocks $P_nQP_n=p_nQ_D(n)$ contracts the
+Schatten $T$ norm, so
+\[
+ \operatorname{Tr}Q^T\ge\sum_n\operatorname{Tr}(P_nQP_n)^T
+ \ge e^{-\theta}\sum_n\operatorname{Tr}Q_D(n)^T.
+\]
+For a finite partition, pinching is an average of unitary conjugations;
+triangle inequality proves contraction. For the countably infinite carrier,
+use a finite set of charge blocks and its complement, discard the latter's
+nonnegative trace contribution, then increase the set monotonically.
+This is a trace-power statement, not the generally false operator
+inequality $e^{-\delta\kappa}Q_D\le Q$.
+
+For the absolute bound replace phases by bare translations only in the
+majorant. Each unsigned slice word $U_j$ is a sector-preserving unitary,
+and $C$ has nonnegative scalar integral kernels. Schatten H\"older yields
+\[
+ 0\le\operatorname{Tr}(U_1C\cdots U_TC)
+ \le\prod_{j=1}^T\|U_jC\|_T=Z_D.
+\]
+The left side equals the sum of moduli of the corresponding original
+profile-resolved weights, not the modulus of an already cancelled trace.
+At total order $k$, the slice allocations and channel choices have combined
+weight $e^{-\theta}\theta^k/k!$. Their positive sum is finite and equals
+one, proving the absolute bound and justifying Tonelli followed by the
+signed rearrangement. As a second upper comparison, the unsigned hopping
+transfer is a positive contraction, so its partition is at most $Z_D$.
+These arguments concern the finite regulator, not a limit interchange.
+
+The norm tools are standard; see
+\href{https://arxiv.org/abs/math-ph/0601063}{Perez-Garcia, Wolf, Petz and Ruskai}
+and \href{https://arxiv.org/abs/math/0204049}{Hansen and Pedersen}.
+The full-reference application above removes the extra charge heat-trace
+factor of Round~26 without changing the original model. It still permits
+exponential growth $e^{48\beta NJ}$ and is not an efficient sign cure.
+
+\paragraph{Three explicit error budgets.}
+The exact Gram inverse satisfies $\|G^{-1}\|_\infty=31$, so
+$D(n)\ge a_c\|n\|^2$, $a_c=1/(62N)$. On the neutral sector define
+\[
+ \Theta(s)=\operatorname{Tr}_{\rm neutral}e^{-sD}
+ \le\left(1+\sqrt{\frac{\pi}{s a_c}}\right)^{8N}.
+\]
+Let $K$ bound all charge coordinates at \emph{sampled slice boundaries}
+and $P$ bound total elementary hopping order. If $P+2>\theta$,
+\[
+ \begin{aligned}
+ \rho_{\rm charge}&\le T e^\theta
+   e^{-\delta a_c(K+1)^2/2}\Theta(\beta/2)^{1/T},\\
+ \rho_{\rm hops}&\le
+  \frac{\theta^{P+1}}{(P+1)!}\frac1{1-\theta/(P+2)}.
+ \end{aligned}
+\]
+For the first estimate, insert the boundary projection $R_K$ in the
+joint trace. It commutes with $C$, not generally with hopping. H\"older
+gives $Z_Dp_D(K)^{1/T}$, with $p_D=\operatorname{Tr}(R_KC^T)/Z_D$.
+In the neutral sector $Z_D\ge Z_{\phi,0}$ and scalar Gaussian comparison
+gives $p_D\le e^{-\beta a_c(K+1)^2/2}\Theta(\beta/2)$; then take the
+$T$th root and the union over boundaries. No intermediate state inside
+a retained hopping word is discarded using this boundary estimate.
+
+For a quadratic memory truncation with operator error $\epsilon_R$,
+retain the full eliminated determinant. If
+$\eta_R=\epsilon_R/(\delta m^2)<1$, Round~25/26 comparison gives
+\[
+ B_R=\frac{\epsilon_R |S_{\rm ret}|Tg_m(0)}{2(1-\eta_R)},
+ \qquad \rho_{\rm memory}\le e^\theta(e^{B_R}-1).
+\]
+Here $g_m(0)$ is the exact diagonal inverse of the temporal mass operator,
+or a certified upper bound. Restrict histories first and approximate the
+retained scalar factors second. Then
+$\rho=\rho_{\rm charge}+\rho_{\rm hops}+\rho_{\rm memory}$ bounds the
+relative partition error. If $\rho<1$, the approximate partition is positive;
+bounded one-time selfadjoint charge observables of norm at most one have
+normalized error at most $2\rho/(1-\rho)$. Arbitrary signed multi-time
+insertions and reflection positivity of truncated weights are not covered.
+
+\paragraph{Reproducible certificates and actual remaining cost.}
+The planner uses integers and fractions, with upward roots,
+$e^\theta\le3^{\lceil\theta\rceil}$,
+$e^{-d}\le2^{-\lfloor d\rfloor}$ and
+$e^B-1\le B/(1-B)$ for $0\le B<1$.
+At $N=27,T=3,\beta=1,J=1/10$, full memory and a $1\%$ omission target,
+the published Round~26 $K=4096,P=962$ improve to $K=2670,P=354$.
+Applying the same first-passing-integer search to the old inequalities
+gives $K=4035,P=956$: the gain is not just a finer search grid.
+
+A genuine nonzero-memory example uses $L=9$, cells of side $3$, $a=m=1$,
+arbitrary $u,\nu\ge0$, $T=33$, $\delta=3/4$, $\beta=99/4$ and
+$J=1/866052$, hence $\theta=1$. There are $513$ retained sites and
+$27$ interiors of $8$ sites. The cell gap is $4$, giving exactly
+$q_b=1/4$. A temporal comparison mass squared $8/9\le1$ gives exactly
+$q_0=1/2$. The cyclic tail certificate at $R=12$ retains $25$ of the
+$33$ quadratic time offsets and bounds the summed memory error by
+$0.2045\%$. With $K=12235,P=5$ the three omission budgets sum to less
+than $1\%$. The full determinant remains a full-history function.
+This is a declared weak-total-hopping example, not a fitted coupling.
+
+No full interacting partition is numerically evaluated. The naive
+enumeration envelopes still have decimal-digit upper bounds $1912$ and
+$25624$ in the two examples, respectively. They are upper counts of one
+scheme, not measured runtimes or complexity lower bounds. Future numerical
+evaluation must additionally budget Gaussian and transcendental errors.
+The two new checkers have $23$ and $25$ exact groups with $18$ source pins
+each; $37$ isolated fixtures pass normally and under optimization, and
+the aggregate reruns $29$ prerequisites. These counts are regressions,
+not numbers of independent physical theorems or proof-assistant certificates.
+See \path{experiments/theory-contracts/ROUND27_STATUS.md} and
+\path{experiments/theory-contracts/run_round27.py} for the reproducible entry.
+
+\paragraph{The original sign obstruction and physical frontier remain.}
+For overlapping original hops $A=W_{xy,e_2}$ and $B=W_{yz,e_3}$,
+the word $ABA^*B^*$ closes with phase $-1$ because $e_2^TGe_3=1$.
+Its actual hopping matrix-element product is $-J^4$ for $J>0$.
+Diagonal configuration rephasing telescopes around this loop and cannot
+remove it. This excludes that particular stoquastic rephasing, not all
+bases, regroupings or simulation methods. High-dimensional charge sums,
+full-history determinants, volume-uniform interacting continuum and
+real-time reconstruction remain open, as do a derived common parent,
+chiral completion, gravity and physical initial-state selection. No RH
+or empirical claim is made.

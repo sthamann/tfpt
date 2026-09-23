@@ -1,0 +1,238 @@
+UR.COMPILER.OPEN_CHAIN.ORDER_AUDIT.20260919
+Datum: 19. September 2026
+Verdict: PASS fuer die fuehrende starke-Lock-Asymptotik bei jedem festen
+endlichen m; keine in m uniforme Endlich-mu-Schwelle.
+
+1. Genau gepruefter Gegenstand
+
+Dies ist keine neue Modellkonstruktion. Geprueft wird die direkte offene
+Kettenwiederholung des in
+
+  experiments/theory-contracts/compiler-overlap-phase-lock-20260919
+
+fuer m=2 definierten reinen Wurzelpermutationsoperators.
+
+Es gibt m Quellenplaetze mit vollstaendigen orientierten E8-Wurzellabeln
+alpha_1,...,alpha_m und m+1 Register V_0,...,V_m=C^4. Paket i wirkt nur auf
+Quelle i und die Register V_(i-1),V_i:
+
+  L_i = I - (1/60) sum_r R_r^(i) tensor r^(i-1) tensor r^i.
+
+Der offene Nachbarlock ist diagonal in den Quellenlabels:
+
+  V_lock = sum_(i=1..m-1)
+           [1-Re<psi_(alpha_i),psi_(alpha_(i+1))>],
+  psi_alpha=alpha/2.
+
+Hinzu kommen die entlang derselben Paketkanten wiederholten positiven
+kontrollierten Materieterme HE_i. Der Hamiltonian lautet
+
+  H_m = mu V_lock + kappa sum_i L_i + J sum_i HE_i,
+  mu>0, kappa>0, J>=0.
+
+Alle Aussagen unten betreffen genau diese definierte offene Kette und die
+reine Permutationswirkung R_r. Die physische Herkunft dieser Wiederholung,
+Stromlifts, Praeparation, Kontinuum und TOE-Auswahl werden nicht mitbehauptet.
+
+2. Fuehrender Lockraum und eindeutige Materierichtung
+
+P projiziert auf alpha_1=...=alpha_m=alpha. Nach dieser Projektion ist der
+lokale erste Ordnungsblock auf zwei benachbarten Registern
+
+  h_alpha = I - (1/60) sum_(r:r alpha=alpha) r tensor r.
+
+Aus den gepinnten nativen 60 Strahlen wurde fuer 60 h_alpha exakt bestimmt:
+
+  45^1, 53^3, 55^6, 57^3, 65^3.
+
+Der einfache unterste Eigenvektor ist psi_alpha tensor psi_alpha. Folglich ist
+
+  sum_(i=1..m) h_alpha^(i-1,i) - 3m/4 I >= 0,
+
+und sein Kern ist der Schnitt der lokalen eindimensionalen Kerne. Auf der
+verbundenen offenen Kette ist dieser Schnitt genau
+
+  span{psi_alpha^tensor(m+1)}.
+
+Jeder kontrollierte HE_i ist positiv und annihiliert denselben Produktvektor.
+Er kann den Grundwert daher nicht senken oder einen weiteren Grundvektor
+erzeugen. Fuer jedes alpha ist die erste Materierichtung somit einfach. Der
+fuehrende ausgerichtete Raum ist
+
+  P0 = span{e_alpha : alpha in den 240 orientierten Wurzeln},
+  e_alpha = |alpha,...,alpha> tensor psi_alpha^tensor(m+1),
+
+also 240-dimensional.
+
+Diese Eindeutigkeit gilt fuer jedes feste endliche m. Aus dem lokalen Gap wird
+hier kein in m uniformer Kettengap behauptet.
+
+3. Warum die erste nichtskalare Ordnung genau m ist
+
+Ein offdiagonales Matrixelement e_alpha -> e_beta mit beta!=alpha muss alle m
+Quellenlabels von alpha nach beta aendern. Ein nichttrivialer Summand eines
+L_i aendert genau ein Quellenlabel. Daher sind weniger als m Ereignisse fuer
+ein offdiagonales Matrixelement unmoeglich.
+
+Alle bis Ordnung m-1 verbleibenden Beitraege sind diagonal in alpha. Die
+native Reflexionsgruppe wirkt transitiv auf den 240 orientierten Wurzeln, und
+Hamiltonian, Lock und Materieterme sind kovariant. Daher haben diese diagonalen
+Beitraege fuer jedes alpha denselben Wert: Sie sind auf P0 skalar.
+
+Das beseitigt auch die moegliche Folded-Term-Luecke. Gefaltete
+Schrieffer-Wolff-/Feshbach-Terme in Ordnung <m oder die in Ordnung m aus
+niedrigeren effektiven Bloecken gebildeten Subtraktionen sind Polynome in
+diesen niedrigeren skalaren Bloecken. Sie koennen den Skalar verschieben,
+aber keinen neuen nichtskalaren Operator erzeugen.
+
+In Ordnung m muss jede Quelle genau einmal getroffen werden. Fuer ein
+erreichbares beta!=alpha existiert nach der nativen Enumeration genau eine
+Reflexion r mit r alpha=beta; deshalb muessen alle m Ereignisse dieselbe
+Reflexion verwenden. Jede echte Zwischenmenge der bereits getroffenen Quellen
+liegt ausserhalb P. Der im Folgenden berechnete irreduzible Weg ist somit der
+vollstaendige nichtskalare Term dieser Ordnung.
+
+4. Allgemeine Summe ueber alle Ereignisordnungen
+
+Sei S die Menge der bereits getroffenen Quellenplaetze und b(S) die Anzahl der
+offenen Kettenkanten zwischen S und seinem Komplement. Setze
+
+  t = <psi_alpha,psi_beta> in {1/2,0,-1}.
+
+Im Zwischenzustand S kostet der Lock exakt
+
+  mu (1-t) b(S).
+
+Fuer eine Reihenfolge sigma der m Quellen seien
+S_k={sigma_1,...,sigma_k}. Die reine Ordnungszahl ist
+
+  C_m = sum_(sigma in S_m) prod_(k=1..m-1) 1/b(S_k).
+
+Sie hat fuer alle m den geschlossenen Wert
+
+  C_m = 2^(m-1).                                      (1)
+
+Unabhaengiger Beweis von (1): Betrachte
+
+  I_m = integral_(R^(m-1))
+        exp[-sum_(i=1..m-1)|t_(i+1)-t_i|] dt_2...dt_m,
+  t_1=0.
+
+Mit den Baumkantendifferenzen x_i=t_(i+1)-t_i ist die Variablentransformation
+dreieckig mit Determinante 1. Daher
+
+  I_m = prod_(i=1..m-1) integral_R exp(-|x_i|) dx_i = 2^(m-1).
+
+Zerlegt man dasselbe Integral in die m! Ordnungskammern
+t_(sigma_1)<...<t_(sigma_m), dann erscheint im k-ten Zeitabstand jede Kante
+genau dann, wenn sie den Schnitt S_k schneidet. Das Kammerintegral ist also
+prod_k 1/b(S_k). Die Summe aller Kammern ist C_m und beweist (1).
+
+Der Checker hat dieselbe Identitaet unabhaengig mit einer exakten
+Teilmengen-Dynamik fuer m=2,...,10 reproduziert. Die Laufzeit ist O(m 2^m),
+nicht m!, und dient als Replay des allgemeinen Integralbeweises.
+
+5. Registermatrixelement und exakter Koeffizient
+
+Nach allen m Ereignissen sind die beiden Endregister je einmal mit r getroffen
+und deshalb exakt von psi_alpha nach psi_beta transportiert. Jedes der m-1
+inneren Register wird zweimal getroffen; wegen r^2=I bleibt es psi_alpha und
+liefert gegen den Endbra psi_beta je den Faktor t. Das gesamte
+Registermatrixelement ist daher
+
+  t^(m-1).
+
+Ohne das globale Vorzeichen lautet die fuehrende Wegamplitude somit
+
+  (kappa/60)^m * C_m * t^(m-1)
+  / [mu(1-t)]^(m-1).                                  (2)
+
+Die native Uebergangsenumeration pro Wurzel ist exakt
+
+  15 Fixierer, 32 Ziele mit t=1/2, 12 Ziele mit t=0,
+  1 Antipode mit t=-1,
+
+und jedes nichtfixe Ziel wird durch genau eine Reflexion erreicht.
+
+Definiere
+
+  a_m = (kappa/60) [kappa/(30 mu)]^(m-1),
+  c_m = (-1/2)^(m-1).
+
+Dann ergibt (2)
+
+  t=1/2 : a_m,
+  t=0   : 0,
+  t=-1  : c_m a_m.
+
+Das Vorzeichen ist fuer jedes m gleich minus. In der Feshbachentwicklung
+liefert die Resolventenordnung m-1 den Faktor (-1)^(m-1); die m
+nichtdiagonalen Summanden aus L_i liefern (-1)^m. Ihr Produkt ist -1.
+
+Damit ist der erste nichtskalare effektive Operator
+
+  H_eff,m = scalar*I - a_m [A32 + c_m F] + O_m(mu^(-m)), (3)
+
+bei festem kappa,J,m. A32 verbindet die 32 Halbueberlapp-Ziele, F sendet
+alpha auf -alpha.
+
+Fuer m=2 ist a_2=kappa^2/(1800 mu), c_2=-1/2. Der nichtskalare Teil von (3)
+ist daher
+
+  -(kappa^2/mu) (2 A32-F)/3600,
+
+genau der bereits zertifizierte m=2-Term. Die dortige 153 I-Diagonale steckt
+im hier nicht ausgeschriebenen Skalar.
+
+6. Gemeinsames Spektrum, Multiplizitaet und erster Gap
+
+Der Checker zertifiziert die folgende gemeinsame Zerlegung exakt:
+
+  F=+1: A32=-8^9, -4^40, 0^45, 8^25, 32^1,
+  F=-1: A32=-4^72, 4^40, 16^8.
+
+Fuer m>=2 liegt c_m im Intervall [-1/2,1/4]. Daher hat
+
+  B_m=A32+c_m F
+
+stets den einfachen obersten Eigenwert
+
+  b_0 = 32+c_m,
+
+mit dem uniformen kohaerenten 240-Wurzelvektor. Der naechste Eigenwert ist
+
+  b_1 = 16-c_m
+
+mit Multiplizitaet 8. Sein Raum ist exakt der Raum der acht reellen
+E8-Koordinatenspalten. Alle uebrigen gemeinsamen Niveaus liegen darunter.
+Somit ist die fuehrende effektive Energieluecke
+
+  Delta_m = a_m [16+2c_m] + O_m(mu^(-m))
+          = a_m [16+2(-1/2)^(m-1)] + O_m(mu^(-m)).      (4)
+
+Da die Kette fuer festes m endlichdimensional ist, der P0-Materieblock
+isoliert ist, alle niedrigeren effektiven Ordnungen skalar sind und (3) einen
+einfachen Extremwert besitzt, folgt aus endlicher analytischer
+Stoerungstheorie: Fuer jedes feste endliche m existiert eine hinreichend grosse
+Lockstaerke mu_0(m,kappa,J), oberhalb der der volle Grundzustand einfach ist.
+
+Nicht geliefert wurde eine explizite Schranke fuer mu_0. Insbesondere wurde
+keine Schranke uniform in m bewiesen. Bei festen Kopplungen faellt a_m mit m;
+aus (4) folgt daher weder ein thermodynamischer Gap noch ein propagierender
+Modus.
+
+7. Exakte Replay-Grenzen
+
+Die maschinenlesbare Pruefung verwendet ausschliesslich:
+
+  - die gepinnte native 60-Strahlen-Quelle mit SHA-256
+    3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593;
+  - das unabhaengige m=2-Zertifikat mit SHA-256
+    11dcef3e223b0c5a6ea05354a7fc098eb2d2e06b1db9d9e13f54c8c4dc30f699;
+  - exakte ganzzahlige Spektralpolynome und Spur-Multiplizitaeten;
+  - Fraction-Arithmetik fuer alle Ordnungs- und Koeffizientensummen.
+
+Der Satz ist damit exakt unter der definierten Kettenfortsetzung und als
+feste-m-Asymptotik. Er ist keine Herleitung der Kette aus P1/P2, kein Transfer
+auf die anderweitig untersuchten Stromlifts, kein Endlich-mu-Allordnungssatz mit
+expliziter Konstante und kein Abschluss eines der globalen TFPT-Tore T1-T8.

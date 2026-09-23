@@ -1,0 +1,424 @@
+{
+  "status": "CAP_DYNAMICS_AND_STATE_CONNECTION",
+  "claims_not_made": [
+    "no RH",
+    "no factoring speedup",
+    "no TOE/T1-T8 closure",
+    "no derivation of the parent from P1/P2",
+    "one- and two-ring graphs do not establish a general TFPT dynamics",
+    "no volume threshold, no all-order dressing statement, no minimality claim"
+  ],
+  "evidence_classes": {
+    "exact_fraction": [
+      "two_link_witness",
+      "scope_theorem1",
+      "krylov_block",
+      "ring.iterative_dressing",
+      "ring.flux_window_caveat",
+      "two_plaquettes (all rational entries)",
+      "state_selection.finite_energy_box_alternative",
+      "state_selection.local_gauss_preserving_covering",
+      "ring.duhamel_bounds.counterexample_3x3"
+    ],
+    "float_formula_model_values": [
+      "two_level_model (auxiliary 2x2 only)",
+      "two_plaquettes.electric_revival_time",
+      "ring.duhamel_bounds (float sqrt of exact entries)"
+    ],
+    "numpy_rank": [
+      "state_selection.unique_marked_invariant_state"
+    ],
+    "mpmath_numeric": [
+      "state_selection.electric_gibbs_roads"
+    ]
+  },
+  "two_link_witness": {
+    "start": [
+      75,
+      [
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "target": [
+      78,
+      [
+        1,
+        1,
+        0,
+        0
+      ]
+    ],
+    "amplitude": "-1/576"
+  },
+  "scope_theorem1": {
+    "superposition_leak": "1259/90000",
+    "b2_Ndir": "1/72",
+    "extra_H_diag_term": "1/10000",
+    "statement": "equality Gamma*Gamma = b^2 N_dir I holds for H_diag-invariant codes (flux basis vectors); general all-low codes add the positive term J*H_diag(I-JJ*)H_diag J"
+  },
+  "krylov_block": {
+    "g2": "1/72",
+    "h0_diag": [
+      "1/24",
+      "37/600",
+      "73/600",
+      "133/600"
+    ],
+    "h1_matrix": [
+      [
+        "58097/14400",
+        "-1/1152",
+        "0",
+        "0"
+      ],
+      [
+        "-1/1152",
+        "11677/2880",
+        "-1/1152",
+        "0"
+      ],
+      [
+        "0",
+        "-1/1152",
+        "59249/14400",
+        "-1/1152"
+      ],
+      [
+        "0",
+        "0",
+        "-1/1152",
+        "60689/14400"
+      ]
+    ],
+    "h1_minus_h0_diag": [
+      "57497/14400",
+      "57497/14400",
+      "57497/14400",
+      "57497/14400"
+    ],
+    "RR_matrix_normalized_eta": [
+      [
+        "16897/442368",
+        "67/38400",
+        "-1/1327104",
+        "0"
+      ],
+      [
+        "67/38400",
+        "15882097/414720000",
+        "67/38400",
+        "-1/1327104"
+      ],
+      [
+        "-1/1327104",
+        "67/38400",
+        "16006513/414720000",
+        "67/38400"
+      ],
+      [
+        "0",
+        "-1/1327104",
+        "67/38400",
+        "10809457/276480000"
+      ]
+    ],
+    "RR_diag_float": [
+      0.038196705005787035,
+      0.038295951485339506,
+      0.03859595148533951,
+      0.03909670500578704
+    ],
+    "moments_0_to_3_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "H4_defect_diag": [
+      "16897/31850496",
+      "15882097/29859840000",
+      "16006513/29859840000",
+      "10809457/19906560000"
+    ],
+    "onsite_exchange_coupling_unnormalized": [
+      "-1/36",
+      "-1/36",
+      "-1/36",
+      "-1/36"
+    ],
+    "onsite_exchange_coupling_formula": "<sum_x d_x^* l_x J, H Gamma J> = -deg a b N; normalized by sqrt(N) g this is -deg a b sqrt(N)/g (torus deg 6: -6ab sqrt(N)/g = -1/sqrt(24), Codex ERWEITERUNG sec. 3; ring deg 2: -1/36 unnormalized)",
+    "comparison": "Krylov block keeps the preparation (psi,0) and reproduces moments 0..3 exactly; the order-1 source dressing changes the preparation and reduces the leak of the prepared family to 3.32e-5; both are built from H alone"
+  },
+  "ring": {
+    "N_dir": 8,
+    "iterative_dressing": [
+      {
+        "order": 0,
+        "leak_diag_exact": [
+          "1/72",
+          "1/72",
+          "1/72",
+          "1/72"
+        ],
+        "leak_diag_denominator_digits": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "leak_float": [
+          0.013888888888888888,
+          0.013888888888888888,
+          0.013888888888888888,
+          0.013888888888888888
+        ],
+        "max_offdiag_float": 0.0,
+        "support_states": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "order": 1,
+        "leak_diag_exact": [
+          "1026808008239051162932690061875/30908197644274121699004267184252848",
+          "3546177178936113813664816038685973844655503303276875/106742702833347312820139327234802012556575838791211177008",
+          "521435577442137921222769279562009011349593453910570623475/15694894306632449268624941875452082398581183224947268922332848",
+          "79295403368416328740473517582420062720925/2386560006804626116864757693079188711670878544"
+        ],
+        "leak_diag_denominator_digits": [
+          35,
+          57,
+          62,
+          46
+        ],
+        "leak_float": [
+          3.322121917481888e-05,
+          3.322172930614849e-05,
+          3.322326147948549e-05,
+          3.322581587822098e-05
+        ],
+        "max_offdiag_float": 1.511023351355052e-06,
+        "support_states": [
+          9,
+          9,
+          9,
+          9
+        ]
+      },
+      {
+        "order": 2,
+        "leak_diag_exact": null,
+        "leak_diag_denominator_digits": [
+          2036,
+          2818,
+          3957,
+          4988
+        ],
+        "leak_float": [
+          8.713033938472694e-08,
+          8.744929890137432e-08,
+          8.730850003300879e-08,
+          8.733634200976738e-08
+        ],
+        "max_offdiag_float": 4.030313274882361e-09,
+        "support_states": [
+          54,
+          89,
+          124,
+          154
+        ]
+      }
+    ],
+    "reduction_factors": [
+      418.07282314962214,
+      381.2818750553635
+    ],
+    "recursion_definition": "E_v := <v,Hv>/||v||^2 (Rayleigh value of the current vector) for vectors spread over several diagonal energies; the family is re-orthogonalized exactly before each step; marks are not carried along in this computation",
+    "duhamel_bounds": {
+      "per_order": [
+        {
+          "order": 0,
+          "sqrt_max_row_sum_RR": 0.11785113019775792,
+          "min_column_sqrt": 0.11785113019775792,
+          "note": "uniform Duhamel coefficient ||R|| <= sqrt(max_a sum_b |(R^*R)_ab|); a single column value is not a trajectory bound"
+        },
+        {
+          "order": 1,
+          "sqrt_max_row_sum_RR": 0.00602040454458137,
+          "min_column_sqrt": 0.0057637851430131296,
+          "note": "uniform Duhamel coefficient ||R|| <= sqrt(max_a sum_b |(R^*R)_ab|); a single column value is not a trajectory bound"
+        },
+        {
+          "order": 2,
+          "sqrt_max_row_sum_RR": 0.00030844304402905556,
+          "min_column_sqrt": 0.00029517848733389595,
+          "note": "uniform Duhamel coefficient ||R|| <= sqrt(max_a sum_b |(R^*R)_ab|); a single column value is not a trajectory bound"
+        }
+      ],
+      "counterexample_3x3": {
+        "R v": [
+          0,
+          0,
+          0
+        ],
+        "R h v": [
+          0,
+          0,
+          1
+        ],
+        "conclusion": "column bound 0 is false; ||R|| = 1"
+      }
+    },
+    "flux_window_caveat": {
+      "Delta_zero_flux": "9587/2400",
+      "Delta_at_sigmaE_-399": "11/2400",
+      "b_over_Delta": "100/11",
+      "statement": "the dressing is controlled only on the tested flux window (|E| small); it is not uniform on the uncut rotor"
+    }
+  },
+  "two_plaquettes": {
+    "N_dir": 16,
+    "leak_diag": "1/36",
+    "cap_energy_increase": "7/50",
+    "electric_variance": "17/2500",
+    "full_variance": "389/11250",
+    "balancing_commutator_alllow": "13/625",
+    "cap_relative_energies": [
+      "0",
+      "1/5",
+      "4/25",
+      "1/5"
+    ],
+    "T_bal_expectation_under_H_E": "(1/2)[cos(20 kappa t) + cos(4 kappa t)] = (1/2)[cos(t/5)+cos(t/25)]",
+    "electric_revival_time": 157.07963267948966,
+    "log_time_comparison": "under alpha_t(S_m)=m^{it}S_m the cap and T_bal are stationary; under H_E they breathe with period 2 pi/(4 kappa)"
+  },
+  "two_level_model": {
+    "rows": [
+      {
+        "graph": "ring",
+        "g2": "1/72",
+        "model_eigenvector_high_weight": 0.0008681450501565324,
+        "model_first_order_vector_high_weight": 0.0008696543664166268
+      },
+      {
+        "graph": "two rings",
+        "g2": "1/36",
+        "model_eigenvector_high_weight": 0.0017317836919524265,
+        "model_first_order_vector_high_weight": 0.0017377974496931804
+      },
+      {
+        "graph": "L=5 torus",
+        "g2": "125/96",
+        "model_eigenvector_high_weight": 0.06585775014282175,
+        "model_first_order_vector_high_weight": 0.07544469441674759
+      }
+    ],
+    "status": "auxiliary two-level model; NOT a theorem about the parent (the first block is not invariant: R_1 != 0), no volume threshold or orthogonality catastrophe is asserted",
+    "what_is_proved": "the exact first coupling of the global all-low preparation grows like sqrt(N_dir) b = sqrt(N/96) on the torus"
+  },
+  "state_selection": {
+    "unique_marked_invariant_state": "normalized trace on M_4 (null space dimension 1; numpy rank of an exact integer system)",
+    "restricted_coincidences_on_residue_algebra": [
+      "cap restriction to one loop clock M_4 (exact from the flux pattern)",
+      "critical ax+b state tau (KRITISCHER-GRENZZUSTAND: weak* limit of the zeta density operators on the affine C*-algebra) restricted to residues mod 4",
+      "beta->1+ limit of the zeta-Gibbs residue laws (checks.json gibbs_residues; per fixed modulus only)",
+      "beta->0 limit of the electric Gibbs residue laws exp(-beta kappa E^2/2)"
+    ],
+    "not_identified": "the full pure two-loop cap is NOT identified with the full critical/Haar state (I_4/4 and |+><+| share the diagonal but differ on the shift); H_log acts trivially on the diagonal algebra, so KMS there selects no temperature",
+    "electric_gibbs_roads": [
+      {
+        "beta_electric": "0.1",
+        "weights_mod4": [
+          "0.25",
+          "0.25",
+          "0.25",
+          "0.25"
+        ],
+        "max_deviation": "0.0",
+        "poisson_bound": "3.2485e-536"
+      },
+      {
+        "beta_electric": "1.0",
+        "weights_mod4": [
+          "0.25",
+          "0.25",
+          "0.25",
+          "0.25"
+        ],
+        "max_deviation": "0.0",
+        "poisson_bound": "5.2735e-54"
+      },
+      {
+        "beta_electric": "10.0",
+        "weights_mod4": [
+          "0.2500021932",
+          "0.25",
+          "0.2499978068",
+          "0.25"
+        ],
+        "max_deviation": "2.1932e-6",
+        "poisson_bound": "8.7728e-6"
+      },
+      {
+        "beta_electric": "100.0",
+        "weights_mod4": [
+          "0.3992099387",
+          "0.2464040583",
+          "0.1079819446",
+          "0.2464040583"
+        ],
+        "max_deviation": "0.14921",
+        "poisson_bound": "0.59684"
+      },
+      {
+        "beta_electric": "1000.0",
+        "weights_mod4": [
+          "0.986703287",
+          "0.006648354452",
+          "4.067494109e-9",
+          "0.006648354452"
+        ],
+        "max_deviation": "0.7367",
+        "poisson_bound": "4.0463"
+      }
+    ],
+    "poisson_bound_formula": "|w_r - 1/4| <= 2 sum_{k>=1} exp(-2 pi^2 k^2 /(16 beta kappa)) = 2 exp(-pi^2/(8 beta kappa)) + ...",
+    "not_a_ground_state": "beta -> infinity gives weights (1,0,0,0): the Frobenius weights are a prepared/hot feature, never the electric ground state",
+    "finite_energy_box_alternative": {
+      "rows": [
+        {
+          "K": 3,
+          "worst_residue_error": "3/28",
+          "bound": "1/7",
+          "electric_energy_one_rotor": "1/50",
+          "electric_energy_neutral_plaquette": "2/25"
+        },
+        {
+          "K": 10,
+          "worst_residue_error": "4/105",
+          "bound": "1/21",
+          "electric_energy_one_rotor": "11/60",
+          "electric_energy_neutral_plaquette": "11/15"
+        },
+        {
+          "K": 50,
+          "worst_residue_error": "4/505",
+          "bound": "1/101",
+          "electric_energy_one_rotor": "17/4",
+          "electric_energy_neutral_plaquette": "17"
+        }
+      ],
+      "statement": "finite-energy, explicit-error approximation of the critical residue weights; prepared mixed state, not stationary, physical selection open"
+    },
+    "local_gauss_preserving_covering": {
+      "statement": "explicit bounded local isometry on the full flux space (membership in the large rotor algebra), Gauss-preserving for every matter configuration; not generated with controlled cost by H"
+    }
+  }
+}

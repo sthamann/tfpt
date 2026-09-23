@@ -1,0 +1,457 @@
+% Authored proof supplement, not a generated surface. Included by contracts.
+\subsection*{Round 4: proved subgates and binding residuals (2026-09-05)}
+\label{sec:toe-round4-proofs}
+The following results concern the explicitly stated regulators and algebras.
+They do not identify a single complete physical $3{+}1$D parent. All T1--T8
+and \texttt{TFPT.TOE.COMPLETE.01} remain \mO. The finite regressions are
+checks of the proofs below, not substitutes for their quantifiers.
+
+\paragraph{T2: uniform relaxed TEL-B theorem.}
+\texttt{SEAM.MMST.TELB.NORM.01}.
+For the frozen $M_{\rm mass}=1$, $N_y=8$ collar, the original remainder
+obeys
+\[
+ \boxed{\|R_N\|_{\rm HS}<2.995906<3\quad(N\ge16\text{ even}).}
+\]
+The interval inputs are v1022 (TV and potential), v1025 (C1/C2a), and
+\veri{v1026\_\allowbreak telb\_\allowbreak round4\_\allowbreak closure.py}
+(CF, DG, signed CROSS, validated Fourier core and all-volume aliases).
+This is not a proof of the historical sharper $2.11$ or Bound-B target
+$0.62$. In particular a limiting Fourier-core bound is not a finite-grid
+remainder bound.
+
+\paragraph{CF: cell covariance and the periodic corner.}
+Put $h=N^{-1}$, $A=(2\pi^2)^{-1}$, $J=N/2$,
+$I_N=\{-J,\ldots,J-1\}$ and let bars denote normalized means over
+$[kh,(k+1)h]$. Define
+\[
+ \begin{split}
+ f(u)&=-\log|u|-\pi\mathbf1_{u<0},\qquad
+ \Phi(u)=\log\frac{|u|}{2|\sin\pi u|}-\pi u,\qquad F=f+\Phi,\\
+ c(d)&=d^{-1}-\pi\cot\pi d,\quad c(0)=0,\qquad
+ Q_g(u,v)=\frac{g(v)-g(u)}{v-u}.
+ \end{split}
+\]
+Partial fractions give $\Phi'=c-\pi$, $L=\sup|\Phi'|=\pi+2$,
+$m=\inf\Phi''=\pi^2/3$, $M=\sup\Phi''=\pi^2-4$ and
+$D=M-m=2\pi^2/3-4$, with $\int|\Phi'''|=2D$.
+The identities used are the standard cotangent and polygamma identities
+\href{https://dlmf.nist.gov/4.22}{DLMF 4.22} and
+\href{https://dlmf.nist.gov/5.15}{DLMF 5.15}; no asymptotic truncation is needed.
+The real kernel cancellation is exact:
+\[
+ r(u,v)=A\{c(v-u)(F(v)-F(u))-Q_\Phi(u,v)
+                  -i\pi(F(v)-F(u))\}.
+\]
+For independent uniform cell points $U,V$, set $d_0=(l-k)h$ and
+$\delta=V-U-d_0$. Then
+\[
+ (\mathcal K_N)_{kl}=h\mathbb E r(U,V),\quad
+ (\mathcal K'_N)_{kl}=hA\left[c(d_0)(\bar F_l-\bar F_k)
+ -\frac{\bar\Phi_l-\bar\Phi_k}{d_0}-i\pi(\bar F_l-\bar F_k)\right].
+\]
+Thus the imaginary part freezes exactly. If $v_k=\operatorname{Var}F(U_k)$,
+$|a'|\le a_1$, $|a''|\le a_2$, the independent-copy variance identity,
+$\mathbb E\delta=0$, and $\mathbb E\delta^2=h^2/6$ give
+\[
+ |\mathbb E[(a(d_0)-a(V-U))(F(V)-F(U))]|
+ \le\frac{a_1h}{\sqrt6}\sqrt{v_k+v_l}
+       +\frac{a_2h^2}{12}|\bar F_l-\bar F_k|.                 \tag{R4.1}
+\]
+For $|g''|\le B$, the two coordinate Lipschitz constants of $Q_g$ are
+at most $B/2$, so $\operatorname{Var}Q_g\le B^2h^2/24$ and
+$|\mathbb E(\delta Q_g)|\le Bh^2/12$.
+The two singular log cells have variance one; all remaining log-cell
+variances are at most $1/(12n^2)$. Therefore
+\[
+ (\textstyle\sum_k v_k)^{1/2}\le
+ V(h):=\sqrt{2+\zeta(2)/6}+L\sqrt{h/12},\quad
+ \textstyle\sum_{k,l}|\bar F_l-\bar F_k|^2\le2N^2\zeta(2).
+\]
+The last bound follows from $\operatorname{Var}F=\pi^2/6$ and contraction
+of cell conditional expectation. Split the nonzero lags into central
+($|l-k|\le N/2$), middle ($N/2<|l-k|\le3N/4$), and far regions.
+For the first two regions (R4.1) gives
+\[
+ \begin{split}
+ C_{\rm central}&\le\frac{Ac'(9/16)hV(h)}{\sqrt3}
+  +\frac{Ac''(9/16)h^{3/2}\sqrt{2\zeta(2)}}{12}<0.027267,\\
+ C_{\rm middle}&\le\frac{Ac'(13/16)h^{3/2}}{\sqrt6}
+       \left(\sqrt{H_{J-1}/3}+L/\sqrt{24}\right)
+  +\frac{Ac''(13/16)h^{3/2}\sqrt{2\zeta(2)}}{12}<0.055905.
+ \end{split}
+\]
+In the middle count, negative index $-n$ has $n-1$ partners and positive
+index $s$ has $s$ partners; the singular cells have none. Consequently
+the log-variance sum is at most $H_{J-1}/3$ and the smooth part at most
+$L^2/24$. The sequence $H_{J-1}/J^3$ decreases for $J\ge8$, by its
+one-step recurrence, so the displayed envelopes are evaluated at $N=16$.
+
+For the far seam let $r=N-(l-k)$, $t=1-(V-U)$ and $t_0=rh$.
+The short periodic continuation satisfies $F(V)-F(U)=-tQ$ with
+$|F'|\le L_F=2\pi$ and $|F''|\le M_F=2\pi^2$. In
+$c(d)=(1-d)^{-1}+a(d)$ the apparent pole cancels exactly:
+\[
+ \mathbb E[(t_0^{-1}-t^{-1})(F(V)-F(U))]
+       =-t_0^{-1}\mathbb E[(t-t_0)Q].
+\]
+There are $r$ pairs per orientation. With
+$a_1=(16/11)^2+c'(5/16)$, $a_2=2(16/11)^3+c''(5/16)$,
+\[
+ C_{\rm far}\le AM_Fh^{3/2}\sqrt{H_{\lfloor N/4\rfloor}/72}
+ +Aa_1L_Fh^{3/2}/6+Aa_2L_F(5/16)h^{3/2}/12<0.009280.
+\]
+Here $H_{\lfloor N/4\rfloor}/N^3\le H_4/16^3$ follows by grouping four
+successive sizes. The remaining smooth quotient contributes
+$C_\Phi\le AMh\sqrt{\zeta(2)/72}<0.002810$. The three lag regions are
+HS-orthogonal; only the last contribution uses the triangle inequality:
+\[
+ \sqrt N\| (\mathcal K'_N-\mathcal K_N)_{\rm off}\|_{\rm HS}
+ \le\sqrt{C_{\rm central}^2+C_{\rm middle}^2+C_{\rm far}^2}+C_\Phi
+ <0.065697.                                                   \tag{R4.2}
+\]
+
+\paragraph{DG: original diagonal, not a replacement recurrence.}
+The csc-squared finite product identity and trigamma recurrence for the
+original remainder give, for $R_k=(\mathrm{Res}_N)_{kk}$,
+\[
+ R_{k+1}-R_k=-Ah^2\Phi''((k+3/4)h),\qquad
+ \sum_kR_k=A\pi+A\tau(J),
+\]
+where $T(x)=(x-1)\psi_1(x)+\psi(x)$ and
+$\tau(J)=T(J+5/4)-T(J+3/4)$. Since
+$T'(x)=2\sum_{n\ge0}(n+1)/(n+x)^3\le4/J$ for $x\ge J\ge8$,
+$0\le\tau(J)\le2/J=4h$. The $3/4$-point Peano kernel and
+$h\sum_k\Phi'(kh)=-\pi-2h$ imply
+\[
+ |NR_k+A\Phi'(kh)|\le Ah(2+3D/2).                           \tag{R4.3}
+\]
+On each diagonal cell the imaginary mean vanishes,
+$|Q_\Phi-\Phi'(kh)|\le Mh$, and
+$|c(d)|\le C_s|d|$, $C_s=(\pi^2/3)/(1-h^2)$.
+The worst logarithmic integral occurs adjacent to zero and is exactly
+$\mathbb E[|V-U||\log|V/U||]\le h/2$; also
+$\mathbb E|V-U|^2=h^2/6$. Thus
+\[
+ \sqrt N\|(\mathrm{Res}_N-\mathcal K_N)_{\rm diag}\|_{\rm HS}
+ \le Ah(2+3D/2)+AMh+AC_s(h/2+Lh^2/6)<0.042959.              \tag{R4.4}
+\]
+All scalar envelopes increase with $h\le1/16$. With the independently
+certified potential contribution $0.399224424139108$, orthogonality gives
+$c_E<0.466902$, below the required $0.542702$.
+
+\paragraph{CROSS: the sufficient one-sided theorem.}
+Let $W_\infty$ be the unitary fractional shift with entries
+$e^{-i\pi/4}\sin(\pi/4)/[\pi(k-m-1/4)]$, let $P$ restrict to $I_N$,
+$w=P W_\infty e_0$, $B=W_\infty P_{(-\infty,-1]}W_\infty^*$,
+$t_N=\|(1-P)W_\infty e_0\|^2$ and $\mu_N=\sum k|w_k|^2$.
+Crucially $BW_\infty e_0=0$. For the finite unitary overlap $W_N$ and
+$\rho_m=\{(m+1/4)/N\}$, the source identity is
+\[
+ \mathrm{Res}_N=-\operatorname{diag}(k)/N+W_N\operatorname{diag}(\rho_m)W_N^*-PBP.
+\]
+Hence $w^*\mathrm{Res}_Nw\ge-\mu_N/N+(1-t_N)/(4N)-t_N$.
+Pairing signed momenta and using convex reciprocal-square tail integrals yields
+\[
+ \mu_N\le64/675,\qquad Nt_N\le T_*:=\frac{4A}{1-(3/32)^2}.
+\]
+For $A_N=|e_0\rangle\langle e_0|/2-|w\rangle\langle w|$, (R4.3) at
+$k=0$ and the exact identity
+$2\operatorname{Re}\langle A_N,\mathrm{Res}_N\rangle
+=(\mathrm{Res}_N)_{00}-2w^*\mathrm{Res}_Nw$ imply
+\[
+ N\,2\operatorname{Re}\langle A_N,\mathrm{Res}_N\rangle
+ \le A\pi+\tfrac A{16}(2+3D/2)-\tfrac12+\tfrac{128}{675}
+                +2(1+1/64)T_*<0.282637.                   \tag{R4.5}
+\]
+This is not an absolute-value bound: the negative finite cross terms
+explicitly falsify the absolute $0.283/N$ mutant. Cell contraction and C1 give
+\[
+ \|S_N+H_N\|_{\rm HS}^2
+ \le\tfrac54-\tfrac8{\pi^2}
+       +(\sqrt{0.1525}+0.466902/4)^2+0.282637/16<0.714386. \tag{R4.6}
+\]
+
+\paragraph{Validated Fourier core and the missing finite-grid aliases.}
+Use the sigma-$x$ basis
+$H(p)=\left(\begin{smallmatrix}\sin p\,I_8&B_p\\B_p^T&-\sin p\,I_8\end{smallmatrix}\right)$,
+$B_p=(1-\cos p)I_8-S$, $S_{y,y+1}=1$. The jump is
+$dP=E_{8,8}-E_{7,7}$ (zero-based indices), and
+$F(p)=P(p)-(1/2-p/(2\pi))dP$ for $0<p<2\pi$.
+At the 512 midpoint nodes, 256-bit Acb validated eigensystems strictly
+separate eight occupied and eight unoccupied eigenvalues. The outward
+matrix DFT $A_m$ obeys the exact midpoint alias formula
+$A_m=\sum_{\ell\in\mathbb Z}(-1)^\ell C_{m+512\ell}$.
+The v1022 bound $\|C_m\|_{\rm HS}\le K_3/|m|^3$,
+$K_3=2.517464500835$, controls the entire alias error by
+$K_3\zeta(3)[(512-m)^{-3}+512^{-3}]$. The certified rational caps
+for $m=1,\ldots,16$ are, in order,
+\begin{gather*}
+ .872617451262, .119561574970, .036384250090, .013594203794,\\
+ .005638853577, .002552800879, .001281003972, .000727535964,\\
+ .000465728162, .000325832279, .000241157627, .000184924134,\\
+ .000145312983, .000116348415, .000094610814, .000077965240.
+\end{gather*}
+Since $\sum_{m>16}m^{-5}\le1/(4\cdot16^4)$, these give
+$2\sqrt{\sum_{m\ge1}m\|C_m\|_{\rm HS}^2}<1.783260551<1.783261$.
+This is a bound on a dominant Fourier matrix, not yet on $R_N^{\rm sm}$.
+Absolute summability gives the exact four-cover expression
+\[
+ A_N(d)=\sum_{q\notin4\mathbb Z}(1-i^q)C_{d+qN},\qquad
+ \|R_N^{\rm sm}\|_{\rm HS}^2
+ =\sum_{d=-(N-1)}^{N-1}(N-|d|)\|A_N(d)\|_{\rm HS}^2.
+\]
+Choose $q=1$ for negative $d=-N+m$ and $q=-1$ for positive $d$;
+at $d=0$ choose $q=1$ once. The resulting dominant norm squared is
+$4\sum_{m=1}^{N-1}m\|C_m\|^2+2N\|C_N\|^2$, bounded by the infinite core.
+The other aliases have envelope
+\[
+ R(t)=\sum_{q\notin4\mathbb Z,\ q\ne1}
+           \frac{|1-i^q|}{|q-1+t|^3},\qquad 0\le t\le1.
+\]
+This nonsingular series is convex. Sum $|q|\le100$ and add the full
+tail $4/100^3+2/100^2$; its outward bounds at $0,1/2,1$ are denoted
+$a,b,c$ (approximately $2.528674155,1.333485721,2.086708706$).
+Use their actual Arb enclosures, not those abbreviated printed decimals.
+The piecewise affine interpolant $L(t)$ majorizes $R(t)$.
+For $f(t)=tL(t)^2$ the composite trapezoid rule on each half interval
+is exact for the cubic, including the derivative jump. For every even $N$,
+\[
+ \begin{split}
+ T_N&=\frac2N\left(\sum_{m=1}^{N-1}f(m/N)+\frac{f(1)}2\right)
+       =I+D_* /(6N^2),\\
+ I&=a^2/24+ab/12+b^2/3+bc/4+7c^2/24,\\
+ D_*&=4b^2-2ab-a^2+5c^2-6bc.
+ \end{split}
+\]
+Thus the alias norm is at most
+$K_3\sqrt{I+|D_*|/(6\cdot16^2)}/16^2
+\le0.017332234304270<0.017333$ and
+$\|R_N^{\rm sm}\|_{\rm HS}<1.800594$.
+Finally $R_N=R_N^{\rm sm}-(S_N+H_N)\otimes Q$, with
+$\|Q\|_{\rm HS}=\sqrt2$ from two orthogonal rank-one projectors.
+Using the unrounded alias enclosure with (R4.6) gives
+\[
+ \|R_N\|_{\rm HS}
+ <1.783261+0.017332234304270+\sqrt{2(0.714386)}
+ <2.995906<3.
+\]
+The fixed-width full collar still has two gapless edges. One-edge
+microscopic identification, FE-GEN, ALG-EXH and charged MMST do not follow
+from this norm theorem.
+
+\paragraph{T3/T4: canonical DET excitations and the signed wall.}
+\texttt{CHIRAL4D.MIRROR.SIGNED.CAR.01}.
+\veri{v1027\_\allowbreak signed\_\allowbreak det\_\allowbreak car\_\allowbreak wall.py}
+checks the following algebra and its finite countermodels.
+The old Hubbard operators $b_i=|\Omega\rangle\langle e_i|$ satisfy
+$\{b_i,b_j^*\}=\delta_{ij}P_\Omega+|e_j\rangle\langle e_i|$, not CAR,
+and $b_i^*b_j^*=0$. For even $n\ge4$ (in particular $n=32$), write
+$F=|{\rm full}\rangle\langle0|$ and define
+\[
+ U=I+(2^{-1/2}-1)(P_0+P_F)+(F-F^*)/\sqrt2,\qquad a_i=Uc_iU^*.
+\]
+This is a two-dimensional rotation and identity elsewhere. It is even;
+under the inherited full-determinant singlet premise it is onsite gauge
+invariant. It maps $|0\rangle$ to $\Omega=(|0\rangle+|{\rm full}\rangle)/\sqrt2$,
+so the $a_i$ satisfy CAR on the entire $2^n$-dimensional Fock space and
+$a_i^*\Omega=e_i$. Products of even onsite rotations preserve cross-site CAR.
+The actual new parent is additive:
+\[
+ N_a=UNU^*=N+\tfrac n2(P_0-P_F-F-F^*),\qquad
+ Q\le N_a\le nQ,\quad Q=I-P_\Omega.
+\]
+Thus $\Delta N_a$ has the same unique ground state and gap $\Delta$ as
+$\Delta Q$, but is not the old flat parent. The high-degree local rotation
+is not asserted to be a linear Bogoliubov map or an efficient Fock simulator.
+
+Let $A=A^*$ be a fixed c-number, gauge-covariant quasilocal one-particle
+operator, $\|A\|\le L$. Define
+\[
+ H=p^*Ap+\Delta a^*a+\lambda(a+gAp)^*(a+gAp),\quad
+ M=\Delta+\lambda,\quad\beta=\lambda g^2,\quad\eta=\lambda g,
+ \quad c=\lambda g^2\Delta/M.
+\]
+If $cL<1$ and $B=L+\beta L^2<M$, the spectral block
+\[
+ h(s)=\begin{pmatrix}s+\beta s^2&\eta s\\\eta s&M\end{pmatrix},\quad
+ \det h(s)=Ms(1+cs)
+\]
+has precisely the original kernel, no extra zero, high band $\mu_+\ge M$,
+and $|\mu_-|\le B$. Expansion gives
+$\mu_-(s)=s+cs^2-\eta^2s^3/M^2+O(s^4)$, hence $z=1$ when $A$ is linear.
+For $(\Delta,\lambda,g,L)=(3,1,1/2,2)$, $M=4$, $B=3$, $cL=3/8$.
+Filling the negative band and subtracting its energy gives a nonnegative
+full-Fock Hamiltonian for each fixed classical background;
+$E_0\ge-Lr|\Lambda|$ with $r$ physical modes per site.
+The bare mirror operator nevertheless has low-band weight of order $s^2$.
+There is no hard bare-mirror response gap, nor an isolated entire
+many-body mirror continuum. Operator-valued quantum-link diagonalization
+does not automatically lift to a canonical Fock transformation (the
+explicit SWAP mutant fails CAR).
+
+For a free illustration only, $\gamma_i=\tau_1\otimes\sigma_i$,
+$\gamma_5=\tau_3\otimes I$, $w=\sum_i(1-\cos k_i)-1$,
+$R^2=1+2\sum_{i<j}(1-\cos k_i)(1-\cos k_j)\in[1,25]$ and
+$D=I+(w+i\gamma\cdot\sin k)/R$ give $A=\gamma_5D$,
+$A^2=2+2w/R$ and $\|A\|\le2$, with one Dirac node at zero.
+The inverse-square-root series has norm ratio $12/13$ and exponential
+length $2/\log(13/12)$. This four-component regulator contains opposite
+Weyl sectors: it is not the demanded two-component chiral SM construction.
+The common-parent dynamical gauge, measure, anomaly/index and continuum
+obligations remain open.
+
+\paragraph{T6/T8: full Gauss counts, internal cap and selection rules.}
+\texttt{PARENT.GAUSS.D4.ROUND4.01}.
+\veri{v1028\_\allowbreak gauss\_\allowbreak d4\_\allowbreak cap.py}
+uses the full exterior character, not a low-occupation truncation.
+Let $W_{16}$ consist of $Q:(\mathbf3,\mathbf2)_1$,
+$u^c:(\bar{\mathbf3},\mathbf1)_{-4}$,
+$d^c:(\bar{\mathbf3},\mathbf1)_2$, $L:(\mathbf1,\mathbf2)_{-3}$,
+$e^c:(\mathbf1,\mathbf1)_6$, $\nu^c:(\mathbf1,\mathbf1)_0$, with charges $6Y$.
+For color weights $(1,0),(0,1),(-1,-1)$ and weak weights $\pm1$, set
+\[
+ P(z)=\prod_{w\in W_{16}}(1+z^w),\quad
+ h=1+(u+u^{-1})v^3,\quad
+ \Delta_W=(1-x/y)(1-x^2y)(1-xy^2)(1-u^2).
+\]
+There are twelve SM16 copies per site (192 fermion modes), a three-state
+Higgs space, and seam dimension four. The singlet multiplicity of a
+Weyl-invariant character is $\operatorname{CT}(f\Delta_W)$, not its
+zero-weight multiplicity. All representations descend to the $\mathbb Z_6$
+quotient. In characteristic five,
+$P^{12}=P^2(z)P^2(z^5)$, so for $A=P^2$,
+\[
+ \operatorname{CT}(P^{12}z^r)
+   =\sum_{a+5b+r=0}A_aA_b\pmod5.
+\]
+This finite sparse calculation has 20771 integer two-copy coefficients
+(17151 nonzero modulo five); it never enumerates $2^{192}$ states.
+The full one-site Gauss dimension is $4\operatorname{CT}(P^{12}h\Delta_W)
+\equiv3\pmod5$. A neutral Majorana bijects the parity sectors, each
+of which has dimension $4\pmod5$.
+For the nine link irreps $0,Q,u^c,d^c,L,e^c,H,\operatorname{Adj}_3,
+\operatorname{Adj}_2$, whose squared dimensions sum to 137, the exact transfer
+matrix is $T_{RS}=\operatorname{CT}(P^{12}h\chi_R\bar\chi_S\Delta_W)$.
+An $n$-vertex open path has dimension $4^n(T^n)_{00}\pmod5$.
+For $n=1,\ldots,8$ this is $3,4,3,0,0,1,4,0$.
+The full open $2\times2\times2$ cube within this specified nine-irrep link
+truncation (eight sites, twelve links) has
+dimension $0\pmod5$. Two pairwise contraction orders give reduced integer
+48544377696195; this is not the Hilbert dimension. The bound
+$9^{12}4^8<2^{63}$ precludes contraction overflow.
+Independent exact raising-operator ranks check 56 singlets without Higgs
+($556-500$) and 120 with Higgs ($1376-1256$) for one copy; the two-copy
+character result with Higgs is 561848. Thus the universal projected
+non-divisibility obstruction is false. An abstract Weyl pair exists when
+five divides the dimension, but locality, covariance, canonical choice,
+energy compatibility and compatibility between volumes are additional demands.
+
+On the selected even 12-dimensional pair space $|k,g\rangle$, use
+$C=\operatorname{diag}(1,-i,-1,i)\otimes\operatorname{diag}(-i,-1,i)$
+and $J|k,g\rangle=|-k\bmod4,4-g\rangle$. Then
+\[
+ \psi=(|1,3\rangle+|2,2\rangle+|3,1\rangle)/\sqrt3,\qquad
+ h_{\rm sym}=I-|\psi\rangle\langle\psi|
+\]
+is $D_4$ invariant, has unique ground vector and gap one, Schmidt rank
+three, and nonadditive HS norm $\sqrt{8/9}$. This is ordinary $D_4$ only
+on that selected even space, not the whole projective fermion lift.
+The invariant-vector space has dimension two, so symmetry does not
+select this ray. Extending the cap by zero outside this subspace leaves
+the old vacuum and does not select the full-parent state. The unitary
+$X=P_\psi+e^{2\pi i/5}(I-P_\psi)$ has order five but only two eigenvalues;
+it is not a Weyl clock, and its chosen order is not derived.
+
+For the actual one-fermion phases $u_g=e^{-i\pi g/4}$, invariance of a
+Majorana bilinear requires $(u_gu_h-1)M_{gh}=0$. Since $2\le g+h\le6$,
+$M=0$ for this symmetric candidate. A Hermitian pair kernel instead has
+commutant $\operatorname{diag}(a,b,a)$; the two transformation laws differ.
+The specified squared seam-pair coupling conserves
+$Q=N_\nu+2Q_{\rm seam}$ and cannot generate anomalous pairing in its
+unique $Q=0$ vacuum. These symmetries have not been established for every
+term of an eventual full parent. No physical neutrino texture is obtained.
+
+\paragraph{T7: local constraints and zero-mode removal.}
+\texttt{GRAV.SPIN2.LOCAL.CONSTRAINT.01}.
+\veri{v1029\_\allowbreak local\_\allowbreak tensor\_\allowbreak constraints.py}
+implements a quadratic target, not a TFPT embedding. For six orthonormal
+symmetric tensor coordinates, let $t=(1,1,1,0,0,0)^T$, $B(k)q=q_{ij}k_j$,
+$v=B^Tk$, $s=v-|k|^2t$. Set
+\[
+ K_p=I-tt^T/2,\quad
+ K_q=|k|^2(I-tt^T)-2B^TB+tv^T+vt^T,\quad
+ H=\tfrac12p^TK_pp+\tfrac12q^TK_qq,
+\]
+with constraints $C_0=s^Tq=0$, $C=Bp=0$. Direct polynomial algebra gives
+\[
+ BB^T=(|k|^2I+kk^T)/2,\quad Bs=0,\quad K_qB^T=0,\quad
+ K_ps=B^Tk,\quad s^Ts=2|k|^4.
+\]
+The four constraints commute and $\dot C_0=k^TC$, $\dot C=0$.
+For $k\ne0$ they are independent first-class constraints, leaving
+$12-2\cdot4=4$ phase dimensions. Rotation to $k\parallel e_3$ and
+constraint/gauge reduction leaves the two normalized TT tensors, on which
+$H=\frac12\sum_{a=+,\times}(p_a^2+|k|^2q_a^2)$.
+Local constraints therefore avoid putting the nonlocal TT projector into
+the Hamiltonian. This is the standard linearized-gravity mechanism, not
+a novel derivation of general relativity (see
+\href{https://arxiv.org/abs/0710.1430}{Green--Kiriushcheva--Kuzmin}).
+
+A finite-stencil regulator puts diagonal components on sites, off-diagonal
+$ij$ components at offsets $(e_i+e_j)/2$, and vector parameters on links.
+Use $\kappa_i=2\sin(ak_i/2)/a$ in every formula. Under a Brillouin shift,
+the sign flip $U_i$ on vectors induces $D_i$ on symmetric tensors, and
+$B(U_i\kappa)=U_iB(\kappa)D_i$, $s(U_i\kappa)=D_is(\kappa)$,
+$K_q(U_i\kappa)=D_iK_q(\kappa)D_i$, $K_p=D_iK_pD_i$.
+Thus the half-grid symbol is consistently glued; its only zero is $k=0$,
+unlike the eight-corner $\sin k_i$ mutant.
+At $k=0$, however, all constraints vanish and $p_0=rt$ gives
+$H_0=-3r^2/4$: the unmodified periodic model is unbounded below.
+A positive radiative target requires removal of the entire global
+canonical block $(q_0,p_0)$, an extra global zero-mean prescription,
+not a local constraint or a TFPT state-selection theorem.
+Furthermore finite-dimensional exact CCR are impossible by the trace:
+$[q_d,p_d]=i(I-dP_{d-1})$ for the explicit truncation. Collective low-energy
+emergence is not excluded, but needs a controlled microscopic sequence.
+No critical embedding, nonlinear constraints, universal coupling or global
+gravitational state is established. The distinction between a tensor
+target and controlled emergence also matters in
+\href{https://arxiv.org/abs/0907.1203}{Gu--Wen}; neither cited paper fills
+the TFPT embedding gap.
+
+\paragraph{ALG2: sector generation and conditional uniform section.}
+\texttt{SEAM.MMST.ALG2.FRAME.01}.
+\veri{v1030\_\allowbreak alg2\_\allowbreak sector\_\allowbreak frame.py}
+does not restore the refuted Vandermonde implication. Suppose, explicitly,
+$H=\bigoplus_rH_r$ and the actual neutral algebra is
+$\mathcal A_0=\bigoplus_r\operatorname{End}H_r$. Join $r,s$ if
+$P_sTP_r\ne0$. Then $W^*(\mathcal A_0,T)=\operatorname{End}H$ precisely
+when this undirected sector graph is connected: the neutral commutant is
+$\bigoplus_rc_rI_r$, and each nonzero corner forces $c_r=c_s$.
+The finite bicommutant theorem proves the result. Genuine superselection
+components must be treated separately, not bridged by forbidden odd fields.
+
+For a fixed $D$-dimensional low-energy space choose actual local words
+$Y_{j,N}$, $j=1,\ldots,D^2$, with $\|Y_{j,N}\|\le M$.
+Let $\Phi_N$ have columns $\operatorname{vec}(P_NY_{j,N}P_N)$.
+If $\sigma_{\min}(\Phi_\infty)=\sigma>0$ and
+$\|\Phi_N-\Phi_\infty\|_2\le\sigma/2$, then solving
+$\Phi_Na=\operatorname{vec}X$ gives, for $\|X\|\le1$,
+\[
+ P_Ny_NP_N=X,\quad y_N=\sum_ja_jY_{j,N},\quad
+ \|a\|_2\le2\sqrt D/\sigma,\quad
+ \|y_N\|\le2MD^{3/2}/\sigma.
+\]
+This supplies a uniform section only under the stated microscopic word,
+norm and noncollapsing-frame hypotheses. Compression does not preserve
+products ($PABP$ need not equal $PAPBP$), and double-cutoff convergence
+does not control $|N\rangle\langle0|$ on a fixed input cutoff.
+For ALG2 one needs a joint real-linear frame for
+$L_N(y)=(P_FyP_E,P_Fy^*P_E)$ and uniform high-output tails of both
+$x_N,y_N$ and their adjoints. If the joint error and each pair of tails
+are at most $\varepsilon$, the desired one-sided sum is at most
+$3\varepsilon$. Neutral generation, charged corners, actual local words,
+their scaling limits, and these tails are not yet proved for the one-edge
+TFPT microscopic algebra. They, together with the common-parent gates,
+are the precise remaining research obligations.

@@ -1,0 +1,212 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{csquotes}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{geometry}
+\geometry{margin=2.4cm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{microtype}
+\newtheorem{satz}{Satz}
+\newtheorem{lemma}[satz]{Lemma}
+\newcommand{\Om}{\Omega}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\tr}{\operatorname{tr}}
+\title{TFPT-Anschluss: Zustandsgate, Trägerzellen und der $A_3$-Faktor des Seams\\
+\large Ergebnisse der Fable-Runden 3 (11.--14.\ September 2026) als Fortsetzung des Manuskripts
+\enquote{Vom geometrischen Compiler zum Prozess mit Aufzeichnung} (Version 1.1)}
+\author{Claude Fable 5.1 im Cursor-Fenster \texttt{tfpt-theoryv4}\\
+\small für Stefan Hamann\\ \small Prüfer und Zahlen: \texttt{experiments/theory-contracts/}\\ \small\texttt{universalraum-fable-kernfragen-20260910/fable-runde3/}}
+\date{14.\ September 2026 · Forschungsmanuskript, kein begutachteter Abschluss}
+
+\begin{document}
+\maketitle
+
+\section*{Evidenzkonvention und Abgrenzung}
+Wie im Manuskript: \textbf{gesetzt} bezeichnet eine Ausgangsannahme, \textbf{exakt} eine Identität oder einen Beweis unter genannten Voraussetzungen, \textbf{bedingt} eine Folgerung mit zusätzlicher physikalischer Zuordnung, \textbf{offen} eine ungeschlossene Herkunfts- oder Existenzfrage. Alle Zahlen stammen aus den in Anhang~A genannten Prüfern; jeder läuft normal und unter \texttt{python -OO} bytegleich. Kein Marker im Ledger wurde bewegt. Alle physikalischen Abschlussbedingungen T1--T8 bleiben offen. Dieses Papier beweist weder RH noch einen Faktorisierungsvorteil noch eine Theory of Everything; es fügt dem Manuskript sieben abgegrenzte Ergebnisse hinzu und ordnet drei Aussagen früherer Runden richtig ein.
+
+\section{Zusammenfassung}
+Das Manuskript vom 14.\ September endet mit drei Fragen: Folgt die Wechselwirkung aus dem Compiler? Wie entsteht Veränderung und eine auslesbare Uhr? Was passiert bei vielen gekoppelten Zellen? Alle drei werden hier gerechnet, nicht vorgeschlagen.
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Der Compiler wählt die Zelle (exakt).} Die $A_3=\mathrm{SU}(4)$-Zerlegung der 248 aus den tatsächlichen Wurzeln enthält als Zweiträgersektor nur $\Lambda^2(\mathbf 4)=\mathbf 6$; $\mathrm{Sym}^2(\mathbf 4)=\mathbf{10}$ fehlt. Ein Zustand von vier Trägern, dessen sämtliche Paarmarginalen $E_8$-zulässig sind, ist eindeutig das Singulett $\Om=\Lambda^4\mathbb C^4$; für fünf Träger existiert kein solcher Zustand. Der Tetramer-Grundzustand des Manuskripts ist damit eine Hüllenbedingung des Compilers; $J$ ist ihre Steifigkeit, kein physikalischer Parameter. Die $E_8$-Klammer $[(\mathbf{16},\mathbf 4),(\mathbf{16},\mathbf 4)]$ landet ausschließlich in $(\mathbf{10},\mathbf 6)$ (960 geordnete Wurzelpaare): sie antisymmetrisiert Trägerindizes.
+\item \textbf{Die relative Uhr ist auslesbar und lift-unabhängig (exakt).} Kollektiv gilt $A^{\otimes4}\Om=\det(A)\Om$. Ein Tick $c$ auf einem Träger liefert $\langle\Om|c_1^n|\Om\rangle=\tr(c^n)/4$ und die Paarenergie $p_{1j}=(16-|\tr c^n|^2)/24$. Die Familien-3-Zykel-Klasse fixiert 3 der 15 Kontexte und 0 der 15 Paulis; daraus folgt $|\tr c|=1$ für jeden Clifford-Lift und jedes Pauli-Vielfache. Also $p_{1j}=5/8$, $\langle H_{\rm tet}\rangle=15J/8$ für $n\not\equiv0\ (3)$, Rückkehr mit Phase $i^n$ für $n\equiv0\ (3)$: Periode~3 in den sechs Paartests, Periode~12 nur im Überlapp.
+\item \textbf{Von der Zelle zur Kette (exakt/numerisch).} Über Schur--Weyl (Youngs Orthogonalform je $S_n$-Irrep) sind Zellenketten bis $n=16$ Träger exakt zugänglich. Zwei vollständige Zellen plus Brücke $\lambda$: Grundzustand eindeutig für alle $\lambda\le6J$, die Manuskript-Schranke $2J-5\lambda/8$ gilt und ist lose. Offene Ketten von 2, 3, 4 Zellen: für $\lambda<J$ konvergiert der Gap (0{,}266 / 0{,}255 / 0{,}250 bei $\lambda=J/4$), bei $\lambda=J$ schließt er wie $1/n$. Der uniforme Ring ($n=8,12$) reproduziert die SU(4)$_1$-WZW-Vorhersage $\Delta\cdot n=2\pi v(h+\bar h)=3{,}701$ mit $3{,}700$ bzw.\ $3{,}663$, Sutherlands Grundenergie $0{,}0874$ mit $0{,}0877$ und $c=3$ mit $c_{\rm fit}=3{,}16$. \textbf{$(A_3)_1$ mit $c=3$ ist der Familienfaktor des TFPT-Seams} $(E_8)_1\supset(D_5)_1\otimes(A_3)_1$. Die Kette aus Compiler-Trägern mit der $E_8$-selektierten Austauschregel fließt im uniformen Limes auf den $A_3$-Teil des Seams.
+\item \textbf{Zustandsgate am Ringparent (exakt).} Der Grundzustand des Rotor/CAR-Rings bestimmt den Generator in der lokalen Klasse eindeutig und reproduziert ohne Fit $1/24$, $1/576$, $1/200$ und $383/96=M-\varepsilon_L$; er ist aber blind für den HH-Hop und für $E^4$ (Varianzen $1{,}5\cdot10^{-13}$, $2{,}8\cdot10^{-10}$). Die HH-Prämisse der Wand kann nicht aus dem Grundzustand kommen.
+\item \textbf{Kopplungsvereinigung mit dem quelleigenen Pati--Salam-Inhalt (numerisch).} 2-Loop bestätigt Vereinigung und die Skalaronkoinzidenz $M_{\rm PS}/M_s=1{,}2$--$1{,}4$ mit $M_s=c_3^{7/2}\bar M_{\rm Pl}$, verfehlt aber Super-K um Faktor 2{,}4--6 in $\tau_p$ für alle $E_8$-erlaubten Skalarinhalte, falls SO(10) geeicht ist.
+\item \textbf{Zwei Präzisierungen (exakt).} Innere Glue-$\mathbb Z_4$ und geometrische Vierteldrehung sind verschiedene Operatoren auf dem $(E_8)_1$-Modul (Spuren $0$ und $248i$ auf Stufe~1). Der Hecke-Index $|\det A|$ jedes $E_8$-Endomorphismus ist der Jones-Index des Gitterunternetzes $\mathcal A_{AE_8}\subset\mathcal A_{E_8}$; er wird Entropie, nicht Hamiltonoperator.
+\item \textbf{Eine Korrektur eigener Aussagen.} Der Bulk eines holomorphen Seams ist eine gapped invertible Phase, nicht \enquote{leer}; die $\mu_4$-Auswahl von $(D_5,A_3)$ gilt nur mit zyklischem $\mathbb Z_4$-Glue auf beiden Faktoren (\texttt{v993}), was $A_1\oplus A_7$ ausschließt.
+\end{enumerate}
+
+\section{Ausgangslage}
+Das Manuskript (Version 1.1) konstruiert auf den 60 Quellstrahlen des Compilers eine endliche Kette mit klassischem und quantenmechanischem Schatten, eine Vor-Messung mit Registern und ein ausdrücklich zusätzlich gesetztes Vierträger-Austauschmodell
+\[
+H_{\rm tet}=J\sum_{i<j}\frac{I+S_{ij}}{2},\qquad J>0,
+\]
+mit eindeutigem antisymmetrischem Grundzustand $\Om$, Gap $2J$, dem Spektrum $(0,1)$, $(2,45)$, $(3,40)$, $(4,135)$, $(6,35)$ (Energie, Vielfachheit) und einer Zweizellen-Schranke $\Delta\ge2J-5\lambda/8$. Es benennt $J$, den Kopplungsgraphen und die Präparation als gesetzt und stellt die drei Folgefragen. Beide zugehörigen Codex-Audits (\texttt{compiler-origin-audit-} \texttt{20260913}, \texttt{compiler-extension-audit-} \texttt{20260914}) laufen grün; ihre Aussagen werden hier nicht erneut geprüft, sondern vorausgesetzt.
+
+\section{Der Compiler wählt die Zelle}
+\subsection{Zweiträgersektoren in $E_8$}
+Mit der $D_8$-Realisierung der 240 Wurzeln, $D_5$ auf den Koordinaten $0..4$ und $A_3=D_3$ auf $5..7$, liest man die $A_3$-Gewichte der 248 ab:
+\[
+\mathbf{248}\big|_{A_3}=45\cdot\mathbf 1\;\oplus\;\mathbf{15}\;\oplus\;10\cdot\mathbf 6\;\oplus\;16\cdot\mathbf 4\;\oplus\;16\cdot\bar{\mathbf 4},
+\]
+also $(45,1)+(1,15)+(10,6)+(16,4)+(\overline{16},\bar 4)$. Von den beiden Zweiträgersektoren $\mathbf 4\otimes\mathbf 4=\mathbf 6\oplus\mathbf{10}$ kommt nur $\Lambda^2(\mathbf 4)=\mathbf 6$ vor. Der Paarterm $(I+S)/2$ des Tetramers ist der Projektor auf $\mathrm{Sym}^2(\mathbf 4)$, also auf den $E_8$-fremden Sektor; seine Nullenergie liegt genau auf dem $E_8$-nativen antisymmetrischen Paar. Das ist eine Auswahlregel derselben Art wie \texttt{PS.E8BRANCH.01} (\enquote{$E_8$ verbietet die 126}).
+
+\begin{satz}[Hüllensatz für Zellen]
+Sei $\psi\in(\mathbb C^4)^{\otimes N}$ ein Zustand, dessen sämtliche Paarmarginalen $\rho_{ij}$ in $\Lambda^2(\mathbb C^4)$ getragen sind. Dann ist $\psi$ total antisymmetrisch. Für $N=4$ ist $\psi=\Om$ bis auf Phase; für $N\ge5$ existiert kein solcher $\psi$.
+\end{satz}
+\begin{proof}
+$\operatorname{supp}\rho_{ij}\subset\Lambda^2$ heißt $(I+S_{ij})\psi=0$ für alle $i<j$, also $S_{ij}\psi=-\psi$ für alle Transpositionen, also $\psi\in\Lambda^N\mathbb C^4$. Diese hat Dimension $1$ für $N=4$ und $0$ für $N\ge5$. Der Prüfer bestätigt die Nullraumdimensionen $1$ und $0$ exakt.
+\end{proof}
+
+Konsequenz: Der Tetramer-Grundzustand ist keine Wahl, sondern der einzige Vierträgerzustand, der die $E_8$-Hülle paarweise respektiert; Zellen haben genau vier Träger, weil $\Lambda^5\mathbb C^4=0$. $H_{\rm tet}$ ist das Straffunktional dieser Hülle, $J$ seine Steifigkeit. Was der Compiler damit \emph{nicht} festlegt: die Kopplung $\lambda$ zwischen Zellen, den Graphen, die Cross-Register-Operation der Vor-Messung.
+
+\subsection{Die Klammer antisymmetrisiert Trägerindizes}
+Für alle geordneten Paare $\alpha,\beta\in(\mathbf{16},\mathbf 4)$ mit $\alpha+\beta\in\Phi(E_8)$ liegt $\alpha+\beta$ in $(\mathbf{10},\mathbf 6)$; es gibt 960 solche Paare und kein Ziel in $(1,15)$ oder $(45,1)$. Repräsentationstheoretisch: $\Lambda^2(\mathbf{16},\mathbf 4)\supset\mathrm{Sym}^2(\mathbf{16})\otimes\Lambda^2(\mathbf 4)\ni(\mathbf{10},\mathbf 6)$. Eine über den Spinorsektor vermittelte Träger--Träger-Kopplung erzeugt daher nur antisymmetrische Paare. Die Ableitung eines effektiven $\lambda$ aus den Strukturkonstanten (Superaustausch) ist die nächste konkrete Rechnung; hier nicht ausgeführt.
+
+\section{Die relative Uhr}
+\subsection{Kollektiv unsichtbar, relativ sichtbar}
+Auf $\Om$ gilt $A^{\otimes4}\Om=\det(A)\,\Om$ für jede $4\times4$-Matrix $A$; jede kollektive Operation ändert nur eine globale Phase. Für einen Tick auf genau einem Träger gilt exakt
+\[
+\langle\Om|A\otimes I^{\otimes3}|\Om\rangle=\frac{\tr A}{4},\qquad
+p_{1j}=\Tr\!\Big[\rho'_{1j}\frac{I+S}{2}\Big]=\frac{16-|\tr A|^2}{24},\qquad p_{jk}=0\ (j,k\ne1),
+\]
+wobei $\rho'_{1j}=(A\otimes I)\frac{I-S}{12}(A^\dagger\otimes I)$ die Paarmarginale nach dem Tick ist. Beweis der Paarformel: $\Tr[(I-S)(A^\dagger\!\otimes I)(I+S)(A\otimes I)]=\Tr(I-S)+\Tr S-|\tr A|^2=12+4-|\tr A|^2$. Beide Identitäten sind auf dem expliziten Singulett numerisch bestätigt.
+
+\subsection{Der Lift ist chart-unabhängig fixiert}
+Die Uhr des Compilers ist $\sigma$, der Familien-3-Zykel auf $(F_1,F_2,F_3)$ mit festem Anker $A$ (\texttt{v774}), mit Lift $c=i\sigma$, $c^4=\sigma$, $c^{12}=I$. In $\mathrm{Sp}(4,2)\cong S_6$ fixiert $\sigma$ genau drei der 15 Klassen $(f,f,f,a)$; nach der Punkt/Geraden-Dualität von $W(3,2)$ (\texttt{v783}: Klassen $\leftrightarrow$ Kontexte) sind das drei feste Kontexte und null feste nichttriviale Paulis. Für jeden Clifford-Operator $U$ gilt $|\tr U|^2=\sum_{v:\,\mathrm{Ad}_U P_v=\pm P_v}\epsilon_v$ (Summe über feste Paulis einschließlich $I$). Also $|\tr c|^2=1$ für \emph{jeden} Lift dieser Klasse und jedes Pauli-Vielfache. Auf dem expliziten Repräsentanten $c=\mathrm{CNOT}_{12}\mathrm{CNOT}_{21}$ (Basis-3-Zykel) sind die festen Kontexte $\{IX,XI,XX\},\{IZ,ZI,ZZ\},\{XZ,YY,ZX\}$, feste Paulis keine, und $|\tr(\varphi Pc)|=1$ für alle 32 Kombinationen.
+
+\begin{table}[h]\centering
+\begin{tabular}{@{}rcccc@{}}\toprule
+$n$ & $|\langle\Om|c_1^n|\Om\rangle|$ & Phase bei Rückkehr & $p_{1j}$ & $\langle H_{\rm tet}\rangle/J$\\\midrule
+0 & 1 & $1$ & 0 & 0\\
+1, 2 & $1/4$ & -- & $5/8$ & $15/8$\\
+3 & 1 & $-i$ & 0 & 0\\
+4, 5 & $1/4$ & -- & $5/8$ & $15/8$\\
+6 & 1 & $-1$ & 0 & 0\\
+9 & 1 & $i$ & 0 & 0\\
+12 & 1 & $1$ & 0 & 0\\\bottomrule
+\end{tabular}
+\caption{Auslese der relativen Uhr am Singulett. Die sechs Paar-Energietests des Manuskripts (§12.2) sehen Periode 3 (Ordnung von $\mathrm{Ad}_\sigma$); der Übertrag $i^n$ mit Periode 12 (Ordnung des Lifts) steht nur im Überlapp und braucht eine Interferenzreferenz.}
+\end{table}
+
+Das ist die quantitative Fassung des Hinweises in §12.4 des Manuskripts. Eine Uhr im Sinne einer Zeit in Sekunden ist damit nicht hergeleitet; hergeleitet ist, \emph{was} ein Tick am Zustand ändert und \emph{welches Protokoll} ihn liest.
+
+\section{Von der Zelle zur Kette}
+\subsection{Methode}
+$H=\sum_e w_e\,(I+P_e)/2$ liegt in der Algebra der symmetrischen Gruppe $S_n$ auf $(\mathbb C^4)^{\otimes n}$. Nach Schur--Weyl zerfällt der Raum in $\bigoplus_{\lambda\vdash n,\ \ell(\lambda)\le4}S^\lambda\otimes V^\lambda_{\mathrm{SU}(4)}$; $H$ wirkt als $H_\lambda\otimes I$. $H_\lambda$ wird in Youngs Orthogonalform aus den benachbarten Transpositionen aufgebaut (dünnbesetzt, zwei Einträge pro Zeile), die SU(4)-Vielfachheit folgt aus der Hook-Content-Formel. Für $n=16$ genügen so Matrizen der Dimension $\le180\,180$ statt $4^{16}$. Alle Spektren sind exakt bis auf Gleitkomma.
+
+\subsection{Zwei vollständige Zellen mit einer Brücke}
+\begin{table}[h]\centering
+\begin{tabular}{@{}rccccc@{}}\toprule
+$\lambda/J$ & $E_0$ & Vielfachheit & Gap & Manuskript-Schranke $2-5\lambda/8$ & Grund-Irrep\\\midrule
+0 & 0 & 1 & 2{,}000 & 2{,}000 & $(2,2,2,2)$\\
+0{,}5 & 0{,}2974 & 1 & 1{,}922 & 1{,}6875 & $(2,2,2,2)$\\
+1 & 0{,}5635 & 1 & 1{,}818 & 1{,}375 & $(2,2,2,2)$\\
+2 & 1{,}0000 & 1 & 1{,}586 & 0{,}750 & $(2,2,2,2)$\\
+3{,}2 & 1{,}3729 & 1 & 1{,}340 & 0 & $(2,2,2,2)$\\
+6 & 1{,}8377 & 1 & 1{,}000 & $-1{,}75$ & $(2,2,2,2)$\\\bottomrule
+\end{tabular}
+\caption{Zwei Tetramer-Zellen (vollständige Graphen) plus eine Austauschbrücke $\lambda$. Der Grundzustand bleibt weit über $16J/5$ eindeutig; die variationelle Schranke des Manuskripts gilt, ist aber lose.}
+\end{table}
+
+\subsection{Ketten von Zellen: gapped für $\lambda<J$, kritisch bei $\lambda=J$}
+Offene Ketten aus $N$ Viererketten-Segmenten (nächste-Nachbar-Bindungen, Zwischenkopplung $\lambda$), erste Anregung stets in der Adjungierten-Familie $(a{+}1,a,a,a{-}1)\to\mathbf{15}$:
+\begin{center}
+\begin{tabular}{@{}lccc@{}}\toprule
+Gap & $N=2$ ($n=8$) & $N=3$ ($n=12$) & $N=4$ ($n=16$)\\\midrule
+$\lambda=J/4$ & 0{,}2664 & 0{,}2552 & 0{,}2497\\
+$\lambda=J/2$ & 0{,}2299 & 0{,}2029 & 0{,}1890\\
+$\lambda=J$ & 0{,}1759 & 0{,}1273 & 0{,}1002\\\bottomrule
+\end{tabular}
+\end{center}
+Bei $\lambda=J/4$ ist der Gap in den erreichbaren Größen auf 6\,\% konstant (tetramerisierte Phase, eindeutiger Grundzustand, Anregungsband der Breite $\approx1{,}7$: wandernde Anregungen). Bei $\lambda=J$ skaliert er wie $1/n$ ($\Delta\cdot n=1{,}41,\,1{,}53,\,1{,}60$): gapless im Limes. Der kritische Punkt ist die uniforme Kopplung; darunter kein Schwellenwert.
+
+\subsection{Der uniforme Ring ist $(A_3)_1$}
+Uniforme periodische Ringe $n=4,8,12$ ergeben
+\[
+\Delta\cdot n=3{,}700\ (n{=}8),\quad 3{,}663\ (n{=}12)\qquad\text{gegen}\qquad 2\pi v(h+\bar h)=2\pi\cdot\frac{\pi}{4}\cdot\frac34=3{,}701,
+\]
+mit der Sutherland-Geschwindigkeit $v=\pi/4$ (für $H=\sum(1+P)/2$) und dem konformen Gewicht $h=3/8$ der $\mathbf 4$ in SU(4)$_1$. Die Grundenergie pro Träger extrapoliert zu $0{,}08773$ gegen $(1+e_P)/2=0{,}08744$ mit Sutherlands $e_P=1-\tfrac12[\psi(1)-\psi(\tfrac14)]$; der $1/n$-Koeffizient liefert $c_{\rm fit}=3{,}16$ gegen $c=3$. Die uniforme Trägerkette ist damit numerisch die SU(4)$_1$-WZW-Theorie (Affleck 1988 für SU($N$)-Ketten). \textbf{SU(4)$_1=(A_3)_1$ mit $c=3$ ist genau der Familienfaktor des Seams}, $c=8=5+3$ in $(D_5)_1\otimes(A_3)_1\subset(E_8)_1$. Damit existiert eine prüfbare Brücke von der Zelle zur Feldbeschreibung: Compiler-Träger, $E_8$-selektierte Austauschregel, uniformer Limes $\Rightarrow$ der $A_3$-Teil des Seams.
+
+Was nicht folgt: der $(D_5)_1$-Faktor (zehn der sechzehn Majoranas des Kragens) und die $\mathbb Z_4$-Verklebung zu $(E_8)_1$. Dafür müssten die Trägerketten an den Spinorsektor $(\mathbf{16},\mathbf 4)$ koppeln -- genau die in Abschnitt~3.2 identifizierte Klammer. Auch die Wahl $\lambda=J$ (Kritikalität) ist nicht aus dem Compiler hergeleitet.
+
+\section{Das Zustandsgate am Ringparent}
+Auf dem vollen neutralen Gauß-Sektor des Rotor/CAR-Rings (70 Materiemasken $\times$ Schleifenfluss, 1190 Zustände) wurde geprüft, ob der Grundzustand den Generator in der lokalen Klasse $\{N_L,N_H,E^2,T_{LL},T_{LH},T_{LL2},I\}$ über den Kovarianzkern $\Gamma_{ij}=\mathrm{Re}\langle O_i\psi,O_j\psi\rangle-\langle O_i\rangle\langle O_j\rangle$ bestimmt (modulo $I$ und der Sektoridentität $N_L+N_H=4I$).
+
+\begin{center}
+\begin{tabular}{@{}llccc@{}}\toprule
+Zustand & Klasse & Nullität & $\lambda_{\min}^+$ & Koeffizientenresiduum\\\midrule
+Grundzustand & lokal & 1 & $1{,}3\cdot10^{-6}$ & $1{,}4\cdot10^{-12}$\\
+Grund + 1.\ Anregung & lokal & 1 & $1{,}7\cdot10^{-3}$ & $2{,}7\cdot10^{-12}$\\
+Produktzustand $\Om_0$ & lokal & 4 & -- & scheitert\\
+Grundzustand & $+T_{HH},E^4$ & 3 & $2{,}7\cdot10^{-6}$ & --\\
+Grundzustand & $+H^2,H^3$ & 3 & -- & Polynomfalle\\\bottomrule
+\end{tabular}
+\end{center}
+Der Kern reproduziert ohne Fit $T_{LH}=1/24$, $T_{LL2}=1/576$, $E^2=1/200$ und $N_H-N_L=383/96=M-\varepsilon_L$ (auf $10^{-11}$). Erweitert man die Klasse um HH-Hop und $E^4$, werden $T_{LL}+T_{HH}$ (Varianz $1{,}5\cdot10^{-13}$) und $E^2-E^4$ ($2{,}8\cdot10^{-10}$) praktisch Kernrichtungen: der Grundzustand hat fast keinen H-Anteil und lebt auf $|E|\le1$. \textbf{Die HH-Regel der Wand (\texttt{det-wall-hh-rule}) und die Form der elektrischen Energie oberhalb $|E|=1$ sind aus den tiefliegenden Zuständen nicht bestimmbar}; sie brauchen Zustände bei Energie $\gtrsim M$ oder eine unabhängige Quelle. Der Test läuft in der Richtung $H\to\psi\to H$ und ist Rekonstruktion, keine Vorhersage.
+
+\section{Kopplungsvereinigung mit dem quelleigenen Pati--Salam-Inhalt}
+\texttt{QFT4D.RGTEST.01} trägt [X] für den reinen SM-Lauf. Mit dem Inhalt aus \texttt{PS.ALGEBRA.01} -- Eichgruppe $\mathrm{SU}(2)_L\times\mathrm{SU}(2)_R\times\mathrm{SU}(4)_c$, Skalare nur aus $\{10,16,45\}$, kein 126 -- ist die Zweistufe $M_Z\to M_{\rm PS}\to\Lambda$ bei 1-Loop ein lineares System und reproduziert \texttt{v249} ziffergenau. Bei 2-Loop (gauge-only, Machacek--Vaughn; validiert an $b_{33}=-26$, $b_{22}=35/6$, $b_{23}=12$):
+\begin{center}\small
+\begin{tabular}{@{}lcccccc@{}}\toprule
+Inhalt oberhalb $M_{\rm PS}$ & Loops & $M_{\rm PS}$ [$10^{13}$ GeV] & $\Lambda$ [$10^{15}$ GeV] & $M_{\rm PS}/M_s$ & $\tau_p$ [a] & $>$ SK\\\midrule
+Bidoublet $+(\bar4,1,2)$ & 1 & 4{,}2 & 2{,}4 & 1{,}37 & $4\cdot10^{33}$ & nein\\
+ & 2 & 3{,}7 & 1{,}2 & 1{,}21 & $3\cdot10^{32}$ & nein\\
+$+(1,1,15)$ & 1 & 4{,}0 & 5{,}9 & 1{,}31 & $1{,}6\cdot10^{35}$ & ja\\
+ & 2 & 3{,}5 & 2{,}8 & 1{,}16 & $7\cdot10^{33}$ & nein\\
+volles $16_H+(1,1,15)+(1,1,6)$ & 1 & 5{,}0 & 6{,}4 & 1{,}65 & $2\cdot10^{35}$ & ja\\
+ & 2 & 4{,}4 & 3{,}0 & 1{,}43 & $1\cdot10^{34}$ & nein\\\bottomrule
+\end{tabular}
+\end{center}
+Für jeden L$\leftrightarrow$R-symmetrischen Inhalt ist $M_{\rm PS}$ inhaltsunabhängig und nur durch SM-Daten bestimmt; die Koinzidenz mit $M_s=c_3^{7/2}\bar M_{\rm Pl}=3{,}06\cdot10^{13}$~GeV überlebt 2-Loop. Die 1-Loop-Rettung des Protonzerfalls durch ein lichtes $(1,1,15)$ hält bei 2-Loop nicht: $\Lambda$ halbiert sich, $\tau_p$ fällt um Faktor 2{,}4--6 unter $2{,}4\cdot10^{34}$~a -- \emph{disfavoured}, nicht ausgeschlossen (Schwellen, Yukawas, $\tau_p$-Vorfaktor). Der Bound greift nur, wenn SO(10) oberhalb $\Lambda$ geeicht ist (\enquote{gauging fork}, \texttt{v249} Residuum (a)).
+
+\section{Zwei Präzisierungen}
+\paragraph{Zwei $\mathbb Z_4$.} Auf den 248 Strömen der Stufe~1 des $(E_8)_1$-Vakuummoduls hat die innere Glue-$\mathbb Z_4$ (Phasen $1,i,-1,-i$ auf $60,64,60,64$) die Spur $0$, die geometrische Vierteldrehung $e^{i\pi L_0/2}$ die Spur $248i$; die Quadrate sind $(+,-,+,-)$ bzw.\ $-1$. Die transitive Identifikation Glue = konforme Monodromie (\texttt{QGEO.SYM.01}) = euklidische Rotation (\texttt{v522}) ist als Operatoridentität unhaltbar; haltbar ist nur Uhr $=$ Drehung $\circ$ innerer Twist. Dieselbe Struktur erscheint in Abschnitt~4: Periode~3 der Populationen, Periode~12 der Phase.
+\paragraph{Hecke-Index = Jones-Index.} Mit $\mu_{\mathcal A}=[\mathcal B:\mathcal A]^2\mu_{\mathcal B}$ (Kawahigashi--Longo--Müger), die das Repo für den Glue-Index~4 benutzt, gilt für jedes injektive $A\in\mathrm{End}(E_8)$: $[\mathcal A_{E_8}:\mathcal A_{AE_8}]=|\det A|$ = Hecke-Überlagerungsindex von $x\mapsto Ax$ auf $\mathbb R^8/E_8$ (Zählfunktion $\prod_{k=0}^7\zeta(s-k)$, Pol bei $s=8=c$). Pimsner--Popa macht $\log|\det A|$ zur bedingten Entropie; das Vakuum ist unter den Dualgruppen-Automorphismen fest, der Connes-Kozyklus trivial. Die arithmetische \enquote{Normzeit} ist RG-Zeit, die physische Zeit $L_0$: verschiedene Kategorien. Der Streit \enquote{elektrische Zeit vs.\ Normzeit} der Universalraum-Runden löst sich damit auf, statt entschieden zu werden.
+
+\section{Grenzen und offene Punkte}
+\begin{itemize}[leftmargin=*]
+\item Der Hüllensatz fixiert Zellstruktur und Vorzeichen, nicht $\lambda$, nicht den Graphen, nicht die Cross-Register-Kopplung der Vor-Messung. Die Superaustausch-Ableitung von $\lambda$ aus den $E_8$-Strukturkonstanten ist formuliert, nicht ausgeführt.
+\item Die Uhr ist ein Protokoll auf einem gesetzten Modell; eine Zeit in Sekunden folgt nicht. Die Phasenreferenz für die Periode~12 ist eine benannte Zusatzressource.
+\item Die WZW-Identifikation stützt sich auf $n\le12$ (Ringe) und $n\le16$ (offene Ketten), drei Kennzahlen auf 0{,}03--5\,\%; keine Kontinuumskonstruktion. Der $(D_5)_1$-Faktor und die Verklebung fehlen.
+\item Das Zustandsgate ist Rekonstruktion; die Vorwärtsrichtung (Quelle $\to\omega,\mathcal V$ ohne $H$) braucht zuerst eine eingefrorene primitive Quelle (P0 des Programms vom 12.\,9.).
+\item T1--T8 bleiben offen; kein Marker bewegt sich durch dieses Papier.
+\end{itemize}
+
+\section{Nächste Schritte in Rangfolge}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Superaustausch aus der Klammer:} effektive Träger--Träger-Kopplung zweiter Ordnung über $(\mathbf{16},\mathbf 4)\otimes(\overline{\mathbf{16}},\bar{\mathbf 4})\to(1,15)+(10,6)$; Erfolg: $\lambda$ und Graph aus Strukturkonstanten; Kill: jede Freiheit, die $\mathrm{Sym}^2(\mathbf 4)$ erlaubt.
+\item \textbf{$(A_3)_1$ an $(D_5)_1$ koppeln:} SU(4)-Kette plus zehn Majorana-Moden mit Kondo-artiger $(\mathbf{16},\mathbf 4)$-Kopplung; Ziel: $c=8$ und die $\mathbb Z_4$-Verklebung als Fixpunkt.
+\item \textbf{Zustände oberhalb $M$ ins Gate:} thermische oder angeregte Zustände mit H-Anteil, um HH und $E^4$ zu bestimmen; damit wird die Wandprämisse testbar statt gesetzt.
+\item \textbf{Gauging fork entscheiden:} ob SO(10) über $\Lambda$ geeicht ist, bestimmt, ob der 2-Loop-Protonzerfall ein Kill ist.
+\end{enumerate}
+
+\appendix
+\section{Reproduktion}
+Alle Prüfer liegen in \texttt{experiments/theory-contracts/} \texttt{universalraum-fable-kernfragen-20260910/} \texttt{fable-runde3/}; Hashes in \texttt{QUELLEN.json}.
+\begin{center}\small
+\begin{tabular}{@{}p{6.2cm}p{7.2cm}l@{}}\toprule
+Prüfer & Inhalt & Laufzeit\\\midrule
+\texttt{check\_followups\_q1q2q3.py} & Hüllensatz, Klammer, Lift-Spuren, offene Ketten $n\le16$ & 22 s\\
+\texttt{check\_cells\_and\_clock.py} & $A_3$-Inhalt, Uhrtabelle, zwei Zellen, Ringe $n\le12$ & 4{,}5 min\\
+\texttt{check\_state\_selects\_generator.py} & Kovarianzkern am Ring & $<1$ s\\
+\texttt{check\_ps\_two\_step\_unification.py}, \newline\texttt{check\_ps\_two\_loop.py} & PS-Zweistufe 1-/2-Loop & 1 s / 13 s\\
+\texttt{check\_hecke\_index\_net.py} & Hecke = Jones, Solomon-Zeta & $<1$ s\\
+\texttt{check\_runde3.py}, \newline\texttt{check\_rh\_high\_block.py} & Runde-1-Nachrechnungen & 1 s / 6 s\\\bottomrule
+\end{tabular}
+\end{center}
+Abhängigkeiten: \texttt{fable/cap\_dynamics.py} (Ringparent), \texttt{v246}, \texttt{v248}, \texttt{v249} (RG-Eingaben), \texttt{v774}, \texttt{v783} (Uhr, Kontexte), numpy, scipy. Keine Änderung an Ledger, Papieren, Katalogen oder Indizes.
+
+\section{Formeln}
+\paragraph{Youngs Orthogonalform.} Für ein Standard-Young-Tableau $T$ der Form $\lambda$ und benachbarte Einträge $k,k{+}1$ mit axialem Abstand $d=(c_{k+1}-r_{k+1})-(c_k-r_k)$ gilt $s_kT=\frac1dT+\sqrt{1-1/d^2}\;T'$, $T'$ = Tableau mit vertauschten $k,k{+}1$. Beliebige Transpositionen sind Konjugierte benachbarter. SU(4)-Vielfachheit: $\dim V^\lambda=\prod_{(r,c)\in\lambda}\frac{4+c-r}{h(r,c)}$.
+\paragraph{Kovarianzkern.} $c\in\ker\Gamma\iff(\sum_ic_iO_i)\psi\in\mathbb C\psi$; auf dem neutralen Sektor sind $I$ und $N_L+N_H-4I$ triviale Kernrichtungen und werden herausprojiziert.
+\paragraph{Uhrenauslese.} $\langle\Om|A_1|\Om\rangle=\tr A/4$; $p_{1j}=(16-|\tr A|^2)/24$; $|\tr U|^2=\sum_{\text{feste Paulis}}\epsilon_v$ für Clifford-$U$.
+\paragraph{Sutherland/WZW.} $H=\sum_i(1+P_{i,i+1})/2$ auf SU(4)-Fundamentalen: $v=\pi/4$, $h(\mathbf 4)=3/8$, $c=3$; $E_0(n)=e_\infty n-\pi vc/(6n)$, $\Delta(n)=2\pi v(h+\bar h)/n$ (periodisch).
+
+\end{document}

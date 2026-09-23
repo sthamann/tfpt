@@ -295,6 +295,7 @@ BRIDGE2 = "rh/catalog/analysis/bridge2_direct_search.md"
 HECKE_NOTE = "rh/catalog/analysis/hecke_index_theorem.md"
 BRIDGE2_OBJ = "rh/catalog/analysis/bridge2_object_search.md"
 LEAN_ARCH = f"{LEAN}/SelectedArchErrorQuadraticRateClassical.lean"
+ARCH_PACK = "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/outputs/RH_Arch_Formal_2026-09-05"
 GEOM_NOTE = "rh/catalog/analysis/geometry_audit.md"
 TATE_NOTE = "rh/catalog/analysis/all_place_tate_audit.md"
 HEAT_NB = "rh/catalog/analysis/external_proposals_heat_nb.md"
@@ -363,8 +364,12 @@ round_additions = [
     ("w3-uniform-window-positivity", "OPEN_QUESTION", "W3 uniform window positivity", ["W3 uniform positivity", "no-ladder wall"], "Prove positivity uniformly over all windows/scales; finite deployed windows are off-line-zero detectors, while the uniform statement is the conjectural wall.", "OPEN", ["notes/arxiv_w3_note/note_w3_detector_structure.tex:584-591", "verification/v677_w3_structure_theorem.py"], ["W3", "window", "positivity"]),
     ("w4-global-positivity-transfer", "OPEN_QUESTION", "W4 global Weil-positivity transfer", ["W4 global transfer"], "Transfer finite Galerkin/window positivity to the full Weil test-function class using domain density, scale control and uniform estimates.", "OPEN", ["notes/arxiv_w1_note/note_w1_suzuki_identification.tex:432-436"], ["W4", "global-transfer", "weil"]),
     # Lean r475-repair (part_18) and FREQ/grid outer bridges.
-    ("selected-arch-error-quadratic-rate", "THEOREM", "Selected archimedean quadratic-rate statement", ["SelectedArchErrorQuadraticRate", "archRateConst bound"], "Named Lean statement that selected-path archimedean error is O(Delta^2) with a fixed explicit constant. The fixed-constant form is falsified (8.0283 > 4.126 in the small-support regime); the Exists-C form remains open.", "KILLED_HERE", [LEAN_ARCH, "rh/catalog/fragments/part_18.json"], ["arch", "rate", "killed"]),
-    ("selected-arch-weighted-interpolation-estimate", "OPEN_QUESTION", "Selected arch weighted interpolation estimate", ["SelectedArchWeightedInterpolationEstimate"], "Classical weighted interpolation estimate for the productionArchLag near and far integrals; the remaining plumbing for the existential selected-path archimedean O(Delta^2) rate.", "OPEN", [LEAN_ARCH, "rh/catalog/fragments/part_18.json"], ["arch", "interpolation", "open"]),
+    ("selected-arch-error-quadratic-rate", "THEOREM", "Refuted prescribed archRateConst bound", ["SelectedArchErrorQuadraticRate", "archRateConst bound"], "The old prescribed archRateConst formula is too small in the endpoint-kink regime and remains refuted. This is distinct from the corrected test-dependent existential rate, now separately proved in the external ARCH package.", "KILLED_HERE", [LEAN_ARCH, "rh/catalog/fragments/part_18.json"], ["arch", "rate", "killed"]),
+    ("selected-arch-weighted-interpolation-estimate", "THEOREM", "Selected arch weighted interpolation estimate", ["SelectedArchWeightedInterpolationEstimate"], "Exact productionArchLag near/far transcription and weighted interpolation estimate, proved without hypotheses for every fixed native GridElement. The eventual constant may depend on that test; no support-uniform constant or global positivity follows.", "FORMALIZED_LEAN", [f"{ARCH_PACK}/ArchRateClosure.lean:33", LEAN_ARCH], ["arch", "interpolation", "lean"]),
+    ("selected-arch-error-rate-exists", "THEOREM", "Corrected existential ARCH quadratic rate", ["SelectedArchErrorQuadraticRateExists", "selectedArchErrorQuadraticRateExists_holds"], "For every fixed native GridElement f there exists C_f such that eventually selectedArchError(k,f) is at most C_f times selectedDelta(k) squared. C_f is independent of k, not of f. This does not restore the refuted archRateConst formula.", "FORMALIZED_LEAN", [f"{ARCH_PACK}/ArchRateClosure.lean:44"], ["arch", "rate", "lean"]),
+    ("selected-arch-error-convergence", "THEOREM", "Selected ARCH error tends to zero", ["selectedArchError_tendsto_zero"], "The actual native selectedArchError(k,f) tends to zero for every fixed GridElement f. This is archimedean quadrature convergence, not uniform convergence over all tests, FREQ, or Weil positivity.", "FORMALIZED_LEAN", [f"{ARCH_PACK}/ArchRateClosure.lean:49"], ["arch", "convergence", "lean"]),
+    ("eventual-selected-read-lower-bound", "OPEN_QUESTION", "Eventual native read lower bound", ["EventuallySelectedReadLowerBound"], "Eventually, for each fixed native test, the selected read is bounded below by minus its archimedean error. Under FREQ and the now proved ARCH convergence this is equivalent to native GridElement Weil nonnegativity; neither side is established.", "OPEN", [f"{ARCH_PACK}/FrontierClosure.lean:8", f"{ARCH_PACK}/SeparatedTail.lean"], ["native", "read", "open"]),
+    ("native-grid-weil-positivity", "OPEN_QUESTION", "Native GridElement Weil positivity", ["native_grid_weil_nonnegative"], "Nonnegativity of RH.weilForm on every native GridElement. This must not be silently identified with the classical full Weil or rational Gabor criterion; a precise domain, normalization and transfer theorem is a separate obligation.", "OPEN", [f"{ARCH_PACK}/FrontierClosure.lean:8"], ["native", "positivity", "open"]),
     ("frequently-selected-aug-dual-resolvent", "OPEN_QUESTION", "FREQ cone theorem", ["frequently_selected_augDualResolvent_ge_half", "FREQ cone"], "The FREQ cone theorem: for arbitrarily large K there exist k>=K and a faithful mu-orthonormal transcription of the selected real window with R-dagger(W_k^R)-I/2 positive semidefinite.", "OPEN", [f"{LEAN}/FrequentlySelected.lean:294", "rh/catalog/analysis/evolve_props_report.md"], ["freq", "cone", "open"]),
     ("selected-polynomial-approximates-grid", "OPEN_QUESTION", "Selected polynomial approximates grid", ["SelectedPolynomialApproximatesGrid"], "Named outer bridge: a coefficient vector z exists so the fullRead versus A_cap quadratic form differs by at most the archimedean error. Contains the channel-positivity bridge; r473 NO_BRIDGE.", "OPEN", [f"{LEAN}/InnerBridges.lean:366", "rh/catalog/fragments/part_4.json"], ["grid", "polynomial", "no-bridge"]),
     # Geometry audit (proposed_additions_geometry.json). USED_BY dest must be
@@ -808,9 +813,12 @@ edge("lstar-statement", "w3-uniform-window-positivity", "WOULD_CLOSE", C, f"{PAP
 
 # Lean r475-repair (part_18) and FREQ/grid outer bridges.
 # Catalog attempt path is the Lean file itself (part_18.path).
-edge("selected-arch-weighted-interpolation-estimate", "selected-arch-error-quadratic-rate", "WOULD_CLOSE", C, LEAN_ARCH, "Would close the Exists-C form; the fixed-constant form is already falsified.")
-edge("selected-arch-error-quadratic-rate", LEAN_ARCH, "USED_BY", C, LEAN_ARCH, "falsified: 8.0283 > 4.126 small-support regime; ∃C form open")
-edge("selected-arch-weighted-interpolation-estimate", LEAN_ARCH, "USED_BY", C, LEAN_ARCH, "Classical plumbing for the Exists-C rate interface.")
+edge("selected-arch-weighted-interpolation-estimate", "selected-arch-error-rate-exists", "IMPLIES", T, f"{ARCH_PACK}/ArchRateClosure.lean:44", "The corrected existential rate, not the refuted prescribed constant.")
+edge("selected-arch-error-rate-exists", "selected-arch-error-convergence", "IMPLIES", T, f"{ARCH_PACK}/ArchRateClosure.lean:49", "For each fixed native test; no uniform all-test positivity inference.")
+edge("selected-arch-error-quadratic-rate", LEAN_ARCH, "USED_BY", C, LEAN_ARCH, "The original prescribed constant remains refuted; the corrected existential rate is a separate theorem.")
+edge("selected-arch-weighted-interpolation-estimate", f"{ARCH_PACK}/ArchRateClosure.lean", "USED_BY", T, f"{ARCH_PACK}/ArchRateClosure.lean:33", "Unconditional source theorem, freshly checked with standard Lean axioms only.")
+edge("eventual-selected-read-lower-bound", "native-grid-weil-positivity", "EQUIVALENT_TO", T, f"{ARCH_PACK}/FrontierClosure.lean:8", "CONDITIONAL on FREQ. The AND-premise is explicit in proof_search; neither positivity nor the bound is proved.")
+edge("native-grid-weil-positivity", "frequently-selected-aug-dual-resolvent", "REQUIRES", C, f"{ARCH_PACK}/FrontierClosure.lean:8", "This particular read-bound route requires FREQ; not a necessity theorem for every conceivable proof.")
 edge("frequently-selected-aug-dual-resolvent", "lstar-statement", "REQUIRES", C, f"{LEAN}/FrequentlySelected.lean:294", "Metric FREQ cone, not Euler-side; requires the L* finite free-window comparison.")
 edge("selected-polynomial-approximates-grid", "weil-positivity", "REQUIRES", C, f"{LEAN}/InnerBridges.lean:366", "Contains the channel-positivity bridge; r473 NO_BRIDGE.")
 
@@ -870,6 +878,20 @@ edge("negative-explosion-criterion-a", "gaussian-smoothed-zero-density", "REQUIR
 edge("dyadic-block-capture-eta", "experiments/tfpt-discovery/nb_dyadic_capture_probe.py", "USED_BY", C, HEAT_NB, "Finite ladder through N=512; eta_k>=c/k remains open.")
 edge("negative-explosion-criterion-a", "experiments/tfpt-discovery/heat_gabor_restatement_probe.py", "USED_BY", C, HEAT_NB, "Same-hardness restatement; prime budget e^{1/(8a)} vs slack e^{1/sqrt(a)}.")
 edge("gaussian-smoothed-zero-density", "experiments/tfpt-discovery/heat_gabor_restatement_probe.py", "USED_BY", T, HEAT_NB, "Heat-kernel identity and convolution normalization.")
+
+from research_seeds_20260909 import extend as extend_late_research
+extend_late_research(node, edge)
+
+# Source-pinned paper claims. These are scope annotations, not Lean rules.
+import sys
+sys.path.insert(0, str(HERE.parent))
+from paper_knowledge import graph_rows
+paper_nodes, paper_edges = graph_rows()
+for row in paper_nodes:
+    node(row['id'], row['type'], row['name'], row['aliases'], row['definition'],
+         row['status'], row['sources'], row['tags'])
+for row in paper_edges:
+    edge(*row)
 
 # Deduplicate stable edge identities.
 ids = {n["id"] for n in nodes}

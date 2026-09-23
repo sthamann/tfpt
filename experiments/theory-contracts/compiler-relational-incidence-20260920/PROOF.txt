@@ -1,0 +1,255 @@
+RELATIONEN, NACHBARSCHAFT UND DIE FEHLENDE REKONFIGURATIONSREGEL
+UR.COMPILER.RELATIONAL_INCIDENCE.27 — 20. September 2026
+Verdict: PARTIAL. Exakte bedingte Strukturpruefung; keine physische TOE.
+
+1. Welche Folgerung des eingereichten Texts geprueft wird
+
+Der Text schlaegt vor, die beweglichen Bindungsmuster als Ausgangspunkt
+einer relationalen Entstehung von Raum, Teilchen und Zeit zu verwenden.
+Er verlangt eine gemeinsame minimale Regel statt weiterer separater Modelle.
+
+Die bisherigen Bindungsvektoren sind Zustaende auf denselben bereits
+benannten Quell- und Materiefaktoren. Ihre Uebergaenge veraendern die
+Verschraenkungsstruktur. Die Kanten, auf denen der Hamiltonoperator wirkt,
+sind bisher Eingaben. Eine Permutation von Paketbeinen oder ein Matrixelement
+zwischen Bindungsvektoren ist deshalb noch kein nachgewiesenes Aendern
+dieser physikalischen Inzidenz.
+
+Zu unterscheiden sind:
+  - Bindungs-/Korrelationsstruktur eines Zustands;
+  - Traeger der Wechselwirkungsterme auf den Tensorfaktoren;
+  - aus Operationen, Antworten und einer Grenzfolge rekonstruierte Geometrie.
+Es ist KEIN allgemeiner Satz, dass aus festen mikroskopischen Traegern keine
+effektive Geometrie entstehen kann. Dafuer waere aber eine ausdrueckliche
+Rekonstruktionsabbildung erforderlich. Sie ist hier nicht konstruiert.
+
+2. Die einfachste Graph-Erweiterung erzeugt keine Graph-Uebergaenge
+
+Sei Gamma ein endlicher einfacher Graph auf N markierten Materieplaetzen.
+Ein vorhandener Rand e={x,y} traegt eine native Quelle. Definiere, als
+ausdruecklich zusaetzliche diagnostische Erweiterung,
+
+ H_Gamma = sum_e h_e + mu sum_{e~f} V_ef,
+ h_e = J H_E,e + kappa L_e,
+ J>=0, kappa>0, mu>=0.
+
+e~f bedeutet, dass zwei verschiedene Kanten einen Materieplatz teilen.
+Alle Terme sind die vorhandenen positiven Modellterme. Die Quantisierung
+ueber Graphen sei H_all=direct_sum_Gamma H_Gamma.
+Mit Pi_Gamma als Blockprojektoren und
+ A_xy = sum_Gamma 1[{x,y} in E(Gamma)] Pi_Gamma
+gilt identisch
+
+ [H_all,Pi_Gamma]=0,      [H_all,A_xy]=0.
+
+Die Wahrscheinlichkeit jedes Graphblocks bleibt unter dieser unitären
+Entwicklung erhalten. Mehr Quellen, laengere Zeit und genauere numerische
+Eigenwerte aendern diesen Satz nicht. Auch eine blockrespektierende
+Schurergänzung liefert keine Matrixelemente zwischen Graphen.
+
+Diese Operatoren A_xy gehoeren der hier benannten Erweiterung an; sie werden
+nicht rueckwirkend als bereits vorhandene Observable der alten Kette behauptet.
+Die alte Bindungsamplitude -0.122421647585... mu liegt innerhalb eines
+festen Inzidenzblocks. Sie ist kein Nachweis eines Pi_Gamma' H Pi_Gamma !=0.
+
+3. Exakter Vergleich aller Graphen bei unveraenderter positiver Energie
+
+Verwendete native Voraussetzung aus Contract .17:
+Ein einzelnes Paket hat den eindeutigen Nullzustand Omega, die Luecke
+delta=2 kappa/5 und am einzelnen Materieregister die Dichte I4/4.
+Somit h_e >= delta (I-Q_e), Q_e=|Omega_e><Omega_e| erweitert um die
+Identitaet auf allen anderen Faktoren.
+
+Satz A — Matching-Zweige:
+Wenn Gamma nur disjunkte Kanten und isolierte Vertices enthaelt, setze an
+jede Kante Omega und an isolierte Vertices beliebige Materiezustaende.
+Alle h_e vernichten diesen Vektor. Es gibt keine incident-source Terme.
+Also E0(H_Gamma)=0. Der ganze Grundraum ist das Produkt der eindeutigen
+Paketgrundraeume und der freien isolierten Materieregister.
+
+Satz B — jede echte Kantenueberlappung kostet positive Energie:
+Seien e={x,b} und f={b,y} zwei verschiedene Kanten. Die gemeinsame
+Materiedichte I4/4 ergibt per Schmidtzerlegung
+
+ ||Q_e Q_f||=1/4,       Q_e+Q_f <= (5/4) I.
+
+Damit, unabhaengig von allen anderen Kanten,
+
+ H_Gamma >= h_e+h_f
+         >= (2 kappa/5)(2I-Q_e-Q_f)
+         >= (3 kappa/10) I.                         (3.1)
+
+Die positiven J- und mu-Beitraege koennen die untere Schranke nicht senken.
+Jeder einfache Graph mit einem Knoten von Grad mindestens zwei erfuellt (3.1).
+
+Folgerung:
+Unter genau der in SPEC genannten Erweiterung bestehen die Graphbloecke
+mit Energie null exakt aus Matchings (einschliesslich leerem Graph).
+Jeder zusammenhaengende Graph mit N>=3 liegt mindestens 3 kappa/10 darueber.
+Dies ist ein all-N Argument, keine Extrapolation einer endlichen Graphsuche.
+
+Verstaerkung fuer grosse zusammenhaengende Graphen:
+Waehle einen Spannbaum mit N-1 Kanten. Seine Kanten lassen sich in
+floor((N-1)/2) kanten-disjunkte Paare jeweils benachbarter Kanten zerlegen;
+hoechstens eine Kante bleibt uebrig. Ein induktiver Algorithmus beginnt
+an den Blaettern: Paare am aktuellen Knoten die von den Kindteilbaeumen
+uebrig gebliebenen Kanten. Bei ungerader Zahl paare die letzte mit der
+Elternkante; bei gerader Zahl reiche die Elternkante nach oben weiter.
+An der Wurzel kann hoechstens eine Kante uebrig bleiben.
+
+Wende (3.1) auf jedes Paar an. Kein h_e wird zweimal benutzt. Dass sich
+verschiedene Paare trotzdem einen Materieplatz teilen koennen, ist fuer
+die Addition von Operatoruntergrenzen unschaedlich; Kommutativitaet ist
+nicht erforderlich. Die uebrigen Terme bleiben positiv. Folglich
+
+ E0(H_Gamma) >= (3 kappa/10) floor((N-1)/2)     (Gamma verbunden). (3.2)
+
+Bei festen Kopplungen mit kappa>0 gilt fuer jede verbundene Graphfolge
+liminf_{N->infty} E0(H_Gamma_N)/N >= 3 kappa/20.
+Der Vergleich mit den Nullenergie-Matchings wird daher unter dieser
+Konvention nicht allein durch Vergrössern zu einer verschwindenden
+Energiedichtekorrektur. Dies vergleicht weiterhin die frei zugelassenen
+Graphen; bei fest vorgeschriebener Kantenzahl sind die Vergleichsraeume
+wie unten angegeben zu beachten.
+
+Bei markierten Graphbloecken ist die gesamte Nullraumdimension
+
+ D_N = sum_{r=0}^{floor(N/2)} N!/[ (N-2r)! 2^r r! ] 4^(N-2r),
+ D_0=1, D_1=4, D_N=4 D_(N-1)+(N-1) D_(N-2).
+
+Das ist keine physikalische Zustandszaehlung nach einer moeglichen
+Permutations-/Eichidentifikation. Eine solche Identifikation wurde nicht
+gewaehlt. Kohaerente Ueberlagerungen verschiedener Nullraum-Matchings sind
+moeglich; H_all vernichtet sie ebenfalls. Sie liefern hier keinen
+rekonfigurierenden Zeitverlauf und waehlen keine eindeutige Geometrie.
+
+Schmidt-Kontrolle:
+Im minimalen gemeinsamen Stuetzhilbertraum X tensor B tensor Y mit
+dim X=dim B=dim Y=4 kann man
+ P=|Phi_XB><Phi_XB| tensor I_Y,
+ Q=I_X tensor |Phi_BY><Phi_BY|
+verwenden. Dort gilt PQP=P/16. Das Spektrum von P+Q ist
+0 (56-fach), 3/4 (vierfach), 5/4 (vierfach).
+Die grossen nativen Restfaktoren besitzen weitere Richtungen ausserhalb
+dieser Schmidtstuetzen. Dort koennen zusaetzliche Eigenwerte 0 und 1 von
+P+Q auftreten. Die Normschranke 5/4 bleibt erhalten; das kleine kubische
+Matrixpolynom wird NICHT auf den vollen nativen Hilbertraum uebertragen.
+
+Reichweite:
+Die Folgerung betrifft die frei zugelassenen Graphen und die unveraenderte
+Nullpunktkonvention dieser Erweiterung. Sie sagt nichts Allgemeines gegen
+emergente Geometrie. Sie ist kein thermischer Vergleich, kein dynamischer
+Zerfallsprozess und kein Satz fuer Graphklassen, die Matchings ausschliessen.
+Eine vorgeschriebene zusammenhaengende Kette bleibt dasselbe alte Modell.
+Bei festem N,M sind Matchings nur verfuegbar, wenn 2M<=N; ohne sie folgt die
+behauptete Matching-Minimierung nicht. Die positiven Ueberlappungsschranken
+gelten weiterhin, bestimmen aber dann nicht den optimalen Graphen.
+
+4. Die alte Energie-Nullpunktfreiheit wird zur neuen physikalischen Wahl
+
+Auf jedem festgehaltenen Graphen liefert
+
+ H'_Gamma=H_Gamma+C(Gamma) I
+
+genau dieselbe Dichtematrixentwicklung, dieselben Energiedifferenzen und
+dieselben Antwortfunktionen wie H_Gamma. Das folgt aus der gemeinsamen
+Phase exp(-it C(Gamma)).
+
+Beim Vergleich oder bei kohaerenter Kopplung verschiedener Graphen ist
+C(Gamma) hingegen relevant. Schon C(Gamma)=c |E(Gamma)| beeinflusst den
+Vergleich verschiedener Kantenzahlen. Allgemeiner kann eine unter
+Vertexumbenennung invariante Graphfunktion andere Geometrien bevorzugen.
+Die alten Experimente innerhalb vorgegebener Graphen bestimmen diese
+relativen Graphenergien nicht. Satz A/B benutzt die vorhandene Konvention
+C=0; er macht daraus keine aus P1/P2 erzwungene kosmologische Auswahl.
+
+Ein graphveraendernder Operator W_Gamma',Gamma ist eine weitere fehlende
+Angabe. Selbst gemeinsame Quellsymmetrie, Vertexumbenennung, Hermitizitaet
+und Positivitaet waehlen seine Gewichte nicht generell eindeutig. Fuer
+Graphen mit gleich vielen markierten Quellen lassen sich z.B. unter einer
+zusaetzlichen Identifikation der Tensorfaktoren positive Graph-Laplace-
+Terme mit beliebiger nichtnegativer Kopplung konstruieren. Dies ist nur
+ein Nichtauswahlbeispiel, KEIN hier vorgeschlagenes physikalisches Modell.
+
+5. Der vorgeschlagene massive Dispersionstest ist allein zu schwach
+
+Bereits ein gewoehnlicher gapped nearest-neighbour Zweig
+
+ E(p)=Delta+2t(1-cos p),       Delta>0,t>0
+
+erfuellt in Gittereinheiten
+
+ E(p)^2=Delta^2+2 Delta t p^2+(t^2-Delta t/6)p^4+O(p^6).
+
+Die ersten beiden Koeffizienten kann man stets als m^2 c^4 und c^2
+bezeichnen, wenn m und c frei angepasst werden. Bei Delta=t=1 lauten sie
+1,2,5/6. Ein solcher Vergleich allein weist keinen relativistischen
+Grenzwert nach. Abweichungen hoeherer Ordnung koennen in einem echten
+Grenzwert verschwinden; sie sind kein generelles Gegenargument gegen
+emergente Lorentzsymmetrie. Benoetigt werden kontrollierte Skalierung,
+passende Operatorantworten und ein gemeinsamer Dynamik-/Symmetrietest.
+
+Ein masseloser Zweig c|p| ueber dem tatsaechlichen Vakuum waere ein
+staerkeres Teilresultat. Er beweist fuer sich weder Fermionstatistik noch
+Chiralitaet, 3+1 Dimensionen, universelle Geschwindigkeit oder Gravitation.
+Der Impuls p muss dabei unabhaengig aus einer begruendeten raeumlichen
+Symmetrie oder einem kontrollierten langwelligen Grenzwert bestimmt werden.
+Ihn erst aus einer gewuenschten Dispersionsformel zu definieren, waere ein
+Zirkelschluss. Auf einem allgemeinen Graphen sind Modenindizes oder
+Laplace-Eigenwerte nicht schon ohne weiteres ein physikalischer Impuls.
+
+6. Spektrale Dimension und E8 muessen im selben Woerterbuch bleiben
+
+Fuer einen begruendeten positiven raeumlichen Probeoperator D gilt
+ P(s)=Tr(exp(-sD))/N und d_s(s)=-2 d log P(s)/d log s.
+Welche Dichte, welcher Operator und welcher Skalierungsbereich physisch
+gemeint sind, muss aus dem gemeinsamen Modell folgen. Fuer einen
+translationsinvarianten Vergleich D(p)~|p|^z in d Koordinaten gilt
+P(s)~s^(-d/z), also d_s=2d/z. Die Zahl misst daher auch die Probe-/Kinematik-
+Wahl. d_s=3 allein rekonstruiert noch keine lokale dreidimensionale Welt.
+
+Das vorhandene DIMENSION.SELECTOR.4D.01 ist explizit bedingt: Unter den
+dort benannten Feld-/Kopplungs-/Hodge-/Chiralitaetsannahmen wird d=4
+selektiert. Die Herkunft dieser Annahmen aus dem Compiler bleibt offen.
+Es darf weder als bereits vorhandene Graphdimension noch als mu4->4D
+Abkuerzung benutzt werden.
+
+E8 erst nachtraeglich einzusetzen ist ebenfalls kein ausreichend starker
+Test. Contract .17 Abschnitt10 zeigt bereits einen konkreten Unterschied
+zwischen einer reinen Wurzelpermutation und einer nativen Stromalgebra-
+Automorphie. Vertauscht g zwei Wurzeln alpha,beta mit nichtverschwindendem
+[E_alpha,E_beta] und fixiert alpha+beta, muss der Lift die Antisymmetrie
+des Kommutators durch Phasen respektieren. Reines Umbenennen aller Wurzeln
+verletzt dies. Ein kuenftiger Rekonfigurationsoperator braucht deshalb
+von Anfang an die tatsaechliche Ladungs-, Phasen- und Operatorabbildung.
+Die Gegenprobe widerlegt nicht alle spaeteren phase-korrekten Einbettungen.
+
+7. Literaturvergleich und verbleibender Ursprungsschritt
+
+Die relationale Leitidee hat wissenschaftliche Vorlaeufer. Quantum Graphity
+macht Kantenbelegungen explizit dynamisch und waehlt eigene Grad-, Schleifen-
+und Interaktionsterme. Das dortige bevorzugte Gradparameter ist eine Eingabe.
+Es liefert keinen TFPT-Nachweis, hilft aber, eine fehlende Rekonfigurations-
+regel nicht versehentlich als schon vorhanden zu behandeln.
+https://arxiv.org/html/0801.0861v2 (Abschnitte II.2 und II.3)
+
+Verschraenkungsbasierte Raumzeitrekonstruktion ist eine andere konkrete
+Richtung. Die allgemeine Idee ersetzt ihre physische Abbildung nicht.
+https://arxiv.org/abs/1005.3035
+
+Der Einfluss der Dispersion auf die spektrale Dimension ist etablierte
+Methodik; die obige einfache Skalierungsformel dient nur der Abgrenzung.
+https://arxiv.org/abs/1105.6098
+
+Der naechste Ursprungsschritt ist ein gemeinsamer relationaler Transfer:
+Aus den Originaldaten muessen seine zulaessigen Relationen, Uebergangs-
+amplituden, relativen Graphenergien und die Auslesung der operationalen
+Lokalitaet bestimmt werden. Alternativ muss eine geometrische Auslesung
+der bestehenden festen Traeger explizit bewiesen werden. Eine blosse
+Verbindungsgrafik, ein nichtnull Bindungshop oder eine einzelne Exponentenzahl
+leistet diese Identifikation nicht.
+
+Das vorliegende Ergebnis ist die Entscheidung ueber die naheliegende
+unveraenderte Graph-Erweiterung. Es konstruiert keine neue Ursprungstheorie
+und entscheidet weder das K3-Problem des alten Vierquellensystems noch die
+Existenz einer anderen kritischen Phase. T1-T8 bleiben offen.

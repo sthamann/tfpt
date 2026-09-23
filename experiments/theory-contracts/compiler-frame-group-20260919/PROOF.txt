@@ -1,0 +1,132 @@
+UR.COMPILER.FRAME_GROUP.14 — EXACT BACKGROUND40 GROUP AUDIT
+Date: 2026-09-19
+Research verdict: PARTIAL
+Mathematical verdict: EXACT_ORDER1920_BUT_NOT_WD5_MODULE_OBSTRUCTION
+
+Question
+--------
+For one fixed outer mark q*, the correlated-event construction has 40 native
+Bell10 reflections that fix q*.  Do these events generate the native carrier
+Weyl group W(D5), rather than merely another group of order 1920?
+
+Answer
+------
+No.  The adjoint/projective frame group has order 1920, kernel C2^4 and
+quotient S5, and the extension splits.  Nevertheless its S5-module on C2^4
+is not the even-sign module of W(D5).  The two groups are not isomorphic.
+
+Exact enumeration
+-----------------
+The checker reconstructs the 60 Bell10 monomial reflection matrices from the
+pinned native source and selects the 40 whose outer permutation fixes q*=0.
+Matrices are encoded exactly by a permutation of ten Bell rays and ten mu4
+phase exponents.  Breadth-first closure gives:
+
+  phase-faithful group H40:       |H40| = 3840,
+  center and scalar subgroup:     Z(H40) = {+I,-I},
+  kernel over outer S5:           C2^5, order 32,
+  outer image:                    S5, order 120.
+
+Four explicit involutive lifts of adjacent S5 transpositions satisfy the
+complete A4 Coxeter relations and generate a complement of order 120.  Thus
+H40 is a split C2^5 semidirect S5 for the concrete five-dimensional binary
+module found by the source.  The full S6 non-splitting proved in contract .09
+is unaffected: only this fixed-mark S5 restriction splits.
+
+Quotienting the scalar center gives the group seen by conjugation on arbitrary
+Bell10 observables:
+
+  P40 = H40/{+I,-I},              |P40| = 1920,
+  O2(P40) = C2^4,                 |O2| = 16,
+  P40/O2(P40) = S5,
+  P40 = C2^4 semidirect S5.
+
+Positive identification of this module
+--------------------------------------
+The same exact matrices identify which split C2^4:S5 this is.  In a computed
+F2 basis of O2(P40), the centralizer of the even A5 subgroup in Mat4(F2) is
+exactly
+
+  {0, I, J, J^2},       J^2 + J + I = 0.
+
+This is a copy of F4.  It turns O2(P40) into the additive group of F4^2, and
+the even subgroup is F4-linear.  Its order is 60 and its determinant is
+trivial (A5 has no nontrivial abelian quotient), hence it is SL2(4).  An odd
+S5 Coxeter lift sends J to J^2, exactly the nontrivial Galois automorphism of
+F4/F2.  Therefore
+
+  P40 = F4^2 semidirect (SL2(4) semidirect Gal(F4/F2))
+      = ASL2(4):2.
+
+The certificate records one exact J in the generated kernel basis.  This
+positive name does not change the obstruction below: this semilinear affine
+group is not the even signed-permutation Weyl group W(D5).
+
+Why this is not W(D5)
+---------------------
+Order and quotient are insufficient.  The decisive invariant is the
+conjugation action of S5 on the characteristic normal 2-core O2.
+
+For P40 the action is transitive on all fifteen nonzero kernel vectors:
+
+  orbit signature on O2(P40)-{0}:  15.
+
+For W(D5), O2 is the even-sign subspace of F2^5.  S5 preserves Hamming
+weight, so its fifteen nonzero vectors split into weights two and four:
+
+  orbit signature on O2(W(D5))-{0}:  10 + 5.
+
+This comparison is isomorphism-invariant.  Any normal 2-subgroup of P40 maps
+to a normal 2-subgroup of S5; since O2(S5)=1, it lies inside the displayed
+C2^4.  Hence that kernel is the full characteristic O2 and cannot be replaced
+by another kernel under a hypothetical group isomorphism.
+
+The complete element-order census independently disagrees:
+
+  P40:   1^1, 2^115, 3^320, 4^540, 5^384, 6^320, 8^240.
+  W(D5): 1^1, 2^155, 3^80, 4^500, 5^384, 6^400, 8^240, 12^160.
+
+In particular W(D5) has 160 elements of order 12; P40 has none.
+
+Frame information
+-----------------
+The kernel of the H40 conjugation action on the full Bell10 operator algebra
+is exactly {+I,-I}.  Therefore the exact co-moving frame for arbitrary Bell10
+observables has 1920 distinguishable states.  It can be recorded as one of
+16 kernel states together with one of 120 S5 states.
+
+If only classical Bell labels are retained, all phase/kernel information is
+lost and the image has 120 states, namely S5.  That smaller record is
+insufficient for the coherence-sensitive stopped channel.
+
+Under the standard Nielsen-Chuang deterministic exact programming premise,
+correcting all 1920 inequivalent frame unitaries on arbitrary independent
+Bell10 data requires 1920 mutually orthogonal program states.  This is a
+conditional perfect-control bound, not a universal lower bound for
+state-specific correlated relational encodings.  Each single background
+reflection has Tr(U)=4, so its normalized Choi overlap with the identity
+program is 4/10=2/5; an unflagged native Choi state is not by itself a perfect
+deterministic frame program.
+Primary theorem: Nielsen and Chuang, Programmable quantum gate arrays,
+https://arxiv.org/abs/quant-ph/9703032 (exact deterministic setting).
+
+Representation and physics boundary
+-----------------------------------
+The abstract P40 group is not W(D5), and its Bell10 representation was already
+known not to equal the native carrier Lambda2(W5) representation: the native
+Pauli witness has Bell character 2 but carrier-edge character 10.  The present
+group audit strengthens that boundary from representation inequivalence to an
+abstract group obstruction.
+
+The result supplies an exact finite reference-frame algebra only.  It does not
+derive a physical observer, the outer mark, a memory that records every event,
+continuous interpolation, a local current, physical time, or any TOE gate.
+
+Replay
+------
+  python3 -B experiments/theory-contracts/compiler-frame-group-20260919/checker.py
+  python3 -B -OO experiments/theory-contracts/compiler-frame-group-20260919/checker.py
+
+Run these commands from the TFPT repository root.
+Both modes pass 152574 explicit requirements.  Exact generators, hashes,
+order censuses, orbit signatures and frame-state counts are in certificate.json.

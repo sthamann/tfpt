@@ -1,0 +1,148 @@
+UNABHÄNGIGE PRÜFUNG DER 240-WURZEL-QUELLE
+Datum: 2026-09-19
+Verdict: EXACT_FINITE_PASS_WITH_PHYSICAL_SELECTION_OPEN
+
+Geprüfter Umfang
+----------------
+Geprüft wurde genau das im eingereichten Text definierte endliche Modell
+
+  H(J,kappa) = J H_E + kappa L_R,   J >= 0, kappa > 0,
+
+auf C^240_source tensor C^4_A tensor C^4_B, mit den 240 Gaussianischen
+Wurzeln als orthogonalen Quellzuständen und den 60 Reflexionen aus der
+gepinnten .13-Quelle. Die im Text eingebetteten chatgpt-content-reference-
+Artefakte waren lokal nicht auffindbar. Deshalb ist dies eine unabhängige
+Rekonstruktion, keine bloße Wiederholung jener Zertifikate.
+
+Eingaben:
+  pasted-text.txt SHA256
+    2e2fcde0dbab0015db9c63b5cf91a27f1587894bf9a9b4c3448ad075fd1e456b
+  .13 source_channel.py SHA256
+    3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593
+
+Hauptergebnis
+-------------
+Die vier zentralen endlichen Aussagen tragen exakt:
+
+1. Die 240 Wurzeln sind vier getrennte mu4-Phasenheber der 60 Strahlen. Jede
+   native Reflexion permutiert diese 240 Wurzeln exakt und phasentreu.
+
+2. H_E und L_R sind positiv und kommutieren. Für H_E folgt dies blockweise aus
+   h_l=I-r_l tensor r_l mit h_l^2=2h_l. Für L_R ist jeder Summand
+   R_l tensor r_l tensor r_l eine hermitesche Involution; das Mittel A=I-L_R
+   hat Norm höchstens eins. Die Gruppen-Kovarianz von H_E und die Zentralität
+   der Reflexionsklassensumme geben [H_E,L_R]=0.
+
+3. Es gibt genau einen Grundzustand. In der Konvention
+
+     |l;q> = (1/2) sum_{k=0}^3 i^(kq) |i^k z_l>
+
+   trägt ein fixierter Strahl mit g z_l=phase*z_l im q-Sektor das Gewicht
+   phase^(-q). Der eindeutige A=1-Eigenvektor liegt im Sektor q=2 und im
+   H_E-Kern. Er ist genau der im Text angegebene ausgerichtete Zustand Omega.
+   Seine AB-Reduktion ist P_sym/10; die Schmidt-Gewichte Quelle gegen AB sind
+   zehnmal 1/10, und jede Einzelregister-Reduktion ist I_4/4.
+
+4. Für jedes J>=0 und kappa>0 ist
+
+     gap H(J,kappa) = 2 kappa / 5.
+
+   Der Beweis enthält beide Richtungen: Außerhalb des eindeutigen A=1-Zustands
+   gilt in sämtlichen gemeinsamen H_E/L_R-Blöcken A<=3/5. Zugleich existieren
+   zehn A=3/5-Moden vollständig im H_E-Kern. Daher kann der nichtnegative Term
+   J H_E kein Niveau unter 2kappa/5 ziehen, und diese zehn Moden erreichen die
+   Schranke für jedes J. Das ist keine numerische Eigenwertstichprobe.
+
+Exakter Spektralnachweis
+-----------------------
+Die phasentreue Reflexionsgruppe wurde exakt als Gruppe von 46080
+Gaussianischen Halbzahlmatrizen erzeugt. Für die ganzzahlige Klassensumme
+
+  S = sum_{m=1}^{60} R_m tensor r_m tensor r_m = 60 A
+
+wurde in der treuen regulären Gruppenalgebra das Polynom mit den 21 getrennten
+Nullstellen
+
+  -60,-36,-30,-24,-20,-18,-12,-10,-6,-4,0,
+    4,  6, 10, 12, 18, 20, 24, 30,36,60
+
+geprüft. Die Prüfung erfolgte modulo fünf Primzahlen. Deren CRT-Produkt hat
+150 Bit; eine elementare obere Schranke für jeden ganzzahligen Koeffizienten
+von p(S) hat 127 Bit. Weil das Produkt größer als das Doppelte dieser Schranke
+ist, hebt die modulare Null exakt zu p(S)=0 über. Dies ist kein probabilistischer
+Primzahltest und keine Gleitkomma-Spektralanalyse.
+
+Die Multiplizitäten wurden aus exakten Gruppencharakteren und den Momenten
+Tr(S^k) durch Vandermonde-Inversion modulo p bestimmt. Da jede gesuchte
+Multiplizität zwischen 0 und 960 liegt und p>960 ist, bestimmen die Residuen die
+ganzen Multiplizitäten eindeutig. Dieselbe Rechnung wurde nach H_E=0 und
+H_E=2 aufgespalten. Gerade diese gemeinsame Aufspaltung zertifiziert die obere
+Spektralkante A<=3/5 außerhalb Omega und die zehn erreichenden gap-Moden.
+
+Das vollständige L_R-Spektrum (Eigenwert: Multiplizität) lautet
+
+  0:1, 2/5:10, 1/2:16, 3/5:70, 2/3:18, 7/10:180,
+  4/5:480, 5/6:396, 9/10:360, 14/15:405, 1:1256,
+  16/15:225, 11/10:140, 7/6:144, 6/5:85, 13/10:40,
+  7/5:10, 3/2:4.
+
+Revivals und Anschluss an den alten Ereignisschritt
+----------------------------------------------------
+Alle L_R-Eigenwerte sind ganzzahlige Vielfache von 1/30, und die zugehörigen
+Ganzzahlzähler haben ggT eins. Daher ist der kleinste positive Parameter für
+einen vollständigen L_R-Revival
+
+  kappa*t = 60 pi.
+
+Am alten Ereigniszeitpunkt t*=pi/(2J), J>0, verschwindet die neue L_R-Bewegung
+genau dann vollständig, wenn
+
+  kappa/J = 120 n,  n positive ganze Zahl.
+
+Das kleinste positive Verhältnis ist 120. Dann reproduziert der verbleibende
+Faktor exp(-it* J H_E) exakt den alten kontrollierten Reflexionsschritt. Das ist
+eine konstruktive Existenzbedingung mit zusätzlich gewähltem Kopplungsverhältnis
+und passender Quellpräparation; das Modell leitet dieses Verhältnis nicht her.
+
+Rückwirkungs-Stichprobe
+-----------------------
+Die ergänzende ganzzahlige Prüfung bestätigt für die ausgerichtete Bewegung
+von Koordinate 0 nach Koordinate 1
+
+  p_00(t) = |1 + 5 exp(-2 i kappa t/5)
+                + 9 exp(-2 i kappa t/3)
+               -15 exp(-4 i kappa t/5)|^2 / 3600,
+
+also p_00(t)=kappa^2 t^2/225+O(t^3). Für den geprüften AB=01-Zweig ist die
+entsprechende Zielwahrscheinlichkeit für alle Zeiten exakt null. Der kurze
+Symmetriebeweis ist korrekt: g=diag(i,1,1,i) permutiert die 240 Wurzeln und
+konjugiert die Reflexionsmenge, daher kommutiert source(g) tensor g tensor g
+mit H. Der Anfangszustand hat Gesamtcharakter -i; im Ziel-Quellblock q=2 an
+Koordinate 1 besitzt g tensor g nur 1,i,-1, also keinen Zustand mit Charakter
+-i. Die numerische Krylov-Null bis Ordnung acht ist damit nur eine zusätzliche
+Kontrolle, nicht die Begründung der Allzeit-Aussage.
+
+Validierung
+-----------
+checker.py lief mit normalem Python und mit python -OO identisch durch:
+
+  238823 erfüllte Anforderungen
+  checker.py SHA256
+    ac87509808e33dbf713087524cd1ea991fde9bea4e7c0adb07920435a48cff93
+  certificate.json SHA256
+    d1e907a341bef81f255ab553e3c6c1db672500ebf6e37411e3a1f7062f5d40d8
+
+response_check.py lief ebenfalls normal und mit -OO identisch durch und meldete
+7356 erfüllte Anforderungen. Die entscheidenden Hauptresultate oben beruhen
+jedoch auf dem eigenständigen exakten Gruppenalgebra-Zertifikat in checker.py.
+
+Präzise Grenze
+--------------
+Der eindeutige Grundzustand ist keine autonome Präparationsregel. Die
+Viertelphasenladung q wird von H_E und L_R erhalten. Insbesondere kann eine
+gleichförmig kohärente 240-Wurzel-Quelle im q=0-Sektor unter diesem geschlossenen
+Hamiltonoperator nicht in den q=2-Grundzustand gelangen. Die Annahme, dass die
+240 Wurzellabel orthogonale physische Quellzustände sind, die konkrete Wahl von
+L_R, die Quellpräparation und das Verhältnis J/kappa bleiben zusätzliche
+Modellentscheidungen. Das endliche Zertifikat beweist keine lokale Netztheorie,
+keinen Kontinuumsgrenzwert, keine Auswahl physischer Zeit und keine TOE.

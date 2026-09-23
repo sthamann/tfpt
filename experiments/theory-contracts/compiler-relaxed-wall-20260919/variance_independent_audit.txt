@@ -1,0 +1,150 @@
+INDEPENDENT AUDIT OF THE VARIANCE EXTENSION
+19 September 2026
+
+Verdict: PASS AFTER THE REQUIRED COVARIANCE CORRECTION
+
+Audited artifacts
+=================
+
+  variance_certificate.py
+    sha256 6af730617ea90a8ac768fe50936d49b0301dfd38b6e669757fc21d99e2aebdae
+  variance_certificate.json
+    sha256 d099b6296bbcb8ea8e4590eac7990e148157922feb3131711248ac0d9c6270a1
+  variance_proof.txt
+    sha256 70f3b74f2d0a13642cdca784c563864bcebe3ffa8651c89ac561de6266063060
+
+The JSON reports PASS with 950 guards and 19 scalar four-source
+comparisons. I did not use that status as the proof: the tensor covariance,
+source-class coverage, chord parameters, K=1 reduction, and small-positive-
+coupling Schur step were checked separately below.
+
+1. The covariance correction is necessary and sufficient
+============================================================
+
+The original statement that all conditional cross covariances vanish is
+false for a boundary/bridge pattern. There, the two remaining local terms
+touch the B and C legs of the same Omega packet. Its reduced state is
+
+  rho_BC=P_sym/10=(I+Swap)/20,
+
+so, with tr4 the normalized trace,
+
+  Tr[rho_BC (X tensor Y)]-tr4(X)tr4(Y)
+    =(1/5) tr4[(X-tr4(X))(Y-tr4(Y))].
+
+This is generally nonzero. A direct reduced native contraction for the
+1232 geometry also gives nonzero cross operators, independently confirming
+that the old factorization could not be retained.
+
+The corrected proof uses exactly this identity. The external coefficients
+of X and Y act on disjoint remaining source/matter factors. Positivity of
+the 2-by-2 operator covariance matrix gives operator Cauchy-Schwarz,
+
+  ||Cov(X,Y)|| <= sqrt(v1 v2)/5.
+
+Adding the two ordered cross terms therefore gives
+
+  b^2 <= v1+v2+(2/5)sqrt(v1 v2).
+
+For a bridge first traced over its leg in the other packet, Kadison's
+inequality gives Var(E_leg L)<=E_leg Var(L), so its remaining-leg variance
+is bounded by the certified two-matter variance. This justifies using
+11/320 for a phase1 or phase3 bridge and 29/1200 for a nontrivial phase0
+bridge. For the uniform phase0 source, the partially traced bridge is
+exactly 3I/4, and only in this special case does the connected covariance
+vanish.
+
+The central geometry is different: the two local terms trace one leg from
+each of two independent outer packets. Their conditional product factorizes
+in its actual operator order even when both terms retain the middle matter
+register. Thus the zero-covariance sums 23/300 and 4/75 used for 2132/2312
+and 2112 are valid.
+
+All boundary comparisons now use the corrected bound. In particular,
+
+  corr(2/75,11/320)=293/4800+sqrt(330)/1500,
+  corr(3/80,11/320)=23/320+sqrt(33)/400,
+
+and corr(2/75,29/1200)<=77/1200. The updated scalar lower bounds still
+exceed U=391/320. The smallest of the listed comparison floors is the
+unchanged central q3-class bound 1.2260151847..., still strictly above U.
+
+2. Source classes and resolvent chords are complete for K=0,1,2
+================================================================
+
+The q2 decomposition used here is B direct-sum X, with B=barSym2 and X its
+full 50-dimensional orthogonal complement. In particular, the Sym2 partner
+inside the coarse C2=2/5 class belongs to X; it is not silently omitted.
+The central eigenspaces listed by source_classes exhaust q0, q1, and q3.
+
+The Phi/B resolvent chords use probabilities in [0,1]:
+
+  q3: p=5c/4 is 5/24, 3/8, or 5/8;
+  q1: p is 3/8 or 5/32 for the two non-bar4 classes;
+  q0 dimension45: p=1/3.
+
+Their stated spectral endpoints and compressed means match the source-class
+bounds. Hence the chord inequalities apply to the whole indicated class,
+not merely to a selected vector.
+
+Starting from the exact global_bounds enumeration, all six K=0 strings and
+all three K=2 strings are covered: q2-X cases fall to local floors;
+noncanonical q1 cases fall to disjoint q21/q12 plus q23/q32 bounds; the
+remaining canonical and one-noncanonical cases are precisely the corrected
+variance or pair-projector comparisons in the proof.
+
+For K=1, the six surviving phase strings are likewise exhausted. The
+source-class comparisons remove every noncanonical q1 and every nontrivial
+q0 alternative. The remaining four fixed modules are the two boundary
+modules and the mirror pair of central modules. Their fixed-module
+complement certificates, together with the strict U exclusions, leave
+exactly the two central relaxed-core ground states. The conservative
+unperturbed K=1 separation
+
+  d=381/10^6
+
+is valid because 391/320-1.221493930352476=0.000381069647524>d.
+
+3. Positive K=1 continuation
+================================
+
+Local source charge conservation makes the event operator off-diagonal
+zero between the two different central phase strings, and reflection makes
+its two diagonal entries equal. Each distance term has unit diagonal in
+this doublet, while the native cross contraction is -eta/8. Therefore the
+compressed splitting is mu*eta/4 with eta>=721/779.
+
+For J=mu=epsilon*kappa, W is positive and ||W||<=14 epsilon*kappa. The
+Q block remains at least lambda_center+d, the two trial eigenvalues are at
+most lambda_center+14 epsilon, and the Feshbach correction is bounded by
+
+  r=196 epsilon^2/(d-14 epsilon).
+
+The denominator is positive throughout 0<epsilon<=10^-8. Moreover r/epsilon
+is increasing, so checking the endpoint is sufficient. At epsilon=10^-8,
+r=5.1462479651...e-11 and
+
+  (721/3116)epsilon-2r=2.2109389688...e-9
+    > epsilon/8=1.25e-9.
+
+The two-dimensional Schur complement therefore has one simple lower state
+with gap at least mu/8, and the third K=1 level cannot enter below the pair.
+This establishes the claimed unique ground only inside the complete K=1
+block and only in the stated positive range.
+
+4. Proof boundary
+=================
+
+No mathematical overreach remains in the corrected statement. The result
+excludes K=0 and K=2, determines the full K=1 block at J=mu=0, and controls
+its ground for 0<epsilon<=10^-8. It does not determine the full m4 ground:
+the K=3 strings 1222,2122,2212,2221 and their ten coarse masks remain open.
+It also gives no chain dispersion, thermodynamic vacuum, or Dirac-field
+derivation.
+
+Artifact-integrity note: variance_certificate.py directly pins the native
+source data and exactly checks its local polynomials and scalar comparisons.
+The exhaustive phase reduction also depends on the separately pinned
+source_classes, pair22_audit, q21_audit, global_bounds, and fixed-module
+certificates named in variance_proof.txt; the variance checker is a composed
+certificate, not a self-contained rederivation of those inputs.

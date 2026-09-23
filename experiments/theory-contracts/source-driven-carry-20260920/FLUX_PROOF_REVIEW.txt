@@ -1,0 +1,375 @@
+Analytische Prüfung des tatsächlich getriebenen QWZ-Quellstreifens
+==================================================================
+
+Datum: 20. September 2026
+Gegenstand: gleichförmiger Peierls-Fluss f=1/4 -> 3/4 -> 5/4 im
+ursprünglichen W=8-QWZ-Streifen, ohne Neubesetzung der Fermi-See.
+
+Urteil
+------
+
+PASS unter der ausdrücklich zusätzlich gesetzten externen Drive-Vorschrift.
+
+Der vollständige gefüllte See lässt sich trotz der Nullstelle bei f=1
+analytisch kontrollieren. Der gewöhnliche gapped adiabatic theorem ist dort
+nicht anwendbar. Die tatsächliche W=8-Quelle besitzt jedoch einen glatt durch
+p=0 fortgesetzten geometrischen Top-Randzweig. Seine Ableitung koppelt an den
+Bottom-Zweig nur mit O(p^14), während deren Energiedifferenz O(p) ist. Der für
+den gapless adiabatic estimate benötigte Kommutatorlöser ist daher O(p^13) und
+bleibt samt erster Ableitung beschränkt. Interne Entartungen der sieben
+massiven besetzten Moden werden nicht diagonalisiert; sie werden als ein
+Rang-7-Spektralprojektor behandelt.
+
+Für die lineare Fahrt
+
+    f(s)=1/4+s,  0<=s<=1,
+    i d_s U_N(s)=T_N h_N(f(s)) U_N(s),
+
+in den natürlichen, unskalierten Hopping-Energieeinheiten ist
+
+    T_N = sqrt(N)
+
+eine explizite ausreichende Fahrzeit. Dann gilt für die entwickelte
+Einteilchenkovarianz Gamma_N(s)=U_N(s) P_(1/4) U_N(s)*:
+
+    ||Gamma_N(1)-P_drive,N(1)||_1 = O(N^(-1/2)),
+    ||Gamma_N(1)-P_drive,N(1)||_2 = O(N^(-1)).
+
+Dabei ist exakt
+
+    P_drive,N(1)
+      = P_(5/4)
+        + |top, j=1; 5/4><top, j=1; 5/4|
+        - |bottom, j=1; 5/4><bottom, j=1; 5/4|.                 (A)
+
+Am Halbpunkt gibt es noch keine Nullstelle und
+
+    ||Gamma_N(1/2)-P_(3/4)||_1 = O(N^(-1/2)).                 (B)
+
+Zusammen mit dem bereits bewiesenen vollständigen Source-Sea-Satz folgt für
+die obere Streifenhälfte:
+
+    Delta Q_top(1/4 -> 3/4) = +1/2 + O(N^(-1/2)),
+    Delta Q_top(1/4 -> 5/4) = +1   + O(N^(-1/2)).              (C)
+
+Unten stehen die entgegengesetzten Werte. Die Gesamtteilchenzahl bleibt bei
+jeder endlichen Größe exakt 8N. Der volle Zyklus trägt also im Grenzwert eine
+ganze Ladung von unten nach oben; die beiden Halbfahrten tragen je +1/2.
+
+Das ist ein bedingter Satz über den extern gefahrenen Quell-Hamiltonian. Er
+leitet weder die Fahrvorschrift noch ihre Geschwindigkeit aus P1/P2 her und
+liefert kein lokales Intersektorfeld.
+
+
+1. Geprüfte Originalquelle
+--------------------------
+
+Repository-HEAD:
+
+    66b91e40e245569f06ab440ead80f446c9be0ee5
+
+Quellen:
+
+    verification/v1033_charged_disorder.py
+    SHA-256 01c64748c70784b17cf1c61b7bd2b4c51a69c19c4a2274f09028892eab5cb83f
+
+    experiments/theory-contracts/source-edge-charge-transport/PROOF.md
+    SHA-256 7d51e5aaf0f93b43b7b2f6a08149917ba22a8bbb91f434d4e7f7b391aab673d4
+
+Die primitiven Blöcke sind unverändert
+
+    TX = SX/(2i) - SZ/2,
+    TY = SY/(2i) - SZ/2,
+    M  = 1, W = 8.
+
+In der SX-Basis lautet der tatsächliche Impulsblock
+
+    h(p) = [ -sin(p) I    D(rho)  ]
+           [ D(rho)*      sin(p) I],
+
+    D(rho)=rho I-S,  rho=1-cos(p),
+
+wobei S der obere einseitige Shift auf acht Querzeilen ist. Dies ist die
+bereits quellgeprüfte Darstellung, keine Ersatzmodellierung. Ihre acht
+Eigenwertpaare sind
+
+    +/- sqrt(sin(p)^2+d_a(rho)^2),
+
+mit den Singulärwerten d_a von D. Bei rho=0 ist genau ein Singulärwert null;
+die übrigen sieben sind eins. Daher ist p=0 modulo 2 pi die einzige
+Nullstelle des Einteilchenspektrums.
+
+Der gleichförmige Peierls-Drive ist in einer festen Fourierbasis
+
+    h_N(f) = direct_sum_(j=0,...,N-1) h(p_j(f)),
+    p_j(f) = 2 pi (j-f)/N.                                    (1)
+
+Für jedes feste f ist dies durch eine statische Gitter-Eichtransformation
+zum ursprünglichen Seam-Twist äquivalent. Eine zeitabhängige Transformation
+zurück in die Seam-Gauge erzeugt zusätzlich das zugehörige skalare Potential.
+Darum ist (1) eine physisch spezifizierte externe Probe und keine aus P1
+gewonnene Auswahlregel.
+
+
+2. Der richtige Projektor durch die Nullstelle
+----------------------------------------------
+
+Außerhalb von p=0 ist der negative Spektralprojektor P_-(p) eindeutig. In
+der Fahrt f=1/4 -> 5/4 kreuzt nur der feste Fourierblock j=1 die Nullstelle:
+
+    p_1(1/4)= 3 pi/(2N),
+    p_1(1)  = 0,
+    p_1(5/4)=-pi/(2N).                                        (2)
+
+Der bereits vorhandene Beweis zeigt mehr als einen kleinen Residual:
+
+* Der kleinste Eigenwert von D*D ist bei rho=0 einfach und isoliert.
+  Seine linken und rechten reellen Singulärlinien l(rho), r(rho) lassen
+  sich analytisch in rho wählen.
+
+* Der zugehörige signierte Singulärwert besitzt bei W=8 die Form
+
+      d(rho)=rho^8 a(rho),  a(0)>0,
+
+  mit analytischem a. Da rho(p)=p^2/2+O(p^4), gilt
+
+      d(p)=O(p^16).                                           (3)
+
+* Auf dem exakten zweidimensionalen Randunterraum hat h(p) deshalb die
+  reelle Matrix
+
+      h_edge(p) = [ -sin p   d(p) ]
+                  [  d(p)    sin p].                           (4)
+
+  Der geometrische Top-Zweig lässt sich mit dem Mischwinkel
+
+      theta(p)=1/2 arctan(d(p)/sin p)
+
+  glatt durch p=0 fortsetzen. Aus (3) folgt
+
+      theta(p)=O(p^15),  theta'(p)=O(p^14).                    (5)
+
+  Der Top-Zweig hat für p>0 negative, für p<0 positive Energie. Der
+  Bottom-Zweig verhält sich umgekehrt. Dies ist genau der Spektralfluss,
+  der bei einer Evolution ohne Neubesetzung erhalten bleiben muss.
+
+Sei P_mass^-(p) der Rang-7-Projektor der negativen massiven Moden und
+P_top(p), P_bottom(p) die exakten geometrisch markierten Randprojektoren.
+Für den kreuzenden Block wird gesetzt
+
+    P_cross(p)=P_mass^-(p)+P_top(p).                            (6)
+
+Für alle anderen Blöcke bleibt es bei P_-(p). Der so definierte direkte
+Summenprojektor P_drive,N(s) erfüllt
+
+    [h_N(f(s)),P_drive,N(s)]=0,
+    P_drive,N(0)=P_(1/4).                                     (7)
+
+Bei p=0 enthält (6) genau den geometrischen Top-Nullvektor. Der zweite
+Nullvektor liegt im Komplement. Dies ist keine willkürliche Benennung: Top
+und Bottom sind durch die ursprünglichen Querprofile und die SX-Polarisation
+markiert.
+
+Aus (6) ergibt sich (A) am Endpunkt. Am Halbpunkt ist p_1=pi/(2N)>0;
+noch hat kein Block die Nullstelle passiert. Deshalb gilt dort exakt
+
+    P_drive,N(1/2)=P_(3/4).                                   (8)
+
+
+3. Gapless adiabatic estimate ohne Einzelmodenfehler
+----------------------------------------------------
+
+Hier wird der Schritt angegeben, der eine gewöhnliche Gap-Abschätzung
+ersetzt. Für einen der 16-dimensionalen Blöcke schreibe P(p) für den jeweils
+in Abschnitt 2 definierten Rang-8-Projektor und
+
+    K_p=[partial_p P,P].
+
+Gesucht wird ein offdiagonaler Operator X_p mit
+
+    [h(p),X_p]=K_p.                                            (9)
+
+Für ausgewählte/unselektierte Eigenräume a,b ist die Lösung formal
+
+    <b|X_p|a> = <b|partial_p P|a>/(E_b-E_a).                   (10)
+
+Gleichung (10) wird projektorweise gelesen; innerhalb der sieben massiven
+besetzten Moden wird keine Eigenbasis gewählt. Alle Paare mit mindestens
+einem massiven Modus besitzen in der kleinen p-Umgebung eine gleichmäßige
+Lücke. Außerhalb dieser Umgebung ist der positive/negative Spektralschnitt
+gleichmäßig von null getrennt.
+
+Nur das Top/Bottom-Paar könnte (10) singulär machen. Dort geben (4)-(5)
+
+    <bottom|partial_p P_top|top> = O(p^14),
+    E_bottom-E_top = O(p),
+
+also
+
+    <bottom|X_p|top> = O(p^13),
+    partial_p <bottom|X_p|top> = O(p^12).                      (11)
+
+Damit besitzt (9) auf den benötigten einseitigen Ground-State-Zweigen und
+auf dem durchlaufenden Top-Zweig stetige Fortsetzungen. Es existieren
+quellenabhängige, aber N-unabhängige endliche Konstanten
+
+    A = sup ||X_p||,
+    B = sup ||partial_p X_p||,
+    D = sup ||K_p||.                                           (12)
+
+Die Suprema laufen über die tatsächlich benötigten Zweige des kompakten
+Impulskreises. Ihre Endlichkeit ist analytisch gezeigt; numerische
+Intervallschranken für A,B,D wurden in dieser Prüfung nicht behauptet.
+
+Nun ist v=partial_s p_j=-2 pi/N. Es gelten
+
+    K_s=v K_p,  X_s=v X_p,  partial_s X_s=v^2 partial_p X_p.   (13)
+
+Sei U_A die Kato-Evolution
+
+    i partial_s U_A=(T_N h+i[partial_s P,P])U_A.
+
+Sie verflicht die Projektoren exakt. Setzt man Omega=U_A* U und benutzt
+[h,X_s]=[partial_s P,P], liefert eine einzige partielle Integration
+
+    ||Omega(1)-I||
+      <= (1/T_N) {2 sup||X_s||
+          + integral_0^1 (||partial_s X_s||
+                          +||[partial_s P,P]|| ||X_s||) ds}.
+
+Daraus folgt für jeden Block
+
+    ||U P(0) U* - P(1)||
+      <= e_N
+      := 8 pi A/(N T_N)
+         + 8 pi^2 (B+D A)/(N^2 T_N).                           (14)
+
+Diese Schranke benutzt die Ableitungen, die an der Nullstelle tatsächlich
+verschwinden. Sie ersetzt ausdrücklich nicht die Nullstelle durch eine
+fiktive Mindestlücke c/N.
+
+Die uniforme Fahrt mischt keine j-Blöcke. Die Differenz zweier Rang-8-
+Projektoren hat Rang höchstens 16. Summation von (14) ergibt deshalb
+
+    ||Gamma_N(1)-P_drive,N(1)||_1
+      <= 16 N e_N
+      <= 128 pi A/T_N
+         +128 pi^2(B+D A)/(N T_N),                             (15)
+
+und orthogonale Addition der Hilbert-Schmidt-Normen ergibt
+
+    ||Gamma_N(1)-P_drive,N(1)||_2
+      <= 4 sqrt(N) e_N
+      <= 32 pi A/(T_N sqrt(N))
+         +32 pi^2(B+D A)/(N^(3/2) T_N).                        (16)
+
+Dieselbe Rechnung auf 0<=s<=1/2 beweist (B). Mit T_N=sqrt(N) werden (15)
+und (16) zu den im Urteil angegebenen O(N^-1/2)- und O(N^-1)-Schranken.
+
+Ein gröberer gapped estimate auf allen nicht kreuzenden Blöcken und ein
+separater Duhamel-Bound O(T_N N^-16) auf dem kreuzenden Randpaar würde zwar
+beispielsweise T_N=N^4 erlauben. Er ist hier unnötig und verdeckt die
+stärkere Eigenschaft der tatsächlichen W=8-Quelle: Der getrackte Zweig ist
+selbst an der Nullstelle gapless-adiabatisch regulär.
+
+
+4. Halbtransport und ganze Ladung
+---------------------------------
+
+Sei T_cut die Projektion auf die obere Streifenregion, insbesondere cut=4.
+Für die am End-Hamiltonian zeitgemittelte Quellladung A_cut gilt
+0<=A_cut<=I. Daher ändern die Kovarianzfehler (15) ihren Erwartungswert um
+höchstens dieselbe Spurklasse-Norm.
+
+Der vorhandene Source-Sea-Beweis liefert ohne Modenlöschung
+
+    Tr[(P_(3/4)-P_(1/4)) T_cut] = 1/2+O(N^-1).                 (17)
+
+Zusammen mit (B) und (15) folgt die erste Zeile von (C).
+
+Für den vollen Zyklus gilt
+
+    p_j(5/4)=p_(j-1)(1/4).
+
+P_(5/4) ist somit nur die große Eichverschiebung des Anfangsprojektors.
+Da T_cut translationsinvariant in Umfangsrichtung ist,
+
+    Tr[(P_(5/4)-P_(1/4))T_cut]=0                              (18)
+
+bereits bei endlichem N. Der einzige zusätzliche Term ist der Defekt in
+(A). Am Endimpuls p=-pi/(2N) gibt die vorhandene geometrische Abschätzung
+
+    <top|T_cut|top> = 1+O(N^-16),
+    <bottom|T_cut|bottom> = O(N^-16)                           (19)
+
+für cut=4. Aus (18)-(19) und (15) folgt die zweite Zeile von (C). Für eine
+andere feste echte Trennlinie bleibt der Grenzwert derselbe; nur die Potenz
+des lokalen Randfehlers wird schwächer.
+
+Weil T_cut+(I-T_cut)=I und die Evolution den Rang 8N erhält, sind obere und
+untere Änderung bei jedem N exakt entgegengesetzt. Nach der großen
+Eichidentifikation ist (A) daher genau ein Top-Teilchen plus ein Bottom-Loch.
+
+
+5. Was für Felder folgt und was nicht
+-------------------------------------
+
+Die Wahl T_N=sqrt(N) erfüllt gleichzeitig
+
+    T_N -> infinity,      T_N/N -> 0.                          (20)
+
+Die erste Bedingung macht den vollständigen Spurklassefehler klein. Für
+einen festen niederenergetischen Randlabel ist |E_edge|=O(1/N), sodass
+seine dynamische Phase O(T_N/N) verschwindet. Die exakten Randvektoren
+können in einer reellen Gauge gewählt werden und besitzen dort keine
+diagonale Berry-Verbindung. Nach der großen Eichverschiebung erhält man
+daher auf jedem festen endlichen Rand-Teilchen/Loch-Kern die erwartete
+Spektralflussabbildung, bis auf eine gemeinsame Vakuumphase und einen
+verschwindenden Fehler. Die Hilbert-Schmidt-Schranke (16) kontrolliert
+auch den Slater-Vakuumüberlapp.
+
+Dies ist dennoch kein lokales Feld V_N:
+
+* Der Peierls-Vektorpotential-Drive liegt auf allen N Umfangslinks.
+* Seine notwendige Laufzeit divergiert im Grenzübergang.
+* In der Seam-Gauge erscheint das zeitabhängige skalare Potential.
+* Der Beweis setzt den Fahrplan f(s) von außen; er zeigt keine Auswahl
+  durch P1, P2, E8 oder die TFPT-Clocks.
+
+Bewiesen ist damit eine globale, source-native Spektralflussausführung des
+Halb-/Ganzladungs-Carrys. Offen bleibt weiterhin ein quellabgeleitetes,
+lokal verschmiertes Intersektorfeld mit festem Raumzeitträger, kontrolliertem
+Adjungierten, gemeinsamer physischer Zeit und nichtverschwindendem lokalen
+Grenzwert. Auch die Herkunft von acht Kanälen und die E8-/Clock-Markierung
+wird durch diesen Drive nicht hergeleitet.
+
+
+6. Geltungsgrenze und Status
+----------------------------
+
+Mathematischer Status:
+
+    EXACT_CONDITIONAL_SOURCE_SPECTRAL_FLOW
+
+unter den festgelegten Voraussetzungen W=8, M=1, uniforme lineare
+Peierls-Fahrt, Anfangskovarianz P_(1/4), keine Neubesetzung und unskalierte
+Hopping-Zeit. Die Konstanten A,B,D sind analytisch endlich, aber hier nicht
+intervallnumerisch ausgewertet.
+
+Falls stattdessen der in der früheren Ladungsarbeit verwendete skalierte
+Generator s_N h mit s_N=N/(2 pi) als Zeiteinheit eingesetzt wird, ist die
+Zeitvariable entsprechend um s_N umzurechnen. Die Kovarianzaussage bleibt
+dieselbe; die Aussage über verschwindende niederenergetische dynamische
+Phasen ist an die oben ausdrücklich gewählte unskalierte Drive-Zeit gebunden.
+
+Forschungsstatus:
+
+    PARTIAL für QGEO.KERNEL.01 / T1-T2-T8.
+
+Der neue Satz schließt die zuvor ausdrücklich offene Frage, ob der
+vorgegebene globale Quell-Drive Halb- und Ganzladung tatsächlich transportiert.
+Er schließt nicht die frühere, stärkere Frage nach einem nativ ausgewählten
+lokalen Quellfeld. Der derzeitige Theoriegraph ist wegen nicht regenerierter
+Änderungen unter experiments/theory-contracts/ als stale gemeldet; dieses
+Review beruht deshalb auf den oben gehashten Originalquellen, nicht auf einem
+als aktuell ausgegebenen Graph-Verdict.

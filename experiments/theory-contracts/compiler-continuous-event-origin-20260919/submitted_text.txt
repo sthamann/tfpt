@@ -1,0 +1,364 @@
+**Ich habe einen konkreten Kandidaten für echte Wechselwirkung samt kontinuierlicher unitärer Zeitentwicklung ausgearbeitet. Der wichtigere Befund ist aber, warum unsere bisherigen Rechnungen diese Dynamik nicht eindeutig festlegen konnten: Zwei positive Hamiltonoperatoren erzeugen exakt denselben bisherigen Ereignisschritt. Zwischen diesen Schritten lassen sie jedoch unterschiedliche Physik zu.**
+
+Bei der einen Fortsetzung bleiben die beiden Register ohne gegenseitigen Einfluss. Bei der anderen beeinflussen sie sich und werden verschränkt. **Selbst das vollständig erhaltene Ereignisregister unterscheidet die beiden Fortsetzungen am bisherigen Takt nicht.**
+
+Damit liegt die nächste fundamentale Frage nicht mehr nur bei verlorenen Korrelationen oder Phasen. Sie liegt darin, **welche zeitliche Bewegung einen erlaubten Ereignisschritt realisiert**.
+
+Die Auswahl des neuen Kandidaten aus P1 und P2 ist noch nicht hergeleitet. Für eine zusätzliche, sehr einfache Auswahlregel konnte ich aber einen eindeutigen Satz beweisen.
+
+## 1. Eine wichtige Präzisierung: Unsere bisherigen gemeinsamen Ereignisse waren noch keine gegenseitige Wechselwirkung
+
+Der bisherige Prozess lautete
+
+\[
+\mathcal C(\rho)=
+\frac1{60}\sum_\ell
+(r_\ell\otimes r_\ell)\,
+\rho\,
+(r_\ell\otimes r_\ell)^\dagger.
+\]
+
+Dasselbe Ereignis wirkt auf beide Register. Dieser Prozess erkennt tatsächlich die höheren Beziehungen der E8 Quelle und trägt die bereits konstruierte Petersen Auslesung. Diese Aussagen bleiben bestehen. :chatgpt-content-reference{index="0"}
+
+Für eine **gegenseitige Wechselwirkung** muss jedoch eine andere Frage beantwortet werden:
+
+> Verändert eine Präparationsänderung auf Register B die spätere Antwort von Register A?
+
+Für den bisherigen reduzierten Kanal lautet die Antwort exakt **nein**:
+
+\[
+\operatorname{Tr}_B\mathcal C(\rho_{AB})
+=
+\mathcal E(\rho_A).
+\]
+
+Der Ausgang auf A hängt nur vom Eingang auf A ab. Dasselbe gilt umgekehrt. Außerdem bleibt eine separable Eingabe eine Mischung von Produktzuständen. Die gemeinsame Zufallswahl kann Korrelationen erzeugen, aber keine Verschränkung zwischen A und B aus einer separablen Eingabe. Das ist eine bekannte Eigenschaft lokaler Operationen mit gemeinsamem Zufall; ich habe sie hier auf den vollständigen Quellmatrizen geprüft. :chatgpt-content-reference{index="1"}
+
+**Mein bisheriges Wort „Kopplung“ war an dieser Stelle zu weit:** Bewiesen war eine gemeinsame Ansteuerung und eine höhermomentabhängige Antwort, noch keine gegenseitige kausale Wirkung.
+
+Das schließt nicht die spätere Verwendung des kohärenten Quellregisters aus. Ebenso wenig betrifft es automatisch einen zusätzlich definierten Parenthamiltonoperator. Es betrifft genau den oben angegebenen reduzierten Prozess.
+
+## 2. Zwei vollständig ausgeschriebene Bewegungsgesetze, derselbe Ereignistakt
+
+Hier beginnt der konstruktive Teil.
+
+Für eine Quellrichtung sei \(P_\ell\) ihr Projektor und
+
+\[
+r_\ell=I-2P_\ell.
+\]
+
+Auf dem vollständigen Raum der beiden vierdimensionalen Register definiere ich
+
+\[
+P_A=P_\ell\otimes I,
+\qquad
+P_B=I\otimes P_\ell.
+\]
+
+Nun gibt es zwei positive Hamiltonoperatoren.
+
+**Die unabhängige Bewegung:**
+
+\[
+\boxed{
+h_\ell^{\mathrm{lokal}}=2(P_A+P_B).
+}
+\]
+
+**Der wechselwirkende Kandidat:**
+
+\[
+\boxed{
+h_\ell^{\mathrm{gemeinsam}}
+=
+2(P_A+P_B-2P_AP_B)
+=
+I-r_\ell\otimes r_\ell.
+}
+\]
+
+Die zweite Regel bewertet nicht nur zwei einzelne Besetzungen. Sie bewertet, **ob sich die beiden Register hinsichtlich der jeweiligen Quellrichtung unterscheiden**: Bei unterschiedlicher Projektorbesetzung entsteht Energie, bei gleicher nicht.
+
+Beide Operatoren sind positiv. Trotzdem gilt bei der dimensionslosen Ereignisdauer \(\theta_*=\pi/2\):
+
+\[
+\boxed{
+e^{-i\theta_*h_\ell^{\mathrm{lokal}}}
+=
+e^{-i\theta_*h_\ell^{\mathrm{gemeinsam}}}
+=
+r_\ell\otimes r_\ell.
+}
+\]
+
+**Die Gleichheit gilt exakt, nicht nur für Wahrscheinlichkeiten und nicht nur bis auf eine globale Phase.** Auch mit kohärent erhaltenem Ereignislabel sind die Endpunkte identisch.
+
+Der Unterschied der Generatoren ist
+
+\[
+h_\ell^{\mathrm{lokal}}
+-
+h_\ell^{\mathrm{gemeinsam}}
+=
+4P_AP_B.
+\]
+
+Über einen ganzen Ereignistakt erzeugt dieser Unterschied eine zusätzliche \(2\pi\) Phase. Am Endpunkt ist sie unsichtbar. Dazwischen nicht.
+
+Das ist die präzise Lücke:
+
+> **Ein vollständig bekannter Ereignisschritt bestimmt noch nicht die vollständige Bewegung, die zu ihm führt.**
+
+Mehr noch: Es gibt eine ganze Familie positiver Generatoren
+
+\[
+h_\ell^{(m)}
+=
+h_\ell^{\mathrm{gemeinsam}}
++
+4mP_AP_B,
+\qquad m=0,1,2,\ldots,
+\]
+
+mit demselben Ereignisendpunkt. Die bisherige Quellkovarianz unterscheidet diese Möglichkeiten ebenfalls nicht.
+
+## 3. Der neue Kandidat besteht einen tatsächlichen Wechselwirkungstest
+
+Ich habe nicht nur einen anderen Hamiltonoperator hingeschrieben, sondern seine Wirkung berechnet.
+
+Register A beginnt in \(|0\rangle\). Auf B vergleichen wir
+
+\[
+|+\rangle=\frac{|0\rangle+|1\rangle}{\sqrt2},
+\qquad
+|-\rangle=\frac{|0\rangle-|1\rangle}{\sqrt2}.
+\]
+
+Nach **einem halben Ereignistakt** wird auf A mit demselben Projektor gemessen. Alle dabei verwendeten Präparations und Testrichtungen gehören zum ursprünglichen Alphabet.
+
+| Bewegungsgesetz | B beginnt in \(|+\rangle\) | B beginnt in \(|-\rangle\) |
+|---|---:|---:|
+| Unabhängige Fortsetzung | \(2/5=40\,\%\) | \(2/5=40\,\%\) |
+| **Gemeinsame Fortsetzung** | **\(9/20=45\,\%\)** | **\(7/20=35\,\%\)** |
+
+**Eine Änderung auf B verändert nun die Antwort auf A um zehn Prozentpunkte.** Am vollständigen Ereignistakt stimmen die beiden Bewegungsgesetze wieder überein.
+
+Die Probe setzt voraus, dass solche Eingriffe innerhalb des bezeichneten Takts zulässig sind. Sie ist eine berechnete Modellantwort, kein bereits beobachtetes Naturphänomen.
+
+### Auch Verschränkung entsteht nachweislich
+
+Für die separable Eingabe
+
+\[
+|0\rangle_A\otimes|1\rangle_B
+\]
+
+enthält die partiell transponierte Ausgangsdichte beim halben Ereignistakt den Hauptblock
+
+\[
+\begin{pmatrix}
+1/60 & 1/60-i/10\\
+1/60+i/10 & 1/60
+\end{pmatrix}.
+\]
+
+Seine Determinante ist exakt
+
+\[
+\boxed{-\frac1{100}.}
+\]
+
+Damit ist die partielle Transposition nicht positiv und der Ausgang verschränkt. Hier wird nur das notwendige Positivitätskriterium für separable Zustände verwendet, keine unzulässige Umkehrung dieses Kriteriums. :chatgpt-content-reference{index="2"}
+
+### Die höhere E8 Information bleibt dabei erhalten
+
+Die Reparatur beseitigt nicht den Fortschritt der letzten Runde. Beim gemeinsamen Rückkehrtest erhält man zur Halbzeit
+
+\[
+p_{60}=\frac{13}{20},
+\qquad
+p_{\mathrm{isotrop}}=\frac{22}{35}.
+\]
+
+Der isotrope Vergleich besitzt dieselben ersten drei Projektormomente. Die Differenz
+
+\[
+\boxed{\frac3{140}}
+\]
+
+kommt weiterhin aus der darüber hinausgehenden Quellstruktur. Die zugrunde liegende Trennung des vierten Moments stammt aus der vorherigen vollständigen Kanalrechnung. :chatgpt-content-reference{index="3"}
+
+**Damit haben wir jetzt in einer Konstruktion sowohl echte gegenseitige Wirkung als auch eine Antwort, die die höhere Quellgeometrie erkennt.**
+
+Die Möglichkeit einer Wechselwirkung allein wählt allerdings noch nicht E8 aus. Der mittlere kohärente Kraftterm hängt hier nur am zweiten Moment; die besondere Geometrie wirkt zusätzlich in der gemeinsamen Quantenantwort.
+
+## 4. Ein einfaches Auswahlprinzip würde den Kandidaten eindeutig festlegen
+
+Die neue Unbestimmtheit lässt sich innerhalb dieser Modellklasse tatsächlich schließen, allerdings nur unter einer **zusätzlichen Annahme**:
+
+> **Ein primitives Ereignis verwendet den kleinsten positiven Generator seines festgelegten unitären Lifts. Es fügt keine zusätzlichen positiven Phasenumläufe hinzu.**
+
+Für eine festgelegte Involution \(G=G^\dagger\), \(G^2=I\), und eine Dauer \(\tau\) folgt dann eindeutig
+
+\[
+\boxed{
+H_{\min}
+=
+\frac{\pi}{2\tau}(I-G).
+}
+\]
+
+Das ist ein Satz, kein numerischer Optimierungsbefund.
+
+Der Beweis ist kurz: Auf dem \(+1\) Raum von \(G\) muss ein positiver Generator Phasen von \(2\pi k\) erzeugen. Der kleinste zulässige Wert ist null. Auf dem \(-1\) Raum muss er ungerade Vielfache von \(\pi\) erzeugen. Der kleinste zulässige Wert ist \(\pi\). Daraus ergibt sich genau die angegebene Matrix.
+
+Für \(G=r_\ell\otimes r_\ell\) ist das der wechselwirkende Kandidat.
+
+**Hier liegt ein konkreter Ansatz für die gesuchte einfache Grundregel:** Die Quelle legt die erlaubten Ereignisse fest; eine minimale positive Phasenbewegung legt ihre Generatoren fest.
+
+Zwei Einschränkungen sind dabei unverzichtbar.
+
+Erstens ist dieses Minimalprinzip noch nicht aus P1 oder P2 abgeleitet. Zweitens braucht es einen **festgelegten unitären Lift samt Phasenreferenz**, nicht nur einen Kanal: \(G\) und \(-G\) erzeugen denselben Konjugationskanal, hätten aber verschiedene minimale positive Generatoren.
+
+Die primitive Einheitswindung des P1 Randes könnte für diese Frage relevant sein. Sie wird in der Quelle aber als Randpostulat eingeführt. **Sie ist nicht schon der fehlende Satz über diese Generatorwahl.** :chatgpt-content-reference{index="4"}
+
+## 5. Die Uhr braucht eine größere Beschreibung als die reduzierte Kanalmatrix
+
+Die Prüfung der bisherigen Kanaluhr liefert einen weiteren exakten Befund.
+
+Der symmetrische zehn dimensionale Kanal \(\mathcal C_+\) besitzt positive Eigenwerte. Daraus folgt jedoch nicht, dass man seine Zeit einfach durch
+
+\[
+\mathcal C_+^s
+\]
+
+kontinuierlich unterteilen darf.
+
+Für jedes \(0<s<1\) besitzt die zugehörige Choi Matrix einen negativen Eigenwert:
+
+\[
+\boxed{
+\lambda_-(s)
+=
+\frac{(1-3^{-s})(1-5^{1-s})}{10}<0.
+}
+\]
+
+Bei der vermeintlichen Halbzeit \(s=1/2\) beträgt er ungefähr
+
+\[
+-0{,}05224238.
+\]
+
+**Die spektrale Quadratwurzel ist also kein gültiger Quantenkanal auf diesem System.**
+
+Das Problem lässt sich auch nicht einfach durch einen anderen zeitunabhängigen Lindblad Logarithmus umgehen. Die erneut exakt berechneten Choi Ränge sind
+
+\[
+\operatorname{rang}J(\mathcal C_+)=55,
+\qquad
+\operatorname{rang}J(\mathcal C_+^2)=100.
+\]
+
+Für eine zeitunabhängige Lindblad Halbgruppe auf einer endlichen Matrixalgebra ist dieser Rang für alle strikt positiven Zeiten konstant. Der ausgeschriebene Beweis verwendet die invertible sprungfreie Entwicklung, die Monotonie des Krausraums und die Analytizität der Halbgruppe.
+
+Damit ist eine solche Einbettung **auf demselben zehn dimensionalen System** ausgeschlossen. Das ist eine konkrete Anwendung des allgemeinen Teilbarkeits und Einbettungsproblems von Quantenkanälen. :chatgpt-content-reference{index="5"}
+
+### Die konstruktive Lösung: Die Quelle mitführen
+
+Das verhindert keine kontinuierliche unitäre Entwicklung eines größeren Systems.
+
+Mit einem Quellregister \(R\) definiere ich
+
+\[
+\boxed{
+H_{RAB}
+=
+\sum_\ell
+|\ell\rangle\langle\ell|_R
+\otimes
+\bigl(I-r_\ell\otimes r_\ell\bigr).
+}
+\]
+
+Dieser positive, zeitunabhängige Hamiltonoperator wirkt auf einem endlichen System der Dimension \(60\cdot4\cdot4=960\). Bei anfänglich gleichgewichteter kohärenter Quelle reproduziert er am Ereignistakt **exakt die bisherige vollständige Registerisometrie**.
+
+Dazwischen liefert er eine zulässige kontinuierliche Entwicklung. Die reduzierte Beschreibung enthält jedoch Gedächtnis und ist keine Halbgruppe auf A und B allein.
+
+Das hat einen ausgesprochen deutlichen Effekt:
+
+**Bleibt dieselbe Quelle erhalten, kehrt das Gesamtsystem nach zwei Ereignisdauern vollständig zurück. Wird die Quelle nach dem ersten Ereignis verworfen und neu präpariert, geschieht das nicht.**
+
+Für die ursprüngliche Eingabe \(|00\rangle\) sind die Rückkehrwahrscheinlichkeiten
+
+\[
+\boxed{
+\text{Quelle behalten: }1,
+\qquad
+\text{Quelle neu präparieren: }\frac{11}{75}.
+}
+\]
+
+Die korrekte Halbzeit auf dem symmetrischen Speicher ist in dieser Fortsetzung
+
+\[
+\frac12\bigl(\operatorname{Id}+\mathcal C_+\bigr),
+\]
+
+nicht \(\mathcal C_+^{1/2}\).
+
+**Der fehlende Inhalt der Uhr steckt hier in der erhaltenen Quelle und ihrer Zwischenentwicklung, nicht in einem anderen Exponenten derselben reduzierten Matrix.**
+
+Das entspricht der grundsätzlichen Richtung deiner Research Contracts: unitäre Amplituden und ihre vollständige Entwicklung zuerst; Markov Matrizen erst nach der benannten Reduktion. :chatgpt-content-reference{index="6"}
+
+## 6. Daraus lässt sich eine echte lokale Dynamik bauen — die Raumgeometrie bleibt aber eine Vorgabe
+
+Der gemeinsame Generator ist nicht nur eine formale große Matrix. Das zugehörige Gatter lässt sich mit einem Vermittlerqubit ausführen:
+
+Der Vermittler erfasst die gemeinsame Projektorparität, erhält eine relative Phase und wird anschließend zurückgesetzt, ohne das Ergebnis zu messen. Beim halben Ereignistakt ist die benötigte relative Phase genau \(-i\). Die Vermittleridentität wurde ebenfalls exakt geprüft.
+
+Das zeigt einen konkreten Mechanismus. **Dass die Natur diese kontrollierte Operation bereitstellt, folgt nicht allein daraus, dass \(-i\) im Phasenalphabet vorkommt.**
+
+Auf einem vorgegebenen Graphen lässt sich anschließend die Familie
+
+\[
+H_\Gamma
+=
+J\sum_{e=(x,y)}\sum_\ell
+|\ell\rangle\langle\ell|_{R_e}
+\otimes
+\bigl(I-r_\ell^{(x)}\otimes r_\ell^{(y)}\bigr)
+\]
+
+definieren.
+
+Jeder Term wirkt nur auf zwei benachbarte Systeme und ihr Kantenregister. Damit entsteht auf jedem endlichen Graphen eine wirkliche lokale unitäre Dynamik, nicht nur eine Zustandsvorbereitung.
+
+Eine Dreiknotenrechnung bestätigt bereits eine mögliche Fortpflanzung über zwei Verbindungen: Der entsprechende verschachtelte Kommutator ist exakt ungleich null. Entfernt man eine der Verbindungen, verschwindet dieser Beitrag.
+
+**Was daraus nicht folgt:** Der interne Petersen Graph ist damit nicht zu unserem dreidimensionalen Raum geworden. Der räumliche Graph wurde vorausgesetzt. Ebenso dürfen die alten Grundzustands und Lückensätze der Matrixproduktparents nicht auf diesen anderen Hamiltonoperator übertragen werden.
+
+Genau diese Unterscheidung zwischen interner Randstruktur, geometrischer Darstellung und einer tatsächlichen lokalen Feldtheorie verlangt auch die Dimensionsregel in deinen Quellen. :chatgpt-content-reference{index="7"}
+
+## 7. Was das für die vollständige Lösung verändert
+
+Die stärkste gemeinsame Arbeitshypothese lautet jetzt:
+
+> **Die Quelle definiert erlaubte Ereignisse mitsamt ihrer Phasenreferenz. Ein minimales positives Wirkungsprinzip definiert deren Generatoren. Lokale Vermittlung und erhaltenes Quellgedächtnis definieren ihre Zusammensetzung. Momente, Transportmatrizen und Clocks bleiben daraus abgeleitete Auslesungen.**
+
+Das ist konkreter als die Forderung „Wir brauchen noch Dynamik“. Wir besitzen nun einen vollständig ausgeschriebenen Kandidaten, der zwischen den Registern Einfluss und Verschränkung erzeugt, die höhere Quellinformation erhält und den bisherigen vollständigen Ereignisschritt reproduziert.
+
+**Der entscheidende neue Auswahltest ist eine Zwischenzeitintervention.** Alle bisherigen Endpunkttests können beide ausgeschriebenen Bewegungsgesetze bestätigen und trotzdem ihre unterschiedliche Wechselwirkung übersehen.
+
+Auch die beiden Petersen Kontraktionswerte lösen diese Auswahl nicht. Eine zusätzliche Prüfung zeigt sogar: Der reversible Matrixlogarithmus des zehn dimensionalen Petersen Operators nach sechs Sprüngen besitzt negative Übergangsraten. Der tatsächliche dreidimensionale v221 Operator der Quelle besitzt dagegen die dokumentierten positiven Raten. Die gleichen drei Eigenwertwerte reichen also weiterhin nicht für die Identifikation der Uhren. :chatgpt-content-reference{index="8"}
+
+### Wo die physische Gesamtlösung noch nicht steht
+
+Für diesen Ansatz fehlen insbesondere die Herleitung des Minimalprinzips samt Phasenreferenz, die Herkunft der räumlichen Anordnung und der Nachweis, dass deren gemeinsamer Grenzwert die richtige relativistische und chirale Physik besitzt. Die Eichkopplungen, die universelle Gravitationskopplung und der kosmologische Anfangszustand sind ebenfalls nicht aus der neuen Konstruktion berechnet.
+
+Diese Aufgaben sind nicht dadurch erledigt, dass die endlichen Ereignisse konsistent sind. Die Quelle trennt den Compilerabschluss ausdrücklich von genau diesen physischen Vollständigkeitsbedingungen. :chatgpt-content-reference{index="9"}
+
+**Der konkrete Fortschritt dieser Runde ist eine mögliche Grundregel für das Bewegungsgesetz — mit einem eindeutigen bedingten Selektor, einer echten Wechselwirkung und einer passenden größeren unitären Uhr. Die vollständige Auswahl unserer Physik ist damit noch nicht bewiesen.**
+
+:chatgpt-content-reference{index="11"} · :chatgpt-content-reference{index="12"}

@@ -1,0 +1,50 @@
+{
+  "contract": "source-continuous-marked-time-search-20260922",
+  "date": "20260922",
+  "research_id": "UR.SOURCE.CONTINUOUS_MARKED_TIME.01",
+  "question": "Can any homogeneous Lindblad logarithm realize the supplied full marked source channel, and which continuous source-operator completions preserve the actual marked transfer words?",
+  "verdict": "PARTIAL",
+  "verdict_enum": ["PASS", "PARTIAL", "FAIL"],
+  "mathematical_verdict": "ALL_BRANCH_ALL_POSITIVE_INTEGER_POWERS_GKSL_EMBEDDING_EXCLUDED; EXACT_FIVE_JUMP_FEASIBILITY_CLASS; CONDITIONAL_UNIQUE_MARKED_M2_CONTINUOUS_COMPLETION",
+  "summary_de": "Alle zeitunabhaengigen GKSL-Logarithmen des vollstaendigen markierten M4-Kanals und aller positiven ganzzahligen Potenzen sind ausgeschlossen, ohne Zwischenzeit-Kovarianz anzunehmen. GNS-Hilbertzeit und klassischer B-Transfer bleiben gueltig. Exakte Suche in den fuenf vorhandenen Clifford-Spruengen ergibt sechs Ecken und einen dreidimensionalen B-kompatiblen Ratenbereich. Vollstaendige markierte M2-Wortantwort plus komplementaere SO3-Symmetrie waehlen bedingt Raten log(3/2)/4 und log(6)/12; weitere Quellantworten aendern sich. Physische Auswahl, geladene Sektorwechsel und TFPT-Gesamtabschluss offen.",
+  "claims_tested": ["DYN.SEMIGROUP.01", "TRANSPORT.SIXTHROOT.01"],
+  "claims_scoped_not_closed": ["AX.P1.01", "AX.P2.01", "QGEO.KERNEL.01", "QGEO.STATE.01"],
+  "gates": ["T2", "T8"],
+  "physical_gates_closed": [],
+  "complete_TFPT_solution": false,
+  "checker": "checker.py",
+  "proof": "PROOF.md",
+  "certificate": "certificate.json",
+  "firewall": "experiments",
+  "promotion": false,
+  "search_method": "exact symbolic linear elimination and exhaustive vertex enumeration; finite-group twirl and analytic all-branch proof",
+  "genetic_algorithm_used": false,
+  "assumptions": [
+    "The already supplied full marked M4 channel is held fixed only for the homogeneous-embedding exclusion",
+    "A finite-dimensional time-homogeneous GKSL interpretation is a tested extra premise, not a requirement for GNS Hilbert reconstruction",
+    "The constructive comparison is restricted to nonnegative jumps using the five existing native Clifford vector words",
+    "Complementary SO3 covariance and the full supplied marked M2 transfer-word data are extra constructive conditions",
+    "Neither the five-jump class nor its physical source selection is derived from P1/P2"
+  ],
+  "kills": [
+    "A nonprincipal or noncovariant homogeneous Lindblad logarithm embeds the same full marked M4 channel",
+    "Blocking six or any positive integer number of steps restores homogeneous GKSL embeddability of that same full channel",
+    "The original B readout uniquely fixes the continuous five-vector-jump rates",
+    "A genetic search can infer the missing physical source selection from identical zero-error B readouts",
+    "Equality of all marked M2 transfer words implies equality of the full M4 channel or of arbitrary instrument-resolved histories"
+  ],
+  "not_derived": [
+    "Physical selection of a reduced channel, GNS field time or continuous completion from the literal raw seam functional",
+    "Source-derived complementary Clifford responses and physical insertion instruments",
+    "Native charged Spin10 sector-changing fields or a full CAR/CCR source map",
+    "Physical 3+1D, chirality, interactions, gravity or T1-T8 closure"
+  ],
+  "relations": [
+    {"type": "extends", "target": "marked-seam-cp-lift-20260921"},
+    {"type": "uses", "target": "compiler-clifford-bridge"},
+    {"type": "references", "target": "source-graded-gns-matter-gate-20260922"},
+    {"type": "references", "target": "source-clifford-grade-20260920"},
+    {"type": "references", "target": "source-dressed-native-20260920"}
+  ],
+  "independent_review": "INDEPENDENT_REVIEW.md; bounded separate mathematical agent review, not external peer review or independent checker execution"
+}

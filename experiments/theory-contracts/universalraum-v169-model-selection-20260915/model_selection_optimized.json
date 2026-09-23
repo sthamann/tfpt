@@ -1,0 +1,200 @@
+{
+  "status": "PASS",
+  "contract": "universalraum-v169-model-selection-20260915",
+  "package": "v1.6.9 work order, Package 2: selection vs underdetermination",
+  "verdict": {
+    "family1": "a (uniqueness modulo operational equivalence; equivalence = identity on [0,1])",
+    "family2": "b (explicit counter-model pair: distributed vs collective; 0 vs 64 N=3 eigenstates)",
+    "selection_question": "c (precisely localized open continuation condition: missing typed chart-gluing map)",
+    "free_choice_eliminated": {
+      "family1": "c is uniquely recoverable from I4 = 1 + c^4 (injective on [0,1])",
+      "family2": "Q = C^+ C is reconstructible from G_C^(3); C itself is NOT selected (B6)"
+    },
+    "assumption_remaining": {
+      "family1": "A5 (c in [0,1] is the only free datum) + the open typed chart-gluing map",
+      "family2": "B6 (finite-sector tests do not give unrestricted global uniqueness)"
+    },
+    "discriminating_experiment": {
+      "family1": "measure I4 (4th energy moment of rho_L) or P(L->R;t) at order t^4",
+      "family2": "count N=3 one-boson eigenstates at energy Delta: 0 (distributed) vs 64 (collective)",
+      "phase_probe": "Cross-copy boson coherence <b^+_A(p) b_A(q)> (p!=q) = (C C^+)_{pq}. At L=2, collective class Q=J_2/2: U=I gives offdiag +1/2, U=diag(1,-1) gives offdiag -1/2.  Same Q = C^+ C, different C C^+ => the probe distinguishes marked phases of C that Q = C^+ C leaves invisible."
+    },
+    "missing_typed_map": "A chart-gluing homomorphism phi: {C4 source-ray overlap squares} -> [0,1] (the global CAR chart-overlap c), with phi(s)=sqrt(s), that is consistent with Spin(10)xSU(4) charge conservation at all 480 vertices and selects a single c.  The documented FW->BW integer charge maps carry no real-valued overlap datum, so no C4 source square is typed-assignable to a CAR-chart overlap by the documented maps alone. This is the precisely localized open continuation condition."
+  },
+  "discriminating_numbers": {
+    "family1_I4": {
+      "3/5": {
+        "c": "3/5",
+        "I4": "706/625",
+        "expected": "706/625"
+      },
+      "4/5": {
+        "c": "4/5",
+        "I4": "881/625",
+        "expected": "881/625"
+      },
+      "0": {
+        "c": "0",
+        "I4": "1",
+        "expected": "1"
+      },
+      "1/4": {
+        "c": "1/4",
+        "I4": "257/256",
+        "expected": "257/256"
+      },
+      "1/2": {
+        "c": "1/2",
+        "I4": "17/16",
+        "expected": "17/16"
+      },
+      "1": {
+        "c": "1",
+        "I4": "2",
+        "expected": "2"
+      }
+    },
+    "family1_I4_3_5": "706/625",
+    "family1_I4_4_5": "881/625",
+    "family1_P_LtoR_coeff": "16 g^4 c^4 t^4 (4th order)",
+    "family2_Q_dist": [
+      [
+        "1/2",
+        "0"
+      ],
+      [
+        "0",
+        "1/2"
+      ]
+    ],
+    "family2_Q_coll": [
+      [
+        "1/2",
+        "1/2"
+      ],
+      [
+        "1/2",
+        "1/2"
+      ]
+    ],
+    "family2_Q_dist_eigs": [
+      "1/2",
+      "1/2"
+    ],
+    "family2_Q_coll_eigs": [
+      "0",
+      "1"
+    ],
+    "family2_N3_split": {
+      "distributed": 0,
+      "collective": 64
+    },
+    "family2_trK": 960,
+    "phase_offdiag_U_I": "1/2",
+    "phase_offdiag_U_phase": "-1/2"
+  },
+  "model_class": {
+    "native_invariants": {
+      "fermion_modes": 64,
+      "boson_modes": 60,
+      "pair_gram": "W W^T = 8 I_60 (exact, pinned SHA-256)",
+      "vertices": 480,
+      "charges": "N = N_f + 2 N_b; FW (64x8), BW (60x8)",
+      "symmetry_frame": "Spin(10) x SU(4) on (16,4); 10 beta matrices",
+      "interaction_order": "g (b^+ P_A + P_A^+ b); P_A = sum_{i<j} W_{A,ij} f_j f_i",
+      "kinetic": "Delta N_b",
+      "checkpoint": "g/Delta = 1/20, no mu N"
+    },
+    "family1_two_chart": {
+      "carrier": "Fock space of 128 fermion modes {a_i,d_i}_{i=1..64} plus two boson banks {b^L_A,b^R_A}_{A=1..60}",
+      "physical_operators": "f^L_i = a_i ; f^R_i = c a_i + sqrt(1-c^2) d_i",
+      "car_overlap": "{f^L_i,f^L_j^+}=d_ij, {f^R_i,f^R_j^+}=d_ij, {f^L_i,f^R_j^+}=c d_ij, c in [0,1]",
+      "interaction": "H = H^L + H^R, each chart uses SAME W and same g, own bank; P^s_A = sum W_{A,ij} f^s_j f^s_i",
+      "states": "rho_L = chart-L filled fermion reference, boson vacuum of bank L; measurement in chart-R basis",
+      "instruments": "left G-invariant boson mixing + right total boson number (internal-invariant comparison)",
+      "assumptions": [
+        "A1: two charts share the 64 a-modes; d-modes are an independent 64-mode CAR copy.",
+        "A2: each chart reuses the SAME native W tensor (no deformation).",
+        "A3: same coupling g and same Delta on both charts.",
+        "A4: separate boson banks (no shared-bank coupling).",
+        "A5: overlap c in [0,1] is the ONLY free datum of the family.",
+        "A6: comparison observables are internal-invariant (not a port-renaming artefact)."
+      ]
+    },
+    "family2_shared_bank": {
+      "carrier": "L copies of the 64 fermion modes sharing ONE boson bank of 60 modes; total fermion modes 64*L",
+      "physical_operators": "M_A = C (x) A_A, A_A = sum W_{A,ij} f_j f_i on each copy; C symmetric normalized L x L",
+      "normalization": "C C^+ = I_L (distributed: I_L/sqrt(L); collective: J_L/L, J_L = all-ones)",
+      "interaction": "H = Delta N_b + g sum_A (b^+_A M_A + M_A^+ b_A)",
+      "charges": "N = N_f + 2 N_b (N_f counts all 64*L fermion modes)",
+      "states": "filled fermion reference on each copy, shared boson vacuum",
+      "instruments": "global pair Gram 8 I_60 (both C choices); N=2 total spectra identical; N=3 sector resolves split",
+      "assumptions": [
+        "B1: L identical copies of the 64-mode fermion block.",
+        "B2: ONE shared boson bank (not L separate banks).",
+        "B3: C symmetric normalized (C C^+ = I_L); C is the free datum.",
+        "B4: pair Gram stays 8 I_60 for every admissible C (enforced by C C^+ = I_L).",
+        "B5: matrix-resolved G_C^(3) observable (tensor-factor dictionary), not only a spectral list.",
+        "B6: finite-sector tests do not give unrestricted global uniqueness; higher interactions can stay invisible outside the tested charge range."
+      ]
+    }
+  },
+  "guards": 50,
+  "exact_guards": 50,
+  "numerical_guards": 0,
+  "guard_names": [
+    "ten 16x16 spinor beta matrices",
+    "native row Gram W W^T = 8 I_60",
+    "eight pairs per mediator row",
+    "weight label shapes",
+    "one mediator channel per supported pair",
+    "Cartan charge conservation at all 480 vertices",
+    "W SHA-256 matches pinned native_source value",
+    "FW SHA-256 matches pinned native_source value",
+    "BW SHA-256 matches pinned native_source value",
+    "model class carrier guards",
+    "S = sum of squared W entries = 480 (exact)",
+    "two-chart 2-step norm = 480 (exact)",
+    "cross-chart pair overlap = c^2 per pair (CAR algebra, exact)",
+    "I4(3/5) = 1 + c^4 = 706/625 (exact)",
+    "I4(4/5) = 1 + c^4 = 881/625 (exact)",
+    "I4(0) = 1 + c^4 = 1 (exact)",
+    "I4(1/4) = 1 + c^4 = 257/256 (exact)",
+    "I4(1/2) = 1 + c^4 = 17/16 (exact)",
+    "I4(1) = 1 + c^4 = 2 (exact)",
+    "I4 distinguishes c=3/5 from c=4/5 (exact)",
+    "C4 source square s=0: I4 = 1 + s^2 = 1 (exact)",
+    "C4 source square s=1/4: I4 = 1 + s^2 = 17/16 (exact)",
+    "C4 source square s=1/2: I4 = 1 + s^2 = 5/4 (exact)",
+    "C4 source square s=1: I4 = 1 + s^2 = 2 (exact)",
+    "Q_dist = I_2/2 (exact)",
+    "Q_coll = J_2/2 (exact)",
+    "tr Q_dist = 1 (exact)",
+    "tr Q_coll = 1 (exact)",
+    "Q_dist eigenvalues {1/2,1/2} (exact)",
+    "Q_coll eigenvalues {0,1} (exact)",
+    "distributed: 0 eigenstates at Delta resonance (exact)",
+    "collective: 64 eigenstates at Delta resonance (exact)",
+    "Q reconstructed from G (distributed, exact)",
+    "Q reconstructed from G (collective, exact)",
+    "Q formula reconstructs Q but does not select C originally (B6)",
+    "s=1/2 gives irrational c (exact)",
+    "documented charge map FW is integer-valued (no real overlap datum)",
+    "documented charge map BW is integer-valued (no real overlap datum)",
+    "family1: c=c trivially equivalent",
+    "family1: c=3/5 not equiv c=4/5",
+    "family1: c=1/2 not equiv c=1",
+    "family1: I4 injective on {0,0.1,...,1.0} (exact)",
+    "family2: distributed Q != collective Q (not equivalent, exact)",
+    "family2: 0 vs 64 eigenstates distinguishes (exact)",
+    "family2 equivalence range: classes indexed by Q = C^+ C",
+    "phase: C^+ C identical for U=I and U=diag(1,-1) (exact)",
+    "phase: cross-copy coherence +1/2 vs -1/2 (exact, phase-sensitive)",
+    "phase-sensitive probe distinguishes marked phases beyond C^+ C (exact)",
+    "I4(3/5) = 706/625 (exact)",
+    "I4(4/5) = 881/625 (exact)"
+  ],
+  "native_W_sha256": "7a4a0b1c4401a20a84aee47b75f9b9d8882299bdff938ba11fd5b2bfe5656112",
+  "reproduction_note": "Family 1 I4 verified by exact Fraction arithmetic at c=3/5,4/5 and C4 source squares 0,1/4,1/2,1.  Family 2 Q-reconstruction and the 0-vs-64 N=3 split reproduced on the 64-dim chi-composite block via the Gram operator G_C^(3) = 8 I - Q (x) K (tr K = 960); the full 349056-dim contraction was NOT rebuilt (the reduced Gram operator is the exact small reproduction).  Phase sensitivity verified on the 2x2 copy space with exact Fractions.",
+  "scope": "counts are guards, not independent new theorems or physical closure"
+}

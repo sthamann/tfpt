@@ -1,0 +1,50 @@
+{
+  "reviewed": "/Users/stefanhamann/Documents/Codex/2026-09-18/unte-2/work/continuous_interaction_20260919/checker.py",
+  "verdict": "FINITE_CLAIMS_PASS_WITH_TWO_CHECKER_COVERAGE_GAPS",
+  "runs": {
+    "normal": {
+      "checks": 1208,
+      "verdict": "PARTIAL"
+    },
+    "optimized_OO": {
+      "checks": 1208,
+      "verdict": "PARTIAL"
+    },
+    "outputs_identical": true
+  },
+  "confirmed": {
+    "continuous_vs_discrete_frame_boundary": {
+      "statement": "Discrete covariance of C20 under Ad(U_h) does not imply covariance under the infinitesimal commutator generator ad(U_h).",
+      "all_six_marks_nonzero_entries": [192, 192, 192, 192, 192, 192],
+      "all_six_marks_frobenius_norm_squared": [4224, 4224, 4224, 4224, 4224, 4224],
+      "normalization": "These counts and norms use the unnormalized integer C20; the checker-reported first entries divide by 20."
+    },
+    "lindblad_rank_obstruction": {
+      "statement": "The same-system bounded finite-dimensional time-homogeneous GKSL embedding is excluded by ranks 55 at t=1 and 100 at t=2.",
+      "proof": [
+        "A finite-dimensional GKSL semigroup has an invertible no-jump Kraus operator K0(t).",
+        "In a Kraus representation of E(s+t)=E(s) composed with E(t), the products of a minimal Kraus family of E(s) with K0(t) remain linearly independent; positivity of the Choi sum makes their span a subspace of the later Choi support. Hence Choi rank is nondecreasing.",
+        "Every Choi-matrix entry of exp(tL) is analytic. If the nondecreasing rank increased at a positive time, all minors of the new size would vanish on an earlier open interval and therefore vanish identically. Thus the Choi rank is constant for every t>0.",
+        "If E(1)=Cplus, then E(2)=Cplus squared, contradicting the exact ranks 55 and 100."
+      ],
+      "scope": "This does not exclude a larger retained-source unitary system, a time-dependent generator, or a non-Markovian reduced evolution."
+    },
+    "principal_fractional_power": "The exhibited Choi eigenvalue (1-3^(-t))*(1-5^(1-t))/10 is negative for every 0<t<1, so the principal spectral fractional powers are not channels.",
+    "fixed_lift_minimal_generator": "The minimal-positive-generator statement is correct only for the fixed unitary involution, fixed duration, a time-independent positive generator, and its chosen phase lift.",
+    "native_alphabet_inputs": "Independent lookup confirms e0, e1, (e0+e1)/sqrt(2), (e0-e1)/sqrt(2), and (e0+i e1)/sqrt(2) are all among the 60 native rays."
+  },
+  "coverage_gaps": [
+    {
+      "severity": "validation_gap",
+      "location": "continuous background covariance loop",
+      "detail": "The checker requires only one nonzero commutator entry per mark. It does not require the decisive exact fingerprint of 192 nonzero entries and squared norm 4224, although independent recomputation confirms both for all six marks."
+    },
+    {
+      "severity": "validation_gap",
+      "location": "lindblad_embedding_same_system certificate field",
+      "detail": "The checker verifies the two endpoint Choi ranks but writes the embedding exclusion without encoding or accompanying the rank-constancy theorem. The theorem is valid under the stated bounded finite-dimensional time-homogeneous GKSL assumptions, as summarized in this review."
+    }
+  ],
+  "mathematical_errors_found": [],
+  "physics_boundary": "No finite check derives the minimal-generator selection rule, the phase reference, the spatial graph, a physical frame memory, a relativistic or chiral limit, gauge/gravity couplings, or a TOE claim."
+}

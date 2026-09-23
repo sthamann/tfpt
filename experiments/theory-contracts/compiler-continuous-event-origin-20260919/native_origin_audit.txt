@@ -1,0 +1,245 @@
+NATIVE FRAME ORIGIN AUDIT — 2026-09-19
+
+Scope
+-----
+Read-only audit of the native origin required by
+UR.COMPILER.CORRELATED_EVENT_CLOCK.13.  Verdict: PARTIAL.  The finite Bell10
+construction has an exact spatial history frame, but the inspected seam/CAR/
+C_fin sources do not supply an explicit native transport of that frame together
+with a ready pointer algebra.  The existing candidates do not yet contain the
+required map; this is not a no-go against a covariantly transported seam
+realisation.
+
+The required interface
+----------------------
+Let Hbar=Stab(q*)≅S5 be the label/population quotient.  The forty q*-fixing
+source events are the four phase lifts of each of the ten transpositions of the
+five remaining points, so their outer label actions generate Hbar.  Keeping
+the Pauli phases gives the full adjoint frame group
+
+  Hhat = F4^2 semidirect (SL2(4) semidirect Gal)
+       = ASL2(4):2,  |Hhat|=1920,
+
+not merely S5 (exact reconstruction: experiments/theory-contracts/compiler-frame-group-20260919/PROOF.txt).
+On Bell10=Sym^2(C^4), contract .13 already has concrete
+monomial unitaries B_g and the exact covariance
+
+  B_g^* K_(ell,a) B_g = phase(g,ell,a) K_(g^{-1}ell,a),
+  a in {stay,jump}.
+
+Consequently F, updated by F <- B_g F, is spatially implemented on this finite
+memory.  What is missing is its transport into the native seam theory.  The
+first needed equality is the spatial transport
+
+  j(B_g X B_g^*) = W_g j(X) W_g^*,             (A)
+  g in Hhat.
+
+for a source-derived embedding j:End(Bell10)->A_seam, a representation or
+compatible projective representation g->W_g, or an equivalent covariant
+transport of the marked seam observables.  Physical execution of an event does
+not require W_g Omega=Omega.  Only the stronger interpretation of every frame
+move as a symmetry of one fixed vacuum would additionally require
+
+  W_g Omega = Omega                              (B)
+
+(or the corresponding covariance relation between transported states).
+For the recorded instrument one further needs a native commutative pointer
+algebra with orthogonal event projections e_ell and a ready state, such that
+
+  V^*(e_ell tensor X)V = K_ell^* X K_ell       (C)
+
+and sequential composition of these outcomes updates the same W-word F.  An
+abstract Stinespring dilation or an arbitrary matrix subalgebra does not prove
+(A) and (C), nor the optional symmetry condition (B).
+
+Six decisive source checks
+--------------------------
+1. Exact target, but explicit physical premise.
+   experiments/theory-contracts/compiler-correlated-event-clock-20260919/
+   PROOF.txt:146-183 proves the finite history identity, including
+
+     (B_h F)^* (B_h rho B_h^*) (B_h F)=F^*rho F,
+     S_recorded=(2/3)Id+(1/3)S20,
+     J_recorded=(1/3)J20,
+     Phi_recorded=J20(I-S20)^(-1).
+
+   The same source states at 185-198 that the stay/jump refinement is an
+   instrument, not a nondisturbing observation of a fixed coherent history,
+   and that the final frame requires the actual event record.  Thus .13 fixes
+   exactly what (A)-(C) must realise; it does not supply the seam carrier.
+
+2. Pointwise preservation of the full marked finite compiler is too strong,
+   but this does not exclude covariant frame transport.
+   verification/v845_cfin_normal_form.py:32-77 defines
+
+     C_fin=(V,hbar,q*,sigma,iota),
+
+   and proves |Stab_Sp(q*)|=120≅S5.  But
+   verification/v888_finite_pfaffian_signature.py:913-926,1249-1269 computes
+
+     Aut(C_fin)={g in Sp(4,2): q*o g=q*, g sigma=sigma g,
+                 iota o g = pi o iota for some pi in S5} ≅ C6.
+
+   Therefore q*-pointing alone permits the S5 label quotient used in .13,
+   while automorphisms fixing the already marked sigma/iota tuple in the stated
+   sense reduce to C6.  This rules out identifying the whole quotient action
+   with symmetries that leave every component of the marked tuple unchanged.
+   It does NOT rule out the full 1920-element frame transporting sigma, iota,
+   the clock or the mark covariantly.  The missing source step is the explicit
+   transport law for those marked operators, or a justified seam quotient on
+   which they need not be retained.
+
+3. SEAM.EQUIV.CROSSEDPRODUCT.01 contains no explicit full-frame transport or
+   pointer.
+   verification/v469_seam_crossedproduct_route.py:12-27 constructs the local
+   simple-current extensions
+
+     SO(16)_1 crossed_product {1,s},             h_s=1,
+     (D5)_1 x (A3)_1 extended by <J>≅mu4,       h(J^k)=1.
+
+   These are Z2/mu4 extension data.  They neither define an Hhat action W_g on
+   the seam algebra nor projections e_ell for the sixty source outcomes.
+   Lines 185-196 retain quasi-freeness/continuum realisation as conditional or
+   open.  Hence the crossed product is a candidate algebraic home for group
+   implementers, but the existing theorem does not itself realise F: its named
+   extension groups have orders 2 and 4, while the required finite adjoint
+   frame has order 1920.  This absence is not a group-theoretic impossibility;
+   additional event operators may transport the seam data without being
+   symmetries of the fixed crossed-product vacuum.
+
+4. The native NS/CAR state presently establishes only mu4 covariance, and its
+   deployed expectation forgets the needed history.
+   verification/v199_seam_state_invariance.py:8-30 gives the actual criterion
+
+     omega o rho = omega  <=>  rho C_Sigma rho^* = C_Sigma
+                           <=> [rho,H_1]=0,
+
+   only for the order-four carrier clock rho; even its bounded subprincipal
+   continuum part remains open.  verification/v995_kms_subnet_rigidity.py:
+   11-30,212-237 supplies the exact finite ready state and mu4 expectation
+
+     E=(1/4) sum_(r=0)^3 alpha_r,
+     E|_(grade 0)=1,  E|_(grades 1,2,3)=0,
+
+   with a unique E-invariant finite crossed-product state extension.  This is
+   a genuine native state/expectation, but applying E erases the nonzero mu4
+   grades rather than writing the individual event or accumulated word to a
+   pointer.  Nothing in these sources gives the Hhat transport (A).  If one
+   additionally demands a fixed-vacuum symmetry implementation, the necessary
+   covariance condition [W_g,C_Sigma]=0 is likewise not proved; it is not a
+   requirement on arbitrary physically executed events.
+
+   Positive boundary: experiments/theory-contracts/source-localized-spinor-
+   20260919/PROOF.txt:137-169 does exhibit a specified real Bogoliubov V and
+   the spatial CAR automorphism rho_V(B(f))=B(Vf), without an auxiliary flux
+   register.  Lines 203-238 explicitly leave the physical preparation,
+   covariance cocycle/charged implementer, and common clock open.  It is a
+   precedent for how (A) could look, not the 1920-element frame or record
+   required here.
+
+5. The closest source-derived pointer construction is still conditional.
+   experiments/theory-contracts/compiler-origin-audit-20260913/
+   context_instrument.py:144-166 proves that the actual source reflection
+
+     W=J4/2-I,  W^2=I,
+
+   rotates four reflection Kraus operators r_j/2 into the four rank-one
+   projectors Pi_j of one chosen context.  This is a concrete coherent record
+   basis, not a generic dilation.  But lines 185-206 record exactly:
+
+     coherent_control_and_record_basis_physically_derived = False,
+     physical_Born_instrument_derived = False,
+     physical_context_policy_derived = False.
+
+   It distinguishes four outcomes after a chosen context and does not provide
+   a sixty-label pointer, a persistent product F, or a full-frame-covariant ready
+   state.  Likewise compiler-e6-seam-readout-20260918/PROOF.txt:84-99 has the
+   native algebraic projector
+
+     P_det=[(I-T+T^2-T^3)/4][(I-F)/2],
+
+   but states explicitly that it is not a measurement instrument or
+   preparation; lines 202-215 leave a two-parameter family of invariant
+   states.  These are the strongest native record/readout seeds found, but
+   neither satisfies (A)-(C).
+
+6. The proposed minimal-positive-log rule is not selected by P1 and conflicts
+   with the existing compositional path if applied after tensoring.
+   tfpt_1_architecture_e8.tex:163-176 states P1 as a primitive,
+   reflection-positive boundary kernel with unit winding [u_Sigma]=1 and the
+   scalar self-linking normalisation c3=1/(8pi).  It does not state a functional
+   calculus rule for a many-register unitary.  Indeed the same passage calls
+   P1 a postulate and leaves the modular-response bridge open.
+
+   Contract .12, experiments/theory-contracts/compiler-quartic-holonomy-
+   20260919/PROOF.txt:93-114, gives the actual one-body path
+
+     U_l(t)=exp(i pi t P_l),
+     F_l(t)=exp(-i pi t/4)U_l(t),
+
+   and explicitly says that choosing this path and identifying t with physical
+   time are not consequences of the discrete reflection.  Reversing orientation
+   to the sign convention exp[-i(pi/2)t h], its tensor product on A,B has
+
+     h_local=2(P_A+P_B),
+     exp[-i(pi/2)h_local]=r tensor r.
+
+   The positive logarithm taken only after forming G=r tensor r is instead
+
+     h_joint=I-r tensor r=2(P_A+P_B-2P_A P_B),
+     h_local-h_joint=4P_A P_B.
+
+   On the four joint occupation sectors (00,10,01,11), the spectra are
+
+     h_local : (0,2,2,4),
+     h_joint : (0,2,2,0).
+
+   Thus both endpoints are (1,-1,-1,1), but at intermediate parameter theta
+   the 11 phases are exp(-i4theta) and 1.  The tensor-additive lift of the two
+   native one-body paths selects h_local.  Applying the principal/minimal
+   positive logarithm after tensor product selects h_joint.  In symbols,
+
+     Log_min(U tensor U) != Log_min(U) tensor I + I tensor Log_min(U).
+
+   A common scalar from the determinant-normalised SU(4) lift adds cI only and
+   cannot remove the nonscalar rank-one term 4P_A P_B.  Therefore the rule
+   "no extra positive turns" is ambiguous unless its order of composition is
+   specified.  Applied to the joint endpoint it creates the interaction by a
+   new branch-selection rule and is not the path already supplied by .12.
+   Applied to each primitive one-body lift before tensoring, it gives the local
+   generator.  No inspected P1 source says to discard the tensor-additive 2pi
+   turn in the doubly occupied sector.
+
+Decisive verdict
+----------------
+The earliest native structures provide separate pieces:
+
+  * Bell10/.13: exact 1920-element adjoint-frame covariance, with S5 as its
+    label/population quotient, and an exact history-frame algebra;
+  * raw CAR: a criterion for a state-preserving spatial Bogoliubov action;
+  * finite mu4 crossed product: a native invariant state and expectation;
+  * context instrument/D4 readout: finite algebraic record rotations and
+    projectors.
+
+They do not compose in the current sources.  The first broken edge is (A):
+there is no source-derived transport of the full 1920-element Bell10 frame to
+the native seam algebra, including the transported clock/mark operators.
+Condition (B) is an additional requirement only if this transport is claimed
+to be a symmetry of one fixed vacuum.  Even if (A) is supplied, (C), the
+persistent event pointer/ready-state composition, remains to be derived.
+Aut(C_fin)=C6 excludes only the stronger identification with transformations
+that fix the whole marked tuple pointwise; it does not exclude a moving frame.
+The deployed mu4 expectation erases its nonzero grades and therefore is not by
+itself the Hhat-valued F record.  A covariantly transported marked tuple or a
+physically justified coarser seam algebra could supply the missing bridge, but
+that transport/quotient and its record map are not explicit in the inspected
+sources.
+
+The minimal-positive-log proposal does not repair this origin gap.  It chooses
+h_joint only by applying a non-monoidal logarithm after tensoring, whereas the
+existing .12 one-body path composes to h_local.  P1 fixes unit boundary winding
+and scalar normalisation, not which of these two continuous joint lifts nature
+uses.
+
+Sources inspected: 13 relevant originals/contracts, below the requested cap of
+20.  No repository file was changed.

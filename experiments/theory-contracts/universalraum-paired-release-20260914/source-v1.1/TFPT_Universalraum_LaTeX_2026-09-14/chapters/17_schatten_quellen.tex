@@ -1,0 +1,64 @@
+\chapter{Erweiterung: Quellen und genaue Prüfgrenzen}
+\label{app:shadow-sources}
+\section{Zusätzlicher Einblick in den RH-Forschungsbestand}
+Die Erweiterung wurde am 14. September 2026 gegen verfügbare Originalabschnitte im lokalen Repository \texttt{tfpt-theoryv4} abgeglichen. Der gelesene Git-Stand war \path{66b91e40e245569f06ab440ead80f446c9be0ee5}. Dies identifiziert den Checkout; es behauptet keinen frischen vollständigen Beweis- oder Testlauf. Die tatsächlich verwendeten Dateiinhalte sind zusätzlich mit SHA-256 im Paket erfasst, auch soweit der Arbeitsbaum von Git abweichen könnte.
+
+Der semantische Katalog enthält in der gelesenen Auswertung 2753 Datensätze, davon 1097 kuratierte und 1656 Entwurfs-/Review-Datensätze. Diese Zahlen sind Organisationsdaten. Etiketten wie \texttt{PROVED}, \texttt{CERTIFIED} oder \texttt{MEASURED} zählen weder unabhängig überprüfte neue Theoreme noch bestätigte Physik. Die Synthese verdichtet die sachlichen Ergebnisse und Grenzen der für die vier Schattenbereiche relevanten Familien. Tausende Katalogeinträge wurden nicht erneut einzeln überprüft.
+
+Die vorgeschaltete globale Aktualitätsprüfung meldete \texttt{SOURCE\_UNAVAILABLE}: Der eingebundene Ordner \path{/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/research} war nicht vorhanden. Damit ist der globale Forschungszyklus nicht erfolgreich aktualisiert. Die sieben im Papier-Review geführten verfügbaren Haupt-TeX-Dateien stimmten dagegen mit ihren eingetragenen Hashes überein. Das rechtfertigt die ausdrücklich begrenzte Originallektüre, aber keinen vollständigen Aktualitätsstatus für alle externen Forschungsergebnisse.
+
+\begin{longtable}{L{13mm}L{63mm}L{72mm}}
+\toprule\textbf{ID}&\textbf{Datei / Objekt}&\textbf{Verwendete Rolle}\\\midrule\endhead
+R01&\path{rh/catalog/rh_semantic_catalog.json}&Sachfamilien, Herkunft und ausgewählte negative Routen; 19 relevante Einträge zusätzlich separat gesichert.\\
+R02&\path{rh/catalog/research_engine/generated/NEXT.md}&Orientierung über berichtete nächste Aufgaben; wegen fehlender externer Quelle kein neuer Abschlussbeleg.\\
+R03&\path{rh/catalog/research_engine/paper_reviews.json}&Hash-Abgleich der sieben Haupt-TeX-Dateien.\\
+R04&\path{tfpt_prime_front.tex}&Ausgewählte Abschnitte zu Theta/Hecke, arithmetischer Markierung, GUE- und Relationszweig.\\
+R05&\path{note_w1_suzuki_identification.tex}&Wörterbuch, Maß und die Rolle signierter sowie lokaler Beiträge.\\
+R06&\path{note_w3_detector_structure.tex}&Detektorkerne und die Unterscheidung reeller Testargumente von ungeprüften Nullstellenlagen.\\
+R07&\path{note_hilbert_polya_truncations.tex}&Abgeschnittene Spektralmodelle und die verbleibenden Grenzwertfragen.\\
+R08&\path{multilevel_toeplitz_lowerbound.tex}&Bedingte Schur-/Residuenverbesserungen und Positivitätsvoraussetzungen.\\
+R09&\path{seam_bc_primon_bridge_probe.py}&Thermische Naht, Primon-Zustandssumme und fehlende allprimige Familie.\\
+R10&\path{bc_energy_from_entropy_probe.py}&Potenzhalbgruppe, logarithmische Entropie und Grenze der $\log2/\log3$-Takte.\\
+R11&\path{gue_ablation_probe.py}&Kohärente Aufhebungen, Kontrollvarianten und fehlendes Wörterbuch veränderter Primfolgen.\\
+R12&\path{verification/v854_relation_hodge_pfaffian.py}&Relationskomplex, Flachheit und die Grenze der Krümmungsdiagnose.\\
+R13&\path{gabor_first_contact_selberg_result.json}&Konkreter negativer Eigenwert und Strukturfehler der gewählten Kontaktbrücke.\\
+R14&\path{e8_composite_gauss_result.json}&Gaußsumme, Inversion und tatsächliche Auslesekosten.\\
+R15&\path{jensen_compiler_rigidity_probe.py}&Coxeter-/Jensen-Strukturfehler; keine universelle Widerlegung einer Spektralroute.\\\bottomrule
+\end{longtable}
+Die kurzen Dateinamen R09--R11 und R13--R15 liegen unter \path{experiments/tfpt-discovery/}. Vollständige Pfade, Größen und Hashes stehen in \path{rh_sources.json}. Die Originalprüfer wurden für die Erweiterung gelesen, nicht erneut als vollständige Suite ausgeführt. Wo der Text einen Originalbefund nennt, bleibt es eine zugeschriebene Auswertung unter den dortigen Voraussetzungen.
+
+\section{Die 128 zusätzlichen Bedingungen}
+Der separate Prüfer \path{verify_shadows.py} importiert keinen ursprünglichen TFPT- oder RH-Code und keine Nullstellentabellen. Er enthält 126 exakte beziehungsweise symbolische Bedingungen und zwei numerische Kontrollen. Die Nummer der ersten Nullstelle im Eta-Diagramm ist ein ausdrücklich eingesetzter Referenzwert; das Diagramm ist kein eigener Nullstellensuchlauf.
+
+Die exakten Prüfungen umfassen die sechs Mermin-Kontexte samt 512 Wertzuweisungen, die CHSH-Grenzen, die allgemeine dreifache Interferenzidentität, das isospektrale Verschränkungsbeispiel, das spiegelungssymmetrische Gegenpolynom, Schalen- und endliche Euler-/Möbiuswerte, die dimensionsabhängige Kreisbahnstabilität und den neuen projektiven arithmetischen Lift. Beim Lift werden Endpunktkommutativität, Antikommutation der markierten Operatoren, Normen, Ausgangswahrscheinlichkeiten und die logarithmische Kovarianz kontrolliert. Die ganzzahligen Rekonstruktionskontrollen illustrieren eindeutige Faktorisierung in kleinen Fällen; der unendliche Unabhängigkeitsbeweis steht im Haupttext.
+
+Die zwei numerischen Kontrollen betreffen die endlichen Wärmeausbreitungsgrenzen und die Wohldefiniertheit der Eta-Diagrammwerte. Numerische Kurven sind von den symbolisch bewiesenen Grenzwertaussagen unterschieden. Der Prüfer verwendet explizite Fehlerbedingungen, keine wegoptimierbaren Assertions. Normallauf und Lauf mit \texttt{-OO} liefern dieselbe Ergebnisdatei. Die Ergebnisdatei \path{shadow_verification_results.json} führt jede Bedingung samt Evidenzart einzeln auf.
+
+Diese 128 Bedingungen ergänzen die 210 Bedingungen der Ausgangssynthese. Zusammen sind das 338 bestandene Bedingungen in zwei separaten Prüfern. Es handelt sich nicht um 338 unabhängige Entdeckungen. Weder ein vollständiger Lean-Nachweis noch ein Hardwareversuch oder ein RH-Beweis wurde dadurch ausgeführt.
+
+\section{Zusätzliche Primärliteratur}
+Die folgenden Quellen wurden zur Erweiterung aufgerufen. Es handelt sich um gezielte Literaturauswahl, nicht um einen vollständigen systematischen Review aller Veröffentlichungen bis September 2026. Eigene Formeln, Gegenbeispiele und Illustrationen sind im Haupttext als solche bezeichnet. Neue Preprints bleiben als Preprints kenntlich.
+\begin{enumerate}[label={F\arabic*.},leftmargin=2.5em,itemsep=7pt,before={\interlinepenalty=10000}]
+\item M. V. Berry, J. P. Keating: \emph{The Riemann Zeros and Eigenvalue Asymptotics}. SIAM Review 41 (1999). Primzahlen als periodische Bahnen und die spektrale Analogie. \url{https://epubs.siam.org/doi/10.1137/S0036144598347497}
+\item A. M. Odlyzko: \emph{On the distribution of spacings between zeros of the zeta function}. Mathematics of Computation 48 (1987). Originale numerische Untersuchung und Einordnung der Paar-Korrelation. \url{https://www-users.cse.umn.edu/~odlyzko/doc/arch/zeta.zero.spacing.pdf}
+\item J.-B. Bost, A. Connes: \emph{Hecke Algebras, Type III Factors and Phase Transitions with Spontaneous Symmetry Breaking in Number Theory}. Selecta Mathematica 1 (1995), 411--457. \url{https://repo-archives.ihes.fr/FONDS_IHES/I_Prepublications/CONNES/1994-1998/M_95_38/M_95_38_web.pdf}
+\item A. Connes: \emph{Trace formula in noncommutative geometry and the zeros of the Riemann zeta function}. Selecta Mathematica 5 (1999). \url{https://arxiv.org/abs/math/9811068}
+\item P. Kurlberg, Z. Rudnick: \emph{Hecke theory and equidistribution for the quantization of linear maps of the torus}. Fassung 2000. \url{https://arxiv.org/abs/chao-dyn/9901031}
+\item S. Wei et al.: \emph{The Riemann Hypothesis manifested in dynamical quantum phase transitions}. Nature Communications 17, 8163 (2026), veröffentlicht am 1. Juli 2026. Hier begrenzte Einordnung der konstruierten Verbindung; kein vollständiger unabhängiger Ressourcen-Audit. \url{https://www.nature.com/articles/s41467-026-74935-8}
+\item B. Hensen et al.: \emph{Experimental loophole-free violation of a Bell inequality using entangled electron spins separated by 1.3 km}. Nature 526 (2015). \url{https://arxiv.org/abs/1508.05949}
+\item U. Sinha et al.: \emph{Ruling Out Multi-Order Interference in Quantum Mechanics}. Science 329 (2010), 418--421. Historischer endlicher Test, keine Behauptung der neuesten Fehlerschranke. \url{https://arxiv.org/abs/1007.4193}
+\item N. D. Mermin: \emph{Simple unified form for the major no-hidden-variables theorems}. Physical Review Letters 65 (1990), 3373--3376. \url{https://doi.org/10.1103/PhysRevLett.65.3373}
+\item M.-O. Renou et al.: \emph{Quantum theory based on real numbers can be experimentally falsified}. Nature 600 (2021). Die Unabhängigkeits-/Kompositionsannahmen sind Teil der Aussage. \url{https://arxiv.org/abs/2101.10873}
+\item T. Hoffreumon, M. P. Woods: \emph{Quantum theory based on real numbers cannot be experimentally falsified}. Preprint, März 2026. \url{https://arxiv.org/abs/2603.19208}
+\item F. Moradi Kalarde, X. Xu, M.-O. Renou: \emph{Comment on ``Quantum theory based on real numbers cannot be experimentally falsified'': On the compatibility of physical principles with information theory for fermions}. Preprint, April 2026. \url{https://arxiv.org/abs/2604.07425}
+\item L. del Rio et al.: \emph{The thermodynamic meaning of negative entropy}. Nature 474 (2011), 61--63. \url{https://www.nature.com/articles/nature10123}
+\item W. Craig, S. Weinstein: \emph{On determinism and well-posedness in multiple time dimensions}. Proceedings of the Royal Society A (2009). \url{https://arxiv.org/abs/0812.0210}
+\item D. Clowe et al.: \emph{A direct empirical proof of the existence of dark matter}. Astrophysical Journal Letters 648 (2006). Der Titel der Quelle ist kein Nachweis einer bestimmten Teilchenart. \url{https://arxiv.org/abs/astro-ph/0608407}
+\item DESI Collaboration: \emph{DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and Cosmological Constraints}. Physical Review D 112, 083515 (2025), arXiv-Fassung v3 vom 9. Oktober 2025. \url{https://arxiv.org/abs/2503.14738}
+\item A. Almheiri, N. Engelhardt, D. Marolf, H. Maxfield: \emph{The entropy of bulk quantum fields and the entanglement wedge of an evaporating black hole}. JHEP 12 (2019), 063. \url{https://arxiv.org/abs/1905.08762}
+\item P. Touboul et al.: \emph{MICROSCOPE mission: final results of the test of the Equivalence Principle}. 2022. \url{https://arxiv.org/abs/2209.15487}
+\item C. Abel et al.: \emph{Measurement of the permanent electric dipole moment of the neutron}. Physical Review Letters 124, 081803 (2020). Datierter experimenteller CP-Prüfstein. \url{https://arxiv.org/abs/2001.11966}
+\end{enumerate}
+
+\section{Reproduktion der erweiterten Fassung}
+Das aktualisierte Quellpaket enthält beide unabhängigen Prüfer, beide Ergebnisdateien, die zusätzlichen drei Vektorplots, die LaTeX-Diagramme, das RH-Quellenmanifest und die ausgewählten Katalogeinträge. Die fünf neuen Hauptkapitel sind in dieselbe LaTeX-Datei eingebunden; ursprüngliche Textteile wurden nur um Versionshinweise und Querverweise ergänzt. Das fertige PDF wird weiterhin mit LuaLaTeX gebaut. Die beiliegende Anleitung beschreibt die Reproduktion, und eine unabhängige Kompilation aus dem bereitgestellten Paket wurde vor der Auslieferung kontrolliert.

@@ -1,0 +1,20 @@
+UR.SELFCONSISTENCY.KMS_COHERENCE.01
+
+Verdict: PARTIAL. Kein physisches Gate geschlossen.
+
+PROOF.txt: allgemeiner analytischer Satz, Voraussetzungen und TFPT-Anschluss.
+results/results.json: exakte endliche Matrixpruefungen mit SymPy.
+validation.json: Review und normal/optimiert identische Ausgabe.
+source_manifest.json: SHA-256 der geprueften Originalquellen.
+contract_index.json: Registrierung als reiner Theorie-Contract.
+
+Reproduktion im Contract-Ordner: python3 -B checker.py --out results
+Benoetigt Python 3 und SymPy. Die drei direkten Quellenpins verlangen den
+lokalen TFPT-Quellenstand an den im Checker angegebenen absoluten Pfaden.
+Das gelieferte Zertifikat bleibt ohne diese lokalen Dateien lesbar; ein
+vollstaendiger Replay mit Pinpruefung setzt sie voraus.
+
+Die gepruefte Familie behaelt Zustand, Populationsdynamik und Markov-Luecke
+bei und veraendert die Kohärenz. Sie ist keine aus P1 hergeleitete Dynamik.
+Die Formel L=G^-1 Cprime wird nur auf einer dynamisch abgeschlossenen
+Algebra als vollstaendige Rekonstruktion beansprucht.

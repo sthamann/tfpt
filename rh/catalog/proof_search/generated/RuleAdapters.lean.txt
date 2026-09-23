@@ -1,0 +1,79 @@
+import Lean
+import FrontierClosure
+import RH.GaborCountableCriterion
+import RH.PrimeLogIndependence
+import TfptCarrier.CofinalWeil
+import TfptCarrier.SeamScalingLimit
+open scoped Topology
+namespace RHProofSearch
+def arch_weighted : Prop := RH.SelectedArchWeightedInterpolationEstimate
+def arch_rate : Prop := RH.SelectedArchErrorQuadraticRateExists
+def arch_convergence : Prop := ∀ f : RH.GridElement, Filter.Tendsto (fun k : ℕ => RH.selectedArchError k f) Filter.atTop (nhds 0)
+def freq : Prop := RH.frequently_selected_augDualResolvent_ge_half
+def eventual_bound : Prop := RHSeparatedTail20260905.EventuallySelectedReadLowerBound
+def native_positive : Prop := ∀ f : RH.GridElement, 0 ≤ RH.weilForm f
+def gabor_positive : Prop := ∀ (a ω : ℚ) (ha : 0 < (a : ℝ)), 0 ≤ RH.gaborPoleSide (RH.pureGaborTest a ω ha) - RH.gaborPrimeComb (RH.pureGaborTest a ω ha) + RH.gaborArchSide (RH.pureGaborTest a ω ha)
+def rh : Prop := RiemannHypothesis
+theorem arch_weighted_proved  : arch_weighted := by
+  exact RHArchRateClosure20260905.selectedArchWeightedInterpolationEstimate_holds
+theorem arch_rate_from_weighted (h0 : arch_weighted) : arch_rate := by
+  exact RH.selectedArchErrorQuadraticRateExists_of_weightedInterpolationEstimate h0
+theorem arch_convergence_from_rate (h0 : arch_rate) : arch_convergence := by
+  exact RH.selectedArchError_tendsto_zero_of_rateExists h0
+theorem native_from_freq_and_bound (h0 : freq) (h1 : eventual_bound) : native_positive := by
+  exact (RHFrontierClosure20260905.eventual_bound_iff_weil_nonneg h0).mp h1
+theorem bound_from_freq_and_native (h0 : freq) (h1 : native_positive) : eventual_bound := by
+  exact (RHFrontierClosure20260905.eventual_bound_iff_weil_nonneg h0).mpr h1
+theorem rh_from_gabor (h0 : gabor_positive) : rh := by
+  exact RH.gabor_primeSide_rational_criterion_iff_rh.mp h0
+theorem gabor_from_rh (h0 : rh) : gabor_positive := by
+  exact RH.gabor_primeSide_rational_criterion_iff_rh.mpr h0
+end RHProofSearch
+#print axioms RHProofSearch.arch_weighted_proved
+#print axioms RHProofSearch.arch_rate_from_weighted
+#print axioms RHProofSearch.arch_convergence_from_rate
+#print axioms RHProofSearch.native_from_freq_and_bound
+#print axioms RHProofSearch.bound_from_freq_and_native
+#print axioms RHProofSearch.rh_from_gabor
+#print axioms RHProofSearch.gabor_from_rh
+#print axioms RH.linearIndependent_log_primes
+#print axioms RH.log_ratio_irrational
+#print axioms RH.posDef_sub_rankOne_iff
+#print axioms RH.selectedMesh_five
+#print axioms RH.lstar_canonical
+#print axioms RH.terminal_q_canonical
+#print axioms RH.pair_terminal_dictionary
+#print axioms RH.mainWindow_iff_builtFromPrimeSource
+#print axioms RH.fullWeil_separates_offCritical_zeros
+#print axioms TfptCarrier.CofinalWeil.weil_nonneg_of_cofinal
+#print axioms TfptCarrier.GramCompactness.exists_subseq_posSemidef_limit
+#print axioms TfptCarrier.SeamScalingLimit.seamScalingLimit
+#print axioms RH.gabor_primeSide_rational_criterion_iff_rh
+
+open Lean Elab Command in
+run_cmd do
+  let env ← getEnv
+  for name in [`RHProofSearch.arch_weighted_proved, `RHProofSearch.arch_rate_from_weighted, `RHProofSearch.arch_convergence_from_rate, `RHProofSearch.native_from_freq_and_bound, `RHProofSearch.bound_from_freq_and_native, `RHProofSearch.rh_from_gabor, `RHProofSearch.gabor_from_rh, `RH.linearIndependent_log_primes, `RH.log_ratio_irrational, `RH.posDef_sub_rankOne_iff, `RH.selectedMesh_five, `RH.lstar_canonical, `RH.terminal_q_canonical, `RH.pair_terminal_dictionary, `RH.mainWindow_iff_builtFromPrimeSource, `RH.fullWeil_separates_offCritical_zeros, `TfptCarrier.CofinalWeil.weil_nonneg_of_cofinal, `TfptCarrier.GramCompactness.exists_subseq_posSemidef_limit, `TfptCarrier.SeamScalingLimit.seamScalingLimit, `RH.gabor_primeSide_rational_criterion_iff_rh] do
+    let some info := env.find? name | throwError "Missing audited declaration"
+    let typeText ← liftTermElabM <| do pure (← Meta.ppExpr info.type).pretty
+    let row := Json.mkObj [("name", toJson name.toString), ("type", toJson typeText)]
+    logInfo m!"TYPE_RECORD {row.compress}"
+open Lean Elab Command in
+run_cmd do
+  let env ← getEnv
+  for (name, info) in env.constants.toList do
+    let moduleName := match env.getModuleIdxFor? name with
+      | some idx => env.header.moduleNames[idx.toNat]!.toString
+      | none => ""
+    if (["RH.Basic", "RH.Window", "RH.Source", "RH.Inertia", "RH.Closure", "RH.Augmented", "RH.Recursion", "RH.PairBound", "RH.Elementwise", "RH.Canonical", "RH.DualResolvent", "RH.FaithfulFold", "RH.Selected", "RH.InnerBridges", "RH.SelectedArchErrorQuadraticRateClassical", "WeightedKink", "NativeHinges", "KinkIntegral", "ArchLagTranscription", "ArchRateClosure", "RH.Haynsworth", "RH.PivotCoordinate", "RH.OneDefect", "RH.GraphResolvent", "RH.FrequentlySelected", "SeparatedTail", "FrontierClosure", "RH.ExternalBridges", "RH.GaborIntegral", "RH.ZeroIncrement", "RH.GaborThetaBound", "RH.GaborSeparation", "RH.GaborInequality", "RH.GaborHatAnalytic", "RH.GaborDominance", "RH.GaborDominanceProof", "RH.GaborDominanceAssembly", "RH.GaborZeroSummable", "RH.GaborDominanceLog", "RH.GaborFEMultiplicity", "RH.GaborSpectralBridge", "RH.GaborArithmeticSeparator", "RH.GaborExposedOrbit", "RH.GaborContourResidue", "RH.GaborHorizontalEdges", "RH.GaborVertical", "RH.GaborLeftVertical", "RH.GaborAutocorrelation", "RH.GaborVerticalLimit", "RH.GaborArchDigamma", "RH.GaborArchContour", "RH.GaborExplicitFormula", "RH.GaborCountableCriterion", "RH.PrimeLogIndependence", "TfptCarrier.GramCompactness", "TfptCarrier.SectorPositiveDescent", "TfptCarrier.ExcessSkeleton", "TfptCarrier.CofinalWeil", "TfptCarrier.SeamScalingLimit"] : List String).contains moduleName then
+      let kind := match info with
+        | .thmInfo _ => "theorem"
+        | .defnInfo _ => "definition"
+        | .axiomInfo _ => "axiom"
+        | .opaqueInfo _ => "opaque"
+        | .inductInfo _ => "inductive"
+        | _ => "generated"
+      if kind != "generated" && !name.toString.startsWith "_private" then
+        let typeText ← liftTermElabM <| do pure (← Meta.ppExpr info.type).pretty
+        let row := Json.mkObj [("name", toJson name.toString), ("module", toJson moduleName), ("kind", toJson kind), ("type", toJson typeText)]
+        logInfo m!"KERNEL_RECORD {row.compress}"

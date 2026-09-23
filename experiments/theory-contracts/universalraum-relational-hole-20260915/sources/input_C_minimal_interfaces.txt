@@ -1,0 +1,421 @@
+**An mehreren Stellen liegt die nächste Lösung tatsächlich in einer kleineren Beschreibung, nicht in einem größeren Modell.** Die Prüfung von v1.6 ergibt dafür konkrete Ansatzpunkte: eine sehr kurze Erzeugung der Matrixordnung, eine einfache Darstellung der nicht gaußschen Paarzustände und eine vollständige analytische Lösung eines nativen Transportsektors.
+
+Gleichzeitig ist eine wichtige Ursache der bisherigen Komplexität sichtbar geworden: **Wir wechseln teilweise zwischen mathematischen Rollen, die ähnlich aussehen, aber unterschiedliche Regeln haben.** Eine Gitterwurzel ist nicht automatisch ein Gate. Ein Fermionmodus ist nicht automatisch ein relativistisches Weylfeld. Und eine innere Richtung ist noch keine räumliche Verbindung. Genau diese Übergänge behandelt v1.6 inzwischen wesentlich präziser.   
+
+**Eine vollständige Schließung aller acht Tore habe ich damit nicht erreicht.** Ich habe aber mehrere Teilfragen exakt beantwortet und einen zusätzlichen Typfehler gefunden, der vor weiteren großen Rechnungen geklärt werden sollte.
+
+## 1. Der Matrixkern lässt sich auf zwei kleine Erzeuger verdichten
+
+Der E8 Beweis selbst ist kein neuer Fund: Er lag bereits seit dem 9. September vor. Die aktuelle Version hat ihn wieder in die Argumentation aufgenommen. Ausgangspunkt bleiben die kleinen Matrizen \(u_1,u_2,u_3\), die Familienoperation \(w\) und die Vierteldrehung \(q\). 
+
+Die besonders nützliche Darstellung lautet:
+
+\[
+\boxed{
+M=\mathbb Z[i]\operatorname{span}\{I,w,q,wq\}.
+}
+\]
+
+Damit gilt auch
+
+\[
+M=\mathbb Z[i][w,q]=R[q].
+\]
+
+**Die gesamte maximale Ordnung wird also durch die vorhandene Familienoperation und eine Vierteldrehung erzeugt.**
+
+Die Ergänzung \(R[q]=M\) ist bereits im ursprünglichen Ordnungsbeweis enthalten. Meine Anschlussrechnung liefert dafür zusätzlich ein sehr kurzes ausdrückliches Zertifikat: Die vier Matrizen \(I,w,q,wq\) bilden gegenüber der ursprünglichen Matrixbasis eine Basiswechselmatrix mit Determinante \(i\). Weil \(i\) eine Einheit in \(\mathbb Z[i]\) ist, erzeugen sie die vollständige Integralordnung, nicht nur denselben komplexen Vektorraum. Die Matrix und der Beweis stehen im beigefügten Bericht.
+
+### Der bisher fehlende Handgriff ist im Laboralphabet kurz darstellbar
+
+Für den konkreten vierdimensionalen Cliffordrahmen aus dem Quellenpaket habe ich außerdem ein ausdrückliches Wort für \(q\) berechnet:
+
+\[
+\boxed{
+q_4=CZ\,V\,CZ\,V,
+\qquad
+V=(ZH)\otimes I.
+}
+\]
+
+Dabei sind \(H\) das Hadamardgate, \(Z\) die Paulioperation und \(CZ\) die kontrollierte Phasenoperation. Die Gleichheit ist auf der gesamten Matrix exakt geprüft, einschließlich der Phase und der korrekten Wirkung auf die markierten Achsen.
+
+**Das schließt die Synthesefrage im bereits angenommenen Laborvertrag:** Für \(q\) ist dort kein zusätzlicher Gattertyp nötig.
+
+Es schließt nicht die tiefere Frage, warum die primitive TFPT Quelle dieses Laboralphabet und seine Kontrollen bereitstellt. Diese Unterscheidung ist entscheidend: Ein ausschließlich aus Elementen von \(R\) zusammengesetztes Wort bleibt in \(R\), während \(q\notin R\). Man darf deshalb die stärkeren Laborkontrollen nicht unbemerkt als ursprüngliche Primitive einsetzen. Das Hauptbuch benennt genau diese physische Bereitstellung als offene Aufgabe. 
+
+### Auch die 240 Wurzeln werden übersichtlicher
+
+Die bekannte Aufteilung in 96 unitäre und 144 Rang eins Matrizen lässt sich weiter auflösen. Meine vollständige Enumeration ergibt:
+
+| Matrixwurzeln | Genauere Struktur |
+|---|---|
+| 96 unitäre Matrizen | 24 unterschiedliche projektive Cliffordwirkungen, jeweils mit vier zentralen Phasen |
+| 144 Rang eins Matrizen | Alle 36 Übergänge zwischen den sechs Pauli Eigenstrahlen, jeweils mit vier Phasen |
+
+Für eine Rang eins Wurzel \(A\) gilt dabei
+
+\[
+\frac{A^\dagger A}{2}=P_{\mathrm{Eingang}},
+\qquad
+\frac{AA^\dagger}{2}=P_{\mathrm{Ausgang}}.
+\]
+
+Nach korrekter Normierung beschreibt sie einen ausgewählten Messzweig mit anschließender Zustandsüberführung.
+
+Das ist wesentlich weniger geheimnisvoll als „240 verschiedene elementare Operationen“. Die Ausgangszählung und ihre vollständige Suchgrenze stammen aus dem Quellenbeweis; die feinere operationelle Klassifikation ist Bestandteil meiner Nachrechnung. 
+
+**Die Konsequenz:** Die besondere Ressource des kohärenten Records muss weiterhin ausdrücklich erklärt werden. Sie entsteht nicht allein dadurch, dass die zugrunde liegende Matrizensammlung E8 heißt. Umgekehrt folgt daraus nicht, dass sämtliche kontinuierlichen oder kohärent kontrollierten TFPT Prozesse einfache Stabilizerprozesse wären.
+
+---
+
+## 2. Die nicht gaußschen Paarzustände haben eine überraschend einfache Darstellung
+
+Hier liegt für mich die stärkste positive Fortsetzung deiner Intuition.
+
+v1.6 zeigt für alle 60 hellen Paarzustände einen Vierpunktdefekt von \(7/64\). Eine bloße Kovarianzmatrix reicht deshalb nicht aus, um ihre physische Statistik wiederzugeben. Jede zugehörige Tensorzeile enthält allerdings nur acht disjunkte Paare auf sechzehn Moden. 
+
+Daraus lässt sich eine kompakte exakte Darstellung gewinnen.
+
+Der helle Zustand eines Kanals lautet
+
+\[
+|\psi_A\rangle
+=
+\frac1{\sqrt8}
+\sum_{r=1}^{8}
+\sigma_r f^\dagger_{i_r}f^\dagger_{j_r}|0\rangle,
+\]
+
+wobei die \(\sigma_r\) die **tatsächlichen Vorzeichen des nativen Tensors** sind.
+
+Nun bilden wir ein einfaches gaußsches Paarprodukt:
+
+\[
+|G_A(p)\rangle
+=
+\prod_{r=1}^{8}
+\left(
+\sqrt{1-p}
++
+\sigma_r\sqrt p\,f^\dagger_{i_r}f^\dagger_{j_r}
+\right)|0\rangle.
+\]
+
+Wenn wir daraus nur den Sektor mit genau zwei Fermionen auswählen, bleibt exakt
+
+\[
+\boxed{
+\Pi_{N_f=2}|G_A(p)\rangle
+=
+\sqrt{8p(1-p)^7}\,|\psi_A\rangle.
+}
+\]
+
+Der Beweis ist die direkte Produktentwicklung: Genau acht Terme enthalten eine einzige Paarerzeugung. Alle anderen besitzen eine andere Teilchenzahl.
+
+**Bildlich:** Wir müssen kein kompliziertes Gesamtmuster einzeln zusammensetzen. Wir erzeugen acht einfache Paaralternativen und stellen anschließend nur eine gemeinsame Frage:
+
+> Ist insgesamt genau ein Paar vorhanden?
+
+Wir dürfen dabei gerade **nicht** herausfinden, welches Paar es ist. Sonst zerstören wir die benötigte Kohärenz.
+
+### Warum das den bisherigen Gegenbeweis nicht umgeht
+
+Der ausgewählte Zustand bleibt nicht gaußsch. Sein Vierpunktdefekt bleibt exakt erhalten. Die Vereinfachung lautet vielmehr:
+
+\[
+\boxed{
+\text{einfacher gaußscher Ausgang}
++
+\text{eine gemeinsame Zahlprojektion}
+=
+\text{der nicht gaußsche Zielzustand}.
+}
+\]
+
+Das allgemeine Werkzeug teilchenzahlprojizierter BCS Zustände ist bekannt. Neu ausgearbeitet ist hier die ausdrückliche Anwendung auf sämtliche 60 nativen Kanalzustände mit ihren ursprünglichen Vorzeichen. 
+
+Innerhalb dieser Produktfamilie ist die Erfolgswahrscheinlichkeit bei \(p=1/8\) maximal:
+
+\[
+p_{\mathrm{Erfolg}}
+=
+\left(\frac78\right)^7
+\approx39{,}27\%.
+\]
+
+**Wichtig:** Das ist eine Darstellung beziehungsweise bedingte Präparation der hellen Paarzustände, nicht des Zellzustands \(\Omega\). Die Zahl darf deshalb nicht als Verbesserung seiner bekannten Ausbeute von \(3/8\) ausgegeben werden. Außerdem sind die Paarrotationen, eine geeignete Referenz und die gemeinsame Zahlmessung zusätzliche Ressourcen, deren native Bereitstellung noch fehlt.
+
+Der strukturelle Gewinn bleibt erheblich: **Nicht gaußsch bedeutet hier nicht, dass wir einen beliebig komplizierten Zustandsansatz brauchen. Eine einzige gemeinsame Bedingung genügt für die exakte Darstellung.**
+
+---
+
+## 3. Der native Paartransport lässt sich vollständig analytisch lösen
+
+Die neue Version trennt zu Recht den Transport in verschiedenen kleinen Modellen vom Transport zwischen den eigentlichen nativen Banken. Insbesondere erhält bloßes Vermittlerhopping die lokale Fermionparität.  
+
+Ich habe deshalb den folgenden klar benannten Vertrag untersucht: **Zwei native Banken, verbunden durch das bereits diskutierte Vermittlerhopping, im gesamten Sektor mit Gesamtladung \(N=2\).**
+
+### 8248 Zustände werden zu 60 Vierermatrizen
+
+Dieser vollständige Sektor hat
+
+\[
+\binom{128}{2}+120=8248
+\]
+
+Zustände.
+
+Er zerfällt exakt in 60 invariante Viererräume und 8008 dunkle Zustände. Pro Kanal genügt in der Reihenfolge „Paar links, Vermittler links, Vermittler rechts, Paar rechts“ die Matrix
+
+\[
+\boxed{
+H_A=
+\begin{pmatrix}
+0&\sqrt8g&0&0\\
+\sqrt8g&\Delta&\eta&0\\
+0&\eta&\Delta&\sqrt8g\\
+0&0&\sqrt8g&0
+\end{pmatrix}.
+}
+\]
+
+Dabei bezeichnet \(\eta\) die vorgegebene Vermittlerverbindung. Die Normierung \(\sqrt8g\) folgt aus dem tatsächlichen nativen Tensor mit \(WW^\dagger=8I\). 
+
+Symmetrische und antisymmetrische Kombinationen der Banken zerlegen jede Vierermatrix nochmals in zwei Zweiermatrizen. Alle aktiven Energien sind deshalb exakt:
+
+\[
+E_{\sigma,\tau}
+=
+\frac{
+\Delta+\sigma\eta
++
+\tau\sqrt{(\Delta+\sigma\eta)^2+32g^2}
+}{2},
+\qquad
+\sigma,\tau=\pm1.
+\]
+
+Zusammen mit dem dunklen Nullraum ist damit das **gesamte Spektrum dieses Sektors** bestimmt.
+
+### Der Transport ist nicht nur ein Bild
+
+Für die Überführung eines hellen Paars von links nach rechts gilt
+
+\[
+(H^3)_{\mathrm{rechts},\mathrm{links}}=8g^2\eta,
+\]
+
+während die entsprechenden Matrixelemente der niedrigeren Potenzen verschwinden. Somit beginnt die tatsächliche Übergangsamplitude mit
+
+\[
+\langle\psi_R|e^{-itH/\hbar}|\psi_L\rangle
+=
+i\frac{8g^2\eta}{6}
+\left(\frac t\hbar\right)^3
++O(t^4).
+\]
+
+Das ist der Ablauf **Paar abbauen, Vermittler bewegen, Paar aufbauen**. Für nichtverschwindende Kopplungen ist er tatsächlich vorhanden.
+
+### Dieselbe Rechnung lässt sich unverändert vergrößern
+
+Für eine vorgegebene Bankfamilie mit hermitescher Vermittlermatrix \(h\) werden die beiden Energiezweige zu den einfachen Spektralfunktionen
+
+\[
+\boxed{
+E_\pm(h)
+=
+\frac12\left[h\pm\sqrt{h^2+32g^2I}\right].
+}
+\]
+
+Zusätzlich liefert die vorhandene Casimiridentität bei \(h\geq\delta I>0\) eine extensive Stabilitätsschranke auf dem **vollen** Fockraum:
+
+\[
+H_L\geq-\frac{480L g^2}{\delta}I.
+\]
+
+Die Energie kann unter dieser größenunabhängigen Voraussetzung also nicht beliebig negativer pro Bank werden. Der Beweis ist eine Quadratvervollständigung mit der bereits bestätigten lokalen Schranke \(\sum_A P_A^\dagger P_A\leq480I\). 
+
+**Damit sind die Sektorbewegung und eine allgemeine Stabilitätsfrage konkret beantwortet.** Noch nicht beantwortet sind die Herkunft des Bankgraphen, die physische Raumdimension oder der wechselwirkende Kontinuumslimes um den tatsächlich ausgewählten Grundzustand.
+
+### Für einzelne Fermionen bleibt eine harte Grenze
+
+Alle bislang verwendeten Operationen sind an jeder Bank fermionisch gerade. Deshalb bleibt jede lokale Parität erhalten, auch nach beliebig vielen virtuellen Zwischenschritten.
+
+**Längeres Rechnen mit denselben Primitiven kann keine lokal ungerade Transportoperation erzeugen.**
+
+Die kleinste nötige Ergänzung hätte eine sehr präzise Form: **an beiden Enden ungerade, insgesamt gerade**, beispielsweise ein begründeter \(f_x^\dagger f_y+\mathrm{h.c.}\) Prozess. Das wäre kein großer neuer innerer Raum, aber eine echte zusätzliche Verbindungsregel. Ihre Herkunft muss gezeigt werden. 
+
+Dasselbe Grundproblem erscheint beim Halbladungsfeld: Ausschließlich getrennt gerade Operationen verbinden die fehlenden Paritätssektoren nicht. Hier könnte also dieselbe richtige Zusammensetzungsregel zwei bislang getrennte Probleme adressieren. Sie ist allerdings noch nicht aus der Quelle abgeleitet. 
+
+---
+
+## 4. Vor der Raumzeitbrücke muss ein bisher nicht ausreichend geprüfter Typvergleich bestehen
+
+Dieser Befund ist weniger spektakulär als eine neue große Algebra, aber möglicherweise wichtiger für die nächste Forschungsrunde.
+
+**Unter folgender Zuordnung entsteht ein exakter Nullsatz:** Die 64 nativen Labels werden als innere Labels gleichhändiger lokaler Weylfelder gelesen, und der Vermittler wird als Lorentzskalar interpretiert.
+
+Für solche Felder ist die skalare Zweifermionkombination
+
+\[
+B_{IJ}
+=
+\epsilon_{\alpha\beta}
+\psi_I^\alpha\psi_J^\beta
+\]
+
+**symmetrisch in den inneren Labels**:
+
+\[
+B_{IJ}=B_{JI}.
+\]
+
+Der Vorzeichenwechsel durch die Vertauschung der Fermionen kompensiert den Vorzeichenwechsel des antisymmetrischen Lorentztensors. Das ist die übliche Zweikomponentenstatistik. 
+
+Der native Tensor \(W_{A,IJ}\) ist dagegen antisymmetrisch. Daher folgt
+
+\[
+\boxed{
+\sum_{I,J}W_{A,IJ}
+\epsilon_{\alpha\beta}
+\psi_I^\alpha\psi_J^\beta
+=0.
+}
+\]
+
+**Der vorhandene Paartensor lässt sich also nicht unverändert als lokale skalare Kopplung dieser Weylfelder verwenden.**
+
+Das widerlegt nicht den endlichen Fockoperator. Es widerlegt diese konkrete, zusätzliche Feldidentifikation.
+
+Die passende allgemeine Zerlegung lautet
+
+\[
+\Lambda^2(S\otimes R)
+=
+\bigl(\Lambda^2S\otimes\mathrm{Sym}^2R\bigr)
+\oplus
+\bigl(\mathrm{Sym}^2S\otimes\Lambda^2R\bigr).
+\]
+
+Der Lorentzskalar braucht den symmetrischen inneren Anteil. Der vorhandene antisymmetrische innere Kanal gehört dagegen zur zweiten Möglichkeit, mit symmetrischen Lorentzspinorindizes.
+
+**Die praktische Konsequenz:** Vor einer weiteren großen Rechnung zur chiralen Physik muss das Feldwörterbuch stimmen. Ein größerer Darstellungsraum repariert keine falsche Austauschparität. Eine geeignete nichtskalare Kopplung oder eine andere ausdrücklich begründete Zuordnung kann weiterführen; ihre Kinematik und physische Konsistenz sind aber eigene Nachweise.
+
+---
+
+## 5. Die Zustandsfrage wird kleiner, wenn wir unsichtbare Energiefreiheit richtig behandeln
+
+Die Gegenprobe \(H\mapsto H+\mu N\) ist eine der wichtigsten Aussagen von v1.6: Bei gleicher Präparation entwickeln sich neutrale Observablen gleich, während die globale Grundzustandswahl wechseln kann. 
+
+Das lässt sich zu einem allgemeinen endlichen Satz verdichten.
+
+Angenommen, die vollständige neutrale Observablealgebra ist
+
+\[
+\mathcal A_0=\bigoplus_n B(\mathcal H_n),
+\]
+
+und beide Hamiltonoperatoren erhalten \(N\). Dann erzeugen sie genau dieselbe neutrale Heisenbergentwicklung, wenn ihre Differenz eine Sektorkonstante ist:
+
+\[
+\boxed{
+H'-H=f(N).
+}
+\]
+
+Der Grund ist kurz: Die Differenz muss mit allen neutralen Observablen kommutieren. Innerhalb jedes vollständigen Sektorblocks bleibt dafür nur ein skalares Vielfaches der Identität.
+
+Damit trennen sich zwei Aufgaben:
+
+**Innerhalb eines fest präparierten Sektors** müssen wir solche Energieverschiebungen nicht als dynamische Unbekannte behandeln. Sie sind dort schlicht eine Konstante.
+
+**Bei der Auswahl zwischen Sektoren** bleiben sie relevant. Welcher Sektor entsteht, welche Gewichte er hat und welcher Zustand präpariert wird, ist dadurch nicht bestimmt.
+
+Die elegante Fortsetzung besteht deshalb nicht darin, \(\mu\) passend einzustellen. Sie besteht darin, **den physischen Sektorvertrag und die räumliche Kinematik gemeinsam mit dem Zustandskriterium festzulegen**.
+
+Im Bericht ist dazu ein bedingter Test ausgearbeitet: Wenn dieselbe Quelle tatsächlich physische Poincarégeneratoren liefert, kann man deren Energie nicht beliebig durch \(\mu N\) verändern und gleichzeitig dieselben räumlichen Generatoren und Boosts beibehalten. Das wäre ein gemeinsames Auswahlkriterium statt einer nachträglichen Wunschvakuumwahl. Die dafür benötigten nativen Generatoren fehlen allerdings noch.
+
+### Auch der gemeinsame Kegel braucht nicht 64 unabhängige Entscheidungen
+
+Unter ungebrochener innerer \(\mathrm{Spin}(10)\times SU(4)\) Symmetrie und einem entsprechend invarianten Zustand ist \(16\otimes4\) irreduzibel. Ein damit verträglicher kinetischer Zweikomponentenoperator hat nach Schurs Lemma die Form
+
+\[
+D(p)=I_{64}\otimes d(p).
+\]
+
+**Innerhalb dieses Multiplets können die Komponenten dann nicht unabhängig verschiedene Geschwindigkeiten bekommen.**
+
+Das reduziert die Freiheitsgrade. Es erzwingt aber keine gemeinsame Geschwindigkeit anderer irreduzibler Sektoren, keine gleiche Bosonkinematik und keine Gleichheit nach Symmetriebrechung. Der Gegenbeweis von v1.6 gegen „ein gemeinsamer Operator bedeutet automatisch ein gemeinsamer Kegel“ bleibt deshalb richtig. 
+
+---
+
+## 6. Was damit für sämtliche acht Tore beantwortet ist
+
+Die neuen Ergebnisse sollten nicht pauschal als TOE Fortschrittsprozent verbucht werden. Die Tore verlangen unterschiedliche Nachweise, die im selben Modell zusammenkommen müssen. Das ist auch der aktuelle Vertrag des Hauptbuchs. 
+
+| Tor | Konkreter Gewinn dieser Untersuchung | Was weiterhin fehlt |
+|---|---|---|
+| **T1: primitive Quelle** | Kurze Matrixbasis, ausdrückliches \(q\) Wort im Labor, feinere Wurzelklassifikation. | Physische Auswahl der Ausgangsdaten, Kontrollen und Zusammensetzung. |
+| **T2: Halbladungsfeld** | Die fehlende Operationsklasse ist klar: getrennte Paritätssektoren tatsächlich verbinden. | Natives renormiertes Feld mit richtigen Sektoren, Domänen, Adjungierten und Energieabschätzungen. |
+| **T3: räumlicher Ursprung** | Vollständiger nativer Paartransport im Sektor \(N=2\); weniger innere Kegelfreiheit. | Herkunft der Plätze und Verbindungen, Einzelteilchentransport, Dimension und gemeinsame Kausalstruktur. |
+| **T4: chirale Materie** | Exakter Ausschluss der naiven skalaren Weylidentifikation. | Passendes Feldwörterbuch, chirales Maß, Index, Anomalien und Spiegelentkopplung. |
+| **T5: gemeinsamer Grenzwert** | Exakte wachsende Sektorfamilie und extensive Vollfockstabilität unter benannten Bedingungen. | Wechselwirkender Vielteilchenlimes, Clusterstruktur und Streuung. |
+| **T6: physische Parameter** | Frühere Prüfung falscher Feldadapter; keine zusätzlichen passenden Einzelparameter. | Vollständige Eichkopplungen und Neutrinotextur samt Skala und Transfer. |
+| **T7: Gravitation** | Kein neuer Existenzbeweis eines Spin 2 Sektors. | Positiver masseloser Pol, zwei Helizitäten, Wardidentitäten und universelle Kopplung. |
+| **T8: Zustand und Aufzeichnungen** | Exakte projizierte Paarzustände; vollständige Identifikation der neutral unsichtbaren Energiefreiheit. | Physische Präparation, Sektorgewichte, Recordbereitstellung und Informationsabfluss. |
+
+### Drei Familien und Spiegelmoden
+
+Ein unverändert SU(4) invariantes Auswahlobjekt auf dem Viererraum ist skalar. Es kann nicht einfach drei von vier Richtungen auswählen. Eine zusätzliche Rang eins Markierung könnte einen Split \(4=1+3\) definieren, aber ihre dynamische Auswahl wäre zu beweisen. **Drei ausgewählte Richtungen wären außerdem noch kein chiraler Index drei und keine Massenhierarchie.** Das Hauptbuch zeigt bereits, dass drei Moden bei konstantem Überlapp zunächst gleiche Massen liefern. 
+
+Bei den Spiegelmoden ist die sinnvollere Richtung eine echte dynamische Entkopplung, nicht eine Faltung der Beschriftung. Als externer Vergleich ist eine Arbeit vom 30. August 2026 interessant: Dort werden Spiegelrandmoden durch lokale Vierfermionwechselwirkungen in einem zweidimensionalen euklidischen Modell massiv, während die andere Randseite erhalten bleibt. Die Autoren untersuchen ausdrücklich noch keine chirale Eichtheorie. Das ist ein methodischer Anhaltspunkt, keine fertige TFPT Lösung in 3+1 Dimensionen. 
+
+### Gravitation
+
+Hier wäre es falsch, aus dem neuen kleinen Matrixkern bereits einen dynamischen Gravitationssektor abzuleiten. Der nächste entscheidende Gegenstand ist ein tatsächlicher masseloser Pol in einer geeigneten physikalischen Tensorantwort, zusammen mit den nötigen Eichidentitäten.
+
+Ein Projektor mit zwei Komponenten genügt nicht: Im Hauptbuch bleibt das Spektralgewicht einer passenden bilinearen Tensorobservable im freien massiven Vergleichsmodell oberhalb der Zweiteilchenschwelle. Der Projektor verschiebt diese Schwelle nicht auf null. 
+
+---
+
+## 7. Einfachheit heißt auch: Nicht jede ältere Brücke retten müssen
+
+Das ist möglicherweise die wichtigste strategische Konsequenz.
+
+**Die Einfachheit des algebraischen Kerns verpflichtet uns nicht, jede später ergänzte physikalische Zuordnung zu verteidigen.**
+
+Beispielsweise ist die E8 Matrixidentität eine andere Aussage als die phänomenologische Zuordnung \(M^2=c_3^7\) der Inflationsbranche.
+
+Euer eingefrorener Vergleich in v1.6 liefert beim Amplitudenfit \(n_s\approx0{,}96442\). Die Anpassung an den verwendeten Zentralwert \(n_s=0{,}9752\) ergibt dagegen eine etwa 2,05 fach größere Amplitude. Eine Änderung von \(c_3\) verändert zugleich die elektromagnetische Ausgabe. Das ist eine dokumentierte Modellspannung, keine hier neu durchgeführte globale Likelihoodanalyse. 
+
+Die sparsame Reaktion ist zunächst, **die betreffende Übersetzungsformel selbst zu prüfen**, statt zusätzliche Korrekturen einzubauen, bis jede Zahl wieder passt.
+
+Dasselbe gilt für die übrigen offenen Zweige: Dunkle Materie braucht einen stabilen Sektor mit berechneter Produktion; dunkle Energie eine kontrollierte gravitative Vakuumwirkung; Baryogenese eine quantitative Nichtgleichgewichtsgeschichte; die starke CP Frage einen Schutz im vollständigen Maß. Für diese Aufgaben liefert die jetzige Anschlussrechnung keine neue quantitative Lösung. 
+
+Auch die arithmetischen Abnahmen bleiben eigenständig: RH benötigt die richtige vollständige **signierte** Positivitätsaussage, nicht irgendeinen positiven Gramkern. Faktorisierung benötigt eine effiziente faktorblinde Auslesung einschließlich aller Kosten. Eine kurze Matrixdarstellung oder zusätzliche Quantenlogik entscheidet P versus NP nicht.  
+
+## Mein Gesamturteil
+
+**Der aussichtsreichste Weg ist nicht, den inneren Baukasten weiter aufzublähen. Er ist, seine Zusammensetzung und seine physische Bedeutung sauberer festzulegen.**
+
+Die drei wichtigsten positiven Vereinfachungen sind jetzt greifbar:
+
+**Der innere Kern:** zwei kleine Erzeuger und eine kurze Basis statt immer neuer algebraischer Bauteile.
+
+**Die Zustände:** einfache Paarprodukte plus eine gemeinsame kohärente Auswahl statt eines beliebig komplizierten nicht gaußschen Ansatzes.
+
+**Die Bewegung:** exakt zerlegbare native Transportblöcke statt einer neuen großen Diagonalisierung für jede kleine Erweiterung.
+
+Die entscheidende offene Verbindung liegt dazwischen: **Welche physisch erlaubte Verknüpfung trägt zugleich die richtigen Vorzeichen, einen echten Ortswechsel, den passenden Lorentztyp und dieselbe Zustandsstatistik?** Diese Frage ist kleiner und schärfer als „Welche noch größere Struktur fehlt uns?“. Sie ist aber noch nicht durch eine einzige gemeinsame Quellregel beantwortet.
+
+### Bericht und ausführbare Prüfungen
+
+Der mitgelieferte Quellprüfer besteht hier mit **279 Guards**. Der eigene Anschlussprüfer besteht mit **947 Guards**. Beide liefern jeweils unter normalem Python und unter `-OO` bytegleiche Ergebnisse. Das sind Prüfbedingungen, keine Zählung unabhängiger Entdeckungen; die großen historischen C16 Läufe wurden nicht erneut ausgeführt.
+
+:chatgpt-content-reference{index="5"}
+
+:chatgpt-content-reference{index="6"}

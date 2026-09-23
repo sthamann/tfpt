@@ -1,0 +1,428 @@
+{
+  "status": "PASS",
+  "guards": 446,
+  "exact_guards": 443,
+  "numerical_guards": 3,
+  "z4_rule": {
+    "fermion_center_charge_mod4": 3,
+    "boson_center_charge_mod4": 2,
+    "relation": "q_b = 2*q_f mod 4 (boson is Lambda^2 of fundamental)",
+    "sector_phase_formula": "phase = i^(q_f * N) mod 4, independent of level k",
+    "selection_rule": "singlets exist only when N = 0 mod 4",
+    "explicit_state_checks": [
+      {
+        "N": 64,
+        "k": 0,
+        "center_exponent_mod4": 0,
+        "expected_q_f_N_mod4": 0,
+        "phase": "1"
+      },
+      {
+        "N": 64,
+        "k": 1,
+        "center_exponent_mod4": 0,
+        "expected_q_f_N_mod4": 0,
+        "phase": "1"
+      },
+      {
+        "N": 64,
+        "k": 2,
+        "center_exponent_mod4": 0,
+        "expected_q_f_N_mod4": 0,
+        "phase": "1"
+      },
+      {
+        "N": 60,
+        "k": 2,
+        "center_exponent_mod4": 0,
+        "expected_q_f_N_mod4": 0,
+        "phase": "1"
+      },
+      {
+        "N": 56,
+        "k": 0,
+        "center_exponent_mod4": 0,
+        "expected_q_f_N_mod4": 0,
+        "phase": "1"
+      },
+      {
+        "N": 68,
+        "k": 2,
+        "center_exponent_mod4": 0,
+        "expected_q_f_N_mod4": 0,
+        "phase": "1"
+      },
+      {
+        "N": 72,
+        "k": 4,
+        "center_exponent_mod4": 0,
+        "expected_q_f_N_mod4": 0,
+        "phase": "1"
+      },
+      {
+        "N": 64,
+        "k": 3,
+        "center_exponent_mod4": 0,
+        "expected_q_f_N_mod4": 0,
+        "phase": "1"
+      }
+    ]
+  },
+  "singlet_multiplicities": {
+    "mult_0": 1,
+    "mult_1": 1,
+    "mult_2": 4,
+    "mult_2_certified": true,
+    "k1": {
+      "weight_zero_states": 480,
+      "weight_zero_equals_vertex_supports": true,
+      "kernel_vector": "w[(pair,A)] = W[A,pair] (the W-diagonal vector); exact guard M1 w = 0, norm^2 = 480",
+      "kernel_vs_R_state": "the hole-picture kernel is the W-diagonal vector; the particle-picture R state ETA[A]*W[BAR[A],pair] of verify_hole.py differs by the boson relabeling A <-> BAR[A] and the ETA metric signs; on vertex supports W[BAR[A],pair] = 0, so the literal particle-picture placement is not weight-zero in hole language",
+      "nullity_certification": "exact: modular rank of the integer 480x480 restricted Casimir mod 1000000007 and 1000000009 both give nullity 1; rank mod p <= rank over Q(i) and the explicit kernel vector gives nullity >= 1, hence nullity = 1 exactly. sympy rational rank was infeasible (>4 min); modular certification is exact.",
+      "nullities_mod_primes": {
+        "1000000007": 1,
+        "1000000009": 1
+      },
+      "spectrum_numerical": {
+        "distinct_eigenvalues": [
+          0,
+          32,
+          48,
+          64,
+          80,
+          96,
+          112,
+          128,
+          144,
+          160,
+          176,
+          192
+        ],
+        "all_integer_valued": true
+      }
+    },
+    "k2": {
+      "weight_zero_dimension": 442800,
+      "matrix_route": "not triggered: weight-zero dimension 442800 > 300000 budget",
+      "certification": "exact Weyl-Steinberg character evaluation m_0 = sum_w (-1)^w m(rho - w rho) on exact integer weight multiplicities of Lambda^4((16,4)) x Sym^2((10,6)) (DP-counted, totals guarded); Weyl groups D5 (order 1920) and A3 (order 24) with rho from half-sums of positive roots (guarded); validated at k=0 (=1) and k=1 (=1, matching the certified matrix nullity); chamber-independent (two chambers).",
+      "mult_2": 4
+    },
+    "k3_weight_zero_dimension_count_only": 257326240,
+    "sector60_lambda4_singlet_count": 0
+  },
+  "weight_zero_dimensions": {
+    "k1": 480,
+    "k2": 442800,
+    "k3": 257326240
+  },
+  "lanczos": {
+    "betas_squared_exact": {
+      "beta_1^2": "480",
+      "beta_2^2": "916",
+      "beta_3^2": "299520/229"
+    },
+    "beta_3_decomposition": {
+      "identity": "T_- T_+ = sum_A P_A^dag P_A + sum_{A,B} b_A^dag b_B P_B^dag P_A",
+      "term1_pair_casimir": "191692800",
+      "term1_formula": "(15*60*<v2|v2> - <v2|CAS_f|v2>/4)/2 with <v2|CAS_f|v2> = sum_X ||X_f v2||^2 exact",
+      "Cf2_fermion_casimir_expectation": "49305600",
+      "term2_boson_hop_pair_scattering": "383385600",
+      "term2_method": "direct exact application on supp(v2) (108240 states), collected into the v2 key set",
+      "norm_v2_squared": "439680"
+    },
+    "alpha_all_zero": true,
+    "closure": [
+      "T_- v_1 = 480 |F>",
+      "T_- v_2 = 916 v_1 (chain closes at level 2)"
+    ],
+    "support_sizes": {
+      "level0": 1,
+      "level1": 480,
+      "level2": 108240
+    },
+    "krylov_T4_upper_bound_numerical": -1.0942308394,
+    "krylov_T4_eigenvalues_numerical": [
+      -1.0942308394,
+      0.3005804651,
+      2.1407986068,
+      4.6528517675
+    ],
+    "ritz_overlap_with_F_squared_numerical": 0.397461935,
+    "wall": {
+      "reached": "beta_3^2 exact without materializing a level-3 state dict",
+      "level3_support_exact": 15254080,
+      "level3_contributions_reduced": 45771360,
+      "level3_support_kind": "exact: streamed sort-based reduction of the T_+ v2 image contributions (int64 keys, no occupation dict); ||T_+ v2||^2 = term1 + term2 guarded above, so the count is consistent with the certified beta_3^2",
+      "beta_4_blocker": "beta_4^2 needs <v3|T_-T_+|v3> on 15,254,080 states; the term2 fan-out grows to ~10^10 elementary operations - beyond the 15 min budget"
+    }
+  },
+  "casimir_floor": {
+    "identity": "8 W^T W + CAS = 120 I (re-guarded above)",
+    "cas_bright": 56,
+    "cas_dark": 120,
+    "bright_dim": 60,
+    "dark_dim": 1956,
+    "bright_rep": "(10,6) of Spin(10)xSU(4); boson-space Casimir -sum R_{1b}^2 = 56 I_60 guarded",
+    "c_min_pairs": 56,
+    "c_min_pairs_note": "smallest nonzero Casimir eigenvalue on Lambda^2(64) = 56 (spectrum {56 x60, 120 x1956})"
+  },
+  "sector_floor_table": [
+    {
+      "N": 56,
+      "N_f_star": 56,
+      "N_b_star": 0,
+      "E_floor_base_rigorous": "-21/20",
+      "E_floor_with_cmin56_NOT_established": "-21/20",
+      "singlets_allowed_by_Z4": true
+    },
+    {
+      "N": 57,
+      "N_f_star": 57,
+      "N_b_star": 0,
+      "E_floor_base_rigorous": "-171/160",
+      "E_floor_with_cmin56_NOT_established": "-799/800",
+      "singlets_allowed_by_Z4": false
+    },
+    {
+      "N": 58,
+      "N_f_star": 58,
+      "N_b_star": 0,
+      "E_floor_base_rigorous": "-87/80",
+      "E_floor_with_cmin56_NOT_established": "-407/400",
+      "singlets_allowed_by_Z4": false
+    },
+    {
+      "N": 59,
+      "N_f_star": 59,
+      "N_b_star": 0,
+      "E_floor_base_rigorous": "-177/160",
+      "E_floor_with_cmin56_NOT_established": "-829/800",
+      "singlets_allowed_by_Z4": false
+    },
+    {
+      "N": 60,
+      "N_f_star": 60,
+      "N_b_star": 0,
+      "E_floor_base_rigorous": "-9/8",
+      "E_floor_with_cmin56_NOT_established": "-9/8",
+      "singlets_allowed_by_Z4": true
+    },
+    {
+      "N": 61,
+      "N_f_star": 61,
+      "N_b_star": 0,
+      "E_floor_base_rigorous": "-183/160",
+      "E_floor_with_cmin56_NOT_established": "-859/800",
+      "singlets_allowed_by_Z4": false
+    },
+    {
+      "N": 62,
+      "N_f_star": 62,
+      "N_b_star": 0,
+      "E_floor_base_rigorous": "-93/80",
+      "E_floor_with_cmin56_NOT_established": "-437/400",
+      "singlets_allowed_by_Z4": false
+    },
+    {
+      "N": 63,
+      "N_f_star": 63,
+      "N_b_star": 0,
+      "E_floor_base_rigorous": "-189/160",
+      "E_floor_with_cmin56_NOT_established": "-889/800",
+      "singlets_allowed_by_Z4": false
+    },
+    {
+      "N": 64,
+      "N_f_star": 64,
+      "N_b_star": 0,
+      "E_floor_base_rigorous": "-6/5",
+      "E_floor_with_cmin56_NOT_established": "-6/5",
+      "singlets_allowed_by_Z4": true
+    },
+    {
+      "N": 65,
+      "N_f_star": 63,
+      "N_b_star": 1,
+      "E_floor_base_rigorous": "-29/160",
+      "E_floor_with_cmin56_NOT_established": "-89/800",
+      "singlets_allowed_by_Z4": false
+    },
+    {
+      "N": 66,
+      "N_f_star": 64,
+      "N_b_star": 1,
+      "E_floor_base_rigorous": "-1/5",
+      "E_floor_with_cmin56_NOT_established": "-13/100",
+      "singlets_allowed_by_Z4": false
+    },
+    {
+      "N": 67,
+      "N_f_star": 63,
+      "N_b_star": 2,
+      "E_floor_base_rigorous": "131/160",
+      "E_floor_with_cmin56_NOT_established": "711/800",
+      "singlets_allowed_by_Z4": false
+    },
+    {
+      "N": 68,
+      "N_f_star": 64,
+      "N_b_star": 2,
+      "E_floor_base_rigorous": "4/5",
+      "E_floor_with_cmin56_NOT_established": "4/5",
+      "singlets_allowed_by_Z4": true
+    },
+    {
+      "N": 69,
+      "N_f_star": 63,
+      "N_b_star": 3,
+      "E_floor_base_rigorous": "291/160",
+      "E_floor_with_cmin56_NOT_established": "1511/800",
+      "singlets_allowed_by_Z4": false
+    },
+    {
+      "N": 70,
+      "N_f_star": 64,
+      "N_b_star": 3,
+      "E_floor_base_rigorous": "9/5",
+      "E_floor_with_cmin56_NOT_established": "187/100",
+      "singlets_allowed_by_Z4": false
+    },
+    {
+      "N": 71,
+      "N_f_star": 63,
+      "N_b_star": 4,
+      "E_floor_base_rigorous": "451/160",
+      "E_floor_with_cmin56_NOT_established": "2311/800",
+      "singlets_allowed_by_Z4": false
+    },
+    {
+      "N": 72,
+      "N_f_star": 64,
+      "N_b_star": 4,
+      "E_floor_base_rigorous": "14/5",
+      "E_floor_with_cmin56_NOT_established": "14/5",
+      "singlets_allowed_by_Z4": true
+    }
+  ],
+  "separation": {
+    "separated": false,
+    "krylov_upper_bound_N64_numerical": -1.0942308394,
+    "floor_N64_exact": "-6/5",
+    "margins_floor_minus_upper_numerical": {
+      "56": 0.0442308394,
+      "57": 0.0254808394,
+      "58": 0.0067308394,
+      "59": -0.0120191606,
+      "60": -0.0307691606,
+      "61": -0.0495191606,
+      "62": -0.0682691606,
+      "63": -0.0870191606,
+      "65": 0.9129808394,
+      "66": 0.8942308394,
+      "67": 1.9129808394,
+      "68": 1.8942308394,
+      "69": 2.9129808394,
+      "70": 2.8942308394,
+      "71": 3.9129808394,
+      "72": 3.8942308394
+    },
+    "unseparated_sectors": [
+      59,
+      60,
+      61,
+      62,
+      63
+    ],
+    "missing_margins": {
+      "59": {
+        "floor_exact": "-177/160",
+        "shortfall_vs_krylov_upper_numerical": 0.0120191606
+      },
+      "60": {
+        "floor_exact": "-9/8",
+        "shortfall_vs_krylov_upper_numerical": 0.0307691606
+      },
+      "61": {
+        "floor_exact": "-183/160",
+        "shortfall_vs_krylov_upper_numerical": 0.0495191606
+      },
+      "62": {
+        "floor_exact": "-93/80",
+        "shortfall_vs_krylov_upper_numerical": 0.0682691606
+      },
+      "63": {
+        "floor_exact": "-189/160",
+        "shortfall_vs_krylov_upper_numerical": 0.0870191606
+      }
+    },
+    "with_cmin56_improvement_NOT_established": {
+      "unseparated_sectors": [
+        60,
+        63
+      ],
+      "margins_floor_minus_upper_numerical": {
+        "56": 0.0442308394,
+        "57": 0.0954808394,
+        "58": 0.0767308394,
+        "59": 0.0579808394,
+        "60": -0.0307691606,
+        "61": 0.0204808394,
+        "62": 0.0017308394,
+        "63": -0.0170191606,
+        "65": 0.9829808394,
+        "66": 0.9642308394,
+        "67": 1.9829808394,
+        "68": 1.8942308394,
+        "69": 2.9829808394,
+        "70": 2.9642308394,
+        "71": 3.9829808394,
+        "72": 3.8942308394
+      },
+      "validity": "NOT established: the +56/800 improvement uses c_min = 56, but in the floor-identity normalization the true sector c_min is at most 14 (the bright-pair value of (C_S+C_C) = 56/4); 56 <= true sector c_min is never satisfiable. Even the pair-identity-consistent value 14 is only an upper bound on the true sector c_min over all Lambda^{N_f}. Shown for reference only."
+    },
+    "note": "With rigorous base floors the Krylov upper bound at N=64 does NOT separate it from N = 59..63 (their floors lie below the bound). With the (not-established) +56/800 improvement on Z4-excluded sectors, N = 60 and N = 63 remain unseparated: N=60 allows singlets (N = 0 mod 4; its level-0 subsector Lambda^4 nevertheless has 0 singlets - see singlet_multiplicities), so no improvement applies there; N=63 floor -189/160 stays below the Krylov bound even after +7/100."
+  },
+  "group_census": {
+    "order": 768,
+    "capped_at_2e6": false,
+    "orbits": {
+      "modes_64": 1,
+      "pairs_2016": 31,
+      "bosons_60": 5,
+      "vertex_supports_480": 5
+    },
+    "stabilizer_mode0": {
+      "order": 12,
+      "states": 120960,
+      "orbits_on_2holes_1boson": 25280,
+      "burnside_crosscheck": true
+    }
+  },
+  "worker_claims_checked": {
+    "global_ground_state_in_sector_N64": {
+      "status": "not confirmed by these bounds",
+      "detail": "the sector floors at N=59..63 lie below the N=64 Krylov variational upper bound -1.0942308400, so the bounds do not separate N=64 from its neighbors; see separation"
+    },
+    "unique_Spin10xSU4_singlet": {
+      "status": "refuted as a sector statement",
+      "detail": "exact singlet multiplicities in sector N=64: level 0: 1, level 1: 1 (certified by matrix nullity), level 2: 4 (certified by Weyl-Steinberg character evaluation). At least 6 singlets through level 2. If the claim means the ground state is a nondegenerate singlet, that is not tested here (needs the full spectrum)."
+    },
+    "positive_gap": {
+      "status": "not tested",
+      "detail": "requires the ground and first-excited energies; the Krylov bound is only an upper bound"
+    },
+    "overlap_with_F_gt_1/4": {
+      "status": "consistent at Krylov-Ritz order (numerical)",
+      "detail": "the lowest Krylov Ritz vector has |<F|psi>|^2 = 0.397462 > 1/4; this is the variational approximation, not the exact ground state"
+    },
+    "entanglement_gt_0.811_bit": {
+      "status": "not tested",
+      "detail": "requires the ground state vector, beyond this probe"
+    }
+  },
+  "T1_T8_closed": [],
+  "scope": "N=64 ground-state probe: exact Z4 rule, exact singlet multiplicities at k=0,1,2, exact Lanczos betas 1..3 with Krylov upper bound, exact pair Casimir floor, exact sector floors and separation analysis, exact group census",
+  "runtime_seconds": 133.43,
+  "checker_sha256": "91a0d897c7eba1b2686dc04d476a39ac5026cdf680eaf607cab515a30180a370",
+  "dependency_sha256": "380577f85d2afa8b50f91a0991769eaf8267ee5c09f327d87f17e1b4c0af1672"
+}

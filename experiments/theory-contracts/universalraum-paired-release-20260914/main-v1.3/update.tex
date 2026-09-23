@@ -1,0 +1,203 @@
+\documentclass[11pt,a4paper,oneside,parskip=half,headings=normal]{scrreprt}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Pagella}
+\setsansfont{TeX Gyre Heros}
+\setmonofont[Scale=0.85]{Latin Modern Mono}
+\usepackage[ngerman]{babel}
+\usepackage{microtype,amsmath,amssymb,mathtools,bm}
+\usepackage[margin=23mm,top=24mm,bottom=24mm,headheight=16pt]{geometry}
+\usepackage{graphicx,booktabs,longtable,tabularx,array,multirow}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,decorations.pathreplacing}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem,float,caption,needspace}
+\usepackage{scrlayer-scrpage}
+\usepackage[unicode,colorlinks=true,linkcolor=teal,urlcolor=teal,citecolor=teal,bookmarksnumbered=true]{hyperref}
+\usepackage{bookmark,xurl}
+\definecolor{navy}{HTML}{142F42}
+\definecolor{teal}{HTML}{087F83}
+\definecolor{amber}{HTML}{B96A16}
+\definecolor{slate}{HTML}{61717D}
+\definecolor{pale}{HTML}{EFF5F5}
+\definecolor{warm}{HTML}{FAF3E9}
+\setkomafont{chapter}{\sffamily\bfseries\color{navy}\LARGE}
+\setkomafont{section}{\sffamily\bfseries\color{navy}\large}
+\setkomafont{subsection}{\sffamily\bfseries\color{navy}\normalsize}
+\renewcommand*{\chapterheadstartvskip}{\vspace*{0pt}}
+\renewcommand*{\chapterheadendvskip}{\vspace{14pt}}
+\clearpairofpagestyles
+\ihead{\sffamily\small\color{slate}TFPT · Universalraum}
+\ohead{\sffamily\small\color{slate}Erklärung und Rekonstruktion}
+\automark[chapter]{chapter}
+\ifoot{\sffamily\scriptsize\color{slate}Forschungsstand 14. September 2026}
+\ofoot{\sffamily\small\pagemark}
+\KOMAoptions{headsepline=.3pt}
+\setkomafont{headsepline}{\color{slate!35}}
+\renewcommand*{\chapterpagestyle}{scrheadings}
+\renewcommand{\arraystretch}{1.18}
+\setlength{\tabcolsep}{5pt}
+\setlength{\parfillskip}{0pt plus 1fil}
+\setlist{nosep,leftmargin=1.4em,topsep=5pt}
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{1}
+\emergencystretch=2em
+\raggedbottom
+\captionsetup{font=small,labelfont={bf,sf},skip=7pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\ket}[1]{\lvert#1\rangle}
+\newcommand{\bra}[1]{\langle#1\rvert}
+\newcommand{\src}[1]{\textcolor{slate}{\small[Quelle: #1]}}
+\newcommand{\status}[1]{\textcolor{teal}{\textsf{\textbf{#1}}}}
+\newtcolorbox{bild}[1]{enhanced,breakable,colback=pale,colframe=teal!35,boxrule=.5pt,arc=2pt,left=10pt,right=10pt,top=8pt,bottom=8pt,title={#1},coltitle=navy,fonttitle=\sffamily\bfseries,colbacktitle=pale}
+\newtcolorbox{grenze}[1]{enhanced,breakable,colback=warm,colframe=amber!45,boxrule=.5pt,arc=2pt,left=10pt,right=10pt,top=8pt,bottom=8pt,title={#1},coltitle=navy,fonttitle=\sffamily\bfseries,colbacktitle=warm}
+\tikzset{box/.style={draw=teal!50,fill=pale,rounded corners=3pt,align=center,font=\sffamily\small,text=navy,inner sep=8pt},openbox/.style={box,draw=amber!60,fill=warm},arr/.style={-{Latex[length=2.5mm]},thick,draw=teal},hyp/.style={arr,dashed,draw=amber}}
+\hypersetup{pdftitle={TFPT Universalraum Update v1.3},pdfauthor={Codex fuer Stefan Hamann},pdfsubject={Aenderungen gegenueber Hauptbuch v1.1; 14. September 2026}}
+\begin{document}
+\chapter*{TFPT und Universalraum\\Update-Paper v1.3}
+\noindent\textsf{14. September 2026 · Nur Änderungen gegenüber dem Hauptbuch v1.1}
+
+Dieses Papier begleitet das vollständig aktualisierte Hauptdokument v1.3. Es ersetzt dessen Herleitungen, TFPT-Grundlagen, Clock-, Standardmodell-, Zahlen-, RH- und Raumzeitkapitel nicht. Die kompakte Compiler-Fassung v1.2 war eine andere Dokumentlinie; der Vergleich erfolgt hier ausdrücklich gegen das 90-seitige Hauptbuch v1.1.
+
+\begin{bild}{Die wichtigste Änderung in einem Bild}
+Die Bauteile liegen nicht mehr nur nebeneinander. Ein kleines gemeinsames Modell kann nun aufzeichnen, einen Viererzustand kontrolliert vorbereiten und anschließend die Wirkung alter Aufzeichnungen messen. Zusätzlich kennen wir den nächsten Korrekturterm seiner größeren Referenzdynamik. Offen bleibt, ob die primitive TFPT-Regel die dafür nötigen Handgriffe wirklich liefert.
+\end{bild}
+
+\section*{1. Was neu bestätigt oder korrigiert wurde}
+\begin{longtable}{L{39mm}L{61mm}L{50mm}}
+\toprule Bereich&Änderung&Beweisgrenze\\\midrule\endhead
+History und Austausch&Geordnete innere Records zerstören $I-S$ und erzeugen $I-D$. Die Reparatur erhält die kohärenten Austauschwege.&Korrekte lokale Ausführung, noch keine native Auswahl.\\
+Zweizellenmodell&Eindeutiger Grundzustand und Gap $>J/2$ für alle endlichen $\lambda\ge0$.&Zwei vollständige Tetramer mit einer Brücke, kein Vielzellenlimes.\\
+Clebsch-Singulett&Erstes angeregtes Niveau mindestens vierfach gefunden, nicht Dublett.&Numerisch; keine exakte obere Multiplizität oder Nichtsingulettvollprüfung.\\
+Vierte Ordnung&40 Einzelkanten-, 160 überlappende und 60 geteilte Vermittlerbeiträge.&Benannter harter Referenzvertrag; native CAR-/Clock-Identifikation offen.\\
+Präparation&Dieselbe Recordoperation liefert kontrollierte Näherungspräparation; ein anderer erweiterter Idealvertrag erlaubt deterministische Präparation.&Messung/Feedback beziehungsweise selektive Phasen sind zusätzliche Ressourcen.\\
+Mikroskopischer Stern&Exakte Wurzelenergien und angekleideter Grundzustand im vollen 544-dimensionalen Block.&Isolierter Stern, nicht gesamtes Clebsch-Netz.\\
+Entropie und Rang&Kontextentropie wählt $1/7$, Strahlenentropie $1/13$; Rang 30 ist kein globales Minimum.&Auslesung und zulässige Nachfolger müssen fixiert bleiben.\\
+Zahlen&Alpha erneut berechnet; $A_s$ kann bei $N\approx56{,}13$ kalibriert werden.&Keine neue unabhängige Amplitudenvorhersage oder vollständiger Transfer.\\\bottomrule
+\end{longtable}
+
+\section*{2. Ein Prozess statt dreier getrennter Modelle}
+Mit $W^\dagger W=P_-$ und $WW^\dagger=I_6$ liefert
+\begin{equation}
+U_0=\begin{pmatrix}P_+&W^\dagger\\W&0\end{pmatrix},\qquad
+Q=I_{16}\otimes I_2\oplus I_6\otimes X
+\end{equation}
+die Recordoperation
+\begin{equation}
+(U_0\otimes I)Q(U_0\otimes I)
+=(P_+\otimes I+P_-\otimes X)\oplus I_{12}.
+\end{equation}
+Aufgezeichnet wird nur die Vermittlerbelegung, nicht die geordnete innere Farbanordnung. Alle lokalen Eingänge und beide Ausgänge sind eingeschlossen. Derselbe Baustein wird auf einem gemeinsamen Träger mit 832 Dimensionen eingesetzt; einschließlich Quellclock und Pointer hat die feste unitäre Schrittregel 6656 Dimensionen.
+
+Aus dem quellseitig zurücksetzbaren Produkt $\ket{0123}$ wird jede Runde mit
+$K_\star=P^-_{03}P^-_{02}P^-_{01}$ ausgeführt. Erfolgreiche Recordfolge ist 111. Mit $\beta=(9+\sqrt{17})/32$ gilt für alle $N$
+\begin{equation}
+\|K_\star^N-P_\Omega\|^2\le\beta^N,\qquad
+p_N\ge1/24,\qquad F_N=1/(24p_N).
+\end{equation}
+Nach acht Runden ist $F_8\approx0{,}9999992449$ bei Gesamterfolg etwa $0{,}04166669813$. Fehlschläge werden nicht gestrichen: Mit erklärtem Reset sind höchstens 24 Versuche im Mittel nötig. Endlich viele Runden liefern keine exakte $\Omega$-Präparation.
+
+Nach Quelltick, zweimaligem Record und Rücknahme des Ticks benutzt auch die Endprüfung dasselbe Filter. Bei acht Runden sind die auf Präparation bedingten Schlusserfolge
+\begin{equation}
+0{,}9999992449\quad\hbox{(Record behalten)},\qquad
+0{,}5312581678\quad\hbox{(Record frisch)}.
+\end{equation}
+Sie konvergieren zu $1$ und $17/32$. Die unbedingten Grenzwerte sind $1/24$ und $17/768$. Das Echo wurde auf dem vollen 256-dimensionalen Materieraum gerechnet; die Clock erzeugt dabei auch wiederholte Farben.
+
+Die native Grenze ist jetzt präzise: Das Austauschregister ist nicht Clifford. Ein tatsächlicher Quellinput erzeugt nach ihm 13 nichtverschwindende Basisamplituden. Reine Clifford-/Stabilizeroperationen und Pauli-Messungen reichen dafür nicht. Die zentrale Clockphase unterscheidet Materie und Wedge-Belegung ebenfalls nicht.
+
+\section*{3. Der vollständige neue Korrekturterm und seine Wirkung}
+Der ausgeschriebene Referenzoperator lautet
+\begin{equation}
+F_4=2\sum_eE_e+
+\sum_{\substack{e<f\\e\cap f\ne\varnothing}}\{E_e,E_f\}
+-2\sum_{\substack{e<f\\r(e)=r(f)}}E_eE_fT_{ef},
+\qquad E_e=I-S_e.
+\end{equation}
+Die bisher fehlenden überlappenden Kanten erzeugen echte Dreiträgerbeiträge. Kleine Koeffizienten dürfen daher nicht nur als Änderung eines einzigen $J$ gelesen werden. Die eigene mikroskopische Pfadrechnung bestätigt alle kleinen Vergleichsblöcke und sechs C16-Spalten im harten Tensorproduktvertrag.
+
+Eine neue Rechnung im vollständigen 24024-dimensionalen Singulettsektor reproduziert
+\begin{align}
+\langle F_4\rangle_{0,s}&=555{,}4885003638373,\\
+\spec(F_4|_{\text{vier gefundenen Moden}})
+&\approx583{,}292038666386.
+\end{align}
+Daraus folgt die erste Korrektur
+\begin{equation}
+\Delta_s/J=0{,}516363785734+
+13{,}901769151274(t/\Delta)^2+O((t/\Delta)^4).
+\end{equation}
+Bei $t/\Delta=1/20$ ergibt sie $0{,}551118208612$, rund 6,73 Prozent mehr. Diese Zahl ist \emph{nicht} die exakte mikroskopische Lücke bei diesem Betriebswert: Höhere Restterme und Nichtsingulettkonkurrenz fehlen.
+
+Separat trägt die konservative globale Normschranke $\|V\|\le160|t|$. Bei $t/\Delta=1/640$ ist das niedrige Band vom Vermittlerband um mindestens $\Delta/2$ isoliert. Dies kontrolliert keine relative Spektralgenauigkeit gegenüber dem viel kleineren Austauschmaßstab $J$.
+
+\section*{4. Deterministisch im Idealmodell ist nicht automatisch mikroskopisch}
+Für den bekannten Zweisingulett-Eingang $\chi$ mit Zielüberlappung $1/6$ bilden zwei angepasste Verstärkungsschritte
+\begin{equation}
+[R_\chi(z)R_\Omega(z)]^2\chi=e^{i\gamma}\Omega,\quad
+R_v(z)=I+(z-1)P_v,\quad \Re z=(3\sqrt5-7)/2
+\end{equation}
+den Eingang ideal mit Wahrscheinlichkeit eins auf $\Omega$ ab. Die konkrete Phase wurde symbolisch und numerisch bestätigt. Das ist eine Spezialisierung bekannter \href{https://arxiv.org/abs/quant-ph/0005055}{Amplitudenverstärkung}, keine neue allgemeine Methode.
+
+Erforderlich sind zwei selektive $\Omega$-Phasen und zwei $\chi$-Phasen. Die gegebene Sternrealisierung benutzt insgesamt zwölf kontrollierte Potenzaufrufe und drei wiederverwendbare Kontrollqubits; weitere Synthesekosten bleiben offen. Die alte $3/32$-Schaltung, der $1/6$-Spektralfilter und die deterministische Variante sind verschiedene Ressourcenverträge.
+
+Der volle isolierte mikroskopische Stern hat
+\begin{equation}
+H_{\star,\mathrm{eff}}^{\mathrm{mic}}
+=\tfrac12[\Delta I-\sqrt{\Delta^2I+4t^2(6I-2G_\star)}].
+\end{equation}
+Bei $\Delta=1,t=1/20$ sind die exakte Lücke $0{,}002433968751370$ und das nackte Materiegewicht des Grundzustands $w=0{,}9856429311786321$. Seine Frequenzen passen nicht unverändert zum idealen Achtpunktfilter.
+
+\section*{5. Erste Follow-ups bereits gerechnet}
+\textbf{Angepasste Phase.} Für bekannte Zielüberlappung $a$ gilt allgemein
+\begin{equation}
+\cos\phi=1-\frac{3-\sqrt5}{4a},\qquad
+a\ge(3-\sqrt5)/8.
+\end{equation}
+Für den angekleideten Stern-Grundzustand und nackten Eingang ist $a=w/6$. Die passende Phase beträgt nun $1{,}7341107453033229$ statt $1{,}7172169856477322$. Die alte Phase hinterlässt selbst bei idealem Zugang zum neuen Zielprojektor Infidelität $0{,}0001262823349012$. Die neue Phase behebt diesen Fehler im erweiterten Idealvertrag; die selektive mikroskopische Zieloperation selbst fehlt noch.
+
+\textbf{Ein einzelner unveränderter Puls genügt nicht.} Im detunierten Paarblock ist vollständiger Transfer wegen $p_{\max}=4g^2/(\Delta^2+4g^2)<1$ unmöglich. Im Stern haben zwei beteiligte Rabiabstände bei $t/\Delta=1/20$ das irrationale Verhältnis $\sqrt{106/105}$. Sie können bei keinem gemeinsamen nichtverschwindenden Puls alle Vermittlerzweige exakt zurücksetzen. Zusammengesetzte Pulse, zusätzliche Kontrolle oder approximative Rückkehr sind dadurch nicht ausgeschlossen.
+
+\textbf{Ein kurzer positiver Kontrollkandidat.} Wird das isolierte Paar resonant geschaltet, realisiert ein Transfer mit $g\tau/\hbar=\pi/2$ zusammen mit zwei relativen Belegungs-Viertelphasen genau $U_0$:
+\[
+D_{1/4}U_{\mathrm{res}}D_{1/4}=U_0,\qquad D_{1/4}=I_{16}\oplus iI_6.
+\]
+Die volle Matrixidentität ist geprüft. Kantenisolierung, veränderbare Verstimmung und diese relative Phase bleiben aber zusätzliche Kontrollen; ihre native TFPT-Herkunft ist der nächste Test.
+
+\section*{6. Die wichtigsten nächsten Fragen in einfacher Sprache}
+\begin{enumerate}
+\item \textbf{Kann die echte Maschine die benötigten Handgriffe?}
+Nächster Test: eine kontrollierte Pulsfolge oder selektive Operation, die den Vermittler zurücksetzt und beide Recordausgänge korrekt liefert. Kein vorpräpariertes Ziel als versteckter Input.
+\item \textbf{Können wir den richtigen angekleideten Zustand auswählen?}
+Die neue Verstärkungsphase ist berechnet. Es fehlen ihre mikroskopische Umsetzung und eine Endmessung aus denselben Operationen, mit Fehler- und Kostenrechnung.
+\item \textbf{Hält die Spektralkorrektur, wenn alle Zustände und höheren Terme mitspielen?}
+Nächster Test: Nichtsingulettkonkurrenz und kontrollierte höhere Restterme. Mehr Dezimalstellen im Singulett allein lösen das nicht.
+\item \textbf{Wer liefert Reset und Kühlung?}
+Ein maßgeschneiderter Lindbladkanal führt nach $\Omega$; gewöhnliche Vermittlerverluste besitzen dagegen 969 symmetrische dunkle Zustände auf 16 Trägern. Gesucht ist eine physisch begründete Umgebung samt Energie- und Entropiebilanz.
+\item \textbf{Warum entstehen gerade unser Raum und unsere Materie?}
+Benötigt wird eine skalierende Familie, die gemeinsame Ausbreitung, Dimension und chirale propagierende Familien wirklich berechnet. Ein Instantonindex drei zählt nicht von selbst drei Teilchenfamilien.
+\item \textbf{Wo sind Photon und Graviton im tatsächlichen Spektrum?}
+Ein isoliertes Vermittlerband ist noch kein masseloser Sektor. Es fehlen die physikalischen Pole, Eichidentitäten und universelle gravitative Kopplung.
+\end{enumerate}
+
+\section*{7. Was ausdrücklich offen bleibt}
+Alle vollständigen T1--T8-Tore bleiben offen: primitive Auswahl, native analytische Naht, gemeinsamer 3+1D-Ursprung, chirales Maß, wechselwirkender Grenzprozess, vollständige Parameter, dynamischer Spin 2 und physikalisches Quellfunktional.
+
+RH benötigt weiterhin eine normierungs- und phasentreue positive Darstellung der \emph{vollständigen} signierten Weil-Form, nicht bloß positive Einzelblöcke. Der geprüfte singuläre Schur-Satz verlangt zusätzlich die Bildraumbedingung. Die \href{https://arxiv.org/abs/2006.13771}{archimedische Untersuchung von Connes--Consani} ist kein allgemeiner RH-Abschluss.
+
+Die vollständige Fouriermessung des quadratischen E8-Phasenzustands ist bei teilerfremdem Takt uniform, sonst nur vom direkt berechenbaren ggT abhängig. Die Formel wurde für alle Takte bei $N=2,\ldots,6$ nachgerechnet. Fünf erfolgreiche Moment-Faktorisierungen benötigen weiterhin $N$ ggT-Aufrufe, also exponentiellen Aufwand in der Bitlänge. Dies schließt keine anderen kohärenten Algorithmen aus und beweist kein P=NP.
+
+\section*{8. Prüfumfang und Begleitdateien}
+Für diese Ausgabe wurden die gemeinsame Ausführung mit 231 eigenen exakten Bedingungen sowie 1073 getrennten Quell-Präfixprüfungen erneut ausgeführt; Normal/Optimierung sind bytegleich und fünf Negativmutanten werden erkannt. Der neue unabhängige Eingabeprüfer umfasst 891 Bedingungen, darunter 832 vollständige kleine F4-Matrixspalten und sechs C16-Stichproben. Dazu kommt die separate neue 24024-dimensionale Singulettrechnung. Diese Zahlen werden nicht als unabhängige Entdeckungen addiert.
+
+Kein vollständiger Lean-/RH-Neubau, keine Hardware und keine globale empirische Neuauswertung. Der RH-Aktualitätscheck und der Faktorgraph bleiben durch fehlende lokale Quellen eingeschränkt. Originaltexte, Quellenhashes, LaTeX, Prüfer, Ergebnisse und eine verständliche Follow-up-Liste werden im versionierten Begleitpaket erhalten. Das Hauptdokument enthält die vollständige Vorgeschichte und ausführlichen neuen Beweise.
+\end{document}

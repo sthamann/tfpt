@@ -1073,3 +1073,29 @@ This is not an empirical test; it is the foundational step that would turn the m
 contract from "consistent if Z4" into "Z4 is forced". It belongs in `tfpt_research_contracts`
 (theory contracts), never in `evidence_scorecard.json`. Parked here as the next contract to
 formalise.
+
+## contract_index.json (Pflicht für neue Contracts)
+
+Jeder neue Contract-Ordner schreibt eine `contract_index.json` mit:
+
+```json
+{
+  "contract": "<ordnername>",
+  "date": "YYYYMMDD",
+  "question": "...",
+  "verdict": "<enum>",
+  "verdict_enum": ["PASS", "PARTIAL", "FAIL", "..."],
+  "claims_tested": ["CLAIM.ID.01"],
+  "gates": ["T1"],
+  "kills": ["hypothese..."],
+  "checker": "script.py",
+  "firewall": "experiments"
+}
+```
+
+Der Aggregator `verification/build_theory_graph.py` liest zuerst dieses File;
+Legacy-Ordner ohne Index werden aus `validation.json` bzw. `RESULTS.md` toleriert.
+`contract_index.json` darf auch via `verification/enrich_theory_graph_llm.py`
+(LLM-Backfill) entstehen — dann sind `source` ("llm_backfill"), `model` und
+`backfill_date` Pflichtfelder, damit die Herkunft im Graphen sichtbar bleibt.
+

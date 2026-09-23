@@ -1,0 +1,87 @@
+{
+  "contract": "source-pair-transfer-20260920",
+  "date": "2026-09-20",
+  "research_id": "UR.SOURCE.PAIR_TRANSFER.01",
+  "question": "Does the actual all-time response of the existing dressed F(E8) fields derive the native attractive pair interaction while retaining source state, energy and one-particle calibration?",
+  "verdict": "PARTIAL",
+  "verdict_enum": [
+    "PASS",
+    "PARTIAL",
+    "FAIL"
+  ],
+  "mathematical_verdict": "EXACT_ALL_ORDER_PAIR_KERNEL; CONTROLLED_POLAR_STATE_TIME_LIMIT; POSITIVE_DARK_PENALTY; NATIVE_ATTRACTIVE_BINDING_NOT_DERIVED",
+  "claims_tested": [],
+  "gates": [
+    "T2",
+    "T3",
+    "T6",
+    "T8"
+  ],
+  "physical_gates_closed": [],
+  "complete_TFPT_solution": false,
+  "checker": "checker.py",
+  "proof": "PROOF.md",
+  "certificate": "certificate.json",
+  "source_manifest": "source_manifest.json",
+  "firewall": "experiments",
+  "promotion": false,
+  "relations": [
+    {
+      "type": "extends",
+      "target": "source-dressed-native-20260920"
+    },
+    {
+      "type": "uses",
+      "target": "universalraum-keyD-native-instruments-20260915"
+    },
+    {
+      "type": "uses",
+      "target": "universalraum-operations-groundstate-20260915"
+    },
+    {
+      "type": "uses",
+      "target": "source-dynamics-selection-20260920"
+    },
+    {
+      "type": "uses",
+      "target": "charged-source-time-audit-20260920"
+    },
+    {
+      "type": "references",
+      "target": "source-sector-reconstruction-20260920"
+    }
+  ],
+  "summary_de": "Im vorhandenen masselosen F(E8)-Rand ist die gesamte antisymmetrische Paarantwort exakt G(v)=d(v)I+o(v)WtW. Ihre polare Zustandsabbildung hat einen kontrollierten Grenzfall mit demselben zugewiesenen Zeitgenerator: H_pair=3I-Q2/4+2P_dark, uniformer Realzeitfehler <=5rho. Die 1956 dunklen Richtungen bleiben erhalten. Finiter Abstand hat eine unendliche positive Spektralleiter und keinen geschlossenen endlichen Hamiltonian. Gegen die gleichen Einzelfeldenergien ist der Paarbeitrag nichtnegativ: hell0, dunkel2. Die unveraenderte native N=2-Matrix hat dagegen negative helle Bindungsenergie. Weglassen des Paaroffsets aendert die Dynamik; kein Vakuum- oder Voll-Fock-Transfer. Die neue Sektorrekonstruktions-Lane wurde bytegleich reproduziert. P1/P2-Ursprung, Vaux-Auswahl und physischer Gesamtabschluss bleiben offen.",
+  "assumptions": [
+    "Existing conditional ten-channel Gamma, F(E8), massless Vaux and fixed lattice vacuum",
+    "Original native W and simultaneous source basis phases",
+    "Conformal cylinder time plus the previously audited quarter-charge generator",
+    "Native comparison restricted to its empty-reference N=2 sector; not a computed response about the interacting N=64 ground"
+  ],
+  "kills": [
+    "Infer exact autonomous pair evolution from its instantaneous compressed mean Hamiltonian at finite separation.",
+    "Infer negative source pair binding from the coefficient of minus WtW after dropping the mandatory identity contribution.",
+    "Use an N=2-only energy subtraction as an unchanged vacuum and one-particle calibration.",
+    "Treat the polar pair-state isometry as an intertwiner of the full native CAR/CCR algebra.",
+    "Infer that sector reconstruction changes the Hamiltonian or creates missing attractive dynamics.",
+    "Use the present N=2 result as an exclusion of all alternative interacting-vacuum or GNS maps."
+  ],
+  "leaves_open": [
+    "Original source selection of the charged boundary, vacuum and Vaux",
+    "Physical mechanism producing the required connected pair energy with fixed one-particle calibration",
+    "Native interacting-ground-state field/GNS map and full operator products",
+    "Common chirality, 3+1D dynamics, flavor/alpha/gravity and complete TFPT solution"
+  ],
+  "not_claimed": [
+    "No microscopic four-fermion term generated from the elementary Gaussian source",
+    "No physical coupling calibration from the dimensionless conformal gap two",
+    "No universal TFPT or alternative-state no-go",
+    "No independent agent review or formal proof-assistant verification"
+  ],
+  "literature": [
+    {
+      "url": "https://arxiv.org/pdf/2009.00186",
+      "scope": "Appendix B standard lattice OPE/cocycle framework; all-order native response identity derived here under fixed conditional premises"
+    }
+  ]
+}

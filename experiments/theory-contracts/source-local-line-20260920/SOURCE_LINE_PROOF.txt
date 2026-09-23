@@ -1,0 +1,256 @@
+THE SAME SOURCE ON A GROWING CIRCLE: CHARGED LOCAL LINE LIMIT
+20 September 2026 — UR.SOURCE.LOCAL_LIMIT.01
+
+Question and answer
+===================
+
+Does the quarter-holonomy mismatch found on a fixed circle also obstruct a
+local charged field limit when the circle itself grows? No, for the precise
+one-copy source below. Its original top-row charged CAR observables converge
+to a single chiral free fermion on the line with their common time evolution.
+The holonomy becomes locally invisible. This does not create eight species,
+nor derive this auxiliary QWZ source from the abstract TFPT boundary datum.
+
+The genuinely new comparison is the limit geometry: previous calculations
+kept the physical circle radius fixed and refined its lattice. Here both
+R -> infinity and a=2*pi*R/N -> 0. The seam multiplier i^r, source mass 1,
+width 8 and all hopping matrices are unchanged. Choosing this joint limit
+is an explicit physical scaling assumption, not a consequence of P1/P2.
+Velocity and hbar are set to one. No numerical value of the speed of light
+is predicted.
+
+1. Actual operator, not a dispersion fitted to eigenvalues
+==========================================================
+
+Use verification/v1033_charged_disorder.py, qwz_cylinder, at width W=8 and
+mass 1. Write its actual blocks as
+
+ TX=-(i sigma_x+sigma_z)/2,
+ TY=[[-1,-1],[1,1]]/2.
+
+The 16-by-16 Hermitian Fourier strip has diagonal block
+
+ (1-cos p) sigma_z - sin p sigma_x
+
+and TY/TY^dagger between adjacent transverse rows. The seam sector r=1 or 3
+sets the momentum mesh
+
+ k_j=(j-r/4)/R,      p_j=a k_j=2*pi*(j-r/4)/N.
+
+Take one set of N consecutive j such that p_j lies in a Brillouin interval
+centred at zero. At fixed physical momentum this interval exhausts the line
+as a -> 0. The physical one-particle generator is D_a(k)=h(a k)/a.
+
+Let r_top have (1,1)/sqrt(2) only at row y=7 and let chi_top have
+(1,-1)/sqrt(2) there. Direct substitution into the imported primitive blocks
+gives the exact identity
+
+ h(p) r_top = -sin p r_top + (1-cos p) chi_top.             (S1)
+
+The transverse contribution vanishes; chi_top and r_top are orthonormal.
+Consequently
+
+ ||(D_a(k)+k)r_top||^2
+    = (k-sin(a k)/a)^2 + ((1-cos(a k))/a)^2,
+
+ ||(D_a(k)+k)r_top|| <= eps_a(k),
+ eps_a(k)=a k^2/2+a^2 |k|^3/6.                            (S2)
+
+Only |1-cos x|<=x^2/2 and |x-sin x|<=|x|^3/6 are used.
+The estimate is on the actual row vector at the actual full strip operator;
+it does not discard a transverse subspace or replace source coefficients.
+
+2. Filled source state and time in the same estimate
+====================================================
+
+Let P_a(k)=1_(D_a(k)<0) be the negative-energy projection used by the source.
+For any self-adjoint D and normalized r with ||(D+k)r||<=eps, the spectral
+theorem gives, for k nonzero,
+
+ |<r,1_(D<0)r>-1_(k>0)| <= eps^2/k^2.                    (S3)
+
+Proof: if k>0, the wrong, nonnegative spectrum is at distance at least k
+from the target eigenvalue -k; if k<0, the negative spectrum is at distance
+at least |k|. Integrating (lambda+k)^2 against r's spectral measure bounds
+the wrong-side weight. Possible zero eigenvalues obey the same estimate.
+No separate assumption about a uniform spectral gap at k=0 is needed.
+The quarter-shifted finite mesh never contains k=0.
+
+Duhamel's formula on this finite strip also gives
+
+ ||(exp(-itD_a(k))-exp(itk))r_top|| <= |t| eps_a(k).       (S4)
+
+Since P_a is a contraction commuting with D_a, (S3)-(S4) imply
+
+ |<r_top,P_a exp(-itD_a)r_top>-1_(k>0)exp(itk)|
+       <= |t| eps_a(k)+eps_a(k)^2/k^2.                   (S5)
+
+On every fixed band |k|<=K and bounded time interval |t|<=T, this is bounded
+uniformly by
+
+ T(a K^2/2+a^2 K^3/6)+(a K/2+a^2 K^2/6)^2 -> 0.         (S6)
+
+The formula simultaneously controls the charged covariance and its actual
+source time response. In particular a static sign-projector comparison is
+not being used to infer an unspecified Hamiltonian.
+
+3. Smearing, CAR and finite-time words
+=====================================
+
+Use unitary Fourier convention ||f||_2^2=integral |fhat(k)|^2 dk.
+For Schwartz test functions f on the line define the top-row lattice vector
+I_(R,a)f by Fourier components
+
+ (I_(R,a)f)_j=R^(-1/2) fhat(k_j) r_top.                  (S7)
+
+With the seam placed outside the fixed observation region this is the
+Fourier version of the usual sampled, locally normalized edge smearing.
+For smooth compactly supported f it converges to real-space samples
+sqrt(a) f(a x) r_top; periodization and alias tails vanish. Thus it is not
+a global zero-mode probe. The Fourier definition (S7) fixes the regulator
+and suffices for the convergence statements below.
+
+Because the mesh spacing is 1/R and its cutoff pi/a tends to infinity,
+
+ <I f,I g> = (1/R) sum_j conjugate(fhat(k_j)) ghat(k_j)
+               -> <f,g>.                               (S8)
+
+Let C_(R,a)=1_(D_(R,a)<0) on the complete one-copy finite source. In the
+original filled quasifree state, its two-point kernel obeys
+
+ <I f,C_(R,a) exp(-itD_(R,a)) I g>
+      -> integral_0^infinity conjugate(fhat(k)) ghat(k)
+                              exp(itk) dk.             (S9)
+
+Proof: first restrict to |k|<=K. Equation (S6) makes the replacement of the
+actual source matrix element by 1_(k>0)exp(itk) uniformly small. The
+remaining shifted Riemann sum tends to the integral; its jump at zero has
+finite size and contributes O(1/R) for smooth band weights. Then control
+both original and limiting tails by |fhat*g hat|, since the projection and
+unitary have norm at most one. Schwartz decay makes these tails uniformly
+small as K increases. This proves (S9), uniformly on bounded time intervals.
+Polarization gives different test functions. The same argument without C
+gives the unfilled CAR kernel and hence the complementary covariance.
+
+The lattice annihilation operators a(I f) are bounded, with norm ||I f||.
+Their CAR converge by (S8). The source state is gauge-invariant quasifree;
+every fixed finite product of the charged operators, their adjoints and
+their time translates is a finite Wick determinant made from the kernels
+in (S8)-(S9). Therefore all such finite word expectations converge, with
+nonzero limits when the corresponding continuum contraction is nonzero.
+Disjoint real-space smearing supports have vanishing limiting CAR pairing.
+The continuum generator is i partial_x (eigenvalue -k), a single chiral
+fermion's one-particle motion. This proves a concrete local field response,
+not merely a sequence of small eigenvalues.
+
+This is convergence for the declared smeared CAR family in its quasifree
+state. It does not classify every scaling observable of the full source,
+construct an E8 spinor vertex, or establish a rank-eight local net. A
+completed net reconstruction would require its own specified embeddings
+and uniform estimates; none is silently imported here.
+
+4. The number of channels is checked on the same source
+======================================================
+
+At p=0, h0^3=h0, rank h0=14 and trace h0=0 exactly. Hence
+
+ spec h0={(-1)^7, 0^2, (+1)^7}.
+
+The complete zero projector is
+
+ 1-h0^2 = |r_top><r_top|+|r_bottom><r_bottom|,
+
+where r_bottom is (1,-1)/sqrt(2) on row y=0. On this two-dimensional space,
+
+ P0 h'(0) P0 = diag(-1,+1)
+
+in the top/bottom basis. The fourteen other branches are separated from
+zero at p=0. Thus the local low-momentum scaling sector has one chiral
+channel per edge, with opposite velocities. The eight transverse rows
+are spatial rows, not eight independent fermionic species. This exact
+count concerns the specified source/low-momentum limit; it is not a
+no-go theorem for every admissible TFPT source or an exhaustive analysis
+of unrelated high-momentum scaling prescriptions.
+
+Eight copies would have eight channels by construction, but making those
+copies would add the very source multiplicity that still needs a derivation.
+
+5. Executed diagnostics and a control that distinguishes the limits
+==================================================================
+
+source_line_check.py imports TX, TY and SZ from the actual source. It uses
+only its exact 16-by-16 Fourier strips, both r=1 and r=3, and the Gaussian
+weight |fhat(k)|^2=exp(-k^2)/sqrt(pi), |k|<=6. The omitted Gaussian tails
+are below 3e-17 at the continuum level and immaterial at the shown scale.
+The numerical results are floating-point diagnostics, not interval proofs.
+
+ R       a approximately    covariance error       response error at t=.7
+ 4       .0156201           .0354010                .03544 (worst r)
+ 8       .00781248          .0176482                .01765
+ 16      .00390624          .00881762               .00882
+ 32      .00195312          .00440800               .00441
+
+The limiting filled weight is 1/2; the limiting time response is
+.4423529524717418+.1821032094531042 i. Both holonomies approach these values.
+The residual bound (S2) holds at every tested mesh point.
+
+At fixed R=4, refining N from 1609 to 6434 leaves the r=3 minus r=1
+occupation difference about .07080191512. Thus lattice refinement alone
+does not remove the holonomy. Enlarging the physical circumference is the
+new assumption doing work in the positive result.
+
+6. How this joins the charged E8 target without conflating two theorems
+=====================================================================
+
+LOCAL_LIMIT_REVIEW.txt separately treats the already stipulated rank-eight
+E8 lattice target with H_(delta,R)=(L0-delta.P)/R, delta=(1/4)^8.
+Its root-field spectral measures tend to omega d omega; its charged
+two-point function tends to tau^-2. Its actual C/J clock defects vanish
+on fixed physical-energy windows, while they remain nonzero at finite R.
+Finite separated vertex words have the plane limit. The two finite-circle
+ground charges become indistinguishable for those words, not by a proof
+identifying their global Hilbert-space states.
+
+Those are positive conditional target results. Section 3 supplies a
+source-faithful charged limit for ONE channel. Together they show that a
+fixed-circle holonomy failure is not an unavoidable local obstruction.
+They do not supply the missing map from the native boundary to eight
+channels or the microscopic half-charge spinor with its cocycle and carry.
+
+The actual first origin problem is therefore not to tune away a finite-circle
+chemical shift. It is to derive the local source multiplicity, field
+extension and their localization/time action from the original boundary.
+SOURCE_AUDIT.txt records the actual first assumed finite carrier and the
+Lean interfaces that already package their rank assumptions.
+
+An internal eight-dimensional polarization, an infinite-dimensional
+one-particle space such as L2(line) tensor C8, and an E8 lattice vertex
+extension are different objects. A rank-eight GLOBAL Riesz projection
+would produce finitely many modes, not eight propagating local fields.
+An internal Riesz projection can help only after an intrinsic internal/local
+factorization is proved. A symbol multiplicity bundle or a source-defined
+local scaling sector is another possible form of the missing construction.
+
+7. Proven boundary and open origin
+=================================
+
+Proven here, under the explicitly declared source and scaling:
+ - same-source charged covariance AND time evolution converge locally;
+ - the twist disappears locally while the response stays nonzero;
+ - the source has one low-momentum chiral channel per edge;
+ - the conditional E8 target's clock obstruction is finite-circle specific.
+
+Still open:
+ - why the raw P1/P2 boundary yields this source, its scaling and the selected
+   multiplicity needed by the target;
+ - the canonical carrier/Yukawa and local source/operator intertwiners;
+ - native half-charge fields and common-time E8 completion;
+ - one common 3+1-dimensional chiral, interacting and gravitational parent.
+
+The standard strategy of constructing continuum correlations from lattice
+fermions is established. The present contribution is the explicit audit of
+this original source and of the earlier finite-circle conclusion. See
+Osborne and Stottmeister, Conformal field theory from lattice fermions,
+https://arxiv.org/abs/2107.13834 ; this paper is context, not a substitute
+for (S1)-(S9). For the parent QWZ topological model see Qi, Wu and Zhang,
+https://arxiv.org/abs/cond-mat/0505308 . No physical claim is promoted.

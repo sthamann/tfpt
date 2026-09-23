@@ -1,0 +1,207 @@
+\chapter{Ein gemeinsamer Prozess mit zwei Schatten}
+\label{ch:prozess}
+\section{Eine einzelne Messrunde}
+Man beginnt mit einem Strahl $\Pi_{C,s}$: Kontext $C$, Ergebnis $s$. Dann wählt man einen nächsten Kontext $D$ und misst in dessen Basis. Die Quellkonstruktion benutzt
+\begin{equation}
+K=\frac B7,\qquad
+T_{(D,t),(C,s)}=\frac{B_{DC}}7\Tr(\Pi_{D,t}\Pi_{C,s}).
+\label{eq:T}
+\end{equation}
+$B$ ist eine $15\times15$-Inzidenzmatrix. Sie erlaubt den aktuellen Kontext und sechs andere, mit ihm inzidente Kontexte. Jeder erlaubte Nachfolger erhält in dieser speziellen Regel Gewicht $1/7$.
+
+Die Born-Regel und eine scharfe wiederholbare Rang-1-Messung sind Voraussetzungen. Unter ihnen ist der einzelne Ergebniszweig eindeutig:
+\begin{equation}
+\mathcal I_{D,t}(\rho)=\Pi_{D,t}\rho\Pi_{D,t}.
+\end{equation}
+Denn Effektbedingung und Wiederholbarkeit zwingen jeden zugehörigen Krausoperator, denselben eindimensionalen Eingangs- und Ausgangsraum zu benutzen. Daraus folgt seine Projektorform bis auf skalare Faktoren. Die Born-Regel selbst wird damit nicht aus TFPT hergeleitet.
+
+Für jeden der 60 Ausgangsstrahlen besitzt eine Zeile beziehungsweise Spalte von $T$ genau einen Eintrag $1/7$, zwölf Einträge $1/14$ und 47 Nullen. Die Summe ist eins. Die symmetrische, zusammenhängende Kette mit Selbstschleifen hat die eindeutige stationäre Gleichverteilung. Deren mittlere Dichtematrix ist $I_4/4$. Sie ist zunächst ein statistischer Fixpunkt dieses Messprozesses, kein hergeleitetes physikalisches Vakuum. \src{S09, Kap. 9; unabhängig rekonstruiert}
+
+\section{Kontext und Quantenzustand als zwei Auslesungen}
+Die Matrix $C$ summiert die vier Ergebnisgewichte jedes Kontexts. Die Matrix $F$ liest die 15 nichttrivialen Pauli-Erwartungswerte aus. Mit $\Tr(P_aP_b)=4\delta_{ab}$ lauten ihre Einträge
+\begin{equation}
+C_{D,(C,s)}=\delta_{DC},\qquad
+F_{a,(C,s)}=\Tr(P_a\Pi_{C,s}).
+\end{equation}
+Für $q=Cp$ und $r=Fp$ ergibt sich exakt
+\begin{equation}
+q'=Kq,\qquad r'=\frac37r.
+\label{eq:shadows}
+\end{equation}
+Der Systemschatten entwickelt sich somit als depolarisierender Kanal
+\begin{equation}
+\mathcal D(\rho)=\frac37\rho+\frac47\frac{I_4}{4}\Tr\rho.
+\label{eq:D}
+\end{equation}
+Die Dämpfung $3/7$ entsteht aus der Kontextkombinatorik. Bei einer anderen Regel, etwa Gleichgewichtung aller 15 Kontexte, erhält man $1/5$. Schon daran sieht man, warum die Auswahl von $K$ nicht nebensächlich ist.
+
+\begin{figure}[H]\centering
+\begin{tikzpicture}
+\node[box,text width=36mm] (p) at (0,0) {60 Strahlgewichte\\$p$};
+\node[box,text width=36mm] (pn) at (8,0) {Nächste Verteilung\\$Tp$};
+\node[box,text width=36mm] (q) at (0,-2) {Kontextauslesung\\$Cp$};
+\node[box,text width=36mm] (qn) at (8,-2) {Kontextauslesung\\$CTp=KCp$};
+\node[box,text width=36mm] (r) at (0,-4) {Pauli-Auslesung\\$Fp$};
+\node[box,text width=36mm] (rn) at (8,-4) {Pauli-Auslesung\\$FTp=\frac37Fp$};
+\draw[arr] (p)--node[above,font=\small]{$T$}(pn);
+\draw[arr] (q)--node[above,font=\small]{$K$}(qn);
+\draw[arr] (r)--node[above,font=\small]{$3/7$}(rn);
+\draw[arr] (p)--(q);\draw[arr] (pn)--(qn);
+\draw[arr] (p.west) to[out=190,in=180] (r.west);
+\draw[arr] (pn.east) to[out=-10,in=0] (rn.east);
+\end{tikzpicture}
+\caption{Im festen 60-Strahlen-Prozess sind beide Schatten autonom. Die Behauptung „es gibt grundsätzlich keinen autonomen Systemschatten“ wäre deshalb falsch. Erst ein erweitertes Eingriffs- und Registerrepertoire verändert diese Aussage.}
+\end{figure}
+
+\section{Die genaue Kompression auf 30 Koordinaten}
+Die in S01 ausgearbeitete Faktorisierung lautet
+\begin{equation}
+\boxed{T=\frac1{28}(C^TBC+F^TF).}
+\label{eq:Tfactor}
+\end{equation}
+Hier gelten $CC^T=4I$, $FF^T=12I$ und $CF^T=0$. Die beiden Zeilenräume sind orthogonal. Im selben Kontext haben die Pauli-Vorzeichenvektoren Skalarprodukt drei für denselben Strahl und minus eins für verschiedene Strahlen; bei inzidenten Kontexten bleibt eine gemeinsame Pauli-Richtung. Diese Werte ergeben genau die Einträge von \eqref{eq:T}.
+
+Die gesamte nächste Strahlverteilung wird schon durch $q$ und $r$ bestimmt:
+\begin{equation}
+p'=\frac1{28}(C^TBq+F^Tr).
+\end{equation}
+Weil $B$ invertierbar ist, folgen
+\begin{align}
+\rank T&=30,&\ker T&=\ker C\cap\ker F,\\
+\spec T&=\{1^{[1]},(2/7)^{[9]},(-2/7)^{[5]},(3/7)^{[15]},0^{[30]}\}.
+\end{align}
+Die 30 Nullrichtungen werden beim nächsten Schritt ausgelöscht. Sie sind kein in $T$ weiterlebendes verborgenes Gedächtnis. Die 30 linearen Vorhersagekoordinaten enthalten die Normierung; normierte Zustände besitzen hier höchstens 29 affine Freiheitsgrade. Die zulässige Menge ist konvex und beschränkt, nicht ganz $\R^{29}$.
+
+\section{Warum Symmetrie die Gewichte noch nicht auswählt}
+\input{revisions/03_selection}
+
+Aus $B=\sum_{j=1}^7P_j$ mit Permutationsmatrizen folgt beim gleichgewichteten Mitteln unmittelbar $B/7$. Zusätzliche Konjugation durch die Symmetriegruppe $G$ ändert das nicht:
+\begin{equation}
+\frac1{7|G|}\sum_{g\in G}\sum_{j=1}^7gP_jg^{-1}
+=\frac1{7|G|}\sum_g gBg^{-1}=\frac B7.
+\end{equation}
+S07 berichtet 5040 Terme über 4500 verschiedene Matchings, gegenüber 24\,601\,472 insgesamt möglichen perfekten Matchings des bipartiten Inzidenzbildes. Diese kombinatorische Realisierung ist konkret. Die Gleichgewichtung steckt aber bereits im Ansatz.
+
+Ein ganzes symmetrisches Kanaldreieck bleibt möglich:
+\begin{equation}
+K_{abc}=aI+\frac b6(B-I)+\frac c8(\mathbf J_{15}-B),
+\quad a,b,c\ge0,\quad a+b+c=1.
+\end{equation}
+Schon bei $c=0$ bleibt die Familie
+\begin{equation}
+K_a=aI+\frac{1-a}{6}(B-I).
+\end{equation}
+Sie besitzt dieselbe Inzidenz und Symmetrie. Zum Beispiel ist $\frac12I+\frac1{12}(B-I)$ ebenso zulässig. Ein Prinzip maximaler Übergangsentropie unter festem Siebenerträger oder ein festgelegtes Auslöschungsprinzip könnte $1/7$ auswählen. Dann muss gerade dieses Prinzip aus der Quelle begründet werden. Die Gleichheit aller Symmetrieprüfungen beweist es nicht. \src{S05, §4; S06}
+
+\begin{grenze}{Präzisierung v1.3: Entropie wovon?}
+Kontextentropie wählt innerhalb der genannten Familie $a=1/7$; die Entropie der sichtbaren Strahlennachfolger wählt $a=1/13$ und ergibt Rang 60. Rang 30 ist kein universelles Kompressionsminimum: Nur nichtinzidente Nachfolger ergeben Rang 15, alle 15 Kontexte gleichgewichtet Rang 16. Inzidenzangebot und Auslesung sind deshalb Teil jedes Auswahlarguments. Die unten erklärte passive Klasse mit 45 linearen Größen bleibt bestätigt. Details: Kapitel~\ref{ch:audit13}.
+\end{grenze}
+\section{Ein Schritt ist nicht dasselbe wie zwei halbe Schritte}
+Für die Kontextmatrix gilt
+\begin{equation}
+B^2=4I+3\mathbf J_{15},\qquad
+\spec K=\{1,(2/7)^{[9]},(-2/7)^{[5]}\}.
+\end{equation}
+Ihre Determinante ist negativ. Eine reelle Matrixexponentialfunktion hat jedoch $\det e^L=e^{\Tr L}>0$. Deshalb ist $K$ auf diesem 15-dimensionalen Raum kein $e^L$ mit reellem $L$.
+
+Mit $\Pi_{\mathrm{gl}}=\mathbf J_{15}/15$ ist dagegen
+\begin{equation}
+K^2=\frac4{49}I+\frac{45}{49}\Pi_{\mathrm{gl}}
+=\exp\!\left[\log(49/4)(\Pi_{\mathrm{gl}}-I)\right].
+\end{equation}
+Wer nur jedes zweite Filmbild sieht, verliert die fünf alternierenden Kontraste. Ein formal gewähltes $-\log K$ ist daher weder ein unproblematischer reeller Markovgenerator noch automatisch eine Energie.
+
+\chapter{Gedächtnis: Was ein einzelnes Bild verschweigt}
+\label{ch:memory}
+\section{Allgemeine Kontextblöcke brauchen eine andere Beschreibung}
+Ein klassisch-quantenmechanischer Zustand, kurz CQ-Zustand, besitzt 15 positive $4\times4$-Blöcke $X_C$. Zusammen haben sie 240 reelle lineare Koordinaten und Gesamtspur eins. Die feste Regel
+\begin{equation}
+\Phi(X)_D=\sum_CK_{DC}\Delta_D(X_C)
+\end{equation}
+macht jeden Ausgangsblock in seinem Kontext diagonal. Deshalb gilt
+\begin{equation}
+\rank\Phi=60,\qquad\rank\Phi^2=30.
+\end{equation}
+Es ist also nicht richtig, 240 Koordinaten pauschal als kleinste dauerhaft autonome Hülle dieser festen Ausführung auszugeben.
+
+Wenn man an jedem Horizont lediglich die \emph{separaten} Kontext- und Systemmarginalien ausliest, reichen sogar für beliebige CQ-Eingaben 45 lineare Größen. Setze
+\begin{align}
+q_C&=\Tr X_C,&a_{uC}&=\Tr(P_uX_C),\\
+x_u&=\sum_Ca_{uC},&y_u&=\frac17\sum_C(1+2m_{uC})a_{uC},
+\end{align}
+wobei $m_{uC}=1$ bedeutet, dass Pauli $u$ im Kontext $C$ liegt. Dann schließen sich exakt
+\begin{equation}
+q'=Kq,\qquad x'=y,\qquad y'=\frac37y.
+\end{equation}
+Das ergibt $15+15+15=45$ lineare beziehungsweise 44 normierte affine Größen. Auf der schon gemessenen Strahlenklasse gilt zusätzlich $y=(3/7)x$, wodurch wieder 30 beziehungsweise 29 bleiben. \src{S06; unabhängig nachgerechnet}
+
+Die Einschränkung ist wesentlich: Gemeinsame Kontext-System-Korrelationen, selektive Messgeschichten oder Eingriffe vor der nächsten Messung gehören nicht zu dieser passiven Ausleseklasse. Kohärente Register können darüber hinaus Offdiagonalen tragen, die überhaupt nicht in die CQ-Form passen.
+
+\par\noindent\begin{tabularx}{\linewidth}{L{56mm}rY}
+\toprule
+\textbf{Beschreibung}&\textbf{Linear}&\textbf{Zugriff}\\\midrule
+Beliebige CQ-Blöcke&240&Vollständige Blockbeschreibung.\\
+CQ-Bild nach einer Runde&60&Kontextdiagonale Ausgangsblöcke.\\
+Passive separate Marginalien&45&Alle Horizonte, feste Regel, keine Eingriffe.\\
+Feste Strahlenfortsetzung&30&Nächste volle Verteilung aus bereits gemessenen Strahlen.\\
+Kohärenter Registerprozess&nicht fest&Umfang hängt von Registern und zugelassenen Eingriffen ab.\\\bottomrule
+\end{tabularx}\par
+
+\section{Wie die Aufzeichnung gebaut wird}
+Für die vier Projektoren eines Kontexts sind $R_j=I-2\Pi_j$ Spiegelungen. In Dimension vier gilt
+\begin{equation}
+\frac14\sum_jR_j\rho R_j^\dagger=\sum_j\Pi_j\rho\Pi_j=\Delta(\rho).
+\end{equation}
+Allgemein in Dimension $d$ wäre die linke Seite $(1-4/d)\rho+(4/d)\Delta(\rho)$. Der kurze Auslöschungseffekt ist hier also tatsächlich viererspezifisch.
+
+Eine Aufzeichnung benötigt zusätzlich eine Verbindung zum Register:
+\begin{equation}
+Q_C=I-2\sum_j\ket j\bra j\otimes\Pi_{C,j}.
+\end{equation}
+Mit $W=\mathbf J_4/2-I$ und $A=(I-2\ket0\bra0)W$ ergibt sich die Vormessung
+\begin{equation}
+U_C=(W\otimes I)Q_C(A\otimes I),\quad
+U_C(\ket0\otimes\psi)=\sum_j\ket j\otimes\Pi_{C,j}\psi.
+\label{eq:record}
+\end{equation}
+Im geprüften Ausbau gilt $U_C^2=I$. Das ist eine Eigenschaft dieses konkreten Operators, kein allgemeiner Satz über Messgeräte.
+
+Der Operator-Schmidt-Rang von $Q$ ist vier. Bloß getrennte Registeroperationen bleiben bei Rang eins; sie können die Kopplung nicht erzeugen. S09 zeigt eine kurze Zerlegung mit zwei registerübergreifenden Controlled-Z-Gattern und lokalen Phasen. Dass der gleiche Gattertyp innerhalb eines Viererträgers vorkommt, begründet jedoch noch nicht seine erlaubte Anwendung zwischen verschiedenen Trägern.
+
+\section{Das Echo des behaltenen Registers}
+Für einen gleichförmigen reinen Eingang in der gewählten Kontextbasis erzeugt eine Vormessung maximale Verschränkung. Ohne Registerblick ist der Systemzustand $I_4/4$. Nun gibt es zwei Ausführungen:
+\begin{itemize}
+\item Derselbe kohärente Speicher wird nochmals gekoppelt: $U^2=I$ stellt den reinen Eingang wieder her.
+\item Ein neuer Speicher wird benutzt: Im reduzierten System wird die Dephasierung wiederholt; $I_4/4$ bleibt bestehen.
+\end{itemize}
+Im ersten Fall kann die Reinheit von $1/4$ auf eins zurückkehren. Der Unterschied liegt in den zugänglichen Korrelationen, nicht im ersten Systembild. Ein zusätzliches 15-dimensionales Labelregister liefert einen verwandten, aber anderen Zeugen: Zwei Lifts derselben klassischen Kontextkette haben am gleichförmigen Eingang Interferenzwahrscheinlichkeiten $1/15$ beziehungsweise eins. Diese Lifts erfüllen dieselbe klassische Auslesung, nicht automatisch sämtliche nativen TFPT-Bedingungen. \src{S09, Kap. 10--12}
+
+\begin{bild}{Ein Foto des Schreibtischs zeigt nicht den Inhalt der Schublade}
+Zwei Schreibtische sehen gleich aus. In einer Schublade liegt eine Aufzeichnung, mit der sich ein früherer Vorgang rückgängig machen lässt; die andere enthält nur eine entwertete Kopie. Solange die Schublade geschlossen bleibt, genügt dasselbe Foto. Sobald man sie benutzen darf, reicht das Foto als vollständiger Zustand nicht mehr.
+\end{bild}
+
+Das ist ein konkreter Spezialfall des Gedächtnisses offener Quantensysteme. Prozesstensoren beschreiben solche Mehrzeitantworten durch die Wahrscheinlichkeiten ganzer Eingriffsfolgen. Diese allgemeine mathematische Idee ist etablierte Forschung; TFPT liefert hier einen kleinen expliziten Anschlussfall. \href{https://arxiv.org/abs/1512.00589}{Pollock et al., 2018 [E1]}
+
+\section{Reihenfolge bleibt wichtig}
+Bei frischen Registern trägt eine Folge von Kontexten den kohärenten Zustand
+\begin{equation}
+\sum_{j_1,\ldots,j_n}\ket{j_1\ldots j_n}\otimes
+\Pi_{C_n,j_n}\cdots\Pi_{C_1,j_1}\psi.
+\end{equation}
+Das Weglassen des Registers summiert Dichteoperatorbeiträge. Eine kohärente Projektion auf eine Registersuperposition summiert Amplituden und beschreibt ein anderes Experiment, einschließlich seiner Erfolgswahrscheinlichkeit.
+
+Auch wenn nichtselektive Pauli-Dephasierungen kommutieren, müssen ausgewählte Ergebnisfolgen es nicht tun. Für Rang-1-Projektoren $P,Q$ mit $\Tr(PQ)=1/2$ und Eingang $P$ hat „zuerst $P$, dann $Q$“ Wahrscheinlichkeit $1/2$, die umgekehrte Auswahlfolge dagegen $1/4$. Wer nur gemittelte Kanäle vergleicht, übersieht diesen Unterschied.
+
+\section{Endliches Gedächtnis und scheinbares Vergessen}
+Eine nichtverschwindende Beobachtungsfolge eines geschlossenen endlichen Systems mit festem unitärem Schritt ist eine endliche Summe von Phasenfaktoren. Nach Zusammenfassung gleicher Frequenzen besitzt ihr mittleres Betragsquadrat einen positiven Cesàro-Grenzwert. Sie kann daher nicht für alle $n$ exakt wie $(3/7)^n$ abklingen.
+
+Im speziellen zyklischen Protokoll mit $m$ Registern und derselben involutiven Vormessung kehrt der Kontrast nach $2m$ Schritten zurück: nach 2, 4 beziehungsweise 6 Schritten für $m=1,2,3$. Das ist ein Modellgesetz dieses Protokolls, keine allgemeine Identität von Gedächtnis und Rekurrenzzeit.
+
+Eine konkrete Erweiterung des Schattenkanals benutzt die Pauliwahrscheinlichkeiten
+\begin{equation}
+p_0=13/28,\quad p_a=1/28\ (a=1,\ldots,15),\quad
+V\psi=\sum_{a=0}^{15}\sqrt{p_a}\ket a\otimes P_a\psi.
+\end{equation}
+Mit jeweils frischen Registern entsteht exakt $\mathcal D^n$. Ein unbeschränktes Registerband kann alle endlichen Horizonte tragen; auf einem beidseitigen Band ist eine reversible globale Formulierung möglich. Damit ist ein Ausbau des Schattenkanals konstruiert. Der unkorrelierte eingehende Zustand, die Reihenfolge und der fehlende spätere Zugriff bleiben zusätzliche Daten. Unendlichkeit allein erklärt keinen thermodynamischen Zeitpfeil. \src{S01, §6; S05, §9}
+
+\par\noindent\textbf{Weiterführende Einordnung:} Kapitel~\ref{ch:shadow-quantum} zeigt am selben Pauli-Baukasten, welche Kontextinformation eine passive Wahrscheinlichkeitsbeschreibung verliert. Der dort exakt geprüfte Mermin-Widerspruch ergänzt die hier untersuchten reduzierten Prozesse.

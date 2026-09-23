@@ -1,0 +1,226 @@
+UNABHAENGIGE GEGENPRUEFUNG DER VACUUM-LOKALRECHNUNG
+20. September 2026 | Review, keine Aenderung der Vacuum-Artefakte
+
+Gepruefte Fassungen
+===================
+
+  vacuum/PROOF.txt
+    SHA-256 6dc731296c6692404350a21d960bba236c03b40b90ccbac49480116de71bc8a9
+
+  vacuum/native_local_self_energy.py
+    SHA-256 b2e008d3b452a2d99537917e1b5deecfce77b1c000fe55b4e2be9f845ab3a708
+
+  vacuum/results.json
+    SHA-256 ccc660027ec315fad9b513acb28125162a173098615ead056ec74d79b99b2f4c
+
+  vacuum/sources.json
+    SHA-256 cdad3ff7006e1ddf0fdc761faf0b0705cbe0f880e37b9106573abbd6ce7910e5
+
+Beide angegebene Laeufe, python3 -B und python3 -OO, bestehen. Alle vier in
+sources.json genannten lokalen Hash-Pins stimmen mit den Originaldateien
+ueberein.
+
+REVIEW-VERDICT
+==============
+
+PASS_LOCAL_EXACT_WITH_TWO_SCOPE_CORRECTIONS.
+
+Der zentrale lokale Satz ist korrekt:
+
+  [L,H_E]=0,             H_E^2=2H_E,
+
+und fuer jeden normierten L-Eigenvektor p mit 0<eta=<p|H_E|p><2 schliesst
+
+  span{p,(H_E-eta)p}
+
+exakt. Der angegebene 2-mal-2-Block, seine Eigenwerte
+
+  kappa lambda,   kappa lambda+2J,
+
+und die Komplementgewichte eta/2 stimmen. Das ist kein Momentenfit und keine
+Gleitkomma-Ritzinferenz.
+
+Nicht bewiesen ist eine verschobene globale kritische Linie. Die korrigierte
+Formulierung in PROOF.txt und results.json ist richtig: Die lokale Rechnung
+zeigt nur, dass die nackten J-Baryzentren keine lokalen Eigenenergien und die
+lokalen Korrekturen kein gemeinsamer Skalar sind. Sie erlaubt weder, die 9 in
+2mu=kappa+9J zu behalten, noch sie durch eine neue Zahl zu ersetzen. Eine
+globale Kompensation ueber ueberlappende Dressings und den neu komprimierten
+V-Hoppingterm bleibt offen.
+
+1. Warum die algebraische Schliessung exakt stimmt
+==================================================
+
+Auf jedem der 240 orthogonalen Sourcekets ist H_E blockdiagonal mit
+
+  E_alpha=I-r_alpha tensor r_alpha.
+
+Da r_alpha^2=I, gilt
+
+  E_alpha^2
+    = I-2 r_alpha tensor r_alpha+I
+    = 2 E_alpha.
+
+Somit gilt H_E^2=2H_E auf dem ganzen lokalen Source-Matter-Raum, nicht nur
+in einer Packetkompression.
+
+Fuer U_l=R_l tensor r_l tensor r_l liefert die native Kovarianz
+
+  r_l r_alpha r_l = r_(l alpha)
+
+und die Sourcepermutation R_l denselben relabelten 240-Root-Block. Daher
+
+  U_l H_E U_l^*=H_E
+
+fuer jedes l und folglich [L,H_E]=0. Der Checker testet die 60-mal-60
+Ray-Kovarianzen. Das genuegt fuer alle 240 Phasenlabels, weil
+r_(i^k alpha)=r_alpha und R_l die vier Phasenvertreter nur innerhalb des
+entsprechenden relabelten Root-Orbits abbildet. Eine unabhaengige explizite
+Pruefung aller 60-mal-240=14400 Rootbilder bestand.
+
+Aus H_E^2=2H_E folgt fuer s=sqrt(eta(2-eta)) und
+q=(H_E-eta)p/s:
+
+  H_E p = eta p+s q,
+  H_E q = s p+(2-eta)q.
+
+Wegen [L,H_E]=0 gilt zugleich Lq=lambda q. Damit folgen Block und Spektrum
+rein algebraisch.
+
+2. Ganzzahligkeit: native Modellpraemisse, keine Floatinferenz
+==============================================================
+
+Die Eingaben werden aus der hash-gepinnten source_channel.py rekonstruiert.
+Nach Skalierung sind alle verwendeten Wurzeln, 2r-Matrizen, Momente,
+Kovarianzprodukte, Eventquadrate und Ueberlapprodukte Gaussian-ganzzahlig.
+Der Checker verlangt komponentenweise exakte Gleichheit mit der Rundung und
+exakte Arraygleichheit; er verwendet keine Toleranz und keine nachtraegliche
+rationale Rekonstruktion. Die fuer Rangtests verwendeten ganzzahligen
+Komponenten werden anschliessend nach QQ(i) uebertragen. Die expliziten
+Groessenwaechter liegen weit unter der exakten IEEE-754-Ganzzahlgrenze; bei
+der unabhaengigen Root-/Kovarianzpruefung war die groesste beobachtete
+Komponente 8.
+
+Damit sind die endlichen Identitaeten exakt. "Native" bedeutet hier jedoch
+native innerhalb des bereits deklarierten 240-Root-Source-Hamiltonians. Die
+orthogonale Sourcequantisierung, L, H_E und ihre physische Auswahl bleiben
+die bekannten Modellpraemissen; der Integercheck leitet sie nicht aus einer
+fundamentaleren TFPT-Geometrie her.
+
+Ein Zertifikatsdetail ist korrekt begrenzt worden: results.json zaehlt sechs
+ausgefuehrte Checks. Die Phi-/Omega-Werte stehen separat als analytische
+Konsequenzen. Das Skript berechnet sie nicht als siebten Check. Sie sind
+trotzdem exakt herleitbar:
+
+  mean_l r_l=I/2,
+  Phi:  lambda=1/2, eta=3/2,
+  Omega: lambda=eta=0.
+
+Die unabhaengige Momentenpruefung reproduzierte diese Werte.
+
+3. Rang-16-Sourcepacket und Rang-1-Vektor duerfen nicht verschmelzen
+=====================================================================
+
+Fuer den uniformen s-Sourcezustand ist der natuerliche Packetprojektor
+
+  P_s=|s><s|_R tensor I_AB
+
+von Rang 16. Seine Materieflaeche zerfaellt in
+
+  P_s,+ : Sym^2(C4), Rang 10, eta=3/5,
+  P_s,- : wedge^2(C4), Rang 6, eta=1.
+
+Ein einzelnes p=s tensor chi innerhalb eines dieser Kanaele definiert nur
+einen Rang-1-Strahl. Die zyklische 2D-Schliessung spannt diesen Strahl und
+sein H_E-Bild auf; sie darf nicht als neue Rang-1-Purifikation des gesamten
+P_s bezeichnet werden. Weil P_s,+ H_E P_s,+=(3/5)P_s,+ und entsprechend
+P_s,- H_E P_s,-=P_s,- gilt, liegt q fuer jeden Kanalvektor zugleich
+orthogonal zum gesamten zugehoerigen Packetkanal, nicht nur orthogonal zu p.
+
+Analog ist der Phi-Packetraum wegen des freien Nachbarregisters ein
+mehrdimensionaler eta=3/2-Kanal; Omega ist der eta=0-Randfall mit
+eindimensionaler zyklischer Schliessung. results.json behandelt Omega jetzt
+korrekt ohne fiktiven zweiten Eigenwert.
+
+4. W_0 ist eine Isometrie pro eta-Kanal
+========================================
+
+Mit P_0=I-H_E/2 gilt auf einem festen Packetkanal P_eta
+
+  P_eta P_0 P_eta=(1-eta/2)P_eta.
+
+Daher ist
+
+  W_(0,eta)=P_0 P_eta/sqrt(1-eta/2)
+
+eine lineare Isometrie dieses Kanals in ker H_E. Die unabhaengige symbolische
+Pruefung bestaetigte Norm 1 und H_E W_(0,eta)=0 fuer eta=3/5, 1 und 3/2.
+
+Formel (6) in PROOF.txt ist somit korrekt, solange p in einem festen
+eta-Kanal liegt. Ueber mehrere eta-Kanaele ist der Nenner zustandsabhaengig
+und die hingeschriebene Formel allein kein einzelner linearer Operator. Der
+korrekte direkte Summenoperator ist
+
+  W_0=P_0 P (P P_0 P)^(-1/2)
+
+auf dem Traeger der Packetkanaele. Diese Kanalpraezisierung sollte bei jeder
+weiteren Verwendung explizit bleiben.
+
+W_0 erhaelt L-Eigenwert, Source-Quartercharge und den Symmetriekanal, weil
+die betreffenden Operatoren mit H_E beziehungsweise P_0 vertraeglich sind.
+Es erhaelt keine beliebigen Observablen. Fuer einen physikalischen Operator O
+muss die komprimierte Groesse W_0^* O W_0 neu berechnet werden. Dies gilt
+insbesondere fuer V, lokale Antworten und den Hoppingkoeffizienten. Die
+lokale Intertwining-Eigenschaft fuer H_loc ist keine Identifikation mit dem
+affinen Clock-Generator und kein Beweis physikalischer Zeitentwicklung.
+
+5. Der neue Ueberlapptest und seine genaue Reichweite
+=====================================================
+
+Der Fixed-Source-Test ist rechnerisch konsistent. Fuer das generische native
+Paar mit unnormalisiertem Skalarprodukt 2+2i findet er exakt
+
+  Rang [P_alpha,12,P_beta,23]=32,
+  Dimension des gemeinsamen Nullraums=18,
+
+und ein nichtidempotentes geordnetes Produkt. Die orthogonale und parallele
+Kontrolle liefern Rang 0 sowie gemeinsame Kerndimensionen 24 und 28. Damit
+ist sicher ausgeschlossen, die generischen lokalen Nullprojektoren einfach
+als kommutierende globale Projektion zu multiplizieren.
+
+Eine Formulierung in PROOF.txt geht logisch einen Schritt zu weit:
+
+  "not idempotent and hence is not a projector/isometry"
+
+Nichtidempotenz beweist unmittelbar "kein Projektor", aber allgemein nicht
+"keine Isometrie". Auch hier existiert ein 18-dimensionaler gemeinsamer
+Nullraum, auf dem beide Projektoren als Identitaet wirken. Um eine konkret
+vorgeschlagene globale Isometrie auszuschliessen, muss auf deren angegebenem
+Definitionsraum W^*W != I oder ein fehlendes Intertwining gezeigt werden.
+Der vorliegende Test schliesst daher die naive Projektor-Komposition aus,
+nicht jede normalisierte oder anders konstruierte overlap-kompatible
+Isometrie. PROOF.txt benennt die globale Konstruktion ansonsten korrekt als
+offen.
+
+6. Endgueltige Claim-Grenze
+===========================
+
+Belastbar:
+
+  * exakte lokale Projektorpolynom- und Kommutationsstruktur;
+  * exakte eta-Kanal-Schliessung und lokale Eigenwerte;
+  * lokale Dressings sind Ordnung J und keine gemeinsame skalare Korrektur;
+  * naive generische Multiplikation benachbarter Nullprojektoren scheitert.
+
+Nicht belastbar aus diesen Artefakten:
+
+  * eine verschobene oder erhaltene globale kritische Linie;
+  * ein globales Produkt der W_(0,eta)-Isometrien;
+  * unveraenderter Hoppingterm -mu/8 oder unveraenderte Responsefunktionen;
+  * ein Full-Source-Vakuum, physikalischer Zeitgenerator oder E8-Stromsektor.
+
+Der naechste entscheidende Test bleibt die Konstruktion eines
+overlap-kompatiblen globalen W mit explizitem Definitionsraum und der
+gleichzeitigen Berechnung von W^* H W, W^* V W und den lokalen
+Responseoperatoren. Erst deren thermodynamisches Spektrum kann eine globale
+kritische Linie pruefen.

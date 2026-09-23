@@ -1,0 +1,140 @@
+CURRENT-MEMORY REVIEW — 2026-09-19
+
+Verdict: EXACT PASS, mit engem Geltungsbereich.
+
+Geprüfte Quellen (read-only)
+----------------------------
+.13 source_channel.py
+  SHA256 3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593
+.15 checker.py
+  SHA256 37952ad11a9e623655f87434e6e07f833879005a93036369e1503b3b48c3b11a
+.15 PROOF.txt
+  SHA256 545cb24fd942e67dcff8d39d226e92f375bd64f6bc15bc3ea63b2cff7af4db6f
+
+1. Gemittelter Hamiltonoperator
+-------------------------------
+Für h_l=I-G_l und den bereits exakt bestimmten zweiten Moment
+
+  Gbar=(I+Swap)/5
+
+folgt unmittelbar
+
+  hbar=I-Gbar=(4I-Swap)/5.
+
+Mit SU(4)-Generatoren Tr(t_a t_b)=delta_ab/2 und
+
+  Omega=sum_(a=1)^15 t_a tensor t_a,
+  Swap=2 Omega+I/4,
+
+ist dies genau
+
+  hbar=3I/4-(2/5)Omega.
+
+Auf Sym^2(C4) gilt Swap=+I, also hbar=3I/5. Seine unitäre Entwicklung ist
+dort nur eine gemeinsame Phase und seine Konjugationswirkung ist die
+Identität. Der gemittelte Hamiltonoperator erzeugt deshalb auf Sym10 keine
+native Viertmomentantwort.
+
+Das ist nicht dieselbe Operation wie die Mittelung der 60 einzelnen
+unitären Quellpfade. Mittelwert und Exponentialabbildung dürfen hier nicht
+vertauscht werden.
+
+2. Exakte reduzierte Familie auf Sym10
+--------------------------------------
+Bis auf die für Konjugation irrelevante gemeinsame Phase ist
+
+  exp[-i theta(I-G_l)]=cos(theta)I+i sin(theta)G_l.
+
+Da der Mittelwert der G_l auf Sym10 gleich (2/5)I ist, verschwindet dort der
+Kreuzkommutator. Für u=sin^2(theta) erhält man exakt
+
+  C_theta=(1-u)Id+u C60.
+
+Aus spec(C60)={1,1/3,1/5,1/15} folgen die vier Eigenwerte
+
+  1,
+  (3-2u)/3,
+  (5-4u)/5,
+  (15-14u)/15.
+
+Sie sind für 0<=u<=1 strikt positiv. C_theta ist daher auf dem ganzen
+betrachteten Intervall invertierbar.
+
+3. Zeitlokaler Generator und CP-Teilbarkeit
+-------------------------------------------
+Für 0<theta<pi/2 ist dot(u)=sin(2theta)>0 und
+
+  L_theta=dot(C_theta) C_theta^(-1).
+
+Der feste Choi-Vektor w=|0,1>-|1,0> besitzt für die vier Spektralprojektoren
+die bereits exakt geprüften Choi-Eigenwerte
+
+  1/10, -1/10, -1/2, 1/2.
+
+Damit ist sein Choi-Eigenwert für L_theta
+
+  lambda_w(theta)=sin(2theta) [
+      -7/(15-14u)
+      +2/(5-4u)
+      +1/(5(3-2u))]
+
+  = -8u(10-7u)sin(2theta)
+      /[5(3-2u)(5-4u)(15-14u)].
+
+Alle Faktoren im Nenner sowie u, 10-7u und sin(2theta) sind im offenen
+Intervall positiv. Daher gilt exakt
+
+  lambda_w(theta)<0   für jedes 0<theta<pi/2.
+
+Bei theta=pi/4 ist u=1/2 und
+
+  lambda_w=-13/120.
+
+Außerdem ist w orthogonal zu vec(I). Deshalb gilt für den Choi-Operator
+der Identität J(Id)w=0 und
+
+  J(Id+epsilon L_theta)w=epsilon lambda_w(theta) w.
+
+Die Euler-Zwischenabbildung ist somit für jedes epsilon>0 nicht vollständig
+positiv. Entsprechend verletzt L_theta die notwendige bedingte vollständige
+Positivität eines GKLS-Generators. Auch der exakte kurze Propagator bleibt
+für hinreichend kleine positive Schritte wegen des strikt negativen linearen
+Terms nicht CP.
+
+Folgerung: Die gesamte vorgegebene differenzierbare Familie C_theta ist auf
+demselben M10 nicht CP-teilbar; an keinem inneren theta ist ihr zeitlokaler
+Generator GKLS. Dies gilt ebenso nach einer regulären monotonen
+Zeitparametrisierung, weil sie L_theta nur mit einem positiven Skalar
+multipliziert.
+
+Geltungsgrenze: Dieser Test schließt nur die Reproduktion dieser gesamten
+Familie durch einen zeitabhängigen GKLS-Prozess auf demselben M10 aus. Er ist
+keine Aussage gegen alle anderen zeitabhängigen Pfade oder Einbettungen, die
+nur C60 als Endpunkt besitzen. Größere Systeme mit erhaltenem Quellregister,
+nicht-Markovsche reduzierte Dynamik und andere Zwischenpfade werden nicht
+ausgeschlossen. Der ältere .15-Rangtest bleibt der getrennte Ausschluss einer
+zeitunabhängigen gleichen-System-Halbgruppe.
+
+4. Antisymmetrischer Sektor
+---------------------------
+Für jeden nativen Rang-eins-Projektor P gilt
+
+  h_local-h_joint=4 P_A P_B=4(P tensor P).
+
+Der Wertebereich von P tensor P liegt vollständig in Sym^2(C4), daher
+
+  (P tensor P)|_(Lambda^2 C4)=0.
+
+Somit stimmen h_local und h_joint auf Lambda^2(C4) für jede der 60
+Quellrichtungen exakt überein. Dies wurde zusätzlich direkt für alle 60
+Projektoren geprüft.
+
+5. Schlussgrenze
+----------------
+Die Rechnung trennt zwei Operationen sauber: Der KZ-artige Mitteloperator
+hbar liefert auf Sym10 nur eine Phase; die gemittelte Quelldynamik C_theta
+enthält dagegen C60 und damit die native Viertmomentantwort. Sie leitet weder
+die Wahl dieses Zwischenpfads noch eine physikalische Zeitkalibrierung,
+räumliche Geometrie oder weitergehende Physik her.
+
+Keine Repo-Datei wurde verändert; keine Vollsuite wurde ausgeführt.

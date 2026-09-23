@@ -101,6 +101,7 @@ run_gen() {  # regenerate every single-source surface (cheap, stdlib python only
     echo "skip: catalog LLM (set TFPT_LLM_CATALOG=1 and provide a resolvable API key)"
   fi
   python3 "$ROOT/rh/catalog/build_catalog.py" || exit 1
+  python3 "$ROOT/verification/build_theory_graph.py" || exit 1
 }
 
 run_website() {  # mirror PDFs + scripts into website/, stamp version + hashes
@@ -137,6 +138,8 @@ run_audit() {
   python3 "$ROOT/rh/verification/run_rh.py" --fast || exit 1
   echo "== RH semantic catalog =="
   python3 "$ROOT/rh/catalog/build_catalog.py" --check || exit 1
+  echo "== Theory graph =="
+  python3 "$ROOT/verification/build_theory_graph.py" --check || exit 1
 }
 
 run_zenodo() {  # $1 = optional "publish"

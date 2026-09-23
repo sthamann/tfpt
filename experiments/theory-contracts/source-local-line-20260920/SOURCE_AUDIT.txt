@@ -1,0 +1,720 @@
+SOURCE AUDIT — P1/P2 RAW BOUNDARY ORIGIN TO LOCAL SOURCE AND RANK-EIGHT MULTIPLICITY
+Date: 2026-09-20
+Repository: /Users/stefanhamann/Projekte/tfpt-theoryv4
+Audited revision: 66b91e40 (working tree had unrelated existing changes; this audit made no repository edit)
+Verdict: OPEN, but the first missing arrow is now sharply typed.
+
+QUESTION
+========
+
+What does the actual P1/P2 source supply, what is derived from it, and where is
+the first still-unproved arrow to a local one-particle/CAR source with an
+internal rank-eight multiplicity?
+In particular: does primitive admissibility or the Yukawa contraction construct
+the local source with its rank-eight internal multiplicity, or does it already
+assume a finite internal representation?
+
+
+SHORT ANSWER
+============
+
+The raw one-sided datum is
+
+  T_boundary = (A_+, H_+, D_+, J, Gamma, B_Sigma).
+
+From it the archival source constructs the double, the deck/reflection data,
+the Calderon projector/involution, and a primitive admissibility projection
+P_prim.  The current P1 adds a primitive reflection-positive seam with
+[u_Sigma]=1 and c_3=1/(8 pi).  Current P2 supplies a five-slot readout
+(3 colour + 2 weak) as an interface axiom; the later charge theorem is
+conditional on that carrier.
+
+None of these definitions constructs a canonical internal rank-eight
+multiplicity bundle or local scaling sector inside the raw boundary Cauchy
+space.  The archival source first says “let
+H_car denote the finite-dimensional carrier block selected after primitive
+admissibility compression”; it does not define the selection.  Its own final
+boundary-kernel definition explicitly contains no carrier split, family
+geometry, determinant class, or transport data.
+
+There is also an earlier exact typing test.  Since
+P_prim=P_Seam,+ P_prim,gap and P_Seam,+=(1+iota_C)/2, iota_C acts as +1 on
+Ran(P_prim).  Therefore, if H_car is literally a subspace of Ran(P_prim), the
+declared restriction epsilon_car=iota_C|H_car is +I, so E_-=0.  The intended
+3+2 split requires H_car to live before that seam-even compression or to be
+connected by a separately defined map that does not factor through the
+seam-even range.  No such map is currently displayed.
+
+Likewise, the Lean `BoundaryYukawaKernel` already contains omega together with
+injective and surjective contraction.  It is exactly equivalent (under the
+stated nontriviality hypothesis) to rank(E_-)=3.  The Lean file expressly does
+not prove
+
+  raw TFPT boundary kernel -> BoundaryYukawaKernel.
+
+The converse builds omega from a chosen basis once rank 3 is already known, so
+it cannot be used as an origin proof.  `SeamWindingData 3 2` similarly already
+has the ranks 3 and 2 as type parameters and the determinant/orientation/
+primitivity equations as fields.  It proves the charges (-2,3) only after that
+input; it does not derive `SeamWindingData (3,2)` from [u_Sigma]=1.
+
+Three objects must be kept distinct:
+
+  (a) a finite internal polarization/multiplicity K_int ~= C^8;
+  (b) an infinite-dimensional local source space, locally of the form
+      L^2(Sigma) tensor K_int, or more generally L^2-sections of a rank-eight
+      multiplicity bundle;
+  (c) the later mu4 simple-current/vertex extension from D5_1 x A3_1 to the
+      E8 level-one net.
+
+A globally finite-rank projector on the whole Cauchy space cannot produce
+eight propagating local channels: it would retain only finitely many global
+modes and destroy the local field space.  The earliest missing carrier arrow
+is the typed pre-/post-compression map that preserves both carrier signs.  At
+the later rank-eight source stage, the missing arrow is a canonical,
+symmetry-compatible local multiplicity bundle, symbol sector, or local scaling
+sector in the raw Calderon/admissibility data.  The current “fixed rank-8
+polarization K_Sigma” is still a premise unless read as such an internal fiber.
+The Yukawa map is another upstream carrier-rank arrow; even closing it would
+not by itself construct the local source or the E8 vertex extension.
+
+
+1. ACTUAL INPUT / DERIVED / ASSUMED LAYERS
+==========================================
+
+Layer A — raw one-sided analytic datum (input class)
+----------------------------------------------------
+
+The original boundary source defines
+
+  (A_+, H_+, D_+, J, Gamma, B_Sigma),
+
+with a compact oriented manifold with boundary encoded by the centre,
+self-adjoint tangential B_Sigma compatible with J and Gamma, collar form
+
+  D_+ = gamma_n (partial_n + B_Sigma),
+
+and reflection regularity sufficient to form the double and Calderon data.
+Source: `_archive/tfpt-45/source_extracts/01_boundary_kernel_source.tex`,
+lines 65-80.
+
+The almost-commutative presentation
+
+  H ~= L^2(M_tilde,S) tensor H_int
+
+is explicitly introduced only as a chosen realization, not as an output of
+the raw boundary datum.  Hence H_int and its dimension cannot be counted as
+already derived.  Source: same file, lines 83-91.
+
+Layer B — exact constructions from the raw datum
+------------------------------------------------
+
+The double, the deck involution, D_ref/D_rel, the Calderon projector P_C and
+
+  iota_C = 2 P_C - 1
+
+are constructed from the one-sided analytic data, subject to the declared
+reflection-regularity hypotheses.  Source: same file, lines 42-55 and 94-170.
+
+The primitive complex is then defined on an enlarged Hilbert space.  It uses
+
+  P_Sigma^+ = (1+iota_C)/2,
+
+APS/relative conditions, ghost variables, positive penalty parameters,
+epsilon_adm, and the projection
+
+  P_prim = Pi_ker(Delta_prim).
+
+Source: same file, lines 192-271.  This is a genuine analytic compression, but
+it does not construct a rank-eight internal multiplicity bundle or a local
+rank-eight scaling sector.  The construction also contains
+declared realization choices (tensor-sector split, epsilon_adm, penalty
+operators/commuting-sector assumptions); positivity makes the kernel
+insensitive to the numerical positive weights, but it does not create a
+canonical eight-dimensional internal fiber over every local/momentum mode.
+
+Layer C — P1/P2 inputs and their exact downstream results
+---------------------------------------------------------
+
+The current architecture states:
+
+  P1: primitive reflection-positive oriented seam, [u_Sigma]=1,
+      c_3=1/(8 pi);
+  P2_interface: a five-slot carrier readout, 3 colour + 2 weak;
+  P2_algebra: conditional algebraic rigidity once that carrier is supplied.
+
+Source: `tfpt_1_architecture_e8.tex`, lines 155-192.  The text itself calls P1
+and P2 inputs.  P2_interface is not a construction of five modes from B_Sigma.
+
+The archival boundary source agrees with this boundary: its final primitive
+kernel is
+
+  T_kernel^boundary =
+    (A,H,D,J,Gamma,tau_double,iota_C,P_prim,[u_Sigma],c_3),
+
+and it explicitly says that no carrier split, hypercharge, family geometry,
+determinant class, transport pole, or vacuum datum is part of the definition.
+Source: `01_boundary_kernel_source.tex`, lines 700-731.
+
+Layer D — first unconstructed finite carrier
+--------------------------------------------
+
+The same archival source later begins with
+
+  “Let H_car denote the finite-dimensional carrier block selected after
+   primitive admissibility compression”
+
+and restricts iota_C to it to define E_- and E_+.  No spectral projection,
+universal property, functor, or uniqueness proof selects H_car from P_prim.
+Source: `01_boundary_kernel_source.tex`, lines 274-299.
+
+The literal same-space reading is not merely unspecified; it collapses the
+negative block.  From lines 204-261,
+
+  P_Seam,+ = (1+iota_C)/2,
+  P_prim = P_Seam,+ P_prim,gap.
+
+Hence
+
+  P_Seam,+ P_prim = P_prim,
+  iota_C P_prim = P_prim.
+
+For every v in Ran(P_prim), iota_C v=v.  Thus, over the complex Hilbert space,
+if
+
+  H_car subset Ran(P_prim),
+
+then
+
+  epsilon_car=iota_C|H_car=+I,
+  E_-=ker(epsilon_car+I)=0,
+  E_+=H_car.
+
+The conclusion is unchanged if H_car is produced by any selector whose range
+lies in Ran(P_prim), or by an injective iota_C-intertwining map into that range.
+The later formula P_adm=P_prim P_sing P_Theta cannot restore the negative block,
+because its range is still contained in Ran(P_prim).  This is a conditional,
+local typing result about the displayed compression chain; it is not a global
+no-go for P1/P2.
+
+The source mentions at lines 172-179 that only the displayed restriction and
+“transport maps” may relate the involutions, but neither that passage nor the
+audited later carrier/QFT sources give a carrier transport map that changes
+this conclusion.  The chosen
+almost-commutative factorization at lines 149-154 also does not repair it:
+H_int is expressly not a reconstruction output, and no map is defined that
+induces iota_C on an internal carrier factor.  The later QFT source
+(`04_qft_source.tex`, lines 1880-1925) asserts the finite carrier block and its
+functorial preservation but again supplies no inclusion, quotient, partial
+isometry, or factor map from the pre- or post-compression Cauchy space.
+
+The Lean interfaces preserve the same gap.  `CalderonInterface.lean`, lines
+43-48 and 66-70, packages an arbitrary finite involution as the future target
+of an analytic boundary theorem.  `CalderonProjector.lean`, lines 53-76,
+packages an idempotent directly in the carrier endomorphism ring.  Neither
+formalizes the global Calderon projector -> finite carrier map, and neither
+proves that the carrier is a subspace of Ran(P_prim).
+
+There are two type-consistent readings, but the source must choose and define
+one:
+
+  (A) Pre-compression subspace: an iota_C-invariant finite carrier subspace of
+      the full doubled Cauchy space, with both signs present.  “Selected after”
+      then describes logical order, not inclusion in Ran(P_prim).  The source
+      needs its selector/inclusion Q_car or j_car and must state that it does
+      not factor through P_Seam,+.
+
+  (B) Abstract carrier/factor: a finite multiplicity space reached from the
+      pre-compression boundary space by a named quotient, partial isometry or
+      factorization map T_car, with
+
+        epsilon_car T_car = T_car iota_C
+
+      on the declared domain.  If T_car factors only through Ran(P_prim), this
+      equation again forces epsilon_car=+I on its image, so the domain must
+      retain both iota_C signs or the carrier involution must have a distinct
+      explicitly derived origin.
+
+The smallest missing map at this point is therefore not “some finite block”,
+but the typed pre-/post-compression relation
+
+  (H_Cauchy,iota_C,P_prim) -> (H_car,epsilon_car)
+
+showing exactly where both carrier signs survive.
+
+Essentialization does remove summands with zero seam flow, trivial carrier
+polarization, zero determinant degree and zero primitive Yukawa type.  This is
+why arbitrary invisible spectator direct sums are not valid countermodels.
+But essentialization is a quotient criterion, not a construction of H_car;
+some of its tests already mention carrier polarization and Yukawa type.
+Source: same file, lines 523-560.
+
+The claimed unique defect-minimal representative is also insufficient as a
+selector theorem.  Its written proof establishes existence of a minimizer by
+well-foundedness and removes contractible spectators, but the asserted
+uniqueness/classification is not established there.  It does not exhibit the
+finite projection.  Source: same file, lines 646-683.
+
+
+2. WHAT THE YUKAWA AND WINDING INTERFACES ACTUALLY PROVE
+========================================================
+
+Boundary Yukawa interface
+-------------------------
+
+`BoundaryYukawaKernel K E` has four fields:
+
+  omega : Lambda^3 E -> K,
+  contraction injective,
+  contraction surjective,
+  E nontrivial.
+
+Source: `experiments/lean4-carrier-rigidity/TfptCarrier/
+BoundaryYukawaKernelInterface.lean`, lines 69-93.
+
+The exact Lean theorem is
+
+  BoundaryYukawaKernel K E -> finrank_K(E)=3,
+
+and conversely any rank-three E admits such a package by choosing a basis.
+Thus nonemptiness of the interface is equivalent to rank 3.  Source: same
+file, lines 100-134.
+
+The file explicitly states that it formalises only the packaged-interface
+implication and does not formalise
+
+  TFPT boundary kernel -> BoundaryYukawaKernel K E.
+
+It also says canonicity from TFPT boundary data remains upstream physics.
+Source: same file, lines 18-57.
+
+This is the strongest exact positive Yukawa result: if the raw boundary really
+produces a canonical omega with injective and surjective contraction, then
+rank(E_-)=3 follows without a separate rank assumption.  But building omega
+from a basis after assuming rank 3 is the converse, not the missing origin
+arrow.
+
+Seam winding interface
+----------------------
+
+`SeamWindingData m n` already stores q_-, q_+, determinant trace zero,
+orientation signs, and gcd=1.  It is a typed renaming of the primitive oriented
+determinant-carrier input.  The file explicitly does not formalise
+
+  [u_Sigma]=1 -> SeamWindingData(m,n).
+
+Source: `experiments/lean4-carrier-rigidity/TfptCarrier/
+SeamWindingInterface.lean`, lines 31-45 and 56-126.
+
+Only after specializing to `SeamWindingData 3 2` does Lean force
+(q_-,q_+)=(-2,3).  The ranks are parameters, not outputs.  Source: same file,
+lines 128-135.
+
+Carrier paper
+-------------
+
+The carrier source derives the 3+2 normal form from a collection of carrier/
+Higgs/Yukawa hypotheses.  The key negative-block step uses the canonical
+contraction E_- tensor Lambda^2 E_- -> Lambda^3 E_- together with a primitive,
+no-spectator/top-form condition.  This downstream algebra is compatible with
+the Lean correction above, but the paper does not supply the raw-boundary map
+that canonically creates that top form.  The family transport construction is
+also downstream: it assumes the four-punctured mu4 geometry and the already
+fixed family rank.  Sources:
+
+  `_archive/tfpt-45/source_extracts/02_carrier_source.tex`,
+    lines 8-74, 143-159, 2400-2562;
+  `_archive/tfpt-45/source_extracts/03_em_flavor_source.tex`,
+    lines 1188-1320.
+
+
+3. STRONGEST POSITIVE CHAIN ALREADY ESTABLISHED
+===============================================
+
+The following conditional chain is real and should be retained:
+
+  a. A canonical boundary-produced omega on E_- with injective and surjective
+     contraction forces rank(E_-)=3 exactly in Lean.
+
+  b. Given the compact Higgs/top-form input on E_+, the positive block has
+     rank 2.
+
+  c. Given `SeamWindingData 3 2`, determinant trace zero, orientation and
+     primitivity force the unique charge pair (-2,3).
+
+  d. Given the D5 + A3 lattice data and mu4 glue, the E8 rank-eight lattice/net
+     completion is exact.
+
+  e. On the multiplicity-free three-character H^1 block, mu4-equivariance plus
+     the three eigenvalues determines the transfer operator exactly, not only
+     its spectrum.  `QGEO.REDUCE.01` records this finite theorem.
+
+  f. Given a quasi-free covariance on the full local one-particle space
+     H_source (for example L^2(Sigma) tensor K_int with dim K_int=8),
+     Wick/Araki reconstruction fixes the quasi-free state and its
+     correlations.
+
+These are conditional downstream theorems.  They do not construct the
+local source space or its internal rank-eight multiplicity from the raw
+boundary datum.
+
+This distinction is visible in `verification/v113_quasifree_kernel.py`, lines
+149-170: the “seam level” creates a 16-by-16 standard Majorana matrix by hand,
+then verifies that its polarization has rank 8.  The script labels the premise
+merge “[P] (recorded, not claimed)”.  It checks a finite internal target after
+choosing the 16 real Majoranas; it does not derive the internal factor from
+B_Sigma and does not construct the infinite-dimensional local boundary
+one-particle space.
+
+The current ledger is therefore correctly open:
+
+  QGEO.KERNEL.01:
+    raw C_Sigma = U^{-1} C_mu4 U as an operator.
+
+Its reduced form still assumes that the full raw operator reduces to the
+three-dimensional moving transfer block plus a fixed rank-eight polarization
+K_Sigma.  Sources: `verification/status_ledger.csv`, rows 257-258;
+`verification/v178_marks_kernel_attempt.py`, lines 30-55.
+
+The later source/RG audit independently locates the same two smaller holes:
+
+  raw boundary kernel -> BoundaryYukawaKernel K E_-,
+  [u_Sigma]=1 -> SeamWindingData(3,2),
+
+and stresses that closing the first gives an internal rank, not eight
+propagating CAR fields.  Source:
+`experiments/theory-contracts/source-rg-clock-bridge-20260920/PROOF.txt`,
+lines 212-234.
+
+
+4. FIRST STILL-UNPROVED LOCAL SOURCE ARROW
+==========================================
+
+The missing theorem should be stated as a local source functor/selector, not
+as a global finite-dimensional eigenspace or a dimension coincidence.  A
+correct target has the form
+
+  LocSel_Sigma(T_boundary, P1, P2)
+    = (E_int -> Sigma, H_source, p_source, rho_Sigma, U_Sigma),
+
+Required output:
+
+  1. E_int is an intrinsically selected Hermitian/real graded multiplicity
+     bundle of fiber rank 8 over the seam (or over the relevant cosphere/
+     momentum space), or an equivalent rank-eight local scaling sector.  A
+     trivialization E_int ~= Sigma x C^8 must be derived if the target uses
+     one; it is not automatic.
+
+  2. H_source is the infinite-dimensional local one-particle space
+
+       H_source = L^2(Sigma,E_int)
+
+     in the bundle formulation, locally L^2(Sigma) tensor C^8.  The raw
+     Calderon projection/covariance acts on H_source as an order-zero
+     pseudodifferential or local scaling-limit operator.  “Rank 8” refers to
+     the fiber/multiplicity, not to the Hilbert-space rank of H_source or of
+     the full Calderon projector.
+
+  3. The symbol projector p_source(x,xi), or the corresponding local scaling
+     sector, is selected from the raw data and is invariant/intertwining under
+     J, Gamma, iota_C, the raw order-four clock rho_Sigma and the relevant raw
+     time/boundary evolution at the level required by the target theorem.
+
+  4. U_Sigma is a localization-preserving unitary/module equivalence, fixed
+     up to the declared target symmetry, from H_source to the standard local
+     D5+A3 source.  It must intertwine the full source covariance/operator,
+     the grading/reality/clock structures, and multiplication by local support
+     functions.  Schematically,
+
+       U_Sigma C_Sigma U_Sigma^* = C_mu4,
+       U_Sigma J_Sigma = J_target U_Sigma,
+       U_Sigma Gamma_Sigma = Gamma_target U_Sigma,
+       U_Sigma rho_Sigma = rho_mu4 U_Sigma.
+
+     A dynamics claim additionally needs the corresponding full local
+     generator intertwining, rather than only a covariance or sign-projector
+     match.
+
+  5. The local CAR net is then built from interval/test-function subspaces,
+
+       A_CAR(I) = CAR(L^2(I,E_int)),
+
+     with the required graded locality.  This is still distinct from the E8
+     vertex/net extension.  The latter is the downstream index-4 mu4
+     simple-current extension of the D5_1 x A3_1 net and must use the already
+     established lattice/net theorem; it is not created by a rank-eight
+     finite matrix.
+
+No current definition supplies this local bundle/symbol/scaling-sector map.
+The existing downstream rigidity chain therefore cannot establish the raw
+operator arrow.  This statement is more precise than a generic “P1/P2 do not
+imply E8” claim and does not rely on forbidden spectator countermodels.
+
+
+5. YUKAWA ORIGIN GAP AND POST-RANK NORMALIZATION
+================================================
+
+Once a genuine finite internal carrier fiber (or carrier multiplicity bundle)
+has been selected inside the local source, a determinant-line trivialization
+is a possible normalization datum:
+
+  tau_Sigma : det(E_-) tensor det(E_+) -> C,
+
+together with a canonically normalized weak top form
+
+  nu_+ : det(E_+) -> C.
+
+If n=rank(E_-), these data produce only the top-degree form
+
+  omega_top,Sigma(x) = tau_Sigma(x tensor nu_+^{-1}(1)),
+  x in det(E_-) = Lambda^n E_-.
+
+This is a form on Lambda^n E_-, not a trilinear form on Lambda^3 E_-.
+Only after an independent theorem has already established n=3 may one identify
+det(E_-)=Lambda^3 E_- and use omega_top,Sigma to normalize or phase-fix a
+Yukawa trilinear form.  Using that grade identification to derive n=3 would be
+circular for exactly the same reason as the basis-built Lean converse.
+
+Therefore this determinant-line route does not prove
+
+  raw boundary kernel -> BoundaryYukawaKernel K E_-.
+
+The genuine missing origin remains a boundary construction of an alternating
+trilinear form
+
+  omega_Sigma : Lambda^3 E_- -> C
+
+together with injective and surjective contraction (CI/CS), without first
+assuming rank(E_-)=3; alternatively an independent rank-three theorem must be
+given first, after which the determinant line is only a normalization route.
+
+To close the Lean interface one must prove from the raw boundary/kernel data:
+
+  - independence from bases, collar charts and presentation;
+  - covariance under the raw J, Gamma, iota_C and clock action;
+  - a fixed phase/normalization from reflection orientation or another already
+    present datum;
+  - injectivity and surjectivity of contraction;
+  - compatibility with essentialization.
+
+The present winding interface supplies determinant trace zero and primitivity
+only after a finite carrier is given.  It does not supply tau_Sigma, nu_+, or
+their phase.  Even if those normalizations were supplied, they would close
+only the post-rank normalization step unless rank 3 had already been proved by
+an independent source argument.  No new origin chain is claimed from the
+determinant-line grade identification.  This route also does not construct the
+local source functor above or the later E8 vertex extension.
+
+
+6. SMALLEST DECISIVE ORIGINAL-MAP TEST
+======================================
+
+The next test must operate on an explicit raw B_Sigma/DtN datum, not on a QWZ
+substitute and not on a preselected E8 matrix.
+
+Test 0 — same-space carrier/parity typing (earliest exact gate)
+----------------------------------------------------------------
+
+Before any spectrum or dynamics calculation, require the proposed carrier map
+to state its domain and codomain.  Check the identity
+
+  P_Seam,+ P_prim = P_prim.
+
+If the proposal declares H_car subset Ran(P_prim), or embeds H_car into that
+range while intertwining epsilon_car with iota_C, stop: the exact projector
+identity gives epsilon_car=+I and E_-=0.  Such a proposal cannot be the stated
+3+2 carrier.
+
+Acceptance requires one of the two explicitly typed alternatives already
+listed above: a pre-compression iota_C-invariant carrier selector whose image
+contains both signs, or a named pre-compression transport/factor map that
+induces a nontrivial epsilon_car.  Merely saying “selected after compression”
+or wrapping an arbitrary finite involution in the Lean certificate does not
+pass this gate.  This test refutes only the literal same-space compression
+chain, not P1/P2 or a correctly typed alternative.
+
+Test A — raw clock covariance (first obstruction)
+-------------------------------------------------
+
+Given the raw order-four clock rho_Sigma on the raw Cauchy space, compute
+
+  [rho_Sigma, Lambda_Sigma]
+
+or the off-character matrix elements of the bounded sub-principal part after
+the universal |k| principal symbol is removed.
+
+The exact quasi-free state-invariance condition is
+
+  omega o rho_Sigma = omega
+    <=> [rho_Sigma,C_Sigma]=0
+
+for a unitary one-particle implementer rho_Sigma and covariance C_Sigma.  If
+
+  C_Sigma = (1 + sgn H_1)/2,
+
+then
+
+  [rho_Sigma,H_1]=0  =>  [rho_Sigma,C_Sigma]=0.
+
+The converse is false for a general self-adjoint H_1: the sign projector knows
+the positive/negative spectral subspaces but not the energy magnitudes inside
+them.  It becomes an equivalence only with an extra proved hypothesis making
+H_1 recoverable from C_Sigma, or otherwise fixing the magnitude/spectral
+action within each sign sector.  The cited passage at
+`tfpt_research_contracts.tex`, lines 450-473, states a reduction to
+`[rho,H_1]=0`; this audit uses it only as the stronger sufficient operator
+test unless those extra hypotheses are supplied.
+
+For the narrower model Lambda=|k|+M_f, where rho is the quarter rotation and
+M_f is multiplication by the curvature function f, the original Fourier
+calculation is exact: [rho,Lambda]=0 iff f has Fourier support only in modes
+0 mod 4.  Four equally spaced mark-local contributions have this support.
+Source: `tfpt_research_contracts.tex`, lines 474-486.
+
+Acceptance: all off-character blocks vanish for the actual raw datum, with
+rho_Sigma obtained from P1/P2 rather than fitted after diagonalization.
+
+Failure: one nonzero off-character block refutes the claimed clock covariance
+for that raw datum.  Passing this test does not yet produce the local
+rank-eight multiplicity sector.
+
+Test B — intrinsic local multiplicity/symbol sector (correctly typed test)
+---------------------------------------------------------------------------
+
+Use the principal and sub-principal symbol of the actual raw Calderon/DtN
+operator, or its rigorously defined local scaling limit.  Construct a candidate
+equivariant symbol projector
+
+  p_int(x,xi) : E_raw(x,xi) -> E_raw(x,xi)
+
+whose range has constant internal rank 8 over the relevant seam/cosphere
+sector.  Equivalently, construct a rank-eight multiplicity bundle E_int and a
+local module embedding
+
+  L^2(Sigma,E_int) -> H_Cauchy^ess.
+
+Test:
+
+  - constant fiber rank 8, without truncating spatial/momentum modes;
+  - compatibility with the Calderon principal symbol and bounded
+    sub-principal operator;
+  - equivariance under J, Gamma, iota_C and rho_Sigma;
+  - stability under the admissible collar changes and essentialization
+    already allowed by the source class;
+  - a localization-preserving intertwiner to the standard D5+A3 local source;
+  - zero full-operator, clock and declared time-evolution defects on that
+    infinite-dimensional source sector.
+
+Acceptance: the raw source canonically supplies a rank-eight fiber/local
+scaling multiplicity together with the infinite-dimensional local module and
+the required full-operator intertwiners.
+
+Diagnostic outcome: nonconstant fiber rank, failure of equivariance or
+localization, or inequivalent source-module identifications not removed by
+declared target symmetries.  This locates the failure of the proposed source
+map for the tested datum; it is not a universal P1 impossibility theorem.
+
+Optional Test B2 — internal Riesz selector only after factorization
+-------------------------------------------------------------------
+
+A Riesz projection is relevant only if an independent theorem first proves a
+local factorization or direct-integral decomposition such as
+
+  H_source ~= L^2(Sigma) tensor K_aux
+
+and identifies an internal operator M_int on K_aux that commutes with the
+local spatial algebra.  An isolated rank-eight spectral cluster of M_int may
+then define a finite internal projector p_8 on K_aux.  The full local
+projection is
+
+  1_{L^2(Sigma)} tensor p_8,
+
+which has infinite Hilbert-space rank and retains all local propagating modes.
+Its symmetry, homotopy and essentialization properties may then be checked.
+
+A finite-rank Riesz projection on the entire Cauchy space is not an acceptable
+source of eight local CAR channels.  Without the independently proved
+factorization, absence of a global isolated eight-dimensional eigencluster is
+not an obstruction to the correct local-source map and creates no additional
+necessary gap.
+
+
+7. CAN THE DERIVATION BE CLOSED NOW?
+====================================
+
+No.  The canonical sources define a class of raw boundary data, but they do
+not give one explicit B_Sigma/DtN operator from which Test A or Test B can be
+run.  They also do not define the local rank-eight multiplicity/symbol sector
+or the boundary determinant-line map.  Consequently the missing arrow cannot
+be completed by further finite-dimension algebra alone.
+
+The precise minimum needed to continue is:
+
+  (i) a typed map relating the pre-compression boundary Cauchy space to H_car
+      and proving where both epsilon_car signs survive;
+  (ii) one explicit admissible raw boundary datum, including domains and the
+       raw clock action;
+  (iii) an intrinsic rule selecting the local rank-eight symbol/multiplicity
+        bundle or scaling sector while retaining the infinite local mode space;
+  (iv) the source-defined normalization that fixes the localization-preserving
+       U_Sigma and, separately, the genuine omega_Sigma origin; determinant-line
+       data enter only as post-rank normalization.
+
+Items (i)-(iii) are an operational decomposition of the already open raw
+operator/source arrow and the already identified Yukawa-origin arrow.  They
+are not asserted as additional independent postulates or new gaps.
+
+Once (i) and a candidate rule for (ii) are supplied, Tests A and B are small,
+decisive, and directly tied to the original operator map.  Until then the
+honest status is:
+
+  - raw one-sided datum -> Calderon + primitive admissibility: constructed;
+  - literal H_car subset Ran(P_prim) with epsilon_car=iota_C|H_car: excluded
+    by the exact seam-even projector identity (it gives E_-=0);
+  - a typed pre-compression/factor map yielding both carrier signs: open;
+  - boundary-produced canonical Yukawa trilinear with CI/CS: open;
+  - winding-one -> typed (3,2) determinant carrier: open;
+  - raw Cauchy space -> local one-particle module with canonical rank-eight
+    internal multiplicity: open;
+  - conditional carrier/charge/E8/net rigidity after these inputs: strong and
+    substantially exact.
+
+
+SELECTED SOURCE SET (17 FILES)
+==============================
+
+1.  tfpt_1_architecture_e8.tex
+2.  _archive/tfpt-45/source_extracts/01_boundary_kernel_source.tex
+3.  _archive/tfpt-45/source_extracts/02_carrier_source.tex
+4.  _archive/tfpt-45/source_extracts/03_em_flavor_source.tex
+5.  experiments/lean4-carrier-rigidity/TfptCarrier/CalderonInterface.lean
+6.  experiments/lean4-carrier-rigidity/TfptCarrier/SeamWindingInterface.lean
+7.  experiments/lean4-carrier-rigidity/TfptCarrier/BoundaryYukawaKernelInterface.lean
+8.  experiments/lean4-carrier-rigidity/TfptCarrier/YukawaTrilinearForm.lean
+9.  experiments/lean4-carrier-rigidity/TfptCarrier/YukawaStageDExistence.lean
+10. experiments/lean4-carrier-rigidity/TfptCarrier/YukawaTopForm.lean
+11. verification/status_ledger.csv
+12. tfpt_research_contracts.tex
+13. verification/v113_quasifree_kernel.py
+14. verification/v178_marks_kernel_attempt.py
+15. experiments/theory-contracts/source-rg-clock-bridge-20260920/PROOF.txt
+16. _archive/tfpt-45/source_extracts/04_qft_source.tex
+17. experiments/lean4-carrier-rigidity/TfptCarrier/CalderonProjector.lean
+
+No generic no-go, arbitrary spectator extension, energy-magnitude inference
+from a covariance projector, or rank-equality-as-CAR theorem is used here.
+
+FINAL CROSS-REFERENCE AFTER GRAPH REFRESH
+=======================================
+
+The concurrently available raw-carrier-origin-gate-20260920/PROOF.txt agrees
+with the literal post-compression obstruction in this audit. It additionally
+distinguishes pure self-dual CAR polarization, geometric deck reflection,
+and an internal carrier involution, and tests their different transformation
+laws. Its further calculations were not replayed by this contract's checker.
+In particular our reference to constructing Calderon data from a specified
+raw Dirac datum is NOT an endorsement of identifying its nonlocal Calderon
+sign with a pointwise geometric deck lift. These are distinct operators;
+the actual intertwiner, if intended, remains to be supplied. The local
+source-limit proof does not use that disputed identification. The shared
+compression lemma is one result, not two independent additions to closure.

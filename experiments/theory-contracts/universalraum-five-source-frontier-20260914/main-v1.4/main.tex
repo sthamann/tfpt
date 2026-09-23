@@ -1,0 +1,180 @@
+\documentclass[11pt,a4paper,oneside,parskip=half,headings=normal]{scrreprt}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Pagella}
+\setsansfont{TeX Gyre Heros}
+\setmonofont[Scale=0.85]{Latin Modern Mono}
+\usepackage[ngerman]{babel}
+\usepackage{microtype,amsmath,amssymb,mathtools,bm}
+\usepackage[margin=23mm,top=24mm,bottom=24mm,headheight=16pt]{geometry}
+\usepackage{graphicx,booktabs,longtable,tabularx,array,multirow}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,decorations.pathreplacing}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem,float,caption,needspace}
+\usepackage{scrlayer-scrpage}
+\usepackage[unicode,colorlinks=true,linkcolor=teal,urlcolor=teal,citecolor=teal,bookmarksnumbered=true]{hyperref}
+\usepackage{bookmark,xurl}
+\definecolor{navy}{HTML}{142F42}
+\definecolor{teal}{HTML}{087F83}
+\definecolor{amber}{HTML}{B96A16}
+\definecolor{slate}{HTML}{61717D}
+\definecolor{pale}{HTML}{EFF5F5}
+\definecolor{warm}{HTML}{FAF3E9}
+\setkomafont{chapter}{\sffamily\bfseries\color{navy}\LARGE}
+\setkomafont{section}{\sffamily\bfseries\color{navy}\large}
+\setkomafont{subsection}{\sffamily\bfseries\color{navy}\normalsize}
+\renewcommand*{\chapterheadstartvskip}{\vspace*{0pt}}
+\renewcommand*{\chapterheadendvskip}{\vspace{14pt}}
+\clearpairofpagestyles
+\ihead{\sffamily\small\color{slate}TFPT · Universalraum}
+\ohead{\sffamily\small\color{slate}Erklärung und Rekonstruktion}
+\automark[chapter]{chapter}
+\ifoot{\sffamily\scriptsize\color{slate}Forschungsstand 14. September 2026}
+\ofoot{\sffamily\small\pagemark}
+\KOMAoptions{headsepline=.3pt}
+\setkomafont{headsepline}{\color{slate!35}}
+\renewcommand*{\chapterpagestyle}{scrheadings}
+\renewcommand{\arraystretch}{1.18}
+\setlength{\tabcolsep}{5pt}
+\setlength{\parfillskip}{0pt plus 1fil}
+\setlist{nosep,leftmargin=1.4em,topsep=5pt}
+\setcounter{tocdepth}{1}
+\DeclareTOCStyleEntry[numwidth=3.2em]{tocline}{section}
+\DeclareTOCStyleEntries[pagenumberwidth=3em]{tocline}{chapter,section}
+\setcounter{secnumdepth}{1}
+\emergencystretch=2em
+\raggedbottom
+\captionsetup{font=small,labelfont={bf,sf},skip=7pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\ket}[1]{\lvert#1\rangle}
+\newcommand{\bra}[1]{\langle#1\rvert}
+\newcommand{\src}[1]{\textcolor{slate}{\small[Quelle: #1]}}
+\newcommand{\status}[1]{\textcolor{teal}{\textsf{\textbf{#1}}}}
+\newtcolorbox{bild}[1]{enhanced,breakable,colback=pale,colframe=teal!35,boxrule=.5pt,arc=2pt,left=10pt,right=10pt,top=8pt,bottom=8pt,title={#1},coltitle=navy,fonttitle=\sffamily\bfseries,colbacktitle=pale}
+\newtcolorbox{grenze}[1]{enhanced,breakable,colback=warm,colframe=amber!45,boxrule=.5pt,arc=2pt,left=10pt,right=10pt,top=8pt,bottom=8pt,title={#1},coltitle=navy,fonttitle=\sffamily\bfseries,colbacktitle=warm}
+\tikzset{box/.style={draw=teal!50,fill=pale,rounded corners=3pt,align=center,font=\sffamily\small,text=navy,inner sep=8pt},openbox/.style={box,draw=amber!60,fill=warm},arr/.style={-{Latex[length=2.5mm]},thick,draw=teal},hyp/.style={arr,dashed,draw=amber}}
+\hypersetup{pdftitle={TFPT und Universalraum: vollstaendiges Hauptdokument v1.4},pdfauthor={Zusammengestellt fuer Stefan Hamann; Analyse und Redaktion: Codex},pdfsubject={Version 1.4: Fuenf-Quellen-Pruefung und eigene Fortsetzung auf allen T1-T8-Fronten}}
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\pagecolor{navy}\color{white}
+\vspace*{5mm}
+{\sffamily\large FORSCHUNGSBUCH · 14. SEPTEMBER 2026\par}
+\vspace{22mm}
+{\sffamily\bfseries\fontsize{36}{42}\selectfont TFPT und der\par Universalraum\par}
+\vspace{12mm}
+{\sffamily\fontsize{17}{23}\selectfont Von einer gemeinsamen mathematischen\par Struktur zu einer möglichen Physik\par der Veränderungen und Aufzeichnungen\par}
+\vspace{15mm}
+\begin{tikzpicture}[x=1cm,y=1cm]
+\foreach \x/\y in {0/0,2/1,4/0,6/1,8/0,10/1,12/0}{\fill[teal!80] (\x,\y) circle (0.14);}
+\draw[white!60,line width=.8pt] (0,0)--(2,1)--(4,0)--(6,1)--(8,0)--(10,1)--(12,0);
+\draw[white!40,line width=.8pt] (2,1) to[bend left=35] (6,1);
+\draw[white!40,line width=.8pt] (4,0) to[bend right=35] (10,1);
+\node[anchor=west,font=\sffamily\small,text=white!80] at (0,-1.05){Struktur\quad ·\quad Veränderung\quad ·\quad Gedächtnis\quad ·\quad Auslesung};
+\end{tikzpicture}
+\vfill
+{\sffamily\large Vollständige Gesamtdarstellung mit integrierten Updates\par}
+\vspace{4mm}
+{\sffamily\normalsize Mit Formeln, Diagrammen und eigenen Gegenrechnungen\par Erweitert um Primzahlen, Quantenphänomene und Raumzeit\par}
+\vspace{12mm}
+{\sffamily\small Für Stefan Hamann\par Analyse, Rekonstruktion und Redaktion: Codex\par}
+\vspace{6mm}
+{\sffamily\small\color{white!75}Version 1.4 · Vollständiges Hauptdokument · Bedingte Forschungsergebnisse\par}
+\end{titlepage}
+\nopagecolor\color{black}
+\pagenumbering{roman}
+\hypersetup{pageanchor=true}
+\chapter*{Was dieses Dokument leisten soll}
+\addcontentsline{toc}{chapter}{Was dieses Dokument leisten soll}
+Der Universalraum ist in den vorliegenden Arbeiten die Idee eines gemeinsamen Zusammenhangs von erlaubten Veränderungen, Zuständen und Aufzeichnungen. TFPT soll darin eine besonders strukturierte mathematische Ansicht liefern. Das ist inzwischen mehr als ein Bild: Kleine Prozesse, Zellzustände, Registerexperimente und mehrere Rekonstruktionspfeile sind ausdrücklich berechenbar. Eine einzige Quelle, die daraus unsere vollständige Raumzeit und Physik auswählt, ist dagegen noch nicht gefunden.
+
+Die Basis dieses Buches verbindet elf bereitgestellte Dokumente zu einer zusammenhängenden Darstellung; die späteren Versionen integrieren weitere Eingaben und eigene Prüfungen. Das Buch bewahrt ihre Details, ordnet überholte Aussagen ein und entwickelt einige offene Stellen weiter. Es ist keine bloße Aneinanderreihung der Texte. Wo spätere Gegenbeispiele eine frühere Behauptung widerlegen, gilt die korrigierte Aussage. Wo ein Ergebnis nur in einer Quelle berichtet ist, bleibt diese Herkunft sichtbar.
+
+\begin{bild}{Das Leitbild}
+Stell dir eine Werkstatt mit Bauteilen, erlaubten Handgriffen und einem Gedächtnis für frühere Handgriffe vor. TFPT beschreibt zunächst sehr genau, welche Teile zusammenpassen. Der Universalraum wäre die vollständige Werkstatt einschließlich ihrer tatsächlichen Abläufe. Raum wäre dann ein Muster möglicher Nachbarschaften und Signalwege; Zeit eine lesbare Ordnung von Veränderungen; Materie ein stabiler oder wandernder Anregungszustand. Die letzten drei Sätze sind das Forschungsziel, keine bereits bewiesene Ableitung.
+\end{bild}
+
+Die stärksten bereits ausgearbeiteten Verbindungen sind die markierte $D_5$--$A_3$-Verklebung zu $E_8$, der Prozess auf 60 Strahlen, die Unterschiede zwischen frischen und behaltenen Registern, der Vierträgerzustand $\Omega$ und die genaue Lösung eines gekoppelten Zweizellensektors. Besonders anschaulich ist das jüngste Schaltungsprotokoll: Nach demselben ersten sichtbaren Schritt liefern unterschiedliche Registerausführungen später die Rückkehrwerte $1$ und $17/32$.
+
+Die eigenen Ergänzungen dieser Synthese betreffen insbesondere den Clebsch-Vorschlag, die behauptete Unmöglichkeit einer Aufzeichnung und einen stärkeren Echovergleich $1$ gegen $1/2$. Der letzte Vergleich ist eine neue mathematische Anschlussvariante. Er ersetzt keine zuvor festgeschriebene Vorhersage und wurde nicht auf Hardware ausgeführt.
+
+Version 1.1 ergänzt fünf zusammenhängende Kapitel über die Schatten-Phänomene: den RH-/Primzahlenzweig und Quantenchaos, Quantenkorrelationen, die Auswahl von drei Raumrichtungen und einer Zeit, offene Physik und eine verdichtete gemeinsame Hypothese. Ein neuer kleiner Modellversuch verbindet arithmetisch gleiche Rechenwege mit einer messbaren Quantenphase. Seine Formeln sind exakt, die zugrunde gelegte Prim-/Pauli-Zuordnung ist weiterhin gesetzt. Die früheren Kapitel bleiben als Grundlage erhalten; Querverweise verbinden sie mit der Erweiterung.
+
+\section*{Was Version 1.3 verändert}
+Diese Fassung führt das vollständige 90-seitige Forschungsbuch v1.1 fort. Alle bisherigen 21 Hauptkapitel und vier Anhänge bleiben zugänglich. Die 35-seitige Compiler-Fassung v1.2 war eine andere, kompakte Dokumentlinie und ist nicht die Grundlage dieses Hauptdokuments.
+
+Neu integriert sind der Audit sechs weiterer Unterlagen und die danach berechnete gemeinsame Ausführung: derselbe korrigierte Vermittlungsbaustein liefert Aufzeichnung, kontrollierte Näherungspräparation und Mehrzeitantwort. Korrekturen stehen unmittelbar an den betroffenen Stellen; vollständige neue Rechnungen folgen in Kapitel~\ref{ch:audit13} und~\ref{ch:execution13}. Das separate kurze Update-Paper v1.3 beschreibt ausschließlich Änderungen gegenüber dem Forschungsbuch v1.1.
+
+Die Verbindung zu tatsächlichen Quellprojektoren, Paulioperationen und Clock ist geprüft. Nicht-Clifford-Vermittlung, kohärenter Belegungszugriff, Feedback und Auswahl der Ausführung bleiben zusätzliche Ressourcen. Die gemeinsame Konstruktion ist endlich und bedingt; kein T1--T8-Abschluss wird behauptet.
+
+Zwei während der Arbeit zusätzlich eingereichte Texte sind in Kapitel~\ref{ch:newinputs13} integriert: vollständige vierte Ordnung des benannten Referenzmodells mit unabhängig reproduzierter Singulettkorrektur, globale Bandschranke, deterministische ideale Präparation, Relaxation und exakter mikroskopischer Stern. Erste Follow-ups berechnen eine angepasste Präparationsphase und die Grenze eines einzelnen festen Vermittlerpulses.
+
+\section*{Was Version 1.4 zusätzlich verändert}
+Fünf weitere Untersuchungen sind geprüft, ihre Widersprüche geklärt und eigene Anschlussrechnungen vor dem PDF-Update ausgeführt. Kapitel~\ref{ch:audit14} unterscheidet drei Vermittlerarchitekturen und korrigiert zu starke Spektralbehauptungen. Kapitel~\ref{ch:micro14} konstruiert einen endlichen Filter für den vollständigen mikroskopischen Stern und daraus gemeinsam Präparation, Aufzeichnung und Schlussprüfung mit bezahlter Ausbeute. Kapitel~\ref{ch:fronts14} dokumentiert die eigene Arbeit an sämtlichen T1--T8-Fronten einschließlich Chiralität, Geometrie, Parametervergleich und Gravitation.
+
+Das gesamte Hauptbuch v1.3 bleibt als Grundlage erhalten; überholte Engpässe erhalten direkte Aktualisierungshinweise. Neue Operatoridentitäten sind modellbedingt exakt, große Eigenwerte weiterhin numerisch. Ein nativer 3+1D-Ursprung oder ein vollständiger T1--T8-Abschluss wird nicht behauptet. Das separate Update-Paper v1.4 enthält nur Änderungen gegenüber v1.3.
+
+\section*{Wie man die Evidenz liest}
+\par\noindent\begin{tabularx}{\linewidth}{L{27mm}Y}
+\toprule
+\textbf{Markierung}&\textbf{Bedeutung}\\\midrule
+Gesetzt&Eine Ausgangsregel, Zustandswahl oder physikalische Zuordnung wird angenommen.\\
+Exakt&Eine Identität oder ein Beweis gilt unter ausdrücklich genannten Voraussetzungen.\\
+Numerisch&Ein endliches Rechenresultat stützt eine Aussage mit begrenzter Genauigkeit und Größe.\\
+Bedingt&Die Folgerung ist korrekt, sobald zusätzliche, noch nicht aus der Quelle gewonnene Daten gelten.\\
+Hypothese&Ein begründeter Vorschlag, für den noch ein Existenz-, Auswahl- oder Grenzwertsatz fehlt.\\
+Offen&Die geforderte Herkunft oder physikalische Schließung ist nicht nachgewiesen.\\\bottomrule
+\end{tabularx}\par
+
+\textbf{Exakt und bedingt können gleichzeitig zutreffen.} Die Grundenergie eines gewählten Hamiltonoperators kann exakt sein, während die Wahl dieses Hamiltonoperators weiterhin gesetzt ist. Rechnerische Genauigkeit, physikalische Herkunft und empirische Bewährung sind verschiedene Fragen.
+
+\section*{Umfang und Versionsgrenze}
+Die folgenden Prüfberichte dokumentieren die historische Basisfassung v1.1. Sie behaupten keinen erneuten Lauf ihrer Prüfungen in v1.3 oder v1.4. Evidenz der Version 1.3 steht in Anhang~\ref{app:release13}; die neue Abdeckung der Version 1.4 in Kapitel~\ref{ch:fronts14}.
+
+Gelesen wurden sieben Markdown-Dateien, zwei PDFs mit insgesamt 28 Seiten und zwei eingefügte Texte. Das Compiler-PDF liegt tatsächlich in Version 1.0 vor; das Anschluss-PDF verweist stellenweise auf Version 1.1. Diese zusätzliche Fassung gehört nicht zu den Anhängen. Die in den Texten genannten Originalprüfer, Schaltungen, JSON-Dateien und Repository-Zustände sind nicht automatisch mitangehängt. Ihre berichteten Ergebnisse werden hier entsprechend zugeschrieben.
+
+Für diese Synthese wurden die endlichen Standardobjekte zusätzlich unabhängig aus den angezeigten Formeln aufgebaut. Der beigefügte Prüfer umfasst 210 erfolgreiche Bedingungen: 209 endliche exakte beziehungsweise symbolische Prüfungen und eine hochpräzise numerische Wurzelkontrolle. Eine solche Zählung misst weder unabhängige Entdeckungen noch physikalische Bestätigung. Es gab keinen neuen vollständigen Repository-, Lean-, RH- oder Hardwarelauf. Die Dateihashes und die genaue Abdeckung stehen im Anhang.
+
+Für die Erweiterung wurden zusätzlich ausgewählte Originaldateien des RH-Repositoriums und externe Primärquellen eingesehen. Der neue unabhängige Prüfer kontrolliert 128 weitere Bedingungen: 126 exakt beziehungsweise symbolisch und zwei numerisch. Die globale Aktualitätsprüfung des Forschungskatalogs scheitert an einem fehlenden externen Quellenordner; deshalb werden Katalogmeldungen nicht als vollständig frisch bestätigter Forschungsstand ausgegeben. Die genaue Abdeckung und die Einschränkung stehen in Anhang~\ref{app:shadow-sources}. Wer vor allem die neuen Verbindungen lesen möchte, beginnt bei Kapitel~\ref{ch:shadow-arithmetic}; die eigene konstruktive Fortsetzung steht in Kapitel~\ref{ch:shadow-synthesis}.
+
+Die in den Quellen formulierten Arbeitsaufträge wurden als Forschungsinhalt gelesen. Maßgeblich für diese Arbeit ist der Auftrag, die Dokumente zu analysieren, verständlich zusammenzuführen und offene Teile zu untersuchen. Die Darstellung der Entstehungsgeschichte rekonstruiert den nachvollziehbaren Gedankengang; sie erfindet keine nicht belegten Gesprächsdaten.
+
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+\input{chapters/01_idee}
+\input{chapters/02_algebra}
+\input{chapters/03_prozess}
+\input{chapters/04_zellen}
+\input{chapters/05_kopplung}
+\input{chapters/06_zeit_echo}
+\input{chapters/07_seam}
+\input{chapters/08_rekonstruktion}
+\input{chapters/09_physik}
+\input{chapters/10_ausblick}
+\input{chapters/12_schatten_arithmetik}
+\input{chapters/13_schatten_quanten}
+\input{chapters/14_schatten_dimension}
+\input{chapters/15_schatten_offene_phaenomene}
+\input{chapters/16_schatten_synthese}
+\input{chapters/18_audit_v13}
+\input{chapters/19_execution_v13}
+\input{chapters/21_new_inputs_v13}
+\input{chapters/22_audit_v14}
+\input{chapters/23_micro_v14}
+\input{chapters/24_fronts_v14}
+\appendix
+\input{chapters/11_anhang}
+\input{chapters/17_schatten_quellen}
+\input{chapters/20_release_v13}
+\end{document}

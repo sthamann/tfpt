@@ -1,0 +1,80 @@
+{
+  "T1_T8_closed": [],
+  "checker_sha256": "559730e4c0a0ebd0e6bfa9f8570b1b827e27389a89b9c7b92c911db62c921244",
+  "clock_source_sha256": "9bf99de79f224ffcd060359eb146510b6e49973170f9953a0aec26760bd2c1a1",
+  "dependency_sha256": "380577f85d2afa8b50f91a0991769eaf8267ee5c09f327d87f17e1b4c0af1672",
+  "exact_guards": 113,
+  "gap_table": [
+    {
+      "reason": "H = Delta N_b + g X; X and N_b are the documented controls; U_T = exp(-i H T) is evolution under alphabet Hamiltonians",
+      "status": "nativ",
+      "step": "native pre/post-evolution U_T"
+    },
+    {
+      "closed_by": "S3 occupations, or single-mode phase lifts, or one charged mode instrument",
+      "reason": "passive Fock lift Gamma(u_4) of a signed mode relabeling (class member, lies in {N}'); NOT in the declared discrete group <GROUP, Clock> (kron obstruction + Schreier kernel = {+-I}); NOT in the S0..S2 word algebra ([n_4, W^T W] != 0); exactly Z_4 = 1 - 2 n_4 in the S3 occupation-instrument algebra; also a word in one charged instrument: Z_4 = 1 - 2 f_4^dag f_4",
+      "status": "bedingt",
+      "step": "phase impulse Z_4 = (-1)^{n_4}"
+    },
+    {
+      "closed_by": "S3 occupations, or one charged mode instrument",
+      "reason": "diagonal N-conserving instrument adjoined exactly at stage S3; outside the S0..S2 word algebra (same commutant witness); also n_5 = f_5^dag f_5 with a charged instrument",
+      "status": "bedingt",
+      "step": "occupation readout n_5"
+    },
+    {
+      "closed_by": "one charged mode instrument f_r, f_r^dag (N-charge +-1); two applications from vacuum",
+      "reason": "N-changing: the documented alphabet (and S3 occupations) lie in {N}'. With Q only N -> N + 4Z is reachable (charge grading, exact), so the N=2 witness state is unreachable from the vacuum (2 not in 4Z) and from the N=64 ground sector (64-2 = 62 = 2 mod 4). Within an already-native N=2 state, S3 instruments plus feedforward would suffice (support graph connected) - but no native N=2 start is documented.",
+      "status": "nicht-nativ",
+      "step": "product-state preparation f_4^dag f_57^dag |0>"
+    },
+    {
+      "reason": "classical side information; no operator content",
+      "status": "nativ",
+      "step": "recording of the outcome"
+    }
+  ],
+  "grading_obstruction": {
+    "conclusion": "Q = B_+ + B_- does NOT close the preparation step of the confirmed N=2 witness",
+    "from_ground_N64": "64 - 2 = 62 = 2 mod 4: unreachable",
+    "from_vacuum": "2 mod 4 = 2 != 0: unreachable",
+    "generator_charges": {
+      "B_+": 4,
+      "B_-": -4,
+      "N_b": 0,
+      "R_+": 4,
+      "R_-": -4,
+      "X": 0,
+      "occupations_and_phases": 0
+    },
+    "witness_sector": "N = 2",
+    "word_reachability": "every word in {documented alphabet + S3 + Q} maps sector N into N + 4Z"
+  },
+  "guards": 113,
+  "minimal_closing_primitive": {
+    "closes": [
+      "preparation (f_4^dag f_57^dag |0> in two applications from the vacuum)",
+      "occupation readout (n_r = f_r^dag f_r, exact on N=2 for all 64 modes)",
+      "phase impulse (Z_r = 1 - 2 f_r^dag f_r)"
+    ],
+    "mode_transport": "declared passive group is transitive on the 64 modes; the N=1 lift is the one-body matrix, so Gamma(g) f_4^dag Gamma(g)^dag = +/- f_{g(4)}^dag reaches every mode",
+    "primitive": "one charged mode instrument {f_r, f_r^dag} at a single mode",
+    "why_not_Q": "Q is the minimal G-invariant {N}'-breaking extension but changes N only by multiples of 4 (grading obstruction above)",
+    "why_not_mode_phases": "mode phases are already bedingt-native (S3) and conserve N; they cannot prepare the witness state"
+  },
+  "numerical_guards": 0,
+  "q_native_n4_analog": {
+    "block": "span{B_+|0>/sqrt(30), R_+|0>/sqrt(480)}, both full G-singlets with N = 4",
+    "conversion_max_at_g_over_Delta_1_20": "4/29",
+    "hamiltonian": "[[2 Delta, 4 g], [4 g, Delta]]",
+    "note": "an N = 0 mod 4 analogue reachable with Q; NOT the confirmed N=2 witness"
+  },
+  "runtime_seconds": 2.295,
+  "scope": "exact word/sector algebra and finite graph checks; no claim that the compiler supplies the charged instrument (open T1 question); no N=64 construction",
+  "status": "PASS",
+  "task": "witness-step gap table and minimal closing primitive",
+  "within_sector_preparation": {
+    "note": "bedingt: with a native N=2 start, S3 occupations + feedforward would prepare the pair state",
+    "s3_support_graph_N2_components": 1
+  }
+}

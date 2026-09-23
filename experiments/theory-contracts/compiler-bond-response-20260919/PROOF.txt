@@ -1,0 +1,420 @@
+TWO-SOURCE BOND RESPONSE: EXACT OBSERVABLE AND CONDITIONAL STABILITY
+19 September 2026
+Verdict PARTIAL. Finite pure-permutation source model; no physical gate closure.
+
+Purpose
+-------
+The submitted report claims a full two-source ground doublet at J=mu=0,
+energy kappa/2, and a full complement gap kappa/10. The present calculation
+does not assume that claim to construct or compress observables. It identifies
+a previously untested neutral coordinate bilinear, then proves finite-coupling
+bounds CONDITIONAL on precisely the claimed unperturbed spectral separation.
+The companion full-space audit records numerical support, not an independently
+certified proof of the full separation.
+
+1. States and a general compression identity
+------------------------------------------
+Let N=240 and psi_alpha be the original unit complex four-vector. Define
+
+ L = (1/N) sum_alpha,beta |alpha,beta>
+             psi_alpha[A] psi_alpha[B] psi_beta[C],
+ R = (1/N) sum_alpha,beta |alpha,beta>
+             psi_alpha[A] psi_beta[B] psi_beta[C].
+
+At each source pair, the matter inner product between the two vectors is
+z(alpha,beta)=<psi_alpha|psi_beta>. The mu4 orbit gives E[z]=0; thus L,R are
+orthonormal. For every real diagonal source function f(alpha,beta),
+
+   P f P = [[ E[f], E[f z] ], [ E[f conjugate(z)], E[f] ]].              (1)
+
+P projects onto span(L,R). Equation (1) is an exact finite contraction on the
+whole tensor space. It does not assert that P is the full ground projector.
+
+The required moments are
+
+ E[z]=E[z^2]=0, E[|z|^2]=1/4,
+ E[(Re z)^2]=E[(Im z)^2]=1/8, E[Re z Im z]=0.
+
+checker.py independently reconstructs all oriented roots from the pinned
+original source function. Its sums are Gaussian-integer/rational arithmetic,
+not fitted eigenvalues. The largest integer sums are exactly represented;
+no approximate complex equality is used to establish rational moments.
+
+2. An observable from the original coordinates sees the bond transition
+---------------------------------------------------------------------
+Use x_alpha in R8 for the normalized real coordinates, with J the fixed
+complex structure J^2=-I. Then
+
+ z = x_alpha dot x_beta - i x_alpha^T J x_beta,
+ V = 1-Re z,
+ W = Im z = -x_alpha^T J x_beta.
+
+Equation (1) gives, in the ordered basis (L,R),
+
+ P V P = I - sigma_x/8,
+ P W P = -sigma_y/8.                                               (2)
+
+Both operators were constructed from the same existing Hermitian overlap.
+No new Hamiltonian term is introduced. W is a real diagonal observable on
+the pair of adjacent source registers, not an absolute global wavefunction
+phase observable. It is invariant under common rephasing and odd under source
+exchange. Individual source phases need not be symmetries of the interaction.
+
+Every linear real coordinate satisfies P x_a^(e) P=0. More strongly, for any
+single-source diagonal function f(alpha),
+
+ P f(alpha) P = E[f] I,                                           (3)
+
+because E_beta[z(alpha,beta)]=0 separately for each alpha. Nevertheless,
+
+ P x_a^(1) x_b^(2) P = [delta_ab sigma_x + J_ab sigma_y]/64.         (4)
+
+Thus compression is not multiplicative. P x1 P=P x2 P=0 does not imply
+P x1 x2 P=0. The virtual/outside-P matrix elements carry the missing product.
+The neutral bilinear is the lowest coordinate degree capable of this
+transition; degree-zero/one coordinate functions cannot supply it.
+
+For the two parity combinations g=(L+R)/sqrt2, e=(L-R)/sqrt2,
+
+ <e|W|g>=i/8,     |<e|W|g>|^2=1/64.
+
+This does not put all W weight into the low line. The exact additional identity
+
+ P W^2 P=I/8,    P W(I-P)W P=7I/64
+
+shows that the low line carries one eighth of its total nonelastic spectral
+weight in the limiting even state. The remaining weight is outside P. By
+contrast O_D=Pi_2^(1)-Pi_2^(2) preserves P and restricts to sigma_z, giving
+unit limiting low-line weight as in the user's report.
+
+These statements refer to the assumed quantum source algebra. No physical
+instrument accessing the source labels or coherent Fourier projectors is
+thereby derived. A response of W is a two-time correlation of bilinears, hence
+a four-coordinate correlation; it was not part of the old linear-coordinate
+response matrix.
+
+There is also a simple joint LABEL readout. Tracing out all matter, the diagonal
+source probabilities of the two parity states are exactly
+
+ p_even(alpha,beta)=[1+Re z(alpha,beta)]/N^2,
+ p_odd (alpha,beta)=[1-Re z(alpha,beta)]/N^2.                       (2b)
+
+Both one-source marginals are uniform. Their joint real-overlap means are
++1/8 and -1/8, respectively. This is a direct relation between the bond
+superposition and an existing source-coordinate correlation. It does not
+require an additional Hamiltonian or an independently observable absolute
+wavefunction phase.
+
+For each native root the Re z values -1,-1/2,0,1/2,1 have counts
+1,56,126,56,1. Hence the total variation of the two joint-label distributions
+is exactly E|Re z|=29/120. With equal priors this specified label measurement
+distinguishes the two states with best classical success149/240; it is not
+the optimal unrestricted quantum measurement, which can distinguish orthogonal
+states perfectly. These exact readouts are for g/e in P and are weak-branch
+limits, not finite-epsilon exact distributions.
+
+3. Selection rule and leading dynamics
+-------------------------------------
+With |ell;s>=(1/2)sum_k i^(ks)|i^k z_ell>, source quarter rotation has eigenvalue
+i^(-s). L is in (s1,s2)=(2,1), R in (1,2), and both have total sector3.
+Linear complex coordinates have total charges +1 or -1. Their matrix elements
+between equal-total-sector states vanish exactly, including under finite
+perturbations that preserve this symmetry and retain both low levels there.
+The quadratic W is neutral and exchange-odd; it is not forbidden.
+
+Given the two-state first-order Hamiltonian
+
+ H_eff = (kappa/2+3J/2+mu) I - (mu/8) sigma_x,
+
+the effective equations, in hbar=1 units, are
+
+ d O_D/dt = i[H_eff,O_D] = 2 mu W,
+ d^2 O_D/dt^2 = -(mu/4)^2 O_D.                                    (5)
+
+Equation (5) is leading-order dynamics in P, not an exact equation for the
+full finite-mu operators. It identifies W as the quadrature that changes the
+bond-pattern population imbalance. It proves no propagation along a chain,
+relativistic dispersion, physical clock calibration, or preparation process.
+
+4. Exact off-subspace residual and conditional finite-epsilon bounds
+------------------------------------------------------------------
+Write T=H_E1+H_E2, with the unchanged event operators from .17, and B=T+V.
+At fixed alpha,beta, the two diagonal matrix elements of T are
+2(1-|z|^2). Its offdiagonal L/R element vanishes pointwise: H_E1 L=0 and
+H_E2 R=0. Also T L=H_E2 L, T R=H_E1 R, H_Ee^2=2H_Ee, and T preserves the
+individual quarter sectors. It follows exactly that
+
+ PTP=3I/2, PT^2P=3I, PTVP=3I/2,
+ PV^2P=9I/8-sigma_x/4,
+ PBP=5I/2-sigma_x/8,
+ PB(I-P)BP=55I/64+3sigma_x/8.                                    (6)
+
+The even and odd residual norms squared are therefore 79/64 and 31/64.
+
+ASSUMPTION G: On the full two-source space H0/kappa has exactly P at energy
+1/2 and satisfies (I-P)H0(I-P)/kappa >= (3/5)(I-P).
+
+For J=mu=epsilon kappa, positivity of B keeps QH(epsilon)Q/kappa>=3Q/5.
+Reflection separates the two rank-one P parity sectors. Set
+
+ a_even=1/2+19epsilon/8,  b_even^2=79/64,
+ a_odd =1/2+21epsilon/8,  b_odd^2 =31/64.
+
+For a_s<3/5, rank-one Schur complements and the variational upper bound give
+
+ a_s - epsilon^2 b_s^2/(3/5-a_s) <= E_s/kappa <= a_s.               (7)
+
+There is exactly one level below 3/5 in each of these parity sectors; the
+remaining full spectrum stays >=3/5 by positivity and min-max under G.
+Consequently
+
+ gap/kappa >= epsilon/4 - 31epsilon^2/[64(1/10-21epsilon/8)]
+             >= epsilon/8       for 0<epsilon<=1/65.              (8)
+
+This covers, and conditionally enlarges, the submitted epsilon<=1/200 range.
+At epsilon=1/200, (8)'s stronger first bound is 247/222400, while mu/(8kappa)
+is 1/1600. Equation (8) does not prove its input Assumption G.
+
+The eigenvector's complement-to-P amplitude ratio is at most
+
+ beta_s=epsilon b_s/(3/5-a_s).
+
+Choosing its phase to agree with the P basis vector, its norm distance from
+that vector is <=beta_s. For 0<epsilon<=1/200 the rational upper estimates are
+
+ beta_even < 3/47, beta_odd < 6/139.
+
+Since ||W||<=1, triangle inequality gives the full, perturbed transition bound
+
+ |<psi_odd|W|psi_even>| >= 1/8-3/47-6/139 = 941/52264 >0.          (9)
+
+Thus the low bilinear response is stable at finite positive couplings,
+CONDITIONAL on G, not just a limiting matrix element. Bounds (7)-(9) use
+the full complement through its spectral lower bound; no unexplained removal
+of its states occurs.
+
+5. Which part depends on E8?
+----------------------------
+For any centered mu4-invariant ensemble of unit vectors in C^d satisfying
+E|psi><psi|=I/d, the same L/R contraction gives
+
+ PVP=I-sigma_x/(2d), PWP=-sigma_y/(2d), splitting of mu PVP = mu/d.
+
+The coefficient1/8 alone therefore does not identify the exceptional E8
+structure. The full global-ground theorem, other spectral bands, and source
+operation dictionary carry additional information and must be tested there.
+This general moment identity does not assert that all comparison ensembles
+have the same complete Hamiltonian, symmetry, or ground space.
+Reading that last splitting as a first-order ground-state gap additionally
+requires an isolated L/R ground pair and scalar compression of the other terms.
+
+In contrast, (2b) retains the native angle distribution. For the uniform
+complex unit sphere in C4 (the uniform real S7 comparison), E|Re z| is
+32/(35pi), different from29/120. This is a comparison of the specified states
+and coordinate readouts, not a claim that the continuum ensemble has the same
+full Hamiltonian or vacuum. It supplies one explicit diagnostic of information
+beyond the shared second moment; it does not uniquely characterize E8 among
+all possible finite ensembles.
+
+6. Connection to the previously found frame problem
+--------------------------------------------------
+The phase observable W uses the complex structure J. For any orthogonal
+coordinate map C with J'=CJC^-1,
+
+ -(Cx1)^T J' (Cx2)=-x1^T Jx2.
+
+The actual pinned clock matrices satisfy this identity and C^T J C != J.
+Thus the relational phase is retained by transporting the frame; fixing J
+under that C changes the observable. This is the same information issue as
+the failure of the fixed-J sixty-label quotient in .22.
+
+This is a coordinate-free covariance statement. Although J has the same
+standard block form in the displayed charts, this calculation does not supply
+an isometry identifying the full Gaussian-root chart with the v1-root chart,
+nor a Hamiltonian intertwiner or a physical law for transporting J.
+
+7. An explicit current-algebra target for the coordinate observables
+------------------------------------------------------------------
+There is a limited positive bridge to the original E8_1 current target, without
+inventing a new transition operator. Use the pinned .18 native simple-root
+basis S (columns of real norm squared4) and its Cartan matrix A=S^T S/2.
+For a native root R_alpha=S n_alpha, n_alpha is integral and
+
+ [H_i,E_alpha]=(A n_alpha)_i E_alpha.
+
+Define the eight existing Cartan zero-mode combinations
+
+ Q_a=sum_i (S A^-1/2)_{ai} H_{i,0}.
+
+The current vacuum is annihilated by H_{i,0}. At level1 the grade-one states
+|alpha>_cur=E_{alpha,-1} Omega are orthonormal: the compact convention is
+E_alpha^dagger=-E_-alpha, kappa(E_-alpha,E_beta)=-delta_alpha,beta, and the
+affine commutator gives their positive unit pairing. These are the conventions
+of pinned v498 and .21. Therefore the label-to-current map U is an isometry,
+and the current commutator gives the exact intertwining equation
+
+ Q_a U=U X_a,     Q_a|alpha>_cur=(R_alpha,a/2)|alpha>_cur.
+
+The checker verifies every one of these 1920 charge values in the actual
+Gaussian source chart and kappa(Q_a,Q_b)=delta_ab/2. For two selected copies,
+
+ W_cur=-sum_ab J_ab Q_a^(1) Q_b^(2),
+ V_cur=I-sum_a Q_a^(1) Q_a^(2)
+
+intertwine W and V through U tensor U. Both overlap kernels are checked on all
+57600 root pairs. Rephasing root vectors by cocycle conventions changes U by
+diagonal phases and leaves this observable intertwiner intact. In fact the
+joint coordinate eigenvalues distinguish all roots, so their finite diagonal
+observable algebra is represented faithfully on this root-current subspace.
+
+This does not assert covariance of the finite source's pure permutation
+operators with the actual phase-carrying current lifts. It therefore does not
+intertwine L_e or H, nor establish the image of L/R as a physical current
+vacuum. Two current copies remain selected source placements, Cartan zero
+modes are not proved raw-seam local detectors, and the physical role of J and
+the coupling constants is not derived. This is a grade-one observable map,
+distinct from the still missing grade-three F10/Bell packet identification.
+
+8. Return to the physical origin question
+---------------------------------------
+The decisive constructive outcome is the closed leading algebra of relative
+bond pattern, real overlap, and imaginary overlap. A finite quantized source
+already supports the observed transition with its original coordinate
+products. No further Hamiltonian term or new microscopic register is needed.
+
+The model still chooses orthogonal kets for root labels, the spatial graph,
+the Hamiltonian family and coupling ratios. Matching an E8 current readout
+does not transport this dynamics; the .18/.21 phase and charge dictionary
+must be respected. Independent phase changes at each source have NOT been
+postulated as gauge symmetries, so a compensating gauge link is not required
+merely because individual phases exchange.
+
+No larger-chain gap, spatial dispersion, physical detector, raw P1 source
+realization, chiral continuum, gravitational sector, or TOE is proved here.
+Assumption G remains a distinct exact-certification task if the user's
+original full-space proof is unavailable.
+
+9. New three-source report: exact continuation test and a quartic readout
+-----------------------------------------------------------------------
+During this investigation the user supplied the next report, claiming a unique
+three-source full ground at (8-sqrt19)kappa/5 and full complement>=3kappa/4.
+Its original proofs/certificates were again not available as resolved files.
+The following reconstructs the invariant two-packet calculation directly;
+it does NOT independently certify that global complement theorem.
+
+Let u=Omega_(R1,AB) tensor s_R2 tensor Omega_(R3,CD), w=Swap_BC u.
+The native source moment gives <u|w>=1/4. The exact reflection identity
+
+ mean_l(r_l tensor r_l)=(I+Swap)/5
+
+is checked anew, including full-root permutation covariance. The uniform middle
+source is preserved. Acting on u,w, its L term is (4I-Swap_BC)/5.
+Each outer L annihilates u and sends w to(4w-u)/5: in the source sum its root
+permutation cancels the reflection on one bound register, while the remaining
+two register factors average by the displayed reflection identity. Thus
+
+ H0 u/kappa=(4u-w)/5,
+ H0 w/kappa=(12w-3u)/5.
+
+This proves full-vector invariance, not just a compression. With
+v=(4w-u)/sqrt15, the exact matrix is the submitted one:
+
+ H_B/kappa=[[15,-sqrt15],[-sqrt15,49]]/20.
+
+The first source moment also gives Q1 w=Q3 w=u/4 and Q1 u=Q3 u=u.
+Consequently both separated packet projectors preserve this two-dimensional
+space and restrict to Q=diag(1,0). Its two energy eigenstates have separation
+2sqrt19 kappa/5 and squared Q transition15/1216. Since Q preserves the space,
+its entire inelastic response in the lower eigenstate is this single line,
+and the retarded cross response is
+
+ chi31(t)=-(15/608) theta(t) sin(2sqrt19 kappa t/5).
+
+This identity is an exact finite retarded response, not relativistic causal
+propagation. Its interpretation as a response ABOVE THE FULL GROUND remains
+conditional on the submitted global complement theorem.
+
+The new coordinate-only connection is
+
+ F13=|<psi_alpha1|psi_alpha3>|^2
+    =(x1 dot x3)^2+(x1^T J x3)^2.
+
+All states in this invariant space have individual source charges(2,0,2).
+An imaginary overlap bilinear transfers individual charges and has zero
+matrix elements within this space. F13 is invariant under each source phase,
+so it can see the recombination while these bilinears and phase differences
+cannot. This is a change of observable required by the actual state symmetry.
+
+At each outer root pair <u_matter|w_matter>=q=|<psi1|psi3>|^2. The exact native
+moments are E q=1/4, E q^2=1/10, E q^3=1/20. Therefore
+
+ P_B F13 P_B = [[25,sqrt15],[sqrt15,23]]/100
+             =18I/25-H_B/(5kappa)-(8/25)Q.
+
+The energy and identity terms have no matrix elements between different
+energy eigenstates. Hence the quartic coordinate readout sees exactly the
+same binding resonance, with
+
+ |<excited|F13|lower>|^2=(8/25)^2*(15/1216)=3/2375 >0.
+
+This is a joint measurement of the two outer sources; it is not a single local
+detector. F13 does not preserve the two-state space: the additional identity
+
+ P_B F13^2 P_B=[[15,sqrt15],[sqrt15,13]]/150
+
+shows positive response weight outside it. Thus only this one F13 line is
+determined here, not its entire spectral function. The same quartic polynomial
+of the Cartan zero modes from section7 realizes its source-current observable
+target, with exactly the same limitations on physical source placement and H.
+The coefficient depends only on the displayed first three projective moments;
+it does not isolate exceptional higher E8 information.
+
+There is also a useful check of the submitted positive-coupling bound. With
+T=sum_e H_E,e, exact expectation contractions give in the nonorthogonal u,w
+matrix diag(3/4,15/4), with zero offdiagonal entries. Each outer event term
+annihilates u and has w expectation3/2; the middle event compression supplies
+diag(3/4,3/4). In the orthonormal basis this becomes
+
+ P_B T P_B=[[15,-sqrt15],[-sqrt15,81]]/20,
+ <lower|T|lower>=(12/5)(1-3/sqrt19) <3/4.
+
+The two distance terms have total expectation2 by individual source-charge
+selection. Conditional on every orthogonal state having H0>=3kappa/4,
+positivity and the variational principle therefore give
+
+ gap >=(4sqrt19-17)kappa/20 -(12/5)(1-3/sqrt19)J -2mu.
+
+This implies the user's weaker bound with3J/4 and gap>kappa/125 for
+J=mu=epsilon kappa, 0<epsilon<=1/200. It does not prove the premise.
+
+The submitted phase-weight bound also has a short conditional proof. Let P_s
+project onto the entire source-charge sector(2,0,2), with all matter retained.
+L and T preserve P_s, whereas the four overlap pieces z12,bar(z12),z23,bar(z23)
+send it to four distinct orthogonal charge sectors. Each has coefficient1/2
+and operator norm<=1. Thus ||(I-P_s)(V12+V23)P_s||<=1. The outer phase
+difference O_phi annihilates P_s and has norm<=1. The full block resolvent,
+with complement separation d>0, gives ||(I-P_s)ground||<=mu/d and hence
+
+ integral_(omega>0) S_Ophi(omega) d omega <=mu^2/d^2.
+
+Under the same global premise one may take d to be the positive lower gap
+bound just derived. This argument does not assume a two-state truncation of
+the perturbed ground and does not establish the global premise independently.
+
+The two-source low line is consequently not a universal copied elementary
+degree of freedom. Its exact coordinate bridge in sections1-7 survives as a
+statement about that system; the three-source invariant state requires a
+different neutral coordinate product and has a finite binding resonance.
+No extrapolation to a thermodynamic phase follows from either result.
+
+Literature context
+------------------
+Neutral relational encodings under a common phase symmetry are established
+quantum-information structures, reviewed by Bartlett, Rudolph and Spekkens,
+Rev. Mod. Phys.79,555 (2007), https://arxiv.org/abs/quant-ph/0610030.
+Superpositions of changing valence-bond configurations occur in established
+quantum dimer models: Rokhsar and Kivelson, Phys. Rev. Lett.61,2376 (1988),
+https://doi.org/10.1103/PhysRevLett.61.2376. No identification with either a
+quantum dimer phase or its continuum is inferred from this analogy. The
+explicit contractions and conditional Schur constants above are computed
+for the supplied TFPT finite-source model.

@@ -130,6 +130,8 @@ def run_one(item):
     row["source_sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
     print(f"{mode}: {name}: {row['tests']} tests, "
           f"{'PASS' if row['passed'] else 'FAIL'}", flush=True)
+    if not row["passed"]:
+        print(f"Failure transcript ({mode}: {name}):\n{row['transcript']}", flush=True)
     return row
 
 def main():

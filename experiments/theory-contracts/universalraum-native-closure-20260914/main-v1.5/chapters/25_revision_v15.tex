@@ -1,0 +1,358 @@
+\chapter{Version 1.5: eine einfachere gemeinsame Ausführung}
+\label{ch:execution15}
+
+\begin{bild}{Wo wir jetzt stehen}
+Wir können mehrere Teile der kleinen mathematischen Maschine konkreter bauen. Die Aufzeichnung braucht weniger Spezialsteuerung; große endliche Spektren lassen sich durch eine tatsächlich vorhandene Symmetrie verkleinern; eine ausdrücklich gewählte Kette besitzt berechenbare kritische Dynamik. Noch nicht bewiesen ist, dass dieselbe ursprüngliche TFPT-Regel gerade diese Steuerungen, Kopplungen, Zustände und Auslesungen hervorbringt. Die Maschine ist teilweise konstruiert, ihre vollständige physikalische Herkunft nicht.
+\end{bild}
+
+\section{Zwei weitere Eingaben und ihre wirklichen Zusatzinformationen}
+Die Texte \emph{TFPT Universalraum Fortsetzung, 14.09.2026 NEU} und \emph{TFPT Universalraum Ergebnisse, 14.09.2026} sind mit der v1.4-Grundlage abgeglichen. Ihre unveränderten Originale liegen als N14 und N15 im Quellenpaket. Interne Arbeitsanweisungen werden als Quelleninhalt, nicht als neue Aufträge behandelt.
+
+N14 ergänzt einen konkreten Feshbach-/Generalisierte-Eigenwert-Fehlervertrag für die endliche vierte Ordnung, einen direkten Instabilitätszeugen für eine global geteilte Vermittlerbank und die gemeinsame Kreuz-Gram-Bedingung. Bei $\epsilon=1/640$ beträgt die dortige normierte Viertordnungsfehlerschranke $2.36198752019\cdot10^{-5}$; bei $1/20$ ist sie mit etwa $56.8971$ für eine enge Zuordnung unbrauchbar. Diese Werte sind an die dortige Architektur und Normierung gebunden.
+
+Für die global geteilte Bank besitzt ein zulässiger Zweizustandsraum die Nebendiagonale $\sqrt2t(k+1)\sqrt{m-k}$. Bei $k$ nahe $m/2$ folgt die Variationsschranke
+\[
+E_0(m)/m\le\Delta/2-|t|\sqrt m/2+o(1).
+\]
+Bei festem $t$ wird die Energie pro Zelle damit unbeschränkt negativ. Lokale Banken sind nicht bloß eine äquivalente Schreibweise; sie verändern diese Skalierungsfrage entscheidend.
+
+N15 enthält nützliche Originalverweise, aber überstarke Zusammenfassungen. Niedrige Lanczoswerte in 64 Sektoren sind kein rigoroser globaler Ausschluss. Eine Gleitkomma-SVD beweist keinen exakten Kommutantenrang. Ein positiver endlicher Weil-Test ist kein RH-Beweis. Der referenzierte effektive Sternprüfer betrifft 256 Zustände, nicht den ganzen 544D-Mikroraum; sein Interpolationsgrad ist sechs statt sieben. Diese Grenzen werden im Hauptbuch beibehalten.
+
+\section{Feste Verstimmung, positive Zeiten und ein exakter Record}
+Die beiden Belegungsalternativen besitzen den hellen Hamiltonblock
+\[
+h=\begin{pmatrix}0&g\\g&\Delta\end{pmatrix},\qquad
+g=\sqrt2t,\quad\omega=\sqrt{\Delta^2+4g^2}.
+\]
+Ein einzelner Puls erreicht bei $t/\Delta=1/20$ höchstens $1/51$ Transferwahrscheinlichkeit. Der vorhandene kohärente Belegungszugriff $Q$ erlaubt aber mit einem separaten Pointer in $\ket{-}$ einen diskreten $Z_\mathrm{occ}$-Kick. Der Pointer bleibt dabei erhalten. Das ist keine neu angenommene kontinuierliche Belegungsphase; es setzt jedoch weiterhin $Q$ voraus.
+
+Setze $\theta=\arctan(2g/\Delta)$, $k=\lfloor\pi/(2\theta)\rfloor-1$ und $\beta=k\theta$. Für $0<\theta\le\pi/6$ führen $k$ Standardpulse der Dauer $\pi\hbar/\omega$, jeweils mit anschließendem $Z_\mathrm{occ}$, den Zustand bis zum Blochvektor $r_\beta=(\sin2\beta,0,\cos2\beta)$. Zwei weitere positive Pulswinkel schließen den Transfer. Mit
+\[
+n=(\sin\theta,0,-\cos\theta),\quad m=(-\sin\theta,0,-\cos\theta),
+\quad u=n\cdot r_\beta,\quad v=m\cdot r_\beta,\quad d=m\cdot n
+\]
+gilt $\cos a=(\cos\theta-du)/(v-du)$. Der Zielwert liegt zwischen den beiden Randwerten der Rotation: aus $\delta=\pi/2-\beta\in[\theta,2\theta)$ folgen
+\[
+v=\cos(2\delta+\theta)\le\cos\theta,
+\qquad 2du-v=\cos(3\theta-2\delta)\ge\cos\theta.
+\]
+Nach diesem Puls und einem $Z$-Kick besitzen Zwischenvektor $r_1$ und Südpol $s$ dieselbe $n$-Komponente. Die abschließende positive Rotation ist deshalb durch
+\[
+b=\operatorname{atan2}\bigl(n\cdot(r_1\times s),r_1\cdot s-\cos^2\theta\bigr)
+\pmod{2\pi}
+\]
+gegeben. Bei $1/20$ entstehen zwölf On-Pulse und elf Z-Kicks. Die Schlusswinkel sind näherungsweise $a=2.6666937663$, $b=5.6132975866$; maßgeblich sind die exakten Definitionen.
+
+\section{Die Rückfolge und ihre bislang gefährliche Sektorphase}
+Ein positiver Puls der Dauer $2\pi\hbar/\omega-\tau$ ist auf dem hellen Raum nicht genau das Inverse, sondern
+\[
+e^{-ih(2\pi\hbar/\omega-\tau)/\hbar}
+=e^{i\pi(1-\Delta/\omega)}e^{ih\tau/\hbar}.
+\]
+Die Rückfolge $V$ hinterlässt also die aktive Sektorphase
+$\gamma=12\pi(1-\Delta/\omega)$. Bei abgeschaltetem $t$ korrigiert ein positives Warteintervall $\gamma\hbar/\Delta$ die Vermittlerphase. Mit $A=P_\mathrm{mat}+e^{-i\gamma}P_\mathrm{med}$ lautet die vollständige, von rechts nach links gelesene Identität
+\[
+\boxed{VAQUA=(P_+\otimes I+P_-\otimes X)\oplus I_{12}.}
+\]
+Sie gilt auf dem ganzen 44D-Raum einschließlich beliebiger Pointereingaben und Vermittlerzustände. Ohne die Korrektur beträgt der Operatorfehler etwa $0.3693$; mit ihr ist der numerische Rest $1.10\cdot10^{-14}$. Der analytische Phasenbeweis ist stärker als dieser Residuenvergleich.
+
+Die geplante Hamiltonzeit vereinfacht sich genau zu
+\[
+T_\mathrm{evo}=12\frac{2\pi\hbar}{\omega}+\frac{2\gamma\hbar}{\Delta}
+=\frac{24\pi\hbar}{\Delta}.
+\]
+Unadressierte Vermittler mit demselben $\Delta$ kehren damit phasenrichtig zurück. Für beliebige zusätzliche Energiesplittings ist dies nicht bewiesen.
+
+\section{Endliche Q-Zeiten und wirkliche Präparationskosten}
+Die Makrooperation benötigt 24 On-Pulse, zwei Off-Intervalle und 23 Q-Aufrufe. Q-Gates werden nicht als kostenlos ausgegeben. Falls ein zusätzlich deklarierter Generator $H_Q$ die Belegung erhält, kann während Q bei $t=0$ geparkt werden. Zum Beispiel realisiert
+\[
+H_Q=\frac{\pi\hbar}{2\tau_Q}(I-Q)
+\]
+das gewünschte Q. Ein Q-Zeitfenster wird auf $2\pi m_Q\hbar/\Delta$ aufgefüllt; die kommutierende Drift verschwindet über die ganze Periode. Für $\tau_Q=\hbar/\Delta$ genügt $m_Q=1$. Die volle Zeit einschließlich aller 23 Gates wird
+\[
+T_\mathrm{macro}=70\pi\hbar/\Delta.
+\]
+Die vollständige 88D-Ausführung mit wiederverwendetem Helper ist gerechnet. Der Generator, Schalttransienten, Timingkontrolle, Messung und Reset sind weiterhin nicht nativ abgeleitet.
+
+Der gleiche Record führt das Sternfilter $K=P^-_{03}P^-_{02}P^-_{01}$ aus. Zwanzig Runden erreichen im idealen Modell Infidelität $1.2233966909\cdot10^{-17}$ und frische bedingte Rückkehr $0.5312499999780164$, nahe $17/32$. Die gehaltene Registervariante nähert sich eins. Diese Näherungspräparation braucht weder kontrolliertes $e^{-iH\tau}$ noch den 13-Faktor-Spektralfilter; dessen stärkerer exakt selektiver Vertrag bleibt als Alternative gültig.
+
+Mit frühem Abbruch kosten rund 24 Versuche im Mittel nur $102.7916667$ Recordmakros bis zur erfolgreichen Präparation. Mit Echo, Schlussfilter und den endlichen Q-Fenstern ergibt sich die mittlere Zeitobergrenze $36239.58\,\hbar/\Delta$, zusätzlich zu Reset, Messung und übriger Steuerung. Hohe ideale Genauigkeit ist keine behauptete Hardwarefidelität. Die gemischten Wort-Grams werden für dieselbe Vollraumoperation kontrolliert; nur pfadweise Gramgleichheit wäre schwächer.
+
+\chapter{Eine wirklich vorhandene Vereinfachung des großen Spektrums}
+\label{ch:spectrum15}
+\section{Der Standardblock ist nicht mehr nur angekündigt}
+Auf dem 24024-dimensionalen Spechtraum $(4,4,4,4)$ sei $X=\sum_{40\,e}S_e$ und $H_0/J=20I+X/2$. Der rationale Projektor
+\[
+P=P_T(P_{S_4}-P_{S_5}),\qquad T\cong(\mathbb Z_2)^4
+\]
+besitzt Dimension $108-28=80$; der größere translationsfeste Raum hat Dimension 1764. Die Darstellung $\operatorname{Ind}_{S_4}^{S_5}1=1\oplus\mathrm{std}$ erklärt, weshalb dies genau eine Fixlinie je vierdimensionaler Standardkopie isoliert. Auf dem gesamten Isotypieraum ist $X=A_{80}\otimes I_4$.
+
+Die Youngdarstellung und der 80er Block sind unabhängig erzeugt. Modulo guten Primzahlen werden der volle Rang, sämtliche Fixbedingungen und $XB=BA$ auf allen 80 Basisvektoren exakt geprüft. Modulo 65521 ist das charakteristische Polynom quadratfrei. Da der Projektor rational ist und der zertifizierte Rang zur rationalen Dimension passt, kann sein charakteristisches Polynom in Charakteristik null keine mehrfache Wurzel besitzen. Alle 80 Eigenwerte sind einfach; im vollständigen Standard-Isotypieraum sind die Niveaus exakt vierfach.
+
+\section{Rationale Intervalle statt nur Dezimalzahlen}
+Der ganzzahlige Gruppenalgebraoperator erhält ein Specht-Schnittgitter in seinem rationalen invarianten Teilraum. Daher ist sein charakteristisches Polynom monisch ganzzahlig. Aus $\|X\|\le40$ folgt die vorab bekannte Koeffizientenabschätzung
+\[
+|c_k|\le {80\choose k}40^k.
+\]
+Siebzehn Primmoduli liefern einen 452-Bit-CRT-Modulus oberhalb der nötigen 428-Bit-Schranke. Eine achtzehnte Primzahl prüft die Rekonstruktion unabhängig. Das Grad-80-Polynom beginnt
+\[
+p(x)=x^{80}-1842x^{78}+1581110x^{76}-843228392x^{74}+\cdots.
+\]
+Exakte rationale Wurzelzählung liefert
+\begin{align*}
+11.561762122&<E_{\mathrm{std},0}/J<11.561762123,\\
+13.2464863&<E_{\mathrm{std},1}/J<13.2464864.
+\end{align*}
+Es gibt im Standardblock keinen weiteren Eigenwert darunter oder dazwischen. Der garantierte Abstand ist größer als $1.684724177J$. Er ist ausdrücklich \emph{nicht} der bislang nur numerische globale Grundzustand--Quartett-Abstand von ungefähr $0.516J$.
+
+\section{Tableau-Transposition: 80 wird 40}
+Die selbstkonjugierte Youngform besitzt in der orthogonalen Basis die Involution $\mathcal J\ket{t}=\eta_t\ket{t^\top}$, wobei $\eta_t$ das Vorzeichen der Zellfolge in Zeilenordnung ist. Die 4-mal-4-Transposition enthält sechs Zelltranspositionen. Damit gelten exakt
+\[
+\mathcal J^2=I,\qquad \mathcal JS_e\mathcal J=-S_e.
+\]
+Alle 1920 Graphautomorphismen sind gerade Trägerpermutationen, also $[\mathcal J,G]=0$ und $\{\mathcal J,X\}=0$. Für jeden dieser Automorphismen wurde zudem ein ungerader zentralisierender Permutationsoperator explizit konstruiert. Konjugation mit diesem Operator zeigt
+\[
+\Tr(\mathcal J\rho(g))=-\Tr(\mathcal J\rho(g))=0.
+\]
+Deshalb besitzen beide $\mathcal J$-Hälften in jedem G-Symmetrietyp gleiche Multiplizitäten. Jeder Austauschblock hat die Form
+\[
+X_\alpha=\begin{pmatrix}0&C_\alpha\\C_\alpha^\dagger&0\end{pmatrix},
+\qquad E_{\alpha,j}/J=20\pm\tfrac12\sigma_j(C_\alpha).
+\]
+
+\begin{tabularx}{\linewidth}{L{22mm}L{27mm}Y}
+\toprule Impulsorbit&Kleine Gruppe&Dimensionen der quadrierten Probleme\\\midrule
+1&$S_5$&14, 40, 43, 40, 33, 21, 4\\
+5&$S_4$&27, 88, 62, 97, 36\\
+10&$S_2\times S_3$&62, 131, 70, 53, 116, 63\\\bottomrule
+\end{tabularx}
+
+Die vollständige Singulettfrage ist somit auf 18 Multiplizitätsblöcke mit maximal 262 Dimensionen reduziert, für den führenden Operator weiter auf quadrierte Singularwertprobleme von maximal 131 Dimensionen. Die übrigen 17 Matrizen sind hier noch nicht sämtlich konstruiert. Die Standardmatrix $C_{40}$ und ihr genaues Grad-40-Quadratpolynom liegen vor.
+
+\begin{grenze}{Die elegante Symmetrie nicht überdehnen}
+$\mathcal J$ ist eine endliche Austauschsignum-Symmetrie, keine hergeleitete physische Chiralität. Auch die Konkurrenz der übrigen 63 SU(4)-Sektoren bleibt offen. Das kleine Matrixproblem ist ein präziser nächster Beweisauftrag, kein bereits abgeschlossener globaler Materie- oder TOE-Nachweis.
+\end{grenze}
+
+\section{Vierte Ordnung: was erhalten bleibt und was nicht}
+Für kantenlokale Vermittler setze $B_v=\sum_{e\ni v}S_e$ und $A_v=5I-B_v$. Dann
+\[
+F_4^\mathrm{loc}=\sum_v A_v(A_v-I)=320I-18X+\sum_vB_v^2,
+\quad \mathcal JF_4^\mathrm{loc}\mathcal J=F_4^\mathrm{loc}+36X.
+\]
+Die einfache Spiegelung $E\leftrightarrow40-E$ gilt für den korrigierten Hamiltonoperator nicht unverändert. Die G-Blockzerlegung bleibt jedoch richtig. Da $A_v$ ganzzahlige Inhalts-Eigenwerte zwischen 0 und 10 besitzt, folgt
+\[
+0\le F_4^\mathrm{loc}\le1440I,
+\qquad g_\mathrm{std}^{(2+4)}/J>1.684724177-720\epsilon^2.
+\]
+Bei $\epsilon=1/640$ bleibt ein garantierter Standardblock-Abstand $>1.6829663645J$. Diese Aussage betrifft den trunkierten lokalen Operator. Andere Blöcke und höhere mikroskopische Ordnungen sind gesondert zu kontrollieren.
+
+\chapter{Wie eine niedrige kritische Dynamik möglich wird}
+\label{ch:scaling15}
+\section{Die Farbkanäle gemeinsam abschätzen}
+Für den antisymmetrischen Paarannihilator gilt im harten Materieraum einschließlich Löchern
+\[
+\sum_{A=1}^6K_{e,A}^\dagger K_{e,A}=2P^-_{e,\mathrm{occ}}\le2I.
+\]
+Vier Kanten teilen ein Vermittlerlabel. Operator-Cauchy liefert
+\[
+4\sum_{i=1}^4K_i^\dagger K_i-Bigl(\sum_iK_i\Bigr)^\dagger
+\Bigl(\sum_iK_i\Bigr)=\sum_{i<j}(K_i-K_j)^\dagger(K_i-K_j)\ge0.
+\]
+Somit verbessert sich die C16-Zellbanksumme auf $\sum K^\dagger K\le320mI$ statt der getrennten Farbabschätzung $1920mI$. Eigene Vermittler pro Kante ergeben $80mI$.
+
+Für eine positiv definite Transportmatrix $h\ge\delta_bI$ gilt die exakte quadratische Ergänzung
+\[
+H=(b+th^{-1}K)^\dagger h(b+th^{-1}K)-t^2K^\dagger h^{-1}K.
+\]
+Daher sind die Energien mindestens $-320mt^2/\delta_b$ beziehungsweise $-80mt^2/\delta_b$. Dies ist größenuniforme extensive Stabilität, nicht die genaue Grundenergie.
+
+Für $h=\Delta I-\eta A$, maximalen Graphgrad D und $q=|\eta|D/\Delta<1$ kann $h^{-1}$ nach Wegen entwickelt werden. Der Abbruch nach R Schritten erfüllt für den statischen Term $W=-t^2K^\dagger h^{-1}K$
+\[
+\|W-W_R\|\le Cm\frac{t^2}{\Delta}\frac{q^{R+1}}{1-q},\qquad C=320\text{ oder }80.
+\]
+Der Fehler pro Zelle verschwindet geometrisch mit der Reichweite. Die verschobenen Moden sind aber nicht automatisch freie Bosonen; daraus folgt noch keine dynamische Feshbach- oder Schrieffer--Wolff-Restkontrolle. Die allgemeine lokale SW-Theorie ist ein Werkzeug, keine bereits erfüllte Modellhypothese.\footnote{Bravyi, DiVincenzo, Loss: \url{https://arxiv.org/abs/1105.0675}.}
+
+\section{Ein besonders einfaches Verkleben ist als masselose Route ausgeschlossen}
+Sei $h$ eine endliche Zelle mit eindeutigem Grundzustand $\ket0$, Energie $e_0$ und Gap $g>0$. Auf einem beliebigen endlichen verbundenen Graphen definiere
+\[
+H_\mathrm{swap}=\sum_c(h_c-e_0)+\kappa\sum_{\{c,d\}}(I-S_{cd}),\qquad\kappa\ge0.
+\]
+Jeder Swapterm ist positiv. Mit $N_c=I-\ket0\bra0_c$ folgt $H_\mathrm{swap}\ge g\sum_cN_c$. Der Produktgrundzustand ist eindeutig. Die gleichförmige Einanregung wird von jedem Swap festgehalten und hat Energie genau g. Somit gilt für jede Größe und jedes $\kappa\ge0$
+\[
+\boxed{\operatorname{gap}(H_\mathrm{swap})=g.}
+\]
+Es gibt Propagation, aber keine masselose Anregung aus diesem Produktvakuum. Negative Terme, andere Grundzustände oder andere Grenzprozesse werden damit nicht ausgeschlossen.
+
+\section{Der entscheidende Unterschied: innere Kritikalität bei massiven Vermittlern}
+Ein anderer ausdrücklich deklarierter Transfer vertauscht nur $\ket{a,0}$ mit $\ket{0,a}$ und verschwindet bei zwei besetzten Zellen:
+\[
+T_{cd}=\sum_a(\ket a\bra0_c\otimes\ket0\bra a_d+\mathrm{h.c.}),
+\qquad H_\mathrm{tr}=\sum_c(h_c-e_0)-\kappa\sum_{cd}T_{cd}.
+\]
+Die Zweizellenblöcke beweisen $-(N_c+N_d)\le T_{cd}\le N_c+N_d$. Auf einem D-regulären Graphen ist deshalb bei $\kappa D<g$ der volle Gap genau $g-\kappa D$, wiederum mit gleichförmiger Einanregung als saturierendem Zustand.
+
+Als exakt bekannter Referenzbaustein wird hier der 544D-Viersite-Stern verwendet, nicht C16. Seine Gram-Multiplizitäten sind durch ein ganzzahliges annihilierendes Polynom und sieben Momente zertifiziert:
+
+\begin{center}
+\begin{tabular}{c|rrrrrrr}
+$\lambda$&0&1&2&3&4&5&6\\\hline
+Multiplizität&35&90&15&40&45&30&1
+\end{tabular}
+\end{center}
+
+Aus $E_-(\lambda)=(\Delta-\sqrt{\Delta^2+4t^2\lambda})/2$ folgt
+\[
+g=\frac{\sqrt{\Delta^2+24t^2}-\sqrt{\Delta^2+20t^2}}2
+=0.00243396875137\Delta\quad(t/\Delta=0.05).
+\]
+Die erste Anregung ist 30-fach. Die übertragenden Spektraloperatoren sind zusätzliche Annahmen, keine aus dem Compiler bereits gewonnenen lokalen Wechselwirkungen.
+
+Auf einer offenen einkomponentigen Kette liefert Jordan--Wigner das ganze Vielteilchenspektrum als Teilsummen von
+\[
+\epsilon_n=g-2\kappa\cos\frac{n\pi}{L+1}.
+\]
+Unterhalb $\kappa=g/2$ bleibt das leere Vakuum gapped. Am Rand ist die Dispersion quadratisch. Darüber werden die negativen Werte gefüllt; bei $k_F=\arccos(g/(2\kappa))$ entstehen zwei lineare Ferminahzweige mit $v_F=\sqrt{4\kappa^2-g^2}$. Bei $\kappa=g$ sind $k_F=\pi/3$ und $v_F=\sqrt3g$.
+
+\begin{bild}{Die beiden Skalen sind nicht dieselbe Aufgabe}
+Die hohen Vermittler dürfen schwer und lokal kontrollierbar bleiben, während sich die niedrigen kollektiven Anregungen auf der viel kleineren Skala g reorganisieren. Ein physikalischer kritischer Grenzsektor verlangt also nicht, die Vermittlerlücke $\Delta$ zu zerstören. Allerdings sind die Kette, der Transfer und zunächst die Einkomponentenauswahl gewählt. Daraus folgt noch keine native 3+1D-Welt.
+\end{bild}
+
+\section{Die Farbentartung lässt sich symmetrisch reparieren}
+Mit allen 30 ersten Farben und reinem Transfer können sich auf der offenen Kette die geordneten Farben nicht überholen. Bei N Teilchen entstehen $30^N$ isospektrale Farbfolgen. Das erzeugt extensive Restentropie und ist keine Familienableitung.
+
+Ergänze den positiven besetzten Farbaustausch
+\[
+H_\mathrm{col}=J_c\sum_xN_xN_{x+1}(I-S_{x,x+1}),\qquad J_c>0.
+\]
+Auf der offenen verbundenen Kette, bei festem $1\le N\le L$, $\kappa>0$ und q identischen Farben ist der Grundraum genau
+\[
+\mathcal G_N=\mathrm{Sym}^N(\C^q),\qquad
+\dim\mathcal G_N={N+q-1\choose q-1}.
+\]
+Beweis: Der alte Positionsgrundzustand ist durch die negativen verbundenen Hoppings strikt positiv. Der zusätzliche Term ist positiv und verschwindet auf jeder symmetrischen Farbe, also bleibt die Grundenergie gleich. Umgekehrt muss jeder neue Grundzustand jeden positiven Nachbaraustausch vernichten. Jede geordnete Nachbartransposition wird bei manchen Positionen realisiert; deren positives Gewicht erzwingt vollständige Farbsymmetrie. Für $q=30$ sinkt die Entartung von exponentiell auf polynomiell, die Restentropiedichte verschwindet. Das ganze symmetrische Ladungsspektrum bleibt erhalten.
+
+Die Reparatur liefert trotzdem keine gemeinsame relativistische Welt. Ein zur symmetrischen Grundfläche orthogonaler Einfarb-Spinwellenzustand besitzt Energie $J_c\sum_jp_j|f_{j+1}-f_j|^2$, wobei $0\le p_j\le1$ die Nachbarschaftswahrscheinlichkeit geordneter Teilchen ist. Mit dem ersten nichtkonstanten Pfad-Laplacevektor folgt
+\[
+\operatorname{gap}_N\le2J_c(1-\cos(\pi/N))=O(N^{-2}).
+\]
+Eine quadratische oder weichere Farbmode bleibt. Diese Schranke ist ein bewiesener neuer Engpass und darf nicht als Lorentzsektor umgedeutet werden.
+
+Die genaue Identität
+\[
+I-S_{cd}=N_c+N_d-2N_cN_d-T_{cd}+N_cN_d(I-S_{cd})
+\]
+zeigt, weshalb der Compiler die Koeffizienten von chemischer Verschiebung, Dichtewechselwirkung, Transfer und Farbaustausch gemeinsam liefern muss. Unerwünschte Terme wegzulassen wäre eine Modelländerung.
+
+\chapter{Rechnen, Zeit und ausgeschiedene Information}
+\label{ch:clock15}
+\section{Aufzeichnung und kohärente Logik benutzen dieselbe Matrix}
+Ein Pointer-Hadamard verwandelt den Record exakt in einen kontrollierten Ququart-Swap:
+\[
+(I\otimes H)R(I\otimes H)
+=I\otimes\ket0\bra0+S\otimes\ket1\bra1.
+\]
+Kodiert man ein Qubit in den Farben 0 und 2, bleibt das zweite Farbbit null und die Operation ist Fredkin. Mit sauberem Hilfsbit $r=0$ sei $A=\mathrm{CNOT}(r\to b)\,\mathrm{Fredkin}(a;b,r)$. Dann ist $A^\dagger\mathrm{CNOT}(r\to c)A$ genau Toffoli, mit zurückgegebenem $r=0$.
+
+Der Verbrauch beträgt zwei Records, vier Pointer-Hadamards, drei zusätzliche CNOT und ein sauberes Arbeitsbit. Vollständige Wahrheitstabelle und ein kohärenter Vierzweigzustand sind geprüft; eine dephasierte Wahrheitstabelle fällt durch. Hadamardzugriff, CNOT und Routing sind zusätzliche Ressourcen. Die bekannte Universalität von Toffoli plus Hadamard ist kein hier neu bewiesener Komplexitätssatz.\footnote{Aharonov: \url{https://arxiv.org/abs/quant-ph/0301040}.}
+
+\section{Eine autonome Uhr ist konstruierbar, aber sie wählt kein Programm}
+Für ein vorgegebenes Programm $U_0,\ldots,U_{T-1}$ setze $V_0=I$, $V_{t+1}=U_tV_t$ und $W=\sum_t\ket t\bra t\otimes V_t$. Der offene History-Hamiltonoperator mit Links $-U_t$ und Laplacediagonalen erfüllt exakt
+\[
+W^\dagger H_\mathrm{hist}(U)W=L_\mathrm{Pfad}\otimes I.
+\]
+Jedes Programm hat also dasselbe Spektrum $2-2\cos(\pi k/(T+1))$, wiederholt mit der Datendimension. Feste Zwischenzeit-Auslesungen unterscheiden die Programme, ihre Eigenwerte nicht. Auf einem Ring bleibt als Eichinvariante nur die Gesamtholonomie.
+
+Eine positive Konstruktion verwendet stattdessen die statischen Hoppings $\sqrt{(t+1)(T-t)}U_t$. Nach Konjugation mit W ist dies $2J_x$ eines Spins $T/2$. Bei Zeit $\pi\hbar/2$ erreicht der Clockzustand exakt T und die Daten tragen das ganze Programm $V_T$ bis auf Phase $(-i)^T$. Ganze Ausgangsblöcke sind für $T=1,\ldots,8$ nachgerechnet.
+
+Die Gewichte wachsen allerdings mit T. Bei maximal zulässiger Kopplung $J_{\max}$ benötigt dieselbe Konstruktion mindestens $\pi\hbar T/(4J_{\max})$. Datenabhängige Clocklinks und das eingeschriebene Programm bleiben Ressourcen. Das ist eine konkrete endliche autonome Ausführung, kein Herkunftsbeweis der richtigen Naturgesetze. Clockkonstruktionen dieser Art sind als allgemeine Methode bekannt.\footnote{Caha, Landau, Nagaj: \url{https://arxiv.org/abs/1712.07395}.}
+
+\section{Half-Charge: ein einfacher Adapter benennt die fehlende Ressource}
+Auf $\ell^2(\Z)\otimes\ell^2(\Z)$ tragen $\ket{k,l}$ die Ladungen k/2 und l/2. Die bilaterale Verschiebung $J_h\ket{k,l}=\ket{k+1,l-1}$ ist unitär, hat Norm eins und ein explizites Adjungiertes mit umgekehrter Verschiebung. Sie erhält die Gesamtladung, kippt aber die einzelne Systemparität $(-1)^k$.
+
+Für $H_E=(k^2+l^2)/4$ zeigt die punktweise Identität
+\[
+2E(k,l)+1-E(k+1,l-1)=\frac{(k-1)^2+(l+1)^2}4\ge0
+\]
+die Energiedomänenkontrolle $\|H_EJ_h\psi\|\le\|(2H_E+I)\psi\|$. Auch das Adjungierte ist kontrolliert. Endliche Abschneidungen werden ausdrücklich als partielle Verschiebungen geprüft, nicht als unitär ausgegeben.
+
+Alle getrennt paritätsgeraden Quelloperationen können diesen Operator trotzdem nicht erzeugen: ihre Algebra kommutiert mit der einzelnen Parität, $J_h$ nicht. Eine ungerade-System-mal-ungerade-Referenz-Kopplung muss hinzukommen. Der Adapter ist somit eine minimale bedingte Konstruktion, kein renormiertes lokales Half-Charge-Feld oder bereits gewonnener E8-Seam.
+
+\section{Reset ist nur vollständig, wenn die Information irgendwo bleibt}
+Ein universeller unitärer Reset von d orthogonalen Eingaben auf denselben reinen Systemzustand muss d orthogonale Umweltzustände erzeugen. Für m unabhängige Eingaben und finale Infidelität höchstens $\delta$ je Ausgang folgt
+\[
+\log_2\dim E\ge m[\log_2d-h_2(\delta)-\delta\log_2(d-1)].
+\]
+Man startet die Eingaben maximal gemischt und die Umwelt rein. Unitarität erhält die Entropie $m\log_2d$; jeder nahezu reine Ausgang hat Entropie höchstens $h_2(\delta)+\delta\log_2(d-1)$. Subadditivität zwingt den Rest in E. Alle Speicher und Messgeräte müssen in E mitgezählt werden.
+
+Bei $d=256$, $\delta=10^{-6}$ sind das mindestens $7.99997063138$ Bits pro unabhängiger Eingabe. Die Aussage ist keine Wärmeformel, keine Kostenformel jeder Wiederholung desselben bekannten Zustands und keine Behauptung über bloß postselektierte Erfolgszweige. Sie fordert einen expliziten Umweltvertrag für die unbedingte Wiederverwendung einschließlich Fehlversuchen.\footnote{Zum thermodynamischen Kontext: Reeb und Wolf, \url{https://arxiv.org/abs/1306.4352}.}
+
+\chapter{Die verbleibenden physikalischen Nachweise nach v1.5}
+\label{ch:frontier15}
+\section{Eine konkrete empirische Hürde statt freier Nachjustierung}
+Die dokumentierte Massenregel lautet $M^2/M_P^2=c_3^7$, $c_3=1/(8\pi)$. Im vollständigen Starobinsky-Potential, mit $M_P=1$ und $y=e^{\sqrt{2/3}\phi}>1$, gelten in erster Potential-Slow-Roll-Ordnung
+\[
+V=\frac34M^2(1-y^{-1})^2,\quad
+\epsilon_V=\frac4{3(y-1)^2},\quad
+\eta_V=\frac{4(2-y)}{3(y-1)^2}.
+\]
+Damit erhält man ohne große-N-Abschneidung
+\[
+A_s=\frac{3M^2(y-1)^4}{128\pi^2y^2},\qquad
+1-n_s=\frac{8(y+1)}{3(y-1)^2},
+\]
+und die exakte Identität innerhalb dieser Näherung
+\[
+\boxed{A_s(1-n_s)^2=\frac{M^2}{6\pi^2}(1+1/y)^2
+>\frac{M^2}{6\pi^2}.}
+\]
+Die betrachtete ACT-Spalte P-ACT-LB2 aus Tabelle 5 der Version 2 hat $\ln(10^{10}A_s)=3.062$ und $n_s=0.9752$. Ihre zentrale Kombination beträgt nur $0.4929956404$ der strikten Untergrenze. Endliche-N-Korrekturen des vollen Potentials helfen in dieser Ordnung also nicht; sie verändern den Invarianten in die falsche Richtung.\footnote{ACT DR6, \url{https://arxiv.org/abs/2503.14452v2}, Tabelle 5, P-ACT-LB2. Nicht mit den anderen Datensatzkombinationen im Abstract verwechseln.}
+
+\begin{tabularx}{\linewidth}{L{43mm}Y}
+\toprule Festgehaltener Zentralwert&Ergebnis bei unveränderter Massenregel\\\midrule
+$A_s=2.137025496\cdot10^{-9}$&$n_s=0.9642233954$, $N_\mathrm{SR}=53.8113746$, $r=0.0036466904$\\
+$n_s=0.9752$&$A_s=4.413594581\cdot10^{-9}$, das 2.0653-Fache des betrachteten Werts\\\bottomrule
+\end{tabularx}
+
+Das ist ein ausgeschlossenes gleichzeitiges Zentralwert-Matching dieser festgelegten Näherungsbranche, keine gemeinsame Likelihood oder berechnete Ausschlusssignifikanz. Die exakten Hintergrund- und Modengleichungen, höhere Slow-Roll-Ordnungen, Reheating und die physische Matchingableitung sind getrennt zu prüfen. Einen freien neuen Vorfaktor einzusetzen wäre kein parameterfreier Vorhersageerfolg.
+
+\section{Alle acht Tore mit genauem Rest}
+\small
+\begin{longtable}{L{13mm}L{57mm}L{67mm}}
+\toprule Tor&Neuer Beitrag&Vollständig fehlender Nachweis\\\midrule
+\endhead
+T1&Fester-Delta-Record, endliche Q-Zeiten, kohärente Logik&Native Wedge-, Q-, Schalt- und Controllerherkunft aus einer primitiven Quelle\\
+T2&Norm- und energiekontrollierter relativer Half-Charge-Adapter&Renormiertes lokales Feld der tatsächlichen Quelle, E8-/Clock-Zuordnung\\
+T3&Skalierende Referenzfamilien, exakte Gaps, linearer gefüllter Kettensektor&Native Geometrie, drei Raumrichtungen und gemeinsamer Lorentzgrenzwert\\
+T4&Symmetrische Entropiereparatur; weiche Farbmode nachgewiesen&Chirales 3+1D-Maß, Spiegelentkopplung und Familien derselben Quelle\\
+T5&Extensive Untergrenze, statischer Reichweitenrest, ganze Kettenlösung&Uniforme dynamische Reduktion, wechselwirkende 4D-Grenze und Streuung\\
+T6&Vollpotential-Identität schließt einen Matching-Reparaturweg aus&Gemeinsame physische Skalensetzung und empirisches Matching aller Observablen\\
+T7&Gapped positive Swaproute ausgeschlossen; innere kritische Route präzisiert&Masseloser dynamischer Spin-2-Pol und universelle Kopplung auf demselben 3+1D-Träger\\
+T8&Gemeinsame Präparation, Record, Mehrzeit; Resetkapazität und Controllerzeit&Quellenseitige Zustands-, Programm-, Umwelt- und Auslesungswahl\\\bottomrule
+\end{longtable}
+\normalsize
+
+Kein T1--T8-Tor wird geschlossen. Insbesondere sind ein positives Spektrum, ein linearer eindimensionaler Zweig und ein geometrisches Tensorlabel zusammen noch keine 3+1D-Quantenphysik mit Gravitation.
+
+\section{Die sechs nächsten Ziele sind jetzt schärfer}
+\begin{enumerate}
+\item \textbf{Native Bedienung:} Für jeden Zugriff des kleineren Recordvertrags ein tatsächliches Quellwort oder eine kontrollierte Approximation liefern. Den ganzen Operator samt Zuschauerphasen prüfen, nicht nur Erfolgsamplituden.
+\item \textbf{Gebundene Zwischenzellkoeffizienten:} Transfer, Dichte, chemische Verschiebung und Farbaustausch gemeinsam ableiten. Erst eine lokale dynamische Restkontrolle, dann Kritikalität auf der inneren Skala g bei massiven Vermittlern untersuchen.
+\item \textbf{Globale Spektralordnung:} Die übrigen 17 Singulettblöcke konstruieren, die neue J-Reduktion benutzen, andere SU(4)-Sektoren rigoros ausschließen und F4-/Mikrorestintervalle übertragen.
+\item \textbf{Geladene chirale Materie:} Das echte Half-Charge-Feld und alle niedrigen Farbmoden gemeinsam behandeln; die nachgewiesene weiche Mode nicht durch eine willkürliche Einkomponentenauswahl verstecken.
+\item \textbf{Empirische Entscheidung:} Hintergrund und Moden tatsächlich entwickeln, Reheating und gemeinsame Likelihood bei festem Quellenmatching auswerten; eine scheiternde Branch gegebenenfalls verwerfen.
+\item \textbf{Programm und Gedächtnis:} Nicht nur eine Uhr konstruieren, sondern ihre Programmwahl, den Anfangszustand und alle entropieaufnehmenden Freiheitsgrade aus derselben Quelle gewinnen. Alle Wort-Kreuz-Grams und Mehrzeitstatistiken müssen zusammenpassen.
+\end{enumerate}
+
+\section{RH, Faktorisierung und Hylæan bleiben getrennte Abnahmen}
+Für RH fehlt weiterhin die Identifikation des tatsächlichen signierten Weil-Objekts mit uniformer Positivität und kontrollierten Grenzresten. Das Clock-Spektrum allein kann dies nicht leisten; seine Unabhängigkeit vom eingeschriebenen Programm ist jetzt konkret bewiesen. Der Gatteranschluss liefert für Faktorisierung eine bedingte Quantenrechenressource, aber keine neue klassische Polynomialzeit oder Lösung von P versus NP. Für Hylæan ist in dieser Runde keine End-to-End-Fähigkeit getestet worden. Das gemeinsame Prozess-, Reihenfolge- und Reset-Prüfschema ist zunächst nur ein methodischer Transfer.
+
+Der RH-Katalog ist wegen eines fehlenden externen Quellordners nicht vollständig frisch prüfbar; der separate Faktorisierungsgraph ist nicht verfügbar. Es wird deshalb kein erschöpfender aktueller Gesamtaudit dieser Fronten behauptet. Ausgewählte Originalverträge und Primärquellen sind abgeglichen, nicht jede frühere Rechnung erneut ausgeführt.
+
+\section{Was neu geprüft wurde und was die Prüfzahlen bedeuten}
+Die eigenen Root-Prüfer umfassen 104 Bedingungen, normal und optimiert identisch, mit sechs abgefangenen Fehlermutationen. Die Kontrollfront umfasst 88 Bedingungen einschließlich vollständiger 44D-/88D-Operatoren und rationaler Prozessstatistik. Die Skalierungsfront umfasst 400 Bedingungen und sechs Fehlermutationen. Das Quartettpaket enthält 273 modulare Bedingungen, die vollständige CRT-Rekonstruktion, rationale Wurzelzählung und 438699 einzeln kontrollierte diskrete Dualitätsbedingungen; drei zusätzliche falsche Varianten werden erkannt.
+
+Diese verschiedenen Zähler sind keine Zahl unabhängiger Entdeckungen und keine physische Bewährung. Exakte algebraische Beweise, computerunterstützte modulare Zertifikate, numerische Residuen und konditionale Modellhypothesen werden getrennt. Es gab keinen neuen vollständigen Repository-/Lean-/Hardwarelauf, keinen Commit und keinen Push. Quellen, Prüfungen, Voraussetzungen und Fehlergrenzen stehen im begleitenden Markdown- und Quellenpaket.
+
+\begin{bild}{Die wichtigste Richtungsentscheidung}
+Nicht mehr passende Zahlen sammeln, sondern die tatsächlich erzeugten lokalen Operationen und ihre gemeinsam gebundenen Koeffizienten bestimmen. Aus einer einzigen solchen Familie müssen dann Aufzeichnung, kritische Dynamik, geladene Materie und Auslesung folgen. Die neue Zweiskalenrechnung zeigt einen präzisen Angriffspunkt; die Gegenbeispiele verhindern, dass gewählte Zutaten als abgeleitete Physik durchgehen.
+\end{bild}

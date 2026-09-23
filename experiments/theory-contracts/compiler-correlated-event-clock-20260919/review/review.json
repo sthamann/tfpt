@@ -1,0 +1,60 @@
+{
+  "reviewed_file": "/Users/stefanhamann/Projekte/tfpt-theoryv4/experiments/theory-contracts/compiler-correlated-event-clock-20260919/checker.py",
+  "reviewed_revision_note": "Includes retained_sixty_audit added during the review",
+  "verdict": "PASS_WITH_ONE_INHERITED_PREMISE_AND_OPEN_PHYSICAL_FRAME",
+  "replay": {
+    "optimized_current_revision_exit_code": 0,
+    "source_checks": 4698,
+    "current_extension_checks": 24141
+  },
+  "validated": {
+    "fourth_moment_reshuffle": "PASS: direct degree-0..4 Haar expansion gives C60-C_Haar=16 R(M4-Psym4/35) with tensor axes [4,5,2,3,0,1,6,7]",
+    "bell_normalization": "PASS: Pauli columns have norm 2. Unnormalized B multiplies the normalized superoperator embedding by 4 and E-dagger-channel-E by 16; the implemented scales are consistent",
+    "haar_bell_spectrum": "PASS: 1^1, (1/5)^15, (1/7)^84",
+    "preselected20_stopped_channel": "PASS: conditional on iid draws from the marked20 alphabet",
+    "retained60_stopped_channel": "PASS: uniform full60 events with only marked20 jumps accepted give Phi60=J20(60I-S60+J20)^-1",
+    "retained60_spectrum": "PASS: 1^1, (1/11)^5, (-1/4)^4, 0^60, (1/13)^15, (-1/13)^15",
+    "retained60_population_formula": "PASS: C60_pop=(5I+ones)/15; Jaccept_pop=A/15; Phi_pop=A(10I-ones+A)^-1",
+    "retained60_counting": "PASS: accept probability 1/5; six accepts have mean primitive count 30 and variance 120",
+    "weight_family": "PASS inside C_t=t C20+(1-t) C40: both Petersen rates force t=1 for a fixed uncorrected readout",
+    "history_frame": "PASS: all 6 x 40 x 20 conjugations close exactly; the co-moving frame recovers Phi20 while all 60 events run",
+    "history_frame_instrument": "PASS: stay and jump projectors/Kraus maps are covariant; S_eff=(40 Id+S20)/60 and J_eff=J20/60",
+    "phase_test": "PASS: the common -i paired lift cancels in conjugation and is only a fixed-length global phase",
+    "character_test": "PASS as a representation counterexample: g fixes all Bell rays with character 2 but acts identically on quartic-five, hence Lambda2 character 10"
+  },
+  "findings": [
+    {
+      "priority": 2,
+      "lines": "204-224 in the current checker",
+      "title": "Native-group membership of the character-test Pauli is inherited from v783",
+      "detail": "Both actions and their unequal characters are checked directly, but the checker does not exhibit diag(1,1,-1,-1) as a word in the 60 native reflections. Membership is inherited from pinned v783 P3.3.",
+      "recommended_correction": "Name the v783 Pauli-membership theorem as an inherited premise or include one explicit source-reflection word."
+    },
+    {
+      "priority": 3,
+      "lines": "321-329 in the current checker",
+      "title": "The proved-summary phrase should name the audited instruments",
+      "detail": "The checker correctly distinguishes preselected20 and retained full60 processes. A third exact construction, the history-frame readout, also recovers the marked20 stopped channel. The phrase fully stopped quantum jump process can still be read without these conditions.",
+      "recommended_correction": "Name the fixed-readout marked20/full60 instruments and the history-frame premise; preserve physical_source_selection=OPEN."
+    }
+  ],
+  "resolved_during_review": {
+    "fixed_readout_issue": "retained_sixty_audit now carries the 40 unselected events and proves the altered full60 spectrum",
+    "history_frame_result": "A co-moving frame built from the recorded background40 events exactly recovers Phi20 without preselecting the physical source",
+    "history_frame_boundary": "The outer mark, complete event record, and access to rho'=F-dagger rho F are additional operational premises. The finite algebra does not derive their physical availability."
+  },
+  "independent_artifacts": {
+    "full60_checker": "review_full60.py",
+    "full60_certificate": "review_full60.json",
+    "history_frame_checker": "review_history_frame.py",
+    "history_frame_certificate": "review_history_frame.json",
+    "contract_replay": "review_validation_oo.json"
+  },
+  "physics_status": {
+    "contract_verdict": "PARTIAL",
+    "physical_source_selection": "OPEN",
+    "physical_history_frame_availability": "OPEN",
+    "physical_clock_identification": "OPEN",
+    "toe_gates_closed": []
+  }
+}

@@ -1,0 +1,115 @@
+INDEPENDENT BOUNDED AUDIT — RELAXED WALL COMPLEMENT AND NATIVE HOP
+2026-09-19
+
+STATUS: PASS — no mathematical flaw found in the fixed-source-module
+complement certificate or in the relaxed central cross-coupling argument.
+
+Inputs inspected
+----------------
+PROOF.txt
+  sha256 2c97aa9b43063a085340e94012d71c095b68c26004dcb09898d091ac20b61dd4
+relaxation_certificate.py
+  sha256 98404ecc187608ccdb973d0120e41618fc4055f39381a143fb04d896da4c4f2a
+core_six.py
+  sha256 6336b5758819738f8ca2d388fbbadc1460eb1a9c77c1245aa4c55c133f9e7d30
+
+The certificate was replayed once and passed 49 checks.  No eigensolve or
+positive-J/mu sweep was run.  Existing sector_numeric artifacts were not
+modified.
+
+1. Whole fixed-module complement
+--------------------------------
+For the central 2102 sector, P=Q_Omega1 Q_Omega4 has range
+bar4_source2 tensor C_matter = 1 plus 15.  Its scalar direction is u, and
+P maps the invariant scalar six-space S into span(u).  Hence a vector in
+S-perp has P component in the adjoint 15.
+
+On Q=I-P, failure of at least one commuting outer Omega projector gives
+
+  L1+L4 >= (2/3) Q.
+
+Together with the complete local floors L2>=1/2 and L3>=3/5 this yields
+
+  Q H0 Q >= 53/30.
+
+The normalized shared-matter partial traces of the native 64-dimensional
+bar4 local operator give
+
+  E_B L2   = 9/10 I - 2/5 P_Phi,
+  E_B L2^2 = 251/300 I - 44/75 P_Phi.
+
+Thus on the adjoint 15, mean(L2)=9/10 and
+
+  Var(L2)=251/300-(9/10)^2=2/75.
+
+The uniform bridge has mean 3/4 and variance 3/80.  Tracing its outer D
+factor makes it exactly 3/4 I on the shared C factor, so its connected
+covariance with L2 vanishes even when the remaining factors are correlated.
+Therefore
+
+  ||Q H0 P||^2 on P-u = 2/75+3/80 = 77/1200.
+
+The lower eigenvalue of the scalar comparison matrix
+
+  [[33/20, sqrt(77/1200)],
+   [sqrt(77/1200), 53/30]]
+
+is exactly
+
+  c=(205-sqrt(973))/120=1.4483921006586296.
+
+This is above the isolated central root 1.221493930352475... and the boundary
+root 1/2+(8-sqrt(19))/5=1.228220211291865....  Since the remaining roots of
+the invariant blocks are also above c, the stated central and boundary
+grounds are simple grounds of their entire respective 409600-dimensional
+fixed source-module sectors.  Certified gap lower bounds are
+
+  central:  c-lambda_center > 0.2268,
+  boundary: c-lambda_end    > 0.22.
+
+The boundary 1202 argument is the same after taking
+P=Q_Omega2 Q_Omega4: the leftover space is bar4_source1 tensor A_matter,
+and tracing D makes the uniform-bridge cross covariance vanish as above.
+
+Dependency note: the exact outer-Omega gap 2/3 is imported from the pinned
+.23 mixed-source certificate; relaxation_certificate.py independently
+reconstructs the bar4 local roots, third moment, partial traces, Gram
+Hermiticity, Sturm intervals, and comparison arithmetic.
+
+2. Native relaxed central hop
+-----------------------------
+The full 240-root contraction for moving Phi from source2 to source3 was
+replayed exactly.  It gives the matter kernel
+
+  K_ij = -delta_ij/32.
+
+The corresponding ordinary Phi Gram contraction is delta_ij/4.  Replacing
+that contraction in every entry of the common six-state packet Gram therefore
+gives the exact cross-space matrix
+
+  V_23 = -G/8.
+
+The mirror permutation Q is a G-unitary involution, fixes the unrelaxed core,
+and implements open-chain reversal between 2102 and 2012.  For the
+G-normalized central ground coefficient vector v,
+
+  eta = v^T G Q v = 0.9793731806800346,
+  <g_R|H|g_L>/mu = -eta/8 = -0.12242164758500433.
+
+The sign and normalization are consistent: the right ground coefficients
+are Qv, Q^T G=GQ, H0 and all event terms preserve the individual source
+sectors, and only V_23 has the charge transfer 2102 -> 2012.  The exact lower
+bound eta>=721/779>0 independently certifies a nonzero hop without relying on
+the decimal evaluation.
+
+3. Boundary of the result
+-------------------------
+This audit certifies the two named fixed source-module sectors and their
+native cross matrix element.  It does not compare all other source modules,
+prove an isolated doublet of the complete source model, justify a positive
+J/mu Schrieffer-Wolff reduction, or establish a long-chain wall dispersion,
+fermion, Dirac/Weyl mode, physical vacuum, or T1-T8 closure.
+
+No event-energy expectation was added in this audit; it had not already been
+computed independently, and the requested priority was the complement and
+native-hop certificate.

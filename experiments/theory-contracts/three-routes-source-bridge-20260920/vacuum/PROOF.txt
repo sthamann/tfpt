@@ -1,0 +1,259 @@
+NATIVE FIRST COMPLEMENT DRESSING OF THE COMPILER PACKET CHAIN
+20 September 2026 | experiment only | no ledger or paper promotion
+
+Verdict
+=======
+
+PASS_EXACT_NATIVE_FIRST_DRESSING_BLOCK.
+
+The bare packet condition
+
+  2 mu = kappa + 9 J
+
+is not established as a full-source critical condition.  The first complement
+step of the actual local source Hamiltonian already changes its bare local
+energy ingredients.  The reason is stronger than a nonzero Ritz residual.
+The first orthogonal source image closes exactly and can be diagonalised in a
+2 by 2 block.  Its low eigenvalue removes the bare local J barycentre.  Thus
+this local source dressing is order J, not order J squared divided by a fixed
+gap.
+
+This is a local theorem for the existing Hamiltonian.  It does not determine
+the globally dressed chain or a new critical line.
+
+
+1. Pinned native operators
+==========================
+
+On one source and its two adjacent matter registers use exactly the operators
+from UR.COMPILER.DOMAIN_WALL_CORE.25:
+
+  L   = I - (1/60) sum_l R_l tensor r_l tensor r_l,
+
+  H_E = sum_alpha |alpha><alpha| tensor
+                       (I-r_alpha tensor r_alpha),
+
+  H_loc = kappa L + J H_E.
+
+Here alpha runs over the 240 phase-labelled roots and l over the 60 rays.
+No denominator, gap or new coupling is inserted.
+
+The simultaneous native reflection U_l=R_l tensor r_l tensor r_l permutes
+the event terms:
+
+  U_l H_E U_l^* = H_E.
+
+Hence [L,H_E]=0.  Also r_alpha tensor r_alpha is an involution, so
+
+  H_E^2 = 2 H_E.                                           (1)
+
+The executable checks both statements in Gaussian-integer scale.  It verifies
+all 3600 covariance identities
+
+  (2r_l)(2r_alpha)(2r_l)=4(2r_(l alpha))
+
+and all 60 event-polynomial identities without a floating tolerance or
+rational reconstruction.  All integer components remain below 2^52.
+
+
+2. Exact first-QH block
+=======================
+
+Let |p> be a normalized packet vector satisfying
+
+  L|p> = lambda |p>,       eta=<p|H_E|p>.
+
+For 0<eta<2 define its normalized first orthogonal source image
+
+  |q> = (H_E-eta)|p> / sqrt[eta(2-eta)].                    (2)
+
+Equation (1) gives its norm exactly.  Commutation gives L|q>=lambda|q>,
+and the polynomial (1) means that H_E maps span{|p>,|q>} to itself.  Thus
+this is not a truncated moment fit: the subspace is exactly invariant under
+H_loc.  In its orthonormal basis,
+
+       [ kappa lambda+J eta       J sqrt(eta(2-eta)) ]
+  H =  [                                                   ]. (3)
+       [ J sqrt(eta(2-eta)) kappa lambda+J(2-eta) ]
+
+The two exact eigenvalues are
+
+  kappa lambda,       kappa lambda + 2J.                    (4)
+
+For every J>0 the lower eigenvector has bare-complement weight eta/2.
+This equals3/10 in the s-symmetric channel and1/2 in the antisymmetric
+channel, independent of how small J is.  The limit is a resonant dressing
+of a J=0 degeneracy, not a perturbatively small state correction.
+
+Equivalently, eliminating |q> gives the exact energy-dependent self-energy
+
+  Sigma(E) = J^2 eta(2-eta)
+             / [kappa lambda+J(2-eta)-E],                   (5)
+
+with H_eff(E)=PHP-Sigma(E).  Coupling and P-Q diagonal separation both
+vanish linearly with J.  Treating (5) as an ordinary J^2 correction over a
+J-independent gap is therefore invalid.
+
+
+3. Native packet values
+=======================
+
+For the uniform s source, the exact second reflection moment gives
+
+  P_s L P_s = P_s H_E P_s = (4I-Swap)/5.
+
+The symmetric matter sector has dimension10 and lambda=eta=3/5; the
+antisymmetric sector has dimension6 and lambda=eta=1.  Their blocks and
+dressed spectra are
+
+  symmetric:
+    [[3(kappa+J)/5, sqrt(21)J/5],
+     [sqrt(21)J/5, 3kappa/5+7J/5]]
+    -> {3kappa/5, 3kappa/5+2J};
+
+  antisymmetric:
+    [[kappa+J, J], [J,kappa+J]]
+    -> {kappa, kappa+2J}.
+
+For Phi, joint source/bound-matter invariance gives lambda=1/2, while the
+event mean is eta=3/2.  Its dressed spectrum is
+
+  {kappa/2, kappa/2+2J}.
+
+For Omega, lambda=eta=0, so the packet is already annihilated.
+
+At the compressed critical test point (kappa,J,mu)=(1,.01,.545), the s
+symmetric block is exactly
+
+  [[303/500, sqrt(21)/500],
+   [sqrt(21)/500, 307/500]],
+
+with eigenvalues3/5 and31/50.  The antisymmetric block is
+
+  [[101/100,1/100],[1/100,101/100]],
+
+with eigenvalues1 and51/50.  A separate floating replay of the 960-dimensional
+charge-zero local operator was used during diagnosis but is not part of the
+certificate.
+
+For the maximally mixed two-matter marginal of an s bridge, the complete
+local spectral measure has the four energies
+
+  3kappa/5, 3kappa/5+2J, kappa, kappa+2J
+
+with weights7/16,3/16,3/16,3/16 respectively.  These weights follow from
+dim Sym^2(C4)=10, dim wedge^2(C4)=6 and the H_E=0/2 weights eta/2.  They
+reproduce all local moments without a fitted denominator.
+
+
+4. Consequence for the bare Ising line
+=======================================
+
+The coefficient9J in the packet Ising wall cost was calculated from bare
+packet expectations: Omega sees zero event energy, Phi sees3J/2, and an s
+bridge sees3J/4.  Equations (3)-(4) show that these expectations are
+barycentres of native event eigenvalues, not dressed local energies.  The
+first exact local source dressing changes them differently.  These local
+corrections are not a common scalar shift, so the bare coefficient9J cannot be
+carried into the full source model without a new global calculation.
+
+This does not justify replacing9 by another number.  Neighbouring local
+dressings share matter registers, and the mu V term couples different source
+charges.  Global compensation, including a changed hopping coefficient, has
+not been excluded.  The next justified calculation is the overlap-compatible
+global isometry followed by the simultaneous compression of H and V.  Until
+then, 2mu=kappa+9J is a bare-compression candidate, not an established
+full-source critical line.
+
+
+5. Same isometry for charge, time and local response
+=====================================================
+
+The low local dressed vector is obtained with the actual native projector
+
+  P_0 = I-H_E/2,
+  W_0|p> = P_0|p>/sqrt(1-eta/2).                             (6)
+
+Formula (6) is a linear isometry on a fixed eta packet channel. Across
+channels the linear map is W_0=P_0 P(P P_0 P)^(-1/2), with the inverse
+defined on the support of P P_0 P. A state-dependent scalar normalization
+alone is not a single linear operator on the direct sum of channels.
+
+This same map preserves the L eigenvalue, the s symmetric/antisymmetric
+label and the source quarter charge, while setting the event energy to zero.
+It does not leave arbitrary observables unchanged.  Every local observable
+must be transported as
+
+  O_dressed = W_0^* O W_0.                                  (7)
+
+The existing charge analysis shows that V changes neighbouring source charges.
+Whether V preserves the separate dressed local subspaces, equivalently the
+needed commutation/intertwining relation with their P_0 maps, has not been
+checked.  The bare hopping -mu/8 and its response functions must therefore be
+recalculated with (6), not copied from the packet compression.  Because
+adjacent W_0 maps overlap on matter registers, their product is not yet a
+proved global isometry.
+
+The earlier equality P Q1 P=P Q3 P is not repaired by this local block.
+Separate locations require an overlap-compatible global W that keeps their
+algebras distinct and then preserves their dynamical responses.  Likewise,
+the conditional affine-clock result H=aL0 uses a separate current-mode
+premise; H_loc has not been identified with that physical time generator.
+
+
+6. Exact first overlap test
+===========================
+
+There is also a concrete obstruction to multiplying the one-edge maps (6).
+Fix two neighbouring source roots alpha,beta on three matter registers and
+write their zero-event projectors as
+
+  P_alpha,12=(I+r_alpha tensor r_alpha tensor I)/2,
+  P_beta,23 =(I+I tensor r_beta tensor r_beta)/2.
+
+Their exact commutator is
+
+  [P_alpha,12,P_beta,23]
+    = r_alpha tensor [r_alpha,r_beta] tensor r_beta /4.       (8)
+
+For the explicit native pair alpha=0,beta=1, whose unnormalised root inner
+product is2+2i, the Gaussian-integer rank calculation gives
+
+  dim(ker H_E,alpha,12 intersect ker H_E,beta,23)=18,
+  rank [P_alpha,12,P_beta,23]=32.
+
+The ordered product P_alpha,12 P_beta,23 is not idempotent and hence is not a
+projector. This excludes the naive commuting-projector construction, not
+every normalized isometry on a specified subspace. On their common kernel
+both projectors act as the identity. Controls give common-kernel dimension24 for an orthogonal
+native pair and28 for the parallel pair; both controls commute and their
+ordered products are projectors.
+
+This is the smallest actual overlap test needed after the local dressing
+theorem.  It proves that generic adjacent low-event maps cannot simply be
+multiplied.  It does not solve the compatible global constraint: the test
+holds on a fixed source fibre and omits source superposition, L, V and the
+chain vacuum.
+
+
+7. Scope and sources
+====================
+
+The exact result is finite and local.  It proves neither a thermodynamic
+vacuum nor an Ising universality class, E8 current algebra, chirality,
+continuum spacetime, Standard Model dynamics, gravity or a TOE.  Even if a
+dressed Ising-only sector survived, it would still require additional charged
+critical sectors or a separate binding sector to realize the full chiral
+(E8)_1 response; that is a further conditional gate, not established here.
+
+The projection formula follows the Feshbach construction; the bare Ising
+comparison uses Pfeuty only after the native compression coefficients have
+been derived.  Exact source pins and literature identifiers are recorded in
+sources.json.
+
+Run:
+
+  python3 -B native_local_self_energy.py
+  python3 -OO native_local_self_energy.py
+
+Expected status: PASS_EXACT_NATIVE_FIRST_DRESSING_BLOCK.

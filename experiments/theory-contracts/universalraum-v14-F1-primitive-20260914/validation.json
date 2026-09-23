@@ -1,0 +1,174 @@
+{
+  "H_eff": {
+    "H_eff_2": "(2 t^2/Delta) sum_e P_+^{(e)} after energy shift",
+    "J": "2 t^2/Delta",
+    "K4_over_J": "t**2/Delta**2",
+    "not_used": "H = P_ker Q",
+    "working_t_over_Delta": "1/20"
+  },
+  "T1_T8_closed": [],
+  "U_vertex": {
+    "dimension": 22,
+    "involution": true,
+    "uses_Omega_projector": false
+  },
+  "checker_sha256": "c425b0745e4fdf986f8ba56219179011b68f6d4ac4c5b8bf7f0836ce26c66a00",
+  "count": 84,
+  "dressed_star_filter": {
+    "controlled_H_calls_start_plus_end": 26,
+    "filter_time_hbar_over_Delta": 3172.829633999998,
+    "fresh_over_retained": "17/32",
+    "mean_prep_attempts": 6.176067405039554,
+    "p_prep": 0.16191533129706762,
+    "p_total_fresh": 0.08356533124756234,
+    "p_total_retained": 0.157299447054235,
+    "polynomial_uses_Omega_ket": false,
+    "start_plus_end_time_hbar_over_Delta": 6345.659267999996,
+    "unwanted_values": 13,
+    "w": 0.9856429311786321
+  },
+  "firewall": "experiments/theory-contracts only; not a T1-T8 or ledger claim",
+  "handles": [
+    {
+      "cost": "1 vertex",
+      "handle": "isolated_edge",
+      "hidden_projector": false,
+      "implementation": "support of U_e; holes |empty_s empty_t> label the edge",
+      "primitive": "U_e"
+    },
+    {
+      "cost": "1 bit",
+      "handle": "occupation_query",
+      "hidden_projector": false,
+      "implementation": "Born on mediator occupation of the addressed slot",
+      "primitive": "born_on_declared_access"
+    },
+    {
+      "cost": "1 U0 + 1 occupation copy",
+      "handle": "record",
+      "hidden_projector": false,
+      "implementation": "history write already in the range of U_e; macro (U0\u2297I)Q(U0\u2297I)",
+      "primitive": "U_e"
+    },
+    {
+      "cost": "time tau, resource t/Delta",
+      "handle": "controlled_H",
+      "hidden_projector": false,
+      "implementation": "virtual second-order composition of U_e; H_eff = (2t^2/Delta) sum P_+",
+      "primitive": "U_e"
+    },
+    {
+      "cost": "13 times, sum tau = 3172.829634 hbar/Delta; start+end 26 calls",
+      "handle": "resonance_filter",
+      "hidden_projector": false,
+      "implementation": "polynomial / Fourier of the known finite spectrum of H",
+      "primitive": "U_e composed"
+    },
+    {
+      "cost": "1 shot",
+      "handle": "measurement",
+      "hidden_projector": false,
+      "implementation": "Born on a declared access algebra",
+      "primitive": "born_on_declared_access"
+    },
+    {
+      "cost": "8 colour bits per cell plus environment",
+      "handle": "reset",
+      "hidden_projector": false,
+      "implementation": "source computational measurement + source bit-flip Pauli",
+      "primitive": "source prefix + environment"
+    },
+    {
+      "cost": "w^2/6 per attempt, mean 6.1761 attempts",
+      "handle": "preparation",
+      "hidden_projector": false,
+      "implementation": "star filter of H, then keep empty mediator; accept is occupation, not Omega",
+      "primitive": "U_e + born_on_declared_access"
+    },
+    {
+      "cost": "ratio 17/32",
+      "handle": "fresh_vs_retained_record",
+      "hidden_projector": false,
+      "implementation": "access class on H_history; globally unitary, locally Tr_H",
+      "primitive": "access"
+    }
+  ],
+  "isolated_edge": {
+    "Q_shared_channel_can_cancel": true,
+    "U_holes_remain_orthogonal": true,
+    "derived_from": "U_e range contains |empty_s empty_t>",
+    "edges_per_label": 4,
+    "labels": 10,
+    "same_label_edges_disjoint": true
+  },
+  "pins": {
+    "experiments/theory-contracts/compiler-origin-audit-20260913/context_instrument.py": "ba1da93102e553631b71e320d2d53883bb67dedb6d9132fc7e0311afe49e3995",
+    "universal_room/TFPT_Followups_2026-09-14_v1.4.md": "236e3f9c2cf5d19332389699669787b25e7ca56ab95116a0887938cc72f91c01"
+  },
+  "primitives": [
+    {
+      "amplitudes": "normalized E8 structure constants, not free couplings",
+      "derived_from_P1_P2": false,
+      "id": "U_e",
+      "rule": "|a>_s |b>_t |0>_m |0>_h -> sum_mu C^mu_{st;ab} |empty>_s |empty>_t |mu>_m |st,ab,mu>_h plus exact adjoint return",
+      "space": "H_matter_s x H_matter_t x H_mediator_e x H_history_e",
+      "type": "unitary_event"
+    },
+    {
+      "id": "access",
+      "not_a_new_hamiltonian": true,
+      "rule": "future operations may or may not include a past history factor",
+      "type": "observable_algebra_choice"
+    },
+    {
+      "derived_from_compiler": false,
+      "id": "born_on_declared_access",
+      "rule": "Born readout of mediator occupation or a history bit",
+      "type": "measurement_axiom"
+    }
+  ],
+  "record": {
+    "extra_quarter_phases_needed_for_U0_involution": true,
+    "extra_quarter_phases_needed_for_Ures": false,
+    "occupation_query": "P_mediator occupied = W^T W on matter",
+    "record_kraus": [
+      "P_+",
+      "P_-"
+    ],
+    "uses_Omega_projector": false
+  },
+  "reset": {
+    "classical_color_bits_per_cell": 8,
+    "derived_from_U": false,
+    "derived_from_source_prefix": true,
+    "implementation": "source computational measurement + source bit-flip Pauli",
+    "uses_Omega_projector": false
+  },
+  "status": "F1_PRIMITIVES_FROZEN_NO_HIDDEN_PROJECTOR",
+  "still_not_from_P1_P2": [
+    "existence and uniqueness of U",
+    "Born rule",
+    "reset environment / entropy sink",
+    "absolute scale of t and Delta"
+  ],
+  "tetramer_filter": {
+    "Omega_is_input": false,
+    "filter": "(1/8) sum_{r=0}^7 exp(-i pi r H / 4J)",
+    "kernel_dimension": 1,
+    "preparation_chi_to_Omega": "1/6 with this exact filter",
+    "scalar_values": {
+      "0": "1",
+      "2": "0",
+      "3": "0",
+      "4": "0",
+      "6": "0"
+    },
+    "spectrum": [
+      0,
+      2,
+      3,
+      4,
+      6
+    ]
+  }
+}

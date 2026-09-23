@@ -1,0 +1,136 @@
+INDEPENDENT TWO-SOURCE BOND-VACUUM AUDIT
+19 September 2026
+
+Decision
+========
+
+The new unperturbed statement is strongly supported, but it is not yet an
+exact full-space theorem on the supplied evidence.
+
+After an exact Z4 Fourier decomposition of each 240-root source, an independent
+matrix-free Hermitian replay of all sixteen 230,400-dimensional blocks finds
+
+  E0/kappa = 1/2  in source sectors (2,1) and (1,2),
+  one lowest Ritz vector in each mirror sector,
+  next level  = 3/5 in sector (2,2),
+  observed global gap = 1/10.
+
+The two mirror-sector next levels are 7/10.  The largest recorded Ritz residual
+in the decisive sectors is below 5e-13.  This reproduces the claimed energy,
+twofold ground space, and gap without constructing the 3,686,400-dimensional
+matrix.  It is numerical spectral evidence, not an exact lower-bound
+certificate.
+
+Pinned source and conventions
+=============================
+
+The source is
+
+  experiments/theory-contracts/
+  compiler-correlated-event-clock-20260919/source_channel.py
+
+with SHA-256
+
+  3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593.
+
+The audit uses the same Fourier convention as the .17 source proof,
+
+  |ell;s> = (1/2) sum_k i^(ks) |i^k z_ell>,
+
+so a reflection phase i^q acts by i^(-sq).  In this convention the two mirror
+states are in sectors (2,1) and (1,2).  A convention with the opposite Fourier
+sign swaps labels 1 and 3 but changes no spectrum.
+
+Exact local input
+=================
+
+The current repository's .17 artifact manifest (SHA-256
+ba2f5bdebce5ef3d59e8e6d4788fc4f784ce7139316e14cb4bd10d232af057e0)
+pins spectrum_certificate.json at SHA-256
+d1e907a341bef81f255ab553e3c6c1db672500ebf6e37411e3a1f7062f5d40d8.
+That CRT certificate proves the exact one-bond spectrum in all four source
+sectors.  This audit verifies both pins, reconstructs the 960-dimensional
+blocks directly, and numerically reproduces all rational bands and
+multiplicities.  The prior CRT certificate, rather than the diagonalization,
+is the exact provenance.  In particular:
+
+  * sector 2 has a unique zero state Omega and exact local gap 2/5;
+  * sectors 1 and 3 have local floor 1/2;
+  * sector 0 has local floor 3/5.
+
+The two local Omega projectors on overlapping bonds have principal cosine 1/4.
+Consequently the exact general estimate is only
+
+  H0 >= (2 kappa/5)(2I-Q1-Q2) >= 3 kappa/10.
+
+Charge-sector floors improve this to kappa/2 in every sector except (2,2).
+Thus the first remaining exact implication is sharply located:
+
+  prove H0 >= 3 kappa/5 on the phase-(2,2) block, together with exact
+  one-dimensionality at kappa/2 in each mirror block.
+
+The (2,2) problem further splits by the exact source decomposition
+60 = barSym2(4) + 50.  The 50x50 block is already above the target from local
+floors, and the mixed 10x50 blocks admit stronger weighted-projector bounds.
+The unresolved sharp complement estimate is the barSym2 x barSym2 recoupling.
+The numerical floor there is 3/5.  Neither the earlier .23 bar4 result nor its
+barSym2 local spectrum alone proves this overlapping two-bond bound.
+
+Weak perturbation
+=================
+
+Let
+
+  H(epsilon) = kappa H0 + epsilon kappa B,
+  B = H_E1 + H_E2 + V,
+  V(alpha,beta)=1-Re <psi_alpha|psi_beta>.
+
+The supplied two-state compression gives
+
+  PBP = (5/2) I - sigma_x/8,
+
+so first order splits the doublet by epsilon kappa/4.  This compression alone
+does not prove uniqueness: an off-P leakage/resolvent bound is necessary.
+
+There is, however, a short exact conditional argument once the claimed
+unperturbed full-space gap delta=kappa/10 is assumed.  The exact residual Gram is
+
+  PBQBP = (55/64) I + (3/8) sigma_x,
+
+with parity values 79/64 and 31/64.  Positivity of B and the Schur complement
+give
+
+  gap/kappa >= epsilon/4
+      - 31 epsilon^2 / [64(1/10 - 21 epsilon/8)].
+
+At epsilon=1/65 the right side is exactly epsilon/8, and it is no smaller for
+0<epsilon<=1/65.  Therefore the stated epsilon<=1/200 uniqueness and
+gap>=mu/8 follow conditionally from the exact H0 ground/gap theorem.  They do
+not supply the missing H0 theorem themselves.
+
+Evidence classification
+=======================
+
+EXACT:
+  pinned Gaussian-root/reflection identities; Z4 block construction; prior
+  one-bond CRT spectrum; local floors; projector overlap 1/4; the conditional
+  two-state compression, residual Gram, and Schur inequality.
+
+NUMERICAL:
+  the sixteen-block lowest-spectrum replay supporting 1/2, 3/5, and the
+  observed 1/10 gap with explicit residuals.  Four requested Ritz vectors per
+  block do not by themselves exhaust an unknown degenerate eigenspace.
+
+REPORTED/NOT REPLAYED:
+  the user's original new full-space checker/report, which was not attached.
+
+OPEN:
+  an exact finite certificate for the phase-(2,2) recoupling and mirror-sector
+  multiplicities.  This is the first mathematical gap; no larger TFPT, current,
+  continuum, preparation, or physical-vacuum conclusion follows here.
+
+Artifacts
+=========
+
+  ground_audit.py   independent reconstruction and block replay
+  ground_audit.json machine-readable spectra, residuals, and evidence labels

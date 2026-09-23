@@ -1,0 +1,336 @@
+INDEPENDENT REVIEW — AFFINE CURRENT-MODE LIFT OF THE .19 QUARTIC 1+3 BRIDGE
+Date: 2026-09-19
+Scope: final .19 quartic_1plus3_check plus .06 compiler-vacuum-current-cubic
+
+VERDICT
+
+EXACT_CONDITIONAL_MODE_LIFT; NO_PHYSICAL_ORIGIN_GATE_CLOSED.
+
+The proposed map is mathematically sound after three qualifications:
+
+1. Its positive content is an isometric copy of the same finite 20-dimensional
+   internal geometry at every fixed positive affine grade n.  It is not a
+   transport law between grades and it does not populate any grade.
+2. The spectral formula is exact only after the mode operator and spectral
+   measure convention are declared.  It is a vacuum two-point response, not a
+   density matrix or an abundance prediction.
+3. The 20-dimensional source corner is gauge charged and, together with its
+   adjoint and commutators, generates the regular A8=sl9 subalgebra, not the
+   full E8.  One further already present Lambda0(C5) tensor 4 root channel is
+   sufficient algebraically to generate the missing E8 sectors, but .19 does
+   not map or physically select that channel.
+
+No complex-conjugation error was found in the proposed POVM.  The hidden
+neutrality and source-to-net gaps remain material.
+
+1. EXACT AFFINE MODE ISOMETRY
+
+Use the original level-one affine E8 vacuum from .06:
+
+  [J_m(a),J_n(b)] = J_(m+n)([a,b])
+                     + m kappa(a,b) delta_(m+n,0),
+  J_m(a) Omega = 0 for m>=0,
+
+with the compact adjoint and positive current metric
+
+  (a,b)_c = kappa(a^dagger,b).
+
+For every integer n>=1 define
+
+  i_n(a) = J_-n(a) Omega / sqrt(n).
+
+Then, at k=1,
+
+  <i_n(a),i_n(b)> = kappa(a^dagger,b).
+
+The J_0([a^dagger,b]) term annihilates the vacuum, leaving exactly the central
+term n kappa(a^dagger,b), which the two square roots remove.  Therefore i_n is
+an isometry from the compact adjoint 248-space into affine grade n.  Also
+
+  [L_0,J_-n(a)] = n J_-n(a),
+
+so L_0 is the scalar n on this one-current image.  Images with different n
+are orthogonal L_0 eigenspaces.  This is standard affine/Sugawara structure
+applied to the already assumed E8_1 vacuum, not a new CFT theorem.
+
+Let F:C20 -> Lambda4(C5) tensor C4 be the exact .19 unitary.  Then
+
+  F_n = i_n F
+
+satisfies F_n^dagger F_n=I20.  It repeats the same internal quartic coefficient
+map at every grade n.  The zero modes act compatibly:
+
+  J_0(x) i_n(a) = i_n([x,a]).
+
+Consequently the normalized .06 three-current tensor is also mode independent
+when all required currents are retained:
+
+  <i_n(a), J_0(b) i_n(c)> = kappa(a^dagger,[b,c]).
+
+This is the n-normalized form of the .06 (1,0,-1) PBW amplitude.  It does not
+mean that the 20D F-image alone carries the full .06 E6 cubic; that cubic uses
+additional current sectors.
+
+LIMIT OF THE POSITIVE STATEMENT
+
+The full affine grade n is much larger than i_n(E8).  F_n identifies only a
+20D subspace inside its one-current part.  Since L_0 is scalar there, it gives
+no internal splitting, lock, relaxation, readout selection or mixing at fixed
+n.  A prepared superposition of different n would propagate under H_bdry, but
+no such preparation or mode profile is selected here.  There is no operator
+here taking F_n to F_m and no transport of the old two-source Hamiltonian, its
+off-lock virtual states or its finite-mu ground state.
+
+2. POVM, COMPLEX CONJUGATION AND CONDITIONAL STATE
+
+Use the same vectorisation convention as .19:
+
+  Xi_n = (1/sqrt20) sum_j F_n e_j tensor e_j.
+
+For v_l=psi_l^tensor3 and
+
+  w_l = F conjugate(v_l),
+  w_(l,n) = i_n w_l,
+  E_(l,n) = |w_(l,n)><w_(l,n)|/3,
+
+the .19 tight-frame identity gives
+
+  sum_l E_(l,n) = P_(n,20),
+
+where P_(n,20) projects onto im(F_n).  Thus these effects form a POVM on the
+20D image.  On the full grade-n Hilbert space they are incomplete unless the
+complement effect I-P_(n,20) is added.
+
+The conjugation is correct.  With the physics convention that the inner
+product is conjugate-linear in its first slot,
+
+  (<w_l| tensor I) Xi_n  proportional to  v_l.
+
+Without the conjugation in w_l the conditional vector would instead be
+conjugated in this vectorisation convention.  Unitarity of F gives
+
+  <w_l,w_m> = <v_m,v_l>,
+
+so the proposed reversed Gram order is also correct.  For Xi_n the reduced
+source density is P_(n,20)/20, hence p_l=1/60 exactly.
+
+This probability is conditional on preparing Xi_n and measuring this chosen
+POVM.  Neither .19 nor .06 prepares Xi_n, chooses n, or constructs the
+detector.  In particular .06 explicitly proves that a normalized current
+response Gram is not the reduced density matrix of the grade-zero vacuum.
+
+3. PRECISE SPECTRAL RESPONSE AND NORMALISATION
+
+Let the boundary circle have circumference L and let the assumed chiral
+Hamiltonian be
+
+  H_bdry = (2 pi v/L)(L_0-c/24).
+
+Define the creation mode itself, rather than infer it from an unspecified
+Fourier transform,
+
+  B_(l,n) = J_-n(w_l)/sqrt(L),
+
+and define S_lm^(n) by the vacuum spectral measure
+
+  S_lm^(n)(d omega)
+    = <Omega| B_(l,n)^dagger
+        delta_(H_bdry-E_0)(d omega) B_(m,n) |Omega>.
+
+Here B_(l,n)^dagger is the compact-adjoint annihilation mode fixed by the
+source convention.  This avoids assigning the wrong complex conjugation to a
+literal J_n(w_l) notation for root currents.
+
+Then
+
+  S_lm^(n)(d omega)
+    = (n/L) <w_l,w_m> delta_(2 pi v n/L)(d omega)
+    = (n/L) <v_m,v_l> delta_(2 pi v n/L)(d omega).
+
+Written this way, delta_x is a Dirac measure and no 2 pi Fourier convention
+is hidden.  If S(omega) is instead defined by a time Fourier integral, the
+chosen 1/(2 pi) convention must be stated; otherwise a 2 pi factor reappears.
+The prefactor also changes if a local-current Fourier coefficient is
+normalized with 1/L instead of 1/sqrt(L).  Thus “mode-defined” removes the
+ambiguity only when B_(l,n) and the spectral-measure convention above are
+part of the claim.
+
+The velocity v and circumference/energy calibration are premises.  The
+dimensionless affine algebra fixes the grade n and central term, not the
+physical edge velocity or a raw-seam length scale.
+
+4. SMALLEST COMMUTATOR-CLOSURE AUDIT: A8, NOT E8
+
+The .19 source corner is
+
+  Lambda4(C5) tensor 4 = bar(5) tensor 4,
+
+inside (16_D5,4_A3).  In the exact doubled-root coordinates of .06 these are
+the 20 half-integral roots with exactly one minus sign in the first five
+coordinates and odd minus parity in the last three.  Include their opposite
+roots.  Root-addition closure has rank eight and exactly 72 roots.
+
+Representation-theoretically the same result is immediate.  The 20 and its
+adjoint are the two off-diagonal blocks in the 5+4 decomposition of sl9:
+
+  sl9 = (sl5,1) + (1,sl4) + u1
+        + (bar5,4) + (5,bar4),
+
+with dimensions
+
+  24 + 15 + 1 + 20 + 20 = 80.
+
+Hence the generated root system is the regular A8 system: rank 8, 72 roots.
+The 20D corner by itself is only one off-diagonal module; its current products
+necessarily leave that corner and generate the Levi plus its adjoint block.
+The finite F_n/POVM bridge therefore cannot be called a full E8 current
+subtheory.
+
+The exact root-addition check further shows that adjoining one already
+existing Lambda0(C5) tensor 4 root (first five signs all minus, with the
+appropriate odd-parity family signs) and then taking root-addition closure
+produces all 240 E8 roots.  This is a useful compression of the missing
+algebraic content: the gap from A8 to E8 can be seeded by one existing current
+channel.  It does not supply its physical selection, its quartic readout, or
+its source map.  Nor does the regular SU(9)/A8 subalgebra become a physical
+gauge group merely because it is generated by these currents.
+
+This also separates the two contracts cleanly.  The .06 unique E6 cubic is a
+full-current Ward statement on broader marked sectors.  The .19 source20
+bridge supplies one A8 off-diagonal corner.  Equality of their two-point
+normalisations does not identify their complete current products.
+
+5. GAUGE CHARGE AND NEUTRALITY
+
+The source20 is not gauge neutral.  Under the marked SU(5) dictionary,
+Lambda4(5)=bar5 has hypercharges
+
+  (+1/3,+1/3,+1/3,-1/2,-1/2),
+
+and therefore no Y=0 vector.  The external family C4 is SM-gaugeblind, so it
+cannot cancel this charge.  For Xi_n the average hypercharge vanishes but
+
+  ||Y Xi_n||^2 = 1/6,
+
+exactly as in the .19 review.  Zero mean charge is not gauge invariance.
+
+The affine vacuum Omega is globally E8 invariant, while a one-current state
+J_-n(w_l)Omega transforms in the adjoint and is charged.  Its vacuum
+two-point pairing is globally invariant after the indices are contracted;
+the individual excitation and individual labelled POVM effect are not
+gauge-invariant observables.  Xi_n is invariant under the compensated native
+finite action used by .19, but no full E8 action on the external Sym3 factor
+has been supplied that would make Xi_n an E8 singlet.
+
+Thus the proposed S_lm is a covariant charged-current response matrix within
+the assumed boundary theory.  Calling a single label l a physical observable
+requires gauge dressing or a neutral contraction, and neither is derived.
+
+6. LOCALITY AND STATE-VERSUS-RESPONSE FIREWALL
+
+Under the E8_1 premise, J(a,z) is a local chiral bosonic boundary current and
+the affine commutators, energy bounds and Sugawara covariance are standard.
+But J_n(a) is a global circle Fourier mode, not a localized collar operator.
+The quartic isometry F and its mode lift do not prove:
+
+- a raw microscopic collar operator converging to J(a,z);
+- a local support-preserving implementation of the 60 effects;
+- all-word convergence, domains, braiding or net generation;
+- preparation of Xi_n or a physical rule selecting n;
+- a relation between this response and the old chain Hamiltonian;
+- a 3+1D field, scattering theory or bulk propagation.
+
+The exact current response should therefore be stated as a conditional target
+inside the already assumed affine vacuum representation.  It cannot be read
+backwards as evidence that the raw seam realizes that representation.
+
+7. VIRASORO/STRESS-TENSOR CHANNEL
+
+For E8 at level one,
+
+  c = k dim(E8)/(k+h_dual) = 248/31 = 8.
+
+The vacuum descendants obey, for n>=2,
+
+  ||L_-n Omega||^2
+    = <Omega|[L_n,L_-n]|Omega>
+    = c(n^3-n)/12
+    = 2(n^3-n)/3.
+
+They are global-E8 neutral because [J_0(a),L_-n]=0.  L_-1 Omega=0, as
+required by translation invariance.  L_-2 Omega is the chiral boundary
+stress-tensor state; higher n are Virasoro descendants.  These facts provide
+an exact neutral boundary channel alongside the charged current modes.
+
+They do not produce a bulk graviton.  Chiral conformal weight/boundary spin,
+a conserved 1+1D stress tensor and a 3+1D massless spin-two particle with two
+helicities and universal coupling are different claims.  No bulk pole,
+opposite helicity, 3+1D locality or universal coupling follows here.
+
+8. THE OPEN SEAM GATES REMAIN UNCHANGED
+
+SEAM.EQUIV.01 remains [O] at its decisive arrow: canonical reconstruction
+from the raw reflection-positive seam state to the same holomorphic E8_1 net.
+The present construction begins after that net and vacuum have been assumed.
+
+The named N1–N4 residuals also remain explicit:
+
+- N1: the mu4/GSO extension SO(16)_1 -> E8_1 as a net statement; the 128
+  spinor currents are not fermion bilinears.
+- N2: the twist/spin-field sector and its operator realization.
+- N3: the one-sided chiral edge net.
+- N4: the OS/holomorphy selector choosing the holomorphic extension.
+
+The A8 closure calculation and the single extra Lambda0 tensor 4 root sharpen
+which current sectors are missing from the 20D bridge, but do not prove N1–N4.
+The proposed i_n family imports their desired affine consequences; it does not
+derive them from the raw source.
+
+FINAL CLAIM BOUNDARY
+
+Exact, conditional on the original E8_1 vacuum:
+
+- i_n is an isometry adjoint248 -> one-current grade n for every n>=1;
+- F_n=i_nF is an isometric copy of the .19 source20 bridge;
+- the conjugated source frame yields the same 1/60 conditional v_l ensemble;
+- the mode-defined two-point spectral measure has weight
+  (n/L)<v_m,v_l> at omega=2 pi v n/L;
+- normalized zero-mode three-current matrix elements reproduce the .06
+  internal cubic tensor wherever the required full current sectors are kept;
+- source20 plus adjoints closes to A8; one additional existing root seed can
+  generate the full E8 root system;
+- the Sugawara vacuum has c=8 and the stated neutral Virasoro norms.
+
+Still open / not implied:
+
+- raw seam -> affine current operator identification;
+- physical selection of source20, the additional E8-generating channel, n,
+  Xi_n, the detector, velocity or length calibration;
+- SM/E8 gauge-neutral realization of the quartic instrument;
+- local microscopic support, all-mode/net generation and N1–N4;
+- transport of the old Hamiltonian or multi-time instrument;
+- 3+1D dynamics, chirality, gravity or any T1–T8 closure.
+
+NEXT SMALLEST ACCEPTANCE TEST
+
+Stay inside the existing source.  Add no new bank or Hamiltonian.  Extend the
+source-side map from the 20D bar5 tensor 4 corner to the one already present
+Lambda0 tensor 4 root seed and its adjoint, then test the first nontrivial
+commutator that leaves A8 and generates the complementary 84 plus bar84 of
+the E8 = 80 + 84 + bar84 decomposition.  The extension must preserve the
+compact adjoint, mode energy bounds and local support, and must produce a
+neutral/dressed instrument.  If no raw collar operator realizes that single
+extra channel with N1–N4-compatible locality, the full-E8 physical reading of
+the current-mode bridge stops there.
+
+SOURCES CHECKED
+
+- compiler-overlap-phase-lock-20260919/quartic_1plus3_check.txt
+- compiler-overlap-phase-lock-20260919/quartic_1plus3_review.txt
+- compiler-overlap-phase-lock-20260919/quartic_1plus3_check.json and checker
+- compiler-vacuum-current-cubic-20260918/PROOF.txt
+- compiler-vacuum-current-cubic-20260918/certificate.json and checker
+- compiler-vacuum-current-cubic-20260918/contract_index.json
+- tfpt_research_contracts.tex, SEAM.SIMPLECURRENT.GENERATOR.01 / N1–N4
+- theory graph dossier SEAM.EQUIV.01: theorem still open; typed finite routes
+  and formal conditional consequences are not the missing raw-source arrow.

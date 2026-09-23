@@ -21,6 +21,7 @@ import json
 import os
 import re
 import sys
+from datetime import datetime, timezone
 
 CATALOG_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.abspath(os.path.join(CATALOG_DIR, "..", ".."))
@@ -29,6 +30,7 @@ TAXONOMY_PATH = os.path.join(CATALOG_DIR, "taxonomy.json")
 SCHEMA_PATH = os.path.join(CATALOG_DIR, "schema.json")
 FRAGMENTS_DIR = os.path.join(CATALOG_DIR, "fragments")
 AUTO_DRAFTS_PATH = os.path.join(FRAGMENTS_DIR, "auto_drafts.json")
+EXTERNAL_SOURCES_PATH = os.path.join(CATALOG_DIR, "external_sources.json")
 OUT_CATALOG = os.path.join(CATALOG_DIR, "rh_semantic_catalog.json")
 OUT_INDEX = os.path.join(CATALOG_DIR, "INDEX.md")
 OUT_STATS = os.path.join(CATALOG_DIR, "stats.json")
@@ -409,9 +411,21 @@ def _load_fragment_file(fpath, warnings):
 
 def load_auto_drafts():
     warnings = []
-    if not os.path.isfile(AUTO_DRAFTS_PATH):
-        return [], warnings
-    return _load_fragment_file(AUTO_DRAFTS_PATH, warnings), warnings
+    records = _load_fragment_file(AUTO_DRAFTS_PATH, warnings) if os.path.isfile(AUTO_DRAFTS_PATH) else []
+    if os.path.isfile(EXTERNAL_SOURCES_PATH):
+        for record in load_json(EXTERNAL_SOURCES_PATH)["records"]:
+            records.append({**record, "draft": True, "needs_review": True})
+    # Broad Lean discovery is a navigation layer, never an automatic proof
+    # promotion. Existing drafts and later curated overlays retain precedence.
+    lean_registry = os.path.join(CATALOG_DIR, "proof_search", "generated", "registry.json")
+    if os.path.isfile(lean_registry):
+        known = {r["path"] for r in records}
+        records.extend(r for r in load_json(lean_registry)["catalog_records"] if r["path"] not in known)
+    paper_registry = os.path.join(CATALOG_DIR, "research_engine", "generated", "papers.json")
+    if os.path.isfile(paper_registry):
+        known = {r["path"] for r in records}
+        records.extend(r for r in load_json(paper_registry)["records"] if r["path"] not in known)
+    return records, warnings
 
 
 def load_fragments():
@@ -609,6 +623,8 @@ def render_index(records, stats, families, outcomes):
 
 def _input_mtimes():
     paths = [INVENTORY_PATH]
+    if os.path.isfile(EXTERNAL_SOURCES_PATH):
+        paths.append(EXTERNAL_SOURCES_PATH)
     if os.path.isdir(FRAGMENTS_DIR):
         paths.extend(sorted(glob.glob(os.path.join(FRAGMENTS_DIR, "part_*.json"))))
         if os.path.isfile(AUTO_DRAFTS_PATH):
@@ -634,6 +650,10 @@ def check_existing(inventory, taxonomy, enums):
         sys.stderr.write("CATALOG CHECK FAIL: catalog has no records array\n")
         return 1
     by_path = {r.get("path"): r for r in records if isinstance(r, dict)}
+    if os.path.isfile(EXTERNAL_SOURCES_PATH):
+        for record in load_json(EXTERNAL_SOURCES_PATH)["records"]:
+            if record["path"] not in by_path:
+                errors.append("external discovery path lacks a record: " + record["path"])
     for entry in inventory.get("entries") or []:
         path = (entry or {}).get("path")
         if not path:
@@ -743,6 +763,7 @@ def main(argv=None):
 
     catalog = {
         "claim_boundary": CLAIM_BOUNDARY,
+        "generated": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
         "built_from_inventory_generated": inventory.get("generated"),
         "generated_from": {
             "inventory": "rh/INVENTORY.json",

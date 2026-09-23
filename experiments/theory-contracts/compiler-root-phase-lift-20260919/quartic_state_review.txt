@@ -1,0 +1,306 @@
+UR.COMPILER.ROOT_PHASE_LIFT.18 — enger Review des positiven Quartikzustands
+2026-09-19, read-only; keine Repository-Aenderung
+
+VERDICT
+
+Der normierte Quartikzustand
+
+  Xi = (1/sqrt(5)) sum_(A=0)^4 |A>_W5 tensor V_A^(2+2)/sqrt(n_A),
+  n_A=(4,12,12,12,24),
+
+ist ein echter endlicher Intertwiner der bereits vorhandenen .12/.16-Traeger.
+Die Phase der tatsaechlichen .12-E8-Sektorwirkung ist jedoch entscheidend:
+Unter dem .12-Quelloperator S und dem externen nativen Belloperator U hat Xi
+Eigenwert i, nicht 1. Erst die sektorspezifische Kompensation
+
+  C=-i S=R tensor U
+
+macht den gemeinsamen Eventoperator zu einer Hermiteschen Involution und Xi
+zu dessen Fixvektor. C ist auf dieser Ecke eine exakte positive Reparatur; es
+ist kein neuer voller E8- oder G31-Lift und keine Korrektur des .17-Rootcurrent-
+Modells.
+
+Die Identifikation W5 -> 5_D5 ist in .12 als konkretes Darstellungswoerterbuch
+begruendet: Der Quartiktransport liefert -R in SO(5) subset SU(5), und dieser
+SU5-Traeger wird in Lambda_even(C5) eingesetzt. Nicht hergeleitet ist dagegen
+die Gleichsetzung der fuenf Quartikkoordinaten mit der ausgezeichneten P2-
+Farb/Schwach-Basis C3+C2. Weder die endliche W5-Gruppenwirkung noch Xi waehlt
+eine solche 3+2-Zerlegung aus.
+
+Innerhalb der .12-U5-Zuordnung W5+W5* -> 5+bar(5) ist das numerische
+Hyperchargeurteil unabhaengig von der verbleibenden Basiswahl in jeder Kopie.
+Xi hat auf W5 die reduzierte Dichte I5/5. Fuer den P2-Generator
+
+  Y=diag(-1/3,-1/3,-1/3,1/2,1/2)
+
+folgt in jeder unitär transportierten Basis
+
+  <Y>=0,       <Y^2>=1/6.
+
+Xi ist daher nicht hypercharge-neutral im starken Sinn Y Xi=0. Auf beiden
+D5-Vektorkopien 5+bar(5) hat Y keinen Null-Eigenwert; auch eine Linearkombination
+der zwei Quartiksinguletts kann keinen Y=0-Vektor erzeugen. Dieser letzte
+Ausschluss laesst sich sogar ohne eine Ausrichtung der P2- und Quartikbasen aus
+dem Schmidtrang beweisen. Der Zustand ist somit kein Vakuum des ungebrochenen
+Standardmodell-Gaugeoperators. Eine spaetere symmetriebrechende
+Ordnungsparameterlesart waere eine neue physische Annahme.
+
+
+1. Norm und der positive endliche Intertwiner
+
+Die fuenf Rohquartiken sind paarweise orthogonal mit
+
+  <V_A,V_B>=n_A delta_AB.
+
+Ihr 2+2-Split liegt exakt in Sym2(C4) tensor Sym2(C4). Daher sind die fuenf
+Vhat_A=V_A/sqrt(n_A) orthonormal, und der Faktor 1/sqrt(5) normiert Xi.
+
+Der vorhandene exakte Checker beweist fuer q=4R und
+C24=diag(24/n_A)=diag(6,2,2,2,1) an allen fuenf Erzeugern
+
+  q C24 q^T = 16 C24.
+
+Das ist genau R D^(-1) R^T=D^(-1), also die Invarianz
+
+  (R tensor U tensor U) Xi = Xi,                           (1)
+
+wobei der erste U auf dem .16-A3-Zehner und der zweite U auf dem externen
+Bell10 wirkt. Der Charaktertest gibt pro W5-Kopie Multiplizitaet eins und damit
+zwei linear unabhaengige Singuletts Xi_+, Xi_- im D5-Vektor 5+bar(5).
+
+Ein unabhaengiger direkter Wiederaufbau aus den gepinnten 60 Reflexionen, der
+orthonormalisierten Quartikbasis und der Bell10-Basis ergab fuer die fuenf
+Erzeuger: ||Xi||=1, rho_W5=I5/5 bis 5.6e-17 und maximale Invarianzabweichung
+4.3e-16. Die tragende Aussage ist die obige exakte ganzzahlige Identitaet,
+nicht diese Gleitkommakontrolle.
+
+Der inzwischen vorhandene eigenstaendige `quartic_state_check.py` verschaerft
+dies exakt auf alle 60 Ereignisse. Er konstruiert ausserdem eine Isometrie F
+vom externen Bell10 in den 50-dimensionalen W5-tensor-A3-Quellraum, die
+Intertwineridentitaet
+
+  (R_r tensor U_r) F = F conjugate(U_r)
+
+und ein 60-ausgaengiges Quellen-POVM mit Wahrscheinlichkeit 1/60 auf Xi. Dies
+ist ein echter bedingter Readout des nativen Strahllabels. Die physische Wahl
+dieses POVM und eine Wirkung auf beliebigen Eingabezustaenden folgen daraus
+nicht.
+
+
+2. Exakte Phasenrechnung
+
+Verwende wie verlangt die .12-Pfadorientierung
+
+  h_minus = exp(-i pi/4) r.
+
+Auf dem Quartik-W5 endet der parallele Transport bei
+
+  A=-R in SO(5) subset SU(5).
+
+Auf Sym2(C4) gilt fuer U=Sym2(r)
+
+  Sym2(h_minus)=exp(-i pi/2) U=-i U.
+
+Der tatsaechliche innere .12-E8-Operator auf der Ecke
+W5 tensor Sym2(C4) ist folglich
+
+  S=A tensor Sym2(h_minus)
+   =(-R) tensor (-i U)
+   = i R tensor U.                                        (2)
+
+Mit dem externen nativen U und (1) ergibt sich
+
+  (S tensor U_ext) Xi = i Xi.                             (3)
+
+Xi ist daher fuer S tensor U_ext kein Singulett. Der Charakterwert eins im
+neutralen Dreifachtensorprodukt prueft die determinantbereinigte Gesamtdarstellung;
+er darf nicht als Eigenwert eins des unkompensierten zweifaktoriellen
+E8-Quelloperators S gelesen werden.
+
+Definiere nun nur auf dieser Darstellungsecke
+
+  C=-i S=R tensor U.                                      (4)
+
+R und U sind beide Hermitesche Involutionen. Deshalb
+
+  C*=C,  C^2=I,  I-C>=0,
+  (C tensor U_ext)Xi=Xi.                                  (5)
+
+Die Kompensation ist somit exakt und positiv. Sie ist zugleich eng begrenzt:
+
+- Der Faktor -i ist eine Sektorphase. Ein skalares Multiplizieren eines
+  E8-Automorphismus auf nur einer Darstellungsecke ist kein Automorphismus des
+  gesamten E8-VOA; insbesondere muss ein voller Automorphismus das Vakuum und
+  die Klammer auf allen Glueklassen gemeinsam erhalten.
+- .12 beweist global L(r)^2=G^(-1) und dass kein erlaubter zentraler Wechsel
+  G^k alle Reflexionen zu Involutionen macht. (4) widerspricht dem nicht; es
+  nutzt den speziellen Zentralcharakter dieser W5 tensor Sym2-Ecke.
+- Auf der Ecke ist C(g)=R(g) tensor Sym2(g) eine ehrliche Darstellung der
+  urspruenglichen endlichen Ereignisgruppe. Daraus folgt keine gemeinsame
+  Wirkung auf den anderen E8-Sektoren oder auf die 240 Rootcurrents.
+- Die umgekehrte .12-Pfadorientierung konjugiert die Phase. Dann ist der
+  Eigenwert in (3) -i und der kompensierende Skalar entsprechend +i. Die
+  Orientierung bleibt Teil der bereits in .12 offengelegten Wegwahl.
+
+
+3. Woher W5 -> P2-5 tatsaechlich kommt
+
+Es gibt zwei verschiedene Aussagen, die nicht zusammengezogen werden duerfen.
+
+(a) Begruendetes Darstellungswoerterbuch.
+
+.12 konstruiert W5=ran(Pi5) direkt aus dem vierten Moment der 60 nativen
+Gaussian-E8-Richtungen. Die eingeschraenkten Reflexionen R sind reell und
+metrikerhaltend mit det R=-1. Der geometrische Determinantenweg liefert
+A=-R in SO(5) subset SU(5). Anschliessend wird dieses fuenfdimensionale SU5-
+Modul in der standardmaessigen D5-Realisierung
+
+  Spin(10)-Halbspinor = Lambda_even(C5)
+
+verwendet. Entsprechend zerfaellt der D5-Vektor unter U5 als 5+bar(5), und W5
+beziehungsweise seine duale Kopie liefern genau diese beiden endlichen
+Traeger. Dies ist mehr als eine Dimensionsgleichheit: Die R-Matrizen, Metrik,
+Determinantenphase und alle Gruppenprodukte werden kontrolliert.
+
+(b) Nicht hergeleitete P2-Basis.
+
+Der P2-Traeger ist ein abstraktes C5 mit einer ausgezeichneten Zerlegung
+C3+C2 und dem daraus gebildeten Hyperchargegenerator Y. .12 sagt selbst, dass
+die Darstellung des Quartiktraegers durch Lambda_even(C5) ein geprueftes
+Woerterbuch und nicht allein aus Dimensionen erzwungen ist. Die Architektur
+bezeichnet die seam->carrier-Schnittstelle weiterhin als deklarierte Eingabe.
+Keine der gelesenen Quellen bildet die konkreten Quartiken
+
+  (x0^4+...), (x0^2x1^2+...), ..., x0x1x2x3
+
+kanonisch auf drei Farb- und zwei schwache Basisvektoren ab.
+
+Dies ist nicht nur fehlende Benennung. Fuer die fuenf exakten Generatoren
+q_l=4R_l hat das lineare Kommutantensystem
+
+  X q_l = q_l X  fuer alle l
+
+Rang 24 auf M5 und damit nur den eindimensionalen Kommutanten C I5. Die
+W5-Darstellung ist also irreduzibel. Es gibt keinen mit der gesamten nativen
+W5-Ereignisgruppe kommutierenden Rang-3- oder Rang-2-Projektor. Folglich kann
+die volle endliche Gruppenwirkung allein keine erhaltene 3+2-Zerlegung und
+keinen ausgezeichneten P2-Hyperchargeoperator waehlen. Eine solche Wahl muss
+aus einem zusaetzlichen Marker, einer Symmetriebrechung oder der bereits
+deklarierten P2-Schnittstelle kommen.
+
+
+4. Hyperchargepruefung: bedingte Momente, basisunabhaengiger Ausschluss
+
+Aus der Schmidtform von Xi folgt sofort
+
+  rho_W5=Tr_rest |Xi><Xi|=I5/5.                           (6)
+
+Unter der .12-U5-Zuordnung einer W5-Kopie zur fundamentalen 5 sei
+J:W5->C5 irgendeine unitaere Identifikation mit dem P2-Traeger. Dann ist
+der zuruecktransportierte Operator Y_J=J*YJ, und (6) gibt
+
+  <Y_J> = Tr(Y)/5
+        = [3(-1/3)+2(1/2)]/5 = 0,
+
+  <Y_J^2> = Tr(Y^2)/5
+          = [3(1/9)+2(1/4)]/5 = 1/6.                    (7)
+
+Damit sind beide Zahlen unabhaengig von der nicht hergeleiteten Basiswahl J
+innerhalb dieser Kopie. Ihre Anwendung setzt aber die noch nicht aus der
+Quartikquelle hergeleitete Identifikation des .12-U5 mit dem P2-SU5 voraus.
+Die Null des ersten Moments bedeutet nur ausgeglichene mittlere Ladung. Ein
+Gauge-Singulett muesste Y_J Xi=0 erfuellen; nach (7) gilt stattdessen
+
+  ||Y_J Xi||^2=1/6.
+
+Auf dem ganzen D5-Vektor lautet der Generator
+
+  Y_10 = Y auf 5  plus  (-Y) auf bar(5).
+
+Sein Spektrum ist
+
+  {-1/3 dreifach, +1/2 zweifach,
+    +1/3 dreifach, -1/2 zweifach};
+
+insbesondere ker(Y_10)=0. Daher ist weder Xi_+ noch Xi_- noch eine beliebige
+Linearkombination a Xi_+ + b Xi_- ein Y=0-Vektor. Auch wenn der Erwartungswert
+verschwindet, bleibt bei der kopienerhaltenden .12/P2-Zuordnung die Varianz 1/6.
+
+Der Ausschluss eines Y-neutralen Vektors im zweidimensionalen Singulettplatz
+
+  S_Xi=span{Xi_+,Xi_-}
+
+ist noch robuster und benoetigt keine relative P2-/W5-Basisausrichtung. Jeder
+nichtzero Vektor Xi_c=c_+Xi_+ + c_-Xi_- hat zwischen dem 10-dimensionalen
+D5-Faktor und A3 tensor Bell den Schmidtrang genau 5; seine D5-Reduktion ist in
+den W5-Kopienkoordinaten
+
+  rho_D5 = |c><c| tensor I5/5.
+
+Die vier Hypercharge-Eigenraeume des D5-Vektors haben dagegen Dimensionen
+3,2,3,2. Waere S_Xi unter dem Hermiteschen Y invariant, besaesse die
+Einschraenkung Y|S_Xi einen Eigenvektor Xi_c. Dessen D5-Schmidttraeger muesste
+dann in einem einzigen Y-Eigenraum liegen und haette Dimension hoechstens 3,
+im Widerspruch zum Schmidtrang 5. Also
+
+  Y S_Xi ist nicht Teilmenge von S_Xi.                    (8)
+
+Bei der kopienerhaltenden .12/P2-Zuordnung kann dies quantitativ geschrieben
+werden. Fuer P0, den Projektor auf S_Xi, gilt
+
+  P0 Y P0=0,
+  P0 Y^2 P0=(1/6)P0,
+  ||[Y,P0]||_HS^2=2/3.                                   (9)
+
+Fuer den reinen Projektor einer einzelnen Kopie ist der letzte Wert 1/3.
+Die Zahlen in (9) benutzen die .12/P2-U5-Zuordnung; der qualitative Satz (8)
+benutzt nur die Hypercharge-Multiplizitaeten und den Schmidtrang.
+
+Nun sei H ein Hamiltonian, dessen exakter gesamter Grundraum gerade S_Xi ist.
+Aus [Y,H]=0 wuerde folgen, dass der Spektralprojektor P0 mit Y kommutiert und
+S_Xi Y-invariant ist. Dies widerspricht (8), beziehungsweise (9). Daher kann
+kein hyperchargeerhaltender Hamiltonian genau nur diese beiden Quartiksinguletts
+als Groundspace besitzen, solange die externen A3-/Bellregister gaugeblind
+bleiben. Das ist kein Ausschluss aller gaugeerhaltenden Hamiltonians: Ein
+groesserer Grundraummultiplett, weitere geladene Sektoren oder ein explizit
+symmetriebrechender Hamiltonian koennen die Schlussvoraussetzung aendern.
+
+
+5. Praeziser Fortschritt und erste verbleibende Voraussetzung
+
+Positiv geschlossen ist ein konkreter, normierter und phasenrichtig
+kompensierbarer Zustand in der vorhandenen .16-Grad-2-Ecke. Er liefert einen
+echten gemeinsamen endlichen Ereignisoperator C tensor U_ext mit positivem
+Projektor I-C tensor U_ext sowie einen exakten bedingten nativen Strahlreadout.
+
+Die erste zusaetzliche physische Voraussetzung ist jetzt nicht mehr die
+Existenz eines Intertwiners. Es ist die Auswahl der Sektorphase (4) als
+tatsaechliche Ereignisregel zusammen mit einer nativen Praeparation von Xi und
+der physikalischen Wahl des konstruierten POVM. Soll Xi zugleich
+Standardmodell-Vakuumbedeutung tragen, kommt davor noch eine separate,
+quellenseitig begruendete 3+2-/Hypercharge-Auswahl und entweder expliziter
+SM-Symmetriebruch oder ein groesserer Y-invarianter Grundraummultiplett. Ein
+Hamiltonian mit genau S_Xi als Groundspace kann diese Rolle nicht zugleich
+hyperchargeerhaltend uebernehmen.
+
+Quellen:
+
+- work/root_phase_lift_20260919/grade2_character_review.txt,
+  grade2_character_check.py, grade2_character_certificate.json,
+  quartic_state_check.py und quartic_state_certificate.json.
+- compiler-quartic-holonomy-20260919/PROOF.txt, insbesondere Z. 19-27,
+  29-61, 95-138 und 177-210.
+- compiler-current-descendant-20260919/PROOF.txt, insbesondere Z. 75-107
+  und 123-141.
+- tfpt_1_architecture_e8.tex, insbesondere Z. 1747-1759, 1762-1778,
+  1911-1926 und 3606-3641.
+- tfpt_2_standard_model.tex, Z. 1888-1895.
+
+Status: Die Intertwiner-, Phasen-, Involutions-, Kommutanten-, Schmidt- und
+Gauge-Hamiltonian-Aussagen oben sind exakt unter den jeweils genannten
+.12/.16/P2-Darstellungsannahmen. Die Momente 0 und 1/6 sowie die HS-Norm 2/3
+sind zusaetzlich an die .12-U5/P2-SU5-Zuordnung gebunden; der Schmidtrang-
+Widerspruch ist von ihrer relativen Basis unabhaengig. Offen bleiben physische
+Phasen- und POVM-Auswahl, Praeparation, Hypercharge-Symmetriebruch
+beziehungsweise groesserer neutraler Vakuumsektor, Lokalitaet, Zeit und der
+volle E8-Rootcurrent-Anschluss.

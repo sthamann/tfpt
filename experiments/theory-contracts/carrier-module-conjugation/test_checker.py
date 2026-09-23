@@ -3,12 +3,15 @@ import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import sys
 import unittest
 from unittest.mock import patch
 
 import sympy as sp
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent))
+from record_portability import carrier_source_record
 spec = importlib.util.spec_from_file_location("carrier_tested", HERE/"checker.py")
 r = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(r)
@@ -90,7 +93,8 @@ class CarrierModule(unittest.TestCase):
         self.assertEqual(saved["checker_sha256"], hashlib.sha256((HERE/"checker.py").read_bytes()).hexdigest())
         self.assertEqual(saved["algebra"], json.loads(json.dumps(self.algebra)))
         self.assertFalse(saved["algebra"]["microscopic_K_field_lift_proved"])
-        self.assertEqual(saved["microscopic_source_check"], r.source_certificate())
+        self.assertEqual(carrier_source_record(saved["microscopic_source_check"]),
+                         carrier_source_record(r.source_certificate()))
 
 
 if __name__ == "__main__":

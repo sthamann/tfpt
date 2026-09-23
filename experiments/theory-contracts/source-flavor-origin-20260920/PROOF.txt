@@ -1,0 +1,233 @@
+UR.SOURCE.FLAVOR_ORIGIN.01
+20 September 2026 -- exact conditional origin tests; PARTIAL
+
+0. Question, provenance and first additional assumptions
+
+This continues the user's request for a common physical TFPT source, rather
+than fitting another effective model. The concrete question is whether the
+existing boundary reconstruction and actual native current cubic select the
+missing distinct Down/lepton deformation operators.
+
+The global Standard Model group is explicitly present at
+ tfpt_1_architecture_e8.tex:4500:
+ G_SM=(SU(3) x SU(2) x U(1))/Z6 = S(U(3) x U(2)).
+Its carrier hypercharge is (-1/3,-1/3,-1/3,1/2,1/2).
+The extended I_(9,1) boundary source is still a candidate, with eight right
+complex channels and an auxiliary right/left pair. Their existence and their
+physical descent to this global group are NOT derived here. Minimality in the
+specified microscopic lattice, source-number neutrality and the fixed
+oriented glue character also remain premises. No new Hamiltonian is added.
+
+The cubic input is the previously calculated original affine E8 tensor in
+compiler-vacuum-current-cubic-20260918/certificate.json. We read its actual
+root labels and coefficients. Its upstream affine/Ward calculation is not
+replayed; its bytes and original source references are retained. The new
+calculations extract the charged slots and test the attempted physical use.
+
+1. Global gauge descent replaces the extra block-permutation premise
+
+Let K=diag(1^9,-1), q(n)=sum n_i and
+ g=(2,2,2,2,2,0,0,0,3,3).
+A characteristic lattice vector has ten odd coordinates. If it is null,
+n_10^2=sum_(i<=9)n_i^2>=9. Therefore its smallest Euclidean squared norm is
+18. Orient n_10=3. At this minimum, the first nine entries are +/-1;
+q(n)=0 forces exactly three plus signs: C(9,3)=84 directions.
+
+The character i^(g.n) equals 1 precisely when n_9=-1, leaving 56. Write
+ c=#plus among the three colour entries,
+ w=#plus among the two weak entries,
+ f=#plus among the three family entries.
+Then c+w+f=3. For an auxiliary vectorlike pair of SU(3)/SU(2) singlets of
+common hypercharge y, Y10=(Y8,y,y) gives
+
+ Y10.n = w-2c/3+2y; hence y=c/3-w/2.                 (1)
+
+This does not fix y by hand. It calculates the required y of every candidate.
+
+For the oriented quotient dictionary put a=(n_1,...,n_8), k_a(p)=a.p/2,
+ T_a(p)=(p,-k_a(p),k_a(p)), F_a(p)=T_a(p)-k_a(p)n.
+The target E8 character is 2 sum_(i<=5)p_i modulo4. Since
+ g.n=4(c+w-1), the integer D8 roots always retain this character, whereas
+on the half-integral spinor roots the difference is 2(c+w-1) modulo4.
+Consequently the whole ORIENTED character is preserved iff c+w is odd.
+There are 25 such candidates. Integral changes of quotient section add
+integer multiples of n and cannot change the character.
+
+The global group now matters. The map
+ (g3,g2,z) -> (z^(-2)g3,z^3 g2)
+from SU3 x SU2 x U1 to S(U3 x U2) has kernel
+ (z^2 I3,z^(-3) I2,z), z^6=1.
+A colour/weak singlet has U1 weight X=6y. It descends to the quotient iff
+this kernel acts trivially, i.e. X in6Z, equivalently
+
+ y in Z.                                             (2)
+
+This is a group statement, not merely a Lie-algebra statement. Combining
+(1), (2), c+w odd and c+w+f=3 yields only
+
+ (c,w,f)=(3,0,0), y=1,
+ n=(1,1,1,-1,-1,-1,-1,-1,-1,3).                      (3)
+
+Complete grouped enumeration before global/orientation selection:
+ c w f   y      multiplicity   oriented
+ 0 0 3   0          1            no
+ 0 1 2  -1/2        6            yes
+ 0 2 1  -1          3            no
+ 1 0 2   1/3        9            yes
+ 1 1 1  -1/6       18            no
+ 1 2 0  -2/3        3            yes
+ 2 0 1   2/3        9            no
+ 2 1 0   1/6        6            yes
+ 3 0 0   1          1            yes
+
+Thus the stronger chain is 84 ->56 ->25 ->1. Alternatively, global descent
+before orientation leaves5, then1. The five include one y=0 family direction
+and three y=-1 weak/family directions. Neither global charge alone nor glue
+alone selects (3). If only the Lie algebra acts on the auxiliary fields,
+for example the six oriented y=1/6 candidates are permitted and uniqueness
+fails. No independent block-permutation assumption was used.
+
+This is a less-assumptive conditional selector than the preceding contract.
+It does not prove that eight channels plus the pair exist, that the physical
+glue is the native J clock, that the energy matrix is selected, or that a
+source dynamics enters this phase. A y=1 field is NOT a trivial singlet of
+the entire G_SM; it is a nontrivial one-dimensional representation trivial
+only under SU3 and SU2.
+
+2. The native cubic has the actual charged slots, but also an essential sign
+
+The original source computes
+ C_(A,i)(B,j)(C,k)=d_ABC epsilon_ijk,
+where d is symmetric on27 and epsilon is the alternating family tensor.
+This is a bosonic three-current correlation with its original mode ordering.
+Its45 squarefree monomials split into40 of type16*16*10 and5 of type10*10*1.
+
+In the source's doubled-root convention, an internal16 weight has first5
+entries +/-1; occupation numbers are (r_i+1)/2. The actual weights identify
+ Q6, u^c3, d^c3, L2, e^c1 and nu^c1 with the usual hypercharges.
+The neutral down-type doublet component is index12, root
+ (0,0,0,0,-2,-2,0,0). The actual coefficient table contains
+  e^c(index2) L(index24) H_d: -1,
+  Q(index3) d^c(index23) H_d: +1,
+  Q(index5) d^c(index21) H_d: -1,
+  d^c(index8) Q(index18) H_d: -1.
+Thus the internal tensor has nonzero, equally normalized down and lepton
+slots. This statement uses the real source coefficients, not a guessed
+16-dimensional identification. An analogous extraction gives the up and
+neutrino slots at index14. The internal matrices are symmetric.
+
+The full source tensor, including epsilon, must still be kept. With one
+neutral Higgs-family background h=(h1,h2,h3), a directed slot sees
+
+ A(h)_ij=epsilon_ijk h_k
+       =[[0,h3,-h2],[-h3,0,h1],[h2,-h1,0]].           (4)
+
+For arbitrary COMPLEX h,
+ A h=0, A^T=-A,
+ A^dagger A=||h||^2 I-h h^dagger.                   (5)
+For h!=0, its singular values are (||h||,||h||,0). Its determinant is zero.
+Invertible left/right changes of basis or normalization preserve this rank.
+The direct single-Higgs-family reading therefore cannot give three nonzero
+unequal masses in either sector. The original positive mass readouts have
+K rows (4,2,0),(4,3,2),(5,3,2) and determinant powers6,9,10, with no such
+identically zero mass. The rank test precedes any proposed determinant phase.
+
+There is a more basic statistics issue for a direct common-field 4D reading.
+The local Lorentz scalar psi_I^alpha psi_J^beta epsilon_(alpha beta) is
+symmetric under I<->J: Grassmann exchange and epsilon exchange each give a
+minus sign. But d_ABH epsilon_ijk h_k is antisymmetric under the COMBINED
+(A,i)<->(B,j) exchange. Its contraction with that Weyl bilinear vanishes.
+This is not a vanishing theorem for the original three-current correlation,
+for E6 Yukawas generally, or for nonlocal/dressed interactions. It refutes
+only replacing the bosonic current tensor directly by a local zero-derivative
+same-field Weyl Yukawa coefficient. An independent symmetric family tensor
+would change the hypothesis and would need to be source-derived.
+
+The known E6 invariant and physical Yukawa constructions must not be confused.
+For established tensor methods see T. Deppisch, E6Tensors,
+https://arxiv.org/abs/1605.05920. The calculation here tests the existing
+source epsilon factor and actual charge slots.
+
+3. What the selected auxiliary charge permits
+
+At the level of internal representations, let the conjugate massive
+components have E:(1,1)_(-1), E^c:(1,1)_(+1). With the original one Higgs
+H:(1,2)_(+1/2), the following internal structures are gauge-invariant:
+
+ L H^dagger E^c,       E e^c,       M E E^c.           (6)
+
+The doublet indices in the first term admit the singlet contraction. A
+colourless Higgs cannot turn a colour triplet/antitriplet and an auxiliary
+singlet into a colour singlet. Consequently there is no analogous direct
+coloured-light/singlet-heavy bilinear mixing within this declared class.
+
+This is a concrete possible source of unequal lepton/down response; it is
+not the derivation of a nonzero coefficient in (6). The boundary pair remains
+a1+1D candidate. Reading (6) as a4D Yukawa interaction additionally requires
+an actual spacetime/statistics-preserving map, absent in the present source.
+Colour-preserving multivertex loop effects and additional coloured fields
+are not excluded by this simple bilinear statement.
+
+4. The precise complementary matrix elements needed to lift the missing mass
+
+Even in the more generous directed-slot reading (4), a genuine coupling to
+one massive complementary channel would enter a full chiral MASS block as
+
+ M_full = [[A(h), b], [c^T, M]], M!=0,
+ M_eff  = A(h)-b c^T/M.                              (7)
+
+Here b,c,M are unspecified SOURCE MATRIX ELEMENTS, not fitted parameters or
+a new dynamical model. Equation(7) is a necessary diagnostic for this matching
+class; the preceding statistics obstruction has not been repaired by writing it.
+
+Since adj A=h h^T, the determinant identities are exact:
+
+ det M_full = -(h^T b)(c^T h),
+ det M_eff  = -(h^T b)(c^T h)/M.                     (8)
+
+Thus rank is restored iff both overlaps are nonzero. A large complement or
+an arbitrary complex heavy mass alone is insufficient. The source must
+couple into AND out of the missing family direction. In the full determinant
+M times det M_eff, the inverse-M phase of the reduced determinant cancels.
+A phase inserted only into M while A,b,c remain fixed does not change the
+full chiral MASS determinant. Relative phase information, if present in
+this matching class, resides in the actual mixing overlaps as well.
+
+Limit of (8): this is a finite chiral mass-block identity. It is NOT a
+calculation of the full Euclidean/source functional, a gauge-field Ward
+identity, an anomaly coefficient, or a proof that every other CP observable
+is independent of M. Those quantities also need kinetic operators, measure,
+backgrounds, fields and regulator. In particular an extra hidden factor may
+still matter elsewhere even when it cancels in this particular determinant.
+
+This is the direct operational form of the user's complement proposal for
+the actual rank obstruction: derive b and c from the common source, prove
+the two overlaps nonzero, and retain M in the full phase accounting.
+
+5. Current status of source data and target
+
+The inspected actual96D finite spectral-triple implementation
+verification/v252_full_finite_triple.py accepts typed complex Yukawa matrices
+as inputs. It supplies chirality and representation slots, but no source
+family F_d(theta),F_e(theta). The positive v46 exponents do not define such
+a family. Existing weak-CP/current phases must be transported by explicit
+operator maps; they are not automatically chiral determinant windings.
+
+The existing phase-origin contract already records that turning a positive
+seed into a complex dynamical field is an extra assumption. This is the same
+physical premise made openly in established Froggatt-Nielsen/axiflavon
+constructions, e.g. Calibbi et al., The Axiflavon,
+https://arxiv.org/abs/1612.08040, setup eqs4--8. Their existence is not a
+TFPT origin proof, and their charge/VEV inputs are not silently imported here.
+
+New progress here: the global carrier group removes a previously separate
+boundary selection assumption; the actual native cubic is tested against
+mass rank and statistics; and the necessary complementary mixing overlaps
+are explicit, with full/reduced determinant cancellation retained.
+
+Still required for the requested complete solution: a source-derived graded
+field map and nonzero mixing operators, compatible with the real Hamiltonian,
+state, clocks and local observables; full complex functional control for those
+operators; and the common3+1D continuum, chiral matter and gravity. Neither
+boundary selection nor the algebraic mass-block diagnostic proves these.
+No T1--T8 gate is promoted and no complete TOE is claimed.

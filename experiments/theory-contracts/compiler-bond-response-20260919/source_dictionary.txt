@@ -1,0 +1,335 @@
+BOND-SOURCE DICTIONARY AUDIT — CORRECTED
+19 September 2026
+
+Question
+========
+
+Do the proposed two-source packets
+
+  L : source Fourier charges (2,1),
+  R : source Fourier charges (1,2),
+
+cross the finite pair-sector / affine-current bridge because both have total
+source charge 3, without introducing a Hamiltonian?
+
+Verdict
+=======
+
+The finite/global transition is valid.  The affine-current transition is not
+yet defined by the pinned dictionary.
+
+The same total source character makes |L><R| neutral under the one diagonal Z4
+which is actually used in the finite model.  The finite phase/overlap operator
+therefore supplies a legitimate L/R bilinear.  No independent local
+Z4_1 x Z4_2 gauge redundancy is assumed or required; the mu term is allowed to
+transfer the individual source charges.
+
+The current algebra contains the relevant representation pieces, but the
+existing proofs do not pair the finite bar4-C packet with the adjoint W4 current
+using the actual r-versus-h phases, do not give two localized source embeddings,
+and do not transport the finite packet eigenspace into the affine grade-three
+sector.  A limited grade-one Cartan observable target does exist, as stated in
+section 4, but the requested grade-three affine matrix element is presently
+UNDEFINED, not proved zero and not proved nonzero.
+
+1. What the total character proves
+===================================
+
+Use the pinned Fourier convention
+
+  T_J |ell;s> = i^(-s) |ell;s>.
+
+For the diagonal generator T_J this gives
+
+  chi_L(T_J)=i^(-(2+1))=i,
+  chi_R(T_J)=i^(-(1+2))=i.
+
+Hence on V=span{L,R} the diagonal source action is scalar.  In particular,
+
+  U(z) |L><R| U(z)^* = |L><R|.
+
+This is enough for the finite model: the off-diagonal response and the mu term
+preserve total source charge while moving one unit between the two source
+positions.
+
+If one merely records the two source charge labels separately, their abstract
+difference is (1,-1).  With the physical i^(-s) convention, |L><R| would carry
+the opposite character difference (-1,+1) under two separately applied source
+shifts.  Neither form is an obstruction because the model does not postulate
+independent local gauge transformations at the two source positions.  An
+opposite-character link would be required only after adding that extra gauge
+redundancy; it is not a premise here.
+
+The numbers (2,1) and (1,2) are source-only Fourier labels.  They are not by
+themselves the total Standard-Model gauge charge of a physical current state and
+do not establish that L or R is a physical vacuum.
+
+2. Correct representation dictionary
+=====================================
+
+All labels in this section are SU(5) x A3 components inside the D5-spinor/E8
+current construction.  They are not irreducible D5 labels.
+
+The phase-fixed .21 dictionary proves at affine grade one
+
+  W4  = 1_SU5 tensor 4_A3,
+  W20 = bar5_SU5 tensor 4_A3.
+
+Compact adjoints supply
+
+  W4^dagger  = 1_SU5 tensor bar4_A3,
+  W20^dagger = 5_SU5 tensor bar4_A3.
+
+The exact level-one product map T is at affine grade two:
+
+  T : bar5_SU5 tensor Sym2(4)_A3 -> H_E8,grade2.
+
+Its Gram matrix is I_50 after the level-one null quotient.  The ten-dimensional
+F10 image inside this 50-dimensional space intertwines the finite
+barSym2(4) source action with the current-product response.
+
+Thus a representation-level tensor of the F10 channel with W4^dagger has total
+affine grade 2+1=3 and SU(5) x A3 type
+
+  bar5 tensor (10 tensor bar4)
+    = (bar5 tensor 4) plus (bar5 tensor 36).
+
+This says which components are allowed.  It does not construct the two-source
+packet or its matrix element.
+
+3. Does an actual bar4-C packet already exist?
+==============================================
+
+There are two distinct facts.
+
+PROVED:
+
+* W4^dagger supplies an actual affine grade-one 1_SU5 tensor bar4_A3 current
+  module with phases fixed by the Chevalley dictionary.
+* The finite .23 model contains the canonical bar4-source/C4-register Bell
+  contraction under the pure reflection action.
+
+NOT PROVED:
+
+* No pinned map identifies that finite bar4 source with W4^dagger while keeping
+  the C register's actual finite action and the affine current phases.
+
+The phase issue is concrete.  In the .18 convention
+
+  h_minus = exp(-i*pi/4) r.
+
+On W4^dagger=bar4, the current module transforms with
+
+  bar(h_minus) = exp(+i*pi/4) bar(r).
+
+The native Gaussian reflection matrices are complex.  The Bell contraction is
+invariant under bar(r) tensor r, so pairing this current module with a C register
+transforming by the raw r leaves exactly the scalar phase exp(+i*pi/4).
+Pairing it with a register transforming by h_minus instead would give the
+canonical SU(4) singlet, but that is not the same per-edge finite r action.
+
+For the F10 packet, .18/.23 prove the separate mismatch
+
+  S_l F10 = i F10 bar(U_l),
+
+when the external Sym2 register keeps the raw U_l=Sym2(r_l).  Therefore equal
+total Fourier charge does not determine the individual r-versus-h phases.  At
+the representation-candidate level the two residual phases are common to L and
+R, so their bilinear is still neutral, but the packets themselves have not been
+identified with unmodified affine-current singlets.
+
+4. Existing current observable and the still-missing grade-three element
+==========================================================================
+
+There is one exact, limited positive current connection.  The full-root ket has
+the normalized affine-grade-one target
+
+  |alpha>_cur = E_(alpha,-1) Omega.
+
+With the compact-adjoint normalization, the affine relation gives the root-ket
+inner product.  Normalized Cartan zero modes Q_a act diagonally,
+
+  Q_a |alpha>_cur = x_(alpha,a) |alpha>_cur.
+
+Therefore, on two selected current copies, the existing Cartan operators define
+
+  W_cur = -sum_(a,b) J_(a,b) Q_a^(1) Q_b^(2),
+  V_cur = I - sum_a Q_a^(1) Q_a^(2).
+
+Their matrix elements on the root-current basis are exactly the old coordinate
+kernels W=-x_1^T J x_2 and V=I-x_1^T x_2.  Cocycle lift phases cancel because
+these observables are diagonal in the root labels.  This supplies a named
+current-algebra target for the coordinate bilinear; it is not a new Hamiltonian.
+
+Its scope is narrow.  Choosing two current copies is still an external tensor-
+copy choice.  The result does not transport the pure-permutation dynamics, the
+finite L/R packet eigenstates, or the F10/bar4 packet construction.  It also does
+not derive a raw local-net operator or source quantization.
+
+The requested grade-three packet matrix element still cannot be evaluated from
+the pinned data, for a precise definitional reason.
+
+The current algebra proves a one-current W4^dagger module and the two-current
+T/F10 image.  The proposed L and R additionally require:
+
+1. a phase-faithful map from the finite bar4-C packet to
+   W4^dagger tensor C4;
+2. two distinguished source placements or local embeddings iota_1 and iota_2;
+3. a demonstrated action of an existing current operator on those packet lifts,
+   exchanging the grade-one and grade-two placements together with the AB/C
+   registers.  W_cur/V_cur do not establish this transport.
+
+None of these three objects is constructed in .18, .21, .22 or .23.  Without
+them, symbols L_aff and R_aff would be invented rather than inherited, and a
+quantity <L_aff|O_current|R_aff> has no pinned definition.
+
+There is also no shortcut through the completed same-ray direction.  For every
+fixed native label l and arbitrary scalar coefficients a,b, the .21 current-
+bracket checker proves exactly
+
+  J_-1(a w20_l + b w4_l)^3 Omega = 0
+
+in the irreducible E8_1 quotient: every cubic term contains a null W20 or W4
+same-ray square.  This is not a statement about arbitrary W20/W4 vectors.  It
+does not refute a two-source construction involving W4^dagger, but it does rule
+out using the already checked same-ray cube as the missing grade-three
+transition.
+
+One can form a mathematical tensor product of two affine-current Hilbert
+spaces and write a rank-one swap between packet placements.  That swap would be
+a newly chosen operator, not an existing current-algebra matrix element.  It is
+therefore outside this audit and would not establish source origin.
+
+5. What the finite bilinear establishes
+=======================================
+
+The companion exact finite calculation uses the old coordinate phase operator
+
+  W_(alpha,beta) = Im <psi_alpha|psi_beta>
+                  = -x_alpha^T J x_beta
+
+and gives on the two-state packet space
+
+  P W P = -sigma_y/8,
+  V = I-sigma_x/8,
+  O_D = sigma_z.
+
+Thus the existing coordinate observables detect the L/R bond transition without
+adding a Hamiltonian.  The off-diagonal amplitude has magnitude 1/8 and squared
+weight 1/64.
+
+This is a genuine finite/global advance.  The coefficient is the generic
+1/(2d) value for d=4 obtained from the mu4 orbit and second moment, so it is not
+by itself distinctive evidence for the E8 current realization.
+
+The moving-frame identity
+
+  C^T (C J C^-1) C = J
+
+shows that the same coordinate phase is retained when the J frame is transported
+with C.  It is a covariance identity, not a new dynamics or a construction of
+the missing current/source packet.
+
+6. Vacuum statement
+====================
+
+The source Fourier labels alone neither prove nor disprove physical gauge
+neutrality.  The presently obvious representation-level affine candidate does,
+however, retain the bar5_SU5 factor from T/F10 because W4^dagger is an SU(5)
+singlet.  Under the existing P2 embedding, bar5 has hypercharges +1/3
+(threefold) and -1/2 (twofold), with no zero weight.
+
+Therefore that obvious candidate is a charged current sector, not a neutral
+vacuum.  This is a conditional statement about the candidate typing, not a
+proof about L_aff/R_aff, because the required packet maps have not been built.
+The finite J=mu=0 phrase "vacuum span" must remain a finite-model term unless a
+complete physical current lift and its charge balance are supplied.
+
+7. First missing proof and smallest decisive calculation
+========================================================
+
+The first missing proof is the real phase-source intertwiner for the bar4-C
+packet:
+
+  B_C : (bar4 source tensor 4_C Bell packet)_finite
+        -> (W4^dagger current tensor 4_C)_affine,
+
+with the actual Chevalley phases and an explicit statement of whether the C
+register transforms by r or h_minus.  This is a representation/current
+dictionary question, not a new gauge condition and not a Hamiltonian choice.
+
+Only after B_C is fixed can the two source placements be defined.  The smallest
+decisive current calculation is then one existing affine correlator, built only
+from the pinned current modes and compact adjoints, which tests the proposed
+placement exchange after the level-one quotient.  The operator must be named
+from the current algebra before evaluation; a rank-one swap introduced solely
+to produce -1/8 would not count.
+
+Possible outcomes are clean:
+
+* nonzero with the required phase: the finite bilinear gains an affine-current
+  realization, still without deriving raw-seam source quantization or dynamics;
+* zero by the quotient/OPE: the proposed current lift is excluded;
+* no canonical current operator/placement map: the bridge remains undefined,
+  which is the present result.
+
+8. Assumed versus proved
+========================
+
+PROVED NOW
+
+* L and R have the same diagonal source character; their finite bilinear is
+  globally neutral.
+* PWP=-sigma_y/8, V=I-sigma_x/8, O_D=sigma_z in the finite packet space.
+* W4/W20 and their compact adjoints are phase-fixed SU(5) x A3 current modules.
+* T is an exact grade-two bar5 tensor Sym2(4) product after the E8_1 quotient.
+* F10 identifies the finite barSym2 source/readout with a ten-dimensional
+  response image, with residual affine phase i under raw U_l.
+* For each fixed native ray l, the completed same-ray cube
+  J_-1(a w20_l+b w4_l)^3 Omega vanishes in E8_1 for scalar a,b.
+* The grade-one root-current/Cartan-zero-mode target realizes the old W and V
+  coordinate kernels on two selected current copies.
+
+ASSUMED OR MISSING
+
+* source Fourier charge equals total physical gauge charge;
+* the finite bar4-C Bell packet is the W4^dagger current packet under the same
+  per-edge action;
+* two physical/current source placements exist as pinned local embeddings;
+* the grade-one Cartan observable transports the finite L/R packet eigenstates
+  or supplies their grade-three packet transition;
+* raw-seam source quantization, state preparation, time law or Hamiltonian.
+
+9. Primary pinned evidence
+==========================
+
+1. compiler-root-phase-lift-20260919/PROOF.txt, lines 167-199 and 227-258:
+   F10 phase and the boundary of the finite compensation.
+2. compiler-current-product-20260919/PROOF.txt, lines 55-119 and 241-269:
+   correctly typed SU(5) x A3 modules, adjoints, grade-two product and source
+   boundary.
+3. compiler-current-product-20260919/current_bracket_dictionary.py,
+   lines 614-700 and 709-751: exact current modules, PBW witnesses, grade-two T
+   and vanishing completed cube in the same-ray w20_l/w4_l direction.
+4. compiler-pair-sector-audit-20260919/PROOF.txt, lines 29-45, 91-103 and
+   153-178: finite bar4/barSym2 sectors and uncompensated affine phase.
+5. compiler-clock-current-closure-20260919/source_origin_audit.txt, lines 9-25
+   and 99-153: target current actions versus a raw local charged generator.
+6. verification/v498_celestial_wp5b_singular_vector.py, lines 487-518 and
+   894-905: compact invariant form and exact grade-one affine root-current
+   pairing; Cartan zero-mode weight action is the standard current-algebra
+   consequence used for W_cur/V_cur.
+7. The four matching contract_index.json files: every verdict remains PARTIAL;
+   no T1-T8 gate is closed.
+
+The current theory graph keeps TRANS.SEAMCAR.E8CURRENT.01 at status "missing".
+That generated entry is a routing aid; the primary evidence is listed above.
+
+Evidence-file count: eleven source/contract files.  The canonical TFPT context, project
+rules and generated theory primer were used only as mandatory routing context.
+
+The accompanying checker pins the six load-bearing source hashes and uses
+active require guards.  Its normal and python -OO runs both exit 0 and produce
+byte-identical JSON.  It checks only the exact character, candidate grade/phase
+and conditional SU(5)-typing statements; it does not claim to compute the
+missing current matrix element.

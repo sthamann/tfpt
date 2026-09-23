@@ -38,6 +38,10 @@ jobs:
         run: pip install -r requirements.txt
       - name: Research release manifest excludes local-only artifacts
         run: python -B verification/test_make_manifest.py
+      - name: Portable record comparisons preserve mathematical and source guards
+        run: |
+          python -B experiments/theory-contracts/test_record_portability.py
+          python -B -OO experiments/theory-contracts/test_record_portability.py
       - name: Immutable Round10–27 saved-record integrity
         shell: bash
         run: |
@@ -52,6 +56,13 @@ jobs:
         run: python -B -OO experiments/theory-contracts/test_round27_runner.py
       - name: Post-Round27 bounded test inventory in both modes (large replays separate)
         run: python -B experiments/theory-contracts/run_consolidation_20260909.py --output /tmp/tfpt-consolidation-rerun.json
+      - name: Preserve complete research transcripts on success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-transcripts-python-${{ matrix.python }}
+          path: /tmp/tfpt-consolidation-rerun.json
+          if-no-files-found: warn
 
       # These jobs check bounded mathematical artifacts and their provenance.
       # PASS is not physical T1–T8 closure or an independent proof certificate.

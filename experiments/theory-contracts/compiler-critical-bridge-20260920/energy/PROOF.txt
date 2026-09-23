@@ -1,0 +1,244 @@
+FULL-MODEL ENERGY COMPARISON ON THE .28 PACKET CRITICAL LINE
+================================================================
+
+Verdict
+=======
+
+PASS_EXACT_BARE_PACKET_VACUUM_EXCLUDED.
+
+For every even N>=4, kappa>0, J>=0, at the packet critical coupling
+
+  mu=(kappa+9J)/2,
+
+the minimum of the complete bare packet compression is strictly above the
+energy of an explicit state in the unchanged full Hilbert space.  The two
+states have the same total quarter-phase K=N mod4 and the same joint native
+G31 singlet symmetry.  Therefore symmetry cannot protect the bare packet
+compression as the full vacuum.
+
+The packet-orthogonal part of the same full-space state also has Rayleigh
+energy below the certified packet lower bound.  This directly refutes the
+missing premise that the full orthogonal complement is uniformly high on
+the critical line.
+
+This is not a no-go theorem for a dressed packet phase or a dressed Ising
+critical point.  It says that the undressed .28 packet subspace is not the
+full vacuum subspace of the already defined Hamiltonian.
+
+
+1. Frozen .28 packet lower bound
+=================================
+
+The exact .28 compression is
+
+  G^(-1/2) K G^(-1/2) = H_I + ring correction,
+
+where
+
+  H_I = E_ref + delta n1 -(mu/8) sum_v X_v,
+  E_ref = 3N(kappa+J)/8 + mu N,
+  delta = (kappa+9J)/8.
+
+At mu=(kappa+9J)/2, n1>=0 and sum X_v<=N give
+
+  H_I >= N(13 kappa+69 J)/16.                         (1.1)
+
+The exact .28 norm correction is
+
+  R_N = N s/(1-s) (kappa+3J/2+21mu/8),
+  s=4^(1-N).
+
+For N>=4, s/(1-s)<=1/63.  On the critical line the bracket is
+
+  (37 kappa+213 J)/16.
+
+Consequently every normalized bare packet vector obeys
+
+  E_packet >= 3 kappa N/4
+              + N(13 kappa/504+689 J/168).             (1.2)
+
+The checker verifies each coefficient exactly.  Equation (1.2) uses the
+full Gram-orthonormalized packet compression, including the exceptional
+finite-ring links; it is not the uncorrected Ising matrix alone.
+
+
+2. Aligned native cat in the full Hilbert space
+================================================
+
+Let the sum run over the 240 oriented native roots and put
+
+  |A_N> = 240^(-1/2) sum_alpha
+          |alpha>^(tensor N) |psi_alpha>^(tensor N).    (2.1)
+
+The source strings for different alpha are orthogonal, so A_N is normalized.
+Every primitive native reflection jointly permutes the source label and its
+matter root.  The uniform sum is therefore fixed by every generator and is
+a joint G31 singlet.
+
+Under the global quarter-phase relabelling alpha->i alpha, renaming the sum
+gives (-i)^N from the N matter roots.  Thus A_N has source Fourier charge
+K=N mod4, exactly like every packet assignment, whose local packet charges
+sum to N.
+
+For each oriented alpha, exactly15 of the60 native primitive reflections
+fix alpha.  A local L term therefore has diagonal expectation
+
+  1-15/60 = 3/4.
+
+A local L changes at most one source label.  For N>=2, all off-root terms in
+the aligned cat expectation vanish on an untouched orthogonal source ket.
+The conditional event term H_E annihilates A_N because each of its two
+matter roots has reflection eigenvalue -1.  The source-distance term V
+annihilates it because adjacent source labels are identical.  Hence, in the
+unchanged full Hamiltonian,
+
+  <A_N|H|A_N> = 3 kappa N/4.                            (2.2)
+
+Combining (1.2) and (2.2),
+
+  E_packet - <A_N|H|A_N>
+    >= N(13 kappa/504+689 J/168) > 0.                  (2.3)
+
+This already excludes the bare packet compression as the full vacuum for
+all even N>=4.
+
+
+3. Exact projection onto the packet span
+==========================================
+
+Let P be the orthogonal projector onto the complete 2^N-dimensional packet
+span and Q=I-P.  For every assignment sigma,
+
+  <Psi_sigma|A_N> = a,       a=240^((1-N)/2).
+
+The packet Gram matrix differs from the identity only on the two uniform
+assignments.  With s=4^(1-N),
+
+  u=G^(-1) 1
+
+has entries1 except on those two assignments, where the entry is
+
+  v=1/(1+s).
+
+Writing t=s/(1+s), D=2^N, the exact packet projection weight is
+
+  w=<A_N|P|A_N>
+    =a^2[D-2t].                                          (3.1)
+
+It is strictly below1.  Thus QA_N is a nonzero full-space state orthogonal
+to every bare packet assignment.  Since the packet span consists of joint
+G31 singlets of total charge N, both PA_N and QA_N retain the same symmetry
+and charge as A_N.
+
+
+4. Exact Q-trial energy
+========================
+
+Let n1(sigma) count equal neighboring assignment spins.  The native moments
+
+  mean z=1/2,       mean z^2=2/5
+
+give the exact cross matrix element
+
+  <Psi_sigma|H|A_N>
+    = kappa a [3N/10+n1(sigma)/5].                      (4.1)
+
+Indeed, if the packet bra assigns n=0,1,2 neighboring matter registers to a
+source, the primitive transfer contains the remaining 2-n aligned-cat matter
+overlaps and is therefore z^(2-n).  The corresponding local L contributions
+are
+
+  n=0: 1-mean z^2=3/5,
+  n=1: 1-mean z  =1/2,
+  n=2: 1-mean 1  =0.
+
+On a ring the zero- and two-register source counts are both (N-n1)/2, so their
+opposite placement leaves the sum 3N/10+n1/5 and hence (4.1) unchanged.  H_E
+and V annihilate A_N and therefore do not enter this cross term.
+
+Define
+
+  L0=D-2t,
+  L1=N(D/2-2t).
+
+Then
+
+  <PA_N|H|A_N>
+    = a^2 kappa (3N L0/10+L1/5).                        (4.2)
+
+The exact .28 packet matrix gives
+
+  u^T K u =
+    E_ref(D-2+2v^2)
+    +delta N(D/2-2+2v^2)
+    -(mu/8)(ND-4Nt)
+    +s[(kappa N/2+mu N)2v^2-2mu Nv].                   (4.3)
+
+The checker independently enumerates the hypercube sums in (4.3) at
+N=4,6,8,10, including the exceptional C links.  Therefore
+
+  E_Q = <A_N|QHQ|A_N>/(1-w)
+      = [3kappa N/4
+         -2a^2 kappa(3N L0/10+L1/5)
+         +a^2 u^T K u]/(1-w).                          (4.4)
+
+All quantities in (4.4) are rational at fixed N on the critical line.  The
+machine result records the exact kappa and J coefficients and verifies that
+both lie below the corresponding coefficients in (1.2) for N=4,6,8,10.
+
+
+5. Direct all-N bound for the Q trial
+======================================
+
+The finite checks are not extrapolated.  Equation (4.4) has a simple uniform
+bound.  Put
+
+  x=a^2 D=240/120^N.
+
+For every N>=4,
+
+  x<=1/864000,       s/D<=1/1024,       w<=x.
+
+In (4.4), the cross term is nonnegative and appears with a minus sign.  The
+hypercube hopping and exceptional-C pieces of (4.3) are also nonpositive.
+Dropping them gives an upper bound.  The remaining E_ref, delta, and positive
+ring terms yield
+
+  E_Q - 3kappa N/4
+    <= N/(863999) [865 kappa/512+5577 J/1024].           (5.1)
+
+The exact rational inequalities
+
+  865/(512*863999) < 13/504,
+  5577/(1024*863999) < 689/168
+
+then combine with (1.2) to prove
+
+  E_Q < E_packet lower bound                            (5.2)
+
+for every even N>=4.  Thus the complement is not merely coupled strongly to
+the packet span: it contains a same-symmetry normalized trial state below
+the entire certified packet energy range at the proposed critical coupling.
+
+
+6. Evidence boundary
+======================
+
+checker.py pins the native source implementation, the root-source audit, and
+the exact .28 packet proof/checker/results.  It verifies:
+
+* all240 root reflection counts and the exact z,z^2 moments;
+* the aligned-cat energy and symmetry/charge character;
+* every coefficient in the packet lower bound;
+* the Gram projection weight and exact Q-energy formula;
+* direct N=4,6,8,10 hypercube contractions;
+* the coefficientwise all-N inequality (5.1)-(5.2).
+
+No diagonalization, residual estimate, or numerical extrapolation enters the
+verdict.  Normal Python and python -OO produce byte-identical stdout and JSON.
+
+The conclusion applies to the bare .28 packet subspace at the specified
+critical coupling.  A dressed low-energy family may mix the packet states
+with this complement and could still realize a phase transition.  Nothing
+here proves or refutes such a dressed construction, a thermodynamic critical
+theory, fermion statistics, chirality, a continuum limit, or a TOE.

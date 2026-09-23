@@ -1,0 +1,123 @@
+{
+  "answer": "NO_IMPLICATION",
+  "blindness": {
+    "boson_lower_response": "[[b_A,V6],b_B^dagger]=0",
+    "fermion_lower_response": "{[f_i,V6],f_j^dagger}=0",
+    "first_nonzero_sector": 4,
+    "low_charge_restriction": "V6 restricted to every Q<=3 sector is zero",
+    "reason": "X^2 needs four fermions and X^dagger^2 needs two bosons; after the mixed insertions Gamma[V6] still contains a pair annihilator",
+    "vacuum_mixed_response_expectation": "<0|Gamma_Aij[V6]|0> = 0",
+    "vacuum_mixed_response_ket": "Gamma_Aij[V6]|0> = 0"
+  },
+  "conclusion": "For every sufficiently small nonzero real eta, H_eta preserves the native symmetry, Q, RR K, both lower responses, and all Q<=3 dynamics, but violates the mixed-response identity by an operator-valued Q=4 witness.",
+  "deformation": {
+    "H_eta": "H_W + eta V6",
+    "RR_K": "[K,X]=0, hence [K,V6]=0",
+    "V6": "X^2 + X^dagger^2",
+    "X": "sum_A b_A^dagger P_A",
+    "charge_shifts_X": {
+      "Delta_Nb": 1,
+      "Delta_Nf": -2,
+      "Delta_Q": 0
+    },
+    "charge_shifts_X_squared": {
+      "Delta_Nb": 2,
+      "Delta_Nf": -4,
+      "Delta_Q": 0
+    },
+    "eta": "real, nonzero, and |eta| < Delta/(4C)",
+    "native_symmetry": "inherits Spin(10)xSU(4) scalarity from the native W intertwiner; the pinned continuous gl5 x gl4 certificate has zero mismatches"
+  },
+  "exact_checks": 2193,
+  "filled_state_discrepancy": {
+    "Gamma_factor": 12,
+    "X_squared_F_norm_squared": 439680,
+    "definition": "E_Gamma(H;F) = sum_{A,i<j} ||(Gamma_Aij[H]-g W_Aij I)F||^2",
+    "deformed_score": "E_Gamma(H_eta;F) = 5276160 eta^2",
+    "method": "sparse traversal of actual W words plus independent coefficient differentiation; no Q=64 or Q=4 sector matrix",
+    "mixed_boson_four_hole_terms": 106560,
+    "positivity": "strictly positive for every real eta != 0",
+    "same_boson_four_hole_terms": 1680,
+    "sparse_first_X_terms": 480,
+    "sparse_raw_X_squared_words": 216480,
+    "state": "F = f_0^dagger ... f_63^dagger |0> with boson vacuum",
+    "unit_eta_Gamma_score": 5276160
+  },
+  "firewall": {
+    "claim": "diagnostic counterexample to an implication among finite native checks only",
+    "full_TFPT_self_consistency_not_shown": true,
+    "higher_native_moments_not_matched": true,
+    "not_a_new_model": true,
+    "same_interacting_ground_state_not_shown": true
+  },
+  "lower_bound": {
+    "C": 3840,
+    "C_derivation": "sum_A ||P_A||^2 <= 60 * 8^2",
+    "Hamiltonian_lower_bound": "<H_eta> >= (Delta/2-2C|eta|)<N_b> - 30Delta - 2C|g|^2/Delta - 60C|eta|",
+    "V6_form_bound": "|<psi|V6|psi>| <= C(2 <N_b> + 60) for ||psi||=1",
+    "X_adjoint_bound": "||X^dagger psi||^2 <= C <psi|N_b|psi>",
+    "X_bound": "||X psi||^2 <= C <psi|(N_b+60)|psi>",
+    "linear_term_absorption": "|g <X+X^dagger>| <= (Delta/2)(<N_b>+60) + 2 C |g|^2/Delta",
+    "self_adjoint_realisation": "orthogonal direct sum of finite-dimensional Hermitian fixed-Q blocks; the algebraic finite-Q sum is a core",
+    "sufficient_condition": "Delta>0 and |eta|<Delta/(4C)=Delta/15360"
+  },
+  "native_W": {
+    "coefficient_set": [
+      -1,
+      0,
+      1
+    ],
+    "nonzero": 480,
+    "row_gram": "8 I60",
+    "shape": [
+      60,
+      2016
+    ],
+    "support_words_per_row": 8,
+    "within_row_support_pairs_pairwise_disjoint": true
+  },
+  "pins": {
+    "checker_sha256": "e0c71795bb57540b339fa8c23508187b5223e53bfe3eb901b9b170d9b9466e9c",
+    "continuous_symmetry_certificate": "continuous_clock_certificate.json",
+    "continuous_symmetry_certificate_sha256": "3875e566ae7cd9c8946b1b5303cff2a68a3c3f7cbcc3602f6a4fd4f35ed2719c",
+    "native_tensor": "native_tensor.npz",
+    "native_tensor_sha256": "3f00a0892157a691e4ef26920c3702772c7bf76a250fad98ff04a079bb64b763",
+    "source_intertwining_entries_compared": 4959360,
+    "source_intertwining_mismatches": 0
+  },
+  "scope": "pinned finite native Fock algebra; tests whether native symmetry, the two lower response tensors, and Q<=3 dynamics imply the mixed response",
+  "status": "PASS",
+  "verdict": "EXACT_CONDITIONAL_DIAGNOSTIC_COUNTEREXAMPLE",
+  "witness": {
+    "X_squared_nonzero_witnesses": 1680,
+    "canonical": {
+      "A_zero_based": 0,
+      "Gamma_matrix_element": -4,
+      "H_eta_extra_Gamma_matrix_element": "-4 eta",
+      "P_A_squared_coefficient": -2,
+      "four_fermion_modes_zero_based": [
+        4,
+        5,
+        56,
+        57
+      ],
+      "insertion_W": -1,
+      "insertion_pair_zero_based": [
+        4,
+        57
+      ],
+      "ket_W": 1,
+      "ket_pair_zero_based": [
+        5,
+        56
+      ],
+      "normalized_two_boson_V6_amplitude": "-2 sqrt(2)"
+    },
+    "conditions": "(i,j) and (k,l) are distinct supported pairs in row A",
+    "definition": "Gamma_Aij[V] = {[[b_A,V],f_i^dagger],f_j^dagger}",
+    "formula": "<b_A|Gamma_Aij[V6]|kl> = 4 W_Aij W_Akl",
+    "interpretation": "the external ket has Q=2, but the response word first reaches a Q=4 intermediate state; this is why Q<=3 Hamiltonian restrictions do not see it",
+    "mismatches": 0,
+    "witnesses_checked": 1680
+  }
+}

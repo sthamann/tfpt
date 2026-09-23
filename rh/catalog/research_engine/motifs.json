@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "claim_boundary": "Finite proposal grammar, not novel theorems or exhaustive geometry. New explicit agent submissions are allowed outside this grammar.",
+  "methods": [
+    {
+      "id": "symbolic-elimination",
+      "description": "Seek an exact identity preserving signed cross terms; derive and check all premises before estimating.",
+      "scope": "symbolic identity sought, no numerical-to-global inference",
+      "cost": 1
+    },
+    {
+      "id": "counterexample-guided",
+      "description": "Try rational/synthetic adversaries before expensive arithmetic instances; distinguish abstract from source-admissible counterexamples.",
+      "scope": "finite adversarial controls, not a universal no-go unless a proof is supplied",
+      "cost": 1
+    },
+    {
+      "id": "certified-approximation",
+      "description": "Design an enclosure with explicit domains, interval error and a proved uniform tail; never fit the target constant on the same sample.",
+      "scope": "finite enclosure plus a separate global remainder obligation",
+      "cost": 2
+    }
+  ],
+  "motifs": [
+    {
+      "id": "relative-lorentz",
+      "retrieval_query": "rank3 arithmetic",
+      "domain": "geometry",
+      "target": "minimizer_arithmetic",
+      "object": "For B=[[a,b],[b,c]] and arithmetic S=[[s11,s12],[s12,s22]], map the exact joint range to (x,y,z)=(a-s11,c-s22,b-s12); seek x>=0,y>=0,xy>=z^2 without splitting correlated errors.",
+      "obligations": [
+        "Derive the actual joint arithmetic range, including poles",
+        "Prove cone inclusion independently of target positivity",
+        "Control the whole test domain beyond one 2x2 compression"
+      ],
+      "sources": [
+        "parity_toeplitz_classification.tex#thm:rank3",
+        "parity_toeplitz_classification.tex#prob:R1"
+      ],
+      "difference": "Preserve the signed joint position relative to B, unlike three separate norm majorants; do not use the refuted rank-two indefiniteness sentence.",
+      "next_test": "Derive a source-admissible joint enclosure and compare it with independent interval bounds on a fixed original window.",
+      "stop_condition": "Stop if the enclosure is defined using the positivity it should establish, or only tests the desired answer.",
+      "cost": 2,
+      "methods": [
+        "symbolic-elimination",
+        "counterexample-guided",
+        "certified-approximation"
+      ],
+      "scope": "Original signed Weil normalization; complete source bridge remains unproved.",
+      "asserted_claims": [],
+      "arithmetic_dependence": "required_but_unproved"
+    },
+    {
+      "id": "inverse-corner",
+      "retrieval_query": "Harnack Toeplitz",
+      "domain": "analysis",
+      "target": "minimizer_arithmetic",
+      "object": "For an actual Toeplitz inverse coarse solution u_l, derive sign and summed Harnack control for corner increments; bound shat_l=s_l-Bx_l^T u_l with no assumed fine positivity.",
+      "obligations": [
+        "Prove increment sign on the actual admissible class",
+        "Prove a summed ratio bound at all needed levels",
+        "Close new Schur complements and base cases independently"
+      ],
+      "sources": [
+        "multilevel_toeplitz_lowerbound.tex#L:secondroute",
+        "multilevel_toeplitz_lowerbound.tex#thm:rung"
+      ],
+      "difference": "Restrict to actual inverse increments; do not revive the failed solution-free norm bound or whole-core dilation estimate.",
+      "next_test": "Write the discrete inverse recurrence and identify its first term whose sign is not yet sourced.",
+      "stop_condition": "Stop if a maximum principle is assumed for a matrix not proved monotone.",
+      "cost": 2,
+      "methods": [
+        "symbolic-elimination",
+        "counterexample-guided",
+        "certified-approximation"
+      ],
+      "scope": "Original signed Weil normalization; complete source bridge remains unproved.",
+      "asserted_claims": [],
+      "arithmetic_dependence": "required_but_unproved"
+    },
+    {
+      "id": "signed-lefschetz",
+      "retrieval_query": "Lefschetz arithmetic",
+      "domain": "topology",
+      "target": "gabor_positive",
+      "object": "Construct a graded chain complex C with arithmetic correspondences and a scaling action; seek Str(exp(-tD^2)U_a) whose full regularized trace equals the signed prime/Gamma/pole functional.",
+      "obligations": [
+        "Specify the actual chain complex and domains without zero data",
+        "Derive primitive arithmetic orbits",
+        "Prove the archimedean regularization and exact full trace",
+        "Identify an independent positive pairing on the relevant quotient"
+      ],
+      "sources": [
+        "tfpt_prime_front.tex",
+        "note_hilbert_polya_truncations.tex"
+      ],
+      "difference": "Seek an explicit chain-level cancellation mechanism, not a numerical equality of Euler characteristics or a fixed finite E8 carrier.",
+      "next_test": "Specify a minimal chain complex and test whether its correspondence trace includes the correct archimedean and prime-power factors.",
+      "stop_condition": "Stop if the trace identity is inserted as an axiom or topology carries no arithmetic scaling.",
+      "cost": 5,
+      "methods": [
+        "symbolic-elimination",
+        "counterexample-guided",
+        "certified-approximation"
+      ],
+      "scope": "Original signed Weil normalization; complete source bridge remains unproved.",
+      "asserted_claims": [],
+      "arithmetic_dependence": "required_but_unproved"
+    },
+    {
+      "id": "conditional-limit",
+      "retrieval_query": "Watatani conditional",
+      "domain": "operator-theory",
+      "target": "new_infinite_compactness",
+      "object": "Construct inclusions A_n->A_(n+1) and conditional expectations E_n with E_n E_(n+1)=E_n, compatible arithmetic actions and uniform integrability for an unbounded limiting signed readout.",
+      "obligations": [
+        "Actual growing operator domains",
+        "Compatible state and arithmetic action at every level",
+        "Tightness or compactness with growing dimension",
+        "Zero-independent signed Weil identification"
+      ],
+      "sources": [
+        "note_hilbert_polya_truncations.tex",
+        "experiments/lean4-carrier-rigidity/TfptCarrier/WatataniIndexFour.lean"
+      ],
+      "difference": "Keep growing-dimensional compatibility explicit instead of applying a fixed-Fintype compactness lemma or finite KMS identity globally.",
+      "next_test": "Audit interlevel compatibility on two exact levels before proposing any limit.",
+      "stop_condition": "Stop if embeddings, states or norm flow must be assigned separately at each level.",
+      "cost": 4,
+      "methods": [
+        "symbolic-elimination",
+        "counterexample-guided",
+        "certified-approximation"
+      ],
+      "scope": "Original signed Weil normalization; complete source bridge remains unproved.",
+      "asserted_claims": [],
+      "arithmetic_dependence": "required_but_unproved"
+    },
+    {
+      "id": "relative-entropy-hessian",
+      "retrieval_query": "entropy Weil",
+      "domain": "information-theory",
+      "target": "gabor_positive",
+      "object": "Seek an arithmetic family of probability states rho_f whose relative-entropy Hessian at rho_0 equals the original signed Weil functional, with both prime and archimedean data in the state construction.",
+      "obligations": [
+        "Source-defined normalized states independent of target positivity",
+        "Exact Hessian identity including signed terms",
+        "Domain and infinite-tail control",
+        "Full rational Gabor parameter coverage"
+      ],
+      "sources": [
+        "rh/catalog/analysis/event_log_function.md",
+        "rh/catalog/analysis/compiler_necessity.md"
+      ],
+      "difference": "Entropy convexity alone is world-blind; the unproved mathematical task is the exact source-side Hessian identity, not the positivity of entropy.",
+      "next_test": "Differentiate a fully specified finite model and display every unmatched signed term.",
+      "stop_condition": "Stop if target positivity is required to define the probability state.",
+      "cost": 4,
+      "methods": [
+        "symbolic-elimination",
+        "counterexample-guided",
+        "certified-approximation"
+      ],
+      "scope": "Original signed Weil normalization; complete source bridge remains unproved.",
+      "asserted_claims": [],
+      "arithmetic_dependence": "required_but_unproved"
+    },
+    {
+      "id": "minimizer-flow",
+      "retrieval_query": "minimizer relative",
+      "domain": "dynamics",
+      "target": "positive_bottom",
+      "object": "For true minimizers of the original expanding-window form, derive lambda'(L)>=-a(L)lambda(L), with a locally integrable through any hypothetical first zero, retaining prime-entry jumps.",
+      "obligations": [
+        "Independent positive starting window",
+        "Regularity of actual spectral bottom",
+        "Actual minimizer equations and arithmetic correlations",
+        "Integrability through zero and prime-entry jumps",
+        "Complete test-class coverage"
+      ],
+      "sources": [
+        "rh/catalog/analysis/research_followups_20260909.md",
+        "/Users/stefanhamann/Documents/Codex/2026-09-04/scha-2/work/relative_window_flow_20260907/relative_flow_proof.md"
+      ],
+      "difference": "Use actual minimizers, not the refuted estimate over every high-frequency form-core vector; no division by an unknown positive spectral gap.",
+      "next_test": "Derive the signed derivative and identify whether a minimizer equation cancels the known high-frequency obstruction.",
+      "stop_condition": "Stop if a(L) contains 1/lambda(L) or a nonintegrable singularity at the supposed first zero.",
+      "cost": 4,
+      "methods": [
+        "symbolic-elimination",
+        "counterexample-guided",
+        "certified-approximation"
+      ],
+      "scope": "Original signed Weil normalization; complete source bridge remains unproved.",
+      "asserted_claims": [],
+      "arithmetic_dependence": "required_but_unproved"
+    },
+    {
+      "id": "gabor-source-tail",
+      "retrieval_query": "Gabor remainder",
+      "domain": "analytic-number-theory",
+      "target": "gabor_positive",
+      "object": "Decompose the exact rational Gabor prime-side form into an arithmetic block and a signed remainder, with one source-defined bound valid over all rational width and frequency regimes.",
+      "obligations": [
+        "Exact block identity including Gamma and poles",
+        "Uniform infinite arithmetic remainder",
+        "Small-width and large-frequency boundary regimes",
+        "No sampling-to-uniform inference"
+      ],
+      "sources": [
+        "rh/lean/RH/GaborCountableCriterion.lean",
+        "rh/catalog/proof_search/knowledge.json"
+      ],
+      "difference": "Add a genuinely proved arithmetic remainder instead of reusing heat normalization as an RH-equivalent restatement.",
+      "next_test": "Identify and isolate the remainder term not controlled by current ARCH interpolation.",
+      "stop_condition": "Stop if the bound is fitted from the target form or uses critical-line zero data.",
+      "cost": 3,
+      "methods": [
+        "symbolic-elimination",
+        "counterexample-guided",
+        "certified-approximation"
+      ],
+      "scope": "Original signed Weil normalization; complete source bridge remains unproved.",
+      "asserted_claims": [],
+      "arithmetic_dependence": "required_but_unproved"
+    },
+    {
+      "id": "multiplicative-information",
+      "retrieval_query": "compiler multiplicative",
+      "domain": "algebra-and-computation",
+      "target": "gabor_block_identity",
+      "object": "Construct a canonical arithmetic event algebra from composition labels, then derive a signed transfer identity by factorization of its incidence or Mobius operators rather than prescribing log-prime energies.",
+      "obligations": [
+        "Canonical multiplicative state labels",
+        "Functorial composition and multiplicities",
+        "Independent archimedean component",
+        "Exact signed transfer identity"
+      ],
+      "sources": [
+        "rh/catalog/analysis/compiler_necessity.md",
+        "rh/catalog/analysis/event_log_function.md"
+      ],
+      "difference": "Composition may explain primitive primes but does not itself prove RH; the new target is an explicit signed arithmetic identity, not another partition function.",
+      "next_test": "Give exact composition and incidence maps and calculate the first nontrivial signed transfer terms.",
+      "stop_condition": "Stop if the primitive events or required prime weights are inserted instead of derived.",
+      "cost": 3,
+      "methods": [
+        "symbolic-elimination",
+        "counterexample-guided",
+        "certified-approximation"
+      ],
+      "scope": "Original signed Weil normalization; complete source bridge remains unproved.",
+      "asserted_claims": [],
+      "arithmetic_dependence": "required_but_unproved"
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+Unabhaengiger Herkunftsreview des Grad-2-Produktanschlusses
+19. September 2026
+
+VERDICT
+
+EXACT_CONDITIONAL_GRADE2_PRODUCT_BRIDGE.
+
+Unter der bereits in .16 vorausgesetzten kompakt-adjungierten E8_1-
+Vakuumdarstellung ist der tatsaechliche Zustand
+
+  J_-1(w20_l) J_-1(w4_l) Omega
+
+der normierte Vektor q_l tensor psi_l^2 in genau einer
+bar(5) tensor Sym^2(4)-Kopie der dort benannten Grad-2-Ecke. Der neue
+Produktchecker projiziert diesen Vektor mit dem exakten Faktor 1/sqrt(2) auf
+den alten .18-Quartik-/Bellslot. Dies ist nun ein PBW-/Chevalley-Woerterbuch,
+nicht nur eine passende Dimension.
+
+
+1. EXAKTER AFFINER PRODUKT-INTERTWINER
+
+In den durch echte E8-Chevalleytransporte phasenfixierten Basen seien
+
+  C_a in 1 tensor 4,
+  X_ia in bar(5) tensor 4,
+
+mit C_0=X_00=+E als Referenz. Der relevante Intertwiner ist
+
+  T(i,aa) = J_-1(X_ia) J_-1(C_a) Omega,
+
+  T(i,ab) = [J_-1(X_ia) J_-1(C_b)
+             +J_-1(X_ib) J_-1(C_a)] Omega / sqrt(2),  a<b.
+
+Die bereits tatsaechlich berechnete Klammer lautet
+
+  [C_a,X_ib] = Y_i,a^b,
+  [C_b,X_ia] = -Y_i,a^b.
+
+Damit verschwindet im symmetrischen Produkt exakt die Lambda^2(4)-Klammer.
+Die SU5-/A3-Nullmoden wirken wegen
+
+  [J_0(A),J_-1(B)] = J_-1([A,B])
+
+als Ableitungen. Zusammen mit den geprueften Matrixeinheiten ist T daher ein
+equivarianter Operatorintertwiner
+
+  bar(5) tensor Sym^2(4) -> (E8_1)_Grad2.
+
+Der neue unabhaengige Checker grade2_product_gram_check.py extrahiert die
+originalen E8-Wurzeln und die originale kompakte Chevalleyklasse direkt. Er
+wertet alle 2500 Eintraege der Level-1-Shapovalovmatrix einschliesslich des
+verbundenen Lie-Terms aus. Exakt gilt
+
+  <T(i,ab),T(j,cd)> = delta_ij delta_(ab),(cd),
+
+also
+
+  Gram(T)=I_50,  Rang=50,  Nullitaet=0.
+
+Der Checker sieht Nullrelationen wirklich: Fuer einen positiven-inner-product-
+Kontrollterm erhaelt er die Vierpunktzerlegung (0,1,0,-1), waehrend eine
+aktive gemischte Koordinate (2,1,0,1) liefert. Das Resultat beruht daher nicht
+auf einer faelschlich freien oder gaussschen PBW-Basis. Die bereits bekannten
+Nullquadrate der einzelnen w20- und w4-Richtungen loeschen diesen gemischten
+symmetrischen 50-Raum nicht.
+
+Aus der exakten Stromfaktorisierung
+
+  w20_l = sum_ia (q_l)_i (psi_l)_a X_ia,
+  w4_l  = sum_b  (psi_l)_b C_b
+
+folgt durch Gruppieren der Offdiagonalen
+
+  J_-1(w20_l)J_-1(w4_l)Omega
+    = T(q_l tensor B2^* psi_l^tensor2).
+
+Beide Faktoren haben Norm eins. Wegen Gram(T)=I_50 hat der Produktzustand
+Norm eins; es fehlt weder ein Quotientenfaktor noch ein weiterer sqrt(2)-
+Faktor.
+
+
+2. .16-IDENTIFIKATION UND MULTIPLIZITAET
+
+.16 konstruiert im A3_1-Modul L(Lambda2) am relevanten Nachfahrengrad
+
+  (15 tensor 6)/64 = 6 + 10 + bar(10).
+
+Die horizontale 10=Sym^2(4) tritt dort genau einmal auf. Mit dem D5-
+Vektorgrundraum liegt
+
+  10_D5 tensor 10_A3
+
+bei Gesamtgewicht zwei. Unter SU5 gilt 10_D5=5+bar(5). Daher tritt
+bar(5) tensor 10_A3 in genau dieser diagonalen Glueklasse und mit dem
+D5-Grund-/A3-Nachfahrenursprung einmal auf. Der nichtverschwindende
+isometrische T trifft notwendig diese eine Kopie. Eine zweite Kopie ist in
+der benannten .16-Ecke nicht vorhanden.
+
+Diese Aussage ist sektorscharf. Nur dieselbe SU5xSU4-Dimension irgendwo im
+gesamten E8-Grad-2-Raum zu suchen, ohne Glueklasse, D5/A3-Grad und Ladung, waere
+erneut kein physikalisches Woerterbuch.
+
+Eine wichtige Chiralitaetsgrenze bleibt: Der positive source24-Zweig liefert
+bar(5) tensor 10. Seine Hermitesch-Konjugierten liefern 5 tensor bar(10),
+nicht automatisch die andere 5 tensor 10-Haelfte der vollen .16-Ecke. Das
+.18-Charakterzertifikat stimmt damit ueberein: pro W5-Kopie ist die
+10-Kanal-Multiplizitaet eins, die getestete bar(10)-Alternative dagegen null.
+
+
+3. IDENTIFIKATION MIT DEM ORIGINALEN .18-SLOT UND PHASEN
+
+Der neue current_product_readout_check.py benutzt fuer dieselben normierten
+Quartiken
+
+  F10_A = sqrt(2/n_A) B2^* Q_A B2,
+  n_A=(4,12,12,12,24).
+
+Dies ist die .18-Isometrie in der symmetrischen Monombasis. Der Checker baut
+aus den originalen symmetrischen Pauli-Matrizen ausserdem die exakte unitaere
+Basisumrechnung U und prueft
+
+  F_Bell conjugate(U) = (I5 tensor U) F10.
+
+Damit ist die Bellbasis einschliesslich ihrer relativen Phasen mit der
+Original-.18-Konvention verbunden.
+
+Setze
+
+  v_l=B2^* psi_l^tensor2,
+  r_l=q_l tensor v_l.
+
+Fuer alle 60 Labels gilt exakt
+
+  F10^* r_l = conjugate(v_l)/sqrt(2),
+  ||F10^* r_l||^2 = 1/2.
+
+Der ganze PBW-Produktzustand ist also der Einheitsvektor r_l im
+50-dimensionalen W5 tensor 10_A3-Raum. Er liegt im Allgemeinen nicht bereits
+im zehn-dimensionalen Bild von F10. Seine orthogonale Projektion ist
+
+  P_F r_l = F10 conjugate(v_l)/sqrt(2),
+
+und nach Normierung genau der alte .18-Quell-/Bellreadoutvektor. Eine Gleichheit
+des unprojizierten Produktes mit dem .18-Schmidtbild waere um den verbleibenden
+orthogonalen Anteil zu stark.
+
+Zusaetzlich gilt fuer das Produktframe
+
+  G = (3/4) I_50 + (9/4) P_F,
+  P_F = (4G-3I_50)/9,
+
+mit Spektrum 3^10 und (3/4)^40. Der alte Slot ist damit exakt aus dem
+Produktframe rekonstruierbar.
+
+Alle relativen Stromphasen stammen aus den wirklichen Chevalleykokykeln: Die
+p_ia- und q_a-Vorzeichen werden vor F20 durch SU5-/A3-Wurzeltransport fixiert;
+F10 verwendet dieselbe geordnete Quartikbasis. Uebrig bleibt nur die
+unvermeidliche gemeinsame U(1)-Phase eines eindeutigen irreduziblen
+Intertwiners. Die Referenzkonvention C_0=X_00=+E und die positiven Q_A setzt
+sie hier auf +1. Projektor und Readout sind davon unabhaengig.
+
+
+4. GENAUE GRENZE
+
+Damit ist innerhalb der angenommenen affinen Theorie die Kette
+
+  24 aktuelle Stroeme
+    -> normierter Grad-2-Produktzustand
+    -> .18-Quartikprojektion
+    -> altes Bellreadout
+
+konstruktiv geschlossen. Der Schritt ist substanziell: Er verbindet das
+tatsaechliche Stromprodukt mit dem bereits vorhandenen Readout und beseitigt
+die moegliche Grad-2-Nullraum-/Multiplizitaetsluecke.
+
+Nicht daraus hergeleitet sind weiterhin (i) die 24 geladenen E8_1-Stroeme aus
+dem rohen Seam-CAR-Vakuum und (ii) die physische Wahl beziehungsweise
+Implementierung der Produktprojektion. Diese beiden Herkunfts-/Operations-
+schritte liegen vor beziehungsweise nach dem hier exakt geschlossenen
+affinen Anschluss.
+
+
+ARTEFAKTE UND REPLAY
+
+  grade2_product_gram_check.py
+    Unabhaengiger exakter 50x50-Level-1-PBW-/Nullquotiententest.
+
+  grade2_product_gram_check.json
+    Verdict EXACT_ISOMETRIC_GRADE2_PRODUCT_INTERTWINER,
+    Rang 50, Nullitaet 0, keine nichtdiagonalen Gram-Eintraege.
+
+Normales Python und python -OO liefern byteidentische Text- und JSON-Ausgaben.
+JSON-SHA256:
+
+  ce6cf1eafc027df2446af1f41f9315cbeafd69de702fc1a4021203123932857b
+

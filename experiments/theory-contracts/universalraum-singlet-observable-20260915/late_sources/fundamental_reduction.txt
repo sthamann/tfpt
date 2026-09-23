@@ -1,0 +1,100 @@
+Ich würde den Ansatz jetzt tatsächlich auf eine andere Ebene heben. Der Engpass ist inzwischen ziemlich klar: Wir verstehen einen inneren Baustein und seine lokale Antwort immer besser. Was fehlt, ist die Regel, aus der viele unterscheidbare Vorkommen dieses Bausteins, ihre gemeinsame Bewegung und ihr physischer Zustand entstehen.
+Eine noch genauere Lösung der einzelnen Bank kann diese fehlende Regel nicht ersetzen. Das lässt sich aus eurem neuen Stand sogar mathematisch begründen.
+Ich habe die Entwicklung bis v1.6.6 zusammengeführt, zentrale Folgerungen herausgearbeitet und den ursprünglichen Paartensor zusätzlich direkt geprüft. Die ausführliche Herleitung steht in der [Forschungsnotiz zur fundamentalen Reduktion](outputs/TFPT_Fundamentale_Reduktion_2026-09-15.md).
+1. Was wir als tragenden Kern behalten sollten
+Drei Dinge passen mittlerweile wirklich zusammen:
+- Ein innerer algebraischer Baustein: die markierte Matrix-/E8-Struktur und der konkrete Paartensor.
+- Eine funktionierende lokale Dynamik: ursprüngliche Paarumwandlung, Rekopplung und — laut den aktuellen Beweisen — ein eindeutiger Grundzustand des festgelegten Hamiltonoperators.
+- Eine klar erkennbare Anregung: die isolierte Entnahmelinie mit mehr als 88 Prozent des gesamten Fermionspektralgewichts pro Mode.
+Der neue Clock-Anschluss vereinfacht diesen Kern: Der dokumentierte Clock ist ein bestimmtes Element der vorhandenen inneren Spin(10)-Symmetrie. Dafür braucht man keinen getrennten mathematischen Mechanismus mehr.
+Das ist echte Vereinfachung. Die Frage nach Raum, Bewegung und Zustandsauswahl bleibt jedoch bestehen. Schon die v1.6-Grundlage trennt innere Walk-Amplituden von tatsächlichen Ortsverschiebungen. 
+2. Die wichtigste Konsequenz: Auch das perfekte lokale Spektrum liefert noch keinen Raum
+Diese Aussage würde ich jetzt ins Zentrum stellen.
+Unter den dokumentierten Voraussetzungen — innere Symmetrie, invarianter Grundzustand und ein irreduzibles 64er-Multiplett ursprünglicher Fermionoperatoren — gilt für die gesamte Entnahmeantwort:
+\[
+C_{rs}(t)
+=
+\langle f_r\Omega,\,
+e^{-it(H-E_0)}f_s\Omega\rangle
+=
+\delta_{rs}\,c(t).
+\]Die Symmetrie erzwingt also: Alle inneren Richtungen haben dieselbe skalare Antwort. In \(c(t)\) stecken sämtliche Nebenlinien und Rückwirkungen, nicht nur der dominante Pol.
+Die Diagonalität steht bereits im v1.6.4-Anhang. Ihre entscheidende Konsequenz lautet:
+Selbst wenn wir die vollständige lokale Antwort exakt kennen, entsteht dadurch kein Ortsindex zwischen diesen 64 inneren Richtungen.
+
+Für zwei überlappende lineare Ansichten ergibt sich entsprechend nur
+\[
+C_{uv}(t)=\langle u,v\rangle\,c(t).
+\]Die Überlappung liefert den gemeinsamen Anteil; die Zeitentwicklung liefert dieselbe lokale Antwort. Das wird durch einen anderen Namen für die Ansichten nicht zur Ausbreitung.
+Diese Aussage verbietet weder andere Vielteilchenprozesse noch Bewegung in einer größeren Konstruktion. Sie zeigt aber, warum weitere lokale Spektralverfeinerungen die grundlegende Herkunftsfrage nicht beantworten können.
+3. Wo Bewegung stattdessen mathematisch Platz hat
+Bei erhaltener innerer Symmetrie lässt sich ein entsprechender Zustandsbereich schreiben als
+\[
+\mathcal H
+=
+R_{\mathrm{intern}}\otimes\mathcal M,
+\qquad
+H=I_{\mathrm{intern}}\otimes h.
+\]Dabei bedeutet:
+Bestandteil	Bedeutung
+\(R_{\mathrm{intern}}\)	Welche innere Art von Anregung vorliegt
+\(\mathcal M\)	Welche unabhängigen Vorkommen derselben Art existieren
+\(h\)	Wie sich diese Vorkommen dynamisch verbinden
+
+
+Der Fachbegriff für \(\mathcal M\) ist Multiplizitätsraum. Für den isolierten einzelnen 64er-Pol ist dieser Raum eindimensional: Es gibt dort nur eine Energie. Im gesamten Fockraum existieren weitere Multiplizitäten; sie sind deshalb aber noch keine räumlichen Orte.
+Der fundamentale nächste Gedanke ist daher: Raum müsste aus unabhängig unterscheidbaren Vorkommen derselben inneren Struktur hervorgehen.
+Eine mögliche spätere Beschreibung wäre \(\mathcal M\simeq\ell^2(X)\). Aber dann müssen die Quelle und ihre Zusammensetzung erklären, was \(X\) ist, welche Zugriffe lokal sind und wodurch Übergänge entstehen. Ein nachträglich gewähltes dreidimensionales Gitter beantwortet das nicht.
+Der Clock wirkt durch seine neue Identifikation innerhalb der inneren Struktur. Er erzeugt allein noch keine solche Vielheit.
+4. Die Paritätsblockade sagt etwas über die Zusammensetzung — nicht über jede gemeinsame Quelle
+Hier habe ich den ursprünglichen Tensor frisch geprüft.
+Seine Paarungen verbinden bereits alle 64 Fermionmoden zu einer einzigen zusammenhängenden Struktur. Für eine Teilmengenparität
+\[
+\Pi_s=(-1)^{\sum_i s_i n_i}
+\]muss an jeder ursprünglichen Paarung gelten:
+\[
+s_i+s_j=0\pmod 2.
+\]Weil der Paargraph zusammenhängend ist, bleiben — wenn die Bosonen unverändert bleiben — nur Identität und globale Fermionparität. Es gibt innerhalb dieser einen Bank keine echte Teilmenge ursprünglicher Moden mit separat erhaltener Fermionparität.
+Das erklärt einen wichtigen Unterschied:
+- Die eine native Bank erlaubt bereits innere Rekopplung.
+- Separat kopierte Banken mit ausschließlich lokal geraden Fermionoperationen bekommen zusätzliche lokale Erhaltungsgrößen, die den einzelnen Lochtransfer blockieren.
+Die Art, wie wir Bausteine zusammensetzen, kann also genau die Blockade erzeugen, die wir anschließend mit einem neuen Mischer reparieren wollen.
+Das ist ein Grund, die globale Zusammensetzung selbst zu untersuchen. Es beweist noch keinen räumlichen Transport und hebt die Cartan-Schranke des konkreten Mischers aus v1.6.6 nicht auf.
+5. Auch die Zustandsfrage lässt sich grundlegender und einfacher stellen
+Aus \(W\) und den angegebenen Symmetrien allein folgt noch keine eindeutige Energiewahl. Euer eigener Vergleich
+\[
+H_\mu=H+\mu N
+\]zeigt das bereits: Dieselben inneren Symmetrien sind mit unterschiedlichen globalen Grundzuständen vereinbar. Bei gleichem präpariertem Eingang unterscheiden ausschließlich neutrale Beobachtungen diese Entwicklungen trotzdem nicht. 
+Daraus ziehe ich zwei Konsequenzen:
+Erstens: Wenn eine sektorübergreifende Zustandsauswahl physisch relevant ist, braucht sie zusätzliche Information — eine Quellregel, eine Randbedingung oder ein ausdrücklich gesetztes Prinzip. „Symmetrisch“ und „einfach“ entscheiden diese Gegenbeispiele noch nicht.
+Zweitens: Bei festem Gesamt-\(N\) ist \(\mu N\) nur eine Konstante. Eine fundamental elegante Theorie muss solche unbeobachtbaren Unterschiede nicht künstlich bestimmen. Sie sollte eindeutig sein bis auf Gleichheit aller zugelassenen beobachtbaren Prozesse.
+Und noch eine Entlastung: Eine fundamentale Theorie braucht keinen Experimentator außerhalb des Universums, der ihr Vakuum aus dem leeren Zustand herstellt. Sie braucht eine begründete Zustandsregel. Interne Präparationen und Detektoren sind anschließend als Prozesse dieses Systems zu erklären.
+6. Was für mich jetzt als fundamentale Lösung zählen würde
+Ich würde die Arbeit um eine explizite Quell- und Kompositionsregel organisieren:
+\[
+\boxed{
+\text{Quellregel}
+\;\Longrightarrow\;
+\text{gemeinsame Observablen, Dynamik, Zustand und Instrumente}
+}
+\]Die rechte Seite darf nicht aus unabhängig passend gewählten Teilen bestehen. Dieselbe Regel müsste insbesondere erklären:
+1. Warum mehrere unabhängige Vorkommen derselben Anregung existieren.
+2. Warum und wie sie sich beeinflussen können.
+3. Welcher physische Zustand und welche beobachtbaren Energieunterschiede gelten.
+Der entscheidende Bewegungsnachweis wäre dann sehr anschaulich:
+Auf derselben globalen Quelle führe ich in Bereich A eine zulässige Operation aus oder lasse sie aus. Ändert sich dadurch später die unbedingte Messstatistik in Bereich B?
+
+Damit unterscheidet man tatsächliche Wirkung von gemeinsamer Anfangskorrelation, bloßer Überlappung und nachträglicher Auswahl erfolgreicher Ausgänge. Solche Interventionswirkungen lassen sich über zeitabhängige Kommutatoren untersuchen. Unter geeigneten lokalen Wechselwirkungen führen entsprechende Schranken zu einem effektiven Lichtkegel; diese Voraussetzungen müssen hier aber erst entstehen. Bravyi, Hastings und Verstraete
+Eine solche gemeinsame Konstruktion würde mehrere Herkunftsfragen zugleich beantworten. Danach wären Raumdimension, relativistischer Feldtyp, Chiralität und Gravitation Eigenschaften desselben Modells. Ihre Nachweise bleiben eigenständig — etwa verschwindet das konkrete Grassmann-Vorzeichenproblem nicht dadurch, dass die Quelle „global“ heißt.
+Meine Einschätzung
+Ich würde den abgesicherten lokalen Grundzustand und Pol jetzt als Referenz verwenden. Weitere Dezimalstellen sind sinnvoll, sobald eine konkrete globale Konstruktion sie benötigt.
+Die Hauptarbeit sollte sich auf diese Frage konzentrieren:
+Welche möglichst einfache Zusammensetzungsregel macht aus dem bereits verstandenen inneren Baustein eine wachsende, lokal unterscheidbare und gemeinsam dynamische Welt?
+Eine vollständige solche Regel habe ich aus den vorliegenden Quellen nicht herleiten können. Eine vollständige Lösung zu behaupten wäre deshalb falsch. Aber der neue Stand erlaubt mehr als eine weitere Liste kleiner Aufgaben: Er erklärt strukturell, warum die lokale Perfektionierung, der Clock und bloße Überlappung die fehlende räumliche Ausführung nicht ersetzen können — und welche zusätzliche Information eine wirkliche Lösung enthalten muss.
+Die [Forschungsnotiz](outputs/TFPT_Fundamentale_Reduktion_2026-09-15.md) enthält die Beweise, Voraussetzungen und Ergebnisse der frischen Tensorprüfung. Die großen Grundzustands- und Transportzertifikate habe ich dabei nicht erneut vollständig ausgeführt.
+- Eine globale Quellregel konstruieren
+- Die verbleibende Unterbestimmtheit entscheiden
+- Das Gesamtbild auf wenige Grundsätze reduzieren
+
+
+12:00

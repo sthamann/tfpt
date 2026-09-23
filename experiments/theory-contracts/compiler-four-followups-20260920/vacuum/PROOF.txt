@@ -1,0 +1,244 @@
+UR.COMPILER.FOUR_FOLLOWUPS.VACUUM -- exact completion of the native m=4 vacuum comparison
+================================================================================================
+
+Verdict
+=======
+
+PASS_EXACT_FINITE_M4_VACUUM_COMPARISON.
+
+The ten K=3 source masks left open by UR.COMPILER.RELAXED_WALL.26 all have
+energy strictly above
+
+  U = 391/320 = 1.221875
+
+at J=mu=0.  Together with the frozen .26 exclusions in K=0 and K=2 and its
+complete K=1 theorem, this proves that the full native finite m=4 H0 has the
+central K=1 doublet as its ground space:
+
+  E0(H0)=lambda kappa, multiplicity 2,
+  lambda=1.221493930352475... .
+
+On the already defined line J=mu=epsilon kappa, 0<epsilon<=10^-8, the same
+finite m=4 model therefore has a unique full-source ground and gap at least
+mu/8.  This is a finite-chain statement.  It is not a thermodynamic vacuum,
+a wall dispersion, a continuum reconstruction, or a TOE claim.
+
+
+1. Frozen premises and the remaining cases
+============================================
+
+The exact checker pins the native sixty-ray source action and the frozen .26
+certificates.  The premises used here are:
+
+* a q21 or q12 pair in the fixed B-bar4 modules has a unique ground P of
+  energy1/2 and fixed-module complement
+
+    c21 = 31/30-sqrt(10)/15 = 0.8225148226...;
+
+* a BB pair has floor3/5, a BX pair has certified floor
+
+    beta = 17/15-sqrt(214)/30 = 0.6457087053...;
+
+* the B local packet has complement floor2/3;
+* the X local floor is2/5 and its normalized one-leg compression is at
+  least17/20;
+* the final exact .26 phase_reduction.json (pinned separately from the older
+  19-phase/31-mask global_bounds layer) leaves only
+
+    1222: OBBB, OBXB
+    2122: BOBB, BOBX, BOXB
+    2212: BBOB, BXOB, XBOB
+    2221: BBBO, BXBO.
+
+Here O is the q1 bar4 coordinate source, B is the q2 barSym2 packet source,
+and X is its invariant q2 complement.  Reflection reverses the chain, so the
+ten masks reduce to four BB, four partial-X/full-B, and two
+partial-B/full-X comparisons.  No q1/q3 conjugation is assumed.
+
+
+2. Common q21/q12 Schur split
+=============================
+
+For each mask, choose the boundary q21 or q12 pair containing O and its
+neighboring B.  Let P be its unique ground projector and Q=I-P.  The only
+term coupling P and Q is the next local source term, which shares one matter
+register with the boundary packet.
+
+For a target U, the Q block is bounded by the q21/q12 complement plus the
+exact floor of the two remaining source terms.  The Schur complement then
+reduces the problem to the P block and the conditional variance of the
+shared local term.  This is an operator inequality over the whole indicated
+source modules, not a Ritz calculation.
+
+
+3. The four all-B masks
+=======================
+
+For OBBB, BOBB, BBOB, and BBBO, the remaining BB pair has floor3/5.  There
+are two distinct boundary orientations; they must not be identified.
+
+For BOBB and its reflection BBOB, the inward local term acts on the Phi leg
+of the boundary q21/q12 ground.  On Q, the target resolvent is bounded by
+
+  f(H21),  f(t)=1/(t+3/5-U),
+
+with t in [c21,23/10].  The upper endpoint is the sum of the full q2 local
+maximum6/5 and the bar4 maximum11/10.
+
+The off-block image in this orientation keeps the Omega factor of the
+boundary packet and lies in the Phi-orthogonal part of the bar4
+source-matter factor.  The pinned
+native identity
+
+  (1/4) Tr_shared L_bar4 = (9/10)I-(1/10)|Bell><Bell|
+
+therefore gives the exact off-block H21 moment9/10.  The endpoint chord of
+the convex function f, evaluated at that moment, is
+
+  rho = 13780160/4119327 + (1835008/4119327)sqrt(10)
+      = 4.7539233483... < 24/5.
+
+For OBBB and its reflection BBBO, the inward term acts on the Omega leg.
+The off-block instead keeps Phi fixed.  This is an exact invariant-subspace
+statement: for every native reflection r,
+
+  (conjugate(r) tensor r)|Phi> = |Phi>,
+
+and the native reflection average is I/2.  The q1 local term is therefore
+exactly1/2 on this Phi subspace.  Removing the unique Omega packet puts the
+q2 B local term in its complement, where it is at least2/3.  Hence H12 is at
+least7/6 on this off-block image, and the target resolvent coefficient is
+
+  1/(7/6+3/5-U) = 960/523 < 24/5.
+
+Thus both orientations admit the same conservative24/5 correction below,
+but for different exact reasons.  The numerical q12 off-block moment13/10
+observed during diagnosis is not used as a proof premise.
+
+It remains to bound the corrected P-block operator
+
+  F = T_B-(24/5)V_B,
+
+where T_B is the normalized one-leg compression of the next B local term
+and V_B is its conditional variance.
+
+The new Gaussian-integer certificate reconstructs the native q2 action.  If
+N=120 B2 and W=7200 V are the exact integer-scaled one-matter moment and
+conditional variance, D/96 is the exact rank10 B projector.  It verifies
+
+  (N-20I)(N-60I)D = 0,
+  (W-30I-4N)D = 0.
+
+Thus on B
+
+  V_B = I/240+N/1800,
+  spectrum(F) = {57/100,253/300}.
+
+On the final B packet, the exact normalized first and second moments are
+
+  <F> = 102/125,
+  <F^2> = 33629/50000,
+  Var(F) = 1681/250000.
+
+Splitting once more onto the final B packet and its complement, whose local
+energy starts at2/3, gives the following lower bound for the corrected
+P-Schur operator at the fixed target U:
+
+  F+L_B >= ell_BB,
+  ell_BB = (3079-sqrt(458677))/3000
+         = 0.8005810108400506... .
+
+Consequently the Schur complement of H0-U for every all-B K3 mask obeys
+
+  S_U >= 1/2+ell_BB-U
+      = 0.0787060108400506... > 0.                (3.1)
+
+Its Q block is also strictly positive.  The block factorization therefore
+proves H0>U for all four masks.  The intermediate value
+1/2+ell_BB=1.3005810108400506... is a corrected P-Schur reference evaluated
+at U; it is not asserted as a target-independent spectral floor for H0,
+because the resolvent coefficient changes when the spectral target changes.
+
+
+4. The six masks containing X
+================================
+
+The same exact q2 conditional-variance polynomial has bands
+
+  3/400, 1/80, 11/720, 7/400, 3/80.
+
+Its top-band spectral-projector numerator lies wholly in B.  Hence
+
+  ||V_X|| <= 7/400,    ||V_B|| <= 3/80.           (4.1)
+
+For either orientation, the Q block is at least
+
+  C = c21+beta = 1.4682235280... .
+
+For partial X/full B the P block is at least
+
+  A_XB = 1/2+17/20+0 = 27/20.
+
+The exact two-block inequality with b^2=7/400 yields
+
+  H0 >= 1.264218007614940... > U.                 (4.2)
+
+This covers OBXB, BOXB, BXOB, and BXBO.
+
+For partial B/full X the P block is at least
+
+  A_BX = 1/2+3/4+2/5 = 33/20.
+
+With b^2=3/80, the exact two-block inequality yields
+
+  H0 >= 1.345194323314058... > U.                 (4.3)
+
+This covers BOBX and XBOB.  The checker verifies the inequalities in exact
+radicals by the positive Schur determinants at U; the displayed decimals
+are explanatory only.
+
+
+5. Full finite m=4 ordering and weak positive continuation
+===========================================================
+
+Equations (3.1)-(4.3) exclude all ten K3 masks.  The frozen .26 proof already
+places every K=0 and K=2 state and the complete K=1 complement above U, while
+Sturm isolation puts the central K=1 root below U.  Therefore the full H0
+ground is exactly the central K=1 doublet.
+
+For J=mu=epsilon kappa, the perturbation is positive, so every competing
+total-charge block remains at least U kappa.  A K=1 trial upper bound is
+
+  (lambda+14 epsilon) kappa.
+
+At epsilon<=10^-8 the pinned rational root upper endpoint satisfies
+
+  U-lambda_upper-14 epsilon > epsilon/8.
+
+The .26 complete-K1 Schur theorem supplies a unique K=1 ground with internal
+gap at least mu/8.  The other total-charge blocks lie farther away, so the
+same state is the unique ground of the full native finite m=4 Hamiltonian
+and the full gap is at least mu/8 in this controlled range.
+
+
+6. Machine evidence and proof boundary
+=======================================
+
+k3_vacuum_certificate.py performs the exact proof replay.  It checks source
+hashes, the final phase_reduction phase_mask_pairs against the frozen ten-mask
+input, both all-B boundary orientations, Gaussian-integral q2 actions, the q2
+conditional-variance annihilator, exact B/X projector containments, the
+corrected B moments, and every final radical inequality.  Normal Python and
+python -OO produce byte-identical stdout and JSON.  No numerical data enters
+the proof.
+
+k3_full_numeric.py, k3_triple_numeric.py, k3_schur_probe.py, and
+k3_offblock_moments.py were diagnostic guides.  Their Ritz values and
+residuals are not lower bounds and are not used in the verdict.
+
+What is now proved is the ground ordering of the already defined native
+finite m=4 Hamiltonian at H0 and on the stated very weak positive line.  The
+argument does not select a thermodynamic phase, prove a stable long-chain
+gap, derive domain-wall translation, supply fermion statistics, or produce
+a relativistic continuum theory.  Those remain separate origin/long-chain
+questions.

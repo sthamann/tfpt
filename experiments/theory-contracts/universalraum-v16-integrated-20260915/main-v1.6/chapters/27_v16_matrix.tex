@@ -1,0 +1,85 @@
+\chapter{v1.6: Der kleine Matrixkern und das markierte E\texorpdfstring{$_8$}{8}}
+\label{ch:v16-matrix}
+\section{Der übersehene vorhandene Beweis}
+Die jüngste Eingabe endet mit dem Vorschlag, eine maximale Matrixordnung als möglichen $E_8$-Träger zu prüfen. Genau diese Rechnung existiert bereits im Repository: \texttt{compiler-cone-object-audit/ORDER\_PROOF.md}, Abschnitt 6, und die zugehörige markierte Brücke. Der Prüfer wurde für diese Revision neu ausgeführt, einschließlich der gepinnten Compilerquellen und der Operations- und Clock-Prüfungen. Die frühere Statusmeldung, die dies noch als völlig ungeprüften Ansatz behandelte, war unvollständig. \src{V16-M1, V16-M2; Replay: order.json}
+
+Der Fortschritt besteht nicht in der isolierten Gleichung $240=240$. Die Quelle liefert eine ganzzahlige Basis, eine positive Form und eine konkrete Isometrie zum bereits benutzten markierten Compiler-Gitter. Gleichzeitig bleibt die Auswahl der \emph{maximalen} Ordnung von der bloßen Existenz eines positiven Kegels zu unterscheiden.
+
+\section{Drei Ordnungen im selben kleinen Matrixkörper}
+Setze $D=\Z[i]$ und
+\begin{align}
+a&=iI_2,&u_1&=\begin{pmatrix}i&0\\0&-i\end{pmatrix},&
+u_2&=\begin{pmatrix}0&1\\-1&0\end{pmatrix},&u_3&=u_1u_2,\\
+w&=\tfrac12(I+u_1+u_2+u_3),&&w^3=-I.
+\end{align}
+Die quaternionischen $u_j$ und der zentrale Anker $a$ erzeugen einen kleinen gemeinsamen Körper von Operationen. Innerhalb von $M_2(\mathbb Q(i))$ betrachtet man
+\begin{equation}
+O=D\langle I,u_1,u_2,u_3\rangle,\qquad R=O[w],\qquad
+M=P M_2(D)P^{-1},\quad
+P=\begin{pmatrix}1&(1+i)^{-1}\\0&(1+i)^{-1}\end{pmatrix}.
+\end{equation}
+$O$ ist die gaußsche Lipschitz-Ordnung, $R$ die hier benannte minimale Erweiterung um die Familieneinheit und $M$ ihre im Quellenbeweis bestimmte maximale Oberordnung. Für die additiven Indizes gilt
+\begin{equation}
+[R:O]=4,\qquad[M:R]=4,\qquad[M:O]=16.
+\end{equation}
+Alle drei sind unter der Adjungierten abgeschlossen. Sie besitzen im betrachteten Modell denselben integralen hermiteschen Teil und damit dieselbe positive Kegelansicht, lassen aber unterschiedliche nicht-hermitesche Operationen zu. Positivität dieser gemeinsamen Ansicht allein entscheidet daher nicht zwischen ihnen.
+
+Ein besonders einfacher unterscheidender Operator ist
+\begin{equation}
+q=\frac{(I+a)(I+u_1)}2=\operatorname{diag}(i,1),
+\qquad q^4=I.
+\end{equation}
+Er ist unitär und liegt in $M$, nicht in $R$. Er dreht $u_2$ nach $u_3$ und $u_3$ nach $-u_2$. Damit kann ein künftiger nativer Operationsnachweis eine konkrete Auswahlfrage prüfen: Stellt die Quelle gerade diese Vierteldrehung bereit? Ein aus der Theorie \emph{gewünschtes} $q$ ist noch kein aus ihren Primitiven hergestelltes $q$.
+
+\section{Warum das Längengitter exakt E\texorpdfstring{$_8$}{8} ist}
+Verwendet wird die reelle positive Form
+\begin{equation}
+\langle A,B\rangle=\operatorname{Re}\Tr_2(AB^\dagger),\qquad Q(A)=\langle A,A\rangle.
+\label{eq:v16-norm}
+\end{equation}
+Die Spur ist diejenige der komplexen $2\times2$-Darstellung; eine verdoppelte reelle Darstellung darf die Normierung nicht unbemerkt verdoppeln. Aus den vier Matrixeinheiten $E_{jk}$ erhält man die acht ganzzahligen Basisvektoren $b_{jk}=PE_{jk}P^{-1}$ und $ib_{jk}$. In der Reihenfolge $b_{11},ib_{11},b_{12},ib_{12},b_{21},ib_{21},b_{22},ib_{22}$ lautet die Gram-Matrix
+\begin{equation}
+G=\begin{pmatrix}
+2&0&-1&1&1&1&-1&0\\
+0&2&-1&-1&-1&1&0&-1\\
+-1&-1&2&0&0&-1&1&1\\
+1&-1&0&2&1&0&-1&1\\
+1&-1&0&1&2&0&-1&1\\
+1&1&-1&0&0&2&-1&-1\\
+-1&0&1&-1&-1&-1&2&0\\
+0&-1&1&1&1&-1&0&2
+\end{pmatrix}.
+\end{equation}
+Ihre führenden Hauptminoren sind $2,4,4,4,4,4,2,1$. Sie ist also positiv definit und hat Determinante eins. Ganzzahlige Einträge und gerade Diagonale zeigen Geradheit. Das klassifizierende Gitter ist damit $E_8$. Die kleineren Ordnungen haben in derselben Form Determinanten $\det O=256$ und $\det R=16$.
+
+Auch die Wurzelzählung wird endlich vollständig geprüft, nicht aus einem willkürlich kleinen Suchwürfel geschätzt. Alle Diagonaleinträge von $G^{-1}$ sind zwei. Aus Cauchy--Schwarz folgt bei $x^TGx=2$ für jede ganzzahlige Koordinate $|x_j|\le2$. Die $5^8=390625$ Kandidaten erfassen deshalb alle Wurzeln. Genau 240 haben Normquadrat zwei.
+
+Von diesen 240 Matrizen sind 96 unitär: je 24 mit Determinante $1,-1,i,-i$. Die übrigen 144 haben Rang eins und Determinante null. Ein Wurzelvektor ist somit keineswegs automatisch eine invertierbare Zeitentwicklung. Zudem gilt für den nichtverschwindenden Vektor $b_{12}$ die Identität $b_{12}^2=0$. Die positive Länge \eqref{eq:v16-norm} ist \emph{keine multiplikative Norm}. Diese Matrixalgebra wird durch ihre $E_8$-Längen nicht zu einer Oktaven- oder Divisionsalgebra.
+
+\section{Die explizite Brücke zum tatsächlichen Compiler}
+Die markierte Quelle verwendet eine Construction-A-Realisierung
+\begin{equation}
+L=\{x\in\Z^8:x\bmod2\in C_*\},\qquad\langle x,y\rangle_L=x\cdot y/2.
+\end{equation}
+Für $z_j=x_{2j}+ix_{2j+1}$ mit $j=0,1,2,3$ definiert der Quellenbeweis
+\begin{equation}
+F(x)=\tfrac12(z_3I+z_0u_1+z_1u_2+z_2u_3),\qquad F_A(x)=F(x)w^\dagger.
+\end{equation}
+Die zugehörige ganzzahlige Basismatrix hat Determinante eins. Sie erhält die Gram-Form, die Wirkung des gaußschen Ankers, die Familienwirkung und alle 240 Wurzeln. Der markierte Repräsentant $(0,1,0,1,0,1,0,1)$ geht nach $a$. Dies sind wesentlich stärkere Prüfungen als ein unmarkierter Isomorphismus.
+
+Die komplexe Struktur $J$ erfüllt $J^2=-I$. Die Familienkonjugation durch $w$ hat Charakteristik $(t-1)^4(t^2+t+1)^2$ und fixiert zwölf Wurzeln vom Typ $A_2\oplus A_2$ mit Determinante neun. Die Identifikation ist also kompatibel mit den konkret benutzten Markierungen; sie erzeugt diese Markierungen nicht aus nichts.
+
+\begin{grenze}{Was hier tatsächlich hergeleitet ist}
+Unter den angegebenen algebraischen Voraussetzungen wird die $E_8$-Hülle exakt rekonstruiert und mit dem vorhandenen Compiler identifiziert. Der Compiler enthält seinerseits bereits entsprechende Struktur. Der geschlossene Übersetzungskreis ist ein Konsistenz- und Kompatibilitätsbeweis, keine unabhängige Ableitung, weshalb die Natur diese Ordnung, diese Markierungen oder diese Operationen auswählt.
+\end{grenze}
+
+\section{Warum Kegel und Clock noch nicht dieselbe Ausführung sind}
+Die hermiteschen Matrizen $X=tI+\sum_jx_j\alpha_j$, $\alpha_j=-au_j$, erfüllen $\det X=t^2-|x|^2$. Positivität ergibt einen zukünftigen Lorentzkegel. Das ist eine exakte kinematische Darstellung, aber noch keine Aussage über die Ausbreitung eines Signals.
+
+Die tatsächliche achtmodige Compiler-Clock besitzt Charakteristik
+\begin{equation}
+(x-1)^5(x+1)(x^2+x+1),
+\end{equation}
+ihre quadratische Familienwirkung $(x-1)^6(x^2+x+1)$. Der wiederholte Quellenprüfer schließt eine bestimmte zu starke Identifikation aus: eine volle unitale, zentrumsangepasste $M_2$-Einbettung auf diesem gesamten Raum, die von genau dieser Clock normalisiert wird. Die betrachteten aktiven drei Moden erzeugen vielmehr $M_3(\C)$; ihre beiden langsamen Frequenzen haben Verhältnis $2+\sqrt3$.
+
+Dieser Ausschluss betrifft den angegebenen Darstellungsvertrag. Er verbietet weder eine geeignete Ecke noch einen vergrößerten Fockraum, eine andere kontrollierte Realisierung oder einen Grenzprozess. Er verhindert nur, den positiven $2\times2$-Block ohne Operatorvergleich als das bereits vollständige Uhrwerk auszugeben.

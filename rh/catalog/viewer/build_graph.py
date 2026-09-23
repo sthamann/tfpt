@@ -374,9 +374,7 @@ def main() -> int:
     n_curated = sum(1 for n in nodes if not n["draft"])
     n_draft = sum(1 for n in nodes if n["draft"])
     edge_counts = Counter(e["type"] for e in edges)
-    generated = catalog.get("built_from_inventory_generated") or catalog.get(
-        "generated"
-    )
+    generated = catalog.get("generated") or catalog.get("built_from_inventory_generated")
     stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     families = list((taxonomy.get("families") or {}).keys()) or sorted(by_family)

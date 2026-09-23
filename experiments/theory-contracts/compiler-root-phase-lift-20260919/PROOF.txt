@@ -1,0 +1,294 @@
+UR.COMPILER.ROOT_PHASE_LIFT.18
+19 September 2026 | Verdict PARTIAL | experiments firewall
+
+ERGEBNIS FUER DAS GEMEINSAME URSPRUNGSPROBLEM
+
+Eine bereits vorhandene native Struktur verbindet jetzt drei bisher getrennte
+Teile exakt: die fuenf Quartiken aus .12, den E8-Descendanten aus .16 und den
+60-Strahlen-Readout aus .13/.17. Der gemeinsame Zustand liegt in
+
+ (10_D5 tensor 10_A3)_[E8 affine grade 2] tensor Bell10.
+
+Das ist ein Intertwiner in einem benannten vorhandenen Modul, keine Identifikation
+aufgrund gleicher Dimensionen. Er besitzt genau zwei endliche Singulettkopien;
+der konditionierte 60-Strahlen-Readout laesst sich explizit rekonstruieren.
+
+Zugleich scheitert die Identifikation dieser zwei Singuletts mit dem physikalischen
+Vakuum an der bereits festgelegten Hyperladung. Selbst ein Hamiltonian, dessen
+Grundraum genau diese zwei Singuletts waere, koennte die vorhandene Hyperladung
+nicht erhalten. Die Quartikverbindung bleibt als geladene Zustands-/Operatorkarte
+bestehen; sie liefert noch kein autonomes, eichvertraegliches Weltgesetz.
+
+Der alte phasenlose 240-Wurzel-Grundzustand aus .17 kann durch keine Wahl seiner
+Koeffizienten mit den E8-Stromklammern kompatibel gemacht werden. Dies ist ein
+praeziser Ausschluss dieser Identifikation, nicht der alten abstrakten
+Hilbertraumrechnung und nicht von TFPT oder Universalraum.
+
+1. ORIGINALDATEN UND VERLANGTES GATE
+
+.13: 60 normierte Gaussian-Strahlen psi_l=z_l/2 in C4, native Reflexionen
+r_l=I-z_l z_l^dagger/2, U_l=Sym2(r_l) auf Bell10=Sym2(C4).
+.12: native fuenfdimensionale Quartik W5 innerhalb Sym4(C4), endliche
+G31-Wirkung R(g), sowie phasenrichtiger D5+A3-Anschluss in E8.
+.16: Bell10 ist ein horizontaler 10_A3-Descendant im Lambda2-Modul bei Gewicht
+3/2. Mit dem notwendigen D5-Vektor (Gewicht1/2) liegt 10_D5 tensor 10_A3
+bei E8-Vakuum-Affinengrad2. Der Grad2-Raum ist nicht der Vakuumzustand L0=0.
+.17: bewegliche 240-Wurzelquelle mit reinen Root-Permutationen, positiver
+Hamiltonian, eindeutiger aligned Zustand, exakte Dynamik. Deren Interpretation
+als E8-Stromwirkung scheiterte bereits am ersten Klammerzeugen.
+
+Erfolgskriterium hier: echte Operator- und Phasenvertraeglichkeit, dann gemeinsame
+Zustands- und Readoutkarte; vor jeder weiteren Grundzustandsoptimierung ist ihre
+physikalische Eichwirkung zu pruefen. Keine neue Raumgeometrie oder Kopplung wird
+als Ursprung ausgegeben. SPEC.txt und source_manifest.json fixieren den Umfang.
+
+2. WURZELPHASEN: KONSTRUKTION UND VERBLEIBENDE FREIHEIT
+
+Aus den 240 nativen Wurzeln konstruiert checker.py eine explizite einfache
+E8-Basis mit Cartangram G, det(G)=1. Mit dem geordneten Cocycle
+
+ c(x,y)=x^T C y mod2, C_ii=G_ii/2, C_ij=G_ij fuer i>j, sonst0,
+ epsilon(x,y)=(-1)^c(x,y),
+
+hat jede Reflexionsmatrix M eine quadratische Liftphase
+
+ D_M=M^T C M-C,
+ q_M(x)=sum_(i<j) (D_M)_ij x_i x_j,
+ E_x -> (-1)^q_M(x) E_(Mx).
+
+D_M ist alternierend ueber F2. Das Polar des q_M ist genau die erforderliche
+Cocycledifferenz. Alle60*13440 nichtverschwindenden geordneten Wurzelsummen-
+klammern und alle Gegenwurzel-/Adjunktionsbedingungen werden exakt getestet.
+
+20 Roh-Lifts sind involutiv. Die40 anderen haben ein nichttriviales
+Charakterquadrat. Pro Reflexion loest eine Charakterkorrektur a die Gleichung
+
+ (I+M)^T a = q_M(x)+q_M(Mx),
+
+wobei die rechte Seite als linearer Charakter gelesen wird. Rang2 ergibt genau
+64 erlaubte Vorzeichencharaktere, also sechs freie Bits, fuer jede Reflexion.
+Dies klassifiziert die Vorzeichenkorrekturen im geprueften Gittercocycle; es
+waehlt keinen davon physisch und klassifiziert nicht alle stetigen Torusphasen.
+
+Die Konvention kleinster Binaeroffset scheitert schon an 13,0,13=0,13,0:
+Die Liftwoerter unterscheiden sich durch Charakter209, negativ auf128 Roots.
+Roottransitivitaet schliesst in dieser Konvention jedes gemeinsame Singulett mit
+einem unveraenderten Register aus, auf dem das Relationswort Identitaet ist.
+Von64^2 Korrekturpaaren reparieren256 genau diese Relation. Daher ist der
+Wortkernausschluss gaugeabhaengig; eine globale Sektion bleibt offen.
+
+Standardlifts, die auf dem Fixgitter trivial wirken, sind hiervon zu
+unterscheiden: ihre Ordnung ist hier vier. Einzelne Toruskorrekturen zu Ordnung
+zwei beweisen keinen gleichzeitigen Gruppenabschnitt. Details, vollstaendige
+Koordinaten und Primaerquellen: lattice_lift_proof.txt und origin_review.txt.
+
+3. EIN GAUGEUNABHAENGIGER AUSSCHLUSS DES ALTEN ALIGNED-ZUSTANDS
+
+Nehme unveraenderte gepaarte Registerwirkung r tensor r und beliebige unitäre,
+wurzelmonomiale E8-Stromautomorphismus-Lifts. Fuer einen invarianten Zustand
+
+ Omega_f=sum_alpha f_alpha |alpha> tensor |psi_alpha psi_alpha>
+
+erzwingt Roottransitivitaet vollen Koeffizientensupport, sofern Omega_f ungleich0.
+Das native Wort g=diag(1,-1,-1,-1) vertauscht
+
+ alpha=(1,1,1,1), beta=(1,-1,-1,-1),
+
+und fixiert gamma=alpha+beta=(2,0,0,0). Ihre E8-Klammer ist nichtnull.
+Invarianz verlangt eta_g(alpha)=f_beta/f_alpha, eta_g(beta)=f_alpha/f_beta,
+eta_g(gamma)=1. Damit ist eta_g(alpha)eta_g(beta)=1. Antisymmetrie der Klammer
+verlangt dagegen eta_g(gamma)=-eta_g(alpha)eta_g(beta). Widerspruch.
+
+Dieser Ausschluss umfasst alle komplexen Regewichtungen/Rephasings f und alle
+kompatiblen Liftgauen, nicht nur die im Checker gewaehlt dargestellten Zeichen.
+Kein solcher Zustand liegt daher im Kern einer positiv gewichteten Summe
+I-Re(T_l). Nicht ausgeschlossen sind andere gemeinsame Zustaende, andere
+Registerwirkungen, nichtnull Grundenergien oder Ereignisse ohne die behauptete
+Stromautomorphismus-Interpretation. .17 wird nicht als abstraktes Modell widerrufen.
+
+4. DER VORHANDENE D5+A3-WEG ENTSCHEIDET DIE RICHTIGE STUFE
+
+Schreibe fuer die .12-Erweiterung h=lambda g, d=det(g)=+/-1, lambda^4=d^-1.
+Auf jeder der zwei W5-Kopien des D5-Vektors wirkt
+
+ R4(h)=d^-1 R(g),          10_D5|=W5 plus W5star.
+
+R(g) ist in normierter Quartikbasis reell orthogonal. Beide Kopien sind deshalb
+fuer die benannte endliche Gruppe aequivalent, nicht als volle SU5-/D5-Module.
+
+Die folgenden Charaktermittel werden auf allen46080 phasentreuen G31-Elementen
+und nochmals auf11520 projektiven Klassen ganzzahlig berechnet. Die
+Determinanten werden als Erzeugerparitaet exakt mitpropagiert und auf
+Wortunabhaengigkeit geprueft; kein gerundeter numerischer Determinant ersetzt
+diesen Beweis.
+
+(a) E8 affine grade1, Z4-glue class2:
+ (10_D5 tensor 6_A3) tensor Bell10, Dimension600.
+ Pro W5-Kopie Mittel chi_R chi_Lambda2 chi_Sym2 =0.
+ Es gibt hier keinen gesuchten endlichen Singulettanschluss.
+
+(b) Der vorhandene .16-Raum, E8 affine grade2:
+ (10_D5 tensor 10_A3) tensor Bell10, Dimension1000.
+ Pro W5-Kopie Mittel chi_R (chi_Sym2)^2=1, insgesamt2.
+ Phasen: d^-1 von R4 und lambda^4=d^-1 von den zwei Sym2-Faktoren geben1.
+
+(c) Phasenverschiedene Alternative mit bar(10)_A3:
+ Pro W5-Kopie Mittel d chi_R |chi_Sym2|^2=0.
+
+Gleiche Dimensionszahlen ersetzen keine dieser verschiedenen Darstellungen.
+Insbesondere darf die positive Aussage(b) weder auf(a) noch auf(c) uebertragen
+werden. Beide Gruppenmittel haben explizite exakte Zeugen unten.
+
+5. EXPLIZITER GEMEINSAMER QUARTIKZUSTAND
+
+Die vorhandenen integralen Quartiken V_A in (C4)^tensor4 besitzen Normquadrate
+
+ n_A=(4,12,12,12,24).
+
+Jede liegt unter dem2+2-Split exakt in Sym2(C4) tensor Sym2(C4). In der
+orthonormalen nativen Bellbasis seien K_A ihre10x10 Koeffizientenmatrizen.
+Fuer eine normierte W5-Basis |A> definiere
+
+ Xi=1/sqrt5 sum_(A=1..5) |A> tensor vec(K_A)/sqrt(n_A).
+
+Die zwei D5-Kopien liefern Xi_plus und Xi_minus. Der Checker prueft
+
+ Tr(K_A^dagger K_B)=n_A delta_AB,
+ sum_A K_A^dagger K_A/n_A=I10/2.
+
+Folglich rho_W5=I5/5 und rho_Bell=I10/10; Xi ist normiert. Die Quellenhaelfte
+W5 tensor 10_A3 hat Dimension50, aber ihre besetzte Schmidtflaeche nur10.
+Die explizite Isometrie dieser Flaeche lautet
+
+ F_(A,i),j=sqrt(2/n_A) (K_A)_ij,
+ F^dagger F=I10,
+ Xi=(F tensor I) vec(I10)/sqrt10.
+
+Fuer alle60 nativen Ereignisse gilt exakt
+
+ (R_l tensor U_l) F = F conjugate(U_l),
+ (R_l tensor U_l tensor U_l) Xi=Xi.
+
+Das ist die gesuchte duale Registerdarstellung im vorhandenen 50d-Quellsektor.
+Sie identifiziert NICHT den D5-Vektor allein mit Bell10; der A3-Descendant ist
+unverzichtbar. Hierdurch wird der Determinantenfehler der alten source10=D5vector-
+Identifikation vermieden.
+
+6. PHASEN DES TATSAECHLICHEN E8-OPERATORS
+
+Fuer die .16-Konvention h_minus=exp(-i*pi/4) r_l gilt
+
+ R4(h_minus)=-R_l,  Sym2(h_minus)=-i U_l.
+
+Der tatsaechliche .12 E8-Quelloperator auf dem benannten Unterraum ist deshalb
+
+ S_l=i R_l tensor U_l.
+
+Mit dem externen nativen U_l hat Xi Eigenwert i, nicht1. Die mathematische
+Singulettaussage in Abschnitt4 verwendet dagegen auch extern Sym2(h_minus);
+die Phasen kuerzen sich dann. Will man extern das unveraenderte native U_l
+beibehalten, lautet die Sektorkompensation
+
+ C_l=-i S_l=R_l tensor U_l.
+
+C_l ist eine hermitesche Involution und I-C_l tensor U_l ist positiv und
+annihiliert Xi. Ein positiver Durchschnitt dieser Generatoren hat als Kern genau
+die zwei geprueften endlichen Singulettkopien. Die Auswahl dieses Hamiltonians
+ist hier nicht hergeleitet. Insbesondere ist die Sektorkompensation kein Beweis
+fuer einen G31-Abschnitt mit allen E8-Strom-/Sektorprodukten. Positive sektorale
+Operatoren und ein voller Stromautomorphismus muessen unterschieden bleiben.
+
+7. DER KONDITIONIERTE 60-STRAHLEN-READOUT FOLGT EXPLIZIT
+
+Sei v_l=Bellkoordinaten(psi_l tensor psi_l). Die native Frameidentitaet ist
+
+ sum_(l=1..60) |v_l><v_l|=6 I10.
+
+Setze w_l=F conjugate(v_l), also normierte Vektoren im vorhandenen Quellsektor.
+Die Messoperatoren
+
+ E_l=|w_l><w_l|/6
+
+bilden auf im(F) eine POVM, sum E_l=F F^dagger. Auf dem ganzen Quellraum wird
+sie mit E_perp=I-F F^dagger vervollstaendigt; auf Xi hat dieses Ergebnis
+Wahrscheinlichkeit0. Fuer jedes der60 Ergebnisse ist
+
+ (<w_l| tensor I) Xi=v_l/sqrt10,
+ p_l=1/60,   rho_Bell_given_l=|v_l><v_l|.
+
+Damit stimmt das konditionierte Strahlenensemble mit der .17-aligned-Quelle
+nach mu4-Zusammenfassung exakt ueberein. Die60 Quellenvektoren sind hierbei
+nicht orthogonal. Dies ist eine neue Realisierung des gemeinsamen Zustands
+und seines bedingten Readouts, KEINE Uebertragung des .17-Hamiltonians, seiner
+Rueckwirkung oder seines Spektrums. Es ist auch keine deterministische
+Programmierung aller60 U_l auf beliebigen unabhaengigen Registerinputs.
+Die physische Auswahl/Implementierung dieser POVM ist nicht hergeleitet.
+
+8. DER ENTSCHEIDENDE PHYSIKTEST: KEIN VAKUUM UND KEIN EICHINVARIANTER
+   HAMILTONIAN MIT GENAU DIESEM ZWEIDIMENSIONALEN GRUNDRAUM
+
+Die bestehende P2-Einbettung zerlegt den D5-Vektor unter Standardmodell-
+Hyperladung mit Eigenwerten -1/3,+1/2,+1/3,-1/2 und Multiplizitaeten3,2,3,2.
+Die beiden A3-Faktoren sind unter dieser D5-Eichwirkung neutral.
+
+(a) Y hat keinen Nullraum auf dem D5-Vektor. Daher ist keine nichtverschwindende
+Linearkombination von Xi_plus und Xi_minus ein Y-neutraler Vakuumzustand.
+Dies gilt unabhaengig von der relativen W5-/P2-Basis.
+
+(b) Jeder nichtnull Vektor c_plus Xi_plus+c_minus Xi_minus besitzt, zwischen
+D5 und den beiden A3/Bell-Faktoren geschnitten, Schmidtrang5. Dies folgt aus der
+Unabhaengigkeit der fuenf Quartiken und den orthogonalen D5-Kopien: seine fuenf
+D5-Schmidtvektoren c_plus|A,+>+c_minus|A,-> sind unabhaengig.
+
+Waere ihr zweidimensionaler Spannraum S unter Y invariant, haette die
+Hermitesche Einschraenkung Y|S einen Eigenvektor. Dessen D5-Schmidtsupport
+muesste in einem Y-Eigenraum liegen; diese besitzen jedoch alle Dimension
+hoechstens3. Das widerspricht Schmidtrang5. Also ist S nicht Y-invariant.
+
+Jeder Hamiltonian mit [H,Y]=0 hat einen Y-invarianten Grundraum. Deshalb kann
+kein solcher Hamiltonian genau S als Grundraum haben. Insbesondere ist der
+naive endliche Ereignislaplacian aus Abschnitt6 keine bereits hergeleitete
+Standardmodell-eichinvariante Vakuumdynamik.
+
+Nur wenn die P2-SU5-Polarisation mit der W5+W5star-Polarisation identifiziert
+wird, liefern die reduzierten I5/5 zusaetzlich <Y>=0 und <Y^2>=1/6. Dieser
+Zahlenwert ist bedingt; die Aussagen(a,b) brauchen diese Identifikation nicht.
+Geladene Anregungen und eichkovariante Matrixelemente werden durch(a,b) nicht
+ausgeschlossen. Eine groessere, ladungsbilanzierte physische Gesamtkonstruktion
+ist weiterhin moeglich, aber hier nicht ausgewaehlt oder als Loesung behauptet.
+
+9. FORTSCHRITT ZUM GESAMTZIEL UND ERSTE VERBLEIBENDE HERLEITUNG
+
+Geschlossen ist eine konkrete gemeinsame Operator-/Zustands-/Readoutkarte aus
+bereits vorhandenen nativen Bauteilen, einschliesslich der tatsaechlichen
+Phasen. Ausgeschlossen sind die Reparatur des alten aligned Root-Ket-Vakuums
+und die Verwendung des neuen zweidimensionalen Singulettgrundraums als
+P2-eichinvariante Vakuumloesung.
+
+Die naechste Herkunftsfrage muss an der bestehenden vollen E8-Strom-/Vakuum-
+struktur ansetzen: Wie entsteht dort ein ladungsbilanzierter Prozess, dessen
+Matrixelemente den Quartik-Intertwiner und das native Instrument realisieren?
+Dafuer fehlen eine Auswahlregel aus den Originalprinzipien sowie eine
+Operatorgleichheit des gesamten Instruments fuer beliebige Inputs und seine
+mehrzeitige Komposition. Das Hinzufuegen einer frei gewaehlt vorbereiteten
+Gegenladung, eines neuen Oszillators oder eines beliebigen positiven Projektors
+waere noch keine Herleitung dieser Regel.
+
+Es werden keine T1-T8-Gates geschlossen. Raumzeit, Lokalitaet, Lorentzsymmetrie,
+Gravitation, physische Zeit, Chiralselektion und die volle TOE sind durch diese
+endliche Rechnung nicht rekonstruiert. Keine Uebertragung zu RH oder Faktorisierung.
+
+10. REPRODUKTION UND PRIMAERLITERATUR
+
+replay.py fuehrt alle sechs Checker normal und mit -OO aus, prueft identische
+JSON-Zertifikate und protokolliert Hashes. Aktive require-Funktionen bleiben unter
+-OO wirksam. source_manifest.json und artifact_manifest.json fixieren Inputs
+und Resultate. Unabhaengige Reviews liegen im selben Ordner.
+
+Dong--Nagatomo, Automorphism Groups and Twisted Modules for Lattice Vertex
+Operator Algebras, arXiv:math/9808088, Abschnitte2.1 und2.4:
+https://arxiv.org/abs/math/9808088
+Die Literatur begruendet die verwendete Unterscheidung zwischen einer
+Gitterisometrie, ihrem Cocycle-Lift und der Wirkung auf der Vertexalgebra.
+Die konkreten nativen Quartik-/Readout-Identitaeten werden lokal berechnet;
+sie sind keine aus der Literatur uebernommene TOE-Behauptung.

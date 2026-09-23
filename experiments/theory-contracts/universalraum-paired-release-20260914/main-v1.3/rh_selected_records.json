@@ -1,0 +1,661 @@
+[
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/jensen_compiler_rigidity_probe.py",
+      "result_json": null,
+      "tex": null
+    },
+    "confidence": "high",
+    "depends_on": [
+      "r617",
+      "r609"
+    ],
+    "failed_because": "E8 data are RH-neutral; Jensen/Xi side is RH-equivalent and does not match.",
+    "failure_class": "STRUCTURAL_MISMATCH",
+    "family": "LATTICE_E8_HECKE",
+    "family_secondary": [
+      "TOEPLITZ_MOMENT_POSITIVITY"
+    ],
+    "inventory_sha256": "29ccf1c7d9c2557aa2b4567795598dc6f485835d74dc20b0b2c805d5369463de",
+    "kind": "CONTROL",
+    "ledger_ids": [],
+    "mechanism": "Kill probe: congruence invariance of Phi_30 vs Cayley-transformed Jensen C_{n,8}.",
+    "outcome": "KILLED",
+    "path": "experiments/tfpt-discovery/jensen_compiler_rigidity_probe.py",
+    "question": "Can E8 Seifert/Coxeter data compile into Jensen polynomials of Xi?",
+    "readme_lines": "7695-7734",
+    "result_verdict": "COMPILERS_STRUCTURALLY_RIGID",
+    "reusable": "Random M S M* Phi_30 invariance; Jensen C_{n,8} grid-distance.",
+    "rh_relevance": "UNRELATED",
+    "role": "sealed_probe",
+    "round": "r618",
+    "solved": "Two no-gos: Coxeter spectrum is a congruence invariant; Jensen C_{n,8} miss 30th-root grid [C].",
+    "status_raw": "Jensen / E8-compiler rigidity scout (round 618, PRIME.JENSEN.E8COMPILER.RIGIDITY.01; experiments-side sealed probe, NO ledger row): VERDICT COMPILERS_STRUCTURALLY_RIGID.  Two no-gos: (A) Seifert-compiler rigidity -- Coxeter monodromy spectrum is a congruence invariant (Phi_30 for 12 random M S M*); Cayley-transformed Jensen polynomials C_{n,8} of Xi vary with n and miss the 30th-root grid by >= 0.0168; blocks d=2..7 give Phi_2^2, Phi_2 Phi_3, Phi_5, Phi_2 Phi_8, Phi_3 Phi_12, Phi_2 Phi_18; (B) rank-one MSS mixed characteristic polynomial = det(xI - Sum A_e) exactly; required coefficient ratios c_{n+1}/c_n (0.0231 -> 0.0169, n=0..6) nonlinear in zero power sums.  Data: a0 = xi(1/2) = 0.497120778, Turan n <= 12, J_{n,d} hyperbolic d <= 8, n <= 4 (consistent with GORZ 2019, nothing new).  Fence: both compilers are generic real-rootedness certificates; existence for all (n,d) <=> RH; E8 RH-neutral.  Probe experiments/tfpt-discovery/jensen_compiler_rigidity_probe.py.  SPEC_SHA bc8d86246dc253c3944a41f0db23d8791c4275fbb2c4af9f8011006e612cc774; probe SHA 29ccf1c7d9c2557aa2b4567795598dc6f485835d74dc20b0b2c805d5369463de.  CHECKS 43/43.  No RH claim"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/gabor_first_contact_selberg_probe.py",
+      "result_json": "experiments/tfpt-discovery/gabor_first_contact_selberg_result.json",
+      "tex": null
+    },
+    "confidence": "high",
+    "depends_on": [
+      "r608",
+      "r633"
+    ],
+    "failed_because": "Gate 0/15 PSD; contact conditions collapse to one; Selberg sign world-blind.",
+    "failure_class": "STRUCTURAL_MISMATCH",
+    "family": "SELBERG_TRACE_CONTACT",
+    "family_secondary": [
+      "WEIL_POSITIVITY_WINDOWS",
+      "TOEPLITZ_MOMENT_POSITIVITY"
+    ],
+    "inventory_sha256": "2ab532bceeb0dfd9bb863ab40fda2b87ea9c187b658fe7ef9223f75360e751f9",
+    "kind": "ATTACK",
+    "ledger_ids": [],
+    "mechanism": "Toeplitz-gate on Selberg convolution vs Euler-local squares; heat-contact tests.",
+    "outcome": "KILLED",
+    "path": "experiments/tfpt-discovery/gabor_first_contact_selberg_probe.py",
+    "question": "Do first-contact conditions plus Selberg square-completion yield a PSD operator L?",
+    "readme_lines": "7923-7962",
+    "result_verdict": "KILLED(STRUCTURAL: selberg-convolution-is-hankel) | TOEPLITZ_GATE_FAIL(best_lambda_min=-0.0038949771706436767) | EULER_LOCAL_BUDGET_OK | CONTACT_CONDITIONS_COLLAPSE | NEGATIVITY_DOWNSET | SELBERG_SIGN_INDEFINITE | WORLD_BLIND",
+    "reusable": "Hankel-vs-Toeplitz Selberg gate; contact-heat residual; Euler-local DC cost.",
+    "rh_relevance": "LOAD_BEARING_OPEN",
+    "role": "sealed_probe",
+    "round": "r638",
+    "solved": "Lane GABOR.CONTACT.SELBERG.01 killed [C]: Selberg convolution is Hankel, squares are Toeplitz.",
+    "status_raw": "First-contact + Selberg square-completion scout (round 638, GABOR.CONTACT.SELBERG.01; experiments-side sealed probe, NO ledger row): 14/14, ~338 s dual, byte-identical.  Object: pure-Gabor zero side G(a,w) = POLE - PRIME + ARCH (r608 identity A); attack: at a first touching point (a*,w*) the contact conditions plus Selberg symmetry Lambda log + Lambda*Lambda = Lambda_2 should yield an operator L with LG = ||A||^2 + R >= 0.  Pre-registered Toeplitz gate: the Selberg convolution term sum_N (Lambda*Lambda)(N) psi(log N) is a HANKEL form in (log m, log n); a square needs the kernel [psi(u_i+u_j)] PSD.  T2: on 466 prime-power nodes (n <= 3000), 15 operator-generated psi = t^k e^{-t/2} e^{-a t^2/2} {cos, sin, 1}(omega t) with k <= 4, 15 cells (a,omega) in {1,0.5,0.3,0.1,0.05} x {14.13,30,100}: best PSD-combination lambda_min = -0.0097 ... -0.0568 (Frobenius-normalised, tolerance -1e-9), GATE_PASS 0/15; DC 2x2-minor violation fraction 1.0 everywhere (Gaussian factor e^{-a(u_i-u_j)^2}) -> TOEPLITZ_GATE_FAIL.  G3: the only squares compatible with the prime-side frequency support {log n} are Euler-local sum_p |A_p|^2; their Fejer-Riesz DC cost DC_lower/(POLE+ARCH) = 3.28 (a=0.3, omega=50), 4.35 (0.3, 30), 8.39 (0.3, 14.13) -> EULER_LOCAL_SQUARE_COSTS_TRIVIAL_MAJORANT.  T3 (synthetic off-line catalogs on 2000 on-line ordinates): first contact a* = 0.1418/0.0877/0.0370/0.1126 for (sigma,gamma0) = (0.4,100)/(0.25,100)/(0.1,100)/(0.4,250), omega*-gamma0 = 0.66/0.62/0.61/0.55 vs pi a*/(2 sigma) = 0.56/0.55/0.58/0.44, off-line/on-line block ratio 1.0000 at contact; d_a Z = (1/2) d^2_omega Z at contact with r_heat <= 1.6e-16 (cos) / 1.5e-16 (lobe): the two contact conditions are ONE (CONTACT_CONDITIONS_COLLAPSE); m(a*/2, a*/4, a*/8) all negative (NEGATIVITY_DOWNSET; the heat semigroup runs small a -> large a).  T4 (true zeta, prime side to n <= 4.6e6, EF sanity 2.2e-14): G >= 0 on omega in [10,50] for a = 1/0.5/0.3 (min 3.0e-4 / 1.2e-7 / 2.2e-12); at the 8-9 local minima per a the Selberg part of d^2_omega PRIME has the helpful sign in 0.25/0.22/0.33 (MAIN) vs 0.22/0.31/0.22 (SCRAMBLE) vs 0.29/0.20/0.20 (WPERM): SELBERG_SIGN_INDEFINITE + WORLD_BLIND; median |Selberg_1|/|Lambda_2,1| = 1.33/0.88/0.74 -- the Selberg split relocates the cancellation between two equal-size parts (same finding as CCCXXXI SELBERG-INSUFFICIENT on the window object).  PARENT TYPING: the square-completion engine of the first-contact attack is structurally unavailable -- Selberg's convolution is Hankel (frequencies log m + log n), squares of prime Dirichlet polynomials are Toeplitz (log m - log n); the compatible Euler-local squares cost the trivial majorant; single-sum (Lambda_2, Lambda) terms cannot repair a non-PSD Hankel part (bordered-matrix argument).  The first-contact frame itself carries one differential condition, not two.  Lane GABOR.CONTACT.SELBERG.01 = KILLED(STRUCTURAL), STOP.  Probe experiments/tfpt-discovery/gabor_first_contact_selberg_probe.py.  SPEC_SHA 22a9284272e345a690dc7550c401f1bd7090647381b0061bce50b2a64d0c3aa8; RESULT_SHA prefix 58a36aff; probe SHA 2ab532bceeb0dfd9bb863ab40fda2b87ea9c187b658fe7ef9223f75360e751f9.  CHECKS 14/14.  No RH claim"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/gabor_first_contact_selberg_probe.py",
+      "result_json": "experiments/tfpt-discovery/gabor_first_contact_selberg_result.json",
+      "tex": null
+    },
+    "confidence": "high",
+    "depends_on": [
+      "r608",
+      "experiments/tfpt-discovery/gabor_first_contact_selberg_probe.py"
+    ],
+    "failed_because": "Squares need Toeplitz kernels; Selberg ψ(u_i+u_j) is Hankel; Euler-local squares cost the trivial majorant.",
+    "failure_class": "STRUCTURAL_MISMATCH",
+    "family": "SELBERG_TRACE_CONTACT",
+    "family_secondary": [
+      "WEIL_POSITIVITY_WINDOWS"
+    ],
+    "kind": "ATTACK",
+    "ledger_ids": [],
+    "mechanism": "Hankel PSD gate on Selberg convolution; Euler-local squares; contact-heat collapse.",
+    "outcome": "KILLED",
+    "path": "experiments/tfpt-discovery/gabor_first_contact_selberg_result.json",
+    "question": "Can first-contact plus Selberg square-completion yield a nonnegative Gabor operator?",
+    "readme_lines": "",
+    "result_verdict": "KILLED(STRUCTURAL: selberg-convolution-is-hankel) | TOEPLITZ_GATE_FAIL(best_lambda_min=-0.0038949771706436767) | EULER_LOCAL_BUDGET_OK | CONTACT_CONDITIONS_COLLAPSE(r_heat_lobe=4.4873326899614896e-17, r_heat_cos=9.678090140022113e-17) | NEGATIVITY_DOWNSET | SELBERG_SIGN_INDEFINITE | WORLD_BLIND",
+    "reusable": "Hankel-versus-Toeplitz Selberg gate and contact-condition collapse test.",
+    "rh_relevance": "FINITE_FRAGMENT",
+    "role": "result",
+    "round": "r638",
+    "solved": "14/14 checks; structural no-go named: Selberg convolution is Hankel not Toeplitz [C].",
+    "status_raw": "[W] working tree, not on origin/main"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/weil_level_n_blindness_probe.py",
+      "result_json": "experiments/tfpt-discovery/weil_level_n_blindness_result.json",
+      "tex": null
+    },
+    "confidence": "high",
+    "depends_on": [],
+    "failed_because": "Windows below log p are blind; reading the invariants is the known factoring.",
+    "failure_class": "NO_BRIDGE",
+    "family": "SIEVE_FACTORING_GEOMETRY",
+    "family_secondary": [
+      "WEIL_POSITIVITY_WINDOWS",
+      "LATTICE_E8_HECKE"
+    ],
+    "kind": "ATTACK",
+    "ledger_ids": [],
+    "mechanism": "Principal-character blindness, phi/sigma_3 inversion, class number, dissipative energy.",
+    "outcome": "KILLED",
+    "path": "experiments/tfpt-discovery/weil_level_n_blindness_probe.py",
+    "question": "Can TFPT Weil/E8/clock/Hylaean readouts factor an arbitrary N=pq as a delta?",
+    "readme_lines": "",
+    "result_verdict": "NO_SHORTCUT_FOUND",
+    "reusable": "Principal-character blindness identity and class-number ambiguous-form check.",
+    "rh_relevance": "UNRELATED",
+    "role": "probe",
+    "round": "r640",
+    "solved": "Exact phi(N)/sigma_3(N) factor N by reduction; no cheaper path in four readouts [C].",
+    "status_raw": "[W] working tree, not on origin/main"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/weil_level_n_blindness_probe.py",
+      "result_json": "experiments/tfpt-discovery/weil_level_n_blindness_result.json",
+      "tex": null
+    },
+    "confidence": "high",
+    "depends_on": [
+      "r640",
+      "experiments/tfpt-discovery/weil_level_n_blindness_probe.py"
+    ],
+    "failed_because": "in the four implemented readouts no factor path cheaper than the known routes",
+    "failure_class": "NO_BRIDGE",
+    "family": "SIEVE_FACTORING_GEOMETRY",
+    "family_secondary": [
+      "WEIL_POSITIVITY_WINDOWS",
+      "LATTICE_E8_HECKE"
+    ],
+    "kind": "ATTACK",
+    "ledger_ids": [],
+    "mechanism": "JSON of S1–S5 sections on small, 40-digit, and RSA-260 sizes.",
+    "outcome": "KILLED",
+    "path": "experiments/tfpt-discovery/weil_level_n_blindness_result.json",
+    "question": "Sealed level-N blindness register for ARITH.LEVELN.BLIND.01.",
+    "readme_lines": "",
+    "result_verdict": "NO_SHORTCUT_FOUND",
+    "reusable": "Chi_0 blindness and h(-4N) ambiguous-class measurements.",
+    "rh_relevance": "UNRELATED",
+    "role": "result",
+    "round": "r640",
+    "solved": "NO_SHORTCUT_FOUND; no universal dichotomy claimed [C].",
+    "status_raw": "[W] working tree, not on origin/main"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/regulator_jump_probe.py",
+      "result_json": "experiments/tfpt-discovery/regulator_jump_result.json",
+      "tex": null
+    },
+    "confidence": "high",
+    "depends_on": [
+      "arXiv:2409.03486v2"
+    ],
+    "failed_because": "Slow regulator oracle, not the jump, dominates; G6 is counted steps not bit complexity.",
+    "failure_class": "NOT_APPLICABLE",
+    "family": "SIEVE_FACTORING_GEOMETRY",
+    "family_secondary": [],
+    "kind": "ATTACK",
+    "ledger_ids": [
+      "GEOM.REGULATOR.JUMP.01"
+    ],
+    "mechanism": "Murru–Salvatori Algorithm 2: intrinsic reduction plus Gauss composition from N and R_+.",
+    "outcome": "MEASURED",
+    "path": "experiments/tfpt-discovery/regulator_jump_probe.py",
+    "question": "Does a regulator-only modular-seam jump factor without a principal-cycle oracle?",
+    "readme_lines": "",
+    "result_verdict": "REGULATOR_ONLY_JUMP_VERIFIED",
+    "reusable": "Oracle-free form-reduction jump on disc 4N.",
+    "rh_relevance": "UNRELATED",
+    "role": "probe",
+    "round": "r643",
+    "solved": "Works on the applicable Blum class with only N and R_+ (or k R_+) [C].",
+    "status_raw": "[W] working tree, not on origin/main"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/regulator_jump_probe.py",
+      "result_json": "experiments/tfpt-discovery/regulator_jump_result.json",
+      "tex": null
+    },
+    "confidence": "high",
+    "depends_on": [
+      "r643",
+      "experiments/tfpt-discovery/regulator_jump_probe.py"
+    ],
+    "failed_because": "the slow regulator oracle, not the jump, dominates",
+    "failure_class": "NOT_APPLICABLE",
+    "family": "SIEVE_FACTORING_GEOMETRY",
+    "family_secondary": [],
+    "kind": "ATTACK",
+    "ledger_ids": [
+      "GEOM.REGULATOR.JUMP.01"
+    ],
+    "mechanism": "JSON of adversarial/generic/Blum runs and G5 family.",
+    "outcome": "MEASURED",
+    "path": "experiments/tfpt-discovery/regulator_jump_result.json",
+    "question": "Sealed regulator-only jump runs on Blum and generic families.",
+    "readme_lines": "",
+    "result_verdict": "REGULATOR_ONLY_JUMP_VERIFIED",
+    "reusable": "Counted-step G6 comparison table.",
+    "rh_relevance": "UNRELATED",
+    "role": "result",
+    "round": "r643",
+    "solved": "REGULATOR_ONLY_JUMP_VERIFIED; unrelated to RH [C].",
+    "status_raw": "[W] working tree, not on origin/main"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/regulator_relation_probe.py",
+      "result_json": "experiments/tfpt-discovery/regulator_relation_result.json",
+      "tex": null
+    },
+    "confidence": "high",
+    "depends_on": [
+      "r643"
+    ],
+    "failed_because": "This is the known SIQS/Buchmann L[1/2] mechanism, not a new class.",
+    "failure_class": "RESTATEMENT",
+    "family": "SIEVE_FACTORING_GEOMETRY",
+    "family_secondary": [],
+    "kind": "ATTACK",
+    "ledger_ids": [
+      "GEOM.REGULATOR.RELATION.01"
+    ],
+    "mechanism": "Factor-base-smooth principal-ideal relations plus exact integer kernel.",
+    "outcome": "KILLED",
+    "path": "experiments/tfpt-discovery/regulator_relation_probe.py",
+    "question": "Can many cheap smooth relations replace r643's slow scalar-regulator oracle?",
+    "readme_lines": "",
+    "result_verdict": "RELATIONS_RECOVER_REGULATOR_BASELINE",
+    "reusable": "Relation collector that feeds GEOM.REGULATOR.JUMP.01.",
+    "rh_relevance": "UNRELATED",
+    "role": "probe",
+    "round": "r644",
+    "solved": "Relations recover a regulator multiple and make the oracle-free jump factor [C].",
+    "status_raw": "[W] working tree, not on origin/main"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/regulator_relation_probe.py",
+      "result_json": "experiments/tfpt-discovery/regulator_relation_result.json",
+      "tex": null
+    },
+    "confidence": "high",
+    "depends_on": [
+      "r644",
+      "experiments/tfpt-discovery/regulator_relation_probe.py"
+    ],
+    "failed_because": "known SIQS/Buchmann L[1/2] mechanism, not a new complexity class",
+    "failure_class": "RESTATEMENT",
+    "family": "SIEVE_FACTORING_GEOMETRY",
+    "family_secondary": [],
+    "kind": "ATTACK",
+    "ledger_ids": [
+      "GEOM.REGULATOR.RELATION.01"
+    ],
+    "mechanism": "JSON of rows, summaries, and GO gates.",
+    "outcome": "KILLED",
+    "path": "experiments/tfpt-discovery/regulator_relation_result.json",
+    "question": "Sealed relation-versus-regulator baseline for r644.",
+    "readme_lines": "",
+    "result_verdict": "RELATIONS_RECOVER_REGULATOR_BASELINE",
+    "reusable": "Exact integer-kernel regulator multiple.",
+    "rh_relevance": "UNRELATED",
+    "role": "result",
+    "round": "r644",
+    "solved": "Every tested input factored after kernel recovery [C].",
+    "status_raw": "[W] working tree, not on origin/main"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/e8_composite_gauss_probe.py",
+      "result_json": "experiments/tfpt-discovery/e8_composite_gauss_result.json",
+      "tex": null
+    },
+    "confidence": "high",
+    "depends_on": [
+      "v535"
+    ],
+    "failed_because": "Natural tree/clock readout is O(N^3) with bond N; symbolic collapse is the gcd moment.",
+    "failure_class": "STRUCTURAL_MISMATCH",
+    "family": "SIEVE_FACTORING_GEOMETRY",
+    "family_secondary": [
+      "LATTICE_E8_HECKE"
+    ],
+    "kind": "ATTACK",
+    "ledger_ids": [],
+    "mechanism": "Dynkin-tree contraction of the determinant-one E8 Gram Gauss sum at every clock t.",
+    "outcome": "KILLED",
+    "path": "experiments/tfpt-discovery/e8_composite_gauss_probe.py",
+    "question": "Does an exact composite E8 Gauss/zero count yield a poly(log N) factoring readout?",
+    "readme_lines": "",
+    "result_verdict": "E8_COUNT_FACTOR_EQUIVALENT_NO_FAST_READOUT",
+    "reusable": "Exact E8 composite Gauss formula and CRT zero-count inversion.",
+    "rh_relevance": "UNRELATED",
+    "role": "probe",
+    "round": "r647",
+    "solved": "Exact S_N(t)=N^4 gcd(t,N)^4 and Z_N factors promised semiprimes [C].",
+    "status_raw": "[W] working tree, not on origin/main"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/e8_composite_gauss_probe.py",
+      "result_json": "experiments/tfpt-discovery/e8_composite_gauss_result.json",
+      "tex": null
+    },
+    "confidence": "high",
+    "depends_on": [
+      "r647",
+      "experiments/tfpt-discovery/e8_composite_gauss_probe.py"
+    ],
+    "failed_because": "rank-8 unimodularity makes the count factor N, but readout stays cubic",
+    "failure_class": "STRUCTURAL_MISMATCH",
+    "family": "SIEVE_FACTORING_GEOMETRY",
+    "family_secondary": [
+      "LATTICE_E8_HECKE"
+    ],
+    "kind": "ATTACK",
+    "ledger_ids": [],
+    "mechanism": "JSON of brute, tree, Fourier, and inversion rows.",
+    "outcome": "KILLED",
+    "path": "experiments/tfpt-discovery/e8_composite_gauss_result.json",
+    "question": "Sealed G1–G9 ledger for the composite E8 Gauss cost audit.",
+    "readme_lines": "",
+    "result_verdict": "E8_COUNT_FACTOR_EQUIVALENT_NO_FAST_READOUT",
+    "reusable": "Quartic p+q recovery from an exact Z_N.",
+    "rh_relevance": "UNRELATED",
+    "role": "result",
+    "round": "r647",
+    "solved": "All nine checks true; RSA-260 factors from a synthetic exact count [C].",
+    "status_raw": "[W] working tree, not on origin/main"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/bc_energy_from_entropy_probe.py",
+      "result_json": null,
+      "tex": null
+    },
+    "confidence": "low",
+    "depends_on": [],
+    "draft": true,
+    "failed_because": "",
+    "failure_class": "NOT_APPLICABLE",
+    "family": "ADELIC_GROUPOID_CONNES",
+    "family_secondary": [
+      "ARAKELOV_HODGE_INTERSECTION"
+    ],
+    "kind": "ATTACK",
+    "ledger_ids": [],
+    "mechanism": "CLAIM TESTED: the energy is not an assignment at all -- it is DERIVED, as the orbit-growth entropy of the TFPT-native power semigroup on the clock family.",
+    "needs_review": true,
+    "outcome": "OPEN",
+    "path": "experiments/tfpt-discovery/bc_energy_from_entropy_probe.py",
+    "question": "Discovery probe (2026-07-23), part 4 of the zeta/prime investigation: the missing BC energy assignment E_q = log q (gap identified in part 3, seam_bc_primon_bridge_probe.py, 17/17).",
+    "readme_lines": "",
+    "result_verdict": "",
+    "reusable": "",
+    "rh_related_evidence": "zeta",
+    "rh_relevance": "FINITE_FRAGMENT",
+    "role": "working_probe",
+    "round": "",
+    "solved": "",
+    "status_raw": ""
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/gue_ablation_probe.py",
+      "result_json": null,
+      "tex": null
+    },
+    "confidence": "low",
+    "depends_on": [],
+    "draft": true,
+    "failed_because": "from gue_saturation_probe, verdict GUE-SATURATING, deployed tower plateau R ~ 1.1, tight band alpha in 1..2",
+    "failure_class": "STRUCTURAL_MISMATCH",
+    "family": "ADELIC_GROUPOID_CONNES",
+    "family_secondary": [
+      "EXPLICIT_FORMULA_IDENTITY",
+      "WEIL_POSITIVITY_WINDOWS"
+    ],
+    "kind": "ATTACK",
+    "ledger_ids": [
+      "PRIME.FLOOR.PAIRCORR.01"
+    ],
+    "mechanism": "THE PREDICTION UNDER TEST (from gue_saturation_probe, verdict GUE-SATURATING, deployed tower plateau R ~ 1.1, tight band alpha in 1..2): any source-native modification of the tower must either (i) break the",
+    "needs_review": true,
+    "outcome": "KILLED",
+    "path": "experiments/tfpt-discovery/gue_ablation_probe.py",
+    "question": "gue_ablation_probe -- is the GUE saturation STRUCTURAL or an artifact of the deployed choices?",
+    "readme_lines": "",
+    "result_verdict": "TYPED FINDING FROM THE KILLED FIRST ATTEMPT (kept for honesty): | VERDICT: SATURATION-STRUCTURAL (every positive ledger variant | print(\"V -- VERDICT: %s\" % verdict) | tolerance). MEASURED SHARPER THAN PREDICTED: the tight band",
+    "reusable": "",
+    "rh_related_evidence": "EPSTEIN",
+    "rh_relevance": "FINITE_FRAGMENT",
+    "role": "working_probe",
+    "round": "",
+    "solved": "",
+    "status_raw": "TYPED FINDING FROM THE KILLED FIRST ATTEMPT (kept for honesty):"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/gue_saturation_probe.py",
+      "result_json": null,
+      "tex": null
+    },
+    "confidence": "low",
+    "depends_on": [],
+    "draft": true,
+    "failed_because": "",
+    "failure_class": "NOT_APPLICABLE",
+    "family": "WEIL_POSITIVITY_WINDOWS",
+    "family_secondary": [
+      "SIEVE_FACTORING_GEOMETRY",
+      "CERTIFICATE_INFRASTRUCTURE"
+    ],
+    "kind": "ATTACK",
+    "ledger_ids": [
+      "PRIME.FLOOR.PAIRCORR.01"
+    ],
+    "mechanism": "Direct follow-up to the BRIDGE-FULLY-BEYOND verdict of paircorr_bridge_map_probe: full GUE covered the deep tower by only a factor 1.2-1.5x.",
+    "needs_review": true,
+    "outcome": "OPEN",
+    "path": "experiments/tfpt-discovery/gue_saturation_probe.py",
+    "question": "gue_saturation_probe -- is the floor demand GUE-SATURATING?",
+    "readme_lines": "",
+    "result_verdict": "frames (incl. the 6-tower). FROZEN VERDICT BARS: | print(\"V -- VERDICT: %s\" % verdict)",
+    "reusable": "",
+    "rh_related_evidence": "RH",
+    "rh_relevance": "FINITE_FRAGMENT",
+    "role": "working_probe",
+    "round": "",
+    "solved": "",
+    "status_raw": "frames (incl. the 6-tower).  FROZEN VERDICT BARS:"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/multiplicative_cluster_probe.py",
+      "result_json": null,
+      "tex": null
+    },
+    "confidence": "low",
+    "depends_on": [],
+    "draft": true,
+    "failed_because": "",
+    "failure_class": "NOT_APPLICABLE",
+    "family": "ARAKELOV_HODGE_INTERSECTION",
+    "family_secondary": [
+      "WEIL_POSITIVITY_WINDOWS"
+    ],
+    "kind": "ATTACK",
+    "ledger_ids": [
+      "PRIME.CLUSTER.MULT.01"
+    ],
+    "mechanism": "THE PREMISE (frozen, read-only): the GUE strand's typed limit says pair statistics saturate at second moments -- the true comb's information beyond GUE is exactly what fakes lack.",
+    "needs_review": true,
+    "outcome": "OPEN",
+    "path": "experiments/tfpt-discovery/multiplicative_cluster_probe.py",
+    "question": "multiplicative_cluster_probe -- PRIME.CLUSTER.MULT.01 (EXPLORATION ONLY, experiments/; F5 of the 2026-08-07 evening plan: the ALL-ORDERS route -- connected multiplicative clusters instead of pair statistics).",
+    "readme_lines": "",
+    "result_verdict": "VERDICT (frozen): CLUSTERS-CARRY (connected concentration + band | [0.5, 2] on all anchors. VERDICT: CLUSTERS-CARRY iff order bar | section(\"V -- FROZEN VERDICT + the control-problem shape / \" | print(\"\\n VERDICT: %s [order: %s | connectivity: %s | \"",
+    "reusable": "",
+    "rh_related_evidence": "EPSTEIN",
+    "rh_relevance": "FINITE_FRAGMENT",
+    "role": "working_probe",
+    "round": "",
+    "solved": "",
+    "status_raw": "VERDICT (frozen): CLUSTERS-CARRY (connected concentration + band"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/relation_hodge_pfaffian_probe.py",
+      "result_json": null,
+      "tex": null
+    },
+    "confidence": "low",
+    "depends_on": [],
+    "draft": true,
+    "failed_because": "",
+    "failure_class": "NOT_APPLICABLE",
+    "family": "ARAKELOV_HODGE_INTERSECTION",
+    "family_secondary": [
+      "SIEVE_FACTORING_GEOMETRY",
+      "WEIL_POSITIVITY_WINDOWS"
+    ],
+    "kind": "ATTACK",
+    "ledger_ids": [
+      "PRIME.RELATION.HODGE.01"
+    ],
+    "mechanism": "WHY NEW: positivity is demanded NOWHERE at chain level.",
+    "needs_review": true,
+    "outcome": "OPEN",
+    "path": "experiments/tfpt-discovery/relation_hodge_pfaffian_probe.py",
+    "question": "relation_hodge_pfaffian_probe -- PRIME.RELATION.HODGE.01 (EXPLORATION ONLY, experiments/; Probe 5 of the 2026-08-07 evening plan: factorization cohomology instead of positivity completion, with the Pfaffian moonshot).",
+    "readme_lines": "",
+    "result_verdict": "VERDICT (frozen priority): PFAFFIAN-MATCHES > COHOMOLOGY-CARRIES | VERDICT priority as in docstring; tau refs kz 9/12/13 rel 1e-4 | section(\"S7 -- FROZEN VERDICT + honest consequence\") | print(\"\\n VERDICT: %s [gates 1-3 %s | S_cob per anchor %s \"",
+    "reusable": "",
+    "rh_related_evidence": "Epstein",
+    "rh_relevance": "FINITE_FRAGMENT",
+    "role": "working_probe",
+    "round": "",
+    "solved": "",
+    "status_raw": "VERDICT (frozen priority): PFAFFIAN-MATCHES > COHOMOLOGY-CARRIES"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "experiments/tfpt-discovery/seam_bc_primon_bridge_probe.py",
+      "result_json": null,
+      "tex": null
+    },
+    "confidence": "low",
+    "depends_on": [],
+    "draft": true,
+    "failed_because": "2026-07-23",
+    "failure_class": "NOT_APPLICABLE",
+    "family": "ADELIC_GROUPOID_CONNES",
+    "family_secondary": [
+      "EXPLICIT_FORMULA_IDENTITY",
+      "LATTICE_E8_HECKE"
+    ],
+    "kind": "ATTACK",
+    "ledger_ids": [],
+    "mechanism": "Question: can the v526 thermal seam carry zeta as its PARTITION FUNCTION (Bost-Connes / primon-gas form), and if not, what exactly is missing?",
+    "needs_review": true,
+    "outcome": "KILLED",
+    "path": "experiments/tfpt-discovery/seam_bc_primon_bridge_probe.py",
+    "question": "Discovery probe (2026-07-23), part 3 of the zeta/prime investigation: FIRST EXECUTABLE STEP of the candidate contract ZETA.BC.SEAM.KMS from probe 2 (zeta_explicit_formula_trace_probe.py, 19/19).",
+    "readme_lines": "",
+    "result_verdict": "collapsing spacings. VERDICT: \"zeta as partition function of the | FREE seam tower\" is KILLED at probe level -- no Hagedorn mode | check(\"VERDICT: 'zeta as partition function of the FREE seam tower' is \" | \"KILLED at probe level (finite quasi-linear ladders, Z entire, no \"",
+    "reusable": "",
+    "rh_related_evidence": "zeta",
+    "rh_relevance": "FINITE_FRAGMENT",
+    "role": "working_probe",
+    "round": "",
+    "solved": "",
+    "status_raw": "collapsing spacings.  VERDICT: \"zeta as partition function of the"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "verification/v840_gue_ablation_loopgain.py",
+      "result_json": null,
+      "tex": "tfpt_prime_front.tex"
+    },
+    "confidence": "med",
+    "depends_on": [
+      "tfpt_prime_front.tex"
+    ],
+    "failed_because": "",
+    "failure_class": "NOT_APPLICABLE",
+    "family": "WEIL_POSITIVITY_WINDOWS",
+    "family_secondary": [
+      "EXPLICIT_FORMULA_IDENTITY"
+    ],
+    "kind": "CONTROL",
+    "ledger_ids": [
+      "PRIME.FLOOR.GUEABLATION.01"
+    ],
+    "mechanism": "Ledger-cited verification module; docstring and status_ledger row used as the artefact.",
+    "outcome": "MEASURED",
+    "path": "verification/v840_gue_ablation_loopgain.py",
+    "question": "PRIME.FLOOR.GUEABLATION.01 + PRIME.FLOOR.LOOPGAIN.01: the saturation is STRUCTURAL and the bootstrap loop is SHORT -- every source-native, Guinand-admissible modification of the tower lands at the deployed demand/GUE plateau with th",
+    "readme_lines": "",
+    "result_verdict": "Measured/typed evidence line under the frozen preregistered protocols [falsification-attempt design: the ablation battery and the loop-gain curves are measurement-grade with the certificate/measuremen",
+    "reusable": "Prime-front / PRIME.* suite module absent from prior catalog fragments.",
+    "rh_relevance": "FINITE_FRAGMENT",
+    "role": "verification_module",
+    "round": "ledger:PRIME.FLOOR.GUEABLATION.01",
+    "solved": "Measured/typed evidence line under the frozen preregistered protocols [falsification-attempt design: the ablation battery and the loop-gain curves are measurement-grade with the certificate/measurement asymmetry typed; the Poisson circularity ward is the non-vacuity control]; the structural reading and the self-conservation law are",
+    "status_raw": "Measured/typed evidence line under the frozen preregistered protocols [falsification-attempt design: the ablation battery and the loop-gain curves are measurement-grade with the certificate/measurement asymmetry typed; the Poisson circularity ward is the non-vacuity control]; the structural reading and the self-conservation law are"
+  },
+  {
+    "artifacts": {
+      "figures": [],
+      "lean": [],
+      "probe": "verification/v854_relation_hodge_pfaffian.py",
+      "result_json": null,
+      "tex": "tfpt_prime_front.tex"
+    },
+    "confidence": "med",
+    "depends_on": [
+      "tfpt_prime_front.tex"
+    ],
+    "failed_because": "",
+    "failure_class": "NOT_APPLICABLE",
+    "family": "WEIL_POSITIVITY_WINDOWS",
+    "family_secondary": [
+      "EXPLICIT_FORMULA_IDENTITY"
+    ],
+    "kind": "FOUNDATION",
+    "ledger_ids": [
+      "PRIME.RELATION.HODGE.01"
+    ],
+    "mechanism": "Ledger-cited verification module; docstring and status_ledger row used as the artefact.",
+    "outcome": "MEASURED",
+    "path": "verification/v854_relation_hodge_pfaffian.py",
+    "question": "PRIME.RELATION.HODGE.01: factorization cohomology -- multiplicativity IS flatness, the relation discriminator becomes a local curvature census with a PROVEN F_2 Arf-lift obstruction, and the route's honest boundary is typed (the win",
+    "readme_lines": "",
+    "result_verdict": "Honest structural negative with a typed geometric positive core [typed evidence line: 18/18 checks, zero fails; gates 1-3 pass (the complex exact with d1 d2 = 0 at max entry 0; multiplicativity = flat",
+    "reusable": "Prime-front / PRIME.* suite module absent from prior catalog fragments.",
+    "rh_relevance": "FINITE_FRAGMENT",
+    "role": "verification_module",
+    "round": "ledger:PRIME.RELATION.HODGE.01",
+    "solved": "Honest structural negative with a typed geometric positive core [typed evidence line: 18/18 checks, zero fails; gates 1-3 pass (the complex exact with d1 d2 = 0 at max entry 0; multiplicativity = flatness at machine zero; curvature discriminates with",
+    "status_raw": "Honest structural negative with a typed geometric positive core [typed evidence line: 18/18 checks, zero fails; gates 1-3 pass (the complex exact with d1 d2 = 0 at max entry 0; multiplicativity = flatness at machine zero; curvature discriminates with"
+  }
+]

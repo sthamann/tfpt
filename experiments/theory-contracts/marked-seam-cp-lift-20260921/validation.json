@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-21",
+  "research_id": "UR.SOURCE.MARKED_CP_LIFT.01",
+  "verdict": "PARTIAL",
+  "normal_exit": 0,
+  "optimized_exit": 0,
+  "exact_check_count": 65,
+  "normal_optimized_identical": true,
+  "checker_sha256": "842c8c715d740ff0927c18c01686014d66fcbec9ea782a68c0024e929eecae98",
+  "certificate_sha256": "df1b320372e5f4ee1eb3bf26066f0517c8b175dc6b3f8d238a92505f6551a6d8",
+  "result_sha256": "900b54cacebe1bbd5a1d6d6709ae1e5c65246a76045f8ea3ecb4db3ef93ae14b",
+  "provenance_audit_sha256": "bac96abc7a25e7db266a961ae2e623143d05236f9282c9b8924deb9968d980ec",
+  "validated_addition": {
+    "statement": "The multiplicative domain of the selected finite random-unitary channel is exactly C I4.",
+    "proof_status": "PASS_SCOPED",
+    "reason": "The random-unitary Schwarz defect is a sum of positive squares. Vanishing forces all positive-weight Kraus conjugates to agree with X; the exact common commutant system for the five source words has rank 15 and one-dimensional nullspace spanned by I4.",
+    "scope": "This selected finite M4 channel only; no exclusion of larger dilations or other TFPT completions."
+  },
+  "mutants": [
+    {
+      "mutant": "reverse_is_cp",
+      "exit": 1,
+      "reason": "RuntimeError: mutant reverse assignment is CP"
+    },
+    {
+      "mutant": "continuous_is_cp",
+      "exit": 1,
+      "reason": "RuntimeError: mutant continuous marked interpolation CP"
+    },
+    {
+      "mutant": "readout_is_projection",
+      "exit": 1,
+      "reason": "RuntimeError: mutant sharp event embedding"
+    },
+    {
+      "mutant": "charge_preserved",
+      "exit": 1,
+      "reason": "RuntimeError: mutant charge conservation"
+    }
+  ],
+  "first_additional_assumption": "A single primitive step is a unital CPTP, marked-Pauli-covariant orbit-scalar map on the existing M4 algebra, and the seam survival values 1/3 and 2/3 are assigned to its two marked operator sectors.",
+  "continuous_no_go_scope": "Only the same marked orbit-scalar CPTP semigroup class.",
+  "analytic_scope": "Conditional finite-dimensional operator theorem. All-integer-time identities and the scalar multiplicative-domain theorem are algebraic; no continuum, physical charged-time, or complete TFPT proof.",
+  "physical_gates_closed": [],
+  "T1_T8_closed": false
+}

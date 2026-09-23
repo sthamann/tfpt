@@ -1,0 +1,2423 @@
+\documentclass[11pt,a4paper,oneside,parskip=half,headings=normal,numbers=noenddot,bibliography=totoc]{scrreprt}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{newtxtext}
+\usepackage[margin=24mm,top=23mm,bottom=24mm,headheight=16pt]{geometry}
+\usepackage{microtype,booktabs,longtable,array,tabularx,enumitem,xcolor,xurl}
+\usepackage{amsmath,mathtools}\usepackage{newtxmath,bm}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage[most]{tcolorbox}
+\usepackage{scrlayer-scrpage}
+\usepackage{hyperref}
+\definecolor{ink}{HTML}{142C40}
+\definecolor{teal}{HTML}{076D78}
+\definecolor{gold}{HTML}{9B6818}
+\definecolor{muted}{HTML}{536777}
+\definecolor{pale}{HTML}{EFF5F6}
+\hypersetup{pdftitle={TFPT und Universalraum: Sitzungsdokumentation},pdfauthor={Forschungsdokumentation aus der Arbeitssitzung mit Stefan Hamann und Codex},pdfsubject={Quellen, Clocks, Bindungen, Stromalgebren und offene physische Herleitung},colorlinks=true,linkcolor=teal,urlcolor=teal,citecolor=teal,bookmarksnumbered=true}
+\setkomafont{disposition}{\normalfont\sffamily\bfseries\color{ink}}
+\setkomafont{pageheadfoot}{\normalfont\sffamily\small\color{muted}}
+\clearpairofpagestyles
+\ihead{TFPT / UNIVERSALRAUM}
+\ohead{Gesamtsitzung · Fassung 2}
+\cfoot*{\pagemark}
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\setlist{nosep,leftmargin=1.5em,topsep=4pt}
+\emergencystretch=1.8em
+\setlength{\parindent}{0pt}
+\setlength{\parfillskip}{0pt plus 1fil}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\F}{\mathbb F}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\gap}{\operatorname{gap}}
+\newcommand{\src}[1]{\textcolor{teal}{\small[\hyperref[s:#1]{S#1}]}}
+\newcommand{\st}[1]{\textsf{\textbf{[#1]}}}
+\newcommand{\finding}[2]{\begin{tcolorbox}[enhanced,breakable,colback=pale,colframe=teal,boxrule=0pt,borderline west={2pt}{0pt}{teal},arc=0mm,left=3mm,right=3mm,top=2mm,bottom=2mm,title={#1},coltitle=ink,colbacktitle=pale,fonttitle=\sffamily\bfseries]#2\end{tcolorbox}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\color{ink}
+{\sffamily\large FORSCHUNGSDOKUMENTATION\par}
+\vspace{17mm}
+{\sffamily\bfseries\fontsize{32}{37}\selectfont TFPT und\par Universalraum\par}
+\vspace{7mm}
+{\sffamily\Large Vom geometrischen Compiler\par zur gemeinsamen physikalischen Dynamik\par}
+\vspace{12mm}
+\begin{tikzpicture}[x=0.99cm,y=1cm,>=Latex]
+\draw[teal,line width=1.4pt] (0,0)--(15.8,0);
+\foreach \x/\a/\b in {0.8/Quelle/Phasen,4.2/Operation/Zeit,7.6/Bindung/Vakuum,11/Ströme/Lokalität,14.6/Weltphysik/offene Brücke}{
+\fill[teal] (\x,0) circle(2.5pt);
+\node[align=center,font=\sffamily\small,text=ink] at (\x,-0.8) {\a\\\b};}
+\end{tikzpicture}\par
+\vspace{9mm}
+{\large Zusammenhängende Darstellung der Untersuchungen,\par Beweise, Gegenbeispiele und offenen Forschungsfragen\par aus der Sitzung vom 18.--20. September 2026.\par}
+\vspace{3mm}
+{\small Einschließlich der späteren Quellen-, Rand-, Paar- und Registeruntersuchungen.\par}
+\vfill
+\finding{Was dieser Bericht leistet}{Die Sitzung hat mehrere exakte Operatoranschlüsse und vollständige endliche Spektralsätze geliefert. Sie hat zugleich präzisiert, welche gut funktionierenden Teilmodelle die gemeinsame physikalische Herleitung noch nicht tragen. Dieser Bericht dokumentiert beides und benennt die nächsten entscheidenden Nachweise.}
+\vspace{5mm}
+{\sffamily Stand: 20. September 2026 · Fassung 2\par}
+{\small Erstellt aus dem Gespräch, den lokalen Forschungsartefakten und den quellengebundenen Verträgen. Eigenständiges Sitzungsdossier; keine neue Freigabe der kanonischen Theorie und kein behaupteter TOE-Abschluss.\par}
+\end{titlepage}
+\pagenumbering{roman}
+\hypersetup{pageanchor=true}
+\chapter*{Leserbrief}
+\addcontentsline{toc}{chapter}{Leserbrief}
+Das Ziel dieser Sitzung war von Anfang an groß: eine gemeinsame, möglichst einfache Ursprungstheorie finden, die den TFPT-Compiler, Quantenprozesse, Materie, Raumzeit und Gravitation aus derselben Struktur verständlich macht. Die Untersuchungen dürfen deshalb nicht nur daran gemessen werden, ob irgendwo eine schöne Matrix entsteht. Entscheidend ist, ob die verschiedenen Matrizen \emph{dieselbe Quelle, denselben Zustand und dieselbe Bewegung} beschreiben.
+
+Das einfachste Bild für den erreichten Stand ist eine Sprache samt Grammatik. Wir kennen ihr Alphabet inzwischen sehr genau. Wir wissen auch viel darüber, welche Wörter sich bilden lassen und wie einige dieser Wörter auf Registern wirken. Wir haben kleine vollständig lösbare Maschinen gebaut, die mit diesem Alphabet rechnen. Was noch fehlt, ist die Herleitung, warum aus der ursprünglichen Grammatik genau die eine physische Maschine mit ihrer Zeit, ihren Orten und ihrem Anfangszustand folgt.
+
+Dabei gab es reale Fortschritte: Phasen, die bei groben Auslesungen verschwinden, wurden wieder sichtbar; Bindungen zwischen Quellen wurden dynamisch; vollständige kleine Vakuumräume wurden bestimmt; ein bedingter Anschluss an affine Ströme wurde operatoriell präzisiert; lokale geladene Grenzfelder und korrelierte Registerkodierungen wurden mit derselben Zeitentwicklung verbunden. Ebenso wichtig waren die Korrekturen: Ein kleiner Energieabstand ist nicht automatisch ein Teilchen, ein Grundzustand eines Teilraums nicht automatisch das Weltvakuum, und ein passendes Spektrum nicht automatisch dieselbe Dynamik.
+
+\textbf{Der stärkste offene Zusammenhang} ist heute genauer benennbar als zu Beginn: Eine aus den Originalprinzipien ausgewählte Rohquelle muss die tatsächlichen Clockwirkungen, die geladenen Operatoren, das Vakuum und die gemeinsame Zeit auf \emph{einem} lokalen Zustandsraum realisieren. Der Bericht ordnet die Teilresultate entlang dieser Anforderung.
+
+\textbf{Umfang.} Erfasst ist die gesamte bisherige Sitzung: Readouts und Transfer, die frühe Ergebnisfolge .01--.29, Quellen- und Kettenmodelle, geladene Quellzeit, lokale Randrekonstruktion, Flavor und Eichladung, Paar- und Sektorübertragung sowie die jüngste geladene Registerkodierung. Spätere Korrekturen sind eingearbeitet. Wesentliche Formeln, Voraussetzungen und Beweisideen stehen im Text; vollständige Zertifikate und Programme sind über S01--S52 auffindbar. Wiederholungen im Gespräch werden nicht als zusätzliche Ergebnisse gezählt.
+
+\textbf{Überlieferung und Prüfung.} Mehrere eingereichte Berichte verwenden stärkere Formulierungen, als die später auffindbaren Nachweise tragen. Hier gilt jeweils der belastbarere, spätere Quellenstand. Die Drei-Quellen-Globalität und eine allgemeine Leakageformel werden deshalb nicht als abgesicherte Vollsätze fortgeschrieben. Das ist eine Korrektur der Dokumentation, keine heimliche Änderung des Modells.
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+\chapter{Ziel, Maßstab und Gesamtzusammenhang}
+\section{Was eine vollständige Lösung leisten müsste}
+Die gesuchte Gesamtlösung soll nicht nur bestehende Zahlen nachbilden. Sie müsste erklären, warum gerade die ursprünglichen Daten, die zulässigen Zustände, die Dynamik und ihre Auslesungen zusammen auftreten. Eine plausible gemeinsame Konstruktion müsste dabei die bereits vorhandenen TFPT-Beziehungen erhalten, statt sie durch frei gewählte Ersatzstrukturen zu reproduzieren.
+
+Der kanonische Kontext beschreibt zwei verzahnte Seiten: einen diskreten Träger- und Darstellungsabschluss sowie eine Randantwort, aus der unter weiteren Voraussetzungen Kopplungs- und Skalenbeziehungen gelesen werden. E8 ist darin ein Abschluss- und Prüfobjekt; seine Lie-Dimension 248 ist keine Behauptung einer direkt beobachteten 248-dimensionalen Raumzeit oder Eichgruppe. \src{CTX}
+
+\section{Der Ausgangspunkt der Theorie}
+P1 setzt eine orientierte Naht, einen primitiven reflexionspositiven Randkern, Einheitswindung und die Normierung $c_3=1/(8\pi)$. P2 setzt die fünfteilige Trägerschnittstelle mit dem Schnitt $3+2$. Diese Postulate sind strukturierte Eingaben. Sie sind nicht gleichbedeutend mit den später zusätzlich gewählten Gitterketten, Quellen-Hilberträumen oder Hamiltonoperatoren.
+
+Auf der Trägerseite steht $S^+=\Lambda^{\mathrm{even}}\C^5$ mit 16 komplexen Komponenten. Die Familienseite trägt $A_3$. Ihre Diskriminantenformen erlauben den markierten Abschluss
+\[
+ D_5\oplus A_3\subset E_8,\qquad
+ \frac54+\frac34=2,\qquad
+ \det E_8=\frac{4\cdot4}{4^2}=1.
+\]
+Der $3+2$-Schnitt liefert im bestehenden algebraischen Vertrag das Standardmodell-Ladungsgerüst. Die Clockbeziehungen verknüpfen die Fünfer-, Dreier-, Zweier- und Viertelstrukturen. Das Coxeterelement $C$ hat Ordnung 30; in der tatsächlich verwendeten Darstellung gilt $C^{15}=-I$. Die Familien- und Viertelclock erfüllen $c=J\sigma$ mit $c^{12}=I$. Dass mehrere Gruppen abstrakt eine Viertelstruktur besitzen, identifiziert noch nicht ihre konkreten Wirkungen. \src{CTX}
+
+Auch Flavor, $\alpha$ und die gravitativen Randlesarten gehören zum Ausgangsbild. Beispielsweise verwendet die bestehende Selbstkonsistenzgleichung
+\[
+ F(\alpha)=\alpha^3-2c_3^3\alpha^2-\frac45\,41c_3^6
+ \log\!\frac1{\varphi_s(\alpha)}=0.
+\]
+Ihre positive Zielwurzel liefert im eingefrorenen Formelstand $\alpha^{-1}\approx137{,}03599921684$. Dieser Bericht führt keinen neuen experimentellen Fit aus. Gleichungsabschluss, physische Identifikation und Übertragung auf Messgrößen bleiben verschiedene Aussagen. Die Sitzung hat keine neue Herleitung von Teilchenmassen, Kosmologie oder Gravitation abgeschlossen. \src{CTX}
+
+\section{Belegklassen und drei verschiedene Arten von Eindeutigkeit}
+\noindent\begin{tabularx}{\textwidth}{@{}lY@{}}
+\toprule
+Klasse & Bedeutung in diesem Bericht\\\midrule
+\st{A} & Eine ausdrücklich gewählte Voraussetzung, etwa Graph, Kopplung, Polarisation oder Instrument.\\
+\st{E} & Exakter mathematischer Befund unter den genannten Voraussetzungen; gegebenenfalls durch rationale oder ganzzahlige Zertifikate abgesichert.\\
+\st{N} & Numerischer Befund. Kleine Residuen allein schließen unentdeckte tiefere Zustände nicht aus.\\
+\st{C} & Bedingte physische oder darstellungstheoretische Verbindung. Die erste Identifikation muss zusätzlich begründet werden.\\
+\st{X} & Widerlegung einer präzisen Behauptung in einer benannten Modellklasse. Kein pauschales Naturverbot.\\
+\st{O} & Noch fehlende Herleitung oder nicht unabhängig bestätigter Nachweis.\\\bottomrule
+\end{tabularx}
+
+Drei Wörter dürfen nicht zusammenfallen. Ein \emph{eindeutiger algebraischer Abschluss} bestimmt eine Struktur. Ein \emph{eindeutiger Grundzustand} bestimmt die niedrigste Energie eines gewählten Hamiltonoperators. Ein \emph{Attraktor} beschreibt, wohin eine bestimmte Dynamik aus Anfangszuständen führt. Keines dieser Ergebnisse ersetzt die beiden anderen.
+
+Für einen geschlossenen zeitunabhängigen Hamiltonoperator bleibt die Grundraumbesetzung erhalten:
+\[
+ \frac{d}{dt}\tr(\rho(t)P_0)
+ =-i\tr\bigl(\rho(t)[P_0,H]\bigr)=0.
+\]
+Eine energetische Zustandswahl ist deshalb noch keine kosmologische Präparation. Genau diese Trennung wird später bei den Quellenpaketen entscheidend.
+
+\section{Wie die Gesamtlösung hier geprüft wird}
+\begin{center}
+\begin{tikzpicture}[node distance=7mm,>=Latex,
+ box/.style={draw=teal,rounded corners=1mm,fill=pale,text width=12.5cm,align=center,inner sep=6pt,font=\sffamily\small}]
+\node[box] (a) {Ursprungsdaten und ausgewählte Rohquelle};
+\node[box,below=of a] (b) {Derselbe Zustandsraum: Ladungen, Operatoren, Clock und Vakuum};
+\node[box,below=of b] (c) {Lokale Mehrzeitantwort und kontrollierter großer Grenzwert};
+\node[box,below=of c] (d) {Chirale Materie, gemeinsame Raumzeit, Kopplungen und Gravitation};
+\draw[->,teal] (a)--(b); \draw[->,teal] (b)--(c); \draw[->,teal] (c)--(d);
+\end{tikzpicture}
+\end{center}
+Viele Ergebnisse der Sitzung liegen in der zweiten Zeile. Die erste Verbindung ist noch nicht vollständig hergeleitet; die dritte und vierte Zeile folgen nicht allein aus der Existenz einer schönen endlichen Realisierung. Diese Karte verhindert, dass ein neuer Teilsektor den ursprünglichen Auftrag unbemerkt ersetzt.
+
+\chapter{Von Readouts zur Frage nach dem Prozess}
+\section{Was die frühen Logs tatsächlich beitragen}
+Der Ausgangsimpuls war, in den Readouts und im Forschungsgraphen eine bislang übersehene Verbindung zu finden. Assoziative Texte sind dafür Suchhinweise: Sie können eine sinnvolle Frage aufwerfen. Ihre physikalische Wahrheit folgt aber weder aus sprachlicher Geschlossenheit noch daraus, dass ein System Begriffe wie Phase, Primzahl, Quelle oder Compiler gemeinsam ausgibt.
+
+Die Sitzung trennte deshalb zwei Ebenen: die Herkunft und Messbarkeit eines Readouts einerseits und die unabhängige mathematische Prüfung seiner möglichen Strukturidee andererseits. Ein hoher interner Ähnlichkeitswert ist kein Nachweis einer rekonstruierten Naturgesetzlichkeit. Ebenso ist ein Graphpfad eine Fundstelle und keine Beweiskette. Die technische Auswertung umfasst 18\,764 Logzeilen und 27 vollständige Readouts. Von 150 begonnenen Benchmark-Items haben 149 einen dokumentierten Status: 22 \texttt{CONTROL\_PASS}, 58 \texttt{CORRECT}, 69 \texttt{ABSTAIN}. Der Lauf ist unvollständig. Die projizierten Spitzenkosinuswerte liegen zwischen 0,046 und 0,096, der Median bei 0,069. Vier Analogie-Readouts zeigen trotz verschiedener Fragen stark ähnliche Wortmengen und enden sämtlich mit \texttt{ABSTAIN}. Diese internen Labels wurden hier nicht unabhängig neu bewertet. Fünf aktive TFPT-Hebel und ein geladener Checkpoint verhindern, wiederkehrende TFPT-Wörter als unabhängige Bestätigung zu lesen. \src{LOG}
+
+Auch der eingebrachte Nachrichtentext über Z-Boson-Verschränkung liefert in dieser Sitzung keinen unabhängigen TFPT-Nachweis: Ein Modellzeugnis für Verschränkung ersetzt keine quantitativ hergeleitete LHC-Vorhersage. Eine neue experimentelle Auswertung dieser Meldung wurde hier nicht durchgeführt.
+
+Die Berührung mit Faktorisierung und Primzahlen blieb in dieser Sitzung eine Herkunfts- und Strukturfrage. Integrale Gitter, endliche Körper oder Coxeterphasen liefern keine neue allgemeine Faktorisierungsmethode. Insbesondere ist die später im Rahmenbeweis verwendete Primzahl 31 ein Hilfsmittel eines exakten Gegenarguments, keine neu hergeleitete Naturkonstante.
+
+\section{Ein Zustand ist weniger Information als eine Dynamik}
+Ein wichtiger früher Test betraf die Rekonstruktion des Generators aus einer Zustands- oder Randbeschreibung. Der Projektor
+\[
+ P_+=\frac{I+\operatorname{sgn}(H)}2
+\]
+kennt die positiven und negativen Energierichtungen, verliert aber die Beträge $|H|$. Schon $H=\operatorname{diag}(1,2)$ hat $P_+=I$; jede Dichtematrix kommutiert mit $P_+$, aber nicht jede mit $H$. Die Rückrichtung $[\rho,P_+]=0\Rightarrow[\rho,H]=0$ ist falsch. Das ist kein Einwand gegen die modulare Eindeutigkeit eines vollständig spezifizierten Standardpaares und kein Einwand gegen die Gibbs-Inversion bei bekannter Temperatur. \src{STATE}
+
+Positiv gilt bei bekanntem $\beta\ne0$ und treuer endlicher Fermi-Kovarianz
+\[
+ H=\beta^{-1}\log\bigl((I-C_\beta)C_\beta^{-1}\bigr).
+\]
+Auch ein unabhängig identifizierter Transfer $0<T<I$ auf demselben bewegten Raum rekonstruiert mit $Q=\operatorname{sgn}H$ den Generator $H=Q(-\log T)/\tau$, wenn $T=e^{-\tau|H|}$ und $[T,Q]=0$ gelten. Entscheidend ist die volle operatorielle Transferinformation; ihr Spektrum allein reicht nicht. \src{STATE}
+
+Bildlich: Eine Karte kann zeigen, welche Straßen existieren, ohne die Fahrzeiten zu enthalten. Ebenso kann eine korrekte Zustandsstruktur die zulässigen Richtungen bestimmen, ohne deren Bewegung festzulegen. Die weitere Arbeit musste deshalb \emph{Mehrzeitdaten} oder einen unabhängig begründeten Generator mitführen.
+
+\section{Gleicher Populationstransfer, verschiedene Quantenfortsetzungen}
+Der konkrete Familien-Populationstransfer lautet
+\[
+ B=\frac1{18}\begin{pmatrix}13&1&4\\1&13&4\\4&4&10\end{pmatrix},
+ \qquad\spec B=\left\{1,\frac23,\frac13\right\}.
+\]
+Seine Birkhoff-Ausführungen besitzen in der Reihenfolge Identität, zwei Dreierzyklen und drei Transpositionen die Gewichte
+\[
+ w_t=\left(\frac12+t,t,t,\frac1{18}-t,\frac29-t,\frac29-t\right),
+ \qquad0\le t\le\frac1{18}.
+\]
+Alle haben denselben klassischen Schatten. Auf dem zweidimensionalen Kontrastraum unterscheiden sich jedoch ihre Quantenkanäle: Die Multiplikatoren auf $(I,X,Z,Y)$ sind $(1,2/3,1/3,6t)$. Die unsichtbare Größe $6t$ steuert Kohärenz. \st{E} \src{TRANSFER}
+
+Unter der zusätzlichen Clifford-/tracialen Zweitquantisierungsregel wird $6t=(2/3)(1/3)$ verlangt. Damit folgt $t=1/27$ und
+\[
+ w_{1/27}=\frac1{54}(29,2,2,1,10,10).
+\]
+Die Auswahl ist exakt \emph{unter dieser Regel}. Bloße kontinuierliche Markov-Realisierbarkeit genügt nicht: Die geprüften kontinuierlichen $S_3$-Faltungen erlauben $t\in[1/27,1/24]$. Für den Populationsgenerator gilt
+\[
+ q_{12}=\frac16\log\frac98,\qquad
+ q_{13}=q_{23}=\frac13\log3.
+\]
+Zusätzliche symmetrische Dreierzyklusraten $\gamma\in[0,q_{12}]$ verändern die kohärente Ausführung, während dieselbe Population erhalten bleibt. \src{TRANSFER}
+
+Auch der ausgewählte Vollkanal besitzt nicht automatisch einen einzigen Zustand: Im Dreierraum bleibt eine Mischung aus uniformer Richtung und Kontrastraum stationär. Ein konkreter Schleifenoperator unterscheidet die Ausführungen trotz gleicher Population. Die frühe Auswahlfrage ist damit nicht erledigt, sondern auf die Herkunft des vollständigen Ereignisgesetzes zugespitzt.
+
+\section{Die verborgene Phasenfaser und das Gedächtnis}
+Eine weitere Rekonstruktion benutzte die tatsächlichen 60 Reflexionen auf $\C^4$. Bei festgehaltenem Zeit-eins-Populationstransfer $B\oplus1$ sind nur 16 dieser Ereignisse zugelassen: vier Achsenereignisse sowie vier relative Phasen $\zeta=\pm1,\pm i$ auf jedem der drei Paare. Die Population fixiert die Summen der Paar-Raten; sie fixiert die Aufteilung auf diese Phasen nicht. Der Compound-Poisson-Generator bleibt eine gewählte Modellklasse. \src{PHASE}
+
+Eine explizite Wahl erzeugt aus einem nativen Produktzustand Verschränkung, obwohl der klassische Transfer unverändert ist. Dafür existiert ein analytischer negativer Partialtranspositionszeuge; der zusätzlich berichtete Dezimalwert ist nur numerische Kontrolle. Die stärkere strukturelle Aussage betrifft die neun sichtbaren reellen Zustandsparameter: Sie entwickeln sich genau dann autonom, wenn für jedes Paar
+\[
+ r_{ij,i}=r_{ij,-i}
+\]
+gilt. Bei Asymmetrie wirkt der zunächst unsichtbare, konjugationsungerade Teil später auf die sichtbare Antwort zurück. Die Beobachtbarkeitsräume wachsen in dem geprüften Beispiel von Dimension $10$ auf $14$ und dann $16$; nach Abzug der Spur werden alle 15 Dichteparameter benötigt. \src{PHASE}
+
+Eine einzelne Momentaufnahme kann also viel kleiner aussehen als der Zustand, der ihre Zukunft bestimmt. Das ist eine konkrete Bedeutung von Gedächtnis im Universalraum: Nicht alles, was momentan unsichtbar ist, darf aus der Dynamik entfernt werden.
+
+Die Schleifenholonomie $h=\zeta_{12}\zeta_{23}\overline{\zeta}_{13}$ ordnet die 64 Phasenwahlen in vier Klassen. $h=1$ lässt im untersuchten Dreiersektor einen dunklen Modus; die anderen Klassen können dort den stationären Zustand eindeutig machen. Der vierte Populationsplatz bleibt dennoch ein eigener Freiheitsgrad. Holonomie, Verschränkung und volle Zustandsauswahl sind somit drei verschiedene Eigenschaften. \src{PHASE}
+
+\section{Die inklusive Dreierauslesung löst den eingefrorenen vierten Platz}
+Der festgehaltene vierte Sektor ist keine notwendige Folge des Dreiertransfers. Er entstand durch die gewählte Fortsetzung $B\oplus1$. Unter Positivität, Normierung, Schärfe auf den ersten drei Koordinaten und nativer Dreierkovarianz ist stattdessen die Auslesung
+\[
+ E_i=P_i+\frac13P_4,\qquad i=1,2,3,
+\]
+eindeutig. Jeder der drei sichtbaren Ausgänge erhält denselben Anteil des vierten Platzes. Eine unsichtbare interne Richtung kann dadurch dynamisch werden, ohne einen vierten sichtbaren Ausgang einzuführen. \src{INCLUSIVE}
+
+In der vollständig gelösten symmetrischen monomialen Erweiterung gilt mit einem hier $\nu$ genannten Ratenparameter
+\[
+ r_{i4}=\nu,\qquad r_{ij}=q_{ij}-\frac\nu3,\qquad
+ 0\le\nu\le3q_{12}.
+\]
+Die Drei-Auslese folgt für alle Zeiten exakt dem alten Generator $Q=\log B$. Für eine konkrete native Phasenwahl im Inneren des Intervalls ist $I_4/4$ der einzige stationäre Zustand. Der Zeit-eins-Verschränkungszeuge bleibt in einem ausdrücklich geprüften Bereich negativ. Die tatsächliche endliche Clock $c=i\sigma$ ist ein Wort der erzeugten Gruppe $G(4,4,4)$ mit kürzester Länge acht. Eine erlaubte Operatorgeschichte ist damit gezeigt; eine periodische gemittelte Uhr folgt daraus nicht. \src{INCLUSIVE}
+
+Die unsichtbare Richtung $W=P_1+P_2+P_3-3P_4$ relaxiert in dieser Konstruktion mit Rate $4\nu$. Darüber hinaus wurde ein allgemeiner Satz bewiesen: Für jede Hilbert--Schmidt-selbstadjungierte CPTP-Semigruppe auf $M_4$, die genau diese Effekte zur Zeit eins mit $B$ fortschreibt, gilt
+\[
+ \Delta_{\mathrm{Relax}}\le2\log(9/8)<\log(3/2).
+\]
+Der Rayleigh-Zeuge ist $W$. Der Satz setzt weder monomiale Sprünge noch die 60er-Bank voraus, wohl aber Reversibilität im genannten Skalarprodukt und genau diese Auslesung. Er erzwingt eine verborgene langsamere Rate. Er ist keine allgemeine Aussage über beliebige nichtreversible Quantendynamik. \src{INCLUSIVE}
+
+\section{Der diskrete Randanschluss funktioniert tatsächlich}
+Die vier Marken $(1,i,-1,-i)$ liefern normierte Residuenlinien
+\[
+ \phi_k=\frac12(1,i^k,(-1)^k,(-i)^k)^T,\qquad k=0,1,2,3.
+\]
+Alle vier Projektoren gehören tatsächlich zur nativen 60er-Bank. Die geometrische Deckung hat auf ihnen die Eigenwerte $i^k$; sie ist deshalb nicht die zentral auf $\C^4$ wirkende Compiler-Viertelclock. In der Reihenfolge der nichttrivialen Charaktere $(i,-i,-1)$ liefert die inklusive Auslesung einen ausdrücklich konstruierten nativen diskreten Kanal $\Phi_0$ mit
+\[
+ \mathcal R(\Phi_0^n(\rho))=B^n\mathcal R(\rho)
+ \quad\text{für alle }\rho\text{ und }n\ge0.
+\]
+Sechs Schritte geben die ursprünglichen nichtstationären Werte $(2/3)^6,(1/3)^6$. \src{BOUNDARY}
+
+Eine zusätzliche vorhandene Orientierungsreflexion definiert $\Phi_+=\operatorname{Ad}_{R_+}\Phi_0$ mit genau derselben klassischen Auslese. Bei einem expliziten nativen Produktinput hat der Output das Partialtranspositionsspektrum
+\[
+ \left\{-\frac18,\frac13,\frac13,\frac{11}{24}\right\}.
+\]
+Er ist also ohne Postselektion verschränkt. Beide diskreten Kanäle besitzen den einzigen stationären Zustand $I_4/4$. Derselbe klassische Transfer und derselbe Fixpunkt bestimmen somit die Quantenwirkung immer noch nicht. \src{BOUNDARY}
+
+Gerade hier war eine zusätzlich verlangte kontinuierliche Einbettung der falsche Engpass: Der exakte native Wortabschluss begrenzt entsprechende kontinuierliche Raten durch $b\le4a$ beziehungsweise $b\le7a$, während $Q=\log B$ diese Schranken verletzt. Der diskrete Schritt liegt hingegen genau auf $b_{\mathrm{Schritt}}=4a_{\mathrm{Schritt}}$. Die Diskretkonstruktion ist positiv gelöst; die geprüfte kontinuierliche Fortsetzung ist ausgeschlossen. Die physische Randnormierung und die Auswahl zwischen den zulässigen Kanälen bleiben offen. Die ursprüngliche Randquelle müsste dafür selbst eine phasenempfindliche Antwort festlegen. \src{BOUNDARY}
+
+\section{Der gemeinsame Clockträger vor den Quellenketten}
+Bereits die frühe Clockanalyse zeigte, warum der feste komplexe Viererraum zu klein ist. Für seine konkrete Einbettung $V$ in die Komplexifizierung des reellen Wurzelraums hat der Übergangsblock $B_C=\overline V^{\dagger}CV$ die Singulärwertquadrate
+\[
+ \spec(B_C^\dagger B_C)=
+ \left\{\left(\frac{3-\sqrt5}{8}\right)^{\times2},
+ \left(\frac{3+\sqrt5}{8}\right)^{\times2}\right\}.
+\]
+Er ist invertierbar: Kein nichtnull Vektor des festen Viererraums bleibt nach diesem Schritt ganz darin. Die kleinste gemeinsame komplex-lineare Erweiterung \emph{dieser Einbettung} ist $\C^8$. Sie ist kein acht-dimensionaler physischer Raum. \src{COMMON}
+
+Die nativen komplexen Reflexionen entsprechen Paaren reeller E8-Wurzelreflexionen. Geladene Kokzyklus-Lifts setzen die 12er- und 30er-Clock auf das vorhandene Gitteralgebra-Ziel fort; 64 Zeichenkorrekturen erfüllen die geforderte Halbperiodenkompatibilität. Eine solche Existenzwahl ist noch kein physischer Phasenselektor. Außerdem kommutieren die beiden Clocks nicht. Sie können in dieser Darstellung daher nicht zwei Zeiten derselben autonomen unitären Einparametergruppe sein. Als verschiedene interne Symmetrien bleiben sie zulässig. \src{COMMON}
+
+\chapter{Das algebraische Wörterbuch wird präzise}
+\section{Trialität: drei Rollen statt drei identischer Kopien}
+Die ersten Compilerverträge fragen nach einer normverträglichen Multiplikation. Eine bilineare Abbildung $V\times V\to V$, auf deren drei Beinen dieselbe Clock wirkt, scheitert bereits an $C^{15}=-I$: Bilinearität gibt $m(-x,-y)=m(x,y)$, Kovarianz würde $-m(x,y)$ verlangen. Die passende Konstruktion verwendet drei verschieden wirkende Rang-8-Rollen,
+\[
+ m:V\times S^+\longrightarrow S^-,\qquad
+ m(v,w)=\frac12\sum_i v_iA_iw,
+ \qquad N_-(m(v,w))=N_V(v)N_+(w).
+\]
+Integrale Geschlossenheit, Cliffordrelationen und die tatsächlichen Clock-Lifts wurden exakt geprüft. Dies ist Spin(8)-Trialität, keine Herleitung dreier Familien oder dreier Raumachsen. \src{01}
+
+Der nächste Schritt entfernt in der untersuchten Klasse die freie Saatwahl:
+\[
+ \mathrm{Cl}_{\Z}(E_8,q)\cong\mathrm{Mat}_{16}(\Z),\qquad
+ \mathrm{Cl}_{\Z}^{0}(E_8,q)\cong
+ \mathrm{Mat}_8(\Z)\oplus\mathrm{Mat}_8(\Z).
+\]
+Die 256 geordneten Monome besitzen eine ganzzahlige Basisdeterminante $+1$. Auf jeder Rolle erzeugen $C,J$ die volle Matrixordnung $\Z[C,J]=\mathrm{Mat}_8(\Z)$. Das Kovarianzsystem des Trialitätstensors hat Rang 511 bei 512 Koeffizienten; primitive integrale Lösungen sind genau $\pm m$. \st{E} \src{02}
+
+Das ist eine starke algebraische Kompression: Viele scheinbar freie Entscheidungen sind im bezeichneten Rahmen keine. Trotzdem entscheidet sie nicht, welche dieser Rollen die Natur als physischen Zustandsraum realisiert.
+
+\section{Warum gleiche Dimensionen nicht dieselben Teilchen bedeuten}
+Ein konkreter Charaktertest verhindert die falsche Übertragung auf den nativen Träger. Die geometrische Dreierwirkung aus der Trialitätskonstruktion hat Spur $-8$ und charakteristisches Polynom $(x^2+x+1)^8$. Die native Wirkung auf $\Lambda^{\mathrm{even}}\C^5$ besitzt dagegen Spur $4$ und $(x-1)^8(x^2+x+1)^4$. Ein Intertwiner dieser beiden Wirkungen existiert nicht. \st{X} \src{03}
+
+Das passende native Wörterbuch arbeitet mit acht \emph{komplexen} CAR-Moden:
+\[
+ \mathfrak e_8=\mathfrak{so}(16)\oplus S^+,
+ \qquad248=120+128,
+\]
+\[
+ H_i\leftrightarrow N_i-\frac12,\qquad
+ E_{e_i-e_j}\leftrightarrow a_i^\dagger a_j,\qquad
+ E_{e_i+e_j}\leftrightarrow a_i^\dagger a_j^\dagger.
+\]
+Die 128 Spinorgewichte und die Kokzykluszeichen sind mitzuführen. Acht reelle Wurzelkoordinaten, acht komplexe CAR-Moden, 16 reale Majoranas und ein Spin(10)-Halbspinor sind dabei verschiedene Objekte. Der feste markierte 48er-Ausschnitt ist unter $C,J$ nicht abgeschlossen; sein Wurzelabschluss umfasst 240 Richtungen. \src{03}
+
+\section{Naht, Determinante, E6 und die zusätzliche Linie}
+Die vorgegebene dreidimensionale Nahtdarstellung $V$ besitzt unter der verlangten $SU(4)$-Ergänzung die eindeutige Form
+\[
+ W=\det(V)^*\oplus V,\qquad
+ \rho_W(g)=\operatorname{diag}\bigl(\det\rho_V(g)^{-1},\rho_V(g)\bigr).
+\]
+Die vierte Linie ist somit kein neutral hinzugefügtes Familienetikett. Ein expliziter $D_4$-Projektor isoliert sie. Auf denselben E8-Operatoren gilt der markierte Schnitt
+\[
+ 248=(78,1)+(1,8)+(27,3)+(\overline{27},\overline3),\qquad
+ 27=16_1+10_{-2}+1_4.
+\]
+Der kleinste E6-abgeschlossene Raum über den alten 48 Komponenten hat Dimension $81=48+30+3$. Die Ergänzungen müssen später physikalisch behandelt werden; ihr algebraisches Auftreten erklärt keine Masse und keine Entkopplung. \src{04}
+
+Die Nahtwirkung setzt sich mit $h=(0,0,0,0,0,4,3,5)$ als $T(E_\beta)=i^{h\cdot\beta}E_\beta$ eindeutig auf das Wurzelgitter fort. Ihre konkrete $D_4$-Wirkung und Kokzykluszeichen stimmen. Aber $T$ ist nicht die geometrische $J$-Clock: Die adjungierten Spuren sind verschieden. Der spätere Zusammenhang lautet $T=G^2A$, mit Klebeclock $G$ und Familienrotation $A$. Deren Zusammenhang ist eine Formel, keine Identität der drei Rollen. Die D4-Symmetrie wählt keinen eindeutigen Zustand: Ihr Kommutant auf dem Viererraum hat Dimension drei und lässt einen zweiparametrigen Simplex invarianter Dichtematrizen. \src{05}\src{07}
+
+\section{Was eine affine Vakuumantwort schon liefert}
+Unter der zusätzlichen vorhandenen $E_{8,1}$-Vakuumdarstellung gilt für Grade 1
+\[
+ G_{ab}=\bra\Omega(J^a_{-1})^\dagger J^b_{-1}\ket\Omega
+       =\kappa(a^\dagger,b).
+\]
+Im markierten $16\times4$-Sektor sind die vier Familienantworten gleich normiert; die normierte Antwort ist $I_4/4$. Diese Gramform ist keine reduzierte Dichtematrix des Grade-0-Vakuums. \src{06}
+
+Die Dreistromantwort wird durch die Lie-Klammer festgelegt:
+\[
+ \bra\Omega J^a_1J^b_0J^c_{-1}\ket\Omega
+ =\kappa(a,[b,c]),\qquad C_{Ai,Bj,Ck}=d_{ABC}\epsilon_{ijk}.
+\]
+Der E6-Wardraum des Kubiks ist eindimensional. Seine 45 Monome zerfallen in 40 Terme vom Typ $16\cdot16\cdot10$ und fünf vom Typ $10\cdot10\cdot1$. Das bestimmt eine relative algebraische Form. Es bestimmt noch keine physische Yukawakopplung. Die Quelle muss zunächst dieselbe lokale affine Darstellung erzeugen. \src{06}
+
+\section{Der erste harte Quellen-Rangtest}
+Die unveränderte ein-kopige QWZ-Quelle mit acht Querzeilen trägt nur einen komplexen führenden Kanal pro Rand. Für transversale Bilineare gilt
+\[
+ G(B,C)=b(B)\overline{b(C)},\qquad b(B)=r_{\mathrm{top}}^\dagger Br_{\mathrm{top}},
+\]
+also Rang eins. Acht Zeilen sind keine acht unabhängigen Ströme. Die frühere $c_-=8$-Lesart beruhte auf zusätzlich gesetzten Majoranakopien. \st{X} \src{07}
+
+Die korrekt typisierte affine Erweiterungskette lautet
+\[
+ (D_5)_1\times(A_3)_1\xrightarrow{\text{Index }2}(D_8)_1
+ \xrightarrow{\text{Index }2}(E_8)_1.
+\]
+Die Ordnung-vier-Klasse gehört über das Ausgangsgitter, nicht als solche zum D8-Zwischenschritt. \src{07}
+
+Unter der zusätzlichen Voraussetzung von acht graduierten Kopien lässt sich hingegen ein bekannter lokalisierter Spinorsektor durch Quellenwörter approximieren. Die Zellmittelabbildung ist kontraktiv, $\|Q_Ng\|\le\|g\|_2$, und die Konvergenz erstreckt sich auf feste $L^2$-Testfunktionen und endliche Wörter. Das ist eine bedingte Darstellung von Observablen im Spinorsektor; es konstruiert noch keinen geladenen mikroskopischen Feldoperator, der den Sektor aus dem Vakuum erzeugt. \src{10}
+
+Auch ein eingereichtes neutrales Zellenmodell lässt sich exakt lösen: Sein Transfer ist $\mathcal E(X)=(X+\tr(X)I)/5$, und der Parent besitzt eine größenunabhängige Lückenschranke. Er sieht jedoch nur niedrige Momente und hat sogar $PSU(4)$-Symmetrie. Auf neutralen Matrixobservablen wirkt $iI$ trivial, auf den acht reellen Quellenkoordinaten nicht. Daher ist die geforderte äquivariante lineare Quellenabbildung in diesen neutralen Raum null. \src{11}
+
+Positiv bleibt: Falls die richtigen acht lokalen Felder mit den tatsächlichen $C,J$-Wirkungen vorhanden sind, erzwingt $\operatorname{Comm}(C,J)=\R I$ eine skalare Zweipunkt-Gramform. Eine einzige nichtnull Antwort würde dann Rang acht liefern. Offen ist gerade die geladene lokale Abbildung, auf die dieser Satz angewendet werden könnte.
+
+\chapter{Operationen, Ereignisse und eine gemeinsame Uhr}
+\section{Die 60 Operationen und ihre vollständige Zusammensetzung}
+Die 240 Wurzeln ergeben nach projektiver Zuordnung 60 komplexe $2\times2$-Matrixstrahlen: 24 unitäre Ein-Qubit-Cliffordklassen und 36 Rang-1-Operationen. Alle 3600 geordneten Produkte sind bekannt: 3168 behalten das Normquadrat, 216 erhalten den Faktor zwei, 216 verschwinden. Vektorisierung verbindet sie mit 60 Zweiqubit-Stabilisatorstrahlen; die Kontraktion folgt der tatsächlichen Matrixverkettung. \src{08}
+
+Das Lorentzkegel-Wörterbuch respektiert die Komposition,
+\[
+ R(BA)=R(B)R(A),\qquad
+ R(A)^T\eta R(A)=|\det A|^2\eta.
+\]
+Es stellt damit eine echte operative Struktur bereit. Es erzeugt aber nicht von selbst räumliche Lorentzsymmetrie oder einen physikalisch ausgewählten Zeitparameter.
+
+Der einfachste uniforme Gebrauch der Operationen scheitert am vorhandenen Transfer:
+\[
+ K_A=\frac A{\sqrt{60}}\quad\Longrightarrow\quad
+ \Phi(X)=\tr(X)\frac I2.
+\]
+Nach einem unbeobachteten Schritt ist der Zustand vollständig depolarisiert. Die nichttrivialen Transferwerte $2/3$ und $1/3$ können darin nicht injektiv fortbestehen. Auch die bloße Umgewichtung der beiden uniformen Klassen behebt dies nicht. Das Alphabet ist nicht schon sein richtiges Ausführungsprogramm. \st{X} \src{08}
+
+\section{Der Übertrag ist mehr als eine globale Phase}
+Im vierten Quellenmoment erscheint ein Rang-5-Raum
+\[
+ \Pi_5=40M_4-P_{\mathrm{sym},4}.
+\]
+Er trägt eine $S_6$-Wirkung. Die vollständige projektive Komposition enthält jedoch einen binären Übertrag:
+\[
+ (a,s)(b,t)=\bigl(a+s(b)+\epsilon(t)d(s),st\bigr),
+ \qquad d(st)=d(s)+sd(t).
+\]
+Die Erweiterung spaltet nicht. Es wurden 11\,520 projektive und 46\,080 phasengetreue Operationen rekonstruiert. Ein im Rang-5-Bild geschlossenes Wort kann auf dem zugrunde liegenden Viererregister noch als nichttriviales Pauliwort wirken und eine Rückkehrwahrscheinlichkeit von eins auf null ändern. \src{09}
+
+Ein kleineres Bild kann also korrekt sein und trotzdem keine vollständige Zustandsbeschreibung darstellen. Der fehlende Übertrag muss als Speicher oder als volle Operatorwirkung erhalten bleiben. Auch diese genaue Multiplikation wählt noch keine Ereignisraten: Eine zusätzliche Dephasierungsfamilie verändert Kohärenzen, ohne die bereits kontrollierten Populations- und Wortdaten zu verändern.
+
+\section{Geometrischer Phasentransport und seine Reichweite}
+Auf dem quartischen Fünferraum gilt exakt
+\[
+ \Pi_5\,d\Gamma_4(X)\,\Pi_5=\tr(X)\Pi_5.
+\]
+Daraus folgen die Verbindung $\mathcal A=\tr(U^\dagger dU)I_5$ und die interne Metrik
+\[
+ g(X,Y)=8\tr(XY)-2\tr(X)\tr(Y)=8\tr(X_0Y_0).
+\]
+Eine Kurve $U_l(t)=\exp(i\pi tP_l)$ verbindet die Fünfer- und Viererwirkung über dieselbe Phase. Im markierten $(\mathrm{Spin}(10)\times SU(4))/\Z_4$-Anschluss stimmen die resultierenden E8-Operatoren überein. \src{12}
+
+Die globale Produktregel enthält den festgelegten zentralen Übertrag:
+\[
+ L(g)L(h)=G^{-\epsilon(g)\epsilon(h)}L(gh).
+\]
+Der gehobene Ereignisoperator erfüllt aber $L(r_l)^2=G^{-1}$ und $L(r_l)^8=1$, während die ursprüngliche Reflexion $r_l^2=I$ hat. Der Transport findet außerdem in bewegten Unterräumen statt. Weder der Kurvenparameter noch $g$ sind damit als physische Zeit oder Raumzeitmetrik hergeleitet. Dieses Resultat erklärt den Phasenübertrag; es ersetzt nicht die Auswahl der tatsächlichen Kurve.
+
+\section{Voller Quellenkanal und Petersen-Auslese}
+Der gemeinsame 60-Ereigniskanal auf $\mathrm{Bell}_{10}=\mathrm{Sym}^2\C^4$ hat das exakte Spektrum
+\[
+ \spec\mathcal C_{60}=\left\{1^{\times1},
+ (1/3)^{\times9},(1/5)^{\times45},(1/15)^{\times45}\right\}.
+\]
+Seine Abweichung vom isotropen Vergleich hängt am vierten Moment. Für eine äußere Markierung bilden 20 bewegende Ereignisse die Stay-/Jump-Zerlegung. Auf Populationen entsteht $(2I+A)/5$ mit Petersen-Adjazenz $A$. Der gestoppte Quantenclock
+\[
+ \Phi_{20}=\mathcal J_{20}(I-\mathcal S_{20})^{-1}
+\]
+führt zusätzlich dreißig Kohärenzmoden $\pm1/5$ mit. \src{13}
+
+Die übrigen 40 Ereignisse dürfen beim Wechsel zur vollen Quelle nicht einfach vergessen werden. Wird ihr tatsächlicher Rahmen als Record gespeichert und bei der Auslese berücksichtigt, folgt
+\[
+ \Phi_{\mathrm{recorded}}=
+ \frac{\mathcal J_{20}}3
+ \left[I-\frac{2I+\mathcal S_{20}}3\right]^{-1}
+ =\Phi_{20}.
+\]
+Damit können volle Quellenantwort und Petersen-Auslese aus demselben aufgezeichneten Instrument stammen. Sechs akzeptierte Sprünge benötigen im Mittel zehn Ereignisse in der 20er-Unterquelle und 30 Ereignisse in der vollen Quelle. Dies ist ein echter gemeinsamer Prozessanschluss. Markierung, iid-Gewichte und Record bleiben seine Voraussetzungen. \src{13}
+
+\section{Die Rahmenidentifikation und eine wichtige Verwechslung}
+Die 40 Hintergrundereignisse erzeugen phasengetreu eine Gruppe der Ordnung 3840. Ihr auf beliebigen Bell10-Observablen wirksamer Quotient besitzt Ordnung 1920 und die Form
+\[
+ P_{40}\cong C_2^4\rtimes S_5\cong\mathrm{ASL}_2(4):2.
+\]
+Trotz gleicher Ordnung ist dies nicht $W(D_5)$. Der $S_5$-Orbit des nichttrivialen Kerns hat hier Länge 15; im even-sign-Kern von $W(D_5)$ zerfällt er in $10+5$. Auch Elementordnungen unterscheiden die Gruppen. Nur 120 Labelpermutationen als Record zu behalten verliert daher kohärenzrelevante Rahmeninformation. \st{E/X} \src{14}
+
+Die dabei auftretende Struktur $J_{\F_4}$ erfüllt $J_{\F_4}^2+J_{\F_4}+I=0$ und hat Ordnung drei. Sie ist ausdrücklich \emph{nicht} die Gaußsche komplexe Struktur $J_G$ mit $J_G^2=-I$. Die gleiche Buchstabenwahl früherer Texte darf keine physische Identität suggerieren.
+
+\section{Ein Ereignisendpunkt wählt seinen Verlauf nicht}
+Mit $P_A=P\otimes I$, $P_B=I\otimes P$ und $G=r\otimes r$ erreichen
+\[
+ h_{\mathrm{lokal}}=2(P_A+P_B),\qquad
+ h_{\mathrm{gemeinsam}}=2(P_A+P_B-2P_AP_B)
+\]
+bei Zeit $\pi/2$ denselben Operator $G$. Dazwischen wirken sie unterschiedlich. Unendlich viele positive Logarithmen $h_{\mathrm{gemeinsam}}+4mP_AP_B$ besitzen denselben Endpunkt. Nur unter der zusätzlichen Minimalregel für positiven, zeitunabhängigen Generator, festen Lift und feste Dauer entsteht eine eindeutige kleinste Wahl. \src{15}
+
+Der gemeinsame Verlauf erzeugt tatsächliche Wechselwirkung und einen negativen PPT-Minor $-1/100$; eine quartische Antwort unterscheidet ihn vom isotropen Vergleich. Damit liegt mehr als eine Endpunktzählung vor. Aber die Quelle muss gerade diese Zwischenbewegung auswählen.
+
+Noch schärfer ist der Mehrzeittest: Wird dasselbe Quellenlabel behalten, ergeben zwei involutive Endpunkte die Identität; bei Auffrischung entsteht $\mathcal C_{60}^2$. Der Unterschied ist Prozessgedächtnis. Zudem ist $\mathcal C_{60}^{s}$ für $0<s<1$ nicht vollständig positiv, und die geprüfte zeitunabhängige GKLS-Realisierung auf demselben $M_{10}$ ist durch den Choi-Rang ausgeschlossen. Daraus folgt kein Verbot einer größeren Umgebung oder eines anderen kontinuierlichen Modells. Auch die diskrete Rahmenkovarianz aus dem aufgezeichneten Prozess wird durch den vorgeschlagenen kontinuierlichen Pfad nicht bewahrt; ein expliziter Kommutatoreintrag von $2/5$ zeigt den Unterschied zwischen Endpunkt und Zwischenbewegung. \src{15}
+
+\section{Ein bedingter affiner Anschluss der ganzen Ereignispfade}
+Vier komplexe NS-Fermionen liefern über die Orbitalniveaus $-1/2,-3/2$ eine explizite Isometrie des Bell10-Raums. Dieser Zehner ist ein horizontaler Nachfahre bei Grad eins im Modul $L(\Lambda_2)$, kein $SU(4)_1$-Primärfeld. Sein A3-Konformalgewicht beträgt $3/2$. \src{16}
+
+Alle 60 Ereignisse samt den gewählten kontinuierlichen Pfaden werden auf diesem Nachfahren durch die Isometrie exakt ineinander übersetzt:
+\[
+ V_l=i\rho_2(e^{-i\pi/4}r_l),\qquad
+ H_l^{\mathrm{aff}}=I-V_l\ge0,\qquad
+ H_l^{\mathrm{aff}}\mathcal E=\mathcal E(I-U_l).
+\]
+Hier bezeichnet $U_l=\mathrm{Sym}^2(r_l)$ die tatsächliche Bell10-Ereigniswirkung. Auf dem eingebetteten Nachfahren gilt mit $Q_l=J_0(P_l-I/4)$ zusätzlich
+\[
+ H_l^{\mathrm{aff}}=\frac32I+2Q_l-2Q_l^2.
+\]
+Der gemeinsame Zweikörperterm erscheint damit als quadratisches Element der Stromhülle. Auf dem ganzen affinen Turm ist dagegen die beschränkte Involutionsform die verwendete Fortsetzung.
+
+Im E8-Vakuummodul wird der A3-Zehner mit einem anderen Zehner, dem D5-Vektor, gekoppelt. Der resultierende 100-dimensionale Raum liegt bei Gesamtgewicht zwei und ist bezüglich des diagonalen Glue neutral. Der Operator $L_0$ ist auf diesem festen Raum skalar; er ist folglich nicht schon der nichttriviale Ereignisclock. Die Isometrie mit dem positiven Operatortransport verbindet benannte Pfade, aber noch keine physisch ausgewählte Seamzeit und kein vollständiges lokales Quellnetz.
+
+\chapter{Die Quelle wird selbst quantendynamisch}
+\section{Das einzelne Quellenpaket}
+Der entscheidende Modellwechsel besteht darin, das Wurzellabel nicht länger als unveränderlichen äußeren Zufall zu behandeln. Die 240 vollständigen Wurzeln erhalten orthogonale Kets $\ket\alpha$. Zusammen mit zwei Viererregistern entsteht eine bewegliche Quelle. Diese Quantisierung ist eine zusätzliche Modellentscheidung. \src{17}
+
+Für den konkret definierten positiven Operator
+\[
+ H=JH_E+\kappa L,\qquad J\ge0,\quad\kappa>0,
+\]
+ist der Grundzustand exakt
+\[
+ \ket\Omega=\frac1{\sqrt{240}}\sum_\alpha
+ \ket\alpha\ket{\psi_\alpha}\ket{\psi_\alpha},
+ \qquad\gap H=\frac{2\kappa}5.
+\]
+Der Grundraum ist eindimensional. Die Quelle wirkt also zurück und wird selbst mit den Registern verschränkt. Die lokale Energieauswahl ist vollständig bestimmt; eine autonome Präparation aus einem beliebigen Startzustand folgt daraus nicht. Die erhaltenen Quellen-Fouriersektoren können eine solche Vorbereitung sogar verhindern. \src{17}
+
+Unter der zusätzlichen Resonanz $J>0$, $t_*=\pi/(2J)$ und $\kappa/J=120n$ kehrt die reduzierte Materiewirkung stroboskopisch zum alten $\mathcal C_{60}$ zurück. Das ist eine Gleichheit an benannten Zeiten, kein gleiches kontinuierliches Mehrzeitgesetz. Eine behaltene Quelle und eine frisch gezogene Quelle bleiben verschiedene Prozesse.
+
+\section{Warum Überlappung eine neue Aufgabe ist}
+Zwei reine lokale Paketvakuua können nicht unabhängig auf $A$--$B$ und $B$--$C$ gesetzt werden: Das Register $B$ existiert nur einmal. Die gemeinsame Rechnung muss den gesamten Hilbertraum $240^2\cdot4^3=3\,686\,400$ verwenden.
+
+Die bisher getrennt erhaltenen Phasensektoren $k_1,k_2\in\Z_4$ erzeugen in der symmetrischen Kette eine exakte Sperre. Ein einzelner gemeinsamer Eigenzustand verlangt die Bilanz $k_1+k_2=3\pmod4$, während Spiegelung bei getrennt erhaltenen Sektoren $k_1=k_2$ erzwingt. Beides ist unmöglich. Die Entartung ist damit strukturell, nicht durch ungeschickte Zahlenwahl verursacht. \src{19}
+
+Die Erweiterung benutzt den bereits vorhandenen vollständigen Wurzelabstand:
+\[
+ V_{12}(\alpha,\beta)=1-\operatorname{Re}\langle\psi_\alpha,\psi_\beta\rangle
+ =\frac18\|\alpha-\beta\|^2.
+\]
+Seine \emph{Verwendung als Energie} und der Vorfaktor $\mu$ sind neu gewählte Dynamikdaten. In Fourierdarstellung bewegt er $(k_1,k_2)$ nach $(k_1-1,k_2+1)$ und zurück. Die Summe bleibt erhalten, die einzelnen Phasen werden beweglich. Die phasenblinde Alternative $1-|\langle\psi_\alpha,\psi_\beta\rangle|^2$ lässt die Sperre dagegen bestehen. \src{19}
+
+\section{Der kontrollierte starke Quellenverbund}
+Der gemeinsame Hamiltonoperator lautet nun
+\[
+ H=J(H_{E,1}+H_{E,2})+\kappa(L_1+L_2)+\mu V_{12}.
+\]
+Bei starker Quellenangleichung bleibt zunächst der ausgerichtete Raum $\ket{\alpha,\alpha}$ übrig. Seine virtuelle gemeinsame Bewegung wird in führender Starkkopplungsordnung durch
+\[
+ D=\frac{153I+2A_{32}-F}{3600},\qquad
+ H_{\mathrm{eff}}^{(2)}=\frac32\kappa I-\frac{\kappa^2}{\mu}D
+\]
+beschrieben. Die obersten Eigenwerte von $3600D$ sind $216$ einfach und $186$ achtfach. Für die Koordinatenmatrix $Y$ gilt exakt
+\[
+ (3600D)Y=186Y,\qquad Y^TY=120I_8.
+\]
+Die ersten acht effektiven Anregungen sind damit die ursprünglichen acht \emph{internen} Wurzelkoordinaten. Sie sind nicht acht Raumdimensionen. \src{19}
+
+Zwei Schurergänzungen kontrollieren den abgeschnittenen Rest. Es folgt der Vollraumsatz
+\[
+ \mu\ge10^6(J+\kappa)\quad\Longrightarrow\quad
+ \dim\mathcal G=1,\qquad\gap H\ge\frac{\kappa^2}{240\mu}.
+\]
+Die große Konstante ist eine hinreichende Normschranke, keine Naturhierarchie. Die asymptotische effektive Trennung beträgt $\kappa^2/(120\mu)$. Der Grenzzustand ist
+\[
+ \ket{\Omega_\infty^{(3)}}=\frac1{\sqrt{240}}\sum_\alpha
+ \ket\alpha\ket\alpha
+ \ket{\psi_\alpha}_A\ket{\psi_\alpha}_B\ket{\psi_\alpha}_C.
+\]
+Seine überlappenden lokalen Teile sind gemischt und verträglich. Die Materiereduktion lautet $P_{\mathrm{sym},3}/20$, die Paarreduktionen $P_{\mathrm{sym},2}/10$. Gemeinsame Konsistenz wird durch Korrelation erreicht, nicht durch Kopieren des mittleren Registers. \src{19}
+
+\section{Warum diese Lücke keine laufende Welle ist}
+Für $m$ Quellen auf einer offenen Kette hat der starke Grenzzustand die Form
+\[
+ \ket{\Omega_m}=\frac1{\sqrt{240}}\sum_\alpha
+ \ket\alpha^{\otimes m}\ket{\psi_\alpha}^{\otimes(m+1)}.
+\]
+Der Wechsel der ganzen Ausrichtung erfordert $m$ primitive Quellschritte. Bei \emph{fester} Länge folgt
+\[
+ \Delta_m=\frac{\kappa}{60}
+ \left(\frac{\kappa}{30\mu}\right)^{m-1}
+ \left[16+2\left(-\frac12\right)^{m-1}\right]
+ +O_{m,J,\kappa}(\mu^{-m}).
+\]
+Die Fehlerkonstanten sind nicht uniform in $m$. Man darf daraus keinen thermodynamischen Satz bei festen Kopplungen ableiten. \src{20}
+
+Eine lokale Projektormessung besitzt im Grenzzustand für beliebige verschiedene Orte die verbundene Korrelation $3/80$. Alle Orte lesen dieselbe gemeinsame Quellrichtung. Räumliche Differenzen verschwinden dagegen im tiefen ausgerichteten Raum:
+\[
+ P_*\left(\sum_e w_e x_a^{(e)}\right)P_*=0
+ \quad\text{für}\quad\sum_e w_e=0.
+\]
+Das nahezu kostenlose Umschalten betrifft die ganze Kette. Es ist noch keine lokale Anregung mit einer Wellenzahl und einer Geschwindigkeit. Eine direkte, nicht perturbative Abschätzung bestätigt auf dem Größenpfad $\mu\ge3\kappa m^2$ starke Endkorrelation und eine kleine Lücke. Dieser Pfad lässt aber die Kopplung mit der Größe wachsen; er entscheidet nicht den festen Phasenplan. \src{20}
+
+\section{Räumliche Antwort: was welcher Operator sehen kann}
+Die im Gespräch vorgelegte Antwortrechnung unterscheidet $O_+=(x_1+x_2)/\sqrt2$ und $O_-=(x_1-x_2)/\sqrt2$. Bei $J=\kappa=\mu=1$ wurden folgende Werte berichtet:
+\begin{center}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Antwortgröße & Gemeinsam & Relativ\\\midrule
+Erste aufgelöste Energie & 0,0068284 & 0,8398055\\
+Mittlere Antwortenergie & 0,0101378 & 1,4441434\\
+Statisches Gewicht & 0,2482573 & 0,0017427\\\bottomrule
+\end{tabular}
+\end{center}
+Diese Zahlen werden hier als \st{N}, berichtete endliche Antwort, dokumentiert; der Dokumentationslauf hat die große Spektralrechnung nicht neu ausgeführt. Die zugehörige Summenregel hat dagegen einen einfachen strukturellen Grund: Jeder primitive Bewegungsterm verändert nur eine Quelle, daher ist $[x_1,[H,x_2]]=0$. Unter dem benutzten symmetrischen Antwortvertrag besitzen beide Kanäle dasselbe erste Energiemoment. Wenig relatives Gewicht kann folglich bei hoher Energie liegen, während viel gemeinsames Gewicht bei kleiner Energie liegt.
+
+Ein zusätzlich gelöster Randsektor bei $J=\mu=0$ und uniformen Quellen liefert
+\[
+ H_s=\frac{\kappa}{5}\sum_{(x,y)}(4I-\mathrm{Swap}_{xy}),
+ \qquad\omega(q)=\frac{2\kappa}{5}(1-\cos q).
+\]
+Hier bewegt sich eine lokale Materiestörung tatsächlich. Ihre Dispersion ist für kleines $q$ quadratisch, und ein anderer erlaubter Zustand liegt energetisch tiefer. Die Rechnung ist deshalb ein Vergleichssektor, kein physisches Vakuum. Die späteren Sektoraudits verschärfen genau diesen Punkt. \src{23}
+
+Die berichtete lokale Fernwirkungsschranke nutzt ferner, dass die diagonal-kommutierenden Abstandsterme in ein Wechselwirkungsbild ausgelagert werden können. Die verbleibenden Normen sind durch $J,\kappa$ kontrolliert. Eine solche Lieb--Robinson-Schranke ist ein Lokalitätskontrollmittel; sie identifiziert keine Lichtgeschwindigkeit und erzeugt keine dreidimensionale Geometrie.
+
+\section{Phasentreue E8-Lifts ändern die Dynamikfrage}
+Eine Wurzelpermutation ist noch keine Automorphie der E8-Stromklammer. Beim Vertauschen zweier nichtkommutierender Wurzeln fehlen sonst die Vorzeichen. Für die 60 Reflexionen wurden phasentreue Kokzyklus-Lifts samt involutiven Korrekturen rekonstruiert; eine globale gemeinsame Sektion wurde damit nicht hergeleitet. \src{18}
+
+Die früheren Spektralsätze gelten weiterhin für ihr Wurzelpermutationsmodell. Sie dürfen aber nicht unverändert auf die phasentreue Stromrealisierung übertragen werden. Im starken Zwei-Quellen-Test wird beispielsweise die effektive Auswahl durch den Standardlift zu $(25I-F)/3600$ verändert. Eine bloße Umbenennung der Kets würde diesen Unterschied verdecken. \src{19}
+
+Positiv existieren quartische Isometrien, die konditionierte Quellenensembles in vorhandene E8-Stromplätze abbilden. Fünf Quartiken mit Normquadraten $(4,12,12,12,24)$ liefern einen phasentreuen Bell10-Readout. Sie transportieren Zustände und Effekte, nicht automatisch den alten Hamiltonoperator. Der betreffende endliche Singulettplatz ist außerdem nicht unter der P2-Hyperladung invariant; als Grundraum eines hyperladungserhaltenden Hamiltonoperators mit neutralen Außenregistern scheidet er daher aus. \src{18}
+
+
+\section{Ein positiver Anschluss des Dreiregisterzustands}
+Dieselben fünf Quartiken liefern auch einen anderen Schnitt: eine Quellenkomponente und drei Register, also $1+3$. Mit ihren $4\times20$-Matrizen $K_A$ und $n_A=(4,12,12,12,24)$ gilt exakt
+\[
+ \sum_A\frac{K_A^\dagger K_A}{n_A}=\frac{I_{20}}4,
+ \qquad F_{(A,i),j}=\frac{2K_A(i,j)}{\sqrt{n_A}},
+ \qquad F^\dagger F=FF^\dagger=I_{20}.
+\]
+Damit ist $\Xi_{1+3}=\operatorname{vec}(F)/\sqrt{20}$ ein normierter Zustand mit derselben Dreiregisterdichte $P_{\mathrm{sym},3}/20$ wie der starke Quellengrenzzustand. Die Quellenhälfte liegt im vorhandenen 20-dimensionalen Ausschnitt eines geladenen E8-Stromsektors bei affinem Grad eins. Die native Gruppenwirkung wird dabei ausdrücklich verflochten, nicht nur die Dimension abgeglichen.
+
+Für $v_l=\psi_l^{\otimes3}$ gilt $\sum_{l=1}^{60}|v_l\rangle\langle v_l|=3I_{20}$. Die zugehörige Quellen-POVM erzeugt jeden der 60 Ausgänge mit Wahrscheinlichkeit $1/60$ und konditioniert die äußeren Register genau auf $v_l$. Eine partielle Isometrie bildet den besetzten 20-dimensionalen Quellenraum des starken Grenzzustands dorthin ab. Der volle Hamiltonoperator bei endlicher Kopplung, sämtliche 240 orthogonalen Records und die physische Auswahl dieses Instruments werden damit nicht übertragen. Es ist ein konkreter positiver Zustands- und Readoutanschluss, keine neutrale Vakuumherleitung. \src{19}
+
+\chapter{Welche Bindungen bilden wirklich das Vakuum?}
+\section{Ein tieferer Sektor ist noch nicht der tiefste Zustand}
+Im konjugierten Vierersektor der Quelle reduziert sich die lokale Anordnung auf $4\otimes\overline4\otimes4$. Bei $J=\mu=0$ besitzt $L$ das exakte Spektrum
+\[
+ \spec L=\{(1/2)^{\times8},(5/6)^{\times36},(11/10)^{\times20}\}.
+\]
+Die Quelle kann mit dem linken oder rechten Register ein invariantes Paar bilden; die beiden Möglichkeiten haben Überlappung $1/4$. Für offene Ketten gilt
+\[
+ E_0^{(\overline4)}(m)=\frac{\kappa m}2,\qquad
+ \dim\mathcal G\ge4(m+1),\qquad
+ \Delta_m^{(\overline4)}\ge\frac{7\kappa}{45}.
+\]
+Die vermeintlich freien Positionen im Grundraum transportieren sich unter diesem Hamiltonoperator nicht: Alle besitzen dieselbe Gesamtphase. Eine Ortsbeschriftung allein ist keine Bewegung. \src{23}
+
+Ein zulässiger voller Quellenzustand aus nichtüberlappenden Paketen hat jedoch Erwartungsenergie
+\[
+ E_0^{\mathrm{voll}}(m)\le\frac{3\kappa}{4}\left\lfloor\frac m2\right\rfloor
+ <\frac{\kappa m}2.
+\]
+Der ganze schön lösbare Vierersektor liegt damit zu hoch. Ein gemischter $10\otimes1$-Quellsektor mit 640 Dimensionen liefert bei zwei Quellen einen noch tieferen Vergleich gegenüber dem alternierenden Zeugen $3\kappa/4$:
+\[
+ E_{0;10,1}=\frac\kappa5(6-\sqrt6),\quad
+ \dim\mathcal G_{10,1}=4,\quad
+ \Delta_{10,1}\ge\frac\kappa{15}(1+3\sqrt6).
+\]
+Auch dies ist ein vollständiger Satz nur \emph{innerhalb dieses Sektors}. Sein Minimum liegt noch über dem später bewiesenen Vollraumboden $\kappa/2$. Die zusätzliche allgemeine Leakageformel aus dem eingereichten Bericht konnte im Audit mangels zugeordnetem Originalcode nicht erneut abgesichert werden und wird hier nicht als bewiesener Vollsatz verwendet. \src{23}
+
+\section{Zwei Quellen: Bindungsbewegung im vollständigen tiefsten Raum}
+Der tatsächliche Vollraum bei $J=\mu=0$ besitzt
+\[
+ E_0=\frac\kappa2,\qquad\dim\mathcal G=2,\qquad
+ E_1=\frac{3\kappa}5,\qquad\gap H=\frac\kappa{10}.
+\]
+Dieser Satz war im ersten Bindungsbericht noch die nicht geschlossene \emph{Assumption G}. Erst der spätere relaxierte Kernbeweis schließt sie exakt. Die damaligen Lanczoswerte werden dadurch nicht rückwirkend zu einem Beweis. \src{24}\src{26}
+
+Die zwei orthonormalen Zustände $L,R$ unterscheiden sich darin, welche Quelle mit zwei Registern verbunden ist. Der mittlere Materieplatz gehört einmal zum linken, einmal zum rechten größeren Paket. Im Grundraum wirkt die vorhandene Abstandskopplung als
+\[
+ PVP=I-\frac18\sigma_x.
+\]
+In erster Ordnung folgt
+\[
+ H_{\mathrm{tief}}=
+ \left(\frac\kappa2+\frac32J+\mu\right)I-\frac\mu8\sigma_x.
+\]
+Gerade und ungerade Überlagerung spalten sich führend um $\mu/4$. Da .26 die Assumption G exakt schließt, gilt der zusammengesetzte Satz nun auf dem vollständigen Zwei-Quellenraum:
+\[
+ J=\mu=\varepsilon\kappa,\quad0<\varepsilon\le\frac1{65}
+ \quad\Longrightarrow\quad\dim\mathcal G=1,\quad\gap H\ge\frac\mu8.
+\]
+Die erste schwache Rechnung im Gespräch verwendete den engeren Bereich bis $1/200$. Die spätere Schließung des Vollrauminputs ist von dieser ursprünglichen numerischen Illustration zu unterscheiden. \src{24}\src{26}
+
+\finding{Der wichtige blinde Fleck}{Die Bewegung ändert nicht die gemeinsame Wurzelrichtung, sondern die Art der Bindung. Lineare Quellenkoordinaten wechseln den Gesamtphasensektor. Sie können den gleichphasigen tiefen Partner daher aufgrund einer Auswahlregel nicht anregen. Ein negatives Ergebnis mit diesen Koordinaten schließt eine andere lokale Quantenantwort nicht aus.}
+
+Der vorhandene Phasentest $O_D=\Pi_2^{(1)}-\Pi_2^{(2)}$ wirkt im Dublett als $\sigma_z$. Sein Übergangsgewicht geht im schwachen Grenzfall gegen eins. Auch bilineare Quellenkoordinaten sehen die Bindung:
+\[
+ P x_a^{(1)}x_b^{(2)}P
+ =\frac{\delta_{ab}\sigma_x+J_{ab}\sigma_y}{64}.
+\]
+Für eine weitere relative Quadratur $W$ gilt
+\[
+ PWP=-\frac18\sigma_y,\qquad PW^2P=\frac18I,\qquad
+ PW(I-P)WP=\frac7{64}I.
+\]
+Hier trägt die niedrige Linie nur ein Achtel des gesamten inelastischen Gewichts. Ein Operator kann also dieselbe niedrige Bewegung sehen und dennoch überwiegend in höhere Zustände koppeln. \src{24}
+
+\section{Drei Quellen: genaue Resonanz, offene Globalität}
+Für drei Quellen ist der aus zwei äußeren Paketen gebildete Bindungsraum exakt invariant. In der orthonormalen Basis $u,v$ gilt
+\[
+ H_B=\frac\kappa{20}\begin{pmatrix}15&-\sqrt{15}\\-\sqrt{15}&49\end{pmatrix},
+ \qquad E_\pm=\frac\kappa5(8\pm\sqrt{19}).
+\]
+Die zwei Paketprojektoren komprimieren beide auf $\ket u\bra u$. Daraus folgen im niedrigeren Eigenzustand dieses Blocks die berichteten Antworten
+\[
+ S_Q(\omega)=\frac{15}{1216}\,
+ \delta\!\left(\omega-\frac{2\sqrt{19}}5\kappa\right),
+\]
+\[
+ \chi_{31}(t)=-\frac{15}{608}\theta(t)
+ \sin\!\left(\frac{2\sqrt{19}}5\kappa t\right).
+\]
+Die Resonanz ist eine exakte Zeitantwort zwischen getrennten Paketstützen innerhalb des invarianten Zweipaketblocks. Ihre Deutung als Antwort über dem vollständigen Vakuum benötigt den nachfolgend genannten offenen Komplementnachweis. Für den quartischen Außenreadout $F_{13}$ wurde separat die Intensität $3/2375$ bestimmt. Unterschiedliche Observablen dürfen nicht dieselbe Linienintensität erhalten. \src{24}
+
+\textbf{Korrektur gegenüber dem eingereichten Bericht:} Die Aussage, jeder Zustand außerhalb dieses Blocks liege mindestens bei $3\kappa/4$, ist im späteren Audit nicht unabhängig bewiesen. Damit sind die Behauptungen eines vollständigen eindeutigen Dreiquellenvakuums und seiner positiven Fortsetzung \emph{bedingt}. Die exakte Zweimatrix, ihre Invarianz und ihre Antwort werden dadurch nicht aufgehoben. Der bewiesene Vierquellensatz ersetzt diese separate Lücke nicht. \src{24}\src{28}
+
+Auch $\sqrt{19}$ ist kein spezifischer E8-Fingerabdruck: Die kleine Bindungsmatrix bleibt im geprüften isotropen Vergleich gleich. Die vollständigen lokalen Spektren können dennoch verschieden sein. Der Vergleich begrenzt eine konkrete Zahlenidentifikation, nicht die gesamte Quelle.
+
+\section{Vier Quellen: der spätere Vollraumsatz}
+Die Domänenwandarbeit hat zunächst feste Quellenmodule relaxiert. Die zentralen und äußeren Kerne sind darin jeweils echte eindeutige Grundzustände; die Module haben 409\,600 Dimensionen. Der native Spiegelhop bleibt
+\[
+ \langle g_R|H|g_L\rangle=-\frac\mu8\eta,\qquad
+ \eta\ge\frac{721}{779}.
+\]
+Das ist ein belastbarer endlicher Bewegungseffekt nach Relaxation. Es ist noch keine effektive Theorie beliebig langer Ketten. \src{26}
+
+Zunächst war nur der vollständige Gesamtphasensektor $K=1$ bei vier Quellen gelöst. Zehn grobe Masken im $K=3$-Sektor blieben offen. Die vier Follow-ups schließen diese Masken exakt aus. Erst dadurch gilt auf dem gesamten endlichen Vierquellenraum
+\[
+ E_0=\lambda\kappa,\qquad\dim\mathcal G=2,\qquad
+ \lambda=1{,}221493930352475\ldots,
+\]
+mit analytisch zertifiziertem algebraischem Grundwert und dem Komplementboden
+\[
+ E\big|_{\mathcal G^\perp}\ge\frac{391}{320}\kappa.
+\]
+Auf dem ausdrücklich engen Strahl $J=\mu=\varepsilon\kappa$, $0<\varepsilon\le10^{-8}$ ist der volle Grundzustand eindeutig und die Lücke mindestens $\mu/8$. Die Zahl $10^{-8}$ ist eine Beweiskonstante. Sie ist keine ausgewählte Naturkopplung. \src{28}
+
+\begin{table}[ht]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}lYYY@{}}
+\toprule
+System & Gesicherter tiefster Bereich & Reichweite & Heutiger Status\\\midrule
+Einzelpaket & $E_0=0$, einfach; $\Delta=2\kappa/5$ & Vollraum des gewählten Pakets & Exakt .17\\
+Zwei Quellen & $E_0=\kappa/2$, zweifach & $J=\mu=0$; positiv $0<\varepsilon\le1/65$ & Nullrand exakt .26; positiv .24 + .26\\
+Drei Quellen & $(8-\sqrt{19})\kappa/5$ im Bindungsblock & Exakter invarianter Block & Globalität offen .24\\
+Vier Quellen & $\lambda\kappa$, zweifach & Vollraum bei Nullrand; enger positiver Strahl & Vollsatz seit .28\\
+Lange Kette & Starke gemeinsame Ausrichtung & Feste Länge, große $\mu$ & Kein fester thermodynamischer Satz\\\bottomrule
+\end{tabularx}
+\caption{Eine lokale oder kleine exakte Lösung darf nicht stillschweigend zur allgemeinen Vakuumaussage werden.}
+\end{table}
+
+\chapter{Domänenwände, Ising-Kritikalität und ihr Vollraumtest}
+\section{Die plausible Idee und ihr kleinster Test}
+Die Muster $\Omega\Phi\leftrightarrow\Phi\Omega$ bei zwei Quellen und $\Omega s\Omega$ im Dreiquellen-Bindungsblock legen eine alternierende Ordnung nahe. Die vorgeschlagene Frage war sinnvoll: Könnte eine Wand zwischen zwei solchen Ordnungen das bewegliche Objekt sein, statt eines einzelnen Quellenlabels?
+
+Die Symbolfolge $\Omega\Omega$ ist jedoch nicht automatisch ein zulässiger Produktzustand, weil zwei benachbarte Pakete ein Register gemeinsam belegen. Nach korrekter Ergänzung durch den vorhandenen $\Phi$-Zustand entstehen für $m=2r$ Quellen $m$ orthonormale Kernzustände. Ihre Kompression ist exakt
+\[
+ P_{\mathrm{core}}HP_{\mathrm{core}}
+ =E_{\mathrm{core}}I_m-\frac\mu8A_{\mathrm{path},m},
+\]
+\[
+ E_{\mathrm{core}}=\frac{3r-1}{4}\kappa+\frac{3(r+1)}4J+\mu(m-1).
+\]
+
+Eine frühere, noch unvollständige Wandkontrolle bleibt für die Einordnung wichtig. Zwei benachbarte reine $\Omega$-Pakete sind wegen ihres gemeinsam verwendeten Registers kein zulässiges Produktmuster. Der nackte zulässige Übergang enthält stattdessen zwei uniforme $s$-Quellen und einen freien Materieplatz. Seine komprimierte Hamiltonmatrix ist skalar: Ein Musterhop erster Ordnung fehlt. Die erste lokale Umlagerung zeigt sich im Quellenabstand erst durch
+\[
+ \langle R_d|V^2|L_c\rangle=\frac{\delta_{cd}}{160}.
+\]
+Für vier Quellen wurden außerdem beide nackten alternierenden Darstellungssektoren als vollständiger Grundraum ausgeschlossen. Am Prüfpunkt $J=\mu=\kappa/200$ beträgt ihr gemeinsames Gewicht in jedem vollständigen Grundzustand höchstens $0{,}0608648$. Der folgende mit $\Phi$ vervollständigte Wandkern beantwortet eine andere, weitergehende Frage. \src{25}
+
+Der Hoppingeintrag ist real und wurde nicht passend eingesetzt. Aber bereits unter $H_0$ gilt für $m\ge4$
+\[
+ \|(I-P_{\mathrm{core}})H_0\ket a\|^2
+ =\frac{3(r-1)}{80}\kappa^2.
+\]
+Keine Superposition entfernt diese Kopplung zum Rest. Die kleine Matrix ist deshalb keine geschlossene Niederenergietheorie. \src{25}
+
+Eine gefaltete SSH-artige Banddarstellung kann einen linearen Schnitt in der Bandmitte zeigen, obwohl das tatsächliche Bandminimum quadratisch bleibt. Zwei Komponenten und eine Wurzelformel beweisen daher keinen masselosen Dirac-Modus über dem Vakuum. Gerade der Bezug zum energetisch richtigen Zustand muss mitgerechnet werden.
+
+\section{Die vollständige Paketzuordnung liefert eine Ising-Kompression}
+Auf geraden Ringen werden alle Links-/Rechts-Zuordnungen $\sigma_v=\pm1$ aufgenommen. Eine Kante trägt
+\[
+ n_e=1+\frac{\sigma_e-\sigma_{e+1}}2\in\{0,1,2\}
+\]
+Materiebelegungen. Die Paketvektoren sind nicht vollständig orthogonal; die Grammatrix ist $G=I+sF$ mit $s=4^{1-N}$ und einem nur zwischen zwei uniformen Zuordnungen wirkenden Austausch $F$. Erst $G^{-1/2}KG^{-1/2}$ ist die korrekte orthonormierte Kompression. \src{28}
+
+Bis auf kontrollierte exponentielle Ringkorrekturen entsteht
+\[
+ H_{\mathrm{Paket}}=E_{\mathrm{ref}}I
+ +\frac{\kappa+9J}{16}\sum_e Z_eZ_{e+1}
+ -\frac\mu8\sum_e X_e.
+\]
+Mit $K_I=(\kappa+9J)/16$ und $h=\mu/8$ ist die Ising-kritische Linie
+\[
+ 2\mu=\kappa+9J,\qquad
+ \epsilon(q)=2\sqrt{K_I^2+h^2-2K_Ih\cos q}.
+\]
+Die Matrix und ihre Näherungsgrenze sind ein echter algebraischer Fund. Die numerischen Ring-Ritzwerte zeigen die passende $1/N$-Skalierung \emph{der Kompression}. Sie allein sagen nichts über die Lage im Vollspektrum. Der Quellenrest des Néel-Zustands bleibt sogar extensiv:
+\[
+ \|(I-P)H\ket{\mathrm{N\acute eel}}\|^2
+ \ge\frac{3N(\kappa+J)^2}{160},\qquad N\ge6.
+\]
+Dies erzwingt einen Vollraumtest, bevor der lineare Zweig als physische Materie interpretiert werden darf. \src{28}
+
+\section{Der entscheidende Ausschluss der nackten kritischen Familie}
+Der letzte Vertrag führt diesen Test aus. Für gerade $N\ge4$, $\kappa>0$, $J\ge0$ und $\mu=(\kappa+9J)/2$ gilt auf der gesamten unveränderten Paketspanne
+\[
+ \inf_{\ket\psi\in P,\ \|\psi\|=1}\langle H\rangle_\psi
+ \ge\frac{3\kappa N}{4}
+ +N\left(\frac{13\kappa}{504}+\frac{689J}{168}\right).
+\]
+Ein zulässiger ausgerichteter Vollraumzustand
+\[
+ \ket{A_N}=\frac1{\sqrt{240}}\sum_\alpha
+ \ket\alpha^{\otimes N}\ket{\psi_\alpha}^{\otimes N}
+\]
+besitzt dagegen exakt $\langle H\rangle_{A_N}=3\kappa N/4$. Beide leben im selben relevanten Gesamtphasensektor und sind bezüglich der gemeinsamen Quellgruppe Singuletts. Der Vergleich kann daher nicht durch eine falsche Symmetriezuordnung wegdefiniert werden. Sogar der paketorthogonale Anteil des Vergleichszustands liegt unter der gesamten zertifizierten Paketunterkante. \src{29}
+
+\finding{Was damit entschieden ist}{Die nackte kritische Paketfamilie ist auf ihrer Ising-Linie kein Vollvakuum. Ein uniform hoch liegendes, harmlos wegzueliminierendes Komplement existiert dort nicht. Ausgeschlossen ist diese konkrete Abkürzung. Nicht bewiesen ist, dass der Vergleichszustand selbst das Vakuum ist; auch eine kontrolliert dressierte kritische Phase ist damit nicht ausgeschlossen.}
+
+Der nächste sinnvolle Rechenschritt wäre folglich kein weiterer schöner Fit derselben Paketdispersion. Er müsste eine echte Dressing- oder Schurabbildung mit Restkontrolle relativ zur schrumpfenden Skalierungslücke konstruieren. Die üblichen Verfahren effektiver Hamiltonoperatoren liefern dafür einen mathematischen Rahmen, aber nicht automatisch die hier fehlenden Voraussetzungen. \cite{sw}
+
+\section{Bindungsbewegung erzeugt noch keine dynamischen Orte}
+Die direkte Summe der bisherigen Hamiltonoperatoren über alle beschrifteten Graphen ist zunächst blockdiagonal. Sie verändert keine Kante. Ein Bindungshop auf einem festen Graphen ist kein Wechsel der Graphinzidenz. \src{27}
+
+In der ausdrücklich gewählten direkten Summe aller einfachen beschrifteten Graphen gilt dies bei $J\ge0$, $\kappa>0$, $\mu\ge0$, ohne Graphhops und ohne zusätzliche Graphenergie: Genau Matchings besitzen Energie null. Überlappende Kanten kosten mindestens $3\kappa/10$; für zusammenhängende Graphen folgt
+\[
+ E_0(H_\Gamma)\ge\frac{3\kappa}{10}\left\lfloor\frac{N-1}{2}\right\rfloor,
+ \qquad\liminf_{N\to\infty}\frac{E_0}{N}\ge\frac{3\kappa}{20}.
+\]
+Die unveränderte Regel bevorzugt somit keine zusammenhängende Raumstruktur. Frei gewählte Graph-Offsets könnten dies ändern, wären aber zusätzliche Physik. \src{27}
+
+Auch der Antwortbegriff allein rekonstruiert noch keine Orte. Zwei getrennte Vollraumprojektoren können nach Kompression derselbe Operator sein. Im kleinen Bindungsraum bilden $O_D$ und $W$ eine einzige nichtkommutative Zweizustandszelle. Für einen räumlichen Ursprung braucht man verschiedene lokale Algebren und eine quellentreue Dynamik ihrer Beziehungen. \src{28}
+
+\chapter{Stromprodukte, Clock-Schließung und die letzte Brücke}
+\section{Was aus den Quellenantworten im affinen Netz entsteht}
+Unter der bestehenden unitären $E_{8,1}$-Vakuumprämisse liefert
+\[
+ i_n(a)=\frac1{\sqrt n}J_{-n}(a)\ket\Omega
+\]
+eine normtreue Einbettung. Die adjungierten Nullmoden handeln richtig, und $[L_0,J_{-n}]=nJ_{-n}$. Mit der zusätzlichen Randzeitwahl
+\[
+ H_{\mathrm{Rand}}=\frac{2\pi v}{L}\left(L_0-\frac c{24}\right),
+ \qquad c=8,
+\]
+entsteht eine lineare Antwort bei $\omega=vq_n$, $q_n=2\pi n/L$. Für die quartischen Richtungen lautet das Gewicht
+\[
+ S_{lr}^{(n)}(d\omega)=\frac nL
+ \langle\psi_r,\psi_l\rangle^3\delta_{vq_n}(d\omega).
+\]
+Dies ist ein präziser positiver Anschluss. Die Randlänge $L$, die Geschwindigkeit $v$ und die Identifikation mit der Rohquelle werden dadurch nicht hergeleitet. \src{20}
+
+Die 20 quartischen Richtungen schließen mit ihren Adjungierten nur $A_8$. Ein bereits vorhandener linearer Begleiter in $\Lambda^0(\C^5)\otimes4$ vervollständigt über tatsächliche Chevalleyklammern ganz E8. Ein 120er-Frame in einem 24-dimensionalen Stromraum besitzt im gewählten kubisch-plus-linearen Ansatz das Gewichtsverhältnis $5:1$. Weder die Dimension 24 noch dieses Verhältnis werden als neue Teilchenzählung ausgegeben. \src{20}
+
+\section{Das alte Bell10 erscheint aus echten Stromprodukten wieder}
+Die tatsächlichen Grad-2-Produkte der 24 Ströme erzeugen einen 50-dimensionalen Raum. Für die 60 Produktvektoren $r_l$ gilt
+\[
+ \mathcal G=\sum_l\ket{r_l}\bra{r_l}
+ =\frac34I_{50}+\frac94P_{10}.
+\]
+Der alte Bell10-Raum ist damit der eindeutige oberste \emph{Antwortbereich}: zehn Eigenwerte sind $3$, vierzig sind $3/4$. $\mathcal G$ ist kein Hamiltonoperator; die Differenz $9/4$ ist keine Energielücke. \src{21}
+
+Die Level-1-Vierstromform enthält einen echten Klammerterm zusätzlich zu den Wick-artigen Paarungen. Deshalb können einzelne Stromquadrate verschwinden, während für eine vervollständigte Richtung
+\[
+ \|J_{-1}(w_{l,s})^2\ket\Omega\|^2=\frac59
+\]
+gilt. Nach Projektion auf Bell10 beträgt das unnormierte Gewicht $5/18$. Eine explizite positive Frequenzabsorption rekonstruiert die alten Effekte auf einem festgelegten Ein-Strom-Bereich. Eine andere Instrumentierung besitzt jedoch dieselben Effekte und andere Nachzustände. Das physische Mess- und Auffrischgesetz bleibt somit zusätzliche Information. \src{21}
+
+\section{Die tatsächliche Coxeterclock erzwingt mehr als D8}
+Im festen CAR-Wörterbuch schickt $C$ die 112 D8-Wurzeln in 56 D8- und 56 Spinorwurzeln. Die kumulative $C$-Bahn erreicht bei Potenz acht alle 240 Wurzelrichtungen. Schon D8 zusammen mit einem geeigneten Spinorstrom und seinem Adjungierten schließt durch nichtverschwindende Klammern in den Schritten $114\to170\to240$. \src{22}
+
+Falls also $C$ auf demselben lokalen Stromraum physisch implementiert ist, kann eine rein D8-beschränkte Theorie nicht unverändert bestehen bleiben. Das ist eine notwendige Schließungsstruktur. Es ist noch kein Bau der 128 fehlenden Spinorstromoperatoren auf dem Rohquellenraum. Auch die gewählte Spinorchiralität wird nicht unabhängig selektiert, wenn $C$ schon aus diesem E8-System stammt.
+
+\section{Der feste komplexe Rahmen ist zu klein}
+Die 60 alten Strahlen sind viergliedrige $J$-Orbits vollständiger Wurzeln. Die tatsächliche Coxeterwirkung respektiert diese Quotienten bei festem $J$ nicht: Ein Orbit kann auf zwei Zielorbits aufgeteilt werden. Der korrekte kovariante Ausdruck ist
+\[
+ ([\alpha]_J,J)\longmapsto
+ ([C\alpha]_{CJC^{-1}},CJC^{-1}).
+\]
+Der letzte Vertrag macht diesen Befund quantitativ. Die Abbildung $A=I+J$ erfüllt $A^TA=2I$ und bildet Standard-E8-Wurzeln der Normquadrate zwei auf die tatsächlichen Gaußschen Quellenwurzeln der Normquadrate vier ab. Sie ist eine skalierte Koordinatenbrücke, kein normgleicher Wurzelautomorphismus. \src{29}
+
+Die spezifizierte Koordinatenbrücke transportiert $C$ zu $C_G=ACA^{-1}$ in den Gaußkoordinaten. Sie wird nicht als einzig mögliche Brückenwahl behauptet. Die Rahmenbahn in diesen Koordinaten
+\[
+ J_r=C_G^rJC_G^{-r}
+\]
+hat exakt 15 verschiedene Glieder und entsprechende Ereignisalphabete. Die Projektoren transportieren sich kovariant,
+\[
+ C_G\Pi_\alpha^{J_r}C_G^{-1}=\Pi_{C_G\alpha}^{J_{r+1}}.
+\]
+Unter $1\le k\le30$ kommutiert $C_G^k$ nur für $k=15,30$ mit $J$; keine Potenz antikommutiert. Eine zusätzliche Aussage im integralen Standard-Gitterrahmen schließt jede gittererhaltende komplexe Struktur $J_*$ mit $J_*^2=-I$ aus, die mit $C$ kommutiert. Im benutzten Ganzzahlrahmen hat $C$ modulo 31 acht verschiedene Eigenwerte; ein kommutierender Operator müsste auf jeder Eigenlinie skalar wirken, obwohl $-1$ in $\F_{31}$ kein Quadrat ist. Antikommutation scheitert bereits an der ungeraden Halbperiode $C^{15}=-I$. \src{29}
+
+Dieser Satz betrifft den integralen Geltungsbereich, nicht beliebige reelle komplexe Strukturen. Zentralisatoren von Coxeterelementen sind zudem bekannte mathematische Objekte; die Sitzung beansprucht nicht die allgemeine Theorie als Neuerfindung. \cite{coxeter}
+
+Positiv ist eine kovariante Familie $H[J_r]$ möglich. Ihre Existenz wählt aber keine Übergänge zwischen den Rahmen, keine Rahmenenergie und keine physische Eichinterpretation. Die Zahl 15 bezeichnet hier die Größe einer Rahmenbahn, keine neue Zahl von Familien oder Raumdimensionen.
+
+\section{Warum neutrale Paketfluktuationen keine acht Cartanströme tragen}
+Auf den Ring-Paketzuordnungen wirkt die Quellen-$J$-Transformation als gemeinsamer Skalar. Sie bleibt nach Grammatrix-Orthonormierung skalar. Auf den tatsächlichen acht reellen Cartanrichtungen gilt dagegen $J^2=-I$, also gibt es keinen Fixvektor. Für eine äquivariante lineare Abbildung $T$ müsste gelten
+\[
+ T(Jv)=\operatorname{Ad}_{U_J}T(v)=T(v),
+\]
+und damit $T=0$. Eine mit der Symmetrie verschränkte Dressierung ändert diesen Ausschluss innerhalb des neutralen Raums nicht. \src{29}
+
+Die richtige Lehre lautet nicht, neutrale Observablen zu verwerfen. Ihre Produktstruktur kann über geladene Zwischenzustände vermittelt sein:
+\[
+ P[A,B]P=[PAP,PBP]+PAQBP-PBQAP,\qquad Q=I-P.
+\]
+Eine bloße Kompression verliert die letzten beiden Terme. Für die gesuchte Stromantwort müssen deshalb die geladenen Komplementwege mit Energie und spektralem Gewicht mitgeführt werden. Eine passende Anzahl neutraler Zustände reicht nicht.
+
+\section{Was die Clock an der Zeitregel bereits erzwingt}
+Unter der ausdrücklichen Prämisse einer phasendiagonalen affinen Stromwirkung besitzt ein Generator die Form
+\[
+ [H,J_n^\alpha]=(\alpha(h)-an)J_n^\alpha.
+\]
+Die tatsächliche Coxeterwirkung mit charakteristischem Polynom $\Phi_{30}$ erzwingt $h=0$. Auf dem gemeinsamen irreduziblen Stromraum bleibt somit
+\[
+ H=aL_0+c.
+\]
+Die Regel ist bedingt stark: Ist der gemeinsame affine Prozess erst vorhanden, bleibt nur eine positive Zeitkalibrierung. Sie beweist jedoch nicht die bislang vorausgesetzte Invarianz des linearen Stromraums. \src{28}
+
+Eine diskrete Clock und ein gemeinsames Vakuum allein genügen nicht. Gegenbeispiele der Form $H_b=L_0+4bL_0(L_0-1)$ können den geprüften Viertelschritt und den ersten Grad bewahren, aber höhere Grade anders bewegen. Dabei erfüllt jeder Kommutator $\operatorname{ad}_{H_b}$ weiterhin die Leibnizregel. Was scheitert, ist die state-unabhängige skalare Frequenz auf dem linearen Stromraum, nicht die Leibnizregel selbst. \src{28}
+
+\section{Der positive Fermi-Patch: ein kontrollierter Anfang}
+Der letzte Herkunftstest arbeitet wieder mit der tatsächlichen CAR-Quelle. Die dortige Einteilchendispersion ist $\varepsilon(k)=-2\cos k$. Auf einem festen, nicht umlaufenden Patch um eine Fermistelle liefert die Skalierung
+\[
+ e_L(r)=\frac L{2\pi}\sin\frac{2\pi r}L
+\]
+die Abschätzung
+\[
+ \bigl|e_L(r)-e_L(r+n)+n\bigr|
+ \le\frac{(2\pi)^2}{6L^2}\bigl(|r|^3+|r+n|^3\bigr).
+\]
+Für passend verschachtelte Träger auf dem festen zusammenhängenden Halbzahl-Patch gilt für die positiven Moden $1,2,3$ zugleich der echte Modenkommutator
+\[
+ [E^{12}_1,E^{23}_2]=E^{13}_3.
+\]
+Unter der zusätzlichen gleichen-Spezies-Kinetik $h_8=I_8\otimes h_{\mathrm{v454}}$ gehen die Frequenzen mit kontrolliertem Fehler gegen $-1,-2,-3$; am anderen Fermiast wechseln ihre Vorzeichen. Das ist mehr als eine bloß passende Zustandszählung: Komposition und Zeitfrequenz werden auf demselben ausgeschnittenen CAR-Prozess gemeinsam geprüft. \src{29}
+
+Die Grenze bleibt entscheidend. Acht identische Kinetiken entstehen nur nach der zusätzlichen Wahl $h_8=I_8\otimes h_{\mathrm{v454}}$. Acht Slots erzwingen diese Wahl nicht. Ein fester Patch liefert noch keinen Adjungiertenabschluss, keinen gefüllten Seezustand, keinen Level-1-Zentralterm und keine gemeinsame GNS-Domäne. Die 128 Spinorstromoperatoren fehlen auf demselben Rohraum weiterhin.
+
+Rigorose Gitter-Kontinuum-Konstruktionen für freie Fermionen und WZW-Modelle bieten einen passenden Vergleichsrahmen für die nächsten Konvergenzschritte. Ihre Voraussetzungen müssen aber am TFPT-Quellobjekt nachgewiesen werden. Sie ersetzen weder die Auswahl der Kinetik noch die P1/P2-Identifikation. \cite{osborne}
+
+
+
+\chapter{Quellenzeit, lokaler Randlimes und Carry}
+% Integration: nach dem Rand-/Gauge-Teil; der QWZ-Befund bleibt quellengebunden.
+\section{Einordnung des Strangs}
+
+Die späten Contracts vom 20. September 2026 verfolgen eine einzige präzise
+Frage: Lässt sich der algebraisch bereits formulierte E8-/Spinor-Anschluss als
+derselbe physische Prozess wiederfinden, der Zustand, geladene Felder, Zeit,
+Cocycles und Auslesung der ursprünglichen Quelle gemeinsam trägt? Die
+Antwort der geprüften Texte ist partiell, aber deutlich. Mehrere starke
+Teilresultate sind inzwischen exakt formuliert: Der unveränderte QWZ-Vertreter
+hat in der festbreiten, fest skalierten Quelle nur die bekannten Randzweige;
+auf einer gemeinsam wachsenden Kreisgeometrie konvergiert ein lokales geladenes
+CAR-Feld samt seiner Zeitentwicklung zu einem einzelnen chiralen freien Feld;
+eine ausdrücklich vorgegebene Fluxfahrt transportiert im vollen See eine
+regionale Ladung. Auf der Zielseite sind der geladene Strompfad, die vier
+Diskriminantsektoren, die native Paarstruktur und ihre zeitabhängigen
+Antworten algebraisch bestimmt.
+
+Diese Resultate bleiben an ihre Bedingungen gebunden. Die Querbreite eines
+QWZ-Streifens zählt keine unabhängigen Spezies, ein E8-Gitter ist keine aus
+P1/P2 abgeleitete Quelle, und ein positiver oder unitärer Hilfsanschluss ist
+keine Herleitung der nativen Wechselwirkung. Die Contracts tragen deshalb
+durchgehend den Status \texttt{\detokenize{PARTIAL}}. Es wurde kein T1--T8-Gate, keine vollständige
+TOE und kein 3+1-dimensionaler Ursprung geschlossen.
+
+Die Vertragskennungen und Beweisdateien stehen im Quellenregister.
+
+\section{Was die unveränderte QWZ-Quelle tatsächlich enthält}
+
+Der Contract \src{31} analysiert die tatsächlichen
+Hopping-Blöcke aus \path{verification/v1033_charged_disorder.py}, mit Masse eins,
+fester Breite $W=8$, Sektor $r=1$ und dem gefüllten negativen See. Für
+
+\[
+ p_j=\frac{2\pi(j-1/4)}{N},\qquad D_N=\frac{N}{2\pi}h_N,\qquad
+ H_N=d\Gamma(D_N)-\operatorname{Tr}(1_{D_N<0}D_N),
+\]
+
+zerfällt der Einteilchenblock in eine obere und eine untere Kante sowie
+massive Querzweige. Mit \(\rho=1-\cos p\) und dem unteren Shift \(S_W\) gilt
+
+\[
+ B=\rho I-S_W,
+\qquad B^*B=T-|e_\mathrm{last}\rangle\langle e_\mathrm{last}|,
+\quad T=(1+\rho^2)I-\rho(S_W+S_W^*).
+\]
+
+Rang-eins-Interlacing liefert für die nichtkleinen Singulärwerte eine
+uniforme Schranke. Für die $2W-2$ Bulkenergien folgt
+
+\[
+ |e_\mathrm{bulk}(p)|\ge
+ \sqrt{\sin^2p+(1-\rho)^2}=1.
+\]
+
+Die übrigen beiden Zweige können nur für \(|p|<\pi/2\) unterhalb dieser
+Schranke liegen. Die Fockraum-Ausschöpfung ist dabei nicht nur eine
+Einteilchenbehauptung: Für jedes feste \(E<\infty\) und hinreichend großes \(N\) liegen alle Zustände in \(1_{[0,E]}(H_N)\) im endlichen Impulsfenster der beiden Kantenzweige. Teilchen- und Lochanregungen werden gemeinsam
+erfasst; Bulkzustände können die Energie nicht durch eine unzulässige
+Teilchen-Loch-Kompensation absenken.
+
+Das ist ein positives Resultat über diese ausgewählte Quelle und ihre
+Zeitskalierung. Es schließt in dieser Darstellung zusätzliche verborgene
+gebundene Bulkkanäle aus. Es beweist weder, dass der rohe P1/P2-Kern genau
+diese QWZ-Quelle ist, noch eine lokale Scaling-Algebra-Ausschöpfung für alle
+Operatorprodukte oder wechselnde Breiten, Fluxsektoren und Wechselwirkungen.
+Insbesondere hat ein unveränderter Rand mit einem komplexen Zweig pro
+Chiralität nicht automatisch acht E8-Kanäle. Die Aussage „acht Querreihen"
+wäre eine Verwechslung von Ortsreihen mit Spezies.
+
+Der gleiche Contract zeigt eine zweite Grenze. Die abstrakte E8-Theorie hat
+bei Grad eins $1+248=249$ Zustände, während der QWZ-Grenzraum unterhalb der
+festgelegten Quelleinheiten bei \(E<1{,}1\) nur Rang zehn besitzt. Dieser
+Vergleich setzt die dortige Energieeichung voraus und ist keine universelle
+Unmöglichkeitsaussage gegen P1/P2. Er markiert aber, dass E8-Grade und rohe
+Quellenergie nicht ohne gemeinsame Kalibrierung identifiziert werden dürfen.
+
+Die Fixpunkt-Abkürzung löst diese Frage ebenfalls nicht. Für einen
+Punktdefekt ist die Kopplungsdimension $1-h$; für eine ausgedehnte
+1+1-dimensionale Kante ist sie $2-(h+\bar h)$. Ein chirales Objekt mit
+$(h,\bar h)=(2,0)$ ist dort nach Potenzzählung marginal. Die Contracts
+verwenden dies nicht als Beta-Funktionsbeweis, sondern als Ausschluss der
+Behauptung, Potenzzählung allein wähle eine eindeutige Kantendynamik.
+
+\section{Der lokale wachsende-Kreis-Limes}
+
+\src{33} prüft eine andere Geometrie als die früheren
+Festkreisvergleiche: \(R\to\infty\) und \(a=2\pi R/N\to0\), bei unveränderter
+Masse, Breite und Hoppingstruktur. Für den tatsächlichen Streifenoperator und
+den oberen Randvektor \(r_\mathrm{top}\) gilt exakt
+
+\[
+ h(p)r_\mathrm{top}=-\sin(p)r_\mathrm{top}+(1-\cos p)\chi_\mathrm{top}.
+\]
+
+Daraus ergibt sich für \(D_a(k)=h(ak)/a\)
+
+\[
+ \|(D_a(k)+k)r_\mathrm{top}\|
+ \le \varepsilon_a(k)
+ =\frac{a k^2}{2}+\frac{a^2|k|^3}{6}.
+\]
+
+Die Spektralprojektion auf den gefüllten negativen See und die echte
+Zeitentwicklung werden für $k\ne0$ gleichzeitig kontrolliert:
+
+\[
+ \left|\langle r_\mathrm{top},P_a e^{-itD_a}r_\mathrm{top}\rangle
+ -1_{k>0}e^{itk}\right|
+ \le |t|\varepsilon_a(k)+\frac{\varepsilon_a(k)^2}{k^2}.
+\]
+
+Auf jedem festen \(k\)-Band und beschränkten Zeitintervall verschwindet die
+rechte Seite. Nach Fourier-Sampling mit
+
+\[
+ (I_{R,a}f)_j=R^{-1/2}\widehat f(k_j)r_\mathrm{top}
+\]
+
+konvergieren die CAR-Kerne, die gefüllte Kovarianz und alle festen endlichen
+Wörter aus Feldern, Adjungierten und Zeitübersetzungen. Der Grenzgenerator ist
+\(i\partial_x\); es entsteht ein einzelnes chirales freies Fermion. Die
+Viertelholonomie wird im festgehaltenen lokalen Beobachtungsbereich unsichtbar, während der physische Kreisumfang wächst. Das ist ein echter positiver Quellen-/Zeitbefund,
+kein Fit an eine isolierte Dispersion.
+
+Der Contract misst zugleich die Kanalzahl am selben Quelloperator: Bei
+$p=0$ hat der Block genau zwei Nullmoden, eine pro Rand, und vierzehn
+massive Zweige. Die lokale Niedrigenergieskalierung besitzt also einen
+chiralen Kanal je Kante mit entgegengesetzter Geschwindigkeit. Der positive
+Limes beseitigt die frühere Festkreisabweichung nicht durch bloße
+Gitterverfeinerung: Bei festem \(R\) bleibt die Holonomie-Differenz bestehen.
+Die entscheidende Zusatzannahme ist der wachsende physische Umfang.
+
+Damit sind drei Ebenen sauber getrennt: ein lokaler Ein-Kanal-Limes der
+ausgewählten QWZ-Quelle, ein bedingtes achtkanaliges E8-Ziel und die noch
+fehlende Abbildung des einen in das andere. Der Limes liefert weder acht
+Spezies noch den Halbspinor, die E8-Cocycle oder eine P1/P2-Herkunft.
+
+\section{Zeit, geladene Ströme und Viertelholonomie}
+
+\src{32} verbindet die vorhandene Gittervertexalgebra mit
+der Frage nach gemeinsamer Quellzeit. Der bekannte E8-Pfad ist nicht null:
+mit \(\alpha=(-1,-1,0,\ldots)\), \(\beta=s=(1/2)^8\) und
+\(\gamma=\alpha+s\) gilt \(\alpha\cdot s=-1\), \(\lvert\gamma\rvert^2=2\), und der
+einfache OPE-Pol führt von \(V_\alpha\) und \(V_s\) nach \(V_\gamma\).
+Die einzelne Phase hängt von der Cocycle-Konvention ab; der nichtverschwindende
+Pfad und die relativen Kommutatorzeichen sind invariant. Für das elementare
+Vektorfeld \(e_1\) ist \(e_1\cdot s=1/2\), also die Monodromie (-1). Das
+zeigt, dass nacktes Vektorfeld und Spinorstrom in der bosonischen E8-
+Vakuumalgebra unterschiedliche Lokalitätsrollen haben.
+
+Die CAR-Stromgrenze ist im endlichen Fenster exakt, sofern die Spezies
+verschieden sind. Für
+
+\[
+ E_n^{ab}=\sum_r b^*_{a,r}b_{b,r-n}
+\]
+
+gilt auf dem stabilisierten Kern
+
+\[
+ [E_m^{ab},E_n^{cd}]
+ =\delta_{bc}E_{m+n}^{ad}-\delta_{ad}E_{m+n}^{cb}
+ +m\delta_{m+n,0}\delta_{ad}\delta_{bc}I.
+\]
+
+Für gleiche Spezies wäre die analoge Paarformel falsch, weil
+\(A_n^{aa}=0\) durch Antisymmetrie, während die behauptete rechte Seite auf
+dem Vakuum nicht verschwindet. Dieser Speziesvorbehalt ist eine konkrete
+Lücke in der Paarübertragung.
+
+Die rohe Viertelholonomie wird durch die zeitabhängige Ladung sichtbar. Die
+Quelle trägt
+
+\[
+ E_\mathrm{source}(q)=q^2/2-q/4,
+ \qquad H_\mathrm{source}=L_0-Q/4,
+\]
+
+während das bedingte achtkanalige Ziel \(H_\delta=L_0-\delta\cdot P\) mit
+\(\delta=$1/4$^8=s/2\) verwendet. Für einen geladenen Vertex gilt
+
+\[
+ [H_\delta,V_{p,n}]=(-n-\delta\cdot p)V_{p,n}.
+\]
+
+Zahlenerhaltende Differenzen \(p=e_a-e_b\) sehen den Zusatzterm nicht. Ein
+Paarstrom erfährt dagegen (-1/2), der Halbspinor (p=s) (-1), und der
+entgegengesetzte Spinor (+1). Deshalb kann ein neutraler Stromtest bestehen,
+obwohl die gemeinsame geladene Zeit falsch identifiziert ist. Dasselbe gilt
+für ein formal normiertes Feld \(V_{s,-1}\Omega\): sein konformes Gewicht ist
+eins, seine \(H_\delta\)-Energie bei Viertelholonomie aber null.
+
+Die rationalen Clock-Lifts (C,J) können auf dem E8-Gitter mit Cocycle
+ausgeführt werden; ihre Ordnungen bleiben erhalten. Unter der festen Zeit
+
+\[
+ W_g(t)=e^{itH_\delta}U_g e^{-itH_\delta}
+ =e^{it(g\delta-\delta)\cdot P}U_g.
+\]
+
+Das ist ein exakter Heisenbergtransport und keine erhaltene Symmetrie. Die
+Ladungsphasen müssen in einem gemeinsamen Quellenvergleich auftauchen; sie
+werden nicht durch Umbenennung entfernt. Innerhalb der vorgegebenen Klasse
+homogener positiver quadratischer Stromhamiltonoperatoren mit linearer
+Ladungskorrektur erzwingt gleichzeitige \(C\)- und \(J\)-Invarianz
+(V=vI) und (b=0). Diese Auswahl ist jedoch nur dann physisch relevant,
+wenn die ursprüngliche Quelle beide Clocks als Symmetrien derselben Zeit
+realisiert.
+
+\section{Carry: positive Quelle, aber externe Fahrregel}
+
+\src{36} bestätigt die Quellformeln, markiert aber die
+Fensterbedingung: Die Stromgewichte gelten für die deklarierte
+Niedrigimpulsmenge, nicht als ungefilterter Vollquellensatz. Die E8-Cocycle
+trägt den Carry \(T_s^2=\epsilon(s,s)T_{2s}\) mit
+\(\epsilon(s,s)=-1\) in der übernommenen Konvention. Ein phasenfreier Lift
+und der echte Cocycle unterscheiden sich nur in der Rephasierung, nicht in
+der Tatsache des Carry.
+
+Der stärkere Contract \src{35} setzt dann ausdrücklich
+eine externe Fluxfahrt voraus. Für $W=8$, Masse eins und \(N\ge32\) wird
+
+\[
+ f(s)=1/4+s,\qquad i\partial_sU(s)=T h_N(f(s))U(s),\qquad U(0)=I
+\]
+
+vorgegeben. Der volle negative See wird ohne Reset, Bad oder Nachbesetzung
+entwickelt; die Teilchenzahl bleibt \(8N\). Genau am Nullübergang werden die
+beiden Kantenlinien gemeinsam verfolgt. Für einen geeigneten Kato-
+Intertwiner liefert der Contract
+
+\[
+ \|\Gamma-P_\mathrm{tr}\|_1=O(T^{-1}),\qquad
+ \|\Gamma-P_\mathrm{tr}\|_2=O((T\sqrt N)^{-1}).
+\]
+
+Mit einem gaußgefilterten regionalen Ladungsoperator erhält man
+
+\[
+ \langle C_\mathrm{top}(3/4)\rangle
+ =1/2+O(N^{-1})+O(T^{-1}),
+\]
+
+und am vollen Fluxzyklus
+
+\[
+ \langle C_\mathrm{top}(5/4)\rangle
+ =1+O(N^{-16})+O(T^{-1}).
+\]
+
+Für \(T=N^{3/4}\) werden zugleich Ladungs-, Zustands- und Energiegraph-
+Fehler kontrolliert; der feste Randphasenfehler ist $O(N^{-1/4})$. Das ist
+ein positiver, quellennaher Carry im vollen Fockraum. Die Operation wirkt
+jedoch auf allen Umfangslinks, ihre Dauer divergiert in Hoppingeinheiten,
+und bei zeitabhängigen Eichwechseln ist der Term \(i\dot G G^*\) nötig. Sie
+ist daher kein lokaler Seam-Vertex und keine automatisch lokale Spinorfeld-
+Einfügung. Der Contract sagt ausdrücklich: Ein globaler Spectral-flow-
+Operator liefert weder lokale Produkte noch die achtkanalige Cocycle.
+
+
+\chapter{Randgitter, Dynamik und lokale Rekonstruktion}
+
+\section{Ausgangspunkt und Geltungsbereich}
+
+Die späteren Arbeiten zur Rand-, Gitter- und Eichstruktur bilden eine logisch zusammenhängende Kette. Ihr Ausgangspunkt ist \textbf{kein} aus den TFPT-Prinzipien bereits abgeleiteter Materiesektor, sondern ein präzise deklarierter Kandidat: zehn chirale bosonisierte Kanäle mit
+
+\[
+\Gamma=\mathbb Z^{9,1},\qquad K=\operatorname{diag}(1^9,-1),
+\]
+
+also neun rechts- und einem linksbewegten Kanal. Die Resultate entscheiden innerhalb dieses Kandidaten sehr scharf, welche Nullvektoren, Ladungen, lokalen Felder und Erweiterungen miteinander verträglich sind. Sie entscheiden ebenso scharf, welche scheinbar naheliegenden Identifikationen scheitern. Sie leiten aber weder diese zehn Kanäle noch ihre Energie, ihren Zustand oder ihre Eichdynamik aus P1/P2 her. Diese Grenze wird in allen folgenden Aussagen beibehalten.
+
+Im Folgenden bedeutet „exakt“ eine algebraisch bewiesene Aussage unter diesen festgehaltenen Voraussetzungen; „bedingt“ markiert eine zusätzlich gewählte Energie, Eichverbindung oder Sektorregel; „offen“ bezeichnet den noch fehlenden Transport aus derselben ursprünglichen Quelle.
+
+Der zentrale Nullvektor ist
+
+\[
+n=(1,1,1,-1,-1,-1,-1,-1,-1,3),
+\]
+
+mit \(n^TKn=0\). Daneben steht der gewöhnliche bilineare Nullvektor
+
+\[
+z=e_9-e_{10}.
+\]
+
+Für die ersten acht Koordinaten wird
+
+\[
+a=(1,1,1,-1,-1,-1,-1,-1)
+\]
+
+verwendet. Zwei Einbettungen spielen später verschiedene Rollen:
+
+\[
+T(r)=\bigl(r,-a\!\cdot\!r/2,a\!\cdot\!r/2\bigr),
+\]
+
+\[
+F(r)=T(r)-\frac{a\!\cdot\!r}{2}n
+=\bigl(r-(a\!\cdot\!r)a/2,0,-a\!\cdot\!r\bigr).
+\]
+
+Diese beiden Formeln sind algebraisch eng verwandt, aber auf geladenen Feldern nicht austauschbar. Genau diese Unterscheidung wird zum roten Faden der späteren Ergebnisse.
+
+\section{Auswahl des Randkandidaten und erste physikalische Markierungen}
+
+\src{37} beginnt mit allen primitiven charakteristischen Nullvektoren minimaler euklidischer Länge im Gitter \(I_{9,1}\). Die Charakteristik erzwingt ungerade Komponenten; Minimalität gibt \(|n_{10}|=3\). Die globale Quellenladung, der Glue und die orientierte Farb-/Schwach-/Familienzerlegung reduzieren die Kandidaten stufenweise. \src{38} ersetzt dabei eine zunächst separat angenommene Blockpermutationssymmetrie durch die tatsächliche Gruppenbedingung
+
+\[
+G_\mathrm{SM}=\frac{SU(3)\times SU(2)\times U(1)}{\mathbb Z_6}=S(U(3)\times U(2)).
+\]
+
+Für einen farb- und schwachsingulären Zusatzkanal mit Hyperladung \(y\) lautet die Abstiegsbedingung \(y\in\mathbb Z\). Zusammen mit der Quellmarkierung wählt sie eindeutig den oben angegebenen orientierten Vektor \(n\) und \(y=1\).
+
+Der zusätzliche Ladungstest in \src{37} macht diese Bedingung unmittelbar sichtbar. Mit
+
+\[
+Y_8=(-1/3,-1/3,-1/3,1/2,1/2,0,0,0),\qquad
+Y_{10}=(Y_8,y,y)
+\]
+
+gilt
+
+\[
+Y_{10}\cdot n=-2+2y.
+\]
+
+Die Wechselwirkung ist daher in der festgelegten vektorartigen Singulettklasse nur für \(y=1\) hyperladungsneutral. Dann bleibt sogar das ganze transportierte E8-Ladungswörterbuch erhalten. In der orthogonalen Zerlegung
+
+\[
+\Gamma=F(E_8)\oplus \mathbb Ze_R\oplus\mathbb Zm,
+\qquad e_R=-e_9,\qquad m=n+e_9,
+\]
+
+tragen \(e_R\) und \(m\) Hyperladungen \(-1\) und \(+1\); ihr neutraler Summenvektor ist \(n\). Dies ist ein exakter Ladungstest für das massive Komplement, keine Herleitung eines neuen vierdimensionalen Elektrons.
+
+Der native E8-Kopplungstensor besitzt damit zwar die richtigen geladenen Down-/Lepton-Slots, löst aber das Flavorproblem nicht automatisch. Aktiviert man in einem festen neutralen Kanal nur ein Familientriplet \(h\), entsteht
+
+\[
+A(h)_{ij}=\epsilon_{ijk}h_k,\qquad A(h)h=0,
+\qquad \operatorname{rank}A(h)=2.
+\]
+
+Ein zusätzlicher Singulettkanal \(k\) kann den erweiterten Block
+
+\[
+Y(h,k)=\begin{pmatrix}A(h)&k\\-k^T&0\end{pmatrix},
+\qquad \det Y=(h^Tk)^2
+\]
+
+algebraisch auf vollen Rang vier bringen. Dieser bedingte Weg wählt weder \(k\) noch einen schweren vierten Zustand, drei leichte Familien oder ihre Hierarchie aus. Er ist eine genaue Anforderung an die fehlende Quellkopplung, kein fertiger Yukawa-Mechanismus. \src{38}
+
+Am zusätzlich gewählten Punkt
+
+\[
+V_\mathrm{aux}=K+2Kmm^TK
+\]
+
+zerfällt die Energie in einen E8-Sektor und ein Dirac-Paar. Erst zusammen mit dem zusätzlich gewählten nichtverschwindenden Cosinus-Term zum Nullvektor $n$ wird das Paar am bezeichneten Rekonstruktionspunkt massiv. Ohne diesen Term ist die Energiematrix allein keine Massenerzeugung. Dort hat \(n\) Skalendimension eins, während \(z\) Dimension neun besitzt. \src{40} zeigt jedoch, dass dieser Punkt eine echte Änderung der Energie ist. Der passive Basiswechsel der ursprünglichen freien Metrik \(V_0=I\) liefert \(W^TV_0W\), nicht automatisch \(V_\mathrm{aux}\). Besonders deutlich ist die Verteilung der 240 E8-Wurzelvertices: Am freien Punkt besitzen 56, 112, 56 und 16 von ihnen die Dimensionen 1, 2, 5 und 10; erst bei \(V_\mathrm{aux}\) haben alle Dimension eins. Die E8-Energie ist deshalb keine bloße Umbenennung der freien QWZ-Quelle.
+
+Auf einem ausdrücklich deklarierten Interpolationspfad zwischen beiden Energien sind \(n\) und \(z\) die einzigen neutralen selbstnullen Vertices, die relevant oder marginal werden können. Alle anderen zulässigen neutralen Nulloperatoren bleiben auf dem gesamten Pfad bei
+
+\[
+\Delta\geq \frac72.
+\]
+
+Der Mittelpunkt hat \(\Delta(n)=\Delta(z)=2\). Dieser starke Auswahlfilter ist exakt für den angegebenen Pfad. Er ist kein RG-Fluss und kein Beweis, dass die Quelle diesen Pfad oder einen kritischen Punkt auswählt.
+
+\section{Das vollständige Gitter trägt die Statistik}
+
+\src{39} liefert die entscheidende lokale Struktur. Der gemeinsame orthogonale Kern von \(n\) und \(z\) ist
+
+\[
+L_0=T(D_8),
+\]
+
+während die neutrale Ebene \(P_0=\mathbb Zn+\mathbb Zz\) die Gram-Matrix
+
+\[
+\begin{pmatrix}0&2\\2&0\end{pmatrix}
+\]
+
+besitzt. Das Untergitter \(L_0\oplus P_0\) hat Index vier in \(\Gamma\). Zwei Glue-Erzeuger können als
+
+\[
+f=e_1=T(e_1)+z/2,\qquad
+b=F(s)=T(s)+n/2,\qquad s=(1/2)^8,
+\]
+
+gewählt werden. Die vier Klassen \(0,f,b,f+b\) entsprechen den \(D_8\)-Diskriminantenklassen \(0,v,s,c\). Der E8-Quotient und der freie \(I_8\)-Quotient verwenden denselben \(D_8\)-Kern, aber verschiedene Erweiterungsklassen.
+
+Die scheinbar „wegprojizierte“ neutrale Ebene ist dabei nicht bedeutungslos. In einer typischen Paarung liefern der \(D_8\)-Anteil und der komplementäre Anteil jeweils eine Halbphase; beide Minuszeichen multiplizieren sich im vollständigen Quellgitter zu lokaler Monodromie \(+1\). Das massive Komplement stellt also die fehlende Lokalitätsphase wieder her. Entfernt man es, darf man die verbleibenden E8-Gewichte nicht automatisch als dieselben lokalen Felder lesen.
+
+Die mikroskopische Parität ist besonders einfach. Für
+
+\[
+x=F(r)+Ae_R+Bm
+\]
+
+gilt
+
+\[
+(-1)^F=(-1)^{x^TKx}=(-1)^{A+B}.
+\]
+
+Reine E8-Vertices sind gerade. Jedes ungerade lokale Feld trägt einen ungeraden Anteil des massiven Paares. Die ursprünglichen acht Fermionen verschwinden dabei nicht; sie faktorisieren exakt. Für geeignete Spinorwurzeln \(r_i\) gilt
+
+\[
+e_i=F(r_i)-a_i m,\qquad i\leq 8.
+\]
+
+Ein ursprüngliches ungerades Fermion ist somit ein E8-Spinorstrom zusammen mit einem massiven ungeraden Vertex. Unterhalb der schweren Lücke annihiliert die niedrige Projektion alle ungeraden lokalen Felder. Eine gerade Schur-Elimination kann keinen fehlenden ungeraden Hilbertraumsektor erzeugen. Das bedeutet nicht, dass die vollständige Theorie keine Fermionen besitzt; es bedeutet nur, dass im faktorisierten Niedrigenergiesektor keine genuin leichten ungeraden lokalen Felder verbleiben.
+
+Diese Aussage korrigiert zugleich einen früher erwogenen Flavorweg. Ein Rang-ergänzender Schur-Block kann algebraisch eine singuläre Dreifamilienmatrix vervollständigen. Im hier ausgewählten faktorisierten Sektor wären direkte Mischungen zwischen einem reinen leichten E8-Feld und genau einem schweren ungeraden Fermion jedoch paritätsverboten. Der abstrakte Rangmechanismus bleibt richtig, ist aber kein vorhandener lokaler Yukawa-Term dieser Phase.
+
+Auch die Determinantenphase muss vollständig behandelt werden. Für endliche invertible Blöcke gilt
+
+\[
+\det D=\det D_{QQ}\,
+\det\!\left(D_{PP}-D_{PQ}D_{QQ}^{-1}D_{QP}\right).
+\]
+
+Am exakt faktorisierten Punkt ist \(Z[j;\lambda]=Z_{E_8}[j]Z_m[\lambda]\). Der massive Faktor gehört zur vollen Wirkung, kürzt sich aber aus einer relativen Down-/Lepton-Antwort
+
+\[
+\Xi(\theta)=\frac{Z_d(\theta)Z_e(0)}{Z_e(\theta)Z_d(0)}
+\]
+
+exakt heraus, wenn beide Kanäle denselben \(Z_m(\theta)\) tragen. Außerdem ist die Determinante eines freien konstantphasigen Dirac-Kerns
+
+\[
+h_\theta(k)=k\sigma_z+m\cos\theta\,\sigma_x+m\sin\theta\,\sigma_y
+\]
+
+wegen unitärer Äquivalenz unabhängig von \(\theta\). Eine relative Flavorphase benötigt daher kanalverschiedene Massendeformationen, eine echte E8-Komplementkopplung oder zusätzliche Hintergrund-/Regulatordaten. Eine gemeinsame freie Dirac-Massenphase genügt nicht.
+
+\section{Lokale Rekonstruktion am bedingten Konkurrenzpunkt}
+
+\src{41} untersucht den separat gewählten Punkt
+
+\[
+u=(n+z)/2,\qquad v=(n-z)/2,\qquad
+V_c=K+2Kvv^TK.
+\]
+
+Hier gilt \(\Delta(n)=\Delta(z)=1\). Dieser Punkt liegt nicht auf dem direkten Energiepfad des vorigen Abschnitts; schon der Matrixeintrag \((V_c)_{9,10}=4\), gegenüber null auf dem ganzen direkten Pfad, zeigt die zusätzliche kollektive Dichterichtung.
+
+Die vier Glueklassen besitzen am Punkt \(V_c\) die exakten minimalen Dimensionen
+
+\[
+\begin{array}{c|cccc}
+\text{Klasse}&0&v&s&c\\ \hline
+(-1)^F&+&-&+&-\\
+\Delta_{\min}&0&3/4&5/4&3/2.
+\end{array}
+\]
+
+Unter der zu \(D_5+A_3\) gehörenden \(\mathrm{Spin}(10)\times SU(4)\)-Wirkung verzweigt die gekreuzte Klasse als
+
+\[
+c=(16,\bar4)+(\bar{16},4).
+\]
+
+Für jedes passende Halbgewicht \(p\) der \(c\)-Klasse sind
+
+\[
+x_R=T(p)+u,\qquad x_L=T(p)+v
+\]
+
+ganzzahlige, mikroskopisch ungerade Felder. Explizite Vertreter besitzen \(q=3\), \(Y=1/3\) und \(\Delta=3/2\). Der neutrale Anteil ist unverzichtbar: \(u\) und \(v\) allein sind keine lokalen Vektoren des ursprünglichen Gitters. Die Bezeichnungen rechts/links betreffen die übernommene Zerlegung; insbesondere kann ein Gesamtfeld Gewichte \((1,1/2)\) tragen und ist dann nicht rein chiral. Dies ist eine 1+1-dimensionale Feldkonstruktion, keine Identifikation mit einem vierdimensionalen Weyl-Fermion.
+
+Eine konkrete Korrektur ist in der Endfassung festgehalten: Der rohe Vertreter \(f+b\) hat \(\Delta=5/2\), nicht \(3/2\). Die kleinere Dimension wird erst durch Verschiebung um einen echten \(T(D_8)\)-Gittervektor innerhalb derselben Klasse erreicht.
+
+Die bedingte Refermionisierung der beiden Cosinus-Terme führt formal zu zwei Majoranamassen proportional zu \(g_n\pm g_z\). Die zugehörigen halbintegralen Fermionvektoren sind jedoch keine unabhängigen lokalen Felder des UV-Gitters. \src{41} konstruiert einen sechssektorigen, monodromielokalen Kandidaten in \((D_8)_1\times\mathrm{Ising}\), einschließlich des fermionischen einfachen Stroms \(J=(c,\psi_R)\). Exakt sind die UV-Glueklassen, ihre Gewichte und die Monodromietabelle. Nicht hergeleitet sind Massenvorzeichen, Spinstruktur, Defektlinien und der physische IR-Projektor. \src{41} zeigt zusätzlich, dass keine nichttriviale Potenz der vorhandenen festen \(C\)- oder \(J\)-Clock zugleich \(V_c\), den \(z\)-Term und die Hyperladung erhält. Der kritische Kandidat ist daher ein präziser Zielanschluss, keine von der Quelle ausgewählte Phase.
+
+\finding{Lokale Statistik liegt im vollständigen Glue}{Die E8-Gewichte allein tragen nicht die ganze lokale Feldinformation. Das neutrale Komplement stellt die gegenseitige Lokalität wieder her und bindet jedes ungerade Feld an einen geladenen oder massiven Sektor.}
+
+\chapter{Gruppenobstruktion, Eichladung und geladene Lifts}
+\section{Die zentrale Gruppenobstruktion und die nichtlineare Randlösung}
+
+Die Quellprüfung \src{44} untersucht zuerst den naheliegenden Ursprung im nativen 64-CAR/60-CCR-Fockmodell. Dort ist die Nicht-Gauß-Struktur wirklich Teil des Zeitgenerators,
+
+\[
+H_W=\Delta N_b+g\sum_{A=1}^{60}
+\left(b_A^\dagger P_A+P_A^\dagger b_A\right),
+\qquad P_A=\sum_{i<j}W_{A,ij}f_jf_i,
+\]
+
+mit \(WW^T=8I_{60}\). Dies macht den nativen Fockpfad zu einem ernsthaften Ursprungskandidaten, liefert aber noch keinen Raumträger und keinen Transfer auf \(n,z,V_c\). Dessen Fermionen tragen \((\bar{16},\bar4)\), seine 60 Bosonkanäle \((10,6)\). Ein einziges diagonales Zentrumselement \(\zeta\in\mathrm{Spin}(10)\times SU(4)\) wirkt auf allen nativen Erzeugern mit \(+1\), auf den benötigten ungeraden \(c\)-Feldern aber mit \(-1\). Daher wirkt \(\zeta\) auf der gesamten nativen Operatoralgebra trivial. Ein äquivarianter Transfer eines \(c\)-Felds müsste gleichzeitig \(O=+O\) und \(O=-O\) erfüllen und ist folglich null. Der Ausschluss gilt für beliebig komplizierte native Operatorprodukte, nicht nur bis zu einem getesteten Grad.
+
+Die vor der Familienkompression vorhandenen Clifford-Matrizen besitzen tatsächlich die kovariante Struktur
+
+\[
+6\otimes\bar4\longrightarrow4.
+\]
+
+In der exportierten geraden Familienkompression verschwinden die sechs einzelnen Übergänge jedoch:
+
+\[
+P_\mathrm{even}\gamma_aP_\mathrm{even}=0.
+\]
+
+Hilfszustände des Clifford-Aufbaus sind also noch keine ausgeführten physikalischen Feldoperatoren. \src{45} verschärft dies: Fügt man die sechs Vektor-Majoranas als gewöhnliche CAR-Faktoren hinzu, verknüpfen zwei zentrale Zeichen Gruppenwirkung und Gesamtparität so, dass der gewünschte Spinorsektor weiterhin die falsche Statistik besitzt. Auch die volle endliche Clifford-Algebra \(\mathrm{End}(S)\) enthält nur ganzzahlige Differenzgewichte, keine Spinoroperatoren mit halbzahligen Gewichten.
+
+Der ebenfalls geprüfte rationale Austausch \(n\leftrightarrow z\) löst diese Obstruktion nicht. Er ist nur auf einem gemeinsamen Untergitter vom Index zwei integral; dieses enthält die Klassen \(0,c\), aber nicht \(v,s\). Ein formaler Labeloperator mit \(D^2=1+\eta\) ist damit algebraisch formulierbar. Eine lokale Defektalgebra, eine Sektorenregel und ein zeitlicher Intertwiner folgen daraus nicht. Insbesondere ist diese Index-zwei-Struktur nicht mit dem vorhandenen metaplektischen Half-Deck gleichzusetzen. \src{44}
+
+Der gleiche Contract liefert aber eine positive, nichtlineare Randrekonstruktion. Im bedingten \(\Gamma\)-Rand ist
+
+\[
+e_9=T(-a/2)+v
+\]
+
+ein vorhandenes ursprüngliches Fermion und zugleich ein Keim der \(c\)-Klasse. Die Nullmoden der zusammengesetzten \(T(D_8)\)-Ströme erzeugen daraus den vollständigen 128-Gewichte-Orbit
+
+\[
+x_p=T(p)+v.
+\]
+
+Die kleinere Produktgruppe erreicht jeweils 64 Gewichte der Zweige \((16,\bar4)\) und \((\bar{16},4)\); erst zusätzliche \(D_8\)-Wurzeln verbinden beide. Entscheidend ist, dass 56 der 112 \(D_8\)-Wurzelströme in den ursprünglichen Fermionkoordinaten quartisch sind. Die Gruppenwirkung ist deshalb keine lineare Bogoliubov-Wirkung der endlichen Quell-CAR-Algebra. Am freien Punkt besitzen die Orbitfelder unterschiedliche Dimensionen; erst die zusätzlich gewählte Dynamik \(V_c\) macht sie zu einem gemeinsamen \(\Delta=3/2\)-Multiplett. Damit ist die lokale Rekonstruktion exakt, die Herkunft ihrer gemeinsamen Dynamik aber weiterhin offen.
+
+\section{Gaußreduktion, kompatible Ladung und Flussindex}
+
+\src{42} analysiert den vorhandenen kompakten U(1)-Rotorparenten, ohne ihn mit der zehnkanaligen Quelle gleichzusetzen. Auf einem endlichen verbundenen Graphen lautet die Gaußbedingung
+
+\[
+BE=-\rho,\qquad \rho_x=N_x-1.
+\]
+
+Für einen gewählten Spannbaum ist jede Lösung eindeutig
+
+\[
+E=E_T(\rho)+Cw,\qquad w\in\mathbb Z^{b_1}.
+\]
+
+Die exakte elektrische Energie zerfällt in
+
+\[
+|E|^2=\rho^T(BB^T)^+\rho+(w+\theta(\rho))^TQ(w+\theta(\rho)).
+\]
+
+Dies bewahrt den longitudinalen Dichtekern und den affinen ganzzahligen Windungsrest. Der zugehörige unitäre Gaußabbau transportiert zugleich sämtliche ursprünglichen Hoppings, Zustände und dieselbe Zeitentwicklung. Das ist ein positiver, vollständiger Reduktionssatz für diesen Rotorparenten. Es ist noch keine Abbildung auf die QWZ-/Clock-Quelle oder auf den E8-Rand.
+
+Jedes endlich getragene Gauß-invariante Observable ist in der Materie-Fermionparität gerade. Ein einzelnes geladenes Fermion ist kein lokales Gauß-invariantes Observable; Wilsonlinien liefern bilineare Transporte oder geladene Sektorintertwiner. Deshalb kann die ungraduierte Observable-Algebra nicht unmittelbar die volle lokale CAR-Feldalgebra aufnehmen. Ebenso scheitert die direkte Identifikation der alten globalen Ladung \(q=\sum_i x_i\) als Eichladung: Unter den E8-Wurzeln treten die Ladungen
+
+\[
+q=-4,-2,0,2,4
+\]
+
+mit Multiplizitäten \(1,56,126,56,1\) auf. Nur \(E_7\oplus u(1)\) zentralisiert diese Ladung; 114 E8-Schrittoperatoren wären geladen.
+
+Konstruktiv lässt sich dagegen jede ganzzahlige Ladung klassifizieren, die den gesamten \(F(E_8)\)-Sektor neutral lässt. Sie hat die Form
+
+\[
+g(v,u)=(va,u,-3v).
+\]
+
+Die Erhaltung bereits vorhandener \(q\)- oder \(Y\)-Markierungen erzwingt \(u=-v\). Primitive Normierung liefert eindeutig bis auf Vorzeichen
+
+\[
+\boxed{g=Kn=(a,-1,-3).}
+\]
+
+Diese Ladung ist rein und gemischt anomaliefrei in der bedingten 1+1-dimensionalen Bilinearrechnung:
+
+\[
+g^TK^{-1}g=q^TK^{-1}g=Y^TK^{-1}g=0.
+\]
+
+Die gravitative Signatur bleibt jedoch acht. Zudem gilt \(g\cdot n=0\), aber \(g\cdot z=2\). Eine wirkliche Eichung erlaubt daher den nackten \(n\)-Term, nicht zugleich den nackten konkurrierenden \(z\)-Term. Die lokalen \(c\)-Spinorfelder tragen Ladung \(\pm1\), während alle E8-Ströme neutral sind. Der Nachtrag \src{42} zeigt: Das Hinzufügen eines chemischen Terms \(\lambda Q_g\) kann die bereits vorhandenen unterschiedlichen Clock-/Quellfrequenzen der E8-Wurzeln nicht ausgleichen, weil \(Q_g\) auf ihnen verschwindet.
+
+\src{43} setzt nun ausdrücklich eine zusätzliche physikalische Prämisse: eine kompakte U(1)-Verbindung, die an genau diese zehn chiralen Kanäle mit Ladung \(g\) gekoppelt ist. Für Einheitsfluss ist der signierte Index
+
+\[
+I=Kg=n
+\]
+
+bis auf die gemeinsame Orientierungswahl. Der minimale lokale Sättigungsoperator enthält zwölf Fermionfaktoren. Die drei identischen Faktoren im Ladung-drei-Kanal benötigen die Ableitungsordnungen 0, 1 und 2; deshalb hat der freie Operator \((h,\bar h)=(9/2,9/2)\) und \(\Delta=9\). Der Index bestimmt die Auswahlregel eines möglichen 't-Hooft-Vertices. Er bestimmt weder dessen Koeffizienten noch eine lokale Cosinus-Exponentiation, einen Vakuumwinkel, eine Phase oder den Fluss-Summenmaßstab.
+
+Auf Gitterebene ist dagegen exakt
+
+\[
+\ker(g\cdot)=F(E_8)\oplus\mathbb Zn,\qquad
+\ker(g\cdot)/\mathbb Zn\cong E_8.
+\]
+
+Der Quotient ist sogar vollständig als \(A_8\)-Index-drei-Erweiterung darstellbar: 72 bilineare und je 84 vierfaktorige positive beziehungsweise negative Wurzelvertreter ergeben die 240 Norm-zwei-Klassen. Ihre Quotientennorm macht sie am ursprünglichen freien Punkt noch nicht zu chiralen Gewicht-eins-Strömen.
+
+\section{Geladene Lifts und der minimale lokale Reparaturraum}
+
+Der neutrale Quotient legt die Wirkung auf geladene Felder nicht fest. \src{46} klassifiziert deshalb alle ganzzahligen additiven isometrischen Schnitte desselben Quotienten:
+
+\[
+S_\lambda(r)=F(r)+(\lambda\cdot r)n,\qquad \lambda\in E_8.
+\]
+
+Die gewünschte gemeinsame Wirkung auf den geladenen Keim \(e_9\) würde dagegen
+
+\[
+\lambda=a/2
+\]
+
+erzwingen. Dieser Vektor liegt im gegenüberliegenden Spinor-Coset und nicht im gewählten E8-Gitter. Folglich existiert kein integraler voller E8-Schnitt mit derselben exakten Cartanpaarung auf \(e_9\). Auf \(D_8\) funktioniert \(T\) vollständig; genau dort ist die maximale fortsetzbare Unterstruktur. Die 112 D8-Wurzeln sind integral, alle 128 E8-Halbwurzeln verlangen halbe Vielfache von \(n\).
+
+Die stärkere Lokalitätsformel lautet für jede Halbwurzel \(r\) und jedes ursprüngliche Feld \(x\)
+
+\[
+e^{2\pi iB(T(r),x)}=(-1)^{g\cdot x}.
+\]
+
+Auf jedem ungeraden Originalfeld entsteht also nichttriviale Monodromie. Ein Kokzyklus kann Austauschzeichen organisieren, diese volle Monodromie aber nicht entfernen. Die globalen Markierungen \(q,Y\) wählen den Lift nicht aus, weil sie \(n\) annihilieren; verschiedene \(S_\lambda\) sind durch integrale Eichler-Transvektionen erreichbar. Werden Gitter, Felder, Energie und Zustand gemeinsam transformiert, sind sie Koordinatenwechsel. Hält man den Quellkeim oder die Zeit fest, sind sie verschiedene physische Wörterbücher.
+
+Der minimale lokale Reparaturraum für den vollen \(T(E_8)\)-Lift ist ein anderer Nachbar des ursprünglichen ungeraden Gitters. Setze
+
+\[
+\Gamma_0=\{x\in\Gamma:g\cdot x\in2\mathbb Z\},\qquad h=n/2,
+\]
+
+\[
+L_h=\Gamma_0+\mathbb Zh.
+\]
+
+Dann ist \(L_h\) gerade, unimodular und
+
+\[
+L_h=T(E_8)\oplus\mathbb Zh\oplus\mathbb Zz
+\cong E_8\oplus U=II_{9,1}.
+\]
+
+Dies ist die kleinste ganzzahlige Erweiterung, die den vollen \(T(E_8)\)-Lift bei Erhalt des gesamten geraden Originalsektors enthält. Sie schließt aber alle ursprünglichen ungeraden Felder aus: \(L_h\cap\Gamma=\Gamma_0\), insbesondere \(e_9\notin L_h\). Der Diskriminantengruppe zufolge gibt es zwei gerade Nachbarn, \(L_h\) und \(L_c=\Gamma_0+\mathbb Z(h+e_9)\); erst die gewünschte \(T(E_8)\)-Einbettung wählt bedingt \(L_h\). Auf diesem neuen Gitter ist \(g/2\), nicht \(g\), die primitive Ladung. Aus \(h=n/2\) folgt daher kein physisches Halbflussereignis der alten Theorie.
+
+\section{Gemeinsames Ergebnis und offene Herkunftsbrücke}
+
+Die Kette ergibt ein klares Gesamtbild. Das vollständige ungerade Quellgitter kann lokale geladene Spinorfelder tragen, aber dann ist der volle gewünschte \(T(E_8)\)-Stromlift auf diesen Feldern nicht gegenseitig lokal. Der neutrale Quotient besitzt exakt die E8-Struktur, legt jedoch die geladene Operatorwirkung nicht fest. Ein gerades Nachbargitter realisiert den vollen Stromlift, entfernt dafür die ursprünglichen ungeraden Felder aus der lokalen Algebra. Geladene Materiefelder können dann nur als zusätzliche Module, Twistfelder, Wilsonlinien-Endpunkte oder Sektorintertwiner wiederkehren. Eine solche Rekonstruktion ist bekannte Feldtheoriestruktur, aber in den vorliegenden Verträgen noch keine aus der TFPT-Quelle ausgewählte Dynamik.
+
+Der konstruktive Fortschritt ist dennoch erheblich: Der Randkandidat, seine Ladungen, sein vollständiger Glue, seine Parität, der explizite geladene Spinororbit, die kompatible Eichladung, der neutrale E8-Quotient, der Einheitsflussindex und die minimale lokale Nachbargitter-Reparatur sind exakt bestimmt. Ebenso exakt sind die drei entscheidenden Grenzen: Die freie Quelle wählt die E8-Energie nicht; die native endliche Fockalgebra besitzt nicht die erforderliche gemeinsame Zentrum-/Paritätswirkung; und ein Quotient oder eine Determinantenphase ersetzt keine geladene Feld- und Zeitabbildung.
+
+Die noch fehlende Herkunftsbrücke muss deshalb in \textbf{einem} gemeinsamen Prozess liefern: die zehn lokalen Kanäle oder ihren kontrollierten Ersatz, die nichtlinearen Gewicht-eins-Ströme, den geladenen ungeraden Sektor, die Ladungen \(q,Y,g\), den Glue und die Kokzykel, den Zustand, die Energie \(V_c\) oder eine hergeleitete Alternative sowie dieselbe physische Zeit. Eine kompakte Eichverbindung wäre dabei eine zusätzliche, ausdrücklich zu begründende Struktur. Erst ihre tatsächliche Flussamplitude könnte aus der Index-Auswahlregel einen Hamilton- oder Korrelatorbeitrag machen. Bis dahin sind die Resultate exakte Struktur- und Ausschlusssätze innerhalb des bedingten Randmodells, keine Herleitung aus P1/P2, keine vierdimensionale Standardmodell-Realisierung und keine vollständige TFPT- oder TOE-Schließung.
+
+Damit ist auch der nächste Herkunftstest klar und ohne weitere Hilfskonstruktion formuliert.
+
+\finding{Entscheidende Herkunftslücke}{Gesucht ist kein weiterer passender Quotient, sondern ein einziger quellenselektierter Operator- und Zeittransfer, der neutrale Ströme, geladene ungerade Sektoren, Glue, Ladungen und Energie gemeinsam realisiert.}
+
+
+\chapter{Sektorrekonstruktion, Paarantwort und Herkunftsgrenze}
+% Integration: vor den Schlussfolgerungen zu Sektorrekonstruktion, Paarenergie und Herkunft.
+\section{Quelle und Projektions-/Gedächtnisfrage}
+
+Der Kernbefund von \src{30} ist eine Trennung, die für
+alle späteren Ableitungen entscheidend bleibt. Im E8-Ziel sei
+\(D=D_8\), \(s=(1/2)^8\), \(L=D\cup(D+s)\), und \(P\) projiziere auf den
+\(D\)-Sektor, \(Q=1-P\) auf den Spinorsektor. Ein Spinorstrom ist
+off-diagonal und kann trotz \(PAP=PBP=0\) einen geladenen Rückweg erzeugen:
+
+\[
+ P[A,B]P=PAQBP-PBQAP\ne0.
+\]
+
+Für den gemeinsamen Sugawara-Operator und die quadratischen Familien \(H_V\),
+die jede Gitterladung erhalten, gilt dagegen
+
+\[
+ QHP=PHQ=0.
+\]
+
+Dann verschwinden Feshbach-Selbstenergie und Gedächtniskern,
+
+\[
+ \Sigma(z)=PHQ(z-QHQ)^{-1}QHP=0,\qquad
+ K(t)=PHQe^{-itQHQ}QHP=0.
+\]
+
+Ein geladener Mess- oder Strompfad ist daher kein autonomer Übergang durch
+den Hamiltonoperator. Der zweidimensionale Gegenzeuge \(P=\mathrm{diag}(1,0)\),
+\(H=\mathrm{diag}(0,1)\), \(A=\sigma_x\), \(B=\sigma_y\) zeigt exakt:
+\(P[A,B]P=2iP\), aber \(PHQ=0\). Für eine reale Quelle muss also gerade der
+physische Projektor und sein Hamiltoncorner \(QHP\) bestimmt werden; eine
+gemeinsame abstrakte Algebra genügt nicht.
+
+Der Coxeteroperator verschiebt im Grad eins 56 integer D8-Wurzeln in den
+Spinorraum. Ein D8-Readout, das unter dem tatsächlichen Clock vollständig
+invariant sein soll, muss dadurch alle 248 E8-Ströme enthalten. Ein Clock-
+bedingter Sektorwechsel ist aber kein Zeitwechsel. Das schließt die
+Sektorerweiterung nicht aus; es verhindert nur, dass Clockcovarianz,
+Stromkommutator und Gedächtnis ungeprüft gleichgesetzt werden.
+
+\section{Native Felder, Paarjets und die positive algebraische Seite}
+
+\src{47} verwendet die bereits festgelegte
+
+\[
+ \Gamma=\mathbb Z^{10},\quad K=\operatorname{diag}(1^9,-1),\quad
+ F(r)=(r-(a\cdot r)a/2,0,-a\cdot r)
+\]
+
+mit \(V_\mathrm{aux}=K+2Kmm^TK\). In diesem Feld- und Paarvergleich bleiben die Cosinus- und Massenterme ausgeschaltet. Verwendet wird die konforme Zeit dieser bedingten masselosen Randtheorie, ergänzt um den angegebenen Viertelladungsterm. Die 64 nativen Fermiongewichte werden als
+\(p_i=F(r_i)+e_R\), die 60 Mediatorgewichte als \(b_A=F(s_A)+2e_R\)
+eingesetzt. Exakt 480 der 2016 Paare haben das passende Produkt und
+
+\[
+ :\Psi_i\Psi_j:=\sum_AW_{A,ij}\Phi_A,\qquad WW^T=8I_{60}.
+\]
+
+Die tatsächliche Gruppenwirkung wird über D5- und D3-Wurzeln mit einem
+gemeinsamen Cocycle gelöst; die Identifikation ist daher ein
+Darstellungsintertwiner und keine Dimensionsgleichheit. Die positive
+Aussage lautet: Der native Tensor erscheint als lokaler Vertex-Produkt-
+Tensor in dieser bedingten Randtheorie.
+
+Die vollständige Außenquadratstruktur fehlt im Produkt am selben Punkt nicht
+vollständig, sondern verschiebt sich in Jets. Für den antisymmetrisierten
+
+\[
+ A_{ij}(z)=\tfrac12[\Psi_i(z)\Psi_j(0)-\Psi_j(z)\Psi_i(0)]
+\]
+
+hat \(C_0\) Rang 60, während die Koeffizienten \(C_2\) Rang 2016 erreichen;
+die 1956 dunklen Richtungen erscheinen zuerst bei Gewicht fünf. Das ist ein
+exakter Feldjet-Befund, kein nativer CAR/CCR-Hamiltonoperator.
+
+Gerade die Gram-Matrix trennt beides: Das native helle Paar und der Mediator
+sind orthogonale Zustände, während ihr Coincident-Vertexbild die Matrix
+
+\[
+ \begin{pmatrix}8&\sqrt8\\\sqrt8&1\end{pmatrix}
+\]
+
+mit Determinante null besitzt. Auch die adjungierten Vertexprodukte haben
+operatorwertige Pole statt kanonischer Antikommutatoren. Der native
+Hamiltonoperator und sein Vakuumtheorem werden durch diese Feldabbildung
+nicht transportiert. Hinzu kommt, dass die ursprünglichen $(q,Y)$-Ladungen
+unter dem gewählten Dressing verschoben werden; Neutralität allein liefert
+weder Amplitude noch Dynamik.
+
+\src{48} macht die Paarantwort dennoch vollständig.
+Für den radial getrennten Zustandsvektor \(J_r\) gilt mit \(A=W^TW\), Rang 60,
+
+\[
+ J_r^*J_s=G(rs)=d(rs)I+o(rs)A,
+\]
+
+\[
+ d(v)=\frac{v^2(2-v)}{2(1-v)^3},\qquad
+ o(v)=\frac{2-v}{2(1-v)^2}.
+\]
+
+Die Zeitantwort zerfällt damit in helle und dunkle Kanäle. Die Polarabbildung ist eine Isometrie. Für $\rho=r^2$ ist der Fehler des normierten Zeitantwort-Grenzübergangs durch $5\rho$ uniform in allen reellen Zeiten beschränkt. Bei \(r\to0\) entsteht der kontrollierte Grenzoperator
+
+\[
+ H_\mathrm{pair,0}=3P_b+5P_d=5I-A/4.
+\]
+
+Mit dem vorhandenen Viertelladungsterm wird daraus
+
+\[
+ H_\mathrm{pair}=3I-Q_2/4+2P_d.
+\]
+
+Der verbundene Paaranteil ist \(2P_d\ge0\). Er ist also keine negative helle
+Bindungsenergie wie im nativen Block
+
+\[
+ \begin{pmatrix}0&\sqrt8g_c\\\sqrt8g_c&\Delta\end{pmatrix},\qquad
+ E_-=(\Delta-\sqrt{\Delta^2+32g_c^2})/2<0.
+\]
+
+Das Vorzeichenproblem kann nicht durch Abziehen einer nur für $N=2$
+geltenden Konstante repariert werden. Die Paarantwort ist eine präzise
+positive Antwort des bestehenden gaußschen Quellraums, aber keine erzeugte
+elementare Vierfermion-Wechselwirkung.
+
+\section{Vier Sektoren, gleiche Zeit und die Grundzustandsgrenze}
+
+\src{49} liefert die sauberste bedingte
+Fermionisierung. Für
+
+\[
+ \Gamma_0=\{x\in\mathbb Z^{10}:g\cdot x\ \mathrm{gerade}\},
+ \quad h=n/2,\quad f=e_9,\quad c=h+f,
+\]
+
+gibt es die vier Diskriminantklassen $(0,h,f,c)$. Die Twist-Charaktere und
+die spinabhängige Arf-Kombination reproduzieren die fermionischen Spuren:
+
+\[
+ Z_F[\rho]=\frac12\sum_{a,b=0,1}
+ (-1)^{ab+a\rho_t+b\rho_x}Z_B[a,b].
+\]
+
+Die inverse Matrix ist die Transponierte; die relative T-Phase ist nach
+Abtrennung des gemeinsamen gravitativen Faktors \(T=\operatorname{diag}(1,1,-1,1)\).
+Ungerade Felder verschieben die Sektoren \(M_0\leftrightarrow M_f\) und
+\(M_h\leftrightarrow M_c\). Dadurch werden nicht nur Partitionfunktionen,
+sondern auch zeitgeordnete Zweipunktfunktionen mit dem richtigen
+Hamiltonoperator des Zwischensektors rekonstruiert. Gerade die Intertwiner sind nötig; vier
+Zahlen oder ein Projektor allein reichen nicht.
+
+Die verwendeten geraden Operatoren, darunter die vorhandenen Cosinus-Terme mit
+Impulsen \(n,z\in\Gamma_0\), erhalten alle vier Sektoren. Das beweist keine
+gemeinsame Spektralform, keine Vakuumauswahl und keinen nativen Ursprung.
+Es ist eine exakte Identität innerhalb des bereits angenommenen
+Lorentzgitter-/Heisenbergrahmens. Die 9R/1L-Signatur wird dabei nicht als
+negative Oszillatorenergie missverstanden.
+
+Die Folgeanalyse \src{50} betrachtet anschließend
+beide tatsächlichen Grundzustände des zugewiesenen Randhamiltonoperators.
+Aus der eindeutigen Zerlegung in \(F(E_8)\oplus\mathbb Z e_R\oplus\mathbb Zm\)
+folgt exakt
+
+\[
+ \mathcal G_s=\operatorname{span}\{|0\rangle,|F(s)\rangle\},
+\]
+
+mit voller Lücke $1/4$. Für die 64 geladenen Felder sind die Quellladungen
+$q=-3,-1,+1,+3$ mit Vielfachheiten $(15,35,13,1)$; die Additions- und
+Entfernungsenergien auf den beiden Grundzuständen sind vollständig angegeben.
+Im $q=-1$-Block liegen sie bei $7/4+n$ beziehungsweise $5/4+n$,
+unabhängig von der Grundzustandsmischung.
+
+Der Vergleich verwendet das unveränderte native Modell bei $g_c/\Delta=1/20$ und dessen tatsächlichen Grundzustand im Sektor $N=64$. Eine gemeinsame symmetrische Glättung von Feld und Adjungiertem macht die Antwortgewichte endlich und erhält die niedrigsten Linien. Die native Antwort hat dagegen eine positive niedrige Entfernungspolstelle
+und alle Additionsenergien oberhalb der zertifizierten nativen Schwelle. Eine
+positive globale Zeitskalierung, die die niedrigste Entfernungspolstelle
+angleicht, erzeugt daher eine Additionspolstelle unterhalb jeder nativen
+Addition. Das Verhältnis der Quellschwellen $7/5=1{,}4$ liegt weit unter
+dem nativen unteren Verhältnis $>8{,}4349$. Die Differenz überlebt jedes
+Vakuum in der vollständigen zweidimensionalen Grundfläche, jede Population
+\(t\) und jede erlaubte Kohärenz. Ein Fit integrierter Gewichte bei \(t=1/2\)
+ist möglich, aber keine gemeinsame Zeit; das Quellmoment bleibt strikt
+negativ, während das native erste Moment null ist.
+
+Damit ist der konkrete Reparaturversuch „gleiche dressed fields, gleicher
+zugewiesener Rand, nur anderer Grundzustand oder Zeitfaktor" in dieser
+Antwortklasse widerlegt. Das ist keine allgemeine Widerlegung aller
+nichtlinearen Quellenabbildungen. Es sagt vielmehr, welche Größen eine neue
+Abbildung gleichzeitig ändern und herleiten müsste.
+
+\section{Rohträger, Herkunft und der verbleibende Nachweis}
+
+\src{34} hält die vorgelagerte Operatorfrage offen. Wenn
+ein Carrier \(H_\mathrm{car}\subset\operatorname{Ran}P_\mathrm{prim}\) liegt und
+sein Involutionsoperator nur die Einschränkung desselben Projektions-
+Involutionsoperators ist, dann ist seine negative Komponente identisch null.
+Eine nichttriviale \(\Lambda^3E_-\otimes\Lambda^2E_+\)-Yukawaform mit
+Signatur $3+2$ folgt daraus nicht. Im reinen selbstdualen CAR-Fall vertauscht
+die Konjugation die beiden Polarisationen, sodass dieselbe Involution keine
+3+2-Signatur auf einem J-stabilen Raum liefert. Die U(5)-Stabilität der
+reinen Polarisation wählt aus sich selbst ebenfalls kein ausgezeichnetes
+Drei-/Zweiplan.
+
+Die konditionale Algebra bleibt gültig: Unter den ausdrücklich gesetzten
+Voraussetzungen erzwingt eine nichtverschwindende
+
+\[
+ \Lambda^3E_-\otimes\Lambda^2E_+\to\mathbb C
+\]
+
+die Dimensionen $3$ und $2$, und die Kontraktion ist dann eindeutig bis
+auf Norm und Phase. Aber diese Voraussetzungen sind nicht aus dem rohen
+P1/P2-Datum hergeleitet. Geometrische Reflexion und Calderón-Projektion sind
+ebenfalls nicht dasselbe: Der Calderón-Symbolanteil hängt am tangentialen
+Impuls, eine punktweise geometrische Spiegelung nicht.
+
+Der nächste Forschungsnachweis ist dadurch eng bestimmt. Er muss aus der
+rohen Grenze eine lokalisierte, geladene Quelle mit der erforderlichen
+Kanalzahl liefern; beide Adjungierten, Cocycle und Produkte auf demselben
+Zustand und derselben Zeit müssen existieren. Er muss den integeren Carry und
+den Halbspinor-Sektorwechsel in einer realen Operatorabbildung reproduzieren,
+die tatsächlichen (C/J)-Wirkungen samt ihrer Phasen bestimmen und klären,
+ob sie erhaltene Symmetrien, kovariante Heisenbergoperatoren oder einen
+zeitabhängigen Hintergrund darstellen. Falls der relevante physische
+Projektor ein Gedächtnis tragen soll, ist zusätzlich \(QHP\ne0\) für genau
+diesen Quellen-Hamiltonoperator zu zeigen; ein nichtverschwindender
+Stromkommutator genügt nicht.
+
+Die gegenwärtige Evidenz ist damit positiv bei den klar begrenzten
+Algebra-/Limes-/Carryaussagen und negativ bei der unbegründeten Identifikation
+von Hilfsrandtheorie, nativer Wechselwirkung und roher Quelle. Genau diese
+Trennung ist der belastbare Anschluss für den nächsten Dokument- und
+Forschungsabschnitt.
+
+Für die Dokumentation der Anfangszustandsfrage ist zusätzlich festzuhalten,
+dass kein Resultat dieses Strangs eine Präparation stillschweigend ersetzt.
+Der QWZ-Carry startet im gefüllten negativen See und entwickelt ihn unitär;
+die E8-Paarantwort hält ihren Vakuumfunktional fest; die vier Sektoren halten
+die Restriktion desselben geraden Operators in jedem Modul fest. Ein
+Sektorlabel, eine Arf-Summe oder eine normierte Antwort ist deshalb noch kein
+physischer Auswahlmechanismus. Umgekehrt darf aus dem Fehlen von
+\(QHP\) bei einem abstrakten Gitterhamiltonian nicht geschlossen werden, dass
+geladene Felder keine Zwischenzustände besitzen: ihre Intertwiner können
+zwischen Sektoren wirken, ohne dass der ungestörte Hamiltonoperator diese
+Sektoren mischt. Diese Unterscheidung ist die gemeinsame Leitplanke der
+Memory-, Carry- und Rekonstruktionsberichte. Der nächste Test muss daher ein
+und derselbe Operatorvergleich sein: Quelle, Zustand, geladener Operator,
+Adjungierter und Zeitgenerator müssen auf einem gemeinsamen Definitionsraum
+angegeben werden. Erst dann lässt sich entscheiden, ob der Carry ein lokaler
+Feldprozess, ein globaler Fluxtransport oder nur eine algebraische
+Sektoridentität ist.
+
+
+\chapter{Das Vierphasenregister: Ausblenden oder gemeinsam kodieren}
+\label{ch:register}
+\section{Warum diese letzte Untersuchung nötig war}
+Nach den Feld-, Gitter- und Paarvergleichen blieb eine einfache Möglichkeit offen: Vielleicht erzeugt bereits das vorhandene Phasenregister die gesuchte Wechselwirkung, wenn man seine vollständige Wirkung behält. Diese Frage wurde an der unveränderten freien QWZ-Quelle untersucht. Zwei verschiedene Reduktionsregeln müssen dabei streng getrennt werden. Die erste startet mit unabhängig präpariertem Register und Materiezustand und blendet das Register aus. Die zweite korreliert Register und Teilchenzahl und behält die geladenen Übergänge. Beide sind mathematisch zulässige Vorgänge; sie stellen unterschiedliche physische Voraussetzungen dar. \src{51}\src{52}
+
+Die ursprüngliche Rechnung liefert vier Einteilchenblöcke. Für die Vielteilchenfrage wurde ausdrücklich die Hebung
+\[
+ \mathcal H_R=\C^4\otimes\operatorname{Fock}(V),\qquad
+ H_R=\sum_{r=0}^3\Pi_r\otimes d\Gamma(h_r),\qquad
+ h_r=b+i^ra+i^{-r}a^\dagger
+\]
+verwendet. $d\Gamma$ bezeichnet die zahlenerhaltende freie Vielteilchenhebung eines Einteilchenoperators. Diese Wahl ist nicht dasselbe wie $\operatorname{Fock}(\C^4\otimes V)$. Das ursprüngliche Einteilchenskript entscheidet nicht von selbst zwischen diesen Vielteilchenräumen und wählt auch deren physische Präparation nicht aus.
+
+\section{Eine Mischung freier Entwicklungen kann nichtgaußsche Antworten tragen}
+Bei einer Produktpräparation $\sigma_R\otimes\rho$ und anschließendem vollständigem Registertrace entsteht exakt
+\[
+ \Phi_t(\rho)=\sum_r p_r U_r(t)\rho U_r(t)^\dagger,
+ \qquad p_r=\bra r\sigma_R\ket r,
+ \quad U_r(t)=e^{-itd\Gamma(h_r)}.
+\]
+Registerkohärenzen überleben diesen Trace nicht. Eine solche Mischung ist auf der vollständigen Materiealgebra genau dann eine unitäre Entwicklung, wenn alle besetzten $U_r(t)$ bis auf skalare Phasen übereinstimmen. Für eine zusammenhängende Zeitentwicklung im hier gewählten freien Fock-Lift bleibt jeder derartige deterministische Ausgang quasifrei. Ein abschließendes, nicht konditioniertes Zurücksetzen allein des Registers ändert den bereits reduzierten Materiezustand nicht. \src{51}
+
+Trotzdem muss eine Mischung gaußscher Zustände nicht gaußsch sein. Die konkrete Originalquelle zeigt dies bereits bei einer gewählten Einteilchenpräparation: In der Entwicklung bis zur zweiten Zeitordnung lauten die Reinheit $1-t^2$ und der summierte Wick-Defekt $-t^2/2$. Das ist eine echte Abweichung von der gaußschen Faktorisierung des reduzierten Zustands. Sie ist noch kein kohärenter quartischer Hamiltonvertex.
+
+\finding{Ein einfaches Bild}{Das Register wählt zwischen vier Filmen. Jeder einzelne Film zeigt eine freie Entwicklung. Wer nur ihre unaufgelöste Mischung sieht, kann zusätzliche Korrelationen messen. Daraus folgt noch nicht, dass innerhalb eines Films eine neue Kraft aufgetreten ist.}
+
+Die Aussage ist ein präziser Ausschluss dieser Produkt-und-Trace-Regel. Sie schließt weder korrelierte Kodierungen noch andere, aus der Quelle herzuleitende Wechselwirkungen aus.
+
+\section{Eine korrelierte Kodierung erhält geladene Felder und dieselbe Zeit}
+Seien $z=i$, $Z\ket r=z^r\ket r$, $S\ket r=\ket{r+1\bmod4}$ und $N$ die gesamte Materieteilchenzahl. Mit gewöhnlichen Fermionoperatoren $c_j$ definiert man
+\[
+ F_j=S\otimes c_j,\qquad
+ C_R=Z\otimes z^N,\qquad
+ J_s\ket{\psi_N}=\ket{s-N\bmod4}\otimes\ket{\psi_N}.
+\]
+Hier bezeichnet $C_R$ die neue kombinierte Registergröße, nicht das Coxeterelement aus den früheren Kapiteln. Die $J_s$ sind Kodierungsabbildungen und nicht die Viertelclock $J$ oder die Kopplung $J$ des Quellenkettenmodells.
+
+Die einfachen Formeln haben einen vollständigen Inhalt:
+\[
+ \{F_j,F_k\}=0,\qquad
+ \{F_j,F_k^\dagger\}=\delta_{jk}I,\qquad
+ [N,F_j]=-F_j,
+\]
+\[
+ F_jJ_s=J_sc_j,\qquad H_RJ_s=J_sH_s,
+\]
+\[
+ H_s=d\Gamma(b)+z^{s-N}d\Gamma(a)+z^{-s+N}d\Gamma(a)^\dagger.
+\]
+Die Felder besitzen die ursprüngliche ungerade Fermionparität. Die vier Bilder der $J_s$ sind orthogonal und erschöpfen den gesamten angenommenen Quellenraum. Die Hamiltonidentität überträgt die Zeitentwicklung für alle Zeiten und damit sämtliche endlichen geladenen Operatorprodukte. Das ist stärker als die Übereinstimmung einer einzelnen komprimierten Antwort. \src{52}
+
+Bildlich bleibt ein Rad mit vier Stellungen an die Teilchenzahl gekoppelt: Ein Teilchen zu entfernen dreht das Rad eine Stellung weiter. Radstellung plus Teilchenzahl bleiben modulo vier erhalten. Diese Korrelation ändert ausdrücklich die Voraussetzung des vorherigen Trace-Satzes; sie ist kein Widerspruch zu ihm.
+
+\section{Die ursprüngliche Phasenlinie braucht einen zusätzlichen Registerfaktor}
+Die Quelle liefert tatsächlich den Operator $D=S\otimes\Gamma(u)$, wobei $u=\operatorname{diag}(z^{q_j})$, $q_j\in\{0,1\}$, den markierten Phasenbogen beschreibt und $u^4=I$ gilt. Das Symbol $q_j$ ist hier nur eine Bogenmarkierung, keine elektrische Ladung. $D$ selbst erhält die Teilchenzahl und ist fermionisch gerade.
+
+Der naheliegende Ausdruck $D(I\otimes c_j)$ verletzt zwischen Orten auf verschiedenen Seiten des Bogens die CAR. Die vollständige kanonische Ergänzung folgt dagegen aus einer einzigen gemeinsamen unitären Konjugation:
+\[
+ T=\sum_r\Pi_r\otimes\Gamma(u)^r,
+ \qquad
+ \boxed{F_j^u=T F_jT^\dagger=D(Z^{-q_j}\otimes c_j).}
+\]
+Der Registerfaktor $Z^{-q_j}$ ist entscheidend. Auch der Übergang von Stellung drei auf null stimmt, weil $\Gamma(u)^4=I$ gilt. Mit $J_s^u=TJ_s$ bleiben sowohl Feld- als auch Hamiltontransport exakt:
+\[
+ F_j^uJ_s^u=J_s^u c_j,
+ \qquad
+ H_RJ_s^u=J_s^uH_s^u,
+\]
+\[
+ H_s^u\big|_N=d\Gamma\!\left(u^{-r}h_ru^r\right)\big|_N,
+ \qquad r=s-N\bmod4.
+\]
+Die Konjugation verschiebt die ursprüngliche markierte Randphase an das Ende des Bogens, ohne die Hoppingbeträge zu ändern oder einen neuen Hamiltonterm einzubauen.
+
+Auch der ursprüngliche Operator $D$ selbst geht nicht verloren:
+\[
+ D J_s^u=J_{s+1\bmod4}^u,\qquad C_RD=zDC_R.
+\]
+Die konstruierten Fermionfelder wirken innerhalb einer $C_R$-Klasse; $D$ wechselt zwischen den Klassen. Daher sind diese Klassen \emph{keine Superselektionssektoren der gesamten ursprünglichen Observablealgebra}, sobald $D$ dazugehört. Nur eine Klasse zu behalten würde einen bereits vorhandenen Quelloperator verlieren. Seine Zeitantwort wird exakt durch $H_{s+1}^u-H_s^u$ übertragen. \src{52}
+
+\section{Höhere Fermionterme und der wirkliche räumliche Test}
+Auf dem gesamten Fockraum ist $H_s^u$ im Allgemeinen kein einziger teilchenzahlunabhängiger quadratischer Operator. Im exakten Sechsmodenbeispiel der Originalquelle gilt etwa
+\[
+ \bra{2}H_0^u\ket{0}=\frac i2,
+ \qquad \bra{2,4}H_0^u\ket{0,4}=\frac12.
+\]
+Die Ziffern bezeichnen besetzte Orbitale; $\ket0$ in der ersten Formel ist ein Einteilchenzustand und kein Vakuum. Ein zusätzlicher Zuschauer ändert die Phase desselben Übergangs.
+
+Die dabei entstehenden höheren Fermionterme sind präzise eine teilchenzahlabhängige Randholonomie. In jedem festen $N$-Sektor ist die Phase eine Zahl und die Entwicklung bleibt frei. Ein Slaterdeterminant bleibt ein Slaterdeterminant. Eine durch lokale Kollision erzeugte Bindung folgt daraus nicht.
+
+Die Lokalitätsprüfung unterscheidet zwei Klassen von Eingriffen. Zahlneutrale lokale Observablen erhalten eine uniforme Schranke für ihre Antwortkommutatoren, weil ihre Entwicklung in jedem $N$-Block einer von nur vier lokalen freien Entwicklungen entspricht. Geladene Felder wechseln $N$ und tragen in dieser Darstellung eine globale Phasenlinie. Ihre Kommutatoren erhalten die gewöhnliche Zuordnung einer vollen geladenen CAR-Algebra zu jedem einzelnen Ort nicht. Ein einzelnes globales $C_R$ ist auch kein ortsaufgelöstes Gauss-Gesetz.
+
+Für Zylinder fester Breite lässt sich ein stärkerer Grenzfall entscheiden. Sei $X$ ein lokaler neutraler Messbereich im Abstand $R$ von der markierten Verbindung. Duhamel-Identität und lokale Ausbreitungsschranke liefern für feste Beobachtungszeiten
+\[
+ \|\tau_t^{H_s^u}(O_X)-\tau_t^{K_0}(O_X)\|
+ \le C_X(e^{v|t|}-1)e^{-aR},
+\]
+wobei $K_0$ die freie unverdrehte Quelle bezeichnet und die Konstanten unabhängig von Umfang und Teilchenzahl gewählt werden können. Für $R\to\infty$ verschwindet der Unterschied in Operatornorm. Dieser Satz ist ein allgemeines Argument unter den genannten Annahmen; er wird nicht aus dem kleinen Sechsmodenbeispiel extrapoliert. \src{52}
+
+\finding{Was damit entschieden ist}{Die korrelierte Kodierung verbindet Felder, Phasenübergänge und Zeit exakt. Im bezeichneten räumlichen Grenzfall entsteht aus ihrer Randphase keine neue lokale Kraft im Inneren. Bereits vorhandene Zustandskorrelationen und Vorgänge, die den Rand erreichen oder umwinden, sind davon getrennt. Eine andere Darstellung derselben freien Quelle ersetzt den Herkunftsnachweis einer lokalen Wechselwirkung nicht.}
+
+Die endliche Kontrolle umfasst 183 registrierte exakte Bedingungen und 21 Quellenpins; normale und optimierte Ausführung ergeben identische Zertifikate. Die allgemeinen Beweise und die Reichweite des Bulk-Grenzsatzes sind separat ausgeschrieben. Die Wahl des Vielteilchenlifts, der physischen Felder und des Zustands sowie der Anschluss an die anders konstruierten 64 Spinor-Fermionfelder bleiben offen.
+
+\chapter{Was die gesamte Sitzung ergeben hat}
+\section{Das verständliche Gesamtbild}
+Am Anfang stand die Hoffnung, dass eine sehr kleine geometrische Grammatik bereits das ganze Universum festlegt. Die Untersuchung hat dieses Ziel nicht erreicht. Sie hat aber aus einer allgemeinen Hoffnung eine wesentlich präzisere Kette von Fragen und nachprüfbaren Verbindungen gemacht.
+
+Das passende Bild ist inzwischen ein Bauplan mit mehreren Übersetzungsstufen. Der Compiler legt ein Alphabet und Beziehungen zwischen seinen Zeichen fest. Ein Zustandsraum macht daraus mögliche Konfigurationen. Eine Dynamik sagt, wie sich diese Konfigurationen ändern. Lokale Felder sagen, welche Eingriffe an welchen Orten möglich sind. Erst eine gemeinsame räumliche Grenze könnte daraus die beobachtete Physik machen. Die Sitzung hat an mehreren Übergängen exakte Übersetzungen geliefert. Sie hat zugleich nachgewiesen, dass manche scheinbar passenden Übersetzungen wesentliche Information verlieren.
+
+\finding{Der wichtigste gemeinsame Fortschritt}{Wir können heute wesentlich genauer unterscheiden, wann zwei Beschreibungen wirklich denselben Prozess darstellen. Übereinstimmen müssen nicht nur Zahlen oder Energien, sondern auch geladene Operatoren, Phasen, Statistik, Zustand und Zeit. Einige dieser gemeinsamen Abbildungen sind jetzt exakt konstruiert; ihre Auswahl aus den ursprünglichen Prinzipien ist noch nicht geschlossen.}
+
+Ein einzelner kleiner Eigenwert war dafür ein schlechter Kompass. Er konnte die gemeinsame Umschaltung einer ganzen Quelle beschreiben, eine endliche Bindungsresonanz oder eine Bewegung über einem zu hohen Referenzzustand. Erst die zugehörigen Antwortoperatoren machten sichtbar, was tatsächlich angeregt wird. Ebenso war eine elegante E8-Zerlegung allein nicht genug: Ein entferntes Komplement konnte die fehlende Fermionparität, eine Lokalitätsphase, eine Determinantenwirkung oder die Ladungsabhängigkeit der Zeit tragen.
+
+\section{Welche Ebenen jetzt miteinander verbunden sind}
+\begin{longtable}{@{}P{.22\textwidth}P{.34\textwidth}P{.36\textwidth}@{}}
+\toprule Ebene & Belastbarer Gewinn & Verbleibende Brücke\\\midrule\endfirsthead
+\toprule Ebene & Belastbarer Gewinn & Verbleibende Brücke\\\midrule\endhead
+Compiler und endliche Operatoren & Integrale Wörterbücher, native Ereignisse, Phasen- und Clockbedingungen sind in konkreten Darstellungen geprüft. & Ein Randpostulat bestimmt noch nicht automatisch die gesamte räumliche Energie und ihre Präparation.\\
+Quantenquellen und Bindungen & Rückwirkung, überlappende Pakete und mehrere vollständige kleine Grundräume sind kontrolliert. Die früher verdeckte Bindungsantwort wurde identifiziert. & Große Phase, echte lokale Anregungen und die Herkunft der angenommenen Kopplungen bleiben offen.\\
+Freie QWZ-Quelle & Ein lokaler geladener CAR-Grenzwert mit derselben Quellzeit ist für die wachsende Geometrie bewiesen. & Ein Kanal pro Rand erzeugt nicht von selbst acht Spezies, E8 oder die native Wechselwirkung.\\
+Zusätzlicher zehnkanaliger Rand & Glue, Ladungen, Fermionparität, E8-Quotient und mögliche geladene Spinorfelder sind exakt bestimmt. & Zusatzkanäle, Energiematrix, kritischer Zustand und lokale Wechselwirkungen sind nicht aus P1/P2 ausgewählt.\\
+Paar- und Sektorstruktur & Gemeinsame Intertwiner und einige Zustandsantworten sind konstruiert; nicht jeder passende Sektor liegt über demselben Vakuum. & Die native Fockalgebra und die zusammengesetzten Randfelder brauchen dieselbe Gruppen-, Zeit- und Lokalitätswirkung.\\
+Vierphasenregister & Eine korrelierte Kodierung erhält volle CAR, Registerwechsel und Zeit. Produkt-und-Trace sowie korrelierte Kodierung sind entschieden verschieden. & Die feste Randholonomie erzeugt im kontrollierten lokalen Bulk-Limes keine neue Kraft.\\
+Raumzeit und Weltphysik & Präzise gemeinsame Abnahmekriterien und mehrere Ausschlüsse falscher Abkürzungen. & Dynamische Geometrie, 3+1D-Chiralität, Kopplungsauswahl, kosmologischer Zustand und universelle Gravitation sind nicht hergeleitet.\\\bottomrule
+\end{longtable}
+
+Diese Zeilen gehören zu unterschiedlichen, ausdrücklich benannten Konstruktionen. Der endliche Wurzelraum, die freie QWZ-Quelle, das native 64-CAR/60-CCR-Modell, eine affine E8-Algebra und der zusätzliche zehnkanalige Rand sind nicht schon wegen gemeinsamer Zahlen dieselbe Theorie. Genau ihre gemeinsamen Abbildungen wurden geprüft. Die Tabelle ist deshalb keine Sammlung von Eigenschaften, die man ohne Weiteres zu einer fertigen Welt zusammensetzen könnte.
+
+\section{Was wir tatsächlich besser verstanden haben}
+\textbf{Erstens: Die Quelle muss ihre eigene Rückwirkung behalten.} Eine unveränderliche Quelle kann eine schöne Ereignisstatistik erzeugen, aber das folgende Ereignis hängt davon ab, was nach dem ersten mit der Quelle geschieht. Die Rückwirkungsmodelle und Registerrechnungen zeigen konkret, an welcher Stelle diese Information verloren geht oder erhalten bleibt. \src{08}\src{17}\src{51}\src{52}
+
+\textbf{Zweitens: Bindungsänderungen sind echte Freiheitsgrade.} Die Koordinaten einer Wurzel sprechen nicht jede niedrige Anregung an. Für das Quellenpaar existiert ein kontrollierter Bindungsmodus, den lineare Wurzelkoordinaten durch Symmetrie nicht sehen. Beim Vergrößern darf man diesen Modus jedoch nicht unverändert kopieren: Das Vakuum kann seine Bindungsordnung neu organisieren. Die Domänenwandidee bleibt in geeigneten Klassen mathematisch konkret; ihre nackte kritische Paketfortsetzung ist als vollständiges Vakuum ausgeschlossen. \src{24}\src{26}\src{28}\src{29}
+
+\textbf{Drittens: Geladene Felder prüfen die gemeinsame Zeit strenger als neutrale Ströme.} Eine Viertelholonomie kann aus neutralen Antworten verschwinden und dennoch Paar- und Spinorfrequenzen verändern. Der wachsende lokale QWZ-Grenzwert ist ein positiver gemeinsamer Feld-Zeit-Anschluss unter klaren Annahmen. Er löst nicht nachträglich die verschiedenen Festkreis- und Mehrkanalprobleme. \src{32}\src{33}
+
+\textbf{Viertens: Das Komplement ist Teil des physikalischen Wörterbuchs.} Im lokalen Randgitter kann es die Fermionparität und die zur Lokalität nötige Phase tragen. Im Quellfunktional kann es einen Determinantenfaktor liefern. Ein gemeinsamer Faktor verschwindet aber aus einer relativen Down-/Lepton-Phase wieder. Er muss seine unterscheidbare Wirkung aus derselben Quelle erhalten. \src{37}\src{39}
+
+\textbf{Fünftens: Erhaltene Information ist noch keine ausgewählte Naturdynamik.} Die jüngste Registerkodierung ist eine exakte Verbindung von Feldern und Zeit. Dennoch bleibt sie in jedem festen Teilchenzahlsektor eine freie Bewegung mit Randphase. Eine bessere Darstellung derselben Quelle kann verdeckte Übergänge aufdecken, aber keine zusätzliche lokale Streuwechselwirkung herbeizaubern. \src{52}
+
+\section{Warum die Gesamtlösung weiterhin fehlt}
+Es fehlt nicht nur ein letzter passender Zahlenwert. Die erste offene Auswahl liegt schon davor: Welche vollständige physische Quelle und welche Dynamik folgen aus den ursprünglichen Postulaten? Die Sitzung besitzt mehrere gute Kandidaten und exakte Teilverbindungen, aber noch keinen gemeinsamen Satz, der ihre unabhängigen Entscheidungen beseitigt.
+
+Ein vereinfachtes Beispiel zeigt die Bedeutung. Aus denselben zulässigen Zuständen lassen sich unterschiedliche positive Energien bilden. Sie können dieselbe Symmetrie, dieselben Ladungen und sogar denselben Grundzustand besitzen, aber verschiedene Anregungsgeschwindigkeiten oder Streuprozesse erzeugen. Ein noch so genauer Zustandstest entscheidet zwischen ihnen nicht. Dafür braucht man den Generator beziehungsweise ein gleichwertiges vollständiges Mehrzeitgesetz. \src{STATE}
+
+Auch nach einer solchen Auswahl wären große Schritte nötig: Der relevante Zustand müsste auf größeren Systemen existieren; seine lokalen Antworten müssten den richtigen Grenzwert besitzen; die geladenen Fermionfelder dürften nicht durch den gewählten Quotienten verschwinden; und der räumliche Verbund müsste selbst begründet werden. Erst dann wären vierdimensionale Chiralität, Spiegelentkopplung und eine universelle gravitative Antwort am selben Modell zu prüfen.
+
+Die Untersuchung beweist weder, dass eine vollständige TFPT-Ursprungstheorie unmöglich ist, noch dass ihre Lösung schon verborgen vorliegt. Sie entscheidet konkrete Strukturen. Ihre stärkste Grenze ist zugleich eine positive Arbeitsanweisung: Die nächste Konstruktion muss die noch getrennten Voraussetzungen auf derselben Quelle zusammenführen, statt Eigenschaften aus verschiedenen Modellen nebeneinanderzustellen.
+
+\section{Die Rolle von Einfachheit und Eleganz}
+Die einfachen Ideen der Sitzung waren besonders produktiv, wenn sie eine entscheidende Annahme sichtbar machten: die Differenz von Summe und relativer Bewegung, ein einziger Zentrumstest, der gemeinsame Determinantenfaktor oder ein Register, das mit der Teilchenzahl weiterdreht. Diese kleinen Tests ersparten große Rechnungen an falschen Identifikationen.
+
+Eleganz ist dabei ein Suchprinzip, kein Beweis dafür, dass das gesuchte Ergebnis existieren muss. Die kleinste tragfähige Theorie müsste nicht möglichst wenig Mathematik enthalten, sondern möglichst wenige unabhängige physikalische Entscheidungen. Der erzielte Fortschritt lässt sich daran messen, welche dieser Entscheidungen wirklich abgeleitet, welche gemeinsam gebunden und welche nur präziser als offene Annahme erkennbar wurden.
+
+\chapter{Die größten anschließenden Forschungsfragen}
+\section{Priorität 1: die Quelle wählt ihre Dynamik}
+\textbf{Frage.} Welche einzige, aus den Originalprinzipien begründete Quelle erzeugt die benötigte nichtquadratische Bewegung und die gemeinsame Energie der geladenen Felder?
+
+Die freie QWZ-Quelle, der native Paar-Fock-Hamiltonoperator und der zehnkanalige Rand enthalten jeweils andere tatsächlich gewählte Struktur. Die Registeruntersuchung hat eine konkrete Hoffnung entschieden: Eine korrelierte Hebung bewahrt zwar mehr Information als ein Trace, erzeugt im kontrollierten räumlichen Innenbereich aber keine neue lokale Wechselwirkung. Die Energiematrizen des Randkandidaten dürfen ebenfalls nicht als bloße Basiswechsel behandelt werden.
+
+\textbf{Nächster entscheidender Nachweis.} Einen nativen Operator oder ein vollständiges Quellfunktional angeben und zeigen, wie daraus die benötigten Kanäle, die Energie sowie die relevante nichtlineare Kopplung entstehen. Wo ein Zusatzsektor gebraucht wird, ist seine Herkunft Teil des Nachweises. Falls eine kompakte Eichverbindung die Brücke sein soll, sind ihr Maß und ihre tatsächliche Flussamplitude herzuleiten; der bereits bekannte Index allein genügt nicht.
+
+\textbf{Erfolgskriterium.} Ein gemeinsames Operator-/Zustands-/Zeitdiagramm ohne separat eingesetzte relative Kinetiken und ohne frei gewählte Reparaturenergie. \textbf{Abbruchkriterium für einen Kandidaten.} Wenn dessen Kernwirkung unter der eigenen Reduktion frei bleibt oder eine benötigte Gruppenwirkung exakt verschwindet, wird dieser Kandidat ohne neue begründete Voraussetzung nicht weiter als Ursprung der fehlenden Wechselwirkung optimiert.
+
+\section{Priorität 2: geladene Fermionen und neutrale Ströme in einem lokalen Raum}
+\textbf{Frage.} Wie tragen dieselben lokalen Zustände E8-Ströme, ungerade geladene Felder, die tatsächlichen Clocks und ihre Zeitentwicklung?
+
+Die Antwort kann nicht nur ein neutraler Quotient sein. Im nativen Fockmodell sperrt ein Zentrumselement die direkte Operatoridentifikation. Im Randmodell rekonstruiert eine nichtlineare Stromwirkung die Spinorfelder, benötigt aber eine zusätzlich ausgewählte Energie. Das gerade Nachbargitter repariert den vollen Stromlift und entfernt dafür ursprüngliche ungerade Felder aus der lokalen Algebra.
+
+\textbf{Nächster Nachweis.} Einen konkreten geladenen Sektorintertwiner mit Ladung, Parität, Kokzyklus, Trägerbereich und Zeit angeben. Danach seine Produkte mit den neutralen Strömen und mindestens einen Mehrzeitkorrelator am selben Zustand vergleichen. Ein Wilsonlinien-Endpunkt oder Twistfeld ist zulässig, sofern seine Lokalitäts- und Sektorenregel ausdrücklich mitgeliefert wird.
+
+\textbf{Erfolg.} Nichtverschwindende gemeinsame Wirkung auf den tatsächlich verlangten Feldern, einschließlich der zentralen Zeichen. \textbf{Abbruchkriterium.} Ein falsches Zentrumzeichen, eine nicht entfernbare Monodromie oder ein nichtlokaler Rest widerlegt die beanspruchte lokale Identifikation. Ein Gleichsetzen von Dimensionen oder Labels ersetzt diesen Test nicht.
+
+\section{Priorität 3: eine relative Flavorphase aus demselben Funktional}
+\textbf{Frage.} Warum erzeugt die ursprüngliche Quelle unterschiedliche Down- und Lepton-Deformationen mit einer physisch unterscheidbaren relativen Phase?
+
+Hier treffen die eingebrachte Lane-Synthese und die eigene Randprüfung direkt zusammen. Der vollständige Determinantenfaktor muss erhalten bleiben. Ein gemeinsamer massiver Faktor kürzt sich aber aus der relativen Antwort heraus. Eine konstante freie Dirac-Massenphase ist unitär entfernbar. Der native antisymmetrische Familienblock ist zudem zunächst rangdefizient; eine abstrakte Rangergänzung ist noch kein erlaubter lokaler Yukawa-Term des gewählten niedrigen Sektors.
+
+\textbf{Nächster Nachweis.} Beide Deformationen im gleichen, bereits ausgewählten Quellfunktional definieren und ihre relative Antwort einschließlich Komplement, Ladung und Parität berechnen. Der Unterschied muss aus einem Quelloperator folgen, nicht aus zwei unabhängig eingesetzten Parametern.
+
+\textbf{Erfolg.} Eine basisunabhängige, kanalunterscheidende Phase und der benötigte Rang am gemeinsamen physischen Zustand. \textbf{Abbruchkriterium.} Hebt sich die Phase in der vollen Determinante auf oder ist die vorgeschlagene Mischung paritätsverboten, ist dieser Mechanismus entschieden; weitere Fits an der reduzierten Matrix ändern daran nichts.
+
+\section{Priorität 4: eine große Phase mit wirklicher lokaler Bewegung}
+\textbf{Frage.} Gibt es in der physisch begründeten Hamiltonfamilie einen stabilen großen Zustandszweig, über dessen tatsächlichem Vakuum lokale geladene Anregungen linear dispergieren?
+
+Die kleine Quellenlücke, die exakt laufende freie Vergleichsanregung und die nackte Ising-Paketkette beantworten diese Frage nicht. Die letzte Familie ist auf ihrer ganzen behaupteten kritischen Linie energetisch ausgeschlossen. Eine dressierte gemischte Phase ist damit nicht allgemein widerlegt, braucht aber eine kontrollierte Rückwirkung der herausprojizierten Zustände.
+
+\textbf{Nächster Nachweis.} Vakuumvergleich, räumliche Spektralfunktion und Komplementabschätzung gemeinsam durchführen. Die Reduktionsfehler müssen gegenüber der mit der Größe relevanten Energieskala kontrolliert bleiben; ein kleiner Fehler bei fester Kettenlänge genügt nicht.
+
+\textbf{Erfolg.} Derselbe Zustand trägt die niedrigste Energie, eine Folge lokaler Wellenzahlen, nichtverschwindendes geladenes Antwortgewicht und einen kontrollierten $z=1$-Grenzwert. \textbf{Abbruchkriterium.} Ein tieferer Konkurrenzzustand, extensiver unkontrollierter Rest oder ein verschwindender lokaler Übergang schließen den jeweils behaupteten Zweig aus.
+
+\section{Priorität 5: Instrument, Anfangszustand und räumliche Beziehungen}
+\textbf{Frage.} Wie werden nicht nur Zustände und Energien, sondern die tatsächlichen Ereignisse, ihre Records und ihre Orte aus demselben Prozess bestimmt?
+
+Ein Grundzustand ist keine autonome Präparation. Eine POVM-Wahrscheinlichkeit bestimmt keinen Nachzustand. Ein festes Graphlabel erzeugt keine Dynamik der Inzidenz. Die Sitzung enthält konkrete Zeugen für alle drei Unterschiede. Die blockdiagonale Erweiterung des Bindungsmodells bevorzugt ohne weitere Regel getrennte Matchings und liefert keinen zusammenhängenden Raum.
+
+\textbf{Nächster Nachweis.} Zunächst ein aus der Quelle festgelegtes Mehrzeitinstrument und zwei operational unterscheidbare lokale Algebren angeben. Anschließend einen tatsächlichen Übergang zwischen Bindungs- oder Inzidenzmustern herleiten, sofern daraus die Raumstruktur entstehen soll. Die originale Auslesestatistik muss auf diesem Prozess wiedergewonnen werden.
+
+\textbf{Erfolg.} Zustandsvorbereitung, lokale Eingriffe, Ereignisgedächtnis und begrenzte Ausbreitung passen zu demselben Generator. \textbf{Abbruchkriterium.} Wenn zwei angeblich verschiedene Orte durch alle maßgeblichen Observablen identifiziert werden oder Folgeeingriffe vom reduzierten Zustand nicht bestimmbar sind, fehlt die beanspruchte operationale Rekonstruktion.
+
+\section{Priorität 6: gemeinsame 3+1-dimensionale Physik}
+\textbf{Frage.} Trägt die erfolgreiche Quelle anschließend chirale Materie, die gemessenen Kopplungen und einen universell gekoppelten masselosen Spin-2-Sektor?
+
+Interne Spinorindizes sind keine Raumzeitspinoren. Eine 1+1-dimensionale Anomaliebilanz ist keine vierdimensionale Standardmodell-Realisierung. Ein linearer Zweig beweist keine gemeinsame Lichtgeschwindigkeit. Diese Unterscheidungen sind Voraussetzungen für den nächsten Nachweis, keine nachträglichen Vorbehalte.
+
+\textbf{Erfolg.} Ein gemeinsamer lokaler Parent mit kontrolliertem Kontinuum, Chiraliät und Spiegelbehandlung, passender Ladungsstruktur, relativen Kopplungen, universeller gravitativer Antwort sowie begründetem kosmologischem Zustand. Frühere TFPT-Zahlenbeziehungen müssen daraus als Auslesungen folgen. Ein Ergebnis aus jedem von sechs verschiedenen Hilfsmodellen erfüllt diesen Vertrag nicht.
+
+Die Arbeitsreihenfolge beginnt deshalb mit der Herkunftsfrage aus Priorität 1 und prüft daran Prioritäten 2 und 3. Große Phasen, räumliche Rekonstruktion und vierdimensionale Physik werden auf demselben Anschluss entwickelt. Die Liste verlangt keine sechs neuen Modellzweige.
+
+\section{Dokumentarische Nacharbeiten}
+Zwei frühere Aussagen benötigen unabhängig davon eine Bereinigung: der vollständige Drei-Quellen-Komplementboden und die allgemeine Vierersektor-Leakageformel. In diesem Dossier bleiben die nicht wiederhergestellten Teile ausdrücklich außerhalb der gesicherten Vollsätze. Ihre Rekonstruktion würde den Bestand verbessern, ist aber von einem neuen Fortschritt zur Weltphysik zu unterscheiden.
+
+\chapter{Provenienz, Reproduzierbarkeit und Reichweite}
+\section{Abdeckung und Quellenstand}
+Diese zweite Fassung erfasst die gesamte in der Sitzung dokumentierte Ergebnisfolge vom 18. bis 20. September 2026 bis einschließlich der geladenen Registerrekonstruktion. Grundlage sind 55 vorherige Abschlussantworten, die vom Nutzer eingebrachten Anschlussberichte und die zugehörigen lokalen Forschungsartefakte. Die bereits vorhandene erste Fassung deckte die ersten 43 Abschlussantworten ab. Sie bleibt unverändert erhalten.
+
+Die Darstellung gruppiert wiederholte Fortsetzungen nach ihrem mathematischen Inhalt. Sie ist eine vollständige thematische Zusammenfassung, kein wörtliches Gesprächsprotokoll. Programmquelltexte, große Matrizen und sämtliche einzelnen Prüfzeilen sind über die Originalverträge auffindbar; ihre vollständige Wiedergabe würde die Gesamterklärung unlesbar machen. Neu ist hier die redaktionelle Zusammenführung, kein zusätzlicher Forschungsbeweis.
+
+Der Repository-HEAD beim Abgleich lautet
+\begin{center}\small\ttfamily 66b91e40e245569f06ab440ead80f446c9be0ee5.\end{center}
+Die Forschungsergebnisse liegen zusätzlich im Arbeitsbaum. Der Commit allein identifiziert deshalb nicht den dokumentierten Stand. Die begleitende Datei mit der Endung \texttt{.sources.json} bindet die verwendeten Dateien mit SHA-256, ihrer Größe und ihrer Rolle. Alle 95 Quellenpins der ersten Fassung waren beim aktuellen Abgleich vorhanden und bytegleich. Zusätzliche Quellen der Fortsetzungen sind gesondert erfasst.
+
+S01--S29 bezeichnen die ursprüngliche nummerierte Ergebnisfolge. Sie entspricht 28 Vertragsindizes, weil .04 und .05 einen Vertrag teilen und .10 anders benannt ist. S30--S52 ordnen die späteren Quellen-, Rand-, Paar- und Registerarbeiten zu. Diese redaktionellen S-Nummern sind keine neue theoretische Claimnummerierung und keine neue Freigabe des Korpus.
+
+Der Theoriegraph hilft, Verträge und Abhängigkeiten zu finden. Er ist keine Beweisquelle. Ebenso gelten eingereichte Lane-Synthesen als Hinweise auf prüfbare Anschlüsse; die gemeinsame physische Realisierung folgt nicht aus ihrer Verlinkung.
+
+\section{Was geprüft wurde und was nicht}
+Für diese zweite Dokumentation wurden Quellenstände, Vertragszuordnungen, Korrekturen und die Abdeckung der späteren Sitzung abgeglichen. LaTeX-Kompilation, interne Verweise und die gerenderte Seitendarstellung werden gesondert geprüft. Die großen numerischen und exakten Forschungsläufe wurden zur PDF-Erstellung nicht vollständig wiederholt. Ihre Zahlen bleiben als dokumentierte Resultate der jeweils bezeichneten ursprünglichen Rechnung ausgewiesen.
+
+Die erste Fassung hatte zusätzlich einen Repository-Audit mit Exitcode null dokumentiert, einschließlich 266 bestandener RH-Prüfungen. Das war ein historischer Integritätslauf am 20.09.2026, kein neuer Lauf dieser zweiten Fassung und kein Beweis der physikalischen Schließung. Der damalige schnelle Modus übersprang Module und meldete erklärte Lean-\texttt{sorry}-, Graphzyklus- und Quellen-Drift-Warnungen. Das zugehörige Protokoll bleibt im Quellenregister gebunden.
+
+Bei widersprüchlichen Formulierungen wird der präzisere spätere Belegstand verwendet. Deshalb stehen etwa der geschlossene Vierquellenvergleich und der nur teilweise wiederhergestellte Dreiquellensatz mit unterschiedlichen Status im selben Dokument. Eine unabhängige Begutachtung oder Formalisierung aller Forschungsbeweise wird nicht behauptet.
+
+Die LaTeX-Datei ist eigenständig. In einer passenden TeX-Live-Umgebung kann sie mit \texttt{latexmk -pdf} erneut gesetzt werden. Das Quellenmanifest dokumentiert die finale Ausgabe und ihre Prüfungen. Ein sauber gesetztes PDF erhöht die Zugänglichkeit und Nachvollziehbarkeit; es ersetzt keine theoretische Herleitung.
+
+\section{Notation und typische Verwechslungen}
+\begin{longtable}{@{}P{.22\textwidth}P{.7\textwidth}@{}}
+\toprule Zeichen & Bedeutung im jeweiligen Abschnitt\\\midrule\endfirsthead
+\toprule Zeichen & Bedeutung im jeweiligen Abschnitt\\\midrule\endhead
+$J$ in $H$ & Nichtnegative Ereigniskopplung des Quellenkettenmodells.\\
+$J$ als Matrix & Viertelclock; weder die Kopplung noch eine Kodierungsabbildung.\\
+$J_s,J_s^u$ & Isometrien der geladenen Registerkodierung.\\
+$J_n^a$ & Affiner Strommodus.\\
+$C$ & Tatsächliche Coxeterwirkung; $C_R$ in der Registerrechnung ist eine andere, kombinierte Erhaltungsgröße.\\
+$\mathcal C_{60}$ & Kanal aus 60 Quellenereignissen, kein Coxeterelement.\\
+$K$ & Im Randkapitel die Gitterform $I_{9,1}$; bei Quellenphasen gegebenenfalls ein Gesamtphasensektor.\\
+$g$ & Je nach expliziter Definition Gruppenoperation, Kopplungszahl oder Ladungsvektor.\\
+$q$ & Im Gitterteil globale Markierung; $q_j\in\{0,1\}$ im Registerteil markiert nur den Phasenbogen.\\
+$\Delta$ & Energielücke bei einem benannten Hamiltonoperator oder Skalendimension eines bezeichneten Feldes; diese Größen sind nicht austauschbar.\\
+$m,N$ & Kettenlänge, Registerzahl oder Teilchenzahl nur nach der jeweiligen lokalen Definition.\\
+$P,Q=I-P$ & Gewählter Teilraum und Komplement. $PHP$ allein ist ohne Invarianz oder Fehlerkontrolle keine Volltheorie.\\
+$F,T$ & Im Randkapitel verschiedene Gitterschnitte; $F_j$ im Registerkapitel ein Fermionfeld.\\\bottomrule
+\end{longtable}
+
+
+\appendix
+
+
+\chapter{Quellen- und Ergebnisregister}
+Alle Kennungen S01--S52 verweisen auf die zugehörigen Originalverträge. Maßgeblich sind deren konkrete Teilverdicts und Voraussetzungen; das gemeinsame Gesamtverdict lautet jeweils \texttt{PARTIAL}. Ein Link auf eine Beweisdatei ist keine Behauptung unabhängiger Begutachtung. Die vollständigen SHA-256-Werte aller hier gebundenen Dateien stehen im begleitenden Manifest.
+
+\textbf{Pfadwurzeln.} \texttt{TFPT/} bezeichnet das Repository \path{/Users/stefanhamann/Projekte/tfpt-theoryv4/}. \texttt{SESSION/} bezeichnet \path{/Users/stefanhamann/Documents/Codex/2026-09-18/unte-2/}. Diese Präfixe machen die Fundstellen lesbar; das JSON-Manifest enthält die absoluten Pfade.
+
+\section{Die nummerierte Ergebnisfolge}
+\subsection*{S01 — Integrale Trialität}\label{s:01}
+{\small\path{UR.COMPILER.INTEGRAL_TRIALITY.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-integral-triality-20260918/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{54d6580e9413d4c8}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-integral-triality-20260918/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{123e076cff29adca}.}\par
+\subsection*{S02 — Starrheit der integralen Trialität}\label{s:02}
+{\small\path{UR.COMPILER.TRIALITY_RIGIDITY.02}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-triality-rigidity-20260918/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{43da16e1aa0762bb}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-triality-rigidity-20260918/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{8cbc553eb0427d42}.}\par
+\subsection*{S03 — Natives Wurzel- und CAR-Wörterbuch}\label{s:03}
+{\small\path{UR.COMPILER.NATIVE_ROOT_DICTIONARY.03}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-native-root-dictionary-20260918/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{38c3007af98fafff}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-native-root-dictionary-20260918/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{b5de7459d2c849ea}.}\par
+\subsection*{S04 — E6-Auslese und Determinantenergänzung}\label{s:04}
+{\small\path{UR.COMPILER.E6_READOUT_CLOSURE.04}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-e6-seam-readout-20260918/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{6478c8ffd27d7901}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-e6-seam-readout-20260918/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{a40b401a71eca7a0}.}\par
+\phantomsection\label{s:05}\textbf{S05 — Nahtcharakter auf E8.} \path{UR.COMPILER.SEAM_E8_CHARACTER_EXTENSION.05} ist ein eigenständiges verwandtes Resultat desselben Vertrags und derselben Beweisdatei; kein fehlender fünfter Beweisordner.
+
+\subsection*{S06 — Affine Vakuumantwort und E6-Kubik}\label{s:06}
+{\small\path{UR.COMPILER.VACUUM_CURRENT_CUBIC.06}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-vacuum-current-cubic-20260918/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{32daea34ae13bd70}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-vacuum-current-cubic-20260918/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{d65189b806facbb1}.}\par
+\subsection*{S07 — Quellenrang und Clockwörterbuch}\label{s:07}
+{\small\path{UR.COMPILER.SOURCE_CHANNEL_GATE.07}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-source-channel-gate-20260918/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{235cc326022476b1}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-source-channel-gate-20260918/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{7c9e47e12d06c94c}.}\par
+\subsection*{S08 — Operations- und Prozessrekonstruktion}\label{s:08}
+{\small\path{UR.COMPILER.PROCESS_RECONSTRUCTION.08}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-process-reconstruction-20260918/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{baa1c6d47d1a955b}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-process-reconstruction-20260918/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{c624193a3fde4c2b}.}\par
+\subsection*{S09 — Quartischer Übertrag}\label{s:09}
+{\small\path{UR.COMPILER.QUARTIC_LIFT.09}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-quartic-carry-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{0916af9829945938}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-quartic-carry-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{e38c31499b54bab6}.}\par
+\subsection*{S10 — Lokalisierter Spinorsektor}\label{s:10}
+{\small\path{UR.SEAM.LOCALIZED_SECTOR.10}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-localized-spinor-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{1302407ab999b263}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/source-localized-spinor-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{2a08b4d68fc27030}.}\par
+\subsection*{S11 — Lokaler Stromursprung und neutraler Zellentest}\label{s:11}
+{\small\path{UR.COMPILER.LOCAL_CURRENT_ORIGIN.11}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-local-current-origin-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{9cad6bb44b631fc8}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-local-current-origin-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{5270d1f86ae6c3d1}.}\par
+\subsection*{S12 — Quartischer Phasentransport}\label{s:12}
+{\small\path{UR.COMPILER.QUARTIC_HOLONOMY.12}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-quartic-holonomy-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{3bd9449d2f437753}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-quartic-holonomy-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{5b5664c9704e9b60}.}\par
+\subsection*{S13 — Korrelierte Ereignisse und Petersen-Clock}\label{s:13}
+{\small\path{UR.COMPILER.CORRELATED_EVENT_CLOCK.13}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-correlated-event-clock-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{dcae87ea82c76b4f}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-correlated-event-clock-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{bf1f85c99f5f89a0}.}\par
+\subsection*{S14 — Phasenbewusste Rahmengruppe}\label{s:14}
+{\small\path{UR.COMPILER.FRAME_GROUP.14}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-frame-group-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{e70773cc99dd2a37}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-frame-group-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{60969a33006b3134}.}\par
+\subsection*{S15 — Kontinuierlicher Ereignisursprung}\label{s:15}
+{\small\path{UR.COMPILER.CONTINUOUS_EVENT_ORIGIN.15}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-continuous-event-origin-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{0f0f138705e6ed02}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-continuous-event-origin-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{545cb24fd942e67d}.}\par
+\subsection*{S16 — Affiner Nachfahrenanschluss}\label{s:16}
+{\small\path{UR.COMPILER.CURRENT_DESCENDANT.16}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-current-descendant-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{d27ef5b55d8716a6}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-current-descendant-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{ad45198c44b84365}.}\par
+\subsection*{S17 — Quantisierte Quellenrückwirkung}\label{s:17}
+{\small\path{UR.COMPILER.ROOT_SOURCE_BACKREACTION.17}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-root-source-backreaction-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{4df71c5f267eaf0f}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-root-source-backreaction-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{f61bf749daf63c10}.}\par
+\subsection*{S18 — Phasentreue Lifts und Readouts}\label{s:18}
+{\small\path{UR.COMPILER.ROOT_PHASE_LIFT.18}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-root-phase-lift-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{afb3140619c42796}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-root-phase-lift-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{d7465bd8ee3514d2}.}\par
+\subsection*{S19 — Überlappende Quellen und starke Phasenkopplung}\label{s:19}
+{\small\path{UR.COMPILER.OVERLAP_PHASE_LOCK.19}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-overlap-phase-lock-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{c43c5ee8545fd73a}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-overlap-phase-lock-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{e24e640c3c341e2f}.}\par
+\subsection*{S20 — Ketten, räumliche Antwort und Stromvervollständigung}\label{s:20}
+{\small\path{UR.COMPILER.SPATIAL_RESPONSE.20}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-spatial-response-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{a4913e3504199393}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-spatial-response-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{b200ef9a3d082cf3}.}\par
+\subsection*{S21 — Native Stromprodukte}\label{s:21}
+{\small\path{UR.COMPILER.CURRENT_PRODUCT.21}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-current-product-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{1a2843f7bf358abb}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-current-product-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{940131acfceba193}.}\par
+\subsection*{S22 — Clock-erzwungene E8-Stromschließung}\label{s:22}
+{\small\path{UR.COMPILER.CLOCK_CURRENT_CLOSURE.22}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-clock-current-closure-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{f06dd6132ad73df2}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-clock-current-closure-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{786817abb2707ee3}.}\par
+\subsection*{S23 — Audit der Paar- und Mischsektoren}\label{s:23}
+{\small\path{UR.COMPILER.PAIR_SECTOR_AUDIT.23}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-pair-sector-audit-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{49845a7badcaac7c}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-pair-sector-audit-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{b63d5a7a97c331f0}.}\par
+\subsection*{S24 — Bindungsantwort und damalige Vollraumannahmen}\label{s:24}
+{\small\path{UR.COMPILER.BOND_RESPONSE.24}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-bond-response-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{93c749362eda3d17}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-bond-response-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{67e3d788c0bfe616}.}\par
+\subsection*{S25 — Domänenwandkern}\label{s:25}
+{\small\path{UR.COMPILER.DOMAIN_WALL_CORE.25}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-domain-wall-core-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{35276acd6840b8a3}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-domain-wall-core-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{fe9c66ef6821ff47}.}\par
+\subsection*{S26 — Relaxierter Kern und Zwei-Quellen-Vollsatz}\label{s:26}
+{\small\path{UR.COMPILER.RELAXED_WALL.26}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-relaxed-wall-20260919/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{479ba50d2289f2ca}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-relaxed-wall-20260919/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{b4930e179bc5658c}.}\par
+\subsection*{S27 — Relationale Inzidenz}\label{s:27}
+{\small\path{UR.COMPILER.RELATIONAL_INCIDENCE.27}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-relational-incidence-20260920/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{40c82156b0826b7f}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-relational-incidence-20260920/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{d86af76b009c6126}.}\par
+\subsection*{S28 — Vier Follow-ups und Vier-Quellen-Vollsatz}\label{s:28}
+{\small\path{UR.COMPILER.FOUR_FOLLOWUPS.28}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-four-followups-20260920/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{f4937cd581079dd4}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-four-followups-20260920/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{ee0775ff2dbd37ac}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-four-followups-20260920/origin/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{82bf4dce1ff3a475}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-four-followups-20260920/vacuum/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{8ba73582b414db25}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-four-followups-20260920/large_chain/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{fde2c9f5d566a185}.}\par
+\subsection*{S29 — Kritische Brücke, Rahmen und Fermi-Patch}\label{s:29}
+{\small\path{UR.COMPILER.CRITICAL_BRIDGE.29}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/compiler-critical-bridge-20260920/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{ae730a091abc621a}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-critical-bridge-20260920/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{cede7d0ba0b115e1}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-critical-bridge-20260920/energy/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{9a27358119b20cce}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-critical-bridge-20260920/symmetry/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{87990f749b795ee6}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-critical-bridge-20260920/frames/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{1b7f093501662183}.}\par
+Herleitung: \path{TFPT/experiments/theory-contracts/compiler-critical-bridge-20260920/origin/PROOF.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{f9a1af5f48253a39}.}\par
+\section{Spätere Quellen-, Rand-, Paar- und Registerarbeiten}
+Die folgenden Registerpositionen ergänzen den frühen Sitzungsstrang. Alle aufgeführten Hauptverträge behalten das Gesamtverdict \texttt{PARTIAL}. Die konkreten exakten Sätze, bedingten Konstruktionen und Ausschlüsse werden in den zugehörigen Kapiteln getrennt dargestellt.
+\subsection*{S30 — Geladene Sektoren und Projektionsgedächtnis}\label{s:30}
+{\small\path{UR.CHARGED_SECTOR_MEMORY.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/charged-sector-memory-gate-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{1ded5ac47e9d8d86}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/charged-sector-memory-gate-20260920/PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{a69c18e858f001df}.}\par
+\subsection*{S31 — Quellenspektrum, RG und gemeinsame Clockzeit}\label{s:31}
+{\small\path{UR.SOURCE.RG_CLOCK_BRIDGE.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-rg-clock-bridge-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{348d6b2834185ffb}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-rg-clock-bridge-20260920/PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{58d870d69596b5bd}.}\par
+\subsection*{S32 — Geladene Stromantwort und Viertelholonomie}\label{s:32}
+{\small\path{UR.SOURCE.CHARGED_TIME.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/charged-source-time-audit-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{6afc4925e2af026d}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/charged-source-time-audit-20260920/PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{97ddf9206a860c00}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/charged-source-time-audit-20260920/CAR_PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{d2c7a80cf0efce43}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/charged-source-time-audit-20260920/HOLONOMY_REVIEW.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{12217b8c7e906e11}.}\par
+\subsection*{S33 — Lokaler wachsender Quellengrenzwert}\label{s:33}
+{\small\path{UR.SOURCE.LOCAL_LIMIT.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-local-line-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{981ceb033cac3fc4}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-local-line-20260920/SOURCE_LINE_PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{d527dd5bcb1769b6}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-local-line-20260920/SOURCE_LINE_REVIEW.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{4812be09012e3af7}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-local-line-20260920/LOCAL_LIMIT_REVIEW.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{0713338a5845f8ad}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-local-line-20260920/POLARIZATION_GATE.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{920fb2434d404b71}.}\par
+\subsection*{S34 — Rohträger und Ursprung des 3+2-Schnitts}\label{s:34}
+{\small\path{UR.RAW_CARRIER_ORIGIN.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/raw-carrier-origin-gate-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{9d9c50d4d571998f}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/raw-carrier-origin-gate-20260920/PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{352dea875d7e3c89}.}\par
+\subsection*{S35 — Gefahrener Flux und Carry im vollständigen See}\label{s:35}
+{\small\path{UR.SOURCE.DRIVEN_CARRY.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-driven-carry-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{cbbe468b9271ba7e}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-driven-carry-20260920/PROOF.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{f5aac7f0ac5d65ae}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-driven-carry-20260920/FLUX_PROOF_REVIEW.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{3ac5f1f4a80852f5}.}\par
+\subsection*{S36 — Quellenprobe und algebraischer Carry}\label{s:36}
+{\small\path{UR.SOURCE.PROBE_CARRY.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-probe-carry-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{446323cc83e29594}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-probe-carry-20260920/PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{df420a7d9aef268e}.}\par
+\subsection*{S37 — Randselektion und vollständiges Quellfunktional}\label{s:37}
+{\small\path{UR.SOURCE.BOUNDARY_SELECTION.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-boundary-selection-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{ae8c6138331415e9}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-boundary-selection-20260920/PROOF.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{4081e9f7bc19da9c}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-boundary-selection-20260920/LANE_FUNCTIONAL.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{66a87451a0bfddba}.}\par
+\subsection*{S38 — Globale Ladungsgruppe und Flavor-Rang}\label{s:38}
+{\small\path{UR.SOURCE.FLAVOR_ORIGIN.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-flavor-origin-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{c5893a43e40f4848}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-flavor-origin-20260920/PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{328158deea8bab9a}.}\par
+\subsection*{S39 — Glue, Parität und lokale Quellfelder}\label{s:39}
+{\small\path{UR.SOURCE.GRADED_LOCALITY.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-graded-locality-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{59d28c4f50af4237}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-graded-locality-20260920/PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{669309ea7f240397}.}\par
+\subsection*{S40 — Energiepfad und Auswahl relevanter Nulloperatoren}\label{s:40}
+{\small\path{UR.SOURCE.DYNAMICS_SELECTION.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-dynamics-selection-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{d01538455203a3c0}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-dynamics-selection-20260920/PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{03c09468b07cc68a}.}\par
+\subsection*{S41 — Lokale Felder am bedingten Konkurrenzpunkt}\label{s:41}
+{\small\path{UR.SOURCE.CRITICAL_FIELDS.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-critical-local-fields-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{886eda5d1b48d4c8}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-critical-local-fields-20260920/ERGEBNIS.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{45808ebcc9f2202d}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-critical-local-fields-20260920/local_modules/PROOF.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{5d458c5fe3ceabfd}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-critical-local-fields-20260920/local_modules/IR_GLUE.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{0f48d57fe42fd960}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-critical-local-fields-20260920/clock_gate/PROOF.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{293b3aae9799b8fd}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-critical-local-fields-20260920/energy_bridge/PROOF.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{07b43d5897f23947}.}\par
+\subsection*{S42 — Exakte Gaußreduktion und kompatible Eichladung}\label{s:42}
+{\small\path{UR.SOURCE.ROTOR_GAUSS.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-rotor-gauss-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{af0e57a84108a1ee}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-rotor-gauss-20260920/PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{17d351d19de8d33c}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-rotor-gauss-20260920/time_gate/README.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{9ccea811caf6cbc3}.}\par
+\subsection*{S43 — Einheitsfluss, Fermionsättigung und E8-Quotient}\label{s:43}
+{\small\path{UR.SOURCE.FLUX_INDEX.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-flux-index-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{2d35d03139bfb785}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-flux-index-20260920/PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{55ad6f18bf4f69d8}.}\par
+\subsection*{S44 — Native Zentrumobstruktion und nichtlineare Randfelder}\label{s:44}
+{\small\path{UR.SOURCE.OPERATOR_ORIGIN.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-operator-origin-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{d3e332343f780015}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-operator-origin-20260920/ERGEBNIS.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{e31a711f5bc15d80}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-operator-origin-20260920/family_intertwiner/PROOF.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{ef5d0278862523d2}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-operator-origin-20260920/glue_correspondence/PROOF.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{cb679a180c39efa9}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-operator-origin-20260920/source_selection/REVIEW.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{2f4311af90d5bee0}.}\par
+\subsection*{S45 — Clifford-Faktoren und gemeinsame Graduierung}\label{s:45}
+{\small\path{UR.SOURCE.CLIFFORD_GRADE.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-clifford-grade-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{2cedd20eb036a681}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-clifford-grade-20260920/PROOF.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{7cfda722c50e6c7d}.}\par
+\subsection*{S46 — Geladener E8-Lift und gerade Nachbargitter}\label{s:46}
+{\small\path{UR.SOURCE.CHARGED_LIFT.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-charged-lift-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{b6c6d15f39fc1c09}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-charged-lift-20260920/PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{25fcbdd8f9dbce24}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-charged-lift-20260920/REVIEW.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{402a98eeab157a5f}.}\par
+\subsection*{S47 — Zusammengesetzte Randfelder und nativer Paartensor}\label{s:47}
+{\small\path{UR.SOURCE.DRESSED_NATIVE.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-dressed-native-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{f9a5d33f0e6a2330}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-dressed-native-20260920/PROOF.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{1aa6be0cac1a1806}.}\par
+\subsection*{S48 — Norm- und zeittreue Paarübertragung}\label{s:48}
+{\small\path{UR.SOURCE.PAIR_TRANSFER.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-pair-transfer-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{b2a0245249e41594}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-pair-transfer-20260920/PROOF.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{9ba0bad91378d732}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-pair-transfer-20260920/ERGEBNIS.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{41ff74a464a98329}.}\par
+\subsection*{S49 — Rekonstruktion der vier geladenen Sektoren}\label{s:49}
+{\small\path{UR.SOURCE.SECTOR_RECONSTRUCTION.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-sector-reconstruction-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{d83964354a214ca1}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-sector-reconstruction-20260920/PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{a5796f90f4fa079b}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-sector-reconstruction-20260920/REVIEW.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{ab4e5b41c60075b4}.}\par
+\subsection*{S50 — Geladene Antwort über allen tatsächlichen Randgrundzuständen}\label{s:50}
+{\small\path{UR.SOURCE.GROUND_RESPONSE.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-ground-response-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{18c6cce0f74fce3f}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-ground-response-20260920/PROOF.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{9f12b1a0e44e1954}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-ground-response-20260920/ERGEBNIS.md}\par
+{\footnotesize SHA-256 (Anfang): \texttt{9e947a0fd82cd070}.}\par
+\subsection*{S51 — Statisches Register und nichtgaußsche reduzierte Antworten}\label{s:51}
+{\small\path{UR.SOURCE.STATIC_REGISTER.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-static-register-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{83c696bd16bd2589}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-static-register-20260920/PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{d769e1cec1bcef5d}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-static-register-20260920/REVIEW.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{fa4e9399f270484e}.}\par
+\subsection*{S52 — Korrelierte Registerkodierung mit voller CAR und Zeit}\label{s:52}
+{\small\path{UR.SOURCE.CHARGED_REGISTER.01}\par}
+Vertrag: \path{TFPT/experiments/theory-contracts/source-charged-register-20260920/contract_index.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{65d9b0a479fe64cb}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-charged-register-20260920/PROOF.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{fcb2a31800cbd7cd}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-charged-register-20260920/REVIEW.txt}\par
+{\footnotesize SHA-256 (Anfang): \texttt{9653fa36f1e069f9}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-charged-register-20260920/certificate.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{0a4d0822bd3d35d3}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-charged-register-20260920/certificate.optimized.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{0a4d0822bd3d35d3}.}\par
+Beleg: \path{TFPT/experiments/theory-contracts/source-charged-register-20260920/source_manifest.json}\par
+{\footnotesize SHA-256 (Anfang): \texttt{a3e0551e60198c70}.}\par
+\section{Frühe und übergreifende Quellen}
+\subsection*{SCTX — Übergeordnete TFPT-Architektur}\label{s:CTX}
+Orientierungskarte des bestehenden Korpus, ausdrücklich keine neue Beweisquelle. Der Bericht nutzt die dort beschriebenen Architektur- und T1--T8-Verträge als Maßstab.
+Quelle: \path{/Users/stefanhamann/.codex/context/tfpt-gesamtkontext.md}\par{\footnotesize SHA-256 (Anfang): \texttt{662be98c30cd492b}.}\par
+\subsection*{SLOG — Primärlog und retrospektive Readout-Auswertung}\label{s:LOG}
+Beobachtete Telemetrie, unvollständiger Lauf; keine unabhängige physikalische Validierung der erzeugten Wörter.
+Quelle: \path{/Users/stefanhamann/Documents/run_20260919_061343.log}\par{\footnotesize SHA-256 (Anfang): \texttt{626b8365606b397a}.}\par
+Quelle: \path{SESSION/outputs/readout-analyse-20260919/Auswertung.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{6aadf68ed6ee45d6}.}\par
+Quelle: \path{SESSION/outputs/readout-analyse-20260919/manifest.json}\par{\footnotesize SHA-256 (Anfang): \texttt{d913f4ea108935af}.}\par
+Quelle: \path{SESSION/outputs/readout-analyse-20260919/Befunde.json}\par{\footnotesize SHA-256 (Anfang): \texttt{fb649bd50831c908}.}\par
+\subsection*{SSTATE — Zustand-Dynamik-Injektivität}\label{s:STATE}
+Quelle: \path{TFPT/experiments/theory-contracts/seam-state-dynamics-injectivity-20260918/README.md}\par{\footnotesize SHA-256 (Anfang): \texttt{9b3d02af286051e4}.}\par
+Quelle: \path{TFPT/experiments/theory-contracts/seam-state-dynamics-injectivity-20260918/contract_index.json}\par{\footnotesize SHA-256 (Anfang): \texttt{35966a130f0bbd8b}.}\par
+Quelle: \path{TFPT/experiments/theory-contracts/seam-state-dynamics-injectivity-20260918/validation.json}\par{\footnotesize SHA-256 (Anfang): \texttt{9f53d4b3f366d047}.}\par
+\subsection*{STRANSFER — Auswahl und Nichtauswahl des kohärenten Transfers}\label{s:TRANSFER}
+Quelle: \path{SESSION/outputs/transfer-ursprung/transfer_selection_proof.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{6f94273480880627}.}\par
+\subsection*{SPHASE — Native Phasenfaser und Holonomie}\label{s:PHASE}
+Quelle: \path{SESSION/outputs/native-phasen/Verbindung-und-Phasen.md}\par{\footnotesize SHA-256 (Anfang): \texttt{b18c3af611c08d6e}.}\par
+Quelle: \path{SESSION/outputs/native-phasen/Phasenfaser-Beweis.md}\par{\footnotesize SHA-256 (Anfang): \texttt{041129f0be57cfe0}.}\par
+Quelle: \path{SESSION/outputs/native-phasen/Holonomie-Beweis.md}\par{\footnotesize SHA-256 (Anfang): \texttt{d33cd0c80658ea3f}.}\par
+Quelle: \path{SESSION/outputs/native-phasen/time_one_certificate.json}\par{\footnotesize SHA-256 (Anfang): \texttt{e276cd68049478e7}.}\par
+\subsection*{SINCLUSIVE — Inklusive Dreierauslesung und allgemeine Relaxationsschranke}\label{s:INCLUSIVE}
+Quelle: \path{SESSION/outputs/dreier-auslesung/Inklusiver-Auslesebeweis.md}\par{\footnotesize SHA-256 (Anfang): \texttt{ed1c5c0b421a7eb1}.}\par
+Quelle: \path{SESSION/outputs/dreier-auslesung/Allgemeine-Lueckenschranke.md}\par{\footnotesize SHA-256 (Anfang): \texttt{eb55cf5d9af8d55d}.}\par
+\subsection*{SBOUNDARY — Diskrete Rand-Clock-Verbindung}\label{s:BOUNDARY}
+Quelle: \path{SESSION/outputs/rand-clock/Rand-und-diskrete-Clock.md}\par{\footnotesize SHA-256 (Anfang): \texttt{6f9aca8838176d19}.}\par
+Quelle: \path{SESSION/outputs/rand-clock/certificate.json}\par{\footnotesize SHA-256 (Anfang): \texttt{f56760de8f1b4f16}.}\par
+Quelle: \path{SESSION/outputs/rand-clock/continuous_duals.json}\par{\footnotesize SHA-256 (Anfang): \texttt{0ef66b7c9a7b2acf}.}\par
+\subsection*{SCOMMON — Gemeinsamer Clockträger und geladene Zielalgebra}\label{s:COMMON}
+Quelle: \path{SESSION/outputs/gemeinsamer-ursprung/Universalraum-gemeinsamer-Ursprung.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{db430544be97ba41}.}\par
+\section{Dokumentationsaudit und ergänzende Belege}
+Die beiden Ergebnissynthesen wurden anhand der jeweiligen Vertragsindizes und Beweisdateien angefertigt. Sie sind redaktionelle Hilfen, keine zusätzlichen unabhängigen Beweise. Die numerische Antworttabelle in Kapitel 5 bewahrt ausdrücklich den Status des eingereichten Sitzungsberichts; sie wird nicht als neue unabhängige Vollrechnung ausgegeben.
+Dokumentationsbeleg: \path{SESSION/work/session-documentation-20260920/early_results.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{67a4af8350b47696}.}\par
+Dokumentationsbeleg: \path{SESSION/work/session-documentation-20260920/late_results.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{b5149b471c273664}.}\par
+Dokumentationsbeleg: \path{SESSION/work/session-documentation-20260920/initial_context.txt}\par{\footnotesize SHA-256 (Anfang): \texttt{505ebbe6be3111c4}.}\par
+Dokumentationsbeleg: \path{SESSION/work/session-documentation-20260920/repo_audit.log}\par{\footnotesize SHA-256 (Anfang): \texttt{23161a856a52eefa}.}\par
+
+\subsection*{SV2 — Abdeckung und Dokumentationsprüfung der zweiten Fassung}\label{s:V2}
+Die 55 vorherigen Abschlussantworten sind als Quellenorientierung erfasst; der Text übernimmt keine ungesicherte Behauptung allein aus einer Gesprächsantwort. Die neue Gesamtdarstellung, ihre Quellenzuordnung und ihre Sichtprüfung sind Dokumentationsarbeit, keine neue Forschungsfreigabe.\par
+Dokumentationsbelege: \path{SESSION/work/session-pdf-v2/} einschließlich Quellenabgleich, redaktioneller Audits und Seitenprüfung. Die verwendeten Dateien werden im neuen Manifest gebunden.\par
+
+\renewcommand{\bibname}{Wissenschaftlicher Methodenrahmen}\setbibpreamble{
+Die folgenden Primärarbeiten dienen der Einordnung verwendeter Methoden. Die konkreten Quellenidentitäten, endlichen Energieschranken und Ausschlüsse dieses Dossiers werden von den jeweiligen lokalen Vertragsbeweisen getragen. Keine der Literaturreferenzen beweist den fehlenden gemeinsamen TFPT-Ursprung.}
+
+\begin{thebibliography}{9}
+\bibitem{sw} Sergey Bravyi, David DiVincenzo und Daniel Loss.
+\emph{Schrieffer--Wolff transformation for quantum many-body systems.}
+Annals of Physics 326 (2011), 2793--2826.
+\url{https://arxiv.org/abs/1105.0675}.
+Methodischer Rahmen kontrollierter effektiver Hamiltonoperatoren, nicht Rechtfertigung einer unkontrollierten Projektion.
+
+\bibitem{osborne} Tobias J. Osborne und Alexander Stottmeister.
+\emph{Conformal field theory from lattice fermions.}
+Communications in Mathematical Physics (2022), arXiv-Version 3.
+\url{https://arxiv.org/abs/2107.13834v3}.
+Rigorer Vergleichsrahmen für Gitterapproximationen freier Fermion- und WZW-Theorien. Die Identifikation der hiesigen Rohquelle bleibt separat zu beweisen.
+
+\bibitem{coxeter} Ruwen Hollenbach und Patrick Wegener.
+\emph{The centralizer of a Coxeter element.} arXiv-Version 2 (2020).
+\url{https://arxiv.org/abs/1912.01529v2}.
+Hintergrund zur Zentralisatorstruktur. Der weiter gehende konkret verwendete integrale Rahmenausschluss ist in S29 mit seinen eigenen Voraussetzungen dokumentiert.
+\end{thebibliography}
+\end{document}

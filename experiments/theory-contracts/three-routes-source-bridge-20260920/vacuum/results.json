@@ -1,0 +1,186 @@
+{
+  "critical_test_point": {
+    "J": 0.01,
+    "exact_s_antisymmetric_block": [
+      [
+        "101/100",
+        "1/100"
+      ],
+      [
+        "1/100",
+        "101/100"
+      ]
+    ],
+    "exact_s_antisymmetric_dressed_eigenvalues": [
+      "1",
+      "51/50"
+    ],
+    "exact_s_symmetric_block": [
+      [
+        "303/500",
+        "sqrt(21)/500"
+      ],
+      [
+        "sqrt(21)/500",
+        "307/500"
+      ]
+    ],
+    "exact_s_symmetric_dressed_eigenvalues": [
+      "3/5",
+      "31/50"
+    ],
+    "kappa": 1.0,
+    "mu": 0.545,
+    "relation": "2mu=kappa+9J"
+  },
+  "decision": {
+    "exact": "The first orthogonal source image closes exactly for the native local operators. The bare packet J shift is a barycentre of H_E eigenvalues 0 and 2, not a local eigenvalue.  Dressing changes s, Phi and Omega differently.",
+    "necessary_consequence": "The coefficient 9J in the packet Ising condition cannot be transferred unchanged to the full source model from the bare calculation alone.  The smallest native local dressing is order J rather than order J squared over a fixed gap; the global renormalized line, including possible compensation through dressed hopping, is open.",
+    "not_proved": "Overlapping dressed blocks on a chain, the mu transfer term, a thermodynamic dressed critical line, local-observable preservation and E8 currents remain open."
+  },
+  "exact_certificate": {
+    "analytic_consequences": [
+      "joint source-bound invariance plus mean r=I/2 gives Phi (lambda,eta)=(1/2,3/2)",
+      "two bound reflection signs give Omega (lambda,eta)=(0,0)"
+    ],
+    "arithmetic": "Gaussian-integer identities; exact integer range checked below 2^52",
+    "check_count": 6,
+    "checks": [
+      "sum_l (2r_l)=60 I4",
+      "all bound roots have r_alpha psi_alpha=-psi_alpha",
+      "5 sum_l (2r_l tensor 2r_l)=240(I+Swap)",
+      "all 3600 exact event-covariance identities",
+      "all 60 local events obey H_E^2=2H_E",
+      "P_s L P_s=P_s H_E P_s=(4I-Swap)/5"
+    ],
+    "s_swap_sectors": {
+      "antisymmetric_dimension": 6,
+      "lambda_L_equals_eta_HE": {
+        "antisymmetric": "1",
+        "symmetric": "3/5"
+      },
+      "symmetric_dimension": 10
+    }
+  },
+  "operators": {
+    "H_E": "sum_alpha |alpha><alpha| tensor (I-r_alpha tensor r_alpha)",
+    "L": "I-(1/60) sum_l R_l tensor r_l tensor r_l"
+  },
+  "overlap_test": {
+    "alpha_index": 0,
+    "generic": {
+      "beta_index": 1,
+      "common_zero_event_kernel_dimension": 18,
+      "commutator_rank": 32,
+      "ordered_product_is_projector": false,
+      "unnormalized_root_inner_product": [
+        2,
+        2
+      ]
+    },
+    "meaning": "For a native nonorthogonal/nonparallel source pair the neighbouring zero-event projectors do not commute and their ordered product is not a projector.  Separate one-edge dressings therefore cannot simply be multiplied into a global isometry.",
+    "orthogonal": {
+      "beta_index": 45,
+      "common_zero_event_kernel_dimension": 24,
+      "commutator_rank": 0,
+      "ordered_product_is_projector": true,
+      "unnormalized_root_inner_product": [
+        0,
+        0
+      ]
+    },
+    "parallel": {
+      "beta_index": 0,
+      "common_zero_event_kernel_dimension": 28,
+      "commutator_rank": 0,
+      "ordered_product_is_projector": true,
+      "unnormalized_root_inner_product": [
+        4,
+        0
+      ]
+    },
+    "scope": "fixed source fibre on three matter registers; no source superposition, L, V or chain vacuum",
+    "status": "PASS_EXACT_FIXED_SOURCE_OVERLAP_OBSTRUCTION"
+  },
+  "self_energy": {
+    "formula": "Sigma(E)=J^2*eta*(2-eta)/(kappa*lambda+J*(2-eta)-E)",
+    "nonperturbative_reason": "the P-Q diagonal separation is 2J(1-eta), while the coupling is J*sqrt(eta(2-eta)); both vanish at J=0",
+    "resonant_state_dressing": "for every J>0 the low branch has bare-complement weight eta/2, independent of how small J is",
+    "sign_in_Feshbach_operator": "H_eff(E)=PHP-Sigma(E)"
+  },
+  "source_sha256": "3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593",
+  "status": "PASS_EXACT_NATIVE_FIRST_DRESSING_BLOCK",
+  "theorem": {
+    "block_formula": "[[kappa*lambda+J*eta, J*sqrt(eta*(2-eta))], [same, kappa*lambda+J*(2-eta)]]",
+    "closed_space": "span{P packet vector, (I-P)H_E P packet vector}",
+    "commutation": "[L,H_E]=0",
+    "event_polynomial": "H_E^2=2H_E",
+    "sectors": {
+      "omega": {
+        "P_diagonal": "0*kappa + 0*J",
+        "Q_diagonal": null,
+        "closed_cyclic_dimension": 1,
+        "coupling_squared": "0",
+        "dressed_eigenvalues": [
+          "0*kappa + 0*J"
+        ],
+        "eta_HE": "0",
+        "lambda_L": "0",
+        "low_branch_Q_weight_for_J_positive": "0",
+        "multiplicity": "packet-local"
+      },
+      "phi": {
+        "P_diagonal": "1/2*kappa + 3/2*J",
+        "Q_diagonal": "1/2*kappa + 1/2*J",
+        "closed_cyclic_dimension": 2,
+        "coupling_squared": "3/4*J^2",
+        "dressed_eigenvalues": [
+          "1/2*kappa",
+          "1/2*kappa + 2*J"
+        ],
+        "eta_HE": "3/2",
+        "lambda_L": "1/2",
+        "low_branch_Q_weight_for_J_positive": "3/4",
+        "multiplicity": "packet-local"
+      },
+      "s_antisymmetric": {
+        "P_diagonal": "1*kappa + 1*J",
+        "Q_diagonal": "1*kappa + 1*J",
+        "closed_cyclic_dimension": 2,
+        "coupling_squared": "1*J^2",
+        "dressed_eigenvalues": [
+          "1*kappa",
+          "1*kappa + 2*J"
+        ],
+        "eta_HE": "1",
+        "lambda_L": "1",
+        "low_branch_Q_weight_for_J_positive": "1/2",
+        "mixed_matter_low_high_weights": [
+          "3/16",
+          "3/16"
+        ],
+        "multiplicity": 6
+      },
+      "s_symmetric": {
+        "P_diagonal": "3/5*kappa + 3/5*J",
+        "Q_diagonal": "3/5*kappa + 7/5*J",
+        "closed_cyclic_dimension": 2,
+        "coupling_squared": "21/25*J^2",
+        "dressed_eigenvalues": [
+          "3/5*kappa",
+          "3/5*kappa + 2*J"
+        ],
+        "eta_HE": "3/5",
+        "lambda_L": "3/5",
+        "low_branch_Q_weight_for_J_positive": "3/10",
+        "mixed_matter_low_high_weights": [
+          "7/16",
+          "3/16"
+        ],
+        "multiplicity": 10
+      }
+    },
+    "spectrum_formula": "{kappa*lambda, kappa*lambda+2J}"
+  },
+  "verdict": "FIRST_NATIVE_SOURCE_DRESSING_CHANGES_BARE_LOCAL_INGREDIENTS; FULL_CRITICAL_LINE_OPEN"
+}

@@ -1,0 +1,261 @@
+UNABHÄNGIGER REVIEW: STATISCHES C4-REGISTER UND REDUZIERTER KANAL
+Datum: 2026-09-20
+
+Geprüfte Quellen
+================
+
+1. experiments/theory-contracts/clock-interaction-provenance/README.md
+   SHA-256 e40e116d86ee092e26317b2972cff8795fa7a1d22eb6a250e03f1f8c5252fa4c
+2. verification/v1033_charged_disorder.py
+   SHA-256 01c64748c70784b17cf1c61b7bd2b4c51a69c19c4a2274f09028892eab5cb83f
+
+Der Quellbefund stimmt: Der Register-Hamiltonoperator ist in der orthogonalen
+r-Basis blockdiagonal. Der mit Z nichtkommutierende zyklische Shift wird im
+geprüften v1033-Code erst als Observable benutzt, nicht als Hamiltonterm.
+
+Gesamturteil
+============
+
+PASS für den präzisen statischen Registersatz und die Reinheitsformel. Die
+Folgerung lautet:
+
+* Registertrace eines statisch kontrollierten quasifreien Hamiltonoperators
+  ergibt eine Random-Unitary-Mischung quasifreier Zweige.
+* Diese Mischung ist auf der vollständigen Materie-Matrixalgebra genau dann
+  ein deterministischer unitärer Kanal, wenn alle mit positiver
+  Registerwahrscheinlichkeit besetzten Zweigunitären proportional sind.
+* Im bedingt angenommenen Lift C4 tensor Fock(V) ist der deterministische
+  unitäre Zweig daher weiterhin gaußsch/quasifrei.
+* Eine nichtgaußsche Mischung ist kein quartischer geschlossener
+  Materie-Hamiltonoperator.
+
+Der Satz schließt kodierte Unterräume, eingeschränkte superselektierte
+Observablealgebren, Messung/Postselektion und während der Entwicklung
+eingeschobene nichtkommutierende Registerkontrollen ausdrücklich nicht aus.
+Er leitet außerdem weder den gemeinsamen Fock-Lift noch seine Präparation aus
+der ursprünglichen Einteilchenquelle her.
+
+1. Exakter Registertrace
+========================
+
+Sei
+
+  H_R=sum_r |r><r| tensor H_r,
+  U(t)=sum_r |r><r| tensor U_r(t),
+  U_r(t)=exp(-it H_r).
+
+Für einen Produktanfangszustand sigma_R tensor rho gilt
+
+  U(sigma_R tensor rho)U^dagger
+   =sum_(r,s) sigma_rs |r><s| tensor U_r rho U_s^dagger.
+
+Die partielle Spur setzt r=s. Daher
+
+  Phi_t(rho)=sum_r p_r U_r rho U_r^dagger,
+  p_r=sigma_rr.                                      (1)
+
+Alle Offdiagonalkohärenzen von sigma_R verschwinden in (1). Das gilt auch für
+einen reinen kohärenten Registerzustand. Kohärenz kann erst durch eine spätere
+Registermessung, Postselektion oder einen während der Wechselwirkung
+nichtkommutierenden Kontrollschritt wieder interferometrisch wirksam werden.
+
+Die Produktannahme ist wesentlich. Bei anfänglicher Register-Materie-
+Korrelation gibt es im Allgemeinen keinen wohldefinierten CP-Kanal auf
+beliebigen rho mit derselben Formel.
+
+2. Wann die Mischung unitär ist
+================================
+
+Auf einem endlichen Materieraum besitzt (1) die Krausoperatoren
+
+  K_r=sqrt(p_r) U_r.
+
+Seine Choi-Matrix ist
+
+  J(Phi)=sum_(r:p_r>0) p_r |U_r>><<U_r|.
+
+Eine unitäre Konjugation hat Choi-Rang eins. Da die Summanden positiv sind,
+hat J(Phi) genau dann Rang eins, wenn alle Vektorisierungen der besetzten U_r
+kollinear sind. Für Unitäre bedeutet das
+
+  U_r(t)=exp(i theta_r(t)) U(t)  für alle r mit p_r>0. (2)
+
+Umgekehrt macht (2) die Phasen in der Konjugation unsichtbar und Phi_t ist der
+unitäre Kanal Ad_U. Dies beweist die notwendige und hinreichende Bedingung.
+In einer unendlichen Theorie benötigt man die entsprechende minimale
+Stinespring-/Kraus-Aussage oder einen kontrollierten endlichen Cutoff; der
+endliche v1033-Quellraum fällt unter den Choi-Beweis.
+
+Zeitliche Präzisierung: An einem einzelnen Zeitpunkt können verschiedene H_r
+durch ein Revival zufällig proportionale Exponentialoperatoren erzeugen. Gilt
+(2) auf einem offenen Intervall um t=0, folgt durch Ableiten
+
+  H_r=H_common+kappa_r I
+
+auf dem betrachteten vollständigen Raum. Ein Einzeitpunktzeuge allein beweist
+diese Generatorgleichheit nicht.
+
+3. Bedingter Fock-Lift und Gaußschheit
+======================================
+
+Nimmt man zusätzlich den nicht aus v1033 hergeleiteten gemeinsamen Lift
+
+  C4 tensor Fock(V),
+  H_r=dGamma(h_r)+kappa_r I,
+
+an, ist jedes U_r eine phasenmultiplizierte fermionische Gaussian-Unitary.
+Ist der reduzierte Kanal deterministisch unitär, wählt (2) effektiv genau eine
+solche Gaussian-Konjugation. Ein deterministischer nichtgaußscher unitärer
+Materiekanal entsteht auf diesem statischen Weg nicht.
+
+Sind die Zweige nicht proportional, kann ihre konvexe Mischung nichtgaußsche
+Zustände und verbundene höhere Momente erzeugen: Eine Mischung verschiedener
+Wick-Zustände muss selbst kein Wick-Zustand sein. Das ist klassische
+Register-Unkenntnis im reduzierten Kanal. Sie liefert weder eine unitäre
+Gruppe noch einen Hermiteschen H_eff mit
+
+  Phi_t=Ad_exp(-it H_eff).
+
+Insbesondere ist der Logarithmus eines solchen Kanals kein Beweis eines
+quartischen geschlossenen Materie-Hamiltonoperators; er kann dissipative oder
+zeitabhängige Superoperatorterme enthalten und muss nicht einmal eine
+Markov-Halbgruppe bilden.
+
+4. Register-only Rückkehr oder Reset
+=====================================
+
+Ein nach der kontrollierten Entwicklung angewandtes Registerunitär V_R ändert
+den reduzierten Kanal nicht:
+
+  Tr_R[(V_R tensor I) X (V_R^dagger tensor I)]=Tr_R X.
+
+Fordert man darüber hinaus eine exakte kohärente Rückkehr des Registers und
+seine Entkopplung für alle Materieeingaben, können die verschiedenen
+besetzten Zweigzustände nur dann denselben Materiekanal tragen, wenn die
+Einschränkungen der U_r proportional sind. Ein Register-only Unitär kann eine
+bereits entstandene Register-Materie-Verschränkung nicht allgemein entfernen.
+
+Das gilt für einen abschließenden deterministischen Register-only Schritt.
+Nicht erfasst sind Messung und Postselektion: Eine Projektion des Registers in
+einer Superpositionsbasis kann einen Krausoperator sum_r alpha_r U_r erzeugen,
+der nicht unitär und nichtgaußsch sein kann. Ebenfalls nicht erfasst sind
+wiederholte Registerrotationen zwischen mehreren kontrollierten Evolutions-
+abschnitten; diese machen die Registerkoeffizienten dynamisch
+nichtkommutierend und verlassen die statische Hypothese.
+
+5. Reinheitsverlust: Faktor und Voraussetzungen
+================================================
+
+Sei rho=|psi><psi| rein, p_r=sigma_rr und
+
+  Hbar=sum_r p_r H_r.
+
+Für beschränkte H_r, oder für psi in einer gemeinsamen Domain mit den nötigen
+zweiten Momenten, liefert die Expansion von (1)
+
+  Tr[Phi_t(rho)^2]
+   =1-2 t^2 sum_r p_r Var_psi(H_r-Hbar)+O(t^3).       (3)
+
+Der Faktor zwei ist korrekt. Eine direkte Kontrolle benutzt
+
+  Tr[Phi_t(rho)^2]
+   =sum_(r,s) p_r p_s
+      |<psi|U_r(t)^dagger U_s(t)|psi>|^2
+
+und
+
+  sum_(r,s) p_r p_s Var_psi(H_r-H_s)
+   =2 sum_r p_r Var_psi(H_r-Hbar).
+
+Operator-Nichtkommutativität zwischen verschiedenen H_r ändert den
+quadratischen Koeffizienten nicht; sie kann in höheren Ordnungen auftreten.
+Skalare Unterschiede H_r-H_s verschwinden in den Varianzen, passend zur
+Phasenfreiheit in (2).
+
+Für die gleichverteilten vier Phasen z_r=i^r und
+
+  H_r=B+z_r A+z_r^* A^dagger,
+
+wobei B=B^dagger, gilt Hbar=B. Da
+
+  (1/4)sum_r z_r=(1/4)sum_r z_r^2=0,
+
+folgt exakt
+
+  sum_r p_r Var_psi(H_r-Hbar)
+   =<AA^dagger+A^dagger A>_psi-2|<A>_psi|^2.         (4)
+
+Damit ist auch die vorgeschlagene Uniformformel samt Faktor richtig. Sie setzt
+p_r=1/4 voraus; bloße Kohärenz des Registers ohne gleichmäßige Diagonale reicht
+nicht. Gleichung (3) ist ein lokaler Kurzzeitzeuge, kein Beweis eines
+quartischen Hamiltonoperators.
+
+### Exakter N=1-Wick-Defekt der vorhandenen Quelle
+
+Die geprüfte Seam-Quelle arbeitet im Einteilchensektor. Jeder Zweig U_r und
+damit auch der statische Registertrace erhält N=1. Sei C die
+Einteilchenkovarianz des reduzierten Zustands. Dann
+
+  Tr C=1,   <n_i n_j>=0  für i<j.
+
+Der über alle ungeordneten Modenpaare summierte Wick-Defekt ist daher
+
+  D4=sum_(i<j) [<n_i n_j>-(C_ii C_jj-C_ij C_ji)]
+    =-(1/2)[(Tr C)^2-Tr(C^2)]
+    =-(1-Tr(C^2))/2.                                  (5)
+
+Hier ist C zugleich die Dichtematrix auf dem Einteilchenraum. Falls die
+Kurzzeitrechnung konkret Tr(C^2)=1-t^2+O(t^3) liefert, folgt
+
+  D4=-t^2/2+O(t^3).
+
+Das ist ein echter nichtverschwindender Vierpunkt-Wickdefekt beziehungsweise
+verbundener Vierpunktanteil des reduzierten Mischzustands. Er entsteht durch
+klassische Mischung verschiedener quasifreier Zweige. Er ist kein kohärenter
+quartischer Hamiltonterm, keine 1PI-Vertexherleitung und kein Widerspruch zur
+Gaussian-Closure jedes einzelnen Zweigs. Gerade diese Unterscheidung ist der
+Nutzen des Kanalsatzes; die Mischung selbst darf nicht als gaußsch bezeichnet
+werden.
+
+6. Präzise Schlupflöcher und Reichweite
+=======================================
+
+Kodierter Unterraum: Soll der Kanal nur auf einem Code C unitär sein, genügt
+
+  U_r P_C=exp(i theta_r) U_C P_C
+
+für alle besetzten r. Die U_r müssen außerhalb von C nicht proportional sein.
+Eine behauptete globale Barriere darf aus einem solchen Codeergebnis nicht
+folgen.
+
+Superselektion/Observablealgebra: Auf einer echten Unteralgebra können zwei
+verschiedene Unitäre dieselbe Automorphie induzieren, etwa wenn ihr relatives
+Unitär im Kommutanten der zugänglichen Algebra liegt. Der Choi-Rang-Satz gilt
+wie geschrieben auf der vollständigen Matrixalgebra; auf superselektierten
+Blöcken muss er blockweise beziehungsweise für die tatsächlich zugängliche
+Algebra formuliert werden. Für den globalen CAR-No-go muss insbesondere die
+volle CAR-Wirkung einschließlich ungerader Feldantworten gemeint sein. Eine
+Beschränkung auf ausschließlich gerade Observablen kann relative
+Paritätswirkungen unsichtbar machen und die Identifikation abschwächen.
+
+Zustandsabhängige Ausnahme: Für einen einzelnen speziellen psi können alle
+Zweige denselben Strahl erzeugen, obwohl ihre globalen Unitärs nicht
+proportional sind. Das macht die Ausgabe dieses einen Zustands rein, aber nicht
+den Kanal global unitär.
+
+Messung/Postselektion und Feedback: Konditionierte Ausgänge sind keine
+spurtreue deterministische Reduktion (1). Sie können kohärente Summen der U_r
+und damit andere Operatorgrade erzeugen, benötigen aber eine zusätzliche
+Mess-, Erfolgs- und Rückkopplungsregel.
+
+Statische Herkunftsgrenze: v1033 stellt die vier Einteilchenblöcke und die
+Shift-Observable bereit. Es stellt weder den Lift C4 tensor Fock(V), eine
+ausgewählte sigma_R-Präparation, den Registertrace-Vertrag noch einen
+nichtkommutierenden Shift-Hamiltonoperator bereit. Daher ist der Satz eine
+exakte notwendige Bedingung für diesen bedingt ergänzten statischen Aufbau,
+keine bereits native Wechselwirkungsherleitung und kein universeller Ausschluss
+nichtgaußscher Kontrollarchitekturen.
+
+Endverdict: PASS für Kanalrang, Gaussianitätsfolge und Reinheitskoeffizient;
+PARTIAL als Herkunftsaussage. Keine neue quartische Dynamik ist aus dem
+statischen Registertrace allein hergeleitet.

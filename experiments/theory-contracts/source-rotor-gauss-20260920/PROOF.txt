@@ -1,0 +1,373 @@
+UR.SOURCE.ROTOR_GAUSS.01 -- working derivation, 2026-09-20
+
+Question and stopping criterion
+-------------------------------
+Can the existing dynamical compact-U(1) parent supply the missing interaction
+and retain the same local graded fields as the conditional E8 boundary?
+Before perturbation theory, identify its physical space, exact interaction,
+remaining flux complement, local algebra and time. An exact change of
+coordinates of this parent is a useful positive result; it does not identify
+it with the QWZ/Clock source or derive it from P1/P2. Stop the proposed direct
+bridge when its field/charge/time dictionary fails; do not tune a new parent.
+
+Provenance
+----------
+Use the unchanged local-window-round37 parent and all its low/high hoppings,
+two-step low paths and retained ambient onsite backtracks. Its declared
+parameters are a=1/12, eta=1/2, beta=1/4, kappa=1/100, M=4, Vmag=0.
+The original sixteen-Majorana source is Gaussian: clock-interaction-provenance
+already established both its Gaussian closure and a nonzero electric double
+commutator in this different rotor parent. Those are prior results.
+matter-resummation-round43 sec.4 already solves the rooted-star and
+single-cycle Gauss sectors. common-engine-threeway/PROOF.md A1 already proves
+the square's charge-dependent shifted integer flux energy, including the
+kappa/8 error from dropping the shift. clock-rotor-joint-charge already shows
+that the tested local C6 lift is pure gauge on the physical space and cannot
+intertwine the original eight-mode Clock representation. None is new here.
+The present contribution is the general integral-cycle reduction including
+the full hopping/time map, its graded-locality test, and the complete E8
+source-charge census for the proposed common-source bridge. The linear
+algebra is standard, not a new force law. The earlier local-charge-parent-
+round17 contract already identifies the cycle-lattice rank and basis.
+
+1. Physical space on any finite connected graph
+----------------------------------------------
+Let the graph have v vertices and e oriented edges. B is its v by e incidence
+matrix, with +1 at the source and -1 at the target. Each site has the original
+two complex modes L,H, N_x=n_Lx+n_Hx and rho_x=N_x-1. The Gauss identities
+below apply to arbitrary finite connected graphs. Instantiating the original
+Round37 hopping operator also retains its allowed ambient degrees at most6;
+this is not a claim that P1/P2 select any of these spatial graphs.
+Integer electric fluxes
+E belong to Z^e; [E_l,U_l]=U_l. No external electric edges are included.
+The Gauss constraint is B E=-rho. Summing it forces N_total=v.
+
+Choose a spanning tree. For every allowed occupation mask f with v occupied
+modes, there is a unique integer tree flow E_T(rho_f), with chord entries
+zero. On a tree edge u->v its value is the sum of rho in the component on
+the target side after cutting the edge. The sign follows from summing B E
+over that component. Integer neutrality proves existence and uniqueness.
+
+Let b=e-v+1 and let C be the e by b fundamental-cycle matrix, oriented so
+that its chord submatrix is I_b. Then every solution, with no flux cutoff, is
+
+       E = E_T(rho_f) + C w,            w in Z^b.                 (1)
+
+Indeed the difference of two solutions is an integer circulation; its chord
+values determine w, and a tree has no nonzero circulation. Thus the map
+
+       J: |f> |w> -> |f> |E_T(rho_f)+Cw>
+
+is a unitary from the fixed-v-particle matter space tensor l2(Z^b) onto the
+full Gauss-physical space. Its inverse records the matter mask and chord
+fluxes. A tree has b=0, hence dimension binomial(2v,v); a graph with loops
+retains b independent integer winding coordinates. This finite graph result
+does not assert that a spatial patch equals an infinite-volume local limit.
+
+2. The exact electric interaction and its retained complement
+------------------------------------------------------------
+Write L=B B^T and Lplus for its Moore-Penrose inverse on neutral vectors.
+For b>0 define Q=C^T C (positive definite), theta(rho)=Q^-1 C^T E_T(rho).
+Orthogonal projection onto real cycle flows gives
+
+ E_parallel=-B^T Lplus rho,
+ E_T=E_parallel+C theta,
+ |E|^2=rho^T Lplus rho+(w+theta)^T Q(w+theta).                    (2)
+
+For trees the second term is absent. These are identities in all integer
+fluxes and all allowed occupations, not a continuum approximation.
+Changing the tree solution by Ck, k integral, changes theta to theta+k and
+the integer coordinate to w-k. Thus the affine flux lattice and energy do
+not depend on this bookkeeping choice. A different fundamental-cycle basis
+changes integer coordinates by a unimodular matrix and preserves (1)-(2).
+
+In an open chain, with sites 0,...,v-1 and edges j->j+1,
+
+ E_j=-sum_(x<=j)rho_x,
+ H_E=(kappa/2) sum_(j=0)^(v-2) (sum_(x<=j)rho_x)^2.               (3)
+
+This gives an exact spatially extended density interaction. A configuration
+with charges +1 and -1 separated by d edges has electric energy kappa*d/2.
+This is the energy of that flux/occupation configuration, not the potential
+after dynamical screening and not a theorem of confinement for the full H.
+The original local formulation remains local; (3) is not instantaneous
+signalling. Fourier inversion of the lattice divergence at nonzero momentum
+gives H_E,long=(1/2) sum_(q!=0) K_el(q)|rho_q|^2 with
+K_el(q)=kappa/(4 sin^2(q/2)). This is the formal real longitudinal kernel;
+a periodic integer rotor still retains the affine winding term of (2).
+It diagnoses an electric density kernel, not a dispersion relation.
+The two-species charge is rho=n_L+n_H-1, so the electric
+term alone acts on total density, with no direct relative L-H density term.
+Species-changing kinetic terms remain present in the full H.
+
+For an oriented square and rho=(-1,+1,0,0), E_T=(1,0,0,0), C=(1,1,1,1)^T:
+
+       |E|^2 = 3/4 + 4(w+1/4)^2.                                (4)
+
+The integer minimum is 1; the longitudinal real minimum is only 3/4.
+Multiplication by kappa/2 gives the already known omitted energy kappa/8.
+This is not a full-H ground energy. An L-edge cycle with a unit dipole across
+one link instead has |E|^2=(1-1/L)+L(w+1/L)^2. The quarter shift is therefore
+not by itself the native mu4 action. It is a coordinate in electric winding
+space, not an identified spatial spinor boundary condition.
+
+At fixed rho and positive Euclidean time tau, tracing just the electric
+cycle term yields the real positive factor
+
+ exp[-tau*kappa*rho^T Lplus rho/2]
+   * sum_(w in Z^b) exp[-tau*kappa*(w+theta)^T Q(w+theta)/2].       (5)
+
+It depends on rho and cannot generally be dropped as constant normalization.
+It does not alone generate a complex relative CP/mass phase. Equation (5)
+is not the trace of the full hopping Hamiltonian; noncommuting hopping,
+fermion signs and real-time phases require their actual common evolution.
+
+3. All original hopping, state and time are carried along
+-------------------------------------------------------
+A term T=c_t^dagger c_s times a directed product of U links changes matter
+charge by delta rho and electric flux by an integer path vector p, with
+B p=-delta rho. The original CAR sign and coefficient remain unchanged.
+In the coordinates (1), its winding shift is the unique integer ell obeying
+
+       C ell=p+E_T(rho)-E_T(rho+delta rho).                       (6)
+
+It is integral because the right side is an integer circulation; in the
+fundamental-cycle convention ell is its chord subvector. Since E_T is
+linear, this shift depends on the path, not on the initial occupation.
+Tree hops have ell=0; chord and loop-crossing paths can shift w. Formula
+(6) applies to the original mixed L/H links, low/low links, their adjoints
+and two-step paths. Onsite backtracks must retain the original chosen
+ambient degree. Replacing it by the reduced graph degree is a different H.
+
+Define H_red=J^dagger H J with electric term (2) and these exact hopping
+rules. The electric operator is self-adjoint on its diagonal square-sum
+domain. On a finite graph the remaining hoppings and onsite number terms
+are bounded, so the full self-adjoint operator and its domain are carried
+by J. Therefore, for any initial density operator and bounded observable,
+
+ J^dagger exp(-it H) J=exp(-it H_red),
+ Tr(rho exp(itH) O exp(-itH))
+   =Tr(rho_red exp(itH_red) O_red exp(-itH_red)).                  (7)
+
+This is an exact state/time dictionary for this rotor parent, without
+adiabatic elimination, a selected vacuum or an extra interaction. It is
+not a dictionary to the QWZ CAR source, the native C/J action or the E8 edge.
+
+4. Local observable versus charged field: the decisive type check
+---------------------------------------------------------------
+Let O have finite support in the original tensor/CAR algebra and commute
+with every local gauge transformation exp(i alpha G_x). Choose a finite
+region R containing all its matter sites and the endpoints of every link
+on which it acts. Sum Gauss generators over R. Internal edge fluxes cancel;
+the remaining boundary flux acts on links outside the support of O.
+Consequently O commutes with exp(i alpha sum_(x in R) N_x) for every alpha.
+At alpha=pi this is matter fermion parity on its support. Hence every such
+gauge-invariant finite-support observable is even.
+
+This proof applies to bounded gauge-invariant operators using unitaries;
+polynomial commutators are identities on the standard finite-support core.
+On a finite closed graph the physical sector already has fixed N=v and
+parity (-1)^v, giving the same compressed statement. The local argument is
+stronger: it does not rely only on a chosen total number sector.
+
+Bare c_x obeys [G_x,c_x]=-c_x and does not map the Gauss-physical sector to
+itself. A finite internal Wilson line has two gauge-charge endpoints. It
+can dress a transfer c_y^dagger U_path c_x, but cannot make a single odd
+fermion into an invariant finite-support observable. A boundary/infinite
+string or an explicitly enlarged charged-sector field algebra is different
+and must retain its support, boundary charges and dynamics.
+
+Thus an injective, parity-preserving, bounded-support map of an ungauged
+local CAR FIELD algebra into this gauge-invariant OBSERVABLE algebra is
+impossible: its odd generator would have to be both odd and even. This
+does not exclude charged fermions in gauge theory, nonlocal charged
+dressings, charged-sector intertwiners, an even-observable map or emergent
+fermionic sectors. In particular, gauging charge is not identical to
+opening the massive odd-sector gap in source-graded-locality-20260920.
+Those are different mechanisms and neither proves the other.
+
+The positive map should not be understated. For the unique tree path x->y,
+let W_xy be the oriented Wilson product. Then exactly
+
+       J^dagger (c_y^dagger W_xy c_x) J = c_y^dagger c_x.         (8)
+
+Onsite densities and L/H coherences are zero-path cases. Products give the
+number-preserving observable algebra on the fixed-particle sector. This is
+not a map of the entire even CAR algebra: e.g. an even pair creator still
+has nonzero U(1) charge. Support in the original model includes the path;
+the reduced endpoint notation does not make a long path into a local hop.
+
+5. The full E8 current dictionary fails the same direct charge match
+------------------------------------------------------------------
+Use exactly the conditional boundary dictionary of source-dynamics-selection-
+20260920, not a newly assigned gauge charge. It defines q(x)=sum_i x_i on
+the ten-dimensional vertex lattice and
+
+ n=(1,1,1,-1,-1,-1,-1,-1,-1,3),
+ a=n[1:8]=(1,1,1,-1,-1,-1,-1,-1),
+ T(r)=(r,-a.r/2,a.r/2),   F(r)=T(r)-(a.r/2)n.
+
+Since sum n=0, the charge of every transported E8 root is
+
+       q(F(r))=sum_(i=1)^8 r_i.                                (9)
+
+The 112 integral E8 roots are +/-e_i +/-e_j. Of these, 56 have charge0
+and 28 each have charge +/-2. The 128 half-integral roots have an even
+number k of minus signs and charge4-k, hence multiplicities
+binomial(8,k) for k=0,2,4,6,8. Combining the two lists gives
+
+ q       -4   -2    0    2    4
+ roots    1   56  126   56    1.                               (10)
+
+All eight Cartan generators are neutral. The charge-zero roots are the
+56 roots e_i-e_j and the70 half-roots with four plus and four minus signs.
+They form the familiar E7 root system in the hyperplane sum r_i=0. Thus
+the finite charge-centralizer is e7 plus u(1), of dimension126+8=134;
+the other114 step operators carry nonzero source charge. This is a finite
+Lie-algebra classification, not a claimed emergent E7 phase or reduction
+of physical spacetime dimensions.
+
+Suppose a proposed common-source map identifies this q with the rotor's
+gauged total matter charge and maps the currents to strictly finite-support
+Gauss-invariant observables while preserving charges. By sec.4 every image
+has charge0. The114 charged step operators would have to map to zero.
+No injective full-E8 current map with those premises therefore exists.
+This strengthens the odd-field test: even/bosonic statistics alone does
+not solve the charge mismatch. At most the charge-neutral sector remains
+eligible for this direct map; even that is not yet constructed as E7.
+
+This is conditional on the proposed charge identification. A different,
+explicitly derived global symmetry of the rotor could play q; charged
+sector intertwiners or boundary dressings are another target algebra.
+Those cases are not excluded. What is excluded is silently identifying
+the two U(1) roles while claiming to preserve all the same local fields.
+
+There is also a useful immediate corollary of the old Clock lift audit.
+Try a continuous site-fixed, rotor-independent, number-preserving action
+with c_Lx -> exp(it l_x)c_Lx, c_Hx -> exp(it h_x)c_Hx,
+U_uv -> exp(it k_uv)U_uv and E fixed. The three actual independent hopping
+monomials require, now over the reals rather than modulo6,
+
+ k_uv+l_u-l_v=0,   k_uv+l_u-h_v=0,   k_uv+h_u-l_v=0.
+
+On every nonisolated connected cell these imply h_x=l_x=q_x and
+k_uv=q_v-q_u. The implementing generator is
+
+ sum_edges k_uv E_uv-sum_x q_x N_x
+       =-sum_x q_x G_x-sum_x q_x I.
+
+It is scalar on the Gauss-physical space. The actual onsite2x2 block is
+diag(beta a^2 d_x,M), whose eigenvalues differ for all retained degrees
+0<=d_x<=6. Therefore a general onsite U(2) action in the stated class is
+already forced to be diagonal, and the same argument applies. There is
+no independent physical global onsite U(1) within this class to repair
+the charge map by relabeling. This corollary does not classify spatial
+permutations, flux-dependent dressings, nonlocal or emergent symmetries.
+
+6. A constructive converse: the compatible gauge charge is fixed
+----------------------------------------------------------------
+The failed direct identification does not require inventing arbitrary new
+charge weights. Within the already declared ten-channel boundary, one can
+classify every integral charge covector g that leaves the full transported
+E8 current sector neutral. This new gauge charge is distinct from the global
+source charge q=ones; the latter is not redefined.
+
+The existing lift can be written
+
+       F(r)=(r-(a.r)a/2, 0, -a.r),       a.a=8.
+
+Write g=(h,u,w), h in Z^8. Since the E8 roots span R^8, g.F(r)=0 for
+every root is equivalent to
+
+       h = (a/2)(a.h+2w).
+
+Thus h=v a, w=-3v. Because the entries of a are +/-1, integrality forces
+v to be an integer, while u remains an arbitrary integer. Exactly all
+compatible covectors are therefore
+
+       g=(v a,u,-3v),             u,v in Z.                       (11)
+
+Now additionally require that the existing desired reconstruction operator
+n remain gauge neutral. Its charge is g.n=-u-v, so u=-v. For a nonzero
+primitive charge vector (gcd of entries1), the answer is unique up to sign:
+
+       g=+/-K n
+        =+/-(1,1,1,-1,-1,-1,-1,-1,-1,-3).                        (12)
+
+This is a necessary compatible charge assignment selected by the specified
+E8 embedding, n-neutrality and primitive normalization. It is not a
+microscopic source derivation or an implementation in the old equal-charge
+L/H rotor. In particular it requires relative charges of both signs and a
+charge-three mode in the original local-field convention.
+
+There are three exact further checks (choose the + sign):
+
+       g^T K^-1 g = n^T K n = 0,
+       q^T K^-1 g = q.n = 0,
+       Y^T K^-1 g = Y.n = 0.                                    (13)
+
+Here Y is the existing boundary hypercharge covector. In the conditional
+1+1-dimensional Abelian edge convention these are the pure gauge and mixed
+q/g, Y/g anomaly coefficients. Their vanishing is necessary, not a complete
+gauged regulator, a3+1D anomaly calculation or a proof of dynamics. The
+signature of K is still9-1=8, so the chiral gravitational anomaly has not
+vanished; a full regulated realization must account for the bulk or other
+appropriate compensating degrees of freedom.
+
+For the two already identified competing null vertices,
+
+       g.n=0,                  g.z=2,   z=e9-e10.                (14)
+
+Thus a bare cos(n) is symmetry-allowed under this candidate U(1), whereas
+the bare competing cos(z) is not gauge invariant. A separately charged
+dressing could change the latter statement; none has been inserted here.
+Being allowed does not generate cos(n), determine its coefficient, make it
+relevant or pin its field. No gauge field is silently added to the source.
+
+In the previously selected W_aux basis, all E8 charges vanish and the two
+complementary basis vectors e_R=-e9, m=(a,0,3) have charges +1,-1. This
+shows exactly where such a gauge action would live. It does not imply that
+the original free energy is the selected factorized energy; that dynamical
+difference was proved in source-dynamics-selection-20260920.
+
+All entries of g are odd. Its pi rotation is therefore matter fermion
+parity on the original ten local fermion fields. This is compatible with
+an even local E8 sector, but does not supply the light odd charged fields
+or the native Clock action. It is a selection criterion for the missing
+source, not a declaration that the full physical theory has been built.
+
+7. Consequence for the source-selected interaction question
+----------------------------------------------------------
+The rotor has genuine interacting physical dynamics; this was already known.
+The exact reduced kernel and residual winding now specify what must be
+transported if it is used. They do not freely supply the previously chosen
+local generalized metric V_theta, ten chiral channels or the n transfer.
+In particular, a Coulomb density kernel is not already the local constant
+velocity matrix of that boundary. Screening or a controlled boundary limit
+could change this comparison, but has to be derived from the same parent.
+
+Likewise, all local gauge-invariant fields being even is not evidence that
+they form E8. Many even algebras are not E8, and the native Clock action,
+current products, charged extension and common physical time still require
+an explicit intertwiner. The old local Clock lift already fails this test.
+
+What remains useful is a precise positive reduced description with all
+physical sectors, and a sharper bridge requirement: construct the charged
+field extension and its actual native symmetry/time action, then derive the
+required kernel and coherent transfer. Merely detecting a quartic monomial
+or retaining a scalar determinant factor does not establish that bridge.
+No new parameter, parent, vacuum assumption or T1--T8 closure is introduced.
+
+Literature boundary
+-------------------
+Eliminating electric fields with Gauss constraints and obtaining extended
+density interactions is established lattice gauge theory, e.g. Martinez
+et al., arXiv:1605.04570 (2016), and Barata et al., arXiv:2507.16890v1
+(2025), equations (2)-(3). These sources are context, not proofs of this
+two-species TFPT candidate. The separate pure-gauge anomaly criterion is
+also standard; Seifnashri, arXiv:2601.14359v2 (2026), introductory eq.(1.1),
+uses equality of sums of squared left and right charges and separately
+requires gravitational cancellation in its balanced lattice examples.
+That model is not identified with our unbalanced E8 boundary.
+The exact operator identities for the TFPT candidate are above; the
+finite checker corroborates them without replacing the general arguments.

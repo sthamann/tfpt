@@ -1,0 +1,269 @@
+CHAIN SPATIAL RESPONSE GATE — 19 September 2026
+
+VERDICT: PASS_WITH_SCOPE_LIMIT
+
+The user's two all-m inequalities are valid for the specified native
+pure-root, pure-permutation Hamiltonian.  The endpoint estimate can be
+sharpened at finite m.  The same Hamiltonian also gives an exact finite-m,
+q-resolved response obstruction for the SOURCE COORDINATES.  It does not
+justify the stronger statement that every local nonzero-q observable loses
+all response.
+
+Scope and prerequisites
+-----------------------
+
+For m>=2, J>=0, kappa>0 and mu>0, take
+
+  H_m = J sum_e H_E,e + kappa sum_e L_e
+        + mu sum_{e=1}^{m-1} (1-x_e dot x_{e+1}),
+
+where x_alpha is the realification of the native Gaussian root alpha divided
+by two, so |x_alpha|=1.  There are m orthogonal root-source registers and m+1
+C4 matter registers.  H_E,e and the locking potential are diagonal in the
+source labels.  L_e is the already specified sixty-reflection average.  No
+Hamiltonian term is added or changed here.
+
+The exact source file is
+
+  experiments/theory-contracts/compiler-correlated-event-clock-20260919/source_channel.py
+
+with checked SHA-256
+
+  3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593.
+
+The relevant existing contracts remain PARTIAL:
+
+  compiler-overlap-phase-lock-20260919
+  compiler-correlated-event-clock-20260919
+
+No T1-T8 gate is promoted.  The proof is conditional on this finite model and
+does not derive its Hamiltonian, couplings, continuum limit or physical space.
+
+1. Native exact constants
+-------------------------
+
+The checker reconstructs all 240 native norm-squared-four Gaussian roots and
+their 60 mu4 rays in integer arithmetic.  For every root alpha, the sixty
+reflections have the same squared-distance histogram for x=alpha/2:
+
+  |x(r alpha)-x(alpha)|^2 : 0^15, 1^32, 2^12, 4^1.
+
+Thus exactly 15 reflections fix each root and
+
+  (1/60) sum_r |x(r alpha)-x(alpha)|^2 = 1                 (1)
+
+for every alpha.  The corresponding incoming column sum is also one.  These
+are the two exact constants needed below; they are not fitted large-m values.
+
+2. Trial state and total locking gradient
+-----------------------------------------
+
+Choose any root alpha, put every source in |alpha>, and put all m+1 matter
+registers in psi_alpha=alpha/2.  Every H_E,e annihilates this state.  In L_e,
+only the 15 source reflections fixing alpha survive the source expectation,
+and each then fixes psi_alpha on both adjacent matter registers.  Therefore
+
+  <L_e> = 1-15/60 = 3/4,
+  E_0 <= 3 kappa m/4.                                      (2)
+
+All terms are positive.  Since
+
+  1-x_e dot x_{e+1} = |x_{e+1}-x_e|^2/2,
+
+the exact variational consequence is
+
+  D := sum_{e=1}^{m-1}<|x_{e+1}-x_e|^2>
+     <= 3 kappa m/(2 mu).                                  (3)
+
+3. Endpoint assertion: verified and sharpened
+------------------------------------------------
+
+Cauchy along the open chain gives
+
+  |x_m-x_1|^2 <= (m-1) sum_e |x_{e+1}-x_e|^2.
+
+Combining this with (3),
+
+  <x_1 dot x_m>
+    = 1-<|x_m-x_1|^2>/2
+    >= 1-3 kappa m(m-1)/(4 mu).                            (4)
+
+At mu>=3 kappa m^2 this is
+
+  <x_1 dot x_m> >= 3/4+1/(4m) > 3/4.                      (5)
+
+Hence the user's >=3/4 claim is valid for every m>=2; replacing m-1 by m
+had merely discarded the displayed finite-size improvement.
+
+4. Collective moment and gap assertion: verified
+-------------------------------------------------
+
+Let M=sum_e x_e.  Pointwise,
+
+  M^2 = m^2-sum_{i<j}|x_i-x_j|^2.                         (6)
+
+For bond k, the summed Cauchy cost in all pair distances is exactly
+
+  c_k = sum_{i<=k<j}(j-i) = m k(m-k)/2.                   (7)
+
+Its maximum is m^3/8 for even m and m(m^2-1)/8 for odd m.  Equations (3),
+(6) and (7), at mu>=3 kappa m^2, therefore give
+
+  <M^2> >= 15m^2/16                    (even m),           (8a)
+  <M^2> >= (15m^2+1)/16                (odd m).            (8b)
+
+The Hamiltonian has exact global source inversion.  If its ground state is
+unique, it is an inversion eigenstate and <M_a>=0 for every one of the eight
+native root coordinates.
+
+Only L_e fails to commute with x_e.  For a local reflection r, the summed
+double commutator carries the block weight
+
+  |x(r alpha)-x(alpha)|^2 R_r tensor r tensor r.
+
+Equation (1), the equal column identity, and the block Schur test imply that
+the norm of the sixty-event average is at most one.  Consequently
+
+  sum_a <[M_a,[H_m,M_a]]> <= kappa m.                      (9)
+
+For a unique ground state with spectral gap Delta, its spectral resolution
+also gives
+
+  sum_a <[M_a,[H_m,M_a]]> >= 2 Delta sum_a Var(M_a)
+                                      = 2 Delta <M^2>.     (10)
+
+Using (8),
+
+  Delta <= 8 kappa/(15m)                  (even m),        (11a)
+  Delta <= 8 kappa m/(15m^2+1)            (odd m).         (11b)
+
+Thus the user's Delta<=8 kappa/(15m) is valid for all m>=2 under the stated
+uniqueness and symmetry prerequisites.  It is an upper bound generated by a
+collective q=0 fluctuation.  It neither proves a relativistic dispersion nor
+turns the eight internal root coordinates into eight spatial dimensions.
+
+5. General zero-sum source profile
+----------------------------------
+
+For real weights with sum_e w_e=0, define
+
+  O_w,a = sum_e w_e x_e^a,
+  W_k   = sum_{e=1}^k w_e.
+
+Summation by parts is exact:
+
+  O_w,a = -sum_{k=1}^{m-1} W_k (x_{k+1}^a-x_k^a).         (12)
+
+In the exactly locked subspace P_lock, all sources have the same root label,
+so
+
+  O_w,a P_lock = P_lock O_w,a = 0.                        (13)
+
+For the actual finite-m ground state, Cauchy and (3) quantify the leakage:
+
+  sum_a <O_w,a^2>
+    <= (sum_k W_k^2) 3 kappa m/(2 mu).                    (14)
+
+The energy-weighted spectral measure is also bounded without mu.  Define
+
+  S_aa(w,omega)
+    = sum_{n>0}|<n|O_w,a|0>|^2 delta(omega-E_n+E_0).
+
+The same local double-commutator calculation as in (9) gives the f-sum bound
+
+  sum_a int_0^infty omega S_aa(w,omega) d omega
+    = (1/2) sum_a <[O_w,a,[H_m,O_w,a]]>
+    <= (kappa/2) sum_e w_e^2.                             (15)
+
+The coefficient one is fixed by the native histogram in section 1.  The
+J terms and the mu lock do not enter (15) because they are source diagonal.
+
+6. Sharper q-specific finite-model criterion
+---------------------------------------------
+
+The natural normalized real open-chain profiles are
+
+  q_n = pi n/m,  n=1,...,m-1,
+  w_e^(n) = sqrt(2/m) cos[q_n(e-1/2)].                    (16)
+
+They have zero sum and unit norm.  Their discrete antiderivative obeys the
+exact identity
+
+  sum_{k=1}^{m-1} W_k^2 = 1/[4 sin^2(q_n/2)].             (17)
+
+Hence the total static source-coordinate response and its first moment obey
+
+  S_0(n) := sum_a int S_aa(n,omega)d omega
+            <= 3 kappa m/[8 mu sin^2(q_n/2)],             (18)
+
+  S_1(n) := sum_a int omega S_aa(n,omega)d omega
+            <= kappa/2.                                   (19)
+
+This yields a direct finite-model acceptance gate.  A claimed pole or
+frequency window of total residue Z at q_n must satisfy
+
+  Z <= 3 kappa m/[8 mu sin^2(q_n/2)].                     (20)
+
+If that window lies above omega_min>0, (19) additionally requires
+
+  Z <= kappa/(2 omega_min).                               (21)
+
+For a sequence with q_n bounded away from zero and mu>=3 kappa m^2,
+
+  S_0(n) <= 1/[8m sin^2(q_n/2)] -> 0.                     (22)
+
+Therefore no fixed-nonzero-q SOURCE-COORDINATE pole can retain nonzero
+residue in that joint limit, whether the pole is slow or fast.  A spectrally
+dark excitation is not excluded.
+
+The order of limits matters.  For fixed mode number n, q_n=pi n/m tends to
+zero, and the same scaling gives only
+
+  S_0(n) <= m/(2 pi^2 n^2) [1+o(1)].                     (23)
+
+This does not suppress the collective long-wave sector.  Suppressing that
+bound would require mu/(kappa m^3)->infinity.  Thus (22) must not be stated as
+an all-q thermodynamic theorem.
+
+7. Why the result is not an all-observable no-go
+------------------------------------------------
+
+In the strong-lock limiting state
+
+  Omega_m = (1/sqrt(240)) sum_alpha |alpha>^tensor m
+            tensor psi_alpha^tensor(m+1),
+
+tracing the orthogonal source labels removes every alpha!=beta coherence.
+For a fixed rank-one register projector Q, the exact native moments are
+
+  <Q_e>=1/4,
+  <Q_e Q_f>=1/10  (e!=f),
+  connected(Q_e,Q_f)=3/80.                                (24)
+
+For any normalized zero-sum register weights,
+
+  <|sum_e w_e(Q_e-1/4)|^2> = 1/4-1/10 = 3/20.            (25)
+
+Thus finite nonzero-q static fluctuation survives for this register
+observable even at exact lock.  Equation (25) does not prove that this weight
+is low-frequency.  It does prove that the source-coordinate obstruction
+(18) cannot be promoted to “every local observable has no nonzero-q weight.”
+
+Machine checks
+--------------
+
+spatial_response_check.py independently checked:
+
+  - the pinned source hash;
+  - all 240 roots and 60 mu4 rays in integer arithmetic;
+  - every one of the 14,400 root/reflection images;
+  - the uniform 0^15,1^32,2^12,4^1 distance histogram;
+  - exact row and column Schur sums equal to one;
+  - the Q moments 1/4, 1/10, 3/80 and 3/20;
+  - 2,016 pair-coefficient identities for 2<=m<=64;
+  - 2,016 open-chain q profiles as a NUMERIC replay, with maximum floating
+    error 4.55e-13 for the separately proved exact analytic identity (17).
+
+No full many-body spectrum was computed.  The exact all-m statements are the
+displayed algebraic derivations; the finite replay catches indexing,
+normalization and native-source errors.

@@ -1,0 +1,1424 @@
+export type DependencyClass =
+  | "EM closure"
+  | "Flavor / residue matrix"
+  | "Neutrino transport"
+  | "Scale grammar"
+  | "Inflation (R²)"
+  | "Strong-CP closure"
+  | "Horizon / determinant line"
+  | "Carrier / Higgs index"
+  | "Frontier interface";
+
+/**
+ * Status markers follow the TFPT ledger grades:
+ *   [E] exact identity · [E] Lie/lattice theorem · [E] numerical fixed point
+ *   [C] physical/conditional · [O] axiom/open.
+ */
+export type PredictionStatus =
+  | "Exact identity"
+  | "Lattice theorem"
+  | "Numerical fixed point"
+  | "Conditional"
+  | "Open / not forced";
+
+/**
+ * Whether the linked PDF behind the card exists. Defaults to "available".
+ * Every prediction now links to the source document that derives it.
+ */
+export type LinkStatus = "available" | "forthcoming" | "note" | "soon";
+
+export const LINK_STATUS_META: Record<
+  LinkStatus,
+  { label: string; tone: string; disabled: boolean }
+> = {
+  available: {
+    label: "Open the source document",
+    tone: "text-blue-300 hover:text-blue-200",
+    disabled: false,
+  },
+  note: {
+    label: "View standalone note",
+    tone: "text-emerald-300 hover:text-emerald-200",
+    disabled: false,
+  },
+  forthcoming: {
+    label: "Paper forthcoming",
+    tone: "text-amber-300/80 cursor-not-allowed",
+    disabled: true,
+  },
+  soon: {
+    label: "Coming soon",
+    tone: "text-slate-400 cursor-not-allowed",
+    disabled: true,
+  },
+};
+
+/**
+ * Standalone empirical confrontation of a prediction. These live in the `experiments/`
+ * tree of the repo as reproducible, surrogate-calibrated, preregistered search targets and
+ * downstream bridges — NOT load-bearing claims (the firewall: nothing is upgraded to [E] by
+ * data proximity). `repoPath` is the folder under the GitHub repo root.
+ */
+export interface PredictionExperiment {
+  /** What we actually did (method + data). */
+  summary: string;
+  /** The headline empirical finding (status-typed). */
+  result: string;
+  /** Empirical status of the confrontation. */
+  finding: "consistent" | "tension" | "null" | "data_limited" | "robust";
+  /** Repo-relative path to the standalone experiment (linked to GitHub). */
+  repoPath: string;
+}
+
+/**
+ * Compact, table-ready confrontation of a prediction against the current best
+ * measurement, plus the experiment that will make it a definitive hit or kill.
+ * Every value is repo-documented (v307 data watchdog `MEAS`/`BRIDGE`, v321 forward
+ * kill-test board `BOARD`, `freeze_file.csv`, and the standalone `experiments/`
+ * tree) — nothing here is freshly invented. Drives the falsification overview table.
+ */
+export interface PredictionConfrontation {
+  /** Short LaTeX of the derivation (the "how it is read off"). */
+  derivation: string;
+  /** TFPT predicted value, compact. */
+  tfptValue: string;
+  /** Current measured / experimental value (repo-documented best), or a structural note. */
+  measured: string;
+  /** Deviation TFPT vs measured (σ, %, "null", "structural", or "data-limited"). */
+  deviation: string;
+  /** Where the measured value comes from, with its release year. */
+  source: string;
+  /** The experiment + timeline that will make this a definitive hit or kill. */
+  decisive: string;
+}
+
+export interface Prediction {
+  id: string;
+  slug: string;
+  title: string;
+  shortTitle: string;
+  target: string;
+  targetLatex: string;
+  numericValue: string;
+  unit?: string;
+  status: PredictionStatus;
+  dependencyClass: DependencyClass;
+  killTest: string;
+  derivationFormulas: string[];
+  pdf: string;
+  linkStatus?: LinkStatus;
+  description: string;
+  category:
+    | "Coupling"
+    | "Flavor"
+    | "Neutrino"
+    | "QCD/EDM"
+    | "Cosmology"
+    | "Higgs"
+    | "Astrophysics";
+  /** Standalone empirical confrontation (experiments/ tree), if one exists. */
+  experiment?: PredictionExperiment;
+  /** Compact, table-ready confrontation against current data + the decisive future test. */
+  confrontation: PredictionConfrontation;
+}
+
+/**
+ * One dated round of the standalone empirical-audit program: a compact
+ * verdict + summary for the surface, with the full unabridged narrative kept
+ * in `detail` (shown on expand). Newest first.
+ */
+export interface AuditRound {
+  date: string;
+  title: string;
+  verdict:
+    | "clean null"
+    | "null / data-limited"
+    | "consistent"
+    | "data-limited"
+    | "watchdogs armed"
+    | "pattern candidate"
+    | "preregistered kill test"
+    | "forward band"
+    | "mixed";
+  summary: string;
+  detail: string;
+}
+
+const AUDIT_ROUNDS: AuditRound[] = [
+  {
+    date: "2026-08-04",
+    title: "News round — JUNO moves onto the prediction, n_s crosses the band edge, the g−2 bridge dissolves",
+    verdict: "mixed",
+    summary:
+      "A pure data-refresh round against the August-2026 literature, honest in both directions: JUNO's 207-day update lands at +0.49σ on sin²θ₁₂ (central value moving TOWARD the prediction) and ICARUS adds another sterile null — but the CMB-SPA combination puts n_s = 0.9679 ± 0.0033 ABOVE the 0.967 band edge for the first time (watch-flagged mild weakening), the DESI Σm_ν squeeze keeps pressing on the 0.0588 eV floor, and the g−2 seam-vertex bridge is DISSOLVED: its dated kill condition fired (WP25 + BMW lattice-HVP consensus, experiment − SM = 0.5σ).",
+    detail:
+      "The 2026-08-04 news round updates the scorecard against the current literature with no new analysis of our own — radical honesty in both directions. CONFIRMING SIDE: JUNO's Neutrino-2026 update (207 days) reports sin²θ₁₂ = 0.3036 ± 0.0064, the sharpest single measurement of the solar angle ever — +0.49σ from the frozen prediction 0.306747, with the central value moving toward it from the first 59.1-day run (0.3092); ICARUS's first standalone result (no ν_μ disappearance, new 3+1 exclusions at 90% CL) adds another null leg exactly as N_fam = 3 requires; the sequentially-valid DESI reanalysis localises the evolving-dark-energy signal almost entirely in one redshift bin (LRG2 — without it the evidence collapses, mildly pro-ΛCDM), continuing the dissolution trend the w = −1 watchdog predicts; two new independent birefringence analyses (Planck scale-dependence β = 0.30° ± 0.05° with the constant model Bayes-preferred; PR4 field-level 0.32° ± 0.12°) stay consistent with the 0.2424° seed; and the CMB-SPA H₀ = 67.19 ± 0.38 lands +0.11σ from the parameter-free budget value 67.15 (correlated legs, never a new independent hit). WEAKENING SIDE, equally prominent: the CMB-SPA combination (SPT-3G D1 + ACT + Planck) gives n_s = 0.9679 ± 0.0033 — the central value sits ABOVE the TFPT band edge 0.967 for the first time (edge at −0.27σ, preferred branch 0.9611 at −2.06σ); this is not yet the dated kill ('robustly ≥ 0.967') but is typed an honest mild weakening and watch-flagged; the DESI DR2 effective-mass posterior keeps the Σm_ν = 0.0588 eV floor under +3.1σ model-dependent pressure (unchanged, on record). AND ONE BRIDGE DIES: the muon g−2 seam-vertex bridge's dated kill condition (2026-07-02) has fired — WP25 (Phys. Rep. 2025) adopts the lattice HVP as the SM baseline and the BMW hybrid evaluation (Nature 2026) confirms it, experiment − SM = 0.5σ, so the converged Δa_μ lies outside 2.879×10⁻⁹ ± 0.5×10⁻⁹: the vertex identification is excluded in its present form, the bridge row is typed kill_channel, and the exact compiler number δ₂/(2π) plus the compiler core are untouched — the watchdog delivered exactly what it was built for. Operationally the round also froze the Vela GO-programme preregistration (p9_go_programmes_v1.yaml) ahead of the expected 2026/27 giant-glitch window and recorded the CHIME/FRB Catalog-2 + RepCat4 data availability in the FRB experiment folders.",
+  },
+  {
+    date: "2026-07-07",
+    title: "New beds — UHECR spectrum + primordial power spectrum",
+    verdict: "null / data-limited",
+    summary:
+      "The frozen log-comb frequency confronted with the two largest untouched ranges in nature: it is absent in the Auger UHECR spectrum (76k events, MC p = 0.49), and in the primordial power spectrum — the one bed where the log-clock is motivated — the predicted 1.7% amplitude sits a factor 1.7 below today's Planck bound: a zero-parameter dated decision point for CMB-S4.",
+    detail:
+      "The frozen log-comb frequency is confronted with the two largest untouched ranges in nature — (i) the ultra-high-energy cosmic-ray spectrum (Auger Open Data, 76k events, 0.1–144 EeV = 2.99 comb periods, the largest ln-E range anywhere; smooth model with knots frozen at the published spectral features): the kernel comb is absent (MC p = 0.49, off-kernel rank p = 0.77; injection power 97% at 5% amplitude, 23% at the predicted 1.7% — the full-statistics Auger/TA spectrum is the dated decider); and (ii) the primordial power spectrum — the one natural bed where the log-clock is MOTIVATED (inflation e-folds): the frozen ω = 2.583 sits inside the published Planck log-oscillation search band with no detection, and the predicted 1.7% amplitude lies a factor 1.7 below today's 95% bound (~2.9%) — a zero-parameter dated decision point for CMB-S4-class data (a future bound below 1.7% at the frozen frequency with no detection kills the primordial reading).",
+  },
+  {
+    date: "2026-07-07",
+    title: "Operator-structure round — from visible numbers to state mixing",
+    verdict: "clean null",
+    summary:
+      "Four probes shift the strategy from visible numbers to state mixing: the burst covariance IS block-diagonal (p = 0.006) but along the standard Faraday-vs-emission sectors; no forbidden region exists in polarization state space; the energy dynamics are memoryless (rank 0); and within-session sequences are time-reversible — an arrow-free cascade that bounds every directed-recovery reading.",
+    detail:
+      "Four probes implement the strategy shift from visible numbers to state mixing — the burst-observable covariance IS strongly block-diagonal (p = 0.006 against a spectrum-preserving null) but the found blocks are exactly the standard Faraday-vs-emission sectors (default astro); no forbidden region exists in the polarization state space beyond the marginals; the delay-embedded energy dynamics have effective rank 0 (memoryless, no three-mode manifold); and within-session energy sequences are TIME-REVERSIBLE at catalog statistics (reversal-null p = 1.0) — an arrow-free cascade that bounds every directed-recovery reading of burst trains and matches the threshold-amplifier contract's prediction.",
+  },
+  {
+    date: "2026-07-07",
+    title: "FRB ontology round — what FRBs could BE in TFPT",
+    verdict: "null / data-limited",
+    summary:
+      "Five preregistered axes one level above the number tests: the first named-transduction and named-clock tests come back null or data-limited, parity-without-rate holds its three predictions (but standard magnetospheric physics predicts the same), the episode-level ladder is null across 8 sources, and the Z₂ leaf-class reading fails its sharpest morphological test (BIC prefers 3 modes, not 2). A theory contract shows the 20+ intensity/timing nulls are exactly what a uniform threshold-amplifier ontology predicts.",
+    detail:
+      "Five preregistered axes test what FRBs could BE in TFPT, one level above the number tests — (i) the first FRB axis with a NAMED transduction (bursts as probe pulses through the relaxing magneto-ionic medium; DM/RM are known linear line integrals) finds the nightly medium state of FRB 20240114A does not require a second relaxation rate (AIC prefers single memories), and the intra-session follow-up (two sources, FRB 20240114A + FRB 20201124A) finds the strong within-session RM variance carries NO temporal memory at all against an injection-validated gate — the burst-sampled scatter is per-burst/magnetospheric, not a relaxing medium state, so the two-rate ratio test at ln3/ln(3/2) = 2.7095 has nothing to act on at burst cadence (data-limited; the reading survives only in the untested hours-to-days band or via a tracked rotation-measure injection event); (ii) the first FRB comb test with a NAMED clock (τ_mod = cumulative |ΔRM|, the S14 medium-state clock) is null at detectable amplitude (3 gate-passing sessions, Fisher p = 0.81); (iii) the parity-without-rate diagnostic holds all three predictions — a nominal m=4 PA excess is typed as distribution misfit by the dated specificity battery (odd-harmonic placebos fire equally, a 3-component smooth null absorbs it at p = 0.64), class switches are rate-free (tooth p = 1.0), and the dominant PA class persists across 45/45 sessions — consistency, standard magnetospheric physics predicts the same; (iv) the episode-level transfer ladder (quiescence gaps + episode-integrated energies on the teeth, the last untested aggregation level) is null across 8 sources (gap Bonferroni p = 1.0); (v) the Z₂ leaf-class reading of the repeater/one-off dichotomy fails its sharpest morphological test on CHIME Cat1 — morphology does predict repetition (CV-AUC 0.833, replicating Pleunis+2021, default astro/selection), but BIC prefers three morphological modes, not two. A transduction-invisibility theory contract (5/5 machine checks) shows a coherent threshold amplifier with uniform character coupling produces burst trains exactly and statistically blind to the transfer spectrum — the 20+ FRB intensity/timing nulls are what that ontology predicts, and an unequal-weight coupling makes the same functional discriminating.",
+  },
+  {
+    date: "2026-07-06",
+    title: "Geometry/topology scan — six untested FRB axes + a forward band",
+    verdict: "forward band",
+    summary:
+      "Six structurally untested FRB axes (the forced 2D ladder coupling, circular-polarization handedness, size-space DSI, the μ₄ phase–time helix, two operator proxies) are all null after placebo batteries — and the shared-seed block gains a dated forward prediction: β = 0.2413° ± 0.0018° for LiteBIRD / Simons Observatory to test blind.",
+    detail:
+      "Six structurally untested FRB axes preregistered/addended and run on committed catalogs — the FORCED 2D ladder coupling (a kernel rung multiplies time by (3/2)^k AND energy by (2/3)^k; all prior tests were marginals) is cleanly null in both sources under an exact energy-shuffle null; the circular-polarization HANDEDNESS alternation (the only Z₂-deck-visible polarization observable — PA is mod π and |V|/I is even, so all earlier polarization tests were deck-blind by construction) is null over 3454 signed-V burst pairs; and the size-space DSI on the burst-energy distribution is null in both sources after a lognormal/KDE/GMM population-null battery (the famous energy bimodality absorbed, the pulsar PG.01 result replicated in the FRB energy domain; a first-pass λ=8 artefact from a re-seeding GMM sampler was caught by split-half and free-λ probes and dissolved — on record). The μ₄ phase–time helix (coupled polarization–time phase at the frozen ω) is also null once the drift-robust circular-shift null is applied — the naive permutation 'signal' is slow position-angle drift, present at any ω. The new non-tooth operator proxies are also null: KC.05 finds no C4-specific μ₄ block protection in PA-class transitions, and KC.06 finds the multivariate polarization lag spectrum is not unusually close to {1,64/729,1/729}. And the shared-seed block now carries a dated FORWARD band: Cabibbo + θ13 + Ω_b predict β = 0.2413 ± 0.0018° (β never entered the fit; ACT DR6 sits at z = −0.36) — LiteBIRD / Simons Observatory will test this band blind.",
+  },
+  {
+    date: "2026-07-06",
+    title: "Operator-symmetry round — the seam clock as an operator, on real hardware",
+    verdict: "consistent",
+    summary:
+      "The seam clock probed as an operator symmetry, not only a number: the μ₄ block-diagonality statistic runs on a REAL measured boundary operator (the KIT4 open EIT archive — the homogeneous tank realises it at the instrument floor, S_off = 7.6×10⁻⁵), the shared-seed reading passes a decoder test (one latent u fits four channels; 0/2000 placebo decoders better), and a comb-phase coherence test bounds the persistent boundary-clock reading on FRB repeaters.",
+    detail:
+      "The seam clock is now probed as an OPERATOR SYMMETRY, not only as a number — (i) the QGEO S_off leakage statistic (μ₄ character block-diagonality of the boundary energy form, the operator form of the seam premise) is certified on a reconstruction pipeline with noisy eigenpairs (theory contract: exact leakage < 1e-30, μ₄ clock-angle zero set read off the operator, instrument requirement ~1e-3 relative spectral precision) and then run on a REAL measured boundary operator: the KIT4 open EIT archive (38 tank measurements, 16 electrodes) — the homogeneous tank realises a μ₄-block-diagonal ND map at the instrument floor (S_off = 7.6e-5), all 28 anisotropic targets leak with the generic isotropic signature, and the decisive μ₄-positive 4-inclusion configuration is preregistered as a future measurement any KIT4-class lab can run; (ii) the shared-seed reading is upgraded to a DECODER test: one latent u fits β, Ω_b, reactor-θ13 and the Cabibbo angle simultaneously (χ² = 4.10, dof 3), AIC prefers the 1-parameter shared decoder over the saturated model, 0/14 single-swap neighbour link-decoders beat it and it sits at the 0.0th percentile of 2000 equal-complexity random placebo decoders — the cross-channel ratios are architecture-specific (consistency, not proof); (iii) a per-source comb-PHASE coherence test (RC.04) bounds the persistent boundary-clock reading on FRB repeater sessions (null at ε ≳ 0.15–0.3).",
+  },
+  {
+    date: "2026-07-06",
+    title: "Möbius round — the Z₂ / double-cover readings of the recovery comb",
+    verdict: "clean null",
+    summary:
+      "The three derived antiperiodic frequencies run through ALL in-hand dynamic channels (quakes, magnetars, FRBs, GRBs, pulsar glitches, crust cooling, GW echoes): clean null everywhere testable; two nominal excesses are placebo-typed artefacts on record; the antiperiodic fundamental stays range-blind in all current data.",
+    detail:
+      "The Z2/double-cover READINGS of the recovery comb are now tested — if the comb carries the Z2 sheet parity per period (antiperiodic, periodic only on the double cover), its Fourier power at the kernel ω = 2.583 is exactly zero, so every kernel null was silent about it; the three derived omegas (half-period clock (3/2)³ at ω = 5.17, first antiperiodic harmonic (3/2)⁴ at ω = 3.87, antiperiodic fundamental (3/2)¹² at ω = 1.29) were run through ALL in-hand dynamic channels: the USGS aftershock battery, magnetar, FAST/GBT + CHIME FRB tails, 22 GRB afterglows, the ZTF nuclear transient, the pulsar-glitch legs (2024 Vela giant glitch and the PuMA/IAR daily ToA residuals of three giant glitches), the 9 gate-passing FRB repeater burst-time sessions, crust cooling, and the FRB 20220912A microshot forest — where the half-period reading is the first to pass the per-λ range gate (3.2 periods) and is null. In the GW ringdown-echo channel the antiperiodic reading was already covered natively as the Δφ = π per-bounce phase × (2/3)³ semantics of the Stage-1c signature battery (NO_VARIANT_ECHO on all 10 events). Verdict: clean NULL everywhere testable (well-powered in the quake, GRB, PG.08-J1740 and repeater-session stacks; quake Bonferroni global p = 0.94 over 11 gated ratios). Two nominal excesses are placebo-typed artefacts, on record: the J1740−3015 (3/2)⁴ raw p = 0.0018 is a broad non-specific ω ≈ 3.6–4.0 bump (periodogram peak at 3.73, placebos equally significant), and the repeater-cascade (3/2)¹² Fisher p = 4e-4 is sub-gate (1.5–2.4 < 2.8 periods; placebo λ 60–300 equally extreme). The antiperiodic fundamental remains range-blind in all current data (needs 13.6 e-folds of ln t; the widest curve has 13.1) — an honest data-limited leg. The first real magnetar run is also typed: 6 Swift-XRT outburst curves, stacked kernel ω = 2.58 not special (p = 0.99), a clean surface-firewalled null.",
+  },
+  {
+    date: "2026-07-03",
+    title: "Open-question round — neutron lifetime, X17, R_D(*), S8, lithium-7, dipole, QPE, real quantum hardware",
+    verdict: "watchdogs armed",
+    summary:
+      "A parameter-free neutron lifetime from the frozen Cabibbo angle lands on the BOTTLE side of the beam–bottle puzzle (τ_n = 877.53 ± 0.71 s, −0.38σ from UCNτ); X17 and the 3.8σ R_D(*) excess become dated dissolution watchdogs; the flat budget takes the CMB side of the S8 tension; lithium-7 and the cosmic number-count dipole are typed honestly; a QPE recurrence search returns a quantified null; and the recovery-kernel circuit ran on real IBM hardware for the first time.",
+    detail:
+      "The fixed-point watchdog gains three dissolution axes — axis E fixes a PARAMETER-FREE neutron lifetime from the frozen Cabibbo angle (exact CKM unitarity ⇒ V_ud = 0.97450; with the Czarnecki–Marciano–Sirlin master formula and measured g_A: τ_n = 877.53 ± 0.71 s — on the BOTTLE side of the ~4σ beam–bottle puzzle at −0.38σ from UCNτ, −4.98σ from the proton-counting beam average, with the n→dark-decay exit forbidden by the same no-slot counting as the sterile axis), axis F watches X17 (MEG II null vs PADME's 1.8–2.0σ global excess; Run IV decides), axis G watches the standing R_D(*) excess (HFLAV 3.8σ — the sharpest dissolution target, Belle II/LHCb Run 3 decide). The parameter-free flat budget now also takes a side in the SECOND structure tension: CAMB on the budget geometry gives S8 = 0.824 — CMB/KiDS-Legacy side (+0.49σ), against DES Y6 (+2.95σ). Two more open questions are typed honestly: the cosmological lithium-7 problem under the frozen η (D/H −0.3σ and Yp +0.5σ anchor η₁₀ = 6.04; ⁷Li overpredicted ×3.36 — the UNIVERSAL 20-year problem, not TFPT-specific; TFPT's dated statement: the resolution must be stellar, η cannot move), and the cosmic number-count dipole anomaly (CatWISE ×2.1 kinematic excess, claimed 4.4–5.7σ vs clustering/mask reassessments at 3.3–3.6σ — a dissolution watchdog on the FLRW foundation). A preregistered QPE recurrence search (eRO-QPE2 + GSN 069, the unexplained post-2019 SMBH eruption class) returns a quantified-sensitivity null: the 2/3 kernel tooth lies >17× the observed ratio spread away from the QPE clock. And the recovery-kernel quantum circuit ran on REAL hardware for the first time (ibm_marrakesh, 16384 shots): one-step survivals 2/3 and 1/3 reproduced at −4.2%/+8.9%, while the blind 12-block bend decode is floor/T1-biased (1.96 vs 2.71) — hardware tier data-limited.",
+  },
+  {
+    date: "2026-07-03",
+    title: "Zero-dial flat budget — the whole ΛCDM budget with no fitted parameter",
+    verdict: "pattern candidate",
+    summary:
+      "The flat ΛCDM budget follows from frozen atoms plus flatness with no fitted cosmological parameter: H₀ = 67.15 km/s/Mpc (−0.39σ Planck — the parameter-free Planck side of the Hubble tension), Ω_m = 0.3133, t₀ = 13.86 Gyr, with the honest stresses recorded. Typed a pattern-candidate composite of already-counted legs, never an independent hit.",
+    detail:
+      "A zero-dial flat-budget closure — {Ω_b = φ₀(1−1/4π) [frozen], Ω_c = (2/7)(1−1/4π) [a numerology-flagged post-hoc candidate, an ALTERNATIVE reading to the axion-spine DM branch], ρ_Λ/M̄⁴ = (3/4π²)e^(−2α⁻¹) [frozen], Σm_ν = 0.0588 eV} plus flatness determines the whole flat ΛCDM budget with no fitted cosmological parameter: H0 = 67.15 km/s/Mpc (−0.39σ Planck 2018, −5.67σ SH0ES 2022 — the parameter-free Planck side of the Hubble tension), Ω_m = 0.3133 (−0.27σ), t0 = 13.86 Gyr; honest stresses recorded (ω_b −2.02σ CMB-side while BBN-only sits −0.73σ; ω_c −1.19σ; DESI-DR2 H0 −2.16σ — one correlated low-h direction). It is a composite of already-counted φ₀-seed and α-engine legs plus one flagged candidate, typed pattern-candidate, never an independent hit.",
+  },
+  {
+    date: "2026 (anomaly round)",
+    title: "Watchdogs hardened — steriles, DESI w(z), g−2, HFQPO, the first lab comb bound",
+    verdict: "watchdogs armed",
+    summary:
+      "N_fam = 3 exactly is now a sterile-neutrino dissolution prediction of record (MicroBooNE two-beam excludes the single-sterile reading at 95% CL); the DESI w(z) preference is dissolving through 2026 exactly as w = −1 requires; the g−2 bridge carries a dated kill condition; an HFQPO geometric-ladder discriminator is preregistered; the first laboratory comb bound exists (LSCO Planckian master curve); and the DSI false-positive control bed stands at 0/5.",
+    detail:
+      "The 2026 anomaly round hardens the watchdogs: a sterile-neutrino dissolution watchdog is now a prediction of record (N_fam = 3 exactly — MicroBooNE two-beam, Nature 648 (2025), excludes the single-sterile LSND/MiniBooNE reading at 95% CL; SBND+ICARUS decide this decade), the DESI w(z) preference is dissolving through 2026 exactly as w = −1 requires (DES-Dovekie recalibration cuts 4.2→3.2σ, a calibration error in DES-SN5YR; the Bayesian reanalysis eliminates the DESI+CMB-only preference, ln B = −0.57), the g−2 bridge carries a dated kill condition (a lattice-side HVP consensus kills it — +3.9σ today, WP2025 lattice pull now 3.92σ — while a KLOE-side dispersive consensus restores <1σ), an HFQPO geometric-ladder discriminator is designed (the 3:2 cluster is real but cheap: anchored selection null 18.5%, J1859+226 breaks universality at 9.2σ; the decisive ×1.5 tooth search was never published and is preregistered for the RXTE archive), the first laboratory comb bound now exists on the Planckian σ₁(ω/T) master curve (LSCO x=0.24: ω = 2.583 not special, underpowered at the predicted 1.7% ripple), and the DSI false-positive control bed stands at 0/5 including the Efimov ladder (8.9σ separated from the kernel) and glass/MCT controls (no universal 2.7095 bend).",
+  },
+  {
+    date: "2026 (hardening round)",
+    title: "Five workstreams — watchdog, controls, past the range wall, GW limits, quantum circuit",
+    verdict: "data-limited",
+    summary:
+      "An exact-fixed-point watchdog (the DESI DR2 pincer puts the joint TFPT point at ~3.7σ, below the 5σ kill; the α–Λ drift lock excludes 'TFPT + real w(z) dynamics' by ~10^5.7), a DSI false-positive control (0/4), the first channels past the 2.8-period range wall (repeater cascades to 4.8 periods, the PG.08 pulsar residual comb), calibrated absolute GW-echo limits (~7× above the kernel ceiling), and a quantum-circuit realisation of the recovery kernel.",
+    detail:
+      "The previous hardening round added five workstreams: an exact-fixed-point watchdog (the DESI DR2 (w, Σm_ν) pincer puts the joint TFPT point at ~3.7σ — model-dependent, below the 5σ kill — while the α–Λ drift lock excludes 'TFPT + real w(z) dynamics' by ~10^5.7 via optical-clock bounds), a DSI false-positive control (the frozen ω = 2.583 comb detector fired on 0/4 real non-TFPT Omori/DSI cascades — the existing comb nulls are specific, not promiscuous), a repeater burst-time cascade search (first channel past the 2.8-period range wall, 9 sessions up to 4.8 periods: null at detectable amplitude, data-limited at the predicted 1.7%), the PG.08 PuMA/IAR daily ToA-residual comb (first real residual recovery past the gate, ω not special, data-limited by the amplitude wall), calibrated absolute GW echo limits (injection-campaign ε₉₀ ≈ 0.63–1.9 × A220 in the best events, ~7× above the (2/3)⁶ kernel ceiling; the 16 kHz re-run confirms the point-test null is not a lag-resolution artefact), and a quantum-circuit realisation of the recovery kernel (bend 2.7095 exact on the simulator; current FakeBrisbane run stays consistent via per-mode decode from 256 shots, while the strict 3/3-seed combined free-ratio fit is weaker and has no `min_shots_identifiable`).",
+  },
+  {
+    date: "GW channel",
+    title: "Ringdown echoes — the 10 loudest events on real strain, every reading tested",
+    verdict: "clean null",
+    summary:
+      "The GW ringdown-echo channel covers the 10 loudest ringdowns on real GWOSC strain (incl. GW250114, network SNR 78.6): a stacked search over 23 detector streams, a 12-variant signature battery, a systematic-hardened point test at the theory-fixed delay, and a first Bekenstein–Mukhanov spectral-comb search — all null; the (2/3)⁶ upper bound is consistent and robust.",
+    detail:
+      "The GW ringdown-echo channel now covers the 10 loudest ringdowns on real GWOSC strain (incl. GW250114, network SNR 78.6, O4b), all templates redshift-corrected to detector-frame frequencies, with a stacked search over 23 detector streams (p = 0.26, kernel-consistent 0/23), a 12-variant signature battery (energy vs amplitude semantics, μ₄ per-bounce phases as the boundary-birefringence analogue, Planckian lag window, off-source event-gated PSD), a systematic-hardened point test at the theory-fixed C = 3/8 delay (spin scan, skip-first-echo, joint QNM+train fit repairing the short-lag self-absorption), and a first area-quantum Bekenstein–Mukhanov spectral-comb search (ΔA = 4 ln3 line spacing): all null — the (2/3)⁶ upper bound is consistent and robust against every tested signature reading and systematic.",
+  },
+  {
+    date: "Structural",
+    title: "The Galois-CP lock + the cyclotomic capstone",
+    verdict: "preregistered kill test",
+    summary:
+      "δ_PMNS = 4π/3 = 240° is Galois-locked to δ_CKM (both powers of one hexagonal unit; band 240° ± ~9°, +1.08σ vs NuFIT 6.0 today) — a preregistered kill test for DUNE / Hyper-K / JUNO. The cyclotomic capstone makes the whole SM structural sector ℚ(ζ₃₀), leaving zero dimensionless free parameters: {a, π, v_geo} is the complete input.",
+    detail:
+      "The latest structural round (v231/v233) ties the leptonic CP phase δ_PMNS = 4π/3 = 240° to δ_CKM via the Z2 sheet (δ_PMNS = δ_CKM,lead + π); confronted with the NuFIT 6.0 normal-ordering best fit (212°⁺²⁶₋₄₁) it sits at +1.08σ (consistent, weak power until DUNE/Hyper-K) and shares one independence group with δ_CKM. This is now a pre-registered kill test (v320, sharpened v322): both CP phases are powers of one hexagonal unit ρ = ζ₆, the selected node is the deck order |μ₄| (δ_PMNS = 4·δ_CKM,lead), the prediction band is 240° ± ~9° (the sub-leading bounded by the quark 3λ²), and the nearest wrong hexagonal node sits 60° away — so a δ_PMNS robustly away from 240° at DUNE/Hyper-K/JUNO would falsify the Galois-CP lock. The cyclotomic capstone (v313–v318) makes the whole SM structural sector ℚ(ζ₃₀) with Galois group μ₄ × ℤ₂ (degree 8 = rank E₈), leaving zero dimensionless free parameters — {a, π, v_geo} is the complete input.",
+  },
+];
+
+/**
+ * Summary of the standalone empirical-audit program under `experiments/`.
+ * Mirror of `experiments/evidence_scorecard.json` (regenerated by
+ * `experiments/build_evidence_scorecard.py`). Kept here so the website can surface the audit
+ * without coupling the static build to the experiments tree.
+ */
+export const EXPERIMENTS_AUDIT = {
+  rows: 121,
+  consistent: 47,
+  tension: 9,
+  null: 27,
+  dataLimited: 33,
+  parked: 4,
+  killChannel: 1,
+  repoPath: "experiments",
+  readmePath: "experiments/README.md",
+  scorecardPath: "experiments/evidence_scorecard.json",
+  headline:
+    "No discriminating empirical discovery — but a typed, reproducible, falsifiable test matrix.",
+  domains: [
+    "FRB",
+    "CMB",
+    "neutrino",
+    "GW",
+    "EHT",
+    "X-ray (QPE/HFQPO)",
+    "cosmic-ray",
+    "lab (g−2 / kaon / axion)",
+    "dark-energy",
+    "condensed-matter",
+    "recovery-channel",
+    "BH-cosmology",
+  ],
+  rounds: AUDIT_ROUNDS,
+  countingNote:
+    "Correlated φ₀-seed legs, the cp_mu6_phase pair, alternative-group readings (e.g. CCBH vs DESI on w) and internal-consistency checks are NOT counted as independent external hits.",
+} as const;
+
+export const STATUS_BADGE: Record<PredictionStatus, { color: string; bg: string }> = {
+  "Exact identity": { color: "text-blue-200", bg: "bg-blue-500/15 ring-blue-400/30" },
+  "Lattice theorem": {
+    color: "text-cyan-200",
+    bg: "bg-cyan-500/15 ring-cyan-400/30",
+  },
+  "Numerical fixed point": {
+    color: "text-emerald-200",
+    bg: "bg-emerald-500/15 ring-emerald-400/30",
+  },
+  Conditional: {
+    color: "text-amber-200",
+    bg: "bg-amber-500/15 ring-amber-400/30",
+  },
+  "Open / not forced": {
+    color: "text-rose-200",
+    bg: "bg-rose-500/15 ring-rose-400/30",
+  },
+};
+
+export const CATEGORY_META: Record<
+  Prediction["category"],
+  { label: string; color: string }
+> = {
+  Coupling: { label: "Couplings & EM", color: "from-blue-500/20 to-cyan-500/20" },
+  Flavor: { label: "Flavor / CKM", color: "from-emerald-500/20 to-teal-500/20" },
+  Neutrino: { label: "Neutrino sector", color: "from-violet-500/20 to-purple-500/20" },
+  "QCD/EDM": { label: "QCD / EDM", color: "from-orange-500/20 to-amber-500/20" },
+  Cosmology: { label: "Cosmology / inflation", color: "from-fuchsia-500/20 to-pink-500/20" },
+  Higgs: { label: "Higgs sector", color: "from-rose-500/20 to-red-500/20" },
+  Astrophysics: {
+    label: "Astrophysics / horizon",
+    color: "from-indigo-500/20 to-sky-500/20",
+  },
+};
+
+export const predictions: Prediction[] = [
+  {
+    id: "alpha-em",
+    slug: "alpha-em-closure",
+    title: "Fine-Structure Constant — Electromagnetic Fixed Point",
+    shortTitle: "α⁻¹(0)",
+    target: "α⁻¹(0) = 137.035 999 216 8…",
+    targetLatex: "\\alpha^{-1}(0) = 137.035\\,999\\,216\\,8\\ldots",
+    numericValue: "137.035999216",
+    status: "Numerical fixed point",
+    dependencyClass: "EM closure",
+    killTest:
+      "Failure of the unique-root equation F_U(1)(α) = 0, a second admissible root, or a stable mismatch outside the stated interface uncertainty.",
+    derivationFormulas: [
+      "F_{U(1)}(\\alpha) = \\alpha^3 - 2c_3^3\\alpha^2 - \\tfrac{4}{5}c_3^6\\Big(\\textstyle\\sum_{f,j}L_{f,j} + N_\\Phi\\Big)\\log\\tfrac{1}{\\varphi_{\\mathrm{seam}}(\\alpha)} = 0",
+      "\\textstyle\\sum_{f,j}L_{f,j} + N_\\Phi = 41 = 10\\,b_1",
+      "\\alpha^{-1} = 137.035\\,999\\,216\\,8\\ldots",
+    ],
+    pdf: "/papers/tfpt_1_architecture_e8.pdf",
+    description:
+      "The fine-structure constant is the unique positive root of the cubic closure built from c₃ and the abelian coefficient 41 = 10 b₁. Existence and uniqueness are proved; the value lands 2.9×10⁻¹⁰ (1.9σ) from CODATA-2022. Typed [E]: the coefficients are exact identities, the Ward-origin reading of the equation is conditional [C] (ledger EM.FP.01).",
+    category: "Coupling",
+    confrontation: {
+      derivation: "F_{U(1)}(\\alpha)=0,\\ \\textstyle\\sum L + N_\\Phi = 41 = 10\\,b_1",
+      tfptValue: "137.035 999 217",
+      measured: "137.035 999 177 ± 2.1×10⁻⁸",
+      deviation: "+1.9σ",
+      source: "CODATA 2022",
+      decisive: "CODATA / atom-recoil refinement (ongoing)",
+    },
+  },
+  {
+    id: "lambda-c",
+    slug: "cabibbo-angle",
+    title: "Cabibbo Angle — Retained Seed",
+    shortTitle: "λ_C",
+    target: "λ_C = 0.22438",
+    targetLatex: "\\lambda_C = \\sqrt{\\varphi_0(1-\\varphi_0)} = 0.22438",
+    numericValue: "0.22438",
+    status: "Exact identity",
+    dependencyClass: "Flavor / residue matrix",
+    killTest: "Stable CKM global-fit mismatch after the declared comparison map.",
+    derivationFormulas: [
+      "\\varphi_0 = \\frac{1}{6\\pi} + \\frac{3}{256\\pi^4}",
+      "\\lambda_C = \\sqrt{\\varphi_0(1-\\varphi_0)} = 0.22438",
+    ],
+    pdf: "/papers/tfpt_2_standard_model.pdf",
+    description:
+      "The Cabibbo angle is the carrier base of the φ₀-ladder — the same seed that fixes the reactor angle and the birefringence amplitude.",
+    category: "Flavor",
+    confrontation: {
+      derivation: "\\lambda_C = \\sqrt{\\varphi_0(1-\\varphi_0)}",
+      tfptValue: "0.22438",
+      measured: "0.2245 ± 0.0005",
+      deviation: "−0.24σ",
+      source: "PDG 2024 (|V_us|)",
+      decisive: "CKM global fit (ongoing)",
+    },
+  },
+  {
+    id: "flavor-invariants",
+    slug: "flavor-invariants",
+    title: "Flavor Residue Invariants",
+    shortTitle: "det R, χ_R",
+    target: "det R = 8, minors (2,3,5), χ_R = t³ − 9t² + 10t − 8",
+    targetLatex: "\\det R = 8,\\ \\ \\mathrm{minors}=(2,3,5),\\ \\ \\chi_R = t^3 - 9t^2 + 10t - 8",
+    numericValue: "8",
+    status: "Exact identity",
+    dependencyClass: "Flavor / residue matrix",
+    killTest:
+      "A future CKM/PMNS global fit that cannot be carried by a residue matrix with det 8, principal minors (2,3,5) and this characteristic polynomial.",
+    derivationFormulas: [
+      "R = \\begin{pmatrix} 1 & 3 & 0 \\\\ 1 & 5 & 2 \\\\ 2 & 5 & 3 \\end{pmatrix}",
+      "\\det R = 8 = h(D_5), \\quad \\|R\\|_F^2 = 78 = \\dim E_6",
+      "\\chi_R(t) = t^3 - 9t^2 + 10t - 8",
+    ],
+    pdf: "/papers/tfpt_2_standard_model.pdf",
+    description:
+      "The flavor matrix carries only compiler numbers: determinant h(D₅) = 8, principal 2-minors (2,3,5) with product h(E₈) = 30, trace N_fam². Any future global fit must satisfy these.",
+    category: "Flavor",
+    confrontation: {
+      derivation: "\\det R = h(D_5) = 8,\\ \\mathrm{minors}=(2,3,5)",
+      tfptValue: "det R = 8, minors (2,3,5)",
+      measured: "carried by current CKM/PMNS global fits",
+      deviation: "structural (no fit avoids it)",
+      source: "CKM/PMNS global fits (PDG / NuFIT 2024)",
+      decisive: "future CKM/PMNS global fit",
+    },
+  },
+  {
+    id: "koide",
+    slug: "koide-relation",
+    title: "Koide Relation — Near 2/3",
+    shortTitle: "Q_Koide",
+    target: "Q = 0.664 (target 2/3 = |ℤ₂|/N_fam)",
+    targetLatex: "Q = 0.664 \\;\\to\\; Q_\\star = \\tfrac{2}{3} = \\tfrac{|\\mathbb{Z}_2|}{N_{\\mathrm{fam}}}",
+    numericValue: "0.664",
+    status: "Conditional",
+    dependencyClass: "Frontier interface",
+    killTest:
+      "A source→pole transfer that lands far from 2/3, or a demonstration that the lepton φ₀-ladder is incompatible with the measured charged-lepton masses.",
+    derivationFormulas: [
+      "Q_{\\mathrm{TFPT}} = \\frac{\\sum_\\ell \\hat m_\\ell}{(\\sum_\\ell \\sqrt{\\hat m_\\ell})^2} = 0.66446\\ldots",
+      "Q_\\star = \\frac{|\\mathbb{Z}_2|}{N_{\\mathrm{fam}}} = \\frac{2}{3}",
+    ],
+    pdf: "/papers/tfpt_4_frontier.pdf",
+    description:
+      "The source-level Koide quotient is 0.664, 0.33% below the democratic compiler target 2/3. Near-miss, not an exact derivation — the source→pole transfer is a conjecture.",
+    category: "Flavor",
+    confrontation: {
+      derivation: "Q_\\star = \\tfrac{|\\mathbb{Z}_2|}{N_{\\mathrm{fam}}} = \\tfrac{2}{3}",
+      tfptValue: "0.664 (target 2/3 = 0.6667)",
+      measured: "Q_exp ≈ 0.6666",
+      deviation: "−0.33% (near-miss, [C])",
+      source: "PDG charged-lepton pole masses 2024",
+      decisive: "structural — no single experiment (source→pole transfer)",
+    },
+  },
+  {
+    id: "theta12",
+    slug: "solar-angle",
+    title: "Solar Angle — Seam Misalignment",
+    shortTitle: "sin²θ₁₂",
+    target: "sin²θ₁₂ = 1/3 − φ₀/2 = 0.3067",
+    targetLatex: "\\sin^2\\theta_{12} = \\tfrac{1}{3} - \\tfrac{\\varphi_0}{2} = 0.3067",
+    numericValue: "0.3067",
+    status: "Numerical fixed point",
+    dependencyClass: "Neutrino transport",
+    killTest:
+      "A JUNO central value clearly away from 0.307 at high significance kills the seam-misalignment mechanism.",
+    derivationFormulas: [
+      "\\varepsilon = q(A_3)\\,\\varphi_0 = \\tfrac{3}{4}\\varphi_0 = c_3 + 36\\,c_3^4",
+      "\\sin^2\\theta_{12}^{\\mathrm{seed}} = \\tfrac{1}{3} - \\tfrac{2}{3}\\varepsilon = \\tfrac{1}{3} - \\tfrac{\\varphi_0}{2} = 0.306747",
+    ],
+    pdf: "/papers/tfpt_2_standard_model.pdf",
+    description:
+      "Previously the only open SM angle. Tri-bimaximal 1/3 plus the seam misalignment ε = (3/4)φ₀ = c₃ + 36 c₃⁴ (leading term c₃, fourth-order puncture correction exact) gives the prediction of record sin²θ₁₂_seed = 0.306747. This single seed value is the frozen prediction (blind registry predictions_frozen.json, 2026-06-09, machine-enforced by v84); the seam-corrected 0.306808 and non-linear 0.307020 are scheme diagnostics of the same texture along the F_transfer orbit, not rescue branches. Live status: JUNO's 207-day update (Neutrino 2026) reports sin²θ₁₂ = 0.3036 ± 0.0064 — the sharpest single measurement, +0.49σ from the prediction, with the central value moving TOWARD 0.30675 from the first 59.1-day run (0.3092 ± 0.0087); precision phase running. NuFIT 6.0 (0.307) is the pre-JUNO global-fit baseline.",
+    category: "Neutrino",
+    confrontation: {
+      derivation: "\\sin^2\\theta_{12} = \\tfrac{1}{3} - \\tfrac{\\varphi_0}{2}",
+      tfptValue: "0.30675",
+      measured: "0.307 ± 0.012 (NuFIT) · 0.3036 ± 0.0064 (JUNO 207 d)",
+      deviation: "−0.02σ (NuFIT) · +0.49σ (JUNO 207 d)",
+      source: "NuFIT 6.0 (2024) · JUNO, Neutrino 2026 (207-day dataset)",
+      decisive: "JUNO ~2026–2028 (the fastest falsifier; precision phase running)",
+    },
+    experiment: {
+      summary:
+        "experiments/neutrino-mixing confronts sin²θ₁₂ = 1/3 − φ₀/2 with NuFIT 6.0 and JUNO (59.1-day run, updated to the 207-day Neutrino-2026 dataset).",
+      result: "−0.02σ vs NuFIT, +0.49σ vs JUNO 207 d (central value moved toward the prediction) — the sharpest hit in the program.",
+      finding: "consistent",
+      repoPath: "experiments/neutrino-mixing",
+    },
+  },
+  {
+    id: "theta13",
+    slug: "reactor-angle",
+    title: "Reactor Angle — Seed × Carrier Trace",
+    shortTitle: "sin²θ₁₃",
+    target: "sin²θ₁₃ = φ₀ e^(−5/6) = 0.0231",
+    targetLatex: "\\sin^2\\theta_{13} = \\varphi_0\\,e^{-5/6} = 0.0231",
+    numericValue: "0.0231",
+    status: "Exact identity",
+    dependencyClass: "Neutrino transport",
+    killTest: "Robust normal-ordering global-fit exclusion at the stated confidence level.",
+    derivationFormulas: [
+      "\\sin^2\\theta_{13} = \\varphi_0\\,e^{-5/6}",
+      "\\varphi_0 = \\frac{1}{6\\pi} + \\frac{3}{256\\pi^4}",
+      "\\sin^2\\theta_{13} = 0.0231",
+    ],
+    pdf: "/papers/tfpt_2_standard_model.pdf",
+    description:
+      "The reactor angle is the seed times the carrier-trace factor e⁻⁵ᐟ⁶ (γ = 5/6). Daya Bay / RENO / JUNO compare; PDG 0.0220.",
+    category: "Neutrino",
+    confrontation: {
+      derivation: "\\sin^2\\theta_{13} = \\varphi_0\\,e^{-5/6}",
+      tfptValue: "0.0231",
+      measured: "0.02195 ± 0.00058",
+      deviation:
+        "+2.0σ (largest single pull; θ₂₃/V_cb sit at ~1.8σ — one named post-hoc [O] pattern candidate, v467, record unchanged)",
+      source: "NuFIT 6.0 (2024)",
+      decisive: "JUNO / global fit ~2026–2028",
+    },
+    experiment: {
+      summary:
+        "experiments/seed-consistency stresses the shared seed φ₀ → β/Ω_b/Cabibbo/θ₁₃; v3 combines reactor-only θ₁₃ from Daya Bay + RENO + Double Chooz (NuFIT-global only as a shadow, never both in the fit).",
+      result:
+        "θ₁₃ is the dominant pull (−1.62σ, 88% of χ²); the block holds at χ²/dof = 1.00, PPC p = 0.39. The first real seed-stress candidate — a >3σ pull would flag PMNS θ₁₃ as transfer-corrected.",
+      finding: "consistent",
+      repoPath: "experiments/seed-consistency",
+    },
+  },
+  {
+    id: "theta23",
+    slug: "atmospheric-octant",
+    title: "Atmospheric Angle — μτ-Symmetric Limit",
+    shortTitle: "sin²θ₂₃",
+    target: "sin²θ₂₃ ≈ 1/2 (octant not selected)",
+    targetLatex: "\\sin^2\\theta_{23} \\approx \\tfrac{1}{2}",
+    numericValue: "0.5",
+    status: "Conditional",
+    dependencyClass: "Neutrino transport",
+    killTest: "A robust off-maximal octant determination by NOvA / T2K / DUNE.",
+    derivationFormulas: [
+      "\\theta_{23} = 45^\\circ \\quad (\\mu\\tau\\text{-symmetric limit})",
+      "\\delta_{\\mathrm{CP}} = \\tfrac{4\\pi}{3} = 240^\\circ",
+    ],
+    pdf: "/papers/tfpt_2_standard_model.pdf",
+    description:
+      "The atmospheric angle is near-maximal in the μτ-symmetric limit; the octant is not selected by the present transport (the record). DUNE addresses the ambiguity. A named post-hoc [O] candidate (v467) reads the 2–3 texture with the same −φ₀/2 seed shift as θ₁₂ — cos 2θ₂₃ = φ₀, i.e. sin²θ₂₃ = 0.4734 (+0.20σ), which would select the lower octant; the record is unchanged.",
+    category: "Neutrino",
+    confrontation: {
+      derivation: "\\theta_{23} = 45^\\circ\\ (\\mu\\tau\\text{-symmetric})",
+      tfptValue: "≈ 0.5 (octant not selected)",
+      measured: "0.470 ± 0.017",
+      deviation: "+1.76σ (octant open; v467 [O] candidate cos 2θ₂₃ = φ₀ would give +0.20σ)",
+      source: "NuFIT 6.0 (2024)",
+      decisive: "DUNE / NOvA / T2K ~2030 (octant)",
+    },
+  },
+  {
+    id: "neutrino-ordering",
+    slug: "neutrino-ordering",
+    title: "Mass Ordering & Majorana Branch",
+    shortTitle: "NO, m_ββ",
+    target: "Normal ordering, small m_ββ",
+    targetLatex: "\\text{normal ordering}, \\quad m_{\\beta\\beta}\\ \\text{small}",
+    numericValue: "0",
+    status: "Conditional",
+    dependencyClass: "Neutrino transport",
+    killTest:
+      "Inverted ordering, a large m_ββ detection, a cosmological Σm_ν < 0.0586 eV (the normal-ordering floor, v272), or a δ_PMNS robustly outside the band 240° ± ~9° = δ_CKM,lead + π (the Galois lock; v320, sharpened v322) kills the minimal Majorana / Galois-CP branch.",
+    derivationFormulas: [
+      "\\text{normal ordering preferred}",
+      "\\Sigma m_\\nu \\gtrsim 0.0586\\,\\mathrm{eV}\\ (\\text{NO floor})",
+      "J_{\\mathrm{PMNS}} = -0.0297",
+      "\\delta_{\\mathrm{PMNS}} = \\delta_{\\mathrm{CKM}}^{\\mathrm{lead}} + \\pi = 240^\\circ\\ (\\text{Galois-locked, v320})",
+    ],
+    pdf: "/papers/tfpt_2_standard_model.pdf",
+    description:
+      "The Majorana neutrino sector prefers normal ordering with a small effective mass; the NO floor Σm_ν = 0.0586 eV is consistent with the cosmological bound and is a near-term kill test (v272). The absolute scale is one seesaw ratio (M_R, the same single anchor as v_geo), while the full complex PMNS matrix and the leptonic CP strength J_PMNS = −0.0297 (data-consistent) are now assembled (v270). A named one-parameter CANDIDATE (v481, FLAV.NUSCALE.02) sharpens the seesaw ratio: under the carrier normalisation y_ν = y_t (minimal 16·16·10 Yukawa sector) the (y_ν, M_R) trade-off collapses to M_R alone, the observed m₃ demands M_R = 9.3×10¹³ GeV inside the compiler's PS window at log_c₃ rung 3.15, and the integer c₃³-rung is explicitly declined at 1-loop — and excluded unstructured by the bracketed decision computation (v482: rescue needs ×1.67, generous >3σ envelopes give at most ×1.165; the 5/3-proximate structure escape recorded and declined) — and the 5/3 escape is now decided DEAD at the group-theory level (v488: no renormalisable channel since the 126bar is E8-forbidden; all ν^c d=5 channel weights are {2,3}-smooth so 5/3 is multiplicatively unreachable; the unique natural 5, k_Y = 5/3, is decoupled by Y(ν^c) = 0 exactly; Clebsches are generation-blind) — candidate class, nothing closes. A structured point INSIDE that window is meanwhile registered (v986, FLAV.NUSCALE.05 [C]): M_R = 3 M_scal = 9.18×10¹³ GeV, −1.8% from the required value (m₃ = 0.0512 eV, +1.9%); the operator reading is the Q₊ eigenvalue route Spec{1,2,3} (v10/v50/v69), not Tr I = 3 (that trace argument is loose: Spec(I) = {1,1,1}); the mixed insertion texture is typed DATA_CONSTRAINS_TEXTURE (ν-scalaron v2: untextured Y ∝ I killed ×10⁴; aligned diagonal Y incompatible with v270 PMNS); the mechanism stays [O], no seesaw closure. A pentagon-class CANDIDATE is registered beside it (v1001, FLAV.NUSCALE.06 [C]/[N], review wave 4; NO closure; FLAV.NUSCALE.05 unmoved): U_e = I inventory; misalignment U = U_v9 R_13(θ, φ); φ = 288° = 4(2π/5) frozen, all three measured angles ≤ 0.56σ (honest max pull 0.557) at θ = 2π/35 unique LEE survivor 2.7%; v3 SHA-16 a4c28732fa687620 with Σ = 0.0599 eV, m_β = 9.0 meV, m_ββ ∈ [1.5, 3.8] meV, δ_CP = 287.66°; v270–θ_23 tension 1.85σ TYPED; census 0/1607. Mechanism = the Q₊-to-flavor operator [O]. Kills: DESI floor, DUNE 287.7 vs 240, JUNO. A named post-hoc [O] candidate (v468) proposes the previously unpredicted splitting ratio Δm²₂₁/Δm²₃₁ = |J_PMNS| = 0.029653 vs measured 0.029805(792) → −0.19σ (the informal πφ₀ heuristic, now −2.44σ, is superseded as comparator); JUNO decides. The leptonic CP phase is no longer an assigned texture but a Galois-forced relation to the leading (π/3) component of the quark phase: δ_PMNS = δ_CKM,lead + π = 240° (both powers of one hexagonal unit ρ = ζ₆; the lock is to the structural π/3, not the full measured γ ≈ 68.7° — so 240°, not 248.7°; v320), testable at DUNE/Hyper-K. LEGEND / nEXO / DUNE / KATRIN are the comparison surface.",
+    category: "Neutrino",
+    confrontation: {
+      derivation: "\\text{normal ordering},\\ \\Sigma m_\\nu \\gtrsim 0.0586\\,\\mathrm{eV}",
+      tfptValue: "NO, small m_ββ, Σm_ν ≳ 0.0586 eV",
+      measured: "NO preferred; Σm_ν < ~0.072 eV",
+      deviation: "consistent (NO floor at the cosmological edge)",
+      source: "NuFIT 6.0 (2024) · DESI+Planck (2024)",
+      decisive: "DUNE / LEGEND / nEXO ~2028–2035",
+    },
+  },
+  {
+    id: "delta-pmns",
+    slug: "leptonic-cp-phase",
+    title: "Leptonic CP Phase — Galois-Locked to the Quark Phase",
+    shortTitle: "δ_PMNS",
+    target: "δ_PMNS = 240° (band 240° ± ~9°)",
+    targetLatex:
+      "\\delta_{\\mathrm{PMNS}} = \\delta_{\\mathrm{CKM}}^{\\mathrm{lead}} + \\pi = 240^\\circ",
+    numericValue: "240",
+    unit: "°",
+    status: "Conditional",
+    dependencyClass: "Neutrino transport",
+    killTest:
+      "A measured δ_PMNS robustly outside the band 240° ± ~9° (= δ_CKM,lead + π), or landing on a different hexagonal node (60/120/180/300°), at >3σ (DUNE / Hyper-K / JUNO) falsifies the whole Galois-CP organisation.",
+    derivationFormulas: [
+      "\\rho = \\zeta_6,\\quad \\delta_{\\mathrm{CKM}}^{\\mathrm{lead}} = \\arg(\\rho) = \\tfrac{\\pi}{3} = 60^\\circ",
+      "\\delta_{\\mathrm{PMNS}} = \\arg(\\rho^4) = |\\mu_4|\\cdot\\delta_{\\mathrm{CKM}}^{\\mathrm{lead}} = \\tfrac{4\\pi}{3} = 240^\\circ",
+      "\\rho^4 = -\\rho \\;\\Rightarrow\\; \\delta_{\\mathrm{PMNS}} = \\delta_{\\mathrm{CKM}}^{\\mathrm{lead}} + \\pi",
+    ],
+    pdf: "/papers/origin_theory.pdf",
+    description:
+      "The leptonic CP phase is no longer an assigned texture but a Galois-forced relation to the quark phase: both CP phases are powers of one hexagonal unit ρ = ζ₆ of the family factor, so δ_CKM,lead = arg(ρ) = π/3 = 60° and δ_PMNS = arg(ρ⁴) = 4π/3 = 240°, and since ρ⁴ = −ρ they are locked, δ_PMNS = δ_CKM,lead + π (v316/v320). Sharpened (v322): the node selector is the deck order |μ₄| (δ_PMNS = 4·δ_CKM,lead); the sub-leading correction is bounded by the quark analogue 3λ² ≈ 8.7°, so the prediction of record is the band 240° ± ~9°. It sits at +1.08σ of the NuFIT 6.0 normal-ordering best fit (212°⁺²⁶₋₄₁) and inside the CP-violating region the data mildly prefer; the nearest wrong hexagonal node is 60° away. A [C] downstream bridge (the seam deck stays Z/4, CP lives in the hexagonal phase fiber over it); discriminating power is weak until DUNE / Hyper-K.",
+    category: "Neutrino",
+    confrontation: {
+      derivation: "\\delta_{\\mathrm{PMNS}} = \\arg(\\zeta_6^4) = 4\\,\\delta_{\\mathrm{CKM}}^{\\mathrm{lead}}",
+      tfptValue: "240° (band 240° ± ~9°)",
+      measured: "212°⁺²⁶₋₄₁ (NO best fit)",
+      deviation: "+1.08σ (consistent, weak power)",
+      source: "NuFIT 6.0 (2024)",
+      decisive: "DUNE / Hyper-K ~2030+",
+    },
+    experiment: {
+      summary:
+        "experiments/neutrino-mixing confronts δ_PMNS = 4π/3 = 240° (Galois-locked to δ_CKM) with the NuFIT 6.0 normal-ordering global fit.",
+      result:
+        "+1.08σ vs the NuFIT 6.0 NO best fit (212°⁺²⁶₋₄₁); inside the 3σ CP-violating region the data mildly prefer. Discriminating power is weak until DUNE/Hyper-K.",
+      finding: "consistent",
+      repoPath: "experiments/neutrino-mixing",
+    },
+  },
+  {
+    id: "strong-cp",
+    slug: "strong-cp-edm-null",
+    title: "Strong CP — Neutron-EDM Null",
+    shortTitle: "θ_eff = 0",
+    target: "θ_eff = 0 (structural null)",
+    targetLatex: "\\theta_{\\mathrm{eff}} = 0",
+    numericValue: "0",
+    status: "Exact identity",
+    dependencyClass: "Strong-CP closure",
+    killTest: "A solid neutron-EDM signal above the SM background falsifies the structural cancellation.",
+    derivationFormulas: [
+      "\\arg\\det M_u = \\arg\\det M_d = 0",
+      "\\theta_{\\mathrm{eff}} = 0",
+    ],
+    pdf: "/papers/tfpt_2_standard_model.pdf",
+    description:
+      "θ_eff = 0 follows from three structural facts (γ₅-Hermiticity, polar structure, sheet involution) plus reflection positivity — without a mass gap. Now formalised as Pfaffian reality in the self-dual 16-Majorana CAR model (v173): the sheet-odd Calderón involution pairs the spectrum (±λ), γ₅-Hermiticity makes the fermion-measure Pfaffian real (arg ∈ {0,π}), and reflection positivity (Z > 0) selects the positive branch — a topological null theorem. PSI nEDM / SNS test it.",
+    category: "QCD/EDM",
+    confrontation: {
+      derivation: "\\arg\\det M_u = \\arg\\det M_d = 0 \\Rightarrow \\theta_{\\mathrm{eff}} = 0",
+      tfptValue: "0 (structural null)",
+      measured: "|d_n| < 1.8×10⁻²⁶ e·cm (consistent with 0)",
+      deviation: "null (no EDM signal)",
+      source: "PSI nEDM (2020)",
+      decisive: "PSI n2EDM / SNS (ongoing)",
+    },
+    experiment: {
+      summary:
+        "The EDM-null (θ_eff = 0) is tracked as two typed scorecard rows under experiments/ — neutron and electron EDM vs the PSI nEDM and JILA/ACME limits.",
+      result:
+        "Both consistent (no EDM signal); a robust EDM incompatible with θ_eff = 0 would falsify the structural cancellation.",
+      finding: "consistent",
+      repoPath: "experiments",
+    },
+  },
+  {
+    id: "mpme",
+    slug: "proton-electron-ratio",
+    title: "Proton/Electron Ratio — Not a Compiler Power",
+    shortTitle: "m_p/m_e",
+    target: "m_p/m_e = 1836.15 (explicitly not claimed)",
+    targetLatex: "\\frac{m_p}{m_e} = 1836.15",
+    numericValue: "1836.15",
+    status: "Open / not forced",
+    dependencyClass: "Frontier interface",
+    killTest:
+      "Only fails if mis-asserted as a compiler power; there is no clean φ₀ power for the QCD-confinement / EW-Yukawa ratio.",
+    derivationFormulas: [
+      "\\frac{m_p}{m_e} = \\frac{\\text{QCD confinement scale}}{\\text{EW electron Yukawa}}",
+      "1/(\\varphi_0)^2 = 353.7, \\quad 1/(\\varphi_0)^3 = 6651 \\;\\text{bracket}\\; 1836",
+    ],
+    pdf: "/papers/tfpt_4_frontier.pdf",
+    description:
+      "Listed for honesty: m_p/m_e is a cross-sector ratio, computable at scheme level but genuinely not a compiler power. It is deliberately not forced onto the ladder.",
+    category: "QCD/EDM",
+    confrontation: {
+      derivation: "\\tfrac{m_p}{m_e} = \\tfrac{\\Lambda_{\\mathrm{QCD}}}{\\text{EW Yukawa}}\\ (\\text{not a power})",
+      tfptValue: "not claimed (≈ 1836)",
+      measured: "1836.152673",
+      deviation: "n/a (explicitly not claimed)",
+      source: "CODATA 2022",
+      decisive: "structural — fails only if mis-asserted",
+    },
+  },
+  {
+    id: "ns",
+    slug: "spectral-tilt",
+    title: "Scalar Tilt — R² Attractor",
+    shortTitle: "n_s",
+    target: "n_s = 1 − 2/N★ ∈ [0.960, 0.967] (frozen band)",
+    targetLatex: "n_s = 1 - \\tfrac{2}{N_\\star} \\in [0.960,\\,0.967]",
+    numericValue: "0.965",
+    status: "Conditional",
+    dependencyClass: "Inflation (R²)",
+    killTest: "A robust n_s far from the Starobinsky line on the same R² attractor (n_s ≥ 0.967 also kills the scalaron-reheating chain).",
+    derivationFormulas: [
+      "n_s = 1 - \\tfrac{2}{N_\\star}, \\qquad N_\\star \\in [50, 60]\\ \\text{(frozen band)}",
+      "N_\\star^{\\mathrm{reheating}} = 51.4 \\ \\Rightarrow\\ n_s = 0.9611 \\ \\text{[P, conditional]}",
+    ],
+    pdf: "/papers/tfpt_1_architecture_e8.pdf",
+    description:
+      "The scalar tilt comes from the same R² (Starobinsky) attractor that fixes the scalaron mass. The frozen registry keeps n_s as a band over N★ ∈ [50,60]; the scalaron-reheating chain (v86, Higgs channel) sharpens it conditionally to N★ = 51.4 ⇒ n_s = 0.9611 — recorded with its tensions (+0.9σ below Planck; the same chain underpredicts A_s, so the point is conditional on the decay channel). Watch-flag (2026-08-04): the CMB-SPA combination (SPT-3G D1 + ACT + Planck) gives n_s = 0.9679 ± 0.0033 — the central value sits ABOVE the 0.967 band edge for the first time (edge at −0.27σ; not yet the dated kill 'robustly ≥ 0.967', but an honest mild weakening).",
+    category: "Cosmology",
+    confrontation: {
+      derivation: "n_s = 1 - \\tfrac{2}{N_\\star},\\ N_\\star \\in [50,60]",
+      tfptValue: "0.960–0.967 (0.9611 at N★=51.4)",
+      measured: "0.9649 ± 0.0042 (Planck) · 0.9679 ± 0.0033 (CMB-SPA)",
+      deviation: "−0.91σ (Planck, band consistent) · band edge −0.27σ, branch −2.06σ (CMB-SPA — watch)",
+      source: "Planck 2018 · CMB-SPA: SPT-3G D1+ACT+Planck (2025/26)",
+      decisive: "CMB-S4 ~2028–2032 (kill: robust n_s ≥ 0.967)",
+    },
+    experiment: {
+      summary:
+        "experiments/cmb-inflation-scalaron compares n_s = 1 − 2/N⋆ to Planck, the ACT+DESI combination and (news round 2026-08-04) the CMB-SPA combination; the branch resolver decides the N⋆ typing.",
+      result:
+        "n_s = 0.9611 (N⋆ = 51.4): −0.91σ vs Planck, −2.06σ vs CMB-SPA (0.9679 ± 0.0033), whose central value crossed the 0.967 band edge — watch-flagged mild weakening; the band [50,60] stays the prediction of record.",
+      finding: "tension",
+      repoPath: "experiments/cmb-inflation-scalaron",
+    },
+  },
+  {
+    id: "r-tensor",
+    slug: "tensor-ratio",
+    title: "Tensor-to-Scalar Ratio — R² Branch",
+    shortTitle: "r",
+    target: "r = 12/N★² ∈ [0.0033, 0.0048] (frozen band)",
+    targetLatex: "r = \\tfrac{12}{N_\\star^2} \\in [0.0033,\\,0.0048]",
+    numericValue: "0.0040",
+    status: "Conditional",
+    dependencyClass: "Inflation (R²)",
+    killTest: "Any robust r ≳ 0.01 kills the R² branch carrying M_Pl and A_s.",
+    derivationFormulas: [
+      "r = \\tfrac{12}{N_\\star^2} \\in [0.0033,\\,0.0048], \\qquad N_\\star \\in [50, 60]",
+      "N_\\star^{\\mathrm{reheating}} = 51.4 \\ \\Rightarrow\\ r = 0.0045 \\ \\text{[P, conditional]}",
+      "\\text{current bound } r < 0.036\\ (\\text{BICEP/Keck BK18})",
+    ],
+    pdf: "/papers/tfpt_1_architecture_e8.pdf",
+    description:
+      "The tensor ratio of the R² scalaron is already below the current bound and within reach of CMB-S4 (σ_r ≤ 5×10⁻⁴, ~2033). The frozen registry keeps r as a band; the scalaron-reheating chain (v86) sharpens it conditionally to r = 0.0045.",
+    category: "Cosmology",
+    confrontation: {
+      derivation: "r = \\tfrac{12}{N_\\star^2},\\ N_\\star \\in [50,60]",
+      tfptValue: "0.0033–0.0048 (0.0045)",
+      measured: "< 0.036 (95% upper limit)",
+      deviation: "below bound (data-limited)",
+      source: "BICEP/Keck BK18 (2021)",
+      decisive: "CMB-S4 / LiteBIRD ~2028–2032 (σ_r ~ 5×10⁻⁴)",
+    },
+    experiment: {
+      summary:
+        "experiments/cmb-inflation-scalaron evaluates r = 12/N⋆² against BICEP/Keck and forecasts CMB-S4; the closure-invariant module eliminates N⋆ entirely (A_s·r = c₃⁷/(2π²), r = 3(1−n_s)², C_inf = 6π²A_s(1−n_s)²/c₃⁷ = 1).",
+      result:
+        "r = 0.0045 (below BK18 < 0.036); at CMB-S4 σ_r ≈ 5×10⁻⁴ this is a ~9σ detection target — the clean future discriminator. N⋆-free: r(A_s) = 0.00381 ± 0.00005 and C_inf = 0.970 ± 0.233 (−0.13σ, Planck legs; covariance unmodelled) — a robust future bound r < 0.0037 kills this normalisation.",
+      finding: "data_limited",
+      repoPath: "experiments/cmb-inflation-scalaron",
+    },
+  },
+  {
+    id: "as-amplitude",
+    slug: "scalar-amplitude",
+    title: "Scalar Amplitude — Parameter-Free",
+    shortTitle: "A_s",
+    target: "A_s = N★² c₃⁷/(24π²) ≈ 2.0×10⁻⁹",
+    targetLatex: "A_s = \\frac{N_\\star^2}{24\\pi^2}\\,c_3^7 \\approx 2.0\\times 10^{-9}",
+    numericValue: "2.0e-9",
+    status: "Conditional",
+    dependencyClass: "Inflation (R²)",
+    killTest: "A_s incompatible with the seam-fixed scalaron mass on the R² branch.",
+    derivationFormulas: [
+      "A_s = \\frac{N_\\star^2}{24\\pi^2}\\,c_3^7 \\approx 2.0\\times 10^{-9}",
+      "\\text{Planck } \\simeq 2.1\\times 10^{-9}",
+    ],
+    pdf: "/papers/tfpt_1_architecture_e8.pdf",
+    description:
+      "Generic Starobinsky fits the scalaron mass to A_s; TFPT fixes it by the seam, (M/M̄)² = c₃⁷, so A_s becomes a prediction — the measured A_s prefers N★ = 56.2. Honest record (v86): the slow Higgs-channel reheating point N★ = 51.4 underpredicts A_s by 11σ, so the measured A_s requires near-instantaneous reheating; A_s arbitrates the reheating speed.",
+    category: "Cosmology",
+    confrontation: {
+      derivation: "A_s = \\tfrac{N_\\star^2}{24\\pi^2}\\,c_3^7",
+      tfptValue: "≈ 2.0×10⁻⁹",
+      measured: "≈ 2.1×10⁻⁹",
+      deviation: "consistent in band (N★ ≈ 56 profiled)",
+      source: "Planck 2018",
+      decisive: "fixed by N★ / reheating speed",
+    },
+    experiment: {
+      summary:
+        "experiments/cmb-inflation-scalaron runs the branch resolver: fixed N⋆ = 51.4 vs profiled N⋆, with a Bayes-factor comparison.",
+      result:
+        "A_s at fixed N⋆ = 51.4 is −11.3σ — but ln(B_profiled/fixed) = +62 decisively prefers the band, so A_s is typed as a downstream reheating BRIDGE / branch stress (N⋆ ≈ 56 when profiled), NOT a record kill test.",
+      finding: "tension",
+      repoPath: "experiments/cmb-inflation-scalaron",
+    },
+  },
+  {
+    id: "alpha-s-running",
+    slug: "spectral-running",
+    title: "Spectral Running — R² Consistency Relation",
+    shortTitle: "α_s",
+    target: "α_s = −2/N★² = −r/6 ∈ [−8.0, −5.6]×10⁻⁴ (LO band)",
+    targetLatex:
+      "\\alpha_s = -\\tfrac{2}{N_\\star^2} = -\\tfrac{r}{6} \\in [-8.0,\\,-5.6]\\times 10^{-4}",
+    numericValue: "-7.1e-4",
+    status: "Conditional",
+    dependencyClass: "Inflation (R²)",
+    killTest:
+      "Robust α_s < −5×10⁻³ or > +3×10⁻³ at ≥5σ; any robust POSITIVE running kills the plateau branch (plateau potentials give α_s < 0).",
+    derivationFormulas: [
+      "\\alpha_s = \\frac{dn_s}{d\\ln k} = -\\tfrac{2}{N_\\star^2} = -\\tfrac{r}{6}, \\qquad \\beta_s = -\\tfrac{4}{N_\\star^3} \\ \\text{(leading order)}",
+      "\\text{exact slow roll: } \\alpha_s(51.4) = -7.09\\times 10^{-4},\\ \\beta_s(51.4) = -2.70\\times 10^{-5}",
+    ],
+    pdf: "/papers/tfpt_1_architecture_e8.pdf",
+    description:
+      "The same R² attractor that fixes n_s, r and A_s also fixes the running of the tilt — a parameter-free consistency relation, α_s = −2/N★² = −r/6 at leading order (machine-checked in v494, exact slow roll on the Starobinsky potential). The 2026-07-20 prediction of record: Planck 2018 sits +0.57σ from the branch; the P-ACT-LB record leg (+0.0062 ± 0.0052) pulls −1.33σ with a POSITIVE central value — the watch channel: plateau models cannot give positive running.",
+    category: "Cosmology",
+    confrontation: {
+      derivation: "\\alpha_s = -\\tfrac{2}{N_\\star^2},\\ N_\\star \\in [50,60]",
+      tfptValue: "−7.1×10⁻⁴ (band −8.0…−5.6×10⁻⁴)",
+      measured: "−0.0045 ± 0.0067 (Planck) · +0.0062 ± 0.0052 (P-ACT-LB)",
+      deviation: "+0.57σ (Planck) · −1.33σ (P-ACT-LB record leg)",
+      source: "Planck 2018 X · ACT DR6 (Calabrese+ 2025)",
+      decisive: "CMB-S4 + DESI + Euclid (σ(α_s) ~ 3.3×10⁻⁴, systematics-limited)",
+    },
+    experiment: {
+      summary:
+        "experiments/tfpt-discovery/alpha_s_running_probe.py computes the exact slow-roll α_s/β_s on the Starobinsky potential and confronts the 2025/2026 data landscape (Planck 2018, P-ACT, P-ACT-LB); promoted to v494_cosmo_running_mu_record.py.",
+      result:
+        "α_s = −7.09×10⁻⁴ at N⋆ = 51.4 (LO band [−8.0, −5.6]×10⁻⁴): +0.57σ vs Planck 2018, −1.33σ vs the P-ACT-LB record leg — consistent, with the positive P-ACT-LB central value flagged as the watch channel.",
+      finding: "consistent",
+      repoPath: "experiments/tfpt-discovery",
+    },
+  },
+  {
+    id: "mu-distortion",
+    slug: "mu-distortion",
+    title: "μ-Distortion — A_s/N★ Branch Discriminator",
+    shortTitle: "μ",
+    target: "μ ∈ [1.5, 2.3]×10⁻⁸ (band); 1.6×10⁻⁸ sharp / 2.0×10⁻⁸ profiled",
+    targetLatex:
+      "\\mu \\in [1.5,\\,2.3]\\times 10^{-8}\\ \\ (1.6\\times 10^{-8}\\ \\text{at}\\ N_\\star{=}51.4)",
+    numericValue: "1.6e-8",
+    status: "Conditional",
+    dependencyClass: "Inflation (R²)",
+    killTest: "Robust μ < 0.9×10⁻⁸ or > 4×10⁻⁸.",
+    derivationFormulas: [
+      "\\mu \\approx 2.2 \\int P_\\zeta(k)\\,W_\\mu(k)\\,d\\ln k \\ \\ (\\text{Chluba window, calibrated on the } \\Lambda\\text{CDM anchor})",
+      "\\mu(51.4) = 1.6\\times 10^{-8},\\ \\mu(56.1) = 2.0\\times 10^{-8},\\ \\Delta\\mu = 3\\times 10^{-9}",
+    ],
+    pdf: "/papers/tfpt_2_standard_model.pdf",
+    description:
+      "Silk damping of the TFPT primordial spectrum fixes the CMB μ-distortion per N★ branch (v494): 1.6×10⁻⁸ on the sharp reheating point 51.4, 2.0×10⁻⁸ on the A_s-profiled record 56.1 — the 23% split (Δμ = 3×10⁻⁹) is a 3σ branch decision at σ(μ) = 10⁻⁹ (Voyage-2050 class). Data-limited: the PIXIE baseline (9×10⁻⁸) does not reach the band. Honest S15 typing: the frozen recovery log-comb is structurally blind here (|F| = 0.033, δμ = 7.4×10⁻¹² = 0.007σ) — the theory itself predicts where it is invisible.",
+    category: "Cosmology",
+    confrontation: {
+      derivation: "\\mu \\approx 2.2 \\int P_\\zeta W_\\mu \\, d\\ln k",
+      tfptValue: "1.5–2.3×10⁻⁸ (1.6×10⁻⁸ sharp / 2.0×10⁻⁸ profiled)",
+      measured: "|μ| < 9×10⁻⁵ (95%)",
+      deviation: "data-limited (4 dex below the bound)",
+      source: "COBE/FIRAS (1996)",
+      decisive: "PIXIE-class / Voyage-2050 (σ_μ ~ 10⁻⁹): 3σ branch decision",
+    },
+    experiment: {
+      summary:
+        "experiments/tfpt-discovery/mu_distortion_probe.py integrates the TFPT spectrum through the Chluba μ window per branch and scans the frozen log-comb modulation; promoted to v494_cosmo_running_mu_record.py.",
+      result:
+        "μ band 1.5–2.3×10⁻⁸; branch split 3.0×10⁻⁹ = 3σ at Voyage-2050 σ(μ) = 10⁻⁹; PIXIE baseline does not reach (0.18× limit); the frozen comb is structurally blind in the window (0.007σ).",
+      finding: "data_limited",
+      repoPath: "experiments/tfpt-discovery",
+    },
+  },
+  {
+    id: "scalaron",
+    slug: "scalaron-mass",
+    title: "Scalaron Mass — Seam Power",
+    shortTitle: "M_scal",
+    target: "M = c₃^(7/2) M̄ = 3.06×10¹³ GeV",
+    targetLatex: "M_{\\mathrm{scal}} = c_3^{7/2}\\,\\bar M_{\\mathrm{Pl}} = 3.06\\times 10^{13}\\,\\text{GeV}",
+    numericValue: "3.06e13",
+    unit: "GeV",
+    status: "Numerical fixed point",
+    dependencyClass: "Inflation (R²)",
+    killTest: "A scalaron mass incompatible with the seam power c₃⁷ = c₃^(Ω_adm − 10 b₁).",
+    derivationFormulas: [
+      "\\frac{M_{\\mathrm{scal}}^2}{\\bar M_{\\mathrm{Pl}}^2} = c_3^{\\,\\Omega_{\\mathrm{adm}} - 10 b_1} = c_3^7",
+      "M_{\\mathrm{scal}} = 3.06\\times 10^{13}\\,\\text{GeV}",
+    ],
+    pdf: "/papers/tfpt_1_architecture_e8.pdf",
+    description:
+      "The scalaron mass comes out exactly at the canonical Starobinsky value, with the exponent 7 = 48 − 41 = Ω_adm − 10 b₁ fixed by the seam. A former input is now an output.",
+    category: "Cosmology",
+    confrontation: {
+      derivation: "\\tfrac{M_{\\mathrm{scal}}^2}{\\bar M_{\\mathrm{Pl}}^2} = c_3^{\\,7}",
+      tfptValue: "3.06×10¹³ GeV",
+      measured: "canonical Starobinsky value (from A_s)",
+      deviation: "matches the A_s-inferred mass",
+      source: "Planck 2018 (A_s)",
+      decisive: "CMB-S4 inflation constraints ~2028–2032",
+    },
+  },
+  {
+    id: "omega-b",
+    slug: "baryon-density",
+    title: "Baryon Density — One-Engine Readout",
+    shortTitle: "Ω_b",
+    target: "Ω_b = (4π − 1)β_rad = 0.04894",
+    targetLatex: "\\Omega_b = (4\\pi - 1)\\beta_{\\mathrm{rad}} = 0.04894",
+    numericValue: "0.04894",
+    status: "Conditional",
+    dependencyClass: "Scale grammar",
+    killTest: "Robust inconsistency under the declared Planck comparison convention.",
+    derivationFormulas: [
+      "\\Omega_b = (4\\pi - 1)\\,\\beta_{\\mathrm{rad}} = 0.04894",
+      "\\Omega_b h^2 = 0.0222",
+    ],
+    pdf: "/papers/tfpt_4_frontier.pdf",
+    description:
+      "The baryon fraction reads off the determinant-line angle β_rad. Planck comparison row 0.04930.",
+    category: "Cosmology",
+    confrontation: {
+      derivation: "\\Omega_b = (4\\pi - 1)\\,\\beta_{\\mathrm{rad}}",
+      tfptValue: "0.04894",
+      measured: "0.0493 ± 0.0006 (Planck) · 0.0483 ± 0.0072 (FRB)",
+      deviation: "0.04σ (BBN leg) · 0.10σ (FRB)",
+      source: "Planck 2018 · FRB Macquart DM(z)",
+      decisive: "settled — consistency, weak discriminator",
+    },
+    experiment: {
+      summary:
+        "Ω_b is the BBN leg of the seed line (experiments/cmb-birefringence-seed) and is cross-checked against the FRB Macquart DM(z) baryon fraction (experiments/frb-tfpt-signatures, FRB.05).",
+      result:
+        "BBN leg 0.04σ; FRB DM(z) gives Ω_b = 0.0483 ± 0.0072 (0.10σ). Consistent but weakly discriminating — standard cosmology agrees.",
+      finding: "consistent",
+      repoPath: "experiments/cmb-birefringence-seed",
+    },
+  },
+  {
+    id: "eta-b",
+    slug: "baryon-asymmetry",
+    title: "Baryon Asymmetry — Downstream Readout",
+    shortTitle: "η_B",
+    target: "η_B = 6.1×10⁻¹⁰",
+    targetLatex: "\\eta_B = 6.1\\times 10^{-10}",
+    numericValue: "6.1e-10",
+    status: "Conditional",
+    dependencyClass: "Frontier interface",
+    killTest:
+      "Robust exclusion of the quoted value under the declared cosmological pipeline (as a compiler power it is explicitly not closed).",
+    derivationFormulas: [
+      "\\Omega_b h^2 = 0.0222",
+      "\\eta_B = 273.9\\times 10^{-10}\\,\\Omega_b h^2 = 6.09\\times 10^{-10}",
+    ],
+    pdf: "/papers/tfpt_4_frontier.pdf",
+    description:
+      "A downstream cosmological readout from the closed Ω_b h² (observed 6.1×10⁻¹⁰). As a fundamental compiler power it is not closed — the leptogenesis Boltzmann solve is an interface. An anchored-Boltzmann attempt (v184) was tested honestly: the washout anchors plausibly (m̃₁ = m_3/A_Λ ≈ 5 meV, A_Λ = 10), but M₁ = M_R·φ₀⁴ only relocates the free input (M_R is the seesaw scale ~v²/m_3, not a compiler power), so η_B stays a sharper scenario, not a derivation. A cleaner branch (v212, FR.ETAB.04) drops the seesaw scale entirely: both Boltzmann inputs share the decuple A_Λ = 10 = |E(K₅)|, M₁ = M_scal·φ₀²/A_Λ ≈ 8.65×10⁹ GeV and m̃₁ = m_3/A_Λ ≈ 5 meV — so M₁ uses only {M_scal, φ₀, A_Λ} (no hidden seesaw scale) and lands in the thermal window where η_B ≈ 1.2×10⁻⁹ brackets 6.1×10⁻¹⁰. The full BDP Boltzmann ODE solve now confirms this at the frozen M₁: the integrated efficiency κ_f = 0.092 gives η_B = 6.5×10⁻¹⁰ = 1.07× the observed value, with NO free M_R dial; the full FLAVORED density-matrix solve is the next refinement. Still [C] (the coupling mechanism is posited, not derived).",
+    category: "Cosmology",
+    confrontation: {
+      derivation: "\\eta_B = 273.9\\times10^{-10}\\,\\Omega_b h^2",
+      tfptValue: "6.09×10⁻¹⁰ (Boltzmann solve 6.5×10⁻¹⁰)",
+      measured: "6.1×10⁻¹⁰",
+      deviation: "×1.07 (consistent, [C] not closed)",
+      source: "Planck 2018 / BBN",
+      decisive: "settled observation — not a discriminator",
+    },
+    experiment: {
+      summary:
+        "experiments/ftransfer hosts the scalaron-decuple leptogenesis interface (M₁ = M_scal φ₀²/A_Λ, δ_νCP = 4π/3).",
+      result:
+        "The full BDP Boltzmann ODE solve (fboltzmann_solve.py) lands η_B = 6.5×10⁻¹⁰ at the frozen M₁ = M_scal·φ₀²/A_Λ — a factor 1.07 from the observed 6.1×10⁻¹⁰, with no free M_R dial (κ_f = 0.092 validates the analytic fit). The full FLAVORED density-matrix solve is the next refinement; stays [C] (coupling mechanism posited, washout anchored).",
+      finding: "consistent",
+      repoPath: "experiments/ftransfer/leptogenesis_boltzmann",
+    },
+  },
+  {
+    id: "hubble",
+    slug: "hubble-lambda",
+    title: "H₀ vs Λ — One Exponential Engine",
+    shortTitle: "H₀ ∼ √Λ",
+    target: "v_EW ∼ e^(−α⁻¹/5), Λ ∼ e^(−2α⁻¹), H₀ ∼ √Λ",
+    targetLatex: "v_{\\mathrm{EW}} \\sim e^{-\\alpha^{-1}/5},\\ \\ \\Lambda \\sim e^{-2\\alpha^{-1}},\\ \\ H_0 \\sim \\sqrt{\\Lambda}",
+    numericValue: "0",
+    status: "Conditional",
+    dependencyClass: "Scale grammar",
+    killTest: "A robust w ≠ −1 kills the single-engine dark-energy readout.",
+    derivationFormulas: [
+      "A_{\\mathrm{EW}} : A_H : A_\\Lambda = 1 : 5 : 10",
+      "\\frac{\\rho_\\Lambda}{\\bar M_{\\mathrm{Pl}}^4} = \\frac{3}{4\\pi^2}\\,e^{-2\\alpha^{-1}}",
+    ],
+    pdf: "/papers/tfpt_1_architecture_e8.pdf",
+    description:
+      "The electroweak scale, the cosmological constant and the Hubble scale are all powers of one exponential engine on the carrier — the same α⁻¹ ≈ 137. SH0ES / DESI / Planck (Hubble tension) test it.",
+    category: "Cosmology",
+    confrontation: {
+      derivation: "\\Lambda \\sim e^{-2\\alpha^{-1}},\\ H_0 \\sim \\sqrt{\\Lambda},\\ w = -1",
+      tfptValue: "w = −1 (single engine)",
+      measured: "DESI DR2 hints w ≠ −1",
+      deviation: "w = −1 excluded at 4.4σ (1 combo; watchdog ARMED)",
+      source: "DESI DR2 (2025)",
+      decisive: "DESI / Euclid (ongoing)",
+    },
+    experiment: {
+      summary:
+        "experiments/dark-energy-w-watchdog confronts w = −1 with the DESI DR2 w0-wa combinations, overlap-aware (no naive supernova-sample stacking).",
+      result:
+        "Strongest single overlap-aware combination excludes w = −1 at 4.4σ; the naive product (6.6σ) is flagged spurious. Watchdog ARMED (high), not triggered — kill at ≥5σ in a single systematics-controlled combo.",
+      finding: "data_limited",
+      repoPath: "experiments/dark-energy-w-watchdog",
+    },
+  },
+  {
+    id: "no-second-higgs",
+    slug: "no-second-higgs",
+    title: "No Second Light Higgs Doublet",
+    shortTitle: "N_Φ = 1",
+    target: "exactly one seam-even light doublet",
+    targetLatex: "N_\\Phi = 1",
+    numericValue: "1",
+    status: "Exact identity",
+    dependencyClass: "Carrier / Higgs index",
+    killTest: "Robust discovery of a second light seam-even Higgs doublet.",
+    derivationFormulas: [
+      "10\\,b_1 = 41 = \\textstyle\\sum_{f,j}L_{f,j} + N_\\Phi",
+      "N_\\Phi = g_{\\mathrm{car}} - |\\mu_4| = 1",
+    ],
+    pdf: "/papers/tfpt_1_architecture_e8.pdf",
+    description:
+      "The carrier index fixes exactly one weak doublet (N_Φ = g_car − |μ₄| = 1). A structural prohibition, not a fit.",
+    category: "Higgs",
+    confrontation: {
+      derivation: "N_\\Phi = g_{\\mathrm{car}} - |\\mu_4| = 1",
+      tfptValue: "exactly 1 light doublet",
+      measured: "1 Higgs doublet observed (no 2nd)",
+      deviation: "consistent (structural prohibition)",
+      source: "LHC (ATLAS / CMS) 2024",
+      decisive: "HL-LHC (ongoing)",
+    },
+  },
+  {
+    id: "higgs-free-seam",
+    slug: "higgs-free-seam-criticality",
+    title: "Higgs Quartic — Near-Criticality from the Free Seam",
+    shortTitle: "λ(M̄) ≈ 0",
+    target: "λ(M̄_Pl) = 0 and β_λ(M̄_Pl) = 0 (double criticality); m_H band 129–134 GeV",
+    targetLatex:
+      "\\lambda(\\bar M_{\\mathrm{Pl}}) = 0,\\ \\ \\beta_\\lambda(\\bar M_{\\mathrm{Pl}}) = 0 \\;\\Rightarrow\\; m_H \\approx 129\\text{–}134\\,\\mathrm{GeV}",
+    numericValue: "133.5",
+    unit: "GeV",
+    status: "Conditional",
+    dependencyClass: "Carrier / Higgs index",
+    killTest:
+      "A settled (m_t, α_s) RGE pull off the double-critical surface λ(M̄) = β_λ(M̄) = 0 at >5σ kills the free-seam boundary condition (the compiler core is untouched).",
+    derivationFormulas: [
+      "\\lambda(M_{\\mathrm{seam}}) = 0, \\qquad \\beta_\\lambda(M_{\\mathrm{seam}}) = 0 \\ \\text{(free chiral } c=8 \\text{ fixed point)}",
+      "\\text{measured } (m_H, m_t) \\Rightarrow \\lambda(\\bar M_{\\mathrm{Pl}}) = 0.0024,\\ \\beta_\\lambda \\approx 0 \\ \\text{(2-loop)}",
+      "\\lambda = \\beta_\\lambda = 0 \\ \\text{at } \\bar M_{\\mathrm{Pl}} \\Rightarrow m_H = 133.5\\,\\mathrm{GeV}\\ (\\text{band } 129\\text{–}134)",
+    ],
+    pdf: "/papers/tfpt_4_frontier.pdf",
+    description:
+      "The seam UV is the free chiral c = 8 fixed point (v157/v158), so the one marginal SM scalar coupling vanishes there: λ(M_seam) = 0 AND β_λ(M_seam) = 0 — the Shaposhnikov–Wetterich double criticality, here derived from the free seam rather than postulated. Two-loop SM running (PyR@TE-sourced betas) with the measured (m_H, m_t) gives λ(M̄_Pl) = 0.0024 with β_λ ≈ 0 — the celebrated SM near-criticality, explained as a consequence of the free seam (the boundary condition is met to ~0.2% at two loops). Imposing the double condition instead predicts m_H = 133.5 GeV (band ~129–134, m_t/α_s sensitive); the measured 125.25 GeV sits a few GeV below the stability boundary — the known slight metastability (Buttazzo+ NNLO: λ(M_Pl) = −0.0143 ± 0.0057, 2.5σ). Scale selection is honest: the same condition at the scalaron scale gives m_H ≈ 107 GeV (too low), so the free-seam BC lives at the reduced Planck scale — consistent with seam = horizon = Planck (v166, HIGGS.FREESEAM.01). Typed [C]: the freeness signature and scale selection are identities, the m_H band is the [P] prediction leg.",
+    category: "Higgs",
+    confrontation: {
+      derivation: "\\lambda(\\bar M_{\\mathrm{Pl}}) = 0 = \\beta_\\lambda \\ \\text{(free seam)}",
+      tfptValue: "m_H = 133.5 GeV (band 129–134)",
+      measured: "125.25 ± 0.17 GeV (λ(M_Pl) = −0.0143 ± 0.0057)",
+      deviation: "a few GeV below the boundary (metastable, 2.5σ)",
+      source: "PDG 2024 · Buttazzo+ 2013 NNLO fit",
+      decisive: "precision m_t / α_s (FCC-ee class) sharpen the surface",
+    },
+    experiment: {
+      summary:
+        "experiments/higgs-criticality confronts the double-critical surface λ(M_Pl) = 0, β_λ(M_Pl) = 0 with the SM RGE flow (Buttazzo 2013 NNLO fit).",
+      result:
+        "λ(M_Pl) = −0.0143 ± 0.0057 with β_λ ≈ +1.9×10⁻⁴ — near-critical, slightly metastable at 2.5σ. A downstream RGE bridge; kill at an RGE pull off the surface >5σ with settled (m_t, α_s).",
+      finding: "consistent",
+      repoPath: "experiments/higgs-criticality",
+    },
+  },
+  {
+    id: "birefringence",
+    slug: "cosmic-birefringence",
+    title: "Cosmic Birefringence — Determinant Line",
+    shortTitle: "β_rad",
+    target: "β_rad = φ₀/(4π) = 0.2424°",
+    targetLatex: "\\beta_{\\mathrm{rad}} = \\frac{\\varphi_0}{4\\pi} = 0.2424^\\circ",
+    numericValue: "0.2424",
+    unit: "°",
+    status: "Numerical fixed point",
+    dependencyClass: "Horizon / determinant line",
+    killTest: "An externally calibrated β = 0 within tight error.",
+    derivationFormulas: [
+      "\\beta_{\\mathrm{rad}} = \\frac{\\varphi_0}{4\\pi} = 0.2424^\\circ",
+      "\\text{ACT DR6: } 0.215^\\circ \\pm 0.074^\\circ\\ (0.4\\sigma)",
+    ],
+    pdf: "/papers/tfpt_horizon_readouts.pdf",
+    description:
+      "The determinant-line / Chern–Simons response of the seam. ACT DR6 measures 0.215° ± 0.074° — within 0.4σ of the TFPT value.",
+    category: "Astrophysics",
+    confrontation: {
+      derivation: "\\beta_{\\mathrm{rad}} = \\tfrac{\\varphi_0}{4\\pi}",
+      tfptValue: "0.2424°",
+      measured: "0.215° ± 0.074°",
+      deviation: "+0.37σ",
+      source: "ACT DR6 (2025)",
+      decisive: "LiteBIRD / Simons Obs. ~2028+",
+    },
+    experiment: {
+      summary:
+        "experiments/cmb-birefringence-seed tests one φ₀ → β AND Ω_b (seed line Ω_b/β_rad = 4π−1) plus the shared-seed extension φ₀ → β+Ω_b+θ₁₃+Cabibbo, and freezes the full rotation fingerprint (TB/TE = tan2β = 0.00846278, 2EB/(EE−BB) = tan4β = 0.01692677, frequency exponent 0, anisotropy/cross nulls — 5 published legs consistent, the sharp morphology legs await PR4/NPIPE per-frequency spectra).",
+      result:
+        "β consistent at 0.37σ (ACT DR6); shared-seed χ²/dof = 1.23 (covariance unmodelled, so no combined significance is claimed).",
+      finding: "consistent",
+      repoPath: "experiments/cmb-birefringence-seed",
+    },
+  },
+  {
+    id: "axion",
+    slug: "axion-dark-matter",
+    title: "Axion Dark Matter — Candidate Fixed",
+    shortTitle: "m_a",
+    target: "m_a ≈ 23.8 µeV, f_a = M_scal/128, g_aγγ coefficient −4c₃",
+    targetLatex: "m_a \\approx 23.8\\,\\mu\\text{eV}, \\quad f_a = \\frac{M_{\\mathrm{scal}}}{128} \\approx 2.39\\times 10^{11}\\,\\text{GeV}",
+    numericValue: "23.8",
+    unit: "µeV",
+    status: "Conditional",
+    dependencyClass: "Frontier interface",
+    killTest:
+      "Exclusion of the determinant-line axion window at the coupled sensitivity (relic abundance is scenario-sensitive, not closed).",
+    derivationFormulas: [
+      "\\theta_i = \\pi\\,N_{\\mathrm{fam}}/g_{\\mathrm{car}} = 3\\pi/5 = 108^\\circ \\;\\text{(robust spine branch)}",
+      "\\theta_i = (g_{\\mathrm{car}}-2)\\pi/g_{\\mathrm{car}} = \\text{regular pentagon interior angle},\\ \\cos\\theta_i = -1/(2\\varphi)",
+      "f_a = \\frac{M_{\\mathrm{scal}}}{2\\dim S^+|\\mu_4|} = \\frac{M_{\\mathrm{scal}}}{128}, \\quad m_a \\approx 23.8\\,\\mu\\text{eV}",
+      "g_{a\\gamma\\gamma} = -4c_3 = -\\tfrac{1}{2\\pi}, \\qquad y^2 = 16c_3^2 = \\tfrac{1}{4\\pi^2} \\approx 0.0253",
+    ],
+    pdf: "/papers/tfpt_4_frontier.pdf",
+    description:
+      "The candidate is the determinant-line axion of the strong-CP sector (WIMPs ruled out — no spare E₈ singlet). The misalignment angle is a branch DECISION, not a closed number; f_a = M_scal/128 is a conjecture. The axion–photon anomaly coefficient, by contrast, is fixed by the seam constant itself: g_aγγ = −4c₃ = −1/(2π), i.e. y² = 16c₃² = 1/(4π²) ≈ 0.0253 — the same c₃ that fixes α and the birefringence β_rad, with no flow freedom (v207, GRAV.ASYMP.01 [E] leg). A [C] structural relation: it is the determinant-line coefficient, not a parameter-free g_aγγ in GeV⁻¹ (the physical coupling still carries f_a). A converged full finite-T solve (v185/v211, experiments/ftransfer/axion_relic) decides between two competing angles: the robust SPINE branch θ_i = π·N_fam/g_car = 3π/5 = 108° (the central spine quotient, no fit) lands Ω_a h² on Ω_DM untuned — 62° below the hilltop, in the MILD-anharmonic regime, so NOT exponentially sensitive (a far more robust landing). The seam hilltop θ_i = π(1 − φ_seam(α★)) ≈ 170° instead OVER-produces (Ω_a h² ≈ 0.66, ~5.4× above Ω_DM h² = 0.12) and is disfavoured. The two are mutually exclusive (neither is forced, the full solver decides); a converged Ω_a h² outside ~[0.08, 0.16] at the spine angle demotes the branch. A scenario, not a sharp prediction. Geometrically that spine angle is exactly the regular pentagon interior angle — since N_fam = g_car − 2, θ_i = (g_car−2)π/g_car, so cos θ_i = (1−√5)/4 = −1/(2φ), and the golden character is unique to g_car = 5 (v429): the otherwise-unmapped golden/icosahedral E₈ signature (v354/v313) is the geometry of this one external cosmological input — a [C] bridge that does NOT upgrade DM.AXION.SPINE.01.",
+    category: "Astrophysics",
+    confrontation: {
+      derivation: "f_a = \\tfrac{M_{\\mathrm{scal}}}{128},\\ m_a \\approx 23.8\\,\\mu\\mathrm{eV}",
+      tfptValue: "23.8 µeV (f_a = M_scal/128)",
+      measured: "not excluded (HAYSTAC band)",
+      deviation: "data-limited (DFSZ/KSVZ not yet reached)",
+      source: "haloscopes (HAYSTAC 2024)",
+      decisive: "haloscope coverage at 23.8 µeV (this decade)",
+    },
+    experiment: {
+      summary:
+        "experiments/ftransfer/axion_relic runs the full finite-T misalignment solve for both branches; experiments/lab-residuals overlays the haloscope coupling at 23.8 µeV.",
+      result:
+        "Hilltop θ_i = 170° overcloses (Ω_a h² ≈ 0.66, tension). SPINE θ_i = 3π/5 → Ω_a h² = 0.125, robust over [0.090, 0.151] for χ(T)/g_* AND an independent sudden+analytic cross-check. At 23.8 µeV (HAYSTAC band) DFSZ/KSVZ not yet excluded.",
+      finding: "robust",
+      repoPath: "experiments/ftransfer/axion_relic",
+    },
+  },
+  {
+    id: "rare-kaon",
+    slug: "rare-kaon-decays",
+    title: "Rare Kaons K → πνν̄ — a live falsification channel",
+    shortTitle: "BR(K→πνν̄)",
+    target: "BR(K⁺) = 9.45×10⁻¹¹, BR(K_L) = 3.33×10⁻¹¹",
+    targetLatex:
+      "\\mathrm{BR}(K^+\\!\\to\\pi^+\\nu\\bar\\nu)=9.45\\times10^{-11},\\quad \\mathrm{BR}(K_L\\to\\pi^0\\nu\\bar\\nu)=3.33\\times10^{-11}",
+    numericValue: "9.45",
+    unit: "×10⁻¹¹",
+    status: "Conditional",
+    dependencyClass: "Flavor / residue matrix",
+    killTest:
+      "A stable NA62 BR(K⁺) outside [7,12]×10⁻¹¹, or a KOTO-II BR(K_L) off the predicted Grossman–Nir point, breaks the TFPT flavor bridge for this sector (the compiler core is untouched).",
+    derivationFormulas: [
+      "s_{12}=\\lambda_C,\\ s_{23}=\\tfrac{\\varphi_0}{1+\\lambda_C},\\ s_{13}=\\tfrac{\\lambda_C^3}{3},\\ \\delta_{\\mathrm{CKM}}=\\tfrac{\\pi}{3}+3\\lambda_C^2",
+      "(\\bar\\rho,\\bar\\eta)=(0.1374,\\,0.3509)\\ \\Rightarrow\\ \\lambda_t=V_{ts}^*V_{td}",
+      "\\mathrm{BR}(K_L)/\\mathrm{BR}(K^+)=0.352\\ll4.3\\ (\\text{Grossman–Nir})",
+    ],
+    pdf: "/papers/tfpt_2_standard_model.pdf",
+    description:
+      "The closed TFPT CKM point (no flavor fit) feeds the cleanest FCNC probe. With standard external short-distance input (Brod–Gorbahn–Stamou X_t, P_c, κ_±) it gives BR(K⁺→π⁺νν̄) = 9.45×10⁻¹¹ and BR(K_L→π⁰νν̄) = 3.33×10⁻¹¹ — a [C] downstream readout, NOT a compiler power (the SD functions are external). The neutral mode ∝ (Im λ_t)² is a direct probe of the holonomy phase δ_CKM. The NA62 combination of the full 2016–2024 dataset, BR(K⁺) = (9.6⁺¹·⁹₋₁·₈)×10⁻¹¹ (La Thuile 2026), lands essentially on the prediction (+0.08σ); the earlier 2016–2022 observation was (13.0₋₃.₀⁺³·³)×10⁻¹¹ (~1.2σ above). This is a strong consistency hit for the closed CKM point — but honestly an F_transfer bridge, not a unique TFPT-vs-SM discriminator (the SM value (8.6±0.4)×10⁻¹¹ also sits within the NA62 error). The ~2σ δ_CKM tension keeps the NA62/KOTO-II corridor a live falsifier (v202). The leading term δ_CKM = π/3 is the hexagonal CM phase (the Eisenstein modular point j=0, arg ρ = π/3) — CP lives in this Z/6 phase fiber over the square (Z/4) seam deck, the geometric home of the one residual the magnitude logic does not cover (v220).",
+    category: "Flavor",
+    confrontation: {
+      derivation: "\\text{closed CKM point} \\to \\mathrm{BR}(K^+\\!\\to\\pi^+\\nu\\bar\\nu)",
+      tfptValue: "9.45×10⁻¹¹ (K⁺) · 3.33×10⁻¹¹ (K_L)",
+      measured: "(9.6⁺¹·⁹₋₁·₈)×10⁻¹¹",
+      deviation: "+0.08σ",
+      source: "NA62 2016–2024 (La Thuile 2026)",
+      decisive: "NA62 / KOTO-II (ongoing)",
+    },
+    experiment: {
+      summary:
+        "experiments/rare-kaon-bridge tests the flavor bridge as a geometry: BR(K⁺), BR(K_L), R_K, δ_CKM/γ, Jarlskog and the Grossman–Nir bound together.",
+      result:
+        "BR(K⁺) −0.08σ (NA62), δ_CKM/γ +1.45σ (LHCb), Jarlskog −0.07σ (PDG); R_K = 0.352 respects Grossman–Nir. 3/5 legs are direct hits; R_K and BR(K_L) wait for KOTO-II.",
+      finding: "consistent",
+      repoPath: "experiments/rare-kaon-bridge",
+    },
+  },
+  {
+    id: "eht-intercept",
+    slug: "eht-achromatic-intercept",
+    title: "EHT achromatic polarization intercept",
+    shortTitle: "β_BH",
+    target: "β_BH ∝ 16c₃⁴ · Q_e Q_m / r² (achromatic, 1/r², sign-flipping)",
+    targetLatex:
+      "\\beta_{\\mathrm{BH}}(r)=16\\,c_3^4\\,\\frac{Q_e^{\\mathrm{eff}}Q_m^{\\mathrm{eff}}}{r^2}=\\frac{1}{256\\pi^4}\\frac{Q_e^{\\mathrm{eff}}Q_m^{\\mathrm{eff}}}{r^2}",
+    numericValue: "16c₃⁴",
+    unit: "= 1/(256π⁴)",
+    status: "Conditional",
+    dependencyClass: "Horizon / determinant line",
+    killTest:
+      "A structured achromatic residual intercept consistent with zero across the horizon-scale image after honest GRMHD subtraction — or one failing the frequency / 1/r² / sign-flip nulls — falsifies the channel (the compiler core is untouched).",
+    derivationFormulas: [
+      "16\\,c_3^4 = \\tfrac{1}{256\\pi^4} = \\tfrac{\\delta_{\\mathrm{top}}}{3},\\quad \\delta_{\\mathrm{top}}=48c_3^4",
+      "\\chi_0^{\\mathrm{res}} = \\chi_0^{\\mathrm{obs}} - \\chi_0^{\\mathrm{GRMHD}}\\ (\\text{3 nulls})",
+    ],
+    pdf: "/papers/tfpt_horizon_readouts.pdf",
+    description:
+      "The local (horizon-collar) sibling of cosmic birefringence: a structured, achromatic residual rotation of the linear-polarization angle around a horizon-scale black hole. The coupling 16c₃⁴ = 1/(256π⁴) is fixed EXACTLY — the same top-form coefficient δ_top = 48c₃⁴ that controls the α-kernel correction, so there is no free coupling. TFPT fixes the 1/r² shape, achromaticity and sign-flip (under E·B reversal); the amplitude Q_e Q_m is an MHD/GR weight, so the channel is [C] (shape/sign). NOT the old UFE black-hole metric (superseded by Nariai/seam=horizon); only the polarization signature survives (v203).",
+    category: "Astrophysics",
+    confrontation: {
+      derivation: "\\beta_{\\mathrm{BH}}(r) = 16\\,c_3^4\\,\\tfrac{Q_e Q_m}{r^2} = \\tfrac{1}{256\\pi^4}\\tfrac{Q_e Q_m}{r^2}",
+      tfptValue: "16c₃⁴ = 1/(256π⁴) (achromatic, 1/r², sign-flip)",
+      measured: "band-to-band EVPA +0.9° (intercept nulls open)",
+      deviation: "data-limited",
+      source: "EHT M87 2017 polarimetry (2023)",
+      decisive: "ngEHT + GRMHD library (this decade)",
+    },
+    experiment: {
+      summary:
+        "experiments/eht-achromatic-residual ingests the real EHT M87 2017 polarimetry (uvfits, 2023-D01-01), runs the achromaticity diagnostic, a 4-injection recovery suite and a pipeline-readiness orchestrator.",
+      result:
+        "Real-data ingest done (band-to-band EVPA +0.9°, RM ~ 5×10⁵); the injection suite classifies 4/4 (1/r², Faraday λ², D-term, EVPA offset). The χ₀^res nulls stay data-limited — blocked on eht-imaging/SMILI + a GRMHD library (ipole).",
+      finding: "data_limited",
+      repoPath: "experiments/eht-achromatic-residual",
+    },
+  },
+  {
+    id: "hfqpo-tooth",
+    slug: "hfqpo-ladder-tooth",
+    title: "BH HFQPO Third Tooth — the ×1.5 Ladder Search, Now Run: a Well-Powered Null",
+    shortTitle: "ν₃ = (3/2)ν_u",
+    target: "third tooth at ν₃ = 1.5 ν_u (661.5 / 414 / 252 / 363 Hz); integer harmonics forbidden",
+    targetLatex:
+      "\\nu_3 = \\tfrac{3}{2}\\,\\nu_u \\;\\; (661.5/414/252/363\\,\\mathrm{Hz}); \\ \\text{integer lines } 4\\nu_0 \\text{ forbidden}",
+    numericValue: "1.5",
+    unit: "× ν_u",
+    status: "Open / not forced",
+    dependencyClass: "Frontier interface",
+    killTest:
+      "A detected integer line (e.g. 4ν₀ = 2ν_u/1.5) with no geometric tooth at 1.5ν_u kills the ladder reading of the 3:2 pairs; even a tooth hit would stay [C] until the ladder↔oscillator mapping is derived. The compiler core is untouched either way.",
+    derivationFormulas: [
+      "\\mathrm{rate}(n) = -6\\ln\\bigl(1 - \\tfrac{n}{N_{\\mathrm{fam}}}\\bigr),\\ N_{\\mathrm{fam}} = 3 \\Rightarrow \\text{consecutive step } \\tfrac{3}{2}\\ \\text{exact}",
+      "\\nu_3 = \\tfrac{3}{2}\\nu_u; \\quad \\text{geometric teeth provably disjoint from integer harmonics } (\\Delta \\ge \\nu_u/6 \\ge 26\\,\\mathrm{Hz})",
+    ],
+    pdf: "/papers/tfpt_horizon_readouts.pdf",
+    description:
+      "The one discriminating test in the black-hole HFQPO sector has now been run: no published search ever targeted ν₃ = 1.5 ν_u, so the preregistered archival RXTE PCA scan (executed 2026-07: 77 ObsIDs / 4.42 GB across all four sources, sanity gate 11/12 published pair lines reproduced, injection-calibrated in every source) searched the tooth and the integer control line 4ν₀ blind — and found NEITHER anywhere (~0σ single-trial, trials-corrected N = 8 as preregistered). 3σ rms upper limits: 3.06 / 1.61 / 0.53 / 1.26% (GRO J1655−40, XTE J1550−564, GRS 1915+105, H1743−322) — in every source at or below the strength of the detected upper pair line. A well-powered null: the ladder reading gains no support (GR parametric resonance stays the standing favorite) but is not killed, since the harmonic branch did not fire either (the published integer lines 92 = 184/2 Hz, 34/68 Hz stand). TFPT's 3/2 is a relaxation-ladder step from N_fam = 3 (the same frozen kernel as the recovery combs), NOT a two-oscillator ratio — the mapping is non-canonical, which is why this stays a search target [O], not a claim. Caveats: GRS 1915+105 was scanned in a proxy state (the 113/168 Hz epochs were never published at ObsID level), and the GRO J1655−40 hard-band sensitivity (5.1% at 90% recovery) only excludes a tooth at the strength of its 450 Hz line. EXTENSION (2026-07-22, preregistered before download): the same frozen kernel on NICER/MAXI J1820+070 (single-QPO rule: tooth at (3/2)×55.12 = 82.68 Hz) — sanity gate PASS (the published 55.12 Hz anchor reproduced at 55.03 Hz / 0.94% rms / 3.8σ), injection calibration PASS (≥90% recovery at 0.93% rms), tooth NOT detected (0.69σ; 3σ limit 0.75% rms, below the anchor strength → null_with_sensitivity), the integer line at ~110.6 Hz at 3.82σ after trials — BELOW the preregistered 4σ threshold, a sub-threshold excess consistent with the weak second harmonic of ATel #11951, not a hit; AstroSat/LAXPC (GRS 1915+105 ~70 Hz) stays infrastructure-blocked (ISSDC login). The RXTE + NICER nulls now cover five sources on two instruments — the tooth channel is dormant.",
+    category: "Astrophysics",
+    confrontation: {
+      derivation: "\\text{ladder step } \\tfrac{3}{2} \\text{ from } N_{\\mathrm{fam}} = 3 \\Rightarrow \\nu_3 = \\tfrac{3}{2}\\nu_u",
+      tfptValue: "tooth at 661.5/414/252/363 Hz, no integer lines",
+      measured: "no tooth, no integer line (~0σ, trials-corrected; archival scan 2026-07)",
+      deviation: "well-powered null; 3σ limits 0.53–3.06% rms in all four sources",
+      source: "RXTE PCA archive scan, 77 ObsIDs (Belloni+ 2012, RM06, Motta+ 2014–2022 epochs)",
+      decisive: "eXTP-class sensitivity below the 0.5–3.1% rms limits",
+    },
+    experiment: {
+      summary:
+        "experiments/hfqpo-ladder runs H1 (exact-3/2 point test), H2 (Boutelier/Török anchored selection-null MC, 200k trials), H3 (ladder-tooth literature census) and the H3 stage-2 preregistered archival RXTE PCA scan with the byte-guarded frozen kernel.",
+      result:
+        "H1: four pairs consistent with 3/2 (p = 0.78) but J1859+226 sits +9.2σ off — not universal. H2: anchored selection alone makes the cluster in 18.5% of trials — H1 carries no discriminating weight. H3 stage 2 (archival scan, 2026-07): sanity gate and injection calibration PASS; neither the tooth nor the integer line detected anywhere; 3σ limits 0.53–3.06% rms. Extension (extension-nicer-laxpc, 2026-07-22): NICER/MAXI J1820+070 null_with_sensitivity (anchor reproduced 3.8σ; tooth limit 0.75% rms; integer line 3.82σ < 4σ threshold — sub-threshold excess, no hit); AstroSat/LAXPC infrastructure-blocked. Verdict null (well-powered, 5 sources / 2 instruments); GR resonance favored, ladder unsupported but not killed; channel dormant.",
+      finding: "null",
+      repoPath: "experiments/hfqpo-ladder",
+    },
+  },
+];
+
+/**
+ * Typed correction budget (mirror of v388 CORRECTIONS.BUDGET.01).
+ *
+ * The gap-driven correction (v387), correction_n ~ (λ₂/λ₁)ⁿ, is NOT a uniform band on every
+ * prediction: the size is the distance from a gapped operator's leading eigenvector, so it is
+ * defined only where a subleading λ₂ exists. Each prediction is therefore one of four classes
+ * — and for the "exact identity" class a band would be *wrong* (it would contradict [E]).
+ *
+ * The `band` strings are the actual computed first-correction magnitudes (mirror of v393
+ * CORRECTIONS.NUMERIC.01): fixed-point 0.227% (the φ₀ puncture 9/(128π³)), seam-gapped 8.78%
+ * = (2/3)⁶ (QG capped at 9.62% = 64/665), exact-identity 0, external-rate quoted external.
+ */
+export type CorrectionClass =
+  | "seam-gapped"
+  | "exact-identity"
+  | "external-rate"
+  | "fixed-point";
+
+export const CORRECTION_CLASS_META: Record<
+  CorrectionClass,
+  { label: string; band: string; note: string; tone: string }
+> = {
+  "seam-gapped": {
+    label: "Seam-gapped",
+    band: "(2/3)⁶ ≈ 8.78% (QG capped at 64/665 ≈ 9.62%)",
+    note: "Carries the seam rate λ₂ = (2/3)⁶ (Koide F_pole, recovery, the QG bound capped by χ−1 = 64/665), or the compiler's golden (φ+2)/4. First-correction magnitude computed in v393.",
+    tone: "border-emerald-400/25 bg-emerald-500/5 text-emerald-200",
+  },
+  "exact-identity": {
+    label: "Exact identity",
+    band: "0 (structural)",
+    note: "A lattice/integer/topological-null readout (det R = 8, N_Φ = 1, θ_eff = 0, sin²θ₁₃ = φ₀e⁻⁵ᐟ⁶). No λ₂ → correction 0 structurally; a band here would contradict the [E] status.",
+    tone: "border-blue-400/25 bg-blue-500/5 text-blue-200",
+  },
+  "external-rate": {
+    label: "External rate",
+    band: "external physics (firewalled v187)",
+    note: "The gapped shape holds but the rate is thermal/cosmological/RG, not the seam — only F_pole carries the seam rate (v303). η_B washout, axion freeze, m_p/m_e RG, reheating-N★ bands.",
+    tone: "border-amber-400/25 bg-amber-500/5 text-amber-200",
+  },
+  "fixed-point": {
+    label: "Fixed point",
+    band: "≈ 0.227% (the φ₀ puncture 36c₃⁴/c₃ = 9/(128π³))",
+    note: "The value is the exact attractor; the first correction is the explicit φ₀ puncture term already in the closed form (sin²θ₁₂: ε = c₃ + 36c₃⁴), magnitude 9/(128π³) ≈ 0.227% (v393).",
+    tone: "border-violet-400/25 bg-violet-500/5 text-violet-200",
+  },
+};
+
+/** Correction class per prediction id (mirror of v388's four-class typing). */
+export const CORRECTION_BUDGET: Record<string, CorrectionClass> = {
+  "alpha-em": "fixed-point",
+  "lambda-c": "fixed-point",
+  "flavor-invariants": "exact-identity",
+  koide: "seam-gapped",
+  theta12: "fixed-point",
+  theta13: "exact-identity",
+  theta23: "external-rate",
+  "neutrino-ordering": "external-rate",
+  "delta-pmns": "fixed-point",
+  "strong-cp": "exact-identity",
+  mpme: "external-rate",
+  ns: "external-rate",
+  "r-tensor": "external-rate",
+  "as-amplitude": "external-rate",
+  scalaron: "fixed-point",
+  "omega-b": "fixed-point",
+  "eta-b": "external-rate",
+  hubble: "fixed-point",
+  "no-second-higgs": "exact-identity",
+  "higgs-free-seam": "external-rate",
+  birefringence: "fixed-point",
+  axion: "external-rate",
+  "rare-kaon": "external-rate",
+  "eht-intercept": "external-rate",
+  "hfqpo-tooth": "seam-gapped",
+};
+
+/** Ledger claim IDs per prediction (mirror of the status-ledger row keys). */
+export const CLAIM_ID: Record<string, string> = {
+  "alpha-em": "EM.FP.01",
+  "lambda-c": "FLAV.CKM.01",
+  "flavor-invariants": "FLAV.R.01",
+  koide: "FR.KOIDE.01",
+  theta12: "FLAV.TH12.01",
+  theta13: "REG.FREEZE.01",
+  theta23: "REG.FREEZE.01",
+  "neutrino-ordering": "PRED.LAYER.01",
+  "delta-pmns": "GALOIS.READOUT.01",
+  "strong-cp": "PRED.LAYER.01",
+  mpme: "FR.MPME.01",
+  ns: "COSMO.INF.01",
+  "r-tensor": "COSMO.INF.01",
+  "as-amplitude": "COSMO.INF.01",
+  scalaron: "GRAV.SCAL.01",
+  "omega-b": "COSMO.OMB.01",
+  "eta-b": "FR.ETAB.01",
+  hubble: "COSMO.LAM.01",
+  "no-second-higgs": "EM.BUDGET.01",
+  "higgs-free-seam": "HIGGS.FREESEAM.01",
+  birefringence: "HOR.01",
+  axion: "FR.DM.01",
+  "rare-kaon": "FR.RAREKAON.01",
+  "eht-intercept": "HOR.EHT.01",
+};
+
+/** Compact status marker per prediction status grade. */
+export const STATUS_MARKER: Record<PredictionStatus, string> = {
+  "Exact identity": "[E]",
+  "Lattice theorem": "[E]",
+  "Numerical fixed point": "[E]",
+  Conditional: "[C]",
+  "Open / not forced": "[O]",
+};
+
+/** Status × testability reading guide shown at the top of the surface. */
+export const TEST_SURFACE_GROUPS: {
+  label: string;
+  tone: string;
+  items: string[];
+}[] = [
+  {
+    label: "Closed numerical tests",
+    tone: "border-emerald-400/25 bg-emerald-500/5 text-emerald-200",
+    items: ["α⁻¹", "sin²θ₁₂", "sin²θ₁₃", "λ_C", "β_rad", "det R / minors"],
+  },
+  {
+    label: "Structural kill tests",
+    tone: "border-blue-400/25 bg-blue-500/5 text-blue-200",
+    items: ["no 2nd Higgs (N_Φ=1)", "neutron EDM (θ_eff=0)", "no 4th generation"],
+  },
+  {
+    label: "Conditional cosmology tests",
+    tone: "border-amber-400/25 bg-amber-500/5 text-amber-200",
+    items: ["r", "n_s", "A_s", "α_s", "μ-distortion", "Ω_b", "η_B", "w ≠ −1"],
+  },
+  {
+    label: "Honest non-claims",
+    tone: "border-rose-400/25 bg-rose-500/5 text-rose-200",
+    items: ["m_p/m_e", "exact Koide", "axion relic abundance"],
+  },
+];

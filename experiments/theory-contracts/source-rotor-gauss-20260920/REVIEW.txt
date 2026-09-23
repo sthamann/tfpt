@@ -1,0 +1,697 @@
+UNABHAENGIGE PRUEFUNG: GAUSS-REDUKTION DES ROTORPARENTS UND E8-BRUECKENGATE
+20. September 2026
+
+Gegenstand und Verdikt
+======================
+
+Geprueft wurde der unveraenderte Round37-Parent
+
+  H = (kappa/2) sum_e E_e^2
+      + dGamma([[A+beta A^2, eta A], [eta A, M I]])
+
+mit kappa=1/100, a=1/12, beta=1/4, eta=1/2, M=4 und den lokalen
+Nebenbedingungen
+
+  G_x=N_Lx+N_Hx-1+div E_x=0.
+
+Die vorgeschlagenen Saetze sind mit zwei Praezisierungen korrekt:
+
+1. Auf einem endlichen verbundenen Baum ohne externe elektrische Kanten ist
+   der physische Raum exakt und unitaer zu dem Materie-Fockraum mit
+   Gesamtteilchenzahl |V| aequivalent. Der elektrische Fluss ist fuer jede
+   Belegungsmaske eindeutig. Der reduzierte Hamiltonian behaelt saemtliche
+   urspruenglichen Ein-, Zwei-Schritt- und Onsite-Backtrack-Terme und fuegt
+   eine explizite nichtlokale Dichte-Dichte-Energie hinzu.
+
+2. Auf einer offenen Kette kostet eine festgehaltene Ladungs-Antiladungs-
+   Konfiguration im elektrischen Diagonalterm exakt kappa*d/2 bei Abstand d.
+   Das ist weder der Grundzustand des vollen beweglichen Systems noch allein
+   ein Beweis einer physikalischen Confinement-Phase.
+
+3. Jeder endlich getragene Operator, der mit allen G_x kommutiert, kommutiert
+   sogar mit der Materieteilchenzahl auf einer hinreichend grossen Region.
+   Er ist daher gerade unter Materie-Fermionparitaet. Ein treuer lokaler,
+   paritaetserhaltender Transport der vollen ungekoppelten CAR-Feldalgebra in
+   die Gauss-invariante Observablealgebra ist unmoeglich; die gerade Algebra
+   besitzt dagegen einen expliziten positiven Transport.
+
+4. Der Fourier-Kern kappa/[4 sin^2(q/2)] ist korrekt, wenn der quadratische
+   Hamiltonian als (1/2) sum_q K(q)|rho_q|^2 geschrieben wird. Ohne diesen
+   aeusseren Faktor1/2 lautet der Koeffizient kappa/[8 sin^2(q/2)]. Auf einem
+   periodischen ganzzahligen Rotorgraphen ist der reine q!=0-Ausdruck nur die
+   reelle longitudinale Zerlegung; das exakte physische Gitter behaelt im
+   Allgemeinen einen ladungsabhaengig verschobenen Windungssektor.
+
+Dies ist ein exakter positiver Rotor-zu-gerader-Materie-Operatortransport,
+aber noch keine Rotor-zu-E8-Herleitung. Insbesondere entsteht kein lokales
+ungerades Fermionfeld und keine source-selektierte E8-Wechselwirkung.
+
+1. Vollstaendige Gauss-Loesung auf einem Baum
+=============================================
+
+Orientiere den Baum T=(V,E) beliebig und verwende die Inzidenzmatrix B mit
++1 am Quell- und -1 am Zielknoten. Setze
+
+  rho_x=N_x-1,  N_x=N_Lx+N_Hx.
+
+Die Gauss-Bedingung ist
+
+  B E=-rho.                                           (1)
+
+Summation ueber alle Knoten liefert wegen 1^T B=0 die notwendige Bedingung
+
+  sum_x N_x=|V|.                                     (2)
+
+Umgekehrt hat jede Maske aus genau |V| der 2|V| Fermionmoden eine
+ganzzahlige rho mit Summe0. Entfernt man eine orientierte Kante e:s->t und
+bezeichnet die Zusammenhangskomponente mit t durch T_e, so ist
+
+  E_e(rho)=sum_(x in T_e) rho_x.                     (3)
+
+Die Summe der Gauss-Gleichungen ueber T_e beweist (3), einschliesslich des
+Vorzeichens: e tritt dort als eingehende Randkante mit -E_e auf. Gleichung
+(3) loest (1). Sie ist eindeutig, weil ein Baum keinen nichttrivialen
+divergenzfreien Kantenfluss besitzt. Damit ist eine orthonormale Basis des
+physischen Raums
+
+  {|S,E(rho_S)> : S ist eine |V|-Fermionmaske}.
+
+Insbesondere ist seine Dimension binom(2|V|,|V|); trotz unbeschraenkter
+Rotoren bleibt in diesem geschlossenen Baumsektor kein freier Windungsindex.
+
+Definiere die Unitaet
+
+  J_T |S> = |S,E(rho_S)>.                            (4)
+
+Jeder urspruengliche gauge-invariante Hop verschiebt gleichzeitig eine
+Materiebelegung und genau die von (3) verlangten Fluesse. Unter J_T wird der
+Wilson-Transporter deshalb zu Eins, waehrend der gewohnte CAR-Vorzeichenfaktor
+des Materiehops unveraendert bleibt. Folglich
+
+  J_T^* H J_T
+   = dGamma(h_tree,U=1)
+     +(kappa/2) sum_e [sum_(x in T_e)(N_x-1)]^2       (5)
+
+auf dem Sektor N=|V|.
+
+Hier muss h_tree die bereits expandierte Restriktion des ORIGINALEN
+Round37-Materieoperators bedeuten. Insbesondere bleiben die urspruenglichen
+Onsite-Backtracks von beta A^2 und alle beibehaltenen nichtzuruecklaufenden
+Zwei-Schritt-Pfade erhalten. A_tree neu zu bilden und anschliessend zu
+quadrieren wuerde am Fensterrand bekannte Onsite-Terme verlieren und waere
+nicht (5).
+
+Gleichung (4) ist eine Zustands- und Observableabbildung im geschlossenen
+physischen Sektor. Sie macht das nackte c_x nicht zu einem lokalen
+physischen Operator: c_x aendert (2) und kommutiert nicht mit G_x.
+
+2. Kette: expliziter Langreichweitenkern
+=========================================
+
+Orientiere die offene Kette von links nach rechts. Die Gauss-Gleichungen
+geben fuer die Kante j zwischen j und j+1
+
+  E_j=-sum_(x<=j) rho_x.                             (6)
+
+Damit wird der elektrische Teil
+
+  H_E=(kappa/2) sum_j [sum_(x<=j)rho_x]^2.           (7)
+
+Beim Ausmultiplizieren entsteht ein dichter Min-/kumulativer Green-Kern:
+weit getrennte Dichten koppeln, obwohl die unreduzierte Rotorwirkung lokal
+war. Dies ist die uebliche Folge des exakten Loesens der Gauss-Bedingung,
+kein instantanes neues mikroskopisches Signal.
+
+Hat eine Belegungsmaske genau rho=+1 und rho=-1 an zwei Knoten im Abstand d,
+so ist der kumulative Fluss auf genau d Kanten +/-1 und sonst0. Fuer diese
+Basisfiguration gilt daher exakt
+
+  <H_E>=kappa*d/2.                                   (8)
+
+Hopping mischt jedoch solche Konfigurationen. Gleichung (8) allein ist
+weder die adiabatische Energie zweier externer Testladungen noch ein Satz
+ueber Screening, den vollen Grundzustand oder eine Kontinuumsphase.
+
+3. Lokale Gauss-Observablen sind materieparitaetsgerade
+=======================================================
+
+Sei O endlich getragen und [O,G_x]=0 fuer alle x. Waehle eine endliche
+Knotenregion R, die den gesamten Materiesupport von O sowie beide Endpunkte
+jeder von O bearbeiteten Kante enthaelt. Dann
+
+  sum_(x in R)G_x
+   =sum_(x in R)(N_x-1)+sum_(e in boundary R) sigma_e E_e.  (9)
+
+Alle inneren elektrischen Terme heben sich auf. Keine Randkante liegt im
+Support von O, daher kommutiert die Randsumme mit O. Aus der Gauss-Invarianz
+folgt somit
+
+  [O,sum_(x in R)N_x]=0.                             (10)
+
+Das ist staerker als Paritaetserhaltung. Insbesondere gilt
+
+  (-1)^(sum N) O (-1)^(sum N)=O.                    (11)
+
+Ein nacktes c_x verletzt die Gauss-Bedingung. Ein endlicher Wilsonweg mit
+Materieoperatoren an beiden Enden ist gauge-invariant, besitzt aber zwei
+fermionische Endpunkte und ist gerade. Ein einzelner geladener Sektoroperator
+braucht eine Randladung, eine bis ins Unendliche laufende Dressierung oder
+eine Abbildung zwischen verschiedenen Superselektionssektoren; er ist kein
+endlich getragener Observableoperator der hier betrachteten Algebra.
+
+Deshalb kann es keinen treuen lokalen, paritaetserhaltenden Algebra-
+Intertwiner geben, der die volle ungekoppelte QWZ-CAR-Feldalgebra in diese
+Gauss-invariante Observablealgebra abbildet: das Bild eines ungeraden c_x
+muesste ein nichtverschwindender lokaler ungerader physischer Operator sein.
+Nicht ausgeschlossen sind nichtlokale Fermiondressings, geladene
+Superselektionssektoren, emergente Fermionen anderer Phasen oder eine spaetere
+QFT-Konstruktion.
+
+4. Der kleinste positive Operatortransport
+===========================================
+
+Auf einem Baum gibt es zwischen x und y genau einen Pfad P_xy. Sei W_xy das
+orientierte Produkt der U- beziehungsweise U^*-Transporter entlang dieses
+Pfades, mit der Orientierung, die einen Fermionhop x->y Gauss-invariant
+macht. Dann ist
+
+  M_(ys,xt)=c_(y,s)^* W_xy c_(x,t)                  (12)
+
+ein gerader gauge-invarianter Operator. Die Baum-Unitaet (4) erfuellt exakt
+
+  J_T^* M_(ys,xt) J_T = c_(y,s)^* c_(x,t).          (13)
+
+Onsite-Dichten und die L/H-Kohaerenz c_Hx^*c_Lx sind die Pfadlaenge-null-
+Spezialfaelle. Die direkten und Zwei-Schritt-Terme des gegebenen Hamiltonians
+sind Spezialfaelle mit Pfadlaenge eins beziehungsweise zwei.
+
+Dies ist die kleinste belastbare positive Bruecke: ein treuer Transport der
+geraden, pfadgedressten Materieobservable und des vollstaendigen Baum-
+Hamiltonians. Sie kann als Ausgangspunkt fuer einen Vergleich mit einer
+geraden E8-Stromalgebra dienen. Sie liefert weder die ungeraden QWZ-Felder
+noch einen E8-Wurzel-, Flavor- oder Yukawa-Operator aus sich heraus.
+
+5. Fourier-Kern und Artenkanal
+==============================
+
+Fuer eine formale periodische eindimensionale Zerlegung ohne q=0-Windung
+lautet die Fourier-transformierte Gauss-Gleichung fuer q!=0
+
+  (1-exp(-iq))E_q=-rho_q.
+
+Parseval ergibt
+
+  H_E=(kappa/2) sum_(q!=0)
+       |rho_q|^2/[4 sin^2(q/2)].                     (14)
+
+Schreibt man H_E=(1/2)sum_q K(q)|rho_q|^2, ist also
+
+  K(q)=kappa/[4 sin^2(q/2)].                         (15)
+
+Ohne den expliziten Faktor1/2 vor der Kernform ist der direkte Koeffizient
+kappa/[8 sin^2(q/2)]. Diese Konvention muss bei jedem Vergleich genannt
+werden.
+
+Da
+
+  rho=N_L+N_H-1,
+
+wirkt (14) auf den Gesamtartenkanal L+H. Der elektrische Term besitzt keinen
+eigenstaendigen Koeffizienten fuer die relative Dichte N_L-N_H. Dies ist eine
+Aussage ueber den nackten elektrischen Quadratterm. Die Materiehoppings, das
+Eliminieren dynamischer Moden oder echte weitere Wechselwirkungen koennen
+relative Kanaele renormalisieren oder erzeugen.
+
+Ferner ist (14) nicht fuer jede Ladungsmaske ein exakter Zustand des
+ganzzahligen periodischen Rotorraums: die reelle longitudinale Minimal-
+loesung kann gebrochene Kantenfluesse haben. Das exakte ganzzahlige
+Komplement wird im naechsten Abschnitt sichtbar.
+
+6. Allgemeiner Graph: exakte affine Windungsergaenzung
+======================================================
+
+Sei der endliche Graph verbunden, B seine orientierte Inzidenzmatrix und C
+eine ganzzahlige fundamentale Zyklenbasis. Die Spalten von C bilden den
+vollen ganzzahligen Kern von B. Fuer jede neutrale ganzzahlige Ladung rho
+waehle eine ganzzahlige Baumloesung E_T(rho) mit
+
+  B E_T=-rho.
+
+Dann sind alle und nur die physischen ganzzahligen Fluesse
+
+  E=E_T(rho)+Cw,  w in Z^b1,  b1=|E|-|V|+1.         (16)
+
+Mit
+
+  Q=C^T C,
+  theta(rho)=Q^(-1)C^T E_T(rho)                     (17)
+
+folgt durch quadratische Ergaenzung exakt
+
+  |E|^2=rho^T(BB^T)^+rho
+        +(w+theta(rho))^T Q(w+theta(rho)).           (18)
+
+Denn E_T-C theta ist orthogonal zu ker B, loest weiterhin B E=-rho und ist
+damit die reelle Minimalnormloesung -B^T(BB^T)^+rho. Ihr Quadrat ist der
+erste Term von (18).
+
+Ein Wechsel der Spannbaumloesung hat die Form E_T'=E_T+Ck mit k ganzzahlig.
+Dann ist theta'=theta+k und die Koordinate wird w'=w-k. Das affine Gitter
+w+theta und jede vollstaendige Windungssumme sind invariant. Ein gebrochenes
+theta darf dagegen nicht durch eine angeblich ganzzahlige Verschiebung
+entfernt werden.
+
+Beim Viererzyklus mit
+
+  E_T=(1,0,0,0),  C=(1,1,1,1)^T
+
+gilt Q=4 und theta=1/4. Daher
+
+  |E|^2=3/4+4(w+1/4)^2.                              (19)
+
+Das reelle Minimum ist3/4, das ganzzahlige elektrische Minimum dagegen1.
+Dies ist nur die elektrische Energie der angegebenen Ladung, nicht die
+Grundenergie des vollen H oder eine emergente Phase.
+
+Auch der volle physische Raum besitzt eine konstruktive Unitaet
+
+  J_C: |S,w> -> |S,E_T(rho_S)+Cw>                   (20)
+
+von der festen N=|V|-Materie mal l2(Z^b1) auf den Gauss-Sektor. Anders als
+auf dem Baum verschieben Nichtbaumhops den Windungsindex um einen von der
+Belegung und der Baumkonvention bestimmten ganzzahligen Betrag. Das
+Rotor-Komplement bleibt also als echte Dynamik erhalten; U=1 fuer alle
+Kanten waere keine exakte Reduktion.
+
+7. Was gegenueber der Vorarbeit wirklich hinzukommt
+====================================================
+
+Nicht neu sind:
+
+* die Aussage, dass der einfache gemeinsame C6-Phasenlift auf dem
+  Gauss-Raum nur gauge beziehungsweise skalar wirkt
+  (clock-rotor-joint-charge),
+* die vollstaendige Gauss-Sektorparametrisierung auf einem Stern und einem
+  einzelnen Zyklus samt unbeschraenkten Windungsschwaenzen
+  (matter-resummation-round43, Abschnitt4),
+* der ladungsabhaengig verschobene Hodge-/Windungsanteil und seine
+  nichtadditive elektrische Energie auf dem konkreten physischen Quadrat
+  (common-engine-threeway, Abschnitt A1),
+* der allgemeine ganzzahlige Zyklenrang und die fundamentale Zyklenbasis
+  (local-charge-parent-round17, Abschnitt7).
+
+Der neue belastbare Zusatz ist die gemeinsame Anwendung auf den unveraenderten
+Zwei-Arten-Round37-Parent:
+
+* die vollstaendige unitaere Baumreduktion fuer jede |V|-Fermionmaske,
+* der explizite reduzierte Cut-Dichte-Hamiltonian mit allen Originalpfaden,
+* der Satz, dass die gesamte endlich lokale Gauss-Observablealgebra unter
+  Materieparitaet gerade ist,
+* der dadurch scharf formulierte lokale CAR-Intertwiner-Ausschluss,
+* und der kleinste positive gerade Wilson-Bilinear-Transport (13).
+
+Die allgemeine Formel (18) komprimiert und erweitert die bereits vorhandenen
+Stern-, Zyklus- und Quadratresultate; ihr Mechanismus ist kein neuer
+physikalischer E8-Ursprung.
+
+8. Forschungsgrenze
+====================
+
+Der exakte reduzierte elektrische Term ist eine echte quartische
+Dichtewechselwirkung, weil rho die Gesamtbesetzung enthaelt. Seine
+Artenmatrix hat jedoch nur den Gesamtkanal L+H und Rang eins. Weder daraus
+noch aus der lokalen Paritaetsobstruktion folgt die Auswahl des E8-
+Nulloperators, der E8-Energiematrix, einer Yukawa-Struktur oder einer
+3+1-dimensionalen chiralen Theorie.
+
+Die Baumformeln duerfen nicht auf einen dreidimensionalen Graphen mit Zyklen
+uebertragen werden: dort bleiben b1 unabhaengige ganzzahlige Rotorgrade samt
+affiner Ladungsverschiebung. Ebenso beweist der nackte 1D-Kern weder
+unscreened Confinement nach voller Dynamik noch ein Verbot renormierter oder
+vermittelter E8-Wechselwirkungen.
+
+Verdikt: EXAKT fuer die endlichen Gauss-Sektoren und Operatoralgebren unter
+den genannten Graph- und Randvoraussetzungen; POSITIVER GERADER
+OPERATORTRANSPORT; weiterhin OFFEN als native Rotor-zu-E8-, Fermionfeld-,
+Flavor-, Kontinuums- oder Gravitationsbruecke.
+
+Gepruefte Projektquellen
+========================
+
+* experiments/theory-contracts/clock-rotor-joint-charge/README.md
+* experiments/theory-contracts/matter-resummation-round43/MATTER_RESUMMATION.md
+  (insbesondere Abschnitt4)
+* experiments/theory-contracts/local-window-round37/LOCAL_WINDOW.md
+* experiments/theory-contracts/common-engine-threeway/PROOF.md
+* experiments/theory-contracts/local-charge-parent-round17/PROOF.md
+* experiments/theory-contracts/charge-hodge-round18/PROOF.md
+
+
+ABSCHLUSSAUDIT DES ANALYTISCHEN ELTERNENTWURFS
+==============================================
+
+Gepruefte Datei:
+work/rotor-gauss-bridge-proof-20260920.txt
+
+Gepruefter SHA-256:
+c7c96e53363192a02fc2f5d792991b98dcf7f66eb111bc79d66ee9b2f7539ff1
+
+Gesamtverdikt: PASS nach den unten aufgelisteten Praezisierungen. Es wurde
+kein Fehler in der Gauss-Parametrisierung, der Hodge-Energie, dem vollstaendigen
+Hoppingtransport, der Unitaet oder dem lokalen Paritaetssatz gefunden.
+
+A. Gleichung (6): vollstaendiger Hoppingtransport
+-------------------------------------------------
+
+Aus
+
+  E=E_T(rho)+Cw
+
+und einem gauge-invarianten Hop mit rho'=rho+delta rho und E'=E+p folgt
+
+  C ell=p+E_T(rho)-E_T(rho').
+
+Die rechte Seite ist ganzzahlig und divergenzfrei, weil Bp=-delta rho.
+Eine fundamentale Zyklenbasis mit Einheits-Chordblock stellt sie daher
+eindeutig als C ell mit ganzzahligem ell dar. Da E_T linear ist, haengt ell
+vom Hopppfad und delta rho, nicht von der Ausgangsbelegung ab. Die Formel
+erfasst direkte L/L-, gemischte L/H-, adjungierte und Zwei-Schritt-Terme;
+Onsite-Backtracks haben p=delta rho=ell=0. CAR-Vorzeichen und Koeffizienten
+werden durch den Basiswechsel nicht veraendert.
+
+B. Gleichung (7): Operator, Zustand und gemeinsame Zeit
+-------------------------------------------------------
+
+J ist auf den angegebenen Basen bijektiv und isometrisch und damit unitaer.
+Der elektrische Teil wird auf seinen natuerlichen Diagonalbereich abgebildet;
+auf einem endlichen Graphen sind alle uebrigen Fermion- und Rotorhops
+beschraenkt. Daher gilt als Identitaet selbstadjungierter Dynamiken
+
+  J^* exp(-itH) J=exp(-it J^*HJ).
+
+Fuer spurklassige physische Dichtematrizen und beschraenkte Observablen folgt
+die Spuridentitaet in (7). Das ist eine vollstaendige Zustands-/Observable-/
+Zeitabbildung innerhalb DIESES Rotorparents. Es ist keine Abbildung zur QWZ-
+CAR-Quelle, zur nativen Clock-Symmetrie oder zum E8-Rand.
+
+C. Gleichung (5): positive elektrische Teilspur
+------------------------------------------------
+
+Fuer festes rho, tau>0 und positives Q konvergiert die Windungssumme absolut
+und jeder Summand ist reell positiv. Der vorangestellte longitudinale Faktor
+ist ebenfalls positiv. Die Formel ist daher eine exakte elektrische
+Windungs-Teilspur. Der Entwurf grenzt richtig ab, dass nichtkommutierende
+Hops, Fermionzeichen und Realzeitphasen nicht enthalten sind. Aus (5) folgt
+keine komplexe CP-, Massen- oder Yukawaphase.
+
+D. Endlich lokale Observable versus geladenes Feld
+---------------------------------------------------
+
+Der Regionsbeweis ist korrekt und sogar staerker als reine Paritaet: Jeder
+endlich getragene, mit allen G_x kommutierende Operator kommutiert mit der
+Materieteilchenzahl in einer hinreichend grossen Region. Er ist deshalb
+paritaetsgerade. Ein einzelnes c_x kann nur als geladenes Sektorfeld mit
+Rand-/Unendlichkeitsdressierung auftreten, nicht als endlich lokale
+Gauss-invariante Observable. Der Entwurf unterscheidet diese beiden
+Algebratypen korrekt und behauptet kein Verbot physischer Fermionen in
+Gauge-Theorien oder anderer QFT-Realisierungen.
+
+E. Schaerferer E8-Ladungstest
+-----------------------------
+
+Der bereits festgelegte E8-Randtransport besitzt
+
+  q(x)=sum_(i=1)^10 x_i,
+  n=(a,-1,3),  a=(1,1,1,-1,-1,-1,-1,-1),
+  T(r)=(r,-a.r/2,a.r/2),
+  F(r)=T(r)-(a.r/2)n.
+
+Da q(n)=sum a-1+3=0 und q(T(r))=sum_i r_i, folgt exakt
+
+  q(F(r))=sum_(i=1)^8 r_i.                           (24)
+
+Fuer die 112 ganzzahligen E8-Wurzeln +/-e_i+/-e_j ergeben die Summen
+q=0 56-mal und q=+/-2 je28-mal. Fuer die128 halbzahligen Wurzeln mit
+gerader Minusparitaet hat q die Werte4,2,0,-2,-4 mit Multiplizitaeten
+1,28,70,28,1. Insgesamt ist daher
+
+  q=-4:1, -2:56, 0:126, +2:56, +4:1.                (25)
+
+Die126 neutralen Wurzeln liegen in der Hyperebene sum r_i=0, haben Rang7
+und bilden das E7-Wurzelsystem. Alle acht Cartangeneratoren sind neutral.
+Der q-neutrale Anteil der ENDLICHEN Lie-Algebra auf Gewicht eins ist somit
+
+  e7 plus u1,  Dimension 126+8=134,                  (26)
+
+waehrend114 Wurzelstroeme q ungleich0 tragen.
+
+Dies liefert einen strengeren ersten Matching-Test als Fermionparitaet.
+WENN die Ladung q des E8-Randvertrags mit der gauged Gesamtmaterieladung des
+Rotorparents identifiziert wird UND das Ziel die streng lokale
+Gauss-invariante Observablealgebra ist, muss jedes Bild q-neutral sein. Ein
+treuer ladungserhaltender Transport der vollen E8-Gewicht-eins-Stromalgebra
+ist dann unmoeglich: die114 geladenen Wurzelstroeme koennen kein
+nichtverschwindendes lokales Observablebild besitzen.
+
+Diese Schlussfolgerung ist konditional. Sie verbietet weder E8 in einem
+anderen Rotorparent noch eine Abbildung in eine geladene Feldalgebra,
+nichtlokale Wilson-Dressings oder Randsektoren. E7 plus u1 ist hier nur die
+endliche algebraische Zentralisatorbezeichnung; es ist kein Nachweis einer
+emergenten physischen E7-Phase oder der vollstaendigen neutralen
+Observablealgebra.
+
+F. Erforderliche Aenderungen am Elternentwurf
+---------------------------------------------
+
+1. Im Fourierabsatz die Konvention explizit machen:
+
+     H_E=(1/2) sum_(q!=0) K(q)|rho_q|^2,
+     K(q)=kappa/[4 sin^2(q/2)].
+
+   Wird der aeussere Faktor1/2 nicht verwendet, ist der direkte Koeffizient
+   kappa/[8 sin^2(q/2)].
+
+2. In der Provenienz `matter-resummation-round43 sec.4` nur die dort wirklich
+   behandelten Faelle zuschreiben: verwurzelter Stern und einzelner Zyklus,
+   nicht bereits einen beliebigen Baum.
+
+3. `local-charge-parent-round17`, Abschnitt7, fuer den allgemeinen
+   ganzzahligen Zyklenrang und die fundamentale Zyklenbasis zitieren. Die
+   neue Leistung des Entwurfs ist deren Anwendung auf den kompletten
+   Zwei-Arten-Round37-Hamiltonian samt Hopping-, Zustands- und Zeittransport,
+   nicht die erstmalige Entdeckung der Zyklenbasis.
+
+4. Den Ladungstest (24)-(26) in den Feld-/Observable- oder Konsequenzabschnitt
+   aufnehmen. Er zeigt, dass unter der bedingten q-Identifikation auch eine
+   vollstaendige lokale E8-STROMabbildung scheitert, obwohl E8-Wurzelstroeme
+   bosonisch und paritaetsgerade sind.
+
+5. Im Schlussverdikt ausdruecklich festhalten: Bewiesen ist eine exakte
+   interne Reduktion dieses Rotorparents und eine positive gerade
+   Wilson-Bilinear-Abbildung. Nicht bewiesen sind eine vollstaendige
+   Felddictionary, ein nativer Symmetrieintertwiner, die Identifikation der
+   gauged Rotorladung mit q, E8-Auswahl, Flavor oder gemeinsame
+   Kontinuums-/Raumzeitphysik.
+
+
+FINALER AUDIT DER AKTUALISIERTEN FASSUNG
+========================================
+
+Aktuell gepruefter SHA-256 des Elternentwurfs:
+
+  b29349638d0d7cdfa828f67807a533575ab22f0f09dea9214e86679e6090d478
+
+Die aktualisierte Fassung behebt die Fourier-Normalisierung, fuegt die
+positive Wilson-Bilinear-Gleichung ein, unterscheidet die gerade CAR-Algebra
+korrekt von der teilchenzahlerhaltenden Unteralgebra und nimmt den vollstaendigen
+E8-q-Zensus mit der erforderlichen konditionalen Reichweite auf.
+
+Mathematisches Verdikt: PASS. Die Identitaeten (1)-(8), die q-Verteilung
+(9)-(10), der Rang7 des neutralen Wurzelsystems, die Dimension134 des
+endlichen Zentralisators und die Zahl114 geladener Schrittoperatoren sind
+korrekt. Es gibt keine versteckte Ladungsnormalisierung: q(n)=0 und daher
+q(F(r))=sum r_i exakt; die nichtverschwindenden Wurzelladungen sind in der
+gewaehlten Normierung gerade Zahlen, was den Neutralitaetstest nicht aendert.
+
+Eine sachliche Provenienzkorrektur bleibt fuer die naechste Textfassung:
+
+  `matter-resummation-round43 sec.4 already solves the complete tree/star`
+
+sollte durch
+
+  `matter-resummation-round43 sec.4 already solves the rooted-star and
+   single-cycle Gauss sectors`
+
+ersetzt werden. Der beliebige Baum wird dort nicht bewiesen. Der neue
+Entwurf beweist ihn. `local-charge-parent-round17` ist inzwischen passend
+fuer den allgemeinen Zyklenrang und die fundamentale Zyklenbasis genannt.
+
+Unmittelbare kontinuierliche Symmetriefolgerung
+-----------------------------------------------
+
+Die Gleichungen der alten `clock-rotor-joint-charge`-Klassifikation gelten
+fuer eine kontinuierliche site-fixed diagonale U(1)-Wirkung als reelle
+Gleichungen fuer alle Gruppenparameter:
+
+  k_uv+l_u-l_v=0,
+  k_uv+l_u-h_v=0,
+  k_uv+h_u-l_v=0.                                  (27)
+
+Auf jedem nichtisolierten verbundenen Graphen folgt
+
+  l_x=h_x=q_x,  k_uv=q_v-q_u.                       (28)
+
+Der Generator ist, bis auf die feste Hintergrundkonstante,
+
+  sum_(u->v)(q_v-q_u)E_uv-sum_x q_x N_x
+    =-sum_x q_x G_x-sum_x q_x.                     (29)
+
+Er wirkt auf dem Gauss-Raum daher nur skalar. Der nichtentartete lokale
+Onsite-Block diag(beta a^2 d_x,M) zwingt jede rotorunabhaengige,
+teilchenzahlerhaltende site-fixed U(2)-Wirkung, die diesen Block erhaelt,
+zunaechst in die diagonale Klasse; die Hops erzwingen dann (28).
+
+Somit steht innerhalb GENAU DIESER deklarierten Symmetrieklasse keine
+unabhaengige physische globale Onsite-U(1) zur Verfuegung, auf welche die
+E8-Ladung q umgedeutet werden koennte. Dies ist ein unmittelbares Korollar
+der alten Klassifikation, keine neue universelle Symmetrie-No-go-Aussage.
+Raeumliche Transformationen, nichtlokale oder fluxabhaengige Wirkungen,
+emergente Infrarotsymmetrien, geladene Sektorfelder und anders ausgewaehlte
+Parents bleiben ausserhalb des Satzes.
+
+Abschlussgrenze
+---------------
+
+Der Entwurf liefert eine exakte interne Zustands-/Operator-/Zeitreduktion,
+eine echte elektrische Wechselwirkung, den vollstaendigen Windungskomplement-
+transport und eine positive teilchenzahlerhaltende Wilson-Bilinear-Abbildung.
+Er liefert weiterhin keine vollstaendige Felddictionary, keine native
+Symmetrieabbildung und keine Herleitung der E8-, Flavor-, Yukawa-, 3+1D- oder
+Gravitationsstruktur.
+
+
+FINALER FREEZE-AUDIT: PROOF, KONSTRUKTIVE LADUNG UND CHECKER
+===========================================================
+
+Die vorher im Bericht genannten Proof-SHAs sind historische Zwischenstaende.
+Der abschliessend gelesene und gepruefte Stand ist:
+
+  PROOF   17d351d19de8d33c346a35d8bf27ed94045eec8e8da71a62aa63b26d4276b0da
+  CHECKER 9142a733c7fb211f6c5823a57612dfc98c857f392a7b23e1af53ccb2b20d704c
+  RESULT  244c403fe6d5cb8b7af0db0d30406df433b9d239d36db23176613702f10f62b1
+
+Eigenstaendiger Replay:
+
+  python3    : PASS_EXACT_FINITE_CONTROLS_ONLY, 73/73
+  python3 -OO: PASS_EXACT_FINITE_CONTROLS_ONLY, 73/73
+  beide JSON-Ausgaben und das gespeicherte RESULT sind byte-identisch.
+
+1. Konstruktive Klassifikation der kompatiblen Eichladung
+----------------------------------------------------------
+
+Der neue Abschnitt 6 ist algebraisch korrekt. Aus
+
+  F(r)=(r-(a.r)a/2,0,-a.r),  a.a=8
+
+und g=(h,u,w) folgt wegen des reellen Spanns der E8-Wurzeln aus
+g.F(r)=0 fuer alle r genau
+
+  h=(a/2)(a.h+2w).
+
+Damit ist h=v a, w=-3v. Weil a nur Eintraege +/-1 besitzt und h ganzzahlig
+ist, gilt v in Z; u bleibt zunaechst frei. Die zusaetzliche Neutralitaet des
+bereits festgelegten Transfers n ergibt g.n=-u-v=0 und also u=-v. Primitive,
+nichtverschwindende Loesungen sind folglich eindeutig bis auf das Vorzeichen:
+
+  g=+/-K n=+/-(1,1,1,-1,-1,-1,-1,-1,-1,-3).
+
+Auch die Folgerungen sind korrekt:
+
+  g^T K^-1 g=0,
+  q^T K^-1 g=q.n=0,
+  Y^T K^-1 g=Y.n=0,
+  g.n=0,  g.z=2,
+  W_aux^T g=(0^8,1,-1).
+
+Dies sind im angegebenen 1+1-dimensionalen chiralen Randkontext notwendige
+reine und gemischte Anomaliebedingungen. Sie liefern keinen dynamischen
+Gauge-Ursprung. Insbesondere bleibt die gravitative chirale Signatur
+sig(K)=9-1=8 unkompensiert. Der Text grenzt das richtig ab und behauptet weder
+eine automatische Erzeugung oder Relevanz von cos(n) noch eine E8- oder
+Schwinger-Infrarotphase. Dass cos(z) unter g geladen ist, gilt fuer den nackten
+Vertex; eine zusaetzliche geladene Dressierung ist ausdruecklich nicht
+ausgeschlossen. Die alte gleich geladene L/H-Rotorwirkung realisiert g nicht.
+
+2. Was der revidierte Checker jetzt wirklich kontrolliert
+---------------------------------------------------------
+
+Die frueher beanstandeten Abdeckungsfehler sind behoben:
+
+* Fuer Ketten mit 2 bis 5 Plaetzen werden alle Kantenorientierungen und alle
+  N=v-Fermionmasken geprueft. Fuer den Grad-4-Stern ist jetzt eindeutig
+  dokumentiert, dass er 5 Vertices und 4 Kanten besitzt; auch dort werden
+  alle 16 Orientierungen und insgesamt 4032 Masken kontrolliert.
+* Die Baumreduktion prueft nicht mehr nur statische Gauss-Fluesse, sondern
+  vergleicht die vollstaendige ungeschnittene Elternwirkung mit einer
+  unabhaengig aufgebauten CAR-Wirkung und danach mit der reduzierten J^dagger
+  H J-Wirkung, einschliesslich High-Moden und Zwei-Schritt-Pfaden.
+* Der offene-Ketten-Kern ist jetzt der tatsaechliche kumulative Dichtekern
+  G=C^T C. B^T B wird getrennt und richtig als Kanten-Laplacian bezeichnet.
+  Fluss und elektrische Energie werden fuer alle neutralen Masken der
+  Sechserkette exakt verglichen.
+* Am Quadrat werden alle 70 Vierfermionmasken fuer die drei expliziten
+  Windungsrepraesentanten w=-1,0,1 geprueft, also 210 Zustandsaktionen ohne
+  Abschneiden der Ausgaenge. Die reduzierte Windungsabbildung wird explizit
+  gegen die volle Elternwirkung verglichen.
+* Ein wirklicher 2x3-Leitergraph besitzt die gepruefte ganzzahlige
+  Fundamentalzyklenbasis vom Rang 2 mit I_2-Chordblock. Fuer einen festen
+  neutralen Materiezustand werden die neun Paare (w1,w2) in {-1,0,1}^2 gegen
+  die volle Hoppingwirkung geprueft. Das ist eine sinnvolle endliche
+  Mehrzyklenkontrolle, keine Enumeration aller Masken oder Windungen.
+* Der E8-Scanner bestaetigt unabhaengig 240 Wurzeln, die q-Verteilung
+  1,56,126,56,1, den neutralen Rang 7, Dimension 134, die 114 geladenen
+  Wurzelstroeme sowie die zweidimensionale E8-Annihilatorfamilie und ihre
+  Reduktion auf +/-K n durch n-Neutralitaet.
+
+Damit sind die 73 Kontrollen echte endliche Korroborationen. Die allgemeinen
+Saetze fuer beliebige endliche verbundene Graphen, alle ganzzahligen
+Windungen und den exakten Zeittransport folgen weiterhin aus den analytischen
+Argumenten (1)-(7), nicht aus einer endlichen Enumeration.
+
+3. Verbleibende, nicht materielle Abdeckungsgrenzen
+--------------------------------------------------
+
+Der U(1)-Checker kontrolliert fuer Kette und Grad-4-Stern den Rang der
+Inzidenzmatrix und den eindimensionalen konstanten Nullraum. Die drei
+Hoppinggleichungen und die Nichtentartung des lokalen U(2)-Blocks werden
+nicht als vollstaendiges symbolisches Gleichungssystem im Checker geloest.
+Das U(1)-Korollar ist dennoch durch die kurze analytische Subtraktion der
+drei Gleichungen und den expliziten Generatorbeweis getragen; es sollte als
+analytischer Satz mit endlichem Rang-Sanity-Check beschrieben werden.
+
+Die Kontrolle `chain_G_restricted_neutral_equals_Lplus` benutzt vier
+neutrale Testvektoren. Ich habe zusaetzlich ausserhalb des Checkers eine
+volle Basis e_i-e_6, i=1,...,5, des neutralen Unterraums eingesetzt und
+exakt R^T(G-Lplus)R=0 erhalten. Die Allgemeinheit stammt auch hier aus der
+Hodge-Zerlegung im Proof; die aktuelle Checkbezeichnung ist breiter als die
+im Code gespeicherte Stichprobe, verursacht aber keinen mathematischen
+Fehler.
+
+Der benachbarte `source_manifest.json` ist im geprueften Work-Verzeichnis
+nicht vorhanden; das RESULT protokolliert deshalb korrekt `present=false,
+skipped=true`. Der Checker pinnt den importierten Round37-Elternchecker auf
+SHA-256 559afdf7c50a27f8f921b0e7087541962cec02986779d23dbcb52f6b1e073e52,
+und dieser Review pinnt Proof, Checker und Result. Falls beim Installieren
+ein benachbartes Manifest hinzukommt, muss das installierte Result erneut
+erzeugt und dessen dann veraenderter SHA gepinnt werden.
+
+4. Freeze-Verdikt
+-----------------
+
+PASS fuer den beanspruchten Umfang. Der Proof liefert eine exakte interne
+Gauss-/Windungsreduktion des festgelegten Rotorparents, den lokalen
+Observable/Feld-Paritaetssatz, den konditionalen E8-q-Matching-Ausschluss und
+die eindeutige notwendige Kandidatenladung +/-K n. Er liefert weiterhin
+keine vollstaendige Feldabbildung, keine native Symmetrie- oder
+Kontinuumsabbildung, keine dynamische Auswahl von cos(n), keine kompensierte
+gravitative Randtheorie und keine Herleitung des Rotorparents aus P1/P2.

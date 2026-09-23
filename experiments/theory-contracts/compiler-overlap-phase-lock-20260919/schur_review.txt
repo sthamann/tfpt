@@ -1,0 +1,243 @@
+ENGER GEGENCHECK: STARKE ZWEIQUELLEN-VERRIEGELUNG UND GLOBALER SCHUR-SATZ
+Datum: 2026-09-19
+Verdict: BEDINGT EXAKT; DIE ANGEGEBENEN SCHRANKEN REICHEN FUER EINDEUTIGKEIT UND LUECKE
+
+Kernaussage
+-----------
+Fuer das explizit gewaehlte reine Permutationsmodell
+
+  H/kappa = lambda V + A,
+  lambda=mu/kappa,  j=J/kappa,
+  A=j(H_E,1+H_E,2)+L_1+L_2,
+
+reichen die berichteten Operatorabschaetzungen mathematisch aus. Unter
+
+  lambda >= 10^6 (j+1)
+
+hat H genau einen Grundzustand und
+
+  gap(H) >= kappa^2/(240 mu).
+
+Das folgt nicht nur formal in zweiter Ordnung. Zwei exakte Schur-Komplemente
+mit gleichmaessiger Restkontrolle und Sylvesters Traegheitssatz machen daraus
+eine endliche-lambda-Aussage im vollen 240^2*4^3-dimensionalen Modell.
+
+Diese positive Aussage setzt die phasenlose Permutationswirkung der Quellen
+voraus. Sie uebertraegt sich nicht automatisch auf bracket-kompatible
+E8-Stromlifts: Dort kann bereits PAP durch Fixwurzelzeichen aufgespalten
+werden, obwohl die hier verwendete Zweitordnungsmatrix D erhalten bleibt.
+
+
+1. Exakter erster Ordnungsblock, ohne 3,6-Millionen-Diagonalisierung
+-------------------------------------------------------------------
+Aus der gepinnten nativen Quellenfunktion wurden die 60 Gaussianischen
+Strahlen und die Reflexionen
+
+  r_z = I - |z><z|/2
+
+neu aufgebaut. Die erzeugte Reflexionsgruppe wirkt transitiv auf den 60
+Strahlen, daher genuegt ein gepinnter Repraesentant alpha. Genau 15 Ereignisse
+fixieren alpha. Auf den drei Materieregistern ist der dimensionslose
+projizierte Block
+
+  K = 2I - (1/60) sum_(r alpha=alpha)
+             [r tensor r tensor I + I tensor r tensor r].              (1)
+
+Fuer M=60K wurde das exakte charakteristische Polynom berechnet:
+
+  (x-130)(x-126)^2(x-120)^6(x-118)^2(x-114)^7
+  (x-112)^6(x-110)^12(x-108)^6(x-106)^3(x-100)^6(x-90)
+  (x^2-236x+13876)^6.                                                   (2)
+
+Damit ist der kleinste Eigenwert von K exakt 90/60=3/2 und einfach; der
+naechste ist 100/60=5/3 mit Multiplizitaet6. Die Luecke ist 1/6.
+
+Der ausgerichtete Vektor psi_alpha^tensor3 ist der einfache Grundvektor von
+K und wird von
+
+  H_E = 2I-r_alpha tensor r_alpha tensor I
+          -I tensor r_alpha tensor r_alpha
+
+annulliert. Da H_E>=0, behaelt K+jH_E fuer jedes j>=0 denselben einfachen
+Grundwert3/2 und nach dem Min-Max-Prinzip mindestens die Luecke1/6. Dies
+verifiziert die tragende erste Ordnung exakt fuer die ganze transitive
+Strahlenklasse.
+
+
+2. Erstes Schur-Komplement: Ausschluss aller Off-Lock-Zustaende
+---------------------------------------------------------------
+Sei P der Raum gleicher voller 240-Wurzelquellen und Q=I-P. Die benoetigten,
+im Bericht angegebenen Bounds sind
+
+  V|_Q >= 1/2,
+  A>=0,  ||A||<=4j+4,
+  B=PAQ, ||B||<=2,
+
+wobei H_E keinen P-Q-Block besitzt. Fuer 0<=E<=3/2 und lambda>=6 gilt
+
+  Q(H/kappa-E)Q >= lambda/2-3/2 >= lambda/4 >0.                         (3)
+
+Damit ist der Q-Block im ganzen relevanten Energiefenster invertierbar. Der
+erste Schur-Komplementoperator ist exakt
+
+  S_1(E)=PAP-E-D_full/lambda+R_1(E),
+  D_full=B(QVQ)^(-1)B^dagger,  ||D_full||<=8.                           (4)
+
+Die Resolventenidentitaet liefert gleichmaessig in E
+
+  ||R_1(E)||
+   <= ||B||^2 (4/lambda)(4j+11/2)(2/lambda)
+   = (128j+176)/lambda^2.                                               (5)
+
+Die E-Abhaengigkeit ist dabei kontrolliert; (5) ist keine Auswertung nur bei
+E=3/2. Aus der Blockkongruenz folgt
+
+  n_-(H/kappa-E)=n_-(Q(H/kappa-E)Q)+n_-(S_1(E)).                        (6)
+
+Wegen (3) ist der erste Term rechts null. Genau diese Traegheitsidentitaet
+schliesst versteckte tiefe Q-Eigenwerte global aus.
+
+
+3. Zweites Schur-Komplement und der Rest 1043+128j
+---------------------------------------------------
+Sei P0 der Rang-240-Raum der je Quelle ausgerichteten einfachen
+Erstordnungsgrundvektoren und P1=P-P0. Nach (2) liegt P1 mindestens 1/6
+hoeher. Fuer lambda>=1000(j+1) ist
+
+  ||-D_full/lambda+R_1(E)|| <= 17/(2lambda).
+
+Da dann insbesondere lambda>=102 ist, bleibt der P1-Block im Fenster
+E<=3/2 mindestens 1/12 positiv, sein Inverses hat also Norm hoechstens12.
+Das zweite exakte Schur-Komplement lautet
+
+  S_2(E)=(3/2-E)I_240-D/lambda+R(E),
+  D=P0 D_full P0,                                                        (7)
+
+mit
+
+  ||R(E)||
+   <= [(128j+176)+12(17/2)^2]/lambda^2
+   = (1043+128j)/lambda^2
+   < (1100+128j)/lambda^2 =: epsilon.                                  (8)
+
+Damit ist die im Nutzerbericht genannte Restschaetzung sogar mit Reserve
+hergeleitet. Auch das zweite eliminierte Komplement bleibt im verwendeten
+Fenster positiv, sodass (6) ein zweites Mal gilt.
+
+Zur Vollstaendigkeit ist der Feshbachoperator streng monoton in E:
+
+  dS_1/dE = -I_P-B[Q(H/kappa-E)Q]^(-2)B^dagger <0,                       (9)
+
+und entsprechend nach der zweiten Elimination. Isospektralitaet plus
+Traegheit reicht bereits fuer die Zaehlaussage; (9) zeigt zusaetzlich, dass
+keine Nullstelle durch eine unkontrollierte E-Abhaengigkeit vervielfacht
+wird.
+
+
+4. Eindeutigkeit und quantitative Luecke
+----------------------------------------
+Die unabhaengig exakt rekonstruierte Matrix ist
+
+  D=(153I+2A_32-F)/3600.                                                 (10)
+
+Ihre beiden groessten Eigenwerte sind
+
+  d0=216/3600=3/50,  einfach,
+  d1=186/3600=31/600,
+  d0-d1=1/120.                                                          (11)
+
+Wegen des Minuszeichens in (7) wird der einfache obere D-Eigenvektor zum
+niedrigsten Energiezentrum. Setze
+
+  e0=3/2-d0/lambda,  e1=3/2-d1/lambda.
+
+Am Mittelpunkt von e0 und e1 erzwingt epsilon<(e1-e0)/2 exakt einen
+negativen Eigenwert von S_2(E). Mit der zweimaligen Traegheitsidentitaet
+bedeutet das exakt einen vollen H-Eigenwert unterhalb dieses Punktes,
+also einen einfachen Grundzustand. Ferner
+
+  E0/kappa <= e0+epsilon,
+  E1/kappa >= e1-epsilon,
+
+und daher
+
+  gap(H/kappa) >= 1/(120lambda)-2(1100+128j)/lambda^2.                  (12)
+
+Fuer die gewuenschte Haelfte der fuehrenden Luecke genuegt
+
+  lambda >= 480(1100+128j).                                             (13)
+
+Die berichtete staerkere Bedingung impliziert (13), denn
+
+  10^6(j+1)-480(1100+128j)=472000+938560j>0.
+
+Mit lambda=mu/kappa folgt aus (12)
+
+  gap(H) >= kappa/(240lambda)=kappa^2/(240mu).
+
+
+5. Alter Symmetrie-No-go: genauer Geltungsbereich
+-------------------------------------------------
+In der alten homogenen Kette seien die beiden Quellen-Quartsektoren k1,k2
+separat erhalten und die Quellen durch eine Spiegelung vertauscht. Ungleiche
+Sektoren (k1,k2) und (k2,k1) bilden dann energiegleiche Paare. In einem
+gleichen Sektor k1=k2=k haben die nativen Weyl-Symmetrien den zentralen
+Kommutator
+
+  zeta=i^(3-k1-k2)=i^(3-2k) in {+i,-i}.                                 (14)
+
+Auf jedem invariantem d-dimensionalen Energieeigenraum folgt aus
+XZ=zeta ZX durch Determinantenbildung zeta^d=1, also 4|d. Zugleich verlangt
+die Sektorphase eines nichtentarteten Kandidaten
+
+  k1+k2=3 mod4,
+
+was mit k1=k2 unvereinbar ist. Damit ist unter genau diesen alten
+Voraussetzungen jeder Energieeigenraum gerade-dimensional (im gleichen
+Sektor sogar durch4 teilbar).
+
+Das neue phasensensitive Lock
+
+  V(alpha,beta)=1-Re<psi_alpha,psi_beta>
+
+mischt die einzelnen Quartsektoren als (k1,k2)->(k1-1,k2+1), erhaelt aber
+deren Summe. Es verletzt deshalb die Voraussetzung der separaten
+Sektorerhaltung und umgeht den alten No-go. Fuer den projektiven Ersatz
+1-|<psi_alpha,psi_beta>|^2 bliebe die separate Phasenerhaltung und damit
+der No-go bestehen.
+
+
+6. Was hier wirklich verifiziert ist
+-------------------------------------
+Exakt aus gepinnten Projektinputs geprueft wurden:
+
+  - Off-Lock-Gap1/2 und Gleichheitslocus des phasensensitiven V;
+  - der transitive 64x64-Erstordnungsblock, Grundwert3/2 und Luecke1/6;
+  - D=(153I+2A32-F)/3600 mit einfachem Top und D-Luecke1/120;
+  - die Schur-Arithmetik, der verbesserte Rest (1043+128j)/lambda^2 und die
+    Implikation der Schwelle10^6(j+1);
+  - die Quartsektorverschiebung und der alte Weyl-/Spiegel-No-go.
+
+Der Schur-Satz ist bedingt auf die explizite Wahl dieses phasenlosen
+Hilbertraummodells sowie auf die oben aufgefuehrten Normbounds. Kein URL und
+kein externes Checkerpaket des Nutzerberichts lagen vor; dessen wortgetreue
+Provenienz und die berichteten moderaten Zahlen bei J=kappa=mu=1 sind daher
+nicht geprueft und werden fuer den Satz nicht benutzt. Ebenfalls nicht
+hergeleitet sind die physische Auswahl von V,L,H_E aus P1/P2, eine
+Thermodynamik-/Lokalitaetsaussage oder die Uebertragung auf einen
+E8-Stromcocycle-Lift.
+
+Die native Realifikation im Begleitaudit hat Zeilennormquadrat4 und erfuellt
+Y^T Y=120I. Der Nutzerbericht hat hier keine Norm2-Normalisierung behauptet;
+daraus folgt keine Korrektur am Originalclaim.
+
+Artefakte
+---------
+  schur_check.py       exakter 64x64- und Schrankenchecker
+  schur_check.json     maschinenlesbares Zertifikat
+  schur_parent_derivation.txt  unabhaengige vollstaendige Schur-Herleitung
+  effective_check.py/.json/.txt  exakte D- und Momentrekonstruktion
+  phase_balance_check.py/.json  Quartsektor- und No-go-Pruefung
+
+schur_check.py laeuft normal und mit python -OO identisch.
+Keine Repository-Datei wurde veraendert.

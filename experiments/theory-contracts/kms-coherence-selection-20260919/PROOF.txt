@@ -1,0 +1,296 @@
+UR.SELFCONSISTENCY.KMS_COHERENCE.01
+19. September 2026
+
+ZIEL UND GELTUNGSBEREICH
+
+Gesucht ist die physische Herkunft der TFPT-Dynamik aus der gemeinsamen
+Quelle. Die hier entschiedene Frage ist enger und unmittelbar tragend:
+Repariert ein vollstaendig festgelegter treuer Gleichgewichtszustand samt
+strikter KMS/GNS-Symmetrie der effektiven Halbgruppe, modularer Kovarianz,
+eindeutigem Attraktor und fester Markov-Zerfallsluecke die bekannte
+Unterbestimmtheit der Kohärenzentwicklung?
+
+Antwort: Fuer effektive Quanten-Markov-Dynamik nein. Der folgende Satz gibt
+eine ganze Familie mit denselben genannten Daten. Das ist ein Test der
+vorgeschlagenen Auswahlbedingung, kein vorgeschlagenes Weltmodell und kein
+Gegenbeweis gegen eine vollstaendige P1-Randtheorie. Die Familie wird nicht
+als die konkrete TFPT-Transfermatrix ausgegeben.
+
+Die positive Anschlussaussage lautet: Eine unabhaengig aus der Quelle
+bestimmte vollstaendige Antwortmatrix rekonstruiert den Generator auf einer
+abgeschlossenen endlichen Operatoralgebra. Auf einem bloss komprimierten,
+nicht abgeschlossenen Ausschnitt ist diese Folgerung unzulaessig.
+
+1. EXAKTER SATZ: ZUSTAND, GLEICHGEWICHT UND LUECKE LASSEN DIE KOHÄRENZ FREI
+
+Sei A=M_d(C), d>=2, und rho=diag(p_1,...,p_d), p_i>0, sum p_i=1.
+Wir arbeiten im Heisenbergbild. Definiere
+
+  D(X)=diag(X),
+  R(X)=Tr(rho X) I,
+  L_(k,g)=k(R-id)+g(D-id),           k>0, g>=0.
+
+D und R sind unital und vollstaendig positiv. Fuer R liefern
+V_ij=sqrt(p_j)|j><i| die Krausform R(X)=sum_ij V_ij^* X V_ij.
+Fuer D genuegen die diagonalen Rang-eins-Projektoren als Krausoperatoren.
+
+Es gilt D^2=D, R^2=R, DR=RD=R. Deshalb sind
+
+  R, D-R, id-D
+
+komplementaere algebraische Projektoren, und exakt
+
+  P_(k,g)(t)=exp(t L_(k,g))
+    =R+exp(-kt)(D-R)+exp(-(k+g)t)(id-D)
+    =(1-exp(-kt))R
+       +exp(-kt)(1-exp(-gt))D+exp(-(k+g)t)id.              (1)
+
+Die letzte Zeile ist fuer t>=0 eine konvexe Kombination unitaler
+vollstaendig positiver Abbildungen. Damit ist (1) eine normstetige
+Quanten-Markov-Halbgruppe; ihre Halbgruppeneigenschaft folgt ebenfalls
+direkt aus den drei komplementaeren Projektoren.
+
+Fester Zustand:
+  Tr(rho D(X))=Tr(rho X)=Tr(rho R(X)).
+Also ist rho fuer jedes g stationaer. Zudem geht P_(k,g)(t) fuer t->infty
+gegen R. Der duale Grenzkanal R_* schickt jede Dichtematrix nach rho; fuer jede
+Anfangsdichte omega gilt P_(k,g)(t)_*(omega)->rho.
+rho ist daher der EINDEUTIGE stationaere Zustand; er ist treu und von g
+unabhaengig. Hier bleibt nicht lediglich eine ganze stationaere Menge gleich.
+
+Exaktes Spektrum des Heisenberg-Generators:
+  0       auf C I,                                  Multiplizitaet 1,
+  -k      auf {diagonales X:Tr(rho X)=0},             Multiplizitaet d-1,
+  -(k+g)  auf den ausserdiagonalen Matrixeinheiten,   Multiplizitaet d(d-1).
+
+Bei g=0 verschmelzen die beiden negativen Eigenwerte. Die kleinste positive
+Zerfallsrate bleibt fuer ALLE g>=0 genau k. Somit sind Attraktor UND
+spektrale Luecke unveraendert. Das gesamte Generatorspektrum wird NICHT
+als identisch behauptet; gerade sein Kohärenzteil unterscheidet die Familie.
+
+2. GNS- UND KMS-DETAILLIERTES GLEICHGEWICHT
+
+Verwende die Skalarprodukte
+
+  <X,Y>_GNS = Tr(rho X^*Y),
+  <X,Y>_KMS = Tr(rho^(1/2) X^* rho^(1/2)Y).
+
+In der Basis E_ij sind ihre Grammatrizen diagonal, mit Gewichten p_j
+beziehungsweise sqrt(p_i p_j). D ist bezueglich beider Produkte die
+orthogonale Projektion auf die Diagonalalgebra. R ist bezueglich beider
+Produkte die orthogonale Projektion auf C I, denn <I,X>=Tr(rho X).
+Daher sind L_(k,g) und P_(k,g)(t) fuer beide Skalarprodukte selbstadjungiert.
+Das beweist strikte GNS- und KMS-Symmetrie fuer JEDES g.
+Andere Konventionen fuer detailliertes Gleichgewicht koennen einen
+zusaetzlichen schiefadjungierten Hamiltonanteil zulassen; dieser Satz
+benoetigt ihn nicht.
+
+Der modulare Fluss desselben rho lautet
+  sigma_s(E_ij)=(p_i/p_j)^(i s) E_ij.
+D, R und P_(k,g)(t) kommutieren mit diesem Fluss. Die modulare Entwicklung
+ist also fuer alle Familienmitglieder DIESELBE. Im tracialen Spezialfall
+rho=I/d ist sie die Identitaet, waehrend P_(k,g)(t) nichttrivial relaxiert.
+
+Wichtig: KMS-Symmetrie einer dissipativen Halbgruppe ist nicht die
+Aussage, dass diese Halbgruppe der KMS-Automorphismenfluss ist. Die
+Eindeutigkeit des letzteren waehlt den dissipativen Generator nicht aus.
+
+Der positive geschlossene Spezialfall bleibt erhalten: Ist rho wirklich der
+Gibbszustand einer endlichen GESCHLOSSENEN Dynamik bei vorgegebenem beta>0,
+und wird die physische Zeit gerade durch diese Gibbs/KMS-Beziehung
+identifiziert, folgt H=-(1/beta)log(rho)+cI und
+  alpha_t(X)=exp(itH) X exp(-itH)=sigma_(-t/beta)(X).
+In dieser engeren Klasse gibt es keine freie dissipative Rate g. Das ist
+kein Widerspruch zum Satz: Die Voraussetzung identifiziert den physischen
+Fluss und schliesst effektive dissipative Prozesse aus. Aus einem bloss
+stationaeren Zustand allein folgt sie nicht. Bei lokaler Quantenfeldtheorie
+tritt an die Stelle der Dichtematrix das modulare Paar aus Algebra und
+zustandsrepraesentierendem Vektor; dessen Existenz und physische Zuordnung
+muessen ebenfalls unabhaengig nachgewiesen werden.
+
+Auch eine imaginaere KMS-Zeitantwort
+  F_AB(tau)=Tr(rho A sigma_(-i tau)(B))
+hat die Ableitung F'_AB(0)=Tr(rho A[log(rho),B]). Sie enthaelt nur
+modulare Zustandsinformation und KEIN g. Die benoetigte Antwort in (3)
+ist die Antwort der tatsaechlichen Dynamik, nicht eine aus rho definierte
+modulare Fortsetzung.
+
+3. REFLEXIONSPOSITIVITAET DER ANTWORTKERNEL
+
+Auf dem GNS- oder KMS-Hilbertraum ist K_g(t)=P_(k,g)(t) selbstadjungiert
+und hat positiven, kontraktiven Spektralwert. Fuer t_i>=0 gilt
+
+  sum_(i,j) <X_i,K_g(t_i+t_j)X_j>
+    = ||sum_i K_g(t_i)X_i||^2 >= 0.                    (2)
+
+Damit erfuellen die zugehoerigen Halbgruppen-Antwortkernel die in (2)
+definierte Semigruppen-Kernpositivitaet. Auch diese Bedingung selektiert g nicht.
+Das ist NUR (2), kein Beweis von Lokalitaet, relativistischer Kovarianz,
+Einheitswindung, einem c=8-Netz oder saemtlichen P1/P2-Voraussetzungen.
+
+4. MESSBARE UNTERSCHEIDUNG BEI IDENTISCHER POPULATIONSDYNAMIK
+
+Fuer jedes diagonale X gilt
+  P_(k,g)(t)X=R(X)+exp(-kt)(X-R(X)),
+unabhaengig von g. Dagegen gilt fuer i!=j
+  P_(k,g)(t)E_ij=exp(-(k+g)t)E_ij.
+
+Die normierte KMS- oder GNS-Kohärenzantwort ist daher
+  c_g(t)=<E_ij,P_(k,g)(t)E_ij>/<E_ij,E_ij>
+        =exp(-(k+g)t).                                 (3)
+
+Bei t_*=log(2)/k liefert g=0 den Wert 1/2, g=k den Wert 1/4.
+Die populationsbezogene Zerfallszeit, der vollstaendige stationaere
+Zustand und die spektrale Luecke sind dabei gleich. Der Unterschied
+ist dimensionslos: Kohärenzrate/Populationsrate=1+g/k. Er laesst sich
+nicht durch einen blossen Wechsel der Zeiteinheit entfernen.
+
+Fuer d=4 ist D genau das Mittel der vier diagonalen Zwei-Qubit-Pauli-
+Konjugationen. Das ist der bereits in UR.COMPILER.QUARTIC_LIFT.09
+rekonstruierte diagonale Pauli-Kern. Bei rho=I/4 sind R und D unter den
+nativen Koordinatenpermutationen kovariant; die zentrale skalare mu4-Phase iI wirkt bei
+Konjugation trivial. Beim nichttracialen rho wird Invarianz unter
+BELIEBIGEN Permutationen ausdruecklich nicht behauptet.
+
+Die geschlossene unitaere Entwicklung und eine kontrahierende Auslese
+muessen getrennt bleiben: Auf einer endlichen geschlossenen Algebra
+bewahrt unitaere Konjugation den Spurabstand zweier Zustaende. Sie kann
+daher nicht alle anfangs verschiedenen Zustaende auf denselben Attraktor
+zusammenziehen. Eine solche Attraktion benoetigt eine reduzierte Auslese,
+einen anderen Transferbegriff oder einen passenden Grenzuebergang. Der
+hier gepruefte Auswahltest betrifft ausdruecklich die effektive Halbgruppe.
+
+Die Resetregel R in (1) ist eine analytische Kontrolle der starken
+Fixpunktbehauptung. Sie wird nicht mit der dreidimensionalen
+TFPT-Populationsmatrix mit Eigenwerten 1,2/3,1/3 identifiziert.
+
+5. UEBERTRAGUNG AUF EINEN BEREITS FESTGELEGTEN BASISPROZESS
+
+Sei L_0 ein unitaler, rho-erhaltender KMS-symmetrischer
+Quanten-Markov-Generator, der die Diagonalalgebra invariant laesst.
+Da D ihre KMS-orthogonale Projektion ist, folgt aus Selbstadjungiertheit
+  [L_0,D]=0.
+Somit definiert fuer jedes g>=0
+  L_g=L_0+g(D-id)
+ebenfalls einen rho-erhaltenden KMS-symmetrischen Generator, mit
+  exp(tL_g)=exp(tL_0)[D+exp(-gt)(id-D)].                  (4)
+Auf der Diagonalalgebra ist (4) genau der urspruengliche Prozess.
+Auf ihrem orthogonalen Komplement kommt die freie Daempfung hinzu.
+Modulare Kovarianz allein folgt NICHT aus KMS-Symmetrie. Erfuellt L_0
+zusaetzlich [L_0,sigma_s]=0 fuer alle s, so erhaelt auch L_g diese
+Eigenschaft, weil D mit sigma_s kommutiert.
+
+Ist L_0 primitiv, bleibt L_g primitiv: Die nichtnegativen Dirichletformen
+addieren sich, und der Nullraum der Summe ist der Schnitt der Nullraeume;
+der Nullraum von -L_0 besteht bereits nur aus den Skalaren. Die EXAKTE
+Luecke muss im allgemeinen Basisprozess nicht erhalten bleiben; dafuer
+liefert Abschnitt 1 einen vollstaendig bewiesenen Spezialfall.
+
+Dies verstaerkt den bekannten endlichen Unterbestimmtheitstest, ohne
+eine neue Quellabbildung oder einen neuen physikalischen Parameter
+zu behaupten. Wenn ein bestimmter Originalprozess die genannten
+KMS-/Invarianzvoraussetzungen nicht erfuellt, wird (4) nicht auf ihn
+uebertragen. Seine Voraussetzungen sind Teil des Satzes.
+
+6. POSITIVER REKONSTRUKTIONSSATZ: WELCHE QUELLINFORMATION GENUEGT
+
+Sei B_1,...,B_(d^2) eine vollstaendige Operatorbasis derselben endlichen
+Algebra, rho treu, und P_t eine tatsaechliche normstetige Halbgruppe auf
+DIESER Algebra. Waehle fest entweder das GNS- oder KMS-Skalarprodukt
+aus Abschnitt 2. Definiere aus unabhaengig gegebenen Quellantworten
+
+  G_ab=<B_a,B_b>_rho,
+  C_ab(t)=<B_a,P_t(B_b)>_rho.
+
+Schreibt man P_t(B_b)=sum_c T_cb(t) B_c, gilt C(t)=G T(t).
+Faithfulness und lineare Unabhaengigkeit geben G>0. Damit folgen eindeutig
+
+  T(t)=G^(-1)C(t),
+  L=G^(-1) C'(0).                                      (5)
+
+(5) ist eine konstruktive lineare Rekonstruktion, kein neues Postulat und
+keine Anpassung eines gewuenschten Hamiltonoperators. Sie liefert aber
+nur dann eine Herkunftsherleitung, wenn C(t) oder C'(0) bereits aus der
+ORIGINALQUELLE und einer bewiesenen Auslese stammen. Rueckwaerts aus dem
+gewuenschten L konstruierte C sind kein unabhängiger Input.
+
+Beschraenkt man G und C auf die Diagonalalgebra, erhaelt (5) nur die
+Populationsdynamik; die d(d-1) Kohärenzrichtungen fehlen. Im Beispiel
+gibt der einzelne normierte Koeffizient -c'_g(0)=k+g die noch fehlende
+Rate an. Sein Wert ist hier NICHT aus P1 hergeleitet.
+
+7. DIE GRENZE BEI QUELLEN MIT GEDAECHTNIS
+
+Eine endliche Auslese eines groesseren geschlossenen Systems braucht keine
+Halbgruppe zu bilden. Die Ableitung komprimierter Antworten bestimmt dann
+nur die komprimierte Ableitung; sie bestimmt nicht das spaetere Rueckfliessen
+von Amplitude. Voraussetzung (5) darf daher nicht durch passend definierte
+Finite-Matrizen ersetzt werden.
+
+Fuer die volle Quelle genuegt stattdessen die Familie aller Matrixelemente
+  <A Omega,U_t B Omega>
+auf einem dichten, durch tatsaechliche Quellwoerter erzeugten Vektorraum,
+mit bekanntem zustandsgetreuem Woerterbuch. Zwei beschraenkte U_t mit diesen
+gleichen Matrixelementen stimmen auf dem dichten Raum und daher ueberall
+ueberein. Bei stark stetiger unitaerer Entwicklung ist damit auch der
+selbstadjungierte Generator eindeutig. Existenz, Positivitaet und
+Zeitkomposition dieser Quellantworten bleiben echte Voraussetzungen.
+Fuer eine allgemeine wechselwirkende Feldtheorie genuegen nicht einfach
+die Zweipunktfunktionen einiger elementarer Felder; alle erforderlichen
+Wortantworten beziehungsweise die volle Rekonstruktionsstruktur sind nötig.
+
+8. ANSCHLUSS AN DEN AKTUELLEN TFPT-QUELLENSTAND
+
+Der Rohanschluss ist in QGEO.KERNEL.01 weiterhin offen: die Operatoridentitaet
+des rohen P1-Kerns mit der markierten Nahtkovarianz, einschliesslich des
+gleichen Zustands und der gleichen lokalen Wirkung. P1 nennt einen
+primitiven reflexionspositiven Randkern mit Einheitswindung und
+c3=1/(8pi). In den geprueften Originalanschluessen ist eine unabhaengig
+quellabgebildete Antwort (3) der tatsaechlichen positiven Zeitentwicklung
+noch nicht bestimmt. Der vorliegende Satz konstruiert oder widerlegt
+diesen vollstaendigen primitiven P1-Kern nicht.
+
+v258 konstruiert Testkovarianzen aus vorher eingesetzten Hamiltonmatrizen.
+Ihre erfolgreiche Inversion ist keine unabhaengige Quellenbestimmung.
+Der korrekte Satz fuer eine endliche treue thermische Dichtematrix ist
+H=-log(rho)/beta+cI bei bekanntem beta. Er bestimmt die zugehoerige innere
+Hamiltonentwicklung, nicht beliebige rho-erhaltende effektive Relaxation.
+
+Die neueren Quellvertraege liefern bedingte lokale Sektorantworten und
+exakte geometrische Phasenbeziehungen. Ihre offenen Rohquellen-, lokalen
+Auslese- und physischen Zeitvoraussetzungen werden hier nicht ersetzt.
+
+Das Ergebnis beseitigt deshalb keinen T1-T8-Gesamtengpass. Es entscheidet
+die konkrete vermeintliche Abkuerzung: festgelegter Zustand + strikte KMS/GNS-
+Symmetrie der effektiven Halbgruppe + modulare Kovarianz + eindeutiger
+stabiler Fixpunkt + Markov-Zerfallsluecke genuegen selbst
+in einer vollstaendig kontrollierten endlichen Algebra nicht. Der positive
+Weg ist die unabhängige Quellantwort mit pruefbarer Auslese, nicht das
+Rueckwaertsdefinieren eines Zustands aus der gewuenschten Dynamik.
+
+9. QUELLEN UND NEUHEITSGRENZE
+
+Das Beispiel nutzt etablierte bedingte Erwartungen, Quanten-Markov-
+Halbgruppen und Zustandsrekonstruktion. Es wird nicht als neue allgemeine
+Mathematik ausgegeben. Sein Beitrag in diesem Contract ist der gemeinsame
+exakte Test der hier vorgeschlagenen staerkeren TFPT-Auswahlbedingungen
+und die konkrete Angabe des verbleibenden dimensionslosen Antwortdatums.
+
+Matthijs Vernooij, Melchior Wirth (2023):
+Derivations and KMS-Symmetric Quantum Markov Semigroups.
+Commun. Math. Phys. 403, 381-416.
+https://doi.org/10.1007/s00220-023-04795-6
+Insbesondere die verschiedenen GNS-/KMS-Symmetrien und die zusaetzliche
+Dirichletform eines dissipativen Generators.
+
+Alain Connes, Carlo Rovelli (1994):
+Von Neumann Algebra Automorphisms and Time-Thermodynamics Relation in
+General Covariant Quantum Theories.
+https://arxiv.org/abs/gr-qc/9406019
+Modulare Automorphismen und ihre physische Zeitinterpretation sind von
+KMS-symmetrischer dissipativer Evolution zu unterscheiden.
+
+Die allgemeinen Aussagen oben sind analytisch bewiesen. Der begleitende
+Checker prueft die finite Matrixrealisierung, die Halbgruppenkomposition,
+ausgewaehlte exakte Antworten und die Rekonstruktionsformel. Er ersetzt
+weder diese Beweise noch eine Konstruktion der fehlenden Rohquelle.

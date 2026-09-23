@@ -1,0 +1,257 @@
+# Source/dynamics origin inventory — 2026-09-20
+
+## Result
+
+Before this audit, the current material does **not** contain a derivation from
+the full QWZ/source functional or the native compiler contract of an
+`I_(9,1)` boundary energy, a non-Gaussian E8 interaction, or a dynamical
+selector that chooses the characteristic null `n` rather than the ordinary
+null `z`. The strongest existing results are conditional constructions and
+negative provenance checks with narrower scope.
+
+This is not a no-go for every possible P1/P2 source. It is an inventory of
+the pinned QWZ source, the declared compiler Hamiltonian, the conditional E8
+boundary reconstruction, and the already existing compact rotor parent.
+
+## 1. What the actual QWZ source supplies
+
+The original strip is a one-body, free source. In the source-line proof the
+actual width-eight Fourier operator is
+
+```text
+TX=-(i sigma_x+sigma_z)/2,
+TY=[[-1,-1],[1,1]]/2,
+h(p) = (1-cos p) sigma_z - sin p sigma_x
+D_a(k) = h(a k)/a,
+```
+
+with the quarter-shifted mesh `p_j=2*pi*(j-r/4)/N`; the filled state is the
+negative spectral projection. The same source-rg contract records the finite
+source Hamiltonian exactly as
+
+```text
+D_N = N h_N/(2*pi),
+H_N = dGamma(D_N) - Tr(1_(D_N<0) D_N).
+```
+
+The microscopic charged-carrier contract gives the corresponding finite Fock
+data `P_N=1_(h_N<0)`, `Omega_N` the filled Slater sea,
+`Hcal_N=dGamma(D_N)-Tr(P_N D_N)`, and `Q_N=dGamma(I)-8N`. Its local boundary
+operators are the original CAR annihilators/creators, with
+`[Q_N,Psi_N(g)]=-Psi_N(g)`. Thus the source does provide a genuine integer
+charged odd CAR field and a controlled free time evolution. It does not
+provide an E8 half-charge field, eight native channels, an `I_(9,1)` energy
+form, or a source-derived interaction.
+
+The source-local-line and source-rg proofs strengthen this same statement:
+the growing-radius limit preserves the original coefficients and introduces
+no new Hamiltonian term, extra copies, or time-dependent re-projection. It
+has one low-momentum chiral channel per edge. The fixed-width source-rg
+exhaustion also finds only the two edge Fock branches in each fixed rescaled
+energy cutoff; no hidden bulk branches can be promoted to the missing E8
+multiplicity.
+
+## 2. Existing Gaussian-preservation result
+
+The Gaussian-preservation result already exists and should not be rerun as a
+new route. In `clock-interaction-provenance/README.md`, the original
+16-Majorana source is written as
+
+```text
+H(D) = (i/4) gamma^T D gamma,
+D = u A0 + t A_int,
+```
+
+with the pinned source matrices satisfying `[A0,A_int]=0`. The exact
+quadratic CAR commutator law
+
+```text
+[H(D), gamma(v)] = i gamma(Dv),
+[H(D), H(E)] = i H([D,E])
+```
+
+keeps the Lie/BCH closure quadratic. The same audit checks all 14,400 ordered
+quadratic Majorana brackets: every nonzero bracket remains degree two. A
+finite Grassmann Gaussian integration gives only a Pfaffian/determinant and a
+quadratic Schur kernel; the connected quartic coefficient in the logarithm is
+exactly zero even though the raw unconnected degree-four coefficient is
+nonzero. The QWZ determinants, Pfaffian correlators, Wick reconstruction, and
+composite charged observables therefore do not create a quartic Hamiltonian.
+
+This conclusion is deliberately conditional on central scalar coefficients
+and Gaussian CAR elimination. It does not rule out a bosonic/rotor field,
+non-Gaussian measurement, postselection, or a genuinely noncommuting
+coefficient algebra.
+
+## 3. First extra E8 metric/coupling is chosen, not derived
+
+The boundary-selection contract starts from the conditional source class
+
+```text
+K = diag(1,1,1,1,1,1,1,1,1,-1),
+B(p,q) = p^T K q,
+q(p) = sum_i p_i,
+n = (1,1,1,-1,-1,-1,-1,-1,-1,3),
+z = e9 - e10.
+```
+
+`n` is characteristic and null, while `z` is the ordinary noncharacteristic
+neutral null and leaves an `I8` quotient. The E8 quotient therefore follows
+conditionally after the characteristic/even quotient input is imposed. The
+contract states explicitly that this source class, number functional, glue
+character, and microscopic channel identification are assumptions, and that
+evenness is an input rather than a consequence of a primitive null cosine.
+
+The first additional dynamical datum is the positive energy matrix. The
+auxiliary-right construction chooses
+
+```text
+e_R = -e9,
+m = n + e9,
+V_aux = K + 2 K m m^T K
+       = W_aux^(-T) (G_E8 direct_sum I2) W_aux^(-1).
+```
+
+This gives eigenvalues `1` (eight times) and `17 +/- 12 sqrt(2)`, and in
+`phi=W_aux chi` the chosen null cosine becomes
+`cos(n^T K phi)=cos(chi_R-chi_L)`. At the designated bosonization point the
+result factorizes as `H=H_E8,1 + H_massive_Dirac`. The same proof explicitly
+calls `V_aux` a chosen energy matrix, not a Hamiltonian inferred from the
+source. It also records `Delta(n)=1` and `Delta(z)=9` for this choice; the
+free starting metric instead gave `Delta(n)=9`, `Delta(z)=1`. This dependence
+on the chosen metric is precisely why dimensions cannot select `n` natively.
+
+The conditional relevance calculation is useful but does not close the
+origin gap: at `V_aux`, the neutral relevant nulls are only `+/-n`, while all
+other nonzero neutral nulls have dimension at least four; a small pair boost
+preserves this separation. The proof nevertheless says that the microscopic
+interaction realizing this regime, the eight channels plus R/L pair, and the
+source-to-field intertwiner remain to be produced.
+
+The independent source-rg counterfamily makes the same point in a second
+form. On the already stipulated E8 lattice one may choose any real symmetric
+`V>0` and set
+
+```text
+H_V = (p^T V p)/2 + sum_(n>0) a_-n^T V a_n.
+```
+
+An explicit Coxeter-compatible example is then chosen as
+`V=I+(C+C^T)/4`, producing four distinct velocities. A second clock would
+force `V=vI` **within this chosen quadratic-current class**, but only if both
+clocks had first been proved to be symmetries of the same physical dynamics.
+The construction uses an abstract E8 implementer, not a raw-source
+implementer, and does not derive `V` from P1/P2.
+
+## 4. What the native compiler contract supplies
+
+The native two-source compiler contract has the exact finite Hamiltonian
+family
+
+```text
+H = kappa (L1+L2) + J (E1+E2) + mu V,
+V(alpha,beta) = 1 - Re <psi_alpha | psi_beta>.
+```
+
+Here `L_e` is the native reflection term and `E_e` the event penalty. The
+transfer `V` is diagonal on source labels and scalar on matter, hence
+`[V,P]=0` and `QVP=0` for the common event-nullspace projector. The first
+actual leakage comes from `L`, with the exact witness
+`||Q L1 P x||^2=1/7200`. The coupling restriction
+`d=J(2-sqrt(3))-4 kappa-2 mu > 0` (and the stronger `d>2 kappa` for the
+common isometry) is a sufficient spectral condition, not a selected value
+of `kappa,J,mu`. It yields a controlled two-source reduction only; it does
+not derive a boundary metric, a physical time, or an E8 selector.
+
+The same compiler audit finds that, in the C/J-invariant quadratic boundary
+action, the pair is dynamically factorized:
+
+```text
+H = H_E8 tensor I + I tensor H_pair,
+Q H P = 0.
+```
+
+Integrating out that pair in this class therefore produces no missing family
+mixing. The required nonfactorizing higher interaction is explicitly left
+open. Likewise, a relative phase gives a real operator response in the
+finite two-source model, but the phase variable is not identified with a
+native dynamical field or `a0`; it does not select `n` versus `z`.
+
+## 5. The one genuine non-Gaussian source edge, with its limit
+
+`clock-interaction-provenance` records one actual non-Gaussian input in the
+separate compact U(1) rotor parent. On an existing link,
+
+```text
+[E,U]=U,
+H_E=(kappa/2) E^2,
+Vhop=a (U c_1^* c_0 + U^* c_0^* c_1),
+a=1/12, kappa=1/100.
+```
+
+Because the rotor coefficient is noncentral, the exact double commutator
+contains
+
+```text
+[Vhop,[H_E,Vhop]] = ... - 2 kappa a^2 q0 q1 + ...,
+-2 kappa a^2 q0 q1 = -(1/7200) q0 q1.
+```
+
+This is a genuinely source-derived quartic commutator component, not an
+inserted free four-fermion term. It does not solve the present origin
+question: it lives on four L/H complex modes at two sites plus an infinite
+U(1) rotor, not on the sixteen Clock Majoranas, and no map to the boundary,
+E8, `n/z`, or the required charge/grading data has been proved. Its effective
+Hamiltonian coefficient, time ordering, Gauss reduction, and controlled
+elimination are still open. It is therefore a candidate next bridge, not an
+existing derivation of the E8 phase.
+
+## Verdict and next decisive test
+
+The strongest source-native conclusion is:
+
+1. The QWZ/CAR source fixes free one-body dynamics and one integer-charged
+   chiral channel per edge.
+2. The Gaussian closure and determinant/Schur calculation already prove that
+   source response functions do not manufacture the required quartic vertex.
+3. The `I_(9,1)` form, the characteristic `n` selector, and the massive-pair
+   cosine are conditional boundary choices; the explicit `V_aux` is the first
+   extra metric datum and is not P1/P2-derived.
+4. The native compiler Hamiltonian has real label/event/reflection operators
+   and a controlled two-source reduction, but its couplings are conditions,
+   not a dynamical derivation of `n` or `z`.
+5. A non-Gaussian rotor-parent commutator exists, but its physical dictionary
+   to the Clock/E8 boundary is absent.
+
+The next useful test is consequently a typed source map from an already
+present noncommuting parent operator (if that parent is admitted) to the
+`I_(9,1)` channel lattice, preserving its state, grading, charges, and local
+time. Until that map exists, selecting `n` or realizing the nonfactorizing
+E8 interaction remains an additional construction.
+
+## Evidence anchors (path:line)
+
+- Actual QWZ blocks and scaling assumption: `experiments/theory-contracts/source-local-line-20260920/SOURCE_LINE_PROOF.txt:14-34`; finite source Hamiltonian and filled sea: `experiments/theory-contracts/source-rg-clock-bridge-20260920/PROOF.txt:26-34`.
+- Native integer CAR field, charge Ward identity, and scope boundary: `experiments/theory-contracts/microscopic-charged-car-limit/README.md:24-39,41-68,250-272`.
+- Existing Gaussian source and exact quadratic closure: `experiments/theory-contracts/clock-interaction-provenance/README.md:7-40,42-63`.
+- Gaussian Grassmann elimination and zero connected quartic: `experiments/theory-contracts/clock-interaction-provenance/README.md:78-109`.
+- Conditional `K`, `n`, `z`, and evenness assumptions: `experiments/theory-contracts/source-boundary-selection-20260920/PROOF.md:10-30,32-63`.
+- First chosen E8 energy form, cosine, factorization, and `Delta(n)/Delta(z)`: `experiments/theory-contracts/source-boundary-selection-20260920/PROOF.md:116-174`.
+- Conditional relevant-null window and remaining source obligations: `experiments/theory-contracts/source-boundary-selection-20260920/PROOF.md:218-269`.
+- Abstract E8 `H_V`, explicit chosen Coxeter form, and conditional two-clock selection: `experiments/theory-contracts/source-rg-clock-bridge-20260920/PROOF.txt:161-210`.
+- Native compiler `H=kappa(L1+L2)+J(E1+E2)+mu V`, `QVP=0`, and unselected coupling condition: `experiments/theory-contracts/common-source-gauge-grade-transfer-20260920/ERGEBNIS.md:144-188`; formulas and transfer provenance: `experiments/theory-contracts/common-source-gauge-grade-transfer-20260920/transfer/PROOF.md:24-86`.
+- Compiler pair factorization and open nonfactorizing interaction: `experiments/theory-contracts/common-source-gauge-grade-transfer-20260920/ERGEBNIS.md:144-149`.
+- Genuine rotor-parent quartic commutator and its type boundary: `experiments/theory-contracts/clock-interaction-provenance/README.md:132-185`.
+
+## Primary originals inspected (pin these paths)
+
+1. `experiments/theory-contracts/source-rg-clock-bridge-20260920/PROOF.txt`
+2. `experiments/theory-contracts/source-local-line-20260920/SOURCE_LINE_PROOF.txt`
+3. `experiments/theory-contracts/source-local-line-20260920/README.md`
+4. `experiments/theory-contracts/microscopic-charged-car-limit/README.md`
+5. `experiments/theory-contracts/source-probe-carry-20260920/PROOF.txt`
+6. `experiments/theory-contracts/source-boundary-selection-20260920/PROOF.md`
+7. `experiments/theory-contracts/common-source-gauge-grade-transfer-20260920/ERGEBNIS.md`
+8. `experiments/theory-contracts/common-source-gauge-grade-transfer-20260920/transfer/PROOF.md`
+9. `experiments/theory-contracts/clock-interaction-provenance/README.md`
+10. `experiments/theory-contracts/clock-interaction-provenance/TEST_RESULTS.md`

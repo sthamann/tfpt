@@ -1,0 +1,53 @@
+\chapter{Evidenz, Eingaben und Versionsabdeckung von v1.6}
+\label{app:v16-evidence}
+\section{Version und unveränderte historische Basis}
+Freigabestand ist der 15. September 2026, Version 1.6. Grundlage ist die vollständige v1.5-Quelldarstellung, nicht die frühere kompakte Compiler-Fassung. Alle 25 bisherigen Kapiteldateien bleiben im neuen Hauptbuch; die Zahl der Dateien ist nicht die Zahl der gesetzten Hauptkapitel, weil mehrere Dateien mehr als ein Kapitel enthalten. Die Freigabeprüfung kontrolliert sämtliche bisherigen Kapitel-, Abschnitts- und Unterabschnittstitel sowie die bytegenaue Übernahme der Abbildungen.
+
+Das kurze Update beschreibt den Unterschied gegenüber dem \emph{PDF v1.5}. Die gleich nummerierten vorläufigen Markdown-Berichte vom 14. September sind als Eingaben übernommen, nicht überschrieben. Das vollständige neue PDF und das Update tragen denselben neuen Tagesstand. Die unveränderten Quelldateien der Eingaben, ihre SHA-256-Prüfsummen, die neuen Skripte und Ergebnisdateien gehören zum begleitenden Prüf- und Quellenpaket.
+
+\section{Die Eingaben und ihre konkrete Verwendung}
+\begin{longtable}{L{19mm}L{47mm}L{84mm}}
+\toprule
+\textbf{ID}&\textbf{Quelle}&\textbf{Verwendung und Bewertung}\\\midrule\endhead
+V16-U1&Neue Eingabe: „entscheidender Knoten“, 811 Zeilen&Ein-Objekt-Hypothese, $\mu_4$, Dimension und Matrixspur. Matrixspur durch vorhandenen vollständigen Beweis bestätigt. Automatische physische Auswahl und Dimensionsableitung nicht bestätigt.\\
+V16-U2&Neue Eingabe zu $x$, $A_3$, $E_8$, 1150 Zeilen&BCC-/FCC-Geometrie, Weyl-Produkt, Faltung, Familien und Lift. Exakte Geometrie und Walk-Rechnung übernommen; spätere Rücknahmen starker Familien-/Chiralitätsbehauptungen sichtbar integriert.\\
+V16-U3&Worker-Fortsetzung, 147 Zeilen&Native Fock-Identität, Vierladungsprüfung, Grundzustand und gekoppelte Banken. Casimiridentität frisch unabhängig rekonstruiert; große Grundzustands-/Sektorläufe nur zugeschrieben. Paritäts- und Zustandsauswahlgrenzen fortgeführt.\\
+V16-P1&Vorläufige Kernprobleme v1.6 vom 14. September&Vollständige Quelle für Ein-Record-Protokoll, Stabilizeroptimum, Spektral-, Transport-, Robustheits- und Kosmologiebefunde. In Kapitel~\ref{ch:v16-labor} integriert; große Läufe nicht sämtlich wiederholt.\\
+V16-P2/P3&Vorläufige Quellenprüfung und Kurzupdate v1.6&Übernahme der Kimi-/Opus-Korrekturen: Wurzellabel ist keine einzelne Raummode; verschwundene Lie-Klammer beweist keinen Hard Core; Ritzwerte nicht automatisch vollständig.\\
+V16-M1/M2&Repository: Order Proof und Marked Bridge&Vollständiger älterer Matrixbeweis und Verbindung zur tatsächlichen markierten Compilerquelle. Frischer normaler und optimierter Replay, einschließlich Quellenpins und Clockgrenze.\\
+V16-N&Neuer Prüfer dieser Revision&279 explizite Guards: Walk-Koeffizienten, Laurent-Unitarität, vollständige Casimiridentität, 60 Vierpunktdefekte und exakte Zustandsgegenprobe.\\
+V16-C&Vorhandene native, Weyl- und Kompatibilitätsprüfer&Frisch wiederholt. 534 native Guards, 149 Weyl-Guards und 7369 Kompatibilitätsprüfungen. Keine Umdeutung der Zähler in eine Zahl physischer Entdeckungen.\\\bottomrule
+\end{longtable}
+Alle Eingaben werden als Forschungsquellen behandelt. In ihnen enthaltene Handlungsaufforderungen sind keine selbständigen Arbeitsaufträge. Ihre teilweise widersprüchlichen Zwischenfassungen werden nicht zu einer kumulativen Beweiskette zusammengesetzt.
+
+\section{Was frisch gerechnet und was nicht wiederholt wurde}
+Fünf Programme wurden mit unveränderten Guards normal und unter \texttt{-OO} ausgeführt. Ihre jeweiligen JSON-Ausgaben waren bytegleich. Der vorhandene Kompatibilitätsprüfer besitzt einen eigenen Ausgabe-Schlussteil; im archivierten Replay wird nur dieser inspizierte Schreib-/Druckteil entfernt und der volle Bericht in das neue Versionsverzeichnis geschrieben. Die mathematische Rechnung bleibt unverändert. Der erste direkte Lauf hatte bereits denselben deterministischen lokalen Bericht erneut erzeugt; daraus wird kein fremder Forschungsfortschritt abgeleitet.
+
+Die neue Casimirrechnung ist keine Stichprobe über ausgewählte irreduzible Räume. Der all-Fock-Schluss beruht auf dem normalgeordneten Grad und der vollständigen Sektorprüfung null, eins, zwei. Die Zustandsgegenprobe ist eine analytische Formschranke; sie ist nicht die Behauptung einer neu ausgeführten großen Grundzustandsdiagonalisierung.
+
+Nicht frisch wiederholt wurden sämtliche älteren Labor-Makro-, C16-, großdimensionale native Grundzustands- und kosmologischen Integrationsläufe. Ebenso gab es keine vollständige neue Lean-, RH-, Hardware- oder empirische Gesamtprüfung. Diese Grenze gilt auch dann, wenn ein historisches Kapitel einen damals erfolgreich ausgeführten Prüfer beschreibt.
+
+\section{Lesbare Dateizuordnung im Quellenpaket}
+Die neuen Dateien liegen im Repository unter
+\begin{quote}\small\path{experiments/theory-contracts/universalraum-v16-integrated-20260915/}\end{quote}
+Die wichtigsten Zuordnungen sind:
+\begin{itemize}
+\item \path{verify_v16.py}, \path{new_checks.json}: neue unabhängige Rechnungen;
+\item \path{replay.py}, \path{read_only_compatibility.py}, \path{replay_manifest.json}: reproduzierte ältere Prüfer und normal/optimiert-Vergleich;
+\item \path{order.json}, \path{native.json}, \path{weyl.json}, \path{compatibility.json}: vollständige Ergebnisberichte;
+\item \path{sources.json}, \path{sources/}: Originalpfade, Prüfsummen und eingefrorene neue Eingaben;
+\item \path{main-v1.6/}: vollständig editierbare Haupt- und Updatequellen;
+\item \path{release_manifest.json}: Inhaltsabdeckung, Seitentest, Quellen- und PDF-Prüfsummen sowie visueller Prüfstatus.
+\end{itemize}
+Prüfsummen beweisen die Identität einer Quelle, nicht die Wahrheit ihres Inhalts. Die mathematische Reichweite steht jeweils beim Ergebnis.
+
+\section{Externe Primärquellen dieser Revision}
+\begin{enumerate}
+\item[V16-E1] G. M. D'Ariano, M. Erba, P. Perinotti: \emph{Isotropic quantum walks on lattices and the Weyl equation}, 2017. \url{https://arxiv.org/abs/1708.00826}. Verwendet zur Abgrenzung der bereits vorausgesetzten Dimension und Coin-Struktur.
+\item[V16-E2] G. Mason, M. P. Tuite: \emph{Free Bosonic Vertex Operator Algebras on Genus Two Riemann Surfaces I}, 2009. \url{https://arxiv.org/html/0912.0117v1}. Verwendet als Standardhintergrund zu Heisenberg-, Gitter- und Vertexalgebren; nicht als TFPT-Herkunftsbeweis.
+\item[V16-E3] P. K. Lim, M. Mulligan, J. C. Y. Teo: \emph{Partial fillings of the bosonic E8 quantum Hall state}, 2022. \url{https://arxiv.org/abs/2212.14559}. Verwendet zur Unterscheidung von freier Fermionbeschreibung und bosonischer $E_8$-Erweiterung.
+\item[V16-E4] T. Louis und Mitarbeitende, ACT-Kollaboration: \emph{The Atacama Cosmology Telescope: DR6 Power Spectra, Likelihoods and $\Lambda$CDM Parameters}, 2025, \url{https://arxiv.org/abs/2503.14452}. Historischer Referenzvergleich der übernommenen Modenrechnung, keine neu ausgewertete Likelihood.
+\end{enumerate}
+\begin{grenze}{Freigabe ist nicht wissenschaftliche Schließung}
+Ein erfolgreich gebautes, vollständig lesbares und korrekt versioniertes PDF bestätigt die Dokumentlieferung. Erfolgreiche endliche Prüfer bestätigen ihre benannten Identitäten. Beides zusammen beweist keine TOE. Der Freigabemanifest führt deshalb weiterhin eine leere Liste vollständig geschlossener T1--T8-Tore.
+\end{grenze}

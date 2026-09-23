@@ -1,0 +1,94 @@
+\chapter{Fünf neue Untersuchungen: Abgleich und stärkere Dynamikkontrolle}
+\label{ch:audit14}
+\section{Quellen und drei notwendige Korrekturen}
+Die neuen Originale sind N9 (Fable-Abschlussrunde), N10 (Sol-Runde 2), N11 (Astra-Antwort), N12 (Astra hoch) und N13 (Spark-Gesamtstand). Alle fünf sind unverändert im Quellenpaket archiviert. Ihre internen Arbeitsaufträge sind Forschungsinhalt, keine zusätzlichen Nutzeranweisungen. Der hier ausgeführte Auftrag ist Prüfung, eigene Fortsetzung und anschließende Konsolidierung.
+
+\begin{longtable}{L{19mm}L{66mm}L{65mm}}
+\toprule Quelle&Tragender Zugewinn&Präzisierung dieser Prüfung\\\midrule\endhead
+N9&Cocycle-Ränge, lokale F4-Werte, vorhandene dichte Singulett- und 64-Sektor-Rechnungen.&Gleitkomma-Vierfachheit bleibt numerisch; Zell- und Kantenlokalität sind verschieden.\\
+N10&Offene exakte Multiplizität, Norm 1920, unitäre Nichtidentifizierbarkeit.&Die alte grobe Bandgrenze $1/640$ ist für die endliche Bandtrennung überholt.\\
+N11&Schur-Bandbeweis bei $1/20$, Feedbackattraktor, Feshbachkern, ACT-Gegenvergleich.&Band, innerer Gap und kanonischer Rest bleiben getrennt.\\
+N12&Gemeinsame Ausführung, Pulsgegenprobe, Rohstatistik, detaillierte T1--T8-Verträge.&Methodische Kandidaten sind nicht schon native Operatoren.\\
+N13&Gesamtübersicht und historische Reproduktionen.&Status und Rohwerte müssen ihrer jeweiligen Version zugeordnet bleiben.\\\bottomrule
+\end{longtable}
+
+Die vollständige dichte Gleitkommadiagonalisierung stützt die Vierfachentartung stark, liefert aber keinen exakten Eigenprojektor oder Intervallbeweis. Auch ein numerisch irreduzibler Viererraum schließt weitere exakt entartete Kopien nicht aus. Das Flag eines \emph{exakten} oberen Multiplizitätsbeweises wird daher nicht übernommen.
+
+Die 64-Sektor-Datei deckt die SU(4)-Sektoren mit $\sum d_{S_{16}}d_{SU(4)}=4^{16}$ ab. Der Code berechnet jedoch niedrige \emph{nackte} Eigenvektoren und projiziert F4 in deren Cluster. In 63 Sektoren ist die nackte Modenliste abgeschnitten. Das ist eine sektorübergreifende Störungsdiagnose, keine vollständige Diagonalisierung des korrigierten Operators oder rigorose globale Untergrenze. Die schweren Fremdläufe wurden hier nicht erneut gestartet.
+
+\section{Lokalität wählt nicht zwischen zwei lokalen Modellen}
+Für $L$ Clebsch-Zellen sind drei Architekturen zu unterscheiden:
+\begin{center}\begin{tabular}{lrrr}
+\toprule Zellen&Eine globale Bank&Eine Bank pro Zelle&Eine Bank pro Kante\\\midrule
+1&60&60&0\\2&280&120&0\\3&660&180&0\\6&2760&360&0\\\bottomrule
+\end{tabular}\end{center}
+Gezählt werden gleichlabelige disjunkte Paarbeiträge vierter Ordnung. Die Formeln sind $10\binom{4L}{2}$, $60L$ und null. Eine endliche Bank pro Zelle bleibt lokal und extensiv, behält aber die inneren Paarterme. Bereits das Produkt entkoppelter Zellen ist ein exaktes Gegenmodell zum behaupteten Zwang, diese Terme zu löschen. Endlichreichweitiger beschränkter Transport ist ein weiterer zulässiger Modelleingang, kein Dimensionsselektor.
+
+Das quadratische Wachstum eines Koeffizienten der globalen Bank zeigt fehlende uniforme lokale Störungskontrolle. Es beweist nicht, dass die volle Energie in jedem Grenzprozess quadratisch wächst. Folglich bleiben der positive Gapkoeffizient $+13{,}901769\ldots$ und der kantenlokale Wert $-11{,}955494\ldots$ zwei verschiedene, korrekt benannte Modellresultate.
+
+\section{Bandtrennung bis zum Betriebspunkt}
+Im harten C16-Modell mit $N_f+2N_b=16$ sei $A_n=Q_{n+1}B^\dagger Q_n$. Die vollständige Enumeration aller 65536 Ortsmengen bestätigt
+\begin{equation}
+L_n=L(16-2n)=(40,31,24,17,12,7,4,1,0).
+\end{equation}
+Gewichte $p(\mathbf n)=1/\sqrt{\prod n_A!}$ heben im Schurtest die Bosonenwurzeln auf. Die Spaltensumme ist höchstens $L_n$, die Zeilensumme höchstens $2(n+1)\min(4,n+1)$. Daher
+\begin{equation}
+\|A_n\|^2\le 2(n+1)\min(4,n+1)L_n.
+\end{equation}
+Die daraus gebildete achtstufige Vergleichsmatrix hat Diagonale $1,\ldots,8$ und Nebendiagonale $-\epsilon a_1,\ldots,-\epsilon a_7$. Bei $\epsilon=1/20$ sind alle rationalen LDL-Pivots nach Abzug von $2/5$ positiv. Damit gilt $QHQ\ge2\Delta Q/5$. Weil $PHP=0$ und $d=\dim P=4^{16}$, gibt Minmax $\lambda_d(H)\le0$ und $\lambda_{d+1}(H)\ge2\Delta/5$. Genau das niedrige Belegungsband ist getrennt, nicht jeder seiner inneren Zustände.
+
+\textbf{Eigene Verschärfung, nur pro Kante lokale Vermittler.} Eine Mode kann beim Rückweg nur ihre eigene Kante füllen. Der zusätzliche Faktor $\min(4,n+1)$ entfällt:
+\begin{equation}
+a_n^2=(80,124,144,136,120,84,56,16).
+\end{equation}
+Für den Abzug von $7/10$ ergeben sich exakt
+\begin{equation}
+\frac3{10},\ \frac4{15},\ \frac{19}{20},\ \frac{559}{190},\
+\frac{23467}{5590},\ \frac{616006}{117335},\
+\frac{38644109}{6160060},\ \frac{2818555933}{386441090}.
+\end{equation}
+Alle sind positiv, also beträgt die zertifizierte Bandtrennung hier mindestens $7\Delta/10$. Ein zunächst versuchter Abzug $4/5$ scheitert am zweiten Pivot und bleibt als Negativkontrolle erhalten. Die numerischen Vergleichsminima sind $0{,}424205\Delta$ beziehungsweise $0{,}721438\Delta$; verwendet werden die schwächeren rational bewiesenen Grenzen.
+
+\section{Der exakte Schurvertrag und seine verbleibende Restlücke}
+Für $e=E/\Delta\le0$ und $x=t/\Delta$ gilt
+\begin{align}
+Z_8&=(8-e)I,\qquad Z_n=(n-e)I-x^2A_n^\dagger Z_{n+1}^{-1}A_n,\\
+0&=\left[-eI-x^2A_0^\dagger Z_1^{-1}A_0\right]\psi_0.
+\end{align}
+Dies definiert das endliche allordentliche Problem, ohne seine riesigen Inversen numerisch ausgewertet zu haben. Mit $\ell_8=8$, $\ell_n=n-x^2a_n^2/\ell_{n+1}$, $a=1-e$, $b=2-e$ begrenzen zwei Resolventenidentitäten den Rest des energieabhängigen Kerns nach
+$\Sigma^{[4]}=-x^2D/a-x^4Y/(a^2b)$ durch
+\begin{equation}
+x^6a_0^2\left[\frac{a_1^4}{a^2\ell_2^2\ell_1}
++\frac{a_1^2a_2^2}{a^2b\ell_2\ell_3}\right].
+\end{equation}
+Bei $1/20$ reproduziert dies $13{,}1528J$ für die geteilte Bank; mit den eigenen kantenlokalen Normen sinkt es auf $1{,}71601J$. Auch das ist noch zu groß für den inneren Gap. Der Kernrest ist außerdem \emph{nicht} der Rest des symmetrisch normalisierten kanonischen H4-Operators. Methodischer Hintergrund: \href{https://arxiv.org/abs/1105.0675}{Bravyi--DiVincenzo--Loss}.
+
+\section{Eine einfache positive Darstellung der lokalen vierten Ordnung}
+Für $E_e=I-S_e$, $A_v=\sum_{e\ni v}E_e$ und $A=\sum_eE_e$ folgt aus $E_e^2=2E_e$ und $\sum_vA_v=2A$ exakt
+\begin{equation}\boxed{
+F_{4,\mathrm{edge}}=\sum_v A_v(A_v-I).}
+\end{equation}
+Jeder Clebsch-Stern besteht aus fünf Transpositionen. In der treuen regulären $S_6$-Darstellung wurde die ganze ganzzahlige Identität $\prod_{k=0}^{10}(A_v-kI)=0$ auf 720 Dimensionen geprüft. Mit $A_v\ge0$ ist sein Spektrum ganzzahlig nichtnegativ; daher ist jeder Summand positiv. Es folgt der Vollraumsatz $F_{4,\mathrm{edge}}\ge0$.
+
+Die nichtkommutative Quadratsumme $\sum_v(A_v-A/8)^2\ge0$ liefert zusätzlich
+\begin{equation}\boxed{
+F_{4,\mathrm{edge}}\ge A^2/4-2A=H_0^2-76H_0+1440I,}
+\end{equation}
+mit $H_0=\sum_eP_e^+$, $A=80I-2H_0$. Gleichzeitige Diagonalisierbarkeit der Sternoperatoren wird nicht vorausgesetzt. Die Funktion $f(h)=h+\epsilon^2(h^2-76h+1440)/2$ ist bei $\epsilon=1/20$ auf dem gesamten nackten Spektralintervall $[0,40]$ monoton.
+
+\section{Neue Diagonalisierung statt bloßer Rayleighkorrektur}
+Der eigene vollständige Singulettträger reproduziert beide F4-Varianten:
+\begin{center}\begin{tabular}{lrr}
+\toprule&Zellintern geteilt&Pro Kante lokal\\\midrule
+F4-Grundwert&555{,}488500364&732{,}120310942\\
+F4 auf ersten vier Moden&583{,}292038666&708{,}209322519\\
+Gapkoeffizient $\epsilon^2$&13{,}901769151&$-11{,}955494212$\\\bottomrule
+\end{tabular}\end{center}
+Danach wurden die niedrigen Eigenwerte des \emph{vollständigen trunkierten Operators} $H_0+0{,}00125F_{4,\mathrm{edge}}$ neu berechnet:
+\begin{equation}
+E_0/J=11{,}960507412664,\quad E_1/J=12{,}446984939669,\quad
+\Delta_s/J=0{,}486477527006.
+\end{equation}
+Dimension 24024, acht berechnete Eigenvektoren, maximale Residue $4{,}75\cdot10^{-14}$. Das ist nicht die vollständige allordentliche Mikrodynamik.
+
+Setzt man das berichtete nackte Nichtsingulettminimum $12{,}133537149348$ als wahre Untergrenze voraus, folgt $f(E_{\mathrm{ns}})=12{,}964879524853$, oberhalb der variationalen Viererraum-Kandidatenenergie $12{,}447023775951$. Der Operatorvergleich ist exakt; die zugrunde gelegte fremde Spektraluntergrenze ist noch nicht zertifiziert. Dieser Ausschluss bleibt deshalb bedingt. Er benennt aber eine schärfere nächste Aufgabe: die nackte Untergrenze zertifizieren, statt sämtliche F4-Pfade nochmals auszuwerten.

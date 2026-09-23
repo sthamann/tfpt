@@ -1,0 +1,180 @@
+INDEPENDENT REVIEW — UR.COMPILER.CURRENT_DESCENDANT.16
+Date: 2026-09-19
+Verdict: EXACT FINITE PASS; FULL-AFFINE CLAIM IS CORRECT CONDITIONAL ON THE
+STATED UNITARY SU(4)_1 MODULE AND E8 GLUE PREMISES.
+
+Reviewed input
+--------------
+checker.py SHA256
+  0786e51f9613c7e2683b8b830e0eaa49e8b98f1be65ebb0939b570f5b8b27fdf
+.13 source_channel.py SHA256
+  3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593
+
+Independent replay in normal and Python -OO mode gives the same certificate
+and 731 requirements. No repository file was changed and no full suite was
+run.
+
+1. Explicit CAR embedding
+-------------------------
+Let a_i=psi^i_(-3/2) and b_i=psi^i_(-1/2). The map
+
+  T(e_i tensor e_j)=a_i^dagger b_j^dagger |0>
+
+is an isometry from C4 tensor C4 into the two-particle sector of the eight
+tagged one-particle modes. Composing T with the exact Bell basis B of
+Sym^2(C4) gives E=T B with E^dagger E=I_10.
+
+The checker verifies for all 16 matrix units X that
+
+  dGamma(diag(X,X)) E
+    = E [B^dagger (X tensor I+I tensor X) B].
+
+Thus this is a full operator intertwiner for the horizontal gl4 action, not
+only a matching of dimensions or Casimirs.
+
+The positive U(1) mode J_1 maps a_i to b_i. On the symmetric Bell image its
+two contributions cancel by the CAR sign, so J_1 E=0. The charge operator is
+Q=2 and L0=3/2+1/2=2 on every vector in E. With the standard four-complex-
+fermion decomposition U(4)_1 = [SU(4)_1 times U(1)_4]/Z4, the U(1) highest-
+weight contribution is
+
+  h_U1=Q^2/(2*4)=1/2,
+
+and therefore
+
+  h_SU4=2-1/2=3/2.
+
+This is the grade-one horizontal 10 descendant in the affine module labelled
+by Lambda_2; it is not a nonintegrable SU4_1 primary 10. The integrable
+Lambda_2 primary has h=1/2.
+
+Direct checker coverage stops at J_1. The assertion that all J_n with n>=2
+annihilate E additionally uses the standard NS vacuum convention: those
+modes send both occupied negative modes to positive annihilation modes. This
+is a valid analytic consequence, but it is not separately represented in the
+finite eight-mode matrix.
+
+2. Tagged current polynomial and all sixty events
+-------------------------------------------------
+For q_l=P_l-I/4 and Q_l,0=dGamma(diag(q_l,q_l)), the exact identity on E is
+
+  [3I/2+2 Q_l,0-2 Q_l,0^2] E
+    = E [I-r_l tensor r_l]|_Sym2.
+
+The checker verifies it independently for all 60 native rays. It also verifies
+the complete phase-faithful lift, not merely its adjoint action:
+
+  rho(u_l) E = E[-i (r_l tensor r_l)|_Sym2],
+  u_l=e^(-i pi/4) r_l in SU(4).
+
+There is no sign error. Writing U_l=rho(u_l), one has on E
+
+  i U_l E=E (r_l tensor r_l),
+
+so
+
+  (I-i U_l)E=E[I-r_l tensor r_l].
+
+An additional direct calculation shows that in the entire constructed
+28-dimensional two-fermion/two-mode sector, not only on E,
+
+  I-i rho(u_l)=3I/2+2 Q_l,0-2 Q_l,0^2.
+
+For every l its spectrum there is 0 with multiplicity 16 and 2 with
+multiplicity 12. This strengthens the finite-sector positivity check, but it
+does not identify the polynomial with the event on every grade of the full
+affine module.
+
+3. Global positivity and its exact premise
+------------------------------------------
+The determinant-cleaned lift satisfies
+
+  u_l^2=-i I_4.
+
+On the unitary affine SU(4)_1 module L(Lambda_2), the center has character
+
+  rho(-i I_4)=(-i)^2 I=-I.
+
+Consequently U_l=rho(u_l) is unitary and U_l^2=-I. It follows that
+
+  U_l^dagger=-U_l,
+  (iU_l)^dagger=iU_l,
+  (iU_l)^2=I.
+
+Hence
+
+  H_l=I-iU_l
+
+is positive on the whole unitary L(Lambda_2) module, with spectrum contained
+in {0,2}. The sign in H_l is therefore correct.
+
+This global statement is a representation-theoretic consequence, not a
+finite enumeration by checker.py. Its necessary premises are:
+
+  * rho is a unitary horizontal SU(4) action on the full affine module;
+  * the entire sector has the Lambda_2 central character -1;
+  * no other charge/glue sectors are silently included.
+
+If sectors with a different center character were added, I-i rho(u_l) need
+not be Hermitian or positive. The checker directly constructs only the
+28-dimensional two-mode sector; extending to the full module uses precisely
+the three premises above.
+
+4. Normalization, Casimir and mean
+----------------------------------
+With Tr(t_a t_b)=delta_ab/2,
+
+  Omega=sum_a t_a tensor t_a=(Swap-I/4)/2.
+
+The collective quadratic Casimir is 15I/4+2 Omega and has eigenvalue 9/2 on
+the symmetric 10 and 5/2 on the antisymmetric 6. The exact source average is
+
+  mean_l Q_l,0^2=Casimir/10,
+  mean_l H_l=(4I-Swap)/5=3I/4-(2/5)Omega.
+
+On Bell10 the mean Hamiltonian is 3I/5 and its conjugation gives only a phase.
+It therefore does not replace the actual averaged source channel or its
+fourth-moment response. The checker retains this distinction end to end.
+
+5. E8 grade and glue scope
+--------------------------
+Under the standard level-one branching premise
+
+  D5_1 times A3_1 subset E8_1,
+
+the D5 vector module is paired with the A3 Lambda_2 module. The D5 vector
+primary has h=1/2, while E is the h=3/2 descendant just identified. Their
+total conformal weight is therefore exactly
+
+  1/2+3/2=2.
+
+The D5 vector and A3 Lambda_2 center characters are both -1, so the diagonal
+Z4 glue action cancels on their tensor product.
+
+The finite checker verifies the A3/CAR energy and the arithmetic total. It
+does not reconstruct the D5 module, the conformal embedding, or the E8 glue
+branching: those are the explicitly retained Standard Model/source premises.
+Thus the correct claim is that Bell10 with its D5 companion lies in the named
+weight-two E8 glue sector conditional on that existing branching theorem.
+
+6. mu4 and physical scope
+-------------------------
+The one-particle determinant-cleaned lift contains the eighth-root phase
+e^(-i pi/4). On charge two it squares to e^(-i pi/2)=-i, so the induced event
+on E is the exact mu4-valued matrix -i Bell_l. Therefore the mu4 statement is
+exact on the charge-two/Bell event representation. It does not prove that an
+independent native one-particle eighth-root gate is physically available.
+
+Likewise, the construction supplies a finite operator dictionary and a
+positive horizontal-group extension. It does not derive a local net map, a
+source-label preparation, an event clock, a spatial coupling, a continuum
+limit, or a physical selection of this path. Affine level one and the E8
+branching are premises, not consequences of the eight-mode computation.
+
+Findings
+--------
+No algebraic, normalization, phase or sign error was found in the stated
+finite construction. The only material qualification is the distinction
+between directly checked finite CAR data and the conditional full-affine/E8
+extension described above. The certificate's PARTIAL verdict and empty gate
+closure are appropriate.
