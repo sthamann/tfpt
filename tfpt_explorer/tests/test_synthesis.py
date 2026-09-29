@@ -60,4 +60,10 @@ def test_joint_synthesis_is_connected_to_live_calculation_and_keeps_candidates_c
     assert pairs["grade_two"]["pair_norms"] == [["0"] * 4 for _ in range(4)]
     assert pairs["grade_four"]["highest_weight"]["chiral_weight"] == 4
     assert pairs["grade_four"]["highest_weight"]["norm_squared"] == "1"
+    for key in ("source_charge_response", "source_flavor_correlator", "source_neutrino_dictionary"):
+        assert selection[key] == stages["assembly"]["data"][key]
+    charge = selection["source_charge_response"]
+    assert charge["gram_determinant"] == "460"
+    assert charge["physical_beta"]["b1"] == "41/10"
+    assert "CAR_pair_dictionary" in pairs
     assert all(check["ok"] for stage in pipeline["stages"] for check in stage["checks"])

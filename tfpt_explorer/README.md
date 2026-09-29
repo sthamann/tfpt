@@ -44,6 +44,23 @@ Gewicht vier. Operator-Existenz und physische Kopplung/Kondensation bleiben
 verschiedene Aussagen; der neue Spin-Z₄-Selektor wird auch gegen die bestehende
 skalare Spinor-Higgs-Route geprüft.
 
+**Gemeinsame Physik** (`#gemeinsame-physik`) verbindet jetzt auch die vollständigen Massentensoren,
+die tatsächlichen Eichladungen und den neutralen Flavor-Defektkern.
+`source_charge_response.py` berechnet die ungewichtete 48er-Antwort und die
+hyperladungsgewichtete Antwort aus denselben Wurzeln. Der bekannte Faktor
+41/10 folgt unter den ausgewiesenen vierdimensionalen Materie-/Higgsannahmen.
+`source_neutrino_dictionary.py` übersetzt symmetrische Familientensoren samt
+Phasen in die ursprünglichen Paaroperatoren und liest sie durch sechs komplexe
+Amplituden wieder aus. Der schwere Majoranakanal und die über die vorhandene
+Seesaw-Regel entstehende leichte Matrix behalten verschiedene Feldtypen.
+Der Phasenumschalter zeigt berechnete Beispiele, bei denen gleiche Massen
+unterschiedliche Interferenzantworten erlauben. Die ursprüngliche phasenoffene
+Klasse wird vom bereits vollständig festgelegten Matrixansatz unterschieden.
+`source_flavor_correlator.py` berechnet die verbundene neutrale Antwort aus
+dem ursprünglichen RHP-Kernel und prüft außerdem den vorhandenen Markenport.
+Die Auswahl des gemeinsamen physischen Zustands, seiner Kopplung und der
+Raumzeitabbildung bleibt eine zu beweisende Herkunftsfrage.
+
 **Geführte Tour** erklärt den Zusammenhang in 15 Stationen. Eine große Grafik
 zeigt jeweils Eingang, Veränderung und Ergebnis. Die vier Blickwinkel
 **Geometrie**, **Topologie**, **Mathematik** und **Physik** unterscheiden die Form,

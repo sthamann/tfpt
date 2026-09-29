@@ -109,6 +109,9 @@ def augment(stages):
     from .neutral_source_response import build_neutral_source_response_data
     from .source_spin_lift import build_source_spin_lift_data
     from .source_majorana_pairs import build_source_majorana_pairs_data
+    from .source_charge_response import build_source_charge_response_data
+    from .source_flavor_correlator import build_source_flavor_correlator_data
+    from .source_neutrino_dictionary import build_source_neutrino_dictionary_data
     by_id = {s["id"]: s for s in stages}
     tests = physical_tests()
     by_id["code"]["data"]["event_cost"] = tests["event_cost"]
@@ -209,9 +212,14 @@ def augment(stages):
     neutral_response = build_neutral_source_response_data()
     source_spin_lift = build_source_spin_lift_data()
     source_majorana_pairs = build_source_majorana_pairs_data()
+    source_charge = build_source_charge_response_data()
+    source_correlator = build_source_flavor_correlator_data()
+    neutrino_dictionary = build_source_neutrino_dictionary_data()
     for key, result in (("source_program", source_program), ("source_unification", source_unification),
                         ("flavor_path_transport", flavor_path), ("neutral_source_response", neutral_response),
-                        ("source_spin_lift", source_spin_lift), ("source_majorana_pairs", source_majorana_pairs)):
+                        ("source_spin_lift", source_spin_lift), ("source_majorana_pairs", source_majorana_pairs),
+                        ("source_charge_response", source_charge), ("source_flavor_correlator", source_correlator),
+                        ("source_neutrino_dictionary", neutrino_dictionary)):
         by_id["assembly"]["data"][key] = result["data"]
         by_id["assembly"]["checks"].extend(result["checks"])
     for key, builder in (("hecke_source", build_hecke_source_data),
@@ -232,6 +240,9 @@ def augment(stages):
                    *flavor_path["sources"], *neutral_response["sources"],
                    *source_spin_lift["sources"], "tfpt_explorer/source_spin_lift.py:1",
                    *source_majorana_pairs["sources"], "tfpt_explorer/source_majorana_pairs.py:1",
+                   *source_charge["sources"], "tfpt_explorer/source_charge_response.py:1",
+                   *source_correlator["sources"], "tfpt_explorer/source_flavor_correlator.py:1",
+                   *neutrino_dictionary["sources"], "tfpt_explorer/source_neutrino_dictionary.py:1",
                    "tfpt_explorer/source_program.py:1", "tfpt_explorer/source_unification.py:1",
                    "tfpt_explorer/flavor_path_transport.py:1", "tfpt_explorer/neutral_source_response.py:1"]:
         if isinstance(source, dict):

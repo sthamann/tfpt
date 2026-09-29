@@ -251,6 +251,119 @@ def _joint_neutral_pair(native: dict) -> dict[str, Any]:
 
 
 @lru_cache(maxsize=1)
+def _d8_car_cocycle() -> dict[str, Any]:
+    """Explicit cocycle identification on the COMMON D8 lattice only.
+
+    The CAR convention is epsilon(p,q)=(-1)^sum_{i>j}p_i q_j.  The
+    original E8 cocycle and this convention have the same commutator on
+    D8. Their ratio is the coboundary of the quadratic cochain below.
+    The specified basis fixes a convention, not an additional source law.
+    """
+    algebra = _actual_current_source()["chevalley"]
+    basis = []
+    for j in range(7):
+        root = [0] * 8
+        root[j], root[j + 1] = 1, -1
+        basis.append(sp.Matrix(root))
+    basis.append(sp.Matrix([0] * 6 + [1, 1]))
+    d = sp.Matrix.hstack(*basis)
+    m = sp.Matrix.hstack(*[sp.Matrix(algebra.mvec[algebra.ridx[tuple(2*x for x in root)]])
+                          for root in basis])
+    car = sp.Matrix(8, 8, lambda i, j: 1 if i > j else 0)
+    original = m.T * sp.Matrix(algebra.B) * m
+    ratio = (original - d.T * car * d).applyfunc(lambda x: x % 2)
+    return {"basis": d, "inverse": d.inv(), "original_form": original,
+            "CAR_form": car, "ratio_form": ratio,
+            "symmetric_ratio": ratio == ratio.T, "index": abs(int(d.det()))}
+
+
+def _d8_car_phase(momentum: sp.Matrix) -> int:
+    """Phase of e^p_original -> eta(p)e^p_CAR; no extension to Ramond p."""
+    dictionary = _d8_car_cocycle()
+    if momentum.shape != (8, 1) or any(value.is_Integer is not True for value in momentum):
+        raise ValueError("the cocycle identification is defined only on integral D8 momenta")
+    coefficients = dictionary["inverse"] * momentum
+    if any(value.is_Integer is not True for value in coefficients):
+        raise ValueError("the momentum must lie in the even-sum D8 lattice")
+    q = dictionary["ratio_form"]
+    exponent = sum(q[i, i]*coefficients[i]*(coefficients[i]-1)/2 for i in range(8))
+    exponent += sum(q[i, j]*coefficients[i]*coefficients[j]
+                    for i in range(8) for j in range(i + 1, 8))
+    return -1 if int(exponent) % 2 else 1
+
+
+def _car_pair_dictionary(native: dict) -> dict[str, Any]:
+    """All ten existing symmetric pair states as actual local CAR composites."""
+    algebra, affine = native["algebra"], native["affine"]
+    roots = [sp.Matrix(algebra.roots[index])/2 for index, _ in native["currents"]]
+    ar = _native_neutral_branch(0)["R_matrix"]
+    y = sp.Matrix([-sp.Rational(1, 3)]*3 + [sp.Rational(1, 2)]*2 + [0]*3)
+    rows = []
+    for a, b in combinations_with_replacement(range(4), 2):
+        momentum = roots[a] + roots[b]
+        oscillator = sp.zeros(8, 1) if a == b else roots[a] - roots[b]
+        ia, pa = native["currents"][a]
+        ib, pb = native["currents"][b]
+        original_phase = pa * pb * algebra.eps(ia, ib)
+        cochain_phase = _d8_car_phase(momentum)
+        norm = sp.Integer(1) if a == b else oscillator.dot(oscillator)
+        lattice_r = (momentum.T*ar*momentum)[0]/2
+        oscillator_r = sp.Integer(0) if a == b else (oscillator.T*ar*oscillator)[0]/norm
+        mean_r = lattice_r + oscillator_r
+        residual = sp.zeros(8, 1) if a == b else ar*oscillator - oscillator_r*oscillator
+        residual_norm = residual.dot(residual)
+        car_count = sum(value != 0 for value in momentum)
+        native_norm = _inner(affine, native["grade4"][a, b], native["grade4"][a, b])
+        rows.append({
+            "family_pair": [a, b], "momentum": [int(x) for x in momentum],
+            "CAR_factors": [{"direction": i+1, "charge": int(momentum[i])}
+                            for i in range(8) if momentum[i]],
+            "CAR_factor_count": car_count,
+            "oscillator": [int(x) for x in oscillator],
+            "oscillator_support_disjoint": all(momentum[i]*oscillator[i] == 0 for i in range(8)),
+            "original_pair_phase": int(original_phase), "cocycle_cochain_phase": cochain_phase,
+            "CAR_composite_phase": int(original_phase)*cochain_phase,
+            "X": int(-2*sum(momentum[:5])), "Y": str((y.T*momentum)[0]),
+            "chiral_weight": int(momentum.dot(momentum)/2) + (0 if a == b else 1),
+            "norm_squared": str(norm), "native_affine_norm_squared": str(native_norm),
+            "CAR_parity": 1,
+            "ward": {"lattice_R0": str(lattice_r), "oscillator_R0_mean": str(oscillator_r),
+                     "R0_mean": str(mean_r), "is_eigenstate": residual == sp.zeros(8, 1),
+                     "residual_oscillator": [str(x) for x in residual],
+                     "residual_norm_squared": str(residual_norm),
+                     "normalized_variance": str(residual_norm/norm),
+                     "normalized_three_point": str(mean_r) + "/z^2"},
+        })
+    cocycle = _d8_car_cocycle()
+    encode = lambda matrix: [[int(x) for x in row] for row in matrix.tolist()]
+    return {
+        "title": "Dieselben Majorana-Paare sind lokale CAR-Komposite",
+        "CAR_fields": "chi_i^+ = V_(e_i), chi_i^- = V_(-e_i), J_i = :chi_i^+ chi_i^-:",
+        "rows": rows,
+        "diagonal_formula": "B_aa = c_aa :product_(i=1..8) chi_i^(2 alpha_a,i):",
+        "offdiagonal_formula": "B_ab = c_ab :H_(alpha_a-alpha_b) product_(lambda_i!=0) chi_i^(lambda_i):, lambda=alpha_a+alpha_b",
+        "CAR_order": "Increasing coordinate order; c_ab is the displayed original pair phase times eta(lambda).",
+        "cocycle_identification": {
+            "domain": "D8 = {p in Z^8 : sum(p) even}, common to E8 and the odd lattice Z8",
+            "D8_basis_columns": encode(cocycle["basis"]), "index_in_Z8": cocycle["index"],
+            "original_bilinear_form_in_D8_basis": encode(cocycle["original_form"]),
+            "ratio_form_mod2": encode(cocycle["ratio_form"]),
+            "symmetric_ratio": cocycle["symmetric_ratio"],
+            "CAR_cocycle": "epsilon_CAR(p,q)=(-1)^(sum_(i>j) p_i q_j)",
+            "cochain": "eta(D n)=(-1)^[sum_i Q_ii n_i(n_i-1)/2 + sum_(i<j) Q_ij n_i n_j]",
+            "identity": "epsilon_original(p,q) eta(p+q) = eta(p) eta(q) epsilon_CAR(p,q)",
+            "proof_scope": "The exact symmetric 8x8 ratio form and the displayed quadratic identity prove this for all D8, not only the ten pairs. This is a stated basis-dependent phase convention. No identification of half-integral E8 spinor fields with local Z8/CAR fields is claimed.",
+        },
+        "ward_scope": "The retained six pairs are R0 eigenstates with eigenvalue4; B00 has eigenvalue-12. Mixed B0i have mean-4 and variance32: their exact R0 images leave the ten-dimensional pair subspace. Their three-point coefficient remains the displayed expectation, not an eigenvalue.",
+        "all_grade_charge_boundary": {
+            "formula": "p in Z8 implies X(p)=-2 sum_(i=1..5) p_i in 2Z",
+            "reason": "Every local NS CAR word has integral momentum; oscillator descendants preserve it. The original matter16 requires X=5,1,-3. This obstruction applies at every grade while retaining the full original internal marking.",
+            "field_dictionary": "C/X remain Ramond intertwiners with their original charges. Their even fused pairs and R lie in the shared local D8 vacuum algebra and retain the same correlators. A physical spacetime spin/defect map is still required for the individual matter fields.",
+        },
+    }
+
+
+@lru_cache(maxsize=1)
 def build_source_majorana_pairs_data() -> dict[str, Any]:
     native = _native_pairs()
     algebra, affine, pair = native["algebra"], native["affine"], native["pair"]
@@ -284,6 +397,7 @@ def build_source_majorana_pairs_data() -> dict[str, Any]:
                              "three_point": _three_point(algebra, first, second)}
     family_transport = _family_transport(native)
     neutral_pair = _joint_neutral_pair(native)
+    car_pairs = _car_pair_dictionary(native)
     three_points = {
         "grade3_126x6": _three_point(algebra, *[native["currents"][a][0] for a in (0, 1)],
                                     *[native["currents"][a][1] for a in (0, 1)]),
@@ -326,6 +440,25 @@ def build_source_majorana_pairs_data() -> dict[str, Any]:
                and neutral_pair["omitted_diagonal_R0"] == "-12",
                neutral_pair, "R0=4 on retained symmetric6, 0 on retained antisymmetric3, -12 on omitted diagonal",
                "Original neutral A_R matrix on the actual lattice momenta AND one-oscillator pair states"),
+        _check("common_D8_CAR_cocycle", car_pairs["cocycle_identification"]["symmetric_ratio"]
+               and car_pairs["cocycle_identification"]["index_in_Z8"] == 2,
+               car_pairs["cocycle_identification"], "Explicit coboundary identification on all common D8",
+               "Original Chevalley bilinear cocycle restricted to the displayed D8 basis; exact quadratic cochain"),
+        _check("all_ten_local_CAR_pair_fields", len(car_pairs["rows"]) == 10 and all(
+            row["chiral_weight"] == 4 and row["X"] == 10 and row["Y"] == "0"
+            and row["oscillator_support_disjoint"] and row["norm_squared"] == row["native_affine_norm_squared"]
+            and row["CAR_factor_count"] == (8 if row["family_pair"][0] == row["family_pair"][1] else 6)
+            for row in car_pairs["rows"]),
+            car_pairs["rows"], "Ten weight4 even CAR composites with native phases, norms and charges",
+            "Actual summed lattice momenta, disjoint current oscillators and original affine Gram norms"),
+        _check("all_ten_CAR_pair_ward_responses", all(
+            (row["ward"]["R0_mean"], row["ward"]["normalized_variance"]) ==
+            (("-12", "0") if row["family_pair"] == [0, 0] else
+             ("-4", "32") if row["family_pair"][0] == 0 else ("4", "0"))
+            for row in car_pairs["rows"]),
+            [{"family_pair": row["family_pair"], **row["ward"]} for row in car_pairs["rows"]],
+            "Retained6: (mean4,variance0); omitted diagonal: (-12,0); mixed3: (-4,32)",
+            "Full quadratic R0 action on each lattice-plus-oscillator CAR state, including leakage"),
     ]
     data = {
         "title": "Der Majorana-Paarkanal ist in der vollständigen Quelle vorhanden",
@@ -362,6 +495,7 @@ def build_source_majorana_pairs_data() -> dict[str, Any]:
         "native_three_point": three_points,
         "family_transport": family_transport,
         "joint_neutral_pair": neutral_pair,
+        "CAR_pair_dictionary": car_pairs,
         "charge_and_statistics": {
             "X": 10, "adjoint_X": -10, "Z4_charge": 2, "omega_eigenvalue": "-1", "omega_squared": "+1",
             "bosonic": "The even-lattice pair fields are bosonically local and their even internal X-charge is compatible with a scalar Spin×Z4/Z2 representation, if such a four-dimensional source dictionary is supplied.",

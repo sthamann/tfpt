@@ -116,3 +116,92 @@ def test_neutral_pair_ward_keeps_the_offdiagonal_oscillator_and_same_family_corn
             assert row["oscillator_R0"] == "4"
     assert all(row["R0_eigenvalue"] == "0" for row in data["antisymmetric_retained_three"])
     assert data["omitted_diagonal_R0"] == "-12"  # No false SU4-invariant response.
+
+
+def test_explicit_car_cocycle_matches_original_on_all_d8_roots_against_generators() -> None:
+    import sympy as sp
+    import pytest
+    from functools import lru_cache
+    from tfpt_explorer.source_majorana_pairs import _d8_car_cocycle, _d8_car_phase
+
+    native = _native_pairs()
+    algebra = native["algebra"]
+    dictionary = _d8_car_cocycle()
+    basis = [tuple(int(x) for x in dictionary["basis"][:, i]) for i in range(8)]
+    roots = [tuple(x // 2 for x in root) for root in algebra.roots
+             if all(x % 2 == 0 for x in root)]
+    assert len(roots) == 112
+    assert dictionary["symmetric_ratio"]
+
+    @lru_cache(maxsize=None)
+    def phase(momentum):
+        return _d8_car_phase(sp.Matrix(momentum))
+
+    for p in roots:
+        for q in basis:
+            i = algebra.ridx[tuple(2*x for x in p)]
+            j = algebra.ridx[tuple(2*x for x in q)]
+            original = algebra.eps(i, j)
+            car = (-1)**sum(p[a]*q[b] for a in range(8) for b in range(a))
+            summed = tuple(a+b for a, b in zip(p, q))
+            assert original*phase(summed) == phase(p)*phase(q)*car
+    # The overlap is D8, not the whole spinor source or the odd NS sector.
+    with pytest.raises(ValueError):
+        _d8_car_phase(sp.Matrix([sp.Rational(1, 2)]*8))
+    with pytest.raises(ValueError):
+        _d8_car_phase(sp.Matrix([1]+[0]*7))
+
+
+def test_ten_pair_car_fields_retain_the_exact_lattice_ope_and_canonical_order() -> None:
+    import sympy as sp
+    from tfpt_explorer.source_majorana_pairs import _d8_car_phase
+
+    rows = build_source_majorana_pairs_data()["data"]["CAR_pair_dictionary"]["rows"]
+    native = _native_pairs()
+    algebra = native["algebra"]
+    assert len(rows) == 10
+    for row in rows:
+        a, b = row["family_pair"]
+        ia, pa = native["currents"][a]
+        ib, pb = native["currents"][b]
+        momentum = sp.Matrix(row["momentum"])
+        oscillator = sp.Matrix(row["oscillator"])
+        # Distinct, increasingly ordered complex CAR components produce e^lambda
+        # with no additional sign in the explicitly chosen CAR cocycle.
+        assert [x["direction"] for x in row["CAR_factors"]] == sorted(x["direction"] for x in row["CAR_factors"])
+        assert all(x["charge"] in (-1, 1) for x in row["CAR_factors"])
+        assert row["CAR_composite_phase"] == pa*pb*algebra.eps(ia, ib)*_d8_car_phase(momentum)
+        assert row["chiral_weight"] == 4
+        assert row["X"] == 10 and row["Y"] == "0" and row["CAR_parity"] == 1
+        if a == b:
+            assert len(row["CAR_factors"]) == 8
+            assert momentum.dot(momentum) == 8 and oscillator == sp.zeros(8, 1)
+            assert row["norm_squared"] == "1"
+        else:
+            assert len(row["CAR_factors"]) == 6
+            assert momentum.dot(momentum) == 6 and oscillator.dot(oscillator) == 2
+            assert all(momentum[i]*oscillator[i] == 0 for i in range(8))
+            assert row["norm_squared"] == "2"
+
+
+def test_mixed_pair_ward_reports_actual_leakage_instead_of_inventing_eigenvalue() -> None:
+    import sympy as sp
+    from tfpt_explorer.neutral_source_response import _native_neutral_branch
+
+    rows = build_source_majorana_pairs_data()["data"]["CAR_pair_dictionary"]["rows"]
+    ar = _native_neutral_branch(0)["R_matrix"]
+    for row in rows:
+        a, b = row["family_pair"]
+        ward = row["ward"]
+        if a == 0 and b != 0:
+            oscillator = sp.Matrix(row["oscillator"])
+            # Exact orthogonal remainder; normalized variance is 64/2=32.
+            residual = ar*oscillator + 4*oscillator
+            assert residual != sp.zeros(8, 1)
+            assert oscillator.dot(residual) == 0
+            assert residual.dot(residual) == 64
+            assert ward["R0_mean"] == "-4" and ward["normalized_variance"] == "32"
+            assert not ward["is_eigenstate"]
+        else:
+            assert ward["is_eigenstate"] and ward["normalized_variance"] == "0"
+            assert ward["R0_mean"] == ("-12" if a == b == 0 else "4")
