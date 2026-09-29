@@ -62,6 +62,9 @@ def test_joint_synthesis_is_connected_to_live_calculation_and_keeps_candidates_c
     assert pairs["grade_four"]["highest_weight"]["norm_squared"] == "1"
     assert len(pairs["wall_charge_audit"]["symmetric_pairs"]) == 20
     assert pairs["wall_charge_audit"]["adjoint_charge_two_candidates"] == 0
+    assert pairs["majorana_zero_modes"]["annihilated_dimension_retained"] == 242
+    assert all(row["all_248_actions_exact"] for row in pairs["majorana_zero_modes"]["rows"])
+    assert selection["source_neutrino_dictionary"]["heavy_reduction"]["memory_modes"] == 6
     assert any(check["name"] == "wall_full_source_SM_singlet_pairs" and check["ok"]
                for check in stages["assembly"]["checks"])
     for key in ("source_charge_response", "source_flavor_correlator", "source_neutrino_dictionary", "source_mass_transport"):

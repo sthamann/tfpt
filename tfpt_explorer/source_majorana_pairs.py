@@ -79,6 +79,116 @@ def _dot(left: tuple, right: tuple) -> F:
     return sum((F(a) * F(b) for a, b in zip(left, right)), F(0))
 
 
+def _pair_zero_mode_v1(native: dict, a: int, b: int, first_mode: int, state: dict) -> dict:
+    """o(C_a(-n) C_b(-1)Omega) on the ORIGINAL weight-one space, n=1,2,3.
+
+    Y(C_a(-n) C_b(-1)Omega,z) = :(partial^(n-1) C_a) C_b:/(n-1)!.
+    Only current modes -1,0,1 can survive on V_1. This is a level-preserving
+    field mode, not a Lie-algebra zero mode and not the vacuum top level A_0.
+    """
+    if first_mode not in (1, 2, 3):
+        raise ValueError("Only the weight-two, three and four pair fields are implemented")
+    if any(len(key) != 1 or key[0][0] != -1 for key in state):
+        raise ValueError("The finite mode formula acts only on V_1")
+    affine = native["affine"]
+    ia, pa = native["currents"][a]
+    ib, pb = native["currents"][b]
+    coefficients = {1: (1, 1, 1), 2: (0, -1, -2), 3: (0, 1, 3)}[first_mode]
+    terms = (
+        affine.act(ia, -1, affine.act(ib, 1, state)),
+        affine.act(ib, 0, affine.act(ia, 0, state)),
+        affine.act(ib, -1, affine.act(ia, 1, state)),
+    )
+    return _scale(_sum(*(_scale(term, F(c)) for c, term in zip(coefficients, terms))), pa * pb)
+
+
+@lru_cache(maxsize=1)
+def _majorana_zero_mode_bridge() -> dict[str, Any]:
+    """Compute all twenty pair-field actions on all 248 original currents.
+
+    Expected matrix units are compared with full PBW outputs, including the
+    Cartan sector and the omitted family. No projection is used to hide leakage.
+    """
+    native = _native_pairs()
+    algebra, affine = native["algebra"], native["affine"]
+    vacuum = {(): F(1)}
+    basis = [affine.act(index, -1, vacuum) for index in range(algebra.nR + algebra.rank)]
+    rows, lower_rows = [], []
+    for dagger in (False, True):
+        current = _native_pairs(dagger=dagger)
+        opposite = _native_pairs(dagger=not dagger)
+        targets = [_scale(affine.act(i, -1, vacuum), p) for i, p in current["currents"]]
+        inputs = [_scale(affine.act(i, -1, vacuum), p) for i, p in opposite["currents"]]
+        for a, b in combinations_with_replacement(range(4), 2):
+            exact, null2, antisymmetric3, nonzero = True, True, True, 0
+            columns = []
+            for state in basis:
+                action = _pair_zero_mode_v1(current, a, b, 3, state)
+                if a != b:
+                    action = _sum(action, _pair_zero_mode_v1(current, b, a, 3, state))
+                amplitudes = [_inner(affine, vector, state) for vector in inputs]
+                expected = _scale(targets[a], amplitudes[b])
+                skew = expected
+                if a != b:
+                    expected = _sum(expected, _scale(targets[b], amplitudes[a]))
+                    skew = _sum(skew, _scale(targets[b], -amplitudes[a]))
+                else:
+                    skew = {}
+                exact &= action == expected
+                nonzero += bool(action)
+                null2 &= not _pair_zero_mode_v1(current, a, b, 1, state)
+                antisymmetric3 &= _pair_zero_mode_v1(current, a, b, 2, state) == skew
+            for state in inputs:
+                action = _pair_zero_mode_v1(current, a, b, 3, state)
+                if a != b:
+                    action = _sum(action, _pair_zero_mode_v1(current, b, a, 3, state))
+                columns.append([_inner(affine, target, action) for target in targets])
+            matrix = sp.Matrix(columns).T
+            rows.append({"family_pair": [a, b], "conjugate": dagger,
+                         "matrix": [[str(x) for x in row] for row in matrix.tolist()],
+                         "all_248_actions_exact": bool(exact), "nonzero_columns": nonzero})
+            lower_rows.append({"family_pair": [a, b], "conjugate": dagger,
+                               "weight_two_zero": bool(null2),
+                               "weight_three_antisymmetric": bool(antisymmetric3)})
+    adjoints = all(sp.Matrix(rows[j + 10]["matrix"]) == sp.Matrix(rows[j]["matrix"]).H
+                   for j in range(10))
+    ar = _native_neutral_branch(0)["R_matrix"]
+    eigenvalues = []
+    for index, _ in native["currents"]:
+        momentum = sp.Matrix(algebra.roots[index]) / 2
+        eigenvalues.append(str((momentum.T * ar * momentum)[0] / 2))
+    return {
+        "status": "EXACT_INTERNAL_MAJORANA_OPERATOR_MAP",
+        "basis_dimension": len(basis), "rows": rows, "lower_weight_controls": lower_rows,
+        "adjoint_exact": bool(adjoints), "retained_families": [1, 2, 3],
+        "support_dimension_retained": 6, "annihilated_dimension_retained": len(basis) - 6,
+        "mode_formula": "o(C_a(-3)C_b(-1)Omega)|V1=C_b(0)C_a(0)+3 C_b(-1)C_a(1)",
+        "matrix_units": "o(B_aa)=|C_a><C_a†|; o(B_ab)=|C_a><C_b†|+|C_b><C_a†| on V1",
+        "form_convention": "For symmetric K in the native mass-form frame, B=Gamma(conjugate(K)); o(B)+o(B)†=[[0,K],[K†,0]] in the order (C†,C).",
+        "spectrum": "plus/minus singular values of K; D=0 on the other 242 V1 directions for the retained triplet",
+        "R0_current_eigenvalues": eigenvalues,
+        "neutral_distinction": "R0 is identity on the retained six current states, so [R0,D_K]|V1=0. R0 Gamma(K)=4 Gamma(K) is an action on a weight-four state, not this commutator.",
+        "normalization": "Tr_V1(D_K²)=2 Tr(K†K)=2 ||Gamma(conjugate(K))||²; Tr_V1(R0 D_K²)=Tr_V1(D_K²) for the retained triplet.",
+        "scope": "An exact internal operator action, not a 4D Higgs condensate, selected mass tensor, physical scale or Hamiltonian on the full source. The complete higher-grade source action is not a six-dimensional truncation. A_0 only sees the vacuum top level; the calculation is on V1.",
+    }
+
+
+def native_majorana_matrix(form: Any) -> sp.Matrix:
+    """The actual pair zero modes, with the mass-form conjugation kept explicit."""
+    form = sp.Matrix(form)
+    if form.shape != (3, 3) or sp.simplify(form - form.T) != sp.zeros(3):
+        raise ValueError("Require a symmetric three-family mass form")
+    source_coefficients = sp.conjugate(form)
+    raising = sp.zeros(3)
+    bridge = _majorana_zero_mode_bridge()
+    for row in bridge["rows"]:
+        a, b = row["family_pair"]
+        if row["conjugate"] or a == 0 or b == 0:
+            continue
+        raising += source_coefficients[a - 1, b - 1] * sp.Matrix(row["matrix"])[1:, 1:]
+    return sp.zeros(3).row_join(raising.H).col_join(raising.row_join(sp.zeros(3)))
+
+
 def _weyl_dimension(weight: tuple, positive_roots: list[tuple]) -> int:
     rho = tuple(sum(root[j] for root in positive_roots) / F(2) for j in range(len(weight)))
     shifted = tuple(a + b for a, b in zip(weight, rho))
@@ -490,6 +600,7 @@ def build_source_majorana_pairs_data() -> dict[str, Any]:
     neutral_pair = _joint_neutral_pair(native)
     car_pairs = _car_pair_dictionary(native)
     wall_charge = _wall_charge_audit(native)
+    mass_modes = _majorana_zero_mode_bridge()
     three_points = {
         "grade3_126x6": _three_point(algebra, *[native["currents"][a][0] for a in (0, 1)],
                                     *[native["currents"][a][1] for a in (0, 1)]),
@@ -499,6 +610,22 @@ def build_source_majorana_pairs_data() -> dict[str, Any]:
     diagonal4 = [1 if a == b else 2 for a, b in native["grade4"]]
     expected4 = [[str(diagonal4[i] if i == j else 0) for j in range(10)] for i in range(10)]
     checks = [
+        _check("pair_zero_modes_act_as_Majorana_matrix_units",
+               mass_modes["basis_dimension"] == 248 and mass_modes["adjoint_exact"]
+               and all(row["all_248_actions_exact"] for row in mass_modes["rows"]),
+               {"tested_fields": len(mass_modes["rows"]), "basis_dimension": 248,
+                "adjoint_exact": mass_modes["adjoint_exact"]},
+               "Twenty charged/conjugate pair fields act as symmetric matrix units and vanish elsewhere on V1",
+               "Divided derivative normal product; all actual 248 PBW outputs, not only projected overlaps"),
+        _check("lower_pair_modes_do_not_supply_symmetric_Majorana_block",
+               all(row["weight_two_zero"] and row["weight_three_antisymmetric"]
+                   for row in mass_modes["lower_weight_controls"]),
+               mass_modes["lower_weight_controls"], "Weight2 zero; weight3 alternating; weight4 symmetric",
+               "Actual field modes on V1 at affine level1; a local Weyl Majorana family form is symmetric"),
+        _check("neutral_state_response_and_mass_mode_commutator_are_distinct",
+               mass_modes["R0_current_eigenvalues"] == ["-3", "1", "1", "1"],
+               mass_modes["R0_current_eigenvalues"], "R0=I on retained C/C†; [R0,D_K]=0 there",
+               "Original neutral Heisenberg matrix on the source currents; not R0 Gamma(K)=4 Gamma(K)"),
         _check("native_nuc_pair_dots", dot_matrix == [[2 if a == b else 1 for b in range(4)] for a in range(4)],
                dot_matrix, "2 on diagonal, 1 otherwise", "Inner products of the actual C-current roots"),
         _check("level_one_grade_two_null", norms2 == [["0"] * 4 for _ in range(4)],
@@ -609,6 +736,7 @@ def build_source_majorana_pairs_data() -> dict[str, Any]:
         "joint_neutral_pair": neutral_pair,
         "CAR_pair_dictionary": car_pairs,
         "wall_charge_audit": wall_charge,
+        "majorana_zero_modes": mass_modes,
         "charge_and_statistics": {
             "X": 10, "adjoint_X": -10, "Z4_charge": 2, "omega_eigenvalue": "-1", "omega_squared": "+1",
             "bosonic": "The even-lattice pair fields are bosonically local and their even internal X-charge is compatible with a scalar Spin×Z4/Z2 representation, if such a four-dimensional source dictionary is supplied.",

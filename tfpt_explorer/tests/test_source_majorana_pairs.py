@@ -23,6 +23,53 @@ def test_original_level_one_pair_channel_and_highest_weights() -> None:
         assert (highest["D5_dimension"], highest["A3_dimension"]) == (126, family_dimension)
 
 
+def test_pair_zero_modes_have_exact_full_248_support_and_lower_weight_controls() -> None:
+    data = build_source_majorana_pairs_data()["data"]["majorana_zero_modes"]
+    assert data["basis_dimension"] == 248 and data["adjoint_exact"]
+    assert len(data["rows"]) == 20
+    for row in data["rows"]:
+        a, b = row["family_pair"]
+        assert row["all_248_actions_exact"]
+        assert row["nonzero_columns"] == (1 if a == b else 2)
+    assert all(row["weight_two_zero"] and row["weight_three_antisymmetric"]
+               for row in data["lower_weight_controls"])
+    assert data["R0_current_eigenvalues"] == ["-3", "1", "1", "1"]
+    assert data["annihilated_dimension_retained"] == 242
+
+
+def test_zero_mode_null_requires_level_one_and_formula_rejects_higher_input_grade() -> None:
+    import pytest
+    from tfpt_explorer.source_majorana_pairs import _pair_zero_mode_v1, _scale
+
+    for level in (1, 2):
+        native, conjugate = _native_pairs(level), _native_pairs(level, dagger=True)
+        affine = native["affine"]
+        index, phase = conjugate["currents"][1]
+        current = _scale(affine.act(index, -1, {(): Fraction(1)}), phase)
+        image = _pair_zero_mode_v1(native, 1, 1, 1, current)
+        assert bool(image) == (level == 2)
+    with pytest.raises(ValueError, match="only on V_1"):
+        _pair_zero_mode_v1(native, 1, 1, 3, native["grade4"][1, 1])
+
+
+def test_complex_majorana_block_uses_true_adjoint_grading_charge_and_norm() -> None:
+    import sympy as sp
+    from tfpt_explorer.source_majorana_pairs import native_majorana_matrix
+    from tfpt_explorer.source_neutrino_dictionary import gamma_pairing
+
+    k = sp.Matrix([[1, sp.I, 2-sp.I], [sp.I, 3, 1+2*sp.I], [2-sp.I, 1+2*sp.I, -2]])
+    d = native_majorana_matrix(k)
+    assert d[:3, 3:] == k and d[3:, :3] == k.H
+    assert d == d.H and d[3:, :3] != k.T  # Transpose alone loses CP phases.
+    grading = sp.diag(-1, -1, -1, 1, 1, 1)
+    swap = sp.zeros(3).row_join(sp.eye(3)).col_join(sp.eye(3).row_join(sp.zeros(3)))
+    omega = sp.diag(*([-sp.I]*3 + [sp.I]*3))
+    assert grading*d + d*grading == sp.zeros(6)
+    assert swap*sp.conjugate(d)*swap == d
+    assert omega*d*omega.H == -d
+    assert sp.simplify(sp.trace(d*d) - 2*gamma_pairing(sp.conjugate(k), sp.conjugate(k))) == 0
+
+
 def test_null_pair_is_specific_to_level_one_and_not_a_deleted_pbw_word() -> None:
     for level in (1, 2):
         native = _native_pairs(level)

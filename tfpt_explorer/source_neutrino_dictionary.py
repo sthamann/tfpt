@@ -25,6 +25,7 @@ from .flavor_path_transport import exact_clock_dictionary
 from .source_majorana_pairs import (
     _family_transport, _inner, _joint_neutral_pair, _native_pairs,
     _symmetric_square,
+    native_majorana_matrix,
 )
 from .source_spin_lift import exterior_power
 
@@ -174,6 +175,60 @@ def _matrix_text(matrix: sp.Matrix) -> list[list[str]]:
     return [[str(value) for value in row] for row in matrix.tolist()]
 
 
+def source_heavy_response(heavy: Any, normalized_y: Any, z: complex = 0j) -> np.ndarray:
+    """Exact heavy-sector Schur self-energy in eV, not a new mass ansatz.
+
+    heavy is D_M/M3 in (nu_R,antinu_R) order; Yhat has units sqrt(eV).
+    z is spectral frequency divided by M3. In the original finite triple,
+    the light-to-heavy block is diag(Yhat^T,Yhat†)*sqrt(M3[eV]).
+    """
+    heavy = np.asarray(heavy, dtype=complex)
+    y = np.asarray(normalized_y, dtype=complex)
+    if heavy.shape != (6, 6) or y.shape != (3, 3):
+        raise ValueError("Require a six-dimensional heavy block and three-family Yukawa matrix")
+    zero = np.zeros((3, 3), complex)
+    coupling = np.block([[y.T, zero], [zero, y.conj().T]])
+    return coupling @ np.linalg.solve(z*np.eye(6) - heavy, coupling.conj().T)
+
+
+def _heavy_reduction_data(heavy: np.ndarray, y: np.ndarray, light_form: np.ndarray) -> dict[str, Any]:
+    zero = np.zeros((3, 3), complex)
+    coupling = np.block([[y.T, zero], [zero, y.conj().T]])
+    values, vectors = np.linalg.eigh(heavy)
+    residues = []
+    for vector in vectors.T:
+        coupled = coupling @ vector
+        residues.append(np.outer(coupled, coupled.conj()))
+    gap = float(min(abs(values)))
+    expected = np.block([[zero, light_form], [light_form.conj(), zero]])
+    static_error = float(np.linalg.norm(source_heavy_response(heavy, y) - expected))
+    rows = []
+    for fraction in (0., .25, .5):
+        z = 1j*fraction*gap
+        direct = source_heavy_response(heavy, y, z)
+        spectral = sum((residue/(z-value) for value, residue in zip(values, residues)),
+                       np.zeros((6, 6), complex))
+        rows.append({"imaginary_frequency_over_gap": fraction,
+                     "spectral_relative_error": float(np.linalg.norm(direct-spectral)/np.linalg.norm(direct)),
+                     "departure_from_static": float(np.linalg.norm(direct-expected)/np.linalg.norm(expected))})
+    return {
+        "status": "EXACT_GAUSSIAN_REDUCTION_OF_CONDITIONAL_ORIGINAL_BLOCK",
+        "static_seesaw_error_eV": static_error,
+        "poles_over_M3": values.tolist(),
+        "residue_traces_eV": [float(np.trace(residue).real) for residue in residues],
+        "residue_min_eigenvalues_eV": [float(np.linalg.eigvalsh(residue)[0]) for residue in residues],
+        "frequency_checks": rows,
+        "memory_modes": int(sum(np.trace(residue).real > 1e-18 for residue in residues)),
+        "frequency_units": "z=E/M3; Yhat has units sqrt(eV); Sigma(z) has units eV. This is an internal spectral parameter, not a derived physical clock.",
+        "formula": "Sigma(z)=Vhat (z I-D_M/M3)^(-1) Vhat†; Vhat=diag(Yhat^T,Yhat†)",
+        "static_formula": "Sigma(0)=[[0,K_nu],[K_nu†,0]], K_nu=-Yhat^T (M_R/M3)^(-1)Yhat",
+        "spectral_formula": "Sigma(z)=sum_j R_j/(z-lambda_j), R_j=(Vhat u_j)(Vhat u_j)† >=0",
+        "memory_formula": "M(u)=Vhat exp(-i u D_M/M3) Vhat†=sum_j exp(-i u lambda_j) R_j",
+        "determinant_identity": "det(EI-D_phys)=det(EI-M3 H) det(EI-A_eV-Sigma(E/M3)); D_phys=[[A_eV,sqrt(M3) Vhat],[sqrt(M3) Vhat†,M3 H]], all entries in eV and H=D_M/M3.",
+        "scope": "The source supplies the internal heavy operator; the original heavy coefficients and Dirac input are still conditional. Gaussian elimination links its mass, determinant and memory responses. It does not identify the separate alpha determinant, select a condensate, derive 4D time, or prove a new interacting-QFT result. Retarded time elimination multiplies the mode sum by -i Theta and includes forcing from heavy initial data.",
+    }
+
+
 @lru_cache(maxsize=1)
 def build_source_neutrino_dictionary_data() -> dict[str, Any]:
     native, frame = _native_pairs(), source_cycle_frame()
@@ -221,6 +276,15 @@ def build_source_neutrino_dictionary_data() -> dict[str, Any]:
     epsilon = sp.Symbol("epsilon", positive=True)
     heavy_form = sp.diag(epsilon / 3, 2 * epsilon / 3, 1)  # M_R / M3
     heavy_encoded = mass_form_source_coefficients(heavy_form)
+    # Recover an operator, not only a state/tomographic encoding. The order
+    # (C†,C) matches the old (nu_R,nu_R antiparticle) Majorana block.
+    heavy_native_form = sp.conjugate(heavy_encoded)
+    heavy_operator_native = native_majorana_matrix(heavy_native_form)
+    doubled_frame = sp.diag(sp.conjugate(s), s)
+    heavy_operator = sp.simplify(doubled_frame * heavy_operator_native * doubled_frame.H)
+    heavy_operator_expected = sp.zeros(3).row_join(heavy_form).col_join(
+        heavy_form.H.row_join(sp.zeros(3)))
+    operator_trace = sp.simplify(sp.trace(heavy_operator**2))
     heavy_amplitudes = [source_pair_amplitude(heavy_encoded, vector) for vector in vectors]
     heavy_recovered = sp.simplify(
         sp.conjugate(s) * sp.conjugate(reconstruct_pair_coefficients(heavy_amplitudes)) * s.conjugate().T)
@@ -261,6 +325,13 @@ def build_source_neutrino_dictionary_data() -> dict[str, Any]:
     normalized_y = conditional["normalized_Y"]
     seesaw_output = -normalized_y.T @ np.linalg.inv(normalized_heavy) @ normalized_y
     seesaw_error = float(np.max(np.abs(seesaw_output - base_mass)))
+    # Use the actual source-mode matrix and the existing frozen heavy spectrum.
+    # Preserve the declared decimal inputs exactly through the symbolic frame;
+    # floating expansion can otherwise introduce a spurious antisymmetric residue.
+    exact_heavy = sp.diag(*[sp.Rational(str(value)) for value in np.diag(normalized_heavy)])
+    heavy_source_native = native_majorana_matrix(s.T * exact_heavy * s)
+    heavy_source_cycle = np.array(doubled_frame * heavy_source_native * doubled_frame.H, complex)
+    heavy_reduction = _heavy_reduction_data(heavy_source_cycle, normalized_y, base_mass)
     base_state = (sn.T @ base_mass @ sn).conj()
     invariant_n = np.array(invariant, dtype=complex)
     projected = np.vdot(invariant_n, base_state) * invariant_n / 3
@@ -290,6 +361,19 @@ def build_source_neutrino_dictionary_data() -> dict[str, Any]:
                 "light_seesaw_error_eV": seesaw_error},
                "M_R/M3=diag(epsilon/3,2epsilon/3,1); K_nu=-Yhat^T (M_R/M3)^(-1) Yhat",
                "Exact six source amplitudes for the original heavy texture, followed by its original conditional CI Dirac matrix; no left-handed X=10 field identification."),
+        _check("Native pair zero modes realize the original heavy Majorana block",
+               heavy_operator == heavy_operator_expected
+               and sp.simplify(operator_trace - 2*gamma_pairing(heavy_encoded, heavy_encoded)) == 0,
+               {"operator": _matrix_text(heavy_operator), "trace_D_squared": str(operator_trace)},
+               "D_M=[[0,M_R/M3],[(M_R/M3)†,0]] in the original family frame",
+               "Original current modes on all V1, then the already established particle/conjugate family intertwiner; mass coefficients remain conditional inputs."),
+        _check("Same source block gives seesaw and full heavy memory response",
+               heavy_reduction["static_seesaw_error_eV"] < 1e-13
+               and heavy_reduction["memory_modes"] == 6
+               and max(row["spectral_relative_error"] for row in heavy_reduction["frequency_checks"]) < 1e-12
+               and min(heavy_reduction["residue_min_eigenvalues_eV"]) > -1e-15,
+               heavy_reduction, "Same six-pole positive-residue response; zero-frequency limit is the original light matrix",
+               "Original conditional Dirac input and actual source-mode heavy block; direct resolvent versus spectral residues with explicit units"),
         _check("Same-source neutral Ward is scalar but the vacuum cannot choose a charged matrix",
                all(row["eigenvector_checked"] for row in neutral["symmetric_retained_six"])
                and charges == [10] * 6, {"X": charges, "R0": [4] * 6},
@@ -336,12 +420,16 @@ def build_source_neutrino_dictionary_data() -> dict[str, Any]:
             "source_coefficients": _matrix_text(heavy_encoded),
             "six_native_amplitudes": [str(value) for value in heavy_amplitudes],
             "reconstructed_form": _matrix_text(heavy_recovered),
+            "source_zero_mode_operator": _matrix_text(heavy_operator),
+            "trace_operator_squared": str(operator_trace),
+            "operator_scope": "Exact internal Majorana block from the same source pair, in the original finite-triple (nu_R,antinu_R) order. Its coefficients, mass unit, state selection and 4D field map remain inputs.",
             "norm_squared": str(gamma_pairing(heavy_encoded, heavy_encoded)),
             "seesaw_chain": "M_R -> E(M_R/M3) native charged pair encoding; the same existing Y_nu and M_R then give K_nu by seesaw. No direct nu_L nu_L = X10 identification.",
             "normalized_seesaw": "K_nu[eV]=-Yhat^T D_M^(-1)Yhat, D_M=M_R/M3 and Yhat=i sqrt(D_M) R_CI sqrt(m_low[eV]) U†. Yhat has units sqrt(eV); it is the common-RG normalized Yukawa, not the dimensionless physical Y_nu.",
             "seesaw_error_eV": seesaw_error,
             "typing": conditional["hypothesis"]["majorana_operator"]["ansatz_note"],
             "scope": "The original heavy ansatz and its named physical family basis are inputs. The native OPE now represents and reads every tensor component exactly; it does not derive the heavy texture, its scalaron scale, the source-to-physical basis assignment, or a condensate. Complex native components created by S are basis phases, not a new physical CP invariant."},
+        "heavy_reduction": heavy_reduction,
         "joint_neutrino_input": {"m2_eV": m2, "old_m3_eV": conditional["old_m3"], "m3_eV": m3,
                                  "z_absolute": conditional["z"], "washout_eV": washout,
                                  "M_GeV": conditional["M"].tolist(),
