@@ -319,4 +319,4 @@ _v2: transitions=10 constraints=11 failure_scopes=25 (Sidecars in `verification/
 
 depends_on-pure Zyklen (Gate rot): **5** · mit supersedes-Beteiligung (Warnung): **0**.
 
-_Generiert: 2026-09-22T11:38:28+00:00 · schema v1_
+_Generiert: 2026-09-29T11:51:01+00:00 · schema v1_

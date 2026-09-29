@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>TFPT Explorer · ausführbares Gesamtbild</title>
+  <link rel="stylesheet" href="/styles.css?v=20260928-tour15">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <header class="site-header">
+    <a class="brand" href="#gesamtbild" data-route="overview" aria-label="TFPT Explorer, Gesamtbild öffnen">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span><strong>TFPT Explorer</strong><small>Ausführbares Gesamtbild</small></span>
+    </a>
+    <nav class="primary-nav" aria-label="Hauptnavigation">
+      <a class="nav-link" href="#tour" data-view="tour">Geführte Tour</a>
+      <a class="nav-link is-active" href="#gesamtbild" data-view="overview" aria-current="page">Gesamtbild</a>
+      <a class="nav-link" href="#journey" data-view="journey">Ablauf</a>
+      <a class="nav-link" href="#evidence" data-view="evidence">Belege &amp; Versuche</a>
+      <a class="nav-link" href="#lean" data-view="lean">Lean</a>
+    </nav>
+    <div class="header-state" id="header-state" aria-live="polite"><span class="state-dot is-loading"></span><span>System wird geladen</span></div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="view is-active" id="view-overview" data-view-panel="overview" aria-labelledby="overview-title">
+      <div class="hero shell">
+        <div class="hero-copy">
+          <p class="eyebrow">Vom gesetzten Ursprung bis zur offenen Physik</p>
+          <h1 id="overview-title" tabindex="-1">TFPT vom Ursprung bis zum <em>heutigen Stand.</em></h1>
+          <p class="hero-lede">Das ganze Konstrukt, Schritt für Schritt. Jeder Knoten zeigt eine echte Rechnung. Jede Kante sagt, ob sie herleitet, annimmt oder strukturell entspricht. So bleibt sichtbar, was exakt trägt und wo die physische Identifikation noch offen ist.</p>
+          <div class="hero-actions">
+            <button class="button primary" id="start-tour">Geführte Tour starten <span aria-hidden="true">→</span></button>
+            <button class="button quiet" id="start-journey">Technischen Ablauf öffnen</button>
+            <button class="button quiet" data-scroll="instrument">Parameter untersuchen</button>
+          </div>
+        </div>
+        <aside class="run-summary" aria-label="Status des aktuellen Rechenlaufs">
+          <span class="summary-kicker">Aktueller Lauf</span>
+          <strong id="summary-score">–</strong>
+          <span id="summary-label">Berechnung läuft …</span>
+          <dl>
+            <div><dt>Schritte</dt><dd id="summary-stages">–</dd></div>
+            <div><dt>Prüfungen</dt><dd id="summary-checks">–</dd></div>
+            <div><dt>Laufzeit</dt><dd id="summary-time">–</dd></div>
+          </dl>
+          <small>Bestandene Rechnungen belegen ihren jeweiligen Vertrag, nicht automatisch die gesamte Physik.</small>
+        </aside>
+      </div>
+
+      <section class="map-section shell" aria-labelledby="map-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">Interaktive Abhängigkeitskarte</p><h2 id="map-title">Das verzahnte System auf einen Blick</h2></div>
+          <p>Wähle einen Schritt: Vorbedingungen und Folgen werden zusammen hervorgehoben.</p>
+        </div>
+        <div class="map-legend" aria-label="Legende">
+          <span><i class="legend-line derives"></i> hergeleitet / gespeist</span>
+          <span><i class="legend-line assumes"></i> zusätzliche Annahme</span>
+          <span><i class="legend-line corresponds"></i> strukturelle Entsprechung</span>
+          <span><i class="legend-node exact"></i> exakt</span>
+          <span><i class="legend-node conditional"></i> bedingt</span>
+          <span><i class="legend-node open"></i> offen</span>
+        </div>
+        <div class="system-map-wrap" id="system-map-wrap">
+          <div class="skeleton map-skeleton" aria-hidden="true"></div>
+        </div>
+        <div class="map-inspector" id="map-inspector" aria-live="polite">
+          <p><strong>Karte bedienen:</strong> Ein Knoten öffnet seine Rechnung. Pfeile zeigen die Richtung; gestrichelte Kanten markieren Annahmen oder Entsprechungen.</p>
+        </div>
+      </section>
+
+      <section class="instrument shell" id="instrument" aria-labelledby="instrument-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">Echte Neuberechnung</p><h2 id="instrument-title">Das System bewegen</h2></div>
+          <p>Alle Regler starten denselben Python-Ablauf neu. Änderungen erscheinen anschließend in Karte und Details.</p>
+        </div>
+        <form id="control-form" class="control-panel">
+          <div class="control-grid">
+            <label class="range-control" for="clock-step"><span><b>Clock-Schritt</b><output id="clock-step-value">0</output></span><input id="clock-step" name="clock_step" type="range" min="0" max="120" step="1"><small>Coxeter-Bewegung, Periode 30</small></label>
+            <label class="range-control" for="transfer-steps"><span><b>Transfer-Schritte</b><output id="transfer-steps-value">6</output></span><input id="transfer-steps" name="transfer_steps" type="range" min="0" max="40" step="1"><small>Iteration des endlichen Transfers</small></label>
+            <label class="range-control" for="recursion-depth"><span><b>Rekursionstiefe</b><output id="recursion-depth-value">3</output></span><input id="recursion-depth" name="recursion_depth" type="range" min="1" max="8" step="1"><small>Dreifache Zellverfeinerung</small></label>
+            <label class="range-control" for="efolds"><span><b>Inflations-e-folds</b><output id="efolds-value">55</output></span><input id="efolds" name="efolds" type="range" min="40" max="70" step="1"><small>Externe Reheating-Wahl</small></label>
+            <label class="range-control" for="phase-b"><span><b>Offene Phase b</b><output id="phase-b-value">1/18</output></span><input id="phase-b" name="phase_b" type="range" min="0" max="32" step="1" value="8" aria-valuetext="1/18"><small>0 … 2/9; noch nicht aus dem Ursprung gewählt</small></label>
+            <label class="select-control" for="initial-state"><span><b>Anfangszustand</b></span><select id="initial-state" name="initial_state"><option value="localized">Lokalisiert</option><option value="uniform">Gleichverteilt</option><option value="skew">Schief gewichtet</option></select><small>Quelle für Transfer und Quartik</small></label>
+          </div>
+          <div class="control-actions">
+            <button class="button primary" type="submit" id="run-button">Neu berechnen</button>
+            <button class="button quiet" type="button" id="reset-button">Auf Ausgangswerte</button>
+            <a class="button text-link" href="/api/export" download>Aktuellen Lauf exportieren</a>
+            <span id="run-feedback" role="status" aria-live="polite"></span>
+          </div>
+        </form>
+        <div class="change-strip" id="change-strip" hidden></div>
+      </section>
+
+      <section class="stage-section shell" id="stage-detail" aria-labelledby="detail-title">
+        <div class="section-heading compact"><div><p class="eyebrow">Ausgewählter Schritt</p><h2 id="detail-title">Rechnung im Detail</h2></div></div>
+        <div id="detail-content" class="detail-empty"><p>Wähle einen Knoten in der Karte, um Eingang → Operation → Ergebnis und die konkrete Visualisierung zu sehen.</p></div>
+      </section>
+    </section>
+
+    <section class="view shell tour-view" id="view-tour" data-view-panel="tour" aria-labelledby="tour-view-title" hidden>
+      <div class="tour-intro">
+        <div><p class="eyebrow">Geführte Tour</p><h1 id="tour-view-title" tabindex="-1">Das ganze Konstrukt als zusammenhängender Weg</h1></div>
+        <div class="tour-intro-copy"><p id="tour-intro-text">Die Kapitel werden aus dem aktuellen Rechenlauf geladen.</p><nav class="tour-shortcuts" aria-label="Direkte Einstiege"><a href="#quellgesetz">Ein Quellgesetz · neue Tour</a><a href="#zusammenhang">Wie alles zusammenpasst</a><a href="#graphen">Zuse, Wolfram & Quellenregel</a><a href="#prozesskern">Prozesskern</a><a href="#quellenanschluss">Quelle → Code</a><a href="#quellenrekursion">Quelle → Rekursion</a><a href="#flavorpfad">Flavor → α</a><a href="#raummarker">Raummarkierung</a><a href="#zuse">Zuse-Prüfung</a></nav></div>
+      </div>
+      <div class="tour-toolbar" aria-label="Blickwinkel der Tour">
+        <span class="tour-toolbar-label">Blickwinkel</span>
+        <div class="tour-lenses" role="tablist" aria-label="Erklärungsebene">
+          <button role="tab" aria-selected="true" data-tour-lens="geometry">Geometrie</button>
+          <button role="tab" aria-selected="false" data-tour-lens="topology">Topologie</button>
+          <button role="tab" aria-selected="false" data-tour-lens="mathematics">Mathematik</button>
+          <button role="tab" aria-selected="false" data-tour-lens="physics">Physik</button>
+        </div>
+      </div>
+      <nav class="tour-path" id="tour-path" aria-label="Kapitel der Tour"></nav>
+      <article class="tour-chapter" id="tour-chapter" aria-live="polite"><div class="skeleton tour-skeleton"></div></article>
+      <div class="tour-navigation" aria-label="Tour steuern">
+        <button class="button quiet" id="tour-prev" type="button">← Zurück</button>
+        <span id="tour-position">– / –</span>
+        <button class="button primary" id="tour-next" type="button">Weiter →</button>
+      </div>
+      <section class="tour-consequences" id="tour-consequences" aria-labelledby="tour-consequences-title" hidden></section>
+      <section class="tour-gates" id="tour-gates" aria-labelledby="tour-gates-title"></section>
+      <details class="tour-coverage" id="tour-coverage"><summary>Welche Originalquellen deckt die Tour ab?</summary><div id="tour-coverage-content"></div></details>
+    </section>
+
+    <section class="view shell" id="view-journey" data-view-panel="journey" aria-labelledby="journey-title" hidden>
+      <div class="view-intro"><p class="eyebrow">Geführter Ablauf</p><h1 id="journey-title" tabindex="-1">Vom Ursprung zur endlichen Welt</h1><p>Ein Schritt nach dem anderen. Die Typmarke sagt jeweils, wie weit die Aussage trägt.</p></div>
+      <div class="journey-layout">
+        <aside class="journey-rail" aria-label="Schritte des Ablaufs"><ol id="journey-list"></ol></aside>
+        <article class="journey-card" id="journey-card"></article>
+      </div>
+      <div class="journey-controls"><button class="button quiet" id="journey-prev">← Zurück</button><span id="journey-position" aria-live="polite"></span><button class="button primary" id="journey-next">Weiter →</button></div>
+    </section>
+
+    <section class="view shell" id="view-evidence" data-view-panel="evidence" aria-labelledby="evidence-title" hidden>
+      <div class="view-intro"><p class="eyebrow">Vollständiger lokaler Belegbestand</p><h1 id="evidence-title" tabindex="-1">Belege, Prüfmodule und Versuche</h1><p>Repository-Status und frische Ausführung bleiben getrennt. Ein registriertes Modul gilt nicht allein deshalb als aktuell bestanden.</p></div>
+      <div class="evidence-summary" id="evidence-summary"><div class="skeleton summary-skeleton"></div></div>
+      <div class="evidence-actions"><button class="button quiet" id="catalog-refresh" type="button">Bestand aktualisieren</button><span id="catalog-feedback" role="status" aria-live="polite"></span></div>
+      <form class="filter-bar" id="evidence-filters" role="search">
+        <label class="search-field" for="evidence-search"><span>Belegbestand durchsuchen</span><input id="evidence-search" type="search" placeholder="Titel, Claim, Pfad oder Beschreibung"></label>
+        <label for="evidence-type"><span>Typ</span><select id="evidence-type"><option value="">Alle Typen</option></select></label>
+        <label for="evidence-status"><span>Originalstatus</span><select id="evidence-status"><option value="">Alle Status</option></select></label>
+        <label for="evidence-stage" title="Automatische thematische Suchzuordnung. Die Originalbeziehungen zeigt die Schaltfläche Beziehungen."><span>Thematischer Schritt</span><select id="evidence-stage"><option value="">Alle Schritte</option></select></label>
+      </form>
+      <div class="results-meta"><span id="evidence-count">Katalog wird aufgebaut …</span><span>max. 100 Einträge pro Seite</span></div>
+      <div id="evidence-results" class="evidence-results" aria-live="polite"></div>
+      <nav class="pagination" id="evidence-pagination" aria-label="Ergebnisseiten"></nav>
+      <section class="native-runs" aria-labelledby="runs-title"><div class="section-heading compact"><div><p class="eyebrow">Frische Ausführung</p><h2 id="runs-title">Aktuelle Prüfläufe</h2></div></div><div id="run-history"></div></section>
+    </section>
+
+    <section class="view shell" id="view-lean" data-view-panel="lean" aria-labelledby="lean-title" hidden>
+      <div class="view-intro"><p class="eyebrow">Originaldefinitionen, original kompiliert</p><h1 id="lean-title" tabindex="-1">Lean: Beweise und ausführbare Definitionen</h1><p>Der Explorer übersetzt Beweise nicht nach JavaScript. Er inventarisiert Originalquellen, baut die Lean-Projekte und führt geeignete endliche Definitionen nativ aus.</p></div>
+      <div class="lean-overview" id="lean-overview"><div class="skeleton summary-skeleton"></div></div>
+      <div class="lean-actions"><button class="button primary" id="lean-run">Lean neu bauen &amp; ausführen</button><span id="lean-feedback" role="status" aria-live="polite"></span></div>
+      <div class="lean-tabs" role="tablist" aria-label="Lean-Ansicht">
+        <button role="tab" aria-selected="true" data-lean-tab="replay">Letzter Lauf</button>
+        <button role="tab" aria-selected="false" data-lean-tab="proof">Beweise</button>
+        <button role="tab" aria-selected="false" data-lean-tab="definition">Definitionen</button>
+        <button role="tab" aria-selected="false" data-lean-tab="noncomputable">Nicht berechenbar &amp; Annahmen</button>
+        <button role="tab" aria-selected="false" data-lean-tab="exports">Automatische Exporte</button>
+      </div>
+      <div id="lean-content" class="lean-content" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="/app.js?v=20260928-tour15" defer></script>
+</body>
+</html>

@@ -42,6 +42,17 @@ export const CHANGELOG_MACROS: Record<string, string> =
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    "date": "2026-09-29",
+    "dateLabel": "2026-09-29",
+    "heading": [
+      {
+        "k": "t",
+        "v": "(CLXIII): Executable TFPT explorer and consolidated session synthesis"
+      }
+    ],
+    "items": []
+  },
+  {
     "date": "2026-09-09",
     "dateLabel": "2026-09-09",
     "heading": [

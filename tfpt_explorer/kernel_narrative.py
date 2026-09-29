@@ -1,0 +1,201 @@
+"""Interpret the second supplied synthesis against calculated TFPT objects."""
+from .synthesis import doc, SOURCE, RESULTS, ALL2, PDF
+
+
+def paper(url, label):
+    return {"url": url, "label": label, "claim": label}
+
+
+def build_kernel_narrative(stages):
+    by_id = {s["id"]: s for s in stages}
+    cartan = by_id["e8"]["data"].get("cartan_source_bridge", {})
+    joint = by_id["assembly"]["data"].get("joint_constraints", {})
+    deck = by_id["assembly"]["data"].get("deck_constraints", {})
+    kernel = by_id["sourcechannel"]["data"].get("history_kernel", {})
+    # The complete 225x225 kernel is available once, at its calculation stage.
+    # The tour only needs its spectrum and the readable 15x15 preview.
+    history = kernel.get("history_kernel", {})
+    calculations = {**kernel, "history_kernel": {
+        **history,
+        "depth2": {key: value for key, value in history.get("depth2", {}).items()
+                   if key != "kernel"},
+    }} if kernel else {}
+    aspects = [
+        {"id": "generator", "title": "1 · Die Einzelereignisregel ist korrekt — und verbindet sich mit der geladenen Bindung", "status": "conditional",
+         "claim": "Abschnitte 1 und 17: Das kleinste positive Ereignis-Hamiltonian soll Code und Bindung gemeinsam bestimmen.",
+         "assessment": "Für ein exakt vorgegebenes unitäres Ereignis U²=I und eine vorgegebene Dauer τ ist h=πℏ(I−U)/(2τ) tatsächlich der kleinste positive zeitunabhängige Generator. Das Mittel solcher Generatoren ist aber nicht der Logarithmus des gemittelten Ereignisoperators. Im Fünfercode erzeugt es allein nur eine gemeinsame Phase.",
+         "implication": "Die volle SU(5)-Symmetrievervollständigung des nativen Paarkostenterms ergibt exakt (2/3)(I−PΩ)=(4/5)h_cov. Mit derselben τ wird daraus J h_cov mit J=2πℏ/(5τ). Damit haben Ereignisregel und geladene Blockbindung einen konkreten gemeinsamen Maßstab. Verlangt das Paargesetz volle native kollektive Symmetrie und feste P2-Ladungserhaltung zugleich, ist seine Form bereits auf I−PΩ festgelegt. Die Mittelung konstruiert dann diese Form; die volle Hamiltonsymmetrie selbst muss aus der Quelle folgen.",
+         "sources": [doc("tfpt_explorer/history_kernel.py", 1, "Minimallog, unterschiedliche Mittelungen und kovarianter Paaranschluss"), doc(ALL2, 1528, "S6 und native Hyperladungsbahn erzwingen die volle kovariante Kommutante")]},
+        {"id": "kernel", "title": "2 · Ein positiver Geschichtskern ist berechenbar, muss aber auch kausal komponieren", "status": "conditional",
+         "claim": "Abschnitte 2–4 und 13: Aus D(γ,γ′)=ω(Kγ†Kγ′) soll die gesamte Quantentheorie entstehen.",
+         "assessment": "Ein positiver Kern liefert einen Hilbertraum nach Quotientieren der Nullrichtungen. Für ausführbare Ereignisse muss dieser Nullraum unter den erlaubten Fortsetzungen stabil bleiben. Kausalität verlangt vollständige Instrument-Normierungen; im einfachen Wortkernel Σ_e D(γe,γ′e)=D(γ,γ′). Ein voller Prozess mit Eingriffen braucht die stärkeren Comb-Normierungen.",
+         "implication": "Der implementierte Wortkernel hält auch die Kreuzterme zwischen Geschichten fest. Für das gewählte gleichverteilte Ereignisinstrument ist I₅/5 sogar der einzige stationäre logische Zustand; das folgt aus der irreduziblen S₆-Wirkung. Diese Auswahl gilt für die reduzierte Dynamik bei vergessenem Ereignislabel. Sie wählt weder das Instrument noch den globalen Zustand mit Carry und leitet die Bornregel nicht her. Physische Gleichheit verlangt alle erlaubten künftigen Eingriffsantworten einschließlich Referenzsystemen und Interferenz.",
+         "sources": [doc("tfpt_explorer/history_kernel.py", 1, "Normierter Kernel aus den vorhandenen Ereignissen"), paper("https://www.ams.org/tran/1950-068-03/S0002-9947-1950-0051437-7/S0002-9947-1950-0051437-7.pdf", "Aronszajn · positive Kerne und Hilberträume"), paper("https://arxiv.org/html/0904.4483v2#S4.SS1", "Chiribella–D’Ariano–Perinotti · Quantum Combs, Satz 5"), paper("https://arxiv.org/abs/1011.6451", "Informationsbasierte Rekonstruktion der Quantentheorie mit zusätzlichen Axiomen")]},
+        {"id": "cover", "title": "3 · Ein endliches Programm kann einen unbegrenzten Raum beschreiben", "status": "conditional",
+         "claim": "Abschnitte 5–6: Die Ereigniszelle erzeugt einen 3A3-Überlagerungsraum, während der Code über Skalen rekursiert.",
+         "assessment": "Die angegebene Periodenabbildung konstruiert tatsächlich aus 30 Knotentypen und 45 Kanten ein unendliches periodisches Netz. Sie wählt einen Rang-drei-Quotienten des Rang-16-Schleifenraums. Der universelle Cover des endlichen Graphen wäre dagegen ein Baum; Coverbildung allein wählt deshalb noch nicht A3.",
+         "implication": "Die Raumkonstruktion bleibt endlich beschreibbar. Ihre drei Translationen, die innere Zustandsdimension fünf und die logische Dreierkodierung erfüllen getrennte Aufgaben. Zu begründen ist die bereits konkrete Markierung und Periodenwahl, nicht das Hinzufügen unendlich vieler unabhängiger Ortsdaten.",
+         "sources": [{"path": PDF, "page": 41, "claim": "Markiertes Periodengitter"}, {"path": PDF, "page": 64, "claim": "Vollständige harmonische Kantenabbildung"}]},
+        {"id": "process_recursion", "title": "4 · Vollständige Rekursion bewahrt auch Geschichte und relative Zeitphasen", "status": "conditional",
+         "claim": "Abschnitte 7 und 17: Der Fixpunkt soll den vollständigen Prozess samt Carry und Kosten betreffen.",
+         "assessment": "Diese Verstärkung ist richtig. Aus T_mikro W=WT und H9V=V(4I+h) folgen verträgliche Ereigniswörter und Entwicklungen. Mit physischem Kopplungsmaßstab J ist φγ=(4/ℏ)Σ J_e Δt_e. Im Kernel gilt D_mikro(γ,γ′)=exp[iφγ−iφγ′]D_logisch(γ,γ′). Bei gleicher Dauer aller Zweige fällt der gemeinsame Faktor heraus; verschiedene Dauern können relative Phasen erzeugen.",
+         "implication": "Der Rechenkern führt jetzt auch ein gemischtes Protokoll aus Ereignis und anschließender Blockbindung aus: Die normierten Einzelgewichte bleiben gleich, der vollständige Kernel erhält genau die berechneten Phasen. Beobachtbar werden sie bei erlaubtem kohärentem Zugriff auf den Ereignisspeicher mit festgelegter Phasenreferenz. Die Quelle und dieser Zugriff müssen im Weltprozess mitdefiniert werden. Exakte Selbstähnlichkeit bei jeder Skala bleibt eine zusätzliche Forderung; Massen können einen Fixpunkt samt Skalenentwicklung benötigen.",
+         "sources": [doc("tfpt_explorer/composition.py", 1, "Exakte Blockinvarianz und Zeitentwicklung"), doc("tfpt_explorer/history_kernel.py", 1, "Wortkernel und Phasenvertrag"), paper("https://arxiv.org/abs/1801.09811", "Pollock et al. · messbare mehrzeitige Gedächtniseffekte")]},
+        {"id": "identity_clock", "title": "5 · Der gespeicherte Inhalt überlebt — sein Rest trägt eine innere Schwingung", "status": "conditional",
+         "claim": "Abschnitte 8–9: Code ist Identitätserhaltung; Materie soll eine stabile dynamische Anregung sein.",
+         "assessment": "Im bestehenden Pfadmodell gilt V_G=√(2/3)W+√(1/3)R. Beide Teile erhalten den logischen Fünfer, haben aber Energien 2/3 und 5/3. Daraus folgt eine berechnete Rückkehrwahrscheinlichkeit (5+4 cos t)/9. Unter der vollen SU(5)-Ladungswirkung reicht dieser zehn-dimensionale Raum nicht: Sein Abschluss ist der interne 75-Raum 5⊕70.",
+         "implication": "Clock, Carry und Ladung beschränken sich gegenseitig. Eine künstlich angehängte Zweizustandsuhr ist unter der vollen Symmetrie zu klein. Diese internen Richtungen sind weder Raumdimensionen noch 75 Teilchen. Die periodische Rückkehr ist eine konkrete endliche Dynamik; Teilchen erfordern zusätzlich räumliche Propagation, Ladungen und eine passende Dispersion.",
+         "sources": [doc("tfpt_explorer/composition.py", 85, "Exakter Ladungsabschluss und direkte Zeitentwicklung des nativen Encoders")]},
+        {"id": "gauge", "title": "6 · Lokale Rahmenvergleiche bestimmen die Form einer Connection", "status": "conditional",
+         "claim": "Abschnitt 10: Eichfelder sollen aus dem Vergleich lokaler interner Basen folgen.",
+         "assessment": "Die Transportregel U_xy→g_x U_xy g_y⁻¹ ist korrekt, wenn U_xy von y nach x transportiert. Reine Basisvergleiche U_xy=g_x g_y⁻¹ haben auf jeder geschlossenen Schleife aber triviale Holonomie. Nichttriviale Eichkrümmung benötigt zusätzliche, physisch wirksame Linkvariablen.",
+         "implication": "Die geladenen TFPT-Blöcke liefern einen passenden Ort für solche Transporte. Die gemeinsame Quelle muss deren Freiheitsgrade, lokale Zwangsbedingungen und Wirkung festlegen. Der korrekte Transformationssatz allein erzeugt noch keine Eichfeldenergie, keinen Standardmodellsektor und keine chirale Materie.",
+         "sources": [doc(ALL2, 1528, "Ladungswirkung und kovariante Operatorfamilie"), {"path": PDF, "page": 53, "claim": "Gemeinsamer physischer Feld- und Materieanschluss"}]},
+        {"id": "metric", "title": "7 · Die räumliche Antwort entsteht erst aus dem zusammenarbeitenden Netz", "status": "conditional",
+         "claim": "Abschnitte 11–12: Lokale Ratenmomente sollen Metrik, Gravitation und Lichtgeschwindigkeit liefern.",
+         "assessment": "Am tatsächlichen harmonischen A3-Datensatz ist der vorgeschlagene Einzelknoten-Tensor überall singulär: viermal Rang null, 18-mal Rang eins, achtmal Rang zwei. Die globale Isotropie WᵀW=48I ist eine Zellbilanz. Bei veränderten Raten muss außerdem die harmonische Korrektur des gesamten Netzes mitgerechnet werden.",
+         "implication": "Die implementierte Zellgleichung liefert den richtigen makroskopischen räumlichen Antworttensor und stimmt mit der gewichteten Blochmatrix überein. Damit ist Raten→räumliche Ausbreitung konkret berechenbar. Eine Lorentzmetrik, universelle Materiekopplung und Spin zwei folgen noch nicht. Zustandsabhängige effektive Raten müssen aus gemeinsamen Materie-/Linkoperatoren entstehen, wenn die vollständige Quantendynamik linear und positiv bleiben soll.",
+         "sources": [doc("tfpt_explorer/spatial_response.py", 1, "Neuberechnung des lokalen Rangs und des vollständigen Zellkorrektors"), paper("https://arxiv.org/abs/1306.1934", "D’Ariano–Perinotti · kontrollierter QCA-Grenzfall unter angegebenen Voraussetzungen")]},
+        {"id": "uniqueness", "title": "8 · Die endgültige Gleichung muss Prozess und Zustand gleichzeitig auswählen", "status": "open",
+         "claim": "Abschnitte 14–17: Ein eindeutiger globaler Prozessfixpunkt soll Zeitpfeil und Anfangszustand ersetzen.",
+         "assessment": "D_* als 'der eindeutige zulässige Kern' zu definieren beweist seine Existenz oder Einzigkeit noch nicht. Dafür müssen Ereigniskategorie, erlaubte Eingriffe, Kosten, Rekursionsabbildung und Randbedingungen konkret feststehen. Auch das Weglassen einer Umgebung garantiert keinen monotonen Entropieanstieg; ein kausaler Prozess besitzt nicht allein deshalb einen thermodynamischen Zeitpfeil.",
+         "implication": "Die mathematisch präzise Gesamtfrage lautet: Welche gemeinsame Quelle und welcher Zustand erfüllen zugleich kausale Normierung, Ereignis- und Ladungswirkung, den vollständigen Rekursionsvertrag sowie die bereits hergeleiteten TFPT-Antworten? Mehrere Lösungen wären eine Familie physischer Kandidaten; eine einzige wäre ein echter Auswahlsatz. Die hier konstruierten Anschlüsse werden dabei als feste Bedingungen verwendet.",
+         "sources": [doc("tfpt_research_contracts.tex", 13620, "Gemeinsames Quellenfunktional"), {"path": PDF, "page": 54, "claim": "Zustandsauswahl und vollständiger physischer Abschluss"}]},
+    ]
+    latest = "tfpt_explorer/sources/Prozessrekonstruktion_Fixpunkt_Kandidat_20260928.txt"
+    aspects.extend([
+        {"id": "gns_theorem", "title": "9 · Rekonstruktion ist eindeutig, sobald Algebra und Quellenzustand feststehen", "status": "conditional",
+         "claim": "Neuer Nachtrag, Satz 1: Der vollständige positive Prozesskern soll seinen Hilbertraum eindeutig liefern.",
+         "assessment": "Das ist der GNS-Satz in der passenden Klasse: Für eine unitale C*-Algebra und einen normierten positiven Zustand gibt es eine bis auf unitäre Äquivalenz eindeutige zyklische Darstellung. Bei einer bloßen *-Algebra können Operatoren unbeschränkt sein. Ein positiver Wortkernel allein definiert noch keine verträgliche Darstellung aller Fortsetzungen. Das Nullideal identifiziert gleiche kohärente GNS-Vektoren; operative Gleichheit hängt zusätzlich von den erlaubten Messungen und Phasenreferenzen ab.",
+         "implication": "Hier ist die endliche Rekonstruktion tatsächlich ausgeführt: Die Ereigniswörter spannen M₅(C); für ω(A)=tr(A)/5 ist der GNS-Raum 25-dimensional, mit π(A)=A⊗I und Ω=vec(I)/√5. Das sind Operatorrichtungen im Rekonstruktionsraum, keine 25 Teilchen. Die Konstruktion wählt ω nicht selbst und ersetzt weder die Bornregel noch die Herleitung der physisch erlaubten Ereignisalgebra.",
+         "sources": [doc(latest, 1, "Neuester Nutzernachtrag als geprüfter Vorschlag"), doc("tfpt_explorer/history_kernel.py", 1, "Ausführbare GNS-Rekonstruktion desselben Wortkerns"), paper("https://www.ams.org/bull/1947-53-02/S0002-9904-1947-08742-5/S0002-9904-1947-08742-5.pdf", "Segal 1947 · positive Zustände und zyklische Darstellungen")]},
+        {"id": "primitive_selection", "title": "10 · Der Fixpunktsatz braucht den vollständigen Auswahloperator", "status": "conditional",
+         "claim": "Neuer Nachtrag, Satz 2: Ein primitiver Prozess-RG soll den einzigen Weltprozess auswählen.",
+         "assessment": "In einem festgelegten endlichen Sektor trägt diese Idee: Ein linearer positiver Operator auf einem abgeschlossenen, spitzen, erzeugenden Kegel mit kompakter normierter Basis, Normerhaltung und einer strikt positiven Potenz besitzt genau einen normierten Fixpunkt; seine Iterationen konvergieren. Für Choi-Prozesse müssen auch alle kausalen Teilspurnormen erhalten bleiben. Bei unendlicher Raum- oder Zeittiefe sind kompatible Grenzprozesse und passende Konvergenzkontrolle zusätzlich zu beweisen.",
+         "implication": "Die verlustfreie W-Rekodierung hat 25 feste logische Operatorrichtungen. Der gewählte Zufallskanal hat genau eine und ist primitiv: E²(ρ)≥(2/25)tr(ρ)I. Das sind berechnete Zustandsabbildungen, noch kein RG im Raum ganzer Prozessgesetze. Ein eindeutiges Gesetz kann viele Zustände tragen. Gesucht ist die aus P1 bestimmte Auswahlabbildung samt Carry; weder Rekodierung noch reduzierter Zufallskanal ersetzen sie.",
+         "sources": [doc(latest, 1, "Primitivität als vorgeschlagene Auswahlbedingung"), doc("tfpt_explorer/history_kernel.py", 1, "Vergleich der tatsächlichen Fixräume und positives Choi-Zeugnis"), paper("https://arxiv.org/abs/0909.5347", "Sanz et al. · Primitivität endlicher Quantenkanäle"), paper("https://doi.org/10.1112/jlms/s2-17.2.345", "Evans–Høegh-Krohn · Spektraleigenschaften positiver Abbildungen")]},
+        {"id": "p1_existing_route", "title": "11 · Der P1-Anschluss verbindet den neuen Prozess mit der bestehenden TFPT-Architektur", "status": "open",
+         "claim": "Neuer Nachtrag, Abschnitte 5 und 9–10: Reflexionspositivität und Primitivität sollen die acht physischen Anforderungen auf eine Quellenkonstruktion zurückführen.",
+         "assessment": "P1/P2 sind bereits durch den diskreten Bootstrap rückbestimmt: dieselben vier Marken liefern Familienrang 3 und Trägerrang 5; die μ₄-Verklebung führt zu E₈, dessen Rang 8 und Coxeterordnung 30 die Ausgangsdaten zurückprüfen. Die Originale korrigieren ausdrücklich ihre frühere Lesart als frei wählbare Eingaben (v350). Auch die lokale Transferregel ist aus Clock-Leiter, Deckparität und Positivität festgelegt (v487). Der MMST-Nahtanschluss ist bedingt geschlossen modulo zitierter Kontinuumssätze. PF-Primitivität eines vollständigen Prozessoperators bleibt eine eigene mathematische Eigenschaft.",
+         "implication": "Ein konkreter Anschluss ist jetzt berechnet: C=½I+⅙S₁₃+⅓WW† erhält den W-Code und reproduziert beide Clock-Moden samt Parität; es kommutiert mit geladenen Bindungen und nativen Ereignissen. Dies setzt Deck↔Außentausch, Fixslot↔W und eine nur paritätsabhängige Rate im restlichen Tensorraum voraus. Die Originale legen den dreidimensionalen Clock-Sektor fest; größere Fock- und Tensorträger besitzen weitere Sektoren. Die nächste Herleitung muss diese Abbildungen einschließlich Verbindungen und Quellenvariationen aus derselben P1/P2-Struktur bestimmen.",
+         "sources": [doc("origin_theory.tex", 954, "Bootstrap-Korrektur v350: Eingaben sind rückbestimmte Fixpunkte"), doc("origin_theory.tex", 294, "v487: Clock-Leiter erzwingt die lokale Regel"), doc("tfpt_research_contracts.tex", 10721, "Vorhandene PF-Argumentation auf dem Korrelationskegel"), doc("introduction.tex", 565, "SEAM.EQUIV.MMST.01: bedingt geschlossen modulo zitierter Sätze"), doc("tfpt_research_contracts.tex", 13235, "Bestehendes TFPT4D-Gesamtprogramm und seine gemeinsamen Bedingungen")]},
+    ])
+    marker = by_id["space"]["data"].get("native_marker_selection", {})
+    aspects.append({
+        "id": "charge_marker", "title": "12 · Die native Ladung zeichnet eine einzige Familie von Raummarkierungen aus", "status": "conditional",
+        "claim": "Neuer Nachtrag, Abschnitt 6: Unter minimaler Ladungsstörung sollen aus 15 Matchings genau drei familienäquivalente Kandidaten übrig bleiben.",
+        "assessment": "Ein konsequenter Basisvergleich bestätigt die zwei Überlappungswerte (neun und sechs Fälle), aber korrigiert zwei Labels des Nachtrags. Die tatsächlichen Minima sind (01)(23)(45), (01)(24)(35) und (01)(25)(34), alle mit 68/75−44√6/225. Die bereits vorhandene Familienclock σ=(234) führt sie zyklisch ineinander über. Der bisher verwendete räumliche Marker bleibt Teil dieser Familie.",
+        "implication": "Damit gibt es eine konkrete Verbindung von der vorhandenen inneren Ladung zur räumlichen Markierung: Fordert die Quelle minimale Ladungsstörung, bleibt unter diesen 15 Kandidaten nur eine Familienklasse. Das Auswahlprinzip ist noch zusätzlich; auch die Gleichwertigkeit dieser Repräsentanten im vollständigen Prozess und die anschließende Periodenwahl müssen zum Quellenvertrag passen. Die räumliche Zählung drei wird nicht mit drei inneren Farbslots identifiziert.",
+        "sources": [doc(latest, 456, "Zu prüfender neuer Auswahlvorschlag"), doc("tfpt_explorer/marker_selection.py", 1, "Exakte Neuberechnung aller 15 Kandidaten"), doc(ALL2, 8628, "Ursprüngliche Polartransport- und Markierungskonvention")],
+    })
+    return {
+        "kernel_aspects": aspects,
+        "kernel_summary": {
+            "title": "Der vollständige Prozesskern",
+            "lead": "Das gemeinsame Objekt ist eine Quelle, die auf jede Kombination ihrer Felder antwortet. Double Cover, μ₄, P1/P2, E₈, Clocks, φ₀ und α bleiben ihre ursprünglichen Auswahlbedingungen. Der direkte E₈-Gitteraufbau liefert einen konkreten gemeinsamen Quellkandidaten: Zustand, geladene Felder, alle Stromantworten und geometrische Zeit gehören zusammen. Die Tour zeigt, welche Verbindungen daraus folgen und welche Abbildung zur vollständigen physischen Welt noch herzuleiten ist.",
+            "source_program": by_id["assembly"]["data"].get("source_program", {}),
+            "source_unification": by_id["assembly"]["data"].get("source_unification", {}),
+            "origin_closure": by_id["origin"]["data"].get("origin_closure", {}),
+            "joint_charged_source": {
+                **by_id["assembly"]["data"].get("joint_charged_source", {}),
+                "local_reconstruction": {
+                    "status": "conditional",
+                    "title": "Ein lokaler Generatoranschluss bestimmt mehrere Teile zugleich",
+                    "premises": [
+                        "Die ursprünglichen 24 Stromfelder und ihre Adjunkten sind als lokale Felder der primitiven Quelle realisiert; ihre erzeugten Moden erfüllen die vollständigen affinen E8-Relationen auf Level 1, einschließlich der zentralen Normierung und Daggerstruktur.",
+                        "Auf einem gemeinsamen invarianten Energiecore gibt es ein normiertes positives zyklisches Vakuum mit J_n Ω = 0 für n ≥ 0; die Ströme erzeugen den gesamten betrachteten Hilbertraum und die lokalen Algebren, mit den ursprünglichen Markierungen.",
+                        "Die lokalen Operatorabschlüsse stimmen mit den verschmierten Feldern des stromerzeugten unitären VOA überein. Endliche Matrizen oder einzelne Korrelatoren beweisen diese lokale Vollständigkeit nicht.",
+                    ],
+                    "consequence": "Dann bestimmen die Stromrelationen und die Vakuumbedingung alle Wort-Grammatrizen. Nach Quotientieren der Nullrichtungen entsteht der eindeutige Level-1-Vakuummodul; dessen E8-Netz und geometrische Zeit kommen gemeinsam mit. Ein zusätzlicher frei gewählter Vakuumzustand oder Generator der geometrischen Zeit ist in diesem Rahmen nicht erforderlich. Eine separat vorgegebene physische Rohquellenzeit wird erst dann mitidentifiziert, wenn dieselbe Abbildung auch ihre Wirkung auf die Stromkoordinaten nachweist.",
+                    "first_missing": "Der direkte Originalweg quantisiert bereits das markierte E8-Gitter und konstruiert damit die gemeinsame Quelle. Seine zusätzliche Herkunftsannahme lautet: Die physische TFPT-Quelle ist gerade diese minimale positive lokale Level-1-Vakuumquantisierung. Der lokale Ramond-Endpunkt und ALG-EXH sind gesonderte Verpflichtungen der alternativen CAR/Gitter-Skalierungsrealisierung; sie blockieren den direkten Quellaufbau nicht.",
+                    "bulk_scope": "Auch dieser vollständige Randanschluss erzeugt noch keine 3+1-dimensionale Raumzeit. Dafür bleibt eine aus derselben Quelle erzeugte lokale räumliche Theorie mit einem gemeinsamen Funktional für Materie, Kopplungen und Gravitation erforderlich. Die Forderung ohne unabhängigen Zusatzfaktor ersetzt diesen Rekonstruktionssatz nicht.",
+                    "source": "https://arxiv.org/pdf/1503.01260",
+                    "source_detail": "CKLW: Beispiel 5.7, Satz 8.3, Beispiel 8.7; modulare Geometrie in Abschnitt 3",
+                },
+            },
+            "joint_selection": {
+                "title": "Welche Bedingungen greifen wirklich ineinander?",
+                "lead": "Die gemeinsamen Anschlüsse sind jetzt ausführbar: Dieselbe E₈-Stromantwort liefert an den ursprünglichen Nahtmarken die Dreierform W und die Paarstruktur. Die nativen Ereignisse bestimmen zugleich die Hecke-Vergröberungsmarken; deren Fortsetzung greift auf denselben geladenen Phasenspeicher zurück. Die KZ-Rechnung hält die Quellantwort auf verschiedenen Rechenwegen konsistent. Physische Ereignisauswahl, räumliche Beteiligte und gemeinsame Zeit müssen diese algebraischen Anschlüsse gemeinsam realisieren. Die optionale E₈-Skalenkaskade wird dafür nicht vorausgesetzt.",
+                "cartan": {key: value for key, value in cartan.items()
+                           if key != "reflection_records"},
+                "trimer": joint,
+                "deck": deck,
+                "current_source_bridge": by_id["e8"]["data"].get("current_source_bridge", {}),
+                "current_block_geometry": by_id["assembly"]["data"].get("current_block_geometry", {}),
+                "joint_charged_source": by_id["assembly"]["data"].get("joint_charged_source", {}),
+                "hecke_source": by_id["assembly"]["data"].get("hecke_source", {}),
+                "rewrite_coherence": by_id["assembly"]["data"].get("rewrite_coherence", {}),
+                "cartan_clock": by_id["assembly"]["data"].get("cartan_clock", {}),
+                "marked_source_process": by_id["assembly"]["data"].get("marked_source_process", {}),
+                "flavor_path_transport": by_id["assembly"]["data"].get("flavor_path_transport", {}),
+                "neutral_source_response": by_id["assembly"]["data"].get("neutral_source_response", {}),
+                "source_spin_lift": by_id["assembly"]["data"].get("source_spin_lift", {}),
+                "source_majorana_pairs": by_id["assembly"]["data"].get("source_majorana_pairs", {}),
+                "raw_source_route": {
+                    "title": "Alternative Realisierung: Was trägt der ältere CAR-Nahtanschluss?",
+                    "status": "conditional",
+                    "selected_target": "Die ursprüngliche Rückkopplung bestimmt P1/P2 innerhalb ihres Abschlussrahmens. Ist das gerade 16-Majorana-Randnetz realisiert und der passende Ramond-Feldoperator lokal angeschlossen, wählen die ganzzahlige Stromdimension und die μ₄-Verklebung die E₈-Erweiterung. Dieser Feldoperator ist ein noch fehlender Übergang dieses speziellen Skalierungsweges; der direkte markierte Gitteraufbau bleibt unabhängig davon möglich.",
+                    "exact_boundary_test": "Der alte Halbgeradenstring verschiebt im endlichen Gitter den Schnitt. Er behält dessen globale Randbedingung: S_NS^N = −I und (σ S_NS σ)^N = −I, während der reine R-Shift S_R^N = +I besitzt. Eine Summe von Spinstruktur-Spuren erzeugt den sektorwechselnden Feldoperator ebenfalls nicht.",
+                    "positive_constraint": "Der R–NS-Energieabstand legt für einen Majorana-Endpunkt bereits Gewicht 1/16 fest; für 16 passende chirale Endpunkte folgt Gewicht 1. Das stimmt mit dem benötigten E₈-Strom überein. Ein vorhandener voller Intervallstring besitzt dagegen den zusammengesetzten Korrelations-Exponenten; seine bloße Potenzierung ersetzt die chirale Randprojektion nicht.",
+                    "remaining_identity": "Nachzuweisen bleibt ein nichtverschwindender, geeignet normierter und räumlich gemittelter Endpunkt unter der ursprünglichen OS-Zeit, mit passender Lokalität und μ₄-Wirkung. Sein Grenzwert darf ein unbeschränktes Feld sein. Die originale α-Rückkopplungszahl ersetzt die Herleitung dieses Operators nicht. Einfügeabstände sind Argumente der bereits bestimmten Quellenantwort.",
+                    "sources": [doc("verification/v746_phys_gnet_local_functor.py", 396, "Originaler Nullmoden- und Bonddefekttest; unterschiedliche Aussagen"), doc("verification/v462_seam_spinor_continuum.py", 17, "Bedingte Ramond-Erweiterung und E₈-Gewicht eins"), doc("tfpt_research_contracts.tex", 13381, "Operativer Feldanschluss: G1–G4")],
+                },
+                "chain": [
+                    {"title": "Dieselben geladenen Ströme → Viererwirkung, Fünferwirkung und P2-Ladung", "status": "exact",
+                     "text": "Die ursprünglichen Felder X(i,a) tragen gleichzeitig den Fünferindex i und den Viererindex a. Ihre tatsächlichen E₈-Klammern erzeugen die beiden Wirkungen innerhalb einer gemeinsamen 80-dimensionalen A₈-Unteralgebra. Auch die P2-Ladung folgt daraus als derselbe Cartanoperator. Zusammen mit den vier ursprünglichen C-Feldern und den Gegenfeldern schließen diese Eingänge unter den tatsächlichen Klammern zur gesamten 248-dimensionalen E₈-Stromalgebra. Das ist ein gemeinsamer geladener Operatoranschluss. Er identifiziert weder die zuvor getrennten vollen E₈-Lifts noch das interne 5×4-Feldraster mit räumlichen Orten.",
+                     "source": "tfpt_explorer/current_block_geometry.py"},
+                    {"title": "Ursprüngliche Nahtmarken + Ströme → Dreierform W", "status": "conditional",
+                     "text": "Die geordneten μ₄-Marken werden exakt auf −1, 0, 1 und ∞ abgebildet. Der ursprüngliche E₈-Vierpunktkorrelator liefert dort nach Normierung genau W. Die passende Feldzuordnung der P1-Naht ist dabei die zusätzliche Voraussetzung; die Geometrie wird nicht neu gewählt. Der Vier-Zell-Test zeigt zugleich: Derselbe Korrelator ist kein stationärer Zustand der vorgegebenen Nachbarenergie. Seine Präparation mit anschließender Entwicklung wäre eine andere Aussage.",
+                     "source": "tfpt_explorer/current_block_geometry.py"},
+                    {"title": "Dieselben Ströme → Rekursion samt notwendigem Rest", "status": "conditional",
+                     "text": "Zwei eng zusammenrückende Dreiergruppen liefern im normierten Grenzwert genau (W ⊗ W̄)Ω. Bei endlichem Abstand erzeugt dieselbe Quelle zusätzlich die zweite Fünferform sowie die vorhandenen 45er- und 70er-Sektoren. Damit wählt die Quelle selbst den für diesen Test nötigen lokalen Träger 5+5+45+70=125. Die Anordnung der zwei Gruppen ist eine erklärte OPE-Prüfung an Argumenten derselben Antwortfunktion. Ihre Identifikation mit physischem Abstand und Zeit gehört zur Raumzeitabbildung.",
+                     "source": "tfpt_explorer/current_block_geometry.py"},
+                    {"title": "Cartan-Zweig: E₈ → native Ereignisse", "status": "exact",
+                     "text": "Auf dem durch J markierten Cartanraum ist jede native Reflexionsmatrix genau das Produkt zweier E₈-Wurzelspiegelungen. Die hermitesche Norm ist auf jeder J-Polarisation positiv; die komplex-bilineare Form paart die entgegengesetzten Polarisationen. Diese Matrixwirkung ist angebunden; ihre Realisierung als physisches Ereignis bleibt Teil des Quellenvertrags.",
+                     "source": "tfpt_explorer/cartan_source.py"},
+                    {"title": "Viererquelle → Fünfercode", "status": "conditional",
+                     "text": "Unter den Pauli-invarianten Polynomen liegen die ersten nichtkonstanten Koordinaten im Grad vier, und es gibt genau fünf. Ihre konkrete Quartikabbildung und der erzeugte Invariantenring stehen im ursprünglichen Quotientensatz; die Molienzahl wird live nachgerechnet. Dass die physische Quelle gerade den kleinsten invarianten Readout auswählt, bleibt eine zusätzliche Auswahlforderung.",
+                     "source": "_newest2/TFPT_Gesamtdokumentation2_20260927.md", "source_line": 3441},
+                    {"title": "Cartan-Zweig: geladene Ereignisse → Phasenspeicher", "status": "conditional",
+                     "text": "Zwei Folgen können auf dem Cartanraum gleich wirken und auf geladenen Feldern um die D₅+A₃-Deckparität abweichen. Die Nichtspaltung gilt im markierten Gitter-VOA-Normalisierer auch mit kontinuierlichen Charakterphasen. Dieser Cartan-Lift ist jedoch nicht der ältere Quartik-Quellenlift: Die beiden wirken auf den 248 E₈-Richtungen nachweislich verschieden. Ihre Phasenspeicher dürfen ohne weitere Abbildung nicht vermischt werden.",
+                     "source": "tfpt_explorer/cartan_source.py"},
+                    {"title": "Clock + Ladung + spätere Eingriffe", "status": "conditional",
+                     "text": "Der erreichbare Träger hängt von allen erlaubten Eingriffen ab. Die geschlossene Blockrechnung kann auf 80 internen Richtungen arbeiten; einzelne ursprüngliche Verbindungen erreichen auch den 45er-Rest. Dieser Rest darf deshalb nicht aus dem gesamten Originalprozess gestrichen werden.",
+                     "source": "tfpt_explorer/joint_constraints.py"},
+                    {"title": "P2 → zulässiger Ladungsaustausch", "status": "exact",
+                     "text": "Im markierten Fünfercode erhalten genau vier der 15 Ereignisse die feste P2-Ladung Y. Für ihre Deutung als physische Hyperladung brauchen die elf übrigen einen gemeinsamen geladenen Prozess; ein bloßer Ereignisspeicher ersetzt ihn nicht. Die bereits vorhandene SU(5)-kovariante Paarbindung erhält die Gesamtladung. Ihre Dynamik und das gewählte 15-Ereignisinstrument sind unterschiedliche Konstruktionen.",
+                     "source": "tfpt_explorer/charge_selection.py"},
+                    {"title": "Ursprüngliche Familienmarkierung → drei native Ausleserichtungen", "status": "exact",
+                     "text": "Der tatsächliche σ-feste Zweierraum enthält zwölf E₈-Wurzeln, also drei μ₄-Strahlen. Ihre Projektoren ergeben mit der eindeutig bestimmten Gewichtung 2/3 exakt die bisherige Dreier-Auslese. Der vorherige direkte Anschluss des gesamten markierten Viererraums war falsch: Original-σ und Wort-σ besitzen verschieden große Fixalgebren. Der korrekte Anschluss verwendet deshalb den tatsächlichen festen Zweierraum. Warum der physische Prozess diesen Sektor präpariert, bleibt eine eigene Quellenfrage.",
+                     "source": "tfpt_explorer/cartan_source.py", "source_line": 884},
+                    {"title": "Native Reflexionen + Clock → ursprüngliche Sechs-Ereignis-Familie", "status": "conditional",
+                     "text": "Die drei Quellenreflexionen und ihre Produkte realisieren genau die bereits in v976 untersuchten S₃-Wirkungen. Beschränkt man sich auf einzelne native Reflexionen, erzwingen die beiden Clock-Faktoren eindeutig die komprimierte Mischung und löschen die dritte Antwort G. Bei zusammengesetzten Ereignissen bleibt die ursprüngliche Familie q=6t mit 0≤t≤1/18. Der Dreiertransfer B ist für alle gleich; die GNS-Vierpunktfunktion F–A–A–F mit linken Operator-Einsetzungen ist q/9. Dies ist keine Wahrscheinlichkeit einer Folge von Messausgängen. Die Vorgabe 1/27 würde den Endpunkt q=1/3 wählen, benötigt aber einen unabhängigen Anschluss dieser Antwort an die Quelle. Kontinuierliche reversible Sprünge auf genau diesem S₃ erlauben dagegen nur 2/9≤q≤1/4. Eine kontinuierliche Quantenentwicklung auf dem Zweierraum ist eine andere, schwächere Forderung.",
+                     "source": "tfpt_explorer/marked_source_process.py"},
+                    {"title": "Ein Quellenfunktional → gemeinsame Physik", "status": "open",
+                     "text": "Dasselbe Quellenfunktional muss Clock, Ladungen, α, Flavor und räumliche Antworten gemeinsam liefern. Die skalare α-Wurzel und der diskrete Bootstrap bleiben feste Bedingungen. Für die vollständige Auswahl zählen zusätzlich gemischte Antworten und ihre Zeitphasen.",
+                     "source": "experiments/theory-contracts/source-three-route-closure-20260922/SELECTION.md"},
+                ],
+                "quartic": by_id["code"]["data"].get("quartic_selection", {}),
+                "source_process": by_id["sourcechannel"]["data"].get("charged_source_process", {}),
+                "charge_selection": by_id["sourcechannel"]["data"].get("charge_selection", {}),
+                "zuse_review": [
+                    {"idea": "Zustand und nächster Schritt", "book": "Nebenbedingungen ersetzen keine Fortschrittsregel.", "connection": "TFPT liefert eine ladungserhaltende Entwicklung auf einem gewählten Netz. Dessen Wahl und die Rolle der Ereignislabels müssen derselben Quelle entstammen."},
+                    {"idea": "Veränderliche Verbindungen", "book": "Zuse diskutiert variable Schaltungen und wachsende Automaten.", "connection": "Ein gemeinsamer Hilbertraum entscheidet nicht zwischen wechselnden Graphen und einem festen Träger mit dynamischen Links. Nötig ist die physische Lokalitätsabbildung."},
+                    {"idea": "Information und Gedächtnis", "book": "Informationskapazität und übertragene Information sind verschiedene Fragen.", "connection": "Der geladene Deck-Carry ist ein konkreter später wirksamer Unterschied. Er wird mit der vorhandenen E₈-Wirkung fortgeschrieben."},
+                    {"idea": "Umkehrbarkeit", "book": "Seine Beispiele sind nicht grundsätzlich reversibel.", "connection": "Die hier verlangte kohärente Quantenfortsetzung folgt aus dem TFPT-Quellenvertrag. Sie darf nicht Zuse als schon bewiesenes Resultat zugeschrieben werden."},
+                    {"idea": "Raum und Rechenebene", "book": "Raumdimension, Schaltebene und Synchronisierung sind getrennte Größen.", "connection": "Die rekursive Tiefe, die fünf internen Koordinaten und die drei markierten Raumtranslationen bleiben verschieden."},
+                    {"idea": "Digitale Teilchen", "book": "Wandernde periodische Muster dienen als Teilchenbilder.", "connection": "TFPT besitzt innere Rückkehrbewegungen. Für physische Teilchen zählen zusätzlich räumliche Ausbreitung, Ladung und Dispersion; Periodizität allein genügt nicht."},
+                    {"idea": "Ausbreitung und Licht", "book": "Zellgeschwindigkeit und Lichtgeschwindigkeit werden diskutiert.", "connection": "Die A₃-Zellantwort ist berechenbar. Der dazu passende physische Zeitgenerator und ein relativistischer Grenzfall müssen gemeinsam folgen."},
+                    {"idea": "Messung und Beobachter", "book": "Der Text liefert keine fertige quantenmechanische Beobachtertheorie.", "connection": "Positive Prozesskerne und mehrzeitige Instrumente sind heutige zusätzliche Werkzeuge. Ihr Hilbertraumaufbau ersetzt die Auswahl von Quelle und Zustand nicht."},
+                    {"idea": "Gravitation", "book": "Die Maxwell-Analogie bleibt ein Vorschlag.", "connection": "Eine räumliche Antwortmatrix ist noch keine universelle Metrikdynamik. Die TFPT-Gravitations- und Quellenantworten müssen denselben Prozess verwenden."},
+                    {"idea": "Zufall und Wahrscheinlichkeit", "book": "Zuse leitet keine Bornregel her.", "connection": "Der uniforme Ereigniskanal ist eine erklärte Wahl. Seine Normierung oder sein eindeutiger Fixzustand wählt noch kein vollständiges Weltgesetz."},
+                ],
+                "source_scope": "Die algebraischen Bedingungen werden gemeinsam geprüft. Der Beweis einer einzigen vollständigen physischen Quelle ist noch nicht erbracht.",
+            },
+            "steps": ["Rückgekoppelte P1/P2-Struktur → ursprüngliche Ladungs-, Deck- und Clock-Markierungen", "Markiertes E8-Gitter + erklärte minimale Vakuumquantisierung → eine vollständige lokale Quelle", "Dieselben 24 geladenen Felder → alle E8-Ströme und sämtliche Stromantworten", "Gemeinsamer Virasorovektor → dieselbe konforme Zeit in D5+A3 und A4+A3+u1", "Harmonische Antwort → W5 tensor W4; volle verbundene Antworten → Hypergraph", "Zustands-, Feld- und Zeitabbildung → gemeinsame physische 3+1-Antworten als verbleibender Gesamtnachweis"],
+            "result": "Die vollständige geladene E8-Level-1-Quelle verbindet die mathematischen Teile in einem Objekt. C4+X20 und ihre Gegenfelder erzeugen alle E8-Ströme. Ihre Ward-Regel berechnet sämtliche endlichen Stromantworten und die verbundenen Hypergraphkoeffizienten. Die harmonische X20-Antwort liefert die gemeinsame Rekursion W5 tensor W4. Die alte D5+A3-Zerlegung und die neue A4+A3+u1-Zerlegung besitzen nachweislich denselben Virasorovektor. Die vorhandenen Charaktertransporte bewahren die vollen geladenen Klammern und Antwortidentitäten. Die σ-Clock und P2-Ladung bleiben markierte Ausleseverpflichtungen derselben Quelle. Der direkte Gitteraufbau ist ein mathematisch vollständiger Quellkandidat; die Auswahl seiner minimalen Quantisierungsregel aus den ursprünglichen Prinzipien und die gemeinsame physische 3+1-Realisierung sind noch zu beweisen. Dafür ist ein zustands-, feld- und zeitverträglicher Anschluss an die bereits vorhandene quasilokale Hamiltonklasse erforderlich, sodass ein einziges physisches W[J] zugleich Materie, α, Flavor und Gravitation liefert. Die bereits bewiesene thermodynamische Existenz innerhalb dieser Hamiltonklasse bleibt erhalten.",
+            "scope": "Exakte Originalwurzel- und Stromidentitäten, ein allgemeines endliches Auswerteprogramm und etablierte Gitter-VOA-Rekonstruktion innerhalb der erklärten E8-Level-1-Quantisierung. Die vollständige physische Herkunft und 3+1-Übertragung sind damit noch nicht bewiesen.",
+            "calculations": calculations,
+            "marker_selection": marker,
+        },
+    }
