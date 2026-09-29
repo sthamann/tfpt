@@ -74,7 +74,7 @@ Zeichen & Bedeutung in diesem Dokument\\\midrule
 \Xclaim & Eine konkrete Gleichsetzung, Konstruktion oder stärkere Behauptung ist durch einen Gegenfall ausgeschlossen.\\\bottomrule
 \end{tabularx}
 
-Die gesamte Sitzung ist hier inhaltlich konsolidiert, nicht als chronologisches Protokoll wiedergegeben. Überholte Zwischenstände bleiben dort sichtbar, wo ihre Korrektur die Interpretation verändert. Die Anhänge benennen die verwendeten Quellenfamilien, den ausgeführten Prüfstand und die weiterhin offenen Anschlüsse. Der dokumentierte Explorer-Schnappschuss vom 28.~September enthält 316 interne Prüfungen; frühere Zwischenstände vom 29.~September enthielten 343 beziehungsweise 367, der Massentransportstand enthielt 372 und die Wand-Prüfung 375. Der aktuelle Lauf mit dem wirklichen Majorana-Operatoranschluss besteht alle 380 internen Prüfungen. Diese Zahlen bezeichnen weder voneinander unabhängige Beweise noch eine vollständige Prüfung aller Paper.
+Die gesamte Sitzung ist hier inhaltlich konsolidiert, nicht als chronologisches Protokoll wiedergegeben. Überholte Zwischenstände bleiben dort sichtbar, wo ihre Korrektur die Interpretation verändert. Die Anhänge benennen die verwendeten Quellenfamilien, den ausgeführten Prüfstand und die weiterhin offenen Anschlüsse. Der dokumentierte Explorer-Schnappschuss vom 28.~September enthält 316 interne Prüfungen; frühere Zwischenstände vom 29.~September enthielten 343 beziehungsweise 367, der Massentransportstand enthielt 372 und die Wand-Prüfung 375. Der Majorana-Operatoranschluss bestand alle 380 internen Prüfungen. Der aktuelle Lauf einschließlich gemeinsamer KMS-/Seesaw-Auswertung besteht alle 381 internen Prüfungen. Diese Zahlen bezeichnen weder voneinander unabhängige Beweise noch eine vollständige Prüfung aller Paper.
 
 \tableofcontents
 \newpage
@@ -127,6 +127,16 @@ nicht mehr sichtbar ist. Damit gehören Massenanschluss und Vergröberung zu
 derselben Rechnung. Aus den Ursprungsregeln herzuleiten bleibt die
 Betriebsweise, die die vorhandenen Massenkoeffizienten und den neutralen
 $\alpha$-Kanal gemeinsam auswählt.
+
+Abschnitt~\ref{sec:stateactionclosure} verbindet diesen Operator außerdem
+mit der ursprünglichen Zustandsauswertung: Derselbe vollständige
+Rückwirkungskern liefert die leichte Masse, den reduzierten Gleichgewichtszustand
+und den quadratischen Determinantenbeitrag. Die aus dem Zustand zurückgelesene
+Matrix stimmt nur unter erklärten Skalenbedingungen näherungsweise mit der
+Seesaw-Matrix überein. Diese Bedingung ist an den vorhandenen komplexen
+TFPT-Matrizen erfüllt, wenn die schweren Zustände kaum angeregt werden,
+die leichten aber noch nicht ausgefroren sind. Ihre physische Auswahl
+folgt daraus noch nicht.
 
 \subsection{Was eine wirkliche Gesamtlösung leisten müsste}
 Die Fortsetzung in Abschnitt~\ref{sec:nativeclosure} schließt weitere konkrete Stücke dieser Kette: den globalen Spin-Lift des ursprünglichen $10+6$-Trägers, seine charakteristische Antwort und die von den vier Quadratmarken bestimmte Mehrintervallstruktur. Deren Replica-Antwort $3/2$ entsteht aus einem tatsächlichen Ising-Twistfeld der verdoppelten E8-Quelle. Das fügt dem Gesamtbild einen Operatoranschluss hinzu; der historische Dreizustandstransfer ist damit noch nicht identifiziert.
@@ -2208,6 +2218,198 @@ Der nächste Herkunftsschritt muss deshalb am ursprünglichen gemeinsamen
 Variationsproblem ansetzen: Es muss die bereits eingeschränkten
 geladenen Einsetzungen, ihre Normierung und die primitive Nahtantwort
 als zusammengehörigen stationären Prozess auswählen.
+
+\subsection{Zustand und Wirkung aus derselben Rückwirkung}\label{sec:stateactionclosure}
+\key{\textbf{Die gemeinsame Information ist jetzt genauer bestimmt.}
+Eine korrekte Vergröberung muss sowohl die dynamische Antwort als auch
+den reduzierten Zustand aus demselben vollständigen Kern gewinnen.
+Am ursprünglichen Neutrinooperator ist diese Verbindung nun berechnet.
+Der aus einer Momentaufnahme rekonstruierte Operator ist im Allgemeinen
+nicht die ruhende Massenantwort. Unter passender Trennung der schweren
+und leichten Skalen nähern sich beide an.}
+
+\paragraph{Anschluss an die ursprünglichen Verifikationen.}
+\file{verification/v258_dirac_covariance_induction.py} verwendet bereits
+die Fermi-Dirac-Kovarianz und ihre Logit-Inversion. Für einen vollständigen
+endlichen Operator gilt diese Inversion exakt. Das erklärt jedoch noch
+nicht die stärkere Kompressionsgleichung
+$C_F=P_F C_\Sigma P_F$: Die Inversion einer komprimierten Kovarianz
+ist im Allgemeinen weder $P_FDP_F$ noch deren statisches Schurkomplement.
+Die neue Rechnung setzt deshalb den gerade aus den Quellenmoden
+realisierten ursprünglichen Neutrinoblock ein. Sie erhält seine vorhandenen
+komplexen Yukawas und seine schwere Hierarchie. Es wird kein neues
+Massentexturmodell eingeführt.
+
+Setze mit der Notation aus Abschnitt~\ref{sec:masszeromode}
+\begin{equation}
+\overline D=\mathcal D_{\rm phys}/m_*=
+\begin{pmatrix}0&B\\B^\dagger&H\end{pmatrix},
+\qquad B=\widehat V/\sqrt{m_*},\qquad b=\beta_{\rm phys}m_*.
+\end{equation}
+Die folgende Deutung bleibt die bedingte endliche Gauß-/CAR-Deutung
+des ursprünglichen Wörterbuchs. Sie leitet weder vierdimensionale
+Fermionstatistik noch eine physische Temperatur aus der E8-Quelle her.
+Mit $P$ als Projektion auf die sechs leichten Nambu-Komponenten gilt
+\begin{align}
+C_L&=P(1+e^{b\overline D})^{-1}P,\\
+h_{\rm mod}&=\frac{m_*}{b}\log\!\bigl((I-C_L)C_L^{-1}\bigr),\\
+G_L(z)&=P(zI-\overline D)^{-1}P
+       =\bigl[zI-\Sigma(z)/m_*\bigr]^{-1}.
+\end{align}
+Hier ist $h_{\rm mod}$ der Einteilchen-Logit des reduzierten Zustands.
+Eine vollständige Vielteilchen-Wirkung enthält zusätzlich ihre
+Normierung; die Formel wird nicht als bereits hergeleitete autonome
+Zeitentwicklung ausgegeben.
+
+Der vollständige Resolvent liefert den Zustand exakt:
+\begin{equation}\label{eq:commonsourcekms}
+\boxed{C_L=\frac I2+\frac2b\sum_{n\ge0}
+\operatorname{Herm}G_L(i\omega_n),\qquad
+\omega_n=\frac{(2n+1)\pi}{b}.}
+\end{equation}
+Dabei ist $\operatorname{Herm}A=(A+A^\dagger)/2$.
+Die Zusammenfassung der positiven und negativen Frequenzen macht
+die Summe konvergent. Weil der leichte Diagonalblock hier null ist,
+verschwindet zusätzlich der Term der Ordnung $\omega_n^{-2}$;
+der Summand fällt wie $\omega_n^{-4}$.
+
+\begin{center}
+\begin{tikzpicture}
+\node[box,text width=8cm] (kernel) at (0,0)
+{Ein vollständiger Rückwirkungskern\\$G_L(z)=[zI-\Sigma(z)/m_*]^{-1}$};
+\node[box,text width=4cm] (mass) at (-4.8,-2.2)
+{Reaktion\\statische Seesaw-Masse\\und dynamisches Gedächtnis};
+\node[box,text width=4cm] (state) at (0,-2.2)
+{Momentaufnahme\\reduzierte Kovarianz\\und ihr Logit};
+\node[box,text width=4cm] (action) at (4.8,-2.2)
+{Quadratische Wirkung\\Determinantenantwort\\und ihre Variation};
+\draw[arr] (kernel.south west) -- (mass.north);
+\draw[arr] (kernel.south) -- (state.north);
+\draw[arr] (kernel.south east) -- (action.north);
+\end{tikzpicture}
+\end{center}
+
+\paragraph{Warum derselbe Kern auch die Wirkung trägt.}
+Für den endlichen komplexen CAR-Vergleich gilt
+$\log Z(\overline D)=\Tr\log(1+e^{-b\overline D})$.
+Sei $\overline D_0=\diag(0,H)$ der entkoppelte Vergleich.
+Da beide Operatoren dieselbe Spur haben, folgt aus dem Produkt für
+den hyperbolischen Kosinus und derselben Schuridentität
+\begin{equation}\label{eq:sourcekmsaction}
+\log\frac{Z(\overline D)}{Z(\overline D_0)}
+=2\operatorname{Re}\sum_{n\ge0}
+\log\det\!\left[
+\frac{i\omega_n I-\Sigma(i\omega_n)/m_*}{i\omega_n}
+\right].
+\end{equation}
+Die Realteile sind als Logarithmen der Beträge unabhängig von
+einer Phasenwahl des komplexen Logarithmus.
+Die ungekoppelte schwere Determinante kürzt sich; ihre Wirkung auf
+den leichten Sektor bleibt im frequenzabhängigen Kern erhalten.
+Für das ungekürzte Funktional
+$\Phi=-(m_*/b)\log Z$ gilt
+$\delta\Phi=\Tr[C\,\delta\mathcal D_{\rm phys}]$.
+Eine Variation im leichten Diagonalblock liefert deshalb genau $C_L$.
+Dies verbindet Zustands- und Wirkungsantwort am selben endlichen Objekt.
+Die Gleichung ersetzt keine Majorana-Pfaffian-Normierung und identifiziert
+noch nicht den getrennten elektromagnetischen Quillen-Kanal.
+
+\paragraph{Wann die Zustandsauswertung die leichte Massenmatrix wiedergibt.}
+Für schwache schwere--leichte Mischung liefert die Entwicklung in
+$\widehat V$ bei festem $b$ in zweiter Ordnung
+\begin{equation}\label{eq:sourcekmsfilter}
+h_{\rm mod}=
+-\widehat V\left[H^{-1}
+-\frac2bH^{-2}\tanh\!\left(\frac{bH}{2}\right)\right]\widehat V^\dagger
++\text{höhere Mischungsordnungen}.
+\end{equation}
+Das Vorzeichen folgt bereits aus der zweiten geteilten Differenz
+der Fermi-Funktion bei $(0,\lambda,0)$.
+Gegenüber dem statischen Beitrag
+$-\widehat V H^{-1}\widehat V^\dagger$ erhält jeder schwere Eigenkanal
+den Faktor
+\begin{equation}
+F_b(\lambda)=1-\frac{2\tanh(b\lambda/2)}{b\lambda},\qquad
+F_b(\lambda)\sim
+\begin{cases}
+(b\lambda)^2/12,& |b\lambda|\ll1,\\
+1-2/(b|\lambda|),& |b\lambda|\gg1.
+\end{cases}
+\end{equation}
+Die Annäherung ist somit algebraisch in $T/M$, nicht exponentiell.
+Die sinnvolle gemeinsame Näherung verlangt mit
+$\Delta=\min|\operatorname{spec}H|$
+\begin{equation}\label{eq:kmswindow}
+\frac{\|\widehat V\|}{\sqrt{m_*}\Delta}\ll1,\qquad
+b\Delta\gg1,\qquad
+\frac{b\|\widehat V\|^2}{m_*\Delta}\ll1.
+\end{equation}
+Die letzte natürliche Normschranke vermeidet, eine zufällig kleine
+Seesaw-Summe durch gegenseitige Auslöschung mit schwacher Mischung zu
+verwechseln. Relative Matrixfehler können bei solchen Auslöschungen
+strengere Bedingungen benötigen.
+
+Der direkte Lauf am vorhandenen komplexen TFPT-Neutrinozweig verwendet
+$m_*=9.1799084999\cdot10^{22}$ eV und hat die Mischungsgröße
+$7.92762\cdot10^{-9}$. Alle Tabellenzeilen behalten denselben
+vollständigen Operator und dieselben Massenpole bei.
+\begin{center}
+\begin{tabular}{rrl}
+\toprule
+$b=\beta_{\rm phys}m_*$&
+$\|h_{\rm mod}-\Sigma(0)\|_F/\|\Sigma(0)\|_F$&
+Einordnung\\
+\midrule
+$1$      & $91.5920\,\%$ & schwere Kanäle angeregt\\
+$10^4$   & $25.9886\,\%$ & noch kein großer Skalenabstand\\
+$10^6$   & $0.392507\,\%$ & getrennte Skalen\\
+$10^8$   & $0.00392507\,\%$ & größerer Abstand\\
+$10^{30}$& $99.9873\,\%$ & auch leichte Moden ausgefroren\\
+\bottomrule
+\end{tabular}
+\end{center}
+Die letzte Zeile liegt ausdrücklich außerhalb der Gültigkeit der
+führenden Mischungsformel. Beliebiges Abkühlen ist kein Ersatz für
+das Zwischenfenster. In den übrigen vier Proben stimmen der direkt
+aus der vollständigen Kovarianz berechnete Logit und
+\eqref{eq:sourcekmsfilter} relativ besser als $1.1\cdot10^{-15}$ überein.
+Dies ist eine numerische Konsistenzprüfung vorhandener Eingaben, keine
+entsprechend genaue neue physikalische Vorhersage. Die Rechnung verwendet
+80 Arbeitsstellen, damit die winzige Verschiebung von $I/2$ nicht verloren
+geht; dadurch gewinnen die ursprünglichen Eingabedaten keine neue Genauigkeit.
+
+\paragraph{Was damit für die Auswahlregel gewonnen ist.}
+Die ursprüngliche Zustandsinduktion und der konkrete Seesaw-Anschluss
+sind miteinander verträglich, aber nicht durch unbeschränkte Gleichsetzung
+der beiden Operatoren. Ihre gemeinsame Realisierung muss den vollständigen
+Kern und seine Zustandsgewichte erhalten. Die Universalraum-Regel,
+spätere Antworten zu erhalten, betrifft daher ebenso die reduzierte
+Momentaufnahme und das variierte Funktional. Eine reine Massentabelle
+würde gerade die Information entfernen, die diese drei Antworten verbindet.
+
+Auch \file{verification/v259_modular_cutoff_kappa.py} muss in diesem
+Zusammenhang gelesen werden: Das Skript setzt $f(u)=e^{-u}$ und berechnet
+dessen Momente. Die Wahl dieser Spektralaktionsfunktion folgt nicht allein
+aus der Fermi-Dirac-Kovarianz oder aus der Normierung $\beta=1$.
+Ein bekanntes konkretes Gegenbeispiel für die behauptete Zwangsläufigkeit
+ist die spektrale \emph{Entropie} derselben freien Fermionen:
+\begin{equation}
+S=\Tr h(b\overline D),\qquad
+h(x)=\log(1+e^{-x})+\frac{x}{1+e^x},\qquad h(-x)=h(x).
+\end{equation}
+Sie ergibt eine andere Testfunktion $\chi(u)=h(\sqrt u)$~\cite{entropyaction}.
+Diese wird hier nicht als neue TFPT-Wirkung gewählt. Das Beispiel zeigt
+präzise, warum zunächst das ursprüngliche physische Funktional festzulegen
+ist. Die vorhandenen Alpha-, Flavor- und Skalenresultate bleiben dabei
+gemeinsame Randbedingungen dieser Auswahl.
+
+\picturetext{Man sieht nur den Hebel einer Maschine. Seine Reaktion auf
+einen Druck, ein Foto seiner ruhigen Lage und die Energie der ganzen
+Maschine sind drei verschiedene Auskünfte. Unsere Rechnung gewinnt sie
+jetzt aus derselben verborgenen Mechanik. Gesucht bleibt die ursprüngliche
+Regel, die genau diese Mechanik samt Betriebszustand und Nahtkopplung
+einsetzt. Eine passende Reaktion allein bestimmt das ganze Instrument
+noch nicht.}
 
 \subsection{Was die Raum- und Literaturbefunde für dieselbe Kette beitragen}
 Am tatsächlichen 30-dimensionalen Blochoperator des markierten $A_3$-Netzes wurden die Bandbefunde unabhängig bestätigt. Auf dem zehn-dimensionalen Eigenraum zum Bandniveau $3$ hat die erste Richtungsableitung die charakteristischen Polynome
@@ -5075,6 +5277,19 @@ festes \texttt{True} und kein Identifikationsbeweis.
 
 \subsection{Der Explorer ist vollständig ausgeführt, der Originalbestand nicht vollständig grün}
 
+\textbf{Fortsetzung vom 29.~September: gemeinsame Zustands- und Wirkungsantwort.}
+Abschnitt~\ref{sec:stateactionclosure} ergänzt denselben Neutrinopfad
+um die direkte komprimierte KMS-Kovarianz, ihre Logit-Auswertung
+und den Vergleich mit der statischen Massenmatrix.
+Der gemeinsame gezielte Lauf derselben vier Testdateien bestand
+\textbf{43 Tests}. Die drei neuen Regressionen prüfen eine unabhängige
+analytische Zweiniveaulösung, die Matsubara-Rekonstruktion von Kovarianz
+und relativer komplexer CAR-Determinante sowie das Skalenfenster und seine
+kalte Gegenprobe an den vorhandenen TFPT-Eingaben.
+Die früheren 40 Tests sind darin enthalten.
+Die Filterformel samt Vorzeichen, Einheiten, Konvergenz und Geltungsbereich
+wurde unabhängig gegengelesen.
+
 \textbf{Fortsetzung vom 29.~September: wirklicher Majorana-Modenanschluss.}
 Abschnitt~\ref{sec:masszeromode} erweitert denselben ausführbaren Pfad um die
 Paarfeldwirkung auf allen 248 Stromrichtungen, ihre direkte Einsetzung in
@@ -5530,6 +5745,10 @@ Cauchy-Pfaffian/Hafnian-Identität für beliebige gerade Punktzahlen.
 \bibitem{barronhigherzhu} K. Barron, N. Vander Werf, J. Yang:
 \emph{Higher level Zhu algebras and modules for vertex operator algebras}.
 \url{https://arxiv.org/abs/1710.04767}.
+\bibitem{entropyaction} A. H. Chamseddine, A. Connes, W. D. van Suijlekom:
+\emph{Entropy and the spectral action}. Die Entropie der zweiten
+Fermionquantisierung als Spektralaktion eines bereits gegebenen Diracoperators.
+\url{https://arxiv.org/abs/1809.02944}.
 \end{thebibliography}
 
 \end{document}

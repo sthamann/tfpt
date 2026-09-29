@@ -15,6 +15,7 @@ import math
 import sys
 from typing import Any, Sequence
 
+import mpmath as mp
 import numpy as np
 from scipy.optimize import brentq
 import sympy as sp
@@ -191,6 +192,100 @@ def source_heavy_response(heavy: Any, normalized_y: Any, z: complex = 0j) -> np.
     return coupling @ np.linalg.solve(z*np.eye(6) - heavy, coupling.conj().T)
 
 
+def source_kms_compression(heavy: Any, normalized_y: Any, mass_unit_eV: float,
+                           beta_M3: float = 1., *, dps: int = 80) -> dict[str, Any]:
+    """Compress the KMS state of the SAME original twelve-dimensional block.
+
+    beta_M3 = beta_physical*M3 is a diagnostic dimensionless inverse temperature,
+    not a selected physical clock. The finite CAR/KMS interpretation is the
+    existing v258 dictionary, not a derivation of that dictionary from E8.
+    C_L = P f_beta(D_phys/M3) P; the returned logit is rescaled to eV.
+    Double precision loses the physical O(m_nu/M3) displacement from I/2.
+    """
+    h = np.asarray(heavy, dtype=complex)
+    y = np.asarray(normalized_y, dtype=complex)
+    if h.shape != (6, 6) or y.shape != (3, 3):
+        raise ValueError("Require a six-dimensional heavy block and three-family Yukawa matrix")
+    if not np.isfinite(h).all() or not np.isfinite(y).all() or not np.allclose(h, h.conj().T, rtol=0, atol=1e-14):
+        raise ValueError("Require a finite Hermitian heavy block and finite Yukawa entries")
+    if not math.isfinite(mass_unit_eV) or mass_unit_eV <= 0 or not math.isfinite(beta_M3) or beta_M3 <= 0:
+        raise ValueError("Require positive finite mass unit and inverse temperature")
+    if dps < 50:
+        raise ValueError("At least 50 decimal working digits are required for the frozen hierarchy")
+    # A private context avoids changing precision in other concurrent calculations.
+    ctx = mp.mp.clone()
+    ctx.dps = dps
+    convert = lambda a: ctx.matrix([[ctx.mpc(str(v.real), str(v.imag))
+                                     for v in row] for row in np.asarray(a, complex)])
+    unit, beta = ctx.mpf(str(mass_unit_eV)), ctx.mpf(str(beta_M3))
+    zero = np.zeros((3, 3), complex)
+    v = convert(np.block([[y.T, zero], [zero, y.conj().T]])) / ctx.sqrt(unit)
+    full = ctx.zeros(12)
+    full[:6, 6:], full[6:, :6], full[6:, 6:] = v, v.H, convert(h)
+    energies, vectors = ctx.eighe(full)
+    retained = vectors[:6, :]
+    # f(x)-1/2=-tanh(x/2)/2 is stable for positive and negative energies.
+    centered = retained * ctx.diag([-ctx.tanh(beta*e/2)/2 for e in energies]) * retained.H
+    covariance = ctx.eye(6)/2 + centered
+    occupations, modes = ctx.eighe(covariance)
+    if not all(0 < p < 1 for p in occupations):
+        raise ArithmeticError("Compressed covariance lost faithfulness; increase working precision")
+    modular = unit/beta * modes * ctx.diag([ctx.log1p(-p)-ctx.log(p) for p in occupations]) * modes.H
+    as_numpy = lambda a: np.array(a.tolist(), dtype=complex)
+    return {
+        "modular_operator_eV": as_numpy(modular),
+        "covariance": as_numpy(covariance),
+        "centered_covariance_times_M3_eV": as_numpy(unit*centered),
+        "faithful_at_working_precision": True,
+        "working_digits": dps,
+    }
+
+
+def _kms_reduction_data(heavy: np.ndarray, y: np.ndarray, mass_unit_eV: float) -> dict[str, Any]:
+    zero = np.zeros((3, 3), complex)
+    coupling = np.block([[y.T, zero], [zero, y.conj().T]])
+    values, vectors = np.linalg.eigh(heavy)
+    static = source_heavy_response(heavy, y)
+    gap = float(min(abs(values)))
+    mixing = float(np.linalg.norm(coupling, 2)/np.sqrt(mass_unit_eV)/gap)
+    rows = []
+    for beta in (1., 1e4, 1e6, 1e8, 1e30):
+        reduced = source_kms_compression(heavy, y, mass_unit_eV, beta)
+        modular = reduced["modular_operator_eV"]
+        x = beta*values/2
+        # Avoid subtracting nearly equal numbers in 1-tanh(x)/x.
+        filters = np.array([t*t/3-2*t**4/15+17*t**6/315 if abs(t) < 1e-3
+                            else 1-np.tanh(t)/t for t in x])
+        leading = -coupling @ ((vectors*(filters/values)) @ vectors.conj().T) @ coupling.conj().T
+        natural_light_bound = float(np.linalg.norm(coupling, 2)**2 / mass_unit_eV / gap)
+        in_window = beta*gap > 50 and beta*natural_light_bound < .01 and mixing < .01
+        rows.append({
+            "beta_M3": beta, "beta_heavy_gap": beta*gap,
+            "beta_light_norm_bound": beta*natural_light_bound,
+            "inside_separated_scale_window": in_window,
+            "relative_difference_from_static": float(np.linalg.norm(modular-static)/np.linalg.norm(static)),
+            "modular_operator_norm_eV": float(np.linalg.norm(modular)),
+            "leading_filter_relative_error": float(np.linalg.norm(modular-leading)/np.linalg.norm(modular)),
+            "leading_formula_applicable": beta*natural_light_bound < .01 and mixing < .01,
+            "heavy_channel_filters": filters.tolist(),
+            "hermitian_error_eV": float(np.linalg.norm(modular-modular.conj().T)),
+            "faithful_at_working_precision": reduced["faithful_at_working_precision"],
+        })
+    return {
+        "status": "COMMON_RESOLVENT_WITH_DISTINCT_STATE_AND_DYNAMICAL_READOUTS",
+        "working_digits": 80, "heavy_light_mixing_bound": mixing,
+        "mass_unit_eV": mass_unit_eV, "rows": rows,
+        "covariance_formula": "C_L=P(1+exp(b D_phys/M3))^(-1)P; h_mod=(M3/b) log((I-C_L) C_L^(-1))",
+        "common_resolvent": "G_L(z)=[z I-Sigma(z)/M3]^(-1); C_L=I/2+(2/b) sum_(n>=0) Herm[G_L(i(2n+1)pi/b)]",
+        "leading_formula": "h_mod=-Vhat [H^(-1)-(2/b) H^(-2)tanh(b H/2)] Vhat† + higher mixing orders; H=D_M/M3",
+        "filter": "F_b(lambda)=1-2 tanh(b lambda/2)/(b lambda); F_b~(b lambda)^2/12 for small b lambda",
+        "matching_condition": "Weak heavy-light mixing plus beta_physical*M_min >> 1 and beta_physical*||V_phys||^2/M_min << 1; recovery is algebraic in T/M, not exponential. Matrix cancellation can strengthen relative-error requirements.",
+        "window_display_thresholds": "The display uses b*gap>50, b*||Vhat||^2/(M3*gap)<0.01 and mixing<0.01 as illustrative separation thresholds, not selected physical constants.",
+        "normalization": "b=beta_physical*M3 is varied as a diagnostic. b=1 for a modular generator does not fix M3/temperature or the spectral-action cutoff.",
+        "scope": "The same frozen D_phys and same complex Yukawas are used in every row. Its physical pole masses do not change. The changing quantity is the logit of the compressed equilibrium covariance. This closes a conditional finite Gaussian consistency calculation, not source-state selection, autonomous reduced time, 4D statistics, a thermal history or the alpha Ward derivation. The coldest row is a control outside the light-thermal window; its leading mixing formula is not claimed to apply.",
+    }
+
+
 def _heavy_reduction_data(heavy: np.ndarray, y: np.ndarray, light_form: np.ndarray) -> dict[str, Any]:
     zero = np.zeros((3, 3), complex)
     coupling = np.block([[y.T, zero], [zero, y.conj().T]])
@@ -332,6 +427,7 @@ def build_source_neutrino_dictionary_data() -> dict[str, Any]:
     heavy_source_native = native_majorana_matrix(s.T * exact_heavy * s)
     heavy_source_cycle = np.array(doubled_frame * heavy_source_native * doubled_frame.H, complex)
     heavy_reduction = _heavy_reduction_data(heavy_source_cycle, normalized_y, base_mass)
+    kms_reduction = _kms_reduction_data(heavy_source_cycle, normalized_y, float(conditional["M"][2]*1e9))
     base_state = (sn.T @ base_mass @ sn).conj()
     invariant_n = np.array(invariant, dtype=complex)
     projected = np.vdot(invariant_n, base_state) * invariant_n / 3
@@ -374,6 +470,13 @@ def build_source_neutrino_dictionary_data() -> dict[str, Any]:
                and min(heavy_reduction["residue_min_eigenvalues_eV"]) > -1e-15,
                heavy_reduction, "Same six-pole positive-residue response; zero-frequency limit is the original light matrix",
                "Original conditional Dirac input and actual source-mode heavy block; direct resolvent versus spectral residues with explicit units"),
+        _check("Compressed source KMS state obeys the heavy-mode filter with its scale conditions",
+               all(row["faithful_at_working_precision"] and row["hermitian_error_eV"] < 1e-14
+                   for row in kms_reduction["rows"])
+               and max(row["leading_filter_relative_error"] for row in kms_reduction["rows"]
+                       if row["leading_formula_applicable"]) < 1e-12,
+               kms_reduction, "Original twelve-dimensional block versus analytic second-order filter",
+               "80-digit direct covariance compression and logit; frozen complex inputs, no rescaled mass texture or fitted beta"),
         _check("Same-source neutral Ward is scalar but the vacuum cannot choose a charged matrix",
                all(row["eigenvector_checked"] for row in neutral["symmetric_retained_six"])
                and charges == [10] * 6, {"X": charges, "R0": [4] * 6},
@@ -430,6 +533,7 @@ def build_source_neutrino_dictionary_data() -> dict[str, Any]:
             "typing": conditional["hypothesis"]["majorana_operator"]["ansatz_note"],
             "scope": "The original heavy ansatz and its named physical family basis are inputs. The native OPE now represents and reads every tensor component exactly; it does not derive the heavy texture, its scalaron scale, the source-to-physical basis assignment, or a condensate. Complex native components created by S are basis phases, not a new physical CP invariant."},
         "heavy_reduction": heavy_reduction,
+        "kms_reduction": kms_reduction,
         "joint_neutrino_input": {"m2_eV": m2, "old_m3_eV": conditional["old_m3"], "m3_eV": m3,
                                  "z_absolute": conditional["z"], "washout_eV": washout,
                                  "M_GeV": conditional["M"].tolist(),

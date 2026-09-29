@@ -11,8 +11,80 @@ from tfpt_explorer.source_neutrino_dictionary import (
     _conditional_neutrino_family, build_source_neutrino_dictionary_data,
     gamma_pairing, mass_form_source_coefficients, native_pair_gram,
     reconstruct_pair_coefficients, source_cycle_frame, source_pair_amplitude,
-    source_heavy_response,
+    source_heavy_response, source_kms_compression,
 )
+
+
+def test_compressed_kms_matches_independent_two_level_solution_not_static_mass() -> None:
+    # One real family decomposes into two 2x2 systems with heavy energies +/-h.
+    # This analytic occupation checks the logit's sign, scale and Nambu ordering.
+    h, v, beta, unit = .6, .07, 2., 1.
+    diagonal = np.diag([h, .8, 1.])
+    zero = np.zeros((3, 3))
+    heavy = np.block([[zero, diagonal], [diagonal, zero]])
+    yukawa = np.diag([v, 0., 0.])
+    radius = math.sqrt(h*h + 4*v*v)
+    low, high = (h-radius)/2, (h+radius)/2
+    occupation = (1+h/radius)/(2*(1+math.exp(beta*low)))
+    occupation += (1-h/radius)/(2*(1+math.exp(beta*high)))
+    expected = unit/beta * math.log((1-occupation)/occupation)
+    reduced = source_kms_compression(heavy, yukawa, unit, beta)
+    assert reduced["modular_operator_eV"][0, 3] == pytest.approx(expected, abs=2e-16)
+    assert reduced["covariance"][0, 3] == pytest.approx(occupation-.5, abs=2e-16)
+    assert abs(expected+v*v/h) > .007  # A static Schur substitution would fail.
+    assert np.allclose(np.diag(reduced["covariance"]), .5, rtol=0, atol=1e-16)
+
+
+def test_same_resolvent_recovers_covariance_and_relative_complex_car_log_determinant() -> None:
+    # Moderate scales make the infinite-frequency relation independently visible
+    # in ordinary precision; these are validation inputs, not a TFPT parameter fit.
+    from scipy.special import expit
+
+    zero = np.zeros((3, 3), complex)
+    d = np.diag([.3, .7, 1.1])
+    h = np.block([[zero, d], [d, zero]])
+    y = np.array([[.07, .01j, .02], [.03, .06, -.02j], [.01j, .02, .09]])
+    v = np.block([[y.T, zero], [zero, y.conj().T]])
+    full = np.block([[np.zeros((6, 6)), v], [v.conj().T, h]])
+    beta = 3.
+    energies, vectors = np.linalg.eigh(full)
+    direct = (vectors*expit(-beta*energies)) @ vectors.conj().T
+    summed = .5*np.eye(6, dtype=complex)
+    log_ratio = 0.
+    count = 400
+    for n in range(count):
+        omega = (2*n+1)*math.pi/beta
+        kernel = 1j*omega*np.eye(6)-source_heavy_response(h, y, 1j*omega)
+        resolvent = np.linalg.inv(kernel)
+        if n < 3:
+            assert np.allclose(resolvent, np.linalg.inv(1j*omega*np.eye(12)-full)[:6, :6],
+                               rtol=0, atol=3e-16)
+        summed += (resolvent+resolvent.conj().T)/beta
+        log_ratio += 2*np.linalg.slogdet(kernel/(1j*omega))[1]
+    assert np.allclose(summed, direct[:6, :6], rtol=0, atol=1e-10)
+    # The determinant tail is O(1/N). Remove its analytic leading term, with
+    # a bounded O(N^-3) remainder. This checks the finite complex-CAR determinant;
+    # it does not select a physical Majorana Pfaffian / Nambu counting convention.
+    from scipy.special import polygamma
+    tail = 2*np.trace(v@v.conj().T).real * (beta/(2*math.pi))**2 * polygamma(1, count+.5)
+    uncoupled = np.r_[np.zeros(6), np.linalg.eigvalsh(h)]
+    exact = np.logaddexp(0, -beta*energies).sum()-np.logaddexp(0, -beta*uncoupled).sum()
+    assert log_ratio+tail == pytest.approx(exact, abs=1e-10)
+    reduced = source_kms_compression(h, y, 1., beta)
+    assert np.allclose(reduced["covariance"], direct[:6, :6], rtol=0, atol=1e-15)
+
+
+def test_frozen_tfpt_masses_match_modular_readout_only_in_separated_scale_window() -> None:
+    summary = build_source_neutrino_dictionary_data()["data"]["kms_reduction"]
+    rows = {row["beta_M3"]: row for row in summary["rows"]}
+    assert summary["heavy_light_mixing_bound"] < 1e-8
+    assert rows[1.]["relative_difference_from_static"] > .9
+    assert rows[1e8]["relative_difference_from_static"] < 4e-5
+    assert rows[1e8]["inside_separated_scale_window"]
+    assert rows[1e30]["relative_difference_from_static"] > .99
+    assert not rows[1e30]["leading_formula_applicable"]
+    assert max(row["leading_filter_relative_error"] for row in rows.values()
+               if row["leading_formula_applicable"]) < 1e-12
 
 
 def test_actual_source_mode_replaces_only_the_majorana_block_of_original_96_triple(monkeypatch) -> None:
