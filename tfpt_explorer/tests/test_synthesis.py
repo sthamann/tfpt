@@ -60,6 +60,10 @@ def test_joint_synthesis_is_connected_to_live_calculation_and_keeps_candidates_c
     assert pairs["grade_two"]["pair_norms"] == [["0"] * 4 for _ in range(4)]
     assert pairs["grade_four"]["highest_weight"]["chiral_weight"] == 4
     assert pairs["grade_four"]["highest_weight"]["norm_squared"] == "1"
+    assert len(pairs["wall_charge_audit"]["symmetric_pairs"]) == 20
+    assert pairs["wall_charge_audit"]["adjoint_charge_two_candidates"] == 0
+    assert any(check["name"] == "wall_full_source_SM_singlet_pairs" and check["ok"]
+               for check in stages["assembly"]["checks"])
     for key in ("source_charge_response", "source_flavor_correlator", "source_neutrino_dictionary", "source_mass_transport"):
         assert selection[key] == stages["assembly"]["data"][key]
     mass_transport = selection["source_mass_transport"]

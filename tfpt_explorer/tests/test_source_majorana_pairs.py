@@ -205,3 +205,50 @@ def test_mixed_pair_ward_reports_actual_leakage_instead_of_inventing_eigenvalue(
         else:
             assert ward["is_eigenstate"] and ward["normalized_variance"] == "0"
             assert ward["R0_mean"] == ("-12" if a == b == 0 else "4")
+
+
+def test_full_source_has_charge_two_sm_singlets_beyond_the_adjoint() -> None:
+    data = build_source_majorana_pairs_data()["data"]["wall_charge_audit"]
+    assert data["adjoint_charge_two_candidates"] == 0
+    assert len(data["symmetric_pairs"]) == 20
+    for row in data["symmetric_pairs"]:
+        assert row["X"] == (-10 if row["conjugate"] else 10)
+        assert row["B_minus_L"] == ("-2" if row["conjugate"] else "2")
+        assert row["Y"] == "0" and Fraction(row["norm_squared"]) > 0
+        assert row["SM_cartan_weights"] == ["0"] * 3
+        assert row["SM_root_image_norms"] == ["0"] * 8
+    # Negative control: a color current is not a singlet; the opposite root
+    # zero mode produces a non-null Cartan state, so annihilation is substantive.
+    native = _native_pairs()
+    algebra, affine = native["algebra"], native["affine"]
+    index = algebra.ridx[tuple(data["SM_root_generators"][0])]
+    colored = affine.act(index, -1, {(): Fraction(1)})
+    image = affine.act(algebra.opp[index], 0, colored)
+    assert _inner(affine, image, image) > 0
+
+
+def test_spin_charge_allows_charge_two_scalar_and_keeps_ew_gauge_compensation() -> None:
+    data = build_source_majorana_pairs_data()["data"]["wall_charge_audit"]
+    scalars = data["scalar_spin_charge"]
+    assert [row["X_mod4"] for row in scalars if row["scalar_allowed"]] == [0, 2]
+    assert scalars[2]["omega"] == "-1" and scalars[2]["omega_squared"] == 1
+    operators = {row["name"]: row for row in data["operators"]}
+    assert not operators["Majorana bilinear"]["Z4_neutral"]
+    assert not operators["Weinberg operator"]["Z4_neutral"]
+    assert operators["charged pair completion"]["Z4_neutral"]
+    assert operators["Dirac Yukawa"]["Z4_neutral"]
+    assert operators["Delta L=4"]["Z4_neutral"]
+    assert not operators["neutron-antineutron"]["Z4_neutral"]
+    assert all(row["Y"] == "0" for row in operators.values())
+    assert data["electroweak_compensation"]["H_u_omega"] == "-1"
+    assert data["electroweak_compensation"]["H_u_omega_hat"] == "1"
+
+
+def test_neutral_family_transport_does_not_select_a_charged_vacuum() -> None:
+    data = build_source_majorana_pairs_data()["data"]["wall_charge_audit"]["neutral_family_transport"]
+    assert data["root_count"] == 12 and data["X_charges"] == [0] * 12
+    assert data["vacuum_pair_overlaps"] == ["0"] * 10
+    # The charge selection is not a vanishing pair state: its two-point norm is positive.
+    native = _native_pairs()
+    for state in native["grade4"].values():
+        assert _inner(native["affine"], state, state) > 0

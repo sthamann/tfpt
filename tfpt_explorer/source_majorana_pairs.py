@@ -363,6 +363,97 @@ def _car_pair_dictionary(native: dict) -> dict[str, Any]:
     }
 
 
+def _wall_charge_audit(native: dict) -> dict[str, Any]:
+    """Test the claimed no-B-L=2 conclusion on the full original source.
+
+    The adjoint is only weight one. Singlet tests below include positive and
+    negative SM root generators in the simple positive-norm quotient. They
+    do not identify a chiral operator with a physical 4D scalar or its VEV.
+    Hypercharge has the SM normalization Q_em=T3+Y, hence X=5(B-L)-4Y.
+    """
+    algebra = native["algebra"]
+    y = (F(-1, 3),) * 3 + (F(1, 2),) * 2 + (F(0),) * 3
+
+    def charges(momentum: tuple) -> tuple:
+        x, hypercharge = -2 * sum(momentum[:5]), _dot(y, momentum)
+        return x, hypercharge, (x + 4 * hypercharge) / 5
+
+    sm_roots = []
+    for block in ((0, 1, 2), (3, 4)):
+        for i in block:
+            for j in block:
+                if i != j:
+                    root = [0] * 8
+                    root[i], root[j] = 2, -2
+                    sm_roots.append(tuple(root))
+    rows = []
+    for conjugate, branch in ((False, native), (True, _native_pairs(dagger=True))):
+        affine = branch["affine"]
+        for pair, state in branch["grade4"].items():
+            weights = {affine.weight(key) for key in state}
+            if len(weights) != 1:
+                raise ValueError("A charged pair must have a definite lattice weight")
+            momentum = tuple(F(x, 2) for x in next(iter(weights)))
+            x, hypercharge, bl = charges(momentum)
+            images = [affine.act(algebra.ridx[root], 0, state) for root in sm_roots]
+            rows.append({
+                "family_pair": list(pair), "conjugate": conjugate,
+                "X": int(x), "Y": str(hypercharge), "B_minus_L": str(bl),
+                "SM_cartan_weights": [str(momentum[i] - momentum[j])
+                                      for i, j in ((0, 1), (1, 2), (3, 4))],
+                "SM_root_image_norms": [str(_inner(affine, image, image)) for image in images],
+                "norm_squared": str(_inner(affine, state, state)),
+                "omega": str(sp.I ** int(x)), "omega_squared": int((-1) ** int(x)),
+            })
+    adjoint = [charges(tuple(F(value, 2) for value in root)) for root in algebra.roots]
+    # Cartan states carry zero momentum and cannot supply this missing charge.
+    adjoint_candidates = sum(hypercharge == 0 and abs(bl) == 2 for _, hypercharge, bl in adjoint)
+    fields = {"nu_c": (5, F(0)), "L": (-3, F(-1, 2)), "H_u": (-2, F(1, 2)),
+              "u_c": (1, F(-2, 3)), "d_c": (-3, F(1, 3)),
+              "B_dagger": (-10, F(0))}
+    words = {"Dirac Yukawa": ("L", "H_u", "nu_c"),
+             "Majorana bilinear": ("nu_c", "nu_c"),
+             "Weinberg operator": ("L", "H_u", "L", "H_u"),
+             "Delta L=4": ("nu_c",) * 4,
+             "neutron-antineutron": ("u_c", "d_c", "d_c") * 2,
+             "charged pair completion": ("B_dagger", "nu_c", "nu_c")}
+    operators = []
+    for name, word in words.items():
+        x, hypercharge = sum(fields[f][0] for f in word), sum((fields[f][1] for f in word), F(0))
+        operators.append({"name": name, "fields": list(word), "X": x, "Y": str(hypercharge),
+                          "B_minus_L": str((F(x) + 4 * hypercharge) / 5),
+                          "Z4_neutral": x % 4 == 0})
+    # The whole A3 family algebra, including its Cartan, is neutral under X.
+    family_roots = [root for root in algebra.roots if all(x == 0 for x in root[:5])]
+    return {
+        "status": "EXACT_SOURCE_CHARGE_TWO_OPERATOR_EXISTS",
+        "normalization": "Q_em=T3+Y; X=5(B-L)-4Y; nu^c is left-handed with B-L=+1.",
+        "adjoint_charge_two_candidates": adjoint_candidates,
+        "SM_root_generators": [list(root) for root in sm_roots], "symmetric_pairs": rows,
+        "operators": operators,
+        "scalar_spin_charge": [{"X_mod4": x, "omega": str(sp.I**x),
+                                  "omega_squared": (-1)**x, "scalar_allowed": x % 2 == 0}
+                                 for x in range(4)],
+        "electroweak_compensation": {
+            "formula": "omega_hat = i^X exp(2 pi i Y) = exp(5 pi i (B-L)/2)",
+            "H_u_omega": str(sp.I**fields["H_u"][0]),
+            "H_u_omega_hat": str(sp.simplify(sp.I**fields["H_u"][0]
+                                               * sp.exp(2*sp.pi*sp.I*fields["H_u"][1]))),
+            "scope": "On hypercharge-neutral operators this has the same selection rule as omega. It fixes the electroweak Higgs. Its global order on fractional quark charges depends on gauge-center identifications.",
+        },
+        "neutral_family_transport": {
+            "root_count": len(family_roots),
+            "X_charges": [int(-sum(root[:5])) for root in family_roots],
+            "vacuum_pair_overlaps": [str(_inner(native["affine"], {(): F(1)}, state))
+                                     for state in native["grade4"].values()],
+            "consequence": "The canonical invariant source vacuum has zero charged one-point function. Neutral family transport preserves charge and does not choose a nonzero mass tensor from zero.",
+            "scope": "This is a Ward identity for the selected chiral state, not exclusion of a Higgs phase. Gauge-invariant Higgs diagnosis requires correlations or a gauge-fixed background and its action.",
+        },
+        "interpretation": "A charge-two boson obeys omega²=+1. Its existence is compatible with either an unbroken residual symmetry or a Majorana-supporting phase. The state and 4D coupling, not absence from the adjoint, decide.",
+        "literature_control": "Heeck-Rodejohann 1306.0580 Eq.(2)-(5) explicitly contains a B-L=-2 scalar chi; Dirac protection requires its zero VEV, while a charge-four scalar condenses.",
+    }
+
+
 @lru_cache(maxsize=1)
 def build_source_majorana_pairs_data() -> dict[str, Any]:
     native = _native_pairs()
@@ -398,6 +489,7 @@ def build_source_majorana_pairs_data() -> dict[str, Any]:
     family_transport = _family_transport(native)
     neutral_pair = _joint_neutral_pair(native)
     car_pairs = _car_pair_dictionary(native)
+    wall_charge = _wall_charge_audit(native)
     three_points = {
         "grade3_126x6": _three_point(algebra, *[native["currents"][a][0] for a in (0, 1)],
                                     *[native["currents"][a][1] for a in (0, 1)]),
@@ -459,6 +551,26 @@ def build_source_majorana_pairs_data() -> dict[str, Any]:
             [{"family_pair": row["family_pair"], **row["ward"]} for row in car_pairs["rows"]],
             "Retained6: (mean4,variance0); omitted diagonal: (-12,0); mixed3: (-4,32)",
             "Full quadratic R0 action on each lattice-plus-oscillator CAR state, including leakage"),
+        _check("wall_full_source_SM_singlet_pairs", wall_charge["adjoint_charge_two_candidates"] == 0
+               and len(wall_charge["symmetric_pairs"]) == 20 and all(
+                   abs(row["X"]) == 10 and abs(F(row["B_minus_L"])) == 2 and row["Y"] == "0"
+                   and F(row["norm_squared"]) > 0 and row["SM_cartan_weights"] == ["0"]*3
+                   and row["SM_root_image_norms"] == ["0"]*8
+                   for row in wall_charge["symmetric_pairs"]),
+               wall_charge["symmetric_pairs"], "Twenty nonzero SM-singlet pair states with B-L=±2",
+               "All original SU3 and SU2 root zero modes, Cartan weights and positive affine Gram norms"),
+        _check("wall_spin_charge_and_operator_selection", all(row["omega_squared"] == 1
+                   and row["omega"] == "-1" for row in wall_charge["symmetric_pairs"])
+               and [row["Z4_neutral"] for row in wall_charge["operators"]] == [True, False, False, True, False, True]
+               and wall_charge["electroweak_compensation"]["H_u_omega_hat"] == "1",
+               wall_charge["operators"], "Even-X scalar allowed; exact residual Z4 forbids bare Majorana, permits charged completion",
+               "Original X=5(B-L)-4Y charges, including electroweak gauge compensation"),
+        _check("neutral_transport_preserves_charged_vacuum_zero",
+               wall_charge["neutral_family_transport"]["root_count"] == 12
+               and wall_charge["neutral_family_transport"]["X_charges"] == [0]*12
+               and wall_charge["neutral_family_transport"]["vacuum_pair_overlaps"] == ["0"]*10,
+               wall_charge["neutral_family_transport"], "A3 commutes with X; all vacuum-to-pair overlaps vanish",
+               "Original A3 roots and charged PBW states; no 4D symmetry-breaking assumption"),
     ]
     data = {
         "title": "Der Majorana-Paarkanal ist in der vollständigen Quelle vorhanden",
@@ -496,6 +608,7 @@ def build_source_majorana_pairs_data() -> dict[str, Any]:
         "family_transport": family_transport,
         "joint_neutral_pair": neutral_pair,
         "CAR_pair_dictionary": car_pairs,
+        "wall_charge_audit": wall_charge,
         "charge_and_statistics": {
             "X": 10, "adjoint_X": -10, "Z4_charge": 2, "omega_eigenvalue": "-1", "omega_squared": "+1",
             "bosonic": "The even-lattice pair fields are bosonically local and their even internal X-charge is compatible with a scalar Spin×Z4/Z2 representation, if such a four-dimensional source dictionary is supplied.",
@@ -523,4 +636,5 @@ def build_source_majorana_pairs_data() -> dict[str, Any]:
         "tfpt_2_standard_model.tex:2001-2018",
         "verification/v488_majorana_clebsch_door.py:9-17",
         "https://doi.org/10.1007/BF01391662",
+        "https://arxiv.org/abs/1306.0580",
     ]}
