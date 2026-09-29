@@ -1,8 +1,11 @@
 from itertools import product
 
 import sympy as sp
+import numpy as np
 
-from tfpt_explorer.source_charge_response import exact_charge_response, build_source_charge_response_data
+from tfpt_explorer.source_charge_response import (
+    exact_charge_response, build_source_charge_response_data, carrier_transport_dictionary,
+)
 
 
 def test_charge_moment_from_independent_rademacher_fourth_moment():
@@ -54,3 +57,58 @@ def test_same_operator_on_neutral_mass_pairs_keeps_the_oscillator():
     crossed = [row for row in rows if row["families"][0] != row["families"][1]]
     assert all(row["momentum_response"] == "-5/2" and row["oscillator_response"] == "5/6"
                for row in crossed)
+
+
+def test_full_42d_weighted_response_matches_original_three_channel_functional():
+    """Direct matrix logarithm, including regulator, in the actual U6 frame."""
+    e = carrier_transport_dictionary()
+    u = np.asarray(e["U6"], complex)
+    y = np.diag([float(q) for q in e["cusp_charges"]])
+    weight = np.kron(np.diag([float(q) for q in e["weights"]]), np.eye(6))
+    delta, epsilon = float(e["delta_star"]), .017
+    d = np.kron(y, np.eye(6))-delta*np.kron(np.eye(7), u)
+    positive = d.conj().T@d+epsilon**2*np.eye(42)
+    values, vectors = np.linalg.eigh(positive)
+    log_positive = (vectors*np.log(values))@vectors.conj().T
+    ordinary_by_blocks, normalized_by_blocks = 0., 0.
+    for q, multiplicity in zip(e["cusps"], e["multiplicities"]):
+        block = float(q)*np.eye(6)-delta*u
+        sign, logdet = np.linalg.slogdet(block.conj().T@block+epsilon**2*np.eye(6))
+        assert abs(sign-1) < 1e-12
+        normalized_by_blocks += logdet
+        ordinary_by_blocks += multiplicity*logdet
+    assert abs(np.trace(weight@log_positive)-normalized_by_blocks) < 1e-10
+    assert abs(np.trace(log_positive)-ordinary_by_blocks) < 1e-10
+    # Omitting the colour normalization changes the functional, not just a name.
+    assert abs(ordinary_by_blocks-normalized_by_blocks) > 1
+
+
+def test_gauge_neutral_operators_do_not_remove_coloured_virtual_fields():
+    e = carrier_transport_dictionary()
+    assert sorted(e["charges"]*3) == sorted(exact_charge_response()["charges"])
+    y2 = np.diag([float(q*q) for q in e["charges"]])
+    bits = [b for b in product((0, 1), repeat=5) if sum(b) % 2 == 0]
+    z = np.diag([np.exp(2j*np.pi*sum(b[:3])/3) for b in bits])
+    averaged = sum(np.linalg.matrix_power(z, j)@y2@np.linalg.matrix_power(z, j).conj().T
+                   for j in range(3))/3
+    assert np.allclose(averaged, y2)
+    assert e["full_trace"] == sp.Rational(10, 3)
+    # This different operation is deliberately rejected by the shared dictionary.
+    assert 3*sum(e["colour_neutral"]) == 12
+    assert e["projected_b1"] == sp.Rational(19, 10)
+    assert e["projected_b1"] != exact_charge_response()["beta_1"]
+
+
+def test_exact_cycle_reduction_keeps_the_closed_path_and_branch():
+    e = carrier_transport_dictionary()
+    assert e["frame_is_unitary"] and e["frame_intertwines"]
+    y, delta, z = e["symbols"]
+    assert sp.simplify(e["schur"]-(y-delta**6/y**5)) == 0
+    d = y*sp.eye(6)-delta*e["cycle"]
+    # Test the retained response as well as the determinant.
+    assert sp.simplify(d.inv()[0, 0]-1/e["schur"]) == 0
+    assert (d.T*d)[0, 0] == y*y+delta*delta
+    assert sp.simplify((d.T*d)[0, 0]-e["schur"]**2) != 0
+    assert sp.simplify(sp.diff(e["polynomial"], z).subs(z, e["zstar"])) == 0
+    assert sp.Rational(1, 3) < e["delta_star"] < sp.Rational(2, 3)
+    assert float(e["gamma_second_at_root"]) > 0

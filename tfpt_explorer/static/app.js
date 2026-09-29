@@ -196,7 +196,7 @@ function applySnapshot(snapshot) {
   app.changed = computeChanged(app.snapshot, snapshot);
   app.snapshot = snapshot;
   app.selected ||= snapshot.stages[0]?.id;
-  renderSummary(); renderMap(); renderDetail(); renderJourney(); renderTour(); scrollTourRoute(location.hash.slice(1),'auto');
+  renderSummary(); renderWholeTheory(); renderMap(); renderDetail(); renderJourney(); renderTour(); scrollTourRoute(location.hash.slice(1),'auto');
   if (app.changed.size) {
     const names = [...app.changed].map(id => stageName(id));
     const strip = $("#change-strip"); strip.hidden = false;
@@ -212,6 +212,14 @@ function renderSummary() {
   $("#summary-stages").textContent = s.stages;
   $("#summary-checks").textContent = s.checks;
   $("#summary-time").textContent = `${fmt(s.elapsed_ms)} ms`;
+}
+
+function renderWholeTheory() {
+  const root=$('#whole-live-readouts'); if(!root)return;
+  const charge=app.snapshot?.stages?.find(stage=>stage.id==='assembly')?.data?.source_charge_response;
+  const data=charge?.carrier_transport;
+  if(!data){root.innerHTML='<p>Für die gemeinsame Trägerauslese ist ein aktueller Rechenlauf erforderlich.</p>';return;}
+  root.innerHTML=`<div class="whole-readouts"><article><span>Alle Materiekomponenten</span><strong>${escapeHTML(data.matter_components)}</strong><p>16 Zustände je Familie, drei Familien. Farbige innere Felder bleiben erhalten.</p></article><article><span>Eichgewichtung mit Higgs</span><strong>${escapeHTML(charge.physical_beta?.b1||'–')}</strong><p>Die bekannte 41 entsteht aus der Ladungsspur. Sie ist mit dem Flavorbudget 40 + 1 verbunden.</p></article><article><span>Drei Flavor-Kanaltypen</span><strong>${escapeHTML(data.cusp_values.join(' · '))}</strong><p>Die Hyperladungsbeträge der schwachen Singuletts. Jeder Farbmultiplet-Typ zählt in dieser Auslesung einmal.</p></article></div><div class="whole-reduction"><span>Dieselben Umläufe vollständig behalten</span><div><b>3 × 6 Wegplätze</b><i aria-hidden="true">→</i><b>3 Antworten mit Rückwirkung</b><i aria-hidden="true">→</i><b>δ = ${fmt(Number(data.delta_star),10)}</b></div><p>Die fünf ausgelassenen Plätze jedes Zyklus wirken im verbliebenen Platz weiter. Die so reduzierte Determinante wählt exakt den vorhandenen Flavorpol innerhalb des ursprünglichen Intervalls.</p><details><summary>Genaue Gleichungen und Quellen</summary><p><code>${escapeHTML(data.schur)}</code></p><p><code>${escapeHTML(data.stationarity)}</code></p><p>Der geladene Trägertransport hat ${escapeHTML(data.cusp_transport_dimension)} Dimensionen. Die normierte Farbspur ergibt daraus die drei ursprünglichen Sechserblöcke; sie ist kein gewöhnlicher Determinant über alle 42 Komponenten. Der 42er-Transportraum und der 48er-Materieraum sind verschiedene Register mit denselben Ladungsdaten. Die Dreierfamilie steckt schon im Sechserweg und wird nicht noch einmal hinzugenommen. Die Determinantenreduktion gilt hier ohne Regulator; die implementierte regulierte Spur wird gesondert gegen die volle Matrix geprüft.</p>${tourSourceLink({path:'_archive/tfpt-45/source_extracts/03_em_flavor_source.tex',line:823,claim:'Originale gemeinsame Transportwirkung'})}${tourSourceLink({path:'_archive/tfpt-45/source_extracts/01_boundary_kernel_source.tex',line:315,claim:'Zulässige Operatoren statt Löschen geladener Felder'})}${tourSourceLink({path:'tfpt_explorer/source_charge_response.py',line:22,claim:'Ausführbares gemeinsames Trägerwörterbuch'})}</details></div>`;
 }
 
 function svgEl(name, attrs = {}, text = "") {
