@@ -134,6 +134,7 @@ def build_kernel_narrative(stages):
                 "source_charge_response": by_id["assembly"]["data"].get("source_charge_response", {}),
                 "source_flavor_correlator": by_id["assembly"]["data"].get("source_flavor_correlator", {}),
                 "source_neutrino_dictionary": by_id["assembly"]["data"].get("source_neutrino_dictionary", {}),
+                "source_mass_transport": by_id["assembly"]["data"].get("source_mass_transport", {}),
                 "raw_source_route": {
                     "title": "Alternative Realisierung: Was trägt der ältere CAR-Nahtanschluss?",
                     "status": "conditional",

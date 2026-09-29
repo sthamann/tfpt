@@ -112,6 +112,7 @@ def augment(stages):
     from .source_charge_response import build_source_charge_response_data
     from .source_flavor_correlator import build_source_flavor_correlator_data
     from .source_neutrino_dictionary import build_source_neutrino_dictionary_data
+    from .source_mass_transport import build_source_mass_transport_data
     by_id = {s["id"]: s for s in stages}
     tests = physical_tests()
     by_id["code"]["data"]["event_cost"] = tests["event_cost"]
@@ -215,11 +216,13 @@ def augment(stages):
     source_charge = build_source_charge_response_data()
     source_correlator = build_source_flavor_correlator_data()
     neutrino_dictionary = build_source_neutrino_dictionary_data()
+    mass_transport = build_source_mass_transport_data()
     for key, result in (("source_program", source_program), ("source_unification", source_unification),
                         ("flavor_path_transport", flavor_path), ("neutral_source_response", neutral_response),
                         ("source_spin_lift", source_spin_lift), ("source_majorana_pairs", source_majorana_pairs),
                         ("source_charge_response", source_charge), ("source_flavor_correlator", source_correlator),
-                        ("source_neutrino_dictionary", neutrino_dictionary)):
+                        ("source_neutrino_dictionary", neutrino_dictionary),
+                        ("source_mass_transport", mass_transport)):
         by_id["assembly"]["data"][key] = result["data"]
         by_id["assembly"]["checks"].extend(result["checks"])
     for key, builder in (("hecke_source", build_hecke_source_data),
@@ -243,6 +246,7 @@ def augment(stages):
                    *source_charge["sources"], "tfpt_explorer/source_charge_response.py:1",
                    *source_correlator["sources"], "tfpt_explorer/source_flavor_correlator.py:1",
                    *neutrino_dictionary["sources"], "tfpt_explorer/source_neutrino_dictionary.py:1",
+                   *mass_transport["sources"], "tfpt_explorer/source_mass_transport.py:1",
                    "tfpt_explorer/source_program.py:1", "tfpt_explorer/source_unification.py:1",
                    "tfpt_explorer/flavor_path_transport.py:1", "tfpt_explorer/neutral_source_response.py:1"]:
         if isinstance(source, dict):

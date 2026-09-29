@@ -27,6 +27,7 @@
 \newcommand{\Xclaim}{\textcolor{red}{\textbf{X}}}
 \newcommand{\C}{\mathbb C}\newcommand{\R}{\mathbb R}\newcommand{\Z}{\mathbb Z}
 \newcommand{\tr}{\operatorname{tr}}\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Tr}{\operatorname{Tr}}
 \newcommand{\rank}{\operatorname{rank}}\newcommand{\Span}{\operatorname{span}}
 \newcommand{\Id}{\mathrm{id}}\newcommand{\ket}[1]{|#1\rangle}\newcommand{\bra}[1]{\langle#1|}
 \newcommand{\abs}[1]{\left|#1\right|}\newcommand{\norm}[1]{\left\|#1\right\|}
@@ -73,7 +74,7 @@ Zeichen & Bedeutung in diesem Dokument\\\midrule
 \Xclaim & Eine konkrete Gleichsetzung, Konstruktion oder stärkere Behauptung ist durch einen Gegenfall ausgeschlossen.\\\bottomrule
 \end{tabularx}
 
-Die gesamte Sitzung ist hier inhaltlich konsolidiert, nicht als chronologisches Protokoll wiedergegeben. Überholte Zwischenstände bleiben dort sichtbar, wo ihre Korrektur die Interpretation verändert. Die Anhänge benennen die verwendeten Quellenfamilien, den ausgeführten Prüfstand und die weiterhin offenen Anschlüsse. Der dokumentierte Explorer-Schnappschuss vom 28.~September enthält 316 interne Prüfungen; ein früher Zwischenstand vom 29.~September enthielt 343, die hier integrierte Fortsetzung enthält 367. Diese Zahlen bezeichnen weder voneinander unabhängige Beweise noch eine vollständige Prüfung aller Paper.
+Die gesamte Sitzung ist hier inhaltlich konsolidiert, nicht als chronologisches Protokoll wiedergegeben. Überholte Zwischenstände bleiben dort sichtbar, wo ihre Korrektur die Interpretation verändert. Die Anhänge benennen die verwendeten Quellenfamilien, den ausgeführten Prüfstand und die weiterhin offenen Anschlüsse. Der dokumentierte Explorer-Schnappschuss vom 28.~September enthält 316 interne Prüfungen; frühere Zwischenstände vom 29.~September enthielten 343 beziehungsweise 367, die hier integrierte Fortsetzung enthält 372. Diese Zahlen bezeichnen weder voneinander unabhängige Beweise noch eine vollständige Prüfung aller Paper.
 
 \tableofcontents
 \newpage
@@ -1661,6 +1662,215 @@ bloßen Wiegen der Zustände verloren gehen, bleiben erhalten. Der nächste
 Herkunftsschritt muss erklären, warum der ursprüngliche Prozess genau
 diese Tabelle in genau diesen Quellenzustand schreibt.}
 
+\subsection{Ein gemeinsamer Transport für primitive Windung, Massentensor und neutrale Antwort}\label{sec:masssourceconnection}
+Die Fortsetzung vom 29.~September arbeitet unmittelbar am vorher benannten
+Anschluss. Die ursprüngliche Fuchsverbindung bestimmt nicht nur die
+Familienendphasen. Ihr tatsächlicher Spin-Lift induziert auf den sechs
+symmetrischen Paaren eine Verbindung, aus der sich die \emph{ganze}
+ursprüngliche Verbindung wieder zurückgewinnen lässt. Auch die primitive
+Determinantenwindung und die bereits berechnete neutrale RHP-Antwort lassen
+sich an diesem selben Transport ablesen.
+
+\paragraph{Die ursprüngliche Dreierwirkung muss mit ihrem Spin-Lift eingehen.}
+Setze $d=\det\Psi$, $\Psi'=A\Psi$ und $t=\tr A$.
+Die bereits an den tatsächlichen C-Strömen geprüfte Basisabbildung ist
+$J=HP=\operatorname{diag}(1,-1,1)$, wobei $P$ die native Reihenfolge
+$(23,13,12)$ in die Außenpotenzreihenfolge $(12,13,23)$ übersetzt und
+$H$ die dreidimensionale Hodge-Abbildung ist. Die Identität
+\[
+ H(\Lambda^2\Psi)H^{-1}=d\,\Psi^{-\mathsf T}
+\]
+ergibt auf dem behaltenen C-Dreier den komplexifizierten internen Spintransport
+\begin{equation}\label{eq:massspinconnection}
+ S_C=d^{-1/2}P^{\mathsf T}(\Lambda^2\Psi)P
+     =d^{1/2}J^{\mathsf T}\Psi^{-\mathsf T}J,
+ \qquad
+ B:=S_C'S_C^{-1}=\frac t2 I-J^{\mathsf T}A^{\mathsf T}J.
+\end{equation}
+Die Quadratwurzel wird entlang des ursprünglichen Wegs fortgesetzt.
+Am unitären Ende ist das genau der schon nachgewiesene gewundene Spin-Lift;
+die rohen holomorphen Fuchskoordinaten werden nicht als orthonormal erklärt.
+Die drei Cartangewichte der tatsächlichen C-Ströme,
+$(-1,1,1)/2$, $(1,-1,1)/2$, $(1,1,-1)/2$, prüfen insbesondere den
+Faktor $t/2$ unabhängig von einer Endpunktmatrix.
+
+\paragraph{Zustand und Massenkoeffizient besitzen entgegengesetzte Orientierung.}
+Für einen symmetrischen Quellenkoeffizienten $X_0$ und eine duale symmetrische
+Massenform $K_0$ lautet der faserweise Transport
+\begin{equation}\label{eq:massdeterminantcarry}
+ \begin{aligned}
+ X(z)&=S_C(z)X_0S_C(z)^{\mathsf T},
+ &\det X(z)&=d(z)\det X_0,\\
+ K(z)&=S_C(z)^{-\mathsf T}K_0S_C(z)^{-1},
+ &\det K(z)&=d(z)^{-1}\det K_0.
+ \end{aligned}
+\end{equation}
+Denn $\det S_C=d^{1/2}$. Die beiden Vorzeichen sind daher keine
+wählbaren Konventionen innerhalb derselben Zuordnung: Die Paarzustände und
+ihre kontrahierenden Koeffizienten sind dual. Das skalare Matrixelement
+$v^{\mathsf T}K v$ bleibt erhalten, wenn gleichzeitig $v\mapsto S_Cv$.
+
+Für $\Psi(0)=I$ ist $d=1-z^4$. Auf dem ursprünglichen positiv orientierten
+Kreis um $+1$ trägt die Determinantenlinie des invertierbaren Paarzustands
+somit Windung $+1$, diejenige der dualen Massenform Windung $-1$.
+Bei umgekehrter Kontur kehren sich beide Vorzeichen um. Eine konstante
+Phasenänderung des ursprünglichen Basisrahmens ändert diese Windungen nicht.
+Eine über der Punktur selbst singuläre, windende Rahmentransformation würde
+dagegen die erklärte logarithmische Erweiterung ändern und ist hier kein
+unbemerkter Basiswechsel.
+
+Der ursprüngliche schwere Tensor ist für $\epsilon>0$ invertierbar:
+\[
+ K_0=M_R/M_3=\operatorname{diag}(\epsilon/3,2\epsilon/3,1),
+ \qquad \det K_0=2\epsilon^2/9.
+\]
+Seine bereits berechnete native Einsetzung hat dieselbe nichtverschwindende
+Determinante bis auf eine konstante Basisphase. Die Identität gilt für jede
+korrekt basierte invertierbare Einsetzung und ersetzt nicht die noch zu
+begründende physische Basiszuordnung. Der leichte Seesaw-Ausgang hat dagegen
+Rang zwei und Determinante null; für ihn wird keine solche
+Determinantenwindung behauptet.
+
+\textbf{Zwei trennende Kontrollen.} Würde man den Faktor $d^{-1/2}$ im
+tatsächlichen Außenpotenz-Lift weglassen, entstünde für $\det X$ Windung
+vier. Würde man die C-Felder direkt mit dem ursprünglichen Vektordreier
+$\Psi$ transportieren, entstünde Windung zwei. Der korrekte Spintransport
+liefert Windung eins. Damit trifft die primitive Klasse die vollständige
+Tensorwirkung und nicht nur eine Zahl am Endpunkt.
+
+Die \emph{Determinantenlinie} schließt nach einem Punkturumlauf. Ein
+allgemeiner voller Tensor wird dabei durch die Familienmonodromie verändert;
+der unabhängige direkte Wegtest erhält ihn erst nach drei Umläufen zurück.
+Die Gleichung setzt also keinen unveränderten Massentensor nach jeder
+einzelnen Runde voraus. Ebenso wenig beweist sie schon einen
+vierdimensionalen Vortex-Indexsatz oder die Gleichheit des vollständigen
+P1-Nahtoperators mit diesem Familienoperator.
+
+\paragraph{Die sechs Paarkanäle behalten die vollständige Verbindung.}
+Die induzierte Verbindung auf $\operatorname{Sym}^2\mathbb C^3$ ist
+\begin{equation}\label{eq:sixconnection}
+ \mathcal L(X)=BX+XB^{\mathsf T}.
+\end{equation}
+Aus ihrer Wirkung auf $E_{ii}$ liest man $2B_{ii}$ auf dem diagonalen
+Eintrag und $B_{ki}$ auf dem Eintrag $(k,i)$ ab. Damit sind sämtliche neun
+komplexen Einträge von $B$ bekannt. Es folgt
+\[
+ \boxed{A=(\tr B)I-JB^{\mathsf T}J^{\mathsf T}.}
+\]
+Die Abbildung der Verbindung ist daher injektiv. Eine beliebige
+$6\times6$-Matrix liegt nicht notwendig in ihrem neundimensionalen Bild;
+die Implementierung prüft die vollständige induzierte Form beim Rücklesen.
+
+Für beliebige, auch nichtkommutierende $3\times3$-Matrizen $A,D$ gilt
+\begin{equation}\label{eq:pairtraces}
+ \Tr_6\mathcal L_A=2\tr A,\qquad
+ \Tr_6(\mathcal L_A\mathcal L_D)=5\tr(AD)-(\tr A)(\tr D).
+\end{equation}
+Dies folgt aus
+$\Tr_{\mathrm{Sym}^2}(B\otimes I+I\otimes B)=4\tr B$
+und der entsprechenden bilinearen Spuridentität
+$5\tr(BC)+\tr B\tr C$. Die Rechnung gilt für ganze Operatoren;
+ein Vergleich ihrer Eigenwertmengen wäre dafür nicht ausreichend.
+
+\paragraph{Die neutrale Antwort ist eine Kontraktion genau dieser Verbindung.}
+Im festgehaltenen ursprünglichen Fuchsrahmen und mit derselben symmetrischen
+RHP-Normalordnung wie in Abschnitt~\ref{sec:fullflavorRR} folgt exakt
+\begin{align}
+ \langle R(z)\rangle_F
+ &=\frac25\left[\Tr_6\mathcal L(z)^2-(\Tr_6\mathcal L(z))^2\right],\label{eq:massRconnection}\\
+ \langle R(z)R(w)\rangle_{F,c}
+ &=\frac{48}{(z-w)^4}
+ +\frac{16}{5(z-w)^2}\left[\Tr_6\bigl(\mathcal L(z)\mathcal L(w)\bigr)
+ +\frac32\Tr_6\mathcal L(z)\Tr_6\mathcal L(w)\right].\label{eq:massRRconnection}
+\end{align}
+Die rechte Seite stimmt mit dem bereits berechneten vollständigen
+rationalen Flavor-Defektkern überein. Es wird keine zweite neutrale Quelle
+eingesetzt. Die Spuren einer Verbindungsform sind bei beliebigen lokalen
+Rahmenwechseln nicht für sich invariant; deren Ward-/Normalordnungsterme
+müssen dann ebenfalls transformiert werden. Die Gleichungen gelten im
+erklärten gemeinsamen Originalrahmen, nicht als neue eichinvariante
+vierdimensionale Wirkung.
+
+\paragraph{Auch der nötige lokale Ableitungsterm lässt sich aus derselben Quelle ergänzen.}
+Eine faserweise Darstellung allein berechtigt noch nicht dazu, gewöhnliche
+Ableitungen von ortsabhängig gedrehten Feldern einzusetzen. Hier ist die
+Korrektur konkret. In einer Spaltenkonvention für die Feldkomponenten sei
+\[
+ C(z+s)C(z)^{\mathsf T}=s\mathcal V+s^2\mathcal W+\cdots,
+ \quad \mathcal V^{\mathsf T}=-\mathcal V,
+ \quad \mathcal B_{\rm raw}=\tfrac12(\mathcal W+\mathcal W^{\mathsf T}).
+\]
+Der konstante Term fehlt wegen der tatsächlichen Nullrelation
+$:C_iC_j:=0$. $\mathcal V$ ist der bereits vorhandene antisymmetrische
+Grad-drei-Kanal. Für eine Feldverbindung $b$ liefert das Zurücktransportieren
+des ersten Felds mit $I-sb+O(s^2)$ vor dem Zusammenführen
+\begin{equation}\label{eq:covariantpairjet}
+ \boxed{\mathcal B_{\rm cov}
+ =\mathcal B_{\rm raw}-\tfrac12(b\mathcal V-\mathcal V b^{\mathsf T}).}
+\end{equation}
+Bei $C'=GC$ und $b'=G'G^{-1}+GbG^{-1}$ entsteht im rohen symmetrischen
+Koeffizienten der Zusatz
+$\tfrac12(G'\mathcal V G^{\mathsf T}-G\mathcal V G'^{\mathsf T})$.
+Gleichung~\eqref{eq:covariantpairjet} hebt ihn exakt auf:
+$\mathcal B'_{\rm cov}=G\mathcal B_{\rm cov}G^{\mathsf T}$.
+Die Spaltenkonvention der Feldkomponenten ist dabei von den dualen
+Koeffizienten zur Kombination von Zuständen zu unterscheiden.
+Wegen des verschwindenden konstanten OPE-Terms wird an dieser Stelle kein
+zweiter Verbindungsjet benötigt. Im festen gewöhnlichen Ableitungsrahmen
+bleibt der Grad-drei-Beitrag aber real vorhanden. Eine reine Kürzung auf
+sechs Grad-vier-PBW-Zustände wäre somit nicht unter lokalen Rahmenwechseln
+abgeschlossen.
+
+\begin{center}
+\begin{tikzpicture}[node distance=5mm]
+\node[box,text width=12.6cm] (a) {\textbf{Eine ursprüngliche Verbindung $A$}\\
+Vier Marken, vollständige Residuen, festgehaltene Erweiterung};
+\node[box,below=of a,text width=12.6cm] (b) {\textbf{Ihr Spintransport und die sechs Paarkanäle}\\
+$B=\tfrac12(\tr A)I-J^{\mathsf T}A^{\mathsf T}J$,
+\quad $\mathcal L(X)=BX+XB^{\mathsf T}$};
+\node[box,below=of b,text width=12.6cm] (c) {\textbf{Drei verbundene Antworten}\\
+Primitive Windung \quad vollständiger Tensortransport \quad neutrale $R$-Antwort};
+\node[box,below=of c,text width=12.6cm] (d) {\textbf{Physische Auswahl noch herzuleiten}\\
+Ursprüngliche Rand-/Higgsbedingung für $X_0$ und ursprüngliche Nahtkopplung};
+\draw[arr] (a)--(b);\draw[arr] (b)--(c);\draw[dasharr] (c)--(d);
+\end{tikzpicture}
+\end{center}
+
+\picturetext{Ein gemeinsames Getriebe bewegt jetzt nachweislich die
+Orientierung der Massentabelle und die neutrale Anzeige. Sein mitgeführtes
+Vorzeichen sorgt dafür, dass aus einer ursprünglichen Runde auch genau
+eine Runde der Paar-Determinante wird. Welche Massentabelle in dieses
+Getriebe eingesetzt wird, ist eine andere Frage: Die Transportregel
+bewegt jede Anfangstabelle korrekt. Sie wählt deren Werte noch nicht aus.}
+
+\textbf{Bedeutung für die fundamentale Auswahl.}
+Die Verbindung zwischen P1-artiger Windung, ursprünglichem Familienweg,
+symmetrischem Massensektor und neutraler Antwort ist damit als gemeinsames
+internes Transportgesetz geschlossen. Offen bleibt die physische
+Ursprungsabbildung: Die homogene Gleichung
+$X'=BX+XB^{\mathsf T}$ besitzt für \emph{jede} Anfangsmatrix eine Lösung.
+Sie kann daher weder die schwere Textur noch deren Skala auswählen.
+Auch rohe Änderungen der Matrixsingulärwerte durch einen nichtunitären
+Rahmen sind keine erzeugte Massenhierarchie: Die gleichzeitig transportierte
+positive Metrik erhält die normierten Größen.
+Gesucht ist nun die ursprüngliche Randbedingung beziehungsweise die
+tatsächlich erzeugte geladene Higgsantwort in diesem Kanal. Im letzteren
+Fall müsste ihre Quelle in
+$X'-BX-XB^{\mathsf T}=\mathcal J_H$
+aus der ursprünglichen Wirkung berechnet werden; $\mathcal J_H$ wird hier
+nicht zur gewünschten Antwort passend definiert. Dieselbe Wirkung muss
+die weiterhin bedingte Nahtkopplung $c_3^2|R\rangle\langle p_0|$ und die
+physische Zeitzuordnung tragen.
+
+\file{tfpt_explorer/source_mass_transport.py} implementiert die induzierte
+Verbindung, ihre vollständige Umkehrung, den endlichen Transport, die
+kovariante lokale Ergänzung und die gemeinsamen Antwortformeln.
+Die direkte ursprüngliche $3\times3$-Wegintegration und eine separat
+integrierte $6\times6$-Gleichung stimmen auf beiden Umlauforientierungen
+mit einem relativen Fehler unter $4\cdot10^{-12}$ überein.
+Diese numerische Kontrolle ergänzt die ausgeschriebenen algebraischen
+Identitäten; sie ist kein physischer Herkunfts- oder Kondensationsbeweis.
+
 \subsection{Was die Raum- und Literaturbefunde für dieselbe Kette beitragen}
 Am tatsächlichen 30-dimensionalen Blochoperator des markierten $A_3$-Netzes wurden die Bandbefunde unabhängig bestätigt. Auf dem zehn-dimensionalen Eigenraum zum Bandniveau $3$ hat die erste Richtungsableitung die charakteristischen Polynome
 \begin{align}
@@ -1695,6 +1905,15 @@ Quellenwörterbuch; ihre geraden Paarfelder bleiben unter Fermionisierung erhalt
 und der ursprüngliche Flavortransport bestimmt den ganzen neutralen
 Zweipunktkern. Diese Verbindungen stammen aus derselben Quellenalgebra.
 Eine Übereinstimmung bloßer Dimensionen oder Zahlen wird dafür nicht verwendet.
+
+Abschnitt~\ref{sec:masssourceconnection} führt diesen Zusammenhang bis zum
+gemeinsamen Transportgesetz weiter: Die Majoranapaar-Verbindung bewahrt die
+vollständige ursprüngliche Verbindung, trägt die primitive
+Determinantenwindung und liefert durch feste Spurkontraktionen dieselbe
+neutrale Antwort. Die lokale Feldfortsetzung enthält den ausdrücklich
+berechneten Grad-drei-Korrekturterm. Der noch fehlende physische Einsatz
+ist dadurch genauer bestimmt; die homogene Transportgleichung selbst
+wählt seine Anfangswerte nicht aus.
 
 \key{\textbf{Der gemeinsame noch zu beweisende Schritt ist jetzt eine bestimmte Abbildung.}
 Der ursprüngliche markierte Prozess muss seine Naht-, Higgs- und
@@ -4464,7 +4683,7 @@ Nach dem konstruktiven E8/CAR-Rückweg bestand der gemeinsame Lauf derselben vie
 
 Diese Fortsetzung verändert den nachfolgend dokumentierten älteren 316er-Schnappschuss nicht rückwirkend. Nach Integration des ursprünglichen Wegtransports, des neutralen Quellenzustands, des internen Spinlifts und der tatsächlichen Paaroperatoren bestand am 29.~September ein gemeinsamer gezielter Lauf \textbf{39 Tests} in den fünf zugehörigen Testdateien einschließlich der Syntheseintegration. Der frisch gestartete Explorer lieferte \textbf{24 Stufen mit 343 bestandenen internen Prüfungen}. Die neue Quellenidentität $4/z^2$ und die neuen Quellenverweise waren in der laufenden API vorhanden. Die erweiterten Spinlift- und Paaransichten wurden anschließend in der laufenden Tour geprüft; beide blieben nach dem Wechsel auf sechs Halbwege erhalten. Die sichtbare Paaransicht zeigte auch den ursprünglichen Familientransport und die neutrale Antwort $4/z^2$, ohne beobachtete Konsolenfehler. Die Paaroperatorrechnung und die neue Dokumentsektion wurden unabhängig gegengelesen. Dies sind Ausführungs- und Regressionsergebnisse; ihre Anzahl ist kein Beweis einer vollständigen physikalischen Lösung.
 
-\paragraph{Gemeinsames Quellenwörterbuch, aktueller Stand vom 29.~September.}
+\paragraph{Gemeinsames Quellenwörterbuch, vorheriger Stand vom 29.~September.}
 Die Fortsetzung integriert die tatsächliche Hyperladungsantwort, den expliziten
 CAR-Paaranschluss, das vollständige schwere Majorana-Tensorwörterbuch mit
 anschließender bestehender Seesaw-Rechnung sowie den gesamten neutralen
@@ -4482,6 +4701,20 @@ gegengelesen; die Rückprüfung der ursprünglichen Differentialgleichung hat
 insbesondere die falsche Matrixreihenfolge als Gegenkontrolle ausgeschlossen.
 Diese Prüfungen sichern die erklärte Konstruktion und ihre Anzeige. Sie ersetzen
 keinen Herkunftssatz oder empirischen Nachweis der vollständigen Physik.
+
+\paragraph{Gemeinsamer Massentransport, anschließender Stand vom 29.~September.}
+Abschnitt~\ref{sec:masssourceconnection} verbindet die ursprüngliche
+Determinantenwindung mit dem vollständigen Paartransport und der neutralen
+Antwort. Im gemeinsamen gezielten Lauf bestanden \textbf{82 Tests} in neun
+Dateien, einschließlich zehn neuer Prüfungen des Massentransports. Geprüft
+wurden die tatsächlichen C-Gewichte, allgemeine nichtkommutierende
+Verbindungen, die Umkehrabbildung, die endliche Zusammensetzung, die duale
+Massenform samt Metrik und die lokale kovariante Punkttrennung. Zwei separat
+integrierte Differentialgleichungen kontrollieren den ursprünglichen Weg
+in beiden Richtungen. Der neu gestartete Explorer liefert \textbf{24 Stufen
+mit 372 bestandenen internen Prüfungen}. Diese Zahl wurde am laufenden
+Rechenstand abgelesen. Sie ergänzt die algebraischen Beweise, zählt sie aber
+nicht als unabhängige physikalische Beweise.
 
 \subsection{Der Explorer ist vollständig ausgeführt, der Originalbestand nicht vollständig grün}
 Der abschließende Explorer-Schnappschuss vom 28. September 2026, 18:42:38 UTC, enthält 24 Stufen und 316 bestandene interne Prüfungen, keine fehlgeschlagene. Die Stufenliste steht in Anhang \ref{app:stages}. Der letzte protokollierte vollständige Python-Testlauf bestand 216 Tests. Nach späteren kleinen Korrekturen wurden die betroffenen Quellwort-, Tour- und HTTP-Tests gezielt erneut ausgeführt: 14 Quellworttests, 18 Quellwort-/Tourtests und zwei HTTP-Tests. Diese Mengen überlappen und werden hier nicht zu einer erfundenen Gesamtzahl addiert.

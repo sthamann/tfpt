@@ -60,8 +60,12 @@ def test_joint_synthesis_is_connected_to_live_calculation_and_keeps_candidates_c
     assert pairs["grade_two"]["pair_norms"] == [["0"] * 4 for _ in range(4)]
     assert pairs["grade_four"]["highest_weight"]["chiral_weight"] == 4
     assert pairs["grade_four"]["highest_weight"]["norm_squared"] == "1"
-    for key in ("source_charge_response", "source_flavor_correlator", "source_neutrino_dictionary"):
+    for key in ("source_charge_response", "source_flavor_correlator", "source_neutrino_dictionary", "source_mass_transport"):
         assert selection[key] == stages["assembly"]["data"][key]
+    mass_transport = selection["source_mass_transport"]
+    assert mass_transport["determinant_line"]["state_winding"] == 1
+    assert mass_transport["determinant_line"]["mass_form_winding"] == -1
+    assert mass_transport["original_loop"]["forward"]["pair_ODE_relative_error"] < 1e-9
     charge = selection["source_charge_response"]
     assert charge["gram_determinant"] == "460"
     assert charge["physical_beta"]["b1"] == "41/10"
