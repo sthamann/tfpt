@@ -8,7 +8,8 @@ import sympy as sp
 from tfpt_explorer.current_block_geometry import _actual_current_source
 from tfpt_explorer.flavor_path_transport import exact_clock_dictionary
 from tfpt_explorer.source_spin_lift import (
-    build_source_spin_lift_data, even_spin_lift_endpoint, exterior_power,
+    a3_sumzero_to_d3, build_source_spin_lift_data, d3_to_a3_sumzero,
+    even_spin_lift_endpoint, exterior_power,
 )
 
 
@@ -103,3 +104,74 @@ def test_builder_serializes_scope_and_all_checks():
     assert result["data"]["parent_CAR"]["diagonal_generator_actions"] == [-1, -1]
     assert result["data"]["parent_CAR"]["diagonal_square_actions"] == [1, 1]
     assert abs(result["data"]["fuchs_lift"]["measured_winding"]-1) < 2e-8
+
+
+def test_double_twist_uses_the_exact_A3_D3_isometry_and_renormalized_OPE():
+    omega = (sp.Rational(3, 4),) + (sp.Rational(-1, 4),) * 3
+    assert a3_sumzero_to_d3(omega) == (sp.Rational(1, 2),) * 3
+    assert d3_to_a3_sumzero(a3_sumzero_to_d3(omega)) == omega
+    with pytest.raises(ValueError):
+        a3_sumzero_to_d3((1, 0, 0, 0))
+
+    data = build_source_spin_lift_data()["data"]["double_twist"]
+    assert data["charges"]["chevalley_root_doubled_lambda"] == [1] * 8
+    assert data["charges"]["q_conformal_weight"] == "1/4"
+    assert data["charges"]["lambda_conformal_weight"] == "1"
+    q = sp.Matrix([sp.Rational(x) for x in data["charges"]["quarter_twist_q"]])
+    lam = sp.Matrix([sp.Rational(x) for x in data["charges"]["double_twist_lambda"]])
+    assert 2*q == lam
+    assert q.dot(q) == sp.Rational(1, 2)
+    assert lam.dot(lam)/2 - q.dot(q) == sp.Rational(1, 2)
+    assert data["renormalized_fusion"]["exponent_from_weights"] == "1/2"
+    assert data["renormalized_fusion"]["exponent_from_pairing"] == "1/2"
+    assert "epsilon^(1/2)" in data["renormalized_fusion"]["ope"]
+    assert "epsilon^(-1/2)" in data["renormalized_fusion"]["formal_leading_coefficient"]
+    assert "formal-lim" in data["renormalized_fusion"]["formal_leading_coefficient"]
+    assert not data["renormalized_fusion"]["literal_unitary_square"]
+
+
+def test_double_twist_is_local_only_relative_to_the_even_CAR_net():
+    data = build_source_spin_lift_data()["data"]["double_twist"]
+    locality = data["locality"]
+    assert locality["actual_D8_root_count"] == 112
+    assert locality["q_integral_pairings"] == 56
+    assert locality["lambda_integral_pairings"] == 112
+    assert not locality["q_local_to_all_even_CAR_observables"]
+    assert locality["lambda_local_to_all_even_CAR_observables"]
+    assert not locality["lambda_local_to_full_CAR_field_algebra"]
+    assert locality["bosonic_self_statistics"]
+    assert data["grading"]["flux_register_square_charge_mod4"] == 2
+    assert data["grading"]["internal_glue_grade_lambda_mod4"] == 1
+    assert data["grading"]["internal_glue_grade_adjoint_mod4"] == 3
+    assert data["grading"]["spinor_grade_counts"] == {"1": 64, "3": 64}
+    assert data["chirality"]["all_have_even_number_of_minus_signs"]
+    assert not data["chirality"]["both_chiralities_may_be_adjoined"]
+
+
+def test_neutral_pair_reference_keeps_its_filter_and_charged_field_scope():
+    from tfpt_explorer.source_spin_lift import spinor_pair_kernel_coefficients
+
+    assert spinor_pair_kernel_coefficients((1,) * 12) == tuple(range(1, 14))
+    assert spinor_pair_kernel_coefficients((0,) * 5) == (1, 0, 0, 0, 0, 0)
+    assert spinor_pair_kernel_coefficients((sp.Rational(1, 2),) * 5) == (1,) * 6
+    with pytest.raises(ValueError):
+        spinor_pair_kernel_coefficients((sp.Rational(3, 2),))
+    pair = build_source_spin_lift_data()["data"]["double_twist"]["microscopic_pair"]
+    assert pair["positive_pair_form"]
+    assert pair["copies_are_an_explicit_premise"]
+    assert not pair["charged_local_spinor_field_constructed"]
+    assert pair["limit_fourier_coefficients"] == [str(n) for n in range(1, 14)]
+
+
+def test_lambda_and_adjoint_generate_E8_by_actual_chevalley_brackets():
+    closure = build_source_spin_lift_data()["data"]["double_twist"]["chevalley_closure"]
+    assert closure["initial_D5_plus_D3_roots"] == 52
+    assert closure["root_counts_by_round"] == [54, 80, 150, 240]
+    assert all(count > 0 for count in closure["nonzero_new_bracket_witnesses_by_round"])
+    assert closure["generated_D5_plus_D3_roots"] == 52
+    assert closure["generated_mixed_D8_roots"] == 60
+    assert closure["generated_spinor_roots"] == 128
+    assert closure["generated_total_roots"] == 240
+    assert closure["generated_Cartan_rank"] == 8
+    assert closure["generated_Lie_dimension"] == 248
+    assert closure["uses_actual_nonzero_brackets"]
