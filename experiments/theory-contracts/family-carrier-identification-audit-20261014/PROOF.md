@@ -19,7 +19,10 @@ verschiedene Seiten derselben Geometrie.
 
 ## Audit der Archivauswahl
 
-### A1 [E] – Die explizite Monodromieformel ist in sich widersprüchlich
+### A1 [E] – Die explizite Monodromieformel ist in sich widersprüchlich (Bestätigung)
+Dieser Defekt war bereits im Contract `source-boundary-lift-selection-20260922`
+gespeichert; hier ist er unabhängig bestätigt.
+
 `03_em_flavor_source.tex:1095–1118` setzt `ρ_F(γ₁) = D`, `ρ_F(γ_i) = PDP⁻¹`,
 `ρ_F(γ₋₁) = P²DP⁻²` mit `D = diag(1, ω, ω²)`. Alle drei sind **diagonal**; die
 Gruppe ist abelsch, und `ρ_F(γ_{−i}) = I`. Das widerspricht der eigenen Voraussetzung
@@ -51,22 +54,24 @@ dessen Identifikation mit der analytischen Monodromie ist dort [N] (ODE-Abgleich
    Marken überein. **Aber:** Der Beweis setzt die Cusps aus
    `thm:exact-transport-closure` ein, und dieser nennt sie „obtained from the
    singlet-projected hypercharge spectrum" (`03:1242–1246`) – zirkulär. Es ist eine
-   Mengengleichheit von Eigenwerten, keine Operatorabbildung; welche drei
-   Trägersektoren den drei Familienrichtungen entsprechen, ist nicht festgelegt.
+   Mengengleichheit von Eigenwerten, keine Operatorabbildung. Der wechselseitige
+   Verweis allein beweist noch keinen logischen Zirkel; belastbar ist, dass daraus
+   **kein unabhängiger physischer Cusp-Selektor oder Collartransport** geliefert
+   wird.
 2. **Yukawa-Holonomieformel:** `(Y_f)_ij = λ^{L+L}⟨e_i, Hol_{Γ_ij}(∇_F*) e_j⟩`
    (`03:1252–1262`, `02:2645–2667`). Das ist ein echter Operator, der die
    SU(3)_F-Holonomie mit dem Higgs-Träger E₂ und S⁺ koppelt – auf Ebene „Proof
    sketch", gestützt auf [∇_F*] aus A1.
-3. **SU(4)/A3-Glue:** Im gesamten Archiv `source_extracts` kommt SU(4) bzw. die
-   A3-Verklebung nicht vor. E8 erscheint nur als „downstream scale grammar"
+3. **SU(4)/A3-Glue:** In den geprüften Archivdateien
+   `_archive/tfpt-45/source_extracts/*.tex` kommt SU(4) bzw. die A3-Verklebung nicht vor. E8 erscheint nur als „downstream scale grammar"
    (`technical_companion_source.tex:1519–1547`) und als Zählung
    `|R(E8)| = 240 = 5·48`.
 
 ## Ergebnis
 
-* Ein Collar → **SU(4)**-Transport fehlt im Original vollständig.
-* Ein Collar → **SU(3)_F**-Anschluss existiert nur als (i) Eigenwert-Mengengleichheit
-  der Cusps mit dem Hyperladungsspektrum (zirkulär begründet) und (ii) die
+* In den geprüften Archivstellen fehlt ein Collar → **SU(4)**-Transport.
+* Ein Collar → **SU(3)_F**-Anschluss erscheint dort nur als (i) Eigenwert-Mengengleichheit
+  der Cusps mit dem Hyperladungsspektrum (ohne unabhängigen Selektor) und (ii) die
   Yukawa-Holonomieformel, die [∇_F*] voraussetzt. [∇_F*] hängt an einer explizit
   widersprüchlichen Monodromieformel; der tragfähige Vertreter ist v117 mit
   numerischer [N]-Identifikation.
@@ -78,4 +83,9 @@ dessen Identifikation mit der analytischen Monodromie ist dort [N] (ODE-Abgleich
 die Familie, die mehr als Eigenwerte festlegt – mindestens eine gemeinsame unitäre
 Abbildung, die vier Collartransporte `H_k` zugleich auf `M_k` und die Deckwirkung auf
 U abbildet (so formuliert in `source-three-route-closure-20260922/PROOF.md:100–104`).
-Im Original ist sie nicht vorhanden.
+In den geprüften Stellen ist sie nicht vorhanden.
+
+**Positiver Bestand, nicht zu übergehen:** `source-native-clock-flavor-bridge-20260922/PROOF.md:20–129`
+liefert ein exaktes, orientierungsgetwistetes Operatorwörterbuch Q/Σ/G/T/P ↔ M/U mit
+N-Metrik und markierten Zuordnungen. Das ist kein roher Collartransport, aber mehr als
+eine Eigenwertgleichheit. Fortsetzung: `../native-vertex-marking-bridge-20261014`.
