@@ -20,3 +20,8 @@ dann NS- und R-Sektor der Naht, und die Ordnung 4 ist rein geometrisch.
 
 **Offene Entscheidung.** Liegen die 16 Plätze auf dem eingebetteten Nahtkreis
 oder auf seiner Doppelüberlagerung? Details: `PROOF.md`.
+
+**Nachtrag.** Laut `tfpt_3` liegt die Naht Γ im Zylinder über der Möbiusfaser,
+nicht in S². Dort ist NS nicht erzwungen. R auf Γ entspricht Pin+, NS entspricht
+Pin−. Die Originalforderung U² = (−1)^F gehört als Kramers-Bedingung (T² = (−1)^F)
+gerade zu Pin+, also zur Glueklasse. v506 hat sie euklidisch als Pin− umgesetzt.

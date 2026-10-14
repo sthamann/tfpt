@@ -68,3 +68,36 @@ Fixalgebra; die Glueklasse müsste aus einer anderen Z4 kommen.
 
 Das ist eine einzige topologische Entscheidung über das Original. Sie legt die
 E8-Klasse der Clock fest. Das Original verwendet bisher beide Lesarten.
+
+## Nachtrag: Was das Original über die Lage von Γ sagt [Zitat E, Schluss B]
+
+`tfpt_3_e8_audit_bootstrap.tex:12349`: „the orientable double cover of the Möbius
+fibre is a cylinder with two boundaries plus one Z2 seam Γ"; `:12559`: „the
+collar deck is the deck transformation of a covering (the Z2 seam of the Möbius
+double)".
+
+1. Γ liegt im **Zylinder**, der orientierbaren Doppelüberlagerung der
+   Möbiusfaser, nicht in der Himmelssphäre. Der Zylinder hat b₁ = 1; auf seinem
+   nicht zusammenziehbaren Kreis Γ sind NS und R beide zulässig. Das Argument von
+   Theorem B (b₁(S²) = 0 ⇒ NS auf jedem Kreis) erzwingt NS auf Γ deshalb nicht.
+2. Γ überlagert die Seele der Möbiusfaser zweifach; das Deck ist eine
+   orientierungsumkehrende Decktransformation. Der Fermiontransport einmal um Γ ist
+   das Quadrat des Pin-Lifts r dieser Schleife: r² = +1 (Pin+) ergibt R auf Γ,
+   r² = −1 (Pin−) ergibt NS. v506 rechnet mit D² = −1, also der Pin−-Wahl.
+3. Mit diesem Contract: **Pin+ der Möbiusfaser ⇔ R auf Γ ⇔ Clock in der
+   TFPT-Glueklasse A3 ⊕ D5**; Pin− ⇔ NS ⇔ A1 ⊕ D6 / A1 ⊕ A7.
+4. Physikalisches Wörterbuch (Literatur, hier nicht geprüft): Euklidisches Pin+
+   entspricht nach Wick-Rotation einer Zeitumkehr mit T² = (−1)^F
+   (Kramers, gewöhnliche Spin-½-Fermionen), Pin− entspricht T² = 1
+   (Kapustin–Thorngren–Turzillo–Wang 2015; Witten 2016). Falls die
+   Originalforderung „U² = (−1)^F" physikalisch als Kramers-Bedingung gemeint ist,
+   gehört sie zur **Pin+**-Wahl. v506 hat sie als euklidisches D² = −1
+   umgesetzt, also als Pin−. Dieser Vorzeichenwechsel zwischen euklidischer und
+   lorentzscher Lesart ist der konkrete Kandidat für die übersehene
+   Fehlabstraktion.
+
+**Entscheidender Test:** die Pin-Struktur der Möbiusfaser aus der ursprünglichen
+Reflexionspositivität bestimmen, also ob die OS-Reflexion Θ auf den Nahtfermionen
+als Pin+ (Θ-Spiegelung quadriert zu +1) oder Pin− wirkt. Ein bereits vorhandener
+Baustein ist die Reflexion Θ des Originals; ihre Wirkung auf Fermionen ist in v506
+nicht als Möbius-Deck verwendet worden.
