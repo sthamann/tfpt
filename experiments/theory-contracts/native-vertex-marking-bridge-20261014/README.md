@@ -16,3 +16,6 @@ Familienzeitantwort (D_Δ ist SU(4)-gleichförmig) und der Q-Compiler. Details: 
 **Korrekturen (Codex).** `q = 2λ` und Trägernorm 1 sind in dieser Klasse hergeleitet;
 λ ist ein Gewichtsvektor (`q·λ = 4`); die Forderung „nicht mit WW† vertauschend" war
 leer, weil WW† skalar ist. Fortsetzung: `../source-time-family-generator-20261014`.
+
+**Präzisierung.** Die Kette verbindet Gewichtslabels, nicht Bosonamplituden; siehe
+`../native-field-projector-test-20261014`.

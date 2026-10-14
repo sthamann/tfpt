@@ -47,10 +47,13 @@ Bosonenelimination mit Kern `D_Δ`).
                                    ▼
                           h = S a_i ∈ {±h₁, ±h₂, ±h₃} = ±M^j e₁ (S-Bild)
 
-Der geometrische Vektor h im Einsatz A(h) des Wörterbuchs ist damit der
-Familienanteil genau des nativen Bosonmodes, den die Ward-Markierung auswählt. Die
-sechs Wahlen sind unter der 24-elementigen Gruppe gleichwertig (Codex: gleiche
-Spektralklasse (1,1,4)).
+**Präzisierung (Codex):** Die Kette verbindet **Gewichtslabels**. β_F ist das
+Cartanlabel des Ward-gewählten Bosonmodes, und L/S bildet Labels mit Rang 3 ab. Das
+ist keine lineare Isometrie der sechs nativen Bosonamplituden; h_geom ist damit
+**nicht** schon die native Bosonamplitude im Einsatz A(h). Der tatsächliche
+Feldvergleich steht in `../native-field-projector-test-20261014`: Der einzige
+clockkovariante Feldprojektor ist nicht ladungskovariant, und die kovariante Abbildung
+Zustand → Cartanvektor ist die quadratische Impulsabbildung.
 
 ## Was der native Vertex **nicht** liefert
 
