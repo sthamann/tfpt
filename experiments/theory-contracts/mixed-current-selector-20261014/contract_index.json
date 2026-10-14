@@ -1,0 +1,37 @@
+{
+  "contract": "mixed-current-selector-20261014",
+  "date": "20261014",
+  "research_id": "UR.SOURCE.MIXED_CURRENT_SELECTOR.01",
+  "question": "Does one local weight-1 current with nontrivial charge on both seam readings (cycle side A_{d-1}, carrier side D_{d+1}) select d = 4 and E8 without assuming an even unimodular closure, diagonal glue or current completeness?",
+  "summary_de": "Ja in der benannten Gitterklasse: Ein gemischter Gewicht-1-Strom existiert genau fuer d=4; ein gemischter Spinorstrom erzeugt allein E8, Unimodularitaet folgt. Ohne Mischbedingung drei zerfallende Gegenfaelle d=7 (A6+E8), d=8 (E7+D9), d=9 (E8+D10). Unter der internen Z4-Gluegraduierung liegen die Wurzelstroeme 52/64/60/64 auf den Graden 0/1/2/3; die neutrale Auslese E0 behaelt nur die d-unspezifischen Grad-0-Stroeme, die gesamte Auswahlinformation liegt in den von E0 entfernten Graden. Mikroskopische Herkunft des Stroms und das Spinor-vs-Vektor-Bit offen.",
+  "verdict": "PARTIAL",
+  "verdict_enum": ["PASS", "PARTIAL", "FAIL"],
+  "mathematical_verdict": "MIXED_CURRENT_SELECTS_D4_EXACT; UNIMODULARITY_DERIVED_FROM_SPINOR_MIXED_CURRENT; DECOUPLED_COUNTEREXAMPLES_D7_D8_D9; SELECTION_INFORMATION_IN_NONNEUTRAL_GRADES",
+  "claims_tested": ["E8.ONEOBJECT.01", "SEAM.SIMPLECURRENT.GENERATOR.01"],
+  "claims_scoped_not_closed": ["AX.P1.01", "AX.P2.01", "SEAM.EQUIV.01", "SEAM.MMST.TYPEIII.CHARGED.01", "SEAM.DETLINE.UNIFICATION.01"],
+  "gates": ["T1", "T2"],
+  "kills": [
+    "A single spinor-charged weight-1 current alone selects d = 4 without a unimodular closure (counterexample d = 7: pure D8 spinor current, A6 + E8)",
+    "Any selection argument formulated only on the neutral readout E0 can select d = 4 (grade-0 currents are the roots of R_d for every d)"
+  ],
+  "checker": "checker.py",
+  "firewall": "experiments",
+  "promotion": false,
+  "complete_TFPT_solution": false,
+  "physical_gates_closed": [],
+  "assumptions": [
+    "Comparison class R_d = A_{d-1} + D_{d+1} with the Clifford reading and normalized integral metric of sec:globaloriginselection",
+    "Weight-1 current = norm-2 vector of R_d^* in the lattice-VOA reading; weight is a 2D boundary weight, not 4D spin",
+    "Internal Z4 grading is the glue grading C of the synthesis, not identified with the v993 clock u"
+  ],
+  "not_derived": [
+    "That the original microscopic seam operation produces a mixed local weight-1 current",
+    "Spinor type versus vector type (E8 versus D8)",
+    "P1 normalization, state, time, localisation, 3+1D realisation"
+  ],
+  "relations": [
+    {"target": "universalraum-primitive-source-audit-20260915", "type": "references"},
+    {"target": "source-three-route-closure-20260922", "type": "references"},
+    {"target": "source-graded-gns-matter-gate-20260922", "type": "references"}
+  ]
+}
