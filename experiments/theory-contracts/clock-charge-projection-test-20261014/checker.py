@@ -86,6 +86,49 @@ require("P1_dressing_index_irrelevant", True)   # each (chir, lift) gave one pai
 img = (F(-1), F(-1), F(2), F(0), F(0), F(1), F(-1), F(0))       # Codex M R0 q
 require("P1_codex_image_6_2", (sum(x * x for x in img[:5]), sum(x * x for x in img[5:])) == (6, 2))
 
+# P4 operator composition C = g^2 (Codex): lifts of g differ by v in D8*/D8 (keep the D8
+# current action); D8*/D8 has exponent 2, so 2v in D8 subset E8 and the square is fixed.
+def in_D8(v): return all(x.denominator == 1 for x in v) and sum(v) % 2 == 0
+def in_E8(v, chir):
+    if in_D8(v): return True
+    if all(x.denominator == 2 for x in v):
+        ref = tuple(F(1, 2) for _ in range(8)) if chir == "s" else tuple([F(-1, 2)] + [F(1, 2)] * 7)
+        return in_D8(tuple(a - b for a, b in zip(v, ref)))
+    return False
+reps = [tuple(F(0) for _ in range(8)), e1, tuple(F(1, 2) for _ in range(8)), tuple([F(-1, 2)] + [F(1, 2)] * 7)]
+require("P4_reps_in_D8_dual", all(all((sum(x * y for x, y in zip(v, r))).denominator == 1 for r in rootsS if r[0].denominator == 1) for v in reps))
+require("P4_exponent_two", all(in_D8(tuple(2 * x for x in v)) for v in reps))
+square_pairs = {}
+for chir, R in (("s", rootsS), ("c", rootsC)):
+    pr = set()
+    for a in (F(1, 4), F(3, 4)):
+        for j in range(8):
+            c = (-a + j) / 8
+            mug = tuple((k + a) / 8 + c for k in range(8))
+            for v in reps:
+                muC = tuple(2 * (x + y) for x, y in zip(mug, v))          # C = g^2 of the lift mug + v
+                require(f"P4_same_torus_point_{chir}_a{a}_j{j}", in_E8(tuple(x - 2 * y for x, y in zip(muC, mug)), chir))
+                cent = [r for r in R if dot(r, muC).denominator == 1]
+                info = {(len(cp), proj_norm(q, cp)[1]): proj_norm(q, cp)[0] for cp in components(cent)}
+                pr.add((info[(40, 5)], info[(12, 3)]))
+            # the independent C-lift 2 mug + e1 is not a square of any g-lift
+            require(f"P4_e1_lift_not_square_{chir}_a{a}_j{j}",
+                    all(not in_E8(tuple(e - 2 * y for e, y in zip(e1, v)), chir) for v in reps))
+    square_pairs[chir] = pr
+require("P4_s_square_4_4", square_pairs["s"] == {(4, 4)})
+require("P4_c_square_6_2", square_pairs["c"] == {(6, 2)})
+
+# P5 s-lemma without the unit-clutch identification: family norm 4 = t^2 (sum m^2 - 1)
+sol5 = set()
+for m in product(range(-6, 7), repeat=4):
+    if sum(m) != -2: continue
+    for t in range(-6, 7):
+        if t * t * (sum(x * x for x in m) - 1) == 4:
+            sol5.add((abs(t), tuple(sorted(m))))
+require("P5_forces_t2_mA", sol5 == {(2, (-1, -1, 0, 0))})
+carriers = {x for x in product(range(-3, 4), repeat=5) if abs(sum(x)) == 2 and sum(y * y for y in x) == 4}
+require("P5_carrier_not_unique", len(carriers) > 1 and (0, 0, 2, 0, 0) in carriers and (1, 1, 1, -1, 0) in carriers)
+
 # P2
 vals = set()
 for m in product(range(-6, 7), repeat=4):
@@ -112,6 +155,7 @@ require("P3_A_vacuum_K0", dot(beta, beta) / 2 + (-1) == 0)
 
 results = {"contract": "clock-charge-projection-test-20261014",
            "projection_pairs_(lift,D5,A3)": {k: sorted([str(x) for x in p] for p in v) for k, v in seen_pairs.items()},
+           "square_pairs_C_eq_g2": {k: sorted([str(x) for x in p] for p in v) for k, v in square_pairs.items()},
            "checks": len(checks), "verdict": "PARTIAL"}
 Path(__file__).with_name("results.json").write_text(json.dumps(results, indent=2) + "\n")
 print(f"{len(checks)}/{len(checks)} checks passed")

@@ -15,9 +15,9 @@ Achtelwurzeln j; beide Spinlifts) ist der Zentralisator A3 ⊕ D5. Die Quellenla
 
 * Bestätigt: Der Index j ändert das Paar nie. Codex' Aussage zur Konjugation der
   acht Kleidungen hält.
-* **Ergänzung:** In E8_s entscheidet der Spinlift zwischen (4,4) und (8,0). In E8_c
-  ist das Paar liftunabhängig (6,2); Codex' Bild `M R0 q = (−1,−1,2,0,0; 1,−1,0)`
-  hat genau (6,2).
+* In P1 wird C **direkt** geliftet. Der Lift μ + e₁ ist ein unabhängiger
+  C-Kontrolllift, **kein** Quadrat der ursprünglichen g-Wirkung (siehe P4). Codex'
+  Bild `M R0 q = (−1,−1,2,0,0; 1,−1,0)` hat genau (6,2).
 * Das Paar ist invariant unter gleichzeitiger Konjugation von Clock und q, weil die
   Faktoren A3 und D5 nicht isomorph sind und daher nicht vertauscht werden können.
 
@@ -31,10 +31,24 @@ t = 0 gibt 0, |t| ≥ 2 gibt ≥ 4, und t = ±1 würde Σm² = 3 verlangen, was 
 * **c scheitert** am gemeinsamen Test (Familienprojektion 2) für **alle**
   ganzzahligen Trägerrichtungen, ohne die Identifikation x = e_weak.
 * s mit Lift μ: (4,4) = Paket m_A mit t = 2 (`4 = 2²·1`).
-* s mit Lift μ + e₁: (8,0), Familienprojektion 0. Formal mit t = 0 und beliebigem m
-  verträglich; dann trägt aber die Familie keine Quellenladung, und die
-  Ward-Identifikation mit m_A (t = 2) entfällt. Der Spinlift ist in E8_s also nicht
-  gleichgültig: Nur μ trägt das Ward-Paket.
+* (8,0) tritt nur beim unabhängigen C-Kontrolllift μ + e₁ auf (Familienprojektion 0,
+  formal t = 0). Als C = g² derselben Quellen-g-Wirkung zählt er nicht.
+
+## P4 [E] – Operatorkomposition C = g² (Codex)
+
+Die Quelle liefert zuerst g mit `μ_g = (k+α)/8 + c`; C = g² ist erzwungen. Lifts von
+g, die die D8-Stromwirkung erhalten, unterscheiden sich um v ∈ D8*/D8 (Vertreter
+0, e₁, s, c). Weil D8*/D8 Exponent 2 hat, liegt 2v in D8 ⊂ E8: Alle Lifts von g
+haben **denselben** Quadrat-Toruspunkt 2μ_g. Für alle acht Kleidungen und beide α
+gilt dann s → (4,4) und c → (6,2). Der Lift 2μ_g + e₁ ist kein Quadrat, denn
+`e₁ − 2v` hat ungerade Koordinatensumme und liegt in keinem E8.
+
+## P5 [E] – s-Lemma ohne Einheits-Clutching
+
+Familiennorm 4 = t²(Σm² − 1) mit positiv ungeradem zweitem Faktor erzwingt
+|t| = 2 und Σm² = 2, also m = (0,0,−1,−1) bis auf S4. Das Minimalpaket folgt damit
+**ohne** die Identifikation x = e_weak. Die Trägerrichtung bleibt offen:
+Spur ±2 und Norm 4 erlauben z. B. 2e₃ und (1,1,1,−1,0).
 
 ## P3 [E Buchhaltung] – s-Modell-Dublett (Codex)
 
@@ -49,9 +63,9 @@ rohen CAR-Raum ist er nicht vorhanden (Cartan-Obstruktion).
 Zusammen mit `ward-chirality-vacuum-no-go-20261014`:
 * c: verliert q/2 (W1) und besteht den Projektionstest für keine ganzzahlige
   Paketrichtung (P2).
-* s, Lift μ: besteht Ward- und Pakettest (4,4), hat aber unter dem Fold-Zeitgesetz
+* s mit C = g²: besteht Ward- und Pakettest (4,4), Paket m_A ohne Einheits-Clutching (P5), hat aber unter dem Fold-Zeitgesetz
   den Nullzustand p*. Der Nullzustand ist genau das SU(2)₁-Dublett aus P3.
-* s, Lift μ + e₁: Familienprojektion 0, kein Ward-Paket.
+* (8,0): nur unabhängiger C-Kontrolllift, keine Quadratwirkung der Quelle.
 
 Ein unabhängiger Familiengenerator oder eine andere physikalische Ladungsperiode
 würde die Voraussetzungen ändern und müsste aus der Quelle folgen.
