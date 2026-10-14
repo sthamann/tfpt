@@ -13,3 +13,7 @@ Status: **PARTIAL**, keine Promotion. `python3 checker.py`: 54 exakte Prüfungen
 
 Ergebnis: eine notwendige Bedingung (c-Chiralität), kein Existenzbeweis der
 Erweiterung. Details: `PROOF.md`.
+
+**Nachtrag.** Die c-Chiralität verliert die Ward-Markierung q/2 (Codex). Die
+gemeinsame Bedingung ist in `../ward-chirality-vacuum-no-go-20261014` als
+Ausschluss bewiesen; die c-„Rettung" trägt nicht.
