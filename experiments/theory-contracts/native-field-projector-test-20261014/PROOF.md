@@ -12,7 +12,16 @@ dreidimensionale irreduzible S4-Darstellung. Die Elemente mit Spur 1 haben Ordnu
 also ist es **std ⊗ sgn**, die orientierungsgetwistete Darstellung. Das passt zum
 E⊗det(E)-Wörterbuch in `source-native-clock-flavor-bridge-20260922` §1.
 
-## F2 [E] – Der einzige clockkovariante Feldprojektor
+## F2 [E] – Der einzige clockkovariante Feldprojektor (nur für die gewählte Darstellung)
+**Geltungsbereich (Codex):** Die Eindeutigkeit gilt für die hier **gewählte**
+gewöhnliche Markenpermutationsdarstellung `4 = 1 ⊕ std`. Das ist weder die
+SU(4)-Fundamentalwirkung der nativen f ∈ (16,4) noch der globale gekoppelte
+Spin(10)/SU(4)-Viertelphasenlift. Für `4 = 1 ⊕ 3'` zerfällt `Λ²4 = 3' ⊕ 3'`
+(Hom-Dimension 2, weil det 3' = 1); siehe `../raw-source-coupled-algebra-20261014` S4.
+Ungerade Permutationsmatrizen haben det −1 und sind ohne passenden gemeinsamen Lift
+keine SU(4)-Elemente. Welche Clockwirkung auf der wirklichen 4 vorliegt, muss aus der
+Originalquelle bzw. der gekoppelten Verklebung kommen.
+
 Unter Markenpermutationen hat Λ² der Viermarkendarstellung den Charakter
 (6, 0, −2, 0, 0) = std ⊕ std⊗sgn. Daher gibt es bis auf einen Skalar **genau eine**
 S4-äquivariante Feldabbildung `Λ²4 → h-Raum`: die Projektion auf Λ² des
@@ -32,6 +41,10 @@ wird nach Schur auf null abgebildet.
   Feldkoeffizienten, nicht Cartanlabels.
 
 ## F4 [E] – Die kovariante Abbildung von Bosonzuständen auf Cartanvektoren
+**Geltungsbereich (Codex):** μ ist im **Standard**-Cartanraum S4/Weyl-kovariant. Der
+h-Raum trägt 3' = std⊗sgn; μ lässt sich nur mit der passenden Orientierungsgeraden
+det(E) als h lesen (wie im `source-native-clock-flavor-bridge`-Wörterbuch).
+
 Die Abbildung, die torusinvariant und S4-kovariant von Bosonzuständen in den
 Cartanraum führt, ist die Impulsabbildung
 `μ(b) = Σ_w |b_w|² w`, also der Erwartungswert der Cartanladungen. Für einen Zustand

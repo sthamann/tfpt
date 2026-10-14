@@ -13,3 +13,7 @@ Status: **PARTIAL**, keine Promotion. `python3 checker.py`: 24 exakte Prüfungen
 
 Folge: h_geom ist keine lineare native Bosonamplitude. Die Quelle muss die Lesart
 (Ladungserwartung oder gewählter Feldprojektor) mitbringen. Details: `PROOF.md`.
+
+**Geltungsbereich.** F2 gilt nur für die gewählte Darstellung `4 = 1 ⊕ std`; für
+`4 = 1 ⊕ 3'` ist die Hom-Dimension 2. μ liegt im Standard-Cartanraum und braucht die
+Orientierungsgerade det(E), um als h gelesen zu werden.
