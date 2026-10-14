@@ -1,14 +1,18 @@
-# Ereigniswirkung auf dem neutralen Dublett: Originaltest (14. Oktober 2026)
+# Originalterme auf dem neutralen Dublett (14. Oktober 2026, korrigiert)
 
-Status: **PARTIAL**, Ausschluss in benannter Klasse. `python3 checker.py`:
-118 exakte Prüfungen, < 1 s.
+Status: **PARTIAL**, keine Promotion. `python3 checker.py`: 176 Prüfungen, < 1 s.
 
-Keiner der ursprünglichen Terme erzeugt eine Wirkung zwischen |vac⟩ und e^β:
-DtN `|k| + M_f` mit skalarem, markenlokalem M_f, Paketverbindung mit zerlegtem
-Träger und Familie nur über die Spur, kein festgelegtes Φ. Grund ist die
-Cartan-Ganzzahligkeit aller Quellenoperatoren gegenüber dem halbzahligen β.
-M_f wirkt auf G0 als null; alle Terme erhalten `ρ = |vac⟩⟨vac|`.
+**Korrektur:** Die Fassung `3049793` („alle Originalterme null auf G0, κ-Mischer
+nötig") ist zurückgenommen. Die Verbindung ist nicht diagonal erzwungen; Cartans mit
+`y·β ≠ 0` existieren; M_f ist auf den Faltungsbögen nicht kanalidentisch
+(cos 4θ ↦ cos(x/2)·diag((−1)^j)); ein Mischer widerspricht der Stationarität von
+|vac⟩; virtuelle Verschiebungen über Q sind nicht erfasst.
 
-Der einzige K-neutrale Mischer ist `A = J^β_{−1}`, ein Residuum der
-Trägerverbindung entlang der Spinorwurzel β ∈ D5. Sein Koeffizient κ ist die erste
-zusätzliche Wahl und wird von keinem Original geliefert. Details: `PROOF.md`.
+**Bestehen bleibt:** Direktes Mischen |vac⟩ ↔ e^β ist in der unveränderten Quelle
+null (Cartan-Ganzzahligkeit).
+
+**Erste nicht festgelegte Quelleneingabe:** die Nahtholonomie der Trägerverbindung
+entlang β-sichtbarer Cartans und Φ_a jenseits der Determinantenwindung, beide Teil
+des Seed-Datums D_coll (`01_boundary_kernel_source.tex:478–495`,
+`02_carrier_source.tex:1990–2000`). Festgelegt ist nur die β-blinde Viertelphase
+entlang q. Details: `PROOF.md`.

@@ -3,16 +3,32 @@
   "date": "20261014",
   "research_id": "UR.SEAM.DOUBLET_EVENT_SOURCE_TEST.01",
   "question": "Does any original term (seam DtN principal/sub-principal part, packet connection, Phi) act on the neutral doublet G0 = span(vac, e^beta) with a source-fixed coefficient that preserves the initial density?",
-  "summary_de": "Nein. beta liegt im D5-Traegerfaktor, ist q-neutral und orthogonal zu A3 und den q-Projektionen. Alle Rohquellenoperatoren haben ganzzahlige Cartan-Ladungen, beta ist halbzahlig: <e^beta|O|vac>=0. Der urspruengliche Nullordnungsterm M_f (skalar, markenlokal, sum f_{4l} J^q_{4l}) wirkt auf G0 als 0; Paketverbindung (zerlegter Traeger, Familie nur ueber Spur) diagonal; Phi im Original nicht festgelegt. Einziger K-neutraler Mischer A = J^beta_{-1} = Residuum der Traegerverbindung entlang beta; dessen Koeffizient kappa ist die erste Zusatzwahl.",
+  "summary_de": "Korrigiert: Fassung 3049793 zurueckgenommen. Direktes vac<->e^beta-Mischen in unveraenderter Quelle null (Cartan-Ganzzahligkeit), beta im D5-Faktor, q-neutral. Aber: keine diagonale Verbindung erzwungen (Rechenrepraesentant), D5-Cartans mit y.beta != 0 existieren, M_f-Faltungsbild nicht kanalidentisch (cos4theta -> cos(x/2) diag((-1)^j), k<->k+4), ein Mischer widerspricht Stationaritaet von |vac>, virtuelle Q-Beitraege nicht erfasst. Erste nicht festgelegte Eingabe: Nahtholonomie der Traegerverbindung entlang beta-sichtbarer Cartans und Phi_a jenseits der Determinantenwindung (Teil des Seed-Datums D_coll); festgelegt nur die beta-blinde Viertelphase entlang q.",
   "verdict": "PARTIAL",
-  "verdict_enum": ["PASS", "PARTIAL", "FAIL"],
-  "mathematical_verdict": "NO_ORIGINAL_TERM_MIXES_DOUBLET; MF_ACTS_AS_ZERO_ON_G0; FIRST_EXTRA_CHOICE_RESIDUE_KAPPA_ALONG_BETA",
-  "claims_tested": ["UR.SEAM.JOINT_WARD_STATE.01", "QGEO.SUBPRIN.01", "UR.SOURCE.BOUNDARY_LIFT_SELECTION.01"],
-  "claims_scoped_not_closed": ["SEAM.SIMPLECURRENT.GENERATOR.01", "SEAM.EQUIV.01", "SEAM.DETLINE.UNIFICATION.01"],
-  "gates": ["T1", "T2"],
+  "verdict_enum": [
+    "PASS",
+    "PARTIAL",
+    "FAIL"
+  ],
+  "mathematical_verdict": "DIRECT_MIXING_ZERO_IN_UNCHANGED_SOURCE; NO_GENERAL_EVENT_NO_GO; FIRST_UNFIXED_INPUT_SEAM_HOLONOMY_OF_BETA_VISIBLE_CARTANS_AND_PHI",
+  "claims_tested": [
+    "UR.SEAM.JOINT_WARD_STATE.01",
+    "QGEO.SUBPRIN.01",
+    "UR.SOURCE.BOUNDARY_LIFT_SELECTION.01"
+  ],
+  "claims_scoped_not_closed": [
+    "SEAM.SIMPLECURRENT.GENERATOR.01",
+    "SEAM.EQUIV.01",
+    "SEAM.DETLINE.UNIFICATION.01"
+  ],
+  "gates": [
+    "T1",
+    "T2"
+  ],
   "kills": [
-    "An original seam term (DtN principal or sub-principal part, packet connection, one-particle Phi) generates events on the neutral doublet",
-    "The flavour Fuchs residues supply the beta-residue coupling"
+    "A vac/e^beta mixer is compatible with a stationary initial vacuum density",
+    "q-neutrality implies zero action of all Cartans on e^beta",
+    "The fold image of a mark-compatible M_f is a multiple of the channel identity"
   ],
   "checker": "checker.py",
   "firewall": "experiments",
@@ -21,11 +37,22 @@
   "physical_gates_closed": [],
   "assumptions": [
     "s-extension, honest dressed clock and fold time law as in UR.SEAM.JOINT_WARD_STATE.01",
-    "Original sub-principal term is the scalar curvature multiplication M_f (tfpt_research_contracts.tex:474-484)"
+    "Codex frame M beta = e1 + e4 for the determinant-direction eigenvalues (not recomputed here)"
   ],
-  "not_derived": ["A source-fixed residue kappa along the spinor root beta", "Any raw-source operator with half-integer Cartan charge"],
+  "not_derived": [
+    "Seam holonomy of the carrier connection along beta-visible Cartans",
+    "Phi_a beyond determinant winding",
+    "Second-order shifts P0 O Q (QKQ-E)^-1 Q O P0 with source coefficients",
+    "Physical mark-locality of M_f"
+  ],
   "relations": [
-    {"target": "clock-charge-projection-test-20261014", "type": "references"},
-    {"target": "ward-chirality-vacuum-no-go-20261014", "type": "references"}
+    {
+      "target": "clock-charge-projection-test-20261014",
+      "type": "references"
+    },
+    {
+      "target": "ward-chirality-vacuum-no-go-20261014",
+      "type": "references"
+    }
   ]
 }
