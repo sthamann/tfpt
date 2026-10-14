@@ -1,0 +1,37 @@
+{
+  "contract": "chirality-ground-state-selector-20261014",
+  "date": "20261014",
+  "research_id": "UR.SEAM.CHIRALITY_GROUND_STATE_SELECTOR.01",
+  "question": "Does the original fold time law with the real quarter phase admit any spinor extension with a unique ground state, and which chirality and clock does it require?",
+  "summary_de": "Unter K=|p|^2/2+delta.p, delta_k=(k+alpha)/8-1/2 hat die s-chirale E8-Erweiterung fuer jedes alpha einen zweiten Nullzustand (delta.p*=-1 alpha-unabhaengig). Die c-chirale Erweiterung hat fuer 0<alpha<1 eindeutiges Vakuum mit Spinorluecke min(alpha,1-alpha)/8 = 1/32 bei Viertelphase. alpha=0 ist schon in der CAR-Quelle entartet. Glueklasse A3+D5 nur fuer die U(1)-gekleidete echte Z8-Clock, beide Chiralitaeten; ungekleidet nie. Notwendige Bedingung, keine Existenz: die Erweiterung liegt nach Codex nicht in der unveraenderten CAR-Quelle.",
+  "verdict": "PARTIAL",
+  "verdict_enum": ["PASS", "PARTIAL", "FAIL"],
+  "mathematical_verdict": "S_CHIRAL_EXTENSION_DEGENERATE_ALL_ALPHA; C_CHIRAL_UNIQUE_VACUUM_GAP_MIN_ALPHA_OVER_8; PERIODIC_FOLD_CAR_DEGENERATE; GLUE_CLASS_ONLY_FOR_DRESSED_HONEST_CLOCK",
+  "claims_tested": ["UR.SEAM.QUOTIENT_LOCALITY_E8.01", "UR.SEAM.V16_OPERATOR_PULLBACK.01"],
+  "claims_scoped_not_closed": ["SEAM.SIMPLECURRENT.GENERATOR.01", "SEAM.MMST.TYPEIII.CHARGED.01", "SEAM.EQUIV.01"],
+  "gates": ["T1", "T2"],
+  "kills": [
+    "The s-chiral even spinor E8 extension is compatible with the original fold time law and a unique vacuum for some boundary phase",
+    "The periodic fold (alpha = 0) is compatible with a unique CAR ground state",
+    "The undressed quarter-phase clock lies in the A3+D5 glue class for either chirality"
+  ],
+  "checker": "checker.py",
+  "firewall": "experiments",
+  "promotion": false,
+  "complete_TFPT_solution": false,
+  "physical_gates_closed": [],
+  "assumptions": [
+    "Fold time law K = L0 + delta.Q with delta_k = (k+alpha)/8 - 1/2 as supplied by the local Codex contract",
+    "Lattice primaries carry K(p) = |p|^2/2 + delta.p",
+    "Chirality labels relative to the channel ordering of delta"
+  ],
+  "not_derived": [
+    "Existence of any spinor extension in the original source (excluded in the unchanged folded CAR space)",
+    "That the original source distinguishes the U(1)-dressed honest Z8 clock"
+  ],
+  "relations": [
+    {"target": "seam-double-spin-structure-20261014", "type": "corrects"},
+    {"target": "seam-u1-clock-splitting-20261014", "type": "references"},
+    {"target": "moebius-clock-fold-20261014", "type": "references"}
+  ]
+}

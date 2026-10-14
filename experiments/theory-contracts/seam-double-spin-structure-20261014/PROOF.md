@@ -101,3 +101,25 @@ Reflexionspositivität bestimmen, also ob die OS-Reflexion Θ auf den Nahtfermio
 als Pin+ (Θ-Spiegelung quadriert zu +1) oder Pin− wirkt. Ein bereits vorhandener
 Baustein ist die Reflexion Θ des Originals; ihre Wirkung auf Fermionen ist in v506
 nicht als Möbius-Deck verwendet worden.
+
+## Korrektur (14. Oktober 2026, nach Prüfung durch Codex)
+
+1. **Zurückgenommen:** „Der Feldraum des Doppels enthält automatisch NS- und
+   R-Sektor der eingebetteten Naht, also genau die Summe, die eine E8-Erweiterung
+   braucht." Der deck-gerade Teil des R-Doppels ist ein **zusätzliches**
+   Fermionfeld mit ganzzahligen Cartan-Ladungen, nicht der Ramond-Sektor des
+   ursprünglichen Feldes. Fourier-Unterräume des Einteilchenraums liefern keinen
+   Spinor-Hilbertraum (Codex: ganzzahlige Charaktere der acht N_k auf dem
+   gefalteten CAR-Raum, jeder Spinorstrom dort null). Die Prüfung P4 zeigt nur die
+   Einteilchen-Zerlegung; mehr belegt sie nicht.
+2. **Pin-Auflösung gilt nicht für die geladene Naht.** Die Pin-Wahl ändert nur
+   das Spinvorzeichen ±1 der Holonomie. Die reale Viertel-Wilsonphase bleibt: Die
+   Gesamtholonomie ist ±i, also α ∈ {¼, ¾}, nie 0. Ungekleidet liegt die Clock
+   dann für beide Pin-Wahlen nicht in A3 ⊕ D5. Der Nachtrag zu Pin+ betrifft nur
+   ein neutrales Majorana-Modell ohne Wilsonphase.
+3. OS-Reflexion Θ (Spiegelung an der festen Randnaht) und das freie Möbius-Deck
+   sind verschiedene Abbildungen. Laut Codex ist die Originalquelle eine
+   OS-Doppelung an fester Naht; die Pin-Struktur des freien Decks folgt daraus
+   nicht.
+
+Fortsetzung: `../chirality-ground-state-selector-20261014`.

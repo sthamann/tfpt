@@ -25,3 +25,8 @@ oder auf seiner Doppelüberlagerung? Details: `PROOF.md`.
 nicht in S². Dort ist NS nicht erzwungen. R auf Γ entspricht Pin+, NS entspricht
 Pin−. Die Originalforderung U² = (−1)^F gehört als Kramers-Bedingung (T² = (−1)^F)
 gerade zu Pin+, also zur Glueklasse. v506 hat sie euklidisch als Pin− umgesetzt.
+
+**Korrektur.** Die Aussage, das R-Doppel enthalte NS- und R-Sektor der Naht, ist
+zurückgenommen; der deck-gerade Teil ist ein zusätzliches Feld, kein
+Spinorsektor. Die Pin-Auflösung gilt nicht bei realer Viertel-Wilsonphase (die
+Holonomie bleibt ±i). Siehe `PROOF.md` und `../chirality-ground-state-selector-20261014`.
