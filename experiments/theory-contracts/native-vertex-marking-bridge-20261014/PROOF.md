@@ -10,20 +10,26 @@ Bosonenelimination mit Kern `D_Δ`).
 
 ## Satz V [E]
 
-* **V1 – Clock = Viertelrotation der nativen Ladung.** Im TFPT-Rahmen (D5 ⊕ D3 ≅ A3)
-  ist Grad 2 der Glue-Graduierung C genau die Menge der 60 (10,6)-Wurzeln (gleich der
-  Anzahl nativer Bosonen), Grad 1 die 64 (16,4)-Wurzeln. C wirkt mit i auf (16,4),
-  mit −1 auf (10,6) und mit 1 in Grad 0. Auf den nativen Moden ist das
-  `C = i^{N_f + 2N_b}`, also die Viertelrotation der Größe, die der native
-  Hamiltonoperator erhält. Insbesondere gilt C⁴ = 1 auf den Fermionen: Im nativen
-  Modell ist die Clock automatisch die **echte** Z4.
+* **V1 – Grobe Clock-Implementierung (präzisiert).** Im TFPT-Rahmen ist Grad 2 der
+  Glue-Graduierung C genau die Menge der 60 (10,6)-Wurzeln, Grad 1 die 64
+  (16,4)-Wurzeln. Auf den Erzeugern des nativen Modells ist `i^{N_f + 2N_b}` eine
+  korrekte grobe Implementierung dieser Gradphasen. **Das macht die fermionischen
+  f ∈ (16,4) nicht zu bosonischen E8-Stromfeldern** und beweist nicht dieselbe
+  vollständige g-Wirkung auf den D8-Strömen. `N_f + 2N_b` ist eine zusätzliche native
+  Teilchenzahl und **nicht** die Quellenladung H_q.
 * **V2 – Familiengewichte.** Die D3-Anteile der (10,6)-Wurzeln sind die sechs
   Vektorgewichte ±e_j der 6 = Λ²4. Tᵀ bildet sie bijektiv auf die sechs
   A3-Gewichte mit zweimal +½ und zweimal −½ ab. Das sind genau die sechs minimalen
   Familienlifts `β_F = m + ½`, m eine Permutation von (0,0,−1,−1).
-* **V3 – Ward-Boson.** `λ_A = (e₃; 1,0,0)` ist eine (10,6)-Wurzel und
-  `Q' = 2(e₃+e₆) = 2λ_A`. Die Ward-Markierung der Quellenladung ist also das Doppelte
-  der Ladung **eines nativen Bosonmodes** b_A.
+* **V3 – Ward-Gewicht (präzisiert).** `λ_A = (e₃; 1,0,0)` ist eine (10,6)-Wurzel und
+  `Q' = 2λ_A`. Codex hat unabhängig hergeleitet: Nach Auswahl von L_s ist `q/2` eine
+  Norm-2-Wurzel; im clock-verträglichen D5/D3-Split hat sie die Projektionen (1,1),
+  muss also eine der 60 gemischten ganzzahligen (10,6)-Wurzeln sein. Damit sind
+  `q = 2λ` und die primitive Trägernorm 1 in dieser Vergleichsklasse **hergeleitet**.
+  λ ist ein **Gewichtsvektor**, nicht die U(1)-Ladung eines Bosonenzählers:
+  `H_q E_λ` hat Ladung `q·λ = 4`; E_λ ist ein bosonischer h = 1-Strom vom Grad 2, und
+  das rohe Zeitgesetz gibt `K(λ) = 3/4 + α/2` (7/8 bzw. 9/8). Das konforme Gewicht
+  ist keine native Energie Δ.
 * **V4 – Codex' Wörterbuch exakt bestätigt.** `LᵀL = N = S†S`; die sechs β_F sind
   `±L a_i` mit `a = (e₁, e₃, e₂+2e₃)`; `h_i = S a_i` ist orthonormal; v117:
   `M: h₁ → h₃ → h₂ → h₁`, `U: h₁ → −h₃, h₂ → h₂, h₃ → h₁`.
@@ -67,9 +73,12 @@ V1 ist eine Aussage über den nativen Modellraum, nicht über die gefaltete CAR-
 
 ## Nächste echte Quellenidentifikation
 
-Ein Operator der Quelle, der auf **einem** Bein des nativen (10,6)-Paars eine
-Familienclock einführt. Er müsste ein Element von su(4), U oder M sein, das nicht
-mit `WW† = 8 I` vertauscht. In den geprüften Contracts ist er nicht vorhanden.
-Kandidat im Bestand: die Deckwirkung U, die laut `source-three-route-closure` §3
-von gewöhnlicher Schleifenholonomie getrennt bleibt. Zu prüfen ist, ob die
-tatsächliche Kragenverklebung U auf genau ein Bein des Paars wirken lässt.
+**Korrektur:** Die Forderung „ein Operator, der nicht mit `WW† = 8I` vertauscht" war
+falsch formuliert: `WW†` ist skalar, jeder Endomorphismus des 60er-Ausgangs vertauscht
+damit. Auf identischen CAR-Moden gibt es außerdem keine Ein-Bein-Wirkung. Die
+richtige Frage ist die nach einem **familienabhängigen Relativtransport zwischen den
+zwei Zeitpunkten** der bilokalen Austauschstruktur. Das ursprüngliche
+Fold-Zeitgesetz liefert einen solchen nichtskalaren Familiengenerator δ_F:
+`../source-time-family-generator-20261014`. Für einen lokalen 3+1D-Weyl-Yukawa
+braucht es zusätzlich den Lorentz-Spin-/Austausch-Intertwiner; ein symmetrisches
+internes Y_C auf denselben zeitgleichen CAR-Moden kontrahiert zu null.
