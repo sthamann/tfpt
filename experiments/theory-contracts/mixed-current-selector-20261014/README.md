@@ -67,3 +67,12 @@ Nicht bewiesen: mikroskopische Herkunft des Stroms (`SEAM.SIMPLECURRENT.GENERATO
 `SEAM.MMST.TYPEIII.CHARGED.01` offen), die Vergleichsklasse selbst,
 Identifikation der Gluegraduierung mit der Clock `u` aus `v993`, P1-Normierung,
 Zustand, Zeit, 3+1D. Details: `PROOF.md`.
+
+## Nachtrag (14. Oktober 2026, nach externer Prüfung)
+
+Der oben vorgeschlagene Test (a)+(b) ist **unzureichend**: Ein neutraler Strom
+kann dieselbe skalare Paarantwort haben, und das Acht-Kopien-Modell mit
+eingesetzter 5+3-Aufteilung prüft bereits das gewählte d = 4-Ziel. Der bessere
+Identifikationstest ist die Ladungsantwort gegenüber den acht Cartan-Strömen
+(Befund `UR.SEAM.MIXED_CURRENT_ORIGIN.01`). Der Gittersatz M selbst bleibt
+unverändert. Fortsetzung zur Kanalzahl: `../moebius-clock-fold-20261014`.
