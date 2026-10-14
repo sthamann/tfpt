@@ -14,16 +14,20 @@ Bilinear-Wurzeln D8 der acht gefalteten Kanäle enthalten. Das sind genau
 1. **W1:** `q/2 ∈ E8_s`, `q/2 ∉ E8_c`. Eine orthogonale Gitterabbildung g mit
    `g(E8_c) = E8` und `g(q) = Q'` hätte `g(q/2) = Q'/2 ∈ E8`, also `q/2 ∈ E8_c`.
    Widerspruch. Die Ward-Markierung verlangt daher **E8_s**.
-2. **W2:** E8_s hat für jedes geprüfte α zwei Grundzustände; E8_c hat für
-   0 < α < 1 genau einen. Damit **erfüllt keine E8-Erweiterung der Quellenströme
+2. **W2:** In der fundamentalen Phasenbranche 0 ≤ α ≤ 1 hat E8_s genau zwei
+   Grundzustände; E8_c hat für 0 < α < 1 genau einen. Damit **erfüllt keine E8-Erweiterung der Quellenströme
    gleichzeitig Ward-Markierung und eindeutiges Vakuum.**
-3. **W3 – geschützt:** `K(p*) = 0` bleibt unter jeder Verdrillung mit der
-   Quellenladung, `δ → δ + ηq`, erhalten, weil `p*·q = 0`. Ursache ist
+3. **W3 – geschützt (präzisiert):** Unter `δ → δ + ηq` bleiben p* und das Vakuum
+   beide bei K = 0, weil `p*·q = 0`. Für allgemeines η können neue negative
+   Energien entstehen; dann ist das ursprüngliche Vakuum gar kein Grundzustand.
+   Korrekte Aussage: **Solange das ursprüngliche Vakuum erhalten und Grundzustand
+   ist, hebt keine gleichmäßige Verdrillung ηq seine Entartung mit p* auf.** Ursache ist
    `δ_{k+4} − δ_k = ½` für alle k, also die Beziehung zwischen den
    Deck-Partnerkanälen: `K(p*) = 1 − ½·Σ_{k<4}(δ_{k+4} − δ_k) = 1 − ½·4·½ = 0`.
-4. **W5 – nicht eichbar:** p* ist neutral und invariant unter Fold-Clock g, g²
-   und Deck g⁴, für jedes α. Eine Eichung von U(1), Clock oder Deck entfernt ihn
-   nicht.
+4. **W5 – Invariantenprojektion:** p* ist neutral und invariant unter Fold-Clock
+   g, g² und Deck g⁴, für jedes α. Die Projektion auf Invarianten genau dieser
+   U(1)-, Clock- und Deck-Gruppen entfernt ihn nicht. Das ist keine Aussage über
+   jedes mögliche Gauging.
 5. **W4 – Rückzug (Codex Punkt 4 bestätigt):** Eine geladene Randphase h wird auf
    dem zusammenhängenden Doppel zu h². Die Deck-Eigenräume tragen auf der Basis die
    Holonomien h und −h. Für h = ±i sind das die beiden Viertelphasen, nicht NS + R.
@@ -45,3 +49,14 @@ Nicht ausgeschlossen:
 Deutung: Die Quelle sitzt im zyklisch getwisteten Sektor der acht Kanäle, denn das
 ist die Herkunft der Spreizung k/8 von δ. Genau dort trägt E8_s einen geschützten,
 symmetrieinvarianten Nullzustand.
+
+## Nachtrag: anderer E8-Rahmen (Codex)
+
+Ein „trialitätsverwandter Rahmen" muss alle ursprünglichen D8-Bilineare und den
+gemeinsamen Stress transportieren. Erhält eine Isometrie U diese Ströme, so ist
+`U⁻¹Λ` wieder ein gerader unimodularer Überverband der ursprünglichen D8, also
+E8_s oder E8_c, und Satz N greift. Ein anderer Rahmen allein rettet deshalb nichts.
+Nur eine wirklich andere ursprüngliche Lokalität, Algebra oder Zeit mit expliziter
+Operatorabbildung ändert die Voraussetzungen. Die Formulierung „nicht
+ausgeschlossen: E8-Gitter ohne die gefaltete D8" oben ist in diesem Sinn zu lesen.
+Paketprüfung: `../packet-ward-lift-selection-20261014`.

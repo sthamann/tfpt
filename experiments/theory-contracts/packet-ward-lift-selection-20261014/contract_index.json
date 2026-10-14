@@ -1,0 +1,35 @@
+{
+  "contract": "packet-ward-lift-selection-20261014",
+  "date": "20261014",
+  "research_id": "UR.SOURCE.PACKET_WARD_LIFT_SELECTION.01",
+  "question": "Does the original carrier/family packet formula accept the source U(1) charge in the s- and c-frames, and does the Ward normalisation select the family lift?",
+  "summary_de": "Q'=2(e3+e6) ist 2*lambda_A des Minimalpakets m_A=(0,0,-1,-1). Mit der urspruenglichen Clutching-Richtung e_weak folgt aus q=k*lambda_m und |q|^2=8 zwingend k=2, m=m_A (Normminimum aus Ward-Normierung statt Zusatzvertrag); bei beliebigen Traegerrichtungen weitere Loesungen. Codex' c-Rahmen-Bild (-1,-1,2,0,0;1,-1,0) hat spurfreien Traeger und passt fuer kein m; benoetigte Zusatz-Familienwirkung (0,1,-1,0) wird von den Originalen nicht geliefert (SU(3)-Flavormonodromie hat Z3-Gewichte).",
+  "verdict": "PARTIAL",
+  "verdict_enum": ["PASS", "PARTIAL", "FAIL"],
+  "mathematical_verdict": "WARD_NORMALISATION_SELECTS_M_A_GIVEN_CLUTCHING_DIRECTION; C_FRAME_PACKET_MISMATCH; EXTRA_FAMILY_COCHARACTER_NOT_SUPPLIED",
+  "claims_tested": ["UR.SOURCE.JOINT_SPIN_FAMILY_LIFT.01", "UR.SEAM.V16_OPERATOR_PULLBACK.01", "UR.SEAM.WARD_CHIRALITY_VACUUM_NO_GO.01"],
+  "claims_scoped_not_closed": ["AX.P2.01", "SEAM.EQUIV.01"],
+  "gates": ["T1", "T2"],
+  "kills": [
+    "The c-frame image of the source charge satisfies the original packet formula for some lift m",
+    "The minimal lift m_A needs an independent norm-minimum contract once q = k lambda_m with the original clutching direction is granted"
+  ],
+  "checker": "checker.py",
+  "firewall": "experiments",
+  "promotion": false,
+  "complete_TFPT_solution": false,
+  "physical_gates_closed": [],
+  "assumptions": [
+    "Packet formula A_W = rho(A_E) x I4 + I16 x M_m tr A_E (original contract)",
+    "Ward identification q = k lambda_m with carrier part the original clutching direction e_weak",
+    "c-frame image supplied by Codex with the old exact matrix M"
+  ],
+  "not_derived": [
+    "The Ward identification q = k lambda_m from the seam",
+    "An independent family cocharacter (0,1,-1,0) from the original sources"
+  ],
+  "relations": [
+    {"target": "ward-chirality-vacuum-no-go-20261014", "type": "references"},
+    {"target": "chirality-ground-state-selector-20261014", "type": "references"}
+  ]
+}
