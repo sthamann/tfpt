@@ -12,8 +12,11 @@ und `2λ_A = Q' = 2(e₃+e₆)`. Codex' Ward-Wörterbuch ist damit genau das
 Minimalpaket.
 
 ## K2 [E] – Ward-Normierung wählt das Paket
-Sei der Trägeranteil die **ursprüngliche primitive Clutching-Richtung** e_weak
-(Norm 1, Spur 1; Klasse `(c₁(E₃), c₁(E₂)) = (0,1)`). Dann gilt
+Sei der Trägeranteil die primitive Clutching-Richtung e_weak (Norm 1, Spur 1).
+**Korrektur (Codex, archive02:1896–1924, 1938–1974):** Die Originalklasse legt nur
+`c₁(det E₂) = 1, c₁(det E₃) = 0` fest, nicht den Norm-1-Vektor: In E₂ haben (1,0)
+und (2,−1) dieselbe Determinantenwindung. `x = e_weak` und `q = kλ_m` sind daher
+ausdrückliche Zusatzidentifikationen, keine rohe Auswahl. Dann gilt
 `|λ_m|² = 1 + Σβ_j² = 2d` mit `d = ½Σm_j²`. Aus `q = k·λ_m` und `|q|² = 8`
 folgt `k²·2d = 8`, also `(k,d) ∈ {(2,1), (1,4)}`. `d = 4` hat keine Lösung mit
 `Σm = −2`: Vier Quadrate mit Summe 8 sind nur vom Typ (±2,±2,0,0), deren
@@ -33,7 +36,8 @@ Clutching-Richtung, nicht nur an der Paketformel.
 ## K3 [E] – Codex' c-Rahmen-Test bestätigt
 `R0 = diag(−1, 1⁷)` bildet `D8+c` auf `D8+s` ab. Das von Codex mit der alten exakten
 Matrix M transportierte Bild `(−1,−1,2,0,0; 1,−1,0)` hat Norm 8 und liegt in D8.
-Seine Hälfte liegt in keinem E8. Der Trägeranteil ist spurfrei (t = 0); nach der
+Seine Hälfte liegt in keinem der beiden deklarierten kanonischen Gitter E8_s,
+E8_c; beliebig gedrehte E8-Gitter sind damit nicht ausgeschlossen. Der Trägeranteil ist spurfrei (t = 0); nach der
 Paketformel muss der Familienanteil dann für **jedes** m verschwinden. Er ist aber
 `(1,−1,0) ≠ 0`. Damit passt das Bild für kein m.
 
@@ -59,3 +63,8 @@ halbzahlig. Er liegt in einem SU(3) ⊂ SU(4) (4 → 3+1).
 **Verdict.** Im c-Rahmen müsste eine Familienwirkung mit Kocharakter (0,1,−1,0)
 zusätzlich aus der Quelle kommen. Die Originale benennen mit der
 SU(3)-Flavormonodromie nur einen Kandidaten, dessen Daten ihn nicht liefern.
+
+
+## Nachtrag
+Der stärkere Test ohne die Norm-1-Identifikation steht in
+`../clock-charge-projection-test-20261014` (Projektionsnormen (6,2), Paketlemma).
