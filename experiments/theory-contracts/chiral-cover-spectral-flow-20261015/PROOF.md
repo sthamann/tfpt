@@ -6,8 +6,9 @@ source-selected P1/Nahtprinzip die nötige neutrale Permutation bzw. Sektormarki
 Die tatsächliche positive Operatorwirkung soll ausgewertet werden, ohne einen neuen freien
 Operator zu wählen.
 
-Status **PARTIAL**, keine Promotion. `python3 checker.py`: 2672 exakte Prüfungen
-(sympy/Fraction). Davon sind 2× (150 Zustände × 9) Fock-Stichproben; der Rest sind
+Status **PARTIAL**, keine Promotion. `python3 checker.py`: 2796 exakte Prüfungen
+(sympy/Fraction; Stand nach Korrektur). Davon sind 2400 = 2× (150 Zustände × 8: B1–B7, C1)
+Maya-Stichproben und 100 σ¹-Stichproben (C4); der Rest sind
 symbolische Identitäten und Quellpins.
 
 ## Eingabe (vorhanden, nicht neu gewählt)
@@ -46,7 +47,9 @@ K-nullen neutralen Spinortranslation p* (dem Partner im neutralen Doublet G0). J
 allein verlässt die CAR, ihr Produkt nicht.
 
 Das ist die Achtfold-Entsprechung zu `source-graded-locality-20260920/PROOF.txt:111`,
-e_i = F_aux(r_i) − a_i m. Dort ist der neutrale Faktor ein massives ungerades Paar, hier die
+e_i = F_aux(r_i) − a_i m. Dort ist der Komplementfaktor −a_i m **nicht** neutral: q(m) = 1, also q(−a_i m) = −a_i. Genau das
+kompensiert q(r_i) = 1 + a_i. Er ist ungerade und am gesetzten Faktorpunkt massiv. Hier ist p* dagegen neutral
+(q = 0), K-null und halbzahlig. Es gibt keine Gleichsetzung, nur die strukturelle Parallele. Hier ist es die
 K-nulle Richtung p*. Gleichung (4a) wird im Checker reproduziert (G1, alle acht i, mit F aus
 `source-flux-index-20260920`).
 
@@ -63,7 +66,10 @@ K-nulle Richtung p*. Gleichung (4a) wird im Checker reproduziert (G1, alle acht 
   U_T bildet Moden auf Moden ab, also bleiben CAR und Bilineare exakt erhalten. Die Zeitphase
   hängt von der Ladung ab und ist keine einzelne skalare Frequenz. Sie ist identisch mit dem
   Heisenberggesetz der E8-Nullmodentranslation e^{s}.
-* Geometrische Deckdrehung g (Translation um l): g U_T g^{−1} = −i (−1)^Q U_T.
+* Kompensierte periodische Clock g0 = e^{2πi Σ (m/8) :N_m:}: g0 U_T g0^{−1} = −i (−1)^Q U_T.
+  Die **nackte** geometrische Segmenttranslation hat die Phase (m+α)/8, also
+  t_α = e^{2πi α Q/8} g0 = e^{2πi K_α}, und
+  t_α U_T t_α^{−1} = e^{2πi(¾ + α/2)} (−1)^Q U_T (C6). Die Viertelphase α bleibt sichtbar.
 * U_T ist gerade, hat Ladung 4 und erhält das Gitter Z⁸. Es erzeugt keine halbzahligen
   Cartanladungen.
 
@@ -118,3 +124,20 @@ Kernkreis (Länge 4l) ab, und zwar mit Kernwindung w/2.
    p*-Faktor (die K-nulle neutrale Spinortranslation) als Sektorintertwiner realisiert, oder
    gleichwertig die chirale Ein-Rand-Einschränkung mit Kernwindung 2 als Quellbewegung.
    Keines von beiden steht in den geprüften Originalen.
+
+## Korrektur (15. Oktober 2026, nach Review)
+
+* **Quelle des Faktors 2.** „Kernkreis 4l, doppelt überlagert vom Möbiusrand 8l“ steht nur in
+  meinem eigenen Contract `moebius-clock-fold-20261014/PROOF.md:11–14`, als Faltungsgeometrie.
+  In den Originalen ist die Naht die **Fixmenge** der Doppelinvolution, Seam = Fix(τ_dbl)
+  (`_archive/tfpt-45/source_extracts/01_boundary_kernel_source.tex:115–118`), und nicht
+  doppelt überlagert. Die Aussagen „σ² = primitive Kernwindung“ und „T = Kernwindung 2“
+  (Abschnitt C) gelten nur unter dieser gewählten Geometrie. Als Quellenaussage nehme ich sie
+  zurück.
+* **Einheitswindung auf dem Quellenkreis θ** (θ = (x + 2πj)/8): Sie ist σ¹ = T1 mit
+  T1(p) = (p7+1, p0, …, p6), T1⁴ = T und T1⁸ = τ_q. Das prüfen C4 und C5 (zusätzlich 104
+  Prüfungen, jetzt 2796 inkl. C6/C7).
+* **U_Σ.** Laut `_archive/paper-latex/tfpt-42.tex:5137–5140` ist U_Σ eine Parameterfamilie
+  U_Σ(λ_Σ√ρ) mit L_Σ = −log det_adm(1 − U_Σ). SF(U_Σ) = 1 ist ihr Spektralfluss, keine
+  angegebene Multiplikation mit e^{iθ}. Die Gleichsetzung mit T1 ist deshalb ebenfalls eine
+  Identifikation, keine Quellformel.

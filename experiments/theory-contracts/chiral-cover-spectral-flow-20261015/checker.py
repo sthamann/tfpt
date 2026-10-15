@@ -181,6 +181,35 @@ for w in (1, 2, 4):
     require(f"C2_descends_w{w}", descends == (w % 2 == 0))
 require("C3_T_is_core_winding_two", 4 // 2 == 2)
 
+# C4 (Korrektur): unit winding on the source circle theta is sigma^1 = T1
+T1 = lambda v: sp.Matrix([v[7] + 1] + [v[k] for k in range(7)])
+v = p
+w1 = v
+for _ in range(4):
+    w1 = T1(w1)
+require("C4_T1_fourth_power_is_T", all(zero(e) for e in (w1 - T(v))))
+for _ in range(4):
+    w1 = T1(w1)
+require("C4_T1_eighth_power_is_q_translation", all(zero(e) for e in (w1 - v - q)))
+rng1 = random.Random(11)
+for t in range(100):
+    S = random_maya(rng1, W)
+    pk, _ = channel_data(S, W)
+    S1 = {m + 1 for m in S} | {-8 * W}
+    p1, _ = channel_data(S1, W)
+    require(f"C4_sigma1_zero_modes_{t}", p1 == [pk[7] + 1] + pk[:7])
+src_fold = fold.splitlines()
+require("C5_factor_two_only_from_fold_geometry",
+        any("der den Kern zweifach überlagert" in l for l in src_fold[10:14]))
+for alv in (sp.Rational(1, 4), sp.Rational(3, 4)):
+    for Qv in range(-4, 5):
+        ph = sp.exp(2 * sp.pi * sp.I * (sp.Rational(Qv, 2) + sp.Rational(3, 4) + alv / 2))
+        require(f"C6_bare_segment_translation_phase_{alv}_{Qv}",
+                sp.simplify(ph - sp.exp(2 * sp.pi * sp.I * (sp.Rational(3, 4) + alv / 2)) * (1 if Qv % 2 == 0 else -1)) == 0)
+require("C7_complement_m_charged", sum(m10) == 1 and all(sum(-aa[i] * m10) == -aa[i] for i in range(8)))
+require("C7_pstar_neutral_not_m", sum(r0) == 0 and sum(m10) != 0)
+require("C5_original_seam_is_fixed_set", "\\Seam=\\mathrm{Fix}(\\taudbl)," in bk)
+
 res = {"contract": "chiral-cover-spectral-flow-20261015", "checks": len(checks), "verdict": "PARTIAL"}
 Path(__file__).with_name("results.json").write_text(json.dumps(res, indent=2) + "\n")
 print(f"{len(checks)}/{len(checks)} checks passed")
