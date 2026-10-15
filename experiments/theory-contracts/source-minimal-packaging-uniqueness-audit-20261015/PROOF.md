@@ -124,6 +124,12 @@ a_Σ := arg det_adm U_Σ, whose canonical winding is inherited from the unit bou
 the seam class.“ Der Satz behauptet eine Abbildung von (2) auf eine Windung von arg det. Er gibt
 dafür weder die Familie noch den unitären Repräsentanten an.
 
+**Nachtrag:** Ein unitärer Repräsentant **ist** angegeben, und zwar in
+`technical_companion_source.tex:1438–1446`: U_Seam(θ) = e^{iθ}, SF(U_Seam) = 1, Δ = 2π, „the spin
+lift closes only after 4π“. Er ist der K¹-Erzeuger auf dem Nahtkreis. Nicht angegeben ist, auf
+welchem Objekt B ∈ SBord^adm, also mit welchem D_+ und welchem Hilbertraum, dieser Loop wirkt
+und welche selbstadjungierte Familie seinen SF trägt.
+
 **Befund (nur für die geprüften Stellen, keine globale Nichtexistenzaussage):** Die Originale
 liefern dort keinen zulässigen SF = 1-Zeugen, also kein Objekt aus SBord^adm (01:630–643) mit
 angegebener Familie und SF = 1. Die primitive Aussage tfpt-42.tex:2346–2353 wird behauptet,

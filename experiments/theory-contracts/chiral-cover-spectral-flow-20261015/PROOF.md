@@ -6,7 +6,7 @@ source-selected P1/Nahtprinzip die nötige neutrale Permutation bzw. Sektormarki
 Die tatsächliche positive Operatorwirkung soll ausgewertet werden, ohne einen neuen freien
 Operator zu wählen.
 
-Status **PARTIAL**, keine Promotion. `python3 checker.py`: 3503 exakte Prüfungen
+Status **PARTIAL**, keine Promotion. `python3 checker.py`: 3549 exakte Prüfungen
 (sympy/Fraction; Stand nach Korrektur). Davon sind 2400 = 2× (150 Zustände × 8: B1–B7, C1)
 Maya-Stichproben und 100 σ¹-Stichproben (C4); der Rest sind
 symbolische Identitäten und Quellpins.
@@ -200,9 +200,10 @@ Die Phasen sind ganzzahlig ±1. Oszillatoren werden nur permutiert und tragen ke
   e^{2πi ν·r0} = 1, mit ν·r0 = −1. Die Viertelphase bleibt also erhalten.
 
 **Bedeutung von κ:** Beide Wahlen stimmen auf D8 überein. Sie unterscheiden sich um den Torusfaktor
-Ω = e^{2πi e1·H0}, der auf D8 gleich +1 und auf D8+s gleich −1 ist. κ ist damit ein binäres Datum
-**der Sektorerweiterung**. Die D8-Daten legen es nicht fest, und die Identifikation W4 ∝ U_s R auf
-D8 sieht es nicht. P1 wählt es in den geprüften Stellen nicht aus.
+Ω = e^{2πi e1·H0}, der auf D8 gleich +1 und auf D8+s gleich −1 ist. κ ist damit zunächst eine
+**Fortsetzungsambiguität** der Sektorerweiterung, kein nachgewiesenes physikalisches freies Bit.
+Die D8-Daten legen sie nicht fest, und die Identifikation W4 ∝ U_s R auf D8 sieht sie nicht.
+Siehe F.
 
 **Grenzen:**
 
@@ -211,3 +212,51 @@ D8 sieht es nicht. P1 wählt es in den geprüften Stellen nicht aus.
   gewöhnlich lokale E8-plus-Vektoralgebra gibt es nicht.
 * R_c ist nicht automatisch der frühere Tits-R. Beide können sich um einen Torus- bzw. Kleinfaktor
   unterscheiden.
+
+## F – Was macht κ sichtbar? (lokale Konvention PROOF §21: κ = −1, U_s = −X)
+
+Die positive gerade Faktorisierung bleibt unverändert: R_c² = I und U_s R_c = +W4 exakt auf D8.
+Es gibt keine Gleichsetzung mit dem früheren Tits-R, keine lokale oddCAR/E8-Identität und keine
+P1-Auswahl. Exakt geprüft (F0–F7):
+
+* **F0:** W4² = (−1)^Q E_q auf der ganzen CAR, also W4² = E_q auf D8. Das ist ein fester
+  CAR-Operator.
+* **F1:** R_c(κ=−1) = R_c(κ=+1) · Ω mit Ω = e^{2πi e1·H0}, einem Toruselement.
+* **F5/F6 (blind):** Alle diagonalen Strukturen sind κ-blind, nämlich K, Q, die
+  Viertel-/g_j-Charaktere, t_α = e^{2πiK} und Ω selbst. Ebenso die Konjugation der D8-Ströme und
+  jede W4-Relation auf D8, denn dort wird R nur auf D8-Zuständen ausgewertet. R antikommutiert für
+  beide κ mit Ω.
+* **F2–F4 (die Invariante):** In jedem Paket, das durch **R² = I** und **U_s R = W4 auf D8**
+  normiert ist, gilt:
+
+      U_s² = κ · E_q,        R U_s = κ · U_s R.
+
+  Für κ = −1 ist das Paket (R_c(−), −X), für κ = +1 ist es (iR_c(+), iX). Die beiden Klassen gehen
+  nicht durch Umphasung ineinander über. Aus U_s → λU_s und R → λ⁻¹R folgt mit R² = I, dass
+  λ² = 1 ist.
+
+**Bedeutung:** κ ist genau das Austauschvorzeichen zwischen dem neutralen Lift R und dem
+Spinortransport U_s. Gleichwertig ist es das Vorzeichen von U_s² gegenüber dem festen
+CAR-Operator E_q. Auf Ladungsebene kommutieren die affinen Faktoren (ρτ_s = τ_s ρ); ihr Lift
+kommutiert nur für κ = +1. Unter den drei Normierungen R² = I, U_s² = −E_q und [R, U_s] = 0
+sind bei U_s R = W4 und W4² = E_q höchstens zwei gleichzeitig erfüllbar. Die Konvention §21 wählt
+die ersten beiden.
+
+**Quellenlage (F7 und Originale):**
+
+* `technical_companion_source.tex:1438–1446`: U_Seam(θ) = e^{iθ}, SF = 1, „the spin lift closes
+  only after 4π“.
+* `02_carrier_source.tex:1563–1570`: Spinlift von τ_dbl auf der orientierten Normalenebene, mit
+  Viertelumdrehungen pro Ecke.
+* `half-twist-grade-carry/README.md:111–114`: U_s² = −U_{2s}, dort ausdrücklich
+  konventionsabhängig.
+
+Keine dieser Stellen legt U_s² gegenüber E_q oder das Austauschvorzeichen R U_s R⁻¹ U_s⁻¹ fest. R
+ist eine interne Wirkung (P ∈ W(D8)), nicht der Spinlift von τ_dbl. Eine wörtliche Gleichsetzung
+verbietet 01:172–180. Wäre R der Spinlift einer π-Drehung der Normalenebene, so folgte R² = −1
+(Schluss erst nach 4π). Diese Identifikation ist aber nicht gegeben.
+
+**Offene Ursprungsfrage:** Gesucht ist eine Quellrelation, die das Austauschvorzeichen zwischen
+dem spinstrukturtransportierenden Operator und dem Spinortransport festlegt, oder gleichwertig
+U_s² gegenüber dem CAR-Operator E_q. Sie müsste an die ursprüngliche Algebra und Zeit gekoppelt
+sein. Nur damit würden die beiden Lifts identifiziert, ausgewählt oder physisch unterschieden.

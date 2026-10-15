@@ -315,6 +315,32 @@ for kappa in (1, -1):
 require("E8_K_rho_invariant_symbolic", zero(K(Pm * p + r0) - K(p)))
 require("E8_g_character_constant", zero(sum(((k + j) / 8) * r0[k] for k in range(8)) + 1))
 
+# F: which relations see kappa?  (Codex convention PROOF 21: kappa=-1, U_s=-X)
+def _scal(c, op):
+    return lambda st: (c * op(st)[0], op(st)[1])
+_Om = lambda st: ((-1) ** st[0], st)                       # +1 on D8, -1 on D8+s
+_Rm = _comp(_ZaL, _X, _Ed(_neg(_Pa)), _Ph(-1))           # kappa = -1
+_Rp = _comp(_ZaL, _X, _Ed(_neg(_Pa)), _Ph(1))            # kappa = +1
+_D8L = [(0, n) for n in _D8s]
+_W4L = lambda st: (_W4(st[1])[0], (0, _W4(st[1])[1]))
+_EqL = _Ed(_q)
+require("F0_W4_squared_is_(-1)^Q_Eq_on_CAR", all(_comp(_W4, _W4)(n) == ((-1) ** (sum(n) % 2) * _EZ(_q)(n)[0], _EZ(_q)(n)[1]) for n in _Z8))
+require("F1_kappa_flip_is_torus_Omega", _same(_Rm, _comp(_Rp, _Om), _Ls) == 1)
+packages = {-1: (_Rm, _scal(-1, _X)), 1: (_scal(1j, _Rp), _scal(1j, _X))}
+for kappa, (R, Us) in packages.items():
+    require(f"F2_R_squared_I_k{kappa}", _same(_comp(R, R), lambda st: (1, st), _Ls) == 1)
+    require(f"F2_UsR_equals_W4_on_D8_k{kappa}", _same(_comp(Us, R), _W4L, _D8L) == 1)
+    require(f"F3_Us_squared_is_kappa_Eq_k{kappa}", _same(_comp(Us, Us), _EqL, _Ls) == kappa)
+    require(f"F4_exchange_R_Us_is_kappa_k{kappa}", _same(_comp(R, Us), _comp(Us, R), _Ls) == kappa)
+    require(f"F5_R_anticommutes_Omega_k{kappa}", _same(_comp(R, _Om), _comp(_Om, R), _Ls) == -1)
+    for d in _roots[:16]:
+        require(f"F6_diagonal_and_D8_blind_k{kappa}_{d}",
+                _same(_comp(R, _Ed(d)), _comp(_Ed(_Pt(d)), R), _Ls) == _same(_comp(packages[-1][0], _Ed(d)), _comp(_Ed(_Pt(d)), packages[-1][0]), _Ls))
+tc = (ROOT / "_archive/tfpt-45/source_extracts/technical_companion_source.tex").read_text()
+require("F7_source_unitary_seam_loop", "U_{\\Seam}(\\theta)=e^{i\\theta}," in tc and "Because the spin lift closes only after $4\\pi$" in tc)
+htg = (ROOT / "experiments/theory-contracts/half-twist-grade-carry/README.md").read_text()
+require("F7_prior_Us_square_convention_dependent", "U_s^2=-U_{2s}" in htg and "The minus sign in the square is convention-dependent" in htg)
+
 res = {"contract": "chiral-cover-spectral-flow-20261015", "checks": len(checks), "verdict": "PARTIAL"}
 Path(__file__).with_name("results.json").write_text(json.dumps(res, indent=2) + "\n")
 print(f"{len(checks)}/{len(checks)} checks passed")

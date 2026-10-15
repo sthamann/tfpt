@@ -1,6 +1,6 @@
 # Vier-Moden-Spektralfluss des chiralen Möbius-Cover-Fermions (15. Oktober 2026)
 
-Status: **PARTIAL**, keine Promotion. `python3 checker.py`: 3503 exakte Prüfungen. **Korrektur:** „T = Kernwindung 2“ gilt nur in der Faltungsgeometrie aus moebius-clock-fold:11–14, nicht in den Originalen (Seam = Fix τ_dbl). Auf dem Quellenkreis θ gilt T = T1⁴.
+Status: **PARTIAL**, keine Promotion. `python3 checker.py`: 3549 exakte Prüfungen. **Korrektur:** „T = Kernwindung 2“ gilt nur in der Faltungsgeometrie aus moebius-clock-fold:11–14, nicht in den Originalen (Seam = Fix τ_dbl). Auf dem Quellenkreis θ gilt T = T1⁴.
 
 * Codex' T(p) = Pp + a ist reproduziert, und zwar symbolisch in α und j: q+4, T² = +q,
   ΔK = q/2 + ¾ + α/2 = E8-Translation, Charakter r0·p − 1, K(a) = K(s) = 7/8 bzw. 9/8.
@@ -24,5 +24,8 @@ Identität ist nur auf D8 typisiert.
 
 **E (15.10.):** Codex' gemeinsame Liftkonstruktion ist exakt bestätigt: W4 = Z_a E_a P_CAR ist
 vorzeichenfrei, R_c wirkt als ρ, und U_s R_c = −W4 auf D8. Präzisierung: R_c² = −κ·I, also
-κ = −1 → Involution, κ = +1 → R = iR_c. κ ist ein freies binäres Datum der Sektorerweiterung,
-das auf D8 unsichtbar ist.
+κ = −1 → Involution, κ = +1 → R = iR_c. κ ist zunächst eine Fortsetzungsambiguität, auf D8 unsichtbar.
+
+**F (15.10., Konvention §21: κ = −1, U_s = −X):** Diagonale Strukturen und alle D8/W4-Relationen
+sind κ-blind (R(−) = R(+)·Ω). Invariante in normierten Paketen (R² = I, U_s R = W4 auf D8):
+U_s² = κ·E_q und R U_s = κ·U_s R. Die geprüften Quellen legen dieses Austauschvorzeichen nicht fest.

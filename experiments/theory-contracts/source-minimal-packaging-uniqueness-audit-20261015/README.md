@@ -17,8 +17,8 @@ Status **PARTIAL**, keine Promotion. `python3 checker.py`: 24 Stellenpins, keine
   Minimalität. Die Quelle räumt das ein (04_qft:2103–2109).
 * **U5 (korrigiert):** Getrennt werden der positive Transferoperator U_Σ (06:16–25), der unitäre
   K¹-Repräsentant u_Σ und eine spektralflusstragende Familie (nicht angegeben). Ohne Familie ist
-  SF dort nicht definiert. Einzige Verbindung: tfpt-42:7248–7253, Windung von arg det_adm U_Σ,
-  ohne Familie. An den geprüften Stellen wird kein zulässiger SF = 1-Zeuge geliefert; das ist
+  SF dort nicht definiert. Verbindung: tfpt-42:7248–7253, Windung von arg det_adm U_Σ, ohne Familie.
+  Unitärer Repräsentant U_Seam(θ) = e^{iθ} in technical_companion:1438–1446; sein Träger B fehlt. An den geprüften Stellen wird kein zulässiger SF = 1-Zeuge geliefert; das ist
   keine globale Nichtexistenzaussage.
 * **Vorbestand:** source-three-route-closure SELECTION.md (bedingt K/G) und
   source-boundary-lift-selection §1/§3 (Nullordnung, Domäne, Kato–Rellich-Reparatur).
