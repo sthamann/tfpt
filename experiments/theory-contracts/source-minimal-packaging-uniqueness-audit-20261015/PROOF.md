@@ -56,26 +56,78 @@ U1.
 Für C_seed steht nur eine „Proof architecture“ (01:516–521). Dass der Funktor dieses Stratum
 erreicht, ist dort nicht gezeigt.
 
-## U3 – Was die Minimierung typmäßig liefern kann
+## U3 – Welche natürlichen Abbildungen vorhanden sind und welche fehlen (enger gefasst)
 
-* **Codomäne:** Objekte von SBord^adm sind (A_+, H_+, D_+, J, Γ) (01:630–643). Die Ausgabe des
-  Funktors ist T_∂(S) = (A_+, H_+, D_+, J, Γ, B_Σ) (01:505–512). Das lokale Netz A_loc, die
-  Zeit τ_t und der Zustand ω kommen darin nicht vor.
-* **Defekte:** Die vier Koordinaten (01:545–558) sind |SF|, wesentlicher endlicher Rang,
-  Determinantengrad und reduzierte Randnullität. Im Quellkern gibt es keine DHR-,
-  Superauswahl-, Orbifold- oder Twisted-Sector-Daten (Pins U3).
-* **Typlücke im Funktorbeweis:** H_+ wird als OS-Raum aus dem positiven Netz rekonstruiert
-  (01:516–521). Verlangt ist dagegen ein elliptischer Dirac-Operator auf einem einseitigen
-  Kragen (01:630–643) mit kommutativem Zentrum, dessen Gelfand-Spektrum eine Mannigfaltigkeit
-  ist (01:66–80). Die Abbildung vom OS-Vielteilchenraum auf diese Spektraltripeldaten ist nicht
-  angegeben.
+Ein fehlender eigener Slot im Ausgabetupel beweist **nicht**, dass Sektoren oder Zeit in
+(A_+, H_+, D_+, J, Γ) nicht kodiert sein können. Die frühere Formulierung („liegt nicht im
+Wertebereich“) ist zurückgenommen. Konkret:
 
-**Folgerung (Typaussage, kein Nicht-Eindeutigkeitssatz):** Selbst eine bewiesene Eindeutigkeit
-von B_min bestimmt nur ein einseitiges Randdatum. Eine Sektorerweiterung D8 → D8 ∪ (D8+s) und ein
-Operator, der sie konsumiert, liegen nicht im Wertebereich dieser Minimierung. Sie könnten nur
-aus A_loc selbst kommen, also aus einer Seed-Eingabe, und zwar über eine Transportabbildung,
-die C_seed nicht angibt. Ob Seeds mit verschiedener Sektorstruktur verschiedene Defektvektoren
-haben, bleibt offen, weil C_seed nicht explizit ist.
+* **Vorhanden (Architektur, Standardmathematik):** Die OS-Rekonstruktion bildet
+  (A_loc, Θ, ω) auf den OS-Raum H_+ und die Transfersemigruppe T_s = e^{−sH} ab (01:516–521).
+  Damit ist die Zeit τ_t über T_s in H_+ kodierbar.
+  Zu den Sektoren: Nach Doplicher–Haag–Roberts kodiert ein Vakuumnetz seine lokalisierten
+  Sektoren selbst. Ein Sektorinhalt könnte also über das Netz in die Ausgabe gelangen.
+* **Fehlend 1 – Generatorabbildung (G):** T_s ↦ D_+ bzw. D_coll ist im Original nicht
+  angegeben. Dass D_coll auf demselben Raum H_+ wirkt, wird ebenfalls nicht gesagt. Der Vorgänger
+  `source-three-route-closure-20260922/SELECTION.md` führt das als (G).
+* **Fehlend 2 – Netz zu Algebra:** Eine Abbildung A_loc ↦ A_+ fehlt. Sie müsste die
+  Lokalisierungsstruktur erhalten, und A_+ hat ein kommutatives Zentrum mit Gelfand-Spektrum M_+
+  (01:66–80). DHR braucht das Netz, nicht eine einzelne Algebra.
+  Ein einzelnes lokales von-Neumann-Algebra-Objekt legt die Sektoren nicht fest: Verschiedene
+  Netze haben dieselbe hyperfinite Typ-III₁-Lokalalgebra, vgl.
+  `articles/2026-08-30/mmst_charged_scaling_limit_en.tex` (L4).
+  Ob A_+ die Netzstruktur mitführt, sagt die Definition 01:630–643 nicht.
+
+Folgerung: Ob die Minimierung eine Sektorerweiterung D8 → D8 ∪ (D8+s) samt konsumierendem
+Operator auswählt, ist weder gezeigt noch ausgeschlossen. Es hängt an den beiden fehlenden
+Abbildungen. Unabhängig davon besteht die Typlücke zwischen OS-Vielteilchenraum H_+ und den
+Dirac-Kragendaten (01:630–643).
+
+## U4 – Physical operationality verlangt keine Minimalität
+
+Das Axiom 01:622–625 sagt nur: „The physically realized world is represented by an object of
+Seed_op.“ Daraus und aus der Wohlfundiertheit folgt, dass ein defektminimales Seed existiert.
+Es folgt nicht, dass die physikalische Welt dieses Seed ist.
+
+Die Quelle räumt das selbst ein. `04_qft_source.tex:2103–2109` („Primitive honesty“): Bewiesen
+sei der Übergang „from a minimal operational seed“, und es werde „internal rigidity before
+ultimate primitive minimality“ etabliert. Physikalische Minimalität ist also eine zusätzliche,
+nicht als Axiom formulierte Prämisse.
+
+Nebenbefund: Die Orientierungsfassung `00_orientation_source.tex:251` nennt Eckenzahl und
+Kerndimension als Koordinaten. 01:562–567 nimmt die Eckenzahl ausdrücklich heraus. Das ist ein
+Versionsunterschied, kein neuer Einwand.
+
+## U5 – Gibt es SF = 1 in derselben Zulässigkeitsklasse?
+
+Der Beweis 01:672–675 schließt aus der Nichtleere der Menge positiver Werte: „hence the minimal
+positive value is |SF| = 1“. Dafür braucht es einen Zeugen mit SF = 1 in der Klasse.
+
+* **Was U_Σ in den Originalen explizit ist:**
+  - `06_cosmology_source.tex:16–25` (= tfpt-42.tex:9758–9760): U_Σ := P_adm e^{−ℓ|B_Σ|} P_adm,
+    positiv und spurklasse, mit 0 < U_Σ < P_adm;
+  - `03_em_flavor_source.tex:94–100`: U_Σ^min := |ψ_Σ⟩⟨ψ_Σ|, ein Rang-1-Projektor;
+  - `05_metrology_source.tex:1390–1393`: eine Skalenfamilie in −log det_adm(1 − U_Σ).
+
+  Keines davon ist ein Unitärloop. Für jeden normstetigen Weg mit 0 < U < P_adm kreuzt kein
+  Eigenwert die Niveaus 0 oder 1. Der Spektralfluss durch diese Niveaus ist deshalb null.
+  Diese Objekte können SF(U_Σ) = 1 nicht tragen.
+* **Das Objekt mit SF = 1** ([u_Σ] ∈ K¹(S¹), tfpt-42.tex:2323–2353) wird nur behauptet:
+  „Along a single positive seam circuit the spectral flow changes by one“. Konstruiert wird es
+  nicht. Die Definition von SBord^adm (01:630–643) sagt nicht, wie U_Σ aus dem Tupel B entsteht.
+  Im Seed ist [u_Σ] ein eigener Eintrag, ohne Kopplung an die Bedingungen (i), (ii) und (iv)
+  (01:486–495).
+* **Vorhandene Zeugen außerhalb der Klasse:** `verification/v991_detline_bulk_edge.py:3–25`
+  (v367-QWZ-Kragen) gibt Kantenzweig unten SF = +1, oben −1 über die Verdrillungsschleife und
+  Chern +1. Das ist ein endlicher Gitterschatten. Er ist kein elliptischer Dirac-Kragen nach
+  01:630–643, und Reflexionspositivität sowie relative Wirkung sind dort nicht geprüft.
+  Standardmathematisch hat −i∂_θ + t auf S¹, t ∈ [0, 1], SF = 1; das ist nicht in der Quelle und
+  nicht gegen (ii) und (iii) geprüft.
+
+**Ergebnis:** Eine primitive SF = 1-Konstruktion **innerhalb** der Zulässigkeitsklasse liegt
+weder im Original noch in vorhandenen Resultaten vor. Zusätzlich fehlt im Original die
+Zuordnung B ↦ U_Σ(B) als Unitärloop. Auch die Werte von d_1, d_2 und d_3 auf dem minimalen
+Stratum sind in den Auszügen nur definiert (01:545–558), nicht berechnet.
 
 ## Erste nicht gegebene Quellaussage
 
@@ -86,5 +138,5 @@ Benötigt wird eines von beiden:
 2. ein zulässiges minimales Gegenpaar mit geprüfter Reflexionspositivität, SF, Rang,
    Determinantengrad, Nullität und relativer Wirkung.
 
-Für die Sektorfrage braucht es zusätzlich eine Transportabbildung von A_loc in die gewählte
-Ausgabe. In den geprüften Originalen steht keines davon.
+Für die Sektorfrage braucht es zusätzlich die Abbildungen (G) und A_loc ↦ A_+ samt Netzstruktur.
+Für d_0 braucht es die Zuordnung B ↦ U_Σ(B) als Unitärloop samt einem zulässigen SF = 1-Zeugen. In den geprüften Originalen steht keines davon.
