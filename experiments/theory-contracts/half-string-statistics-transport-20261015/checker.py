@@ -117,6 +117,53 @@ for r in range(4):
     R = Hr2 @ D - D @ Hr
     require(f"H2_fock_time_identity_{r}", np.allclose(Gam @ dGamma(Hr) @ Gam, dGamma(Hr2) - dGamma(R @ D)))
 
+
+# ---- Korrektur 2026-10-15 (Wilson): D is a gauge relocation, not a sector change ----
+def row_holonomy(h, Nx, Ny, y):
+    ph = 1.0 + 0j
+    for x in range(Nx):
+        i, j = 2 * (x * Ny + y), 2 * (((x + 1) % Nx) * Ny + y)
+        ph *= h[j:j + 2, i:i + 2][0, 0] / TX[0, 0]
+    return ph
+for Nx_, Ny_, a_ in ((6, 2, 2), (8, 4, 3), (10, 8, 4)):
+    D_ = Dmat(Nx_, Ny_, a_)
+    for r in range(4):
+        Hr_ = qwz_cylinder(Nx_, Ny_, 1.0, r)
+        Hc = D_ @ Hr_ @ D_
+        require(f"W1_loop_holonomy_kept_i^r_{Nx_}_{Ny_}_{r}",
+                all(np.isclose(row_holonomy(Hc, Nx_, Ny_, y), 1j ** r) for y in range(Ny_)))
+        require(f"W2_spectrum_equals_H_r_{Nx_}_{Ny_}_{r}",
+                np.allclose(np.linalg.eigvalsh(Hc), np.linalg.eigvalsh(Hr_)))
+        Hr2_ = qwz_cylinder(Nx_, Ny_, 1.0, (r + 2) % 4)
+        same = np.allclose(np.linalg.eigvalsh(Hc), np.linalg.eigvalsh(Hr2_))
+        # r even: H_r and H_{r+2} differ spectrally; r odd: H_1, H_3 are isospectral
+        # (holonomy i vs -i), so only the holonomy W1 separates them.
+        require(f"W3_spectral_status_{Nx_}_{Ny_}_{r}", (not same) if r % 2 == 0 else same)
+# quarter string S = exp(i pi N_arc / 2) on the small Fock space (prior: v1033 sharp_arc_phase)
+Sg = V @ np.diag(np.exp(1j * np.pi * np.round(w) / 2)) @ V.conj().T
+Qtot = sum(c[k].conj().T @ c[k] for k in range(n))
+wq, Vq = np.linalg.eigh(Qtot)
+Pf = Vq @ np.diag((-1.0) ** np.round(wq)) @ Vq.conj().T
+require("S1_commutes_total_charge", np.allclose(Qtot @ Sg, Sg @ Qtot))
+require("S2_even", np.allclose(Pf @ Sg, Sg @ Pf))
+require("S3_D_is_S_squared", np.allclose(Sg @ Sg, Gam))
+for k in range(n):
+    ph_k = -1j if k in arc else 1.0
+    require(f"S4_CAR_word_preserved_{k}", np.allclose(Sg @ c[k] @ Sg.conj().T, ph_k * c[k]))
+for r in range(4):
+    Hf = dGamma(qwz_cylinder(Nx, Ny, 1.0, r))
+    Cm = Hf @ Sg - Sg @ Hf
+    om = np.trace(Sg.conj().T @ Cm) / np.trace(Sg.conj().T @ Sg)
+    resid = np.linalg.norm(Cm - om * Sg, 2)
+    require(f"S5_no_scalar_frequency_{r}", resid > 0.1 * np.linalg.norm(Cm, 2) and np.linalg.norm(Cm, 2) > 0.1)
+    Jint = Cm @ Sg.conj().T          # = dGamma(H_r - S H_r S^dag): one-body interface current
+    hs = qwz_cylinder(Nx, Ny, 1.0, r)
+    Sone = np.diag([(1j if D[k, k].real < 0 else 1.0) for k in range(n)])
+    hint = hs - Sone @ hs @ Sone.conj().T
+    require(f"S6_interface_current_one_body_{r}", np.allclose(Jint, dGamma(hint)))
+    nzb = {frozenset({site_x(i, Ny), site_x(j, Ny)}) for i, j in np.argwhere(np.abs(hint) > 1e-12)}
+    require(f"S6_interface_support_both_arc_ends_{r}", nzb == {frozenset({Nx - 1, 0}), frozenset({a, a + 1})})
+
 results = {"contract": "half-string-statistics-transport-20261015", "checks": len(checks), "verdict": "PARTIAL"}
 Path(__file__).with_name("results.json").write_text(json.dumps(results, indent=2) + "\n")
 print(f"{len(checks)}/{len(checks)} checks passed")

@@ -79,3 +79,36 @@ Ein Spinorfeld der Ladung s verlangt zusätzlich den Carry U_s; nur so ist
   gegebenen D_coll induziert, ohne Formel für einen Sektorwechsel.
 * **Offen:** der bulkkorrigierte Halbstring mit Carry (siehe oben). Ohne ihn ist Γ ein
   Sektorwechsel mit richtiger Statistik, aber kein Feld endlicher Energie.
+
+## Korrektur (15. Oktober 2026, Wilson-Holonomie; bestätigt durch unabhängige Review)
+
+Die Lesart von H1 als Sektorwechsel und von H3 als Monodromieidentität wird
+zurückgenommen. Was die Prüfungen W1–W3 und S1–S6 (`checker.py`, jetzt 201 Prüfungen) zeigen:
+
+* **W1/W2 – Eichverlagerung.** `D H_r D` ist unitär äquivalent zu `H_r`. Jede
+  Zeilenschleife hat weiterhin die Holonomie `i^r`: Die Naht trägt `i^{r+2}`, die Bindung
+  a → a+1 trägt −1. `R` ist genau dieser Kompensator. Es gibt keinen Wechsel r → r+2 und
+  keine Verbindung α = ¼ ↔ ¾. Eine onsite-skalare Materieeichung ändert die Holonomie
+  nicht; das stand schon in `verification/v1033_charged_disorder.py` („matter-only onsite
+  gauge preserves total QWZ holonomy“) und im Round-7-Absatz von
+  `articles/2026-08-30/mmst_charged_scaling_limit_en.tex:1882–1885`.
+* **W3.** Für gerades r unterscheiden sich die Spektren von `H_r` und `H_{r+2}`. `H_1` und
+  `H_3` sind isospektral, dort trennt nur W1.
+* **H3** prüfte nur das Vorzeichen von Γ auf Bogenfermionen und `exp(iπ) = −1`. Das ist
+  keine geprüfte D8-Monodromieidentität. Der bekannte v/s-Befund `exp(2πi e1·s) = −1`
+  steht bereits in `charged-source-time-audit-20260920/PROOF.txt` §2 und
+  `source-graded-locality-20260920/PROOF.txt` (3). Er wird hier nicht als neu gezählt.
+* **Vorgänger.** Die Viertelversion (scharfe Bogenphase i, Endpunktresiduum mit Rang 2N_y
+  und Norm √2) samt Z4-Flussregister steht in `v1033` (`sharp_arc_phase`,
+  `finite_qwz_checks`). H1 ist deren Quadrat.
+* **S1–S6 – Viertelstring S = exp(iπ N_Bogen/2), D = S².** Geprüft sind:
+  - `[Q_ges, S] = 0`, S ist gerade, und `S c S† = −i c` auf dem Bogen. Ad S erhält CAR und
+    Bilineare exakt.
+  - S ist deshalb **nicht** der ladungstragende E_λ-Erzeuger.
+  - `[dΓ(H_r), S] = dΓ(H_r − S H_r S†) S` ist ein Einkörper-Schnittstromoperator auf
+    beiden Bogenenden (Naht und a → a+1). Er ist kein skalares Vielfaches von S, also
+    keine einzelne Zeitfrequenz.
+  - Ein einzelner Endpunkt bzw. Grenzwert braucht eine andere Lokalisierung,
+    Renormierung und einen Sektorintertwiner.
+
+Bestehen bleibt: H2 (exakte Fock-Konjugation als Eichidentität) und H4 (Duhamel).
