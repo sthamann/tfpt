@@ -6,7 +6,7 @@ source-selected P1/Nahtprinzip die nötige neutrale Permutation bzw. Sektormarki
 Die tatsächliche positive Operatorwirkung soll ausgewertet werden, ohne einen neuen freien
 Operator zu wählen.
 
-Status **PARTIAL**, keine Promotion. `python3 checker.py`: 3135 exakte Prüfungen
+Status **PARTIAL**, keine Promotion. `python3 checker.py`: 3503 exakte Prüfungen
 (sympy/Fraction; Stand nach Korrektur). Davon sind 2400 = 2× (150 Zustände × 8: B1–B7, C1)
 Maya-Stichproben und 100 σ¹-Stichproben (C4); der Rest sind
 symbolische Identitäten und Quellpins.
@@ -173,3 +173,41 @@ irreduzibel. Zwei Unitäre, die darauf dieselbe Abbildung der Ströme e^b und de
 D8 + e1 ist U_s R nicht definiert, auf D8 + s ist W4 nicht definiert. Die ungeraden Felder
 brauchen weiter Defekt- oder Spinsektoren bzw. den Komplementtransport. Der neutrale Test
 β = e0 − e4 bleibt bestehen: T(β) − T(0) = −β, während τ_s(β) − τ_s(0) = +β.
+
+## E – Unabhängige Gegenrechnung der gemeinsamen Liftkonstruktion (Codex-Kandidat, 15.10.)
+
+Die Rechnung ist exakt, mit monomialen Operatoren auf C[Z⁸] und auf C[Ls], Ls = D8 ∪ (D8+s).
+Die Phasen sind ganzzahlig ±1. Oszillatoren werden nur permutiert und tragen kein Vorzeichen bei.
+
+* **E1:** P_CAR|n⟩ = η(n)|Pn⟩ mit η = (−1)^{A(n)B(n)} ist die vorzeichenfreie
+  Fermionpermutation: P_CAR E_{e_j} P_CAR⁻¹ = E_{e_{Pj}} für alle j, auf ganz Z⁸.
+* **E2:** W4 = Z_a E_a P_CAR ist vorzeichenfrei auf allen ψ_j, und W4|0⟩ = |a⟩ mit Phase +1.
+  Das bestätigt Codex' Formel.
+* **E3:** Das Modul C[Ls] mit X = E_s erfüllt X E_d X⁻¹ = (−1)^{s·d} E_d auf allen 112 Wurzeln und
+  X² = −E_q.
+* **E4:**
+  - Für beide κ = ±1 gilt P̂² = 1.
+  - P̂ E_d P̂⁻¹ = (−1)^{A(d)} E_{Pd}.
+  - P̂ X P̂⁻¹ = κX.
+* **E5:** R_c = Z_a X E_{−Pa} P̂ wirkt auf Ladungen exakt als ρ(p) = Pp + r0.
+* **E6:** U_s R_c = X R_c = **−W4** auf dem D8-Sektor, für beide κ.
+* **E7 (Präzisierung):** **R_c² = −κ · I.** Das Vorzeichen ist durch die Darstellung festgelegt:
+  - X² = −E_q fixiert X bis auf ±1, und ein Vorzeichenwechsel von P̂ ändert R_c² nicht.
+  - κ = −1 ergibt direkt eine Involution R_c² = I.
+  - κ = +1 ergibt R_c² = −I. Dann ist R = iR_c die Involution, in derselben Struktur wie der
+    Tits-Lift mit N² = −I und R = iN.
+* **E8:** Q und K bleiben erhalten (Kρ = K). Der g_j-Charakter ändert sich nur um die Konstante
+  e^{2πi ν·r0} = 1, mit ν·r0 = −1. Die Viertelphase bleibt also erhalten.
+
+**Bedeutung von κ:** Beide Wahlen stimmen auf D8 überein. Sie unterscheiden sich um den Torusfaktor
+Ω = e^{2πi e1·H0}, der auf D8 gleich +1 und auf D8+s gleich −1 ist. κ ist damit ein binäres Datum
+**der Sektorerweiterung**. Die D8-Daten legen es nicht fest, und die Identifikation W4 ∝ U_s R auf
+D8 sieht es nicht. P1 wählt es in den geprüften Stellen nicht aus.
+
+**Grenzen:**
+
+* Gezeigt ist eine Konstruktion im stipulierten Ls, keine P1-Herleitung.
+* Auf dem ungeraden CAR-Sektor braucht es weiterhin die Spin- bzw. Defektmodule. Eine gemeinsame
+  gewöhnlich lokale E8-plus-Vektoralgebra gibt es nicht.
+* R_c ist nicht automatisch der frühere Tits-R. Beide können sich um einen Torus- bzw. Kleinfaktor
+  unterscheiden.

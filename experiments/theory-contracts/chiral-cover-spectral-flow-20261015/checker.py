@@ -238,6 +238,83 @@ D8basis = [[1, -1, 0, 0, 0, 0, 0, 0], [0, 1, -1, 0, 0, 0, 0, 0], [0, 0, 1, -1, 0
 require("D4_cocycle_P_invariant_on_D8", all(_eps(_P(x), _P(y)) == _eps(x, y) for x in D8basis for y in D8basis))
 require("D5_P_odd_on_Z8_witness", _eps(_P([1] + [0] * 7), _P([0] * 4 + [1, 0, 0, 0])) != _eps([1] + [0] * 7, [0] * 4 + [1, 0, 0, 0]))
 
+# E: candidate common lift (Codex 15.10.), exact monomial operators on C[Z^8] and C[Ls]
+from fractions import Fraction as _F
+_H = _F(1, 2)
+_add = lambda x, y: tuple(x[i] + y[i] for i in range(8))
+_neg = lambda x: tuple(-v for v in x)
+_dot = lambda x, y: sum(x[i] * y[i] for i in range(8))
+_A = lambda n: sum(n[:4]); _B = lambda n: sum(n[4:])
+_e = lambda j: tuple(1 if k == j else 0 for k in range(8))
+_a = (1, 1, 1, 1, 0, 0, 0, 0); _q = (1,) * 8; _s = (_H,) * 8
+_Pa = tuple(_P(list(_a)))
+_r0 = tuple(_H if i < 4 else -_H for i in range(8))
+_Pt = lambda x: tuple(_P(list(x)))
+def _comp(*ops):
+    def f(st):
+        ph = 1
+        for o in reversed(ops):
+            p2, st = o(st); ph *= p2
+        return ph, st
+    return f
+def _same(op1, op2, states):
+    c = None
+    for st in states:
+        p1, s1 = op1(st); p2, s2 = op2(st)
+        if s1 != s2:
+            return None
+        r = p1 * p2            # phases are +-1, +-i (exact); p2^-1 = conj(p2)
+        r = p1 * (p2.conjugate() if isinstance(p2, complex) else p2)
+        if c is None:
+            c = r
+        elif r != c:
+            return None
+    return c
+_EZ = lambda x: (lambda n: (_eps(list(x), list(n)), _add(n, x)))
+_Pcar = lambda n: ((-1) ** ((_A(n) * _B(n)) % 2), _Pt(n))
+_Za = lambda n: ((-1) ** (int(_dot(_a, n)) % 2), n)
+_W4 = _comp(_Za, _EZ(_a), _Pcar)
+def _W4inv(m):
+    n = _Pt(tuple(m[i] - _a[i] for i in range(8)))
+    return (_W4(n)[0], n)
+_rngE = random.Random(41)
+_Z8 = [tuple(_rngE.randint(-3, 3) for _ in range(8)) for _ in range(300)]
+for jj in range(8):
+    require(f"E1_Pcar_signfree_psi{jj}", _same(_comp(_Pcar, _EZ(_e(jj)), _Pcar), _EZ(_Pt(_e(jj))), _Z8) == 1)
+    require(f"E2_W4_signfree_psi{jj}", _same(_comp(_W4, _EZ(_e(jj)), _W4inv), _EZ(_Pt(_e(jj))), _Z8) == 1)
+require("E2_W4_vacuum_to_a", _W4((0,) * 8) == (1, _a))
+_D8s = [n for n in _Z8 if sum(n) % 2 == 0]
+def _Ed(d):
+    return lambda st: ((-1) ** (int(st[0] * _dot(_s, d)) % 2) * _eps(list(d), list(st[1])), (st[0], _add(st[1], d)))
+def _X(st):
+    k, n = st
+    return (1, (1, n)) if k == 0 else (-_eps(list(_q), list(n)), (0, _add(n, _q)))
+_Ls = [(k, n) for k in (0, 1) for n in _D8s]
+_roots = [tuple((si if t == i else 0) + (sj if t == j else 0) for t in range(8))
+          for i, j in _it.combinations(range(8), 2) for si in (1, -1) for sj in (1, -1)]
+for d in _roots:
+    require(f"E3_X_Ed_relation_{d}", _same(_comp(_X, _Ed(d)), _comp(_Ed(d), _X), _Ls) == (-1) ** (int(_dot(_s, d)) % 2))
+require("E3_X_squared_minus_Eq", _same(_comp(_X, _X), _Ed(_q), _Ls) == -1)
+def _Ph(kappa):
+    return lambda st: ((kappa if st[0] else 1) * (-1) ** (_A(st[1]) % 2), (st[0], _Pt(st[1])))
+_ZaL = lambda st: ((-1) ** (int(_dot(_a, tuple(st[1][i] + st[0] * _s[i] for i in range(8)))) % 2), st)
+_val = lambda st: tuple(st[1][i] + st[0] * _s[i] for i in range(8))
+for kappa in (1, -1):
+    Ph = _Ph(kappa)
+    require(f"E4_Phat_involution_k{kappa}", _same(_comp(Ph, Ph), lambda st: (1, st), _Ls) == 1)
+    for d in _roots:
+        require(f"E4_Phat_Ed_k{kappa}_{d}", _same(_comp(Ph, _Ed(d), Ph), _Ed(_Pt(d)), _Ls) == (-1) ** (_A(d) % 2))
+    require(f"E4_Phat_X_kappa_k{kappa}", _same(_comp(Ph, _X, Ph), _X, _Ls) == kappa)
+    Rc = _comp(_ZaL, _X, _Ed(_neg(_Pa)), Ph)
+    require(f"E5_rho_charge_action_k{kappa}", all(_val(Rc(st)[1]) == _add(_Pt(_val(st)), _r0) for st in _Ls))
+    require(f"E6_UsRc_equals_minus_W4_on_D8_k{kappa}",
+            _same(_comp(_X, Rc), lambda st: (_W4(st[1])[0], (0, _W4(st[1])[1])), [(0, n) for n in _D8s]) == -1)
+    require(f"E7_Rc_squared_is_minus_kappa_k{kappa}", _same(_comp(Rc, Rc), lambda st: (1, st), _Ls) == -kappa)
+    # Q, K and the g_j character are preserved by the charge map rho (zero-mode level)
+    require(f"E8_Q_K_preserved_k{kappa}", all(sum(_val(Rc(st)[1])) == sum(_val(st)) for st in _Ls))
+require("E8_K_rho_invariant_symbolic", zero(K(Pm * p + r0) - K(p)))
+require("E8_g_character_constant", zero(sum(((k + j) / 8) * r0[k] for k in range(8)) + 1))
+
 res = {"contract": "chiral-cover-spectral-flow-20261015", "checks": len(checks), "verdict": "PARTIAL"}
 Path(__file__).with_name("results.json").write_text(json.dumps(res, indent=2) + "\n")
 print(f"{len(checks)}/{len(checks)} checks passed")
