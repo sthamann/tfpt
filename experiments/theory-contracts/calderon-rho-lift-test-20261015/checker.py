@@ -5,8 +5,8 @@ Exact (sympy) plus finite Fock checks; no promotion.  Scope: PROOF.md.
 R  rho algebra on the stipulated E8 zero modes: rho^2 = id, Q rho = Q,
    K rho = K, rho(0) = r0, rho(-delta) = -delta, rho swaps D8 and D8+s,
    T = tau_s rho = rho tau_s, T^2 = tau_q; r0 is an E8 root with K(r0) = 0.
-N  native CAR: K on Z^8 has the unique zero p = 0, and rho(Z^8) is disjoint
-   from Z^8; hence no operator on the native CAR Fock space lifts rho.
+N  Z^8 CAR of the fold model (conditional, not automatically A_loc): K on Z^8 has the unique zero p = 0, and rho(Z^8) is disjoint
+   from Z^8; hence no operator on that Fock space lifts rho.
 C  original Calderon formula P_C = (1+R_tau)/2, iota_C = R_tau
    (01_boundary_kernel_source.tex:105-135, 159-170): for an involution R on a
    finite Cauchy space, the Fock lift Gamma(R) satisfies Gamma a^dag(f) Gamma^dag
