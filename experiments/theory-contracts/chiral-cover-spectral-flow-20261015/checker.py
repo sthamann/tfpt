@@ -210,6 +210,34 @@ require("C7_complement_m_charged", sum(m10) == 1 and all(sum(-aa[i] * m10) == -a
 require("C7_pstar_neutral_not_m", sum(r0) == 0 and sum(m10) != 0)
 require("C5_original_seam_is_fixed_set", "\\Seam=\\mathrm{Fix}(\\taudbl)," in bk)
 
+# D: Klein sign of W4 on the D8 root currents (ordered CAR cocycle on Z^8)
+import itertools as _it
+def _eps(x, y):
+    return (-1) ** (sum(x[i] * y[j] for i in range(8) for j in range(8) if i > j) % 2)
+def _P(x):
+    out = [0] * 8
+    for k in range(8):
+        out[(k + 4) % 8] = x[k]
+    return out
+def _u(k, sg):
+    v = [0] * 8; v[k] = sg; return v
+nroots = 0
+for i, j in _it.combinations(range(8), 2):
+    for si, sj in _it.product((1, -1), repeat=2):
+        x, y = _u(i, si), _u(j, sj)
+        b = [x[k] + y[k] for k in range(8)]
+        eta = _eps(_P(x), _P(y)) * _eps(x, y)
+        require(f"D1_order_independent_{i}{j}{si}{sj}", eta == _eps(_P(y), _P(x)) * _eps(y, x))
+        require(f"D2_sign_is_(-1)^(a.b)_{i}{j}{si}{sj}", eta == (-1) ** (sum(b[:4]) % 2))
+        ab, sb, rb = sum(b[:4]), sp.Rational(sum(b), 2), sp.Rational(sum(b[:4]) - sum(b[4:]), 2)
+        require(f"D3_split_s_r0_{i}{j}{si}{sj}", sb.is_integer and rb.is_integer and (ab - sb - rb) % 2 == 0)
+        nroots += 1
+require("D0_all_112_roots", nroots == 112)
+D8basis = [[1, -1, 0, 0, 0, 0, 0, 0], [0, 1, -1, 0, 0, 0, 0, 0], [0, 0, 1, -1, 0, 0, 0, 0], [0, 0, 0, 1, -1, 0, 0, 0],
+           [0, 0, 0, 0, 1, -1, 0, 0], [0, 0, 0, 0, 0, 1, -1, 0], [0, 0, 0, 0, 0, 0, 1, -1], [0, 0, 0, 0, 0, 0, 1, 1]]
+require("D4_cocycle_P_invariant_on_D8", all(_eps(_P(x), _P(y)) == _eps(x, y) for x in D8basis for y in D8basis))
+require("D5_P_odd_on_Z8_witness", _eps(_P([1] + [0] * 7), _P([0] * 4 + [1, 0, 0, 0])) != _eps([1] + [0] * 7, [0] * 4 + [1, 0, 0, 0]))
+
 res = {"contract": "chiral-cover-spectral-flow-20261015", "checks": len(checks), "verdict": "PARTIAL"}
 Path(__file__).with_name("results.json").write_text(json.dumps(res, indent=2) + "\n")
 print(f"{len(checks)}/{len(checks)} checks passed")

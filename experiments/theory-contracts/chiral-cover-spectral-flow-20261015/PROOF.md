@@ -6,7 +6,7 @@ source-selected P1/Nahtprinzip die nötige neutrale Permutation bzw. Sektormarki
 Die tatsächliche positive Operatorwirkung soll ausgewertet werden, ohne einen neuen freien
 Operator zu wählen.
 
-Status **PARTIAL**, keine Promotion. `python3 checker.py`: 2796 exakte Prüfungen
+Status **PARTIAL**, keine Promotion. `python3 checker.py`: 3135 exakte Prüfungen
 (sympy/Fraction; Stand nach Korrektur). Davon sind 2400 = 2× (150 Zustände × 8: B1–B7, C1)
 Maya-Stichproben und 100 σ¹-Stichproben (C4); der Rest sind
 symbolische Identitäten und Quellpins.
@@ -141,3 +141,35 @@ Kernkreis (Länge 4l) ab, und zwar mit Kernwindung w/2.
   U_Σ(λ_Σ√ρ) mit L_Σ = −log det_adm(1 − U_Σ). SF(U_Σ) = 1 ist ihr Spektralfluss, keine
   angegebene Multiplikation mit e^{iθ}. Die Gleichsetzung mit T1 ist deshalb ebenfalls eine
   Identifikation, keine Quellformel.
+
+## D – Kleinvorzeichen von W4 auf den D8-Strömen und Kriterium für W4 = U_s R (15.10.)
+
+Die tatsächlichen CAR-Kleinfaktoren nehme ich als geordneten Kokzyklus
+ε(x, y) = (−1)^{Σ_{i>j} x_i y_j} auf Z⁸, mit den Kanälen 0 < … < 7. W4 = U_T ist auf den
+Kanalfermionen vorzeichenfrei (c_m → c_{m+4}). Daraus folgt (D0–D5, exakt):
+
+* Für alle 112 D8-Wurzeln b = x + y gilt in der Gitterbasis e^b = ε(x, y)^{−1} ψ^x ψ^y:
+
+      W4 e^b W4^{−1} = (−1)^{a·b} e^{Pb}   (mit der durch das K-Gesetz festgelegten Modenverschiebung).
+
+  Das Vorzeichen hängt nicht von der Faktorreihenfolge ab.
+* Auf D8 ist es die Zerlegung (−1)^{a·b} = (−1)^{s·b} (−1)^{r0·b}; s·b und r0·b sind ganz.
+* ε∘P = ε auf D8. Auf Z⁸ gilt das nicht, Zeuge: (e0, e4).
+* Die Modenverschiebung folgt allein aus U_T† K U_T = K + Q/2 + c_α. Sie stimmt deshalb mit der
+  von U_s R überein, soweit dessen Zeitgesetz dasselbe ist. Offen bleiben nur Vorzeichen.
+
+**Kriterium (Schur):** Der D8-Sektor ⊕_{p∈D8} F_p ist das Vakuummodul des D8-Gitter-VOA, also
+irreduzibel. Zwei Unitäre, die darauf dieselbe Abbildung der Ströme e^b und der Oszillatoren
+(beide wirken als P) induzieren, unterscheiden sich nur um einen Skalar. Daher gilt:
+
+* **W4 = c · U_s R auf dem D8-Sektor** genau dann, wenn in **demselben** geordneten Kokzyklus
+  χ_R(b) · σ_s(Pb) = (−1)^{a·b} für alle D8-Wurzeln gilt. Dabei ist χ_R das Vorzeichen aus
+  R J(b,m) R^{−1} = χ(b) J(Pb, m + r0·b) und σ_s das Vorzeichen von U_s auf e^{Pb}.
+* Andernfalls ist der Quotient ein Charakter von D8. Dann gilt W4 = c · e^{iπ λ·p̂} U_s R mit dem
+  zugehörigen Toruselement.
+* Die Konstante c legt die Vakuumkonvention W4|0⟩ = |a⟩ fest.
+
+**Typgrenze:** Die Identität kann nur auf dem D8-Sektor gelten. Auf dem ungeraden CAR-Sektor
+D8 + e1 ist U_s R nicht definiert, auf D8 + s ist W4 nicht definiert. Die ungeraden Felder
+brauchen weiter Defekt- oder Spinsektoren bzw. den Komplementtransport. Der neutrale Test
+β = e0 − e4 bleibt bestehen: T(β) − T(0) = −β, während τ_s(β) − τ_s(0) = +β.

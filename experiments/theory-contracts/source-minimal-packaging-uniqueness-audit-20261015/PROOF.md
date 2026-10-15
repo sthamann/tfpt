@@ -98,36 +98,46 @@ Nebenbefund: Die Orientierungsfassung `00_orientation_source.tex:251` nennt Ecke
 Kerndimension als Koordinaten. 01:562–567 nimmt die Eckenzahl ausdrücklich heraus. Das ist ein
 Versionsunterschied, kein neuer Einwand.
 
-## U5 – Gibt es SF = 1 in derselben Zulässigkeitsklasse?
+## U5 – Gibt es SF = 1 in derselben Zulässigkeitsklasse? (korrigiert)
 
 Der Beweis 01:672–675 schließt aus der Nichtleere der Menge positiver Werte: „hence the minimal
 positive value is |SF| = 1“. Dafür braucht es einen Zeugen mit SF = 1 in der Klasse.
 
-* **Was U_Σ in den Originalen explizit ist:**
-  - `06_cosmology_source.tex:16–25` (= tfpt-42.tex:9758–9760): U_Σ := P_adm e^{−ℓ|B_Σ|} P_adm,
-    positiv und spurklasse, mit 0 < U_Σ < P_adm;
-  - `03_em_flavor_source.tex:94–100`: U_Σ^min := |ψ_Σ⟩⟨ψ_Σ|, ein Rang-1-Projektor;
-  - `05_metrology_source.tex:1390–1393`: eine Skalenfamilie in −log det_adm(1 − U_Σ).
+**Drei verschiedene Objekte, streng getrennt:**
 
-  Keines davon ist ein Unitärloop. Für jeden normstetigen Weg mit 0 < U < P_adm kreuzt kein
-  Eigenwert die Niveaus 0 oder 1. Der Spektralfluss durch diese Niveaus ist deshalb null.
-  Diese Objekte können SF(U_Σ) = 1 nicht tragen.
-* **Das Objekt mit SF = 1** ([u_Σ] ∈ K¹(S¹), tfpt-42.tex:2323–2353) wird nur behauptet:
-  „Along a single positive seam circuit the spectral flow changes by one“. Konstruiert wird es
-  nicht. Die Definition von SBord^adm (01:630–643) sagt nicht, wie U_Σ aus dem Tupel B entsteht.
-  Im Seed ist [u_Σ] ein eigener Eintrag, ohne Kopplung an die Bedingungen (i), (ii) und (iv)
-  (01:486–495).
-* **Vorhandene Zeugen außerhalb der Klasse:** `verification/v991_detline_bulk_edge.py:3–25`
-  (v367-QWZ-Kragen) gibt Kantenzweig unten SF = +1, oben −1 über die Verdrillungsschleife und
-  Chern +1. Das ist ein endlicher Gitterschatten. Er ist kein elliptischer Dirac-Kragen nach
-  01:630–643, und Reflexionspositivität sowie relative Wirkung sind dort nicht geprüft.
-  Standardmathematisch hat −i∂_θ + t auf S¹, t ∈ [0, 1], SF = 1; das ist nicht in der Quelle und
-  nicht gegen (ii) und (iii) geprüft.
+1. Der **positive Transferoperator** U_Σ := P_adm e^{−ℓ|B_Σ|} P_adm, mit 0 < U_Σ < P_adm
+   (`06_cosmology_source.tex:16–25`, = tfpt-42.tex:9758–9760). Dazu der Rang-1-Operator
+   U_Σ^min = |ψ_Σ⟩⟨ψ_Σ| (`03_em_flavor_source.tex:94–100`).
+2. Der **unitäre K¹-Repräsentant** u_Σ mit [u_Σ] = 1 ∈ K¹(S¹) (tfpt-42.tex:2323) bzw. dem
+   Seed-Eintrag [u_Σ] ≠ 0 (01:492).
+3. Eine **selbstadjungierte, spektralflusstragende Familie**. An den geprüften Stellen ist keine
+   angegeben.
 
-**Ergebnis:** Eine primitive SF = 1-Konstruktion **innerhalb** der Zulässigkeitsklasse liegt
-weder im Original noch in vorhandenen Resultaten vor. Zusätzlich fehlt im Original die
-Zuordnung B ↦ U_Σ(B) als Unitärloop. Auch die Werte von d_1, d_2 und d_3 auf dem minimalen
-Stratum sind in den Auszügen nur definiert (01:545–558), nicht berechnet.
+Positivität von (1) widerlegt die Klasse (2) nicht. Ohne eine spezifizierte Familie (3) ist
+„SF(U_Σ)“ an diesen Stellen gar nicht definiert. Die frühere Aussage, der Spektralfluss durch 0
+oder 1 verschwinde, ist zurückgenommen: Sie hatte das wiederverwendete Symbol U_Σ als
+Familienangabe gelesen.
+
+**Die einzige angegebene Verbindung:** `tfpt-42.tex:7248–7253` (= `04_qft_source.tex:97–101`).
+„The same admissible seam operator determines the canonical determinant-line phase
+a_Σ := arg det_adm U_Σ, whose canonical winding is inherited from the unit boundary winding of
+the seam class.“ Der Satz behauptet eine Abbildung von (2) auf eine Windung von arg det. Er gibt
+dafür weder die Familie noch den unitären Repräsentanten an.
+
+**Befund (nur für die geprüften Stellen, keine globale Nichtexistenzaussage):** Die Originale
+liefern dort keinen zulässigen SF = 1-Zeugen, also kein Objekt aus SBord^adm (01:630–643) mit
+angegebener Familie und SF = 1. Die primitive Aussage tfpt-42.tex:2346–2353 wird behauptet,
+nicht konstruiert.
+
+Vorhandene Resultate außerhalb der Klasse:
+
+* `verification/v991_detline_bulk_edge.py:3–25`: endlicher QWZ-Gitterschatten; untere Kante
+  SF = +1, obere −1 über die Verdrillungsschleife.
+* Standardbeispiel −i∂_θ + t auf S¹: SF = 1, aber nicht gegen Reflexionspositivität und relative
+  Wirkung der Klasse geprüft.
+
+Die Werte von d_1, d_2 und d_3 auf dem minimalen Stratum sind nur definiert (01:545–558), nicht
+berechnet.
 
 ## Erste nicht gegebene Quellaussage
 
@@ -139,4 +149,4 @@ Benötigt wird eines von beiden:
    Determinantengrad, Nullität und relativer Wirkung.
 
 Für die Sektorfrage braucht es zusätzlich die Abbildungen (G) und A_loc ↦ A_+ samt Netzstruktur.
-Für d_0 braucht es die Zuordnung B ↦ U_Σ(B) als Unitärloop samt einem zulässigen SF = 1-Zeugen. In den geprüften Originalen steht keines davon.
+Für d_0 braucht es eine angegebene Familie oder einen unitären Repräsentanten zu B, dazu einen zulässigen SF = 1-Zeugen. In den geprüften Originalen steht keines davon.

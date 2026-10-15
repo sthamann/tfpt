@@ -15,9 +15,11 @@ Status **PARTIAL**, keine Promotion. `python3 checker.py`: 24 Stellenpins, keine
   gezeigt noch ausgeschlossen.
 * **U4:** Physical operationality (01:622–625) verlangt nur ein Objekt in Seed_op, keine
   Minimalität. Die Quelle räumt das ein (04_qft:2103–2109).
-* **U5:** Die expliziten U_Σ sind positiv (06:16–25) bzw. ein Rang-1-Projektor (03:94–100).
-  Sie haben keinen Spektralfluss durch 0 oder 1. SF = 1 ist nur behauptet (tfpt-42:2346–2353).
-  Ein zulässiger Zeuge fehlt; v991 ist ein Gitterschatten außerhalb der Klasse.
+* **U5 (korrigiert):** Getrennt werden der positive Transferoperator U_Σ (06:16–25), der unitäre
+  K¹-Repräsentant u_Σ und eine spektralflusstragende Familie (nicht angegeben). Ohne Familie ist
+  SF dort nicht definiert. Einzige Verbindung: tfpt-42:7248–7253, Windung von arg det_adm U_Σ,
+  ohne Familie. An den geprüften Stellen wird kein zulässiger SF = 1-Zeuge geliefert; das ist
+  keine globale Nichtexistenzaussage.
 * **Vorbestand:** source-three-route-closure SELECTION.md (bedingt K/G) und
   source-boundary-lift-selection §1/§3 (Nullordnung, Domäne, Kato–Rellich-Reparatur).
 
