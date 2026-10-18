@@ -64,6 +64,9 @@ they are not manuscript or proof sources. The authored TeX inventory has its
 own complete scope. Gitless exports use the shipped research inventory, require
 every declared research file to exist, and hash its actual bytes. Missing
 research evidence is an error rather than a reason to reduce coverage silently.
+An owned `.tfpt-shadow-export` marker selects that shipped inventory even when
+the export destination has a Git checkout: its index can still describe the
+previous mirror revision before synchronization stages the newly copied files.
 
 Only `--include-local` may omit a noncanonical tool/data file that Git explicitly
 records as deleted in the working tree. Each omission is named in the local

@@ -63,6 +63,15 @@ def git_files(*patterns, untracked=False, deleted=False):
 
 
 def is_git_root():
+    marker=ROOT/".tfpt-shadow-export"
+    if marker.is_file():
+        try:state=json.loads(marker.read_text())
+        except (OSError,ValueError)as error:raise ValueError("Invalid shadow export ownership marker")from error
+        if not isinstance(state,dict)or state.get("owner")!="tfpt-shadow-export"or state.get("source_repository")!="sthamann/tfpt":
+            raise ValueError("Unrecognized shadow export ownership marker")
+        # The destination's old Git index predates the files just exported.
+        # The shipped source inventory owns this tree, including before git add.
+        return False
     return (ROOT / ".git").exists()
 
 
@@ -431,7 +440,8 @@ def build(config, paths, public_paths, include_local=False):
         historical_inputs={row["snapshot"]:row for row in json.loads(historical_manifest.read_text()).get("inputs",[]) if row.get("snapshot")}
         evidence_paths+= [path for path in historical_inputs if allowed(path,config)and(ROOT/path).is_file()]
     reg_path=ROOT/"verification/script_registry.csv";ledger_path=ROOT/"verification/status_ledger.csv"
-    registry=list(csv.DictReader(reg_path.open()));ledger=list(csv.DictReader(ledger_path.open()))
+    with reg_path.open()as stream:registry=list(csv.DictReader(stream))
+    with ledger_path.open()as stream:ledger=list(csv.DictReader(stream))
     local_deleted=set(git_files("*",deleted=True)or[])if include_local and is_git_root()else set()
     evidence_paths=research_evidence_paths(evidence_paths or [],config,local_deleted,{r["script"]for r in registry},diagnostics)
     for optional in [config["module_manifest"], "documents/standalone_inventory.json", "docs/editions.json", "verification/project_scope.json"]:

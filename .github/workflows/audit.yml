@@ -32,6 +32,9 @@ jobs:
       - name: Check the complete content registry
         run: python3 verification/make_content_registry.py --check
 
+      - name: Install source-consumer test dependencies
+        run: pip install -r requirements.txt
+
       - name: Test modular source consumers and registry
         run: |
           python3 -m unittest discover -s verification -p "test_*tex*.py"
