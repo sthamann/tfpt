@@ -76,6 +76,13 @@ async function main() {
 
   const src = await readFile(releaseFile, "utf8");
   let next = src;
+  // An asset that moved to another project must also leave the release index
+  // and sitemap. Preserve metadata only for PDFs that are still served here.
+  const served = new Set(rows.map((row) => row.rel));
+  next = next.replace(
+    /^  "([^"\n]+\.pdf)": \{[\s\S]*?^  \},?\n/gm,
+    (block, href) => served.has(href) ? block : "",
+  );
 
   const argValue = (flag) => {
     const i = process.argv.indexOf(flag);

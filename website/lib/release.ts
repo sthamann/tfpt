@@ -130,15 +130,6 @@ export const RELEASE_ASSETS: Record<string, ReleaseAsset> = {
     changelog:
       "Working note N1 — the Gaussian code bridge: E₈ over ℤ[i] via Construction A over the extended Hamming code, the canonical four-bit quotient L/(1+i)L ≅ F₂⁴, and the G₃₁ quartic companion (v689/v690 + 65 Lean theorems).",
   },
-  "/papers/note_hilbert_polya_truncations.pdf": {
-    href: "/papers/note_hilbert_polya_truncations.pdf",
-    ...COMMON,
-    bytes: 472984,
-    sha256:
-      "9784fec36e69c0a0966326e3bc1be8877572e50d555f2362ea23ba5b28d15c10",
-    changelog:
-      "Working note N2 — a computable, zeta-free truncation family for the Weil measure: measurements on a Hilbert–Pólya candidate (v714, v716–v721, v727–v734; prediction freeze; no RH claim).",
-  },
   "/papers/changelog.pdf": {
     href: "/papers/changelog.pdf",
     ...COMMON,
