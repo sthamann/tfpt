@@ -1,6 +1,7 @@
-"""Frozen 9 September publication test inventory; never rewrites old records."""
+"""TFPT subset of the 9 September publication inventory; old records stay intact."""
 import argparse
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import nullcontext
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -11,6 +12,8 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "verification"))
+from historical_source_replay import historical_overlay
 # These invoke complete historical production calculations, including the
 # 95,599,440-extension native bulk run, rather than bounded fixtures.
 # Keep the original tests intact and expose an explicit full-replay tier.
@@ -38,12 +41,10 @@ if excluded - {t.id() for t in all_tests}:
 result = unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(selected))
 sys.exit(0 if result.wasSuccessful() and result.testsRun > 0 else 1)
 """
+# The five pi-prime-event-log suites moved to the independent Prime Front
+# repository. Keep every original TFPT suite explicit; do not silently skip
+# missing files or reinterpret the historical combined-inventory records.
 TEST_FILES = (
-    "experiments/pi-prime-event-log-2026-09-08/arithmetic-gate/test_arithmetic.py",
-    "experiments/pi-prime-event-log-2026-09-08/nonlinear-gate/test_nonlinear.py",
-    "experiments/pi-prime-event-log-2026-09-08/prediction-gate/test_prediction.py",
-    "experiments/pi-prime-event-log-2026-09-08/relation-gate/test_engine.py",
-    "experiments/pi-prime-event-log-2026-09-08/spectral-cost-gate/test_spectral.py",
     "experiments/theory-contracts/all-electric-majorant/test_checker.py",
     "experiments/theory-contracts/auxiliary-dynamics-round35/test_checker.py",
     "experiments/theory-contracts/bulk-word-round47/test_checker.py",
@@ -103,13 +104,14 @@ TEST_FILES = (
 )
 
 def run_one(item):
-    mode, name, include_large, timeout = item
-    path = ROOT / name
+    mode, name, include_large, timeout = item[:4]
+    source_root = Path(item[4]) if len(item) == 5 else ROOT
+    path = source_root / name
     command = [sys.executable, "-B"] + (["-OO"] if mode == "OO" else [])
     excluded = [LARGE_REPLAYS[name]] if name in LARGE_REPLAYS and not include_large else []
     command += ["-c", CHILD, path.stem, json.dumps(excluded)]
     env = dict(os.environ, OPENBLAS_NUM_THREADS="1", VECLIB_MAXIMUM_THREADS="1",
-               OMP_NUM_THREADS="1", PYTHONDONTWRITEBYTECODE="1")
+               OMP_NUM_THREADS="1", PYTHONDONTWRITEBYTECODE="1", TFPT_REPO=str(source_root))
     try:
         result = subprocess.run(command, cwd=path.parent, env=env,
                                 capture_output=True, text=True, timeout=timeout)
@@ -140,26 +142,57 @@ def main():
     parser.add_argument("--workers", type=int, default=2, choices=range(1,5))
     parser.add_argument("--include-large-replays", action="store_true")
     parser.add_argument("--timeout", type=int, default=300)
+    parser.add_argument("--current-sources", action="store_true",
+                        help="diagnose current inputs directly; frozen historical pins may fail")
+    parser.add_argument("--failed-from", type=Path,
+                        help="rerun only failed mode/file jobs from a prior report")
     args = parser.parse_args()
     if args.timeout <= 0:
         parser.error("--timeout must be positive")
-    jobs = [(mode, name, args.include_large_replays, args.timeout)
-            for mode in ("normal", "OO") for name in TEST_FILES]
-    with ThreadPoolExecutor(max_workers=args.workers) as pool:
-        rows = list(pool.map(run_one, jobs))
+    selected = {(mode, name) for mode in ("normal", "OO") for name in TEST_FILES}
+    if args.failed_from:
+        previous = json.loads(args.failed_from.read_text())
+        selected = {(r["mode"], r["file"]) for r in previous["suites"] if not r["passed"]}
+        if not selected or any(mode not in {"normal", "OO"} or name not in TEST_FILES
+                               for mode, name in selected):
+            parser.error("failed-from must name existing failed jobs in this TFPT inventory")
+    context = nullcontext((ROOT, {"mode":"actual_current_sources"})) if args.current_sources else historical_overlay(ROOT)
+    with context as (source_root, provenance):
+        jobs = [(mode, name, args.include_large_replays, args.timeout, source_root)
+                for mode in ("normal", "OO") for name in TEST_FILES if (mode, name) in selected]
+        print("SOURCE CONTEXT:", provenance["mode"], flush=True)
+        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            rows = list(pool.map(run_one, jobs))
+    current_checks = []
+    if not args.current_sources:
+        for label, command in [
+            ("current v1033", [sys.executable,"-B",str(ROOT/"verification/v1033_charged_disorder.py")]),
+            ("current modular TeX consumers", [sys.executable,"-B","-m","unittest","discover","-s","verification","-p","test_modular_tex_consumers.py"]),
+        ]:
+            result = subprocess.run(command,cwd=ROOT,capture_output=True,text=True,timeout=args.timeout,
+                                    env=dict(os.environ,OPENBLAS_NUM_THREADS="1",OMP_NUM_THREADS="1",VECLIB_MAXIMUM_THREADS="1",TFPT_REPO=str(ROOT)))
+            current_checks.append({"label":label,"source_context":"actual_current_checkout",
+                                   "passed":result.returncode==0,"returncode":result.returncode,
+                                   "transcript":result.stdout+result.stderr})
+            print(label+": "+("PASS"if result.returncode==0 else"FAIL"),flush=True)
     report = dict(timestamp_utc=datetime.now(timezone.utc).isoformat(),
                   python=sys.version, suites=rows,
-                  test_modules=len(TEST_FILES),
+                  inventory_test_modules=len(TEST_FILES),
+                  test_modules=len({row["file"] for row in rows}),
+                  selected_jobs=len(rows),
                   includes_large_replays=args.include_large_replays,
                   excluded_large_replays={} if args.include_large_replays else LARGE_REPLAYS,
-                  all_passed=all(row["passed"] for row in rows),
+                  all_passed=all(row["passed"] for row in rows) and all(row["passed"] for row in current_checks),
+                  source_context=provenance,
+                  current_source_checks=current_checks,
+                  rerun_failed_from=str(args.failed_from) if args.failed_from else None,
                   counts_by_mode={mode: sum(r["tests"] for r in rows if r["mode"] == mode)
                                   for mode in ("normal", "OO")},
                   independent_mathematical_review=False,
                   full_core_or_large_data_rerun=False,
-                  scope="Frozen new-archive regression inventory; all T1-T8 remain open.")
+                  scope="TFPT subset of the frozen new-archive regression inventory; all T1-T8 remain open.")
     args.output.write_text(json.dumps(report, indent=2) + "\n")
-    print(json.dumps({k:v for k,v in report.items() if k != "suites"}, indent=2))
+    print(json.dumps({k:v for k,v in report.items() if k not in {"suites","source_context","current_source_checks"}}, indent=2))
     return 0 if report["all_passed"] else 1
 
 if __name__ == "__main__":

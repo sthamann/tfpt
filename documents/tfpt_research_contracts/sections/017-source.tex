@@ -1,0 +1,378 @@
+\section*{Research Contract --- \texttt{SEAM.SIMPLECURRENT.GENERATOR.01} (one generator instead of 128 currents)}
+\addcontentsline{toc}{section}{Research Contract: SEAM.SIMPLECURRENT.GENERATOR.01}
+% =====================================================================
+\noindent\emph{Typing.} A research contract \mO\ (ledger row
+\texttt{SEAM.SIMPLECURRENT.GENERATOR.01}), \emph{not} a claim.  \textbf{Context.}  The seam
+coverage carve (\veri{v973\_seam\_route\_narrowing.py}) shows the $\mathfrak{so}(16)_1$
+fermion-bilinear half of the seam target is covered by the cited scaling-limit theorem; the
+named residual is N1 (the $\mu_4$/GSO extension $SO(16)_1\to(E_8)_1$ as a \emph{net} statement
+--- the 128 spinor currents are not bilinears), N2 (the twist/spin-field sector), N3 (the
+one-sided chiral edge) and N4 (the holomorphy selector).  \textbf{Demand (the compression).}
+Construct \emph{one} normalized simple-current/spin-field intertwiner --- the generator of the
+index-4 Q-system extension (\vref{v125}/\vref{v154}) --- and prove
+\textbf{(G1)}~convergence on the finite-particle core with energy bounds,
+\textbf{(G2)}~locality relative to the bilinear net,
+\textbf{(G3)}~the correct braiding/monodromy relation, and
+\textbf{(G4)}~Q-system closure,
+so that symmetry and fusion generate the \emph{entire} 128-dimensional extension sector from the
+single generator --- collapsing N1\,+\,N2 (and, via uniqueness of the extension, the N4
+selector) onto \emph{one} convergence theorem instead of 128 separate current controls.
+\textbf{Kill tests.}  The generator is provably nonlocal relative to the bilinear net; the
+energy bounds fail on the core; the braiding closes on the wrong extension ($SO(16)_1$ stays
+unextended); the convergence rate is incompatible with the measured bilinear collar rate
+($p=3.48$ inside the preregistered band, \veri{v973\_seam\_route\_narrowing.py}).
+\emph{Dimension typing (binding):} hypotheses and conclusion live in $1{+}1$D --- closing this
+contract does \emph{not} close \texttt{SEAM.BULK4D.RECON.01}.  Status:
+\texttt{SEAM.SIMPLECURRENT.GENERATOR.01} \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-28, external master-object review wave
+2): the generator is \emph{identified} and its lattice-arithmetic shadow is complete
+(the analytic half G1--G4 stays \mO).}
+\veri{v983\_\allowbreak simple\_\allowbreak current\_\allowbreak generator.py}
+The
+candidate is the glue vector $\lambda=(\omega_s,\omega_f)$ --- the $D_5$ spinor weight plus the
+$A_3$ fundamental weight, in explicit rational coordinates --- with
+$\|\omega_s\|^2=\tfrac54$, $\|\omega_f\|^2=\tfrac34$, $\|\lambda\|^2=2$ and conformal weight
+$h_\lambda=\|\lambda\|^2/2=1$ (integer $\Rightarrow$ trivial self-monodromy, the bosonic
+simple-current precondition).  Machine-checked exactly: $[\lambda]$ has \emph{order four} in
+the discriminant group $\mathbb Z_4\times\mathbb Z_4$ of $D_5\oplus A_3$; $\lambda\cdot
+L_0\subset\mathbb Z$ (isotropic glue, the glued lattice is even); $\det=16/4^2=1$ (unimodular
+rank $8$, hence $E_8$; explicit certificate \vref{v1}); the coset root census is
+$[52,64,60,64]$ --- with the rank-8 Cartan sector exactly
+$248=(45{+}15)+(16,4)+(10,6)+(\overline{16},\bar 4)$ --- so the \emph{odd} fusion powers of the
+one class $[\lambda]$ carry $64+64=128$, the full missing spinor sector.  Kill tests fire: the
+vector-class glue (norm $7/4$) and the mismatched glue (norm $9/4$) both break evenness.  The
+holomorphy \emph{shadow} is pinned at the lattice level ($\det 1\Rightarrow$ one sector, vs
+$\det D_8=4\Rightarrow$ four sectors for $SO(16)_1$) --- the operator-algebraic N4 statement
+is untouched.  Net effect: the contract's search space collapses from ``find a generator'' to
+``prove G1--G4 for \emph{this} $\Psi_\lambda=Y(e^{(\omega_s,\omega_f)},z)$''; no marker moves.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-28, promote round): S3 exact $+$ the
+quantitative S1/S2 skeleton $+$ the lemma reduction
+(\veri{v988\_\allowbreak psi\_\allowbreak lambda\_\allowbreak reduction.py}; \emph{not} a
+closure).}
+S3: the crossed-product/tower exchange is exact (naturality; a non-equivariant mutant fails).
+S1: windowed covariances converge and sectors collapse (measured rates $\sim N^{-1.85}$ on the
+reduced QWZ collar).  S2 quantitative: windowed Hilbert--Schmidt bounded (Shale $\sim0.376$)
+while the global $\mathrm{HS}^2=3.605+0.203\log N$ is topological vs.\ saturation in the
+trivial phase; matrix-element Cauchy on the phase-fixed band; energy envelope
+$f_n\le C^{n+1}(n!)^2$ with $C=1.204$ on the reduced collar (probe provenance $C=2.86$).
+The remaining lemma is \emph{reduced} to cited quasi-free theorems (Shale--Stinespring / Araki /
+Ruijsenaars) plus the MMST identification --- reduction, not closure.  Honest typing: lattice
+shadow \mE\ (\veri{v983\_\allowbreak simple\_\allowbreak current\_\allowbreak generator.py}) $+$
+quantitative skeleton \mE-measured $+$ reduction-to-cited-class \mC\ conditional; open rest $=$
+the MMST identification.  Display marker stays \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-28, review wave 3): the $D{+}A$ architecture
+is an OUTPUT of the rank-8 ADE census
+(\veri{v993\_\allowbreak minimal\_\allowbreak defect\_\allowbreak selector.py}; axiom typing
+UNCHANGED).}
+The FULL rank-8 ADE pair census (Smith normal form of Cartan, not a textbook lookup) with cyclic
+$\mathbb Z_4$ glue demanded on \emph{both} factors selects $(D_5,A_3)$ uniquely ($D_3\cong A_3$
+aliases collapsed; the raw second hit $D_5\oplus D_3$ is the same pair).  Kill tests fire: $(D_4,D_4)$
+and $(A_7,A_1)$ have product $16$ but fail cyclicity (Klein $\mathbb Z_2\times\mathbb Z_2$ /
+$\mathbb Z_8\times\mathbb Z_2$); the $\mathbb Z_3$ control $(E_6,A_2)=\mathbb Z_3\times\mathbb Z_3$.
+So the $D{+}A$ split that v624 still had to \emph{assume} is an OUTPUT of (rank $8$ $+$ cyclic
+$\mathbb Z_4$ both sides).  Cited-not-proved remain $c_-=8$ and holomorphic uniqueness of $(E_8)_1$.
+Lattice shadow of $U^2=(-1)^F$: $[\lambda]^2=[v]$ exactly (the order-4 glue class squares to the
+fermion-parity / $D_5$-vector class; non-split: vector glue of norm $7/4$ not in $2\mathbb Z$).
+Unique finite trace-preserving conditional expectation $E=\tfrac14\sum_r\mathrm{Ad}(u^r)$ onto the
+clock-fixed algebra (uniqueness needs the module property; without it the deviation kernel has
+dimension $36/720$).  The P1 arithmetic $1/(4\cdot 2\pi)=c_3$ is the v484/v813 identity, not a
+derivation; the equidistribution identification stays the open \mC\ of v813.
+\texttt{AX.P1.01}/\texttt{AX.P2.01} stay Axiom.  Display marker of this contract stays \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-28, completeness wave): 5 of 7 MMST
+identification criteria executed, and C6 is the written-out hand-off
+(\veri{v994\_\allowbreak mmst\_\allowbreak criteria\_\allowbreak battery.py}; display stays \mO).}
+C1: measured $c=8.005$ (16 Majorana copies; one-cut convention $S_{M,1\mathrm{cut}}=S_{\mathrm{scalar}}/4$).
+C2: conformal edge spectrum $[0.506,1.516,2.523,3.524]$ with degeneracies $[1,0,1,1,2]$, $v\approx0.988$.
+C3 (flagship): $\mu_4$/GSO-projected lattice character sums reproduce the $(E_8)_1$ vacuum character
+coefficients $[1,0,248,0,4124,0,34752]$ three orders deep.  C4: current normalisation
+$k=1.000000000000$.  C5: sector collapse $\det D_8=4\to\det E_8=1$.
+C6 is now \emph{written out} as the quasi-free convergence theorem in
+\texttt{articles/2026-08-28/psi\_lambda\_convergence\_theorem\_en.tex} (analytic log coefficient
+$2/\pi^2=0.20264$ vs the v988 measured slope $0.203$, relative $0.18\%$) --- this \emph{is} the
+G1/C6 hand-off, not a re-proof inside the suite.  C7 modular invariance stays cited/open.
+Must-fail: dropping GSO ($O$ alone) misses the $248$; $N_{\mathrm{MAJORANA}}=8$ cannot make $248$.
+Honest typing: 5/7 executed \mE-measured $+$ C6 written-out \mC $+$ C7 cited \mO; open rest $=$
+C7 $+$ net-level G2/G3/G4.  Display marker stays \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-29, review wave 4): C7 arithmetic shadow
+now exact
+(\veri{v998\_\allowbreak seam\_\allowbreak modular\_\allowbreak closure.py}; net-level C7 stays
+cited).}
+Two-edge HS remainder bounded by $2.11$ on the frozen plateau $N_x\in(16,24,32,48,64,96)$.
+Lattice character $\theta_{E_8}/\eta^8$ EXACT four orders: $t$-grid
+$[1,0,248,0,4124,0,34752]$.  $\Theta_{E_8}(\tau)=E_4(\tau)$ as Eisenstein series: $q$-expansion
+match to $\ge8$ orders exact (Jacobi identity); $j^{1/3}$ numeric transform at $60$ digits with
+$S$-weight bookkeeping ($\tau^4$ cancels in the weight-$0$ character).  Net-level C7 modular
+covariance of the completed extension stays cited/open.  Display marker stays \mO.
+
+\par\smallskip\noindent\textbf{Externalization package (hand-off for outside specialists in
+conformal nets / subfactors / VOA).}  In the same six-part format as the \texttt{SEAM.EQUIV.01}
+externalization contract below:
+\textbf{(1)~minimal theorem statement.}  Let $\mathcal A$ be the $\mathfrak{so}(16)_1$
+fermion-bilinear net on the seam circle (the half covered by the cited scaling-limit theorem,
+\veri{v973\_seam\_route\_narrowing.py}), and let $\sigma$ be the simple-current sector of the
+index-4 $\mu_4$ Q-system (finite side explicit and machine-verified, \vref{v125}/\vref{v154};
+net-level locality integer $h_s = 16/16 = 1$, \vref{v469}; the generator is meanwhile
+\emph{identified} at the lattice level as $\Psi_\lambda = Y(e^{(\omega_s,\omega_f)},z)$ with
+$h_\lambda = 1$, \veri{v983\_simple\_current\_generator.py}).  \emph{Claim:} there exists one
+normalized intertwiner $\Psi_\sigma$ (a charged/spin field for $\sigma$ --- the identified
+$\Psi_\lambda$) satisfying
+G1~convergence on the finite-particle core with polynomial energy bounds, G2~relative locality
+to $\mathcal A$, G3~the $\mu_4$ braiding/monodromy relation, and G4~Q-system closure; then the
+extension generated by $\{\mathcal A, \Psi_\sigma\}$ is the $(E_8)_1$ net and the v973
+residual N1\,+\,N2 (and N4 via uniqueness) closes.
+\textbf{(2)~typed hypothesis list.}  \textsc{proven-finite}: the index-4 Q-system
+(\vref{v125}/\vref{v154}), the crossed-product/locality package (\vref{v469}), the coverage
+carve with the named N1--N4 residual and the measured collar rate $p = 3.48$
+(\veri{v973\_seam\_route\_narrowing.py}), the gapped collar model (\vref{v367}/\vref{v368}).
+\textsc{cited-classical}: the Osborne--Stottmeister scaling limit (arXiv:2107.13834);
+Longo--Rehren / B\"ockenhauer--Evans simple-current extension theory; KLM $\mu$-index
+classification.  \textsc{open}: C7 modular invariance of the completed $\mu_4$/GSO extension, and G2--G4 as
+\emph{net} statements (relative locality, braiding, Q-system closure at the continuum net).
+G1/C6 is no longer a blank: the quasi-free convergence theorem is written out in
+\texttt{articles/2026-08-28/psi\_lambda\_convergence\_theorem\_en.tex} (analytic log coefficient
+$2/\pi^2=0.20264$ vs measured $0.203$) --- that document \emph{is} the hand-off.
+\textbf{(3)~runnable finite models:} \texttt{verification/v125}, \texttt{v154}, \texttt{v469},
+\texttt{v973} (embedded probes with pinned SPEC hashes), \texttt{v983} (the identified glue
+vector and its lattice shadow), \texttt{v988} (S3 exact $+$ S1/S2 skeleton),
+\texttt{v994} (5/7 MMST identification criteria, including the $(E_8)_1$ vacuum character
+$[1,0,248,0,4124,0,34752]$).
+\textbf{(4)~honest Lean surface:} none for G1--G4; the finite Q-system arithmetic only.
+\textbf{(5)~must-fail controls:} the same construction attempted on $SO(16)_1$ \emph{without}
+the order-4 clock must \emph{not} produce a holomorphic net ($\det K = 4$ rival); a
+non-order-4 clock must break the marks; the trivial $M{=}3$ collar must give no chiral limit.
+\textbf{(6)~acceptance tests:} a solution counts iff it (a)~proves G1--G4 for one explicit
+$\Psi_\sigma$, or (b)~proves that no local normalized generator exists (the registered kill ---
+then the seam route is dead and the ledger records it as exactly that).
+
+% =====================================================================
+\section*{Research Contract --- \texttt{TFPT4D.LATTICE.ACTION.01} (the explicit finite 4D lattice action and its seven finite gates)}
+\addcontentsline{toc}{section}{Research Contract: TFPT4D.LATTICE.ACTION.01}
+% =====================================================================
+\noindent\emph{Typing.} A research contract \mO\ (ledger row \texttt{TFPT4D.LATTICE.ACTION.01});
+route step (2) of the \texttt{DIMENSION.UPLIFT.FIREWALL.01} ordering made concrete --- the
+single object on which nearly all open 4D questions become simultaneously testable.
+\textbf{Demand.}  Exhibit one fully explicit finite family of 4D Euclidean lattice theories
+\[
+\mathcal Z_a[J]=\int\mathcal DU\,\mathcal D\psi\,\mathcal D\Phi\;
+e^{-S_a[U,\psi,\Phi]+J\mathcal O},
+\qquad
+S_a=S_{\rm Wilson}[U]+\bar\psi\,D_{\rm GW}[U,\Phi]\,\psi+S_\Phi[U,\Phi]+S_{\rm seam/top},
+\]
+where $U$ are the fundamental holonomies (TFPT fixes representation content, charge lattice,
+coupling relations and boundary conditions), $D_{\rm GW}$ is a Ginsparg--Wilson/overlap operator
+for the TFPT chiral representation content (the \texttt{CHIRAL4D.NOMIRROR.01} operator), $\Phi$
+is the \emph{only} allowed relevant scalar/link-mixing sector (EWSB downstream), and
+$S_{\rm seam/top}$ is the boundary/topological module transporting the seam data into the bulk
+--- first at finite lattice spacing $a$, deliberately \emph{without} continuum claims.
+\textbf{Finite gates} (all machine-checkable at finite size; the promotion criteria for any
+candidate): \textbf{(T1)}~exact gauge invariance; \textbf{(T2)}~a positive transfer matrix (RP
+at finite $a$); \textbf{(T3)}~the seam boundary restriction reproduces the TFPT seam data
+\emph{exactly}; \textbf{(T4)}~anomaly bookkeeping including the global $SU(2)$ anomaly;
+\textbf{(T5)}~the index/generation count; \textbf{(T6)}~the mirror spectrum separated;
+\textbf{(T7)}~at least one \emph{nonvanishing} connected four-point function.
+\textbf{Kill tests.}  No local reflection-positive action with the correct seam restriction
+exists (master route dead); every candidate is generalized-free (T7 unreachable); a hidden
+freely tunable dimensionless parameter is required (the strong parameter-freeness claim is
+refuted); the uniform twistor flat direction shifts \emph{normalized} observables rather than
+only the vacuum normalization of $\mathcal Z$ (a genuine undetermined modulus).
+\textbf{Relation.}  The continuum limit is the separate contract \texttt{QFT4D.OS.RECON.01};
+the unitary dilation is \texttt{DYN.UNITARY.DILATION.01}; $d=4$ is typed by
+\texttt{DIMENSION.SELECTOR.4D.01} \mC; the generating-functional collapse is
+\texttt{FTRANSFER.GENERATING.01}.  Chiral lattice state of the art is calibrated in
+\texttt{CHIRAL4D.NOMIRROR.01} (L\"uscher's exactly gauge-invariant abelian construction,
+arXiv:hep-lat/9811032; the nonabelian anomaly analysis, arXiv:hep-lat/9904009; reflection
+positivity proven for \emph{free} overlap fermions, Kikukawa--Usui arXiv:1005.3751 --- none of
+this is the interacting chiral Standard Model).  Nothing in the corpus closes any gate.
+Status: \texttt{TFPT4D.LATTICE.ACTION.01} \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-28, promote round): the T1--T7 harness
+plus a named Euclidean T2 kill and a Hamiltonian-route T2 clearance
+(\veri{v989\_\allowbreak lattice\_\allowbreak gate\_\allowbreak battery.py}; no gate closed).}
+T4 exact SM anomaly bookkeeping (a lepton-drop mutant fires).  T5/T6: overlap index equals flux
+$q$ on an $8\times8$ torus; Ginsparg--Wilson circle to machine precision.  The Euclidean overlap
+candidate is killed at T2: $|\det D_{\rm ov}|^2$ is PSD at $N_t=2$ and indefinite at $N_t=4$
+(det-only $\lambda_{\min}\approx-0.249$); Wilson fermions (ultralocal in time) stay PSD --- the
+break is pinned on overlap time nonlocality.  The Hamiltonian route clears T2 by construction
+($H=H^\dagger$ exact $\Rightarrow T=e^{-aH}$ symmetric PD; interior Gauss exact including the
+seam-sector intertwiner; background-field $\mu_4$ split with $k=1,3$ degenerate).  Display
+marker stays \mO.
+
+\par\smallskip\noindent\textbf{Registered decision (2026-08-28,
+\texttt{QFT4D.LATTICE.FUNDAMENTAL.01}): the lattice-fundamental reading --- a typed
+route/typing, \emph{not} an \mE\ claim.}
+The physical completeness criterion is this finite local unitary lattice theory (Hamiltonian
+route), not the continuum OS limit.  That limit (\texttt{QFT4D.OS.RECON.01}) is retyped as
+mathematical reinforcement; Poincar\'e invariance is an IR fixed-point property.  The display
+marker of this contract stays \mO; nothing closes.  See the decision paragraph at
+\texttt{QFT4D.OS.RECON.01}.
+
+\par\smallskip\noindent\textbf{Amendment (2026-08-29):} a single finite box is not a world ---
+the fundamental object is the quasilocal consistent family $\{H_\Lambda\}$ with
+$\tau_t=\lim e^{itH_\Lambda}A e^{-itH_\Lambda}$; continuum optional, thermodynamic limit and
+controlled IR universality mandatory.  Full prose at \texttt{QFT4D.OS.RECON.01}.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-30, review wave~7): $2{+}1$D scaffold
+coherent (\veri{v1008\_\allowbreak master\_\allowbreak assembly\_\allowbreak scaffold.py};
+Decision typing UNCHANGED).}
+Combinatorial $K=0$, unique-contractive $\lvert R'\rvert<1$, QWZ wall $+$ DET4 mirror,
+$\mathbb Z_6$ assembly $(1,2,3,0)$.  $L=3$ spaces out of suite.  No \mE\ claim, no marker move.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-30, afternoon harvest;
+\veri{v1011\_\allowbreak 3p1d\_\allowbreak ladder\_\allowbreak battery.py};
+Decision typing UNCHANGED).}
+$3{+}1$D minimal object viable; fully coupled link--wall at minimal scale; Kronecker
+limitation removed.  No \mE\ claim, no marker move.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-30, late-evening harvest;
+\veri{v1013\_\allowbreak thermodynamic\_\allowbreak dynamics.py};
+Decision typing UNCHANGED).}
+Mandatory-dynamics leg closed at class level (Lieb--Robinson $+$ $\tau_t$ $+$ $\mathcal A^G$
+$+$ state existence).  Uniqueness / limit gap / IR universality remain.  Full prose at
+\texttt{QFT4D.OS.RECON.01}.  No \mE\ claim, no marker move.
+
+% =====================================================================
+\section*{Research Contract --- \texttt{SEAM.DETLINE.UNIFICATION.01} (the determinant-line unification hypothesis)}
+\addcontentsline{toc}{section}{Research Contract: SEAM.DETLINE.UNIFICATION.01}
+% =====================================================================
+\noindent\emph{Typing.} A research \emph{hypothesis} contract \mO\ (ledger row
+\texttt{SEAM.DETLINE.UNIFICATION.01}) --- a precise conjecture, \emph{not} a result.
+\textbf{Observation.}  Three separately open structures may be projections of \emph{one}
+geometric object: \textbf{(1)}~the seam extension is described by a Q-system/simple current
+(\texttt{SEAM.SIMPLECURRENT.GENERATOR.01}); \textbf{(2)}~the chiral fermion measure lives on a
+determinant line (\texttt{CHIRAL4D.NOMIRROR.01} demand C1); \textbf{(3)}~anomalies and CP
+phases appear as holonomies of that determinant line --- the \emph{finite} Quillen identity is
+already two-sided (\veri{v974\_alpha\_faces\_computed.py}: Berry integral $=$
+Poincar\'e--Lelong divisor integral $=+1$), and the continuum Bismut--Freed identification is
+the named missing step of \texttt{ALPHA.QUILLEN.EXACT.01}.  \textbf{Demand (the compatibility
+theorem).}
+\[
+\operatorname{Res}_{\rm seam}\det D_{4D}\;\cong\;\det D_{\rm seam}
+\]
+as line bundles \emph{with connection}, and the holonomy of the bulk determinant line equals
+the discrete TFPT orientation phase (the classically invisible $\operatorname{sgn}J$
+orientation bit, now machine-checked at matrix level with the Wilson-plaquette interference
+readout as its minimal observable, \veri{v977\_transfer\_unistochastic\_wilson.py}; the
+bulk-determinant identification demanded here stays open).  If such a theorem exists, seam extension, chiral
+anomaly freedom, the generation index and the discrete CP orientation become different
+projections of the same object.  \textbf{Kill tests.}  The two determinant lines differ by a
+nontrivial local factor no counterterm removes; the bulk holonomy disagrees with the discrete
+orientation phase on a computable family.  \emph{Honest boundary:} the continuum
+Quillen/Bismut--Freed identification is exactly the critical missing step; nothing in the
+corpus proves any part of the 4D side.  Status: \texttt{SEAM.DETLINE.UNIFICATION.01} \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-28, promote round): a finite $2{+}1$D/$1$D
+bulk--edge shadow is executed
+(\veri{v991\_\allowbreak detline\_\allowbreak bulk\_\allowbreak edge.py}; continuum
+Bismut--Freed stays \mO).}
+On the QWZ collar, bulk twist-torus curvature $2\pi\cdot(+1)$ equals the seam holonomy winding
+$+1$ (difference $5.6\times10^{-16}$); the $M=3$ control is zero on both sides; a conjugation
+mutant flips both signs coherently.  Honest: finite shadow \mE, not the 4D Bismut--Freed
+identification.  Display marker stays \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-30, late-evening harvest;
+\veri{v1014\_\allowbreak bridge\_\allowbreak refinements.py}; the contract stays \mO).}
+The finite restriction isomorphism $\operatorname{Res}_\Sigma L_{\mathrm{bulk}}\cong L_\Sigma$
+is verified ($c_{\mathrm{phase}}$ constancy $3.7{\times}10^{-16}$, conjugation covariance exact,
+$C=W_{\mathrm{bulk}}=W_{\mathrm{seam}}=+1$ / mirror $-1$).  Orientation fixes only the
+conjugate-pair branch ($2\to1$); a constant $U(1)$ anchor remains, fixed by the $A_0$
+reference normalization of \texttt{ALPHA.QUILLEN.EXACT.01}.  Continuum Bismut--Freed stays \mO.
+
+% =====================================================================
+\section*{Research Contract --- \texttt{FTRANSFER.GENERATING.01} (four transfer bridges from one generating functional)}
+\addcontentsline{toc}{section}{Research Contract: FTRANSFER.GENERATING.01}
+% =====================================================================
+\noindent\emph{Typing.} A research contract \mO\ (ledger row \texttt{FTRANSFER.GENERATING.01});
+the \emph{constructive successor} named by the \texttt{FR.TRANSFER.01} typing guard.  The four
+continuous-transfer interfaces ($F_{\rm pole}$: source masses $\to$ pole, \vref{v183};
+$F_{\rm Boltzmann}$: CP source $\to\eta_B$, \vref{v169}/\vref{v184}; $F_{\rm relic}$:
+$(f_a,m_a,\theta_i,N_{\rm DW})\to\Omega_a$, \vref{v185}; $F_{\rm QCD}$:
+$(\alpha_s,b_3,\Lambda_{\rm QCD},\text{lattice})\to m_p/m_e$, \vref{v164}) are currently four
+\emph{separate} bridges.  \textbf{Demand.}  If the 4D theory $\mathcal Z_a[J]$ of
+\texttt{TFPT4D.LATTICE.ACTION.01} exists with a controlled continuum limit
+(\texttt{QFT4D.OS.RECON.01}), the four bridges must arise from \emph{one} generating functional
+$W[J]=\log Z[J]$: lepton and quark masses as poles of two-point functions (zeros of
+$\Gamma^{(2)}$); $m_p/m_e$ from the baryon and electron correlator poles of the \emph{same}
+theory; $\eta_B$ from the real-time Schwinger--Keldysh dynamics of the \emph{same} theory (CP
+violation, $B$ violation, nonequilibrium); the axion relic from the cosmological solution of
+the \emph{same} normalized action.  $F_{\rm transfer}$ is then not another $3\times3$ matrix;
+it is the full $W[J]$.  \textbf{Binding.}  The \texttt{FR.TRANSFER.01} guard stays in force:
+the four frontier observables remain \mC/\mO-typed until $W[J]$ exists and each bridge is
+\emph{derived} from it --- this contract permits no marker upgrade; it names the single object
+whose existence would collapse the four transfer problems into computations within one theory.
+\textbf{Kill test.}  The four bridges provably require mutually inconsistent normalizations of
+the same $W[J]$.  Status: \texttt{FTRANSFER.GENERATING.01} \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-28, promote round): a finite $W[J]$ is
+executed at $1{+}1$D $\mathbb Z_6$
+(\veri{v990\_\allowbreak wj\_\allowbreak transduction\_\allowbreak mechanism.py}; the
+\texttt{FR.TRANSFER.01} guard stays binding --- no upgrade).}
+Content shadow: the real $6Y$ table as a $\mathbb Z_6$ centre.  Derivative identities:
+$\partial W/\partial J=\langle O\rangle$ (residual $6.3\times10^{-11}$), Hessian $=$ Kubo
+(residual $1\times10^{-7}$).  The four transfer bridges remain un-derived; this is the
+finite-level mechanism, not $W[J]$ of the 4D theory.  Display marker stays \mO.
+
+% =====================================================================
+\section*{Research Contract --- \texttt{GAUGE.DETLINE.FIXPOINT.01} (all three gauge couplings from one zeta-det functional)}
+\addcontentsline{toc}{section}{Research Contract: GAUGE.DETLINE.FIXPOINT.01}
+% =====================================================================
+\noindent\emph{Typing.} A research contract \mO\ (ledger row \texttt{GAUGE.DETLINE.FIXPOINT.01}),
+registered 2026-08-28 from review wave~3.  \textbf{Demand.}  All three gauge
+couplings ($g_1,g_2,g_3$ / equivalently $\alpha$, $\sin^2\theta_W$, $\alpha_s$) arise as
+stationary points of \emph{one} nonabelian zeta-det / inflow functional on the determinant line ---
+the nonabelian upgrade of the $U(1)$ face \texttt{ALPHA.QUILLEN.EXACT.01}.  \textbf{Acceptance.}
+Unique stationary points, positive Hessian, $\alpha_s(M_Z)$ without measured input, RG from the
+matching scale reproduces the data, mutants fail.  \textbf{Honest bound.}  $\alpha_s(M_Z)$ is
+currently an \emph{external input} (the QCD matching / lattice input of $F_{\rm QCD}$); this
+contract names the missing first-principles replacement, it does not claim the number is derived
+today.  \textbf{Kill tests.}  A unique stationary point fails to exist; Hessian not positive;
+mutants (wrong level, wrong inflow multiplicity) still pass; RG from the functional fails to land
+on the observed couplings.  \textbf{Relation.}  Generalizes \texttt{ALPHA.QUILLEN.EXACT.01}.
+Status: \texttt{GAUGE.DETLINE.FIXPOINT.01} \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-28, completeness wave): the naive grammar
+extension is a structural kill
+(\veri{v996\_\allowbreak gauge\_\allowbreak grammar\_\allowbreak kill.py}; the contract stays \mO).}
+Simplest-extension H0 of the $U(1)$ $\alpha$-grammar to $SU(2)/SU(3)$ is structurally inapplicable:
+negative $b_2/b_3$ flip the stationary-root signs ($SU(2)$ inverse $-151.2$, $SU(3)$ $-115.9$);
+$64$ conventions, $0$ hits; the $U(1)$ control $137.0359992168$ survives every mutant.
+Exponential detline-curvature convergence to $2\pi$ with rate $0.6936\sim\ln 2$ is a numerical
+Bismut--Freed \emph{shadow}, not the continuum theorem (canonical note on
+\texttt{ALPHA.QUILLEN.EXACT.01}).  Naive census-only extension excluded \mE; genuinely nonabelian
+Casimir/instanton structure is required --- typed.  Honest: $\alpha_s(M_Z)$ remains an external
+input.  Display marker stays \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-29, review wave~5): fixed-volume
+mechanism executed, thermodynamic step-scaling divergent
+(exploration probes \texttt{gauge\_stiffness\_\allowbreak fixpoint\_\allowbreak probe.py} $+$
+\texttt{gauge\_stiffness\_\allowbreak stepscaling\_\allowbreak probe.py}; \emph{not} a new module; the contract stays \mO).}
+At fixed volume the stiffness map has a unique fixed point with contraction $-0.632$, exact
+$q^2$ and $SU(2)$ Dynkin-ratio $4.0$ content laws, Weyl exact.  The preregistered thermodynamic
+step-scaling $L=2{..}8$ (certified Lanczos) is \emph{divergent}: $g_\star$ oscillates
+$0.65{..}1.69$, $\lvert R'\rvert>1$ at $L=4,5,8$, and $1/L$ vs $1/L^2$ extrapolations are
+inconsistent.  Typed hurdle: the $1{+}1$D toy has no plaquette self-interaction; the real
+contract needs $\ge 2{+}1$D.  The v996 H0 grammar kill stands.  Display marker stays \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-30, review wave~7): the $2{+}1$D
+plaquette scaffold lifts the $1{+}1$D no-plaquette hurdle at scaffold level
+(\veri{v1008\_\allowbreak master\_\allowbreak assembly\_\allowbreak scaffold.py}; the $4$D
+fixpoint stays \mO).}
+Combinatorial $K=0$; frozen-link $q^2\sim4$ with $K(q=0)=0$; unique-contractive selector
+$\lvert R'\rvert<1$ (L2 selector $0.578\to$ L3 $0.936$ harvest pins; $L=3$ Lanczos out of
+suite).  The thermodynamic $4$D fixpoint and $\alpha_s(M_Z)$ as an external input remain open.
+Display marker stays \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-30, afternoon harvest;
+\veri{v1011\_\allowbreak 3p1d\_\allowbreak ladder\_\allowbreak battery.py};
+BINDING constraint recorded, display stays \mO).}
+Holonomy stiffness collapses in the confined phase (coupled $K$ dies above $g\sim1.6$;
+charged spinor channels enhance $\sim2.014{\times}$ at weak $g$ but do not prevent the
+collapse at minimal volume).  The matching point of the coupling functional
+\emph{must} be defined in the deconfined/weak regime.  Charge-$0$ control matches the
+uncharged periodic-face curve to $10^{-10}$.  Display marker stays \mO.
+
+% =====================================================================

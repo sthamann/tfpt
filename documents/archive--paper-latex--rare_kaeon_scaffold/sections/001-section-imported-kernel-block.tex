@@ -1,0 +1,332 @@
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The TFPT minimal kernel fixes the CKM matrix entirely through the carrier seed
+$\phiz$ and the $\mathbb Z_6$ transport grammar, without fitting to flavor data.
+This note traces the resulting prediction chain for the rare
+kaon decays $K^+\to\pi^+\nu\bar\nu$ and $K_L\to\pi^0\nu\bar\nu$,
+using the exact PDG-convention CKM matrix built from the TFPT mixing
+angles and CP phase, combined with modern short-distance input.
+The TFPT-fixed branching ratios are
+\[
+\BR(K^+\to\pi^+\nu\bar\nu)=\num{9.40e-11},
+\qquad
+\BR(K_L\to\pi^0\nu\bar\nu)=\num{3.47e-11},
+\]
+with a sharp operational test corridor: a stable NA62 result outside
+$[7,12]\times 10^{-11}$ for the charged channel, or a KOTO result
+incompatible with the Grossman--Nir correlation, would break the
+present TFPT flavor bridge. The current NA62 observation
+$\BR(K^+)=(13.0^{+3.3}_{-3.0})\times 10^{-11}$ is consistent with
+the prediction at the $1\sigma$ level.
+\end{abstract}
+
+\tableofcontents
+
+\bigskip
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+    >=Latex,
+    kernel/.style={draw=blue!60!black, thick, rounded corners=4pt,
+        fill=blue!5, align=center, minimum width=2.6cm, minimum height=1.1cm,
+        font=\small},
+    transport/.style={draw=orange!70!black, thick, rounded corners=4pt,
+        fill=orange!5, align=center, minimum width=2.6cm, minimum height=1.1cm,
+        font=\small},
+    sector/.style={draw=green!50!black, thick, rounded corners=4pt,
+        fill=green!5, align=center, minimum width=2.7cm, minimum height=1.1cm,
+        font=\small},
+    result/.style={draw=red!60!black, thick, rounded corners=4pt,
+        fill=red!5, align=center, minimum width=2.6cm, minimum height=1.1cm,
+        font=\small\bfseries},
+    arrlabel/.style={font=\scriptsize, fill=white, inner sep=1.5pt},
+]
+\node[kernel] (seed) {TFPT kernel\\$\phiz=\frac{1}{6\pi}+\frac{3}{256\pi^4}$};
+\node[kernel, right=1.8cm of seed] (cabibbo) {Cabibbo seed\\$\lambda_C=\sqrt{\phiz(1\!-\!\phiz)}$};
+\node[transport, below=1.4cm of seed] (ckm) {exact CKM matrix\\$s_{12},s_{23},s_{13},\delta$};
+\node[transport, below=1.4cm of cabibbo] (phase) {CP phase\\$\delta_{\mathrm{CKM}}=1.198$ rad};
+\node[sector, below right=1.6cm and -0.5cm of ckm] (lambda)
+    {$\lambda_t=V_{ts}^*V_{td}$\\$X_t,P_c,\delta P_{c,u},\Delta_{\mathrm{EM}},\kappa_{\pm}$};
+\node[result, below=1.3cm of lambda] (br) {$\BR(K^+)=9.40\times10^{-11}$\\$\BR(K_L)=3.47\times10^{-11}$};
+
+\draw[->, thick, blue!60!black] (seed) -- (cabibbo);
+\draw[->, thick, orange!70!black] (seed) -- (ckm)
+    node[arrlabel, midway, left=2pt]{transport};
+\draw[->, thick, orange!70!black] (cabibbo) -- (phase)
+    node[arrlabel, midway, right=2pt]{holonomy};
+\draw[->, thick, orange!70!black] (ckm) -- (lambda);
+\draw[->, thick, orange!70!black] (phase) -- (lambda);
+\draw[->, thick, green!50!black] (lambda) -- (br)
+    node[arrlabel, midway, right=2pt]{SD formulas};
+
+\begin{scope}[on background layer]
+    \node[draw=blue!30, dashed, rounded corners=6pt, fill=blue!2,
+        fit=(seed)(cabibbo), inner sep=8pt,
+        label={[font=\scriptsize\itshape, text=blue!60!black]above:imported kernel}] {};
+    \node[draw=orange!40, dashed, rounded corners=6pt, fill=orange!2,
+        fit=(ckm)(phase), inner sep=8pt,
+        label={[font=\scriptsize\itshape, text=orange!60!black]left:transport grammar}] {};
+\end{scope}
+\end{tikzpicture}
+\caption{Prediction chain from the TFPT kernel to the rare kaon branching ratios.
+Blue: imported kernel data. Orange: transport-grammar outputs (exact CKM matrix).
+Green: sector-specific electroweak matching. Red: final TFPT-fixed predictions.}
+\label{fig:prediction-chain}
+\end{figure}
+
+
+\section{Imported kernel block}
+\label{sec:kernel}
+
+This note imports only the compact TFPT kernel established in \cite{TFPT}:
+\[
+E = E_3\oplus E_2,
+\qquad
+Y=\mathrm{diag}\!\left(-\frac13,-\frac13,-\frac13,\frac12,\frac12\right),
+\qquad
+\inv = \frac{12Y-\mathbf 1}{5},
+\]
+\[
+G_{\SM}^{\mathrm{glob}}
+=
+S(U(3)\times U(2))
+\cong
+\frac{SU(3)\times SU(2)\times U(1)_Y}{\mathbb Z_6},
+\qquad
+S^+ = \Lambda^{\mathrm{even}}E \cong \mathbf 1\oplus\mathbf{10}\oplus\overline{\mathbf 5},
+\]
+\[
+\gammaY=\tr_EY^2=\frac56,
+\qquad
+\cthree=\frac1{8\pi},
+\qquad
+\phibase=\frac1{6\pi},
+\qquad
+\deltatop=\frac{3}{256\pi^4},
+\]
+\[
+\bone(N_{\mathrm{fam}},N_\Phi)=\frac43N_{\mathrm{fam}}+\frac1{10}N_\Phi,
+\qquad
+\phiseam(\alpha)=\phibase+\deltatop e^{-2\alpha}(1-\deltatop e^{-2\alpha})^{-5/4}.
+\]
+On the canonical branch ($N_{\mathrm{fam}}=3$, $N_\Phi=1$) the retained seed is
+\begin{equation}
+\label{eq:retained-seed}
+\phiz=\frac{1}{6\pi}+\frac{3}{256\pi^4}=\num{0.053173},
+\end{equation}
+and the seed chain emits
+\begin{equation}
+\label{eq:seed-chain}
+\lambda_C=\sqrt{\phiz(1-\phiz)}=\num{0.22438},
+\qquad
+\sin^2\theta_{13}=\phiz\, e^{-\gammaY}.
+\end{equation}
+
+\begin{remark}
+The imported kernel block is kept fixed.
+Every genuinely new claim in this note sits above it, not inside it.
+\end{remark}
+
+
+\section{Sector definition and target channels}
+\label{sec:sector}
+
+\begin{definition}[Rare kaon sector data]
+\label{def:sector-data}
+The rare kaon sector package is
+\[
+\mathcal D_{\mathrm{RK}}
+=
+\bigl(
+\{K^+\!\to\pi^+\nu\bar\nu,\; K_L\to\pi^0\nu\bar\nu\},\;
+\mathcal O_{\mathrm{sd}},\;
+\mu_{\mathrm{match}}=M_W,\;
+\text{GIM}\bigr),
+\]
+where $\mathcal O_{\mathrm{sd}}$ is the standard dimension-six short-distance operator
+basis for $s\to d\,\nu\bar\nu$ transitions, matched at the electroweak scale, and GIM
+refers to the Glashow--Iliopoulos--Maiani selection rule.
+\end{definition}
+
+The $K\to\pi\nu\bar\nu$ system is the theoretically cleanest probe of the
+$s\to d$ flavor-changing neutral current in the Standard Model.
+Both channels are loop induced and CKM suppressed.
+The neutral mode $K_L\to\pi^0\nu\bar\nu$ is dominated by the
+short-distance $Z$-penguin and electroweak box diagrams with a virtual
+top quark; hadronic uncertainties are negligible.
+The charged mode $K^+\to\pi^+\nu\bar\nu$ receives an additional
+numerically relevant charm contribution encoded in $P_c+\delta P_{c,u}$,
+so it is not purely top dominated.
+The hadronic matrix elements for both modes are related to the
+well-measured $K_{e3}$ rate by isospin, so the theoretical uncertainty
+on the branching ratios is controlled almost entirely by the CKM input and
+the perturbative short-distance functions.
+
+Within the TFPT framework this makes the rare kaon sector an ideal
+application layer: the kernel already determines the full CKM matrix
+through the transport grammar, so the only additional ingredients are
+the standard electroweak loop functions and the experimentally
+constrained hadronic normalization constants.
+
+
+\section{Exact CKM point from the TFPT transport grammar}
+\label{sec:ckm}
+
+The TFPT transport branch generates the CKM mixing angles and
+CP-violating phase as exact functions of the kernel data, not as fitted
+parameters. The leading magnitudes are
+\begin{equation}
+\label{eq:ckm-angles}
+s_{12}=\lambda_C,
+\qquad
+s_{23}=\frac{\phiz}{1+\lambda_C},
+\qquad
+s_{13}=\frac{\lambda_C^3}{3},
+\end{equation}
+and the CP-violating phase is determined by the holonomy triangle on the
+$\mathbb Z_6$ family transport hexagon:
+\begin{equation}
+\label{eq:ckm-phase}
+\delta_{\mathrm{CKM}}
+=
+\arg\tr\Pi_\triangle(\nabla_F^\star)
+=
+\frac{\pi}{3}+3\lambda_C^2+O(\lambda_C^4),
+\end{equation}
+with exact value $\delta_{\mathrm{CKM}}=\num{1.198}$ rad on the canonical admissible branch.
+
+\begin{proposition}[Exact TFPT CKM point in PDG convention]
+\label{prop:exact-ckm}
+The standard PDG parameterization of the CKM matrix is built from
+$(s_{12},s_{23},s_{13},\delta)$ via
+\[
+V_{\mathrm{CKM}}
+=
+\begin{pmatrix}
+c_{12}c_{13} & s_{12}c_{13} & s_{13}e^{-i\delta}\\
+-s_{12}c_{23}-c_{12}s_{23}s_{13}e^{i\delta}
+& c_{12}c_{23}-s_{12}s_{23}s_{13}e^{i\delta}
+& s_{23}c_{13}\\
+s_{12}s_{23}-c_{12}c_{23}s_{13}e^{i\delta}
+& -c_{12}s_{23}-s_{12}c_{23}s_{13}e^{i\delta}
+& c_{23}c_{13}
+\end{pmatrix},
+\]
+where $c_{ij}:=\sqrt{1-s_{ij}^2}$. Inserting the TFPT values from \Cref{eq:ckm-angles,eq:ckm-phase}
+gives
+\begin{equation}
+\label{eq:tfpt-ckm-numerics}
+s_{12}=\num{0.22438},
+\quad
+s_{23}=\num{0.04342},
+\quad
+s_{13}=\num{0.003767},
+\quad
+\delta=\num{1.198}\;\mathrm{rad}.
+\end{equation}
+The exact unitarity-triangle apex coordinates, defined via
+\begin{equation}
+\label{eq:rhobar-etabar-exact}
+\bar\rho+i\bar\eta
+\;:=\;
+-\frac{V_{ud}V_{ub}^*}{V_{cd}V_{cb}^*},
+\end{equation}
+evaluate to
+\begin{equation}
+\label{eq:apex-values}
+(\bar\rho,\;\bar\eta)
+=
+(0.1374,\;0.3509).
+\end{equation}
+The CKM products entering the rare kaon amplitudes, computed directly from
+the full matrix, are
+\begin{equation}
+\label{eq:lambda-t-exact}
+\lambda_t := V_{ts}^*V_{td}
+= -\num{3.558e-4}+i\,\num{1.522e-4},
+\end{equation}
+\begin{equation}
+\label{eq:lambda-c-exact}
+\lambda_c := V_{cs}^*V_{cd}
+= -\num{2.183e-1}-i\,\num{1.522e-4}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+From \Cref{eq:ckm-angles}, $s_{12}=\lambda_C$ and
+$c_{12}=\sqrt{1-\lambda_C^2}=\num{0.97446}$,
+$s_{23}=\phiz/(1+\lambda_C)=\num{0.04342}$,
+$c_{23}=\num{0.99906}$,
+$s_{13}=\lambda_C^3/3=\num{0.003767}$,
+$c_{13}=\num{0.999993}$.
+The full CKM matrix is then assembled from the PDG parameterization above.
+The apex coordinates \Cref{eq:rhobar-etabar-exact} follow from the exact
+definition, not the leading Wolfenstein approximation
+$\bar\rho\approx\cos\delta/(3A)$.
+The products $\lambda_t$ and $\lambda_c$ are read directly from the matrix
+entries.
+\end{proof}
+
+\begin{remark}
+The approximate Wolfenstein relations
+$\bar\rho\approx\cos\delta/(3A)$ and $\bar\eta\approx\sin\delta/(3A)$
+give $(0.140,\,0.360)$, which differs from the exact values
+$(0.1374,\,0.3509)$ at the percent level.
+For rare kaon amplitudes, which depend on $\lambda_t$ quadratically,
+this difference propagates into the branching ratios and must be
+tracked through the exact CKM matrix.
+\end{remark}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[>=Latex, scale=4.8]
+    \coordinate (O) at (0,0);
+    \coordinate (B) at (1,0);
+    \coordinate (A) at (0.1374,0.3509);
+
+    \fill[blue!6] (O) -- (A) -- (B) -- cycle;
+    \draw[thick, blue!70!black] (O) -- (B) -- (A) -- cycle;
+
+    \fill[red!70!black] (A) circle (0.6pt);
+    \node[above=3pt, font=\small\bfseries, red!70!black] at (A)
+        {$(\bar\rho,\bar\eta)_{\mathrm{TFPT}}=(0.1374,\,0.3509)$};
+
+    \draw[dashed, gray!60, thin] (0.1591,0) -- (0.1591,0.3523);
+    \draw[dashed, gray!60, thin] (0,0.3523) -- (0.1591,0.3523);
+    \fill[gray!70] (0.1591,0.3523) circle (0.45pt);
+    \node[right=2pt, font=\scriptsize, gray!60!black] at (0.1591,0.3523)
+        {PDG\,2025};
+
+    \draw[thick, orange!70!black, fill=orange!12, fill opacity=0.4]
+        (0.1591,0.3523) ellipse (0.020 and 0.015);
+
+    \draw[<->, thin, gray!50] (-0.08,0) -- (1.12,0);
+    \draw[<->, thin, gray!50] (0,-0.06) -- (0,0.48);
+    \node[below, font=\scriptsize] at (1.12,0) {$\bar\rho$};
+    \node[left, font=\scriptsize] at (0,0.48) {$\bar\eta$};
+
+    \node[below left, font=\scriptsize] at (O) {$(0,0)$};
+    \node[below right, font=\scriptsize] at (B) {$(1,0)$};
+
+    \draw[decorate, decoration={brace, amplitude=4pt, mirror}, gray!60]
+        (0,-0.04) -- (1,-0.04)
+        node[midway, below=5pt, font=\scriptsize, gray!60!black]
+        {$|V_{ud}V_{ub}^*|/(|V_{cd}V_{cb}^*|)$};
+
+    \draw[blue!60!black, thick] (B) ++(155:0.12) arc (155:195:0.12);
+    \node[font=\scriptsize, blue!60!black] at ($(B)+(175:0.17)$) {$\beta$};
+    \draw[blue!60!black, thick] (O) ++(0:0.07) arc (0:69:0.07);
+    \node[font=\scriptsize, blue!60!black] at ($(O)+(34:0.12)$) {$\gamma$};
+\end{tikzpicture}
+\caption{Unitarity triangle in the $(\bar\rho,\bar\eta)$ plane. The red dot marks
+the exact TFPT apex from the full CKM matrix; the orange ellipse is an
+illustrative $1\sigma$ region based on PDG\,2025 \cite{PDG2025} central values and
+uncertainties. The TFPT apex uses the exact definition
+$\bar\rho+i\bar\eta=-V_{ud}V_{ub}^*/(V_{cd}V_{cb}^*)$.}
+\label{fig:unitarity-triangle}
+\end{figure}
+
+

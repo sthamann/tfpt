@@ -1,0 +1,398 @@
+\emph{The global Gaussian shell theorem (2026-08-08, round 36):}
+the $-1/15$ census law above is now a \emph{theorem for all
+shells} (\veri{v875\_shell\_global\_lean.py}, $15/15$,
+\textsc{shell-global-theorem}): on $V = L/(1{+}i)L$, for every
+$n \ge 1$, $\Theta_v(n) = (\Theta_L(n) - \Theta_0(n))/15$ for all
+$v \ne 0$ (the division exact), $\hat\Theta_u(n) =
+16\,(16\cdot\mathbf 1_{2\mid n}\,\sigma_3(n/2) - \sigma_3(n))$,
+and at every \emph{odd} $n$: $\hat\Theta_u(n)/\Theta_L(n) =
+-1/15$ \emph{exactly} --- no census cap.  The three inputs, each
+warded: the $G_{31}$ class action is the $60$ symplectic
+transvections generating $\mathrm{Sp}(4,2)$ (order $720$),
+\emph{transitive} on the $15$ nonzero classes and identical to
+the shell-module action; norm doubling by $(1{+}i)$
+($\Theta_0(2m) = \Theta_L(m)$, $\Theta_0(\text{odd}) = 0$, exact
+from $2 = -i(1{+}i)^2$); and $\Theta_L = 240\,\sigma_3$
+(classical Eisenstein $E_4$; the $n \le 16500$ census retained
+as the exact ward).  A non-transitive control subgroup admits an
+invariant \emph{non}-uniform census (the law breaks ---
+transitivity is load-bearing), and the even-shell formula
+differs correctly ($7/135$ at $n = 2$).  The consequence chain
+is kernel-checked from the named hypothesis bundle in
+\texttt{TfptCarrier/GaussianShells.lean} ($7$ theorems, exact
+integer identities, standard axioms, no \texttt{sorry}) \mE.
+\emph{The winding decoder of the clock alphabet (2026-08-08,
+round 36):} the Paper-2 winding quadratic $q_{\rm wind}(t) = t^2
+- \gcar t + |Z_2|$ \emph{decodes} the clock alphabet
+(\veri{v874\_feedback\_decoder\_lean.py}, $11/11$,
+\textsc{winding-decoder-exact}): $q(\{2,3,5,6\}) =
+(-|\mu_4|, -|\mu_4|, |Z_2|, h(D_5)) = (-4,-4,2,8)$, with $q(2) =
+q(3)$ \emph{forced} by the palindrome axis $\gcar/2$ and $2 + 3
+= 5 = \gcar$; the decoder polynomial $D(y) = (y{+}4)^2(y{-}2)
+(y{-}8) = y^4 - 2y^3 - 48y^2 - 32y + 256$ carries the budget
+coefficients $(|Z_2|,\ \Oadm = 48,\ 2^{\gcar} = 32,\
+2^{\mathrm{rank}(E_8)} = 256)$; and the Fourier bridge lands:
+$|\mu_4|\,q(|Z_2|)/|R(E_8)| = 4\times(-4)/240 = -1/15$ is
+\emph{exactly} the nonzero-character Walsh eigenvalue of the
+census above ($-16 = |\mu_4|\,q(|Z_2|) = \hat r(u \ne 0)$).
+Sibling deformation directions collapse the bridge and
+alternative alphabets change the decoder; honest lines typed:
+the $-32$ coefficient alone is not selective (the selective
+object is the full vector), and the $6$-vs-$7$ tension carries
+over verbatim.  Type: exact \emph{audit} theorem, not a physical
+functor --- an explicit intertwiner would be needed to make it
+causal \mE.
+\end{keybox}
+
+\begin{keybox}[The finite compiler normal form $C_{\rm fin}=(V,\hbar,q^{*},\sigma,\iota)$ (2026-08-07) --- one object, the kill built in \mE\ (\veri{v845\_cfin\_normal\_form.py})]
+The four-bit symplectic compiler that this paper assembles
+piecewise --- quotient census, Arf refinements, selector, parity
+lift, $S_5$ geometry, Pascal counting --- is now \emph{one}
+machine-checked object, read off the Gaussian quotient and not
+postulated ($28/28$, \textsc{normal-form-assembled}, SPEC v2
+declared): $V = L/(1{+}i)L$ (census $240 = 15\times16$, zero
+class empty); $\hbar$ the descended symplectic form with a
+\emph{found} family/anchor basis $(F_1, F_2, F_3, A)$ of Gram
+$J - I$, equal to the bit form on all $256$ label pairs;
+$\sigma$ the descended order-$3$ deck ($\sigma^3 = \mathrm{id}$,
+symplectic, exactly three fixed nonzero classes
+$\{A, F_\Sigma, F_\Sigma{+}A\}$ and four free $3$-orbits --- the
+family cycle); $q^{*}$ the \emph{unique} selector-picked
+quadratic refinement (exactly $16$ refinements by brute force
+over $2^{16}$, Arf census $6 + 10$; $\sigma$-invariant: $4 \to
+q(A){=}1$: $2 \to q(F_\Sigma){=}0$: $1$; Arf type $1$,
+$\sigma$-preserved); $\iota$ the parity lift, bijective onto the
+even five-slot code $C_{\rm even}(5)$ with $\beta = \hbar$ on all
+$256$ cells, $q_{\rm wt} = q^{*}$, and $\sigma$ acting on the
+five carrier slots as the $3{+}2$ split --- message register and
+carrier register intertwined.  \emph{Derived from the one
+object:} $\lvert Sp(4,2)\rvert = 720$ by full census,
+$\mathrm{Stab}(q^{*}) = 120$ acting \emph{faithfully} as $S_5$ on
+the five, orbits $[1, 5, 10]$; $16 = 1 + 5 + 10$ and
+$15 = 5 + 10$; the Pascal reading (the $\iota$-weight census
+$(1, 10, 5) = (\binom50, \binom52, \binom54)$); the projective
+reading (the $\bar5$ is an \emph{ovoid} of the doily in
+$PG(3,2)$: it meets every isotropic line exactly once); and the
+budget against the actual lattice objects: $240 = 16\cdot15$,
+$60$ lines $= 4\cdot15$, $30 = 2\cdot15 = h(E_8)$ (rung 1 of the
+message ladder), rank $8$, $248 = 16\cdot15 + 8$.  \emph{The kill
+built in} (mandatory negative, \texttt{v775} re-anchored): the
+exact counting bound --- every $D_5{\oplus}A_3 \subset E_8$ has
+$128$ spinor-side roots, so at most $\lfloor128/16\rfloor = 8$
+all-spinor classes and at least $7$ of the $15$ classes
+\emph{always} contain adjoint-side roots; the concrete
+doubled-model census \emph{saturates} both bounds ($8 + 7$, zero
+mixed classes --- the $J$-quotient respects the $D_8$ grading),
+and the weight-level kill at the canonical split shows each
+spinor-pure class restricting to $8$ distinct half-spinor weight
+pairs, never one --- the $15$ mailboxes are \emph{not} $15$
+matter multiplets; \textsc{rootclass-mixed} re-verified, not
+overturned.  \emph{What the normal form does not remove:} all
+$30$ placements are Type II $[8,4]$ codes (the \texttt{v799}
+echo), and $C_{\rm fin}$ does \emph{not} derive the three seam
+axioms, the OPE-linearity scope note, or the \texttt{v776}
+selection of one copy --- P2 ($\gcar = 5$, entering as the
+$\iota$ slot count) is \emph{narrowed} to the \texttt{v799}
+residual R1$'$ (\mC\ class), not eliminated.  Controls fire (the
+non-alternating dot form admits zero refinements; the trivial
+deck leaves four selector candidates; the wrong lift breaks
+$\beta = \hbar$).  A normal form, not a new claim; no marker
+moves \mE.
+\end{keybox}
+
+\begin{keybox}[The uniqueness of $C_{\rm fin}$ and $\mathrm{Aut}(C_{\rm fin})\cong C_6$ (2026-08-07) --- one orbit, six automorphisms \mE\ (\veri{v849\_cfin\_unique\_cofinal\_lean.py})]
+The normal form above is not merely assembled --- it is
+\emph{unique} ($22/22$, \textsc{cfin-unique}, exhaustive finite
+verification over $\mathbb{F}_2^4$).  The WLOG ladder is exact: the $28$
+nondegenerate alternating forms are one $GL(4,2)$ orbit;
+$Sp(4,2)$ (order $720$ by full enumeration) is transitive on the
+$6$ Arf-$1$ refinements; per refinement there are exactly $20$
+admissible $\sigma$ (one orbit under the order-$120$ stabilizer)
+and per $(q^{*},\sigma)$ exactly $120$ admissible equivariant
+$\iota$ (one orbit).  \emph{The uniqueness theorem}: the full
+admissible tuple census at $\omega = \hbar$ has $14400$ members
+and the $Sp(4,2)\times S_5$ action has \emph{exactly one} orbit
+(orbit--stabilizer verified: $14400 \times 6 = 86400 =
+\lvert G\rvert$) --- every admissible compiler object is
+isomorphic to $C_{\rm fin}$.  \emph{The automorphisms}:
+$\lvert\mathrm{Aut}(C_{\rm fin})\rvert = 6$ with element orders
+$[1,2,3,3,6,6]$, abelian and cyclic --- $\mathrm{Aut}(C_{\rm
+fin}) \cong C_6$, the projection to $Sp(4,2)$ faithful and the
+$S_5$ slot permutation \emph{determined} by the symplectic part.
+The Gaussian-reduction diagram is typed: the parent lattice fixes
+the carrier triple $(V, \hbar, \sigma)$ up to exactly the
+$18$-element centralizer torsor, the selector pins $q^{*}$
+uniquely, the $120$ $\iota$-completions form a single orbit ---
+and the \emph{strict} initial/terminal reading fails honestly
+($120$ completions against $6$ automorphisms: unique up to
+\emph{non}-unique isomorphism, a one-object groupoid, not a
+terminal object).  Controls fire: dropping alternation kills the
+object ($0$ refinements); the wrong Arf class kills $\iota$ (the
+$C_{\rm even}(5)$ weight census $(1,10,5)$ \emph{forces} Arf
+$1$); dropping $\sigma$ kills \emph{canonicity} (the completion
+census becomes $16 \to 8 \to 4 \ne 1$) while the bare
+$(q,\iota)$ orbit count survives --- $\sigma$ is load-bearing
+for the selector, typed either way.  P2 sharpens accordingly:
+the interface object is unique up to isomorphism with $C_6$
+automorphisms; what remains of P2 is unchanged --- the
+\texttt{v799} residual R1$'$ (why \emph{this} normal form at
+all).  No marker moves \mE.
+\end{keybox}
+
+\begin{keybox}[The four finite anchor theorems (2026-08-09) --- the census-free $q^{*}$, the exclusive anchor classification, the doily as a multiplication table, and the $g=5$ exhaustion \mE\ (\veri{v880\_finite\_anchor\_theorems.py})]
+Four theorems close the finite-anchor layer of this section at
+identity grade ($26/26$, \textsc{finite-anchor-closed}; the
+discovery probe embedded byte-exact).  \textbf{(1) The
+census-free normal form.}  The selector-picked refinement has the
+closed weight-only form
+\[
+q^{*}(x) \;=\; \sum_{i<j} x_i x_j + \sum_i x_i
+\;=\; \binom{|x|+1}{2} \bmod 2,
+\]
+value table $(0,1,1,0,0)$ on weights $0$--$4$ --- and the
+\texttt{v845} selector \emph{forces} the linear part $(1,1,1,1)$:
+the $2^{16}$ brute-force search of the normal-form keybox above is
+replaced by a theorem.  \textbf{(2) The exclusive anchor
+classification.}  Every line of $PG(3,2)$ is classified by its
+$q^{*}$-weight multiset, and the classification is
+\emph{exclusive}:
+
+\begin{center}
+\begin{tabular}{lccc}
+lines & count & weight multiset & anchor\\
+\hline
+doily (isotropic) & $15$ & $\{2,1,1\}$ & $a = (1,1,2)$\\
+secants & $10$ & $\{2,2,1\}$ & the \emph{wrong} anchor $(1,2,2)$\\
+external & $10$ & $\{1,1,1\}$ & ---\\
+\end{tabular}
+\end{center}
+
+\noindent All $15$ doily lines carry the anchor $a = (1,1,2)$
+with per-line characteristic polynomial $(t-2)(t-1)^2 = t^3 -
+4t^2 + 5t - 2$ and Vieta data $(e_1, e_2, e_3) = (4, 5, 2)$ ---
+$e_2 = \gcar$ and $e_3 = |Z_2|$ read off one line; the $20$
+non-isotropic lines split \emph{exactly} as $10$ secants carrying
+the wrong anchor $(1,2,2)$ (Vieta $(5,8,4)$ --- the
+\texttt{v844} control multiset) plus $10$ external lines
+$\{1,1,1\}$.  The incidence budget lands as counting: $15 = M_0$
+and $30 = M_1 = h(E_8)$ (counting only, no new structure
+claimed).  The anchor--Vieta report closes the loop: $p_2(a) =
+6$, $\chi_L - \chi_R = -p_2(a)\,(t^2 - e_2 t + e_3)$, and $M_n =
+15\,(1, e_3, e_1, e_1 e_3, e_1^2)$.  \textbf{(3) The doily is a
+multiplication table.}  The doily \emph{is} the multiplication
+table $\Lambda^2 E \times \Lambda^2 E \to \Lambda^4 E$ of the
+five-slot carrier: each doily line has support partition $\{i\}
+\cup \{j,k\} \cup \{l,m\}$, the wedge $b_{jk} \wedge b_{lm} =
+\pm f_i$ holds exactly, the assignment is a bijection onto all
+$5\times3 = 15$ such configurations, and the wedge is nonzero
+\emph{exactly} on the doily lines.  \textbf{(4) The $g = 5$
+exhaustion.}  The quadratic one-step exhaustion $\Lambda^2 \wedge
+\Lambda^2 = \Lambda^{g-1}$ \emph{forces} $\gcar = 5$ uniquely
+among odd $g \in \{3, \dots, 11\}$.  The honest split is explicit
+and load-bearing: the \emph{theorem} (exhaustion $\Rightarrow$
+$g = 5$) is \mE; the \emph{physical premise} (why the carrier
+must satisfy the quadratic one-step exhaustion --- the Calder\'on
+reading) stays \mO\ --- P2 is \emph{narrowed}, not eliminated; no
+marker moves.
+\end{keybox}
+
+\begin{keybox}[The finite Pfaffian/$K_6$ signature (2026-08-09, rounds 44--49) --- the $Gr(2,5)$ Pl\"ucker reading, the canonical sign character, the self-hosting counting theorem, the flavor hexagon as the automorphism orbit, and the vacuum selection \mE\ (\veri{v888\_finite\_pfaffian\_signature.py})]
+Rounds 44--49 close the finite Pfaffian/$K_6$ layer of the
+compiler at identity grade ($27/27 + 19/19 + 42/42$; verdicts
+\textsc{s6plucker-closed}, \textsc{c6flavor-measured} $+$
+\textsc{intertwined}, \textsc{k6pfaffian-closed}; three
+discovery probes embedded byte-exact; exact integer / Fraction /
+sympy arithmetic in every decision --- no floats, no RNG, no
+fits).  \textbf{(1) The $Gr(2,5)$ reading.}  The $15$ doily
+lines \emph{are} the $15$ monomials of the five Pl\"ucker
+quadrics of $Gr(2,5)$: the bijection is $15/15$ with
+\emph{perfect} sign match --- every quadric reads $(+,-,+)$,
+the \texttt{v880} Hodge table (converse warded:
+secants/externals produce no monomial).  The $S_6$ duad
+representation decomposes as $15 = 1 + 5 + 9$ (Specht
+$S^{(6)} + S^{(5,1)} + S^{(4,2)}$, characters from scratch by
+Murnaghan--Nakayama) and the normalized doily operator acts on
+the isotypics by the exact scalars $(1, 0, 2/3)$, with the
+anchor identities $2/3 = e_3/(e_2 - e_3)$ and $15 = 1 + e_2 +
+(e_2 - e_3)^2$ at $(e_1, e_2, e_3) = (4, 5, 2)$; and the
+$q^{*}$ zero set is a $(16, 6, 2)$ Hadamard difference set with
+the anchor signature $(v, k, \lambda, v - k) = (2^{e_1},
+p_2(a), e_3, \binom{e_2}{2}) = (16, 6, 2, 10)$.  \textbf{(2)
+The $K_6$ motif theorem.}  Under the duad labeling the $35$
+lines of $PG(3,2)$ are \emph{exactly} the $15$ perfect
+matchings of $K_6$ (the doily) plus the $10$ triangles through
+the vacuum vertex (the secants --- the wrong-anchor class) plus
+the $10$ triangles avoiding it (the external lines, $20$
+triangles exhausting $\binom{6}{3}$), and the edge law is
+$q^{*}(e) = 0$ iff $e$ touches the vacuum vertex --- $q^{*}$
+\emph{is} vacuum incidence.  \textbf{(3) The canonical sign
+character.}  The fermionic Pfaffian signs of the symbolic
+$6\times6$ expansion ($15$ monomials, coefficients $\pm1$) are
+gauge-matched to the Hodge table via the canonical global
+character $\chi(i) = (-1)^{i+1}$ on the five vacuum edges ---
+triple-identified as the vacuum-row Laplace sign of
+$\operatorname{Pf}(A) = \sum_i (-1)^{i+1} a_{0i}
+\operatorname{Pf}(A_{\hat{0}\hat{\imath}})$, the
+$\Lambda^4$-vs-$\Lambda^5$ volume-form conversion (verified on
+all $15$), and the $C_6$ crossing character
+($\operatorname{Pf}(PAP^{\mathsf T}) =
+\det(P)\operatorname{Pf}(A)$ symbolically) --- a global gauge,
+not a line-dependent fudge (the flipped-$\chi$ control produces
+exactly the $3$ expected mismatches); each $4\times4$ minor
+Pfaffian \emph{equals} the corresponding $Gr(2,5)$ Pl\"ucker
+quadric.  \textbf{(4) The self-hosting counting theorem.}  The
+pairing count $\binom{g+1}{2} = g!!$ has exactly the solutions
+$\{1, 5\}$ over odd $g$ ($g = 1$ trivial, stated; growth
+separation $g!! > \binom{g+1}{2}$ for all odd $g \ge 7$ by
+symbolic induction), so $g = 5$ is the \emph{unique} nontrivial
+fixed point, with $(g-2)!! = 3 = \Nfam$.  The honest split is
+explicit and load-bearing: the counting \emph{theorem} is \mE;
+the \emph{physical premise} (the boundary grammar is a
+self-hosting Wick pair compiler) stays \mO\ --- P2 is narrowed
+to \emph{one} premise, not eliminated; no marker moves.
+\textbf{(5) The flavor hexagon is the automorphism orbit.}
+$\mathrm{Aut}(C_{\rm fin}) \cong C_6$ is rebuilt exactly; the
+pinned generator $g$ satisfies $g^2 = \sigma$ (the deployed
+family $3$-cycle) \emph{exactly} and $g^3 =$ the $W$-edge sheet
+swap; its action on the ten pair-messages has cycle type $1 + 3
++ 6$ with orbits equal to the charge shells, the $g$-orbit of
+$\{f_1, w_1\}$ traverses the deployed flavor hexagon edge by
+edge ($D_6$-equivalent to the transport cycle), and the
+recovery chain reads $(|Z_2|/\Nfam)^{|\mathrm{Aut}(C_{\rm
+fin})|} = (2/3)^6 = 64/729$ --- the frozen deployed transfer
+eigenvalue as an exact Fraction (typed honestly as a consistent
+\emph{new reading}: the corpus derivation of the exponent via
+$p_2 = |R_+(A_3)|$ stands; $0$ of $600$ symplectic
+non-automorphisms factor, scrambled transport fails).
+\textbf{(6) The vacuum-selection theorem.}  $Sp(4,2) \cong S_6$
+acts transitively on the six Arf-$1$ refinements;
+$\mathrm{Stab}(q^{*})$ has order $120$ and acts faithfully
+\emph{and} surjectively as $S_5$ on the remaining five, with
+orbits on the $16$ messages exactly the $\iota$-weight classes
+$1 + 5 + 10 = (\Lambda^0, \Lambda^4, \Lambda^2)$ --- the
+five-slot carrier is the residual symmetry after choosing one
+of six equivalent vacua.  Two side reports: the anchor
+power-sum clock $p_n = 2 + 2^n$ has mod-$30$ orbit $4 \to 6 \to
+10 \to 18$ of period exactly $4 = |\mu_4|$, typed
+\textsc{clock-distinguished} (the purely period-$4$ moduli are
+exactly $\{5, 10, 15, 30\}$, all dividing $30$); the
+operative-Coxeter-$30$ reading is separately dead (sandbox,
+both sides).  All controls fired (Arf-$0$ refinements, secant
+substitution, wrong scalar, flipped sign character, $g = 3/7$
+counterexamples).  No marker moves \mE.
+\end{keybox}
+
+\begin{keybox}[The Wick functor arc (2026-08-09, rounds 50--55) --- the six compiler roles in the deployed seam, the proved scalar obstruction, the block resolution, the seam-diagonal demand, and the constructed channel-mixing candidate \mE/\mO\ (\veri{v896\_wick\_block\_functor.py}, \veri{v898\_kms\_schur\_mixing.py})]
+Rounds 50--53 take the one remaining P2 premise of the keybox
+above --- the physical Wick-compiler reading, [O] --- and close
+its \emph{structure} level ($27/27 + 33/33 + 26/26$; verdicts
+\textsc{wickfunctor-partial}, \textsc{wickmix-measured
+(wickmix-obstructed)}, \textsc{wickblock-measured
+(blockfunctor-constructed / seam-diagonal)}; three discovery
+probes embedded byte-exact; exact integer / rational /
+symbolic checks in every decision typed \textsc{proved} or
+\textsc{symbolic}).  \textbf{(1) The six roles exist.}  The
+compiler roles are present in the deployed seam one-particle
+space --- five $D_5$ carrier slot pairs plus the $A_3$
+boundary block (dims $2,2,2,2,2,6$ from the \texttt{v155/v156}
+split $16 = 10 + 6$); the $\mathfrak{so}(16)$ sector law holds
+(current-sector dims $12$ on vacuum edges / $4$ on pair edges
+$=$ the $q^{*}$ edge grading, ratio $3 = \Nfam$); and the
+$C_6$ intertwining is \emph{exact}: the $\mathrm{Aut}(C_{\rm
+fin})$ generator $g$ ($g^2 = \sigma$) induces the channel
+permutation of cycle type $(1)(2)(3)$ fixing channel $0$.  But
+the deployed \emph{vacuum kernel} is channel-diagonal, so all
+$15$ duad two-point functions vanish
+(\textsc{duadmap-degenerate-on-vacuum}): the structure level
+of the functor exists, the value level needs a channel-mixing
+covariance --- \textsc{wickfunctor-partial}, the honest
+typing (the candidate is constructed in round 55, item (5)
+below).  \textbf{(2) The scalar obstruction is proved.}  On
+the $6$-dimensional scalar channel space \emph{every}
+$C_6$-covariant antisymmetric covariance vanishes on the
+transposed duad --- the $C_6$ $2$-cycle $\{4, 5\}$ forces a
+duad zero, so the scalar route reaches at most $14/15$ nonzero
+duads, never $15/15$: a \emph{theorem of the deployed action},
+exhaustively verified over the isotypic decomposition (the
+multiplicity list $[3,0,1,1,1,0]$ re-derived by hand and by
+exact root-of-unity sums; the frozen expected list carried a
+transcription error, caught fail-first); no equivariant
+scalarization rescues the scalar space, and both relaxation
+witnesses are constructed.  \textbf{(3) The block
+resolution.}  The full block-valued functor on the $16$-dim
+one-particle space is \textsc{blockfunctor-constructed} ---
+block commutant dimension $33$; all $15/15$ duad cross-blocks
+nonzero; all $15/15$ block Wick monomials obey the canonical
+sign law $\chi(i) = (-1)^{i+1}$ (the round-49 gauge of the
+keybox above); the interleaving character $+1$
+\emph{symbolically}; the review's five conditions hold at
+block level.  \textbf{(4) The seam-diagonal demand.}  The
+decisive fact: the \emph{deployed} seam covariance (the
+\texttt{v113} family rebuilt exactly) has \emph{zero}
+cross-blocks everywhere (\textsc{seam-diagonal}) --- the value
+level of the reality bridge needs a \emph{physical
+channel-mixing mechanism} (a boundary/transport-twisted state,
+not the vacuum); with it, the $K_6$/Pfaffian grammar of
+\texttt{v888} would be the measured correlation grammar of the
+seam.  \textbf{(5) The constructed mixing candidate (round 55,
+\veri{v898\_kms\_schur\_mixing.py}, $30/30$; verdict
+\textsc{kmsmix-measured [kmsmix-found, schurmix-generates,
+rp-theta-open]}).}  The demanded state now \emph{exists as a
+candidate}, by two routes.  \emph{The KMS route:} the
+Majorana-compatible $C_6$-invariant Hamiltonians $K = ih$ are
+parametrized exactly (the hermitian $O_{16}$-commutant has
+dimension $112 = 62 + 50$; the antisymmetric slice splits as
+$33$ cross --- exactly the block space of (3) --- plus $17$
+diagonal, with the two forced zeros of the transposed $\{4,5\}$
+duad), and already the \emph{first} point of the frozen grid,
+$h = -(A_{16}^{\rm dep} + \tfrac18 A_{\rm int})$ at $\beta = 1$,
+passes \emph{all} gates: strict CAR positivity, exact $C_6$
+block covariance, all $15$ duad cross-blocks at the frozen
+floor, the $q^{*}$/sheet grading carried exactly ($5/5$ vacuum
+$+$ $10/10$ carrier), and all $15$ block Wick monomials nonzero
+with the \emph{canonical} Pf$_4$ sign pattern of (3); robust at
+$\beta = 2$.  \emph{The Schur route (exact, sympy):} eliminating
+the boundary of the coupled diagonal state $A_{\rm full} =
+[[\kappa A_{CC}, tV], [-tV^{\mathsf T}, mJ_3]]$ gives $A_{\rm
+eff} = \kappa A_{CC} + \tfrac{t^{2}m}{1 - m^{2}}\, V J_3
+V^{\mathsf T}$ \emph{exactly}, and $S = V J_3 V^{\mathsf T}$
+deposits nonzero correlation on \emph{all ten} carrier duads
+(uniform $3J$ block, canonical Pf$_4$ signs) from the bare
+diagonal state --- the same Schur/Feshbach elimination that
+creates the RH port creates the carrier mixing: on both fronts
+the real correlation lives in the \emph{eliminated boundary}.
+The frozen $15$-signature table of the winner is the registered
+prediction any physical seam state must reproduce; the
+OS-positivity under a \emph{spatial} reflection is the named
+open check (\textsc{rp-theta-open} --- no spatial $\theta$ is
+deployed on the $16$-dim space; the Majorana real structure
+satisfies the \texttt{v426}/\texttt{v440} dictionary
+automatically but is particle-hole, not spatial).  The honest
+split: the obstruction theorem, the block construction and the
+Schur generation identity \mE; the constructed states are
+\emph{candidates} --- whether the \emph{actual} seam realizes
+the signature pattern is untouched, so the physical
+Wick-compiler premise (\texttt{SEAM.CFIN.WICKFUNCTOR.01},
+\texttt{SEAM.CFIN.KMSMIX.01}) stays \mO, unmoved --- the
+physical realization is the named demand.  \emph{Dated addendum
+(2026-08-10, rounds 57--59):} the open check
+\textsc{rp-theta-open} is now \emph{measured} at family level and
+the answer is an exclusion --- strict reflection positivity under
+both deployable spatial reflections forces $t = 0$ (OS positivity
+$\iff$ the mixing floor falls: mutually exclusive on this
+family), the complete $C_6$-twisted census is exclusionary
+($0/6$), and the parent-dilation route yields only a marginal
+cone-boundary witness (with the exact floor identity
+$t^2 \cdot 3m/(1-m^2) = 1/200$) while the strict collar route is
+obstructed by an exact linear $2t$ law
+(\veri{v903\_seam\_rp\_exclusion.py}; a measurement on the
+complete finite candidate set, not a universal no-go); the
+\mO\ premise stays unmoved.  \emph{Dated addendum (2026-08-10/11,
+rounds 60--63):} the exclusion is now \emph{anatomized} --- strict
+2-cycle RP is impossible on the \emph{whole} $C_6$-covariant
+class (the seat law reduces exactly to $\operatorname{diag}(a_J,
+-a_J)$; the only escape is covariance-breaking at exact linear
+price $2\varepsilon$, with the floor exchange
+$\operatorname{Pf}_4(\varepsilon) = (\varepsilon -
+\tfrac1{200})(\varepsilon + \tfrac1{200})$), while the
+strict-collar obstruction is a two-seat linear law whose

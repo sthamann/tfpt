@@ -1,0 +1,376 @@
+\subsection{The EM closure: $\ainv$ as an explicit fixed point (made explicit here)}
+The engine $\ainv$ is not an input --- it is the unique root of an explicit closure equation
+(the exact electromagnetic closure theorem). With $\cthree=1/(8\pi)$, $\phibase=1/(6\pi)$,
+$q(\alpha)=\dtop e^{-2\alpha}$ and the seam response $\phiseam(\alpha)=\phibase+q(\alpha)(1-q(\alpha))^{-5/4}$,
+\begin{equation}
+  \boxed{\ F_{U(1)}(\alpha)=\alpha^3-2\cthree^3\alpha^2-\tfrac{4}{5}\cthree^6\Bigl(\textstyle\sum_{f,j}L_{f,j}+N_\Phi\Bigr)\log\frac{1}{\phiseam(\alpha)}=0\ }\qquad\mE/\mC ,
+\end{equation}
+where the coefficient is $\tfrac45(\sum L+N_\Phi)\cthree^6=\tfrac45\cdot41\,\cthree^6=8b_1\cthree^6$, so the
+fine-structure constant reads the \emph{flavor transport budget} $\sum L=40$ and the $U(1)$ index
+$b_1=41/10$.
+
+\begin{lemma}[Existence and uniqueness of the EM fixed point]
+\label{lem:emclosure}
+$F_{U(1)}$ has \emph{exactly one} positive root, and it is simple.
+\end{lemma}
+\begin{proof}
+Write $F_{U(1)}(\alpha)=h(\alpha)-C\,g(\alpha)$ with $h(\alpha)=\alpha^3-2\cthree^3\alpha^2$,
+$C=\tfrac45\cthree^6M>0$ ($M=41$), and $g(\alpha)=-\log\phiseam(\alpha)$. Since
+$q(\alpha)=\dtop e^{-2\alpha}\in(0,1)$ is strictly decreasing, $\phiseam=\phibase+q(1-q)^{-5/4}$ is $C^1$
+and decreasing, so $g$ is $C^1$, bounded, and slowly increasing with $g'(\alpha)=O(q)$ tiny; numerically
+$g\in[2.9342,2.9343]$ on the admissible window. The cubic $h$ has its interior critical point at
+$\alpha_c=\tfrac43\cthree^3=8.399\times10^{-5}$, with $h(0)=0$ and $h<0$ on $(0,\alpha_c)$.
+\emph{Monotonicity (corrected endpoint).} Since
+$F_{U(1)}'(\alpha)=3\alpha^2-4\cthree^3\alpha-C\,g'(\alpha)$ and at $\alpha_c$ the first two terms
+\emph{cancel} ($3\alpha_c=4\cthree^3$), one has $F_{U(1)}'(\alpha_c)=-C\,g'(\alpha_c)\approx-5.89\times10^{-10}<0$:
+the derivative is \emph{not} yet positive at $\alpha_c$. Its first zero lies slightly above, at
+$\alpha_0=8.6264\times10^{-5}$ (where $3\alpha_0^2-4\cthree^3\alpha_0=C\,g'(\alpha_0)$), with $F_{U(1)}'<0$ on
+$(\alpha_c,\alpha_0)$ and $F_{U(1)}'>0$ on $(\alpha_0,\infty)$. Now $F_{U(1)}(0)=-C\,g(0)<0$, and
+$F_{U(1)}$ \emph{decreases} on $(0,\alpha_0]$ (both $h$ and $-Cg$ decrease on $(0,\alpha_c]$, then $F_{U(1)}'<0$
+on $[\alpha_c,\alpha_0]$), so $F_{U(1)}(\alpha_0)\approx-3.82\times10^{-7}<0$; thereafter $F_{U(1)}$ is strictly
+increasing to $+\infty$. Hence $F_{U(1)}<0$ on $(0,\alpha_0]$ and strictly increasing on $[\alpha_0,\infty)$, so
+it crosses zero \emph{exactly once}. The crossing has $F_{U(1)}'(\alpha_\star)=1.58\times10^{-4}>0$, so the
+root is simple. A sign scan on $(0,0.05)$ confirms a single change. \emph{Rigorous version:} an
+\textbf{interval-arithmetic} enclosure (\texttt{mpmath.iv}) brackets the root in
+$[0.00729735256220970,\,0.00729735256221000]$ with $F_{U(1)}<0$ on the lower and $>0$ on the upper
+endpoint (definite signs), and a $200$-cell interval partition of $(\alpha_c,0.05)$ contains exactly
+\emph{one} indeterminate (root-bearing) band --- a verified uniqueness, not merely a sampled one.
+\veri{v3\_em\_alpha.py}
+\end{proof}
+
+\noindent Solving:
+\begin{equation}
+  \boxed{\ \alpha_\star=0.00729735256220985\ldots,\quad \ainv=137.0359992168407\ldots\ }\quad\mE
+\end{equation}
+\veri{v3\_em\_alpha.py}\;
+versus CODATA-2022 $\ainv=137.035999177(21)$ --- a relative deviation $2.9\times10^{-10}$ ($\approx1.9\sigma$
+on the tiny experimental error; the older 2018 value $137.035999084$ gave $9.7\times10^{-10}$, so the
+agreement \emph{improved} in relative terms). The exponent $-5/4$ in $\phiseam$ is the carrier
+discriminant norm $q(D_5)$, and $\dtop=48\cthree^4$, so the closure is built only from $\cthree$, the
+carrier, and the flavor budget. This discharges the former open audit point: the EM closure is a stated,
+existence-/uniqueness-proven, numerically reproduced equation, not a fit.
+
+\par\smallskip\noindent\textbf{Why \emph{this} function: the boundary $U(1)$ Ward reading (Theorem C) \mE/\mC.}
+$F_{U(1)}$ is not a chosen ansatz but the reduced Ward identity of the boundary $U(1)$ partition function
+$Z_{\partial}=Z_{\mathrm{Maxwell}}\,Z_{\mathrm{Calder\acute on}}\,Z_{\mathrm{transport}}$, with three terms
+whose coefficients are compiler atoms, not fits:
+\[
+  \underbrace{\alpha^3}_{\text{Maxwell moment}}\;
+  \underbrace{-\,2\cthree^3\alpha^2}_{\text{Calder\'on sheet}\,(2=|\Z_2|)}\;
+  \underbrace{-\,8b_1\cthree^6\log\tfrac1{\phiseam}}_{\text{$C_6$ transport det.}}=0,\qquad
+  8b_1=\tfrac45 M=\tfrac45(\textstyle\sum L+N_\Phi)=\tfrac{164}{5}.
+\]
+The Calder\'on factor $2=|\Z_2|$ (sheet), the transport power $\cthree^6$ is the $C_6$ hexagon, and the
+seam exponent $-\tfrac54=-q(D_5)$ is the carrier discriminant norm. \textbf{Typing:} the three-term
+decomposition and the coefficient identities ($8b_1=\tfrac45 M$, $-\tfrac54=q(D_5)$) are exact \mE; the
+\emph{physical origin} as a boundary Ward closure (the lemmas $\partial_\tau\log Z_{\mathrm{Maxwell}}=\alpha^3$,
+$\partial_\tau\log Z_{\mathrm{Calder\acute on}}=-2\cthree^3\alpha^2$, $\partial_\tau\log\det\nolimits_\zeta(1-\mathcal T_{C_6,U(1)})=-8b_1\cthree^6\log\tfrac1{\phiseam}$)
+is a conjectured \mC\ interpretation, not yet machine-proven. \veri{v48\_em\_ward.py}
+\par\smallskip
+\noindent\textbf{The determinant-line (Quillen) form.} (\veri{v341\_alpha\_quillen.py})
+The three terms assemble into a single \emph{stationarity} statement for the boundary $U(1)$ determinant line,
+\[
+  \underbrace{\bigl[\alpha^3-2\cthree^3\alpha^2\bigr]}_{\delta\log\det\Delta_{U(1)}}
+  \;=\;\underbrace{\bigl[8b_1\cthree^6\bigr]}_{\text{ctr.}}\;
+  \underbrace{\bigl[\log\tfrac1{\phiseam}\bigr]}_{\text{seam resp.}},
+\]
+so $F_{U(1)}=0$ is $\delta\log\det\Delta_{U(1)}+\text{counterterm}+\text{seam response}=0$. Every factor is a
+\emph{named} object, not a knob: the counterterm coefficient is $8b_1\cthree^6=(\operatorname{rank}E_8)\,b_1\,\cthree^6$
+(index $\times$ heat-kernel), $\cthree=1/(8\pi)$ is the Gauss--Bonnet boundary coefficient, the exponent
+$-\tfrac54=-q(D_5)$ is one carrier discriminant norm and the seam base $\phibase=1/(6\pi)=\tfrac43\cthree$ carries
+the \emph{other}, $\cthree/\phibase=\tfrac34=q(A_3)$ --- both glue forms appear, and the split is verified at the
+root. \textbf{Typing (and: no new gate).} The determinant-line assembly and all coefficient identities are exact
+\mE; $\ainv$ itself stays closed \mE\ (unique root $+$ ablation). This adds \emph{no} open item --- it
+\emph{sharpens} the pre-existing \mO/physical-origin obligation \texttt{EM.WARD.01} (the ``why \emph{this}
+function'' residual, already conjectural) by naming every coefficient. The one still-open part \emph{is} that
+residual, now \emph{named} as its own tracked target \texttt{ALPHA.QUILLEN.EXACT.01}
+(\veri{v382\_alpha\_quillen\_exact.py}): the from-first-principles AQFT/$\zeta$ proof that
+$\delta_\tau(\log\det\nolimits_\zeta\Delta_{U(1)}+8b_1\cthree^6\log\varphi_{\mathrm{seam}})=0$ --- i.e.\ that
+$F_{U(1)}$ is the \emph{exact} Quillen functional of the seam $U(1)$, the variational principle \emph{derived}, not
+assembled. It is a \emph{face} of \texttt{SEAM.EQUIV.01} (\vref{v336}) --- the seam $U(1)$ determinant line lives on
+the same holomorphic net, so once the net is $(E_8)_1$ its $U(1)$ sub-determinant is fixed --- hence no second
+independent gate, just the sharpest remaining EM-Ward obligation, now citable on its own.
+\emph{Honest progress towards it (\veri{v391\_alpha\_quillen\_progress.py}), without closing it:} a solvable
+model $\det_\zeta(-\partial_\tau^2{+}m^2)$ on a circle $=(2\sinh(\beta m/2))^2$ has the closed $m$-variation
+$\beta\coth(\beta m/2)=2/m+(\beta^2/6)m-(\beta^4/360)m^3+\dots$, a heat-kernel/Laurent series --- so a
+$\zeta$-determinant's variation is \emph{structured} heat-kernel data, and the counterterm $8b_1\cthree^6$ (a
+Gauss--Bonnet heat-kernel power) is the right \emph{kind} of object. This \emph{reduces}
+\texttt{ALPHA.QUILLEN.EXACT.01} to the named sub-target ``the seam $U(1)$ Seeley--DeWitt coefficient $=8b_1\cthree^6$'',
+but the target itself stays \mO\ (an external math proof, \vref{v384}); the value $\ainv$ stays \mE.
+\emph{A second honest step (\veri{v433\_alpha\_quillen\_heatkernel.py}) bridges this reduction to the heat-kernel
+origin below, without closing it:} v391's circle reached only the low orders $a_0,a_1$, whereas a solvable \emph{4D}
+model --- the flat $\Delta=-\partial^2{+}m^2$ on $T^4$, $\operatorname{Tr}e^{-t\Delta}=V/(4\pi)^2\,t^{-2}e^{-tm^2}$
+--- has $a_4=Vm^4/(2(4\pi)^2)\neq0$, \emph{reaching} the $t^0$ (conformal-anomaly) order the circle could not, the
+very order in which the quadratic term is grounded below (\vref{v342}, Gilkey $a_4$). So a $\zeta$-determinant's
+variation is heat-kernel data \emph{at the $a_4$ order}, and the measure itself is $\cthree$-built,
+$(4\pi)^{-2}=(2\cthree)^2=4\cthree^2$; the \emph{actual} seam $a_4=8b_1\cthree^6$ and the cubic $\alpha^3$ Chern
+moment stay \mO\ (\vref{v384}), the seam $F$-normalisation \mC\ (retyped by the fifth step below,
+\vref{v470}, as the embedding index $k_Y{=}5/3$).
+\par\smallskip
+\noindent\textbf{The heat-kernel origin of the terms (\veri{v342\_em\_ward\_heatkernel.py}).} The determinant-line
+form is more than bookkeeping: its terms are textbook heat-kernel coefficients. \mE\ $\cthree=1/(8\pi)$ \emph{is}
+the boundary Gauss--Bonnet coefficient ($\oint_{S^2}K=2\pi\chi=4\pi$, $\cthree=1/(|\Z_2|\oint K)$, the same
+$\chi{=}2$ as the marks, \vref{v216}). \mE\ the $\alpha^2$ (Calder\'on) term \emph{is} the Gilkey gauge-curvature
+coefficient: the $U(1)$ Laplacian's Seeley--DeWitt $a_4$ contains $30\,\Omega_{ij}\Omega^{ij}/360=\tfrac1{12}\Omega^2$
+(Gilkey, \emph{Invariance Theory}, Thm 4.8.16), and with $\Omega=i\alpha F$ this forces an $-(\alpha^2/12)F^2$
+contribution to $\log\det\Delta_{U(1)}$ --- so the Calder\'on $-2\cthree^3\alpha^2$ is the gauge-curvature
+(Quillen-curvature) piece, not an ansatz. \mE\ the $\cthree$-orders $\{0,3,6\}$ are an arithmetic ladder (step $3=$
+the three channels; $6=|R^+(A_3)|$, the $C_6$ hexagon), and the $\pi$-power test confirms it: $2\cthree^3=1/(256\pi^3)$
+carries $\pi^3$, i.e.\ \emph{three} boundary $\cthree$-insertions, not a single bulk coefficient. \textbf{Typing:} the
+boundary structure and the gauge-curvature origin of the quadratic term are heat-kernel-forced \mE; the exact
+coefficient value is \mC\ (the seam $F$-normalisation --- retyped as the embedding index $k_Y{=}5/3$ by the
+fifth step below, \vref{v470}); the cubic $\alpha^3$ Maxwell moment (a topological/Chern
+level) and the full ``this \emph{is} the seam $U(1)$ $\zeta$-determinant'' claim stay \mO\ --- exactly the
+\texttt{EM.WARD.01} residual, unchanged. So the quadratic/curvature half of the EM-Ward origin is now derived; the
+cubic-moment half remains the honest open part.
+\emph{A third honest step (\veri{v434\_alpha\_quillen\_betafunction.py}) settles those residuals and shows they are
+not three independent problems.} The counterterm's \emph{matter} factor is heat-kernel-forced too: by the
+$\beta=a_4$ theorem the one-loop $U(1)_Y$ $\beta$ \emph{is} the $a_4$ coefficient, and the carrier hypercharge
+content gives $\sum\tfrac23 Y_f^2+\tfrac13 Y_s^2=41/6$ (SM) $\Rightarrow b_1=41/10$ (GUT, \vref{v159}/\vref{v246}),
+so $8b_1\cthree^6=b_1\,(\operatorname{rank}E_8)\,\cthree^6$ is an $a_4$ content coefficient times a boundary
+geometry --- the same \emph{kind} of object as the Calder\'on $a_4$. The exact value then turns only on the seam
+$F$-normalisation, so the ``actual seam $a_4$'' residual \emph{is} the $F$-normalisation \mC\ (one obligation, not
+two); and the cubic factors $a^3-2\cthree^3 a^2=a^2(a-2\cthree^3)$, exhibiting $a^3$ as the first moment of the
+Chern density $a^2$ --- a level whose from-first-principles origin stays \mO. The EM-Ward residual is thus
+\emph{one} \mC\ $+$ \emph{one} \mO, not three.
+\emph{A fourth honest step (\veri{v435\_alpha\_quillen\_chernlevel.py}) sharpens that single remaining \mO\
+--- residual (2), the cubic $\alpha^3$ Chern level --- without closing it.} A $\pi$-power / metric-independence
+test partitions the closure: the three coefficients carry $\pi$-powers exactly $\{0,3,6\}$ ($k_0=1$;
+$-2\cthree^3=-1/(256\pi^3)$; $-8b_1\cthree^6=-41/(327680\pi^6)$), so the Maxwell $a^3$ is the \emph{unique}
+$\pi^0/\cthree^0$ (metric-\emph{independent}) term. A heat-kernel boundary coefficient always carries the
+$(4\pi)^{-d/2}$ measure; a metric-independent term carries none --- the signature of a \emph{topological}
+term. So the test confirms, now from a test rather than a claim, that $a^3$ is a level and not a
+Seeley--DeWitt curvature integral (the other two terms are heat-kernel boundary data). \mE\ \emph{Conditional}
+on the Chern--Simons/$\eta$ reading of the Maxwell moment (the \texttt{EM1} interpretation, \vref{v48}),
+large-gauge invariance quantises the seam $U(1)$ level to $\Z$, so $k_0=1$ is the \emph{unit} (minimal) level
+--- an integer, not a tunable real. \mC\ What stays \mO\ is the \texttt{EM1} lemma itself --- the
+from-first-principles Chern--Simons-boundary proof that $\partial_\tau\log Z_{\mathrm{Maxwell}}=a^3$ ---
+external math (type A, \vref{v384}).
+\emph{A fifth honest step (\veri{v470\_alpha\_inflow\_level.py}) upgrades both leftovers, still without
+closing the target.} \mC\ \emph{The level is computed, not minimal:} under the same \texttt{EM1} reading, the
+$a^3$ coefficient $k_0=1$ \emph{equals} the FHS bulk Chern invariant $|C|=1$ of the very p$+$ip collar that
+realises S3 of \texttt{SEAM.EQUIV.01} (\vref{v367}/\vref{v461}; control $C(M{=}3)=0$) --- ``why exactly
+$1$'' is answered by a computation plus the cited inflow identification (TKNN / Avron--Seiler--Simon
+quantisation; Callan--Harvey inflow; the APS/Witten $\eta{=}$CS reading of $\delta\log\det$;
+Quillen/Bismut--Freed determinant-line integrality), \emph{replacing} the minimality assumption of the fourth
+step. \mE\ \emph{The $F$-normalisation is the embedding index:} $k_Y=\operatorname{tr}_{\bar 5}(Y^2)/
+\operatorname{tr}(T_3^2)=(5/6)/(1/2)=5/3$ (Ginsparg 1987), so $(3/5)\times\tfrac{41}{6}=\tfrac{41}{10}=b_1$
+exactly --- the ``GUT $3/5$'' \emph{is} the inverse embedding index, and once the seam net is $(E_8)_1$ at
+level $1$ the $U(1)_Y$ normalisation $\langle J(z)J(w)\rangle=k/(z{-}w)^2$ is \emph{fixed} by it (level-$1$
+current-algebra rigidity, no continuous dial): the seam $F$-normalisation \mC\ has \emph{zero independent
+content} --- a face of \texttt{SEAM.EQUIV.01}, per the \vref{v382} typing. \mC\ \emph{One phase, two
+responses:} the collar phase carries $c_-=8$ (gravitational, feeding \texttt{SEAM.EQUIV.01}/S3, \vref{v456})
+\emph{and} $C=1$ ($U(1)$, feeding \texttt{EM1}) --- so discharging the one realisation input feeds both named
+targets at once.
+\emph{A sixth honest step (\veri{v472\_quillen\_detline\_moduli.py}) exhibits that bridge lemma at the finite
+level.} \texttt{ALPHA.QUILLEN.EXACT.01} names the level as the curvature of the \emph{determinant line over
+the $U(1)$ moduli} (Quillen/Bismut--Freed curvature, Dai--Freed section) --- and the fifth step computed the
+Chern invariant only over the Bloch Brillouin zone, the translation-invariant shortcut. The sixth step
+computes the Quillen-shaped object itself: the same collar Hamiltonian in real space with twisted boundary
+conditions --- the twist torus $(\theta_x,\theta_y)$ \emph{is} the moduli space of flat $U(1)$ connections
+--- and the Fukui--Hatsugai--Suzuki curvature of the determinant line of the occupied frame over that torus
+integrates to $2\pi\cdot 1$ exactly ($10^{-9}$), size-independently ($L=4,6$), with clean controls (trivial
+collar $\to 0$, orientation flip $\to -1$), the twist-moduli integer equal to the Bloch-BZ integer for all
+three phases (Niu--Thouless--Wu), and the Fermi gap open over the whole torus (the Dai--Freed section has no
+zero). So ``$\delta\log\det(\mathrm{seam~model})=$ the inflow response'' \emph{holds verbatim at the
+finite/model level}, where $\log\det$ of the occupied frame replaces $\log\det_\zeta$. \mE\ (computation) /
+\mC\ (the EM1 reading). What stays \mO\ is the \emph{continuum} identification
+``$\delta\log\det_\zeta(\mathrm{seam})=$ the inflow response'' on the abstract seam (the
+\texttt{SEAM.EQUIV.01} face); \texttt{ALPHA.QUILLEN.EXACT.01} stays \mO, and $\ainv$ stays \mE\ regardless.
+\emph{A seventh step unifies this target with the $\phiz$-puncture target
+(\veri{v484\_seam\_contact\_unit.py}).} The $\{0,3,6\}$ $\cthree$-ladder above and the puncture's per-mark
+weight $\cthree$ (\vref{v483}) are \emph{one} rule --- the seam contact unit --- and it is not a new
+unknown: ``$\cthree$ per insertion'' \emph{is} the KMS seam unit $2\pi=1/(4\cthree)$ with
+$\tfrac14=1/|\mu_4|$ (\vref{v239}), i.e.\ one bare boundary propagator ($\tfrac1{2\pi}=4\cthree$)
+orbit-averaged over the four marks. \mE\ derived on the seam circle for the finite cycle sector (the bare
+Green function takes integer multiples of $\cthree\ln2$ at the $\mu_4$ separations; the log-det contact
+expansion is exactly graded in $\cthree$ per insertion), with the grammar already suite-wide (the
+$\Lambda$ prefactor $\tfrac{3}{4\pi^2}=48\cthree^2$, \vref{v60}, carries the same $\Omega_{\mathrm{adm}}=48$
+at two insertions). \mC/\mO\ Consequence: \texttt{ALPHA.QUILLEN.EXACT.01} and \texttt{HYP.PHI0.PUNCTURE.01}
+\emph{merge} into one remaining analytic step --- the diagonal zeta-renormalisation at the marks plus the
+state-multiplicity matching ($41=10b_1$ here, $48=\Omega_{\mathrm{adm}}$ there).
+\emph{An eighth step settles that remaining step at the computable level
+(\veri{v485\_contact\_diagonal\_closed.py}).} \mE\ The renormalised coincident-point Green function on a
+circle of circumference $\ell$ is $G_{\mathrm{reg}}(0;\ell)=\tfrac1\pi\ln(\ell/2\pi)$ exactly --- it
+\emph{vanishes} precisely at $\ell=2\pi=1/(4\cthree)$, the KMS seam circumference (\vref{v239}): the seam
+scale is the unique zero-self-energy scheme point, and the log is the pure \emph{scale} channel (matching
+the fact that $F_{U(1)}$ carries exactly \emph{one} log term while the $\phiz$ split is log-free). \mE\
+With the diagonal zero the mark contact calculus \emph{resums in closed form} (the BFK/gluing route,
+\vref{v151}): $\det(I-uC)=(1-4u)(1+2u)^2$ with $u=\varepsilon\cthree\ln2$ --- all orders, the linear term
+absent because $\operatorname{Tr}C=0$. \mE\ And the two multiplicities are \emph{one} state set under two
+response weights: the same $48=3\times16$ admissible states counted flat give the $\phiz$ puncture count
+$48=\Omega_{\mathrm{adm}}$, and $Y^2$/loop/GUT-weighted give the alpha budget $41=10b_1=40+1$
+($\operatorname{Tr}_{16}Y^2=\tfrac{10}3$ exact, $\nu^c=0$; Ginsparg, \vref{v470}). \mC/\mO\ Net: every
+finite/computable piece of the merged target is proven; the single remaining \mO\ is the identification of
+the abstract seam $\zeta$-det with this glued mark determinant --- \emph{exactly} the \vref{v382} typing
+(a face of \texttt{SEAM.EQUIV.01}), now substantiated computationally rather than asserted.
+\emph{A ninth step executes both named faces of the target at the computable level
+(\veri{v974\_alpha\_faces\_computed.py}), typing what remains.} \mE\ \emph{The diagonal-zeta face is
+executed:} the BFK Mayer--Vietoris determinant formula (\vref{v151}) now \emph{runs} on the seam circle
+cut at the four $\mu_4$ marks --- gluing constant exactly $2^{-N}$ (symbolic, $N=1,\dots,4$, general
+interval lengths), massless reassembly $\det\nolimits'_\zeta(\Delta_{S^1})=\ell^2$, jump matrix $=$ the
+\emph{inverse} mark Green matrix $R(m)=(G_m|_{\mathrm{marks}})^{-1}$; at the KMS scale
+$\ell=2\pi=1/(4\cthree)$ this gives $R_0=16\cthree\,\mathrm{circ}(2,-1,0,-1)$,
+$\det\nolimits'R_0=2^{16}\cthree^3$ and glued product $(2\pi)^2$ --- the \vref{v485} diagonal/scale
+channel reproduced \emph{exactly} via the KMS unit. Against the \vref{v484} mark matrix
+($-4\cthree\ln2\cdot\mathrm{circ}(0,1,2,1)$) there is \emph{no} global proportionality --- the two
+kernels sit in \emph{swapped} $\mu_4$ channels (gauge zero mode vs.\ sign rep) --- but the
+correspondence is channel-wise exact (same $\mu_4$ Fourier eigenbasis, $|\mathrm{spec}|$ multisets
+$\{0,2,2,4\}$, doublet ratio $4/\ln2$ with $\cthree$ cancelling,
+$\operatorname{Tr}B^k=4^k+2\cdot2^k$ mirroring $\operatorname{Tr}C^k=4^k+2(-2)^k$), so this face's
+residual \emph{sharpens} to the channel-swap question. \mE\ \emph{The EM1/topological face carries a
+computed pump witness:} on the \vref{v367} collar, pumped charge $=$ edge spectral flow $=$ Streda
+count $=$ Chern $=1$ per flux quantum (hybrid-Wannier winding residual $0$, Streda
+$\Delta N=C\,n_\phi$ exact integers, the conjugation mutant flips all four readings simultaneously,
+$M{=}3$ controls all zero) --- so the cited TKNN/Callan--Harvey step ``boundary level $=$ bulk
+response'' of the fifth step now has a computed lattice witness; \mC\ the identification of the
+complex-copy $U(1)$ with the physical Majorana collar stays where it was, with the $16$-copy
+bookkeeping ($c_-{=}8$, $k_Y{=}5/3$, $(1/k_Y)\tfrac{41}6=\tfrac{41}{10}=b_1$) re-derived exactly.
+\mE\ \emph{The finite Quillen identity is two-sided:} over the $U(1)$-twist torus the FHS/Berry
+curvature integral of the determinant line \emph{and} the metric-side integral (Gaussian overlap norm,
+Poincar\'e--Lelong divisor evaluation) both equal $+1$, the difference an exact form
+($3\times10^{-16}$), transition-function winding $=$ Chern. \mC\ Typed conditional: \emph{if} the seam
+state is quasi-free (measured, not forced in the strong form --- \texttt{SEAM.STATE.RPMIXING.01}),
+\emph{then} Quillen's identity applies literally to the seam determinant line. \mE\ The computed
+witnesses are carried in the ledger as \texttt{ALPHA.QUILLEN.FACES.01}; the remaining open content of
+\texttt{ALPHA.QUILLEN.EXACT.01} is thereby typed as exactly $\{$rigidity premise$\}$ $+$
+$\{$channel-swap question$\}$ $+$ $\{$continuum Bismut--Freed identification$\}$ --- the target stays
+\mO, and $\ainv$ stays \mE\ regardless (re-anchored: Quillen split residual $10^{-58}$ at $50$ digits,
+$8b_1=\tfrac{164}5$ exact). \mE\ \emph{Channel-swap update (2026-08-28):} the swap question is
+resolved at the \emph{finite} level by $\mu_4$-character grading --- the deck swap $r\to r{+}2$
+maps the jump $|$spectrum$|$ $[0,2,4,2]$ onto the mark pattern $|[4,-2,0,-2]|$ exactly (the odd
+swap fails), the graded $\det'$ difference is $\cthree$-free $=\log(\ln2/4)$, and the channelwise
+unit ratio is uniform $4/\ln2$ (\veri{v985\_quillen\_channel\_swap.py}); the open residual
+contracts to $\{$rigidity premise$\}$ $+$ $\{$continuum Bismut--Freed identification$\}$, and the
+target stays \mO.
+\par\smallskip
+
+\noindent The full ablation --- which inputs are load-bearing and which only set the last digit --- is in
+the \hyperref[sec:ablation]{Ablation appendix} below.
+
+\emph{Inversion test (this round).} Running the closure backwards --- inserting the \emph{measured}
+$\alpha$ and solving for the integer budget $M=\sum L+N_\Phi$ --- returns
+$M=41.0000001\ldots$, i.e.\ the external measurement reconstructs the internal discrete budget
+$41=40+1$ to $10^{-7}$. This is stronger than ``we hit $\alpha$'': the equation reads the discrete
+$41$ out of nature. \mE
+
+\subsection{The decuple bridge (new, exact headline)}
+
+Eliminating $\ainv=\gcar\,\AEW-\dph$ between the electroweak and the cosmological-constant lines
+gives a direct relation between the two scales:
+
+\begin{keybox}[Decuple bridge: $\Lambda$ is the tenth power of the stripped EW scale \mE]
+\begin{equation}
+  \boxed{\ \frac{\rho_\Lambda}{\Mbar^4}
+  =\frac{3}{4\pi^2}\,e^{2\dph}\,
+  \left[\frac{v_{\mathrm{geo}}}{5\,\betarad^2\,\Mbar}\right]^{10}\ }
+\end{equation}
+where the exponent $10=2\gcar$ and $5=\gcar$. Verified to a relative residual $\sim10^{-159}$.
+\end{keybox}
+
+\noindent\emph{Proof.} From $v_{\mathrm{geo}}/\Mbar=\gcar\betarad^2 e^{-\AEW}$,
+$e^{-\AEW}=(v_{\mathrm{geo}}/\Mbar)/(\gcar\betarad^2)$. From
+$\rho_\Lambda/\Mbar^4=\tfrac{3}{4\pi^2}e^{-2\ainv}$ and $\ainv=\gcar\AEW-\dph$,
+$e^{-2\ainv}=e^{2\dph}e^{-2\gcar\AEW}=e^{2\dph}(e^{-\AEW})^{2\gcar}$. Substituting and using
+$2\gcar=10$, $\gcar=5$ gives the boxed form. $\square$
+
+\smallskip
+In words: the electroweak scale is not directly the $\Lambda$ scale, but once the electroweak ratio
+is stripped of its small $\betarad$ prefactor, $\Lambda$ is its tenth power, and the ``ten'' is
+$2\gcar$, not a fitted exponent. This is the direct algebraic compression of the action ladder.
+
+\subsection{The full power tower: $x^{1},x^{5},x^{10}$ on the carrier graph $K_5$}
+
+The decuple bridge is one rung of a tower. Writing $x:=e^{-\AEW}=v_{\mathrm{geo}}/(5\betarad^2\Mbar)$
+for the stripped electroweak unit, all three cosmological scales are powers of the \emph{same} $x$
+with binomial exponents (verified exactly):
+\begin{equation}
+  \boxed{\ \frac{v_{\mathrm{geo}}}{5\betarad^2\Mbar}=x^{\binom50}=x,\qquad
+  \frac{H_0}{\Mbar}=x^{\binom51}R_{\mathrm H}=x^5R_{\mathrm H},\qquad
+  \frac{\rho_\Lambda}{\Mbar^4}=x^{\binom52}R_\Lambda=x^{10}R_\Lambda\ }
+\end{equation}
+with residues $R_{\mathrm H}=e^{\dph}/(2\pi\sqrt{\Omega_\Lambda})$ and $R_\Lambda=\tfrac{3}{4\pi^2}e^{2\dph}$.
+\mE. The exponents are the complete-graph counts of the five-slot carrier $K_5$:
+\[
+  H \leftrightarrow \text{vertices of }K_5\ (\,\#=\tbinom51=5\,),\qquad
+  \Lambda \leftrightarrow \text{edges of }K_5\ (\,\#=\tbinom52=10\,).
+\]
+So the cosmological constant is the product of one stripped-electroweak unit over every carrier
+\emph{pair} ($K_5$ edge product), and the Hubble scale the product over every carrier \emph{slot}
+($K_5$ vertex product). This is the cleanest single-variable statement of the action ladder.
+
+\subsection{Hubble is the square root of $\Lambda$ (corollary, exact)}
+
+On the comparison layer $\rho_\Lambda/\Mbar^4=3\Omega_\Lambda(H_0/\Mbar)^2$; equating to the TFPT
+line gives
+\begin{equation}
+  \boxed{\ \frac{H_0}{\Mbar}=\frac{e^{-\ainv}}{2\pi\sqrt{\Omega_\Lambda}}\ },\qquad
+  \AH=-\ln\frac{H_0}{\Mbar}=\ainv+\ln\!\bigl(2\pi\sqrt{\Omega_\Lambda}\bigr)=138.68 .
+\end{equation}
+So the Hubble rung is \emph{not} an independent third hit: it is the square root of the vacuum
+energy plus a geometric cosmology factor. The genuine TFPT content is the single $e^{-\ainv}$.
+(The numerical coincidence $\AH-\ainv\approx\pi^2/6$ is just $\ln(2\pi\sqrt{\Omega_\Lambda})$ and is
+$\Omega_\Lambda$-dependent; not a claim. \mO)
+
+\subsection{The $\sim123$ orders of the cosmological constant}
+\begin{equation}
+  \log_{10}\frac{\MPl^4}{\LamIR}
+  =\underbrace{\frac{2\ainv}{\ln10}}_{119.028}+\underbrace{\log_{10}\frac{1}{\dtop}}_{3.920}
+  =122.948\approx123 .
+\end{equation}
+The ``$119$'' is the action $2\ainv$; the ``$\approx4$'' is the seam defect $\dtop=\Oadm\cthree^4$.
+
+\begin{winbox}[High-precision cosmological constant: a $\sim10^{-13}$ prediction \mE]
+Because $\ainv$ is a \emph{derived} number (the EM fixed point, known to $13$ digits) and the residue
+$3/(4\pi^2)$ is exact, the dimensionless vacuum energy is predicted essentially exactly:
+\begin{equation}
+  \boxed{\ \frac{\rho_\Lambda}{\Mbar^4}=\frac{3}{4\pi^2}\,e^{-2\ainv}=7.12533\times10^{-121}\ }\qquad\mE\ \veri{v7\_gravity\_cosmo.py} ,
+\end{equation}
+i.e.\ a dark-energy scale
+$\rho_\Lambda^{1/4}=\bigl(\tfrac{3}{4\pi^2}\bigr)^{1/4}\Mbar\,e^{-\ainv/2}=2.23747\ \mathrm{meV}$
+(reduced Planck mass $\Mbar=2.435323\times10^{18}$ GeV). The \emph{dimensionless} ratio carries no
+observational input --- its uncertainty is that of $\ainv$, $\sim10^{-13}$ relative; the absolute
+$\mathrm{meV}$ value inherits only the Planck-mass uncertainty ($\sim2\times10^{-5}$). Both are
+\emph{far} sharper than the measured vacuum energy (Planck $\rho_\Lambda^{1/4}\simeq2.24$ meV, known to
+$\sim1\%$ and entangled with the $H_0$ tension). So TFPT pins the cosmological constant several orders of
+magnitude more precisely than it is currently measured --- a genuine, falsifiable forward prediction:
+any future sub-percent $\rho_\Lambda$ must land on $2.2375$ meV.
+\end{winbox}
+
+\subsection{The ladder is binomial; $2\gcar=\binom{\gcar}{2}$ singles out $\gcar=5$}
+
+In units of the electroweak action $\ainv/\gcar$, the three rungs are the first three binomial
+coefficients of the five-slot carrier:
+\begin{equation}
+  \frac{\AEW}{\ainv/\gcar}:\frac{\AH}{\ainv/\gcar}:\frac{\AL}{\ainv/\gcar}
+  =1:\gcar:2\gcar
+  =\binom{\gcar}{0}:\binom{\gcar}{1}:\binom{\gcar}{2}
+  =1:5:10 .
+\end{equation}
+The first two are automatic ($\binom{\gcar}{0}=1$, $\binom{\gcar}{1}=\gcar$). The non-trivial content
+is the cosmological-constant charge:
+\begin{equation}
+  \boxed{\ 2\gcar=\binom{\gcar}{2}\quad\Longleftrightarrow\quad \gcar=5\ }\qquad\mE\ \veri{v2\_carrier\_pascal.py},
+\end{equation}
+since $\binom{\gcar}{2}=\tfrac{\gcar(\gcar-1)}{2}=2\gcar\iff\gcar=5$. So the ``double overlap'' charge
+$2\gcar$ equals the number of carrier-slot \emph{pairs} $\binom{\gcar}{2}$ \emph{only} at $\gcar=5$:
+the cosmological constant is suppressed by one action unit per carrier pair, and this combinatorial
+reading is exclusive to the physical rank. It is an independent overdetermination of $\gcar=5$ from
+the action grammar (cf.\ the landscape section).
+
+\subsection{Discriminant action theorem: the ladder reads the hypercharge discriminant}
+
+The $\gcar$ in the action ladder is not merely a rank: it is the square root of the discriminant of
+the carrier (hypercharge) polynomial. For a general split $b+s=g$ the carrier polynomial is
+$bs\,Y^2+(s-b)Y-1=0$ with discriminant
+\begin{equation}
+  \Delta_Y=(s-b)^2+4bs=(b+s)^2=\gcar^2,\qquad\text{so for }6Y^2-Y-1=0:\ \Delta_Y=25,\ \sqrt{\Delta_Y}=5=\gcar .
+\end{equation}
+Hence the action ladder is, exactly,
+\begin{equation}
+  \boxed{\ \AEW=\frac{\ainv}{\sqrt{\Delta_Y}},\qquad \AH=\sqrt{\Delta_Y}\,\AEW,\qquad
+  \AL=\binom{\sqrt{\Delta_Y}}{2}\AEW\ }\qquad\mE .
+\end{equation}
+The electroweak hierarchy therefore reads the \emph{discriminant of the hypercharge polynomial}, tying
+the Standard-Model hypercharge derivation directly to the EW-hierarchy and $\Lambda$ problems.
+

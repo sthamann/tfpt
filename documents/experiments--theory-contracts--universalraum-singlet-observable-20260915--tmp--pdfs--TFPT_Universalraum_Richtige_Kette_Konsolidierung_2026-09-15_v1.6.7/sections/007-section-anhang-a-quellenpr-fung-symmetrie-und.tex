@@ -1,0 +1,368 @@
+\section{Anhang A: Quellenprüfung Symmetrie und
+Verfügbarkeit}\label{anhang-a-quellenpruxfcfung-symmetrie-und-verfuxfcgbarkeit}
+
+\section{Quellenprüfung: Quellsymmetrie, Verfügbarkeit und
+Lorentztypen}\label{quellenpruxfcfung-quellsymmetrie-verfuxfcgbarkeit-und-lorentztypen}
+
+Stand: 15. September 2026. Eigenständiger Teil-Audit der ersten neuen
+Anlage und dreier Programme. Keine Änderung der gelieferten Programme,
+Ergebnisdateien oder Dokumente. Keine Aussage, dass T1-T8 geschlossen
+seien.
+
+\subsection{1. Reproduktion}\label{reproduktion}
+
+Alle drei Programme wurden vollständig gelesen und anschließend in
+isolierten Kopien ausgeführt. Die relevanten Tensoren wurden an ihre von
+den unveränderten Programmen erwarteten relativen Orte kopiert. Normaler
+und optimierter Lauf reproduzieren jeweils die gelieferten
+Ergebnisdateien byteidentisch, ohne Standardfehlerausgabe:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrl@{}}
+\toprule\noalign{}
+Programm & Gelieferte Prüfbedingungen & Reproduktion \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\codeword{operation\_symmetry.py} & 944 & PASS, identisch \\
+\codeword{symmetry\_availability.py} & 31 & PASS, identisch \\
+\codeword{lorentz\_types.py} & 152 & PASS, identisch \\
+Summe & 1127 & normal und \codeword{-OO} \\
+\end{longtable}
+}
+
+Die Zusatzprüfung \codeword{check\_scope.py} rechnet kleine exakte
+Gegenprüfungen zur Reichweite der Aussagen. Das ausführbare
+Reproduktionsprogramm ist \codeword{replay.py}; Quellenpins, Kopien,
+Originalberichte und Ausgaben liegen in diesem Auditordner.
+\codeword{replay\_receipt.json} dokumentiert alle Pins und die
+Unverändertheit der Eingaben.
+
+Programm-Pins:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Quelle
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+SHA-256
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\codeword{operation\_symmetry.py} &
+\codeword{ec93f759d6582f42542a597bf916ee2a62a51c510240aa777ae439e90fe28382} \\
+\codeword{symmetry\_availability.py} &
+\codeword{88cc3e3361a198fe7b1b32a7174f3dd45f341106978d8abd8d5722e0cb631967} \\
+\codeword{lorentz\_types.py} &
+\codeword{43777c81ea8ba2d2ae12b711321a54abd7f7152a326611a296598d5c5dd463da} \\
+Nativer Tensor &
+\codeword{3f00a0892157a691e4ef26920c3702772c7bf76a250fad98ff04a079bb64b763} \\
+\end{longtable}
+}
+
+Die Erzählung über zwei unabhängig entstandene, vollständig
+übereinstimmende Programme ist durch diese Reproduktion \textbf{nicht}
+geprüft: Vorgelegen hat die erhaltene Fassung mit 944 Guards, nicht die
+vorherige Fassung mit 528 Guards.
+
+\subsection{2. Bestätigte Mathematik}\label{bestuxe4tigte-mathematik}
+
+Der N=3-Raum zerfällt als Darstellung von Spin(10) × SU(4) in sieben
+Isotypien. Drei haben Multiplizität zwei, die anderen vier Multiplizität
+eins. Die zwei Fockteile Λ³(C⁶⁴) und C⁶⁰⊗C⁶⁴ sind jeweils
+multiplizitätsfrei; der gesamte N=3-Raum ist es ausdrücklich
+\textbf{nicht}.
+
+Die irreduziblen Dimensionen sind 24000, 11200, 2688, 2880, 576, 320,
+64; die mit Multiplizitäten gewichtete Summe ist 45504. Die
+Spin(10)-Darstellung mit Dimension 16 in BF und Λ³ ist in den
+angegebenen Gewichten die konjugierte Spinordarstellung; die
+Dimensionskurzschreibweise \codeword{16} darf diese Information nicht
+ersetzen.
+
+Bestätigt sind:
+
+\begin{itemize}
+\tightlist
+\item
+  die exakte Zerlegung über Gewichtsmultiplizitäten und
+  Racah-Alternation;
+\item
+  \codeword{C(560)=117/4} in der erklärten Casimir-Normierung;
+\item
+  die Quellenintertwiner für alle 60 Lie-Erzeuger;
+\item
+  \codeword{rank C3=3776}, \codeword{dim ker C3=37888};
+\item
+  Spektrum von \codeword{C3 C3†}: 0,7,10,12 mit Multiplizitäten
+  64,2880,576,320;
+\item
+  die drei dunklen Typen mit Gesamtcasimir 45, aber getrennten
+  Spin-Casimiren 141/4,117/4,165/4;
+\item
+  für den \textbf{gewährten} Satz X,Nb eine assoziative Algebra der
+  komplexen Dimension 14;
+\item
+  für alle punktweise symmetrieinvarianten Operatoren die Dimension 16;
+\item
+  nach zusätzlicher Gewährung aller 60 Gruppenerzeuger die assoziative
+  Dimension 743583744 und Kommutantdimension 7.
+\end{itemize}
+
+Die Eigenwertzuordnung im Code prüft pro S-Eigenwert einen Vektor, nicht
+eine vollständige Basis dieses Eigenraums. Zusammen mit der unabhängig
+geprüften Multiplizitätsfreiheit, der Kommutation mit allen Erzeugern
+und der eindeutigen Dimensionszuordnung der BF-Teilsummen ist die
+Zuordnung trotzdem abgesichert. Die Guard-Beschriftung »entire
+eigenspace« ist als direkte Beschreibung dieser einen Rechnung zu weit.
+
+\subsection{3. Invarianz und Kovarianz
+auseinanderhalten}\label{invarianz-und-kovarianz-auseinanderhalten}
+
+Mit \codeword{A0=Alg*(X,Nb)} und Gruppenwirkung ρ bezeichne
+
+\codeword{C = End\_G(H3) = ⊕\allowbreak{}\_i End(C\textasciicircum{}\{m\_i\}) ⊗ I\_\{d\_i\}}.
+
+Dann gilt \codeword{A0 ⊂ C}, \codeword{dim A0=14} und
+\codeword{dim C=Σ m\_i²=16}. Jedes Wort aus X und Nb kommutiert mit
+ρ(G). Nichtzentrale Lie-Erzeuger können deshalb aus diesem Alphabet
+nicht entstehen. Dieser Ausschluss ist korrekt und bleibt richtig, wenn
+nur ein fixes H statt zweier unabhängiger Kontrollen gewährt ist.
+
+Nach Gewährung der Gruppenerzeuger entsteht dagegen
+
+\codeword{Afull = ⊕\allowbreak{}\_i End(C\textasciicircum{}\{m\_i\} ⊗ V\_i)}.
+
+Diese Algebra ist \textbf{unter Gruppenkonjugation stabil}, aber ihre
+Operatoren sind nicht sämtlich invariant. In
+\codeword{symmetry\_availability.py} ist die Kennzeichnung
+\codeword{symmetry\_invariant: true} für diese Zeile daher falsch. Der
+Kommutant von Afull ist die sieben-dimensionale skalare Blockmitte.
+
+Sieben ist ein Boden, solange alle zusätzlichen Operationen diese sieben
+Isotypie-Projektoren erhalten; insbesondere senken zusätzliche
+punktweise G-invariante Operationen den bereits erreichten Kommutanten
+nicht weiter. Sieben ist aber \textbf{kein} universeller Boden für unter
+G stabile Algebren oder alle denkbaren nativen Verträge.
+\codeword{End(H3)} ist unter jeder Gruppenkonjugation stabil und hat nur
+den skalaren Kommutanten. Ein exaktes 2×2-Gegenmodell in der
+Zusatzprüfung macht die Unterscheidung direkt sichtbar.
+
+Die Zahlen sind zudem Dimensionen \textbf{komplexer assoziativer
+Sternalgebren}, keine nachgewiesenen Dimensionen einer dynamischen
+Lie-Algebra oder erreichbaren Unitärgruppe. Burnside liefert nicht
+automatisch beliebige ausführbare Gatter auf jedem irreduziblen Block.
+
+\subsection{4. Verfügbarkeit ist keine universelle
+Ja/Nein-Frage}\label{verfuxfcgbarkeit-ist-keine-universelle-janein-frage}
+
+Ein vorgegebener Hamiltonoperator allein gewährt nicht bereits das
+unabhängige Schalten von X und Nb. Am erklärten Punkt g/Δ=1/20 besitzt
+ein fixes H im N=3-Raum acht verschiedene Energien, also nur eine
+acht-dimensionale kommutative Spektralalgebra. Die großzügigere Annahme
+unabhängiger Kontrollen X,Nb ergibt 14.
+
+Eine treue, auf die Multiplizitätsräume reduzierte rationale
+Matrixrechnung ergibt:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Zusätzlich gewährter Satz & Assoziative Dimension \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Nur fixes H=Nb+X/20 & 8 \\
+X,Nb & 14 \\
+X,Nb plus Projektor auf genau einen dunklen Typ & 15 \\
+X,Nb plus Spin(10)-Casimir & 16 \\
+X,Nb plus SU(4)-Casimir & 16 \\
+X,Nb plus Gesamtcasimir & 14 \\
+\end{longtable}
+}
+
+Bereits \textbf{einer} der getrennten Casimire reicht zur vollständigen
+Trennung der drei dunklen Typen. Die zwei fehlenden Algebradimensionen
+sind kein Beweis, dass genau zwei physische Griffe fehlen. Die Dimension
+15 zeigt eine mögliche invariante Zwischenstufe. Die behauptete
+universelle Dichotomie »getrennte Griffe ja oder unverändert 14« und das
+\codeword{IF AND ONLY IF} zur Verfügbarkeit der vollen Symmetrie sind
+daher zu stark.
+
+Die zusätzlichen Projektoren und Casimirkontrollen werden hier nur als
+algebraische Gegenbeispiele verwendet. Ihre Implementierung aus dem
+Compiler wird nicht behauptet.
+
+\subsection{5. Der Clock-Satz ist im gelieferten Checker nicht
+geprüft}\label{der-clock-satz-ist-im-gelieferten-checker-nicht-gepruxfcft}
+
+\codeword{operation\_symmetry.py:478} schreibt den Normalisator- und
+Nichts-hinzufügen-Satz als \codeword{need(True, ...)}. Insgesamt enthält
+diese Datei neun solche als Prüfbedingungen gezählten theoretischen
+Folgerungen. Einige sind durch die vorausgehende Mathematik gut
+begründet; der bloße grüne Guard zertifiziert sie jedoch nicht
+unabhängig.
+
+Die direkte Clock-Definition liegt in
+\codeword{universalraum-native-operations-ground-response-20260915/common.py},
+Funktion \codeword{clock\_lift}, ab Zeile 187: eine Permutation der fünf
+Oszillatorachsen wird mit Exterior-Vorzeichen auf den geraden Spinorraum
+gehoben; \codeword{GF=G16⊗I4}. Der Bosonlift wird entsprechend gebaut
+und die Tensorintertwining-Gleichung geprüft. Eine neue direkte Prüfung
+der Clock-/Casimir-Beziehungen erfolgt im parallelen Hauptstrang, nicht
+in diesem Audit.
+
+\subsection{6. Feldtyp: was tatsächlich erzwungen
+ist}\label{feldtyp-was-tatsuxe4chlich-erzwungen-ist}
+
+Für ein \textbf{lokales, ableitungsfreies Bilinear zweier gleichhändiger
+Weylfelder}, das alle 64 inneren Quellenmarken unverändert als
+unabhängige innere Komponenten und genau den gegebenen antisymmetrischen
+Tensor W verwendet, gilt
+
+\codeword{(1/2,0) ⊗ (1/2,0) = (1,0) ⊕\allowbreak{} (0,0)}.
+
+Die skalare Epsilon-Kontraktion zusammen mit antisymmetrischem W ist im
+gemeinsamen Index symmetrisch und verschwindet wegen
+Grassmann-Antikommutation. Der symmetrische Spinortensor, also der
+(1,0)-Kanal, bleibt nichtverschwindend. Im genannten Vertrag ist dies
+korrekt. Ein zusätzliches unabhängiges gleichgeladenes Hilfsdublett
+erlaubt stattdessen wieder die skalare Kontraktion.
+
+Die Zahlen 180/128 beziehungsweise 60/256 zählen \textbf{komplexe lokale
+Feldkomponenten im jeweiligen direkten Tensorprodukt-Ansatz}. Sie zählen
+nicht automatisch zusätzliche unabhängige physische Oszillatoren oder
+propagierende Freiheitsgrade. Diese hängen von Kinetik,
+Nebenbedingungen, positiver Energie, Teilchen-/Antiteilchenstruktur und
+dem tatsächlichen Feldadapter ab. Deshalb folgt aus der Multiplikation
+mit zwei oder drei kein allgemeiner Ausschluss jeder relativistischen
+Lesart mit den nativen Modenzahlen.
+
+Vor allem folgt daraus keine vorgeschriebene Reihenfolge »erst räumliche
+Skalierung, dann Feldwörterbuch«. Lokale Darstellungstypen und mögliche
+Kinetik können vor einer Skalierungsrechnung geprüft werden. Welche
+Feldkomponenten tatsächlich aus dem räumlichen Quellprozess entstehen,
+muss anschließend gemeinsam mit dem Adapter untersucht werden.
+
+\subsubsection{Konkreter Gegencheck jenseits der ableitungsfreien
+Klasse}\label{konkreter-gegencheck-jenseits-der-ableitungsfreien-klasse}
+
+Der allgemeine Satz »ein Vektor verlangt ψ†ψ und scheitert deshalb an
+der Ladung« ist falsch, sobald Ableitungen zugelassen werden.
+Beispielsweise ist
+
+\codeword{J\textasciicircum{}A\_mu = Σ\_IJab M\textasciicircum{}A\_IJ ε\_ab ψ\_Ia ↔∂\_mu ψ\_Jb}
+
+ein Lorentzvektor mit Ladung −2. Die Ableitungsantisymmetrisierung macht
+ihn bei antisymmetrischem M nichtverschwindend. Für M=ε und zwei inneren
+Marken liefert die exakte Grassmann-Jetrechnung vier nichtverschwindende
+Monome mit Koeffizienten +2,−2,−2,+2. Ein entsprechend geladener
+Vektorvermittler könnte algebraisch durch
+\codeword{b†\_mu J\textasciicircum{}mu + h.c.} koppeln, ohne
+Ladungsverletzung.
+
+Das ist \textbf{nur ein Gegenbeispiel gegen den überbreiten Ausschluss},
+keine native Lösung: Es fügt eine Ableitung und einen Feldtyp hinzu; bei
+kanonischen 4D-Felddimensionen ist es ein höherdimensionaler
+Kopplungsterm. Gesunde Kinetik, Quellenherkunft, Skalierung und T1-T8
+werden dadurch nicht bewiesen.
+
+\subsection{7. Konsequenz}\label{konsequenz}
+
+Die neuen Quellen verkleinern und präzisieren den endlichen
+N=3-Operationsraum. Sie schließen weder die physische Verfügbarkeit der
+Operationen noch den Lorentzadapter. Die sachlich tragfähige Integration
+übernimmt die Zerlegung, Casimire, 14/16/7 im jeweils erklärten Vertrag
+sowie den eingeschränkten Feldtypsatz; sie ersetzt die überbreiten
+Ausschlüsse und die behauptete Programmumkehr durch explizite
+Bedingungen.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Anhang B: unabhängige Krylov- und
+Feldprüfung}\label{anhang-b-unabhuxe4ngige-krylov--und-feldpruxfcfung}
+
+\section{Unabhängige Prüfung: Krylov-Verzweigung und
+Feldwörterbuch}\label{unabhuxe4ngige-pruxfcfung-krylov-verzweigung-und-feldwuxf6rterbuch}
+
+Arbeitsstand 2026-09-15. Geprüft wird die Anlage
+\codeword{7380c383-f364-4ef8-8066-24aa4d180d85} gegen den Vertrag
+\codeword{universalraum-native-operations-ground-response-20260915}.
+Fremde Quellen und Ausgaben wurden nicht verändert. Die hier angegebenen
+Matrix- und Graphbefunde beziehen sich auf denselben gepinnten Tensor W
+mit SHA-256
+\codeword{3f00a0892157a691e4ef26920c3702772c7bf76a250fad98ff04a079bb64b763}.
+
+\subsection{1. Der neue Nichtschluss ist exakt
+bestätigt}\label{der-neue-nichtschluss-ist-exakt-bestuxe4tigt}
+
+Für \codeword{v\_n=(T†)\textasciicircum{}n F} habe ich
+\codeword{u=T T† v\_2=T v\_3} unmittelbar aus den 480 nativen Paaren neu
+kontrahiert. Das materialisiert nicht die 15.252.960 Komponenten von v₃.
+Es arbeitet mit 108.240 Komponenten von v₂ und 293.280
+nichtverschwindenden Komponenten des Ergebnisses u. Es wurden 45.771.360
+zulässige Erzeugungsübergänge und 139.289.760 anschließende
+Entnahmebeiträge exakt mit ganzzahliger Fermion-Parität und
+Boson-Multiplizität zusammengeführt.
+
+Die unabhängige Rechnung liefert
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+\|v_2\|^2=439680,\quad
+\langle v_2,u\rangle=575078400,\quad
+\|u\|^2=752194252800.
+$}\]
+
+Damit folgen rein rational
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+\alpha=\frac{299520}{229},\qquad
+w_2=u-\alpha v_2,\qquad
+\|w_2\|^2=\frac{5001523200}{229}>0,
+$}\]
+
+und
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+\frac{\|w_2\|^2}{\nu_3}=\frac{1809}{47632}.
+$}\]
+
+Der Ein-Vektor-pro-Bosonlage-Ansatz ist somit nicht invariant. Da T die
+native Symmetrie erhält und v₂ und u Singuletts sind, liefert w₂ einen
+zweiten unabhängigen Singulettvektor in derselben Bosonlage. Das ist ein
+Strukturresultat, kein physikalischer Mehrteilchen- oder
+Raumzeitnachweis.
+
+\subsection{2. Das mitgelieferte Ground-JSON ist veraltet und teilweise
+falsch}\label{das-mitgelieferte-ground-json-ist-veraltet-und-teilweise-falsch}
+
+Die aktuelle Pythonquelle hat SHA-256
+\codeword{8ae0f2f103ba0cb0a5cb832681a33130b6756fe627395368b6be635587a2eb02}.
+Das vorhandene \codeword{native\_ground\_state.json} nennt dagegen
+\codeword{046ffa3f41d9dd365e2c9a199e938734bf735d762f23373a3f85b541c3da30fe}
+und enthält noch
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+\|w_2\|^2_{\rm alt}=1145348812800
+=229^2\|w_2\|^2.
+$}\]
+
+Sein \codeword{closure\_defect=1.5226768996658837} ist schon als
+relative orthogonale Norm unmöglich. Das daraus abgeleitete
+Ritz-Ergebnis −1,18826198 ist ungültig. Der spätere Anlagentext
+korrigiert den Normfehler, aber die JSON-Belegkette wurde noch nicht
+entsprechend neu erzeugt. Das grüne \codeword{status: PASS} dieser
+historischen Ausgabe darf deshalb nicht mit dem korrigierten Text
+zusammengezogen werden.
+
+Die korrigierte Norm und die folgenden kleinen Matrizen wurden hier
+unabhängig reproduziert. Die ganze fremde große Ausführung wurde
+ausdrücklich nicht erneut gestartet.
+

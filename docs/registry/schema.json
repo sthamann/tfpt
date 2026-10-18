@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.fixpoint-theory.com/documentation/content-registry-schema-v1.json",
+  "title": "TFPT authored-source navigation registry",
+  "description": "Static source locations and typed cross-references; not a proof certificate or semantic review.",
+  "type": "object",
+  "required": ["schema_version", "publication_scope", "generator", "coverage", "sources", "documents", "sections", "evidence", "relations", "reverse_indexes", "diagnostics", "topics"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "publication_scope": {"enum": ["public_authored_sources", "local_supplement"]},
+    "generator": {"type":"object","required":["path","parser","input_fingerprint","inputs"],"properties":{"input_fingerprint":{"type":"string","pattern":"^[a-f0-9]{64}$"},"inputs":{"type":"object","additionalProperties":{"type":"string","pattern":"^[a-f0-9]{64}$"}}}},
+    "coverage": {"type":"object","required":["tex_sources","physical_sections","document_views","complete_semantic_review","proofs_checked"],"properties":{"complete_semantic_review":{"const":false},"proofs_checked":{"const":false}}},
+    "sources": {"type":"array","items":{"$ref":"#/$defs/source"}},
+    "documents": {"type":"array","items":{"$ref":"#/$defs/document"}},
+    "sections": {"type":"array","items":{"$ref":"#/$defs/section"}},
+    "evidence": {"type":"array","items":{"type":"object","required":["id","type","path","checked_by_registry"],"properties":{"checked_by_registry":{"const":false},"status_as_recorded":{"type":"string"},"canonical_status_as_recorded":{"type":"string"},"statement_as_written":{"type":"string"}}}},
+    "relations": {"type":"array","items":{"$ref":"#/$defs/relation"}},
+    "reverse_indexes": {"type":"object","required":["by_topic","by_source","by_document","by_evidence","by_script","by_label"]},
+    "diagnostics": {"type":"array","items":{"type":"object","required":["kind"]}},
+    "topics": {"type":"array","items":{"type":"object","required":["id","title","pattern","relation_type"],"properties":{"relation_type":{"const":"lexical_topic_suggestion"}}}},
+    "editions": {"type":"array","description":"Derived edition metadata copied from docs/editions.json; source ownership and omissions remain explicit."}
+  },
+  "$defs": {
+    "source": {"type":"object","required":["id","path","sha256","role","section_ids","owner_documents","primary_owner","includes"],"properties":{"id":{"type":"string","pattern":"^tex:"},"sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},"path":{"type":"string"},"section_ids":{"type":"array","items":{"type":"string"}},"includes":{"type":"array"}}},
+    "document": {"type":"object","required":["id","entry_point","canonical_source","title","role","compile_dir","ordered_section_ids","expansion_status","physical_sources","topic_ids"],"properties":{"id":{"type":"string","pattern":"^document:"},"title":{"type":"string"},"title_latex_as_written":{"type":"string"},"ordered_section_ids":{"type":"array","uniqueItems":true,"items":{"type":"string"}},"expansion_status":{"enum":["complete_literal_expansion","incomplete_literal_expansion"]}}},
+    "section": {"type":"object","required":["id","source","line_start","line_end","byte_start","byte_end","kind","title","summary_excerpt","summary_method","semantic_review","owner_documents","relation_ids"],"properties":{"id":{"type":"string","pattern":"^section:[a-f0-9]{20}$"},"line_start":{"type":"integer","minimum":1},"line_end":{"type":"integer","minimum":1},"byte_start":{"type":"integer","minimum":0},"byte_end":{"type":"integer","minimum":0},"semantic_review":{"const":false},"summary_method":{"type":"string"}}},
+    "relation": {"type":"object","required":["id","from","to","relation_type","match_basis","occurrences"],"properties":{"relation_type":{"enum":["explicit_file_citation","explicit_script_identifier","explicit_claim_identifier","explicit_lean_symbol","explicit_source_identifier","cross_reference_join","tex_label_reference","includes_source","contains_declaration"]},"occurrences":{"type":"integer","minimum":1},"line_numbers":{"type":"array","items":{"type":"integer","minimum":1}},"tokens":{"type":"array","items":{"type":"string"}}}}
+  }
+}

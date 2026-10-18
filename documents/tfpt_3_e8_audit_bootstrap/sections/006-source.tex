@@ -1,0 +1,374 @@
+
+\par\smallskip\noindent\textbf{The $v_{\mathrm{geo}}$ torsor closure
+(\texttt{VGEO.TORSOR.01}).}
+The calibration/scale-torsor audit of the $v_{\mathrm{geo}}$
+interface ($21$ checks, ${\sim}1$\,s; verdict \textsc{torsor closure
+pass}).  The interface is a well-defined $\mathbb R_+$ scale torsor:
+complete export table $O_i=r_i\,v_{\mathrm{geo}}^{d_i}$; dimension
+matrix rank $1$ (conditional [A] on the flavor block, named); all
+consistency conditions $\lambda$-homogeneous (the machine form of
+No-Unit); leave-one-anchor-out compatible ($G$ vs $\rho_\Lambda$:
+$0.11\%$); calibration theorem stated.  \emph{Fence}: structure
+closure, \emph{no} scale derivation (impossible per No-Unit).
+Moonshot \emph{named}, not executed:
+$H_{\mathrm{EW}}=\ln(\Mbar/v_{\mathrm{EW}})=37.1776$.  Typing
+unchanged.
+Machine-checked: \veri{v725\_phys\_vgeo\_torsor\_audit.py}.
+\mE\ (torsor structure, homogeneity, cross-calibration) $+$ \mO\
+(the unit itself, per No-Unit)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{Pimsner--Popa / Watatani index 4 on
+the CAR ladder (\texttt{GNET.PPINDEX.01}).}
+The T2 main slice ($57$ checks, ${\sim}7$\,s; verdict
+\textsc{t2-slice-go}).  $\mu_4$ \emph{derived} from the clock
+$L=S^{N/12}$ (order $4$ forced by the NS spin structure, not
+inserted).  Optimal Pimsner--Popa constant \emph{exactly} $1/4$
+(explicit rank-one minimizer $+$ pinching; the homogeneous-element
+subtlety documented); Watatani index \emph{exactly} $4$ via an
+explicit quasi-basis with \emph{forced} weights (uniform weights
+break scalarness; $\Z_2$-only average gives index $2$).
+\emph{Ramond}: undressed degenerates (index $2$); the Klein
+zero-mode dressing restores index $4$ \emph{state-preservingly}
+($[\rho,U']=0$ exactly).  The $(1{+}i)$ dictionary closes with
+v722.  Outerness witnesses typed as witnesses.  Gate typing
+unchanged.
+Machine-checked: \veri{v726\_phys\_car\_pp\_index.py}.
+\mE\ (index results, derivation, healing) $+$ (\textsc{measured})
+(outerness witnesses) $+$ \mO\ (Q-system identification).
+\emph{Lean round 5:} the exact algebraic index-4 core is formally
+verified (\texttt{WatataniIndexFour.lean}, kernel-checked, no
+sorry): the clock-order shadow ($S^{12}=-1 \Rightarrow H^4=1$), the
+explicit quasi-basis with $\sum v v^* = 4\cdot 1$ exactly
+$= N(1{+}i)^2$, the sharp Pimsner--Popa constant $\lambda^*=1/4$
+(SOS certificate), and the $\mu_2$/three-sector controls; the
+CAR/Fock layer and the Ramond dressing stay numeric.
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The orbit packet lemma
+(\texttt{E8.ORBITPACKET.01}).}
+The Gaussian code bridge's number family in one normal form ($26$
+checks, ${\sim}1$\,s; verdict \textsc{orbit-packet-exact}).
+Burnside \emph{exact}: the $\sigma$ census on the $15$ nonzero
+classes gives $7=(15+3+3)/3$.  The canonical packet split:
+$240=5\times48$ --- one fixed block $+$ four moved blocks of $12$
+Gaussian lines each, pairwise disjoint, label-free canonical (the
+$15$-class partition agrees with the intrinsic equivalence
+$x\sim y\iff(1-J)(x-y)/2\in L$); packets $=1+4=5=g_{\mathrm{car}}$.
+Anchor: leader weights $(0,1,1,2)\to(1,1,2)$, leader pair $e_6/e_7$
+$=$ the v638 anchor pair.  $q=16$ normal form: $240=16\cdot15$,
+$248=240+8$.  \emph{Circularity fence:} P1/P2 come back as
+\textsc{exact-internal-reconstruction}, not derivation;
+$\sigma$-class specificity: $160$ free order-$3$ elements give
+Burnside $5$.  Companion Lean module \texttt{OrbitPacket.lean}
+($34$ theorems, kernel \texttt{decide}/\texttt{norm\_num} only).
+No marker move.
+Machine-checked: \veri{v736\_orbit\_packet.py}.
+\mE\ (integer/finite-group census; reconstruction typed)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The seam-48 intertwiner: dead
+(\texttt{E8.SEAM48.01}).}
+The sharpest structural sharpening of the review morning, killed on
+its preregistered criterion ($24$ machinery checks, ${\sim}4$\,s;
+verdict \textsc{seam48-dead}).  The $48\times5$ incidence matrix
+between the five canonical $48$-blocks and the $48$ regular
+five-cycles is \emph{not} identically $1$: entry distribution
+$0{:}96/1{:}64/2{:}64/3{:}16$, representative-independent ($0$ of
+$2304$ order-$5$ elements of G31), must-fail control fires ($0$ of
+$25$ random operators).  Valuable residues: the four moved blocks
+carry the v623 character table \emph{exactly}, the fixed block
+deviates exactly by the $12$ lifted marks, and the five-period
+lemma $u^5=\pm J$ holds exactly.  $240=48\cdot5$ remains a
+factorization \emph{without} coordinatization.  No marker move.
+Machine-checked: \veri{v737\_seam48\_intertwiner.py}.
+\mE\ (exact machinery; preregistered kill fired --- honest
+negative)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The (L1) sector lemma of the CAR
+majorant (\texttt{QGEO.CARL1.01}).}
+The first proof block of the majorant lemma named by the continuum
+probe ($11$ checks, ${\sim}1$\,s; verdict
+\textsc{l1-sector-proven-modulo-elementary}).  For all $6$
+undressed sectors on the fixed grid:
+$\|K_{2N}^{(q)}-K_N^{(q)}\|_{S_1(\Lambda_\varepsilon)}\le
+B_q(\varepsilon)/N$ --- the occupied-arc mode sums are \emph{exact}
+geometric sums (exact summation replaces Euler--Maclaurin), the
+entire $1/N$ structure is the sublattice embedding offset, the
+leading term is the exact matrix $(iu/2MN)f_q'(s)$ (ratio $\to1$ at
+$6\times10^{-4}$), $\gamma=2$ is \emph{derived}, $39744{+}108$
+inequalities hold at $0$ violations, and $r_1=1$ is sharp.  Status
+typed: proven modulo elementary steps, explicit constants; residues
+(a) grid-sup [elementary], (b) L2 uniform FH/RH [hard-technical],
+(c) L3 uniformity [medium] --- named, not claimed.
+\texttt{GATE.QGEO} does not move.  No marker move.
+[2026-08-05: residue (a) is \emph{fully closed} in the corrected
+$(1+\ln M)$ form by \texttt{v778} (see its block below); residues
+(b) and (c) stay open; the gate still does not move.]
+Machine-checked: \veri{v745\_qgeo\_car\_l1\_sector\_lemma.py}.
+\mE\ (proof-near sector lemma with explicit constants)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The $G_{\mathrm{net}}$ local net
+functor (\texttt{GNET.LOCALNET.01}).}
+The local-net reading of the quotient circle, finite layer exact
+($16$ checks, ${\sim}2$\,s; verdict
+\textsc{gnet-local-functor-alive}).  Net axioms exact: isotony,
+graded locality, clock covariance.  The Watatani index of the local
+fixed-point inclusion is exactly $4$ for \emph{every} interval
+$\ell\ge2$ --- the $[D,A]$ index statement is interval-local.
+Ramond is a half-line/bond defect (solitonic; leakage
+$\sqrt{2/N}$) --- the DHR structure the seam--Calder\'on
+identification needs.  Four must-fail controls fire.  Missing
+continuum theorems named, not claimed (GNS limit net, index
+continuity, Longo Q-system identification, twisted DHR sectors,
+Haag duality/split).  No marker move.  [2026-08-05: the
+finite-level precursors of four of the five theorems are measured
+coherent by \texttt{v779} (see its block below); the theorems stay
+named, not claimed.]
+Machine-checked: \veri{v746\_phys\_gnet\_local\_functor.py}.
+\mE\ (finite net axioms $+$ local index $4$) $+$ \mC\ (named
+continuum theorems)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The projective Hamming incidence lemma
+(\texttt{E8.PROJHAMMING.01}).}
+The centerpiece of the incidence programme ($36$ checks,
+${\sim}5$\,s; verdict \textsc{proj-hamming-exact}).  From the
+concrete lattice: $h=H/4$ is $\Z[i]$-valued with hermitian Gram
+determinant $1$ (the \emph{unimodular} hermitian E8 lattice over
+$\Z[i]$); $\bar h$ alternating (doubly-even), nondegenerate ---
+$(V,\bar h)$ symplectic over $\mathbb{F}_2$ with explicit Darboux
+basis.  Core identity: $|H_y|=7$, pair intersections $3$;
+$BB^{\mathsf T}=4I+3J$ exact, characteristic polynomial
+$(x-7)(x-2)^9(x+2)^5$ --- the multiplicities $(1,9,5)$ are the
+symplectic signature (honest control: $BB^{\mathsf T}=4I+3J$ alone
+holds for any nondegenerate form).  Channel:
+$K^2=(4/49)I+(45/49)\Pi_0$ exactly ($K$ itself not psd).  NS/R as
+geometry: $\chi_{\mathrm{NSR}}=\bar h(\cdot,y_0)$ for the unique
+$\sigma$-fixed $y_0=\mathrm{FSUM}$; $248=120+128$.  The v737
+resolution: the seam-48 distribution derived exactly ($16\times$
+the $3\times5$ label table), and the $5\times48$ coordinatization
+exists via exactly one $\bar u$-invariant spread (kill explained,
+not revised).  Companion Lean module
+\texttt{ProjectiveHamming.lean} ($32$ theorems).  No marker move.
+Machine-checked: \veri{v752\_projective\_hamming\_incidence.py}.
+\mE\ (exact finite lemma; Lean companion)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The Fano--discriminant bridge
+(\texttt{QGEO.FANODISC7.01}).}
+The seven-correlation, permanently typed ($26$ checks, ${\sim}1$\,s,
+one preregistered break; verdict \textsc{fano-disc7-decorative}).
+The preregistered four-condition test breaks exactly at condition 2:
+$2$ \emph{splits} in $\Q(\sqrt{-7})$ ($-7\equiv1\bmod8$), so every
+$2$-adic ideal quotient of $\mathcal O_{-7}$ has $2$-rank
+$\le2<3$ (complete norm-$8/16$ census) --- the code
+$\mathbb{F}_2$-structures are arithmetically unrealizable, the
+NS/R parity bit has no arithmetic carrier.  The three-cycle half is
+real and exact: equivariant lifts exist for both canonical
+difference-set Fano models, the canonical order-$3$ action is
+$x\to2x$ (the difference-set multiplier), every lift sends the
+$\bar\sigma$ fixed point to the C corner (norm $14=\dim G_2$).
+Controls fire ($x\to3x$: zero lifts; broken incidence: zero lifts).
+The seven-correlation is decorative for good.  No marker move.
+Machine-checked: \veri{v757\_fano\_disc7\_bridge.py}.
+\mE\ (exact machinery; preregistered break --- honest negative)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The Arf/spinor compiler
+(\texttt{ARF.SPINORCOMPILER.01}).}
+$46/46$ checks, ${\sim}2$\,s; verdict \textsc{arf-spinor-exact},
+zero kills, both must-fail controls fire.  On the symplectic
+four-bit quotient $V=L/(1{+}i)L$ of the unimodular hermitian $E_8$
+lattice: the parity lift $\iota\colon V\cong C_{\rm even}(5)$
+carries $\beta=\bar h$ exactly in all $256$ cells; brute force
+over all $2^{16}$ functions yields exactly $16$ quadratic
+refinements (Arf census $6+10$; $|Sp(4,2)|=720$ with a
+faithful$+$surjective $S_6$ action); the frozen selector
+($\sigma$-invariance census $4\to q(A){=}1$: $2\to
+q(F_\Sigma){=}0$: $1$) picks a \emph{unique} $q^{*}$, and the
+weight form \emph{is} $q^{*}$; $\mathrm{Stab}(q^{*})\cong S_5$
+gives $16=1+\bar 5+10$ as Arf geometry on refinements and words;
+the $K_6$ duad model is an equivariant bijection onto $E(K_6)$;
+$B=I+A_{KG(6,2)}$ entrywise with the exact ovoid eigenvector; all
+six isotropic spreads carry signature $(1,2)$; the hypercharge
+table $X=(-2,-2,-2,3,3)$ reproduces the \texttt{v310}/\texttt{v14}
+dictionary; moments $(16,0,120,0)$ with the chain $40/41/240/248$;
+Pati--Salam $8+8$ with $B{-}L=1-2n_c/3$; $\chi_{\rm NSR}=$ the
+anchor bit.  Naming discipline: the same $\sigma$ is the family
+3-cycle $A_3^{\rm Fam}$ on message bits and the $3{+}2$ slot split
+$A_3^{\rm PS}$ on carrier legs --- two registers, never conflated.
+Lean companion: \texttt{TfptCarrier/ArfSpinorCompiler.lean} ($23$
+kernel theorems).  The physical code$\to$matter reading is
+\emph{not} claimed here (fence: next block).  No marker move, no
+RH claim.
+Machine-checked: \veri{v774\_arf\_spinor\_compiler.py}.
+\mE\ (exact finite algebra; Lean companion)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The fired matter kill
+(\texttt{ARF.ROOTCLASS.01}).}
+$18/18$ checks; verdict \textsc{rootclass-mixed}, all three
+must-fail controls fire; the prediction table SHA-frozen
+\emph{before} any root data.  No $D_5{\oplus}A_3$/$SU(5)$
+convention makes even one full set of $15$ Gaussian classes pure:
+the embedding-independent counting bound (every embedding has
+exactly $128$ spinor-side roots; $240>128$) forces $\ge7$
+adjoint-side classes for \emph{every} embedding, coordinate or
+not; the exhaustive scan ($56$ splits $\times$ $240$ assignments
+$\times$ $2$ chiralities) finds zero passing conventions; all $8$
+spinor classes mix $8$ distinct $16$-weight pairs (best dictionary
+match $8/128$; $X$-purity $0/15$).  Binding fence: the
+code$\to$matter reading --- including the ``empty mailbox $=$
+right-handed neutrino'' reading --- must not enter any main claim;
+the Arf mathematics of \texttt{v774} is untouched.  No marker
+move, no RH claim.
+Machine-checked: \veri{v775\_gaussian\_class\_d5\_purity.py}.
+\mE\ (exact census kill; preregistered)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{Boundary code uniqueness
+(\texttt{ARF.BOUNDARY.CODE.01}).}
+$31/31$ checks; verdict \textsc{boundary-code-unique}.  The
+non-circular chain boundary $\to$ code $\to E_8\to\mathbb
+F_2^4\to$ five slots exists with $\gcar=5$ as \emph{output}:
+census $135\to30\to14\to2\to1$ rebuilt without Hamming/$E_8$
+input; the flag datum is one deck-invariant $\Z_2$ (the product of
+the four side orientations; all three predeclared formalizations
+agree); the boundary gauge group (order $12$) makes the flagless
+twofold pure gauge; Construction~A of the selected code \emph{is}
+$E_8$ ($240/2160$ theta, Cartan $\det=1$, arms $1$-$2$-$4$); the
+Arf selector is unique; packets $1+4$.  Honest residuals as
+recorded then: R1 the doubly-even self-dual \emph{universe premise}
+(the circularity relocated and shrunk, not removed), R2
+deck-placement blindness (semantic, typed), R3 anchor naming
+($\bar b(F_\Sigma,A)=1$).  \emph{All three moved in round 21
+(2026-08-06, markers unchanged):} R1 is replaced by R1$'$ --- the
+three physical axioms A1 mutual locality, A2 integer conformal
+spin, A3 holomorphy/index one, from which Type II is forced
+exhaustively (\veri{v799\_seam\_code\_typeii.py}); R2 is placed
+--- the deck is the metaplectic anomaly of the total modular
+$S$-lift at $\tau=i$ --- and R3 is named through the
+$\sigma$-orbit Arf defects whose XOR is the anchor itself
+(\veri{v798\_seam\_clifford\_modular\_s.py}).  No P2-removal
+claim; the contract form is now the sharpened
+\texttt{SEAM.CODE.TYPEII.01} residual R1$'$ \mC\ (the seam
+satisfies A1--A3).  No marker move, no RH claim.
+Machine-checked: \veri{v776\_boundary\_hamming\_uniqueness.py}.
+\mE\ (exact selection chain) $+$ \mO\ (the named universe premise)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The executed clock contract
+(\texttt{FTRANSFER.CLOCKS.01} $+$ \texttt{CONTRACT.F.01}).}
+One module from two probes ($24+14$ checks, $0$ failures; verdicts
+\textsc{no-common-connection}/\textsc{ftransfer-fibered-carries};
+prereg YAML and both data tables byte-frozen \emph{before} the
+first run).  All four dictionaries are construction-valid (Koide
+scheme check $571\times$; washout drift $1.15\times10^{-4}$; QCD
+overlay $0.83\%$; relic slope $0.0602$) and the one-class
+prediction dies sympy-exactly: transported Schwarzians
+$\{-\Delta^2/2,-\Delta^2/2,0\}$, $\Delta=6\log(3/2)$ --- the K1
+kill fires exactly as the frozen prior expected; the pass-enabling
+reparametrization is the forbidden non-affine M\"obius clock.  The
+surviving architecture is the \emph{fibered} functor: one shared
+discrete PGL$_2$ base (anchor cross-ratio $4/3$ exact; unit
+parabolic deck translation) with the constant seam obstruction
+cocycle, values exactly $\{0,\pm\Delta^2/2\}$; thermal/proper-time
+clocks $\{\tau,\beta\}$ vs the RG clock $\{\log\mu\}$ split the
+cosets; the relic channel stays degenerate, unclassified.  The jet
+route of \texttt{CONTRACT.F.01} closes at the physical-clock
+level; the named next step --- derive the coset assignment from
+KMS/modular clock typing --- is now a theorem
+(\veri{v792\_ftransfer\_kms\_coset.py},
+\textsc{kms-coset-theorem}).  No marker move, no RH claim.
+Machine-checked: \veri{v777\_ftransfer\_clock\_jets.py}.
+\mE\ (sympy-exact kill and cocycle) $+$ (\textsc{measured})
+(dictionary legs) $+$ \mX\ (executed preregistered kill test)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The grid-supremum closure
+(\texttt{QGEO.GRIDSUP.01}).}
+One module from two probes ($19/19+19/19$; verdicts
+\textsc{gridsup-split-closed-log-law}/\textsc{fourier-logsum-closed}).
+Remainder (a) of the \texttt{v745} (L1) majorant lemma is fully
+closed in the corrected $(1+\ln M)$ form: (a1) the continuum
+entrywise supremum, (a2) the configuration-$S_1$ closure with
+explicit $B_{\rm conf}(\varepsilon)$ (packing $+$
+$\zeta(2)/\zeta(3)$), and (a3) the refinement remainder with
+$\mathrm{RHO}(\varepsilon)$ via exact $\csc^3$ integrals close
+elementarily with zero census violations; (a4) the leading part is
+honestly log-divergent (jump-driven; taper-controlled), so the
+literal \texttt{v715} clause ``one $B(\varepsilon)$ for all grid
+refinements'' is false at $r_1=1$ and is repaired to
+$\|D_N^{(M)}\|_1\le[B_0+(J/2)\ln(M{+}3)]/N$, certified at theorem
+level by the grid Fourier log-sum inequality
+$\|F\|_1\le c_0+(J/4)\ln(M{+}3)$, $J=2|f_q'(\varepsilon)|$
+($162$-case census to $M=6144$, zero violations; all $252$
+transfer cases verified; Araki/Powers--St\o rmer summability
+explicit).  Honest: the measured slope is $J/\pi^2$ --- the bound
+is valid, not sharp.  Residues (b) L2 and (c) L3 stay open;
+\texttt{GATE.QGEO} does not move.  No marker move, no RH claim.
+Machine-checked: \veri{v778\_qgeo\_gridsup\_logsum.py}.
+\mE\ (theorem-level closure with explicit constants)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The $G_{\rm net}$ continuum strand
+(\texttt{GNET.GNSLIMIT.01}).}
+One module from two probes ($27/27+27/27$; verdicts
+\textsc{gns-precursors-coherent}/\textsc{gnet-arf-no-correspondence}).
+The inductive system is exactly coherent: Haar scaling isometry
+tower intertwines at $\le2.2\times10^{-16}$; the index-4
+expectation squares commute exactly (the finite half of the Longo
+Q-system identification); the canonical state is Cauchy with
+geometric contraction ${\sim}1/4$ per doubling; the index census
+is machine-exact at every level with zero degradation; the
+twisted Haag-duality defect is $0$ with $\dim B'/\dim A'=4=$ the
+Watatani index.  The exact dim law
+$d_c(\ell)=4^{\ell-1}+2^{\ell-1}\cos(\pi c/2)$ makes the
+$\mathbb C[\Z_4]$ quasi-basis obstruction exactly $2^{-\ell}$
+(restored only asymptotically; it explains the $\ell=1$
+three-sector anomaly).  The honest negative, exhaustive: the
+$16=1{+}5{+}10$ counting echo with the Arf geometry is exact but
+non-geometric ($\mathbb F_2$-rank $3$ vs $4$; $GL(4,2)$ census
+$0/20160$; no internal order-3 carrier), and $K_{\rm matter}$ does
+not govern the tower transport --- the two fours stay in their
+registers.  All five controls fire.  The five \texttt{v746}
+continuum theorems stay named, not claimed (the limit-existence
+hypotheses are measured in round 21,
+\veri{v802\_gnet\_martingale.py}).  No marker move, no
+RH claim.
+Machine-checked: \veri{v779\_gnet\_gns\_arf.py}.
+\mE\ (exact coherence data; dim law) $+$ (\textsc{measured})
+(precursors; honest negative)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The $d=4$ forcing census and the
+clock kill (\texttt{E8.ONEOBJECT.01}).}
+One module from two probes ($21/21+23/23$; verdicts
+\textsc{one-object-partial}/\textsc{clock-fiber-dead}).  The TFPT
+glue pattern (cyclic isotropic glue, evenness $q\equiv0$ mod $2\Z$,
+unimodularity $|H|^2=4d$) admits an even unimodular \emph{diagonal}
+glue of $A_{d-1}\oplus D_{d+1}$ iff $d=4$ (exact Fraction census,
+$d=2..12$): at $d=4$ exactly the two \texttt{v92} Lagrangians
+($k\mapsto k$, $k\mapsto 3k$) with the explicit $E_8$ certificate
+($\det=1$, $240$ norm-2 vectors); $d=9$ dies at isotropy; both
+relaxation controls fire.  Corollaries at the forced $d$:
+$\gcar=d{+}1=5$, $\Nfam=d{-}1=3$, rank $2d=8$, index
+$4=d=|\mu_4|$.  Honesty gate: $c_3=1/(2\pi d)|_{d=4}=1/(8\pi)$ is a
+corpus-legitimate rewriting (\texttt{v23} anchor), \emph{not} a new
+derivation of P1.  The clock kill: the fiber product
+$\Z_{12}\times_{\Z_6}\Z_{30}$ cannot act on the $60$ Gaussian lines
+--- the full line-compatible group has order $23040$ with maximal
+element order $12$ (orders $15/30/60$ absent for every
+realization); the fiber product is cyclic $\Z_{60}$ (exact SNF).
+Round-22 addendum: a second, independent $d=4$ mechanism ---
+the null selector $|v_d|^2=\det M_d=d(4-d)$ on the RR/Serre
+functor vector, with the bridge $g^2-N^2=4d=|H|^2$ tying null to
+glue index on the same invariant $4d$
+(\veri{v807\_lorentz\_nullselector.py}).
+No marker move, no RH claim.
+Machine-checked: \veri{v781\_one\_object\_clock\_census.py}.
+\mE\ (exact census $+$ exact kill; $c_3$ link typed interpretation)
+\par\smallskip

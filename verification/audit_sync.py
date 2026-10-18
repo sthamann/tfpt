@@ -40,6 +40,8 @@ be REMOVED, never added for new work).
 
 stdlib only.
 """
+from tex_sources import read_tex, source_chunks
+
 import csv
 import json
 import hashlib
@@ -148,7 +150,12 @@ def check_suite(registered: list[str]) -> None:
 
 # -------------------------------------------------------------- B: papers
 def check_papers(registered: list[str], baseline: dict) -> None:
-    bodies = "".join((ROOT / f"{d}.tex").read_text() for d in ACTIVE_DOCS)
+    # A generated index is not a paper-body citation, even when included by TeX.
+    index = (ROOT / "tex-artefacts" / "verification.tex").resolve()
+    history = (ROOT / "changelog.tex").resolve()
+    bodies = "".join(chunk.text for d in ACTIVE_DOCS
+                     for chunk in source_chunks(ROOT / f"{d}.tex")
+                     if index not in chunk.include_chain and history not in chunk.include_chain)
     bodies_norm = normalise_tex(bodies)
     body_exceptions = set(baseline.get("body_citation_exceptions", []))
     for s in registered:
@@ -159,8 +166,8 @@ def check_papers(registered: list[str], baseline: dict) -> None:
                              f"(master index alone does not count)")
 
     # reverse: every citation target must be a registered script
-    all_tex = bodies + (ROOT / "changelog.tex").read_text()
-    all_tex += "".join(p.read_text() for p in (ROOT / "tex-artefacts").glob("*.tex"))
+    all_tex = bodies + read_tex(ROOT / "changelog.tex")
+    all_tex += "".join(read_tex(p) for p in (ROOT / "tex-artefacts").glob("*.tex"))
     reg_set = set(registered)
     for m in re.finditer(r"\\veri\{([^}]*)\}", all_tex):
         target = normalise_tex(m.group(1))
@@ -174,7 +181,7 @@ def check_papers(registered: list[str], baseline: dict) -> None:
             err("B.reverse", f"\\vref{{{m.group(1)}}} references unknown module")
 
     # changelog: every non-grandfathered module id must appear
-    chl = (ROOT / "changelog.tex").read_text()
+    chl = read_tex(ROOT / "changelog.tex")
     grandfathered = set(baseline.get("changelog_grandfathered", []))
     for s in registered:
         mid = module_id(s)
@@ -234,6 +241,7 @@ def check_website(registered: list[str]) -> None:
     pub_v = WEB / "public" / "verification"
     want = {f"{s}.py" for s in registered} | {"tfpt_constants.py"}
     want |= {p.name for p in VERIF.glob("math_support*.py")}
+    want.add("tex_sources.py")
     have = {p.name for p in pub_v.glob("*.py")}
     for name in sorted(want - have):
         err("D.verification", f"website/public/verification/{name} missing")
@@ -294,7 +302,7 @@ def check_website(registered: list[str]) -> None:
 
 # -------------------------------------------------------------- E: versions
 def tex_version() -> str:
-    text = (ROOT / "tex-artefacts" / "version.tex").read_text()
+    text = read_tex(ROOT / "tex-artefacts" / "version.tex")
     return re.search(r"\\def\\TFPTversion\{([^}]*)\}", text).group(1)
 
 

@@ -1,0 +1,412 @@
+\subsection{The frozen CAR covariance}
+
+The finite collar used by \texttt{v995} has eight complex fermion
+modes, hence
+\[
+ \CAR_8\simeq M_{2^8}(\C)=M_{256}(\C).
+\]
+In dimensionless modular units the one-particle Hamiltonian is
+\[
+ h_{\mathrm{collar}}
+ =\Delta\,\operatorname{diag}(1,2,\ldots,8),
+\qquad
+ \Delta=6\log(3/2),
+\tag{3.6}\label{eq:collar-h}
+\]
+and the script sets $\beta=1$.  Therefore
+\[
+ q=e^{-\Delta}=(2/3)^6=\frac{64}{729},
+\qquad
+ C_j=\frac{q^j}{1+q^j}
+ =\frac1{1+e^{j\Delta}},\quad j=1,\ldots,8.
+\tag{3.7}\label{eq:frozen-C}
+\]
+This is exactly Araki's covariance
+\eqref{eq:araki-cov}.  All eigenvalues lie strictly between $0$ and
+$1$, so the finite CAR representation is factorial and the density
+matrix is faithful.  On the occupation basis
+$n=(n_1,\ldots,n_8)\in\{0,1\}^8$,
+\[
+ p(n)=Z^{-1}q^{\sum_{j=1}^{8}jn_j},
+\qquad
+ Z=\prod_{j=1}^{8}(1+q^j).
+\tag{3.8}\label{eq:gibbs-weights}
+\]
+Thus all $256$ weights are positive, and
+\[
+ \frac{p(n+e_j)}{p(n)}=q^j
+\]
+whenever $n_j=0$.  These are the exact detailed-balance relations
+checked in \texttt{v995}.  The angular convention
+$\beta_{\mathrm{angle}}=2\pi$ is recovered by absorbing $2\pi$ into
+the modular Hamiltonian: $\beta h=(2\pi)H_{\mathrm{angle}}$.
+
+\begin{remark}[What Araki proves here]
+Araki's theorem proves uniqueness of the KMS state of the full CAR
+dynamics and its determination by \eqref{eq:frozen-C}.  Restricting
+that state to the even/bilinear $\mathrm{SO}(16)_1$ subnet selects the
+vacuum-sector thermal state.  It does \emph{not} say that the
+observable $\mathrm{SO}(16)_1$ net has only one rotational KMS state:
+that net has four DHR sectors and hence four extremal sector Gibbs
+states.  Holomorphic extension to $\B$ is what removes this sector
+choice.
+\end{remark}
+
+\subsection{Holomorphy and thermal classification}
+
+By \eqref{eq:holomorphic} and Theorem~\ref{thm:klm},
+\[
+ 1=\mu_{\B}
+ =\sum_{\rho\in\operatorname{Irr}(\B)}d(\rho)^2.
+\tag{3.9}\label{eq:one-sector}
+\]
+The vacuum already contributes one, so there can be no other
+irreducible DHR sector.  Theorem~\ref{thm:lt} then has one Gibbs
+state and no other extreme point.  This verifies the analytic
+hypothesis needed for unconditional rotational KMS uniqueness.
+
+\section{The holomorphic KMS extension theorem}
+
+\begin{theorem}[Holomorphic rotational KMS extension]
+\label{thm:main}
+Let $\A\subset\B$ satisfy the hypotheses of Section~1: for every
+interval $I$, $\A(I)\subset\B(I)$ is an irreducible index-four
+inclusion, $\A=\B^{\Z_4}$ for a proper internal gauge action
+commuting with rotations, and $\B$ is a holomorphic conformal net
+with $\mu_{\B}=1$ and $c=8$.  Let $\beta>0$ and let
+$\omega_\beta$ be the restriction \eqref{eq:omega-def} of the
+vacuum-sector rotational Gibbs state.  Then:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\omega_\beta$ has a rotational $\beta$-KMS extension to
+  $\B$.
+\item The maps
+  \[
+    E_I=\frac14\sum_{r=0}^{3}\alpha_r:
+    \B(I)\to\A(I)
+  \]
+  are the unique normal faithful conditional expectations.  They
+  form a net expectation $E$, and
+  \[
+    \widetilde\omega_\beta
+    =\omega_\beta\circ E
+    =\Phi_\beta^{\B}.
+  \tag{4.1}\label{eq:main-extension}
+  \]
+  This is the unique $\Z_4$-invariant state extension of
+  $\omega_\beta$, hence in particular the unique
+  $\Z_4$-invariant rotational KMS extension.
+\item Every rotational $\beta$-KMS extension of $\omega_\beta$ is
+  $\Z_4$-invariant.  Consequently
+  $\widetilde\omega_\beta$ is the unique rotational KMS extension
+  without an invariance qualifier.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\emph{Part (a).}
+The Gibbs functional \eqref{eq:gibbs} is a rotational
+$\beta$-KMS state on $C^*_{\mathrm{ln}}(\B)$ by
+Theorem~\ref{thm:lt}, or directly by the cyclicity of the trace on
+analytic elements:
+\[
+\begin{aligned}
+ \Phi_\beta^{\B}(x\tau_{t+i\beta}(y))
+ &=Z_\beta^{-1}
+   \Tr(e^{-\beta L_0}x e^{itL_0}e^{-\beta L_0}
+        y e^{\beta L_0}e^{-itL_0})\\
+ &=Z_\beta^{-1}
+   \Tr(e^{-\beta L_0}\tau_t(y)x)
+ =\Phi_\beta^{\B}(\tau_t(y)x).
+\end{aligned}
+\tag{4.2}\label{eq:gibbs-kms}
+\]
+Its restriction to a $\tau$-invariant $C^*$-subalgebra remains KMS:
+the same strip-analytic functions work for $x,y\in
+C^*_{\mathrm{ln}}(\A)$.  By definition that restriction is
+$\omega_\beta$.  Hence $\Phi_\beta^{\B}$ is the required extension.
+
+\emph{Part (b): expectation and its uniqueness.}
+Section~3.1 proves directly that the group average $E_I$ is a normal
+faithful conditional expectation.  If $F_I:\B(I)\to\A(I)$ is any
+other normal faithful conditional expectation, the
+Radon--Nikodym part of Theorem~\ref{thm:qsystem} gives
+\[
+ F_I(x)=E_I(h^{1/2}xh^{1/2})
+\]
+with $h\in\A(I)'\cap\B(I)$.  Irreducibility gives
+$h=\lambda\id$.  Since $F_I(\id)=\id=E_I(\id)$, $\lambda=1$, and
+$F_I=E_I$.  This also shows why the bimodule property in the
+definition of a conditional expectation is load-bearing: without
+it, the Radon--Nikodym theorem does not apply, exactly as the
+finite mutants in \texttt{v993} demonstrate.
+
+The Gibbs state is gauge invariant.  Indeed the internal symmetry
+commutes with $L_0$ and is unitarily implemented, so
+\[
+\begin{aligned}
+ \Phi_\beta^{\B}(\alpha_r(x))
+ &=Z_\beta^{-1}\Tr(e^{-\beta L_0}V_rxV_r^*)\\
+ &=Z_\beta^{-1}\Tr(V_r^*e^{-\beta L_0}V_rx)
+ =\Phi_\beta^{\B}(x).
+\end{aligned}
+\tag{4.3}\label{eq:gauge-invariance}
+\]
+Consequently
+\[
+ \Phi_\beta^{\B}(E(x))
+ =\frac14\sum_{r=0}^{3}\Phi_\beta^{\B}(\alpha_r(x))
+ =\Phi_\beta^{\B}(x).
+\tag{4.4}\label{eq:E-preserves}
+\]
+Because $E(x)\in\A$ and
+$\Phi_\beta^{\B}|_{\A}=\omega_\beta$,
+\[
+ \Phi_\beta^{\B}(x)
+ =\Phi_\beta^{\B}(E(x))
+ =\omega_\beta(E(x)),
+\]
+which proves \eqref{eq:main-extension}.
+
+Now let $\psi$ be any $\Z_4$-invariant state on $\B$ whose restriction
+to $\A$ is $\omega_\beta$.  No KMS hypothesis is needed:
+\[
+ \psi(x)
+ =\frac14\sum_{r=0}^{3}\psi(\alpha_r(x))
+ =\psi(E(x))
+ =\omega_\beta(E(x)).
+\tag{4.5}\label{eq:inv-unique}
+\]
+Thus $\psi=\omega_\beta\circ E$.
+
+\emph{The modular-theory chain.}
+We spell out the Takesaki step because it is frequently reversed
+incorrectly.  In the GNS representation of the faithful KMS state,
+the modular group and the physical dynamics are related, with the
+present KMS convention, by
+\[
+ \sigma_s^{\Phi_\beta^{\B}}(\pi_\Phi(x))
+ =\pi_\Phi(\tau_{-\beta s}(x)).
+\tag{4.6}\label{eq:kms-modular}
+\]
+Rotations preserve the subnet, hence
+\[
+ \sigma_s^{\Phi_\beta^{\B}}
+   (\pi_\Phi(\A(I)))=\pi_\Phi(\A(I)).
+\]
+Takesaki's theorem now gives the unique
+$\Phi_\beta^{\B}$-preserving normal faithful expectation.  By
+\eqref{eq:E-preserves}, the group average is such an expectation, so
+it is the Takesaki expectation.  Moreover,
+\[
+ \sigma_s^{\omega_\beta}
+ =\sigma_s^{\Phi_\beta^{\B}}|_{\A(I)}
+ =\tau_{-\beta s}|_{\A(I)},\qquad
+ E_I\sigma_s^{\Phi_\beta^{\B}}
+ =\sigma_s^{\omega_\beta}E_I.
+\tag{4.7}\label{eq:modular-chain}
+\]
+Notice the logical order: existence of the Gibbs extension gives a
+state on $\B$; modular invariance then identifies its
+state-preserving expectation.  Takesaki's criterion alone would not
+manufacture a KMS extension from an arbitrary state on $\A$.
+
+\emph{Part (c): removal of the invariance qualifier.}
+Let $\psi$ be a rotational $\beta$-KMS state on
+$C^*_{\mathrm{ln}}(\B)$ extending $\omega_\beta$.  By
+Theorem~\ref{thm:klm} and \eqref{eq:one-sector}, $\B$ has only the
+vacuum irreducible DHR sector.  Theorem~\ref{thm:lt} says that every
+rotational KMS state is a convex combination of Gibbs states in
+irreducible sectors.  There is only one such state,
+$\Phi_\beta^{\B}$, so
+\[
+ \psi=\Phi_\beta^{\B}.
+\]
+Equation \eqref{eq:gauge-invariance} makes this state
+$\Z_4$-invariant, and part (b) then gives
+$\psi=\omega_\beta\circ E$.  This proves unconditional uniqueness.
+\end{proof}
+
+\section{Where the mixing directions went}
+
+\subsection{Relative-commutant mixing}
+
+Fix an interval and write $N=\A(I)$, $M=\B(I)$.  An internal
+multiplicity mixer for the inclusion is an operator $T\in N'\cap M$.
+By irreducibility,
+\[
+ N'\cap M=\C\id,
+\tag{5.1}\label{eq:relative-commutant}
+\]
+so $T=\lambda\id$.  A normalized perturbation cannot use this scalar
+to create a new state direction.  Explicitly, if
+$T=T^*$ and
+\[
+ \psi_\varepsilon(x)
+ =\frac{\Phi_\beta^{\B}
+ ((\id+\varepsilon T)x(\id+\varepsilon T))}
+ {\Phi_\beta^{\B}((\id+\varepsilon T)^2)},
+\]
+then \eqref{eq:relative-commutant} makes numerator and denominator
+carry the same scalar factor, and
+\[
+ \psi_\varepsilon=\Phi_\beta^{\B}.
+\tag{5.2}\label{eq:scalar-pert}
+\]
+Thus every mixing direction that would be implemented by an
+operator commuting with the subnet is trivial.
+
+\subsection{Superselection-sector mixing}
+
+A different possible mixing is a convex combination of thermal
+states in inequivalent irreducible representations.  KLM gives the
+sector count through
+\[
+ \mu_{\B}=\sum_jd(\rho_j)^2.
+\]
+Holomorphy makes the sum equal one, so only $\rho_0=\id$ remains.
+Longo--Tanimoto identifies the extreme rotational KMS states with
+the sector Gibbs states.  Therefore there is no second thermal
+sector into which a state can mix.
+
+These are two distinct exclusions:
+\begin{center}
+\setlength{\fboxsep}{7pt}
+\fbox{\begin{minipage}{0.86\textwidth}
+\noindent
+$\A(I)'\cap\B(I)=\C\id$ removes local multiplicity mixing.
+
+\smallskip\noindent
+$\mu_{\B}=1$, together with the Longo--Tanimoto classification,
+removes thermal-sector mixing.
+\end{minipage}}
+\end{center}
+Neither exclusion should be substituted for the other.  In
+particular, holomorphy alone is a statement about DHR sectors, not
+an abstract theorem about all possible dynamics.
+
+\section{TFPT corollary and the P1 reading}
+
+\subsection{The finite matrix shadow}
+
+\begin{corollary}[Interpretation of \texttt{v995}]
+\label{cor:v995}
+Assume that the TFPT collar scaling limit realizes the net inclusion
+of Theorem~\ref{thm:main} with the stated rotation dynamics.  Then
+the exact finite results of \texttt{v995} are finite-dimensional
+shadows of the two uniqueness mechanisms:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item on $\CAR_8=M_{256}$, the KMS equations have rank
+  $256^2-1=65535$ on the state tangent and kernel zero;
+\item all $33$ selected same-$\Z_4$-charge, unequal-modular-energy
+  Hermitian directions fail stationarity and are killed by KMS;
+\item on the finite crossed product, fixing the grade-zero
+  restriction leaves
+  \[
+    3\cdot256^2=196608
+  \]
+  real linear extension coordinates, and invariance under
+  $E=(1/4)\sum_r\alpha_r$ kills all of them;
+\item covariance is redundant after the full finite-factor KMS
+  condition has been imposed.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Items (i)--(iv) are exactly the finite linear-algebra statements of
+\texttt{v995}.  The continuum interpretation is conditional on the
+scaling-limit identification because finite matrix rank does not by
+itself prove factoriality or classify locally normal KMS states of a
+type-III net.  Under that identification, item (iii) is the finite
+Fourier version of \eqref{eq:inv-unique}, while items (i), (ii), and
+(iv) are the finite CAR instance of Theorem~\ref{thm:araki}.
+\end{proof}
+
+\subsection{Equidistribution over four deck channels}
+
+The exact statement needed for the P1 reading is elementary but has
+one hypothesis that must be visible.
+
+\begin{lemma}[Transitive four-channel equidistribution]
+\label{lem:equidistribution}
+Let $p_0,p_1,p_2,p_3$ be orthogonal projections in a response
+algebra with $\sum_rp_r=\id$, and suppose a $\Z_4$ action is
+transitive:
+\[
+ \alpha_s(p_r)=p_{r+s\ {\rm mod}\ 4}.
+\tag{6.1}\label{eq:transitive}
+\]
+If $\psi$ is $\Z_4$-invariant, then
+\[
+ \psi(p_0)=\psi(p_1)=\psi(p_2)=\psi(p_3)=\frac14.
+\tag{6.2}\label{eq:quarter}
+\]
+If a normalized total modular response is
+$R_{\mathrm{tot}}=1/\beta_{\mathrm{angle}}$ and is additive over
+these channels, then each channel carries
+\[
+ R_r=\frac1{4\beta_{\mathrm{angle}}}.
+\tag{6.3}\label{eq:response-quarter}
+\]
+\end{lemma}
+
+\begin{proof}
+For any $r,s$, invariance and transitivity give
+\[
+ \psi(p_{r+s})=\psi(\alpha_s(p_r))=\psi(p_r).
+\]
+All four values are therefore a common number $w$.  Normalization
+gives $1=\psi(\id)=\sum_r\psi(p_r)=4w$, hence $w=1/4$.
+Additivity of the response then gives
+$R_r=R_{\mathrm{tot}}/4$.
+\end{proof}
+
+\begin{corollary}[The theorem-conditional P1 identity]
+\label{cor:p1}
+Under Theorem~\ref{thm:main} and the response-resolution hypothesis
+of Lemma~\ref{lem:equidistribution}, the canonical geometric
+normalization
+\[
+ \beta_{\mathrm{angle}}=2\pi
+\tag{6.4}\label{eq:beta-angle}
+\]
+gives
+\[
+ c_3=R_r
+ =\frac1{4\beta_{\mathrm{angle}}}
+ =\frac1{4\cdot2\pi}
+ =\frac1{8\pi},
+\qquad
+ 4\beta_{\mathrm{angle}}c_3=1.
+\tag{6.5}\label{eq:p1}
+\]
+\end{corollary}
+
+\begin{proof}
+Substitute \eqref{eq:beta-angle} into
+\eqref{eq:response-quarter}.  No further analytic input is used.
+\end{proof}
+
+\begin{remark}[Exactly what P1 gains]
+Theorem~\ref{thm:main} proves uniqueness and gauge invariance of the
+rotational KMS extension for the abstract holomorphic net.  Once a
+four-channel response resolution satisfying
+\eqref{eq:transitive} is identified, equality of its weights is no
+longer an assumption: it is Theorem~\ref{thm:main} plus
+Lemma~\ref{lem:equidistribution}.  The factor $1/4$ is therefore a
+theorem-conditional consequence of index four and transitivity.
+
+What is \emph{not} proved is that the TFPT determinant-line response
+is represented by projections $p_r$ of this kind, or that its
+physical coefficient is the channel response $R_r$.  An outer
+fixed-point inclusion of factors does not supply four central local
+sector projections: the grading subspaces are not central summands.
+That operator identification is the joint
+\texttt{P1.INDEX.KMS.01} and
+\texttt{ALPHA.QUILLEN.EXACT.01} bridge.
+The angular normalization $\beta_{\mathrm{angle}}=2\pi$ is the
+geometric Bisognano--Wichmann/modular input, not a consequence of
+the group order.  Accordingly, \texttt{AX.P1.01} remains an axiom;
+\eqref{eq:p1} is a theorem-conditional identity, not an unconditional
+derivation of P1.
+\end{remark}
+

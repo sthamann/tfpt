@@ -1,0 +1,372 @@
+\subsection{Renormalized, physical, and scheme readout layers}
+
+\begin{definition}[Admissible effective average action]
+\label{def:admissible-effective-average-action}
+Let $R_k$ be an admissible infrared regulator commuting with the structural sector selection.
+Define
+\[
+e^{W_k[J]}
+:=
+\int_{\mathcal H_{\mathrm{adm}}}\mathcal D\varphi\,
+\exp\!\Bigl(
+-S_{\mathrm{adm}}[\varphi]
+-\frac12\langle \varphi,R_k\varphi\rangle
++\langle J,\varphi\rangle
+\Bigr),
+\]
+and set
+\[
+\Gamma_k[\phi]
+:=
+\sup_J\{\langle J,\phi\rangle-W_k[J]\}
+-\frac12\langle \phi,R_k\phi\rangle.
+\]
+The renormalized admissible effective action is
+\[
+\Gamma_{\mathrm{TFPT}}^{\mathrm{ren}}:=\lim_{k\to0}\Gamma_k.
+\]
+\end{definition}
+
+\begin{theorem}[Exact admissible renormalization-group flow]
+\label{thm:exact-admissible-rg-flow}
+The admissible effective average action satisfies the exact functional flow equation
+\[
+\partial_t \Gamma_k[\phi]
+=
+\frac12\,
+\operatorname{STr}_{\mathcal H_{\mathrm{adm}}}
+\Bigl[
+\bigl(\Gamma_k^{(2)}[\phi]+R_k\bigr)^{-1}
+\partial_t R_k
+\Bigr],
+\qquad
+t:=\log k.
+\]
+Thus the running couplings of the admissible theory are generated dynamically on $\Gamma_k$, not by
+the static projector $\Padm$.
+\end{theorem}
+
+\begin{proof}
+Differentiate the Legendre transform defining $\Gamma_k$ at fixed mean field $\phi$. Using
+\[
+\frac{\delta^2 W_k}{\delta J\,\delta J}
+=
+\bigl(\Gamma_k^{(2)}+R_k\bigr)^{-1},
+\]
+one obtains
+\[
+\partial_t \Gamma_k
+=
+\frac12 \operatorname{STr}
+\bigl[
+\bigl(\Gamma_k^{(2)}+R_k\bigr)^{-1}\partial_t R_k
+\bigr].
+\]
+The supertrace is taken on the admissible physical sector because the regulated functional integral
+itself is defined there.
+\end{proof}
+
+\begin{corollary}[One-loop shadow of the exact admissible flow]
+\label{cor:one-loop-shadow-exact-flow}
+On the canonical branch with three families and one Higgs doublet, the exact admissible flow has
+the perturbative shadow
+\[
+\partial_t g_i^{-2}(k)=-\frac{b_i}{8\pi^2}+O(g_i^0),
+\qquad
+(b_1,b_2,b_3)=\left(\frac{41}{10},-\frac{19}{6},-7\right),
+\]
+with $g_1$ in the standard hypercharge normalization. Equivalently,
+\[
+\partial_t \alpha_1^{-1}(k)=-\frac{41}{20\pi}+O(\alpha_1).
+\]
+\end{corollary}
+
+\begin{proof}
+Expanding \Cref{thm:exact-admissible-rg-flow} around the Gaussian region yields the standard
+one-loop coefficients determined by the field content of the canonical branch. The carrier and
+family theorems fix exactly three families and one light Higgs doublet, so the resulting shadow
+coefficients are the displayed Standard Model values.
+\end{proof}
+
+\begin{corollary}[Infrared boundary condition for the electromagnetic coupling]
+\label{cor:em-ir-boundary-condition}
+Let $\alpha_\ast$ be the exact positive solution of the admissible electromagnetic closure equation.
+Then
+\[
+\alpha_{\mathrm{em}}(0)=\alpha_\ast
+\]
+is the infrared boundary value of the exact admissible flow. For $\mu>0$ one has
+\[
+\alpha_{\mathrm{em}}^{-1}(\mu)
+=
+\alpha_\ast^{-1}
+-\int_0^{\log\mu}\beta_{\alpha^{-1}}(t)\,dt
+-\Delta_{\mathrm{thr}}(\mu),
+\]
+where $\Delta_{\mathrm{thr}}$ records electroweak mixing and threshold decoupling.
+\end{corollary}
+
+\begin{proof}
+\TFPTxref{thm:alpha-canonical} fixes the unique branch value $\alpha_\ast$ at the infrared endpoint.
+The exact flow of \Cref{thm:exact-admissible-rg-flow} then propagates that value to finite scales,
+while threshold effects are collected in the declared correction term $\Delta_{\mathrm{thr}}$.
+\end{proof}
+
+\begin{theorem}[Admissible 1PI graph expansion]
+\label{thm:admissible-1pi-graph-expansion}
+Around any admissible background field $\phi$, the effective action admits the loop expansion
+\[
+\Gamma_k[\phi]
+=
+S_{\mathrm{adm}}[\phi]
++\frac{\hbar}{2}\operatorname{STr}\log\!\bigl(S_{\mathrm{adm}}^{(2)}[\phi]+R_k\bigr)
++\sum_{\ell\ge 2}\hbar^\ell\Gamma_{\ell,k}^{\mathrm{1PI}}[\phi].
+\]
+Each coefficient $\Gamma_{\ell,k}^{\mathrm{1PI}}$ is the sum of admissible one-particle-irreducible
+Feynman graphs with propagator
+\[
+G_{k,\phi}:=\bigl(S_{\mathrm{adm}}^{(2)}[\phi]+R_k\bigr)^{-1}
+\]
+and vertices given by the higher functional derivatives $S_{\mathrm{adm}}^{(n)}[\phi]$.
+\end{theorem}
+
+\begin{proof}
+Set $\varphi=\phi+\sqrt{\hbar}\eta$ and expand
+\[
+S_{\mathrm{adm}}[\phi+\sqrt{\hbar}\eta]
+=
+S_{\mathrm{adm}}[\phi]
++\frac{\hbar}{2}\langle \eta,S_{\mathrm{adm}}^{(2)}[\phi]\eta\rangle
++\sum_{n\ge 3}\frac{\hbar^{n/2}}{n!}S_{\mathrm{adm}}^{(n)}[\phi](\eta^n).
+\]
+The regulated functional integral therefore becomes a Gaussian measure with covariance
+$G_{k,\phi}$ dressed by higher interaction vertices. Taking the logarithm produces the connected
+diagram expansion, and the Legendre transform removes one-particle-reducible pieces. The resulting
+coefficients are exactly the admissible 1PI graph sums recorded above.
+\end{proof}
+
+\begin{definition}[Canonical renormalized 1PI package]
+\label{def:renormalized-low-energy-package}
+Let $\GrenTFPT$ denote the category whose objects are renormalized low-energy packages
+\[
+\mathcal G=
+\bigl(
+\{\Sigma_f^{\mathrm{TFPT}}(p)\}_f,\,
+G_F^{\mathrm{TFPT}},\,
+\mathcal R_{\det},\,
+\mathcal B_{\mathrm{cos}},\,
+\mathcal A_{\mathrm{pole}}
+\bigr)
+\]
+built canonically from the rigid object $\Tstar$. They are extracted from the infrared limit of the
+exact admissible flow,
+\[
+\Gamma_{\mathrm{TFPT}}^{\mathrm{ren}}[\Phi_c]
+:=
+\lim_{k\to0}\Gamma_k[\Phi_c],
+\]
+equivalently the Legendre transform of the retained relative generating functional after removing
+the infrared regulator. Here $\mathcal A_{\mathrm{pole}}$ collects the dressed inverse propagators,
+$\mathcal R_{\det}$ the determinant-line response kernels, and $\mathcal B_{\mathrm{cos}}$ the
+FRW / reheating / Boltzmann interface data on the closed branch. Morphisms are RG-compatible field
+reparameterizations preserving the branch-fixed pole and response data.
+\end{definition}
+
+\begin{definition}[Physical observable category]
+\label{def:physical-observable-category}
+Let $\OphysTFPT$ denote the category whose objects are triples
+\[
+\mathcal O_{\mathrm{phys}}=(v_{\mathrm{phys}},\Sigma,\mathcal D),
+\]
+where $v_{\mathrm{phys}}$ is a package of physical observables (pole masses, widths, mixing angles,
+response coefficients, and closed-branch cosmology interface packages before late-time
+continuation), $\Sigma$ collects their covariance data, and
+$\mathcal D$ is a dependency DAG recording algebraic and statistical non-independence.
+\end{definition}
+
+\begin{definition}[Scheme groupoid]
+\label{def:scheme-groupoid}
+Let $\SchGrp$ be the groupoid whose objects are declared comparison-scheme packages
+\[
+s=(s_{\mathrm{EM}},s_{\mathrm{EW}},s_{\nu},s_{\mathrm{QCD}},s_{\mathrm{cos}},\Sigma_{\mathrm{snap}})
+\]
+consisting of threshold conventions, mass schemes, oscillation conventions, cosmology snapshot
+rules, and covariance bookkeeping. Morphisms
+\[
+\psi:s\to s'
+\]
+are finite renormalization, threshold-transfer, snapshot-transfer, and covariance-preserving
+scheme changes.
+\end{definition}
+
+\begin{definition}[Scheme observable category]
+\label{def:obs-category}
+Let $\OschemeTFPT$ denote the category whose objects are triples
+\[
+\mathcal O_{\mathrm{scheme}}=(v,\Sigma,\mathcal D),
+\]
+where $v$ is a scheme-specified representative of a physical observable package, $\Sigma$ its
+declared covariance data, and $\mathcal D$ the induced dependency DAG. Morphisms are smooth
+covariance-preserving reparameterizations respecting $\mathcal D$.
+\end{definition}
+
+\begin{definition}[Canonical readout hierarchy]
+\label{def:canonical-measurement-orbit}
+Define the functors
+\[
+\Rren:\mathbf{TFPT}^{\mathrm{rig}}\to\GrenTFPT,
+\qquad
+\Mphys:\GrenTFPT\to\OphysTFPT,
+\qquad
+\Mscheme:\OphysTFPT\to\OschemeTFPT/\SchGrp.
+\]
+For every scheme object $s\in\SchGrp$, let
+\[
+\Mscheme^{(s)}\bigl(\Mphys(\Rren(\Tstar))\bigr)\in\OschemeTFPT
+\]
+be the chosen scheme representative. The canonical appendix comparison orbit is
+\[
+[\Mop(\Tstar)]_{\SchGrp}
+:=
+\Mscheme\bigl(\Mphys(\Rren(\Tstar))\bigr)
+\in \OschemeTFPT/\SchGrp,
+\]
+and the appendix comparison map is any chosen representative
+\[
+\Rcmp^{(s)}(\Tstar):=
+\Mscheme^{(s)}\bigl(\Mphys(\Rren(\Tstar))\bigr).
+\]
+\end{definition}
+
+\begin{definition}[Minimal independent observable basis]
+\label{def:minimal-observable-basis}
+Define the minimal independent basis package
+\[
+\Bind(\Tstar):=
+\bigl(
+C_{\mathrm{em}},
+K_{\mathrm{UV}},
+F_{\mathrm{fl}},
+N_{\nu},
+R_{\mathrm{CS}},
+T_{\mathrm{phys}},
+C_{\mathrm{cos}},
+C_{\mathrm{CP}}
+\bigr),
+\]
+where
+\[
+C_{\mathrm{em}}:=\alpha^{-1}(0),
+\qquad
+K_{\mathrm{UV}}:=\phiz,
+\qquad
+F_{\mathrm{fl}}:=(\lambda_C,\delta_{\mathrm{CKM}}),
+\qquad
+R_{\mathrm{CS}}:=\beta,
+\qquad
+C_{\mathrm{CP}}:=\theta_{\mathrm{eff}},
+\]
+\[
+N_{\nu}:=(\sin^2\theta_{13},\delta_{\mathrm{CP}}^\nu,\sin^2\theta_{23},\Sigma m_\nu,m_{\beta\beta},M_R),
+\]
+\[
+T_{\mathrm{phys}}
+:=
+\bigl(
+G_F^{\mathrm{TFPT}},
+m_W^{\mathrm{pole}},
+m_Z^{\mathrm{pole}},
+m_H^{\mathrm{pole}},
+\{m_f^{\mathrm{pole}}\}_f
+\bigr),
+\]
+\[
+C_{\mathrm{cos}}
+:=
+\bigl(
+\Omega_b,S_\Sigma,\Lambda_{\mathrm{IR}},T_R,f_a,m_a,\nu_a,\eta_B
+\bigr).
+\]
+The retained seed $K_{\mathrm{UV}}=\phiz$ is part of the UV kernel package; it is no longer the
+direct basis package of the flavor, neutrino, determinant-response, or cosmology observables.
+\end{definition}
+
+\begin{theorem}[Renormalized observable hierarchy from the admissible 1PI action]
+\label{thm:operational-completeness}
+There exist functors
+\[
+\Rren:\mathbf{TFPT}^{\mathrm{rig}}\to\GrenTFPT,
+\qquad
+\Mphys:\GrenTFPT\to\OphysTFPT,
+\qquad
+\Mscheme:\OphysTFPT\to\OschemeTFPT/\SchGrp
+\]
+with the following properties:
+\begin{enumerate}[label=\textbf{(O\arabic*)}, leftmargin=2em, topsep=3pt, itemsep=3pt]
+    \item \textbf{Reality first.}
+    Main-text observables factor through $\Mphys\!\circ\!\Rren$ and therefore belong to
+    $\OphysTFPT$ before any scheme choice is made.
+    \item \textbf{Unique factorization through the basis.}
+    Every physical readout row and every appendix scheme row factors through exactly one component
+    package of $\Bind(\Tstar)$ via a declared physical or scheme map.
+    \item \textbf{Scheme covariance.}
+    For every scheme morphism $\psi:s\to s'$ one has
+    \[
+    \psi\!\left(\Mscheme^{(s)}(\Mphys(\Rren(\Tstar)))\right)
+    =
+    \Mscheme^{(s')}(\Mphys(\Rren(\Tstar))).
+    \]
+    \item \textbf{No hidden continuous fit parameter.}
+    Any continuous freedom in a readout row is either a declared scheme degree of freedom in
+    $\SchGrp$ or already a theorem-level branch parameter fixed in $\Tstar$.
+    \item \textbf{Complete kill surface.}
+    Every admissible empirical kill test of the manuscript is the pullback of a component test on
+    $\OphysTFPT$ and only afterwards, if needed, of a scheme representative in $\OschemeTFPT$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Define $\Rren$ by sending the rigid object $\Tstar$ to the renormalized 1PI package extracted from
+the exact admissible flow of \Cref{thm:exact-admissible-rg-flow}. Its infrared endpoint is
+\[
+\Gamma_{\mathrm{TFPT}}^{\mathrm{ren}}[\Phi_c]
+=
+\lim_{k\to0}\Gamma_k[\Phi_c],
+\]
+equivalently the Legendre transform of the retained admissible generating functional after removing
+the infrared regulator. By \Cref{thm:admissible-1pi-graph-expansion}, the same object carries the
+admissible 1PI graph expansion around each admissible background. Reflection positivity, lower
+boundedness, and coercivity on the admissible sector ensure the convexity needed for this Legendre
+construction in a neighborhood of the closed branch. Hence the dressed inverse propagators,
+determinant-response kernels, and cosmology saddle system belong to one and the same renormalized
+package $\GrenTFPT$.
+
+Next define $\Mphys$ by reading physical observables from that 1PI package before any scheme choice:
+pole masses are the zeros of the dressed inverse propagators, mixing data are the branch invariants
+of the corresponding residue matrices, determinant-response observables are read from the exact
+response kernels, and cosmology rows factor through the same FRW / reheating / Boltzmann interface
+block. Final late-time numerical representatives are attached only after the declared comparison
+map. This proves \textbf{(O1)}.
+
+For \textbf{(O2)}, the factorization through the minimal basis package $\Bind(\Tstar)$ is exactly
+the theorem-level content of the rewritten sector split. The flavor rows factor through
+$F_{\mathrm{fl}}$, neutrino rows through $N_\nu$, determinant-response rows through
+$R_{\mathrm{CS}}$, strong-CP rows through $C_{\mathrm{CP}}$, cosmology rows through
+$C_{\mathrm{cos}}$, and the retained seed $\phiz$ survives only in the UV kernel package
+$K_{\mathrm{UV}}$. No row uses two basis packages at once.
+
+For \textbf{(O3)}, every scheme morphism in $\SchGrp$ acts only after $\Mphys$ has produced a
+physical observable package. Therefore threshold transfer, finite renormalization, and snapshot
+change act on scheme representatives without altering the underlying physical point, exactly as in
+the displayed covariance identity.
+
+For \textbf{(O4)}, every continuous parameter entering a readout row is already fixed either by the
+closed branch $\Tstar$ or by the declared scheme object $s\in\SchGrp$. Since $\Rren$ and $\Mphys$
+are defined from the fixed admissible measure and its 1PI action, no extra continuous fit parameter
+can appear in between.
+
+Finally, \textbf{(O5)} follows because every empirical kill criterion in the manuscript is attached
+to one of the physical rows in $\OphysTFPT$ and only afterwards, if needed, represented by a scheme
+object in $\OschemeTFPT/\SchGrp$. Thus the whole observable hierarchy factors through the same
+admissible 1PI action and then through the declared physical / scheme split.
+\end{proof}

@@ -1,0 +1,387 @@
+\section{The dependency DAG and the proof ledger}
+% =====================================================================
+The whole theory is a directed acyclic graph: two axioms at the source, the compiler in the middle, the
+observables as sinks. The DAG makes the attack surface explicit --- each arrow is a named theorem or a
+declared input, and each node fails in exactly one way.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,>=Stealth,
+  ax/.style={rectangle,rounded corners,draw=tfred!80!black,fill=tfred!8,thick,align=center,inner sep=3pt},
+  nd/.style={rectangle,rounded corners,draw=tfblue,fill=tfblue!8,thick,align=center,inner sep=3pt},
+  cp/.style={rectangle,rounded corners,draw=tfgold!80!black,fill=tfgold!14,very thick,align=center,inner sep=3pt},
+  ou/.style={rectangle,rounded corners,draw=tfgreen!75!black,fill=tfgreen!8,thick,align=center,inner sep=3pt},
+  ar/.style={->,thick,tfgray}]
+  \node[ax] (p1) at (0,0.8) {P1 $\cthree$};
+  \node[ax] (p2) at (0,-0.8) {P2 $\gcar$};
+  \node[nd] (d5) at (2.5,0.8) {$D_5$ ($C^+$)};
+  \node[nd] (a3) at (2.5,-0.8) {$A_3$ ($\PP^1\!\setminus\!\mu_4$)};
+  \node[cp] (e8) at (5.2,0) {$E_8$\\$\mu_4$ glue};
+  \node[nd] (rl) at (7.6,0) {$R,L$\\anchor};
+  \node[ou] (al) at (10.2,1.1) {$\ainv$};
+  \node[ou] (ms) at (10.2,0)   {masses,\\CKM/PMNS};
+  \node[ou] (co) at (10.2,-1.1){$\Lambda,A_s,n_s,r$};
+  \draw[ar](p1)--(d5); \draw[ar](p2)--(d5); \draw[ar](p1)--(a3); \draw[ar](p2)--(a3);
+  \draw[ar](d5)--(e8); \draw[ar](a3)--(e8); \draw[ar](e8)--(rl);
+  \draw[ar](rl)--(al); \draw[ar](rl)--(ms); \draw[ar](e8)--(co);
+  \draw[ar,tfred!70!black,dashed] (p1) to[bend right=32] node[below,font=\scriptsize]{$\cthree$ dresses} (co);
+\end{tikzpicture}
+\end{center}
+
+\begin{center}\scriptsize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}p{1.5cm}p{3.0cm}p{1.5cm}cp{2.4cm}Y@{}}
+\toprule
+\textbf{Node} & \textbf{Definition} & \textbf{Inputs} & \textbf{St.} & \textbf{Output} & \textbf{Failure mode} \\
+\midrule
+P1 & RP boundary kernel, $\cthree{=}1/(8\pi)$ & --- (axiom) & \mO & $\cthree$ & no reflection-positive seam \\
+P2 & $5$-slot carrier $\gcar{=}5$ & --- (axiom) & \mO & carrier $3{+}2$ & wrong family/charge lattice \\
+$D_5$ & $C^+$ even-Hamming $=$ half-spinor $16$ & P2 & \mE & $\dim S^+{=}16$, $Y$ & group/matter mismatch \\
+$A_3$ & $\PP^1\!\setminus\!\mu_4$ four-puncture geom. & P1 & \mE & $\Nfam{=}3$, $\Z_6$ & wrong multiplicity \\
+$E_8$ & $\mu_4$ glue: $\operatorname{disc}{=}\Z_4$, $q$-sum$=2$ & $D_5,A_3$ & \mE & $240,248$ & not even-unimodular \\
+$R,L$ & residue $+$ winding matrix, anchor $(1,1,2)$ & $A_3$ & \mE & $\det8$, minors $(2,3,5)$ & wrong $D_6$ branch \\
+$\ainv$ & root of $F_{U(1)}(\alpha){=}0$ & $\cthree$, $M{=}41$ & \mE & $137.0359992$ & no/second root (excl.) \\
+masses & $\phiz$-ladder $\lambda_Y^{L}\Lambda$ & $R,L$, $\cthree$ & \mE/\mC & $9$ masses, mixings & hierarchy mismatch \\
+$\theta_{12}$ & TBM $+$ seam $\varepsilon{=}\cthree$ & $R,L$ & \mE/\mC & $0.307$ & seam-misalign.\ lemma fails \\
+$\Lambda,A_s$ & seam det.\ / $R^2$ scalaron & $\cthree$ & \mC & $\Lambda$, $A_s,n_s,r$ & ambient RP fails \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\markerkey
+\noindent Reading the table top-to-bottom is reading the
+theory: two red axioms in, everything else a consequence with exactly one failure mode each.
+
+\noindent\emph{The ledger itself is versioned:} each row of \texttt{verification/status\_ledger.csv}
+carries a claim ID, its dependencies, its verification script, and \texttt{active}/%
+\texttt{canonical\_status}/\texttt{supersedes} fields, so claims that were later superseded (e.g.\ the
+early ``flavor gate open'' rows, now \emph{ratios closed} via \texttt{FLAV.RIGID}) are marked inactive ---
+the canonical status is the only one read as current.
+
+\subsection*{The compact status formula: three honest layers}
+\begin{keyeq}
+$\displaystyle \underbrace{\text{compiler}}_{\text{closed}}\ \Big|\
+  \underbrace{\text{admissible IR physics}}_{\text{conditionally closed (RP, gap)}}\ \Big|\
+  \underbrace{\text{strict physical TOE}}_{\text{open}}$
+\end{keyeq}
+TFPT~v\TFPTversion\ closes the discrete compiler; the discrete Standard-Model \emph{structure} (charges, families, flavor operators) is derived under the axioms, while $4$D existence, chiral measure, mirror gap, couplings and neutrino dynamics remain open.  It closes the EM fixed point, the
+admissible gapped IR sector and the $R+R^2$ spectral-action shadow. It does \emph{not} yet certify a strict
+physical TOE. The remaining items have now collapsed sharply: the $R$-bridge amplitude normalisation
+$U_{\mathrm{point}}$ \emph{reduces to} $v_{\mathrm{geo}}$ (Gate 1 closed, \vref{v75} --- the same anchor as $1/G$), and
+the ambient metric measure is \emph{holographically reduced} to a finite seam-\emph{boundary} measure (Gate 2
+tier B, \vref{v76}) --- which is in turn the rigorously-constructed $(E_8)_1$ lattice net (\vref{v77}), so $G_{\mathrm{metric}}$
+is imported into existing RCFT rigor rather than built anew. So the only genuine residuals are \emph{one}
+dimensionful scale $v_{\mathrm{geo}}$ --- the \emph{dimensional-analysis floor} that no theory escapes (\vref{v78}),
+shared by flavor and gravity --- the boundary net identification (now \emph{closed modulo cited theorems} on its
+MMST route \texttt{SEAM.EQUIV.MMST.01},
+\vref{v367}/\vref{v368}, \vref{v376}--\vref{v379}, Lean \texttt{FORM.SEAM.MMST.01}; the parent
+\texttt{SEAM.EQUIV.01} stays \mO), and the named QFT/cosmology transfer
+interfaces ($F_{\mathrm{frontier}}$).
+\par\smallskip\noindent\textbf{Two points that are \emph{not} in the residual (closed, but easy to mis-list as open).}
+\emph{(i) Parameter-freeness is a theorem under the named hypotheses:} the boundary transport is gapped
+($\Delta=6\log\tfrac32>0$), so by Perron--Frobenius its iteration has a \emph{unique} attracting fixed point
+--- the constants are \emph{selected}, not tuned (\mE\ for the attractor, \veri{v56\_unique\_attractor.py};
+the \emph{physical identification} of the transport operator stays \mC), reinforcing the
+static bootstrap web ($\gcar=5$ forced three ways \emph{given} the $E_8$ closure rank --- a consistency
+loop, see red team Target~B --- \veri{v6\_bootstrap.py}, \veri{v14\_carrier\_uniqueness.py}).
+\emph{(ii) Newton's constant is not an \emph{independent} input:} fixing the physical $\Lambda$ branch
+($(8\pi)^2\delta_{\mathrm{top}}=\tfrac{3}{4\pi^2}$) pins $\bar M_{\mathrm{Pl}}$ \emph{relative to} $\Lambda$, so
+$G_N$ is read out \emph{after} the branch choice $+$ \emph{one} dimensionful induced-gravity anchor (\mE/\mC,
+\veri{v60\_lambda\_metrology\_branch.py}), not predicted from pure numbers. What stays irreducible is then
+just $\pi$, the discrete $E_8$-closure fixed point (self-consistent, \emph{not} a free axiom; the bootstrap of
+\texttt{tfpt\_3}), and \emph{one} dimensionful scale $v_{\mathrm{geo}}$ --- and that single scale is shared by
+\emph{both} the flavor sector ($U_{\mathrm{point}}\to v_{\mathrm{geo}}$, \vref{v75}) and gravity ($1/G$, \vref{v68}): the two
+$[A]$ anchors are \emph{one} (dimensional analysis; no metre from pure mathematics).
+
+\subsection*{The hard reduction: the live residual as typed interfaces}
+\noindent After the compiler closure, the entire residual is the pair of accounting formulae
+(the compiler rest, and the strict-physical-TOE rest of the 2026-08-27/28 contract wave;
+\texttt{tfpt\_research\_contracts}):
+\begin{keyeq}
+$\displaystyle \text{Rest}=v_{\mathrm{geo}}\ \oplus\ G_{\mathrm{net}}\ \oplus\ F_{\mathrm{transfer}}$
+\end{keyeq}
+\begin{keyeq}
+$\displaystyle \begin{aligned}
+\text{Rest}_{\mathrm{TOE}}&=\mathrm{SeamContinuum}\oplus\mathrm{4DAction}\oplus\mathrm{ChiralMeasure}\\
+&\quad\oplus\mathrm{MirrorGap}\oplus\mathrm{UnitaryDynamics}\oplus\mathrm{IR/continuum}\\
+&\quad\oplus\mathrm{BulkSeam}\oplus\mathrm{QuantumGravity}\\
+&\quad\oplus\mathrm{GeneratingFunctional}\oplus\mathrm{InitialState}
+\end{aligned}$
+\end{keyeq}
+The first is the \emph{compiler} rest --- one dimensionful scale anchor, one metric-sector inclusion, and a set of deliberately typed
+QFT/cosmology interfaces.  The second is the \emph{strict-physical-TOE} rest: every summand is a named
+\mO\ (or standing-rule) contract; nothing in $\text{Rest}_{\mathrm{TOE}}$ is claimed closed.
+The historical gate labels $(U_{\mathrm{wall}})/(G_{\mathrm{metric}})/(F_{\mathrm{frontier}})$ are
+kept only for ledger continuity. In current terms: $(U_{\mathrm{wall}})\to v_{\mathrm{geo}}$ --- the flavor ratios are
+\emph{closed} (Pl\"ucker/Readout Rigidity, \vref{v49}/\vref{v71}/\vref{v75}), what remains is \emph{one dimensionful unit}, not a
+flavor gap; $(G_{\mathrm{metric}})\to G_{\mathrm{net}}$ --- reduced to a single boundary-net theorem,
+\emph{``the seam--Calder\'on net is the index-$4$ $\mu_4$ simple-current extension of the carrier net''}
+(holomorphy then follows, \vref{v89}/\texttt{GATE.METRIC.06}); since the QBL chain
+(\vref{v108}--\vref{v113}) the \emph{carrier choice rides on the same theorem}: the certified scalar kernel exists
+iff it pairs the sheets (\vref{v110}), the certified channel counts the code identically (\vref{v112}), pair
+transport is minimally complete (\vref{v111}), and the one quasi-free kernel --- rank $=c$: $5$ carrier
+block, $8$ seam hull --- is the defining datum of the free net the gate already posits (\vref{v113}), so
+closing $G_{\mathrm{net}}$ also closes the carrier selection \mE; $(F_{\mathrm{frontier}})\to F_{\mathrm{transfer}}$
+--- named QFT/cosmology \emph{transfer} interfaces (Koide source$\to$pole, $\eta_B$ Boltzmann, axion relic,
+$m_p/m_e$), never compiler powers; the four are one typed functor with a four-axiom contract
+(\texttt{CONTRACT.F.01}, \vref{v213}) and \emph{one shape} --- each is a gapped relaxation to a unique attractor
+(the main-branch discrete$\to$dynamic motif), with F\_pole at the \emph{seam} rate $(2/3)^6$ and the other three
+external (\vref{v303}). The metric-sector reduction lands on a \emph{single named keystone}. The boundary inclusion
+$G_{\mathrm{net}}$ is the index-$4$ $\mu_4$ simple-current extension
+$(D_5)_1{\otimes}(A_3)_1{\rtimes}\langle(1,1)\rangle\cong(E_8)_1$ (Simple-Current Extension Theorem,
+\vref{v154}, exact: index $4$, $c{=}8$, $\mu{=}1\Rightarrow$ holomorphic $\Rightarrow E_8$); net
+existence and full-cone reflection positivity are discharged to \mE\ (\vref{v175}); and the
+\textbf{No-Unit Theorem} (\vref{v153}/\vref{v725}) makes $v_{\mathrm{geo}}$ a
+closed metrology structure --- an $\mathbb{R}_+$ unit torsor; one dimensionful
+calibration is necessary by dimensional analysis
+($U_{\mathrm{point}}\sim v_{\mathrm{geo}}$, $1/G\sim v_{\mathrm{geo}}^2$, $m/\mu=e^{3/4}$ --- one unit in
+three dimensions; display stays \mO, no physical \mE). The flavor selector and Q-geometry residues are \emph{derived} (no discrete freedom
+left). The \emph{one} seam-side identification, packaged as the single named
+theorem \texttt{SEAM.EQUIV.01} --- \emph{the raw reflection-positive seam state is the holomorphic
+$(E_8)_1$ net at $\tau{=}i$} --- is now \emph{closed modulo cited theorems on its MMST route}
+(\texttt{SEAM.EQUIV.MMST.01}; the twistor route \texttt{SEAM.EQUIV.TWISTOR.01} and the unconditional parent stay
+\mO): the explicit lattice model
+(\vref{v367}/\vref{v368}) and the $S_3$ stack ($c{=}8$, $248$ currents/$1$ primary, torus $\mathrm{GSD}{=}1$, RP;
+\vref{v376}--\vref{v379}) pin it at every computable level, Lean-formalised as \texttt{FORM.SEAM.MMST.01}, with only
+the cited MMST/OS continuum-existence theorems left \mO\ (\vref{v336}); its conformal-deck premise
+\texttt{QGEO.SYM.01} is its \emph{downstream} definitional face (per \vref{v323}; the residual is Lean-pinned to named
+cited steps, \vref{v308}). The
+sprint-by-sprint reduction that produced it is recorded in the changelog and in
+\texttt{tfpt\_research\_contracts}, not replayed here.
+The status card:
+{\footnotesize
+\renewcommand{\arraystretch}{1.12}
+\begin{xltabular}{\linewidth}{@{}lcY@{}}
+\toprule
+\textbf{Item} & \textbf{Status} & \textbf{Reading} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Item} & \textbf{Status} & \textbf{Reading} \\
+\midrule
+\endhead
+parameter-freeness (self-consistency) & \mE & gapped transport $\Rightarrow$ \emph{unique} Perron--Frobenius attractor (\vref{v56}); bootstrap web $\gcar{=}5$ forced (\vref{v6}/\vref{v14}) \\
+Newton constant $G_N$ & \mE/\mC & not \emph{independent}: branch pins $\bar M_{\mathrm{Pl}}$ rel.\ to $\Lambda$ (\vref{v60}); readout after branch $+$ one dim.\ anchor \\
+ratio $c_u/c_d=\tfrac{55}{117}$ & \mE & $\gcar\|\mathrm{Pl}_{\mathbf1,a}(K)\|_1/(\Nfam^2\Delta_Q)$; rigid on the derived stratum (\vref{v49}/\vref{v71}), no solve \\
+flavor absolute scale & \mE/\mO & ratios \emph{closed} (\vref{v49}/\vref{v71}); only the absolute scale remains $=v_{\mathrm{geo}}$ (Gate~1, \vref{v75}), the same anchor as $1/G$ \\
+$R+R^2$ gravity & \mE/\mC & covariant $f(R)$ field equation closed in regime; heat-kernel grounded (G2) \\
+Einstein eq.\ (covariant, local) & \mE/\mC & fixed-volume entanglement equilibrium $\Rightarrow$ \emph{full} $G_{ab}{+}\Lambda g_{ab}{=}\cthree^{-1}T_{ab}$ carrying no free dimensionless Newton coupling under the named QFT/entanglement premises \mC: $8\pi{=}1/\cthree$ (\vref{v358}, thermo$=$geo via $|\mu_4|{=}|\Z_2|\chi{=}4$) and $\Lambda$ from $\alpha$ (\vref{v60}); Einstein tensor via Lovelock, conservation an output (\vref{v359}); residual $=$ equation-of-state status $+$ $v_{\mathrm{geo}}$, global measure (C7) now a \mC\ redundancy (\vref{v369}) \\
+physical QG sector & \mE/\mC & gap-decoupled admissible measure ($\Delta_{\mathrm{eff}}{=}1.648{>}0$) \\
+ambient QG measure & \mC\ (redundancy) & \textbf{certification object, not missing dynamics} (\vref{v369}; conditional on \texttt{SEAM.EQUIV.01}${+}$Bisognano--Wichmann): holographically reduced to a finite seam-\emph{boundary} measure (\vref{v76}); IR tier closed (decoupling); strict-TOE cert.\ $=$ the simple-current extension $(D_5)_1{\otimes}(A_3)_1{\rtimes}\langle(1,1)\rangle\cong(E_8)_1$ (\vref{v154}); the free-bulk premise (A) is itself a fixed-point theorem with the cone eliminated (cone gap $=$ one-particle gap $(2/3)^6$) and factors into the $A_2$ net-existence $+$ the keystone \texttt{SEAM.EQUIV.01} (MMST route closed mod.\ cited; parent \mO) --- zero new gates (\vref{v160}--\vref{v165}) \\
+$v_{\mathrm{geo}}$ metrology unit & \mO (closed metrology) & No-Unit Theorem (\vref{v153}/\vref{v725}): CLOSED METROLOGY STRUCTURE ($\mathbb{R}_+$ unit torsor; one dimensionful calibration necessary by dimensional analysis); $U_{\mathrm{point}}\sim v_{\mathrm{geo}}$, $1/G\sim v_{\mathrm{geo}}^2$, $m/\mu$ a ratio --- one unit, not a gap \\
+Koide & \mC & $Q_{\mathrm{src}}+\varphi_0/24$ source$\to$pole: typed runnable solver with kill test (QED-excluded, \vref{v371}) \\
+axion DM & \mC & $f_a=M_{\mathrm{scal}}/128$: finite-$T$ spine-branch typed runnable solver (\vref{v373}) \\
+$\eta_B$ & \mC & readout closed; integrated BDP leptogenesis Boltzmann ODE, typed runnable solver (\vref{v372}) \\
+$m_p/m_e$ & \mC & cross-sector QCD/EW ratio: typed runnable solver with uncertainty budget (\vref{v374}) \\
+$N_\star$ & \mC & reheating input; scalaron-reheating point $N_\star{=}51.4$ (\vref{v86}); frozen band $[50,60]$ \\
+$a=(1,1,2)$ & \mE/\mC & forced by $4=2+1+1$, conditional on the carrier \\
+carrier selection $g{=}5$ (QBL) & \mE/\mC & theorem chain \vref{v108}--\vref{v113}: sheet-odd kernel, self-counting channel, transport degree $2$, one quasi-free kernel (rank $=c$); residue $=$ the $G_{\mathrm{net}}$ premise itself --- gate closes $\Rightarrow$ carrier \mE \\
+selector establishment R4$'$ & \mE/\mC & $(d,n)\Rightarrow R$ columnwise (\vref{v136}); both normals \emph{anchor data} --- $n=(p_2,p_0,e_2)(a)$ in the cusp frame (\vref{v145}/\vref{v149}); residue $=$ \emph{one} assignment \\
+sheet/parity (Q-geometry derived) & \mE/\mC & $H^1$ characters $=$ $\operatorname{Spec}(Q_+)$ $=$ $A_3$ exponents (\vref{v137}); $\Z_3$ choice \emph{derived} (\vref{v141}); full M\"obius $D_4$ matched parity by parity (\vref{v146}); residue $=$ the module identification, folded into \texttt{SEAM.EQUIV.01} \\
+seam quantum clock R1 & \mE/\mC & typed closed: resummed clock $=$ entropy power law (\vref{v124}--\vref{v133}); VW edge match (\vref{v138}); det-ratio in-family (\vref{v144}); ring sum $=$ Born$^2$ Gaussian zero-mode integral, bend det$'$-clean (\vref{v147}); residue $=$ measure $+$ reference \\
+$E_8$ Lean & \mE & hardening, not a blocker (script-certified) \\
+\bottomrule
+\end{xltabular}
+}
+\markerkey
+\noindent Card addendum (2026-08-28, dual rest): the status card remains the \emph{compiler} accounting
+($\mathrm{Rest}=v_{\mathrm{geo}}\oplus G_{\mathrm{net}}\oplus F_{\mathrm{transfer}}$).  The strict-physical-TOE
+accounting $\mathrm{Rest}_{\mathrm{TOE}}$ (ten named summands, all \mO\ or standing-rule) sits beside it
+and does \emph{not} upgrade any marker --- it names the 2026-08-27/28 contract wave
+(\texttt{tfpt\_research\_contracts}).  Wave~3 (same day): the rank-8 ADE census of
+\veri{v993\_minimal\_defect\_selector.py} lifts the architecture conditionality of v624 at lattice
+level (axioms \texttt{AX.P1.01}/\texttt{AX.P2.01} typing UNCHANGED); three new contracts
+\texttt{GAUGE.DETLINE.FIXPOINT.01}, \texttt{GRAV.SPIN2.EMERGENCE.01},
+\texttt{FTRANSFER.SK.RHO0.01} are registered \mO.
+Completeness wave (same day; suite $986\to 990$, no marker upgrades):
+\veri{v994\_\allowbreak mmst\_\allowbreak criteria\_\allowbreak battery.py},
+\veri{v995\_\allowbreak kms\_\allowbreak subnet\_\allowbreak rigidity.py},
+\veri{v996\_\allowbreak gauge\_\allowbreak grammar\_\allowbreak kill.py} and
+\veri{v997\_\allowbreak spin2\_\allowbreak smg\_\allowbreak witnesses.py}
+execute the MMST $5/7$ criteria, finite KMS rigidity, the H0 grammar kill, and the
+quadratic spin-2 $+$ SMG toy witnesses; C6 is the written-out proof document
+\texttt{articles/2026-08-28/\allowbreak psi\_lambda\_\allowbreak convergence\_\allowbreak theorem\_en.tex}.
+Review wave~4 (2026-08-29; suite $990\to994$, ledger $1166\to1168$; no marker upgrades):
+\veri{v998\_\allowbreak seam\_\allowbreak modular\_\allowbreak closure.py},
+\veri{v999\_\allowbreak weak\_\allowbreak collision\_\allowbreak hp.py},
+\veri{v1000\_\allowbreak spin2\_\allowbreak sk\_\allowbreak witnesses.py} and
+\veri{v1001\_\allowbreak nu\_\allowbreak pentagon\_\allowbreak chain.py}
+plus the master contract \texttt{TFPT.TOE.COMPLETE.01} \mO\ (the named AND of eight
+gates, not a closure), the lattice-fundamental quasilocal-family amendment, the
+$v_{\mathrm{geo}}$ closed-metrology retype, and the \texttt{ALPHA.QUILLEN} relative-determinant
+note.
+Review wave~5 (2026-08-29; suite $994\to996$): unit choice for $v_{\mathrm{geo}}$ is closed;
+dimensionless hierarchies $(M_{\mathrm{Pl}}/v_{\mathrm{EW}},\,M_R/M_{\mathrm{scal}},\,
+\Lambda_{\mathrm{QCD}}/v_{\mathrm{EW}},\,T_{\mathrm{reh}}/M_{\mathrm{scal}})$ remain predictive
+obligations (\texttt{CHIRAL4D.MIRROR.DET16.01} \mC, \texttt{FLAV.NU.TEXTURE.MECHANISM.01} \mO,
+\texttt{SEAM.MMST.TYPEIII.CHARGED.01} \mO).
+Review wave~6 (2026-08-30; suite $996\to998$):
+\veri{v1004\_\allowbreak milnor\_\allowbreak frobenius\_\allowbreak gray.py} types the
+Milnor--Gray finite algebra (classical cite $+$ new-in-corpus rank/Gray/CP \mE-finite;
+corpus identification \texttt{SEAM.MILNOR.LOCALRING.01} stays \mO);
+\veri{v1005\_\allowbreak relative\_\allowbreak pencil\_\allowbreak bridges.py} flags the
+relative pencil as circular (carrier $5$ already in $Q_2$/$C$ column sums; not a P2 selector);
+\texttt{GRAV.WEINBERG.WITTEN.01} \mO\ is the binding spin-2 firewall.
+Review wave~7 (2026-08-30; suite $998\to1002$, ledger $1173$ no new rows):
+\veri{v1006\_\allowbreak mmst\_\allowbreak lemma\_\allowbreak battery.py}
+(five MMST lemmas in-house; residual TEL-B-EXTERNAL $+$ ALG-EXH boxed;
+\texttt{SEAM.MMST.TYPEIII.CHARGED.01} stays \mO);
+\veri{v1007\_\allowbreak det16\_\allowbreak stability\_\allowbreak battery.py}
+(T1/T2 proved, T3 Michalakis--Zwolak cited-verified; $1/192$ and BDL boxed;
+\texttt{CHIRAL4D.MIRROR.DET16.01} stays \mC);
+\veri{v1008\_\allowbreak master\_\allowbreak assembly\_\allowbreak scaffold.py}
+($2{+}1$D scaffold-coherent; Decision / DETLINE unmoved);
+\veri{v1009\_\allowbreak rho0\_\allowbreak minimizer.py}
+(unique KMS compression; two typed review corrections;
+\texttt{FTRANSFER.SK.RHO0.01} stays \mO).
+Afternoon harvest (2026-08-30; suite $1002\to1004$, ledger $1173$ no new rows):
+\veri{v1010\_\allowbreak simplicity\_\allowbreak bridge\_\allowbreak census.py}
+(no smaller axiom core --- the simplicity lives in the theorems; pencil rehabilitated
+as forced provenance; Milnor strong bridge obstructed $\mathbb F_2$+upstairs;
+\texttt{SEAM.MILNOR.LOCALRING.01} stays \mO, \texttt{AX.P2.01} stays an axiom);
+\veri{v1011\_\allowbreak 3p1d\_\allowbreak ladder\_\allowbreak battery.py}
+($3{+}1$D ladder complete at scaffold; matching scale in the deconfined/weak regime;
+Decision / DETLINE unmoved).
+Evening TOE-gate wave (2026-08-30; suite $1004\to1005$, ledger $1173$ no new rows):
+\veri{v1012\_\allowbreak toe\_\allowbreak gate\_\allowbreak witnesses.py}
+(T5 IR witnesses $+$ typed SPLIT; T8 $\rho_0$ selection vacuity; T6 $\kappa$ six-fold NULL;
+T7 interacting TT; all four contracts stay \mO).
+Late-evening harvest (2026-08-30; suite $1005\to1007$, ledger $1173$ no new rows):
+\veri{v1013\_\allowbreak thermodynamic\_\allowbreak dynamics.py}
+closes the mandatory-dynamics leg at Hamiltonian-class level (Lieb--Robinson $+$ $\tau_t$ $+$
+gauge-invariant quasilocal algebra $+$ state existence; Decision typing UNCHANGED);
+\veri{v1014\_\allowbreak bridge\_\allowbreak refinements.py}
+verifies the finite detline restriction isomorphism (orientation $2\to1$, residual $A_0$
+anchor) and derives W-bridge P-anch while narrowing P-dem to one character-blind
+response map.  Within this finite compiler/W-bridge lane, the remaining identification
+was routed through the external MMST/Quillen leg.  This does not classify or close T3--T8.
+Monday-morning harvest (2026-08-31; suite $1007\to1009$, ledger $1173$ no new rows):
+\veri{v1015\_\allowbreak axiom\_\allowbreak core\_\allowbreak closure.py}
+derives the remaining W-bridge premise (character-blind P-dem response $r=(1,1,1)$;
+both premises now finite; axiom-core remainder $0$ modulo externalized MMST;
+\texttt{AX.P2.01} stays an axiom);
+\veri{v1016\_\allowbreak state\_\allowbreak gap\_\allowbreak batteries.py}
+records the first viable non-entropic selector ($R_4$ seam-modular cap), the narrowed
+TEL-B increment target, the uniform CAR nuclearity lemma, and the DFP volume-uniform gap
+for finite-group DET chains.  The old ``remaining fundamental gaps'' phrase is
+scope-corrected: only the finite compiler/W-bridge lane was reduced to MMST plus the
+$4$D functional; a shared $3{+}1$D parent and the independent T3--T8 mechanisms remained open.
+Directed-readout and Coxeter--Euler harvest (2026-09-02; suite $1010\to1012$, ledger $1174\to1176$):
+\veri{v1018\_\allowbreak e8\_\allowbreak directed\_\allowbreak readout.py}
+promotes seven exact $E_8$ readout cells (\texttt{E8.DIRECTED.READOUT.01}~\mE\ Identity;
+C7 Gauss-code transform stays open, \texttt{rem:c7-audit}).
+\veri{v1019\_\allowbreak coxeter\_\allowbreak euler\_\allowbreak completion.py}
+is the Coxeter--Euler completion (\texttt{E8.COXETER.EULER.COMPLETION.01}~\mE\ Identity plus Numerical Euler products at $X=10^5$;
+class statement: the vanishing linear term is generic from $\mathrm{Tr}\,C=-1$; Beurling-generic;
+fence: the trace-free completion is zero-free and pole-free in $\mathrm{Re}\,s>1/2$; the splitting remains open).
+Round-4 TOE integration (2026-09-05;
+\veri{v1026\_\allowbreak telb\_\allowbreak round4\_\allowbreak closure.py},
+\veri{v1027\_\allowbreak signed\_\allowbreak det\_\allowbreak car\_\allowbreak wall.py},
+\veri{v1028\_\allowbreak gauss\_\allowbreak d4\_\allowbreak cap.py},
+\veri{v1029\_\allowbreak local\_\allowbreak tensor\_\allowbreak constraints.py},
+\veri{v1030\_\allowbreak alg2\_\allowbreak sector\_\allowbreak frame.py}):
+T2 has the relaxed uniform TEL-B theorem $\|R_N\|_{\rm HS}<2.995906<3$
+for every even $N\ge16$, including CF, DG and finite-grid aliases. The old
+ALG2 Vandermonde implication remains refuted; the new sector/frame bridge
+is conditional on microscopic generation and uniform joint-adjoint tails.
+T4 has exact DET-CAR excitations under the determinant-singlet premise and
+a signed $z=1$ wall for fixed classical gauge backgrounds; its additive
+parent is explicitly changed, and it has no hard bare-mirror response gap
+or chiral dynamical-gauge continuum theorem. T6 has exact full Gauss counts
+(one site $3\bmod5$, open cube $0\bmod5$), but no neutrino mass texture.
+T7 has a two-mode local constraint target only after global zero-mode removal,
+not an emergent graviton. T8 has a symmetric internal $D_4$ cap with gap one,
+but symmetry permits a two-dimensional invariant space and selects no global
+$\rho_0$. T1 retains only
+finite axiom-core/W-bridge support while unconditional provenance and the dimension
+selector remain open; T3 retains its Hamiltonian-class result; T5 retains finite IR
+witnesses and the v1020 spectator obstruction while prime completion, OS reconstruction,
+confinement and scattering remain open. These are scoped subgate certificates and
+obstructions, not a TOE closure.  All T1--T8 markers stay unchanged, and the shared
+$3{+}1$D parent remains absent.
+\par\smallskip\noindent
+Round-7 continuation (2026-09-05; $233/233$ typed checks including the
+round-6 quantum prerequisite):
+\veri{v1031\_quantum\_tensor\_curvature.py} and
+\veri{v1032\_covariant\_curvature.py} construct the zero-mean Weyl/Fock
+target and its positive local covariant free curvature field with
+helicities $\pm2$. This is a free target theorem, not TFPT graviton emergence.
+\veri{v1033\_charged\_disorder.py} supplies charged corners with an
+additional $\Z_4$ flux register and the exact mismatch $h=1/4\ne h_\lambda=1$.
+\veri{v1034\_parent\_mirror.py} proves the factorized onsite lower gap
+$1+\sqrt3/2$, while refuting a proposed bare-hopping relative bound, not
+proving gap closure. \veri{v1035\_matter\_coupling.py} preserves the
+physical Fourier factors in linear Ward propagation for prescribed sources;
+dynamical quantum and universal nonlinear coupling remain open.
+Complete proofs are in the contracts supplement. All T1--T8 remain \mO;
+the common parent, microscopic MMST and global state are not supplied.
+\par\smallskip
+\noindent Card addendum (2026-07-22): the $a=(1,1,2)$ residual now carries the consolidated P2
+reduction state --- the position half of the alignment bit is topology (\vref{v510}) and the modulus
+half is one discrete symmetry-lift bit --- the twist-class choice (flag transitivity
+$\iff\tau=i$, \vref{v512}/\vref{v528}), so the
+dimensionless compiler inputs read \emph{four marks $+$ one discrete symmetry-lift bit (the
+twist-class choice, in principle interferometrically readable; flag
+transitivity $\iff\tau=i$) $+$ $\pi$}
+(\texttt{AX.P2.01} stays a declared axiom).
+\par\smallskip
+\noindent The former structural open core, the \emph{single} named keystone \texttt{SEAM.EQUIV.01} (the
+$G_{\mathrm{net}}$ inclusion: the raw RP seam $=(E_8)_1$ at $\tau{=}i$), is now \emph{closed modulo cited theorems
+on its MMST route} (\texttt{SEAM.EQUIV.MMST.01}; the twistor route \texttt{SEAM.EQUIV.TWISTOR.01} and the
+unconditional parent stay \mO):
+the explicit lattice model (\vref{v367}/\vref{v368}) and the $S_3$ stack ($c{=}8$, $248$ currents/$1$ primary, torus
+$\mathrm{GSD}{=}1$, RP; \vref{v376}--\vref{v379}) pin it at every computable level, it is Lean-formalised as
+\texttt{FORM.SEAM.MMST.01}, and only the cited MMST/OS continuum-existence theorems stay \mO\ (\vref{v336}); its
+conformal-deck face \texttt{QGEO.SYM.01} is a \emph{corollary} (a conformal net's vacuum is rotation-invariant by axiom,
+\vref{v323}/\veri{v335\_seam\_equiv\_unify.py}), not a second item. $v_{\mathrm{geo}}$ is an irreducible metrology
+unit and the frontier items are typed interfaces, not structural holes. $G_{\mathrm{net}}$ is heat-kernel
+grounded (G2: the spectral action gives $R+R^2$ structurally) and \emph{gap-decoupled} (G5:
+$\Delta_{\mathrm{eff}}{=}1.648{>}0$ isolates the closed admissible sector from the ambient), so the
+ambient measure \texttt{QG.AMB.01} is no longer carried as an open structural item: it is a \mC\ \emph{redundancy}
+(\vref{v369}, conditional on \texttt{SEAM.EQUIV.01}${+}$Bisognano--Wichmann), a certification object rather than
+missing dynamics --- it does not affect any TFPT readout. Both are written up
+as numbered \emph{research contracts} (lemma chains $+$ closing theorem $+$ machine-certifiability) in the
+companion \texttt{tfpt\_research\_contracts}, with priority on the $v_{\mathrm{geo}}$ scale anchor and the
+$G_{\mathrm{net}}$/\texttt{SEAM.EQUIV.01} inclusion theorem.
+\veri{v36\_spectral\_action\_g2.py}
+\par\smallskip\noindent\textbf{Sharper still: the structural residual is \emph{one} condition.} $G_{\mathrm{metric}}$,
+the carrier P2 and the red-team Target~A are not separate items: they are three provably-equivalent faces of
+the single condition \emph{``the seam carries no nontrivial abelian sector''} --- holomorphy ($\mu$-index
+$1$), a homology-sphere seam link ($\Gamma$ perfect $\Leftrightarrow2I$, \veri{v232\_e8\_kleinian\_seam.py}),
+exactly one $1$-dim irrep (\veri{v219\_icosahedral\_mckay.py}) --- all of which force $E_8$
+($\#(\text{mark-}1)=|H_1|=1$ only for $E_8$; holomorphic $c=8=\gcar+\Nfam$ gives the unique even unimodular
+rank-$8$ lattice). In abelian Chern--Simons language this is the single integer step holomorphic
+$\Leftrightarrow\det K=1$, the extension tower $D_5{\oplus}A_3(16)\to D_8(4)\to E_8(1)$ being anyon
+condensation (the Kitaev $E_8$ state); the one analytic step ``the free RP seam condenses the
+order-$|\mu_4|$ Lagrangian glue'' $=$ the single named keystone \texttt{SEAM.EQUIV.01} (with
+\texttt{QGEO.SYM.01} its downstream conformal-deck face) is now \emph{closed modulo cited theorems} on its MMST
+route \texttt{SEAM.EQUIV.MMST.01}
+(\vref{v367}/\vref{v368}, \vref{v376}--\vref{v379}, Lean \texttt{FORM.SEAM.MMST.01}; cited continuum existence \mO,
+\vref{v336}; the parent \texttt{SEAM.EQUIV.01} stays \mO). So beneath the gate \emph{labels} there is,
+structurally, a single fundamental postulate. And the entire \emph{emergent-QFT layer} collapses onto the
+\emph{same} postulate (the \emph{Modular Spectral Closure}, \vref{v261}): the finite Dirac is a
+covariance induction of the seam KMS state (\vref{v258}), the spectral-action cutoff \emph{is} that KMS
+weight ($f_2/f_0=1$, \vref{v259}), the seam, the carrier-$16$ and $E_8$ live on one Kummer/K3 surface
+(\vref{v260}), so Dirac, cutoff, gauging, glue and orientability are all readouts of the one seam state ---
+the boundary QFT is closed as a single relative object modulo the keystone \texttt{SEAM.EQUIV.01} and adds
+\emph{no new open item}, while the ambient quantum-gravity measure is a \mC\ redundancy (\vref{v369}), not a separate
+structural gap.
+\veri{v234\_seam\_holomorphy\_selection.py} \veri{v235\_seam\_chern\_simons.py}
+
+\begin{winboxnb}[Reduction in one line]
+The number of \emph{structural} assumptions is \textbf{two axioms}. Everything else
+($\Nfam,\Oadm,b_1,\ainv$, the flavor matrix, the $E_8$ glue, the scale grammar) is a
+\emph{consequence}. \emph{And even those two tighten:} the
+bootstrap note shows $\gcar=5$ and the integer $8$ in $\cthree$ are \emph{overdetermined $E_8$-closure
+fixed points} (rank-fill, Coxeter-match, integer-glue/norm all give $5$; $8=h(D_5)=\operatorname{rank}E_8=\det R=\varphi(30)$),
+leaving \emph{one} genuine continuous primitive: $\pi$ from the Möbius boundary. \emph{A fourth, deeper
+forcing} comes from the McKay correspondence: $E_8$ is the exceptional top of the tower of finite $SU(2)$
+subgroups, so its branch data is the icosahedron and the three atoms $(2,3,5)$ are its rotation-axis orders
+--- the binary icosahedral group $2I$ (order $120=|R^+(E_8)|$) has irrep degrees equal to the affine-$E_8$
+Kac marks, $\sum=30=h(E_8)=2{\cdot}3{\cdot}5$ (\veri{v219\_icosahedral\_mckay.py}). So the \emph{discrete}
+core has no freely tunable fundamental numbers --- the bootstrap is \emph{not creation from nothing} (two
+inputs remain), but an overdetermination of those inputs. (This concerns the discrete core only;
+dimensionful masses, the QG measure and frontier items remain typed-open.)
+\veri{v6\_bootstrap.py} \veri{v14\_carrier\_uniqueness.py} \veri{v23\_anchor\_generator.py} \veri{v219\_icosahedral\_mckay.py}
+\end{winboxnb}
+
+% =====================================================================

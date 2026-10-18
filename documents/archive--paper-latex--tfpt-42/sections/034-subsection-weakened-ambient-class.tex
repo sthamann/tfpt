@@ -1,0 +1,389 @@
+\subsection{Weakened ambient class}
+
+\begin{definition}[Weakened ambient admissibility category]
+\label{def:physadm}
+Let $\PhysAdmOne$ denote the category whose objects are tuples
+\[
+\mathfrak P=
+(\mathcal A_+,\mathcal H_+,D_+,J,\Gamma,B_\Sigma,\tau_t,\omega)
+\]
+satisfying the following ambient admissibility axioms:
+\begin{enumerate}[leftmargin=2em, topsep=3pt, itemsep=3pt]
+    \item[\textbf{(U1)}] \textbf{Real even boundary datum:}
+    $(\mathcal A_+,\mathcal H_+,D_+,J,\Gamma,B_\Sigma)$ is an admissible real even one-sided
+    boundary datum with reflection-regular collar.
+    \item[\textbf{(U4)}] \textbf{Quasilocal positive dynamics:}
+    $\tau_t$ is a quasilocal dynamics with reflection positivity and an admissible vacuum sector.
+\end{enumerate}
+Morphisms are unitary intertwiners preserving the displayed structures.
+\end{definition}
+
+No external coverage claim is made in this section. In particular, the ambient class is a theorem
+class for internal rigidity, not yet a proof that reality itself is generated from a thinner
+primitive layer.
+
+\begin{tcolorbox}[colback=orange!5, colframe=orange!70!black, breakable,
+    title={Carrier closure is now split cleanly},
+    colbacktitle=orange!75!black]
+\Cref{thm:carrier-minimality-k} is now only the algebraic normal form: if the two exterior
+signatures
+\[
+\dim\Lambda^2E_+=1,
+\qquad
+\Lambda^2E_-\cong E_-^\vee
+\]
+hold, then one necessarily has
+\[
+\rank E=5,
+\qquad
+(\dim E_-,\dim E_+)=(3,2),
+\qquad
+\dim\Lambda^{\mathrm{even}}E=16.
+\]
+The internal derivation is completed later by \Cref{cor:bosonic-rank-two,thm:yukawa-forces-32}:
+the compact Higgs index fixes $\dim E_+=2$, the primitive indecomposable generator of the actual
+branch Yukawa tensor forces $\dim E_-=3$, and the former occupancy law is reduced to a derived
+consistency check.
+Accordingly $\PhysAdmOne$ no longer carries a packet-size axiom; the rigid minimal carrier is now a
+theorem-level closure package rather than a hidden ambient input.
+\end{tcolorbox}
+
+\begin{definition}[Internal TFPT reduction functor]
+\label{def:universal-reduction}
+Define the functor
+\[
+\Runiv:\PhysAdmOne\to \mathbf{TFPT}^{\mathrm{rig}}_{\mathrm{pre}}
+\]
+on objects by extracting from $\mathfrak P$ the TFPT pre-class data
+\[
+\Runiv(\mathfrak P):=
+\bigl(
+    \Tbound(\mathfrak P),
+\Padm(\mathfrak P),
+X_f^\circ(\mathfrak P),
+[\nabla_F](\mathfrak P),
+\Phi(\mathfrak P),
+U_\Sigma(\mathfrak P)
+\bigr),
+\]
+where each component is reconstructed by the primitive reconstruction, internal hard-carrier
+reduction, internal family reduction, internal transport closure, compact bosonic index, and
+seam-transfer closure already
+established in the main theorem stack.
+\end{definition}
+
+\begin{definition}[Canonical rigid-closure functor]
+\label{def:rigid-closure-functor}
+Let
+\[
+\Clrig:\mathbf{TFPT}^{\mathrm{rig}}_{\mathrm{pre}}\to \mathbf{TFPT}^{\mathrm{rig}}
+\]
+denote the canonical closure functor that adjoins to each pre-class object $\Tpre$ its unique
+intrinsic branch $x_{\mathrm{cl}}^\star(\Tpre)$ from \Cref{thm:branch-uniqueness} and then reads
+the resulting closed realization in the canonical rigid image via
+\Cref{def:tfpt-rigid-category,thm:spectral-completeness-rigid-tfpt}. On morphisms,
+$\Clrig$ acts by the same unitary intertwiners. Define the rigid internal-reduction functor by
+\[
+\Runivrig:=\Clrig\circ \Runiv:\PhysAdmOne\to \mathbf{TFPT}^{\mathrm{rig}}.
+\]
+\end{definition}
+
+\begin{theorem}[Internal hard-carrier reduction]
+\label{prop:universal-carrier-reduction}
+For every $\mathfrak P\in\PhysAdmOne$, axiom \textbf{(U1)} together with the boundary-polarization,
+boundary-winding, compact Higgs-index, and branch-Yukawa-rigidity theorems reduces functorially to
+the unique TFPT hard carrier
+\[
+E_3\oplus E_2,
+\qquad
+X=-2P_3+3P_2,
+\qquad
+Y=-\frac13P_3+\frac12P_2,
+\qquad
+S^+=\Lambda^{\mathrm{even}}(E_3\oplus E_2).
+\]
+\end{theorem}
+
+\begin{proof}
+Take an ambient object
+\[
+\mathfrak P=(A_+,H_+,D_+,J,\Gamma,B_\Sigma,\tau_t,\omega)\in\PhysAdmOne.
+\]
+By axiom \textbf{(U1)}, the tuple $(A_+,H_+,D_+,J,\Gamma,B_\Sigma)$ is an admissible real even
+one-sided boundary datum with reflection-regular collar. The boundary-polarization theorem
+therefore reconstructs from $\mathfrak P$ the canonical boundary polarization $\iota_C(\mathfrak
+P)$ and hence the carrier decomposition on the finite carrier block,
+\[
+E(\mathfrak P)=E_-(\mathfrak P)\oplus E_+(\mathfrak P).
+\]
+
+Next, the boundary-winding theorem determines the canonical unit winding class on the same branch.
+The compact Higgs index then fixes the positive carrier rank,
+\[
+\dim E_+(\mathfrak P)=2.
+\]
+Once this bosonic rank is known, \Cref{thm:yukawa-forces-32} forces the only admissible negative
+rank to be
+\[
+(\dim E_-,\dim E_+)=(3,2),
+\]
+and \Cref{thm:carrier-minimality-k,cor:yukawa-discharges-kpp} then recover the former exterior
+signatures and packet-size statement as consequences. By the primitive trace condition the
+corresponding primitive two-point generator is uniquely
+\[
+X(\mathfrak P)=-2P_3(\mathfrak P)+3P_2(\mathfrak P),
+\]
+and therefore
+\[
+Y(\mathfrak P)=\frac{X(\mathfrak P)}6=-\frac13P_3(\mathfrak P)+\frac12P_2(\mathfrak P).
+\]
+The exterior packet is then forced to be
+\[
+S^+(\mathfrak P)=\Lambda^{\mathrm{even}}(E_3(\mathfrak P)\oplus E_2(\mathfrak P)).
+\]
+Thus the displayed hard-carrier package is determined objectwise.
+
+Now let
+\[
+u:\mathfrak P\to \mathfrak P'
+\]
+be a morphism in $\PhysAdmOne$. By definition, $u$ is a unitary intertwiner preserving the
+structures listed in Definition~12.1. Therefore it intertwines the boundary operator, the
+reflection data, the Calder\'on projector, and the induced boundary polarization. Hence
+\[
+u\,\iota_C(\mathfrak P)\,u^{-1}=\iota_C(\mathfrak P').
+\]
+So $u$ carries the carrier block of $\mathfrak P$ unitarily onto the carrier block of $\mathfrak
+P'$, preserving the decomposition into the $(-1)$ and $(+1)$ eigenspaces of $\iota_C$.
+
+Because the winding class and the carrier split are uniqueness outputs, the same unitary also
+intertwines the derived projectors $P_3,P_2$ and therefore the derived generators $X,Y$. Exterior
+functoriality then gives
+\[
+u\,S^+(\mathfrak P)\,u^{-1}=S^+(\mathfrak P').
+\]
+Hence the assignment
+\[
+\mathfrak P\longmapsto (E_3\oplus E_2,X,Y,S^+)
+\]
+is functorial. This is the asserted internal hard-carrier reduction.
+\end{proof}
+
+\begin{theorem}[Internal family reduction]
+\label{prop:universal-family-reduction}
+For every $\mathfrak P\in\PhysAdmOne$, the boundary-winding theorem and $D_4$-equivariant
+monodromy rigidity reduce functorially to
+the rigid family data
+\[
+X_f^\circ\cong \mathbb P^1\setminus\mu_4,
+\qquad
+[\nabla_F]=[\nabla_F^\star].
+\]
+\end{theorem}
+
+\begin{proof}
+For an ambient object $\mathfrak P\in\PhysAdmOne$, the boundary-winding theorem fixes the
+quarter-turn balance of the admissible seam data. The family theorem then identifies the family
+section uniquely as the four-punctured sphere
+\[
+X_f^\circ(\mathfrak P)\cong \mathbb P^1\setminus\mu_4.
+\]
+The puncture set carries its inherited faithful $D_4$ symmetry.
+
+On that rigid puncture square, the $D_4$-equivariant monodromy-rigidity theorem fixes the
+monodromy representation uniquely up to global $SU(3)_F$ conjugation,
+\[
+\rho_F:\pi_1(X_f^\circ)\to SU(3)_F.
+\]
+Once the monodromy representation is fixed, the Riemann--Hilbert correspondence for flat Hermitian
+bundles yields a unique flat Hermitian family-connection class realizing it. This class is
+precisely
+\[
+[\nabla_F^\star].
+\]
+Thus the family geometry and holonomy are determined objectwise.
+
+Now let
+\[
+u:\mathfrak P\to \mathfrak P'
+\]
+be a morphism. Since $u$ preserves the boundary datum and the induced winding data, it preserves the
+quarter-turn balance and hence the puncture-square structure. Therefore it induces an isomorphism
+of the two four-punctured sections preserving the $D_4$ action. Under this induced identification
+the puncture loops correspond, so the monodromy representations agree up to the same global
+$SU(3)_F$ conjugation already allowed by \Cref{thm:d4-monodromy-rigidity}.
+
+Because the flat Hermitian connection class is uniquely determined by that conjugacy class, the
+transported connection class coincides with the target one. Therefore
+\[
+u:(X_f^\circ(\mathfrak P),[\nabla_F(\mathfrak P)])
+\longrightarrow
+(X_f^\circ(\mathfrak P'),[\nabla_F(\mathfrak P')])
+\]
+is functorial. This proves the internal family reduction.
+\end{proof}
+
+\begin{theorem}[Internal transport reduction]
+\label{prop:universal-transport-reduction}
+For every $\mathfrak P\in\PhysAdmOne$, the boundary-polarization, carrier-rigidity,
+family-holonomy, determinant-line, and positivity theorems reduce functorially to
+the TFPT transport package with admissible cusp set
+\[
+\left\{1,\frac23,\frac13\right\},
+\]
+exact branch pole $\delta_{\mathrm{ph}}$, and the unique first-generation winding lock.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Once the boundary winding, rigid carrier generator, and rigid family holonomy are fixed,
+the admissible cusp spectrum is no longer ambient input; it is read from the singlet-projected
+carrier spectrum. The algebraic transport-pole theorem, the exact $C_6$ kernel, and the transport
+length sum rule then fix the admissible cusp set, the pole $\delta_{\mathrm{ph}}$, and the
+first-generation winding pattern functorially.
+\end{proof}
+
+\begin{theorem}[Internal glueing and invariant reconstruction]
+\label{prop:universal-glueing}
+For every $\mathfrak P\in\PhysAdmOne$, the data extracted in
+\Cref{prop:universal-carrier-reduction,prop:universal-family-reduction,prop:universal-transport-reduction}
+assemble into a TFPT pre-class object whose invariant tuple is the canonical TFPT tuple
+\[
+\mathcal I_\star=
+\bigl(
+    X,Y,[u_\Sigma],X_f^\circ,c_1(L_2),c_1(L_3),[\nabla_F^\star],a_\Sigma,\Lambda_{\mathrm{IR}},x_{\mathrm{cl}}^\star
+\bigr).
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The carrier, family, transport, determinant-line, gravity, cosmology, and vacuum closures
+determine exactly the displayed invariant tuple on the rigid branch. The internal reductions above
+therefore glue into one TFPT pre-class object with the same invariant content as the canonical
+branch.
+\end{proof}
+
+\iffalse
+\begin{theorem}[Internal reduction on the weakened ambient class]
+\label{thm:universality-tfpt}
+The functor
+\[
+\Runiv:\PhysAdmOne\to \mathbf{TFPT}^{\mathrm{rig}}_{\mathrm{pre}}
+\]
+is full and faithful. Its rigid closure
+\[
+\Runivrig=\Clrig\circ \Runiv:\PhysAdmOne\to \mathbf{TFPT}^{\mathrm{rig}}
+\]
+is essentially surjective. Consequently
+\[
+\text{within the ambient class }\PhysAdmOne,\qquad
+\PhysAdmOne/\!\cong\;\simeq\;\mathbf{TFPT}^{\mathrm{rig}},
+\]
+and therefore, by \Cref{cor:no-alternatives-tfpt},
+\[
+\forall \mathfrak P\in\PhysAdmOne:\qquad
+\Runivrig(\mathfrak P)\cong \Tstar.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+\Cref{prop:universal-carrier-reduction,prop:universal-family-reduction,prop:universal-transport-reduction,prop:universal-glueing}
+show that every ambient object of $\PhysAdmOne$ reduces functorially to one rigid TFPT
+pre-class object with the canonical invariant tuple. Faithfulness and fullness follow because the
+morphisms on both sides are unitary intertwiners of exactly the displayed structures, and the
+reconstruction chain forgets no theorem-level invariant. The passage from the pre-class to the
+rigid class is the explicit role of \Cref{def:rigid-closure-functor}: \Cref{thm:branch-uniqueness}
+supplies the unique closed branch on every pre-class object, and
+\Cref{thm:spectral-completeness-rigid-tfpt,cor:no-alternatives-tfpt} collapse the resulting rigid
+closure to the unique object $\Tstar$. Hence essential surjectivity is a property of
+$\Runivrig=\Clrig\circ\Runiv$, not of $\Runiv$ by itself.
+\end{proof}
+
+\fi
+
+\begin{theorem}[Reduction to the canonical rigid orbit]
+\label{thm:universality-tfpt}
+For every ambient object $\mathfrak P\in\PhysAdmOne$, the rigid internal reduction lands in the
+canonical rigid orbit:
+\[
+\Runivrig(\mathfrak P)\cong \Tstar.
+\]
+Equivalently, the induced map on isomorphism classes
+\[
+\pi_0(\PhysAdmOne)\longrightarrow \pi_0(\mathbf{TFPT}^{\mathrm{rig}}),
+\qquad
+[\mathfrak P]\longmapsto [\Runivrig(\mathfrak P)],
+\]
+has singleton image
+\[
+\pi_0(\mathbf{TFPT}^{\mathrm{rig}})=\{[\Tstar]\}.
+\]
+If $u:\mathfrak P_1\to\mathfrak P_2$ is an ambient morphism, then $\Runivrig(u)$ is the unique rigid
+intertwiner between the two reduced objects.
+\end{theorem}
+
+\begin{proof}
+\Cref{prop:universal-carrier-reduction,prop:universal-family-reduction,prop:universal-transport-reduction,prop:universal-glueing}
+produce from every ambient object a TFPT pre-object with the canonical invariant tuple. By
+\Cref{thm:branch-uniqueness}, that pre-object carries a unique intrinsic branch, and by
+\Cref{thm:spectral-completeness-rigid-tfpt,cor:no-alternatives-tfpt} every rigid closed realization
+with this invariant tuple is uniquely isomorphic to $\Tstar$. Therefore every reduced ambient
+object lies in the unique rigid orbit of $\Tstar$. The functoriality on morphisms is immediate
+because the rigid target has only the unique intertwiner allowed by essential injectivity on the
+rigid image.
+\end{proof}
+
+\begin{remark}[Primitive honesty]
+The manuscript now proves the passage from a minimal operational seed to the one-sided boundary
+datum and then the canonical closure from that datum. It does not yet prove that $\Seedop$ itself is
+generated from a still thinner universal seed. Accordingly the manuscript establishes internal
+rigidity before ultimate primitive minimality.
+\end{remark}
+
+\begin{remark}[Internal rigidity versus external adequacy]
+The main text proves uniqueness of the closed TFPT object inside the ambient class $\PhysAdmOne$:
+\[
+\forall \mathfrak P\in\PhysAdmOne,\qquad
+\Runivrig(\mathfrak P)\cong \Tstar.
+\]
+This does not by itself prove that $\PhysAdmOne$ is the physically correct ambient class. External
+adequacy is a separate comparison claim on the observable map
+\[
+\mathcal E:\PhysAdmOne\to\mathcal O_{\mathrm{phys}},
+\qquad
+\mathfrak P\longmapsto \mathcal E(\mathfrak P).
+\]
+\end{remark}
+
+The input-side reduction and the output-side orbit are summarized in
+\Cref{fig:internal-reduction-orbit}.
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\resizebox{0.94\linewidth}{!}{%
+\begin{tikzpicture}[
+    >=Latex,
+    ambient/.style={draw=black!60, fill=gray!8, rounded corners, text width=2.7cm, minimum height=0.95cm, align=center},
+    stage/.style={draw=blue!60!black, fill=blue!6, rounded corners, text width=2.8cm, minimum height=0.95cm, align=center},
+    star/.style={draw=green!50!black, fill=green!8, rounded corners, text width=2.7cm, minimum height=0.95cm, align=center},
+    orbit/.style={draw=orange!75!black, fill=orange!8, rounded corners, text width=3.2cm, minimum height=0.95cm, align=center},
+    band/.style={draw=gray!35, rounded corners, inner sep=10pt}
+]
+\node[ambient] (phys) at (-6.0,0) {ambient class\\$\PhysAdmOne$};
+\node[stage] (pre) at (-2.1,0) {pre-class\\$\mathbf{TFPT}^{\mathrm{rig}}_{\mathrm{pre}}$};
+\node[stage] (rig) at (1.8,0) {rigid class\\$\mathbf{TFPT}^{\mathrm{rig}}$};
+\node[star] (tstar) at (1.8,-2.0) {$\Tstar$\\unique rigid image};
+\node[orbit] (obs) at (6.0,0) {observable hierarchy\\$\GrenTFPT\to\OphysTFPT\to\OschemeTFPT/\SchGrp$};
+
+\node[font=\bfseries, text=tfptblue] at (-2.1,1.8) {input-side internal reduction};
+\node[font=\bfseries, text=tfptorange] at (6.0,1.8) {renormalized / physical / scheme readout};
+
+\draw[->, thick] (phys) -- node[above, font=\scriptsize] {$\Runiv$} (pre);
+\draw[->, thick] (pre) -- node[above, font=\scriptsize] {$\Clrig$} (rig);
+\draw[->, thick] (rig) -- (tstar);
+\draw[->, thick, dashed, orange!75!black] (tstar) -- node[below right, font=\scriptsize] {$\Rren,\ \Mphys,\ \Mscheme$} (obs);
+\end{tikzpicture}}
+\caption{Input-side reduction and observable hierarchy.}
+\label{fig:internal-reduction-orbit}
+\end{figure}
+

@@ -1,0 +1,396 @@
+\section{Explicit character basis of the eight Coxeter channels
+and the \texorpdfstring{$C_2\times C_4$}{C2 x C4} audit}\label{sec:coxeter-chars}
+
+The exponents of $W(E_8)$ are the totatives
+$(\Z/30\Z)^{\times}=\{1,7,11,13,17,19,23,29\}$ of the Coxeter number
+$h=30$.  As a multiplicative group this set has element orders
+$\{1,2,2,2,4,4,4,4\}$ in that listing --- explicitly the pairs
+(unit,~order)
+$(1,1)$, $(7,4)$, $(11,2)$, $(13,4)$, $(17,4)$, $(19,2)$, $(23,4)$,
+$(29,2)$ --- hence
+\[
+(\Z/30\Z)^{\times}\;\cong\;C_2\times C_4,
+\]
+and is \emph{not} isomorphic to $(\F_2^3,+)$, whose seven nontrivial
+elements all have order~$2$.  Writing $C_2=\langle 11\rangle$ and
+$C_4=\langle 7\rangle$, every unit is uniquely $u=11^a7^b$ with
+$a\in\{0,1\}$ and $b\in\{0,1,2,3\}$.  The eight Dirichlet characters
+modulo~$30$ are the product characters
+$\chi_{k,\ell}(11^a7^b)=(-1)^{ka}\,i^{\ell b}$ for the
+$\chi_2$-index $k\in\{0,1\}$ and the $\chi_4$-index
+$\ell\in\{0,1,2,3\}$.  Their values lie in $\{\pm1,\pm i\}$.  In the
+row order $(k,\ell)=(0,0),\dots,(0,3),(1,0),\dots,(1,3)$ and the
+column order of units increasing, the character table is
+\begin{center}
+\small
+\setlength{\arraycolsep}{3.6pt}
+\[
+\begin{array}{@{}c|cccccccc@{}}
+(k,\ell)\backslash u & 1 & 7 & 11 & 13 & 17 & 19 & 23 & 29 \\
+(a,b) & 0,0 & 0,1 & 1,0 & 0,3 & 1,1 & 0,2 & 1,3 & 1,2 \\
+\hline
+(0,0) & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+(0,1) & 1 & i & 1 & -i & i & -1 & -i & -1 \\
+(0,2) & 1 & -1 & 1 & -1 & -1 & 1 & -1 & 1 \\
+(0,3) & 1 & -i & 1 & i & -i & -1 & i & -1 \\
+(1,0) & 1 & 1 & -1 & 1 & -1 & 1 & -1 & -1 \\
+(1,1) & 1 & i & -1 & -i & -i & -1 & i & 1 \\
+(1,2) & 1 & -1 & -1 & -1 & 1 & 1 & 1 & -1 \\
+(1,3) & 1 & -i & -1 & i & i & -1 & -i & 1
+\end{array}
+\]
+\end{center}
+This matrix equals the Kronecker product $H_2\otimes F_4$ after the
+column permutation $[0,1,4,3,5,2,7,6]$ that takes the product-order
+columns $(a,b)$ --- units $1,7,19,13,11,17,29,23$ --- to the
+increasing-unit labelling (monomial phases identically~$1$).  Here
+\[
+H_2=\begin{pmatrix}1&1\\1&-1\end{pmatrix},\qquad
+F_4=(i^{jk})_{0\le j,k\le 3}
+=\begin{pmatrix}
+1&1&1&1\\
+1&i&-1&-i\\
+1&-1&1&-1\\
+1&-i&-1&i
+\end{pmatrix},
+\]
+so $H_2\otimes F_4$ is the block matrix
+$\bigl(\begin{smallmatrix}F_4&F_4\\ F_4&-F_4\end{smallmatrix}\bigr)$
+in product order.  For every Dirichlet character $\chi$ modulo~$30$,
+\[
+\sum_{n\ge1}\chi(n)\,\sigma_3(n)\,n^{-s}
+=L(s,\chi)\,L(s-3,\chi)
+\]
+holds coefficientwise for all $n\le200$.
+
+The same order multiset is the red-team obstruction
+$C_2\times C_4\not\cong C_2^3$.  The character table of
+$(\F_2^3,+)$ is the binary Hamming/Hadamard tensor
+$H_2\otimes H_2\otimes H_2$, with all nontrivial values $\pm1$.  A
+passage from that basis to the prime-phase basis $H_2\otimes F_4$
+cannot be a relabelling of coordinates: the source and target groups
+are non-isomorphic, and the target table takes the order-$4$ values
+$\pm i$.  The passage requires a genuine order-$4$ phase lift $J$
+with $J^2=-1$.
+
+\begin{remark}[audit question, open]
+\label{rem:c7-audit}
+Is the transformation matrix of the Gaussian $E_8$ code, once
+fixed, monomially equivalent to $H_2\otimes F_4$ and does it
+diagonalise the $(\Z/30\Z)^{\times}$ action on the eight Coxeter
+channels?  The present note does not yet define that matrix;
+until it is fixed, the Gaussian code is an alternative coordinate
+system, not a structurally forced one.
+\end{remark}
+
+The group law, table, Kronecker factorisation and Dirichlet identity
+are the sealed C6 cell of
+\veri{v1018\_e8\_directed\_readout.py}
+(seven exact $E_8$ readout cells, display~\textbf{[E]}; promotion of
+\texttt{e8\_directed\_readout\_probe.py}, verdict
+\texttt{E8\_READOUT\_SEALED(7/8)}).
+Claim C7 remains open (Remark~\ref{rem:c7-audit}).
+
+\section{The quartic companion:
+\texorpdfstring{$G_{31}$}{G31} as the holomorphic
+\texorpdfstring{$\mu_4$}{mu4} shadow}\label{sec:quartic}
+
+All checks of this section are from \texttt{quartic\_half\_probe.py}
+($22$ checks, $0$ failures, verdict \textsc{quartic-half-alive};
+exact Gaussian-integer and Gaussian-rational arithmetic, no floats
+anywhere), run in the standard doubled-coordinate model of $E_8$
+(roots $2(\pm e_i\pm e_j)$ and $(\pm1)^8$ with an even number of
+minus signs; norm $8$), which by Remark~\ref{rem:placement} carries
+the same bridge.  The provable core is formalized in
+\texttt{QuarticHalf.lean}.
+
+\subsection{The degree bookkeeping}
+The exponents of $W(E_8)$ are
+$\Exp(E_8)=\{1,7,11,13,17,19,23,29\}$, the totatives of the Coxeter
+number $h=30$ \cite{Bou68}.  The character $\chi_{-4}$ (residue mod
+$4$) splits them: the exponents $\equiv3\bmod4$ are $\{7,11,19,23\}$,
+and shifted by $+1$,
+\[
+\{7,11,19,23\}+1=\{8,12,20,24\}=\Deg(G_{31}),
+\]
+the degree quadruple of the rank-$4$ complex reflection group
+$G_{31}$ in the Shephard--Todd classification \cite{ST54,LT09}.  Both
+the split sum and its complement sum equal
+$7+11+19+23=1+13+17+29=60$, the number of mirror lines of $G_{31}$,
+and $8\cdot12\cdot20\cdot24=46080=|G_{31}|$.  Equivalently, the
+degrees $\Deg W(E_8)=(2,8,12,14,18,20,24,30)$ split mod $4$ into the
+$G_{31}$ half $\{8,12,20,24\}$ ($\equiv0$) and the complement
+$\{2,14,18,30\}$ ($\equiv2$).  Conceptually this is Springer's theory
+of regular elements \cite{Spr74}: $J$ is a $\zeta_4$-regular element
+of $W(E_8)$ (it acts freely on the roots, so its $i$-eigenspace
+contains regular vectors), and the centralizer of $J$ acts on
+$V^{1,0}=\ker(J-i)\subset\C^8$ ($\dim_\C=4$) as the reflection group
+with degrees the $W(E_8)$-degrees divisible by $4$ --- that is,
+$G_{31}$.  The $60$ mirror lines of this action are spanned by the
+$60$ Gaussian root lines of Theorem~\ref{thm:census}(v), and the
+probe verifies exactly that the $60$ Hermitian reflections in these
+lines are involutions permuting the $240$ roots (check II3.1).
+
+\subsection{The restriction theorem}
+For $d\ge1$ let $F_d(x)=\sum_{\alpha}\ip\alpha x^d$, summed over the
+$240$ roots, and let $F_d|$ denote the restriction to $V^{1,0}$,
+computed in the holomorphic weights
+$\ip\alpha{b_k}$, $b_k=e_{2k}-ie_{2k+1}$.  Write
+$q(x)=\ip xx$.
+
+\begin{theorem}[quartic invariant restriction, honestly layered]
+\label{thm:quartic}
+\begin{enumerate}
+\item[(a)] \emph{(Vanishing half: true but trivial.)}  For every
+$d\not\equiv0\bmod4$, $F_d|=0$ identically.  Proof: the weight law
+$W(J\alpha)=-i\,W(\alpha)$ holds for all $240$ roots, so each
+$\mu_4$-orbit $\{\alpha,J\alpha,-\alpha,-J\alpha\}$ contributes
+$t^d\bigl(1+(-i)^d+(-1)^d+i^d\bigr)=0$; the orbit factor vanishes if
+and only if $d\not\equiv0\bmod4$.  This proves the vanishing of the
+degrees $\{2,14,18,30\}$ --- but equally of $6,10,22,26$: the pattern
+is $\mu_4$-trivial and carries no $G_{31}$ content.
+\item[(b)] \emph{(Isotropy layer: still no $G_{31}$ content.)}
+$V^{1,0}$ is $q$-isotropic, and the symbolic $8$-variable identities
+\[
+f_4=576\,q^2,\qquad f_6=1920\,q^3
+\]
+hold for the (doubled) root power sums --- $W(E_8)$ has no basic
+invariant in degrees $4,6$ --- so $F_4|=F_6|=F_{10}|=0$ on \emph{any}
+$q$-isotropic subspace, whether or not the complex structure is
+root-compatible (the degree-$10$ case because every degree-$10$
+invariant is a combination of $q^5$ and $q f_8$).
+\item[(c)] \emph{(The load-bearing content.)}  The restrictions
+$F_8|,F_{12}|,F_{20}|,F_{24}|$ are nonzero (exact-point evaluation),
+invariant under all $60$ Hermitian reflections and under
+$\sigma$ and $J$, and \emph{algebraically independent} (exact Jacobian
+$\neq0$).  Since their degrees $(8,12,20,24)$ multiply to
+$46080=|G_{31}|$, Chevalley's theorem \cite{Che55,LT09} makes them a
+system of \emph{basic invariants} of $G_{31}$: the restriction of the
+$W(E_8)$-invariant ring to $V^{1,0}$ generates the full
+$G_{31}$-invariant ring.
+\item[(d)] \emph{(Jacobian mirror factorization.)}
+$\deg\Jac(F_8|,F_{12}|,F_{20}|,F_{24}|)=\sum(d_i-1)=60$, the number
+of mirror lines; the Jacobian vanishes at exact generic points on
+each of the $60$ mirrors and is nonzero off them, consistent with the
+standard factorization $\Jac=c\prod_{60}(\text{mirror forms})$
+\cite[Ch.~9]{LT09} --- the full symbolic degree-$60$ expansion was
+not performed and is recorded as a named residual.
+\end{enumerate}
+\end{theorem}
+
+The certification levels are: (a) is proved symbolically (probe
+II2.1--II2.2; Lean theorems \texttt{weight\_pair\_J},
+\texttt{orbit\_factor\_iff}, \texttt{orbit\_powersum\_vanishes} over
+$\C$, with the mod-$4$ degree bookkeeping
+\texttt{deg\_we8\_mod\_four\_split}).  In (b), $f_4=576\,q^2$ is a
+kernel-checked polynomial identity over \emph{any} commutative ring,
+assembled from the two explicit root blocks ($112$ D8-type roots
+contributing $448\sum x_i^4+384\sum_{i<j}x_i^2x_j^2$ and $128$ spinor
+roots contributing $384\,q^2-256\sum x_i^4$; Lean theorems
+\texttt{quartic\_d8\_block}, \texttt{quartic\_spinor\_block},
+\texttt{quartic\_powersum}), and $F_4|=0$ follows by the isotropy
+collapse $1+(-i)^2=0$ (\texttt{holomorphic\_isotropy},
+\texttt{quartic\_restriction\_vanishes}); $f_6=1920\,q^3$ and the
+all-$35$-coefficients check of $F_4|$ are exact symbolic computations
+in the probe (II2.3, II2.5).  In (c), nonvanishing is rigorous by a
+nonzero exact value at the Gaussian point
+$z=(-3+3i,\,-3+2i,\,-3+2i,\,-3)$ for all
+$d\in\{8,12,16,20,24,28\}$ (II2.6 --- honestly including the
+non-degrees $16,28$: nonvanishing alone is generic mod-$4$ behaviour;
+the $G_{31}$ content is invariance $+$ independence); invariance is
+exact at a $4\Z[i]$-point for all $60$ reflections and at $3$ exact
+points for each clock generator (II3.2); independence is the exact
+Jacobian at $3$ exact random points off all mirrors, with $10$ small
+integer points honestly rejected because they landed \emph{on}
+mirrors, where the Jacobian must vanish (II3.3).  In (d) the mirror
+vanishing is verified at $2$ exact generic points on each of the
+$60$ mirrors, $60/60$ (II3.5).  The generation statement ``the $60$
+reflections generate $G_{31}$'' is cited (Springer theory
+\cite{Spr74,LT09}; repository module \texttt{v634}), not re-proved.
+
+\subsection{Must-fail controls}
+A structure claim needs controls that destroy it.  Four are run
+(probe II4, all firing as demanded):
+\begin{itemize}
+\item[(0)] \emph{Honest negative first.}  The natural candidate
+control --- flipping the orientation of one pair,
+$J'=S_7JS_7$ --- does \emph{not} fire: $J'=J\circ S_{67}$ with the
+even sign flip $S_{67}\in W(D_8)\subset W(E_8)$, so $J'$ preserves
+all $240$ roots.  No signed-permutation complex structure can break
+root compatibility; a genuine control must leave the integral
+orthogonal group.
+\item[(a)] $J'=RJR^{\mathsf T}$ with $R$ the exact rational
+$(3,4,5)$-rotation crossing two $\mu_4$ pairs: an orthogonal complex
+structure ($J'^2=-1$) that preserves only $24/240$ roots.  The
+trivial layers persist ($F'_2=F'_4=F'_6=F'_{10}=0$: isotropy and
+$q$-powers, exactly as (b) predicts), but the informative half
+breaks: $F'_d\neq0$ for all $d\in\{14,18,22,26,30\}$.  The vanishing
+pattern of Theorem~\ref{thm:quartic}(a) is a property of
+\emph{root-compatible} complex structures, not of orthogonal complex
+structures per se.
+\item[(b)] The root-preserving twin $J''=S_{57}JS_{57}$
+($240/240$ roots kept): the full vanishing pattern survives on
+$\ker(J''-i)$ --- the theorem is about the $W(E_8)$-conjugacy class
+of $J$, not one matrix.
+\item[(c)] A random non-isotropic $4$-space: already
+$F_2=-56880-61440\,i\neq0$ --- even the first layer needs an
+orthogonal complex structure.
+\end{itemize}
+On the bridge side (probe I4): the naive (non-equivariant) placement
+keeps the $\Z[i]$-module and the census but loses the
+$\sigma$-semantics --- $\sigma$ maps the codeword lift
+$(0,0,0,1,1,1,1,0)$ off the lattice, so step (iii) of
+Theorem~\ref{thm:info} is \emph{undefined} there (I4.1--I4.2);
+$16$ of the $30$ placements are not even $\pi_J$-invariant, and for
+those no $\Z[i]$-module exists at all (witness root
+$(-1,-1,-1,0,-1,0,0,0)$ with $J$-image off the lattice, I4.3); and on
+the \emph{other} unimodular Hermitian $\Z[i]$-lattice of rank $4$,
+the standard $\Z[i]^4$, the census trivializes: only $16$ minimal
+vectors, occupying $4$ of the $15$ nonzero classes with $4$ each,
+$11$ classes empty --- no $240$, no $15\times16$, no
+$\mathrm{RM}(1,3)$ (I4.4).  The bridge needs $E_8$.
+
+\section{Machine verification}\label{sec:verification}
+
+\subsection{The two probes}
+\begin{center}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lccl@{}}
+\toprule
+probe & checks & verdict & arithmetic\\
+\midrule
+\texttt{gaussian\_code\_bridge\_probe.py} & $26/26$ &
+\textsc{gaussian-code-bridge-exact} &
+exact $\Z$/\texttt{Fraction}; SNF via \texttt{sympy}\\
+\texttt{quartic\_half\_probe.py} & $22/22$ &
+\textsc{quartic-half-alive} &
+exact $\Z[i]$/$\mathbb Q(i)$; no floats\\
+\bottomrule
+\end{tabular}
+\end{center}
+Both probes cross-validate their own machinery: the class map is
+computed twice (Hermite-normal-form labels versus the direct
+membership test $(1-J)(x-y)/2\in L$, $300$ random cases, I1.5), the
+census is re-run in a second coordinate model (I5.1), and the
+Jacobian points are rejection-sampled off the mirrors with the
+rejections printed (II3.3).  Both files are promoted unchanged to the
+permanent verification suite of the repository \cite{TFPT} as the
+modules \texttt{v689\_gaussian\_code\_bridge} and
+\texttt{v690\_quartic\_half}.
+
+\emph{Dated pointer (2026-08-07).}  The four roles of the ramified
+prime $\pi_2=1+i$ documented across the program --- the norm-doubling
+/ empty-zero-class census of this note (Theorem~\ref{thm:census}),
+the $4$-bit address $L/(1+i)L\cong\mathbb F_2^4$, the non-split jet
+$L/2L$ over $\Z[i]/(2)\cong\mathbb F_2[\epsilon]/(\epsilon^2)$ with
+deck $=1+\epsilon$ (repository module \texttt{v803}), and the
+metaplectic lift $\zeta_8=(1+i)/\sqrt2$ with the two-qubit Clifford
+coset (\texttt{v783}/\texttt{v798}) --- have since been re-certified
+from scratch as \emph{one} machine-checked ladder in the suite module
+\texttt{v833\_gaussian\_ramification\_ladder} ($33/33$ exact,
+verdict \textsc{ramification-ladder-exact}); this note's census is
+rebuilt there unchanged.
+
+\subsection{The Lean layer}
+The algebraic cores are formalized in two Lean~4 modules over
+Mathlib \cite{Moura21,mathlib}, committed to the repository's Lean
+project (\texttt{lake build} green, no \texttt{sorry}, no
+\texttt{native\_decide}): \texttt{GaussianCodeBridge.lean}
+($44$ theorems) and \texttt{QuarticHalf.lean} ($21$ theorems), $65$
+kernel-checked theorems in total.  The finite certificates are proved
+by the kernel-checked \texttt{decide} tactic over explicit integer
+data --- notably the code-equivariance of $\Cst$, the norm-doubling
+Gram identity $(1+J)^{\mathsf T}(1+J)=2\cdot\mathbf1$, the full Smith
+certificate with bidirectionally unimodular transforms, the census of
+the explicit $240$ root coordinate vectors (pairwise distinct, norm
+$4$, in the code mod $2$; zero class empty; every nonzero label hit
+exactly $16$ times), the $\mu_4$- and $\sigma$-transport certificates
+with the explicit label-block matrix $M_{\bar\sigma}$, the family
+$3$-cycle with anchor, and the coordinate-class law
+$\mathrm{label}(2e_0)=F_1+F_2+F_3$.  The polynomial identity
+$f_4=576\,q^2$ is proved by \texttt{ring} over an arbitrary
+commutative ring after unfolding the explicit $240$-element root
+list.
+
+\emph{Honest scope of the formal layer.}  The quotient $L/(1+i)L$ is
+not built as a Mathlib quotient module; the Lean statements concern
+the explicit Smith residue map and explicit matrices, and the
+standard SNF argument identifying the quotient is cited, not
+formalized.  Completeness of the $240$-element root list (that these
+are \emph{all} norm-$4$ vectors) is the probe's exhaustive-enumeration
+job, re-used, not re-proved, in Lean.  The identification of
+$\bar\sigma$ with the $\mathrm{RM}(1,3)$ family permutation up to the
+order-$18$ gauge, and the entire $G_{31}$ layer of
+Theorem~\ref{thm:quartic}(c)--(d) beyond $f_4=576\,q^2$ and the
+$\mu_4$-orbit mechanism, rest on the probes' exact-point
+computations plus the cited Chevalley and factorization theorems.
+
+\section{Scope and outlook}\label{sec:scope}
+
+What is established is finite algebra, fully certified: the pair
+$(E_8,\mu_4)$ carries a canonical four-bit quotient on which the
+$240$ roots equidistribute as $15$ messages $\times$ $16$ roots
+(${}=4$ Gaussian lines) each, with a distinguished coordinate block;
+the clock $\sigma$ equips the quotient with the family/anchor
+semantics of the code that built the lattice; and the holomorphic
+$\mu_4$ shadow of the $W(E_8)$ invariant ring is exactly the
+$G_{31}$ invariant ring, with the vanishing half of the degrees typed
+honestly as the trivial $\mu_4$-orbit factor.  We find the
+combination noteworthy: Construction A uses the $[8,4,4]$ code as
+\emph{fiber} data, and the Gaussian reduction returns the same code's
+four-bit \emph{message} space as an intrinsic invariant of the
+lattice-with-clock, with the fibers redistributed across the classes
+(Remark~\ref{rem:notmod2}).  Within the verification program that
+produced it, this note is typed as structure --- an information layer
+of the $E_8$ compiler datum --- and moves no status marker.  No claim
+is made beyond the stated algebra: no physical readout, no arithmetic
+consequence, and nothing about any open conjecture is asserted or
+implied.
+
+\small
+\begin{thebibliography}{9}
+\bibitem{CS99} J.~H.~Conway and N.~J.~A.~Sloane,
+\emph{Sphere Packings, Lattices and Groups}, 3rd ed.,
+Grundlehren der mathematischen Wissenschaften 290, Springer, New York
+(1999).
+\bibitem{MS77} F.~J.~MacWilliams and N.~J.~A.~Sloane,
+\emph{The Theory of Error-Correcting Codes}, North-Holland,
+Amsterdam (1977).
+\bibitem{ST54} G.~C.~Shephard and J.~A.~Todd,
+\emph{Finite unitary reflection groups},
+Canad.\ J.\ Math.\ 6 (1954), 274--304.
+\bibitem{Che55} C.~Chevalley,
+\emph{Invariants of finite groups generated by reflections},
+Amer.\ J.\ Math.\ 77 (1955), 778--782.
+\bibitem{Spr74} T.~A.~Springer,
+\emph{Regular elements of finite reflection groups},
+Invent.\ Math.\ 25 (1974), 159--198.
+\bibitem{LT09} G.~I.~Lehrer and D.~E.~Taylor,
+\emph{Unitary Reflection Groups}, Australian Mathematical Society
+Lecture Series 20, Cambridge University Press, Cambridge (2009).
+\bibitem{Bou68} N.~Bourbaki,
+\emph{Groupes et alg\`ebres de Lie, Chapitres 4--6},
+Hermann, Paris (1968).
+\bibitem{Moura21} L.~de~Moura and S.~Ullrich,
+\emph{The Lean 4 theorem prover and programming language},
+in: Automated Deduction -- CADE 28, Lecture Notes in Computer
+Science 12699, Springer (2021), 625--635.
+\bibitem{mathlib} The mathlib Community,
+\emph{The Lean mathematical library},
+in: Proc.\ 9th ACM SIGPLAN Int.\ Conf.\ on Certified Programs and
+Proofs (CPP 2020), ACM (2020), 367--381.
+\bibitem{TFPT} TFPT repository
+(\url{https://fixpoint-theory.com}): discovery probes
+\texttt{experiments/tfpt-discovery/gaussian\_code\_bridge\_probe.py}
+and \texttt{quartic\_half\_probe.py}; suite modules
+\texttt{v689\_gaussian\_code\_bridge},
+\texttt{v690\_quartic\_half} (and the predecessor modules
+\texttt{v626}, \texttt{v634}, \texttt{v638} for the Construction-A
+code layer, the $G_{31}$ structure and the equivariant placement);
+Lean~4 proof modules
+\texttt{lean4-carrier-rigidity/TfptCarrier/GaussianCodeBridge.lean}
+and \texttt{QuarticHalf.lean} (2026).
+\end{thebibliography}
+
+\end{document}

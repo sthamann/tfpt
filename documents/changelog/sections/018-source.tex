@@ -1,0 +1,368 @@
+\subsection*{2026-06-18 (4D QFT: the $S_{\mathrm{pert}}\to S_{\mathrm{phys}}$ LSZ bridge $+$ one-loop unitarity, \texttt{v278})}
+\begin{itemize}
+\item \textbf{\texttt{v278\_lsz\_bridge\_unitarity.py} (\texttt{QFT4D.SPERT.04}) connects the perturbative
+  S-matrix to the physical asymptotic one and verifies one-loop unitarity.} \mE\ LSZ bridge: the EG
+  $T$-products of $S_{\mathrm{pert}}$ (\vref{v269}) \emph{are} the OS Wick-rotated correlators (\vref{v240}), so
+  amputate$+$on-shell-residue gives $S_{\mathrm{pert}}\xrightarrow{\mathrm{LSZ}}S_{\mathrm{phys}}$; \mC\ the gap
+  $\Delta{=}6\log(3/2){>}0$ gives Haag--Ruelle asymptotic states. \mE\ \emph{one-loop optical theorem}: the
+  bubble discontinuity $\operatorname{Im}B(s)/\pi=x_+{-}x_-=\sqrt{1-4m^2/s}$ \emph{exactly} $=$ the two-body
+  phase space, so $2\operatorname{Im}M=\sum\!\int d\Pi|M|^2$ (cutting rule) holds --- the matter$+$gauge sector
+  is unitary, with the cut turning on at the physical two-particle threshold. \mO\ the gravity sector's Stelle
+  ghost (\vref{v269}/\texttt{rt\_F}) is non-unitary $\to$ \texttt{QG.AMB.01}. Exact core mirrored in Wolfram
+  ($273/273$). Build green, \texttt{AUDIT OK}.
+\end{itemize}
+
+\subsection*{2026-06-18 (QG.AMB.01 Tier-B made concrete: the seam-Calder\'on $\to(E_8)_1$ match, \texttt{v277})}
+\begin{itemize}
+\item \textbf{\texttt{v277\_seam\_calderon\_e8\_match.py} (\texttt{QGAMB.TIERB.01}) reduces Tier-B to ONE bit.}
+  \mE\ the full $(E_8)_1$ matching target is computed and matches: $c{=}8$, $\det\mathrm{Cartan}(E_8){=}1$, the
+  holomorphic character $E_4/\eta^8{=}j^{1/3}{=}q^{-1/3}(1{+}248q{+}\dots)$ with a single primary and exactly
+  $248{=}\dim E_8$ weight-1 currents ($240$ roots). \mE\ the discriminator is holomorphy --- the $c{=}8$
+  counterexample $(D_8){=}SO(16)_1$ has $\det\mathrm{Cartan}{=}4$ (non-holomorphic), so the one condition is
+  $|\det K|{=}1$. \mC\ the seam side matches via \vref{v276} (flat $\tau{=}i$) $+$ \vref{v260} (Kummer/K3).
+  \mO\ residual $=$ the single holomorphy bit; reduced, not closed. Exact core mirrored in Wolfram
+  ($272/272$). Build green, \texttt{AUDIT OK}.
+\end{itemize}
+
+\subsection*{2026-06-18 (QGEO.SYM.01 narrowed: the flat pillowcase closes the commutator to all orders, \texttt{v276})}
+\begin{itemize}
+\item \textbf{\texttt{v276\_qgeo\_flat\_closes\_commutator.py} (\texttt{QGEO.SYM.03}) collapses the bedrock
+  to ONE geometric postulate.} The state-level residual the whole bedrock rests on is the operator equation
+  $[\rho,H]{=}0$. \mE\ if $H=f(\Delta_{\mathrm{flat}})$ and the order-4 deck $\rho$ ($z{\mapsto}iz$) is a
+  flat-$\tau{=}i$ isometry, then $[\rho,\Delta]{=}0\Rightarrow[\rho,H]{=}0$ \emph{exactly}, to all orders
+  (verified on the discretised square torus: $\rho^4{=}I$, $[\rho,\Delta]{=}0$, $[\rho,\sqrt{-\Delta}]{=}0$;
+  generic non-isometry fails) --- upgrading the leading-order \vref{v198}/\vref{v201} to the full $H$. \mC\
+  $\tau{=}i$ is forced by order-4 ($j{=}1728$; hexagonal $j{=}0$ is order-6, excluded). \mO\ \texttt{QGEO.SYM.01}
+  therefore collapses to the single statement ``the raw seam IS the flat $\tau{=}i$ pillowcase quasi-free
+  state'' --- one human constructive-QFT proof, or an honest axiom. Narrows, does not close. Build green,
+  \texttt{AUDIT OK}.
+\end{itemize}
+
+\subsection*{2026-06-18 (Red Team Target F --- adversarial audit of the v269--v275 round, \texttt{rt\_F})}
+\begin{itemize}
+\item \textbf{\texttt{redteam/rt\_F\_qft4d.py} (\texttt{REDTEAM.F.01}) stress-tests the just-published round}
+  (the perturbative $S_{\mathrm{pert}}$ layer, the PMNS Jarlskog, the $\nu$-scale, the over-determination,
+  the \texttt{QG.AMB.01} roadmap). \textsc{Survives (narrowed)}: two attacks land and are folded in.
+  \textbf{(1)} the gravity $R^2/$Weyl$^2$ sub-sector is power-counting renormalizable but \emph{non-unitary}
+  (the Stelle ghost: the four-derivative propagator $1/(p^2(p^2+M^2))$ has a negative-residue massive spin-2
+  mode), so $S_{\mathrm{pert}}$ is unitary for the matter$+$gauge sector only --- which is exactly why the
+  nonperturbative \texttt{QG.AMB.01} is the real frontier (caveat added to \vref{v269}). \textbf{(2)} the
+  $0.11\%$ anchor over-determination is conditional on the $\Lambda$-branch readout (\texttt{LAMBDA.BRANCH.01},
+  \mC), the gravity route being unconditional (caveat added to \vref{v274}). Added as Target F in
+  \texttt{tfpt\_5\_redteam} + the red-team table; \texttt{run\_redteam.py} green.
+\end{itemize}
+
+\subsection*{2026-06-18 (Zenodo release 5.2 (rev 191) --- the perturbative 4D-QFT layer + scale closure, v269--v275)}
+\begin{itemize}
+\item \textbf{Published to Zenodo.} Version \texttt{5.2 (rev 191)} of the ten-PDF document set was published
+  as a new version of the TFPT deposit --- record \texttt{20743347}, DOI \texttt{10.5281/zenodo.20743347}.
+  This release carries the perturbative 4D-QFT layer (the Epstein--Glaser $S_{\mathrm{pert}}$ skeleton
+  \vref{v269}, the concrete one-loop quartic \vref{v271} and gauge $\beta$-coefficients \vref{v273}), the
+  complete complex PMNS matrix and leptonic CP strength \vref{v270}, the honest absolute $\nu$-mass-scale
+  typing \vref{v272}, the over-determination of the single mass anchor \vref{v274}, and the \texttt{QG.AMB.01}
+  obligation roadmap \vref{v275}. Suite \texttt{273} modules (highest ID \texttt{v275}; v186/v226 skipped),
+  Wolfram \texttt{271/271}, \texttt{run\_all.py} green, \texttt{AUDIT OK}, \texttt{npm} build clean. The Zenodo
+  description (\texttt{zenodo\_description.html}) and the public website were synced in the same release.
+\end{itemize}
+
+\subsection*{2026-06-18 (scale + frontier round: $\nu$-mass scale, EG gauge running, over-determination, QG roadmap, \texttt{v272}--\texttt{v275})}
+\begin{itemize}
+\item \textbf{\texttt{v272\_nu\_mass\_scale.py} (\texttt{FLAV.NUSCALE.01}) types the absolute neutrino-mass scale
+  honestly} (no fabricated $\Sigma m_\nu$ --- would contradict the \vref{v184} firewall). \mE\ the absolute
+  scale reduces to \emph{one} seesaw ratio $m_3=(y_\nu v_{\mathrm{EW}})^2/M_R$ (one UV input, like $v_{\mathrm{geo}}$,
+  \vref{v153}); \mC\ the observed $m_3{=}0.050$ eV with the TFPT PS$\to$GUT window $M_R\in[4.2{\times}10^{13},
+  2.4{\times}10^{15}]$ GeV (\vref{v249}) needs $y_\nu\in[0.26,2.0]$ --- $O(1)$, no tuning; \mO\ $M_R$ is not a clean
+  $\Mbar$ power, so the absolute value stays open; \mX\ the NO floor $\Sigma m_\nu{=}0.0586$ eV is the cosmological
+  kill test. Closes the PMNS bookkeeping (the last \mO\ is one seesaw ratio).
+\item \textbf{\texttt{v273\_eg\_gauge\_running.py} (\texttt{QFT4D.SPERT.03}) derives the SM one-loop $b_i$ via the EG
+  gauge self-energy.} \mE\ the gauge 2-point is the same scaling-degree-4 extension as the quartic (\vref{v271}),
+  giving $(b_1,b_2,b_3)=(41/10,-19/6,-7)$ from the carrier/SM content (the same $41$ as the carrier algebra,
+  \vref{v159}); \mO\ two-loop $+$ all-order stay open. Exact $b_i$ mirrored in Wolfram.
+\item \textbf{\texttt{v274\_scale\_overdetermination.py} (\texttt{SCALE.OVERDET.01}) shows the single mass anchor is
+  over-determined.} \mE/\mC\ two independent routes to $\Mbar$ agree --- gravity $(8\pi G)^{-1/2}=2.4353{\times}10^{18}$
+  GeV and cosmology (the compiler prediction $\rho_\Lambda/\Mbar^4=(3/4\pi^2)e^{-2\alpha^{-1}}$ with
+  $\rho_\Lambda^{1/4}=2.24$ meV) $=2.438{\times}10^{18}$ GeV, to $0.11\%$; the seam being a conformal $c{=}8$ CFT
+  makes ``no derivable absolute scale'' a theorem, not a gap. Sharpens \vref{v153}/\vref{v78}.
+\item \textbf{\texttt{v275\_qgamb\_roadmap.py} (\texttt{QGAMB.ROADMAP.01}) gives the open gate \texttt{QG.AMB.01} a
+  module.} \mE\ Tier A gap decoupling ($\Delta_{\mathrm{eff}}=1.648>0$, \vref{v36}/\vref{v76}); \mE/\mC\ Tier B
+  reduction to the holomorphic $(E_8)_1$ boundary net (\vref{v77}); \mC\ the perturbative layer in hand
+  (\vref{v269}/\vref{v271}/\vref{v273}); \mO\ the nonperturbative ambient measure stays the one structural frontier.
+\item Suite \texttt{271/271} Wolfram, \texttt{run\_all} green, \texttt{AUDIT OK}, build green.
+\end{itemize}
+
+\subsection*{2026-06-18 (4D QFT: a concrete Epstein--Glaser one-loop quartic renormalization, \texttt{v271})}
+\begin{itemize}
+\item \textbf{\texttt{v271\_eg\_oneloop\_quartic.py} (\texttt{QFT4D.SPERT.02}) takes the \vref{v269} $S_{\mathrm{pert}}$
+  skeleton from ``exists'' to an actual EG number} (no path integral). \mE\ the first renormalization is the
+  order-2 product $T_2$; the massless propagator has scaling degree $\mathrm{sd}{=}2$ in $d{=}4$, the one-loop
+  bubble has $\mathrm{sd}{=}4{=}d$, so $\omega{=}\mathrm{sd}{-}d{=}0$ $\Rightarrow$ exactly one logarithmic local
+  counterterm ($C(\omega{+}d,d){=}1$, finite, no infinite tower); the loop factor $\Omega_3/(2(2\pi)^4)=1/(16\pi^2)$
+  exactly --- the \emph{same} factor that normalises the spectral-action $a_4$ geometric quartic. \mC\ the
+  $\phi^4$ one-loop $\beta_\lambda=3\lambda^2/(16\pi^2)$ (symmetry $3$ $=$ $s,t,u$ channels), EG initial condition
+  $\lambda_\Phi(\mathrm{UV})=1/(16\pi^2)$. \mO\ order-2/one-loop only; the all-order EG construction and the
+  nonperturbative measure \texttt{QG.AMB.01} stay open. Exact core mirrored in Wolfram ($270/270$). \mE\ build
+  green, \texttt{AUDIT OK}.
+\end{itemize}
+
+\subsection*{2026-06-18 (PMNS: the complete complex matrix + the leptonic Jarlskog CP strength, \texttt{v270})}
+\begin{itemize}
+\item \textbf{\texttt{v270\_pmns\_jarlskog\_assembly.py} (\texttt{FLAV.PMNS.03}) assembles the four TFPT
+  channels} ($\sin^2\theta_{12}{=}\tfrac13{-}\tfrac{\phiz}2$, $\sin^2\theta_{23}{=}\tfrac12$,
+  $\sin^2\theta_{13}{=}\phiz e^{-5/6}$, $\delta{=}4\pi/3$) \textbf{into one exactly-unitary complex PMNS
+  matrix and derives the leptonic CP strength.} \mE\ $U=R_{23}U_{13}(\delta)R_{12}$ is unitary; \mC\ the
+  Jarlskog $J_{\mathrm{PMNS}}=\Im(U_{e1}U_{\mu2}U_{e2}^{*}U_{\mu1}^{*})=-0.02965$ ($J_{\max}=0.03424$) is a
+  \emph{derived} number, the leptonic analogue of the CKM $J$ (\vref{v88}); \mC\ data: $J_{\max}$ vs NuFIT\,5.2
+  $0.0332$ ($\sim3\%$), $J$ vs best fit $-0.026$, the negative CP-violating sign reproduced. \mO\ $\delta$ is
+  the $\mu_6$/triality phase (assembled, not from $M_\nu/D_F$) and the absolute $\nu$-mass scale stays open ---
+  closes the CP-\emph{strength} readout, not the phase origin nor the scale. \mE\ build green, \texttt{AUDIT OK}.
+\end{itemize}
+
+\subsection*{2026-06-18 (4D QFT: the perturbative S-matrix as an Epstein--Glaser / pAQFT skeleton, \texttt{v269})}
+\begin{itemize}
+\item \textbf{\texttt{v269\_spert\_paqft\_skeleton.py} (\texttt{QFT4D.SPERT.01}) builds the honest middle
+  layer of the three-layer S-matrix} (the first concrete 4D-QFT step beyond the spectral-action contract),
+  \emph{not} a nonperturbative closure. \mE\ three distinct layers: $S_{\mathrm{top}}$ (2d DHR braiding
+  $|M|{=}1$, statistics, \vref{v243}), $S_{\mathrm{pert}}$ (4d Epstein--Glaser/BV S-matrix of the spectral
+  action), $S_{\mathrm{phys}}$ (LSZ on the OS Wightman functions, \vref{v240}). \mE\ the spectral-action
+  $a_4$ interaction is power-counting renormalizable (all operators dim $\le4$; $7$ marginal $+\,3$ relevant,
+  a finite counterterm basis), so \mC\ by the Epstein--Glaser theorem the perturbative S-matrix exists order
+  by order (causal factorisation $+$ finite local extension; no path integral, no UV divergences). \mC\ the
+  gap $\Delta=6\log(3/2)$ gives an IR-safe adiabatic limit ($S_{\mathrm{pert}}\to S_{\mathrm{phys}}$ via LSZ).
+  \mO\ perturbative only --- the ambient measure \texttt{QG.AMB.01} stays open, the canonical 4d reading
+  remains boundary-only (\vref{v265}). \mE\ build green, \texttt{AUDIT OK}.
+\end{itemize}
+
+\subsection*{2026-06-18 (PMNS: the reactor-angle exponent closed as the carrier hypercharge trace, \texttt{v268})}
+\begin{itemize}
+\item \textbf{\texttt{v268\_theta13\_carrier\_trace.py} (\texttt{FLAV.TH13.01}) closes the $\theta_{13}$
+  exponent origin.} The value $\sin^2\theta_{13}=\phiz e^{-5/6}=0.0231$ was already checked (\vref{v16}); now
+  the exponent is exact: \mE\ $\gamma=5/6=\mathrm{tr}_E Y^2$, the carrier hypercharge-squared trace
+  ($Y=\mathrm{diag}(-\tfrac13,-\tfrac13,-\tfrac13,\tfrac12,\tfrac12)$, roots of $6Y^2-Y-1=0$; complement
+  $\tfrac16$ the neutrino ratio). \mE\ own channel: the $\mu\tau$-breaking $\varepsilon=\tfrac34\phiz$
+  induces only ${\sim}1.6\times10^{-3}\ll0.023$, so $\theta_{13}$ is a separate carrier-trace channel ---
+  correcting the tempting (and wrong) ``$\theta_{13}$ from $M_\nu$'' route flagged by the new script atlas.
+  \mO\ the CP magnitude and the absolute $\nu$-mass scale remain the open PMNS items. Exact core mirrored in
+  Wolfram. \mE\ build green, \texttt{AUDIT OK}.
+\end{itemize}
+
+\subsection*{2026-06-18 (Infrastructure: a generated causal ``script atlas'' so the suite is navigable at a glance)}
+\begin{itemize}
+\item \textbf{\texttt{verification/make\_script\_atlas.py} generates \texttt{verification/script\_atlas.md}} ---
+  a single grouped, dependency-aware view fusing the existing single sources (\texttt{status\_ledger.csv} for
+  claim$\to$status$\to$dependencies$\to$supersedes, \texttt{script\_registry.csv}/\texttt{script\_clusters.csv}
+  for the theme grouping, \texttt{docs\_map.csv} for where each script is cited). It lists every registered
+  script by cluster with its claim(s), four-class marker, one-liner, resolved dependencies and citing papers,
+  plus a \emph{supersede map} (which old claim each new one replaces) and a dependency/most-depended-on
+  overview --- the antidote to duplicating work or forgetting superseded results. No new data, a re-projection
+  only; wired into \texttt{bash build.sh gen}. \mE\ build green, \texttt{AUDIT OK}.
+\end{itemize}
+
+\subsection*{2026-06-18 (The bedrock in its minimal-axiom form: a rigidity theorem for \texttt{QGEO.SYM.01}, \texttt{v267})}
+\begin{itemize}
+\item \textbf{\texttt{v267\_qgeo\_rigidity\_minimal\_axiom.py} (\texttt{QGEO.SYM.02}) sharpens the one bedrock
+  postulate to its irreducible kernel} (it does \emph{not} close it). \mE\ the \emph{single} bare statement
+  ``the seam admits the carrier order-$4$ clock as a conformal symmetry permuting its four marks''
+  ($=\omega\circ\rho=\omega$) forces \emph{everything}: an order-$4$ M\"obius orbit $\{a,ia,-a,-ia\}$ has
+  cross-ratio $2$ independent of $a$; cross-ratio $2\Leftrightarrow j{=}1728$ (only $\lambda\in\{-1,\tfrac12,2\}$)
+  $\Leftrightarrow$ the order-$4$ CM automorphism on $y^2{=}x^3{-}x$; and the unique flat pillowcase metric,
+  mark-locality, $[\rho,\Lambda]{=}0$ and $\omega\circ\rho{=}\omega$ all follow (\vref{v214}/\vref{v201}/\vref{v264}/\vref{v198}).
+  \mE\ neg controls: generic config $j\neq1728$ ($\Z_2$ only), hexagonal $j{=}0$ ($\Z_6$, order $6$) --- only
+  the square (order-$4$) realises the $\mu_4$ clock. \mC\ second, independent reason: $\{1,i,-1,-i\}$ over
+  $\mathbb Q$ with $j{=}1728$ (CM by $\Z[i]$), Belyi/dessins Galois-rigidity. \mO\ the bare order-$4$ symmetry stays
+  the one foundational postulate (like $c{=}$const) --- the \emph{reduction} is closed (axiom $\Rightarrow$
+  everything), the axiom is not. \mE\ build green, \texttt{AUDIT OK}.
+\end{itemize}
+
+\subsection*{2026-06-18 (Branch B decided: the explicit PS threshold model $+$ proton-decay window --- minimal content killed, $+(15,1,1)$ survives, Hyper-K decisive, \texttt{v266})}
+\begin{itemize}
+\item \textbf{\texttt{v266\_ps\_threshold\_proton.py} (\texttt{PS.PROTON.02}/\texttt{PS.THRESHOLD.02}) decides
+  branch B of the \vref{v265} fork.} The explicit two-step Pati--Salam thresholds give $d{=}6$
+  $\tau_p(p{\to}e^+\pi^0)$ (writes \texttt{ps\_threshold\_proton.json}): \mX\ the minimal $16$-Higgs content
+  ($M_{GUT}{\sim}2.4{\times}10^{15}$) gives $\tau_p{\sim}4.4{\times}10^{33}$ yr $<$ Super-K and is
+  \emph{killed} even at the high hadronic band; \mC\ the $E_8$-allowed $(15,1,1)$ [the single $45$] raises
+  $M_{GUT}{\sim}5.9{\times}10^{15}$ $\Rightarrow\tau_p{\sim}1.6{\times}10^{35}$ yr, proton-safe \emph{now};
+  \mX\ but that sits at the Hyper-K reach (${\sim}1.4{\times}10^{35}$ yr) --- a \emph{dated} kill test
+  decisive within the decade. So branch B is promoted from ``well-mannered candidate'' to
+  \emph{content-selected (must be $+(15,1,1)$), Hyper-K-decisive UV branch}; \mO\ structurally marginal
+  (only one $45$ in the hull, \vref{v247}) with an $O(3)$ $\tau_p$ band. Branch A (boundary-only) is
+  unchanged and canonical. \mE\ build green, \texttt{AUDIT OK}.
+\end{itemize}
+
+\subsection*{2026-06-18 (The 4D-QFT fork frozen as a branch policy: boundary-only canonical, Pati--Salam a falsifiable UV branch, SM-only GUT killed, \texttt{v265})}
+\begin{itemize}
+\item \textbf{\texttt{v265\_qft4d\_fork\_freeze.py} (\texttt{QFT4D.FORK.01}) turns the 4D-QFT fork from an open
+  ambiguity into a frozen decision tree} (\texttt{qft4d\_fork\_freeze.json}), no new physics. \textbf{A
+  (canonical):} boundary-only is the default 4D reading --- a 4D-GUT is \emph{not claimed by default}
+  ($E_8$ is the audit hull). \mX\ SM-only 4D-GUT unification is killed (1-loop: at the
+  $\alpha_1{=}\alpha_2$ scale $\alpha_3^{-1}$ off by ${\sim}5.6$, spread ${\sim}8.8$ at $2{\times}10^{16}$
+  GeV, re-deriving \vref{v246}) --- the canonical expectation, not a failure. \textbf{B (conditional):}
+  carrier-native Pati--Salam is a falsifiable UV branch only with the $E_8$-allowed content
+  $\{1,10,16,45\}$ (no $\mathbf{126}$, \vref{v247}), $\sin^2\theta_W{=}3/8$ (\vref{v248}), the $O(1)$
+  $\kappa{=}M_{PS}/M_s$ band (\vref{v249}/\vref{v253}), a threshold model and a proton-decay kill test
+  (\mX, no fake $\tau_p$ window; carrier gauging stays the contract). \mE\ a prose guard
+  (\texttt{QFT4D.NO\_OVERCLAIM.01}) forbids bare 4D over-claims and requires the scoped policy wording. New
+  ledger rows \texttt{QFT4D.BOUNDARY.DEFAULT.01}, \texttt{QFT4D.SMONLYGUT.01}, \texttt{PS.UVBRANCH.01},
+  \texttt{PS.THRESHOLD.01}, \texttt{PS.PROTON.KILL.01}. A fork-policy box added to
+  \texttt{tfpt\_research\_contracts}; \mE\ build green, \texttt{AUDIT OK}.
+\end{itemize}
+
+\subsection*{2026-06-18 (Three open-residual advances: the $F_{\mathrm{QCD}}$ solver, $M_\nu$ from $D_F$, and the raw-seam$\Rightarrow$mark-locality reduction, \texttt{v262}--\texttt{v264})}
+\begin{itemize}
+\item \textbf{\texttt{v262\_fqcd\_mp\_me.py} (\texttt{FR.MPME.02}) implements the one contract-only
+  $F_{\mathrm{transfer}}$ pipeline.} A real two-loop $\alpha_s$ solver runs $\alpha_s(M_Z){=}0.1179$ with
+  $n_f$ thresholds (carrier $b_3{=}-7$, \mE) to $\alpha_s(2\,\text{GeV}){\sim}0.30$ and
+  $\Lambda^{(3)}_{\overline{\rm MS}}{\sim}0.33$\,GeV; with the lattice bridge $C_p$ (external $O(1)$) and the
+  closed $m_e$ it reproduces $m_p/m_e{\sim}1824$ vs the measured $1836.15$ within the $\sim7\%$ external
+  budget. A \mC\ transfer reproduction (firewall: no compiler integer for $1836$), advancing
+  \texttt{FR.MPME.01} (\mO) to \texttt{FR.MPME.02} (\mC).
+\item \textbf{\texttt{v263\_mnu\_from\_df.py} (\texttt{FLAV.PMNS.02}) makes $M_\nu$ a seesaw operator of
+  $D_F$.} \mE\ $M_\nu=-m_D M_R^{-1} m_D^\top$ is symmetric, seesaw-suppressed and (for $\mu\tau$-symmetric
+  inputs) $\mu\tau$-symmetric; \mC\ it reproduces $\theta_{23}{=}45^\circ$ and
+  $\sin^2\theta_{12}{=}\tfrac13{-}\tfrac{\phiz}{2}$ (\vref{v9}) under the seam misalignment; \mO\
+  $\theta_{13}{=}0$ in the leading texture, the CP \emph{magnitude} ($240^\circ$) is the $\mu_6$/triality
+  phase (\vref{v231}/\vref{v233}), and $M_R$ is the free seesaw scale. An operator advance, not a closure
+  of full PMNS dynamics.
+\item \textbf{\texttt{v264\_raw\_seam\_marklocal.py} (\texttt{QGEO.ENERGY.03}) sharpens the bedrock.}
+  Composing \vref{v216}$+$\vref{v201}$+$\vref{v198} on the canonical pillowcase: the flat-pillowcase
+  curvature lives only at the $4$ marks, so the DtN sub-principal symbol is $\Z_4$-invariant (Fourier on
+  $4\Z$, FFT-verified), block-diagonal, and $[\rho,\Lambda]{=}0\Rightarrow\omega\circ\rho{=}\omega$ on this
+  metric. So the whole bedrock collapses to the single metric statement ``the raw RP seam carries the
+  uniformising flat pillowcase metric'' ($=$\texttt{QGEO.SYM.01}). A reduction/sharpening, \mO\ --- it does
+  \emph{not} prove the seam must carry that metric (negative control: curvature off the $\mu_4$ orbit breaks
+  the chain). Paper citations added in \texttt{tfpt\_4\_frontier}, \texttt{tfpt\_2\_standard\_model} and
+  \texttt{tfpt\_research\_contracts}. \mE\ \texttt{AUDIT OK}, build green.
+\end{itemize}
+
+\subsection*{2026-06-18 (Paper consistency pass: the closure ledger and the status/QFT sections updated for the Modular Spectral Closure, with an explicit ``what is \emph{not} closed'' line)}
+\begin{itemize}
+\item \textbf{Five paper sections that predated the \texttt{v238}--\texttt{v261} round are brought up to date}
+  (additive, no status marker moved). The \texttt{introduction} closure-ledger table and the
+  ``five questions'' item now carry a \emph{boundary QFT (Modular Spectral Closure)} row --- one relative
+  object $\mathsf{TFPT}_{\mathrm{QFT}}=(\mathcal A_\Sigma,\omega_\Sigma,\Delta_\Sigma,\rho,A_F,H_F,D_F,J,
+  \gamma,S_{\mathrm{rel}})$ closed modulo \texttt{QGEO.SYM.01} (\vref{v258}--\vref{v261}) --- plus an explicit
+  list of what the closure does \emph{not} reach: the full measured pole masses, the absolute QCD scales
+  ($m_p/m_e$), the complete PMNS dynamics, and the real $4$D interacting QFT / ambient measure. The
+  \texttt{tfpt\_2} ``ambient closure'' section now states that the cutoff of its $S_{\mathrm{rel}}$ \emph{is}
+  the seam KMS weight ($f_2/f_0{=}1$, \vref{v259}) and $D_{\mathrm{rel}}$ the covariance induction
+  (\vref{v258}); the \texttt{tfpt\_2} ``(4) Constructive QFT closure'' section adds the relative-object
+  pointer; \texttt{tfpt\_4\_frontier}'s full-quantum-gravity section records that the cutoff moment $f_0$ is
+  pinned by the seam state (\vref{v255}/\vref{v259}); and \texttt{origin\_theory}'s honest-status keybox notes
+  that the whole boundary QFT collapses onto the same \texttt{QGEO.SYM.01} postulate (no sixth structural
+  class). An editorial consistency pass so every status surface agrees with the ledger. \mE\ build green
+  (\texttt{10 ok, 0 failed}), \texttt{AUDIT OK}.
+\end{itemize}
+
+\subsection*{2026-06-18 (Consistency pass: the Modular Spectral Closure surfaced structurally across the website and the intro status card)}
+\begin{itemize}
+\item \textbf{The \texttt{v258}--\texttt{v261} closure is now reflected on every ``what is open'' surface, not just the
+  research-contracts paper.} The homepage open-gates section and compiler-pipeline diagram, the hostile-referee
+  FAQ, the glossary $G_{\mathrm{net}}$ entry, the reviewer page and the verification residual-chain caption now
+  state that the \emph{entire} emergent-QFT layer (Dirac, cutoff, gauging, glue, orientability) collapses onto
+  the \emph{same} premise \texttt{QGEO.SYM.01} via the Modular Spectral Closure --- the boundary QFT is one
+  relative object that adds \emph{no new open item}, ambient QG separate. The introduction status card
+  (``the structural residual is one condition'') carries the same sentence. No status marker moved; this is an
+  editorial consistency pass so the public surfaces agree with the ledger and the paper. \mE\ build green,
+  \texttt{AUDIT OK}.
+\end{itemize}
+
+\subsection*{2026-06-17 (The Modular Spectral Closure: Dirac as covariance induction, the modular cutoff, the Kummer/K3 unification, and the assembly certificate, \texttt{v258}--\texttt{v261})}
+\begin{itemize}
+\item \textbf{\texttt{v258\_dirac\_covariance\_induction.py} (\texttt{PS.DIRAC.03}) closes the
+  ``posited Yukawa vs derived operator'' gap of \vref{v250}/\vref{v252}.} The finite Dirac operator $D_F$
+  is the modular/covariance \emph{induction} of the boundary seam quasi-free (KMS, $\beta{=}1$) state: a
+  Gaussian state is fixed by its covariance $C$ (a positive contraction) with one-particle modular
+  Hamiltonian $H=\log((1{-}C)C^{-1})$ (Araki; Casini--Huerta), inverse to the KMS occupation
+  $C=(1{+}e^{H})^{-1}$. \mE\ the inversion identity holds exactly; \mE\ $C_F$ is a positive contraction;
+  \mE\ the induced operator is chirality-odd; \mE\ it is unitarily equivalent to the \vref{v252} $D_F$ (same
+  mass spectrum); \mE\ the Majorana/seesaw $m_D^2/M_R$ is an off-diagonal covariance entry. \mC\
+  $C_F=P_F C_\Sigma P_F$, so $D_F$ is the Kasparov shadow $[D_\Sigma]\widehat\otimes_{(E_8)_1}[\mathcal
+  K_{\mathrm{car}}]$ of the boundary geometry and the \vref{v18} Yukawas are the readout of $C_\Sigma$.
+\item \textbf{\texttt{v259\_modular\_cutoff\_kappa.py} (\texttt{PS.SPECACT.02}) fixes the last open
+  spectral-action input.} The cutoff $f$ is the seam's own modular/KMS weight: by
+  Tomita--Takesaki/Bisognano--Wichmann the seam is KMS at $\beta{=}1$ (\vref{v239}) and $2\pi{=}1/(4c_3)$
+  (\vref{v58}) fixes $\beta$, so the heat-kernel cutoff $f(u)=e^{-u}$ is \emph{derived}. \mE\ its moments
+  give $f_2/f_0=f_4/f_2=1$ exactly; \mE\ a generic Gaussian cutoff gives $\sqrt\pi/2\neq1$ (the choice is
+  non-vacuous); \mE\ hence $\kappa=\sqrt{(f_2/f_0)\,c_{PS}/c_{\rm grav}}=\sqrt{c_{PS}/c_{\rm grav}}$ loses
+  its scheme factor. \mC\ the open \mO\ cutoff freedom of \vref{v253}/\vref{v255} becomes a finite trace
+  ratio over the $96$-dim $H_F$ (the RG $\kappa{\approx}1.3$ pins $c_{PS}/c_{\rm grav}{\approx}1.7$).
+\item \textbf{\texttt{v260\_k3\_kummer\_unification.py} (\texttt{ARCH.K3.01}) unifies seam, carrier and
+  lattice on one surface.} The pillowcase is the elliptic-involution quotient $T^2_{\tau=i}/(z{\mapsto}{-}z)$
+  (\vref{v214}); squaring it gives the Kummer/K3 surface, whose three facets are three TFPT objects. \mE\ the
+  $E_8$ Cartan is even/$\det1$/positive-definite; \mE\ $H^2(\mathrm{K3},\Z)=U^3\oplus E_8({-}1)^2$ (rank $22$,
+  $\det{-}1$, even, signature $(3,19)$); \mE\ the seam is $T^2/(z{\mapsto}{-}z)$ with $4$ marks (orbifold
+  Euler char $0$); \mE\ the carrier-$16$ are the $|A[2]|{=}2^4{=}16$ Kummer nodes $=\dim S^+$ (\vref{v197}),
+  $16{=}4{\times}4$; \mE\ honest note --- the rank-$16$ Kummer lattice is \emph{not} the $E_8({-}1)^2$
+  summand. \mC\ so the \vref{v1} ``glue $D_5{\oplus}A_3{+}\mu_4{\Rightarrow}E_8$'' is the lattice shadow of a
+  single object; $E_8$ appears both locally (du Val $\mathbb C^2/2I$, \vref{v232}/\vref{v236}) and globally
+  ($H^2$ summand). A unification, not a closure.
+\item \textbf{\texttt{v261\_modular\_spectral\_closure.py} (\texttt{QFT.MSC.01}) is the assembly capstone.}
+  The whole QFT round (\vref{v238}--\vref{v260}) is certified as \emph{one} relative object
+  $\mathsf{TFPT}_{\mathrm{QFT}}=(\mathcal A_\Sigma,\omega_\Sigma,\Delta_\Sigma,\rho,A_F,H_F,D_F,J,\gamma,
+  S_{\mathrm{rel}})$ reduced to \emph{one} open premise. \mE\ the cross-consistency invariants agree:
+  $4=[B{:}A]=|\mu_4|=2\chi=|(\Z/2)^2|$ (index $=$ marks $=$ fixed points $=$ glue order), one carrier-$16$
+  (spinor $=$ lattice $=$ triple), one gap $6\log(3/2)$ (OS $=$ recovery $=$ Lindblad); \mE\ the three
+  closures re-derived; \mE\ the ten-component manifest present. \mO\ the QFT layer reduces to
+  \texttt{QGEO.SYM.01} (seam realisation), the ambient QG measure \texttt{QG.AMB.01} kept separate. \mC\
+  the \emph{Modular Spectral Universality} master statement: the unique RP holomorphic index-$4$ KMS seam
+  state induces the $96$-dim KO-$6$ triple whose inner fluctuations give the gauged Pati--Salam spectral
+  action --- the honest sense in which the boundary QFT is complete.
+\end{itemize}
+
+\subsection*{2026-06-17 (Infrastructure: the changelog is now a public website page, generated from \texttt{changelog.tex} and audit-gated)}
+\begin{itemize}
+\item \textbf{The canonical changelog now also drives a public \texttt{/changelog} website page.}
+  A new generator \texttt{verification/make\_changelog\_web.py} parses this file (dated
+  \texttt{\textbackslash subsection*} entries, \texttt{itemize} items, and the inline markup
+  \texttt{\textbackslash textbf}/\texttt{\textbackslash emph}/\texttt{\textbackslash texttt}/\texttt{\textbackslash vref},
+  the status markers \mE/\mC/\mO/\mX, inline math and accents) into the typed data file
+  \texttt{website/\allowbreak lib/\allowbreak changelog.ts}, rendered server-side (math via KaTeX) by
+  \texttt{website/\allowbreak app/\allowbreak changelog/\allowbreak page.tsx} $+$ \texttt{website/\allowbreak components/\allowbreak Changelog.tsx}. The
+  generator is wired into \texttt{bash build.sh gen}; its freshness is enforced by
+  \texttt{audit\_sync.py} (section A.generated), so the page can never drift from this file --
+  editing the changelog and re-running \texttt{gen} is the only supported path (the \texttt{.ts}
+  mirror is never hand-edited). \texttt{/changelog} is linked from the navbar, footer and sitemap.
+  The \texttt{tfpt-workflow}, \texttt{website-sync} and \texttt{sync-maps} cursor rules were updated
+  to record the new single-source generation step. \mE\ build (\texttt{npm run build} green,
+  \texttt{/changelog} prerendered static) and \texttt{bash build.sh audit} (\texttt{AUDIT OK}).
+\end{itemize}
+
+\subsection*{2026-06-17 (Orientability + Poincar\'e duality: the honest, literature-confirmed status --- strict fail, weakened hold, \texttt{v257})}
+\begin{itemize}
+\item \textbf{\texttt{v257\_quasiorient\_modpd.py} (\texttt{PS.NCG.ORIENT.02}) corrects the slightly
+  too-generous \vref{v256} typing.} The published result (Cacic--Stephan arXiv:0902.2068; CCM07;
+  SM-vacuum hep-th/0601192) is that the Chamseddine--Connes--Marcolli Standard-Model finite triple
+  (KO-dimension $6$, with three right-handed neutrinos --- exactly the TFPT seesaw case) \emph{genuinely
+  fails} strict orientability and strict Poincar\'e duality, and instead satisfies the physically correct
+  weakened versions. Verified on the explicit \vref{v252} triple: \mE\ strict orientability fails
+  ($\gamma\notin\mathrm{span}\{\lambda(a)\rho(b)\}$); \mE\ \emph{quasi-orientability} holds (the left/right
+  $A$-irrep boxes are disjoint by chirality: $L=H$ weak-doublet, $R=\mathbb C$ singlet, so
+  $L^{\mathrm{LR}}(\mathcal H^{\mathrm{even}},\mathcal H^{\mathrm{odd}})=\{0\}$); \mE\ strict Poincar\'e
+  duality fails (KO-$6$ skew intersection form, corank $1$, the equal-$L/R$-neutrino case); \mC\ modified
+  Poincar\'e duality holds (CCM), Stephan's alternative triple (St06) restoring strict PD with identical
+  physics. A known property of the NCG-SM model class, not a TFPT defect --- no faked closure.
+\end{itemize}
+
+\subsection*{2026-06-17 (Remaining NCG obligations discharged or honestly typed: inner fluctuations, spectral action, orientability/Poincar\'e, \texttt{v254}--\texttt{v256})}
+\begin{itemize}
+\item \textbf{\texttt{v254\_inner\_fluctuations.py} (\texttt{PS.NCG.FLUCT.01}) closes \vref{v250} \#5 + the
+  no-junk obligation.} The inner fluctuations $\Omega^1_D(A_F)$ of the finite Dirac operator are computed
+  explicitly: \mE\ they are purely chirality-odd (scalars), and for the SM algebra sit \emph{exactly} in the
+  one Higgs doublet $(1,2)_{1/2}$ --- no junk, no triplet, no $(10,1,3)/\mathbf{126}$. \mE\ the $\sigma$
+  ($\nu_R$ Majorana) direction is absent for the SM algebra but present for Pati--Salam (the CCvS
+  beyond-first-order scalar), and \mE\ $\sigma$ is an SM singlet $(1,1,0)$ with $B{-}L=2$. \mC\
+  $\sigma={}$scalaron.
+\item \textbf{\texttt{v255\_spectral\_action\_expansion.py} (\texttt{PS.SPECACT.01}) closes the
+  spectral-action expansion (\vref{v252} \#11).} The Seeley--DeWitt expansion
+  $S=2f_4\Lambda^4 a_0+2f_2\Lambda^2 a_2+f_0 a_4$: \mE\ structure ($a_0$ cosmological, $a_2$
+  Einstein--Hilbert$+$Higgs-mass, $a_4$ Yang--Mills$+$Weyl$^2+R^2+$Higgs-quartic, $N=96$); \mE\ $b/a^2=1/3$
+  (top-dominated); \mE\ $\sin^2\theta_W=3/8$; \mE\ the $R^2$ spin-$0$ mode $=$ the Starobinsky scalaron; \mC\
+  Higgs quartic $\to{\sim}125$\,GeV with $\sigma$; \mC\ $\kappa=\sqrt{(f_2/f_0)c_{PS}/c_{\rm grav}}$ explicit;
+  \mO\ exact decimal needs the cutoff moments.
+\item \textbf{\texttt{v256\_orientability\_poincare.py} (\texttt{PS.NCG.ORIENT.01}) --- honest status, no
+  faked proof.} KO-dimension $6$ forces the intersection form $\mathrm{Tr}(\gamma\,\pi(p)J\pi(q)J^{-1})$ to be
+  \emph{antisymmetric}: \mE\ skew form (verified), \mE\ rank $2$, corank $1$, null $\sim(1,1,-1)$ on the SM
+  K-theory $\mathbb Z^3$; \mE\ the orientability local condition $[\gamma_F,\pi(a)]=0$. \mC\ the canonical
+  hypercharge-faithful SM/PS triple satisfies orientability and Poincar\'e duality (van Suijlekom; CCM); \mO\
+  a self-contained machine proof needs the complete canonical bimodule.
+\end{itemize}
+

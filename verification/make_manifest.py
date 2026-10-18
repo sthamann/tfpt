@@ -24,6 +24,9 @@ manifest had not been regenerated after a final ledger edit.  RELEASE RULE:
 `make_manifest.py --check` must pass on the exported tree.
 """
 import hashlib
+from pathlib import Path
+from tex_sources import dependency_paths
+
 import os
 import subprocess
 import sys
@@ -47,7 +50,7 @@ def _lean_read_dir():
 LEAN_DIR = _lean_read_dir()                        # repo path (where the files actually live)
 
 TEX = [
-    "introduction.tex", "changelog.tex",
+    "introduction.tex", "changelog.tex", "verification_catalog.tex",
     # shared, imported fragments now live in tex-artefacts/
     # (the auto-generated tex-artefacts/version-auto.tex is gitignored and excluded)
     "tex-artefacts/tfpt_docset.tex", "tex-artefacts/tfpt_style.tex",
@@ -109,13 +112,43 @@ def collect_research(root):
     return files
 
 
+def collect_tex(root, entries=None):
+    """Return root TeX entries and their actual literal include dependencies.
+
+    The manifest hashes physical modules, not flattened copies. Missing included
+    files/cycles propagate as explicit errors from the shared source reader.
+    """
+    base = Path(root).resolve()
+    files = set(TEX if entries is None else entries)
+    for name in tuple(files):
+        entry = base / name
+        if not entry.is_file():
+            continue  # the existing manifest writer reports missing entry points
+        for dependency in dependency_paths(entry):
+            if dependency == base / "tex-artefacts/version-auto.tex":
+                continue  # optional generated revision cache is never shipped
+            try:
+                files.add(dependency.relative_to(base).as_posix())
+            except ValueError as exc:
+                raise ValueError(f"TeX bundle dependency is outside repository: {dependency}") from exc
+    return sorted(files)
+
+
 def collect():
-    files = list(TEX) + list(FIG) + collect_research(ROOT)
+    files = collect_tex(ROOT) + list(FIG) + collect_research(ROOT)
+    if (Path(ROOT) / "docs/editions.json").is_file():
+        files.append("docs/editions.json")
     vdir = os.path.join(ROOT, "verification")
     for f in sorted(os.listdir(vdir)):
         # .json covers the frozen blind-prediction registry (REG.FREEZE.01)
         if f.endswith((".py", ".csv", ".md", ".json")):
             files.append("verification/" + f)
+    # Explicit historical replay inputs, separate from the active scientific suite.
+    historical = Path(vdir) / "historical_replay"
+    if historical.is_dir():
+        files.extend(str(p.relative_to(Path(ROOT))).replace(os.sep, "/")
+                     for p in sorted(historical.iterdir()) if p.is_file()
+                     and p.suffix in {".py", ".csv", ".json", ".md", ".txt"})
     # Wolfram independent path (.wl / .wls + its README)
     wdir = os.path.join(vdir, "wolfram")
     if os.path.isdir(wdir):

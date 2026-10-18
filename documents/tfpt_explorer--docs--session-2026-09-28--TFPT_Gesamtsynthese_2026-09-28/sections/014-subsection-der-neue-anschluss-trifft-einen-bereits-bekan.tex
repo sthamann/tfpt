@@ -1,0 +1,372 @@
+\subsection{Der neue Anschluss trifft einen bereits bekannten Punkt der ganzen Prozessfamilie}
+Die exakte ursprüngliche $S_3$-Wortfamilie hat in der Reihenfolge
+$I,c_{123},c_{132},p_{12},p_{13},p_{23}$ die Gewichte
+\begin{equation}
+w_t=\left(\frac12+t,t,t,\frac1{18}-t,
+\frac29-t,\frac29-t\right),\qquad 0\le t\le\frac1{18}.
+\end{equation}
+Alle diese Prozesse besitzen dieselbe Matrix $B$ auf den Anzeigen. Auf dem vollständigen markierten Operatorsystem $(I,A,F,G=iAF)$ ist jedoch
+\begin{equation}
+\Phi_q(I)=I,\quad \Phi_q(A)=\frac23A,\quad
+\Phi_q(F)=\frac13F,\quad \Phi_q(G)=qG,\qquad q=6t.
+\end{equation}
+Die neue Replica-Lüderskonstruktion wählt \emph{genau} $t=0$, also $q=0$. Sie ist damit an die vorhandene Quellenrechnung angeschlossen; eine neue unabhängige Hilfswelt wird nicht benötigt.
+
+Die schon untersuchte GNS-Antwort mit linken Einsetzungen ist
+\begin{equation}
+\frac12\tr\!\left[
+F\,\Phi_q\!\left(A\,\Phi_q\!\left(A\,\Phi_q(F)\right)\right)\right]
+=\frac q9.
+\end{equation}
+Der neue reduzierte Kanal liefert null. Der ältere Wert $1/27$ würde $q=1/3$ verlangen, sofern er unabhängig als dieselbe ursprüngliche Quellenantwort identifiziert ist. Die Rechnung widerlegt daher eine automatische Gleichsetzung der vollständigen Prozesse; sie widerlegt nicht die neue Matrixidentität.
+
+Das verlorene $G$ ist kein fremder Zusatzoperator. Es ist bereits aus neutralen Paaren der ursprünglichen Ströme rekonstruierbar. Die beiden zulässigen Eingaben
+\begin{equation}
+\rho_\pm=\frac{I\pm G}{2}
+\end{equation}
+haben vor der Operation die Antworten $\tr(G\rho_\pm)=\pm1$, danach jedoch beide $\Phi_0(\rho_\pm)=I/2$.
+Beim beschriebenen Rang-eins-Lüdersinstrument gilt sogar für jeden einzelnen klassisch gespeicherten Messausgang
+\begin{equation}
+\Pi_{k,\pm}\rho_+\Pi_{k,\pm}
+=\Pi_{k,\pm}\rho_-\Pi_{k,\pm}.
+\end{equation}
+Dieses Instrument kann deshalb keine verlustfreie Vergröberung für \emph{alle} ursprünglichen Zukunftstests sein.
+
+\subsection{Die konstruktive Fortsetzung: Derselbe Anzeigenübergang mit erhaltenem Ereignisrecord}\label{sec:replicacarry}
+Die letzte Aussage beendet die Verbindung nicht. Sie bestimmt, was die vollständige Fortschreibung zusätzlich behalten muss.
+
+Derselbe reduzierte Kanal lässt sich durch ein anderes natives Instrument realisieren: Mit Wahrscheinlichkeit $1/2$ wird $I$ angewendet, mit Wahrscheinlichkeit $\pi_k/2$ die tatsächliche Reflexion $R_k$. Der angewendete Operator wird als klassisches Ereignislabel gespeichert. Seine unnormierten Ausgangszustände sind
+\begin{equation}
+\mathcal J_0(\rho)=\frac12\rho,\qquad
+\mathcal J_k(\rho)=\frac{\pi_k}{2}R_k\rho R_k.
+\end{equation}
+Vergisst man das Label, folgt wieder exakt $\Phi_x$. Behält man es, sind sämtliche Eingangszustände auf dieser markierten Ebene durch kontrollierte Rückführung rekonstruierbar:
+\begin{equation}\label{eq:recordrecovery}
+\boxed{\sum_e U_e^*\mathcal J_e(\rho)U_e=\rho,\qquad
+U_0=I,\quad U_k=R_k.}
+\end{equation}
+Dies ist keine Messung des Reflexionseigenwerts. Es ist eine protokollierte Anwendung der Reflexion. Deshalb widerspricht die Rückführung nicht dem Informationsverlust des vorherigen Lüdersinstruments.
+
+Die fehlende $G$-Antwort ist dabei besonders einfach lokalisiert. Die Reflexionen kehren $G$ um. Schreibe $\varepsilon_0=+1$ und $\varepsilon_k=-1$. Dann gilt
+\begin{equation}
+\boxed{\sum_e\varepsilon_e\,\tr\bigl(G\,\mathcal J_e(\rho)\bigr)
+=\tr(G\rho).}
+\end{equation}
+Die Korrelation zwischen Ereignisparität und Quelle trägt genau die Antwort, die nach dem Wegwerfen des Labels verschwindet. Für Folgen ausschließlich dieser geschlossenen nativen Ereignisse ist ihr Produkt ein Element des bereits berechneten $S_3$; das Gruppenlabel erlaubt die kontrollierte Umkehr der ganzen Folge. Dies behauptet keinen Sechszustandsspeicher für beliebige geladene C/X-Geschichten oder den vollständigen Nachfahrenturm.
+
+\begin{center}
+\begin{tikzpicture}[node distance=7mm]
+\node[box,text width=13cm] (s) {Dieselbe Replica-Antwort und dieselben nativen Reflexionen};
+\node[box,below=of s,text width=13cm] (p) {Protokollierte Operation: Quellzustand \textbf{plus angewendetes Ereignis}};
+\node[box,below=10mm of p,xshift=-3.6cm,text width=6cm] (a) {Record mitführen:\\kontrollierte Rückführung;\\$G$ bleibt unterscheidbar};
+\node[box,below=10mm of p,xshift=3.6cm,text width=6cm] (b) {Record verwerfen:\\reduzierter Kanal $\Phi_0$;\\Anzeigen folgen $B$, $G$ verschwindet};
+\draw[arr] (s)--(p);\draw[arr] (p)--(a);\draw[arr] (p)--(b);
+\end{tikzpicture}
+\end{center}
+
+\picturetext{Eine zufällige Drehung verwischt das Bild, wenn niemand aufschreibt, welche Drehung ausgeführt wurde. Mit dem Drehprotokoll kann man jedes Bild zurückdrehen. Eine wirkliche Messung, die vorher beide Bilder auf dasselbe Ergebnis zusammendrückt, lässt sich dagegen durch das Aufschreiben dieses Ergebnisses nicht rückgängig machen. Beide Vorgänge können dieselbe gemittelte Anzeige erzeugen. Für die Gesamtlösung zählt deshalb der Vorgang mit seinem Gedächtnis, nicht nur die Anzeige.}
+
+Hier treffen Clock, Universalraum und die Ereignisgraphidee konkret zusammen:
+Ein Graph kann die ursprünglichen Operatoren und ihre Records komponieren. Der Universalraum muss alle später unterscheidbaren Antworten dieses gewählten Operationssystems erhalten. Die Clock darf eine reduzierte Anzeige dieses reicheren Prozesses sein. \emph{Welche} dieser Instrumente der ursprüngliche Nahtprozess ausführt, ist weiterhin herzuleiten; die neue Rechnung liefert zwei explizite, anhand ihrer Zukunftsantworten verschiedene Kandidaten.
+
+Auch identische Diagonalnormen des Vierpunkts ersetzen diese Prüfung nicht. Für zwei reelle Geometrieparameter gilt
+\begin{equation}
+G(x)G(y)-a(x)\cdot a(y)
+=\frac{(x-y)^2}{x(1-x)y(1-y)}.
+\end{equation}
+Die normierten Paarungsvektoren haben bei $x=1/2,y=1/5$ das Skalarprodukt $6/7$, ihre skalaren Summen jeweils eins. Daraus folgt allein: Die Normidentität~\eqref{eq:pairingnorm} identifiziert nicht automatisch einen ganzen bilinearen Kernel. Verschiedene Geometrien werden hier nicht zu identischen physischen Zuständen erklärt; der tatsächliche GNS-Mischkernel benötigt seine eigenen Quelleinsetzungen.
+
+\subsection{P1 als primitive Symbolklasse: sinnvolle Präzisierung, keine automatische Operatorwahl}
+Der neue Text schlägt vor, primitive Windung durch eine primitive reelle K-Homologie- oder Dirac-Symbolklasse zu ersetzen. Dafür sind zunächst die Typen festzulegen. Auf dem Nahtkreis besitzt die unverdrehte Fundamentalklasse einen primitiven freien Anteil. Ein orientiertes reelles $V_{16}$ ist als Bündel auf dem Kreis trivial; die Verdrehung mit Rang 16 vervielfacht diesen freien Anteil mit 16. Eine primitive \emph{unverdrehte} Klasse und ein primitiver \emph{bereits mit $V_{16}$ verdrehter} Operator sind daher nicht dieselbe Aussage. Eine äquivariante oder Morita-normalisierte Variante müsste eigens definiert werden.
+
+Selbst bei identischem Hauptsymbol, Koeffizientenbündel und Vakuum bleibt eine konkrete Auswahlfrage. Auf dem vorhandenen antiperiodischen Nahtkreis betrachte
+\begin{equation}
+B_a=-i\partial_\theta+aY_{16},\qquad |a|<1.
+\end{equation}
+$Y_{16}$ ist die ursprüngliche P2-Ladungswirkung: auf dem komplexifizierten $E_\R$ die fünf Ladungen und ihre Gegenteile, auf $V_6$ null. Die kanonische Realstruktur vertauscht die beiden Ladungsrichtungen und erfüllt $JB_aJ=-B_a$. Für NS-Moden $r\in\Z+1/2$ und $|q|\le1/2$ gilt
+\begin{equation}
+\operatorname{sign}(r+aq)=\operatorname{sign}(r).
+\end{equation}
+Somit sind Hauptsymbol, dessen Klasse und die positive Polarisation für die ganze Familie gleich. Der damit bestimmte reine CAR-Zustand ist derselbe. Dennoch unterscheiden sich die positiven zeitlichen Antworten:
+\begin{equation}
+G_{a,q}(\tau)=\sum_{n\ge0}e^{-\tau(n+1/2+aq)}
+=\frac{e^{-aq\tau}}{2\sinh(\tau/2)}.
+\end{equation}
+Bei $a=1/2$ erhält der Ladung-$1/2$-Kanal den Faktor $e^{-\tau/4}$, der neutrale Kanal nicht. Es handelt sich also nicht bloß um einen gemeinsamen Wechsel der Zeiteinheit.
+
+Auch auf der vollen vorhandenen E8-Quelle gibt es die entsprechende Richtung $H_a=L_0+aY_0$. Aus $\|Y\|^2=5/6$ und den ganzzahligen positiven Vakuumgraden folgt für $|a|<\sqrt{3/5}$ ein positives Spektrum außerhalb desselben eindeutigen Vakuums. Die festen geometrischen Marken kommutieren weiterhin mit dieser Bewegung. \emph{Nicht} gleich bleiben die flache P2-Holonomie oder die Behauptung, die physische Zeit sei genau der geometrische beziehungsweise modulare Fluss.
+
+Das ist ein Gegenbeispiel zur Auswahl aus Symbolklasse plus Positivität allein, kein bereits gegen alle TFPT-Constraints geprüfter Ersatzprozess. Eine ursprüngliche feste Holonomie oder eine bewiesene Identifikation mit der lokalen Modularzeit könnte diese Freiheit beseitigen. Genau eine solche zusätzliche ursprüngliche Auswahl muss der vorgeschlagene P1-Satz noch liefern.
+
+\subsection{Drei Paarungen liefern keine drei räumlichen Achsen}
+Setze $I_j=(p_j,p_{j+1})$ für die vier zyklischen Marken. Die ersten beiden Paarungen geben die bereits vorhandenen komplementären Mengen
+\begin{equation}
+M=\mathcal A(I_0)\vee\mathcal A(I_2),\qquad
+M'=\mathcal A(I_1)\vee\mathcal A(I_3).
+\end{equation}
+Ihre modularen Daten sind miteinander verknüpft; sie sind keine zwei unabhängigen räumlichen Richtungen. Insbesondere $M\cap M'=\C I$ ist auf dem nichttrivialen Vakuumraum kein zyklischer Schnitt.
+
+Die kreuzende Paarung $(02)(13)$ besitzt keine zwei disjunkten verbindenden Kreisbögen. Wählt man die Halbkreise
+$K=\mathcal A((p_0,p_2))$, $L=\mathcal A((p_1,p_3))$,
+folgen aus den Intervall-Netzeigenschaften
+\begin{equation}
+K\cap L=\mathcal A(I_1),\qquad
+K\vee L=\mathcal A((p_0,p_3)).
+\end{equation}
+Dies liefert echte lokale Schnitte, aber zunächst die gewöhnlichen Intervallinklusionen der bestehenden chiralen Möbiusordnung. Ihre Generatoren liegen in derselben $\mathfrak{sl}_2(\R)$; dort existieren keine drei unabhängigen paarweise kommutierenden Translationen.
+
+Die Vierteldrehung wirkt zudem nur als
+\begin{equation}
+m_1\longleftrightarrow m_2,\qquad m_3\longmapsto m_3.
+\end{equation}
+Auf den Paarungslabels hat sie Ordnung zwei. Die geometrische Halbdrehung ist auf ihnen bereits unsichtbar. Das reine Dreierregister trägt deshalb nicht die volle ursprüngliche $\mu_4$-Wirkung; auch hier wäre die verlorene Phaseninformation gesondert mitzuführen.
+
+Schließlich sind drei positive Generatoren nicht automatisch drei gewöhnliche Raumimpulse. Eine räumliche Rotation kann $P_j$ in $-P_j$ überführen. Wären beide positiv, wäre $P_j=0$. Die Positivitätsbedingung gehört zu zukünftigen zeitartigen oder lichtartigen Kombinationen, etwa $P_0\pm P_j$, und muss zusammen mit den Lorentzrelationen nachgewiesen werden.
+
+Der tragfähige weitere Weg bleibt die schon aus der Quelle bestimmte Familie
+\begin{equation}
+\mathcal G=\langle U(\text{Möb}),\Delta_E^{it}\rangle,\qquad
+\mathcal A_g(I)=g\mathcal A(I)g^*,\quad g\in\mathcal G.
+\end{equation}
+Die nicht rein geometrische Zweintervall-Modularbewegung eröffnet darin neue relative Positionen. Für Schnitte verschiedener Kopien müssen Standardität, halbseitige Inklusionen und gemeinsame Gruppenrelationen tatsächlich bewiesen werden. Die Anzahl der Ausgangspaarungen übernimmt diese Arbeit nicht.
+
+\subsection{Was der gemeinsame Abschluss jetzt tatsächlich verlangen muss}
+Die Gesamtidee des Anhangs wird präziser, wenn sie dieselben Operatoren und dasselbe Gedächtnis durch alle Auslesungen verfolgt:
+\begin{enumerate}
+\item Die ursprünglichen Daten wählen einen \textbf{konkreten} Nahtoperator samt Markierung und Verbindungsdaten. Eine bloße Symbolklasse genügt dafür nicht.
+\item Dieser Operator trägt die bereits konstruierte $V_{16}$-Realstruktur und liefert die tatsächliche CAR-Polarisation; ihre gerade Algebra und markierte Erweiterung müssen mit derselben E8-Quelle identifiziert werden.
+\item Der ursprüngliche Prozess wählt ein \textbf{Instrument einschließlich Ereignisrecord}. Die neue Rechnung zeigt einen positiven nativen Anschluss an $B$ und eine reversible Version mit Record. Der bisherige gemittelte Transfer entscheidet zwischen diesen Vorgängen nicht.
+\item Die lokalen Algebren derselben Quelle besitzen eine relative Ordnung, welche die verlangten Raumzeitrelationen realisiert. Drei Pairings allein liefern diese Ordnung nicht.
+\end{enumerate}
+Erst auf einer solchen Raumzeitstruktur sind lokale Ladungssektoren, Lorentzspin, Massenspektren und Wechselwirkungen gemeinsam auszuwerten. Ein transportabler Ladungssektor ist dabei nicht schon ein einzelnes Teilchen: Er kann Mehrteilchenzustände und verschiedene Massen enthalten. Ebenso sind Fusionsregeln noch keine bestimmten Kopplungskonstanten. Die bereits markierte P2-Zentralisatorstruktur bleibt eine konkrete interne Vorgabe, deren vierdimensionale Eichrealisierung zu zeigen ist.
+
+\key{\textbf{Der neue Fortschritt am Gesamtbild:}
+Es gibt jetzt eine exakt berechnete Verbindung zwischen Replica-Geometrie, nativen Reflexionen und der ganzen alten Clockmatrix. Außerdem ist an denselben Operatoren nachgewiesen, wie die Clock als reduzierte Anzeige eines Prozesses mit erhaltener Information auftreten kann. Das bindet Universalraum, Ereignisgraph und Clock enger zusammen. Eine behauptete eindeutige Urregel muss künftig dieses Instrument und seinen Record auswählen; sie darf nicht bloß den passenden Anzeigenverlauf reproduzieren.}
+
+\section{Anker, Viertelphase und Ladungsfasern: dieselbe Clockfamilie in zwei Darstellungen}\label{sec:anchorfibre}
+
+\key{\textbf{Die nächste Verbindung ist eine Identität für die ganze Vierpunktfamilie.}
+Die ursprünglichen Replica-Paarungen und der neue Anker-Phasenschritt erzeugen exakt dieselben Matrizen $B(x)$. Am Quadrat liefert dies den ursprünglichen Anker $1:1:2$. Der kohärente Schritt besitzt eine ausdrückliche Einbettung in die markierte C-Quelle. Die ältere Trine-Auslese besitzt wiederum eine genaue orthogonale Dreier-Erweiterung. Damit sind mehrere bisher getrennte Beschreibungen mathematisch verbunden. Ihre Instrumente und ihre ursprünglichen Träger dürfen dabei weiterhin unterschiedliche Zukunftsantworten haben.}
+
+Dieser Abschnitt prüft den eingefügten Text
+\file{14360bff-eb1f-42b4-a10f-04c973ecd011}.
+Die dort verlinkten Dateien unter \file{sandbox:/mnt/data/} sind im übergebenen Material nicht enthalten. Die angegebenen 75 Prüfbedingungen werden deshalb nicht als hier ausgeführt übernommen. Die folgenden Formeln wurden aus dem Text und den lokalen Originalquellen eigenständig rekonstruiert und im vorhandenen Rechenkern geprüft.
+
+\subsection{Die beiden Clockvorschläge stimmen für alle reellen Viermarkengeometrien überein}
+Benutze dieselben normierten signierten Beiträge wie zuvor,
+\begin{equation}
+s_i(x)=\frac{a_i(x)}{G(x)},\qquad
+\sum_i s_i=1,\qquad \sum_i s_i^2=1,\qquad 0<x<1.
+\end{equation}
+Definiere daraus
+\begin{equation}
+p_i=\frac{1-s_i}{2},\qquad
+f=1-x+x^2,\qquad
+p=\frac{(x^2,(1-x)^2,1)}{2f}.
+\end{equation}
+Dann folgen ohne Zahlenanpassung
+\begin{equation}\label{eq:anchorreplicajoint}
+\sum_i p_i=1,\qquad \sum_i p_i^2=\frac12,\qquad
+\boxed{s_k^2=4p_ip_j\quad\text{für }\{i,j,k\}=\{1,2,3\}.}
+\end{equation}
+Für die letzte Gleichung benutzt man
+$s_1s_2+s_1s_3+s_2s_3=0$.
+
+Der normierte Vektor und sein Viertelphasenschritt lauten
+\begin{equation}
+v(x)=\frac{(x,1-x,1)^T}{\sqrt{2f}},\quad
+P(x)=v(x)v(x)^*,\quad
+U(x)=I+(i-1)P(x).
+\end{equation}
+Wegen $P^2=P$ ist $U$ unitär und $U^4=I$.
+Außerhalb der Diagonale gilt $|U_{ij}|^2=2p_ip_j$.
+Mit~\eqref{eq:anchorreplicajoint} ergibt dies
+\begin{equation}\label{eq:wholeclockfamily}
+\boxed{|U(x)|_{\rm eintragsweise}^2
+=I-\frac{L(x)}{2G(x)^2}
+=B(x).}
+\end{equation}
+Die rechte Seite ist genau der im vorangehenden Abschnitt aus den Replica-Gewichten rekonstruierte Transfer. Am Quadrat wird
+\begin{equation}
+v(1/2)=\frac{(1,1,2)^T}{\sqrt6},\qquad
+U(1/2)=\frac16
+\begin{pmatrix}
+5+i&-1+i&-2+2i\\
+-1+i&5+i&-2+2i\\
+-2+2i&-2+2i&2+4i
+\end{pmatrix}.
+\end{equation}
+Die Viertelphase bleibt für die ganze Familie gleich. Die geometrische Kreuzratio verändert die Ankeramplituden.
+
+Die eingeschränkte Umkehrung des Anhangs stimmt ebenfalls. Für
+$U=I+(e^{i\theta}-1)vv^*$ erzwingen die drei historischen Nebendiagonaleinträge
+$p_1=p_2$, $p_3=4p_1$ und damit $p=(1,1,4)/6$ sowie
+$\cos\theta=0$. Die Vorzeichenwahl $\theta=\pm\pi/2$ und die Komponentenphasen von $v$ bleiben durch $B$ unbestimmt. Dies ist eine Eindeutigkeitsaussage innerhalb der Rang-eins-Phasenklasse, keine Auswahl dieser Klasse aus P1/P2.
+
+\picturetext{Die beiden Vorschläge beschreiben dieselbe Anzeige von zwei Seiten. Die Paarungsrechnung liefert die Gewichte der sichtbaren Übergänge. Der Anker beschreibt eine kohärente Drehung, deren Betragsquadrate genau diese Gewichte ergeben. Diese Verbindung gilt beim Verformen der vier Marken weiter; sie beruht nicht nur auf einer einzelnen passenden Zahl am Quadrat.}
+
+\subsection{Die vorhandene markierte Quelle trägt die Viertelbewegung tatsächlich}
+Die im Originalvertrag bereits bewiesenen Charaktere sind
+\begin{equation}
+k(q)=2\sum_{j=0}^4q_j,\quad
+a(q)=q_7-q_6,\quad
+t(q)=4q_5+3q_6+5q_7,
+\qquad T=G^2A.
+\end{equation}
+Ihre Wirkung wird aus den tatsächlichen ursprünglichen C-Wurzeln ausgelesen. In der Reihenfolge $C_0,C_1,C_2,C_3$ folgt
+\begin{equation}
+A_C=\diag(1,1,i,-i),\qquad
+T_C=-A_C.
+\end{equation}
+Der Drei-Unterraum $C_0,C_1,C_2$ ist unter $T_C$ invariant.
+Für eine orthogonale Matrix $R$ mit $Re_3=v(x)$ und die natürliche Inklusion
+$\iota:\C^3\to\C^4$ setze $V=\iota R^T$. Dann
+\begin{equation}
+V^*V=I,\qquad
+\boxed{T_CV=-VU(x).}
+\end{equation}
+Eine explizite Wahl verwendet
+$n=(1,1,-1)^T/\sqrt3$ und $R=(n\times v,n,v)$.
+Hier ist $n\cdot v(x)=0$ für die gesamte Familie.
+
+Dies ist ein echter algebraischer Intertwiner. Seine Konstruktion wählt aber die orthogonale Detektorbasis $R$; die ursprüngliche Cusp-Messung wurde damit noch nicht aus dem Nahtoperator hergeleitet. Die Detektorprojektoren mischen verschiedene Familiengewichte. Wären sie bloß diagonale Funktionen der Familienladungen, würden sie mit $T$ kommutieren und überhaupt keine nichttrivialen Übergänge erzeugen. Die physische Auslese muss deshalb kohärente Familienkombinationen zugänglich machen.
+
+Die ursprüngliche Familienreflexion vertauscht die letzten beiden C-Gewichtslinien, einschließlich ihrer vorgegebenen Kokzyklusphasen. Der Dreier muss für diesen Operationssatz zum Vierer erweitert werden. Für \emph{alle} ursprünglichen Stromoperationen reicht auch der Vierer nicht: Schon
+$[C_0^\dagger,C_0]$ liegt im Cartanraum außerhalb des C-Vierers. Da die 24 Felder samt ihren Adjungierten die einfache Algebra $E_8$ erzeugen, ist die unter allen ihren Nullmoden erzeugte Hülle eines nichtverschwindenden Stromzustands die gesamte 248-dimensionale adjungierte Darstellung. Mit den übrigen Strommoden kommt der unendliche Nachfahrenturm hinzu.
+
+Das gibt dem Universalraumprinzip einen konkreten Umfang:
+Die nötige Hülle wächst mit den tatsächlich zugelassenen Fortsetzungen.
+Die Folge $3\to4\to248\to\mathcal H_{E_8}$ bezeichnet hier unterschiedliche Operationsabschlüsse, keine Herleitung von Raumzeitdimensionen.
+
+Die geometrische Vierteldrehung ist ebenfalls getrennt zu halten. Auf allen Stromzuständen vom Grad eins wirkt $e^{i\pi L_0/2}=iI$. Der markierte Charakter $T_C$ besitzt dagegen verschiedene Eigenwerte. Seine konkrete Einbettung beseitigt diesen Unterschied nicht.
+
+\subsection{Die alte Trine und die neue Dreiermessung haben einen exakten gemeinsamen Anschluss}
+Die bereits vorhandenen nativen Effekte auf $\C^2$ sind genau
+\begin{equation}
+E_i=W^*P_iW,\qquad
+W=\begin{pmatrix}
+1/\sqrt2&1/\sqrt6\\
+-1/\sqrt2&1/\sqrt6\\
+0&-2/\sqrt6
+\end{pmatrix},
+\qquad P_i=|i\rangle\langle i|.
+\end{equation}
+Es gilt
+\begin{equation}
+W^*W=I_2,\qquad WW^*=I_3-\frac13\mathbf1\mathbf1^T.
+\end{equation}
+Damit ist die Trine eine Einschränkung der orthogonalen Dreierauslese, eine konkrete minimale Naimark-Erweiterung. Die Effekte sind aus den ursprünglichen Strahlen 13, 14 und 59 nachgerechnet, nicht durch passend gewählte neue Projektoren ersetzt.
+
+Die Erweiterung erklärt zugleich die bereits gefundene Messgrenze. Nach einem orthogonalen Ausgang $P_i$ verbleibt bei Rückprojektion in den alten Zweierraum die Spur
+\begin{equation}
+\tr(W^*P_iW)=\frac23.
+\end{equation}
+Der zusätzliche Detektoranteil trägt $1/3$. Eine normierte Rückpräparation in den Zweierraum und erneute Trinemessung bringt genau die Matrix
+$Q=\tfrac12I+\tfrac16\mathbf1\mathbf1^T$ hinein. Daher bleibt $QB$ der Übergang bei diesem Resetablauf. Lässt man die orthogonale Dreierpräparation bestehen, ist ein anderer Ablauf möglich.
+
+Die Gleichung der Effekte ist ausdrücklich \emph{kein} Intertwiner der ganzen Quellenwirkung. Der ursprüngliche Trine-Zweierraum besteht aus Cartan-Stromzuständen; der Charakter $T$ fixiert diese. Die neue C-Dreier-Einbettung benutzt Wurzelstromzustände mit nichtkonstanten $T$-Phasen. Eine Identifikation der physischen Prozesse benötigt somit weiterhin die tatsächliche Präparation, Kopplung und Rücksetzung des Detektors.
+
+\subsection{Die ausgeschlossenen Kohärenzen liefern den Gedächtniskern ausdrücklich}
+Für die erklärte orthogonale Auslese ist das Instrument
+\begin{equation}
+\mathcal S=\mathcal D\circ\operatorname{Ad}_U\circ\mathcal D,\qquad
+\mathcal D(X)=\sum_iP_iXP_i
+\end{equation}
+vollständig angegeben. Seine Krausoperatoren
+$K_{ij}=U_{ij}|i\rangle\langle j|$ erfüllen
+$\sum K_{ij}^*K_{ij}=I$ und
+\begin{equation}
+\mathcal S^*(P_i)=\sum_jB_{ij}P_j.
+\end{equation}
+Wird diese Dephasierung zwischen jedem Schritt tatsächlich vollzogen, folgen die Populationen $B^n$. Sechs Anwendungen ergeben die bekannten Clocklücken; ihre physische Zuordnung zu genau sechs ursprünglichen Ereignissen bleibt gesondert zu zeigen.
+
+Ohne solche Zwischenoperationen gilt stattdessen
+\begin{equation}
+C_n=|U^n|_{\rm eintragsweise}^2
+=B+(I-B)\cos(n\pi/2),\qquad C_4=I.
+\end{equation}
+Für den anfänglich ersten Detektor ist die Vier-Schritt-Rückkehr kohärent eins, mit Zwischen-Dephasierung dagegen $(B^4)_{11}=211/486$.
+Eine Aufzeichnung muss hier eine tatsächliche Unterscheidung der Wege mit anschließender Reduktion bezeichnen. Bloßes Betrachten einer Formel erzeugt keine Dephasierung.
+
+Der im Anhang angesprochene Feshbach-/Gedächtnisanschluss lässt sich für diesen konkreten Quellenoperator vollständig berechnen. Zerlege den neundimensionalen Operatorraum in die drei Diagonalen und sechs Kohärenzen. Für
+$\mathsf U=\operatorname{Ad}_U$ schreibe die Blöcke
+\begin{equation}
+\mathsf U=
+\begin{pmatrix}B&X\\Y&Z\end{pmatrix}.
+\end{equation}
+Elimination der Kohärenzen gibt im formalen Resolventengebiet um $z=0$
+\begin{equation}
+\mathcal G(z)=\sum_{n\ge0}C_nz^n
+=\bigl[I-zB-z^2M(z)\bigr]^{-1},
+\qquad M(z)=X(I-zZ)^{-1}Y.
+\end{equation}
+Aus der exakten Folge folgt gleichzeitig
+\begin{equation}
+\mathcal G(z)=\frac{B}{1-z}+\frac{I-B}{1+z^2}.
+\end{equation}
+Für jede Eigenmode $b$ von $B$ ist damit der ganze Gedächtniskern
+\begin{equation}\label{eq:anchormemory}
+\boxed{M_b(z)=
+\frac{-(1-b)^2+(1-b^2)z}{1-(1-b)z+bz^2}.}
+\end{equation}
+Dies wurde unabhängig durch den Schurkomplement-Ausdruck der tatsächlichen $9\times9$-Operatorwirkung geprüft. Insbesondere ist $M(0)=-(I-B)^2$. Diese kohärente Rückwirkung ist kein zusätzlicher positiver Sprungprozess.
+
+\picturetext{Die unsichtbaren Phasen sind nicht einfach weg. Ohne Messung wirken sie später wieder auf die Anzeigen zurück und ermöglichen die vollständige Rückkehr. Der Gedächtniskern berechnet genau diese Rückwirkung. Wird nach jedem Schritt dephasiert, entfernt dieser andere Ablauf die Rückwirkung und erzeugt den relaxierenden Transfer.}
+
+Eine weitere Konsequenz folgt ohne Modellergänzung: Ein festes geschlossenes endliches unitäres System kann einen strikt relaxierenden $B^n$-Verlauf nicht für alle $n$ durch dieselbe feste Reduktion erzeugen. Seine unitäre Entwicklung kehrt auf einer Teilfolge beliebig nahe zur Identität zurück, während $B^n$ gegen die stationäre Projektion konvergiert. Ein autonomer Prozess mit dauerhafter solcher Relaxation benötigt daher etwa erneuerte Records, eine unendliche Umgebung oder einen entsprechenden Grenzübergang. Die vollständige E8-Quelle besitzt bereits unendlich viele Moden; ihre tatsächliche Rolle als Umgebung ist dadurch noch nicht ausgewählt.
+
+\subsection{Die Dreier-Gitterbeschreibung ist eine exakte Ladungsfaserung}
+In den ursprünglichen $D_5+D_3$-Koordinaten ist
+\begin{equation}
+0\longrightarrow D_5\longrightarrow E_8
+\overset{\pi_F}{\longrightarrow}D_3^*\longrightarrow0,\qquad
+D_3^*=A_3^*=\Z^3\cup(\Z+\tfrac12)^3.
+\end{equation}
+Der Kern besteht aus ganzzahligen Fünfervektoren gerader Summe.
+Für jede ganzzahlige oder gleichmäßig halbganzzahlige Dreierkoordinate kann die Parität der fünf anderen Koordinaten passend ergänzt werden; die Projektion ist surjektiv. Jede Faser ist ein bestimmter $D_5$-Koset. Die Folge zerfällt als Folge freier abelscher Gruppen, aber nicht automatisch als orthogonales Produkt der markierten Ladungsgitter.
+
+Die vollständige Quelle lässt sich deshalb verlustfrei umordnen:
+\begin{equation}
+\mathcal H_{E_8}=\bigoplus_{y\in D_3^*}\mathcal K_y,\qquad
+\mathcal K_y=\bigoplus_{x:(x,y)\in E_8}\mathcal F_{(x,y)}.
+\end{equation}
+Die inneren Ladungen, Kokzyklusphasen und alle Oszillatormoden bleiben in den Fasern erhalten. Die vier tatsächlichen Familiengewichte
+\begin{equation}
+f_0=\tfrac12(-1,-1,-1),\quad f_1=\tfrac12(-1,1,1),\quad
+f_2=\tfrac12(1,-1,1),\quad f_3=\tfrac12(1,1,-1)
+\end{equation}
+erfüllen
+\begin{equation}
+\sum_a f_a=0,\qquad f_a\cdot f_b=\delta_{ab}-\tfrac14,
+\qquad\sum_a f_af_a^T=I_3.
+\end{equation}
+$C_a$ und alle $X_{ia}$ verschieben $y$ um dasselbe $f_a$, ihre vollständigen Ladungen unterscheiden sich aber in der Fünferfaser.
+
+Die vier getrennten radialen C-Einsetzungen ergeben einen besonders deutlichen Zeugen:
+\begin{equation}
+\sum_a\beta(C_a)=(-2,-2,-2,-2,-2;0,0,0).
+\end{equation}
+Der projizierte Weg ist geschlossen. Der erzeugte Quellzustand besitzt jedoch eine andere Ladung als das Vakuum, ist zu ihm orthogonal und hat Mindestgrad zehn. Für die konkreten Radialpositionen
+$(4/5,3/5,2/5,1/5)$ liefert der bestehende vollständige Geschichtskern eine strikt positive Norm. Eine Projektion auf die Dreierposition allein würde also zwei später unterscheidbare Zustände gleichsetzen.
+
+Vier bloße Grad-eins-Erzeugungsmoden liefern diesen Zustand nicht: Ihr Gesamtgrad vier reicht für die Ladung vom Mindestgrad zehn nicht aus. Die tatsächlichen getrennten Vertexeinsetzungen enthalten den erforderlichen Nachfahrenturm. Damit bleibt der Raumvorschlag an dieselbe vollständige Quellenkonstruktion angeschlossen.
+
+\subsection{Was für physische Bewegung und Lokalität noch fehlt, ist direkt prüfbar}
+Die gleiche Faserbeschreibung zeigt eine bisher nur implizite Grenze:
+\begin{equation}
+T|_{\mathcal K_y}=i^{\,4y_0+3y_1+5y_2}I,\qquad
+[T,P_y]=[L_0,P_y]=0.
+\end{equation}
+Die vorhandene markierte Clock und die konforme Zeit verschieben die Dreierkoordinate nicht. Die C/X-Felder können sie verschieben; daraus folgt aber noch keine ausgewählte Zeitentwicklung, die diese Einsetzungen mit bestimmten Raten ausführt.
+
+Der angegebene Graphlaplacian mit gleichen Raten ist unter dieser Zusatzwahl korrekt:
+\begin{equation}
+\lambda(k)=2\sum_a[1-\cos(k\cdot f_a)]
+=8\left[1-\prod_{j=0}^2\cos(k_j/2)\right]
+=|k|^2+O(|k|^4).
+\end{equation}
+Die drei isotropen langwelligen Richtungen sind Eigenschaften dieses Ladungsgraphen mit dieser Regel. Die quadratische Isotropie setzt noch keine Lorentzrelation und keine physische Geschwindigkeit fest.
+
+Auch eine direkte lokale Algebrazuordnung zu den Fasern scheitert an einem kleinen Strukturtest. Für $y\ne0$ gilt $P_y\Omega=0$. Die unitalisierte Faser-Algebra
+$\C I+P_y\mathcal B(\mathcal H)P_y$ erzeugt aus dem Vakuum daher nur $\C\Omega$. Sie ist keine vakuumzyklische relativistische Lokalalgebra auf dem gesamten Quellraum. Die Direktsumme nach Ladungen ist somit noch keine Anordnung unabhängiger räumlicher Labore. Eine andere, tatsächlich quellenbestimmte Lokalisation müsste zusätzlich konstruiert werden.
+

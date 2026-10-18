@@ -20,6 +20,7 @@ that `rt_table.py` aggregates into Alessandro's red-team table.
 
 import os
 import sys
+from pathlib import Path
 
 # --- make the parent verification/ importable for tfpt_constants ----------
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -27,6 +28,8 @@ _PARENT = os.path.dirname(_HERE)
 _ROOT = os.path.dirname(_PARENT)
 if _PARENT not in sys.path:
     sys.path.insert(0, _PARENT)
+
+from tex_sources import source_chunks
 
 from tfpt_constants import (  # noqa: E402  (re-exported for the rt_* modules)
     check, summary, reset,
@@ -83,7 +86,19 @@ def verdict(report_obj, *, target_id, claim, assumptions, works, fails,
 
 
 def read_text(path):
-    """Best-effort file read for the firewall/audit scans (never raises)."""
+    """Read audit input; TeX firewalls inspect expanded scientific bodies.
+
+    Missing top-level inputs retain the historical empty-string fallback, while
+    missing required modules/cycles fail explicitly in the shared source reader.
+    """
+    source = Path(path)
+    if source.suffix == ".tex" and source.is_file():
+        root = Path(ROOT_DIR).resolve()
+        omitted = {root / "tex-artefacts/verification.tex", root / "changelog.tex"}
+        if source.resolve() == root / "changelog.tex":
+            omitted.remove(root / "changelog.tex")
+        return "".join(chunk.text for chunk in source_chunks(source)
+                       if not omitted.intersection(chunk.include_chain))
     try:
         with open(path, "r", encoding="utf-8", errors="replace") as fh:
             return fh.read()

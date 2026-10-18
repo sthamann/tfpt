@@ -1,0 +1,413 @@
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note documents a Lean~4 formalisation of the algebraic
+carrier rigidity theorem of TFPT Paper~2 (\emph{Carrier Rigidity,
+Hypercharge, and the Standard-Model Packet from Boundary
+Polarization}), up to and including the determinant-normalised
+$3+2$ hypercharge carrier
+$Y = \operatorname{diag}(-\tfrac13,-\tfrac13,-\tfrac13,\tfrac12,\tfrac12)$.
+The bundled top-level theorem consumes four explicit interfaces:
+a carrier involution, Higgs and Yukawa rank witnesses, and a
+primitive oriented determinant-preserving carrier condition.
+Each interface is refinable upstream via a separately formalised
+Lean theorem. In v10 each upstream interface is closed by a
+further structural layer: the Calder\'on idempotent
+$\pi^2 = \pi$ is itself produced from a
+\texttt{BoundaryPolarization} ($H = H_+ \oplus H_-$); the Higgs
+algebraic shadow is identified with the degree-1 piece of the
+bivariate polynomial ring
+$K[X_0, X_1]_1 = \texttt{MvPolynomial.homogeneousSubmodule (Fin 2) K 1}$
+(the algebraic-geometry "Proj-side" presentation of
+$H^0(\mathbb P^1, \mathcal O(1))$); and the Stage D Yukawa
+trilinear form is constructed explicitly from any basis of a
+rank-$3$ space, with injective and surjective contraction proved
+by direct basis computation. The Yukawa Stage D characterisation
+$\exists\,\omega\;(\textrm{CI}\,\wedge\,\textrm{CS})
+  \iff \dim E = 3$ now holds under \texttt{Nontrivial}\,$E$. The unique integer
+pair $(q_-,q_+)=(-2,3)$ follows from a general $(m,n)$
+lattice-rigidity theorem applied to the structurally bundled
+\texttt{PrimitiveOrientedDeterminantCarrier 3 2} input. Lean
+proves the unique $3+2$ hypercharge carrier, trace zero, and the
+carrier polynomial $6 Y^2 - Y - \mathbf 1 = \mathbf 0$. The
+project builds against Mathlib~v4.29.1 with zero \texttt{sorry},
+zero \texttt{admit}, no domain-specific axioms, no
+\texttt{unsafe}/\texttt{opaque}/\texttt{partial} escape hatches,
+and every load-bearing theorem depends only on the three standard
+Lean axioms (\texttt{propext}, \texttt{Classical.choice},
+\texttt{Quot.sound}). A seven-check \texttt{audit.sh} gate is
+shipped; the headline-theorem checks combine Lean
+\texttt{\#check} elaboration (\texttt{AuditCheck.lean}) with
+strict \texttt{example : <exact type> := <theorem>} signature
+locks (\texttt{AuditContract.lean}), so neither silent renames
+nor silent weakening of theorem statements can mask regressions.
+\end{abstract}
+
+\begin{tfptfrontbox}
+\textbf{Inputs from previous papers.} Paper~1 (boundary primitive
+kernel) for the \emph{conceptual} derivation of the carrier
+involution from the Calder\'on polarisation. The Lean project
+consumes only algebraic data: an involution element $\varepsilon$ with
+$\varepsilon^2=\mathbf 1$, plus Stage-A certificates for the Higgs and
+Yukawa rank discharges.
+
+\textbf{New contribution.} A reproducible Lean~4 project
+\texttt{TfptCarrier} (Mathlib~v4.29.1) that elevates four
+previously imported inputs to formal Lean theorems:
+
+\begin{itemize}[leftmargin=1.5em, itemsep=0pt]
+    \item boundary involution $\Rightarrow$ orthogonal idempotents;
+    \item general integer rigidity $\Rightarrow$ unique primitive pair;
+    \item structural trace identity $\Rightarrow$ $\tr Y=0$ from
+          rank data alone;
+    \item determinant character of the carrier torus
+          $\Rightarrow$ Diophantine condition $m q_- + n q_+ = 0$
+          as a corollary (universal-$\lambda$ form, with a single-
+          point helper at $\lambda=2$).
+\end{itemize}
+
+Two further inputs ($\dim E_+=2$ and $\dim E_-=3$) are represented
+as structured hypotheses, not bare numerical assumptions. They
+mark the exact interfaces where the future geometric (Higgs) and
+representation-theoretic (Yukawa) proofs must enter.
+
+For the Yukawa case, this note now provides \emph{four}
+interface layers, with the upstream stage carrying genuine
+algebraic content:
+
+\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
+\item \emph{Stage A} (\texttt{YukawaRankCertificate}) --- a
+    bare linear equivalence $E_- \simeq K^3$. Used by the
+    bundled \texttt{CarrierData.CarrierPremises} as a rank
+    witness; refinable from any of the upstream stages.
+\item \emph{Stage B} (\texttt{YukawaTopForm}) --- a linear
+    equivalence $\Lambda^3 E_- \simeq K$ (an algebraic top
+    form on $E_-$).
+\item \emph{Stage C} (\texttt{PrimitiveIndecomposableYukawaCoupling})
+    --- a linear equivalence $E_- \simeq (\Lambda^2 E_-)^*$
+    plus non-triviality (the contraction map of a non-degenerate
+    alternating trilinear coupling, taken as data).
+\item \emph{Stage D} (\texttt{YukawaTrilinearForm}) --- introduced
+    in v6, with operational predicates renamed in v7 --- an
+    alternating trilinear form $\omega : \Lambda^3 E_- \to K$ as
+    primary datum, together with two explicit \texttt{Prop}
+    predicates \texttt{ContractionInjective} and
+    \texttt{ContractionSurjective}. From these the contraction
+    map is \emph{constructed} (via
+    \texttt{alternatingMapLinearEquiv} and
+    \texttt{AlternatingMap.curryLeft}) and proved to be a linear
+    iso when both predicates hold and $E_-$ is non-trivial,
+    producing Stage C as a \emph{theorem}, not as a definition.
+\end{itemize}
+
+Each upstream stage produces the next via a Lean bridge
+(D $\Rightarrow$ C $\Rightarrow$ B $\Rightarrow$ A). Stage D
+carries the genuine content of TFPT Paper 2's
+"non-degenerate primitive alternating trilinear coupling": the
+trilinear form is the primary datum, the contraction iso is a
+derived fact, and the rank-3 conclusion follows from the
+contraction iso via the elementary dimension chain
+$\dim E_- = \dim (\Lambda^2 E_-)^* = \binom{\dim E_-}{2}$ on a
+non-trivial finite-dimensional space.
+
+A seven-check \texttt{audit.sh} CI gate is included.
+
+\textbf{Not claimed here.} No analytic content of Paper~1, no full
+geometric formalisation of $H^0(\mathbb P^1, \mathcal O(1))$, no
+quiver-theoretic definition of \emph{primitive indecomposable
+Yukawa type}, no SM hypercharge spectrum on derived
+representations (duals, exterior powers, tensor products), no
+$\mathbb Z_6$ quotient, no $\alpha$, no flavour, no cosmology.
+
+\textbf{Falsification or audit surface.} The note fails if
+(i)~\texttt{lake build} no longer succeeds against the pinned
+Mathlib release; (ii)~the \texttt{audit.sh} script returns a
+non-zero exit; (iii)~the dependency graph stated below drifts from
+the wording of Paper~2~\S2.
+\end{tfptfrontbox}
+
+\begin{tfptclaimcontract}
+\textbf{Claim.}
+The top-level Lean theorem
+\texttt{CarrierPremises.hypercharge\_carrier\_packet} takes
+four explicit interfaces:
+
+\begin{enumerate}[leftmargin=1.5em, itemsep=0pt, label=(\arabic*)]
+\item a carrier involution element $\varepsilon$ with
+      $\varepsilon^2 = \mathbf 1$
+      (\texttt{InvolutionProjectors.CarrierInvolution}, optionally
+      wrapped by a \texttt{CalderonCertificate});
+\item a Higgs rank-2 certificate
+      (\texttt{HiggsIndexCertificate}) discharging $\dim E_+ = 2$;
+\item a Yukawa rank-3 witness
+      (\texttt{YukawaRankCertificate}) discharging $\dim E_- = 3$,
+      \emph{refinable} via \texttt{YukawaTopForm} (Stage B),
+      \texttt{PrimitiveIndecomposableYukawaCoupling} (Stage C),
+      and \texttt{YukawaTrilinearForm} (Stage D) by formal Lean
+      bridges;
+\item a primitive oriented determinant-preserving carrier
+      condition
+      $(3 q_- + 2 q_+ = 0,\ q_- < 0 < q_+,\ \gcd(|q_-|,q_+) = 1)$,
+      packaged as
+      \texttt{PrimitiveOrientedDeterminantCarrier 3 2}.
+\end{enumerate}
+
+\textbf{Conclusion.}
+From these inputs Lean derives the $3+2$ hypercharge carrier
+$Y = -\tfrac13 P_- + \tfrac12 P_+$, with $(q_-,q_+) = (-2, 3)$,
+$\tr Y = 0$, and the carrier polynomial
+$6 Y^2 - Y - \mathbf 1 = \mathbf 0$ in $\mathrm{End}_K M$.
+
+\textbf{Three layers of the contract.}
+The claim is structured into three explicit layers, separated to
+prevent overclaiming and to make every open question visible:
+
+\smallskip
+\noindent
+\emph{(a) Direct inputs of \texttt{CarrierPremises}.}\ The
+bundled top-level theorem consumes the four interfaces above:
+a carrier involution, a Higgs rank witness, a Yukawa rank
+witness, and a primitive oriented determinant-preserving
+carrier condition.
+
+\smallskip
+\noindent
+\emph{(b) Lean-proved upstream refinements (closed to the
+next algebraic layer).}\ Each of the four direct inputs is
+produced by an explicit Lean-proved upstream interface:
+
+\begin{itemize}[leftmargin=1.6em, itemsep=0pt]
+  \item Carrier involution $\leftarrow$
+    \texttt{CalderonProjector} $\leftarrow$
+    \texttt{BoundaryPolarization} ($H = H_+ \oplus H_-$).
+    The converse \texttt{BoundaryPolarization.ofCarrierInvolution}
+    makes the chain a Lean-proved \emph{algebraic
+    equivalence}: the carrier involution and the polarisation
+    are two presentations of the same finite-dimensional
+    carrier datum. This is not the analytic Paper-1 content;
+    the analytic construction of the polarisation from
+    boundary elliptic theory remains upstream.
+  \item Higgs rank witness $\leftarrow$
+    \texttt{HiggsTopForm} (Stage B) $\leftarrow$
+    \texttt{HiggsSchemeCohomologyShadow}
+    ($\simeq \texttt{MvPolynomial.homogeneousSubmodule (Fin 2) K 1}$).
+  \item Yukawa rank witness $\leftarrow$
+    \texttt{YukawaTopForm} (Stage B) $\leftarrow$
+    \texttt{YukawaPrimitive} (Stage C) $\leftarrow$
+    \texttt{YukawaTrilinearForm} (Stage D) $\leftrightarrow$
+    \texttt{YukawaStageDExistence} (\emph{both directions
+    formalised, under} \texttt{Nontrivial}).
+  \item Primitive oriented determinant carrier $\leftarrow$
+    \texttt{SeamWindingInterface} (algebraic packaging of
+    seam-class data).
+\end{itemize}
+
+\smallskip
+\noindent
+\emph{(c) Open TFPT-origin theorems (not formalised here).}\ Three
+genuinely upstream questions remain open:
+
+\begin{enumerate}[leftmargin=1.6em, itemsep=0pt, label=(\arabic*)]
+  \item \emph{Paper 1 analytic boundary theory} produces the
+    polarisation $H = H_+ \oplus H_-$ (boundary elliptic
+    theory, Sobolev spaces, Calder\'on operator).
+  \item \emph{TFPT boundary kernel} canonically produces an
+    $\omega : \Lambda^3 E_- \to K$ with
+    \texttt{ContractionInjective} and
+    \texttt{ContractionSurjective} (the \emph{canonical}
+    question; the existence is now closed by the present
+    note).
+  \item \emph{Seam winding $[u_\Sigma] = 1$} produces a
+    primitive oriented determinant-preserving carrier
+    condition.
+\end{enumerate}
+
+These three are \emph{outside the scope} of the present Lean
+note; each is named, typed, and provided with a Lean-side
+target structure
+(\texttt{BoundaryPolarization},
+\texttt{BoundaryYukawaKernelInterface},
+\texttt{SeamWindingInterface}).
+
+\textbf{Not claimed.}
+Beyond the three open TFPT-origin theorems, the
+$\mathbb Z_6$ quotient $G_{\mathrm{phys}}$, derived SM
+representations (duals, exterior powers, tensor products),
+$\alpha$, flavour, and cosmology are also not formalised
+in this note.
+
+\textbf{First assumptions on $K$.}
+The projector construction requires $2$ invertible in the
+carrier algebra; for vector-space applications this is ensured
+by $\mathrm{char}\,K \ne 2$. The rational normalisation
+$Y = -P_-/3 + P_+/2$ further requires $6$ invertible; concretely
+the bundled theorems use \texttt{CharZero K}.
+
+\textbf{Proof status.}
+\emph{Formally verified} in Lean~4 + Mathlib~v4.29.1; no
+\texttt{sorry}; no \texttt{admit}; no
+\texttt{unsafe}/\texttt{opaque}/\texttt{partial}; no
+domain-specific axiom; \texttt{audit.sh} (seven checks
+including the signature-lock \texttt{AuditContract.lean})
+returns \texttt{AUDIT:\ PASS}. As of v10, the three upstream
+interfaces (Calder\'on, Higgs, Yukawa Stage D backward) are
+each closed \emph{to the next algebraic layer}. The remaining
+gaps are TFPT-side or analytic, not Lean-side.
+
+\textbf{Kill condition.}
+Any of the seven audit checks fail; any headline theorem in
+\texttt{AuditCheck.lean} is removed or fails to elaborate;
+any \texttt{example} in \texttt{AuditContract.lean} fails to
+typecheck (which detects silent weakening of theorem statements).
+\end{tfptclaimcontract}
+
+\tableofcontents
+
+% ---------------------------------------------------------------- %
+\section{What This Note Is About}
+% ---------------------------------------------------------------- %
+
+v1 formalised the \emph{algebraic motor} of TFPT Paper~2 ---
+the carrier polynomial and the trace identity on a concrete
+$5\times5$ diagonal model. v2 began making the upstream
+dependencies explicit. v3 made the dependency graph correct.
+v4 replaced the Yukawa rank witness with a structurally
+algebraic Stage B (top form on $\Lambda^3 E_-$). v5 introduced
+a Stage C contraction iso $E_- \simeq (\Lambda^2 E_-)^*$.
+
+v6 completed the Yukawa refinement chain by introducing a
+Stage D primary datum; v7 renamed its predicates to operational
+names; v8 added a Calder\'on idempotent layer and a Higgs Stage B;
+v9 consolidates the document into a single review-ready state
+and adds an unconditional transparency theorem for Stage D.
+The Stage D primary datum reads:
+
+\[
+\texttt{YukawaTrilinearForm}\,K\,E_-
+\;\;:=\;\;
+\bigl\{\,\omega : \Lambda^3 E_- \to_{\ell K} K\,\bigr\},
+\qquad
+\texttt{ContractionInjective}\,\omega,\;\;
+\texttt{ContractionSurjective}\,\omega.
+\]
+
+The contraction map $C_\omega : E_- \to (\Lambda^2 E_-)^*$ is
+now \emph{constructed} from $\omega$ via
+\texttt{exteriorPower.alternatingMapLinearEquiv} composed with
+\texttt{AlternatingMap.curryLeft}. The two predicates state
+exactly that $C_\omega$ is injective (mathematical reading:
+non-degeneracy) and surjective (mathematical reading: primitivity
+/ no spectator). Together, on a non-trivial finite-dimensional
+space, they yield a Stage C structure as a theorem; the rank-3
+conclusion then follows mechanically:
+
+\[
+\boxed{\;
+\omega\;\text{trilinear} \;+\; \texttt{CI} \;+\; \texttt{CS} \;+\; \texttt{Nontrivial}\,E_-
+\;\;\xRightarrow{\text{contraction is iso}}\;\;
+\text{Stage C}
+\;\;\xRightarrow{\binom{n}{2} = n,\, n\ne 0}\;\;
+\dim E_- = 3.
+\;}
+\]
+
+\noindent
+The non-triviality hypothesis is essential: for $E_- = 0$ both
+predicates are vacuously satisfied (the contraction $0 \to 0$ is
+trivially bijective) but $\dim E_- = 0$. The Lean theorem
+\texttt{finrank\_E\_eq\_zero\_or\_three} (new in v9) records the
+unconditional disjunction $\dim E_- = 0 \lor \dim E_- = 3$ for
+transparency; the rank-3 slogan above is the case under
+\texttt{Nontrivial}\,$E_-$.
+
+The full Yukawa tower in Lean is now
+\[
+\text{Stage D}
+\;\Rightarrow\; \text{Stage C}
+\;\Rightarrow\; \text{Stage B}
+\;\Rightarrow\; \text{Stage A}
+\;\Rightarrow\; \dim E_- = 3,
+\]
+with every step a Lean theorem and Stages B and C carrying
+characterisation theorems establishing equivalence to
+$\dim E_- = 3$.
+
+v6 made the Paper~1 input explicit. A new
+\texttt{CalderonInterface.lean} introduces a
+\texttt{CalderonCertificate} structure that names the
+Calder\'on-induced carrier involution as a Lean datum and feeds
+it into the \texttt{InvolutionProjectors} chain. v8 upgrades
+this interface from documentary to a structural algebraic step:
+a new \texttt{CalderonProjector.lean} module shows that an
+idempotent element $\pi$ in a ring with $2$ invertible yields
+$\varepsilon^2 = 1$ via the algebraic identity $\varepsilon := 2\pi - 1$,
+$(2\pi - 1)^2 = 4\pi^2 - 4\pi + 1 = 1$. v10 adds the next
+upstream layer: a new \texttt{BoundaryPolarization.lean} module
+shows that any direct-sum decomposition $H = H_+ \oplus H_-$
+of a $K$-module produces an idempotent endomorphism on $H$ (via
+\texttt{Submodule.IsCompl.projection}) and feeds the Calder\'on
+chain. The remaining Paper-1 gap is therefore precisely the
+analytic content: producing the boundary spectral
+decomposition itself.
+
+v8 also introduces a Stage-B Higgs interface
+(\texttt{HiggsTopForm.lean}) parallel to the Yukawa tower:
+the rank-2 conclusion $\dim E_+ = 2$ is derivable from a
+structural hypothesis identifying $E_+$ with the algebraic
+shadow of $H^0(\mathbb P^1, \mathcal O(1))$, namely the space
+of homogeneous degree-1 polynomials in two formal variables
+$\alpha X + \beta Y$. v10 closes the bridge to actual algebraic
+geometry: \texttt{HiggsSchemeCohomologyShadow.lean} provides a
+\texttt{LinearEquiv} between this algebraic shadow and the
+Mathlib-native degree-1 piece of the bivariate polynomial ring
+$\texttt{MvPolynomial.homogeneousSubmodule (Fin 2) K 1}
+= K[X_0, X_1]_1$, which by the standard $\operatorname{Proj}$
+construction is the algebraic-geometry presentation of
+$H^0(\mathbb P^1_K, \mathcal O(1))$. The remaining gap is now
+the scheme-theoretic identification
+$H^0(\mathrm{Proj}\,K[X, Y], \mathcal O(1)) \simeq K[X, Y]_1$,
+a general algebraic-geometry theorem independent of TFPT.
+
+v10 also closes the Stage D backward direction
+(\texttt{YukawaStageDExistence.lean}). Given any basis
+$b : \texttt{Basis}\,(\texttt{Fin}\,3)\,K\,E$, the determinant
+form $b.\texttt{det}$ transports via
+\texttt{exteriorPower.alternatingMapLinearEquiv} to an
+alternating trilinear form $\omega : \Lambda^3 E \to_{\ell K} K$.
+The contraction $C_\omega$ is shown injective by basis-level
+matrix-determinant computation and surjective by
+$\dim E = \dim(\Lambda^2 E)^* = 3$ and the standard
+finite-dimensional injective-iff-surjective theorem. From this
+the Stage D characterisation
+$\exists\,\omega\;(\textrm{CI}\,\wedge\,\textrm{CS})
+  \iff \dim E = 3$ now holds (under $\texttt{Nontrivial}\,E$).
+
+The bundled main theorem packages the three load-bearing
+conclusions
+\[
+(q_-,q_+)=(-2,3), \qquad \tr Y=0, \qquad 6\,Y^2 - Y - \mathbf 1 = \mathbf 0
+\]
+into a single Lean statement \texttt{hypercharge\_carrier\_packet}
+that consumes only structured hypotheses --- with the Yukawa
+input now refinable all the way to Stage D, and the boundary
+input now arriving via an explicit Calder\'on certificate.
+
+The redesign is governed by one editorial discipline: \emph{the
+language must not outrun the formal status}. Two examples:
+
+\begin{itemize}[leftmargin=1.6em, itemsep=2pt]
+\item This note never claims to formalise the \emph{Standard-
+    Model hypercharge spectrum}, only the $3+2$ carrier
+    multiplet. Duals, exterior powers, tensor products --- the
+    constructions that lift the carrier to all SM chiral
+    multiplets --- are out of scope (\S\ref{sec:limits}).
+\item The Yukawa Stage-A certificate is named
+    \texttt{YukawaRankCertificate}, not
+    \texttt{PrimitiveYukawaTypeCertificate}. The certificate is
+    a \emph{rank witness}; it is not a formalisation of
+    "primitive indecomposable Yukawa type", which is the proper
+    open problem.
+\end{itemize}
+
+% ---------------------------------------------------------------- %

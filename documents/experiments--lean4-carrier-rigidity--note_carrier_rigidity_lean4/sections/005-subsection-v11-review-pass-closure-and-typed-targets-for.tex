@@ -1,0 +1,376 @@
+\subsection*{v11 --- review-pass closure and typed targets for
+the remaining upstream theorems (the present revision)}
+
+Relative to v10, this version is a closure-and-naming pass. It
+addresses the v10 reviewer's three actionable findings:
+
+\begin{itemize}[leftmargin=1.6em, itemsep=2pt]
+\item \textbf{Editorial consistency.}\ The stale "Stage D
+    characterisation as targeted future work" paragraph and the
+    matching "Stage D backward" entry in \S\ref{sec:next}, both
+    inherited from v9, are removed: v10's
+    \texttt{YukawaStageDExistence} closed that gap.
+
+\item \textbf{Wording.}\ "Upstream interfaces structurally
+    closed" is reworded to "closed to the next algebraic
+    layer", honestly reflecting that Calder\'on, Higgs Stage B,
+    and Yukawa Stage D backward are now Lean-proved
+    one-layer-up structural derivations, while the analytic
+    / TFPT-internal content of \emph{that next layer up}
+    remains open.
+
+\item \textbf{Three-part claim contract.}\ The
+    \texttt{tfptclaimcontract} environment is restructured to
+    separate (a) direct \texttt{CarrierPremises} inputs,
+    (b) Lean-proved upstream refinements, (c) open
+    TFPT-origin theorems. The third group now lists three
+    typed Lean targets for the open content.
+
+\item \textbf{New module
+    \texttt{BoundaryPolarization.ofCarrierInvolution}.}\
+    The converse of v10's
+    \texttt{BoundaryPolarization.toCarrierInvolution}: given
+    a carrier involution $\varepsilon^2 = \mathbf 1$ on
+    \texttt{Module.End K H}, the +1 and -1 eigenspaces form a
+    \texttt{BoundaryPolarization}. This makes the Paper-1
+    interface a Lean-proved \emph{algebraic equivalence}: the
+    polarisation picture and the involution picture are two
+    presentations of the same finite-dimensional carrier
+    datum. \emph{Not} the analytic Paper 1 derivation; the
+    construction of the polarisation from boundary elliptic
+    theory remains upstream.
+
+\item \textbf{New module \texttt{SeamWindingInterface.lean}.}\
+    Introduces \texttt{SeamWindingData}\,$(m, n)$, an abstract
+    typed target for TFPT Paper 2's seam-class theorem
+    "$[u_\Sigma] = 1$ produces a primitive oriented
+    determinant-preserving carrier". Provides bidirectional
+    bridges to and from \texttt{PrimitiveOrientedDeterminantCarrier}:
+    the seam-winding interface is the existing rigidity input,
+    renamed to make the upstream TFPT theorem visible.
+
+\item \textbf{New module \texttt{BoundaryYukawaKernelInterface.lean}.}\
+    Introduces \texttt{BoundaryYukawaKernel}\,$K\,E$,
+    \emph{packaging}\ the Yukawa Stage D quadruple
+    $(\omega, \texttt{CI}, \texttt{CS}, \texttt{Nontrivial})$.
+    This is \emph{not} a new physical derivation; it is a
+    typed renaming of the Stage D condition, supplied so that
+    the open TFPT theorem
+    "boundary kernel produces a canonical $\omega$" has an
+    explicit Lean-side conclusion. Forward direction
+    \texttt{finrank\_E\_eq\_three} reuses v10's Stage D
+    discharge; backward direction \texttt{ofFinrankEqThree}
+    reuses v10's \texttt{YukawaStageDExistence} to give the
+    characterisation
+    \texttt{nonempty\_iff\_finrank\_eq\_three}. The
+    \emph{canonicity} of $\omega$ from the boundary kernel
+    --- whether the TFPT-internal construction produces the
+    same form as the basis-built witness, up to carrier
+    symmetries --- remains the upstream physics question.
+
+\item \textbf{AuditCheck, AxiomCheck, AuditContract extended.}\
+    Fifteen new headline names added across the three new
+    modules; all depend only on
+    $\{\texttt{propext},\ \texttt{Classical.choice},\
+    \texttt{Quot.sound}\}$. \texttt{audit.sh} returns
+    \texttt{AUDIT:\ PASS}.
+\end{itemize}
+
+\smallskip
+After v11, the boundaries of the Lean-side carrier-rigidity
+chain are sharply visible. The three open TFPT-origin theorems
+each have a typed Lean target:
+
+\[
+\begin{aligned}
+\text{Paper 1 analytic boundary theory}
+&\;\Rightarrow\; \texttt{BoundaryPolarization}, \\
+\text{TFPT boundary kernel + reps}
+&\;\Rightarrow\; \texttt{BoundaryYukawaKernel}, \\
+\text{seam class }[u_\Sigma] = 1
+&\;\Rightarrow\; \texttt{SeamWindingData}.
+\end{aligned}
+\]
+
+\subsection*{v10 --- upstream interfaces closed to the next
+algebraic layer}
+
+Relative to v9, this version closes the three standing upstream
+gaps documented in the v9 limitations section. Each gap is
+replaced by a Mathlib-native structural Lean module:
+
+\begin{itemize}[leftmargin=1.6em, itemsep=2pt]
+\item \textbf{New module \texttt{BoundaryPolarization.lean}.}\
+    Introduces the structure
+    \texttt{BoundaryPolarization K H := \{Hplus Hminus :
+    Submodule K H, isCompl Hplus Hminus\}}, the algebraic
+    skeleton of the Paper 1 polarisation. The projection
+    onto $H_+$ along $H_-$ is an idempotent endomorphism
+    (via Mathlib's \texttt{Submodule.IsCompl.projection} and
+    its \texttt{IsIdempotentElem} lemma); a bridge
+    \texttt{toCalderonProjector} feeds the
+    \texttt{CalderonProjector} chain in
+    \texttt{Module.End K H}, using the standard
+    \texttt{Invertible (2 : \texttt{End} K M)} instance from
+    Mathlib's \texttt{QuadraticForm.Basic}.
+
+\item \textbf{New module \texttt{HiggsSchemeCohomologyShadow.lean}.}\
+    Constructs a \texttt{LinearEquiv} between
+    \texttt{DegreeOneTwoVarForm K} (the algebraic shadow used
+    by \texttt{HiggsTopForm}) and Mathlib's
+    \texttt{MvPolynomial.homogeneousSubmodule (Fin 2) K 1}, the
+    degree-1 piece of the bivariate polynomial ring. The latter
+    is the algebraic-geometry "Proj-side" presentation of
+    $H^0(\mathbb P^1, \mathcal O(1))$. The proof uses
+    \texttt{MvPolynomial.homogeneousSubmodule\_one\_eq\_span\_X}
+    and \texttt{Submodule.mem\_span\_range\_iff\_exists\_fun}
+    to extract coefficients; injectivity is by direct
+    extraction of $X_i$-coefficients.
+
+\item \textbf{New module \texttt{YukawaStageDExistence.lean}.}\
+    Closes the Stage D backward direction:
+    $\dim E = 3 \Rightarrow \exists\,\omega$ with
+    \texttt{ContractionInjective} and
+    \texttt{ContractionSurjective}. The construction uses
+    Mathlib's \texttt{Module.Basis.det} (the determinant of
+    vectors in a basis) transported via
+    \texttt{exteriorPower.alternatingMapLinearEquiv} into a
+    Yukawa form on $\Lambda^3 E$. Injectivity is proved by
+    direct $3\times 3$ matrix-determinant computation in
+    the basis; surjectivity follows from
+    $\dim E = \dim(\Lambda^2 E)^* = 3$ and Mathlib's
+    \texttt{LinearMap.injective\_iff\_surjective\_of\_finrank\_eq\_finrank}.
+    The Stage D characterisation
+    $\exists\,\omega\;(\textrm{CI}\,\wedge\,\textrm{CS})
+      \iff \dim E = 3$ now holds (under
+    \texttt{Nontrivial}\,$E$).
+
+\item \textbf{AuditCheck, AxiomCheck, AuditContract extended.}\
+    Eighteen new headline names added; all depend only on
+    $\{\texttt{propext},\ \texttt{Classical.choice},\
+    \texttt{Quot.sound}\}$. \texttt{audit.sh} returns
+    \texttt{AUDIT:\ PASS} with seven hard checks.
+\end{itemize}
+
+\smallskip
+After v10, the conditional Lean theorem is
+
+\[
+\boxed{\;
+\begin{aligned}
+\texttt{BoundaryPolarization}\;(H = H_+ \oplus H_-)
+&\;\Rightarrow\; \pi^2 = \pi
+\;\Rightarrow\; \varepsilon^2 = \mathbf 1
+\;\Rightarrow\; P_\pm \text{ idempotent} \\
+K[X_0, X_1]_1 \simeq \texttt{DegreeOneTwoVarForm}
+&\;\Rightarrow\; \dim E_+ = 2 \\
+\dim E_- = 3\;(\text{with }\texttt{Nontrivial}\,E_-)
+&\;\iff\; \exists\,\omega\;(\textrm{CI} \wedge \textrm{CS}) \\
+m q_- + n q_+ = 0,\ q_- < 0 < q_+,\ \gcd = 1
+&\;\Rightarrow\; (q_-, q_+) = (-n/d, m/d)
+\end{aligned}
+\;}
+\]
+
+with every step a Lean theorem, no \texttt{sorry}, all axioms
+$\subseteq\{\texttt{propext},\ \texttt{Classical.choice},\
+\texttt{Quot.sound}\}$.
+
+\subsection*{v9 --- review-readiness pass and Stage D transparency}
+
+Relative to v8, this version is a consistency-and-transparency
+revision rather than a structural one. It addresses internal
+version drift identified in the v8 review and adds one
+unconditional transparency theorem at the Stage D interface:
+
+\begin{itemize}[leftmargin=1.6em, itemsep=2pt]
+\item \textbf{New theorem
+    \texttt{YukawaTrilinearForm.finrank\_E\_eq\_zero\_or\_three}.}\
+    For any finite-dimensional $K$-vector space (no
+    \texttt{Nontrivial} hypothesis) a trilinear form with
+    \texttt{ContractionInjective} and
+    \texttt{ContractionSurjective} satisfies
+    $\dim E = 0 \lor \dim E = 3$. The two predicates are
+    vacuously satisfied at $E = 0$, which is the mathematical
+    reason the existing rank-3 theorem requires
+    \texttt{Nontrivial}\,$E$.
+
+\item \textbf{Stage D slogans and statements carry
+    \texttt{Nontrivial}\,$E$ explicitly.}\ The frontbox,
+    abstract, headline boxed equations, and interface table now
+    state the rank-3 conclusion under \texttt{Nontrivial}\,$E$.
+    The Lean theorem already carried this hypothesis; v9 fixes
+    the documentation to match.
+
+\item \textbf{Predicate naming unified throughout the note.}\
+    All operational mentions use \texttt{ContractionInjective}
+    and \texttt{ContractionSurjective}. The TFPT-side phrases
+    "non-degenerate" and "primitive / no spectator" are
+    retained only as docstring synonyms in mathematical prose.
+
+\item \textbf{Audit gate uniformly described as seven checks.}\
+    The earlier v6 wording "six checks" is removed; the
+    \texttt{AuditContract.lean} signature-lock check is
+    consistently the seventh.
+
+\item \textbf{Limitations section rewritten to match v8/v9.}\
+    The previous "Higgs Stage A only" and "Calder\'on interface
+    is documentary only" wording is replaced by the accurate v9
+    status: Higgs has a Stage B algebraic shadow, Calder\'on has
+    an algebraic idempotent-to-involution layer, and the
+    remaining open content is precisely identified.
+
+\item \textbf{Calder\'on and Higgs wording sharpened.}\ The note
+    no longer claims that Paper 1 or scheme cohomology is
+    formalised. Calder\'on is presented as the algebraic step
+    $\pi^2 = \pi \Rightarrow \varepsilon^2 = \mathbf 1$; Higgs is
+    presented as the algebraic shadow $E_+ \simeq
+    \texttt{DegreeOneTwoVarForm K}$.
+
+\item \textbf{AxiomCheck, AuditCheck, AuditContract updated.}\
+    The three audit modules now include the new
+    \texttt{finrank\_E\_eq\_zero\_or\_three} headline. All
+    audit checks continue to return \texttt{AUDIT:\ PASS}.
+\end{itemize}
+
+\subsection*{v8 --- Calderón structural + Higgs Stage B}
+
+Relative to v7, this version upgrades two upstream interfaces
+from documentary wrappers to structural derivations, narrowing
+the "out of scope" column of the interface table:
+
+\begin{itemize}[leftmargin=1.6em, itemsep=2pt]
+\item \textbf{New module \texttt{CalderonProjector.lean}.}\
+    Introduces the structure
+    \texttt{CalderonProjector A := \{\(\pi : A\), \(\pi^2 = \pi\)\}},
+    the algebraic skeleton of the Paper 1 Calder\'on
+    construction. Defines the spectral reflection
+    $\varepsilon := 2\pi - 1$ and \emph{proves}
+    $\varepsilon^2 = \mathbf 1$ via the elementary identity
+    $(2\pi - 1)^2 = 4\pi^2 - 4\pi + 1 = 1$. The bridge
+    \texttt{toCalderonCertificate} feeds the structural result
+    into the existing
+    \texttt{CalderonInterface.CalderonCertificate} wrapper, so
+    the Paper 1 input is now derived from a single algebraic
+    hypothesis: \emph{the existence of an idempotent}.
+
+\item \textbf{New module \texttt{HiggsTopForm.lean}.}\
+    Introduces the structure
+    \texttt{HiggsTopForm K Eplus :=
+            \{Eplus $\simeq$ DegreeOneTwoVarForm K\}},
+    where
+    \texttt{DegreeOneTwoVarForm K := \{coeffX coeffY : K\}}
+    is the algebraic shadow of
+    $H^0(\mathbb P^1_K, \mathcal O(1))$ --- the space of
+    homogeneous degree-1 polynomials $\alpha X + \beta Y$ in
+    two formal variables over $K$. The Stage-B rank theorem
+    $\dim E_+ = 2$ follows mechanically (\texttt{finrank\_eq\_two}
+    on \texttt{DegreeOneTwoVarForm}, transported via the
+    \texttt{HiggsTopForm} equivalence). A bridge
+    \texttt{toHiggsIndexCertificate} produces the Stage A
+    witness.
+
+\item \textbf{Updated audit gate.}\
+    \texttt{AxiomCheck.lean}, \texttt{AuditCheck.lean}, and
+    \texttt{AuditContract.lean} extended with five new headline
+    theorems. All five depend only on
+    $\{\texttt{propext},\ \texttt{Classical.choice},\
+    \texttt{Quot.sound}\}$. \texttt{audit.sh} continues to
+    return \texttt{AUDIT:\ PASS} with seven hard checks.
+\end{itemize}
+
+\smallskip
+The Lean-side picture from v8 onwards is:
+
+\[
+\begin{aligned}
+\text{Calder\'on projector}\; (\pi^2 = \pi)
+&\;\Rightarrow\; \varepsilon^2 = \mathbf 1 \;\Rightarrow\; P_-, P_+ \text{ idempotent}\\
+\text{Higgs Stage B}\; (E_+ \simeq \alpha X + \beta Y)
+&\;\Rightarrow\; \dim E_+ = 2\\
+\text{Yukawa Stage D}\; (\omega, \texttt{CI}, \texttt{CS}, \texttt{Nontrivial}\,E_-)
+&\;\Rightarrow\; \dim E_- = 3
+\end{aligned}
+\]
+
+with all three discharges now derived from \emph{structural
+hypotheses}, not bare numerical / linear-equivalence
+assumptions.
+
+\paragraph{Remaining Lean lemma gap.}
+The Stage D characterisation backward direction --- existence
+of a $(\omega, \texttt{ContractionInjective},
+\texttt{ContractionSurjective})$ triple from $\dim E = 3$ ---
+requires showing that the wedge map
+$E \to \mathrm{Hom}(\Lambda^2 E, \Lambda^3 E)$, $v \mapsto (\eta \mapsto v \wedge \eta)$,
+is injective in dimension 3. The cleanest formalisation route
+extends a non-zero vector to a basis and uses
+\texttt{exteriorPower.iotaMulti\_family\_linearIndependent\_ofBasis}
+to deduce $v \wedge e_1 \wedge e_2 \neq 0$. Mathlib does not
+yet have a direct lemma for the non-degeneracy of the wedge
+pairing $\Lambda^p E \otimes \Lambda^{n-p} E \to \Lambda^n E$,
+so this is a single missing infrastructure lemma; the
+remainder of the proof is bookkeeping.
+
+\subsection*{v7 --- Signature lock, predicate rename, interface
+discipline}
+
+Relative to v6, this version hardens the audit interface,
+neutralises a semantically-loaded naming choice, and tightens
+the editorial framing around what the note does and does not
+claim:
+
+\begin{itemize}[leftmargin=1.6em, itemsep=2pt]
+\item \textbf{New \texttt{AuditContract.lean} module.}\ Each
+    headline theorem is now used in an
+    \texttt{example : <exact intended type> := <theorem>}
+    pattern. This is strictly stronger than the \texttt{\#check}
+    audit of \texttt{AuditCheck.lean}: it detects silent
+    weakening of theorem statements that \texttt{\#check} would
+    miss (since a weakened theorem still elaborates under its
+    own name). The \texttt{audit.sh} gate now has \emph{seven}
+    checks; the new seventh requires
+    \texttt{AuditContract.lean} to elaborate.
+
+\item \textbf{Stage D predicate rename.}\
+    \texttt{YukawaTrilinearForm.Nondegenerate} $\to$
+    \texttt{ContractionInjective} and
+    \texttt{YukawaTrilinearForm.Primitive} $\to$
+    \texttt{ContractionSurjective}. The new names are purely
+    operational --- they describe the bijectivity of
+    $C_\omega$ --- and leave the semantic content
+    ("non-degenerate", "primitive") to the docstrings. A
+    combined predicate
+    \texttt{PrimitiveIndecomposableYukawaCondition} is
+    available for the TFPT-side phrase. This removes the
+    "primitive renamed to surjective" attack surface.
+
+\item \textbf{New
+    \texttt{OrientedDeterminantCarrier.lean} module.}\
+    The three-part TFPT carrier condition --- trace-zero,
+    orientation, primitivity --- is now packaged as a single
+    Lean structure
+    \texttt{PrimitiveOrientedDeterminantCarrier (m n : \(\mathbb N\))}.
+    Producing such a structure is the formal target for
+    a future TFPT-internal theorem
+    "seam winding $[u_\Sigma] = 1$ implies a primitive oriented
+    determinant-preserving carrier".
+
+\item \textbf{Interface table.}\ A new
+    \S\ref{sec:interface-table} maps every load-bearing TFPT
+    Paper 2 claim to its current Lean status and the missing
+    upstream proof. This separates "formalised", "interfaced",
+    and "out of scope" without ambiguity.
+
+\item \textbf{Claim Contract refinement.}\ The contract now
+    distinguishes \emph{direct} inputs to
+    \texttt{CarrierPremises} (the rank witnesses and the
+    boundary involution) from \emph{refinable} upstream
+    interfaces (Stages B/C/D feeding the Yukawa rank witness).
+
+\item \textbf{Editorial fixes.}\ The running header is
+    overridden for this note (it previously inherited the
+    TFPT 4.5 series header). The "v3" relic in the Result
+    section is corrected.
+\end{itemize}
+

@@ -46,6 +46,9 @@ Python-only / Wolfram mirror deferred.
 """
 from __future__ import annotations
 
+from tex_sources import read_tex
+from pathlib import Path
+
 import os
 from math import pi
 
@@ -97,8 +100,9 @@ TY = SY / (2j) - SZ / 2
 
 
 def tex_has(path: str, snippet: str) -> bool:
-    with open(path, encoding="utf-8") as handle:
-        return snippet in handle.read()
+    source = Path(path)
+    text = read_tex(source) if source.suffix == ".tex" else source.read_text(encoding="utf-8")
+    return snippet in text
 
 
 def telb_round4_document_guard(text: str) -> bool:
@@ -555,8 +559,7 @@ def run():
         "pinned max=%.9f fit=%.9f bound=%.2f"
         % (HS_MAX_PIN, HS_FIT_PIN, HS_SAFE_GRID),
     )
-    with open(MMST_TEX, encoding="utf-8") as handle:
-        mmst_text = handle.read()
+    mmst_text = read_tex(Path(MMST_TEX))
     report(
         "TEL-B [E]: native v1026 all-even-N norm is documented with "
         "FE-GEN/ALG-EXH/MMST boundary",

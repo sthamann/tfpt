@@ -1,0 +1,342 @@
+\subsection{Two edges and comparison with the QWZ measurement}
+
+\begin{corollary}[Two-edge quarter twist]\label{cor:twoedge}
+For two independent chiral edge branches, one at each boundary of a
+cylinder, the direct-sum polarizations satisfy
+\[
+ \norm{P_0^{\mathrm{edge}}-P_\alpha^{\mathrm{edge}}}_2^2
+ =\frac{4\sin^2(\pi\alpha)}{\pi^2}\log N+O_\alpha(1).
+\tag{5.9}\label{eq:two-edge-log}
+\]
+For the adjacent $\mu_4$ sectors, $\alpha=1/4$, hence
+\[
+ \norm{P_0^{\mathrm{edge}}-P_{1/4}^{\mathrm{edge}}}_2^2
+ =\frac2{\pi^2}\log N+O(1),
+\qquad
+\frac2{\pi^2}=0.2026423672846755\ldots .
+\tag{5.10}\label{eq:quarter-coefficient}
+\]
+The difference from the measured slope $0.203$ is
+$0.0003576327\ldots$, or approximately $0.1762\%$ of $0.203$.
+\end{corollary}
+
+\begin{proof}
+Hilbert--Schmidt norms square add under orthogonal direct sums.  The two
+edges have opposite propagation orientation, but the overlap formula
+depends on the squared modulus and is unchanged.  Doubling
+\eqref{eq:one-edge-log} proves \eqref{eq:two-edge-log}.  Since
+$\sin^2(\pi/4)=1/2$, the coefficient becomes $2/\pi^2$.  The numerical
+comparison is direct arithmetic.
+\end{proof}
+
+\begin{lemma}[Stability under a uniformly Hilbert--Schmidt remainder]
+\label{lem:stability}
+Suppose finite-volume differences $D_N$ admit
+\[
+ D_N=D_N^{\mathrm{edge}}+R_N,\qquad
+ \sup_N\norm{R_N}_2<\infty,
+\tag{5.11}\label{eq:remainder}
+\]
+and
+\[
+ \norm{D_N^{\mathrm{edge}}}_2^2=c\log N+O(1)
+\quad(c>0).
+\]
+Then
+\[
+ \norm{D_N}_2^2=c\log N+O(\sqrt{\log N}),
+\tag{5.12}\label{eq:stable-log}
+\]
+so $\norm{D_N}_2\to\infty$ and the leading logarithmic coefficient is
+still $c$.
+\end{lemma}
+
+\begin{proof}
+Expand the square:
+\[
+ \norm{D_N}_2^2
+ =\norm{D_N^{\mathrm{edge}}}_2^2
+ +2\operatorname{Re}\Tr((D_N^{\mathrm{edge}})^*R_N)
+ +\norm{R_N}_2^2.
+\]
+Hilbert--Schmidt Cauchy--Schwarz gives
+\[
+ \left|\Tr((D_N^{\mathrm{edge}})^*R_N)\right|
+ \le\norm{D_N^{\mathrm{edge}}}_2\norm{R_N}_2
+ =O(\sqrt{\log N}).
+\]
+The last term is $O(1)$ by \eqref{eq:remainder}.  This proves
+\eqref{eq:stable-log}.
+\end{proof}
+
+\begin{theorem}[Global non-implementability in the proved edge class]
+\label{thm:nonimpl}
+Let $P_0$ and $P_{1/4}$ be the infinite-volume pure quasi-free
+polarizations of either the exact two-edge model of
+Corollary~\ref{cor:twoedge}, or a lattice collar for which the
+uniform-remainder decomposition \eqref{eq:remainder} holds along an
+exhaustion.  Then the two quasi-free representations are not unitarily
+equivalent.  Equivalently, no global Fock-space Bogoliubov implementer
+can carry the neutral polarization to the quarter-twisted polarization.
+\end{theorem}
+
+\begin{proof}
+For the exact edge model, Theorem~\ref{thm:oneedge} and
+Corollary~\ref{cor:twoedge} show that the nonnegative finite-rank
+truncations of $\norm{P_0-P_{1/4}}_2^2$ tend to infinity.  Therefore
+$P_0-P_{1/4}\notin\mathcal L^2$.  Under
+\eqref{eq:remainder}, Lemma~\ref{lem:stability} gives the same conclusion.
+
+Assume for contradiction that a global Bogoliubov implementer exists.
+Let $R$ be the underlying one-particle orthogonal transformation, so
+$P_{1/4}=RP_0R^*$.  The Shale--Stinespring criterion,
+Theorem~\ref{thm:ss}, would imply
+\[
+ [P_0,R]\in\mathcal L^2.
+\]
+But
+\[
+ [P_0,R]R^*=P_0-RP_0R^*=P_0-P_{1/4},
+\]
+and multiplication by $R^*$ preserves the Hilbert--Schmidt class.
+Hence $P_0-P_{1/4}$ would be Hilbert--Schmidt, contradicting the
+divergence just proved.  The pure-state Araki criterion quoted after
+Theorem~\ref{thm:ps} gives the equivalent representation-theoretic
+formulation.
+\end{proof}
+
+\begin{remark}[Gapped control]
+If instead the global projection difference converges in
+Hilbert--Schmidt norm, Shale--Stinespring permits a global implementer.
+The measured trivial-phase plateau near $0.546$ is consistent with this
+alternative, but a finite plateau is not a proof of convergence.
+\end{remark}
+
+\section{Combined strongest theorem}
+
+\begin{theorem}[Strongest theorem proved from the presently isolated
+mathematical hypotheses]\label{thm:main}
+Consider a sequence of finite quadratic fermion systems with four
+$\mu_4$-twisted sectors and a nested family of fixed finite windows.
+Assume the following precise hypotheses.
+\begin{enumerate}[label=(H\arabic*)]
+\item On each fixed window, the restricted covariances
+$C_{N,w}^{(k)}$ converge in trace norm.  For the adjacent sectors
+$k=0,1$, their limiting Araki--Wyss projections have distance strictly
+less than one.  In particular, this holds when the two limiting window
+covariances coincide.
+\item The finite observable algebras form an equivariant unital tower,
+and their clock unitaries obey
+$u_N^4=\id$ and $\iota_N(u_N)=u_{N+1}$.
+\item The grade-one class is labelled by the frozen lattice element
+$[\lambda]$ with $[\lambda]^4=[0]$ and $[\lambda]^2=[v]$.
+\item For the global topological conclusion, the infinite-volume
+polarization difference is the two-edge quarter-twist model of
+Section~\ref{sec:global}, up to a remainder uniformly bounded in
+Hilbert--Schmidt norm along the exhaustion.
+\end{enumerate}
+Then:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item On every fixed window, the adjacent sector change has a canonical
+Bogoliubov implementer in the purified standard representation, unique
+up to phase, with the explicit bound
+\[
+\norm{[\widehat P_{C_{N,w}^{(0)}},R_{N,w}]}_2
+\le2\sqrt{2\norm{C_{N,w}^{(0)}-C_{N,w}^{(1)}}_1}.
+\]
+\item Along every subsequence on which the phase is chosen coherently,
+these implementers converge in operator norm, hence strongly on the
+finite-particle core; estimate \eqref{eq:nparticle} holds for every
+$n$-particle vector.
+\item The inductive-limit extension is
+\[
+\A\rtimes\mathbb Z_4\cong\A\otimes C^*(\mathbb Z_4),
+\]
+the homogeneous subspaces have $\mathbb Z_4$ fusion,
+$\Psi_\lambda^4\in\A$, and $\Psi_\lambda^2$ has the parity grade
+$[v]$.  The coefficient expectation is the unique dual-invariant
+expectation onto $\A$, and the group average is the unique
+trace-preserving expectation onto $\A^{\mathbb Z_4}$.
+\item In the topological two-edge class no global Bogoliubov implementer
+exists.  The obstruction has the exact leading law
+\[
+\norm{P_0-P_{1/4}}_2^2
+=\frac2{\pi^2}\log N+O(\sqrt{\log N}).
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Parts (a) and (b) are Theorem~\ref{thm:local}, with all hypotheses
+verified in its proof.  Part (c) is Theorem~\ref{thm:crossed}; hypothesis
+(H3) supplies only the identification of the abstract grades with the
+frozen lattice labels.  Part (d) follows from
+Corollary~\ref{cor:twoedge}, Lemma~\ref{lem:stability}, and
+Theorem~\ref{thm:nonimpl}.  No further implication is used.
+\end{proof}
+
+\section{What this theorem does and does not close}
+
+\subsection{Relation to G1--G4}
+
+\begin{description}[style=nextline]
+\item[G1: convergence on the finite-particle core with energy bounds.]
+Theorem~\ref{thm:local} proves strong convergence on each
+\emph{fixed purified finite window}.  It does not prove convergence of
+a nontrivial charged intertwiner on one common infinite-volume edge Fock
+space.  The measured inequalities with $C=2.86$ concern only
+$n=1,\ldots,4$ and finite $N_x$; they do not imply
+\[
+\norm{H_{\mathrm{edge}}^n\Psi_\lambda\Omega}
+\le C_0^{n+1}(n!)^\beta\qquad\text{for every }n\ge0.
+\]
+Thus G1 remains open in its contract meaning.
+
+\item[G2: locality relative to the bilinear net.]
+No commutator estimate at spacelike separation, no Haag--Kastler
+localisation, and no relative-locality theorem follows from covariance
+convergence.  G2 is untouched.
+
+\item[G3: braiding and monodromy.]
+The exact arithmetic $h_\lambda=1$ is the correct trivial
+self-monodromy precondition.  The measured Berry phase $0$ with spectral
+flow $1$ is consistent with it.  Neither fact computes the DHR braiding
+operator or proves the relative exchange relation of a charged field.
+G3 is therefore not closed.
+
+\item[G4: Q-system closure.]
+Section~\ref{sec:tower} proves the $\mathbb Z_4$-graded crossed-product
+algebra, its naturality in the finite tower, and the precisely normalised
+expectations.  This is a complete $C^*$-algebraic statement for the inner
+clock tower.  It does not identify that tower with the local
+simple-current Q-system of the $\mathfrak{so}(16)_1$ conformal net.
+Hence it is the exact finite/inductive algebraic shadow of G4, not the
+net-level G4 demanded by the contract.
+\end{description}
+
+\subsection{The MMST/Osborne--Stottmeister leg}
+
+T.~J.~Osborne and A.~Stottmeister,
+\emph{Conformal field theory from lattice fermions},
+Communications in Mathematical Physics \textbf{398} (2023), 219--283,
+\href{https://arxiv.org/abs/2107.13834}{arXiv:2107.13834},
+prove strong convergence of the lattice fermion-bilinear currents on a
+finite-particle core (Theorem~5.1 for the displayed $u(1)$ current, with
+the nonabelian bilinear extension by the Cauchy--Schwarz reduction around
+their Eq.~(229)), convergence of the Koo--Saleur/Virasoro generators
+(Theorems~4.11 and 4.16), and correlation-function control
+(Theorems~6.1 and 6.3).  Their error estimates around Eqs.~(205) and
+(207) are polynomial in lattice spacing.
+
+Those theorems concern observables that are fermion bilinears.  The
+$128$ weight-one spinor currents needed for
+$\mathfrak{so}(16)_1\to(E_8)_1$ are not fermion bilinears, and the twist
+field is outside that proved class.  Therefore the statement additionally
+needed here is not another application of Shale--Stinespring.  It is an
+identification theorem saying that one specifically normalised limit of
+the lattice twist intertwiners is a relatively local DHR charged field
+whose $\mathbb Z_4$ Q-system extension is the holomorphic $(E_8)_1$ net.
+That assertion belongs to conformal-net/simple-current extension theory,
+not to the quasi-free category: a spin field changes sectors and is not a
+polynomial fermion bilinear.
+
+\subsection{Status of the measured QWZ logarithm}
+
+The coefficient $0.203$ has a sharp analytic explanation:
+each chiral boundary contributes
+\[
+\frac{2\sin^2(\pi/4)}{\pi^2}=\frac1{\pi^2},
+\]
+and the two boundaries contribute $2/\pi^2=0.202642367\ldots$.
+The measured intercept $3.605$ is nonuniversal and receives bulk,
+ultraviolet, and finite-width contributions.  To turn the coefficient
+match into a proof for the QWZ collar, one must establish the decomposition
+\eqref{eq:remainder} uniformly in $N_x$.  That estimate is not contained
+in the frozen probes.
+
+\section{Remaining gap}
+
+\begin{center}
+\setlength{\fboxsep}{10pt}
+\fcolorbox{red!65!black}{red!3}{
+\begin{minipage}{0.91\textwidth}
+\textbf{Remaining gap (exact statement).}
+For the $M=1$, $N_y=8$ QWZ collar with quarter-twisted sectors, construct
+isometric embeddings of all finite-volume one-particle spaces into one
+edge Hilbert space and prove simultaneously:
+\[
+C_N^{(0)}-C_N^{(1)}
+=D_{N,\mathrm{top}}^{(1/4)}
+\oplus D_{N,\mathrm{bottom}}^{(1/4)}+R_N,
+\qquad
+\sup_N\norm{R_N}_{\mathrm{HS}}<\infty;
+\]
+and there exist phase-coherent lattice intertwiners
+$\Psi_{\lambda,N}$ converging on one common finite-energy core to a
+nonzero operator $\Psi_\lambda$ such that, for constants
+$C_0<\infty$ and $\beta<\infty$ independent of $n$,
+\[
+\norm{H_{\mathrm{edge}}^n\Psi_\lambda\Omega}
+\le C_0^{\,n+1}(n!)^\beta\quad(n\ge0),
+\]
+$\Psi_\lambda$ is relatively local with respect to the
+$\mathfrak{so}(16)_1$ bilinear net, its DHR exchange operators realise
+the order-four class with $h_\lambda=1$ and
+$[\lambda]^2=[v]$, and the local extension generated by
+$\{\mathcal A_{\mathfrak{so}(16)_1},\Psi_\lambda\}$ is isomorphic, as a
+conformal net with vacuum and stress tensor, to the holomorphic
+$(E_8)_1$ net.
+
+\medskip
+The first line upgrades the finite logarithmic fit to the proved Shale
+obstruction for the actual collar.  The remaining lines are the
+MMST/Osborne--Stottmeister extension beyond fermion bilinears and supply
+G1--G4 at net level.  Neither assertion follows from the measured
+windowed Hilbert--Schmidt Cauchy rate, three phase-fixed matrix elements,
+or four finite energy moments.
+\end{minipage}}
+\end{center}
+
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
+
+The quasi-free conclusions that can be proved today are complete:
+finite-window standard-form implementers with an explicit Shale bound,
+their coherent strong convergence, the natural inner-$\mathbb Z_4$
+crossed-product tower with correctly qualified unique expectations, and
+the universal two-edge quarter-twist obstruction with coefficient
+$2/\pi^2$.  The data strongly match this structure, but they do not yet
+construct the net-level field $\Psi_\lambda$.  The remaining box states
+exactly the theorem that would be required to do so.
+
+\begin{thebibliography}{9}
+
+\bibitem{Araki1970}
+H.~Araki,
+\emph{On quasifree states of CAR and Bogoliubov automorphisms},
+Publ. Res. Inst. Math. Sci. \textbf{6} (1970/71), 385--442.
+
+\bibitem{OsborneStottmeister2023}
+T.~J.~Osborne and A.~Stottmeister,
+\emph{Conformal field theory from lattice fermions},
+Commun. Math. Phys. \textbf{398} (2023), 219--283,
+\href{https://arxiv.org/abs/2107.13834}{arXiv:2107.13834}.
+
+\bibitem{PowersStormer1970}
+R.~T.~Powers and E.~St{\o}rmer,
+\emph{Free states of the canonical anticommutation relations},
+Commun. Math. Phys. \textbf{16} (1970), 1--33.
+
+\bibitem{Ruijsenaars1978}
+S.~N.~M.~Ruijsenaars,
+\emph{On Bogoliubov transformations. II. The general case},
+Ann. Physics \textbf{116} (1978), 105--134.
+
+\bibitem{ShaleStinespring1964}
+D.~Shale and W.~F.~Stinespring,
+\emph{States of the Clifford algebra},
+Ann. of Math. (2) \textbf{80} (1964), 365--381.
+
+\end{thebibliography}
+
+\end{document}

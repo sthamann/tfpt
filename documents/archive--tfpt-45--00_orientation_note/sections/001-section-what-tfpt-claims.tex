@@ -1,0 +1,288 @@
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note is the thin entry document for the TFPT 4.5 series. It does not attempt to prove the
+full theory. Its purpose is to state what TFPT claims, what it does not claim, how the closed branch
+is organized, and where each load-bearing argument is isolated in the paper sequence.
+\end{abstract}
+
+\begin{tfptfrontbox}
+\textbf{Inputs from previous papers.} None. This is the public orientation layer for the series.
+
+\textbf{New theorem contribution.} None. The note contributes only organization, status discipline,
+and a dependency map.
+
+\textbf{Not claimed here.} No carrier proof, no exact electromagnetic calculation, no CMB fit, no
+mass ledger, no E8 stage atlas, and no nonperturbative QFT proof.
+
+\textbf{Falsification or audit surface.} The note can fail if it misstates the dependency order,
+overstates the status of a downstream module, or hides where an assumption first enters.
+\end{tfptfrontbox}
+
+
+\begin{tfptclaimcontract}
+\textbf{Claim.} Orientation and dependency map only; no theorem proof.\par
+\textbf{Inputs.} None.\par
+\textbf{First assumptions.} Status vocabulary and series dependency order.\par
+\textbf{Proof status.} Reader contract / orientation.\par
+\textbf{Kill condition.} Misstates dependency order or promotes downstream targets to core claims.\par
+\end{tfptclaimcontract}
+
+\begin{tfptstatusbox}
+The TFPT 4.5 series uses a uniform \textbf{five-tier} status
+taxonomy. Every load-bearing claim in every paper is tagged
+inline using \stag{$\cdot$} with one of the six labels below.
+
+\begin{description}[leftmargin=2em, itemsep=2pt]
+    \item[\stag{L} \,Lean verified.]\ A theorem in the companion
+        Lean 4 project
+        \texttt{experiments/lean4-carrier-rigidity},
+        signature-locked in \texttt{AuditContract.lean}, axioms
+        only in
+        $\{\texttt{propext},\ \texttt{Classical.choice},\ \texttt{Quot.sound}\}$.
+    \item[\stag{I} \,Lean interfaced.]\ The Lean-side target
+        type for the statement exists (a structure or theorem
+        signature in \texttt{TfptCarrier}). The TFPT-internal
+        proof producing an inhabitant of that type remains open.
+    \item[\stag{M} \,Manuscript theorem.]\ A proof exists in
+        the present manuscript or its source manuscript at
+        standard mathematical-writing rigour. Not formalised
+        in Lean.
+    \item[\stag{S} \,Standard-theorem interface.]\ A routine
+        consequence of a standard result in the literature
+        (e.g.\ algebraic geometry of $\mathrm{Proj}$); cited
+        rather than reproved.
+    \item[\stag{C} \,Conditional downstream proposal.]\
+        Mathematically formulated, but neither Lean verified,
+        nor Lean interfaced, nor a present manuscript theorem.
+        Conditional on upstream
+        \stag{L}/\stag{I}/\stag{M}/\stag{S} claims.
+    \item[\stag{P} \,Programmatic target.]\ A target for future
+        work; not a claim. Stage-2 pipelines, comparison
+        ledgers, sky-realisation tasks fall here.
+\end{description}
+
+\noindent
+\textbf{Crucial distinction: \stag{L} \boldmath$\neq$\unboldmath\ \stag{M}.}
+"Lean verified" and "proved in manuscript" are both valuable
+but not identical. The label \stag{L} is reserved exclusively
+for statements that elaborate inside the companion Lean project
+and survive its signature-lock audit. Manuscript-level proofs
+of comparable rigour are \stag{M}; do not promote them.
+
+\noindent
+Numerics depending on any \stag{C}/\stag{P} step are
+\emph{conditional readouts}, not predictions.
+\end{tfptstatusbox}
+
+\tableofcontents
+
+\section{What TFPT Claims}
+
+TFPT is organized as a boundary-polarized spectral theory whose primitive input is a one-sided
+boundary datum
+\[
+\Tbound=(\mathcal A_+,\mathcal H_+,D_+,J,\Gamma,B_\Sigma).
+\]
+The main theorem chain in the source draft is not a collection of unrelated numerological
+readouts. It is a staged reconstruction:
+\[
+\Tbound
+\Rightarrow
+(\taudbl,\iC,\Pprim,[u_\Sigma],\cthree)
+\Rightarrow
+d^\star_{\mathrm{disc}}
+\Rightarrow
+\Padm
+\Rightarrow
+\mathcal M_{d^\star_{\mathrm{disc}}}
+\Rightarrow
+\mathcal Z_{\mathrm{cl}}=\{x^\star_{\mathrm{cl}}\}
+\Rightarrow
+\Tstar .
+\]
+The split series follows this burden of proof rather than the order in which a reader might find
+the numerics exciting.
+
+\section{What TFPT Does Not Claim at This Level}
+
+The orientation note does not certify every downstream comparison row as a theorem. In particular,
+the CMB interface, sky-map realization, horizon continuations, transient channels, and E8 scale
+grammar remain outside the primitive theorem chain. They are comparison and programmatic layers
+unless explicitly promoted by a later proof obligation.
+
+\section{The Three Decoders}
+
+The source manuscript condenses the closed branch through three decoders:
+\[
+\begin{aligned}
+Y&\quad\text{generates structure},\\
+[u_\Sigma]=1&\quad\text{generates counting},\\
+u:=\phiz&\quad\text{generates bridge observables}.
+\end{aligned}
+\]
+This orientation is the reason the paper series separates the primitive kernel, the carrier
+packet, the precision readouts, the QFT closure layer, the metrology layer, and the cosmology
+interface.
+
+\section{Status Matrix}
+
+\begin{center}
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}p{0.24\textwidth}p{0.08\textwidth}p{0.22\textwidth}Y@{}}
+\toprule
+\textbf{Layer} & \textbf{Tier} & \textbf{Lean-side target / reference} & \textbf{Notes / location} \\
+\midrule
+Boundary primitive kernel: algebraic shadow
+  & \stag{L}
+  & \texttt{BoundaryPolarization}, \texttt{BoundaryPolarization.ofCarrierInvolution}
+  & Algebraic equivalence between the polarisation picture and the involution picture is Lean-proved. Paper 1 + Lean note. \\
+Boundary primitive kernel: analytic Paper-1 content
+  & \stag{I}
+  & target type \texttt{BoundaryPolarization}
+  & Analytic Calder\'on derivation of $H = H_+ \oplus H_-$ is the upstream TFPT obligation. Paper 1 body \stag{M}/\stag{C}. \\
+$3+2$ carrier algebra:
+  $(q_-,q_+)=(-2,3),\ \tr Y=0,\ 6Y^2{-}Y{-}\mathbf 1{=}\mathbf 0$
+  & \stag{L}
+  & \texttt{CarrierPremises.hypercharge\_carrier\_packet}
+  & Lean theorem, signature-locked. Paper 2 \S\ref{sec:formal-status} \& \Cref{thm:carrier-rigidity}. \\
+Higgs rank-2 discharge (algebraic shadow $K[X_0,X_1]_1$)
+  & \stag{L}
+  & \texttt{HiggsTopForm}, \texttt{HiggsSchemeCohomologyShadow}
+  & Lean-proved up to the algebraic shadow. \\
+Higgs rank-2: Proj-side scheme-cohomology identification
+  $H^0(\mathrm{Proj}\,K[X,Y], \mathcal O(1)) \simeq K[X,Y]_1$
+  & \stag{S}
+  & ---
+  & Standard algebraic-geometry theorem; cited, not reproved. Paper 5 \stag{M} sketch. \\
+Yukawa rank-3 forward (Stage D $\Rightarrow \dim E_-=3$)
+  & \stag{L}
+  & \texttt{YukawaTrilinearForm.finrank\_E\_eq\_three}
+  & \\
+Yukawa Stage-D characterisation:
+  $\exists\,\omega\,(\textrm{CI}{\wedge}\textrm{CS}) \iff \dim E_-=3$
+  & \stag{L}
+  & \texttt{YukawaStageDExistence.stage\_D\_iff\_finrank\_eq\_three}
+  & Both directions Lean-verified under \texttt{Nontrivial}\,$E_-$. \\
+Yukawa: TFPT-canonical $\omega$ from boundary kernel
+  & \stag{I}
+  & \texttt{BoundaryYukawaKernel}
+  & Existence Lean-closed; canonicity from TFPT data is open. \\
+Seam winding
+  $[u_\Sigma]=1 \Rightarrow$ primitive oriented determinant carrier
+  & \stag{I}
+  & \texttt{SeamWindingData}
+  & Typed target available; topological derivation open. \\
+Standard-Model derived representations,
+  $\mathbb Z_6$ quotient, family count, occupancy, abelian index
+  & \stag{C}
+  & ---
+  & Conditional downstream readouts. Paper 2 \stag{C} outlook (\Cref{sec:gauge-outlook,sec:packet-outlook,sec:counting-outlook}). \\
+Electromagnetic / flavor readouts
+  ($\alpha,\delta_{\mathrm{ph}},\lambda_C,\theta_{13}$, CKM, PMNS)
+  & \stag{C}
+  & ---
+  & Closed-branch prediction layer. Paper 3. \\
+Admissibility selector, strong CP, QFT reconstruction
+  & \stag{C}
+  & ---
+  & Conditional nonperturbative closure under stated analytic hypotheses. Paper 4. \\
+Boundary-normalised metrology
+  & \stag{M}/\stag{C}
+  & ---
+  & Manuscript theorems on the metrology functor; downstream observables \stag{C}. Paper 5. \\
+Cosmology interface (axion, reheating, leptogenesis, Stage-1 spectra)
+  & \stag{C}
+  & ---
+  & Paper 6. \\
+CMB operational closure / Planck pipeline (Stage-2 sky realisation)
+  & \stag{P}
+  & ---
+  & Programmatic target with its own production-status ledger. Paper 7. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\medskip
+\noindent
+\textbf{Tier-collision warning.}\ The \emph{source manuscript}
+(\texttt{../tfpt-42.tex}, extracted into \texttt{source\_extracts/})
+uses the legacy vocabulary "theorem surface", "canonical rigid
+object $\Tstar$", "closed theorem surface", and frequent
+\stag{A}-labels in section headings such as
+"\stag{A} Absolute spectral Planck closure". \emph{These legacy
+\stag{A}-labels are not the \stag{L} of the present taxonomy.}
+In source-extract bodies, every legacy \stag{A} should be read
+as \stag{M} (manuscript theorem), and the "canonical rigid
+object" / "closed theorem surface" language is the source-side
+target picture, not the Lean-verified surface. The present
+taxonomy is binding for the Frontmatter, claim contracts,
+status boxes, and any new sections added in TFPT 4.5; the
+source-extract bodies are draft material being progressively
+re-tagged.
+
+\noindent
+The companion Lean note
+(\texttt{experiments/lean4-carrier-rigidity/note\_carrier\_rigidity\_lean4.tex})
+contains the full formalisation, the seven-check audit gate
+(\texttt{AUDIT:~PASS}), and the signature-locked statement
+contracts for every Status A theorem and every Status B
+target type.
+
+\section{Series Map}
+
+\begin{enumerate}[leftmargin=1.5em]
+    \item \textbf{Boundary Polarization and the Primitive Kernel of TFPT.}
+    Establishes $\Tbound\Rightarrow(\taudbl,\iC,\Pprim,[u_\Sigma],\cthree)$ and keeps all
+    Standard-Model claims out.
+    \item \textbf{Carrier Rigidity, Hypercharge, and the Standard Model Packet from Boundary
+    Polarization.}
+    Establishes the rigid $3+2$ carrier, hypercharge, $S^+=\Lambda^{\mathrm{even}}E$,
+    $G_{\mathrm{phys}}$, $N_{\mathrm{fam}}=3$, $\Omega_{\mathrm{adm}}=48$, $N_\Phi=1$, and
+    $\bone=41/10$.
+    \item \textbf{Electromagnetic Fixed Point and Flavor Transport on the Rigid TFPT Branch.}
+    Isolates $\alpha$, $\delta_{\mathrm{ph}}$, $\lambda_C$, $\beta_{\mathrm{rad}}$, $\Omega_b$,
+    $\theta_{13}$, CKM, and PMNS.
+    \item \textbf{Admissibility, Strong CP, and Nonperturbative QFT Closure on the TFPT Branch.}
+    Separates selector from dynamics and states the positivity, OS, local-net, scattering, and
+    exact-flow obligations.
+    \item \textbf{Geometric Hodge Closure and Dimensionless Metrology from the TFPT Boundary
+    Branch.}
+    Treats $\lambda_\Sigma$, Planck normalization, electroweak matching, and boundary-normalized
+    observables.
+    \item \textbf{Cosmology Interfaces of the TFPT Closed Branch.}
+    Treats seam transfer, determinant-line phase, axion sector, reheating, leptogenesis, CMB
+    spectra, and sky-realization targets.
+\end{enumerate}
+
+\section{Publication Order}
+
+The recommended public order is Paper 0, Paper 2, Paper 1, Paper 3, Paper 4, Paper 5, and finally
+Paper 6. The mathematical dependency order remains Paper 1 before Paper 2; the publication order
+uses Paper 2 as the clearest visible hook while Paper 0 explains the dependency discipline.
+
+\section{Source Boundary}
+
+\begin{tfptsourcebox}
+Primary source: \sourceDraft.
+
+The orientation note draws especially from the abstract, the closed-architecture box, Sections 1
+and 2, the canonical rigid-object discussion, the structural falsification map, and the conclusion.
+It intentionally does not import the extended empirical ledgers, E8 stage atlas, CMB figures, or
+mass tables.
+\end{tfptsourcebox}
+
+\clearpage
+\section{Main Technical Development}
+
+This section contains the main technical development assigned to this paper by the TFPT 4.5 clean split. Cross-paper background is referenced through dependency and scope boxes; extended backend material is kept in the Technical Companion.
+
+\input{source_extracts/00_orientation_source.tex}
+
+
+\begin{tfptexports}
+Exports: series dependency order; status vocabulary; publication strategy; global falsification categories.
+\end{tfptexports}
+
+\end{document}

@@ -1,0 +1,371 @@
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\resizebox{0.96\linewidth}{!}{%
+\begin{tikzpicture}[
+    >=Latex,
+    source/.style={draw=blue!60!black, fill=blue!6, rounded corners, text width=2.7cm, minimum height=0.95cm, align=center},
+    flow/.style={draw=orange!75!black, fill=orange!8, rounded corners, text width=2.9cm, minimum height=0.95cm, align=center},
+    result/.style={draw=green!50!black, fill=green!8, rounded corners, text width=2.8cm, minimum height=0.95cm, align=center},
+    aux/.style={draw=black!55, fill=gray!8, rounded corners, text width=2.55cm, minimum height=0.9cm, align=center}
+]
+\node[source] (hadm) at (-5.0,0.9) {$(\mathcal H_{\mathrm{adm}},\mathfrak A_{\mathrm{adm}})$\\admissible sector};
+\node[flow] (wk) at (-1.6,0.9) {$W_k[J]$\\regulated generator};
+\node[flow] (gk) at (1.8,0.9) {$\Gamma_k[\phi]$\\exact admissible flow};
+\node[result] (gren) at (5.2,0.9) {$\Gamma_{\mathrm{TFPT}}^{\mathrm{ren}}$\\infrared 1PI action};
+
+\node[aux] (alpha) at (-1.6,-1.25) {$\alpha_\ast$\\IR boundary value};
+\node[aux] (shadow) at (1.8,-1.25) {one-loop shadow\\$\left(\frac{41}{10},-\frac{19}{6},-7\right)$};
+\node[result] (obs) at (5.2,-1.25) {$\OphysTFPT$\\pole and response observables};
+\node[result] (scat) at (8.5,-1.25) {$S_{\mathrm{massive}},\ \mathcal I_{\mathrm{dress}}$\\massive scattering\\and dressed interface};
+
+\draw[->, thick] (hadm) -- (wk);
+\draw[->, thick] (wk) -- (gk);
+\draw[->, thick] (gk) -- (gren);
+\draw[->, thick] (gren) -- (obs);
+\draw[->, thick] (gren) -- (scat);
+\draw[->, thick, dashed] (alpha) -- (gk);
+\draw[->, thick, dashed] (gk) -- (shadow);
+\end{tikzpicture}}
+\caption{Exact admissible flow from the physical sector to observables and scattering. $\Padm$
+selects states; $\Gamma_k$ carries running couplings and 1PI graphs.}
+\label{fig:admissible-rg-flow}
+\end{figure}
+
+\begin{corollary}[No double counting after the seed-shadow split]
+\label{cor:no-double-counting}
+Rows sharing the same basis package in \Cref{def:minimal-observable-basis} define one underlying
+operational direction, not several independent confirmations or failures. In particular, the former
+quartet
+\[
+(\beta,\Omega_b,\lambda_C,\sin^2\theta_{13})
+\]
+no longer constitutes one seed package. Instead
+\[
+\beta\in R_{\mathrm{CS}},
+\qquad
+\Omega_b\in C_{\mathrm{cos}},
+\qquad
+\lambda_C\in F_{\mathrm{fl}},
+\qquad
+\sin^2\theta_{13}\in N_\nu,
+\]
+while the retained seed $\phiz$ belongs only to the UV kernel package $K_{\mathrm{UV}}$.
+\end{corollary}
+
+\begin{proof}
+This is the special case of \textbf{(O2)} for the rewritten basis packages of
+\Cref{def:minimal-observable-basis}.
+\end{proof}
+
+\begin{corollary}[Independent response-sector birefringence target]
+\label{cor:response-birefringence-target}
+On the minimal branch the determinant-response package $R_{\mathrm{CS}}$ fixes
+\[
+\beta_{\mathrm{rad}}=\frac{\phi_{\mathrm{ret}}^0}{4\pi},
+\]
+and hence the dimensionless birefringence readout itself. Under the declared comparison interface it
+is represented by
+\[
+\beta
+=
+\frac{180}{\pi}\,\beta_{\mathrm{rad}}
+=
+0.2424350309009295\ldots^\circ.
+\]
+This target factors through $R_{\mathrm{CS}}$ and not through the flavor package
+$F_{\mathrm{fl}}$ or the cosmology package $C_{\mathrm{cos}}$.
+\end{corollary}
+
+\begin{proof}
+By the exact seed relation of the determinant-response channel,
+\[
+\beta_{\mathrm{rad}}=\frac{\phi_{\mathrm{ret}}^0}{4\pi}.
+\]
+The theorem-level quantity is therefore the dimensionless angle $\beta_{\mathrm{rad}}$. Converting
+to degrees gives one scheme-facing representative,
+\[
+\beta=\frac{180}{\pi}\beta_{\mathrm{rad}}
+=
+\frac{180}{\pi}\frac{\phi_{\mathrm{ret}}^0}{4\pi}
+=
+0.2424350309009295\ldots^\circ.
+\]
+By \TFPTxref{cor:no-double-counting}, $\beta$ belongs to $R_{\mathrm{CS}}$, whereas
+$\lambda_C\in F_{\mathrm{fl}}$ and $\Omega_b\in C_{\mathrm{cos}}$. Hence this is an operational
+direction distinct from the flavor and cosmology packages.
+\end{proof}
+
+\begin{corollary}[Independent cosmology-sector axion target]
+\label{cor:cosmology-axion-target}
+On the closed cosmology branch the package $C_{\mathrm{cos}}$ fixes the axion readout as one
+dimensionless cosmology package, equivalently as the boundary-normalized row
+\[
+\left(
+\frac{f_a}{\lambda_\Sigma},
+\frac{m_a}{\lambda_\Sigma},
+\frac{\nu_a}{\lambda_\Sigma},
+\lambda_\Sigma\left|g_{a\gamma\gamma}^{\mathrm{phys}}\right|
+\right),
+\]
+This target factors through $C_{\mathrm{cos}}$ and not through the flavor package
+$F_{\mathrm{fl}}$ or the determinant-response package $R_{\mathrm{CS}}$.
+\end{corollary}
+
+\begin{proof}
+The closed cosmology branch fixes the determinant-line / seam-transfer / scalaron saddle and thus
+the axion row as a single component of $C_{\mathrm{cos}}$. Its unitful representatives belong only
+to the declared comparison interface and are recorded in the appendix benchmark layer, together with
+the practical haloscope window and coupling representative extracted from the same cosmology
+package.
+By \TFPTxref{cor:no-double-counting}, this row belongs to $C_{\mathrm{cos}}$, whereas $\beta$ belongs
+to $R_{\mathrm{CS}}$ and $\lambda_C$ belongs to $F_{\mathrm{fl}}$. Hence the axion target is an
+operational direction distinct from response and flavor.
+\end{proof}
+
+\begin{remark}[Why these two targets count as independent]
+The pair
+\[
+\beta\in R_{\mathrm{CS}},
+\qquad
+(\nu_a,m_a,g_{a\gamma\gamma}^{\mathrm{phys}})\in C_{\mathrm{cos}},
+\]
+samples two different basis packages of $\Bind(\Tstar)$. Therefore they are not two rewritings of
+the same seed constraint. This is the correct sharp-prediction surface for the present version.
+\end{remark}
+
+
+% ---- Reflection positivity, OS reconstruction, and scattering appendices: source lines 13934-14109 ----
+\section{Relative reflection positivity with fermions}
+\label{app:os-fermions}
+
+\subsection{Normalized quotient form}
+
+The relative Euclidean theory used in the main closure section is not interpreted as a difference of measures. Instead it is organized as the normalized quotient
+\[
+Z_{\mathrm{rel}}[J,\eta,\bar\eta]
+=
+\frac{Z_{\mathrm{adm}}[J,\eta,\bar\eta]}{Z_{\mathrm{ref}}[0,0,0]}.
+\]
+Because the denominator is source independent on the admissible sector, the reference theory acts only as a fixed normalizer and does not interfere with reflection positivity.
+
+\subsection{Bosonic and fermionic positivity on \texorpdfstring{$\Padm$}{Padm}}
+
+The commutation relations
+\[
+[\Theta,P_\Theta]=0,
+\qquad
+\Theta\Padm=\Padm\Theta
+\]
+ensure that reflection preserves the admissible subspace. The bosonic part then follows the standard Markov / reflection-stable Osterwalder--Schrader argument on admissible observables. For fermions, the admissible CAR kernel may be written as a reflected quadratic form; equivalently one may express the same condition as positivity of the associated Pfaffian structure on the admissible sector. Hence for every admissible observable $O$ supported in $\tau>0$,
+\[
+\langle \Theta O,O\rangle_{\mathrm{rel}}
+=
+\frac{1}{Z_{\mathrm{ref}}[0,0,0]}
+\langle \Theta O,O\rangle_{\mathrm{adm}}
+\ge 0.
+\]
+This appendix section is the mechanism behind \TFPTxref{lem:admissible-reflection-positivity,thm:reflection-positivity-admissible,thm:lorentzian-reconstruction}; it is recorded here so that the main-text reconstruction theorem is not supported only by a one-line axiom call.
+
+\section{Admissible OS reconstruction and asymptotic scattering}
+\label{app:os-scattering}
+
+This appendix upgrades the admissible Schwinger, reconstruction, and scattering block from a named
+standard interface to a manuscript-level proof package. The point is not to replace standard
+machinery by ad hoc notation, but to verify explicitly that the admissible branch satisfies the
+relevant hypotheses on $\Padm$.
+
+\subsection{Tempered admissible Schwinger families}
+
+\begin{lemma}[Temperedness and moment bounds for admissible Schwinger functions]
+\label{lem:tempered-schwinger-bounds}
+On the Euclidean continuation of $\mathcal U_{\mathrm{scat}}$, each truncated admissible Schwinger
+distribution $S_n^T$ defines a tempered distribution. Moreover, for every compact $K$ and every
+source monomial of total degree $n$, its moments obey polynomial bounds determined by the same
+uniform heat-kernel estimates and finite local moments of the admissible constructive measure.
+\end{lemma}
+
+\begin{proof}
+By \TFPTxref{thm:well-posed-primitive-dynamics}, the admissible Euclidean generator is realized by a
+self-adjoint elliptic operator on every blocked volume. Together with the constructive measure of
+\TFPTxref{thm:constructive-geometric-measure}, this yields uniform heat-kernel bounds and finite moments
+for local source insertions. Differentiating $W_{\mathrm{rel}}$ with respect to the local sources
+therefore produces distributions whose derivatives are controlled by polynomial combinations of the
+same bounds. Passing to the admissible projective limit preserves these polynomial estimates, so the
+resulting Schwinger family is tempered.
+\end{proof}
+
+\begin{lemma}[Graded Euclidean covariance and symmetry on \texorpdfstring{$\Padm$}{Padm}]
+\label{lem:graded-euclidean-covariance-padm}
+On the Euclidean continuation of $\mathcal U_{\mathrm{scat}}$, the admissible Schwinger family is
+graded Euclidean covariant, graded symmetric under exchange of external legs, and continuous in the
+Schwartz topology.
+\end{lemma}
+
+\begin{proof}
+The Dirac-type principal symbol of the geometric anchor and the low-curvature reduction imply local
+Euclidean covariance of the admissible source functional on $\mathcal U_{\mathrm{scat}}$. Bosonic
+source derivatives commute, while fermionic derivatives anticommute, so the mixed Schwinger family
+is graded symmetric with the usual CAR signs. Continuity follows from the tempered moment bounds of
+\Cref{lem:tempered-schwinger-bounds}, which control the action of $S_n^T$ on Schwartz test
+functions.
+\end{proof}
+
+\subsection{OS and CAR reconstruction on \texorpdfstring{$\Padm$}{Padm}}
+
+\begin{theorem}[Tailored OS/CAR reconstruction on \texorpdfstring{$\Padm$}{Padm}]
+\label{thm:tailored-os-car-reconstruction}
+Let $\{S_n^T\}_{n\ge 1}$ be the admissible Schwinger family on the Euclidean continuation of
+$\mathcal U_{\mathrm{scat}}$. If reflection positivity, temperedness, graded Euclidean covariance,
+graded symmetry, and clustering hold on $\Padm$, then there exist:
+\begin{enumerate}[label=(\roman*), leftmargin=1.8em, topsep=3pt, itemsep=2pt]
+    \item a Hilbert space $\mathcal H_{\mathrm{OS}}$ with vacuum vector $\Omega$,
+    \item a strongly continuous positive-energy semigroup $T_t=e^{-tH_{\mathrm{adm}}}$ with
+    self-adjoint generator $H_{\mathrm{adm}}\ge 0$,
+    \item a reconstructed graded local field net on $\Padm$ whose Euclidean boundary values are the
+    original admissible Schwinger functions.
+\end{enumerate}
+Equivalently, the admissible Euclidean family reconstructs a Wightman/CAR theory on the admissible
+sector.
+\end{theorem}
+
+\begin{proof}
+Define the OS sesquilinear form by
+\[
+(F,G)_{\mathrm{OS}}:=\langle \Theta F,G\rangle_{\mathrm{rel}}
+\]
+for positive-time admissible observables. Reflection positivity from
+\TFPTxref{thm:reflection-positivity-admissible} and the fermionic quotient-form analysis of
+\Cref{app:os-fermions} show that this form is positive semidefinite on the full graded admissible
+algebra. Quotienting by the null space and completing gives $\mathcal H_{\mathrm{OS}}$.
+
+Positive Euclidean time translation preserves the null space and acts by contractions, hence defines
+a strongly continuous contraction semigroup $T_t$ on $\mathcal H_{\mathrm{OS}}$. The dense domain of
+positive-time polynomial observables gives the symmetric generator domain. By Hille--Yosida, the
+closure of this generator is self-adjoint and nonnegative, so $T_t=e^{-tH_{\mathrm{adm}}}$ for a
+self-adjoint $H_{\mathrm{adm}}\ge 0$.
+
+The temperedness, covariance, graded symmetry, and clustering established in
+\Cref{lem:tempered-schwinger-bounds,lem:graded-euclidean-covariance-padm} are precisely the
+remaining OS/CAR reconstruction hypotheses. Therefore analytic continuation yields the reconstructed
+Wightman/CAR family with vacuum $\Omega$. Because $\Theta$, $P_\Theta$, and $\Padm$ commute, the
+entire reconstruction stays on the admissible sector $\Padm$.
+\end{proof}
+
+\subsection{Stable massive Haag--Ruelle and LSZ closure}
+
+\begin{lemma}[One-particle spectral projectors from isolated simple poles]
+\label{lem:one-particle-projectors-from-poles}
+Let $\widetilde G_a^{(2)}(p)$ have an isolated simple pole with positive residue at
+$p^2=-m_a^2<0$. Then the corresponding one-particle contribution defines a positive spectral
+projector on the admissible Hilbert space.
+\end{lemma}
+
+\begin{proof}
+The isolated simple pole separates a one-particle mass shell from the multiparticle continuum. By
+positivity of the residue, the contour integral of the resolvent around that pole defines a positive
+projector on $\mathcal H_{\mathrm{adm}}$. Its range is the one-particle subspace associated with the
+stable species $a$.
+\end{proof}
+
+\begin{theorem}[Haag--Ruelle scattering on the stable massive admissible sector]
+\label{thm:haag-ruelle-admissible-massive}
+For every stable massive admissible species with isolated simple pole below threshold, the
+Haag--Ruelle asymptotic fields exist on $\mathcal H_{\mathrm{adm}}$ and generate wave operators on
+the stable massive scattering sector.
+\end{theorem}
+
+\begin{proof}
+By \TFPTxref{thm:tailored-os-car-reconstruction,thm:admissible-local-minkowski-net}, the admissible
+branch carries a local relativistic net with positive Hamiltonian. By
+\TFPTxref{thm:nonperturbative-admissible-qft}, connected correlators cluster exponentially on the
+massive sector. The pole assumption and \Cref{lem:one-particle-projectors-from-poles} identify the
+one-particle subspace and give positive single-particle spectral projectors. The standard
+Haag--Ruelle estimates therefore apply to admissible local operators, yielding the in/out fields and
+the wave operators on the stable massive sector.
+\end{proof}
+
+\begin{corollary}[LSZ reduction on the stable massive admissible sector]
+\label{cor:lsz-admissible-massive}
+On the stable massive admissible sector, matrix elements of the scattering operator are obtained by
+amputating the connected correlators with the corresponding residue factors.
+\end{corollary}
+
+\begin{proof}
+By \Cref{thm:haag-ruelle-admissible-massive}, the asymptotic fields and wave operators exist on the
+stable massive sector. Applying the usual LSZ reduction to those asymptotic fields and the
+admissible local net yields the displayed amputated-correlator formula.
+\end{proof}
+
+\subsection{Dressed massless interface in the low-curvature region}
+
+The massless sector is not treated by bare Fock asymptotics in the present manuscript. The relevant
+object is the infrared-dressed interface package
+\[
+\mathcal I_{\mathrm{dress}}
+:=
+\bigl(\Omega_+^{\mathrm{dress}},\Omega_-^{\mathrm{dress}},S_{\mathrm{dress}}\bigr),
+\qquad
+S_{\mathrm{dress}}:=(\Omega_+^{\mathrm{dress}})^\ast\Omega_-^{\mathrm{dress}},
+\]
+constructed from the soft charges of the admissible local net on the low-curvature region
+$\mathcal U_{\mathrm{scat}}$. This is exactly the interface package used in the main-text theorem
+\TFPTxref{thm:dressed-massless-interface}.
+
+
+% ---- Yukawa kernels and positivity lemmas: source lines 14191-14244 ----
+\section{Yukawa kernels and positivity lemmas}
+\label{app:yukawa}
+
+This appendix is the proof motor for the transport positivity, determinant-phase suppression, and
+bounded-residual statements used in the main text. The transport program is based on the regularized kernel
+\[
+\mathcal Y_f^{(\varepsilon)}=(D_f^\dagger D_f+\varepsilon^2)^{-1}.
+\]
+Three remarks are important.
+\begin{enumerate}[leftmargin=1.5em, topsep=3pt, itemsep=3pt]
+    \item The regulator $\varepsilon$ is not optional: without it the kernel becomes ill-defined exactly where the admissibility question is most delicate.
+    \item Positivity of the kernel belongs to the admissibility-closure layer rather than to the hard carrier kernel. The main text closes it through the finite hexagon gap and the lift to the full admissibility-projected operator; this appendix records the transport-side mechanism behind that closure.
+    \item Residual prefactors $\Lambda_{f,j}$ are bounded holonomy data inside the transport theorem. They must remain visible and must not be rhetorically hidden as if the mass map were diagonal without residual transport structure.
+\end{enumerate}
+
+\begin{remark}[Positive-kernel determinant route to strong CP]
+If the physical mass map is written in the polar form
+\[
+M_f=U_{f,L}H_fU_{f,R}^\dagger,
+\qquad
+H_f>0,
+\qquad
+U_{f,L},U_{f,R}\in SU(3)_F,
+\]
+with $H_f$ induced by the positive transport kernel $\mathcal Y_f^{(\varepsilon)}$, then the induced determinant phase vanishes:
+\[
+\arg\det M_f=0.
+\]
+At the same time weak CP may survive through
+\[
+V_{\mathrm{CKM}}=U_{u,L}^\dagger U_{d,L}.
+\]
+Combined with the sheet-CP symmetry protection of $\theta_{\mathrm{sheet}}$ in the relative action,
+this is the algebraic core of the determinant-phase theorem stated in the main text and of the
+strong-CP closure theorem recorded there. The role of the appendix remark is to display the
+polar-decomposition mechanics behind that route, not to reopen its status.
+\end{remark}
+
+\subsection{Optional strong-coupling sharpening}
+
+As an appendix-level dynamical sharpening of the hadronic admissibility theorem, one may further require the
+admissible center-neutral Wilson functional to obey strong-coupling dominance. On that optional
+route the relative Wilson loop satisfies
+\[
+\langle W(C)\rangle_{\mathrm{rel}}
+\le
+\exp[-\sigmaQCD A_{\min}(C)],
+\qquad
+\sigmaQCD=\cthree^2\chi_{\QCD}^2,
+\]
+and the physical Hilbert space contains no color-nonsinglet asymptotic states. This statement is
+kept in the appendix so that the main theorem surface does not depend on an extra strong-coupling
+sharpening beyond the closed admissible hadronic sector.
+

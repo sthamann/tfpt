@@ -1,0 +1,408 @@
+\section{The explicit mass gap closes dynamics and clustering}
+% =====================================================================
+\begin{lemma}[Discrete spectral gap $\Rightarrow$ unique limit state and exponential clustering]
+\label{lem:gap}
+The admissible $C_6$ transport transfer operator has the closed spectrum
+$\{\lambda_k\}=\{(k/3)^6:k=3,2,1\}=\{1,(2/3)^6,(1/3)^6\}$ (the cusp cubic). Hence
+\[
+  \Delta_{\mathrm{gap}}=-\log\frac{\lambda_2}{\lambda_1}=6\log\tfrac32=2.4328>0,\qquad
+  \xi=\frac1{\Delta_{\mathrm{gap}}}=0.4110\ \text{(lattice units)} .
+\]
+The contraction ratio $\lambda_2/\lambda_1=(2/3)^6=0.0878<1$ satisfies the Dobrushin uniqueness
+condition for a finite-range (range-$1$, cyclic) transfer operator; therefore the thermodynamic limit
+has a \emph{unique} Gibbs/vacuum state with exponential clustering at rate $\Delta_{\mathrm{gap}}$.
+\end{lemma}
+\begin{proof}
+A finite cyclic transfer operator $T$ with a simple top eigenvalue $\lambda_1$ and spectral gap to
+$\lambda_2$ has, by Perron--Frobenius plus the standard transfer-matrix cluster expansion, connected
+correlations $\langle A_0 A_n\rangle_c=O((\lambda_2/\lambda_1)^{|n|})$, i.e.\ exponential decay with rate
+$-\log(\lambda_2/\lambda_1)=\Delta_{\mathrm{gap}}$. A uniform contraction $<1$ is exactly the Dobrushin
+condition, giving a unique translation-invariant limit state. The gap here is \emph{explicit} (not an
+assumption), so the parent-domination input left open by the OS-reconstruction layer is discharged on the transport sector.
+\end{proof}
+
+\noindent\textbf{Consequence.} Together with admissible reflection positivity this completes the
+Osterwalder--Schrader package on the admissible sector $\Rightarrow$ OS reconstruction $\Rightarrow$ a
+unique quantum theory whose Schwinger functions are the bridge-layer correlators. The full-dynamics item
+(4) is thus closed on the physical sector \mE, and strong CP (3) needs only RP. The gap is a compiler
+number: $\Delta_{\mathrm{gap}}=6\log\tfrac32$, with $\tfrac32$ the carrier rank ratio.
+
+\begin{proposition}[The admissible-sector QFT measure is constructively closed]
+\label{prop:qftmeasure}
+Reflection positivity on the admissible sector is not an extra input --- it follows from the cusp
+spectrum. Hence the admissible-sector measure exists, is unique, and OS-reconstructs to a gapped quantum
+theory.
+\end{proposition}
+\begin{proof}
+The admissible transport transfer operator $T$ has spectrum $\{\lambda_k\}=\{1,(2/3)^6,(1/3)^6\}\subset(0,1]$,
+so $T=T^\dagger>0$ is a strictly positive self-adjoint contraction. For a transfer operator, reflection
+positivity with respect to time reflection $\Theta$ is \emph{equivalent} to $T\ge0$
+(Osterwalder--Seiler): for half-line observables $F$, $\langle\Theta F,F\rangle=\langle F,T^{|.|}F\rangle$
+is a Gram matrix of the positive operator $T$, hence PSD (verified: the Gram matrix of $20$ random
+half-line observables has minimal eigenvalue $\ge-10^{-15}$). Thus \textbf{(OS1)} holds intrinsically.
+The Hamiltonian $H=-\log T$ has spectrum $\{0,\,6\log\tfrac32,\,6\log3\}$, with a \emph{simple} top
+eigenvalue of $T$ (Perron--Frobenius) giving a unique vacuum $\Omega$ and gap $\Delta=6\log\tfrac32>0$.
+\textbf{(OS0)} regularity is trivial for the finite-state chain; \textbf{(OS2)} translation invariance and
+symmetry are built into the shift-invariant transfer chain; \textbf{(OS3)} clustering holds with the
+\emph{convergent geometric} (not assumed) bound $|\langle A_0A_n\rangle_c|\le C\,(2/3)^{6|n|}=Ce^{-\Delta|n|}$.
+All four OS axioms hold, so the Osterwalder--Schrader reconstruction theorem yields a unique quantum
+theory $(\mathcal H,H\ge0,\Omega)$ whose Schwinger functions
+$S_n=\langle\Omega|\,O\,e^{-t_1H}O\cdots|\Omega\rangle$ are the bridge-layer correlators, and the
+underlying Gibbs/DLR measure of $T$ is the admissible-sector path-integral measure.
+\end{proof}
+
+\noindent\textbf{What this closes, and the honest residual.} Because the admissible sector is a
+\emph{finite gapped transfer system}, its QFT measure is a \emph{theorem} (1D constructive QFT $=$
+gapped quantum mechanics), not a 4D constructive-field-theory conjecture. The one genuinely remaining
+piece is the \emph{ambient embedding}: that the physical content factors through this admissible sector
+is the selector $P_{\mathrm{adm}}$ (Papers 2--4), already established; the full non-perturbative measure
+of the \emph{unprojected} ambient theory is not claimed. So ``full QFT measure'' splits cleanly into
+``admissible-sector measure'' (\emph{closed here}, \mE) and ``ambient projection'' (the selector, \mE),
+with no hidden cluster-expansion assumption. \mE
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+  \draw[->,thick,gray] (0,-0.2)--(0,3.2) node[above]{$-\log\lambda$};
+  \foreach \y/\lab in {0/{$\lambda_1{=}1$ (vacuum)},1.46/{$\lambda_2{=}(2/3)^6$},3.0/{$\lambda_3{=}(1/3)^6$}}{
+     \draw[thick,tfblue] (-0.12,\y)--(1.5,\y); \node[anchor=west,tfblue] at (1.6,\y){\lab};}
+  \draw[{Stealth[length=2mm]}-{Stealth[length=2mm]},very thick,tfgold!80!black] (0.7,0.04)--(0.7,1.42);
+  \node[anchor=west,tfgold!80!black] at (0.75,0.73){$\Delta=6\log\tfrac32$};
+\end{tikzpicture}
+\end{center}
+
+\noindent\textbf{The local net reading ($G_{\mathrm{net}}$): the
+algebraic-QFT counterpart, finite axioms exact
+(\texttt{GNET.LOCALNET.01}).}  The OS package above has a
+Haag--Kastler counterpart on the quotient circle, and its
+\emph{finite} layer is now a machine-checked theorem
+(\veri{v746\_phys\_gnet\_local\_functor.py}, $16/16$,
+\texttt{GNET-LOCAL-FUNCTOR-ALIVE}): the interval assignment
+$I\mapsto\mathcal A(I)$ satisfies isotony, graded locality and
+clock covariance \emph{exactly}, and the Watatani index of the
+local fixed-point inclusion is exactly $4$ for \emph{every}
+interval $\ell\ge2$ --- the $[D,A]$ index statement is
+interval-local, not merely global.  The Ramond sector is typed as a
+\emph{half-line/bond defect} (solitonic, local footprint with
+leakage $\sqrt{2/N}$) --- exactly the DHR/solitonic structure the
+seam--Calder\'on identification needs; four must-fail controls fire,
+so the axioms measure something.  The missing continuum theorems
+are named, not claimed: the GNS limit net (tightness), index
+continuity along the inductive limit (Pimsner--Popa/Longo
+heredity), the identification of the limit fixed-point net with the
+Longo Q-system extension, the solitonic sector construction
+(twisted DHR/Longo--Roberts), and Haag duality/split for the
+quotient-circle net.  No marker moves. \mE\ (finite net axioms $+$
+local index) $+$ \mC\ (the named continuum theorems)
+\emph{Follow-up (2026-08-05, the continuum strand,
+\veri{v779\_gnet\_gns\_arf.py}, $27/27+27/27$,
+\textsc{gns-precursors-coherent}/\textsc{gnet-arf-no-correspondence}):}
+the finite-level precursors of four of the five named theorems are
+now measured coherent --- the Haar scaling isometry tower
+intertwines exactly ($\le2.2\times10^{-16}$), the index-4
+expectation squares commute exactly (the finite half of the
+Q-system identification), the canonical chiral-sea state is Cauchy
+with geometric contraction ${\sim}1/4$ per doubling, the index
+census is machine-exact at every level with zero degradation, the
+split witness stabilizes, and the finite Haag-duality census gives
+twisted-duality defect $0$ with $\dim B'/\dim A'=4$; the exact dim
+law $d_c(\ell)=4^{\ell-1}+2^{\ell-1}\cos(\pi c/2)$ makes the
+$\mathbb C[\Z_4]$ quasi-basis obstruction exactly $2^{-\ell}$
+(explaining the $\ell=1$ anomaly).  The honest negative: the
+$16=1{+}5{+}10$ counting echo with the Arf geometry of the code
+page is exact but non-geometric (rank $3$ vs $4$; $GL(4,2)$ census
+$0/20160$), and $K_{\rm matter}$ does not govern the tower
+transport.  The five continuum theorems stay named, not claimed;
+no marker moves.
+\emph{Follow-up (2026-08-06, the martingale route,
+\veri{v802\_gnet\_martingale.py}, $15/15$,
+\textsc{martingale-hypotheses-met}):} the limit-existence step of
+the continuum strand is reduced to measured hypotheses, all met ---
+the Haar ladder is an exact filtration with \emph{one} index-4
+Watatani expectation for the whole tower (quasi-basis explicit,
+$185/3041$ elements at $\ell=2/3$), the local-state defects are
+summable at measured rate ${\sim}0.25$ per doubling (one power
+better than the $2^{-\ell}$ dim-law envelope; reported, not
+forced), the unique limit state follows by elementary telescoping
+and is verified on every rung, and the split/normality precursors
+are uniform (determinant witness $\ge0.985$, stabilizing).  The
+controls carry the structure: decimation converges to the
+\emph{wrong} degenerate limit --- the coherent Haar bond is
+load-bearing.  Steps 5--7 (GNS reconstruction, local normality,
+split $+$ $\mu_4$ simple-current extension) stay typed; the open
+QGEO majorant residues are bypassed for limit existence and
+relocated into the normality step --- a reallocation, not a proof;
+no marker moves.
+\emph{Follow-up (2026-08-05, the stabilizer identification,
+\veri{v783\_two\_qubit\_clifford.py}, $32/32$,
+\textsc{clifford-partial(h4)}):} the finite compiler carrier now
+has an exact quantum-information normal form --- under one
+predeclared chart the $60$ Gaussian lines \emph{are} the $60$ pure
+two-qubit stabilizer rays entry-exactly over $\Z[i]$, $G_{31}$ is
+an index-2 subgroup of the two-qubit Clifford matrix group
+($46080=\mu_4\times\mathrm{Pauli}_{16}\times Sp(4,2)$; the $15$
+classes are the $15$ Pauli contexts, the $6$ spreads the MUB
+pentads), and the index-2 bit is identified as the Galois
+$\sqrt2$/Hadamard bit (the honest H4 partial: not
+$J\leftrightarrow-J$, which is the separate antiunitary outer
+$\Z_2$).  \emph{Round-21 completion
+(\veri{v798\_seam\_clifford\_modular\_s.py}, $27/27$,
+\textsc{modular-s-partial}):} the missing coset $\zeta_8G_{31}$ is
+identified --- the per-binary-factor Hadamard is the
+metaplectic/Weil lift of modular $S$ at its fixed point $\tau=i$
+(exact relations; Weil constant $\zeta_8$), the total Fourier lies
+inside $G_{31}$ with anomaly $(T_3K_3)^3=iI=J$ (the deck as the
+anomaly of the total modular lift), and the strict $q^{*}$-fixing
+census over the coset is empty (the Arf defect unavoidable; the
+$\sigma$-orbit defects XOR to the anchor).  Stabilizer-formalism
+mathematics about the carrier; the fired \textsc{rootclass-mixed}
+matter fence is unaffected; no marker moves.
+
+% =====================================================================
+\section{The seam elliptic complex is Fredholm (APS)}
+% =====================================================================
+\begin{lemma}[APS Fredholm property of the seam complex]
+\label{lem:aps}
+Compactify the oriented two-dimensional normal slice $N_\Sigma$ to $S^2=D_N\cup_{S^1}D_S$.
+The geometric BRST/Hodge differential, restricted to the seam-even sector with Atiyah--Patodi--Singer
+boundary conditions on $\Sigma$, is an elliptic operator on a compact manifold; hence it is
+\emph{Fredholm}, with finite-dimensional kernel and cokernel and an integer index. The compact bosonic
+Higgs index selects $\dim E_+=2$ (one weak doublet) and the Yukawa index $\dim E_-=\Nfam=3$.
+\end{lemma}
+\begin{proof}
+Ellipticity of the BRST/Hodge Laplacian is standard; on the compact $S^2$ with self-adjoint APS
+boundary conditions the operator has discrete spectrum and a well-defined index (Atiyah--Patodi--Singer).
+The seam-even projection commutes with the operator, so the index restricts to the physical sector and
+equals the compact bosonic/fermionic index already computed on the compactified slice ($2$ and $3$ respectively).
+\end{proof}
+
+\noindent This discharges the ``Fredholm'' step on which the geometric gravity ($R^2$) branch rests:
+the Hodge decomposition into harmonic $+$ exact $+$ co-exact is the standard consequence of the Fredholm
+property, so the $R^2$/scalaron sector is well-defined \mE\ (the only residual is the low-curvature
+truncation of \S4).
+
+% =====================================================================
+\section{The $R^{n\ge3}$ truncation is $O(1/N_\star^2)$-bounded}
+% =====================================================================
+\begin{lemma}[Starobinsky-attractor truncation bound]
+\label{lem:trunc}
+On the $R^2$ attractor the curvature during observable inflation is $R/M^2\sim 1/(2N_\star)$. Higher
+curvature terms $R^{n}$, $n\ge3$, enter with $(R/M^2)^{n-2}$, so their contribution to the observables is
+$O(1/N_\star^2)$. With $N_\star\approx55$ this is $\approx3\times10^{-4}$ ($0.03\%$), and the leading
+predictions are
+\[
+  n_s=1-\frac2{N_\star}=0.964,\qquad r=\frac{12}{N_\star^2}=0.0040 ,
+\]
+matching Planck. The truncation $R^{n\ge3}\!\to\!R^2$ is therefore a \emph{controlled} approximation with
+explicit validity domain $R\ll M^2$, not a free assumption.
+\end{lemma}
+
+\begin{center}\small
+\begin{tabularx}{0.8\linewidth}{@{}cYccc@{}}
+\toprule
+$N_\star$ & $R/M^2\sim\tfrac1{2N}$ & $O(1/N^2)$ & $n_s=1-\tfrac2N$ & $r=\tfrac{12}{N^2}$ \\
+\midrule
+$50$ & $0.0100$ & $4.0\times10^{-4}$ & $0.960$ & $0.0048$ \\
+$55$ & $0.0091$ & $3.3\times10^{-4}$ & $0.964$ & $0.0040$ \\
+$60$ & $0.0083$ & $2.8\times10^{-4}$ & $0.967$ & $0.0033$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{winbox}[The scalaron mass is the seam power --- Starobinsky's one parameter removed \mE]
+Generic Starobinsky inflation has \emph{one} free parameter, the scalaron mass $M$ (the $R^2$
+coefficient). TFPT fixes it by the seam power:
+\[
+  \Bigl(\frac{M}{\Mbar}\Bigr)^2=\cthree^7\ \text{(exact)}\ \Longrightarrow\ M=\cthree^{7/2}\Mbar
+  =3.06\times10^{13}\ \mathrm{GeV},
+\]
+which is \emph{exactly} the canonical Starobinsky scalaron mass ($M/\Mbar\simeq1.3\times10^{-5}$). The
+exponent $7$ is not arbitrary --- it is a fourfold compiler intersection,
+\[
+  \boxed{\ 7=\Oadm-10b_1=|R^+(A_3)|+N_\Phi=|\mu_4|+\Nfam=\gcar+|\Z_2|=\mathcal A_L-\Nfam=h(D_5)-N_\Phi\ }
+\]
+\[
+  (=48{-}41=6{+}1=4{+}3=5{+}2=10{-}3=8{-}1),
+\]
+i.e.\ the occupancy deficit $=$ ($A_3$ winding $+$ Higgs) $=$ (glue $+$ families) $=$ (carrier $+$ sheet).
+The typing $M_{\mathrm{Starobinsky}}=M_{\mathrm{scal}}$ is forced by uniqueness of the gravitational scalar
+(the boundary kernel carries only one). The amplitude is then a \emph{prediction},
+\[
+  A_s=\frac{N_\star^2}{24\pi^2}\Bigl(\frac{M}{\Mbar}\Bigr)^2=\frac{N_\star^2\,\cthree^7}{24\pi^2}
+  =2.0\times10^{-9}\ (N_\star{=}55),\ 2.09\times10^{-9}\ (N_\star{=}56),
+\]
+versus Planck $2.1\times10^{-9}$; inverting the measured $A_s$ even predicts $N_\star=56.1$, inside the
+standard reheating window. So $A_s,n_s,r$ are all outputs of $\cthree$ and $N_\star$, with no amplitude
+freedom left.
+\end{winbox}
+
+\begin{keybox}[Inflation pivot: one $N_\star$ per row (never mix)]
+All three observables share \emph{one} pivot logic,
+\[
+  A_s(N_\star)=\frac{N_\star^2\,\cthree^7}{24\pi^2},\qquad n_s(N_\star)=1-\frac{2}{N_\star},\qquad
+  r(N_\star)=\frac{12}{N_\star^2},
+\]
+so each quoted triple must use the \emph{same} $N_\star$:
+\begin{center}\footnotesize\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$N_\star$ & $A_s$ & $n_s$ & $r$ \\
+\midrule
+$51.4$ (\vref{v86} reheating point) & $1.76\times10^{-9}$ & $0.96110$ & $0.00454$ \\
+$55$ & $2.016\times10^{-9}$ & $0.96364$ & $0.00397$ \\
+$56$ & $2.090\times10^{-9}$ & $0.96429$ & $0.00383$ \\
+$57.1$ & $2.173\times10^{-9}$ & $0.96497$ & $0.00368$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+The frozen prediction of record is the \emph{band} over the declared external $N_\star\in[50,60]$.
+The explicit scalaron--reheating chain (\veri{v86\_nstar\_reheating.py}) executes the band$\to$point
+demotion: the slow Higgs channel gives $N_\star(k{=}0.05/\mathrm{Mpc}){=}51.4\Rightarrow n_s{=}0.9611$,
+$r{=}0.0045$ --- inside the band but $A_s$-disfavoured ($A_s(51.4){=}1.76{\times}10^{-9}$, $-11.4\sigma$
+vs Planck), so within standard physics the measured $A_s$ requires near-instantaneous reheating
+($N_\star\!\approx\!56$). Planck favours $n_s\approx0.965$ ($N_\star\approx57$); $A_s\approx2.1\times10^{-9}$
+($N_\star\approx56$). The current tensor bound $r<0.036$ (BICEP/Keck BK18) sits far above all rows;
+CMB-S4 ($\sigma_r\!\le\!5\times10^{-4}$, first light $\sim$2033) is the decisive test. \mC\
+The CMB $\mu$-distortion would decide the slow-vs-fast branch \emph{within} the band: the
+Chluba-window readout gives $\mu=1.6\times10^{-8}$ at the reheating point $51.4$ versus
+$2.0\times10^{-8}$ at the $A_s$-profiled $56.1$ (band $1.5$--$2.3\times10^{-8}$), a $3\sigma$
+separation at $\sigma(\mu)=10^{-9}$ (Voyage-2050 class; the PIXIE baseline $9\times10^{-8}$ does
+not reach the band) \mC\ \veri{v494\_cosmo\_running\_mu\_record.py}.
+\end{keybox}
+
+% =====================================================================
+\section{The ambient closure: one spectral-action measure, IR-complete by decoupling}
+% =====================================================================
+The two formerly-hardest items --- the \emph{ambient} (unprojected) QFT measure beyond the selector
+$P_{\mathrm{adm}}$, and \emph{full quantum gravity} beyond the $R^2$ scalaron --- are not two separate
+problems. They are \emph{one} object: the relative spectral-action measure
+\[
+  S=\operatorname{Tr}f\!\Bigl(\tfrac{D_{\mathrm{rel}}+A_\Sigma}{\chi}\Bigr)
+    -\operatorname{Tr}f\!\Bigl(\tfrac{D_{\mathrm{ref}}}{\chi}\Bigr)+\tfrac{i\pi}{2}\Delta\eta_\Sigma ,
+\]
+with $D_{\mathrm{rel}}$ the matter/gauge Dirac operator and the gravitational data in the same trace.
+Three facts reduce both open chunks to a single, named residual.
+
+\begin{proposition}[Ambient closure by decoupling]
+\label{prop:ambient}
+\emph{(i) Well-defined.} The cutoff $f$ makes $\operatorname{Tr}f$ finite (heat kernel), and the reference
+subtraction makes $S$ \emph{relative}; the ambient measure is therefore UV-finite, not a formal path
+integral. \emph{(ii) Gapped in both sectors.} The matter sector has the explicit transfer gap
+$\Delta=6\log\tfrac32$ (Lemma~\ref{lem:gap}); the gravity sector has the scalaron mass
+$M=\cthree^{7/2}\Mbar=3.06\times10^{13}$ GeV. Non-admissible matter states (those with
+$\Delta_{\mathrm{adm}}>0$, i.e.\ outside $\ker\Delta_{\mathrm{adm}}$) and higher-curvature gravitational
+modes are massive. \emph{(iii) Wilsonian decoupling.} Massive modes integrate out, so the IR measure
+factorises,
+\[
+  S_{\mathrm{IR}}=\underbrace{(\text{admissible matter QFT})}_{\text{Prop.~\ref{prop:qftmeasure}}}
+  \times\underbrace{(R^2\ \text{gravity})}_{\text{Lemma~\ref{lem:trunc}}}
+  \;+\;O\!\bigl((2/3)^{6n}\bigr)\;+\;O\!\bigl((R/M^2)^{n-2}\bigr),
+\]
+both correction series convergent. Hence the unprojected ambient theory carries \emph{no new IR physics}
+beyond the admissible matter QFT and $R^2$ gravity.
+\end{proposition}
+
+\par\smallskip\noindent\textbf{The cutoff and the Dirac of $S_{\mathrm{rel}}$ are now fixed by the seam state
+(Modular Spectral Closure, \veri{v258\_dirac\_covariance\_induction.py}, \veri{v259\_modular\_cutoff\_kappa.py}).}
+The relative spectral action above is not a free template. Its Dirac operator $D_{\mathrm{rel}}$ is the
+\emph{modular/covariance induction} of the boundary seam KMS state --- $[D_F]=[D_\Sigma]\widehat\otimes_{(E_8)_1}
+[\mathcal K_{\mathrm{car}}]$, the finite implementation being $\log((1{-}C_F)C_F^{-1})$ with $C_F=P_F C_\Sigma
+P_F$ (\veri{v258\_dirac\_covariance\_induction.py}) --- and the cutoff $f$ \emph{is} that same KMS weight, so by
+Tomita--Takesaki/Bisognano--Wichmann ($\beta{=}1$, $2\pi{=}1/(4\cthree)$) its moments collapse to $f_2/f_0=1$
+exactly (\veri{v259\_modular\_cutoff\_kappa.py}), removing the last scheme freedom and turning $\kappa$ into a
+finite-triple trace ratio. The Seeley--DeWitt expansion of this $S_{\mathrm{rel}}$ over the explicit $96$-dim
+finite triple is written out (\veri{v255\_spectral\_action\_expansion.py}), and the whole assembly --- seam,
+carrier-$16$ and $E_8$ on one Kummer/K3 --- is certified as one relative object reduced to the single premise
+\texttt{QGEO.SYM.01} (\veri{v261\_modular\_spectral\_closure.py}). So this ``ambient closure'' delivers the
+\emph{boundary relative object}; the \emph{real $4$D interacting} ambient measure $\mathrm{QG}_{\mathrm{amb}}$ is
+now a \mC\ redundancy (\vref{v369}, conditional on \texttt{SEAM.EQUIV.01}${+}$Bisognano--Wichmann), with only the
+cited continuum-existence theorems staying \mO\ (\vref{v336}).
+
+\noindent\textbf{Regimes, all TFPT-fixed.} Gravity has three clean windows set by the seam scales:
+$E<M\!\sim\!3\times10^{13}$ GeV is pure Einstein ($a_2$), $M<E<\Mbar$ is $R^2$ Starobinsky ($a_4$, the
+scalaron propagates), and $E\sim\Mbar$ is the full non-perturbative trace. The Seeley--DeWitt tower
+$a_{2n}$ enters with $(R/M^2)^{n-2}$; on the inflationary attractor $R/M^2\sim1/(2N_\star)\approx0.009$,
+so the $R^3$ term in the \emph{action} is $\sim1\%$ and higher terms are Planck-suppressed. (This action-level
+$\sim1\%$ is distinct from the corrections to the \emph{observables} $(n_s,A_s)$, which enter at
+$O(1/N_\star^2)\approx3\times10^{-4}$ after the attractor suppression --- two different estimates, not a
+contradiction.)
+
+\begin{proposition}[Metric-coupled boundary kernel is RP and gap-dominated]
+\label{prop:metricrp}
+Let $\Sigma$ be the seam with reflection $\Theta$, $g=g_0+h$ a $\Theta$-invariant metric perturbation in
+TT gauge inside the Calder\'on unit ball, and
+\[
+  \mathcal K_g=P_{\mathrm{adm}}\Pi_{\mathrm{phys}}\bigl(\mathcal N^{TT}_g
+  +\cthree^2\,\dot{\mathcal N}^{TT}_{g_0}(h)\otimes T_{\mathrm{grav}}\bigr)\Pi_{\mathrm{phys}}P_{\mathrm{adm}},
+  \qquad \Pi_{\mathrm{phys}}=\Pi_{\mathrm{BRST/Hodge}}\Pi_{TT}.
+\]
+Then (i) $\mathcal K_g$ is reflection positive, and (ii) with the conservative internal bound
+$\|T_{\mathrm{grav}}\|\le\dim E_8=248$,
+\[
+  \boxed{\ \|V_{\mathrm{metric}}\|_{\mathrm{rel}}\le 248\,\cthree^2=\frac{31}{8\pi^2}=0.3926
+  \;<\;6\log\tfrac32=2.4328=\Delta\ }.
+\]
+Hence the metric-coupled admissible boundary measure exists by gap-stable OS reconstruction.
+\end{proposition}
+\begin{proof}
+\emph{(i) RP.} On the doubled collar $M_\Sigma=M_+\cup_\Sigma M_-$ with $\Theta:M_+\leftrightarrow M_-$,
+the Calder\'on form of a Laplace-type $P_g$ is
+$\langle\varphi,\mathcal N_g\varphi\rangle=\int_{M_\Sigma}(|\nabla u_\varphi|_g^2+\langle u_\varphi,V_g u_\varphi\rangle)\,d\mu_g$
+with $u_\varphi$ the harmonic extension; for $\varphi_+$ supported on $M_+$,
+$\langle\varphi_+,\Theta C_g\varphi_+\rangle=\int_{M_+}|P_g^{1/2}u_{\varphi_+}|^2\,d\mu_g\ge0$
+($C_g=\mathcal N_g^{-1}$). After $\Pi_{\mathrm{phys}}$ removes the diffeomorphism, frame and conformal
+directions, the operator is a positive elliptic Calder\'on operator, so RP holds (no Euclidean
+conformal-mode pathology). \emph{(ii) Relative bound.} Normalising $h$ in the Calder\'on graph ball,
+$\|(\mathcal N_0+1)^{-1/2}\dot{\mathcal N}^{TT}_{g_0}(h)(\mathcal N_0+1)^{-1/2}\|\le1$, gives
+$\|V_{\mathrm{metric}}\|_{\mathrm{rel}}\le\cthree^2\|T_{\mathrm{grav}}\|\le248\,\cthree^2=31/(8\pi^2)=0.3926$,
+verified $<\Delta$. By Kato--Rellich the gapped admissible $H_0$ is stable under the form-bounded
+perturbation, with $\Delta_{\mathrm{eff}}\ge\Delta-2\|V_{\mathrm{metric}}\|_{\mathrm{rel}}>1.648>0$, so
+clustering and OS reconstruction (Prop.~\ref{prop:qftmeasure}) persist. (Sharper: routing the coupling
+through the local $E_7{\times}A_1$ seam shell gives $\|T_{\mathrm{grav}}\|\le112$, bound $0.177$, margin
+$\Delta/112\cthree^2=13.72$.)
+\end{proof}
+
+\begin{gapbox}[QFT/QG residual --- now strictly typed, and reduced to a discharged bound]
+\[
+  \boxed{\ \text{admissible transfer-sector measure: \emph{closed} \mE}\ }
+\]
+\[
+  \boxed{\ \text{physical projection via }P_{\mathrm{adm}}:\ \text{\emph{claimed} (Papers 2--4) \mC}\ }
+\]
+\[
+  \boxed{\ \text{metric-coupled ambient RP: \emph{conditionally reduced} by Prop.~\ref{prop:metricrp} (gap-dominated bound) \mC}\ }
+\]
+The former ``two blanks'' (construct the 4D QFT measure; construct full quantum gravity) reduce to the
+single named hypothesis ``RP survives the gapped metric dressing,'' for which Prop.~\ref{prop:metricrp}
+gives the explicit form bound $248\cthree^2<6\log\tfrac32$ as supporting evidence. \textbf{This is a
+conditional reduction:} the \emph{full metric-sector quantum-gravity measure is not constructed here}, but it is
+now a \mC\ \emph{redundancy} (\vref{v369}, conditional on \texttt{SEAM.EQUIV.01}${+}$Bisognano--Wichmann), a
+certification object rather than missing dynamics, as carried in the frontier document
+(\texttt{tfpt\_4\_frontier}), which is the single status source for QG. The admissible-sector measure
+(gap $6\log\tfrac32$, OS) is genuinely closed; perturbative graviton unitarity is established (the Stelle ghost a
+truncation artefact, \vref{v304}/\vref{v370}/\vref{v380}).\end{gapbox}
+
+\begin{keybox}[The $R+R^2$ action-layer equation --- the full Einstein equation is separately parameter-free \mE/\mC]
+This box gives the \emph{action-layer} ($f(R)=R+R^2$) field equation; independently of it, the \emph{full}
+covariant Einstein equation $G_{ab}{+}\Lambda g_{ab}=\cthree^{-1}T_{ab}$ is parameter-free (fixed-volume
+entanglement equilibrium, both coefficients fixed, \vref{v358}/\vref{v359}). The low-curvature regime is
+fully closed at the level of the covariant Einstein-side equation. With
+\[
+  f(R)=R+\frac{R^2}{6M^2},\qquad f_R=1+\frac{R}{3M^2},\qquad
+  \boxed{\,M=\Mbar\,\cthree^{7/2}=3.06\times10^{13}\ \mathrm{GeV}\,}
+\]
+(the scalaron mass, since $m_{\mathrm{scal}}^2=1/(3f_{RR})=M^2$), the field equation is the $f(R)$ system
+\[
+  f_R R_{\mu\nu}-\tfrac12 f\,g_{\mu\nu}+\bigl(g_{\mu\nu}\Box-\nabla_\mu\nabla_\nu\bigr)f_R
+  =\Mbar^{-2}T_{\mu\nu}+O\!\left(\tfrac{R^3}{M^4}\right),
+\]
+with $4$D trace $f_R R-2f+3\Box f_R=\Mbar^{-2}T$. At the observational pivot $N_\star=57$ this gives
+\[
+  n_s=1-\tfrac2{N_\star}=0.96491,\quad r=\tfrac{12}{N_\star^2}=0.00369,\quad
+  A_s=\tfrac{N_\star^2}{24\pi^2}\cthree^7=2.17\times10^{-9},
+\]
+inside the Planck window. \textbf{Typing:} the $R+R^2$ covariant equation is \emph{closed} \mE/\mC\ in its
+regime; the field equation itself is parameter-free (\vref{v358}/\vref{v359}), so the deepest open item \mO\
+is the \emph{measure} --- the \emph{full} metric-sector path-integral measure beyond FRW
+($G_{\mathrm{metric}}$, status source \texttt{tfpt\_4\_frontier}). \veri{v28\_gravity\_fR.py}
+\end{keybox}
+

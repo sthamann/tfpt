@@ -1,0 +1,366 @@
+\subsection{M\"obius Matching and the Minimal Gluing Class}
+For the M\"obius $\mathbb{Z}_2$ identification, the matching satisfies $U_\Gamma^2=\mathbf{1}$.
+The minimal nontrivial class is modeled by the unitary phase
+\begin{equation}
+    U_\Gamma(\theta)=e^{i\theta}.
+\end{equation}
+
+\subsection{Spectral Flow Computation}
+Interpolate boundary conditions by a phase $\varphi$,
+\begin{equation}
+    \psi(\theta+2\pi)=e^{i\varphi}\psi(\theta), \qquad \varphi\in[0,2\pi],
+\end{equation}
+which gives the eigenvalues
+\begin{equation}
+    \lambda_n(\varphi)=n+\frac{\varphi}{2\pi}, \qquad n\in\mathbb{Z}.
+\end{equation}
+As $\varphi$ runs from $0$ to $2\pi$, exactly one eigenvalue crosses zero, so
+$\mathrm{SF}(U_\Gamma)=1$ and $\Delta_\Gamma=2\pi$.
+
+\begin{remark}
+For unitary matching maps $U_\Gamma:S^1\to U(1)$, the spectral flow equals the winding
+number of $\det U_\Gamma$, consistent with the $K^1(S^1)\cong\mathbb{Z}$ classification.
+\end{remark}
+
+\subsection{Normalization of $\phitree$}
+The two physical boundary cycles contribute $2\pi+2\pi$, and the seam gluing adds
+$\Delta_\Gamma=2\pi$, so the total curvature is $R_{\text{total}}=6\pi$. The stationarity
+normalization $\varphi\cdot R_{\text{total}}=1$ therefore yields
+\begin{equation}
+    \phitree = \frac{1}{6\pi}.
+\end{equation}
+
+%=============================================================================
+\section{Derivation of the Coefficient 48 in $\deltatop$}
+\label{app:48deriv}
+%=============================================================================
+
+This appendix explains the integer coefficient in $\deltatop = 48\cthree^4$.
+The key point is that the canonical quantity is
+\begin{equation}
+    \deltatop = \frac{3}{256\pi^4},
+\end{equation}
+and the appearance of ``48'' is simply the same number expressed in units of $\cthree^4$.
+
+\subsection{The Physical Setup}
+
+The topological correction $\deltatop$ arises from the leading gauge-invariant correction 
+to the tree-level geometric scale $\phitree$. The requirements are:
+\begin{enumerate}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{Gauge invariance:} The correction must be built from $\cthree$ only 
+        (no explicit $\alpha$ dependence at this order).
+    \item \textbf{Dimensionlessness:} Since $\cthree$ is dimensionless, the correction 
+        must be a pure power $\cthree^n$ with an integer coefficient.
+    \item \textbf{Discreteness:} Topological invariants take discrete values; the 
+        coefficient must be a rational number with simple structure.
+\end{enumerate}
+
+\subsection{Power Counting: Why $\cthree^4$?}
+
+The effective action on the M\"obius fiber includes the Chern--Simons term 
+$\cthree\, a F\tilde{F}$. The leading topological correction comes from the 
+one-loop determinant of the Dirac operator coupled to this background.
+
+\textbf{Dimensional analysis:} The Chern--Simons coupling enters as $\cthree$. The 
+Euler characteristic and Pontryagin invariants contribute at order $\cthree^2$ each. 
+The product yields:
+\begin{equation}
+    \deltatop \sim \cthree^2 \times \cthree^2 = \cthree^4
+\end{equation}
+
+\textbf{No $\cthree^2$ term:} A correction of order $\cthree^2$ would require a 
+pure Euler term, but this is already absorbed into $\phitree$ via Gauss--Bonnet. 
+The next allowed correction is $\cthree^4$.
+
+\subsection{Spin-Lifted Deficit Factor}
+The non-orientable identification acts as a $\mathbb{Z}_2$ operation on the base,
+but in the spin bundle the same element lifts to order $4$ because a $2\pi$ rotation
+acts as $-1$ on spinors and only a $4\pi$ rotation is trivial. This produces a
+universal deficit factor
+\begin{equation}
+    1-\frac{1}{4}=\frac{3}{4},
+\end{equation}
+per minimal sector.
+
+\subsection{Sector Count from Cut Geometry}
+Cutting along $\Gamma$ yields boundary components $(C_1,C_2,\Gamma_+,\Gamma_-)$.
+The four local corner patches
+$(C_1,\Gamma_+)$, $(C_1,\Gamma_-)$, $(C_2,\Gamma_+)$, $(C_2,\Gamma_-)$
+constitute the fundamental domain. Summing the spin-lifted deficit factor over these sectors yields
+\begin{equation}
+    \sum_{p=1}^{F}\left(1-\frac{1}{4}\right)=4\cdot\frac{3}{4}=3.
+\end{equation}
+In TFPT normalization this yields the canonical form $\deltatop = 3/(256\pi^4)$.
+
+\subsection{Conversion to the $\cthree$ normalization}
+
+Using $\cthree = 1/(8\pi)$:
+\begin{equation}
+    48\cthree^4 = 48 \times \frac{1}{(8\pi)^4} 
+    = \frac{48}{4096\pi^4}
+    = \frac{3}{256\pi^4}
+\end{equation}
+so $\deltatop = 3/(256\pi^4)$ and $\deltatop = 48\cthree^4$ are exactly equivalent.
+
+\subsection{Status note}
+The spin-lift argument fixes the $1-1/4$ deficit factor robustly, and the sector count
+is fixed by seam symmetry. The seam normalization is provided by the $\eta$-gluing
+derivation in Appendix~\ref{app:seam}.
+
+%=============================================================================
+\section{Flavor Monodromy and Cross-Ratio}
+\label{app:flavor}
+%=============================================================================
+
+This appendix derives the M\"obius structure of flavor relations from boundary monodromy.
+
+\subsection{Projective Invariance on Boundaries}
+
+On a conformally flat boundary, the metric is locally:
+\begin{equation}
+    ds^2 = e^{2\omega(x)} \delta_{ij} dx^i dx^j
+\end{equation}
+Holomorphic automorphisms (Wilson lines of flat connections) act as M\"obius 
+transformations:
+\begin{equation}
+    z \mapsto \frac{az + b}{cz + d}, \quad ad - bc = 1
+\end{equation}
+
+\begin{remark}
+\textbf{Context:} $\mathrm{SL}(2,\mathbb{C})$ double-covers the proper orthochronous Lorentz group $\mathrm{SO}^+(3,1)$, 
+and its projectivization $\mathrm{PSL}(2,\mathbb{C})$ acts by M\"obius transformations on the Riemann sphere. 
+This links the M\"obius structure to standard Lorentz symmetry rather than an ad hoc choice.
+\end{remark}
+
+\subsection{Cross-Ratio as Unique Invariant}
+
+Given four marked points $\{z_1, z_2, z_3, z_4\}$ on the boundary, the unique 
+projective invariant is the cross-ratio:
+\begin{equation}
+    [z_1, z_2; z_3, z_4] = \frac{(z_1 - z_3)(z_2 - z_4)}{(z_1 - z_4)(z_2 - z_3)}
+\end{equation}
+
+\textbf{Consequence:} Any physical quantity depending only on boundary data must be 
+expressible as a function of cross-ratios, hence as a M\"obius map.
+
+\subsection{Cusp Selection}
+
+The cusps $y \in \{1, 1/3, 2/3\}$ arise from:
+\begin{enumerate}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{Rationality:} Quantized holonomies $\Rightarrow$ rational cusps.
+    \item \textbf{GUT compatibility:} SU(5) hypercharge assignments give 
+        $Y = 1/3$ (quarks), $Y = 1$ (leptons), etc.
+    \item \textbf{Uniqueness:} These are the only rational values that simultaneously 
+        separate the three SM sectors (up, down, lepton) and maintain GUT normalization.
+\end{enumerate}
+
+\subsection{Derivation of $\delta_\star$}
+
+The flavor phase is a first-order closure:
+\begin{equation}
+    \delta_\star = \delta_0 + \delta_1 \cdot \phiz + \mathcal{O}(\phiz^2)
+\end{equation}
+
+\textbf{Leading term:} $\delta_0 = 3/5$ from the abelian trace (same as $\bone$ numerator 
+divided by 41/10's denominator structure).
+
+\textbf{Correction:} $\delta_1 = 1/6$ from the M\"obius length scale. The factor $1/6$ 
+matches the boundary normalization ($6\pi$ total curvature).
+
+\textbf{Result:}
+\begin{equation}
+    \delta_\star = \frac{3}{5} + \frac{\phiz}{6} = 0.6 + 0.00886 = 0.6089
+\end{equation}
+
+%=============================================================================
+\section{Reproducibility}
+\label{app:repro}
+%=============================================================================
+
+\textbf{Replication package:} All numerical results can be reproduced using the 
+TFPT verification suite (v5).
+
+\textbf{Contents:}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item Python modules for each calculation domain
+    \item JSON files with all constants and derived quantities
+    \item Automated test suite with pass/fail status
+    \item Plot generation scripts
+    \item Planned modules: \texttt{effective\_action\_r2}, \texttt{bounce\_perturbations}
+\end{itemize}
+
+\textbf{Key output files:}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \texttt{tfpt\_complete\_analysis.json}: Master results file
+    \item \texttt{e8\_chain\_analysis.json}: Complete E$_8$ chain data
+    \item \texttt{gauge\_couplings.csv}: Two-loop RGE output (via PyR@TE)
+\end{itemize}
+
+\textbf{Execution:} \texttt{python -m tfpt\_verification5.run\_all}
+
+\textbf{Verification:} The core 10 modules must report ``success'' status; the
+$R^2$ effective-action and bounce-perturbation modules are planned extensions.
+
+%=============================================================================
+\section{Identity Catalogue and Status Labels}
+\label{app:identities}
+%=============================================================================
+
+This appendix labels frequently used equalities by logical status to prevent conflating definitions, algebraic rewrites, and genuine predictions.
+
+\textbf{Legend:}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{D}: Definition (input)
+    \item \textbf{K}: Consequence of definitions (algebraic)
+    \item \textbf{L}: Lemma from axioms/postulates
+    \item \textbf{P}: Prediction (output; not used as input)
+\end{itemize}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lp{12cm}@{}}
+\toprule
+\textbf{Tag} & \textbf{Statement}\\
+\midrule
+\textbf{D} & $\beta_{\text{rad}} := \phiz/(4\pi)$.\\
+\textbf{K} & $\phiz = 4\pi\beta_{\text{rad}}$.\\
+\textbf{K} & $\beta_{\text{deg}} := (180/\pi)\beta_{\text{rad}}$.\\
+\textbf{K} & $\gagg = -4\cthree = -1/(2\pi)$.\\
+\textbf{L} & $\gamma(0)=5/6$ (Definition~\ref{def:E8cascade}; discrete closure choice).\\
+\textbf{L} & $\phitree = 1/(6\pi)$ (Axiom~\ref{ax:GB}; from $\eta$-gluing seam term).\\
+\textbf{L} & $\deltatop = \frac{1}{256\pi^4}\sum_{p=1}^{4}\left(1-\frac{1}{4}\right)=\frac{3}{256\pi^4}$ (Axiom~\ref{ax:TC}).\\
+\textbf{P} & CFE solution $\alpha^{-1}_{\text{TFPT}} = 137.03599410\ldots$ (Theorem~\ref{thm:selfconsistent}).\\
+\textbf{P} & Cabibbo $\lambda = \sqrt{\phiz}\left(1-\frac{1}{2}\phiz\right)=0.22445997\ldots$ (Corollary~\ref{cor:Cabibbo}).\\
+\textbf{P} & Birefringence $\beta_{\text{deg}} \approx 0.2424^\circ$ from $\Delta a_{\text{top}} = n\,\phiz$ (minimal $n=1$; Theorem~\ref{thm:birefringence}; optional realization in Sec.~\ref{sec:deltaa}).\\
+\textbf{P} & $R^2$ inflation: $n_s=1-2/N$, $r=12/N^2$, $A_s \simeq \frac{N^2}{24\pi^2}(M/\Mpl)^2$ with $M/\Mpl=\sqrt{8\pi}\cthree^4$ (Theorem~\ref{thm:inflation}; assumptions K1--K3).\\
+\textbf{P} (spec.) & $\Omega_b = (4\pi-1)\beta_{\text{rad}}$ (Table~\ref{tab:beta}).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%=============================================================================
+\section{One-Loop Effective Action in Riemann--Cartan and the $R^2$ Coefficient}
+\label{app:r2}
+%=============================================================================
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60, 
+    title={\textbf{Assumptions K1--K4}}, fonttitle=\bfseries\small]
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{K1:} Field content and torsionful Lagrangian fixed by the minimal UFE sector.
+    \item \textbf{K2:} Quadratic fluctuation operator is of Laplace type after background-field gauge fixing.
+    \item \textbf{K3:} Heat-kernel coefficient $a_2$ captures the curvature-squared terms in $\Gamma_{\mathrm{eff}}$.
+    \item \textbf{K4:} Matching to $R + R^2/(6M^2)$ after imposing the GR renormalization condition.
+\end{itemize}
+\end{tcolorbox}
+
+\subsection{K.1 Setup}
+We evaluate the one-loop effective action in a Riemann--Cartan background with torsion
+decomposed into axial $S_\mu$, trace $T_\mu$, and tensor $q_{\mu\nu\rho}$. The minimal UFE
+choice treats torsion at quadratic order, so integrating out torsion is Gaussian and
+parameter-free once $\cthree$ fixes the normalization of the coupling.
+
+\subsection{K.2 Operator Form}
+After background-field gauge fixing, the quadratic operator for torsion fluctuations can be
+written in Laplace type,
+\begin{equation}
+    \Delta = -\nabla^2 + \mathcal{E}(R,K),
+\end{equation}
+with $\mathcal{E}$ built from curvature and torsion invariants. The contribution to
+$\Gamma_{\mathrm{eff}}$ is $\frac{1}{2}\ln\det\Delta$.
+
+\subsection{K.3 Heat-Kernel Coefficients}
+The local part of $\Gamma_{\mathrm{eff}}$ is governed by the heat-kernel expansion
+\begin{equation}
+    \mathrm{Tr}\,e^{-s\Delta} \sim \sum_{n\ge 0} s^{(n-4)/2} a_n,
+\end{equation}
+where $a_2$ contains the curvature-squared terms. The torsion-dependent pieces combine into
+an effective $R^2$ operator in the low-energy action.
+
+\subsection{K.4 Renormalization Condition}
+The GR limit (A8) fixes the renormalization scheme by requiring that the $K\to 0$ limit
+reduces to the Einstein--Hilbert action with coefficient $\Mpl^2/2$.
+
+\subsection{K.5 TFPT Closure}
+With the TFPT normalization of the torsion sector, the induced $R^2$ coefficient is fixed by
+$\cthree$, yielding
+\begin{equation}
+    \frac{M}{\Mpl}=\sqrt{8\pi}\;\cthree^4,
+\end{equation}
+which reproduces \eqref{eq:R2scale} without additional parameters.
+
+%=============================================================================
+\section{Bounce Perturbations and the Transfer Function}
+\label{app:bounce}
+%=============================================================================
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60, 
+    title={\textbf{Status Note}}, fonttitle=\bfseries\small]
+This appendix provides a minimal outline; the full numerical transfer-function evaluation
+is scheduled for the \texttt{bounce\_perturbations} verification module.
+\end{tcolorbox}
+
+\subsection{L.1 Background Solution}
+The bounce background is modeled by a smooth scale factor $a(\eta)$ where the torsion-induced
+$a^{-6}$ term regularizes $z''/z$ for scalar perturbations. The transition to the $R^2$
+inflationary phase is implemented by matching $a(\eta)$ and its derivatives at $\eta=\eta_t$.
+
+\subsection{L.2 Numerical Integration Setup}
+Mode functions are initialized in an adiabatic vacuum well before the bounce and integrated
+through the bounce and into the $R^2$ era. The numerical scheme records the transfer function
+by comparing late-time solutions to the pure $R^2$ baseline.
+
+\subsection{L.3 Transfer Function}
+Define the transfer function as
+\begin{equation}
+    T(k) \equiv \left|\frac{v_k(\eta\gg \eta_t)}{v_k^{(R^2)}(\eta\gg \eta_t)}\right|,
+\end{equation}
+with $T(k)\to 1$ for modes well inside the horizon during the bounce and deviations confined
+to $k\sim k_{\text{bounce}}$.
+
+\subsection{L.4 Falsification Targets}
+Large-scale suppression or oscillatory features in $\mathcal{P}_\zeta(k)$ are predicted at
+$k\lesssim k_{\text{bounce}}$. Current CMB large-scale bounds constrain the allowable feature
+amplitude, providing a direct observational test of the bounce completion.
+
+%=============================================================================
+\section*{References}
+%=============================================================================
+
+\begin{enumerate}[label={[\arabic*]}]
+    \item F.~W.~Hehl, P.~von der Heyde, G.~D.~Kerlick, J.~M.~Nester, 
+        ``General Relativity with Spin and Torsion: Foundations and Prospects,'' 
+        Rev.\ Mod.\ Phys.\ \textbf{48}, 393 (1976).
+    
+    \item K.~Fujikawa, ``Path-Integral Measure for Gauge-Invariant Fermion Theories,'' 
+        Phys.\ Rev.\ Lett.\ \textbf{42}, 1195 (1979).
+    
+    \item T.~Kawasaki, ``The Riemann--Roch theorem for complex V-manifolds,'' 
+        Osaka J.\ Math.\ \textbf{16}, 151--159 (1979).
+    
+    \item M.~F.~Atiyah, V.~K.~Patodi, I.~M.~Singer, 
+        ``Spectral asymmetry and Riemannian geometry I,'' 
+        Math.\ Proc.\ Camb.\ Phil.\ Soc.\ \textbf{77}, 43--69 (1975).
+    
+    \item U.~Bunke, ``On the gluing problem for the $\eta$-invariant,'' 
+        J.\ Differential Geom.\ \textbf{41}, 397--448 (1995).
+    
+    \item P.~Diego-Palazuelos \textit{et al.}, 
+        ``Cosmic Birefringence from the Planck Data Release 4,'' 
+        Phys.\ Rev.\ Lett.\ \textbf{128}, 091302 (2022);
+        Y.~Minami, E.~Komatsu, 
+        ``New Extraction of the Cosmic Birefringence from the Planck 2018 Polarization Data,'' 
+        Phys.\ Rev.\ Lett.\ \textbf{125}, 221301 (2020).
+    
+    \item E.~Tiesinga, P.~J.~Mohr, D.~B.~Newell, B.~N.~Taylor, 
+        ``CODATA Recommended Values of the Fundamental Physical Constants: 2022,'' 
+        J.\ Phys.\ Chem.\ Ref.\ Data \textbf{53}, 043103 (2024).
+    
+    \item V.~A.~Kosteleck\'y, N.~Russell, J.~D.~Tasson, 
+        ``Constraints on Torsion from Bounds on Lorentz Violation,'' 
+        Phys.\ Rev.\ Lett.\ \textbf{100}, 111102 (2008).
+    
+    \item I.~L.~Shapiro, ``Physical aspects of the space--time torsion,'' 
+        Phys.\ Rept.\ \textbf{357}, 113--213 (2002).
+\end{enumerate}
+
+\end{document}

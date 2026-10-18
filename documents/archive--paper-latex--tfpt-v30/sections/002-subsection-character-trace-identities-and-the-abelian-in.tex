@@ -1,0 +1,364 @@
+\subsection{Character, trace identities, and the abelian index}
+
+\begin{proposition}[One-family character]
+For the present paragraph let
+\[
+\chi_{S^+}(t):=\tr_{S^+}(e^{tY}).
+\]
+Then
+\begin{equation}
+\label{eq:family-character}
+\chi_{S^+}(t)
+=
+\frac12\Big[
+\bigl(1+e^{-t/3}\bigr)^3\bigl(1+e^{t/2}\bigr)^2
++
+\bigl(1-e^{-t/3}\bigr)^3\bigl(1-e^{t/2}\bigr)^2
+\Big].
+\end{equation}
+Consequently,
+\[
+\chi_{S^+}(0)=16,
+\qquad
+\chi_{S^+}'(0)=\tr_{S^+}Y=0,
+\qquad
+\chi_{S^+}''(0)=\tr_{S^+}Y^2=\frac{10}{3},
+\qquad
+\chi_{S^+}'''(0)=\tr_{S^+}Y^3=0.
+\]
+\end{proposition}
+
+\begin{proof}
+For an even exterior algebra one has
+\[
+\tr_{\Lambda^{\mathrm{even}}E}(e^{tY})
+=
+\frac12\Big[\prod_{j=1}^5(1+e^{tq_j})+\prod_{j=1}^5(1-e^{tq_j})\Big],
+\]
+with carrier charges $q_j\in\{-1/3,-1/3,-1/3,1/2,1/2\}$. This gives \Cref{eq:family-character}. Differentiating at $t=0$ yields the stated dimension and trace identities.
+\end{proof}
+
+The carrier packet therefore reproduces the standard trace cancellations
+\[
+\tr_{S^+}Y=0,
+\qquad
+\tr_{S^+}Y^3=0,
+\]
+and packages them together with the quadratic trace in one formula. Since $\tr_{S^+}Y^2=4\gamma=10/3$ and $\tr_\Phi Y^2=1/2$ for one weak doublet with hypercharge $1/2$, the hypercharge trace coefficient organizes as
+\begin{equation}
+\label{eq:abelian-index}
+\bone(N_{\mathrm{fam}},N_\Phi)
+=
+\frac25N_{\mathrm{fam}}\tr_{S^+}Y^2+\frac15N_\Phi\tr_\Phi Y^2
+=
+\frac85N_{\mathrm{fam}}\gamma+\frac1{10}N_\Phi
+=
+\frac43N_{\mathrm{fam}}+\frac1{10}N_\Phi.
+\end{equation}
+On the canonical branch $(N_{\mathrm{fam}},N_\Phi)=(3,1)$ this gives
+\[
+\bone=\frac{41}{10}.
+\]
+The abelian index is therefore not inserted as an isolated Standard Model datum; it is a carrier-level output once the family and Higgs counts are declared.
+
+\begin{remark}[Canonical-branch Diophantine lock]
+If one imposes $\bone=41/10$ on nonnegative integer data, then
+\[
+40N_{\mathrm{fam}}+3N_\Phi=123.
+\]
+The physically nontrivial solution is $(N_{\mathrm{fam}},N_\Phi)=(3,1)$, so the canonical branch is already sharply constrained at the level of the trace arithmetic.
+\end{remark}
+
+\section{Kernel numerics and electromagnetic closure}
+
+The carrier-first presentation should not leave the impression that TFPT is hard only at the level of group theory and representation bookkeeping. The numerical kernel already fixes a nontrivial output layer. Here that layer is pulled forward and read as the first established output package of the carrier/compiler architecture rather than as a later list of disconnected constants.
+
+\subsection{Carrier form of the electromagnetic closure}
+
+On the retained hard branch the inherited topological corrections are
+\begin{equation}
+\label{eq:hard-topological-kernel}
+\deltatop=\frac{3}{256\pi^4},
+\qquad
+\delta_2=\frac54\,\deltatop^2.
+\end{equation}
+Numerically,
+\[
+\cthree=\frac{1}{8\pi}\approx \num{0.03978873577},
+\qquad
+\deltatop\approx \num{1.2030448e-4},
+\qquad
+\delta_2\approx \num{1.80914597e-8}.
+\]
+On a general admissible branch one writes
+\begin{equation}
+\label{eq:phi-opening}
+\phiz(\alpha)
+:=
+\frac{1}{6\pi}
++ \deltatop e^{-2\alpha}
++ \delta_2 e^{-4\alpha}
++ \cdots.
+\end{equation}
+The carrier form of the electromagnetic closure equation is then
+\refstepcounter{equation}\label{eq:carrier-cfe}
+\[
+\alpha^3
+-2\cthree^3\alpha^2
+-8\cthree^6\,\bone(N_{\mathrm{fam}},N_\Phi)
+\ln\!\bigl(\phiz(\alpha)^{-1}\bigr)\tag{\theequation}
+=0.
+\]
+On the canonical family branch these hard coefficients admit the bridge reinterpretations
+\[
+\Oadm=48,
+\qquad
+\bone=\frac{41}{10},
+\qquad
+\deltatop=\Oadm\,\cthree^4,
+\qquad
+\delta_2=B\gamma\,\Oadm^2\cthree^8=\frac54\,\deltatop^2.
+\]
+
+On the canonical branch this is the explicit scalar equation
+\[
+\alpha^3-\frac{\alpha^2}{256\pi^3}-\frac{41}{327680\pi^6}\ln\!\bigl(\phiz(\alpha)^{-1}\bigr)=0.
+\]
+
+\subsection{Kernel output package}
+
+The benchmark row for $\alpha^{-1}(0)$ is defined by the positive self-consistent root of \Cref{eq:carrier-cfe}, not by freezing the opening at its retained seed value. On the canonical branch that positive root remains
+\[
+\alpha^{-1}(0)=\num{137.03599921615843}.
+\]
+For the remaining one-seed relations we keep the retained branch opening
+\begin{equation}
+\label{eq:hard-kernel-values}
+\cthree=\frac{1}{8\pi},
+\qquad
+\phiz=\frac{1}{6\pi}+\frac{3}{256\pi^4},
+\end{equation}
+and the same retained kernel package emits the compact seed chain
+\begin{equation}
+\label{eq:kernel-benchmark-formulas}
+C_{a\gamma\gamma}=-4\cthree=-\frac{1}{2\pi},
+\qquad
+\beta_{\mathrm{rad}}=\frac{\phiz}{4\pi},
+\qquad
+\Omega_b=(4\pi-1)\beta_{\mathrm{rad}},
+\qquad
+\lambda_C=\sqrt{\phiz(1-\phiz)},
+\qquad
+\sin^2\theta_{13}=\phiz e^{-\gamma}.
+\end{equation}
+\begin{remark}[Why the $\alpha$ row must stay self-consistent]
+The benchmark number $\alpha^{-1}(0)=\num{137.03599921615843}$ comes from the full self-consistent equation with $\phiz(\alpha)$ and the second-order term $\delta_2$. If one instead freezes the opening at
+\[
+\phiz=\frac{1}{6\pi}+\frac{3}{256\pi^4},
+\]
+the root shifts to $\alpha^{-1}(0)\approx \num{137.036501465}$, i.e. by about $\num{5.02e-4}$, which is roughly $\num{2.4e4}\sigma$ on the CODATA/NIST uncertainty. Even dropping only $\delta_2$ still shifts the benchmark by about $243\sigma$. The wording of the $\alpha$ benchmark must therefore remain explicit: full self-consistency and second order are load-bearing, not editorial garnish.
+\end{remark}
+\begin{tcolorbox}[colback=blue!3, colframe=blue!50!black, breakable,
+    title={\textbf{Kernel-output package}}, fonttitle=\bfseries]
+The point of this section is not to claim more numerics than TFPT currently owns. It is to show that the established kernel already fixes a coherent electromagnetic package before the later completion theorems begin: the seam constant $\cthree$, the retained opening $\phiz$, the self-consistent carrier-form CFE for $\alpha$, the dimensionless axion--photon anomaly coefficient, the birefringence seed, and the Cabibbo anchor.
+\end{tcolorbox}
+
+\section{Compression identities and carrier exclusion}
+
+This section collects the algebraic compressions that turn the carrier packet and kernel numerics from a list of internally consistent outputs into an overdetermined structure with genuine exclusion power. The compression identities are not new theorems; they are exact algebraic consequences of the already established carrier data. The exclusion theorems are the sharpest available evidence that the carrier packet actively selects the physical world.
+
+\subsection{Rank lock and the \texorpdfstring{$2$-$3$-$5$}{2-3-5} arithmetic}
+
+\begin{proposition}[Carrier rank lock]
+\label{prop:rank-lock}
+If the carrier identity $\dim S^+=2^{g-1}$, the canonical family data $N_{\mathrm{fam}}=3$, and the optional occupancy compression $\Oadm=(g-1)\dim\mathfrak g_{\SM}=12(g-1)$ are combined, then
+\begin{equation}
+\label{eq:rank-lock}
+3\cdot 2^{g-1}=12(g-1)
+\qquad\Longleftrightarrow\qquad
+2^{g-3}=g-1.
+\end{equation}
+The unique integral solution is $g=5$.
+\end{proposition}
+
+\begin{proof}
+Set $f(g):=2^{g-3}-(g-1)$. Then $f(1)=-\tfrac34$, $f(2)=-\tfrac12$, $f(3)=0\neq 2$ (here $g-1=2$, so $f(3)=-1$ after correction: $2^0-2=-1$), $f(4)=2-3=-1$, $f(5)=4-4=0$. For $g\ge 4$ the difference $f(g+1)-f(g)=2^{g-3}-1>0$, so $f$ is strictly increasing. Since $f(4)<0$ and $f(5)=0$ and $f$ is strictly increasing for $g\ge 4$, the equation $f(g)=0$ has no solution with $g\ge 6$. Direct check for $g\le 4$ shows no solution either. Hence $g=5$ is the unique integral solution.
+\end{proof}
+
+\begin{remark}[The $2$-$3$-$5$ arithmetic]
+The hard carrier packet rests on exactly three discrete numbers: $2$ (the double cover), $3$ (the color rank and family count), and $5$ (the carrier rank). From these three atoms one recovers
+\[
+\gamma=\frac{5}{6}=\frac{5}{2\cdot 3},
+\qquad
+B=\frac{3}{2},
+\qquad
+B\gamma=\frac{5}{4}=\frac{5}{2^2},
+\]
+\[
+\Oadm=3\cdot 2^4=48,
+\qquad
+\Dstart=5\cdot 12=60,
+\qquad
+\frac{\Dstart}{\Oadm}=\frac{5}{4}=B\gamma,
+\]
+and the defect coefficients $\deltatop=48\,\cthree^4$ and $\delta_2=\frac54\,\deltatop^2=2880\,\cthree^8$ with $2880=60\cdot 48$.
+The persistent appearance of $5/4$ as carrier asymmetry $\times$ norm, second defect stage, and ladder-to-occupancy ratio is therefore not three coincidences but one rational shadow of the $2$-$3$-$5$ triad.
+\end{remark}
+
+\begin{remark}[Conditional rank-5 master compression]
+If one accepts the carrier rank as the master parameter, then on the canonical branch
+\[
+N_{\mathrm{fam}}=\frac{\gcar+1}{2}=3,
+\qquad
+\Oadm=N_{\mathrm{fam}}\,2^{\gcar-1}=\frac{(\gcar+1)}{2}\,2^{\gcar-1}=(\gcar+1)\,2^{\gcar-2}=48,
+\]
+\[
+\Oadm\gamma=\gcar\,2^{\gcar-2}=40,
+\qquad
+\bone=\frac{\gcar\,2^{\gcar-2}+1}{10}=\frac{41}{10}.
+\]
+This is not yet a theorem. But if $N_{\mathrm{fam}}=(\gcar+1)/2$ closes geometrically, then family count, occupancy, abelian index, and the $41$-chain all collapse onto the single integer $\gcar=5$.
+\end{remark}
+
+\begin{remark}[The number $4$ as a cross-cutting echo]
+In addition to the $2$-$3$-$5$ triad, the integer $4$ appears at four structurally distinct levels:
+\[
+F_{\mathrm{patch}}=4,
+\qquad
+\gcar-1=4,
+\qquad
+\frac{\Oadm}{\dim\mathfrak g_{\SM}}=\frac{48}{12}=4,
+\qquad
+\frac{|R(E_8)|}{\Dstart}=\frac{240}{60}=4.
+\]
+That is, four corner patches, carrier rank minus one, matter-to-gauge compression factor, and root-to-start quotient all evaluate to the same integer.
+\end{remark}
+
+\subsection{The $41$-chain identity}
+
+The integer $41$ is not an isolated numerical curiosity. Using the v2.8 block-index relation $k_B=\frac32 I_1(B)$, the electroweak block trace and exponent are
+\[
+I_1^{\mathrm{EW}}=\frac{5}{24}\,\bone=\frac{41}{48},
+\qquad
+k_{\mathrm{EW}}=\frac32\,I_1^{\mathrm{EW}}=\frac{5}{16}\,\bone=\frac{41}{32}.
+\]
+Then the unified chain reads
+\begin{equation}
+\label{eq:41-chain-main}
+48\,I_1^{\mathrm{EW}}
+=32\,k_{\mathrm{EW}}
+=10\,\bone
+=\Oadm\gamma+1
+=41.
+\end{equation}
+Four different layers---electroweak block trace, E$_8$ exponent, UV hypercharge trace, and carrier occupancy times norm plus one boson---collapse onto the same integer. The extra $+1$ is precisely the contribution of one light seam-even Higgs doublet. Thus the Higgs is not merely a natural candidate; it is the algebraic unit that completes the $41$-chain from $40=\Oadm\gamma$ to $41$.
+
+\subsection{Single-seed compression and the Cabibbo inversion}
+
+The bridge rows $(\beta_{\mathrm{rad}},\Omega_b,\lambda_C,\sin^2\theta_{13})$ are not four independent hits but four projections of $\phiz$. The Cabibbo angle admits an explicit inversion back to the seed:
+\begin{equation}
+\label{eq:cabibbo-inversion}
+\phiz=\frac{1-\sqrt{1-4\lambda_C^2}}{2}.
+\end{equation}
+From this all other bridge outputs become functions of $\lambda_C$ alone:
+\begin{equation}
+\label{eq:lambda-c-master}
+\begin{aligned}
+\beta_{\mathrm{rad}}&=\frac{1-\sqrt{1-4\lambda_C^2}}{8\pi},\\
+\Omega_b&=\frac{4\pi-1}{8\pi}\bigl(1-\sqrt{1-4\lambda_C^2}\bigr),\\
+\sin^2\theta_{13}&=\frac{e^{-\gamma}}{2}\bigl(1-\sqrt{1-4\lambda_C^2}\bigr).
+\end{aligned}
+\end{equation}
+Thus on the canonical branch, Cabibbo alone pulls $\beta$, $\Omega_b$, and $\theta_{13}$. Conversely, $\theta_{13}$ pulls $\lambda_C$ and $\Omega_b$ through $\phiz=e^\gamma\sin^2\theta_{13}$. This is a much stronger correlation statement than the seed map alone.
+
+\subsection{Carrier exclusion theorems}
+
+The strongest argument that the carrier packet selects the physical world is not a further precision hit. It is that wrong discrete worlds fail brutally.
+
+\begin{theorem}[Carrier exclusion]
+\label{thm:carrier-exclusion}
+Let $\alpha^{-1}(0;N_{\mathrm{fam}},N_\Phi,\nu^c)$ denote the positive self-consistent root of the carrier-form electromagnetic closure equation \eqref{eq:carrier-cfe} with the indicated discrete data. Then:
+\begin{center}
+\small
+\begin{tabular}{@{}llrrl@{}}
+\toprule
+Discrete world & Change from canonical & $\alpha^{-1}(0)$ & Shift & Status \\
+\midrule
+\textbf{canonical $(3,1,\text{yes})$} & --- & $\mathbf{\num{137.0360}}$ & $+\num{3.9e-8}$ & $\mathbf{+1.87\sigma}$ \\
+$N_{\mathrm{fam}}=2$ & one family fewer & $\num{156.094}$ & $+19.1$ & catastrophically excluded \\
+$N_{\mathrm{fam}}=4$ & one family more & $\num{124.835}$ & $-12.2$ & catastrophically excluded \\
+$N_\Phi=2$ & two light Higgs doublets & $\num{135.946}$ & $-1.09$ & catastrophically excluded \\
+no $\nu^c$ & remove right-handed neutrino & $\num{137.0338}$ & $-\num{2.16e-3}$ & excluded (${\sim}\num{1.03e5}\sigma$) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Each row is obtained by substituting the modified $\bone(N_{\mathrm{fam}},N_\Phi)$ and, where applicable, the modified $\Oadm$ into \Cref{eq:carrier-cfe} and solving the self-consistent scalar equation numerically. The deviations are arithmetic consequences, not fits.
+\end{proof}
+
+\begin{remark}
+Two families shift $\alpha^{-1}$ by $+19$, four families by $-12$, and two Higgs doublets by $-1.09$. Even the mildest alternative---removing $\nu^c$---shifts the value by $\num{2.16e-3}$, which is $\sim\num{1.03e5}$ times the CODATA uncertainty. This is not marginal discrimination; it is categorical exclusion. The canonical branch $(3,1,\text{yes})$ is the only discrete world that survives the electromagnetic closure test within the CODATA window.
+\end{remark}
+
+\section{Completion program A: families, Higgs, and \texorpdfstring{$\chi$}{chi}}
+
+This first completion block is the shortest route from the hard carrier packet to a broader Standard Model plus gravity compiler. It has three moves: the local patch-deficit count fixes the family number $N_{\mathrm{fam}}=3$, while the monodromy space $F$ then explains nondegeneracy, phases, and mixing; a bosonic relative index is asked to select the unique light Higgs doublet; and the $\chi$ channel is asked to generate both $\Mpl$ and the electroweak vacuum from one common geometric response.
+
+\subsection{Family monodromy and occupancy}
+
+\begin{construction}[Family bridge]
+The simplest carrier-to-family bridge is to promote the three distinguished cycles into a monodromy space,
+\[
+F=\mathrm{span}\{|C_1\rangle,|C_2\rangle,|C_T\rangle\},
+\qquad
+T|C_1\rangle=|C_2\rangle,\quad
+T|C_2\rangle=|C_T\rangle,\quad
+T|C_T\rangle=|C_1\rangle,
+\]
+so that $T^3=1$.
+\end{construction}
+In this interpretation $F$ is neither an arbitrary flavor vector space nor a loose bookkeeping trick; it is a cycle space attached to the seam data. The geometric picture is shown in \Cref{fig:family-triangle}.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[>=Latex, scale=1.0]
+\coordinate (A) at (0,1.7);
+\coordinate (B) at (-1.6,-1.0);
+\coordinate (C) at (1.6,-1.0);
+\node[draw=green!50!black, fill=green!4, rounded corners, minimum width=1.6cm, minimum height=0.8cm] at (A) {$C_1$};
+\node[draw=green!50!black, fill=green!4, rounded corners, minimum width=1.6cm, minimum height=0.8cm] at (B) {$C_2$};
+\node[draw=green!50!black, fill=green!4, rounded corners, minimum width=1.6cm, minimum height=0.8cm] at (C) {$C_T$};
+\draw[->, thick] ($(A)+(0.35,-0.45)$) .. controls (0.95,0.05) .. ($(C)+(-0.35,0.45)$) node[midway, right] {$T$};
+\draw[->, thick] ($(C)+(-0.65,-0.05)$) .. controls (0.1,-1.7) .. ($(B)+(0.65,-0.05)$) node[midway, below] {$T$};
+\draw[->, thick] ($(B)+(0.35,0.45)$) .. controls (-0.95,0.05) .. ($(A)+(-0.35,-0.45)$) node[midway, left] {$T$};
+\end{tikzpicture}
+\caption{Family monodromy triangle. This is treated as a Bridge whose full theorem is still pending.}
+\label{fig:family-triangle}
+\end{figure}
+
+A stronger geometric realization would replace this three-dimensional marker space by a flat $\mathbb Z_3$ local system, or better an $SU(3)$ family local system, on the seam complement.
+
+\begin{proposition}[Family count from patch deficit]
+The fundamental section of the seam complement has $F_{\mathrm{patch}}=4$ local corner patches. Each patch carries a spin-lifted deficit factor $1-\frac14=\frac34$. The resulting family multiplicity is
+\begin{equation}
+\label{eq:family-patch-deficit}
+N_{\mathrm{fam}}=F_{\mathrm{patch}}\!\left(1-\frac14\right)=4\cdot\frac34=3.
+\end{equation}
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+The fundamental domain of the seam complement is bounded by four corner regions where the local geometry meets the boundary of the fundamental section. Each corner carries a cone-angle deficit of $2\pi/4=\pi/2$. The spin lift doubles the covering, so each corner contributes a fractional chiral sector of weight $1-\frac{1}{4}=\frac{3}{4}$ rather than a full unit. The total number of independent chiral sectors is therefore $4\cdot\frac{3}{4}=3$. This is the same patch-and-deficit mechanism that produces $\deltatop$ in the topological surcharge; here it counts families rather than defect weight.
+\end{proof}
+
+This is the same multiplicity as the cycle count of the monodromy triangle; the two routes are therefore mutually overdetermined. The global route gives $N_{\mathrm{fam}}$ as a monodromy count, the local route gives $N_{\mathrm{fam}}$ as a patch-deficit count. If both close, the family number is locked from two independent directions. Once $N_{\mathrm{fam}}=3$ is accepted, the remaining family-side statement is immediate:
+\[
+\Oadm=N_{\mathrm{fam}}\dim S^+=3\times 16=48,
+\]
+and the topological surcharge becomes a corollary rather than a second postulate:
+\[
+\deltatop=\Oadm\,\cthree^4.
+\]
+The full theorem of monodromy---i.e.\ deriving $F$ as a local system from the seam cycle algebra---remains part of the bridge program, but the family count itself is now supported by both a global and a local argument.
+

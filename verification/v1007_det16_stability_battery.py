@@ -36,6 +36,9 @@ Python-only / Wolfram mirror deferred.
 """
 from __future__ import annotations
 
+from tex_sources import read_tex
+from pathlib import Path
+
 from dataclasses import dataclass
 
 import numpy as np
@@ -82,8 +85,9 @@ def report(name, ok, extra=""):
 
 
 def tex_has(path: str, snippet: str) -> bool:
-    with open(path, encoding="utf-8") as handle:
-        return snippet in handle.read()
+    source = Path(path)
+    text = read_tex(source) if source.suffix == ".tex" else source.read_text(encoding="utf-8")
+    return snippet in text
 
 
 def maximum_coordination(cluster_count: int) -> int:

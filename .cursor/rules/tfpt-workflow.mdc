@@ -1,6 +1,6 @@
 ---
 description: TFPT project map + how to add findings, scripts, and keep ledger/manifests current
-globs: verification/**,*.tex,changelog.tex,tex-artefacts/**,README.md,zenodo_description.html
+globs: verification/**,documents/**,docs/registry/**,*.tex,changelog.tex,tex-artefacts/**,README.md,zenodo_description.html
 alwaysApply: false
 ---
 
@@ -16,12 +16,15 @@ constants and scale grammar. Every load-bearing claim must be machine-checked.
 
 ## Where things live
 
-- **Active papers (root, 9 docs)** — `build.sh notes` (+ `changelog.tex` as 10th):
-  `introduction.tex`, `tfpt_1` … `tfpt_5_redteam`, `tfpt_horizon_readouts`,
-  `tfpt_research_contracts`, `origin_theory`.
+- **Active papers** — stable root `.tex` entry points assemble modules under
+  `documents/`; locate the owner in `docs/registry/INDEX.md`. `build.sh notes`
+  compiles the active set. See `docs/LATEX_MAINTENANCE.md` for targeted builds.
+- **Central content registry** — `verification/make_content_registry.py` generates
+  `docs/registry/` from authored sources, the ledger and actual proof references.
+  Explicit citations and inferred navigation links have different relation types.
 - **Shared TeX** — `tex-artefacts/` only (never fork): `tfpt_style.tex`, `tfpt_docset.tex`,
   `tfpt_status.tex`, **`verification.tex` (GENERATED)** from `script_registry.csv`.
-- **Changelog** — root `changelog.tex` only; drives website via generated `changelog.ts`.
+- **Changelog** — modular source owned by the `changelog.tex` entry point; drives the generated website history.
 - **Verification** — `verification/vN_*.py`, `run_all.py`, `tfpt_constants.py`,
   **`status_ledger.csv` (source of truth)**, `wolfram/`, sync scripts, `audit_sync.py`.
 - **Figures** — `figures/*.pdf` via `make_figures.py`.

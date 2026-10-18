@@ -1,0 +1,314 @@
+\section{The Koide relation --- near $2/3$, computed exactly}
+% =====================================================================
+With the closed lepton source masses $\hat m_\ell\propto(\tfrac{16}{7}(\phiz)^5,\tfrac43(\phiz)^3,\tfrac76(\phiz)^2)$
+the Koide ratio is a pure number (the common prefactor cancels):
+\[
+  Q_{\mathrm{TFPT}}=\frac{\sum_\ell \hat m_\ell}{\bigl(\sum_\ell\sqrt{\hat m_\ell}\bigr)^2}
+  =0.66446\ldots,\qquad \frac23=0.66667,\qquad \text{deviation }-0.33\% .
+\]
+The measured pole-mass value is famously $Q_{\mathrm{PDG}}=0.66666$. So TFPT predicts a Koide ratio that
+is \emph{near} $2/3$ but \emph{not exactly} $2/3$ at source level.
+
+\begin{keybox}[Honest status of Koide \mC]
+$Q_{\mathrm{TFPT}}=0.664$ is a \emph{prediction}, $0.33\%$ below $2/3$. Exact $2/3$ would require the
+three carrier rationals $(\tfrac{16}{7},\tfrac43,\tfrac76)$ to satisfy a specific quadratic constraint,
+which they do \emph{not}; the small residual is of the size of the source$\to$pole RG shift. We report
+the near-miss honestly and do \emph{not} tune the rationals to force $2/3$.
+\end{keybox}
+
+\par\smallskip\noindent\textbf{The \emph{target} $2/3$ has a compiler reading $|\Z_2|/\Nfam$.}
+The $E_8$-slice scan adds the missing piece: the value the data sits on, $Q=2/3$, is exactly
+$Q_\star=|\Z_2|/\Nfam=2/3$,
+the sheet over the family count --- the same two atoms $(2,3)$ that run through the whole compiler. So
+the picture splits cleanly: the \emph{democratic target} is $|\Z_2|/\Nfam=2/3$ (a compiler number), and
+the \emph{source-level pole-mass} value computed from the carrier rationals is $0.664$, $0.33\%$ below it
+by the source$\to$pole shift. Koide is thus ``democratic $2/3$ from $(|\Z_2|,\Nfam)$, realised to
+$0.33\%$ by the explicit masses'' --- promoted from a bare near-miss to a reading with a target. \mC
+
+\par\smallskip\noindent\textbf{Conjecture: a source$\to$pole correction of size $\varphi_0/|W(A_3)|$} (\mC).
+The source value sits just below $2/3$, and the deficit is almost exactly the family-Weyl quantum
+$\varphi_0/|W(A_3)|$ with $|W(A_3)|=4!=24$:
+\[
+  Q_\ell^{\mathrm{source}}=0.6644638,\qquad
+  Q_\ell^{\mathrm{source}}+\frac{\varphi_0}{24}=0.6666793,
+\]
+overshooting $\tfrac23=0.6666667$ by only $1.3\times10^{-5}$. So the \emph{conjecture}
+$Q_\ell^{\mathrm{pole}}\approx Q_\ell^{\mathrm{source}}+\varphi_0/|W(A_3)|$ would land essentially on the
+democratic $2/3$. Reported as a source$\to$pole correction \emph{conjecture}, not a derivation; the
+rationals are \emph{not} tuned. \veri{v25\_frontier\_conjectures.py}
+
+\par\smallskip\noindent\textbf{Sharper conjecture: a multiplicative seed transfer $u\to\tfrac{53}{54}u$} (\mC).
+A cleaner version shifts the \emph{seed} rather than $Q$ additively, and introduces \emph{no} new free
+number. Keep the lepton formula $m_e{:}m_\mu{:}m_\tau=\tfrac{16}7u^5{:}\tfrac43u^3{:}\tfrac76u^2$ but
+evaluate it at the source$\to$pole seed
+\[
+  u_{\mathrm{pole}}^{(\ell)}=\Bigl(1-\tfrac{1}{2\Nfam^3}\Bigr)u=\tfrac{53}{54}\,u,\qquad
+  54=2\cdot3^3=|\Z_2|\,\Nfam^3 .
+\]
+Then $Q_\ell\bigl(\tfrac{53}{54}u\bigr)=0.66666610$, i.e.\ $2/3$ to within $-5.7\times10^{-7}$ ---
+an order of magnitude tighter than the additive $\varphi_0/24$ correction, with $54$ a pure compiler
+number and no tuning. This sharpens the research gate to a concrete QFT task: \emph{show that the
+leptonic source$\to$pole transfer of the seed is $u\mapsto u\,(1-\tfrac{1}{2\Nfam^3})$} (a renormalised-seed
+effect from the leptonic self-energy or the $A_3$ family-Weyl averaging). Status remains \mC\ until that
+transfer is derived. \veri{v37\_plucker\_anchor.py}
+\par\smallskip\noindent\textbf{The factor $\tfrac{53}{54}$ now has an \emph{operator} origin
+(\veri{v183\_koide\_f\_corner\_transfer.py}).} It is not a bare arithmetic guess: it is the anchor
+response of the \emph{missing} Sheet-Diamond corner $F=R+Q=M(1,1)$ over the sheet-doubled $E_6{\times}A_2$
+cubic family block,
+\[
+  \frac{u_{\mathrm{pole}}}{u_{\mathrm{source}}}=\frac{a^T(R+Q)\mathbf1}{2\,\mathbf1^T R\,a}
+  =\frac{53}{2\cdot27}=\frac{53}{54},
+\]
+where $\mathbf1^T R\,a=27$ is the cubic family block ($248=\dim E_6+\det R+2(\mathbf1^T R a)\Nfam
+=78+8+2{\cdot}27{\cdot}3$) and $a^T(R+Q)\mathbf1=53=52+1$ with $\det B_F=52=\dim F_4$
+(\vref{v80}). A hard negative control fixes the corner: $a^T M\mathbf1$ for $M\in\{R,Q,K,L\}$ is
+$\{32,21,35,56\}$ --- only the absent corner $F$ gives $53$. So the \emph{factor} is exact and
+structural (\mE), and the remaining \mC\ is precisely the mechanism --- that the leptonic
+source$\to$pole transfer reads the $F$ corner --- an $F_{\mathrm{transfer}}$ special case
+($F_{\mathrm{pole}}$). Koide thereby moves from ``near miss $+$ conjecture'' to
+``operator-sourced source$\to$pole transfer''; the prediction stays \mC.
+
+\par\smallskip\noindent\textbf{The source$\to$pole transfer is one-loop electromagnetic
+(\veri{v420\_fpole\_qed\_running.py}).} Doing the external physics honestly: the Koide ratio is
+rescaling-invariant ($Q(c\,m)=Q(m)$), so a flavor-\emph{universal} running leaves it fixed --- the
+source$\to$pole shift is the flavor-\emph{split} part. And that shift is one-loop-EM-sized: the tree
+deficit $\tfrac23-Q_\ell^{\mathrm{source}}=0.00220$ equals the seed quantum $\varphi_0/24$ to $0.6\%$ and
+the electromagnetic scale $\alpha/\pi$ to ${\sim}5\%$, with the pole sitting at $2/3$ (the IR attractor).
+A $1$-loop QED $\mathrm{pole}\!\leftrightarrow\!\overline{\mathrm{MS}}$ estimate (per-lepton log) moves $Q$
+by an EM-loop-order amount toward $2/3$. The \emph{exact} flow time ($t\approx2.84$ transfer periods,
+\vref{v93}) is scheme- and scale-dependent external QED, so it is \emph{sized, not derived}. This
+identifies $F_{\mathrm{pole}}$ as a one-loop EM effect --- the algebraic lens forces the \emph{rate}
+$(2/3)^6$ (\vref{v327}), this external physics supplies the \emph{flow} --- and Koide stays \mC,
+firewalled (\vref{v187}).
+
+\par\smallskip\noindent\textbf{The Koide target and the QFT transfer gap are the \emph{same} quotient} (\mE/\mC).
+The same $Q_\star$ controls a second, independent object --- the first non-trivial eigenvalue of the
+admissible $C_6$ transport operator. Its spectrum is $\{1,(2/3)^6,(1/3)^6\}$, so
+\[
+  \boxed{\ \lambda_2=\Bigl(\tfrac23\Bigr)^6=Q_\star^{\,|R^+(A_3)|},\qquad Q_\star=\frac{|\Z_2|}{\Nfam},\quad |R^+(A_3)|=6\ }.
+\]
+The Koide democratic target, the QFT mass-gap eigenvalue $\lambda_2$ (hence $\Delta=6\log\tfrac32=-\log\lambda_2$),
+and the $A_3$ positive-root hexagon are therefore \emph{one} quotient raised to one exponent. Typing:
+Koide target \mC, gap eigenvalue \mE, the connection an \mE-audit. This does not ``solve'' Koide, but it
+explains \emph{why} the near-value $2/3$ recurs: the same sheet-over-family ratio fixes both the
+democratic lepton target and the leading transfer eigenmode.
+
+\par\smallskip\noindent\textbf{The source$\to$pole map is \emph{forced} by that gap} (\mE/\mC).
+The previous paragraph pairs the Koide target with $\lambda_2=(2/3)^6$; \vref{v82} turns the
+pairing into a \emph{mechanism} (\veri{v82\_koide\_attractor\_splitting.py}). On the anchor double cover (the flavor sector) the two branch points are Koide $q=2$ and carrier
+$q=5$; any branch-preserving M\"obius transfer that fixes both is, in $\rho=(q-2)/(5-q)$, exactly $\rho\mapsto\mu\rho$,
+hence \emph{unique} once $\mu$ is set. Choosing $\mu=\lambda_2=(2/3)^6$ (no new number) gives the unique map
+$F(q)=2(569q-3325)/(665q-3517)$ with $F'(2)=(2/3)^6<1$ and $F'(5)=(3/2)^6>1$: \textbf{Koide is the attractor, the
+carrier the repeller}, and $q_n\to2$ ($x\to-2/3$) at the established gap rate. So the three structural inputs a Koide
+\emph{derivation} would need collapse to \emph{one} identification --- the leptonic source$\to$pole transfer is the
+branch-preserving relaxation of the gapped operator --- after which the value $2/3$, the convergence rate and the
+chosen branch are all forced. This is still not a closure: that single identification stays \mC. (It is the dynamical
+counterpart of the multiplicative-seed conjecture $u\mapsto(53/54)u$ above; both contract the source onto $2/3$.)
+
+\par\smallskip\noindent\textbf{Relaxation toy: basin, exact rate, and two honest negatives} (\mE).
+The relaxation picture is now stress-tested on the physical values (ledger \texttt{FR.KOIDE.05}, \veri{v93\_koide\_relaxation\_toy.py}).
+\textbf{Basin lemma \mE\ (new):} under the canonical dictionary $q=\Nfam\,Q$ the \emph{entire} physical Koide
+range $Q\in[\tfrac13,1]$ (Cauchy--Schwarz) maps to $q\in[1,3]$ --- the attractor $q=2$ lies inside, the
+repeller $q=5$ outside: every physically possible charged-lepton configuration is in the attractor basin, no
+fine-tuning of the start. \textbf{Exact rate \mE:} along the trajectory from the physical source value the
+cross-ratio contracts by \emph{exactly} $(2/3)^6$ per step. \textbf{Source/pole \mE:} the exact ladder
+gives $Q_{\mathrm{src}}=0.6644638$, i.e.\ $\rho_{\mathrm{src}}=-0.0021980\approx-\varphi_0/24$ to $0.8\%$ ---
+the $\varphi_0/24$ conjecture re-expressed in attractor coordinates: \emph{the source sits one seed quantum
+before the branch point} ($24=|W(A_3)|$); PDG pole masses give $Q_{\mathrm{pole}}=0.6666645$, the branch
+point hit to $3.3\times10^{-6}$. \textbf{Honest negatives (they narrow the gate):} (i) the flow time
+source$\to$pole is $t=\log_\mu(\rho_{\mathrm{pole}}/\rho_{\mathrm{src}})=2.84$ --- \emph{not} an integer, so
+the literal discrete iteration $\mathrm{pole}=F^n(\mathrm{source})$ is \emph{excluded}; if the \vref{v82} map drives
+the transfer at all, the missing \mC\ object is a \emph{continuous-time} generator $\exp(t\log F)$;
+(ii) the $0.79\%$ mismatch of $\rho_{\mathrm{src}}$ vs $-\varphi_0/24$ is far above ladder precision, so
+``exactly $\varphi_0/24$'' remains a conjecture, not an identity. The open question is no longer ``why
+$2/3$?''\ but ``what is the continuous transfer generator, and why is its flow time $\sim2.8$ periods?''.
+
+\par\smallskip\noindent\textbf{Flow time: canonical generator, data-fragility, and a conditional $m_\tau$} (\mE/\mC).
+Three sharpenings of the paragraph above (ledger \texttt{FR.KOIDE.06}, \veri{v99\_koide\_flow\_time.py}); they correct the \emph{robustness} of
+negative (i), not its arithmetic. \textbf{(1) The continuous generator has a canonical form \mE.} The \vref{v82}
+flow is generated by the autonomous equation
+\[
+  \boxed{\ \frac{dq}{dt}=\frac{\Delta}{\Nfam}\,(q-2)(q-5)=\frac{\Delta}{\Nfam}\,\det B(q)\ },\qquad
+  \Delta=6\log\tfrac32\ \ (\text{the gap}),
+\]
+whose time-$1$ map \emph{is} the M\"obius map $F$ (machine-checked; $e^{-\Delta}=(2/3)^6$ exactly). The
+missing \mC\ object is therefore precisely a QFT mechanism producing \emph{gap $\times$ anchor-block
+quadric} --- the form is canonical, only its physical derivation is open. \textbf{(2) The non-integrality
+of $t$ is data-fragile \mE.} Because $\rho_{\mathrm{pole}}=-2.2\times10^{-6}$ sits so close to the branch
+point, $t$ is hypersensitive to $m_\tau$ (PDG $1776.93\pm0.09$\,MeV): $t(-1\sigma)=2.35$,
+$t(\mathrm{central})=2.84$, and $Q$ crosses $\tfrac23$ \emph{inside} the error band (at $+0.43\sigma$,
+where $t\to\infty$) --- within $+0.5\sigma$, $t$ passes \emph{every} integer $\ge3$. So the exclusion of
+$\mathrm{pole}=F^n(\mathrm{source})$ holds only at the central value. \textbf{(3) Conditional discrete
+steps \mC\ (registry untouched; not predictions of record):} $n{=}2$ is \emph{excluded} ($-2.9\sigma$,
+\mE); $n{=}3{=}\Nfam$ steps --- one per family --- predicts
+\[
+  \boxed{\ m_\tau=1776.9427\ \mathrm{MeV}\ }\quad(+0.14\sigma;\ \text{source-variant stable to }0.0002\ \mathrm{MeV}),
+\]
+while $n{=}4$ ($1776.9667$) and the exact branch ($1776.9690$) are not yet separable: the kill criterion
+is $\sigma(m_\tau)\!\sim\!0.01$\,MeV (Belle~II). \emph{Look-elsewhere firewall:} a tempting scale reading
+$t=\ln(M_{\mathrm{scal}}/m_\tau)/\ln W$ matched $W=46080=|W(D_5)||W(A_3)|$ to $10^{-4}$ --- and is
+\emph{destroyed} by negative controls (the same hypersensitivity makes \emph{any} $W$ in a wide range land
+within $0.1\sigma$); it is rejected and recorded so it is not re-fished. P2's type is unchanged (\mC, one
+identification); the discrete-vs-continuous question is now \emph{experimental}, not settled.
+
+% =====================================================================
+\section{Dark matter --- the candidate is fixed, the scale is pending}
+% =====================================================================
+TFPT \emph{does} contain a dark-matter candidate, and it is not ad hoc: the \textbf{determinant-line
+axion} of the strong-CP sector (the determinant-line axion interface of the closed branch, \mE). Its
+\emph{candidate identity} is fixed by the $E_8$ scan (below) and the domain-wall number $N_{\mathrm{DW}}$
+winds once per primitive seam winding. The relic density is the standard misalignment-plus-string
+expression
+\[
+  \Omega_a=\Omega_a^{\mathrm{mis}}(f_a,m_a,\theta_i)+\Omega_a^{\mathrm{str}}(f_a,N_{\mathrm{DW}}).
+\]
+The initial misalignment angle is \emph{not} a single closed number: the finite-$T$ misalignment solve
+(below) selects the \emph{spine} branch $\theta_i=\pi\Nfam/g_{\mathrm{car}}=3\pi/5=108^\circ$ as the
+robust dominant-DM value in the \emph{pre-inflationary} reading (it lands $\Omega_a h^2$ on $\Omega_{\mathrm{DM}}$ untuned, in the mild-anharmonic
+regime; but superseded by the post-inflationary reframing below), while the seam hilltop $\theta_i=\pi\bigl(1-\varphi_{\mathrm{seam}}(\alpha_\star)\bigr)=170.4^\circ$
+\emph{over}-produces (${\sim}5.4\times$) and is disfavoured. So the minimal closed branch has
+\emph{dominant axion-like dark matter} on the spine angle --- a \mC\ scenario, \emph{not} a closed \mE\ input.
+
+\par\smallskip\noindent\textbf{The $E_8$ scan rules out a rival WIMP candidate.}
+The $D_8=SO(16)$ slice scan sharpens \emph{why} the axion is the candidate, not a new heavy state: the
+spinor $128=(16,4)\oplus(\overline{16},\overline4)$ is the \emph{same} matter spinor as in the
+$D_5\times A_3$ construction --- there is \emph{no spare $E_8$ singlet} left over to play a WIMP. Every
+$E_8$ direction is accounted for by the carrier $\times$ family content. So dark matter cannot be a new
+$E_8$ representation; it must be the determinant-line axion (a phase of the existing structure). A useful
+\emph{negative} that removes the WIMP option on structural grounds. \mE\ The machine-checked complement
+(\veri{v430\_other\_side\_reverse\_audit.py}) makes this explicit: the spinor $128=2\cdot64=\sum\deg$ and the
+double-cover deck $|\Z_2|=2$ lie in $E_8$'s \emph{matched} structure and are forced-disjoint from the five
+unmapped Casimir degrees $\{12,14,18,20,24\}$, so the seam's ``other side'' hosts neither a spare singlet nor
+the unmapped hull overhead.
+
+\begin{keybox}[Honest status of dark matter \mC/\mO]
+The candidate is \emph{identified} (the axion, \mE: the $E_8$ scan leaves no spare singlet for a WIMP).
+The misalignment angle is a \mC\ \emph{branch decision}, not a closed \mE\ number: the finite-$T$ solve
+selects the spine $\theta_i=3\pi/5=108^\circ$ (untuned, in band) over the over-producing $170^\circ$
+hilltop. The relic abundance still needs the decay constant $f_a$ and mass $m_a$ (interface data set by
+the $M_R/\Lambda$ scales) --- a standard axion-DM computation, not yet a compiler power. So DM is
+``candidate fixed, robust spine angle, scale $f_a$ pending'' --- a real handle, not a blank. (A secondary
+candidate is the lightest seam-even sterile state near $M_R$.)
+\end{keybox}
+
+\par\smallskip\noindent\textbf{Conjecture: a determinant-line axion scale $f_a=M_{\mathrm{scal}}/128$} (\mC).
+A natural compiler scale for the decay constant is the scalaron mass over the full carrier $\times$ deck
+multiplicity,
+\[
+  f_a=\frac{M_{\mathrm{scal}}}{2\,\dim S^+\,|\mu_4|}=\frac{M_{\mathrm{scal}}}{128},\qquad
+  M_{\mathrm{scal}}=\cthree^{7/2}\Mpl\approx3.06\times10^{13}\,\mathrm{GeV},
+\]
+giving $f_a\approx2.39\times10^{11}$ GeV and, via the standard QCD-axion relation
+$m_a\simeq5.70\,\mu\mathrm{eV}\,(10^{12}\,\mathrm{GeV}/f_a)$, a mass $m_a\approx23.8\,\mu\mathrm{eV}$.
+With the robust spine angle $\theta_i=3\pi/5=108^\circ$ (below) this $f_a$ lands the relic on
+$\Omega_{\mathrm{DM}}$ without hill-top tuning; it remains a \emph{cosmological scenario}, not a closed
+hit. \veri{v25\_frontier\_conjectures.py}
+\par\smallskip\noindent\textbf{The haloscope coupling is tied to $\cthree$.} In the determinant-line
+normalization (Lagrangian $\mathcal L\supset c\,a\,F\tilde F$) the axion--photon anomaly coefficient is fixed
+by the seam constant,
+\[
+  g_{a\gamma\gamma}=-4\cthree=-\frac{1}{2\pi},\qquad y^2\equiv g_{a\gamma\gamma}^2=16\cthree^2=\frac{1}{4\pi^2}\approx0.0253,
+\]
+so the haloscope $F\tilde F$ coupling is set by the \emph{same} $\cthree$ that fixes $\alpha$ and the cosmic
+birefringence $\beta_{\mathrm{rad}}=\varphi_0/4\pi$ --- a \mC\ structural relation (the coefficient, not a
+parameter-free physical $g_{a\gamma\gamma}$ in $\mathrm{GeV}^{-1}$, which still carries $f_a$). The
+small-angle reading $\theta_i=\varphi_0$ of the determinant-line axion (an earlier note) is \emph{superseded}
+by the robust spine angle $\theta_i=3\pi/5=108^\circ$ selected by the finite-$T$ solve below (the seam
+hilltop $\theta_i=\pi(1-\varphi_{\mathrm{seam}})=170.4^\circ$ over-produces); both earlier readings are
+recorded as retired, never used.
+\par\smallskip\noindent\textbf{Why it stays a scenario, quantified (\veri{v185\_axion\_relic\_solver.py}).}
+The harmonic misalignment \emph{under-produces} at this $f_a$: $\Omega_a h^2\sim0.12\,(f_a/9{\times}10^{11})^{7/6}\langle\theta^2\rangle$
+gives a prefactor ${\sim}0.026$ per $\theta^2$, so $\theta_i\sim O(1)$ would make only ${\sim}21\%$ of
+$\Omega_{\mathrm{DM}}$; reaching the observed $\Omega_{\mathrm{DM}}h^2=0.12$ \emph{requires}
+$\theta_{\mathrm{eff}}^2\sim4.7$, i.e.\ exactly the large-angle (anharmonic) enhancement at the
+$\theta_i\approx170^\circ$ hilltop. So the determinant-line axion \emph{can} be all of dark matter, but
+only on the hilltop, where the relic is exponentially sensitive to $\theta_i$ and to QCD/string
+corrections --- hence a viable \mC\ scenario, not a sharp prediction. The contract
+$F_{\mathrm{relic}}(f_a{=}M_{\mathrm{scal}}/128,\theta_i{\approx}170^\circ,N_{\mathrm{DW}}{=}1)\stackrel{?}{=}\Omega_{\mathrm{DM}}$
+is a kill test for the \emph{branch}, not the theory.
+\par\smallskip\noindent\textbf{A full finite-$T$ solve confirms an over-production tension.} Both a quick
+$\theta^2F$ estimate ($F(\theta_i)\approx4$ at the hill-top) and a \emph{full} nonlinear misalignment solve of
+\[
+  \theta'' + \bigl(3+\tfrac{\mathrm{d}\ln H}{\mathrm{d}N}\bigr)\theta' + \bigl(m_a(T)/H\bigr)^2\sin\theta=0
+\]
+(\texttt{axion\_relic/full\_finiteT\_solve.py}: lattice susceptibility $\chi(T)\propto T^{-8.16}$, realistic
+$g_*(T)$, converged and normalised so $\theta_i{=}1$ gives the standard $\Omega_a h^2\approx0.03$) agree: at
+the \emph{predicted} $\theta_i\approx170^\circ$ the relic is $\Omega_a h^2\approx0.66$, $\sim$5.5$\times$
+above $\Omega_{\mathrm{DM}}h^2=0.12$. The observed value is reached only at $\theta_i\approx106^\circ$, not at
+the predicted hill-top. So as the \emph{dominant} dark matter the determinant-line axion at
+$(f_a{=}M_{\mathrm{scal}}/128,\theta_i{\approx}170^\circ)$ \emph{over}-closes the universe unless there is
+extra dilution (entropy injection) or a lower $f_a$. This stays \mC, and over-production kills only the
+\emph{axion-as-dominant-DM} reading, not the compiler.
+\par\smallskip\noindent\textbf{A more robust angle: the spine branch.}
+\veri{v211\_axion\_spine\_angle.py} The same finite-$T$ solver reaches $\Omega_{\mathrm{DM}}$ at
+$\theta_i\approx106^\circ$ --- and the central spine quotient gives $\theta_i=\pi\Nfam/g_{\mathrm{car}}=3\pi/5=108^\circ$
+\emph{exactly} (no fit; harmonic estimate $0.03\,\theta_i^2=0.107$, lifted to
+${\sim}0.12$ by a mild anharmonic factor).
+\veri{v429\_axion\_pentagon\_phi.py} This angle is not a bare rational multiple of $\pi$: because
+$\Nfam=g_{\mathrm{car}}-2$, $\theta_i=(g_{\mathrm{car}}-2)\pi/g_{\mathrm{car}}$ is \emph{exactly} the interior
+angle of the regular $g_{\mathrm{car}}$-gon --- for $g_{\mathrm{car}}=5$ the \emph{pentagon}, so
+$\cos\theta_i=\cos(3\pi/5)=(1-\sqrt5)/4=-1/(2\varphi)$ with $\varphi=2\cos(\pi/5)$, and this golden character is
+\emph{unique} to $g_{\mathrm{car}}=5$ (the small $n$-gons $n=3,4,6$ give the rational $\tfrac12,0,-\tfrac12$). So the
+otherwise-unmapped golden/icosahedral $g_{\mathrm{car}}=5$ signature (\vref{v354}/\vref{v313}) is the geometry of
+this one external input --- a \mC\ reading that does \emph{not} upgrade \texttt{DM.AXION.SPINE.01}.
+Crucially $108^\circ$ lies $62^\circ$ \emph{below} the hill-top,
+in the \emph{mild}-anharmonic regime, so the relic is \emph{not} exponentially sensitive: if the
+misalignment angle is the spine quotient, the determinant-line axion is all of dark matter \emph{without}
+hill-top tuning. This is an \emph{alternative} ansatz to $\theta_i=\pi(1-\varphi_\Sigma)\approx170^\circ$
+(the two are mutually exclusive; neither is forced) --- a sharper \mC\ scenario decided by the full solver
+(\texttt{DM.AXION.SPINE.01}), \emph{not} a derivation; \mX\ a converged $\Omega_a h^2$ outside ${\sim}[0.08,0.16]$
+at $\theta_i=3\pi/5$ demotes the branch.
+
+\par\smallskip\noindent\textbf{Isocurvature and the post-inflationary reframing (\mC).}
+Both fixed-angle readings above are \emph{pre-inflationary}: they assume Peccei--Quinn breaking
+\emph{during} inflation with a homogeneous $\theta_i$. But the $R^2$ branch fixes
+$H_{\mathrm{inf}}=\pi\Mpl\sqrt{A_s r/2}\approx1.6\times10^{13}$~GeV, so $H_{\mathrm{inf}}/f_a\approx66>1$
+and $H_{\mathrm{inf}}/(2\pi f_a)\approx10$: the de~Sitter fluctuation of the angle exceeds its range, the
+symmetry is effectively \emph{restored} during inflation, and a fixed pre-inflationary $\theta_i$ (either
+$108^\circ$ or $170^\circ$) would carry CDM isocurvature far above the Planck bound
+$\beta_{\mathrm{iso}}<0.038$. The clean, \emph{dial-free} resolution is the \emph{post-inflationary}
+scenario: PQ breaks after inflation, $\theta_i$ is a horizon average (\emph{not} a prediction), and the
+relic follows from $f_a$ alone --- with $f_a\approx2.39\times10^{11}$~GeV in the post-inflationary window
+($\Omega_a h^2\sim O(0.1\text{--}0.5)$). It is domain-wall-safe because the determinant-line axion's colour
+anomaly is the seam Dirac index $=$ the inflow level $|C|=1$ (\vref{v470}/\vref{v472}), so
+$N_{\mathrm{DW}}=1$ (a \mC\ identification). Thus the spine/hilltop \emph{angle} is not an observable and
+the branch is \emph{reframed}, not killed: drop the fixed angle, keep $f_a$ and $N_{\mathrm{DW}}=1$, and the
+relic is a robust post-inflationary prediction. \mX\ a post-inflationary relic outside the plausible window
+at this $f_a$ (with $N_{\mathrm{DW}}=1$) demotes the branch. (Strategy scan and the $N_{\mathrm{DW}}$
+computation: \texttt{experiments/theory-contracts/axion01--06}.)
+
+% =====================================================================
+\section{The muon anomalous magnetic moment --- a seam vertex readout}
+% =====================================================================
+A \mC\ downstream readout (archive integration), \emph{not} a compiler power. The carrier algebra
+carries a \emph{second-order} topological defect beyond the one that fixes $\alpha$: with
+$\delta_{\mathrm{top}}=\Omega_{\mathrm{adm}}\,\cthree^4=48\cthree^4=3/(256\pi^4)$ and the carrier compression quotient
+$B\gamma=\tfrac32\!\cdot\!\tfrac56=\tfrac54$ (\veri{v51\_boundary\_half\_step.py}),
+$\delta_2=B\gamma\,\delta_{\mathrm{top}}^2=\tfrac54\,\delta_{\mathrm{top}}^2$. Projected through the
+seam-loop phase $\Delta_\Sigma=2\pi$ (the same $1/(2\pi)=4\cthree$ unit that normalises $\cthree$ itself),
+it reads as a magnetic vertex correction
+\[
+  \boxed{\ a_\mu^{\mathrm{seam}}=\frac{\delta_2}{2\pi}=\frac{45}{524288\,\pi^9}\approx2.879\times10^{-9}\ }\qquad\mC .
+\]
+The \emph{value} is an exact compiler number (only $\cthree,\Omega_{\mathrm{adm}},B\gamma$; trace reading
+$\delta_2=4!\,\mathrm{Tr}_{S^+}(X^2)\,\cthree^8$, $\mathrm{Tr}=120=5!$) --- but the \emph{identification} of
+$\delta_2/(2\pi)$ as the anomalous moment is a physical bridge, so the prediction is \mC, never a compiler
+power. \veri{v204\_muon\_seam\_g2.py}
+
+\par\smallskip\noindent\textbf{Data, honestly.} Against the dispersive discrepancy
+$\Delta a_\mu=(2.49\pm0.48)\times10^{-9}$ (Fermilab/BNL world average minus the WP2020 SM) this is
+$0.81\sigma$. \textbf{Caveat:} lattice/CMD-3 hadronic-vacuum-polarisation evaluations \emph{shrink} the
+discrepancy ($\Delta a_\mu\sim1.5\times10^{-9}$); the TFPT value is \emph{fixed} and would then sit
+${\sim}1.5\sigma$ high. A converged $\Delta a_\mu$ outside $2.879\times10^{-9}\pm0.5\times10^{-9}$ excludes
+the seam-vertex mechanism in its present form (\mX) --- the compiler core untouched.
+\par\smallskip\noindent\textbf{Update (2026-08-04, dated): the kill condition has fired.} The
+lattice-side HVP consensus consolidated --- WP25 (Phys.\ Rep., 2025) adopts the lattice HVP as the SM
+baseline and the BMW hybrid evaluation (Nature, 2026) confirms it: experiment minus SM is now
+$0.5\sigma$, i.e.\ the converged $\Delta a_\mu$ lies \emph{outside}
+$2.879\times10^{-9}\pm0.5\times10^{-9}$. The seam-vertex \emph{identification} is therefore excluded in
+its present form, exactly as preregistered in the sentence above --- the bridge is dissolved
+(ledger \texttt{FR.MUONG2.01}). What survives, untouched: the exact compiler number
+$\delta_2/(2\pi)=45/(524288\,\pi^9)$ (\mE\ as a number, not as $a_\mu$) and the compiler core. The
+watchdog delivered exactly what it was built for; no core marker moves.
+
+% =====================================================================

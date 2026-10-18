@@ -20,6 +20,8 @@ and reports the full one-body energy interval over pure ground-state fillings.
 """
 from __future__ import annotations
 
+from tex_sources import read_tex
+
 import ast
 import importlib.util
 import os
@@ -76,7 +78,8 @@ TY = SY / (2j) - SZ / 2
 
 
 def read(relative: str) -> str:
-    return (REPO / relative).read_text(encoding="utf-8")
+    path = REPO / relative
+    return read_tex(path) if path.suffix == ".tex" else path.read_text(encoding="utf-8")
 
 
 def function_node(source: str, name: str) -> ast.FunctionDef:

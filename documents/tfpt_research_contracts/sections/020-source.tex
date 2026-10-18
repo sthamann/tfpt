@@ -1,0 +1,386 @@
+\section*{Externalization Contract --- \texttt{SEAM.EQUIV.01} (the seam scaling-limit theorem, packaged for external specialists)}
+\addcontentsline{toc}{section}{Externalization Contract: SEAM.EQUIV.01}
+% =====================================================================
+\noindent\emph{Typing.} This section is a \emph{hand-off document}: it packages the one remaining
+seam obligation as a self-contained problem statement for an outside specialist in conformal
+nets / vertex operator algebras / algebraic QFT. It \emph{documents}, it does not close: the
+ledger row \texttt{SEAM.EQUIV.01} stays \mO\ (its conditional route \texttt{SEAM.EQUIV.MMST.01}
+is closed modulo cited theorems; the unconditional parent is the target below). Nothing in this
+section moves a marker, and no claim beyond the corpus is made. Everything an external solver
+needs --- hypotheses, runnable finite models, the Lean axiom surface, the negative controls a
+valid solution must respect, and the exact acceptance criteria --- is listed here with its
+verification module.
+
+\par\smallskip\noindent\textbf{(1) Minimal theorem statement.} \emph{The scaling limit of the
+gapped $\mu_4$-equivariant CAR collar exists in the local-net topology; the index-$4$
+simple-current extension functor commutes with this limit; and the Osterwalder--Schrader
+reconstruction of the limit state is isomorphic to the holomorphic $(E_8)_1$ lattice conformal
+net.} Explicitly, with $\mathcal A_L$ the finite collar net ($D=16$ Majoranas, gap
+$\Delta=6\ln(3/2)>0$, carrier clock $\mu_4$) and $\alpha_{\mu_4}$ the index-$4$ simple-current
+extension (the Longo Q-system of \vref{v125}/\vref{v154}), the target decomposes into four
+lemmata:
+\begin{itemize}
+\item \textbf{(L1) Uniform energy / nuclearity bounds.} The rescaled collar family satisfies
+  uniform (in $L$) energy bounds and a nuclearity/compactness condition strong enough to extract
+  a limit state on the quasi-local algebra. \mO\ --- the finite side supplies the uniform gap
+  (\vref{v302}) and exact quasi-freeness (Wick/Pfaffian closure, \vref{v113}/\vref{v155});
+  $N$-uniform CAR nuclearity is now proved as compactness input
+  (\veri{v1016\_\allowbreak state\_\allowbreak gap\_\allowbreak batteries.py}:
+  $\nu_N\le e^{16 C_\beta}$) but does \emph{not} identify $P_{\mathrm{gen}}$/ALG-EXH;
+  L1 stays \mO.
+\item \textbf{(L2) Convergence of local algebras.} The local algebras of the rescaled collar
+  converge (in the sense of the Osborne--Stottmeister scaling-limit framework) to the local
+  algebras of a chiral CFT of central charge $c=8$. The cited theorem covers free CAR lattice
+  fermions in the range $\operatorname{rank}\le c\le D$; the collar sits at $8\le8\le16$
+  (\vref{v356}/\vref{v366}). \mO\ as applied \emph{with the $\mu_4$-equivariant structure
+  retained through the limit}. The coverage of the cited theorem is since carved exactly
+  (\veri{v973\_seam\_route\_narrowing.py}): \emph{covered} is the $\mathfrak{so}(16)_1$
+  fermion-bilinear current algebra (strong convergence, Virasoro and correlator control,
+  polynomial error bounds); \emph{not covered} --- the named residual --- are N1 the
+  $\mu_4$/GSO extension $SO(16)_1\to(E_8)_1$ as a net statement, N2 the twist/spin-field
+  sector, N3 the one-sided chiral edge net, and N4 the OS/holomorphy selector; a measured
+  collar convergence rate $p=3.48$ lies inside the preregistered band (the trivial $M{=}3$
+  control does not converge).  Completeness wave
+  (\veri{v994\_mmst\_criteria\_battery.py}): $5$ of $7$ MMST identification criteria are now
+  executed at the finite level (measured $c=8.005$, $(E_8)_1$ vacuum character
+  $[1,0,248,0,4124,0,34752]$, $k=1$, $\det D_8=4\to\det E_8=1$); C6 is the written-out
+  quasi-free theorem, C7 stays cited.
+\item \textbf{(L3) The crossed product commutes with the limit.} The index-$4$ simple-current
+  extension (the $\mu_4$ Q-system, equivalently the crossed product by the glue
+  $\Z_4$, \vref{v469}) commutes with the scaling limit:
+  $\lim(\mathcal A_L\rtimes\mu_4)\;\cong\;(\lim\mathcal A_L)\rtimes\mu_4$. The finite Q-system
+  is explicit and machine-verified (\vref{v125}/\vref{v154}); the commutation is \mO.
+\item \textbf{(L4) Uniqueness of the holomorphic $c=8$ reconstruction.} The OS reconstruction of
+  the limit is a \emph{holomorphic} ($\mu$-index $1$, one primary) $c=8$ net, hence the
+  $(E_8)_1$ lattice net --- the same-central-charge rival $SO(16)_1$ ($\det K=4$, four
+  primaries) is excluded by the order-$4$ clock, \emph{not} by $c=8$ alone
+  (\vref{v351}/\vref{v378}). The classification input is cited (KLM/M\"uger; lattice-net
+  uniqueness); that the \emph{reconstructed} net satisfies its hypotheses is \mO.
+\end{itemize}
+\emph{Dimension typing (per \texttt{DIMENSION.UPLIFT.FIREWALL.01}):} hypotheses \emph{and}
+conclusion of L1--L4 live in $1{+}1$D --- the target is a chiral $c{=}8$ boundary object.  No
+part of this contract, proved or not, closes a $3{+}1$D claim; the seam$\to$bulk uplift is the
+separate contract \texttt{SEAM.BULK4D.RECON.01}.
+
+\par\smallskip\noindent\textbf{(2) Complete hypothesis list.} Every input an external proof may
+use, typed. \textsc{proven-finite} = machine-checked in the suite (module cited);
+\textsc{cited-classical} = a published theorem, used as stated, never re-proved;
+\textsc{open} = the target itself.
+\begin{center}\footnotesize
+\renewcommand{\arraystretch}{1.22}
+\begin{tabularx}{\linewidth}{@{}l>{\hsize=1.45\hsize\raggedright\arraybackslash}X>{\hsize=0.55\hsize\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Type} & \textbf{Hypothesis} & \textbf{Witness} \\
+\midrule
+\textsc{proven-finite} & spectral gap $\Delta=6\ln(3/2)>0$ of the collar transfer & \vref{v302} \\
+\textsc{proven-finite} & quasi-free CAR structure (one kernel, Wick/Pfaffian exact; boundary marginal of a Gaussian bulk is Gaussian) & \vref{v113}/\vref{v155}/\vref{v160} \\
+\textsc{proven-finite} & MMST applicability arithmetic: $D=2^{\gcar-1}=16$, $c=\gcar+\Nfam=8$, $8\le8\le16$ & \vref{v356}/\vref{v366} \\
+\textsc{proven-finite} & explicit lattice realisation: p$+$ip collar, FHS Chern $|C|=1$ at $M{=}1$ (control $C=0$ at $M{=}3$); $16$ Majoranas $\Rightarrow c_-=8$ & \vref{v367} \\
+\textsc{proven-finite} & realised non-gappable chiral edge on the strip (bulk--edge, in-gap states, edge-localised) & \vref{v368} \\
+\textsc{proven-finite} & strict locality topologically forbidden (Wannier winding $=|C|=1\neq0$) & \vref{v461} \\
+\textsc{proven-finite} & central charge $c=8$ from Calabrese--Cardy entanglement scaling (fitted $c=1.0000$ per mode, $16$ Majoranas $=8$ modes) & \vref{v376} \\
+\textsc{proven-finite} & the $(E_8)_1$ character: $\chi=E_4/\eta^8=q^{-1/3}(1+248q+4124q^2+\dots)$, one primary, $248$ level-$1$ currents & \vref{v377} \\
+\textsc{proven-finite} & torus (genus-$1$) discriminator: KLM $\mu$-additivity $\mu=16/4^2=1$ for the index-$4$ glue vs $16/2^2=4$ for index-$2$ & \vref{v378} \\
+\textsc{proven-finite} & reflection positivity of the collar measure by an exact positive-mixture Gram identity (symbolic PSD, no tolerance) & \vref{v379} \\
+\textsc{proven-finite} & the index-$4$ Q-system exists explicitly (Longo axioms on $\mathbb C[\Z_4]$); pinned levels $(D_5)_1\times(A_3)_1$, $c=5+3$ & \vref{v125}/\vref{v154} \\
+\textsc{proven-finite} & the order-$4$ clock is forced (four Gauss--Bonnet marks, $|\mu_4|=4=h(A_3)$); contract typing $+$ import firewall (routes non-circular) & \vref{v216}/\vref{v286} \\
+\textsc{cited-classical} & scaling limit of free lattice fermions $\to$ chiral CFT, $\operatorname{rank}\le c\le D$ (Osborne--Stottmeister, CMP \textbf{398} (2023) 219, arXiv:2107.13834, on the MMST OAR framework arXiv:2010.11121) & \vref{v336} \\
+\textsc{cited-classical} & OS reconstruction / holomorphy selector (Adamo--Moriwaki--Tanimoto 2024) & \vref{v336} \\
+\textsc{cited-classical} & index-$4$ extension theory: Longo--Rehren Q-systems; Kawahigashi--Longo--M\"uger complete rationality; Xu orbifold heredity & \vref{v469} \\
+\textsc{cited-classical} & gapped free-fermion phases are invertible (Kitaev); nontrivial invertible phase $\Rightarrow$ non-gappable edge (anomaly inflow) & \vref{v301} \\
+\textsc{cited-classical} & holomorphic $c=8$ classification: $\#$primaries $=|\det K|$; $E_8$ the unique even unimodular rank-$8$ lattice (Conway--Sloane) & \vref{v281} \\
+\textsc{open} & \textbf{L1--L4 above} --- the continuum existence, equivariant convergence, crossed-product commutation and holomorphic reconstruction, assembled & \texttt{SEAM.EQUIV.01} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\par\smallskip\noindent\textbf{(3) Available finite models (runnable).} All models live in the
+repository and run standalone (Python 3, \texttt{mpmath}/\texttt{sympy}; \texttt{python
+verification/run\_all.py} runs the whole suite):
+\begin{itemize}
+\item \veri{v367\_seam\_s3\_lattice.py} --- the collar lattice model (FHS Chern, controls)
+\item \veri{v368\_seam\_s3\_inflow.py} --- the strip edge / anomaly-inflow diagnostics
+\item \veri{v376\_seam\_s3\_centralcharge.py} --- entanglement central charge
+\item \veri{v377\_seam\_s3\_e8character.py} --- the exact $(E_8)_1$ character
+\item \veri{v378\_seam\_s3\_modular.py} --- torus degeneracy / modular data
+\item \veri{v379\_seam\_s3\_rp.py} --- reflection positivity
+\item \veri{v125\_glue\_qsystem.py} --- the explicit index-$4$ Q-system
+\item \veri{v154\_simple\_current\_theorem.py} --- the simple-current extension theorem
+\item \veri{v356\_continuum\_mmst\_applicability.py} --- MMST applicability arithmetic
+\item \veri{v366\_mmst\_seam\_collar.py} --- the collar in the MMST class
+\item \veri{v286\_seam\_equivalence\_contract.py} --- contract typing and import firewall
+\end{itemize}
+The seam-relevant Lean formalisation lives under
+\texttt{experiments/\allowbreak lean4-carrier-rigidity/\allowbreak TfptCarrier/} (shipped as
+\texttt{lean4-carrier-rigidity/}; \texttt{lake build} clean).
+
+\par\smallskip\noindent\textbf{(4) Lean axiom surface (honest).} The Lean layer certifies the
+\emph{logical composition} and the finite arithmetic --- \emph{not} the analysis. In
+\texttt{TfptCarrier/SeamScalingLimit.lean} (\texttt{FORM.SEAM.MMST.01}) the kernel proves, by
+\texttt{decide} with no axioms: the range $8\le8\le16$ (\texttt{mmst\_range}), chirality
+$c_-=8\neq0$ (\texttt{chiral}) and the holomorphy discriminator $\det K$: $1$ vs $4$
+(\texttt{holomorphic\_discriminator}). \emph{Axiomatized} (named, cited, not re-proved):
+\texttt{mmst\_scaling\_limit}, \texttt{adamo\_holomorphic\_e8} and the structural input
+\texttt{collar\_gapped}; the carriers \texttt{CollarGappedQuasifree}, \texttt{ChiralCFT\_c8},
+\texttt{SeamIsE8} are \emph{opaque} \texttt{Prop}s. The same pattern holds in
+\texttt{SeamEquivChain.lean} (\texttt{kitaev\_invertibility}, \texttt{mueger\_klm\_holomorphy},
+\texttt{conway\_sloane\_e8} as axioms), \texttt{SeamApplicabilityLedger.lean} and
+\texttt{BWKeystone.lean}. No \texttt{sorry} in any seam module; \texttt{\#print axioms} pins the
+residual to exactly the named cited theorems. \textbf{Caveat stated plainly:} no operator
+algebras, nets, or states are formalised --- L1--L4 have \emph{zero} Lean content beyond this
+composition audit, so the formalisation is thinner than a casual reading of ``Lean-verified''
+would suggest.
+
+\par\smallskip\noindent\textbf{(5) Must-fail controls.} A submitted proof is accepted only if it
+\emph{fails} on the following deformations (each already realised as a machine-checked negative
+control):
+\begin{itemize}
+\item \textbf{MF-S1 ($c=8$ alone must not suffice).} Any argument that would equally conclude
+  ``$SO(16)_1$'' is invalid: the proof must consume the order-$4$ clock / $\det K=1$
+  discriminator, not just the central charge (the red-team point; \vref{v281}/\vref{v378}).
+\item \textbf{MF-S2 (wrong extension index breaks it).} Replacing the index-$4$ $\mu_4$ glue by
+  the index-$2$ $\Z_2$ glue must yield $SO(16)_1$ ($\mu=4$), i.e.\ the $E_8$
+  conclusion must demonstrably fail (\vref{v154}/\vref{v351}).
+\item \textbf{MF-S3 (trivial collar).} At the trivial parameter $M=3$ ($C=0$, clean gap, no
+  edge) the construction must produce \emph{no} chiral limit (\vref{v367}/\vref{v368}).
+\item \textbf{MF-S4 (marks).} A non-order-$4$ clock, or a mark configuration away from the free
+  $\mu_4$ orbit, must break the $\tau=i$ pillowcase input (\vref{v216}/\vref{v217}).
+\item \textbf{MF-S5 (firewall).} No circular import: the proof must not assume the $(E_8)_1$ net
+  on the seam at any intermediate step (the Route-i/Route-ii import firewall, \vref{v286}).
+\end{itemize}
+
+\par\smallskip\noindent\textbf{(6) Acceptance tests.} \texttt{SEAM.EQUIV.01} counts as solved
+exactly when: (i) L1--L4 are proved under the hypothesis list of (2), with any additional
+hypothesis flagged explicitly; (ii) the composed theorem outputs the $(E_8)_1$ net --- one
+primary, $248$ level-$1$ currents, torus degeneracy $1$ --- as a \emph{consequence}, matching
+\vref{v377}/\vref{v378}; (iii) all five must-fail controls verifiably fail; (iv) no downstream
+TFPT readout (in particular no $\alpha$ data) enters as an input. Partial results that close a
+single lemma (e.g.\ L1 alone) narrow the target and are recorded as such; only the full chain
+moves the ledger --- and any marker move happens in \texttt{status\_ledger.csv} by the house
+process, never in this document.
+
+% =====================================================================
+\section*{Externalization Contract --- \texttt{ALPHA.QUILLEN.EXACT.01} (the determinant-line variation theorem, packaged for external specialists)}
+\addcontentsline{toc}{section}{Externalization Contract: ALPHA.QUILLEN.EXACT.01}
+% =====================================================================
+\noindent\emph{Typing.} The second hand-off document: the one remaining EM obligation, packaged
+for an outside specialist in determinant lines / $\eta$-invariants / index theory. It
+\emph{documents}, it does not close: \texttt{ALPHA.QUILLEN.EXACT.01} stays \mO\ (external math,
+type A, \vref{v384}), and it is a \emph{face} of \texttt{SEAM.EQUIV.01} (\vref{v382}) --- not a
+second independent gate. The \emph{value} $\alpha^{-1}$ is closed \mE\ regardless (unique root
+$+$ ablation, \vref{v3}); open is only ``why \emph{this} functional''. Nothing here moves a
+marker.
+
+\par\smallskip\noindent\textbf{Relation (2026-08-28).}  The nonabelian upgrade of this $U(1)$
+face is the new contract \texttt{GAUGE.DETLINE.FIXPOINT.01} (all three gauge couplings as unique
+stationary points of one zeta-det/inflow functional; honest: $\alpha_s(M_Z)$ is currently an
+external input).  This row stays the $U(1)$ face; that row is the three-coupling demand.
+
+\par\smallskip\noindent\textbf{Relative-determinant note (2026-08-29, review wave 4).}
+The correct object is the \emph{relative} determinant
+$Q(A)=\log[\det'\Delta_A/\det'\Delta_{A_0}]+8\,b_1\,c_3^6\log\varphi(A)$;
+the BFK constant $2^{-4}$ is $A/\tau/\alpha$-independent at fixed cut number, so
+$\delta\log 2^{-4}=0$ --- no physical compensation needed (consistent with
+\texttt{COMPENSATION\_INTERNAL} and the reviewer's correction).  Absolute normalisation is
+fixed by the reference $A_0$.
+
+\par\smallskip\noindent\textbf{(1) Minimal theorem statement.} Two steps, both over the moduli
+of flat $U(1)$ connections on the $\mu_4$ seam (the twist torus):
+\begin{itemize}
+\item \textbf{(T1) Occupied Berry line and continuum determinant-line comparison.}
+  \emph{Finite object.} Over the same twist torus $B$, specify the gapped collar
+  Hamiltonians $H_L(b)$, their gauge identifications and
+  $P_L(b)=\mathbf{1}_{(-\infty,0)}(H_L(b))$. The gap defines the smooth occupied
+  bundle and its Berry line $L_{\mathrm{occ},L}=\det\operatorname{Ran}P_L$.
+  Its FHS integer is $C_{\mathrm{FHS}}=+1$ within numerical tolerance at
+  $L=4,6$ (\vref{v472}). For $\nabla=d+A_{\mathrm{occ}}$ with
+  $A_{\mathrm{occ}}=\operatorname{tr}(U^\dagger dU)$ and $c_1=iF_{\mathrm{occ}}/(2\pi)$,
+  the continuum Berry convention is $C_{\mathrm{Berry}}=\int_B F_{\mathrm{occ}}/(2\pi i)$,
+  hence $c_1(L_{\mathrm{occ},L})[B]=-C_{\mathrm{Berry}}$.
+  Identify the finite-mesh integer with this continuum value by a controlled
+  mesh limit or an independent topological calculation; check duality before
+  comparing its sign with a continuum theta-line convention.
+  The gap check establishes no global nonvanishing section: such a section of
+  this same line would force $c_1=0$, contradicting the nonzero Chern class.
+  A global projector or ground-state ray is not a globally chosen ground-state vector.
+
+  \emph{Continuum object.} Define independently a chiral elliptic Fredholm family
+  $D_b^+$, including domains, coupling data and gauge descent, with Quillen line
+  $L_Q=(\det\ker D^+)^{-1}\otimes\det\operatorname{coker}D^+$, Quillen metric
+  and Bismut--Freed connection. Fix the chirality/duality convention in the comparison.
+  The null-mode locus $\Theta\subset B$ is allowed and must be specified; a globally
+  invertible $D^+$ has a trivial Fredholm determinant line and cannot supply $|c_1[B]|=1$.
+
+  \emph{Comparison demand.} Construct the comparison between $L_{\mathrm{occ},L}$
+  and $L_Q$ (or its explicitly specified dual) over the common base and prove
+  convergence at the level of Hermitian metrics and connections after a fixed
+  relative renormalisation. Norm-resolvent convergence and a Fermi gap alone are
+  insufficient: uniform control of the high-frequency/heat-kernel contributions
+  and their parameter variations is required. Match the curvature forms and the
+  holonomies on the two independent twist cycles; equal integrated Chern numbers
+  do not determine the connection. The reference $A_0$ fixes the remaining constant
+  normalisation. On $B\setminus\Theta$ the logarithmic determinant variation is
+  ordinary; its extension across $\Theta$ must retain the kernel and divisor data.
+
+  \emph{Dai--Freed data.} A Dai--Freed vector requires an actual family of fillings
+  and takes values in the pulled-back inverse boundary line. A global nonvanishing
+  section may be asserted only on that pullback or on a specified anomaly-cancelled
+  product, not on the uncompensated line with nonzero $c_1$. Alternatively, cylinders and
+  mapping tori may define transport and holonomy without a global trivialisation.
+  All continuum comparison statements remain \mO; the finite Berry/gap results
+  of \vref{v472} are unchanged.
+\item \textbf{(T2) Variation $=$ Bismut--Freed curvature $=$ inflow response, with the exact
+  corpus coefficients.} On the continuum line of T1,
+  \[
+    \delta_\tau\Bigl(\log\det\nolimits_\zeta\Delta_{U(1)}\;+\;8\,b_1\,\cthree^{6}\,
+    \log\varphi_{\mathrm{seam}}\Bigr)=0 ,
+  \]
+  i.e.\ the EM closure $F_{U(1)}(\alpha)=k_0\,\alpha^3-2\,\cthree^{3}\alpha^2-8\,b_1\,\cthree^{6}
+  \ln(1/\varphi_{\mathrm{seam}})=0$ \emph{is} the stationarity of the exact
+  $\zeta$-regularised Quillen functional, with every coefficient as it stands in the corpus:
+  the Chern level $k_0=|C|=1$ (the computed bulk invariant of the S3 collar, normalised by the
+  embedding index $k_Y=\operatorname{tr}(Y^2)/\operatorname{tr}(T_3^2)=5/3$, \vref{v470}); the
+  Gauss--Bonnet boundary coefficient $\cthree=1/(8\pi)$ with heat-kernel powers
+  $\cthree^{3},\cthree^{6}$ (\vref{v216}/\vref{v342}); the $U(1)_Y$ $a_4$/index coefficient
+  $b_1=41/10$ ($8b_1=(4/5)\cdot41$, \vref{v434}); and the discriminant exponent
+  $-\tfrac54=-q(D_5)$ (\vref{v341}). The derived stationarity must then have
+  $\alpha^{-1}=137.0359992168$ as its unique physical root (\vref{v3}).
+\end{itemize}
+The open content splits into two named faces (one target, per \vref{v434}/\vref{v435}): the
+\emph{analytic} face --- T1 plus the identification of $\delta\log\det_\zeta$ with the seam
+Seeley--DeWitt data, i.e.\ the diagonal $\zeta$-renormalisation at the marks and the
+multiplicity matching $41=10\,b_1$ (\vref{v484}/\vref{v485}) --- and the \emph{topological}
+face, the \texttt{EM1} lemma: the from-first-principles proof that
+$\partial_\tau\log Z_{\mathrm{Maxwell}}=k_0\,\alpha^3$ with $k_0$ the bulk Chern level
+(\vref{v48}/\vref{v435}).
+\emph{Both named faces now carry computed witnesses (2026-08-27,
+\texttt{ALPHA.QUILLEN.FACES.01} \mE\ new; \veri{v974\_alpha\_faces\_computed.py};
+\texttt{ALPHA.QUILLEN.EXACT.01} stays \mO):} the diagonal-$\zeta$ (analytic) face is executed
+as a BFK gluing --- the gluing constant is exactly $2^{-N}$, the jump matrix
+$16\,\cthree\,\operatorname{circ}(2,-1,0,-1)$ \emph{is} the inverse mark Green matrix, and the
+\vref{v485} scale channel is reproduced via the KMS unit, while against the \vref{v484} mark
+matrix the comparison is channel-wise exact but with the kernels in \emph{swapped} $\mu_4$
+channels, so the analytic face is \emph{sharpened} to the channel-swap question; the
+topological (\texttt{EM1}) face is computed --- pumped charge $=$ spectral flow $=$
+St\v{r}eda $=$ Chern $=1$ on the \vref{v367} collar; and the finite Quillen identity is
+verified \emph{two-sided} (Berry integral $=$ Poincar\'e--Lelong divisor integral $=+1$, the
+difference an exact form). The remaining open content is typed: the rigidity premise, the
+channel-swap question, and the continuum Bismut--Freed identification;
+$\alpha^{-1}=137.0359992168$ is re-anchored with split residual $6.4\times10^{-58}$.
+\emph{Channel-swap update (2026-08-28, external master-object review wave 2;
+\veri{v985\_quillen\_channel\_swap.py}; the contract stays \mO):} the swap question is
+\emph{resolved at the finite level} by $\mu_4$-character grading.  Exactly: the jump pattern
+$\operatorname{circ}(2,-1,0,-1)$ has $\mu_4$ eigenvalues $[0,2,4,2]$ (kernel in the $k{=}0$
+channel), the mark pattern $\operatorname{circ}(0,1,2,1)$ has $[4,-2,0,-2]$ (kernel in
+$k{=}2$); the deck swap $r\to r{+}2$ ($P_0\leftrightarrow P_2$, $P_1\leftrightarrow P_3$) maps
+the jump $|$spectrum$|$ onto the mark pattern \emph{exactly} (the odd swap $r\to r{+}1$ fails
+--- must-fail fires), so after the swap both kernels sit in the same channel and the graded
+determinant $\log\det'_{\mathrm{gr}}=\sum_r(-1)^r\log\det'(\Delta|_{P_r})$ compares them well-definedly:
+the graded difference is $\cthree$-\emph{free}, $\log(\ln 2/4)$ exactly, and the channelwise
+unit ratio is uniform $=4/\ln 2$ in every matched nonzero channel (the \vref{v974} doublet
+ratio extended to full uniformity).  \emph{Completeness-wave notes (2026-08-28):} the finite
+KMS rigidity premise is now executed
+(\veri{v995\_kms\_subnet\_rigidity.py}: all $33$ mixing directions killed; covariance redundant;
+$196608\to 0$); type-III/continuum stays \mO.  The finite-collar detline curvature converges
+exponentially to $2\pi$ with rate $\sim 0.6936\sim\ln 2$
+(\veri{v996\_gauge\_grammar\_kill.py}) --- a numerical Bismut--Freed shadow, not the continuum
+theorem.  Still \mO: the continuum Bismut--Freed identification, type-III KMS uniqueness,
+and the $2^{-4}$/Quillen-metric compensation.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-30, late-evening harvest;
+\veri{v1014\_\allowbreak bridge\_\allowbreak refinements.py}; the contract stays \mO).}
+Finite restriction isomorphism verified; orientation fixes the conjugate branch
+($2\to1$); the residual constant phase is fixed by the $A_0$ reference normalization ---
+recorded.  Continuum Bismut--Freed stays \mO.
+
+\par\smallskip\noindent\textbf{(2) Complete hypothesis list.}
+\begin{center}\footnotesize
+\renewcommand{\arraystretch}{1.22}
+\begin{tabularx}{\linewidth}{@{}l>{\hsize=1.45\hsize\raggedright\arraybackslash}X>{\hsize=0.55\hsize\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Type} & \textbf{Hypothesis} & \textbf{Witness} \\
+\midrule
+\textsc{proven-finite} & the Quillen split at the root: $\alpha^3-2\cthree^3\alpha^2=8b_1\cthree^6\ln(1/\varphi_{\mathrm{seam}})$ at $\alpha^{-1}=137.0359992$, residual $<10^{-35}$ & \vref{v341}/\vref{v382} \\
+\textsc{proven-finite} & unique root $+$ ablation battery; CODATA deviation $\sim2.9\times10^{-10}$ \emph{as output, never input} & \vref{v3}/\vref{v48} \\
+\textsc{proven-finite} & $b_1$ is the $U(1)_Y$ $a_4$ coefficient: $\sum\tfrac23Y_f^2+\tfrac13Y_s^2=41/6$, $(3/5)\cdot\tfrac{41}6=\tfrac{41}{10}$ & \vref{v434} (\vref{v159}/\vref{v246}) \\
+\textsc{proven-finite} & the embedding index $k_Y=(5/6)/(1/2)=5/3$; level-$1$ rigidity fixes the $U(1)_Y$ normalisation & \vref{v470} \\
+\textsc{proven-finite} & the $\pi$-power ladder $\{0,3,6\}$: the cubic term is the unique metric-independent (topological) term & \vref{v435} \\
+\textsc{proven-finite} & the quadratic (Calder\'on) term is the Gilkey $a_4$ gauge-curvature coefficient $\Omega^2/12$ & \vref{v342} \\
+\textsc{proven-finite} & bulk Chern invariant $C=1/0/-1$ at $M=1/3/-1$ (FHS, Bloch BZ) & \vref{v367}/\vref{v470} \\
+\textsc{proven-finite} & the finite Quillen object: twist-torus determinant-line curvature $=2\pi\cdot1$ exactly ($10^{-9}$, $L=4,6$); twist integer $=$ Bloch integer (Niu--Thouless--Wu); Fermi gap open over the whole torus & \vref{v472} \\
+\textsc{proven-finite} & the contact unit: ``$\cthree$ per insertion'' $=$ the KMS seam unit, derived for the finite cycle sector; closed-form mark determinant, $41=$ $Y^2$-weighted count of the $48$ states & \vref{v484}/\vref{v485} \\
+\textsc{proven-finite} & solvable-model anchors: circle $\zeta$-det variation in closed heat-kernel form; $T^4$ reaches the $a_4$ order; measure $(4\pi)^{-2}=4\cthree^2$ & \vref{v391}/\vref{v433} \\
+\textsc{cited-classical} & Quillen metric/curvature (Quillen 1985); Bismut--Freed curvature (CMP \textbf{106} (1986)); Dai--Freed section (JMP \textbf{35} (1994)) & \vref{v472} \\
+\textsc{cited-classical} & $\eta$/CS reading of $\delta\log\det$ (APS 1975; Alvarez-Gaum\'e--Della Pietra--Moore) & \vref{v470} \\
+\textsc{cited-classical} & integer quantisation of the $U(1)$ response (TKNN; Avron--Seiler--Simon); boundary level $=$ bulk response (Callan--Harvey) & \vref{v470} \\
+\textsc{cited-classical} & heat-kernel coefficients (Gilkey, \emph{Invariance Theory}, Thm 4.8.16); the $\beta=a_4$ theorem (Vassilevich) & \vref{v342}/\vref{v434} \\
+\textsc{cited-classical} & the embedding index $k_Y=5/3$ (Ginsparg 1987) & \vref{v470} \\
+\textsc{open} & \textbf{T1$+$T2 above}: the gap-stable continuum $c_1$ identification and the from-first-principles proof that $F_{U(1)}$ is the exact $\zeta$-regularised Quillen functional (incl.\ the \texttt{EM1} lemma) & \texttt{ALPHA.QUILLEN.EXACT.01} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\par\smallskip\noindent\textbf{(3) Available finite models (runnable).}
+\begin{itemize}
+\item \veri{v472\_quillen\_detline\_moduli.py} --- the finite Quillen object itself (real-space
+  collar on an $L\times L$ torus with twisted boundary conditions; FHS curvature of the
+  occupied-frame determinant line)
+\item \veri{v470\_alpha\_inflow\_level.py} --- the Bloch-level computation
+\item \veri{v367\_seam\_s3\_lattice.py} --- the underlying collar model
+\item \veri{v3\_em\_alpha.py} --- the fixed point: unique root $+$ ablation battery
+\item \veri{v48\_em\_ward.py} --- the Ward decomposition
+\item \veri{v341\_alpha\_quillen.py} --- the Quillen split and coefficient identities
+\item \veri{v382\_alpha\_quillen\_exact.py} --- the named target registration
+\item \veri{v391\_alpha\_quillen\_progress.py} --- circle $\zeta$-det solvable model
+\item \veri{v433\_alpha\_quillen\_heatkernel.py} --- the $T^4$ $a_4$-order anchor
+\item \veri{v434\_alpha\_quillen\_betafunction.py} --- $b_1$ as the $a_4$ coefficient
+\item \veri{v435\_alpha\_quillen\_chernlevel.py} --- the $\pi$-power / level partition
+\item \veri{v484\_seam\_contact\_unit.py} --- the contact unit ($\cthree$ per insertion)
+\item \veri{v485\_contact\_diagonal\_closed.py} --- the closed computable side
+\end{itemize}
+
+\par\smallskip\noindent\textbf{(4) Lean axiom surface (honest).} There is \emph{no} Lean
+formalisation of this target: no \texttt{TfptCarrier} module formalises the determinant line,
+the $\zeta$-determinant, or the fixed-point functional. The only adjacent Lean content is the
+\texttt{SEAM.EQUIV.01} face (Sec.\ above --- \texttt{SeamScalingLimit.lean} and companions,
+composition-level only) and kernel-checked edge/Chern arithmetic
+(\texttt{SeamEdgeChern.lean}). An external solver should treat the Lean layer as contributing
+\emph{nothing} to this contract beyond the seam-face audit.
+
+\par\smallskip\noindent\textbf{(5) Must-fail controls.} A submitted derivation is accepted only
+if it respects the following (each realised in the suite):
+\begin{itemize}
+\item \textbf{MF-A1 (no experimental $\alpha$).} The functional and its stationarity must be
+  constructed from $(\cthree, b_1, k_0, \varphi_{\mathrm{seam}})$ alone; any appearance of the
+  measured $\alpha$ (CODATA or otherwise) at \emph{any} stage of the construction invalidates
+  the derivation --- the measured value is compared \emph{after}, never inserted
+  (\vref{v3}).
+\item \textbf{MF-A2 (ablations destroy the hit).} Ablating the deck/carrier structure ---
+  neighbouring integer budgets for $41$, dropping the $\mu_4$ factor, or a Chern level
+  $k_0\neq1$ --- must move the root away from $137.0359992$ beyond the corpus tolerance
+  (the \vref{v3} ablation battery; \vref{v48}).
+\item \textbf{MF-A3 (trivial/reversed collar).} The trivial collar $M=3$ must give $C=0$ (no
+  level, no fixed point of this form); the orientation flip $M=-1$ must give $C=-1$
+  (\vref{v470}/\vref{v472}).
+\item \textbf{MF-A4 (the metric-independence partition).} Any proposed identification must
+  reproduce the $\pi$-power ladder $\{0,3,6\}$: a derivation that attaches a
+  $(4\pi)^{-d/2}$ heat-kernel measure to the cubic term (or strips it from the quadratic or
+  transport terms) fails (\vref{v435}).
+\end{itemize}
+
+\par\smallskip\noindent\textbf{(6) Acceptance tests} (the external review's three, verbatim, plus
+one structural):
+\begin{itemize}
+\item \textbf{A1 --- no experimental $\alpha$ input:} the derivation is checked to contain no
+  use of the measured value anywhere; $\alpha^{-1}$ emerges as output only.
+\item \textbf{A2 --- unique physical fixed point:} the \emph{derived} variational equation has
+  exactly one physical root, and it equals $137.0359992168\ldots$ to the corpus precision.
+\item \textbf{A3 --- ablations destroy the hit:} MF-A2/MF-A3 verified to fail, machine-checkably.
+\item \textbf{A4 --- structural:} T1 is accepted only with the uniform-gap hypothesis explicit
+  (the Dai--Freed section nonvanishing over the whole moduli torus); T2 modulo T1 (or vice
+  versa) narrows the target and is recorded as progress, but only the pair closes it. Any
+  marker move happens in \texttt{status\_ledger.csv} by the house process, never in this
+  document.
+\end{itemize}
+
+% =====================================================================

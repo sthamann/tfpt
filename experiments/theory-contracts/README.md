@@ -6,6 +6,45 @@ Earlier per-round local-only/no-release statements describe their creation
 snapshots; they are preserved for hash consistency, not current publication
 status. No research result is promoted to a physical or empirical gate.
 
+## Current consolidation test scope
+
+`run_consolidation_20260909.py` runs the 56 TFPT test modules from the
+9 September inventory in normal and optimized Python modes. Its three
+declared full production replays remain a separate explicit tier. The five
+`pi-prime-event-log-2026-09-08` suites now belong to the independent
+[Prime Front repository](https://github.com/sthamann/prime-front/tree/main/experiments/pi-prime-event-log-2026-09-08)
+and are excluded from the active TFPT selection. Historical combined
+inventory records remain unchanged.
+
+The inventory is an **explicit historical provenance replay**. The runner creates
+an isolated temporary source copy, reconstructs the pinned article from its exact
+current TeX modules, supplies the immutable original v1033 and historical combined
+ledger, and places the byte-identical neutral seam helper at its historical path
+only inside that temporary copy. Original checker files, their hash guards and
+saved receipts are unchanged. `verification/historical_replay/manifest.json`
+pins both the current inputs and historical bytes. It verifies the exact reader-only
+v1033 change and all retained ledger rows plus explicit migration deltas; a
+historical ledger is never installed as the active TFPT ledger.
+
+The resulting JSON names this historical context separately. The same runner also
+runs the **actual current v1033** and **current modular TeX consumer regressions**
+in the real checkout and reports them under `current_source_checks`. A historical
+pass cannot stand in for those current checks. `--current-sources` explicitly
+runs a diagnostic against the current inputs, where old immutable pins may reject
+the new source; it does not reinterpret that rejection. `--failed-from REPORT`
+reruns only failed normal/optimized jobs from an earlier inventory report.
+See `verification/historical_replay/README.md` for the provenance boundaries.
+
+`seam_source.py` is TFPT-owned support for the retained finite seam/Clock
+construction. It is a byte-identical copy of the helper formerly at
+`experiments/double-cover-rh-audit-2026-09-08/seam_source.py` (SHA256
+`5012826dffdc90775f71b6b3a908dffde441f50ae1f455de5a532a3734349a1d`).
+It reads only the source prefix before `Aint_f` in the retained
+`experiments/tfpt-discovery/seam_state_derivation_probe.py`; it contains no
+RH test runner, spectral target or KMS target. The full RH audit remains in
+Prime Front. Historical dependency paths and saved records retain their
+original provenance.
+
 ## Non-RH full-reference control and nonzero summed memory — Round27 (2026-09-07)
 
 [Round27 overview](ROUND27_STATUS.md) removes the artificial charge-entropy

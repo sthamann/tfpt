@@ -79,7 +79,16 @@ def check(label: str, condition: bool) -> None:
 
 def source_contains(relative_path: str, *needles: str) -> bool:
     """Check read-only textual provenance without importing corpus modules."""
-    source = (ROOT / relative_path).read_text(encoding="utf-8")
+    path = ROOT / relative_path
+    if path.suffix == ".tex":
+        import sys
+        verification = str(ROOT / "verification")
+        if verification not in sys.path:
+            sys.path.insert(0, verification)
+        from tex_sources import read_tex
+        source = read_tex(path)
+    else:
+        source = path.read_text(encoding="utf-8")
     return all(needle in source for needle in needles)
 
 

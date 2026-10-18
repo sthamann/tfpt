@@ -1,0 +1,361 @@
+\subsection{Zustand und Wirkung aus derselben Rückwirkung}\label{sec:stateactionclosure}
+\key{\textbf{Die gemeinsame Information ist jetzt genauer bestimmt.}
+Eine korrekte Vergröberung muss sowohl die dynamische Antwort als auch
+den reduzierten Zustand aus demselben vollständigen Kern gewinnen.
+Am ursprünglichen Neutrinooperator ist diese Verbindung nun berechnet.
+Der aus einer Momentaufnahme rekonstruierte Operator ist im Allgemeinen
+nicht die ruhende Massenantwort. Unter passender Trennung der schweren
+und leichten Skalen nähern sich beide an.}
+
+\paragraph{Anschluss an die ursprünglichen Verifikationen.}
+\file{verification/v258_dirac_covariance_induction.py} verwendet bereits
+die Fermi-Dirac-Kovarianz und ihre Logit-Inversion. Für einen vollständigen
+endlichen Operator gilt diese Inversion exakt. Das erklärt jedoch noch
+nicht die stärkere Kompressionsgleichung
+$C_F=P_F C_\Sigma P_F$: Die Inversion einer komprimierten Kovarianz
+ist im Allgemeinen weder $P_FDP_F$ noch deren statisches Schurkomplement.
+Die neue Rechnung setzt deshalb den gerade aus den Quellenmoden
+realisierten ursprünglichen Neutrinoblock ein. Sie erhält seine vorhandenen
+komplexen Yukawas und seine schwere Hierarchie. Es wird kein neues
+Massentexturmodell eingeführt.
+
+Setze mit der Notation aus Abschnitt~\ref{sec:masszeromode}
+\begin{equation}
+\overline D=\mathcal D_{\rm phys}/m_*=
+\begin{pmatrix}0&B\\B^\dagger&H\end{pmatrix},
+\qquad B=\widehat V/\sqrt{m_*},\qquad b=\beta_{\rm phys}m_*.
+\end{equation}
+Die folgende Deutung bleibt die bedingte endliche Gauß-/CAR-Deutung
+des ursprünglichen Wörterbuchs. Sie leitet weder vierdimensionale
+Fermionstatistik noch eine physische Temperatur aus der E8-Quelle her.
+Mit $P$ als Projektion auf die sechs leichten Nambu-Komponenten gilt
+\begin{align}
+C_L&=P(1+e^{b\overline D})^{-1}P,\\
+h_{\rm mod}&=\frac{m_*}{b}\log\!\bigl((I-C_L)C_L^{-1}\bigr),\\
+G_L(z)&=P(zI-\overline D)^{-1}P
+       =\bigl[zI-\Sigma(z)/m_*\bigr]^{-1}.
+\end{align}
+Hier ist $h_{\rm mod}$ der Einteilchen-Logit des reduzierten Zustands.
+Eine vollständige Vielteilchen-Wirkung enthält zusätzlich ihre
+Normierung; die Formel wird nicht als bereits hergeleitete autonome
+Zeitentwicklung ausgegeben.
+
+Der vollständige Resolvent liefert den Zustand exakt:
+\begin{equation}\label{eq:commonsourcekms}
+\boxed{C_L=\frac I2+\frac2b\sum_{n\ge0}
+\operatorname{Herm}G_L(i\omega_n),\qquad
+\omega_n=\frac{(2n+1)\pi}{b}.}
+\end{equation}
+Dabei ist $\operatorname{Herm}A=(A+A^\dagger)/2$.
+Die Zusammenfassung der positiven und negativen Frequenzen macht
+die Summe konvergent. Weil der leichte Diagonalblock hier null ist,
+verschwindet zusätzlich der Term der Ordnung $\omega_n^{-2}$;
+der Summand fällt wie $\omega_n^{-4}$.
+
+\begin{center}
+\begin{tikzpicture}
+\node[box,text width=8cm] (kernel) at (0,0)
+{Ein vollständiger Rückwirkungskern\\$G_L(z)=[zI-\Sigma(z)/m_*]^{-1}$};
+\node[box,text width=4cm] (mass) at (-4.8,-2.2)
+{Reaktion\\statische Seesaw-Masse\\und dynamisches Gedächtnis};
+\node[box,text width=4cm] (state) at (0,-2.2)
+{Momentaufnahme\\reduzierte Kovarianz\\und ihr Logit};
+\node[box,text width=4cm] (action) at (4.8,-2.2)
+{Quadratische Wirkung\\Determinantenantwort\\und ihre Variation};
+\draw[arr] (kernel.south west) -- (mass.north);
+\draw[arr] (kernel.south) -- (state.north);
+\draw[arr] (kernel.south east) -- (action.north);
+\end{tikzpicture}
+\end{center}
+
+\paragraph{Warum derselbe Kern auch die Wirkung trägt.}
+Für den endlichen komplexen CAR-Vergleich gilt
+$\log Z(\overline D)=\Tr\log(1+e^{-b\overline D})$.
+Sei $\overline D_0=\diag(0,H)$ der entkoppelte Vergleich.
+Da beide Operatoren dieselbe Spur haben, folgt aus dem Produkt für
+den hyperbolischen Kosinus und derselben Schuridentität
+\begin{equation}\label{eq:sourcekmsaction}
+\log\frac{Z(\overline D)}{Z(\overline D_0)}
+=2\operatorname{Re}\sum_{n\ge0}
+\log\det\!\left[
+\frac{i\omega_n I-\Sigma(i\omega_n)/m_*}{i\omega_n}
+\right].
+\end{equation}
+Die Realteile sind als Logarithmen der Beträge unabhängig von
+einer Phasenwahl des komplexen Logarithmus.
+Die ungekoppelte schwere Determinante kürzt sich; ihre Wirkung auf
+den leichten Sektor bleibt im frequenzabhängigen Kern erhalten.
+Für das ungekürzte Funktional
+$\Phi=-(m_*/b)\log Z$ gilt
+$\delta\Phi=\Tr[C\,\delta\mathcal D_{\rm phys}]$.
+Eine Variation im leichten Diagonalblock liefert deshalb genau $C_L$.
+Dies verbindet Zustands- und Wirkungsantwort am selben endlichen Objekt.
+Die Gleichung ersetzt keine Majorana-Pfaffian-Normierung und identifiziert
+noch nicht den getrennten elektromagnetischen Quillen-Kanal.
+
+\paragraph{Wann die Zustandsauswertung die leichte Massenmatrix wiedergibt.}
+Für schwache schwere--leichte Mischung liefert die Entwicklung in
+$\widehat V$ bei festem $b$ in zweiter Ordnung
+\begin{equation}\label{eq:sourcekmsfilter}
+h_{\rm mod}=
+-\widehat V\left[H^{-1}
+-\frac2bH^{-2}\tanh\!\left(\frac{bH}{2}\right)\right]\widehat V^\dagger
++\text{höhere Mischungsordnungen}.
+\end{equation}
+Das Vorzeichen folgt bereits aus der zweiten geteilten Differenz
+der Fermi-Funktion bei $(0,\lambda,0)$.
+Gegenüber dem statischen Beitrag
+$-\widehat V H^{-1}\widehat V^\dagger$ erhält jeder schwere Eigenkanal
+den Faktor
+\begin{equation}
+F_b(\lambda)=1-\frac{2\tanh(b\lambda/2)}{b\lambda},\qquad
+F_b(\lambda)\sim
+\begin{cases}
+(b\lambda)^2/12,& |b\lambda|\ll1,\\
+1-2/(b|\lambda|),& |b\lambda|\gg1.
+\end{cases}
+\end{equation}
+Die Annäherung ist somit algebraisch in $T/M$, nicht exponentiell.
+Die sinnvolle gemeinsame Näherung verlangt mit
+$\Delta=\min|\operatorname{spec}H|$
+\begin{equation}\label{eq:kmswindow}
+\frac{\|\widehat V\|}{\sqrt{m_*}\Delta}\ll1,\qquad
+b\Delta\gg1,\qquad
+\frac{b\|\widehat V\|^2}{m_*\Delta}\ll1.
+\end{equation}
+Die letzte natürliche Normschranke vermeidet, eine zufällig kleine
+Seesaw-Summe durch gegenseitige Auslöschung mit schwacher Mischung zu
+verwechseln. Relative Matrixfehler können bei solchen Auslöschungen
+strengere Bedingungen benötigen.
+
+Der direkte Lauf am vorhandenen komplexen TFPT-Neutrinozweig verwendet
+$m_*=9.1799084999\cdot10^{22}$ eV und hat die Mischungsgröße
+$7.92762\cdot10^{-9}$. Alle Tabellenzeilen behalten denselben
+vollständigen Operator und dieselben Massenpole bei.
+\begin{center}
+\begin{tabular}{rrl}
+\toprule
+$b=\beta_{\rm phys}m_*$&
+$\|h_{\rm mod}-\Sigma(0)\|_F/\|\Sigma(0)\|_F$&
+Einordnung\\
+\midrule
+$1$      & $91.5920\,\%$ & schwere Kanäle angeregt\\
+$10^4$   & $25.9886\,\%$ & noch kein großer Skalenabstand\\
+$10^6$   & $0.392507\,\%$ & getrennte Skalen\\
+$10^8$   & $0.00392507\,\%$ & größerer Abstand\\
+$10^{30}$& $99.9873\,\%$ & auch leichte Moden ausgefroren\\
+\bottomrule
+\end{tabular}
+\end{center}
+Die letzte Zeile liegt ausdrücklich außerhalb der Gültigkeit der
+führenden Mischungsformel. Beliebiges Abkühlen ist kein Ersatz für
+das Zwischenfenster. In den übrigen vier Proben stimmen der direkt
+aus der vollständigen Kovarianz berechnete Logit und
+\eqref{eq:sourcekmsfilter} relativ besser als $1.1\cdot10^{-15}$ überein.
+Dies ist eine numerische Konsistenzprüfung vorhandener Eingaben, keine
+entsprechend genaue neue physikalische Vorhersage. Die Rechnung verwendet
+80 Arbeitsstellen, damit die winzige Verschiebung von $I/2$ nicht verloren
+geht; dadurch gewinnen die ursprünglichen Eingabedaten keine neue Genauigkeit.
+
+\paragraph{Was damit für die Auswahlregel gewonnen ist.}
+Die ursprüngliche Zustandsinduktion und der konkrete Seesaw-Anschluss
+sind miteinander verträglich, aber nicht durch unbeschränkte Gleichsetzung
+der beiden Operatoren. Ihre gemeinsame Realisierung muss den vollständigen
+Kern und seine Zustandsgewichte erhalten. Die Universalraum-Regel,
+spätere Antworten zu erhalten, betrifft daher ebenso die reduzierte
+Momentaufnahme und das variierte Funktional. Eine reine Massentabelle
+würde gerade die Information entfernen, die diese drei Antworten verbindet.
+
+Auch \file{verification/v259_modular_cutoff_kappa.py} muss in diesem
+Zusammenhang gelesen werden: Das Skript setzt $f(u)=e^{-u}$ und berechnet
+dessen Momente. Die Wahl dieser Spektralaktionsfunktion folgt nicht allein
+aus der Fermi-Dirac-Kovarianz oder aus der Normierung $\beta=1$.
+Ein bekanntes konkretes Gegenbeispiel für die behauptete Zwangsläufigkeit
+ist die spektrale \emph{Entropie} derselben freien Fermionen:
+\begin{equation}
+S=\Tr h(b\overline D),\qquad
+h(x)=\log(1+e^{-x})+\frac{x}{1+e^x},\qquad h(-x)=h(x).
+\end{equation}
+Sie ergibt eine andere Testfunktion $\chi(u)=h(\sqrt u)$~\cite{entropyaction}.
+Diese wird hier nicht als neue TFPT-Wirkung gewählt. Das Beispiel zeigt
+präzise, warum zunächst das ursprüngliche physische Funktional festzulegen
+ist. Die vorhandenen Alpha-, Flavor- und Skalenresultate bleiben dabei
+gemeinsame Randbedingungen dieser Auswahl.
+
+\picturetext{Man sieht nur den Hebel einer Maschine. Seine Reaktion auf
+einen Druck, ein Foto seiner ruhigen Lage und die Energie der ganzen
+Maschine sind drei verschiedene Auskünfte. Unsere Rechnung gewinnt sie
+jetzt aus derselben verborgenen Mechanik. Gesucht bleibt die ursprüngliche
+Regel, die genau diese Mechanik samt Betriebszustand und Nahtkopplung
+einsetzt. Eine passende Reaktion allein bestimmt das ganze Instrument
+noch nicht.}
+
+\subsection{Was die Raum- und Literaturbefunde für dieselbe Kette beitragen}
+Am tatsächlichen 30-dimensionalen Blochoperator des markierten $A_3$-Netzes wurden die Bandbefunde unabhängig bestätigt. Auf dem zehn-dimensionalen Eigenraum zum Bandniveau $3$ hat die erste Richtungsableitung die charakteristischen Polynome
+\begin{align}
+\chi_{(1,0,0)}(\ell)&=\tfrac14\ell^4(\ell^2-6)(2\ell^2-9)^2,\\
+\chi_{(1,1,1)}(\ell)&=\tfrac14\ell^4(\ell^2-36)(2\ell^2-9)^2.
+\end{align}
+Nach Normierung der zweiten Richtung folgen die positiven Steigungsquadrate $(6,9/2,9/2)$ und $(12,3/2,3/2)$. Diese Bandsteigungen sind ohne Feld- und Zeitabbildung keine gemessenen Materiegeschwindigkeiten. Der kompakte Würfelmodus mit alternierenden Amplituden erfüllt für alle $k$ exakt $L(k)\psi=3\psi$; nicht jeder Zustand auf seinen acht Knoten bleibt lokalisiert.
+
+Der QCA-Anschluss von D'Ariano--Perinotti ist ein gezieltes Vorbild: Unter bereits vorausgesetzten fermionischen Feldern, lokaler unitärer linearer Entwicklung und diskreter Isotropie entstehen in der untersuchten minimalen Klasse BCC-Weyl-Automaten~\cite{darianojo}. Das reziproke Verhältnis von BCC und FCC/$A_3$ ersetzt die Quellenabbildung nicht. Für aus der Quelle herzuleitende Kantenoperatoren $A_h$ lautet der nächste notwendige Test
+\begin{equation}
+U(k)=\sum_h e^{ik\cdot h}A_h,\qquad
+\sum_h A_h^\dagger A_h=I,\qquad
+\sum_{h'-h=d}A_h^\dagger A_{h'}=0\quad(d\ne0).
+\end{equation}
+Der Graph liefert Adressen und Nachbarschaft. Die geladenen Operatoren samt ihren Phasen müssen die Aktualisierungsregel bestimmen. Hier können Zuses und Wolframs Prozessideen ansetzen, ohne die bestimmte TFPT-Quelle durch einen beliebig gewählten Automaten zu ersetzen.
+
+Die weiteren Literaturhinweise liefern folgende Reichweiten:
+\begin{itemize}
+\item Beems Schur-Anschluss verlangt $k_{2d}=-k_{4d}/2$ und $c_{2d}=-12c_{4d}$. Die positive E8-Quelle mit $(k,c)=(1,8)$ ist daher nicht unmittelbar dieselbe Schur-Algebra einer unitären $4D$-$\mathcal N=2$-Theorie. Das ist kein allgemeines Verbot eines vierdimensionalen Anschlusses~\cite{beemchiral}.
+\item Costello--Paquette enthält die Ausnahmegruppe E8. Die dortigen celestial Ströme $J[0,0]$ besitzen jedoch keinen zentralen Level-eins-Doppelpol. Ihr OPE ist nicht bereits das OPE unserer affinen Quelle~\cite{costellopaquette}.
+\item Die Arbeit von Araki et al.\ vom August 2026 untersucht acht Majorana-Flavors auf einem zweidimensionalen euklidischen Gitter. Die Arbeit beweist keine $3+1$-dimensionale Spin(10)-Spiegelentkopplung. Hasenfratz--Xu unterscheidet Anomaliefreiheit von einer tatsächlich ausgewählten Wechselwirkung mit symmetrischem Gap~\cite{arakidomain,hasenfratzguide}.
+\end{itemize}
+Die 16-Leiter des Artefakts ist ein Netz bedingter Abbildungen. Halbspinordimension, Zahl der CAR-Felder und Ordnung der Anomaliegruppe sind keine austauschbaren Gegenstände. Auch Rochlins Signaturbedingung betrifft geschlossene glatte Spin-Viermannigfaltigkeiten; sie verbietet weder das E8-Gitter noch eine E8-Plumbing mit Rand.
+
+\subsection{Das gemeinsame Feldwörterbuch und seine noch herzuleitende Auswahl}
+Die Rechnung ersetzt eine Vermutung durch die exakten Gleichungen~\eqref{eq:nativespinlift}--\eqref{eq:fullsourcesix}. Die vorhandenen Flavor-, Alpha- und Massenherleitungen bleiben die Bedingungen an eine gemeinsame physische Realisierung. Diese muss gleichzeitig den ursprünglichen Windungstransport erhalten, die drei physischen Familien mit richtigen Ladungen und richtiger lokaler Statistik ausweisen, denselben zulässigen Neutrinopaar- und Higgsmechanismus reproduzieren und den neutralen Alpha-Port samt seiner Antwort im Flavor-Hintergrund koppeln.
+
+Die Fortsetzung schließt dabei konkrete Übersetzungen: Die 48er-Zählung und
+die Hyperladungsantwort werden aus denselben ursprünglichen Wurzeln gewonnen;
+die vollständige komplexe Neutrinomatrix besitzt ein norm- und phasentreues
+Quellenwörterbuch; ihre geraden Paarfelder bleiben unter Fermionisierung erhalten;
+und der ursprüngliche Flavortransport bestimmt den ganzen neutralen
+Zweipunktkern. Diese Verbindungen stammen aus derselben Quellenalgebra.
+Eine Übereinstimmung bloßer Dimensionen oder Zahlen wird dafür nicht verwendet.
+
+Abschnitt~\ref{sec:masssourceconnection} führt diesen Zusammenhang bis zum
+gemeinsamen Transportgesetz weiter: Die Majoranapaar-Verbindung bewahrt die
+vollständige ursprüngliche Verbindung, trägt die primitive
+Determinantenwindung und liefert durch feste Spurkontraktionen dieselbe
+neutrale Antwort. Die lokale Feldfortsetzung enthält den ausdrücklich
+berechneten Grad-drei-Korrekturterm. Der noch fehlende physische Einsatz
+ist dadurch genauer bestimmt; die homogene Transportgleichung selbst
+wählt seine Anfangswerte nicht aus.
+
+\key{\textbf{Der gemeinsame noch zu beweisende Schritt ist jetzt eine bestimmte Abbildung.}
+Der ursprüngliche markierte Prozess muss seine Naht-, Higgs- und
+Masseneinsetzungen in genau diese Quellenkanäle übersetzen.
+Die Abbildung muss gleichzeitig den normierten Alpha-Rundlauf,
+die vollständigen Massentensoren einschließlich Phasen und den
+Flavor-Defektkern reproduzieren. Die vorhandenen physikalischen
+Herleitungen geben ihre Zielwerte vor; das neue Wörterbuch legt fest,
+welche Operatoren und gemeinsamen Antworten dabei erhalten werden müssen.}
+
+Im Universalraum bedeutet dies eine antworttreue Übersetzung ganzer
+Einsetzungsgeschichten. Zwei Geschichten gelten erst dann als gleich,
+wenn auch ihre späteren gemeinsamen Antworten übereinstimmen.
+Das neue Phasenbeispiel ist ein konkreter Fall: Gleiche Massen und gleiche
+neutrale Normantwort bedeuten noch nicht denselben Zustand, weil eine
+kohärente Paarantwort die relative Phase unterscheidet. Ein Zuse-Automat
+oder Hypergraph kann diesen Prozess repräsentieren, sofern seine Regel
+diese Operatoren, Ladungen und Antworten transportiert. Eine frei gewählte
+Graphregel liefert ihre ursprüngliche Auswahl dadurch noch nicht.
+
+Eine Antwort auf nur die Gleichung $\omega^2=(-1)^F$ genügt nicht, falls sie den verwendeten Massenmechanismus entfernt. Umgekehrt muss ein erfolgreicher Massenanschluss nicht die hier zusätzlich geprüfte Spin-$\Z_4$-Annahme verwenden. Die beiden Wege werden an denselben tatsächlichen Quellenfeldern unterschieden.
+
+\file{tfpt_explorer/source_spin_lift.py} führt den internen Spinlift, die Originalwurzelcharaktere, die 16 Feldladungen und den gemeinsamen Quotiententest aus. \file{tfpt_explorer/source_majorana_pairs.py} prüft die tatsächlichen affinen Paarzustände, ihre Normen, Nullrelationen, höchsten Gewichte und den Anschluss an den ursprünglichen Flavortransport. Abschnitt~\ref{sec:neutralpairward} verbindet diese Paare mit der neutralen Quelle. Die Rechnung ist an den Explorer und die bestehende Flavor-Tour angeschlossen. Algebraische Aussagen, numerisch integrierter Weg und physische Zusatzannahmen bleiben getrennt.
+
+\section{Geprüfter Anhang: Orientierung und mehrteilige Antworten erhalten}\label{sec:orientationaudit}
+
+Der eingefügte Vorschlag vom 29.~September mit der Kennung \file{9df45383-826d-4f53-8687-bf615454c26c} enthält relevante Ergänzungen. Die folgenden algebraischen Aussagen wurden unabhängig neu berechnet; die angegebenen wissenschaftlichen Arbeiten wurden am Original geprüft. Die im Text verlinkten externen Rechnerpakete standen hier nicht zur Verfügung. Ihre QWZ-Tabellen und Ausführungsprotokolle werden deshalb nicht als eigene verifizierte Ergebnisse übernommen.
+
+\subsection{Der C-Ladungsanschluss der Vierzustandsalgebra stimmt}
+Die ursprünglichen vier C-Wurzeln erfüllen $(\alpha_a,\alpha_b)=1+\delta_{ab}$. Ihre isolierten Ladungsshifts antikommutieren bei verschiedenen Indizes. Die entsprechende Form über $\mathbb F_2$ ist $B=I+\mathbf1\mathbf1^{\mathsf T}$ und erfüllt $B^2=I$, also $\rank B=4$.
+
+Nach Festlegung der zentralen Quadrate repräsentieren
+\begin{equation}
+\Gamma_0=X\otimes I,\quad \Gamma_1=Y\otimes I,\quad
+\Gamma_2=Z\otimes X,\quad \Gamma_3=Z\otimes Y
+\end{equation}
+diese Relationen als $\mathrm{Cl}_4(\C)\cong M_4(\C)$. Die 16 geordneten Monome sind unabhängig. Die vollständige Enumeration ergibt 15 maximale kommutierende Pauli-Kontexte und 60 verschiedene Rang-eins-Projektoren. Die vier $\Gamma_a$ allein erzeugen 32 Gruppenelemente; das zusätzlich zugelassene $iI$ vervollständigt die 64-elementige Pauli-Gruppe.
+
+Das ist ein echter algebraischer Anschluss an die ursprünglichen Ladungsvorzeichen. Es ist noch keine Identifikation der ganzen G31-, P2- oder Clockwirkung. Vor allem gilt im ursprünglichen Kokzyklus $U_a^2=-U_{2\alpha_a}$: Das Quadrat verschiebt weiterhin Ladung. Ein fester zentraler Charakter und sein vierdimensionaler Darstellungsraum ersetzen diese volle Ladungsquelle nicht.
+
+\subsection{Das vorgeschlagene Carry ändert die kohärente Kompositionsregel}
+Die algebraische Rechnung
+\begin{equation}
+\widetilde U_a=\Gamma_a\otimes U_a,\qquad
+[\widetilde U_a,\widetilde U_b]=0\quad(a\ne b)
+\end{equation}
+ist richtig. Sie liefert jedoch \textbf{keine getreue Einbettung derselben ursprünglichen Operationen}.
+
+\textbf{Beweis.} Angenommen, ein nichtnulliger Intertwiner $V$ erfülle $VU_a=\widetilde U_aV$ für alle $a$. Aus $U_aU_b=-U_bU_a$ folgt
+\begin{equation}
+\widetilde U_a\widetilde U_bV
+=-\widetilde U_b\widetilde U_aV.
+\end{equation}
+Die rechten Operatoren kommutieren und sind invertierbar. Also ist $2\widetilde U_a\widetilde U_bV=0$ und damit $V=0$, ein Widerspruch.
+
+Eine zusätzliche Präparation oder Auslese könnte bestimmte Antworten reproduzieren; sie müsste ausdrücklich konstruiert werden. Für bloße Konjugationskanäle verschwindet ein skalares Minus ohnehin, während kohärente Pfadsummen es unterscheiden können. Auch bleibt $\sum_a\alpha_a=(-2,-2,-2,-2,-2;0,0,0)\ne0$ trotz geschlossener Dreierprojektion. Der Anhang repariert damit ein ausgewähltes Vorzeichenproblem in einer veränderten Darstellung; er liefert noch keinen räumlichen Lift der vollständigen Quelle.
+
+\picturetext{Zwei Minuszeichen ergeben ein Plus. Das kann eine neue Rechenregel vereinfachen. Wenn das ursprüngliche Minus aber eine beobachtbare Interferenz bestimmt, hat man damit die Regel verändert. Ein zusätzliches Register muss diese Antwort nachweislich wiedergeben können.}
+
+\subsection{Ein exakter Zeuge gegen Kompression auf Paaransichten}
+Setze auf drei Qubits
+\begin{equation}
+P=X\otimes X\otimes I,\quad Q=I\otimes Y\otimes Y,\quad
+R=X\otimes Z\otimes Y,\qquad PQ=iR,
+\end{equation}
+und
+\begin{equation}
+\rho_\pm=\frac18\left(I+\frac P2+\frac Q2\pm\frac R2\right).
+\end{equation}
+Beide Zustände besitzen die Eigenwerte $(2\pm\sqrt3)/16$, jeweils vierfach. Ihre sämtlichen Ein- und Zweiteilreduktionen sind gleich:
+\begin{equation}
+\rho_{AB}=\tfrac14(I+XX/2),\qquad
+\rho_{BC}=\tfrac14(I+YY/2),\qquad \rho_{AC}=I/4.
+\end{equation}
+Trotzdem liefert dieselbe zugelassene Paaroperation $e^{-itQ}$
+\begin{equation}
+\langle P\rangle_\pm(t)=\tfrac12\cos(2t)\pm\tfrac12\sin(2t).
+\end{equation}
+Die anfänglichen Steigungen sind $+1$ und $-1$. Gleiche Paaransichten und gleiche globale Spektren bestimmen somit nicht alle zukünftigen Paarantworten.
+
+Auch die geordneten Zustandsantworten unterscheiden sich:
+\begin{align}
+J_\pm&=i\tr\rho_\pm[K_{AB},K_{BC}]
+=\mp\frac{(\log3)^2}{4},
+&K_A&=-\log\rho_A,\\
+z_\pm&=\tr\rho_\pm\,\rho_{AB}\rho_{BC}
+=\frac{12\pm i}{128},
+&\frac{z_\pm}{|z_\pm|}&=\frac{12\pm i}{\sqrt{145}}.
+\end{align}
+Das ist ein vollständig endlicher Beweis der benötigten zusätzlichen Information. Er ist kein E8-Vakuum und keine Messung einer topologischen Zentralzahl.
+
+\textbf{Anschluss an die Hauptfrage:} Der Universalraum muss zwei Geschichten getrennt halten, sobald ein gemeinsamer zulässiger Folgeeingriff sie unterscheiden kann. Dasselbe gilt in Abschnitt~\ref{sec:flavorcover}: Gleiche Punktpermutationen erlauben nicht das Weglassen des orientierten Linienlokalsystems. Die operative Antworttreue ist der gemeinsame Maßstab.
+
+\subsection{Chirale Diagnostik: bestätigte Literatur, ausdrücklich bedingte Übertragung}
+Für einen vollrangigen exakten Quanten-Markovzustand gilt
+\begin{equation}
+I(A:C\mid B)=0
+\ \Longrightarrow\
+K_{AB}+K_{BC}=K_B+K_{ABC}
+\ \Longrightarrow\ J=0.
+\end{equation}
+Der letzte Schritt folgt durch zyklische Spur und $[\rho_R,K_R]=0$. Eine nichtverschwindende solche Antwort darf daher nicht durch vollständige Entfernung der betreffenden räumlichen bedingten Korrelationen ausgelöscht werden. Dies verbietet keine zeitliche Markov- oder GKLS-Dynamik.
+
+Yangs Arbeit vom 8.~September 2026 untersucht die Robustheit unter gleichmäßig kontrollierten angenäherten Markovbedingungen und passenden Deformationen~\cite{yangmodular}. Eine Energielücke allein liefert diese Voraussetzungen nicht. Für stabile Replica-Phasen braucht man zusätzlich relative Fehlerkontrolle oder eine passende untere Schranke des komplexen Überlappungsbetrags.
+
+Die geordnete Replica-Auslese
+\begin{equation}
+z_{a,b}=\tr\rho\,\rho_{AB}^a\rho_{BC}^b,\qquad
+\omega_{a,b}=z_{a,b}/|z_{a,b}|
+\end{equation}
+besitzt in den jeweils begründeten Klassen den Grenzwert
+\begin{equation}
+\omega_{a,b}\longrightarrow
+\exp\!\left[-\frac{\pi i c_-}{12}
+\left(\frac a{a+1}+\frac b{b+1}-\frac{a+b}{a+b+1}\right)\right].
+\end{equation}
+Gass und Levin beweisen ihre Auswertung insbesondere für geeignete gapped freie Fermion-Grundzustände und String-net-Grundzustände; sie nennen Gegenbeispiele gegen eine uneingeschränkte Universalität~\cite{gasslevinreplica}. Die Replica-Verklebung von Sheffer et al.\ setzt geeignete große Regionen einer passenden $2+1$-dimensionalen Bulkphase voraus~\cite{shefferdefects}. Beide Resultate werden hier nicht unmittelbar auf vier Punkte des isolierten TFPT-Randnetzes übertragen.
+
+Für eine zulässige Realisierung mit $c_-=8$ folgen korrekt
+\begin{equation}
+\boxed{\omega_{1,1}=e^{-2\pi i/9},\qquad
+\omega_{1,2}=e^{-5\pi i/18}}
+\qquad(-40^\circ,\ -50^\circ).
+\end{equation}
+Das sind bedingte Zielsignaturen. Die erste bestimmt $c_-$ nur modulo $72$, beide gemeinsam nur modulo $288$. Die beiden Winkel allein wählen E8 daher nicht eindeutig aus. Die Zweiintervall-Amplitude $3/2$ und diese orientierten Replica-Phasen haben unterschiedliche Gebietsgeometrien; ihre gemeinsame Realisierung muss nachgewiesen werden.
+

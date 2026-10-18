@@ -26,6 +26,9 @@ none of the stale phrasings appear in the active documents.
 
   Python-only (text sentinel over the active documents).
 """
+
+from tex_sources import source_chunks
+from pathlib import Path
 import os
 import re
 
@@ -67,6 +70,20 @@ FORBIDDEN = {
 }
 
 
+def document_body(path: Path) -> str:
+    """Read active prose, excluding the separate generated index/history.
+
+    These reference appendices were not part of the former root-file guard;
+    their historical quotations must not become current prose by expansion.
+    """
+    excluded = {(Path(ROOT) / "tex-artefacts/verification.tex").resolve()}
+    history = (Path(ROOT) / "changelog.tex").resolve()
+    if path.resolve() != history:
+        excluded.add(history)
+    return "".join(chunk.text for chunk in source_chunks(path)
+                   if not excluded.intersection(chunk.include_chain))
+
+
 def run():
     reset()
     print("v188 frontier-wording guard: stale prose must be absent from the active documents")
@@ -74,7 +91,7 @@ def run():
     texts = {}
     for d in ACTIVE_DOCS:
         p = os.path.join(ROOT, d)
-        texts[d] = open(p, encoding="utf-8").read() if os.path.exists(p) else ""
+        texts[d] = document_body(Path(p)) if os.path.exists(p) else ""
 
     all_present = all(texts[d] for d in ACTIVE_DOCS)
     check("ACTIVE DOC SET READABLE [I]: all %d active documents present and read "

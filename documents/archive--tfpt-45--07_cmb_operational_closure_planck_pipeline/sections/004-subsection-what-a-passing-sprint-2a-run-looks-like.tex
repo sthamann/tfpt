@@ -1,0 +1,380 @@
+\subsection{What a passing Sprint 2A run looks like}
+
+The contract is not vapor.  We additionally ship a hand-built compliant
+test bundle that PASSES every hard check (see
+\texttt{tests/test\_v464\_sprint2a\_contract.py::TestCompliantBundlePasses}).
+The compliant bundle uses
+\(K=1.5\,I\) (real scalar so that
+\(\iota_C K \iota_C^\dagger=\overline{K}\) holds trivially), an
+anti-diagonal Calderon involution, a uniform real \(u_\Sigma\) with
+\([u_\Sigma]=1\), a single canonical flag operator equal to
+\(K\) (commutator zero), an identity tetrad with
+\(\mathrm{origin}=\mathrm{derived}\), and a single-shell power
+validation file.  This is not the real TFPT bundle, but it proves
+that the contract is reachable in principle.
+
+The contract files are documented in
+\texttt{tfpt\_cmb/sprint2a\_contract.py::SPRINT2A\_REQUIRED\_OUTPUTS}
+and
+\texttt{tfpt\_cmb/native\_closure\_v46.py::SPRINT2A\_CONTRACT\_METADATA};
+the validator emits \texttt{SPRINT2A\_VALIDATION.json} into the bundle
+directory with full pass/fail detail and Lemma-E sub-theorem grouping.
+
+\subsection{The sole remaining work}
+
+The roadmap collapses to two engineering items and five theorem items:
+
+\paragraph{Engineering.}
+\begin{enumerate}[leftmargin=1.4em]
+\item Sprint 2A boundary extraction yielding the seven contract
+files with \(\mathrm{origin}=\mathrm{real}\) and the canonical
+spectral flag (no Haar rotation).
+\item A real observer embedding: tetrad, \(\eta_{\mathrm{LS}}\),
+parity from a TFPT branch position computation.
+\end{enumerate}
+
+\paragraph{Theorems.}
+Lemmas A, B, C, D, E1--E5 (\S\ref{sec:lemmas}).
+
+% =====================================================================
+\section{The v4.6.6 Proof Discharge Package}
+\label{sec:discharge}
+% =====================================================================
+
+Stefan's v4.6.5 review delivered an uncomfortable but accurate verdict:
+the \emph{proposed\_solution} fields of v4.6.5 were sketches, not
+discharges.  v4.6.6 closes that gap.  This section formalises the
+discharge of all 14 hooks: the full proof body, the boxed final form,
+the discharge taxonomy, the closure condition, and the new theorem (or
+data artifact) required to flip each hook to \textsf{discharged}.
+
+The authoritative source is
+\texttt{tfpt\_cmb.proof\_discharge\_v466}; this section is the
+human-readable summary.  Appendix~\ref{app:discharge} shows the full
+proof body of each lemma verbatim from Stefan's v4.6.6 brief.
+
+\subsection{Discharge taxonomy}
+
+Every hook is tagged with one of 12 status classes.  The taxonomy
+distinguishes \emph{convention adoption} (no theorem needed) from
+\emph{theorem proof} (paper-side work) from \emph{data extraction}
+(engineering work) from \emph{numerical verification}.  This is the
+sharpening Stefan demanded:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.13}
+\begin{tabularx}{\textwidth}{@{}p{0.40\textwidth}cY@{}}
+\toprule
+\textbf{Discharge status class} & \textbf{Hooks} & \textbf{What closes it} \\
+\midrule
+\texttt{closed\_pending\_convention\_adoption}        & A.h1
+& TFPT companion paragraph \(\det_{\mathrm{adm}}=\det_{\mathrm{adm}}^{\mathrm{prim}}\). \\
+\texttt{closed\_pending\_curvature\_instanton\_theorem} & B.h1
+& Curvature Instanton Theorem in TFPT companion paper. \\
+\texttt{closed\_pending\_paper5\_metrology}            & C1.h1, D1.h1, D3.h1
+& Paper 5 metrology theorems (thermal-bath limit, carrier metrology,
+mass-metrology bridge). \\
+\texttt{closed\_pending\_qke\_collision\_kernels}      & C2.h1
+& Explicit TFPT QKE kernels with traces \(c_3\) and \(\beta\). \\
+\texttt{closed\_pending\_bbn\_verification}            & C3.h1
+& PArthENoPE / AlterBBN run with TFPT EM-holonomy weak-rate. \\
+\texttt{closed\_pending\_neutral\_enumeration}         & D2.h1
+& Stable neutral admissible spectral enumeration. \\
+\texttt{closed\_pending\_paper1\_seam\_orientation}    & E3.h1
+& Paper 1 seam-orientation corollary. \\
+\texttt{closed\_pending\_sprint2a\_extraction}         & E1.h1
+& Real Sprint-2A \(K_{\zeta,\mathrm{adm}}\) extraction. \\
+\texttt{closed\_pending\_sprint2a\_real\_basis}        & E4.h1
+& Sprint-2A \(K_{\zeta,\mathrm{adm}}\) in manifestly real basis. \\
+\texttt{closed\_pending\_six\_commutators}             & E2.h1
+& \([K,\iota_C]=[K,B_\Sigma]=[K,\Delta_{\mathrm{prim}}]
+=[K,Q_{\mathrm{top}}]=[K,P_C]=0\). \\
+\texttt{weak\_closed\_strong\_out\_of\_scope}          & E5.h1
+& Adopt Galactic-frame observer for v5.0; defer full microstate. \\
+\texttt{open\_hardest\_no\_full\_discharge}            & C4.h1
+& Three new sub-theorems C4a/C4b/C4c (Press-Schechter source,
+carrier IMF, admissible UV escape). \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Critical-path roadmap (7 steps)}
+
+The seven steps are sequenced in
+\texttt{tfpt\_cmb.proof\_discharge\_v466.ROADMAP\_V466}.  When all
+seven complete, every status flag in the pipeline flips from
+\textsf{derived\_tfpt\_candidate\_v46} to \textsf{derived\_tfpt}
+without further code changes.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{@{}clp{0.30\textwidth}p{0.16\textwidth}@{}}
+\toprule
+\textbf{Step} & \textbf{Action} & \textbf{Discharges} & \textbf{Kind / effort} \\
+\midrule
+1 & Adopt \(\det_{\mathrm{adm}}\equiv\det_{\mathrm{adm}}^{\mathrm{prim}}\) as a formal TFPT definition. & A.h1 & convention (1 paragraph) \\
+2 & Real Sprint 2A boundary extraction in real (sheet) basis. & E1.h1, E4.h1 & engineering (closed-branch run) \\
+3 & Prove the six commutators of the canonical spectral flag (\(\mathfrak A_{\mathrm{adm}}\) abelian). & E2.h1 & theorem (mathematical main boss) \\
+4 & Stable neutral spectral enumeration. & D2.h1 & theorem (Paper 2 corollary) \\
+5 & Reionization Transport Collapse: prove C4a/C4b/C4c. & C4.h1 & theorem (astrophysical main boss) \\
+6 & Mass Metrology Bridge in Paper 5. & D3.h1 & theorem (Paper 5) \\
+7 & Run official Planck likelihood with full covariance. & --- & verification \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The seven hooks NOT on the critical path
+(B.h1, C1.h1, C2.h1, C3.h1, D1.h1, E3.h1, E5.h1) are blocked by the
+same supporting theorems and discharge automatically: B by the
+instanton-theorem techniques used in C4 collapse, C1/D1/D3 by the
+single Paper 5 metrology programme, C2 by the Sprint 2A bundle that
+also closes E1/E4, C3 by a stand-alone numerical run, E3 by a Paper
+1 corollary, E5 by the v5.0 observer convention.
+
+\subsection{The single acceptance gate}
+
+The pipeline's flip predicate is
+\texttt{tfpt\_cmb.proof\_discharge\_v466.can\_flip\_to\_derived\_tfpt}.
+It accepts the status flip iff the dictionary of discharge outcomes
+matches the 14 entries of
+\texttt{REQUIRED\_DISCHARGE\_OUTCOMES}, which are:
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Hook} & \textbf{Required outcome} & \textbf{What that means} \\
+\midrule
+A.h1 & \texttt{convention\_adopted} & \(\det_{\mathrm{adm}}^{\mathrm{prim}}\) declared \\
+B.h1 & \texttt{instanton\_theorem\_proved} & Curvature Instanton Theorem \\
+C1.h1 & \texttt{paper5\_metrology\_published} & Stefan-Boltzmann limit \\
+C2.h1 & \texttt{qke\_collision\_kernels\_data\_present} & QKE kernels \(c_3\), \(\beta\) \\
+C3.h1 & \texttt{bbn\_y\_p\_verification\_complete} & PArthENoPE/AlterBBN \\
+C4.h1 & \texttt{C4a\_C4b\_C4c\_proved\_and\_collapse\_verified} & 3 sub-theorems + verify \\
+D1.h1 & \texttt{paper5\_metrology\_published} & Carrier metrology \\
+D2.h1 & \texttt{neutral\_enumeration\_complete} & 48 modes enumerated \\
+D3.h1 & \texttt{paper5\_mass\_metrology\_bridge\_proved} & 1\,eV identification \\
+E1.h1 & \texttt{sprint2a\_K\_zeta\_adm\_real\_extracted} & real bundle \\
+E2.h1 & \texttt{six\_commutators\_computed\_centralizer\_abelian} & 6 commutators \\
+E3.h1 & \texttt{paper1\_seam\_orientation\_corollary\_published} & Paper 1 corollary \\
+E4.h1 & \texttt{sprint2a\_real\_basis\_with\_iota\_K\_compatibility} & real basis \\
+E5.h1 & \texttt{weak\_observer\_specification\_adopted} & Galactic frame \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This is the entirety of what stands between TFPT v4.6 candidate and
+TFPT v5.0 proven.  Nothing else.  No more code, no more figures, no
+more audit lines.  Just the 14 outcomes above.
+
+\begin{tfptfrontbox}
+\textbf{The honest one-line bilance after v4.6.6:}\\
+\emph{Code complete. Audit gate armed. Proof skeletons complete.
+Proof discharge formalised. Candidate strong. Theorem discharge not
+complete.}
+\end{tfptfrontbox}
+
+% =====================================================================
+\section{The v4.6.7 Final Closure Proposal: Seven Bridge Theorems}
+\label{sec:closure467}
+% =====================================================================
+
+Stefan's v4.6.6 review delivered the final acceptance test:
+\emph{theory-intern kann ich die verbleibenden Probleme schliessen,
+indem wir die fehlenden Brueckensaetze explizit als TFPT Theoreme
+formulieren und beweisen}.  v4.6.7 does this.  Seven TFPT bridge
+theorems close all 14 hooks theory-internally; what remains is
+artefact validation, not theory.
+
+\subsection{The seven bridge theorems}
+
+The authoritative source is \texttt{tfpt\_cmb.closure\_v467}; this
+section is the human-readable summary.  Each theorem is given by its
+ID, statement (verbatim), boxed final form, and the hooks it closes.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{@{}p{0.07\textwidth}p{0.30\textwidth}p{0.30\textwidth}Y@{}}
+\toprule
+\textbf{ID} & \textbf{Title} & \textbf{Boxed final form} & \textbf{Closes} \\
+\midrule
+BT1 & Primitive Zeta Convention &
+\(\rho_\Lambda=-\Re\log\det_{\mathrm{adm}}^{\mathrm{prim}}(1-U_\Sigma)
+=2c_3 e^{-2\alpha_0^{-1}}\) & A.h1 \\
+BT2 & Curvature Instanton Theorem &
+\(\alpha_R^\Sigma=(\Omega_{\mathrm{adm}}/4\pi)e^{1/\phi_0}\); the
+Starobinsky block follows. & B.h1 \\
+BT3 & Thermal Metrology + QKE Ward &
+\(\omega_\gamma=\pi^2 c_3^4\); \(T_0^4=45 c_3^4 H_{100}^2\);
+\(N_{\mathrm{eff}}=3+c_3+\beta\). & C1.h1, C2.h1 \\
+BT4 & BBN Holonomy Sensitivity &
+\(Y_p=\tfrac14-\beta\) up to \(O(\beta^2)\sim 1.8\times 10^{-5}\). & C3.h1 \\
+BT5 & Reionization Transport Collapse (C4a + C4b + C4c) &
+\(\tau_{\mathrm{reio}}=\langle u_\Sigma,P_{\mathrm{ion}} u_\Sigma\rangle
++\tfrac12\langle u_\Sigma,K_T^2 u_\Sigma\rangle
+=\phi_0+\tfrac12 c_3^2\). & C4.h1 \\
+BT6 & Matter Occupancy + Mass Metrology &
+\(\omega_b=\lambda_C/10\);
+\(\omega_c=48\phi_0^2(1-\lambda_C/2)\);
+\(\sum m_\nu=\phi_0+\beta+\delta_{\mathrm{top}}\) eV. & D1.h1, D2.h1, D3.h1 \\
+BT7 & Canonical Branch Phase &
+\(\mathfrak A_{\mathrm{adm}}\) abelian; \(u_\Sigma\) winding-1
+isotopy unique; \(\iota_C K\iota_C^\dagger=\overline K\);
+\(T(\hat n)\in\mathbb R\); \(\mathcal O_+=\mathcal O_{\mathrm{Galactic}}\). & E1--E5.h1 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\paragraph{BT1 (closes A.h1).}  TFPT defines the physical vacuum-density
+determinant as the primitive admissible zeta determinant.
+Non-primitive admissible repetitions are \emph{not} physical TFPT
+vacuum classes.  This is a clean physical choice (the same role as
+the Selberg primitive-orbit decomposition on closed Riemannian
+manifolds), not a trick.
+
+\paragraph{BT2 (closes B.h1).}  \(Z_{\mathrm{adm}}(R)\) has a unique
+primitive curvature instanton with action \(S_{\mathrm{inst}}=1/\phi_0\)
+and zero-mode norm \(N_0=4\pi/\Omega_{\mathrm{adm}}\); saddle-point
+gives \(\chi_R=N_0\,e^{-S_{\mathrm{inst}}}\) and inverting yields
+\(\alpha_R^\Sigma\).  Structurally analogous to Yang-Mills,
+BCS-gap, and Coleman-de\,Luccia.  Closes the inflation block
+\((A_s,n_s,r,\alpha_s,n_t)\) without COBE.
+
+\paragraph{BT3 (closes C1.h1, C2.h1).}  Combines the dimensional
+radiation residue \(\mathcal R_4^\Sigma=c_3^4\) with the bosonic
+phase-space norm \(\pi^2\) (giving \(\omega_\gamma=\pi^2 c_3^4\)) and
+the QKE transport-trace decomposition with two Ward residues
+\(c_3\) (weak seam) and \(\beta\) (EM holonomy).  The Stefan-Boltzmann
+inversion \(T_0^4=45 c_3^4 H_{100}^2\) closes the metrology loop.
+
+\paragraph{BT4 (closes C3.h1).}  The TFPT EM holonomy \(\beta\)
+deforms the weak rate uniformly: \(\Gamma_{\mathrm{weak}}^\Sigma=
+\Gamma_{\mathrm{weak}}^{(0)}(1-\beta)+O(\beta^2)\).  Linear freeze-out
+sensitivity \(\partial X_n/\partial\beta\bigr|_0=-1/2\) gives
+\(X_n^\Sigma=1/8-\beta/2\) and \(Y_p=2X_n=1/4-\beta\) up to
+\(O(\beta^2)\sim 10^{-5}\).
+
+\paragraph{BT5 (closes C4.h1, with sub-theorems C4a, C4b, C4c).}
+This is Stefan's main astrophysical achievement.  Three sub-theorems
+combined collapse the line integral to two retained-state expectation
+values:
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{C4a (Press-Schechter Source):}
+\(\mathrm{SFR}_{\mathrm{TFPT}}(M,z)=
+\frac{d}{dt}[M f_{\mathrm{coll}}^\Sigma(M,z)]\) with
+\(f_{\mathrm{coll}}^\Sigma\) from \(P_k^\Sigma\) (Lemma D2).
+\item \textbf{C4b (Carrier IMF Photon Yield):}
+\(N_\gamma^{\mathrm{TFPT}}(M,z)=
+\mathrm{Tr}_{\mathrm{carrier}}(P_{\mathrm{ion}}\rho_{\mathrm{stellar}}^\Sigma)\).
+\item \textbf{C4c (Admissible UV Escape):}
+\(f_{\mathrm{esc}}^{\mathrm{TFPT}}(M,z)=
+\mathrm{Res}_{\mathrm{UV}}^{\mathrm{adm}}(M,z)\).
+\end{itemize}
+The non-trivial content is \emph{not} the integral arithmetic --- that
+is trivial.  It is that the three TFPT-derived quantities collapse
+onto a normalised ionisation kernel of total retained weight
+\(\phi_0\), and the second-order Thomson sector contributes exactly
+\(c_3^2/2\).
+
+\paragraph{BT6 (closes D1.h1, D2.h1, D3.h1).}  Three claims unified:
+the carrier two-form trace \(\omega_b=\lambda_C/10\); the stable
+neutral completeness
+\(\mathrm{Tr}_{\mathrm{adm}}(P_{\mathrm{neutral}})=N_{\mathrm{fam}}\,\dim S^+
+=3\cdot 16=48=\Omega_{\mathrm{adm}}\) (with the leakage
+\(1-\lambda_C/2\)); and the mass-metrology bridge
+\(E_\nu^\Sigma=1\,\mathrm{eV}\) that fixes the dimensionless Takagi
+trace as the eV unit.
+
+\paragraph{BT7 (closes E1.h1--E5.h1).}  The canonical branch phase
+theorem unifies the five E sub-theorems: existence
+(\(K_\Sigma\) self-adjoint on \(\mathcal H_{\mathrm{adm}}\)),
+abelian flag algebra
+(\(\mathfrak A_{\mathrm{adm}}=W^\ast(K,\iota_C,B_\Sigma,\Delta_{\mathrm{prim}},Q_{\mathrm{top}},P_C)\)),
+seam-state uniqueness, Calderon reality, and observer embedding
+\(\mathcal O_+=\mathcal O_{\mathrm{Galactic}}\) for v5.0.
+
+\subsection{The final hook resolution table}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.13}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Hook} & \textbf{Bridge theorem} & \textbf{v4.6.7 outcome} \\
+\midrule
+A.h1   & BT1 & \texttt{resolved\_by\_primitive\_zeta\_convention} \\
+B.h1   & BT2 & \texttt{resolved\_by\_curvature\_instanton\_theorem} \\
+C1.h1  & BT3 & \texttt{resolved\_by\_thermal\_metrology} \\
+C2.h1  & BT3 & \texttt{resolved\_by\_qke\_ward\_theorem} \\
+C3.h1  & BT4 & \texttt{resolved\_by\_bbn\_holonomy\_sensitivity} \\
+C4.h1  & BT5 & \texttt{resolved\_by\_reionization\_transport\_collapse} \\
+D1.h1  & BT6 & \texttt{resolved\_by\_carrier\_two\_form\_metrology} \\
+D2.h1  & BT6 & \texttt{resolved\_by\_stable\_neutral\_completeness} \\
+D3.h1  & BT6 & \texttt{resolved\_by\_mass\_metrology\_bridge} \\
+E1.h1  & BT7 & \texttt{resolved\_by\_branch\_operator\_existence} \\
+E2.h1  & BT7 & \texttt{resolved\_by\_abelian\_flag\_algebra} \\
+E3.h1  & BT7 & \texttt{resolved\_by\_seam\_orientation} \\
+E4.h1  & BT7 & \texttt{resolved\_by\_calderon\_reality} \\
+E5.h1  & BT7 & \texttt{resolved\_by\_weak\_observer\_embedding} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This dictionary is shipped as
+\texttt{REQUIRED\_DISCHARGE\_OUTCOMES\_V467} in
+\texttt{tfpt\_cmb.closure\_v467} and is exactly what
+\texttt{can\_flip\_to\_theory\_complete()} requires for the status
+flip from \textsf{derived\_tfpt\_candidate\_v46} to
+\textsf{derived\_tfpt\_theory\_complete\_pending\_artifacts}.
+
+\subsection{Status taxonomy after v4.6.7}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{@{}p{0.32\textwidth}Y@{}}
+\toprule
+\textbf{Status} & \textbf{Meaning} \\
+\midrule
+\textsf{derived\_tfpt\_candidate\_v46} &
+v4.6 candidate; Lemmas A--E proposed, none discharged. \\
+\textsf{derived\_tfpt\_theory\_complete\_\allowbreak{}pending\_artifacts}
+\,(\textbf{NEW v4.6.7}) &
+All 14 hooks resolved theory-internally by 7 bridge theorems.
+Pending: artefact validation. \\
+\textsf{derived\_tfpt} &
+All artefact validations also passed. The pipeline becomes
+\emph{TFPT-derived} in the strict sense. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{The five remaining artefact validation groups}
+
+\texttt{ARTEFACT\_VALIDATION\_REQUIREMENTS} contains five groups; each
+must independently pass for the final flip to \textsf{derived\_tfpt}:
+
+\begin{enumerate}[leftmargin=1.4em]
+\item \textbf{Sprint 2A branch bundle} (closes E1, E2, E3, E4, E5 at
+artefact level): the 12-file boundary bundle passes the 24/24 hard
+checks of \texttt{tfpt\_cmb.sprint2a\_contract.validate\_sprint2a\_branch}
+with \(\mathrm{branch\_origin}=\mathrm{real}\).
+\item \textbf{Sprint 2C thermal/matter} (closes C2, C3): explicit
+QKE collision kernels with \(\mathrm{Tr}_{\mathrm{adm}}(K_{\mathrm{weak}})=c_3\)
+and \(\mathrm{Tr}_{\mathrm{adm}}(K_{\mathrm{EM}})=\beta\) numerically
+verified; PArthENoPE/AlterBBN reproduces \(Y_p=1/4-\beta\) to
+\(10^{-4}\).
+\item \textbf{Sprint 2D reionization} (closes C4): TFPT ionisation
+history yielding the line-integral collapse to
+\(\phi_0+c_3^2/2\) within \(10^{-3}\) relative.
+\item \textbf{Planck likelihood}: official
+\(-2\ln\mathcal L\) within Planck-2018 \(\Lambda\)CDM range.
+\item \textbf{Paper 5 metrology corollary} (closes C1, D1, D3): the
+metrology bridge identifying the carrier traces with the cosmological
+densities and \(E_\nu^\Sigma=1\,\mathrm{eV}\).
+\end{enumerate}
+
+\begin{tfptfrontbox}
+\textbf{Stefan v4.6.7 closing line:}\\
+\emph{Die Theoriebrücke ist geschlossen.\\
+Die Messbrücke muss noch laufen.}
+\end{tfptfrontbox}
+
+% =====================================================================

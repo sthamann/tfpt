@@ -1,0 +1,356 @@
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document rewrites TFPT v2.8 into a carrier-first primary form. The rigid core is the Minimal Carrier Theorem: admissibility on the orientable double cover together with the seam involution forces the minimal carrier $E_3\oplus E_2$. From this rigid package follow the global Standard Model group $S(U(3)\times U(2))$, one chiral family $S^+=\Lambda^{\mathrm{even}}E$, the carrier norm $\tr_EY^2=5/6$, and the linear and cubic trace cancellations. On the canonical occupancy branch, the admissible chiral multiplicity is
+\[
+\Oadm = N_{\mathrm{fam}}\dim S^+ = 3\times16 = 48.
+\]
+The abelian coefficient takes the carrier form
+\[
+\bone(N_{\mathrm{fam}},N_H)=\frac43 N_{\mathrm{fam}}+\frac1{10}N_H,
+\]
+so the canonical branch $(N_{\mathrm{fam}},N_H)=(3,1)$ gives $\bone=41/10$. The electromagnetic stationarity equation can then be written entirely in terms of the carrier packet
+\[
+\Cmin=(E_3\oplus E_2,\;Y,\;S^+,\;\gamma,\;B),
+\]
+with $\gamma=\tr_EY^2=5/6$ and $B=\rank E_3/\rank E_2=3/2$. Seam descent for $\cthree$, the induced Einstein channel, the E$_8$ reinterpretation, Higgs selection, and discrete phase grammar are retained as structural bridges or dynamical completion targets, but no longer presented as part of the hard carrier core.
+\end{abstract}
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60, breakable,
+    title={\textbf{Status boundary for the v2.9 rewrite}}, fonttitle=\bfseries]
+\textbf{1. Hard carrier statements}
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item minimal carrier $E_3\oplus E_2$,
+    \item global Standard Model group $S(U(3)\times U(2)) \cong (SU(3)\times SU(2)\times U(1)_Y)/\mathbb Z_6$,
+    \item $S^+=\Lambda^{\mathrm{even}}E$ as one chiral family with $\nu^c$,
+    \item carrier invariants $\dim S^+=16$, $\gamma=\tr_EY^2=5/6$, and $B=\rank E_3/\rank E_2=3/2$,
+    \item linear and cubic trace cancellation,
+    \item the general abelian index formula $\bone(N_{\mathrm{fam}},N_H)=\frac43 N_{\mathrm{fam}}+\frac1{10}N_H$.
+\end{itemize}
+
+\textbf{2. Structural bridges}
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item three families from the three distinguished cycles $C_1,C_2,C_T$,
+    \item $\Oadm=N_{\mathrm{fam}}\dim S^+$ and $\Oadm=48$ on the canonical branch,
+    \item $\deltatop = \Oadm\,\cthree^4$ as occupancy transgression,
+    \item $\delta_2 = B\gamma\,\Oadm^2\cthree^8$ and therefore $B\gamma=5/4$ on the minimal carrier,
+    \item the E$_8$ rereading $\lambda_{E8}=\gamma/\ln(248/60)$.
+\end{itemize}
+
+\textbf{3. Dynamical completions}
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item seam descent for $\cthree$,
+    \item the relative-$a_2$ / induced-Einstein channel,
+    \item the light seam-even Higgs candidate in $E_2$,
+    \item the physical realization of the $\mathbb Z_6\rtimes \mathbb Z_2$ phase grammar.
+\end{itemize}
+\end{tcolorbox}
+
+\tableofcontents
+
+\section{Overview and Claim Map}
+
+The v2.9 rewrite should be read from admissibility to carrier, from carrier to occupancy, and only then from occupancy to closure and phenomenology. The master line is therefore
+\[
+(\widetilde M,\Gamma,\tau)
+\Rightarrow E_3\oplus E_2
+\Rightarrow Y,\ S^+,\ \gamma,\ B
+\Rightarrow \bone,\ \Oadm
+\Rightarrow \text{CFE}
+\Rightarrow \alpha.
+\]
+The main bridge branches are secondary to this line:
+\[
+\Oadm \Rightarrow \deltatop,\ \delta_2,
+\qquad
+\gamma \Rightarrow \lambda_{E8},
+\qquad
+\Delta a_2^{\mathrm{rel}} \Rightarrow \Mpl.
+\]
+The center of the architecture is therefore not the number $48$ by itself, but the rigid minimal carrier package that later induces $48$ on the canonical occupancy branch.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.24\linewidth}>{\raggedright\arraybackslash}p{0.14\linewidth}X>{\raggedright\arraybackslash}p{0.12\linewidth}@{}}
+\toprule
+Claim & Status & Depends on & First derived in section \\
+\midrule
+Minimal carrier $E_3\oplus E_2$ & hard & admissibility on $\widetilde M$ and seam involution $\tau$ & 3 \\
+Global Standard Model group & hard & minimal carrier split & 3 \\
+One chiral family $S^+$ & hard & minimal carrier and half-spinor construction & 4 \\
+General abelian index $\bone(N_{\mathrm{fam}},N_H)$ & hard & carrier traces plus scalar multiplicity & 4 \\
+Canonical occupancy $\Oadm=48$ & structural bridge & family-index bridge and $\dim S^+=16$ & 5 \\
+Carrier form of the CFE & structural bridge & $\cthree$, $\Oadm$, $\bone$, $B$, $\gamma$ & 6 \\
+Induced Einstein channel & dynamical target & relative spectral completion and canonical occupancy & 8 \\
+E$_8$ rereading & downstream reinterpretation & carrier norm $\gamma$ & 9 \\
+\bottomrule
+\end{tabularx}
+\caption{Claim map for the carrier-first v2.9 presentation. Appendix~A records a compact v2.8$\to$v2.9 dictionary.}
+\end{table}
+
+\section{Admissibility and Seam Data}
+
+The ambient v2.9 datum may be packaged as
+\[
+\mathfrak T_{2.9} = \bigl(\widetilde M \to M,\ \Gamma,\ \tau,\ \chi\bigr),
+\]
+but the hard carrier core uses only $(\widetilde M,\Gamma,\tau)$. The field $\chi$ belongs to the absolute-scale and gravity channels discussed later in Section~8.
+
+\subsection{Seam data recalled from v2.8}
+
+The seam information needed by the carrier rewrite is already present in v2.8. In the minimal gluing class one has
+\[
+U_\Gamma(\theta)=e^{i\theta},
+\qquad
+\mathrm{SF}(U_\Gamma)=1,
+\qquad
+\Delta_\Gamma=2\pi.
+\]
+On the orientable double cover the distinguished cycles are
+\[
+C_1,\qquad C_2,\qquad C_T,
+\]
+where $C_T$ is the seam cycle in the glued description and corresponds to $\Gamma_+\cup\Gamma_-$ in the cut description. These data should appear near the front of the paper because Sections~3--6 all depend on them.
+
+\begin{tcolorbox}[colback=blue!3, colframe=blue!50!black,
+    title={\textbf{What $\chi$ does and does not do}}, fonttitle=\bfseries\small]
+$\chi$ belongs to the absolute-scale and gravitational channels. It does \emph{not} enter the hard derivation of the minimal carrier, the global Standard Model group, the one-family half-spinor, or the carrier norm $\tr_EY^2=5/6$. Only after the carrier packet has been fixed does $\chi$ enter the relative spectral stationarity problem and the induced-gravity target.
+\end{tcolorbox}
+
+\section{The Minimal Carrier Theorem}
+
+\subsection{Uniqueness of the \texorpdfstring{$3+2$}{3+2} split}
+
+\begin{theorem}[Minimal carrier theorem]
+Let $E=E_b\oplus E_s$ be a split carrier with traceless diagonal generator
+\[
+Y_{b,s}=\mathrm{diag}\!\left(-\frac1b,\ldots,-\frac1b,\frac1s,\ldots,\frac1s\right).
+\]
+If one simultaneously requires
+\[
+\dim \Lambda^{\mathrm{even}}E = 16
+\qquad\text{and}\qquad
+\tr_E Y_{b,s}^2 = \frac56,
+\]
+then necessarily $\{b,s\}=\{3,2\}$.
+\end{theorem}
+
+\begin{proof}
+For a rank-$g$ carrier with $g=b+s$, the positive half-spinor has dimension
+\[
+\dim \Lambda^{\mathrm{even}}E = 2^{g-1}.
+\]
+Demanding one chiral family gives $2^{g-1}=16$, hence $g=5$ and therefore $b+s=5$.
+
+For the traceless generator above one has
+\[
+\tr_E Y_{b,s}^2 = b\left(\frac{1}{b^2}\right)+s\left(\frac{1}{s^2}\right)
+= \frac1b+\frac1s
+= \frac{b+s}{bs}
+= \frac{5}{bs}.
+\]
+Imposing $\tr_EY_{b,s}^2=5/6$ yields $bs=6$. Together with $b+s=5$, this forces $(b,s)=(3,2)$ up to order.
+\end{proof}
+
+Hence from now on we set
+\[
+E=E_3\oplus E_2,
+\qquad
+P_3:=\frac{1-\tau}{2},
+\qquad
+P_2:=\frac{1+\tau}{2}.
+\]
+
+\begin{proposition}[Hypercharge as an affine form of the seam involution]
+For the minimal carrier,
+\[
+Y=-\frac13 P_3+\frac12 P_2
+=\mathrm{diag}\!\left(-\frac13,-\frac13,-\frac13,\frac12,\frac12\right),
+\]
+and equivalently
+\[
+Y=\frac{1}{12}\mathbf 1+\frac{5}{12}\tau.
+\]
+\end{proposition}
+
+\begin{proof}
+Using $P_3=(1-\tau)/2$ and $P_2=(1+\tau)/2$ gives
+\[
+-\frac13 P_3+\frac12 P_2
+= -\frac16(1-\tau)+\frac14(1+\tau)
+= \frac{1}{12}\mathbf 1+\frac{5}{12}\tau.
+\]
+\end{proof}
+
+\begin{theorem}[Global Standard Model theorem]
+The determinant-preserving connected stabilizer of the minimal carrier split is
+\[
+\mathrm{Aut}_0(E_3\oplus E_2,\det=1)
+= S(U(3)\times U(2))
+\cong \frac{SU(3)\times SU(2)\times U(1)_Y}{\mathbb Z_6}.
+\]
+\end{theorem}
+
+\begin{proof}
+Automorphisms preserving the split and the determinant condition act independently on $E_3$ and $E_2$ with unit determinant on the combined carrier. This gives $S(U(3)\times U(2))$. The covering map from $SU(3)\times SU(2)\times U(1)_Y$ to $S(U(3)\times U(2))$ has the canonical $\mathbb Z_6$ subgroup as kernel, yielding the stated global Standard Model form.
+\end{proof}
+
+Set
+\[
+S^+ := \Lambda^{\mathrm{even}}(E_3\oplus E_2).
+\]
+
+\begin{proposition}[Carrier invariants]
+For the minimal carrier,
+\[
+\gamma := \tr_EY^2 = \frac56,
+\qquad
+B := \frac{\rank E_3}{\rank E_2} = \frac32,
+\qquad
+\dim S^+ = 16.
+\]
+\end{proposition}
+
+\begin{proof}
+The first identity is
+\[
+\tr_EY^2 = 3\left(\frac19\right)+2\left(\frac14\right)=\frac13+\frac12=\frac56.
+\]
+The second is immediate from the split ranks. The third follows from
+\[
+\dim S^+ = \dim \Lambda^{\mathrm{even}}E = 2^{5-1}=16.
+\]
+\end{proof}
+
+\begin{definition}[Minimal carrier packet]
+The rigid carrier packet of v2.9 is
+\[
+\Cmin := (E_3\oplus E_2,\;Y,\;S^+,\;\gamma,\;B).
+\]
+\end{definition}
+
+\section{Carrier Matter, Trace Identities, and the Abelian Index}
+
+\subsection{One chiral family from the positive half-spinor}
+
+\begin{theorem}[Carrier matter theorem]
+For the minimal carrier $E=E_3\oplus E_2$, the positive half-spinor
+\[
+S^+ := \Lambda^{\mathrm{even}}(E_3\oplus E_2)
+\]
+decomposes as
+\[
+(1,1)_0
+\oplus
+(3,2)_{1/6}
+\oplus
+(\bar 3,1)_{-2/3}
+\oplus
+(\bar 3,1)_{1/3}
+\oplus
+(1,2)_{-1/2}
+\oplus
+(1,1)_1.
+\]
+Thus $S^+$ carries exactly one Standard Model family with a right-handed neutrino:
+\[
+\nu^c,\ Q,\ u^c,\ d^c,\ L,\ e^c.
+\]
+\end{theorem}
+
+\begin{proof}
+The even exterior powers split as
+\[
+\Lambda^{\mathrm{even}}E
+=
+\Lambda^0 E \oplus \Lambda^2 E \oplus \Lambda^4 E.
+\]
+Now
+\[
+\Lambda^0 E = (1,1)_0,
+\]
+\[
+\Lambda^2 E = \Lambda^2 E_3 \oplus (E_3\otimes E_2)\oplus \Lambda^2 E_2
+= (\bar 3,1)_{-2/3}\oplus (3,2)_{1/6}\oplus (1,1)_1,
+\]
+and $\Lambda^4E \cong E^\ast$ because $\det E$ is trivial in the $S(U(3)\times U(2))$ form, so
+\[
+\Lambda^4E \cong (\bar 3,1)_{1/3}\oplus (1,2)_{-1/2}.
+\]
+Collecting the terms gives the stated multiplets.
+\end{proof}
+
+\subsection{Trace identities}
+
+\begin{theorem}[General half-spinor quadratic trace identity]
+Let $Y$ be a traceless diagonal generator on a rank-$g$ carrier $E$. Then on the positive half-spinor
+\[
+S^+ = \Lambda^{\mathrm{even}}E
+\]
+one has
+\[
+\tr_{S^+}Y^2 = 2^{g-3}\,\tr_EY^2.
+\]
+\end{theorem}
+
+\begin{proof}
+Write the diagonal weights of $Y$ as $q_i$ with $\sum_i q_i=0$. Then
+\[
+\tr_{S^+}Y^2
+=
+\sum_{S\ \mathrm{even}}
+\left(\sum_{i\in S} q_i\right)^2.
+\]
+Each $q_i^2$ appears in $2^{g-2}$ even subsets and each pair $q_iq_j$ appears in $2^{g-3}$ even subsets. Using
+\[
+\left(\sum_i q_i\right)^2=0
+\]
+shows that the cross terms cancel half the self-term contribution, leaving
+\[
+\tr_{S^+}Y^2
+=
+2^{g-3}\sum_i q_i^2
+=
+2^{g-3}\tr_EY^2.
+\]
+\end{proof}
+
+\begin{corollary}[Minimal carrier quadratic trace]
+For the minimal carrier,
+\[
+\tr_{S^+}Y^2 = 2^{5-3}\tr_EY^2 = 4\cdot\frac56 = \frac{10}{3}.
+\]
+\end{corollary}
+
+\begin{theorem}[Linear and cubic trace cancellation]
+On the one-family carrier spectrum $S^+$ one has
+\[
+\tr_{S^+}Y = 0,
+\qquad
+\tr_{S^+}Y^3 = 0.
+\]
+\end{theorem}
+
+\begin{proof}
+Using the explicit family decomposition above, the hypercharges are
+\[
+0,\quad \frac16,\quad -\frac23,\quad \frac13,\quad -\frac12,\quad 1,
+\]
+with multiplicities $1,6,3,3,2,1$. Hence
+\[
+\tr_{S^+}Y
+= 6\cdot\frac16+3\cdot\!\left(-\frac23\right)+3\cdot\frac13+2\cdot\!\left(-\frac12\right)+1=0,
+\]
+and
+\[
+\tr_{S^+}Y^3
+= 6\cdot\left(\frac16\right)^3
++3\cdot\left(-\frac23\right)^3
++3\cdot\left(\frac13\right)^3
++2\cdot\left(-\frac12\right)^3
++1^3=0.
+\]
+\end{proof}
+

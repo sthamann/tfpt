@@ -1,0 +1,229 @@
+\section{Intrinsic closed branch and canonical rigid object}
+\label{sec:rg-map-compiler-outputs}
+
+The closed branch is not selected by a comparison functional. At the top of the main-text theorem
+stack now stands a thinner operational seed layer: quasilocal Euclidean dynamics, reflection
+positivity, finite relative action, a nontrivial seam class, and one elliptic collar generator.
+That seed induces the one-sided admissible boundary datum. Once the induced datum is fixed, the
+remaining closure problem splits into one joint discrete admissibility theorem and one continuous
+retained-sector variational problem. The discrete theorem fixes carrier, family, determinant, and
+strong-CP data simultaneously; the continuous sector is the unique admissible critical point of one
+projected modular free energy on the retained branch. Their compatibility determines one intrinsic
+branch and therefore one canonical rigid object inside the theorem class.
+
+\subsection{Operational seed and boundary generation}
+\label{sec:operational-seed-generation}
+
+\begin{definition}[Operational seed category]
+\label{def:operational-seed-category}
+Let $\Seedop$ denote the category whose objects are tuples
+\[
+\mathfrak S=(\mathfrak A_{\mathrm{loc}},\tau_t,\Theta,\omega,[u_\Sigma],\mathcal D_{\mathrm{coll}})
+\]
+satisfying:
+\begin{enumerate}[label=(\roman*), leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item $\mathfrak A_{\mathrm{loc}}$ is a quasilocal Euclidean observable net with positive-time
+    reflection $\Theta$;
+    \item $\omega$ is reflection positive and clustering on the admissible local algebra, with finite
+    relative action with respect to the declared reference sector;
+    \item $[u_\Sigma]\neq 0$ is a nontrivial seam class;
+    \item $\mathcal D_{\mathrm{coll}}$ is a first-order elliptic collar generator whose positive-side
+    restriction is reflection regular.
+\end{enumerate}
+Morphisms are unitary intertwiners preserving the displayed structures.
+\end{definition}
+
+\begin{theorem}[Operational collar completion]
+\label{thm:operational-collar-completion}
+There exists a functor
+\[
+\Cseed:\Seedop\longrightarrow \mathbf{SBord}^{\mathrm{adm}}
+\]
+which assigns to every operational seed $\mathfrak S$ a canonically induced one-sided admissible
+spectral bordism
+\[
+\Cseed(\mathfrak S)=\mathcal B(\mathfrak S)
+\]
+with induced boundary datum
+\[
+\mathfrak T_{\partial}(\mathfrak S)=(\mathcal A_+,\mathcal H_+,D_+,J,\Gamma,B_\Sigma).
+\]
+\end{theorem}
+
+\begin{proof}[Proof architecture]
+Reflection positivity and the positive-time net reconstruct the one-sided OS Hilbert space on the
+collar. The first-order elliptic collar generator determines the boundary operator $B_\Sigma$,
+while the nontrivial seam class gives the induced spectral-flow class. The resulting one-sided
+tuple satisfies exactly the axioms of \Cref{def:admissible-spectral-bordism-category}.
+\end{proof}
+
+\begin{definition}[Operational seed complexity]
+\label{def:operational-seed-complexity}
+For $\mathfrak S\in\Seedop$, define the pulled-back seed complexity by
+\[
+\mathcal C_{\mathrm{seed}}(\mathfrak S):=\mathcal C_{\mathrm{lex}}(\Cseed(\mathfrak S)).
+\]
+\end{definition}
+
+\begin{corollary}[Minimal operational seed induces the canonical boundary datum]
+\label{cor:minimal-operational-seed}
+Let $\mathfrak S_{\min}$ be a lexicographically minimal nontrivial object of $\Seedop$ with respect
+to $\mathcal C_{\mathrm{seed}}$. Then
+\[
+\Cseed(\mathfrak S_{\min})=\mathcal B_{\min}
+\]
+up to unitary equivalence, hence the canonical one-sided boundary datum $\Tbound$ is induced by the
+minimal operational seed.
+\end{corollary}
+
+\begin{proof}
+By definition of $\mathcal C_{\mathrm{seed}}$, minimizing over $\Seedop$ is equivalent to minimizing
+the lexicographic admissible complexity of the induced bordism in
+$\mathbf{SBord}^{\mathrm{adm}}$. The minimal-packaging theorem therefore identifies
+$\Cseed(\mathfrak S_{\min})$ with $\mathcal B_{\min}$ up to unitary equivalence, and the induced
+boundary datum is exactly $\Tbound$.
+\end{proof}
+
+\begin{axiom}[Physical operationality]
+\label{ax:physical-operationality}
+The physically realized world is represented by an object of $\Seedop$.
+\end{axiom}
+
+\subsection{Initial admissible bordisms and induced boundary data}
+
+\begin{definition}[Admissible spectral-bordism category]
+\label{def:admissible-spectral-bordism-category}
+Let $\mathbf{SBord}^{\mathrm{adm}}$ denote the category whose objects are tuples
+\[
+\mathcal B=(\mathcal A_+,\mathcal H_+,D_+,J,\Gamma)
+\]
+such that:
+\begin{enumerate}[label=(\roman*), leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item $D_+$ is an elliptic Dirac-type operator on a one-sided collar with reflection-regular
+    boundary behavior;
+    \item the retained Euclidean sector is reflection positive;
+    \item the relative action with respect to the declared reference sector is finite;
+    \item the seam class is nontrivial, equivalently $\SF(U_\Sigma)\neq 0$.
+\end{enumerate}
+Morphisms are unitary intertwiners preserving the displayed one-sided data.
+\end{definition}
+
+\begin{definition}[Lexicographic admissible complexity]
+\label{def:lexicographic-admissible-complexity}
+For $\mathcal B\in\mathbf{SBord}^{\mathrm{adm}}$, define its lexicographic complexity by
+\[
+\mathcal C_{\mathrm{lex}}(\mathcal B)
+:=
+\bigl(
+|\SF(U_\Sigma)|,\,
+\rank H_{\mathrm{prim}}^{\mathrm{fin}},\,
+N_{\mathrm{corner}},\,
+c_1(L_2)+c_1(L_3),\,
+\dim\ker B_\Sigma
+\bigr)\in\mathbb N^5,
+\]
+ordered lexicographically. Here $B_\Sigma$ is the adapted boundary operator in the collar normal
+form of $D_+$, and the remaining entries are the induced discrete invariants on the retained branch.
+\end{definition}
+
+\begin{theorem}[Minimal packaging inside the declared boundary class]
+\label{thm:initial-admissible-bordism}
+Within the declared class of admissible one-sided boundary data encoded by nontrivial objects of
+$\mathbf{SBord}^{\mathrm{adm}}$, there exists, up to unitary equivalence, a unique lexicographically
+minimal representative
+\[
+\mathcal B_{\min}.
+\]
+Its collar normal form induces a canonical one-sided boundary datum
+\[
+\Tbound=(\mathcal A_+,\mathcal H_+,D_+,J,\Gamma,B_\Sigma).
+\]
+On the minimal branch one has
+\[
+|\SF(U_\Sigma)|=1,
+\]
+and the downstream discrete closure attached to $\mathcal B_{\min}$ recovers
+\[
+(g,b,s)=(5,3,2),
+\qquad
+(c_1(L_2),c_1(L_3))=(1,0).
+\]
+This theorem does not remove the primitive status of the boundary datum itself; it only shows that
+no extra primitive discrete datum is needed beyond it.
+\end{theorem}
+
+\begin{proof}
+By declaration of the admissible boundary class, the set of lexicographic complexities
+\[
+\{\mathcal C_{\mathrm{lex}}(\mathcal B):\ \mathcal B\in \mathbf{SBord}^{\mathrm{adm}},\ \SF(U_\Sigma)\neq 0\}
+\subset \mathbb N^5
+\]
+is nonempty. Since lexicographic order on $\mathbb N^5$ is well founded, there exists at least one
+lexicographically minimal nontrivial object $\mathcal B_{\min}$.
+
+For such a minimizer, the first slot cannot exceed $1$: the branch is nontrivial by definition, so
+$|\SF(U_\Sigma)|\ge 1$, while minimality forces the least possible positive value. Hence
+\[
+|\SF(U_\Sigma)|=1.
+\]
+Because $D_+$ is Dirac type with reflection-regular collar behavior, the standard collar normal form
+gives
+\[
+D_+=\gamma_n(\partial_n+B_\Sigma)
+\]
+with a self-adjoint adapted boundary operator $B_\Sigma$. Reflection positivity on the retained
+sector then yields the exact doubling and therefore the Calder\'on projector and boundary
+polarization used throughout the primitive reconstruction theorem stack.
+
+Once the primitive seam winding is fixed to one unit, the later discrete closure theorems apply to
+the same induced branch. The bosonic-rank corollary together with the branch-Yukawa rigidity
+theorem force
+\[
+(g,b,s)=(5,3,2),
+\]
+while the determinant-class and compact Higgs-index theorems force the unique minimal nonnegative
+determinant class
+\[
+(c_1(L_2),c_1(L_3))=(1,0).
+\]
+These values are therefore not additional inputs beside the declared boundary datum; they are the
+discrete invariants selected canonically within the declared class.
+
+It remains to prove uniqueness up to unitary equivalence. Let $\mathcal B_1$ and $\mathcal B_2$ be
+two lexicographically minimal nontrivial objects. By the previous paragraph they induce the same
+primitive seam winding, the same boundary polarization, the same minimal determinant class, and the
+same rigid carrier data on the retained branch. The boundary reconstruction theorem fixes the
+one-sided datum from the collar operator, and the downstream rigidity theorems collapse the induced
+discrete branch to the same canonical invariant package. Hence $\mathcal B_1$ and $\mathcal B_2$
+can differ only by a unitary intertwiner preserving the one-sided spectral data. Therefore the
+minimal object is unique up to unitary equivalence.
+\end{proof}
+
+\begin{remark}[Formal start of the theorem chain]
+The displayed reconstruction chains later in the manuscript may be written either from the minimal
+operational seed or, once the seed-to-boundary passage has been fixed, formally from $\Tbound$,
+because every downstream theorem is phrased in boundary-data language. The present theorem explains
+why, within the induced admissible boundary class, that datum needs no second independent primitive
+discrete layer.
+\end{remark}
+
+\begin{remark}[Historical seven-sector presentation]
+The older seven-sector closure map is retained only as a mnemonic decomposition of the eventual
+branch coordinates. It is no longer the proving engine of the paper. The actual closure argument is
+the primitive-completion argument of Section~9.1: one boundary primitive kernel fixes one joint
+discrete datum, one projected modular free energy fixes the continuous sectors, and the intrinsic
+branch is their singleton fiber product over the same upstream invariants.
+\end{remark}
+
+\begin{definition}[TFPT core class]
+\label{def:tfpt-core-class}
+Let $\mathbf{TFPT}^{\mathrm{core}}$ denote the class of tuples
+\[
+\Tcore:=(\mathcal A,\mathcal H,D,J,\Gamma,\taudbl,\iC,\Pprim)
+\]
+where $\Pprim$ is reconstructed from the primitive admissibility complex. Morphisms are unitary
+isomorphisms intertwining the displayed core data. No family geometry, no family local system
+class, no determinant classes, no transport pole, no strong-CP datum, and no cosmology datum are
+part of this definition.
+\end{definition}
+

@@ -1,0 +1,388 @@
+
+\begin{theorem}[Conditional UV Bernstein-cone program]
+\label{thm:uv-bernstein-cone-completion}
+Assume the projected RG flow preserves the admissible Bernstein cone and admits a nontrivial UV
+fixed point satisfying the pole and positivity audit below. The effective average action is
+sought in the form
+\[
+\Gamma_k
+=
+\int d^4x\sqrt g\,
+\Bigl[
+\frac{M_k^2}{2}R
++C\,\mathcal F_{C,k}(\Box/\chigeo^2)\,C
++R\,\mathcal F_{R,k}(\Box/\chigeo^2)\,R
++\frac12 Z_{\chi,k}(\nabla\chigeo)^2
++U_k(\chigeo,\Phi)
++\cdots
+\Bigr],
+\]
+where the sector form factors are constrained by complete Bernstein functions
+\[
+\Phi_{s,k}(z)
+:=
+a_{s,k}+b_{s,k}z+\int_0^\infty \frac{z}{u+z}\rho_{s,k}(u)\,du,
+\qquad
+\rho_{s,k}(u)\ge 0.
+\]
+The admissible RG flow is required to preserve both the retained sector and this
+cone:
+\[
+\partial_t\Gamma_k
+:=
+\frac12\mathrm{STr}_{\Padm}
+\Bigl[
+\bigl(\Gamma_k^{(2)}+R_k\bigr)^{-1}\partial_t R_k
+\Bigr],
+\]
+with regulator $R_k$ commuting with $\Padm$, $Q_\Theta$, and $\inv$ and living in
+the same Bernstein class. Sectorwise the inverse propagators are then required to
+take the form
+\[
+\Gamma^{(2)}_{2,k}(p^2)
+=
+Z_{N,k}\,p^2\,\Phi_{2,k}(p^2/\chigeo^2),
+\]
+\[
+\Gamma^{(2)}_{0,k}(p^2)
+=
+Z_{0,k}\,(p^2+M_{s,k}^2)\,\Phi_{0,k}(p^2/\chigeo^2).
+\]
+The conditional UV program closes only if three conditions hold simultaneously:
+\begin{enumerate}[label=(\roman*), leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item the admissible Bernstein cone is invariant under the projected RG flow,
+    \item the flow admits a nontrivial UV fixed point on that cone,
+    \item and the pole/positivity audit closes on $\operatorname{Ran}(\Padm)$:
+    exactly one massless spin-$2$ pole, exactly one healthy scalaron pole with
+    $M_{s,k}^2>0$ and positive residue, no extra ghost/tachyon branches, and
+    positive spectral density compatible with admissible reflection positivity.
+\end{enumerate}
+Under these assumptions, the projected RG flow preserves the admissible complete-Bernstein cone,
+admits a nontrivial UV fixed point on the bounded moment body, and closes the pole/positivity
+audit on $\operatorname{Ran}(\Padm)$ with exactly one massless spin-$2$ pole, exactly one
+healthy scalaron pole, and no extra ghost or tachyon branches. The local Einstein plus $R^2$
+branch is therefore interpreted as the infrared projection of an admissible UV Bernstein-cone
+program.
+\end{theorem}
+
+\begin{theorem}[Conditional regulator equivalence inside the admissible Bernstein cone]
+\label{thm:regulator-equivalence-bernstein-cone}
+Assume the hypotheses of \Cref{thm:uv-bernstein-cone-completion}. Let $R_k$ and
+$\widetilde R_k$ be two admissible projected regulators in the same complete Bernstein class,
+both commuting with $\Padm$, $Q_\Theta$, and $\inv$, and both normalized to the same infrared
+data. Then their induced admissible RG flows determine the same:
+\begin{enumerate}[label=(\roman*), leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item fixed-point pole data in the spin-$2$ and spin-$0$ sectors,
+    \item number of relevant UV directions,
+    \item infrared Einstein--$R^2$ closure class on the admissible branch.
+\end{enumerate}
+Hence the conditional UV program of \Cref{thm:uv-bernstein-cone-completion} is regulator
+independent inside the admissible Bernstein-cone class.
+\end{theorem}
+
+The E$_8$ scale ladder is not used as a primitive input in the main text. Only its short downstream grammar is retained in the dedicated main-text section, while the fuller arithmetic continuations are deferred to Appendix~\ref{app:constants}.
+
+\section{Closure architecture B: Yukawas, masses, flavor, confinement, and strong CP}
+
+The second closure-architecture block is the transport compiler. Its role is to turn the carrier packet and the family/occupancy closure into actual masses, mixings, hadronic admissibility, and strong-CP control. The logic is again staged: first the discrete phase operator and the transport kernel, then path-length masses and mixing data, then confinement and strong CP as transport-side admissibility statements.
+
+\subsection{Discrete phase operator and transport grammar}
+
+Let
+\[
+\omega=e^{2\pi i/3},
+\qquad
+U_6=\mathrm{diag}(1,\omega,\omega^2,-1,-\omega,-\omega^2).
+\]
+This makes the phase grammar concrete rather than rhetorical. The six admissible phases are shown as a finite hexagonal transport geometry in \Cref{fig:z6-circle}: the cusp values live on the same real axis as the positive-real phase, the admissible gap is visible directly, and the holonomy phase can be read as a triangle on the same discrete transport base.
+
+\begin{remark}[Hexagonal spectral geometry]
+The operator $U_6$ is a unitary circulant with eigenphases $e^{in\pi/3}$ for $n=0,\dots,5$ and is unitarily equivalent to the one-step translation operator on a six-site ring. The transport kernel $D_y=y\,\mathbf 1-\delta_{\mathrm{ph}}U_6$ is therefore the resolvent denominator of a finite quantum walk, equivalently a tight-binding transfer problem, on the discrete $C_6$ cycle. The regularized inverse introduced below plays the role of the corresponding Green kernel. CKM and PMNS mixings, mass hierarchies, and the Möbius quotients of \Cref{eq:mobius-quotient} are thus not loose analytic fits but spectral-theory statements on a regular hexagon. The near-pole hierarchy at $y\approx\delta_{\mathrm{ph}}$ becomes the resonance of a hexagonal resolvent rather than tuned parameter choice.
+\end{remark}
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\begin{tikzpicture}[scale=1.1,>=Latex]
+\coordinate (O) at (0,0);
+\foreach \name/\ang in {p0/0,p1/60,p2/120,p3/180,p4/240,p5/300} {
+    \coordinate (\name) at ({2*cos(\ang)},{2*sin(\ang)});
+}
+\draw[thick, black!70] (p0) -- (p1) -- (p2) -- (p3) -- (p4) -- (p5) -- cycle;
+\draw[gray!25, dashed] (O) -- (p0);
+\draw[gray!25, dashed] (O) -- (p1);
+\draw[gray!25, dashed] (O) -- (p2);
+\draw[gray!25, dashed] (O) -- (p3);
+\draw[gray!25, dashed] (O) -- (p4);
+\draw[gray!25, dashed] (O) -- (p5);
+\foreach \P in {p0,p1,p2,p3,p4,p5} {
+    \filldraw[blue!60!black] (\P) circle (2pt);
+}
+\node[anchor=west, font=\scriptsize] at (2.18,0.12) {$1$};
+\node[anchor=south west, font=\scriptsize] at (1.1,1.85) {$e^{i\pi/3}$};
+\node[anchor=south east, font=\scriptsize] at (-1.1,1.85) {$e^{2i\pi/3}$};
+\node[anchor=east, font=\scriptsize] at (-2.18,0.12) {$-1$};
+\node[anchor=north east, font=\scriptsize] at (-1.1,-1.85) {$e^{-2i\pi/3}$};
+\node[anchor=north west, font=\scriptsize] at (1.1,-1.85) {$e^{-i\pi/3}$};
+
+\draw[->, thick, red!65!black] (1.15,1.05) arc[start angle=42,end angle=-42,radius=1.2];
+\node[red!65!black, font=\scriptsize, anchor=west] at (2.55,0.25) {CP: $\theta\mapsto-\theta$};
+
+\filldraw[orange!80!black] (0.67,0) circle (2pt);
+\filldraw[orange!80!black] (1.33,0) circle (2pt);
+\filldraw[green!60!black] (1.1998,0) circle (2.4pt);
+\node[below, font=\scriptsize] at (0.67,-0.08) {$\frac13$};
+\node[below, font=\scriptsize] at (1.33,-0.08) {$\frac23$};
+\node[above, font=\scriptsize] at (1.1998,0.08) {$\delta_{\mathrm{ph}}$};
+\draw[<->, thick, black!65] (1.1998,-0.32) -- (1.33,-0.32);
+\node[below, font=\tiny] at (1.265,-0.34) {$\epsilon_f$};
+\node[align=left, anchor=west, font=\scriptsize, text=black!70] at (2.55,-0.7)
+    {near pole at\\$y\!\approx\!\delta_{\mathrm{ph}}$\\largest hierarchy gain};
+
+\begin{scope}[shift={(4.6,-0.8)}]
+    \coordinate (A) at (0,0.9);
+    \coordinate (B) at (-0.85,-0.5);
+    \coordinate (C) at (0.85,-0.5);
+    \draw[thick, orange!75!black] (A) -- (B) -- (C) -- cycle;
+    \filldraw[orange!75!black] (A) circle (1.5pt) (B) circle (1.5pt) (C) circle (1.5pt);
+    \node[above, font=\scriptsize] at (A) {$1$};
+    \node[left, font=\scriptsize] at (B) {$2$};
+    \node[right, font=\scriptsize] at (C) {$3$};
+    \node[align=center, font=\scriptsize, text=black!70] at (0,-1.1) {$\delta_{\mathrm{CKM}}=\arg\tr\Pi_\triangle$\\holonomy triangle};
+\end{scope}
+\end{tikzpicture}
+\caption{Finite transport geometry on the hexagon $C_6$. The six $U_6$ phases form a discrete transport base, the admissible cusps $y\in\{1,\frac13,\frac23\}$ sit on the positive-real axis together with $\delta_{\mathrm{ph}}$, the smallest gap is $\epsilon_f=|\frac23-\delta_{\mathrm{ph}}|$, and the same transport grammar also carries the holonomy triangle phase.}
+\label{fig:z6-circle}
+\end{figure}
+
+\subsection{Regularized Yukawa kernels and path-length masses}
+
+\[
+P_{\mathrm{str}}:=P_{\Seam,+}P_{\mathrm{sing}}P_\Theta,
+\qquad
+P_{\Seam,+}:=\frac{\mathbf 1+\inv}{2},
+\qquad
+P_\Theta:=\frac12(\mathbf 1+Q_\Theta),
+\qquad
+P_{\mathrm{sing}}:=\frac13(\mathbf 1+Z_c+Z_c^2).
+\]
+
+\begin{definition}[Structural transport kernel]
+For each fermion sector define the structural positive transport kernel by
+\[
+K_f^{\mathrm{str}}:=\bigl(P_{\mathrm{str}} D_f^\dagger D_f P_{\mathrm{str}}\bigr)^{-1/2},
+\]
+whenever the inverse exists on $\mathrm{Ran}(P_{\mathrm{str}})$. The final admissible kernel is
+the restriction of this operator to the gap-stable branch selected below. The transport pole
+$\delta_{\mathrm{ph}}$ is the unique stationary point of the exact determinant functional
+\[
+\mathcal F_{\mathrm{tr}}(\delta)
+:=
+\sum_{y\in\{1,1/3,2/3\}}
+\Bigl[-\log\det\!\bigl(D_{y,\delta}^\dagger D_{y,\delta}+\varepsilon^2\bigr)\Bigr]
++
+\frac{36}{(\phiz)^2}\left(\delta-\frac35\right)^2,
+\]
+with
+\[
+D_{y,\delta}:=y\,\mathbf 1-\delta U_6.
+\]
+On the canonical admissible branch one has
+\begin{equation}
+\label{eq:transport-bridge-offset}
+\partial_\delta \mathcal F_{\mathrm{tr}}(\delta_{\mathrm{ph}})=0,
+\qquad
+\delta_{\mathrm{ph}}\in\left(\frac13,\frac23\right),
+\qquad
+\delta_{\mathrm{ph}}\approx \num{0.599882}.
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Canonical admissible transport branch]
+\label{thm:exact-transport-closure}
+Assume $\mathcal V_{\mathrm{vac}}$ is coercive on the retained admissible branch and strictly
+convex in $\delta$ and in the chosen holonomy coordinates near the selected minimizer.
+Define the global admissible vacuum functional
+\[
+\mathcal V_{\mathrm{vac}}[g,\chigeo,\Phi,\nabla_F,\delta,\{L_f\}]
+:=
+\Gamma_{\mathrm{geom}}[g,\chigeo,\Phi]
++\mathcal F_{\mathrm{tr}}(\delta)
+-\sum_f \log \mathcal O_f(L_f,\nabla_F)
++\mu\sum_{f,j}L_{f,j}
++\Lambda_\Seam^{\mathrm{seam}},
+\]
+with exact overlaps
+\[
+\mathcal O_f(L,\nabla_F):=
+\langle\Omega|
+T_f(L,\nabla_F)^\dagger
+K_f^{\mathrm{str}}
+T_f(L,\nabla_F)
+|\Omega\rangle.
+\]
+Then there exists a unique local admissible minimizer
+\[
+(\delta_{\mathrm{ph}},\nabla_F^\star,\{L_f^{\mathrm{diag}}\}).
+\]
+In the present manuscript the packet triples
+\[
+L_u^{\mathrm{diag}}=(7,3,0),\quad
+L_d^{\mathrm{diag}}=(7,5,2),\quad
+L_e^{\mathrm{diag}}=(8,5,3)
+\]
+are the selected values on that canonical admissible branch, and the Yukawa matrices are
+\[
+(Y_f)_{ij}
+=
+\sum_{C:i\to j}\lambda_Y^{\ell(C)}
+\langle e_j,K_f^{\mathrm{str}}\,\mathrm{Hol}_{C}(\nabla_F^\star)e_i\rangle.
+\]
+\end{theorem}
+
+Here $\delta_{\mathrm{ph}}\approx \num{0.599882}$ lies slightly below $3/5$, so $\epsilon_f=|\frac23-\delta_{\mathrm{ph}}|\approx \num{0.06678}$. The regularized transport operator used for the finite hexagon analysis is
+\begin{equation}
+\label{eq:yukawa-kernel}
+\begin{aligned}
+D_y&=y\,\mathbf 1-\delta_{\mathrm{ph}}U_6,\\
+\mathcal Y_y^{(\varepsilon)}&=(D_y^\dagger D_y+\varepsilon^2)^{-1},
+\end{aligned}
+\end{equation}
+and the singular limit $\varepsilon\to0$ is taken only after admissibility has been restricted to the gap-stable sector defined below.
+
+\begin{proposition}[Finite hexagonal resolvent]
+\label{prop:finite-hexagonal-resolvent}
+Whenever
+\[
+y^6\neq \delta_{\mathrm{ph}}^6,
+\]
+the transport denominator has the exact inverse
+\begin{equation}
+\label{eq:finite-hexagonal-resolvent}
+D_y^{-1}
+=
+\frac{1}{y^6-\delta_{\mathrm{ph}}^6}
+\sum_{m=0}^{5}y^{5-m}\delta_{\mathrm{ph}}^{\,m}U_6^m.
+\end{equation}
+Thus the $C_6$ resolvent is finite and algebraically closed rather than an infinite formal Green-series expansion.
+\end{proposition}
+
+\begin{proof}
+Using $U_6^6=\mathbf 1$,
+\[
+\bigl(y\,\mathbf 1-\delta_{\mathrm{ph}}U_6\bigr)
+\sum_{m=0}^{5}y^{5-m}\delta_{\mathrm{ph}}^{\,m}U_6^m
+=
+y^6\mathbf 1-\delta_{\mathrm{ph}}^6U_6^6
+=
+\bigl(y^6-\delta_{\mathrm{ph}}^6\bigr)\mathbf 1.
+\]
+Dividing by $y^6-\delta_{\mathrm{ph}}^6$ gives \Cref{eq:finite-hexagonal-resolvent}.
+\end{proof}
+
+Equivalently, one may read \Cref{eq:yukawa-kernel} in the Fourier basis of the six-site ring: $U_6$ is the diagonal form of the step operator, $D_y$ is the shifted walk denominator, and $\mathcal Y_y^{(\varepsilon)}$ is the corresponding regularized Green function. In this reading the admissible path lengths $L_{f,j}$ are graph-distance data on $C_6$, while the transport matrix elements $\Lambda_{f,j}$ encode bounded local amplitudes rather than unrestricted fit parameters.
+
+Because $U_6$ has eigenphases $e^{in\pi/3}$, the regularized transport spectrum is
+\begin{equation}
+\label{eq:transport-spectrum}
+\lambda_{y,n}^{-1}
+=
+y^2+\delta_{\mathrm{ph}}^2-2y\delta_{\mathrm{ph}}\cos\!\left(\frac{n\pi}{3}\right)+\varepsilon^2,
+\qquad
+n=0,\dots,5,
+\end{equation}
+for the eigenvalues $\lambda_{y,n}$ of $\mathcal Y_y^{(\varepsilon)}$. In particular,
+\begin{lemma}[Finite admissible hexagon gap]
+\label{lem:finite-admissible-hexagon-gap}
+On the admissible cusp set
+\[
+y\in\left\{1,\frac13,\frac23\right\},
+\]
+the smallest singular value of the unregulated hexagon denominator is attained at $y=\frac23$ and $n=0$. Equivalently,
+\[
+\epsilon_f
+:=
+\min_{\substack{y\in\{1,\frac13,\frac23\}\\ n=0,\dots,5}}
+\left|y-\delta_{\mathrm{ph}}e^{in\pi/3}\right|
+=
+\left|\frac23-\delta_{\mathrm{ph}}\right|.
+\]
+Hence the finite admissible hexagon has a strictly positive spectral gap $\epsilon_f$.
+\end{lemma}
+
+\begin{proof}
+For $\varepsilon=0$, the eigenvalues in \Cref{eq:transport-spectrum} reduce to $|y-\delta_{\mathrm{ph}}e^{in\pi/3}|^{-2}$. On the retained branch one has $\delta_{\mathrm{ph}}\approx \num{0.599882}$, so among the admissible cusps the closest point to the positive real phase is $y=2/3$ with $n=0$. This gives the stated minimum.
+\end{proof}
+
+\begin{definition}[Gap-stable admissibility]
+\label{def:gap-stable-admissibility}
+Let
+\[
+D_0:=D_{2/3}.
+\]
+We say that the admissible transport sector is gap-stable if the physical transport operator has the form
+\[
+D_f=D_0+V_{\mathrm{adm}},
+\qquad
+[P_{\mathrm{str}},V_{\mathrm{adm}}]=0,
+\qquad
+\|V_{\mathrm{adm}}\|<\frac{\epsilon_f}{2}.
+\]
+\end{definition}
+
+\begin{proposition}[Structural gap lift]
+\label{prop:gap-lift-full-operator}
+If admissibility is gap-stable in the sense of \Cref{def:gap-stable-admissibility}, then for every
+\[
+\psi\in\mathrm{Ran}(P_{\mathrm{str}})
+\]
+one has
+\[
+\|D_f\psi\|
+\ge
+\frac{\epsilon_f}{2}\|\psi\|.
+\]
+Consequently
+\begin{equation}
+\label{eq:gap-lift-full-operator}
+P_{\mathrm{str}} D_f^\dagger D_f P_{\mathrm{str}}
+\ge
+\frac{\epsilon_f^2}{4}\,P_{\mathrm{str}}
+>
+0.
+\end{equation}
+In particular, the final admissible restriction to $\mathrm{Ran}(\Padm)$ is strictly positive.
+\end{proposition}
+
+\begin{proof}
+Since $\psi\in\mathrm{Ran}(P_{\mathrm{str}})$ and $[P_{\mathrm{str}},V_{\mathrm{adm}}]=0$,
+\[
+\|D_f\psi\|
+\ge
+\|D_0\psi\|-\|V_{\mathrm{adm}}\psi\|
+\ge
+\bigl(\epsilon_f-\|V_{\mathrm{adm}}\|\bigr)\|\psi\|
+\ge
+\frac{\epsilon_f}{2}\|\psi\|.
+\]
+Squaring gives \Cref{eq:gap-lift-full-operator}.
+\end{proof}
+
+\begin{equation}
+\label{eq:mobius-quotient}
+\frac{\lambda_{y,0}}{\lambda_{y,3}}
+=
+\frac{(y+\delta_{\mathrm{ph}})^2+\varepsilon^2}{(y-\delta_{\mathrm{ph}})^2+\varepsilon^2}.
+\end{equation}
+\[
+\lim_{\varepsilon\to 0}\frac{\lambda_{y,0}}{\lambda_{y,3}}
+=
+\left(\frac{y+\delta_{\mathrm{ph}}}{y-\delta_{\mathrm{ph}}}\right)^2
+\]
+\begin{remark}[Near-pole hierarchy mechanism]
+On the retained canonical transport saddle from \Cref{eq:transport-bridge-offset},
+\[
+\delta_{\mathrm{ph}}\approx \num{0.599882}.
+\]
+Hence the Möbius quotient contains a built-in near-pole whenever $y$ approaches $\delta_{\mathrm{ph}}$, making large hierarchy ratios structurally plausible. In the closed transport grammar this is the hierarchy mechanism, while the bounded holonomy factors keep it from degenerating into an arbitrary tuning surface.
+\end{remark}

@@ -1,0 +1,397 @@
+\subsection{Character, trace identities, and the abelian index}
+
+\begin{proposition}[Split weight enumerator and one-family character]
+\label{prop:split-weight-enumerator}
+For the present paragraph let
+\[
+\chi_{S^+}(t):=\tr_{S^+}(e^{tY}).
+\]
+Define also the split weight enumerator
+\[
+W(u,v)
+:=
+\sum_{\substack{0\le n_3\le 3\\ 0\le n_2\le 2\\ n_3+n_2\ \mathrm{even}}}
+\binom{3}{n_3}\binom{2}{n_2}u^{n_3}v^{n_2}.
+\]
+Then
+\begin{equation}
+\label{eq:split-weight-enumerator}
+W(u,v)
+=
+1+3u^2+6uv+v^2+2u^3v+3u^2v^2
+=
+\frac12\Big[(1+u)^3(1+v)^2+(1-u)^3(1-v)^2\Big].
+\end{equation}
+Moreover,
+\begin{equation}
+\label{eq:family-character}
+\chi_{S^+}(t)
+=
+\frac12\Big[
+\bigl(1+e^{-t/3}\bigr)^3\bigl(1+e^{t/2}\bigr)^2
++
+\bigl(1-e^{-t/3}\bigr)^3\bigl(1-e^{t/2}\bigr)^2
+\Big]
+=
+W(e^{-t/3},e^{t/2}).
+\end{equation}
+Consequently,
+\[
+\chi_{S^+}(0)=16,
+\qquad
+\chi_{S^+}'(0)=\tr_{S^+}Y=0,
+\qquad
+\chi_{S^+}''(0)=\tr_{S^+}Y^2=\frac{10}{3},
+\qquad
+\chi_{S^+}'''(0)=\tr_{S^+}Y^3=0.
+\]
+\end{proposition}
+
+\begin{remark}[Master generating function for the one-family packet]
+The even-parity split weight enumerator
+\[
+W(u,v)=\frac12\bigl[(1+u)^3(1+v)^2+(1-u)^3(1-v)^2\bigr]
+\]
+is the master generator of the family packet. The one-family character is obtained by the
+specialization $u=e^{-t/3}$ and $v=e^{t/2}$, while all trace moments of $Y$ are recovered by
+differentiating at $t=0$.
+\end{remark}
+
+\begin{proof}
+The pairs $(n_3,n_2)$ allowed by even total degree are
+\[
+(0,0),\ (2,0),\ (1,1),\ (0,2),\ (3,1),\ (2,2),
+\]
+with multiplicities
+\[
+1,\ 3,\ 6,\ 1,\ 2,\ 3.
+\]
+This gives the explicit polynomial formula for $W(u,v)$. Equivalently, the parity projector
+\[
+\frac12\bigl(1+(-1)^{n_3+n_2}\bigr)
+\]
+acting on $(1+u)^3(1+v)^2$ yields \Cref{eq:split-weight-enumerator}. Substituting
+\[
+u=e^{-t/3},
+\qquad
+v=e^{t/2}
+\]
+gives \Cref{eq:family-character}. For an even exterior algebra one also has
+\[
+\tr_{\Lambda^{\mathrm{even}}E}(e^{tY})
+=
+\frac12\Big[\prod_{j=1}^5(1+e^{tq_j})+\prod_{j=1}^5(1-e^{tq_j})\Big],
+\]
+with carrier charges $q_j\in\{-1/3,-1/3,-1/3,1/2,1/2\}$. Differentiating at $t=0$ yields the stated dimension and trace identities.
+\end{proof}
+
+\begin{remark}[Six admissible occupancy sectors]
+The six monomials in \Cref{eq:split-weight-enumerator} are exactly the six allowed occupancy pairs $(n_3,n_2)$ of the family packet. This is the shortest combinatorial route from the split carrier to the six Standard Model multiplet sectors listed in \Cref{tab:one-family}.
+\end{remark}
+
+The carrier packet therefore reproduces the standard trace cancellations
+\[
+\tr_{S^+}Y=0,
+\qquad
+\tr_{S^+}Y^3=0,
+\]
+and packages them together with the quadratic trace in one formula. Since $\tr_{S^+}Y^2=4\gamma=10/3$ and $\tr_\Phi Y^2=1/2$ for one weak doublet with hypercharge $1/2$, the hypercharge trace coefficient organizes as
+\begin{equation}
+\label{eq:abelian-index}
+\bone(N_{\mathrm{fam}},N_\Phi)
+=
+\frac25N_{\mathrm{fam}}\tr_{S^+}Y^2+\frac15N_\Phi\tr_\Phi Y^2
+=
+\frac85N_{\mathrm{fam}}\gamma+\frac1{10}N_\Phi
+=
+\frac43N_{\mathrm{fam}}+\frac1{10}N_\Phi.
+\end{equation}
+On the canonical branch $(N_{\mathrm{fam}},N_\Phi)=(3,1)$ this gives
+\[
+\bone=\frac{41}{10}.
+\]
+The abelian index is therefore not inserted as an isolated Standard Model datum; it is a carrier-level output once the family and Higgs counts are declared.
+
+\begin{remark}[Canonical-branch Diophantine lock]
+If one imposes $\bone=41/10$ on nonnegative integer data, then
+\[
+40N_{\mathrm{fam}}+3N_\Phi=123.
+\]
+The physically nontrivial solution is $(N_{\mathrm{fam}},N_\Phi)=(3,1)$, so the canonical branch is already sharply constrained at the level of the trace arithmetic.
+\end{remark}
+
+\begin{proposition}[Family hypercharge arithmetic and compression]
+\label{prop:family-hypercharge-compression}
+Let $N_3$ and $N_2$ be the occupation-number operators on the $E_3$ and $E_2$ slots, restricted to $S^+$, and define the scaled hypercharge operator
+\[
+X:=6Y=3N_2-2N_3.
+\]
+Then on $S^+$ one has
+\begin{align}
+X&\equiv N_2\equiv N_3 \pmod 2,\label{eq:x-mod-2}\\
+X&\equiv N_3 \pmod 3,\label{eq:x-mod-3}\\
+X&\equiv 3(N_2+N_3) \pmod 5.\label{eq:x-mod-5}
+\end{align}
+In particular, the even exterior degree $k=N_2+N_3\in\{0,2,4\}$ is read off from the residue class of $X$ modulo $5$: if $X\equiv r\pmod 5$ with $r\in\{0,1,2\}$, then $k=2r$, so
+\[
+X\bmod 5=0,1,2
+\qquad\Longleftrightarrow\qquad
+\Lambda^0E,\ \Lambda^2E,\ \Lambda^4E.
+\]
+Moreover,
+\[
+\mathrm{Spec}(X|_{S^+})=\{0,-4,1,6,-3,2\},
+\]
+and therefore
+\begin{equation}
+\label{eq:family-x-polynomial}
+X(X+4)(X-1)(X-6)(X+3)(X-2)=0
+\qquad\text{on }S^+.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Each occupied $E_3$ mode contributes hypercharge $-1/3$ and each occupied $E_2$ mode contributes $+1/2$, so multiplying by $6$ gives $X=3N_2-2N_3$. Modulo $2$, the term $-2N_3$ vanishes, so $X\equiv N_2$. Because $S^+$ has even total degree, $N_2\equiv N_3\pmod 2$, which proves \Cref{eq:x-mod-2}. Modulo $3$, one has $3N_2\equiv 0$ and $-2\equiv 1$, giving \Cref{eq:x-mod-3}. Modulo $5$, the congruence $-2\equiv 3$ yields \Cref{eq:x-mod-5}. Since on $S^+$ the even degree is $k=N_2+N_3\in\{0,2,4\}$, the possible residues are $3k\equiv 0,1,2\pmod 5$, from which $k=2r$ with $r=X\bmod 5$ follows. Evaluating $X=3n_2-2n_3$ on the six admissible occupancy pairs $(n_3,n_2)$ gives the listed spectrum. The polynomial \Cref{eq:family-x-polynomial} is then the spectral polynomial with these six simple roots.
+\end{proof}
+
+\begin{corollary}[Five-fold phase filters for even degree]
+\label{cor:family-degree-filters}
+Let
+\[
+\zeta_5=e^{2\pi i/5},
+\qquad
+U_5:=e^{2\pi iX/5}.
+\]
+Then the even-degree projectors are the discrete Fourier filters
+\[
+P_{\Lambda^{2m}E}
+=
+\frac15\sum_{r=0}^{4}\zeta_5^{-mr}U_5^r,
+\qquad
+m=0,1,2.
+\]
+\end{corollary}
+
+\begin{proof}
+By \Cref{prop:family-hypercharge-compression}, the eigenspaces $\Lambda^{2m}E$ carry the residue class $X\equiv m\pmod 5$. Hence $U_5$ has eigenvalue $\zeta_5^m$ on $\Lambda^{2m}E$, and the standard Fourier projector formula on the cyclic group $\mathbb Z_5$ gives the claim.
+\end{proof}
+
+\begin{remark}[From the two-point carrier to the six-point family algebra]
+The minimal carrier itself is a two-point algebra, but the family packet lifts the scaled hypercharge to a six-point algebra. Therefore every analytic function of $X$ on $S^+$ reduces to a polynomial of degree at most five. If
+\[
+M_n:=\tr_{S^+}(X^n),
+\]
+then \Cref{eq:family-x-polynomial} implies the finite recursion
+\[
+M_{n+6}
+=
+2M_{n+5}+31M_{n+4}-20M_{n+3}-156M_{n+2}+144M_{n+1}.
+\]
+In this sense the whole hypercharge statistics of one family is finitely compressed into six spectral values.
+\end{remark}
+
+\section{Kernel numerics and electromagnetic closure}
+
+The carrier-first presentation should not leave the impression that TFPT is hard only at the level of group theory and representation bookkeeping. The numerical kernel already fixes a nontrivial output layer. Here that layer is pulled forward and read as the first established output package of the carrier/compiler architecture rather than as a later list of disconnected constants.
+
+\begin{proposition}[Seam normalization and base opening]
+Let the seam loop carry one unit of relative spectral flow,
+\[
+SF(U_\Seam)=1,
+\qquad
+\Delta_\Seam=2\pi.
+\]
+In the relative Chern normalization, the seam constant is
+\[
+\cthree:=\frac{\Delta_\Seam}{16\pi^2}=\frac{1}{8\pi}.
+\]
+Moreover the seam-even base opening is the normalized complement of the carrier quadratic norm,
+\[
+\phibase
+:=
+\frac{1-\gamma}{\pi}
+=
+\frac{1-\tr_EY^2}{\pi}
+=
+\frac{1}{6\pi}.
+\]
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+One unit of seam spectral flow fixes the topological normalization of the relative one-form coefficient. The carrier theorem gives $\gamma=\tr_EY^2=5/6$. The seam-even opening is therefore the normalized complement of the carrier quadratic norm rather than a new independent numerical input.
+\end{proof}
+
+\begin{remark}[Interpretive picture of the primitive start state]
+At the level of physical intuition, the primitive spectral seed may be read as a minimal nontrivial relative defect state: two sheets, one seam, one elementary relative winding, and an undecomposed internal rank-$5$ kernel before the carrier split is imposed. This is only an interpretive picture, not a new theorem. Its role is to explain why the earliest hard numbers $(\cthree,\phibase)$ already look like seam-normalized responses of a genuinely relative starting configuration.
+\end{remark}
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\begin{tikzpicture}[
+    sheet/.style={draw=blue!60!black, fill=blue!6, rounded corners, minimum width=2.8cm, minimum height=2.4cm, align=center},
+    kernel/.style={draw=green!50!black, fill=green!8, rounded corners, text width=4.9cm, minimum height=0.95cm, align=center},
+    note/.style={font=\footnotesize\itshape, text=black!70, align=center}
+]
+\node[sheet] (up) at (-2.2,0) {\textbf{sheet $+$}\\primitive relative side};
+\node[sheet] (down) at (2.2,0) {\textbf{sheet $-$}\\reference side};
+\draw[orange!80!black, line width=1.2pt] (0,-1.55) -- (0,1.55);
+\node[orange!80!black, above] at (0,1.55) {$\Seam$};
+\draw[->, thick, teal!70!black] (-1.05,0.55) arc[start angle=150,end angle=-160,radius=0.38];
+\node[align=center, text width=3.4cm] at (0,2.05) {\small one elementary\\relative winding};
+\node[kernel] (k) at (0,-2.05) {\textbf{undecomposed internal kernel}\\rank-$5$ input before the split $E_3\oplus E_2$};
+\draw[dashed, gray!70] (-1.1,-1.2) -- (-0.55,-1.7);
+\draw[dashed, gray!70] (1.1,-1.2) -- (0.55,-1.7);
+\node[note] at (0,-2.95) {Interpretive only: the cover, seam, and primitive response are reconstructed from the reduced datum in the present version.};
+\end{tikzpicture}
+\caption{Interpretive primitive start sketch. The early seam constants are attached to a minimal relative picture with two sheets, one seam, one elementary winding, and an internal rank-$5$ kernel before the split into $E_3\oplus E_2$ is derived.}
+\label{fig:primitive-start-sketch}
+\end{figure}
+
+\subsection{Carrier form of the electromagnetic closure}
+
+On the canonical admissible branch the inherited topological corrections are
+\begin{equation}
+\label{eq:hard-topological-kernel}
+\deltatop=\frac{3}{256\pi^4},
+\qquad
+\delta_2=\frac54\,\deltatop^2.
+\end{equation}
+Numerically,
+\[
+\cthree=\frac{1}{8\pi}\approx \num{0.03978873577},
+\qquad
+\deltatop\approx \num{1.2030448e-4},
+\qquad
+\delta_2\approx \num{1.80914597e-8}.
+\]
+\begin{definition}[Exact seam generating function]
+\label{def:exact-seam-generating-function}
+Let
+\[
+x:=e^{-2\alpha}.
+\]
+Define the exact seam opening by
+\begin{equation}
+\label{eq:phi-opening}
+\phiseam(\alpha)
+:=
+\phibase+\deltatop x(1-\deltatop x)^{-5/4}.
+\end{equation}
+Its Taylor expansion on the admissible branch begins as
+\[
+\phiseam(\alpha)
+=
+\phibase
++\deltatop e^{-2\alpha}
++\frac54\deltatop^2e^{-4\alpha}
++O(e^{-6\alpha}),
+\]
+so the former quadratic opening is retained only as the $n\le 2$ asymptotic truncation of the exact seam generating function.
+\end{definition}
+
+\begin{theorem}[Exact electromagnetic closure]
+\label{thm:exact-electromagnetic-closure}
+The fine-structure constant on the canonical admissible branch is the unique positive solution of
+\refstepcounter{equation}\label{eq:carrier-cfe}
+\[
+\alpha^3
+-2\cthree^3\alpha^2
+-8\cthree^6\,\bone(N_{\mathrm{fam}},N_\Phi)
+\ln\!\bigl((\phiseam(\alpha))^{-1}\bigr)\tag{\theequation}
+=0.
+\]
+\end{theorem}
+
+\begin{corollary}[Second-order asymptotic form]
+The former opening
+\[
+\phibase+\deltatop e^{-2\alpha}+\delta_2e^{-4\alpha}
+\]
+is the second-order asymptotic expansion of the exact seam generating function
+$\phiseam(\alpha)$ and should be used only for asymptotic discussion, not for the benchmark definition.
+\end{corollary}
+
+On the canonical family branch these hard coefficients admit the bridge reinterpretations
+\[
+\Oadm=48,
+\qquad
+\bone=\frac{41}{10},
+\qquad
+\deltatop=\Oadm\,\cthree^4,
+\qquad
+\delta_2=B\gamma\,\Oadm^2\cthree^8=\frac54\,\deltatop^2.
+\]
+
+On the canonical branch this is the explicit scalar equation
+\[
+\alpha^3-\frac{\alpha^2}{256\pi^3}-\frac{41}{327680\pi^6}\ln\!\bigl((\phiseam(\alpha))^{-1}\bigr)=0.
+\]
+
+The dependency structure of the electromagnetic closure is displayed in \Cref{fig:alpha-closure-flow}. What matters is not one formula in isolation, but the fact that the same carrier-side inputs fix both the exact seam opening and the self-consistent root.
+\begin{remark}[Logarithmic scale closure of the electromagnetic equation]
+Define the internally generated logarithmic scale
+\[
+\mu_\Sigma(\alpha):=(\phiseam(\alpha))^{-1}.
+\]
+Then \Cref{eq:carrier-cfe} is equivalent to
+\[
+\ln \mu_\Sigma(\alpha)
+=
+\frac{\alpha^2\bigl(\alpha-2\cthree^3\bigr)}
+{8\cthree^6\,\bone(N_{\mathrm{fam}},N_\Phi)}.
+\]
+Thus the observed fine-structure constant is selected by a balance between a geometric cubic term
+and a self-generated logarithmic scale parameter. This is RG-like and transmutation-like,
+because $\bone$ is the abelian trace coefficient and the logarithm is attached to an internally
+produced scale. In the present paper it should be read as \emph{logarithmic scale closure} or a
+geometric fixed-point equation rather than as an externally prescribed one-loop running law. The
+symbol $\mu_\Sigma(\alpha)$ here is local to the electromagnetic closure discussion and should
+not be confused with the later matching scale $M_\Sigma$.
+\end{remark}
+A related appendix continuation records that
+\[
+\gcd(\Oadm,\Dstart)=\dim \mathfrak g_{\SM},
+\qquad
+\operatorname{lcm}(\Oadm,\Dstart)=|R(E_8)|.
+\]
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\begin{tikzpicture}[
+    >=Latex,
+    node distance=7mm and 8mm,
+    hard/.style={draw=blue!60!black, fill=blue!6, rounded corners, align=center, text width=2.0cm, minimum height=0.85cm},
+    closure/.style={draw=orange!75!black, fill=orange!8, rounded corners, align=center, text width=2.8cm, minimum height=0.95cm},
+    outbox/.style={draw=green!50!black, fill=green!8, rounded corners, align=center, text width=2.6cm, minimum height=0.95cm},
+    note/.style={draw=red!70!black, dashed, rounded corners, fill=red!4, align=center, text width=3.2cm, inner sep=4pt}
+]
+\node[hard] (c3) {$\cthree=\dfrac{1}{8\pi}$};
+\node[hard, right=of c3] (omega) {$\Oadm=48$};
+\node[hard, right=of omega] (bg) {$B=\dfrac32$\\$\gamma=\dfrac56$};
+\node[hard, right=of bg] (b1) {$\bone=\dfrac{41}{10}$};
+
+\node[closure, below=of $(c3)!0.5!(omega)$] (dtop) {$\deltatop=\Oadm\,\cthree^4$};
+\node[closure, below=of $(omega)!0.5!(bg)$] (dtwo) {$\delta_2=B\gamma\,\deltatop^2=\dfrac54\,\deltatop^2$};
+\node[closure, below=of $(dtop)!0.5!(dtwo)$, yshift=-3mm] (phi) {$\phiseam(\alpha)=\phibase+\deltatop x(1-\deltatop x)^{-5/4}$\\$x=e^{-2\alpha}$};
+\node[outbox, text width=3.3cm, right=13mm of phi] (cfe) {carrier-form CFE\\$\alpha^3-2\cthree^3\alpha^2$\\$-8\cthree^6\bone\ln((\phiseam(\alpha))^{-1})=0$};
+\node[outbox, below=of cfe] (root) {self-consistent root\\$\alpha^{-1}(0)=\num{137.0359992}$};
+\node[note, right=12mm of cfe] (frozen) {frozen opening\\$\phiz=\dfrac{1}{6\pi}+\deltatop$\\$\alpha^{-1}(0)\approx\num{137.0365015}$\\shift $\sim \num{2.4e4}\sigma$};
+
+\draw[->, thick] (c3) -- (dtop);
+\draw[->, thick] (omega) -- (dtop);
+\draw[->, thick] (dtop) -- (dtwo);
+\draw[->, thick] (bg) -- (dtwo);
+\draw[->, thick] (dtop) -- (phi);
+\draw[->, thick] (dtwo) -- (phi);
+\draw[->, thick] (c3) |- (cfe);
+\draw[->, thick] (b1) |- (cfe);
+\draw[->, thick] (phi) -- (cfe);
+\draw[->, thick] (cfe) -- (root);
+\draw[->, dashed, red!70!black] (phi.east) -- (frozen.west);
+\end{tikzpicture}
+\caption{$\alpha$ closure flow. Carrier-side integers and minimal-carrier invariants feed the defect terms, those defect terms feed the exact seam generating function $\phiseam(\alpha)$, and only the self-consistent loop gives the benchmark root. The dashed inset shows why a frozen opening is not a harmless simplification.}
+\label{fig:alpha-closure-flow}
+\end{figure}
+

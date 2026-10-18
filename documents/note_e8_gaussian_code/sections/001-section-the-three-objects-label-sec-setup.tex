@@ -1,0 +1,326 @@
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Build the $E_8$ lattice by Construction~A over the extended Hamming
+code $[8,4,4]$, placed equivariantly with respect to four fixed
+coordinate pairs, and let $J$ be the complex structure that rotates
+each pair ($J^2=-1$, $\mu_4=\langle J\rangle$).  Then $L$ becomes a
+unimodular Hermitian $\Z[i]$-lattice of rank~$4$, and reduction modulo
+the ramified Gaussian prime $1+i$ produces a canonical four-bit
+quotient $L/(1+i)L\cong\F_2^4$.  We prove: the $240$ roots avoid the
+zero class --- by the two-line norm argument
+$|(1+J)x|^2=2|x|^2$ against the doubly-even minimum $4$ --- and
+distribute exactly $15\times16$ over the fifteen nonzero classes, each
+class being a union of exactly $4$ of the $60$ Gaussian root lines.
+On this quotient the pair $3$-cycle $\sigma$ (order $3$, commuting
+with $J$) acts as a family $3$-cycle with a fixed anchor bit --- the
+information-bit action of the Reed--Muller code $\mathrm{RM}(1,3)$ ---
+with residual identification gauge of order exactly $18$, and the
+sixteen coordinate roots $\pm2e_i$ form precisely one class, the
+$\sigma$-fixed label $F_1{+}F_2{+}F_3$.  The classes cut across the
+Construction-A codeword fibers: the code that builds the lattice
+returns, after Gaussian reduction, as its \emph{message space}.  A
+quartic companion theorem types the invariant-theoretic shadow: the
+restrictions of the Weyl-invariant root power sums $F_8,F_{12},
+F_{20},F_{24}$ to the holomorphic eigenspace $\ker(J-i)$ are
+algebraically independent invariants of the complex reflection group
+$G_{31}$ and hence, by Chevalley's theorem, a system of basic
+invariants --- while the vanishing of the complementary degrees
+$\{2,14,18,30\}$ is proved but honestly typed as the trivial
+$\mu_4$-orbit factor $1+(-i)^d+(-1)^d+i^d=0$ ($d\not\equiv0\bmod4$),
+with no $G_{31}$ content.  Every statement is certified by two
+exact-arithmetic probes ($26/26$ and $22/22$ checks, no floats) and
+$65$ kernel-checked Lean~4 theorems, with must-fail controls
+(non-equivariant placements, non-integral complex structures,
+$\Z[i]^4$) that kill or trivialize the structure exactly as demanded.
+No claim beyond the stated algebra is made.
+\end{abstract}
+
+\medskip
+\noindent\textbf{MSC 2020.} 11H06 (primary); 11H71, 20F55, 94B05,
+68V20 (secondary).\\
+\textbf{Keywords.} $E_8$ lattice; Construction A; extended Hamming
+code; Reed--Muller code; Gaussian integers; complex reflection group
+$G_{31}$; basic invariants; Lean 4.
+
+\section{The three objects}\label{sec:setup}
+
+\subsection{The code and its equivariant placement}
+Let $C\subset\F_2^8$ be the extended Hamming code $[8,4,4]$ --- the
+unique doubly-even self-dual binary code of length $8$, permutation
+equivalent to the first-order Reed--Muller code $\mathrm{RM}(1,3)$
+\cite[Ch.~1, 13--14]{MS77}.  Its automorphism group has order
+$|{\rm AGL}(3,2)|=1344$, so $C$ admits exactly
+$8!/1344=30$ distinct placements (coordinate images) inside $\F_2^8$.
+Fix the four \emph{$\mu_4$ pairs}
+$(0,1),(2,3),(4,5),(6,7)$ and the two permutations
+\[
+\pi_J=(01)(23)(45)(67)\quad(\text{in-pair swap}),\qquad
+\pi_\sigma:\ (0,1)\to(2,3)\to(4,5)\to(0,1),\ (6,7)\ \text{fixed}
+\]
+(the pair $3$-cycle).  A machine census of all $30$ placements shows
+that \emph{exactly two} are invariant under both $\pi_J$ and
+$\pi_\sigma$ (probe check I0.1); we call $\Cst$ the one containing
+the indicator vector of $\{0,2,4,6\}$, and note that the other is its
+image under the single transposition $(67)$.  The fourteen weight-$4$
+supports of $\Cst$ have a closed description: the six
+\emph{pair unions} (three family--family:
+$\{0,1,2,3\},\{0,1,4,5\},\{2,3,4,5\}$; three family--anchor:
+$\{0,1,6,7\},\{2,3,6,7\},\{4,5,6,7\}$) and the eight \emph{even
+transversals} $t(d)=\{2k+d_k:k=0,\dots,3\}$ with
+$d\in\F_2^4$, $\sum_kd_k$ even --- one coordinate from each pair.
+
+\subsection{The lattice}
+Let $L=A(\Cst)=\{x\in\Z^8:\ x\bmod 2\in\Cst\}$ be the Construction-A
+lattice of $\Cst$ \cite[Ch.~5]{CS99}, with the standard inner product
+$\ip xy$ of $\Z^8$.  Then $[\Z^8:L]=2^4=16$, and since $\Cst$ is
+doubly even, writing $x=c+2m$ with $c\in\{0,1\}^8$ a codeword lift
+gives
+\begin{equation}\label{eq:douleven}
+\ip xx=\wt(c)+4(c\cdot m+m\cdot m)\equiv\wt(c)\equiv0 \pmod 4 ,
+\end{equation}
+so every nonzero $x\in L$ has $\ip xx\ge4$: the minimum of $L$ is
+$4$, attained by exactly $240$ vectors (the $16$ coordinate vectors
+$\pm2e_i$ and the $224$ lifts $c+2m$ of weight-$4$ codewords with
+support-confined sign choices).  Rescaled by $1/\sqrt2$, $L$ is a copy
+of the even unimodular root lattice $E_8$; we work integrally in $L$
+throughout and call the $240$ minimal vectors the \emph{roots}.
+
+\subsection{The complex structure and the clock}
+Let $J\in O_8(\Z)$ rotate each $\mu_4$ pair,
+$e_{2k}\mapsto e_{2k+1}\mapsto-e_{2k}$, and let $\sigma\in O_8(\Z)$
+be the pair $3$-cycle $e_0\mapsto e_2\mapsto e_4\mapsto e_0$,
+$e_1\mapsto e_3\mapsto e_5\mapsto e_1$, fixing $e_6,e_7$.  Then
+(machine checks I0.2--I0.3; Lean theorems \texttt{J\_sq},
+\texttt{J\_skew}, \texttt{sigma\_cubed\_ambient},
+\texttt{J\_sigma\_commute}, \texttt{lattice\_J},
+\texttt{lattice\_sigma})
+\[
+J^2=-1,\qquad J^{\mathsf T}=-J,\qquad \sigma^3=1,\qquad
+[J,\sigma]=0,\qquad JL=L,\qquad \sigma L=L ,
+\]
+where the last two use precisely the $\pi_J$- and
+$\pi_\sigma$-invariance of the placement $\Cst$ (sign changes are
+invisible mod $2$).  Both $J$ and $\sigma$ preserve the root set, so
+both lie in the Weyl group $W(E_8)$ ($E_8$ has no diagram
+automorphisms).  Setting $i\cdot x:=Jx$ makes $L$ a torsion-free
+$\Z[i]$-module of rank $4$, and $\sigma$ is $\Z[i]$-linear.  In the
+source modules of the verification program, $\sigma$ arises as the
+fourth power of an order-$12$ ``clock'' element; here it is simply
+the explicit matrix above.
+
+\begin{lemma}[Hermitian unimodularity]\label{lem:herm}
+Define $h(x,y):=\tfrac12\bigl(\ip xy+i\,\ip x{Jy}\bigr)$.  Then $h$ is
+a $\Z[i]$-valued Hermitian form on $L$ with $h(x,x)=\tfrac12\ip xx$,
+minimum $2$, and $(L,h)$ is \emph{unimodular}: the Hermitian dual of
+$L$ is $L$ itself.  Moreover $|(1+J)x|^2=2\,|x|^2$ for all $x$, i.e.\
+multiplication by $1+i$ doubles norms exactly.
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:douleven} and polarization, $\ip xy\in2\Z$ for all
+$x,y\in L$; since $JL=L$, also $\ip x{Jy}\in2\Z$, so $h$ takes values
+in $\Z[i]$.  Sesquilinearity is the two identities
+$\ip{Jx}y=-\ip x{Jy}$ (skewness) and $\ip{Jx}{Jy}=\ip xy$
+(orthogonality), which give $h(Jx,y)=i\,h(x,y)$; skewness also gives
+$\ip x{Jx}=0$, hence $h(x,x)=\tfrac12\ip xx\ge2$.  For unimodularity:
+the $\Z$-dual of $L$ is $L^{\sharp}=\tfrac12L$ (determinant
+$16^2=256$), and $h(x,L)\subseteq\Z[i]$ is equivalent, using $JL=L$,
+to $\ip xL\subseteq2\Z$, i.e.\ $x\in2L^{\sharp}=L$.  Finally
+$|(1+J)x|^2=|x|^2+2\ip x{Jx}+|Jx|^2=2|x|^2$; in matrix form
+$(1+J)^{\mathsf T}(1+J)=2\cdot\mathbf 1$, certified by the Lean kernel
+(theorem \texttt{one\_add\_J\_gram}).
+\end{proof}
+
+\section{The four-bit quotient and the
+\texorpdfstring{$15\times16$}{15 x 16} census}\label{sec:census}
+
+All checks of this section are from
+\texttt{gaussian\_code\_bridge\_probe.py} ($26$ checks, $0$ failures,
+verdict \textsc{gaussian-code-bridge-exact}; exact integer and
+\texttt{Fraction} arithmetic throughout, \texttt{sympy} only for the
+Smith normal form), with the finite certificates re-proved by the
+Lean kernel in \texttt{GaussianCodeBridge.lean}.
+
+\begin{theorem}[the Gaussian code bridge, part I: the census]
+\label{thm:census}
+Let $L=A(\Cst)$ with the $\Z[i]$-structure of
+Section~\ref{sec:setup}, and let $(1+i)L=(1+J)L$.
+\begin{enumerate}
+\item[(i)] $2L\subseteq(1+i)L$, the index is
+$[L:(1+i)L]=\det(1+J)=2^4=16=N(1+i)^4$, and
+\[
+L/(1+i)L\;\cong\;\F_2^4
+\]
+as an $\F_2$-vector space; the elementary divisors of
+$(1+i)L\subseteq L$ are $(1,1,1,1,2,2,2,2)$.
+\item[(ii)] \textbf{The zero class is empty on roots}: no root lies
+in $(1+i)L$.  Indeed $\min L=4$ by \eqref{eq:douleven}, and by
+Lemma~\ref{lem:herm} $\min\,(1+i)L=2\cdot4=8>4$.
+\item[(iii)] \textbf{Equidistribution}: each of the $15$ nonzero
+classes contains exactly $16$ roots, $240=15\times16$
+(finite kernel certificate).
+\item[(iv)] \textbf{$\mu_4$-stability}: $Jx\equiv x \bmod (1+i)L$ for
+every $x\in L$; in particular every class is $\mu_4$-stable.
+\item[(v)] $J$ acts freely on the roots, partitioning them into $60$
+\emph{lines} $\{\pm x,\pm Jx\}$ (the Gaussian root lines); each
+nonzero class is a union of exactly $4$ lines, $60=15\times4$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) $2=-i\,(1+i)^2$ in $\Z[i]$, so $2L\subseteq(1+i)L$ and the
+quotient is elementary $2$-abelian.  On each pair, $1+J$ acts by
+$\bigl(\begin{smallmatrix}1&-1\\1&1\end{smallmatrix}\bigr)$ of
+determinant $2$, so $\det(1+J)=2^4=16$ and the quotient has order
+$16$, hence $\F_2$-dimension $4$.  The elementary divisors are
+certified in Lean by an explicit Smith certificate: integer matrices
+$P,Q$, unimodular in both directions
+($PP^{-1}=P^{-1}P=QQ^{-1}=Q^{-1}Q=\mathbf 1$), with
+$PAQ=\mathrm{diag}(1,1,1,1,2,2,2,2)$ and the converse ingredient
+$DQ^{-1}=PA$, where $A$ expresses $(1+i)b_j$ in a $\Z$-basis
+$(b_j)$ of $L$ (theorems \texttt{smith\_certificate},
+\texttt{P\_unimodular}, \texttt{Q\_unimodular},
+\texttt{smith\_converse\_ingredient}, \texttt{index\_sixteen},
+\texttt{snf\_exponent\_two}).
+
+(ii) is the displayed two-line argument; the probe additionally
+enumerates all vectors of norm $<4$ (none) and finds $0$ roots in the
+zero class (check I2.2); the Lean census re-proves it exactly
+(\texttt{census\_zero\_class\_empty}).
+
+(iii) is a finite decision: the probe reduces all $240$ roots
+(check I2.3, census $\{16\colon15\}$), and the Lean kernel certifies,
+over the explicit list of the $240$ root coordinate vectors (pairwise
+distinct, norm $4$, congruent to codewords mod $2$), that the SNF
+residue map hits every nonzero label exactly $16$ times
+(\texttt{census\_equidistribution}).
+
+(iv) $i-1=i(1+i)$, so $(J-1)x=J(1+J)x\in(1+i)L$ for all $x\in L$.
+(Lean: the $\mu_4$ transport acts as the identity on the label block,
+\texttt{mu4\_acts\_trivially\_on\_labels}, and relabeling all $240$
+roots after the $J$-action reproduces the label list verbatim,
+\texttt{census\_mu4\_stable}.)
+
+(v) $Jx=\pm x$ forces $x=0$ (apply $J$ once more and use $J^2=-1$),
+so the $\mu_4$-orbits $\{\pm x,\pm Jx\}$ of roots have size $4$ and
+there are $240/4=60$ of them (check I2.5).  Given (iii) and (iv),
+each class contains $16/4=4$ complete lines.
+\end{proof}
+
+\begin{remark}[what needs the placement and what does not]
+\label{rem:placement}
+Parts (i)--(v) use only the $\pi_J$-invariance of the placement: the
+probe re-runs the census over the \emph{non-equivariant} naive
+placement (which is $\pi_J$- but not $\pi_\sigma$-invariant) and
+finds the same $15\times16$ equidistribution and $4$-lines-per-class
+structure (check I4.2).  The census is a property of the pair
+$(E_8,J)$ alone.  What dies without $\pi_\sigma$-equivariance is
+exactly the semantics of Section~\ref{sec:info} (control I4.1).  The
+census is also presentation independent: re-run in the standard
+$E_8$ coordinates (doubled model, basis determinant $256=2^8$), it
+returns the same Smith form and the same $15\times16$ census
+(check I5.1).
+\end{remark}
+
+\section{The information layer}\label{sec:info}
+
+Since $\sigma$ is $\Z[i]$-linear and preserves $L$, it preserves
+$(1+i)L$ and descends to an $\F_2$-linear map $\bar\sigma$ on
+$L/(1+i)L\cong\F_2^4$.  (Well-definedness is itself a kernel
+certificate: the transport matrix of $\sigma$ into Smith coordinates
+has even top-right block, Lean theorem \texttt{sigma\_label\_block}.)
+
+\begin{theorem}[the Gaussian code bridge, part II: the information
+layer]\label{thm:info}
+\begin{enumerate}
+\item[(i)] $\bar\sigma^3=1$, $\bar\sigma\neq1$, and the fixed space
+of $\bar\sigma$ has dimension $2$ (exactly $4$ fixed labels, $3$ of
+them nonzero).
+\item[(ii)] On the $15$ root-bearing classes, $\bar\sigma$ acts with
+orbit census $3$ fixed classes $+$ $4$ three-cycles.
+\item[(iii)] There is a basis $(F_1,F_2,F_3,A)$ of $\F_2^4$ with
+\[
+\bar\sigma:\ F_1\to F_2\to F_3\to F_1,\qquad \bar\sigma A=A :
+\]
+$\bar\sigma$ is the \emph{family $3$-cycle with fixed anchor} --- the
+information-bit action of the equivariant $\mathrm{RM}(1,3)$
+placement, in which each $\mu_4$ pair carries one message bit, the
+three moving pairs are the families and the fixed pair is the anchor.
+The identification with the $\mathrm{RM}(1,3)$ message space is
+unique up to the centralizer of $\bar\sigma$ in $\GL(4,\F_2)$, which
+has order exactly $18=|\GL_2(\F_2)|\cdot|\F_4^\times|=6\times3$.
+\item[(iv)] \textbf{The coordinate-class law}: the $16$ coordinate
+roots $\pm2e_i$ form exactly one class, and that class contains
+nothing else; it is $\sigma$-fixed and equals $F_1+F_2+F_3$.  Thus
+$240=14\times16+16$ with the coordinate block as the fifteenth
+message label, the ``sum of the families''.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\sloppy
+(i) and (iv) are finite kernel certificates (Lean theorems
+\texttt{sigma\_cubed}, \texttt{sigma\_nontrivial},
+\texttt{sigma\_fixed\_space}, \texttt{sigma\_fixed\_nontrivial},
+\texttt{family\_three\_cycle}, \texttt{anchor\_fixed},
+\texttt{family\_anchor\_spans}, \texttt{coord\_root\_ambient},
+\texttt{coord\_class\_eq\_family\_sum},
+\texttt{coord\_class\_sigma\_fixed}; probe checks I2.6a--d, I3.1--2),
+including the direct census equivariance: relabeling all $240$ roots
+after the $\sigma$-action equals the $M_{\bar\sigma}$-image of the
+label list (\texttt{census\_sigma\_equivariant}).  (ii) is probe
+check I2.6c (orbit census $\{1\colon3,\,3\colon4\}$).  For the gauge
+count in (iii): since $|\langle\bar\sigma\rangle|=3$ is odd, the
+$\F_2\langle\bar\sigma\rangle$-module $\F_2^4$ is semisimple and
+decomposes as (trivial)$^2\oplus\F_4$, so the centralizer is
+$\GL_2(\F_2)\times\F_4^\times$ of order $6\times3=18$; the probe
+confirms by enumerating all of $\GL(4,\F_2)$ (check I2.6e).  The
+$\mathrm{RM}(1,3)$ reading of (iii) is the content of the equivariant
+placement: $\pi_\sigma$ permutes the three family pairs cyclically
+and fixes the anchor pair, and $\bar\sigma$ realizes exactly this
+permutation matrix on the message space.  (This last identification,
+up to the order-$18$ gauge, is verified numerically in the probe; the
+Lean layer formalizes (i), (ii) --- via the fixed-label count ---,
+(iv) and the transport certificates, but not the gauge statement:
+see the honest scope in Section~\ref{sec:verification}.)
+\end{proof}
+
+\begin{remark}[the bridge is not the mod-2 reduction]
+\label{rem:notmod2}
+The Gaussian classes cut \emph{across} the Construction-A fibers
+(probe check I3.3): every class mixes codeword fibers, as the
+following complete census shows (probe I3.2 table; each fiber entry
+means $8+8$ roots over the two named weight-$4$ codewords, except the
+coordinate class).  Here $t(d)$ is the even transversal with in-pair
+digits $d$, and $\bar d$ its complement.
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+classes (basis $F_1,F_2,F_3,A$) & $\bar\sigma$-action &
+codeword fibers of the $16$ roots\\
+\midrule
+$F_1,\ F_2,\ F_3$ & $3$-cycle &
+$8$ over a family--anchor $+$ $8$ over a family--family word\\
+$F_1{+}F_2,\ F_2{+}F_3,\ F_3{+}F_1$ & $3$-cycle &
+$8$ over a family--anchor $+$ $8$ over a family--family word\\
+$F_1{+}A,\ F_2{+}A,\ F_3{+}A$ & $3$-cycle &
+$8+8$ over a complementary pair $t(d),t(\bar d)$\\
+$F_i{+}F_j{+}A$ (three classes) & $3$-cycle &
+$8+8$ over a complementary pair $t(d),t(\bar d)$\\
+$A$ and $F_1{+}F_2{+}F_3{+}A$ & fixed &
+$8+8$ over $t(0000)$ and $t(1111)$\\
+$F_1{+}F_2{+}F_3$ (coordinate class) & fixed &
+all $16$ over the zero codeword: the roots $\pm2e_i$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The three $\bar\sigma$-fixed nonzero classes are the coordinate class
+$F_1{+}F_2{+}F_3$, the anchor class $A$, and their sum.  The code
+that \emph{builds} the lattice (as fiber data of Construction A)
+reappears after Gaussian reduction as the \emph{message space} of its
+own lattice --- with the fibers redistributed.
+\end{remark}
+

@@ -1,0 +1,105 @@
+%!TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+% ===== PACKAGES =====
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,decorations.markings,decorations.pathmorphing,calc,patterns,shapes.geometric}
+
+% Define photon line style for Feynman diagrams
+\tikzset{
+    photon/.style={decorate, decoration={snake, amplitude=1.5pt, segment length=5pt}}
+}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{siunitx}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems,skins,breakable}
+
+% ===== COLORS =====
+\definecolor{axiomcolor}{RGB}{0,80,160}
+\definecolor{theoremcolor}{RGB}{0,120,60}
+\definecolor{corollarycolor}{RGB}{120,60,0}
+\definecolor{definitioncolor}{RGB}{100,0,100}
+\definecolor{topologyblue}{RGB}{50,100,180}
+\definecolor{geometrygreen}{RGB}{50,150,80}
+\definecolor{quantumorange}{RGB}{220,120,40}
+\definecolor{observablepurple}{RGB}{140,60,160}
+
+% ===== THEOREM ENVIRONMENTS =====
+\newtcbtheorem[number within=section]{axiom}{Axiom}{
+    colback=axiomcolor!5,
+    colframe=axiomcolor,
+    fonttitle=\bfseries,
+    separator sign={.},
+    description delimiters parenthesis
+}{ax}
+
+\newtcbtheorem[number within=section]{theorem}{Theorem}{
+    colback=theoremcolor!5,
+    colframe=theoremcolor,
+    fonttitle=\bfseries,
+    separator sign={.},
+    description delimiters parenthesis
+}{thm}
+
+\newtcbtheorem[number within=section]{corollary}{Corollary}{
+    colback=corollarycolor!5,
+    colframe=corollarycolor,
+    fonttitle=\bfseries,
+    separator sign={.},
+    description delimiters parenthesis
+}{cor}
+
+\newtcbtheorem[number within=section]{lemma}{Lemma}{
+    colback=theoremcolor!5,
+    colframe=theoremcolor,
+    fonttitle=\bfseries,
+    separator sign={.},
+    description delimiters parenthesis
+}{lem}
+
+\newtcbtheorem[number within=section]{definition}{Definition}{
+    colback=definitioncolor!5,
+    colframe=definitioncolor,
+    fonttitle=\bfseries,
+    separator sign={.},
+    description delimiters parenthesis
+}{def}
+
+\newenvironment{remark}{\par\smallskip\noindent\textbf{Remark.}}{\par\smallskip}
+
+% ===== COMMANDS =====
+\newcommand{\Mpl}{\bar{M}_{\mathrm{Pl}}}
+\newcommand{\cthree}{c_3}
+\newcommand{\phiz}{\varphi_0}
+\newcommand{\phitree}{\varphi_{\mathrm{tree}}}
+\newcommand{\deltatop}{\delta_{\mathrm{top}}}
+\newcommand{\bone}{b_1}
+\newcommand{\gagg}{g_{a\gamma\gamma}}
+
+% ===== TITLE =====
+\title{%
+    \textbf{Topological Fixed Point Theory (TFPT)}\\[0.5em]
+    \Large A Parameter-Free Derivation of the Fine-Structure Constant\\
+    from Topology, Geometry, and Quantum Consistency
+}
+\author{%
+    Stefan Hamann \and Alessandro Rizzo
+}
+\date{Version 2.4 --- 22 January 2026}
+

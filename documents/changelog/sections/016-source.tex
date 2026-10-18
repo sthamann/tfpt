@@ -1,0 +1,364 @@
+\subsection*{2026-06-22 (closing round: the CM-selection mechanism (the last keystone residual), the conformal-mode resolution, and the Conway--Sloane even-unimodular side in Lean: \texttt{v333}, \texttt{v334}, \texttt{FORM.CARTAN.DET.01})}
+\begin{itemize}
+\item \textbf{\texttt{v333\_cm\_selection.py} (\texttt{QGEO.CMSELECT.01}, \mE/\mO).} The CM-selection mechanism for
+  the last keystone residual: $\tau{=}i$ (the square) is the \emph{unique} order-4 modulus --- $S{=}\bigl(\begin{smallmatrix}0&-1\\1&0\end{smallmatrix}\bigr)$ has $S^4{=}I$ and fixes $i$, and an order-4 deck selects
+  $j{=}1728$ (vs the order-3 hexagon $j{=}0$) --- AND the square is the Fekete attractor of symmetric
+  mark-equilibration (four points minimizing the log-energy converge to equal $\pi/2$ spacing).  So given the
+  $\mu_4$ deck, $\tau{=}i$ is forced; the residual sharpens from ``why the square'' to ``the deck acts
+  geometrically'' (= \texttt{QGEO.SYM.01}).  NOT a closure.
+\item \textbf{\texttt{v334\_conformal\_resolution.py} (\texttt{QGAMB.CONFORMAL.01}, \mE/\mC/\mO).} The
+  conformal-mode resolution for the QG metric sector: the Gibbons--Hawking--Perry contour rotation $\phi\to i\phi$
+  flips the wrong-sign kinetic term, making the divergent conformal Gaussian $\int e^{+|c|\phi^2}$ into the
+  convergent $\int e^{-|c|\phi^2}{=}\sqrt{\pi/|c|}$; the entire IDG form factor $e^{p^2/M^2}$ dresses the
+  propagator pole-free (the polynomial $R{+}R^2$ ghost as control).  Together they give a \emph{conditional}
+  mode-by-mode construction of the metric-sector measure; the residual is only the contour's nonperturbative
+  validity (gap-decoupled, blocks no test).  NOT a closure.
+\item \textbf{\texttt{CartanDeterminants.lean} extended (\texttt{FORM.CARTAN.DET.01}, \mE).} The Conway--Sloane
+  lattice side: the E$_8$ Cartan matrix is proved to be an EVEN (diagonal $=2$), symmetric, unimodular
+  ($|\det|{=}1$) integer Gram matrix --- the defining data of an even unimodular rank-8 lattice --- all by kernel
+  \texttt{decide} / the integer-inverse argument.  The remaining content (Witt's uniqueness: E$_8$ is the only even
+  unimodular lattice in dim $<16$) is the cited classification residual.
+\end{itemize}
+
+\subsection*{2026-06-22 (endgame round: the necessity of $H$ reduced to the order-4 CM selection, the QG metric sector characterized as the conformal-mode problem, $|\det E_8|{=}1$ and the $\mu_4$ commutation grounded in Lean: \texttt{v331}, \texttt{v332}, \texttt{FORM.MU4COMM.01})}
+\begin{itemize}
+\item \textbf{\texttt{v331\_necessity\_of\_H.py} (\texttt{QGEO.NECESS.01}, \mE/\mO).} The necessity companion to
+  \texttt{v329}: a concrete Steklov (DtN) computation shows the seam $\Lambda{=}|k|{+}M_f$ commutes with the $\mu_4$
+  clock \emph{iff} the four marks sit at the square ($\tau{=}i$) --- moving a mark off the square breaks $\Z_4$ and
+  $[\rho,\Lambda]\neq0$.  The square has cross-ratio $2$ ($j{=}1728$), the unique $4$-config with an order-4
+  automorphism (\vref{v214}/\vref{v267}), so $H\Leftrightarrow$ square $\Leftrightarrow\mu_4$ and ``necessity of
+  $H$'' sharpens to: the raw dynamics places the four Gauss--Bonnet marks (\vref{v216}) at the order-4 CM point.
+  Residual $=$ that dynamical selection.
+\item \textbf{\texttt{v332\_qgamb\_metric\_sector.py} (\texttt{QGAMB.METRIC.01}, \mE/\mC/\mO).} The open metric sector
+  of \texttt{QG.AMB.01} is characterized precisely as the Gibbons--Hawking--Perry conformal-factor problem: the
+  conformal mode has a negative kinetic coefficient $-(D{-}1)(D{-}2)/4$ (${=}-\tfrac32$ at $D{=}4$), so the bare
+  Euclidean measure diverges over it.  The obstruction is in the conformal/gauge direction, gap-insulated from the
+  admissible sector (\vref{v330}/\vref{v76}); the only route is the conditional IDG taming (\vref{v304}), with the
+  polynomial $R{+}R^2$ ghost as the control.  Open, but pinned to one named obstruction.
+\item \textbf{\texttt{CartanDeterminants.lean} extended (\texttt{FORM.CARTAN.DET.01}, \mE).} The rank-8 holomorphy
+  discriminator $|\det\mathrm{Cartan}(E_8)|{=}1$ ($E_8$ has one anyon, vs $D_8$'s four) is now proved principally and
+  kernel-only: \texttt{cartanE8 * cartanE8inv = 1} by \texttt{decide} on the 8$\times$8 PRODUCT gives
+  \texttt{IsUnit (det E8)} via $\det E_8\cdot\det E_8^{-1}{=}\det 1{=}1$ --- no 8! determinant, no
+  \texttt{native\_decide} (Mathlib itself leaves \texttt{E\textsubscript{8}\_det = 1} a \texttt{proof\_wanted}).
+\item \textbf{\texttt{Mu4Commutation.lean} (\texttt{FORM.MU4COMM.01}, Lean 4, \mE).} The v201/v323 mark-locality
+  criterion as exact linear algebra over the Gaussian integers $\Z[i]$: $i^4{=}1$, $i^2{=}-1$, and (on concrete
+  $6\times6$ matrices) an offset-4 coupling commutes with the $\mu_4$ clock while an offset-2 coupling does not ---
+  all by kernel \texttt{decide}.  Built \texttt{lake build} on Lean v4.29.1 $+$ Mathlib.
+\end{itemize}
+
+\subsection*{2026-06-22 (frontier round: the OS step discharged at the many-body level, the ambient measure built on the gap-decoupled sector, and the carrier Cartan determinants grounded in Lean: \texttt{v329}, \texttt{v330}, \texttt{FORM.CARTAN.DET.01})}
+\begin{itemize}
+\item \textbf{\texttt{v329\_os\_gap\_reduction.py} (\texttt{QGEO.OSGAP.01}, \mE/\mO).} The one analytic input the v308
+  keystone chain still cited --- ``the OS-reconstructed bulk gap $=$ the transfer gap'' --- is discharged at the
+  many-body level: the OS/Euclidean Hamiltonian is the second quantization $d\Gamma(-\log T)$, whose spectrum is the
+  set of sums of single-mode energies, so the bulk gap $=$ the smallest positive single-mode energy $=6\ln\tfrac32$,
+  \emph{independent of system size}.  Together with $H\Rightarrow\omega\circ\rho{=}\omega$ and $H\Rightarrow$ SRE
+  $\Rightarrow(E_8)_1$, this exhibits the rotation-invariant flat-pillowcase premise $H$ as the \emph{single
+  sufficient premise} of both bedrock IDs; residual $=$ the necessity of $H$ on the raw collar.
+\item \textbf{\texttt{v330\_qgamb\_admissible\_measure.py} (\texttt{QGAMB.MEASURE.01}, \mE/\mO).} The constructive
+  step \texttt{v275}'s roadmap calls for: on the gap-decoupled \emph{admissible} sector the ambient measure is built
+  as a bona fide OS object --- reflection-positive (symmetric PSD transfer), exponentially clustering
+  ($C(n)/C(n{-}1)\to(2/3)^6$), with finite susceptibility $\chi=729/665$ so $\mathrm{Var}(S_\Lambda)/\Lambda\to\chi$
+  converges $\Rightarrow$ uniform tightness (Prokhorov) $\Rightarrow$ the projective limit exists; OS reconstruction
+  gives $H_{\mathrm{OS}}\ge0$ with gap $6\ln\tfrac32$.  The full $\mathrm{QG}_{\mathrm{amb}}$ (the metric sector)
+  stays open, gap-decoupled --- a genuine \emph{partial} construction, not a closure.
+\item \textbf{\texttt{CartanDeterminants.lean} (\texttt{FORM.CARTAN.DET.01}, Lean 4, \mE).} The carrier piece of the
+  holomorphy/anyon discriminator is grounded in real \texttt{Matrix.det} computations (kernel \texttt{decide}, no
+  extra axiom): $|\det\mathrm{Cartan}(A_3)|{=}4{=}|\mu_4|$ (3$\times$3, \texttt{det\_fin\_three}) and
+  $|\det\mathrm{Cartan}(D_5)|{=}4$ (5$\times$5, \texttt{decide}), giving the carrier $|\det\mathrm{Gram}|{=}4\cdot4{=}16$
+  (the \texttt{v281} anyon count).  The rank-8 $E_8/D_8$ case stays the Nat discriminator --- Mathlib's own
+  \texttt{Data.Matrix.Cartan} leaves \texttt{E\textsubscript{8}\_det = 1} as a \texttt{proof\_wanted}.  Built
+  \texttt{lake build} on Lean v4.29.1 $+$ Mathlib.
+\end{itemize}
+
+\subsection*{2026-06-22 (next-steps round: the keystone collapsed to one shared premise (Lean $+$ one citable theorem), the $F_{\mathrm{transfer}}$ solver suite, the cusp weight derived from a minimal rewrite, and the $\theta_{13}$ pressure point: \texttt{FORM.QGEO.BW.01}, \texttt{v325}, \texttt{v326}, \texttt{v327}, \texttt{v328})}
+\begin{itemize}
+\item \textbf{\texttt{BWKeystone.lean} (\texttt{FORM.QGEO.BW.01}, Lean 4, \mE/\mO).} The \texttt{v323} Bisognano--Wichmann
+  linkage formalised: the nodes $\textsf{RotationInvariantVacuum}\to\textsf{GeometricModularFlow}\to
+  \textsf{Mu4ModularSymmetry}\to\textsf{StateInvariance}$ (=\texttt{QGEO.SYM.01}) composed over the \texttt{v308} chain.
+  The theorem \texttt{bedrockReducesToRotationInvariance} shows the WHOLE bedrock \texttt{QGEO.SYM.01} reduces to
+  the SINGLE shared open premise \texttt{RotationInvariantVacuum} --- the two open bedrock items collapse to one ---
+  with \texttt{\#print axioms} confirming the residual $=$ the cited chain steps $+$ recovery gap $+$ the named BW
+  steps $+$ that one premise.  Plus a \texttt{decide}-proven discriminator $(1\mid4)\wedge\neg(4\mid1)$ (BW geometric
+  flow strictly stronger than \texttt{v309} clock invariance).  Built \texttt{lake build} on Lean v4.29.1 $+$ Mathlib.
+\item \textbf{\texttt{v325\_pillowcase\_keystone.py} (\texttt{QGEO.KEYSTONE.01}, \mE/\mO).} The keystone as ONE
+  citable theorem: IF the raw seam state is the flat $\tau{=}i$ pillowcase (rotation-invariant) state THEN the whole
+  bedrock closes (4 square marks, $\mu_4$ deck, $\omega\circ\rho{=}\omega$, holomorphic $c{=}8\Rightarrow(E_8)_1$,
+  with the recovery gap as input); all pieces machine-checked (incl.\ the pillowcase $\chi_{\mathrm{orb}}{=}0$), the
+  single open lemma shared by both bedrock IDs and Lean-pinned.  An assembly certificate, not a closure.
+\item \textbf{\texttt{v326\_ftransfer\_suite.py} (\texttt{FR.SUITE.01}, \mE/\mC).} The four $F_{\mathrm{transfer}}$
+  readouts productised into one runnable harness, each a gapped relaxation to a unique attractor: $F_{\mathrm{pole}}$
+  (Koide, seam rate $(2/3)^6$), $F_{\mathrm{Boltzmann}}$ ($\eta_B$, H-theorem), $F_{\mathrm{relic}}$ (axion adiabatic
+  invariant), $F_{\mathrm{QCD}}$ ($m_p/m_e$, RG to the UV fixed point), plus the $F_{\mathrm{RareKaon}}$ bridge.
+  Only $F_{\mathrm{pole}}$ carries the seam rate; the four external rates are honestly fenced (\texttt{v187}/\texttt{v303}).
+\item \textbf{\texttt{v327\_hypergraph\_rewrite.py} (\texttt{HYP.REWRITE.01}, \mE/\mO).} The cusp weight $2/3$ is
+  DERIVED from a minimal rewrite: a 3-channel/1-absorbing family rule has spectrum $\{1,2/3,0\}$, so
+  $2/3{=}(\Nfam{-}1)/\Nfam{=}|\Z_2|/\Nfam$ emerges from the rule arity and $(2/3)^6{=}64/729$ is the recovery gap;
+  with a PROOF that $2/3$ is not a root of the affine-$E_8$ charpoly ($p(2/3){=}-3520/19683\ne0$, sharpening \texttt{v312}).
+  \texttt{v324}'s injected datum is reduced to the anchor arity $\{2,3\}$.
+\item \textbf{\texttt{v328\_theta13\_pressure.py} (\texttt{FLAV.TH13.PRESSURE.01}, \mC/\mX) $+$ \texttt{v307}
+  hardening.} The honest weak spot named and quantified: $\sin^2\theta_{13}{=}\phiz e^{-5/6}{=}0.023108$ is
+  $+2.0\sigma$ above NuFIT 6.0 NO, a SEPARATE carrier-trace channel (\texttt{v268}), not relieved by any
+  freeze-respecting correction (RG $<1\%$, exponent $5/6$ exact), pre-registered as the kill.  The \texttt{v307}
+  watchdog gains a data provenance/date check and the rare-kaon $F_{\mathrm{transfer}}$ bridge row.
+\item \textbf{Wolfram mirror $285\to288$.} \texttt{v325} ($\chi_{\mathrm{orb}}{=}0$) and \texttt{v327} (rewrite
+  spectrum $\{0,2/3,1\}$, $(2/3)^6{=}64/729$, and the non-graph-spectral proof) added to
+  \texttt{tfpt\_readouts\_extension.wl}; \texttt{GATE.WOLFRAM.02} and the Wolfram README updated to $288/288$.
+\end{itemize}
+
+\subsection*{2026-06-22 (consistency + de-accretion editorial pass: current-state alignment across papers, website and ledger; no new modules)}
+\begin{itemize}
+\item \textbf{Keystone naming reconciled to \texttt{SEAM.EQUIV.01}.} Following \texttt{v323}/\texttt{QGEO.BW.01}
+  (the deck premise is downstream of the seam being a chiral net), the single named open keystone is now
+  \texttt{SEAM.EQUIV.01} \emph{everywhere}, with \texttt{QGEO.SYM.01} stated as its \emph{downstream}
+  conformal-deck face. The ledger row \texttt{QGEO.SYM.01} was updated (it no longer calls itself ``the single
+  structural residual of the whole theory''; it now depends on \texttt{SEAM.EQUIV.01}/\texttt{QGEO.BW.01}), and
+  the superseded ``\texttt{GATE.QGEO} open gate'' / ``two research gates $(U_{\mathrm{wall}})$ and
+  $G_{\mathrm{metric}}$'' framing was replaced by the current $\text{Rest}=v_{\mathrm{geo}}\oplus G_{\mathrm{net}}
+  \oplus F_{\mathrm{transfer}}$ with the two structural items \texttt{SEAM.EQUIV.01} $+$ \texttt{QG.AMB.01}
+  (intro status card, \texttt{tfpt\_4\_frontier}, \texttt{origin\_theory}, \texttt{tfpt\_5\_redteam},
+  \texttt{tfpt\_research\_contracts}, and the website).
+\item \textbf{De-accretion: the sprint-by-sprint reduction history was moved to this changelog, where it belongs.}
+  Several reader-facing sections had grown by accretion (each round appended a clause). They were rewritten to
+  state the \emph{current} result once, with the round-by-round narrative left here: the introduction closure
+  ledger (``honest bottom line'') and hard-reduction subsection; the \texttt{origin\_theory} ``residual
+  inventory'' (the five ``Update/\ldots/Terminal'' passes collapsed to one current inventory); the
+  \texttt{tfpt\_5\_redteam} Target-A Outcome; and on the website the FAQ ``What is still open?'', the
+  \texttt{OpenGates} closing-condition block, the \texttt{papers.ts} research-contracts/red-team entries, the
+  verification-DAG \texttt{qft} node, the glossary \texttt{G\_net} entry, the Rosetta lexicon, and the
+  verification/review pages. No scientific content or \texttt{\textbackslash veri} citation was dropped; only the
+  embedded version-stamp logs were removed.
+\item \textbf{Stale facts corrected.} Version label \texttt{5.0}$\to$\texttt{v5.2} (intro, single-sourced via
+  \texttt{\textbackslash TFPTversion}); Lean build \texttt{1886}$\to$\texttt{3357} jobs (\texttt{FORM.SEAMEQUIV.01});
+  README Python suite \texttt{v213}/\,212$\to$\texttt{v324}/\,322 modules; Wolfram extension
+  \texttt{269/269}\,/\,\texttt{249/249}$\to$\texttt{285/285} (README, website replication page,
+  \texttt{zenodo\_description.html}); residual ``Paper-3'' old-paper attributions in \texttt{tfpt\_2} neutralised.
+\end{itemize}
+\noindent\emph{(Original 2026-06-22 entry follows.)}
+
+\subsection*{2026-06-22 (external-review pass: a registry bug fix, the NA62 2026 rare-kaon update, CP-phase prose hygiene, and three firewall/visualisation enhancements: \texttt{v202}, \texttt{v203}, \texttt{v305}, \texttt{v307}, \texttt{v321})}
+\begin{itemize}
+\item \textbf{Bug fix --- $\delta_{\mathrm{CKM}}$ display value.} The predictions table (\texttt{tex-artefacts/predictions.tex})
+  showed $\delta=\tfrac\pi3+3\lambda^2=66.96^\circ$, but that formula evaluates to $68.65^\circ$ (the canonical
+  frozen \texttt{DELTA\_CKM\_RAD}$=1.198232$ rad, used by \texttt{v88}/\texttt{v202}/\texttt{FLAV.CP.01}
+  everywhere else). Corrected to $68.65^\circ$. An external review correctly flagged the inconsistency; it was an
+  isolated display typo (the website was already clean).
+\item \textbf{\texttt{v202\_rare\_kaon.py} --- NA62 2016--2024 update (\mE/\mC).} The charged-mode comparison is
+  moved from the historical NA62 $2016$--$2022$ observation $(13.0^{+3.3}_{-3.0})\times10^{-11}$ ($\sim1.2\sigma$
+  above) to the full $2016$--$2024$ combination $\mathrm{BR}(K^+)=(9.6^{+1.9}_{-1.8})\times10^{-11}$
+  (La~Thuile~2026), on which the prediction $9.45\times10^{-11}$ lands at $+0.08\sigma$. Framed honestly: a strong
+  \emph{consistency} hit for the closed CKM point, but an $F_{\mathrm{transfer}}$ bridge --- \emph{not} a unique
+  TFPT-vs-SM discriminator (the SM $(8.6\pm0.4)\times10^{-11}$ is also inside the NA62 error). Propagated to the
+  ledger (\texttt{FR.RAREKAON.01}), \texttt{freeze\_file} (new \texttt{rare\_kaon} kill row), the watchdog
+  (\texttt{v307}, a new $F_{\mathrm{transfer}}$ bridge row), the forward board (\texttt{v321}, rank 9), and
+  \texttt{tfpt\_2\_standard\_model} $+$ the website.
+\item \textbf{CP-phase prose hygiene.} The Galois CP lock is tightened from ``a relation to the \emph{measured}
+  quark phase'' to ``a relation to the \emph{leading} ($\pi/3$) component of the quark phase'': the lock is to the
+  structural $\pi/3$, not the full measured $\gamma=\delta_{\mathrm{CKM}}^{\mathrm{lead}}+3\lambda_C^2\approx68.7^\circ$,
+  so $\delta_{\mathrm{PMNS}}=240^\circ$ (not $248.7^\circ$). Fixed in \texttt{tfpt\_2\_standard\_model},
+  \texttt{origin\_theory}, \texttt{papers.ts} and \texttt{predictions.ts}.
+\item \textbf{\texttt{v305\_witness\_independence.py} --- the No-Golden-Dynamics rule (\mE).} The number-field
+  split is made an explicit anti-numerology firewall rule: $\phi=2\cos(\pi/5)\in\mathbb Q(\sqrt5)$ is the
+  \emph{static} carrier ($\Z/5$) field, every \emph{dynamic} rate is rational ($\mathbb Q$, the $\Z/6$ hand), so a
+  dynamic rate explained by $\phi$ is a cross-field false friend (\texttt{v314}/\texttt{v315}).
+\item \textbf{\texttt{v203\_eht\_achromatic.py} --- the $\mu_4$ Fourier fourth null (\mX).} The EHT residual
+  pre-registration gains a fourth null: the azimuthal residual must carry power \emph{only} at $m\equiv0\bmod4$
+  (the $\mu_4$ fingerprint of the four marks, \texttt{v201}); a $\mu_4$-orbit profile has $\sim0$ off-mode power
+  while a $\Z_2$ control leaks at $m=2$.
+\item \textbf{Seed-hyperplane figure (in the introduction).} A new figure visualises \texttt{v306}:
+  every scorecard observable inverts \emph{independently} to the one latent seed $\varphi_0$, the error-weighted
+  mean matching the axiom to $0.04\%$, with $\sin^2\theta_{13}$ the $\sim2\sigma$ pressure point. Added to
+  \texttt{make\_figures.py}, \texttt{tfpt\_5\_redteam} and the manifest.
+\end{itemize}
+
+\subsection*{2026-06-22 (Wolfram mirror of the arithmetic arc $+$ three sharpening steps: the CP-lock made quantitative, the Bisognano--Wichmann keystone, the minimal hypergraph fibre: \texttt{v322}, \texttt{v323}, \texttt{v324})}
+\begin{itemize}
+\item \textbf{Wolfram mirror of the cyclotomic/Galois arithmetic arc (the independent second path).} The exact
+  algebraic results of the arc are now mirrored in \texttt{verification/wolfram/tfpt\_readouts\_extension.wl} (ten new
+  \texttt{checkExact} blocks, $275\to285$, \emph{all passing}): \texttt{v313} (the affine-$E_8$ characteristic
+  polynomial with the golden factor $x^2{-}x{-}1$; the $(2,3,5)$ atoms as
+  $2\cos(\pi/k)$; the $31/30$ selection), \texttt{v314} (the rational kernel vs $\mathbb Q(\sqrt5)$
+  dynamic-rate split), \texttt{v315} ($30{=}5{\cdot}6$, $\varphi(30){=}8$, the Galois group $\mu_4\times\Z_2$, the
+  $\sqrt5$ Gauss sum), \texttt{v316} ($\rho{=}\zeta_6{=}\zeta_{30}^5$, $\rho^4{=}-\rho$, $\mathrm{Gal}{=}\Z_2{=}$ CP
+  conjugation), \texttt{v317} ($\Nfam{=}3$ as the $\mu_3$ orbit, the $1{+}2$ Galois split), \texttt{v318}
+  ($\phiz{=}(4/3)\cthree{+}48\cthree^4$ a pure function of $\pi$) and \texttt{v320} (the CP lock
+  $\delta_{\mathrm{PMNS}}{=}240^\circ$). Ledger \texttt{GATE.WOLFRAM.02} and the Wolfram README updated to $285/285$.
+\item \textbf{\texttt{v322\_cp\_lock\_sharpened.py} (\texttt{GALOIS.CP.SHARPEN.01}, \mE/\mC/\mX).} The \texttt{v320}
+  CP-lock sharpened into a quantitative, pre-registered kill test. \mE\ the leading phase sits on the six hexagonal
+  nodes $\arg\rho^k{=}k\cdot60^\circ$, and \emph{which} one is selected is the deck order:
+  $\delta_{\mathrm{PMNS}}^{\mathrm{lead}}{=}|\mu_4|\,\delta_{\mathrm{CKM}}^{\mathrm{lead}}{=}4(\pi/3)$ (node $4$);
+  \mC\ the sub-leading correction is bounded by the quark analogue $3\lambda^2\approx8.7^\circ$, so the prediction is
+  the band $240^\circ\pm\sim9^\circ$; \mC\ against NuFIT~6.0 (NO, $\delta_{CP}{=}212^{+26}_{-41}{}^\circ$) the leading
+  value is $+1.08\sigma$, the band edge $+0.74\sigma$ -- compatible today; \mX\ the nearest wrong node is $60^\circ$
+  away, far beyond the budget, so DUNE/Hyper-K ($\sim5$--$15^\circ$) discriminate cleanly. Cited in
+  \texttt{origin\_theory}; ledger \texttt{GALOIS.CP.SHARPEN.01}.
+\item \textbf{\texttt{v323\_bw\_geometric\_modular.py} (\texttt{QGEO.BW.01}, \mE/\mC/\mO).} The keystone pushed one
+  honest step via Bisognano--Wichmann. \mE\ the $\mu_4$ clock is a geometric rotation
+  $\rho{=}\mathrm{diag}(i^n){=}\exp(i\tfrac\pi2 L)$, $\mu_4\subset U(1)_{\mathrm{rot}}$; \mE\ for a rotation-covariant
+  covariance $C{=}f(L)$ the modular Hamiltonian $K{=}\log((1{-}C)/C){=}g(L)$, so $[K,L]{=}0$ (the modular flow is
+  geometric) and the clock is a modular symmetry \emph{for free} (the discriminator: a period-$4$ curvature preserves
+  the clock but its flow is not geometric, $[K,L]\ne0$); \mC\ given the seam is the $(E_8)_1$ chiral net
+  (\texttt{v308}), BW/Hislop--Longo make the vacuum modular flow geometric, so \texttt{QGEO.SYM.01}
+  ($\omega\circ\rho{=}\omega$) is \emph{downstream} of \texttt{SEAM.EQUIV.01} $+$ a rotation-invariant vacuum, not an
+  independent axiom; \mO\ residual: the raw collar vacuum is rotation-invariant (cleaner than \texttt{v309}, shared
+  with \texttt{v308}). Cited in \texttt{origin\_theory}; ledger \texttt{QGEO.BW.01}.
+\item \textbf{\texttt{v324\_hypergraph\_fiber.py} (\texttt{HYP.FIBER.01}, \mE/\mC).} The constructive \texttt{v312}
+  follow-up: the \emph{minimal} substrate that carries both the $E_8$ skeleton and the recovery gap is a
+  \emph{product}. \mE\ the carrier network $T_{\mathrm{net}}{=}(A{+}2I)/4$ (attractor $=$ Kac marks $=$ skeleton)
+  fibred by the $3$-node family cusp $T_{\mathrm{cusp}}{=}\mathrm{diag}((1{-}w)^{2\Nfam})$, $w\in\{0,\tfrac13,\tfrac23\}$
+  (spectrum $\{1,(2/3)^6,(1/3)^6\}$); the fibred $T_{\mathrm{net}}\otimes T_{\mathrm{cusp}}$ has top eigenvalue $1$
+  (eigenvector $\mathrm{marks}\otimes(w{=}0)$) and $(2/3)^6$ as a genuine eigenvalue ($\mathrm{marks}\otimes(w{=}\tfrac13)$)
+  -- the $\Nfam{=}3$ cusp is the minimal fibre and the substrate $=$ carrier $\times$ family $=$ the
+  $30{=}\gcar(2\Nfam){=}5{\times}6$ of \texttt{v315}; \mC\ honestly (\texttt{v312}) the cusp weight is still
+  \emph{injected}, not derived from the graph -- a consistent realisation, not a derivation of $2/3$ from a pure
+  rewrite. Cited in \texttt{origin\_theory}; ledger \texttt{HYP.FIBER.01}.
+\end{itemize}
+
+\subsection*{2026-06-22 (the forward kill-test board: the decisive upcoming measurements ranked, each locked to a freeze row --- incl. the new Galois-CP relation: \texttt{v321})}
+\begin{itemize}
+\item \textbf{\texttt{v321\_killtest\_board.py} (\texttt{KILL.BOARD.01}, \mE).} The forward companion to \texttt{v307}
+  (the current-data board): the decisive \emph{upcoming} measurements, ranked and each locked to a
+  \texttt{freeze\_file.csv} kill row -- \#1 JUNO $\sin^2\theta_{12}{=}0.306747$ (fastest), \#2 CMB-S4/LiteBIRD $r$
+  (kill $r{>}0.01$), \#3 DESI/Euclid $w$ (kill $w{\ne}{-}1$), \#4 DUNE/Hyper-K $\delta_{\mathrm{PMNS}}{=}240^\circ$
+  (the new \texttt{v320} Galois-CP relation), \#5 DUNE/LEGEND/nEXO ordering$+m_{\beta\beta}$, \#6 PSI n2EDM, \#7 JUNO
+  $\sin^2\theta_{13}$ ($\sim2\sigma$ now), \#8 LiteBIRD $\beta$. A forward decision ledger (publicly-stated
+  experimental reach), complementing \texttt{v307}; no new physics. Cited in \texttt{origin\_theory}; ledger row
+  \texttt{KILL.BOARD.01}.
+\end{itemize}
+
+\subsection*{2026-06-22 (Lean: the \texttt{SEAM.EQUIV.01} composition chain formalised --- the keystone residual machine-pinned to the named cited steps: \texttt{FORM.SEAMEQUIV.01})}
+\begin{itemize}
+\item \textbf{\texttt{SeamEquivChain.lean} (\texttt{FORM.SEAMEQUIV.01}, Lean 4, \mE/\mO).} A Lean~4 mirror of the
+  \texttt{v308} closing chain: the four nodes $\textsf{GapPositive}\to\textsf{InvertibleSRE}\to\textsf{HolomorphicC8}
+  \to\textsf{SeamIsE8}$ assembled as a well-typed composition theorem \texttt{seamEquivChain}, with the three cited
+  literature steps (Kitaev free-fermion invertibility; M\"uger / Kawahigashi--Longo--M\"uger holomorphy;
+  Conway--Sloane $E_8$ uniqueness) as named \texttt{axiom}s and the carrier recovery gap (the OS step) as the single
+  open input. \mE\ \texttt{\#print axioms seamEquivChain} confirms the residual is exactly those named steps $+$
+  \texttt{recovery\_gap} (no hidden assumption); \mE\ a \texttt{decide}-proven discriminator
+  $\textsf{primariesE8}=1\ne\textsf{primariesD8}=4$ (the $|\det\mathrm{Cartan}|$ that separates the holomorphic
+  $E_8$ from the same-$c$ rival $D_8{=}SO(16)$). Built end-to-end (\texttt{lake build}, 3357 jobs) on Lean
+  v4.29.1 $+$ Mathlib. \mO\ The value is the machine-checked composition $+$ axiom audit (pinning the keystone
+  residual), \emph{not} a from-scratch proof --- it does NOT close \texttt{SEAM.EQUIV.01}. Ledger row
+  \texttt{FORM.SEAMEQUIV.01}; mirrors \texttt{v308}.
+\end{itemize}
+
+\subsection*{2026-06-22 (a NEW falsifiable prediction from the Galois structure: the two CP phases are locked, $\delta_{\mathrm{PMNS}}=\delta_{\mathrm{CKM}}^{\mathrm{lead}}+\pi$: \texttt{v320})}
+\begin{itemize}
+\item \textbf{\texttt{v320\_galois\_cp\_relation.py} (\texttt{GALOIS.CP.PREDICT.01}, \mE/\mC/\mX).} The \texttt{v316}
+  follow-up turned into a testable cross-prediction. \mE\ both leading CP phases are powers of the \emph{one}
+  hexagonal unit $\rho=\zeta_6$ of the family Galois factor: $\delta_{\mathrm{CKM}}^{\mathrm{lead}}=\arg\rho=\pi/3$
+  ($60^\circ$), $\delta_{\mathrm{PMNS}}=\arg\rho^4=4\pi/3$ ($240^\circ$), and $\rho^4=-\rho$ locks them as
+  $\delta_{\mathrm{PMNS}}=\delta_{\mathrm{CKM}}^{\mathrm{lead}}+\pi$ (the $\Z_2$ sheet flip); \mC\ this upgrades the
+  previously assigned $\delta_{\mathrm{PMNS}}=240^\circ$ to a Galois-forced relation to the measured quark phase
+  (the quark and lepton leading CP phases are not independent); \mX\ kill test: a $\delta_{\mathrm{PMNS}}$ robustly
+  incompatible with $240^\circ$ ($>3\sigma$ at DUNE/Hyper-K/JUNO) falsifies the Galois-CP organisation; $240^\circ$
+  is currently within the broad NuFIT 6.0 range. A genuine new falsifiable consequence of the \texttt{v313}--%
+  \texttt{v319} arithmetic arc (also a \texttt{freeze\_file.csv} \texttt{cp\_phase\_relation} kill row). Cited in
+  \texttt{origin\_theory}; ledger row \texttt{GALOIS.CP.PREDICT.01}.
+\end{itemize}
+
+\subsection*{2026-06-22 (the translation clock: the discrete$\leftrightarrow$dynamic bridge \emph{is} the order-$30$ Coxeter element, a clock with two coprime hands $5\times6$, read law-inclusive ($0..5$) or live-only ($1..5$): \texttt{v319})}
+\begin{itemize}
+\item \textbf{\texttt{v319\_translation\_clock.py} (\texttt{TRANSLATE.CLOCK.01}, \mE/\mC).} A synthesis of the
+  \texttt{v313}--\texttt{v318} arc with \texttt{v124}/\texttt{v55}, answering the question ``is the
+  static$\leftrightarrow$dynamic translation a clock running $0,1,2,3,4,5$ or $1,2,3,4,5$?''. \mE\ the only object
+  holding both the static carrier ($\mathbb Q(\sqrt5)$) and the dynamic family (rational) data is the order-$30$
+  Coxeter element (\texttt{v314}); $30=h(E_8)=\gcar(2\Nfam)=5\cdot6$ and $\gcd(5,6)=1\Rightarrow\Z/30=\Z/5\times\Z/6$
+  (two coprime hands, \texttt{v315}). \mE\ the \emph{dynamic} hand is $\Z/6=2\Nfam$ (ticks $0,\dots,5$): the recovery
+  exponent is exactly $6=2\Nfam$, rate $(2/3)^6=(|\Z_2|/\Nfam)^{2\Nfam}$, order-$6$ generator $c^5$
+  ($\zeta_6=\zeta_{30}^5$, \texttt{v316}). \mE\ position $0$ is the \emph{conserved law} --- the resummed clock
+  $\mathrm{rate}(n)=-p_2\ln(1-n/\Nfam)$ (\texttt{v124}) has $\mathrm{rate}(0)=0$ (the attractor, eigenvalue $1$,
+  \texttt{v56}), the live decaying modes from $n{=}1$, and the $E_8$ live phases (totatives of $30$) start at $1$
+  ($\{1,7,\dots,29\}$), the $0$ phase not a totative --- so ``$0,1,2,3,4,5$'' is law-inclusive, ``$1,2,3,4,5$''
+  live-only. \mE\ the \emph{static} hand is $\Z/5=\gcar$ (ticks $1,\dots,5$): the golden field $\mathbb Q(\sqrt5)$
+  ($\varphi=2\cos(\pi/5)$), field-obstructed (no rational dynamic image, \texttt{v314}) --- static-only;
+  $\zeta_5=\zeta_{30}^6$ carries no phase. \mE\ one full turn $=\operatorname{lcm}(5,6)=30=h(E_8)$, rank
+  $E_8=8=\varphi(30)$ live phases pairing into $|\mu_4|=4$ invariant planes (\texttt{v55}). \mC\ verdict: the
+  discrete$\to$dynamic translation \emph{is} the order-$30$ clock $=$ (static $5$-ring) $\times$ (dynamic $6$-ring),
+  the dynamic hand carrying the rate (exponent $6=2\Nfam$), the static hand the golden carrier (no rate), and
+  ``$0$ vs $1$'' $=$ law-inclusive vs live-only; the arithmetic is \mE, the ``it is one clock'' reading \mC.
+  Python-only (\texttt{sympy}), like the rest of the arc. New figure \texttt{figures/translation\_clock.pdf}
+  (concentric $5$- and $6$-hands). Cited in \texttt{origin\_theory}; ledger row \texttt{TRANSLATE.CLOCK.01}.
+\end{itemize}
+
+\subsection*{2026-06-21 (capstone: the SM structural sector is $\mathbb Q(\zeta_{30})+$ Galois $\mu_4\times\Z_2$, and the complete input is $\{a,\pi,v_{\mathrm{geo}}\}$ --- zero dimensionless free parameters: \texttt{v318})}
+\begin{itemize}
+\item \textbf{\texttt{v318\_arithmetic\_capstone.py} (\texttt{ARITH.CAPSTONE.01}, \mE/\mO).} The synthesis of the
+  \texttt{v313}--\texttt{v317} arc. \mE\ the SM \emph{structural} sector (the $3$ generations, the $2$ CP phases,
+  their orbit/hierarchy) is the cyclotomic field $\mathbb Q(\zeta_{30})$ with Galois group $\mu_4\times\Z_2$ (degree
+  $\varphi(30)=8=$ rank $E_8$, $30=|\Z_2|\Nfam\gcar=h(E_8)$), forced by the anchor atoms $\{2,3,5\}=e(a)$; \mE\ the
+  magnitude seed $\varphi_0=(|\mu_4|/\Nfam)c_3+\Omega_{\mathrm{adm}}c_3^4=\tfrac43 c_3+48 c_3^4$ ($c_3=1/(8\pi)$) is a
+  pure function of $\pi$ (no free parameters, anchor-derived coefficients), so the magnitudes
+  ($\sin^2\theta_{12}=\tfrac13-\varphi_0/2$) are $\{a,\pi\}$-determined, not free; \mE\ free inventory: \emph{zero}
+  dimensionless free parameters, $\pi$ the unique transcendental primitive (\texttt{ARCH.CORE.01}), $v_{\mathrm{geo}}$
+  the unique dimensionful input (No-Unit Theorem) --- complete input $\{a,\pi,v_{\mathrm{geo}}\}$. \mO\ honest
+  residual: this rigidity holds \emph{given} the axioms and does not realise the structure on the raw seam
+  (\texttt{QGEO.SYM.01}/\texttt{SEAM.EQUIV.01} stay \mO). Cited in \texttt{origin\_theory}; ledger row
+  \texttt{ARITH.CAPSTONE.01}.
+\end{itemize}
+
+\subsection*{2026-06-21 (are the 3 generations a $\mu_3$/Galois orbit? Yes ($\mu_3$), Galois-refined $1{+}2$ with the fixed generation $=$ the recovery attractor: \texttt{v317})}
+\begin{itemize}
+\item \textbf{\texttt{v317\_galois\_family.py} (\texttt{GALOIS.FAMILY.01}, \mE/\mC).} The \texttt{v316} follow-up to the
+  generation structure. \mE\ the three cusp weights $\{0,\tfrac13,\tfrac23\}$ (with $\mathrm{Spec}(Q_+)=\{1,2,3\}$,
+  the $A_3$ exponents) are the cube roots of unity $\{1,\zeta_3,\zeta_3^2\}$ under $w\mapsto e^{2\pi i w}$, and the
+  cyclic family symmetry $w\mapsto w{+}\tfrac13$ is a \emph{transitive} $\mu_3$ orbit (the family IS the cube-root
+  orbit); \mE\ the transfer eigenvalues $(1{-}w)^6=\{1,(2/3)^6,(1/3)^6\}$ attach to the weights (attractor $=$
+  eigenvalue $1$ at $w{=}0$); \mE\ the family Galois $\Z_2$ ($\zeta_3\mapsto\zeta_3^2=\bar\zeta_3$, $=$ the
+  \texttt{v316} CP conjugation) refines the orbit to $1{+}2$ --- fixing $w{=}0$ (rational) and swapping
+  $w{=}\tfrac13\leftrightarrow\tfrac23$; \mE\ so the Galois-FIXED generation is the recovery ATTRACTOR (the law) and
+  the Galois-conjugate pair the decaying hierarchy. \mC\ verdict: the family STRUCTURE is the same arithmetic as the
+  CP phase (a $\mu_3$ orbit, Galois-refined $1{+}2$), the mass MAGNITUDES remaining the analytic seed. Cited in
+  \texttt{origin\_theory}; ledger row \texttt{GALOIS.FAMILY.01}.
+\end{itemize}
+
+\subsection*{2026-06-21 (does the Galois $\mu_4\times\Z_2$ organize the readouts? Yes --- the CP phases are the family-factor cyclotomic data, Galois $\Z_2=$ CP conjugation: \texttt{v316})}
+\begin{itemize}
+\item \textbf{\texttt{v316\_galois\_readout.py} (\texttt{GALOIS.READOUT.01}, \mE/\mC).} The \texttt{v315} follow-up to
+  phenomenology: does the Galois coupling $\mu_4\times\Z_2$ reach the physics? \mE\ it does, through the \emph{family}
+  factor --- the hexagonal CP unit $\rho=\zeta_6=\zeta_{30}^5$ is exactly the order-$6=2\Nfam$ factor $c^5$ of
+  \texttt{v315} (the carrier being $\zeta_5=\zeta_{30}^6$); \mC\ the leading CP phases are its cyclotomic arguments
+  $\delta_{\mathrm{CKM}}^{\mathrm{lead}}=\pi/3=\arg\zeta_6$ and $\delta_{\mathrm{PMNS}}=4\pi/3=\arg\zeta_6^4$ (power
+  $4=|\mu_4|$), with $\zeta_6^4=-\zeta_6$ the $\Z_2$ sheet flip and $\mu_6=\mu_3\times\mu_2$ (inherits
+  \texttt{v231}/\texttt{v233}); \mE\ the family Galois $\mathrm{Gal}(\mathbb Q(\zeta_6)/\mathbb Q)=\Z_2$
+  ($\zeta_6\mapsto\zeta_6^5=\bar\zeta_6$) \emph{is} CP conjugation $\delta\mapsto-\delta$; \mE\ the carrier factor
+  $\zeta_5$ (golden $\sqrt5$) carries no phase ($\mu_4$ static), and the magnitudes
+  ($\sin^2\theta_{12}=\tfrac13-\varphi_0/2$, transcendental $\varphi_0$) are not cyclotomic. \mC\ verdict: the Galois
+  bridge reaches phenomenology in the phase sector predicted by the \texttt{v314} field split. Cited in
+  \texttt{origin\_theory}; ledger row \texttt{GALOIS.READOUT.01}.
+\end{itemize}
+
+\subsection*{2026-06-21 (couple or factorize? the order-30 Coxeter element couples the carrier and family sectors as a cyclotomic compositum, Galois $=\mu_4\times\Z_2$: \texttt{v315})}
+\begin{itemize}
+\item \textbf{\texttt{v315\_coxeter\_coupling.py} (\texttt{COX.COUPLE.01}, \mE/\mC).} Answers the \texttt{v314}
+  question --- does $30=\gcar(2\Nfam)=5\cdot6$ couple the carrier ($5$-fold, golden, $\mathbb Q(\sqrt5)$) and family
+  ($6=2\cdot3$, rational) sectors, or just factorize? \mE\ the cyclic group \emph{factorizes}: $\gcd(5,6)=1\Rightarrow
+  \Z/30=\Z/5\times\Z/6$ (direct product, group-decoupled, in line with the \texttt{v314} field obstruction); \mE\ the
+  $E_8$ exponents $=$ totatives$(30)$ split as totatives$(5)\times$ totatives$(6)$, $\varphi(30)=4\cdot2=8=$ rank
+  $E_8$; \mE\ but the \emph{field} couples: $\mathbb Q(\zeta_{30})$ is the compositum of the carrier
+  $\mathbb Q(\zeta_5)\ni\sqrt5$ and the family $\mathbb Q(\zeta_3)$, degree $8=$ rank $E_8$; \mE\ the Galois group is
+  exactly $(\Z/5)^\times\times(\Z/3)^\times=\Z/4\times\Z/2=\mu_4\times\Z_2$ (order $8$, max element order $4$), so the
+  $\mu_4$ seam clock \emph{is} the Galois group of the carrier's golden field and $\Z_2$ that of the family field
+  (refining \texttt{v223}); \mE\ $\sqrt5=\phi+1/\phi$ is the quadratic Gauss sum in $\mathbb Q(\zeta_5)$. \mC\ verdict:
+  $30=5\cdot6$ does not dynamically entangle the sectors --- it couples them as the cyclotomic compositum, the
+  static$\leftrightarrow$dynamic bridge being \emph{Galois}, not a dynamical map. Cited in \texttt{origin\_theory};
+  ledger row \texttt{COX.COUPLE.01}.
+\end{itemize}
+
+\subsection*{2026-06-21 (do the discrete-kernel and dynamic rates translate? An exact number-field split $\mathbb Q$ vs $\mathbb Q(\sqrt5)$: \texttt{v314})}
+\begin{itemize}
+\item \textbf{\texttt{v314\_rate\_translation.py} (\texttt{RATE.TRANSLATE.01}, \mE/\mC).} Answers, exactly, whether
+  the discrete kernel (the affine-$E_8$ network, carrying the golden ratio) and the dynamic part (the seam transfer,
+  carrying the recovery rate $(2/3)^6$) translate. \mE\ FIELD SPLIT: the adjacency spectrum is the rational part
+  $\{0,\pm1,\pm2\}\subset\mathbb Q$ plus the golden part $\{\pm\phi,\pm1/\phi\}\subset\mathbb Q(\sqrt5)$, while the
+  transfer spectrum $\{1,(2/3)^6,(1/3)^6\}$ is \emph{entirely} rational; \mE\ the family/sheet rates DO translate
+  (the rational angles $2\cos(\pi/2){=}0=|\mathbb Z_2|$ and $2\cos(\pi/3){=}1=\Nfam$ build
+  $(2/3)^6=(|\mathbb Z_2|/\Nfam)^{2\Nfam}\in\mathbb Q$, same field, same atoms), but \mE\ the carrier $5$-fold
+  (golden, $\mathbb Q(\sqrt5)$) has NO rational dynamic image -- a field obstruction ($2/3$ is neither an adjacency
+  nor a lazy-update eigenvalue; heat-kernel $t=\Delta/(2-\phi)\approx6.37$ not clean), so the carrier is
+  \emph{static-only}; \mE\ the only object holding both is the order-$30$ Coxeter element
+  $30=\gcar(2\Nfam)=5\cdot6$, and the $\phi$-quasicrystal $E_8=H_4{+}\phi H_4$ ($240=2\cdot120$) carries the carrier
+  but not the (rational, $3$-fold) cusp-weight family dynamics. Cited in \texttt{origin\_theory}; ledger row
+  \texttt{RATE.TRANSLATE.01}.
+\end{itemize}
+

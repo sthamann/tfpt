@@ -1,0 +1,314 @@
+\begin{document}
+\maketitle
+\vspace{-0.4cm}
+
+\begin{keybox}[What this document is about]
+The Standard Model as \emph{one} $\varphi_0$-ladder mass formula (all masses, CKM, PMNS, neutrinos), the
+flavor matrix from parabolic transport on $\mathbb P^1\setminus\mu_4$, the five worked closures
+($\theta_{12}$, quark $c$, the explicit mass gap, Starobinsky $M$, the H2 splitting), and
+\textbf{gravity/quantum gravity as the seam response} (the Seam Response Grammar $\xi u=c_3$, the
+\emph{parameter-free} full covariant Einstein equation from entanglement equilibrium ($G_{ab}{+}\Lambda g_{ab}{=}c_3^{-1}T_{ab}$, both coefficients fixed), the
+heat-kernel grounding of $R+R^2$, and the metric-coupled gap bound that \emph{gap-decouples} the physical
+QG sector, leaving only the ambient projective \emph{measure} as a mathematical-completeness item).
+\end{keybox}
+
+\input{tex-artefacts/tfpt_docset}
+\noindent\textbf{You are reading \textbf{document~2} (Standard Model).}
+
+\input{tex-artefacts/tfpt_status}
+\TFPTbadges
+\TFPTclaimstack[sm]
+
+
+\tableofcontents
+\clearpage
+\part{The Standard Model in one master formula}
+\par\smallskip\noindent\textbf{In one sentence.}
+The fermion spectrum --- masses, Yukawa structure, CKM, the PMNS skeleton and the neutrinos --- follows
+from \emph{one} master formula with \emph{three} ingredients: the seed $\phiz$, the carrier base
+$\lamY=\sqrt{\phiz(1-\phiz)}$ and the \emph{residue matrix of the compiler}. No free Yukawa \emph{exponents}
+remain; the charged-lepton amplitudes are closed, the quark mass \emph{ratios} are closed too (integer
+Pl\"ucker readouts, \vref{v49}/\vref{v71}), and only the \emph{absolute} quark amplitude scale is a finite
+$(U_{\mathrm{wall}})$ anchor.
+
+\noindent\textbf{Markers:} \mE\ exact / machine-proven\,$\cdot$\,\mC\ conditional (named hypotheses)\,$\cdot$\,\mO\ open / axiom\,$\cdot$\,\mX\ kill test --- the fine per-claim type is in \texttt{verification/status\_ledger.csv}.
+
+% =====================================================================
+\section{The principle: one master formula instead of many Yukawa numbers}
+% =====================================================================
+In the source-layer construction each fermion mass arises through a Yukawa coupling $y_{f,j}$ built as a transport
+word-length $L_{f,j}$ on a hexagon ($C_6$) times a holonomy amplitude. In the compiler picture this is
+\emph{one} line:
+
+\begin{keybox}[Mass master formula (closed branch)]
+\[
+  \boxed{\ \hat m_{f,j}=\frac{\vgeo}{\sqrt2}\,y_{f,j},\qquad
+  y_{f,j}=\lamY^{\,L_{f,j}}\,\Lambda_{f,j},\qquad
+  \lamY=\sqrt{\phiz\,(1-\phiz)}\ }
+\]
+with \emph{one} seed $\phiz=\dfrac{1}{6\pi}+\dfrac{3}{256\pi^4}$, the integer word-lengths
+$L_{f,j}=r_{f,j}+6\,n_{f,j}$ (residue $+$ winding) and $O(1)$ holonomy amplitudes $\Lambda_{f,j}$.
+\end{keybox}
+
+\noindent The point of the simplification: \textbf{$L_{f,j}$ is not a fit but the output of the
+compiler.} The residues $r_{f,j}$ form the matrix whose invariants are pure compiler numbers
+(Section 3); the windings $n_{f,j}$ are the anchors $\{1,1,2\}$. What used to be a separate ``flavor
+transport'' theorem is now the readout of a fixed matrix.
+
+\noindent\textbf{The seed base is the halved $(E_8)_1$ Weyl anomaly.} The seed base
+$\tfrac1{6\pi}=\tfrac43\,c_3$ carries the prefactor $\tfrac43=\dim S^+/\dim\mathfrak g_{\mathrm{SM}}=16/12$.
+That same $\tfrac43$ is the conformal trace anomaly of the seam: over the seam sphere
+$S^2$ ($\chi=2$, $\int R\sqrt g=8\pi$) the $(E_8)_1$ ($c=8$) Weyl anomaly is
+$\tfrac{c}{24\pi}\!\int\! R\sqrt g=\tfrac{c\chi}{6}=\tfrac83$, halved by the one-sided
+$|\Z_2|$ M\"obius identification to $\tfrac43$. So the Cabibbo-seed prefactor is the halved
+$(E_8)_1$ conformal anomaly, not a free coefficient (\veri{v172\_trace\_anomaly\_seed.py}).
+
+% =====================================================================
+\section{The seed $\phiz$ as a decoder}
+% =====================================================================
+A single seed drives four independent low-energy observables. This is the strongest compression of the
+flavor input:
+
+\begin{center}
+\begin{tikzpicture}[font=\small,
+  seed/.style={circle,draw=tfblue,fill=tfblue!10,very thick,minimum size=17mm,align=center},
+  obs/.style={rectangle,rounded corners,draw=tfgreen!70!black,fill=tfgreen!8,thick,align=center,inner sep=4pt},
+  ar/.style={-{Stealth[length=2.2mm]},thick,tfgray}]
+  \node[seed] (s) at (0,0) {$\phiz$\\{\footnotesize$=\tfrac1{6\pi}{+}\tfrac{3}{256\pi^4}$}};
+  \node[obs] (a) at (4.3,2.1)  {Cabibbo\\$\lamC=\sqrt{\phiz(1-\phiz)}$};
+  \node[obs] (b) at (4.7,0.7)  {birefringence\\$\beta_{\mathrm{rad}}=\phiz/4\pi$};
+  \node[obs] (c) at (4.7,-0.7) {baryon fraction\\$\Omega_b=(4\pi{-}1)\beta_{\mathrm{rad}}$};
+  \node[obs] (d) at (4.3,-2.1) {reactor angle\\$\sin^2\theta_{13}=\phiz\,e^{-5/6}$};
+  \foreach \t in {a,b,c,d}{\draw[ar] (s)--(\t);}
+  \node[tfgray,font=\footnotesize,align=center] at (0,-2.35) {budget:\\$\Omega_b+\beta_{\mathrm{rad}}=\phiz$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Numerically: $\phiz=0.0531720$, $\lamC=0.224376$ (PDG $0.2245$),
+$\sin^2\theta_{13}=0.02311$ (PDG $\approx0.0222$). The exponent $\gamma=5/6$ is the carrier trace
+$\operatorname{tr}_E Y^2$; its complement $1-\gamma=1/6$ reappears in the neutrino ratio.
+
+% =====================================================================
+\section{The flavor residue matrix is the compiler signature}
+% =====================================================================
+The core of the simplification: the word-length matrix $L=R+6W$ splits into the residue matrix $R$ (the
+hexagon packets of the three sectors) and the winding matrix $W$ (one $+6$ per first generation $=$
+anchor). $R$ carries all the discrete flavor information --- and its invariants are \emph{exclusively}
+compiler numbers:
+
+\begin{center}
+\begin{tikzpicture}[font=\small]
+  \matrix (m) [matrix of math nodes,left delimiter=(,right delimiter=),
+    nodes={minimum width=6mm,minimum height=5mm}] at (0,0)
+  { 1 & 3 & 0 \\ 1 & 5 & 2 \\ 2 & 5 & 3 \\ };
+  \node[tfblue,font=\bfseries] at (-2.1,0) {$R=$};
+  \node[tfgray,font=\footnotesize,align=left,anchor=west] at (1.6,0.9) {rows $=$ sectors $u,d,e$};
+  \node[tfgreen!60!black,font=\footnotesize,align=left,anchor=west] at (1.6,0.2)  {$\operatorname{tr}R=9=\Nfam^2$};
+  \node[tfgold!80!black,font=\footnotesize,align=left,anchor=west] at (1.6,-0.5) {minors $2,3,5\Rightarrow 2{\cdot}3{\cdot}5=30=h(E_8)$};
+  \node[tfred!80!black,font=\footnotesize,align=left,anchor=west] at (1.6,-1.2) {$\det R=8=h(D_5)$};
+\end{tikzpicture}
+\end{center}
+
+\begin{winbox}[Spectral signature of the flavor matrix (verified)]
+The characteristic polynomial of the residue matrix is built entirely from compiler constants:
+\[
+  \chi_R(t)=t^3-\underbrace{9}_{\Nfam^2}\,t^2+\underbrace{10}_{\mathcal A_L=\binom52}\,t-\underbrace{8}_{h(D_5)} ,
+\]
+where the linear coefficient $10=2+3+5$ is the sum of the three principal $2{\times}2$ minors and their
+\emph{product} $2\cdot3\cdot5=30$ is the Coxeter number $h(E_8)$. The flavor matrix is therefore not an
+independent object --- it is a \emph{reading of the same compiler} ($\Nfam,\ \mathcal A_L,\ h(D_5),\
+h(E_8)$). \mE\ \veri{v4\_flavor\_matrix.py}
+\end{winbox}
+
+\noindent\textbf{Concretely:}
+\[
+  L=\begin{pmatrix}7&3&0\\7&5&2\\8&5&3\end{pmatrix}
+  =\underbrace{\begin{pmatrix}1&3&0\\1&5&2\\2&5&3\end{pmatrix}}_{R\ (\det 8,\ \text{minors }2{,}3{,}5)}
+  +\,6\underbrace{\begin{pmatrix}1&0&0\\1&0&0\\1&0&0\end{pmatrix}}_{W\ (\text{anchor }\{1,1,2\})},\qquad
+  \textstyle\sum L=40=\Oadm\cdot\tfrac56 .
+\]
+The sum $\sum L=40$ is the transport budget number; with the Higgs contribution $N_\Phi=1$ it gives
+$40+1=41=10\,b_1$ --- exactly the coefficient the EM fixed point $\ainv$ reads.
+
+\begin{keybox}[The winding-deformation theorem: $R\to L$ in one parameter \mE]
+Treat the winding as a one-parameter rank-one deformation $R_s=R+s\,\mathbf1 e_1^{\!\top}$ ($R_0=R$,
+$R_6=L$). Then the \emph{entire} flavor linear algebra is one line,
+\[
+  \boxed{\ \chi_{R_s}(t)=t^3-(9+s)\,t^2+(10+5s)\,t-(8+2s)\ },
+\]
+with $\det R_s=8+2s$, $\operatorname{tr}R_s=9+s$,
+$\operatorname{PrinMin}_2(R_s)=\bigl(5,\,3(s{+}1),\,2(s{+}1)\bigr)$, and
+$R_s^{-1}\mathbf1=\tfrac1{4+s}(1,1,-1)^{\!\top}$. The physical winding value is fixed, not chosen:
+\[
+  \boxed{\ s=|R^+(A_3)|=6\ \text{is \emph{triply locked}:}\quad
+  \underbrace{6+4s=30}_{R_s^{\!\top}a\to h(E_8)},\ \ \underbrace{8+2s=20}_{\det\to2\mathcal A_L},\ \
+  \underbrace{9+s=15}_{\operatorname{tr}\to\dim A_3}\ \Rightarrow\ s=6 .}
+\]
+At $s=6$ this gives $\chi_L=t^3-15t^2+40t-20$ with $15=\dim A_3$, $40=|R(D_5)|$, $20=|R(A_4)|=2\mathcal A_L$,
+and $\operatorname{PrinMin}_2(L)=(5,21,14)=(\gcar,3{\cdot}7,2{\cdot}7)$ --- the lift multiplies the sheet
+and family minors by the successor $s{+}1=7=|R^+(A_3)|{+}1$ while the carrier minor $5$ stays fixed. So the
+``$+6$ winding'' is not ``add six because hexagon'': it is the unique value selected three independent
+ways, and the appearance of $7$ in the scalaron is $s{+}1$.
+\end{keybox}
+
+\begin{winbox}[Winding reality, the determinant lift, and the invariant dual anchor (machine-verified)]
+The rank-one winding $R\to L=R+6\,\mathbf 1 e_1^{\!\top}$ is far from a cosmetic offset:
+\begin{itemize}\setlength\itemsep{2pt}
+\item\textbf{Winding makes the flavour system spectrally real.} $R$ has a \emph{complex} eigenpair
+($\operatorname{disc}\chi_R=-2^2\cdot1999<0$, spectrum $7.857,\,0.572\pm0.832i$), while $L$ has three
+positive reals, with a fully compiler-factorised discriminant (two equivalent readings)
+\[
+  \operatorname{disc}\chi_L=39200=2^{5}\cdot\gcar^{2}\cdot7^{2}
+  =2\,(\mathcal A_L\cdot\dim G_2)^2=2\,(10\cdot14)^2 .
+\]
+\item\textbf{The anchor Coxeter descent.} The anchor projects onto a clean three-scale ladder,
+\[
+  R^{\!\top}a=(6,18,8),\qquad L^{\!\top}a=(30,18,8)=\bigl(h(E_8),\ \Nfam|R^+(A_3)|,\ h(D_5)\bigr),
+\]
+so the winding lifts $|R^+(A_3)|=6\to h(E_8)=30$ (a $+24=|W(A_3)|$ shift), with descent gaps
+$30-18=12=|R(A_3)|=\dim\mathfrak g_{\mathrm{SM}}$ and $18-8=10=\mathcal A_L$. Column-wise the lift is
+$\mathbf1^{\!\top}R=(4,13,5)\to\mathbf1^{\!\top}L=(22,13,5)$, adding $18$ only in the first generation ---
+which is thus literally the store of the family-hexagon winding.
+\item\textbf{The determinant lift is the $A_3$ winding over $\mu_4$.} Since $e_1^{\!\top}R^{-1}\mathbf1=\tfrac14=\tfrac1{|\mu_4|}$,
+\[
+  \det L=\det R\Bigl(1+\tfrac{|R^+(A_3)|}{|\mu_4|}\Bigr)=8\bigl(1+\tfrac64\bigr)=20=2\mathcal A_L,
+\]
+so the $D_5$ selector $8$ is lifted to the decuple-doublet $20$ by the $A_3$ winding. The cokernel moves
+$\Z_8\to\Z_{20}$, i.e.\ the winding injects the carrier factor $5$ into the torsion.
+\item\textbf{The dual anchor is winding-invariant.} The first column is the anchor, $R e_1=a=(1,1,2)$, and
+the dual covector is preserved by the lift,
+\[
+  a^{\!\top}R^{-1}=a^{\!\top}L^{-1}=\bigl(-\tfrac12,-\tfrac12,1\bigr),\qquad
+  \bigl(-\tfrac12,-\tfrac12,1\bigr)\!\cdot\!\mathbf1=0 ,
+\]
+so winding changes the absolute hierarchy but \emph{not} the anchor-dual sheet balance. The uniform
+response keeps the sheet value fixed: $\mathbf1^{\!\top}\!\operatorname{adj}(R)\mathbf1
+=\mathbf1^{\!\top}\!\operatorname{adj}(L)\mathbf1=2=|\Z_2|$, while the inverse response denominator runs
+$|\mu_4|=4\to\mathcal A_L=10$. \mE
+\end{itemize}
+\end{winbox}
+
+\par\smallskip\noindent\textbf{Audit-level only: flavor linear-algebra fingerprints (not load-bearing).}
+The following are \emph{audit fingerprints} (exact linear algebra of $R,L$), kept here, not in any
+derivation, under the no-free-pattern rule. \mE
+\begin{itemize}\setlength\itemsep{2pt}
+\item\textbf{Cofactor seam normal.} Generations $2,3$ share columns, $c_2{=}(3,5,5)^{\!\top}$,
+$c_3{=}(0,2,3)^{\!\top}$; their cross product $n=c_2\times c_3=(5,-9,6)=(\gcar,-\Nfam^2,|R^+(A_3)|)$
+gives the determinant geometrically: $n\cdot a=8=\det R$, $n\cdot(a{+}6\mathbf1)=20=\det L$, $n\cdot\mathbf1=2=|\Z_2|$.
+\item\textbf{Adjugate selector ($\Rightarrow$ why only gen.\ 1 winds).} $n$ is also the first row of both
+adjugates, $e_1^{\!\top}\!\operatorname{adj}(R)=e_1^{\!\top}\!\operatorname{adj}(L)=(5,-9,6)$, so
+$(5,-9,6)R=(8,0,0)$ and $(5,-9,6)L=(20,0,0)$ --- it annihilates the unchanged $c_2,c_3$ plane.
+\item\textbf{Length polynomial as an action polynomial.}
+$\chi_L(t)=t^3-\dim(A_3)\,t^2+|R(D_5)|\,t-|R(A_4)|=t^3-15t^2+40t-20$.
+\item\textbf{Principal minors.} $\operatorname{PrinMin}_2(L)=(5,21,14)=(\gcar,3{\cdot}7,2{\cdot}7)$ with
+$\sum=40=|R(D_5)|$, $\prod=1470=7^2 h(E_8)$.
+\item\textbf{Commutator is a pure winding rotation.} $[R,L]$ has rank $2$, trace $0$, and char.\ poly
+$\lambda(\lambda^2+432)$ --- a single $2$D rotation in the non-anchor plane with a null direction.
+\item\textbf{The filtration fingerprint (2026-08-06).} The row budgets of the filtration
+$Q\to K\to L$ are exact, \emph{order-exact} counts of the $K_{3,2}$/prism/$K_5$/$H_8$ incidence
+chain, with level-wise additivity mirroring $L=K+Q$; \emph{no} entry-level reconstruction succeeds
+from any frozen incidence candidate (exhaustive false-positive rates $0.005$--$0.75\%$ make the
+misses informative) --- an incidence-compiler fingerprint, typed audit-only per this section's rule
+(\veri{v812\_flavor\_graph\_filtration.py}, $16/16$, \textsc{filtration-fingerprint-only}) \mE.
+\end{itemize}
+\par\smallskip
+
+% =====================================================================
+\section{Charged leptons: completely closed in $\phiz$}
+% =====================================================================
+For the leptons the hexagonal resolvent solves the amplitudes $\Lambda_\ell$ in closed form --- only pure
+$\phiz$ powers with rational carrier prefactors remain:
+
+\begin{keybox}[Absolute lepton source masses]
+\[
+  (\hat m_e,\hat m_\mu,\hat m_\tau)=\frac{\vgeo\,\pi}{\sqrt2}\left(\tfrac{16}{7}\,(\phiz)^{5},\ \tfrac{4}{3}\,(\phiz)^{3},\ \tfrac{7}{6}\,(\phiz)^{2}\right),
+\]
+and hence the \emph{parameter-free} ratios
+\[
+  \frac{\hat m_\mu}{\hat m_\tau}=\frac{8}{7}\,\phiz,\qquad
+  \frac{\hat m_e}{\hat m_\mu}=\frac{12}{7}\,(\phiz)^{2},\qquad
+  \frac{\hat m_e\,\hat m_\tau}{\hat m_\mu^{2}}=\frac{3}{2}\,\phiz .
+\]
+\end{keybox}
+
+\begin{keybox}[Where the lepton rationals come from: $\delta=\tfrac12$ resolvent $+$ product rule \mE]
+The coefficients $(\tfrac{16}{7},\tfrac43,\tfrac76)$ are not fitted --- they are \emph{derived}, and the
+key is that they are \emph{rational}, so they cannot come from the irrational pole $\delta_{\mathrm{ph}}$.
+They come from the \emph{distinguished} transport value $\delta=\tfrac12$ (rational), evaluated at the
+lepton leg $y=1$ ($=|Y(e^c)|$). \textbf{The value $\delta=\tfrac12$ itself is a glue-norm readout:} the two $E_8$-glue norms are
+$q(D_5)=\gcar/|\mu_4|=\tfrac54$ and $q(A_3)=\Nfam/|\mu_4|=\tfrac34$, so
+$\delta=q(D_5)-q(A_3)=(\gcar-\Nfam)/|\mu_4|=|\Z_2|/|\mu_4|=\tfrac12$ --- the carrier-minus-family count over
+the glue index (the same pair whose \emph{sum} is the $E_8$ root norm $2$, architecture document), matching the
+harmonic-frame holonomy diagonal modulus $\tfrac12$. So $\delta$ is fixed, not chosen
+(\veri{v51\_boundary\_half\_step.py}). With that value,
+\[
+  \text{amplitude}(r)=\Big|\tfrac{1}{1-\tfrac12\zeta^{r}}\Big|^{2}=\frac{1}{\tfrac54-\cos(r\pi/3)},
+  \qquad \zeta=e^{i\pi/3},\ r=L\bmod 6 .
+\]
+\textbf{Non-anchor leptons} (dressed by the winding factor $|\mu_4|=4$, $w=\lfloor L/6\rfloor$):
+\[
+  c=|\mu_4|^{\,w}\,\frac{1}{\tfrac54-\cos(r\pi/3)}:\quad
+  c_e=4^{1}\!\cdot\!\tfrac{4}{7}=\tfrac{16}{7},\qquad
+  c_\mu=4^{0}\!\cdot\!\tfrac{4}{3}=\tfrac{4}{3}\quad(\text{exact}).
+\]
+\textbf{Anchor} (heaviest lepton $\tau$) fixed by the \emph{sector product rule}
+\[
+  \boxed{\ c_e\,c_\mu\,c_\tau=\frac{2^{\gcar}}{\Nfam^{2}}=\frac{32}{9}\ }
+  \quad\Longrightarrow\quad c_\tau=\frac{32/9}{(16/7)(4/3)}=\frac{7}{6}\quad(\text{exact}).
+\]
+Every ingredient is a compiler datum ($\delta{=}\tfrac12$, $|\mu_4|$, hexagon angles, $\gcar$, $\Nfam$).
+The product constant reads $2^{\gcar}=32=\dim(S^+\!\oplus S^-)$ (the full carrier Clifford space) over
+$\Nfam^2$, and the lepton word-lengths obey $\sum_j L_j=16=\dim S^+$, $\sum_j(L_j-K_j)=6=|R^+(A_3)|$.
+\emph{Edge--centre ring:} the two boundary generations close on the middle one,
+$c_e\,c_\tau=\tfrac{16}7\!\cdot\!\tfrac76=\tfrac83=|\Z_2|\,c_\mu$, so the lepton amplitudes form a closed
+algebraic ring with sheet-parity $|\Z_2|=2$. \veri{v20\_lepton\_c\_derivation.py}\,\allowbreak\veri{v21\_solar\_product\_quark.py}\,\allowbreak\veri{v37\_plucker\_anchor.py}
+\smallskip\\
+\noindent\emph{Update (the hexagon is the family monodromy, \veri{v118\_hexagon\_family\_dictionary.py}):}
+with the flavor-wall monodromy now exact ($\widetilde M_0\in W(A_3)$, research contracts), the hexagon
+constants stop being separate inputs \mE: $\operatorname{spec}(\widetilde M_0)\cup\operatorname{spec}(-\widetilde M_0)=\mu_6$
+(the six sites $=$ family spectrum $+$ sheet twist), $\det(\mathbf1-t\widetilde M_0)=1-t^3$, and
+\[
+  c_e=\frac{|\mu_4|}{2\det(\mathbf1-\tfrac12\widetilde M_0)}=\frac{16}{7},\quad
+  c_\mu=\frac{\Nfam}{2\det(\mathbf1+\tfrac12\widetilde M_0)}=\frac{4}{3},\quad
+  c_\tau=\frac{|\mu_4|\det(\mathbf1-\tfrac12\widetilde M_0)}{\Nfam}=\frac{7}{6},
+\]
+with the product rule $=|\mu_4|/\det(\mathbf1+\tfrac12\widetilde M_0)=\tfrac{32}9$ --- the lepton $7$
+and $9$ \emph{are} the two family-resolvent determinants ($\times2^3$), and $\delta=\tfrac12=
+|(\widetilde M_0)_{22}|$ is supplied by the monodromy itself. The $e/\mu/\tau$ \emph{leg assignment}
+remains the established input above; nothing is re-fitted.
+\smallskip\\
+\noindent\emph{The lepton ring is an \'etale Frobenius algebra \mE/\mC\ (\veri{v229\_lepton\_frobenius\_algebra.py}).}
+The three coefficients are the spectrum of the commutative algebra $A=\mathbb Q[t]/(m)$,
+$m=(t{-}c_e)(t{-}c_\mu)(t{-}c_\tau)$: $A$ is \emph{\'etale} (separable), so the trace form
+$(x,y)\mapsto\operatorname{Tr}(xy)$ is nondegenerate ($\det\mathrm{Gram}=\operatorname{disc}(m)\neq0$) --- the
+defining property of a (commutative) Frobenius algebra --- and it lives over the $\mu_6$ resolvent
+($C_6$ has characteristic polynomial $t^6{-}1$, spectrum $\mu_6=\mu_3$ family $\times\,\mu_2$ sheet). So the
+charged-lepton boundary is a genuine finite Frobenius object \mE; the PMNS extension (its automorphisms plus
+the hexagonal CM phase $j{=}0$, \veri{v220\_cp\_hexagonal\_modulus.py}) is the natural \mC\ candidate, not a
+closure of the matrix.
+
+\smallskip
+\noindent\emph{Scope (honest).} This law is lepton-specific. Applied to the down sector it fails provably:
+$r_d{=}1,r_s{=}5$ share the same amplitude, so the law forces $c_d/c_s{=}|\mu_4|{=}4$, whereas the source
+ratio gives $0.94$. Quarks (colour, different cusp legs) are structurally different and their exact $c$'s
+stay open (cf.\ the $U_f^\star$ reduction above).
+\end{keybox}
+
+\begin{center}\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{@{}lccc@{}}
+\toprule
+\textbf{Ratio} & \textbf{Formula} & \textbf{Prediction} & \textbf{PDG} \\
+\midrule
+$\hat m_\mu/\hat m_\tau$ & $\tfrac87\phiz$ & $0.06077$ & $0.05946$ \\
+$\hat m_e/\hat m_\mu$ & $\tfrac{12}{7}(\phiz)^2$ & $0.004847$ & $0.004836$ \\
+$\hat m_e\hat m_\tau/\hat m_\mu^2$ & $\tfrac32\phiz$ & $0.07976$ & $0.08133$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\noindent The factor $B=\tfrac32$ in the Koide-type product is the rank ratio
+$\operatorname{rank}E_3/\operatorname{rank}E_2$ of the carrier --- again a compiler number, not a fit.
+The $e/\mu$ relation hits the PDG to $0.2\%$.
+
+% =====================================================================

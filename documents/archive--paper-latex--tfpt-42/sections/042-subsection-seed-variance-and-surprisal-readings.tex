@@ -1,0 +1,349 @@
+\subsection{Seed variance and surprisal readings}
+
+The bridge identities also admit a disciplined probabilistic reading. Since
+\[
+\lambda_C^2=\phiz(1-\phiz),
+\]
+the Cabibbo scale is exactly the standard-deviation scale of a Bernoulli variable with success probability $p=\phiz$:
+\[
+\lambda_C=\sqrt{p(1-p)}.
+\]
+Equivalently, the Fisher information of the Bernoulli family is
+\[
+I(p)=\frac{1}{p(1-p)}=\frac{1}{\lambda_C^2},
+\]
+so the Cabibbo bridge measures the inverse square-root Fisher scale of the retained seed. This is the precise information-theoretic statement. The present paper does \emph{not} identify $\lambda_C$ itself with Fisher information or with a Bures distance.
+
+Likewise, whenever the electromagnetic closure is written with
+\[
+\ln\!\bigl((\phiz)^{-1}\bigr),
+\]
+the exact probabilistic reading is the surprisal of the seed event. That term should not be called the Shannon entropy of the full Bernoulli distribution, which would instead be
+\[
+H(\phiz)
+=
+-\phiz\ln\phiz-(1-\phiz)\ln(1-\phiz).
+\]
+Finally, the neutrino bridge relation
+\[
+\sin^2\theta_{13}=\phiz e^{-\gamma}
+\]
+is naturally described as Boltzmann-like weighting by the carrier norm $\gamma$, but the present draft does not define a full thermodynamic partition function at that point. These readings are therefore organizational interpretations of already established formulas, not new closure theorems.
+
+\subsection{Exact parity-code and information-compression reading}
+
+The strongest information-theoretic statement is no longer a loose analogy. By \Cref{prop:parity-code-family}, the one-family packet is exactly the even-parity subspace on five occupation bits,
+\[
+S^+
+\cong
+\mathrm{span}\Bigl\{|x\rangle:\sum_{i=1}^5 x_i\equiv 0 \pmod 2\Bigr\},
+\]
+so the carrier packet is kinematically the classical even-parity $[5,4,2]$ code. The split formula
+\[
+S^+
+=
+\bigl(\Lambda^{\mathrm{even}}E_3\otimes\Lambda^{\mathrm{even}}E_2\bigr)
+\oplus
+\bigl(\Lambda^{\mathrm{odd}}E_3\otimes\Lambda^{\mathrm{odd}}E_2\bigr)
+\]
+shows that the coarse parity bits of the $3$-sector and $2$-sector are exactly locked. For the maximally mixed state on the $16$ basis words, the two parity observables are perfectly correlated and therefore carry exactly one bit of mutual information.
+
+The split weight enumerator in \Cref{prop:split-weight-enumerator} is the corresponding code enumerator with hypercharge weights. It packages the six admissible occupancy sectors into the single polynomial
+\[
+W(u,v)
+=
+1+3u^2+6uv+v^2+2u^3v+3u^2v^2.
+\]
+The hypercharge-compression result of \Cref{prop:family-hypercharge-compression} sharpens the same picture further. On the uniform distribution over the $16$ carrier basis states, the six $Y$-sectors have probabilities
+\[
+\frac1{16}(1,3,6,1,2,3),
+\]
+so the hypercharge entropy is
+\[
+H(Y)
+=
+-\sum_i p_i\log_2 p_i
+=
+\frac72-\frac34\log_2 3
+\approx
+\num{2.311}\ \text{bits}.
+\]
+Since the total carrier word takes $4$ bits to specify, the unresolved nonabelian degeneracy is
+\[
+4-H(Y)\approx \num{1.689}\ \text{bits}.
+\]
+Thus hypercharge is an efficient family-sector compressor, but not a lossless label for the individual basis word.
+
+\begin{remark}[Two code layers: kinematic and admissible]
+The code reading should be split into two layers. First, $S^+$ is exactly the classical even-parity $[5,4,2]$ code on five occupation bits. Second, on the commuting admissible branch the protected physical sector is
+\[
+\mathcal H_{\mathrm{adm}}
+:=
+\operatorname{Ran}(\Padm)
+=
+\ker \Kadm
+=
+\ker \Delta_{\mathrm{adm}},
+\]
+where the last equality uses the Hodge description of \Cref{lem:hodge-admissibility-projector}. In that second layer the penalties $K_\Sigma,K_c,K_\Theta,K_g$ act as stabilizer-like sector constraints, and $\Padm$ is the Hodge projector onto the admissible physical subspace. This is the precise bridge to quantum-information language used in the manuscript. It is not yet a theorem of a self-correcting quantum memory, because no noise model, logical algebra, or lifetime analysis is derived here.
+\end{remark}
+
+\subsection{Cut-and-project model-set realization}
+
+The appendix-level quasicrystal language is kept outside the hard core, but it can be stated
+exactly as a compatible model-set construction.
+
+\begin{theorem}[Regular cut-and-project model set for the \texorpdfstring{$3+2$}{3+2} carrier]
+\label{thm:cut-project-model-set}
+Let
+\[
+L=\mathbb Z^5.
+\]
+Choose a direct sum decomposition
+\[
+\mathbb R^5=V_{\mathrm{vis}}\oplus V_{\mathrm{int}},
+\qquad
+\dim V_{\mathrm{vis}}=3,
+\qquad
+\dim V_{\mathrm{int}}=2,
+\]
+such that the projection of $L$ to $V_{\mathrm{int}}$ is dense. Let
+\[
+\pi_{\mathrm{vis}}:\mathbb R^5\to V_{\mathrm{vis}},
+\qquad
+\pi_{\mathrm{int}}:\mathbb R^5\to V_{\mathrm{int}}
+\]
+be the canonical projections, and let $W\subset V_{\mathrm{int}}$ be a compact regular window with
+nonempty interior and boundary of measure zero. Define
+\[
+\Lambda_W
+:=
+\left\{
+\pi_{\mathrm{vis}}(n)\;:\;
+n\in L,\;
+\pi_{\mathrm{int}}(n)\in W,\;
+\sum_{i=1}^5 n_i\equiv 0\!\!\!\pmod 2
+\right\}.
+\]
+Then $\Lambda_W$ is a regular model set. The parity constraint realizes the even-packet selection of
+$S^+$, and the dimension split $3+2$ realizes the visible/internal carrier architecture.
+\end{theorem}
+
+\begin{proof}
+This is the standard cut-and-project theorem for regular model sets. Density of the internal
+projection and regularity of the window imply that $\Lambda_W$ is Delone and has pure point
+diffraction. The congruence condition
+\[
+\sum_{i=1}^5 n_i\equiv 0\!\!\!\pmod 2
+\]
+selects the even parity class, matching the even exterior-packet sector of the carrier.
+\end{proof}
+
+\begin{remark}[Status of the quasicrystal reading]
+The model-set theorem makes the quasicrystal appendix mathematically sharp, but the irrational split
+and window are not derived from the hard TFPT core. The construction is therefore exact yet
+deliberately kept appendix level.
+\end{remark}
+
+\section{Record algebra and pointer dynamics}
+\label{app:record}
+
+This appendix elaborates the main-text record constructions and the stable pointer-algebra package
+used in the downstream closure discussion. Horizon thermality and prediction / transient semantics
+are separated into the following appendix sections so that record theory, black-hole continuation,
+and phenomenological event channels do not blur into one mixed extrapolation block.
+
+\subsection{Minimal admissible vacuum}
+
+At finite volume or with a declared cutoff, an admissible vacuum candidate is written as
+\[
+\rho_B
+:=
+\argmin_{\rho\in\Vadm}\tr(\rho\Hrel),
+\]
+with lower boundedness and coercivity understood exactly as in the main-text closure axioms. The stronger generative theorem path described in the conclusion would refine this object to the global admissible vacuum functional $\mathfrak V[g,\chigeo,\Phi,\nabla_F,\delta,\{L_f\}]$ whose variations also select the transport branch. In this appendix, however, the same vacuum object is used only as the background state for the record-algebra elaborations; no stronger cosmological claim is added here beyond the closed existence statement already declared in the main theorem stack.
+
+\subsection{Record growth principle}
+
+One useful coarse-grained record algebra is
+\[
+\Arec(t):=\bigoplus_{\Delta_i>\Hhub(t)}\mathcal A_i,
+\qquad
+S_{\mathrm{rec}}(t)=\log\dim\Arec(t).
+\]
+As $\Hhub(t)$ decreases, more stable channels open. The intended arrow-of-time claim is therefore
+\[
+\frac{dS_{\mathrm{rec}}}{dt}>0,
+\]
+but only as a record-growth principle, not as a replacement for detailed nonequilibrium dynamics.
+
+\subsection{Observer algebra and Born-type evaluation}
+
+An observer is modeled as a stable pointer subalgebra
+\[
+\Aobs\subset\Arec.
+\]
+
+\begin{theorem}[Born evaluation on the stable pointer algebra]
+\label{thm:born-pointer-algebra}
+Let $\{P_i\}\subset \Aobs$ be a complete family of orthogonal projectors. Then for every state
+$\rho$ the unique additive, positive, and phase-invariant evaluation rule on this projector family is
+\[
+p_i=\tr(\rho P_i).
+\]
+\end{theorem}
+
+\begin{proof}
+In finite-dimensional sectors this is the standard Born rule characterization. The extra TFPT input
+is not a different probability law but the selection of the stable pointer algebra by the gapped
+admissible sector.
+\end{proof}
+
+With these projectors one may write the measurement channel
+\[
+\mathcal M_O(\rho)=\sum_i(P_i\rho P_i)\otimes |i\rangle\langle i|.
+\]
+The theorem is therefore a constrained appendix-level evaluation statement on admissible sectors,
+not a new claim about measurement in arbitrary settings.
+
+\section{Horizons, modular flow, and black hole thermality}
+\label{app:horizons}
+
+This appendix section records the horizon-side analytic input that supports the downstream modular
+thermality program. In the present version the split-inclusion theorem is the firm appendix-level
+statement, while the full modular KMS upgrade and compact-object thermality package remain visible
+downstream closure targets.
+
+\subsection{Split inclusion horizon approximation}
+
+\begin{theorem}[Horizon approximation by split inclusion]
+\label{thm:horizon-split-inclusion}
+Let $\mathfrak A_{\mathrm{adm}}$ be the local admissible net reconstructed in
+\Cref{thm:admissible-local-minkowski-net}, and assume in addition the split property. Then for
+every nested triple
+\[
+\mathcal O_{\mathrm{out}}\Subset \mathcal O_{\mathrm{collar}}\Subset \mathcal O_{\mathrm{ext}}
+\]
+there exists a type-I factor $N$ such that
+\[
+\mathfrak A_{\mathrm{adm}}(\mathcal O_{\mathrm{out}})
+\subset
+N
+\subset
+\mathfrak A_{\mathrm{adm}}(\mathcal O_{\mathrm{ext}}).
+\]
+Hence on a suitable code subspace one obtains an approximate tensor factorization
+\[
+\mathcal H_{\mathrm{code}}
+\cong
+\mathcal H_{\mathrm{out}}\otimes\mathcal H_{\mathrm{hor}}\otimes\mathcal H_{\mathrm{in}}.
+\]
+\end{theorem}
+
+\begin{proof}
+This is the standard consequence of the split property for local quantum field theory nets. The
+result supplies an algebraic horizon approximation without asserting an exact fundamental
+factorization.
+\end{proof}
+
+If a horizon is modeled as an inner seam, the manuscript therefore uses only this split-based
+approximation language rather than an exact microscopic tensor decomposition.
+
+\section{Prediction semantics and transient event channels}
+\label{app:prediction-semantics}
+
+This appendix section collects the optional semantic decorations of the prediction map and the
+status note for transient event channels. These items organize downstream interpretation, but they
+do not add new upstream theorem arrows to the rigid core.
+
+\subsection{Prediction semantics}
+
+The main-text prediction map can be decorated by explicit experimental metadata as
+\[
+Q=(\rho_0,\mathcal O_Q,\Delta_Q,t,\mathcal C_Q,\mathcal R_Q),
+\qquad
+\Pred(Q)=\mathcal R_Q\!\left(\tr(\rho_tE_Q(\Delta)),\mathcal C_Q\right),
+\]
+with
+\[
+\rho_t=U(t)\rho_0U^\dagger(t).
+\]
+This is kept only as an optional formal extension.
+
+\subsection{Transient event status}
+
+The topological burst channel of \Cref{conj:topological_phase_slip_burst_channel} is kept at
+programmatic-target status. What is fixed in the present version is only the admissible phase-slip
+channel and its scaling form, not yet a complete defect dynamics or radiative-transfer derivation.
+
+\section{Closed theoretical outputs and empirical comparison surface}
+\label{app:global-particle-ledger}
+
+This appendix collects the full Standard Model output of the boundary-polarized manuscript into a
+theoretical surface and an empirical comparison surface. The purpose is not to flatten the
+hierarchy but to keep theorem-level outputs, derived consequences, physical observables, scheme projections, and appendix continuations
+visibly distinct:
+
+\begin{tcolorbox}[colback=tfptblue!2, colframe=tfptblue!50, breakable,
+    title={Status legend for the particle ledger}, colbacktitle=tfptblue!70]
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+\item \textbf{Theorem:} a theorem-level output on the closed branch.
+\item \textbf{Derived consequence:} a structural output obtained by composing earlier theorems without adding a new scheme convention.
+\item \textbf{Physical observable:} a branch-fixed observable read internally before any scheme choice.
+\item \textbf{Scheme projection:} a row reported only after declared schemes, thresholds, or matching conventions.
+\item \textbf{Appendix continuation:} appendix-level continuation not needed for the closed core.
+\item \textbf{Programmatic target:} a precise downstream closure target recorded without a claimed proof in the present version.
+\end{itemize}
+Rows on the empirical comparison surface are compared only under the declared external
+conventions once the physical observable layer has already been fixed.
+\end{tcolorbox}
+
+\begin{remark}[Counting convention used here]
+\label{rem:counting-convention}
+One chiral family from $S^+=\Lambda^{\mathrm{even}}E$ contains $16$ states:
+$\nu^c$\,(1), $u^c$\,(3), $Q_L$\,(6), $e^c$\,(1), $L_L$\,(2), $d^c$\,(3).
+With $\nu^c$ explicitly in the carrier family packet, each family has $6$ Weyl field types.
+Three families give $\Oadm=3\times 16=48$ admissible chiral states.
+The gauge sector has $12$ bosons ($\gamma$, $8$ gluons, $W^\pm$, $Z$), and the Higgs sector has
+$1$ physical scalar. The total field-type count is therefore $3\times 6+4+1=23$ distinct types.
+\end{remark}
+
+\subsection{Table 1: Closed theoretical outputs}
+
+\begin{table}[H]
+\centering
+\tiny
+\setlength{\tabcolsep}{1.5pt}
+\renewcommand{\arraystretch}{1.0}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.09\linewidth}>{\raggedright\arraybackslash}p{0.11\linewidth}>{\raggedright\arraybackslash}p{0.10\linewidth}>{\centering\arraybackslash}p{0.04\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.08\linewidth}@{}}
+\toprule
+Particle & Repr. & Ext.\ source & $Y$ & TFPT origin & Internal source & Status \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Fermion sector (one family $\times\,3$):}} \\
+$\nu^c$ & $(1,1)_0$ & $\Lambda^0E$ & $0$ & carrier scaffold & hard carrier, $S^+$ & Theorem \\
+$e^c$ & $(1,1)_1$ & $\Lambda^2E_2$ & $1$ & carrier scaffold & hard carrier, $S^+$ & Theorem \\
+$u^c$ & $(\bar 3,1)_{-2/3}$ & $\Lambda^2E_3$ & $-\frac23$ & carrier scaffold & hard carrier, $S^+$ & Theorem \\
+$d^c$ & $(\bar 3,1)_{1/3}$ & \makecell[l]{$\Lambda^2E_3$\\$\otimes\Lambda^2E_2$} & $\frac13$ & carrier scaffold & hard carrier, $S^+$ & Theorem \\
+$Q_L$ & $(3,2)_{1/6}$ & $E_3\otimes E_2$ & $\frac16$ & carrier scaffold & hard carrier, $S^+$ & Theorem \\
+$L_L$ & $(1,2)_{-1/2}$ & \makecell[l]{$\Lambda^3E_3$\\$\otimes E_2$} & $-\frac12$ & carrier scaffold & hard carrier, $S^+$ & Theorem \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Gauge boson sector:}} \\
+$\gamma$ & $(1,1)_0$ & unbroken $U(1)_{\mathrm{em}}$ & $0$ & exact gauge direction & carrier algebra & Theorem \\
+$g$ ($\times 8$) & $(8,1)_0$ & unbroken $SU(3)_c$ & $0$ & exact gauge direction & carrier algebra & Theorem \\
+$W^\pm$ & $(1,3)_{\pm1}$ & SSB from $\Phi$ & $\pm1$ & bosonic index + Higgs mechanism & Dirac-anchor closure & Physical observable \\
+$Z$ & $(1,1)_0$ & SSB from $\Phi$ & $0$ & bosonic index + Higgs mechanism & Dirac-anchor closure & Physical observable \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Scalar sector:}} \\
+$H$ & $(1,2)_{1/2}$ & seam-even $\Phi$ & $\frac12$ & compact bosonic index & $\Ind(\mathcal B_{E_2}^+)=1$ & Theorem \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Structural outputs:}} \\
+$N_{\mathrm{fam}}=3$ & $\mathcal H_F\cong F\cong\mathbb C^3$ & $L^2$-APS harmonic family modes & --- & harmonic family-mode theorem & punctured family section & Theorem \\
+$\Oadm=48$ & $S^+\otimes \mathcal H_F$ & occupancy & --- & bridge corollary & $3\times 16$ & Theorem \\
+$G_{\mathrm{car}}$ & \makecell[l]{$S(U(3)\!\times\!U(2))$\\$\cong[SU(3)\!\times\!SU(2)$\\$\times U(1)_Y]/\mathbb Z_6$} & carrier split & --- & internal carrier stabilizer theorem (\Cref{thm:global-sm-theorem}) & $E_3\oplus E_2$ & Theorem \\
+local algebra & $\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak u(1)$ & local Lie algebra & --- & differential of the internal carrier theorem & local sections of $E_3\oplus E_2$ & Derived consequence \\
+\bottomrule
+\end{tabular}
+\caption{Standard Model content and origin map on the closed branch. The status column separates theorem outputs from physical observables and appendix-only scheme projections.}
+\label{tab:sm-content-origin}
+\end{table}
+

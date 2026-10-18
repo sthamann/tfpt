@@ -1,0 +1,307 @@
+\section*{Certifiability and recommended order}
+\addcontentsline{toc}{section}{Certifiability and order}
+% =====================================================================
+\begin{center}\footnotesize
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{@{}Ylc@{}}
+\toprule
+\textbf{Building block} & \textbf{Machine} & \textbf{Hardness} \\
+\midrule
+$W_{\mathrm{wall}}$ enumeration ($C_U^{(1)}$) & Lean / Python / Wolfram & easy (\emph{done}) \\
+$D_4$ fixed-locus polynomial ($C_U^{(2)}$) & Sage / Mathematica & medium \\
+selector uniqueness ($C_U^{(3)}$) & interval arithmetic & medium \\
+SNF, determinants, spectra & Lean & easy--medium \\
+principal-symbol ellipticity (G1) & xAct / Cadabra / Lean & medium \\
+gap inequality (G5) & Lean & easy (\emph{done}) \\
+operator-norm bound (G5) & analysis $+$ numerics & hard \\
+projective limit (G6) & not primarily machine & very hard \\
+Ward identities (G7) & BV/BRST formal $+$ checks & hard \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\par\smallskip\noindent\textbf{Recommended order}.
+\[
+  \boxed{\ \text{Selector-triangle pairings}\ \rightarrow\ v_{\mathrm{geo}}\ \text{scale anchor}\ \rightarrow\ G_{\mathrm{net}}\ \text{inclusion theorem}\ }
+\]
+The flavor interface (historically $U_{\mathrm{wall}}$) is now reduced to the \emph{selector-triangle
+pairings} (the dual normal pair $(d,n)$ forcing $R$ columnwise, \vref{v136}/\vref{v139}); it is finite,
+falsifiable and the cheapest visible upgrade. The $v_{\mathrm{geo}}$ scale anchor is the one dimensionful
+input (same nature as $1/G$). $G_{\mathrm{net}}$ --- the index-4 seam-net inclusion certifying the metric
+sector --- is more fundamental but a \emph{programme}, not a single proof: heavy machinery, with the
+projective limit the genuine summit. $F_{\mathrm{transfer}}$ (source$\to$pole / relic / cosmology) is the
+remaining downstream interface.
+
+\par\medskip\noindent\textbf{$F_{\mathrm{transfer}}$ is a typed functor, not a bag of open topics.}
+It is standard physics fed TFPT \emph{source} data, $F_{\mathrm{transfer}}=F_{\mathrm{observable}}\circ
+F_{\mathrm{threshold}}\circ F_{\mathrm{RG}}$, with exactly four interfaces:
+\begin{center}\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}llcX@{}}
+\toprule
+\textbf{Interface} & \textbf{Map} & \textbf{Status} & \textbf{Source data $\to$ observable} \\
+\midrule
+$F_{\mathrm{pole}}$ & source$\to$pole masses & \mE\,/\,\mC & Koide $53/54 = a^T(R{+}Q)\mathbf1/(2\,\mathbf1^TRa)$ is an exact operator factor \mE\ (the missing Sheet-Diamond corner); the pole-transfer interpretation is \mC\ (\veri{v183\_koide\_f\_corner\_transfer.py}) \\
+$F_{\mathrm{Boltzmann}}$ & CP source$\to\eta_B$ & \mC & $\tilde m_1{=}m_3/A_\Lambda$ anchors the washout, but $M_1{=}M_R\varphi_0^4$ only relocates the free input ($M_R$ is the seesaw scale, not a compiler power), so $\eta_B$ stays a \emph{sharper scenario}, not a closure (\veri{v184\_etaB\_anchored\_boltzmann.py}) \\
+$F_{\mathrm{relic}}$ & $(f_a,m_a,\theta_i,N_{\mathrm{DW}})\to\Omega_a$ & \mC & the determinant-line axion can be all of DM, but only on the $\theta_i\!\approx\!170^\circ$ hilltop where the relic is exponentially sensitive --- a viable scenario (\veri{v185\_axion\_relic\_solver.py}) \\
+$F_{\mathrm{QCD}}$ & $(\alpha_s,b_3,\Lambda_{\mathrm{QCD}},\text{lattice})\to m_p/m_e$ & \mO & a QCD matching contract ($b_3{=}-7$ a carrier output), \emph{not} a compiler number --- the rejected $1836$ near-formula is the discipline working \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\noindent A machine guard enforces the typing: the four families must always carry a \mC/\mO\ marker and
+must never be promoted to a primitive \mE\ compiler prediction (\veri{v187\_ftransfer\_laws.py}). Exact
+\emph{algebraic} sub-parts (the Koide factor, $b_3{=}-7$) may be \mE; the \emph{physical} prediction never
+is.
+\par\smallskip\noindent\textbf{The functor contract \texttt{CONTRACT.F.01}, four axioms
+(\veri{v213\_ftransfer\_functor.py}).} Beyond the typing guard, the functor itself satisfies four checkable
+structural axioms, each instance a \emph{discrete} compiler kernel \mE\ composed with an \emph{external}
+continuous solver \mC: \textbf{(1) $\mu_4$-deck equivariance} --- the discrete kernels are carrier/deck
+invariants $\{|\mu_4|,\Nfam,\gcar,A_\Lambda\}$, and the Koide multiplier $\lambda_2{=}(2/3)^6{=}64/729$
+\emph{is} the $\mu_4$-deck transfer eigenvalue (\vref{v82}/\vref{v54}); \textbf{(2) Pl\"ucker preservation}
+--- the dimensionless readouts are Pl\"ucker readings ($53{=}a^T(R{+}Q)\mathbf1$, $\mathrm{Pl}(F){=}(1,22,30)$;
+$\|\mathrm{Pl}(K)\|_1{=}11$); \textbf{(3) positivity/stochasticity} --- $\operatorname{spec}T{=}\{1,(2/3)^6,(1/3)^6\}$
+is positive (RP/OS), $\kappa_f{\in}(0,1)$; \textbf{(4) external modules explicit} --- the continuous content
+(pole transfer, the flavored Boltzmann network, the finite-$T$ $\chi(T)$ ODE, the lattice $C_N$) is named and
+external, never a compiler number. So \texttt{CONTRACT.F.01} is the third research contract alongside
+$(U_{\mathrm{wall}})$ and $(G_{\mathrm{metric}})$: a typed functor, \emph{not} a bag of open topics --- but a
+consolidation, \emph{not} a closure.
+\emph{[2026-08-05 dated note --- the jet route closes, the fibered refinement stands
+(\veri{v777\_ftransfer\_clock\_jets.py}): the executed external-clock contract
+\texttt{FTRANSFER.CLOCKS.01} (below) fires its preregistered K1 kill sympy-exactly --- the transported
+Schwarzians are $\{-\Delta^2/2,-\Delta^2/2,0\}$, $\Delta=6\log(3/2)$, so \emph{no} common continuous
+clock exists for the four jets.  The surviving architecture is measured: F\_transfer is a
+\emph{fibered} functor --- one shared \emph{discrete} PGL$_2$ base (the anchor cross-ratio of all four
+channels is $4/3$ exactly, symbolically \emph{and} through the frozen $g_{*s}$ table at dev
+$6.5\times10^{-4}$; the deck generator is the unit parabolic $\sigma$-translation,
+$\mathrm{tr}^2-4\det=0$ --- the \vref{v632} lattice-explicit discrete half) with channel-specific
+projective connections whose obstruction is the \emph{constant} seam cocycle, values exactly
+$\{0,\pm\Delta^2/2\}$ (antisymmetry and the cocycle identity exact; $d/d\sigma$ identically zero);
+the classification matches the predeclared marker --- thermal/proper-time clocks $\{\tau,\beta\}$ on
+the $-\Delta^2/2$ coset, the RG clock $\{\log\mu\}$ on the $0$ coset, the relic channel degenerate and
+honestly unclassified.  The functor axioms above stand; the jet/continuous-clock unification demand is
+\emph{replaced} by the fibered form, with the Schwarzian differences stored as the obstruction cocycle,
+not fitted away.  The one named proof-grade next step --- derive the coset assignment from KMS/modular
+clock typing --- is executed one round later and is a \emph{theorem}
+(\veri{v792\_ftransfer\_kms\_coset.py}, $18$ checks, \textsc{kms-coset-theorem}, registered as
+\texttt{FTRANSFER.KMSCOSET.01}): $S=-(\ln\lambda)^2/2$ with $\lambda$ the PGL$_2$ multiplier of the
+flow's time-1 holonomy per clock e-fold; the classifier uses no Schwarzian and no derivatives
+(non-circularity gated on its own source), the blind assignment classifies the four deployed charts
+exactly as the fibered functor carries them, the unblinding is sympy-exact, and the controls fire
+(fake KMS caught; affine invariance; the \texttt{v578} M\"obius clock as the positive case) --- the
+fiber classification is derived, not case-inspected.  The four observables stay \mC/\mO; no marker
+move.]}
+\par\smallskip\noindent\textbf{A preregistered cross-ratio check for the four solvers ---
+designed, and since executed on its discrete half.}
+The design is machine-checked in \veri{v566\_parabolic\_anchor\_selfcode.py}, the discrete-half
+execution in \veri{v571\_cr\_discrete\_corners.py}.  The disc~$-7$ norm
+line $\alpha_{t+1}=\alpha_t+2$ (\vref{v533}) equips the transfer path with a projective invariant:
+$\operatorname{CR}(\alpha_{-2},\alpha_{-1};\alpha_0,\alpha_1)=\tfrac43$ \emph{exactly} --- and,
+honesty first, $\tfrac43$ is the \emph{universal} cross-ratio of any arithmetic progression, so the
+test content is not the number but the \emph{discipline}: if the four solvers $(J,K,C,F)$ export
+canonical one-dimensional projective states $y_J,y_K,y_C,y_F$ --- declared \emph{before} any
+evaluation --- then M\"obius transport along the path forces
+$\operatorname{CR}(y_J,y_K;y_C,y_F)=\tfrac43$, and the fourth state is determined fit-free by the
+first three ($y_F$ reconstruction identity).  Negative control with teeth: the raw determinant path
+$(2,4,14,32)$ gives $\operatorname{CR}=\tfrac{28}{25}\neq\tfrac43$ --- the already-known norm
+sequence cannot pass.  \emph{The discrete half is now executed}: the four corners are the in-repo
+kernels $J,K,C,F=M(1,t)=R+Q\,\mathrm{diag}(1,t,t)$, $t=-2..1$ (\vref{v224}), and the corpus's one
+canonical declared solver reading --- the Koide anchor response $\ell(M)=a^{\mathsf T}M\mathbf 1$
+(\vref{v183}) --- reads $(26,35,44,53)$ on them: $\operatorname{CR}=\tfrac43$ exactly, and the
+fit-free reconstruction \emph{forces} $y_F=53$ from $(26,35,44)$ alone --- the Koide numerator is
+M\"obius-determined by the three upstream corners (a new exact cross-corner identity); honesty
+theorem stated out loud: $\ell$ is affine on the path (step $9=\Nfam^2$), and \emph{every} linear
+functional of the kernel passes --- the check separates linear from nonlinear exports (the
+dominant-eigenvalue export fails at $1.3222$, the determinants at $\tfrac{28}{25}$, both as they
+must) \mE.  Status: the \emph{continuous} half (the external solvers exporting their own states)
+stays open exactly as this contract fences it; contract markers unchanged \mC.  \emph{The frozen
+export protocol for the continuous half} (design \mX, preregistered here): each instance must
+export, \emph{before} evaluation, the canonical one-dimensional datum of its own native flow ---
+the fixed-point multiplier of its contraction (cf.\ the native rates of \vref{v425}: F\_pole
+$(2/3)^6$ exact in-corpus, F\_Boltzmann/F\_relic/F\_QCD external) --- as a projective state on
+the path; only then is $\operatorname{CR}=\tfrac43$ tested, with no renormalisation after the
+fact.  \emph{Executed} (\veri{v575\_cr\_continuous\_uniflow.py}): the in-repo native exports
+form the quadruple $\{(2/3)^6,(2/3)^6,1,-7\}$ --- the repetition is \emph{forced} by the
+single-flow theorem (\vref{v425}: F\_pole and F\_Boltzmann are literally the same seam
+contraction) --- and a repeated quadruple gives $\operatorname{CR}\in\{0,1,\infty\}$ in every
+corner assignment (theorem, plus all $24$ permutations): the continuous half can never pass
+\emph{natively}; it closes onto the single-flow reduction, verdict \textsc{uniflow-degenerate}.
+The four independent external data are the dimensionful anchors ($v_{\mathrm{geo}}$, $M_R$,
+$C_p$, $\theta_i$) --- \mO\ walls, not projective states --- so a future continuous test needs
+genuinely \emph{external} anchor-level exports; the meaningful cross-ratio content was and
+remains the discrete half.  Both halves of the check are now executed \mE/\mC.
+\emph{The jet-level successor is executed natively too}
+(\veri{v578\_native\_jets.py}): when point values degenerate, the M\"obius-invariant
+\emph{Schwarzian} of the exported trajectories is the right jet test --- and natively, the
+exact v99 Koide trajectory has $\{q,t\}=-\Delta^2/2$ in wall time (constant,
+trajectory-independent; F\_Boltzmann identical by the single-flow theorem) while being
+M\"obius in its \emph{own} exponential clock $u=e^{\Delta t}$ (Schwarzian $0$), and the
+$1$-loop QCD flow is M\"obius in its own RG time already (Schwarzian $0$): the native
+quadruple $\{-\Delta^2/2,\,-\Delta^2/2,\,0,\,\text{degenerate}\}$ shares \emph{no}
+wall-time jet invariant --- each instance is \emph{projective in its own clock}, the
+obstruction is the clock, and the clocks are anchored by the external data.  Verdict
+\textsc{moebius-in-own-clock}; a future joint jet test needs external anchor-level jets;
+markers unchanged \mE/\mC.
+\par\smallskip\noindent\textbf{The discrete$\to$dynamic lens: \texttt{F\_transfer} is the readout end of the one
+principle (\veri{v303\_ftransfer\_dynamics.py}, \texttt{FR.DYNAMICS.01}).} The typing above is sharpened by a
+\emph{dynamical} reading. The main-branch mechanism is a gapped, positivity-preserving relaxation to a
+\emph{unique} attractor (the local-averaging update $m\!\leftarrow\!(A{+}2I)/4\,m\to$ the $E_8$ marks, gap
+$6\ln(3/2)$). All four \texttt{F\_transfer} instances share that \emph{same shape}: \mE\ \textbf{F\_pole} (Koide)
+\emph{is} the seam dynamics --- the source$\to$pole/branch relaxation is the M\"obius map with fixed-point
+multiplier $F'{=}(2/3)^6{=}\lambda_2$, the seam-clock subleading eigenvalue, so $|F'|<1\Rightarrow$ a unique
+attractor at the \emph{seam} rate (\vref{v82}); \mC\ \textbf{F\_Boltzmann} ($\eta_B$) is a gapped positive
+contraction (washout $\kappa_f\in(0,1)$ toward the unique balance, an H-theorem); \mC\ \textbf{F\_relic} (axion)
+freezes at an adiabatic fixed point (the comoving number relaxes to a constant); \mE\ \textbf{F\_QCD} ($m_p/m_e$)
+is the 1-loop RG flow with the carrier $b_3{=}-7$, whose Gaussian UV fixed point is the attractor (asymptotic
+freedom, $\Lambda_{\mathrm{QCD}}$ generated). \emph{Honest boundary:} only F\_pole has the seam rate $(2/3)^6$
+exactly; the other three share the \emph{shape} with external rates (thermal, cosmological, RG). So
+\texttt{F\_transfer} is not a bolt-on but the downstream manifestation of the one discrete$\to$dynamic principle
+--- the compiler fixes the discrete seed $+$ integer kernel, a gapped flow carries it to the observable --- and
+the theory's simplicity is preserved precisely because the external rates are honestly fenced (\vref{v187}), not
+because they reduce to the seam. (Even F\_pole's flow time is non-integer, \vref{v93}: the relaxation is the
+\emph{continuous} semigroup $e^{t\log F}$ generated by the discrete operator --- exactly the diffusion-semigroup
+reading of the main branch.)
+\par\smallskip\noindent\textbf{The single-flow reduction} (\texttt{DYN.TRANSFER.UNIVERSAL.01}). The dynamic
+lens is sharpened to a precise reduction (\veri{v425\_dyn\_transfer\_universal.py}): the shared
+``shape'' is literally the \emph{one} native flow of the theory --- the seam modular/recovery semigroup
+(\vref{v238}/\vref{v240}, gap $6\ln(3/2)$) --- restricted to each sector, extending the static
+universal-gap principle (\vref{v383}) to a dynamic one. \mE\ the \vref{v99} Koide generator
+$\dot q{=}(\Delta/\Nfam)(q{-}2)(q{-}5)$ linearised at the attractor $q{=}2$ has rate $-\Delta$, so the
+time-$1$ contraction is $(2/3)^6$ (the recovery eigenvalue, $q{=}5$ unstable); \mE\ the Boltzmann washout
+is that same contraction, with the CP phase $4\pi/3$ native (\vref{v320}); \mE\ the QCD rate is
+$b_3{=}-7$. So the transfer \emph{dynamics} is native; only the \emph{anchors} stay external --- the IR
+pole scale and $M_R$ are $v_{\mathrm{geo}}$-class, $C_p$ is the lattice $O(1)$, and $F_{\mathrm{relic}}$'s
+cosmological initial condition $\theta_i$ is the one genuine wall. A reduction, \emph{not} internalisation:
+no new premise, and the firewall (\vref{v187}) holds --- the observable stays \mC.
+\emph{[2026-08-27 precision (binding; \texttt{DYN.MARKOV.EMBED.01},
+\veri{v971\_markov\_embedding\_generator.py}): the ``one native flow'' is a universal
+\emph{contraction class} --- shared gap and multiplier algebra --- not one physical clock; the
+clocks are external and sector-specific (\vref{v723}/\vref{v724}/\vref{v777}), and the
+continuous semigroup $e^{t\log T}$ is irreversible statistical dynamics, not unitary evolution
+--- the (b)-vs-(c) firewall of the
+\texttt{DYN.MARKOV.EMBED.01}/\texttt{DYN.UNITARY.DILATION.01} contract pair above.]}
+\par\smallskip\noindent\textbf{Both thermal-time routes are dead: the
+external clock contract stands (\texttt{FTRANSFER.STT.01} /
+\texttt{FTRANSFER.COCYCLE.01}).}  The radical counter-idea to the
+external-clock wall --- Connes-style thermal time, ``the four clocks
+$=$ four modular flows of one state'' --- is now machine-killed on
+\emph{both} checkable routes.  \mX\ \emph{Strong thermal time}
+(\veri{v723\_phys\_modular\_clock.py}, $11/11$,
+\textsc{stt-killed} $+$ \textsc{internal-pair-confirmed}): a modular
+generator is self-adjoint, hence diagonalizable --- but the F\_QCD
+$1$-loop clock map $u\mapsto u+2b_0$ is \emph{parabolic} and not
+diagonalizable (single Jordan block), and the symbolic lemma
+``$\exp$ of a real-diagonalizable matrix is diagonalizable'' closes
+the door: no constant-rescaled modular flow produces the QCD clock;
+the pole multiplier is confirmed \emph{exactly} $(2/3)^6=64/729$
+(hyperbolic, dimensionless $\Rightarrow$ internal; F\_Boltzmann the
+same element by \vref{v425}).  \mX\ \emph{Conditioned modular flows}
+(\veri{v724\_phys\_t3b\_modular\_flows.py}, $12/12$,
+\textsc{t3b-dead}): with target-free graph projectors, \emph{one}
+global KMS scale $\Delta=6\log(3/2)$ and the Connes cocycle
+composition exact to $1.6\times10^{-15}$ along J--K--C--F, the four
+conditioned flows come out \emph{loxodromic/complex} --- the frozen
+\vref{v578}/\vref{v632} solver classes (hyperbolic / parabolic /
+degenerate) do \emph{not} arise from conditioned modular flows of
+one internal mother state (the \textsc{needs-lindblad} escape is
+honestly refused).  \emph{Typed consequence:} the external clock
+contract is \emph{confirmed} and sharpens to the anchor census
+$\{$one unit $=\Lambda_{\mathrm{QCD}}$
+($v_{\mathrm{geo}}$-class by No-Unit \vref{v153}), one angle
+$\theta_i$, one lattice $O(1)$ $C_p\}$ --- T3's clock wall and T1's
+unit wall are \emph{the same wall}, counted once.  No marker moves;
+the functor typing above is unchanged.
+\par\smallskip\noindent\textbf{The frozen external-clock contract
+(\texttt{FTRANSFER.CLOCKS.01}) --- preregistered 2026-08-04,
+executed 2026-08-05.}
+Since both thermal-time routes are dead, the clocks \emph{must} be
+external --- and without clocks fixed in advance every jet statement
+is arbitrarily reparametrizable.  The contract therefore freezes
+them (design byte-frozen 2026-08-04 in
+\texttt{experiments/ftransfer-clocks/}\allowbreak
+\texttt{hypotheses/ftransfer\_clocks\_v1.yaml};
+typed \mX, a search-target design, \emph{not} a claim).  \emph{The
+four frozen clocks, exactly one physical clock per solver:}
+F\_pole $=$ proper time $\tau$ (the on-shell/pole-mass phase clock;
+frozen gauge: one \vref{v99} seam unit $=$ one proper-phase e-fold);
+F\_Boltzmann $=$ inverse temperature $\beta$ (FIRAS-anchored
+adiabatic chart; one washout seam unit $=$ one $\beta$ e-fold; the
+$z$-linear alternative is recorded as \emph{excluded});
+F\_QCD $=$ RG time $t=\ln(\mu/M_Z)$ ($\overline{\mathrm{MS}}$,
+$1$-loop $b_0=7$ on the
+frozen window $[m_t,1\,\mathrm{TeV}]$; identity gauge);
+F\_relic $=$ cosmological e-folds $\ln a$ (Planck 2018 background;
+the flow is frozen, the jets \emph{degenerate} --- the channel is
+scored only on kills and dictionary validity).  \emph{The
+preregistered prediction} (FTC.P1): under the frozen affine
+dictionaries (slopes $-1,-1,+1,-1$ into the common chart
+$\sigma=\ln(\mu/M_Z)$) \emph{one} constant-coefficient Riccati
+equation carries all non-degenerate transported jets ---
+equivalently, the transported Schwarzians of
+F\_pole/F\_Boltzmann/F\_QCD are \emph{equal}; the seam channels
+transport to $-\Delta^2/2=-2.959235170076978$ exactly, so the
+prediction forces the transported QCD Schwarzian onto that value.
+\emph{Three kills:} K1 \textsc{no-common-connection} (symbolic
+inequality of the transported Schwarzians; on kill the executor must
+exhibit the forbidden reparametrization per failing pair); K2
+\textsc{free-reparam-needed} (any post-freeze change of a gauge or
+dictionary; the YAML sha256 is recorded by the executor); K3
+\textsc{second-clock-needed} (any channel export needing two time
+variables).  \emph{The honest prior, preregistered:} the
+\emph{expected} outcome is the K1 kill --- affine transport scales a
+Schwarzian by $\mathrm{slope}^2$ and cannot move $0$ (the QCD value)
+onto $-\Delta^2/2$ (the seam value); a K1 kill would finalize the
+\vref{v578} diagnosis at the \emph{physical}-clock level and close
+the jet route of \texttt{CONTRACT.F.01}; \textsc{one-class} would be
+the surprise.  \emph{Executed (2026-08-05,
+\veri{v777\_ftransfer\_clock\_jets.py}, one module from two probes,
+$24+14$ checks, $0$ failures):} the K1 kill fired \emph{exactly} as
+the frozen prior expected --- verdict \textsc{no-common-connection}.
+The freeze guards were byte-verified at run time (YAML sha256
+\texttt{880224f7\ldots}; the two data tables --- Saikawa--Shirai
+2018 $g_{*s}$, PDG 2024 $\alpha_s(Q)$ --- were curated and
+SHA-frozen \emph{before} the first run); all four
+dictionary-validity legs pass (Koide scheme check $571\times$;
+washout entropy-chart drift $1.15\times10^{-4}$; QCD overlay max
+dev $0.83\%$; relic onset slope dev $0.0602$); the transported
+Schwarzians are sympy-exactly $\{-\Delta^2/2,-\Delta^2/2,0\}$ ---
+no tolerance involved --- and the K1 duty is discharged: the
+pass-enabling reparametrization
+$h=\text{M\"obius}(e^{\pm\Delta\sigma})$ is exhibited and is
+non-affine, exactly the freedom the freeze forbids; K2/K3 stay
+quiet.  The same module carries the surviving architecture (the
+fibered refinement --- see the \texttt{CONTRACT.F.01} dated note
+above).  \emph{[2026-08-06 completion
+(\texttt{FTRANSFER.KMSCOSET.01},
+\veri{v792\_ftransfer\_kms\_coset.py}, $18$ checks,
+\textsc{kms-coset-theorem}): the coset assignment of these clock
+charts is now a theorem from KMS/modular typing ---
+$S=-(\ln\lambda)^2/2$ from the time-1 PGL$_2$ holonomy multiplier
+per clock e-fold, with a Schwarzian-free, derivative-free
+classifier (the detailed-balance multiplier cross-ratio as the
+discrete KMS signature), blind assignment and exact unblinding;
+the three-probe chain executor $\to$ fibered groupoid $\to$ coset
+theorem is whole.]}  Nothing here upgrades
+\texttt{CONTRACT.F.01}: the four
+observables stay \mC/\mO; no marker move; no RH statement
+(unrelated surface; discipline note).
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\linewidth]{figures/ftransfer_dynamics.pdf}
+\caption{\textbf{The discrete$\to$dynamic lens on \texttt{F\_transfer} (\veri{v303\_ftransfer\_dynamics.py}).}
+All four transfer instances share \emph{one} shape --- a gapped, positivity-preserving relaxation to a
+\emph{unique} attractor, the same Perron-Frobenius / H-theorem / RG-fixed-point structure as the main-branch
+update $m\!\leftarrow\!(A{+}2I)/4\,m\to$ the $E_8$ marks. \emph{Only} F$_{\mathrm{pole}}$ (Koide, gold) runs it at
+the \emph{seam} rate: its M\"obius multiplier is $F'{=}(2/3)^6{=}\lambda_2$, the seam-clock subleading eigenvalue.
+F$_{\mathrm{Boltzmann}}$ ($\eta_B$, thermal washout), F$_{\mathrm{relic}}$ (axion, cosmological freeze) and
+F$_{\mathrm{QCD}}$ ($m_p/m_e$, the RG flow to the Gaussian UV fixed point with the carrier $b_3{=}-7$) share the
+\emph{shape} with \emph{external} rates. So \texttt{F\_transfer} is the readout end of the one principle, not a
+bolt-on; the theory's simplicity is preserved because the external rates are honestly fenced (\vref{v187}), not
+reduced to the seam.}
+\label{fig:ftransfer-dynamics}
+\end{figure}
+So the visible residual is one geometric postulate (\texttt{QGEO.SYM.01}), one unit gauge
+($v_{\mathrm{geo}}$), and this one typed transfer functor --- everything else is out-of-sample data.
+
+\input{tex-artefacts/tfpt_references}
+
+\end{document}

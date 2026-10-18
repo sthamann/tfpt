@@ -1,0 +1,389 @@
+% Auto-extracted from ../tfpt-42.tex for the TFPT 4.5 clean split.
+% Source body assigned by the TFPT 4.5 clean split.
+
+% ---- FRW reduction, seam transfer, scalaron branch, falsification matrix, and proof-obligation ledger: source lines 9747-10259 ----
+\section{FRW reduction, seam transfer, and the scalaron branch}
+\label{sec:cosmology-closure}
+
+The trace-class seam transfer belongs to the main reconstruction surface. The cosmological
+constant and the reduced scalaron / determinant-line dynamics are therefore fixed directly on the
+closed branch. Axion, reheating, and leptogenesis quantities are read through explicit interface
+formulas built from the same theorem-level objects $U_\Sigma$, $a_\Sigma$, and the positive
+scalaron sector $\mathcal H_{\mathrm{sc}}$.
+
+\begin{theorem}[Trace-class seam transfer]
+\label{lem:automatic-seam-transfer-convergence}
+On the closed branch the seam transfer operator
+\[
+U_\Sigma:=\Padm e^{-\ell_\Seam|B_\Seam|}\Padm
+\]
+is positive and trace class. Hence
+\[
+0<\rho(U_\Sigma)<1,
+\qquad
+0<U_\Sigma<\Padm.
+\]
+so the Fredholm determinant
+\[
+-\log\det_{\mathrm{adm}}(1-U_\Sigma)
+\]
+converges absolutely and defines a positive quantity.
+\end{theorem}
+
+\begin{proposition}[Seam damping readout from electromagnetic closure]
+\label{prop:seam-action-cosmology}
+Let $\alpha_\star$ be the unique electromagnetic fixed point of
+\TFPTxref{thm:alpha-canonical}. Define the closed seam damping by
+\[
+S_\Sigma:=-\log\rho(U_\Sigma).
+\]
+Then
+\[
+S_\Sigma
+=
+\log\mu_\Sigma(\alpha_\star)
+=
+\log\!\bigl(\phiseam(\alpha_\star)^{-1}\bigr)
+=
+\frac{\alpha_\star^2(\alpha_\star-2\cthree^3)}{8\cthree^6\,b_1}.
+\]
+\end{proposition}
+
+\begin{proof}
+At the electromagnetic fixed point, \TFPTxref{eq:carrier-cfe} is equivalent to
+\[
+\log\mu_\Sigma(\alpha_\star)
+=
+\frac{\alpha_\star^2(\alpha_\star-2\cthree^3)}{8\cthree^6\,b_1}.
+\]
+The seam transfer operator
+\[
+U_\Sigma=\Padm e^{-\ell_\Seam|B_\Seam|}\Padm
+\]
+uses the same admissible determinant sector as the electromagnetic closure. Its spectral radius
+therefore defines the same exponential damping scale, so
+\[
+S_\Sigma
+=
+\log\mu_\Sigma(\alpha_\star)
+=
+\log\!\bigl(\phiseam(\alpha_\star)^{-1}\bigr).
+\]
+\end{proof}
+
+\begin{theorem}[Infrared cosmological constant from seam transfer]
+\label{thm:cosmology-closure}
+\[
+U_\Sigma:=\Padm e^{-\ell_\Seam |B_\Seam|}\Padm,
+\qquad
+S_\Sigma:=-\log\rho(U_\Sigma)=\log\mu_\Sigma(\alpha_\star),
+\]
+Then
+\[
+\Lambda_{\mathrm{IR}}
+=
+\Mplunred^4
+\Bigl[-\log\det\nolimits_{\mathrm{adm}}(1-U_\Sigma)\Bigr]
+\]
+is well defined and positive on the closed branch, and
+\[
+0<U_\Sigma\le e^{-S_\Sigma}\Padm<\Padm.
+\]
+\end{theorem}
+
+\begin{proof}
+\Cref{lem:automatic-seam-transfer-convergence} gives trace-class positivity of
+$U_\Sigma$, while \Cref{prop:seam-action-cosmology} fixes the intrinsic seam damping $S_\Sigma$.
+Hence the determinant is well defined and positive, and so is the induced cosmological constant.
+\end{proof}
+
+\begin{corollary}[Determinant bounds for the infrared seam transfer]
+\label{cor:ir-seam-transfer-bounds}
+Let $\{\lambda_j(U_\Sigma)\}$ denote the admissible eigenvalues of the positive trace-class
+operator $U_\Sigma$. Then
+\[
+\tr_{\mathrm{adm}}U_\Sigma
+\le
+-\log\det\nolimits_{\mathrm{adm}}(1-U_\Sigma)
+\le
+\frac{-\log(1-\rho(U_\Sigma))}{\rho(U_\Sigma)}\,\tr_{\mathrm{adm}}U_\Sigma.
+\]
+If, moreover, the infrared seam transfer is rank one,
+\[
+U_\Sigma=\rho(U_\Sigma)\,P_\Sigma^{(1)},
+\]
+then
+\[
+\frac{\Lambda_{\mathrm{IR}}}{\Mplunred^4}
+=
+-\log(1-\rho(U_\Sigma))
+=
+\rho(U_\Sigma)+O\!\bigl(\rho(U_\Sigma)^2\bigr).
+\]
+\end{corollary}
+
+\begin{proof}
+Because $U_\Sigma$ is positive trace class, its eigenvalues satisfy
+\[
+0<\lambda_j(U_\Sigma)\le \rho(U_\Sigma)<1.
+\]
+For every $x\in[0,\rho(U_\Sigma)]$ one has the scalar bounds
+\[
+x\le -\log(1-x)\le \frac{-\log(1-\rho(U_\Sigma))}{\rho(U_\Sigma)}\,x.
+\]
+Applying this to each eigenvalue and summing gives the determinant bounds. If
+$U_\Sigma=\rho(U_\Sigma)P_\Sigma^{(1)}$ is rank one, then
+\[
+\det\nolimits_{\mathrm{adm}}(1-U_\Sigma)=1-\rho(U_\Sigma),
+\]
+and the Taylor expansion of $-\log(1-\rho)$ yields the displayed asymptotic formula.
+\end{proof}
+
+\begin{remark}[Status of numerical infrared readouts]
+The theorem-level content of the present section is the determinant formula of
+\TFPTxref{thm:cosmology-closure} together with the spectral bounds of
+\TFPTxref{cor:ir-seam-transfer-bounds}. Any specific
+\[
+\frac{\Lambda_{\mathrm{IR}}}{\Mplunred^4}\sim 10^{-123}
+\]
+evaluation requires an additional infrared continuation and is therefore kept in
+Appendix~\ref{app:ir-seam-continuations}.
+\end{remark}
+
+\begin{theorem}[\textnormal{[M]} Determinant-line axion interface and scalaron reheating data]
+\label{thm:axion-seam-phase}
+The closed branch contains the unique compact determinant-line phase
+\[
+a_\Sigma\in S^1_{\det}.
+\]
+By \TFPTxref{thm:boundary-winding-control}, the canonical branch has
+\[
+N_{\mathrm{DW}}=1,
+\]
+and the closed-branch initial displacement is
+\[
+\theta_i:=\pi\bigl(1-\phiseam(\alpha_\star)\bigr).
+\]
+The axion-interface formula is
+\[
+\Omega_a h^2=
+\Delta_R^{-1}
+\bigl[
+\Omega_a^{\mathrm{mis}}(f_a,m_a,\theta_i)
++
+\Omega_a^{\mathrm{str}}(f_a,N_{\mathrm{DW}})
+\bigr].
+\]
+The scalaron reheating input is
+\[
+T_R=
+\left(\frac{90}{\pi^2 g_\ast}\right)^{1/4}
+\sqrt{\Gamma_\varphi \Mplunred}.
+\]
+These formulas define closed-branch interface data. Numerical late-time abundance and baryogenesis
+readouts are obtained only after the declared cosmology comparison layer has fixed the relevant
+infrared continuation and nonequilibrium solver.
+\end{theorem}
+
+\begin{proof}
+The determinant-line phase theorem fixes the compact branch variable $a_\Sigma$, and
+\TFPTxref{thm:boundary-winding-control} fixes the domain-wall number $N_{\mathrm{DW}}=1$ on the
+canonical branch. The electromagnetic closure fixes $\alpha_\star$ and therefore the initial
+displacement $\theta_i=\pi(1-\phiseam(\alpha_\star))$. Substituting these branch data into the
+standard misalignment-plus-string formula gives the displayed axion-interface expression. The
+scalaron reheating input is fixed by the $R^2$ branch through the displayed decay-width formula.
+The numerical late-time readouts depend on additional infrared and nonequilibrium choices and are
+therefore comparison-layer outputs rather than closed theorem-level numbers.
+\end{proof}
+
+\begin{theorem}[\textnormal{[M]} Boundary winding controls family, transport, and determinant closure]
+\label{thm:boundary-winding-control}
+Let
+\[
+n:=\SF(B_\Sigma)
+\]
+denote the spectral winding number of the boundary class on the admissible branch. Then
+\[
+N_{\mathrm{fam}}=3n,
+\qquad
+N_{\mathrm{DW}}=n,
+\qquad
+\sum_{f,j}L_{f,j}=40n.
+\]
+In particular the canonical rigid branch has $n=1$, hence $N_{\mathrm{fam}}=3$ and
+$N_{\mathrm{DW}}=1$.
+\end{theorem}
+
+\begin{proof}
+By \TFPTxref{thm:primitive-seam-generator}, the primitive branch carries the positive generator
+$[u_\Sigma]=1$ and therefore one unit of seam spectral flow:
+\[
+n:=\SF(U_\Sigma)=1.
+\]
+The three displayed quantities scale linearly with seam winding on the retained branch.
+
+First, each full winding repeats the quarter-turn corner balance once, and the family theorem
+assigns three family units to one such primitive winding. Hence
+\[
+N_{\mathrm{fam}}=3n.
+\]
+
+Second, the determinant-line phase winds once per primitive seam winding, so the domain-wall number
+tracks the same winding:
+\[
+N_{\mathrm{DW}}=n.
+\]
+
+Third, the transport excess is locked by the exact word-length sum rule, and one primitive winding
+carries the canonical value $40$. Repeating the same winding $n$ times replicates the same closed
+transport sector $n$ times, so
+\[
+\sum_{f,j}L_{f,j}=40n.
+\]
+
+Substituting $n=1$ gives
+\[
+N_{\mathrm{fam}}=3,
+\qquad
+N_{\mathrm{DW}}=1,
+\qquad
+\sum_{f,j}L_{f,j}=40.
+\]
+No appeal to the later canonical uniqueness theorem is needed.
+\end{proof}
+
+\begin{theorem}[\textnormal{[M]} Canonical leptogenesis interface on the closed branch]
+\label{thm:leptogenesis-closure}
+The closed branch fixes the heavy-neutrino spectrum, the family frame, and the reheating scale
+entering flavored leptogenesis. The numerical baryon asymmetry is obtained only after solving the
+corresponding Boltzmann system, which is treated as a comparison layer in the present manuscript.
+\end{theorem}
+
+\begin{proof}
+\TFPTxref{thm:neutrino-closure} fixes the heavy/light neutrino data on the same admissible branch, so
+the masses entering the flavored decay asymmetries are branch invariants. The hard holonomy closure
+fixes the family frame, so the CP asymmetries and washout data are determined up to the same
+closed-branch input package. On the reheating side, \Cref{thm:axion-seam-phase} fixes the
+reheating-scale input $T_R$. These data are the theorem-level inputs to the flavored Boltzmann
+system. The numerical asymmetry itself is then a solution of that system rather than a closed
+main-text theorem of the core manuscript.
+\end{proof}
+
+\begin{theorem}[\textnormal{[M]} FRW reduction and cosmology interface data on the closed branch]
+\label{thm:frw-cosmology-derivation}
+Restrict the same closed-branch action to homogeneous and isotropic variables
+\[
+(a(t),\varphi(t),\theta_\Sigma(t),N_i(t)).
+\]
+Then the reduced action takes the form
+\[
+\begin{aligned}
+S_{\mathrm{FRW}}
+=
+\int dt\,a^3\Big[
+-3\Mpl^2\Hhub^2
++\frac12\dot\varphi^2
+-V_{\mathrm{sc}}(\varphi)
+\\
+&\qquad
++\frac12 f_a^2\dot\theta_\Sigma^2
+\\
+&\qquad
+-\chi_{\mathrm{top}}(\varphi)\bigl(1-\cos(N_{\mathrm{DW}}\theta_\Sigma)\bigr)
+\Big]
+\\
+&\qquad
++S_{\mathrm{RH}}+S_{\mathrm{LG}},
+\end{aligned}
+\]
+with
+\[
+\Lambda_{\mathrm{IR}}
+=
+\Mplunred^4\bigl[-\log\det\nolimits_{\mathrm{adm}}(1-U_\Sigma)\bigr],
+\qquad
+N_{\mathrm{DW}}=1,
+\qquad
+\theta_i=\pi\bigl(1-\phiseam(\alpha_\star)\bigr).
+\]
+The reduced action therefore fixes the low-curvature scalaron FRW sector and the closed-branch
+cosmology interface data
+\[
+(\Lambda_{\mathrm{IR}},N_{\mathrm{DW}},\theta_i,T_R,\mathcal I_{\mathrm{LG}}),
+\]
+where $\mathcal I_{\mathrm{LG}}$ denotes the reheating / leptogenesis input block. Numerical axion
+abundance and baryon-asymmetry readouts are obtained only after solving the corresponding
+nonequilibrium system in the comparison layer.
+\end{theorem}
+
+\begin{proof}
+\Cref{thm:full-frw-interface-theorem} supplies the manuscript-level proof of the reduced FRW action
+and of the closed-branch interface tuple
+\[
+(\Lambda_{\mathrm{IR}},N_{\mathrm{DW}},\theta_i,T_R,\mathcal I_{\mathrm{LG}}).
+\]
+Its ingredients are exactly the geometric Hodge branch, the seam-transfer determinant, the
+determinant-line axion reduction, and the leptogenesis interface data already fixed in the main
+text. Therefore the FRW reduction and the resulting cosmology interface package are theorem-level
+outputs of the same closed branch, while the final late-time abundance and baryogenesis numbers
+remain in the comparison layer.
+\end{proof}
+
+\begin{corollary}[No extra dark WIMP sector required]
+The minimal closed branch has dominant axionlike dark matter and the only
+irreducible hot dark component is the neutrino background. No extra dark WIMP sector is required
+for closure.
+\end{corollary}
+
+The theorem-level output branching is summarized in \Cref{fig:cosmology-output-flow}.
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\begin{tikzpicture}[
+    >=Latex,
+    source/.style={draw=blue!60!black, fill=blue!6, rounded corners, text width=2.55cm, minimum height=0.95cm, align=center},
+    mid/.style={draw=orange!75!black, fill=orange!8, rounded corners, text width=2.55cm, minimum height=0.95cm, align=center},
+    result/.style={draw=green!50!black, fill=green!8, rounded corners, text width=2.55cm, minimum height=0.95cm, align=center}
+]
+\node[source] (useam) at (-4.8,1.45) {$U_\Sigma$\\trace-class seam transfer};
+\node[source] (alpha) at (-1.6,1.45) {$\alpha_\star,\ \phiseam(\alpha_\star)$\\electromagnetic closure};
+\node[source] (asig)  at (1.6,1.45) {$a_\Sigma$\\compact determinant phase};
+\node[source] (neut)  at (4.8,1.45) {family / neutrino sector\\closed branch data};
+
+\node[mid] (ssig) at (-4.8,-0.25) {$S_\Sigma=-\log\rho(U_\Sigma)$\\intrinsic seam damping};
+\node[mid] (thetai) at (-1.6,-0.25) {$\theta_i=\pi(1-\phiseam(\alpha_\star))$\\initial displacement};
+\node[mid] (ndw) at (1.6,-0.25) {$N_{\mathrm{DW}}=1$\\from boundary winding};
+\node[mid] (scal) at (4.8,-0.25) {$R^2$ / scalaron branch\\reheating channel};
+
+\node[result] (lambda) at (-4.8,-2.15) {$\Lambda_{\mathrm{IR}}$\\positive seam-transfer output};
+\node[result] (omegaa) at (0,-2.15) {$\Omega_a h^2$\\axion interface};
+\node[result] (tr) at (3.2,-2.15) {$T_R$\\reheating input};
+\node[result] (eta) at (6.4,-2.15) {$\mathcal I_{\mathrm{LG}}$\\Boltzmann input map};
+
+\draw[->, thick] (useam) -- (ssig);
+\draw[->, thick] (ssig) -- (lambda);
+\draw[->, thick] (alpha) -- (thetai);
+\draw[->, thick] (asig) -- (ndw);
+\draw[->, thick] (thetai) -- (omegaa);
+\draw[->, thick] (ndw) -- (omegaa);
+\draw[->, thick] (scal) -- (tr);
+\draw[->, thick] (neut) -- (eta);
+\end{tikzpicture}
+\caption{Cosmology interface data on the closed branch. Seam transfer, determinant-line phase, and
+the scalaron / neutrino sectors generate $\Lambda_{\mathrm{IR}}$ together with the axion,
+reheating, and leptogenesis input block; final late-time numerical readouts are comparison-layer
+outputs.}
+\label{fig:cosmology-output-flow}
+\end{figure}
+
+\begin{remark}[Closed-branch reading]
+These cosmological quantities are derived on the closed branch from the same retained operator
+data. They are no longer ad hoc bridge readouts, but they are also not all final theorem-level
+numbers: the main text fixes the cosmology interface data, while late-time abundance and
+leptogenesis numerics remain comparison-layer outputs.
+\end{remark}
+
+Appendix-level E$_8$ arithmetic continuations and asymptotic scale-grammar formulas are collected
+in Appendix~\TFPTxref{app:constants} and are not part of the main theorem surface.
+

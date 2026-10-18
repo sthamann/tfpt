@@ -1,0 +1,369 @@
+\section{Numerical Constants (High Precision)}
+%=============================================================================
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Quantity} & \textbf{Value}\\
+\midrule
+$\cthree = 1/(8\pi)$ & 0.0397887357729738339\\
+$\phitree = 1/(6\pi)$ & 0.0530516476972984453\\
+$\deltatop = 3/(256\pi^4)$ & 0.000120304479547082053\\
+$\phiz = \phitree + \deltatop$ & 0.0531719521768455273\\
+$\phiz(\alpha)$ (self-consistent) & 0.053170209119023745\\
+$\beta_{\text{rad}} = \phiz/(4\pi)$ & 0.00423128951139541511\\
+$\beta_{\text{deg}} = (180/\pi)\,\beta_{\text{rad}}$ & $0.242435030900929528^\circ$\\
+$\gamma(0)$ (E$_8$ closure) & $5/6 = 0.833333333333333333$\\
+$\lambda$ (E$_8$ exponent) & 0.587233190787837868\\
+$M/\Mpl$ ($R^2$ scale) & $1.2564942083228449\times 10^{-5}$\\
+$A = 2\cthree^3$ & $1.2598255637968552 \times 10^{-4}$\\
+$\mathcal{K} = (\bone/2\pi)\ln(1/\phiz)$ & 1.91468479457699546\\
+$\alpha^{-1}_{\text{baseline}}$ & 137.036501464885822\\
+$\alpha^{-1}_{\text{TFPT}}$ & 137.035994101583800\\
+$\alpha^{-1}_{\text{CODATA 2022}}$ & 137.035999177\\
+Accuracy (ppm) & $-0.03704$\\
+$\xi = \cthree/\phiz$ & 0.748303083562547799\\
+\bottomrule
+\end{tabular}
+\caption{High-precision numerical values of TFPT constants.}
+\label{tab:constants}
+\end{table}
+
+%=============================================================================
+\section{Derivation of the CFE from the Effective Potential}
+%=============================================================================
+
+In background-field gauge, the one-loop effective potential for the electromagnetic 
+coupling modulus takes the form. Here $U(\alpha)$ is the induced potential for $\sigma$
+after rewriting $\alpha=\alpha(\sigma)$:
+\begin{equation}
+    U(\alpha) = \frac{1}{4}(F_{\mu\nu}F^{\mu\nu})_{\text{eff}} 
+        + \text{quantum corrections}
+\end{equation}
+
+The full structure, including the Chern--Simons contribution from 11D reduction, is:
+\begin{equation}
+    U(\alpha) = \frac{A}{4}\alpha^4 - \frac{2}{3}A\cthree^3\alpha^3 
+        - 8A\bone\cthree^6 L\,\alpha + \mathcal{O}(\alpha^5)
+    \label{eq:potential}
+\end{equation}
+where $L = \ln(1/\phiz)$ encodes the geometric scale.
+
+The modulus-closure condition $\delta\Gamma_{\mathrm{eff}}/\delta\sigma=0$ reduces to
+$\partial U/\partial\alpha = 0$ (monotonic $\alpha(\sigma)$), giving:
+\begin{equation}
+    \frac{\partial U}{\partial\alpha} = A\alpha^3 - 2A\cthree^3\alpha^2 
+        - 8A\bone\cthree^6 L = 0
+    \label{eq:stationarity}
+\end{equation}
+
+Dividing by $A$ (which is nonzero):
+\begin{equation}
+    \alpha^3 - 2\cthree^3\alpha^2 - 8\bone\cthree^6 L = 0
+    \label{eq:CFE-appendix}
+\end{equation}
+
+This is the CFE. The combinatorial factors arise from specific one-loop diagrams:
+
+\textbf{(i) Factor 2 in $2\cthree^3\alpha^2$:}
+
+The cubic term in the effective potential comes from the vacuum polarization 
+(``bubble'') diagram with axion insertion:
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[thick, photon] (0,0) -- (1.5,0);
+    \draw[thick] (1.5,0) arc (180:0:0.75);
+    \draw[thick] (1.5,0) arc (-180:0:0.75);
+    \draw[thick, photon] (3,0) -- (4.5,0);
+    \draw[thick, dashed] (2.25,0.75) -- (2.25,1.5);
+    \node at (2.25,1.8) {\small $a$};
+    \node at (0,-0.3) {\small $\gamma$};
+    \node at (4.5,-0.3) {\small $\gamma$};
+\end{tikzpicture}
+\end{center}
+The $\varepsilon^{\mu\nu\rho\sigma}\varepsilon_{\alpha\beta\gamma\delta}$ contraction from two 
+$F\tilde{F}$ vertices produces a factor 2 from the antisymmetric tensor algebra:
+\begin{equation}
+    \varepsilon^{\mu\nu\rho\sigma}\varepsilon_{\mu\nu\alpha\beta} = -2(\delta^\rho_\alpha\delta^\sigma_\beta - \delta^\rho_\beta\delta^\sigma_\alpha)
+\end{equation}
+
+\textbf{(ii) Factor 8 and $\cthree^6$ in $8\bone\cthree^6 L$:}
+
+The log-dependent term has two components:
+
+\textbf{Origin of $\cthree^6$:} The factor $\cthree^6$ arises from the product structure 
+of the effective action. With $A = 2\cthree^3$ as the overall amplitude:
+\begin{equation}
+    8\bone\cthree^6 L = 8\bone \cdot \cthree^3 \cdot \cthree^3 \cdot L
+    = 4 \cdot A \cdot \cthree^3 \cdot \bone L
+\end{equation}
+The factorization proceeds as follows:
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item One factor of $\cthree^3$ comes from three $\cthree\, aF\tilde{F}$ vertices 
+        in the anomaly chain (triangle diagram).
+    \item The second factor of $\cthree^3$ comes from the amplitude normalization $A/2 = \cthree^3$.
+    \item The coefficient 8 decomposes as $8 = 4 \times 2$, where 4 is from $|D_2|^2$ 
+        (two $\mathbb{Z}_2$ reflections) and 2 is from the double cover sheets.
+\end{itemize}
+\textbf{Consistency check:} $8\cthree^6 = 8 \times (8\pi)^{-6} = 8/(8\pi)^6$, which matches 
+the numerical coefficient in the CFE.
+
+\textbf{Origin of factor 8:} The dihedral symmetry $D_4$ of the 4-point amplitude 
+contributes $|D_4| = 8$. This arises from the 4 rotations and 4 reflections that 
+leave the fermion loop topology invariant:
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[thick] (0,0) rectangle (2,2);
+    \draw[thick, photon] (-0.8,0) -- (0,0);
+    \draw[thick, photon] (-0.8,2) -- (0,2);
+    \draw[thick, photon] (2,0) -- (2.8,0);
+    \draw[thick, photon] (2,2) -- (2.8,2);
+    \node at (1,-0.5) {\small fermion loop};
+    \node at (1,1) {\small $D_4$};
+\end{tikzpicture}
+\end{center}
+
+\textbf{The $\bone$ factor:} $\bone = 41/10$ counts the hypercharge-weighted fermion 
+contributions summed over the SM spectrum. It enters as $\sum_f Y_f^2$, where the 
+sum runs over all SM fermions with their multiplicities.
+
+\textbf{(iii) Factor 2/3 in potential:}
+
+The coefficient $2/3$ in the cubic term of \eqref{eq:potential} ensures that 
+differentiation produces the factor 2 in \eqref{eq:stationarity}:
+\begin{equation}
+    \frac{d}{d\alpha}\left(-\frac{2}{3}A\cthree^3\alpha^3\right) = -2A\cthree^3\alpha^2
+\end{equation}
+This is not a choice but a consequence of the integral representation of the 
+effective potential: the cubic term arises from a triangle subgraph.
+
+\textbf{Why no $\alpha^2$ term?}
+
+The absence of an $\alpha^2$ term in the CFE is not accidental. In background-field gauge, 
+quadratic terms are absorbed into the field-strength renormalization. The Ward identity 
+ensures that physical observables depend only on odd powers of $\alpha$ (gauge invariance 
+requires $F^2 \sim \alpha^2$ to enter as a full factor, not as a correction to $\alpha$).
+
+\begin{tcolorbox}[colback=purple!3, colframe=purple!50!black, 
+    title={\textbf{Why Integer Coefficients? (No $\zeta(3)$, $\ln 2$, etc.)}}, fonttitle=\bfseries\small]
+\textbf{Potential objection:} In typical QFT calculations (e.g., anomalous magnetic moment $g-2$), 
+coefficients involve transcendental numbers like $\zeta(3)$, $\pi^2/12$, $\ln 2$. Why are the 
+CFE coefficients (2, 8, 48) simple integers?
+
+\textbf{Resolution:} The CFE is not a perturbative loop expansion but a \emph{topological constraint}.
+
+\begin{enumerate}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{Origin of transcendentals:} In $g-2$, transcendentals arise from 
+        \emph{integrating over continuous momenta} in Feynman integrals. The integrals 
+        produce polylogarithms, which evaluate to $\zeta$-values.
+    
+    \item \textbf{Topological discreteness:} In TFPT, the relevant integrals are over 
+        \emph{discrete topological data}: Euler characteristics, winding numbers, and 
+        symmetry group orders. These are integers by definition.
+    
+    \item \textbf{Combinatorial origin:}
+        \begin{itemize}[leftmargin=1em, topsep=1pt, itemsep=1pt]
+            \item Factor 2: From $\varepsilon^{\mu\nu\rho\sigma}$ contraction (antisymmetry)
+            \item Factor 8: From $|D_4| = 8$ (dihedral group of the box)
+            \item Factor 48: \emph{Mnemonic} $2 \times 24$ (double cover $\times$ permutations); the derivation is the spin-lifted deficit with four cut patches (Appendix~\ref{app:48deriv})
+        \end{itemize}
+    
+    \item \textbf{Where $\pi$ appears:} The factors of $\pi$ in $\cthree = 1/(8\pi)$ and 
+        $\phitree = 1/(6\pi)$ come from the \emph{normalization} of circles ($2\pi$ per cycle), 
+        not from loop integrals. They are geometric, not perturbative.
+\end{enumerate}
+
+\textbf{Diagnostic:} If transcendentals appeared in the CFE, it would indicate non-topological 
+dynamics. Their absence is evidence that the fixed-point structure is genuinely topological.
+\end{tcolorbox}
+
+\begin{remark}
+The consistency between \eqref{eq:potential} and \eqref{eq:CFE-appendix} can be 
+verified directly: $\frac{d}{d\alpha}\bigl(-\frac{2}{3}A\cthree^3\alpha^3\bigr) 
+= -2A\cthree^3\alpha^2$, matching the required coefficient.
+\end{remark}
+
+%=============================================================================
+\section{Verification Suite Summary}
+%=============================================================================
+
+The TFPT verification suite (v5) runs 10 independent modules, with two additional
+modules planned for the $R^2$ effective action and bounce perturbations that
+complete the inflation/bounce closure:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Module} & \textbf{Status} & \textbf{Time [s]}\\
+\midrule
+birefringence (cosmology) & success & 0.00\\
+block\_constants & success & 0.00\\
+ckm\_pmns & success & 0.03\\
+core\_constants & success & 0.39\\
+cp\_violation & success & 0.00\\
+dark\_matter & success & 0.00\\
+e8\_chain & success & 0.89\\
+koide & success & 0.00\\
+mobius\_flavor & success & 0.00\\
+two\_loop & success & 0.00\\
+effective\_action\_r2 & planned & ---\\
+bounce\_perturbations & planned & ---\\
+\midrule
+\textbf{Total} & \textbf{10/12} & \textbf{1.32}\\
+\bottomrule
+\end{tabular}
+\caption{Verification suite execution status.}
+\end{table}
+
+%=============================================================================
+\section{E$_8$ Chain Certificate}
+\label{app:E8cert}
+%=============================================================================
+
+This appendix provides the complete verification data for the E$_8$ chain uniqueness 
+theorem (Theorem~\ref{thm:chainunique}).
+
+\subsection{Orbit Data Structure}
+
+Each nilpotent orbit $\mathcal{O}$ of $\mathfrak{e}_8$ is characterized by:
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{Bala--Carter label:} Standard notation (e.g., $A_1$, $2A_1$, $A_2$, \ldots)
+    \item \textbf{Dimension:} $\dim(\mathcal{O})$
+    \item \textbf{Centralizer dimension:} $D(\mathcal{O}) = 248 - \dim(\mathcal{O})$
+    \item \textbf{Height:} $h(\mathcal{O})$ (sum of weighted Dynkin diagram coefficients)
+\end{itemize}
+
+\subsection{The Unique Chain (Excerpt)}
+
+The complete chain from $D = 58$ to $D = 8$:
+
+\begin{center}
+\small
+\begin{tabular}{@{}clccc@{}}
+\toprule
+$n$ & \textbf{Orbit Label} & $D_n$ & $\dim(\mathcal{O})$ & $h$\\
+\midrule
+1 & $A_1$ & 58 & 190 & 2\\
+2 & $2A_1$ & 56 & 192 & 4\\
+3 & $3A_1$ & 54 & 194 & 6\\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+12 & (EW anchor) & 36 & 212 & 24\\
+15 & (Hadronic) & 30 & 218 & 30\\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+26 & $E_8(a_1)$ & 8 & 240 & 58\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Full data:} Available in machine-readable format at the replication repository 
+(see Section~\ref{app:repro}).
+
+\subsection{Verification Algorithm}
+
+The uniqueness is verified by:
+\begin{enumerate}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item Constructing the complete Hasse diagram of $\mathcal{N}(\mathfrak{e}_8)$ 
+        from standard tables.
+    \item Computing all cover relations with $\Delta D = 2$.
+    \item Running dynamic programming to find \emph{all} paths from $D = 58$ to $D = 8$.
+    \item Applying the cost function $\mathcal{S} = \sum_n (\Delta^2 \ln D_n)^2$ 
+        (second-difference smoothness).
+    \item Verifying that the minimum-cost path is unique (cost gap to second-best $= 0$ 
+        indicates tie-breaker was not needed for the optimal path).
+\end{enumerate}
+
+%=============================================================================
+\section{Boundary Trace Derivation}
+\label{app:boundary}
+%=============================================================================
+
+This appendix derives the block index formula $k_B = \frac{3}{2} I_1(B)$ from 
+the APS index theorem.
+
+\subsection{Setup}
+
+Consider a 6D manifold $M^6$ with boundary $\partial M^6 = \Sigma^5$. For a 
+Weyl fermion coupled to a $U(1)$ gauge field $A$, the APS index theorem gives:
+\begin{equation}
+    \text{ind}(\not{\!D}) = \int_{M^6} \text{ch}(F) \wedge \hat{A}(M^6) 
+    - \frac{1}{2}\eta(\not{\!D}_\Sigma)
+\end{equation}
+where $\eta$ is the $\eta$-invariant of the boundary Dirac operator.
+
+\subsection{Flat Connection on Boundary Cycles}
+
+On the orientable double cover $\widetilde{M}$, the boundary decomposes as:
+\begin{equation}
+    \partial\widetilde{M} = C_1 \cup C_2 \cup C_T
+\end{equation}
+(two boundary cycles plus the twist seam).
+
+For a \emph{flat} $U(1)$ connection on each $C_i$ with holonomy $\theta_i = \oint_{C_i} A$, 
+the $\eta$-invariant contribution becomes:
+\begin{equation}
+    \eta_i \propto \sum_{\text{fermions}} q^2 \cdot \theta_i
+\end{equation}
+where $q$ is the $U(1)$ charge.
+
+\subsection{Spectral Trace Coefficient and $\bone$}
+The regulated determinant of the hypercharge-coupled Dirac operator contains a universal
+UV logarithmic term whose coefficient is the quadratic charge trace:
+\begin{equation}
+    \ln\det(\not{D}_Y) \supset \frac{1}{2\pi}\left(\frac{5}{3}\sum_f Y_f^2\right)
+    \ln\frac{\Lambda}{\mu}\;\int F^2.
+\end{equation}
+Thus $\bone = \frac{5}{3}\sum_f Y_f^2 = 41/10$ appears as a \emph{spectral index coefficient},
+independent of IR thresholds, matching its role in the CFE.
+
+\subsection{Derivation of $k_B$}
+
+\textbf{Step 1:} Each boundary cycle contributes a factor proportional to $I_1 = \sum q^2$.
+
+\textbf{Step 2:} Three cycles contribute additively: factor 3.
+
+\textbf{Step 3:} The double cover counts each physical state once across two sheets. 
+The effective weight is halved: factor $1/2$.
+
+\textbf{Result:}
+\begin{equation}
+    k_B = 3 \times \frac{1}{2} \times I_1(B) = \frac{3}{2} I_1(B)
+\end{equation}
+
+\textbf{Consistency check:} For the electroweak block, 
+$I_1^{\text{EW}} = \frac{41}{48}$ (SM hypercharge sum), giving 
+$k_{\text{EW}} = \frac{3}{2} \times \frac{41}{48} = \frac{41}{32}$, 
+as stated in Table~\ref{tab:blocks}.
+
+%=============================================================================
+\section{Seam Gluing and the $\eta$-Invariant Normalization}
+\label{app:seam}
+%=============================================================================
+
+This appendix provides the $\eta$-invariant gluing derivation used in Axiom~\ref{ax:GB}.
+
+\subsection{Cut Space and Operators}
+Let $\widetilde{M}$ be the orientable double cover of the M\"obius fiber and cut it along
+the seam $\Gamma$ to obtain a manifold-with-boundary $\widetilde{M}_\Gamma$ with
+boundary components $(C_1,C_2,\Gamma_+,\Gamma_-)$. Let $\not{D}_\Gamma$ be the Dirac operator
+on $\widetilde{M}_\Gamma$ with APS boundary conditions on $C_{1,2}$ and a unitary matching
+operator $U_\Gamma$ identifying $\Gamma_+$ with $\Gamma_-$.
+On the seam we take the tangential 1D Dirac operator
+\begin{equation}
+    D_\Gamma = i\,\frac{d}{d\theta}, \qquad \theta\in[0,2\pi).
+\end{equation}
+
+\subsection{Gluing Formula for the $\eta$-Invariant}
+The APS gluing theorem expresses the $\eta$-invariant of the glued manifold in terms of
+the cut manifold plus a discrete spectral-flow correction:
+\begin{equation}
+    \eta(\not{D}_{\widetilde{M}}) = \eta(\not{D}_\Gamma) + 2\,\mathrm{SF}(U_\Gamma),
+\end{equation}
+where $\mathrm{SF}(U_\Gamma)\in\mathbb{Z}$ is the spectral flow of the matching operator.
+In TFPT bookkeeping this contributes a quantized seam term
+\begin{equation}
+    \Delta_\Gamma = 2\pi\,\mathrm{SF}(U_\Gamma)
+\end{equation}
+to the curvature normalization.
+

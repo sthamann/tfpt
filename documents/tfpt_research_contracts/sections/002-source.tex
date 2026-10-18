@@ -1,0 +1,395 @@
+\par\smallskip\noindent\textbf{The decisive crack: principal symbol exact $+$ Tomita--Takesaki
+(\veri{v198\_modular\_commutator\_reduction.py}).} Two observations collapse the residual to a single
+non-circular state-invariance. \emph{First}, the DtN principal symbol is $|k|=\sqrt{-\partial_\theta^2}$
+(Lee--Uhlmann, \vref{v156}); in the Fourier basis $e^{in\theta}$ it is $\mathrm{diag}(|n|)$ and the clock
+$\rho:z\mapsto iz$ (rotation by $\pi/2$) is $\mathrm{diag}(i^n)$, both \emph{diagonal}, so
+$[\rho,|k|]=0$ \emph{exactly} on all of $L^2$ --- the leading-order commutation is free on the whole
+boundary, never the open part. \emph{Second}, by Tomita--Takesaki the modular operator $\Delta_\omega$ is
+intrinsic to $(M,\Omega)$, so a state-preserving symmetry ($\rho\Omega=\Omega$) commutes with $\Delta$ and
+hence with $\log\Delta\sim\Lambda_\Sigma$: thus $[\rho,\Lambda_\Sigma]=0$ \emph{follows from}
+$\omega\circ\rho=\omega$ --- using only the state and reflection (which RP supplies) and \emph{no} conformal
+covariance, which \textbf{removes the BW circularity worry above}. Since the finite $H^1$ block is already
+$\mu_4$-invariant (\vref{v177}), the entire residual is now the single \emph{state}-invariance ``the raw
+quasi-free seam state is $\mu_4$-invariant'' ($\omega\circ\rho=\omega$, equivalently the Gaussian bulk
+measure is deck-invariant) --- the maximally-operational, checkable form of \texttt{QGEO.SYM.01}. A
+foundational symmetry postulate cannot be derived from nothing (the role $c=\text{const}$ plays in
+relativity); it is now in its sharpest, non-circular, falsifiable form, \mO.
+\par\smallskip\noindent\textbf{The residual, fully localised and numerically probed
+(\veri{v199\_seam\_state\_invariance.py}, \veri{v200\_seam\_variational\_scan.py}).} Attacking
+$\omega\circ\rho=\omega$ on the \emph{raw} seam (not the $\mu_4$ normal form) confirms it is non-circular
+--- $\rho$ is the Coxeter element of $W(A_3)=S_4$ ($\rho^4=1$), an automorphism of the raw CAR algebra,
+defined entirely carrier-side --- and reduces it, via the quasi-free covariance
+$C_\Sigma=\tfrac12(1+\operatorname{sgn}H_1)$, to $[\rho,H_1]=0$, i.e.\ \emph{$H_1$ is block-diagonal in the
+four $\mu_4$-character classes} $\{n\equiv r\bmod4\}$. The principal symbol $|k|=\mathrm{diag}(|n|)$ passes
+automatically, so the entire residual is the single bounded statement ``the sub-principal symbol of the raw
+DtN has no off-character matrix elements''. The companion variational scan minimises
+$E_{\mathrm{fail}}(\theta)=\|\rho(\theta)^4-1\|^2+\text{(faithfulness)}$ over a free clock angle and finds
+its \emph{unique} minimum at $\theta=\pi/2$ --- the $\mu_4$ clock $z\mapsto iz$ (the only faithful order-$4$
+grading $i,-1,-i$) --- a numerical sign that the variational principle selects $\mu_4$. This is the
+``next executable theorem'' a working mathematician can take up; it does not close the postulate, \mO.
+\par\smallskip\noindent\textbf{The bounded sub-principal residual is the image of the $\mu_4$ marks, not a
+free postulate (\veri{v201\_seam\_subprincipal\_marks.py}).} One genuine step further: the seam DtN is
+$\Lambda=|k|+M_f$ with $M_f$ the bounded sub-principal piece $=$ multiplication by a curvature function
+$f(\theta)$ on the seam circle (the standard Steklov/DtN structure), so $\langle n|M_f|n'\rangle=f_{n-n'}$.
+Then $M_f$ is $\mu_4$-character-block-diagonal \emph{iff} $f$ has Fourier support only on modes
+$\equiv0\ (\mathrm{mod}\,4)$, i.e.\ iff $f$ is $\Z_4$-invariant (the principal $|k|$ already commutes,
+\vref{v198}). But a curvature sourced by the four marks, $f(\theta)=\sum_{j=0}^{3}g(\theta-2\pi j/4)$ for
+\emph{any} profile $g$, has $f_m=4\,g_m\,[m\equiv0\bmod4]$ --- automatically $\Z_4$-invariant. So the
+$\mu_4$-mark orbit (forced by \vref{v195}) \emph{forces} the sub-principal symbol block-diagonal; $3$
+equally-spaced marks ($\Z_3$) or $4$ generic marks both break it (negative controls). The residual of
+$\omega\circ\rho=\omega$ thus collapses to ``the DtN sub-principal symbol is \emph{mark-local} (the seam is
+flat away from the $\mu_4$ marks $=$ the conformal-deck structure, \vref{v177})'' --- a locality/flatness
+property, structurally definitional, the narrowest form yet of \texttt{QGEO.SYM.01}, \mO.
+\par\smallskip\noindent\textbf{Certified on realistic Steklov profiles, and at the state level
+(\veri{v210\_mark\_local\_dtn.py}).} The mode-level argument above is carried to concrete, smooth boundary
+curvature: a real von-Mises bump $g(\theta)$ localised at a puncture, summed over the four marks
+$f(\theta)=\sum_{j=0}^{3}g(\theta-j\pi/2)$, has \emph{every} off-$(\mathrm{mod}\,4)$ Fourier coefficient
+vanishing to $<10^{-16}$ (exact $4$-fold cancellation), the assembled DtN $\Lambda=|D_\theta|+M_f$ has
+$\|[\rho,\Lambda]\|<10^{-15}$, and --- the genuinely new step --- the \emph{quasi-free state} it defines,
+with covariance $C=\tfrac12(1+\operatorname{sgn}H_1)$, is clock-invariant: $\rho\,C\,\rho^\dagger=C$ to
+$<10^{-13}$, i.e.\ the actual $\omega\circ\rho=\omega$, not merely $[\rho,\Lambda]=0$. A single off-centre
+bump, a $\Z_3$ (three-mark) source and four unequally-spaced marks each break both by $O(1)$, and the
+mark-local commutator stays $<10^{-10}$ as the truncation grows ($N\in\{16,32,64\}$) --- not an artefact.
+This \emph{numerically certifies the implication} ``mark-local DtN $\Rightarrow\omega\circ\rho=\omega$'' for
+real profiles; the premise that the physical seam \emph{is} mark-local stays \mO\ (it does not close
+\texttt{QGEO.SYM.01}).
+\par\smallskip\noindent\textbf{The same residual, read dynamically: modular flow $+$ a recovery
+Lindblad generator (\veri{v238\_modular\_lindblad\_dynamics.py}).} The whole \texttt{QGEO.SYM.01}
+discussion above is \emph{static} --- a commutator condition $[\rho,\Lambda_\Sigma]=0$. Read as a
+\emph{dynamics} it is the statement that the modular flow $\sigma_t=\Delta^{it}$ (the Tomita--Takesaki
+one-parameter group generated by the modular Hamiltonian $\Lambda_\Sigma=\log\Delta_\omega$)
+\emph{conserves} the $\mu_4$ clock: $\rho\,\sigma_t\,\rho^{-1}=\sigma_t\ \forall t\Leftrightarrow
+[\rho,\Lambda_\Sigma]=0$ --- so the open premise is exactly ``modular time conserves the carrier
+charge''. The dissipative half is the recovery channel $T$ of \vref{v221} read as a generator:
+$L=\log T$ is a doubly-stochastic (CPTP-classical) Markov generator ($e^{L}=T$, $e^{L\tau}\to$ the
+democratic projector $=$ the arrow of time), and its dissipative gap is $-\log((2/3)^6)=6\log(3/2)=
+\Delta$, the OS mass gap of \vref{v64} --- the static recovery bound and the dynamical mass gap are
+\emph{one} number, one exponentiated. Together $G=i\Lambda_\Sigma+L$ is the canonical Hamiltonian
+$+$ Lindbladian (GKSL) split, the reversible (imaginary) part conserving and the dissipative
+(real$\le0$) part setting the arrow. This is a finite-block exhibit of where the static compiler
+becomes a dynamics; the residual it leaves --- that $\sigma_t$ is the \emph{geometric} modular flow
+(Connes--Rovelli ``thermal time $=$ physical time'') on the full seam algebra --- is the same
+\texttt{QGEO.SYM.01} bedrock, \mO.
+\par\smallskip\noindent\textbf{From the dynamics to a QFT skeleton on the seam
+(\veri{v239\_kms\_thermal\_time.py}, \veri{v240\_gns\_os\_reconstruction.py},
+\veri{v241\_dhr\_sectors.py}, \veri{v242\_spin\_statistics\_modular.py},
+\veri{v243\_haag\_ruelle\_braiding.py}, \veri{v244\_spectral\_action\_contract.py}).}
+With the static$\to$dynamic flip in hand, the standard AQFT machinery assembles a
+finite-block QFT skeleton, each step typed honestly. \emph{Thermal time}
+(\vref{v239}): the modular flow is KMS at $\beta=1$, and the seam unit
+$2\pi=1/(4c_3)$ fixes the modular temperature as the horizon temperature
+$T_H=c_3/M$. \emph{Reconstruction} (\vref{v240}): GNS gives the Hilbert space and a
+cyclic vector from $(\mathcal M,\omega)$, and the OS Hamiltonian
+$H_{\mathrm{OS}}=-\log T=-L$ is positive with gap $\Delta$ --- the \vref{v64}
+``$H\ge0$ $+$ mass gap'' is the recovery generator read as Euclidean time.
+\emph{Spectrum} (\vref{v241}/\vref{v242}): the superselection sectors are the
+discriminant anyons of the Lean glue form (\texttt{FORM.GLUE.01}); fusion is
+recovered from the modular $S$ by Verlinde, the Gauss--Milgram sum returns $c=8$,
+and the condensation tower $16\to4\to1$ (\vref{v235}/\vref{v237}) selects the
+holomorphic $(E_8)_1$. \emph{Scattering} (\vref{v243}): the $2$-particle S-matrix is
+the braiding monodromy, factorised (Yang--Baxter) with crossing, trivial on the
+condensed $(E_8)_1$. The one genuinely 4d step is typed as a contract,
+\texttt{CONTRACT.QFT4D.01} (\vref{v244}): the Connes spectral action of the seam
+Dirac operator, whose gravity half is \vref{v36} and whose matter half (the SM
+gauge group sits in the carrier, the half-spinor $16$ is one generation) is the
+open \mO\ target. Its representation-theory core is now discharged
+(\veri{v245\_spectral\_matter\_content.py}): the $\mathbf{16}$ is exactly one
+\emph{anomaly-free} SM generation ($\sum Y=\sum Y^3=[SU(2)]^2U(1)=[SU(3)]^2U(1)=0$)
+with the forced SM hypercharges and the spectral-action value $\sin^2\theta_W=3/8$
+($g_3=g_2=\sqrt{5/3}\,g_1$), so only the seam$\to$Dirac realisation and the
+run-down couplings stay open. So the residual to a full 4d QFT is \emph{one premise}
+(\texttt{QGEO.SYM.01}) plus \emph{one contract} (\texttt{CONTRACT.QFT4D.01}), not a
+diffuse list.
+\par\smallskip\noindent\textbf{The perturbative 4d S-matrix is constructible (\veri{v269\_spert\_paqft\_skeleton.py}).}
+The 4d scattering layer is typed precisely as three \emph{distinct} objects: $S_{\mathrm{top}}$ (the 2d DHR
+braiding monodromy, $|M|{=}1$ statistics, \vref{v243}), $S_{\mathrm{pert}}$ (the 4d Epstein--Glaser / BV
+S-matrix of the spectral action), and $S_{\mathrm{phys}}$ (LSZ on the OS-reconstructed Wightman functions,
+\vref{v240}) --- the 2d braiding is \emph{not} the 4d cross-section S-matrix. \mE\ the spectral-action $a_4$
+interaction is power-counting renormalizable (every operator mass dimension $\le4$: $7$ marginal $+\,3$
+relevant, a \emph{finite} counterterm basis), so \mC\ by the Epstein--Glaser theorem (causal perturbation
+theory; Brunetti--Fredenhagen pAQFT) the perturbative S-matrix $S(g)=T\exp(i\!\int g\,L_{\mathrm{int}})$ is
+built order by order by causal factorisation $+$ finite local extension --- no path integral, \emph{no} UV
+divergences. \mC\ the gap $\Delta=6\log(3/2)$ gives an IR-safe adiabatic limit. \mC\ this is \emph{perturbative}
+only: the nonperturbative ambient measure \texttt{QG.AMB.01} is now a \mC\ redundancy (\vref{v369}), a
+certification object rather than missing dynamics, and the canonical 4d reading remains
+boundary-only (\vref{v265}); $S_{\mathrm{pert}}$ is the perturbative cross-section layer on top
+(\texttt{QFT4D.SPERT.01}).
+\par\smallskip\noindent\textbf{A concrete one-loop EG number (\veri{v271\_eg\_oneloop\_quartic.py}).}
+The skeleton is taken from ``exists'' to an actual Epstein--Glaser renormalization: the order-1 product
+$T_1={:}L_{\mathrm{int}}{:}$ needs no extension, and the first one is the order-2 $T_2$, whose UV behaviour is
+the Steinmann \emph{scaling degree}. \mE\ the massless propagator has $\mathrm{sd}=2$ in $d=4$, the one-loop
+bubble (two propagators) has $\mathrm{sd}=4=d$, so the singular order $\omega=\mathrm{sd}-d=0$ $\Rightarrow$
+\emph{exactly one} logarithmic local counterterm ($C(\omega{+}d,d)=1$ --- finite, renormalizable, no infinite
+tower); the one-loop factor is $\Omega_3/(2(2\pi)^4)=1/(16\pi^2)$ exactly, the \emph{same} $1/(16\pi^2)$ that
+normalises the spectral-action $a_4$ geometric quartic. \mC\ the $\phi^4$ one-loop running is then
+$\beta_\lambda=3\lambda^2/(16\pi^2)$ (symmetry factor $3=$ the $s,t,u$ channels), with the EG initial condition
+fixed by the spectral action, $\lambda_\Phi(\mathrm{UV})=1/(16\pi^2)$. \mO\ this is order-2/one-loop, one
+diagram class; the all-order perturbative construction stays open (\texttt{QFT4D.SPERT.02}), while the
+nonperturbative measure is discharged as a \mC\ redundancy (below).
+\par\smallskip\noindent\emph{Red-team caveat, now discharged (\veri{redteam/rt\_F\_qft4d.py}).} Power-counting
+renormalizability is \emph{not} unitarity for the gravity sub-sector: the local $R^2/$Weyl$^2$ \emph{truncation}
+gives a four-derivative propagator $1/(p^2(p^2+M^2))$ whose massive spin-2 mode has a negative residue (the Stelle
+ghost). But that ghost is a Seeley--DeWitt \emph{truncation artefact}: the entire seam KMS form factor
+$a(p^2){=}e^{p^2/M^2}$ keeps its only pole at $p^2{=}0$ (\vref{v304}), the spin-2 sector is ghost-free via the
+Barnes--Rivers decomposition (\vref{v370}), and the nearest truncation-zero modulus runs to infinity (\vref{v380}),
+so \emph{perturbative} graviton unitarity is established. The matter$+$gauge $S_{\mathrm{pert}}$ is unitary outright;
+the \emph{nonperturbative} \texttt{QG.AMB.01} (asymptotic safety \vref{v207} / the boundary $(E_8)_1$ net) is then a
+\mC\ \emph{redundancy} (\vref{v369}; gap-decoupled from every TFPT readout, not a TFPT structural item, \vref{v335}),
+a certification object rather than a new gap.
+\par\smallskip\noindent\textbf{The gauge running is an EG order-2 number (\veri{v273\_eg\_gauge\_running.py}).}
+The same scaling-degree-4 mechanism applied to the gauge self-energy gives the SM one-loop coefficients from the
+carrier/SM content: $b_i=-\tfrac{11}{3}C_2(G)+\tfrac23\sum_f T(R)+\tfrac13\sum_s T(R)$, i.e.\ \mE\
+$b_3=-7$, $b_2=-\tfrac{19}{6}$, $b_1=\tfrac{41}{10}$ (GUT-normalised; the same $41$ as the carrier algebra
+$10\,b_1=\gcar\,2^{\gcar-2}+1$, \vref{v159}). \mC\ the physical RG directions ($b_3<0$ asymptotic freedom, $b_1>0$
+the $U(1)$ Landau pole) are EG-derived and feed the unification cross-check (\vref{v246}/\vref{v249}); \mO\ the
+two-loop matrix (\vref{v159}, PyR@TE) and the all-order construction stay open (\texttt{QFT4D.SPERT.03}).
+\par\smallskip\noindent\textbf{The carrier content \emph{is} one anomaly-free SM generation (\veri{v310\_carrier\_sm\_anomaly.py}).}
+Those one-loop coefficients sit on top of an exact spectrum/anomaly closure: the carrier half-spinor
+$16=\Lambda^{\mathrm{even}}(\mathbb C^5)=1{+}10{+}5$ decomposes under $SU(5)\subset SO(10)$ as $10{+}\bar5{+}1=$ exactly
+one Standard-Model generation $(Q,u^c,d^c,L,e^c,\nu^c)$, and that content is \mE\ gauge-anomaly-free
+($\sum Y=0$, $\sum Y^3=0$, $[SU(2)]^2U(1)=[SU(3)]^2U(1)=0$, exact) while reproducing $(b_1,b_2,b_3)=
+(\tfrac{41}{10},-\tfrac{19}{6},-7)$; a fourth family would shift $b_1$ off $41/10$, so $\Nfam{=}3$ \emph{pins} the RG.
+\mE\ for the spectrum, anomalies and one-loop $\beta$; the full Epstein--Glaser interacting $S$-matrix and the Yukawa
+sector stay \mC/\mO.
+\par\smallskip\noindent\textbf{The bridge to the physical S-matrix and one-loop unitarity (\veri{v278\_lsz\_bridge\_unitarity.py}).}
+The perturbative layer connects to the physical asymptotic S-matrix: \mE\ the EG time-ordered products of
+$S_{\mathrm{pert}}$ are the OS Wick-rotated correlators (\vref{v240}), so amputating external legs and taking the
+on-shell residue gives $S_{\mathrm{pert}}\xrightarrow{\mathrm{LSZ}}S_{\mathrm{phys}}$ (the three-layer S-matrix
+$S_{\mathrm{top}}\,|\,S_{\mathrm{pert}}\xrightarrow{\mathrm{LSZ}}S_{\mathrm{phys}}$), valid because the gap
+$\Delta{=}6\log(3/2)$ gives Haag--Ruelle asymptotic states. \mE\ \emph{one-loop unitarity} is the optical
+theorem: the $s$-channel bubble discontinuity $\operatorname{Im}B(s)/\pi=x_+{-}x_-=\sqrt{1-4m^2/s}$ is
+\emph{exactly} the two-body phase space (turning on at the physical threshold $s{=}4m^2$), so
+$2\operatorname{Im}M=\sum\!\int d\Pi\,|M|^2$ holds and the matter$+$gauge sector is unitary order by order.
+\mC\ the gravity sector's Stelle ghost is a truncation artefact (perturbative spin-2 unitarity established,
+\vref{v304}/\vref{v370}/\vref{v380}); the nonperturbative \texttt{QG.AMB.01} is a \mC\ redundancy (\vref{v369})
+(\texttt{QFT4D.SPERT.04}).
+\par\smallskip\noindent\textbf{The first hard data confrontation
+(\veri{v246\_unification\_data\_crosscheck.py}).} TFPT's gauge-charged content \emph{is} exactly the
+Standard Model (\vref{v159}) and the theory adds no new states (\S\,``Dark matter $=$ no new state''); the
+$E_8$ cascade is an arithmetic even-integer spine ($D_n{=}60{-}2n$, \vref{v5}), \emph{not} a
+particle/threshold tower. So a ``TFPT-adapted'' RGE run \emph{is} the SM run --- and the SM does not unify.
+Tested against the \emph{measured} couplings (\vref{v159} betas, plus the standard two-loop gauge matrix):
+at one loop the pairwise crossings spread over ${\sim}10^{13}$--$10^{17}$\,GeV with residual
+$\Delta\alpha^{-1}\approx9$ at $2{\times}10^{16}$\,GeV; at two loops (RK4) the minimal spread is
+$\Delta\alpha^{-1}\approx3.2$ at $\mu\approx1.7{\times}10^{14}$\,GeV --- the three couplings never meet
+(Fig.~\ref{fig:qft-unification}). This is a falsifiable \emph{tension}, \mX: with ``no new state'' there is
+\emph{no} admissible gauge-threshold source, so closing the spread would require either new gauge-charged
+matter (a new postulate) or a non-GUT/boundary reading of the cutoff. The spectral-action 4d-GUT route is
+thus in genuine tension --- the same status as the Connes--Chamseddine NCG Standard Model --- and is likely
+falsified unless the theory is extended; the AQFT skeleton, DHR structure and SM rep-core survive regardless
+as an emergent boundary QFT. Recorded as a kill-test, never as a confirmation.
+\par\smallskip\noindent\textbf{The carrier-native Pati--Salam program
+(\veri{v247\_e8\_branching\_no126.py}, \veri{v248\_ps\_algebra.py}, \veri{v249\_ps\_unification.py},
+\veri{v250\_dirac\_triple\_contract.py}).} The unification tension above is resolved \emph{natively} if the
+carrier $SO(10)$ is gauged (the carrier $D_5{\oplus}A_3 = SO(10){\times}SU(4)$ is Pati--Salam). \emph{First},
+the $E_8$ audit hull \emph{forbids} the $\mathbf{126}$: the $\mathbf{248}$ branches as
+$(45,1){+}(1,15){+}(10,6){+}(16,4){+}(\overline{16},\bar4)$, so the available $SO(10)$ reps are exactly
+$\{1,10,16,45\}$ --- the renormalisable $126_H$ is algebraically absent, making the
+``$16_H$ over $126_H$'' selection a theorem of the hull, not a fit (\vref{v247}). \emph{Second}, the
+Pati--Salam NCG algebra $A_F=\mathbb H_L\oplus\mathbb H_R\oplus M_4(\mathbb C)$ gives the unimodular group
+$SU(2)_L{\times}SU(2)_R{\times}SU(4)_c$, the exact SM hypercharges $Y=T_{3R}+(B{-}L)/2$ and the matching
+$\alpha_1^{-1}=\tfrac35\alpha_{2R}^{-1}+\tfrac25\alpha_4^{-1}$, $\sin^2\theta_W=3/8$ (\vref{v248}).
+\emph{Third}, the two-step run unifies with the breaking scale on the scalaron scale, $M_{PS}=\kappa M_s$,
+$\kappa\in[1.0,1.7]$ at one loop ($\to[1.0,1.2]$ at two loops), and proton decay selecting the content
+(minimal excluded, the $E_8$-allowed single $45$ marginal); the negative controls (SM-only fails, $126$
+breaks the match, no-$45$ proton-unsafe) all fire (\vref{v249}). \emph{Fourth}, the residual ``carrier is
+gauged'' reduces to ONE constructive object, the spectral triple $(A,H,D_F,J,\gamma)$ with $A_F$
+Pati--Salam and $H_F=3{\times}16$, whose NCG axioms (the first-order condition above all) and the
+$\sigma=$scalaron identification are the open contract \texttt{CONTRACT.QFT4D.DIRAC.01} (\vref{v250}).
+\emph{Fifth}, a first concrete step on that triple is taken (\veri{v251\_first\_order\_sigma.py}): on the
+lepton block the first-order condition is verified to \emph{hold} for the Yukawa operator and to be
+\emph{violated exactly} by the Majorana/$\sigma$ term --- the Chamseddine--Connes--van Suijlekom ``beyond
+first order'' mechanism by which the inner fluctuations promote the SM to Pati--Salam and generate $\sigma$
+(honest correction: $\sigma$ does \emph{not} rescue the first-order condition; its controlled violation
+\emph{is} the mechanism).
+\emph{Sixth}, the full $96$-dimensional finite spectral triple is then built explicitly
+(\veri{v252\_full\_finite\_triple.py}) --- $H_F$ the particle$\oplus$antiparticle doubling of three $SO(10)$
+$\mathbf{16}$-plets --- and the NCG axioms are verified by direct computation: reality $J$, grading $\gamma$,
+KO-dimension $6$, order-zero, the first-order condition (\emph{holding} for the SM algebra including the
+Majorana, \emph{violated} for the Pati--Salam algebra exactly by the Majorana on $\{\nu_R,e_R\}$), and the
+spectrum of $D_F$ reproducing the fermion masses and the type-I seesaw $m_{\rm light}=m_D^2/M_R$ --- thereby
+discharging five of the seven obligations of \texttt{CONTRACT.QFT4D.DIRAC.01} to \mE\ (orientability, the
+no-junk condition and the spectral-action expansion remain open).
+\emph{Seventh}, the scalaron--Pati--Salam ratio $\kappa$ in $M_{PS}=\kappa\,M_s$ is pinned to a tight $O(1)$
+interval ($\approx1.3$) by the RG and shown to be a scale-free ratio of heat-kernel coefficients,
+$\kappa=\sqrt{(f_2/f_0)\,c_{PS}/c_{\rm grav}}$, over the same $96$-dim $H_F$ (\veri{v253\_kappa\_scalaron\_ps.py}).
+\emph{Eighth}, the remaining NCG obligations are then discharged or honestly typed: the inner fluctuations
+$\Omega^1_D$ give exactly the one SM Higgs doublet $(1,2)_{1/2}$ with no junk and no $\mathbf{126}$, while
+$\sigma$ (the $\nu_R$ Majorana scalar, $B{-}L{=}2$) appears only as the beyond-first-order Pati--Salam field
+(\veri{v254\_inner\_fluctuations.py}); the spectral-action Seeley--DeWitt expansion $a_0,a_2,a_4$ yields the
+cosmological, Einstein--Hilbert and Yang--Mills$+R^2+$Higgs terms with $b/a^2=1/3$, $\sin^2\theta_W=3/8$ and
+the $R^2$ scalaron, making $\kappa$ an explicit moment ratio (\veri{v255\_spectral\_action\_expansion.py});
+only strict orientability and strict Poincar\'e duality genuinely \emph{fail} for this triple --- a
+published feature of the NCG-Standard-Model class (KO-dimension $6$ with three $\nu_R$ forces a skew
+intersection form, corank $1$; arXiv:0902.2068, hep-th/0601192), not a TFPT defect; the
+physically-correct weakened versions, \emph{quasi-orientability} (left/right irrep boxes disjoint by
+chirality) and \emph{modified Poincar\'e duality}, do hold (\veri{v256\_orientability\_poincare.py},
+\veri{v257\_quasiorient\_modpd.py}).
+\emph{Ninth}, the built $D_F$ is no independent posit but the \emph{modular/covariance induction} of the
+boundary seam state (\veri{v258\_dirac\_covariance\_induction.py}): a quasi-free (KMS, $\beta{=}1$) state is
+fixed by its covariance $C$ (a positive contraction), with one-particle modular Hamiltonian
+$H=\log((1{-}C)C^{-1})$ (Araki; Casini--Huerta) inverse to the KMS occupation $C=(1{+}e^{H})^{-1}$; inducing
+the carrier covariance $C_F=P_F C_\Sigma P_F$ returns the \vref{v252} operator \emph{exactly} --- same
+spectrum, chirality-odd, the Majorana an off-diagonal covariance entry with the seesaw $m_D^2/M_R$ recovered
+--- so $D_F$ is the Kasparov shadow $[D_\Sigma]\widehat\otimes_{(E_8)_1}[\mathcal K_{\mathrm{car}}]$ of the
+boundary geometry and the \vref{v18} Yukawas are the \emph{readout} of $C_\Sigma$, \mE\ modulo the one \mO\
+seam realisation.
+\emph{Tenth}, the last open spectral-action input --- the cutoff function $f$ --- is fixed by the same seam
+state (\veri{v259\_modular\_cutoff\_kappa.py}): by Tomita--Takesaki/Bisognano--Wichmann the seam is KMS at
+$\beta{=}1$ (\vref{v239}) and the seam unit $2\pi{=}1/(4c_3)$ (\vref{v58}) fixes that $\beta$, so the
+heat-kernel cutoff $f(u)=e^{-u}$ is \emph{derived}, not chosen, with moments $f_2/f_0=f_4/f_2=1$
+\emph{exactly} (a generic Gaussian cutoff gives $\sqrt\pi/2\neq1$, so the choice is non-vacuous); hence
+$\kappa=\sqrt{(f_2/f_0)\,c_{PS}/c_{\rm grav}}=\sqrt{c_{PS}/c_{\rm grav}}$ loses its scheme factor and the
+\vref{v253}/\vref{v255} open \mO\ cutoff freedom becomes a \mC\ finite trace ratio over the $96$-dim $H_F$
+(the RG $\kappa{\approx}1.3$ pinning $c_{PS}/c_{\rm grav}{\approx}1.7$).
+So
+unification is now \emph{one} theory decision (gauge $SO(10)$?) plus \emph{one} constructive object, both
+falsifiable --- not a fog. The colour $SU(4)_c$ here sits inside $SO(10){=}D_5$ and is distinct from the
+carrier family factor $A_3$.
+\par\smallskip\noindent\textbf{The implication is now Lean-formalised (\texttt{FORM.QGEO.01}).} The exact
+algebraic core --- the $4$th-root character orthogonality, the order-$4$ clock, and
+\texttt{markLocal\_blockDiagonal} ($f_{n-n'}\neq0\Rightarrow(n\equiv n'\bmod4)$, i.e.\ $[\rho,M_f]=0$) ---
+is machine-proved in the carrier-rigidity Lean project (\texttt{TfptCarrier/SeamDeckClosure.lean};
+\textsc{audit: pass}, axioms \texttt{propext, Classical.choice, Quot.sound} only). The premise itself is a
+typed \texttt{structure} \texttt{SeamDeckPremise} --- consumed, not proved, exactly as
+\texttt{CalderonProjector} encodes the document-1 analytic input --- so the conditional theorem
+``\texttt{SeamDeckPremise} $\Rightarrow\omega\circ\rho=\omega$'' is now \mE\ while
+\texttt{QGEO.SYM.01} stays the one open \mO\ postulate.
+\par\smallskip\noindent\textbf{The two residuals are one canonical metric: the pillowcase
+(\veri{v214\_seam\_pillowcase.py}).} The isometry residual \texttt{QGEO.ISO.01} (\vref{v180}) and the
+mark-locality residual \texttt{QGEO.SUBPRIN.01} (\vref{v201}) are not independent: both follow from a
+single canonical choice --- \emph{the seam carries the uniformising flat orbifold metric of its conformal
+class}. The four marks make the orbifold sphere $S^2(2,2,2,2)$, whose orbifold Euler characteristic
+$\chi_{\mathrm{orb}}=2-4(1-\tfrac12)=0$ is \emph{Euclidean}: by Troyanov's cone-metric uniformisation it
+carries a flat metric, unique up to scale, with curvature concentrated at the four cone points
+(Gauss--Bonnet: four deficits $\pi$ sum to $4\pi=2\pi\chi(S^2)$) --- this \emph{is} the \vref{v201}
+``flat away from the marks''. And the order-$4$ clock is no longer an extra assumption but a
+\emph{consequence} of the cross-ratio $2$ that \vref{v168} already proved:
+$j(\lambda)=256(\lambda^2-\lambda+1)^3/(\lambda^2(\lambda-1)^2)$ gives $j(2)=1728$, so the modulus is the
+\emph{square} torus $\tau=i$, whose complex multiplication by $\Z[i]$ supplies the order-$4$ isometry
+$z\mapsto iz$ (explicitly $(x,y)\mapsto(-x,iy)$ on $y^2=x^3-x$, order $4$); a generic cross-ratio gives
+$j\notin\{0,1728\}$ and only $\Z/2$, so the clock is specific to $\mu_4$. Thus the two open QGEO residuals
+\emph{collapse to one} canonical-metric statement and \texttt{QGEO.ISO.01} ceases to be an imposed
+symmetry. A genuine reduction and unification, \emph{not} a closure: the premise ``the RP seam metric
+\emph{is} the uniformising constant-curvature representative of its conformal class'' stays \mO\ ---
+milder and more canonical than the bare isometry premise, and now \emph{shared} by both residuals
+(\texttt{QGEO.PILLOW.01}).
+\par\smallskip\noindent\textbf{The converse, on the canonical metric: raw seam $\Rightarrow$ mark-locality
+(\veri{v264\_raw\_seam\_marklocal.py}).} Composing the chain explicitly closes the gap between
+\vref{v216}, \vref{v201} and \vref{v198} on the uniformising metric: the flat pillowcase has its curvature
+\emph{only} at the four cone points (\vref{v216}), so the DtN sub-principal symbol $M_f$ is a $\mu_4$-orbit
+sum, hence $\Z_4$-invariant (Fourier support on $4\Z$, verified by FFT), hence block-diagonal in the
+clock-character basis, hence $[\rho,M_f]=0$; with the principal symbol $|k|$ already commuting (\vref{v198})
+this gives $[\rho,\Lambda]=0$ and $\omega\circ\rho=\omega$ \emph{on this metric}. A negative control (curvature
+\emph{off} the $\mu_4$ orbit) breaks $\Z_4$-invariance and the chain fails. So the entire bedrock collapses
+to the \emph{single} metric-realisation statement ``the raw RP seam carries the uniformising flat pillowcase
+metric'' --- which \emph{is} \texttt{QGEO.SYM.01}. A genuine reduction/sharpening (\texttt{QGEO.ENERGY.03}),
+\mO\ --- it does \emph{not} prove the raw seam must carry that metric; that converse is the irreducible
+postulate.
+\par\smallskip\noindent\textbf{The minimal axiom: a rigidity theorem (\veri{v267\_qgeo\_rigidity\_minimal\_axiom.py}).}
+One can sharpen the bedrock to its irreducible kernel. \mE\ the \emph{single} bare statement ``the seam admits
+the carrier's order-$4$ clock as a conformal symmetry cyclically permuting its four marks'' forces everything:
+an order-$4$ M\"obius orbit $\{a,ia,-a,-ia\}$ has cross-ratio $2$ \emph{independent of} $a$; cross-ratio $2
+\Leftrightarrow j{=}1728$ (only $\lambda\in\{-1,\tfrac12,2\}$) $\Leftrightarrow$ the order-$4$ CM automorphism
+$(x,y)\mapsto(-x,iy)$ on $y^2{=}x^3{-}x$; and from the square configuration the unique flat pillowcase metric
+(Troyanov), mark-locality, $[\rho,\Lambda]{=}0$ and $\omega\circ\rho{=}\omega$ all follow (\vref{v214}/\vref{v201}/\vref{v264}/\vref{v198}).
+\mE\ neg controls: a generic four-mark set has $j\neq1728$ and only a $\Z_2$ symmetry (no clock), the
+hexagonal point $j{=}0$ has a $\Z_6$ symmetry (order $6\neq4$) --- only the square (order-$4$) point realises
+the $\mu_4$ clock. \mC\ a second, independent reason: $\{1,i,-1,-i\}$ is defined over $\mathbb Q$ with $j{=}1728$
+(CM by $\Z[i]$), so by Belyi/dessins Galois-rigidity any deformation breaks the rational compiler readouts.
+\mO\ So \texttt{QGEO.SYM.01} is now in its minimal sharpest form --- the bare existence of that order-$4$
+conformal symmetry, which (like $c{=}$const in relativity) cannot be derived from nothing. The \emph{reduction}
+is closed (axiom $\Rightarrow$ everything); the axiom itself stays the one foundational postulate (\texttt{QGEO.SYM.02}).
+\par\smallskip\noindent\textbf{The flat geometry closes the commutator to all orders (\veri{v276\_qgeo\_flat\_closes\_commutator.py}).}
+The state-level residual $[\rho,H]{=}0$ --- the one operator equation the bedrock rests on --- is \emph{not} a
+separate analytic gap once the flat $\tau{=}i$ pillowcase is granted. \mE\ if $H=f(\Delta_{\mathrm{flat}})$ is a
+function of the intrinsic flat Laplacian (the DtN of a flat metric, no curvature corrections) and the order-$4$
+deck $\rho$ ($z\mapsto iz$) is a flat-$\tau{=}i$ isometry, then $[\rho,\Delta]{=}0\Rightarrow[\rho,H]{=}0$
+\emph{exactly}, to all orders (an isometry commutes with every spectral function of its Laplacian; verified on
+the discretised square torus, with a generic non-isometry as a failing control). This \emph{upgrades} the
+leading-order commutation \vref{v198} (principal symbol) and \vref{v201} (subprincipal) to the full $H$ ---
+flatness removes the lower-order terms. \mO\ so \texttt{QGEO.SYM.01} collapses to a \emph{single geometric}
+statement, ``the raw RP seam state is the flat $\tau{=}i$ pillowcase quasi-free state ($H{=}\sqrt{-\Delta_{\mathrm{flat}}}$)'';
+everything downstream is \mE, and the remaining human obligation is one constructive-QFT proof that the raw seam
+DtN state \emph{is} that flat geometry (\texttt{QGEO.SYM.03}).
+\par\smallskip\noindent\textbf{The obligation as one precise lemma, Lean-backed (\veri{v279\_qgeo\_obligation\_lemma.py}).}
+The bedrock is now written as a single constructive-QFT \emph{lemma}: \emph{given} the premise ``the raw seam
+carries the flat $\tau{=}i$ pillowcase metric $g_{\mathrm{flat}}$ (Troyanov-unique, cone angles $\pi$), so
+$\Lambda_\Sigma=\sqrt{-\Delta_{g_{\mathrm{flat}}}}$'', the conclusion $\omega_\Sigma\circ\rho=\omega_\Sigma$ (and
+hence mark-locality, the metric inclusion, $E_8$) follows. \mE\ the reduction DAG from ``free RP seam'' to this
+premise has \emph{exactly one} un-discharged leaf --- ``the raw seam state \emph{is} the flat state'' --- every
+other node being closed; and the geometric side is fixed (the flat DtN is Fourier-diagonal), so the obligation is
+a \emph{state-identification}, not a geometric ambiguity, with two candidate routes (\mC): RP-state uniqueness on
+the flat $\tau{=}i$ orbifold, or Troyanov $+$ OS reconstruction. \mE\ the all-orders closure step is now a
+\emph{Lean theorem}: \texttt{TfptCarrier/SeamDeckClosure.lean} (\texttt{flat\_all\_orders\_clock}) proves that any
+spectral function $g(\Delta_{\mathrm{flat}})$ of the Fourier-diagonal flat Laplacian commutes with the carrier
+clock $\rho=\mathrm{diag}(i^n)$ --- upgrading \vref{v198}/\vref{v201} to the full operator with only the standard
+axioms, no \texttt{sorry} (\texttt{FORM.QGEO.04}). \mO\ the one premise stays the honest axiom
+(\texttt{QGEO.OBLIG.01}).
+\par\smallskip\noindent\textbf{Self-investigation: the experiment and the simplification
+(\veri{v280\_pillowcase\_steklov.py}, \veri{v282\_e8\_tau\_i\_unification.py}).} Two things can be done
+\emph{ourselves}. (i) A direct numerical experiment on the actual flat $\tau{=}i$ pillowcase orbifold realises
+the whole chain: the order-4 deck permutes the four cone points ($2$ fixed $+$ $1$ swapped) and
+$[\rho,\Delta]{=}0\Rightarrow[\rho,H]{=}0\Rightarrow[\rho,C]{=}0\Rightarrow\omega\circ\rho{=}\omega$ is
+numerically exact, with the Steklov DtN positive and metric-determined --- route-(i) evidence (RP-state
+uniqueness), the premise still \mO. (ii) A candidate \emph{simplification}: the $(E_8)_1$ character
+$\chi_{E_8}=\Theta_{E_8}/\eta^8=j^{1/3}$ gives $\chi_{E_8}(i)=1728^{1/3}=12$, so $\tau{=}i$ is \emph{both} the
+order-4 CM point (\texttt{QGEO.SYM.01}, flat geometry) \emph{and} the $(E_8)_1$ partition-function modulus
+(\texttt{QG.AMB.01}, holomorphy) --- the two open premises are two faces of one object, ``the raw seam is
+$(E_8)_1$ at $\tau{=}i$'', dropping the obligation count $2\to1$ (\texttt{QGAMB.UNIFY.01}).
+\par\smallskip\noindent\textbf{The two proof routes, decomposed (\veri{v284\_route\_i\_rp\_uniqueness.py},
+\veri{v285\_route\_ii\_seam\_condensation.py}).} The keystone --- now \emph{closed modulo cited theorems on its
+MMST route} \texttt{SEAM.EQUIV.MMST.01} via the
+lattice/$S_3$ stack (below; the parent stays \mO) --- can be attacked from two sides, and
+both are now lemma chains with the dischargeable steps discharged. \emph{Route (i)} (RP-state uniqueness) is a
+six-lemma chain --- \mE\ five are already \mE/\mO\ (RP$\to$DtN \vref{v194}; marks$\to$pillowcase
+\vref{v195}/\vref{v216}; the flat Steklov operator $=\sqrt{-\Delta_{\mathrm{flat}}}$, principal symbol $|\xi|$
+with no curvature term; covariance from the DtN \vref{v258}; $\mu_4$-invariance \vref{v276}), and \mC\ Troyanov
+($\chi_{\mathrm{orb}}{=}0$) reduces the residual to ``the raw seam is the constant-curvature geometric state''.
+\emph{Route (ii)} (seam-net condensation) is a four-lemma chain --- \mE\ three are discharged (no abelian sector
+$\Leftrightarrow\det K{=}1\Leftrightarrow$ holomorphic $\Leftrightarrow E_8$ \vref{v234}/\vref{v277}/\vref{v281};
+the tower $16{\to}4{\to}1$ \vref{v92}), leaving ``the free RP seam condenses the $\mu_4$-Lagrangian glue''
+$=$\texttt{QGEO.SYM.01}. \mE\ \textbf{the two open lemmas coincide} --- both say ``the raw seam is the
+$(E_8)_1$ at $\tau{=}i$'' (\vref{v282}), so the canonical equivalence between the raw seam KMS/DtN state and the
+holomorphic $(E_8)_1$ net at $\tau{=}i$ is the \emph{single} \mO\ statement that closes both
+(\texttt{QGEO.ROUTEI.01}/\texttt{QGAMB.ROUTEII.01}).
+\par\smallskip\noindent\textbf{The Seam Equivalence Theorem, named and firewalled
+(\veri{v286\_seam\_equivalence\_contract.py}).} That single statement is now the named target
+\texttt{SEAM.EQUIV.01}: \emph{the raw RP seam state reconstructs canonically the holomorphic $(E_8)_1$ boundary
+net at the $\tau{=}i$ pillowcase} (respecting the DtN, the KMS flow, the $\mu_4$ deck, the Q-system extension,
+$\det K{=}1$ and the $(E_8)_1$ character). It is intended as the \emph{one} irreducible structural postulate of
+the theory --- the role the \emph{constancy of $c$} plays in relativity (cf.\ \vref{v267}): not a gap to be
+patched but the single sharply-localised, falsifiable premise on which the whole boundary closure turns.
+\mE\ the contract types four objects and six arrows --- two closed
+(the two routes), one conditional (\vref{v282}), one open Gral --- and enforces an \emph{import firewall}: no
+Route-i module imports any Route-ii module or vice versa, so the two routes can converge only through
+\texttt{SEAM.EQUIV.01} (this kills the ``$E_8$ smuggled into the geometry and pulled back out'' attack). The two
+proof routes are then attacked directly: \mE\ Route A (AQFT, \veri{v287\_free\_rp\_bulk\_to\_holomorphic\_boundary.py})
+reduces the Gral to \emph{one} standard theorem, ``invertible (SRE) Gaussian bulk $\Rightarrow$ single-sector
+boundary'' (4/5 lemmas discharged); and \mE\ Route B (DtN, \veri{v288\_full\_l2\_subprincipal\_z4.py})
+\emph{proves} the full-$L^2$ lift of the sub-principal $\mathbb{Z}_4$ block-diagonality (a mark-sourced curvature
+has Fourier support only on $m\equiv0\ (\mathrm{mod}\ 4)$, so $[\rho,\Lambda]{=}0$ on all of $L^2$), shrinking the
+residual to the single sharper question ``why is the raw seam sub-principal term mark-local?''
+(\texttt{SEAM.EQUIV.A01}/\texttt{SEAM.EQUIV.B01}).
+\par\smallskip\noindent\textbf{The route split (2026-07-22; ID restructuring, no status change in
+substance).} The target statement now carries \emph{two named routes} as ledger rows of their own:
+\texttt{SEAM.EQUIV.MMST.01}, the conditional scaling-limit route (the lattice/$S_3$/Lean stack
+documented in this section --- \emph{closed modulo cited theorems}; its \mO\ residual, formerly the
+abstract continuum existence \vref{v336}, is since \emph{carved into a named list} against the
+cited Osborne--Stottmeister coverage (\veri{v973\_seam\_route\_narrowing.py}): \emph{covered} is
+the $\mathfrak{so}(16)_1$ fermion-bilinear current algebra --- strong convergence, Virasoro and
+correlator control, polynomial errors; \emph{not covered}, and now the named residual, are
+N1 the $\mu_4$/GSO extension $SO(16)_1\to(E_8)_1$ as a net statement, N2 the twist/spin-field
+sector, N3 the one-sided chiral edge net, and N4 the OS/holomorphy selector --- with a measured
+collar convergence rate $p=3.48$ inside the preregistered band while the trivial $M{=}3$ control
+does not converge), and \texttt{SEAM.EQUIV.TWISTOR.01}, the open
+Costello--Li construction (prepared by \texttt{CELEST.SEAM.01}, bridged to physics only by
+\texttt{WOIT.OS.TWISTOR.01}; \mO\ --- its declared measure is since shown \emph{unique on the
+computable v508/v515 sector} up to exactly one named flat direction, the uniform sector-weight
+shift onto the untwisted Okubo square (constraint ranks $9/8/2/2$, joint rank $13$ on $14$
+moduli): sector rigidity, \emph{not} a BCOV derivation,
+\veri{v973\_seam\_route\_narrowing.py}). The parent claim \texttt{SEAM.EQUIV.01} remains, with exactly this
+logic as its claim text: \emph{closed if \texttt{MMST.01} or \texttt{TWISTOR.01} closes; currently:
+MMST conditional-closed modulo cited theorems, TWISTOR open $\Rightarrow$ the parent stays \mO\ as an
+unconditional claim.} Every ``closed modulo a cited theorem'' statement in the papers and on the
+website is henceforth attached to the MMST route ID; the assertions themselves are unchanged.

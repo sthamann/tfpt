@@ -1,0 +1,381 @@
+\subsection{Kernel output package}
+
+The benchmark row for $\alpha^{-1}(0)$ is defined by the positive self-consistent root of \Cref{eq:carrier-cfe}, not by freezing the opening at its retained seed value. On the canonical branch that positive root remains
+\[
+\alpha^{-1}(0)=\num{137.03599921615843}.
+\]
+For the remaining one-seed relations we keep the retained branch opening
+\begin{equation}
+\label{eq:hard-kernel-values}
+\cthree=\frac{1}{8\pi},
+\qquad
+\phiz=\frac{1}{6\pi}+\frac{3}{256\pi^4},
+\end{equation}
+\begin{remark}[Exact opening versus retained seed]
+The two symbols belong to the same admissible branch but play different jobs. The electromagnetic $\alpha$ row uses the exact seam generating function $\phiseam(\alpha)$ inside the carrier-form closure equation, whereas the one-seed bridge relations freeze that branch to the retained canonical seed $\phiz$. Thus $\phiseam(\alpha)$ belongs only to the exact $\alpha$ benchmark line, while $\phiz$ is the seed used for $(\beta_{\mathrm{rad}},\Omega_b,\lambda_C,\sin^2\theta_{13})$.
+\end{remark}
+and the same retained kernel package emits the compact seed chain
+\begin{equation}
+\label{eq:kernel-benchmark-formulas}
+C_{a\gamma\gamma}=-4\cthree=-\frac{1}{2\pi},
+\qquad
+\beta_{\mathrm{rad}}=\frac{\phiz}{4\pi},
+\qquad
+\Omega_b=(4\pi-1)\beta_{\mathrm{rad}},
+\qquad
+\lambda_C=\sqrt{\phiz(1-\phiz)},
+\qquad
+\sin^2\theta_{13}=\phiz e^{-\gamma}.
+\end{equation}
+\begin{remark}[Why the $\alpha$ row must stay self-consistent]
+The benchmark number $\alpha^{-1}(0)=\num{137.03599921615843}$ comes from the exact self-consistent equation with $\phiseam(\alpha)$. Its second-order truncation reproduces the first two correction coefficients, but it is not itself the benchmark definition. If one instead freezes the opening at
+\[
+\phiz=\frac{1}{6\pi}+\frac{3}{256\pi^4},
+\]
+the root shifts to $\alpha^{-1}(0)\approx \num{137.036501465}$, i.e. by about $\num{5.02e-4}$, which is roughly $\num{2.4e4}\sigma$ on the CODATA/NIST uncertainty. The wording of the $\alpha$ benchmark must therefore remain explicit: the benchmark uses the exact seam generating function, while the quadratic formula is only its controlled asymptotic shadow.
+\end{remark}
+\begin{tcolorbox}[colback=tfptblue!3, colframe=tfptblue, breakable,
+    title={Kernel-output package}, colbacktitle=tfptblue]
+The point of this section is not to claim more numerics than TFPT currently owns. It is to show that the established kernel already fixes a coherent electromagnetic package before the later completion theorems begin: the seam constant $\cthree$, the retained canonical seed $\phiz$, the self-consistent carrier-form CFE for $\alpha$, the dimensionless axion--photon anomaly coefficient, the birefringence seed, and the Cabibbo anchor.
+\end{tcolorbox}
+
+\section{Compression identities and carrier exclusion}
+
+This section collects the algebraic compressions that turn the carrier packet and kernel numerics from a list of internally consistent outputs into an overdetermined structure with genuine exclusion power. The compression identities are not new theorems; they are exact algebraic consequences of the already established carrier data. The exclusion theorems are the sharpest available evidence that the carrier packet actively selects the physical world.
+
+\subsection{Rank lock and the \texorpdfstring{$2$-$3$-$5$}{2-3-5} arithmetic}
+
+\begin{proposition}[Carrier rank lock]
+\label{prop:rank-lock}
+If the carrier identity $\dim S^+=2^{g-1}$, the canonical family data $N_{\mathrm{fam}}=3$, and the optional occupancy compression $\Oadm=(g-1)\dim\mathfrak g_{\SM}=12(g-1)$ are combined, then
+\begin{equation}
+\label{eq:rank-lock}
+3\cdot 2^{g-1}=12(g-1)
+\qquad\Longleftrightarrow\qquad
+2^{g-3}=g-1.
+\end{equation}
+The unique integral solution is $g=5$.
+\end{proposition}
+
+\begin{proof}
+Set $f(g):=2^{g-3}-(g-1)$. Then
+\[
+f(1)=\frac14,\qquad
+f(2)=-\frac12,\qquad
+f(3)=-1,\qquad
+f(4)=-1,\qquad
+f(5)=0.
+\]
+For $g\ge 4$,
+\[
+f(g+1)-f(g)=2^{g-3}-1>0,
+\]
+so $f$ is strictly increasing on $g\ge 4$. Since $f(4)<0$ and $f(5)=0$, there is no solution with $g\ge 6$. A direct check for $g\le 4$ shows no other solution. Hence the unique integral solution is $g=5$.
+\end{proof}
+
+\begin{remark}[The $2$-$3$-$5$ arithmetic]
+The hard carrier packet rests on exactly three discrete numbers: $2$ (the double cover), $3$ (the color rank and family count), and $5$ (the carrier rank). From these three atoms one recovers
+\[
+\gamma=\frac{5}{6}=\frac{5}{2\cdot 3},
+\qquad
+B=\frac{3}{2},
+\qquad
+B\gamma=\frac{5}{4}=\frac{5}{2^2},
+\]
+\[
+\Oadm=3\cdot 2^4=48,
+\qquad
+\Dstart=5\cdot 12=60,
+\qquad
+\frac{\Dstart}{\Oadm}=\frac{5}{4}=B\gamma,
+\]
+and the defect coefficients $\deltatop=48\,\cthree^4$ and $\delta_2=\frac54\,\deltatop^2=2880\,\cthree^8$ with $2880=60\cdot 48$.
+The persistent appearance of $5/4$ as carrier asymmetry $\times$ norm, second defect stage, and ladder-to-occupancy ratio is therefore not three coincidences but one rational shadow of the $2$-$3$-$5$ triad.
+\end{remark}
+
+\begin{lemma}[Universal \texorpdfstring{$5/4$}{5/4} compression quotient on the minimal branch]
+\label{lem:universal-5-4-compression}
+Define
+\[
+\rho_{5/4}:=B\gamma.
+\]
+On the canonical minimal branch,
+\[
+\rho_{5/4}
+=
+B\gamma
+=
+\frac{\delta_2}{\deltatop^2}
+=
+\frac{\Dstart}{\Oadm}
+=
+\frac{\gcar}{\gcar-1}
+=
+\frac54.
+\]
+Thus $5/4$ is the universal compression quotient of the minimal branch rather than a recurring numerical motif.
+\end{lemma}
+
+\begin{proof}
+The identity $B\gamma=\frac54$ is \Cref{cor:minimal-carrier-compression}. The defect relation gives
+\[
+\frac{\delta_2}{\deltatop^2}=\frac54.
+\]
+On the canonical branch,
+\[
+\frac{\Dstart}{\Oadm}=\frac{60}{48}=\frac54,
+\]
+and with $\gcar=5$ one also has
+\[
+\frac{\gcar}{\gcar-1}=\frac{5}{4}.
+\]
+Hence all displayed ratios agree on the same exact value.
+\end{proof}
+
+\begin{remark}[Interpretive status of the quotient]
+The quotient itself is exact. Any holographic or spacetime-dimensional reading of the denominator $\gcar-1=4$ remains interpretive in the present manuscript rather than theorem-level.
+\end{remark}
+
+\begin{remark}[Rank-5 master compression]
+If one accepts the carrier rank as the master parameter, then on the canonical branch
+\[
+N_{\mathrm{fam}}=\frac{\gcar+1}{2}=3,
+\qquad
+\Oadm=N_{\mathrm{fam}}\,2^{\gcar-1}=\frac{(\gcar+1)}{2}\,2^{\gcar-1}=(\gcar+1)\,2^{\gcar-2}=48,
+\]
+\[
+\Oadm\gamma=\gcar\,2^{\gcar-2}=40,
+\qquad
+\bone=\frac{\gcar\,2^{\gcar-2}+1}{10}=\frac{41}{10}.
+\]
+This is an algebraic compression of the closed family count, occupancy, abelian index, and the
+$41$-chain onto the single integer $\gcar=5$.
+\end{remark}
+
+\begin{corollary}[Pythagorean compression of the integrity index on the rank-locked branch]
+\label{cor:pythagorean-integrity-index}
+Assume the rank-locked compression branch
+\[
+10\,\bone=\gcar\,2^{\gcar-2}+1
+\]
+and the rank lock
+\[
+2^{\gcar-3}=\gcar-1.
+\]
+Then
+\[
+\mathcal I_{41}
+=
+10\,\bone
+=
+2\gcar(\gcar-1)+1
+=
+\gcar^2+(\gcar-1)^2.
+\]
+In particular, on the minimal rank-locked branch $\gcar=5$ one gets
+\[
+\mathcal I_{41}=5^2+4^2=41.
+\]
+\end{corollary}
+
+\begin{proof}
+Multiplying the rank lock by $2\gcar$ gives
+\[
+\gcar\,2^{\gcar-2}=2\gcar(\gcar-1).
+\]
+Inserting this into the compression formula yields
+\[
+10\,\bone=2\gcar(\gcar-1)+1.
+\]
+Since
+\[
+2\gcar(\gcar-1)+1=\gcar^2+(\gcar-1)^2,
+\]
+the claim follows.
+\end{proof}
+
+\begin{remark}[The number $4$ as a cross-cutting echo]
+In addition to the $2$-$3$-$5$ triad, the integer $4$ appears at four structurally distinct levels:
+\[
+F_{\mathrm{patch}}=4,
+\qquad
+\gcar-1=4,
+\qquad
+\frac{\Oadm}{\dim\mathfrak g_{\SM}}=\frac{48}{12}=4,
+\qquad
+\frac{|R(E_8)|}{\Dstart}=\frac{240}{60}=4.
+\]
+That is, four corner patches, carrier rank minus one, matter-to-gauge compression factor, and root-to-start quotient all evaluate to the same integer.
+\end{remark}
+
+\subsection{Exact algebraic compressions on the minimal branch}
+
+\begin{corollary}[Two-point spectral compression of $\gamma$ and $\phibase$]
+Let
+\[
+y_+:=\frac12,
+\qquad
+y_-:=-\frac13
+\]
+be the two distinct carrier eigenvalues singled out by the factorized carrier polynomial. Then
+\[
+\gamma=y_+-y_-,
+\qquad
+\phibase=\frac{y_++y_-}{\pi}.
+\]
+Here $y_++y_-$ is the unweighted Vieta sum of the two distinct carrier eigenvalues, not the trace on $E$.
+\end{corollary}
+
+\begin{proof}
+By \Cref{eq:carrier-polynomial}, equivalently by the factorization
+\[
+6Y^2-Y-\mathbf 1=(2Y-\mathbf 1)(3Y+\mathbf 1),
+\]
+the two distinct carrier eigenvalues are exactly $y_+=1/2$ and $y_-=-1/3$. Their difference is
+\[
+y_+-y_-=\frac12+\frac13=\frac56=\gamma,
+\]
+while their sum is
+\[
+y_++y_-=\frac12-\frac13=\frac16.
+\]
+Since $\phibase=(1-\gamma)/\pi=1/(6\pi)$, the claim follows.
+\end{proof}
+
+\begin{remark}[Carrier root pair formalism]
+Let
+\[
+y_+=\frac12,
+\qquad
+y_-=-\frac13.
+\]
+Then all one-family hypercharges are generated by the same two carrier roots:
+\[
+Y(Q_L)=y_++y_-,
+\quad
+Y(u^c)=2y_-,
+\quad
+Y(d^c)=-y_-,
+\quad
+Y(L_L)=-y_+,
+\quad
+Y(e^c)=2y_+,
+\quad
+Y(\nu^c)=0.
+\]
+Moreover the positive transport cusps satisfy
+\[
+\left\{1,\frac23,\frac13\right\}=\{2y_+,-2y_-,2(y_++y_-)\}.
+\]
+Thus the carrier packet and the transport grammar are generated by the same two-point root data.
+\end{remark}
+
+\begin{corollary}[Family hypercharge variance and electroweak block trace]
+Equip one carrier family with the uniform average
+\[
+\mathbb E_{S^+}(A):=\frac{1}{16}\tr_{S^+}A.
+\]
+Then
+\[
+\operatorname{Var}_{S^+}(Y)
+:=
+\mathbb E_{S^+}(Y^2)-\mathbb E_{S^+}(Y)^2
+=
+\frac{1}{16}\tr_{S^+}Y^2
+=
+\frac{5}{24}.
+\]
+Consequently,
+\[
+I_1^{\mathrm{EW}}=\operatorname{Var}_{S^+}(Y)\,\bone.
+\]
+\end{corollary}
+
+\begin{proof}
+The one-family trace identities give $\tr_{S^+}Y=0$ and $\tr_{S^+}Y^2=10/3$. Hence the centered second moment is
+\[
+\frac{1}{16}\tr_{S^+}Y^2=\frac{10/3}{16}=\frac{5}{24}.
+\]
+Using $I_1^{\mathrm{EW}}=\frac{5}{24}\,\bone$ from the electroweak block relation yields the second identity.
+\end{proof}
+
+\begin{corollary}[Factorial quadratic trace and two-defect factorization]
+\label{cor:factorial-trace-delta2}
+Let
+\[
+X:=6Y.
+\]
+Then the one-family quadratic trace is
+\[
+\tr_{S^+}(X^2)
+=
+36\,\tr_{S^+}(Y^2)
+=
+36\cdot\frac{10}{3}
+=
+120
+=
+5!.
+\]
+Equivalently, using the six hypercharge sectors with multiplicities
+\[
+(1,3,6,1,2,3)
+\]
+at
+\[
+X\in\{0,-4,1,6,-3,2\},
+\]
+the same trace is
+\[
+0^2+3\cdot 4^2+6\cdot 1^2+1\cdot 6^2+2\cdot 3^2+3\cdot 2^2=120.
+\]
+On the retained branch this gives the exact factorization
+\[
+\delta_2
+=
+2880\,\cthree^8
+=
+4!\,\tr_{S^+}(X^2)\,\cthree^8.
+\]
+\end{corollary}
+
+\begin{proof}
+By \Cref{prop:split-weight-enumerator}, one has
+\[
+\tr_{S^+}(Y^2)=\frac{10}{3}.
+\]
+Since $X=6Y$, the first identity follows immediately. The sector-by-sector sum is the same quadratic trace written in the basis of admissible occupancy sectors from \Cref{prop:family-hypercharge-compression}. Finally, \Cref{eq:hard-topological-kernel} gives
+\[
+\delta_2=2880\,\cthree^8=24\cdot 120\,\cthree^8
+=
+4!\,\tr_{S^+}(X^2)\,\cthree^8.
+\]
+\end{proof}
+
+\begin{remark}[Quadratic trace versus variance]
+The value $120=5!$ is the unnormalized quadratic trace $\tr_{S^+}(X^2)$, not the normalized variance. The corresponding uniform variance is
+\[
+\operatorname{Var}_{S^+}(X)=36\,\operatorname{Var}_{S^+}(Y)=36\cdot\frac{5}{24}=\frac{15}{2}.
+\]
+\end{remark}
+
+\begin{remark}[Arithmetic Higgs lock on the canonical family branch]
+Define the generic occupancy
+\[
+\Omega_{\mathrm{occ}}:=16\,N_{\mathrm{fam}}.
+\]
+Then the abelian-index formula gives
+\[
+10\,\bone
+=
+\frac{40}{3}N_{\mathrm{fam}}+N_\Phi
+=
+\Omega_{\mathrm{occ}}\,\gamma+N_\Phi.
+\]
+On the canonical family branch $N_{\mathrm{fam}}=3$, hence $\Omega_{\mathrm{occ}}=48$ and therefore
+\[
+10\,\bone=40+N_\Phi.
+\]
+Thus the $41$-chain arithmetically selects $N_\Phi=1$. This is an arithmetic lock on the canonical branch, not the dynamical Higgs-selection theorem, which in the present manuscript still comes from the bosonic relative-index / Callias route.
+\end{remark}
+

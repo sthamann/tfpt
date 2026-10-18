@@ -1,0 +1,116 @@
+\subsection{6. Spurnetzwerk-Normen}\label{spurnetzwerk-normen}
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+\frac{\nu_n}{(n!)^2}=\sum_{|m|=n}\frac{\|Q^{\dagger m}F\|^2}{m!}
+=\Big[\text{Koeffizient von }s^n\Big]\int d\mu(z)\,
+\exp\Big(-\tfrac12\sum_{k\ge1}\frac{s^k}{k}\operatorname{tr}\big((\bar ZM)(ZM)\big)^k\Big),
+$}\]
+
+über bosonische Kohärenzzustände, die Onishi-Determinante det(1 −
+M̄M)\^{}\{1/2\} und Wick-Paarung der z-Variablen. Jedes Netzwerk ist eine
+Kontraktion von n Kopien des Tensors Φ\_\{ij,kl\} =
+Σ\_A(M\_A)\emph{\{ij\}(M\_A)}\{kl\} (Einträge in \{−1,0,1\}). Netzwerke
+werden als 4-Bein-Multigraphen unter Knotenumbenennung und Slot-Tausch
+kanonisiert (n=4: 120 → 27 Klassen). Exaktheit: float64-Kontraktion mit
+Absolutwert-Begleitkontraktion (\textbar Σa\_kb\_k\textbar{} ≤
+Σ\textbar a\_k\textbar\textbar b\_k\textbar{} \textless{} 2⁵³ je
+Schritt), sonst Auswertung modulo fünf Primzahlen \textless{} 2¹³ mit
+CRT (Eindeutigkeit aus \textbar Netzwerk\textbar{} ≤
+60ⁿ·64\^{}\{\#Zyklen\}). Validierung: ν₁, ν₂ per Brute Force, ν₃ gegen
+die Vektorrechnung, CRT-Route allein reproduziert ν₃.
+
+\subsection{7. T1-T8}\label{t1-t8}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Tor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Beitrag dieser Runde
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Weiter offen
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+T1 & Exakte Kommutanten-Leiter A→B→Cc→Cs→C; Clock als äußeres
+Symmetrieelement & Welche Symmetrieoperationen der Compiler tatsächlich
+bereitstellt \\
+T2 & Lochbild bewiesen; Z\_h + Z\_add = 1; ε\_h, ε\_add & Konvergierter
+Zustand, Renormierung, Grenzraum \\
+T3 & - (ausgeklammert) & Räumlicher Träger \\
+T4 & Kern-Symmetrieregel; kein einheitliches Vektor-Wörterbuch &
+Chirales Maß, Anomalien \\
+T5 & Exakte Krylov-Kette; ν₁\ldots ν₄ zweifach unabhängig &
+Kontinuumslimes \\
+T6 & Feldtyp-Census je Gradierung & Kopplungs- und Familiendaten \\
+T7 & (1,0)⊕\allowbreak{}(0,1) ist B\_\{μν\}, kein Spin 2 & Dynamischer masseloser
+Spin 2 \\
+T8 & Sektorauswahl bewiesen bis g/Δ ≤ 0,0251; μ*-Fenster &
+Zustandsfunktional, native Präparation \\
+\end{longtable}
+}
+
+\textbf{Kein Tor wird als geschlossen markiert.} Keine RH-,
+Faktorisierungs- oder P-versus-NP-Aussage; keine abgeleitete
+Hylæan-Fähigkeit.
+
+\subsection{8. Die jetzt entscheidenden
+Prüfungen}\label{die-jetzt-entscheidenden-pruxfcfungen}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Untergrenzen verschärfen.} Die Casimir-Schranke trennt N=64
+  bei 1/20 nicht von N=62 und N=66. Eine Jacobi-Vergleichsschranke mit
+  rigorosen Normschranken für TT† je Bosonzahl oder eine Temple-Schranke
+  auf der Ritz-Kette würde den Beweisbereich anheben.
+\item
+  \textbf{Den Zwei-Boson-Singulettraum ausschreiben.} w₂ ist der erste
+  Zeuge; die volle Lanczos-Kette von H (nicht nur von T†) ab Tiefe 4
+  braucht w₂ und seine Nachfolger.
+\item
+  \textbf{Operationen aus der Quelle.} Die Leiter sagt exakt, was
+  so(10)-Operationen leisten würden; zu klären bleibt, welche davon der
+  Compiler als markierte Operationen liefert. Der Clock ist ein äußeres
+  Element und ersetzt sie nicht.
+\item
+  \textbf{Feldtyp vor Geometrie.} Jede chirale Aufspaltung macht den
+  Bosontyp kanalabhängig (24/36 oder 40/20); eine räumliche Rechnung
+  muss diese Aufteilung oder den einheitlichen Tensortyp explizit
+  wählen.
+\end{enumerate}
+
+\subsection{9. Verifikation und nicht übernommene
+Behauptungen}\label{verifikation-und-nicht-uxfcbernommene-behauptungen}
+
+\codeword{replay.py} führt fünf Prüfer normal und unter \codeword{-OO}
+aus und verlangt byteidentische Ausgaben; Status, Hashes und Guardsummen
+stehen in \codeword{replay\_manifest.json}. Guardzahlen zählen
+Prüfbedingungen, keine unabhängigen Theoreme. Exakt heißt
+ganzzahlig/rational; numerisch heißt float64 mit Toleranz-Guard
+(Ritz-Eigenwerte ab 3×3, Observablen, Erste-Moment-Auswertungen).
+
+Nicht übernommen: der Worker-Beweis des N=64-Grundzustands bis 1/20;
+eine physische Herleitung des Zustandsfunktionals; ein räumlicher
+Träger; ein dynamischer Spin 2; die Existenz der Symmetrieoperationen
+als Compiler- Primitive. Während der Runde festgestellte und behobene
+Fehler der zunächst gelieferten Prüfer (u. a. Zyklus-Slots im
+Spurnetzwerk, Bosonengewicht, doppelte T-Wirkung bei Bosonwiederholung,
+Teilchen-Loch-Vorzeichen, min-max-Sektorschranke, skalierte w₂-Norm,
+ungültiger Zykluszeuge) sind durch bleibende Guards abgesichert; keine
+mathematische Aussage wurde an eine Erwartung angepasst.
+
+Das \codeword{replay\_manifest.json} der Vorrunde v1.6.2 war durch einen
+Lauf ohne Zugriff auf den externen Tensorpfad auf FAIL gesetzt worden;
+es wurde aus den intakten \codeword{optimized.json} (PASS-Bedingung war
+Byteidentität) rekonstruiert, Summen 27143/27139/4 stimmen mit dem
+Delivery-Manifest.
+
+\end{document}

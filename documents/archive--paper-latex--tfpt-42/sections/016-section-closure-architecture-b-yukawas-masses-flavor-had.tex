@@ -1,0 +1,332 @@
+
+\begin{theorem}[Sectorial Hamilton decomposition of the geometric branch]
+\label{thm:sectorial-hamilton-decomposition}
+On the admissible Lorentzian reconstruction, the full Hamiltonian splits as
+\[
+H_{\mathrm{full}}
+:=
+H_{\mathrm{matt}}\widehat\otimes 1
++
+1\widehat\otimes H_{\mathrm{grav}}
++
+H_{\mathrm{int}},
+\qquad
+H_{\mathrm{grav}}=H_{2}\oplus H_{\mathrm{sc}}.
+\]
+The gap / clustering closure applies to the matter block and the massive scalaron block. The
+transverse-traceless graviton block is massless, but it is controlled by Osterwalder--Schrader
+reflection positivity together with the positive TT quadratic form of
+\Cref{thm:gravity-cosmology-closure}.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The geometric Hodge theorem already identifies the physical Hilbert-space factorization
+$\mathcal H_{\mathrm{phys}}\cong\mathcal H_2\otimes\mathcal H_{\mathrm{sc}}\otimes\mathcal H_{\mathrm{matt}}$.
+Writing the reconstructed Hamiltonian relative to that factorization isolates the massless
+transverse-traceless graviton sector from the massive scalaron / matter sectors. Hence the gap
+statements later used for admissible vacuum closure are not assigned to the graviton block; that
+block is controlled instead by reflection positivity and the TT positivity statement already proved
+on the geometric branch.
+\end{proof}
+
+\begin{theorem}[Unique admissible UV profile fixed point]
+\label{thm:geometric-uv-fixed-point}
+Let
+\[
+\mathcal M_{\mathrm{adm}}^{\mathrm{br}}
+:=
+\left\{
+\nu\ge 0\ \text{finite on }[0,\infty)\;:\;
+f_\nu(t):=\int_0^\infty e^{-st}\,d\nu(s)\ \text{is branch compatible}
+\right\}
+\]
+be the admissible Bernstein cone written on the measure side. Fix the branch-matching slice by the
+closed low-curvature moments reproducing the Einstein, Higgs, and $R^2$ coefficients. Define the
+normalized positive RG map
+\[
+(T\nu)(dt)
+:=
+\frac{\int_0^\infty K(s,t)\,d\nu(s)}{\int_0^\infty \psi(s)\,d\nu(s)}\,dt,
+\qquad
+\psi(s)>0.
+\]
+Let $\mathcal R$ denote the induced map on Laplace profiles,
+\[
+\mathcal R[f_\nu]:=f_{T\nu}.
+\]
+Assume that on the branch-matching slice the kernel satisfies the uniform bounds
+\[
+0<m_{\mathrm{ker}}\le K(s,t)\le M_{\mathrm{ker}}<\infty.
+\]
+Then $T$ has finite Hilbert-projective diameter and obeys the Birkhoff contraction estimate
+\[
+d_H(T\nu_1,T\nu_2)
+\le
+\eta\,d_H(\nu_1,\nu_2),
+\qquad
+\eta\le
+\tanh\!\left(\frac14\log\frac{M_{\mathrm{ker}}}{m_{\mathrm{ker}}}\right)<1.
+\]
+Consequently there exists a unique admissible fixed measure $\nu_\star$ and therefore a unique
+admissible fixed profile
+\[
+\mathcal R[f_\star]=f_\star,
+\qquad
+f_\star(t)=\int_0^\infty e^{-st}\,d\nu_\star(s),
+\]
+whose first moments reproduce the Einstein, Higgs, and $R^2$ coefficients of the closed branch.
+\end{theorem}
+
+\begin{proof}
+The positive measure cone is the natural projective cone for admissible Bernstein profiles, and the
+branch-matching moment conditions cut out a normalized slice preserving the closed low-curvature
+coefficients
+\[
+(\Mpl^2,Z_H,M^2),
+\]
+so any admissible profile on that slice has the same first moments as the closed branch. Because
+$K$ and $\psi$ are positive, $T$ preserves positivity and the matching slice. The uniform kernel
+bounds imply a finite Hilbert-projective diameter for the image of that slice; explicitly, the
+projective diameter is bounded by $\log(M_{\mathrm{ker}}/m_{\mathrm{ker}})$. Birkhoff's theorem for
+positive kernel operators therefore gives the displayed contraction factor
+\[
+\eta\le \tanh\!\left(\frac14\log\frac{M_{\mathrm{ker}}}{m_{\mathrm{ker}}}\right)<1.
+\]
+Hence $T$ has a unique fixed projective ray on the normalized slice. The normalization by
+$\int\psi\,d\nu$ fixes the scale, so the fixed ray is represented by one actual measure
+\[
+\nu_\star\in\mathcal M_{\mathrm{adm}}^{\mathrm{br}}.
+\]
+Its Laplace profile
+\[
+f_\star(t)=\int_0^\infty e^{-st}\,d\nu_\star(s)
+\]
+is the unique admissible UV profile compatible with the closed branch, and its first moments are
+exactly the prescribed Einstein, Higgs, and $R^2$ coefficients.
+\end{proof}
+
+\begin{theorem}[Constructive geometric measure on the admissible branch]
+\label{thm:constructive-geometric-measure}
+Let $(V_n)_{n\ge 1}$ be a blocked geometric exhaustion and define the finite-volume geometric
+measures
+\[
+:=
+d\mu_n
+\propto
+\exp\!\bigl(-\tr f_\star(D_{V_n}^2/\Lambda^2)\bigr)\,d\nu_{V_n}
+\]
+on the BRST-reduced admissible geometric configuration space. Then the family $(d\mu_n)$ is
+projectively consistent, reflection positive, and converges along the exhaustion to a projective
+limit measure. In particular the geometric partition function is defined constructively by
+\[
+Z_{\mathrm{grav}}
+=
+\lim_{n\to\infty}
+\int e^{-\tr f_\star(D_{V_n}^2/\Lambda^2)}\,d\nu_{V_n}.
+\]
+\end{theorem}
+
+\begin{proof}
+For every blocked volume $V_n$, the weight
+\[
+\exp\!\bigl(-\tr f_\star(D_{V_n}^2/\Lambda^2)\bigr)
+\]
+is well defined because $f_\star$ is positive on the admissible Bernstein cone. If
+\[
+V_n\subset V_m,
+\]
+restriction of geometric configurations from $V_m$ to $V_n$ respects the BRST-reduced admissible
+action because the blocked Dirac operators and the fixed profile $f_\star$ were constructed to be
+compatible under exhaustion. This is exactly the projective-consistency statement.
+
+Reflection positivity is inherited from the admissible/geometric OS structure established earlier:
+the reflected quadratic forms remain nonnegative on every blocked volume, and the same property is
+preserved by the positive weight associated with $f_\star$. Hence each $d\mu_n$ is reflection
+positive.
+
+Finally, the admissible positivity and coercivity bounds prevent escape of mass along the blocked
+exhaustion, so the projectively consistent family $(d\mu_n)$ admits a projective-limit measure. The
+geometric partition function is therefore defined constructively by the stated limit, rather than
+only heuristically read off from low-curvature coefficients.
+\end{proof}
+
+\begin{theorem}[Spectral UV completion on the admissible branch]
+\label{thm:spectral-uv-completion}
+Let $f_\star$ be the unique admissible profile of \Cref{thm:geometric-uv-fixed-point}, and define
+the transverse-traceless and scalaron form factors in Stieltjes form
+\[
+\mathcal F_\star(z)
+:=
+a_F+\int_0^\infty \frac{d\mu_F(t)}{t+z},
+\qquad
+\mathcal G_\star(z)
+:=
+a_G+\int_0^\infty \frac{d\mu_G(t)}{t+z},
+\]
+with
+\[
+a_F,a_G\ge 0,
+\qquad
+\mu_F,\mu_G\ge 0.
+\]
+Then the Euclidean two-point gravitational kernel on the admissible branch takes the spectral form
+\[
+\Gamma_{\mathrm{grav}}^{(2)}(p^2)
+=
+p^2\,\mathcal F_\star\!\left(\frac{p^2}{\Lambda_{\mathrm{UV}}^2}\right)\Pi_{\mathrm{TT}}
++
+\bigl(p^2+M^2\bigr)\mathcal G_\star\!\left(\frac{p^2}{\Lambda_{\mathrm{UV}}^2}\right)\Pi_{\mathrm{sc}}.
+\]
+\begin{enumerate}[label=(\roman*), leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item $\mathcal F_\star$ and $\mathcal G_\star$ are holomorphic and zero-free on
+    $\mathbb C\setminus(-\infty,0]$;
+    \item the only physical poles are the massless graviton pole and the positive scalaron pole;
+    \item no ghost pole occurs on the admissible branch;
+    \item the constructive geometric measure of \Cref{thm:constructive-geometric-measure} supplies the
+    corresponding UV correlators as moments of one and the same admissible measure.
+\end{enumerate}
+Thus the local Einstein plus $R^2$ action is the low-curvature expansion of a spectral UV object
+rather than the full ultraviolet definition of the branch.
+\end{theorem}
+
+\begin{proof}
+The second variation of the fixed-profile spectral action on the BRST-reduced geometric sector
+produces positive spectral measures on the transverse-traceless and scalar blocks; these are
+recorded above as the Stieltjes data $(a_F,\mu_F)$ and $(a_G,\mu_G)$. The projector decomposition
+\[
+\Pi_{\mathrm{TT}}+\Pi_{\mathrm{sc}}
+\]
+separates the massless graviton and scalaron channels, yielding the displayed two-point kernel.
+
+If $\Im z>0$, then for every $t\ge 0$,
+\[
+\Im\frac{1}{t+z}
+=
+-\frac{\Im z}{(t+\Re z)^2+(\Im z)^2}
+<0.
+\]
+Hence
+\[
+\Im \mathcal F_\star(z)<0,
+\qquad
+\Im \mathcal G_\star(z)<0
+\qquad
+(\Im z>0),
+\]
+so neither form factor can vanish in the upper half-plane. By conjugation symmetry the same holds
+in the lower half-plane. On the positive real axis the Stieltjes integrands are strictly positive,
+and the branch-matching coefficients force the resulting values to remain positive. Therefore
+$\mathcal F_\star$ and $\mathcal G_\star$ are zero-free on
+$\mathbb C\setminus(-\infty,0]$.
+
+The inverse propagators can therefore acquire no additional pole beyond the physical roots at
+\[
+p^2=0
+\qquad\text{and}\qquad
+p^2=-M^2.
+\]
+Hence there is no ghost pole on the admissible branch. Finally,
+\Cref{thm:constructive-geometric-measure} provides one projective-limit measure with fixed profile
+$f_\star$; its moments are precisely the UV correlators of this same spectral kernel. Therefore the
+Einstein plus $R^2$ action obtained earlier is only the first low-curvature expansion of the
+spectral UV completion.
+\end{proof}
+
+The E$_8$ scale ladder is not used as a primitive input in the main text. Its arithmetic
+continuations are deferred to Appendix~\ref{app:constants}.
+
+\section{Closure architecture B: Yukawas, masses, flavor, hadronic admissibility, and the strong-CP sector}
+
+The second closure-architecture block is the transport closure. Its role is to turn the carrier
+packet and the family/occupancy closure into actual masses, mixings, hadronic admissibility, and
+control of the strong-CP sector. The logic is again staged: first the discrete phase operator and
+the transport kernel, then residue and winding data, then matrix-factorized Yukawas, hadronic
+selection, determinant-line phase extraction, and finally the strong-CP closure theorem.
+
+\subsection{Discrete phase operator and transport grammar}
+
+Let
+\[
+\omega=e^{2\pi i/3},
+\qquad
+U_6=\mathrm{diag}(1,\omega,\omega^2,-1,-\omega,-\omega^2).
+\]
+This makes the phase grammar concrete rather than rhetorical. The six admissible phases are shown as a finite hexagonal transport geometry in \Cref{fig:z6-circle}: the cusp values live on the same real axis as the positive-real phase, the admissible gap is visible directly, and the holonomy phase can be read as a triangle on the same discrete transport base.
+
+\begin{remark}[Hexagonal spectral geometry]
+The operator $U_6$ is a unitary circulant with eigenphases $e^{in\pi/3}$ for $n=0,\dots,5$ and is unitarily equivalent to the one-step translation operator on a six-site ring. The transport kernel $D_y=y\,\mathbf 1-\delta_{\mathrm{ph}}U_6$ is therefore the resolvent denominator of a finite quantum walk, equivalently a tight-binding transfer problem, on the discrete $C_6$ cycle. The regularized inverse introduced below plays the role of the corresponding Green kernel. CKM and PMNS mixings, mass hierarchies, and the Möbius quotients of \Cref{eq:mobius-quotient} are thus not loose analytic fits but spectral-theory statements on a regular hexagon. The near-pole hierarchy at $y\approx\delta_{\mathrm{ph}}$ becomes the resonance of a hexagonal resolvent rather than tuned parameter choice.
+\end{remark}
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\begin{tikzpicture}[scale=1.1,>=Latex]
+\coordinate (O) at (0,0);
+\foreach \name/\ang in {p0/0,p1/60,p2/120,p3/180,p4/240,p5/300} {
+    \coordinate (\name) at ({2*cos(\ang)},{2*sin(\ang)});
+}
+\draw[thick, black!70] (p0) -- (p1) -- (p2) -- (p3) -- (p4) -- (p5) -- cycle;
+\draw[gray!25, dashed] (O) -- (p0);
+\draw[gray!25, dashed] (O) -- (p1);
+\draw[gray!25, dashed] (O) -- (p2);
+\draw[gray!25, dashed] (O) -- (p3);
+\draw[gray!25, dashed] (O) -- (p4);
+\draw[gray!25, dashed] (O) -- (p5);
+\foreach \P in {p0,p1,p2,p3,p4,p5} {
+    \filldraw[blue!60!black] (\P) circle (2pt);
+}
+\node[anchor=west, font=\scriptsize] at (2.18,0.12) {$1$};
+\node[anchor=south west, font=\scriptsize] at (1.1,1.85) {$e^{i\pi/3}$};
+\node[anchor=south east, font=\scriptsize] at (-1.1,1.85) {$e^{2i\pi/3}$};
+\node[anchor=east, font=\scriptsize] at (-2.18,0.12) {$-1$};
+\node[anchor=north east, font=\scriptsize] at (-1.1,-1.85) {$e^{-2i\pi/3}$};
+\node[anchor=north west, font=\scriptsize] at (1.1,-1.85) {$e^{-i\pi/3}$};
+
+\draw[->, thick, red!65!black] (1.15,1.05) arc[start angle=42,end angle=-42,radius=1.2];
+\node[red!65!black, font=\scriptsize, anchor=west] at (2.55,0.25) {CP: $\theta\mapsto-\theta$};
+
+\filldraw[orange!80!black] (0.67,0) circle (2pt);
+\filldraw[orange!80!black] (1.33,0) circle (2pt);
+\filldraw[green!60!black] (1.1998,0) circle (2.4pt);
+\node[below, font=\scriptsize] at (0.67,-0.08) {$\frac13$};
+\node[below, font=\scriptsize] at (1.33,-0.08) {$\frac23$};
+\node[above, font=\scriptsize] at (1.1998,0.08) {$\delta_{\mathrm{ph}}$};
+\draw[<->, thick, black!65] (1.1998,-0.32) -- (1.33,-0.32);
+\node[below, font=\tiny] at (1.265,-0.34) {$\epsilon_f$};
+\node[align=left, anchor=west, font=\scriptsize, text=black!70] at (2.55,-0.7)
+    {positive-real branch\\near-pole lock at $y\approx\delta_{\mathrm{ph}}$\\gap $\epsilon_f=\frac23-\delta_{\mathrm{ph}}$};
+\end{tikzpicture}
+\caption{Finite transport geometry on the hexagon $C_6$. The six $U_6$ phases form the discrete
+transport base, while the admissible cusps $y\in\{1,\frac13,\frac23\}$ and the branch pole
+$\delta_{\mathrm{ph}}$ lie on the positive-real axis with gap
+$\epsilon_f=\frac23-\delta_{\mathrm{ph}}$.}
+\label{fig:z6-circle}
+\end{figure}
+
+The family-side holonomy phase is separated in \Cref{fig:holonomy-triangle} so that the transport
+base and the flavor readout remain visually distinct.
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\begin{tikzpicture}[>=Latex]
+    \node[draw=black!65, fill=gray!10, rounded corners, text width=4.8cm, minimum height=0.85cm, align=center, font=\bfseries] at (0,1.15)
+        {family-side holonomy on the transport grammar};
+    \coordinate (A) at (0,0.1);
+    \coordinate (B) at (-1.45,-1.8);
+    \coordinate (C) at (1.45,-1.8);
+    \draw[thick, orange!75!black] (A) -- (B) -- (C) -- cycle;
+    \filldraw[orange!75!black] (A) circle (2pt) (B) circle (2pt) (C) circle (2pt);
+    \node[above, font=\scriptsize] at (A) {$1$};
+    \node[left, font=\scriptsize] at (B) {$2$};
+    \node[right, font=\scriptsize] at (C) {$3$};
+    \draw[->, thick, blue!60!black] (-0.2,-0.45) arc[start angle=110,end angle=15,radius=0.95];
+    \node[draw=green!50!black, fill=green!8, rounded corners, text width=3.7cm, minimum height=0.95cm, align=center] at (0,-3.15)
+        {$\delta_{\mathrm{CKM}}=\arg\tr\Pi_\triangle(\nabla_F^\star)$\\oriented holonomy triangle};
+\end{tikzpicture}
+\caption{Holonomy triangle on the same discrete transport grammar. The CKM phase is read as the
+oriented three-cycle phase $\delta_{\mathrm{CKM}}=\arg\tr\Pi_\triangle(\nabla_F^\star)$ rather
+than as an additional transport parameter.}
+\label{fig:holonomy-triangle}
+\end{figure}
+

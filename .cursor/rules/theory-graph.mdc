@@ -1,31 +1,34 @@
 ---
-description: Mandatory theory-graph usage — query before proposing, record verdicts after running (always on)
+description: Route source navigation, code discovery and current research to their owning registries
 alwaysApply: true
 ---
 
-# Theory graph (verbindlich für alle Agents)
+# Source registry and TFPT Knowledge Atlas
 
-Single query layer über Claims, Scripts, Papers, Predictions, Scorecard, Contracts und RH-Katalog:
-`verification/theory_graph.json` (generiert) + CLI `verification/theorycat.py`.
-Big picture: `verification/theory_primer.md` (generiert). SSOT für Status bleibt der Ledger.
+Start source maintenance with `docs/registry/INDEX.md`, its small `summary.json`,
+and bounded `verification/make_content_registry.py` queries. They locate physical
+LaTeX owners, topics and explicit Python/Lean/Wolfram references. A source link or
+topic suggestion does not establish a theorem or update a claim status.
 
-## Vor jeder Mechanismus-/Claim-/Experiment-Arbeit (Pflicht)
+For current TFPT or Universalraum research, use the shared `tfpt-knowledge` MCP
+Atlas when installed. Read the global `tfpt-knowledge/SKILL.md` or the local
+`semantic_explorer/skills/tfpt-knowledge/SKILL.md`. Start with `graph_status` and
+`theory_overview`, then obtain the complete question state with `research_state`.
+Consult prior attempts and prerequisites before repeating a strategy; preserve
+immutable premise identities, scopes, negative results and unresolved bridges.
+Persist source-reviewed research updates with the expected revision. New research
+contracts need an appropriate `contract_index.json` so their scope and verdict
+are discoverable.
 
-1. `python verification/theorycat.py tried "<thema>"` — was wurde wann versucht, mit welchem Verdict.
-2. `python verification/theorycat.py kills "<thema>"` — was bereits getötet ist, inkl. `failure_class`.
-3. Bei RH/Weil/Hilbert–Pólya/Prime-Front zusätzlich `python rh/catalog/rhcat.py check-new` (bestehende Pflicht, AGENTS.md).
-4. Statusfragen nur über `theorycat.py claim <id>` / `dossier <id>` klären — nie aus Prosa erraten.
-5. Ein KILLED/REFUTED-Ansatz darf nur erneut laufen, wenn der Kill-Grund (`failure_class`) explizit adressiert wird — im Prompt/Contract zitieren.
+The original source and status ledger remain authoritative. AI annotations and
+search summaries are navigation aids. A shared input is correlated evidence;
+keep structural ownership distinct from a directed derivation. Never promote a
+claim from a graph edge, declaration name, inventory, or numerical match.
 
-## Nach jeder Arbeit (Pflicht)
-
-- Neuer Ordner in `experiments/theory-contracts/` ⇒ **`contract_index.json`** mitschreiben
-  (Schema in `experiments/theory-contracts/README.md`). Ohne Datei erscheint der Contract im
-  Graphen ohne verwertbares Verdict — die Arbeit ist für Folge-Agents unsichtbar.
-- Handoffs/STATE-Blöcke referenzieren **Claim-IDs und Verdicts**, keine Nacherzählung.
-
-## Generated — nie hand-editieren
-
-`verification/theory_graph.json`, `verification/theory_primer.md`.
-Regenerieren: `python verification/build_theory_graph.py` (läuft in `bash build.sh gen`;
-Freshness-Gate `build_theory_graph.py --check` in `bash build.sh audit`).
+The retired `verification/theory_graph.json`, `theory_primer.md` and
+`theorycat.py` are not a second current research interface. If the Atlas is absent
+from a public checkout, use original sources, the ledger and the content registry;
+state that current local research state is unavailable rather than inventing it.
+For code symbols use the separate codebase-memory MCP graph. RH, prime and Weil
+research belongs to the independent `sthamann/prime-front` repository and its
+specialized research tools.

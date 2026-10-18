@@ -45,6 +45,8 @@ markers.  Python-only / Wolfram deferred.
 """
 from __future__ import annotations
 
+from tex_sources import read_tex
+
 import importlib
 import sys
 from pathlib import Path
@@ -103,7 +105,7 @@ def load_probe(name: str):
 
 
 def source_contains(path: Path, *needles: str) -> bool:
-    source = path.read_text(encoding="utf-8")
+    source = read_tex(path) if path.suffix == ".tex" else path.read_text(encoding="utf-8")
     return all(needle in source for needle in needles)
 
 
@@ -186,7 +188,7 @@ def claim_telb(telb) -> None:
     check(
         "memorandum records native v1026 all-even-N norm with "
         "FE-GEN/ALG-EXH/MMST boundary",
-        telb_round4_document_guard(MMST_TEX.read_text(encoding="utf-8")),
+        telb_round4_document_guard(read_tex(MMST_TEX)),
     )
 
 

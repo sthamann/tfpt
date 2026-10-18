@@ -1,0 +1,377 @@
+
+\begin{proof}
+Center neutrality and seam-evenness are already the carrier-side admissibility rules for physical hadrons. Passing to the norm closure of the singlet admissible algebra acting on the vacuum gives the completed hadronic space, and no state with $z(w)\neq 1$ survives the selector.
+\end{proof}
+
+\begin{theorem}[Anomaly cancellation and seam inflow]
+On the admissible branch,
+\[
+I_6^{\mathrm{tot}}=0,
+\qquad
+\delta_\Lambda S_{\mathrm{bulk}}+\delta_\Lambda S_{\eta,\Seam}=0.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The one-family packet $S^+$ is exactly the anomaly-free Standard Model family including $\nu^c$. The remaining seam contribution is carried by the relative $\eta$ term, so gauge variation cancels between bulk and seam sectors rather than being left as an uncancelled boundary defect.
+\end{proof}
+
+\begin{lemma}[Topological sector positivity]
+\label{lem:topological-sector-positivity}
+On the admissible branch every topological sector weight satisfies
+\[
+Z_Q\ge 0.
+\]
+\end{lemma}
+
+\begin{proof}
+Apply \TFPTxref{lem:retained-gamma5-hermiticity}. The nonzero spectrum of each $\mathcal D_f$ occurs in
+paired sets $\pm i\lambda_n$, while the branch mass eigenvalues are strictly positive by
+\TFPTxref{thm:sheet-cp-protection}. Therefore each sector determinant is nonnegative, and so is the
+full sector weight.
+\end{proof}
+
+\begin{lemma}[Nontrivial topological support on the closed branch]
+\label{lem:nontrivial-topological-support}
+On the closed branch the primitive topological sector has strictly positive weight:
+\[
+Z_1=Z_{-1}>0.
+\]
+\end{lemma}
+
+\begin{proof}
+By \TFPTxref{thm:boundary-winding-control}, the canonical branch has unit seam winding, so the primitive
+topological class $Q=1$ is nonempty on the admissible branch. Choose an admissible representative
+$\phi_1$ in that class. By \TFPTxref{thm:sheet-cp-protection}, the same branch carries a genuine compact
+determinant angle with primitive winding number one, so $\phi_1$ has finite admissible action and
+belongs to the closed branch sector $Q(\phi_1)=1$. Let $\mathcal U_1$ be a sufficiently small open
+neighborhood of $\phi_1$ inside that sector. The local Boltzmann density is strictly positive on
+$\mathcal U_1$, and \Cref{lem:topological-sector-positivity} gives nonnegative sector weights.
+Therefore
+\[
+Z_1
+\ge
+\int_{\mathcal U_1} e^{-S_{\mathrm{adm}}[\phi]}\,d\mu(\phi)
+>
+0.
+\]
+The antiunitary sheet symmetry exchanges $Q=1$ and $Q=-1$, hence $Z_{-1}=Z_1>0$.
+\end{proof}
+
+\begin{theorem}[Unconditional strong-CP closure on the admissible branch]
+\label{thm:strong-cp-closure}
+\label{thm:strong-cp-closure-positive}
+On the admissible branch one has
+\[
+\arg\det M_u=\arg\det M_d=0,
+\qquad
+\bar\theta=0.
+\]
+Moreover the free energy
+\[
+F(\theta):=-V^{-1}\log Z_{\mathrm{adm}}(\theta)
+\]
+has its unique minimum at
+\[
+\theta=0\!\!\mod 2\pi.
+\]
+Weak CP may still survive through
+\[
+V_{\mathrm{CKM}}=U_{u,L}^\dagger U_{d,L}.
+\]
+\end{theorem}
+
+\begin{proof}
+\TFPTxref{thm:sheet-cp-protection} gives
+\[
+\arg\det M_u=\arg\det M_d=0.
+\]
+By \Cref{lem:topological-sector-positivity}, the admissible partition function admits a sector
+decomposition
+\[
+Z_{\mathrm{adm}}(\theta)=\sum_{Q\in\mathbb Z} Z_Q e^{iQ\theta},
+\qquad
+Z_Q\ge 0.
+\]
+The antiunitary sheet symmetry of \TFPTxref{thm:sheet-cp-protection} gives
+\[
+\mathcal C_\Sigma\,Q\,\mathcal C_\Sigma^{-1}=-Q,
+\]
+so the sector weights satisfy $Z_Q=Z_{-Q}$. Hence
+\[
+\begin{aligned}
+Z_{\mathrm{adm}}(\theta)
+&=Z_0+2\sum_{Q>0}Z_Q\cos(Q\theta)\\
+&\le Z_0+2\sum_{Q>0}Z_Q
+=Z_{\mathrm{adm}}(0).
+\end{aligned}
+\]
+By \Cref{lem:nontrivial-topological-support}, one has $Z_1>0$. Therefore for every
+$\theta\not\equiv 0\mod 2\pi$,
+\[
+Z_{\mathrm{adm}}(\theta)
+\le
+Z_{\mathrm{adm}}(0)-2Z_1\bigl(1-\cos\theta\bigr)
+<
+Z_{\mathrm{adm}}(0),
+\]
+which implies
+\[
+F(\theta)>F(0)
+\qquad
+\text{for every }\theta\not\equiv 0\mod 2\pi.
+\]
+Thus the unique minimum is at $\theta=0$, and therefore $\bar\theta=0$.
+\end{proof}
+
+% ---- Joint discrete admissible sector excerpt: source lines 9158-9639 ----
+\begin{theorem}[Joint discrete admissible sector from the boundary primitive kernel]
+\label{thm:joint-discrete-admissible-sector}
+\label{thm:discrete-sector-from-primitive-kernel}
+For every admissible boundary primitive kernel $\Tker^\partial$, the compatible discrete datum
+\[
+\mathfrak D_{\mathrm{disc}}(\Tker^\partial)
+\]
+is a singleton. Its unique element is
+\[
+d^\star_{\mathrm{disc}}
+:=
+\Bigl(
+E_3\oplus E_2,\,
+Y,\,
+S^+,\,
+X_f^\circ,\,
+[\nabla_F^\star],\,
+c_1(L_2),\,
+c_1(L_3),\,
+N_{\mathrm{fam}},\,
+\theta_{\mathrm{eff}}
+\Bigr)
+\]
+with
+\[
+X_f^\circ\cong\mathbb P^1\setminus\mu_4,
+\qquad
+N_{\mathrm{fam}}=3,
+\qquad
+(g,b,s)=(5,3,2),
+\qquad
+\dim S^+=16,
+\]
+\[
+\begin{aligned}
+S^+&=\Lambda^{\mathrm{even}}(E_3\oplus E_2),\\
+Y&=\mathrm{diag}\!\left(-\tfrac13,-\tfrac13,-\tfrac13,\tfrac12,\tfrac12\right),\\
+(c_1(L_2),c_1(L_3))&=(1,0),\qquad
+\theta_{\mathrm{eff}}=0.
+\end{aligned}
+\]
+Equivalently, carrier data, family data, determinant data, and the effective strong angle are fixed
+jointly from the same boundary primitive kernel.
+\end{theorem}
+
+\begin{proof}
+We prove the discrete blocks in the only order that uses no downstream uniqueness claim.
+
+\textbf{Step 1: primitive winding.}
+By \TFPTxref{thm:primitive-seam-generator}, the primitive seam class is the positive generator
+\[
+[u_\Sigma]=1\in K^1(S^1)\cong\mathbb Z,
+\]
+and its associated spectral flow is
+\[
+\SF(U_\Sigma)=1.
+\]
+Hence the primitive branch carries exactly one elementary seam winding. Write this winding number as
+\[
+n:=\SF(U_\Sigma)=1.
+\]
+
+\textbf{Step 2: family geometry and family multiplicity.}
+The lifted spin action on the oriented normal two-plane closes only after $4\pi$, so one primitive
+winding is realized by four quarter-turn corners. Therefore the compact family quotient carries
+exactly four $\mathbb Z_4$ orbifold points, and removing them produces
+\[
+X_f^\circ\cong\mathbb{CP}^1\setminus\{q_1,q_2,q_3,q_4\}.
+\]
+The lifted seam symmetry acts by the symmetries of a square, so the marked configuration admits a
+faithful $D_4$ action. By the classification of finite subgroups of $PGL_2(\mathbb C)$, every
+faithful $D_4$ action on four marked points of $\mathbb{CP}^1$ is M\"obius conjugate to the square
+configuration
+\[
+\{1,-1,i,-i\}.
+\]
+Hence
+\[
+X_f^\circ\cong\mathbb P^1\setminus\mu_4.
+\]
+The corner deficit count is then
+\[
+N_{\mathrm{fam}}
+:=
+\sum_{j=1}^{4}\left(1-\frac14\right)
+=
+4\cdot\frac34
+=
+3.
+\]
+Because $\chi(X_f^\circ)=2-4=-2$, one also has
+\[
+H_1(X_f^\circ,\mathbb Z)\cong\mathbb Z^3,
+\qquad
+H^1(X_f^\circ,\mathbb C)\cong\mathbb C^3.
+\]
+Thus the family multiplicity and the family geometry are fixed already at the discrete level.
+
+\textbf{Step 3: carrier closure.}
+By \TFPTxref{cor:bosonic-rank-two}, the compact Higgs index has already fixed
+\[
+\dim E_+=2.
+\]
+By \TFPTxref{thm:yukawa-forces-32}, the primitive indecomposable generator of the actual branch Yukawa tensor
+then forces
+\[
+\dim E_-=3.
+\]
+Hence
+\[
+\begin{aligned}
+(b,s)&=(3,2),\\
+g&=b+s=5,\\
+\dim S^+&=2^{g-1}=16.
+\end{aligned}
+\]
+
+\textbf{Derived consistency check.}
+With $N_{\mathrm{fam}}=3$ from Step~2 and $(b,s)=(3,2)$ from the present step, one recovers
+\[
+\Oadm
+=
+N_{\mathrm{fam}}\dim S^+
+=
+3\cdot 16
+=
+48
+=
+(g-1)(b^2+s^2-1)
+=
+4\cdot 12.
+\]
+
+\textbf{Step 4: hypercharge and one-family packet.}
+With $(b,s)=(3,2)$ fixed, the even half-spin packet is
+\[
+S^+=\Lambda^{\mathrm{even}}(E_3\oplus E_2).
+\]
+Primitive unimodularity on the two-eigenvalue carrier gives
+\[
+3q_-+2q_+=0.
+\]
+The unique primitive integer solution with $q_-<0<q_+$ is
+\[
+(q_-,q_+)=(-2,3).
+\]
+Hence
+\[
+X=-2P_3+3P_2,
+\qquad
+Y=\frac{X}{6}
+=
+\mathrm{diag}\!\left(-\frac13,-\frac13,-\frac13,\frac12,\frac12\right).
+\]
+
+\textbf{Step 5: determinant class and strong CP.}
+The determinant-line data are classified by the clutching pair $(c_1(L_2),c_1(L_3))$. On the
+admissible branch the compact bosonic index satisfies
+\[
+\Ind(\mathcal B_{E_2}^+)\ge 0,
+\qquad
+\Ind(\mathcal B_{E_3}^+)\ge 0.
+\]
+Existence of a seam-even Higgs doublet forces $\Ind(\mathcal B_{E_2}^+)\ge 1$, while absence of an
+unavoidable light color triplet forces $\Ind(\mathcal B_{E_3}^+)=0$. Minimal clutching therefore
+gives the unique pair
+\[
+(c_1(L_2),c_1(L_3))=(1,0).
+\]
+For the determinant-phase sector, reflection positivity and determinant-line conjugation symmetry
+make the admissible free energy even in $\theta_{\mathrm{eff}}$, and the positive-transfer theorem
+gives a unique minimum at the origin. Hence
+\[
+\theta_{\mathrm{eff}}=0.
+\]
+
+All discrete blocks are therefore fixed jointly by the same boundary primitive kernel. Thus
+\[
+\mathfrak D_{\mathrm{disc}}(\Tker^\partial)=\{d^\star_{\mathrm{disc}}\}.
+\]
+\end{proof}
+
+\begin{corollary}[Derived post-carrier kernel]
+\label{cor:derived-post-carrier-kernel}
+The tuple
+\[
+\Tker
+:=
+(\mathcal A,\mathcal H,D,J,\Gamma,\iC,\Pprim,\Padm,E_3\oplus E_2,Y,[u_\Sigma],\cthree)
+\]
+is a theorem-level derived object of $\Tker^\partial$. In particular the old post-carrier kernel is
+no longer primitive; it is reconstructed from the unique discrete datum $d^\star_{\mathrm{disc}}$
+together with the full selector $\Padm=\Pprim P_{\mathrm{sing}}P_\Theta$.
+\end{corollary}
+
+\begin{proof}
+By \Cref{thm:joint-discrete-admissible-sector}, the carrier split $E_3\oplus E_2$, the charge
+operator $Y$, the determinant class, and the family geometry are already fixed by
+$\Tker^\partial$. The projector $P_{\mathrm{sing}}$ is then determined by the fixed carrier, and
+$P_\Theta$ is determined by the fixed determinant class. Therefore
+\[
+\Padm=\Pprim P_{\mathrm{sing}}P_\Theta
+\]
+is fully determined. The displayed tuple is thus derived, not primitive.
+\end{proof}
+
+\begin{definition}[Projected modular free energy and stratified master functional]
+\label{def:projected-modular-free-energy}
+Fix the unique joint discrete datum $d^\star_{\mathrm{disc}}$ of
+\Cref{thm:joint-discrete-admissible-sector}, and let $\Padm$ be the derived full selector of
+\Cref{cor:derived-post-carrier-kernel}. For
+\[
+\xi=(\alpha,\chigeo,\delta_{\mathrm{ph}},\rho_{\mathrm{vac}})
+\]
+on the retained admissible branch, define
+\[
+\begin{aligned}
+\mathcal M_{d^\star_{\mathrm{disc}}}(\xi)
+:={}&-\log Z^{\Padm}_{\mathrm{rel}}[\xi]
++\Re\log\det_{\zeta,\Padm}(D_\xi^2+\mu^2)\\
+&+\frac12\eta_{\Sigma,\Padm}(D_\xi)
+-\log\det(1-U_{6,\xi})
++\Gamma_{\mathrm{vac}}(\rho_\xi),
+\end{aligned}
+\]
+where every term is evaluated on the retained admissible sector $\operatorname{Ran}(\Padm)$.
+For a general admissible spectral-bordism state
+\[
+\mathfrak s=(\mathcal B,\xi),
+\qquad
+\mathcal B\in\mathbf{SBord}^{\mathrm{adm}},
+\]
+define the lexicographic barrier
+\[
+\mathbb B_{\mathrm{lex}}(\mathfrak s)
+:=
+\begin{cases}
+0,& \mathcal B\cong \mathcal B_{\min},\\
++\infty,& \text{otherwise},
+\end{cases}
+\]
+and the stratified master functional
+\[
+\mathbb M(\mathfrak s)
+:=
+\mathbb B_{\mathrm{lex}}(\mathfrak s)+\mathcal M_{d^\star_{\mathrm{disc}}}(\xi).
+\]
+Thus the continuous retained-branch functional $\mathcal M_{d^\star_{\mathrm{disc}}}$ is the
+restriction of one stratified functional to the unique minimal admissible stratum.
+\end{definition}

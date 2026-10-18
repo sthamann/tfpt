@@ -1,0 +1,394 @@
+\section{Identity Catalogue and Status Labels}
+\label{app:identities}
+%=============================================================================
+
+This appendix labels frequently used equalities by logical status to prevent conflating definitions, algebraic rewrites, and genuine predictions.
+
+\textbf{Legend:}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{D}: Definition (input)
+    \item \textbf{K}: Consequence of definitions (algebraic)
+    \item \textbf{L}: Lemma from axioms/postulates
+    \item \textbf{P}: Prediction (output; not used as input)
+\end{itemize}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lp{12cm}@{}}
+\toprule
+\textbf{Tag} & \textbf{Statement}\\
+\midrule
+\textbf{D} & $\beta_{\text{rad}} := \phiz/(4\pi)$.\\
+\textbf{K} & $\phiz = 4\pi\beta_{\text{rad}}$.\\
+\textbf{K} & $\beta_{\text{deg}} := (180/\pi)\beta_{\text{rad}}$.\\
+\textbf{K} & $\gagg = -4\cthree = -1/(2\pi)$.\\
+\textbf{K} & $\frac{d\beta}{d\eta} = -\frac{1}{2}\gagg\,\frac{d a_{\text{top}}}{d\eta} = 2\cthree\,\frac{d a_{\text{top}}}{d\eta}$ (from $\gagg=-4\cthree$; Theorem~\ref{thm:birefringence}).\\
+\textbf{L} & $\gamma(0)=5/6$ (Definition~\ref{def:E8cascade}; discrete closure choice).\\
+\textbf{L} & $\phitree = 1/(6\pi)$ (Axiom~\ref{ax:GB}; from $\eta$-gluing seam term).\\
+\textbf{L} & $\deltatop = \frac{1}{256\pi^4}\sum_{p=1}^{4}\left(1-\frac{1}{4}\right)=\frac{3}{256\pi^4}$ (Axiom~\ref{ax:TC}).\\
+\textbf{P} & CFE closure (two-defect, derived partition): $\alpha^{-1}_{\text{TFPT}}(0)=\num[round-mode=places,round-precision=12]{\TFPTalphaInvGOverFourNum}$ (CODATA $z=\num[round-mode=places,round-precision=3]{\TFPTalphaZGOverFourNum}$; Theorem~\ref{thm:selfconsistent}).\\
+\textbf{L} & One-defect truncation (diagnostic baseline): $\alpha^{-1}(0)=\num[round-mode=places,round-precision=10]{\TFPTalphaInvSelfNum}$ (Lemma~\ref{lem:oneDefectTruncation}).\\
+\textbf{P} & Cabibbo $\lambda = \sqrt{\phiz(1-\phiz)}=0.2243762369\ldots$ (Corollary~\ref{cor:Cabibbo}).\\
+\textbf{P} & Birefringence $\beta_{\text{deg}} \approx 0.2424^\circ$ from $\Delta a_{\text{top}} = n\,\phiz$ (minimal $n=1$; Theorem~\ref{thm:birefringence}; optional realization in Sec.~\ref{sec:deltaa}).\\
+\textbf{P} & $R^2$ inflation: $n_s=1-2/N$, $r=12/N^2$, $A_s \simeq \frac{N^2}{24\pi^2}(M/\Mpl)^2$ with $M/\Mpl=\sqrt{8\pi}\cthree^4$ (Theorem~\ref{thm:inflation}; assumptions K1--K3).\\
+\textbf{P} (spec.) & $\Omega_b = (4\pi-1)\beta_{\text{rad}}$ (Table~\ref{tab:beta}).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%=============================================================================
+\section{\texorpdfstring{One-Loop Effective Action in Riemann--Cartan and the $R^2$ Coefficient}{One-Loop Effective Action in Riemann--Cartan and the R2 Coefficient}}
+\label{app:r2}
+%=============================================================================
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60, 
+    title={\textbf{Assumptions K1--K4}}, fonttitle=\bfseries\small]
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{K1:} Field content and torsionful Lagrangian fixed by the minimal UFE sector.
+    \item \textbf{K2:} Quadratic fluctuation operator is of Laplace type after background-field gauge fixing.
+    \item \textbf{K3:} Heat-kernel coefficient $a_2$ captures the curvature-squared terms in $\Gamma_{\mathrm{eff}}$.
+    \item \textbf{K4:} Matching to $R + R^2/(6M^2)$ after imposing the GR renormalization condition.
+\end{itemize}
+\end{tcolorbox}
+
+\subsection{K.1 Setup}
+We evaluate the one-loop effective action in a Riemann--Cartan background with torsion
+decomposed into axial $S_\mu$, trace $T_\mu$, and tensor $q_{\mu\nu\rho}$. The minimal UFE
+choice treats torsion at quadratic order, so integrating out torsion is Gaussian and
+parameter-free once $\cthree$ fixes the normalization of the coupling.
+
+\subsection{K.2 Operator Form}
+After background-field gauge fixing, the quadratic operator for torsion fluctuations can be
+written in Laplace type,
+\begin{equation}
+    \Delta = -\nabla^2 + \mathcal{E}(R,K),
+\end{equation}
+with $\mathcal{E}$ built from curvature and torsion invariants. The contribution to
+$\Gamma_{\mathrm{eff}}$ is $\frac{1}{2}\ln\det\Delta$.
+
+\subsection{K.3 Heat-Kernel Coefficients}
+The local part of $\Gamma_{\mathrm{eff}}$ is governed by the heat-kernel expansion
+\begin{equation}
+    \mathrm{Tr}\,e^{-s\Delta} \sim \sum_{n\ge 0} s^{(n-4)/2} a_n,
+\end{equation}
+where $a_2$ contains the curvature-squared terms. The torsion-dependent pieces combine into
+an effective $R^2$ operator in the low-energy action.
+
+\subsection{K.4 Renormalization Condition}
+The GR limit (A8) fixes the renormalization scheme by requiring that the $K\to 0$ limit
+reduces to the Einstein--Hilbert action with coefficient $\Mpl^2/2$.
+
+\subsection{K.5 TFPT Closure}
+With the TFPT normalization of the torsion sector, the induced $R^2$ coefficient is fixed by
+$\cthree$, yielding
+\begin{equation}
+    \frac{M}{\Mpl}=\sqrt{8\pi}\;\cthree^4,
+\end{equation}
+which reproduces \eqref{eq:R2scale} without additional parameters.
+
+%=============================================================================
+\section{Bounce Perturbations and the Transfer Function}
+\label{app:bounce}
+%=============================================================================
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60, 
+    title={\textbf{Status Note}}, fonttitle=\bfseries\small]
+This appendix provides a minimal outline; the full numerical transfer-function evaluation
+is implemented in the \texttt{bounce\_perturbations} verification module (see \texttt{tfpt-suite/}).
+\end{tcolorbox}
+
+\subsection{L.1 Background Solution}
+The bounce background is modeled by a smooth scale factor $a(\eta)$ where the torsion-induced
+$a^{-6}$ term regularizes $z''/z$ for scalar perturbations. The transition to the $R^2$
+inflationary phase is implemented by matching $a(\eta)$ and its derivatives at $\eta=\eta_t$.
+
+\subsection{L.2 Numerical Integration Setup}
+Mode functions are initialized in an adiabatic vacuum well before the bounce and integrated
+through the bounce and into the $R^2$ era. The numerical scheme records the transfer function
+by comparing late-time solutions to the pure $R^2$ baseline.
+
+\subsection{L.3 Transfer Function}
+Define the transfer function as
+\begin{equation}
+    T(k) \equiv \left|\frac{v_k(\eta\gg \eta_t)}{v_k^{(R^2)}(\eta\gg \eta_t)}\right|,
+\end{equation}
+with $T(k)\to 1$ for modes well inside the horizon during the bounce and deviations confined
+to $k\sim k_{\text{bounce}}$.
+
+\TFPTTransferFunctionPlot
+
+\subsection{\texorpdfstring{L.4 The $k\to\ell$ Gate (CMB Observability as Policy Interface)}{L.4 The k->ell Gate (CMB Observability as Policy Interface)}}
+\begin{tcolorbox}[colback=yellow!3, colframe=yellow!60!black,
+    title={\textbf{What is deterministic vs.\ what is still policy}}, fonttitle=\bfseries\small]
+\textbf{Deterministic (given the bounce completion):}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item The transfer-function shape $T(k)$ (this appendix; implemented in \texttt{bounce\_perturbations}).
+    \item Given an explicit expansion-history budget, the mapping $k\to\ell$ and the resulting $C_\ell$ curves are deterministic (implemented in \texttt{k\_calibration} and \texttt{boltzmann\_transfer}).
+\end{itemize}
+
+\textbf{Policy / not yet ToE-closed:}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item The mapping from comoving $k$ to observed CMB multipole $\ell$ depends on the absolute expansion history (reheating/threshold bookkeeping), summarized as an overall scaling $a_0/a_t$ (or more precisely $a_0/a_{\rm transition}$ for the chosen transition surface).
+    \item The signature classification (``CMB'' vs ``small-scale'') is therefore a \emph{gate}: it depends on the declared history, and should not be framed as an unconditional claim.
+\end{itemize}
+
+\textbf{Notation contract (to prevent $k$-confusion):}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item $k_{\hat{}}$ is a \emph{dimensionless} wave-number used inside the bounce solver (in $x=M\eta$ units).
+    \item The raw bounce scales $k^{(s)}_{\rm bounce}$ and $k^{(t)}_{\rm bounce}$ are reported in these internal units; absolute $k(\mathrm{Mpc}^{-1})$ requires the TFPT scale $M$ and the expansion budget $a_0/a_{\rm transition}$.
+    \item The observable proxy is $\ell \approx k(\mathrm{Mpc}^{-1})\,\chi_\*$ with $\chi_\*$ computed in a flat-$\Lambda$CDM snapshot (suite).
+\end{itemize}
+
+\textbf{Current suite snapshot (physics mode; threshold-derived budget):}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item $a_0/a_{\rm transition}\approx 2.4486\times 10^{57}$,
+    \item $\chi_\*\approx 1.3867\times 10^4$ Mpc,
+    \item $\ell^{(s)}_{\rm bounce}\approx 56.997$ and $\ell^{(t)}_{\rm bounce}\approx 0.212$.
+\end{itemize}
+Under this explicit gate, the scalar bounce feature is CMB-low-$\ell$, while the tensor feature is super-horizon (below the quadrupole). 
+
+\textbf{Falsifiable signature classes (conditional, gate-dependent):}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{CMB-low-$\ell$ scalar feature}: features near $\ell\sim\mathcal{O}(10^2)$ (current default gate).
+    \item \textbf{Small-scale-only}: features shifted to $\ell\gg 10^3$ under alternative histories.
+\end{itemize}
+
+\textbf{Suite evidence:} The \texttt{k\_calibration} module reports both (i) the required scaling to place features at target multipoles and (ii) the threshold-derived expansion-budget estimate; \texttt{boltzmann\_transfer} produces explicit CAMB-backed $C_\ell$ curves and the relative deviation $\Delta C_\ell/C_\ell$ between bounce-injected and baseline spectra.
+\end{tcolorbox}
+
+\TFPTkCalibrationTable
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={group size=2 by 1, horizontal sep=1.2cm},
+    width=0.48\textwidth,
+    height=0.42\textwidth,
+    grid=both,
+    legend style={font=\scriptsize},
+]
+\nextgroupplot[
+    title={required $a_0/a_{\rm tr}$ vs target $\ell$},
+    xmode=log,
+    ymode=log,
+    xlabel={target $\ell$},
+    ylabel={$a_0/a_{\rm tr}$},
+    xmin=1.5, xmax=1000,
+]
+\addplot+[mark=*] coordinates {
+    (2,6.978134315108868e58)
+    (30,4.652089543405912e57)
+    (700,1.9937526614596766e56)
+};
+\addlegendentry{scalar (required)}
+\addplot+[mark=square*] coordinates {
+    (2,2.5901704412653403e56)
+    (30,1.7267802941768936e55)
+    (700,7.400486975043829e53)
+};
+\addlegendentry{tensor (required)}
+\addplot[red, dashed, thick] coordinates {(2,2.4485807685210785e57) (700,2.4485807685210785e57)};
+\addlegendentry{current budget ($2.45\times10^{57}$)}
+
+\nextgroupplot[
+    title={gate view (CMB window + bounce $\ell$)},
+    xmode=log,
+    xlabel={$\ell$},
+    ymin=0, ymax=1,
+    ytick=\empty,
+    xmin=0.1, xmax=5000,
+    axis y line=none,
+]
+% CMB window shading: [2,2500]
+\addplot[draw=none, fill=blue!10] coordinates {(2,0) (2500,0) (2500,1) (2,1)} \closedcycle;
+\addplot[black!40] coordinates {(2,0) (2,1)};
+\addplot[black!40] coordinates {(2500,0) (2500,1)};
+\node[anchor=south, font=\scriptsize] at (axis cs:20,0.02) {CMB window};
+
+% bounce locations (physics-suite snapshot)
+\addplot[green!60!black, thick] coordinates {(56.99737909257206,0) (56.99737909257206,1)};
+\node[anchor=south, font=\scriptsize, green!60!black] at (axis cs:56.99737909257206,0.02) {$\ell_b^{(s)}\approx57$};
+\addplot[orange!80!black, thick] coordinates {(0.2115650400072186,0) (0.2115650400072186,1)};
+\node[anchor=south, font=\scriptsize, orange!80!black] at (axis cs:0.2115650400072186,0.02) {$\ell_b^{(t)}\approx0.21$};
+\end{groupplot}
+\end{tikzpicture}
+\caption{Suite plots from \texttt{k\_calibration} (physics mode): scaling and feasibility diagnostics for the $k\to\ell$ gate under an explicit expansion-history budget.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={group size=2 by 2, horizontal sep=1.2cm, vertical sep=1.0cm},
+    width=0.48\textwidth,
+    height=0.33\textwidth,
+    xmode=log,
+    xmin=2, xmax=3000,
+    grid=both,
+    legend style={font=\scriptsize},
+]
+\nextgroupplot[
+    title={$D_\ell^{TT}$ (baseline vs bounce)},
+    ymode=log,
+    ylabel={$D_\ell^{TT}$ [$\mu$K$^2$]},
+]
+\addplot+[mark=*, mark size=2pt] coordinates {
+    (2,1053.602432)
+    (3,998.0887611)
+    (4,944.9109792)
+    (5,905.3057583)
+    (10,845.7614033)
+    (20,936.246946)
+    (30,1090.649646)
+    (50,1468.079395)
+    (80,2185.897476)
+    (100,2782.530282)
+    (150,4517.548558)
+    (200,5768.991349)
+    (300,4189.951412)
+    (500,2521.115802)
+    (700,1928.629066)
+    (1000,1093.569344)
+    (1500,706.1670601)
+    (2000,237.9250741)
+    (2508,78.09810466)
+};
+\addlegendentry{baseline}
+\addplot+[mark=square*, mark size=2pt] coordinates {
+    (2,10994.05279)
+    (3,10486.33276)
+    (4,9385.765294)
+    (5,7182.088179)
+    (10,466.5297095)
+    (20,311.2303573)
+    (30,647.8609341)
+    (50,1396.409529)
+    (80,2178.001377)
+    (100,2764.125993)
+    (150,4513.504899)
+    (200,5742.64759)
+    (300,4165.032244)
+    (500,2519.57907)
+    (700,1945.981149)
+    (1000,1115.817699)
+    (1500,728.4072936)
+    (2000,247.883187)
+    (2508,81.98087433)
+};
+\addlegendentry{bounce injected}
+
+\nextgroupplot[
+    title={$D_\ell^{EE}$ (baseline vs bounce)},
+    ymode=log,
+    ylabel={$D_\ell^{EE}$ [$\mu$K$^2$]},
+]
+\addplot+[mark=*, mark size=2pt] coordinates {
+    (2,0.03176782281)
+    (3,0.0407463901)
+    (4,0.03535540342)
+    (5,0.02363620444)
+    (10,0.003157610827)
+    (20,0.005394191594)
+    (30,0.0223578033)
+    (50,0.1235977312)
+    (80,0.4863197226)
+    (100,0.8033626171)
+    (150,1.135920327)
+    (200,0.710593948)
+    (300,9.377843402)
+    (500,8.525653848)
+    (700,38.4094504)
+    (1000,43.34908241)
+    (1500,13.22941615)
+    (2000,8.84123834)
+    (2508,3.009426377)
+};
+\addlegendentry{baseline}
+\addplot+[mark=square*, mark size=2pt] coordinates {
+    (2,0.5094182832)
+    (3,0.562182037)
+    (4,0.3663058727)
+    (5,0.1665671877)
+    (10,0.0005850428195)
+    (20,0.0006453541167)
+    (30,0.004809524067)
+    (50,0.09804048815)
+    (80,0.489652682)
+    (100,0.7951178048)
+    (150,1.13708347)
+    (200,0.7069214332)
+    (300,9.311700761)
+    (500,8.492435159)
+    (700,38.50920372)
+    (1000,43.9978482)
+    (1500,13.62199765)
+    (2000,9.189186049)
+    (2508,3.154751105)
+};
+\addlegendentry{bounce injected}
+
+\nextgroupplot[
+    title={relative deviation (TT)},
+    title style={at={(0.5,0.97)}, yshift=-0.6ex},
+    xlabel={$\ell$},
+    ylabel={$\Delta D_\ell/D_{\ell,0}$},
+    ymin=-1.0, ymax=10.5,
+]
+\addplot+[mark=*, mark size=2pt] coordinates {
+    (2,9.43472609)
+    (3,9.506413022)
+    (4,8.93296247)
+    (5,6.933328727)
+    (10,-0.4483908727)
+    (20,-0.6675766381)
+    (30,-0.405986206)
+    (50,-0.0488187938)
+    (80,-0.003612291319)
+    (100,-0.006614227665)
+    (150,-0.0008951004397)
+    (200,-0.004566441139)
+    (300,-0.005947364325)
+    (500,-0.0006095444869)
+    (700,0.008997107253)
+    (1000,0.02034471301)
+    (1500,0.03149429467)
+    (2000,0.04185398693)
+    (2508,0.04971656719)
+};
+\addplot[black!50, dashed] coordinates {(2,0) (2508,0)};
+
+\nextgroupplot[
+    title={relative deviation (EE)},
+    title style={at={(0.5,0.97)}, yshift=-0.6ex},
+    xlabel={$\ell$},
+    ylabel={$\Delta D_\ell/D_{\ell,0}$},
+    ymin=-1.0, ymax=16.5,
+]
+\addplot+[mark=*, mark size=2pt] coordinates {
+    (2,15.03566874)
+    (3,12.79710045)
+    (4,9.360675802)
+    (5,6.04712079)
+    (10,-0.8147197829)
+    (20,-0.8803612913)
+    (30,-0.7848838724)
+    (50,-0.2067776069)
+    (80,0.006853432569)
+    (100,-0.01026287768)
+    (150,0.00102396489)
+    (200,-0.005168232629)
+    (300,-0.007053075852)
+    (500,-0.003896321651)
+    (700,0.002597103541)
+    (1000,0.0149660788)
+    (1500,0.02967489204)
+    (2000,0.0393550876)
+    (2508,0.04828984317)
+};
+\addplot[black!50, dashed] coordinates {(2,0) (2508,0)};
+\end{groupplot}
+\end{tikzpicture}
+\caption{Suite plots from \texttt{boltzmann\_transfer} (physics mode): CAMB-backed $C_\ell$ curves (TT/EE) for baseline vs bounce-injected primordial spectrum, and the relative deviation $\Delta C_\ell/C_\ell$.}
+\end{figure}
+

@@ -36,16 +36,33 @@ PDFLATEX=(pdflatex -cnf-line=extra_mem_top=20000000 -cnf-line=extra_mem_bot=2000
 
 build_one() {  # $1 = working dir, $2 = tex basename (no extension)
   local dir="$1" base="$2"
-  ( cd "$dir" && "${PDFLATEX[@]}" -interaction=nonstopmode -halt-on-error "$base.tex" >/dev/null 2>&1 \
-                && "${PDFLATEX[@]}" -interaction=nonstopmode -halt-on-error "$base.tex" >/dev/null 2>&1 )
-  if ! { [ -f "$dir/$base.pdf" ] && [ "$dir/$base.tex" -ot "$dir/$base.pdf" ]; }; then
-    # corrupt/stale aux files (e.g. from an interrupted run) poison the build --
-    # clean the auxiliaries once and retry before declaring failure
-    rm -f "$dir/$base.aux" "$dir/$base.toc" "$dir/$base.out"
-    ( cd "$dir" && "${PDFLATEX[@]}" -interaction=nonstopmode -halt-on-error "$base.tex" >/dev/null 2>&1 \
-                  && "${PDFLATEX[@]}" -interaction=nonstopmode -halt-on-error "$base.tex" >/dev/null 2>&1 )
+  local compile_ok=0 previous_pdf=""
+  if [ -f "$dir/$base.pdf" ]; then
+    previous_pdf="$(mktemp "${TMPDIR:-/tmp}/tfpt-previous-pdf.XXXXXX")"
+    cp "$dir/$base.pdf" "$previous_pdf"
   fi
-  if [ -f "$dir/$base.pdf" ] && [ "$dir/$base.tex" -ot "$dir/$base.pdf" ]; then
+  compile_attempt() (
+    cd "$dir" || exit 1
+    # A successful compiler can legitimately emit no pages. Require a newly
+    # written PDF on BOTH passes; a stale/partial artifact never proves success.
+    rm -f "$base.pdf"
+    "${PDFLATEX[@]}" -interaction=nonstopmode -halt-on-error "$base.tex" >"$base.build.log" 2>&1 && [ -s "$base.pdf" ] || exit 1
+    rm -f "$base.pdf"
+    "${PDFLATEX[@]}" -interaction=nonstopmode -halt-on-error "$base.tex" >>"$base.build.log" 2>&1 && [ -s "$base.pdf" ]
+  )
+  if compile_attempt; then
+    compile_ok=1
+  else
+    rm -f "$dir/$base.aux" "$dir/$base.toc" "$dir/$base.out"
+    if compile_attempt; then compile_ok=1; fi
+  fi
+  if [ "$compile_ok" -eq 0 ]; then
+    rm -f "$dir/$base.pdf"
+    # Preserve the last published artifact for inspection, while reporting FAIL.
+    if [ -n "$previous_pdf" ]; then cp "$previous_pdf" "$dir/$base.pdf"; fi
+  fi
+  [ -z "$previous_pdf" ] || rm -f "$previous_pdf"
+  if [ "$compile_ok" -eq 1 ] && [ -s "$dir/$base.pdf" ]; then
     local pages=""
     command -v pdfinfo >/dev/null 2>&1 && pages=$(pdfinfo "$dir/$base.pdf" 2>/dev/null | awk '/^Pages/{print $2" pages"}')
     printf "  [OK]   %-52s %s\n" "$base" "${pages:+($pages)}"; PASS=$((PASS+1))
@@ -72,6 +89,8 @@ NOTES=(
   origin_theory
   tfpt_safeguards
   note_e8_gaussian_code
+  verification_catalog
+  introduction_guide
   changelog
 )
 PAPERS=(
@@ -92,6 +111,8 @@ run_gen() {  # regenerate every single-source surface (cheap, stdlib python only
   python3 "$ROOT/verification/make_changelog_web.py" || exit 1
   python3 "$ROOT/verification/make_script_atlas.py" || exit 1
   python3 "$ROOT/verification/make_discipline_stats.py" || exit 1
+  python3 "$ROOT/verification/make_pdf_editions.py" || exit 1
+  python3 "$ROOT/verification/make_content_registry.py" || exit 1
   # The local knowledge atlas is maintained by its owning project. Public
   # checkouts do not ship local research state.
   if [ -f "$ROOT/semantic_explorer/refresh.py" ]; then
@@ -107,9 +128,15 @@ run_website() {  # mirror PDFs + scripts into website/, stamp version + hashes
   for b in "${NOTES[@]}"; do
     [ -f "$ROOT/$b.pdf" ] && cp "$ROOT/$b.pdf" "$ROOT/website/public/papers/"
   done
+  mkdir -p "$ROOT/website/public/documentation"
+  cp "$ROOT/docs/registry/registry.json" "$ROOT/website/public/documentation/registry.json"
+  cp "$ROOT/docs/registry/summary.json" "$ROOT/website/public/documentation/summary.json"
+  cp "$ROOT/docs/registry/INDEX.md" "$ROOT/website/public/documentation/INDEX.md"
+  cp "$ROOT/docs/editions.json" "$ROOT/website/public/documentation/editions.json"
+  cp "$ROOT/docs/LATEX_MAINTENANCE.md" "$ROOT/website/public/documentation/LATEX_MAINTENANCE.md"
   shopt -s nullglob
   rm -f "$ROOT"/website/public/verification/v*.py "$ROOT"/website/public/verification/math_support*.py
-  cp "$ROOT/verification/tfpt_constants.py" "$ROOT"/verification/math_support*.py "$ROOT"/verification/v[0-9]*.py \
+  cp "$ROOT/verification/tex_sources.py" "$ROOT/verification/tfpt_constants.py" "$ROOT"/verification/math_support*.py "$ROOT"/verification/v[0-9]*.py \
      "$ROOT/verification/predictions_frozen.json" \
      "$ROOT/website/public/verification/"
   cat > "$ROOT/website/lib/version.ts" <<EOF
@@ -126,6 +153,7 @@ EOF
 
 run_audit() {
   echo "== Sync audit =="
+  python3 "$ROOT/verification/make_content_registry.py" --check || exit 1
   python3 "$ROOT/verification/audit_sync.py" || exit 1
   if [ -f "$ROOT/semantic_explorer/refresh.py" ]; then
     echo "== TFPT knowledge atlas =="
@@ -150,6 +178,7 @@ case "$WHAT" in
   gen)     run_gen ;;
   website) run_website ;;
   audit)   run_audit ;;
+  editions) python3 "$ROOT/verification/make_pdf_editions.py" || exit 1; build_one "$ROOT" verification_catalog; build_one "$ROOT" introduction_guide; [ "$FAIL" -eq 0 ] || exit 1 ;;
 esac
 
 if [ "$WHAT" = "zenodo" ] || [ "$WHAT" = "zenodo-publish" ]; then

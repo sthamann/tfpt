@@ -1,0 +1,317 @@
+\section{Seam Winding as Source of the Integer Conditions}
+\label{sec:seam-winding}
+
+The integer triple $\bigl(3q_-+2q_+=0,\ q_-<0<q_+,\ \gcd(|q_-|,q_+)=1\bigr)$ entering input
+(iii) of \Cref{thm:carrier-rigidity} is not assumed: it is the algebraic shadow of TFPT's seam
+class $[u_\Sigma]\in H^1(\Sigma,\mathbb Z)$. The TFPT-side statement is the three-way obligation
+\[
+[u_\Sigma]=1
+\;\Longrightarrow\;
+\begin{cases}
+3\,q_-+2\,q_+ = 0 & \text{(determinant trace-zero)},\\
+q_- < 0 < q_+ & \text{(chirality orientation)},\\
+\gcd(|q_-|, q_+) = 1 & \text{(primitivity of the seam class)}.
+\end{cases}
+\]
+None of the three conjuncts is presented as a Lean theorem here; each is a Status-B obligation
+of TFPT's seam-class theory. Their joint Lean target is
+\[
+\texttt{TFPT.Carrier.SeamWindingInterface.SeamWindingData}\ 3\ 2,
+\]
+which is the abstract typed bundle of the three integer conditions. The Lean-proved bridge
+\[
+\texttt{SeamWindingData}\ 3\ 2
+\;\;\xrightarrow{\texttt{toPrimitiveOrientedDeterminantCarrier}}\;\;
+\texttt{PrimitiveOrientedDeterminantCarrier}\ 3\ 2
+\]
+feeds the integer Diophantine input (iii) of \Cref{thm:carrier-rigidity}. The converse
+\texttt{ofPrimitiveOrientedDeterminantCarrier} shows that the seam-winding interface is exactly
+the existing rigidity input, renamed so that the upstream TFPT theorem
+$[u_\Sigma]=1 \Rightarrow \texttt{SeamWindingData}$ has a Lean-typed conclusion.
+
+\noindent
+\textbf{What this section does not claim.}\ The topological identification
+$[u_\Sigma]=1 \Rightarrow \texttt{SeamWindingData}\ 3\ 2$ remains a Status-B obligation
+(open TFPT theorem). The present paper handles only the algebraic consequences once
+\texttt{SeamWindingData} is supplied.
+
+\section{Hypercharge and Gauge Quotient (Status C outlook)}
+\label{sec:gauge-outlook}
+
+\begin{tfptwarningbox}
+The remainder of this paper presents the \emph{Standard-Model
+packet outlook} conditional on \Cref{thm:carrier-rigidity}. These
+sections are Status C (mathematical proposal): they are
+\emph{not} part of the Lean-verified core and are
+\emph{not} signature-locked in \texttt{AuditContract.lean}.
+The text below indicates this consistently.
+\end{tfptwarningbox}
+
+The carrier normal form gives
+\[
+Y=\operatorname{diag}\left(-\frac13,-\frac13,-\frac13,\frac12,\frac12\right),
+\]
+and the internal stabilizer is conjectured to give the physical quotient
+\[
+G_{\mathrm{phys}}
+=
+\frac{SU(3)\times SU(2)\times U(1)_Y}{\mathbb Z_6}
+\quad\text{\emph{(Status C: outlook, no Lean theorem)}}.
+\]
+The full proof obligation is to write a stabilizer theorem of the carrier datum, not to
+reconstruct a known gauge group. The Lean-side typed target for that future theorem is expected
+to read schematically
+\[
+\texttt{CarrierData}
+\;\Rightarrow\;
+\texttt{Z6QuotientStructure}\,Y,
+\]
+with \texttt{Z6QuotientStructure} the algebraic packaging of the stabilizer kernel; this
+structure is \emph{not yet} introduced in the Lean note.
+
+\section{One-Family Packet (Status C outlook)}
+\label{sec:packet-outlook}
+
+The spinor packet is conjectured to be
+\[
+S^+=\Lambda^{\mathrm{even}}E,
+\qquad
+\dim S^+=16
+\quad\text{\emph{(Status C: outlook, no Lean theorem)}}.
+\]
+This section sketches the one-family decomposition including the right-handed neutrino state.
+Character identities, trace identities, and the abelian index belong here. The expected Lean
+target is a \texttt{DerivedSMRepresentations} module bundling
+\texttt{LinearMap.dualHypercharge}, \texttt{ExteriorPower.hypercharge}, and
+\texttt{TensorProduct.hypercharge}; not yet present in the Lean note.
+
+\section{Discharging the Rank and Exterior Premises}
+
+The editorial risk is that
+\[
+\dim \Lambda^2E_+=1,
+\qquad
+\Lambda^2E_-\cong E_-^\vee
+\]
+look like disguised Standard-Model inputs. In v10/v11 of the Lean note this risk is mitigated:
+$\dim \Lambda^2 E_+ = 1$ follows from $\dim E_+ = 2$ via the Lean theorem
+\texttt{exteriorPower.finrank\_eq}; and $\Lambda^2 E_- \cong E_-^\vee$ is the duality content of
+Yukawa Stage~C (\texttt{PrimitiveIndecomposableYukawaCoupling}), itself derived from Stage~D under
+$\texttt{Nontrivial}\,E_-$. The value-level transport Yukawa matrices belong downstream; the
+upstream step here uses only the existence and operational predicates of $\omega$.
+
+\section{Counting Outputs (Status C outlook)}
+\label{sec:counting-outlook}
+
+This paper outlines, conditional on the Status-A carrier core and on as-yet-open Status-B
+content (representation theory of the carrier datum), the discrete counting outputs:
+\[
+N_{\mathrm{fam}}=3,
+\qquad
+\Oadm=48,
+\qquad
+N_\Phi=1,
+\qquad
+\bone=\frac{41}{10}.
+\]
+These are \emph{not} Lean theorems and \emph{not} precision-observable readouts. Their TFPT-side
+derivation from carrier, seam winding, occupancy, and compact Higgs index closure is the
+mathematical proposal of TFPT Paper 2's downstream layer.
+
+\section{Main Result --- Carrier Rigidity (Status A)}
+
+\Cref{thm:carrier-rigidity} is the main result of this paper. We restate it as a single
+declarative summary:
+
+\begin{quote}
+\emph{Given the four explicit interfaces} --- $\epscar^2 = \mathbf 1$,
+$E_+ \simeq K[X_0, X_1]_1$, an $\omega$ with $\textrm{CI} \wedge \textrm{CS}$ and
+$\texttt{Nontrivial}\,E_-$, and the primitive oriented determinant-preserving carrier condition
+on $(m, n) = (3, 2)$ --- \emph{Lean 4 proves} $(q_-, q_+) = (-2, 3)$, $\tr_E Y = 0$,
+$6 Y^2 - Y - \mathbf 1 = \mathbf 0$, and
+$Y = \operatorname{diag}(-\tfrac13,-\tfrac13,-\tfrac13,\tfrac12,\tfrac12)$.
+\end{quote}
+
+This is the entire load-bearing Status-A content of Paper 2. The Standard-Model packet
+($S^+$, $G_{\mathrm{phys}}$, $N_{\mathrm{fam}}$, $\Omega_{\mathrm{adm}}$, $N_\Phi$, $b_1$) is
+Status-C outlook conditional on this theorem and on as-yet-open Status-B obligations.
+
+\section{Audit Protocol}
+
+\noindent\textbf{Status A audit (Lean).}\ The Lean-verified core is audited by the seven-check
+\texttt{audit.sh} gate of the companion Lean note. The audit gate covers: \texttt{lake build},
+no \texttt{sorry}/\texttt{admit}, no \texttt{axiom}/\texttt{constant} declarations, no
+\texttt{unsafe}/\texttt{opaque}/\texttt{partial}, every headline depends only on
+$\{\texttt{propext},\,\texttt{Classical.choice},\,\texttt{Quot.sound}\}$, every headline
+elaborates via \texttt{\#check} (\texttt{AuditCheck.lean}), and every headline is signature-locked
+via $\texttt{example : <exact intended type>}$ (\texttt{AuditContract.lean}). Current state:
+\texttt{AUDIT:~PASS}.
+
+\smallskip
+\noindent\textbf{Editorial audit (this paper).}
+
+\begin{center}
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}p{0.18\textwidth}p{0.08\textwidth}Y@{}}
+\toprule
+\textbf{Audit item} & \textbf{Tier} & \textbf{Question} \\
+\midrule
+Rank discharge
+  & A
+  & Do Higgs Stage B and Yukawa Stage D force $(\dim E_-,\dim E_+)=(3,2)$ \emph{before} the carrier polynomial is written? \\
+Carrier polynomial
+  & A
+  & Is $6Y^2-Y-\mathbf 1=0$ presented only as the minimal polynomial of the derived roots
+    $\{-1/3, 1/2\}$? \\
+Hypercharge
+  & A
+  & Is the determinant normalisation fixed before any phenomenological matching? \\
+Seam-winding interface
+  & B
+  & Is the integer triple $(\textrm{trace-zero},\textrm{orient.},\textrm{prim.})$ presented as the
+    Lean-typed conclusion of an open TFPT theorem
+    $[u_\Sigma]=1 \Rightarrow \texttt{SeamWindingData}$? \\
+Yukawa interface
+  & A/B
+  & Is the rank-3 discharge presented as a Lean theorem about $\omega$ with operational
+    predicates, with the canonicity of $\omega$ from TFPT data marked as a Status-B obligation? \\
+Packet ($S^+$)
+  & C
+  & Is $S^+=\Lambda^{\mathrm{even}}E$ marked as Status-C outlook, not as a Lean theorem? \\
+Gauge quotient
+  & C
+  & Is the $\mathbb Z_6$ quotient marked as a Status-C outlook with an explicit Lean-side
+    target name (\texttt{Z6QuotientStructure}) for the future theorem? \\
+Counting outputs
+  & C
+  & Are $N_{\mathrm{fam}},\Omega_{\mathrm{adm}},N_\Phi,b_1$ presented as Status-C readouts, not
+    as Lean theorems? \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\clearpage
+\section{Main Technical Development}
+
+This section contains the main technical development assigned to this paper by the TFPT 4.5 clean split. Cross-paper background is referenced through dependency and scope boxes; extended backend material is kept in the Technical Companion.
+
+\begin{tfptwarningbox}
+\textbf{Status-tier mapping for the source-extract body.}\
+The text below is the source-manuscript extract for the Paper-2
+clean split. It uses the legacy \LaTeX{} \texttt{theorem}
+environment uniformly across content of \emph{different} formal
+status in the new five-tier taxonomy. The body is to be read
+under the following mapping:
+
+\smallskip
+\begin{itemize}[leftmargin=1.7em, itemsep=0pt]
+    \item Carrier-core algebraic statements
+        (carrier polynomial, $\tr_E Y = 0$, $(q_-,q_+)=(-2,3)$,
+        carrier involution to projectors, integer rigidity)
+        carry status \stag{L} via the Lean theorems referenced
+        in \Cref{thm:carrier-rigidity}.
+    \item Internal-stabilizer / $\mathbb Z_6$ quotient theorems
+        (e.g.\ "Internal carrier stabilizer",
+        "Faithful physical global gauge group"),
+        one-family packet / $S^+ = \Lambda^{\mathrm{even}} E$
+        theorems, the joint-discrete-admissible-sector theorem,
+        the intrinsic-branch / canonical-rigid-object
+        statements, and the manuscript-level "carrier rigidity
+        from the primitive component of the branch Yukawa
+        tensor" carry status \stag{M} or \stag{C}:
+        \begin{itemize}[leftmargin=1.2em, itemsep=0pt]
+            \item \stag{M} where the source manuscript provides
+                a complete proof at standard mathematical-writing
+                rigour (e.g.\ stabilizer / $\mathbb Z_6$
+                construction, exterior packet calculation, joint
+                discrete admissible sector).
+            \item \stag{C} where the statement is conditional on
+                upstream open content (representation theory of
+                derived powers, anomaly bookkeeping that depends
+                on \stag{C} occupancy values, etc.).
+        \end{itemize}
+    \item Strong-CP, hadronic admissibility, and seam-inflow
+        statements that depend on the analytic hypotheses of
+        Paper 4 carry status \stag{C} (and are imported by
+        Paper 4 with explicit conditional framing).
+    \item The "Yukawa generator" / "primitive Yukawa tensor"
+        wording in the source extract is the manuscript
+        precursor of the v11 Lean Stage~D interface
+        $(\omega, \texttt{CI}, \texttt{CS}, \texttt{Nontrivial})$.
+        The bridge
+        \begin{quote}\small
+        branch Yukawa tensor (manuscript)
+        \;$\Rightarrow$\;
+        \texttt{BoundaryYukawaKernel}
+        \;$\Rightarrow$\;
+        $\omega$ with CI, CS, Nontrivial \stag{I}
+        \end{quote}
+        is intended; the body retains the manuscript wording.
+\end{itemize}
+
+\smallskip
+None of the body theorems below is \stag{L} unless explicitly
+named in \Cref{thm:carrier-rigidity}. Section
+\S\ref{sec:formal-status} of this paper is the binding
+statement of \stag{L} content; the body extract is the source
+manuscript for the \stag{M} / \stag{C} content listed in the
+\stag{C} outlook sections
+(\Cref{sec:gauge-outlook,sec:packet-outlook,sec:counting-outlook}).
+\end{tfptwarningbox}
+
+\tfptDraftXrefNotice
+
+\input{source_extracts/02_carrier_source.tex}
+
+\section{Source Extraction Map}
+
+\begin{tfptsourcebox}
+Use \sourceDraft:
+\begin{itemize}[leftmargin=1.5em]
+    \item Sections 3.3, 3.4, and 3.5 for carrier normal form, internal stabilizer, one-family
+    packet, character identities, trace identities, and abelian index.
+    \item Sections 5.1--5.3 only for carrier-relevant compression identities.
+    \item Sections 6.1--6.6 for families, occupancy, and compact Higgs index.
+    \item Sections 8.11--8.15 for the Yukawa-based discharge of carrier premises.
+    \item Section 8.19 and Section 9.11 only for the joint discrete admissible sector.
+\end{itemize}
+\end{tfptsourcebox}
+
+\begin{tfptwarningbox}
+The paper stands or falls on \Cref{thm:carrier-rigidity} (Status A, Lean-verified) and on the
+honest separation of Status-A core from Status-C outlook. Exact electromagnetic numerics,
+CKM/PMNS, masses, OS reconstruction, cosmology, and E8 are deferred to later papers (and remain
+Status C until separately formalised). The Status-C sections (\Cref{sec:gauge-outlook},
+\Cref{sec:packet-outlook}, \Cref{sec:counting-outlook}) must be read as
+\emph{conditional} on the Status-A core, not as additional Lean theorems.
+\end{tfptwarningbox}
+
+
+\begin{tfptexports}
+\textbf{Status A (Lean theorems).}\ $(q_-, q_+) = (-2, 3)$;\ \ $\tr_E Y = 0$;\ \
+$6 Y^2 - Y - \mathbf 1 = \mathbf 0$;\ \
+$Y = \operatorname{diag}(-\tfrac13,-\tfrac13,-\tfrac13,\tfrac12,\tfrac12)$;\ \ the carrier datum
+$E = E_- \oplus E_+$ with $(\dim E_-, \dim E_+) = (3, 2)$.
+
+\smallskip
+\textbf{Status B (Lean-typed targets for open TFPT theorems).}\
+\texttt{BoundaryPolarization} (analytic Paper-1 content);\ \
+\texttt{BoundaryYukawaKernel} (TFPT-canonical $\omega$);\ \
+\texttt{SeamWindingData} (seam-class topological content);\ \
+\texttt{HiggsSchemeCohomologyShadow} (already Lean-proved $\to$ \texttt{DegreeOneTwoVarForm};
+remaining Proj-side identification is general algebraic geometry).
+
+\smallskip
+\textbf{Status C (mathematical proposal, downstream outlook).}\
+$S^+ = \Lambda^{\mathrm{even}} E$;\ \
+$G_{\mathrm{phys}} = \big(SU(3)\times SU(2)\times U(1)_Y\big) / \mathbb Z_6$;\ \
+$N_{\mathrm{fam}} = 3$;\ \ $\Oadm = 48$;\ \ $N_\Phi = 1$;\ \ $b_1 = 41/10$.
+\end{tfptexports}
+
+\section{Not Used Here}
+
+Exact $\alpha$ numerics, CKM/PMNS closure, pole-mass ledgers, OS/CAR reconstruction, local
+Minkowski nets, scattering, gravity/metrology, cosmology, CMB targets, and E8 grammar are not used
+as proof inputs in this paper.
+
+\end{document}

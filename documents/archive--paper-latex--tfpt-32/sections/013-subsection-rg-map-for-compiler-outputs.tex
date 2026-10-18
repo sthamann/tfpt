@@ -1,0 +1,344 @@
+\subsection{RG map for compiler outputs}
+\label{sec:rg-map-compiler-outputs}
+
+The symbol $\mathcal R_{\SM}$ denotes the declared comparison map from TFPT outputs to scheme-specified observables. Here it is the bookkeeping package
+\[
+\mathcal R_{\SM}
+=
+\left(
+\begin{array}{l}
+\mu_{\mathrm{match}}=M_Z,\ \{\mu_{\mathrm{thr}}\}=\{m_c,m_b,m_\tau,m_t\},\\
+\text{running convention},\ \text{scheme conversion},\ \text{observable map}
+\end{array}
+\right),
+\]
+and we write
+\[
+\bar\alpha^{(5)}(M_Z):=\alpha_{\mathrm{em}}^{\overline{\mathrm{MS}},\,n_f=5}(M_Z).
+\]
+with the following restricted interpretation in the main text:
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item $\alpha^{-1}(0)$ is compared in the Thomson-limit on-shell convention, with the CODATA 2022 / NIST value taken as the normative low-energy reference rather than the separate PDG electroweak extraction from $a_e$,
+    \item $\bar\alpha^{(5)}(M_Z)^{-1}$ is compared after the declared threshold map with $\{\mu_{\mathrm{thr}}\}=\{m_c,m_b,m_\tau,m_t\}$ into the $\overline{\mathrm{MS}}$ language at $\mu=M_Z$,
+    \item neutrino-angle rows use the NuFIT normal-ordering reference snapshot based on data available through November 2025,
+    \item the $\Omega_b$ row is reconstructed from the Planck 2018 base-$\Lambda$CDM pair $(\Omega_b h^2,H_0)$ via $\Omega_b=(\Omega_b h^2)/h^2$ with $h=H_0/100$,
+    \item the $\beta$ row uses the Minami--Komatsu extraction from Planck 2018 polarization as the normative benchmark, while PR4 and PR4 map-space analyses are kept only as supplementary context,
+    \item direct-search interface rows are not treated as precision residuals and are therefore kept out of the main benchmark table.
+\end{itemize}
+For later use we also set
+\[
+\beta_{\mathrm{rad}}:=\frac{\phiz}{4\pi}.
+\]
+
+\begin{remark}[RG bookkeeping for direct \texorpdfstring{$\vgeo$}{vgeo} mass rows]
+Whenever a mass row is written directly in the transport form
+\[
+\hat m_{f,j}=\frac{y_{f,j}\vgeo}{\sqrt2},
+\]
+the manuscript reads that formula on the intrinsic surface $\mathcal S_{\mathrm{int}}$, with the benchmark-facing comparison row obtained only after
+\[
+m_{f,j}^{\mathrm{obs}}=\mathcal R_{\SM}(\hat m_{f,j}).
+\]
+The explicit running, threshold, and scheme bookkeeping for observation-surface rows is carried by the declared map $\mathcal R_{\SM}$. Accordingly, the direct charged-lepton and neutrino source rows should be read in the minimal approximation that the residual running of $y_f$ and of the Higgs background between the geometric emission scale and the quoted IR comparison scale is either absorbed into that declared map or subleading at the present level of precision. The paper therefore does not claim a separate long-distance RG derivation from $\vgeo$ to every quoted pole or $\overline{\mathrm{MS}}$ mass row.
+\end{remark}
+
+\begin{proposition}[Self-consistent threshold program]
+The present manuscript freezes thresholds inside $\mathcal R_{\SM}$. The internal closure-upgrade route is instead to solve the thresholds self-consistently through
+\[
+\mu_i=m_i^{\overline{\mathrm{MS}}}(\mu_i)
+\]
+for each heavy channel and to use RG-invariant masses $\hat m_f$ as the intermediate internal quantities. On that upgraded route,
+\[
+m_W=\frac12 g_2(v)\,v,
+\qquad
+m_Z=\frac12\sqrt{g_1(v)^2+g_2(v)^2}\,v,
+\qquad
+m_H^2=2\lambda_\Phi(v)\,v^2
+\]
+become internal threshold outputs rather than partially anchor-governed comparison rows. The current benchmark bridge keeps the simpler fixed-threshold solver only as the declared main-text interface.
+\end{proposition}
+
+\begin{remark}[Open theorem path for the compiler interface]
+The self-consistent threshold conditions are not filler around the benchmark tables; they are the explicit open theorem path by which heavy mass rows could migrate from the observation surface $\mathcal S_{\mathrm{obs}}$ back to the intrinsic closure surface $\mathcal S_{\mathrm{int}}$. In that sense the current comparison-heavy rows mark a named closure problem rather than an unacknowledged gap.
+\end{remark}
+
+\begin{conjecture}[Observation-closure theorem path]
+The full observation closure is obtained by adjoining to the self-consistent
+threshold program an internally reconstructed seam scale and a closed
+nonperturbative matching sector:
+\[
+M_\Sigma:=\lambda_1^+(B_\Sigma),
+\qquad
+\sigma=\cthree^2\chi_{\QCD}^2,
+\]
+\[
+\Delta_{EW}^{\Sigma,+}
+=
+\left(
+-\frac{9}{80\pi}\ln\frac{M_\Sigma}{v},
+\;
+\frac{3}{16\pi}\ln\frac{M_\Sigma}{v}
+\right),
+\qquad
+\Delta_3^{\mathrm{NP}}
+:=
+-\frac{1}{4\pi}\ln\frac{M_\Sigma}{\sqrt{\sigma}}.
+\]
+On that upgraded route all internal unknowns are solved simultaneously from one
+coupled system
+\[
+F(x)=0,
+\]
+containing the carrier equations, closure conditions, UV fixed-point block,
+self-consistent thresholds, seam matching, vacuum equations, baryogenesis
+equations, and the cosmological-constant sector. If this system has a unique
+solution $x_\star$, every benchmark quantity is generated as
+\[
+\mathcal O_{\mathrm{th}}=\mathcal B(x_\star),
+\]
+so that the current comparison map becomes the observation functor
+$\mathcal R_{\mathrm{TOE}}$ of a single closed solution rather than an external
+bookkeeping layer. Falsification is then measured by
+\[
+\chi^2_{\mathrm{TOE}}
+=
+(\mathcal O_{\mathrm{th}}-\mathcal O_{\mathrm{exp}})^T
+(C_{\mathrm{exp}}+C_{\mathrm{th}})^{-1}
+(\mathcal O_{\mathrm{th}}-\mathcal O_{\mathrm{exp}}),
+\]
+with $C_{\mathrm{th}}$ collecting matching, truncation, numerical, and residual
+hadronization uncertainties.
+\end{conjecture}
+
+\subsection{Local gauge closure and seam matching}
+
+\begin{definition}[Seam matching data]
+We write
+\[
+M_\Sigma:=\lambda_1^+(B_\Sigma),
+\qquad
+g_\Sigma:=g(\mu=M_\Sigma),
+\]
+for the seam matching scale read from the first positive seam boundary mode and the common gauge coupling at that scale. In the same notation, $Q_\Theta$ is the determinant-sector involution used in admissibility, $T$ is the transport generator on the family side, $\mathfrak C_\Sigma$ denotes the seam cycle data when needed, and $\wspin$ is the spin holonomy weight entering the geometric package.
+\end{definition}
+
+Within the benchmark bridge, the gauge comparison layer is decomposed as
+\begin{equation}
+\label{eq:relative-gauge-split}
+\Gamma_{\mathrm{gauge}}^{\mathrm{rel}}
+=
+\Gamma_{\mathrm{bulk}}^{\mathrm{loc}}
++
+\Delta_{EW}^{\Seam,+}
++
+\Delta_3^{\mathrm{NP}}.
+\end{equation}
+
+\begin{proposition}[Local gauge closure and seam matching]
+\label{prop:local-gauge-closure-matching}
+The local carrier gauge closure fixes the common UV normalization
+\[
+\mathcal I_1=\mathcal I_2=\mathcal I_3,
+\qquad
+\frac{f_0^{\mathrm{rel}}}{2\pi^2}=\frac{1}{4g_\Seam^2}.
+\]
+The remaining branch dependence at $\mu=M_Z$ is isolated in two explicit matching functionals:
+\[
+\Delta_3^{\mathrm{NP}}(M_Z)
+=
+-\frac{1}{4\pi}\ln\frac{M_\Seam}{\sqrt{\sigma}},
+\]
+and
+\[
+\Delta_{EW}^{\Seam,+}
+=
+\left(
+-\frac{9}{80\pi}\ln\frac{M_\Seam}{v},
+\;
+\frac{3}{16\pi}\ln\frac{M_\Seam}{v}
+\right).
+\]
+Accordingly,
+\[
+\mathcal R_{\SM}
+=
+\bigl(\mathcal R_{\SM}^{\mathrm{loc}},\mathcal R_{\SM}^{\mathrm{match}}\bigr),
+\]
+with the local carrier closure fixed by the bulk term and the residual scheme / branch sensitivity sitting only in the declared matching functionals.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+The relative bulk term fixes the common gauge normalization before low-energy matching is imposed. The electroweak seam-even term and the nonperturbative singlet Wilson correction are then the only remaining pieces needed to translate the local carrier closure into $M_Z$-scale observables. This is exactly the benchmark-bridge point: local closure is not abandoned, but neither is the matching dependence hidden.
+\end{proof}
+
+\begin{remark}[Matching-branch gauge outputs]
+On the retained matching branch, the decomposition above gives
+\[
+\hat s_Z^2(M_Z)\approx \num{0.23116113},
+\qquad
+\alpha_s(M_Z)\approx \num{0.11796213}.
+\]
+These rows are therefore sharper than a vague completion target, but they remain benchmark-bridge quantities rather than hard carrier outputs.
+\end{remark}
+
+\begin{proposition}[Finite renormalization closure]
+In four spacetime dimensions, the local relative spectral expansion closes on the finite operator basis
+\[
+1,\quad
+R,\quad
+R^2,\quad
+|D\Phi|^2,\quad
+|\Phi|^2,\quad
+|\Phi|^4,\quad
+\tr F_a^2,\quad
+\bar\psi i\!\not\!\!D\psi,\quad
+\bar\psi\Phi\psi.
+\]
+Therefore the admissible renormalization flow closes on a finite-dimensional coupling space. No new relevant or marginal operator outside this basis is generated by the relative spectral RG closure on the retained branch.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+This is the local four-dimensional content of the relative spectral expansion already used in the carrier, bosonic, and gauge-matching sectors. Once the admissibility selector removes inadmissible channels, the RG flow only renormalizes coefficients in this finite basis rather than opening an uncontrolled tower of new low-dimensional operators.
+\end{proof}
+
+\begin{corollary}[Infrared universality]
+Let
+\[
+m_*:=\min\left\{\frac{\epsilon_f}{2},\,m_-,\,m_3\right\}.
+\]
+Below that smallest admissible gap scale, the unique renormalizable effective theory on the admissible branch is the Standard Model quotient
+\[
+S(U(3)\times U(2))
+\]
+with three chiral families, one seam-even Higgs doublet, special-unitary family holonomy, and the geometric gravity branch of \Cref{thm:gravity-cosmology-closure}.
+\end{corollary}
+
+\subsection{Central hard-kernel quantities}
+
+The roles of $\cthree$ and $\phiz$ should not remain implicit. They are the central hard numeric quantities of the present main-text kernel. The downstream E$_8$ parameter $\kappa_{E8}$ is isolated in the next section rather than folded back into the kernel center.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.11\linewidth}>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedright\arraybackslash}p{0.24\linewidth}X@{}}
+\toprule
+Quantity & Closed value & Role / status & Named outputs \\
+\midrule
+$\cthree$ & \makecell[l]{$1/(8\pi)$\\$=\num{0.03979}$} & Hard seam normalization & $\deltatop$, $C_{a\gamma\gamma}=-4\cthree$, $\sigma=\cthree^2\chi_{\QCD}^2$, $M/\bar M_{\mathrm{Pl}}=\sqrt{8\pi}\cthree^4$ \\
+$\phiz$ & \makecell[l]{$\frac{1}{6\pi}+\frac{3}{256\pi^4}$\\$=\num{0.05317}$} & Retained canonical seed; hard inputs plus bridge reinterpretation via $\deltatop=\Oadm\cthree^4$ & $\beta_{\mathrm{rad}}=\phiz/(4\pi)$, $\lambda_C=\sqrt{\phiz(1-\phiz)}$, $\sin^2\theta_{13}$, charged-lepton ladders \\
+\bottomrule
+\end{tabularx}
+\caption{Central hard-kernel quantities and the main predictions they feed.}
+\label{tab:kernel-output-map}
+\end{table}
+
+The most exposed closed formulas driven by these constants are those already displayed in \Cref{eq:kernel-benchmark-formulas}.
+
+\subsection{Mass-closure ledgers}
+
+For the mass surface itself the main text now uses only three row-level status words:
+\emph{derived}, \emph{candidate}, and \emph{anchor-dependent}. The explicit candidate formulas, neutrino rows, and transport-ratio source data are moved to the appendix so that the main text shows a compact comparison-ready ledger rather than a mixed formula dump.
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedleft\arraybackslash}p{0.15\linewidth}>{\raggedleft\arraybackslash}p{0.15\linewidth}>{\raggedleft\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.12\linewidth}@{}}
+\toprule
+Particle & TFPT source class & TFPT value & PDG value & Residual & Status \\
+\midrule
+$e$ & constant-factory candidate & \num{0.52197} MeV & \num{0.510999} MeV & $+2.15\%$ & candidate \\
+$\mu$ & constant-factory candidate & \num{107.70} MeV & \num{105.658} MeV & $+1.93\%$ & candidate \\
+$\tau$ & constant-factory candidate & \num{1.7723} GeV & \num{1.77686} GeV & $-0.26\%$ & candidate \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Calibration surface (anchor-dependent; zero residual = anchor consistency, not prediction):}} \\
+$W^\pm$ & boundary EW input at $M_Z$ & \num{80.369} GeV & \num{80.369} GeV & $0.00\%$ & anchor \\
+$Z$ & boundary EW input at $M_Z$ & \num{91.188} GeV & \num{91.188} GeV & $0.00\%$ & anchor \\
+$H$ & boundary Higgs input & \num{125.25} GeV & \num{125.25} GeV & $0.00\%$ & anchor \\
+\bottomrule
+\end{tabularx}
+\caption{Compact mass surface, electroweak and charged-lepton sector. Zero residual on anchor-dependent rows records consistency with the chosen anchor only.}
+\label{tab:sm-mass-ledger-ew}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedleft\arraybackslash}p{0.15\linewidth}>{\raggedleft\arraybackslash}p{0.15\linewidth}>{\raggedleft\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.12\linewidth}@{}}
+\toprule
+Particle & TFPT source class & TFPT value & PDG value & Residual & Status \\
+\midrule
+$u$ & light-quark solver relative to strange anchor, $\overline{\mathrm{MS}}$ at $2$ GeV & \num{2.195} MeV & \num{2.16} MeV & $+1.62\%$ & derived \\
+$d$ & light-quark solver relative to strange anchor, $\overline{\mathrm{MS}}$ at $2$ GeV & \num{4.67} MeV & \num{4.67} MeV & $+0.00\%$ & derived \\
+$\pi^0$ & GMOR hadronic cross-check & \num{134.979} MeV & \num{134.977} MeV & $+0.00\%$ & derived \\
+$p$ & hadron mass-ladder cross-check & \num{935.03} MeV & \num{938.272} MeV & $-0.35\%$ & derived \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Calibration surface (anchor-dependent):}} \\
+$s$ & strange-quark anchor, $\overline{\mathrm{MS}}$ at $2$ GeV & \num{93.4} MeV & \num{93.4} MeV & $0.00\%$ & anchor \\
+$c$ & up-type ratio ladder with threshold input & \num{1.27} GeV & \num{1.27} GeV & $0.00\%$ & anchor \\
+$b$ & down-type ratio ladder with threshold input & \num{4.18} GeV & \num{4.18} GeV & $0.00\%$ & anchor \\
+$t$ & up-type ratio ladder with threshold input & \num{172.57} GeV & \num{172.57} GeV & $0.00\%$ & anchor \\
+\bottomrule
+\end{tabularx}
+\caption{Compact mass surface, quark and first-hadron sector. Zero residual on anchor-dependent rows records consistency with the chosen anchor only.}
+\label{tab:sm-mass-ledger-quarks}
+\end{table}
+
+The compact ledgers are intentionally narrow: they show the comparison surface, not the internal algebra. Explicit candidate formulas for $e,\mu,\tau$, neutrino branch values, and the ladder / ratio source rows for the quark sector are collected in the appendix-level supplementary mass-source table \Cref{tab:mass-source-supplement}.
+
+\section{\texorpdfstring{E$_8$}{E8} as downstream scale grammar}
+
+E$_8$ is not part of the primitive carrier ontology and should not compete with the seam data, the carrier theorem, or the closure stack for explanatory priority. In the present main-text form it plays one restricted role only: a downstream scale grammar attached to the already fixed carrier norm.
+\[
+\kappa_{E8}:=\frac{\gamma}{\ln(248/60)}=\frac{5/6}{\ln(248/60)}.
+\]
+
+\subsection{Block formula and reading discipline}
+
+A physical E$_8$ representation is not the stage label $n$ alone, but the full block triple $(n,r,I_1)$. The compressed block formula is
+\begin{equation}
+\label{eq:e8-block-formula}
+X(n,r,I_1)
+=
+\frac{\Mplunred}{8}\,\sin^2\theta_{13}\,
+\left(\frac{60-2n}{60}\right)^{\!\kappa_{E8}}
+e^{-(8-r)/64}\,
+e^{-12\pi I_1},
+\end{equation}
+where $\Mplunred\approx\num{1.2209e19}\;\mathrm{GeV}$ is the \emph{unreduced} Planck mass (not $\Mpl=\Mplunred/\sqrt{8\pi}$), $n$ is the ladder stage with $D_n=60-2n$, $r$ is a mild block-multiplicity label ($1\le r\le 8$), and $I_1$ is the dominant block trace. The reading discipline is strict: $n$ orders the ladder, $I_1$ controls most of the exponential suppression via $e^{-12\pi I_1}$, and $r$ only refines the scale. In the relevant energy range the step ratio between successive stages is
+\[
+\frac{X_{n+1}}{X_n}=\left(\frac{58-2n}{60-2n}\right)^{\!\kappa_{E8}}\approx 0.96\text{--}0.97,
+\]
+so large hierarchies come almost entirely from $I_1$, not from $n$.
+\begin{remark}[Main-text restriction of the E$_8$ layer]
+Only three E$_8$ ingredients remain in the main text: the downstream block grammar \Cref{eq:e8-block-formula}, the permissiveness barrier recorded below, and the block-index candidate stated thereafter. Representative atlas rows, restricted scans, and the broader arithmetic ledger are moved to Appendix~\ref{app:constants}, where the full stage atlas is recorded without inflating the main theorem stack.
+\end{remark}
+
+\subsection{Permissiveness barrier}
+
+\begin{remark}[Permissiveness barrier at $n=18{,}19$]
+Under the restricted trace grammar, stages $n=18$ and $n=19$ have no unambiguous physical target. If $I_1$ is allowed to scan over all simple rationals, these stages can mimic almost any scale between $10^2$ and $10^{16}$~GeV. They mark the exact boundary where E$_8$ without a derived block-trace theorem becomes too permissive. The open key question of the E$_8$ layer is therefore not the ladder itself but the derivation of $I_1(B)$ from carrier and block structure. Until that derivation is available, stages $18$ and $19$ are the sharpest internal test points.
+\end{remark}
+
+\begin{conjecture}[Carrier-induced E$_8$ block index]
+Let $Y$ be the carrier-derived hypercharge generator and let $B$ be a genuine weight block in the $E_8$ decomposition under the induced carrier subalgebra. Then the natural block index candidate is
+\[
+I_1(B):=\frac{\operatorname{Tr}_B(Y^2)}{\operatorname{Tr}_{\mathrm{adj}}(Y^2)}.
+\]
+On this route the permissive rational $I_1$ catalogue is replaced by a representation-theoretic target. The present manuscript does not yet prove this identification, but it turns the remaining E$_8$ permissiveness barrier into a concrete theorem obligation rather than an opaque lookup rule.
+\end{conjecture}
+
+\begin{remark}[Conditional recurrence of the electroweak trace packet]
+Within the downstream atlas, the value
+\[
+I_1=\frac{41}{48}
+\]
+recurs at the electroweak reference row, the top row, and the Higgs row of the robust table, and at the appendix-level $Z$ row of restricted-scan status. This matches the electroweak trace packet
+\[
+I_1^{\mathrm{EW}}=\frac{41}{48}
+\]
+from the $41$-chain, but at present it is only a conditional condensation of the atlas. It does not prove that those targets are universal infrared resonances of one block, because neither $I_1(B)$ nor the restricted-scan $Z$ assignment is yet derived from block structure.
+\end{remark}
+

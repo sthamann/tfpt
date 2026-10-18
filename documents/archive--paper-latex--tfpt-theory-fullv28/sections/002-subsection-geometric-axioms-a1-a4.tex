@@ -1,0 +1,391 @@
+\subsection{Geometric Axioms (A1--A4)}
+%-----------------------------------------------------------------------------
+
+\begin{axiom}{Riemann--Cartan Geometry}{RC}
+The fundamental spacetime connection possesses torsion; the Levi-Civita 
+connection is a limiting case when torsion vanishes.
+
+\tcblower
+\textbf{Status:} Established (Einstein--Cartan theory, Hehl et al.~1976).
+
+\textbf{Consequence:} Axial torsion couples to spinor fields and is dynamically active.
+\end{axiom}
+
+\begin{axiom}{Orientable Double Cover}{ODC}
+The physically relevant manifold is the orientable double cover $\widetilde{M}$ 
+of a non-orientable base with M\"obius structure.
+
+\tcblower
+\textbf{Status:} New assumption; mathematically rigorous, physically motivated 
+by spinor structure, chirality, and anomaly cancellation.
+
+\textbf{Consequence:} The geometry carries two identical boundary contributions 
+plus a seam $\Gamma$, yielding a factor of 2 in backreaction.
+\end{axiom}
+
+\begin{tcolorbox}[colback=blue!3, colframe=blue!40, title={\textbf{Lemma (Spin Structure Requires Orientability)}}, fonttitle=\bfseries\itshape]
+If a theory defines fundamental spinors globally, the effective manifold must be 
+orientable. When the base topology is non-orientable (M\"obius structure), the 
+physical carrier space is necessarily the orientable double cover.
+
+\textbf{Physical necessity:}
+\begin{enumerate}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item Chiral fermions require a globally consistent spin structure; this fails 
+        on non-orientable manifolds.
+    \item Anomaly cancellation (ABJ) demands well-defined $\gamma_5$ eigenvalues, 
+        which exist only on the orientable cover.
+    \item The double cover provides exactly two sheets, which fix the exponent in
+        $\phiz(\alpha) = \phitree + \deltatop e^{-2\alpha}$.
+    \item The ``seam'' $\Gamma$ contributes a discrete spectral gluing term in the
+        $\eta$-invariant, supplying the third $2\pi$ contribution in the normalization.
+\end{enumerate}
+
+\textbf{Causal chain:} Spinors $\to$ orientability required $\to$ double cover 
+$\to$ (Axiom A3) gluing spectral term $\to$ 3 curvature contributions $\to$ $\phitree = 1/(6\pi)$.
+\end{tcolorbox}
+
+\begin{axiom}{Gauss--Bonnet Normalization with APS Gluing Term}{GB}
+The geometric normalization on the orientable double cover $\widetilde{M}$ is fixed by the
+spectral gluing term associated with the $\mathbb{Z}_2$ identification along the seam $\Gamma$.
+Cutting along $\Gamma$ yields a manifold-with-boundary $\widetilde{M}_\Gamma$ with components
+$(C_1,C_2,\Gamma_+,\Gamma_-)$ and a Dirac operator equipped with APS boundary conditions on
+$C_1,C_2$ and a unitary matching operator $U_\Gamma$ on $\Gamma_\pm$. The $\eta$-invariant gluing
+formula produces a discrete seam contribution $\Delta_\Gamma$, and for the minimal nontrivial
+$\mathbb{Z}_2$ gluing class one has $\Delta_\Gamma = 2\pi$.
+
+\tcblower
+\textbf{Status:} Standard APS/$\eta$-gluing framework; the discrete seam term follows from the
+minimal $\mathbb{Z}_2$ matching class (Appendix~\ref{app:seam}).
+
+\textbf{Consequence:} Two physical boundary cycles ($2\pi+2\pi$) plus $\Delta_\Gamma=2\pi$ give
+total curvature $6\pi$, fixing
+\begin{equation}
+    \phitree = \frac{1}{6\pi}.
+\end{equation}
+Alternative matching classes $U_\Gamma=e^{im\theta}$ ($m>1$) exist and predict
+discretely separated $\alpha^{-1}$ values; $m=1$ is selected as the minimal
+nontrivial gluing class, not by CODATA comparison
+(see Table~\ref{tab:gluing-scan} and Figure~\ref{fig:gluing-scan}).
+\end{axiom}
+
+\noindent\textbf{Why this is well-defined.} The seam is encoded as a gluing condition, not as an
+ad hoc boundary. In APS index theory, the gluing formula for $\eta$-invariants adds a discrete
+spectral-flow term determined by the matching operator $U_\Gamma$. This makes the seam
+contribution quantized and computable, rather than a geometric guess.
+
+\begin{tcolorbox}[colback=green!3, colframe=green!50!black, 
+    title={\textbf{Proof Sketch for $\phitree = 1/(6\pi)$ (via $\eta$-gluing)}}, fonttitle=\bfseries\small]
+\textbf{Setup:} Cut the orientable double cover along $\Gamma$ to obtain
+$\widetilde{M}_\Gamma$ with boundary components $(C_1,C_2,\Gamma_+,\Gamma_-)$.
+Impose APS boundary conditions on $C_{1,2}$ and gluing by a unitary operator
+$U_\Gamma$ between $\Gamma_+$ and $\Gamma_-$.
+
+\textbf{Step 1 (Boundary operator):} On the seam, take the tangential Dirac operator
+\begin{equation}
+    D_\Gamma = i\,\frac{d}{d\theta}, \qquad \theta\in[0,2\pi).
+\end{equation}
+
+\textbf{Step 2 (Minimal gluing class):} The minimal M\"obius class is modeled by the
+unitary phase
+\begin{equation}
+    U_\Gamma(\theta)=e^{i\theta}.
+\end{equation}
+
+\textbf{Step 3 (Spectral flow):} Interpolate the boundary condition
+$\psi(\theta+2\pi)=e^{i\varphi}\psi(\theta)$ for $\varphi\in[0,2\pi]$. The eigenvalues are
+\begin{equation}
+    \lambda_n(\varphi)=n+\frac{\varphi}{2\pi}, \qquad n\in\mathbb{Z},
+\end{equation}
+so exactly one eigenvalue crosses zero as $\varphi$ runs from $0$ to $2\pi$:
+$\mathrm{SF}(U_\Gamma)=1$.
+
+\textbf{Step 4 (Gluing term):} The APS gluing theorem yields
+$\eta(\widetilde{M}) = \eta(\widetilde{M}_\Gamma) + 2\,\mathrm{SF}(U_\Gamma)$,
+so the seam contribution is $\Delta_\Gamma=2\pi$.
+
+\textbf{Step 5 (Normalization):} The two physical boundary cycles contribute $2\pi+2\pi$,
+and the seam adds $2\pi$, so $R_{\text{total}}=6\pi$.
+This is a closure normalization $\chi := \varphi R_{\text{total}} = 1$,
+which fixes the scale of the dimensionless modulus.
+It is not an Euler--Lagrange variation.
+The result is $\phitree=1/(6\pi)$.
+\end{tcolorbox}
+
+\begin{axiom}{Discrete Topological Corrections}{TC}
+Additional contributions to $\phiz$ arise only from topological invariants 
+that are discrete and universal.
+
+\tcblower
+\textbf{Status:} Consequence of gauge-invariance constraints.
+
+\textbf{Consequence:} The topological surcharge is fixed by the spin lift of the
+$\mathbb{Z}_2$ identification, which yields an order-4 element in the spin bundle
+and hence a universal deficit factor $(1-1/4)$ per minimal sector. Cutting along the
+seam yields four local corner patches $(C_1,\Gamma_+)$, $(C_1,\Gamma_-)$, $(C_2,\Gamma_+)$,
+$(C_2,\Gamma_-)$ in the fundamental domain, so $F=4$ and the deficit sum is:
+\begin{equation}
+    \deltatop 
+    = \frac{1}{256\pi^4}\sum_{p=1}^{4}\left(1-\frac{1}{4}\right)
+    = \frac{3}{256\pi^4}
+    = 48\cthree^4
+\end{equation}
+See Appendix~\ref{app:48deriv} for the explicit sector count.
+The sector count $F=4$ is invariant under alternative fundamental-domain
+decompositions (Table~\ref{tab:cut-invariance}).
+\end{axiom}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.2]
+    % M\"obius strip representation
+    \fill[blue!10] (0,0) ellipse (2.5 and 1);
+    
+    % Top boundary
+    \draw[thick, blue] (0,1) ellipse (2.2 and 0.3);
+    \node[blue, font=\footnotesize] at (3.1,1) {top boundary ($2\pi$)};
+    
+    % Bottom boundary
+    \draw[thick, blue] (0,-1) ellipse (2.2 and 0.3);
+    \node[blue, font=\footnotesize] at (3.1,-1) {bottom boundary ($2\pi$)};
+    
+    % Seam
+    \draw[thick, green!60!black, dashed] (-2.5,0) -- (2.5,0);
+    \node[green!60!black, font=\footnotesize] at (2.9,0) {twist seam $\Gamma$ ($2\pi$)};
+    
+    % Arrow showing M\"obius identification
+    \draw[-{Stealth}, thick, red] (2.8,0.7) arc[start angle=40, end angle=-40, radius=0.8];
+    \node[red, font=\footnotesize] at (3.35,0.55) {M\"obius identification};
+    
+    % Total
+    \node[font=\small] at (0,-1.8) {Total integrated curvature: $3 \times 2\pi = 6\pi$};
+    \node[font=\small] at (0,-2.2) {$\Rightarrow \phitree = 1/(6\pi)$};
+\end{tikzpicture}
+\caption{Orientable double cover $\widetilde{M}$: two boundary cycles plus the discrete
+$\eta$-gluing seam term $\Gamma$ contribute $6\pi$ total curvature, fixing $\phitree$.}
+\label{fig:doublecover}
+\end{figure}
+
+%-----------------------------------------------------------------------------
+\subsection{Quantum Field Theory Axioms (A5--A6)}
+%-----------------------------------------------------------------------------
+
+\begin{tcolorbox}[colback=yellow!5, colframe=yellow!60!black, 
+    title={\textbf{Conventions: Units, Masses, and Normalizations}}, fonttitle=\bfseries]
+
+\textbf{Units and constants:}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item Natural units: $\hbar = c = 1$; energies in GeV, lengths in GeV$^{-1}$.
+    \item Reference data: CODATA 2022, PDG 2024.
+    \item Metric signature: $(+,-,-,-)$.
+    \item Levi-Civita tensor: $\varepsilon^{0123} = +1$, $\tilde{F}^{\mu\nu} = \frac{1}{2}\varepsilon^{\mu\nu\rho\sigma}F_{\rho\sigma}$.
+\end{itemize}
+
+\textbf{Planck mass definitions:}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Symbol} & \textbf{Definition} & \textbf{Value}\\
+\midrule
+$M_{\mathrm{Pl}}$ (unreduced) & $G^{-1/2}$ & $1.221 \times 10^{19}$ GeV\\
+$\Mpl$ (reduced) & $(8\pi G)^{-1/2}$ & $2.435 \times 10^{18}$ GeV\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Convention:} Block formulas (Sec.~\ref{sec:e8}) use $M_{\mathrm{Pl}}$ (unreduced). 
+Relation: $M_{\mathrm{Pl}} = \sqrt{8\pi}\,\Mpl$.
+
+\textbf{Axion sector:}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item Axion field $a$: Dimensionless; define $\theta = 4\pi a$ with $2\pi$ periodicity. Physical field: $a_{\text{phys}} = f_a \cdot a$.
+    \item Theta variable: $\theta = 4\pi a$, so $L_{\mathrm{int}} = (\theta/32\pi^2)\,F\tilde{F}$.
+    \item Quantization: $(1/2\pi)\int F \in \mathbb{Z}$ and $(1/32\pi^2)\int F\wedge F \in \mathbb{Z}$.
+    \item Chern--Simons term: $\mathcal{L} \supset \cthree\, a\, F\tilde{F}$ with $\cthree = 1/(8\pi)$.
+    \item Coupling: $\gagg = -4\cthree$ is dimensionless; $g_{a\gamma\gamma}^{\text{(phys)}} = \gagg / f_a$ has dimension $[\text{energy}]^{-1}$.
+    \item \textbf{Maxwell convention:} We define the field strength by the exterior derivative $F := dA$, i.e.\ $F_{AB}=2\partial_{[A}A_{B]}$, independent of the torsionful affine connection (we do not use $F_{AB}=2\hat{\nabla}_{[A}A_{B]}$). Therefore U(1) gauge invariance is exact in the electromagnetic sector.
+\end{itemize}
+\textbf{Shift invariance (one-line proof):} $\theta\mapsto \theta+2\pi$ gives $\Delta S=(2\pi)\,(1/32\pi^2)\int F\wedge F=2\pi Q$ with $Q\in\mathbb{Z}$.
+\end{tcolorbox}
+
+\begin{axiom}{Axion--Photon Anomaly Coupling}{APC}
+The unique additional coupling in the low-energy effective theory is a 
+pseudoscalar axion--photon interaction of the canonical form
+\[
+L_{\mathrm{int}}=-\frac{g_{a\gamma\gamma}}{4}\,a\,F_{AB}\tilde{F}^{AB},
+\qquad g_{a\gamma\gamma}=-4\cthree,
+\]
+fixed by the abelian anomaly (Fujikawa method).
+
+\tcblower
+\textbf{Status:} Standard in anomaly physics; follows from chiral measure.
+\textbf{Evidence:} \texttt{axion\_shift\_invariance\_audit}, \texttt{u1\_bundle\_normalization\_audit}, \texttt{standard\_convention\_mapping\_audit}.
+
+\textbf{Consequence:} The kernel coupling is
+\begin{equation}
+    \cthree = \frac{1}{8\pi}
+\end{equation}
+with no remaining normalization freedom.
+\end{axiom}
+
+\begin{axiom}{Modulus Closure in Background-Field Gauge}{BFG}
+We introduce a dimensionless coupling modulus $\sigma$ with electromagnetic kinetic function
+\begin{equation}
+    \mathcal{L} \supset -\frac{1}{4} f(\sigma)\,F_{\mu\nu}F^{\mu\nu}
+    + \frac{1}{2}(\partial\sigma)^2,
+    \qquad 
+    \alpha(\sigma)=\frac{1}{4\pi f(\sigma)}.
+\end{equation}
+The physical vacuum extremizes the effective action with respect to $\sigma$:
+\begin{equation}
+    \frac{\delta\Gamma_{\mathrm{eff}}}{\delta\sigma}=0.
+\end{equation}
+In background-field gauge, the effective potential can be written as
+$V_{\mathrm{eff}}(\sigma)=U(\alpha(\sigma)) + V_{\mathrm{geo}}(\sigma)$, where
+$V_{\mathrm{geo}}'(\sigma_\star)=0$ by geometric closure.
+If $\alpha(\sigma)$ is monotonic near the vacuum, this is equivalent to
+\begin{equation}
+    \frac{\partial U}{\partial \alpha}=0,
+    \qquad U(\alpha)=U(\sigma(\alpha)).
+\end{equation}
+
+\tcblower
+\textbf{Status:} Standard in modulus stabilization; background-field gauge provides a clean definition of $\Gamma_{\mathrm{eff}}$.
+
+\textbf{Consequence:} $\alpha$ is fixed by a modulus extremum, not treated as a variational constant.
+\end{axiom}
+
+%-----------------------------------------------------------------------------
+\subsection{Closure Axioms (A7--A8)}
+%-----------------------------------------------------------------------------
+
+\begin{axiom}{Standard Model Hypercharge Trace}{SMT}
+We adopt the convention $Q=T_3+Y$ and count left-handed Weyl fermions plus the Higgs
+scalar with their SU(2) and color multiplicities. Define the hypercharge trace
+\begin{equation}
+    b_Y = \frac{2}{3}\sum_{\text{Weyl}} d_3 d_2\,Y^2
+    + \frac{1}{3}\sum_{\text{scalars}} d_3 d_2\,Y^2,
+    \qquad
+    \bone = \frac{3}{5}\,b_Y.
+\end{equation}
+Here $b_Y$ is the SM-normalized trace coefficient and $\bone$ is the corresponding
+GUT-normalized coefficient used in the CFE.
+For the SM field content (three generations + one Higgs doublet):
+\begin{equation}
+    Q:\tfrac{1}{3},\quad L:1,\quad u_c:\tfrac{8}{3},\quad d_c:\tfrac{2}{3},\quad e_c:2,\quad H:\tfrac{1}{6},
+    \qquad b_Y=\frac{41}{6},\quad \bone=\frac{41}{10}.
+\end{equation}
+In TFPT this quantity appears as the \emph{spectral quadratic index} of the
+hypercharge-coupled boundary operators in the regulated determinant
+(Appendix~\ref{app:boundary}), not as an RG flow coefficient.
+
+\tcblower
+\textbf{Status:} Direct consequence of SM particle content; independent of RG scale.
+
+\textbf{Important distinction:} $\bone$ is a \emph{hypercharge trace invariant}, 
+not the one-loop beta function coefficient $b_1^{(\text{RG})}$. While numerically 
+identical, their physical roles differ:
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item $b_1^{(\text{RG})}$: Controls energy dependence $d\alpha_1/d\ln\mu$
+    \item $\bone$ (TFPT): Discrete index counting charge content; scale-independent
+\end{itemize}
+\textbf{Bridge note:} $b_1$ enters the closure as a UV trace index; the observable mapping to $\alpha(0)$ is tracked explicitly in the bridge ledger.
+
+\textbf{Consequence:} No exotic particles or modified charge structure required.
+\end{axiom}
+
+\begin{tcolorbox}[colback=yellow!3, colframe=yellow!60!black,
+    title={\textbf{EW mapping (kernel $\alpha$ vs. observable $\alpha_{\mathrm{EM}}$)}}, fonttitle=\bfseries\small]
+\textbf{Charge basis:} the discrete trace coefficient $b_1$ is computed in GUT-normalized hypercharge basis (A7).
+\textbf{Bridge bookkeeping:} electroweak relations track the mapping between $\alpha(0)$, $\overline{\alpha}^{(5)}(M_Z)$, and $(g_Y,g_2)$ conventions.
+\textbf{GUT normalization:} $\alpha_Y = \tfrac{3}{5}\alpha_1$.
+\textbf{EW identity:} $\alpha_{\mathrm{EM}}^{-1} = \alpha_1^{-1} + \alpha_2^{-1}$, i.e.\ $1/e^2=1/g_Y^2+1/g_2^2$.
+\textbf{Status:} these identities are enforced by \texttt{ew\_mixing\_mapping\_audit} and \texttt{thomson\_limit\_matching\_audit}.
+\end{tcolorbox}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    width=0.95\linewidth,
+    height=0.42\linewidth,
+    ylabel={$b_Y$ contribution},
+    title={Hypercharge trace contributions (SM, $Q=T_3+Y$)},
+    symbolic x coords={Q,L,uc,dc,ec,H},
+    xtick=data,
+    xticklabel style={rotate=20,anchor=east},
+    xticklabels={$Q$,$L$,$u_c$,$d_c$,$e_c$,$H$},
+    grid=major,
+    legend pos=north west
+]
+\addplot[fill=blue!60] coordinates {
+    (Q,0.3333333333333333)
+    (L,1.0)
+    (uc,2.6666666666666665)
+    (dc,0.6666666666666666)
+    (ec,2.0)
+};
+\addlegendentry{fermions}
+\addplot[fill=orange!70] coordinates {(H,0.16666666666666666)};
+\addlegendentry{scalar}
+\addplot+[mark=*, color=green!60!black] coordinates {
+    (Q,0.3333333333333333)
+    (L,1.3333333333333333)
+    (uc,4.0)
+    (dc,4.666666666666667)
+    (ec,6.666666666666667)
+    (H,6.833333333333333)
+};
+\addlegendentry{cumulative $b_Y$}
+\addplot[black, dashed] coordinates {(Q,6.833333333333333) (H,6.833333333333333)};
+\addlegendentry{$b_Y$ total = 6.83333}
+\end{axis}
+\end{tikzpicture}
+\caption{Hypercharge trace contributions by SM field. The explicit Weyl+Higgs sum closes the definition of $b_1=41/10$ under $Q=T_3+Y$.}
+\label{fig:b1-trace}
+\end{figure}
+
+\begin{tcolorbox}[colback=yellow!3, colframe=yellow!50!black, 
+    title={\textbf{Scale Consistency: Why $\bone$ (UV) Determines $\alpha$ (IR)}}, fonttitle=\bfseries\small]
+\textbf{Potential objection:} The abelian trace $\bone = 41/10$ is computed from the full SM spectrum 
+(quarks, leptons, gauge bosons) at high energies. How can it determine $\alpha$ in the Thomson 
+limit ($Q^2 \to 0$)?
+
+\textbf{Resolution:} The CFE is a stationarity (closure) condition for the effective action; it is \emph{not} an RG differential equation.
+
+\begin{enumerate}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{Spectral origin:} In the APS framework with flat $U(1)_Y$ holonomies on the boundary cycles,
+        the regulated determinant produces a universal trace coefficient proportional to $\sum_f Y_f^2$.
+        Thresholds affect non-universal finite terms, not this discrete spectral index.
+    \item \textbf{Field-content fixed coefficient:} $\bone$ is the GUT-normalized hypercharge trace 
+        $\frac{5}{3}\sum_f Y_f^2$ of the full SM spectrum. Once the field content and charge assignments are fixed, 
+        $\bone$ is a discrete input and does not ``run'' as a function of $\mu$.
+    \item \textbf{UV log coefficient, not IR running:} In the one-loop effective action, $\bone$ multiplies the UV logarithmic term 
+        coming from the abelian charge trace. TFPT uses this UV coefficient inside the stationarity condition; it does not attempt to compute 
+        the infrared running $\alpha(\mu)$.
+    \item \textbf{Threshold independence (anomaly matching):} Below mass thresholds, particles decouple from IR loops, but the UV charge-trace 
+        coefficient is fixed by the UV-complete spectrum. The sum $41/10$ is the asymptotic value and remains the relevant discrete input.
+    \item \textbf{CFE vs.\ RG:} Standard RG asks ``how does $\alpha(\mu)$ evolve?'' The CFE asks ``what value of $\alpha$ makes the effective action stationary 
+        given $(\cthree,\phiz,\bone)$?'' It is a closure condition, not a flow equation.
+\end{enumerate}
+
+\textbf{Reviewer-safe statement:} We use $\bone$ as the discrete spectral trace coefficient of the
+hypercharge-coupled boundary operators in the UV logarithmic term of the regulated determinant.
+TFPT explicitly does \emph{not} claim to compute the IR running $\alpha(\mu)$ or threshold matching.
+
+\textbf{Prediction:} If additional charged particles exist beyond the SM (e.g., SUSY partners), 
+$\bone$ would change and the CFE would predict a \emph{different} $\alpha$. This is testable.
+\end{tcolorbox}
+
+\begin{axiom}{GR Renormalization Condition}{GRN}
+In the torsion-free limit ($K \to 0$), the theory must exactly reproduce 
+Einstein--Hilbert gravity.
+
+\tcblower
+\textbf{Status:} Physical consistency requirement.
+
+\textbf{Consequence:} Fixes the gravitational coupling structure:
+$\kappa^2 = 8\pi G$, with the dimensionless ratio $\xi = \cthree/\phiz$ constrained by topology.
+The dimensional scale $M_{\mathrm{Pl}}$ remains an external input.
+\end{axiom}
+
+%=============================================================================

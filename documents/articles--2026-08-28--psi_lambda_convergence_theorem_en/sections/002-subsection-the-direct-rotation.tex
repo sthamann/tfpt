@@ -1,0 +1,286 @@
+\subsection{The direct rotation}
+
+\begin{lemma}[Canonical direct rotation]\label{lem:rotation}
+Let $P,Q$ be finite-rank orthogonal projections of equal rank and suppose
+$\norm{P-Q}<1$.  Set
+\[
+ S=QP+(\id-Q)(\id-P),\qquad
+ R=S(S^*S)^{-1/2}.
+\tag{3.2}\label{eq:direct-rotation}
+\]
+Then $R$ is unitary, $RPR^*=Q$, and $R$ depends continuously in operator
+norm on $(P,Q)$ throughout the open set $\norm{P-Q}<1$.  In addition,
+\[
+ \norm{[P,R]}_2=\norm{P-Q}_2.
+\tag{3.3}\label{eq:shale-equality}
+\]
+\end{lemma}
+
+\begin{proof}
+First,
+\[
+ SP=QP=QS.
+\tag{3.4}\label{eq:intertwine-S}
+\]
+Taking adjoints gives $PS^*=S^*Q$.  Hence
+\[
+ P(S^*S)=S^*QS=(S^*S)P,
+\]
+so $P$ commutes with every continuous function of $S^*S$, including
+$(S^*S)^{-1/2}$ once invertibility is established.
+
+For $x=Px+(\id-P)x$, the two terms in $Sx$ lie in the orthogonal
+subspaces $Q\K$ and $(\id-Q)\K$, and therefore
+\[
+ \norm{Sx}^2
+ =\norm{QPx}^2+\norm{(\id-Q)(\id-P)x}^2.
+\]
+For $y\in P\K$,
+\[
+ \norm{Qy}\ge \norm{y}-\norm{(\id-Q)y}
+ \ge (1-\norm{P-Q})\norm{y},
+\]
+because $(\id-Q)y=(P-Q)y$.  The same argument on $(\id-P)\K$ gives
+\[
+ \norm{(\id-Q)z}\ge(1-\norm{P-Q})\norm{z}.
+\]
+Thus
+\[
+ \norm{Sx}\ge(1-\norm{P-Q})\norm{x}.
+\]
+So $S$ is injective and bounded below.  In finite dimension it is
+invertible; hence $S^*S$ is strictly positive and
+\eqref{eq:direct-rotation} is defined.
+
+The polar factor $R$ is unitary:
+\[
+ R^*R=(S^*S)^{-1/2}S^*S(S^*S)^{-1/2}=\id,
+\]
+and, since $S$ is invertible in equal finite dimensions, also $RR^*=\id$.
+Using \eqref{eq:intertwine-S} and commutation of $P$ with
+$(S^*S)^{-1/2}$,
+\[
+ RP=S(S^*S)^{-1/2}P
+ =SP(S^*S)^{-1/2}
+ =QS(S^*S)^{-1/2}=QR.
+\]
+Multiplication by $R^*$ yields $RPR^*=Q$.
+
+All operations in \eqref{eq:direct-rotation} are norm-continuous where
+$S^*S$ is bounded away from zero.  The displayed lower bound supplies
+that separation locally, proving continuity.  Finally,
+\[
+ [P,R]R^*=P-RPR^*=P-Q.
+\]
+Right multiplication by a unitary preserves the Hilbert--Schmidt norm,
+which proves \eqref{eq:shale-equality}.
+\end{proof}
+
+\begin{theorem}[Complete finite-window theorem]\label{thm:local}
+Fix a finite window $\mathfrak h_w$.  For $j\in\mathbb N$ and
+$r\in\{0,1\}$ let $C_j^{(r)}$ be covariances on $\mathfrak h_w$.
+Assume
+\[
+ C_j^{(r)}\longrightarrow C^{(r)}
+ \quad\text{in trace norm for }r=0,1
+\tag{3.5}\label{eq:trace-conv}
+\]
+and
+\[
+ \norm{\widehat P_{C^{(0)}}-\widehat P_{C^{(1)}}}<1.
+\tag{3.6}\label{eq:angle}
+\]
+Then, after discarding finitely many $j$, the following statements hold.
+
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item The direct rotation $R_j$ from
+  $\widehat P_{C_j^{(0)}}$ to $\widehat P_{C_j^{(1)}}$ is defined.
+  Its Bogoliubov automorphism in the finite-window Araki--Wyss standard
+  representation has a unitary implementer $U_j$, unique up to phase.
+  The exact Shale number and a covariance-only bound are
+  \[
+  \norm{[\widehat P_{C_j^{(0)}},R_j]}_2
+  =\norm{\widehat P_{C_j^{(0)}}-\widehat P_{C_j^{(1)}}}_2
+  \le2\sqrt{2\norm{C_j^{(0)}-C_j^{(1)}}_1}.
+  \tag{3.7}\label{eq:local-shale}
+  \]
+\item $R_j\to R$ in operator norm, where $R$ is the direct rotation
+  of the limiting purified projections.  The phases may be chosen
+  coherently so that $U_j\to U$ in operator norm, and hence strongly,
+  on the full finite-window Fock space.
+\item If in addition $C^{(0)}=C^{(1)}$, then $R=\id$, the phase may be
+  fixed by $\ip{\Omega}{U_j\Omega}>0$ for all sufficiently large $j$,
+  and $U_j\to\id$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:purification} and \eqref{eq:trace-conv},
+\[
+ \widehat P_{C_j^{(r)}}\longrightarrow\widehat P_{C^{(r)}}
+ \quad\text{in Hilbert--Schmidt norm, hence in operator norm}.
+\]
+Condition \eqref{eq:angle} is strict, so for all sufficiently large $j$,
+\[
+ \norm{\widehat P_{C_j^{(0)}}-\widehat P_{C_j^{(1)}}}<1.
+\]
+Lemma~\ref{lem:rotation} defines $R_j$ and proves
+\eqref{eq:shale-equality}.  Lemma~\ref{lem:purification}, applied to
+$C_j^{(0)}$ and $C_j^{(1)}$, gives the last inequality in
+\eqref{eq:local-shale}.  This verifies the Hilbert--Schmidt hypothesis of
+Theorem~\ref{thm:ss}; in finite dimension it is of course automatically
+finite, but \eqref{eq:local-shale} is the promised quantitative bound.
+Uniqueness up to phase follows either from Theorem~\ref{thm:ss} or
+directly: if $U_j$ and $U'_j$ implement the same automorphism, then
+$U_j'^*U_j$ commutes with every represented CAR generator, and the
+finite Fock representation is irreducible, so $U_j'^*U_j$ is scalar.
+
+Continuity in Lemma~\ref{lem:rotation} gives $R_j\to R$.  We now prove,
+rather than merely cite, the implementer continuity.  Regard the doubled
+complex one-particle space as a real Euclidean space of dimension $2d$,
+and choose Majorana generators
+$\gamma_1,\ldots,\gamma_{2d}$ satisfying
+\[
+ \gamma_a^*=\gamma_a,\qquad
+ \gamma_a\gamma_b+\gamma_b\gamma_a=2\delta_{ab}\id .
+\]
+For all sufficiently large $j$, $R^*R_j$ lies in the logarithm
+neighbourhood of the identity.  Let
+\[
+ A_j=\log(R^*R_j);
+\]
+then $A_j$ is real skew-adjoint and $\norm{A_j}\to0$.  Define
+\[
+ K_j=\frac14\sum_{a,b=1}^{2d}(A_j)_{ab}\gamma_a\gamma_b.
+\]
+Since the sum is finite,
+\[
+ \norm{K_j}
+ \le\frac14\sum_{a,b}|(A_j)_{ab}|
+ \le \frac{d}{2}\norm{A_j}_2
+ \longrightarrow0.
+\tag{3.8}\label{eq:spin-bound}
+\]
+The Clifford commutator is computed without omission:
+\[
+\begin{aligned}
+[\gamma_a\gamma_b,\gamma_c]
+&=\gamma_a\gamma_b\gamma_c-\gamma_c\gamma_a\gamma_b\\
+&=\gamma_a(-\gamma_c\gamma_b+2\delta_{bc})
+ -(-\gamma_a\gamma_c+2\delta_{ac})\gamma_b\\
+&=2\delta_{bc}\gamma_a-2\delta_{ac}\gamma_b.
+\end{aligned}
+\]
+Consequently,
+\[
+ [K_j,\gamma_c]
+ =\sum_a(A_j)_{ac}\gamma_a.
+\]
+Solving the finite-dimensional differential equation
+$\frac d{dt}(e^{tK_j}\gamma_ce^{-tK_j})
+ =[K_j,e^{tK_j}\gamma_ce^{-tK_j}]$
+shows that $e^{K_j}$ implements $e^{A_j}=R^*R_j$.
+If $U$ is one implementer of $R$, choose
+\[
+ U_j=Ue^{K_j}.
+\]
+Then $U_j$ implements $R_j$, and
+\[
+\begin{aligned}
+\norm{U_j-U}
+ &=\norm{e^{K_j}-\id}\\
+ &=\norm{\int_0^1 e^{tK_j}K_j\,dt}\\
+ &\le\int_0^1e^{t\norm{K_j}}\norm{K_j}\,dt\\
+ &\le e^{\norm{K_j}}\norm{K_j}\longrightarrow0.
+\end{aligned}
+\tag{3.9}\label{eq:implementer-norm}
+\]
+This proves operator-norm convergence.
+
+For completeness, here is the requested estimate on an arbitrary
+$n$-particle core vector.  Let
+\[
+ \xi=a^*(f_1)\cdots a^*(f_n)\Omega .
+\]
+Write $\beta_j(a^*(f))=U_ja^*(f)U_j^*$ and
+$\beta(a^*(f))=Ua^*(f)U^*$.  A Bogoliubov transform is linear in the
+creation and annihilation parts, so
+\[
+ \norm{\beta_j(a^*(f))-\beta(a^*(f))}
+ \le\norm{R_j-R}\,\norm{f}.
+\tag{3.10}\label{eq:field-bound}
+\]
+Insert and subtract one factor at a time:
+\[
+\begin{aligned}
+U_j\xi-U\xi
+={}&
+\beta_j(a^*(f_1))\cdots\beta_j(a^*(f_n))
+  (U_j\Omega-U\Omega)\\
+&+\sum_{\ell=1}^n
+\beta_j(a^*(f_1))\cdots\beta_j(a^*(f_{\ell-1}))\\
+&\qquad\cdot
+\bigl(\beta_j(a^*(f_\ell))-\beta(a^*(f_\ell))\bigr)
+\beta(a^*(f_{\ell+1}))\cdots\beta(a^*(f_n))U\Omega .
+\end{aligned}
+\]
+Because $\norm{a^*(f)}=\norm f$ and automorphisms preserve norms,
+\[
+\norm{U_j\xi-U\xi}
+\le
+\left(
+\norm{U_j\Omega-U\Omega}
+n\norm{R_j-R}
+\right)\prod_{\ell=1}^n\norm{f_\ell}.
+\tag{3.11}\label{eq:nparticle}
+\]
+Both terms in parentheses tend to zero by
+\eqref{eq:implementer-norm} and $R_j\to R$.  Finite linear combinations
+of such vectors are handled by the triangle inequality.  This gives the
+strong-convergence argument explicitly on the finite-particle core.
+
+If $C^{(0)}=C^{(1)}$, the two limiting purified projections coincide.
+Formula \eqref{eq:direct-rotation} then has $S=\id$ and $R=\id$.
+Equation \eqref{eq:implementer-norm} permits $U=\id$.  Since
+$U_j\Omega\to\Omega$, the overlap is nonzero for large $j$; multiplying
+$U_j$ by its unique phase makes the overlap positive, without affecting
+convergence.
+\end{proof}
+
+\begin{corollary}[Bound in terms of a measured window HS norm]
+\label{cor:measured}
+If $m=\dim\mathfrak h_w$, then
+\[
+ \norm{C-D}_1\le\sqrt m\,\norm{C-D}_2,
+\]
+and therefore
+\[
+ \norm{[\widehat P_C,R]}_2
+ \le2\sqrt2\,m^{1/4}\norm{C-D}_2^{1/2}.
+\tag{3.12}
+\]
+\end{corollary}
+
+\begin{proof}
+If $s_1,\ldots,s_m$ are the singular values of $C-D$, Cauchy--Schwarz
+gives
+\[
+ \norm{C-D}_1=\sum_{\ell=1}^m s_\ell
+\le\sqrt m\left(\sum_{\ell=1}^m s_\ell^2\right)^{1/2}
+=\sqrt m\,\norm{C-D}_2.
+\]
+Substitution into \eqref{eq:local-shale} proves the result.
+\end{proof}
+
+\begin{remark}[Exactly what the window theorem proves]
+Theorem~\ref{thm:local} proves implementability in the
+\emph{purified finite-window standard form}.  It does not assert that the
+two mixed restricted states are related by an automorphism of
+$\CAR(\mathfrak h_w)$ itself.  Such an assertion would require, at a
+minimum, equality of the spectra of the two restricted covariances.
+Nor does the theorem construct a single nontrivial global charged field:
+when the sectors collapse locally, the canonical local direct rotations
+converge to the identity.  The charge is detected by the failure to
+assemble these local equivalences into a global implementer.
+\end{remark}
+

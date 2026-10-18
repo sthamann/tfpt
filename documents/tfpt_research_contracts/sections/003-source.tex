@@ -1,0 +1,398 @@
+\par\smallskip\noindent\textbf{The two routes share an executable OS skeleton (2026-08-27,
+\texttt{SEAM.EQUIV.SKELETON.01} \mE\ new; \veri{v973\_seam\_route\_narrowing.py}; no marker
+moves --- \texttt{SEAM.EQUIV.01}, \texttt{SEAM.EQUIV.MMST.01} and
+\texttt{SEAM.EQUIV.TWISTOR.01} all stay \mO).} The two routes are bridged by an OS skeleton
+that \emph{runs}, $5/5$: all WOIT kill-test main invariants hold verbatim on the $p{+}ip$
+collar edge, every divergence is control-typed to the checkerboard mechanism --- confirming
+the v519-R4 finding from the second route --- and the collar top edge realizes the
+anti-chiral state exactly. Toy/census level; nothing here is a continuum statement.
+\par\smallskip\noindent\textbf{Route B sharpened to one analytic lemma; both routes precisely scoped.}
+That last question is decomposed (\veri{v289\_marklocal\_raw.py}, \texttt{MARKLOCAL.RAW.01}) into a five-lemma
+chain whose only open link is \mO\ \emph{Flat-Away} --- RP $+$ gap $+$ the four branch marks force the seam
+curvature to vanish away from the marks --- while the conic parametrix (\mC, b-calculus/Melrose), the
+$\mu_4$-orbit source, the $4\Z$ Fourier support (\vref{v264}/\vref{v288}) and the full-$L^2$ commutation
+(\vref{v288}) are discharged: $4/5$ done, so Route B closes the moment Flat-Away does. The two claims are
+firewalled against over-reading: Route B does \emph{not} assert ``full-$L^2$ QGEO'' --- its exact-label split is
+Fourier-lemma (Formal/Exact), operator test (Numerical Exact), transfer to the raw conic DtN (Conditional,
+\vref{v264}), mark-locality from the raw seam (Open Selection, \vref{v289}); and Route A's ``one standard
+theorem'' is itself a composition of citable results (Kitaev/Freed--Hopkins, M\"uger/Kawahigashi--Longo--M\"uger,
+Kawahigashi--Longo, \veri{v287\_free\_rp\_bulk\_to\_holomorphic\_boundary.py}) whose only open hypothesis ---
+seam-bulk invertibility --- coincides with Route B's Flat-Away. Both routes therefore meet at the \emph{same}
+geometric input, with no circularity (the import firewall of \vref{v286}).
+\par\smallskip\noindent\textbf{Red-team: $\mathbb{Z}_4$-invariance is not mark-locality.} A deliberate
+adversary (\veri{v290\_z4\_smooth\_curvature\_adversary.py}) shows the honest limit of Route B's lift: a
+\emph{smooth} $\mathbb{Z}_4$-symmetric off-mark curvature $f=\varepsilon\cos(4\theta)$ \emph{passes} the
+\vref{v288} commutator ($\|[\rho,\Lambda]\|=0$, since $i^n-i^{n\pm4}=0$) yet is not mark-local --- so
+$[\rho,\Lambda]{=}0$ is necessary but not sufficient. The modulus is instead excluded by the spectral data:
+it shifts the DtN spectrum off the flat ladder and the heat trace ($\max|\Delta\lambda|=0.155$,
+$\Delta\mathrm{Tr}=0.019$ at $\varepsilon=0.3$), i.e.\ the KMS weight and $(E_8)_1$ character that
+\texttt{SEAM.EQUIV.01} must match. Consequently the open lemma is named in its own right
+(\veri{v291\_flataway\_contract.py}, \texttt{FLATAWAY.RP.01}): \emph{the smooth curvature density in the DtN
+sub-principal symbol vanishes away from the four branch marks}, with three independent attack routes ---
+spectral-rigidity and heat-kernel (the flat seam is the \emph{unique} spectral/heat match of the smooth
+$\mathbb{Z}_4$ family) and RP-energy/Troyanov (the constant-curvature minimiser) --- closing any one of which
+closes Route B.
+\par\smallskip\noindent\textbf{All three routes attacked; Flat-Away reduced to one selection principle.} Each
+route is now carried to its precise reduction: \mE\ the \emph{heat} route
+(\veri{v292\_flataway\_heat\_reduction.py}) shows the heat-trace deviation
+$\Delta\mathrm{Tr}(e^{-t\Lambda})=c(t)\varepsilon^2+O(\varepsilon^4)$ is a positive-definite quadratic form in
+the off-mark curvature (leading invariant $\|f\|_{L^2}$), so Flat-Away $\Leftarrow$ ``the seam fixes the $a_2$
+heat coefficient''; \mE\ the \emph{spectral} route (\veri{v293\_flataway\_spectral\_hessian.py}) lifts this to
+the full smooth-$\mathbb{Z}_4$ space --- mode $4k$ splits the degenerate Steklov level $|2k|$, the mismatch
+Hessian over $\{4,8,12\}$ is positive-definite ($\{0.497,0.500,0.503\}$), so the flat seam is a \emph{strict}
+isolated minimum (answering ``only one direction''); and \mE/\mC\ the \emph{variational} route
+(\veri{v294\_flataway\_rp\_energy.py}) gives, with the rigid mark divisor and Troyanov uniqueness, the flat cone
+metric as the unique strictly-convex curvature-energy minimiser. The three converge on \emph{one} external
+selection principle (fix $a_2$ / pin the Steklov spectrum / realise the energy-minimiser); closing any one
+closes Route B, and with Route A's holomorphy half, \texttt{SEAM.EQUIV.01}.
+\par\smallskip\noindent\textbf{The heat route made exact and Lean-formalised.} The positive-definiteness
+underpinning the heat route is now a theorem, not a numerical scan
+(\veri{v295\_flataway\_a2\_exact.py}): the first variation of $\mathrm{Tr}\,e^{-t\Lambda}$ vanishes (the
+smooth off-mark curvature has zero mean, Gauss-Bonnet), and since $\Lambda\mapsto\mathrm{Tr}\,e^{-t\Lambda}$ is
+convex (Klein/Peierls), $\varepsilon{=}0$ is the \emph{global} minimum --- so $\Delta\mathrm{Tr}\ge0$ for every
+deformation, $=0$ iff $f=0$; the exact second-order coefficient is the divided-difference kernel of $e^{-tx}$
+(validated to $10^{-6}$). The algebraic $\Delta{=}0\Leftrightarrow$ flat step is machine-formalised in Lean
+(\texttt{FORM.FLATAWAY.01}, \texttt{SeamDeckClosure.lean}: a positive-weighted sum of squares is
+positive-definite; axiom-clean). So Flat-Away's heat route is reduced to the single external invariant ``the
+seam fixes $a_2$'', with its positivity both proved and formalised.  The $a_2$ coefficient itself is now in
+\emph{closed form} (\veri{v296\_flataway\_a2\_closed.py}): the operator tails telescope geometrically to
+$W_k^{\mathrm{tail}}=t(1-e^{-4kt})/(8k(1-e^{-t}))$, leaving a finite $(4k{-}1)$-term middle, e.g.\
+$W_1(t)=t(2t e^{t}+e^{3t}+3e^{2t}+e^{t}-1)e^{-3t}/8$ (manifestly positive; small-$t$ $W_k=t/2+O(t^3)$).
+Symmetrically, Route A's ``one standard import'' is now a precise, citable theorem stack
+(\veri{v297\_route\_a\_literature\_stack.py}): LIT-A (Kitaev; Freed--Hopkins) $\to$ LIT-B (M\"uger;
+Kawahigashi--Longo--M\"uger) $\to$ LIT-C (Conway--Sloane; Dong--Xu) compose into ``invertible bulk
+$\Rightarrow(E_8)_1$'', all three legs established, the one shared hypothesis (seam-bulk invertibility)
+coinciding with Route B's Flat-Away --- so both routes are reduced to citable/established machinery plus the
+\emph{one} shared geometric input, which the lattice/$S_3$ stack (below) now pins at every computable level,
+making the keystone's MMST route (\texttt{SEAM.EQUIV.MMST.01}) \emph{closed modulo cited theorems}.
+\par\smallskip\noindent\textbf{Flat-Away hardened, and the pin derived from $(E_8)_1$
+(\veri{v300\_flataway\_rigid.py}, \texttt{FLATAWAY.RIGID.01}).} The spectral route was a \emph{soft} minimum
+(``the mismatch grows with $\varepsilon$''); it is now a \emph{discrete} obstruction. \mE\ the flat fingerprint
+is the integer Steklov ladder with every level $n\ge1$ of multiplicity exactly $2$; \mE\ the resonant mode $4k$
+splits level $2k$ by gap $=g_k$ (the exact $2\times2$ block $[[2k,g/2],[g/2,2k]]\Rightarrow 2k\pm g/2$, validated
+against the full Toeplitz operator), so \mE\ any $g_k\ne0$ lifts the degeneracy ($2\to1{+}1$) and changes the
+spectral \emph{multiset} --- preserving the flat ladder \emph{with its multiplicities} forces every $g_k=0$, a
+degeneracy obstruction robust to rescaling and strictly stronger than the \vref{v293} ``deviation grows'' scan;
+with the \vref{v295} convexity, flat is isolated analytically \emph{and} discretely. Moreover the external pin is
+now \emph{derived}: \mC\ the $(E_8)_1$ vacuum character $E_4/\eta^8=q^{-1/3}(1+248q+4124q^2+\dots)$ has integer
+$q$-coefficients ($E_8$ even unimodular $\Rightarrow$ integer conformal weights), so by 2d Steklov conformal
+rigidity the integer ladder $\Leftrightarrow$ flat seam --- i.e.\ ``the seam fixes its spectrum'' \emph{is} the
+$(E_8)_1$ rationality of Route~A. \mO\ Hence Flat-Away carries \emph{zero} new open content beyond Route~A: the
+convexity side is unconditional, the discrete obstruction exact, and the two \texttt{SEAM.EQUIV.01} routes
+provably converge on one rationality fact (consistent with the \vref{v286} firewall).
+\par\smallskip\noindent\textbf{Route A's last hypothesis discharged --- the gapped quasi-free bulk is
+invertible (\veri{v301\_route\_a\_invertible.py}, \texttt{SEAM.EQUIV.A.INV.01}).} Since the two routes now meet
+at one rationality fact, the single remaining \emph{unconditional} gap is Route A's open input (\vref{v297}
+LIT-A): ``the raw quasi-free seam bulk is invertible (SRE)''. A \emph{gapped} free-fermion (Gaussian) $2{+}1$D
+bulk cannot carry intrinsic topological order --- free fermions realise only the integer (IQHE/Chern) phases,
+all \emph{invertible}; intrinsic topological order requires interactions (Kitaev's periodic table, class D, the
+only invariant being the chiral central charge). \mE\ the carrier is $16$ Majoranas, so
+$c=g_{\mathrm{car}}{+}\Nfam=8=16/2$ (\vref{v148}); \mE\ $SO(16)_1\supset(E_8)_1$ ($\dim\mathfrak{so}(16)=120$
+currents $+\,128$ spinor $=248$, \vref{v154}); \mC\ hence a gapped quasi-free bulk is invertible
+automatically, and \mE\ the invariant $|\det K|=\#$anyons is $1$ for $E_8$ (invertible) against $4$ for the
+gauged $D_8{=}SO(16)$ (anyons), which free fermions cannot produce. \mO\ So LIT-A's `invertible bulk'
+\emph{follows} from `gapped 16-Majorana quasi-free bulk' (\vref{v148}/\vref{v160} $+$ the mass gap): the
+residual changes from a topological-order statement to a spectral one. \emph{Bottom line:} together with
+\vref{v300}, the entire open content of \texttt{SEAM.EQUIV.01} reduces to the single spectral statement ``the
+quasi-free seam bulk is gapped'' --- the topological-order obstruction (hidden anyons) is removed, and the gap
+itself is not manufactured.
+\par\smallskip\noindent\textbf{The last lever --- the seam gap \emph{is} the derived Recovery gap
+(\veri{v302\_seam\_gap.py}, \texttt{SEAM.EQUIV.GAP.01}).} That single remaining input is not free: the seam
+transfer operator has the frozen spectrum $\mathrm{spec}(T)=\{1,(2/3)^6,(1/3)^6\}$ (\vref{v160}/\vref{v162}),
+a simple Perron eigenvalue $1$ separated from the rest, and the separation is the \emph{Recovery gap}
+$\Delta=-\ln((2/3)^6)=6\ln(3/2)=2\Nfam\ln(3/2)\approx2.4328>0$ --- a number forced by the carrier ($(2/3)^6$ the
+$\mu_4$-deck transfer eigenvalue), with the decoupling margin $\Delta-31/(4\pi^2)\approx1.648>0$ (\vref{v76})
+making it robust. \mC\ By Osterwalder--Schrader reconstruction / quasi-free clustering a transfer-operator gap
+$\Delta>0$ \emph{is} a mass gap of the reconstructed Hamiltonian (correlation length $1/\Delta$). \emph{Bottom
+line:} with \vref{v300}/\vref{v301}, the whole residual of \texttt{SEAM.EQUIV.01} is now a composition of standard
+cited theorems (OS/quasi-free clustering $+$ Kitaev free-fermion invertibility $+$ the \vref{v297} AQFT stack)
+over established TFPT facts ($16$ quasi-free Majoranas; transfer gap $6\ln(3/2)$): \emph{no undischarged
+TFPT-internal assumption remains}. It stays \mO\ (not machine-proved end-to-end), but the open front is reduced
+to citable machinery over a spectral gap that is provably positive.
+\par\smallskip\noindent\textbf{The continuum chain assembled, and the residual tied to the seam one-sidedness
+(\veri{v356\_continuum\_mmst\_applicability.py}, \texttt{SEAM.EQUIV.CONTINUUM.03}).} Writing the chain out
+link-by-link: \textbf{S1} the gapped (\vref{v302}) quasi-free $16$-Majorana collar $\to$ \textbf{S2} invertible
+(Kitaev free fermions, \vref{v301}) $\to$ \textbf{S3} the \emph{nontrivial} invertible phase ($c_-=8\neq0$) $\to$
+\textbf{S4} a non-gappable anomalous chiral edge (anomaly inflow / bulk--edge) $\to$ \textbf{S5} its chiral-CFT
+scaling limit (MMST, \vref{v336}; range $\operatorname{rank}\le c\le D$, i.e.\ $8\le8\le16$) $\to$ \textbf{S6} the
+order-$4$ $\mu_4$ clock $+$ the AQFT stack pin $(E_8)_1$ (\vref{v351}/\vref{v297}). Every link is a theorem or an
+established TFPT fact \emph{except} S3, and S3 is precisely the seam being \emph{one-sided} (chiral, $c_-\neq0$) ---
+the \emph{same} one-sidedness that makes $\cthree=1/(8\pi)$ a one-sided Gauss--Bonnet ($|\Z_2|\oint K$, \vref{v58}).
+So the lone realization input is tied to the constant that \emph{defines} the theory, not a free dial; the residual
+is now ``the abstract collar is realized as a genuine lattice chiral free-fermion invertible phase'', \mO\ but
+theorem-bounded on both sides.
+\par\smallskip\noindent\textbf{MMST in-class verified for the collar, so the scaling limit is $(E_8)_1$
+(\veri{v366\_mmst\_seam\_collar.py}, \texttt{SEAM.MMST.INCLASS.01}).} The continuum leg is now checked
+\emph{hypothesis-by-hypothesis} for the explicit seam collar: it is a $D{=}\dim S^+{=}16$ Majorana quasi-free
+(CAR) state (\vref{v155}/\vref{v160}), gapped with $\Delta{=}6\log\tfrac32{>}0$ \emph{derived} (\vref{v302}), and
+chiral with $c_-{=}D/2{=}8{=}\gcar{+}\Nfam$, so it sits squarely in the MMST free-lattice-fermion class with
+$\operatorname{rank}\le c\le D$ reading $8\le8\le16$ (\emph{in} range, saturating $\operatorname{rank}{=}c{=}8$).
+The MMST massless-scaling-limit theorem then applies as a cited result, and the order-$4$ $\mu_4$ clock pins the
+target to $(E_8)_1$ ($\det K{=}1$, one primary) over the same-$c$ rival $SO(16)_1$ ($\det K{=}4$, \vref{v351}).
+\mE\ the class arithmetic, the derived gap, the chirality and the $(E_8)_1$ pinning; \mC\ the CAR-class typing and
+the cited MMST theorem; \mO\ the lone residual is exactly S3 above (the lattice realization). The continuum side
+of \texttt{SEAM.EQUIV.01} is thereby reduced to a single, named, theorem-bounded input. The lattice$\to$conformal-net
+step itself is now a \emph{rigorous AQFT construction}: Adamo--Giorgetti--Tanimoto (\texttt{arXiv:2506.01008}, 2025)
+build the two-dimensional conformal net $\mathcal A_Q$ of an even lattice $Q$ and \emph{classify} every
+two-dimensional extension of the Heisenberg net (under a discreteness assumption) as such a lattice net --- so
+``the lattice is a conformal net'' is a theorem of the same operator-algebraic lineage the continuum leg invokes,
+not a hope; and since (xxxii) (\veri{v469\_seam\_crossedproduct\_route.py}) the extension step no longer even
+\emph{needs} the preprint lineage --- the local $\Z_2$ simple-current crossed product ($h_s{=}1{\in}\Z$,
+Longo--Rehren 1995; B\"ockenhauer 1996; B\"ockenhauer--Evans 1998; KLM 2001) certifies it on peer-reviewed
+ground, with AGT/AMT as the independent second witness.
+\par\smallskip\noindent\textbf{S3 made concrete: an explicit gapped chiral-Majorana lattice model
+(\veri{v367\_seam\_s3\_lattice.py}, \veri{v368\_seam\_s3\_inflow.py}).} The S3 input is no longer
+abstract. The $p{+}ip$ Bloch model $h(k){=}\sin k_x\,\sigma_x{+}\sin k_y\,\sigma_y{+}(M{-}\cos k_x{-}\cos
+k_y)\sigma_z$ is, at $M{=}1$, a gapped free-fermion phase with numerically-computed Chern number $|C|{=}1$
+($C{=}0$ trivially at $M{=}3$), so $N_{\mathrm{Maj}}{=}\dim S^+{=}16$ copies give a chiral edge of
+$c_-{=}16/2{=}8{=}\gcar{+}\Nfam$, with the edge K-matrix $SO(16)_1$ ($\det 4$) condensed to $(E_8)_1$
+($\det 1$) by the order-4 $\mu_4$ clock (\vref{v351}/\vref{v369}). A finite STRIP of the same model carries
+an edge-localised in-gap chiral branch (absent in the trivial phase) -- so by anomaly inflow the chiral edge
+\emph{exists} as a consequence of the invertible bulk (the S4 leg), discharging the ``does the edge exist?''
+question on the lattice. \mE\ the gapped Chern model, the $c_-{=}8$ counting and the edge existence; \mC\ the
+$\mu_4$ condensation to $(E_8)_1$; \mO\ only the genuine \emph{continuum scaling limit} (MMST, \vref{v336}) stays
+open --- S3 is a runnable lattice model that pins the target at every computable level, so the keystone's MMST
+route (\texttt{SEAM.EQUIV.MMST.01}) is
+\emph{closed modulo cited theorems}.
+\par\smallskip\noindent\textbf{The S3 closure stack: $c=8$, the $(E_8)_1$ character, the torus count and
+reflection positivity --- all computed on the lattice (\veri{v376\_seam\_s3\_centralcharge.py},
+\veri{v377\_seam\_s3\_e8character.py}, \veri{v378\_seam\_s3\_modular.py}, \veri{v379\_seam\_s3\_rp.py}).}
+On that explicit model the target of the scaling limit is now pinned at every level a computation can
+reach. \emph{Central charge} (\vref{v376}): the Calabrese--Cardy finite-size entanglement scaling gives
+$c=1.0000$ per critical complex mode, so the $16$-Majorana ($=8$ complex) collar has $c=8=\gcar{+}\Nfam$,
+and it is chiral ($c_-=8$). \emph{Convergence} (\veri{v392\_seam\_s3\_scalinglimit.py}): across five sizes
+$L=66\ldots514$ the slope $c_1(L)$ is a monotone Cauchy-like sequence approaching $1$ and $1/L$-Richardson-extrapolates
+to $c_1(\infty)\approx1.000$ ($c\approx8.00$ in the limit) --- the existence-relevant \emph{convergence} the two-size
+value did not test (evidence, not a proof of existence; the residual stays \mO). \emph{The net} (\vref{v377}): the exact affine character
+$\chi=E_4/\eta^8=q^{-1/3}(1+248q+4124q^2+\dots)$ gives $c=8$ and $248$ level-1 currents (one primary), and
+the $\mu_4$/GSO promotion $248{=}240{+}8{=}120{+}128$ ($240{=}16{\cdot}5{\cdot}3$) pins $(E_8)_1$ over the
+same-$c$ rival $SO(16)_1$ ($120$ currents, four primaries). \emph{Genus-1} (\vref{v378}): the KLM
+condensation $\mu(\text{carrier}){=}16\to\mu(E_8){=}16/4^2{=}1$ and the single character's modular
+$T$-eigenvalue $e^{-2\pi i/3}$ give torus ground-state degeneracy $1$ --- the holomorphy / $\det K{=}1$
+statement that the genus-0 arguments could not reach (\vref{v344}). \emph{Reflection positivity}
+(\vref{v379}): the gapped collar's Euclidean two-point function has a positive spectral measure, so the OS
+reflection Gram matrix is a \emph{positive-mixture Gram}
+$M=V^{\mathsf T}\mathrm{diag}(1/K)V$, $V_{ki}=e^{-\varepsilon_k\tau_i}$ --- hence
+$x^{\mathsf T}Mx=\sum_kw_k(v_k\!\cdot\!x)^2$ is a sum of squares and positive semidefiniteness holds
+\emph{exactly}, as an identity rather than to a tolerance (hardened 2026-07-28 after T133 certified that
+the \emph{assembled double-precision} matrix has a negative direction at $-7.75\times10^{-18}$, inside the
+old $10^{-10}$ tolerance; the min-eigenvalue check is retained as a diagnostic measurement, and a ghost
+mode still breaks the RP test). \mE\ all four (numerical $c$,
+exact character, genus-1 count, RP); \mO\ the one thing a computation cannot supply is the abstract
+\emph{continuum existence} of the limit (the cited MMST theorem, \vref{v336}). With RP in hand the ambient
+measure C7 is then discharged by the redundancy theorem (\vref{v369}), so S3 is the master key: the target
+is pinned exactly, only the existence proof is external.
+\par\smallskip\noindent\textbf{A ground-state witness for premise (i): the modular commutator measures
+$c_-{=}8$ from the bulk state alone (\veri{v489\_seam\_modular\_commutator.py}, \texttt{SEAM.CCC.01}).}
+The chiral central charge entered so far through band topology (the Chern number, \vref{v367}) and through
+counting (the KLM/det-Cartan arithmetic, \vref{v378}). The Kim--Shehab--Kim modular commutator
+$J(A,B,C)=i\operatorname{Tr}(\rho_{ABC}[K_{AB},K_{BC}])=(\pi/3)\,c_-$ (PRL 128 (2022)) reads $c_-$ off the
+\emph{entanglement data of the exact BdG ground state} of the same collar --- no band bundle, no
+representation theory enters --- via the Peschel covariance ($W_X=-2\operatorname{artanh}\Gamma_X$) on a
+disk cut into three $120^\circ$ wedges: per layer $c_-=0.499998$ at $L{=}32$ (converged $0.500000$ at
+$L{=}48$, deviation $-1.8\times10^{-7}$), the trivial $M{=}3$ control gives $0.000000$, the orientation
+flip $M{=}{-}1$ gives $-0.499986$ (sign flip), layer additivity is exact ($10^{-14}$), and the $16$-layer
+carrier lands on $c_-=8=\gcar+\Nfam$ (direct run $7.9967$ at $L{=}16$, additivity route $8.0000$). \mE\ the
+third, mutually independent lattice witness of premise (i) of \texttt{SEAM.EQUIV.01} --- and the first read
+from ground-state entanglement alone; \mO\ unchanged: the continuum scaling limit (MMST, \vref{v336}) and
+the cited KLM condensation step stay exactly where \vref{v367}/\vref{v378} left them ---
+\texttt{SEAM.EQUIV.01} stays \mO.
+\par\smallskip\noindent\textbf{The spin-structure parity census: $\mu_{\mathrm{pre}}{=}4$ witnessed on the
+lattice (\veri{v490\_seam\_parity\_census.py}, \texttt{SEAM.MU.01}).} Step 1 of the KLM chain
+(\vref{v378}) --- ``the carrier sits in the $SO(16)_1$ class, $\mu_{\mathrm{pre}}{=}4$, \emph{before} the
+$\mu_4$ condensation'' --- was arithmetic; it is now a lattice ground-state measurement. The $T^2$
+fermion parity per spin structure $(AA,AP,PA,PP)$ is determined \emph{twice} (Read--Green TRIM product and
+real-space Majorana Pfaffian, spectra matching to $9{\times}10^{-15}$): per layer $(+,+,+,-)$ --- the
+$\nu{=}1$ Ising signature --- and for the $16$-layer carrier $\mathrm{parity}^{16}={+}$ in \emph{all four}
+sectors, so the gauged torus GSD is $4=\mu(SO(16)_1)=|\det\mathrm{Cartan}(D_8)|$. The 16-fold-way bridge
+then runs on \emph{measured} numbers: $\theta_v=e^{2\pi i\nu/16}=1$ exactly at $\nu=2c_-=16$ (\vref{v489})
+--- the gauged vortex is a boson, condensable, while the rivals $\nu=1,2,8$ are not holomorphically
+condensable. Honest fences: the fermionic Kitaev--Preskill TEE is identically zero for \emph{both} $M{=}1$
+and $M{=}3$ ($\gamma_f=0.000001/0.000000$) --- an invertible fermionic phase has no TEE, so $\gamma_f$ does
+\emph{not} discriminate $(E_8)_1$ vs $SO(16)_1$; and the KLM step $\mu:4\to4/2^2=1$ stays the cited
+theorem (\mC, the condensed model is interacting). The numerics pin exactly the premise package
+$\{c_-{=}8,\ \mu_{\mathrm{pre}}{=}4,\ \theta_v{=}1\}$ of the condensation; \texttt{SEAM.EQUIV.01} stays \mO.
+\par\smallskip\noindent\textbf{And that external step is now Lean-formalised as ``closed modulo a cited
+theorem'' (\texttt{FORM.SEAM.MMST.01}, \texttt{TfptCarrier/SeamScalingLimit.lean}).} The continuum leg is
+machine-formalised in the audit-contract style of \texttt{SeamEquivChain.lean}: the collar's MMST
+applicability hypotheses are \emph{provable} arithmetic facts by Lean kernel \texttt{decide} (no axioms) ---
+$D{=}16$ Majoranas, $\operatorname{rank}{=}c{=}8$, the range $8\le8\le16$, the chirality $c_-{=}8\neq0$, and
+the holomorphy discriminator $\det K{=}1$ vs $SO(16)$'s $4$; the MMST scaling-limit theorem and the
+Adamo--Moriwaki--Tanimoto OS reconstruction are declared as \emph{named cited axioms}; and the conclusion
+$(E_8)_1$ follows by a well-typed composition whose \texttt{\#print axioms} pins the residual to exactly those
+two published theorems (plus the carrier gap), with no hidden assumption and no \texttt{sorry}. Every
+TFPT-internal hypothesis is thus kernel-checked; only the two cited theorems are assumed --- the honest
+closure ceiling for \texttt{SEAM.EQUIV.01}. \emph{Two of the seven convergent routes below are now
+kernel-hardened the same way:} \texttt{FORM.SEAM.BW.HSMI.01} (\texttt{TfptCarrier/SeamStandardPair.lean})
+proves the four Borchers/Wiesbrock \emph{standard-pair relations} exactly over $\mathbb{Z}$ on the centred
+ladder ($[K,P]{=}P$, $J^2{=}1$, $JKJ{=}{-}K$, $JPJ{=}P_+$, all by kernel \texttt{decide}, no domain axiom),
+with the cited Borchers step and the one continuum input as named axioms; and
+\texttt{FORM.SEAM.APPLICABILITY.01} (\texttt{TfptCarrier/SeamApplicabilityLedger.lean}) kernel-checks the audit
+\emph{count} itself --- of the $12$ cited-theorem hypotheses exactly $11$ are internal and $1$ external (and
+$8\le8\le16$, $\det K{=}1\neq4$), all axiom-free --- so the very bookkeeping the keystone's honesty rests on is
+machine-verified, leaving only the one named continuum fact open.
+\par\smallskip\noindent\textbf{TOE-roadmap follow-ups --- the keystone as a typed certificate, the bedrock
+modular form, and the gap-decoupled measure (\veri{v308\_seam\_equiv\_chain.py}, \veri{v309\_modular\_bedrock.py},
+\veri{v311\_gap\_decoupled\_measure.py}).} Three machine-checked steps push the keystone arc further.
+\emph{(i) Composition certificate} (\veri{v308\_seam\_equiv\_chain.py}): the closing implication is one well-typed
+logical chain $\text{gap}{>}0\to\text{invertible}\to\text{holomorphic }c{=}8\to(E_8)_1$ whose arithmetic
+discriminators are exact --- $|\det\mathrm{Cartan}(E_8)|{=}1$ against $|\det\mathrm{Cartan}(D_8)|{=}4$, the carrier
+tower $4{\cdot}4{=}16\to4\to1$, $c{=}\gcar{+}\Nfam{=}8$ --- so the only undischarged premise is the cited OS step;
+\mE\ the discriminators, \mO\ the keystone. \emph{(ii) Modular bedrock} (\veri{v309\_modular\_bedrock.py}): with the
+four marks derived from Gauss--Bonnet (\vref{v216}) and the order-$4$ clock from cross-ratio $2$ (\vref{v214}), the
+quasi-free modular Hamiltonian $K=\log((1{-}C)/C)$ is built explicitly and $[\rho,K]{=}0\Leftrightarrow
+\omega{\circ}\rho{=}\omega$ (a $\Z_2$ profile breaks it), so the bedrock reduces \emph{non-circularly} to the
+Bisognano--Wichmann intrinsicality of the raw collar state; \mE\ the model, \mO\ the intrinsicality.
+\emph{(iii) Gap-decoupled measure} (\veri{v311\_gap\_decoupled\_measure.py}): the admissible sector clusters
+exponentially at rate $(2/3)^6$ (correlation length $1/\Delta$, finite susceptibility $729/665$) and the \vref{v76}
+margin $\Delta-31/(4\pi^2)>0$ decouples it from the ambient, so the physical sector is a convergent object
+while \texttt{QG.AMB.01} is a \mC\ redundancy (\vref{v369}). Each pins the residual to a single named step; with the
+lattice/$S_3$ stack the keystone's MMST route (\texttt{SEAM.EQUIV.MMST.01}) is now \emph{closed modulo cited
+theorems}.
+\emph{(iv) The intrinsic-BW residual as a cited reduction} (\veri{v424\_seam\_lto\_rp\_reduction.py}): the open
+bedrock lemma of (ii) --- the raw collar's intrinsic Bisognano--Wichmann property --- is reduced to the recent
+commuting-projector theorem of Naaijkens--Penneys--Wallick (\texttt{arXiv:2605.10693}), whose reflection-positivity
+axiom (LTO-RP) is exactly $u_\Theta{=}J$ (the reflection \emph{is} the modular conjugation), i.e.\ the BW condition
+$\theta K\theta{=}-K$ --- \emph{not} $\omega{\circ}\rho{=}\omega$. \mE\ the $\mu_4$ clock is a modular \emph{symmetry}
+($[\rho,K]{=}0$), not the flow ($\sigma^\psi{=}\rho$ is type-wrong, a one-parameter group versus a finite order-$4$
+element); a positive character-block-diagonal $K$ has $[\rho,K]{=}0$ yet, being positive definite, never
+$\theta K\theta{=}-K$, so clock-invariance does \emph{not} imply (LTO-RP). \mO\ make-or-break: NPW26 prove (LTO-RP)
+for \emph{topologically ordered} commuting-projector models (Toric Code via a trace, Levin--Wen anyonic), whereas the
+seam is the opposite corner --- invertible ($|\det\mathrm{Cartan}(E_8)|{=}1$, no anyons) and a $\beta{=}1$ KMS state
+(not a trace) --- so two sub-steps stay open: realising the raw seam as a $\Z_2$-reflection commuting-projector LTO,
+and extending (LTO-RP) to the invertible KMS case. An MMST-style reduction (cf.\ \vref{v308}/\vref{v336}), \emph{not}
+a closure. \emph{Sub-step (ii) is now constructively exhibited} (\veri{v426\_seam\_lto\_rp\_kms.py}): a gapped
+reflection-symmetric $\mu_4$-even collar at $\beta{=}1$ KMS satisfies $\Theta K\Theta^{-1}{=}{-}K$
+($u_\Theta{=}J$) and $[\rho,K]{=}0$, so (LTO-RP) holds there by direct Tomita--Takesaki --- the corner NPW26
+leave open --- with $|\!\det\mathrm{Cartan}(E_8)|{=}1$ (invertible, no anyons) and the state a genuine KMS,
+not a trace; only the continuum sub-step (i) remains \mO. On the covariance side, the recent theorem of
+Adamo--Giorgetti--Tanimoto (\texttt{arXiv:2508.07109}, 2025) --- every DHR representation of a conformal net
+extending a loop-group/Virasoro net is \emph{automatically} positive-energy and diffeomorphism-covariant ---
+defuses the old ``Bisognano--Wichmann presupposes the very covariance it should produce'' circularity (\vref{v215}):
+once the seam net is in hand, geometric covariance is a \emph{consequence}, not an input.
+\par\smallskip\noindent\textbf{Twenty-six convergent attacks on the one continuum residual --- intrinsic BW, a
+bulk continuum motor and its chiral-edge counterpart, the $\beta$-homotopy, the applicability audit, uniform
+rigidity with its forcing converse and the derivation of clock-invariance, three independent reads of the edge
+central charge, the four-point and uniform-in-$N$ pinning of the external fact, the Ising operator tower, the
+$(E_8)_1$ torus modular data, the $\mu_4$-from-marks derivation, the kill tests, the lattice Sugawara current
+algebra, a uniform-in-$N$ Tomita--Takesaki tower, the chirality-from-$P_1$ forcing, an $(E_8)_1$ character kill
+test, the exact MMST citation audit, the complementary lattice-VOA route, the explicit flat-band
+commuting-projector LTO realisation, the strict-locality (Kapustin--Fidkowski) obstruction, the character-level
+128-spinor extension, the $c{=}8$ holomorphic-uniqueness pin and the one-particle realisation rigidity
+(\veri{v438\_seam\_hsmi\_borchers.py}, \veri{v439\_seam\_lieb\_robinson.py}, \veri{v440\_seam\_lto\_rp\_beta.py},
+\veri{v441\_seam\_applicability\_ledger.py}, \veri{v442\_seam\_rigidity\_uniform.py},
+\veri{v443\_seam\_e8\_discriminator.py}, \veri{v444\_seam\_edge\_scaling.py},
+\veri{v445\_seam\_rigidity\_forcing.py}, \veri{v446\_seam\_clock\_invariance.py},
+\veri{v447\_seam\_edge\_chern.py}, \veri{v448\_seam\_edge\_fourpoint.py},
+\veri{v449\_seam\_mmst\_uniform.py}, \veri{v450\_seam\_edge\_entanglement.py},
+\veri{v451\_seam\_edge\_cardy\_tower.py}, \veri{v452\_seam\_e8\_modular.py},
+\veri{v453\_seam\_mu4\_from\_marks.py}, \veri{v454\_seam\_edge\_virasoro.py},
+\veri{v455\_seam\_bw\_uniform.py}, \veri{v456\_seam\_chirality\_from\_c3.py},
+\veri{v457\_seam\_character\_killtest.py}, \veri{v458\_seam\_mmst\_citation\_audit.py},
+\veri{v459\_seam\_lattice\_voa\_route.py}, \veri{v460\_seam\_s3\_lto.py},
+\veri{v461\_seam\_strict\_locality.py}, \veri{v462\_seam\_spinor\_continuum.py},
+\veri{v463\_seam\_c8\_holomorphic\_uniqueness.py}, \veri{v464\_seam\_oneparticle\_rigidity.py},
+\veri{v469\_seam\_crossedproduct\_route.py}).} None closes
+\texttt{SEAM.EQUIV.01}; together they ground the one continuum input on both its halves, reduce it to a single
+analytic fact and make the claim falsifiable.
+\emph{(v) The intrinsic Bisognano--Wichmann route} (\veri{v438\_seam\_hsmi\_borchers.py}): the seam supplies a
+Longo \emph{standard pair} / $+$half-sided modular inclusion --- a positive lightlike translation $P\ge0$, the
+boost $K$ with $[K,P]{=}P$ (the Borchers scaling $\Delta^{it}P\Delta^{-it}{=}e^{-t}P$), and a reflection
+$J$ with $JKJ{=}{-}K$, $JPJ{=}P_-$ --- so by Borchers' theorem the modular flow is geometric \emph{intrinsically},
+\emph{without} presupposing the rotation-covariance of the vacuum; \mE\ the ladder algebra and the $sl(2,\mathbb{R})$
+positivity (min eig $>0$, with the indefinite boost as control), \mC\ the synthesis, \mO\ assembling the finite
+algebra and the positive-energy rep into one continuum standard pair (the MMST/NPW26 wall). \emph{(vi) The
+continuum-existence motor} (\veri{v439\_seam\_lieb\_robinson.py}): the explicit $p{+}ip$ collar (\vref{v367}) has
+a uniform-in-$N$ gap, exponential clustering with $N$-independent $\xi$, and a finite Lieb--Robinson light cone, so
+by Nachtergaele--Sims its \emph{bulk} thermodynamic limit exists --- grounding the bulk half of the cited MMST
+existence in our model and narrowing the open step to the chiral massless \emph{edge} scaling limit;
+\mE\ gap/clustering/light-cone, \mC\ the lift, \mO\ the edge CFT. \emph{(vii) The $\beta$-homotopy}
+(\veri{v440\_seam\_lto\_rp\_beta.py}): the (LTO-RP)/BW data ($\Theta K\Theta{=}{-}K$, $[\rho,K]{=}0$) are
+$\beta$-independent, and along the whole path $C_\beta{=}1/(1{+}e^{\beta K})$ from the NPW26-proven \emph{trace}
+state ($\beta{=}0$) to the seam KMS state ($\beta{=}1$) every covariance is reflection-related, $\mu_4$-invariant
+and valid --- a norm-continuous, obstruction-free homotopy, upgrading the single point of \vref{v426} to a path
+argument for sub-step (ii). \emph{(viii) The applicability audit} (\veri{v441\_seam\_applicability\_ledger.py}):
+a hypothesis-by-hypothesis ledger of MMST/NPW26/Adamo finds $11$ of $12$ hypotheses are TFPT-internal computed
+facts (\mE) and exactly one is external --- the continuum existence of the chiral scaling limit ---
+covariance being an Adamo consequence, not an input; the keystone's external dependence is pinned to that one
+analytic fact. \emph{(ix) Uniform rigidity} (\veri{v442\_seam\_rigidity\_uniform.py}): the band-limited
+$\mu_4$-character rigidity of \vref{v398} is uniform in $N$ --- exact $4$-sector commutation to $N{=}256$, a
+uniform gap, and an $N$-independent clock-breaking lower bound $\|[\rho,V]\|{=}2$ --- so it is not a small-$N$
+artifact (the full-$L^2$ forcing stays \mO). \emph{(x) The kill tests} (\veri{v443\_seam\_e8\_discriminator.py}):
+mode~D of the closure-mode classification (\vref{v347}) as concrete \emph{falsifiable} discriminators against the
+nearest $c{=}8$ rival $SO(16)_1$ --- torus GSD $1$ vs $4$, level-$1$ currents $248$ vs $120$, lattice theta $240$
+vs $112$ norm-$2$ roots --- with $c{=}8$ alone unable to decide (\vref{v277}) and only $\det K{=}1$ (the genus-$1$
+statement, \vref{v90}) selecting $E_8$; a seam with GSD${>}1$ would falsify $(E_8)_1$. \mX\ the tests, \mO\ the
+realisation. \emph{(xi) The chiral-edge scaling motor} (\veri{v444\_seam\_edge\_scaling.py}): the counterpart of
+(vi) on the \emph{edge}, attacking exactly the chiral massless scaling limit that the bulk motor left open. On the
+same $p{+}ip$ collar (\vref{v367}/\vref{v368}) the lattice edge already carries the conformal data of a chiral
+$c{=}\tfrac12$ Majorana CFT --- a linear, chiral in-gap dispersion (velocity $v{\approx}0.98$, $R^2{=}0.9999$, with
+\emph{opposite} per-edge velocities), an \emph{algebraic} edge two-point $\sim r^{-\eta}$ with $\eta{\approx}1$
+(versus the \emph{exponential} bulk row and the exponential trivial-phase control), and a Cauchy-convergent
+scaling-collapse under refinement ($\eta{=}1.001{\pm}0.007$, successive spread $0.028{\to}0.013$) --- so the
+$16$-copy edge is a chiral $c_-{=}8$ $(E_8)_1$ CFT; \mE\ the kinematics, correlator and collapse, \mC\ the
+central-charge reading, \mO\ the rigorous uniform-convergence theorem (cited MMST). With (vi) for the bulk and
+(xi) for the edge, \emph{both halves} of the one continuum residual are numerically grounded and pinned to a single
+cited theorem. \emph{(xii) The rigidity forcing converse} (\veri{v445\_seam\_rigidity\_forcing.py}): the converse
+of (ix), upgrading rigidity from ``block-diagonal \emph{permits} commuting'' to ``commuting with the order-$4$
+clock \emph{forces} block-diagonal''. For $\rho{=}\operatorname{diag}(i^n)$, $[\rho,K]{=}0$ \emph{iff}
+$K_{ij}{=}0$ whenever $i{\not\equiv}j\bmod4$ (verified entrywise, swept $N{=}4..128$), so the commutant is
+\emph{exactly} the $4$-sector block algebra: $\dim\{K:[\rho,K]{=}0\}{=}\sum_s n_s^2$, a proper subspace of the
+full $N^2$ algebra ($N{=}16$: $64{<}256$); every off-block unit has $\|[\rho,E_{ij}]\|{\ge}\sqrt2$ (zero slack),
+and the order-$2$ clock leaves a strictly larger commutant ($64$ vs $128$) --- the \emph{four} Gauss--Bonnet marks
+(order $4{=}|\mu_4|{=}h(A_3)$) force strictly more structure than two, and only the index-$4$ extension is $(E_8)_1$
+($\det{=}1$, \vref{v281}/\vref{v154}/\vref{v351}). \mE\ the entrywise iff, exact commutant dimension, off-block
+sharpness and order discriminator; \mC\ the synthesis (RP-definability $+$ clock-invariance \emph{force} the
+block-diagonal $\Lambda_\Sigma$, \vref{v442}'s ``permit'' upgraded to ``force''); \mO\ the single residual is now
+precisely that the physical transfer lies in the commutant (clock-invariance $=$ \texttt{QGEO.SYM.01},
+\vref{v323}/\vref{v335}). \emph{(xiii) Clock-invariance derived} (\veri{v446\_seam\_clock\_invariance.py}): closing
+(xii)'s residual one notch further --- the operator condition $[\rho,\Lambda_\Sigma]{=}0$ is itself a
+\emph{consequence} of a structural symmetry, not an extra assumption. On explicit finite OS data, the canonical
+transfer $\Lambda{=}C(1)C(0)^{-1}{=}e^{-h}$ (the transfer fixed by RP$+$reflection, \vref{v54}) of a
+$\mu_4$-invariant covariance satisfies $[\rho,\Lambda]{=}0$ (swept $N{=}4..32$; iff-sharp $\mu_4$-breaking neg
+control), $\Lambda$ is a positive contraction, and the free modular Hamiltonian $K{=}\log((1{-}C)C^{-1})$
+(\vref{v258}) of the invariant state has $[\rho,K]{=}0$ (Tomita--Takesaki). \mE\ the inheritance, contraction and
+modular commutation; \mC\ so with (xii), RP-definability \emph{plus} the four marks force the block-diagonal
+$\Lambda_\Sigma$; \mO\ the residual reduces from an operator commutation to the structural ``the seam RP data is
+$\mu_4$-symmetric'' (\texttt{QGEO.SYM.01}, \vref{v216}/\vref{v323}). \emph{(xiv) The independent topological edge
+reading} (\veri{v447\_seam\_edge\_chern.py}): a second, fit-free route to the edge central charge of (xi). On the
+same $p{+}ip$ collar (\vref{v367}/\vref{v368}) the bulk Chern number is the integer $C{=}{+}1$
+(Fukui--Hatsugai--Suzuki link variables; $C{=}0$ in the trivial phase, $C{=}{-}1$ at the opposite mass, matching
+(xi)'s opposite per-edge velocities), the open strip carries exactly $|C|{=}1$ chiral edge branch per boundary, and
+the Li--Haldane entanglement spectrum has in-gap modes at $\tfrac12$ only in the topological phase; \mE\ the Chern
+integer, channel count and entanglement signature, \mC\ the bulk--edge reading $c_-{=}N_{\mathrm{Maj}}\cdot\tfrac12
+\cdot|C|{=}16\cdot\tfrac12{=}8{=}\gcar{+}\Nfam$ --- the \emph{same} $c_-{=}8$ as (xi) from a logically independent
+(topological) observable. \emph{(xv) The four-point pinning of the external fact}
+(\veri{v448\_seam\_edge\_fourpoint.py}): extending (xi)'s two-point scaling limit to the next order to support
+exactly the one external fact (viii) isolates. The edge state is quasi-free (the ground-state correlation matrix is
+an exact projector $G^2{=}G\sim10^{-13}$, the MMST CAR hypothesis), and the edge four-point cross-ratio
+$Q{=}[G_{01}G_{23}]/[G_{02}G_{13}]$ at commensurate positions is Cauchy-convergent under refinement to the
+free-fermion conformal value $\sin(5\pi/12)/\sin(\pi/12){=}2{+}\sqrt3\approx3.732$ (the bulk control off-scale,
+exponential); \mE\ the quasi-free property, four-point convergence and conformal form, \mC\ so the one external MMST
+fact is empirically supported at \emph{both} two- and four-point order. \emph{(xvi) The uniform-in-$N$ pinning}
+(\veri{v449\_seam\_mmst\_uniform.py}): strengthening (xv) from convergence at a single cross-ratio to the
+\emph{uniformity} the cited theorem asserts --- two \emph{independent} edge four-point cross-ratios converge to
+\emph{distinct} conformal values ($Q(1,2,4,7)/12\to2{+}\sqrt3$ and $Q(1,3,5,9)/12\to2$) at one $N$-independent
+$1/N$ rate ($|Q(N){-}Q_\infty|\cdot N\le4$ for both, $N_x\in\{36,48,60\}$), the bulk control off-scale; \mE\ the
+two limits and the uniform rate, \mC\ so the MMST uniform-convergence \emph{hypothesis} is empirically met.
+\emph{(xvii) The entanglement reading of $c_-$} (\veri{v450\_seam\_edge\_entanglement.py}): a \emph{third},
+correlator-independent route to the edge central charge --- the Calabrese--Cardy block-entropy law gives
+$c_{\mathrm{Dirac}}{=}1.000$ for the critical free-fermion chain (vs a saturating, $\ell$-independent gapped
+control), so $c$ per Majorana $=\tfrac12$ and $c_-{=}16\cdot\tfrac12{=}8{=}\gcar{+}\Nfam$; \mE\ the law and the
+control, \mC\ the assembly. \emph{(xviii) The Ising operator tower} (\veri{v451\_seam\_edge\_cardy\_tower.py}):
+naming the edge CFT by its \emph{operator content} --- the Cardy finite-size spectrum reproduces the exact Ising
+chiral primaries $h_\sigma{=}\tfrac1{16}$ (the periodic--antiperiodic ground split) and $h_\epsilon{=}\tfrac12$ (the
+lowest NS pair gap), both $L$-independent, so $\{c,h_\sigma,h_\epsilon\}{=}\{\tfrac12,\tfrac1{16},\tfrac12\}$ is the
+free-Majorana minimal model $M(3,4)$; \mE\ the dimensions and conformal scaling, \mC\ the identification.
+\emph{(xix) The $(E_8)_1$ torus modular data} (\veri{v452\_seam\_e8\_modular.py}): pinning the $(E_8)_1$ identity on
+the \emph{torus}, complementing the edge reads (xi)/(xiv)/(xvii)/(xviii) --- the character $\chi{=}E_4/\eta^8$ is
+$S$-invariant ($\chi(-1/\tau){=}\chi(\tau)$, one primary), $T$-multiplies by $e^{-2\pi i/3}{=}e^{-2\pi i c/24}$
+($c{=}8$) and is holomorphic ($c\equiv0\bmod8$, $T$-phase order $3$); \mE\ the full modular signature.
+\emph{(xx) The $\mu_4$-from-marks derivation} (\veri{v453\_seam\_mu4\_from\_marks.py}): folding the last structural
+premise into the existing one --- the four Gauss--Bonnet marks \emph{are} $\mu_4$ (roots of $z^4{-}1$), the form
+basis $\omega_k$ is $\mu_4$-graded ($\to i^k\omega_k$, weights $(1,2,3){=}A_3$ exponents) and the order-$4$ clock
+$z\!\to\!iz$ fixes their cross-ratio $\lambda{=}2$ (the $D_4$ stabiliser, \vref{v168}), so the residual
+\texttt{QGEO.SYM.01} of (xiii) follows from marks$=\mu_4$ plus the existing \texttt{QGEO.REALIZE.01} --- \mE\ the
+three mark facts, \mC\ no new premise: the chain (xx)$\to$(xiii)$\to$(xii) closes modulo realisation. The integer
+backbone of (xiv)--(xix) ($c_-{=}8$, the Chern integers, the order-$3$ $T$-phase) is kernel-hardened in Lean
+axiom-free as \texttt{FORM.SEAM.EDGE.CHERN.01}.

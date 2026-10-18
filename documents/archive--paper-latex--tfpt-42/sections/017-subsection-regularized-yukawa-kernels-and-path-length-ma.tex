@@ -1,0 +1,395 @@
+\subsection{Regularized Yukawa kernels and path-length masses}
+
+\[
+P_{\mathrm{str}}:=P_{\Seam,+}P_{\mathrm{sing}}P_\Theta,
+\qquad
+P_{\Seam,+}:=\frac{\mathbf 1+\iC}{2},
+\qquad
+P_\Theta:=\frac12(\mathbf 1+Q_\Theta),
+\qquad
+P_{\mathrm{sing}}:=\frac13(\mathbf 1+Z_c+Z_c^2).
+\]
+
+\begin{definition}[Structural transport kernel]
+\label{def:structural-transport-kernel}
+For each fermion sector define the structural positive transport kernel by
+\[
+K_f^{\mathrm{str}}:=\bigl(P_{\mathrm{str}} D_f^\dagger D_f P_{\mathrm{str}}\bigr)^{-1/2},
+\]
+whenever the inverse exists on $\mathrm{Ran}(P_{\mathrm{str}})$. The final admissible kernel is
+the restriction of this operator to the gap-stable branch selected below. The transport pole
+$\delta_{\mathrm{ph}}$ is fixed by the structural stationarity of the exact determinant functional
+\[
+\mathcal F_{\mathrm{tr}}(\delta)
+:=
+\sum_{y\in\{1,1/3,2/3\}}
+\Bigl[-\log\det\!\bigl(D_{y,\delta}^\dagger D_{y,\delta}+\varepsilon^2\bigr)\Bigr],
+\]
+with
+\[
+D_{y,\delta}:=y\,\mathbf 1-\delta U_6.
+\]
+On the closed branch one has
+\begin{equation}
+\label{eq:transport-bridge-offset}
+\partial_\delta \mathcal F_{\mathrm{tr}}(\delta_{\mathrm{ph}})=0,
+\qquad
+\delta_{\mathrm{ph}}\in\left(\frac13,\frac23\right).
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Algebraic closure of the transport pole]
+\label{prop:closed-form-transport-pole}
+\label{thm:algebraic-transport-pole}
+\label{thm:transport-pole-algebraic}
+Let
+\[
+\mathcal F_{\mathrm{tr}}(\delta)
+:=
+\sum_{y\in\{1,1/3,2/3\}}
+\Bigl[-\log\det\!\bigl(D_{y,\delta}^\dagger D_{y,\delta}+\varepsilon^2\bigr)\Bigr],
+\qquad
+D_{y,\delta}:=y\,\mathbf 1-\delta U_6.
+\]
+Write
+\[
+x:=\delta^2,
+\qquad
+\tau:=\varepsilon^2,
+\qquad
+z:=x^3=\delta^6.
+\]
+Then
+\[
+\det\!\bigl(D_{y,\delta}^\dagger D_{y,\delta}+\varepsilon^2\bigr)
+=
+Q_y(x,\tau),
+\]
+with
+\[
+Q_y(x,\tau)
+=
+\Bigl(x^2+2(\tau-y^2)x+(y^2+\tau)^2\Bigr)
+\Bigl(x^2+(y^2+2\tau)x+(y^2+\tau)^2\Bigr)^2.
+\]
+Hence
+\[
+\partial_\delta \mathcal F_{\mathrm{tr}}(\delta)=0
+\iff
+\sum_{y\in\{1,1/3,2/3\}}
+\frac{\partial_x Q_y(x,\tau)}{Q_y(x,\tau)}=0.
+\]
+On the closed zero-parameter branch one takes the intrinsic limit
+\[
+\tau=0
+\]
+after admissibility restriction. Then
+\[
+Q_y(x,0)=(y^6-z)^2,
+\]
+and the stationarity equation reduces to
+\[
+\frac{1}{1-z}
++
+\frac{1}{1/729-z}
++
+\frac{1}{64/729-z}
+=0.
+\]
+Equivalently, for
+\[
+P(z):=
+(z-1)\left(z-\frac{64}{729}\right)\left(z-\frac{1}{729}\right),
+\]
+one has
+\[
+P'(z)=0.
+\]
+The admissible transport pole is therefore the lower critical point of this cubic:
+\[
+z_\star
+=
+\frac{794-7\sqrt{9961}}{2187},
+\qquad
+\delta_{\mathrm{ph}}=z_\star^{1/6}
+=
+\left(\frac{794-7\sqrt{9961}}{2187}\right)^{1/6}
+\approx \num{0.593277280133224}.
+\]
+As an expanded control form, one may equivalently write
+\[
+1594323\,\delta^{12}-1157652\,\delta^6+47449=0.
+\]
+\end{theorem}
+
+\begin{proof}
+In the Fourier basis of the six-site shift $U_6$, the operator
+\[
+D_{y,\delta}^\dagger D_{y,\delta}+\varepsilon^2
+\]
+has eigenvalues
+\[
+\lambda_{y,n}(x,\tau)
+=
+y^2+x-2y\sqrt{x}\cos\!\left(\frac{n\pi}{3}\right)+\tau,
+\qquad n=0,\dots,5.
+\]
+Multiplying the $n=0,3$ factors and the conjugate pairs $(1,5)$ and $(2,4)$ gives exactly the
+displayed factorization $Q_y(x,\tau)$. Since $x=\delta^2$ and $\delta\in(1/3,2/3)$ on the
+admissible branch, one has $\delta>0$, so
+\[
+\partial_\delta\log Q_y(x,\tau)
+=
+2\delta\,\partial_x\log Q_y(x,\tau),
+\]
+and the stationarity condition is equivalent to the displayed $x$-equation. Setting $\tau=0$
+collapses the factors to
+\[
+Q_y(x,0)
+=(y^2-x)^2(y^4+xy^2+x^2)^2
+=(y^6-z)^2.
+\]
+Therefore
+\[
+\sum_{y\in\{1,1/3,2/3\}}\frac{\partial_x Q_y(x,0)}{Q_y(x,0)}
+=
+-6x^2\sum_{y\in\{1,\frac13,\frac23\}}\frac{1}{y^6-z},
+\]
+so the stationary point condition reduces to the displayed rational equation. Let
+\[
+P(z):=(z-1)\left(z-\frac{64}{729}\right)\left(z-\frac{1}{729}\right).
+\]
+Since
+\[
+\frac{P'(z)}{P(z)}
+=
+\frac{1}{z-1}
++
+\frac{1}{z-\frac{64}{729}}
++
+\frac{1}{z-\frac{1}{729}},
+\]
+the stationary equation is equivalent to $P'(z)=0$. A real cubic with three ordered real roots has
+exactly one critical point in each interval between consecutive roots, so the lower critical point
+lies in
+\[
+z\in\left(\left(\frac13\right)^6,\left(\frac23\right)^6\right).
+\]
+Solving the quadratic $P'(z)=0$ gives
+\[
+z_\star=\frac{794-7\sqrt{9961}}{2187}.
+\]
+Hence
+\[
+\delta_{\mathrm{ph}}=z_\star^{1/6}\in\left(\frac13,\frac23\right).
+\]
+Expanding $P'(z)=0$ after substituting $z=\delta^6$ yields the displayed degree-$12$ control form.
+\end{proof}
+
+\begin{lemma}[Regularized transport pole stability]
+\label{lem:regularized-transport-pole-stability}
+Define the regularized stationarity function
+\[
+G(x,\tau):=
+\sum_{y\in\{1,1/3,2/3\}}
+\frac{\partial_x Q_y(x,\tau)}{Q_y(x,\tau)}.
+\]
+Let
+\[
+x_\star:=\delta_{\mathrm{ph}}^2,
+\qquad
+z_\star:=x_\star^3=\delta_{\mathrm{ph}}^6.
+\]
+Then
+\[
+\partial_xG(x_\star,0)\neq 0.
+\]
+Consequently there exists $\tau_0>0$ and a unique smooth branch
+\[
+x(\tau)\qquad (\tau\in[0,\tau_0))
+\]
+such that
+\[
+G(x(\tau),\tau)=0,
+\qquad
+x(0)=x_\star.
+\]
+Therefore
+\[
+\delta(\tau):=\sqrt{x(\tau)}=\delta_{\mathrm{ph}}+O(\tau)
+\qquad (\tau\to 0).
+\]
+\end{lemma}
+
+\begin{proof}
+By the proof of \Cref{thm:transport-pole-algebraic},
+\[
+G(x,0)=6x^2\,\frac{P'(x^3)}{P(x^3)}.
+\]
+At $x=x_\star$ one has $P'(z_\star)=0$, so differentiating gives
+\[
+\partial_xG(x_\star,0)
+=
+18x_\star^4\,\frac{P''(z_\star)}{P(z_\star)}.
+\]
+Here $x_\star>0$, one has $P(z_\star)\neq 0$ because $z_\star$ is a critical point rather than a
+root, and $P''(z_\star)\neq 0$ because the critical points of a cubic with three distinct roots are
+simple. Hence $\partial_xG(x_\star,0)\neq 0$. The implicit-function theorem therefore yields a
+unique smooth branch $x(\tau)$ through $(x_\star,0)$, and taking square roots gives the final
+expansion for $\delta(\tau)$.
+\end{proof}
+
+\begin{definition}[Canonical cycle holonomy representation]
+\label{def:canonical-cycle-holonomy}
+On the rigid four-punctured family section
+\[
+X_f^\circ\cong \mathbb P^1\setminus\mu_4,
+\qquad
+\mu_4:=\{z\in\mathbb C:\ z^4=1\},
+\]
+fix a distinguished cycle basis
+\[
+(C_1,C_2,C_T)
+\]
+compatible with the lifted $D_4$ seam symmetry. Let
+\[
+F:=H^1(X_f^\circ,\mathbb C)\cong\mathcal H_F\cong\mathbb C^3.
+\]
+The canonical family holonomy datum is the determinant-normalized unitary representation
+\[
+\rho_F:\pi_1(X_f^\circ)\to SU(3)_F
+\]
+determined by the square symmetry of the puncture configuration, unimodularity, and the
+admissible cusp assignment. Its concrete monodromy realization is forced by
+\Cref{thm:d4-monodromy-rigidity}.
+\end{definition}
+
+\begin{theorem}[$D_4$-equivariant monodromy rigidity and Riemann--Hilbert closure]
+\label{thm:d4-monodromy-rigidity}
+\label{prop:generator-family-holonomy}
+\label{thm:d4-riemann-hilbert-rigidity}
+Choose positively oriented small loops
+\[
+\gamma_1,\gamma_i,\gamma_{-1},\gamma_{-i}\in\pi_1(X_f^\circ)
+\]
+around the punctures $1,i,-1,-i$, with the standard relation
+\[
+\gamma_1\gamma_i\gamma_{-1}\gamma_{-i}=1.
+\]
+Relative to the distinguished cycle basis $(C_1,C_2,C_T)$, set
+\[
+\omega:=e^{2\pi i/3},
+\qquad
+P:=
+\begin{pmatrix}
+0&1&0\\
+0&0&1\\
+1&0&0
+\end{pmatrix},
+\qquad
+D:=
+\begin{pmatrix}
+1&0&0\\
+0&\omega&0\\
+0&0&\omega^2
+\end{pmatrix}.
+\]
+If the determinant line is trivial, the local puncture spectra are
+\[
+\{1,\omega,\omega^2\},
+\]
+and the puncture square carries its inherited $D_4$ symmetry, then the admissible monodromy
+representation is forced, up to global $SU(3)_F$ conjugation, by
+\[
+\rho_F(\gamma_1)=D,
+\qquad
+\rho_F(\gamma_i)=PDP^{-1},
+\qquad
+\rho_F(\gamma_{-1})=P^2DP^{-2},
+\]
+\[
+\rho_F(\gamma_{-i})
+:=
+\bigl(\rho_F(\gamma_1)\rho_F(\gamma_i)\rho_F(\gamma_{-1})\bigr)^{-1}.
+\]
+Equivalently, the canonical monodromy package is no longer a generator input but a rigidity output
+of the puncture-square symmetry, unimodularity, and admissible cusp data.
+\end{theorem}
+
+\begin{proof}
+Because the local puncture spectrum is
+\[
+\{1,\omega,\omega^2\},
+\qquad
+\omega=e^{2\pi i/3},
+\]
+and the determinant line is trivial, every local monodromy matrix lies in $SU(3)_F$ and is
+diagonalizable with three distinct eigenvalues. After one global $SU(3)_F$ conjugation we may
+therefore assume
+\[
+\rho_F(\gamma_1)=D.
+\]
+
+Let $r$ denote the quarter-turn symmetry of the puncture square. Its action on the punctures sends
+\[
+1\mapsto i\mapsto -1\mapsto -i\mapsto 1,
+\]
+hence on the fundamental group it cyclically permutes the four puncture loops:
+\[
+r\gamma_1r^{-1}=\gamma_i,
+\qquad
+r\gamma_ir^{-1}=\gamma_{-1},
+\qquad
+r\gamma_{-1}r^{-1}=\gamma_{-i}.
+\]
+Because the family datum is $D_4$-equivariant, the same quarter-turn is implemented on the fiber by
+an element of $SU(3)_F$ carrying the ordered eigenspace packet of $D$ cyclically onto itself. Since
+the three eigenspaces are one-dimensional, a second global conjugation fixes that implementing
+matrix to be the cyclic permutation matrix
+\[
+P=
+\begin{pmatrix}
+0&1&0\\
+0&0&1\\
+1&0&0
+\end{pmatrix}.
+\]
+Therefore
+\[
+\rho_F(\gamma_i)=PDP^{-1},
+\qquad
+\rho_F(\gamma_{-1})=P^2DP^{-2}.
+\]
+
+The puncture loops satisfy exactly one relation,
+\[
+\gamma_1\gamma_i\gamma_{-1}\gamma_{-i}=1,
+\]
+so the last generator is forced:
+\[
+\rho_F(\gamma_{-i})
+=
+\bigl(\rho_F(\gamma_1)\rho_F(\gamma_i)\rho_F(\gamma_{-1})\bigr)^{-1}.
+\]
+Thus the monodromy representation is uniquely determined by the stated local spectra, determinant
+triviality, and $D_4$ symmetry, up to the initial global $SU(3)_F$ conjugation.
+\end{proof}
+
+\begin{theorem}[Rigid admissible family holonomy class]
+\label{thm:rigid-family-local-system}
+On the rigid four-punctured family section
+\[
+X_f^\circ\cong \mathbb P^1\setminus\mu_4,
+\]
+fix the determinant line, the local monodromy conjugacy classes at the four punctures, and the
+$D_4$ symmetry inherited from the seam winding theorem. Then there exists a unique admissible
+flat Hermitian family connection
+\[
+\nabla_F^\star
+\]
+on the flat Hermitian family bundle $L_F\to X_f^\circ$ with fiber
+$F\cong H^1(X_f^\circ,\mathbb C)\cong\mathbb C^3$ whose monodromy representation is the explicit
+holonomy datum $\rho_F$ of
+\Cref{def:canonical-cycle-holonomy,thm:d4-monodromy-rigidity}. Hence its $SU(3)_F$
+conjugacy class $[\nabla_F^\star]$ is unique.
+\end{theorem}

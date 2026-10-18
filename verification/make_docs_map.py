@@ -27,6 +27,8 @@ Usage:
 
 stdlib only.
 """
+from tex_sources import source_chunks
+
 import csv
 import datetime
 import hashlib
@@ -81,10 +83,33 @@ def normalise_scripts(chunk: str) -> str:
     return chunk.replace("\\allowbreak", "").replace("\\", "").replace(" ", "")
 
 
+def physical_spans(chunks, start: int, end: int) -> list[dict]:
+    """Map an expanded character interval to exact physical UTF-8 spans."""
+    spans = []
+    offset = 0
+    for chunk in chunks:
+        lo, hi = max(start - offset, 0), min(end - offset, len(chunk.text))
+        if lo < hi:
+            prefix = chunk.text[:lo]
+            part = chunk.text[lo:hi]
+            first = chunk.start_line + prefix.count("\n")
+            last = first + part.count("\n") - int(part.endswith("\n"))
+            spans.append({
+                "path": str(chunk.path.relative_to(ROOT.resolve())),
+                "line_start": first, "line_end": max(first, last),
+                "byte_start": chunk.start_byte + len(prefix.encode("utf-8")),
+                "byte_end": chunk.start_byte + len(chunk.text[:hi].encode("utf-8")),
+                "include_chain": [str(p.relative_to(ROOT.resolve())) for p in chunk.include_chain],
+            })
+        offset += len(chunk.text)
+    return spans
+
+
 def parse_doc(doc: str) -> list[dict]:
     """Split one document into (front matter + sections) with line ranges."""
     path = ROOT / f"{doc}.tex"
-    text = path.read_text()
+    chunks = source_chunks(path)
+    text = "".join(chunk.text for chunk in chunks)
     marks = []  # (char_pos, kind, title)
     for m in SECTION_RX.finditer(text):
         line_start = text.rfind("\n", 0, m.start()) + 1
@@ -102,6 +127,14 @@ def parse_doc(doc: str) -> list[dict]:
         line_end = text.count("\n", 0, cend) + (0 if cend == len(text) else 0)
         scripts = sorted(set(SCRIPT_RX.findall(normalise_scripts(chunk))))
         occ = seen_titles[title] = seen_titles.get(title, 0) + 1
+        spans = physical_spans(chunks, cstart, cend)
+        primary = spans[0] if spans else {}
+        if kind != "front":
+            heading = SECTION_RX.search(text, cstart, cend)
+            if heading:
+                point = physical_spans(chunks, heading.end() - 1, heading.end())[0]
+                primary = next(s for s in spans if s["path"] == point["path"]
+                               and s["byte_start"] <= point["byte_start"] < s["byte_end"])
         rows.append(
             {
                 "doc": doc,
@@ -111,6 +144,10 @@ def parse_doc(doc: str) -> list[dict]:
                 "line_start": line_start,
                 "line_end": max(line_start, line_end),
                 "scripts": ";".join(scripts),
+                "source_path": primary.get("path", str(path.relative_to(ROOT))),
+                "source_line_start": primary.get("line_start", 1),
+                "source_line_end": primary.get("line_end", 1),
+                "source_spans": json.dumps(spans, ensure_ascii=False, separators=(",", ":")),
                 "hash": hashlib.md5(chunk.encode()).hexdigest()[:12],
             }
         )
@@ -154,10 +191,11 @@ def apply_dates(rows: list[dict]) -> dict:
 def render_docs_map(rows: list[dict]) -> str:
     buf = io.StringIO()
     w = csv.writer(buf, lineterminator="\n")
-    w.writerow(["doc", "kind", "title", "line_start", "line_end", "scripts", "hash", "last_changed"])
+    fields = ["doc", "kind", "title", "line_start", "line_end", "scripts", "hash", "last_changed",
+              "source_path", "source_line_start", "source_line_end", "source_spans"]
+    w.writerow(fields)
     for r in rows:
-        w.writerow([r["doc"], r["kind"], r["title"], r["line_start"], r["line_end"],
-                    r["scripts"], r["hash"], r["last_changed"]])
+        w.writerow([r.get(key, "") for key in fields])
     return buf.getvalue()
 
 

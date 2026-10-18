@@ -1,0 +1,400 @@
+\begin{document}
+\maketitle
+\vspace{-0.6cm}
+
+\begin{keybox}[What this document is about]
+A change of bookkeeping, not new gravitational physics: if gravity is the geometry-channel readout of the
+seam, then \emph{all} horizons read the same boundary constant $c_3=\tfrac1{8\pi}$. This note collects the
+readouts --- Hawking, de Sitter and Unruh temperature, black-hole thermodynamics, the Page time,
+scrambling, the Nariai bound, $v_{\mathrm{GW}}=c$ and cosmic birefringence --- in seam units, with two
+genuine compiler fingerprints ($1920=|W(D_5)|$, $|\mu_4|=4$). The Hawking normalisation itself is
+since \emph{measured} on the seam: the reconstructed free OS quotient is KMS with
+$\beta_{\mathrm{angle}}=2\pi$ exact, $T_{\mathrm{seam}}=4c_3$
+(\veri{v526\_seam\_thermal\_kms\_nariai\_bridge.py}) --- temperature joins geometry and anomaly
+as the \emph{third leg} of $c_3$ (\mC-typed reading; the entropy-fraction bridge honestly does
+not close).
+\end{keybox}
+
+\tableofcontents
+
+\input{tex-artefacts/tfpt_docset}
+\noindent\textbf{You are reading \textbf{companion~H} (Appendix~H --- Horizon Readouts).}
+
+\input{tex-artefacts/tfpt_status}
+\TFPTbadges
+\TFPTclaimstack[frontier]
+
+\bigskip
+
+\par\smallskip\noindent\textbf{Scope and honest typing.}
+If gravity is the geometry-channel readout of the seam (companion note ``Seam response grammar''), then
+horizons are not separate miracles --- they all read the \emph{same} boundary normaliser $\cthree=1/(8\pi)$.
+This note collects the readouts. Markers: \mC\ is standard horizon physics rewritten in TFPT/seam units
+(no new claim) or a search target; \mE\ is an exact compiler connection (audit-level) or a reproduced
+numerical readout; \mO\ is a search target, not a result. Nothing
+here is sold as new gravitational physics; it is a \emph{change of bookkeeping} that exposes shared
+structure.
+
+\begin{keybox}[Unit conventions used throughout]
+Three unit systems appear; the seam factor $\cthree=1/(8\pi)$ is the same number in all of them, only the
+carried dimensionful constants change:
+\begin{center}\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}p{3.4cm}p{4.3cm}Y@{}}
+\toprule
+\textbf{system} & \textbf{convention} & \textbf{Hawking temperature} \\
+\midrule
+Planck & $G{=}\hbar{=}c{=}k_B{=}1$ & $T_H=\cthree/M=1/(8\pi M)$ \\
+reduced Planck & $\Mbar=M_{\rm Pl}/\sqrt{8\pi}$, $\hbar{=}c{=}k_B{=}1$ & $T_H=\cthree\,\Mbar^2/M$ \\
+SI & restore $G,\hbar,c,k_B$ & $T_H=\dfrac{\hbar c^3}{8\pi G k_B M}=\cthree\,\dfrac{\hbar c^3}{Gk_BM}$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+All boxed formulas below are in Planck units unless stated; the seam constant is dimensionless.
+\end{keybox}
+
+\medskip
+\noindent\emph{Standard references for the formulas reframed here:} Hawking temperature and radiation
+(Hawking 1975); Bekenstein--Hawking entropy (Bekenstein 1973, Hawking 1975); Page time (Page 1993);
+fast scrambling $t_{\rm scr}\sim\beta\log S$ (Sekino--Susskind 2008, Maldacena--Shenker--Stanford 2016);
+Nariai bound (Nariai 1950); de Sitter thermodynamics (Gibbons--Hawking 1977). \emph{Nothing below is a
+new derivation of these} --- only a rewriting in the seam unit $\cthree$.
+
+% =====================================================================
+\section{The seam constant is the universal horizon temperature factor}
+% =====================================================================
+Every Killing horizon has $T=\hbar\kappa/(2\pi c k_B)$. Since
+\[
+  \boxed{\ \frac{1}{2\pi}=4\cthree,\qquad \frac{1}{8\pi}=\cthree\ }\qquad\mE,
+\]
+the universal factor \emph{is} the seam constant: $T_{\mathrm{hor}}=4\cthree\,\hbar\kappa/(ck_B)$. Black
+holes, de Sitter and Unruh therefore share \emph{one} thermal grammar. \mC\ \veri{v8\_horizon.py}
+
+% =====================================================================
+\section{Schwarzschild thermodynamics in four $\cthree$-lines}
+% =====================================================================
+For a non-rotating, uncharged hole in Planck units ($G{=}\hbar{=}c{=}k_B{=}1$):
+\[
+  \boxed{\ T_H=\frac{\cthree}{M},\qquad S_{BH}=\frac{M^2}{2\cthree},\qquad
+  P_H=\frac{\cthree}{1920\,M^2},\qquad \tau_{\mathrm{evap}}=\frac{640}{\cthree}M^3\ }\qquad\mC.
+\]
+Two of the constants are compiler numbers, not coincidences:
+\begin{itemize}\setlength\itemsep{2pt}
+\item the Hawking temperature factor is $\cthree=1/(8\pi)$ --- the same P1 boundary normaliser; \mE
+\item the radiated-power denominator is $1920=|W(D_5)|$, the Weyl-group order of the $D_5$ carrier. \mE
+\end{itemize}
+\noindent\emph{Scope of $P_H$:} this is the idealised massless single-channel blackbody normalisation.
+Greybody factors and the radiated species content shift the phenomenological evaporation coefficient; the
+$\cthree$-form is the convention statement, not a general phenomenological prediction.
+
+\begin{center}\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{@{}p{4.2cm}YY@{}}
+\toprule
+\textbf{object} & \textbf{$T_H$} & \textbf{lifetime / entropy} \\
+\midrule
+solar-mass hole & $6.17\times10^{-8}$ K & $\tau_{\mathrm{evap}}\approx2.1\times10^{67}$ yr; $S/k_B\approx1.05\times10^{77}$ \\
+PBH evaporating now ($1.7\times10^{11}$ kg) & $k_BT\approx61$ MeV & relevant for $\gamma$/$\nu$ PBH signatures \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\par\smallskip\noindent\textbf{The temperature is modular; the entropy carries the scalaron.}
+\veri{v208\_bh\_\allowbreak thermodynamics.py} The Hawking factor is not put in by hand: the stationary exterior
+modular flow $\Delta^{it}=e^{-2\pi t K_H}$ (Bisognano--Wichmann / Tomita--Takesaki) makes the outside state
+KMS at inverse temperature $2\pi$, so $T_H=\kappa/(2\pi)$ --- and that $2\pi$ \emph{is} the seam unit
+$1/(4\cthree)$, reproducing $T_H=\cthree/M$ above (the seam$=$horizon modular identification ties to
+$[\rho,\Lambda_\Sigma]=0$, \veri{v198\_\allowbreak modular\_\allowbreak commutator\_\allowbreak reduction.py}).
+The same normalisation is now \emph{measured} on the reconstructed free seam OS quotient
+(\texttt{SEAM.THERMAL.KMS.01}, \veri{v526\_seam\_thermal\_kms\_nariai\_bridge.py}): detailed balance
+gives $\beta=N$ clock steps at both levels, hence $\beta_{\mathrm{angle}}=2\pi$ and
+$T_{\mathrm{seam}}=4\cthree$ --- temperature joins geometry and anomaly as the \emph{third leg}
+of $\cthree$ (\mC-typed reading: seam euclidean circle $=$ thermal circle of the reconstructed
+horizon dynamics; the entropy-fraction bridge to the Nariai ledger honestly does not close).
+The induced $R+R^2$ scalaron then
+corrects the area law to the Wald entropy
+\[
+  S_W=\frac{f_R\,A}{4G}=\frac{A}{4G}\Bigl(1+\frac{R_h}{3M_s^2}\Bigr),\qquad M_s=\cthree^{7/2}\Mbar,
+\]
+an \emph{exact} consequence of $f(R)=R+R^2/(6M_s^2)$ (\veri{v28\_gravity\_fR.py}); the leading $A/4G$ is the
+$\cthree$ area law ($1/4=1/|\mu_4|$). \mE\ for the identities; the black-hole/modular identification is \mC.
+
+% =====================================================================
+\section{Page time and scrambling}
+% =====================================================================
+Since $S_{BH}\propto M^2$ and $\tau\propto M^3$, the Page point ($M\to M/\sqrt2$) is
+\[
+  t_{\mathrm{Page}}=\Bigl(1-\tfrac1{2\sqrt2}\Bigr)\tau_{\mathrm{evap}}\approx0.6464\,\tau_{\mathrm{evap}}\qquad\mC.
+\]
+In TFPT the Page curve is \emph{boundary recoverability}: the physical sector is OS-reconstructed and
+gapped, and the recovered mutual information decays at the transfer rate,
+$I(A{:}C|B)_n\sim\lambda_2^{\,n}=(2/3)^{6n}$. \textbf{This is the same operator that builds the Standard
+Model:} the boundary transport spectrum is $\{1,(2/3)^6,(1/3)^6\}$ and its sub-leading eigenvalue
+$\lambda_2=(2/3)^6$ is exactly the flavor-gap eigenvalue ($\Delta_{\mathrm{gap}}=-\log(2/3)^6=6\log\tfrac32$).
+One boundary transport thus governs \emph{both} the SM flavor hierarchy and the horizon information recovery.
+\mE\ \veri{v54\_seam\_horizon\_keystones.py}
+\par\smallskip
+\noindent\textbf{The recovery is a finite code (\veri{v221\_seam\_qecc.py}).} Read as a quantum channel,
+this is a finite recoverability (error-correction-style) code: the code space is the carrier half-spinor
+$\dim S^+=16$, the gapped transport $T$ on the cusp-weight $3$-space (deviation directions $(1,{-}1,0)$ and
+the Nariai anchor $(1,1,{-}2)$) is symmetric and doubly stochastic (CPTP), and on the trace-zero subspace it
+contracts with operator norm exactly $(2/3)^6$, so $\|T^n\delta\|\le(2/3)^{6n}\|\delta\|$ --- a
+Knill--Laflamme-type per-step recovery bound, with a free ratio breaking it. ``Finite recoverability code''
+is \mE; the explicit Petz recovery map and the rank-one (one-dimensional baby-universe, cf.\ Engelhardt
+2025) contraction limit $\|T^n-P_\infty\|=(2/3)^{6n}$ are now realised numerically
+(\texttt{experiments/recovery-channel}), so the Petz identification of $T$ with the Page recovery map is
+verified at the channel level \mC; the full holographic reading stays gated on the Seam--Horizon theorem. The scrambling prefactor carries a $\mu_4$ signature: with
+$\beta=1/T_H=8\pi M$, $\beta/2\pi=4M$, so
+\[
+  \boxed{\ t_{\mathrm{scr}}\sim|\mu_4|\,M\log S\ }\qquad(|\mu_4|=4)\qquad\mE\text{-audit}.
+\]
+
+% =====================================================================
+\section{De Sitter and the Nariai bound from the $\Lambda$ closure}
+% =====================================================================
+With the action-grammar Hubble/$\Lambda$ readouts ($H_0/\Mbar=e^{-\ainv}/(2\pi\sqrt{\Omega_\Lambda})$,
+$\rho_\Lambda/\Mbar^4\sim e^{-2\ainv}$), the asymptotic de Sitter horizon gives
+\[
+  \boxed{\ \frac{T_{dS}}{\Mbar}=16\cthree^2\,e^{-\ainv},\qquad
+  S_{dS}=\frac{e^{2\ainv}}{128\cthree^4}=32\pi^4 e^{2\ainv}\approx3.32\times10^{122}\ }\qquad\mC.
+\]
+This is the area-law horizon capacity of the universe from $(\ainv,\cthree,H_\Lambda)$ alone. The maximal
+black hole in de Sitter (Nariai) is
+\[
+  M_N\approx2.16\times10^{22}\,M_\odot\approx4.3\times10^{52}\,\mathrm{kg},\qquad S_N=\tfrac13 S_{dS}\qquad\mC,
+\]
+the absolute gravitational-capacity limit, not an observed structure.
+
+% =====================================================================
+\section{The maximal black hole is the anchor: SdS in seam units}
+% =====================================================================
+The Nariai limit is not just a capacity number --- written in compiler units, the entire
+Schwarzschild--de~Sitter (SdS) family lands on atoms that are already load-bearing elsewhere in TFPT,
+with no adjustable parameter on either side. \mE\ \veri{v101\_horizon\_anchor.py}
+
+\par\smallskip\noindent\textbf{The defect reading: no singularity, a seam fixed point
+(\veri{v209\_bh\_regular\_core.py}).} In compiler units the interior is \emph{not} a curvature blow-up but
+the seam attractor: the same gapped transport whose sub-leading eigenvalue is $\lambda_2=(2/3)^6$
+(\veri{v56\_unique\_attractor.py}) drives $\varphi\to\varphi_\star$ ($\mathrm d\varphi/\mathrm dt=0$), so
+``$\rho\to\infty$'' is replaced by a fixed point; information returns through the same Page-recovery channel
+($\lambda_2$ per step, \veri{v54\_seam\_horizon\_keystones.py}); and the end state is a holographic
+Planck-scale floor ($S_{BH}=A/4$, one cell per $|\mu_4|=4$ Planck areas), not a point. \emph{Honest:} a \mC\
+structural reading --- the old RN/torsion-charge metric is \emph{not} resurrected, it is superseded by the
+Nariai/seam$=$horizon anchor here.
+
+\TFPTmotif
+
+\begin{keybox}[Nariai $=$ the anchor; the Koide $2/3$ is the entropy bound \mE\ (\veri{v101\_horizon\_anchor.py})]
+With $f(r)=1-2M/r-\Lambda r^2/3$, the horizon cubic at the maximal mass
+$M_N=1/(3\sqrt\Lambda)=1/(N_{\mathrm{fam}}\sqrt\Lambda)$ is, in units $1/\sqrt\Lambda$,
+\[
+  \boxed{\ t^3-3t+2=(t-1)^2(t+2)\ }\qquad\text{roots }(1,1,-2),
+\]
+with coefficients $(-3,2)=(-N_{\mathrm{fam}},|\Z_2|)$ --- and the root pattern is exactly the
+\textbf{traceless projection of the anchor}: $a-\tfrac{p_1(a)}{3}\mathbf 1=-\tfrac13(1,1,-2)$ for
+$a=(1,1,2)$ (compare $\chi_a=(t-1)^2(t-2)$, the anchor characteristic polynomial). Five exact companions:
+\begin{itemize}\setlength\itemsep{2pt}
+\item \textbf{Entropy bound $=$ the Koide branch value.} Each Nariai horizon carries $S_{dS}/3=S_{dS}/N_{\mathrm{fam}}$
+and the total is $\boxed{S_{\mathrm{Nariai}}/S_{dS}=2/3=|\Z_2|/N_{\mathrm{fam}}}$ (deficit exactly $S_{dS}/3$). The
+interpolation in $x=r_b/r_c$ is the closed form
+$S_{\mathrm{tot}}/S_{dS}=(x^2{+}1)/(x^2{+}x{+}1)$ --- denominator $=\Phi_3(x)$, the $N_{\mathrm{fam}}$
+cyclotomic --- monotone from $1$ to $2/3$ with its minimum exactly at the merge (Fig.~\ref{fig:nariai}a).
+The floor admits a \emph{variation-free} one-line proof: $3(x^2{+}1)-2\Phi_3(x)=(x{-}1)^2\ge0$, so
+$S_{\mathrm{tot}}\ge\tfrac23 S_{dS}$ with equality \emph{iff} $x=1$ (the Nariai merge) \mE\ (\veri{v190\_nariai\_entropy\_bound.py}).
+\item \textbf{Three-sheet conservation.} The cubic is traceless with fixed $e_2$, so
+$\pi\sum_i r_i^2=6\pi/\Lambda=|\Z_2|\,S_{dS}$ for \emph{every} $M$: the black hole redistributes entropy
+between the two physical sheets and the virtual third root; the three-sheet total never moves.
+\item \textbf{Koide-form quotient of the roots.} $Q_{\mathrm{geom}}=\sum r_i^2/(\sum|r_i|)^2$ runs
+monotonically over $[\tfrac38,\tfrac12]$: pure dS gives $\tfrac12=|\Z_2|/|\mu_4|=\delta$ (the half-step),
+Nariai gives $\tfrac38=p_2(a)/e_1(a)^2$ --- exactly the two nonzero $SU(4)_1$ conformal weights
+(Fig.~\ref{fig:nariai}b).
+\item \textbf{The mass line is a double cover.} $\operatorname{disc}_r\propto(1-3m)(1+3m)$ in
+$m=M\sqrt\Lambda$: branch points $m=\pm1/N_{\mathrm{fam}}$, separation $2/3=|\Z_2|/N_{\mathrm{fam}}$, deck involution
+$=$ the black-hole$\,\leftrightarrow\,$cosmological horizon swap --- the gravitational twin of the flavor
+sheet $\Z_2$ and of the split $N_{\mathrm{fam}}$-linear cover $(3x{+}2)(3x{+}5)$ of the flavor sector (Fig.~\ref{fig:sdscover}).
+The two branch structures share one $N_{\mathrm{fam}}$-linear ramification: the affine map
+$q=\tfrac72+\tfrac{N_{\mathrm{fam}}^2}{2}m$ carries the SdS branch points $m={\pm}1/N_{\mathrm{fam}}$ onto the
+flavor branch labels $\{2,5\}=\{|\Z_2|,g_{\mathrm{car}}\}$ (midpoint $7/2$). This is an exact \emph{relabeling} --- the
+shared invariant is the $2/3$ ramification, not the map, which exists for any two pairs of points --- so it
+is recorded as a \mC\ structural alignment, not a theorem (\veri{v191\_universal\_branch\_line.py}).
+\item \textbf{Temperature lemma / orientation.} $|\kappa_b/\kappa_c|=(2x{+}1)/(x(x{+}2))>1$ for $x<1$
+(equality iff $x=1$): the black-hole sheet is \emph{always} hotter, so evaporation flows \emph{away} from
+the merge --- the anchor configuration is the \textbf{repeller} and the democratic endpoint the attractor,
+the same orientation as the flavor flow (Koide attractor / carrier repeller, the frontier note). \emph{Audit reading.}
+\end{itemize}
+Completing the seam-unit table: $dM=\cthree\,\kappa\,dA$ (first law), $M=2\cthree\,\kappa A$ (Smarr),
+$S\le ER/(4\cthree)$ (Bekenstein), $P_H=\cthree/(1920\,M^2)$, lifetime
+$\tau=5120\pi M^3=128\,g_{\mathrm{car}}M^3/\cthree$ ($128=2^7$ the dS prefactor, $7$ the scalaron exponent;
+photon/geometric-optics conventions, typed external), Kerr $A_{\mathrm{ext}}=M^2/\cthree$ with
+$A_{\mathrm{ext}}/A_{\mathrm{Schw}}=1/2=1/|\Z_2|$ and $S_{\mathrm{ext}}=M^2/(4\cthree)$, and the
+Bekenstein--Mukhanov--Hod area quantum $4\ln3=\ln81=\ln(N_{\mathrm{fam}}^4)=\ln(\operatorname{disc}$ of the flavor
+cover$)$ (\mC\ as the QNM reading). \emph{Honest scope:} the GR identities are textbook facts; the \mE\
+content is six independent landings on already-load-bearing atoms with zero free parameters. The
+``carrier in the bulk'' reading (two glue chiralities $=$ two horizon sheets, ramification $=$ Nariai)
+stays \mC. No new data test ($M_N$ today $\sim10^{22}M_\odot$): a structure surface, not a measurement
+surface.
+\end{keybox}
+
+\begin{keybox}[The dual anchor: the inverse flavor response \emph{is} the Nariai root \mE\ (\veri{v134\_dual\_anchor.py})]
+The Nariai pattern is not only the traceless anchor --- it is stored \emph{inside the flavor compiler} as a
+dual invariant. For the residue/winding operators $R,L$ of the flavor sector and the anchor $a=(1,1,2)$,
+\[
+  \boxed{\ d:=a^\top R^{-1}=a^\top L^{-1}=\bigl(-\tfrac12,-\tfrac12,1\bigr)\ },\qquad
+  d\cdot\mathbf 1=0,\quad d\cdot a=1,\quad (1,1,-2)=-2d ,
+\]
+i.e.\ $d=\tfrac32\bigl(a-\tfrac43\mathbf 1\bigr)$ is the \emph{normalised traceless anchor}, proportional to
+the Nariai double-root pattern above. The invariance is exact and structural (Sherman--Morrison): with
+$L=R+6\,\mathbf 1e_1^\top$, a covector is winding-invariant iff it annihilates $R^{-1}\mathbf
+1=\tfrac14(1,1,-1)$ --- the winding deformation lives in the democratic direction $\mathbf 1$, which $d$
+kills. Controls: $\mathbf 1$, $e_1$ and the torsion normal $n=(5,-9,6)$ do \emph{not} lie on the invariance
+plane ($\tfrac14,\tfrac14,-\tfrac52$), so the anchor's membership is special. Together $(d,n)$ form the dual
+normal pair of the flavor boundary: $d$ reads the traceless horizon structure, $n$ reads first-generation
+torsion ($n^\top R=(8,0,0)$, $n^\top L=(20,0,0)$). \emph{Typing:} all identities \mE; the reading --- a
+third, purely \emph{algebraic} leg of the flavor$\,\leftrightarrow\,$horizon bridge, beside the shared clock
+spectrum (\veri{v126\_clock\_wall\_bridge.py}) and the entropy power law (\veri{v129\_entropy\_power\_law.py})
+--- stays \mC.
+\end{keybox}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.78\linewidth]{figures/sds_cover.pdf}
+\caption{The SdS mass line as a double cover: black-hole and cosmological horizon sheets merge at the
+Nariai point $m=1/N_{\mathrm{fam}}$, where the three roots form the traceless anchor pattern $(1,1,-2)$.
+\veri{v101\_horizon\_anchor.py}}
+\label{fig:sdscover}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.94\linewidth]{figures/nariai_entropy.pdf}
+\caption{(a) Total SdS entropy interpolates from $S_{dS}$ to the Nariai bound $\tfrac23 S_{dS}$ via
+$(x^2{+}1)/\Phi_3(x)$. (b) The Koide-form quotient of the three roots runs exactly over the nonzero
+$SU(4)_1$ weights $[\tfrac38,\tfrac12]$. \veri{v101\_horizon\_anchor.py}}
+\label{fig:nariai}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.94\linewidth]{figures/cover_twins.pdf}
+\caption{Twin double covers: the flavor anchor-block cover $y^2=(3x{+}2)(3x{+}5)$ and the SdS
+mass-line cover $w^2\propto(1{-}3m)(1{+}3m)$ share the split $N_{\mathrm{fam}}$-linear form with rational
+branch points at spine-over-family values. \veri{v101\_horizon\_anchor.py}}
+\label{fig:covertwins}
+\end{figure}
+
+\par\smallskip\noindent\textbf{One orientation: the anchor is the \emph{stationary repeller} in both sectors} (\mE/\mC).
+The evaporation direction of the temperature lemma upgrades to exact variational structure on both
+one-dimensional moduli lines (Fig.~\ref{fig:orientation}). \textbf{Flavor:} the canonical relaxation
+$\dot q=(\Delta/N_{\mathrm{fam}})(q{-}2)(q{-}5)$ is the \emph{gradient flow} of the cubic potential
+\[
+  V(q)=-\frac{\Delta}{N_{\mathrm{fam}}}\Bigl(\frac{q^3}{3}-\frac{7}{2}q^2+10q\Bigr),\qquad
+  \boxed{\ V''(2)=+\Delta,\quad V''(5)=-\Delta\ }
+\]
+--- the critical points are exactly the two branch points, the stationary curvatures are $\pm$the
+transfer gap, the inflection sits at $q=\tfrac72=$ scalaron$/2$, and the Lyapunov rate is constant:
+$d(-\ln\rho)/dt=\Delta$ exactly. \textbf{Gravity:} the SdS entropy functional has
+\[
+  \frac{d}{dx}\frac{S_{\mathrm{tot}}}{S_{dS}}=\frac{(x-1)(x+1)}{\Phi_3(x)^2},\qquad
+  \boxed{\ \Bigl(\frac{S_{\mathrm{tot}}}{S_{dS}}\Bigr)''(1)=\frac29=\frac{|\Z_2|}{N_{\mathrm{fam}}^2}=\frac23\cdot\frac13\ }
+\]
+--- the Nariai/anchor point is the \emph{unique} physical stationary point, its curvature is a grammar
+constant ($=$ the product of the two Nariai entropy fractions), and the temperature lemma makes the
+evaporation an entropy \emph{ascent} away from it. \textbf{Orientation theorem \mE:} in both sectors the
+anchor-type configuration is a stationary point of the natural functional and the dynamics flows away
+from it, with grammar-constant stationary curvatures. \emph{Honest disanalogies (recorded):} the flavor
+attractor is itself a branch point while the gravity attractor is the smooth endpoint; the flavor
+functional is the potential of a \mC-typed relaxation while the gravity functional is the
+Bekenstein--Hawking entropy --- ``one variational principle of the seam'' stays a \emph{reading} \mC, and
+no open gate is touched. \veri{v102\_seam\_orientation.py}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.94\linewidth]{figures/orientation.pdf}
+\caption{The orientation theorem: the anchor configuration is the stationary repeller of the natural
+functional in both sectors --- flavor (cubic potential, curvatures $\pm\Delta$) and gravity (SdS entropy,
+curvature $2/9=|\Z_2|/N_{\mathrm{fam}}^2$). \veri{v102\_seam\_orientation.py}}
+\label{fig:orientation}
+\end{figure}
+
+\begin{keybox}[The trisection normal form: the canonical coordinate exists \mE\ (\veri{v103\_trisection\_normal\_form.py})]
+The curvature-matching question of the previous box has a closed answer. The SdS horizon cubic is
+uniformized by \textbf{angle trisection}: with $r=2\cos\theta$ (units $1/\sqrt\Lambda$),
+$r^3-3r=2\cos3\theta$ \emph{exactly}, so the cubic is $\cos3\theta=-3m$ --- the three horizon roots are
+the three trisection branches (the $\Z_3$ rotation $=$ the triality deck, cf.\ $\operatorname{coker}Q=\Z/\Nfam$).
+In the centered angle $\psi$ ($\cos\varphi=-3m$, $\psi=\varphi-\pi$; Nariai $\psi=0$, pure dS $\psi=\pi/2$,
+deck $\psi\to-\psi$):
+\[
+  m=\frac{\cos\psi}{\Nfam},\qquad
+  \boxed{\ \frac{S_{\mathrm{tot}}}{S_{dS}}=\frac43-\frac23\cos\frac{2\psi}{3}\ }
+\]
+--- \emph{one} cosine whose mean ($|\mu_4|/\Nfam$), amplitude and frequency (both $|\Z_2|/\Nfam$) are glue
+atoms over the family count (Fig.~\ref{fig:trisection}). Three exact consequences:
+\begin{itemize}\setlength\itemsep{1pt}
+  \item \textbf{Canonical curvature $=$ the Koide constant to the family power:}
+  $\sigma''(\psi{=}0)=\tfrac{8}{27}=(\tfrac23)^3=(|\Z_2|/\Nfam)^{\Nfam}$.
+  \item \textbf{Invariant base slope:} $d\sigma/dm|_{\mathrm{Nariai}}=-\tfrac89=-\operatorname{rank}E_8/\Nfam^2$
+  (coordinate-invariant, cross-checked in both coordinates; generally $-\tfrac43\sin(2\psi/3)/\sin\psi$);
+  dimensionful $dS_{\mathrm{tot}}/dM|_N=-r_N/(\Nfam\cthree)$.
+  \item \textbf{The bridge:} the flavor invariant is a \emph{rate}, multiplier $(2/3)^6=(2/3)^{2\Nfam}$
+  per transport step; the gravity invariant is a \emph{curvature}, $(2/3)^{\Nfam}$ in the canonical angle
+  --- same base $2/3=|\Z_2|/\Nfam$, exponent ratio $2=|\Z_2|$. What is still missing for a full
+  identification is the gravity-side \emph{clock} (the near-Nariai evaporation generator that converts
+  curvature into a rate) --- the same class of missing object as the Koide transfer generator (frontier note):
+  \textbf{one clock, two known geometries}. That identification stays \mC.
+\end{itemize}
+\end{keybox}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.86\linewidth]{figures/trisection.pdf}
+\caption{The trisection normal form: in the canonical angle $\psi$ the mass and the total entropy are
+pure (co)sines built from glue atoms; the anchor sits at $\psi=0$ with canonical curvature
+$(2/3)^3$. \veri{v103\_trisection\_normal\_form.py}}
+\label{fig:trisection}
+\end{figure}
+
+\par\smallskip\noindent\textbf{The classical clock speaks anchor --- and the honest $(2/3)$-test} (\mE/\mC).
+The clock question of the previous box has a \emph{classical} half, and it is pure GR
+(Ginsparg--Perry~1983; Bousso--Hawking class): linearize around the Nariai geometry
+$dS_2\times S^2$. \textbf{Static pin \mE:} on the $dS_2$ static patch the function $\phi(\rho)=\rho$
+satisfies $\frac{d}{d\rho}\bigl[(1-\Lambda\rho^2)\phi'\bigr]=-2\Lambda\phi$ \emph{exactly} --- and this
+static mode \emph{is} the exact SdS two-horizon deformation, so the $S^2$-radius modulus mass is pinned
+internally: $m^2=-2\Lambda=-|\Z_2|\Lambda$ (the Laplace-type form of the linearization is the one
+external GR import, typed honestly). The Euclidean spectrum is the Ginsparg--Perry tower
+$(l(l+1)-2)\Lambda$: exactly \emph{one} negative mode $-|\Z_2|\Lambda$. \textbf{The clock \mE:} in
+Hubble units the homogeneous modes $\phi\sim e^{\lambda Ht}$ obey
+\[
+  \boxed{\ \chi_{\mathrm{clock}}(\lambda)=\lambda^2+\lambda-2=(\lambda-1)(\lambda+2)\ }
+\]
+--- \textbf{the anchor quadratic}: eigenvalues $\{1,-2\}$ $=$ the distinct anchor roots, and the Nariai
+cubic factors as $(t-1)^2(t+2)=(t-1)\cdot\chi_{\mathrm{clock}}(t)$. The anchor thus appears a
+\emph{third} time: as configuration roots, as the curvature base, and as the spectrum of the linearized
+clock. The horizon split is linear in the canonical angle with coefficient $1/\sqrt{\Nfam}$, and the
+entropy deviation grows at exactly $2H=|\Z_2|\times$Hubble. \textbf{Honest $(2/3)$-test \mC:} the
+classical clock eigenvalues are \emph{integers}, not $(2/3)$-powers --- the $(2/3)$-powers stay in the
+functional (curvature $(2/3)^{\Nfam}$). The conversion curvature$\to$rate at one loop (quantum
+(anti-)evaporation) remains external QFT input: the bridge to the flavor rate $(2/3)^{2\Nfam}$ is
+\emph{not} closed here. The seam variational principle now has exactly \emph{one} missing object: the
+quantum clock. \veri{v104\_nariai\_clock.py}
+
+
+\par\smallskip\noindent\textbf{The quantum-clock target, made quantitative} (\mE/\mC).
+Instead of guessing the quantum clock, its job description can be pinned exactly. \textbf{(1) The
+classical clock already lives on the cusp ladder \mE:} across the physical Ginsparg--Perry modes
+($l=0$: $(\lambda{-}1)(\lambda{+}2)$; $l=1$: $\lambda(\lambda{+}1)$) the decay exponents are
+\[
+  \boxed{\ \{0,-1,-2\}=-\operatorname{Spec}(V)=-\Nfam\times\text{cusp weights}\ }
+\]
+--- exactly the grading that carries the transfer operator's eigenspaces; the $l\ge2$ modes
+are damped oscillations with $\operatorname{Re}\lambda=-\tfrac12=-\delta$ (audit). \textbf{(2) The exact
+target \mE:} the transfer rates $\{0,\Delta,6\ln3\}$ are \emph{not} weight-linear ---
+$\mathrm{rate}(2)/\mathrm{rate}(1)=\log_{3/2}3=1+\log_{3/2}2=2.7095$, with the exact identity
+$(1/3)^6=\bigl((2/3)^6\bigr)^{\log_{3/2}3}$: \emph{the quantum clock must bend the weight-linear spectrum
+by $\log_{9/4}3=1.35476$ per weight step}. \textbf{(3) Coupling landscape \mE:} the dimensionless clock
+coupling $\kappa=(c/24\pi)(\Lambda/\bar M_{\mathrm{Pl}}^2)$ with $c=8$ is $7.6\times10^{-122}$ at the
+cosmological Nariai (hopeless) and $\kappa=1/(3\pi)=0.106$ at seam curvature --- the only regime where an
+$O(0.35)$ bend is reachable, and it is borderline non-perturbative: one-loop linear response cannot fix
+the bend; an $O(1)$ resummation or an exact seam construction is required. \emph{Status \mC:} R1 is
+sharpened from ``find a clock'' to ``produce the bend $\log_{3/2}3$ on the cusp ladder at coupling
+$O(1/3\pi)$''. Nothing is fitted; the identification stays open. \veri{v107\_quantum\_clock\_target.py}

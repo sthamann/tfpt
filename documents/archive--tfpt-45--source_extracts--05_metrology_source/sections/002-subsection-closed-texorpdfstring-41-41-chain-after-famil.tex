@@ -1,0 +1,391 @@
+\subsection{Closed \texorpdfstring{$41$}{41} chain after family and Higgs closure}
+
+Once the derived corner theorem and the Higgs uniqueness theorem are in place, the generic
+abelian-index identity \TFPTxref{eq:41-chain-main} specializes to
+\begin{equation}
+\label{eq:41-chain-specialized}
+10\,\bone
+=
+\Oadm\gamma+1
+=
+48\cdot\frac56+1
+=
+41.
+\end{equation}
+The extra $+1$ is precisely the arithmetic contribution of the unique light seam-even Higgs
+doublet.
+
+\begin{figure}[t]
+\centering
+\footnotesize
+\begin{tikzpicture}[
+    >=Latex,
+    chain/.style={draw=black!55, rounded corners, align=center, text width=2.6cm, minimum height=1.0cm, inner sep=4pt},
+    eq/.style={font=\Large},
+    note/.style={font=\scriptsize\itshape, text=black!55, align=center}
+]
+\node[chain, fill=green!7, draw=green!50!black] (a) at (0,0) {$10\,\bone$\\\scriptsize abelian index};
+\node[eq] at (2.15,0) {$=$};
+\node[chain, fill=orange!9, draw=orange!75!black] (b) at (4.3,0) {$\Oadm\gamma+1$\\\scriptsize family occupancy $+$ Higgs};
+\node[eq] at (6.45,0) {$=$};
+\node[chain, fill=gray!8, draw=black!65] (c) at (8.6,0) {$41$\\\scriptsize closed specialization};
+\node[note] at (4.3,-1.2) {This specialization appears only after both $\,\Oadm=48\,$ and $\,N_\Phi=1\,$ are proved.};
+\end{tikzpicture}
+\caption{The closed $41$ chain. The arithmetic specialization is made only after the family and
+Higgs theorems fix the occupancy and the unique light doublet.}
+\label{fig:41-chain-strip}
+\end{figure}
+
+\subsection{Canonical spectral Einstein functional and geometric Hodge closure}
+
+The local target action is written as the low-curvature expansion of a canonical spectral
+Einstein functional:
+\begin{equation}
+\label{eq:chi-effective-action}
+\begin{aligned}
+\Gammaeff
+=
+\int d^4x\sqrt{-g}\,
+\Big[
+c_R\chigeo^2R
++Z_\chi(\partial\chigeo)^2
+-\mu_\Phi^2(\chigeo)\,\Phi^\dagger\Phi
++\lambda_\Phi(\Phi^\dagger\Phi)^2
++\frac{1}{6M^2}R^2
++\cdots
+\Big].
+\end{aligned}
+\end{equation}
+The relative bosonic endomorphism used below is
+\begin{equation}
+\label{eq:relative-bosonic-endomorphism}
+E_{\mathrm{rel}}
+=
+-\frac14 R\,\mathbf 1_{48}
+-
+(\Phi^\dagger\Phi)\,P_2
++
+\frac12\gamma^{\mu\nu}\mathbb F_{\mu\nu},
+\end{equation}
+and the resulting low-curvature residue decomposition is summarized in
+\Cref{tab:heat-kernel-map}.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.15\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.14\linewidth}>{\raggedright\arraybackslash}p{0.14\linewidth}@{}}
+\toprule
+Residue term & Operator sector & Generated term & $\chigeo$ scaling & Role \\
+\midrule
+$a_0$ & relative bulk trace & vacuum-energy bookkeeping & $\chigeo^4$ & Hard \\
+$a_2$ & seam-even bosonic bulk term & $\chigeo^2R$, $\chigeo^2\Phi^\dagger\Phi$ & $\chigeo^2$ & Closure \\
+$a_4$ & local bosonic sector & $|D\Phi|^2$, $(\Phi^\dagger\Phi)^2$, $R\,\Phi^\dagger\Phi$, $\tr\mathbb F^2$, $R^2$ & $\chigeo^0$ & Closure \\
+boundary/defect term & seam correction and parity data & local defect counterterms, seam-even selection & $\Delta_{\Seam}$ & Closure \\
+$\eta$ term & APS spectral asymmetry & sign and spectral-flow control & scale free & Closure \\
+\bottomrule
+\end{tabular}
+\caption{Low-curvature residue map for the canonical spectral Einstein functional.}
+\label{tab:heat-kernel-map}
+\end{table}
+
+The resulting geometric logic is displayed in \Cref{fig:chi-bifurcation}. The canonical spectral
+residue fixes the Einstein term first; the low-curvature expansion then yields the Higgs
+normalization, the Higgs vacuum relation, and the retained curvature/gauge side terms. This is
+why the local spectral-scale sector is the principal geometric closure channel of the manuscript
+rather than just one more scalar parameter.
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\begin{tikzpicture}[
+    >=Latex,
+    node distance=8mm and 11mm,
+    a2/.style={draw=blue!60!black, fill=blue!6, rounded corners, align=center, text width=2.4cm, minimum height=0.9cm},
+    a4/.style={draw=purple!70!black, fill=purple!7, rounded corners, align=center, text width=2.4cm, minimum height=0.9cm},
+    flow/.style={draw=orange!75!black, fill=orange!8, rounded corners, align=center, text width=2.35cm, minimum height=0.95cm},
+    outbox/.style={draw=green!50!black, fill=green!8, rounded corners, align=center, text width=2.6cm, minimum height=0.95cm}
+]
+\node[a2] (a2node) {canonical spectral residue\\Einstein seed};
+\node[a4, right=24mm of a2node] (a4node) {low-curvature expansion\\Higgs / curvature terms};
+
+\node[flow, below=of a2node] (ein0) {$\chigeo^2R$\\Einstein term first};
+\node[flow, below=of a4node] (kin0) {$|D\Phi|^2,\ (\Phi^\dagger\Phi)^2$\\$\tr\mathbb F^2,\ R^2$};
+\node[flow, below=of $(ein0)!0.5!(kin0)$, yshift=-3mm] (chi) {same seam-even $\chigeo$ channel\\canonical spectral functional};
+
+\node[outbox, below left=of chi] (mpl) {$\Mpl^2=\chigeozero^2/(2\pi^2)$\\Einstein branch};
+\node[outbox, below=of chi] (zh) {$Z_H=1/(16\pi^2)$\\canonical Higgs normalization};
+\node[outbox, below right=of chi] (vev) {$\vgeo^2=Z_H\,\mu_\Phi^2(\chigeozero)/\lambda_\Phi$\\Higgs vacuum branch};
+\node[flow, right=18mm of vev] (curv) {$R^2/M^2,\ \tr\mathbb F^2$\\higher-curvature / gauge branch};
+
+\draw[->, thick] (a2node) -- (ein0);
+\draw[->, thick] (a4node) -- (kin0);
+\draw[->, thick] (ein0) -- (chi);
+\draw[->, thick] (kin0) -- (chi);
+\draw[->, thick] (chi) -- (mpl);
+\draw[->, thick] (chi) -- (zh);
+\draw[->, thick] (chi) -- (vev);
+\draw[->, thick] (kin0.east) -- (curv.west);
+\draw[->, thick] (zh) -- (vev);
+\end{tikzpicture}
+\caption{Canonical spectral flow of the local spectral-scale channel. The spectral residue fixes the
+Einstein term first; the low-curvature expansion then yields Higgs normalization, the Higgs
+vacuum branch, and the retained $R^2$/gauge side terms.}
+\label{fig:chi-bifurcation}
+\end{figure}
+
+\begin{theorem}[Canonical spectral Einstein functional and scalaron seed]
+\label{prop:canonical-bosonic-normalization}
+\label{thm:canonical-einstein-residue}
+In four dimensions the seam-even relative residue expansion gives
+\[
+\mathcal E_D
+=
+-\int d^4x\sqrt g
+\left(
+\frac{1}{24\pi^2}R
++
+\frac{1}{48\pi^2}\Phi^\dagger\Phi
+\right)
++
+\mathcal E_\Sigma,
+\]
+and
+\[
+\begin{aligned}
+\Gamma_D^{(4)}
+={}&
+\int d^4x\sqrt g
+\Big(
+\frac{1}{16\pi^2}|D\Phi|^2
++\frac{1}{16\pi^2}(\Phi^\dagger\Phi)^2
++\frac{1}{96\pi^2}R\,\Phi^\dagger\Phi
+\\
+&\qquad
++\frac{1}{192\pi^2}\tr\mathbb F^2
++\frac{1}{6M^2}R^2
++\cdots
+\Big)
++\mathcal A_\Sigma.
+\end{aligned}
+\]
+The seam-even scale channel $\chigeo$ is the unique scalar geometric mode on the retained branch;
+together with the retained $R^2$ term it forms a positive scalaron block, so no independent
+conformal negative mode survives as a separate physical degree of freedom.
+Therefore
+\[
+\Gamma_{\mathrm{grav}}
+:=
+-6\chigeo^2\mathcal E_D+\Gamma_D^{(4)}
+\]
+has low-curvature form
+\[
+\Gamma_{\mathrm{grav}}
+=
+\int d^4x\sqrt g
+\left(
+\frac{\Mpl^2}{2}R
++
+\frac{\Mpl^2}{12M^2}R^2
++
+|D\Phi|^2
+-V(\Phi,\chigeo)
+-\sum_a \frac{1}{4g_a^2}\tr F_a^2
++\cdots
+\right),
+\]
+with
+\[
+\Mpl^2=\frac{\chigeozero^2}{2\pi^2},
+\qquad
+Z_H=\frac{1}{16\pi^2},
+\qquad
+\Phi_{\mathrm{can}}:=\sqrt{Z_H}\,\Phi=\frac{\Phi}{4\pi},
+\]
+and therefore
+\begin{equation}
+\label{eq:induced-einstein}
+\Mpl^2=\frac{\chigeozero^2}{2\pi^2},
+\qquad
+\vgeo^2=Z_H\,\frac{\mu_\Phi^2(\chigeozero)}{\lambda_\Phi}.
+\end{equation}
+After \TFPTxref{thm:absolute-spectral-planck-closure}, the first identity is equivalently
+\[
+\frac{\Mpl^2}{\lambda_\Sigma^2}=\frac{\rho_\star}{2\pi^2}.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The operator \Cref{eq:relative-bosonic-endomorphism} controls the seam-even residue expansion of
+\Cref{def:canonical-residues}. Mellin expansion of the relative zeta pair fixes the order-one and
+order-zero residues without any profile choice, so the Einstein term appears before the Higgs
+kinetic, quartic, mixed-curvature, gauge-curvature, and $R^2$ terms. The coefficient of
+$|D\Phi|^2$ is therefore the wave-function factor $Z_H=1/(16\pi^2)$. After the canonical rescaling
+$\Phi_{\mathrm{can}}=\sqrt{Z_H}\,\Phi$, the Einstein and Higgs branches are read from one common
+profile-free residue functional rather than from separate normalization conventions. Because the
+same seam-even spectral channel carries $\chigeo$ and the retained $R^2$ block, the dangerous
+independent conformal mode is absorbed into one positive scalaron sector.
+\end{proof}
+
+\begin{remark}[Boundary-spectral form of Newton's constant]
+Using the standard reduced-Planck definition $\Mpl^{-2}=8\pi G_N$, the first relation in \Cref{eq:induced-einstein} is equivalently
+\[
+G_N\chigeozero^2=\frac{\pi}{4}.
+\]
+This Newton-form equation is therefore a rewriting of the Einstein-branch closure, not a second
+independent prediction. In the boundary-normalized language of
+\TFPTxref{sec:absolute-dimensionless-metrology} it becomes
+\[
+G_N\lambda_\Sigma^2=\frac{\pi}{4\rho_\star},
+\]
+so Newton's constant is read as a boundary-spectral ratio rather than as an isolated SI datum.
+\end{remark}
+
+\begin{lemma}[Two-sheet seam-even zero-mode normalization]
+\label{lem:two-sheet-zero-mode-normalization}
+If the seam-even Higgs zero mode is normalized across both sheets of the oriented double cover, then its branch weight is
+\[
+w_H
+=
+2\,\gcar\,\beta_{\mathrm{rad}}^2
+\exp\!\left[-\frac{\alpha^{-1}(0)+\delta_{\mathrm{ph}}}{5}\right].
+\]
+With
+\[
+\mu_\Phi^2(\chigeozero)=\frac{\chigeozero^2}{8\pi^2}w_H^2,
+\qquad
+\lambda_\Phi=\frac{1}{16\pi^2},
+\]
+the canonical Higgs vacuum expectation value is
+\begin{equation}
+\label{eq:carrier-dressed-v}
+\vgeo
+=
+\Mpl\,\gcar\,\beta_{\mathrm{rad}}^2\,
+\exp\!\left[-\frac{\alpha^{-1}(0)+\delta_{\mathrm{ph}}}{5}\right].
+\end{equation}
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+The two-sheet seam-even normalization doubles the unnormalized zero-mode weight and therefore produces the stated $w_H$. Since the canonical Higgs field is $\Phi_{\mathrm{can}}=\sqrt{Z_H}\,\Phi$, its vacuum relation is
+\[
+\vgeo^2=\frac{Z_H\mu_\Phi^2(\chigeozero)}{\lambda_\Phi}
+=
+\frac{\chigeozero^2}{8\pi^2}w_H^2.
+\]
+Using $\Mpl^2=\chigeozero^2/(2\pi^2)$ from \TFPTxref{prop:canonical-bosonic-normalization} gives $\vgeo=\Mpl w_H/2$, hence \Cref{eq:carrier-dressed-v}.
+\end{proof}
+
+\begin{corollary}[Hierarchy compression on the exact geometric branch]
+\label{cor:hierarchy-compression-vgeo}
+On the exact geometric branch one has
+\[
+\log\frac{\vgeo}{\Mpl}
+=
+\log\gcar
++
+2\log\beta_{\mathrm{rad}}
+-
+\frac{\alpha^{-1}(0)+\delta_{\mathrm{ph}}}{5}.
+\]
+Hence the dominant suppression of the geometric Higgs source scale is carried by the electromagnetic
+fixed point through the factor $e^{-\alpha^{-1}(0)/5}$. The theorem-level output is therefore the
+dimensionless ratio $\vgeo/\Mpl$, equivalently the boundary-normalized ratio $\vgeo/\lambda_\Sigma$
+or the hierarchy row $G_N\vgeo^2$, rather than a unitful GeV representative.
+\end{corollary}
+
+\begin{proof}
+Taking the logarithm of \Cref{eq:carrier-dressed-v} gives the displayed identity immediately. The
+dominant suppression is the exponential factor containing $\alpha^{-1}(0)$; the remaining terms are
+the closed-branch carrier and retained-seed prefactors.
+\end{proof}
+
+\begin{remark}[Geometric versus benchmark electroweak scales]
+For source formulas driven by the bosonic closure we write $\vgeo$ for the quantity in
+\Cref{eq:carrier-dressed-v}. The preceding corollary concerns the internal geometric source scale
+only and not yet the physical low-energy electroweak vacuum $v_{\mathrm{phys}}$. This is the
+internal geometric branch value used in the UV source formulas and in the bosonic closure. The
+physical electroweak vacuum parameter is not identified with $\vgeo$ itself; it is read only after
+the renormalized low-energy branch has been formed. When the manuscript compares to a conventional
+electroweak reference at the appendix interface, it uses a declared scheme-facing representative
+$\vewref$. These three objects therefore belong to different
+bookkeeping layers: $\vgeo$ to the internal geometric closure, $v_{\mathrm{phys}}$ to the physical
+observable layer, and $\vewref$ only to the appendix comparison interface. No GeV representative is
+part of the theorem-level gravitational or electroweak layer.
+\end{remark}
+
+\begin{definition}[Charged-current residue and physical electroweak scale]
+\label{def:physical-ew-scale}
+On the renormalized branch $\GrenTFPT$, let $\mathcal R_{\mathrm{CC}}^{\mathrm{TFPT}}(0)$ denote the
+coefficient of the local charged-current four-fermion operator at zero momentum transfer, so that
+\[
+\Gamma_{\mathrm{TFPT}}^{\mathrm{ren}}
+\supset
+-\mathcal R_{\mathrm{CC}}^{\mathrm{TFPT}}(0)
+\int d^4x\,
+\bigl(\bar\nu_\mu\gamma^\mu P_L\mu\bigr)\bigl(\bar e\gamma_\mu P_L\nu_e\bigr).
+\]
+Define the physical electroweak scale by
+\[
+\mathcal R_{\mathrm{CC}}^{\mathrm{TFPT}}(0)
+:=
+\frac{1}{2v_{\mathrm{phys}}^2}
+=
+\frac{G_F^{\mathrm{TFPT}}}{\sqrt2}.
+\]
+Thus $\vgeo$ remains the geometric Higgs-closure scale, while $v_{\mathrm{phys}}$ is the low-energy
+charged-current readout carried by $\GrenTFPT$.
+\end{definition}
+
+\begin{definition}[Branch source masses]
+\label{def:branch-source-masses}
+For each fermion sector define the source mass matrix
+\[
+M_f^{(0)}:=\frac{\vgeo}{\sqrt2}\,Y_f^\star.
+\]
+These are branch masses on the exact $\vgeo$ layer and not yet physical pole masses.
+\end{definition}
+
+\begin{theorem}[Native electroweak source-to-physical matching]
+\label{thm:ew-geometric-to-physical-matching}
+Let the renormalized charged-current residue at zero momentum transfer be written as
+\[
+\mathcal R_{\mathrm{CC}}^{\mathrm{TFPT}}(0)
+=
+\frac{g_2^2}{8m_W^2}\,(1+\Delta r_{\mathrm{CC}}^{\mathrm{TFPT}}).
+\]
+Write the renormalized $W$ mass in the form
+\[
+m_W^2=
+\frac{g_2^2}{4}Z_\Phi(0)(\vgeo+\delta v)^2\,(1+\delta_W).
+\]
+Define
+\[
+\mathcal Z_{\mathrm{EW}}^{\mathrm{TFPT}}
+:=
+ \frac{1}{2\vgeo^2\,\mathcal R_{\mathrm{CC}}^{\mathrm{TFPT}}(0)}
+ =
+Z_\Phi(0)\left(1+\frac{\delta v}{\vgeo}\right)^2
+\,\frac{1+\delta_W}{1+\Delta r_{\mathrm{CC}}^{\mathrm{TFPT}}}.
+\]
+Then the physical electroweak scale satisfies
+\[
+v_{\mathrm{phys}}
+=
+\vgeo\sqrt{\mathcal Z_{\mathrm{EW}}^{\mathrm{TFPT}}},
+\qquad
+v_{\mathrm{phys}}^2
+=
+Z_\Phi(0)(\vgeo+\delta v)^2\,\frac{1+\delta_W}{1+\Delta r_{\mathrm{CC}}^{\mathrm{TFPT}}}.
+\]
+Equivalently,
+\[
+\mathcal Z_{\mathrm{EW}}^{\mathrm{TFPT}}
+=
+\mathcal R_{\mathrm{CC}}\!\left[\Gamma_{\mathrm{TFPT}}^{\mathrm{ren}}\right].
+\]
+The charged-current residue and the four factors entering $\mathcal Z_{\mathrm{EW}}^{\mathrm{TFPT}}$
+are canonically determined by the renormalized 1PI package $\Gamma_{\mathrm{TFPT}}^{\mathrm{ren}}$;
+hence
+$\mathcal Z_{\mathrm{EW}}^{\mathrm{TFPT}}$ is a branch invariant and not a fit parameter.
+\end{theorem}

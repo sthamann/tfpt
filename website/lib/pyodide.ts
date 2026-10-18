@@ -25,6 +25,15 @@ const NATIVE_ONLY_SCRIPTS: Record<string, string> = {
     "This checker audits the original parent and mirror source files from the complete repository. Those source inputs are not mounted in the browser sandbox. Run the local command below from a full checkout.",
 };
 
+/** These checks inspect complete paper/research sources, which are not mounted here. */
+const SOURCE_CONTEXT_SCRIPTS = new Set([
+  "v188_frontier_wording_guard.py", "v265_qft4d_fork_freeze.py",
+  "v649_discipline_audit.py", "v1006_mmst_lemma_battery.py",
+  "v1007_det16_stability_battery.py", "v1013_thermodynamic_dynamics.py",
+  "v1014_bridge_refinements.py", "v1015_axiom_core_closure.py",
+  "v1016_state_gap_batteries.py", "v1033_charged_disorder.py",
+]);
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Pyodide = any;
 
@@ -78,6 +87,8 @@ async function getPyodide(onStatus?: StatusFn): Promise<Pyodide> {
       onStatus?.("Loading the shared constants (tfpt_constants.py)…");
       const consts = await fetchText("/verification/tfpt_constants.py");
       py.FS.writeFile(`${WORK_DIR}/tfpt_constants.py`, consts);
+      const texSources = await fetchText("/verification/tex_sources.py");
+      py.FS.writeFile(`${WORK_DIR}/tex_sources.py`, texSources);
       // tfpt_constants imports mpmath at module level → make sure it is present.
       await py.loadPackagesFromImports(consts);
       py.runPython(`import sys\nif ${JSON.stringify(WORK_DIR)} not in sys.path: sys.path.insert(0, ${JSON.stringify(WORK_DIR)})`);
@@ -103,7 +114,9 @@ export interface RunResult {
 }
 
 export function nativeRuntimeNote(file: string): string | null {
-  return NATIVE_ONLY_SCRIPTS[file] ?? null;
+  return NATIVE_ONLY_SCRIPTS[file] ?? (SOURCE_CONTEXT_SCRIPTS.has(file)
+    ? "This checker reads the complete modular LaTeX or research sources. Those inputs are not mounted in the browser sandbox. Run it from a full repository checkout to preserve its document checks."
+    : null);
 }
 
 function parseOutput(raw: string): Omit<RunResult, "raw" | "error"> {
@@ -152,7 +165,7 @@ export async function runScript(
   const nativeOnly = nativeRuntimeNote(file);
   if (nativeOnly) {
     return {
-      header: "Native-only interval certificate",
+      header: "Local repository verification",
       checks: [],
       passed: 0,
       failed: 0,

@@ -1,0 +1,173 @@
+\section{The honest open-items list}
+% =====================================================================
+This is the complete current ledger of what is \emph{not} fully closed, graded by how hard the gap is.
+
+\begin{center}\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}p{0.5cm}p{4.5cm}cY@{}}
+\toprule
+\# & \textbf{Open item} & \textbf{Grade} & \textbf{Hardening path / what closes it} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{1. SM core --- finite computations, no new physics}}\\
+1a & absolute quark $c$-scale (ratios closed) & \mO & quark \emph{ratios} are integer Pl\"ucker readouts on the derived selector stratum (\vref{v49}/\vref{v69}/\vref{v71}); only the \emph{absolute} $U_f^\star$ normalisation remains --- an anchor \\
+1b & $\theta_{12}$ solar angle & \mE & \textbf{texture closed (below):} explicit $\mu\tau$-symmetric texture verified; only $\varepsilon{=}\tfrac34\phiz{\approx}\cthree$ ($0.23\%$) stays conditional \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{2. Scheme layer --- standard RG, no new input}}\\
+2a & $m_W,m_Z,m_H,\sin^2\theta_W,\alpha_s$ & \mC & RG threshold matching $R_{\mathrm{SM}}$; $m_H$ on the closed UV quartic $1/16\pi^2$ \\
+2b & hadron pole spectrum (singlet) & \mC & singlet algebra $\mathcal A_{\mathrm{sing}}$ explicit; dynamics already closed (gap $6\log\tfrac32$) \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{3. Conditional --- named analytic hypotheses}}\\
+3a & gravity: local eq.\ no free dimensionless Newton coupling under named QFT/entanglement premises \mC; ambient redundancy & \mE/\mC & full covariant $G_{ab}{+}\Lambda g_{ab}{=}\cthree^{-1}T_{ab}$ (\vref{v358}/\vref{v359}); perturbative graviton unitarity established (Stelle ghost a truncation artefact, \vref{v304}/\vref{v370}/\vref{v380}); ambient measure a \mC\ redundancy (\vref{v369}) \\
+3b & strong CP / QFT closure & \mC & reflection positivity (RP) is the one remaining input \\
+3c & $\Lambda$ branch label (rec vs car) & \mC & one discrete choice; typed via $(8\pi)^2$, value not fixed \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{4. Axioms --- not eliminable, only hardenable}}\\
+4 & P1 ($\cthree$), P2 ($\gcar{=}5$) & \mO & more Lean; P2 algebra already machine-verified; remain inputs \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{5. Frontier --- typed transfer targets, never compiler powers (see frontier doc)}}\\
+5 & $\eta_B$, $m_p/m_e$, Koide, dark matter, ambient QG measure & \mC & transfers now runnable solvers with kill tests (\vref{v371}--\vref{v375}); ambient measure a \mC\ redundancy (\vref{v369}); not forced (scan results below) \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{6. Cosmology late-time pipeline --- not simplified by the compiler}}\\
+6 & $C_\ell$ transfer, $a_{\ell m}$ seam, baryogenesis & \mC & frontier-doc machinery; $a_{\ell m}$ ``good CMB world, not yet this CMB world'' (SMICA test) \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\markerkey
+
+\noindent\textbf{Net.} Items 1 are finite arithmetic; 2 are standard RG; 3 hinge on named hypotheses
+(RP, the $\Lambda$ branch, the UV completion); 4 are the two irreducible axioms; 5--6 are honestly open.
+The inflation sector (the only cosmology piece the compiler \emph{does} sharpen) is now a parameter-free
+prediction ($M{=}\cthree^{7/2}\Mbar$, document~2).
+
+\begin{winbox}[Item 1b closed: the explicit solar-angle Majorana texture \mE]
+The last open SM angle is now realised by an \emph{explicit} texture, not a fitted number. Take the
+$\mu\tau$-symmetric Majorana matrix (tri-bimaximal at $\varepsilon{=}0$)
+\begin{equation}
+  M_\nu(\varepsilon)=\begin{pmatrix}-\eta(\varepsilon)&1&1\\ 1&1&0\\ 1&0&1\end{pmatrix},\qquad
+  \eta(\varepsilon)=\frac{2\sqrt2}{\tan2\theta_{12}}-1,\quad
+  \sin^2\theta_{12}=\tfrac13(1-2\varepsilon).
+\end{equation}
+$\mu\tau$-symmetry forces $\theta_{23}=45^\circ$ and $\theta_{13}=0$ \emph{exactly}; diagonalisation at the
+TFPT solar deviation $\varepsilon=\tfrac34\phiz$ gives
+\begin{equation}
+  \boxed{\ \sin^2\theta_{12}=\tfrac13-\tfrac{\phiz}{2}=0.306747,\quad
+  \theta_{23}=45^\circ,\quad \theta_{13}=0\ }\quad\mE
+\end{equation}
+\textbf{Honest residual} (\veri{v9\_neutrino\_texture.py}). The texture and the angle are exact. The seam identification is
+$\varepsilon=\tfrac34\phiz=\tfrac34\bigl(\tfrac1{6\pi}+\tfrac3{256\pi^4}\bigr)=\cthree+\tfrac{9}{1024\pi^4}$:
+the \emph{leading geometric term is exactly} $\cthree=\tfrac1{8\pi}$, and the $0.23\%$ residual is purely the
+$\phiz$ seed tail (document~2). So $\varepsilon=\cthree$ holds at leading order; the full
+$\varepsilon=\tfrac34\phiz$ is what enters the texture. The reactor angle $\theta_{13}$
+($\sin^2\theta_{13}=e^{-5/6}\phiz$, document~2) enters through a separate $\mu\tau$-breaking term and is not
+part of this minimal solar texture. \textbf{Scope:} this realises the TFPT solar shift in the
+$\mu\tau$-symmetric \emph{limit}; it is \emph{not} the full PMNS matrix. The $\theta_{23}{=}45^\circ$ value
+is the symmetric-limit centre, \emph{not} an octant prediction --- current global fits (NuFIT~6.0) leave
+the octant unresolved --- and the reactor angle plus the combined matrix require the separately stated
+$\mu\tau$-breaking channel.
+\end{winbox}
+
+% =====================================================================
+\section{The $E_8$-slice scan: results (honest hit / miss)}
+% =====================================================================
+All seven maximal slices of $248$ were scanned for the unassigned quantities. The rule was a meaningful
+(low-complexity) compiler/slice expression matching to $<0.5\%$; matches that need a free fitted factor
+are reported as \emph{misses}.
+
+\begin{center}\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}p{3.0cm}Yc@{}}
+\toprule
+\textbf{Slice / target} & \textbf{Result} & \textbf{Verdict} \\
+\midrule
+$A_4{\times}A_4=SU(5)^2$ & $\sin^2\theta_W|_{\mathrm{GUT}}=3/8$ sits in the $SU(5)$ hypercharge embedding; the $12$ coset states are the proton-decay $X,Y$ bosons & \mE\ (known) \\
+$F_4{\times}G_2$ / Koide & Koide $Q=2/3=|\Z_2|/\Nfam$ (sheet over families); $J_3(\mathbb O)$ has $\dim 27{=}26{+}1$, $3{\times}3$ octonionic ``generations'' on the diagonal & \mC\ structural \\
+$D_8=SO(16)$ & $128=(16,4)\oplus(\overline{16},\overline4)$ --- \emph{same} spinor as $D_5{\times}A_3$; $\nu_R$ (seesaw) lives in the $16$; \textbf{no new dark-matter state} (only the 4th $\mu_4$ direction) & \mE \\
+$A_8=SU(9)$, $9{=}3{\times}3$ & $\Lambda^3(3,3)=(10,1){\oplus}(8,8){\oplus}(1,10)$: the $(8,8){=}64$ dominates --- naive family$\times$colour \textbf{fails} & miss \\
+$A_8\supset SU(5){\times}SU(4)$ & $\Lambda^3(5{+}4)$ contains the SM $\mathbf{10}$: a genuine chiral-family-unification \emph{lead}, but not TFPT-forced & lead \\
+$E_6{\times}A_2$ / Jarlskog & cross term $2(\mathbf1^\top Ra)\Nfam=162=248{-}78{-}8$ exact; $J\sim\lamY^6$ only to right \emph{order}, no clean hit & weak \\
+$E_8$ theta shells & root shells $240,2160,6720,\dots$; $31{=}2^{\gcar}{-}1$ is \emph{not} a clean shell ratio & inconcl. \\
+$m_p/m_e=1836.15$ & no clean $E_8$/compiler expression (a QCD-confinement ratio); apparent hits need a free factor & \textbf{miss} \\
+$\eta_B\approx6.1{\times}10^{-10}$ & sits \emph{between} $\cthree^6{=}4{\times}10^{-9}$ and $\cthree^7{=}1.6{\times}10^{-10}$; right order, no integer power & order only \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\markerkey
+
+\begin{winbox}[Genuine new readings the scan produced]
+\begin{itemize}\setlength\itemsep{2pt}
+\item\textbf{Koide $=|\Z_2|/\Nfam$.} The empirical Koide value $2/3$ is exactly the sheet over the family
+count --- a clean (if simple) compiler reading, promoting Koide from ``near $2/3$'' to ``democratic
+$|\Z_2|/\Nfam$.''
+\item\textbf{$E_8$ as the optimal $8$-bit code.} $E_8$ is the optimal $8$D lattice (kissing number $240$).
+In byte framing $256{-}248=8=\operatorname{rank}E_8$ and $256{-}240=16=\dim S^+$ --- a clean
+information-theoretic reading of the two load-bearing $E_8$ numbers.
+\item\textbf{Dark matter $=$ no new state.} The $SO(16)$ scan shows the $128$ is the \emph{same} matter
+spinor; there is no spare $E_8$ singlet to be a WIMP. Any DM candidate must be the determinant-line
+axion (frontier doc), not a new $E_8$ rep --- a useful \emph{negative}.
+\item\textbf{$SU(9)\supset SU(5){\times}SU(4)$ chiral lead.} $\Lambda^3$ puts the SM $\mathbf{10}$ in the
+antisymmetric; the cleanest unexploited route to a family-unification reading, flagged for future work.
+\end{itemize}
+\end{winbox}
+
+\begin{gapbox}[Honest negatives]
+$m_p/m_e$ has \emph{no} clean $E_8$/compiler derivation (it is a confinement ratio --- the apparent
+``hits'' all need a free fitted factor); $\eta_B$ matches only at the order-of-magnitude level
+($\sim\cthree^{6.x}$); the $\Lambda$ rec/car branch is \emph{not} selected by the theta series; the
+Jarlskog invariant is right only to order $\lamY^6$. These are reported as open, not forced.
+\end{gapbox}
+
+% =====================================================================
+\section{Following the $SU(9)$ lead: cross-slice consistency}
+% =====================================================================
+The one scan lead worth following is $A_8=SU(9)\supset SU(5)\times SU(4)$. Splitting $9=(5,1)\oplus(1,4)$
+the $E_8$ branching $248=80\oplus84\oplus\overline{84}$ decomposes \emph{exactly} as:
+
+\begin{center}\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{@{}llY@{}}
+\toprule
+piece & $SU(5)\times SU(4)$ content & reading \\
+\midrule
+$80$ (adj) & $(24,1){+}(1,15){+}(5,\bar4){+}(\bar5,4){+}(1,1)$ & $SU(5)_{\rm GUT}$ $+$ $SU(4)_{\rm fam}$ gauge \\
+$84=\Lambda^3 9$ & $(10,1){+}(10,4){+}(5,6){+}(1,4)$ & the SM $\mathbf{10}$ as family-singlet $+$ family-$\mathbf4$ \\
+$\overline{84}$ & $(\overline{10},1){+}(\overline{10},\bar4){+}(\bar5,6){+}(1,\bar4)$ & the conjugate matter \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\noindent (Dimension checks: $24{+}15{+}20{+}20{+}1=80$; $10{+}40{+}30{+}4=84$; total $248$.)
+
+\begin{winbox}[The genuine content: $A_8$ and $D_5{\times}A_3$ agree on the family \mE]
+The $SU(4)$ here is \emph{the same} $A_3$ family group as in the construction slice $D_5\times A_3$ --- the
+four punctures $\mu_4$ of $\PP^1\setminus\mu_4$. The $SU(5)$ is the Georgi--Glashow GUT sitting inside the
+carrier $SO(10)=D_5$ ($SU(5)\subset SO(10)$). So the two maximal slices are \emph{consistent}: both read
+the family as $SU(4){=}A_3$, and $A_8$ additionally exposes the $SU(5)$ matter content --- the SM
+$\mathbf{10}$ appears as $(10,1)\oplus(10,4)$, i.e.\ a family-singlet $\mathbf{10}$ plus a family-$\mathbf4$,
+where the $\mathbf4$ of $A_3$ is exactly TFPT's ``$4=\Nfam+1$'' (three families $+$ the $\mu_4$ direction).
+\end{winbox}
+
+\begin{gapbox}[Honest limit: chirality is still the index, not $E_8$]
+$84\oplus\overline{84}$ is \emph{vectorlike} ($10\oplus\overline{10}$ etc.): $E_8$ being non-chiral, the
+slice cannot by itself produce three \emph{chiral} generations. The chirality is the boundary index
+$\operatorname{Ind}(D^+_{\rm fam})=3$ --- the \emph{same} input TFPT already uses. So $SU(9)$ is a
+consistent re-reading (matter in $SU(5)$, family in $A_3$), not an independent derivation of $\Nfam=3$.
+Each $SU(5)$ pair $(\mathbf{10}+\bar{\mathbf5})$ is anomaly-free, so the embedding is clean. \mC
+\end{gapbox}
+
+% =====================================================================
+\section*{Appendix: computational verification}
+\addcontentsline{toc}{section}{Appendix: computational verification}
+% =====================================================================
+The audit/bridge identities of this document (marked \mE, \mE) are re-derived from $\{\cthree,\gcar\}$ and
+machine-checked by the suite in the repository folder \texttt{verification/}; the inline tags
+\texttt{[verification/$\dots$]} point to the exact script. Relevant here:
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+\item \texttt{v1\_e8\_glue.py} --- the $\mu_4$ glue $E_8{=}(D_5{\oplus}A_3){+}\mu_4$ (load-bearing).
+\item \texttt{v4\_flavor\_matrix.py} --- the spectral selector $\det R{=}h(D_5){=}8$, minors $\{2,3,5\}$.
+\item \texttt{v5\_e8\_cascade.py} --- the cascade $D_n{=}60{-}2n$: endpoints, exponent rungs, IR tail, variance.
+\item \texttt{v6\_bootstrap.py} --- the self-consistency loop: $\mu^2{-}5\mu{+}4{=}0$, $\gcar{=}5$ three ways, $8{=}\operatorname{rank}E_8$.
+\end{itemize}
+The $E_8$-slice/atlas readings are explicitly \mO\ (audit-level), not part of the pass/fail suite. Run
+\texttt{python verification/run\_all.py}; full map in \texttt{verification/README.md}.
+
+\end{document}

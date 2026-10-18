@@ -1,0 +1,180 @@
+\section{Referee Exit Snapshot --- Version 2.8}
+\label{app:referee-exit-v28}
+%=============================================================================
+
+This appendix summarizes the closed gates and solver outcomes from the v2.8 referee exit snapshot (run date: 2026-02-08, git commit \texttt{b9d26d4}). All 235 modules achieved PASS status; 0~WARN, 0~FAIL.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}p{4.5cm}p{5.5cm}p{3cm}@{}}
+\toprule
+\textbf{Interface} & \textbf{Module} & \textbf{Best candidate}\\
+\midrule
+CKM CP phase & \texttt{ckm\_phase\_topology\_referee\_exit\_gate\_v28} & topology\_delta\_cp\_1\\
+PMNS full closure & \texttt{pmns\_full\_closure\_gate\_v28} & topology\_delta0\_3\\
+$\Omega_b$ (APS seam) & \texttt{omega\_b\_seam\_embedding\_solver} & periodic\_m1\_bm1\_SF1\\
+$\rho_\Lambda$ (gap equation) & \texttt{lambda\_gap\_equation\_discrete\_solver} & $n=3$, $c=10$\\
+Majorana phases & \texttt{majorana\_phase\_search\_v28} & $\alpha_1=0$, $\alpha_2=5\pi/3$\\
+Constant factory & \texttt{constant\_factory\_symbolic\_regression} & expression (see Sec.~\ref{sec:constant-factory-v28})\\
+\midrule
+\multicolumn{3}{l}{\textit{Supporting gates and audits (all PASS):}}\\
+\multicolumn{3}{l}{\texttt{ckm\_phase\_rg\_bridge\_v28}, \texttt{ckm\_phase\_discrete\_derivation\_search}}\\
+\multicolumn{3}{l}{\texttt{pmns\_topology\_referee\_exit\_gate\_v28}, \texttt{phase\_topology\_solver\_v28}}\\
+\multicolumn{3}{l}{\texttt{alpha2\_coefficient\_policy\_referee\_exit\_gate\_v28}}\\
+\multicolumn{3}{l}{\texttt{omega\_b\_seam\_stability\_audit}, \texttt{omega\_b\_seam\_catalog\_sensitivity\_audit}}\\
+\multicolumn{3}{l}{\texttt{dark\_energy\_discrete\_sensitivity\_audit}, \texttt{h0\_diagnostic\_closure\_v28}}\\
+\multicolumn{3}{l}{\texttt{h0\_sensitivity\_scan\_v28}, \texttt{global\_likelihood\_v28} (PASS)}\\
+\multicolumn{3}{l}{\texttt{alpha\_s\_fixed\_point\_closure\_solver\_v1} (PASS), \texttt{alpha\_s\_mz\_closure\_solver} (PASS)}\\
+\multicolumn{3}{l}{\texttt{alpha\_s\_closure\_gate\_publication} (PASS), \texttt{alpha\_roundtrip\_contract\_audit} (PASS)}\\
+\multicolumn{3}{l}{\texttt{alpha\_running\_double\_implementation\_audit} (PASS)}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Run manifest:} \texttt{tfpt-suite/out\_unified/engineering/run\_manifest.json} records the full module list, execution timestamps, and per-module exit codes.
+
+\textbf{Consolidated certificates:} \texttt{open\_interface\_solver\_consolidation\_v28} provides machine-readable certificates confirming no number drift between suite outputs and paper claims.
+
+\paragraph{Reference snapshot policy.}
+All experimental reference values used by the verification suite are pinned to a specific
+publication date or data release.  Where a DOI or arXiv identifier exists, it is recorded
+in the bibliography below and in the suite's \texttt{sm\_inputs\_mz.json} policy file.
+Online-only resources (NuFIT, PDG online tables) carry a snapshot date.
+This ensures that results are reproducible even if upstream databases update:
+the suite always evaluates against the pinned snapshot, and any future reference update
+triggers a re-run rather than a silent drift.
+
+\begin{thebibliography}{99}
+\bibitem{hehl1976}
+F.~W.~Hehl, P.~von der Heyde, G.~D.~Kerlick, J.~M.~Nester,
+``General Relativity with Spin and Torsion: Foundations and Prospects,''
+Rev.\ Mod.\ Phys.\ \textbf{48}, 393 (1976),
+\url{https://doi.org/10.1103/RevModPhys.48.393}.
+
+\bibitem{fujikawa1979}
+K.~Fujikawa,
+``Path-Integral Measure for Gauge-Invariant Fermion Theories,''
+Phys.\ Rev.\ Lett.\ \textbf{42}, 1195 (1979),
+\url{https://doi.org/10.1103/PhysRevLett.42.1195}.
+
+\bibitem{kawasaki1979}
+T.~Kawasaki,
+``The Riemann--Roch theorem for complex V-manifolds,''
+Osaka J.\ Math.\ \textbf{16}, 151--159 (1979),
+\url{https://doi.org/10.18910/7686}.
+
+\bibitem{atiyah1975}
+M.~F.~Atiyah, V.~K.~Patodi, I.~M.~Singer,
+``Spectral asymmetry and Riemannian geometry I,''
+Math.\ Proc.\ Camb.\ Phil.\ Soc.\ \textbf{77}, 43--69 (1975).
+
+\bibitem{bunke1995}
+U.~Bunke,
+``On the gluing problem for the $\eta$-invariant,''
+J.\ Differential Geom.\ \textbf{41}, 397--448 (1995).
+
+\bibitem{diegoPalazuelos2022}
+P.~Diego-Palazuelos \textit{et al.},
+``Cosmic Birefringence from the Planck Data Release 4,''
+Phys.\ Rev.\ Lett.\ \textbf{128}, 091302 (2022),
+\url{https://doi.org/10.1103/PhysRevLett.128.091302}.
+
+\bibitem{minamiKomatsu2020}
+Y.~Minami, E.~Komatsu,
+``New Extraction of the Cosmic Birefringence from the Planck 2018 Polarization Data,''
+Phys.\ Rev.\ Lett.\ \textbf{125}, 221301 (2020),
+\url{https://doi.org/10.1103/PhysRevLett.125.221301}.
+
+\bibitem{codata2022}
+E.~Tiesinga, P.~J.~Mohr, D.~B.~Newell, B.~N.~Taylor,
+``CODATA Recommended Values of the Fundamental Physical Constants: 2022,''
+J.\ Phys.\ Chem.\ Ref.\ Data \textbf{53}, 043103 (2024),
+\url{https://doi.org/10.1063/5.0148802}.
+
+\bibitem{planck2018}
+Planck Collaboration,
+``Planck 2018 results. VI. Cosmological parameters,''
+\textit{Astron.\ Astrophys.} \textbf{641}, A6 (2020), arXiv:1807.06209.
+
+\bibitem{pdg2024}
+Particle Data Group (S.~Navas \textit{et al.}),
+``Review of Particle Physics,''
+Phys.\ Rev.\ D \textbf{110}, 030001 (2024),
+\url{https://doi.org/10.1103/PhysRevD.110.030001}
+(online tables snapshot: 2024-12-01).
+
+\bibitem{brod2021}
+J.~Brod, M.~Gorbahn, E.~Stamou,
+``Updated Standard Model prediction for $K\to\pi\nu\bar{\nu}$ and $\epsilon_K$,''
+Phys.\ Rev.\ D \textbf{104}, 015001 (2021), arXiv:2105.02868.
+
+\bibitem{buras2022}
+A.~J.~Buras, E.~Venturini,
+``The exclusive vision of rare $K$ and $B$ decays and of the quark mixing in the Standard Model,''
+Eur.\ Phys.\ J.\ C \textbf{82}, 238 (2022), arXiv:2109.11032.
+
+\bibitem{na622024}
+NA62 Collaboration,
+``Observation of the $K^+ \to \pi^+ \nu\bar{\nu}$ decay and measurement of its branching ratio,''
+arXiv:2412.12015 (2024).
+
+\bibitem{ehtm87pol2021}
+Event Horizon Telescope Collaboration,
+``First M87 Event Horizon Telescope Results. VII. Polarization of the Ring,''
+Astrophys.\ J.\ Lett.\ \textbf{910}, L13 (2021),
+\url{https://doi.org/10.3847/2041-8213/abe4de}.
+
+\bibitem{nufit53_2024}
+NuFIT collaboration,
+``NuFIT 5.3 (2024) global analysis of neutrino oscillation data,''
+\url{http://www.nu-fit.org/} (snapshot date: 2024-11-01).
+
+\bibitem{riess2022}
+A.~G.~Riess \textit{et al.},
+``A Comprehensive Measurement of the Local Value of the Hubble Constant with 1 km s$^{-1}$ Mpc$^{-1}$ Uncertainty from the Hubble Space Telescope and the SH0ES Team,''
+Astrophys.\ J.\ Lett.\ \textbf{934}, L7 (2022),
+\url{https://doi.org/10.3847/2041-8213/ac5c5b}.
+
+\bibitem{kostelecky2008}
+V.~A.~Kosteleck\'y, N.~Russell, J.~D.~Tasson,
+``Constraints on Torsion from Bounds on Lorentz Violation,''
+Phys.\ Rev.\ Lett.\ \textbf{100}, 111102 (2008),
+\url{https://doi.org/10.1103/PhysRevLett.100.111102}.
+
+\bibitem{shapiro2002}
+I.~L.~Shapiro,
+``Physical aspects of the space--time torsion,''
+Phys.\ Rept.\ \textbf{357}, 113--213 (2002),
+\url{https://doi.org/10.1016/S0370-1573(01)00030-8}.
+
+\bibitem{rareKaonNote2025}
+S.~Hamann,
+``Rare Kaon Decay'' (internal note, Sep 2025),
+\mbox{\codepath{old-latex-and-docs/Rare Kaon Decay.pdf}}.
+
+\bibitem{bhAchromaticRotationNote2025}
+S.~Hamann,
+``Blackhole Achromatic Polarization Rotation Test'' (internal note, 2025),
+\codepath{old-latex-and-docs/Blackhole-AchromaticPolarizationRotationTest.pdf}.
+
+\bibitem{blackHolesBh1Note2025}
+S.~Hamann,
+``Black Holes'' (internal note, 2025),
+\codepath{old-latex-and-docs/Black Holes.pdf}.
+
+\bibitem{fiveProblemsNote2025}
+S.~Hamann,
+``Five Problems'' (internal note, 2025),
+\codepath{old-latex-and-docs/Five Problems.pdf}.
+
+\bibitem{fourPlusTwoNote2025}
+S.~Hamann,
+``4+2'' (internal note, 2025),
+\codepath{old-latex-and-docs/4+(2).pdf}.
+
+\bibitem{tfptSuiteData}
+TFPT Suite (v2.8) data + policy files, replication bundle snapshot (2026-02-08, git \texttt{b9d26d4}),
+235 modules, 0 FAIL.
+\end{thebibliography}
+
+\end{document}

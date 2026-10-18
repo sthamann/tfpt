@@ -1,0 +1,60 @@
+\documentclass[11pt,a4paper]{article}
+\input{../../_archive/tfpt-45/tfpt45-common}
+
+% Override the running header inherited from tfpt45-common.tex
+% to match this note's actual topic, not the parent paper series.
+\fancyhf{}
+\fancyhead[L]{\small\itshape\color{tfptgray} TFPT Lean Note: Carrier Rigidity Audit Harness}
+\fancyhead[R]{\small\color{tfptgray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{leanbg}{RGB}{248,248,250}
+\definecolor{leankeyword}{RGB}{35,60,120}
+\definecolor{leancomment}{RGB}{90,90,95}
+\definecolor{leanstring}{RGB}{40,110,60}
+
+\lstdefinelanguage{lean4}{
+  morekeywords={import,namespace,end,theorem,lemma,def,noncomputable,structure,
+    where,by,have,show,rw,unfold,calc,obtain,refine,exact,fun,if,then,else,
+    match,with,let,in,return,do,abbrev,instance,open,variable,inductive,class},
+  sensitive=true,
+  morecomment=[s][\color{leancomment}\itshape]{/-}{-/},
+  morecomment=[l][\color{leancomment}\itshape]{--},
+  morestring=[b]",
+}
+
+\lstset{
+  language=lean4,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{leankeyword}\bfseries,
+  commentstyle=\color{leancomment}\itshape,
+  stringstyle=\color{leanstring},
+  backgroundcolor=\color{leanbg},
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{tfptblue!40},
+  breaklines=true,
+  showstringspaces=false,
+  columns=fullflexible,
+  xleftmargin=4pt, xrightmargin=4pt,
+  aboveskip=6pt, belowskip=6pt,
+  literate={λ}{{$\lambda$}}1 {α}{{$\alpha$}}1 {β}{{$\beta$}}1
+           {ε}{{$\varepsilon$}}1 {ℚ}{{$\mathbb Q$}}1 {ℤ}{{$\mathbb Z$}}1
+           {ℕ}{{$\mathbb N$}}1 {₊}{$_{+}$}1 {₋}{$_{-}$}1 {₀}{$_0$}1
+           {⊕}{{$\oplus$}}1 {⟨}{{$\langle$}}1 {⟩}{{$\rangle$}}1
+           {→}{{$\rightarrow$}}1 {↦}{{$\mapsto$}}1 {∀}{{$\forall$}}1
+           {∃}{{$\exists$}}1 {·}{{$\cdot$}}1 {≠}{{$\neq$}}1
+           {≤}{{$\leq$}}1 {≥}{{$\geq$}}1 {∈}{{$\in$}}1 {𝒫}{{$\mathcal P$}}1
+           {∣}{{$\,|\,$}}1 {∘}{{$\circ$}}1 {ₗ}{$_{\ell}$}1
+           {⅟}{{$\,\widehat{\cdot}\,$}}1 {≃}{{$\simeq$}}1 {Λ}{{$\Lambda$}}1
+}
+
+\title{\color{tfptblue}\textbf{Formal Verification of TFPT Carrier Rigidity in Lean 4}\\[0.4em]
+{\Large An Audited Dependency Graph from the Boundary Involution\\
+to the Standard-Model \boldmath$3+2$\unboldmath\ Hypercharge Carrier}}
+\author{Stefan Hamann \and Alessandro Rizzo}
+\date{{\normalsize\color{tfptgray}\sffamily TFPT Experiment Note --- Lean 4 Formalisation --- v11 --- \today}}
+

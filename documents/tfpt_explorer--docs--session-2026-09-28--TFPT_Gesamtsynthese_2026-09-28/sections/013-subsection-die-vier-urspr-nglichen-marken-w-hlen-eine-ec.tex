@@ -1,0 +1,361 @@
+\subsection{Die vier ursprünglichen Marken wählen eine echte lokale Zweiteilung}\label{sec:nativemodular}
+Die erklärte Quadrat-Markierung wird jetzt konkret benutzt:
+\begin{equation}
+p_j=i^j,\qquad
+E=(p_0,p_1)\cup(p_2,p_3),\qquad
+E'=(p_1,p_2)\cup(p_3,p_0).
+\end{equation}
+Gemeint sind die positiv orientierten offenen Kreisbögen. Die beiden Komponenten von $E$ haben disjunkte Abschlüsse; ihre Zwischenräume sind genau die Komponenten von $E'$. Es wird keine zusätzliche Gapbreite gewählt. \emph{Die Quadratgestalt selbst bleibt eine ursprüngliche Rahmenvoraussetzung: Die Anzahl vier allein erzwingt die Kreuzratio $1/2$ nicht.}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.05]
+\draw[gray!60] (0,0) circle (1.5);
+\draw[teal,line width=4pt] (4:1.5) arc (4:86:1.5);
+\draw[teal,line width=4pt] (184:1.5) arc (184:266:1.5);
+\draw[amber,line width=4pt] (94:1.5) arc (94:176:1.5);
+\draw[amber,line width=4pt] (274:1.5) arc (274:356:1.5);
+\foreach \a/\lab in {0/1,90/i,180/{-1},270/{-i}}{
+\fill[navy] (\a:1.5) circle (1.8pt);
+\node at (\a:1.86) {$\lab$};}
+\node[align=left,text width=8.8cm] at (6.7,0) {
+\textcolor{teal}{\textbf{Grün:}} Operationen in den beiden ausgewählten Abschnitten.\\[4pt]
+\textcolor{amber}{\textbf{Orange:}} Operationen in ihrem Komplement.\\[4pt]
+Eine Vierteldrehung vertauscht beide Seiten. Derselbe Vakuumzustand korreliert die beiden grünen Abschnitte; seine modulare Bewegung kann sie deshalb nicht durchgehend unabhängig bewegen.};
+\end{tikzpicture}
+\end{center}
+
+Im vollen holomorphen E8-Vakuumnetz ist $\mu=|E_8^*/E_8|=1$. Die Zweintervall-Dualität liefert
+\begin{equation}
+M:=\mathcal A(E),\qquad M'=\mathcal A(E').
+\end{equation}
+$\Omega$ ist zyklisch und separierend~\cite{dongxu}. Es gibt daher einen wirklichen modularen Operator $\Delta_E$ und eine Tomita-Konjugation $J_E$ auf \emph{demselben} Quellhilbertraum.
+
+Mit der vakuumnormierten geometrischen Vierteldrehung
+\begin{equation}
+\rho=e^{i\pi L_0/2},\qquad K_E=\log\Delta_E
+\end{equation}
+gelten exakt
+\begin{equation}\label{eq:nativequarter}
+\rho^4=I,\quad \rho M\rho^{-1}=M',\quad
+\rho K_E\rho^{-1}=-K_E,\quad
+[\rho,J_E]=0,\quad[\rho^2,K_E]=0.
+\end{equation}
+Dies folgt aus der Eindeutigkeit modularer Daten unter vakuumerhaltender unitärer Konjugation und $\Delta_{M'}=\Delta_M^{-1}$, $J_{M'}=J_M$.
+Der antiunitäre Operator $\Theta=J_E\rho$ erfüllt
+\begin{equation}
+\Theta M\Theta^{-1}=M,\qquad
+\Theta^2=\rho^2,\qquad \Theta^4=I,\qquad
+\Theta K_E\Theta^{-1}=K_E.
+\end{equation}
+Wegen Antiunitarität bedeutet die letzte Gleichung
+$\Theta\Delta_E^{it}\Theta^{-1}=\Delta_E^{-it}$.
+Dagegen gilt $J_EK_EJ_E=-K_E$, aber $J_E\Delta_E^{it}J_E=\Delta_E^{it}$.
+
+Dies ist keine automatische $\mathrm{Pin}^+$-Identifikation:
+$\rho^2$ ist eine geometrische Halbdrehung, nicht Fermionparität.
+Schon die bosonischen Ströme vom Grad eins erhalten unter ihr das Vorzeichen minus.
+Ebenso ist die geometrische Vierteldrehung nicht ohne zusätzlichen Intertwiner die interne Compiler-, Cartan- oder Quartik-Clock.
+
+Eine weitere echte Folge ist
+\begin{equation}
+J_E(V_1)\subseteq\widehat{\bigoplus}_{m\ge0}V_{4m+3}.
+\end{equation}
+Denn $\rho$ hat auf $V_1$ den Eigenwert $i$; die mit $\rho$ kommutierende antiunitäre Konjugation macht daraus $-i$. Die 248 Ströme und insbesondere die 24 C/X-Erzeuger sind unter dieser modularen Reflexion nicht abgeschlossen. Der bereits implementierte Nachfahrenturm ist für die gemeinsame Quelle notwendig.
+
+\subsection{Die Quelle bestimmt einen neutralen Mischer der geladenen lokalen Felder}
+Setze $N=\mathcal A((p_0,p_1))$ und $R=\mathcal A((p_2,p_3))$.
+Die Split-Eigenschaft liefert $M=N\vee R\cong N\bar\otimes R$.
+Die Vakuummodulargruppe kann $N$ nicht für alle Zeiten erhalten.
+
+\textbf{Beweis.} Wäre $N$ invariant, gäbe es nach Takesaki eine vakuumerhaltende bedingte Erwartung $E_N:M\to N$~\cite{takesakiexpectation}. Für $y\in R$ liegt $E_N(y)$ wegen Bimodularität im Zentrum des Faktors $N$, also $E_N(y)=\omega(y)I$. Folglich wäre für $x\in N$
+\begin{equation}
+\omega(xy)=\omega(E_N(xy))=\omega(x)\omega(y).
+\end{equation}
+Die tatsächliche Quelle hat jedoch nichtverschwindende Cartanstrom-Zweipunktantworten zwischen den getrennten Abschnitten. Streng mit beschränkten Operatoren verwendet man deren lokale Weyl-Operatoren und differenziert die Antwort bei null. Der Vakuumzustand ist kein Produktzustand. Dies widerspricht der Folgerung; die entsprechende Mehrintervall-Obstruktion ist auch in der Primärliteratur behandelt~\cite{longomodular}.
+
+Damit ist eine echte Bewegung außerhalb der bisherigen Kombination aus geometrischem Möbius und interner E8-Wirkung nachgewiesen. Bewiesen ist fehlende Invarianz unter der \emph{ganzen} Modulargruppe, nicht eine Veränderung bei ausnahmslos jedem $t\ne0$.
+
+Die Mischung besitzt eine genaue operatorielle Beschreibung. Aus den schon festen Vakuummarginalen definiert die Split-Isomorphie die eindeutige Produktreferenz
+\begin{equation}
+\phi(xy)=\omega(x)\omega(y),\qquad x\in N,\ y\in R.
+\end{equation}
+Sie ist eine Rechenreferenz, keine neue physische Präparation. Ihre Modulargruppe ist das Produkt der bekannten Intervallbewegungen. Der Connes-Kokzyklus liefert~\cite{connesradon}
+\begin{equation}\label{eq:nativecocycle}
+u_t=(D\omega:D\phi)_t\in M,\qquad
+\sigma_t^\omega=\operatorname{Ad}(u_t)\circ\sigma_t^\phi,\qquad
+N_t=\sigma_t^\omega(N)=u_tNu_t^*.
+\end{equation}
+Quelle und ursprüngliche lokale Aufteilung bestimmen diesen Mischer vollständig als Operatorobjekt. Eine geschlossene Formel für seinen vollen E8-Kernel wurde noch nicht berechnet. Interne vakuumerhaltende E8-/P2-Automorphismen erhalten $\omega$ und $\phi$; daher ist $u_t$ unter ihnen invariant. Der Mischer transportiert die geladenen Felder, ohne eine neue interne Ladungsregel zu wählen.
+
+Man erhält darüber hinaus auf derselben $\mathcal H$ die ausdrücklich bestimmte Familie
+\begin{equation}
+\mathcal A_t(I)=\Delta_E^{it}\mathcal A(I)\Delta_E^{-it},
+\qquad U_t(g)=\Delta_E^{it}U(g)\Delta_E^{-it}.
+\end{equation}
+Jedes $\mathcal A_t$ ist ein konjugiertes positives E8-Netz mit demselben Vakuum. Vorhandene Intervallinklusionen und ihre halbseitigen modularen Beziehungen werden durch die Konjugation erhalten. Die neue Information liegt in der \emph{relativen Lage unterschiedlicher} $t$-Kopien.
+
+Ein exakter Satz verhindert dabei eine voreilige Raumzeitableitung. Die Halbdrehung $\rho^2$ vertauscht $N$ und $R$, kommutiert aber mit $\Delta_E^{it}$. Zusammen mit $R=N'\cap M$ folgt
+\begin{equation}
+N_t\subseteq N_s\quad\Longrightarrow\quad N_t=N_s.
+\end{equation}
+Denn die Halbdrehung überträgt die Inklusion auf die zugehörigen $R$-Algebren, während relative Kommutanten sie umkehren; beide müssen gleich sein. Die Orbitfamilie allein ist keine strikt geschachtelte halbseitige modulare Inklusion.
+
+Die nächsten tatsächlichen Objekte sind die gemischten Schnitte
+$\mathcal A_t(I)\cap\mathcal A_s(J)$. Modulare Rekonstruktionssätze benötigen je nach Ziel zusätzliche Standardheits-, halbseitige Inklusions- und Reflexionsbedingungen. Wiesbrocks konkreter Intersektionssatz liefert unter seinen Bedingungen zunächst eine zweidimensionale Liegruppe~\cite{wiesbrockintersection}; er darf nicht als fertige vierdimensionale Rekonstruktion eingesetzt werden. Innerhalb jeder einzelnen Netzkopie sind die ursprünglichen Eigenschaften übertragen; zwischen verschiedenen Kopien folgen sie nicht aus der bloßen Definition. Eine $3+1$-dimensionale Keilordnung ist noch nicht konstruiert.
+
+
+\subsection{Die exakte Replica-Antwort verbindet die Viermarkengeometrie mit der Clockzahl}\label{sec:nativereplica}
+Die vier geordneten Quadratmarken besitzen die Kreuzratio $x=1/2$. Für allgemeine geordnete $0<x<1$ ist die an den vier Endpunkten verzweigte doppelte Überlagerung ein Torus mit
+\begin{equation}
+\tau(x)=i\,\frac{K(1-x)}{K(x)}.
+\end{equation}
+$K$ bezeichnet das vollständige elliptische Integral mit Parameter $x$. Das Quadrat entspricht $\tau=i$. Dieses Replica-Double-Cover wird aus der Intervallantwort konstruiert; seine Gleichheit mit einem anders definierten ursprünglichen physischen Double Cover wäre durch eine Abbildung zu zeigen.
+
+Die E8-Vakuumcharakterfunktion ist
+\begin{equation}
+\chi_{E_8}(\tau)=\frac{E_4(\tau)}{\eta(\tau)^8}.
+\end{equation}
+Die bekannte Überlagerungsformel enthält einen wesentlichen Weyl-Faktor. Für den chiralen Anteil mit $c=8$ lautet sie~\cite{headrickreplica,castroanomaly}
+\begin{equation}
+F_{2,\mathrm{ch}}(x)
+=\left[\frac{x(1-x)}{16}\right]^{c/12}\chi(\tau(x)),
+\qquad
+R_{2,\mathrm{ch}}(x)=(1-x)^{-c/8}F_{2,\mathrm{ch}}(x).
+\end{equation}
+$R_2$ ist die normierte Twist-Vierpunktfunktion, geteilt durch die beiden zugehörigen Zweipunktfunktionen. Der geordnete reelle Ast, die positive Torusspur und die Vakuum-OPE fixieren die Phase. Lokale Framefaktoren werden in Zähler und Nenner identisch geführt.
+
+Die Thetaidentitäten
+\begin{equation}
+x=\frac{\vartheta_2^4}{\vartheta_3^4},\quad
+1-x=\frac{\vartheta_4^4}{\vartheta_3^4},\quad
+E_4=\vartheta_3^8(1-x+x^2),\quad
+2\eta^3=\vartheta_2\vartheta_3\vartheta_4
+\end{equation}
+geben ohne Fit für die ganze Familie
+\begin{equation}\label{eq:replicarational}
+\boxed{F_{2,E_8}(x)=1-x+x^2,\qquad
+R_{2,E_8}(x)=\frac{1-x+x^2}{1-x}
+=1+\frac{x^2}{1-x}.}
+\end{equation}
+Am ursprünglichen Quadrat sind daher
+\begin{equation}
+\boxed{\chi_{E_8}(i)=12,\qquad F_2=\frac34,\qquad
+R_2=\frac32,\qquad I_2:=\log R_2=\log\frac32.}
+\end{equation}
+Die alte skalare Lücke erhält die exakte Verbindung
+\begin{equation}\label{eq:clockreplicaequality}
+\boxed{\Delta_1=6\log(3/2)=6I_2,\qquad
+e^{-\Delta_1}=R_2^{-6}=(2/3)^6.}
+\end{equation}
+
+\picturetext{Man vergleicht die gemeinsame Antwort zweier getrennter Nahtabschnitte mit ihren Einzelantworten. Für diese Rechnung werden zwei identische Kopien passend zusammengenäht. Die vier ursprünglichen Ecken machen daraus genau den quadratischen Torus. Die vollständige E8-Quelle liefert dort den Faktor $3/2$. Es wurde kein neuer Übergangswert eingestellt.}
+
+Die Entkopplungsgrenze $R_2\to1$ für $x\to0$ und $F_2(x)=F_2(1-x)$ kontrollieren die Normierung. Der erste Koeffizient ist
+\begin{equation}
+R_2=1+x^2+x^3+\cdots,\qquad
+1=\frac{248}{256}+\frac8{256}.
+\end{equation}
+Die Strom-Bilineare und der Orbifold-Stresstensor liefern beide Beiträge. Eine unabhängige gepaarte Theorie $E_8\times\overline{E_8}$ ergäbe $R_2=9/4$. Das ist eine Normierungskontrolle und fügt der chiralen Quelle keinen rechten Sektor hinzu.
+
+Für Typ-III-Lokalalgebren existieren keine scharfen Intervall-Dichtematrizen. Die Formel
+$R_2=\operatorname{Tr}\rho_{AB}^2/
+(\operatorname{Tr}\rho_A^2\operatorname{Tr}\rho_B^2)$
+ist nur mit passendem gemeinsamem Regulator zu verwenden. Die primäre Definition bleibt die endliche Twist-Ratio.
+$I_2$ ist die übliche Rényi-Entropiekombination, keine Petz-Rényi-Relativentropie und nicht das volle Spektrum von $\Delta_E$~\cite{petzrenyi}.
+Die Replica-Methode ist etabliert; auch E8-Replica-Orbifolds wurden bereits untersucht~\cite{e8replica}. Die neue konkrete Verbindung hier ist ihre Auswertung an den ursprünglichen TFPT-Marken.
+
+\subsection{Dahinter steht tatsächlich ein Fermionfeld derselben replizierten Quelle}
+Die Antwort lässt sich auch unmittelbar auf Operatoren zurückführen.
+Die zwei Kopien besitzen die konforme Zerlegung
+\begin{equation}
+T_{E_{8,1}\otimes E_{8,1}}
+=T_{E_{8,2}}+T_{\mathrm{Ising}},\qquad
+16=\frac{31}{2}+\frac12.
+\end{equation}
+Entscheidend ist nicht die Zentralzahlgleichheit, sondern die tatsächliche Verzweigung des verdrehten Sektors~\cite{collazuolmelnikov}:
+\begin{equation}
+\chi_{E_8}(\tau/2)
+=\chi^I_{1/2}\chi^{E_{8,2}}_{\mathbf1}
++\chi^I_0\chi^{E_{8,2}}_{\mathbf{3875}}
++\chi^I_{1/16}\chi^{E_{8,2}}_{\mathbf{248}}.
+\end{equation}
+Der eindeutige Replica-Twistgrundzustand $\Lambda$ ist ein affiner $E_{8,2}$-Singulett mit Ising-Gewicht $1/2$. Sein Vierpunkt ist der fermionische Pfaffian. In der festgelegten Reihenfolge $0,x,1,\infty$ folgt
+\begin{equation}
+G_4(x)=\frac1x-1+\frac1{1-x},\qquad R_2(x)=xG_4(x).
+\end{equation}
+Am Quadrat sind die drei kohärenten Kontraktionsbeiträge $(2,-1,2)$ und ihre normierten Beiträge
+\begin{equation}\label{eq:replicaclockamplitudes}
+\frac{(2,-1,2)}{G_4(1/2)}
+=\left(\frac23,-\frac13,\frac23\right).
+\end{equation}
+Damit treten beide historischen Clockbeträge in \emph{einer} konkreten Antwort derselben replizierten Quelle auf. Das negative Vorzeichen ist fermionischer Austausch und darf nicht durch einen Betrag ersetzt werden.
+
+Das Feld lebt im Replica-Twistsektor, nicht als zusätzliches lokales Majoranafeld des einzelnen bosonischen E8-Netzes.
+Es erfüllt $\Lambda\times\Lambda=\mathbf1$~\cite{e8replica}; daher
+\begin{equation}
+\dim\operatorname{Hom}(\mathbf1,\Lambda^{\otimes4})=1.
+\end{equation}
+Die drei Wickterme sind also Beiträge zu \emph{einem} Fusionsblock, keine drei orthogonalen Zustände und keine drei positiven Übergangswahrscheinlichkeiten. Die Zahl drei der verschiedenen Orbifold-Charakterfunktionen liefert ebenfalls keinen Dreizustandsraum: Zwei der vier Primärsektoren besitzen denselben Charakter; die reduzierte Charaktermatrix ist nicht die unitäre S-Matrix der vollständigen Sektoren.
+
+\subsection{Der zweite Clockwert entscheidet über die noch fehlende Prozessidentität}
+Die Replica-Verbindung identifiziert eine konkrete gemeinsame Quellantwort, aber noch keinen alten Transferoperator. Das lässt sich direkt am vollständigen Clockpaar prüfen. Der ursprüngliche Einzelschritt auf den drei Cusp-Populationen ist
+\begin{equation}
+B=\frac1{18}
+\begin{pmatrix}13&1&4\\1&13&4\\4&4&10\end{pmatrix},
+\qquad \operatorname{spec}(B)=\{1,2/3,1/3\}.
+\end{equation}
+Die Moden sind $(1,1,1)$, $(1,-1,0)$ und $(1,1,-2)$; der registrierte Sechsschritt ist $B^6$. Die Originalverifikation \file{v486_transfer_full_rule.py} beschreibt die Richtung Spektrum zu Übergangsregel; \file{v814_k5_sixstep_transport.py} kennzeichnet die geprüfte Sechsschrittidentifikation als Clockaussage.
+
+Beim Aufschneiden des Replica-Torus entsteht dagegen der Zylinderoperator
+\begin{equation}
+Q=e^{-2\pi(L_0-c/24)},\qquad Q_0=e^{-2\pi L_0}
+\end{equation}
+nach Vakuumnormierung. Auf $\Omega^\perp$ gilt $\|Q_0\|=e^{-2\pi}<2/3$. Es gibt deshalb keinen vakuumerhaltenden isometrischen Intertwiner von $B$ in diesen Transfer.
+
+Auch eine bloße Zeitumkalibrierung $Q_a=e^{-aL_0}$ repariert dies nicht. Wegen der ganzzahligen E8-Vakuumgrade müssten für beide alten Moden positive ganze $m,n$ existieren mit
+\begin{equation}
+e^{-am}=2/3,\qquad e^{-an}=1/3.
+\end{equation}
+Dann wäre $(2/3)^n=(1/3)^m$, also $2^n=3^{n-m}$, unmöglich.
+Der Ausschluss betrifft die gemeinsame reine $L_0$-Zylinderzeit, nicht jeden Quellenkanal oder jede modulare Dynamik. Ein partieller Readout mit Zustandsverlust kann andere Eigenwerte besitzen; seine Beobachtungsalgebra und Kompositionsregel sind dann zusätzliche zu begründende Daten.
+
+Der nun präzise Prozessanschluss verlangt eine \emph{aus dem Originalprozess hergeleitete} Cusp-Auslese mit Effekten $E_i$ und eine komponierbare Operation $\mathcal S$, sodass in festgelegter Konvention
+\begin{equation}\label{eq:nativeclockmap}
+\mathcal S^*(E_i)=\sum_jB_{ij}E_j.
+\end{equation}
+Zusätzlich sind die sechs ursprünglichen aufeinanderfolgenden Anwendungen zu identifizieren. Weder die drei signierten Wickterme noch die Torusspur legen diese Auslese fest. Ein beliebiges Stinespring-Modell mit eingesetztem $B$ würde die Gleichung zwar realisieren, aber ihre Herkunft nicht herleiten.
+
+\subsection{Was diese Verbindung am Gesamtbild ändert}
+Der Universalraum enthält innerhalb der erklärten Quelle nun auch die Operationen in zwei ursprünglichen Nahtabschnitten, ihr Komplement, ihre modulare Mischung und ihre Replica-Antwort. Auf der Ursprungsseite ist der gemeinsame globale Spin-Träger konstruiert; seine charakteristische Antwort ist für die ganze natürliche Liftfamilie bekannt.
+
+Die zusammenhängende Kette ist damit enger und konkreter:
+\begin{equation}
+\begin{gathered}
+\text{ursprüngliche markierte Verklebung}
+\longrightarrow V_{16}\ \text{mit Spin-Lift},\\
+\text{tatsächlicher Naht-/CAR-Anschluss}
+\longrightarrow(D_8)_1\longrightarrow E_{8,1},\\
+(E_{8,1},\Omega,\text{Quadratmarken})
+\longrightarrow
+\bigl(M_E,\Delta_E,J_E,u_t,R_2=3/2\bigr).
+\end{gathered}
+\end{equation}
+Die erste und die letzte Zeile sind unter ihren erklärten Voraussetzungen konstruiert. Der Eingang der mittleren Zeile und die Identifikation des historischen Transfers sind noch offene Operatorfragen. Die vierdimensionale Fortsetzung muss die relative lokale Ordnung derselben geladenen Quelle realisieren.
+
+\picturetext{Die Bauteile haben jetzt gemeinsame Anschlüsse: Die Verklebung liefert das Trägermaterial; das Feldgesetz legt die möglichen Antworten fest; die vier Marken legen fest, welche Abschnitte zusammen betrachtet werden. Daraus entstehen Mischung und die konkrete Antwort $3/2$. Noch nicht angeschlossen ist die Vorrichtung, die diese kohärente Antwort als die drei historischen Cusp-Populationen ausliest und sechs Mal weiterführt. Deren tatsächliche Konstruktion entscheidet über den Clockanschluss.}
+
+Zuses lokale Komposition und Wolframs Graphideen passen hier als Darstellungen derselben Operationen. Ein Graph muss die geladenen Felder, den Zustand, die fermionischen Vorzeichen und die vollständigen Antworten erhalten. Seine bloße Knotenanzahl oder ein passendes Übergangsspektrum wählt die fehlende Auslese und die Raumzeitordnung nicht aus.
+
+
+\section{Prüfung des neuen Gesamtvorschlags: Die Clock als Auslese mit Gedächtnis}\label{sec:pairingcompletion}
+
+\key{\textbf{Der neue Vorschlag enthält eine tragfähige zusätzliche Verbindung.}
+Die drei Replica-Paarungen liefern exakt normierte positive Gewichte. Zusammen mit den bereits vorhandenen nativen Reflexionen entsteht daraus eine konkrete Operation, deren Erwartungswerttransfer die gesamte historische Matrix $B$ ergibt. Dafür muss kein Clockeigenwert eingesetzt werden. Dieselbe Rechnung zeigt, welche Information beim Weglassen des Ereignisgedächtnisses verloren geht und wie ein anderes Instrument diese Information erhalten kann. Die Herkunft dieses Instruments bleibt eine Auswahlfrage. Der zusätzliche Schluss von drei Paarungen auf drei Raumrichtungen trägt dagegen für die vorhandenen Kreisalgebren nicht.}
+
+Geprüft wird der neue eingefügte Text mit Kennung
+\file{55f6a61b-610f-41af-9626-87e399bbb9d1}.
+Seine vorgeschlagene gemeinsame Struktur ist als Forschungsziel sinnvoll:
+\begin{equation}
+\mathfrak T=
+(\Sigma,\mu_4,V_{16},D_\Sigma,P_C,\mathcal F_{\rm CAR},
+\Omega,\mathcal A_{E_8},\{\mathcal M_O\}).
+\end{equation}
+Ein solches Tupel benennt zusammengehörige Daten. Es beweist noch nicht, dass die ersten Komponenten die späteren eindeutig bestimmen. Die folgenden Rechnungen prüfen gerade diese Übergänge, statt ihre Auswahl durch einen neuen Namen zu verdecken.
+
+\subsection{Die normierten Paarungsgewichte folgen tatsächlich aus der Quelle}
+Verwende die Reihenfolge der Paarungen
+$m_1=(01)(23)$, $m_2=(03)(12)$, $m_3=(02)(13)$ und setze
+\begin{equation}
+a(x)=\left(\frac1x,\frac1{1-x},-1\right),\qquad
+G(x)=\sum_k a_k(x),\qquad f(x)=1-x+x^2.
+\end{equation}
+Für $0<x<1$ gilt mit $a_1a_2=a_1+a_2$ exakt
+\begin{equation}\label{eq:pairingnorm}
+\boxed{G(x)^2=a_1(x)^2+a_2(x)^2+a_3(x)^2.}
+\end{equation}
+Damit sind die Gewichte
+\begin{equation}\label{eq:pairingweights}
+\boxed{\pi(x)=
+\frac{\bigl((1-x)^2,\ x^2,\ x^2(1-x)^2\bigr)}{f(x)^2},
+\qquad \sum_k\pi_k(x)=1}
+\end{equation}
+positiv und durch die gewählte reale Viermarkengeometrie festgelegt.
+Am Quadrat ist $\pi=(4,4,1)/9$. Hier wird kein Nenner nachträglich auf die Clock angepasst.
+
+Die Identität ist kein Sonderglück der Zahl $1/2$. Für beliebige gerade Punktzahlen besitzt der Cauchy-Kernel die bekannte Identität
+\begin{equation}
+\left[\operatorname{Pf}\left(\frac1{z_i-z_j}\right)\right]^2
+=
+\operatorname{Hf}\left(\frac1{(z_i-z_j)^2}\right).
+\end{equation}
+Die Hafnianseite summiert die quadrierten Paarungsprodukte ohne fermionische Vorzeichen. Dies ist die entsprechende Bosonisierungsidentität, ausdrücklich Gleichung~(19) bei Ardonne--Sierra~\cite{ardonneising}. Auf der reellen Geraden, beziehungsweise für gemeinsam auf einen Kreis abgebildete Punkte mit konsistenten lokalen Faktoren, folgt die Betragsquadratsumme. Es handelt sich um bekannte Mathematik; der neue Anschluss ist ihre Verwendung für die vorhandenen TFPT-Replica-Gewichte.
+
+Für allgemeine komplexe Kreuzratio darf man das algebraische Quadrat nicht mit dem Betragsquadrat verwechseln:
+\begin{equation}
+|G(x)|^2-\sum_k|a_k(x)|^2
+=-\frac{4(\operatorname{Im}x)^2}{|x(1-x)|^2}.
+\end{equation}
+Die ursprüngliche reale beziehungsweise Kreisgeometrie ist daher eine wesentliche Voraussetzung der positiven Gewichte.
+
+\subsection{Die Halbierung erhält eine konkrete operative Bedeutung}
+Der Anhang setzt zunächst $B=I-\alpha L$ an und bestimmt $\alpha$ aus
+$1-6\alpha=R_2^{-1}$. Diese Gleichsetzung ist im ursprünglichen Vorschlag noch eine zusätzliche Prozessannahme. Sie lässt sich durch eine genau benannte Operation ersetzen.
+
+Die frühere native Quellenrechnung enthält bereits die drei selbstadjungierten Reflexionen $R_{13},R_{14},R_{59}$ auf der tatsächlichen markierten $\C^2$-Ebene. Sie sind Einschränkungen der ursprünglichen Quellreflexionen. Auf den drei Trine-Effekten $E_1,E_2,E_3$ wirken sie als
+\begin{equation}
+R_{13}:(23),\qquad R_{14}:(13),\qquad R_{59}:(12).
+\end{equation}
+Dies ist genau die im Anhang vorgeschlagene komplementäre Kantenzuordnung.
+
+Für eine dieser Involutionen liefert ihre nichtselektive Spektralmessung
+\begin{equation}
+\Pi_{k,\pm}=\frac{I\pm R_k}{2},\qquad
+\mathcal D_k(X)=\sum_{\pm}\Pi_{k,\pm}X\Pi_{k,\pm}
+=\frac{X+R_kXR_k}{2}.
+\end{equation}
+Wählt man die drei Messungen mit den Gewichten~\eqref{eq:pairingweights}, entsteht der vollständig positive, spurtreue und unitale Kanal
+\begin{equation}\label{eq:replicaluders}
+\boxed{\Phi_x(X)=\sum_k\pi_k(x)\mathcal D_k(X).}
+\end{equation}
+Die Krausoperatoren $\sqrt{\pi_k}\Pi_{k,\pm}$ zeigen Positivität und Normierung unmittelbar. Die Halbierung stammt jetzt aus dieser Messregel, nicht aus einem passend gewählten Zeitschritt.
+
+Auf dem vorhandenen Erwartungswertsystem gilt exakt
+\begin{equation}\label{eq:pairingtransfer}
+\Phi_x(E_i)=\sum_j B_{ij}(x)E_j,\qquad
+B(x)=\frac12I+\frac12\sum_k\pi_k(x)P_k
+=I-\frac{L(x)}{2G(x)^2}.
+\end{equation}
+$P_k$ vertauscht die beiden anderen Labels; $L$ besitzt die komplementären Kantengewichte $w_{ij}=a_k^2$. Die gesamte Familie ist symmetrisch und stochastisch. Insbesondere
+\begin{equation}
+L(1/2)=
+\begin{pmatrix}5&-1&-4\\-1&5&-4\\-4&-4&8\end{pmatrix},
+\quad G(1/2)^2=9,
+\quad
+\boxed{B(1/2)=\frac1{18}
+\begin{pmatrix}13&1&4\\1&13&4\\4&4&10\end{pmatrix}.}
+\end{equation}
+Die beiden Moden liefern $2/3$ und $1/3$. Ihre sechsten Potenzen ergeben die historischen Lücken, \emph{falls} sechs Anwendungen dieses Instruments dem ursprünglichen Sechsschritt entsprechen.
+
+\textbf{Exakter Status:} Die Gewichte folgen aus der Replica-Antwort. Die native Reflexionswirkung und der daraus berechnete Matrixanschluss sind exakt. Die Auswahl dieser Reflexionsmessung, ihre Verbindung mit den Paarungslabels und das Verwerfen ihrer Ausgänge bleiben physische Instrumentdaten. Sie sind durch den Vierpunkt allein nicht bewiesen.
+
+\picturetext{Die Quelle liefert drei fest bestimmte Gewichte. Drei bereits vorhandene Schalter können damit betätigt werden. Wählt man die beschriebene Betätigung, bewegen sich die drei Anzeigen exakt wie die alte Clock. Damit kennen wir jetzt eine konkrete Verbindung von Quelle und Anzeige. Noch zu begründen ist, warum der ursprüngliche Prozess genau diese Betätigung verwendet.}
+
+\subsection{Eine Anzeige ist noch keine Kette gemessener Ausgänge}
+Die drei nativen Effekte sind eine Trine auf $\C^2$:
+$E_i=\tfrac23 P_i$ mit Rang-eins-Projektoren $P_i$.
+Sie kommutieren nicht. Die Aussage des Anhangs, sie bildeten bereits eine kommutative Dreierauslesealgebra, ist auf diesem ursprünglichen Träger deshalb falsch.
+
+Eine wirkliche wiederholte Trinemessung präpariert nach Ausgang $j$ den Zustand $P_j$. Für die nächste Messung erhält man
+\begin{equation}
+Q_{ij}=\tr(E_iP_j),\qquad
+Q=\frac12I+\frac16\mathbf1\mathbf1^T.
+\end{equation}
+Mit $\Phi$ zwischen den Messungen folgt der tatsächlich gemessene Übergang
+\begin{equation}
+T_{ij}=\tr(E_i\Phi(P_j)),\qquad
+\boxed{T=QB=BQ.}
+\end{equation}
+Am Quadrat sind seine Eigenwerte $1,1/3,1/6$.
+Sie unterscheiden sich von $1,2/3,1/3$.
+Eine zusätzliche kommutative Registeralgebra ist möglich; ihre Präparation und Kopplung wären aber weitere zu identifizierende Prozessdaten.
+

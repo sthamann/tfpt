@@ -23,6 +23,8 @@ changelog.tex preamble).
 
 stdlib only -- runnable without the venv (build.sh calls it with python3).
 """
+
+from tex_sources import read_tex
 import json
 import re
 import sys
@@ -376,7 +378,7 @@ export const CHANGELOG_COUNT = CHANGELOG.length;
 
 
 def build() -> dict[Path, str]:
-    tex = CHANGELOG_TEX.read_text()
+    tex = read_tex(CHANGELOG_TEX)
     macros = load_math_macros(tex)
     entries = parse_entries(tex)
     body = (

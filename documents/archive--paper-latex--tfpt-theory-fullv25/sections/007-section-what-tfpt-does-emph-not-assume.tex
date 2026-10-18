@@ -1,0 +1,282 @@
+\section{What TFPT Does \emph{Not} Assume}
+%=============================================================================
+
+The following are \emph{not} required:
+\begin{itemize}[leftmargin=2em]
+    \item[\ding{55}] Slow-roll inflation (specific model)
+    \item[\ding{55}] String landscape or anthropic selection
+    \item[\ding{55}] Extra dimensions as free parameters
+    \item[\ding{55}] Dark matter entirely from axions
+    \item[\ding{55}] New particles beyond minimal axion sector
+    \item[\ding{55}] Any fitted or adjusted parameters
+\end{itemize}
+
+%=============================================================================
+\section{Conclusions}
+%=============================================================================
+
+TFPT demonstrates that the fine-structure constant $\alpha$ can be derived 
+from first principles using eight minimal axioms rooted in topology, geometry, 
+and quantum consistency. The key results are:
+
+\begin{enumerate}
+    \item The topological coupling $\cthree = 1/(8\pi)$ from 11D Chern--Simons 
+        quantization and the geometric scale $\phiz = 1/(6\pi) + 3/(256\pi^4)$ 
+        from M\"obius fiber reduction are the only fundamental inputs.
+    
+    \item The cubic fixed-point equation (CFE) has a unique positive root. With the derived two-defect term $\delta_2=\frac54\delta_{\mathrm{top}}^2$ (holonomy $g=5$), this yields
+        $\alpha^{-1}(0)=\num[round-mode=places,round-precision=12]{\TFPTalphaInvGOverFourNum}$ (one-defect truncation: $\num[round-mode=places,round-precision=10]{\TFPTalphaInvSelfNum}$).
+    
+    \item The same invariants determine the axion--photon coupling 
+        $\gagg = -4\cthree$ and predict cosmic birefringence 
+        $\beta = \num[round-mode=places,round-precision=4]{\TFPTbetaDegNum}^\circ$, consistent with observations.
+    
+    \item An E$_8$ cascade organizes all physical scales from Planck to 
+        electroweak, with deviations typically below 5\%.
+\end{enumerate}
+
+The theory is falsifiable: any significant revision of $\alpha$, $\beta$, 
+or the two-loop RG fingerprints would invalidate the framework.
+
+%=============================================================================
+\appendix
+\section{Numerical Constants (High Precision)}
+%=============================================================================
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Quantity} & \textbf{Value}\\
+\midrule
+$\cthree = 1/(8\pi)$ & \num[round-mode=places,round-precision=12]{\TFPTcThreeNum}\\
+$\phitree = 1/(6\pi)$ & \num[round-mode=places,round-precision=12]{\TFPTvarphiTreeNum}\\
+$\deltatop = 3/(256\pi^4)$ & \num[round-mode=places,round-precision=12]{\TFPTdeltaTopNum}\\
+$\phiz = \phitree + \deltatop$ & \num[round-mode=places,round-precision=12]{\TFPTvarphiZeroNum}\\
+$\phiz(\alpha)$ (self-consistent) & \num[round-mode=places,round-precision=12]{0.053170209119023745}\\
+$\beta_{\text{rad}} = \phiz/(4\pi)$ & \num[round-mode=places,round-precision=12]{\TFPTbetaRadNum}\\
+$\beta_{\text{deg}} = (180/\pi)\,\beta_{\text{rad}}$ & \num[round-mode=places,round-precision=6]{\TFPTbetaDegNum}$^\circ$\\
+$g_{a\gamma\gamma}$ & \num[round-mode=places,round-precision=12]{\TFPTgAggNum}\\
+$\gamma(0)=g/(g+1)$ (E$_8$) & $\tfrac56$\\
+$\lambda$ (E$_8$ exponent) & \num[round-mode=places,round-precision=12]{0.587233190787837868}\\
+$M/\Mpl$ ($R^2$ scale) & \num[round-mode=places,round-precision=12]{\TFPTMOverMplNum}\\
+$A = 2\cthree^3$ & \num[round-mode=figures,round-precision=8]{1.2598255637968552e-4}\\
+$\mathcal{K} = (\bone/2\pi)\ln(1/\phiz)$ & \num[round-mode=places,round-precision=10]{1.91468479457699546}\\
+$\alpha^{-1}_{\text{baseline}}$ & \num[round-mode=places,round-precision=9]{137.036501464885822}\\
+$\alpha^{-1}_{\text{TFPT}}$ (one-defect) & \num[round-mode=places,round-precision=12]{\TFPTalphaInvSelfNum}\\
+$\alpha^{-1}_{\text{TFPT}}$ (two-defect, $g=5$) & \num[round-mode=places,round-precision=12]{\TFPTalphaInvGOverFourNum}\\
+$\alpha^{-1}_{\text{TFPT}}$ (two-defect, suite diagnostic) & \num[round-mode=places,round-precision=12]{\TFPTalphaInvTwoDefNum}\\
+$\alpha^{-1}_{\text{CODATA 2022}}$ & \num[round-mode=places,round-precision=12]{\TFPTalphaInvCODATANum}\\
+Accuracy (ppm; one-defect) & \num[round-mode=places,round-precision=6]{-0.03704}\\
+Accuracy (ppm; two-defect, $g=5$) & \num[round-mode=places,round-precision=6]{\TFPTalphaPpmGOverFourNum}\\
+Accuracy (ppm; two-defect, suite diagnostic) & \num[round-mode=places,round-precision=6]{\TFPTalphaPpmTwoDefNum}\\
+$\xi = \cthree/\phiz$ & \num[round-mode=places,round-precision=9]{0.748303083562547799}\\
+\bottomrule
+\end{tabular}
+\caption{High-precision numerical values of TFPT constants.}
+\label{tab:constants}
+\end{table}
+
+%=============================================================================
+\section{Derivation of the CFE from the Effective Potential}
+%=============================================================================
+
+In background-field gauge, the one-loop effective potential for the electromagnetic 
+coupling modulus takes the form. Here $U(\alpha)$ is the induced potential for $\sigma$
+after rewriting $\alpha=\alpha(\sigma)$:
+\begin{equation}
+    U(\alpha) = \frac{1}{4}(F_{\mu\nu}F^{\mu\nu})_{\text{eff}} 
+        + \text{quantum corrections}
+\end{equation}
+
+The full structure, including the Chern--Simons contribution from 11D reduction, is:
+\begin{equation}
+    U(\alpha) = \frac{A}{4}\alpha^4 - \frac{2}{3}A\cthree^3\alpha^3 
+        - 8A\bone\cthree^6 L\,\alpha + \mathcal{O}(\alpha^5)
+    \label{eq:potential}
+\end{equation}
+where $L = \ln(1/\phiz)$ encodes the geometric scale.
+
+The modulus-closure condition $\delta\Gamma_{\mathrm{eff}}/\delta\sigma=0$ reduces to
+$\partial U/\partial\alpha = 0$ (monotonic $\alpha(\sigma)$), giving:
+\begin{equation}
+    \frac{\partial U}{\partial\alpha} = A\alpha^3 - 2A\cthree^3\alpha^2 
+        - 8A\bone\cthree^6 L = 0
+    \label{eq:stationarity}
+\end{equation}
+
+Dividing by $A$ (which is nonzero):
+\begin{equation}
+    \alpha^3 - 2\cthree^3\alpha^2 - 8\bone\cthree^6 L = 0
+    \label{eq:CFE-appendix}
+\end{equation}
+
+This is the CFE. The combinatorial factors arise from specific one-loop diagrams:
+
+\textbf{(i) Factor 2 in $2\cthree^3\alpha^2$:}
+
+The cubic term in the effective potential comes from the vacuum polarization 
+(``bubble'') diagram with axion insertion:
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[thick, photon] (0,0) -- (1.5,0);
+    \draw[thick] (1.5,0) arc (180:0:0.75);
+    \draw[thick] (1.5,0) arc (-180:0:0.75);
+    \draw[thick, photon] (3,0) -- (4.5,0);
+    \draw[thick, dashed] (2.25,0.75) -- (2.25,1.5);
+    \node at (2.25,1.8) {\small $a$};
+    \node at (0,-0.3) {\small $\gamma$};
+    \node at (4.5,-0.3) {\small $\gamma$};
+\end{tikzpicture}
+\end{center}
+The $\varepsilon^{\mu\nu\rho\sigma}\varepsilon_{\alpha\beta\gamma\delta}$ contraction from two 
+$F\tilde{F}$ vertices produces a factor 2 from the antisymmetric tensor algebra:
+\begin{equation}
+    \varepsilon^{\mu\nu\rho\sigma}\varepsilon_{\mu\nu\alpha\beta} = -2(\delta^\rho_\alpha\delta^\sigma_\beta - \delta^\rho_\beta\delta^\sigma_\alpha)
+\end{equation}
+
+\textbf{(ii) Factor 8 and $\cthree^6$ in $8\bone\cthree^6 L$:}
+
+The log-dependent term has two components:
+
+\textbf{Origin of $\cthree^6$:} The factor $\cthree^6$ arises from the product structure 
+of the effective action. With $A = 2\cthree^3$ as the overall amplitude:
+\begin{equation}
+    8\bone\cthree^6 L = 8\bone \cdot \cthree^3 \cdot \cthree^3 \cdot L
+    = 4 \cdot A \cdot \cthree^3 \cdot \bone L
+\end{equation}
+The factorization proceeds as follows:
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item One factor of $\cthree^3$ comes from three $\cthree\, aF\tilde{F}$ vertices 
+        in the anomaly chain (triangle diagram).
+    \item The second factor of $\cthree^3$ comes from the amplitude normalization $A/2 = \cthree^3$.
+    \item The coefficient 8 decomposes as $8 = 4 \times 2$, where 4 is from $|D_2|^2$ 
+        (two $\mathbb{Z}_2$ reflections) and 2 is from the double cover sheets.
+\end{itemize}
+\textbf{Consistency check:} $8\cthree^6 = 8 \times (8\pi)^{-6} = 8/(8\pi)^6$, which matches 
+the numerical coefficient in the CFE.
+
+\textbf{Origin of factor 8:} The dihedral symmetry $D_4$ of the 4-point amplitude 
+contributes $|D_4| = 8$. This arises from the 4 rotations and 4 reflections that 
+leave the fermion loop topology invariant:
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[thick] (0,0) rectangle (2,2);
+    \draw[thick, photon] (-0.8,0) -- (0,0);
+    \draw[thick, photon] (-0.8,2) -- (0,2);
+    \draw[thick, photon] (2,0) -- (2.8,0);
+    \draw[thick, photon] (2,2) -- (2.8,2);
+    \node at (1,-0.5) {\small fermion loop};
+    \node at (1,1) {\small $D_4$};
+\end{tikzpicture}
+\end{center}
+
+\textbf{The $\bone$ factor:} $\bone = 41/10$ counts the hypercharge-weighted fermion 
+contributions summed over the SM spectrum. It enters as $\sum_f Y_f^2$, where the 
+sum runs over all SM fermions with their multiplicities.
+
+\textbf{(iii) Factor 2/3 in potential:}
+
+The coefficient $2/3$ in the cubic term of \eqref{eq:potential} ensures that 
+differentiation produces the factor 2 in \eqref{eq:stationarity}:
+\begin{equation}
+    \frac{d}{d\alpha}\left(-\frac{2}{3}A\cthree^3\alpha^3\right) = -2A\cthree^3\alpha^2
+\end{equation}
+This is not a choice but a consequence of the integral representation of the 
+effective potential: the cubic term arises from a triangle subgraph.
+
+\textbf{Why no $\alpha^2$ term?}
+
+The absence of an $\alpha^2$ term in the CFE is not accidental. In background-field gauge, 
+quadratic terms are absorbed into the field-strength renormalization. The Ward identity 
+ensures that physical observables depend only on odd powers of $\alpha$ (gauge invariance 
+requires $F^2 \sim \alpha^2$ to enter as a full factor, not as a correction to $\alpha$).
+
+\begin{tcolorbox}[colback=purple!3, colframe=purple!50!black, 
+    title={\textbf{Why Integer Coefficients? (No $\zeta(3)$, $\ln 2$, etc.)}}, fonttitle=\bfseries\small]
+\textbf{Potential objection:} In typical QFT calculations (e.g., anomalous magnetic moment $g-2$), 
+coefficients involve transcendental numbers like $\zeta(3)$, $\pi^2/12$, $\ln 2$. Why are the 
+CFE coefficients (2, 8, 48) simple integers?
+
+\textbf{Resolution:} The CFE is not a perturbative loop expansion but a \emph{topological constraint}.
+
+\begin{enumerate}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{Origin of transcendentals:} In $g-2$, transcendentals arise from 
+        \emph{integrating over continuous momenta} in Feynman integrals. The integrals 
+        produce polylogarithms, which evaluate to $\zeta$-values.
+    
+    \item \textbf{Topological discreteness:} In TFPT, the relevant integrals are over 
+        \emph{discrete topological data}: Euler characteristics, winding numbers, and 
+        symmetry group orders. These are integers by definition.
+    
+    \item \textbf{Combinatorial origin:}
+        \begin{itemize}[leftmargin=1em, topsep=1pt, itemsep=1pt]
+            \item Factor 2: From $\varepsilon^{\mu\nu\rho\sigma}$ contraction (antisymmetry)
+            \item Factor 8: From $|D_4| = 8$ (dihedral group of the box)
+            \item Factor 48: \emph{Mnemonic} $2 \times 24$ (double cover $\times$ permutations); the derivation is the spin-lifted deficit with four cut patches (Appendix~\ref{app:48deriv})
+        \end{itemize}
+    
+    \item \textbf{Where $\pi$ appears:} The factors of $\pi$ in $\cthree = 1/(8\pi)$ and 
+        $\phitree = 1/(6\pi)$ come from the \emph{normalization} of circles ($2\pi$ per cycle), 
+        not from loop integrals. They are geometric, not perturbative.
+\end{enumerate}
+
+\textbf{Diagnostic:} If transcendentals appeared in the CFE, it would indicate non-topological 
+dynamics. Their absence is evidence that the fixed-point structure is genuinely topological.
+\end{tcolorbox}
+
+\begin{remark}
+The consistency between \eqref{eq:potential} and \eqref{eq:CFE-appendix} can be 
+verified directly: $\frac{d}{d\alpha}\bigl(-\frac{2}{3}A\cthree^3\alpha^3\bigr) 
+= -2A\cthree^3\alpha^2$, matching the required coefficient.
+\end{remark}
+
+%=============================================================================
+\section{Verification Suite Summary}
+%=============================================================================
+
+The TFPT verification suite (\texttt{tfpt-suite/}) turns paper claims into deterministic, assumption-explicit computations. All counts in this section are auto-generated from the suite artifacts (no hardcoded ``39 modules''):
+\[
+\text{unique modules (registry)}=\TFPTSuiteUniqueModulesTotal,\qquad
+\text{module artifacts (engineering+physics)}=\TFPTSuiteModulesTotal,\qquad
+\text{checks total}=\TFPTSuiteChecksTotal.
+\]
+It ships:
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item a \textbf{conventional suite} (registry-driven; core invariants, $\alpha$ closure + policy bridge, RG/matching, flavor pipelines, cosmology/bounce wiring, torsion/birefringence, dashboards),
+    \item an \textbf{unconventional suite} of search/audit/design tools (for closing explicit ToE gaps without hiding assumptions),
+    \item a \textbf{theoryv3} branch of discrete audits that formalizes the ``kernel + crosslinks'' thesis (holonomy $g=5$, defect partition, constant factory).
+\end{itemize}
+Each module emits \texttt{results.json} (machine-readable), \texttt{report.txt} (human-readable), and optional plots; PDF reports summarize runs.
+
+\subsection{Known Gaps and Status (Auto-Generated)}
+\label{sec:known-gaps}
+
+\begin{tcolorbox}[colback=yellow!3, colframe=yellow!60!black,
+title={\textbf{Current WARN/FAIL inventory (from suite manifest)}}, fonttitle=\bfseries\small]
+\TFPTSuiteProblemModules
+\end{tcolorbox}
+
+% Compact table of problem modules (WARN/FAIL/plot issues)
+% Inlined (standalone build): formerly \input{../tfpt-suite/out/suite_manifest_table.tex}
+% -----------------------------------------------------------------------------
+% AUTO-GENERATED by tfpt_suite.suite_manifest.py — do not edit by hand.
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}llrrrrrr@{}}
+\toprule
+Module & Mode & Checks & PASS & WARN & FAIL & Plots(exp) & Plots(ok)\\
+\midrule
+\texttt{alpha\_on\_shell\_bridge} & engineering & 7 & 6 & 1 & 0 & 0 & 0\\
+\texttt{matching\_finite\_pieces} & engineering & 5 & 4 & 1 & 0 & 0 & 0\\
+\texttt{torsion\_condensate} & engineering & 8 & 5 & 3 & 0 & 0 & 0\\
+\texttt{alpha\_on\_shell\_bridge} & physics & 7 & 6 & 1 & 0 & 0 & 0\\
+\texttt{matching\_finite\_pieces} & physics & 5 & 4 & 1 & 0 & 0 & 0\\
+\texttt{torsion\_condensate} & physics & 8 & 5 & 2 & 1 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\caption{Suite manifest: compact table of WARN/FAIL modules and plot issues (auto-generated).}
+\end{table}
+

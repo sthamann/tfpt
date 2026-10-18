@@ -1,0 +1,392 @@
+
+\par\smallskip\noindent\textbf{The ST31 degree-$24$/$20$ round
+(\texttt{E8.ST31DEG.01}).}
+The regular clocks of $G_{31}$ against the compiler clock ($25$
+checks, ${\sim}4$\,s, exact arithmetic).  \emph{The regular
+$24$-clock:} an explicit $w$ with free census $\{24{:}10\}$ and
+$|C_{G_{31}}(w)|=24$ (Springer); exact center relations $w^{12}=-1$
+and $w^6=J^3$ --- the $\mu_4$ center is a \emph{power} of the regular
+$24$-clock, and $\langle w\rangle/\mu_4=Z_6$ is exactly its free
+$6$-clock on the $60$ lines ($\{6{:}10\}$); the characteristic
+polynomial is $\chi_w=x^4+ix^2-1$ \emph{exactly} (a Gaussian-integral
+quartic factor of $\Phi_{24}$; all four eigenvalues primitive
+$\zeta_{24}$); the half-clock $w^2$ is the \emph{regular} $12$-element,
+not the compiler clock.  \emph{The clock kill (a parity theorem):}
+$c=w^2$ is impossible for \emph{any} order-$24$ $w$, even in
+$S_{240}$ --- the $12$-cycles of a square come in pairs from
+$24$-cycles ($4$-cycles in pairs from $8$-cycles), and
+$\mathrm{census}(c)=19{\times}12+3{\times}4$ has \emph{odd} counts;
+the full power-census scan confirms it.  \emph{The $20$-degree:} a
+regular $u$ with census $\{20{:}12\}$, $u^5=J^3$ \emph{central}
+(stronger than $J$-class), and $u^4$ acting \emph{freely} with census
+$\{5{:}48\}$, $48=240/5$ exactly (lines $\{5{:}12\}$).  Honest typing:
+$48=$ seam sites stays an \emph{observation} (no structural bridge
+here); $\gcar=5$ has only the census side; no marker moves.
+Machine-checked: \veri{v647\_st31\_degree24.py}.
+\mE\ (structural clock relations; parity-theorem kill) $+$ \mC\
+(typed observations)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The discipline audit --- the suite measures
+itself (\texttt{META.DISCIPLINE.01}).}
+The suspicion to be defused is ``numerology'': a large corpus of
+machine-checked claims could in principle be a confirmation-bias
+generator.  This meta-module parses the suite's own files and freezes
+the measured process-discipline metrics as minimum bars ($18$ checks,
+${\sim}200$\,s).  \emph{Ledger census:} $715$ rows, $710$ active;
+$214$ rows document kills, honest negatives, ill-posed retirements and
+retypes --- a project that documents its own buried hypotheses is not a
+confirmation-bias generator.  \emph{Must-fail census:} $643$ modules
+(every one carries checks), $6040$ static \texttt{check()} call sites,
+$1469$ must-fail\,/\,kill\,/\,scramble keyword occurrences across
+$233$ modules; typing marks \mE~$\times\,3579$ vs \mC~$\times\,1323$
+--- conditional readings are typed, not upgraded.
+\emph{Preregistration:} $47$ contract rows, $29$ naming kill criteria
+\emph{before} execution; executed chains verified in the ledger
+(\texttt{FTR.PGL2.01}: preregistered \texttt{v533} $\to$ executed
+\texttt{v632}; \texttt{REG.FREEZE.01}: registry
+frozen 2026-06-09).  \emph{Reproducibility:} deterministic replay
+$12/12$ on a declared sample spanning \texttt{v55}--\texttt{v648}
+(two fresh subprocess runs each, identical output up to timing lines);
+$396$ modules sympy-exact, $77$ with explicit seeds.  \emph{External
+anchors:} five classical results recomputed here against the
+literature --- Jacobi 1834 four-square counts (exact, $n=1..40$),
+Construction~A $[8,4,4]\to E_8$ with $240$ minimal vectors, the
+Shephard--Todd G31 degrees $(8,12,20,24)$,   \emph{Lean layer:} $54$ committed proof modules
+(\texttt{git ls-files}; \texttt{lake build} honestly \emph{not} re-run
+in-suite).  \emph{The limit, honest:} this module measures
+\emph{process} discipline, not the truth of the physics; typed \mC\
+observations stay observations, and the open gates stay open ($278$
+class-O rows incl.\ \texttt{SEAM.THEOREM.01}) --- a discipline certificate is
+a necessary, not a sufficient, condition against numerology.
+Machine-checked: \veri{v649\_discipline\_audit.py}.
+\mE\ (censuses, replay, anchor recomputes) $+$ \mC\ (the typed limit)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The orbifold modular data
+(\texttt{QGEO.ORBMOD.01}).}
+The modular level of the $\mathbb{Z}_3$ orbifold of the seam, on the
+lattice ($17$ checks, ${\sim}25$\,s).  All nine twisted-sector
+partition functions $Z[g,h]$ of the seam double are real positive
+with exact conjugation degeneracies and match the continuum
+$|\theta[g/3,h/3]/\eta|^2$ at $<1\%$ on $\ln Z$ ($N=48$; three
+$\tau$); the Casimir slopes reproduce the \texttt{v628} coefficients
+per deck class.  \emph{S is measured:} the modular S-covariance
+converges with a clean common $N^{-4}$ rate ($4.06$--$4.32$ over
+$N=24/48/96$) while the single-lattice deviation from the continuum
+falls only at $N^{-2}$ --- the leading lattice artifact is itself
+S-covariant and \emph{cancels} in the S-relation.  \emph{T is exact:}
+the discrete Dehn twist realizes T as the $\mathbb{Z}_6$ sector map
+$(g,h)\to(g,g{+}h)\times(-1)^F$ at machine precision
+($3.6\times10^{-13}$; continuum T-phases are not resolvable in the
+real-positive trace convention --- honest scope).  The twisted
+characters carry $h_\sigma=1/36$ (rel $5.6\times10^{-4}$) with the
+parafermionic $1/6$ gap, and $\mathrm{deck}^3=(-1)^F$ closes exactly
+as $\mathbb{Z}_6$ trace arithmetic including the cover factorization;
+chiral phases, continuum T-phases and continuum OS stay typed open;
+\texttt{GATE.QGEO} does not move.
+Machine-checked: \veri{v650\_orbifold\_modular.py}.
+\mE\ (sectors, characters, spin structure) $+$ (\textsc{measured})
+(S-covariance) $+$ \mC\ (typed continuum remainder)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The orbifold assembly
+(\texttt{QGEO.ORBASM.01}).}
+The projection sum, settled by machine cohomology and a candidate
+census ($17$ checks, ${\sim}35$\,s).  $H^2(\mathbb{Z}_3,U(1))=0$ by
+enumeration ($27$ cocycles, all symmetric): there is \emph{no}
+discrete torsion for a pure $\mathbb{Z}_3$ orbifold.  Of six assembly
+candidates, the survivors of \{integer spectrum, unique vacuum, S
+measured clean, T exact\} are exactly $\{B, C3\}$: the naive
+$\mathbb{Z}_3$ dies by an \emph{exact} T violation $3.5\times10^{-3}$
+(its charge-$3$ content --- T kills the naive $\mathbb{Z}_3$
+exactly), $C1$ by S stalling, $C2$ has no vacuum at all, $A'$
+additionally by the wrong first twisted exponent ($5/18$, not
+$1/9$).  The seam data then discriminate: $B$ keeps every measured
+$c=0$ sector ground and matches the Klein phase $\eta=(1,1)$ of
+\texttt{v645}, while $C3$ (the Arf/GSO twin) excises all odd-sector
+grounds --- \emph{the seam assembly is $B$}, the $\mathbb{Z}_6$ deck
+quotient with uniform charge-$0$ projection (data-backed at this
+round; hardened structurally by \texttt{v652}).  The chiral phase
+$e^{-2\pi i\tilde a b}$ is measured.  \texttt{GATE.QGEO} does not
+move.
+Machine-checked: \veri{v651\_orbifold\_assembly.py}.
+\mE\ (cohomology, census, exact T) $+$ \mC\ (data-backed B-vs-C3
+pick)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The Arf structure of the assembly
+(\texttt{QGEO.ORBARF.01}).}
+The B-vs-C3 kill, decided structurally ($15$ checks, ${\sim}30$\,s).
+The $\mu_6$ defect ladder measures the C3-excised states
+\emph{directly}: ladder exponents $2\Delta=(1/18, 2/9, 1/2)$ at rel
+devs $<8\times10^{-4}$, the half-twist Klein Gram exactly PSD, and
+the exact charge-resolved minima $(0,1,4,9,4,1)/36$ are the measured
+sector grounds; $C3$'s odd-sector predictions $85/18$ and $81/18$
+exceed the measurements by factors $85.0$ and $9.0$ (the defect
+string is exactly charge-neutral: $C3$ excises states that exist on
+the lattice seam with positive Klein norm).  The classification pin:
+among \emph{all} $6^6=46656$ sector-character wirings exactly
+$\{B, C3\}$ survive the exact lattice degeneracies, and the
+single-Fock-space requirement forces $B$.  Honest: the earlier
+\texttt{v639} $2/9$ read alone is B-vs-C3-\emph{blind} (both coincide
+exactly on the even sectors); the new $\tau$ datum is the OPE
+exponent $1/18$.  \texttt{GATE.QGEO} does not move.
+Machine-checked: \veri{v652\_orbifold\_arf.py}.
+\mE\ (classification, pin, excision data) $+$ \mC\ (typed premise
+remainder)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The bond-defect theorem
+(\texttt{QGEO.BONDDEF.01}).}
+The last orbifold premise upgraded to a lattice theorem ($18$ checks,
+${\sim}40$\,s).  \emph{The theorem:} the deck-character blocks of the
+covered seam \emph{are} the one-bond-defect chains, unitarily and
+exactly ($A_r=\sqrt3\,R P_r$ on all modes, exact in
+$\mathbb{Q}(\zeta_6)$, at $16/48$ and $48/144$; defect phase $=$ deck
+character): twist sector $=$ deck boundary condition $=$ bond defect,
+canonically; $D_{\mathrm{can}}=L^4$ and $D_{\mathrm{can}}^3=-1$ hold
+as exact operator identities (the quarter clock fixes the canonical
+section lift).  \emph{Gauge and pin:} the defect position is pure
+gauge (a symbolic telescoping theorem in all $16$ free bond phases),
+and the geometry pins the gauge class --- one uniform twist unit per
+mark (cocycle support $=$ the \texttt{v622} mark set), window
+boundary at a crossing $\Leftrightarrow$ defect at a mark.  \emph{The
+exclusion census:} the base chain has no other $\mathbb{Z}_3$; site
+potentials, amplitude defects, sign defects and alternating weights
+are killed exactly; an isospectral real NN chain \emph{exists}
+($7.8\times10^{-16}$) --- honestly documented: purely spectral data
+cannot exclude it, but it is no $\mathbb{Z}_3$-twist realization and
+the measured string data discriminate it.  The continuum CFT
+statement and the seam identification stay typed; \texttt{GATE.QGEO}
+does not move.
+Machine-checked: \veri{v653\_bond\_defect.py}.
+\mE\ (lattice theorem, gauge pin, exclusion census) $+$ \mC\ (typed
+continuum remainder)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The ST31 degree-$8$ round and the
+$d/4$ theorem (\texttt{E8.ST31D8.01}).}
+The last clock census, unified ($30$ checks, ${\sim}10$\,s, exact
+arithmetic).  \emph{The $d/4$ theorem:} for every degree
+$d\in\{8,12,20,24\}$ the Springer-regular $d$-clocks of $G_{31}$
+satisfy $x^{d/4}=\pm i\,\mathrm{Id}$ --- a \emph{generator} of
+$\mu_4$, never $\pm1$ (one formula from the exponent systematics:
+all exponents of $G_{31}$ are $3\bmod4$).  The converse is exact at
+$d\in\{8,20,24\}$, and the unique exception at $d=12$ is the
+\emph{compiler-clock class}: exactly $1280$ extra elements $=$ the
+classes of $c$ and its Galois twin, with
+$\chi_c=(x-i)^2(x^2+ix-1)$ half the regular-$12$ Springer block ---
+all eigenvalues satisfy $\lambda^3=-i$, which is exactly why
+$c^3=J^3$ is central; the compiler-clock classes are the \emph{only}
+non-regular clocks in all of $G_{31}$ whose $d/4$-th power generates
+the center.  The order-$8$ landscape is complete ($10560$ elements,
+$480$ regular $=2$ Galois classes, $\chi=(x^2+i)^2$ exact) with the
+honest kill that ``free $\Rightarrow$ regular'' is \emph{false} at
+$d=8$ (and already at order $4$); degrees $=$ free orders divisible
+by $4$ above $4$.  No marker moves.
+Machine-checked: \veri{v654\_st31\_degree8.py}.
+\mE\ (census, theorem, controls; honest kill)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The look-elsewhere audit
+(\texttt{META.LOOKELSEWHERE.01}).}
+The bingo budget of the typed \mC\ numeric coincidences, quantified
+($14$ checks, ${\sim}2$\,s; seed $20260802$, $100$k MC, exact
+Poisson-binomial tails).  The budget: $N=42$ structure slots, $K=19$
+hits against the compiler target list \emph{frozen before the
+computation}; the six killed readings enter as $0$-hit trials.
+Global: the family-corrected $p=5.1\times10^{-3}$ in the most
+conservative of three null models --- the \emph{ensemble} survives
+the honest correction (empirical control: $0.2\%/0.3\%$ of $2000$
+size-matched pseudo-target lists reach the real hit count / the real
+$p$).  The triage, and the point: \emph{no single observation is
+significant on its own} --- suggestive only ($0.01..0.1$):
+$60=D_{\mathrm{start}}$, the $12$ $\sigma$-fixed roots, the G31
+degrees, $48=\Omega_{\mathrm{adm}}$; unremarkable ($p>0.1$): $6=$
+Lorentz-congruence index $=p_2(a)$ ($p=0.169$) and the CODESEM
+number battery ($p=0.593$ --- the \texttt{v646} finding quantified);
+forced: $14$ and $16$ (their value is the theorem, not the number).
+The re-typings are executed as dated ledger notes
+(\texttt{EXTREV.LATTICE.01}, \texttt{E8.CODESEM.01},
+\texttt{E8.CODE.01}); the substance of the rounds lies in the \mE\
+structure theorems, not in the number bingos.
+Machine-checked: \veri{v664\_look\_elsewhere.py}.
+\mE\ (budget census, MC quantification, executed re-types)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The continuum-OS slice of the seam
+orbifold (\texttt{QGEO.ORBOS.01}).}
+The Osterwalder--Schrader reconstruction data of the seam orbifold B,
+measured at the \emph{convergence} level ($19$ checks, ${\sim}3$\,s;
+verdict \textsc{orb-os-continuum-slice}).  \emph{Convergence with
+understood rates:} at fixed continuum data over $N=48..384$ all six
+$\sigma$-channel observables share the uniform raw rate $0.659$
+(spread $0.020$) $=$ the predicted Fisher--Hartwig branch exponent
+$\rho_\sigma=2/3$; the $\tau$-channel contrast measures $1.298$ vs
+$\rho_\tau=4/3$ (the channel law $\rho=2(1-\beta)^2-2\beta^2$: rates
+understood, not fitted); after removing the one known FH term the
+extrapolated limits hit the CFT values at $<0.05\%$; the
+$\varepsilon$/current channel is exact on the lattice
+($8.9\times10^{-15}$).  \emph{RP survives the limit:} the
+correlation-normalized Klein Grams are PSD at every $N$ and the
+resolvable spectra converge with $\lambda_{\min}$ extrapolations
+bounded away from zero --- $\sigma$ $1.357\times10^{-3}$ (margin
+$7\times$ the band), $\tau$ $2.800\times10^{-4}$ (margin $358\times$),
+mixed OS Gram $1.337\times10^{-3}$ (margin $31\times$); must-fail:
+$\eta=-1$ flips negative definite.  \emph{Cluster in both
+directions:} space --- the free-exponent chord fit at $N=1536$ gives
+$2\Delta=0.222220$ vs $2/9$ at $8.1\times10^{-6}$ (the chord form
+beats the plain power law by five orders); Euclidean time (new
+machinery) --- the connected correlator decays with the fitted gap
+$=$ the exact transfer-matrix $\varepsilon$ level ($0.99933$ vs $1$),
+the cosh/cylinder form pointwise.  \emph{Characters:} $1/36$, $1/9$,
+$5/18$, $4/9$ from exact mode sums at $10^{-12}$ with the measured
+$N^{-2}$ rate.  \emph{The honest typing:} OS axioms E0/E2/E3/E4 are
+now measured at the convergence level, E1 is exact only for the
+discrete lattice symmetries (rotation invariance emergent); the
+formal-limit remainder is \emph{named}: uniform bounds over all
+configurations, tightness, the GNS limit Hilbert space, operator
+convergence, the R/parity sectors, the assembled orbifold-B
+correlators --- \texttt{GATE.QGEO} does \emph{not} move.
+Machine-checked: \veri{v679\_orbifold\_continuum\_os.py}.
+\mE\ (machinery; convergence, cluster and character slices) $+$
+(\textsc{measured}) (RP-limit extrapolations) $+$ \mC\ (formal-limit
+remainder, named)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The Gaussian code bridge
+(\texttt{E8.GAUSSCODE.01}).}
+$E_8(\mathbb{Z}[i])/(1+i)$ \emph{is} the information space of
+$\mathrm{RM}(1,3)$ ($26$ checks, ${\sim}3$\,s, exact arithmetic;
+verdict \textsc{gaussian-code-bridge-exact}).  The $\mu_4$ complex
+structure $J$ makes E8 a rank-4 $\mathbb{Z}[i]$-lattice; the
+$(1+i)$-quotient is $\mathbb{F}_2^4$ (SNF exact; standard model:
+$|\det|=256=2^8$, SNF $[1^4,2^4]$ --- presentation-independent);
+the $240$ roots fall $15\times16$ over the nontrivial classes (zero
+class provably empty; each class $=4$ of the $60$ G31 lines);
+$\sigma=c^4$ acts as the RM(1,3) family permutation (3-cycle $+$
+fixed anchor, the v638 info-bit action) with residual gauge of order
+$18$; the coordinate block is the sum-of-families label.  All
+must-fail controls fire (naive placement: $\sigma$-semantics
+undefined; non-$\pi J$ placement: no $\mathbb{Z}[i]$-module;
+$\mathbb{Z}[i]^4$: census trivializes).  No marker move.
+Machine-checked: \veri{v689\_gaussian\_code\_bridge.py}.
+\mE\ (SNF, census, semantics; exact arithmetic) $+$ (\mE,
+\textsc{kill}) (three must-fail controls)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The quartic half
+(\texttt{E8.QUARTICHALF.01}).}
+Is G31 the holomorphic $\mu_4$ shadow of the E8 compiler?
+\emph{Alive, with the honest split} ($22$ checks, ${\sim}1$\,s, no
+floats; verdict \textsc{quartic-half-alive}).  \emph{The vanishing
+half} $\{2,14,18,30\}$ is proven symbolically but \emph{trivial}:
+$W(J\alpha)=-i\,W(\alpha)$ makes every $J$-orbit contribution vanish
+for all $d\not\equiv0\bmod4$ (holds for $6,10,22,26$ too --- honest
+typing).  \emph{The substance}: $F_8|,F_{12}|,F_{20}|,F_{24}|$ are
+G31-invariant ($60/60$ mirrors exact), algebraically independent
+(exact Jacobian), degrees Molien-unique with product
+$46080=|G31|$ --- by Chevalley (cited) a system of \emph{basic}
+invariants: the holomorphic restriction of the $W(E_8)$ ring
+generates the \emph{full} G31 invariant ring; the Jacobian carries
+the $60$ mirror lines ($60/60$ point-verified; full factorization
+$=$ cited theorem, named residual).  Controls: the non-root-preserving
+$J'$ breaks the informative half, the root-preserving $J''$ keeps it
+(the theorem is about the compiler-compatible conjugacy class).  No
+marker move.
+Machine-checked: \veri{v690\_quartic\_half.py}.
+(\textsc{proof}) ($\mu_4$-orbit vanishing, symbolic) $+$ \mE\ (G31
+invariance/independence/mirror census) $+$ (\mE, \textsc{kill})
+(complex-structure controls) $+$ (\textsc{cited}) (Chevalley)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The orbit-60 census, parked
+(\texttt{E8.ORBIT60.01}).}
+The $60$ $\mu_4$-lines as a combinatorial object and a strict park
+test for the cascade $60\to6$ ($18$ checks, ${\sim}1$\,s; verdict
+\textsc{orbit60-parked}).  All five routes adjudicated: degree rules
+dead (quotient graphs regular); $\sigma$ structure dead (orbit sizes
+$\{3,1\}$); the involution witness \emph{does not exist} (full
+census of the line group, order $11520$: $375$ involutions, $21$
+classes, none of cycle type $2^{27}1^6$); W(E8) Coxeter does not
+descend; the must-fail numerology control fires (rule-free pair
+removal reproduces $60-2n$ in $27$ steps; $>10^{70}$ equally
+successful sequences --- the counting carries no structure).  $A_5$
+one-liner: order-5 elements exist ($2304$) but nothing natural.
+Parked per the review protocol.
+Machine-checked: \veri{v700\_orbit60\_census.py}.
+(\mE, \textsc{park}) (five-route adjudication, involution census,
+numerology must-fail)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The CAR continuum route
+(\texttt{QGEO.CARLIMIT.01}).}
+The quasi-free CAR route to the formal orbifold continuum limit
+($22$ checks, ${\sim}10$\,s; verdict
+\textsc{qgeo-car-rates-summable}).  All $6{+}1$ deck/twist channels
+are Schatten-norm Cauchy on $\varepsilon$-separated configurations
+($N$ up to $3072/6144$) with geometrically summable rates; the FH
+renormalization is fit-free lattice-derived (Barnes~$G$,
+$8.8\times10^{-7}$); the RP cone is stable; all four kill criteria
+clear.  The majorant lemma (L1)--(L3) is \emph{named} with constants
+and a classical proof route --- named, not proven:
+\texttt{GATE.QGEO} does \emph{not} move.  Deterministic.  No marker
+move.  [2026-08-05: the literal (L1) clause ``one $B(\varepsilon)$
+for \emph{all} grid refinements'' is false at $r_1=1$ and is
+repaired to the $(1+\ln M)$ form --- see the \texttt{v778} block
+below; the (L1) rates themselves stand.]
+Machine-checked: \veri{v715\_qgeo\_car\_continuum.py}.
+(\textsc{measured}) (summable rates, stable RP cone) $+$ \mE\
+(lattice-derived renormalization) $+$ \mO\ (majorant lemma)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The ramified place sees NS/R
+(\texttt{GNET.RAMIFIED.01}).}
+Is the Ramond projection $(1{+}i)$-adic? ($9$ checks, ${\sim}1$\,s;
+verdict \textsc{ramified-sees-nsr}).  On the explicit
+even-coordinate E8 with integral $J$: $(1{+}i)L$ lies in the even/NS
+sublattice (proved on a $\Z$-basis); the $240$ roots fall into
+$15\times16$ classes of \emph{pure} parity ($7$ NS $+$ $8$ R);
+parity is a homomorphism $\mathbb F_2^4\to\mathbb F_2$ --- the NS/R
+grading \emph{is} the parity character of $E_8(\Z[i])/(1{+}i)$.
+\emph{Controls fire}: $\Z[i]^4$ census not $15\times16$; scrambled
+labels break purity.  First exact witness for the groupoid reading
+of $G_{\mathrm{net}}$; gate typing unchanged.
+Machine-checked: \veri{v722\_phys\_ramified\_ns\_r.py}.
+\mE\ (integer-exact slice, controls) $+$ \mO\ (Q-system
+identification)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{Strong thermal time is dead
+(\texttt{FTRANSFER.STT.01}).}
+Can thermal time replace the external clock contract? ($11$ checks,
+${\sim}1$\,s; verdict \textsc{stt-killed} $+$
+\textsc{internal-pair-confirmed}).  \emph{The kill}: the F\_QCD
+$1$-loop clock map is \emph{parabolic} and not diagonalizable
+(single Jordan block); the symbolic lemma ``$\exp$ of a
+real-diagonalizable matrix is diagonalizable'' closes the door.
+\emph{The confirmation}: the pole multiplier is exactly
+$(2/3)^6=64/729$ (hyperbolic $\Rightarrow$ internal; Boltzmann the
+same element per v425).  \emph{Typed consequence}: the external
+clock contract confirmed, sharpened to $\{$one unit, $\theta_i$,
+$C_p\}$ --- T3's clock wall $=$ T1's unit wall, counted once.  No
+marker move.
+Machine-checked: \veri{v723\_phys\_modular\_clock.py}.
+\mE\ (symbolic lemma, multiplier) $+$ \mX\ (STT kill)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{Conditioned modular flows are dead
+(\texttt{FTRANSFER.COCYCLE.01}).}
+The second thermal-time kill ($12$ mechanical checks, ${\sim}1$\,s;
+verdict \textsc{t3b-dead}).  Target-free graph projectors, \emph{one}
+global KMS scale $\Delta=6\log(3/2)$, Connes cocycle composition
+exact ($1.6\times10^{-15}$) --- and all four conditioned flows come
+out \emph{loxodromic/complex}: the frozen v578/v632 solver classes
+do \emph{not} arise; the \textsc{needs-lindblad} escape honestly
+refused (GKSL variant also all-loxodromic).  With v723 both
+thermal-time routes are closed: the external clock contract stands.
+No marker move.
+Machine-checked: \veri{v724\_phys\_t3b\_modular\_flows.py}.
+\mE\ (cocycle composition, one KMS scale) $+$ \mX\ (class-gate kill)
+\par\smallskip

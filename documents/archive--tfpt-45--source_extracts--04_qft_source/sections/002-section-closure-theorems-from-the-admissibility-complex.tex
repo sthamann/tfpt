@@ -1,0 +1,397 @@
+\section{Closure theorems from the admissibility complex}
+\label{sec:closure-theorems}
+
+The preceding two sections introduced the carrier-compatible geometric and transport architecture.
+The primitive admissibility projector $\Pprim$ was already placed in the primitive section so
+that the proof direction runs from the boundary datum through the derived closed datum to $\Pprim$, and only then to the later
+sector theorems. What remains in this section is therefore (i) the upgrade of $\Pprim$ to the
+full admissibility projector $\Padm$ once the discrete carrier and determinant data have been
+fixed, and (ii) the closure stack that follows from that full projector together with the family,
+Higgs, positivity, and reflection-stability inputs collected first.
+
+\begin{definition}[Full admissibility complex]
+\label{def:full-admissibility-complex}
+Once the discrete carrier and determinant data are fixed on the admissible branch, the Hilbert
+space carries a color factor and a determinant involution. Write
+\[
+\mathcal H=\mathcal H_{\Seam}\otimes\mathcal H_c\otimes\mathcal H_\Theta\otimes\mathcal H_t,
+\qquad
+\mathcal H_{\mathrm{ext}}
+:=
+\mathcal H\otimes\Lambda(\eta_\Sigma,\eta_c,\eta_\Theta,\eta_g),
+\]
+with carrier-side color generator $Z_c$ and determinant-sector involution $Q_\Theta$ satisfying
+\[
+\iC^2=\mathbf 1,
+\qquad
+Q_\Theta^2=\mathbf 1,
+\qquad
+Q_\Theta^\dagger=Q_\Theta.
+\]
+Define the full structural selector
+\[
+P_{\mathrm{str}}:=P_{\Seam,+}P_{\mathrm{sing}}P_\Theta,
+\qquad
+P_{\Seam,+}:=\frac{\mathbf 1+\iC}{2},
+\qquad
+P_\Theta:=\frac12(\mathbf 1+Q_\Theta),
+\]
+\[
+P_{\mathrm{sing}}:=\frac13(\mathbf 1+Z_c+Z_c^2).
+\]
+Let $\epsilon_{\mathrm{adm}}>0$ and let $D_{\mathrm{adm}}$ be the admissible sector operator on
+$\mathrm{Ran}(P_{\mathrm{str}})$ commuting with $\iC$, $P_{\mathrm{sing}}$, and $Q_\Theta$.
+Define the elementary penalties
+\[
+K_\Sigma:=\sqrt{\lambda_\Sigma}\,\frac{\mathbf 1-\iC}{2},
+\qquad
+K_c:=\sqrt{\lambda_c}\,\bigl(\mathbf 1-P_{\mathrm{sing}}\bigr),
+\]
+\[
+K_\Theta:=\sqrt{\lambda_\Theta}\,\frac{\mathbf 1-Q_\Theta}{2},
+\qquad
+K_g:=\sqrt{\lambda_{\mathrm{gap}}}\,\mathbf 1_{[0,\epsilon_{\mathrm{adm}}^2/4)}\!\bigl(P_{\mathrm{str}}D_{\mathrm{adm}}^\dagger D_{\mathrm{adm}}P_{\mathrm{str}}\bigr).
+\]
+The full admissibility differential is
+\[
+Q_{\mathrm{adm}}
+:=
+\eta_\Sigma^\dagger K_\Sigma
++\eta_c^\dagger K_c
++\eta_\Theta^\dagger K_\Theta
++\eta_g^\dagger K_g,
+\]
+and the full admissibility Laplacian is
+\[
+\Delta_{\mathrm{adm}}:=\{Q_{\mathrm{adm}},Q_{\mathrm{adm}}^\dagger\}.
+\]
+\end{definition}
+
+\begin{theorem}[Two-stage upgrade from $\Pprim$ to $\Padm$]
+\label{thm:padm-upgrade}
+On the closed branch obtained after the carrier theorem and the compact bosonic index closure,
+\[
+Q_{\mathrm{adm}}^2=0,
+\qquad
+\Delta_{\mathrm{adm}}=K_\Sigma^2+K_c^2+K_\Theta^2+K_g^2=\Kadm,
+\]
+and the full Hodge projector
+\[
+\Padm
+:=
+\Pi_{\ker\Delta_{\mathrm{adm}}}
+=
+\operatorname*{s-lim}_{\beta\to\infty}e^{-\beta\Kadm}
+\]
+admits the two-stage factorization
+\[
+\Padm
+=
+\Pprim\,P_{\mathrm{sing}}\,P_\Theta
+=
+P_{\mathrm{str}}\,P_{\mathrm{gap}},
+\qquad
+P_{\mathrm{gap}}
+:=
+\mathbf 1_{[\epsilon_{\mathrm{adm}}^2/4,\infty)}\!\bigl(P_{\mathrm{str}}D_{\mathrm{adm}}^\dagger D_{\mathrm{adm}}P_{\mathrm{str}}\bigr).
+\]
+The first factor $\Pprim$ depends only on the primitive datum
+$(\iC,\APSdom,D_{\mathrm{rel}})$; the second factor $P_{\mathrm{sing}}P_\Theta$ depends only on
+the carrier and determinant data made available by the carrier and bosonic index theorems.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The auxiliary generators $\eta_\Sigma^\dagger,\eta_c^\dagger,\eta_\Theta^\dagger,\eta_g^\dagger$
+anticommute, so $Q_{\mathrm{adm}}^2$ reduces to the commutators of $K_\Sigma,K_c,K_\Theta,K_g$.
+The four commuting sectors $\mathcal H_\Seam,\mathcal H_c,\mathcal H_\Theta,\mathcal H_t$ are
+acted on independently by these penalties, hence the mixed terms vanish and $\Delta_{\mathrm{adm}}=\Kadm$. The strong-coupling limit therefore projects onto the harmonic
+admissible sector. Because $K_\Sigma$ and $K_g$ already define $\Pprim$ on
+$\mathcal H_{\mathrm{prim}}$ and the additional penalties $K_c,K_\Theta$ commute with both, the
+full projector factorizes through $\Pprim$ multiplicatively, giving the two-stage form.
+\end{proof}
+
+\begin{corollary}[Factorized selector as a derived form]
+\label{cor:factorized-admissibility-selector}
+On the admissible branch the familiar factorized selector
+\[
+\Padm=P_{\Seam,+}P_{\mathrm{sing}}P_\Theta\,P_{\mathrm{gap}}
+\]
+is recovered as a corollary of \TFPTxref{thm:padm-upgrade}; nothing in the primitive section depends
+on it.
+\end{corollary}
+
+The two-stage selector geometry is summarized in \Cref{fig:admissibility-stack}.
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\begin{tikzpicture}[
+    >=Latex,
+    data/.style={draw=black!60, fill=gray!8, rounded corners, text width=2.55cm, minimum height=0.9cm, align=center},
+    prim/.style={draw=blue!60!black, fill=blue!6, rounded corners, text width=2.55cm, minimum height=0.95cm, align=center},
+    close/.style={draw=orange!75!black, fill=orange!8, rounded corners, text width=2.55cm, minimum height=0.95cm, align=center},
+    result/.style={draw=green!50!black, fill=green!8, rounded corners, text width=3.55cm, minimum height=1.0cm, align=center},
+    note/.style={font=\footnotesize\itshape, text=black!65, align=center}
+]
+\node[data] (seamdata) at (-3.3,1.95) {primitive datum\\$\iC,\ \APSdom,\ D_{\mathrm{rel}}$};
+\node[data] (carrierdata) at (3.3,1.95) {carrier \& determinant closure\\$X,\ Z_c,\ Q_\Theta$};
+
+\node[prim] (pseam) at (-4.55,0.15) {$P_{\Seam,+}$\\seam-even sector};
+\node[prim] (pgap) at (-2.0,0.15) {$P_{\mathrm{gap}}$\\admissible gap};
+\node[prim] (pprim) at (-3.3,-1.7) {$\Pprim$\\primitive selector};
+
+\node[close] (psing) at (2.0,0.15) {$P_{\mathrm{sing}}$\\color singlets};
+\node[close] (ptheta) at (4.55,0.15) {$P_\Theta$\\determinant sector};
+\node[close] (pupgrade) at (3.3,-1.7) {$P_{\mathrm{sing}}P_\Theta$\\closure upgrade};
+
+\node[result] (padm) at (0,-3.7) {$\Padm=\Pprim P_{\mathrm{sing}}P_\Theta$\\full admissibility projector};
+
+\draw[->, thick] (seamdata) -- (pseam);
+\draw[->, thick] (seamdata) -- (pgap);
+\draw[->, thick] (carrierdata) -- (psing);
+\draw[->, thick] (carrierdata) -- (ptheta);
+\draw[->, thick] (pseam) -- (pprim);
+\draw[->, thick] (pgap) -- (pprim);
+\draw[->, thick] (psing) -- (pupgrade);
+\draw[->, thick] (ptheta) -- (pupgrade);
+\draw[->, thick] (pprim) -- (padm);
+\draw[->, thick] (pupgrade) -- (padm);
+\node[note] at (0,-5.0) {Primitive data determine $\Pprim$; carrier and determinant closure upgrade it to $\Padm$.};
+\end{tikzpicture}
+\caption{Two-stage upgrade from the primitive selector to the full admissibility projector. The
+left lane is fixed by the primitive datum, while the right lane enters only after carrier and
+determinant closure.}
+\label{fig:admissibility-stack}
+\end{figure}
+
+\begin{theorem}[Calder\'on upgrade of the APS boundary domain]
+\label{thm:apsdom-upgrade}
+Let $\APSdomprov$ be the provisional APS realization of the geometric anchor used in
+\TFPTxref{thm:well-posed-primitive-dynamics}, and let $D_b$ be the canonical doubling of
+$D_{\mathrm{rel}}$ across $\Seam$. Let $C(D_b)$ denote the Calder\'on projector of $D_b$ on the
+seam collar. Then there is a canonical boundary-elliptic upgrade
+\[
+\APSdomprov
+\;\xrightarrow{\;C(D_b)\;}\;
+\APSdom
+\]
+such that:
+\begin{enumerate}[label=(\roman*), leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item $\APSdom$ lies in the same admissible elliptic class as $\APSdomprov$ and preserves the
+    self-adjoint Fredholm realization of the geometric anchor;
+    \item the relative graph domain of $D_{\mathrm{rel}}$ is unchanged, so all primitive results
+    that depended only on $\APSdomprov$ continue to hold with $\APSdom$;
+    \item the family-pairing data $\APSfam$ are induced canonically on the doubled admissible
+    branch and are not a separate primitive datum.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The Calder\'on projector $C(D_b)$ is canonically associated with the doubled operator on the
+seam collar and produces a boundary-elliptic projection compatible with the provisional APS
+choice. Both $\APSdomprov$ and $\APSdom$ are admissible elliptic boundary conditions for the
+same Dirac-type operator and therefore define equivalent self-adjoint Fredholm realizations of
+the geometric anchor (boundary-elliptic equivalence preserves the Sobolev graph domain).
+Consequently every statement made on the primitive scaffold under $\APSdomprov$ persists on the
+closed branch under $\APSdom$. The induction of $\APSfam$ from canonical doubling is a standard
+consequence of the cobordism structure of the doubled APS pair.
+\end{proof}
+
+\begin{proposition}[Master closure roadmap from canonical doubling]
+\label{thm:master-closure}
+\label{prop:master-closure-roadmap}
+\label{ass:remaining-closure-inputs}
+This proposition is a roadmap statement: it lists the closure conclusions that the individual
+theorems of this section establish from $\Tbound$, the derived closed datum, the carrier theorem, and the
+canonical doubling. It is not used as an input to those proofs and is recovered as a master
+corollary at the end of the section. Let $X_b$ be the canonical double across $\Seam$ and write
+\[
+D_b=
+\begin{pmatrix}
+0&D_{\mathrm{rel}}^-\\
+D_{\mathrm{rel}}^+&0
+\end{pmatrix},
+\qquad
+Q_{\mathrm{tot}}:=Q_{\mathrm{adm}}+Q_{\mathrm{geo}},
+\qquad
+\Delta_{\mathrm{tot}}:=\{Q_{\mathrm{tot}},Q_{\mathrm{tot}}^\dagger\}.
+\]
+Then on the closed branch all of the following are derived from the same datum (each item is the
+output of a downstream theorem in this section, not an extra hypothesis here):
+\begin{enumerate}[label=(\arabic*), leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item the Calder\'on projector of $D_b$ canonically upgrades the provisional APS choice
+    $\APSdomprov$ to $\APSdom$ (cf.\ \TFPTxref{thm:apsdom-upgrade});
+    \item the family pairing data are induced canonically, so no separate $\APSfam$ datum remains;
+    \item the upgrade theorem \TFPTxref{thm:padm-upgrade} produces
+    \[
+    \Padm:=\Pi_{\ker \Delta_{\mathrm{adm}}}
+    =
+    \Pprim\,P_{\mathrm{sing}}\,P_\Theta,
+    \]
+    and the doubled total closure package preserves $\mathrm{Ran}(\Padm)$;
+    \item
+    \[
+    \chi(X_f^\circ)=-2,
+    \qquad
+    F\simeq H^1(X_f^\circ,\mathbb C)\simeq \mathbb C^3,
+    \qquad
+    N_{\mathrm{fam}}=3;
+    \]
+    \item the harmonic determinant line is parallel and therefore
+    \[
+    \mathrm{Hol}(\nabla_F)\subset SU(3)_F;
+    \]
+    \item admissible bosonic, fermionic, and geometric reflection positivity hold on $\mathrm{Ran}(\Padm)$;
+    \item the physical geometric sector takes the form
+    \[
+    \mathcal H_{\mathrm{phys}}
+    \cong
+    \mathcal H_2\otimes\mathcal H_{\mathrm{sc}}\otimes\mathcal H_{\mathrm{matt}},
+    \]
+    with the scalaron carried by the positive $(\chi_{\mathrm{geo}},R^2)$ block;
+    \item $\Padm\Hrel\Padm$ is lower bounded and coercive.
+\end{enumerate}
+\end{proposition}
+
+\begin{definition}[Relative generating functional]
+\label{def:relative-generating-functional}
+The relative Euclidean generating functional is normalized as
+\[
+Z_{\mathrm{rel}}[J,\eta,\bar\eta]
+:=
+\frac{Z_{\mathrm{adm}}[J,\eta,\bar\eta]}{Z_{\mathrm{ref}}[0,0,0]}.
+\]
+The reference sector is therefore a fixed normalizing denominator rather than a second fluctuating measure that would mix with admissible positivity.
+\end{definition}
+
+\begin{lemma}[Admissible reflection positivity]
+\label{lem:admissible-reflection-positivity}
+Assume
+\[
+[\Theta,P_\Theta]=0,
+\qquad
+\Theta\Padm=\Padm\Theta,
+\]
+the admissible bosonic kernel satisfies the Bernstein-positivity remark above and is
+reflection-stable on the admissible sector, and the
+admissible fermionic CAR kernel is reflection positive on that same sector. Then every
+admissible observable $O$ supported in $\tau>0$ satisfies
+\[
+\langle \Theta O,O\rangle_{\mathrm{rel}}
+=
+\frac{1}{Z_{\mathrm{ref}}[0,0,0]}
+\langle \Theta O,O\rangle_{\mathrm{adm}}
+\ge 0.
+\]
+\end{lemma}
+
+\begin{proof}
+By definition,
+\[
+\langle \Theta O,O\rangle_{\mathrm{rel}}
+=
+\frac{1}{Z_{\mathrm{ref}}[0,0,0]}\,
+\langle \Theta O,O\rangle_{\mathrm{adm}}.
+\]
+The denominator is a fixed positive normalizing constant, so the sign is determined entirely by the
+admissible numerator.
+
+Split $O$ into its bosonic and fermionic parts on the retained admissible sector. For the bosonic
+part, the Bernstein representation of the admissible kernel writes the Euclidean covariance as a
+positive superposition of reflection-stable heat kernels. Reflection across $\tau=0$ therefore sends
+every positive-time bosonic observable to a positive quadratic form, so the bosonic contribution to
+\[
+\langle \Theta O,O\rangle_{\mathrm{adm}}
+\]
+is nonnegative.
+
+For the fermionic part, the CAR reflection-positivity hypothesis on the admissible subspace implies
+that the reflected two-point kernel is positive in the standard fermionic sense; equivalently, the
+corresponding Pfaffian / determinant form on positive-time test spinors is nonnegative. Because the
+bosonic and fermionic admissible factors commute inside the normalized expectation, their product
+remains nonnegative. Dividing by the fixed reference normalization preserves that sign. Hence
+\[
+\langle \Theta O,O\rangle_{\mathrm{rel}}\ge 0.
+\]
+\end{proof}
+
+\begin{theorem}[Operative admissibility selector]
+Under \TFPTxref{def:full-admissibility-complex,thm:padm-upgrade,prop:master-closure-roadmap}, the
+operator $\Padm$ is idempotent on the retained branch and realizes the admissibility predicate
+on all sectors used by the closed output statements:
+\[
+\mathsf{Adm}(X)=1
+\quad\Longleftrightarrow\quad
+\Padm X = X.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+By \TFPTxref{thm:padm-upgrade}, $\Padm=\Pprim P_{\mathrm{sing}}P_\Theta$ is the orthogonal projector
+onto the harmonic admissible sector of the full complex and is therefore idempotent by
+construction. \TFPTxref{cor:factorized-admissibility-selector} recovers the explicit factorized
+selector. The predicate and operator languages agree once the positive transport sector is fixed.
+\end{proof}
+
+\begin{theorem}[Topological family closure on the admissible branch]
+By \TFPTxref{thm:master-closure,thm:topological-family-closure,cor:boundary-bulk-occupancy},
+\[
+\chi(X_f^\circ)=-2,
+\qquad
+F\cong\mathbb C^3,
+\qquad
+N_{\mathrm{fam}}=3.
+\]
+Consequently
+\[
+\Oadm=N_{\mathrm{fam}}\dim S^+=3\times 16=48,
+\qquad
+\deltatop=\Oadm\,\cthree^4.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+This theorem is now a direct consequence of the master closure theorem from Section~6. The
+topological family closure and the orbifold corner count have already been compressed there
+into one statement, so the present layer merely records the corresponding admissibility
+consequence.
+\end{proof}
+
+\begin{theorem}[Bosonic index and local spectral-scale closure]
+On the admissible branch,
+\[
+\Ind_{\mathrm{rel}}^{\Padm}(\mathcal B_{E_2}^+)=1,
+\qquad
+\Ind_{\mathrm{rel}}^{\Padm}(\mathcal B_{E_3}^+)=0,
+\]
+so the unique light seam-even bosonic zero mode is
+\[
+\Phi\in\Gamma(E_2)\cong(1,2)_{1/2},
+\qquad
+\taudbl^{\ast}\Phi=+\Phi.
+\]
+Moreover the same closure layer yields
+\[
+\begin{aligned}
+\frac{\Mpl^2}{\lambda_\Sigma^2}&=\frac{\rho_\star}{2\pi^2},
+&
+G_N\lambda_\Sigma^2&=\frac{\pi}{4\rho_\star},
+\\
+\frac{\vgeo}{\Mpl}&=\gcar\,\beta_{\mathrm{rad}}^2
+\exp\!\left[-\frac{\alpha^{-1}(0)+\delta_{\mathrm{ph}}}{5}\right],
+\\
+G_N\vgeo^2&=\frac{1}{8\pi}\gcar^2\beta_{\mathrm{rad}}^4
+\exp\!\left[-\frac{2(\alpha^{-1}(0)+\delta_{\mathrm{ph}})}{5}\right].
+\end{aligned}
+\]
+Here $\vgeo$ is the seam-even UV source scale. The physical electroweak benchmark is the residue
+matched quantity $v_{\mathrm{phys}}$ of \TFPTxref{thm:ew-geometric-to-physical-matching}.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The bosonic sector is treated as a genuine Callias / Dirac / Dolbeault-type index problem rather
+than a scalar counting exercise. Relative heat-kernel closure together with
+\TFPTxref{prop:canonical-bosonic-normalization,lem:two-sheet-zero-mode-normalization,thm:absolute-spectral-planck-closure}
+produces the boundary-normalized Einstein branch, the canonical Higgs normalization, and the
+seam-even zero-mode formula for $\vgeo$.
+\end{proof}

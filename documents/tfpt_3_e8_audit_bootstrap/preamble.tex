@@ -1,0 +1,107 @@
+\documentclass[11pt,a4paper]{article}
+% ============================================================================
+%  TFPT consolidated document --- unified preamble (superset of the merged notes)
+% ============================================================================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,longtable,tabularx,multirow}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric,shapes.misc,decorations.pathmorphing,decorations.pathreplacing,patterns,angles,quotes,matrix}
+\usepackage{microtype}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks,colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\emergencystretch=3.5em
+
+% ---- colours ----
+\input{tex-artefacts/tfpt_style}
+
+% ---- shared header/footer (version stamp) + 4-class markers come from tfpt_style ----
+%  (no per-document footer override, so every TFPT document looks identical.)
+\usepackage{needspace}
+\usepackage{etoolbox}
+% ---- guard every coloured box so it never breaks with an orphaned title line ----
+\BeforeBeginEnvironment{keybox}{\needspace{8\baselineskip}}
+\BeforeBeginEnvironment{winbox}{\needspace{8\baselineskip}}
+\BeforeBeginEnvironment{gapbox}{\needspace{8\baselineskip}}
+\BeforeBeginEnvironment{auditbox}{\needspace{8\baselineskip}}
+\BeforeBeginEnvironment{audbox}{\needspace{8\baselineskip}}
+\BeforeBeginEnvironment{resbox}{\needspace{8\baselineskip}}
+\BeforeBeginEnvironment{roadbox}{\needspace{8\baselineskip}}
+
+% ---- symbol macros (union; one definition each) ----
+\newcommand{\TFPT}{\mathrm{TFPT}}
+\newcommand{\MPl}{M_{\mathrm{Pl}}}
+\newcommand{\Mpl}{M_{\mathrm{Pl}}}
+\newcommand{\Mbar}{\bar M_{\mathrm{Pl}}}
+\newcommand{\ellbar}{\bar\ell_{\mathrm{Pl}}}
+\newcommand{\GN}{G_N}
+\newcommand{\gcar}{g_{\mathrm{car}}}
+\newcommand{\Nfam}{N_{\mathrm{fam}}}
+\newcommand{\Oadm}{\Omega_{\mathrm{adm}}}
+\newcommand{\cthree}{c_3}
+\newcommand{\phiz}{\varphi_0^{\mathrm{ret}}}
+\newcommand{\phibase}{\varphi_{\mathrm{base}}}
+\newcommand{\phiseam}{\varphi_{\mathrm{seam}}}
+\newcommand{\useed}{u}
+\newcommand{\dtop}{\delta_{\mathrm{top}}}
+\newcommand{\dtwo}{\delta_2}
+\newcommand{\dph}{\delta_{\mathrm{ph}}}
+\newcommand{\betarad}{\beta_{\mathrm{rad}}}
+\newcommand{\lC}{\lambda_C}
+\newcommand{\lamC}{\lambda_C}
+\newcommand{\ainv}{\alpha^{-1}_\star}
+\newcommand{\LamIR}{\Lambda_{\mathrm{IR}}}
+\newcommand{\Lamgeom}{\Lambda_{\mathrm{geom}}}
+\newcommand{\lamsig}{\lambda_\Sigma}
+\newcommand{\AEW}{A_{\mathrm{EW}}}
+\newcommand{\AL}{\mathcal A_\Lambda}
+\newcommand{\AH}{\mathcal A_H}
+\newcommand{\dimg}{\dim\mathfrak g_{\mathrm{SM}}}
+\newcommand{\Dstart}{D_{\mathrm{start}}}
+\newcommand{\kappaE}{\kappa_{E_8}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\onev}{\mathbf 1}
+\newcommand{\lambdaY}{\lambda_Y}
+\newcommand{\lamY}{\lambda_Y}
+\newcommand{\vgeo}{v_{\mathrm{geo}}}
+\newcommand{\pardeg}{\operatorname{pardeg}}
+
+% ---- theorem environments (union) ----
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{definition}{Definition}
+\newtheorem*{remark}{Remark}
+\newtheorem*{goal}{Project goal}
+
+% ---- table column types ----
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% ---- list spacing ----
+\setlist[itemize]{topsep=4pt,itemsep=2pt,parsep=0pt}
+\setlist[enumerate]{topsep=4pt,itemsep=2pt,parsep=0pt}
+
+% ---- TikZ styles used by the architecture diagrams ----
+\tikzset{
+  cbox/.style={rounded corners=2pt, draw=blue!55!black, fill=blue!6, line width=0.6pt, align=center, inner sep=4pt, font=\small},
+  dbox/.style={rounded corners=2pt, draw=teal!60!black, fill=teal!8, line width=0.6pt, align=center, inner sep=4pt, font=\small},
+  abox/.style={rounded corners=2pt, draw=orange!70!black, fill=orange!10, line width=0.6pt, align=center, inner sep=4pt, font=\small},
+  ebox/.style={rounded corners=2pt, draw=purple!60!black, fill=purple!8, line width=0.8pt, align=center, inner sep=5pt, font=\small\bfseries},
+  flow/.style={-{Stealth[length=2.4mm]}, line width=0.7pt, draw=black!65},
+}
+\renewcommand{\arraystretch}{1.15}
+
+\title{\vspace{-1.2cm}\textbf{TFPT --- $E_8$ Audit, Cascade Bridge and Bootstrap}\\[2mm]\large The seven $E_8$ slices as an audit raster, the old cascade as the same even-integer spine, the M\"obius self-consistency loop --- and the thirty-two-step celestial/twistor route with the measure chain derived}
+\author{\TFPTauthors}\date{\TFPTdatestamp}
+\def\TFPTdoctitle{$E_8$ Audit \& Bootstrap}

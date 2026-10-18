@@ -1,0 +1,357 @@
+\section{The unique attractor: a gapped transport selects ONE fixed point}\label{sec:attractor}
+% =====================================================================
+The deepest structural fact behind ``parameter-free'' is dynamical: the boundary transport is
+\emph{gapped}, so its iteration has a \emph{unique} attracting fixed point.
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.74\linewidth]{attractor.pdf}
+\caption{The transport spectrum $\{1,(2/3)^6,(1/3)^6\}$ has spectral gap $\Delta=-\log(2/3)^6=2.4328>0$.
+By Perron--Frobenius the operator has a unique dominant eigenvector; iterating from \emph{any} start
+converges to the same fixed direction at the geometric rate $\lambda_2/\lambda_1=(2/3)^6$ --- the same
+$\lambda_2$ that fixes flavor and horizon recovery. \mE\ (\veri{v56\_unique\_attractor.py})}
+\label{fig:attractor}
+\end{figure}
+
+\par\smallskip\noindent\textbf{This gap is universal (\veri{v383\_dynamics\_universal.py}).} The same structure
+--- a gapped operator with a \emph{unique} leading attractor and a spectral gap that forces parameter-freeness ---
+recurs in \emph{every} TFPT sector: the discrete compiler (the affine-$E_8$ adjacency, Perron eigenvalue $2$ on the
+Kac marks, subleading $2\cos(\pi/5)=\varphi$, gap $2-\varphi=1/\varphi^2$, \vref{v312}/\vref{v313}), the flavor
+transport above, the holomorphic $c{=}8$ RG fixed point (\vref{v157}/\vref{v158}), the entanglement-equilibrium
+Einstein equation ($\delta S{=}0$, \vref{v358}/\vref{v359}), the one-loop QG saddle (\vref{v365}), the all-order
+adiabatic $S$-matrix (\vref{v381}) and horizon recovery (\vref{v221}). So ``parameter-freeness is a theorem'' is
+\emph{one} spectral-gap statement wearing many hats (\texttt{DYNAMICS.UNIVERSAL.01}, extending the
+$F_{\mathrm{transfer}}$ reading \vref{v303} to the whole theory); the two gap families --- golden
+$\varphi\in\mathbb Q(\sqrt5)$ (the carrier-$5$, static facet) and $(2/3)^6\in\mathbb Q$ (the family-$3$, dynamic
+facet) --- are the prime-$5$ and prime-$3$ facets of the order-$30$ Coxeter clock $30=2{\cdot}3{\cdot}5=h(E_8)$
+(\vref{v314}), not one number. \textbf{The third prime is the missing prime-$2$ facet (\veri{v390\_prime2\_facet.py}):}
+$h(E_8)=30$ factors into exactly three primes, and each is the ramified prime of one quadratic facet field ---
+$\mathbb Q(i)$ ($\operatorname{disc}-4$, the Gaussian / square facet: $\tau=i$, $j(i)=1728$, the order-$4$
+$\mu_4=\mathbb Z/4$ seam deck), $\mathbb Q(\sqrt{-3})$ ($\operatorname{disc}-3$, the Eisenstein / hexagonal CP
+facet $\zeta_3$) and $\mathbb Q(\sqrt5)$ ($\operatorname{disc}5$, the golden / pentagonal carrier facet). So the
+clock's three primes each carry a number-field facet (square/hexagon/pentagon $=$ seam/CP/carrier), the prime-$2$
+(Gaussian, seam-orientation) one having been the previously unnamed facet. \textbf{And those three primes are not
+three coincidences (\veri{v394\_coxeter\_atoms.py}):} they are the three atoms of the anchor $a=(1,1,2)$ itself ---
+$2{=}e_3{=}|Z_2|$, $3{=}p_0{=}\Nfam$, $5{=}e_2{=}\gcar$ --- so $\{$atoms$\}=\{$Coxeter primes$\}=\{$facet fields$\}$.
+\textbf{And the three facets \emph{compose} to one arithmetic hull (\veri{v403\_facet\_compositum.py}):} taken
+together they generate $K=\mathbb Q(i,\sqrt{-3},\sqrt5)$, whose degree $[K:\mathbb Q]=2^3=8=\operatorname{rank}E_8
+=\gcar{+}\Nfam$ and Galois group $(\mathbb Z/2)^3$ (order $8$) match the $E_8$ rank; its seven quadratic subfields
+split $4$ imaginary $=|\mu_4|$ (the CM, dynamic facets) $+$ $3$ real $=\Nfam$ (the RM, static facets) and ramify
+\emph{only} over the three atoms $\{2,3,5\}=$ the primes of $h(E_8)=30$. So $K$ is the abelian \emph{arithmetic
+hull} dual to the $E_8$ \emph{lattice} hull --- both of rank/order $8$, both supported on the same atoms (the
+relation $2^{\omega(h)}=\operatorname{rank}$ is $E_8$-special: the $E_7$ control $h=18$ gives $2^2=4\neq7$). \mE/\mC\
+\textbf{And the \emph{same} $E_8$ character reads the two CM points oppositely (\veri{v404\_e8\_char\_cm\_duality.py}):}
+the $(E_8)_1$ vacuum character $\chi_{E_8}=E_4/\eta^8=j^{1/3}$ takes its two CM values at the only two elliptic points
+of $\mathrm{PSL}(2,\mathbb Z)$ --- $\chi_{E_8}(i)=1728^{1/3}=12$ at the seam ($\tau{=}i$, $E_8$ present, where the
+keystone \texttt{SEAM.EQUIV.01} closes, \vref{v282}) but $\chi_{E_8}(\omega)=0$ at the family ($\tau{=}\omega$,
+$j{=}0$, $E_4$ vanishes, \vref{v220}). So the seam/flavor rigidity asymmetry is one function read at two points: the
+constants are $\chi_{E_8}$ at its \emph{nonzero} CM value, while the soft flavor/CP residual ($U_{\mathrm{wall}}$,
+$v_{\mathrm{geo}}$) is its $j{=}0$ degeneration --- a candidate \emph{dual keystone} at $\tau{=}\omega$. \mE/\mC\
+\textbf{That dual keystone is now named (\veri{v405\_seam\_equiv\_omega.py}, \texttt{SEAM.EQUIV.02}):} the
+family/flavor sector is the order-$3$ Eisenstein$/A_2$ face of $E_8$ at $\tau{=}\omega$, dual to the seam
+$=(E_8)_1$ at $\tau{=}i$. The $\tau{=}\omega$ Eisenstein lattice is exactly $A_2$ (Cartan $\det=3=\Nfam$,
+$h(A_2)=3=\Nfam$), and the flavor matrix $R$ is read by its $E_6{\times}A_2$ slice ($\|R\|_F^2=78=\dim E_6$,
+$\det R=8=\dim A_2=\operatorname{rank}E_8$); the CP phase $\delta_{\mathrm{PMNS}}=4\pi/3$ is the hexagonal CM
+phase there ($\arg\zeta_6=\pi/3$), and the cusp weights $\{0,1/3,2/3\}$ are the order-$3$ deck
+($=\Nfam=\det Q$). Like \texttt{SEAM.EQUIV.01} it is a \emph{named} keystone, not a closure: the residual is the
+canonical $\mathbb Z_3$ deck choice (\vref{v140}) and the one $v_{\mathrm{geo}}$-class scale. It also gives the two
+flavor residuals a home --- the PMNS CP-phase origin (\veri{v406\_pmns\_phase\_origin.py}: $\delta_{\mathrm{PMNS}}$
+is the $\tau{=}\omega$ CM phase, so PMNS has zero free flavor dials beyond $v_{\mathrm{geo}}$) and the $(d,n)$
+selector (\veri{v407\_dn\_pairings\_omega.py}: the three selector pairings $\{2,8,121\}$ are the $\tau{=}\omega$
+family-slice atoms $\{|Z_2|,\dim A_2{=}\det R,\|Pl(K)\|_1^2\}$). \mE/\mC
+The dynamic sector is moreover pure $\{2,3\}$-arithmetic with the seam (prime-$2$) as the common factor: the QG
+susceptibility $\chi=729/665=3^6/(3^6{-}2^6)$ and the seam rate $(2/3)^6=2^6/3^6$, while $2/3=|Z_2|/\Nfam$ and the
+compiler rate $(\varphi{+}2)/4=(\varphi{+}2)/|\mu_4|$ ($|\mu_4|{=}4{=}2^2$) both carry prime-$2$ --- so $30=5\times6
+=\gcar\,(2\Nfam)$ reads as (static carrier prime-$5$) $\times$ (dynamic prime-$2{\cdot}$prime-$3$). That the
+seam is the \emph{forced} universal dynamical engine (no independent prime-$2$ attractor) is
+\texttt{RES.COXETER.SYMMETRY.01}, resolved as a structural lemma (\vref{v409}/\vref{v419}). \textbf{And the gap does double duty (\veri{v387\_corrections\_gap.py}):} the same
+$\lambda_2/\lambda_1$ that forces uniqueness also \emph{sizes} the first correction in each sector
+($\mathrm{correction}_n\sim(\lambda_2/\lambda_1)^n$) --- flavor, horizon recovery and the QG bound all carry the
+$(2/3)^6$ rate (the QG susceptibility $\chi=729/665$ caps the ambient correction), while the discrete compiler
+transient decays at the golden $(\varphi+2)/4$. So the magnitude of sub-leading effects across TFPT is
+\emph{organised} by the gaps, not free. \textbf{Crucially, this correction is a \emph{typed} budget, not a
+uniform band on every prediction (\veri{v388\_corrections\_budget.py}):} since $(\lambda_2/\lambda_1)^n$ is the
+distance from a gapped operator's leading eigenvector, it is defined only where a subleading $\lambda_2$ exists.
+The prediction surface therefore splits into four classes --- \emph{seam-gapped} (Koide $F_{\mathrm{pole}}$,
+recovery, the QG bound: rate $(2/3)^6$; the compiler: golden $(\varphi+2)/4$), \emph{exact identity}
+($\det R=8$, $N_\Phi=1$, $\theta_{\mathrm{eff}}=0$, $\sin^2\theta_{13}$: \emph{no} $\lambda_2$, so the correction is
+$0$ structurally and a band there would contradict the \mE\ status), \emph{external-rate} ($\eta_B$ washout,
+axion freeze, $m_p/m_e$ RG: the gapped shape with an external rate, only $F_{\mathrm{pole}}$ carries the seam rate,
+\vref{v303}, firewalled \vref{v187}), and \emph{fixed-point} (where the texture is already explicit, e.g.\
+$\sin^2\theta_{12}$ with $\varepsilon=c_3+36c_3^4$). Only the seam-gapped class receives the $(2/3)^6$/golden band.
+\textbf{Made numeric (\veri{v393\_corrections\_numeric.py}):} the bands are computed, not just typed --- the
+fixed-point class carries the explicit $\varphi_0$ puncture $36c_3^4/c_3=9/(128\pi^3)\approx0.227\%$, the seam-gapped
+class $(2/3)^6\approx8.78\%$ (the QG bound capped at $\chi-1=64/665\approx9.62\%$), the exact-identity class $0$, and the
+external-rate class its quoted external bands ($m_p/m_e\,{\pm}7.5\%$, the $n_s/r$ $N_\star$ band) --- so every
+parameter-free value can be stated as ``central $\pm$ computed first correction''.
+
+\begin{keybox}[Parameter-freeness is an attractor, not a tuning \mE]
+A primitive operator with a spectral gap has (i) a unique dominant eigenvector and (ii) geometric
+convergence to it from any initial state. Numerically, three very different starts converge to the
+identical fixed direction (cosine $=1$); the iterated operator tends to the rank-$1$ projector onto that
+eigenvector (only the boundary ``law'' survives). The convergence rate is exactly $(2/3)^6$. Hence the
+realized boundary state is a \emph{dynamical attractor}: the constants are selected, not chosen.
+The scalar core of this statement --- gap $\Rightarrow$ unique attractor $+$ geometric decay $\Rightarrow$
+parameter-freeness, and the converse that without a gap ($r{=}1$) the start is never forgotten --- is now
+Lean-4 formalised (no \texttt{sorry}, only the standard kernel axioms; ledger \texttt{FORM.SPECTRALGAP.01},
+module \texttt{TfptCarrier/SpectralGapAttractor.lean}), now also for the finite-dimensional diagonalisable case
+(the deviation vector converges to the dominant eigendirection, parameter-free; a concrete instance on the
+cusp-transfer spectrum $\{1,(2/3)^6,(1/3)^6\}$); the general non-diagonalisable / infinite-dimensional
+Perron--Frobenius statement stays the cited theorem.
+\end{keybox}
+
+\noindent\textbf{The same gap is a finite recoverability code \mE/\mC\ (\veri{v221\_seam\_qecc.py}).} Read as
+a quantum channel, the gapped transport is a finite recoverability (error-correction-style) code on the
+carrier code space $\dim S^+=16$: the transport $T$ on the cusp-weight three-space (deviation directions
+$(1,{-}1,0)$ and the Nariai anchor $(1,1,{-}2)$) is symmetric and doubly stochastic (CPTP) with spectrum
+$\{1,(2/3)^6,(1/3)^6\}$, so on the trace-zero (deviation) subspace it contracts with operator norm exactly
+$(2/3)^6$, giving the per-step recovery bound $\|T^n\delta\|\le(2/3)^{6n}\|\delta\|$ (Knill--Laflamme type);
+a free ratio $r\neq(2/3)^6$ breaks it. ``Finite recoverability code'' is the \mE\ statement; the holographic
+(Page/Petz) reading --- the same $(2/3)^6$ that recovers horizon information across the seam --- is \mC,
+gated on the Seam--Horizon theorem (\S\ref{sec:crosslinks}).
+
+\noindent\textbf{What the classical transport does \emph{not} determine \mE\
+(\veri{v976\_seam\_lift\_birkhoff.py}, \veri{v977\_transfer\_unistochastic\_wilson.py}).}  The single-step
+root $B$ (with $B^6=T$) is \emph{unistochastic}: $B_{ij}=|U_{ij}|^2$ for an exact $U\in SU(3)$, unique up
+to rephasing and complex conjugation.  The same classical matrix therefore carries at least three
+inequivalent quantum readings --- the deployed Kraus dilation $K_{ij}=\sqrt{T_{ij}}|i\rangle\langle j|$,
+which is provably \emph{entanglement breaking} (measure-and-prepare: the microstate record lives entirely
+in the environment, quantum capacity $0$); the one-parameter Birkhoff family of random-permutation
+quantizations, whose hidden circulation coordinate $t\in[0,1/18]$ is invisible to every population
+measurement but is read off in one step by the triangle loop-current observable ($\Psi_t(A)=6t\,A$
+exactly); and the fully reversible lift $U$, whose classically invisible datum is the orientation bit
+$\operatorname{sgn}J=\pm$ of the exact Jarlskog invariant $J=\pm1/27$.  The recoverability-code reading
+above is untouched; what is added is the honest boundary: populations alone cannot decide whether the seam
+is a classical relaxation channel or the measurement shadow of a coherent system --- that selection is the
+open dilation contract (\texttt{DYN.UNITARY.DILATION.01}, the research-contracts document; its
+\emph{discrete} collision/QCA leg is meanwhile realized exactly --- $B^n$ as the reduced dynamics of a
+strictly local unitary collision band, \veri{v984\_markov\_qca\_dilation.py} --- while the continuous
+Hamiltonian/OS legs and the branch selection stay \mO).
+
+\begin{keybox}[If the seam is a horizon: four completion routes, and where they converge \mE/\mC/\mO\ (\veri{v343\_four\_routes\_analysis.py})]
+Taking the black-hole-birth reading seriously changes the \emph{nature} of the two structural residuals, and
+suggests four completion routes. \emph{Honest finding}: none closes everything or is provable alone --- they
+\textbf{converge} on the same two residuals as \vref{v335}.
+\begin{itemize}\setlength\itemsep{1pt}
+\item \textbf{(A) Finite causal diamond} \mE/\mO: inside a horizon the ambient measure is a \emph{thermal trace}
+$\operatorname{Tr}e^{-\beta H}$ over a finite static patch, manifestly finite for a gapped $H$ (de Sitter
+$S_{\mathrm{dS}}=32\pi^4 e^{2\ainv}$ finite, $128\cthree^4=1/(32\pi^4)$; $\chi=729/665$) --- so \texttt{QG.AMB}
+becomes \emph{well-posed and finite} \mE; the wrong-sign conformal mode ($c_{\mathrm{conf}}(4)=-3/2$) is handled by
+the GHP contour (\vref{v334}) and \texttt{QG.AMB} is now a \mC\ redundancy (\vref{v369}), not a missing item.
+Reframes \texttt{QG.AMB}; does not touch the seam.
+\item \textbf{(B) Carlip--Cardy near-horizon CFT} \mC: a horizon's near-horizon Virasoro $+$ Cardy reproduces the
+entropy consistent with $c=\gcar{+}\Nfam=8$ --- a second route to existence$+c$ (cf.\ \vref{v336}) --- but the
+central charge has the Carlip normalisation ambiguity and gives no holomorphy $\det K{=}1$: inherits
+\texttt{SEAM.EQUIV.01}.
+\item \textbf{(C) Modular/thermal flow} \mE$\to$reduction: time is the modular flow of the horizon KMS state
+(\vref{v239}); well-defined abstractly, but its \emph{geometric} content is \texttt{QGEO.SYM.01}, a corollary of
+\texttt{SEAM.EQUIV.01} (\vref{v335}).
+\item \textbf{(D) Self-reproduction fixed point} \mE/\mO: the gapped transport has a unique attractor (\vref{v56},
+parameter-freeness \mE), but ``the dynamics \emph{is} the cyclic fixed point'' is the \mC\ interpretation, acting
+on the same seam structure.
+\end{itemize}
+\textbf{Verdict:} these four horizon routes independently close $0$; they reduce the whole picture to the same
+\texttt{SEAM.EQUIV.01} $+$ decoupled-QG residuals as \vref{v335}. The horizon premise makes both \emph{more
+natural} (A: a finite thermal trace; B: a near-horizon CFT) but eliminates neither --- so the effort focuses,
+unambiguously, on the one keystone, whose MMST route \texttt{SEAM.EQUIV.MMST.01} is meanwhile \emph{closed modulo
+cited theorems} by the separate
+lattice/$S_3$ route (\vref{v367}/\vref{v368}, \vref{v376}--\vref{v379}, Lean \texttt{FORM.SEAM.MMST.01}; cited
+continuum existence \mO).
+\end{keybox}
+
+\begin{keybox}[The one keystone bit $\det K{=}1$: six faces, the genus-1 obstruction, three routes \mE/\mC/\mO\ (\veri{v344\_detk\_synthesis.py})]
+Zoom into that one keystone. Its only open bit is the \emph{holomorphy} $\det K{=}1$, and the full spectrum
+collapses it to a single, sharply-located target.
+\begin{itemize}\setlength\itemsep{1pt}
+\item \textbf{One statement, six faces} \mE: $\det K{=}1\Leftrightarrow$ holomorphy (1 primary) $\Leftrightarrow$
+a homology-sphere link ($H_1{=}0$) $\Leftrightarrow$ one $1$-dim irrep ($\Gamma$ perfect) $\Leftrightarrow$
+$\det\mathrm{Cartan}{=}1$ $\Leftrightarrow$ the full $\mu_4$ condensation $16{\to}4{\to}1$ $\Leftrightarrow$ the
+$\tau{=}i$ CM rigidity. Unified by $|\det\mathrm{Cartan}|=|H_1(\text{link})|=\#(\text{1-dim irreps})$ across ADE
+($A_n{\to}n{+}1$, $D_n{\to}4$, $E_6{\to}3$, $E_7{\to}2$, $E_8{\to}1$) --- \emph{only} $E_8$ gives $1$ ($2I$ the
+unique perfect ADE group).
+\item \textbf{Why it is hard: the genus-1 obstruction} \mE: every easy argument (unique plane vacuum, the gap, the
+free-fermion CAR invertibility) is \emph{genus-0} --- necessary but not sufficient (a plane vacuum is always $1$,
+\vref{v87}). $\det K$ is the \emph{torus} ground-state degeneracy ($=\#$primaries), so any closing route must reach
+genus-1 / modular / topological data.
+\item \textbf{Three genus-1 routes, one fresh} \mC: R1 continuum-modular ($\chi_{E_8}{=}j^{1/3}$, \vref{v336});
+R2 anyon-condensation (torus degeneracy $=\#$anyons $=|\det K|$, \vref{v281}); and \textbf{R3 hypergraph-homotopy},
+the fresh angle --- the torus degeneracy is the discrete $H_1$ of the substrate, and since the $(2,3,5)$ rewrite
+\emph{attractor} is the affine-$E_8$ graph (\vref{v312}) whose du~Val link is the Poincar\'e sphere ($H_1{=}0$,
+\vref{v232}), $\det K{=}1$ becomes a finite \emph{combinatorial} statement, no continuum limit.
+\end{itemize}
+\textbf{Honest residual} \mO: none of the three closes $\det K{=}1$; R3's remaining gap was the
+combinatorial-to-geometric bridge (``the rewrite attractor \emph{is} the raw seam's du~Val realisation'').
+That bridge is meanwhile \emph{discharged to a cited theorem} --- Kronheimer's ALE hyper-K\"ahler quotient
+construction and Torelli classification (\veri{v479\_kronheimer\_quiver\_bridge.py}, below) --- so the residual
+\emph{transforms} into the single premise ``the raw seam supplies the ALE/orbifold datum'', exactly the
+\texttt{SEAM.EQUIV.01} content \mO. The synthesis sharpens the target and ranks the routes --- it does not prove it.
+\end{keybox}
+
+\noindent\textbf{Executing R3 (the Poincar\'e-sphere link).}
+(\veri{v345\_hypergraph\_homotopy.py})
+The combinatorial half of the hypergraph route is now carried out explicitly. By standard plumbing topology
+(Brieskorn/Hirzebruch) the link of a tree plumbing with the ADE Cartan intersection form has
+$H_1=\operatorname{coker}(\mathrm{Cartan})$. \mE\ the Smith normal form of the $E_8$ Cartan matrix is the identity,
+so $\operatorname{coker}(E_8)=0$: the $E_8$-graph plumbing boundary is an \emph{integral homology sphere} --- the
+genus-1 meaning of $\det E_8{=}1$. \mE\ among ADE only $E_8$ does this (the cokernels are
+$\Z/(n{+}1)$, $\Z/4$, $\Z/3$, $\Z/2$ for $A_n,D_n,E_6,E_7$). \mE\ its fundamental group $\pi_1=2I=SL(2,5)$ is
+\emph{perfect} (the commutator subgroup equals the whole order-$120$ group, computed directly), so $H_1=0$ and the
+link is \emph{the} Poincar\'e homology sphere, with $|2I|=120=|\mu_4|\,h(E_8)$. So R3's combinatorial core is
+complete \mE: the $E_8$ attractor link is forced to be the Poincar\'e sphere ($\det K{=}1$), uniquely among ADE.
+\mO\ what this route leaves open is only the geometric realisation bridge --- that the raw rewrite seam attractor
+\emph{is} this $E_8$ du~Val plumbing --- the \texttt{SEAM.EQUIV.01} content; this geometric route does not close it
+on its own, but the keystone's MMST route (\texttt{SEAM.EQUIV.MMST.01}) is meanwhile \emph{closed modulo cited
+theorems} by the separate lattice/$S_3$ route
+(\vref{v367}/\vref{v368}, \vref{v376}--\vref{v379}; the parent stays \mO).
+
+\par\smallskip\noindent\textbf{Kronheimer closes graph$\to$geometry.}
+(\veri{v479\_kronheimer\_quiver\_bridge.py})
+R3's geometric half is not an open construction either: by Kronheimer's ALE theorems
+(J.~Diff.~Geom.~29 (1989) 665 and 685) the McKay graph \emph{with} its Kac marks already \emph{is} the du~Val
+geometry --- the hyper-K\"ahler quotient of the marks quiver at moment-map level zero is $\mathbb{C}^2/\Gamma$, and
+every ALE space with the $E_8$ intersection form is on that list (Torelli). Every finite input datum is a
+compiler output, machine-checked \mE: the Kac marks $\{1,2,2,3,3,4,4,5,6\}$ are simultaneously the null vector
+of the affine-$E_8$ Cartan matrix and the Perron vector $A\delta{=}2\delta$ of the rewrite attractor
+(\vref{v312}); the quotient dimension count lands exactly on $\dim_{\mathbb R}=4$ (the $\mathbb{C}^2/\Gamma$ geometry), with
+$\sum_{\text{edges}}d_id_j{=}\sum d_i^2{=}120$ forced by the null identity; the gauge datum is
+$\sum\delta_i^2{=}120{=}|2I|{=}|\mu_4|\,h(E_8)$ with $h(E_8){=}30{=}|\Z_2|\Nfam\gcar$; and the resolution carries
+$8{=}\operatorname{rank}E_8$ spheres with the unimodular $-E_8$ form ($\det{=}1$ --- the Poincar\'e link, the
+$\det K{=}1$ face) and $3\cdot8{=}24$ deformation parameters. \mC\ the theorems are cited, not re-proved (the
+same import class as the MMST/NPW26/AGT legs); \mO\ the residual premise \emph{transforms}, it does not vanish:
+``the raw seam supplies ALE hyper-K\"ahler data asymptotic to the $(2,3,5)$ cone'' --- the same single arrow as
+L2 below. No gate closes.
+
+\par\smallskip\noindent\textbf{The bridge is one arrow.} (\veri{v346\_seam\_geometric\_bridge.py})
+Assembling everything, the path from the raw seam to $\det K{=}1$ is a chain of \emph{six} links, of which exactly
+\emph{one} is open. \mE/\mC\ L1: the raw seam gives the $\mu_4$ clock and four marks (Gauss--Bonnet, \vref{v216}).
+\mO\ L2: the $\mu_4$ clock and the carrier $(2,3,5)$ atoms realise the binary icosahedral $2I$ action
+$\mathbb{C}^2/\Gamma$ --- \emph{the one arrow open in this geometric route}. \mE\ L3--L6: $2I\to$ affine $E_8$ (McKay, \vref{v219}) $\to$ the $E_8$ du~Val
+singularity (\vref{v232}) $\to$ the Poincar\'e link $H_1{=}0$ (\vref{v345}) $\to\det K{=}1$ --- all theorems. And the
+\emph{group is forced by the seam's own atoms}: the exceptional $SU(2)$ subgroups carry axis signatures
+$(2,3,3),(2,3,4),(2,3,5)$ for $2T,2O,2I$, and $(2,3,5)$ --- which is exactly
+$(|\Z_2|,\Nfam,\gcar)$ --- is unique to $2I$. So \emph{if} the seam realises any finite-$SU(2)$ orbifold, that group
+is $2I$ and \emph{everything downstream is forced}; the entire keystone is the single statement ``the raw
+quasi-free seam normal bundle is an ADE orbifold point $\mathbb{C}^2/\Gamma$.'' \mO\ That one geometric realisation is
+\texttt{SEAM.EQUIV.01} itself --- not closed by \emph{this} route, but the bridge is now demonstrably \emph{one arrow},
+with the group pinned, all six downstream consequences proven, and (via Kronheimer,
+\vref{v479}) even the graph$\to$geometry half of L2 a cited theorem, so the arrow reads precisely ``the raw seam
+supplies the ALE/orbifold datum''; and the keystone is independently \emph{closed
+modulo a cited theorem} by the lattice/$S_3$ route (\vref{v367}/\vref{v368}, \vref{v376}--\vref{v379}, Lean
+\texttt{FORM.SEAM.MMST.01}).
+
+\par\smallskip\noindent\textbf{The closure modes of the one arrow.} (\veri{v347\_seam\_closure\_modes.py})
+Can it be \emph{fully} solved? The locus is sharp: the seam gives the \emph{flat} pillowcase base $S^2(2,2,2,2)$
+($\chi_{\mathrm{orb}}=0$),
+while the $2I/E_8$ structure is the Seifert fibration over the \emph{spherical} icosahedral base $S^2(2,3,5)$
+($\chi_{\mathrm{orb}}=\tfrac1{30}$); the open arrow must bridge two geometric types, which is exactly why it needs
+the carrier $(2,3,5)$ atoms. As a ``physics-realises-geometry'' statement it has exactly four closure modes:
+\textbf{(A)} construct the scaling limit (the analytic wall); \textbf{(B)} a \emph{rigidity} theorem --- the seam
+data (RP, quasi-free, gap, $\mu_4$, four marks) admit a \emph{unique} realisation, forcing $\mathbb{C}^2/2I$ with no
+extra input (the only theorem-route, pursued in \vref{v284}/\vref{v300}/\vref{v331}); \textbf{(C)} accept it as a
+third postulate $P_3$ (the seam-identification --- then TFPT is complete relative to three axioms, the role
+$c{=}$const plays in relativity); \textbf{(D)} empirical --- test its consequences. Crucially, the ``no new state''
+discipline (\vref{v246}) \emph{blocks} deriving it from extra physics, so \emph{no} route makes it a free theorem:
+full closure is either a rigidity theorem (B) or axiom status (C), validated either way by (D). The actionable
+conclusion: the rigidity route is the single theorem-path --- precisely ``the seam data uniquely force the flat
+pillowcase to lift to the $\mathbb{C}^2/2I$ orbifold.''
+
+\par\smallskip\noindent\textbf{Route B: the keystone is one word --- golden.} (\veri{v348\_seam\_rigidity\_route.py})
+Executing the rigidity route lands on a strikingly simple statement. The crystallographic part is rigidly closed:
+the order-4 clock has the unique conformal normal form $z\mapsto iz$ (Nielsen realisation, \vref{v180}) and the
+four-marked sphere a unique flat metric (Troyanov, \vref{v284}). The downstream is a \emph{lattice identity}, not
+just a graph: by Conway--Sloane the ring of icosians (the $120$ unit icosians $=2I$, golden-ratio quaternion norm)
+\emph{is} the rank-$8$ $E_8$ lattice. And the one bridge is the golden ratio: the crystallographic restriction
+allows only orders $\{1,2,3,4,6\}$ --- the $5$-fold is \emph{non-crystallographic} --- so $\varphi=2\cos(\pi/5)$ is
+exactly what extends the crystallographic $\mu_4$ to the icosahedral $2I$ (the quasicrystal). Assembling: \emph{if}
+the raw seam carries $\varphi$, then $\mu_4+\varphi\Rightarrow 2I\Rightarrow E_8$ (icosian ring) and rigidity fixes
+the rest --- so the \emph{entire} keystone reduces to one question: \emph{does the raw seam carry the golden ratio?}
+\mO\ The honest subtlety: TFPT's $\varphi$ currently lives on the $E_8$-side (the attractor's subleading eigenvalue
+\vref{v312}, the icosahedral atom \vref{v313}), while the raw-seam data examined so far (cusp weights, recovery,
+the seed) are not manifestly golden; showing the \emph{raw} seam carries $\varphi$ non-circularly is the residual
+--- it \emph{is} L2 in its sharpest, simplest form.
+
+\par\smallskip\noindent\textbf{The honest test --- is the $\varphi$ hidden in the raw seam?} (\veri{v349\_raw\_seam\_golden\_test.py})
+Carried out, the answer is \emph{no}, and it is clarifying. The golden ratio $2\cos(\pi/5)$ is the signature of a
+\emph{5-fold rotation} --- it appears in a Coxeter element only when $5\mid h$. The carrier's canonical pieces have
+no 5-fold: $D_5$ has $h{=}8$ (eigenvalue $2\cos(2\pi/8)=\sqrt2$) and $A_3$ has $h{=}4$; the dynamical data (cusp
+weights, recovery $(2/3)^6$, the seed) are rational/transcendental. So the \emph{raw} seam gives $\sqrt2$, not
+$\varphi$. The golden ratio requires $5\mid h$, which holds only for $A_4{=}SU(5)$ ($h{=}5$), the icosahedral $H_3$
+($h{=}10$) and $E_8$ ($h{=}30$) --- the \emph{output} side. So $\varphi$ is the icosahedral \emph{input}, not a
+hidden feature of the raw seam; and $\varphi$ alone would not even suffice ($2I\neq C_5\times\mu_4$). The whole
+keystone therefore reduces to one almost childlike question: \emph{is $\gcar{=}5$ a pentagon} (a genuine $5$-fold
+rotation, hence golden, hence --- with $\mu_4$ --- the icosahedral $2I=E_8$) \emph{or just a count} (the rank of
+$D_5$, $h{=}8$, giving $\sqrt2$)? The ``absurdly simple solution'' is real, but it is a \emph{reading} of axiom~P2:
+the golden ratio is the pentagon content of $\gcar{=}5$, not derivable from $\gcar{=}5$-as-a-count. There is no
+hidden $\varphi$ to find --- golden and icosahedral are the \emph{same} input, and L2 is genuinely foundational.
+
+\par\smallskip\noindent\textbf{A correction: the inputs are bootstrap-forced, and the golden is emergent.}
+(\veri{v350\_bootstrap\_inputs\_correction.py})
+The previous paragraph's ``pentagon vs.\ count'' dichotomy was, on reflection, mis-framed --- because the inputs
+are \emph{not} free axioms one is at liberty to read either way: they are over-determined \emph{fixed points} of the
+self-consistency (\vref{v6}).  In particular $\gcar{=}5$ is forced as the \emph{largest prime of} $h(E_8)=30=2{\cdot}3{\cdot}5$
+(the Coxeter-match), so the atoms $(|\Z_2|,\Nfam,\gcar)=(2,3,5)$ \emph{are} the prime factorisation of the
+icosahedral Coxeter number --- $\gcar{=}5$ is intrinsically the icosahedral $5$-fold, not the bare $D_5$ rank
+($h{=}8$, $\sqrt2$) that the golden-test mistakenly examined. And the golden ratio is \emph{emergent from the glue}:
+$D_5$ and $A_3$ are individually non-golden, but the $\mu_4$ simple-current extension $D_5\!\oplus\!A_3\to E_8$
+(\vref{v154}) gives $h(E_8)=30$ ($5\mid30$, golden) --- the seam's \emph{own} $\mu_4$ clock, gluing the carrier,
+produces the $5$-fold.  So the golden/icosahedral is \emph{not} an external input: it is what the bootstrap fixed
+point \emph{is}.  The genuine residual therefore relocates: not ``does the seam carry $\varphi$'' (it does, by the
+bootstrap) but only the \emph{physical continuum realisation} (the raw RP collar $=$ the algebraic $(E_8)_1$ net,
+\vref{v336}).  \emph{Honest caveat}: this is self-consistency \emph{within} the discrete $E_8$-closure framework, so
+``no free numerical dials given the framework'', not ``from nothing'' --- the framework is the meta-input.
+
+\par\smallskip\noindent\textbf{Two consequences: the which-net ambiguity falls, and the inputs are not axioms.}
+(\veri{v351\_continuum\_realisation\_sharpened.py}, \veri{v352\_framework\_irreducible.py})
+\emph{First}, the long-standing ``$c{=}8$ ambiguity'' (is the seam net $E_8$ or $SO(16)$, both $c{=}8$?) is now
+resolved, non-circularly, by the \emph{order} of the clock: the seam clock is $\mu_4$ (order $4$, the four
+Gauss--Bonnet marks), and the order-$4$ (index-$4$) simple-current extension of $D_5\!\oplus\!A_3$ is $E_8$, while
+the order-$2$ would be $SO(16)$ --- so the order-$4$ clock selects $E_8$ (the bootstrap agreeing, $h(E_8){=}30$ has
+max prime $5{=}\gcar$ whereas $h(D_8){=}14$ does not). The holomorphy $\det K{=}1$ is then a \emph{consequence}, and
+the residual of the keystone is purely the \emph{existence} of the chiral edge (\vref{v336}), not which net.
+\emph{Second}, both axioms are forced: $\gcar{=}5$ three ways (\vref{v6}) and the $8$ in $\cthree$ four ways
+($\operatorname{rank}E_8=h(D_5)=\phi(30)=\det R$, \vref{v54}), so the \emph{only} irreducibles are the framework
+(a discrete reflection-positive boundary with a finite carrier) and the transcendental $\pi$. ``The inputs are not
+axioms'' is exact: they are over-determined fixed points; the framework is the one tested meta-axiom.
+
+% =====================================================================
+\section{One $\ainv$ for electromagnetism, the cosmic horizon and $\Lambda$}\label{sec:alpha}
+% =====================================================================
+The EM fixed point $\ainv=137.036$ (the unique root of the boundary $U(1)$ Ward identity $F_{U(1)}=0$,
+\veri{v3\_em\_alpha.py}) reappears, unchanged, in the cosmic-horizon sector.
+
+\begin{keybox}[The same fixed point sets EM, $S_{dS}$ and $\Lambda$ \mE-form / \mC-link\ (\veri{v55\_coxeter\_cycle.py})]
+The de Sitter (Gibbons--Hawking) entropy and the cosmological constant are inverse, both set by
+$e^{\pm2\ainv}$:
+\[
+  S_{dS}=\frac{e^{2\ainv}}{128\,\cthree^4}\approx3.32\times10^{122},\qquad
+  \frac{\rho_\Lambda}{\bar M_{\mathrm{Pl}}^4}\sim e^{-2\ainv},\qquad
+  \boxed{\ S_{dS}\,\rho_\Lambda=\frac{1}{128\,\cthree^4}=32\pi^4\ }.
+\]
+So the smallness of $\Lambda$ ($\sim10^{-122}$ in Planck units) is $e^{-2\ainv}$ --- not a fine-tuning but
+the \emph{same} EM fixed point. \textbf{Sharper (\veri{v60\_lambda\_metrology\_branch.py}):} with
+$\delta_{\mathrm{top}}=48\cthree^4=\tfrac{3}{256\pi^4}$ the physical branch prefactor is
+$(8\pi)^2\delta_{\mathrm{top}}=\tfrac{3}{4\pi^2}$, so
+\begin{gather*}
+  \boxed{\ \frac{\rho_\Lambda}{\bar M_{\mathrm{Pl}}^4}=\frac{3}{4\pi^2}\,e^{-2\ainv}\ \Rightarrow\ 120.147\ \text{orders}\ },\\[2pt]
+  \boxed{\ \frac{\rho_\Lambda}{M_{\mathrm{Pl}}^4}=\frac{3}{256\pi^4}\,e^{-2\ainv}\ \Rightarrow\
+  122.948=\underbrace{119.028}_{2\ainv/\ln10}+\underbrace{3.920}_{\log_{10}(256\pi^4/3)}\ }.
+\end{gather*}
+\emph{Typing note (do not mix the two normalisations):} the two displays are the \emph{same} statement,
+related by $\bar M_{\mathrm{Pl}}^2=M_{\mathrm{Pl}}^2/(8\pi)$ ($(8\pi)^2=64\pi^2$ converts
+$\tfrac3{4\pi^2}\to\tfrac3{256\pi^4}$); the headline ``$\approx123$ orders'' belongs to the
+\emph{unreduced} $M_{\mathrm{Pl}}^4$ normalisation, the reduced one gives $120.147$.
+The famous ``$123$ orders'' are a \emph{double overlap} of one boundary compiler, not a fine-tuning; and the
+alternative branch $2\cthree e^{-2\ainv}$ is mis-scaled by $2\cthree/\delta_{\mathrm{top}}=\tfrac{64\pi^3}{3}=661.47$.
+\textbf{Selecting the physical branch therefore pins $\bar M_{\mathrm{Pl}}$ relative to $\Lambda$: $G_N$ is no
+longer an \emph{independent} free constant but a horizon-metrology \emph{readout} --- read out \emph{after}
+choosing the physical $\Lambda$ branch and fixing the \emph{one} dimensionful induced-gravity anchor
+(\S\ref{sec:crosslinks}, \veri{v68\_seeley\_dewitt\_residual.py}).} Moreover the de Sitter entropy prefactor is
+built from \emph{carrier and glue atoms}:
+\[
+  \boxed{\ S_{dS}=2^{\gcar}\,\pi^{|\mu_4|}\,e^{2\ainv}\ },\qquad
+  2^{\gcar}=32=\dim S^+\!\oplus S^-\ (\text{the }D_5{=}\mathfrak{so}_{10}\text{ Dirac spinor}),
+\]
+with $\pi^{|\mu_4|}=\pi^4$ and $128=2^7$ ($7=$ the scalaron exponent $\gcar{+}\Nfam{-}1$): the cosmic
+horizon entropy is the carrier Clifford dimension times $\pi^{\text{glue}}$ times the EM fixed point.
+\end{keybox}
+
+% =====================================================================

@@ -1,0 +1,366 @@
+\section{Yukawa kernels and positivity lemmas}
+\label{app:yukawa}
+
+This appendix is the proof motor for the transport positivity, determinant-phase suppression, and
+bounded-residual statements used in the main text. The transport program is based on the regularized kernel
+\[
+\mathcal Y_f^{(\varepsilon)}=(D_f^\dagger D_f+\varepsilon^2)^{-1}.
+\]
+Three remarks are important.
+\begin{enumerate}[leftmargin=1.5em, topsep=3pt, itemsep=3pt]
+    \item The regulator $\varepsilon$ is not optional: without it the kernel becomes ill-defined exactly where the admissibility question is most delicate.
+    \item Positivity of the kernel belongs to the admissibility-closure layer rather than to the hard carrier kernel. The main text closes it through the finite hexagon gap and the lift to the full admissibility-projected operator; this appendix records the transport-side mechanism behind that closure.
+    \item Residual prefactors $\Lambda_{f,j}$ are bounded holonomy data inside the transport theorem. They must remain visible and must not be rhetorically hidden as if the mass map were diagonal without residual transport structure.
+\end{enumerate}
+
+\begin{remark}[Positive-kernel determinant route to strong CP]
+If the physical mass map is written in the polar form
+\[
+M_f=U_{f,L}H_fU_{f,R}^\dagger,
+\qquad
+H_f>0,
+\qquad
+U_{f,L},U_{f,R}\in SU(3)_F,
+\]
+with $H_f$ induced by the positive transport kernel $\mathcal Y_f^{(\varepsilon)}$, then the induced determinant phase vanishes:
+\[
+\arg\det M_f=0.
+\]
+At the same time weak CP may survive through
+\[
+V_{\mathrm{CKM}}=U_{u,L}^\dagger U_{d,L}.
+\]
+Combined with the sheet-CP symmetry protection of $\theta_{\mathrm{sheet}}$ in the relative action,
+this is the algebraic core of the determinant-phase theorem stated in the main text and of the
+strong-CP closure theorem recorded there. The role of the appendix remark is to display the
+polar-decomposition mechanics behind that route, not to reopen its status.
+\end{remark}
+
+\subsection{Optional strong-coupling sharpening}
+
+As an appendix-level dynamical sharpening of the hadronic admissibility theorem, one may further require the
+admissible center-neutral Wilson functional to obey strong-coupling dominance. On that optional
+route the relative Wilson loop satisfies
+\[
+\langle W(C)\rangle_{\mathrm{rel}}
+\le
+\exp[-\sigmaQCD A_{\min}(C)],
+\qquad
+\sigmaQCD=\cthree^2\chi_{\QCD}^2,
+\]
+and the physical Hilbert space contains no color-nonsinglet asymptotic states. This statement is
+kept in the appendix so that the main theorem surface does not depend on an extra strong-coupling
+sharpening beyond the closed admissible hadronic sector.
+
+\section{Information-theoretic and cut-and-project readings}
+\label{app:info-readings}
+
+This appendix collects interpretive notes that help organize the algebraic structure of the
+boundary-polarized closed form. When a theorem-level statement appears below, it refers back to a
+main-text proposition; the appendix itself does not upgrade any status label beyond the declared
+theorem / derived-consequence / comparison / appendix discipline.
+
+\subsection{\texorpdfstring{$41$}{41}-chain overdetermination of the canonical branch}
+
+The canonical $41$-chain admits a compact overdetermination reading:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.26\linewidth}>{\raggedleft\arraybackslash}p{0.12\linewidth}Y@{}}
+\toprule
+Layer & Value & Role \\
+\midrule
+Electroweak trace block $48\,I_1^{\mathrm{EW}}$ & $41$ & retained electroweak trace packet \\
+Block exponent $32\,k_{\mathrm{EW}}$ & $41$ & E$_8$-side compression datum \\
+UV hypercharge coefficient $10\,b_1$ & $41$ & one-loop electroweak closure datum \\
+Occupancy-weighted carrier norm $\Oadm\gamma+1$ & $41$ & carrier / family compression identity \\
+\bottomrule
+\end{tabularx}
+\caption{$41$-chain overdetermination of the canonical branch. The common integer is read as a
+structural consistency marker, not as a cryptographic statement.}
+\label{tab:checksum-41}
+\end{table}
+
+The value of this table is structural rather than rhetorical: four independently defined layers
+collapse onto one integer on the retained branch. This is exactly the sense in which the branch
+carries the closed $41$-chain marker $\mathcal I_{41}$.
+
+\subsection{Seed variance and surprisal readings}
+
+The bridge identities also admit a disciplined probabilistic reading. Since
+\[
+\lambda_C^2=\phiz(1-\phiz),
+\]
+the Cabibbo scale is exactly the standard-deviation scale of a Bernoulli variable with success probability $p=\phiz$:
+\[
+\lambda_C=\sqrt{p(1-p)}.
+\]
+Equivalently, the Fisher information of the Bernoulli family is
+\[
+I(p)=\frac{1}{p(1-p)}=\frac{1}{\lambda_C^2},
+\]
+so the Cabibbo bridge measures the inverse square-root Fisher scale of the retained seed. This is the precise information-theoretic statement. The present paper does \emph{not} identify $\lambda_C$ itself with Fisher information or with a Bures distance.
+
+Likewise, whenever the electromagnetic closure is written with
+\[
+\ln\!\bigl((\phiz)^{-1}\bigr),
+\]
+the exact probabilistic reading is the surprisal of the seed event. That term should not be called the Shannon entropy of the full Bernoulli distribution, which would instead be
+\[
+H(\phiz)
+=
+-\phiz\ln\phiz-(1-\phiz)\ln(1-\phiz).
+\]
+Finally, the neutrino bridge relation
+\[
+\sin^2\theta_{13}=\phiz e^{-\gamma}
+\]
+is naturally described as Boltzmann-like weighting by the carrier norm $\gamma$, but the present draft does not define a full thermodynamic partition function at that point. These readings are therefore organizational interpretations of already established formulas, not new closure theorems.
+
+\subsection{Exact parity-code and information-compression reading}
+
+The strongest information-theoretic statement is no longer a loose analogy. By \TFPTxref{prop:parity-code-family}, the one-family packet is exactly the even-parity subspace on five occupation bits,
+\[
+S^+
+\cong
+\mathrm{span}\Bigl\{|x\rangle:\sum_{i=1}^5 x_i\equiv 0 \pmod 2\Bigr\},
+\]
+so the carrier packet is kinematically the classical even-parity $[5,4,2]$ code. The split formula
+\[
+S^+
+=
+\bigl(\Lambda^{\mathrm{even}}E_3\otimes\Lambda^{\mathrm{even}}E_2\bigr)
+\oplus
+\bigl(\Lambda^{\mathrm{odd}}E_3\otimes\Lambda^{\mathrm{odd}}E_2\bigr)
+\]
+shows that the coarse parity bits of the $3$-sector and $2$-sector are exactly locked. For the maximally mixed state on the $16$ basis words, the two parity observables are perfectly correlated and therefore carry exactly one bit of mutual information.
+
+The split weight enumerator in \TFPTxref{prop:split-weight-enumerator} is the corresponding code enumerator with hypercharge weights. It packages the six admissible occupancy sectors into the single polynomial
+\[
+W(u,v)
+=
+1+3u^2+6uv+v^2+2u^3v+3u^2v^2.
+\]
+The hypercharge-compression result of \TFPTxref{prop:family-hypercharge-compression} sharpens the same picture further. On the uniform distribution over the $16$ carrier basis states, the six $Y$-sectors have probabilities
+\[
+\frac1{16}(1,3,6,1,2,3),
+\]
+so the hypercharge entropy is
+\[
+H(Y)
+=
+-\sum_i p_i\log_2 p_i
+=
+\frac72-\frac34\log_2 3
+\approx
+\num{2.311}\ \text{bits}.
+\]
+Since the total carrier word takes $4$ bits to specify, the unresolved nonabelian degeneracy is
+\[
+4-H(Y)\approx \num{1.689}\ \text{bits}.
+\]
+Thus hypercharge is an efficient family-sector compressor, but not a lossless label for the individual basis word.
+
+\begin{remark}[Two code layers: kinematic and admissible]
+The code reading should be split into two layers. First, $S^+$ is exactly the classical even-parity $[5,4,2]$ code on five occupation bits. Second, on the commuting admissible branch the protected physical sector is
+\[
+\mathcal H_{\mathrm{adm}}
+:=
+\operatorname{Ran}(\Padm)
+=
+\ker \Kadm
+=
+\ker \Delta_{\mathrm{adm}},
+\]
+where the last equality uses the Hodge description of \TFPTxref{lem:hodge-admissibility-projector}. In that second layer the penalties $K_\Sigma,K_c,K_\Theta,K_g$ act as stabilizer-like sector constraints, and $\Padm$ is the Hodge projector onto the admissible physical subspace. This is the precise bridge to quantum-information language used in the manuscript. It is not yet a theorem of a self-correcting quantum memory, because no noise model, logical algebra, or lifetime analysis is derived here.
+\end{remark}
+
+\subsection{Cut-and-project model-set realization}
+
+The appendix-level quasicrystal language is kept outside the hard core, but it can be stated
+exactly as a compatible model-set construction.
+
+\begin{theorem}[Regular cut-and-project model set for the \texorpdfstring{$3+2$}{3+2} carrier]
+\label{thm:cut-project-model-set}
+Let
+\[
+L=\mathbb Z^5.
+\]
+Choose a direct sum decomposition
+\[
+\mathbb R^5=V_{\mathrm{vis}}\oplus V_{\mathrm{int}},
+\qquad
+\dim V_{\mathrm{vis}}=3,
+\qquad
+\dim V_{\mathrm{int}}=2,
+\]
+such that the projection of $L$ to $V_{\mathrm{int}}$ is dense. Let
+\[
+\pi_{\mathrm{vis}}:\mathbb R^5\to V_{\mathrm{vis}},
+\qquad
+\pi_{\mathrm{int}}:\mathbb R^5\to V_{\mathrm{int}}
+\]
+be the canonical projections, and let $W\subset V_{\mathrm{int}}$ be a compact regular window with
+nonempty interior and boundary of measure zero. Define
+\[
+\Lambda_W
+:=
+\left\{
+\pi_{\mathrm{vis}}(n)\;:\;
+n\in L,\;
+\pi_{\mathrm{int}}(n)\in W,\;
+\sum_{i=1}^5 n_i\equiv 0\!\!\!\pmod 2
+\right\}.
+\]
+Then $\Lambda_W$ is a regular model set. The parity constraint realizes the even-packet selection of
+$S^+$, and the dimension split $3+2$ realizes the visible/internal carrier architecture.
+\end{theorem}
+
+\begin{proof}
+This is the standard cut-and-project theorem for regular model sets. Density of the internal
+projection and regularity of the window imply that $\Lambda_W$ is Delone and has pure point
+diffraction. The congruence condition
+\[
+\sum_{i=1}^5 n_i\equiv 0\!\!\!\pmod 2
+\]
+selects the even parity class, matching the even exterior-packet sector of the carrier.
+\end{proof}
+
+\begin{remark}[Status of the quasicrystal reading]
+The model-set theorem makes the quasicrystal appendix mathematically sharp, but the irrational split
+and window are not derived from the hard TFPT core. The construction is therefore exact yet
+deliberately kept appendix level.
+\end{remark}
+
+\section{Record algebra and pointer dynamics}
+\label{app:record}
+
+This appendix elaborates the main-text record constructions and the stable pointer-algebra package
+used in the downstream closure discussion. Horizon thermality and prediction / transient semantics
+are separated into the following appendix sections so that record theory, black-hole continuation,
+and phenomenological event channels do not blur into one mixed extrapolation block.
+
+\subsection{Minimal admissible vacuum}
+
+At finite volume or with a declared cutoff, an admissible vacuum candidate is written as
+\[
+\rho_B
+:=
+\argmin_{\rho\in\Vadm}\tr(\rho\Hrel),
+\]
+with lower boundedness and coercivity understood exactly as in the main-text closure axioms. The stronger generative theorem path described in the conclusion would refine this object to the global admissible vacuum functional $\mathfrak V[g,\chigeo,\Phi,\nabla_F,\delta,\{L_f\}]$ whose variations also select the transport branch. In this appendix, however, the same vacuum object is used only as the background state for the record-algebra elaborations; no stronger cosmological claim is added here beyond the closed existence statement already declared in the main theorem stack.
+
+\subsection{Record growth principle}
+
+One useful coarse-grained record algebra is
+\[
+\Arec(t):=\bigoplus_{\Delta_i>\Hhub(t)}\mathcal A_i,
+\qquad
+S_{\mathrm{rec}}(t)=\log\dim\Arec(t).
+\]
+As $\Hhub(t)$ decreases, more stable channels open. The intended arrow-of-time claim is therefore
+\[
+\frac{dS_{\mathrm{rec}}}{dt}>0,
+\]
+but only as a record-growth principle, not as a replacement for detailed nonequilibrium dynamics.
+
+\subsection{Observer algebra and Born-type evaluation}
+
+An observer is modeled as a stable pointer subalgebra
+\[
+\Aobs\subset\Arec.
+\]
+
+\begin{theorem}[Born evaluation on the stable pointer algebra]
+\label{thm:born-pointer-algebra}
+Let $\{P_i\}\subset \Aobs$ be a complete family of orthogonal projectors. Then for every state
+$\rho$ the unique additive, positive, and phase-invariant evaluation rule on this projector family is
+\[
+p_i=\tr(\rho P_i).
+\]
+\end{theorem}
+
+\begin{proof}
+In finite-dimensional sectors this is the standard Born rule characterization. The extra TFPT input
+is not a different probability law but the selection of the stable pointer algebra by the gapped
+admissible sector.
+\end{proof}
+
+With these projectors one may write the measurement channel
+\[
+\mathcal M_O(\rho)=\sum_i(P_i\rho P_i)\otimes |i\rangle\langle i|.
+\]
+The theorem is therefore a constrained appendix-level evaluation statement on admissible sectors,
+not a new claim about measurement in arbitrary settings.
+
+\section{Horizons, modular flow, and black hole thermality}
+\label{app:horizons}
+
+This appendix section records the horizon-side analytic input that supports the downstream modular
+thermality program. In the present version the split-inclusion theorem is the firm appendix-level
+statement, while the full modular KMS upgrade and compact-object thermality package remain visible
+downstream closure targets.
+
+\subsection{Split inclusion horizon approximation}
+
+\begin{theorem}[Horizon approximation by split inclusion]
+\label{thm:horizon-split-inclusion}
+Let $\mathfrak A_{\mathrm{adm}}$ be the local admissible net reconstructed in
+\TFPTxref{thm:admissible-local-minkowski-net}, and assume in addition the split property. Then for
+every nested triple
+\[
+\mathcal O_{\mathrm{out}}\Subset \mathcal O_{\mathrm{collar}}\Subset \mathcal O_{\mathrm{ext}}
+\]
+there exists a type-I factor $N$ such that
+\[
+\mathfrak A_{\mathrm{adm}}(\mathcal O_{\mathrm{out}})
+\subset
+N
+\subset
+\mathfrak A_{\mathrm{adm}}(\mathcal O_{\mathrm{ext}}).
+\]
+Hence on a suitable code subspace one obtains an approximate tensor factorization
+\[
+\mathcal H_{\mathrm{code}}
+\cong
+\mathcal H_{\mathrm{out}}\otimes\mathcal H_{\mathrm{hor}}\otimes\mathcal H_{\mathrm{in}}.
+\]
+\end{theorem}
+
+\begin{proof}
+This is the standard consequence of the split property for local quantum field theory nets. The
+result supplies an algebraic horizon approximation without asserting an exact fundamental
+factorization.
+\end{proof}
+
+If a horizon is modeled as an inner seam, the manuscript therefore uses only this split-based
+approximation language rather than an exact microscopic tensor decomposition.
+
+\section{Prediction semantics and transient event channels}
+\label{app:prediction-semantics}
+
+This appendix section collects the optional semantic decorations of the prediction map and the
+status note for transient event channels. These items organize downstream interpretation, but they
+do not add new upstream theorem arrows to the rigid core.
+
+\subsection{Prediction semantics}
+
+The main-text prediction map can be decorated by explicit experimental metadata as
+\[
+Q=(\rho_0,\mathcal O_Q,\Delta_Q,t,\mathcal C_Q,\mathcal R_Q),
+\qquad
+\Pred(Q)=\mathcal R_Q\!\left(\tr(\rho_tE_Q(\Delta)),\mathcal C_Q\right),
+\]
+with
+\[
+\rho_t=U(t)\rho_0U^\dagger(t).
+\]
+This is kept only as an optional formal extension.
+
+\subsection{Transient event status}
+
+The topological burst channel of \Cref{conj:topological_phase_slip_burst_channel} is kept at
+programmatic-target status. What is fixed in the present version is only the admissible phase-slip
+channel and its scaling form, not yet a complete defect dynamics or radiative-transfer derivation.
+

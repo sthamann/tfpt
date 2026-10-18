@@ -1,0 +1,300 @@
+\begin{document}
+\maketitle
+\vspace{-0.6cm}
+
+\begin{keybox}[What this document is about --- the status authority for the frontier]
+The honest frontier: which physics has a genuine TFPT handle and which does not. For each of
+$\eta_B$, $m_p/m_e$, the Koide relation, dark matter and full quantum gravity, this note states the
+genuine structural handle, the precision with which it currently lands, and --- crucially --- what is
+\emph{not} a clean compiler power and is deliberately \emph{not} forced onto the ladder. \textbf{This
+document is the status authority for the frontier items:} where any other document's wording and the
+markers here disagree, the typing here (and the \texttt{status\_ledger.csv}) wins.
+\end{keybox}
+
+\input{tex-artefacts/tfpt_docset}
+\noindent\textbf{You are reading \textbf{document~4} (Frontier).}
+
+\input{tex-artefacts/tfpt_status}
+\TFPTbadges
+\TFPTclaimstack[frontier]
+
+
+\tableofcontents
+\bigskip
+
+\par\smallskip\noindent\textbf{Ground rule.} These five are exactly the items previously flagged
+``\emph{not on a clean action/ladder yet --- do not force}.'' This note gives, for each, the
+\emph{genuine} structural handle that does exist, the precision with which it currently lands, and a
+clear statement of what is \emph{not} a single compiler power. No fabricated ladder rungs; the honest
+markers \mE/\mC/\mO\ are applied throughout. (All numbers machine-verified.)
+
+\begin{gapbox}[Hard rule on the frontier --- one interface $F_{\mathrm{transfer}}$]
+\textbf{Koide, $\eta_B$, the axion relic scale and $m_p/m_e$ are \emph{not} compiler powers unless their
+missing QFT-transfer / cosmology computation is explicitly supplied.} They are deliberately typed
+interfaces, not structural holes, and they are \emph{four instances of one missing functor}
+$F_{\mathrm{transfer}}$ --- the continuous transport from compiler \emph{source} data to measured
+observables (Koide source$\to$pole; $\eta_B$ source$\to$Boltzmann relic; axion scale$\to$cosmological
+abundance; $m_p/m_e\to$ QCD/EW matching). Each has a genuine handle (a near-value, a determined readout,
+a fixed candidate) but its \emph{exact} status is conditional on that named transfer calculation --- now a
+runnable \mC\ solver with a kill test (\vref{v371}--\vref{v375}), still a transfer target, never a compiler
+power. In particular $\eta_B$ is a \emph{transfer target}, not a primitive compiler prediction.
+They must never be quoted as primitive TFPT outputs.
+
+\smallskip
+\noindent\emph{Why this is principled, not a gap:} these are precisely the \textbf{discrete$\leftrightarrow$
+continuous boundary} of the theory --- the points where the discrete compiler hands its skeleton off to
+continuous physics (QCD confinement, cosmological Boltzmann transport, relic integrals). The cleanness of a
+quantity tracks how far it sits from that handoff: pure compiler ratios are exact, QCD/cosmology-dressed
+quantities are typed interfaces. \veri{v35\_quark\_qcd\_boundary.py}
+\par\smallskip\noindent\emph{Machine-enforced.} This rule is a CI-style guard
+(\veri{v187\_ftransfer\_laws.py}): the four frontier families
+($F_{\mathrm{pole}}$ Koide, $F_{\mathrm{Boltzmann}}$ $\eta_B$, $F_{\mathrm{relic}}$ axion,
+$F_{\mathrm{QCD}}$ $m_p/m_e$) are read from the ledger and required to carry a \mC/\mO\ marker --- exact
+algebraic sub-parts (the Koide $53/54$ factor, $b_3=-7$) may be \mE, but the \emph{physical} prediction
+never is. No future edit can quietly promote a frontier number to a closed compiler output. A companion
+\emph{prose} sentinel (\veri{v188\_frontier\_wording\_guard.py}) forbids stale sentences whose semantics an
+earlier round superseded, so a frozen release can never re-introduce wording that was true yesterday and is
+half-true today.
+\par\smallskip\noindent\emph{The functor contract \texttt{CONTRACT.F.01}.} Beyond the typing guard, the
+functor is pinned by four checkable structural axioms (\veri{v213\_ftransfer\_functor.py}): each instance is a
+\emph{discrete} compiler kernel \mE\ composed with an \emph{external} continuous solver \mC, and the functor
+is (1) $\mu_4$-deck equivariant (the Koide multiplier $\lambda_2=(2/3)^6=64/729$ \emph{is} the deck transfer
+eigenvalue), (2) Pl\"ucker-preserving ($53=a^T(R{+}Q)\mathbf1$, $\|\mathrm{Pl}(K)\|_1=11$), (3)
+positive/stochastic ($\operatorname{spec}T=\{1,(2/3)^6,(1/3)^6\}$, $\kappa_f\in(0,1)$), and (4)
+external-module-explicit ($b_3=-7$ a carrier output, the Boltzmann/relic/QCD content named and external). So
+$F_{\mathrm{transfer}}$ is a typed functor, not a bag of open topics --- the third research contract alongside
+$(U_{\mathrm{wall}})$ and $(G_{\mathrm{metric}})$, and a consolidation, not a closure.
+[2026-08-05: the jet route of the contract is closed at the physical-clock level --- the preregistered
+external-clock kill fired sympy-exactly (\veri{v777\_ftransfer\_clock\_jets.py}, verdict
+\textsc{no-common-connection}: transported Schwarzians $\{-\Delta^2/2,-\Delta^2/2,0\}$), and the surviving
+architecture is the \emph{fibered} functor --- one discrete PGL$_2$ base with the constant seam obstruction
+cocycle $\{0,\pm\Delta^2/2\}$; the four observables stay \mC/\mO.  2026-08-06: the coset assignment of the
+fibered functor's clock fibers is now a theorem from KMS/modular typing
+(\veri{v792\_ftransfer\_kms\_coset.py}, \textsc{kms-coset-theorem}: $S=-(\ln\lambda)^2/2$ from the time-1
+holonomy multiplier; blind protocol, exact unblinding); markers unchanged.]
+\par\smallskip\noindent\emph{How external is ``external''? A falsifiable clock probe (\veri{v397\_external\_clock\_probe.py}).}
+Under the strict No-Free-Pattern rule (an \emph{exact} match, not a wide-band fit), three of the four frontier
+scheme-numbers in fact land \emph{on} the $\{2,3,5\}$ clock: the $\eta_B$ decuple $A_\Lambda=10=|Z_2|\,g_{\mathrm{car}}$
+(\vref{v212}), the Koide rate $(2/3)^6=(|Z_2|/N_{\mathrm{fam}})^6$ (\vref{v303}) and the axion spine angle
+$\theta_i=\pi N_{\mathrm{fam}}/g_{\mathrm{car}}=3\pi/5$ (\vref{v211}). Only the proton $C_p\sim2.83\pm0.15$ is \emph{not} a discriminating
+clock value (several simple numbers fit its $\pm5.3\%$ band), so it stays genuinely external --- the irreducible
+``external physics'' residue shrinks to essentially the proton's non-perturbative QCD number.
+\par\smallskip\noindent\emph{The Paper-E closure certificate (\veri{v402\_ftransfer\_suite.py}, \texttt{FTRANSFER.SUITE.01}).}
+The four sectors are certified as ONE functor $F_{\mathrm{transfer}}=F_{\mathrm{observable}}\circ F_{\mathrm{threshold}}\circ F_{\mathrm{RG}}$:
+each observable factors source\,$\to$\,threshold\,$\to$\,RG\,$\to$\,observable from an exact atom source ($Q_{\mathrm{src}}$,
+$A_\Lambda=2g_{\mathrm{car}}=10$, $f_a=M_{\mathrm{scal}}/128$, $b_3=-7$) and carries a committed kill test, with the firewall
+intact (the physical prediction stays \mC/\mO, only the algebraic source \mE) --- a consolidation of the
+\texttt{FR.POLE/BOLTZMANN/RELIC/QCD.SOLVE} solvers, not a closure.
+\end{gapbox}
+
+% =====================================================================
+\section{Baryon asymmetry $\eta_B$ --- a downstream readout from the closed $\Omega_b h^2$}
+% =====================================================================
+There are two independent handles, and they agree.
+
+\paragraph{Route A --- from the closed baryon fraction.} The seed already fixes the baryon
+\emph{fraction} (the $E_8$ decoder):
+\[
+  \Omega_b=(4\pi-1)\beta_{\mathrm{rad}}=\Bigl(1-\tfrac1{4\pi}\Bigr)\phiz=0.04894 ,\qquad
+  \beta_{\mathrm{rad}}=\frac{\phiz}{4\pi},
+\]
+matching the observed $\Omega_b\approx0.049$. The baryon-to-photon ratio is then the \emph{standard}
+cosmological readout $\eta_B=273.9\times10^{-10}\,\Omega_b h^2$. With the TFPT Hubble value
+($h\approx0.674$, from $H_0\sim\sqrt\Lambda$),
+\[
+  \boxed{\ \Omega_b h^2=0.0222,\qquad \eta_B=6.09\times10^{-10}\ }\qquad(\text{observed }6.1\times10^{-10}).
+\]
+So $\eta_B$ is a \emph{downstream cosmological readout} from the closed $\Omega_b h^2$ handle --- not an
+independent compiler rung, and the fundamental leptogenesis route remains an interface.
+
+\paragraph{Route B --- leptogenesis interface (\mC).} The TFPT branch fixes the neutrino
+spectrum, the CP phase structure ($\delta_{\mathrm{CKM}}$, $\delta^\nu_{\mathrm{CP}}$, both closed) and a
+\emph{plausible washout anchor} $\tilde m_1=m_3/A_\Lambda\approx5$ meV. The heavy-mass input, however,
+remains scenario-level: $M_1=M_R\varphi_0^4$ is viable but does \emph{not} close $M_R$ --- $M_R$ is the
+seesaw scale $\sim v^2/m_3$, not a compiler power, so the relation \emph{relocates} the free scale rather
+than pinning it (\veri{v184\_etaB\_anchored\_boltzmann.py}; a structured \emph{candidate} point
+$M_R=3c_3^{7/2}\bar M_{\mathrm{Pl}}$, $-1.8\%$ from the carrier-normalised requirement, is meanwhile registered as
+\texttt{FLAV.NUSCALE.05} \mC\ with the mechanism \mO, \veri{v986\_nu\_scalaron\_rung.py} --- a candidate,
+not a closure; a second candidate \texttt{FLAV.NUSCALE.06} \mC, the pentagon-class
+misalignment, is registered beside it
+(\veri{v1001\_\allowbreak nu\_\allowbreak pentagon\_\allowbreak chain.py}; no closure,
+\texttt{FLAV.NUSCALE.05} unmoved)). The numerical $\eta_B$ then follows from the
+\emph{standard} flavored-leptogenesis Boltzmann solve --- an independent consistency route, sharpened from
+two free inputs to one, not to zero. \textbf{Honest caveat:} that Boltzmann network (the
+washout/efficiency $\kappa_f$, the flavored density-matrix equations) is the standard leptogenesis
+machinery (Davidson--Nardi--Nir, \emph{Phys.\ Rep.}\ 466 (2008) 105; Buchm\"uller--Di~Bari--Pl\"umacher,
+\emph{Ann.\ Phys.}\ 315 (2005) 305); it is \emph{not} carried out or attached here. Route~B is therefore a
+\emph{named interface}, not a closed number; only Route~A (downstream of the closed $\Omega_b h^2$) is
+quoted.
+
+\noindent\textbf{The interface, operationalised (\mC).} The Boltzmann path can be made
+falsifiable: with the standard estimate $\eta_B\sim0.96\times10^{-2}\,\varepsilon_1\kappa_f$
+(sphaleron $28/79$), fed by the TFPT neutrino sector --- normal ordering and the predicted
+$\delta^\nu_{\mathrm{CP}}=4\pi/3$ --- the Davidson--Ibarra asymmetry
+$\varepsilon_1=\tfrac{3}{16\pi}M_1 m_3/v^2$ and the washout efficiency $\kappa_f(\tilde m_1)$ give,
+over the natural ranges $M_1\in[3\times10^9,3\times10^{10}]$ GeV and
+$\tilde m_1\in[m_\star,m_{\mathrm{atm}}]$, an $\eta_B$ band $[8.4\times10^{-11},4.7\times10^{-9}]$
+that \emph{brackets} the observed $6.1\times10^{-10}$ (a canonical point $M_1=10^{10}$ GeV,
+$\tilde m_1=5\times10^{-3}$ eV gives $6.0\times10^{-10}$, untuned). So the route is \emph{viable};
+but $M_1$ and the washout are scenario inputs, so $\eta_B$ stays \mC --- if a precise solve
+excluded the window the \emph{route} would fall, not the theory (Route~A is independent)
+(\veri{v169\_etaB\_boltzmann\_interface.py}).
+
+\begin{keybox}[Honest status of $\eta_B$ --- strictly typed \mC]
+The two statements must be kept apart and not interchanged:
+\[
+  \boxed{\ \eta_B\ \text{as a cosmological readout from the closed }\Omega_b h^2\ \text{is \emph{determined}}\ (6.1\times10^{-10})\ }
+\]
+\[
+  \boxed{\ \eta_B\ \text{as a fundamental \emph{compiler power} is \emph{not} closed}\ }
+\]
+The leptogenesis route requires a standard (washout-dependent) Boltzmann solve. So $\eta_B$ is \mC ---
+determined as a downstream readout, but \emph{not} a clean compiler rung; it must never be quoted as a
+fundamental TFPT output.
+\end{keybox}
+
+\par\smallskip\noindent\textbf{An anchored-Boltzmann proposal, honestly tested}
+(\veri{v184\_etaB\_anchored\_boltzmann.py}).
+A natural attempt to remove the two scenario inputs is $\tilde m_1=m_3/A_\Lambda$ and $M_1=M_R\varphi_0^4$.
+The first \emph{works} as a \mC\ anchor: $\tilde m_1=m_3/10\approx5\times10^{-3}$ eV ($A_\Lambda=10=|E(K_5)|$
+the action-grammar atom) lands in the strong-washout window --- a TFPT-flavoured value for the washout.
+The second does \emph{not}: $M_R\sim v^2/m_3$ is the seesaw scale (depending on the un-fixed neutrino Dirac
+Yukawa), and the nearest clean TFPT powers of $\bar M_{\mathrm{Pl}}$ both miss it (the $c_3$- and
+$\varphi_0$-powers are off by ${\sim}75\%$/${\sim}40\%$), so $M_1=M_R\varphi_0^4$ merely \emph{relocates}
+the free input $M_1\!\to\!M_R$. Feeding both into the standard estimate lands $\eta_B$ in the observed
+band $O(10^{-10})$, so the route stays viable --- but the proposal cuts the free inputs from two to one,
+\emph{not} to zero. \textbf{$\eta_B$ stays \mC, a sharper scenario, not a derivation.}
+\par\smallskip\noindent\textbf{A cleaner route: the scalaron-decuple branch
+(\veri{v212\_leptogenesis\_decuple.py}).} Drop the seesaw scale altogether and let \emph{both} Boltzmann
+inputs share the decuple $A_\Lambda=10=|E(K_5)|$:
+\[
+  M_1=\frac{M_{\mathrm{scal}}\,(\phiz)^{2}}{A_\Lambda}\approx8.65\times10^{9}\ \mathrm{GeV},\qquad
+  \tilde m_1=\frac{m_3}{A_\Lambda}\approx5\ \mathrm{meV}.
+\]
+$M_1$ now uses \emph{only} compiler quantities ($M_{\mathrm{scal}}=\cthree^{7/2}\Mpl$, $\phiz$, $A_\Lambda$)
+--- \emph{no hidden seesaw scale} --- and lands inside the thermal window $[3\times10^9,3\times10^{10}]$ GeV
+where the Davidson--Ibarra $\varepsilon_1\approx8.5\times10^{-7}$ and the strong-washout efficiency give
+$\eta_B\approx1.2\times10^{-9}$, bracketing the observed $6.1\times10^{-10}$ untuned. The \emph{full} BDP
+Boltzmann ODE (\texttt{experiments/ftransfer/leptogenesis\_boltzmann/fboltzmann\_solve.py}) now confirms
+this: the integrated efficiency $\kappa_f=0.092$ (validating the analytic $\kappa_f$) gives
+$\eta_B=6.5\times10^{-10}$ at the frozen $M_1$ --- a factor $1.07$ from the observed value, with \emph{no}
+free $M_R$ dial; the full \emph{flavored} density-matrix solve is the next refinement. Both inputs sharing
+$A_\Lambda$ reads as \emph{scalaron reheating dressed by two seed insertions $(\phiz)^2$, over the pair
+sector}. This is cleaner than $M_1=M_R\varphi_0^4$ (no relocated free scale), but the coupling
+\emph{mechanism} is posited, not derived, and $\kappa_f$ is washout-dependent --- so $\eta_B$ stays \mC;
+\mX\ a precise Boltzmann/RGE solve outside the band falls the \emph{route}, not the theory (Route~A is
+independent).
+
+% =====================================================================
+\section{Proton/electron ratio $m_p/m_e$ --- a cross-sector ratio}
+% =====================================================================
+$m_e$ is \emph{closed} on the $\phiz$-ladder ($\hat m_e=\tfrac{v_{\mathrm{geo}}\pi}{\sqrt2}\tfrac{16}{7}(\phiz)^5$).
+The proton mass is \emph{not} a Yukawa: it is QCD-dominated, $m_p\sim$ a few $\times\Lambda_{\mathrm{QCD}}$,
+and $\Lambda_{\mathrm{QCD}}$ arises by dimensional transmutation from $\alpha_s$ running (scheme level).
+Hence
+\[
+  \frac{m_p}{m_e}=\frac{\text{QCD confinement scale}}{\text{EW electron Yukawa}}=1836.15
+\]
+mixes \emph{two different sectors}. It is no single $\phiz$ power: $1/(\phiz)^2=353.7$ and
+$1/(\phiz)^3=6651$ bracket $1836$ with no clean rung in between.
+
+\emph{The numerator is parameter-free, the ratio is not forced.} Running $\alpha_s(M_Z)$ down
+with the carrier coefficient $b_3=-7$ (the \veri{v159\_pyrate\_gauge\_crosscheck.py} value,
+two-loop $+$ $n_f$ thresholds) reproduces $\alpha_s(m_b)\simeq0.22$, $\alpha_s(m_c)\simeq0.38$ and
+reaches confinement ($\alpha_s\sim1$) at $\sim0.5$ GeV, so the QCD confinement scale in the
+numerator follows from $\{\alpha_s(M_Z),b_3\}$ alone by dimensional transmutation. The
+$O(1)$ proton/$\Lambda$ factor is lattice (non-perturbative), so the ratio still stays \mO\
+--- not forced (\veri{v164\_qcd\_scale.py}).
+\par\smallskip\noindent\textbf{The $F_{\mathrm{QCD}}$ transfer is now an implemented solver
+(\veri{v262\_fqcd\_mp\_me.py}).} The contract-only pipeline
+(\texttt{experiments/ftransfer/qcd\_matching\_mp\_me}) is realised: a two-loop $\alpha_s$ run from
+$M_Z$ with $n_f$ thresholds (carrier coefficient $b_3=-7$, \mE) gives $\alpha_s(2\,\text{GeV})\simeq0.30$
+and $\Lambda^{(3)}_{\overline{\rm MS}}\simeq0.33$ GeV; with the lattice bridge $C_p=m_p/\Lambda^{(3)}$
+(external $O(1)$) and the closed $m_e$ this reproduces $m_p/m_e\simeq1824$ against the measured $1836.15$
+within the external error budget ($\sim7\%$, lattice-$C_p$ dominated). This advances \texttt{FR.MPME.01}
+(\mO) to \texttt{FR.MPME.02} (\mC, ``reproduced by the named $F_{\mathrm{QCD}}$ transfer''); the firewall
+holds --- $b_3=-7$ is \mE, the ratio is a transfer, never a compiler power.
+
+\begin{keybox}[Honest status of $m_p/m_e$ \mO]
+Computable at \emph{scheme level} (from $\alpha_s(M_Z)$ running $+$ the closed $m_e$), exactly like the
+dimensionful EW/QCD masses $m_W,m_Z$. But it is \emph{genuinely not} a compiler power, because it is a
+ratio across the QCD and electroweak sectors. Left \mO\ --- not forced.
+\smallskip\\
+\noindent\textbf{A rejected near-formula (recorded as a discipline boundary, \veri{v79\_review\_identities.py}).}
+The combination $|W(D_5)|-\dim\Lambda^3(SU(9))+\Nfam\lambda_C^2=1920-84+0.151=1836.151$ matches the PDG value to
+$\sim10^{-6}$ --- and is \emph{deliberately rejected}. Two reasons make it numerology, not a derivation:
+$SU(9)=A_8$ (the $\dim\Lambda^3=84$ block) does \emph{not} occur in the carrier $D_5\oplus A_3$, and $m_p$ is
+QCD confinement (gluon binding energy) with \emph{no} mechanism linking it to an algebraic sum. Integrating it
+would \emph{invite} the numerology charge, not retire it; $m_p/m_e$ stays \mO. (The same firewall rejects
+$\eta_B=\tfrac{|\Z_2|}{\Delta_Q}\cthree^6\approx6.10\times10^{-10}$: arithmetically close, but a two-atom
+prefactor fit to a washout-dependent leptogenesis output --- $\eta_B$ stays \mC, the downstream readout above.)
+\end{keybox}
+
+\par\smallskip\noindent\textbf{The first-principles boundary, mapped precisely (\veri{v339\_firstprinciples\_boundary.py}).}
+Two questions are worth answering head-on: can the Planck mass $v_{\mathrm{geo}}$ be \emph{computed}, and can
+$F_{\mathrm{transfer}}$ be made a first-principles compiler output? Both answers are \emph{no} --- and the
+residuals are not the same kind of gap. They classify into four honest kinds. \mE\ $v_{\mathrm{geo}}/M_{\mathrm{Planck}}$
+is \emph{forbidden by theorem} (No-Unit, \vref{v153}): a mass carries mass-dimension while every TFPT datum is
+dimension-$0$, so no dimensionless map can output an absolute scale; it is not a gap but is over-determined (gravity
+$=$ dark energy to $0.11\%$, \vref{v274}), and every dimensionless \emph{ratio} is derived --- only the one unit is
+not. \mE\ For $m_p/m_e$ the structure is in place (\vref{v262}): the carrier $b_3{=}{-}7$ drives the QCD run over the
+closed electron source, leaving exactly two external inputs. \mX\ One of them, $\alpha_s(M_Z)$, is external
+\emph{because of a tension}: the SM (= the TFPT gauge content, no new states) does not unify (\vref{v246}), so no
+unified coupling is predicted. \mC\ The other, the lattice $C_p=m_p/\Lambda^{(3)}\!\sim\!2.83$, is parameter-free
+but lattice-only (the discrete$\leftrightarrow$continuous handoff, \vref{v35}); and $\eta_B$/axion ride on
+cosmological initial conditions. So $F_{\mathrm{transfer}}$ cannot be made first-principles in the current theory ---
+not for lack of a formula, but because the residuals are, respectively, forbidden-by-theorem, external-and-tensioned,
+external-but-parameter-free, and cosmological. An honest boundary, stated, not a solution.
+\emph{Follow-up (2026-08-03):} the boundary is now confirmed \emph{from the inside} on two fronts.  Both
+thermal-time routes for internalizing the $F_{\mathrm{transfer}}$ clocks are machine-killed
+(\veri{v723\_phys\_modular\_clock.py}, \textsc{stt-killed}: the QCD $1$-loop clock is parabolic and
+unreachable by any constant-rescaled modular flow, the pole/Boltzmann pair confirmed internal at exactly
+$(2/3)^6$; \veri{v724\_phys\_t3b\_modular\_flows.py}, \textsc{t3b-dead}: conditioned modular flows of one
+internal mother state give loxodromic classes) --- the external anchor census sharpens to $\{$one unit
+($v_{\mathrm{geo}}$-class), one angle $\theta_i$, one lattice $O(1)$ $C_p\}$, the clock wall and the unit
+wall counted \emph{once}.  And the $v_{\mathrm{geo}}$ interface itself is structurally closed as an
+$\mathbb R_+$ scale torsor in calibration form (\veri{v725\_phys\_vgeo\_torsor\_audit.py}: export table,
+dimension-matrix rank $1$, $\lambda$-homogeneity, two-anchor consistency $0.11\%$; the one remaining
+dimensionless ratio \emph{named}, $H_{\mathrm{EW}}=\ln(\bar M_{\mathrm{Pl}}/v_{\mathrm{EW}})=37.1776$).  No status moves;
+the boundary stands, now with its structure theorem.
+
+% =====================================================================
+\section{The Higgs quartic --- near-criticality from the free seam}
+% =====================================================================
+The seam UV is the free chiral $c{=}8$ fixed point (\veri{v158\_fixed\_point\_stable.py}):
+Gaussian, with no relevant and no marginal interactions. The Higgs self-coupling
+$\lambda$ is the one marginal scalar coupling, so a free seam forces it to the
+Gaussian point there:
+\[
+  \boxed{\ \lambda(M_{\mathrm{seam}})=0\quad\text{and}\quad\beta_\lambda(M_{\mathrm{seam}})=0\ }
+\]
+the Shaposhnikov--Wetterich double-criticality condition --- here \emph{derived} from
+the free seam rather than postulated. Integrating the PyR@TE-confirmed two-loop SM
+RGEs from $M_Z$ upward with the measured $(m_H,m_t)$ gives $\lambda(\Mpl)\approx0.002$
+and $\beta_\lambda(\Mpl)\approx0$ at the reduced Planck mass: the celebrated SM
+\emph{near-criticality} is thus a \emph{consequence} of the free seam (the two-loop
+value is an order of magnitude closer to zero than the one-loop estimate $\sim0.022$).
+Imposing the double condition predicts $m_H\sim129$--$134$ GeV (a band, sensitive to
+$m_t$ and $\alpha_s$); the measured $125.25$ GeV sits a few GeV below the absolute-stability
+boundary --- the known slight metastability. The \emph{same} condition imposed at the
+scalaron scale ($\cthree^{7/2}\Mpl\sim3\times10^{13}$ GeV) gives $m_H\sim107$ GeV (too
+low), so the boundary condition lives at $\Mpl$, consistent with seam $=$ horizon $=$
+Planck. This ties the Higgs mass to premise~(A) and fills the Higgs-sector gap (which
+was only $N_\Phi=1$); it is typed \mE\ (the freeness signature and scale selection) and
+\mC\ (the $m_H$ band) (\veri{v166\_higgs\_free\_seam.py}). Figure~\ref{fig:rg_running}
+shows the whole $F_{\mathrm{transfer}}$ running.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.98\linewidth]{figures/rg_running.pdf}
+\caption{The $F_{\mathrm{transfer}}$ running (two-loop SM RGEs; the gauge $\beta$-functions
+are confirmed by PyR@TE, \veri{v159\_pyrate\_gauge\_crosscheck.py}). \emph{Left:} the gauge
+couplings --- the $U(1)_Y$ slope is $b_1=41/10$, $\alpha_3^{-1}\!\to\!0$ at
+$\Lambda_{\mathrm{QCD}}\!\approx\!0.4$ GeV (confinement, \veri{v164\_qcd\_scale.py}), and the
+Standard Model does \emph{not} unify. \emph{Right:} the Higgs quartic falls to
+$\lambda(\Mpl)\!\approx\!0.002$ with $\beta_\lambda\!\approx\!0$ --- the free-seam
+near-criticality that ties $m_H$ to premise~(A) (\veri{v166\_higgs\_free\_seam.py}).}
+\label{fig:rg_running}
+\end{figure}
+
+% =====================================================================

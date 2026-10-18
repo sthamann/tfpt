@@ -1,0 +1,392 @@
+
+\begin{theorem}[Strong-CP closure on the admissible branch]
+\label{thm:strong-cp-closure}
+Define
+\[
+Z_{\mathrm{adm}}(\bar\theta)
+:=
+\int e^{-S_{\mathrm{adm}}}e^{i\bar\theta Q}\,d\mu_{\mathrm{adm}},
+\qquad
+Q=\frac{1}{32\pi^2}\int \tr(G\wedge G).
+\]
+On the admissible branch,
+\[
+\theta_{\mathrm{sheet}}=0,
+\qquad
+\arg\det M_u=\arg\det M_d=0,
+\qquad
+\bar\theta=0.
+\]
+Moreover,
+\[
+\bigl|Z_{\mathrm{adm}}(\bar\theta)\bigr|\le Z_{\mathrm{adm}}(0),
+\]
+so the free energy
+\[
+F(\bar\theta):=-V^{-1}\log Z_{\mathrm{adm}}(\bar\theta)
+\]
+satisfies $F(\bar\theta)\ge F(0)$. If the CP-even admissible vacuum is unique, its minimum lies at $\bar\theta=0$. At the same time weak CP may survive through
+\[
+V_{\mathrm{CKM}}=U_{u,L}^\dagger U_{d,L}.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+\Cref{thm:sheet-cp-protection,cor:strong-cp-rg-stability} supply the symmetry-protected vanishing of $\theta_{\mathrm{sheet}}$ and of the determinant phases on the retained branch. Positivity of the admissible measure then implies the standard free-energy inequality, so the CP-even branch minimizes at $\bar\theta=0$ once the admissible vacuum is unique. Weak CP may still survive through the relative family holonomies encoded in $V_{\mathrm{CKM}}$.
+\end{proof}
+
+\begin{theorem}[Reflection positivity on the admissible sector]
+\label{thm:reflection-positivity-admissible}
+Under the admissibility complex and the setup of \Cref{def:relative-generating-functional,lem:admissible-reflection-positivity}, every admissible observable $O$ with support in $\tau>0$ satisfies
+\[
+\langle \Theta O,O\rangle_{\mathrm{rel}}\ge 0.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Invoke \Cref{lem:admissible-reflection-positivity}. The point of the quotient normalization is that the reference sector contributes only the constant denominator $Z_{\mathrm{ref}}[0,0,0]$ and therefore does not spoil positivity on admissible observables.
+\end{proof}
+
+\begin{theorem}[Lorentzian reconstruction on \texorpdfstring{$\Padm$}{Padm}]
+\label{thm:lorentzian-reconstruction}
+Under the same hypotheses, the admissible Euclidean theory reconstructs a self-adjoint Lorentzian Hamiltonian on the $\Padm$ sector.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+With \Cref{thm:reflection-positivity-admissible} in hand, the bosonic part follows the usual Osterwalder--Schrader reconstruction, while the fermionic part follows the corresponding CAR reconstruction on the admissible sector. The commuting relations between $\Theta$, $P_\Theta$, and $\Padm$ ensure that the reconstructed Hilbert space remains inside the retained admissible branch.
+\end{proof}
+
+\begin{theorem}[Admissible vacuum existence at finite volume or with declared cutoff]
+\label{thm:admissible-vacuum-existence}
+Assume finite volume or a declared cutoff, weak-* compactness of $\Vadm$, and
+lower boundedness plus coercivity of $\Padm\Hrel\Padm$. Then the admissible
+vacuum exists as
+\[
+\rho^\ast=\argmin_{\rho\in\Vadm}\tr(\rho\Hrel),
+\]
+and its renormalized seam vacuum energy is denoted by $\Lambda_{\Seam,\mathrm{ren}}$.
+\end{theorem}
+
+\begin{proof}
+The direct method applies on $\Vadm$ under the stated compactness and coercivity
+assumptions. The renormalized seam residue supplies the vacuum-energy
+identification in the same declared scheme.
+\end{proof}
+
+\begin{theorem}[Nonperturbative admissible QFT closure]
+\label{thm:nonperturbative-admissible-qft}
+Let
+\[
+m_*:=\min\left\{\frac{\epsilon_f}{2},\,m_-,\,m_3\right\}.
+\]
+Assume the transport gap estimate of \Cref{prop:gap-lift-full-operator} together with the positivity bounds of \Cref{thm:callias-higgs-selection}. Then, after removing the exact gauge zero modes, the reconstructed admissible Hamiltonian satisfies
+\[
+\operatorname{spec}(H_{\mathrm{adm}})\cap(0,m_*)=\varnothing.
+\]
+Hence connected admissible Euclidean correlators obey exponential clustering:
+\[
+\bigl|\langle O_1(x)O_2(0)\rangle_c\bigr|
+\le
+C_{12}e^{-m_*|x|}.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The transport gap and the bosonic positivity bounds give a strict positive lower bound on all admissible excitations above the exact gauge zero modes. Reflection positivity and Lorentzian reconstruction convert the Euclidean gap into a Lorentzian spectral gap. Exponential clustering follows from that gap on the admissible sector.
+\end{proof}
+
+\begin{definition}[Stable record algebra from the admissible gap]
+\label{def:stable-record-algebra}
+Let
+\[
+\tau_*:=\frac{1}{m_*}.
+\]
+For a tolerance $\varepsilon>0$, define
+\[
+\Arec(t)
+:=
+\left\{
+O\in\mathfrak A_{\mathrm{adm}}
+:\ \|[O(t),O(t')]\|\le\varepsilon
+\text{ for } |t-t'|>\tau_*
+\right\}.
+\]
+\end{definition}
+
+\begin{proposition}[Stable records from gap and clustering]
+Under \Cref{thm:nonperturbative-admissible-qft}, the algebra $\Arec(t)$ defines the slow, robust sector singled out by the admissible mass gap. Record observables are therefore a dynamical consequence of gap plus clustering rather than an independent philosophical postulate.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+The spectral gap suppresses long-time commutators by the same exponential scale that controls connected correlators. Therefore operators whose support is carried by the low-frequency admissible sector become approximately commuting on time separations larger than $\tau_*=1/m_*$, which is exactly the stability criterion built into \Cref{def:stable-record-algebra}.
+\end{proof}
+
+\begin{definition}[Observer algebra and prediction semantics]
+\label{def:observer-algebra-prediction}
+Choose $\Aobs\subset\Arec$ to be a maximal stable abelian subalgebra. For any operational query $Q$ represented by a spectral projector $E_Q(\Delta)$, define
+\[
+\Pred(Q):=\tr(\rho_tE_Q(\Delta)).
+\]
+This is the main-text prediction semantics used on the admissible branch; appendix-level bookkeeping only decorates it with extra experimental metadata.
+\end{definition}
+
+\begin{remark}[Horizons as modular inner seams]
+The same seam grammar extends to horizon physics by treating horizons as modular inner seams. In that reading one works with algebraic splits or code-subspace factorizations adapted to the horizon sector, rather than declaring an exact tensor-product factorization as primitive structure.
+\end{remark}
+
+\section{Particle and mass compiler}
+
+This section is the phenomenological heart of the manuscript. It is not meant to flatten all
+rows into one uniform notion of prediction. Instead it makes the relation between derived theorem
+outputs and intrinsic observation rows explicit: a declared numerical preconditioner, a
+kernel-output map, and a mass ledger that separates internal theorem outputs from their
+observation-surface images.
+Accordingly this section is best read through three ledgers:
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item a \emph{primary intrinsic-observation ledger} for the narrow main-text comparison surface in \Cref{tab:benchmark},
+    \item \emph{mass-closure ledgers} for fermion, electroweak, and hadronic rows in \Cref{tab:sm-mass-ledger-ew,tab:sm-mass-ledger-quarks},
+    \item and a \emph{supplementary appendix ledger} for exploratory or optional rows that are kept outside the closed theorem surface.
+\end{itemize}
+
+\begin{definition}[Intrinsic and observation surfaces]
+\label{def:intrinsic-observation-surfaces}
+We write $\mathcal S_{\mathrm{int}}$ for the intrinsic closure surface generated before
+comparison, containing in particular the internal compiler masses $\hat m_f$, the transport
+outputs, and the derived geometric parameters. The observation surface is
+\[
+\mathcal S_{\mathrm{obs}}:=\mathcal R_{\mathrm{TOE}}(\mathcal S_{\mathrm{int}}),
+\]
+that is, the scheme-specified comparison image after matching, thresholds, and observable
+conventions are imposed. In practical finite-threshold computations one approximates this surface
+through the numerical preconditioner $\mathcal R_{\SM}$. The first surface is theorem-facing; the
+second is the observation-facing interface used by the ledgers below.
+\end{definition}
+
+\begin{figure}[p]
+\centering
+\scriptsize
+\begin{tikzpicture}[
+    scale=0.82,
+    transform shape,
+    >=Latex,
+    node distance=9mm and 11mm,
+    primitive/.style={
+        draw=gray!70!black,
+        thick,
+        rounded corners,
+        fill=gray!10,
+        align=left,
+        text width=3.55cm,
+        inner sep=4pt
+    },
+    hard/.style={
+        draw=blue!60!black,
+        thick,
+        rounded corners,
+        fill=blue!5,
+        align=left,
+        text width=3.55cm,
+        inner sep=4pt
+    },
+    bridge/.style={
+        draw=green!50!black,
+        dashed,
+        thick,
+        rounded corners,
+        fill=green!5,
+        align=left,
+        text width=3.55cm,
+        inner sep=4pt
+    },
+    closure/.style={
+        draw=orange!75!black,
+        dotted,
+        thick,
+        rounded corners,
+        fill=orange!7,
+        align=left,
+        text width=3.65cm,
+        inner sep=4pt
+    },
+    output/.style={
+        draw=gray!70!black,
+        thick,
+        rounded corners,
+        fill=gray!8,
+        align=left,
+        text width=3.45cm,
+        inner sep=4pt
+    },
+    anchorrow/.style={
+        draw=red!60!black,
+        thick,
+        rounded corners,
+        fill=red!5,
+        align=left,
+        text width=3.45cm,
+        inner sep=4pt
+    },
+    flow/.style={->, thick},
+    aux/.style={->, thick, dashed},
+    cond/.style={->, thick, dotted}
+]
+
+\node[primitive] (core) {%
+\textbf{Primitive core}\\
+$(X,S,\Hint,D_{\mathrm{rel}},\iota,f,\chiseed)$\\
+undecomposed spectral seed
+};
+
+\node[hard, below=of core] (carrier) {%
+\textbf{Minimal carrier kernel}\\
+$E_3 \oplus E_2$\\
+$Y=(-1/3)^3\oplus(1/2)^2$\\
+$6Y^2-Y-\mathbf 1=0$
+};
+
+\node[hard, below left=16mm and 13mm of carrier] (familypacket) {%
+\textbf{Hard packet}\\
+$G_{\mathrm{SM}}^{\mathrm{glob}} \cong S(U(3)\times U(2))$\\
+$S^+=\Lambda^{\mathrm{even}}E$\\
+$S^+ \cong \mathbf 1 \oplus \mathbf{10} \oplus \overline{\mathbf 5}$
+};
+
+\node[hard, below right=16mm and 13mm of carrier] (seed) {%
+\textbf{Hard kernel formulas}\\
+$c_3=\dfrac{1}{8\pi}$,\quad
+$\delta_{\mathrm{top}}=\dfrac{3}{256\pi^4}$\\
+$\phi_{\mathrm{EM}}(\alpha)=\phibase+\deltatop x(1-\deltatop x)^{-5/4}$,\ $x=e^{-2\alpha}$\\
+$b_1(N_{\mathrm{fam}},N_\Phi)=\dfrac43N_{\mathrm{fam}}+\dfrac1{10}N_\Phi$
+};
+
+\node[closure, below=of familypacket] (familybridge) {%
+\textbf{Family closure}\\
+$\Padm$, $F\cong\mathbb C^3$\\
+$\mathrm{Ind}_{APS}(D^+_{\mathrm{rel}}\!\otimes\!L_F)=3$\\
+$N_{\mathrm{fam}}=3$, $\Omega_{\mathrm{adm}}=48$
+};
+
+\node[closure, below=of seed] (chi) {%
+\textbf{Local spectral-scale / Higgs branch}\\
+$\mathrm{Ind}^{\Padm}_{\mathrm{rel}}(\mathcal B^+_{E_2})=1$\\
+$\bar M_{\mathrm{Pl}}^2=\chigeozero^2/(2\pi^2)$\\
+$\vgeo^2=Z_H\mu_\Phi^2(\chigeozero)/\lambda_\Phi$
+};
+
+\node[bridge, right=20mm of familybridge] (comparison) {%
+\textbf{Numerical preconditioner $\mathcal R_{\mathrm{SM}}$}\\
+matching scale, thresholds, scheme map\\
+first observation iterate for $\mathcal R_{\mathrm{TOE}}$
+};
+
+\node[closure, below=of familybridge] (transport) {%
+\textbf{Transport compiler}\\
+$Y_f=D_{L,f}U_fD_{R,f}$\\
+$\lambda_Y=\sqrt{\phiz(1-\phiz)}$, $D_y$, $U_6$\\
+$(Y_f)_{ij}\sim \lambda_Y^{L^L_{f,i}+L^R_{f,j}}\mathrm{Hol}_{\Gamma_{ij}}$
+};
+
+\node[output, below right=12mm and 12mm of transport] (massmatrix) {%
+\textbf{Observation lift}\\
+$M_f=\dfrac{\vgeo}{\sqrt 2}\,Y_f$\\
+$Y_f=D_{L,f}\,U_f\,D_{R,f}$\\
+$V_{\mathrm{CKM}}=U_{u,L}^\dagger U_{d,L}$,\quad
+$U_{\mathrm{PMNS}}=U_{\nu,L}^\dagger U_{e,L}$
+};
+
+\node[bridge, right=24mm of chi] (benchmarks) {%
+\textbf{Intrinsic observation rows}\\
+$\alpha^{-1}(0)$,\ $\beta_{\mathrm{rad}}$,\ $\Omega_b$\\
+$\lambda_C$,\ $\sin^2\theta_{13}$\\
+comparison-facing rows under $\mathcal R_{\mathrm{TOE}}$
+};
+
+\node[anchorrow, below=of benchmarks] (bosons) {%
+\textbf{Gauge / Higgs masses}\\
+exact: $m_\gamma=0$, $m_g=0$\\
+intrinsic observation: $m_W$, $m_Z$, $m_H$\\
+global threshold outputs
+};
+
+\node[output, below left=11mm and 12mm of massmatrix] (leptons) {%
+\textbf{Charged leptons}\\
+derived rows:\\
+$m_e,\ m_\mu,\ m_\tau$
+};
+
+\node[anchorrow, below=of massmatrix] (quarks) {%
+\textbf{Quark sector}\\
+derived: $m_u,\ m_d$\\
+intrinsic observation rows: $m_s,\ m_c,\ m_b,\ m_t$
+};
+
+\node[output, below right=11mm and 12mm of massmatrix] (neutrinos) {%
+\textbf{Neutrino block}\\
+$m_{\nu_1},\ m_{\nu_2},\ m_{\nu_3}$\\
+closed neutrino branch + observation map\\
+$M_R \sim 1.31\times 10^{15}\,\mathrm{GeV}$
+};
+
+\node[output, below=of quarks] (hadrons) {%
+\textbf{Hadronic checks}\\
+confinement as admissible singlet selection\\
+$m_{\pi^0}$,\ $m_p$ as out-of-sample checks
+};
+
+\node[closure, below=of bosons] (cp) {%
+\textbf{Closure outputs}\\
+$\bar\theta=0$,\quad $\langle\Theta O,O\rangle_{\mathrm{rel}}\ge 0$\\
+Lorentzian reconstruction\\
+vacuum minimizer $\rho^\ast$, $\Lambda_{\Seam,\mathrm{ren}}$
+};
+
+\draw[flow] (core) -- (carrier);
+\draw[flow] (carrier) -- (familypacket);
+\draw[flow] (carrier) -- (seed);
+\draw[flow] (familypacket) -- (familybridge);
+\draw[aux] (seed) -- (familybridge);
+\draw[flow] (seed) -- (comparison);
+\draw[flow] (seed) -- (benchmarks);
+\draw[flow] (seed) -- (transport);
+\draw[aux] (familybridge) -- (transport);
+\draw[flow] (chi) -- (bosons);
+\draw[flow] (chi) -- (massmatrix);
+\draw[flow] (transport) -- (massmatrix);
+\draw[aux] (comparison) -- (benchmarks);
+\draw[flow] (massmatrix) -- (leptons);
+\draw[flow] (massmatrix) -- (quarks);
+\draw[flow] (massmatrix) -- (neutrinos);
+\draw[aux] (transport) -- (hadrons);
+\draw[aux] (quarks) -- (hadrons);
+\draw[cond] (transport) -- (cp);
+\draw[cond] (chi) -- (cp);
+
+\begin{scope}[on background layer]
+    \node[draw=gray!55!black, rounded corners, inner sep=7pt,
+          fit=(core)] {};
+    \node[draw=blue!30!black, rounded corners, inner sep=7pt,
+          fit=(carrier)(familypacket)(seed)] {};
+    \node[draw=green!35!black, dashed, rounded corners, inner sep=7pt,
+          fit=(comparison)(benchmarks)] {};
+    \node[draw=orange!55!black, dotted, rounded corners, inner sep=7pt,
+          fit=(familybridge)(chi)(transport)(cp)] {};
+    \node[draw=gray!55!black, rounded corners, inner sep=7pt,
+          fit=(bosons)(massmatrix)(leptons)(quarks)(neutrinos)(hadrons)] {};
+\end{scope}
+\end{tikzpicture}
+\caption{Carrier-first compiler from reduced datum to explicit particle-content and mass
+surfaces. Gray nodes denote the reduced datum, blue nodes are exact algebraic carrier/kernel
+statements, orange nodes are conditional closure statements, green nodes denote the matched
+intrinsic observation layer and its numerical preconditioner, and gray/red nodes are compact
+output surfaces. The figure intentionally separates exact algebraic and conditional theorem
+outputs from matched observation rows.}
+\label{fig:compiler-to-masses}
+\end{figure}
+
+The diagram in \Cref{fig:compiler-to-masses} is epistemically layered: it visualizes one
+compiler flow, not one uniform status class. Exact massless gauge directions, conditional
+charged-lepton rows, matched heavy-mass observation rows, neutrino observation rows, and
+conditional hadronic rows are shown together only to display the architecture, not to erase
+their different proof roles.
+
+A second, more compressed projection of that same surface is shown in \Cref{fig:epistemic-output-matrix}. It does not add a new theorem; it makes the manuscript's status discipline readable at the level of output types.

@@ -1,0 +1,393 @@
+\subsection{Die 48 und die 41 sind zwei Antworten derselben geladenen Quelle}\label{sec:chargeweightedsource}
+Der neue neutrale Zustand $R$ trägt die ungewichtete Familienantwort.
+Die ursprüngliche Hyperladung ist dagegen durch die $3+2$-Markierung bereits festgelegt:
+\[
+y=(-1/3,-1/3,-1/3,1/2,1/2,0,0,0),\qquad
+Y(\beta)=y\cdot\beta,\qquad J_Y=y\cdot h.
+\]
+Es wird also keine neue Ladung gewählt. Auf den ursprünglichen 48 Wurzeln ergeben sich
+\[
+\sum_{\beta\in\mathcal R_{48}}Y(\beta)^2=10,
+\qquad \|y\|^2=5/6,\qquad k_Y=2\|y\|^2=5/3.
+\]
+Die tatsächlichen Multiplizitäten sind $18$ Felder mit $Y=1/6$, jeweils
+$9$ mit $Y=-2/3,1/3$, $6$ mit $Y=-1/2$ sowie jeweils $3$ mit $Y=1,0$.
+Das sind die bereits bekannten drei Familien einschließlich der neutralen Komponente.
+
+Mit denselben neutralen Paarvertices $B_\beta$ wie in Abschnitt~\ref{sec:neutralfield} definiert die Ladungsmarkierung
+\begin{align}
+ B_Y&=\sum_{\beta\in\mathcal R_{48}}Y(\beta)^2B_\beta
+     =\frac52 T+R_Y,\\
+ R_Y&=\frac5{24}R+S_Y,\qquad
+ S_Y=\frac12:h^{\mathsf T}A_{S_Y}h:,
+ \quad (A_{S_Y})_{ij}=6(y_i y_j-\delta_{ij}y_i^2)\quad(i,j\leq5).
+\end{align}
+Außerhalb des $D_5$-Blocks ist $A_{S_Y}$ null. Alle drei Zustände sind in derselben
+ursprünglichen Quelle berechnet. Wegen $\tr A_{R_Y}=0$ ist auch $R_Y$ ein neutrales
+Primärfeld vom Gewicht zwei. Die positive Quellenform liefert exakt
+\begin{equation}\label{eq:neutralchargegram}
+\operatorname{Gram}(R,R_Y)=
+\begin{pmatrix}48&10\\10&35/3\end{pmatrix},\qquad
+\det\operatorname{Gram}(R,R_Y)=460,\qquad \|S_Y\|^2=115/12.
+\end{equation}
+Eine gemeinsame isometrische Abbildung dieser beiden Zustände muss deshalb beide
+Richtungen erhalten. Dies verlangt nicht, den ursprünglichen einzelnen topologischen
+Rang-eins-Port durch einen Rang-zwei-Port zu ersetzen: Die eine Anzeige und der sie
+tragende vollständige Quellenraum sind unterschiedliche Objekte.
+
+Die konkrete Eichstromantwort macht den Unterschied sichtbar:
+\begin{align}
+ \langle R(z)J_Y(w)J_Y(u)\rangle_\Omega&=0,\\
+ \langle R_Y(z)J_Y(w)J_Y(u)\rangle_\Omega
+ &=\frac{115/36}{(z-w)^2(z-u)^2}.
+\end{align}
+Das folgt direkt aus der Wick-Kontraktion $y^{\mathsf T}A y$. $R$ liegt vollständig
+im Familienanteil und hat mit diesem $D_5$-Strom keinen entsprechenden Vakuum-Dreipunktterm.
+$R_Y$ enthält zusätzlich die durch die tatsächlichen Ladungen bestimmte Richtung $S_Y$.
+Beide Gleichungen sind chirale Quellenantworten; keine von beiden wird hier als
+vierdimensionale Photonpolarisation ausgegeben. Die ursprüngliche Trennung zwischen
+topologischer Besetzung und gewichteter Eichvariation bleibt erhalten.
+
+Unter der bereits im physikalischen Vertrag erklärten Identifikation mit
+vierdimensionalen Weylfeldern und einem komplexen Higgsdoublett folgt aus denselben Ladungen
+\[
+ b_Y=\frac23\underbrace{\tr_{48}Y^2}_{10}
+       +\frac13\underbrace{\tr_HY^2}_{1/2}=\frac{41}{6},
+ \qquad b_1=b_Y/k_Y=\frac{41}{10}.
+\]
+Das ergänzt den vorhandenen Compilerbefund aus v2 um den expliziten Quellenanschluss.
+Die vierdimensionale Schleifeninterpretation bleibt eine eigene Voraussetzung.
+
+Schließlich antwortet derselbe ladungsgewichtete Operator auf alle sechs behaltenen
+Neutrinopaare aus Abschnitt~\ref{sec:sourcepairs}:
+\begin{equation}\label{eq:twojointpairresponses}
+ R_0B_{ab}=4B_{ab},\qquad
+ R_{Y,0}B_{ab}=-\frac53 B_{ab},\qquad a,b\in\{1,2,3\}.
+\end{equation}
+Alle Paare haben den $D_5$-Impuls $(-1)^5$ und keine $D_5$-Oszillatoren.
+Daher trägt $S_{Y,0}$ genau $-5/2$ bei, während $(5/24)R_0=5/6$ liefert.
+Die Paare bleiben hyperladungsneutral: $Y(B_{ab})=0$. Ein neutraler zusammengesetzter
+Operator ist nicht der Ladungsoperator selbst. Da beide Antworten auf dem ganzen
+Sechserraum skalar sind, wählen sie keine relative Majoranaphase aus.
+
+\picturetext{Die Quelle enthält dieselben Materiefelder in zwei verschiedenen Rechnungen:
+Einmal zählt jedes Feld gleich viel, einmal zählt seine tatsächliche Ladung mit.
+So hängen die 48 und die 41 zusammen. Die Neutrinopaare reagieren auf beide
+Rechnungen in fest bestimmter Weise. Diese gemeinsame Antwort verbindet die Teile,
+entscheidet aber noch nicht, welcher Massenzustand tatsächlich entsteht.}
+
+Die exakte Rechnung steht in \file{tfpt_explorer/source_charge_response.py}.
+Sie verwendet die ursprünglichen Wurzeln und die positive Heisenbergform; der
+vorhandene Vierdimensionalitäts- und Higgsvertrag wird ausdrücklich mitgeführt.
+
+\subsection{Welche gemeinsame Reduktion die vorhandenen Antworten wirklich erhält}
+Für einen positiven Operator $A=D^\dagger D$ auf erhaltenen und eliminierten Zuständen gilt
+\begin{equation}\label{eq:fullsourceschur}
+P(A+z)^{-1}P
+=\bigl[A_{11}+z-A_{12}(A_{22}+z)^{-1}A_{21}\bigr]^{-1}.
+\end{equation}
+Der Komplementterm ist das genaue Gedächtnis der nicht angezeigten Zustände. Bei positiver invertierbarer Komplementresolvente würde die Gleichheit mit $(A_{11}+z)^{-1}$ bereits $A_{12}=0$ erzwingen. Ein exakt abgeschlossener endlicher Block ist deshalb eine stärkere Annahme als eine antworttreue Reduktion mit Gedächtnis.
+
+Am neuen ursprünglichen Wegoperator lässt sich diese Regel vollständig ausführen. Aus
+\begin{equation}
+D^{\rm path}=\begin{pmatrix}yI&-\delta I\\-\delta M^2&yI\end{pmatrix}
+\end{equation}
+ergeben sich mit $a=y^2+\delta^2$ die Schurantworten
+\begin{equation}
+S_D=yI-\frac{\delta^2}{y}M^2,\qquad
+S_{D^\dagger D}=\frac{y^2}{a}S_D^\dagger S_D.
+\end{equation}
+Die genaue Determinantenverklebung lautet
+\begin{equation}
+\boxed{\det(D^\dagger D)=a^3\det S_{D^\dagger D}
+=y^6|\det S_D|^2=(y^6-\delta^6)^2.}
+\end{equation}
+Eine Vergröberung auf einen der beiden Zugänge erhält also die Flavorantwort, wenn die induzierte Metrik und der Beitrag des eliminierten Zugangs erhalten bleiben. Eine einfache Kompression $P D^\dagger DP$ ist ein anderer Operator. Ebenso würde die bloße Auswahl eines $T^3$-Eigenraums einen der beiden Faktoren $y^3\mp\delta^3$ verlieren. Die ursprüngliche faktorisierte Hilbertstruktur erlaubt dagegen eine Nahtprojektion auf einem eigenen Faktor, ohne den gesamten Flavortransport zu halbieren.
+
+Die ursprüngliche Masterwirkung enthält ausdrücklich eine gemeinsame Operatorfamilie. Aus dem Produkt kommutierender Selektoren $P_{\rm adm}=P_{\rm prim}P_{\rm sing}P_\Theta$ folgt jedoch keine orthogonale Aufteilung in vier unabhängige physische Wirkungen. Selbst eine tatsächliche Blockzerlegung beweist noch nicht, dass jeder Block von nur einer Masterkoordinate abhängt. Das entsprechende Argument in \file{02_carrier_source.tex}, Zeilen 3117--3123, benötigt diese zusätzlichen Eigenschaften.
+
+Die vorhandenen Formeln erzeugen dabei keinen unmittelbaren Alpha--Flavor-Widerspruch: Der kanonische Seed $\phi_0$ im Flavorweg ist von $\phi_{\rm seam}(\alpha)$ unterschieden. Auch ein Test allein der gemischten Ableitungen genügt nicht. Für $D_{\rm fl}=s(\alpha)D_0(\delta)$ gilt
+\begin{equation}
+\log\det(D_{\rm fl}^\dagger D_{\rm fl})
+=2n\log s(\alpha)+\log\det(D_0^\dagger D_0).
+\end{equation}
+Die gemischte Ableitung verschwindet, während die Alpha-Erstableitung einen zusätzlichen Beitrag enthält. Entscheidend bleiben daher derselbe vollständige Operator, dieselben lokalen Subtraktionen und die gemeinsam berechneten Erstableitungen.
+
+\key{\textbf{Zusammenhängendes Ergebnis:}
+Der ursprüngliche Fuchsprozess realisiert den Flavoroperator durch wirkliche Wege und trägt lokal bereits primitive Determinantenwindung. Die vorhandene E8-Quelle realisiert den Alpha-Rundlauf durch den konkreten bedingten Port~\eqref{eq:actualheatport}; seine Antwort im Flavor-Hintergrund ist durch~\eqref{eq:jointRresponse} festgelegt. Damit ist die tragende gemeinsame Auswahlfrage auf eine bestimmte Naht-, Zustands- und Normierungsabbildung zugespitzt. Sie muss den topologischen P1-Kreis, den internen Flavortransport, den Spinanteil und diesen neutralen Quellenzugang gleichzeitig erhalten. Die bestehenden Massen-, Yukawa- und Alphaformeln bleiben die Bedingungen an diese Abbildung.}
+
+\subsection{Ausführbare Nachweise dieser Fortsetzung}
+\file{tfpt_explorer/flavor_path_transport.py} integriert die ursprüngliche Verbindung entlang beider Halbwege und unabhängig entlang des geschlossenen Kreises. Es berechnet die Determinantenwindung aus den integrierten Lösungen und vergleicht die vollständigen endlichen Greenmatrizen. \file{tfpt_explorer/neutral_source_response.py} benutzt die ursprünglichen E8-Wurzeln, ihre Stressmomentmatrizen und den tatsächlichen Heisenbergzustand vom Grad zwei. Es hält den bedingten Alpha-Port und den abweichenden lokalen Defektzustand getrennt.
+
+Die Quellenstellen sind insbesondere \file{verification/v117_monodromy_weyl_a3.py}, \file{v118_hexagon_family_dictionary.py}, \file{v498_celestial_wp5b_singular_vector.py}, \file{matter-geometry-round15/PROOF.md} unter \file{experiments/theory-contracts/}, sowie \file{_archive/tfpt-45/source_extracts/01_boundary_kernel_source.tex}, Zeilen 192--262, und \file{04_qft_source.tex}, Zeilen 219--307. Der Riemann--Hilbert-Feldanschluss verwendet die normierten Defektmatrixelemente und Wick-Determinanten aus \cite[Abschnitt 4.1]{gavrylenkomarshakov}; ihre Interpretation als physische Nahtkorrelation ist zusätzlich zu prüfen.
+
+\section{Die Windung wirkt auf der ganzen Quelle: neuer Anschluss und gemeinsamer Massentest}\label{sec:spinliftsynthesis}
+
+\key{\textbf{Der neue positive Herkunftssatz:}
+Die primitive Determinantenwindung des ursprünglichen Flavorprozesses bestimmt beim internen Spin-Lift ein zusätzliches Minuszeichen. In der vorhandenen E8-Verklebung ist dieses Zeichen genau die Involution, die den 120er-Tensorsektor vom 128er-Spinorsektor unterscheidet. Damit ist ein Sechserumlauf auf tatsächlichen geladenen Quellenfeldern konstruiert. Die Identifikation dieses inneren Zeichens mit vierdimensionaler Fermionstatistik bleibt eine weitere, an den vorhandenen Massenmechanismen zu prüfende Aussage.}
+
+Diese Fortsetzung prüft den Anhang \file{30ea245e-2aae-4de0-8aad-8e3655f3e12b} und das vollständig gelesene \href{https://claude.ai/artifact/QKsCJRb79D8Z3pbxqV54n2}{Claude-Artefakt zur TFPT-Prozesskette}. Dessen drei neue Contractordner und der angegebene Commit lagen im lokalen Repository nicht vor. Die dort genannten 109 und 78 Prüfungen sowie die Enumeration von 7560 Einbettungen werden nicht als hier ausgeführte Prüfungen ausgegeben. Die folgenden Aussagen sind am ursprünglichen Fuchssystem, den tatsächlichen E8-Wurzeln, der bestehenden Majoranaroute und den zitierten Primärarbeiten geprüft.
+
+\subsection{Eine weggeworfene Windung wäre eine weggeworfene Quellenwirkung}
+Die Eigenwerte der lokalen ursprünglichen Residuen sind $(0,1/3,2/3)$. Die Spurlosfassung $(0,1/3,-1/3)$ hat dieselben exponentierten Eigenwerte. Ihre Verbindungspfade sind dennoch verschieden:
+\begin{equation}
+u(t)=\diag(1,e^{2\pi it/3},e^{4\pi it/3}),\qquad
+u_0(t)=\diag(1,e^{2\pi it/3},e^{-2\pi it/3}).
+\end{equation}
+Beide enden am gleichen $SU(3)$-Element. Die Determinante des ersten Pfads windet sich einmal, die des zweiten keinmal. Genau die erste Klasse trägt der integrierte Originalkreis, weil $\det\Psi(z)=1-z^4$ lokal eine einfache Nullstelle hat.
+
+Auf dem reellen sechsdimensionalen Familienvektorraum hebt eine $U(3)$-Wirkung nach $\operatorname{Spin}(6)$ mit
+\begin{equation}
+\mathcal S(u)=\det(u)^{-1/2}\Lambda^\bullet u .
+\end{equation}
+Die Quadratwurzel muss entlang des Pfades fortgesetzt werden. Auf dem chiralen Viererraum $\Lambda^{\rm even}\C^3$ erhält man deshalb am ursprünglichen Ende
+\begin{equation}\label{eq:nativespinlift}
+\boxed{\widehat M=-\Lambda^{\rm even}M\in SU(4),\qquad
+\widehat M^3=-I_4,\qquad \widehat M^6=I_4.}
+\end{equation}
+Der rohe Fuchs-Transport ist in seinen gedruckten Koordinaten nicht euklidisch unitär. Die bereits bestimmte positive flache Metrik beziehungsweise eine polare Retraktion mit festgehaltenem Endpunkt liefert die hier verwendete unitäre Pfadklasse. Die Windungszahl bleibt erhalten. Die Gleichung ersetzt den ursprünglichen Transport somit nicht durch eine frei passende Matrix.
+
+\picturetext{Der gewöhnliche Dreieranzeiger speichert nur die Endphasen. Der mitgeführte Spinrahmen erinnert sich zusätzlich daran, wie die Runde durchlaufen wurde. Nach drei Runden steht an bestimmten Quellenfeldern noch ein Minuszeichen; erst nach sechs Runden ist auch dieses verschwunden.}
+
+\subsection{Der Spinrahmen trifft genau die ursprüngliche E8-Verklebung}
+Im Original gilt als wirkliche Untergruppe von E8
+\begin{align}
+G&=\frac{\operatorname{Spin}(10)\times SU(4)}
+ {\langle(\omega_{10},-iI_4)\rangle},\\
+248&=(45,1)\oplus(1,15)\oplus(10,6)
+\oplus(16,4)\oplus(\overline{16},\overline4).
+\end{align}
+Die diagonale Vierergruppe ist der \emph{Kern} dieser Darstellung: Sie wirkt auf E8 trivial. Die einzeln wirksamen Faktorzentren erfüllen dagegen
+\begin{equation}\label{eq:deckspinidentity}
+[(1,-I_4)]=[(-1_{\operatorname{Spin}(10)},1)]
+=\eta_{D_8},\qquad
+\eta_{D_8}=+I_{120}\oplus(-I_{128}).
+\end{equation}
+Alle 240 Originalwurzeln bestätigen dieselbe Charaktergleichheit; die acht Cartanrichtungen gehören zum geraden 120er-Sektor. Die Vorzeichen respektieren die ursprünglichen Wurzelklammern und damit die ganze von ihnen erzeugte Quellenalgebra.
+
+Für $g=[(1,\widehat M)]\in G\subset E_8$ folgt auf der vollständigen Quelle
+\begin{equation}\label{eq:fullsourcesix}
+\boxed{g^3=\eta_{D_8},\qquad g^6=I.}
+\end{equation}
+Dies ist ein Anschluss an geladene Felder. Er kommutiert mit dem $\operatorname{Spin}(10)$-Faktor; die inneren Materieladungen werden nicht miteinander vertauscht. Auf dem Familienvektor $6=\Lambda^2 4$ verschwindet das zusätzliche zentrale Minuszeichen. Die Spinorfelder $(16,4)$ behalten es. Das unterscheidet diese Operation vom Zweifaseroperator $U_6=M\oplus(-M)$: Beide besitzen Ordnung sechs, wirken aber zunächst auf verschiedenen Darstellungsräumen.
+
+\begin{center}
+\begin{tikzpicture}[node distance=6mm]
+\node[box,text width=12.8cm] (w) {\textbf{Ursprünglicher Weg}\\$\det\Psi=1-z^4$; ein Punkturumlauf hat Windung $1$};
+\node[box,below=of w,text width=12.8cm] (l) {\textbf{Familien-Spinlift}\\$\widehat M=-\Lambda^{\rm even}M$; nach drei Umläufen $-I_4$};
+\node[box,below=of l,text width=12.8cm] (e) {\textbf{Dieselbe geladene E8-Quelle}\\$g^3=+I_{120}\oplus(-I_{128})$, $g^6=I$};
+\node[box,below=of e,text width=12.8cm] (p) {\textbf{Gemeinsam zu identifizierende physische Felder}\\Statistik, drei Familien und zulässiger Neutrino-Massenoperator};
+\draw[arr] (w)--(l);\draw[arr] (l)--(e);\draw[dasharr] (e)--(p);
+\end{tikzpicture}
+\end{center}
+Die drei ersten Kästen sind an denselben Originaldaten verbunden. Der gestrichelte Übergang verlangt ein physisches Feldwörterbuch.
+
+\subsection{Was der neue Anomalieselektor tatsächlich auswählt}
+Der interessante Gedanke des Anhangs ist, zusätzlich eine vierdimensionale Spin-$\Z_4$-Struktur mit $\omega^2=(-1)^F$ zu verlangen. Für gleichorientierte Weylfermionen zählt deren Anomalie den Unterschied der $\omega=+i$- und $\omega=-i$-Zustände modulo 16~\cite[Abschnitt 3, Gleichung (7)]{razamattong}. Auf dem ursprünglichen Halbspinor gilt feldweise
+\begin{equation}
+S^+=\Lambda^{\rm even}\C^5=10_1\oplus\overline5_{-3}\oplus1_5,\qquad
+\boxed{X=5-2N=5(B-L)-4Y.}
+\end{equation}
+Alle 16 Komponenten tragen denselben $\Z_4$-Charakter. Das sterile linkschirale $\nu^c$ ist unter diesen Voraussetzungen nötig: Ohne dieses Feld verbleibt der Index $15$ statt $0$ modulo 16. Diese konditionale Verbindung ist in der Anomalieliteratur bereits bekannt~\cite[Abschnitt 4.3]{garciamontero}.
+
+Für $m$ gleichartige Familien eines chiralen Halbspinors von $\operatorname{Spin}(2g)$ mit ungeradem $g$ lautet der Index
+\begin{equation}
+\nu=\pm m\,2^{g-1}\pmod{16}.
+\end{equation}
+Ist $m$ ungerade, insbesondere beim vorhandenen Dreifamilienreadout, erzwingt Anomaliefreiheit $g\ge5$. \textbf{Minimalität innerhalb dieser Klasse wählt $g=5$.} Vorausgesetzt sind vierdimensionale Weylfelder, dieselbe Spin-$\Z_4$-Struktur auf allen Feldern, dieser Halbspinor als Materieträger und keine weitere Anomaliekompensation. Der Satz leitet diese Voraussetzungen nicht selbst her. Mit unverändertem Volumengenerator $X_g=g-2N$ sind die Indizes für $g=1,3,5$ gleich $1,12,0$; die $4$ des Anhangs bei $g=3$ entspricht dem invertierten Generator.
+
+Die Anomalie der noch unaufgeteilten 64 Quellenkomponenten $(16,4)$ verschwindet unter beiden Faktorzentren. Sie entscheidet deshalb nicht allein, welcher Faktor Materie und welcher Familienmultiplikität bedeutet. Auch die vier Marken und das $A_3$-Komplement bleiben eigenständige, bereits geometrisch begründete Daten. Der bedingte Selektor kann eine bisherige Dimensionsannahme ersetzen; er beweist nicht aus sich heraus P1, P2, die $3+2$-Markierung und Raumzeit.
+
+\subsection{Der ganze Massensektor entscheidet über die neue Zusatzannahme}\label{sec:spinmajorana}
+Eine gemeinsame Lösung muss dieselbe Symmetrie auch auf den bereits verwendeten Higgs- und Neutrinofeldern realisieren. Das ursprüngliche Standardmodell-Paper benutzt, weil ein elementares $\overline{126}_H$ im erklärten Hull fehlt, den Einsatz
+\begin{equation}
+\frac{(16_F\,\overline{16}_H)^2}{\Lambda}.
+\end{equation}
+Quelle: \file{tfpt_2_standard_model.tex}, Zeilen 2003--2006, und \file{verification/v488_majorana_clebsch_door.py}. Unter einer gewöhnlichen internen $\Z_4$ ist der Einsatz neutral und zulässig.
+
+Für die \emph{zusätzliche} Spin-$\Z_4$-Identifikation ist die Feldgruppe dagegen
+\begin{equation}
+G_f=\frac{\operatorname{Spin}(1,3)\times\Z_4}
+ {\langle(-1,\omega^2)\rangle}.
+\end{equation}
+Jedes einzelne Feld muss auf dem Quotientenkern trivial wirken:
+\begin{equation}
+r_{\rm Lorentz}(-1)\,r_X(\omega^2)=I.
+\end{equation}
+Der ursprüngliche Weyl-$16_F$ besteht diesen Test mit $(-I)(-I)=I$. Ein skalares $\overline{16}_H$ besteht ihn mit $(+I)(-I)=-I$ nicht. Der skalare $10_H$ besteht ihn. Die Neutralität des gesamten dimension-fünf-Einsatzes repariert die fehlende Darstellung seines einzelnen skalaren Spinorfelds nicht.
+
+\key{\textbf{Das gemeinsame Ergebnis schränkt die erlaubte Lösung ein:}
+Der neue Spin-$\Z_4$-Selektor und die alte skalare $\overline{16}_H$-Realisierung können nicht gleichzeitig unverändert vorausgesetzt werden. Das widerlegt weder die bereits berechneten Neutrinowerte noch TFPT insgesamt. Die physische Herkunft des Massenoperators und die Herkunft der Feldstatistik müssen gemeinsam geschlossen werden.}
+
+Das nackte Paar $\nu^c\nu^c$ hat $X=10\equiv2\pmod4$. Ein neutraler Scalaron und der oben berechnete neutrale Zustand $R$ tragen die fehlende Gegenladung nicht. Ein bosonischer Paarsektor mit Gegenladung $2$ modulo vier könnte sie tragen; seine Existenz als Quelloperator, seine physische Kopplung und eine mögliche Kondensation sind getrennte Aussagen. Insbesondere bricht ein Majoranamassenterm diese $\Z_4$, wenn kein transformierender Einsatz mitgeführt wird~\cite{garciamontero}.
+
+\subsection{Der benötigte geladene Paarkanal ist in der tatsächlichen Quelle vorhanden}\label{sec:sourcepairs}
+Der Konflikt wurde unmittelbar in der bestehenden Quelle weiterverfolgt. Es wurde kein neues elementares Higgsfeld eingeführt. Die ursprünglichen vier Singletströme $C_a$ im markierten Spinorblock besitzen Wurzeln $\alpha_a$ mit
+\begin{equation}
+(\alpha_a,\alpha_b)=1+\delta_{ab},\qquad
+C_a(z)C_b(w)=p_ap_b\,\epsilon(\alpha_a,\alpha_b)
+(z-w)^{1+\delta_{ab}}\bigl[V_{\alpha_a+\alpha_b}(w)+\cdots\bigr].
+\end{equation}
+$p_a$ und $\epsilon$ sind die tatsächlichen Originalphasen und der ursprüngliche Gitterkokzyklus. Bei der Konvention $X=5-2N$ trägt dieser $C$-Zweig $X=+5$; der adjungierte Zweig trägt $-5$. Damit gilt im einfachen unitären Level-eins-Quotienten
+\begin{equation}
+\boxed{:C_aC_b:=0\quad\text{für alle }a,b.}
+\end{equation}
+Dies wurde an allen 16 Paaren mit der ursprünglichen affinen Vakuumform nachgerechnet: Die Normen der Grad-zwei-Vektoren sind exakt null. Das ist eine wirkliche Nullrelation, keine lediglich fehlende Implementierung.
+
+Die höhere Operatorentwicklung liefert dagegen konkrete nichtverschwindende Zustände:
+\begin{align}
+A_{ab}&=C_{a,-2}C_{b,-1}|0\rangle,\quad a<b,
+&h&=3,&\norm{A_{ab}}^2&=1,\\
+B_{aa}&=C_{a,-3}C_{a,-1}|0\rangle,
+&h&=4,&\norm{B_{aa}}^2&=1,\\
+B_{ab}&=(C_{a,-3}C_{b,-1}+C_{b,-3}C_{a,-1})|0\rangle,\quad a<b,
+&h&=4,&\norm{B_{ab}}^2&=2.
+\end{align}
+Die sechs $A_{ab}$ sind antisymmetrisch in den Familienindizes. Die zehn $B_{ab}$ sind symmetrisch. Ihre Gramformen sind diagonal mit den angegebenen positiven Normen. Die symmetrischen Grad-vier-Vektoren sind außerdem orthogonal zu den Ableitungen der antisymmetrischen Grad-drei-Vektoren.
+
+Der Test aller acht positiven einfachen Wurzel-Nullmoden weist tatsächliche höchste Gewichte nach:
+\begin{equation}
+A_{01}:\ (00002;010)\ \longleftrightarrow\ (126,6),\qquad
+B_{00}:\ (00002;200)\ \longleftrightarrow\ (126,10).
+\end{equation}
+Die Darstellung beziehungsweise ihre Konjugierte richtet sich nach der gewählten Spinorchiralität; der adjungierte Quellenoperator liefert den Gegenkanal. Die höchsten Gitterimpulse besitzen Normquadrat sechs beziehungsweise acht. Ihre kleinsten konformen Gewichte sind daher drei beziehungsweise vier; die angegebenen Zustände erreichen diese Schranken. Eine beliebige Tensorproduktzerlegung hätte weder diese erste Auftretensstufe noch die Nullrelation im Grad zwei gezeigt.
+
+Auch die Quellkopplung ist berechnet. Mit dem normierten Operator $B_{00}=C_{0,-3}C_{0,-1}|0\rangle$ liefert der ursprüngliche Kokzyklus
+\begin{equation}\label{eq:nativemajoranacoupling}
+\boxed{\langle B_{00}^{\dagger}(z_3)\,C_0(z_1)\,C_0(z_2)\rangle
+=\frac{z_{12}^{\,2}}{z_{13}^{\,4}z_{23}^{\,4}}.}
+\end{equation}
+Die normierte OPE-Zahl eins wurde damit nicht zusätzlich angepasst. Die unten beschriebenen Grad-zwei-Zeugen besitzen entsprechend den Abstandsfaktor $1/(z_{13}^2z_{23}^2)$ mit Koeffizient eins. Eine vierdimensionale Yukawa-Kopplung verlangt weiterhin die physische Feldabbildung.
+
+\key{\textbf{Der positive Neutrinoanschluss:}
+Die vollständige Quelle enthält einen bosonischen symmetrischen Spinor-Paaroperator mit $X=\pm10$, also Ladung zwei modulo vier. Er ist mit der zusätzlichen Spin-$\Z_4$-Statistikregel vereinbar und besitzt den für eine Majoranakopplung benötigten Darstellungstyp. Dass ein elementares $126_H$ im Grad-eins-Hull fehlt, bedeutet somit nicht, dass dieser zusammengesetzte Kanal in der vollständigen Quelle fehlt.}
+
+Die Rechnung erhält auch die anderen Paarstrukturen der vorhandenen Yukawaherleitungen. Als endlichdimensionale Darstellung gilt
+\begin{equation}
+\operatorname{Sym}^2(16\otimes4)
+=(10,10)\oplus(126,10)\oplus(120,6).
+\end{equation}
+Im Grad-zwei-Produkt existieren höchste Quellenvektoren vom Typ $(10,10)$ und $(120,6)$ mit Norm eins und Gitterlänge zum Quadrat vier. Der $(126,10)$-Anteil ist dort null und erscheint erst im Grad vier. Die symmetrische Paarabbildung hat folglich in dieser 2080-dimensionalen Eingabe den Bildrang $100+720=820$ und den Kern der Dimension $1260$. Diese Zahlenaussage folgt aus der multiplikitätsfreien Zerlegung und den geprüften höchsten Vektoren; sie behauptet keinen zusätzlich durchgerechneten 2080-mal-2080-Gramtest.
+
+\picturetext{Die Quelle erlaubt nicht jedes Zusammenschieben zweier Materiezeichen. Sie bestimmt, welche Verbindung sofort entsteht, welche nur mit einer zusätzlichen Bewegung entsteht und welche erst auf der nächsten Anregungsstufe auftaucht. Die Yukawa- und Neutrinokanäle lassen sich damit in derselben Mechanik verorten.}
+
+\subsection{Der symmetrische Paartransport schließt an den ursprünglichen Flavorweg an}
+Der benutzte Spinlift wirkt auf
+\begin{equation}
+\Lambda^{\rm even}\C^3=1\oplus\Lambda^2 3=1\oplus\overline3.
+\end{equation}
+Sein symmetrischer Familienpaarraum zerfällt daher als $10\to1\oplus\overline3\oplus\overline6$; der konjugierte Kanal enthält $1\oplus3\oplus6$. Der Sechserraum ist der Raum symmetrischer Matrizen für drei Familien. Seine Komponenten sind noch keine bestimmten Erwartungswerte.
+
+Die Konjugation lässt sich für die \emph{tatsächliche diskrete Originalmonodromie} exakt mitführen. Setze
+\begin{equation}
+B_{\rm real}=\begin{pmatrix}1&0&0\\0&0&-1\\0&-1&0\end{pmatrix}.
+\end{equation}
+Für die bereits verwendeten Originalmatrizen $M,U$ gilt
+$M B_{\rm real}=B_{\rm real}\overline M$ und
+$U B_{\rm real}=B_{\rm real}\overline U$.
+Die Hodgeabbildung $H$ mit
+$(12)\mapsto e_3^*$, $(13)\mapsto-e_2^*$, $(23)\mapsto e_1^*$
+erfüllt $H\Lambda^2(T)=\overline T H$ für $T=M,U$.
+Also verbindet $J=B_{\rm real}H$ die Außenquadratwirkung mit der Originalwirkung. Einfeldseitig bleibt das echte Windungszeichen erhalten:
+\begin{equation}
+J(-\Lambda^2 M)=-M J.
+\end{equation}
+Im symmetrischen Paar hebt es sich dagegen auf:
+\begin{equation}\label{eq:majoranapairtransport}
+\boxed{\operatorname{Sym}^2(J)\,
+\operatorname{Sym}^2(-\Lambda^2 M)
+=\operatorname{Sym}^2(M)\,\operatorname{Sym}^2(J).}
+\end{equation}
+Der Anschluss gilt jetzt auch in der gedruckten Quellenbasis: $(C_1,C_2,C_3)$ entspricht der Reihenfolge $(23),(13),(12)$. Die vorhandenen Originalphasen wurden durch die vier einfachen anhebenden und absenkenden $SU(3)$-Wurzeloperationen geprüft. Mit der umkehrenden Permutation $P$ ist der vollständige Komponentenintertwiner
+\begin{equation}
+J_C=B_{\rm real}HP
+=\begin{pmatrix}1&0&0\\0&0&-1\\0&1&0\end{pmatrix}.
+\end{equation}
+Er transportiert die tatsächlich behaltenen Quellenkomponenten nach $-M$ und ihre symmetrischen Paare nach $\operatorname{Sym}^2M$; die analoge markierte Relation gilt für $U$. Es wird keine Gleichheit von $3$ und $\overline3$ für die ganze kontinuierliche Gruppe $SU(3)$ behauptet. Ebenso folgt aus~\eqref{eq:majoranapairtransport} keine bereits ausgewählte Neutrinomatrix.
+
+Die Operatoren und ihre inneren Ladungen sind somit vorhanden; ihr Paartransport passt an den ursprünglichen Flavorweg. Zur vorhandenen physischen Massenskala führt erst der weitere Herkunftssatz: Welcher dieser Quellenoperatoren wird zu einem lokalen vierdimensionalen Feld, welcher Zustand erzeugt seinen Einsatz und wie ergeben sich daraus die bereits abgeleitete Skala und die Familienmatrix? Das chirale Gewicht vier ist keine vierdimensionale Ingenieursdimension. Die Konstruktion macht das elementare skalare $16_H$ nicht quotientzulässig; sie liefert einen konkreten zusammengesetzten Alternativkanal innerhalb derselben Quelle.
+
+\subsection{Der neutrale Alpha-Kandidat antwortet auf diesen Neutrinokanal}\label{sec:neutralpairward}
+Die neue Paarstruktur kann mit dem bereits bestimmten neutralen Feld $R=4T_{A_2}-8T_{U(1)}$ in derselben Quelle geprüft werden. Verwende dieselbe Auswahl, in der $C_0$ der ausgelassene Familien-Singulettzugang und $C_1,C_2,C_3$ der Dreieranteil sind. Für einen reinen normierten Gitterzustand $|\lambda\rangle$ gilt mit der ursprünglichen Matrix $A_R$
+\begin{equation}
+R_0|\lambda\rangle=\tfrac12\lambda^{\mathsf T}A_R\lambda\,|\lambda\rangle.
+\end{equation}
+Der symmetrische Paarzustand $B_{11}$ hat $\lambda=2\alpha_1$. Seine Familienanteile besitzen
+\begin{equation}
+h_{A_2}=4/3,\qquad h_{U(1)}=1/6,\qquad
+\boxed{R_0 B_{11}=4B_{11}.}
+\end{equation}
+Da $R$ mit den Nullmoden des gewählten $SU(3)$ kommutiert, gilt derselbe Eigenwert auf seinem gesamten symmetrischen Sechsermodul. Der antisymmetrische Paarzustand $A_{12}$ trägt dagegen $h_{A_2}=1/3$, $h_{U(1)}=1/6$ und $R_0A_{12}=0$. Der reine Singulettpaarzustand $B_{00}$ antwortet mit $R_0B_{00}=-12B_{00}$. Diese Werte wurden aus denselben Originalwurzeln und derselben zuvor berechneten Matrix $A_R$ unabhängig nachgerechnet.
+
+Für den normierten Paarzeugen im ausgewählten Dreieranteil ergibt sich damit die konkrete Quellenkorrelation
+\begin{equation}\label{eq:neutralmajoranaward}
+\boxed{\langle B_{11}^{\dagger}(\infty)\,R(z)\,B_{11}(0)\rangle
+=\frac{4}{z^2}.}
+\end{equation}
+Der Ausdruck ist eine Matrixantwort im geladenen Paarzustand, kein nichtverschwindender geladener Vakuumerwartungswert. Die Quelle besitzt nun eine berechnete gemeinsame Antwort zwischen dem Alpha-Kandidaten und dem symmetrischen Neutrinopaar. Es wird keine zusätzliche freie Kopplungszahl eingesetzt.
+
+\key{\textbf{Wie die Kette jetzt zusammenklickt:}
+Die ursprüngliche Windung liefert einen geladenen Quellenlift. Derselbe Lift transportiert den vorhandenen symmetrischen Neutrinopaarraum wie der ursprüngliche Flavorprozess. Derselbe neutrale Zustand, dessen Vakuumnorm die 48 des bedingten Alpha-Ports liefert, antwortet auf diesen Paarraum mit dem exakt berechneten Koeffizienten vier. Die Herkunft einer gemeinsamen physischen Realisierung ist dadurch an konkrete Mehrpunktantworten gebunden. Eine kondensierte Phase, eine vierdimensionale Kopplung und die bereits bekannte Massenskala folgen aus dieser Quellenidentität allein noch nicht.}
+
+\subsection{Warum die vorhandene Fermionisierung den Statistikschritt nicht überspringt}
+Für die tatsächliche chirale E8-Fermionisierung gelten
+\begin{equation}
+(E_8)_1=O\oplus S,\qquad
+\mathcal F_{\rm NS}=O\oplus V,\qquad
+\mathcal F_{\rm R}=S\oplus C.
+\end{equation}
+Die E8-Decksymmetrie hat Zeichen $(+O,-S)$; Fermionparität in den neuen Sektoren hat Zeichen $(+O,-V)$ beziehungsweise $(+S,-C)$~\cite[Abschnitt 5.1]{boylesmith}. Das sind verschiedene Operatoren auf verschiedenen Sektoren.
+
+Die 16 lokalen CAR-Fermionen bilden den $\operatorname{Spin}(16)$-Vektor $(10,1)\oplus(1,6)$. Dort wirkt $\omega_{10}$ als $\diag(-I_{10},+I_6)$, also $\omega_{10}^2=I$. Auf jedem dieser Fermionen ist $(-1)^F=-I$. Die konkreten 16 CAR-Felder sind daher nicht bereits die 16 Weylkomponenten einer Standardmodellfamilie. Die ursprünglichen $(16,4)$-Felder besitzen dagegen konformes Gewicht $5/8+3/8=1$ und sind bosonische Quellenströme.
+
+Auch der ursprüngliche geometrische Vierteldrehungslift ist zu erhalten: v522 erfüllt $\alpha_{\rm quarter}^4=(-1)^F$, also eine NS-$\Z_8$-Relation. Durch $\omega=\alpha_{\rm quarter}^2$ erhält man formal eine Halbdrehung mit $\omega^2=(-1)^F$; das identifiziert nicht die ursprüngliche Vierteldrehung mit dem inneren Zentrum. Der Herkunftssatz~\eqref{eq:fullsourcesix} bewahrt diese Typunterschiede.
+
+\subsection{Die Majoranapaare bleiben als lokale CAR-Komposite erhalten}\label{sec:carpairdictionary}
+Die Sektorunterscheidung lässt einen konstruktiven gemeinsamen Anschluss zu.
+Die geraden Paaroperatoren liegen im gemeinsamen $D_8$-Vakuummodul $O$.
+Für die hier auftretenden ganzzahligen Impulse $\lambda_i\in\{-1,0,1\}$ setze
+\[
+\chi_i^\pm=V_{\pm e_i},\qquad
+P_\lambda=:\!\prod_{i:\lambda_i\ne0}\chi_i^{\lambda_i}\!:
+\]
+in wachsender Koordinatenfolge. Die ursprünglichen E8- und CAR-Kokzyklen auf $D_8$
+sind durch die im Programm angegebene quadratische Eins-Kokette $\eta$ verbunden.
+Mit den ursprünglichen Stromphasen $p_a$ lautet der erklärte Abgleich
+\[
+c_{ab}=p_ap_b\epsilon_{E_8}(\alpha_a,\alpha_b)\eta(\alpha_a+\alpha_b).
+\]
+Er gilt auf dem gesamten gemeinsamen $D_8$-Gitter; eine Ausdehnung auf lokale
+halbzahlige CAR-Felder wird daraus nicht behauptet. Die Operatorabbildung ist
+\begin{align}
+ \Phi(B_{aa})&=c_{aa}P_{2\alpha_a},\\
+ \Phi(B_{ab})&=c_{ab}:H_{\alpha_a-\alpha_b}P_{\alpha_a+\alpha_b}:\quad(a\ne b).
+\end{align}
+Die Diagonalzustände enthalten acht CAR-Komponenten und haben Normquadrat eins.
+Die außerdiagonalen Zustände enthalten sechs CAR-Komponenten sowie einen
+Stromoszillator auf den beiden übrigen Richtungen und haben Normquadrat zwei.
+Alle besitzen chirales Gewicht vier, $X=10$, $Y=0$ und gerade CAR-Parität.
+
+Auf dem behaltenen Sechserraum werden die beiden gemeinsamen Antworten
+\eqref{eq:twojointpairresponses} erhalten. Der volle Zehnerraum besitzt dagegen
+keine unzulässig angenommene Invarianz: $B_{00}$ hat $R_0=-12$;
+bei $B_{0i}$ betragen der normierte Erwartungswert $-4$ und die Varianz $32$.
+Hier entsteht unter $R_0$ eine zusätzliche Oszillatorrichtung außerhalb des
+ursprünglichen Zehnerraums. Das Programm bewahrt diese Restwirkung.
+
+Dieser Anschluss gilt für die Paare, nicht für die einzelnen ursprünglichen
+Materiefelder. Jedes lokale NS-CAR-Wort beliebigen Grades besitzt ganzzahligen
+Gitterimpuls $p\in\Z^8$ und deshalb
+\[
+ X=-2\sum_{i=1}^5p_i\in2\Z.
+\]
+Die ursprüngliche Halbspinorfamilie trägt dagegen die ungeraden $X$-Werte
+$5,1,-3$. Weitere NS-Nachfahren können diesen Unterschied nicht beseitigen.
+Das gemeinsame Wörterbuch enthält daher lokale CAR-Felder, C/X-Ramond-Intertwiner
+und ihre wieder lokalen geraden Paaroperatoren. Diese Sektoren müssen beim
+Raumzeitanschluss gemeinsam erhalten bleiben~\cite{boylesmith,barronfermion}.
+
+\picturetext{Zwei passende Materie-Defekte lassen sich zu einem lokalen Paar
+zusammensetzen. Für dieses Paar gibt es jetzt eine ausdrückliche Darstellung
+mit den vorhandenen Fermionen der Quelle. Das ersetzt den Einzelschritt zum
+physikalischen Teilchen nicht, bewahrt aber bereits dessen benötigten Massensektor.}
+

@@ -1,0 +1,378 @@
+\section{Yukawa kernels and positivity lemmas}
+\label{app:yukawa}
+
+This appendix is the proof motor for the transport positivity, strong-CP protection, and bounded-residual statements used in the main text. The transport program is based on the regularized kernel
+\[
+\mathcal Y_f^{(\varepsilon)}=(D_f^\dagger D_f+\varepsilon^2)^{-1}.
+\]
+Three remarks are important.
+\begin{enumerate}[leftmargin=1.5em, topsep=3pt, itemsep=3pt]
+    \item The regulator $\varepsilon$ is not optional: without it the kernel becomes ill-defined exactly where the admissibility question is most delicate.
+    \item Positivity of the kernel belongs to the admissibility-closure layer rather than to the hard carrier kernel. The main text closes it through the finite hexagon gap and the lift to the full admissibility-projected operator; this appendix records the transport-side mechanism behind that closure.
+    \item Residual prefactors $\Lambda_{f,j}$ are bounded holonomy data inside the transport theorem. They must remain visible and must not be rhetorically hidden as if the mass map were diagonal without residual transport structure.
+\end{enumerate}
+
+\begin{remark}[Positive-kernel determinant route to strong CP]
+If the physical mass map is written in the polar form
+\[
+M_f=U_{f,L}H_fU_{f,R}^\dagger,
+\qquad
+H_f>0,
+\qquad
+U_{f,L},U_{f,R}\in SU(3)_F,
+\]
+with $H_f$ induced by the positive transport kernel $\mathcal Y_f^{(\varepsilon)}$, then the induced determinant phase vanishes:
+\[
+\arg\det M_f=0.
+\]
+At the same time weak CP may survive through
+\[
+V_{\mathrm{CKM}}=U_{u,L}^\dagger U_{d,L}.
+\]
+Combined with the sheet-CP symmetry protection of $\theta_{\mathrm{sheet}}$ in the relative action, this is the algebraic core of the strong-CP theorem stated in the main text. The role of the appendix remark is to display the polar-decomposition mechanics behind that theorem, not to reopen its status.
+\end{remark}
+
+\subsection{Optional strong-coupling sharpening}
+
+As an appendix-level sharpening of the closed confinement theorem, one may further require the
+admissible center-neutral Wilson functional to obey strong-coupling dominance. On that optional
+route the relative Wilson loop satisfies
+\[
+\langle W(C)\rangle_{\mathrm{rel}}
+\le
+\exp[-\sigma A_{\min}(C)],
+\qquad
+\sigma=\cthree^2\chi_{\QCD}^2,
+\]
+and the physical Hilbert space contains no color-nonsinglet asymptotic states. This statement is
+kept in the appendix so that the main theorem surface does not depend on an extra strong-coupling
+sharpening beyond the closed admissible hadronic sector.
+
+\section{Information-theoretic and cut-and-project readings}
+\label{app:info-readings}
+
+This appendix collects interpretive notes that help organize the algebraic structure of the carrier-first compiler. When an exact algebraic statement appears below, it refers back to a main-text proposition; the appendix itself does not upgrade any status label beyond the declared hard / closure / benchmark / conditional discipline.
+
+\subsection{Integrity-index overdetermination of the canonical branch}
+
+The canonical $41$-chain admits a compact integrity-table reading:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.26\linewidth}>{\raggedleft\arraybackslash}p{0.12\linewidth}Y@{}}
+\toprule
+Layer & Value & Role \\
+\midrule
+Electroweak trace block $48\,I_1^{\mathrm{EW}}$ & $41$ & retained electroweak trace packet \\
+Block exponent $32\,k_{\mathrm{EW}}$ & $41$ & E$_8$-side compression datum \\
+UV hypercharge coefficient $10\,b_1$ & $41$ & one-loop electroweak closure datum \\
+Occupancy-weighted carrier norm $\Oadm\gamma+1$ & $41$ & carrier / family compression identity \\
+\bottomrule
+\end{tabularx}
+\caption{Integrity-index overdetermination of the canonical branch. The common integer is read as an algebraic integrity marker, not as a cryptographic statement.}
+\label{tab:checksum-41}
+\end{table}
+
+The value of this table is structural rather than rhetorical: four independently defined layers collapse onto one integer on the retained branch. This is exactly the sense in which the branch carries the integrity index $\mathcal I_{41}$.
+
+\subsection{Seed variance and surprisal readings}
+
+The bridge identities also admit a disciplined probabilistic reading. Since
+\[
+\lambda_C^2=\phiz(1-\phiz),
+\]
+the Cabibbo scale is exactly the standard-deviation scale of a Bernoulli variable with success probability $p=\phiz$:
+\[
+\lambda_C=\sqrt{p(1-p)}.
+\]
+Equivalently, the Fisher information of the Bernoulli family is
+\[
+I(p)=\frac{1}{p(1-p)}=\frac{1}{\lambda_C^2},
+\]
+so the Cabibbo bridge measures the inverse square-root Fisher scale of the retained seed. This is the precise information-theoretic statement. The present paper does \emph{not} identify $\lambda_C$ itself with Fisher information or with a Bures distance.
+
+Likewise, whenever the electromagnetic closure is written with
+\[
+\ln\!\bigl((\phiz)^{-1}\bigr),
+\]
+the exact probabilistic reading is the surprisal of the seed event. That term should not be called the Shannon entropy of the full Bernoulli distribution, which would instead be
+\[
+H(\phiz)
+=
+-\phiz\ln\phiz-(1-\phiz)\ln(1-\phiz).
+\]
+Finally, the neutrino bridge relation
+\[
+\sin^2\theta_{13}=\phiz e^{-\gamma}
+\]
+is naturally described as Boltzmann-like weighting by the carrier norm $\gamma$, but the present draft does not define a full thermodynamic partition function at that point. These readings are therefore organizational interpretations of already established formulas, not new closure theorems.
+
+\subsection{Exact parity-code and information-compression reading}
+
+The strongest information-theoretic statement is no longer a loose analogy. By \Cref{prop:parity-code-family}, the one-family packet is exactly the even-parity subspace on five occupation bits,
+\[
+S^+
+\cong
+\mathrm{span}\Bigl\{|x\rangle:\sum_{i=1}^5 x_i\equiv 0 \pmod 2\Bigr\},
+\]
+so the carrier packet is kinematically the classical even-parity $[5,4,2]$ code. The split formula
+\[
+S^+
+=
+\bigl(\Lambda^{\mathrm{even}}E_3\otimes\Lambda^{\mathrm{even}}E_2\bigr)
+\oplus
+\bigl(\Lambda^{\mathrm{odd}}E_3\otimes\Lambda^{\mathrm{odd}}E_2\bigr)
+\]
+shows that the coarse parity bits of the $3$-sector and $2$-sector are exactly locked. For the maximally mixed state on the $16$ basis words, the two parity observables are perfectly correlated and therefore carry exactly one bit of mutual information.
+
+The split weight enumerator in \Cref{prop:split-weight-enumerator} is the corresponding code enumerator with hypercharge weights. It packages the six admissible occupancy sectors into the single polynomial
+\[
+W(u,v)
+=
+1+3u^2+6uv+v^2+2u^3v+3u^2v^2.
+\]
+The hypercharge-compression result of \Cref{prop:family-hypercharge-compression} sharpens the same picture further. On the uniform distribution over the $16$ carrier basis states, the six $Y$-sectors have probabilities
+\[
+\frac1{16}(1,3,6,1,2,3),
+\]
+so the hypercharge entropy is
+\[
+H(Y)
+=
+-\sum_i p_i\log_2 p_i
+=
+\frac72-\frac34\log_2 3
+\approx
+\num{2.311}\ \text{bits}.
+\]
+Since the total carrier word takes $4$ bits to specify, the unresolved nonabelian degeneracy is
+\[
+4-H(Y)\approx \num{1.689}\ \text{bits}.
+\]
+Thus hypercharge is an efficient family-sector compressor, but not a lossless label for the individual basis word.
+
+\begin{remark}[Two code layers: kinematic and admissible]
+The code reading should be split into two layers. First, $S^+$ is exactly the classical even-parity $[5,4,2]$ code on five occupation bits. Second, on the commuting admissible branch the protected physical sector is
+\[
+\mathcal H_{\mathrm{adm}}
+:=
+\operatorname{Ran}(\Padm)
+=
+\ker \Kadm
+=
+\ker \Delta_{\mathrm{adm}},
+\]
+where the last equality uses the Hodge description of \Cref{lem:hodge-admissibility-projector}. In that second layer the penalties $K_\Sigma,K_c,K_\Theta,K_g$ act as stabilizer-like sector constraints, and $\Padm$ is the Hodge projector onto the admissible physical subspace. This is the precise bridge to quantum-information language used in the manuscript. It is not yet a theorem of a self-correcting quantum memory, because no noise model, logical algebra, or lifetime analysis is derived here.
+\end{remark}
+
+\subsection{Conditional cut-and-project reading}
+
+The split
+\[
+E=E_3\oplus E_2
+\]
+also admits a possible cut-and-project interpretation, with a three-dimensional visible sector and a two-dimensional internal sector. Such a reading would become mathematically sharp only after an explicit rank-$5$ lattice or module, a projection rule, and a seam/window selection theorem are written down. Until then, the quasicrystal language is only a conditional geometric reading of the carrier split rather than part of the hard core.
+
+\section{Appendix elaboration on record algebra, horizons, and prediction semantics}
+\label{app:record}
+
+This appendix elaborates the main-text record and prediction constructions while keeping the more speculative horizon extrapolations outside the core theorem stack.
+
+\subsection{Minimal admissible vacuum}
+
+At finite volume or with a declared cutoff, an admissible vacuum candidate is written as
+\[
+\rho_B
+:=
+\argmin_{\rho\in\Vadm}\tr(\rho\Hrel),
+\]
+with lower boundedness and coercivity understood exactly as in the main-text closure axioms. The stronger generative theorem path described in the conclusion would refine this object to the global admissible vacuum functional $\mathfrak V[g,\chigeo,\Phi,\nabla_F,\delta,\{L_f\}]$ whose variations also select the transport branch. In this appendix, however, the same vacuum object is used only as the background state for the record-algebra elaborations; no stronger cosmological claim is added here beyond the closed existence statement already declared in the main theorem stack.
+
+\subsection{Record growth principle}
+
+One useful coarse-grained record algebra is
+\[
+\Arec(t):=\bigoplus_{\Delta_i>\Hhub(t)}\mathcal A_i,
+\qquad
+S_{\mathrm{rec}}(t)=\log\dim\Arec(t).
+\]
+As $\Hhub(t)$ decreases, more stable channels open. The intended arrow-of-time claim is therefore
+\[
+\frac{dS_{\mathrm{rec}}}{dt}>0,
+\]
+but only as a record-growth principle, not as a replacement for detailed nonequilibrium dynamics.
+
+\subsection{Observer algebra and Born-type evaluation}
+
+An observer is modeled as a stable pointer subalgebra
+\[
+\Aobs\subset\Arec.
+\]
+With orthogonal projectors $P_i\in\Aobs$ one writes the measurement channel
+\[
+\mathcal M_O(\rho)=\sum_i(P_i\rho P_i)\otimes |i\rangle\langle i|.
+\]
+In finite-dimensional sectors, positivity, additivity on orthogonal decompositions, and phase invariance lead to the standard Born-type assignment
+\[
+p_i=\tr(\rho P_i).
+\]
+The claim is therefore only a constrained evaluation principle on admissible sectors, not a new theorem about measurement in all settings.
+
+\subsection{Horizons as conjectural inner seams}
+
+If a horizon is modeled as an inner seam, the manuscript uses only an approximate factorization language,
+\[
+\mathcal H_{\mathrm{out}}\otimes\mathcal H_H\otimes\mathcal H_{\mathrm{in}},
+\]
+or, better, an algebraic split on an appropriate code subspace. This appendix intentionally avoids selling the factorization as exact fundamental structure.
+
+\subsection{Prediction semantics}
+
+The main-text prediction map can be decorated by explicit experimental metadata as
+\[
+Q=(\rho_0,\mathcal O_Q,\Delta_Q,t,\mathcal C_Q,\mathcal R_Q),
+\qquad
+\Pred(Q)=\mathcal R_Q\!\left(\tr(\rho_tE_Q(\Delta)),\mathcal C_Q\right),
+\]
+with
+\[
+\rho_t=U(t)\rho_0U^\dagger(t).
+\]
+This is kept only as an optional formal extension.
+
+\section{Global particle ledger and status surface}
+\label{app:global-particle-ledger}
+
+This appendix collects the full Standard Model output of the carrier-first compiler into two
+master tables. The purpose is not to flatten the truth-mode hierarchy but to give the reader a
+single-page capability audit: which particles, which quantities, which derivation, which status,
+which reference value, which residual. The status language is the same throughout the paper:
+
+\begin{tcolorbox}[colback=tfptblue!2, colframe=tfptblue!50, breakable,
+    title={Status legend for the particle ledger}, colbacktitle=tfptblue!70]
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+\item \textbf{Exact algebraic (EA):} exact consequences of the carrier algebra, parity code,
+      weight enumerator, and compression identities.
+\item \textbf{Conditional geometric or closure (CC):} statements that depend on the geometric
+      anchor, admissibility closure, APS input, positivity input, or selected retained branch.
+\item \textbf{Matched intrinsic observation (MIO):} rows read through the observation functor
+      $\mathcal R_{\mathrm{TOE}}$ and benchmark map $\mathcal R_{\SM}$, including threshold
+      outputs and convention-dependent comparisons.
+\item \textbf{Optional extrapolation (OE):} appendix-level continuations not needed for the core.
+\end{itemize}
+Rows on the observation surface are read through $\mathcal R_{\mathrm{TOE}}$ and in practice
+compared via $\mathcal R_{\SM}$.
+\end{tcolorbox}
+
+\begin{remark}[Counting convention used here]
+\label{rem:counting-convention}
+One chiral family from $S^+=\Lambda^{\mathrm{even}}E$ contains $16$ states:
+$\nu^c$\,(1), $u^c$\,(3), $Q_L$\,(6), $e^c$\,(1), $L_L$\,(2), $d^c$\,(3).
+With $\nu^c$ explicitly in the carrier family packet, each family has $6$ Weyl field types.
+Three families give $\Oadm=3\times 16=48$ admissible chiral states.
+The gauge sector has $12$ bosons ($\gamma$, $8$ gluons, $W^\pm$, $Z$), and the Higgs sector has
+$1$ physical scalar. The total field-type count is therefore $3\times 6+4+1=23$ distinct types.
+\end{remark}
+
+\subsection{Table A: Standard Model content and origin map}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.0}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.09\linewidth}>{\raggedright\arraybackslash}p{0.11\linewidth}>{\raggedright\arraybackslash}p{0.10\linewidth}>{\centering\arraybackslash}p{0.04\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.08\linewidth}@{}}
+\toprule
+Particle & Repr. & Ext.\ source & $Y$ & TFPT origin & Internal source & Status \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Fermion sector (one family $\times\,3$):}} \\
+$\nu^c$ & $(1,1)_0$ & $\Lambda^0E$ & $0$ & carrier scaffold & hard carrier, $S^+$ & EA \\
+$e^c$ & $(1,1)_1$ & $\Lambda^2E_2$ & $1$ & carrier scaffold & hard carrier, $S^+$ & EA \\
+$u^c$ & $(\bar 3,1)_{-2/3}$ & $\Lambda^2E_3$ & $-\frac23$ & carrier scaffold & hard carrier, $S^+$ & EA \\
+$d^c$ & $(\bar 3,1)_{1/3}$ & $\Lambda^2E_3\otimes\Lambda^2E_2$ & $\frac13$ & carrier scaffold & hard carrier, $S^+$ & EA \\
+$Q_L$ & $(3,2)_{1/6}$ & $E_3\otimes E_2$ & $\frac16$ & carrier scaffold & hard carrier, $S^+$ & EA \\
+$L_L$ & $(1,2)_{-1/2}$ & $\Lambda^3E_3\otimes E_2$ & $-\frac12$ & carrier scaffold & hard carrier, $S^+$ & EA \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Gauge boson sector:}} \\
+$\gamma$ & $(1,1)_0$ & unbroken $U(1)_{\mathrm{em}}$ & $0$ & exact gauge direction & carrier algebra & EA \\
+$g$ ($\times 8$) & $(8,1)_0$ & unbroken $SU(3)_c$ & $0$ & exact gauge direction & carrier algebra & EA \\
+$W^\pm$ & $(1,3)_{\pm1}$ & SSB from $\Phi$ & $\pm1$ & bosonic index + Higgs mechanism & Dirac-anchor closure & CC $\to$ MIO \\
+$Z$ & $(1,1)_0$ & SSB from $\Phi$ & $0$ & bosonic index + Higgs mechanism & Dirac-anchor closure & CC $\to$ MIO \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Scalar sector:}} \\
+$H$ & $(1,2)_{1/2}$ & seam-even $\Phi$ & $\frac12$ & bosonic relative index & $\Ind_{\mathrm{rel}}^{\Padm}(\mathcal B_{E_2}^+)=1$ & CC $\to$ MIO \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Structural outputs:}} \\
+$N_{\mathrm{fam}}=3$ & $F\cong\mathbb C^3$ & $H^1(X_f,\mathbb C)$ & --- & topological family closure & orbifold Euler characteristic & CC \\
+$\Oadm=48$ & $S^+\otimes F$ & occupancy & --- & bridge corollary & $3\times 16$ & CC \\
+$G_{\SM}$ & $SU(3)\times SU(2)\times U(1)$ & carrier split & --- & minimal carrier theorem & $E_3\oplus E_2$ & EA \\
+\bottomrule
+\end{tabularx}
+\caption{Standard Model content and origin map. Every particle field and structural output is
+traced to its TFPT source and assigned a status class. EA~=~exact algebraic,
+CC~=~conditional closure, MIO~=~matched intrinsic observation. The arrow CC\,$\to$\,MIO
+indicates that the field exists as a conditional closure output and its mass is read as matched
+intrinsic observation after $\mathcal R_{\SM}$.}
+\label{tab:sm-content-origin}
+\end{table}
+
+\subsection{Table B: full mass and benchmark surface}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\sisetup{round-mode=none, group-minimum-digits=20}
+\setlength{\tabcolsep}{1.5pt}
+\renewcommand{\arraystretch}{1.0}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}llllrlrrl@{}}
+\toprule
+Quantity & Sector & TFPT formula or source & Obs.\ map & \makecell[r]{TFPT\\value} & Unit & \makecell[r]{Reference\\value} & Residual & Status \\
+\midrule
+\multicolumn{9}{@{}l}{\textit{Exact algebraic surface:}} \\
+$\alpha^{-1}(0)$ & EM & exact $\phiseam(\alpha)$ closure & on-shell Thomson & \num{137.0359992} & --- & \num{137.03599918} & $+1.87\sigma$ & EA \\
+$m_\gamma$ & EM & unbroken $U(1)_{\mathrm{em}}$ & --- & $0$ & --- & $0$ & exact & EA \\
+$m_g$ & QCD & unbroken $SU(3)_c$ & --- & $0$ & --- & $0$ & exact & EA \\
+\midrule
+\multicolumn{9}{@{}l}{\textit{Conditional closure surface:}} \\
+$e$ & lepton & $\frac{\vgeo}{\sqrt2}\frac{16\pi}{7}(\phiz)^5$ & $\vgeo$ branch & \num{0.52197} & MeV & \num{0.510999} & $+2.15\%$ & CC \\
+$\mu$ & lepton & $\frac{\vgeo}{\sqrt2}\frac{4\pi}{3}(\phiz)^3$ & $\vgeo$ branch & \num{107.70} & MeV & \num{105.658} & $+1.93\%$ & CC \\
+$\tau$ & lepton & $\frac{\vgeo}{\sqrt2}\frac{7\pi}{6}(\phiz)^2$ & $\vgeo$ branch & \num{1.7723} & GeV & \num{1.77686} & $-0.26\%$ & CC \\
+$u$ & quark & ChPT inversion from $m_s$ anchor & $\overline{\mathrm{MS}}$, $2$\,GeV & \num{2.195} & MeV & \num{2.16} & $+1.62\%$ & CC \\
+$d$ & quark & $m_s/(m_s/m_d)$ & $\overline{\mathrm{MS}}$, $2$\,GeV & \num{4.67} & MeV & \num{4.67} & $+0.00\%$ & CC \\
+$\pi^0$ & hadron & GMOR relation from $(m_u+m_d)$ & --- & \num{134.979} & MeV & \num{134.977} & $+0.00\%$ & CC \\
+$p$ & hadron & hadron mass ladder & --- & \num{935.03} & MeV & \num{938.272} & $-0.35\%$ & CC \\
+$\bar\theta$ & strong CP & sheet-CP symmetry $\mathcal C_\Sigma$ & --- & $0$ & --- & $<10^{-10}$ & exact null & CC \\
+\midrule
+\multicolumn{9}{@{}l}{\textit{Matched intrinsic observation surface:}} \\
+$W^\pm$ & EW & intrinsic threshold at $M_Z$ & $\mathcal R_{\SM}$ & \num{80.369} & GeV & \num{80.369} & $0.00\%$ & MIO \\
+$Z$ & EW & intrinsic threshold at $M_Z$ & $\mathcal R_{\SM}$ & \num{91.188} & GeV & \num{91.188} & $0.00\%$ & MIO \\
+$H$ & EW & intrinsic threshold & $\mathcal R_{\SM}$ & \num{125.25} & GeV & \num{125.25} & $0.00\%$ & MIO \\
+$s$ & quark & strange-quark matched row & $\overline{\mathrm{MS}}$, $2$\,GeV & \num{93.4} & MeV & \num{93.4} & $0.00\%$ & MIO \\
+$c$ & quark & up-type ratio ladder & threshold matching & \num{1.27} & GeV & \num{1.27} & $0.00\%$ & MIO \\
+$b$ & quark & down-type ratio ladder & threshold matching & \num{4.18} & GeV & \num{4.18} & $0.00\%$ & MIO \\
+$t$ & quark & up-type ratio ladder & threshold matching & \num{172.57} & GeV & \num{172.57} & $0.00\%$ & MIO \\
+$\hat s_Z^2(M_Z)$ & EW & gauge closure + seam-even matching & $\overline{\mathrm{MS}}$ & \num{0.23116} & --- & \num{0.23121} & $-0.02\%$ & MIO \\
+$\alpha_s(M_Z)$ & QCD & gauge closure + singlet Wilson matching & $\overline{\mathrm{MS}}$ & \num{0.11796} & --- & \num{0.1180} & $-0.03\%$ & MIO \\
+$\bar\alpha^{(5)}(M_Z)^{-1}$ & EM & $\mathcal R_{\SM}[\alpha(0)]$ & $\overline{\mathrm{MS}}$ & \num{127.9405} & --- & \num{127.93} & $+1.32\sigma$ & MIO \\
+$\lambda_C$ & CKM & $\sqrt{\phiz(1-\phiz)}$ & CKM proxy & \num{0.22438} & --- & \num{0.22431} & $+0.08\sigma$ & MIO \\
+$\sin^2\theta_{13}$ & PMNS & $\phiz\,e^{-5/6}$ & NuFIT NO & \num{0.02311} & --- & \num{0.02224} & $+1.52\sigma$ & MIO \\
+$\Omega_b$ & cosmo & $(4\pi-1)\beta_{\mathrm{rad}}$ & Planck 2018 & \num{0.04894} & --- & \num{0.04930} & $-0.42\sigma$ & MIO \\
+$\beta$ & cosmo & $\beta_{\mathrm{rad}}$ in degrees & Planck / Minami--Komatsu & \num{0.242} & deg & \num{0.35} & $-0.77\sigma$ & MIO \\
+\midrule
+\multicolumn{9}{@{}l}{\textit{Intrinsic neutrino closure (no external anchor):}} \\
+$\nu_1$ & neutrino & intrinsic transport closure & --- & $0$ & eV & --- & --- & MIO \\
+$\nu_2$ & neutrino & intrinsic transport closure & --- & \num{8.614e-3} & eV & --- & --- & MIO \\
+$\nu_3$ & neutrino & intrinsic transport closure & --- & \num{5.015e-2} & eV & --- & --- & MIO \\
+$\Sigma m_\nu$ & neutrino & intrinsic closure sum & --- & \num{5.876e-2} & eV & $<0.12$ & compatible & MIO \\
+\bottomrule
+\end{tabular}}
+\caption{Full mass and benchmark surface of the carrier-first compiler. Every row carries its
+TFPT source formula, observation map, compared value with reference and residual, and status
+class. Reference values are PDG~2024 and CODATA~2022 unless noted otherwise. The neutrino
+rows have no external comparison anchor beyond the cosmological sum bound.
+EA~=~exact algebraic, CC~=~conditional closure, MIO~=~matched intrinsic observation.}
+\label{tab:full-mass-benchmark-surface}
+\end{table}
+

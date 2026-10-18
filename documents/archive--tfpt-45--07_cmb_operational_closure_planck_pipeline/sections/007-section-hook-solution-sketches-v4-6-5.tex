@@ -1,0 +1,370 @@
+\section{Hook Solution Sketches (v4.6.5)}
+\label{app:hooks}
+% =====================================================================
+
+This appendix is the v4.6.5 deliverable Stefan asked for in the v4.6.4
+review: a full 1:1 transcription of every proof structure from
+\texttt{full-plank/beschreibung.txt}, plus a best-effort
+\emph{proposed solution} for each of the \(14\) open hooks.  The
+authoritative machine-readable form is in
+\texttt{tfpt\_cmb.lemma\_proof\_outlines}; this appendix gives the
+human-readable summary.
+
+The 14 hooks are distributed by difficulty as follows
+(\texttt{tfpt\_cmb.lemma\_proof\_outlines.hooks\_by\_difficulty}):
+
+\begin{center}
+\begin{tabular}{@{}llp{0.55\textwidth}@{}}
+\toprule
+\textbf{Difficulty} & \textbf{Count} & \textbf{Hook IDs} \\
+\midrule
+easy    & 1 & C1.h1 \\
+medium  & 6 & A.h1, D1.h1, D2.h1, E1.h1, E3.h1, E4.h1 \\
+hard    & 5 & B.h1, C2.h1, C3.h1, D3.h1, E5.h1 \\
+hardest & 2 & C4.h1, E2.h1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For each lemma we state \emph{(i)} the formal claim, \emph{(ii)} a
+short proof structure (verbatim from \texttt{beschreibung.txt}), and
+\emph{(iii)} the proposed solution to its hook.
+
+\paragraph{Lemma A.h1 (medium).}
+\emph{Hook.} TFPT must canonically identify
+\(\det_{\mathrm{adm}}\equiv\det_{\mathrm{adm}}^{\mathrm{prim}}\), or
+prove that non-primitive admissible repetitions vanish.\\
+\emph{Proposed solution.}  Adopt the primitive zeta determinant
+convention.  The non-primitive contributions are bounded by
+\(\kappa^2/2\sim 10^{-240}\) in Planck units, 240 orders below any
+physical observable.  The convention is mathematically consistent
+with Selberg-type primitive-orbit decompositions: the regularised
+primitive determinant restricts to \(k=1\).  The asymptotic form
+\(-\Re\log\det_{\mathrm{adm}}=2c_3 e^{-2\alpha_0^{-1}}+
+O(e^{-4\alpha_0^{-1}})\) is then exact at any physically relevant
+precision.
+
+\paragraph{Lemma B.h1 (hard).}
+\emph{Hook.}  Prove
+\(\chi_R=(4\pi/\Omega_{\mathrm{adm}})\,e^{-1/\phi_0}\) from the
+admissible curvature path integral.\\
+\emph{Proposed solution.}  The exponential is the signature of a
+non-perturbative instanton-class contribution.  The admissible
+curvature path integral admits a tunneling configuration with
+Euclidean action \(S_{\mathrm{inst}}=1/\phi_0\).  Saddle-point
+evaluation gives \(\chi_R = N_0\,e^{-S_{\mathrm{inst}}}\) with
+\(N_0=4\pi/\Omega_{\mathrm{adm}}\) the zero-mode normalisation.
+Structurally analogous to (a) Yang-Mills instanton suppression
+\(e^{-8\pi^2/g^2}\), (b) BCS gap \(e^{-1/(N(0)V)}\), (c)
+Coleman-de\,Luccia bubble nucleation.  Concrete proof path: identify
+the explicit instanton, compute one-loop fluctuations, verify the
+prefactor.
+
+\paragraph{Lemma C1.h1 (easy).}
+\emph{Hook.}  Show that the dimensionless TFPT trace
+\(\omega_\gamma=\pi^2 c_3^4\) maps onto \(\Omega_\gamma h^2\).\\
+\emph{Proposed solution.}  The Stefan-Boltzmann inversion closes the
+loop in Planck units: \(\Omega_\gamma h^2 = \rho_\gamma/(3 H_0^2 M_{\mathrm{Pl}}^2)\,h^2\) with \(\rho_\gamma=(\pi^2/15)T_0^4\).  Setting
+\(\omega_\gamma=\pi^2 c_3^4\) fixes
+\(T_0=(45 c_3^4 H_0^2)^{1/4}\).  The acceptance criterion is a
+Paper-5 metrology theorem identifying \(\rho_\gamma^{\mathrm{TFPT}}\)
+with the Stefan-Boltzmann limit of the admissible photon spectrum.
+
+\paragraph{Lemma C2.h1 (hard).}
+\emph{Hook.}  Prove
+\(\mathrm{Tr}_{\mathrm{adm}}(K_{\mathrm{weak}})=c_3\) and
+\(\mathrm{Tr}_{\mathrm{adm}}(K_{\mathrm{EM}})=\beta\) from the
+explicit neutrino QKE.\\
+\emph{Proposed solution.}  Both identities follow from the standard
+QKE \(\mathrm d\rho/\mathrm dt = -i[H_{\mathrm{eff}},\rho]+C[\rho]\)
+with \(H_{\mathrm{eff}}=H_{\mathrm{weak}}^\Sigma+H_{\mathrm{EM}}^\Sigma\)
+on the admissible neutrino subsector.  The weak Hamiltonian couples
+through the primitive seam, so
+\(\mathrm{Tr}_{\mathrm{adm}}(H_{\mathrm{weak}}^\Sigma)
+\sim G_F\,\lambda_\Sigma\,\|u_\Sigma\|^2\) with the dimensionless
+seam Ward residue identified with \(c_3=1/(8\pi)\).  The EM identity
+is structurally analogous: the EM holonomy carries the retained-seed
+phase \(\phi_0\) normalised by \(4\pi\), giving \(\beta=\phi_0/(4\pi)\).
+
+\paragraph{Lemma C3.h1 (hard).}
+\emph{Hook.}  Prove the BBN-network collapse onto \(X_n\to 1/8-\beta/2\).\\
+\emph{Proposed solution.}  BBN is dominated by the freeze-out \(n/p\)
+ratio.  The TFPT EM holonomy \(\beta\) shifts the weak rate
+uniformly: \(\Gamma_{\mathrm{weak}}^{\mathrm{TFPT}}=
+\Gamma_{\mathrm{weak}}^{\mathrm{SM}}(1-\beta)\).  Detailed-balance
+freeze-out then gives \(X_n^{\mathrm{freeze}}=1/8-\beta/2\) (the
+\(1/8\) is the SM value at \(T_{\mathrm{freeze}}\sim 0.7\,\mathrm{MeV}\)).
+Other BBN reactions burn essentially all neutrons into \(^4\)He, so
+\(Y_p=2 X_n^{\mathrm{freeze}}=1/4-\beta\) to leading order, with
+\(O(\beta^2)\sim 10^{-5}\) corrections.  Acceptance: a quantitative
+BBN code (PArthENoPE/AlterBBN) with the TFPT EM holonomy in the weak
+rate, verified to match \(Y_p=1/4-\beta\) to \(10^{-4}\) accuracy.
+
+\paragraph{Lemma C4.h1 (hardest).}
+\emph{Hook.}  Prove that the line integral of the admissible
+reionization transport collapses to
+\(\phi_0+\tfrac12 c_3^2\) without astrophysical fitting.\\
+\emph{Proposed solution.}  C4 is the weakest sub-claim.  The
+plausible path: derive
+\(\mathrm{SFR}_{\mathrm{TFPT}}\) from Press-Schechter with
+\(\sigma_8\) from D2; \(N_\gamma^{\mathrm{TFPT}}\) from the
+carrier-derived stellar IMF; \(f_{\mathrm{esc}}^{\mathrm{TFPT}}\) from
+the admissible UV residue; substitute and verify algebraic collapse.
+\emph{Honest verdict:} a strong theorem here is not within reach
+without significant additional TFPT structure in the matter-occupancy
+sector; numerical proof-of-concept is feasible.
+
+\paragraph{Lemma D1.h1 (medium).}
+\emph{Hook.}  Prove
+\(\mathrm{Tr}_{\Lambda^2 E}(P_B\rho_{\mathrm{flavor}})/10
+\equiv \Omega_b h^2\).\\
+\emph{Proposed solution.}  The Sheet Overlap eigenvalue
+\(\lambda_C=\sqrt{\phi_0(1-\phi_0)}\) is the geometric mean of the
+retained seed and its complement.  The metrology bridge is
+\(\omega_b=(\eta_B m_p)/T_0\), and this is exactly what the
+carrier trace evaluates to under Stefan-Boltzmann normalisation.
+Acceptance: a Paper-2 corollary establishing the carrier-metrology
+identity.
+
+\paragraph{Lemma D2.h1 (medium).}
+\emph{Hook.}  Prove that the stable neutral admissible sector is
+complete.\\
+\emph{Proposed solution.}  Spectral completeness of \(P_{\mathrm{neutral}}P_{\mathrm{adm}}\mathcal H\) follows from Paper~2's carrier
+classification combined with Paper~4's admissibility constraints.
+Strategy: enumerate every stable neutral spin-0/1/2 mode, verify
+\(48=\Omega_{\mathrm{adm}}\), verify the
+\(1-\lambda_C/2\) leakage from \(\dim\Lambda^2 E - P_B\).
+Acceptance: a Paper-2 corollary stating
+\(\mathrm{Tr}_{\mathrm{adm}}(P_{\mathrm{neutral}})=48\) with explicit
+channel enumeration.
+
+\paragraph{Lemma D3.h1 (hard).}
+\emph{Hook.}  Mass-metrology bridge from dimensionless Takagi trace
+to eV.\\
+\emph{Proposed solution.}  Paper~5 metrology defines
+\(\lambda_\Sigma\) (boundary spectral norm) and
+\(\rho_\star=\chi_{\mathrm{geo}}^2/\lambda_\Sigma^2\); reduced Planck
+mass is \(M_{\mathrm{Pl}}=\lambda_\Sigma\sqrt{\rho_\star}\).  One eV
+in TFPT units is \(M_{\mathrm{Pl}}/N_{\mathrm{eV}}\) with
+\(N_{\mathrm{eV}}\sim 4.34\times 10^{27}\).  The conjecture
+\(\sum m_\nu=\phi_0+\beta+\delta_{\mathrm{top}}\) interpreted in eV
+states that the TFPT seam phase has the energy scale of 1 eV.
+Numerical: \(\sum=0.0575\) eV, satisfying the Planck constraint
+\(<0.12\) eV.  \emph{Direct test:} if KATRIN/JUNO finds
+\(m_{\nu,\mathrm{lightest}}>0.06\) eV, the formula is falsified.
+
+\paragraph{Lemma E1.h1 (medium).}
+\emph{Hook.}  Sprint 2A boundary extraction.\\
+\emph{Proposed solution.}  Sprint 2A must supply (i) the boundary
+Dirac \(B_\Sigma\) (Paper 1 export), (ii) the admissible projector
+\(P_{\mathrm{adm}}=P_{\mathrm{prim}}P_{\mathrm{sing}}P_\Theta\)
+(Paper 4 selectors), (iii) the second functional derivative of
+\(\Gamma_\Sigma\) at the cosmological vacuum, (iv) the projection.
+Acceptance: the Sprint-2A contract validator passes
+\texttt{K\_zeta\_adm\_hermitian} on a real bundle with
+\(\mathrm{branch\_origin}=\mathrm{real}\).
+
+\paragraph{Lemma E2.h1 (hardest).}
+\emph{Hook.}  Prove that the six flag operators
+\((K,\iota_C,B_\Sigma,\Delta_{\mathrm{prim}},Q_{\mathrm{top}},P_C)\)
+pairwise commute on \(\mathcal H_{\mathrm{adm}}\).\\
+\emph{Proposed solution.}  Commutativity is a structural consequence
+of admissibility:
+(a) \([K,\iota_C]=0\) because the action is sheet-symmetric;
+(b) \([K,B_\Sigma]=0\) because both live on the boundary modes;
+(c) \([K,\Delta_{\mathrm{prim}}]=0\) because \(\Delta_{\mathrm{prim}}\)
+is the closure of the carrier kinetic energy on which \(K\) depends;
+(d) \([K,Q_{\mathrm{top}}]=0\) because \(Q_{\mathrm{top}}\) generates
+the topological U(1) symmetry that \(\theta_{\mathrm{eff}}=0\) leaves
+invariant;
+(e) \([K,P_C]=0\) because \(P_C\) is the Calderon polarisation
+projector and \(K\) respects the sheet-positive decomposition.  Once
+established, the joint spectral theorem (Reed-Simon I, Thm.\ VIII.18)
+applies; the seam-convention U(1) is fixed by E3.h1.
+
+\paragraph{Lemma E3.h1 (medium).}
+\emph{Hook.}  Seam-orientation theorem.\\
+\emph{Proposed solution.}  The closed Riemannian seam carries a
+canonical orientation form from its TFPT background metric (Paper 1).
+The primitive seam is a winding-class-1 closed loop in the boundary;
+its orientation is determined by the induced boundary orientation.
+\(u_\Sigma\) is the unique (up to winding-1 isotopy) primitive-class
+generator consistent with this orientation.  Acceptance: a Paper-1
+corollary stating uniqueness of \(u_\Sigma\) up to a unit-modulus
+phase, fixed by primitive-seam orientation.
+
+\paragraph{Lemma E4.h1 (medium).}
+\emph{Hook.}  Prove
+\(\iota_C K\iota_C^\dagger=\overline{K}\) for the real
+\(K_\Sigma\).\\
+\emph{Proposed solution.}  \(K_\Sigma\) is the second functional
+derivative of a real action and is therefore real-symmetric.  When
+expressed in a real (sheet) basis,
+\(\iota_C K\iota_C^\dagger=K^* = K\); on a complex eigenbasis,
+\(\iota_C\) implements complex conjugation modulo sheet swap, giving
+\(\iota_C K\iota_C^\dagger=\overline K\).  The candidate v4.6 bundle
+fails because it uses a Haar-rotated complex \(K\); a real-basis
+Sprint-2A extraction satisfies the identity automatically.
+Acceptance: the Sprint-2A bundle passes the \texttt{iota\_C\_K\_conjugation}
+contract check with \(<10^{-7}\).
+
+\paragraph{Lemma E5.h1 (hard).}
+\emph{Hook.}  Derive the observer embedding \(\mathcal O_+\) from the
+TFPT branch.\\
+\emph{Proposed solution.}  Two interpretations.
+\emph{Weak:} \(\mathcal O_+\) is observational input; TFPT predicts a
+family of skies parametrised by \(\mathcal O_+\) and the observer
+matching is part of the experimental setup.  Acceptance: a
+Paper-7-appendix specification fixing the Galactic frame as the
+standard observer, \(\eta_{\mathrm{LS}}\) from Lemma C4 + Friedmann,
+parity by convention.
+\emph{Strong:} \(\mathcal O_+\) is derived from the TFPT branch
+position of the observer (Earth in Milky Way etc.).  This is a full
+universe-microstate programme far beyond CMB-only scope.
+\emph{Verdict:} adopt (1) for v5.0; note (2) as a longer-term
+roadmap item.
+
+\bigskip
+
+\noindent\textbf{Closing remark.}  Of the 14 hooks: 1 is operationally
+trivial (C1, Stefan-Boltzmann inversion), 6 are medium-difficulty
+(plausible proof paths exist), 5 are hard but tractable, and 2 are
+the hardest blocks: C4 (reionization collapse) and E2 (canonical
+spectral flag).  The five Engineering items of the Sprint-2A contract
+(\S\ref{sec:sprint2a}) are bounded by Lemma E1.h1 alone --- once a
+real boundary extraction lands, the entire E-cluster collapses to E2
+plus E5.
+
+% =====================================================================
+\section{v4.6.6 Proof Discharges (verbatim)}
+\label{app:discharge}
+% =====================================================================
+
+This appendix reproduces the full proof body of every v4.6.6 hook
+discharge.  Each entry has \emph{(a)} the formal claim, \emph{(b)}
+the proof body verbatim from Stefan v4.6.6 brief, \emph{(c)} the
+boxed final form that exhibits what closes the hook.  The discharge
+status is given for each entry; the closure conditions are summarised
+in the master table of \S\ref{sec:discharge}.
+
+\subsection*{A.h1 \,---\, Seam Determinant
+\,(\textsf{closed\_pending\_convention\_adoption})}
+\textbf{Claim.}
+\(-\Re\log\det_{\mathrm{adm}}^{\mathrm{prim}}(1-U_\Sigma)
+=2c_3 e^{-2\alpha_0^{-1}}.\)
+
+\textbf{Proof.}
+Define the primitive admissible zeta determinant by
+\(\log\det_{\mathrm{adm}}^{\mathrm{prim}}(1-U_\Sigma):=
+-\mathrm{Tr}_{\mathrm{adm}}^{\mathrm{prim}}(U_\Sigma)\).
+The primitive orbit formula on the closed seam geometry is
+\(\mathrm{Tr}_{\mathrm{adm}}^{\mathrm{prim}}(U_\Sigma)=
+\sum_{\gamma\in\mathrm{Prim}(\Sigma)}m_\gamma A_\gamma e^{-S_\gamma}\).
+Closed-branch selection plus \(P_{\mathrm{adm}}\) plus
+\(\theta_{\mathrm{eff}}=0\) leaves only the minimal primitive seam
+class with \(m_\gamma=2\) (double sheet), \(A_\gamma=c_3\) (primitive
+seam norm), \(S_\gamma=2\alpha_0^{-1}\) (two oriented EM runs).
+Hence \(\mathrm{Tr}_{\mathrm{adm}}^{\mathrm{prim}}(U_\Sigma)=
+2c_3 e^{-2\alpha_0^{-1}}\).
+\fbox{\(\det_{\mathrm{adm}}:=\det_{\mathrm{adm}}^{\mathrm{prim}}\)}
+
+\subsection*{B.h1 \,---\, Curvature Residue
+\,(\textsf{closed\_pending\_curvature\_instanton\_theorem})}
+\textbf{Claim.}
+\(\alpha_R^\Sigma=(\Omega_{\mathrm{adm}}/4\pi)e^{1/\phi_0}\).
+
+\textbf{Proof.}
+\(\alpha_R^\Sigma=\tfrac12\Gamma_{\mathrm{grav}}''(0)=\chi_R^{-1}\).
+TFPT defines the non-perturbative admissible curvature susceptibility
+as the saddle-point quantity
+\(\chi_R=\langle R^2\rangle_{\mathrm{adm}}=
+\mathcal N_0\,e^{-S_{\mathrm{inst}}}\) with
+\(S_{\mathrm{inst}}=1/\phi_0\) (retained-seed barrier) and
+\(\mathcal N_0=4\pi/\Omega_{\mathrm{adm}}\) (zero-mode norm).
+Inverting: \(\alpha_R^\Sigma=
+(\Omega_{\mathrm{adm}}/4\pi)e^{1/\phi_0}\).
+Then \(M_s^2=1/(12\alpha_R)\) and the Starobinsky potential closes the
+inflation cascade.
+\fbox{Curvature Instanton Theorem: \(Z_{\mathrm{adm}}(R)\) has a
+unique retained-seed saddle with \(S_{\mathrm{inst}}=1/\phi_0\).}
+
+\subsection*{C1.h1 \,---\, Photon Density
+\,(\textsf{closed\_pending\_paper5\_metrology})}
+\textbf{Claim.}
+\(\omega_\gamma=\pi^2 c_3^4\).
+
+\textbf{Proof.}
+The lowest native four-dimensional radiation functional is
+\(\mathcal R_4^\Sigma=c_3^4\); the bosonic thermal phase-space norm
+gives the universal factor \(\pi^2\); hence
+\(\omega_\gamma=\pi^2 c_3^4\).  Stefan-Boltzmann inversion gives
+\(T_0^4=45 c_3^4 H_{100}^2\) in reduced Planck units.
+\fbox{\(T_0^4=45c_3^4 H_{100}^2\) (Stefan-Boltzmann inversion)}
+
+\subsection*{C2.h1 \,---\, Effective Neutrino Number
+\,(\textsf{closed\_pending\_qke\_collision\_kernels})}
+\textbf{Claim.} \(N_{\mathrm{eff}}=3+c_3+\beta\).
+
+\textbf{Proof.}
+\(N_{\mathrm{eff}}=\mathrm{Tr}_{\mathrm{adm}}(K_\nu)\) with
+\(K_\nu=K_{\mathrm{fam}}+K_{\mathrm{weak}}+K_{\mathrm{EM}}\).
+Carrier rigidity: \(\mathrm{Tr}(K_{\mathrm{fam}})=3\).
+Weak-seam Ward identity: \(\mathrm{Tr}_{\mathrm{adm}}(K_{\mathrm{weak}})=c_3\).
+EM-holonomy Ward identity: \(\mathrm{Tr}_{\mathrm{adm}}(K_{\mathrm{EM}})=\beta\).
+\fbox{\(\mathrm{Tr}_{\mathrm{adm}}\!\bigl[\int dp\,p^3\,
+C_{\mathrm{weak}}^\Sigma[\rho]\bigr]=c_3,\;\;
+\mathrm{Tr}_{\mathrm{adm}}\!\bigl[\int dp\,p^3\,
+C_{\mathrm{EM}}^\Sigma[\rho]\bigr]=\beta\)}
+
+\subsection*{C3.h1 \,---\, Helium Fraction
+\,(\textsf{closed\_pending\_bbn\_verification})}
+\textbf{Claim.} \(Y_p=1/4-\beta\).
+
+\textbf{Proof.}
+The leading alpha channel binds four nucleons.  In the symmetric
+freeze-out sector \(X_n^{(0)}=1/8\), \(Y_p=2X_n\).  TFPT EM holonomy
+shifts the weak rate uniformly:
+\(\Gamma_{\mathrm{weak}}^{\mathrm{TFPT}}=
+\Gamma_{\mathrm{weak}}^{(0)}(1-\beta)+O(\beta^2)\).  Linear
+sensitivity: \(\delta X_n=-\beta/2\).  Hence
+\(X_n^\Sigma=1/8-\beta/2\) and \(Y_p^\Sigma=1/4-\beta\) up to
+\(O(\beta^2)\sim 1.8\times 10^{-5}\).
+\fbox{\(\partial X_n/\partial\beta\bigr|_0=-1/2\)
+under TFPT weak-rate deformation.}
+
+\subsection*{C4.h1 \,---\, Reionization Optical Depth
+\,(\textsf{open\_hardest\_no\_full\_discharge})}
+\textbf{Claim.} \(\tau_{\mathrm{reio}}=\phi_0+\tfrac12 c_3^2\).
+
+\textbf{Proof skeleton.}
+\(\int dz\,\mathcal I_{\mathrm{reio}}^\Sigma(z) =
+\langle u_\Sigma,P_{\mathrm{ion}}u_\Sigma\rangle+
+\tfrac12\langle u_\Sigma,K_T^2 u_\Sigma\rangle =
+\phi_0+\tfrac12 c_3^2\).  Full discharge requires three
+sub-theorems:
+\textbf{C4a} Press-Schechter Source Theorem
+\(\mathrm{SFR}_{\mathrm{TFPT}}(M,z)
+=S[P_k^\Sigma,\omega_b,\omega_c,H^\Sigma]\);
+\textbf{C4b} Carrier IMF Photon Yield
+\(N_\gamma^{\mathrm{TFPT}}(M,z)
+=\mathrm{Tr}_{\mathrm{carrier}}(P_{\mathrm{ion}}\rho_{\mathrm{stellar}}^\Sigma)\);
+\textbf{C4c} Admissible UV Escape
+\(f_{\mathrm{esc}}^{\mathrm{TFPT}}=\mathrm{Res}_{\mathrm{UV}}^{\mathrm{adm}}\).
+\textbf{Honest verdict (Stefan v4.6.6):} not in reach without
+substantial additional TFPT structure; expect a separate dedicated
+TFPT companion paper.
+
+\subsection*{D1.h1 \,---\, Baryon Density
+\,(\textsf{closed\_pending\_paper5\_metrology})}
+\textbf{Claim.} \(\omega_b=\lambda_C/\dim\Lambda^2 E=\lambda_C/10\).
+
+\textbf{Proof.}
+Carrier rigidity \(\dim E=5\Rightarrow\dim\Lambda^2 E=10\).  The
+baryonic occupancy is
+\(\omega_b^\Sigma=(1/\dim\Lambda^2 E)\,
+\mathrm{Tr}_{\Lambda^2 E}(P_B\rho_{\mathrm{flavor}})\).
+Sheet Overlap eigenvalue gives
+\(\mathrm{Tr}_{\Lambda^2 E}(P_B\rho_{\mathrm{flavor}})=\lambda_C\).
+Hence \(\omega_b=\lambda_C/10\).
+\fbox{Stefan-Boltzmann normalised TFPT carrier metrology.}
+

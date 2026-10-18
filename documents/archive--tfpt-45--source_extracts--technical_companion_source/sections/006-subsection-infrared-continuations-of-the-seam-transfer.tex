@@ -1,0 +1,352 @@
+\subsection{Infrared continuations of the seam transfer}
+\label{app:ir-seam-continuations}
+
+Theorem~\TFPTxref{thm:cosmology-closure} and \TFPTxref{cor:ir-seam-transfer-bounds} determine the
+theorem-level seam-transfer expression for $\Lambda_{\mathrm{IR}}$ and its determinant bounds.
+The numerical scales recorded below require one further infrared assumption and therefore are
+organized as a labeled \emph{conditional closure layer}, separated from the theorem core. Each
+member of the layer is stated as a conjecture or as a corollary conditional on the named seam-lift
+hypothesis, never as a theorem-level consequence of the present closure stack.
+
+\begin{conjecture}[Reconstruction infrared seam continuation]
+\label{conj:ir-seam-rec-continuation}
+Assume the lift hypothesis
+\[
+S_{\mathrm{IR}}^{\mathrm{rec}}
+:=
+-\log\rho(U_\Sigma)\bigl|_{\mathrm{IR}}
+=
+\frac{2}{\alpha_\star},
+\qquad
+\rho_{\mathrm{IR}}^{\mathrm{rec}}
+:=
+\deltatop e^{-2/\alpha_\star},
+\]
+i.e.\ the leading admissible eigenvalue $\rho(U_\Sigma)$ is continued into the deep infrared by the
+inverse-coupling exponential weighted by the topological seam coefficient $\deltatop$.
+\end{conjecture}
+
+\begin{conjecture}[Internal carrier infrared seam continuation]
+\label{conj:ir-seam-car-continuation}
+Assume the carrier-compressed lift hypothesis
+\[
+\rho_{\mathrm{IR}}^{\mathrm{car}}
+:=
+\phibase\,\bigl(\deltatop e^{-2\alpha_\star}\bigr)^{2^{\gcar}-1}
+=
+\phibase\,q(\alpha_\star)^{31},
+\qquad
+q(\alpha):=\deltatop e^{-2\alpha},
+\]
+on the canonical carrier branch $\gcar=5$, i.e.\ the seam transfer is dressed by the retained
+carrier opening $\phibase$ raised to the carrier branch exponent.
+\end{conjecture}
+
+\begin{corollary}[Conditional infrared cosmological-constant readout]
+\label{cor:conditional-lambda-ir-readout}
+Conditional on \Cref{conj:ir-seam-rec-continuation,conj:ir-seam-car-continuation} and on the
+rank-one truncation of \TFPTxref{cor:ir-seam-transfer-bounds}, the seam-transfer determinant evaluates
+to
+\[
+\frac{\Lambda_{\mathrm{IR}}^{\mathrm{rec}}}{\Mplunred^4}
+=
+-\log\!\bigl(1-\deltatop e^{-2/\alpha_\star}\bigr)
+\approx
+\num{1.1280419085743317e-123},
+\]
+\[
+\frac{\Lambda_{\mathrm{IR}}^{\mathrm{car}}}{\Mplunred^4}
+=
+-\log\!\Bigl(1-\phibase\bigl(\deltatop e^{-2\alpha_\star}\bigr)^{31}\Bigr)
+\approx
+\num{1.0397866510137286e-123}.
+\]
+The two readouts agree on order of magnitude and frame the observed value
+$\Lambda_{\mathrm{obs}}/\Mplunred^4\approx\num{1.1e-123}$ within the conditional closure layer; they
+become \emph{theorem level} as soon as the seam-lift hypothesis $S_{\mathrm{IR}}=2/\alpha_\star$ is
+discharged from $U_\Sigma$.
+\end{corollary}
+
+\begin{remark}[Lift target and kill test]
+The single non-theorem ingredient in \TFPTxref{cor:conditional-lambda-ir-readout} is the seam-lift
+hypothesis
+\[
+S_{\mathrm{IR}}=-\log\rho(U_\Sigma)\bigl|_{\mathrm{IR}}=\frac{2}{\alpha_\star}.
+\]
+Falsification path. Any independent computation of $\rho(U_\Sigma)$ in the deep infrared that
+deviates from $\deltatop e^{-2/\alpha_\star}$ by more than the rank-one error margin of
+\TFPTxref{cor:ir-seam-transfer-bounds} kills both numerical readouts at once. Conversely, a closed
+proof of the seam-lift identity promotes the rec/car corollary to a theorem and freezes the
+\(\Lambda_{\mathrm{IR}}\)-line of the metrology functor without any further appendix input.
+\end{remark}
+
+\section{Relative APS and superconnection setup}
+\label{app:aps}
+
+The geometric completion uses APS-type relative data \cite{aps1975}. In practice this means:
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item one works with a declared pair $(D,D_{\mathrm{ref}})$ rather than a single unanchored operator,
+    \item boundary conditions on the seam $\Seam$ are part of the definition of the relative index,
+    \item the $\eta$-term keeps track of the residual spectral asymmetry,
+    \item the superconnection package is used in the same spirit as the spectral-action tradition \cite{chamseddineConnes1997}, but here always with an explicit reference subtraction.
+\end{itemize}
+
+This appendix now serves as the proof motor for the geometric reconstruction statements in the main text: its role is to make the common reference structure explicit enough that the reconstruction theorem and the local spectral-scale branch are not left hanging on a slogan.
+
+\section{Relative reflection positivity with fermions}
+\label{app:os-fermions}
+
+\subsection{Normalized quotient form}
+
+The relative Euclidean theory used in the main closure section is not interpreted as a difference of measures. Instead it is organized as the normalized quotient
+\[
+Z_{\mathrm{rel}}[J,\eta,\bar\eta]
+=
+\frac{Z_{\mathrm{adm}}[J,\eta,\bar\eta]}{Z_{\mathrm{ref}}[0,0,0]}.
+\]
+Because the denominator is source independent on the admissible sector, the reference theory acts only as a fixed normalizer and does not interfere with reflection positivity.
+
+\subsection{Bosonic and fermionic positivity on \texorpdfstring{$\Padm$}{Padm}}
+
+The commutation relations
+\[
+[\Theta,P_\Theta]=0,
+\qquad
+\Theta\Padm=\Padm\Theta
+\]
+ensure that reflection preserves the admissible subspace. The bosonic part then follows the standard Markov / reflection-stable Osterwalder--Schrader argument on admissible observables. For fermions, the admissible CAR kernel may be written as a reflected quadratic form; equivalently one may express the same condition as positivity of the associated Pfaffian structure on the admissible sector. Hence for every admissible observable $O$ supported in $\tau>0$,
+\[
+\langle \Theta O,O\rangle_{\mathrm{rel}}
+=
+\frac{1}{Z_{\mathrm{ref}}[0,0,0]}
+\langle \Theta O,O\rangle_{\mathrm{adm}}
+\ge 0.
+\]
+This appendix section is the mechanism behind \TFPTxref{lem:admissible-reflection-positivity,thm:reflection-positivity-admissible,thm:lorentzian-reconstruction}; it is recorded here so that the main-text reconstruction theorem is not supported only by a one-line axiom call.
+
+\section{Admissible OS reconstruction and asymptotic scattering}
+\label{app:os-scattering}
+
+This appendix upgrades the admissible Schwinger, reconstruction, and scattering block from a named
+standard interface to a manuscript-level proof package. The point is not to replace standard
+machinery by ad hoc notation, but to verify explicitly that the admissible branch satisfies the
+relevant hypotheses on $\Padm$.
+
+\subsection{Tempered admissible Schwinger families}
+
+\begin{lemma}[Temperedness and moment bounds for admissible Schwinger functions]
+\label{lem:tempered-schwinger-bounds}
+On the Euclidean continuation of $\mathcal U_{\mathrm{scat}}$, each truncated admissible Schwinger
+distribution $S_n^T$ defines a tempered distribution. Moreover, for every compact $K$ and every
+source monomial of total degree $n$, its moments obey polynomial bounds determined by the same
+uniform heat-kernel estimates and finite local moments of the admissible constructive measure.
+\end{lemma}
+
+\begin{proof}
+By \TFPTxref{thm:well-posed-primitive-dynamics}, the admissible Euclidean generator is realized by a
+self-adjoint elliptic operator on every blocked volume. Together with the constructive measure of
+\TFPTxref{thm:constructive-geometric-measure}, this yields uniform heat-kernel bounds and finite moments
+for local source insertions. Differentiating $W_{\mathrm{rel}}$ with respect to the local sources
+therefore produces distributions whose derivatives are controlled by polynomial combinations of the
+same bounds. Passing to the admissible projective limit preserves these polynomial estimates, so the
+resulting Schwinger family is tempered.
+\end{proof}
+
+\begin{lemma}[Graded Euclidean covariance and symmetry on \texorpdfstring{$\Padm$}{Padm}]
+\label{lem:graded-euclidean-covariance-padm}
+On the Euclidean continuation of $\mathcal U_{\mathrm{scat}}$, the admissible Schwinger family is
+graded Euclidean covariant, graded symmetric under exchange of external legs, and continuous in the
+Schwartz topology.
+\end{lemma}
+
+\begin{proof}
+The Dirac-type principal symbol of the geometric anchor and the low-curvature reduction imply local
+Euclidean covariance of the admissible source functional on $\mathcal U_{\mathrm{scat}}$. Bosonic
+source derivatives commute, while fermionic derivatives anticommute, so the mixed Schwinger family
+is graded symmetric with the usual CAR signs. Continuity follows from the tempered moment bounds of
+\Cref{lem:tempered-schwinger-bounds}, which control the action of $S_n^T$ on Schwartz test
+functions.
+\end{proof}
+
+\subsection{OS and CAR reconstruction on \texorpdfstring{$\Padm$}{Padm}}
+
+\begin{theorem}[Tailored OS/CAR reconstruction on \texorpdfstring{$\Padm$}{Padm}]
+\label{thm:tailored-os-car-reconstruction}
+Let $\{S_n^T\}_{n\ge 1}$ be the admissible Schwinger family on the Euclidean continuation of
+$\mathcal U_{\mathrm{scat}}$. If reflection positivity, temperedness, graded Euclidean covariance,
+graded symmetry, and clustering hold on $\Padm$, then there exist:
+\begin{enumerate}[label=(\roman*), leftmargin=1.8em, topsep=3pt, itemsep=2pt]
+    \item a Hilbert space $\mathcal H_{\mathrm{OS}}$ with vacuum vector $\Omega$,
+    \item a strongly continuous positive-energy semigroup $T_t=e^{-tH_{\mathrm{adm}}}$ with
+    self-adjoint generator $H_{\mathrm{adm}}\ge 0$,
+    \item a reconstructed graded local field net on $\Padm$ whose Euclidean boundary values are the
+    original admissible Schwinger functions.
+\end{enumerate}
+Equivalently, the admissible Euclidean family reconstructs a Wightman/CAR theory on the admissible
+sector.
+\end{theorem}
+
+\begin{proof}
+Define the OS sesquilinear form by
+\[
+(F,G)_{\mathrm{OS}}:=\langle \Theta F,G\rangle_{\mathrm{rel}}
+\]
+for positive-time admissible observables. Reflection positivity from
+\TFPTxref{thm:reflection-positivity-admissible} and the fermionic quotient-form analysis of
+\Cref{app:os-fermions} show that this form is positive semidefinite on the full graded admissible
+algebra. Quotienting by the null space and completing gives $\mathcal H_{\mathrm{OS}}$.
+
+Positive Euclidean time translation preserves the null space and acts by contractions, hence defines
+a strongly continuous contraction semigroup $T_t$ on $\mathcal H_{\mathrm{OS}}$. The dense domain of
+positive-time polynomial observables gives the symmetric generator domain. By Hille--Yosida, the
+closure of this generator is self-adjoint and nonnegative, so $T_t=e^{-tH_{\mathrm{adm}}}$ for a
+self-adjoint $H_{\mathrm{adm}}\ge 0$.
+
+The temperedness, covariance, graded symmetry, and clustering established in
+\Cref{lem:tempered-schwinger-bounds,lem:graded-euclidean-covariance-padm} are precisely the
+remaining OS/CAR reconstruction hypotheses. Therefore analytic continuation yields the reconstructed
+Wightman/CAR family with vacuum $\Omega$. Because $\Theta$, $P_\Theta$, and $\Padm$ commute, the
+entire reconstruction stays on the admissible sector $\Padm$.
+\end{proof}
+
+\subsection{Stable massive Haag--Ruelle and LSZ closure}
+
+\begin{lemma}[One-particle spectral projectors from isolated simple poles]
+\label{lem:one-particle-projectors-from-poles}
+Let $\widetilde G_a^{(2)}(p)$ have an isolated simple pole with positive residue at
+$p^2=-m_a^2<0$. Then the corresponding one-particle contribution defines a positive spectral
+projector on the admissible Hilbert space.
+\end{lemma}
+
+\begin{proof}
+The isolated simple pole separates a one-particle mass shell from the multiparticle continuum. By
+positivity of the residue, the contour integral of the resolvent around that pole defines a positive
+projector on $\mathcal H_{\mathrm{adm}}$. Its range is the one-particle subspace associated with the
+stable species $a$.
+\end{proof}
+
+\begin{theorem}[Haag--Ruelle scattering on the stable massive admissible sector]
+\label{thm:haag-ruelle-admissible-massive}
+For every stable massive admissible species with isolated simple pole below threshold, the
+Haag--Ruelle asymptotic fields exist on $\mathcal H_{\mathrm{adm}}$ and generate wave operators on
+the stable massive scattering sector.
+\end{theorem}
+
+\begin{proof}
+By \TFPTxref{thm:tailored-os-car-reconstruction,thm:admissible-local-minkowski-net}, the admissible
+branch carries a local relativistic net with positive Hamiltonian. By
+\TFPTxref{thm:nonperturbative-admissible-qft}, connected correlators cluster exponentially on the
+massive sector. The pole assumption and \Cref{lem:one-particle-projectors-from-poles} identify the
+one-particle subspace and give positive single-particle spectral projectors. The standard
+Haag--Ruelle estimates therefore apply to admissible local operators, yielding the in/out fields and
+the wave operators on the stable massive sector.
+\end{proof}
+
+\begin{corollary}[LSZ reduction on the stable massive admissible sector]
+\label{cor:lsz-admissible-massive}
+On the stable massive admissible sector, matrix elements of the scattering operator are obtained by
+amputating the connected correlators with the corresponding residue factors.
+\end{corollary}
+
+\begin{proof}
+By \Cref{thm:haag-ruelle-admissible-massive}, the asymptotic fields and wave operators exist on the
+stable massive sector. Applying the usual LSZ reduction to those asymptotic fields and the
+admissible local net yields the displayed amputated-correlator formula.
+\end{proof}
+
+\subsection{Dressed massless interface in the low-curvature region}
+
+The massless sector is not treated by bare Fock asymptotics in the present manuscript. The relevant
+object is the infrared-dressed interface package
+\[
+\mathcal I_{\mathrm{dress}}
+:=
+\bigl(\Omega_+^{\mathrm{dress}},\Omega_-^{\mathrm{dress}},S_{\mathrm{dress}}\bigr),
+\qquad
+S_{\mathrm{dress}}:=(\Omega_+^{\mathrm{dress}})^\ast\Omega_-^{\mathrm{dress}},
+\]
+constructed from the soft charges of the admissible local net on the low-curvature region
+$\mathcal U_{\mathrm{scat}}$. This is exactly the interface package used in the main-text theorem
+\TFPTxref{thm:dressed-massless-interface}.
+
+\section{FRW reduction and cosmology interface proofs}
+\label{app:frw-interface-proofs}
+
+This appendix section upgrades the cosmology interface block from a proof sketch to a manuscript
+proof. The point is to keep the theorem-level content at the level of closed-branch interface data,
+while leaving late-time numerical continuation in the comparison layer.
+
+\begin{lemma}[Minisuperspace reduction of the geometric Hodge branch]
+\label{lem:minisuperspace-reduction-hodge-branch}
+Restrict the closed-branch geometric Hodge action to homogeneous and isotropic variables
+\[
+(a(t),\varphi(t),\theta_\Sigma(t),N_i(t)).
+\]
+Then the reduced action is a minisuperspace action whose gravitational and scalar sectors coincide
+with the low-curvature FRW/scalaron block used in the main text.
+\end{lemma}
+
+\begin{proof}
+The closed-branch geometric action is local and covariant. Imposing homogeneity and isotropy kills
+all spatial derivative terms and leaves only the FRW scale factor, the scalaron mode, the
+determinant-line axion phase, and the heavy-neutrino input package. Evaluating the geometric Hodge
+action on this ansatz gives exactly the reduced minisuperspace action displayed in the main-text FRW
+theorem.
+\end{proof}
+
+\begin{lemma}[Seam-transfer determinant as the infrared vacuum term]
+\label{lem:seam-transfer-vacuum-term}
+On the closed branch, the positive trace-class seam-transfer operator contributes to the FRW
+reduction through the infrared vacuum term
+\[
+\Lambda_{\mathrm{IR}}
+=
+\Mplunred^4\bigl[-\log\det\nolimits_{\mathrm{adm}}(1-U_\Sigma)\bigr].
+\]
+\end{lemma}
+
+\begin{proof}
+By \TFPTxref{thm:cosmology-closure}, the seam-transfer operator is positive trace class with spectral
+radius strictly below one. Therefore its Fredholm determinant is well defined and contributes an
+additive vacuum term to the reduced action. The normalization by $\Mplunred^4$ is exactly the
+closed-branch dimensional lift used in the main text.
+\end{proof}
+
+\begin{lemma}[Determinant-line axion reduction]
+\label{lem:determinant-line-axion-reduction}
+On the canonical branch, the determinant-line phase reduces to a compact axion variable with
+\[
+N_{\mathrm{DW}}=1,
+\qquad
+\theta_i=\pi\bigl(1-\phiseam(\alpha_\star)\bigr),
+\]
+and the reheating input is fixed by the scalaron decay width.
+\end{lemma}
+
+\begin{proof}
+\TFPTxref{thm:boundary-winding-control} fixes the domain-wall number $N_{\mathrm{DW}}=1$ on the
+canonical branch. The determinant-line theorem and the electromagnetic closure determine the initial
+angle $\theta_i$, while the scalaron branch fixes the decay-width input entering the reheating scale
+$T_R$. These are exactly the determinant-line and scalaron data needed in the reduced FRW action.
+\end{proof}
+
+\begin{theorem}[Full FRW reduction and cosmology interface theorem]
+\label{thm:full-frw-interface-theorem}
+The closed-branch minisuperspace reduction determines the cosmology interface package
+\[
+\bigl(\Lambda_{\mathrm{IR}},N_{\mathrm{DW}},\theta_i,T_R,\mathcal I_{\mathrm{LG}}\bigr)
+\]
+from the same geometric Hodge, seam-transfer, determinant-line, and neutrino data that determine
+the closed branch.
+\end{theorem}
+
+\begin{proof}
+\Cref{lem:minisuperspace-reduction-hodge-branch} gives the reduced FRW/scalaron action,
+\Cref{lem:seam-transfer-vacuum-term} identifies the infrared vacuum term, and
+\Cref{lem:determinant-line-axion-reduction} identifies the determinant-line axion and reheating
+data. The leptogenesis input block $\mathcal I_{\mathrm{LG}}$ is fixed by the same closed-branch
+heavy-neutrino spectrum, family frame, and reheating input used in the main-text leptogenesis
+interface theorem. Therefore the entire displayed interface tuple is fixed internally on the closed
+branch.
+\end{proof}
+

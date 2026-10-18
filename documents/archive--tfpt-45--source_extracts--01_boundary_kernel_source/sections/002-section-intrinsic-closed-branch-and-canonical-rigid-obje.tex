@@ -1,0 +1,363 @@
+
+\begin{proof}
+The existence of self-adjoint $D$-elliptic boundary conditions for formally self-adjoint Dirac-type
+operators is standard. In the zero-kernel case APS is already self-adjoint. If the adapted
+boundary operator has nontrivial kernel, one passes to a self-adjoint modified APS realization or,
+equivalently, to
+\[
+H^{1/2}_{(-\infty,0)}(A_\partial)\oplus L,
+\]
+with $L\subset\ker A_\partial$ chosen as in the normal form theorem for self-adjoint $D$-elliptic
+boundary conditions. The resulting realization is essentially self-adjoint on smooth sections
+satisfying the boundary condition. Since $M_\Lambda$ is compact, coercivity at infinity is
+automatic and the realization is Fredholm with discrete spectrum.
+
+For the perturbation, standard first-order elliptic regularity on a compact manifold with
+self-adjoint $D$-elliptic boundary condition gives a graph norm estimate
+\[
+\|\psi\|_{H^1}\le C\bigl(\|D_{\mathrm{geo},B_{\mathrm{sa}}}\psi\|+\|\psi\|\bigr).
+\]
+Because $D_{\mathrm{rel}}$ has order at most one and bounded coefficients,
+\[
+\|D_{\mathrm{rel}}\psi\|
+\le
+C_1\|\psi\|_{H^1}+C_0\|\psi\|
+\le
+\varepsilon\|D_{\mathrm{geo},B_{\mathrm{sa}}}\psi\|+C_\varepsilon\|\psi\|
+\]
+for every $\varepsilon>0$. Hence $D_{\mathrm{rel}}$ is $D_{\mathrm{geo},B_{\mathrm{sa}}}$-bounded
+with relative bound zero. The Kato--Rellich theorem therefore yields self-adjointness of
+$D_{\mathrm{geo},B_{\mathrm{sa}}}+D_{\mathrm{rel}}$ on the same domain.
+\end{proof}
+
+\begin{remark}[APS roles on the admissible branch]
+\label{rem:aps-roles}
+At the primitive level $\APSdomprov$ is the provisional elliptic boundary choice for the
+geometric anchor: an analytic starting representative chosen so that
+\TFPTxref{thm:well-posed-primitive-dynamics} applies. After the carrier theorem and the master
+closure roadmap of \TFPTxref{sec:closure-theorems} the Calder\'on projector of the doubled operator
+$D_b$ canonically promotes $\APSdomprov$ to the closed-branch boundary domain $\APSdom$ in the
+same admissible class. The family-pairing data $\APSfam$ are then induced canonically and remain
+a derived consequence rather than a second primitive input package. The explicit upgrade
+statement is recorded as \TFPTxref{thm:apsdom-upgrade} in \TFPTxref{sec:closure-theorems}.
+\end{remark}
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\begin{tikzpicture}[
+    root/.style={draw=black!65, fill=gray!10, rounded corners, text width=3.3cm, minimum height=0.9cm, align=center},
+    prov/.style={draw=blue!60!black, fill=blue!6, rounded corners, text width=3.15cm, minimum height=1.45cm, align=center},
+    dom/.style={draw=blue!70!black, fill=blue!10, rounded corners, very thick, text width=3.15cm, minimum height=1.45cm, align=center},
+    fam/.style={draw=orange!75!black, fill=orange!8, rounded corners, text width=3.15cm, minimum height=1.45cm, align=center},
+    note/.style={font=\footnotesize\itshape, text=black!70, align=center}
+]
+\node[root] (aps) at (0,0.45) {APS roles in the present manuscript};
+\node[prov] (prov) at (-4.05,-1.95) {\textbf{$\APSdomprov$}\\provisional APS realization\\(analytic starting choice)};
+\node[dom]  (dom)  at (0,-1.95)    {\textbf{$\APSdom$}\\closed-branch APS domain\\via Calder\'on upgrade};
+\node[fam]  (fam)  at (4.05,-1.95)  {\textbf{$\APSfam$}\\family pairing induced\\by canonical doubling};
+\draw[->, thick] (aps.south west) -- ($(prov.north)+(0,0.05)$);
+\draw[->, thick] (aps.south) -- ($(dom.north)+(0,0.05)$);
+\draw[->, thick] (aps.south east) -- ($(fam.north)+(0,0.05)$);
+\draw[->, thick, blue!70!black] ($(prov.north east)+(0.08,0.16)$)
+    .. controls +(0.7,0.75) and +(-0.7,0.75) ..
+    node[above, fill=white, inner sep=1.5pt, font=\scriptsize\itshape, text=blue!70!black]
+    {Calder\'on upgrade}
+    ($(dom.north west)+(-0.08,0.16)$);
+\draw[->, dashed, black!45, line width=0.8pt] ($(dom.north east)+(0.08,0.14)$)
+    .. controls +(0.7,0.65) and +(-0.7,0.65) ..
+    node[above, fill=white, inner sep=1.5pt, font=\scriptsize\itshape, text=black!65]
+    {induced}
+    ($(fam.north west)+(-0.08,0.14)$);
+\node[note] at (0,-3.2) {Provisional choice $\to$ Calder\'on upgrade $\to$ derived family pairing.};
+\end{tikzpicture}
+\caption{APS organization with Calder\'on upgrade and induced family pairing.}
+\label{fig:aps-split}
+\end{figure}
+
+\begin{corollary}[Carrier-compatible Lorentzian dynamics after closure]
+Once the later carrier-compatible fluctuation package and the admissibility closure hypotheses of \TFPTxref{sec:closure-theorems} are imposed, the resulting admissible Euclidean theory reconstructs a self-adjoint Lorentzian Hamiltonian $H_{\mathrm{adm}}$ and a one-parameter automorphism group
+\[
+\alpha_t(O)=e^{itH_{\mathrm{adm}}}Oe^{-itH_{\mathrm{adm}}}.
+\]
+\end{corollary}
+
+
+% ---- Operational seed, induced boundary data, and primitive setup only: source lines 8907-9157 ----
+\section{Intrinsic closed branch and canonical rigid object}
+\label{sec:rg-map-compiler-outputs}
+
+The closed branch is not selected by a comparison functional. At the top of the main-text theorem
+stack now stands a thinner operational seed layer: quasilocal Euclidean dynamics, reflection
+positivity, finite relative action, a nontrivial seam class, and one elliptic collar generator.
+That seed induces the one-sided admissible boundary datum. Once the induced datum is fixed, the
+remaining closure problem splits into one joint discrete admissibility theorem and one continuous
+retained-sector variational problem. The discrete theorem fixes carrier, family, determinant, and
+strong-CP data simultaneously; the continuous sector is the unique admissible critical point of one
+projected modular free energy on the retained branch. Their compatibility determines one intrinsic
+branch and therefore one canonical rigid object inside the theorem class.
+
+\subsection{Operational seed and boundary generation}
+\label{sec:operational-seed-generation}
+
+\begin{definition}[Operational seed category]
+\label{def:operational-seed-category}
+Let $\Seedop$ denote the category whose objects are tuples
+\[
+\mathfrak S=(\mathfrak A_{\mathrm{loc}},\tau_t,\Theta,\omega,[u_\Sigma],\mathcal D_{\mathrm{coll}})
+\]
+satisfying:
+\begin{enumerate}[label=(\roman*), leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item $\mathfrak A_{\mathrm{loc}}$ is a quasilocal Euclidean observable net with positive-time
+    reflection $\Theta$;
+    \item $\omega$ is reflection positive and clustering on the admissible local algebra, with finite
+    relative action with respect to the declared reference sector;
+    \item $[u_\Sigma]\neq 0$ is a nontrivial seam class;
+    \item $\mathcal D_{\mathrm{coll}}$ is a first-order elliptic collar generator whose positive-side
+    restriction is reflection regular.
+\end{enumerate}
+Morphisms are unitary intertwiners preserving the displayed structures.
+\end{definition}
+
+\begin{theorem}[Operational collar completion]
+\label{thm:operational-collar-completion}
+There exists a functor
+\[
+\Cseed:\Seedop\longrightarrow \mathbf{SBord}^{\mathrm{adm}}
+\]
+which assigns to every operational seed $\mathfrak S$ a canonically induced one-sided admissible
+spectral bordism
+\[
+\Cseed(\mathfrak S)=\mathcal B(\mathfrak S)
+\]
+with induced boundary datum
+\[
+\mathfrak T_{\partial}(\mathfrak S)=(\mathcal A_+,\mathcal H_+,D_+,J,\Gamma,B_\Sigma).
+\]
+\end{theorem}
+
+\begin{proof}[Proof architecture]
+Reflection positivity and the positive-time net reconstruct the one-sided OS Hilbert space on the
+collar. The first-order elliptic collar generator determines the boundary operator $B_\Sigma$,
+while the nontrivial seam class gives the induced spectral-flow class. The resulting one-sided
+tuple satisfies exactly the axioms of \Cref{def:admissible-spectral-bordism-category}.
+\end{proof}
+
+\begin{definition}[Essentialization of admissible bordisms]
+For every admissible bordism $B$ write $B^{\triv}$ for the maximal direct summand on which all
+primitive load-bearing data vanish:
+\begin{equation}
+\boxed{
+\begin{gathered}
+\text{seam spectral flow}=0,\\
+\text{carrier polarization acts trivially},\\
+\text{determinant degree}=0,\\
+\text{primitive Yukawa type}=0.
+\end{gathered}}
+\end{equation}
+Define the essentialized bordism by
+\begin{equation}
+B^{\textup{ess}}:=B/B^{\triv}.
+\end{equation}
+All minimization data below are evaluated on $B^{\textup{ess}}$ rather than on a presentation that
+may contain contractible spectator summands.
+\end{definition}
+
+\begin{definition}[Canonical defect filtration]
+\label{def:canonical-defect-filtration}
+For $B\in\mathbf{SBord}^{\mathrm{adm}}$ define
+\begin{equation}
+\mathfrak D(B):=\bigl(d_0(B),d_1(B),d_2(B),d_3(B)\bigr)\in\mathbb N^4.
+\end{equation}
+After replacing $B$ with $B^{\textup{ess}}$, set
+\begin{align}
+d_0(B)&:=|\SF(U_\Sigma)|,\\
+d_1(B)&:=\rankess H_{\mathrm{prim}}^{\mathrm{fin}},\\
+d_2(B)&:=\deg_{\det}^{+}(B)=c_1(L_+)+c_1(L_-),\\
+d_3(B)&:=h_\Sigma^{\red}(B).
+\end{align}
+Here $L_+$ and $L_-$ are the determinant lines on the two boundary-polarized finite blocks before
+they are later named $L_2$ and $L_3$, and $h_\Sigma^{\red}$ is the residual boundary nullity after
+Calderon normal form. The order is lexicographic, but the order is not a preference weighting: each
+coordinate is defined only after the earlier obstruction has been minimized.
+\end{definition}
+
+\begin{remark}[Why $N_{\rm corner}$ is not a minimization coordinate]
+The four-corner structure is no longer an independent slot in the minimization functional. It is a
+downstream reading of the minimal nontrivial seam class together with the spin lift; schematically
+\begin{equation}
+|\SF(U_\Sigma)|=1\quad\Rightarrow\quad N_{\rm corner}=4.
+\end{equation}
+Objects derived from an earlier obstruction do not belong as free entries of the defect filtration.
+\end{remark}
+
+\begin{theorem}[Invariance of the defect lexicography]
+Let $\mathcal C$ be the category of nontrivial admissible one-sided spectral bordisms modulo unitary
+intertwiners and contractible stabilizations. Let
+\begin{equation}
+\mathfrak D:\mathcal C\to\mathbb N^k
+\end{equation}
+be the canonical defect filtration. If $F:\mathcal C\to\mathcal C'$ is an equivalence of admissible
+presentations and for every coordinate there is a strictly increasing map
+$\psi_i:\mathbb N\to\mathbb N$ with
+\begin{equation}
+d'_i(F(B))=\psi_i(d_i(B)),
+\end{equation}
+then $B$ is a lexicographic minimizer of $\mathfrak D$ if and only if $F(B)$ is a lexicographic
+minimizer of $\mathfrak D'$.
+\end{theorem}
+
+\begin{proof}
+Strictly increasing coordinate maps preserve and reflect the first coordinate at which two defect
+vectors differ. Therefore $\mathfrak D(B)<_{\rm lex}\mathfrak D(C)$ if and only if
+$\mathfrak D'(F(B))<_{\rm lex}\mathfrak D'(F(C))$. Hence minimizers are preserved by equivalence.
+Existence follows because $\mathbb N^k$ is well founded under lexicographic order. Uniqueness is
+then reduced to classification of the final minimized stratum by the one-sided boundary datum up to
+unitary equivalence.
+\end{proof}
+
+\begin{definition}[Operational seed defect]
+\label{def:operational-seed-complexity}
+For $\mathfrak S\in\Seedop$, define the pulled-back seed defect by
+\begin{equation}
+\mathfrak D_{\rm seed}(\mathfrak S):=\mathfrak D(\Cseed(\mathfrak S)).
+\end{equation}
+\end{definition}
+
+\begin{corollary}[Minimal operational seed induces the canonical boundary datum]
+\label{cor:minimal-operational-seed}
+Let $\mathfrak S_{\min}$ be a defect-minimal nontrivial object of $\Seedop$ with respect to
+$\mathfrak D_{\rm seed}$. Then
+\begin{equation}
+\Cseed(\mathfrak S_{\min})=\mathcal B_{\min}
+\end{equation}
+up to unitary equivalence, hence the canonical one-sided boundary datum $\Tbound$ is induced by the
+minimal operational seed.
+\end{corollary}
+
+\begin{proof}
+The seed defect is the defect filtration of the induced admissible bordism. Thus minimizing over
+$\Seedop$ is equivalent to minimizing the essentialized defect filtration in
+$\mathbf{SBord}^{\mathrm{adm}}$. The invariant-defect theorem shows that the minimizer does not
+depend on the chosen admissible presentation, and the induced boundary datum is $\Tbound$.
+\end{proof}
+
+\begin{axiom}[Physical operationality]
+\label{ax:physical-operationality}
+The physically realized world is represented by an object of $\Seedop$.
+\end{axiom}
+
+\subsection{Initial admissible bordisms and induced boundary data}
+
+\begin{definition}[Admissible spectral-bordism category]
+\label{def:admissible-spectral-bordism-category}
+Let $\mathbf{SBord}^{\mathrm{adm}}$ denote the category whose objects are tuples
+\begin{equation}
+\mathcal B=(\mathcal A_+,\mathcal H_+,D_+,J,\Gamma)
+\end{equation}
+such that:
+\begin{enumerate}[label=(\roman*), leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item $D_+$ is an elliptic Dirac-type operator on a one-sided collar with reflection-regular
+    boundary behavior;
+    \item the retained Euclidean sector is reflection positive;
+    \item the relative action with respect to the declared reference sector is finite;
+    \item the seam class is nontrivial, equivalently $\SF(U_\Sigma)\neq 0$.
+\end{enumerate}
+Morphisms are unitary intertwiners preserving the displayed one-sided data.
+\end{definition}
+
+\begin{theorem}[Minimal packaging inside the declared boundary class]
+\label{thm:initial-admissible-bordism}
+Within the declared class of admissible one-sided boundary data encoded by nontrivial objects of
+$\mathbf{SBord}^{\mathrm{adm}}$, there exists, up to unitary equivalence, a unique essentialized
+defect-minimal representative
+\begin{equation}
+\mathcal B_{\min}.
+\end{equation}
+Its collar normal form induces a canonical one-sided boundary datum
+\begin{equation}
+\Tbound=(\mathcal A_+,\mathcal H_+,D_+,J,\Gamma,B_\Sigma).
+\end{equation}
+On the minimal branch the first defect is
+\begin{equation}
+|\SF(U_\Sigma)|=1,
+\end{equation}
+while the carrier ranks and determinant classes are not primitive minimization inputs; they are
+recovered later from compact Higgs selection and primitive Yukawa type. This theorem therefore shows
+that no extra primitive discrete datum is needed beyond the induced boundary datum.
+\end{theorem}
+
+\begin{proof}
+By declaration of the admissible boundary class, the set of nonzero defect vectors
+\begin{equation}
+\{\mathfrak D(B):B\in\mathbf{SBord}^{\mathrm{adm}},\ \SF(U_\Sigma)\neq0\}\subset\mathbb N^4
+\end{equation}
+is nonempty. Well-foundedness gives a minimizer. Essentialization removes contractible spectator
+summands, so rank minimization cannot be changed by adding an empty internal factor. The first
+coordinate is the nontrivial seam obstruction; hence the minimal positive value is
+$|\SF(U_\Sigma)|=1$. The Dirac collar normal form gives
+\begin{equation}
+D_+=\gamma_n(\partial_n+B_\Sigma)
+\end{equation}
+with self-adjoint adapted boundary operator $B_\Sigma$. Reflection positivity on the retained
+sector gives the exact double and Calderon polarization used by the primitive reconstruction. The
+invariance theorem makes the minimized datum presentation independent, and the boundary
+reconstruction theorem identifies the induced one-sided datum up to unitary equivalence.
+\end{proof}
+\begin{remark}[Formal start of the theorem chain]
+The displayed reconstruction chains later in the manuscript may be written either from the minimal
+operational seed or, once the seed-to-boundary passage has been fixed, formally from $\Tbound$,
+because every downstream theorem is phrased in boundary-data language. The present theorem explains
+why, within the induced admissible boundary class, that datum needs no second independent primitive
+discrete layer.
+\end{remark}
+
+\begin{remark}[Historical seven-sector presentation]
+The older seven-sector closure map is retained only as a mnemonic decomposition of the eventual
+branch coordinates. It is no longer the proving engine of the paper. The actual closure argument is
+the primitive-completion argument of Section~9.1: one boundary primitive kernel fixes one joint
+discrete datum, one projected modular free energy fixes the continuous sectors, and the intrinsic
+branch is their singleton fiber product over the same upstream invariants.
+\end{remark}
+
+\begin{definition}[TFPT core class]
+\label{def:tfpt-core-class}
+Let $\mathbf{TFPT}^{\mathrm{core}}$ denote the class of tuples
+\[
+\Tcore:=(\mathcal A,\mathcal H,D,J,\Gamma,\taudbl,\iC,\Pprim)
+\]
+where $\Pprim$ is reconstructed from the primitive admissibility complex. Morphisms are unitary
+isomorphisms intertwining the displayed core data. No family geometry, no family local system
+class, no determinant classes, no transport pole, no strong-CP datum, and no cosmology datum are
+part of this definition.
+\end{definition}
+
+\subsection{Primitive completion from the boundary kernel}
+
+\begin{definition}[Boundary primitive kernel]
+\label{def:boundary-primitive-kernel}
+\label{def:post-carrier-primitive-kernel}
+Let
+\[
+\Tker^\partial
+:=
+(\mathcal A,\mathcal H,D,J,\Gamma,\taudbl,\iC,\Pprim,[u_\Sigma],\cthree)
+\]
+be the boundary primitive kernel attached to an admissible one-sided boundary datum. Here
+\[
+[u_\Sigma]=1,
+\qquad
+\cthree=\frac{1}{8\pi},
+\]
+are fixed by the primitive seam generator theorem. No carrier split, no hypercharge operator, no
+family geometry, no determinant class, no transport pole, no effective strong angle, and no
+vacuum datum are part of this definition.
+\end{definition}
+
+
+% ---- Technical conventions and data layers: source lines 13204-13403 ----
+\section{Technical conventions and data layers}
+\label{app:tech}
+
+This appendix collects the technical bookkeeping that supports the boundary-to-carrier presentation but would slow the early main-text flow if placed before the carrier theorem.
+

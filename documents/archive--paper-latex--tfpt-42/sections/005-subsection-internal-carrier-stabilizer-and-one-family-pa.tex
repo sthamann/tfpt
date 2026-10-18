@@ -1,0 +1,393 @@
+
+\begin{remark}[Factorized carrier polynomial and carrier discriminant]\label{rem:carrier-discriminant}
+For a general split carrier $E=E_b\oplus E_s$ with total rank $g:=b+s$ and eigenvalues $-1/b$ and $1/s$, the carrier generator satisfies
+\[
+\left(Y+\frac{1}{b}\right)\left(Y-\frac{1}{s}\right)=0
+\quad\Longleftrightarrow\quad
+bs\,Y^2+(s-b)Y-\mathbf 1=0.
+\]
+Its discriminant is
+\[
+\Delta_Y=(s-b)^2+4bs=(b+s)^2=g^2.
+\]
+Thus the square root of the carrier discriminant is the carrier rank itself. Moreover,
+\[
+Y=\frac{b-s}{2bs}\,\mathbf 1+\frac{g}{2bs}\,\epscar,
+\qquad
+\epscar=\frac{2bs\,Y-(b-s)\,\mathbf 1}{g}.
+\]
+On the minimal branch $(b,s)=(3,2)$, this reduces to
+\[
+6Y^2-Y-\mathbf 1=(2Y-\mathbf 1)(3Y+\mathbf 1),
+\qquad
+\Delta_Y=25=5^2,
+\qquad
+\epscar=\frac{12Y-\mathbf 1}{5}.
+\]
+Hence the denominator $5$ in the hypercharge--seam inversion is exactly $\sqrt{\Delta_Y}$, not an additional inserted constant.
+
+This does not replace the stabilizer proof of
+\[
+G_{\mathrm{car}}=S(U(3)\times U(2)),
+\]
+which is the actual source of the internal carrier stabilizer theorem in the present manuscript.
+What the factorization and discriminant do show exactly is that the hard carrier already supports the distinguished spectral values
+\[
+Y=\frac{1}{2},
+\qquad
+Y=-\frac{1}{3},
+\]
+and that the inversion denominator is fixed algebraically by the carrier discriminant.
+\end{remark}
+
+The two carrier invariants used repeatedly below are
+\[
+\gamma=\tr_EY^2=\frac56,
+\qquad
+B=\frac{\rank E_3}{\rank E_2}=\frac32.
+\]
+\begin{corollary}[Carrier norm from the carrier polynomial]
+The carrier polynomial already fixes
+\[
+\gamma=\tr_EY^2=\frac16\tr_E(Y+\mathbf 1)=\frac56,
+\]
+since $\tr_EY=0$ and $\rank E=5$.
+\end{corollary}
+
+\begin{corollary}[Minimal carrier compression]
+\label{cor:minimal-carrier-compression}
+On the minimal carrier branch,
+\[
+B\gamma=\frac32\cdot\frac56=\frac54.
+\]
+\end{corollary}
+
+We package the hard kernel as
+\[
+\Cmin=(E_3\oplus E_2,\ X,\ Y,\ S^+,\ \gamma,\ B).
+\]
+
+\subsection{Internal carrier stabilizer and one-family packet}
+
+\begin{theorem}[Internal carrier stabilizer]
+\label{thm:global-sm-theorem}
+The determinant-preserving connected stabilizer of the minimal carrier split is
+\[
+G_{\mathrm{car}}
+=
+S(U(3)\times U(2))
+\cong
+\frac{SU(3)\times SU(2)\times U(1)_Y}{\mathbb Z_6}.
+\]
+The corresponding Lie algebra factorization
+\[
+\mathfrak g_{\SM}=\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak u(1)
+\]
+is only the differential, local form of the same statement; throughout the manuscript this quotient
+is intended as the internal carrier-stabilizer form whenever a group symbol is written, and the
+local algebra notation is used only when explicitly stated.
+\end{theorem}
+
+\begin{proof}
+An automorphism preserving the split $E_3\oplus E_2$ acts by a pair
+$(u_3,u_2)\in U(3)\times U(2)$. Requiring determinant preservation on the full
+carrier gives
+\[
+\det(u_3)\det(u_2)=1,
+\]
+so the connected stabilizer is exactly $S(U(3)\times U(2))$.
+
+Define
+\[
+\Phi:SU(3)\times SU(2)\times U(1)_Y \longrightarrow S(U(3)\times U(2)),
+\qquad
+\Phi(g_3,g_2,z)=\bigl(z^2 g_3,\ z^{-3} g_2\bigr).
+\]
+This is a well-defined group homomorphism because the exponents are integers, and
+\[
+\det(z^2 g_3)\det(z^{-3} g_2)=z^6 z^{-6}=1.
+\]
+
+To prove surjectivity, take $(u_3,u_2)\in S(U(3)\times U(2))$. Choose
+$z\in U(1)$ with
+\[
+z^6=\det(u_3)=\det(u_2)^{-1}.
+\]
+Then
+\[
+g_3:=z^{-2}u_3\in SU(3),
+\qquad
+g_2:=z^{3}u_2\in SU(2),
+\]
+and therefore
+\[
+\Phi(g_3,g_2,z)=(u_3,u_2).
+\]
+
+If $\Phi(g_3,g_2,z)=(\mathbf 1_3,\mathbf 1_2)$, then
+\[
+g_3=z^{-2}\mathbf 1_3,
+\qquad
+g_2=z^{3}\mathbf 1_2.
+\]
+The conditions $g_3\in SU(3)$ and $g_2\in SU(2)$ imply $z^6=1$. Hence
+\[
+\ker\Phi
+=
+\left\{
+\bigl(z^{-2}\mathbf 1_3,\ z^{3}\mathbf 1_2,\ z\bigr): z^6=1
+\right\}
+\cong \mathbb Z_6.
+\]
+Therefore
+\[
+S(U(3)\times U(2))
+\cong
+\frac{SU(3)\times SU(2)\times U(1)_Y}{\mathbb Z_6}.
+\]
+\end{proof}
+
+\begin{theorem}[Faithful physical global gauge group]
+\label{thm:physical-gauge-group}
+\label{thm:physical-gauge-group-faithful}
+The action of
+\[
+S(U(3)\times U(2))
+\]
+on the admissible matter-plus-Higgs package
+\[
+\mathcal R_{\mathrm{adm}}:=S^+\oplus E_2
+\]
+is faithful. Therefore
+\[
+G_{\mathrm{phys}}=G_{\mathrm{car}}=S(U(3)\times U(2)).
+\]
+Equivalently,
+\[
+G_{\mathrm{phys}}
+\cong
+\frac{SU(3)\times SU(2)\times U(1)_Y}{\mathbb Z_6}.
+\]
+No further nontrivial quotient survives on the physical matter-plus-Higgs package.
+\end{theorem}
+
+\begin{proof}
+Let $(u_3,u_2)\in S(U(3)\times U(2))$ act trivially on $\mathcal R_{\mathrm{adm}}$. The Higgs
+sector is $E_2$, so triviality there implies
+\[
+u_2=\mathbf 1_2.
+\]
+The matter packet contains the quark doublet sector
+\[
+Q=E_3\otimes E_2.
+\]
+Since $u_2=\mathbf 1_2$, trivial action on $Q$ forces
+\[
+u_3=\mathbf 1_3.
+\]
+Hence the kernel is trivial. The quotient from $SU(3)\times SU(2)\times U(1)$ to
+$S(U(3)\times U(2))$ already has kernel $\mathbb Z_6$ by \Cref{thm:global-sm-theorem}, so this is
+the exact physical global form.
+\end{proof}
+
+Throughout the manuscript, $S(U(3)\times U(2))$ is therefore read not only as the internal carrier
+stabilizer but as the physical global gauge group selected by the faithful action on the admissible
+matter-plus-Higgs package.
+
+Matter is read from the positive half-spinor
+\[
+S^+=\Lambda^{\mathrm{even}}E,
+\qquad
+\dim S^+=16.
+\]
+
+\begin{theorem}[One carrier family from the exterior packet]
+The positive half-spinor of the minimal carrier decomposes as
+\[
+S^+
+\cong
+(1,1)_0\oplus(3,2)_{1/6}\oplus(\bar 3,1)_{-2/3}\oplus(\bar 3,1)_{1/3}\oplus(1,2)_{-1/2}\oplus(1,1)_1,
+\]
+that is, exactly one chiral Standard Model family with $\nu^c$. Equivalently, in the familiar unified packaging language,
+\[
+S^+\cong \mathbf 1\oplus \mathbf{10}\oplus \overline{\mathbf 5}.
+\]
+\end{theorem}
+
+\begin{proof}
+One has
+\[
+S^+=\Lambda^0E\oplus\Lambda^2E\oplus\Lambda^4E.
+\]
+The $\Lambda^0E$ sector is immediately
+\[
+\Lambda^0E\cong (1,1)_0,
+\]
+which is identified with $\nu^c$ in left-chiral notation. For the minimal carrier,
+\[
+\Lambda^2E
+\cong
+\Lambda^2E_3\oplus(E_3\otimes E_2)\oplus\Lambda^2E_2.
+\]
+Here
+\[
+\Lambda^2E_3\cong \bar 3,
+\qquad
+E_3\otimes E_2\cong (3,2),
+\qquad
+\Lambda^2E_2\cong 1,
+\]
+and the hypercharges are obtained by adding the carrier charges from
+\[
+Y=\mathrm{diag}\!\left(-\frac13,-\frac13,-\frac13,\frac12,\frac12\right).
+\]
+Therefore
+\[
+\Lambda^2E
+\cong
+(\bar 3,1)_{-2/3}\oplus(3,2)_{1/6}\oplus(1,1)_1.
+\]
+Because the full determinant is trivial in $S(U(3)\times U(2))$, one has $\Lambda^5E\cong 1$ and hence
+\[
+\Lambda^4E\cong E^\ast.
+\]
+Equivalently,
+\[
+\Lambda^4E
+\cong
+(\Lambda^3E_3\otimes E_2)\oplus(\Lambda^2E_3\otimes\Lambda^2E_2).
+\]
+Using $\Lambda^3E_3\cong 1$, $\Lambda^2E_2\cong 1$, and $\Lambda^2E_3\cong E_3^\ast\cong\bar 3$, one gets
+\[
+\Lambda^4E\cong (1,2)_{-1/2}\oplus(\bar 3,1)_{1/3}.
+\]
+Collecting the three even-degree sectors yields
+\[
+S^+
+\cong
+(1,1)_0\oplus(\bar 3,1)_{-2/3}\oplus(3,2)_{1/6}\oplus(1,1)_1\oplus(\bar 3,1)_{1/3}\oplus(1,2)_{-1/2},
+\]
+with total multiplicity $1+3+6+1+3+2=16$. The $\Lambda^2E$ sector is the standard left-chiral $\mathbf{10}$ of $SU(5)$, the $\Lambda^4E$ sector is the standard left-chiral $\overline{\mathbf 5}$, and the $\Lambda^0E$ sector is the singlet $\mathbf 1$.
+\end{proof}
+
+In left-chiral notation the one-family decomposition takes the explicit form shown in \Cref{tab:one-family}. This is the place where the manuscript must be explicit: the carrier theorem is meaningful only if the reader can see how the sixteen states are organized.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedleft\arraybackslash}p{0.13\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedleft\arraybackslash}p{0.08\linewidth}@{}}
+\toprule
+Exterior component & $\SM$ representation & Hypercharge & Field content & Mult. \\
+\midrule
+$\Lambda^0E$ & $(1,1)_0$ & $0$ & $\nu^c$ & $1$ \\
+$\Lambda^2E_3$ & $(\bar 3,1)_{-2/3}$ & $-2/3$ & $u^c$ & $3$ \\
+$E_3\otimes E_2$ & $(3,2)_{1/6}$ & $1/6$ & $Q_L$ & $6$ \\
+$\Lambda^2E_2$ & $(1,1)_1$ & $1$ & $e^c$ & $1$ \\
+\makecell[l]{$\Lambda^3E_3$\\$\otimes E_2$} & $(1,2)_{-1/2}$ & $-1/2$ & $L_L$ & $2$ \\
+\makecell[l]{$\Lambda^2E_3$\\$\otimes\Lambda^2E_2$} & $(\bar 3,1)_{1/3}$ & $1/3$ & $d^c$ & $3$ \\
+\midrule
+\multicolumn{4}{r}{Total multiplicity} & $16$ \\
+\bottomrule
+\end{tabular}
+\caption{One chiral family from $S^+=\Lambda^{\mathrm{even}}E$, written in left-chiral notation with charge-conjugate singlets.}
+\label{tab:one-family}
+\end{table}
+
+\begin{proposition}[Exact parity-code realization of the family packet]
+\label{prop:parity-code-family}
+Identifying each wedge monomial in $\Lambda E$ with its occupation word
+\[
+x=(x_1,\dots,x_5)\in\{0,1\}^5,
+\]
+the positive half-spinor is exactly the even-parity subspace
+\[
+S^+
+\cong
+\mathrm{span}\Bigl\{|x\rangle:\sum_{i=1}^5 x_i\equiv 0 \pmod 2\Bigr\}.
+\]
+Equivalently,
+\[
+S^+
+=
+\bigl(\Lambda^{\mathrm{even}}E_3\otimes\Lambda^{\mathrm{even}}E_2\bigr)
+\oplus
+\bigl(\Lambda^{\mathrm{odd}}E_3\otimes\Lambda^{\mathrm{odd}}E_2\bigr),
+\]
+and each summand has dimension $8$.
+\end{proposition}
+
+\begin{proof}
+Choose a basis of $E$ adapted to the split $E_3\oplus E_2$. Exterior monomials are then in bijection with occupation words $x\in\{0,1\}^5$, and the exterior degree is exactly the Hamming weight $\sum_i x_i$. Hence $\Lambda^{\mathrm{even}}E$ is the span of the even-parity words. Splitting the degree into the $E_3$ and $E_2$ contributions gives the direct-sum decomposition above. Since
+\[
+\dim \Lambda^{\mathrm{even}}E_3=1+\binom32=4,
+\qquad
+\dim \Lambda^{\mathrm{odd}}E_3=\binom31+\binom33=4,
+\]
+and
+\[
+\dim \Lambda^{\mathrm{even}}E_2=1+\binom22=2,
+\qquad
+\dim \Lambda^{\mathrm{odd}}E_2=\binom21=2,
+\]
+each tensor-product sector has dimension $8$.
+\end{proof}
+
+\begin{remark}[Exact parity lock, not a loose code analogy]
+The family packet is therefore not merely code-like: at the level of occupation kinematics it is exactly the classical even-parity $[5,4,2]$ code on five bits. What the present paper still does \emph{not} claim is a dynamical error-correction theorem for realistic noise channels. The exact statement is the parity lock itself. In the maximally mixed state on the $16$ occupation words, eight states lie in the $(\mathrm{even},\mathrm{even})$ sector and eight in $(\mathrm{odd},\mathrm{odd})$, so the coarse parity observables of the $3$-side and $2$-side carry exactly one bit of mutual information.
+\end{remark}
+
+The family packet can also be read as a two-dimensional occupancy map, shown in \Cref{fig:family-occupancy-map}. This is where the one-family table, the even-parity code, the split weight enumerator, and the $X=6Y$ arithmetic all meet in one glance.
+
+\begin{figure}[t]
+\centering
+\footnotesize
+\begin{tikzpicture}[>=Latex, x=1.7cm, y=1.45cm]
+\draw[->, thick] (-0.2,0) -- (3.4,0) node[below] {$n_3$};
+\draw[->, thick] (0,-0.2) -- (0,2.35) node[left] {$n_2$};
+\foreach \x in {0,1,2,3} {
+    \draw[gray!30] (\x,0) -- (\x,2.05);
+    \node[below] at (\x,-0.02) {\x};
+}
+\foreach \y in {0,1,2} {
+    \draw[gray!30] (0,\y) -- (3.05,\y);
+    \node[left] at (-0.02,\y) {\y};
+}
+\node[align=left, anchor=west] at (2.05,2.15) {$n_3+n_2$ even\\$\Longleftrightarrow S^+$ admissible};
+
+\foreach \x/\y in {1/0,3/0,0/1,2/1,1/2,3/2} {
+    \draw[red!65!black, line width=0.6pt] (\x-0.08,\y-0.08) -- (\x+0.08,\y+0.08);
+    \draw[red!65!black, line width=0.6pt] (\x-0.08,\y+0.08) -- (\x+0.08,\y-0.08);
+}
+
+\filldraw[blue!55!black] (0,0) circle (3.8pt);
+\node[text=white, font=\scriptsize] at (0,0) {1};
+\node[anchor=west] at (0.14,0.05) {$\nu^c$};
+
+\filldraw[blue!55!black] (2,0) circle (4.5pt);
+\node[text=white, font=\scriptsize] at (2,0) {3};
+\node[anchor=west] at (2.12,0.08) {$u^c$};
+
+\filldraw[green!55!black] (1,1) circle (5.5pt);
+\node[text=white, font=\scriptsize] at (1,1) {6};
+\node[anchor=west] at (1.14,1.08) {$Q_L$};
+
+\filldraw[orange!80!black] (0,2) circle (3.8pt);
+\node[text=white, font=\scriptsize] at (0,2) {1};
+\node[anchor=west] at (0.12,1.9) {$e^c$};
+
+\filldraw[orange!80!black] (3,1) circle (4.3pt);
+\node[text=white, font=\scriptsize] at (3,1) {2};
+\node[anchor=west] at (3.12,1.03) {$L_L$};
+
+\filldraw[orange!80!black] (2,2) circle (4.5pt);
+\node[text=white, font=\scriptsize] at (2,2) {3};
+\node[anchor=west] at (2.12,1.9) {$d^c$};
+
+\node[draw=black!55, rounded corners, fill=gray!4, align=center] at (1.55,-0.72) {%
+    multiplicity $=\binom{3}{n_3}\binom{2}{n_2}$\\
+    scaled hypercharge $X=3n_2-2n_3=6Y$};
+\end{tikzpicture}
+\caption{Occupancy map of the family packet. The admissible sectors are exactly the even lattice points in $(n_3,n_2)$, with multiplicities $(1,3,6,1,2,3)$ and field labels matching \Cref{tab:one-family}. This is the visual meeting point of parity lock, split weight enumerator, and family hypercharge arithmetic.}
+\label{fig:family-occupancy-map}
+\end{figure}
+

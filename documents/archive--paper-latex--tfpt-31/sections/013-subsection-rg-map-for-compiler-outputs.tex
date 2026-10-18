@@ -1,0 +1,359 @@
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\begin{tikzpicture}[
+    hdr/.style={draw=black!65, fill=gray!15, rounded corners, minimum width=2.65cm, minimum height=0.85cm, align=center, font=\bfseries},
+    rowhdr/.style={draw=black!55, fill=gray!7, rounded corners, minimum width=2.2cm, minimum height=1.0cm, align=center},
+    hard/.style={draw=blue!60!black, fill=blue!6, rounded corners, text width=2.45cm, minimum height=1.0cm, align=left, inner sep=4pt},
+    closure/.style={draw=orange!75!black, fill=orange!8, rounded corners, text width=2.45cm, minimum height=1.0cm, align=left, inner sep=4pt},
+    bridge/.style={draw=green!50!black, fill=green!8, rounded corners, text width=2.45cm, minimum height=1.0cm, align=left, inner sep=4pt},
+    branchrow/.style={draw=gray!70!black, fill=gray!12, rounded corners, text width=2.45cm, minimum height=1.0cm, align=left, inner sep=4pt},
+    cond/.style={draw=purple!70!black, fill=purple!8, rounded corners, text width=2.45cm, minimum height=1.0cm, align=left, inner sep=4pt}
+]
+\node[hdr] at (0,0) {Hard};
+\node[hdr] at (3.15,0) {Closure};
+\node[hdr] at (6.3,0) {Intrinsic observation};
+\node[hdr] at (9.45,0) {Optional extrapolation};
+
+\node[rowhdr] at (-2.55,-1.2) {structural\\outputs};
+\node[rowhdr] at (-2.55,-2.6) {derived\\quantities};
+\node[rowhdr] at (-2.55,-4.0) {branch /\\projection rows};
+\node[rowhdr] at (-2.55,-5.4) {observation /\\interface rows};
+
+\node[hard] at (0,-1.2) {$E_3\oplus E_2$\\$G_{\SM}^{\mathrm{glob}}$, $S^+$};
+\node[closure] at (3.15,-1.2) {$\Padm$\\$\Hhad$, $\bar\theta=0$};
+\node[bridge] at (6.3,-1.2) {$\mathcal R_{\SM}$\\numerical preconditioner};
+\node[cond] at (9.45,-1.2) {E$_8$ grammar\\horizons};
+
+\node[hard] at (0,-2.6) {$\cthree$, $\phibase$, $\deltatop$\\$\bone(N_{\mathrm{fam}},N_\Phi)$};
+\node[closure] at (3.15,-2.6) {$F\cong\mathbb C^3$, $\Omega_{\mathrm{adm}}$\\$\Mpl$, $\vgeo$, $Y_f$};
+\node[bridge] at (6.3,-2.6) {$\alpha^{-1}(0)$, $\bar\alpha^{(5)}(M_Z)$\\$\beta$, $\Omega_b$, $\lambda_C$};
+\node[cond] at (9.45,-2.6) {E$_8$ ratios\\appendix scale rows};
+
+\node[hard] at (0,-4.0) {---};
+\node[branchrow] at (3.15,-4.0) {charged-lepton outputs\\minimal neutrino branch};
+\node[bridge] at (6.3,-4.0) {$\delta_{\mathrm{CKM}}$\\neutrino / fit-facing rows};
+\node[cond] at (9.45,-4.0) {horizon language\\appendix-only rows};
+
+\node[hard] at (0,-5.4) {---};
+\node[closure] at (3.15,-5.4) {hadronic outputs\\transport matrix elements};
+\node[bridge] at (6.3,-5.4) {$m_W,m_Z,m_H$\\$\hat s_Z^2,\alpha_s$};
+\node[cond] at (9.45,-5.4) {UV tails\\modular horizon notes};
+\end{tikzpicture}
+\caption{Epistemic output matrix. Columns encode the manuscript's truth/status classes; rows encode output mode. The point is to stop exact algebraic outputs, conditional closure rows, matched observation rows, and optional extrapolations from looking like one homogeneous notion of prediction.}
+\label{fig:epistemic-output-matrix}
+\end{figure}
+
+\subsection{RG map for compiler outputs}
+\label{sec:rg-map-compiler-outputs}
+
+The symbol $\mathcal R_{\SM}$ denotes the declared comparison map from TFPT outputs to scheme-specified observables. Here it is the bookkeeping package
+\[
+\mathcal R_{\SM}
+=
+\left(
+\begin{array}{l}
+\mu_{\mathrm{match}}=M_Z,\ \{\mu_{\mathrm{thr}}\}=\{m_c,m_b,m_\tau,m_t\},\\
+\text{running convention},\ \text{scheme conversion},\ \text{observable map}
+\end{array}
+\right),
+\]
+and we write
+\[
+\bar\alpha^{(5)}(M_Z):=\alpha_{\mathrm{em}}^{\overline{\mathrm{MS}},\,n_f=5}(M_Z).
+\]
+with the following restricted interpretation in the main text:
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item $\alpha^{-1}(0)$ is compared in the Thomson-limit on-shell convention, with the CODATA 2022 / NIST value taken as the normative low-energy reference rather than the separate PDG electroweak extraction from $a_e$,
+    \item $\bar\alpha^{(5)}(M_Z)^{-1}$ is compared after the declared threshold map with $\{\mu_{\mathrm{thr}}\}=\{m_c,m_b,m_\tau,m_t\}$ into the $\overline{\mathrm{MS}}$ language at $\mu=M_Z$,
+    \item neutrino-angle rows use the NuFIT normal-ordering reference snapshot based on data available through November 2025,
+    \item the $\Omega_b$ row is reconstructed from the Planck 2018 base-$\Lambda$CDM pair $(\Omega_b h^2,H_0)$ via $\Omega_b=(\Omega_b h^2)/h^2$ with $h=H_0/100$,
+    \item the $\beta$ row uses the Minami--Komatsu extraction from Planck 2018 polarization as the normative benchmark, while PR4 and PR4 map-space analyses are kept only as supplementary context,
+    \item direct-search interface rows are not treated as precision residuals and are therefore kept out of the main benchmark table.
+\end{itemize}
+For later use we also set
+\[
+\beta_{\mathrm{rad}}:=\frac{\phiz}{4\pi}.
+\]
+
+\begin{remark}[RG bookkeeping for direct \texorpdfstring{$\vgeo$}{vgeo} mass rows]
+Whenever a mass row is written directly in the transport form
+\[
+\hat m_{f,j}=\frac{y_{f,j}\vgeo}{\sqrt2},
+\]
+the manuscript reads that formula on the intrinsic surface $\mathcal S_{\mathrm{int}}$, with the
+observation-facing image obtained only after
+\[
+m_{f,j}^{\mathrm{obs}}=\mathcal R_{\SM}(\hat m_{f,j}).
+\]
+The explicit running, threshold, and scheme bookkeeping for observation-surface rows is carried by the declared map $\mathcal R_{\SM}$. Accordingly, the direct charged-lepton and neutrino source rows should be read in the minimal approximation that the residual running of $y_f$ and of the Higgs background between the geometric emission scale and the quoted IR comparison scale is either absorbed into that declared map or subleading at the present level of precision. The paper therefore does not claim a separate long-distance RG derivation from $\vgeo$ to every quoted pole or $\overline{\mathrm{MS}}$ mass row.
+\end{remark}
+
+\begin{proposition}[Scheme covariance of the observation functor]
+Let $\mathsf S$ and $\widetilde{\mathsf S}$ be two admissible renormalization schemes related by
+a smooth finite reparameterization preserving the heavy-threshold fixed points and the admissible
+matching conditions. Then
+\[
+\mathcal R_{\mathrm{TOE}}^{\widetilde{\mathsf S}}
+=
+\mathcal U_{\mathsf S\to\widetilde{\mathsf S}}
+\circ
+\mathcal R_{\mathrm{TOE}}^{\mathsf S}
+\]
+for a unique finite scheme transformation $\mathcal U_{\mathsf S\to\widetilde{\mathsf S}}$.
+Thus the observation functor is scheme covariant and physical residuals are scheme independent
+up to the declared uncertainty ledger.
+\end{proposition}
+
+\begin{definition}[Core closure functional]
+\label{def:core-closure-functional}
+Let
+\[
+x_{\mathrm{core}}:=(\alpha,M_\Sigma,\{g_i\},v,\lambda_\Phi,\{\hat m_f\},\delta_{\mathrm{ph}},
+\nabla_F,\ldots)
+\]
+be the core intrinsic unknown vector on the admissible branch. Define the core closure
+functional
+\[
+\mathcal E_{\mathrm{core}}(x_{\mathrm{core}}):=
+\frac12\|F_{\mathrm{car}}(x_{\mathrm{core}})\|^2
++\frac12\|F_{\mathrm{match}}(x_{\mathrm{core}})\|^2
++\frac12\|F_{\mathrm{thr}}(x_{\mathrm{core}})\|^2
++\mathcal V_{\mathrm{vac}}(x_{\mathrm{core}}).
+\]
+The admissible domain $\mathfrak D_{\mathrm{adm}}$ is the subset on which all sector operators
+are well defined, positive, and gap stable.
+The conditional UV program $\Gamma_{\mathrm{UV}}$ and the downstream cosmology module
+$\Gamma_{\mathrm{cos}}$ are evaluated on the selected core branch but do not enter the core
+closure functional:
+\[
+\Gamma_{\mathrm{UV}}(x_{\mathrm{core}}^\star),
+\qquad
+\Gamma_{\mathrm{cos}}(x_{\mathrm{core}}^\star,\Lambda_{\mathrm{obs}},\Omega_{\mathrm{DM}},
+\eta_B,\ldots).
+\]
+\end{definition}
+
+\begin{theorem}[Conditional core closure selection theorem]
+\label{thm:observation-closure}
+Assume the core closure functional $\mathcal E_{\mathrm{core}}$ is lower semicontinuous and
+coercive on the admissible domain $\mathfrak D_{\mathrm{adm}}$. Then
+$\mathcal E_{\mathrm{core}}$ admits at least one global minimizer
+\[
+x_{\mathrm{core}}^\star=\argmin_{x_{\mathrm{core}}\in\mathfrak D_{\mathrm{adm}}}
+\mathcal E_{\mathrm{core}}(x_{\mathrm{core}}).
+\]
+If, in addition, the Hessian of $\mathcal E_{\mathrm{core}}$ is strictly positive on the
+admissible tangent cone at $x_{\mathrm{core}}^\star$, then the minimizer is locally unique.
+The observation functor reads the selected core minimizer to the observation surface by
+\[
+O_{\mathrm{th}}=\mathcal R_{\mathrm{TOE}}(x_{\mathrm{core}}^\star).
+\]
+The conditional UV refinement $\Gamma_{\mathrm{UV}}$ is then evaluated on the selected core
+branch, and the downstream cosmology module $\Gamma_{\mathrm{cos}}$ is evaluated on that same
+branch without feeding back into the core selection.
+\end{theorem}
+
+\begin{principle}[Canonical numerical branch]
+In the present manuscript the benchmark ledgers are evaluated on the canonical admissible
+minimizer selected by the declared numerical continuation and threshold map.
+\end{principle}
+
+\begin{corollary}[Matched intrinsic threshold outputs on the selected branch]
+\label{cor:intrinsic-threshold-outputs}
+On the canonical numerically selected admissible branch, the heavy electroweak quantities are
+reported as matched intrinsic observation rows:
+\[
+m_W=\frac12 g_2(v_\star)v_\star,
+\qquad
+m_Z=\frac12\sqrt{g_1(v_\star)^2+g_2(v_\star)^2}\,v_\star,
+\qquad
+m_H^2=2\lambda_\Phi(v_\star)v_\star^2.
+\]
+\end{corollary}
+
+\subsection{Local gauge closure and seam matching}
+
+\begin{definition}[Seam matching data]
+We write
+\[
+M_\Sigma:=\lambda_1^+(B_\Sigma),
+\qquad
+g_\Sigma:=g(\mu=M_\Sigma),
+\]
+for the seam matching scale read from the first positive seam boundary mode and the common gauge coupling at that scale. In the same notation, $Q_\Theta$ is the determinant-sector involution used in admissibility, $T$ is the transport generator on the family side, $\mathfrak C_\Sigma$ denotes the seam cycle data when needed, and $\wspin$ is the spin holonomy weight entering the geometric package.
+\end{definition}
+
+Within the intrinsic observation layer, the gauge comparison layer is decomposed as
+\begin{equation}
+\label{eq:relative-gauge-split}
+\Gamma_{\mathrm{gauge}}^{\mathrm{rel}}
+=
+\Gamma_{\mathrm{bulk}}^{\mathrm{loc}}
++
+\Delta_{EW}^{\Seam,+}
++
+\Delta_3^{\mathrm{NP}}.
+\end{equation}
+
+\begin{proposition}[Local gauge closure and seam matching]
+\label{prop:local-gauge-closure-matching}
+The local carrier gauge closure fixes the common UV normalization
+\[
+\mathcal I_1=\mathcal I_2=\mathcal I_3,
+\qquad
+\frac{f_0^{\mathrm{rel}}}{2\pi^2}=\frac{1}{4g_\Seam^2}.
+\]
+The remaining branch dependence at $\mu=M_Z$ is isolated in two explicit matching functionals:
+\[
+\Delta_3^{\mathrm{NP}}(M_Z)
+=
+-\frac{1}{4\pi}\ln\frac{M_\Seam}{\sqrt{\sigma}},
+\]
+and
+\[
+\Delta_{EW}^{\Seam,+}
+=
+\left(
+-\frac{9}{80\pi}\ln\frac{M_\Seam}{v},
+\;
+\frac{3}{16\pi}\ln\frac{M_\Seam}{v}
+\right).
+\]
+Accordingly,
+\[
+\mathcal R_{\SM}
+=
+\bigl(\mathcal R_{\SM}^{\mathrm{loc}},\mathcal R_{\SM}^{\mathrm{match}}\bigr),
+\]
+with the local carrier closure fixed by the bulk term and the residual scheme / branch sensitivity sitting only in the declared matching functionals.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+The relative bulk term fixes the common gauge normalization before low-energy matching is imposed. The electroweak seam-even term and the nonperturbative singlet Wilson correction are then the only remaining pieces needed to translate the local carrier closure into $M_Z$-scale observables. This is exactly the benchmark-bridge point: local closure is not abandoned, but neither is the matching dependence hidden.
+\end{proof}
+
+\begin{remark}[Matching-branch gauge outputs]
+On the retained matching branch, the decomposition above gives
+\[
+\hat s_Z^2(M_Z)\approx \num{0.23116113},
+\qquad
+\alpha_s(M_Z)\approx \num{0.11796213}.
+\]
+These rows are therefore sharper than a vague completion target, but they remain benchmark-bridge quantities rather than hard carrier outputs.
+\end{remark}
+
+\begin{proposition}[Finite renormalization closure]
+In four spacetime dimensions, the local relative spectral expansion closes on the finite operator basis
+\[
+1,\quad
+R,\quad
+R^2,\quad
+|D\Phi|^2,\quad
+|\Phi|^2,\quad
+|\Phi|^4,\quad
+\tr F_a^2,\quad
+\bar\psi i\!\not\!\!D\psi,\quad
+\bar\psi\Phi\psi.
+\]
+Therefore the admissible renormalization flow closes on a finite-dimensional coupling space. No new relevant or marginal operator outside this basis is generated by the relative spectral RG closure on the retained branch.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+This is the local four-dimensional content of the relative spectral expansion already used in the carrier, bosonic, and gauge-matching sectors. Once the admissibility selector removes inadmissible channels, the RG flow only renormalizes coefficients in this finite basis rather than opening an uncontrolled tower of new low-dimensional operators.
+\end{proof}
+
+\begin{corollary}[Infrared universality]
+Let
+\[
+m_*:=\min\left\{\frac{\epsilon_f}{2},\,m_-,\,m_3\right\}.
+\]
+Below that smallest admissible gap scale, the unique renormalizable effective theory on the admissible branch is the Standard Model quotient
+\[
+S(U(3)\times U(2))
+\]
+with three chiral families, one seam-even Higgs doublet, special-unitary family holonomy, and the geometric gravity branch of \Cref{thm:gravity-cosmology-closure}.
+\end{corollary}
+
+\subsection{Central hard-kernel quantities}
+
+The roles of $\cthree$ and $\phiz$ should not remain implicit. They are the central hard numeric quantities of the present main-text kernel. The downstream E$_8$ parameter $\kappa_{E8}$ is isolated in the next section rather than folded back into the kernel center.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.11\linewidth}>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedright\arraybackslash}p{0.24\linewidth}X@{}}
+\toprule
+Quantity & Closed value & Role / status & Named outputs \\
+\midrule
+$\cthree$ & \makecell[l]{$1/(8\pi)$\\$=\num{0.03979}$} & Hard seam normalization & $\deltatop$, $C_{a\gamma\gamma}=-4\cthree$, $\sigma=\cthree^2\chi_{\QCD}^2$, $M/\bar M_{\mathrm{Pl}}=\sqrt{8\pi}\cthree^4$ \\
+$\phiz$ & \makecell[l]{$\frac{1}{6\pi}+\frac{3}{256\pi^4}$\\$=\num{0.05317}$} & Retained canonical seed; hard inputs plus bridge reinterpretation via $\deltatop=\Oadm\cthree^4$ & $\beta_{\mathrm{rad}}=\phiz/(4\pi)$, $\lambda_C=\sqrt{\phiz(1-\phiz)}$, $\sin^2\theta_{13}$, charged-lepton ladders \\
+\bottomrule
+\end{tabularx}
+\caption{Central hard-kernel quantities and the main predictions they feed.}
+\label{tab:kernel-output-map}
+\end{table}
+
+The most exposed closed formulas driven by these constants are those already displayed in \Cref{eq:kernel-benchmark-formulas}.
+
+\subsection{Mass-closure ledgers}
+
+For the mass surface itself the main text now uses four row-level status classes:
+\emph{exact algebraic}, \emph{conditional geometric or closure}, \emph{matched intrinsic
+observation}, and \emph{optional extrapolation}. The present ledgers use the middle two classes:
+conditional closure rows for theorem-facing masses and matched intrinsic observation rows for
+selected branch comparisons.
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedleft\arraybackslash}p{0.15\linewidth}>{\raggedleft\arraybackslash}p{0.15\linewidth}>{\raggedleft\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.12\linewidth}@{}}
+\toprule
+Particle & TFPT source class & TFPT value & PDG value & Residual & Status \\
+\midrule
+$e$ & canonical transport-branch charged-lepton packet & \num{0.52197} MeV & \num{0.510999} MeV & $+2.15\%$ & conditional closure \\
+$\mu$ & canonical transport-branch charged-lepton packet & \num{107.70} MeV & \num{105.658} MeV & $+1.93\%$ & conditional closure \\
+$\tau$ & canonical transport-branch charged-lepton packet & \num{1.7723} GeV & \num{1.77686} GeV & $-0.26\%$ & conditional closure \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Matched intrinsic observation surface:}} \\
+$W^\pm$ & matched intrinsic threshold row & \num{80.369} GeV & \num{80.369} GeV & $0.00\%$ & matched intrinsic observation \\
+$Z$ & matched intrinsic threshold row & \num{91.188} GeV & \num{91.188} GeV & $0.00\%$ & matched intrinsic observation \\
+$H$ & matched intrinsic threshold row & \num{125.25} GeV & \num{125.25} GeV & $0.00\%$ & matched intrinsic observation \\
+\bottomrule
+\end{tabularx}
+\caption{Compact mass surface, electroweak and charged-lepton sector. The charged-lepton rows are conditional closure statements on the selected transport branch, while the gauge/Higgs rows are matched intrinsic observation rows.}
+\label{tab:sm-mass-ledger-ew}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedleft\arraybackslash}p{0.15\linewidth}>{\raggedleft\arraybackslash}p{0.15\linewidth}>{\raggedleft\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.12\linewidth}@{}}
+\toprule
+Particle & TFPT source class & TFPT value & PDG value & Residual & Status \\
+\midrule
+$u$ & light-quark solver relative to strange anchor, $\overline{\mathrm{MS}}$ at $2$ GeV & \num{2.195} MeV & \num{2.16} MeV & $+1.62\%$ & conditional closure \\
+$d$ & light-quark solver relative to strange anchor, $\overline{\mathrm{MS}}$ at $2$ GeV & \num{4.67} MeV & \num{4.67} MeV & $+0.00\%$ & conditional closure \\
+$\pi^0$ & GMOR hadronic theorem row & \num{134.979} MeV & \num{134.977} MeV & $+0.00\%$ & conditional closure \\
+$p$ & hadron mass-ladder theorem row & \num{935.03} MeV & \num{938.272} MeV & $-0.35\%$ & conditional closure \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Matched intrinsic observation surface:}} \\
+$s$ & strange-quark matched row, $\overline{\mathrm{MS}}$ at $2$ GeV & \num{93.4} MeV & \num{93.4} MeV & $0.00\%$ & matched intrinsic observation \\
+$c$ & up-type ratio ladder after observation matching & \num{1.27} GeV & \num{1.27} GeV & $0.00\%$ & matched intrinsic observation \\
+$b$ & down-type ratio ladder after observation matching & \num{4.18} GeV & \num{4.18} GeV & $0.00\%$ & matched intrinsic observation \\
+$t$ & up-type ratio ladder after observation matching & \num{172.57} GeV & \num{172.57} GeV & $0.00\%$ & matched intrinsic observation \\
+\bottomrule
+\end{tabularx}
+\caption{Compact mass surface, quark and first-hadron sector. Light-quark and hadronic rows are conditional closure statements, while the heavy-quark rows are matched intrinsic observation rows after matching.}
+\label{tab:sm-mass-ledger-quarks}
+\end{table}
+
+The compact ledgers are intentionally narrow: they show the observation surface, not the full
+internal algebra. Supplementary source formulas, neutrino branch details, and the ladder / ratio
+source rows for the quark sector are collected in the appendix-level supplementary mass-source
+table \Cref{tab:mass-source-supplement}.
+

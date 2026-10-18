@@ -1426,6 +1426,10 @@ def build() -> dict:
             "title": clip(row.get("title"), 200),
             "line_start": (row.get("line_start") or "").strip(),
             "line_end": (row.get("line_end") or "").strip(),
+            "source_path": (row.get("source_path") or f"{doc}.tex").strip(),
+            "source_line_start": (row.get("source_line_start") or row.get("line_start") or "").strip(),
+            "source_line_end": (row.get("source_line_end") or row.get("line_end") or "").strip(),
+            "source_spans": json.loads(row.get("source_spans") or "[]"),
             "last_changed": (row.get("last_changed") or "").strip(),
         })
         for tok in (row.get("scripts") or "").split(";"):

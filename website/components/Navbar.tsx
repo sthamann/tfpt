@@ -28,6 +28,7 @@ const primaryLinks = [
 
 const moreLinks = [
   { href: "/orientation", label: "Reading guide" },
+  { href: "/documentation", label: "Document library" },
   { href: "/predictions", label: "Predictions" },
   { href: "/architecture", label: "Architecture" },
   { href: "/compiler", label: "Compiler" },

@@ -1,13 +1,13 @@
 ---
 description: Keep the website (website/) in sync when the theory documents or the verification suite change
-globs: website/**,verification/**,*.tex
+globs: website/**,verification/**,documents/**,*.tex
 alwaysApply: false
 ---
 
 # Website sync — mirror theory & verification changes into `website/`
 
 The public site in `website/` (Next.js, static, deployed on Vercel) is a
-**mirror of the active root documents and the verification suite**. Whenever the
+**mirror of the active assembled documents and the verification suite**. Whenever the
 theory or the scripts change, the website must be updated in the **same change**.
 Never invent numbers or claims — everything on the site is grounded in the
 documents and the ledger (the ledger wins on any disagreement).
@@ -59,9 +59,13 @@ documents and the ledger (the ledger wins on any disagreement).
 2. `bash build.sh website` (re-copies all `vN_*.py` + PDFs, stamps version + hashes).
 3. If it backs a DAG node, add its filename to that node's `scripts` in `VerificationDag.tsx`.
 
-## When the changelog changes (always — every committed change adds an entry)
+## When scientific findings or the publication state change
 
-1. Add the dated entry to `changelog.tex` at the repo root (newest first, plain
+Documentation-only source organization and tooling changes are recorded in
+`docs/CHANGELOG.md`; keep the scientific PDF history intact unless its actual
+scientific/publication content changes.
+
+1. Add the dated entry to the owning changelog module identified by the registry (newest first, plain
    LaTeX only — no doc-specific macros), exactly as the `tfpt-workflow` rule
    requires.
 2. `bash build.sh gen` — regenerates `website/lib/changelog.ts` (the `/changelog`
@@ -99,3 +103,11 @@ documents and the ledger (the ledger wins on any disagreement).
   reproducer runs; on `/changelog`, confirm the newest entry rendered (math + markers).
 - The canonical repo link is `REPO_URL` in `lib/utils.ts`; the Pyodide version is pinned in
   `lib/pyodide.ts`.
+
+## Modular sources and content registry
+
+Use `verification/tex_sources.py` to expand entry points. Changes to a module
+require the same PDF/mirror checks as changes to a former monolithic source.
+`build.sh gen` refreshes the central registry; `build.sh website` mirrors its
+public downloads. The registry describes source ownership and evidence links,
+not new scientific verdicts. Its public page is `/documentation`.

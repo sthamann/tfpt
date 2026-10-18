@@ -1,0 +1,274 @@
+\begin{document}
+\maketitle
+
+\input{tex-artefacts/tfpt_docset}
+\noindent\emph{You are reading the \textbf{Safeguards} companion (S): it collects, in one place and in
+one language, every mechanism by which TFPT protects a claim against coincidence --- the status
+calculus, the anti-fitting rules, the over-determination accounting, the firewall, the frozen
+predictions and null model, the two independent proof paths (Wolfram, Lean), the red team, and the
+honest residual. It introduces no new physics; it makes the discipline auditable.}
+
+\begin{abstract}
+\noindent A two-input theory that reads out many small integers is, a priori, at risk of being
+elaborate numerology. TFPT answers that risk not with rhetoric but with a \emph{layered, machine-checked
+discipline}, and this companion states all of it uniformly. The layers are: (1) a four-class status
+calculus with a single-source ledger and a sync audit that forbids a conditional claim from being
+rendered as exact; (2) an anti-fitting rule (``no free pattern'') plus a reverse audit that counts how
+much structure carries \emph{no} readout; (3) an over-determination map that honestly separates
+\emph{multiplicative} evidence from \emph{compression} (many readouts from one generator) and, applied to
+TFPT's own arithmetic witnesses, finds them to be facets of \emph{one} $(2,3,5)/E_8$ object (compression),
+locating the genuine multiplication in an input forced four independent ways plus a foreign readout
+($\alpha^{-1}$); (4) a firewall that keeps external-physics interfaces from ever
+being typed as compiler outputs, together with the No-Unit theorem that makes the absence of an absolute
+scale a \emph{theorem}; (5) a frozen prediction registry with a Monte-Carlo null model and a live data
+scorecard; (6) two independent reproduction paths --- an independent Wolfram engine and a Lean~4 kernel
+proof; (7) an adversarial red-team layer; and a final, explicit statement of what would still falsify the
+theory. The thesis is deliberately modest: these safeguards make coincidence an \emph{expensive}
+explanation of the discrete core, and they keep ``exact compiler closure'' from ever being mistaken for
+``closed physics''.
+\end{abstract}
+
+\section{The risk, and the shape of the answer}
+The honest danger for TFPT is not that an individual number is wrong --- the arithmetic is usually clean
+--- but \emph{closure inflation}: that an exact, discrete \emph{compiler} closure is read, or worded, as a
+\emph{physical} closure. Every safeguard below exists to hold that one line. None of them, alone, turns
+syntax into semantics; together they make the discrete core hard to dismiss as chance and impossible to
+oversell as a finished Theory of Everything. We state each as a \emph{layer} with its enforcing
+artefact(s).
+\begin{figure}[ht]\centering
+\includegraphics[width=0.86\linewidth]{figures/safeguard_layers}
+\caption{The seven safeguard layers; a load-bearing claim must pass all of them. Each layer names its
+enforcing artefact (script id or document).}\label{fig:layers}
+\end{figure}
+
+\section{Layer 1 --- the status calculus (no \texttt{[C]} dressed as \texttt{[E]})}
+Every claim carries one of four display markers: \mE\ exact / proven (identity, Lie/lattice theorem,
+Lean-formalised, or numerical fixed point), \mC\ conditional (physical, under named hypotheses), \mO\ open
+/ axiom / anchor, \mX\ falsifiable kill test. The finer per-claim type (Axiom / Formal / Lattice /
+Numerical / Identity / Physical) lives in the \emph{single source of truth},
+\texttt{verification/status\_ledger.csv}; the papers and the website only \emph{mirror} it. A sync audit
+(\texttt{verification/audit\_sync.py}, run as \texttt{bash build.sh audit}) enforces, in both directions,
+that the suite, the runner, the registry and the ledger agree; that every script is cited in a paper
+\emph{body}; and that no generated surface is stale. The point of the calculus is exactly the reviewer's
+concern: it is structurally impossible for a \mC\ claim to be silently rendered as \mE, because the marker
+is read from the ledger, not retyped per document.
+
+\section{Layer 2 --- no free pattern, and the reverse audit}
+\begin{keybox}[Anti-fitting: an identity earns its keep or it is decorative]
+The \emph{forward discipline} / generator-economy audit (\veri{v305\_witness\_independence.py}, null model
+\veri{v100\_numerology\_null\_mc.py}) admits an identity as load-bearing only if it is derivationally
+necessary, kills alternatives, is ablation-relevant, links modules, or is experimentally testable;
+admissible invariant classes are bounded in advance. The complementary \emph{reverse audit}
+(\texttt{E8.REVERSE.AUDIT.01}) asks the honest
+opposite question --- how much $E_8$ structure maps onto \emph{nothing}? Of the eight Casimir degrees
+$\{2,8,12,14,18,20,24,30\}$, exactly \textbf{three} feed a primary physical readout (degree $2$, the
+metric; degree $8$, the rank $\to\cthree=1/(8\pi)$; degree $30$, the Coxeter number $\to\gcar=5$ and the
+order-$30$ clock) and \textbf{five} carry no primary readout. A theory that publishes its $5/8$ unused
+overhead is not cherry-picking --- and those five are not diffuse slack but the forced two-family ladder
+$6\cdot\text{spine}\{2,3,4,5\}\sqcup\text{det-ladder}\{8,14,20\}$ (\vref{v431}), so even the overhead is
+structured, not mined.
+\end{keybox}
+\begin{figure}[ht]\centering
+\includegraphics[width=0.84\linewidth]{figures/safeguard_reverse_audit}
+\caption{The reverse audit (\texttt{E8.REVERSE.AUDIT.01}): of $E_8$'s eight Casimir degrees only three feed
+a primary readout; the other five are published hull overhead.}\label{fig:reverse}
+\end{figure}
+
+\section{Layer 3 --- the over-determination map (multiply vs.\ compress)}
+The strongest positive evidence is over-determination, but it must be counted honestly. The
+\emph{framework} is a sharp axis (\veri{v427\_overdet\_witness\_map.py}, extending the generator-economy
+audit \vref{v305}): evidence \emph{multiplies} only across genuinely disjoint grammars; many readouts
+from one generator are a \emph{compression} gain, not independent multiplication. The hard part is
+classifying TFPT's own witnesses correctly --- and applying that test to ourselves
+(\veri{v428\_overdet\_reclass.py}) forces a self-correction that we state in full.
+\begin{keybox}[Seven arithmetic readouts --- and why they \emph{compress}]
+Each integer below is computed \emph{from its own grammar} and lands on a carrier-skeleton value:
+\[
+\begin{array}{lll}
+\text{Gauss } \Z[i]: & N(3{+}2i)=3^2{+}2^2 & = 13\;(=\Delta_Q)\\
+\text{Eisenstein } \Z[\omega]: & N(3{+}2\omega)=3^2{-}3\!\cdot\!2{+}2^2 & = 7\\
+\text{Cyclotomy } \mathbb Q(\zeta_5): & N(3{+}2\zeta_5)=2^4\,\Phi_5(-3/2) & = 55\\
+\text{Galois } (\Z/5)^\times: & |\!\operatorname{Gal}\mathbb Q(\zeta_5)|=\varphi(5) & = 4\;(=|\mu_4|)\\
+\text{Root lattice}: & |\!\det\mathrm{Cartan}(E_8)| & = 1\\
+\text{Pascal/exterior}: & \tbinom40{+}\tbinom41{+}\tbinom42 = 11,\;\; 2^4 & = 16=\dim S^+\\
+\text{Coxeter}: & h(E_8)=30=2\!\cdot\!3\!\cdot\!5,\;\; \varphi(30) & = 8=\operatorname{rank}E_8
+\end{array}
+\]
+These are seven \emph{syntactically} distinct grammars --- but syntactic distinctness is not statistical
+independence. By the Brieskorn classification (\vref{v236}) the $(2,3,5)$ singularity $x^2{+}y^3{+}z^5$ is
+the \emph{one} generator behind the order-$30$ clock, with Milnor number $\mu=(2{-}1)(3{-}1)(5{-}1)=8=
+\operatorname{rank}E_8$ and $30=2\!\cdot\!3\!\cdot\!5=h(E_8)$. Each readout above is a facet of that same
+object: $\Z[i]$ is the prime-$2$ ($\mu_4$/sheet) face, $\Z[\omega]$ the prime-$3$ (family) face,
+$\mathbb Q(\zeta_5)$ and the Galois group the prime-$5$ (carrier) face, Pascal the $\mu_4$ exterior, the
+Coxeter number the whole clock, and $\det\mathrm{Cartan}(E_8)$ the $E_8$ resolution itself. \emph{So the
+seven do not multiply --- they compress}, exactly like the anchor $a=(1,1,2)$ emitting
+$(e_1,e_2,e_3)=(4,5,2)$, the power sums, and the $E_8$ data from one generator. An earlier version of this
+section called the seven ``disjoint grammars that multiply''; \veri{v428\_overdet\_reclass.py} applies
+this layer's own test to that claim and walks it back.
+\end{keybox}
+\begin{keybox}[What honestly multiplies: forced inputs $+$ a foreign witness]
+The genuine over-determination is of a different shape. First, the \emph{input} of the theory is forced
+by several \emph{independent} arguments: the ``$8$'' in $c_3=1/(8\pi)$ equals $\operatorname{rank}E_8=8$,
+the carrier Coxeter number $h(D_5)=2(5{-}1)=8$, the totient $\varphi(30)=8$, and the Milnor number
+$(2{-}1)(3{-}1)(5{-}1)=8$ --- four \emph{different} mathematical facts that independently fix the same
+constant, and that genuinely multiply. Second, the constant the theory was \emph{not} built around ---
+$\alpha^{-1}\approx 137$, a prime foreign to the $(2,3,5)$ skeleton --- is reproduced as the fixed point
+of the boundary Ward identity (\vref{v305}). The honest claim is therefore narrower and harder to attack:
+not ``seven independent witnesses,'' but \emph{one richly over-determined input plus a foreign readout}.
+\end{keybox}
+\begin{keybox}[The unconditional floor, and the $\alpha$-form lever \mC\ (\veri{v432\_overdet\_floor.py})]
+Multiplying \emph{only} across the genuinely disjoint pieces --- the input over-determination (the ``$8$''
+forced four ways), the foreign $\alpha^{-1}$ census ($\sim1/94500$, \vref{v100}), the $\varphi_0$-seed cluster
+counted \emph{once}, and one downstream witness ($K^+\!\to\!\pi^+\nu\bar\nu$) --- yields an \emph{unconditional}
+improbability floor: $\le 10^{-6}$ across a grid of deliberately generous chance assignments, nominal
+$\sim 10^{-10}$. This floor is grammar-\emph{independent} (it survives even if a skeptic rejects the declared
+formula grammar) and sits $\sim20$ orders \emph{above} the conditional null-model ceiling $10^{-30.7}$
+(\vref{v100}). That gap is exactly the evidential payoff of \emph{deriving} the $\alpha$ form: the open
+form-derivation \texttt{ALPHA.QUILLEN.EXACT.01} (\vref{v382}; its cubic level now the \emph{computed} bulk Chern
+invariant $|C|{=}1$ and its normalisation the embedding index $k_Y{=}5/3$, \vref{v470}; the determinant-line
+bridge lemma exhibited at the finite level over the $U(1)$-twist moduli, \vref{v472}; both named faces now
+carrying \emph{computed} witnesses --- the BFK diagonal-zeta face executed on the seam circle, the inflow
+reading backed by an exact Laughlin-pump count, the finite Quillen identity two-sided
+(\veri{v974\_alpha\_faces\_computed.py}); the channel-swap face since resolved at the finite level by
+$\mu_4$-character grading (\veri{v985\_quillen\_channel\_swap.py}) --- the remaining open content typed
+as rigidity premise $+$ continuum identification, still \mO) and this
+floor are the \emph{same lever} ---
+closing it moves the $\alpha$ factor from the $1/94500$ census toward certainty. Honest scope: this is a
+conservative \emph{floor} (an upper bound on chance-plausibility), not a posterior, and it bounds only the
+``is it numerology?'' question --- not the physics bridge (the firewall, \vref{v187}).
+\emph{Hardened (\veri{v436\_overdet\_floor2.py}).} The verdict does not even need the chance assignments
+above: stripped to a \emph{pure counting} census --- of the $94500$ complexity-matched $F_{U(1)}$ variants
+only the TFPT one hits the CODATA window (\vref{v100}) --- the floor is $1/94500\approx4.40\sigma$ with
+\emph{no} subjective probability, prior or multi-observable grammar. A monotone concession ladder
+($30.7\!\to\!25.8\!\to\!4.98$ dex) keeps the ``not chance'' verdict at the \emph{most adversarial} rung, so
+it is independent of the contestable input-``$8$'' independence; the only honest gap to the conventional
+$5\sigma$ line is exactly one further independent confirmation (a factor $\le0.054$), stated openly.
+\end{keybox}
+\begin{figure}[ht]\centering
+\includegraphics[width=0.92\linewidth]{figures/safeguard_witness_map}
+\caption{The corrected over-determination map (\veri{v428\_overdet\_reclass.py}): the seven arithmetic
+readouts are facets of \emph{one} $(2,3,5)/E_8$ object (a \emph{compression} gain, like the anchor), so they
+do not multiply; what genuinely multiplies is the input forced four independent ways (the ``$8$'') plus the
+foreign witness $\alpha^{-1}\!\approx\!137$. The disjoint pieces give an \emph{unconditional} floor
+$\sim10^{-10}$ (\veri{v432\_overdet\_floor.py}), $\sim20$ orders above the conditional $10^{-30.7}$;
+hardened to an assumption-minimal \emph{counting} floor $1/94\,500\!\approx\!4.40\sigma$
+(\veri{v436\_overdet\_floor2.py}) that drops every subjective chance assignment and a monotone
+concession ladder ($30.7\!\to\!25.8\!\to\!4.98$ dex) that keeps the ``not chance'' verdict at the most
+adversarial rung.}\label{fig:witness}
+\end{figure}
+
+\section{Layer 4 --- the firewall and the No-Unit theorem}
+Two safeguards keep the boundary between the closed core and external physics sharp.
+\begin{itemize}
+\item \textbf{The firewall.} The four frontier transfers --- $F_{\mathrm{pole}}$ (Koide),
+$F_{\mathrm{Boltzmann}}$ ($\eta_B$), $F_{\mathrm{relic}}$ (axion), $F_{\mathrm{QCD}}$ ($m_p/m_e$) --- are
+\emph{typed interfaces}, a discrete compiler kernel composed with an external continuous solver. A guard
+(\veri{v187\_ftransfer\_laws.py}) reads the ledger and \emph{enforces} that none is ever typed as a
+primitive \mE\ compiler prediction; the functor contract is \veri{v213\_ftransfer\_functor.py} and a prose
+sentinel (\veri{v188\_frontier\_wording\_guard.py}) guards the wording. Exact algebraic sub-parts may be
+\mE\ (the Koide $53/54$ factor, $b_3=-7$); the physical observable never is. The recent single-flow reduction (\veri{v425\_dyn\_transfer\_universal.py})
+makes the \emph{dynamics} of all four the one native seam recovery semigroup, leaving only named anchors
+external --- a sharpening that respects, not relaxes, the firewall.
+\item \textbf{The No-Unit theorem} (\veri{v153\_no\_unit\_theorem.py}). Because $\cthree$ and $\gcar$ are
+mass-dimension $0$, no dimensionless compiler can output an absolute scale; $v_{\mathrm{geo}}$ is therefore
+\emph{forbidden by theorem}, not a missing prediction. The residual-certification audit
+(\veri{v384\_residual\_certification.py}) makes the shape explicit: every open item is an external math
+proof, theorem-forbidden (the unit), or external physics --- \emph{zero} open internal mechanisms.
+\end{itemize}
+
+\section{Layer 5 --- frozen predictions, the null model, and the $\alpha$ uniqueness scan}
+Predictions are frozen before confrontation, and a match is scored against \emph{chance}, not admired in
+isolation.
+\begin{keybox}[The look-elsewhere null model, made explicit (\veri{v100\_numerology\_null\_mc.py})]
+The frozen registry (\veri{v84\_frozen\_registry.py}, \texttt{REG.FREEZE.01}) fixes every dimensionless
+prediction at $25$ digits, re-derived from the two axioms each run (a formula$\leftrightarrow$value lock).
+The null model then runs an \emph{exact census} of the full declared formula grammar over the $13$ scored
+observables with conservative data windows: the joint formula-fishing probability is $\prod_i p_i=10^{-25.8}$,
+and $2{\times}200{,}000$ Monte-Carlo pseudo-theories reach \emph{at most} $5/13$ hits against TFPT's $13/13$
+(Fig.~\ref{fig:nullmc}). Power controls confirm the test bites: $\phiz\pm10\%$ collapses TFPT's own
+scorecard to $6/13$, and a data shuffle averages $1.2/13$.
+\end{keybox}
+\begin{figure}[ht]\centering
+\includegraphics[width=0.72\linewidth]{figures/safeguard_null_model}
+\caption{The look-elsewhere null model (\veri{v100\_numerology\_null\_mc.py}): Monte-Carlo pseudo-theories
+hit at most $5/13$ where TFPT hits $13/13$; the power controls ($\phiz\pm10\%$, data shuffle) confirm the
+test is non-vacuous.}\label{fig:nullmc}
+\end{figure}
+\par\smallskip\noindent\textbf{Is the $\alpha$ path unique?} The sharpest single result is the
+fine-structure fixed point. All $94{,}500$ variants of the boundary $U(1)$ Ward formula $F_{U(1)}$ in the
+declared grammar are root-solved; \emph{exactly one} --- the budget $M{=}41$ at $N{=}8$ ($\cthree=1/8\pi$)
+--- lands in the $4{\times}10^{-8}$ CODATA window (Fig.~\ref{fig:alpha}). Folding this into the census gives
+a total $\le10^{-30.7}$ ($\sim$102 bits), \emph{conditional on the declared grammar} --- a null-model
+rejection, never a claim of certainty.
+\begin{figure}[ht]\centering
+\includegraphics[width=0.80\linewidth]{figures/safeguard_alpha_uniqueness}
+\caption{$\alpha^{-1}$ as a unique fixed point: scanning the integer budget $M$ at $\cthree=1/8\pi$, only
+$M{=}41$ lands in the CODATA window; the full census over all $94{,}500$ $F_{U(1)}$ variants finds exactly
+one hit.}\label{fig:alpha}
+\end{figure}
+\par\smallskip\noindent\textbf{No moving goalposts; the worst case is shown.} A live data scorecard records
+the JUNO/NuFIT/ACT/BK18 compatibility (\veri{v375\_observatory\_registry.py}). A data watchdog types each row
+as PASS, WATCH, TENSION or KILL (\veri{v307\_data\_watchdog.py}), and a kill-test board keeps the falsifiers
+tied to the frozen rows (\veri{v321\_killtest\_board.py}). The discipline is applied to its own weakest
+point: the reactor angle $\sin^2\theta_{13}=\phiz\,e^{-5/6}$ is \emph{pre-registered} at $+2.0\sigma$ tension
+(\texttt{FLAV.TH13.PRESSURE.01}) with its own kill criterion --- the opposite of hiding the worst case.
+
+\section{Layer 6 --- two independent reproduction paths}
+A single implementation can share a single bug; TFPT therefore re-derives the exact core twice more,
+independently.
+\begin{itemize}
+\item \textbf{An independent Wolfram engine} (\texttt{GATE.WOLFRAM.01}/\texttt{GATE.WOLFRAM.02}):
+$116/116$ base checks plus a $588/588$ extension mirror every exact algebraic / identity / lattice result
+in a different computer-algebra system, ending \texttt{ALL WOLFRAM CHECKS PASSED}. (Numerical ODE/PDE
+results are Python-only by design and flagged as such.)
+\item \textbf{A Lean~4 kernel proof}: the load-bearing algebra is machine-formalised with no \texttt{sorry}
+--- the carrier hypercharge as the exact anomaly-free root of $6Y^2{-}Y{-}1=0$, the Pascal carrier
+ladder $2^4=\binom50{+}\binom51{+}\binom52$ (\texttt{FORM.LADDER.01}), the integer rigidity of the carrier,
+the seam-equivalence chain (\texttt{FORM.SEAMEQUIV.01}) and its collar/MMST face
+(\texttt{FORM.SEAM.MMST.01}) --- so the kernel, not the prose, certifies the core.
+\end{itemize}
+
+\section{Layer 7 --- the red team}
+The adversarial audit (companion \texttt{tfpt\_5\_redteam}) does not defend; it \emph{attacks}. It declares
+six targets --- A (the seam$\,=\,(E_8)_1$ identification), B (the carrier truncation $\gcar{=}5$), C (the
+$k{=}c_3/2$ area law), D (the ratios$\,\to v_{\mathrm{geo}}$ reduction), E (whether one scale carries the
+theory), F (the perturbative 4D-QFT round) --- states what survives each, and reduces every survivor to a
+named residual. The model
+example is its own honesty about holomorphy: $c=8$ alone does \emph{not} select $(E_8)_1$ because
+$(D_8)_1=SO(16)_1$ shares $c=8$; the load-bearing extra is holomorphy ($|\!\det K|=1$). Publishing the
+sharpest attack on oneself is the strongest anti-numerology signal a programme can give.
+
+\section{What would still falsify TFPT}
+The safeguards are only credible with explicit kill tests (companion ``How to kill TFPT''). Among the
+frozen ones: a fourth chiral generation (breaks $\Nfam=3$); a genuinely free fundamental constant that is
+not an $E_8$-closure fixed point; a seam denominator $\neq 8$; $\ainv$ away from the fixed-point root; a
+stable $\sin^2\theta_{13}$ far from $0.0231$ at $>3\sigma$; cosmic birefringence converging away from
+$\beta\approx0.2424^\circ$; a tensor-to-scalar $r\gtrsim0.01$ (which kills the $R^2$ branch). The honest
+residual above all kill tests is exactly three named interfaces --- the seam continuum theorem
+($\texttt{SEAM.EQUIV.01}$, now reduced to a cited commuting-projector result,
+\veri{v424\_seam\_lto\_rp\_reduction.py}/\veri{v426\_seam\_lto\_rp\_kms.py}, its extension leg since re-founded
+on peer-reviewed crossed-product theorems with the realisation input at invariant level,
+\veri{v469\_seam\_crossedproduct\_route.py}), the metrology unit
+$v_{\mathrm{geo}}$ (theorem-forbidden), and the typed $F_{\mathrm{transfer}}$ interfaces (firewalled).
+
+\section{Summary --- the layered defense}
+\begin{center}\small
+\begin{tabularx}{\linewidth}{@{}lYl@{}}
+\toprule
+\textbf{Layer} & \textbf{What it defends against} & \textbf{Artefact} \\
+\midrule
+Status calculus & a \mC\ claim read as \mE & ledger $+$ \texttt{audit\_sync.py} \\
+No free pattern $+$ reverse audit & cherry-picking, decorative identities & \vref{v305}/\vref{v100}/\vref{v431}/\texttt{E8.REVERSE.AUDIT.01} \\
+Over-determination map & rhetorical ``everything multiplies'' (incl.\ \emph{our own} miscount) & \vref{v427}/\vref{v428}/\vref{v432}/\vref{v436} \\
+Firewall $+$ No-Unit & external physics sold as compiler output; a faked scale & \vref{v187}/\vref{v213}/\vref{v153}/\vref{v384} \\
+Frozen registry $+$ null model & moving goalposts; chance hits & \vref{v84}/\vref{v100}/\vref{v375} \\
+Two independent paths & a shared implementation bug & Wolfram $+$ Lean \\
+Red team & self-serving framing & \texttt{tfpt\_5\_redteam} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\noindent The claim defended here is deliberately narrow: \emph{coincidence is an expensive explanation of
+the discrete core, and exact compiler closure is never silently upgraded to physical closure}. That is the
+whole job of this companion.
+
+\end{document}

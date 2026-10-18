@@ -1,0 +1,236 @@
+\section{Coefficient Policy Sketch for the CFE}
+%=============================================================================
+
+This appendix records the coefficient bookkeeping used in the suite and provides a
+heuristic motivation for the CFE coefficient policy. It is not presented as a full
+background-field derivation. In the declared scheme, the one-loop effective potential
+for the electromagnetic coupling modulus is taken to have the form:
+\begin{equation}
+    U(\alpha) = \frac{1}{4}(F_{\mu\nu}F^{\mu\nu})_{\text{eff}} 
+        + \text{quantum corrections}
+\end{equation}
+
+The adopted structure, including the Chern--Simons contribution from 11D reduction, is:
+\begin{equation}
+    U(\alpha) = \frac{A}{4}\alpha^4 - \frac{2}{3}A\cthree^3\alpha^3 
+        - 8A\bone\cthree^6 L\,\alpha + \mathcal{O}(\alpha^5)
+    \label{eq:potential}
+\end{equation}
+where $L = \ln(1/\phiz)$ encodes the geometric scale.
+
+The modulus-closure condition $\delta\Gamma_{\mathrm{eff}}/\delta\sigma=0$ reduces to
+$\partial U/\partial\alpha = 0$ (monotonic $\alpha(\sigma)$), giving:
+\begin{equation}
+    \frac{\partial U}{\partial\alpha} = A\alpha^3 - 2A\cthree^3\alpha^2 
+        - 8A\bone\cthree^6 L = 0
+    \label{eq:stationarity}
+\end{equation}
+
+Dividing by $A$ (which is nonzero):
+\begin{equation}
+    \alpha^3 - 2\cthree^3\alpha^2 - 8\bone\cthree^6 L = 0
+    \label{eq:CFE-appendix}
+\end{equation}
+
+This is the CFE under the declared policy. The combinatorial factors are motivated by
+the following diagrammatic bookkeeping:
+
+\textbf{(i) Factor 2 in $2\cthree^3\alpha^2$:}
+
+The cubic term in the effective potential comes from the vacuum polarization 
+(``bubble'') diagram with axion insertion:
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[thick, photon] (0,0) -- (1.5,0);
+    \draw[thick] (1.5,0) arc (180:0:0.75);
+    \draw[thick] (1.5,0) arc (-180:0:0.75);
+    \draw[thick, photon] (3,0) -- (4.5,0);
+    \draw[thick, dashed] (2.25,0.75) -- (2.25,1.5);
+    \node at (2.25,1.8) {\small $a$};
+    \node at (0,-0.3) {\small $\gamma$};
+    \node at (4.5,-0.3) {\small $\gamma$};
+\end{tikzpicture}
+\end{center}
+The $\varepsilon^{\mu\nu\rho\sigma}\varepsilon_{\alpha\beta\gamma\delta}$ contraction from two 
+$F\tilde{F}$ vertices produces a factor 2 from the antisymmetric tensor algebra:
+\begin{equation}
+    \varepsilon^{\mu\nu\rho\sigma}\varepsilon_{\mu\nu\alpha\beta} = -2(\delta^\rho_\alpha\delta^\sigma_\beta - \delta^\rho_\beta\delta^\sigma_\alpha)
+\end{equation}
+
+\textbf{(ii) Factor 8 and $\cthree^6$ in $8\bone\cthree^6 L$:}
+
+The log-dependent term has two components:
+
+\textbf{Origin of $\cthree^6$:} The factor $\cthree^6$ arises from the product structure 
+of the effective action. With $A = 2\cthree^3$ as the overall amplitude:
+\begin{equation}
+    8\bone\cthree^6 L = 8\bone \cdot \cthree^3 \cdot \cthree^3 \cdot L
+    = 4 \cdot A \cdot \cthree^3 \cdot \bone L
+\end{equation}
+The factorization proceeds as follows:
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item One factor of $\cthree^3$ comes from three $\cthree\, aF\tilde{F}$ vertices 
+        in the anomaly chain (triangle diagram).
+    \item The second factor of $\cthree^3$ comes from the amplitude normalization $A/2 = \cthree^3$.
+    \item The coefficient 8 decomposes as $8 = 4 \times 2$, where 4 is from $|D_2|^2$ 
+        (two $\mathbb{Z}_2$ reflections) and 2 is from the double cover sheets.
+\end{itemize}
+\textbf{Consistency check:} $8\cthree^6 = 8 \times (8\pi)^{-6} = 8/(8\pi)^6$, which matches 
+the numerical coefficient in the CFE.
+
+\textbf{Origin of factor 8:} The dihedral symmetry $D_4$ of the 4-point amplitude 
+contributes $|D_4| = 8$. This arises from the 4 rotations and 4 reflections that 
+leave the fermion loop topology invariant:
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[thick] (0,0) rectangle (2,2);
+    \draw[thick, photon] (-0.8,0) -- (0,0);
+    \draw[thick, photon] (-0.8,2) -- (0,2);
+    \draw[thick, photon] (2,0) -- (2.8,0);
+    \draw[thick, photon] (2,2) -- (2.8,2);
+    \node at (1,-0.5) {\small fermion loop};
+    \node at (1,1) {\small $D_4$};
+\end{tikzpicture}
+\end{center}
+
+\textbf{The $\bone$ factor:} $\bone = \frac{3}{5}b_Y = 41/10$ is the GUT-normalized
+hypercharge trace with explicit Weyl/scalar weights:
+$b_Y=\frac{2}{3}\sum_{\text{Weyl}} d_3 d_2\,Y^2+\frac{1}{3}\sum_{\text{scalars}} d_3 d_2\,Y^2$.
+
+\textbf{(iii) Factor 2/3 in potential:}
+
+We choose the coefficient $2/3$ in the cubic term of \eqref{eq:potential} so that
+differentiation produces the factor 2 in \eqref{eq:stationarity}:
+\begin{equation}
+    \frac{d}{d\alpha}\left(-\frac{2}{3}A\cthree^3\alpha^3\right) = -2A\cthree^3\alpha^2
+\end{equation}
+This choice is consistent with the integral representation used in the suite
+bookkeeping: the cubic term is motivated by a triangle subgraph.
+
+\textbf{Why no $\alpha^2$ term?}
+
+The absence of an $\alpha^2$ term in the CFE is enforced by a declared renormalization
+condition: the quadratic coefficient is absorbed into a counterterm fixed at the reference
+point of the chosen scheme. The toy one-loop calculation shows that an $\alpha^2$ term is
+generic, so the condition must be stated explicitly rather than implied by Ward identities.
+The toy calculation is a structure check only (the toy $\beta$-prefactor mismatch is flagged),
+not a Standard Model one-loop derivation. The resulting precision requirement is strong
+($|\epsilon_2|\lesssim 1.58\times 10^{-10}$ for 1 ppm), and is treated as a formal constraint
+of the kernel EFT policy (see \texttt{alpha2\_term\_robustness\_scan}).
+
+\textbf{Vacuum stability:} The stationary point is required to be a local minimum,
+$U''(\alpha_\star)>0$ with a finite margin; this is enforced by the
+\texttt{vacuum\_stability\_audit} and recorded in the reproducibility appendix.
+\textbf{Evidence:} \texttt{vacuum\_stability\_audit}.
+
+\begin{tcolorbox}[colback=purple!3, colframe=purple!50!black, 
+    title={\textbf{Why Integer Coefficients? (No $\zeta(3)$, $\ln 2$, etc.)}}, fonttitle=\bfseries\small]
+\textbf{Potential objection:} In typical QFT calculations (e.g., anomalous magnetic moment $g-2$), 
+coefficients involve transcendental numbers like $\zeta(3)$, $\pi^2/12$, $\ln 2$. Why are the 
+CFE coefficients (2, 8, 48) simple integers?
+
+\textbf{Resolution:} The CFE is not a perturbative loop expansion but a \emph{topological constraint}.
+
+\begin{enumerate}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{Origin of transcendentals:} In $g-2$, transcendentals arise from 
+        \emph{integrating over continuous momenta} in Feynman integrals. The integrals 
+        produce polylogarithms, which evaluate to $\zeta$-values.
+    
+    \item \textbf{Topological discreteness:} In TFPT, the relevant integrals are over 
+        \emph{discrete topological data}: Euler characteristics, winding numbers, and 
+        symmetry group orders. These are integers by definition.
+    
+    \item \textbf{Combinatorial origin:}
+        \begin{itemize}[leftmargin=1em, topsep=1pt, itemsep=1pt]
+            \item Factor 2: From $\varepsilon^{\mu\nu\rho\sigma}$ contraction (antisymmetry)
+            \item Factor 8: From $|D_4| = 8$ (dihedral group of the box)
+            \item Factor 48: \emph{Mnemonic} $2 \times 24$ (double cover $\times$ permutations); the derivation is the spin-lifted deficit with four cut patches (Appendix~\ref{app:48deriv})
+        \end{itemize}
+    
+    \item \textbf{Where $\pi$ appears:} The factors of $\pi$ in $\cthree = 1/(8\pi)$ and 
+        $\phitree = 1/(6\pi)$ come from the \emph{normalization} of circles ($2\pi$ per cycle), 
+        not from loop integrals. They are geometric, not perturbative.
+\end{enumerate}
+
+\textbf{Diagnostic:} If transcendentals appeared in the CFE, it would indicate non-topological 
+dynamics. Their absence is evidence that the fixed-point structure is genuinely topological.
+\end{tcolorbox}
+
+\begin{remark}
+The consistency between \eqref{eq:potential} and \eqref{eq:CFE-appendix} can be 
+verified directly: $\frac{d}{d\alpha}\bigl(-\frac{2}{3}A\cthree^3\alpha^3\bigr) 
+= -2A\cthree^3\alpha^2$, matching the required coefficient.
+\end{remark}
+
+\subsection{Toy Background-Field Derivation (Term-Structure Check)}
+\label{sec:toy-bfg}
+
+As a structural cross-check, we compute the one-loop effective action for an
+abelian gauge field coupled to a modulus $\sigma$ with $f(\sigma)F^2$ and an
+axionic $\sigma F\tilde{F}$ term in background-field gauge.
+The resulting coefficient structure is:
+
+\begin{table}[H]
+\centering\small
+\begin{tabular}{@{}lcrl@{}}
+\toprule
+Term & Coefficient & Value & Classification\\
+\midrule
+$\alpha^4$              & $c_4$        & $0.0796$  & GENERIC\\
+$\alpha^3$              & $c_3^{\text{eff}}$ & $2.52\times10^{-4}$ & GENERIC\\
+$\alpha^2\ln\alpha$     & $c_{2L}$     & $8.66\times10^{-3}$ & SCHEME-DEPENDENT\\
+$\alpha^2$              & $c_2$        & $5.01\times10^{-6}$ & REMOVABLE (renorm condition)\\
+$\alpha\ln\alpha$       & $c_{1L}$     & $0.109$  & GENERIC (trace-index driven)\\
+\bottomrule
+\end{tabular}
+\caption{Toy one-loop term structure.
+  The $\alpha^2$ term is removable by a declared renormalization condition.}
+\label{tab:toy-bfg}
+\end{table}
+
+\textbf{Scope:} This is a toy-model demonstration; it is not a Standard Model one-loop derivation.
+The structure match confirms that the CFE term types (quartic, cubic, log-linear, absence of
+quadratic) emerge generically in this class of theories.
+\textbf{Evidence:} \texttt{coefficient\_policy\_toy\_bfg\_derivation}.
+
+%=============================================================================
+\section{Verification Suite Summary}
+%=============================================================================
+
+The TFPT verification suite turns paper claims into deterministic, assumption-explicit computations. All counts in this section are auto-generated from the suite artifacts (no hardcoded ``39 modules''):
+\[
+\text{unique modules (registry)}=\TFPTSuiteUniqueModulesTotal,\qquad
+\text{module artifacts (engineering+physics)}=\TFPTSuiteModulesTotal,\qquad
+\text{checks total}=\TFPTSuiteChecksTotal.
+\]
+\noindent\textbf{Version breakdown:} v2.5: 91, v2.7: 44, v2.8: 96, v2.8-t7: 4.\newline
+\textbf{Category breakdown:} supplementary 107, kernel 64, policy 25, closed\_interface 21, crosslink 12, dashboard 2, search\_tool 2.
+
+\medskip\noindent
+It ships:
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item a \textbf{conventional suite} (registry-driven; core invariants, $\alpha$ closure + policy bridge, RG/matching, flavor pipelines, cosmology/bounce wiring, torsion/birefringence, dashboards),
+    \item an \textbf{unconventional suite} of search/audit/design tools (for closing explicit ToE gaps without hiding assumptions),
+    \item a \textbf{theoryv3} branch of discrete audits that formalizes the ``kernel + crosslinks'' thesis (holonomy $g=5$, defect partition, constant factory).
+\end{itemize}
+Evidence (v2.8 audits): \texttt{alpha2\_renorm\_condition\_audit}, \texttt{alpha2\_term\_robustness\_scan}, \texttt{scheme\_shift\_compensated\_invariance\_audit}, \texttt{g5\_independence\_audit}, \texttt{g5\_trace\_completeness\_audit}, \texttt{latex\_u\_alpha\_status\_audit}.
+Each module emits \texttt{results.json} (machine-readable), \texttt{report.txt} (human-readable), and optional plots; PDF reports summarize runs.
+
+\begin{tcolorbox}[colback=blue!3, colframe=blue!40,
+    title={\textbf{Claim surface audit (meta-guarantee)}}, fonttitle=\bfseries\small]
+The module \texttt{claim\_surface\_audit} (PASS) cross-checks every number published in this
+paper against its suite source. Any drift between a paper claim and the corresponding
+\texttt{results.json} entry triggers a FAIL, preventing silent inconsistencies from
+accumulating across drafts.
+\textbf{Current status:} all claims match their suite outputs within declared precision.
+This audit runs as part of every engineering-mode invocation and is included in the
+consolidated report (Appendix~\ref{app:referee-exit-v28}).
+\end{tcolorbox}
+
+\subsection{Known Gaps and Status (Summary)}
+\label{sec:known-gaps}
+For the PRL-facing manuscript we omit the auto-generated flagged/open inventory and list
+open interfaces only as \emph{conditional} statements in the main text. The full
+suite manifest (with module-level status and plot inventories) is included in the
+replication bundle referenced in Appendix~\ref{app:repro}.
+

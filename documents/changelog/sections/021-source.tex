@@ -1,0 +1,369 @@
+\subsection*{2026-06-14 (operator origin of the Koide 53/54 factor: the missing Sheet-Diamond corner, v183)}
+\begin{itemize}
+\item \textbf{\texttt{v183\_koide\_f\_corner\_transfer.py} \mE/\mC\ (claim \texttt{FR.KOIDE.07}).} An
+  external-review proposal, validated exactly: the Koide source$\to$pole factor $\tfrac{53}{54}$ is not
+  a bare arithmetic guess but an \emph{operator} identity on the carrier,
+  $u_{\mathrm{pole}}/u_{\mathrm{source}} = a^T(R+Q)\mathbf1 / (2\,\mathbf1^T R a) = 53/(2{\cdot}27) =
+  \tfrac{53}{54}$. Here $\mathbf1^T R a = 27$ is the $E_6{\times}A_2$ cubic family block
+  ($248 = \dim E_6 + \det R + 2(\mathbf1^T R a)\Nfam = 78+8+2{\cdot}27{\cdot}3$) and
+  $a^T(R+Q)\mathbf1 = 53 = 52+1$, where $F = R+Q$ is the \emph{missing} Sheet-Diamond corner with
+  $\det B_F = 52 = \dim F_4$ (\vref{v80}). Hard negative control: $a^T M\mathbf1$ for $M\in\{R,Q,K,L\}$
+  is $\{32,21,35,56\}$ --- only the absent corner $F$ gives $53$. This upgrades \texttt{FR.KOIDE.03}
+  from ``near miss $+$ conjecture'' to ``operator-sourced source$\to$pole transfer'': the \emph{factor}
+  is \mE\ (exact, mirrored in Wolfram, $232/232$); the \emph{mechanism} (the leptonic source$\to$pole
+  transfer reads the $F$ corner) stays \mC, an $F_{\mathrm{transfer}}$ special case. The prediction
+  itself stays \mC. Cited in \texttt{tfpt\_4\_frontier} (Koide section). Suite now 183 modules.
+\item \textbf{Review point 2 noted as already-present:} the claim that flavor and Nariai share one
+  double-cover ClockFunctor (flavor rate $(2/3)^{2\Nfam}$ vs gravity curvature $(2/3)^{\Nfam}$, exponent
+  ratio $|\Z_2|$, ``one clock, two geometries'') is exactly \texttt{HOR.TRISECT.01}/\vref{v103} --- a
+  rediscovery of an existing result, no new module.
+\end{itemize}
+
+\subsection*{2026-06-14 (review recommendations 1/3/4 + the four concerns A--D mapped to the named residuals)}
+\begin{itemize}
+\item \textbf{\texttt{v182\_reviewer\_residual\_map.py} \mE/\mC\ (claim \texttt{REVIEW.MAP.01}).} A
+  careful external review raised four concerns (A mapping $2D\!\to\!4D$, B UV-gravity abstractness,
+  C grammar-tuning/meta-look-elsewhere, D Koide M\"obius flow). This module shows three of them
+  \emph{reduce}, by the same discipline as \vref{v175}--\vref{v181}, onto the \emph{two already-named}
+  residuals $\{\texttt{QGEO.SYM.01},F_{\mathrm{transfer}}\}$: A (Pl\"ucker-$11$ $=$ QBL boundary count
+  \vref{v174} $+$ holographic reduction), B ($\equiv$ \texttt{QGEO.SYM.01}), D (M\"obius forced by
+  $\mathrm{Aut}(\PP)=\mathrm{PSL}(2,\mathbb C)$ on the deck; the missing generator $=F_{\mathrm{transfer}}$).
+  Only C is genuinely \emph{experiment-only} (frozen $+$ minimal $+$ over-determined grammar; residual
+  falls to JUNO/CMB-S4). A unification of the concern \emph{structure}, not a closure. Cited in
+  \texttt{tfpt\_5\_redteam}. Suite now 182 modules.
+\item \textbf{Review recommendation \#3 --- a ``Rosetta'' translation lexicon} (website
+  \texttt{RosettaLexicon}): TFPT's compiler-speak (seam, deck, readout, microcode, audit hull, gap,
+  anchor, $F_{\mathrm{transfer}}$, $v_{\mathrm{geo}}$, \texttt{QGEO.SYM.01}) mapped onto standard QFT /
+  mathematical-physics language (Wilsonian boundary CFT, orbifold deck, index/intersection number, RG
+  irrelevance rate, renormalization condition, fundamental postulate) --- a reading aid for
+  mainstream physicists, not a new claim.
+\item \textbf{Review recommendation \#1 --- kill-tests up front} (website \texttt{TrustContract}): the
+  frozen pre-data predictions (sin$^2\theta_{12}=0.3067$, JUNO; $r\approx0.004$, CMB-S4) and the null
+  model ($P\le10^{-30.7}$) are now a prominent strip directly under the hero.
+\item \textbf{Review recommendation \#4 --- the bedrock as a postulate.} \texttt{QGEO.SYM.01} is now
+  framed confidently as TFPT's \emph{one fundamental postulate} (the role ``$c=$ const'' plays in
+  relativity), not a gap --- in the \texttt{tfpt\_research\_contracts} box and the website ``what is
+  open'' card; the achievement is that the whole theory is compressed onto exactly one sharply-located,
+  falsifiable premise.
+\end{itemize}
+
+\subsection*{2026-06-14 (external-review response: CSV fix, G\_net 3-level, QGEO.SYM.01 page, claim detox)}
+\begin{itemize}
+\item \textbf{Ledger CSV bug fixed + guarded.} Three rows (\texttt{AX.P1.01}, \texttt{AX.P2.01},
+  \texttt{QGEO.ISO.01}) had \emph{unquoted commas} in a status/external field (e.g.\ ``a=(1,1,2)'',
+  ``PSL(2,C)''), so a strict CSV parser read 11--12 columns instead of 10 --- a real
+  machine-readability defect in the single source of truth. All offending fields are now quoted (every
+  row parses to exactly 10 columns), and \texttt{audit\_sync.py} gained a \texttt{check\_csv\_wellformed}
+  guard (ledger, registry, clusters, freeze must all parse to constant width) so it cannot regress.
+\item \textbf{$G_{\mathrm{net}}$ typed in three explicit levels} (website ``What is open'' card): (1)
+  \emph{algebra} \mE\ $(D_5)_1{\otimes}(A_3)_1{\rtimes}\langle(1,1)\rangle\cong(E_8)_1$; (2) \emph{AQFT
+  machinery} \mE\ (net existence $+$ full-cone RP, CAR functor, \vref{v175}); (3) \emph{seam
+  instantiation} \mO\ (\texttt{QGEO.SYM.01}). The target object's mathematics is closed; only the
+  physical coupling of the raw seam is open.
+\item \textbf{\texttt{QGEO.SYM.01} now has its own one-page box} in \texttt{tfpt\_research\_contracts}:
+  what is identified, why it is weaker than \texttt{CONF}/\texttt{ISO}, what follows automatically (the
+  conditional theorem), and \emph{what would falsify it} (genus $>0$ double; non-deck transport;
+  $\Nfam\neq3$); with the explicit conditional framing ``\emph{given} \texttt{QGEO.SYM.01}, the closure
+  follows'' rather than ``the theory derives the seam geometry''.
+\item \textbf{Claim-language detox.} ``no free fundamental number'' softened to ``no free
+  \emph{dimensionless compiler dial} beyond the anchor and $\pi$ (dimensionful scale $+$ transfer
+  physics stay typed)'' (\texttt{origin\_theory}, \texttt{introduction}, website); the site title
+  softened from ``the Standard Model Derived'' to ``the Standard-Model \emph{Skeleton} Derived''.
+\item \textbf{External-reviewer map} added to the website verification page: four boxes (exact kernel
+  \mE, conditional physics \mC, open premises \mO, kill tests \mX) so a reviewer sees the attack
+  surface without reading 181 scripts. Suite unchanged at 181.
+\end{itemize}
+
+\subsection*{2026-06-14 (Zenodo release 5.1 (rev 114) --- v175--v181 bedrock + figures + P1/P2)}
+\begin{itemize}
+\item \textbf{Published to Zenodo.} Version \texttt{5.1 (rev 114)} of the ten-PDF document set was
+  published as a new version of the TFPT deposit --- record \texttt{20686284},
+  DOI \texttt{10.5281/zenodo.20686284}. This version carries the AQFT-closure-to-bedrock chain
+  (\vref{v175}--\vref{v181}, the structural residual reduced to the single definitional premise
+  \texttt{QGEO.SYM.01}), the two overview figures (\texttt{residual\_chain}, \texttt{script\_timeline}),
+  and the P1/P2 anchor-reduction provenance on the axiom surfaces. The \texttt{README} and the Zenodo
+  description were refreshed (181 modules), and the uploader's \texttt{DEFAULT\_RECORD\_ID} was advanced
+  to the new record for the next release.
+\end{itemize}
+
+\subsection*{2026-06-14 (overview figures + P1/P2 reduction reflected on the axiom surfaces)}
+\begin{itemize}
+\item \textbf{Two overview figures} (\texttt{make\_figures.py}; PDF $+$ website PNG). (i)
+  \texttt{residual\_chain} --- the structural-residual reduction chain \vref{v175}--\vref{v181} as a
+  descending staircase from ``build a quantum-gravity measure'' to the single definitional bedrock
+  \texttt{QGEO.SYM.01}; embedded in \texttt{tfpt\_research\_contracts}. (ii) \texttt{script\_timeline}
+  --- the eight-phase journey of the $\sim$181 scripts (foundations $\to$ SM readouts $\to$ seam$=$
+  horizon $\to$ horizon/flavor geometry $\to$ R1--R5/premise-(A) $\to$ PyR@TE cross-checks $\to$ AQFT
+  bridges $\to$ AQFT closure), what each did mathematically and physically; embedded in
+  \texttt{introduction} ahead of the master script index, and both shown on the website verification page.
+\item \textbf{P1/P2 reduction now reflected on the axiom surfaces.} The reduction of the two axioms to
+  the single parabolic anchor $a=(1,1,2)$ plus $\pi$ (with $g_{\mathrm{car}}=5$ an over-determined
+  bootstrap fixed point --- forced three ways, \vref{v6}, Pascal-unique and Lean-formalised,
+  \texttt{FORM.LADDER.01}) was already established (\texttt{ANCHOR.GEN.01}/\vref{v23},
+  \texttt{ARCH.CORE.01}/\vref{v53}) and stated in the papers/glossary, but the \emph{axiom surfaces}
+  still read as bare ``declared inputs''. Fixed: the ledger rows \texttt{AX.P1.01}/\texttt{AX.P2.01} now
+  carry the anchor/bootstrap reduction and point to it, and the website dependency-graph nodes P1/P2 now
+  show the anchor input ($c_3=1/(2e_1(a)\pi)$; $g_{\mathrm{car}}=e_2(a)$, bootstrap-forced) rather than
+  ``declared axiom''. No marker change (still declared inputs), only honest provenance.
+\item Manifests refreshed (two new figures added to the \texttt{FIG} list). Suite unchanged at 181.
+\end{itemize}
+
+\subsection*{2026-06-14 (the final reduction to bedrock v181 + full non-changelog status sweep)}
+\begin{itemize}
+\item \textbf{\texttt{v181\_clock\_is\_conformal\_symmetry.py} \mE/\mO\ (claim \texttt{QGEO.SYM.01}).}
+  The isometry premise \texttt{QGEO.ISO.01} (\vref{v180}) is weakened one more genuine step --- to a
+  conformal-\emph{symmetry} premise --- via \emph{equivariant uniformisation} (Nielsen realisation; for
+  cyclic groups Ker\'ekj\'art\'o $+$ uniformisation): a \emph{conformal} automorphism (strictly weaker
+  than an isometry --- every isometry is conformal, conformal allows any positive scale) already suffices
+  to put the order-$4$ clock in the form $z\mapsto iz$. Since the clock is the Coxeter element of
+  $W(A_3)=S_4$ (\vref{v117}), the $\mu_4$ deck, and a deck transformation preserves the pulled-back
+  conformal structure by definition, the residual collapses to the \emph{definitional} identification
+  \texttt{QGEO.SYM.01}: ``the seam's conformal structure \emph{is} the $\mu_4$-deck structure of the
+  carrier clock''. This is bedrock --- a physical/definitional statement tying P2 to the seam's conformal
+  geometry, \emph{not} a finite computation and not reducible further without relabeling. The chain
+  \texttt{REALIZE}(\vref{v175})$\to\dots\to$\texttt{SYM.01}(\vref{v181}) ends here; we stop honestly.
+  Python-only. Suite now 181 modules.
+\item \textbf{Full non-changelog status sweep.} The current bedrock framing was propagated to every
+  live status surface (not just the changelog): the \texttt{introduction} ``latest reductions'' prose,
+  \texttt{tfpt\_5\_redteam} Target~A, the \texttt{tfpt\_research\_contracts} central-theorem keybox,
+  \texttt{origin\_theory}; and on the website \texttt{OpenGates}, \texttt{VerificationDag},
+  \texttt{papers.ts} (Target~A $\times2$, $G_{\mathrm{net}}$), the \texttt{glossary} $G_{\mathrm{net}}$
+  entry and the \texttt{faq} live-residual answer --- all now end at \texttt{QGEO.SYM.01}.
+\end{itemize}
+
+\subsection*{2026-06-14 (the conformal premise reduces to a milder isometry premise v180)}
+\begin{itemize}
+\item \textbf{\texttt{v180\_clock\_is\_mobius.py} \mE/\mO\ (claim \texttt{QGEO.ISO.01}).} Cracks
+  \texttt{QGEO.CONF.01} one level further: the conformal-realisation premise is \emph{replaced}, via
+  three classical theorems, by a strictly \emph{milder, non-circular} premise. (1)~\emph{Uniformisation}
+  (Poincar\'e--Koebe): a genus-$0$ Riemann surface is conformally $\PP$, so the genus-$0$ seam double
+  (P1, \vref{v179}) with its RP-metric conformal structure \emph{is} $\PP$ --- the target is
+  \emph{produced}, not assumed; (2)~\emph{Ker\'ekj\'art\'o} (1919; Constantin--Kolev 2003): a
+  finite-order orientation-preserving homeomorphism of $S^2$ is conjugate to a rotation, so the
+  order-$4$ clock ($h(A_3){=}4$) is topologically $z\mapsto iz$; (3)~\emph{isometry$\Rightarrow$
+  conformal$\Rightarrow$M\"obius}: an orientation-preserving isometry of a Riemannian surface is
+  holomorphic, $\mathrm{Aut}(\PP)=\mathrm{PSL}(2,\mathbb C)$; (4)~an order-$4$ M\"obius map is
+  $z\mapsto iz$ (verified: projective order $4$, fixed $\{0,\infty\}$, multiplier $i$, free orbit
+  $\mu_4$). Hence \texttt{QGEO.CONF.01} is \emph{implied} by the milder premise \texttt{QGEO.ISO.01}:
+  ``the carrier clock is an order-$4$ orientation-preserving \emph{isometry} of the RP seam metric'' ---
+  which does not name $\PP/\mu_4$ (uniformisation produces them) and is the natural statement that the
+  seam transport is metric-compatible (a holonomy preserving the RP inner product). That milder premise
+  is the single, now milder, structural residual of the whole theory; its surface realisation from the
+  raw seam stays honestly \mO. Cited in \texttt{tfpt\_research\_contracts}; Python-only. Suite now 180
+  modules.
+\end{itemize}
+
+\subsection*{2026-06-14 (the two obligations collapse to ONE geometric premise v179)}
+\begin{itemize}
+\item \textbf{\texttt{v179\_conformal\_realisation.py} \mE/\mO\ (claim \texttt{QGEO.CONF.01}).}
+  Investigating the two residual premises left by \vref{v178} shows they are \emph{not} independent ---
+  they collapse onto a single geometric premise (honest unification; the premise itself stays \mO).
+  \textsc{Marks}'s residual is not three independent assumptions: (1)~genus-$0$ \emph{is} P1 --- the
+  one-sided Gauss--Bonnet $c_3=1/(|\Z_2|\,2\pi\,\chi(S^2))=1/(8\pi)$ uses $\chi(S^2)=2$ and
+  $\chi=2-2g\Rightarrow g=0$, so ``genus-$0$'' is the same $\chi=2$ that gives the ``$8$'' in $c_3$
+  (\vref{v58}/\vref{v73}); (2)~the order-$4$ clock \emph{is} the carrier --- the Coxeter element of
+  $W(A_3)=S_4$ (\vref{v117}), order $h(A_3)=4=|\mu_4|$; (3)~marks $=$ one orbit is \emph{forced} (the
+  parabolic marks are not the two elliptic fixed points, a free order-$4$ orbit has exactly $4=e_1(a)$
+  points). \textsc{Kernel} then \emph{follows} from the same geometry (DtN symbol $|k|$, Lee--Uhlmann
+  \vref{v156}; $c=8$ rigidity \vref{v158}; the cusped-surface residual $=H^1=\mathbb C^3=\Nfam$). So
+  the \emph{entire} structural residual of the theory is the \emph{single} geometric premise
+  \texttt{QGEO.CONF.01}: ``the raw RP seam normal double is conformally $(\PP,\mu_4)$ with the carrier
+  clock as the order-$4$ M\"obius automorphism''. The two doors of \vref{v177}/\vref{v178} are one
+  geometric realisation, left honestly \mO. Cited in \texttt{tfpt\_research\_contracts}; Python-only.
+  Suite now 179 modules.
+\end{itemize}
+
+\subsection*{2026-06-14 (an honest attempt at the two obligations v178 --- deeper reduction, not closure)}
+\begin{itemize}
+\item \textbf{\texttt{v178\_marks\_kernel\_attempt.py} \mE/\mO\ (claim \texttt{QGEO.REDUCE.01}).} An
+  honest attempt at \texttt{QGEO.MARKS.01} and \texttt{QGEO.KERNEL.01}. These are genuine
+  constructive-geometry/AQFT statements, \emph{not} finite computations --- neither is closed. What
+  the module does is push each as far as computation allows: it closes the finite \mE\ core of each
+  and reduces each to \emph{one sharper} premise. \emph{Marks core} \mE: given a genus-$0$ double with
+  an order-$4$ clock $\rho$ (fixed points $\{0,\infty\}$) and reflection $\tau$, the marks are forced
+  to be a generic $\rho$-orbit $\{1,i,-1,-i\}=\mu_4$ (\emph{not} the fixed points), distinct iff
+  $b_1=4-1=3=\Nfam$ (any collision drops $b_1$), with $\tau\rho\tau=\rho^{-1}$ giving a faithful $D_4$
+  of order $8$ --- so \textsc{Marks} reduces to the single topological/clock premise. \emph{Kernel
+  core} \mE: on the $3$-dim multiplicity-free $H^1$ the $\mu_4$ characters $(1,2,3)$ are distinct, so
+  by Schur a $\mu_4$-equivariant operator is forced \emph{diagonal} and completely determined by its
+  eigenvalue per character; two such with the forced transfer spectrum $\{1,(2/3)^6,(1/3)^6\}$
+  (\vref{v162}) and the unique residue-normalised basis (\vref{v177}) are \emph{equal as operators},
+  not merely isospectral --- the spectrum-vs-operator worry \emph{vanishes} on the finite block. So
+  \textsc{Kernel} reduces to the single full-operator-reduction premise (principal symbol $|k|$,
+  Lee--Uhlmann/\vref{v156}; no drift \vref{v158}). Net: neither obligation closed; both sharpened to
+  milder premises with their finite cores \mE. Cited in \texttt{tfpt\_research\_contracts}; Python-only
+  (M\"obius/Schur symbolic $+$ numeric). Suite now 178 modules.
+\end{itemize}
+
+\subsection*{2026-06-14 (QGEO proof tree v177 --- the residual sharpened into two named obligations)}
+\begin{itemize}
+\item \textbf{\texttt{v177\_seam\_marking\_kernel.py} \mE/\mO\ (claims \texttt{QGEO.TREE.01},
+  \texttt{QGEO.MARKS.01}, \texttt{QGEO.KERNEL.01}).} A second external residual-class audit pointed
+  out that the \vref{v176} statement takes the marks/$D_4$ as a \emph{hypothesis} --- a near-circular
+  trap. This module factors the central theorem honestly as
+  $\textsc{Realize}=\textsc{Marks}\cdot\textsc{Uniform}\cdot\textsc{Cohom}\cdot\textsc{Module}\cdot
+  \textsc{Kernel}\cdot\textsc{Net}$ and closes \emph{four} nodes \emph{constructively} (all validated
+  symbolically before adoption): \textsc{Uniform} \mE\ --- an order-$4$ M\"obius map conjugates to
+  $z\mapsto iz$, a non-fixed orbit scales to $\mu_4$, and $\sigma\rho\sigma=\rho^{-1}$ for
+  $\sigma:z\mapsto1/z$ gives a faithful $D_4$ (order $8$), so a genus-$0$ four-marked faithful-$D_4$
+  boundary \emph{is} $(\PP,\mu_4)$ (strengthening \vref{v168}'s cross-ratio to the full
+  uniformisation); \textsc{Cohom} \mE\ --- $\rho^*\omega_k=i^k\omega_k$, grading $(1,2,3)=A_3$
+  exponents; \textsc{Module} \mE\ --- a \emph{unique} $\mu_4$-equivariant iso (multiplicity-free $+$
+  residue normalisation; reflection $\omega_1\!\leftrightarrow\!\omega_3$, $\omega_2$ fixed);
+  \textsc{Net} \mE\ (\vref{v154}/\vref{v175}). The structural residual is thereby sharpened from one
+  diffuse premise into \emph{exactly two} named open obligations, neither a finite computation:
+  \texttt{QGEO.MARKS.01} (the raw RP seam collar canonically produces the genus-$0$ four-marked $D_4$
+  boundary) and \texttt{QGEO.KERNEL.01} (the raw seam Calder\'on operator \emph{is} the
+  $\mu_4$-equivariant free gapped contraction, as an operator). Cited in
+  \texttt{tfpt\_research\_contracts} (the central-theorem keybox); Python-only (M\"obius/cohomology
+  symbolic; numbers mirrored via \vref{v168}/\vref{v137}/\vref{v162}/\vref{v154}/\vref{v175}). Suite
+  now 177 modules.
+\end{itemize}
+
+\subsection*{2026-06-13 (Seam Collar Realisation Theorem v176 --- the one central proof obligation)}
+\begin{itemize}
+\item \textbf{\texttt{v176\_seam\_collar\_realisation.py} \mE/\mO\ (claim \texttt{QGEO.REALIZE.02}).}
+  Following an external residual-class audit, the single remaining structural item is formulated as
+  one central theorem and certified as a \emph{reduction} (not a fabricated proof). \emph{Theorem:}
+  given an oriented one-sided RP seam collar with a sheet-odd Calder\'on involution, faithful $D_4$
+  marks, four parabolic marks with $\mu_4$ decomposition and admissible $c{=}8$ data, its conformal
+  boundary is M\"obius-equivalent to $\PP\setminus\mu_4$ with $H^1$ grading $(1,2,3)$, the Calder\'on
+  contraction is the rank-$8$ $K_\Sigma$ polarisation and the index-$4$ extension is $(E_8)_1$. The
+  proof decomposes into six steps, \emph{five already} \mE: geometry/uniformisation (\vref{v168}),
+  Calder\'on DtN symbol $|k|$ (\vref{v156}), $H^1$ character $=$ generation grading
+  $(1,2,3)=A_3$ exponents (\vref{v137}/\vref{v168}), $\mu_4$-equivariant contraction with gap
+  $(2/3)^6$ (\vref{v162}), AQFT closure $(D_5)_1{\otimes}(A_3)_1{\rtimes}\mu_4=(E_8)_1$ $+$ full-cone
+  RP all $m$ (\vref{v154}/\vref{v175}). The whole structural residual thus reduces to the \emph{one}
+  open premise \texttt{QGEO.REALIZE.01}: that the physical seam collar's boundary \emph{is} this
+  $\PP\setminus\mu_4$ --- a constructive-geometry statement, left honestly \mO. Cited in
+  \texttt{tfpt\_research\_contracts} (the central theorem keybox); assembly/reduction certificate,
+  Python-only (its exact identities are mirrored via \vref{v168}/\vref{v156}/\vref{v162}/\vref{v154}/%
+  \vref{v175}). Suite now 176 modules. \emph{Audit note:} the metrology residual the same review
+  flags is already discharged --- \vref{v153} (No-Unit Theorem) is the metrology-line typing
+  ($v_{\mathrm{geo}}\mapsto\lambda^{-1}v_{\mathrm{geo}}$, $1/G\mapsto v_{\mathrm{geo}}^2$,
+  dimensionless data invariant), and the Koide $u\to\tfrac{53}{54}u$ source$\to$pole transfer is
+  already typed \mC\ (\texttt{FR.KOIDE.03}); neither is re-derived.
+\end{itemize}
+
+\subsection*{2026-06-13 (Zenodo release 5.1 (rev 105) --- v174 + v175 + doc refresh)}
+\begin{itemize}
+\item \textbf{Published to Zenodo.} Version \texttt{5.1 (rev 105)} of the ten-PDF document set
+  (introduction, origin\_theory, tfpt\_1--5, horizon, research\_contracts, changelog) was
+  published as a new version of the TFPT deposit --- record \texttt{20681451},
+  DOI \texttt{10.5281/zenodo.20681451}. This version carries the AQFT closure round (v170--v175):
+  the seam Fock-space readings and the heavy-artillery discharge of net existence $+$ full-cone
+  reflection positivity to \mE. The \texttt{README} and the Zenodo description were refreshed to the
+  current state (175 modules, Wolfram $116/116 + 231/231$), and the uploader's
+  \texttt{DEFAULT\_RECORD\_ID} was advanced to the new record for the next release.
+\end{itemize}
+
+\subsection*{2026-06-13 (the heavy artillery v175: net existence + full-cone RP discharged to [E])}
+\begin{itemize}
+\item \textbf{\texttt{v175\_net\_existence\_full\_cone.py} \mE/\mO\ (claim \texttt{QFT.NETRP.01}).}
+  The two structural residuals that the premise-(A) chain had relocated to \emph{already-open}
+  items --- $A_2$ net existence and full-cone reflection positivity --- are now \emph{discharged
+  to a theorem}, leaving the seam realisation as the single irreducible open premise (nothing
+  fabricated). (1) \emph{Full-cone RP for all $m$}: the CAR second-quantisation functor
+  $\Gamma(t)=\bigoplus_m\Lambda^m(t)$ lifts the one-particle seam contraction $t$ to the complete
+  Fock space $\Lambda^\bullet(\mathbb R^{16})$ ($\dim 2^{16}=65536$); by the exterior-power
+  spectrum theorem every eigenvalue is a subset product of $\mathrm{spec}(t)$, so all $2^{16}$
+  products lie in $[0,1]$ (a contraction $=$ full-cone RP), with eigenvalue-$1$ multiplicity
+  $2^8=256$ (wedges of the rank-$8$ $K_\Sigma$ polarisation) and sub-leading $=$ the one-particle
+  gap $(2/3)^6$ --- so full-cone RP reduces \emph{for every $m$} (not only $m\le6$, \vref{v161}) to
+  the one-particle contraction (Shale--Stinespring), discharging the \vref{v160} scope premise.
+  (2) \emph{$A_2$ assembled $+$ verified}: the $(E_8)_1$ character
+  $E_4/\eta^8=1+248q+4124q^2+34752q^3+213126q^4+1057504q^5$ (level-$1=248$, extends the order-4
+  \vref{v156} check by one order), the embedding $248=120+128$, and the $E_8$ Cartan matrix even
+  with $\det 1$ (the unique rank-$8$ even unimodular lattice, \vref{v83}); the net \emph{exists} by
+  cited theorems (free-fermion net, lattice VOA, index-$4$ Q-system, \vref{v125}). (3) Both then
+  need the \emph{same} input --- the seam realisation \texttt{QGEO.REALIZE.01} (finite half proven,
+  \vref{v168}) --- which is a constructive-geometry/AQFT statement, \emph{not} closeable by a finite
+  computation, and is left honestly \mO. \textbf{Net:} net existence and full-cone RP become \mE;
+  the one irreducible structural premise is the seam realisation. Cited in
+  \texttt{tfpt\_research\_contracts} (premise (A) closure) and \texttt{tfpt\_5\_redteam} (Target A);
+  the exact parts (Cartan unimodular, character order 5, functoriality integers) mirrored in the
+  Wolfram extension (231/231). Suite now 175 modules.
+\end{itemize}
+
+\subsection*{2026-06-13 (seam Fock-space readings v174: CAR cone, Witten index, g-theorem)}
+\begin{itemize}
+\item \textbf{\texttt{v174\_seam\_fock\_readings.py} \mE\ (claim \texttt{QFT.FOCK.01}).} Three more
+  exact audit bridges from the same source note. (1) \emph{CAR cone compression}: the even CAR
+  algebra of the 16 seam Majoranas has $\dim\Lambda^{\mathrm{even}}(\mathbb R^{16})=2^{15}=32768$
+  directions, but a quasi-free Bogoliubov transport reduces the whole cone to a $16$-dim
+  one-particle problem ($2^{15}/16=2^{11}$) --- the explicit count behind \vref{v161}. (2)
+  \emph{Witten index $=$ the Pl\"ucker norm $11$}: the four $\mu_4$-corner fermions span a
+  $2^4=16=\dim S^+$ Fock space; QBL ($\deg\le2$) keeps $\sum_{k\le2}\binom4k=11=\dim S^+-\gcar$, so
+  $c_u/c_d=55/117$ reads a topological state-space dimension. (3) \emph{Affleck--Ludwig $g$-theorem}:
+  $c_{UV}=5+3=8=c_{IR}((E_8)_1)$, so $\Delta c=0$ forces an exact isometry --- the boundary-entropy
+  form of the \vref{v157}/\vref{v158} rigid fixed point. Cited in \texttt{tfpt\_2} (Exterior Leg
+  Lemma); mirrored in the Wolfram extension (230/230). Suite now 174 modules. (The categorical
+  reframings in the source note remain framing, not asserted claims.)
+\end{itemize}
+
+\subsection*{2026-06-13 (CFT/QFT bridges: slice compression v170, OS moment v171, trace-anomaly seed v172, Pfaffian CP v173)}
+\begin{itemize}
+\item \textbf{\texttt{v170\_diamond\_slice\_compression.py} \mE\ (claim \texttt{E8.SLICE.01}).}
+  E8 Slice Compression Lemma: the seven $E_8$ audit slices are \emph{one} projection of two
+  alphabets --- anchor power sums $P=(3,4,6,10)$ ($p_n=2+2^n$) and Sheet-Diamond determinants
+  $(3,4,8,14,20,32)$ summing to $81=N_{\mathrm{fam}}^4$. All seven $248$-slices, the $K_4$ edge
+  graph, and the row-budget cross $(7,11,13)+s(3,3,3)+t(1,2,3)$ follow; $78=\dim E_6=p_2(p_0+p_3)$.
+  Cited in \texttt{tfpt\_3} (slice atlas). Exact; reading is audit (anti-numerology).
+\item \textbf{\texttt{v171\_os\_moment\_cluster.py} \mE/\mC\ (claim \texttt{QFT.OSMOMENT.01}).}
+  Atomic OS Moment Lemma: $\operatorname{spec}(T)=\{1,64/729,1/729\}$ makes every correlator a
+  positive moment sequence, so the OS Hankel matrices factorise as Vandermonde Grams (a clean RP
+  certificate); cluster $729/665$, $\xi=0.4111$. Sugawara Gap Safety: $31=1+h^\vee(E_8)$,
+  $c((E_8)_1)=248/31=8$, $\Delta_{\mathrm{eff}}=6\log\tfrac32-31/(4\pi^2)>0$. Cited in
+  \texttt{tfpt\_research\_contracts} (G5).
+\item \textbf{\texttt{v172\_trace\_anomaly\_seed.py} \mE\ (claim \texttt{SEED.ANOMALY.01}).}
+  The seed prefactor $\tfrac43$ is the halved $(E_8)_1$ Weyl anomaly: over the seam $S^2$ ($\chi=2$)
+  the $c=8$ trace anomaly is $c\chi/6=\tfrac83$, halved by the one-sided $|\Z_2|$ to
+  $\tfrac43=16/12$. Plus QCD $b_3=7=$ scalaron exponent $48-41$ (confinement $\leftrightarrow$
+  inflation), and the Volkov--Wipf $-98/45=-2\cdot7^2/\dim(D_5)$ factorisation. Cited in
+  \texttt{tfpt\_2} (seed).
+\item \textbf{\texttt{v173\_pfaffian\_cp\_car.py} \mE\ (claim \texttt{FLAV.STRONGCP.02}).}
+  Strong CP $\theta_{\mathrm{eff}}=0$ as Pfaffian reality in the self-dual $16$-Majorana CAR model:
+  $\{D,\Sigma\}=0$ pairs the spectrum, $\gamma_5$-Hermiticity makes the Pfaffian real, and RP picks
+  the positive branch. Cited in \texttt{tfpt\_2} (Strong CP section).
+\item All four validated computationally before adoption; the exact identities (v170/v171/v172) are
+  mirrored in the Wolfram extension (229/229). Suite now 173 modules. (The categorical reframings
+  in the source note --- compiler-as-single-functor, $E_8=K_0$, GIT/monadic/Langlands --- are
+  recorded as framing, not asserted as machine-checked claims.)
+\end{itemize}
+
+\subsection*{2026-06-13 (Zenodo release 5.1 (rev 97))}
+\begin{itemize}
+\item \textbf{Published to Zenodo.} Version \texttt{5.1 (rev 97)} of the ten-PDF document set
+  (introduction, origin\_theory, tfpt\_1--5, horizon, research\_contracts, changelog) was
+  published as a new version of the TFPT deposit --- record \texttt{20678568},
+  DOI \texttt{10.5281/zenodo.20678568}. The uploader's \texttt{DEFAULT\_RECORD\_ID} was advanced
+  to the new record for the next release. Also fixed \texttt{build.sh zenodo} on macOS bash 3.2
+  (empty-array expansion under \texttt{set -u}).
+\end{itemize}
+
+\subsection*{2026-06-13 (QGEO rigidity theorem v168 + $\eta_B$ leptogenesis interface v169)}
+\begin{itemize}
+\item \textbf{\texttt{v168\_qgeo\_rigidity.py} \mE/\mC{} (claims \texttt{QGEO.RIGID.01},
+  \texttt{QGEO.REALIZE.01}).} Hardens the \emph{finite} half of the one remaining Tier-1 hinge
+  \texttt{GATE.QGEO} (the seam $=$ flavour $=$ horizon identification). Exact, machine-checked:
+  $\mu_4=\{1,i,-1,-i\}$ has cross-ratio $2$ and a faithful M\"obius stabiliser of order $8=|D_4|$;
+  $H^1(\mathbb P^1\!\setminus\!\mu_4)$ has rank $4-1=N_{\mathrm{fam}}=3$; and the forms
+  $\omega_k=z^{k-1}dz/(z^4-1)$ ($k=1,2,3$) are $\mu_4$-eigenforms with characters
+  $\chi_1,\chi_2,\chi_3$ of weights $(1,2,3)=$ A$_3$ exponents $=\operatorname{Spec}(Q_+)$. So a
+  genus-0 boundary with faithful $D_4$, four parabolic marks and this $\mu_4$-decomposition is
+  M\"obius-equivalent to $\mathbb P^1\!\setminus\!\mu_4$ --- the QGEO Rigidity Theorem
+  (\texttt{QGEO.RIGID.01}, \mE). The seam-collar realisation stays the one premise
+  (\texttt{QGEO.REALIZE.01}, \mC). Mirrored in the Wolfram extension (226/226). Cited in
+  \texttt{tfpt\_research\_contracts} (U0). \emph{Not} a new structural class --- it hardens the
+  existing hinge (consistent with v167's completeness claim).
+\item \textbf{\texttt{v169\_etaB\_boltzmann\_interface.py} \mC{} (claim \texttt{FR.ETAB.02}).}
+  Operationalises the Tier-3 $F_{\mathrm{transfer}}$ leptogenesis path. Type-I thermal
+  leptogenesis $\eta_B\sim0.96\times10^{-2}\varepsilon_1\kappa_f$ (sphaleron $28/79$), fed by
+  TFPT's normal-ordered neutrino spectrum and the predicted $\delta_{CP}=240^\circ$. Over natural
+  $M_1\in[3\times10^9,3\times10^{10}]$ GeV and washout, $\eta_B$ brackets the observed
+  $6.1\times10^{-10}$ (a canonical point gives $6.0\times10^{-10}$, untuned) --- the route is
+  \emph{viable}. But $M_1$/washout are scenario inputs, so $\eta_B$ stays \mC; if a precise solve
+  excluded the window the leptogenesis \emph{route} falls, not the theory (the downstream
+  $\Omega_b$ readout is independent). Cited in \texttt{tfpt\_4\_frontier} (Route B). Python-only.
+\end{itemize}
+

@@ -1,0 +1,183 @@
+\section{Quarks: hierarchy from the same word-lengths}
+% =====================================================================
+The quark sectors use the same master formula with $L_u=(7,3,0)$, $L_d=(7,5,2)$. Where two generations
+share the same word-length the mass ratio is pure transport amplitude; where they differ by $2$ a factor
+$\lamY^{-2}$ appears:
+
+\begin{center}\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}p{5.5cm}cc@{}}
+\toprule
+\textbf{Ratio} & \textbf{Origin} & \textbf{Prediction} & \textbf{PDG order} \\
+\midrule
+$\hat m_u/\hat m_d$ & $\Lambda_u/\Lambda_d$ (same $L{=}7$) & $0.470$ & $\sim0.5$ \\
+$\hat m_c/\hat m_s$ & $\lamY^{-2}\,\Lambda_c/\Lambda_s$ & $13.6$ & $\sim11{-}14$ \\
+$\hat m_t/\hat m_b$ & $\lamY^{-2}\,\Lambda_t/\Lambda_b$ & $40.8$ & $\sim41$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\noindent The residue classes mod $6$ link quarks and leptons: $L_c=L_\tau=3$, $L_s=L_\mu=5$ --- the same
+hexagon position, different sectors. This is the geometric root of quark--lepton complementarity.
+
+\begin{winbox}[The $\phiz$-ladder: \emph{all} nine masses in one closed form]
+The quark $\Lambda$ are \emph{not} free numbers: they are evaluations of the \emph{same} finite hexagonal
+resolvent $D_y^{-1}$ (proven in closed form, \veri{v17\_hexagonal\_resolvent.py}) at the \emph{same} pole
+$\delta_{\mathrm{ph}}$ as the leptons. For every fermion the
+\emph{universal} closed form holds
+\[
+  \boxed{\ \lambda_Y^{\,L_{f,j}}\Lambda_{f,j}=\pi\,c_{f,j}\,(\phiz)^{k_{f,j}}\quad\Longrightarrow\quad
+  \hat m_{f,j}=\frac{\vgeo\,\pi}{\sqrt2}\,c_{f,j}\,(\phiz)^{k_{f,j}}\ }
+\]
+with carrier rationals $c_{f,j}$ and integer $\phiz$-order $k_{f,j}$. The leptons give
+$c=(\tfrac{16}{7},\tfrac43,\tfrac76)$ \emph{exactly}; the quark $c$ are fixed by the same resolvent (the
+published $\Lambda$ table is only three-digit). The $\phiz$-orders form the \textbf{mass ladder}
+\[
+  \underbrace{t}_{k=0}\ >\ \underbrace{b,\,c,\,\tau}_{k=2}\ >\ \underbrace{s,\,\mu}_{k=3}\ >\
+  \underbrace{u,\,d}_{k=4}\ >\ \underbrace{e}_{k=5},
+\]
+each rung a factor $\phiz\approx1/19$. The whole fermion hierarchy is a $\phiz$ power ladder with
+carrier-rational rungs --- quarks \emph{and} leptons in \emph{one} family. \mE\ (leptons exact) / \mC\
+(quark rationals from the resolvent)
+\end{winbox}
+
+\begin{keybox}[Quark \emph{ratio} closure: the invariant readouts of the character sector \mE]
+The right invariants are not the six absolute $c_q$ (gauge-dependent through the external legs and the
+sector normalisation) but the three intra-sector \emph{ratios}, which close on pure compiler building
+blocks. With $\Delta_Q:=|R(A_3)|{+}1=13$, $\Omega_{\mathrm{adm}}=48$, $\Nfam=3$ and the anchor power sum
+$p_5(a)=1^5{+}1^5{+}2^5=34$,
+\[
+  \boxed{\
+  \frac{c_u}{c_d}=\frac{\gcar\cdot 11}{\Nfam^{2}\Delta_Q}=\frac{55}{117},\quad
+  \frac{c_c}{c_s}=\frac{p_5(a)}{\Omega_{\mathrm{adm}}-1}=\frac{34}{47},\quad
+  \frac{c_t}{c_b}=\frac{\Nfam}{2\Delta_Q}=\frac{3}{26}\ }
+\]
+With the $\phiz$-orders $(k_u,k_d,k_c,k_s,k_t,k_b)=(4,4,2,3,0,2)$ the mass ratios are
+\[
+  \frac{\hat m_u}{\hat m_d}=\frac{55}{117}=0.4700855,\quad
+  \frac{\hat m_c}{\hat m_s}=\frac{34}{47}(\phiz)^{-1}=13.6050,\quad
+  \frac{\hat m_t}{\hat m_b}=\frac{3}{26}(\phiz)^{-2}=40.812,
+\]
+matching the closed-branch targets $(0.470085,\,13.607,\,40.80)$ to $\lesssim0.03\%$. A rational
+normalisation gauge compatible with these ratios is
+\[
+  (c_u,c_d,c_s,c_c,c_b,c_t)=\Bigl(\tfrac12,\ \tfrac{117}{110},\ \tfrac{47}{41},\ \tfrac{34}{41},\ \tfrac83,\ \tfrac4{13}\Bigr),
+\]
+whose $\Lambda_q=\pi c_q(\phiz)^{k}/\lambda_Y^{L}$ all land in the $O(1)$ band
+$(\Lambda_{u,d,s,c,b,t}\approx 0.44,0.93,0.95,0.65,0.47,0.97)$. The denominators carry $41=4^2{+}5^2=10b_1$.
+The individual $c_q$ are a gauge; the three ratios are the invariant readouts. \veri{v24\_quark\_ratio\_closure.py}
+\smallskip\\
+\noindent\emph{Honest note on the ``$11$''.} Two of the three ratios have \emph{clean single-reading}
+building blocks: $c_c/c_s=p_5(a)/(\Omega_{\mathrm{adm}}{-}1)$ (the anchor power sum $p_5{=}34$) and
+$c_t/c_b=\Nfam/(2\Delta_Q)$. The first ratio is the odd one out: its numerator factor $11$ admits
+\emph{many} TFPT readings ($\dim S^+{-}\gcar$, $\gcar{+}|R^+(A_3)|$, $h(D_5){+}\Nfam$, $2\gcar{+}1$,
+$\mathcal A_\Lambda{+}1$, $\Delta_Q{-}2$, the $E_8$ exponent $11$, \dots), so it is \emph{not uniquely
+forced} as a loose integer. \textbf{This worry is now retired} (Plücker box below): $11=\|\operatorname{Pl}(K)\|_1$
+is \emph{generated} as the $L^1$ norm of the anchor-plane minors of $K$ (\vref{v42}), and by Readout Rigidity (\vref{v49},
+with the selector stratum now \emph{derived} --- $\det R=8$ lattice and $\operatorname{Spec}(Q_+)=\{1,2,3\}$
+from $D_4$, \vref{v69}/\vref{v71}) the \emph{ratio} $c_u/c_d=\tfrac{55}{117}$ is \emph{constant} on that stratum, i.e.\ an
+integer Pl\"ucker readout that needs \emph{no} transcendental solve. The wall-selection $(U)$ enters only the
+\emph{absolute} amplitude normalisation (an anchor), not the ratio. \veri{v26\_flavor\_frontier\_unification.py}
+Quark masses are scheme-sensitive (esp.\ light quarks); we state dimensionless source-scale ratios, not pole
+masses (cf.\ FLAG~2024).
+\end{keybox}
+
+\begin{keybox}[Anchor-plane Plücker localisation of the ``$11$'' (and $26$) \mE]
+The cleanest way to retire the ``many readings'' worry is to stop reading loose integers and read
+\emph{orientation invariants} of the one canonical plane in play --- the \emph{anchor plane} spanned by the
+two TFPT generators $\mathbf1=(1,1,1)$ and $a=(1,1,2)$. For $M\in\{R,Q,K,L\}$ form the left anchor block
+and its $2{\times}2$ minors (Plücker coordinates)
+\[
+  B_M=\begin{pmatrix}\mathbf1^{\!\top}\!M\\ a^{\!\top}\!M\end{pmatrix},\qquad
+  \operatorname{Pl}(M)=\bigl(\,[12],[13],[23]\,\bigr).
+\]
+Then $\operatorname{Pl}(K)=(-N_\Phi,\,|R^+(A_3)|,\,|\mu_4|)=(-1,6,4)$ and
+\[
+  \boxed{\ \|\operatorname{Pl}(K)\|_1=1+6+4=11\ }
+\]
+is the \emph{Plücker norm of the mass-power anchor plane} --- a single coordinate-free object, not a free
+integer. The right block $C_M=(M\mathbf1\,\;M a)$ gives $\operatorname{Pl}_R(K)=(12,12,-2)$ with
+$\|\operatorname{Pl}_R(K)\|_1=26$, and
+$\sum\operatorname{Pl}_R(L)=20{+}30{+}10=60$ is the $E_8$ cascade start. \textbf{Canonical readings
+(\veri{v94\_sheet\_diamond.py}):} both quark-ratio integers live in the \emph{same} operator $K$ --- the
+left block reads flavor \emph{orientation}, the right block reads transport \emph{propagation}:
+\[
+  \boxed{\ \frac{c_u}{c_d}=\frac{\gcar\,\|\operatorname{Pl}(K)\|_1}{\Nfam^2\,\Delta_Q},\qquad
+  \frac{c_t}{c_b}=\frac{\Nfam}{\|\operatorname{Pl}_R(K)\|_1}\ },\qquad
+  \frac{c_c}{c_s}=\frac{\sum\operatorname{Pl}(L)-\sum\operatorname{Pl}(Q)}{1+\sum\operatorname{Pl}(L)},
+\]
+with the older $26$-readings ($\operatorname{Pl}(L)_{13}=26$, $2\Delta_Q=26$) now \emph{corollaries} of
+the canonical right-Plücker norm, not independent choices.
+\textbf{What this does and does not buy.} The Plücker values are exact identities \mE, and the ``$11$'' now
+\emph{lives in the mass-power matrix $K$} via the canonical plane rather than in a free integer pool --- the
+best-motivated single reading. Combined with Readout Rigidity (below), this \emph{closes the ratio}:
+$c_u/c_d=\tfrac{55}{117}$ is fixed combinatorially, no $U_f^\star$ evaluation required. What stays open is the
+\emph{absolute} amplitude scale (an anchor) and a mild choice of invariant in the $c_c/c_s$ block.
+\veri{v37\_plucker\_anchor.py}
+\smallskip\\
+\noindent\textbf{Why the leg is exterior, not scalar (Exterior Leg Lemma).} $u$ and $d$ share the
+hexagon-radial data $(r,w)=(1,1)$, and the $C_6$ resolvent reads only $(r,w)$ --- so \emph{any scalar} leg
+forces $c_u/c_d\equiv1$. A scalar sees radius, not orientation; the $u/d$ separation is intrinsically the
+oriented anchor-plane \emph{area} $\operatorname{Pl}_{\mathbf1,a}(K)$ (the exterior square $\Lambda^2F$ of
+the $SU(3)_F$ composition), whose $L^1$ norm \emph{generates} the ``$11$''. \veri{v42\_exterior\_leg.py}
+The norm $\|\operatorname{Pl}(K)\|_1=11$ also carries a topological reading: it is the dimension of the
+QBL-truncated ($\deg\le2$) Fock space of the four $\mu_4$-corner fermions,
+$\sum_{k\le2}\binom4k=1{+}4{+}6=11=\dim S^+-\gcar$ (a Witten index; the discarded high-degree complement is
+$\binom43{+}\binom44=5=\gcar$, the full corner Fock space $2^4=16=\dim S^+$), so $c_u/c_d=55/117$ reads the
+QBL-protected boundary state-space dimension (\veri{v174\_seam\_fock\_readings.py}).
+\end{keybox}
+
+\begin{keybox}[Readout Rigidity --- the quark \emph{ratios} are closed combinatorially \mE\ (residual: absolute scale \mO)]
+The earlier ``reduce $c_u/c_d$ to the transcendental wall-selection'' framing is \emph{superseded}. The four
+flavor operators are integer lattice maps on $H_1(\PP^1\!\setminus\!\mu_4)=\Z^3$ with compiler-atom
+determinants $(\det Q,\det K,\det R,\det L)=(3,4,8,20)$, product $1920=|W(D_5)|$, and the \emph{discrete
+selector stratum}
+\[
+  \mathcal S_{8,Q}=\{\det R=8,\ \operatorname{SNF}(R)=(1,1,8),\ \operatorname{Spec}(Q_+)=\{1,2,3\}\}
+\]
+is now \emph{fully derived}: $\det R=8=\operatorname{rank}E_8$ and the SNF are the lattice invariant (\vref{v70},
+$\det Q=3=\Nfam$), and $\operatorname{Spec}(Q_+)=\{1,2,3\}$ is the $D_4$-equivariant result (\vref{v69}). By
+\textbf{Readout Rigidity} (Theorem U2, \veri{v49\_readout\_rigidity.py}) the anchor-plane readout is
+\emph{constant} on $\mathcal S_{8,Q}$, so the quark \emph{ratios}
+\[
+  \frac{c_u}{c_d}=\frac{\gcar\,\|\operatorname{Pl}(K)\|_1}{\Nfam^2\Delta_Q}=\frac{5\cdot11}{9\cdot13}=\frac{55}{117},
+  \qquad \frac{c_c}{c_s},\ \frac{c_t}{c_b}
+\]
+are \emph{pure integer Pl\"ucker readouts --- independent of the continuous $D_4$ position, no transcendental
+monodromy / Hitchin solve} (\veri{v71\_simple\_r\_bridge.py}). The single genuinely transcendental piece,
+$U_{\mathrm{point}}$ (full uniqueness of $\rho^\star$), enters \emph{only} the absolute amplitude scale and is
+an anchor of the same nature as the one dimensionful scale --- \emph{not} a missing computation. The monodromy
+machinery (\S\,Riemann--Hilbert below) was over-engineering for the ratios; it remains the route to the
+\emph{absolute} normalisation only.
+\end{keybox}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.86\linewidth]{figures/mass_ladder.pdf}
+\caption{Mass ladder (data plot, \texttt{verification/make\_figures.py}). The nine charged fermions
+(PDG masses) plotted against their word-length $L$ on the $\phiz$-ladder, coloured by sector; the dotted
+line is the geometric reference $\propto\lambda_Y^{L}$ with $\lambda_Y=\sqrt{\phiz(1-\phiz)}$. The whole
+five-order hierarchy is one ladder.}
+\label{fig:massladder}
+\end{figure}
+
+% =====================================================================
+\section{The Sheet Diamond and the Winding Line: masses and transport from one surface}
+% =====================================================================
+The mass-power matrix and the transport word-length matrix are \emph{not} two independent machines: they
+are the two sheet-readouts of \emph{one} parabolic projection $Q$ acting on the residue matrix $R$. Collect
+the $\phiz$-orders $k_{f,j}$ of the nine charged fermions into the \textbf{mass-power matrix}
+\begin{equation}
+  K=\begin{pmatrix}4&2&0\\4&3&2\\5&3&2\end{pmatrix}\quad(\text{rows }u,d,e),\qquad
+  Q:=L-K=\begin{pmatrix}3&1&0\\3&2&0\\3&2&1\end{pmatrix},\qquad
+  \Sigma:=\operatorname{diag}(1,-1,-1),
+\end{equation}
+with $\Sigma$ the \emph{sheet} ($\Z_2$) involution. Then, exactly,
+\begin{equation}
+  \boxed{\ K=R+Q\,\Sigma,\qquad L=R+Q\,(I+\Sigma)\ }\qquad\mE\ \veri{v10\_projection\_involution.py} ,
+\end{equation}
+and since $I+\Sigma=\operatorname{diag}(2,0,0)$ and $Q$'s first column is $(3,3,3)^\top$, the
+``hand-added'' first-generation winding is \emph{forced}: $Q(I+\Sigma)=6W=2\Nfam\cdot\mathbf 1e_1^\top$, i.e.\
+sheet ($\Z_2$) $\times$ families ($\Z_3$) $=$ the $C_6$ transport. So the $\phiz$-mass powers are the
+$\Sigma$-odd readout, and the transport lengths are the $(I{+}\Sigma)$ readout, of the \emph{same}
+projection $Q$ on $R$.

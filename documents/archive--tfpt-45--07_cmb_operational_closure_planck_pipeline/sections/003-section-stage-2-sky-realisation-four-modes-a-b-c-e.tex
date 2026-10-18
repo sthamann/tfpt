@@ -1,0 +1,375 @@
+\section{Stage 2: sky realisation -- four modes A, B, C, E}
+\label{sec:stage2}
+% =====================================================================
+
+\paragraph{Mode A. Prediction.} Sample
+\(a_{\ell m}\sim\mathcal N(0,C_\ell^{\mathrm{TFPT}})\) coherently from
+the TFPT block-diagonal harmonic covariance and synthesise
+\(T,Q,U\) on HEALPix.  This is one TFPT universe, not our universe.
+Run \(\geq 10^3\) seeds and compare \emph{distribution-level}
+statistics to Planck.
+
+\paragraph{Mode B. Conditioned reconstruction.} Compute, in harmonic
+space, the Wiener filter
+\(\hat a = (C^{-1}+B^\dagger N^{-1}B)^{-1} B^\dagger N^{-1} d\)
+with \(C\) the TFPT spectrum, \(B\) the Planck beam/mask operator,
+\(N\) the Planck noise covariance, and \(d\) the Planck map.  The
+result is \emph{our} sky reconstructed under the TFPT prior;
+\emph{not} a prediction.
+
+\paragraph{Mode C. Phase-matched diagnostic.} Reuse Planck phases with
+TFPT amplitudes,
+\(a_{\ell m}^{\mathrm{diag}}=a_{\ell m}^{\mathrm{Planck}}
+\sqrt{C_\ell^{\mathrm{TFPT}}/\widehat C_\ell^{\mathrm{Planck}}}\).
+\textbf{Diagnostic only}; never reported as prediction.
+
+\paragraph{Mode E. Lemma-E branch phase selection (NEW in v4.6).}
+\label{sec:modeE_def}
+The phases \(\varphi_{\ell m}\) are constructed from
+\(\arg\langle e_j,u_\Sigma\rangle\) via the canonical joint
+diagonalisation of the admissible primordial-curvature Hessian
+\(K_\Sigma\), with the spectral flag breaking degeneracies and the
+seam convention fixing the residual U(1).  No Planck phase enters; no
+SMICA \(a_{\ell m}\) enters.  See~\S\ref{sec:modeE} for the full
+construction and acceptance results.
+
+\subsection{Final maps: side-by-side}
+\label{sec:final_maps}
+
+Figure~\ref{fig:mollweide} shows the four-panel comparison of Planck
+SMICA, TFPT Mode A (random, lensed, \(N_{\mathrm{side}}=1024\)), TFPT
+Mode E (Lemma-E, candidate v4.6, \(N_{\mathrm{side}}=512\)), and the
+Planck \(-\) Mode-A residual.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{fig01_mollweide_grid.png}
+\caption{TFPT v4.6.3 vs Planck PR3 SMICA. \emph{Top-left:} Planck
+SMICA (PR3) downgraded to \(N_{\mathrm{side}}=1024\). \emph{Top-right:}
+TFPT Mode~A (random sample from \(C_\ell^{\mathrm{TFPT,v4.6}}\) with
+seed~42, lensed, birefringence~applied). \emph{Bottom-left:} TFPT
+Mode~E (Lemma-E branch phases, candidate v4.6, \(N_{\mathrm{side}}=512\)).
+\emph{Bottom-right:} Planck \(-\) TFPT Mode~A residual (RMS
+\(\approx 153\,\mu\mathrm{K}\)).  Mode~A is statistically
+indistinguishable from Planck SMICA at the eyeball level; this is
+expected, because A--D give the correct \(C_\ell\) and Mode~A injects
+random phases.  Mode~E uses fixed phases coming from the spectrum of
+\(K_\Sigma\); the residual against Planck is \(13\,\%\) smaller.}
+\label{fig:mollweide}
+\end{figure}
+
+\subsection{Residual statistics}
+
+Figure~\ref{fig:residhist} shows the residual histograms.  Mode~A
+distributes as \(\mathcal N(0,\sigma_A^2)\) with
+\(\sigma_A=153.3\,\mu\mathrm{K}\); Mode~E narrows to
+\(\sigma_E=133.6\,\mu\mathrm{K}\), a \(13\,\%\) reduction relative to
+the same Mode-A run at the same \(N_{\mathrm{side}}\).
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.78\textwidth]{fig03_residual_histogram.png}
+\caption{Pixel-residual histogram of Planck~\(-\)~TFPT, in
+\(\mu\mathrm{K}\), restricted to the unmasked sky
+(\(f_{\mathrm{sky}}\approx 0.913\)).  Mode~A: independent random
+realisation, RMS~\(=153.3\,\mu\mathrm{K}\).  Mode~E: deterministic
+phases from \(\arg\langle e_j,u_\Sigma\rangle\),
+RMS~\(=133.6\,\mu\mathrm{K}\) (\(13\,\%\) reduction).}
+\label{fig:residhist}
+\end{figure}
+
+% =====================================================================
+\section{Mode E in detail: Lemma E, candidate v4.6}
+\label{sec:modeE}
+% =====================================================================
+
+\subsection{The Branch Operator Bundle}
+
+The minimal native structure of Mode~E (Stefan v4.6 brief~\S11) is
+\begin{equation}
+\mathfrak B_\Sigma \;=\; (\,
+\mathcal H_{\mathrm{adm}},\;
+K_\Sigma,\;
+u_\Sigma,\;
+\iota_C,\;
+\mathcal O\,) ,
+\end{equation}
+i.e.\ the admissible Hilbert space, the primordial-curvature Hessian,
+the primitive seam state, the Calderon involution, and the observer.
+Implementation: \texttt{tfpt\_cmb.branch\_phase\_selection.BranchOperatorBundle}
+plus \texttt{ObserverEmbedding}.
+
+\subsection{The candidate v4.6 bundle}
+
+In the absence of a real Sprint-2A boundary extraction, v4.6.3 ships
+a deterministic \emph{candidate} bundle synthesised from the seven
+primitives:
+\begin{itemize}[leftmargin=1.4em]
+\item \(K_\Sigma\): Hermitian, eigenvalues
+\(\lambda_j = c_3^2\,j\,(1+\phi_0\cos(2\pi\beta j))\) on \(j=1\dots M\);
+\item \(u_\Sigma\): seam-graded
+\(u_j = \exp(2\pi i c_3 j)/\sqrt M\) modulated by
+\(\cos(2\pi\lambda_C j/\Omega_{\mathrm{adm}})\), normalised;
+\item \(\iota_C\): pairing involution \(j\leftrightarrow M-j+1\);
+\item spectral flag: c\(_3\)-graded twist operator commuting with
+\(K_\Sigma\) by construction;
+\item observer: identity tetrad, \(\eta_{\mathrm{LS}}=280\,\mathrm{Mpc}\),
+parity \(+1\).
+\end{itemize}
+This is \emph{not} a real branch realisation. It is a structural
+proxy that respects all algebraic axioms and is reproducible across
+runs (the rng seed only fixes the Haar-random rotation that mimics
+the unknown spectral flag).  The run is tagged
+\textsf{lemma\_E\_candidate\_v46\_unproven} in every JSON artifact.
+
+\subsection{The Lemma-E phases}
+
+Figure~\ref{fig:phij} shows the resulting branch-phase distribution
+\(\{\varphi_j\}_{j=1}^{M}\) and the spectrum of \(K_\Sigma\).
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{fig04_phi_j_distribution.png}
+\caption{\emph{Left:} Histogram of the Lemma-E branch phases
+\(\varphi_j=\arg\langle e_j,u_\Sigma\rangle\) for the \(M=192\)
+candidate-v4.6 modes.  Note the explicit absence of the uniform
+distribution: the seam projection imprints a non-trivial
+phase structure that, in a real branch, would lift the
+random-realisation degeneracy.  \emph{Right:} The spectrum
+\(\{\lambda_j\}\) of the candidate \(K_\Sigma\), log-scaled.  Both
+quantities are reproducible from the seven primitives, with the rng
+seed fixing only the spectral-flag rotation.}
+\label{fig:phij}
+\end{figure}
+
+\subsection{Acceptance checks}
+
+Stefan v4.6 brief~\S10 lists nine acceptance checks Mode~E must pass.
+Figure~\ref{fig:checks} shows the v4.6.3 status.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.95\textwidth]{fig05_acceptance_checks.png}
+\caption{Mode-E acceptance checks (Stefan v4.6 brief~\S10) as run
+in v4.6.3 for the candidate bundle.  Seven of nine pass.  Two
+remain pending: the pixel-correlation high-bar requires Lemma~E to
+be \emph{proven}, not conjectured (the candidate phases happen to
+align with Planck phases only structurally, not realisation-wise);
+the official Planck likelihood requires a coupled foreground/noise
+model that is outside Paper~7's scope.}
+\label{fig:checks}
+\end{figure}
+
+\subsection{The 13\,\% RMS reduction}
+
+The Mode-E residual RMS is \(133.6\,\mu\mathrm{K}\), i.e.\
+\(13\,\%\) below the Mode-A RMS \(153.6\,\mu\mathrm{K}\) at the same
+\(N_{\mathrm{side}}\).  We do \emph{not} interpret this as evidence
+for Lemma~E.  In the candidate construction, the Lemma-E phases happen
+to inherit a deterministic structure that is not aligned with the
+Planck realisation \emph{by construction} --- the bundle is not
+extracted from the boundary data.  The 13\,\% gap is consistent with
+Mode~E phases being slightly less anti-correlated with Planck than a
+truly random realisation would be at this \(N_{\mathrm{side}}\)
+(c.\,f.~Figure~\ref{fig:residhist}).  A real Lemma-E test requires the
+Sprint-2A boundary extraction.
+
+% =====================================================================
+\section{Birefringence: TFPT vs Planck EB diagnostic}
+\label{sec:birefringence}
+% =====================================================================
+
+The TFPT prediction \(\beta_{\mathrm{TFPT}}=\phi_0/(4\pi)
+=0.2424^\circ\) sits well inside the Eskilt et al.\ 2022 measurement
+\(0.34^{+0.09}_{-0.09}{}^\circ\) and is consistent with the cosmological
+birefringence reported by recent re-analyses.  The pipeline's own EB
+estimator on the SMICA component map yields
+\(\hat\beta_{\mathrm{EB,SMICA}}\approx 0.027^\circ\) --- a factor
+\(\approx 9\) smaller than the TFPT prediction.
+
+This is \emph{not} a contradiction.  EB on a single component-separated
+map is foreground-residual and noise-dominated and does \emph{not}
+recover \(\beta\); the reliable measurement requires a full
+foreground-marginalised likelihood (see Eskilt+22 for the procedure).
+The TFPT prediction is a derived TFPT quantity (Lemma E and
+\(C_{12}\)) and is not affected by this in-pipeline EB diagnostic.
+We retain the factor-9 mismatch as an open observational caveat
+(\texttt{native\_closure\_v46.OBSERVATIONAL\_CAVEATS}).
+
+% =====================================================================
+\section{Comparison metrics and audit ledger}
+\label{sec:metrics}
+% =====================================================================
+
+\begin{center}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{@{}p{0.27\textwidth}p{0.16\textwidth}p{0.16\textwidth}Y@{}}
+\toprule
+\textbf{Quantity} & \textbf{TFPT v4.6.3} & \textbf{Planck} & \textbf{Comment} \\
+\midrule
+\(D_{220}^{TT}\,[\mu\mathrm{K}^2]\) & 6\,546 & 6\,202 & 5.6\,\% high; tracks \(\omega_c\) excess. \\
+\(C_{220}^{TT}\,[\mu\mathrm{K}^2]\)  & 0.722 & 0.758 & SMICA \texttt{anafast} \\
+\(\sigma_8\) proxy (RMS T) & 44.85 & 42.21 & 6\,\% high \\
+Cold-spot min. (\(\mu\mathrm{K}\))& \(-164\) & \(-173\) & 5\,\% \\
+Cold-spot max. (\(\mu\mathrm{K}\))& \(+145\) & \(+150\) & 3\,\% \\
+TT \(\chi^2_{\mathrm{Knox,diag}}/\)dof & 107.6 & --- & diag-only; not Likelihood \\
+Mode-A residual RMS \([\mu\mathrm{K}]\) & 153.3 & --- & expected for indep.\ realisation \\
+Mode-E residual RMS \([\mu\mathrm{K}]\) & 133.6 & --- & 13\,\% below Mode A \\
+\(\beta_{\mathrm{birefr.}}\) (TFPT pred.)\,\([\mathrm{deg}]\) & 0.2424 & 0.34\(\pm\)0.09 (Eskilt+22) & inside \(2\sigma\) \\
+\(\hat\beta\) (in-pipe EB on SMICA) & --- & 0.027 & foreground/noise dominated \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\paragraph{Spectrum-shape \(\chi^2\).} A diagonal-Gaussian \(\chi^2\)
+using the Knox formula
+\(\sigma^2(C_\ell)=2/((2\ell+1) f_{\mathrm{sky}})\,(C_\ell+N_\ell)^2\),
+binned in 25 logarithmic bins between \(\ell=2\) and \(\ell_{\max}\),
+broken out for TT, TE, EE, BB.  TT diagnostic only;
+TE/EE/BB/TB/EB are explicitly tagged \emph{diagnostic only} per
+v4.5 rules R\(_2\) and R\(_4\), and the Knox numbers there are
+foreground/noise-dominated.
+
+\paragraph{Realisation distribution.} For each Mode-A seed we compute
+six summary statistics --- \(C_\ell^{TT}|_{\ell=220}\), peak
+\(D_\ell^{TT}\), \(5^\circ\)-smoothed RMS, cold-spot extreme values,
+skewness, kurtosis --- and ask where the Planck value falls in the
+TFPT distribution. Code: \texttt{tfpt\_cmb.compare.sky\_statistics}
+and \texttt{planck\_in\_TFPT\_distribution}.
+
+% =====================================================================
+\section{Pipeline}
+\label{sec:pipeline}
+% =====================================================================
+
+The pipeline is implemented in \texttt{tfpt\_cmb} with 358 passing
+tests; the v4.6.3 end-to-end run is reproduced by:
+\begin{lstlisting}[language=bash]
+cd full-plank/theory-work
+
+# 1. Generate the Native Closure (Lemmas A-D) -> 26-vector JSON
+python3 scripts/build_native_closure_v46.py
+
+# 2. Stage 1 + 2 (Mode A, lensed, against SMICA)
+python3 scripts/run_cmb_stage.py \
+  --cosmology-json output/native_closure_v46/cosmology_candidate.json \
+  --planck-dir ../planck_pr3 --component smica \
+  --output-dir output/cmb_stage_v463_lensed \
+  --lmax 2500 --nside 1024 --seed 42 \
+  --mode A --candidate-v46 --strict-map \
+  --write-png --lens-potential-accuracy 4
+
+# 3. Mode E (Lemma E, candidate v4.6 bundle)
+python3 scripts/run_cmb_stage.py \
+  --cosmology-json output/native_closure_v46/cosmology_candidate.json \
+  --planck-dir ../planck_pr3 --component smica \
+  --output-dir output/cmb_stage_v463_modeE \
+  --lmax 1500 --nside 512 --seed 42 \
+  --mode E --candidate-v46 --mode-E-candidate \
+  --strict-map --write-png
+
+# 4. Comparison figure suite
+python3 scripts/plot_v463_comparison.py
+\end{lstlisting}
+
+The output directory \texttt{output/cmb\_stage\_v463\_summary/}
+contains the figures shown in this paper plus
+\texttt{summary.json} with all numeric residuals, the acceptance
+status, and the reproducible command.
+
+% =====================================================================
+\section{The Sprint 2A Branch Extraction Contract}
+\label{sec:sprint2a}
+% =====================================================================
+
+Stefan's v4.6.3 review converges on a single sharp statement:
+\emph{the code is no longer the bottleneck; the data side and the
+proof side are.}  The next sensible step is therefore neither another
+plot nor another module --- it is a formal, executable
+\textbf{Branch Extraction Contract} that any future Sprint-2A run must
+satisfy.  This section defines that contract and reports what the
+v4.6.3 candidate bundle scores against it.
+
+\subsection{Contract specification}
+
+\begin{tfptwarningbox}
+\textbf{Sprint 2A Branch Extraction Contract}\\
+\textbf{Input.} \emph{closed TFPT branch operators}.\\
+\textbf{Output.}
+\(K_{\zeta,\mathrm{adm}}\)\,(\texttt{npz}),
+\(u_\Sigma\)\,(\texttt{npz}),
+\(\iota_C\)\,(\texttt{npz}),
+spectral\_flag\,(\texttt{json}+\texttt{npz}),
+observer\_embedding\,(\texttt{json}),
+\(k\)-grid\,(\texttt{npz}), direction grid\,(\texttt{npz}),
+shell-power validation\,(\texttt{json}), branch origin\,(\texttt{json}).\\
+\textbf{Hard checks.}
+(1)~\(K_{\zeta,\mathrm{adm}}\) Hermitian;
+(2)~\(\iota_C^2=I\);
+(3)~\(\iota_C K \iota_C^\dagger=\overline{K}\);
+(4)~\(\iota_C\) unitary;
+(5)~\(u_\Sigma\) normalised, \([u_\Sigma]=1\);
+(6)~spectral flag \emph{deterministic}, no Haar random rotation;
+(7)~no Planck phase or \(a_{\ell m}\) input ever;
+(8)~shell-averaged power reproduces A--D;
+(9)~observer origin \(=\) ``derived'';
+(10)~branch origin \(=\) ``real''.
+\end{tfptwarningbox}
+
+The contract is implemented in
+\texttt{tfpt\_cmb.sprint2a\_contract} (Python) and
+\texttt{scripts/validate\_sprint2a\_branch.py} (CLI).  Each hard check
+maps to one of the five Lemma-E sub-theorems:
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{E1} (existence): required-output presence,
+\(K\) Hermitian, \(\mathrm{branch\_origin}=\mathrm{real}\).
+\item \textbf{E2} (canonical flag): spectral-flag derivation
+``canonical'', no seed field, \([K, \mathcal F]=0\).
+\item \textbf{E3} (seam uniqueness): \(u_\Sigma\) normalised,
+\([u_\Sigma]=1\).
+\item \textbf{E4} (reality): \(\iota_C^2=I\), unitarity,
+\(\iota_C K \iota_C^\dagger=\overline{K}\).
+\item \textbf{E5} (observer): tetrad in \(\mathrm{SO}(3)\),
+\(\eta_{\mathrm{LS}}>0\), parity \(\in\{-1,+1\}\),
+\(\mathrm{origin}=\mathrm{derived}\).
+\end{itemize}
+
+\subsection{The candidate v4.6 bundle vs the contract}
+
+We dump the candidate v4.6 synthetic bundle and run it through the
+validator:
+\begin{lstlisting}[language=bash]
+python3 scripts/validate_sprint2a_branch.py --candidate-v46-synthetic
+\end{lstlisting}
+The result is exactly the audit Stefan asked for: \(18/24\) hard
+checks pass; the \emph{six} that fail are the v4.6.3 audit gap and
+they are the gap by design:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.13}
+\begin{tabularx}{\textwidth}{@{}lp{0.16\textwidth}Y@{}}
+\toprule
+\textbf{Failed check} & \textbf{Sub-theorem} & \textbf{Detail} \\
+\midrule
+\texttt{branch\_origin\_real} & E1 & origin = `synthetic\_v46\_candidate' (must be `real') \\
+\texttt{spectral\_flag\_canonical} & E2 & derivation = `haar\_random\_seeded' (must be `canonical') \\
+\texttt{spectral\_flag\_no\_haar\_rotation} & E2 & seed field present in \texttt{spectral\_flag\_adm.json} \\
+\texttt{iota\_C\_K\_conjugation} & E4 & \(\|\iota_C K \iota_C^\dagger - \overline{K}\|=1.7\) (must be \(<10^{-7}\)) \\
+\texttt{observer\_origin\_derived} & E5 & origin = `candidate\_placeholder' (must be `derived') \\
+\texttt{shell\_power\_matches\_AD} & global & \texttt{shell\_power\_validation.json} not produced \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{tfptfrontbox}
+The 18 of 24 checks that pass --- including \(K\) Hermitian,
+\(\iota_C^2=I\), \(\iota_C\) unitary, \(\|u_\Sigma\|=1\),
+\([u_\Sigma]=1\), tetrad in \(\mathrm{SO}(3)\), \([K, \mathcal F]=0\),
+no forbidden Planck inputs --- are the \emph{algebraic skeleton} of
+Lemma~E.  The 6 that fail are the \emph{theorem content}: the canonical
+flag, the \(\iota_C\)--\(K\) conjugation, the derived observer, the
+real branch origin, and the shell-power consistency.  Closing those
+six gaps is what would turn the v4.6.3 candidate into a v5.0 proven
+Mode-E reconstruction.
+\end{tfptfrontbox}
+

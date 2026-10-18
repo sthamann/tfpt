@@ -1,0 +1,392 @@
+\section{Volume-independent perturbative stability}
+
+\begin{theorem}[T3: proved volume-independent stability]
+\label{thm:T3}
+Let $\Lambda$ range over finite subsets or tori of a fixed
+$D$-dimensional bounded-degree lattice.  Let $H_{0,\Lambda}$ be the
+DET16 Hamiltonian \eqref{eq:H0}, and let $V_\Lambda$ be an even
+finite-range interaction satisfying Definition~\ref{def:pert}
+uniformly in volume.  Then there exists $t_*>0$, depending only on
+$D$, the interaction range, and the local interaction-norm bound, but
+not on $\Lambda$, such that
+\[
+ \gap(H_{0,\Lambda}+tV_\Lambda)\geq\frac12
+\tag{5.1}\label{eq:stablehalf}
+\]
+for every sufficiently large volume and $|t|\leq t_*$.  After
+decreasing $t_*$ once to cover the finitely many smaller volumes, the
+same statement holds for every finite $\Lambda$.
+\end{theorem}
+
+\begin{proof}
+Every local term $q_{\phi,x}$ is positive and annihilates the product
+state, so $H_0$ is frustration free.  Theorem~\ref{thm:T1} gives
+global gap $\gamma=1$.  Equation \eqref{eq:exactLTQO} verifies the full
+Local-TQO condition \eqref{eq:MZLTQO} with
+\[
+ \Delta_0(\ell)=0
+\]
+at every scale, not merely asymptotically.  Equation
+\eqref{eq:localgap} verifies the Local-Gap condition with
+$\gamma(r)=1$.  A finite-range interaction has a compactly supported,
+hence rapidly decaying, function $f_0$.  The local on-cluster Hilbert
+space is finite dimensional.  Finally, all perturbation terms are
+even, so spacelike-separated local terms commute rather than
+anticommute; the locality and Lieb--Robinson estimates used in
+Theorem~\ref{thm:MZ} apply to this even CAR interaction.
+
+Apply Theorem~\ref{thm:MZ} to the perturbation $tV$.  Its strength is
+$J=|t|J_V$, so one may set $t_*=J_0/J_V$.  This gives
+\eqref{eq:stablehalf} for $L\geq L_0$.  There are only finitely many
+lattice shapes below $L_0$ up to the fixed local geometry.  Each has a
+simple isolated ground eigenvalue and gap one at $t=0$; finite-matrix
+eigenvalues are continuous in $t$.  Taking the minimum of their
+positive continuity radii and the large-volume value gives one
+positive threshold for all finite volumes.
+\end{proof}
+
+\section{Dynamical finite gauge links: Lie--Schwinger gap theorem}
+\label{sec:dynlinks}
+
+Theorem~\ref{thm:T3} applies to prescribed parallel transporters but does
+not itself add fluctuating link Hilbert spaces.  We therefore audit the
+finite-group dynamical-link extension first against the local
+Schrieffer--Wolff construction of Bravyi, DiVincenzo, and
+Loss~\cite{BDL2011}, and then against the gap theorem proved by
+Fröhlich and Pizzo~\cite{FP2020}.
+
+Let each oriented open-chain link carry the electric basis of
+$\C[\mathbb Z_N]$, $N=2$ or $4$, and let $U_\ell$ shift its electric
+flux.  On the unconstrained ambient tensor product put
+\[
+ H_{0,\mathrm{dyn}}
+ =\sum_x(\id-P_{\phi,x})+h_E\sum_\ell E_\ell^2,\qquad
+ V=\sum_{\ell=(x,x+1)}K_\ell ,
+\tag{5.2}\label{eq:dynH0}
+\]
+where
+\[
+ K_\ell=\sum_{\alpha=1}^{m}
+ \left(c^\dagger_{x,\alpha}U_\ell c_{x+1,\alpha}
+ +c^\dagger_{x+1,\alpha}U_\ell^\dagger c_{x,\alpha}\right).
+\tag{5.3}\label{eq:dynhop}
+\]
+Here $m=16$ for DET16 and $m=4$ in the numeric analogue.  Assigning each
+outgoing link to its left matter cell makes \eqref{eq:dynH0} a sum of
+one-cell terms and \eqref{eq:dynhop} a two-cell interaction.  Its product
+ground projector is the tensor product of the DET projectors and the
+zero-electric-flux link projectors, and its local gap is
+\[
+ \Delta=\min(1,h_E).
+\tag{5.4}\label{eq:dyndelta}
+\]
+Moreover $\norm{K_\ell}=m$, so the BDL interaction strength obeys
+\[
+ J=\max_x\sum_{\ell\ni x}\norm{K_\ell}\leq2m
+\tag{5.5}\label{eq:dynJ}
+\]
+uniformly in chain length.
+
+\begin{proposition}[BDL hypothesis repair and remaining obstruction]
+\label{prop:BDLaudit}
+For finite $\mathbb Z_2$ or $\mathbb Z_4$ links, the Gauss-restricted
+Hilbert space is not a tensor product and hence is not directly in the
+setup of Section~4 of Bravyi--DiVincenzo--Loss.  The ambient-cell
+formulation \eqref{eq:dynH0}--\eqref{eq:dynJ} repairs this locality
+hypothesis, and gauge invariance makes every Gauss sector reducing.
+Nevertheless the cited BDL result does not supply the requested
+volume-independent spectral-gap theorem or a numerical threshold.
+\end{proposition}
+
+\begin{proof}
+The local Gauss constraints correlate a matter cell with its incident
+links, so the physical subspace does not factor into local Hilbert spaces.
+On the ambient space, by contrast, the left-link cell assignment gives
+exactly the tensor product, one-cell unperturbed Hamiltonian, product
+ground space, and two-cell perturbation assumed in BDL Section~4.1.
+The determinant changes charge by sixteen and the dressed hopping
+transports one unit of link flux with the matter charge, so all terms
+commute with every Gauss generator.  Restriction to the physical sector
+therefore preserves the spectrum originating from its invariant
+subspace.  Adding a Gauss penalty is unnecessary; it would produce
+overlapping commuting local terms and would no longer have BDL's
+one-site unperturbed form.
+
+For a second-order truncation $n=2$, BDL Theorem~3 normalizes
+$\norm{V}_1=1$ and obtains
+\[
+ \epsilon_c
+ =\min\left\{\frac{\Delta\beta}{4n^2},
+              \frac{\Delta}{32\alpha}\right\},
+\tag{5.6}\label{eq:BDLeps}
+\]
+where $\alpha$ and $\beta$ arise from big-$O$ estimates in their
+Lemma~4.2 and are not evaluated numerically.  Writing
+$\epsilon=tJ$ and using \eqref{eq:dynJ} gives only the symbolic
+conditions
+\[
+\begin{aligned}
+ m=4:\quad
+ |t|&<\Delta\min\left\{\frac{\beta}{128},
+                  \frac1{256\alpha}\right\},\\
+ m=16:\quad
+ |t|&<\Delta\min\left\{\frac{\beta}{512},
+                  \frac1{1024\alpha}\right\}.
+\end{aligned}
+\tag{5.7}\label{eq:BDLsymbolic}
+\]
+No concrete number follows without values of $\alpha,\beta$.
+More decisively, BDL Theorem~3 controls the \emph{ground-state energy}
+with an extensive truncation error
+$O(|\Lambda||\epsilon|^{n+1})$; it does not control the low-sector
+spectral gap.  The paragraph following their Lemma~4.1 explicitly states
+that the lemma says nothing about that gap.  Consequently
+\eqref{eq:BDLsymbolic} cannot be promoted to a uniform lower bound on
+$\gap(H_{0,\mathrm{dyn}}+tV)$.
+\end{proof}
+
+\begin{theorem}[Fröhlich--Pizzo Lie--Schwinger theorem, full form used
+here]
+\label{thm:FP}
+Let
+$\Hh^{(L)}=\bigotimes_{j=1}^{L}\Hh_j$ with
+$\Hh_j\simeq\C^M$, where $M<\infty$ is independent of $L$.
+Suppose the identical one-site operators $H_j\geq0$ have a
+one-dimensional kernel $\C\Omega_j$ and satisfy
+\[
+ H_j|_{\{\C\Omega_j\}^{\perp}}\geq\id.
+\tag{5.8}\label{eq:FPlocal}
+\]
+Let
+\[
+ K_L(\tau)=\sum_{j=1}^{L}H_j+
+ \tau\sum_{\substack{I_{k;i}\subset\{1,\ldots,L\}\\
+                     k\leq\bar k}}V_{I_{k;i}},
+\tag{5.9}\label{eq:FPK}
+\]
+where $\bar k<\infty$ is fixed independently of $L$, every
+$V_{I_{k;i}}$ is self-adjoint and supported on its indicated interval,
+and $\norm{V_{I_{k;i}}}\leq1$.  Then there is
+$\tau_{\rm FP}>0$, independent of $L$, such that for every real
+$|\tau|<\tau_{\rm FP}$ and every finite $L$, $K_L(\tau)$ has a unique
+ground state and
+\[
+ \gap K_L(\tau)\geq\frac12.
+\tag{5.10}\label{eq:FPgap}
+\]
+\end{theorem}
+
+This is Theorem~3.5 of
+J.~Fröhlich and A.~Pizzo,
+\emph{Lie--Schwinger Block-Diagonalization and Gapped Quantum Chains},
+Communications in Mathematical Physics \textbf{375} (2020),
+2039--2069~\cite{FP2020}.  Its conclusion is a spectral-gap estimate,
+not a ground-energy truncation estimate, and is uniform in chain
+length.
+
+\begin{proposition}[Lie--Schwinger hypothesis audit for finite gauge
+links]
+\label{prop:FPaudit}
+For $N_g\in\{2,4\}$, $h_E>0$, $m\in\{4,16\}$, and constant $\phi$, the
+open-chain Hamiltonian \eqref{eq:dynH0}--\eqref{eq:dynhop} satisfies
+every hypothesis of Theorem~\ref{thm:FP} on an ambient tensor product
+after adjoining one decoupled endpoint link.  With
+\[
+ \Delta=\min(1,h_E),\qquad
+ \tau=\frac{tm}{\Delta},
+\tag{5.11}\label{eq:FPscale}
+\]
+therefore
+\[
+ |t|<t_{\rm FP}^{(m)}(h_E)
+ :=\frac{\Delta}{m}\tau_{\rm FP}
+ \quad\Longrightarrow\quad
+ \gap\!\left(
+ H_{0,\mathrm{dyn}}+tV
+ \right)\big|_{\Hh_{\rm phys}}
+ \geq\frac{\Delta}{2},
+\tag{5.12}\label{eq:FPwindow}
+\]
+and the physical Gauss sector has a unique ground state.  The bound is
+uniform in the number of clusters.
+\end{proposition}
+
+\begin{proof}
+The audit is hypothesis by hypothesis:
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.25\textwidth}X p{0.10\textwidth}@{}}
+\toprule
+\textbf{FP hypothesis}&\textbf{DET chain realization}&\textbf{Result}\\
+\midrule
+Finite tensor-product cells&
+$\Hh_x=\F(\C^m)\otimes\C[\mathbb Z_{N_g}]$, of dimension
+$2^mN_g$ independent of chain length.&Pass\\
+Identical one-site $H_x$&
+Put the outgoing link in cell $x$ and append one decoupled final link,
+so every cell carries
+$q_{\phi,x}+h_EE_x^2$.&Pass\\
+Rank-one local vacuum&
+$P_{\phi,x}$ and the zero-electric-flux projector both have rank one;
+their tensor product is the unique cell vacuum.&Pass\\
+Normalized local gap&
+The cell gap is $\Delta=\min(1,h_E)>0$; dividing $H_x$ by $\Delta$
+gives \eqref{eq:FPlocal}.&Pass\\
+Fixed finite interval range&
+$K_{x,x+1}$ acts on two adjacent cells, hence $\bar k=1$ independently
+of volume.&Pass\\
+Ordinary tensor locality&
+In an ordered Jordan--Wigner representation the adjacent strings
+cancel; the even bilinear hopping, including its left-cell link
+operator, acts on exactly two cells.&Pass\\
+Bounded self-adjoint interaction&
+$K_{x,x+1}=K_{x,x+1}^{\dagger}$ and
+$\norm{K_{x,x+1}}=m$; thus
+$V_{x,x+1}=K_{x,x+1}/m$ has norm one.&Pass\\
+Real small coupling&
+After factoring out $\Delta$, the FP coupling is precisely
+$\tau=tm/\Delta$.&Pass\\
+Gauss restriction&
+This is not an FP premise: all terms commute with every Gauss
+generator, and the ambient vacuum is physical because
+$m=0\pmod {N_g}$ with zero link flux.&Pass\\
+\bottomrule
+\end{tabularx}
+\caption{Fröhlich--Pizzo hypotheses audited against the finite-link
+DET chain.}
+\label{tab:FPaudit}
+\end{table}
+The appended endpoint link is decoupled and has a unique zero-flux
+ground state.  The enlarged Hamiltonian is therefore the original
+ambient Hamiltonian tensored with this one-link factor; a lower bound
+on the enlarged gap is also a lower bound on the original ambient gap.
+
+The normalized Hamiltonian is exactly \eqref{eq:FPK} with
+$\bar k=1$, so Theorem~\ref{thm:FP} gives a unique ambient ground state
+and normalized gap at least $1/2$.  Every Gauss generator commutes with
+the Hamiltonian.  At $t=0$ the unique ambient vacuum is in the trivial
+Gauss sector, since both $m=4$ and $m=16$ vanish modulo $2$ and $4$.
+Uniqueness and the discrete gauge eigenvalues keep the continued ground
+state in that sector.  The physical spectrum is a subset of the ambient
+spectrum and contains its ground state, so restriction cannot reduce
+the excitation gap.  Restoring the factor $\Delta$ proves
+\eqref{eq:FPwindow}.
+\end{proof}
+
+\subsection{What is and is not explicit in the FP window}
+
+The Lie--Schwinger proof contains one explicit series constant:
+\[
+ \frac{e^{8a}-8a-1}{a}+e^{8a}-1=1,\qquad
+ a=0.023320199830777650\ldots .
+\tag{5.14}\label{eq:FPa}
+\]
+Appendix~A of \cite{FP2020} uses the explicit convergence restriction
+\[
+ |\tau|<\frac a{16}
+ =0.001457512489423603\ldots .
+\]
+Its local-gap estimate also has the explicit sufficient inequality
+\[
+ 8|\tau|+16|\tau|
+ \sum_{\ell=3}^{\infty}
+ \frac{|\tau|^{(\ell-2)/3}}{\ell}\leq\frac12,
+\tag{5.15}\label{eq:FPgapcondition}
+\]
+whose positive boundary is
+$\tau_{\rm gap}=0.046907169193748369\ldots$.
+However, the induction closing Theorem~3.4 of \cite{FP2020} introduces
+unevaluated universal constants $C,C'$ and repeatedly requires
+``sufficiently small'' $|\tau|$.  A scrupulous parameterization is
+therefore
+\[
+ \tau_{\rm FP}
+ =\min\left\{\frac a{16},\tau_{\rm gap},\tau_{\rm ind}\right\}>0,
+\tag{5.16}\label{eq:FPparametric}
+\]
+where $\tau_{\rm ind}>0$ denotes those volume-independent but
+numerically unevaluated induction restrictions.  Thus the two concrete
+model families have the cited, parametric windows
+\[
+\begin{array}{c|cc}
+\toprule
+&m=4\ \text{analogue}&m=16\ \text{DET16}\\
+\midrule
+h_E=\tfrac12&|t|<\tau_{\rm FP}/8&|t|<\tau_{\rm FP}/32\\
+h_E\geq1&|t|<\tau_{\rm FP}/4&|t|<\tau_{\rm FP}/16\\
+\bottomrule
+\end{array}
+\tag{5.17}\label{eq:FPwindows}
+\]
+No numerical value of $t_{\rm FP}^{(m)}$ follows unless
+$\tau_{\rm ind}$ is evaluated.
+
+The deterministic companion
+\[
+ \texttt{experiments/tfpt-discovery/
+ det16\_dynamical\_links\_probe.py}
+\]
+passes all $149$ checks.  It verifies exact Gauss invariance, commuting
+unperturbed terms, rank-one local vacua, the norms
+\eqref{eq:dynJ}, the FP range and normalization hypotheses, the two
+explicit constants \eqref{eq:FPa}--\eqref{eq:FPgapcondition}, the
+second-order effective Hamiltonian, and fourth-order finite-volume
+residual scaling.  A long-range mutant supported on the two endpoints
+has diameter $L-1$ and visibly fails the fixed-$\bar k$ premise.
+The smallest scanned gap remains $0.728854416$ through $|t|=0.4$ on
+two and three four-mode clusters.  At $h_E\geq1$, that scan point has
+normalized coupling $\tau=1.6$ for $m=4$ and $\tau=6.4$ for $m=16$,
+both far outside the cited window; the scan is evidence against a
+finite-volume closing there, not an extension of
+\eqref{eq:FPwindow}.  The finite $\mathbb Z_2/\mathbb Z_4$ chain item is
+therefore cited-verified with the parametric FP window, not with an
+invented numerical threshold.
+
+\section{The proposed explicit count and why it is conditional}
+
+\begin{proposition}[Elementary relative-form gap bound]
+\label{prop:relative}
+Let $P=|\Omega_{\Lambda,\phi}\rangle
+\langle\Omega_{\Lambda,\phi}|$ and $Q=\id-P$.  Suppose a self-adjoint
+perturbation $V$ satisfies
+\[
+ PVQ=QVP=0,\qquad PVP=v_0P,
+\tag{6.1}\label{eq:block}
+\]
+and
+\[
+ \left|
+ \ip{\psi}{(V-v_0\id)\psi}
+ \right|
+ \leq c\,\ip{\psi}{H_0\psi}
+ \quad\text{for every }\psi\in Q\Hh.
+\tag{6.2}\label{eq:formbound}
+\]
+Then the ground vector remains $|\Omega_{\Lambda,\phi}\rangle$, and
+\[
+ \gap(H_0+tV)\geq1-c|t|
+ \geq1-2c|t|.
+\tag{6.3}\label{eq:linearbound}
+\]
+In particular, the weaker displayed bound is positive for
+$|t|<t_{0,\mathrm{rel}}:=1/(2c)$.
+\end{proposition}
+
+\begin{proof}
+Condition \eqref{eq:block} makes $P\Hh$ and $Q\Hh$ reducing subspaces.
+The energy on $P\Hh$ is $tv_0$.  For normalized $\psi\in Q\Hh$,
+Theorem~\ref{thm:T1} gives
+$\ip{\psi}{H_0\psi}\geq1$, and
+\[
+\begin{aligned}
+ \ip{\psi}{(H_0+tV-tv_0\id)\psi}
+ &\geq
+ (1-c|t|)\ip{\psi}{H_0\psi}\\
+ &\geq1-c|t|.
+\end{aligned}
+\]
+The min--max principle proves the first inequality in
+\eqref{eq:linearbound}; the second is a weakening for $c|t|\geq0$.
+\end{proof}
+

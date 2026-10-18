@@ -1,0 +1,392 @@
+\subsection{Die vollständige Neutrinomatrix besitzt ein norm- und phasentreues Quellenwörterbuch}\label{sec:neutrinodictionary}
+Die vorhandenen Neutrinoherleitungen liefern ganze komplexe Matrizen.
+Ihr Quellenanschluss darf sich deshalb nicht auf Massen, Spur oder Norm
+beschränken. Der bereits konstruierte symmetrische Sechserraum hat genau
+die dafür benötigte bilineare Struktur. Für eine komplex-symmetrische
+Koeffizientenmatrix $A$ sei
+\begin{equation}
+ \Gamma(A)=\sum_a A_{aa}B_{aa}+\sum_{a<b}A_{ab}B_{ab}.
+\end{equation}
+Die 36 ursprünglichen affinen Paarungen ergeben
+\begin{equation}\label{eq:pairisometry}
+ \langle\Gamma(A),\Gamma(B)\rangle=\tr(A^\dagger B).
+\end{equation}
+Dabei haben diagonale Paare Normquadrat eins und außerdiagonale Paare
+Normquadrat zwei. Die rechte Seite ist deshalb genau das volle
+Frobenius-Skalarprodukt, einschließlich der komplexen Kreuzterme.
+
+Auch das tatsächliche Auslesen ist berechnet. Mit $C(v)=\sum_a v_a C_a$ gilt
+\begin{equation}\label{eq:pairtomography}
+ \langle\Gamma(A)^\dagger(\infty)C(v)(z_1)C(v)(z_2)\rangle
+ =(z_1-z_2)^2\,v^{\mathsf T}A^\dagger v.
+\end{equation}
+Die sechs kohärenten Einsetzungen
+$e_1,e_2,e_3,e_1+e_2,e_1+e_3,e_2+e_3$ rekonstruieren daher jedes $A$.
+Die gemessene Größe ist hierbei eine \emph{komplexe Amplitude mit Phasenreferenz}.
+Sechs Betragsquadrate reichen nicht: Sie unterscheiden im Allgemeinen eine
+Matrix und ihre komplex konjugierte Matrix nicht.
+
+Der Familienbasiswechsel wird aus den vorhandenen Generatoren konstruiert.
+Setze $F=(e_1,Me_1,M^2e_1)$ und $S=F^\dagger J_C$, wobei $J_C$ der zuvor
+an den Originalströmen geprüfte Intertwiner ist. $S$ ist unitär und verbindet
+den Quellenvektor $v$ mit der ursprünglichen zyklischen Darstellung $w=Sv$.
+Die einzelne C-Wirkung behält ihr Minuszeichen gegenüber dem Familienumlauf;
+im symmetrischen Paar hebt es sich auf. Ein kovarianter physischer
+Massentensor $K$ zieht sich dagegen als $K_C=S^{\mathsf T}KS$ zurück.
+Der richtige Zustandsanschluss ist deshalb
+\begin{equation}\label{eq:massformencoding}
+ \mathcal E(K)=\Gamma\!\left(\overline{S^{\mathsf T}KS}\right),\qquad
+ \frac{\langle\mathcal E(K)^\dagger(\infty)C(v)(z_1)C(v)(z_2)\rangle}
+ {(z_1-z_2)^2}=(Sv)^{\mathsf T}K(Sv).
+\end{equation}
+Die Konjugation ist wesentlich: $\Gamma$ ist komplexlinear auf
+Zustandskoeffizienten, $\mathcal E$ dagegen antilinear auf Massentensoren.
+Es gilt $\langle\mathcal E(K),\mathcal E(L)\rangle=\tr(L^\dagger K)$.
+Ein untypisierter Ähnlichkeitstransform würde diese physische bilineare
+Antwort nicht erhalten.
+
+\paragraph{Schwere und leichte Neutrinos bleiben verschiedene physische Felder.}
+Der konkrete D5-Singulettpaarkanal besitzt $X=+10$ und gehört zum
+$\nu^c\nu^c$- beziehungsweise konjugierten schweren Majorana-Anschluss.
+Sein direkter Familientensor ist die ursprüngliche schwere Form
+\[
+ M_R=M_{\rm scal}\,\diag(\varepsilon,2\varepsilon,3),
+ \qquad \varepsilon=\phi_0^2/(2g_{\rm car}),
+\]
+in der erklärten Q$_+$-Eigenbasis. Auch sie wird durch
+$\mathcal E(M_R)$ samt allen sechs Rückleseamplituden dargestellt.
+Für den dimensionslosen Tensor $D_M=M_R/M_3$ ergibt sich ausdrücklich
+\[
+ D_M=\diag(\varepsilon/3,2\varepsilon/3,1),\qquad
+ \norm{\mathcal E(D_M)}^2=1+5\varepsilon^2/9.
+\]
+Das ist die direkte schwere Quellenübersetzung. Die anschließende bereits
+verwendete normierte Seesaw-Rechnung lautet
+\[
+ K_\nu=-\widehat Y^{\mathsf T}D_M^{-1}\widehat Y,\qquad
+ \widehat Y=i\sqrt{D_M}\,R_{\rm CI}\sqrt{m_{\rm niedrig}}\,U^\dagger.
+\]
+Hier hat $\widehat Y$ in der erklärten gemeinsamen RG-Normierung die Einheit
+$\sqrt{\rm eV}$, während $K_\nu$ in eV steht. $\widehat Y$ ist daher nicht
+mit dem dimensionslosen physischen Yukawa-Operator gleichzusetzen.
+Die vorhandene Wahl der gemischten $\varepsilon$-Einsetzung bleibt dabei
+ein ausgewiesener Ansatz; ihre Übereinstimmung mit dem physisch markierten
+Quellenrahmen wird nicht allein durch einen Basiswechsel bewiesen.
+Der leichte Massentensor entsteht anschließend über die vorhandene
+Seesaw-Regel aus $M_R$ und $Y_\nu$.
+Ein leichter $3\times3$-Tensor kann mathematisch in denselben Sechserraum
+kodiert werden. Daraus folgt aber keine direkte Identifikation eines
+linken Standardmodell-Neutrinopaares mit dem geladenen $X=10$-Quellenoperator.
+Diese Feldtypgrenze wird in der folgenden Phasenprobe erhalten.
+
+\paragraph{Die bereits vorhandenen gemeinsamen Neutrinobedingungen bleiben erhalten.}
+Das Programm verwendet den ursprünglichen Operator $R_{\rm CI}(z)$ und
+die eingefrorenen Eingaben von \file{nu_scalaron_v3.yaml}.
+Die bestehende gleichzeitige Bedingung aus größtem Dirac-Singularwert und
+$\widetilde m_1=m_3/10$ aus Abschnitt~\ref{sec:neutrinojoint} ergibt erneut
+\[
+ m_3=0{,}0435180861582\ {\rm eV},\qquad |z|=0{,}477382171162.
+\]
+Dies ist die bereits dokumentierte bedingte Konsistenzlösung, keine neue
+Massenprognose. Insbesondere bleiben die Kalibrierung von $m_2$, der
+Washout-Ansatz, die gewählte CI-Symmetrieklasse und der erklärte gemeinsame
+Skalenfaktor erhalten; vollständige Schwellen-RG- und Flavor-Boltzmann-Dynamik
+werden dadurch nicht zusätzlich geprüft.
+
+\paragraph{Die verbleibende Phase wird nun zu einer konkreten Quellenantwort.}
+Im ausdrücklich phasenoffenen Zweig mit $m_1=0$ verbleibt eine physische
+Majorana-Phase. Mit dem ursprünglichen $U_0$ lautet diese Familie
+\begin{equation}
+ K_\nu(\gamma)=\overline{U_0}\,\diag(0,m_2e^{-i\gamma},m_3)\,U_0^\dagger.
+\end{equation}
+Die unveränderten leichten Massen, PMNS-Winkel und Dirac-CP-Invariante,
+$YY^\dagger$, die ungeflavorten schweren CP-Invarianten sowie
+$\norm{\mathcal E(K_\nu)}^2=m_2^2+m_3^2$ wählen $\gamma$ nicht aus.
+Mit $v_j=S^\dagger u_j$, wobei $u_j$ die Spalten von $U_0$ sind,
+liefern die ursprünglichen Paaramplituden dagegen
+\begin{equation}\label{eq:majoranaphaseresponse}
+ \frac{\mathcal A_2}{\mathcal A_3}
+ =\frac{m_2}{m_3}e^{-i\gamma}.
+\end{equation}
+Die volle Quelle unterscheidet somit genau die relative Phase, die ihre
+neutralen Normantworten ausblenden. Dieser Befund gilt für die im YAML
+ausdrücklich als unbeschränkte Majorana-Phasen geführte Klasse.
+Wird die gedruckte vollständige komplexe Yukawa-Matrix als unveränderlicher
+Ansatz übernommen, ist $\gamma=0$ bereits durch diesen Ansatz festgelegt.
+Eine Variation von $\gamma$ erhält dann nicht alle gedruckten Matrixeinträge.
+Da $YY^\dagger$ unverändert bleibt, behebt die Phase auch nicht das zuvor
+gefundene Defizit der ungeflavorten gemeinsamen Baryogeneserechnung.
+
+\paragraph{Welche Symmetrie die Matrix tatsächlich auswählen darf.}
+Die beiden ursprünglichen markierten Generatoren liefern einen zusätzlichen
+exakten Test. In der zyklischen Darstellung seien sie $P$ und $Q$.
+Sie erfüllen $P^3=Q^4=(PQ)^4=I$.
+Für eine gemeinsame Charakterlinie des symmetrischen Paarraums folgen daraus
+$\lambda^3=\mu^4=(\lambda\mu)^4=1$, also $\lambda=1$.
+Eine $P$-invariante symmetrische Matrix besitzt die Form
+\[
+ A=\begin{pmatrix}a&b&b\\b&a&b\\b&b&a\end{pmatrix}.
+\]
+Die tatsächliche $Q$-Wirkung ersetzt sie durch
+$\left(\begin{smallmatrix}a&b&-b\\b&a&-b\\-b&-b&a\end{smallmatrix}\right)$.
+Proportionalität zu $A$ erzwingt $b=0$ und bei $A\ne0$ den Charakter $\mu=1$.
+Die einzige gemeinsame Linie ist somit $A=aI$; in der ursprünglichen
+C-Basis lautet sie
+\[
+ A_C=a\begin{pmatrix}1&0&0\\0&0&1\\0&1&0\end{pmatrix}.
+\]
+Ihr Rang ist drei, ihre drei Takagiwerte sind gleich.
+Der vorhandene leichte Massentensor besitzt hingegen Rang zwei und
+Takagiwerte $(0,m_2,m_3)$ mit $m_2\ne m_3$, für jede Majorana-Phase.
+Eine zusätzlich geforderte vollständige Invarianz würde diesen vorhandenen
+Tensor daher ausschließen.
+
+Diese zusätzliche Invarianz steht nicht im ursprünglichen Neutrinovertrag:
+NU.CI.01 verlangt die Zyklus- und Realitätsbedingungen an $R_{\rm CI}$;
+die gedruckte schwere Matrix ist eine Generationenraum-/Q$_+$-Einsetzung.
+Die passende weiterzuprüfende Quellenregel ist deshalb eine
+\emph{kovariante} Abhängigkeit von den markierten Defekten $\mathcal D$,
+\[
+ K(g\mathcal D)=\rho(g)^{-\mathsf T}K(\mathcal D)\rho(g)^{-1},
+\]
+sofern die Quellenwirkung diese Kovarianz realisiert. Sie verlangt keinen
+konstanten Fixvektor. Die Markierung kann die Familienrichtung unterscheiden;
+die physische Higgs-/Masseneinsetzung muss ihre geladene Kopplung liefern.
+
+\paragraph{Der jetzt genau bestimmte Auswahlgegenstand.}
+Alle sechs Paare tragen $X=10$, während die neutralen Felder und die
+Familien-Defekte diese D5-Ladung nicht kompensieren. Im ursprünglichen
+$X$-invarianten Vakuum gilt folglich
+\[
+ \langle\mathcal E(K)\rangle=0.
+\]
+Eine Matrix als geladene Einsetzung zu berechnen ist damit etwas anderes
+als ihre Auswahl durch einen physisch realisierten Hintergrund.
+Der verschwindende Einpunktwert schließt einen eichinvarianten
+Higgs-/Majorana-Mechanismus nicht aus. Der physische Anschluss kann einen
+zugehörigen Higgsinsertionskanal oder einen insgesamt neutralen höheren
+Korrelator verwenden; dann muss genau dessen ursprüngliche Abbildung
+angegeben und ausgewertet werden.
+Gesucht ist der tatsächlich erzeugte Koeffizient in \emph{diesem}
+symmetrischen Sechserkanal, mit seiner Skala und Orientierung sowie dem
+zugehörigen ladungskompensierenden Anschluss. Die vorhandene vollständige
+Neutrinoherleitung legt fest, welchen Tensor dieser Anschluss reproduzieren muss.
+\file{tfpt_explorer/source_neutrino_dictionary.py} berechnet nun seine
+Isometrie, die ursprüngliche Generatorabbildung und die vollständige
+phasensensitive Rücklesung.
+
+\picturetext{Die Massentabelle lässt sich jetzt verlustfrei in die gemeinsame
+Quelle übersetzen und wieder auslesen. Auch die Informationen, die beim
+bloßen Wiegen der Zustände verloren gehen, bleiben erhalten. Der nächste
+Herkunftsschritt muss erklären, warum der ursprüngliche Prozess genau
+diese Tabelle in genau diesen Quellenzustand schreibt.}
+
+\subsection{Ein gemeinsamer Transport für primitive Windung, Massentensor und neutrale Antwort}\label{sec:masssourceconnection}
+Die Fortsetzung vom 29.~September arbeitet unmittelbar am vorher benannten
+Anschluss. Die ursprüngliche Fuchsverbindung bestimmt nicht nur die
+Familienendphasen. Ihr tatsächlicher Spin-Lift induziert auf den sechs
+symmetrischen Paaren eine Verbindung, aus der sich die \emph{ganze}
+ursprüngliche Verbindung wieder zurückgewinnen lässt. Auch die primitive
+Determinantenwindung und die bereits berechnete neutrale RHP-Antwort lassen
+sich an diesem selben Transport ablesen.
+
+\paragraph{Die ursprüngliche Dreierwirkung muss mit ihrem Spin-Lift eingehen.}
+Setze $d=\det\Psi$, $\Psi'=A\Psi$ und $t=\tr A$.
+Die bereits an den tatsächlichen C-Strömen geprüfte Basisabbildung ist
+$J=HP=\operatorname{diag}(1,-1,1)$, wobei $P$ die native Reihenfolge
+$(23,13,12)$ in die Außenpotenzreihenfolge $(12,13,23)$ übersetzt und
+$H$ die dreidimensionale Hodge-Abbildung ist. Die Identität
+\[
+ H(\Lambda^2\Psi)H^{-1}=d\,\Psi^{-\mathsf T}
+\]
+ergibt auf dem behaltenen C-Dreier den komplexifizierten internen Spintransport
+\begin{equation}\label{eq:massspinconnection}
+ S_C=d^{-1/2}P^{\mathsf T}(\Lambda^2\Psi)P
+     =d^{1/2}J^{\mathsf T}\Psi^{-\mathsf T}J,
+ \qquad
+ B:=S_C'S_C^{-1}=\frac t2 I-J^{\mathsf T}A^{\mathsf T}J.
+\end{equation}
+Die Quadratwurzel wird entlang des ursprünglichen Wegs fortgesetzt.
+Am unitären Ende ist das genau der schon nachgewiesene gewundene Spin-Lift;
+die rohen holomorphen Fuchskoordinaten werden nicht als orthonormal erklärt.
+Die drei Cartangewichte der tatsächlichen C-Ströme,
+$(-1,1,1)/2$, $(1,-1,1)/2$, $(1,1,-1)/2$, prüfen insbesondere den
+Faktor $t/2$ unabhängig von einer Endpunktmatrix.
+
+\paragraph{Zustand und Massenkoeffizient besitzen entgegengesetzte Orientierung.}
+Für einen symmetrischen Quellenkoeffizienten $X_0$ und eine duale symmetrische
+Massenform $K_0$ lautet der faserweise Transport
+\begin{equation}\label{eq:massdeterminantcarry}
+ \begin{aligned}
+ X(z)&=S_C(z)X_0S_C(z)^{\mathsf T},
+ &\det X(z)&=d(z)\det X_0,\\
+ K(z)&=S_C(z)^{-\mathsf T}K_0S_C(z)^{-1},
+ &\det K(z)&=d(z)^{-1}\det K_0.
+ \end{aligned}
+\end{equation}
+Denn $\det S_C=d^{1/2}$. Die beiden Vorzeichen sind daher keine
+wählbaren Konventionen innerhalb derselben Zuordnung: Die Paarzustände und
+ihre kontrahierenden Koeffizienten sind dual. Das skalare Matrixelement
+$v^{\mathsf T}K v$ bleibt erhalten, wenn gleichzeitig $v\mapsto S_Cv$.
+
+Für $\Psi(0)=I$ ist $d=1-z^4$. Auf dem ursprünglichen positiv orientierten
+Kreis um $+1$ trägt die Determinantenlinie des invertierbaren Paarzustands
+somit Windung $+1$, diejenige der dualen Massenform Windung $-1$.
+Bei umgekehrter Kontur kehren sich beide Vorzeichen um. Eine konstante
+Phasenänderung des ursprünglichen Basisrahmens ändert diese Windungen nicht.
+Eine über der Punktur selbst singuläre, windende Rahmentransformation würde
+dagegen die erklärte logarithmische Erweiterung ändern und ist hier kein
+unbemerkter Basiswechsel.
+
+Der ursprüngliche schwere Tensor ist für $\epsilon>0$ invertierbar:
+\[
+ K_0=M_R/M_3=\operatorname{diag}(\epsilon/3,2\epsilon/3,1),
+ \qquad \det K_0=2\epsilon^2/9.
+\]
+Seine bereits berechnete native Einsetzung hat dieselbe nichtverschwindende
+Determinante bis auf eine konstante Basisphase. Die Identität gilt für jede
+korrekt basierte invertierbare Einsetzung und ersetzt nicht die noch zu
+begründende physische Basiszuordnung. Der leichte Seesaw-Ausgang hat dagegen
+Rang zwei und Determinante null; für ihn wird keine solche
+Determinantenwindung behauptet.
+
+\textbf{Zwei trennende Kontrollen.} Würde man den Faktor $d^{-1/2}$ im
+tatsächlichen Außenpotenz-Lift weglassen, entstünde für $\det X$ Windung
+vier. Würde man die C-Felder direkt mit dem ursprünglichen Vektordreier
+$\Psi$ transportieren, entstünde Windung zwei. Der korrekte Spintransport
+liefert Windung eins. Damit trifft die primitive Klasse die vollständige
+Tensorwirkung und nicht nur eine Zahl am Endpunkt.
+
+Die \emph{Determinantenlinie} schließt nach einem Punkturumlauf. Ein
+allgemeiner voller Tensor wird dabei durch die Familienmonodromie verändert;
+der unabhängige direkte Wegtest erhält ihn erst nach drei Umläufen zurück.
+Die Gleichung setzt also keinen unveränderten Massentensor nach jeder
+einzelnen Runde voraus. Ebenso wenig beweist sie schon einen
+vierdimensionalen Vortex-Indexsatz oder die Gleichheit des vollständigen
+P1-Nahtoperators mit diesem Familienoperator.
+
+\paragraph{Die sechs Paarkanäle behalten die vollständige Verbindung.}
+Die induzierte Verbindung auf $\operatorname{Sym}^2\mathbb C^3$ ist
+\begin{equation}\label{eq:sixconnection}
+ \mathcal L(X)=BX+XB^{\mathsf T}.
+\end{equation}
+Aus ihrer Wirkung auf $E_{ii}$ liest man $2B_{ii}$ auf dem diagonalen
+Eintrag und $B_{ki}$ auf dem Eintrag $(k,i)$ ab. Damit sind sämtliche neun
+komplexen Einträge von $B$ bekannt. Es folgt
+\[
+ \boxed{A=(\tr B)I-JB^{\mathsf T}J^{\mathsf T}.}
+\]
+Die Abbildung der Verbindung ist daher injektiv. Eine beliebige
+$6\times6$-Matrix liegt nicht notwendig in ihrem neundimensionalen Bild;
+die Implementierung prüft die vollständige induzierte Form beim Rücklesen.
+
+Für beliebige, auch nichtkommutierende $3\times3$-Matrizen $A,D$ gilt
+\begin{equation}\label{eq:pairtraces}
+ \Tr_6\mathcal L_A=2\tr A,\qquad
+ \Tr_6(\mathcal L_A\mathcal L_D)=5\tr(AD)-(\tr A)(\tr D).
+\end{equation}
+Dies folgt aus
+$\Tr_{\mathrm{Sym}^2}(B\otimes I+I\otimes B)=4\tr B$
+und der entsprechenden bilinearen Spuridentität
+$5\tr(BC)+\tr B\tr C$. Die Rechnung gilt für ganze Operatoren;
+ein Vergleich ihrer Eigenwertmengen wäre dafür nicht ausreichend.
+
+\paragraph{Die neutrale Antwort ist eine Kontraktion genau dieser Verbindung.}
+Im festgehaltenen ursprünglichen Fuchsrahmen und mit derselben symmetrischen
+RHP-Normalordnung wie in Abschnitt~\ref{sec:fullflavorRR} folgt exakt
+\begin{align}
+ \langle R(z)\rangle_F
+ &=\frac25\left[\Tr_6\mathcal L(z)^2-(\Tr_6\mathcal L(z))^2\right],\label{eq:massRconnection}\\
+ \langle R(z)R(w)\rangle_{F,c}
+ &=\frac{48}{(z-w)^4}
+ +\frac{16}{5(z-w)^2}\left[\Tr_6\bigl(\mathcal L(z)\mathcal L(w)\bigr)
+ +\frac32\Tr_6\mathcal L(z)\Tr_6\mathcal L(w)\right].\label{eq:massRRconnection}
+\end{align}
+Die rechte Seite stimmt mit dem bereits berechneten vollständigen
+rationalen Flavor-Defektkern überein. Es wird keine zweite neutrale Quelle
+eingesetzt. Die Spuren einer Verbindungsform sind bei beliebigen lokalen
+Rahmenwechseln nicht für sich invariant; deren Ward-/Normalordnungsterme
+müssen dann ebenfalls transformiert werden. Die Gleichungen gelten im
+erklärten gemeinsamen Originalrahmen, nicht als neue eichinvariante
+vierdimensionale Wirkung.
+
+\paragraph{Auch der nötige lokale Ableitungsterm lässt sich aus derselben Quelle ergänzen.}
+Eine faserweise Darstellung allein berechtigt noch nicht dazu, gewöhnliche
+Ableitungen von ortsabhängig gedrehten Feldern einzusetzen. Hier ist die
+Korrektur konkret. In einer Spaltenkonvention für die Feldkomponenten sei
+\[
+ C(z+s)C(z)^{\mathsf T}=s\mathcal V+s^2\mathcal W+\cdots,
+ \quad \mathcal V^{\mathsf T}=-\mathcal V,
+ \quad \mathcal B_{\rm raw}=\tfrac12(\mathcal W+\mathcal W^{\mathsf T}).
+\]
+Der konstante Term fehlt wegen der tatsächlichen Nullrelation
+$:C_iC_j:=0$. $\mathcal V$ ist der bereits vorhandene antisymmetrische
+Grad-drei-Kanal. Für eine Feldverbindung $b$ liefert das Zurücktransportieren
+des ersten Felds mit $I-sb+O(s^2)$ vor dem Zusammenführen
+\begin{equation}\label{eq:covariantpairjet}
+ \boxed{\mathcal B_{\rm cov}
+ =\mathcal B_{\rm raw}-\tfrac12(b\mathcal V-\mathcal V b^{\mathsf T}).}
+\end{equation}
+Bei $C'=GC$ und $b'=G'G^{-1}+GbG^{-1}$ entsteht im rohen symmetrischen
+Koeffizienten der Zusatz
+$\tfrac12(G'\mathcal V G^{\mathsf T}-G\mathcal V G'^{\mathsf T})$.
+Gleichung~\eqref{eq:covariantpairjet} hebt ihn exakt auf:
+$\mathcal B'_{\rm cov}=G\mathcal B_{\rm cov}G^{\mathsf T}$.
+Die Spaltenkonvention der Feldkomponenten ist dabei von den dualen
+Koeffizienten zur Kombination von Zuständen zu unterscheiden.
+Wegen des verschwindenden konstanten OPE-Terms wird an dieser Stelle kein
+zweiter Verbindungsjet benötigt. Im festen gewöhnlichen Ableitungsrahmen
+bleibt der Grad-drei-Beitrag aber real vorhanden. Eine reine Kürzung auf
+sechs Grad-vier-PBW-Zustände wäre somit nicht unter lokalen Rahmenwechseln
+abgeschlossen.
+
+\begin{center}
+\begin{tikzpicture}[node distance=5mm]
+\node[box,text width=12.6cm] (a) {\textbf{Eine ursprüngliche Verbindung $A$}\\
+Vier Marken, vollständige Residuen, festgehaltene Erweiterung};
+\node[box,below=of a,text width=12.6cm] (b) {\textbf{Ihr Spintransport und die sechs Paarkanäle}\\
+$B=\tfrac12(\tr A)I-J^{\mathsf T}A^{\mathsf T}J$,
+\quad $\mathcal L(X)=BX+XB^{\mathsf T}$};
+\node[box,below=of b,text width=12.6cm] (c) {\textbf{Drei verbundene Antworten}\\
+Primitive Windung \quad vollständiger Tensortransport \quad neutrale $R$-Antwort};
+\node[box,below=of c,text width=12.6cm] (d) {\textbf{Physische Auswahl noch herzuleiten}\\
+Ursprüngliche Rand-/Higgsbedingung für $X_0$ und ursprüngliche Nahtkopplung};
+\draw[arr] (a)--(b);\draw[arr] (b)--(c);\draw[dasharr] (c)--(d);
+\end{tikzpicture}
+\end{center}
+
+\picturetext{Ein gemeinsames Getriebe bewegt jetzt nachweislich die
+Orientierung der Massentabelle und die neutrale Anzeige. Sein mitgeführtes
+Vorzeichen sorgt dafür, dass aus einer ursprünglichen Runde auch genau
+eine Runde der Paar-Determinante wird. Welche Massentabelle in dieses
+Getriebe eingesetzt wird, ist eine andere Frage: Die Transportregel
+bewegt jede Anfangstabelle korrekt. Sie wählt deren Werte noch nicht aus.}
+
+\textbf{Bedeutung für die fundamentale Auswahl.}
+Die Verbindung zwischen P1-artiger Windung, ursprünglichem Familienweg,
+symmetrischem Massensektor und neutraler Antwort ist damit als gemeinsames
+internes Transportgesetz geschlossen. Offen bleibt die physische
+Ursprungsabbildung: Die homogene Gleichung
+$X'=BX+XB^{\mathsf T}$ besitzt für \emph{jede} Anfangsmatrix eine Lösung.
+Sie kann daher weder die schwere Textur noch deren Skala auswählen.
+Auch rohe Änderungen der Matrixsingulärwerte durch einen nichtunitären
+Rahmen sind keine erzeugte Massenhierarchie: Die gleichzeitig transportierte
+positive Metrik erhält die normierten Größen.
+Gesucht ist nun die ursprüngliche Randbedingung beziehungsweise die
+tatsächlich erzeugte geladene Higgsantwort in diesem Kanal. Im letzteren
+Fall müsste ihre Quelle in
+$X'-BX-XB^{\mathsf T}=\mathcal J_H$
+aus der ursprünglichen Wirkung berechnet werden; $\mathcal J_H$ wird hier
+nicht zur gewünschten Antwort passend definiert. Dieselbe Wirkung muss
+die weiterhin bedingte Nahtkopplung $c_3^2|R\rangle\langle p_0|$ und die
+physische Zeitzuordnung tragen.
+
+\file{tfpt_explorer/source_mass_transport.py} implementiert die induzierte
+Verbindung, ihre vollständige Umkehrung, den endlichen Transport, die
+kovariante lokale Ergänzung und die gemeinsamen Antwortformeln.
+Die direkte ursprüngliche $3\times3$-Wegintegration und eine separat
+integrierte $6\times6$-Gleichung stimmen auf beiden Umlauforientierungen
+mit einem relativen Fehler unter $4\cdot10^{-12}$ überein.
+Diese numerische Kontrolle ergänzt die ausgeschriebenen algebraischen
+Identitäten; sie ist kein physischer Herkunfts- oder Kondensationsbeweis.
+

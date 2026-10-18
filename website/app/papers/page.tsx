@@ -37,6 +37,12 @@ export default function PapersIndexPage() {
           Back to start
         </Link>
       </div>
+      <div className="mx-auto mt-8 max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Link href="/documentation" className="block rounded-xl border border-blue-200 bg-blue-50 p-5 text-sm leading-relaxed text-blue-900">
+          Start with the compact reading guide, open the verification catalog separately,
+          or find a topic and its editable sources in the document library →
+        </Link>
+      </div>
       <PapersSection />
       <DownloadsSection />
     </>

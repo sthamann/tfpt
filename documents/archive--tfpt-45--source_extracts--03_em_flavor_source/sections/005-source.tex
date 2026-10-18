@@ -1,0 +1,373 @@
+
+Because $U_6$ has eigenphases $e^{in\pi/3}$, the regularized transport spectrum is
+\begin{equation}
+\label{eq:transport-spectrum}
+\lambda_{y,n}^{-1}
+=
+y^2+\delta_{\mathrm{ph}}^2-2y\delta_{\mathrm{ph}}\cos\!\left(\frac{n\pi}{3}\right)+\varepsilon^2,
+\qquad
+n=0,\dots,5,
+\end{equation}
+for the eigenvalues $\lambda_{y,n}$ of $\mathcal Y_y^{(\varepsilon)}$. In particular,
+\begin{lemma}[Finite admissible hexagon gap]
+\label{lem:finite-admissible-hexagon-gap}
+On the admissible cusp set
+\[
+y\in\left\{1,\frac13,\frac23\right\},
+\]
+the smallest singular value of the unregulated hexagon denominator is attained at $y=\frac23$ and $n=0$. Equivalently,
+\[
+\epsilon_f
+:=
+\min_{\substack{y\in\{1,\frac13,\frac23\}\\ n=0,\dots,5}}
+\left|y-\delta_{\mathrm{ph}}e^{in\pi/3}\right|
+=
+\frac23-\delta_{\mathrm{ph}}.
+\]
+Hence the finite admissible hexagon has a strictly positive spectral gap $\epsilon_f$.
+\end{lemma}
+
+\begin{proof}
+For $\varepsilon=0$, the eigenvalues in \Cref{eq:transport-spectrum} reduce to
+$|y-\delta_{\mathrm{ph}}e^{in\pi/3}|^{-2}$. By \Cref{thm:transport-pole-algebraic},
+$\delta_{\mathrm{ph}}$ is the unique admissible root in $(1/3,2/3)$. Hence the positive-real cusp
+$y=2/3$ with $n=0$ is the nearest admissible point, while every other cusp or nonzero phase has
+strictly larger distance. Therefore
+\[
+\epsilon_f=\frac23-\delta_{\mathrm{ph}},
+\]
+which is positive because $\delta_{\mathrm{ph}}<2/3$.
+\end{proof}
+
+\begin{definition}[Gap-stable admissibility]
+\label{def:gap-stable-admissibility}
+Let
+\[
+D_0:=D_{2/3}.
+\]
+We say that the admissible transport sector is gap-stable if the physical transport operator has the form
+\[
+D_f=D_0+V_{\mathrm{adm}},
+\qquad
+[P_{\mathrm{str}},V_{\mathrm{adm}}]=0,
+\qquad
+\|V_{\mathrm{adm}}\|<\frac{\epsilon_f}{2}.
+\]
+\end{definition}
+
+\begin{proposition}[Structural gap lift]
+\label{prop:gap-lift-full-operator}
+If admissibility is gap-stable in the sense of \Cref{def:gap-stable-admissibility}, then for every
+\[
+\psi\in\mathrm{Ran}(P_{\mathrm{str}})
+\]
+one has
+\[
+\|D_f\psi\|
+\ge
+\frac{\epsilon_f}{2}\|\psi\|.
+\]
+Consequently
+\begin{equation}
+\label{eq:gap-lift-full-operator}
+P_{\mathrm{str}} D_f^\dagger D_f P_{\mathrm{str}}
+\ge
+\frac{\epsilon_f^2}{4}\,P_{\mathrm{str}}
+>
+0.
+\end{equation}
+In particular, the final admissible restriction to $\mathrm{Ran}(\Padm)$ is strictly positive.
+\end{proposition}
+
+\begin{proof}
+Since $\psi\in\mathrm{Ran}(P_{\mathrm{str}})$ and $[P_{\mathrm{str}},V_{\mathrm{adm}}]=0$,
+\[
+\|D_f\psi\|
+\ge
+\|D_0\psi\|-\|V_{\mathrm{adm}}\psi\|
+\ge
+\bigl(\epsilon_f-\|V_{\mathrm{adm}}\|\bigr)\|\psi\|
+\ge
+\frac{\epsilon_f}{2}\|\psi\|.
+\]
+Squaring gives \Cref{eq:gap-lift-full-operator}.
+\end{proof}
+
+\begin{equation}
+\label{eq:mobius-quotient}
+\frac{\lambda_{y,0}}{\lambda_{y,3}}
+=
+\frac{(y+\delta_{\mathrm{ph}})^2+\varepsilon^2}{(y-\delta_{\mathrm{ph}})^2+\varepsilon^2}.
+\end{equation}
+\[
+\lim_{\varepsilon\to 0}\frac{\lambda_{y,0}}{\lambda_{y,3}}
+=
+\left(\frac{y+\delta_{\mathrm{ph}}}{y-\delta_{\mathrm{ph}}}\right)^2
+\]
+\begin{remark}[Near-pole hierarchy mechanism]
+On the closed transport branch, the exact pole is the root of
+\Cref{prop:closed-form-transport-pole}; the later comparison ledgers retain that same pole and
+regularize only the finite Green kernel at $\varepsilon>0$.
+Hence the Möbius quotient contains a built-in near-pole whenever $y$ approaches $\delta_{\mathrm{ph}}$, making large hierarchy ratios structurally plausible. In the closed transport grammar this is the hierarchy mechanism, while the bounded holonomy factors keep it from degenerating into an arbitrary tuning surface.
+\end{remark}
+
+\begin{proposition}[Finite positive transport algebra]
+\label{prop:finite-positive-transport-algebra}
+Let
+\[
+C:=\frac12\bigl(U_6+U_6^\dagger\bigr),
+\qquad
+a:=y^2+\delta_{\mathrm{ph}}^2+\varepsilon^2,
+\qquad
+b:=y\delta_{\mathrm{ph}}.
+\]
+Then
+\[
+D_y^\dagger D_y+\varepsilon^2=a\,\mathbf 1-2b\,C.
+\]
+The cosine operator $C$ has spectrum
+\[
+\mathrm{Spec}(C)=\left\{1,\frac12,-\frac12,-1\right\}
+\]
+and satisfies
+\begin{equation}
+\label{eq:c6-cosine-polynomial}
+4C^4-5C^2+\mathbf 1=0.
+\end{equation}
+Consequently the regularized positive transport kernel reduces to the cubic polynomial
+\begin{equation}
+\label{eq:finite-positive-transport-kernel}
+\mathcal Y_y^{(\varepsilon)}
+=
+\frac{
+a^3-5ab^2
++2b(a^2-5b^2)C
++4ab^2C^2
++8b^3C^3
+}{
+(a^2-b^2)(a^2-4b^2)
+}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Because $U_6$ is unitary,
+\[
+D_y^\dagger D_y
+=
+\bigl(y\,\mathbf 1-\delta_{\mathrm{ph}}U_6^\dagger\bigr)
+\bigl(y\,\mathbf 1-\delta_{\mathrm{ph}}U_6\bigr)
+=
+\bigl(y^2+\delta_{\mathrm{ph}}^2\bigr)\mathbf 1
+-y\delta_{\mathrm{ph}}(U_6+U_6^\dagger),
+\]
+which gives the first identity after adding $\varepsilon^2$. The eigenvalues of $C$ are $\cos(n\pi/3)$ for $n=0,\dots,5$, namely $1,\frac12,-\frac12,-1$. Hence $C$ obeys the minimal polynomial \Cref{eq:c6-cosine-polynomial}. The inverse of $a-2bc$ on this four-point spectrum is therefore represented by a unique cubic interpolation polynomial in $c$, and evaluating that interpolation yields \Cref{eq:finite-positive-transport-kernel}.
+\end{proof}
+
+\begin{proposition}[Strict positivity of the finite admissible $C_6$ Green kernel]
+\label{prop:strict-positive-c6-green}
+For each admissible cusp
+\[
+y\in\left\{1,\frac13,\frac23\right\}
+\]
+and each $\varepsilon\ge 0$, set
+\[
+a_y:=y^2+\delta_{\mathrm{ph}}^2+\varepsilon^2,
+\qquad
+b_y:=y\,\delta_{\mathrm{ph}},
+\qquad
+r_y:=\frac{a_y-\sqrt{a_y^2-4b_y^2}}{2b_y}.
+\]
+Then
+\[
+a_y-2b_y=(y-\delta_{\mathrm{ph}})^2+\varepsilon^2>0,
+\qquad
+0<r_y<1.
+\]
+If $d=d_{C_6}(i,j)$ denotes the cyclic graph distance on the hexagon, the regularized Green
+kernel satisfies
+\[
+(\mathcal Y_y^{(\varepsilon)})_{ij}
+=
+\frac{r_y^{d}+r_y^{6-d}}
+{\sqrt{a_y^2-4b_y^2}\,(1-r_y^6)}.
+\]
+Hence every matrix entry of $\mathcal Y_y^{(\varepsilon)}$ is strictly positive.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+For the admissible cusps one has $y>0$ and $\delta_{\mathrm{ph}}\in(1/3,2/3)$, so $b_y>0$. The
+displayed identity for $a_y-2b_y$ implies $a_y>2b_y$, hence $a_y^2-4b_y^2>0$ and the smaller
+root $r_y$ lies strictly between $0$ and $1$. The operator
+\[
+\mathcal Y_y^{(\varepsilon)}=(a_y\mathbf 1-b_y(U_6+U_6^\dagger))^{-1}
+\]
+is circulant on the six-cycle, so its entries depend only on the cyclic distance
+$d=d_{C_6}(i,j)$. Solving the corresponding Green recursion on $C_6$ gives the displayed closed
+form, and every factor in that formula is strictly positive.
+\end{proof}
+
+\begin{corollary}[Uniform positive lower bound on admissible local transport]
+\label{cor:uniform-positive-c6-green}
+On the admissible cusp set
+\[
+y\in\left\{1,\frac13,\frac23\right\}
+\]
+and on the closed branch $\varepsilon=0$, all matrix entries of $\mathcal Y_y^{(0)}$ are bounded
+below by a uniform constant
+\[
+g_{\mathrm{hex}}>0.
+\]
+One may take
+\[
+g_{\mathrm{hex}}\approx \num{0.6738706016}.
+\]
+\end{corollary}
+
+\begin{proof}
+There are only finitely many admissible cusp values and only finitely many matrix entries on
+$C_6$. By \TFPTxref{prop:strict-positive-c6-green}, each of these entries is strictly positive at
+$\varepsilon=0$, so their minimum defines a positive constant $g_{\mathrm{hex}}$.
+\end{proof}
+
+\begin{remark}[Carrier rank echo in the transport polynomial]\label{rem:transport-rank-echo}
+On the minimal carrier branch $\gcar=5$, the hexagonal cosine polynomial of \Cref{eq:c6-cosine-polynomial} can be rewritten as
+\[
+(\gcar-1)C^4-\gcar C^2+\mathbf 1=0.
+\]
+Thus the transport closure polynomial carries the same pair $(\gcar-1,\gcar)$ that governs the hard carrier packet. Equivalently,
+\[
+4C^4-5C^2+\mathbf 1=(4C^2-\mathbf 1)(C^2-\mathbf 1)=(2C-\mathbf 1)(2C+\mathbf 1)(C-\mathbf 1)(C+\mathbf 1).
+\]
+So the distinguished value $C=1/2$ reappears on the transport side, mirroring the positive carrier root $Y=1/2$ of the factorized carrier polynomial in Section~3.3. At present this should be read as an exact compression identity on the retained hexagonal branch, not as a derivation of the transport sector from the carrier theorem.
+\end{remark}
+
+Absolute masses are attached to admissible path lengths,
+\begin{equation}
+\label{eq:path-length-yukawa}
+y_{f,j}^{\mathrm{UV}}=\lambdaY^{L_{f,j}}\Lambda_{f,j},
+\qquad
+\lambdaY=\sqrt{\phiz(1-\phiz)}.
+\end{equation}
+The primary matrix-level statement is the hard holonomy form
+\begin{equation}
+\label{eq:yukawa-matrix-factorization}
+Y_f=D_{L,f}U_f^\star D_{R,f},
+\qquad
+U_f^\star\in SU(3)_F,
+\end{equation}
+with $D_{L,f}$ and $D_{R,f}$ the diagonal word-length factors and $U_f^\star$ fixed by the
+canonical family holonomy rather than treated as a residual free transport matrix. Equivalently,
+\begin{equation}
+\label{eq:yukawa-holonomy-matrix}
+(Y_f)_{ij}
+=
+\lambdaY^{L^L_{f,i}+L^R_{f,j}}
+\left\langle e_i,\mathrm{Hol}_{\Gamma_{ij}^{\min}}(\nabla_F^\star)e_j\right\rangle.
+\end{equation}
+\begin{theorem}[Exact family-holonomy phase]
+\label{prop:holonomy-triangle-phase}
+\label{prop:exact-family-holonomy-phase}
+Define the ordered closed family holonomy by
+\[
+\Pi_\triangle
+:=
+\mathrm{Hol}_{\Gamma_{12}^{\min}}(\nabla_F^\star)\,
+\mathrm{Hol}_{\Gamma_{23}^{\min}}(\nabla_F^\star)\,
+\mathrm{Hol}_{\Gamma_{31}^{\min}}(\nabla_F^\star),
+\qquad
+\delta_{\mathrm{CKM}}
+:=
+\arg\tr\Pi_\triangle.
+\]
+This exact holonomy phase is the closed-branch phase quantity. On the
+small transport-area branch one has
+\begin{equation}
+\label{eq:ckm-holonomy-phase}
+\delta_{\mathrm{CKM}}
+=
+\frac{\pi}{3}+3\lambda_C^2+O(\lambda_C^4).
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The family holonomy is already encoded in \Cref{eq:yukawa-holonomy-matrix}. Closing the
+minimal triangle isolates the gauge-invariant phase information carried by the family
+connection. The $\mathbb Z_6$ transport grammar fixes the base phase at $\pi/3$, while the
+first nontrivial nonabelian area correction is quadratic in the Cabibbo seed. Keeping only the
+leading admissible area term gives the displayed asymptotic expansion of the exact phase.
+\end{proof}
+
+\TFPTxref{eq:path-length-yukawa} is the diagonal or singular-value reduction of
+\Cref{eq:yukawa-holonomy-matrix}, not the conceptual starting point of the transport sector.
+After the geometric electroweak closure fixes $\vgeo$, the intrinsic mass rows are emitted through
+\begin{equation}
+\label{eq:mass-bridge}
+\hat m_{f,j}:=\frac{y_{f,j}\vgeo}{\sqrt2}.
+\end{equation}
+These hatted quantities are the intrinsic masses on the retained branch. Comparison-surface masses
+are obtained only after the declared comparison map:
+\[
+m_{f,j}^{\mathrm{obs}}:=\mathcal R_{\SM}(\hat m_{f,j}).
+\]
+The role of the transport matrix elements $\Lambda_{f,j}$ must be kept explicit. They are bounded $O(1)$ admissible amplitudes, not unrestricted fit knobs. The RG bookkeeping behind direct $\vgeo$ insertions is part of the declared comparison map discussed later in \TFPTxref{sec:rg-map-compiler-outputs}.
+
+\begin{remark}[Singlet-projected cusp lift to the transport hexagon]
+The transport cusps do not come from the raw two-point carrier spectrum alone. The carrier itself has
+\[
+\mathrm{Spec}(Y|_E)=\left\{-\frac13,\frac12\right\}.
+\]
+After exterior lift to the one-family packet,
+\[
+\mathrm{Spec}(Y|_{S^+})
+=
+\left\{0,-\frac23,\frac16,1,-\frac12,\frac13\right\},
+\]
+with multiplicities displayed in \TFPTxref{tab:one-family}. Restricting to the singlet channels and taking absolute values yields
+\[
+\{|Y(e^c)|,\ |Y(u^c)|,\ |Y(d^c)|\}
+=
+\left\{1,\frac23,\frac13\right\},
+\]
+which are exactly the admissible cusp values of the transport hexagon. In this sense the transport sector reads the singlet-projected, family-lifted hypercharge spectrum through the resolvent
+\[
+D_y=y\mathbf 1-\delta_{ph}U_6
+\]
+on $C_6$. The transport grammar therefore lives on the same rational grid as the carrier packet, but only after exterior lift and singlet projection.
+\end{remark}
+
+On the closed branch, the retained diagonal word-length packets are
+\begin{equation}
+\label{eq:minimal-word-lengths}
+\begin{gathered}
+L_u^{\mathrm{diag}}=(L_u,L_c,L_t)=(7,3,0),\\
+L_d^{\mathrm{diag}}=(L_d,L_s,L_b)=(7,5,2),\\
+L_e^{\mathrm{diag}}=(L_e,L_\mu,L_\tau)=(8,5,3).
+\end{gathered}
+\end{equation}
+These are not free parameters; they are the retained diagonal word-length packets forced by the
+residue data and the closed-branch sum rule, with transport matrix elements in
+\TFPTxref{tab:yukawa-residuals} remaining in the bounded $O(1)$ range. Once the hierarchy ordering is
+fixed, the admissible graph distance is determined up to full $6$-step windings by
+$\lambdaY\approx\num{0.2244}$.
+
+\begin{remark}[Residue classes and full windings on the hexagon]
+The exact resolvent formula \Cref{eq:finite-hexagonal-resolvent} makes the combinatorics behind \Cref{eq:minimal-word-lengths} transparent: every path length splits into a residue class on the base hexagon plus an optional full winding by $6$. Accordingly,
+\[
+L_t=0,\qquad
+L_b=2,\qquad
+L_\tau=L_c=3,\qquad
+L_s=L_\mu=5
+\]
+live on the first hexagon, while
+\[
+\;L_u=L_d=1+6,
+\qquad
+L_e=2+6
+\]
+carry one additional full turn. Since
+\[
+\lambda_Y^6=\bigl(\phiz(1-\phiz)\bigr)^3\approx \num{1.28e-4},
+\]
+each extra winding produces the severe suppression needed for the first generation. This is not by itself a full mass theorem, but it is a structural reading of why the retained word-length pattern is so uneven.
+\end{remark}

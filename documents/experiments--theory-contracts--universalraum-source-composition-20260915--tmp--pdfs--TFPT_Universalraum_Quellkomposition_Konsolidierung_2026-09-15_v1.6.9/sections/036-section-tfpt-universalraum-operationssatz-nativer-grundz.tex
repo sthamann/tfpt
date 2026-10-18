@@ -1,0 +1,389 @@
+\section{TFPT / Universalraum: Operationssatz, nativer Grundzustand und
+Feldwörterbuch}\label{tfpt-universalraum-operationssatz-nativer-grundzustand-und-feldwuxf6rterbuch}
+
+\textbf{Forschungsfortsetzung v1.6.3 · 15. September 2026}
+
+Diese Runde bearbeitet die vier Prioritäten aus v1.6.2 §14 in der dort
+festgelegten Reihenfolge: den tatsächlich verfügbaren Operationssatz
+exakt abgrenzen, den berichteten nativen Grundzustand mit seinem
+ursprünglichen Hamilton- und Sektorvertrag reproduzieren und darauf die
+geladene Antwort berechnen, das relativistische Feldwörterbuch am
+tatsächlichen Tensor festhalten. Eine räumliche Skalierungsrechnung ist
+ausdrücklich \textbf{nicht} Gegenstand; sie trägt erst, wenn Zustand,
+Operationen und Feldtyp stehen. Haupt- und Update-PDF v1.6 bleiben
+unverändert. Kein vollständiges T1-T8-Tor wird geschlossen.
+
+\subsection{1. Ergebnis in einem Absatz}\label{ergebnis-in-einem-absatz}
+
+Der N=64-Sektor des nativen Modells ist exakt als Loch-Paarerzeugung auf
+dem gefüllten Zustand realisiert; seine Krylov-Kette ist bis zu 15 252
+960 Einträgen exakt berechnet, ihre Normen ν₁\ldots ν₄ sind auf zwei
+völlig unabhängigen Wegen (Besetzungsbild und Onishi/Wick-Spurnetzwerke)
+identisch. Die Kette schließt bei zwei Bosonen \textbf{exakt nicht}
+(Defekt 2,9·10⁻⁵), das Modell ist also nicht allein durch seine Normen
+lösbar, numerisch aber fast. Rigorose Ritz-Obergrenzen, Bosonbesetzung,
+Überlapp, Verschränkungsuntergrenze und die vollständige
+Ein-Teilchen-Antwort (Z\_h + Z\_add = 1) liegen vor. Die
+Worker-Behauptung eines eindeutigen N=64-Grundzustands bis g/Δ = 1/20
+ist mit Casimir-Schranken nur bis g/Δ ≤ 0,0251 beweisbar und bei 1/20
+\textbf{nicht reproduziert} (nicht widerlegt). Die Kommutanten-Leiter
+zeigt exakt, wie viel unsichtbare Freiheit jede Operationsstufe
+beseitigt: zwei Kontrollen lassen 1,44·10⁹ Freiheitsgrade in N=3, die
+volle innere Symmetrie sieben. Das Feldwörterbuch ist am Tensor
+entschieden: der Vermittler kann nur Vektor oder antisymmetrischer
+Tensor sein; ein einheitliches Vektor-Wörterbuch existiert nicht
+(Trägergraph nicht bipartit, 5-Zyklus {[}16,45,0,30,37{]}); der einzige
+einheitliche Typ ist (1,0)⊕\allowbreak{}(0,1), ein B\_\{μν\}, kein Spin 2.
+
+\subsection{2. Unveränderte Quelle und
+Konventionen}\label{unveruxe4nderte-quelle-und-konventionen}
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+H=\Delta N_b+g\sum_{A=1}^{60}(b_A^\dagger P_A+P_A^\dagger b_A),\qquad
+P_A=\sum_{i<j}W_{A,ij}f_jf_i,\qquad N=N_f+2N_b,\qquad WW^{\mathsf T}=8I_{60}.
+$}\]
+
+Der Tensor wird repo-lokal gelesen (SHA-256
+\codeword{3f00a0892157a691e4ef26920c3702772c7bf76a250fad98ff04a079bb64b763}),
+der Clock-Konstruktor ist gepinnt (\codeword{9bf99de7…}).
+\codeword{common.py} prüft: 60 Kanäle × 8 disjunkte Paare, jede Mode in
+15 Kanälen; Gewichtserhaltung auf allen 480 Paaren; die
+Casimir-Identität 8WᵀW + 𝒞\_S + 𝒞\_C − 120 I = 0 auf allen 2016
+Zweiteilchenzuständen (𝒞 = −ΣL², d.~h. viermal der Standard-Casimir);
+induzierte Bosongeneratoren X\_B = WΛ²(X)Wᵀ/8 gaußganzzahlig und exakt
+kovariant; Clock-Lift Periode sechs, Slot-Permutation (2,0,1,4,3),
+Vorzeichen −1, WΛ²G\_F = G\_B W.
+
+\subsection{3. Operationssatz und
+Kommutant}\label{operationssatz-und-kommutant}
+
+Gemessen wird die Dimension des Kommutanten der von einer
+Operationsstufe erzeugten Algebra auf dem Sektor: kleiner Kommutant
+bedeutet weniger unsichtbare Freiheit. Das Spektralzertifikat für N=3
+ist reproduziert (S = C₃C₃ᵀ wird von ∏(S−r), r ∈ \{0,7,10,12\}, exakt
+annulliert; Multiplizitäten 64, 2880, 576, 320 aus rationalen
+Projektorspuren).
+
+\subsubsection{3.1 Exakte Irreduzibel-Zerlegung
+(Höchstgewichtsvektoren)}\label{exakte-irreduzibel-zerlegung-huxf6chstgewichtsvektoren}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1875}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1875}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1875}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1875}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Sektor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Block
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Dim
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Zerlegung unter so(10)⊕\allowbreak{}su(4)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+(𝒞\_S, 𝒞\_C)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+N=2 & helle Paare ↔ Bosonen & 60 & (10, 6) & (36, 20) \\
+N=2 & dunkle Paare & 1956 & (120, 10) ⊕\allowbreak{} (126, 6) & (84,36), (100,20) \\
+N=3 & dunkle Tripel = ker C₃ & 37888 & (560, 20″) ⊕\allowbreak{} (1200, 20) ⊕\allowbreak{} (672,
+4̄) & (117,63), (141,39), (165,15) \\
+N=3 & ker S & 64 & (16, 4̄) & (45, 15) \\
+N=3 & λ = 12 & 320 & (16, 20) & (45, 39) \\
+N=3 & λ = 10 & 576 & (144, 4̄) & (85, 15) \\
+N=3 & λ = 7 & 2880 & (144, 20) & (85, 39) \\
+\end{longtable}
+}
+
+Alle Multiplizitäten sind eins; Σ m·dim stimmt in jedem Block mit der
+Weyl-Dimensionsformel. Höchstgewichte in verdoppelten Koordinaten, z. B.
+(560,20″) ↔ ({[}3,3,1,1,−1{]},{[}3,3,3{]}), (672,4̄) ↔
+({[}3,3,3,3,3{]},{[}1,1,−1{]}).
+
+\subsubsection{3.2 Kommutanten-Leiter}\label{kommutanten-leiter}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2727}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3636}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3636}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Verfügbare Operationen
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+N=2
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+N=3
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+A: \{X, N\_b\} (die zwei bisher geprüften Kontrollen) & 3 829 536 & 1
+444 233 216 \\
+B: A + Clock (Ordnung 6) & 641 760 & 240 742 144 \\
+Cc: A + 15 su(4)-Generatoren & 30 376 & 2 247 168 \\
+Cs: A + 45 so(10)-Generatoren & 172 & 1 648 \\
+C: A + alle 60 Generatoren & 3 & 7 \\
+D: B + C & 3 & 7 \\
+B(H\_N) & 1 & 1 \\
+\end{longtable}
+}
+
+Für A ist die Blockstruktur M₃₇₈₈₈ ⊕\allowbreak{} M₆₄ ⊕\allowbreak{} (I₂⊗M₂₈₈₀) ⊕\allowbreak{} (I₂⊗M₅₇₆) ⊕\allowbreak{}
+(I₂⊗M₃₂₀); für B folgen die Zahlen aus exakten Spuren der Clock-Potenzen
+je Block (z. B. Multiplizitäten 6384/6280/6280/6384/6280/6280 auf dem
+Dunkelraum); für die Lie-Stufen aus Σ m\_i². Der Clock ist auf
+\textbf{keinem} irreduziblen Block ein Skalar (er verschiebt Gewichte;
+Zeugen im JSON), also ein äußeres Element der Symmetrie, nicht in ihrer
+zusammenhängenden Gruppe. D = C gilt trotzdem, weil alle Multiplizitäten
+eins sind und der Clock jeden Block in sich abbildet.
+
+\textbf{Folgerung.} Mehrfachwiederholung der zwei Kontrollen beseitigt
+nichts; der Clock allein reduziert um einen Faktor sechs; erst die
+innere Symmetrie als Operationssatz kollabiert die Freiheit auf je einen
+Skalar pro (Energieblock, Irrep). so(10) ist dabei die wirksamere
+Hälfte. Ob der Compiler diese Symmetrieoperationen tatsächlich
+bereitstellt, ist damit nicht bewiesen; ihr Effekt ist exakt beziffert.
+
+\subsection{4. Der native
+N=64-Grundzustand}\label{der-native-n64-grundzustand}
+
+\subsubsection{4.1 Lochbild}\label{lochbild}
+
+Mit h\_i = f\_i† ist \textbar F⟩ = f₀†\ldots f₆₃†\textbar0⟩ das
+Lochvakuum und als Operatoridentität P\_A = −Q\_A† mit Q\_A† =
+Σ\_\{i\textless j\}W\_\{A,ij\}h\_i†h\_j†. Unter (−1)\^{}\{N\_b\} ist H
+äquivalent zu
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+H_{\rm hole}=\Delta N_b+g\sum_A(b_A^\dagger Q_A^\dagger+Q_Ab_A),\qquad N_h=2N_b.
+$}\]
+
+Die Teilchen-Loch-Unitäre trägt das Vorzeichen s(μ) = (−1)\^{}\{i+j\} je
+Zweilochzustand; die naive Komplement-Abbildung ohne s(μ) ist keine
+Identität (Negativkontrolle bestanden).
+
+\subsubsection{4.2 Exakte Krylov-Kette}\label{exakte-krylov-kette}
+
+v\_n = (T†)ⁿ\textbar F⟩ mit T† = Σ\_A b\_A†Q\_A†:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}rrrl@{}}
+\toprule\noalign{}
+n & Einträge in v\_n & ν\_n = ‖v\_n‖² & ν\_n/ν\_\{n−1\} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 & 1 & 1 & - \\
+1 & 480 & 480 & 480 \\
+2 & 108 240 & 439 680 & 916 = 4·229 \\
+3 & 15 252 960 & 575 078 400 & 299520/229 \\
+4 & (nur Spurnetzwerk) & 952 296 652 800 & ≈ 1656,0 \\
+5 & (nur Spurnetzwerk) & siehe \codeword{norms\_by\_traces.json} & \\
+\end{longtable}
+}
+
+ν₁\ldots ν₃ sind auf zwei unabhängigen Wegen identisch (Besetzungsbild
+mit exakten Ganzzahlamplituden; Spurnetzwerke, §6). Exakte Guards: T v₁
+= 480 v₀; T v₂ = 916 v₁ (das Ein-Boson-Singulett (60⊗Λ²64̄)\^{}G ist
+eindimensional); ⟨v₂\textbar T v₃⟩ = ν₃ (Adjungiertheit); v₁, v₂ sind
+Singuletts unter je drei so(10)- und su(4)-Generatoren; ⟨v₁\textbar Σ\_A
+Q\_AQ\_A†\textbar v₁⟩ = 458·480, was die Formel Σ\_A Q\_AQ\_A† = 480 −
+(15N\_h + C\_std\^{}\{Loch\})/2 mit dem Loch-Casimir 14 der (10,6)
+bestätigt - der Lochanteil von v₁ ist kein Singulett, nur der
+Gesamtzustand.
+
+\subsubsection{4.3 Schließung}\label{schlieuxdfung}
+
+T v₃ = α v₂ + w₂ mit α = 299520/229, w₂ ⊥ v₂ und exakt
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+\|w_2\|^2=\|Tv_3\|^2-\frac{\nu_3^2}{\nu_2}=\frac{5001523200}{229}\approx 2{,}18\cdot10^7,
+\qquad \frac{\|w_2\|^2}{\|Tv_3\|^2}=2{,}90\cdot10^{-5}.
+$}\]
+
+Der Zwei-Boson-Singulettraum ist also mehr als eindimensional; die Kette
+ist \textbf{exakt nicht geschlossen}, und das Modell ist nicht allein
+durch die ν\_n lösbar. Numerisch ist die Korrektur vernachlässigbar: w₂
+koppelt nur an v₃ mit g·√(‖w₂‖²/ν₃) = 0,195 g.
+
+\subsubsection{4.4 Ritz-Obergrenzen}\label{ritz-obergrenzen}
+
+In der orthonormierten Basis \{v₀\ldots v\_K, w₂\} ist H (Δ = 1)
+tridiagonal plus w₂-Zweig: Diagonale n bzw. 2; Nebendiagonalen g·4√30,
+g·2√229, g·48√29770/229, \ldots; w₂-Kopplung g·3√598377/11908.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllll@{}}
+\toprule\noalign{}
+g/Δ & K=1 & K=2 & K=3 (+w₂) & −480g² \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1/20 & −0,704159 & −0,985178 & −1,094232 & −1,2 \\
+1/40 & −0,241620 & −0,288824 & −0,295357 & −0,3 \\
+1/100 & −0,045894 & −0,047851 & −0,047894 & −0,048 \\
+1/400 & −0,002991 & −0,003000 & −0,003000 & −0,003 \\
+\end{longtable}
+}
+
+Bei g/Δ = 1/20 ist die Kette bei K=3 nicht konvergiert (die
+Stufenkopplungen liegen bei 1,1Δ\ldots1,6Δ); die Verlängerung mit ν₄, ν₅
+steht in \codeword{native\_ground\_state.json} (Schlüssel
+\codeword{ritz}). Bei g/Δ ≤ 1/40 ist die Konvergenz praktisch erreicht.
+
+\subsubsection{4.5 Observablen auf dem Ritz-Zustand (g/Δ = 1/20,
+K=3)}\label{observablen-auf-dem-ritz-zustand-gux3b4-120-k3}
+
+⟨N\_b⟩ = 0,8421 (Hellmann-Feynman ∂E/∂Δ = 0,8421);
+\textbar⟨F\textbar Ω⟩\textbar² = 0,397; Bosonzahlverteilung 0,397 /
+0,397 / 0,172 / 0,034; Shannon-Untergrenze der Boson-Loch-Verschränkung
+1,66 bit (rigoros, weil die reduzierte Bosondichte in N\_b blockdiagonal
+ist). Die Worker-Angaben „Überlapp \textgreater{} 1/4`` und
+„Verschränkung \textgreater{} 0,811 bit`` sind damit konsistent, aber
+auf einem nichtkonvergierten Zustand.
+
+\subsubsection{4.6 Geladene
+Ein-Teilchen-Antwort}\label{geladene-ein-teilchen-antwort}
+
+Für jede Mode r (Guard r ∈ \{0, 5, 63\}; Transitivität der
+Quellsymmetrie):
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+Z_h=\|f_r\Omega\|^2=1-\frac{\langle N_b\rangle}{32}=0{,}97368,\qquad
+Z_{\rm add}=\|f_r^\dagger\Omega\|^2=\frac{\langle N_b\rangle}{32}=0{,}02632,\qquad
+Z_h+Z_{\rm add}=1.
+$}\]
+
+Mittlere Anregungsenergien: Entnahme ε\_h = 0,0311 Δ, Addition ε\_add =
+1,1497 Δ. Kompositnorm Z\_χ = 23⟨N\_b⟩/480 = 0,0404 (die N=4-Referenz
+aus v1.6.2 ergab 0,0301; verschiedene Zustände).
+
+\subsubsection{4.7 Sektorauswahl und die
+Worker-Behauptung}\label{sektorauswahl-und-die-worker-behauptung}
+
+Untergrenzen aus der Casimir-Identität und quadratischer Ergänzung, H ≥
+(1−θ)ΔN\_b − (15g²/2θΔ)N\_f, ausgewertet als max\_θ min\_\{N\_b\} je
+Sektor:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+g/Δ & Ritz E(64) & schärfster Konkurrent & N=64 bewiesen global? \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1/400 & −0,0029996 & N=63: −0,0029531 & ja \\
+1/100 & −0,047894 & N=63: −0,04725 & ja \\
+1/40 & −0,295357 & N=63: −0,2953125 & ja \\
+1/20 & −1,094232 & N=66: −1,2; N=62: −1,1625 & \textbf{nein} \\
+\end{longtable}
+}
+
+Bewiesener Bereich mit diesen Schranken: g/Δ ≤ 0,0251. Die Behauptung
+„eindeutiger Spin(10)×SU(4)-Singulett-Grundzustand für 0 \textless{}
+\textbar g\textbar/Δ ≤ 1/20`` ist damit \textbf{nicht reproduziert und
+nicht widerlegt}; bei 1/20 müsste E(64) \textless{} −1,2 gegen N ≥ 66
+und \textless{} −1,1625 gegen N = 62 gezeigt werden. μ* = −E/64 = 0,0171
+Δ liegt unter Δ/50; die frühere Aussage „μ = Δ/50 wählt den leeren
+Zustand`` bleibt konsistent.
+
+\subsection{5. Feldwörterbuch am tatsächlichen
+Tensor}\label{feldwuxf6rterbuch-am-tatsuxe4chlichen-tensor}
+
+\subsubsection{5.1 Symmetrieregel}\label{symmetrieregel}
+
+Für Grassmann-Felder ψ\_\{I,a\} ist Σ\_\{IJ\}Σ\_\{ab\}
+W\_\{IJ\}K\_\{ab\}ψ\_\{I,a\}ψ\_\{J,b\} = ½Σ(T − Tᵀ) mit T\_\{(Ia),(Jb)\}
+= W\_\{IJ\}K\_\{ab\}. Weil W antisymmetrisch ist, verschwindet die
+Kopplung genau dann, wenn K antisymmetrisch ist; \textbf{nur der
+symmetrische Teil des Spinorkerns koppelt}. Auf allen 60 Zeilen explizit
+geprüft:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Zuordnung
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Kern K
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Kopplung
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+gleichhändige Weyl, Boson Skalar (0,0) & ε antisym. & 0 \\
+gleichhändige Weyl, Boson (1,0) & σ\^{}\{μν\}ε sym. & ≠ 0 (Rang 32 je
+Komponente) \\
+Dirac/Majorana: Skalar C, Pseudoskalar Cγ⁵, Axialvektor Cγ\^{}μγ⁵ &
+antisym. & 0 \\
+Dirac/Majorana: Vektor Cγ\^{}μ, Tensor Cσ\^{}\{μν\} & sym. & ≠ 0 \\
+\end{longtable}
+}
+
+Der Vermittler ist damit Vektor oder antisymmetrischer Tensor, niemals
+Skalar, Pseudoskalar oder Axialvektor. Er trägt U(1)\_N-Ladung 2; ein
+masseloser geladener Vektor ist kein konsistentes freies Eichfeld
+(Vorbehalt, kein Satz).
+
+\subsubsection{5.2
+Chiralitätsgradierungen}\label{chiralituxe4tsgradierungen}
+
+Der Trägergraph (64 Moden, 480 Kanten, Grad 15, dreiecksfrei) ist
+\textbf{nicht bipartit}; ein ungerader Zyklus ist {[}16, 45, 0, 30,
+37{]}. Es gibt daher keine globale Chiralitätsaufteilung, unter der alle
+60 Bosonen Vektoren wären. Für jede der 44 G-kovarianten Gradierungen
+ist jeder Kanal rein (nie gemischt), aber der Bosonmultiplett zerfällt:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1667}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2222}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2222}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1667}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2222}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Gradierung
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Vektor-Kanäle
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Tensor-Kanäle
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Stabilisator
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Kommutant der 64
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Identität & 0 & 60 & 60 & 1 \\
+Pati-Salam-Spinorsplit (10 Varianten) & 24 & 36 & 36 = so(6)⊕\allowbreak{}so(4)⊕\allowbreak{}su(4)
+& 2 \\
+Farbsplit (3) & 40 & 20 & 52 & 2 \\
+gemischt (30) & 32 & 28 & 28 & 4 \\
+\end{longtable}
+}
+
+Ein einheitlicher Lorentztyp für alle 60 Vermittler erzwingt die
+gleichhändige Zuordnung und damit (1,0)⊕\allowbreak{}(0,1): ein antisymmetrischer
+Tensor B\_\{μν\}, kein symmetrisches Spin-2-Feld. Kinetische Terme:
+einer pro irreduziblem Block des Stabilisators, keine
+Familienaufspaltung 4 → 1+3. Ein Modenindex ist kein Raumpunkt.
+

@@ -1,0 +1,290 @@
+
+\begin{keybox}[The address table: the lepton words are the compiler atoms \mE/\mC\ (\veri{v120\_address\_table.py})]
+The address table acquires its structure --- on word-length integers \emph{frozen} in \vref{v18}/\vref{v20}, long
+before today's readings (the red-team firewall). \emph{(i) The lepton words are the atoms \mE:}
+\[
+  \boxed{\ (L_e,L_\mu,L_\tau)=(8,5,3)=(\operatorname{rank}E_8,\ \gcar,\ \Nfam)=(p_0{+}e_2,\ e_2,\ p_0)\ }
+\]
+in mass order (longest word $=$ lightest lepton). \emph{(ii) Addresses $=$ division by the hexagon
+\mE:} $(r,w)=L\ \mathrm{divmod}\ p_2$ with $p_2=6=|R^+(A_3)|$ itself an atom: $e\to(2,1)$,
+$\mu\to(5,0)$, $\tau\to(3,0)$; $\sum r=10=p_3=\mathcal A_\Lambda$, $\sum L=16=\dim S^+$. \emph{(iii) Sheet parity
+\mE:} by the \vref{v118} dictionary, $e$ sits on the \emph{untwisted} sheet ($\omega\in\operatorname{spec}
+\widetilde M_0$), $\mu,\tau$ on the \emph{twisted} sheet ($-\omega,-1$); the anchor lepton $\tau$
+occupies the unique \emph{real} twisted eigenvalue $-1$ --- exactly the site where \vref{v20}'s product rule
+replaces the resolvent. \emph{(iv) Quark sum rules \mE\ (frozen \vref{v18} words $7,7,5,3,2,0$):} up-type sum
+$=10=p_3$; down-type sum $=14=p_1{+}p_3$; \textbf{all quarks $=24=|W(A_3)|$} (the monodromy group
+order, \vref{v117}); \textbf{all nine charged fermions $=40=p_1p_3=a^TRa$} (\vref{v119}); quark $\sum r=2p_2$,
+$\sum w=|\Z_2|$; the top sits at the vacuum site $(0,0)$ --- zero word, no suppression, the
+established ladder anchor. \emph{Residue \mC:} five independent closures ($16,10,14,24,40$) constrain
+the address map; the per-fermion \emph{assignment} remains the \vref{v18}/\vref{v20} input --- deriving it is the
+remaining H2 content.
+\end{keybox}
+
+\begin{keybox}[The address table is pinned: $R$ is the unique hexagon matrix with atom margins \mE\ (\veri{v121\_address\_pinning.py})]
+The per-fermion assignment closes at the \emph{information} level. The established identity
+$L=R+2U$ (\vref{v95}) says the word-length table \emph{is} $L[\text{sector}][\text{generation}]$ --- rows
+(up; down; lepton) $=$ $((7,3,0);(7,5,2);(8,5,3))$, the \vref{v18}/\vref{v20} words verbatim --- so the addresses are
+the entries of the \emph{residue operator} $R$ plus one hexagon turn for the first generation, and
+$R$'s first column is the \textbf{anchor} $a=(1,1,2)$. The margins are atoms \mE: row sums
+$(4,8,10)=(e_1,\operatorname{rank}E_8,p_3)$, column sums $(4,13,5)=(e_1,\Delta_Q,\gcar)$. And the
+census closes it \mE:
+\[
+  \boxed{\ \begin{array}{c}
+  \text{\small among all $3\times3$ matrices with entries in the hexagon $\{0..5\}$,}\\[1pt]
+  \text{\small exactly $17$ have the atom margins --- and exactly ONE has $\det=8$}
+  \end{array}\ }
+\]
+--- and it is $R$ (also the unique one with $\operatorname{SNF}=(1,1,8)$; all $17$ determinants are
+distinct, $8$ occurs once --- control computed explicitly). \textbf{The assignment table carries zero
+residual information beyond the atom margins and the rank determinant.} Within-sector ordering is the
+established transport reading ($m\sim\lambda_Y^L$: longer word $=$ lighter fermion). \emph{Residue
+\mC:} the open H2 item shrinks from ``derive $9$ per-fermion integers'' to ``derive the six atom
+margins $+$ $\det=\operatorname{rank}$''. \emph{Firewall:} $R$, $L$ and all word lengths were frozen in
+\vref{v4}/\vref{v18}/\vref{v20}/\vref{v71} long before this census --- no degrees of freedom spent.
+\smallskip\\
+\noindent\textbf{The margins are theorems (\veri{v122\_margin\_theorem.py}).} Even the margins are not
+input. Three selectors, all established and frozen \emph{before} the address question was posed ---
+\emph{(S1)} the $D_4$ annihilator $n=(5,-9,6)$ with $n^TR=(8,0,0)$ (it kills the unchanged
+$(c_2,c_3)$ plane; $n\!\cdot\!a=8$), \emph{(S2)} $\det R=8$, \emph{(S3)} $\det K=4$ with $K=R+Q\Sigma$
+--- pin $R$ \emph{uniquely} among hexagon matrices \mE: the $(S1)$ census has $4\times4\times4=64$
+candidates, $(S2)$ leaves $12$, $(S3)$ leaves \textbf{exactly one}, and it is $R$. Hence the atom
+margins, the anchor column $Re_1=a$ and all sum rules above are \emph{consequences} --- their input
+status is revoked. \emph{Bonus lemma \mE:} on the $(S1)+(S2)$ locus $\det(M+2U)=20=\det L$ holds for
+\emph{all} $12$ candidates --- the fourth quartet determinant is redundant, the compiler's familiar
+overdetermination. \emph{Residue \mC:} H2 reduces to the establishment of the selectors themselves
+($n$ and the diamond determinants --- pre-existing inventoried objects); the address question
+introduces \emph{no new residual class}.
+\smallskip\\
+\noindent\textbf{The dual-normal selector: $(d,n)$ pins $R$ columnwise (\veri{v136\_dual\_normal\_selector.py}).}
+The selector list shrinks once more. With the dual anchor $d=a^\top R^{-1}$ (\veri{v134\_dual\_anchor.py})
+and the torsion normal $n$, each \emph{column} of $R$ obeys $d\cdot c_j=a_j$ and $n\cdot c_j=8\delta_{1j}$;
+the common kernel of $(d,n)$ is the primitive vector $(6,8,7)$ (audit: $p_2$, $\operatorname{rank}E_8$,
+scalaron-$7$), so within the address box $\{0..5\}^3$ each column is the \emph{unique} lattice point
+(census: $1$ of $216$ each) --- $(d,n)\Rightarrow R$, and the $6^9$ census above collapses to three
+column problems \mE. \emph{Honesty:} $K$ is \emph{not} pinned directly ($d^\top K=(1,\tfrac12,1)$); $\det
+K=4$ comes via the $\mu_4$ wall (\veri{v135\_det\_surface.py}). \emph{The mechanism is bounded:} the zero
+mode of $A_0^\star$ carries the exact spectral normal $\sigma=(2,-9,5)=(|\Z_2|,-\Nfam^2,\gcar)$ (signed
+squares; $\|v\|^2=\tfrac{16}9$ with $16=\dim S^+$, $\operatorname{adj}A_0^\star=\tfrac29P_v$ with
+$\tfrac29=$ the SdS entropy curvature), $\sigma\cdot\mathbf 1=-|\Z_2|$, $\sigma\cdot a=\Nfam$,
+$n\cdot\sigma=121=\|\operatorname{Pl}(K)\|_1^2$; and the exact $W(A_3)$ orbit control shows \emph{no}
+group image of $\sigma$ is proportional to $n$ --- the naive cofactor/orbit lift fails, the step
+$\sigma\to n$ is a genuine mechanism beyond the monodromy group. \emph{R4$'$ restated \mC:} derive the
+\emph{pair} $(d,n)$; then $R$ is forced columnwise.
+\smallskip\\
+\noindent\textbf{The selector triangle (\veri{v139\_selector\_triangle.py}).} The pair itself now
+collapses further. First, $d$ is \emph{pure anchor data}: $d=\tfrac32a-2\cdot\mathbf1$ exactly --- the
+closed form never mentions $R$, so the first selector is \emph{derived}, not residual. Second, the frame
+$(\mathbf1,a,\sigma)$ is a basis of $\Z^3$ with $\det(\mathbf1|a|\sigma)=11=\|\operatorname{Pl}(K)\|_1$
+(the quark constant as the frame volume), and $n$ is the \emph{unique} integer covector with the three
+atom pairings
+\[
+  \boxed{\ n\cdot\mathbf1=2=|\Z_2|,\qquad n\cdot a=8=\operatorname{rank}E_8,\qquad
+  n\cdot\sigma=121=\|\operatorname{Pl}(K)\|_1^2\ }
+\]
+--- the cofactor definition is replaced by frame data plus three atoms. On the $(\mathbf1,a)$-constrained
+line the $\sigma$-pairing is $11(11{+}t)$: divisible by $11$ for \emph{every} $t$, a perfect square
+exactly at the true $n$ ($t{=}0$). The review's predicted lift is exact as an audit identity:
+$n=\operatorname{reverse}(\sigma)+|\mu_4|e_3$ (generation flip $+$ $\mu_4$ lift at the third slot).
+\smallskip\\
+\noindent\textbf{Frame integrality: three pairings $\to$ two (\veri{v142\_frame\_integrality.py}).}
+The third pairing is \emph{not} independent. The pairing triples $(m\cdot\mathbf1, m\cdot a,
+m\cdot\sigma)$ of \emph{integer} covectors form an index-$11$ sublattice of $\Z^3$, cut out by the single
+congruence
+\[
+  \boxed{\ x-3y+z\equiv0 \pmod{11}\ }\qquad\text{(index $11=\|\operatorname{Pl}(K)\|_1=\det(\mathbf1|a|\sigma)$)},
+\]
+so with the two line pairings at their atoms $(x,y)=(|\Z_2|,\operatorname{rank}E_8)=(2,8)$, integrality
+\emph{forces} $z\equiv0\pmod{11}$ --- the $11(11{+}t)$ line \emph{is} the integer line. Primitivity
+forces $t$ \emph{even} (odd $t$ makes every entry of $n(t)$ even), and $t{=}0$ is the unique even $t$
+with a square $\sigma$-pairing for $|t|<88$ (the global pick keeps the square selector --- recorded
+honestly). Both line pairings are Cramer-reducible to inventoried identities ($n\cdot a=\det R$ by
+Laplace along the anchor column; $n\cdot\mathbf1=8(R^{-1}\mathbf1)_1$ with $R^{-1}\mathbf1=\tfrac14(1,1,-1)$,
+\vref{v134}) --- restructuring, not establishment.
+\smallskip\\
+\noindent\textbf{The pairing values are atom identities (\veri{v145\_pairing\_atoms.py}).} Even the two
+line-pairing \emph{values} carry no independent information. Reading the \vref{v139} lift structurally ---
+$n=w_0(\sigma)+|\mu_4|e_3$ with $w_0$ the \emph{$A_3$ exponent duality} $m\leftrightarrow h{-}m$ (an
+established Lie involution; lift slot $=$ the top-exponent line, lift size $=$ the glue order) --- all
+three pairings become atom arithmetic:
+\[
+  n\cdot\mathbf1=|\mu_4|-|\Z_2|=|\Z_2|,\qquad
+  n\cdot a=|\mu_4|\,a_3=8=\operatorname{rank}E_8\ \ \text{via}\ \
+  \boxed{\ |\mu_4|+\gcar=\Nfam^2\ \ (4+5=9,\ \sigma\perp w_0(a))\ },
+\]
+and $n\cdot\sigma=\|\sigma\|^2-\Nfam^2+|\mu_4|\gcar=110-9+20=121$ with
+$\|\sigma\|^2=|\Z_2|^2+\Nfam^4+\gcar^2=110=|\Z_2|\gcar\|\operatorname{Pl}(K)\|_1$.
+\emph{R4$'$ residue \mC\ (final form):} derive the \emph{one} map $n=w_0(\sigma)+|\mu_4|e_3$ --- no
+independent number remains; everything else in the chain anchor $\to(d,n)\to R$ is exact.
+\smallskip\\
+\noindent\textbf{Both dual normals are anchor data (\veri{v149\_cusp\_normal.py}).} The remaining
+opacity dissolves in the canonical frame: the pairings of $n$ with the \emph{cusp eigenbasis} (the
+geometric basis of \vref{v98}) are exactly
+\[
+  \boxed{\ n\cdot e_1=6=p_2(a),\qquad n\cdot e_2=3=p_0(a),\qquad n\cdot e_3=5=e_2(a)\ }
+\]
+--- one anchor invariant per $Q_+$ degree, and the cusp matrix is unimodular, so these three pairings
+determine $n$ uniquely. With $d=\tfrac32a-2\cdot\mathbf1$ the dual normal \emph{pair} (\vref{v134}) is
+anchor data through and through --- one normal per frame; the cusp data $(6,3,5)$, the frame pairings
+$(2,8,121)$ and the $w_0$-lift are three presentations of one covector, all atomic (equivalences exact).
+\emph{Audit:} $\sigma\to(5,1,2)$; alternate reading $(6,3,5)=(|R^+(A_3)|,\Nfam,\gcar)$; sum
+$14=\dim G_2$. \emph{R4$'$ residue \mC\ (cusp form):} derive the \emph{assignment} --- why the $Q_+$
+degrees $(1,2,3)$ carry $(p_2,p_0,e_2)$ in that order; one discrete assignment, zero continuous freedom.
+\end{keybox}
+
+\begin{keybox}[Exterior Leg Lemma --- the quark $u/d$ leg is a $\Lambda^2F$ area, not a scalar \mE/\mC]
+The \vref{v41} negative is a \emph{category error}, not a dead end. $u$ and $d$ share the hexagon-radial data
+$(r,w)=(1,1)$ ($L=7$ for both), and the $C_6$ resolvent $c(r,w)=|\mu_4|^w/(\tfrac54-\cos\tfrac{r\pi}3)$
+reads \emph{only} $(r,w)$ --- so any \emph{scalar} leg gives $c_u/c_d\equiv1$. A scalar sees radius, not
+orientation. The $u/d$ separation lives in the smallest \emph{non-scalar} invariant of the $SU(3)_F$
+composition: the exterior square $\Lambda^2F$, i.e.\ the oriented anchor-plane area
+$\operatorname{Pl}_{\mathbf1,a}(K)$. The ``$11$'' is then \emph{generated}, not read:
+\[
+  (K,\mathbf1,a)\to B_K=\begin{psmallmatrix}13&8&4\\18&11&6\end{psmallmatrix}\to
+  \operatorname{Pl}(K)=(-1,6,4)=(-N_\Phi,|R^+\!(A_3)|,|\mu_4|)\to
+  \|\operatorname{Pl}(K)\|_1=11,
+\]
+\[
+  \boxed{\ \frac{c_u}{c_d}=\frac{\gcar\,\|\operatorname{Pl}_{\mathbf1,a}(K)\|_1}{\Nfam^2\,\Delta_Q}
+  =\frac{5\cdot11}{9\cdot13}=\frac{55}{117}\ }
+  \quad(\text{anchor microcode }=\tfrac{e_2(a)(p_3(a)+1)}{p_0(a)^2(2p_2(a)+1)}).
+\]
+\textbf{Typing:} \mE\ for the Plücker / microcode identities ($\operatorname{Pl}(K)=(-1,6,4)$,
+$\|\cdot\|_1=11$, $5\cdot11/(9\cdot13)=55/117$); and --- by Readout Rigidity (\vref{v49}, below) --- \mE\ also for the
+\emph{physical} ratio $\mathcal C_{ud}(\rho^\star)=$ this $\Lambda^2F$ readout, which is \emph{constant} on the
+derived selector stratum and so does \emph{not} need any point-selection on $\Lambda^2F$. The quark residual is
+thereby re-typed from ``find the right scalar $y$'' to a closed exterior readout for the \emph{ratio}; only the
+\emph{absolute} amplitude scale ($U_{\mathrm{point}}$) stays as an anchor, no new scalar, no fishing.
+\smallskip\\
+\noindent\emph{Audit (the $121$ lemma, \veri{v119\_review\_validation\_2.py}):} the ``$11$'' has a second,
+independent appearance \mE: with $h=\mathbf1+a=(2,2,3)$ in the canonical anchor ordering,
+$h^TRh=121=11^2=\|\operatorname{Pl}(K)\|_1^2=(p_3+1)^2$ --- the quadratic \emph{anchor norm} of the
+residue operator $R$ reproduces the Plücker integer (sensitivity control: the three orderings of $h$
+give $\{105,121,135\}$; only the canonical one yields $121$). Bonus checksums:
+$\mathbf1^TR\mathbf1=22=2\times11$ (the entry sum of $R$) and $a^TRa=40=p_1p_3=10b_1-1$. Typed
+\emph{audit}, not load-bearing --- the oriented Plücker mechanism above remains the derivation.
+\veri{v42\_exterior\_leg.py}
+\smallskip\\
+\noindent\textbf{Bridge test (\veri{v43\_exterior\_bridge.py}).} The typing is confirmed: for the $SU(3)$
+holonomy the exterior square is the conjugate representation, $\Lambda^2(\widetilde M)=\overline{\widetilde
+M}$ exactly --- the exterior leg \emph{is} the $\mathbf{\bar3}$. But the \emph{continuous} action
+$\Lambda^2(\widetilde M)\cdot(\mathbf1\wedge a)$ does \emph{not} equal the \emph{integer} $\operatorname{Pl}(K)=(-1,6,4)$:
+the integer Plücker is the combinatorial $K$ datum. So the bridge $\rho^\star\!\to\!\operatorname{Pl}(K)$ is
+the \emph{discrete} non-abelian-Hodge invariant (the integer $R$; $\det R=8$ and
+$\operatorname{Spec}(Q_+)=\{1,2,3\}$ already confirmed on the bundle, Lemma U4 box), not a continuous
+exterior-square computation --- exactly the H2 equivalence, now pinned from the $\Lambda^2F$ side.
+\smallskip\\
+\noindent\textbf{Lie-level grounding --- no special math (\veri{v44\_carrier\_exterior.py}).} The discrete
+invariant has a home already in TFPT: the carrier half-spinor is the \emph{even exterior algebra} of the
+$5$-slot carrier, $16=\Lambda^{\mathrm{even}}(5)=\binom50+\binom52+\binom54=1+10+5$, and under
+$SU(5)\subset SO(10)$ the up quark sits in $10=\Lambda^2(5)$ while the down sits in
+$\bar5=\Lambda^4(5)$. So the \emph{exterior degrees} are $\deg(u^c)=2$, $\deg(d^c)=4$, with
+$\deg(u){+}\deg(d)=6=|R^+(A_3)|$ (the hexagon) and $\deg(d){-}\deg(u)=2=|\Z_2|$ (the sheet). The
+``$\Lambda^2$'' of the exterior leg is therefore not exotic Hodge data --- it is the carrier's own
+$\Lambda^2$ grading (the up quark \emph{lives} in $\Lambda^2(5)$). This re-types the residual once more:
+from ``discrete non-abelian-Hodge invariant'' to ``the carrier exterior degree'' --- a standard \mE\ fact.
+\emph{Honest scope:} this grounds the \emph{type}; the Plücker \emph{number} $55/117$ stays the family
+$\operatorname{Pl}(K)$ \mE, and the carrier-$\Lambda^2$ $\leftrightarrow$ family-$\Lambda^2F$ link (via
+$\text{family}\otimes\text{carrier}=15=16{-}1$) plus the normalisation remain \mC.
+\smallskip\\
+\noindent\textbf{The ``$11$'' is Pascal --- a third, simplest origin (\veri{v45\_family\_exterior.py}).}
+Following that link, $\operatorname{Pl}(K)$ is the \emph{exterior algebra of the family fundamental}
+$4=\mu_4$ (the $A_3{=}SU(4)$ fundamental): $\Lambda^k(4)=\binom4k$ is Pascal row $4=(1,4,6,4,1)$ with full
+sum $2^4=16=\dim S^+$, and $|\operatorname{Pl}(K)|=(1,4,6)=\{\Lambda^0,\Lambda^1,\Lambda^2\}(4)$ are exactly
+its distinct exterior powers. Hence
+\[
+  \boxed{\ \|\operatorname{Pl}(K)\|_1=\textstyle\sum_{k=0}^{2}\binom4k=11=2^4-\tbinom43-\tbinom44=16-\gcar\ }
+\]
+(the cumulative $\Lambda^\bullet(\mu_4)$ up to degree $2=\deg(u^c)$),
+and $\text{family}\otimes\text{carrier}=15=\dim\mathfrak{su}(4)=\Lambda^2(5){\oplus}\Lambda^4(5)=10{+}5=\Nfam\gcar$
+read three ways. So the ``$11$'' is generated a \emph{third} way --- the cumulative family exterior algebra
+up to the up-quark's degree --- pure Pascal/branching, \emph{no special math}. The \mC\ physical
+normalisation is unchanged; the algebraic origin of $55/117$ is now triply grounded.
+\end{keybox}
+
+\begin{lemma}[U5 --- the ``$11$'' worry, \emph{discharged} by Readout Rigidity]
+The original worry was that $c_u/c_d=\mathcal C_{ud}(\rho^\star)$ must be evaluated at the uniquely selected
+$\rho^\star$ \emph{without} using $11$ as input, so that until then $55/117$ would be a mere table-level
+rational shadow. \textbf{This is now resolved (\vref{v49}):} $\mathcal C_{ud}$ is \emph{constant} on the discrete
+selector stratum $\mathcal S_{8,Q}$, so the ``$11$'' is \emph{earned} as the rigid Pl\"ucker readout
+$\|\operatorname{Pl}(K)\|_1$ (\vref{v42}) --- \emph{independently} of point-uniqueness. Point-uniqueness of
+$\rho^\star$ enters only the \emph{absolute} amplitude scale, not the ratio.
+\end{lemma}
+
+\begin{lemma}[U6 --- the four certificates]
+$C_U^{(1)}$ wall enumeration (done); $C_U^{(2)}$ $D_4$-fixed character solver; $C_U^{(3)}$ selector
+uniqueness (one $S$-equivalence class); $C_U^{(4)}$ amplitude extraction --- the \emph{ratios}
+$R,Q,c_u/c_d$ are read off the (derived) selector stratum (closed, \vref{v49}/\vref{v71}); only the \emph{absolute}
+$U_f^\star,c_q$ normalisation is the anchor.
+\end{lemma}
+
+\par\smallskip\noindent\textbf{Progress: an explicit valid flat bundle is realised (RH solve)} (\mE).
+A numerical Riemann--Hilbert solve produced an \emph{explicit} Hermitian residue $A_0$ (eigenvalues
+$\{0,\tfrac13,\tfrac23\}$, $\operatorname{diag}=(\tfrac12,\tfrac14,\tfrac14)$) for which the Fuchsian system
+$A(z)=\sum_kU^{k-1}A_0U^{-(k-1)}/(z-i^k)$ simultaneously satisfies: the cusp class at each puncture; the
+splitting $\mathcal O(-2)\oplus\mathcal O(-1)^2$ (exponents $\sum_kA_k=\operatorname{diag}(2,1,1)$); the
+\emph{path-ordered} monodromy at infinity is trivial, $\|M_\infty-\mathbf1\|\sim10^{-9}$, i.e.\
+$M_1M_2M_3M_4=\mathbf1$; and the representation is \emph{irreducible} --- \textbf{case A} (non-trivial
+$SU(3)_F$ mixing, not the diagonal case B). So a valid $(U_{\mathrm{wall}})$ flat bundle \emph{exists and is
+constructed}; the U2 kill switch lands on A. \emph{Honest scope:} this is one realising point (existence
+$+$ case A), likely one of a residual family; the unique $\nabla_F^\star$ still needs the $\det R=8$
+selector and $c_u/c_d$ still needs the $C_6\leftrightarrow\PP\setminus\mu_4$ dictionary (H2).
+\veri{v33\_explicit\_flat\_bundle.py}
+\smallskip\\
+\noindent\emph{H2 bridge probed (\veri{v34\_h2\_bridge\_attempt.py}).} The explicit per-puncture
+monodromies $M_k$ (cusp class, $\prod M_k=\mathbf1$ to $10^{-5}$) were computed; but the natural
+resolvent-dressed diagonal extraction ($|\mathrm{diag}\,M_k|=(0,\tfrac12,\tfrac12)$ times the $C_6$
+resolvent factor) does \emph{not} reproduce the lepton amplitudes $(0.475,1.107,0.917)$. So the precise
+$\Gamma^{\min}_{ij}$ geodesic-to-word dictionary (how the $6$-site hypercharge hexagon combines with the
+$3$-dim family $\rho^\star$) was the genuine remaining analytic input --- it is \emph{not} fixed by a
+natural guess, and we do \emph{not} fish for $55/117$. \emph{Resolved since (\vref{v118}): the correct
+extraction is the resolvent determinant of the $W(A_3)$ monodromy, not the diagonal dressing --- the
+probe's failure is thereby explained, and the dictionary is exact.}
+
+
+\begin{keybox}[Theorem U --- the four-way split (sharper than one monster gate) \mE/\mO]
+$D_4$ \emph{fixes the admissible chamber, not the physical point} (the $D_4$-fixed locus is
+positive-dimensional, U3); the discrete selectors $\det R=8$, $\operatorname{SNF}(R)=(1,1,8)$,
+$\operatorname{Spec}(Q_+)=\{1,2,3\}$ do the cutting. The gate splits into four pieces, three of them
+essentially closed:
+\begin{itemize}
+\item $U_{\mathrm{unitary}}$ \mE: parabolic degree $0$ $+$ polystable $\Rightarrow$ unitary (Mehta--Seshadri)
+  $\Rightarrow\Phi=0$; the harmonic metric is the \emph{finite} invariant form $H$ ($M_k^\dagger HM_k=H$),
+  not a Hitchin PDE (\veri{v40\_harmonic\_metric.py}).
+\item $U_{\mathrm{H2}}$ \mE: $R,Q,K$ are read off the bundle (splitting type $=a$, $\det R=8$,
+  $\operatorname{Spec}(Q_+)$) (\veri{v39\_uwall\_selectors.py}).
+\item $U_{\Lambda^2}$ \mE: \textbf{Readout Rigidity} --- on the discrete stratum
+  $\mathcal S_{8,Q}=\{\det R=8,\operatorname{SNF}(R)=(1,1,8),\operatorname{Spec}(Q_+)=\{1,2,3\}\}$ the
+  anchor-plane readout is \emph{constant},
+  $\mathcal C_{ud}(\rho)=\gcar\|\operatorname{Pl}_{\mathbf1,a}(K)\|_1/(\Nfam^2\Delta_Q)=\tfrac{55}{117}$,
+  \emph{independent} of the continuous $D_4$ position --- so $c_u/c_d$ needs no point uniqueness
+  (\veri{v49\_readout\_rigidity.py}, \veri{v42\_exterior\_leg.py}).
+\item $U_{\mathrm{point}}$ \mO: full uniqueness of $\rho^\star$ --- needed only for the \emph{complete}
+  $U_f^\star$ amplitude matrix, \emph{not} for $c_u/c_d$.
+\end{itemize}
+\textbf{Headline:} the remaining flavor bridge is not a PDE gate --- it is a finite exterior
+\emph{readout-rigidity} theorem; the only residual, $U_{\mathrm{point}}$, is not an independent gate ---
+it reduces to the single dimensionful anchor $v_{\mathrm{geo}}$ (Gate~1 below).
+
+\smallskip\noindent\textbf{The simple closure (\veri{v71\_simple\_r\_bridge.py}).} The selector stratum
+$\mathcal S_{8,Q}$ is now \emph{fully derived}: $\det R=8=\operatorname{rank}E_8$ with $\operatorname{SNF}(R)=(1,1,8)$
+is the lattice invariant (cf.\ $\det Q=3=\Nfam$, \vref{v70}), and $\operatorname{Spec}(Q_+)=\{1,2,3\}$ is the
+$D_4$-equivariant result (\vref{v69}). The four flavor operators are integer lattice maps with compiler-atom
+determinants $(\det Q,\det K,\det R,\det L)=(3,4,8,20)$, product $1920=|W(D_5)|$. So by Readout Rigidity the
+quark \emph{ratios} ($c_u/c_d=g_{\mathrm{car}}\!\cdot\!11/(\Nfam^2\!\cdot\!13)=\tfrac{55}{117}$, etc.) are
+\emph{pure integer Pl\"ucker readouts --- no transcendental monodromy solve}. The earlier monodromy
+machinery was over-engineering for the ratios; the only transcendental piece, $U_{\mathrm{point}}$, is the
+\emph{absolute} amplitude normalisation --- an anchor of the same nature as the one dimensionful scale, not
+a missing computation.
+
+\smallskip\noindent\textbf{Gate 1 complete: $U_{\mathrm{point}}\to v_{\mathrm{geo}}$ (\veri{v75\_upoint\_to\_vgeo.py}).}
+The absolute amplitudes are not free either. The lepton amplitudes are exact ($c=(\tfrac{16}7,\tfrac43,\tfrac76)$,
+\vref{v20}), every cross-sector $c$-ratio is closed (Pl\"ucker), and each \emph{sector product} is a clean
+$\phiz$-power (Grand Mass Volume, \vref{v46}: $\det M_{\rm sector}\!\sim\!(\phiz)^{6,9,10}$; the lepton product is
+$\tfrac{16}7\!\cdot\!\tfrac43\!\cdot\!\tfrac76=\tfrac{32}9=2^{\gcar}/\Nfam^2$). Since $(\text{pairwise
+ratios})+(\text{product})\Leftrightarrow(\text{individuals})$ is a bijection, the nine charged-fermion
+amplitudes are \emph{fixed up to one overall scale} $v_{\mathrm{geo}}$. \textbf{So $U_{\mathrm{point}}$ is not an
+independent gate: it reduces to $v_{\mathrm{geo}}$, the \emph{same} one irreducible dimensionful anchor as
+gravity's $1/G$ (\vref{v68}) --- the two \mO\ anchors collapse to one.}
+\end{keybox}
+
+% =====================================================================

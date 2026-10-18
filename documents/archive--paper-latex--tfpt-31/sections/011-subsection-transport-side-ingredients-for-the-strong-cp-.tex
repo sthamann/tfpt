@@ -1,0 +1,400 @@
+\subsection{Transport-side ingredients for the strong-CP theorem}
+
+Define
+\begin{equation}
+\label{eq:strong-cp}
+\bar\theta=\theta_{\mathrm{sheet}}+\arg\det M_u+\arg\det M_d.
+\end{equation}
+\begin{definition}[Sheet-CP symmetry on the admissible branch]
+\label{def:sheet-cp-symmetry}
+Define the admissible sheet-CP operator by
+\[
+\mathcal C_\Sigma:=CP\circ\inv.
+\]
+\end{definition}
+
+\begin{theorem}[Sheet-CP symmetry protection of strong CP]
+\label{thm:sheet-cp-protection}
+On the retained admissible branch, the relative action and topological charge satisfy
+\[
+\mathcal C_\Sigma\,S_{\mathrm{rel}}\,\mathcal C_\Sigma^{-1}=S_{\mathrm{rel}},
+\qquad
+\mathcal C_\Sigma\,Q\,\mathcal C_\Sigma^{-1}=-Q.
+\]
+Moreover, by \Cref{prop:gap-lift-full-operator} the regularized transport kernel induces a positive radial operator $H_f>0$ on the admissible sector, and the physical mass map admits the polar form
+\[
+M_f=U_{f,L}H_fU_{f,R}^\dagger,
+\qquad
+U_{f,L},U_{f,R}\in SU(3)_F.
+\]
+Hence
+\[
+\theta_{\mathrm{sheet}}=0,
+\qquad
+\arg\det M_f=0,
+\]
+while weak CP may still survive through
+\[
+V_{\mathrm{CKM}}=U_{u,L}^\dagger U_{d,L}.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The involution $\inv$ implements the sheet exchange on the admissible branch, so composing it with $CP$ yields an exact symmetry of the relative action while flipping the sign of the topological charge. This forbids a bare $\theta$ deformation on the retained branch. The positive radial transport kernel removes intrinsic determinant phases, and the special-unitary holonomy factors preserve that vanishing while still allowing a nontrivial Jarlskog invariant in the relative family transport.
+\end{proof}
+
+\begin{corollary}[Symmetry-protected stability of $\bar\theta=0$ under admissible RG maps]
+\label{cor:strong-cp-rg-stability}
+In every renormalization scheme that respects $\mathcal C_\Sigma$, $\Padm$, and the carrier structure, the vanishing of
+\[
+\bar\theta=\theta_{\mathrm{sheet}}+\arg\det M_u+\arg\det M_d
+\]
+is preserved under the declared RG and matching map.
+\end{corollary}
+
+The positive-branch clause is still essential here: the closure statement is about the physical mass map once the admissible transport branch has been fixed, not about an arbitrary unitary dressing of the same singular values. What changes in the present rewrite is the logical source of the null result: the branch no longer relies on a promise not to insert a bad counterterm by hand, but on the symmetry protection encoded by $\mathcal C_\Sigma$ together with the positive-kernel polar decomposition.
+
+\begin{remark}[Admissibility as a unified three-sector motif]
+The admissibility pair $(\mathsf{Adm},\Padm)$ acts as a single structural principle with three sector projections:
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item \textbf{Electroweak:} seam-even selection picks the unique light Higgs doublet ($\inv\Phi=+\Phi$).
+    \item \textbf{QCD:} center neutrality selects confined hadronic words ($z(w)=1$, $\varepsilon(w)=+1$).
+    \item \textbf{Strong CP:} sheet-CP symmetry kills $\theta_{\mathrm{sheet}}$ in the relative action.
+\end{itemize}
+These are not three independent rules bolted onto different sectors. They are three projections of the same admissible-versus-inadmissible boundary: seam parity, center charge, and sheet exchange are all encoded in the double-cover and involution data of the primitive core. This unification is the conceptual backbone of the transport program.
+\end{remark}
+
+\section{Closure theorems from the admissibility complex}
+\label{sec:closure-theorems}
+
+The preceding two sections introduced the carrier-compatible geometric and transport architecture. We now state the closure layer in the precise mode used throughout this manuscript: the theorems below are closed statements relative to the admissibility complex, the topological family theorem, and the explicit APS / positivity / reflection-stability inputs collected first.
+
+\begin{definition}[Canonical admissibility complex]
+\label{def:admissibility-complex}
+Let the admissible Hilbert space factorize as
+\[
+\mathcal H=\mathcal H_{\Seam}\otimes\mathcal H_c\otimes\mathcal H_\Theta\otimes\mathcal H_t,
+\qquad
+\mathcal H_{\mathrm{ext}}
+:=
+\mathcal H\otimes\Lambda(\eta_\Sigma,\eta_c,\eta_\Theta,\eta_g),
+\]
+with reference normalization
+\[
+Z_{\mathrm{ref}}[0,0,0]>0,
+\]
+and symmetry generators
+\[
+\inv^2=\mathbf 1,
+\qquad
+Q_\Theta^2=\mathbf 1,
+\qquad
+Q_\Theta^\dagger=Q_\Theta.
+\]
+Define the structural selector
+\[
+P_{\mathrm{str}}:=P_{\Seam,+}P_{\mathrm{sing}}P_\Theta,
+\qquad
+P_{\Seam,+}:=\frac{\mathbf 1+\inv}{2},
+\qquad
+P_\Theta:=\frac12(\mathbf 1+Q_\Theta),
+\]
+with
+\[
+P_{\mathrm{sing}}:=\frac13(\mathbf 1+Z_c+Z_c^2).
+\]
+Define the elementary admissibility penalties
+\[
+K_\Sigma:=\sqrt{\lambda_\Sigma}\,\frac{\mathbf 1-\inv}{2},
+\qquad
+K_c:=\sqrt{\lambda_c}\,\bigl(\mathbf 1-P_{\mathrm{sing}}\bigr),
+\]
+\[
+K_\Theta:=\sqrt{\lambda_\Theta}\,\frac{\mathbf 1-Q_\Theta}{2},
+\qquad
+K_g:=\sqrt{\lambda_{\mathrm{gap}}}\,\mathbf 1_{[0,\epsilon_f^2/4)}\!\bigl(P_{\mathrm{str}}D_f^\dagger D_f P_{\mathrm{str}}\bigr),
+\]
+where the gap penalty is applied only after the structural selector has been fixed.
+The first three penalties $K_\Sigma,K_c,K_\Theta$ are Borel functions of mutually commuting
+symmetry generators and commute canonically. For $K_g$ the commutation with the structural
+penalties holds provided
+\[
+[D_f^\dagger D_f,\inv]=[D_f^\dagger D_f,P_{\mathrm{sing}}]=[D_f^\dagger D_f,Q_\Theta]=0
+\qquad
+\text{on }\mathrm{Ran}(P_{\mathrm{str}}),
+\]
+which is assumed on the admissible transport branch. The admissibility differential is
+\[
+Q_{\mathrm{adm}}
+:=
+\eta_\Sigma^\dagger K_\Sigma
++\eta_c^\dagger K_c
++\eta_\Theta^\dagger K_\Theta
++\eta_g^\dagger K_g,
+\]
+and the admissibility Laplacian is
+\[
+\Delta_{\mathrm{adm}}:=\{Q_{\mathrm{adm}},Q_{\mathrm{adm}}^\dagger\}.
+\]
+\end{definition}
+
+\begin{lemma}[Canonical nilpotency and Hodge projector]
+\label{lem:admissibility-nilpotency}
+\label{lem:hodge-admissibility-projector}
+On the admissible reduced datum,
+\[
+Q_{\mathrm{adm}}^2=0,
+\qquad
+\Delta_{\mathrm{adm}}
+=
+K_\Sigma^2+K_c^2+K_\Theta^2+K_g^2
+=
+\Kadm,
+\]
+with
+\[
+\Kadm
+:=
+\lambda_\Sigma\frac{\mathbf 1-\inv}{2}
++\lambda_c\bigl(\mathbf 1-P_{\mathrm{sing}}\bigr)
++\lambda_\Theta\frac{\mathbf 1-Q_\Theta}{2}
++\lambda_{\mathrm{gap}}\,\mathbf 1_{[0,\epsilon_f^2/4)}\!\bigl(P_{\mathrm{str}}D_f^\dagger D_f P_{\mathrm{str}}\bigr),
+\]
+and
+\[
+\Padm
+:=
+\Pi_{\ker\Delta_{\mathrm{adm}}}
+=
+\operatorname*{s-lim}_{\beta\to\infty}e^{-\beta\Kadm}.
+\]
+Thus $\Padm$ is the Hodge projector onto the harmonic admissible sector rather than a
+separately declared filter.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+The auxiliary generators $\eta_i^\dagger$ anticommute, so the square of $Q_{\mathrm{adm}}$
+is controlled by the commutators of the corresponding $K_i$. Canonical commutation kills the
+mixed terms, leaving $Q_{\mathrm{adm}}^2=0$ and $\Delta_{\mathrm{adm}}=\Kadm$. The
+zero-temperature limit therefore projects exactly onto the harmonic admissible sector.
+\end{proof}
+
+\begin{corollary}[Factorized selector on the admissible branch]
+\label{cor:factorized-admissibility-selector}
+If one further writes
+\[
+P_{\mathrm{gap}}:=\mathbf 1_{[\epsilon_f^2/4,\infty)}\!\bigl(P_{\mathrm{str}}D_f^\dagger D_f P_{\mathrm{str}}\bigr),
+\]
+then
+\[
+\Padm=P_{\mathrm{str}}P_{\mathrm{gap}},
+\qquad
+P_{\mathrm{str}}:=P_{\Seam,+}P_{\mathrm{sing}}P_\Theta.
+\]
+So the familiar factorized selector is retained only as a corollary of the canonical
+admissibility complex.
+\end{corollary}
+
+\begin{theorem}[Master closure from canonical doubling]
+\label{thm:master-closure}
+\label{ass:remaining-closure-inputs}
+Let $\Tmin^{\mathrm{adm}}$ be admissible and let $X_b$ be the canonical double across $\Seam$.
+Write
+\[
+D_b=
+\begin{pmatrix}
+0&D_{\mathrm{rel}}^-\\
+D_{\mathrm{rel}}^+&0
+\end{pmatrix},
+\qquad
+Q_{\mathrm{tot}}:=Q_{\mathrm{adm}}+d_\Sigma+d_\Sigma^\dagger,
+\qquad
+\Delta_{\mathrm{tot}}:=\{Q_{\mathrm{tot}},Q_{\mathrm{tot}}^\dagger\}.
+\]
+Then all of the following are derived on the same datum:
+\begin{enumerate}[label=(\arabic*), leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item the Calder\'on projector of $D_b$ induces $\APSdom$ canonically;
+    \item the family pairing data are induced canonically, so no separate $\APSfam$ datum remains;
+    \item
+    \[
+    \Padm:=\Pi_{\ker \Delta_{\mathrm{adm}}},
+    \]
+    and the doubled total closure package preserves $\mathrm{Ran}(\Padm)$;
+    \item
+    \[
+    \chi_{\mathrm{orb}}(X_f)=-2,
+    \qquad
+    F\simeq H^1(X_f,\mathbb C)\simeq \mathbb C^3,
+    \qquad
+    N_{\mathrm{fam}}=3;
+    \]
+    \item the harmonic determinant line is parallel and therefore
+    \[
+    \mathrm{Hol}(\nabla_F)\subset SU(3)_F;
+    \]
+    \item admissible bosonic and fermionic reflection positivity hold on $\mathrm{Ran}(\Padm)$;
+    \item $\Padm\Hrel\Padm$ is lower bounded and coercive.
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Relative generating functional]
+\label{def:relative-generating-functional}
+The relative Euclidean generating functional is normalized as
+\[
+Z_{\mathrm{rel}}[J,\eta,\bar\eta]
+:=
+\frac{Z_{\mathrm{adm}}[J,\eta,\bar\eta]}{Z_{\mathrm{ref}}[0,0,0]}.
+\]
+The reference sector is therefore a fixed normalizing denominator rather than a second fluctuating measure that would mix with admissible positivity.
+\end{definition}
+
+\begin{lemma}[Admissible reflection positivity]
+\label{lem:admissible-reflection-positivity}
+Assume
+\[
+[\Theta,P_\Theta]=0,
+\qquad
+\Theta\Padm=\Padm\Theta,
+\]
+the admissible bosonic kernel satisfies the primitive positivity theorem
+\Cref{ass:bernstein-positivity} and is reflection-stable on the admissible sector, and the
+admissible fermionic CAR kernel is reflection positive on that same sector. Then every
+admissible observable $O$ supported in $\tau>0$ satisfies
+\[
+\langle \Theta O,O\rangle_{\mathrm{rel}}
+=
+\frac{1}{Z_{\mathrm{ref}}[0,0,0]}
+\langle \Theta O,O\rangle_{\mathrm{adm}}
+\ge 0.
+\]
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+The quotient form \Cref{def:relative-generating-functional} removes the reference sector from the positivity problem and leaves only a constant denominator. The bosonic sector then follows from the Bernstein superposition of positive heat kernels together with reflection stability on admissible observables. The fermionic sector is handled in the CAR version of reflection positivity, equivalently through positivity of the reflected quadratic kernel or the corresponding Pfaffian form on the admissible subspace.
+\end{proof}
+
+\begin{theorem}[Operative admissibility selector]
+Under \Cref{def:admissibility-complex,lem:admissibility-nilpotency,lem:hodge-admissibility-projector,ass:remaining-closure-inputs}, the operator $\Padm$ is idempotent on the retained branch and realizes the admissibility predicate on all sectors used by the closed compiler statements:
+\[
+\mathsf{Adm}(X)=1
+\quad\Longleftrightarrow\quad
+\Padm X = X.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+By \Cref{lem:hodge-admissibility-projector}, $\Padm$ is the orthogonal projector onto the
+harmonic admissible sector of the complex and therefore idempotent by construction. On the
+admissible branch, \Cref{cor:factorized-admissibility-selector} recovers the older product form
+as a corollary. The predicate and operator languages agree once the positive transport sector is
+fixed.
+\end{proof}
+
+\begin{theorem}[Topological family closure on the admissible branch]
+By \Cref{thm:master-closure,thm:orbifold-aps-family-master,cor:boundary-bulk-occupancy},
+\[
+\chi_{\mathrm{orb}}(X_f)=-2,
+\qquad
+F\cong\mathbb C^3,
+\qquad
+N_{\mathrm{fam}}=3.
+\]
+Consequently
+\[
+\Oadm=N_{\mathrm{fam}}\dim S^+=3\times 16=48,
+\qquad
+\deltatop=\Oadm\,\cthree^4.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+This theorem is now a direct consequence of the master closure theorem from Section~6. The
+topological family closure and the orbifold corner count have already been compressed there
+into one statement, so the present layer merely records the corresponding admissibility
+consequence.
+\end{proof}
+
+\begin{theorem}[Bosonic index and local spectral-scale closure]
+On the admissible branch,
+\[
+\Ind_{\mathrm{rel}}^{\Padm}(\mathcal B_{E_2}^+)=1,
+\qquad
+\Ind_{\mathrm{rel}}^{\Padm}(\mathcal B_{E_3}^+)=0,
+\]
+so the unique light seam-even bosonic zero mode is
+\[
+\Phi\in\Gamma(E_2)\cong(1,2)_{1/2},
+\qquad
+\inv\Phi=+\Phi.
+\]
+Moreover the same closure layer yields
+\[
+\Mpl^2=\frac{\chigeozero^2}{2\pi^2},
+\qquad
+G_N\chigeozero^2=\frac{\pi}{4},
+\qquad
+\vgeo^2=Z_H\,\frac{\mu_\Phi^2(\chigeozero)}{\lambda_\Phi},
+\qquad
+\vgeo=\Mpl\,\gcar\,\beta_{\mathrm{rad}}^2
+\exp\!\left[-\frac{\alpha^{-1}(0)+\delta_{\mathrm{ph}}}{5}\right].
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The bosonic sector is treated as a genuine Callias / Dirac / Dolbeault-type index problem rather than a scalar counting exercise. Relative heat-kernel closure together with \Cref{prop:canonical-bosonic-normalization,lem:two-sheet-zero-mode-normalization} produces the Einstein branch, the canonical Higgs normalization, and the seam-even zero-mode formula for $\vgeo$, with the Newton relation as a corollary of the reduced-Planck normalization.
+\end{proof}
+
+\begin{theorem}[Holonomy form of the Yukawa matrices]
+On the admissible branch, each fermion sector admits the factorization
+\[
+Y_f=D_{L,f}U_fD_{R,f},
+\qquad
+U_f\in SU(3)_F,
+\]
+and, in the family basis,
+\[
+(Y_f)_{ij}
+=
+\lambdaY^{L^L_{f,i}+L^R_{f,j}}
+\left\langle e_i,\mathrm{Hol}_{\Gamma_{ij}}(\nabla_F)e_j\right\rangle.
+\]
+The diagonal path-length rows \Cref{eq:path-length-yukawa} are the singular-value reduction of this matrix statement.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The finite $C_6$ transport geometry fixes the graph-distance weights, while the residual bounded holonomy factors are absorbed into $SU(3)_F$ transport matrices. The diagonal ladder formulas arise once left and right admissible words are paired on the same singular-value channel.
+\end{proof}
+
+\begin{definition}[Center-neutral admissible algebra]
+Let
+\[
+\Asing
+:=
+\overline{\mathrm{span}}\{A_w:\ z(w)=1,\ \varepsilon(w)=+1,\ \Padm A_w=A_w\}.
+\]
+\end{definition}
+
+\begin{theorem}[Hadronic space and confinement closure]
+On the admissible branch, the physical hadronic Hilbert space is
+\[
+\Hhad:=\overline{\Asing|\Omega\rangle}.
+\]
+All physical hadronic states lie in $\Hhad$, while color-nonsinglet free-word sectors are removed by $\Padm$.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Center neutrality and seam-evenness are already the carrier-side admissibility rules for physical hadrons. Passing to the norm closure of the singlet admissible algebra acting on the vacuum gives the completed hadronic space, and no state with $z(w)\neq 1$ survives the selector.
+\end{proof}
+
+\begin{theorem}[Anomaly cancellation and seam inflow]
+On the admissible branch,
+\[
+I_6^{\mathrm{tot}}=0,
+\qquad
+\delta_\Lambda S_{\mathrm{bulk}}+\delta_\Lambda S_{\eta,\Seam}=0.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The one-family packet $S^+$ is exactly the anomaly-free Standard Model family including $\nu^c$. The remaining seam contribution is carried by the relative $\eta$ term, so gauge variation cancels between bulk and seam sectors rather than being left as an uncancelled boundary defect.
+\end{proof}

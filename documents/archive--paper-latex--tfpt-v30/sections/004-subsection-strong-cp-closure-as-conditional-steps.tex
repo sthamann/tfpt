@@ -1,0 +1,371 @@
+\subsection{Strong CP closure as conditional steps}
+
+Define
+\begin{equation}
+\label{eq:strong-cp}
+\bar\theta=\theta_{\mathrm{sheet}}+\arg\det M_u+\arg\det M_d.
+\end{equation}
+The intended closure is decomposed into five conditional steps.
+
+\begin{conditionalstep}[Sheet-odd cancellation]
+The bare $G\widetilde G$ contribution is odd under the sheet exchange and cancels in the relative action, so $\theta_{\mathrm{sheet}}=0$ in the admissible relative sector.
+\end{conditionalstep}
+
+\begin{conditionalstep}[Positive radial kernel]
+The regularized transport kernel induces a positive radial operator $H_f>0$ on the admissible sector, so the transport-side radial mass data carry no intrinsic determinant phase.
+\end{conditionalstep}
+
+\begin{conditionalstep}[Holonomy factorization]
+The physical mass map admits a polar decomposition
+\[
+M_f=U_{f,L}H_fU_{f,R}^\dagger,
+\qquad
+U_{f,L},U_{f,R}\in SU(3)_F,
+\]
+where the unitary factors are family-holonomy transport matrices.
+\end{conditionalstep}
+
+\begin{conditionalstep}[Vanishing determinant phase with weak CP preserved]
+If the physical mass map is defined by that positive radial branch and special-unitary holonomy data, then
+\[
+\arg\det M_f=0.
+\]
+At the same time
+\[
+V_{\mathrm{CKM}}=U_{u,L}^\dagger U_{d,L}
+\]
+may still carry a nontrivial Jarlskog invariant.
+\end{conditionalstep}
+
+\begin{conditionalstep}[RG preservation]
+The vanishing of $\bar\theta$ is preserved under the declared RG and matching map as long as no phase-violating counterterm is inserted by hand.
+\end{conditionalstep}
+
+\begin{conjecture}[Conditional strong-CP closure]
+Under the five conditional steps above,
+\[
+\bar\theta=0.
+\]
+\end{conjecture}
+
+The positive-branch clause is essential here: the closure statement is about the physical mass map once the admissible transport branch has been fixed, not about an arbitrary unitary dressing of the same singular values. The point of the polar decomposition is precisely to separate strong and weak CP cleanly: the positive radial part fixes $\arg\det M_f=0$, while weak CP may survive through the relative family holonomies encoded in $V_{\mathrm{CKM}}$.
+
+\begin{remark}[Admissibility as a unified three-sector motif]
+The admissibility predicate $\mathsf{Adm}$ acts as a single structural principle with three sector projections:
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item \textbf{Electroweak:} seam-even selection picks the unique light Higgs doublet ($\inv\Phi=+\Phi$).
+    \item \textbf{QCD:} center neutrality selects confined hadronic words ($z(w)=1$, $\varepsilon(w)=+1$).
+    \item \textbf{Strong CP:} sheet-odd cancellation kills $\theta_{\mathrm{sheet}}$ in the relative action.
+\end{itemize}
+These are not three independent rules bolted onto different sectors. They are three projections of the same admissible-versus-inadmissible boundary: seam parity, center charge, and sheet exchange are all encoded in the double-cover and involution data of the primitive core. This unification is the conceptual backbone of the transport program.
+\end{remark}
+
+\section{Particle and mass compiler}
+
+This section is the phenomenological heart of the manuscript. It is not meant to flatten all rows into one uniform notion of prediction. Instead it makes the compiler interface explicit: a declared RG map, a kernel-output map, and a mass ledger that separates genuinely derived quantities from solver-level candidates and anchor-dependent comparison rows.
+Accordingly this section is best read through three ledgers:
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item a \emph{primary benchmark ledger} for the narrow main-text comparison surface in \Cref{tab:benchmark},
+    \item \emph{mass-closure ledgers} for fermion, electroweak, and hadronic rows in \Cref{tab:sm-mass-ledger-ew,tab:sm-mass-ledger-quarks},
+    \item and a \emph{supplementary / anchor-dependent ledger} in the appendix for rows that remain comparison-heavy or exploratory.
+\end{itemize}
+
+\subsection{RG map for compiler outputs}
+
+The symbol $\mathcal R_{\SM}$ denotes the declared comparison map from TFPT outputs to scheme-specified observables. Here it is the bookkeeping package
+\[
+\mathcal R_{\SM}
+=
+\bigl(
+\mu_{\mathrm{match}},\ \{\mu_{\mathrm{thr}}\},\ \text{running convention},\ \text{scheme conversion},\ \text{observable map}
+\bigr),
+\]
+and we write
+\[
+\bar\alpha^{(5)}(M_Z):=\alpha_{\mathrm{em}}^{\overline{\mathrm{MS}},\,n_f=5}(M_Z).
+\]
+with the following restricted interpretation in the main text:
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item $\alpha^{-1}(0)$ is compared in the Thomson-limit on-shell convention, with the CODATA 2022 / NIST value taken as the normative low-energy reference rather than the separate PDG electroweak extraction from $a_e$,
+    \item $\bar\alpha^{(5)}(M_Z)^{-1}$ is compared after a declared threshold map into the $\overline{\mathrm{MS}}$ language at $\mu=M_Z$,
+    \item neutrino-angle rows use the NuFIT normal-ordering reference snapshot based on data available through November 2025,
+    \item the $\Omega_b$ row is reconstructed from the Planck 2018 base-$\Lambda$CDM pair $(\Omega_b h^2,H_0)$ via $\Omega_b=(\Omega_b h^2)/h^2$ with $h=H_0/100$,
+    \item the $\beta$ row uses the Minami--Komatsu extraction from Planck 2018 polarization as the normative benchmark, while PR4 and PR4 map-space analyses are kept only as supplementary context,
+    \item direct-search interface rows are not treated as precision residuals and are therefore kept out of the main benchmark table.
+\end{itemize}
+For later use we also set
+\[
+\beta_{\mathrm{rad}}:=\frac{\phiz}{4\pi}.
+\]
+
+\subsection{Central hard-kernel quantities}
+
+The roles of $\cthree$ and $\phiz$ should not remain implicit. They are the central hard numeric quantities of the present main-text kernel. The downstream E$_8$ parameter $\kappa_{E8}$ is isolated in the next section rather than folded back into the kernel center.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.11\linewidth}>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedright\arraybackslash}p{0.24\linewidth}X@{}}
+\toprule
+Quantity & Closed value & Role / status & Named outputs \\
+\midrule
+$\cthree$ & \makecell[l]{$1/(8\pi)$\\$=\num{0.03979}$} & Hard seam normalization & $\deltatop$, $C_{a\gamma\gamma}=-4\cthree$, $\sigma=\cthree^2\chi_{\QCD}^2$, $M/\bar M_{\mathrm{Pl}}=\sqrt{8\pi}\cthree^4$ \\
+$\phiz$ & \makecell[l]{$\frac{1}{6\pi}+\frac{3}{256\pi^4}$\\$=\num{0.05317}$} & Hard corrected opening; bridge reinterpretation via $\deltatop=\Oadm\cthree^4$ & $\beta_{\mathrm{rad}}=\phiz/(4\pi)$, $\lambda_C=\sqrt{\phiz(1-\phiz)}$, $\sin^2\theta_{13}$, charged-lepton ladders \\
+\bottomrule
+\end{tabularx}
+\caption{Central hard-kernel quantities and the main predictions they feed.}
+\label{tab:kernel-output-map}
+\end{table}
+
+The most exposed closed formulas driven by these constants are those already displayed in \Cref{eq:kernel-benchmark-formulas}.
+
+\subsection{Mass-closure ledgers}
+
+For the mass surface itself the main text now uses only three row-level status words:
+\emph{derived}, \emph{candidate}, and \emph{anchor-dependent}. The explicit candidate formulas, neutrino rows, and transport-ratio source data are moved to the appendix so that the main text shows a compact comparison-ready ledger rather than a mixed formula dump.
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedleft\arraybackslash}p{0.15\linewidth}>{\raggedleft\arraybackslash}p{0.15\linewidth}>{\raggedleft\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.12\linewidth}@{}}
+\toprule
+Particle & TFPT source class & TFPT value & PDG value & Residual & Status \\
+\midrule
+$e$ & constant-factory candidate & \num{0.52096} MeV & \num{0.510999} MeV & $+1.95\%$ & candidate \\
+$\mu$ & constant-factory candidate & \num{107.49} MeV & \num{105.658} MeV & $+1.73\%$ & candidate \\
+$\tau$ & constant-factory candidate & \num{1.7688} GeV & \num{1.77686} GeV & $-0.45\%$ & candidate \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Calibration surface (anchor-dependent; zero residual = anchor consistency, not prediction):}} \\
+$W^\pm$ & boundary EW input at $M_Z$ & \num{80.369} GeV & \num{80.369} GeV & $0.00\%$ & anchor \\
+$Z$ & boundary EW input at $M_Z$ & \num{91.188} GeV & \num{91.188} GeV & $0.00\%$ & anchor \\
+$H$ & boundary Higgs input & \num{125.25} GeV & \num{125.25} GeV & $0.00\%$ & anchor \\
+\bottomrule
+\end{tabularx}
+\caption{Compact mass surface, electroweak and charged-lepton sector. Zero residual on anchor-dependent rows records consistency with the chosen anchor only.}
+\label{tab:sm-mass-ledger-ew}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedleft\arraybackslash}p{0.15\linewidth}>{\raggedleft\arraybackslash}p{0.15\linewidth}>{\raggedleft\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.12\linewidth}@{}}
+\toprule
+Particle & TFPT source class & TFPT value & PDG value & Residual & Status \\
+\midrule
+$u$ & light-quark solver relative to strange anchor, $\overline{\mathrm{MS}}$ at $2$ GeV & \num{2.195} MeV & \num{2.16} MeV & $+1.62\%$ & derived \\
+$d$ & light-quark solver relative to strange anchor, $\overline{\mathrm{MS}}$ at $2$ GeV & \num{4.67} MeV & \num{4.67} MeV & $+0.00\%$ & derived \\
+$\pi^0$ & GMOR hadronic cross-check & \num{134.979} MeV & \num{134.977} MeV & $+0.00\%$ & derived \\
+$p$ & hadron mass-ladder cross-check & \num{935.03} MeV & \num{938.272} MeV & $-0.35\%$ & derived \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Calibration surface (anchor-dependent):}} \\
+$s$ & strange-quark anchor, $\overline{\mathrm{MS}}$ at $2$ GeV & \num{93.4} MeV & \num{93.4} MeV & $0.00\%$ & anchor \\
+$c$ & up-type ratio ladder with threshold input & \num{1.27} GeV & \num{1.27} GeV & $0.00\%$ & anchor \\
+$b$ & down-type ratio ladder with threshold input & \num{4.18} GeV & \num{4.18} GeV & $0.00\%$ & anchor \\
+$t$ & up-type ratio ladder with threshold input & \num{172.57} GeV & \num{172.57} GeV & $0.00\%$ & anchor \\
+\bottomrule
+\end{tabularx}
+\caption{Compact mass surface, quark and first-hadron sector. Zero residual on anchor-dependent rows records consistency with the chosen anchor only.}
+\label{tab:sm-mass-ledger-quarks}
+\end{table}
+
+The compact ledgers are intentionally narrow: they show the comparison surface, not the internal algebra. Explicit candidate formulas for $e,\mu,\tau$, neutrino branch values, and the ladder / ratio source rows for the quark sector are collected in the appendix-level supplementary mass-source table \Cref{tab:mass-source-supplement}.
+
+\section{\texorpdfstring{E$_8$}{E8} as downstream scale grammar}
+
+E$_8$ is not part of the primitive carrier ontology and should not compete with the seam data, the carrier theorem, or the completion program for explanatory priority. In the present main-text form it plays one restricted role only: a downstream scale grammar attached to the already fixed carrier norm.
+\[
+\kappa_{E8}:=\frac{\gamma}{\ln(248/60)}=\frac{5/6}{\ln(248/60)}.
+\]
+
+\subsection{Block formula and reading discipline}
+
+A physical E$_8$ representation is not the stage label $n$ alone, but the full block triple $(n,r,I_1)$. The compressed block formula is
+\begin{equation}
+\label{eq:e8-block-formula}
+X(n,r,I_1)
+=
+\frac{\Mplunred}{8}\,\sin^2\theta_{13}\,
+\left(\frac{60-2n}{60}\right)^{\!\kappa_{E8}}
+e^{-(8-r)/64}\,
+e^{-12\pi I_1},
+\end{equation}
+where $\Mplunred\approx\num{1.2209e19}\;\mathrm{GeV}$ is the \emph{unreduced} Planck mass (not $\Mpl=\Mplunred/\sqrt{8\pi}$), $n$ is the ladder stage with $D_n=60-2n$, $r$ is a mild block-multiplicity label ($1\le r\le 8$), and $I_1$ is the dominant block trace. The reading discipline is strict: $n$ orders the ladder, $I_1$ controls most of the exponential suppression via $e^{-12\pi I_1}$, and $r$ only refines the scale. In the relevant energy range the step ratio between successive stages is
+\[
+\frac{X_{n+1}}{X_n}=\left(\frac{58-2n}{60-2n}\right)^{\!\kappa_{E8}}\approx 0.96\text{--}0.97,
+\]
+so large hierarchies come almost entirely from $I_1$, not from $n$.
+
+\subsection{Restricted stage atlas}
+
+With the restrictive trace grammar $I_1\in\{\frac{1}{12},\frac{1}{6},\frac{1}{3},\frac{1}{2},\frac{5}{8},\frac{41}{48},1,\frac{17}{16}\}$ the ladder produces a set of robust stage identifications. The main-text table shows only the robust nodes; the full real-domain atlas up to $n=29$---including restricted-scan candidates and IR tail conjectures---is given in \Cref{tab:e8-full-atlas} in the appendix.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}>{\centering\arraybackslash}p{0.04\linewidth}>{\centering\arraybackslash}p{0.04\linewidth}>{\raggedright\arraybackslash}p{0.07\linewidth}>{\raggedleft\arraybackslash}p{0.14\linewidth}>{\raggedleft\arraybackslash}p{0.14\linewidth}>{\raggedright\arraybackslash}p{0.10\linewidth}Y@{}}
+\toprule
+$n$ & $r$ & $I_1$ & $X$ (GeV) & Target & Residual & Identification \\
+\midrule
+$3$ & $8$ & $1/2$ & $\num{2.159e8}$ & $\num{2.160e8}$ & $0.06\%$ & $\mu_{\cthree}$ RG crossing \\
+$5$ & $5$ & $1/12$ & $\num{1.307e15}$ & $\num{1.31e15}$ & $0.2\%$ & seesaw $M_R$ \\
+$10$ & $1$ & $1/3$ & $\num{8.826e10}$ & direct search & --- & PQ scale $f_a$ \\
+$12$ & $2$ & $41/48$ & $\num{246.35}$ & $\num{246.22}$ & $0.05\%$ & EW vacuum $v$ \\
+$14$ & $4$ & $17/16$ & $\num{0.0921}$ & $\num{0.0927}$ & $0.6\%$ & pion band \\
+$15$ & $4$ & $1$ & $\num{0.935}$ & $\num{0.938}$ & $0.3\%$ & hadron anchor \\
+$21$ & $4$ & $1/6$ & $\num{3.051e13}$ & $\num{3.06e13}$ & $0.3\%$ & inflation $M$ \\
+$21$ & $5$ & $41/48$ & $\num{171.8}$ & $\num{172.6}$ & $0.4\%$ & top quark \\
+$24$ & $7$ & $5/8$ & $\num{7.895e5}$ & $\num{7.920e5}$ & $0.3\%$ & $\mu_{\phiz}$ RG crossing \\
+$25$ & $5$ & $1$ & $\num{0.498}$ & $\num{0.498}$ & $0.0\%$ & kaon band \\
+$25$ & $7$ & $41/48$ & $\num{125.5}$ & $\num{125.25}$ & $0.2\%$ & Higgs mass \\
+$26$ & $2$ & $1$ & $\num{0.417}$ & $\num{0.42}$ & $0.7\%$ & $\sqrt{\sigma}$ confinement \\
+\bottomrule
+\end{tabularx}
+\caption{Robust E$_8$ stage atlas (restrictive trace grammar only). Restricted-scan candidates and tail conjectures are in \Cref{tab:e8-full-atlas}.}
+\label{tab:e8-stage-atlas}
+\end{table}
+
+\begin{remark}[Non-independence of stage-atlas entries]
+The stage-atlas entries are not statistically independent confirmations. They are projections of a single block grammar $X(n,r,I_1)$ with three discrete parameters. The grammar organizes scale ratios once the carrier and transport seeds are fixed, but the number of ``hits'' is bounded by the number of $(n,r,I_1)$ triples that can be formed, not by the number of independent physical measurements. This is the scale-grammar analogue of the one-seed warning for the benchmark bridge rows.
+\end{remark}
+
+\subsection{Split-node structure}
+
+Two stages carry a particularly revealing double structure.
+
+\begin{proposition}[Inflation--top split node]
+At $n=21$, the E$_8$ block formula admits two well-separated physical identifications:
+\[
+X(21,4,\tfrac16)\approx\num{3.051e13}\;\mathrm{GeV}\quad(\text{inflation scale}),
+\qquad
+X(21,5,\tfrac{41}{48})\approx\num{171.8}\;\mathrm{GeV}\quad(\text{top mass}).
+\]
+The same orbit depth carries the UV and IR endpoints of the electroweak hierarchy.
+\end{proposition}
+
+\begin{proposition}[Higgs--kaon split node]
+At $n=25$, the block formula admits
+\[
+X(25,7,\tfrac{41}{48})\approx\num{125.5}\;\mathrm{GeV}\quad(\text{Higgs mass}),
+\qquad
+X(25,5,1)\approx\num{0.498}\;\mathrm{GeV}\quad(\text{kaon band}).
+\]
+Again a single orbit depth carries two widely separated physical sectors, distinguished entirely by the block trace $I_1$.
+\end{proposition}
+
+The split-node structure shows that $n$ is a radial orbit coordinate and $I_1$ is the sector projection. A physical representation of the E$_8$ ladder is therefore $(n,r,I_1)$, not $n$ alone.
+
+\subsection{Permissiveness barrier and real-domain boundary}
+
+\begin{remark}[Permissiveness barrier at $n=18{,}19$]
+Under the restricted trace grammar, stages $n=18$ and $n=19$ have no unambiguous physical target. If $I_1$ is allowed to scan over all simple rationals, these stages can mimic almost any scale between $10^2$ and $10^{16}$~GeV. They mark the exact boundary where E$_8$ without a derived block-trace theorem becomes too permissive. The open key question of the E$_8$ layer is therefore not the ladder itself but the derivation of $I_1(B)$ from carrier and block structure. Until that derivation is available, stages $18$ and $19$ are the sharpest internal test points.
+\end{remark}
+
+\begin{remark}[Real-domain theorem]
+The hard nilpotent chain gives $D_n=60-2n$ for $n=1,\dots,26$. Real-valued continuation is possible up to $n=29$ ($D_{29}=2>0$). At $n=30$, $D_n=0$ and the power $(D_n/60)^{\kappa_{E8}}$ hits a terminal wall. For $n\ge31$, $D_n<0$ and the irrational exponent $\kappa_{E8}$ produces complex values. The physically meaningful real-valued ladder therefore terminates at $n=29$.
+\end{remark}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}Y@{}}
+\toprule
+Quantity & Value on the retained branch & Main-text role \\
+\midrule
+$\kappa_{E8}$ & \num{0.58723} & downstream ladder exponent fixed by $\gamma=5/6$ \\
+$D_1$ & $60$ & optional ladder start index; arithmetically tied to the canonical branch \\
+$f_a$ & $\num{8.86e10}\,\mathrm{GeV}$ & representative axion-side scale on the retained branch \\
+$m_a$ & $\num{65.19}\,\mu\mathrm{eV}$ & representative downstream mass scale \\
+$\nu_a$ & $\num{15.764}\,\mathrm{GHz}$ & representative frequency target \\
+\bottomrule
+\end{tabularx}
+\caption{Short main-text E$_8$ parameter ledger. The role of E$_8$ here is organizational rather than ontological.}
+\label{tab:e8-main-text}
+\end{table}
+
+\section{Primary benchmark map and prediction ledger}
+
+The comparison values used in this section follow representative CODATA, PDG, NuFIT, Planck, and birefringence references \cite{codata2022,pdg2025,nufit2025,planck2018,minamiKomatsu2020,eskilt2023,sullivan2025}. The main-text table is intentionally restricted to six rows whose comparison language is already reasonably convention-complete. The compact mass surface is given separately in \Cref{tab:sm-mass-ledger-ew,tab:sm-mass-ledger-quarks}; more exploratory rows and the main unresolved comparison are moved to Appendix~\ref{app:benchmarks}.
+Here \enquote{carrier closure} abbreviates the self-consistent electromagnetic closure expression with explicit $\phiz(\alpha)$ and second-order term $\delta_2=\frac54\deltatop^2$. The $\alpha^{-1}(0)$ row is therefore structurally different from the four bridge rows $(\beta,\Omega_b,\lambda_C,\sin^2\theta_{13})$, which are all projections of the same retained seed $\phiz$.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}llrrrrll@{}}
+\toprule
+\makecell[l]{Obs.} & \makecell[l]{TFPT\\formula} & \makecell[r]{TFPT\\value} & \makecell[r]{Exp.\\value} & \makecell[r]{Unc.} & \makecell[r]{Residual} & \makecell[l]{Scale /\\scheme} & Status \\
+\midrule
+$\alpha^{-1}(0)$ & \makecell[l]{self-consistent carrier closure\\$\phiz(\alpha)$ and $\delta_2$} & \num{137.0359992} & \num{137.03599918} & \num{2.1e-8} & $+1.87\sigma$ & \makecell[l]{Thomson\\on-shell} & Hard \\
+\makecell[l]{$\bar\alpha^{(5)}$\\$(M_Z)^{-1}$} & \makecell[l]{$\mathcal R_{\SM}$\\$[\alpha(0)]$} & \num{127.9405} & \num{127.93} & \num{0.008} & $+1.32\sigma$ & \makecell[l]{$\overline{\mathrm{MS}}$\\at $M_Z$} & Bridge \\
+$\lambda_C$ & $\sqrt{\phiz(1-\phiz)}$ & \num{0.22438} & \num{0.22431} & \num{8.5e-4} & $+0.08\sigma$ & \makecell[l]{CKM\\proxy} & Bridge \\
+$\sin^2\theta_{13}$ & \makecell[l]{$\phiz$\\$e^{-5/6}$} & \num{0.02311} & \num{0.02224} & \num{5.7e-4} & $+1.524\sigma$ & \makecell[l]{NuFIT\\NO} & Bridge \\
+$\Omega_b$ & \makecell[l]{$(4\pi-1)$\\$\beta_{\mathrm{rad}}$} & \num{0.04894} & \num{0.04930} & \num{8.57e-4} & $-0.421\sigma$ & \makecell[l]{Planck 2018\\from $\Omega_b h^2$} & Bridge \\
+$\beta$ & \makecell[l]{$\beta_{\mathrm{rad}}$\\in degrees} & \num{0.242} & \num{0.35} & \num{0.14} & $-0.77\sigma$ & \makecell[l]{Planck 2018\\Minami--Komatsu} & Bridge \\
+\bottomrule
+\end{tabular}}
+\caption{Primary benchmark table for the main-text claims. Supplementary rows and out-of-sample checks are collected in Appendix~\ref{app:benchmarks}.}
+\label{tab:benchmark}
+\end{table}
+
+\begin{remark}[One seed, four projections]
+The bridge rows are not statistically independent hits. With
+\[
+\beta_{\mathrm{rad}}=\frac{\phiz}{4\pi},
+\qquad
+\Omega_b=(4\pi-1)\beta_{\mathrm{rad}},
+\qquad
+\lambda_C=\sqrt{\phiz(1-\phiz)},
+\qquad
+\sin^2\theta_{13}=\phiz e^{-\gamma},
+\]
+the four-row map is a one-variable seed map
+\[
+\mathcal S(\phiz):=\bigl(\beta_{\mathrm{rad}},\Omega_b,\lambda_C,\sin^2\theta_{13}\bigr),
+\]
+with Jacobian
+\[
+\frac{d\mathcal S}{d\phiz}
+=
+\left(
+\frac{1}{4\pi},
+\,
+1-\frac{1}{4\pi},
+\,
+\frac{1-2\phiz}{2\sqrt{\phiz(1-\phiz)}},
+\,
+e^{-\gamma}
+\right).
+\]
+Thus $\beta$, $\Omega_b$, $\lambda_C$, and $\sin^2\theta_{13}$ are one seed and four shadows, not four detached benchmark events. They remain in the table because their comparison conventions and uncertainty models differ, not because the underlying algebraic source is independent.
+\end{remark}
+
+\subsection{Compact prediction ledger}
+
+The main benchmark table shows only a narrow comparison surface. To keep the compiler structure visible, \Cref{tab:prediction-ledger} summarizes which output packages belong to which layer of the paper.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.12\linewidth}YY@{}}
+\toprule
+Domain & Status & Output package & Source layer \\
+\midrule
+Carrier packet & Hard & $E_3\oplus E_2$, $G_{\SM}^{\mathrm{glob}}$, $S^+$, $\gamma$, $\bone$ & minimal carrier theorem and half-spinor decomposition \\
+Kernel numerics & Hard & $\cthree$, $\phiz$, $\alpha$, $C_{a\gamma\gamma}$, $\beta$, $\lambda_C$ & carrier-form closure equation and seam constants \\
+Family / occupancy layer & Bridge & $F$, $\Oadm=48$, $\deltatop$ & monodromy and occupancy bridge \\
+Geometric compiler & Completion & $\Phi$, $\Mpl$, $v$, $R^2$ channel & bosonic index plus relative heat-kernel closure \\
+Transport compiler & Completion & $\mathcal Y_f$, $m_f$, CKM, PMNS & phase-distance kernel and path-length mass closure \\
+QCD closure & Completion & confinement, hadronic admissibility, $\bar\theta=0$ & center neutrality plus positive-kernel hardening \\
+Downstream ladder & Conditional & E$_8$ scale ratios and inflation-side imports & optional appendix-level scale grammar \\
+Observer layer & Conditional & record algebra, horizons, prediction semantics & appendix-level extension \\
+\bottomrule
+\end{tabularx}
+\caption{Compact prediction ledger for the carrier-first compiler presentation.}
+\label{tab:prediction-ledger}
+\end{table}
+

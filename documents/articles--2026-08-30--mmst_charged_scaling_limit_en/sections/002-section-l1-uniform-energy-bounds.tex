@@ -1,0 +1,339 @@
+\section{L1: uniform energy bounds}
+\label{sec:L1}
+
+\subsection{The continuum estimate is complete}
+
+\begin{lemma}[Linear energy bound for the limiting norm-two field]
+\label{lem:continuumEB}
+In the level-one lattice VOA of the glued rank-eight lattice, the
+norm-two vector $e^\lambda$ is a weight-one affine current.  For every
+$f\in C^\infty(S^1)$ there is a constant $c_f$ such that
+\[
+ \norm{Y(e^\lambda,f)\xi}
+ \le c_f\norm{(1+L_0)\xi}.
+\tag{4.1}\label{eq:continuumEB}
+\]
+\end{lemma}
+
+\begin{proof}
+The norm formula gives $h_\lambda=\norm{\lambda}^2/2=1$.
+The weight-one subspace of the lattice VOA is the direct sum of the
+Cartan currents and the root vectors $e^\alpha$ for
+$\norm{\alpha}^2=2$.  Their modes satisfy the level-one affine
+commutation relations.  Positivity of the Sugawara expression for $L_0$
+gives, for a fixed normalized current $J$,
+\[
+ \norm{J_n\xi}
+ \le C(1+|n|)\norm{(1+L_0)^{1/2}\xi}.
+\tag{4.2}\label{eq:currentmode}
+\]
+Indeed, on each $L_0$ eigenspace, the positive quadratic Sugawara sum
+contains $J_{-n}J_n$; commuting a negative mode to the right contributes
+the central term $|n|$.  Summing
+$\sum_n|\widehat f_n|\norm{J_n\xi}$ and applying Cauchy--Schwarz with
+$\sum_n(1+|n|)^4|\widehat f_n|^2<\infty$ gives
+\[
+ \norm{J(f)\xi}
+ \le C\norm{f}_{H^2}\norm{(1+L_0)\xi}.
+\]
+This is also the weight-one case of
+Theorem~\ref{thm:CKLWenergy}.
+\end{proof}
+
+\subsection{The edge-projected lattice Green form}
+
+We now define and estimate the concrete $G_N$ used by the collar
+bosonization.  It is important that this is a definition from the frozen
+QWZ edge band, not a continuum ansatz.
+
+Use antiperiodic (NS) momenta
+\[
+ p_n=\frac{2\pi}{N}\left(n+\frac12\right),
+ \qquad -\frac N2\le n<\frac N2,
+\tag{4.3}\label{eq:NSmomenta}
+\]
+and Hardy occupation $\nu_n=\id_{\{n<0\}}$.  The same argument works
+after a fixed deck shift because only the number of indices crossing the
+Hardy cut is used.  Let $u(p)$ be the normalized top-edge eigenvector of
+the $2N_y$-dimensional strip matrix through $p=0$.  Away from the
+crossing choose any normalized continuation; the global bound below
+uses no regularity there.
+
+For $1\le m\le N/2$, define the finite edge-current structure factor
+\[
+ S_N(m)
+ :=\sum_{n=-m}^{-1}
+ \left|\ip{u(p_{n+m})}{u(p_n)}\right|^2,
+\tag{4.4}\label{eq:structurefactor}
+\]
+and extend it evenly to negative $m$.  With the lattice derivative
+\eqref{eq:latticesymbol}, the Green multiplier is
+\[
+ g_N(m):=\frac{S_N(m)}{2\omega_N(m)^2}.
+\tag{4.5}\label{eq:greenmultiplier}
+\]
+Let
+$\mathbb M_N=\{-N/2+1,\ldots,-1,1,\ldots,N/2\}$ be the fundamental
+nonzero Fourier representatives.  For an eight-component zero-mean
+charge $q$ in the band-limited trigonometric space $\V_N$, put
+\[
+ \mathcal Q_N(q):=\ip{q}{G_Nq}
+ =\sum_{a=1}^8\sum_{m\in\mathbb M_N}
+ g_N(m)|\widehat q_a(m)|^2.
+\tag{4.6}\label{eq:greenform}
+\]
+The continuum chiral form is
+\[
+ \mathcal Q_{\rm ch}(q)
+ =\frac12\sum_{a=1}^8\sum_{m\ne0}
+ \frac{|\widehat q_a(m)|^2}{|m|}.
+\tag{4.7}\label{eq:chiralgreen}
+\]
+The diagonal logarithm is omitted on both sides by the same Wick
+normal ordering.
+
+\begin{lemma}[Exact transverse edge doublet]\label{lem:edgedoublet}
+At $p=0$, the $M=1$, $N_y=8$ strip Hamiltonian has two zero modes, one
+on each boundary.  The remaining spectrum is $\{+1,-1\}$, each with
+multiplicity seven.  The two eigenbranches through zero are analytic
+near $p=0$, have slopes $+1$ and $-1$, and are separated there from the
+bulk complement by $\delta_{\rm bulk}=1$.
+\end{lemma}
+
+\begin{proof}
+At $p=0$ the onsite term in \eqref{eq:qwz} vanishes.  The transverse
+hopping is
+\[
+ T_y=\frac{\sigma_y}{2i}-\frac{\sigma_z}{2}.
+\]
+It has rank one and singular value one.  In the eigenbasis of
+$\sigma_x$, the open strip is the orthogonal sum of seven two-site
+blocks
+$\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$ and two
+unpaired boundary vectors.  Hence the stated spectrum and
+$\delta_{\rm bulk}=1$.  The derivative of the onsite matrix at zero is
+$\sigma_x$; its compression to the two boundary zero modes is diagonal
+with eigenvalues $+1$ and $-1$.  Analytic perturbation theory for this
+isolated two-dimensional spectral subspace, followed by diagonalization
+of the first derivative inside it, gives two analytic branches with
+those slopes.
+\end{proof}
+
+\begin{lemma}[Sharp lattice-symbol comparison]\label{lem:sine}
+For every $N$ and $0<|m|\le N/2$,
+\[
+ \frac{2}{\pi}|m|\le\omega_N(m)\le |m|.
+\tag{4.8}\label{eq:sinecomparison}
+\]
+Both constants are sharp.
+\end{lemma}
+
+\begin{proof}
+Set $x=\pi|m|/N\in(0,\pi/2]$.  Concavity of $\sin x$ on this interval
+places its graph above the chord joining $(0,0)$ and $(\pi/2,1)$, so
+$\sin x\ge2x/\pi$.  The inequality $\sin x\le x$ gives the upper bound.
+The lower constant is attained at $|m|=N/2$, and the upper constant is
+approached as $|m|/N\to0$.
+\end{proof}
+
+\begin{lemma}[Particle--hole Schur bound]\label{lem:Schur}
+For every $N$ and $0<|m|\le N/2$,
+\[
+ 0\le S_N(m)\le |m|.
+\tag{4.9}\label{eq:Schur}
+\]
+\end{lemma}
+
+\begin{proof}
+For $m>0$, exactly $m$ occupied Hardy indices
+$n=-m,\ldots,-1$ are carried across the Fermi cut.  Every summand in
+\eqref{eq:structurefactor} lies in $[0,1]$ by Cauchy--Schwarz and the
+normalization of $u(p)$.  This proves the claim; evenness handles
+$m<0$.  Equivalently, this is the Schur bound for the compression of the
+momentum-shift partial isometry between occupied and unoccupied edge
+subspaces.
+\end{proof}
+
+\begin{lemma}[Bulk resolvent comparison]\label{lem:resolvent}
+Assume the bulk-edge decomposition \eqref{eq:bulkgap}.  For
+$z$ on a contour at distance $\delta_{\rm bulk}/2$ from the bulk
+spectrum and for two bulk Hamiltonians $H_{\rm b},\widetilde H_{\rm b}$,
+\[
+ \norm{(z-H_{\rm b})^{-1}-(z-\widetilde H_{\rm b})^{-1}}
+ \le\frac{4}{\delta_{\rm bulk}^2}
+       \norm{H_{\rm b}-\widetilde H_{\rm b}}.
+\tag{4.10}\label{eq:resolventidentity}
+\]
+Consequently the corresponding bulk spectral projections differ by at
+most a contour-length constant times the right-hand side.
+\end{lemma}
+
+\begin{proof}
+The resolvent identity gives
+\[
+ (z-H_{\rm b})^{-1}-(z-\widetilde H_{\rm b})^{-1}
+ =(z-H_{\rm b})^{-1}(H_{\rm b}-\widetilde H_{\rm b})
+   (z-\widetilde H_{\rm b})^{-1}.
+\]
+Both resolvent norms are at most $2/\delta_{\rm bulk}$.  Integrating the
+identity in the Riesz formula proves the projection statement.
+\end{proof}
+
+\begin{remark}
+Lemma~\ref{lem:resolvent} controls the massive transverse complement.
+It supplies the isolated analytic edge subspace used in
+Lemma~\ref{lem:edgedoublet}, but it cannot by itself furnish the
+$|m|^{-1}$ bound in \eqref{eq:chiralgreen}.  That bound comes from the
+exact Hardy particle--hole count and Lemma~\ref{lem:sine}.
+\end{remark}
+
+\begin{theorem}[Uniform Green-form domination and Sobolev convergence]
+\label{thm:UGF}
+For the edge-projected frozen $M=1$, $N_y=8$ QWZ collar, every
+zero-mean $q\in\V_N\otimes\C^8$ satisfies
+\[
+ 0\le\mathcal Q_N(q)
+ \le\frac{\pi^2}{4}\mathcal Q_{\rm ch}(q).
+\tag{4.11}\label{eq:UGFhere}
+\]
+Thus one may take the all-volume constant
+\[
+ K_G=\frac{\pi^2}{4}=2.467401100272\ldots .
+\tag{4.12}\label{eq:KG}
+\]
+If $P_N$ is Fourier projection onto $|m|\le N/2$, then
+$G_NP_N\to G_{\rm ch}$ in local Sobolev quadratic-form norm:
+\[
+ \left|\mathcal Q_N(P_Nq)-\mathcal Q_{\rm ch}(q)\right|
+ \le\varepsilon_N\norm{q}_{H^2(S^1;\C^8)}^2,
+ \qquad\varepsilon_N\longrightarrow0.
+\tag{4.13}\label{eq:SobolevUGF}
+\]
+\end{theorem}
+
+\begin{proof}
+Lemmas~\ref{lem:sine} and \ref{lem:Schur} give, mode by mode,
+\[
+ 0\le g_N(m)
+ =\frac{S_N(m)}{2\omega_N(m)^2}
+ \le\frac{|m|}{2(2|m|/\pi)^2}
+ =\frac{\pi^2}{8|m|}
+ =\frac{\pi^2}{4}\frac1{2|m|}.
+\tag{4.14}\label{eq:modeUGF}
+\]
+Multiplication by $|\widehat q_a(m)|^2$ and summation over the modes and
+eight independent components proves \eqref{eq:UGFhere}.  Notice that
+the number of components does not multiply $K_G$.
+
+It remains to prove convergence.  Fix $m$.  The $|m|$ terms in
+\eqref{eq:structurefactor} involve momenta satisfying
+$|p_n|+|p_{n+m}|=O_m(N^{-1})$.  By
+Lemma~\ref{lem:edgedoublet}, $u(p)$ is norm-continuous there, uniformly
+over this finite set.  Consequently
+\[
+ S_N(m)\longrightarrow |m|,
+\qquad
+ \frac{\omega_N(m)}{|m|}\longrightarrow1,
+\qquad
+ g_N(m)\longrightarrow\frac1{2|m|}.
+\tag{4.15}\label{eq:pointwisegreen}
+\]
+Define
+\[
+ \varepsilon_N:=
+ \sup_{0<|m|\le N/2}
+ \frac{|g_N(m)-(2|m|)^{-1}|}{(1+m^2)^2}
+ +\sup_{|m|>N/2}\frac{1}{2|m|(1+m^2)^2}.
+\tag{4.16}\label{eq:epsilonN}
+\]
+For any fixed $M$, the first supremum over $|m|\le M$ tends to zero by
+\eqref{eq:pointwisegreen}.  For $|m|>M$,
+\eqref{eq:modeUGF} bounds the numerator by
+$(K_G+1)/(2|m|)$, uniformly in $N$; hence the remaining supremum tends
+to zero as $M\to\infty$.  Thus $\varepsilon_N\to0$.  Parseval's identity
+and the definition of the $H^2$ norm now give
+\eqref{eq:SobolevUGF}.
+\end{proof}
+
+\begin{theorem}[L1 after the proved Green estimate]
+\label{thm:L1reduction}
+For the edge-projected bosonization, assume only that the normalized
+cocycles and zero-mode charge shifts have norm one in all four grades.
+Then for every smooth $f$ the bound \eqref{eq:L1} holds with $p=1$ and
+\[
+ C_f\le C(\pi^2/4,\lambda)\norm{f}_{H^2},
+\tag{4.17}\label{eq:Cf}
+\]
+independent of $N$.
+\end{theorem}
+
+\begin{proof}
+Bosonic Wick ordering factors a mode of \eqref{eq:chargedfield} into the
+norm-one zero-mode shift and exponentials of creation and annihilation
+currents.  The normal-ordered lattice-VOA estimate is the finite-mode
+version of Theorem~\ref{thm:CKLWenergy}; its constant depends on the
+Gaussian contraction only through the Green quadratic form.  Theorem
+\ref{thm:UGF} bounds that contraction uniformly by the continuum form
+with $K_G=\pi^2/4$.  The norm-two vector has weight one, so
+Lemma~\ref{lem:continuumEB} and \eqref{eq:smearedbound} give degree
+$p=1$ and \eqref{eq:Cf}.  Wick scalar factors are bounded by the same
+quadratic-form domination.
+\end{proof}
+
+\begin{remark}[Scope of the proved UGF]
+Theorem~\ref{thm:UGF} is an all-$N$ theorem for the edge-projected
+bosonization used in \eqref{eq:chargedfield}; it is not a fit to the six
+tested sizes.  It does not prove that every microscopic full-CAR density
+operator belongs to this bosonic edge algebra.  Excluding additional
+bulk/ultraviolet local scaling operators is exactly the separate
+\textup{(ALG-EXH)} condition.  A completely gapless transverse covariance
+would contribute $O(N)$ particle--hole channels already at $m=1$ and
+would violate \eqref{eq:UGFhere}; the isolated one-branch hypothesis is
+therefore load-bearing.
+\end{remark}
+
+\paragraph{Finite audit (numerical support, not proof).}
+The companion probe
+\path{experiments/tfpt-discovery/mmst_ugf_bound_probe.py}
+checks every displayed inequality at
+$N=16,24,32,48,64,96$.  It finds
+$\max_{N,m}2|m|g_N(m)=1.029399027646<K_G$, verifies
+$\delta_{\rm bulk}=1$ and the unit edge slope, and rejects both a
+gapless transverse mutant (whose ratio grows from $64.829$ to $384.137$)
+and the false symbol constant $\omega_N(m)\ge|m|$.
+
+\section{L2: strong convergence and local algebras}
+\label{sec:L2}
+
+\subsection{Explicit dyadic mode and Fock isometries}
+
+Let
+\[
+ \mathcal K_N
+ =\ell^2\!\left(\{m\in\Z:0<|m|\le N/2\}\right)\otimes\C^8
+\tag{5.1}\label{eq:oneparticleboson}
+\]
+with the single Nyquist representative convention of
+$\mathbb M_N$.  Define
+\[
+ j_{N,2N}(e_m\otimes e_a)=e_m\otimes e_a,
+\qquad m\in\mathbb M_N,\quad 1\le a\le8.
+\tag{5.2}\label{eq:modeisometry}
+\]
+Thus $j_{N,2N}$ is the zero-extension/Shannon embedding of the old
+Fourier modes into the refined lattice.  It is an isometry and
+\[
+ j_{2N,4N}j_{N,2N}=j_{N,4N}.
+\tag{5.3}\label{eq:modecompat}
+\]
+On the charge-lattice sum of symmetric bosonic Fock spaces set
+\[
+ V_{N,2N}
+ :=\id_{\ell^2(L_{\rm charge})}\otimes\Gamma_s(j_{N,2N}).
+\tag{5.4}\label{eq:Fockisometry}
+\]
+Second quantization preserves isometries and composition, so
+$V_{N,2N}^*V_{N,2N}=1$ and
+$V_{2N,4N}V_{N,2N}=V_{N,4N}$.  The charge-lattice identity makes the
+same statement valid in every one of the four $\lambda$ grades.
+

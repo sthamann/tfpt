@@ -1,0 +1,362 @@
+
+\begin{keybox}[Branch kernels select the sectors; one deck involution \mE\ (\veri{v96\_branch\_kernel\_selection.py}, \veri{v97\_sheet\_conjugation\_bridge.py})]
+The ``which sheet does parity select'' question above had a blocker: no \emph{independently motivated}
+sector$\to$sheet map. The cover supplies one itself. At each branch point the anchor block is \textbf{rank
+one}, with canonical \emph{integer} kernels:
+\[
+\begin{aligned}
+  &\text{Koide } x=-\tfrac23:\ \ w=11\,\mathbf1-9a=(2,2,-7),\quad v=7\,\mathbf1-5a=(2,2,-3);\\
+  &\text{carrier } x=-\tfrac53:\ \ w=\mathbf 1,\quad v=8\,\mathbf1-7a=(1,1,-6),
+\end{aligned}
+\]
+--- at the carrier point the block annihilates the \emph{democratic vector itself}. \textbf{Collapse lemma
+\mE:} rank one forces $P(x_0)\,w\perp\operatorname{span}\{\mathbf1,a\}$, hence proportional to the
+antisymmetric direction $(-1,1,0)$ of the anchor's two \emph{equal} slots --- on both sides:
+\[
+  P(-\tfrac23)\,w=\tfrac{20}{3}\,(1,-1,0),\qquad P(-\tfrac53)\,w=\tfrac23\,(-1,1,0),\qquad
+  v^\top P(x_0)\propto(-1,1,0)\ \text{at both points} .
+\]
+Reading the rows as the sectors $(u,d,e)$: \emph{up and down are the deck-odd pair} ($f_u=-f_d$;
+convention-free, $f_uf_d<0$ at both points), and the \emph{lepton pairing vanishes} --- the leptons sit
+\emph{on} the ramification, consistent with Koide being a charged-lepton relation. Indeed the lepton
+pairing forms \emph{are} the two det-$B$ factors: the \textbf{sector zero ladder} reads
+lepton $\to\{-\tfrac23,-\tfrac53\}$ (the branch points), up $\to-\tfrac32=-\Nfam/|\Z_2|$ \emph{doubly}
+(the whole up-row of $P(-\tfrac32)$ \emph{is} the odd direction $-\tfrac12(1,-1,0)$ --- the previously
+unexplained $\mathrm{GL}(2)$ rung), down $\to\{0\ (=K),\ -\tfrac95=-\Nfam^2/\gcar\}$. The deck translation
+flips the orientation $(+,-)\to(-,+)$ with magnitude ratio $10=\AL$. \emph{Controls:} anchor $(2,1,1)$
+moves the collapse to $(0,1,-1)$; $(1,2,1)$ is non-split (disc $40$), no rational kernels at all.
+\smallskip\\
+\noindent\textbf{The bridge to the glue chiralities (\veri{v97\_sheet\_conjugation\_bridge.py}).} The two
+$E_8$ glues are swapped by \emph{either single} spinor conjugation and fixed by the simultaneous one
+(\veri{v92\_glue\_uniqueness.py}); on the family side, conjugation negates the cusp classes
+($0$ fixed, $\tfrac13\leftrightarrow\tfrac23$ on the $Q_+$ eigenspaces $e_1=(0,0,1)$, $e_2=(0,1,2)$,
+$e_3=(1,0,0)$). That conjugation has a \emph{unique anchor-compatible} integer realisation: $T\mathbf1=\mathbf1$
+and $Ta=a$ \emph{both} force the same scale, giving
+\[
+  \boxed{\ T_A=\begin{psmallmatrix}0&1&0\\1&0&0\\2&-2&1\end{psmallmatrix},\quad T_A^2=I,\quad\det T_A=-1\ },
+  \qquad\text{and}\qquad \boxed{\ a=e_2+e_3\ }
+\]
+--- \emph{the anchor is the conjugation-symmetrised vector of the swapped pair} (the two alternative
+pairings admit \emph{no} anchor-compatible scale). On the quotient by the anchor plane, $T_A=-1$ exactly
+like the sector transposition: \textbf{one deck action where the cover lives}. The parity matches the glue
+arithmetic ($\det=-1$ single/swapping vs $\det\Sigma=+1$ simultaneous/fixing); $\langle T_A,\Sigma\rangle$
+closes the \emph{same} $D_4=\Z_4\rtimes\Z_2$ as the $Q$-geometry, with $\chi_{T_A\Sigma}=(t{+}1)(t^2{+}1)$
+identical to the $\mu_4$ homology matrix; and the \textbf{sheet-index lemma}: the generation-$\mu_4$ and the
+homology-$\mu_4$ are rationally but \emph{not} $\mathrm{GL}(3,\Z)$-conjugate --- every intertwiner has
+\emph{even} determinant, minimum $|\det|=2=|\Z_2|$ (one sheet doubling; independent of $\det Q=\Nfam$).
+\smallskip\\
+\noindent\textbf{The dictionary is derived, not assumed (\veri{v98\_discriminant\_dictionary.py}).}
+The generation space carries an \emph{integer} $\mu_4$: $G:=T_A\Sigma$ acts on the cusp basis as
+\[
+  \boxed{\ G\,e_1=-e_1,\qquad G\,e_3=e_2,\qquad G\,e_2=-e_3\ }\qquad
+  (G^4=I,\ \ \chi_G=(t{+}1)(t^2{+}1)),
+\]
+i.e.\ the $B_1\!\oplus\!E$ decomposition of the $D_4$-equivariant $Q$-geometry realised \emph{integrally}:
+$e_1$ spans the $B_1$ line ($G$-eigenvalue $-1$ $=$ the self-conjugate $\Z_4$ class $2$), and
+$\operatorname{span}\{e_2,e_3\}$ is the $E$-plane (eigenvalues $\pm i$ $=$ the conjugate class pair
+$\{1,3\}$). \textbf{So the cusp-$0$ line \emph{is} the self-conjugate discriminant line, and the swapped
+cusp pair \emph{is} the conjugate class pair} --- the dictionary \emph{``$Q_+$ grading $=$ $A_3$
+discriminant grading''} holds inside the model. Consistently: $T_A G T_A^{-1}=G^{-1}$ (the discriminant
+conjugation $k\mapsto-k$), $q_{A_3}(1)=q_{A_3}(3)=\tfrac38$ (equal on the swapped pair) with
+$q_{A_3}(2)=\tfrac12$ fixed, and the two $D_4$ reflection classes separate exactly the glue arithmetic:
+$T_Ae_1=+e_1$, $\det=-1$ (glue-\emph{swapping}) vs $\Sigma e_1=-e_1$, $\det=+1$ (glue-\emph{fixing}),
+with $\Sigma=T_AG$. \emph{Honest scope:} the sheet question therefore carries \textbf{no separate \mC\
+residual any more} --- what remains is exactly the already-open $Q$-geometry realisation gate
+(\textsc{gate.qgeo}, the parabolic construction that realises the documented $Q$ on
+$\PP^1\!\setminus\!\mu_4$); conditional on that established typing, the sector$\to$sheet selection is
+\emph{closed}: up/down are the deck-odd pair, the leptons sit on the ramification, and the deck involution
+is the $A_3$-side spinor conjugation realised as $T_A$.
+\end{keybox}
+
+\begin{winbox}[Grand Mass Volume: the absolute mass-scaling normalisation \mE]
+The individual $c_q$ are a gauge, but the \emph{absolute} normalisation of the mass spectrum is fixed by the
+sector mass-matrix \emph{determinants} --- each a clean $\phiz$-power whose exponent is the $K$-row sum:
+\[
+  \det\!M_{\mathrm{up}}\!\sim\!(\phiz)^{6}\!=\!(\phiz)^{|R^+(A_3)|},\quad
+  \det\!M_{\mathrm{down}}\!\sim\!(\phiz)^{9}\!=\!(\phiz)^{\Nfam^2},\quad
+  \det\!M_{\mathrm{lep}}\!\sim\!(\phiz)^{10}\!=\!(\phiz)^{\AL},
+\]
+\[
+  \boxed{\ \det M_{\mathrm{SM}}\sim(\phiz)^{6+9+10}=(\phiz)^{25}=(\phiz)^{\gcar^2}=(\phiz)^{\Delta_Y}\ }
+\]
+the \emph{Grand Mass Volume}. The $Q$-row sums $(4,5,6)=(|\mu_4|,\gcar,|R^+(A_3)|)$ total $15=\dim A_3$, and
+$25+15=40=\sum L=|R(D_5)|$ (mass volume $+$ shift volume $=$ transport budget). So the absolute scaling is an
+\mE\ determinant identity (each sector $=$ its $K$-row sum); the only genuine scale input is the overall
+$v_{\mathrm{geo}}$, not a per-coefficient freedom. \veri{v46\_grand\_mass\_volume.py}
+\end{winbox}
+
+\noindent\textbf{Uniqueness (not fitted).} $K$ and $Q$ are the \emph{unique} nonnegative-integer $3\times3$
+matrices with their row sums, column sums, characteristic polynomial and per-sector monotone hierarchy ---
+verified by exhaustive enumeration \veri{v11\_unique\_KQ.py}. They are forced by small compiler budgets plus
+spectrum, not chosen.
+
+\begin{keybox}[Theorem Q --- the $\Sigma$-split as a parabolic projection (sharper uniqueness) \mE/\mC]
+The sheet involution $\Sigma=\operatorname{diag}(1,-1,-1)$ splits $Q$ into two parabolic pieces:
+\[
+  Q_+=\tfrac12(Q+\Sigma Q\Sigma)=\begin{psmallmatrix}3&0&0\\0&2&0\\0&2&1\end{psmallmatrix},\quad
+  Q_-=\tfrac12(Q-\Sigma Q\Sigma)=\begin{psmallmatrix}0&1&0\\3&0&0\\3&0&0\end{psmallmatrix},
+\]
+\[
+  \begin{gathered}
+  \chi_{Q_+}(t)=(t-1)(t-2)(t-3)\ \Rightarrow\ \operatorname{Spec}(Q_+)=\{1,2,3\}\ (A_3\text{ exponents}),\\[2pt]
+  \chi_{Q_-}(t)=t(t^2-3)\ \Rightarrow\ Q_-^2|_{\mathrm{supp}}=3=\Nfam .
+  \end{gathered}
+\]
+\textbf{Uniqueness:} $Q$ is the \emph{unique} nonnegative-integer matrix with $\operatorname{rows}=(4,5,6)$,
+$\operatorname{cols}=(9,5,1)$, $\chi_{Q_+}=(t-1)(t-2)(t-3)$ and $\chi_{Q_-}=t(t^2-3)$ (exhaustive
+enumeration, \veri{v50\_q\_geometry.py}). So $Q_+$ is the $A_3$ exponent grading, $Q_-$ the $\mu_4$ sheet
+coupling, and $K=R+Q\Sigma$ is the \emph{second $\Sigma$-shadow of the same parabolic flavor operator}, not
+an imported mass trick.
+
+\smallskip\noindent\textbf{$D_4$-equivariant derivation (\veri{v69\_d4\_q\_geometry.py}) --- gate advanced
+\mC/\mE.} The four punctures $\mu_4=\{1,i,-1,-i\}$ are the vertices of a square with symmetry
+$D_4=\Z_4\rtimes\Z_2$ (the $90^\circ$ rotation $z\!\mapsto\!iz$ \emph{is} $\mu_4$; the reflection is the
+sheet parity $\Sigma$). The $\Z_4$ $4$-cycle on the punctures acts on $H_1(\PP^1\!\setminus\!\mu_4)=\Z^4/(\text{sum}{=}0)=\Z^3$
+(the three families) with eigenvalues $\{i,-1,-i\}$, and the $D_4$ permutation rep decomposes as
+$A_1\!\oplus\!B_1\!\oplus\!E$, so $H_1=B_1\oplus E$. On this,
+\[
+  \begin{gathered}
+  Q_+=3\,(\text{cusp weights }\{0,\tfrac13,\tfrac23\})+1=\operatorname{diag}(1,2,3),\\[2pt]
+  Q_-=\text{$E$-block coupling }\sqrt{\Nfam}\ (B_1\ \text{in the kernel}),
+  \end{gathered}
+\]
+which reproduce $\chi_{Q_+}=(t{-}1)(t{-}2)(t{-}3)$ and $\chi_{Q_-}=t(t^2{-}3)$ exactly. So the $\Sigma$-split
+\emph{is} the $D_4=\Z_4\rtimes\Z_2$ structure ($\Z_4{=}\mu_4$ gives the three eigenspaces and $Q_+$; the
+$\Z_2$ reflection is $\Sigma$, giving the even/odd split). \textbf{Typing:} the spectra and the
+$\Sigma$-split are now \emph{derived} from the $D_4$-equivariant geometry \mE; the residual is only that the
+cusp weights $\{0,\tfrac13,\tfrac23\}$ are the established monodromy exponents (\vref{v61}) and the explicit integer
+$Q$ still needs the lattice datum --- now \emph{sharpened to a single named invariant}
+(\veri{v70\_q\_integer\_lift.py}): in the $\mu_4$-puncture homology basis the $\Z_4$ rotation is the
+\emph{unimodular} $R=\begin{psmallmatrix}0&0&-1\\1&0&-1\\0&1&-1\end{psmallmatrix}$ ($\det{=}{-}1$, eigenvalues
+$\{-1,i,-i\}$), while the transport has $\boxed{\det Q=3=\Nfam}$ (SNF $\operatorname{diag}(1,1,3)$). So the
+integer lift is exactly the parabolic-degree-$0$ embedding carrying the extra $\det=\Nfam$ (the family
+multiplicity) that $D_4$ alone (unimodular) does not supply --- one named lattice invariant, no longer a
+diffuse ``derive $Q$''.
+\smallskip\\
+\noindent\textbf{And that invariant is the cusp order itself (\veri{v72\_q\_det\_from\_cusp.py}).} The extra
+$\det Q=\Nfam$ is \emph{not} an independent lattice input: $\det Q=|\!\operatorname{coker}Q|=3$ equals the
+\emph{order of the cusp monodromy class} (eigenvalues $\{1,\omega,\omega^2\}$, $\omega^3{=}1$) $=$ the common
+\emph{denominator} of the very cusp weights $\{0,\tfrac13,\tfrac23\}$ that fix $\operatorname{Spec}(Q_+)$. So
+$\det Q=\Nfam$ comes from the \emph{same} cusp datum as the spectrum, and $\operatorname{coker}Q=\Z/\Nfam$ is
+the deck group of the degree-$\Nfam$ triality cover defining the family space --- the integer lift is derived
+from the geometry, not posited (\mE\ chain; the coker$=$deck-group identification is the standard non-abelian
+Hodge reading \mE).
+\end{keybox}
+
+\begin{gapbox}[Status: $Q$-geometry derived (spectra, $\Sigma$-split \emph{and} integer lift) \mE]
+What is \emph{proved} (\mE): the algebraic identities $K=R+Q\Sigma$, $L=R+Q(I+\Sigma)$, the spectra, the
+$1920$ determinant ladder, the anchor block --- all machine-checked. \textbf{Newly advanced (\veri{v69\_d4\_q\_geometry.py}):}
+the $D_4$-equivariant origin of the \emph{$Q$-spectra and the $\Sigma$-split} is now derived --- $Q_+$ is the
+$3w{+}1$ image of the cusp weights $w\in\{0,\tfrac13,\tfrac23\}$ on the three $\mu_4{=}\Z_4$ eigenspaces of
+$H_1(\PP^1\!\setminus\!\mu_4)$, and $Q_-$ is the $E$-block coupling $\sqrt{\Nfam}$ on $H_1=B_1\oplus E$, with
+$\Sigma$ the $\Z_2$ reflection of $D_4=\Z_4\rtimes\Z_2$. So the $\phiz$-mass ladder and the transport are two
+$\Sigma$-shadows of one $D_4$-equivariant parabolic operator. \textbf{Integer lift closed to the cusp order
+(\veri{v72\_q\_det\_from\_cusp.py}):} the one remaining lattice datum $\det Q=\Nfam$ is the order of the cusp
+class $=$ the denominator of the same cusp weights, i.e.\ the \emph{same} geometry that fixes the spectrum
+(coker$\,Q=\Z/\Nfam=$ triality deck group). So the $Q,\Sigma$ algebra is now an \mE\ layer whose spectra,
+$\Sigma$-split \emph{and} integer lift are all read from the order-$\Nfam$ cusp structure; the only standing
+input is the established fact $\Nfam=3=\operatorname{rank}A_3=\dim H_1$.
+\end{gapbox}
+
+\subsection{Closing the audit gates: is $M{=}41$, $K$, $Q$ derived or imported?}
+A reviewer asks whether the compiler \emph{derives} its objects or silently
+\emph{imports} them. We answer the three flavor/EM gates explicitly
+(\veri{v13\_open\_gates.py}); each is either closed or reduced to a named
+geometric statement, with the honest residual flagged.
+
+\begin{keybox}[Gate 1 (closed): the EM budget $M{=}41$ is the $U(1)$ index, not a fit \mE]
+The transport budget that enters the EM closure is \emph{forced}:
+\begin{equation}
+  \boxed{\ M=\sum_{f,j}L_{f,j}+N_\Phi=40+1=10\,b_1=41\ },\qquad
+  \tfrac45 M\,\cthree^6=8b_1\,\cthree^6 ,
+\end{equation}
+so the log-coefficient of $F_{U(1)}$ is $8b_1\cthree^6$ with $b_1$ the \emph{same}
+$U(1)$ hypercharge index derived from $\gcar$ ($10b_1=\gcar2^{\gcar-2}{+}1=41$).
+$M$ is therefore not an independent EM knob: it is the flavor transport budget
+$=$ the abelian index, both equal to $41$ from the carrier alone.
+An \emph{independent} third-party cross-check confirms this: feeding the carrier
+field content into the textbook one-loop formula gives the full gauge vector
+$(b_1,b_2,b_3)=(\tfrac{41}{10},-\tfrac{19}{6},-7)$, and the external RGE generator
+PyR@TE\,3 (\texttt{arXiv:2007.12700}) writes $\beta_{g_1}=(\tfrac{41}{10})g_1^3$
+verbatim, with $10\,b_1=40_{\text{(ferm.\ }U(1)\text{ index)}}+1_{\text{(Higgs)}}=41$
+reproducing this box exactly --- so the $F_{\mathrm{transfer}}$ gauge input is not a
+free knob (\veri{v159\_pyrate\_gauge\_crosscheck.py}).
+\end{keybox}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.82\linewidth]{figures/gauge_running.pdf}
+\caption{Gauge running from the carrier content (two-loop SM RGEs; the $\beta$-functions
+are confirmed by the external generator PyR@TE, \veri{v159\_pyrate\_gauge\_crosscheck.py}).
+The $U(1)_Y$ slope is the abelian index $b_1=41/10=10^{-1}(\gcar2^{\gcar-2}{+}1)$; the
+strong coupling reaches confinement, $\alpha_3^{-1}\!\to\!0$ at
+$\Lambda_{\mathrm{QCD}}\!\approx\!0.4$ GeV (\veri{v164\_qcd\_scale.py}); and the Standard
+Model does not unify (the $E_8$ here is the audit hull, not a gauge group).}
+\label{fig:gauge_running}
+\end{figure}
+
+\begin{keybox}[Gate 2 (forced): $K$ and $Q$ are not read off the masses \mE]
+$K$ (the $\phiz$-mass-exponent matrix) and $Q$ are the \emph{unique} nonnegative
+integer matrices with their sector/generation budgets (themselves compiler
+numbers: rows $(6,9,10)=(|R^+(A_3)|,\Nfam^2,\AL)$, columns
+$(13,8,4)=(|R(A_3)|{+}N_\Phi,h(D_5),|\mu_4|)$) and their characteristic
+polynomials, subject to per-sector monotonicity --- proved by exhaustive
+enumeration (\veri{v11\_unique\_KQ.py}). The mass exponents are thus \emph{fixed
+by compiler data}, not fitted to the measured masses.
+\end{keybox}
+
+\begin{keybox}[Gate 3 (sharpened): the geometric origin of $Q$ reduces to two named pieces \mC]
+Under the sheet involution $\Sigma$, $Q=Q_+ + Q_-$ splits exactly, and the two
+parts carry pure $A_3$/$\mu_4$ data:
+\begin{equation}
+  \operatorname{Spec}(Q_+)=\{1,2,3\}=\text{$A_3$ exponents},\quad \det Q_+=6=|R^+(A_3)|;
+  \qquad Q_-^2\big|_{\mathrm{supp}}=\Nfam=3 .
+\end{equation}
+So $Q_+$ \emph{is} the $A_3$ exponent grading and $Q_-$ a sheet square-root of
+$\Nfam$. The open ``derive $Q$ from geometry'' target therefore reduces to two
+\emph{specific, finite} identifications on $\mathbb P^1\setminus\mu_4$:
+(i) $Q_+ =$ the $A_3$ Hodge/exponent grading of $H^1$, (ii) $Q_- =$ the $\mu_4$
+sheet-monodromy coupling. With those, $K=R+Q\Sigma$ makes the mass ladder a
+\emph{consequence} of the flavor compiler. \emph{Honest residual:} the
+sector/generation budget \emph{assignment} and the exact realisation of
+$Q_\pm$ on the parabolic bundle are the remaining geometric steps; the cosmology
+pivot $N_\star$ stays a \emph{reheating input} (\mC), not a compiler output.
+\end{keybox}
+
+\begin{keybox}[Gate 4 (new): the solar angle from a shared dual anchor \mE/\mC]
+The residue matrix $R$ and the word-length matrix $L=R+6\,\mathbf 1\,e_1^\top$ (a \emph{rank-one} winding
+deformation, $L{-}R=[[6,0,0],[6,0,0],[6,0,0]]$) act \emph{identically} on the dual of the anchor $a=(1,1,2)$:
+\[
+  \boxed{\ a^\top R^{-1}=a^\top L^{-1}=(-\tfrac12,-\tfrac12,1)\ }\qquad\mE .
+\]
+\textbf{Mechanism (\veri{v74\_compiler\_micro\_lemmas.py}).} This is \emph{not} a coincidence: since
+$a^\top R^{-1}\mathbf 1=0$, the Sherman--Morrison correction for the rank-one update
+$L=R+6\,\mathbf 1\,e_1^\top$ has numerator $a^\top R^{-1}(6\,\mathbf1)=0$, so $a^\top L^{-1}=a^\top R^{-1}$
+\emph{exactly} --- the winding deformation is \emph{invisible} to the dual anchor. So the
+$\mathrm{gen}\,1{\leftrightarrow}2$ TBM symmetry vector (the two equal entries; the $1$ marks the
+third-generation anchor) is \emph{stable} under transport, which is the structural reason the solar texture
+survives. This ties the solar misalignment to the seam. \textbf{New: the
+coefficient is the $A_3$ family-lattice discriminant norm.} The misalignment is
+\[
+  \boxed{\ \varepsilon=q(A_3)\,\varphi_0=\tfrac34\varphi_0\ },\qquad
+  q(A_3)=\tfrac34=\frac{\Nfam}{|\mu_4|},
+\]
+the \emph{same} $q(A_3)$ that satisfies the $E_8$ glue condition $q(D_5)+q(A_3)=\tfrac54+\tfrac34=2$. Its
+\emph{leading} term is exactly $q(A_3)\cdot\tfrac1{6\pi}=\tfrac1{8\pi}=c_3$, and the TBM sum-rule gives
+\[
+  \sin^2\theta_{12}=\tfrac13-\tfrac23\varepsilon=\tfrac13-\tfrac{\varphi_0}{2}=0.30675
+  \quad(\text{NuFIT 6.0: }0.307),
+\]
+with $\sin^2\theta_{13}=e^{-5/6}\varphi_0$, $\delta_{CP}=4\pi/3$, and a $\mu\tau$-symmetric atmospheric
+sector $\theta_{23}\to45^\circ$ (the octant is \emph{not} selected by the record; current global fits leave it
+open --- the post-hoc \mO\ candidate $\cos2\theta_{23}=\phiz$ of \vref{v467} \emph{would} select the lower octant).
+The solar angle is thus a \emph{reduced} readout whose coefficient is now \emph{geometric}:
+$\varepsilon=q(A_3)\varphi_0$, the $A_3$ glue-norm. The residual is only \emph{why} the misalignment equals
+the $A_3$ discriminant norm
+(\mC). \veri{v16\_solar\_dual\_anchor.py}\,\veri{v21\_solar\_product\_quark.py}
+
+\emph{Scale tag.} These angles are stated as dimensionless seeds; the $F_{\mathrm{transfer}}$
+running between the seam scale and $M_Z$ is governed only by the charged-lepton term
+$\tfrac32 Y_e Y_e^\dagger Y_e$ (PyR@TE SM RGEs), i.e.\ by $y_\tau^2\sim10^{-4}$, so
+$|\Delta\sin^2\theta_{ij}|\lesssim10^{-4}$ --- two to three orders below current precision.
+The lepton-mixing seeds are therefore \emph{scale-independent} $F_{\mathrm{transfer}}$ outputs
+(seam value $=$ measured value), unlike the $y_t^2$-driven quark mass ratios, which carry a
+scale tag (\mE/\mC, \veri{v163\_rg\_stability\_flavor.py}).
+\end{keybox}
+
+\begin{keybox}[Inverse Anchor Normalisation Theorem \mE\ (\veri{v79\_review\_identities.py})]
+The dual-anchor identity is one row of a sharper invariance. On the \emph{inverses} of the flavor operators the
+all-ones vector reads the reciprocal compiler atoms,
+\[
+  \mathbf1^\top Q^{-1}\mathbf1=\tfrac13=\tfrac1{\Nfam},\quad
+  \mathbf1^\top R^{-1}\mathbf1=\mathbf1^\top K^{-1}\mathbf1=\tfrac14=\tfrac1{|\mu_4|},\quad
+  \mathbf1^\top L^{-1}\mathbf1=\tfrac1{10}=\tfrac1{\mathcal A_\Lambda},
+\]
+and the anchor is \emph{self-dual} under the physical (residue/mass/transport) operators:
+\[
+  \boxed{\ a^\top R^{-1}a=a^\top K^{-1}a=a^\top L^{-1}a=1\ }\qquad(\text{while }a^\top Q^{-1}a=\tfrac73).
+\]
+So the passage mass-powers $K\to$ residues $R\to$ transport $L$ leaves the anchor plane \emph{exactly}
+normalised --- the anchor is its own dual under physical evolution --- and the exception $a^\top Q^{-1}a=\tfrac73$
+pins the self-duality to precisely the residue/mass/transport triple, not the pure $\Sigma$-difference $Q$. \mE
+\end{keybox}
+
+% =====================================================================
+\section{Mixing: CKM and PMNS from holonomy}
+% =====================================================================
+\begin{center}\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}p{3.0cm}p{6.0cm}cc@{}}
+\toprule
+\textbf{Quantity} & \textbf{Formula} & \textbf{Prediction} & \textbf{PDG} \\
+\midrule
+$s_{12}^{\mathrm{CKM}}$ & $\lamC=\sqrt{\phiz(1-\phiz)}$ & $0.2244$ & $0.2245$ \\
+$s_{23}^{\mathrm{CKM}}$ & $\phiz/(1+\lamC)$ & $0.0434$ & $\sim0.041$ \\
+$s_{13}^{\mathrm{CKM}}$ & $\lamC^3/3$ & $0.00377$ & $\sim0.0038$ \\
+$\delta_{\mathrm{CKM}}$ & $\tfrac{\pi}{3}+3\lamC^2$ (leading, \mC) & $1.198$ rad & $\sim1.14$ \\
+$\sin^2\theta_{13}^{\mathrm{PMNS}}$ & $\phiz\,e^{-5/6}$ (UV shadow) & $0.0231$ & $\sim0.0222$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\noindent The cubic rule $|V_{ub}|=|V_{us}|^3/3$ and the CP phase $\delta=\arg\operatorname{tr}\Pi_\triangle$
+(oriented holonomy triangle) are direct consequences of the \emph{one} family connection
+$\nabla_F^\star$ --- the same one that generates the word-lengths in the flavor theorem.
+
+\begin{winbox}[New: the CP sector falls out of the closed CKM (not separately fitted)]
+The four closed entries $s_{12},s_{23},s_{13},\delta$ already \emph{determine} the whole CP sector ---
+quantities not previously written down:
+\[
+  J=c_{12}c_{23}c_{13}^2 s_{12}s_{23}s_{13}\sin\delta=3.33\times10^{-5}\ (\text{PDG }3.08),\quad
+  \beta=22.1^\circ\ (\text{PDG }22.2),
+\]
+\[
+  \gamma=68.6^\circ\ (\text{PDG }65.7),\qquad \alpha=89.2^\circ\ (\text{PDG }\sim85),
+\]
+together with the full magnitudes $|V_{cb}|=0.0434$, $|V_{td}|=0.0091$, $|V_{ts}|=0.0426$. The Jarlskog
+invariant and the unitarity-triangle angles are thus \emph{leading-order readouts} of the closed CKM
+skeleton: the CP phase is the leading closed form $\delta=\tfrac\pi3+3\lamC^2$ (its higher-order $C_6$-transport
+correction is \emph{not} in closed form), so the few-percent offsets ($J{=}3.33$ vs $3.08$, $\gamma{=}68.6^\circ$
+vs $65.7^\circ$) are expected and the CP sector is typed \mE/\mC, \emph{not} \mE\ --- only $\beta$ happens to be
+near-exact. (To upgrade to \mE\ the higher-order $\delta$ correction $\Delta_\triangle$ must be given
+explicitly.)
+\end{winbox}
+
+\subsection{Downstream flavor readout: the rare kaons $K\to\pi\nu\bar\nu$}
+\label{sec:rare-kaon}
+The closed CKM point is not an end state --- it feeds the theoretically cleanest flavor-changing
+neutral-current probe, the rare decays $K^+\!\to\pi^+\nu\bar\nu$ and $K_L\to\pi^0\nu\bar\nu$. These are
+\emph{not} a new compiler power: the only TFPT-specific content is the CKM point above; the short-distance
+loop functions ($X_t$, $P_c$, $\delta P_{c,u}$, $\kappa_\pm$, Brod--Gorbahn--Stamou) are standard external
+electroweak/QCD input. Inserting the exact TFPT products $\lambda_t=V_{ts}^*V_{td}$, $\lambda_c=V_{cs}^*V_{cd}$
+(equivalently the exact apex $(\bar\rho,\bar\eta)=(0.1374,0.3509)$) gives \veri{v202\_rare\_kaon.py}
+\[
+  \mathrm{BR}(K^+\!\to\pi^+\nu\bar\nu)=9.45\times10^{-11},\qquad
+  \mathrm{BR}(K_L\to\pi^0\nu\bar\nu)=3.33\times10^{-11},
+\]
+typed \mC\ (the branching ratios are not parameter-free). The neutral mode is purely CP-violating,
+$\mathrm{BR}(K_L)\propto(\Im\lambda_t)^2\propto\bar\eta^2$, so it is a direct probe of the holonomy phase
+$\delta_{\mathrm{CKM}}$; the charged mode carries a sizeable charm admixture and tests the overall CKM norm.
+The model-independent Grossman--Nir ratio is $\mathrm{BR}(K_L)/\mathrm{BR}(K^+)=0.352\ll4.3$, safely inside the
+isospin corridor. \textbf{Dated kill test \mX:} a stable NA62 $\mathrm{BR}(K^+)$ \emph{outside}
+$[7,12]\times10^{-11}$, or a KOTO-II $\mathrm{BR}(K_L)$ off the predicted Grossman--Nir point, breaks the TFPT
+flavor bridge for this sector (the compiler core is untouched). The current NA62 combination of the full
+$2016$--$2024$ dataset, $\mathrm{BR}(K^+)=(9.6^{+1.9}_{-1.8})\times10^{-11}$ (La~Thuile~2026), lands
+essentially \emph{on} the prediction ($+0.08\sigma$); the earlier $2016$--$2022$ observation was
+$(13.0^{+3.3}_{-3.0})\times10^{-11}$ ($\sim1.2\sigma$ above). This is a strong \emph{consistency} hit for the
+closed CKM point fed through standard short-distance input --- but honestly it is an $F_{\mathrm{transfer}}$
+bridge, not a unique TFPT-vs-SM discriminator: the Standard-Model value $(8.6\pm0.4)\times10^{-11}$ also sits
+within the NA62 error, so the channel currently confirms the CKM point rather than separating TFPT from the SM.
+The $\sim2\sigma$ $\delta_{\mathrm{CKM}}$ tension (\vref{v88}) keeps the corridor a live falsification channel.
+
+\noindent\textbf{Weak mixing from $D_5$.} Because the carrier $C^+$ \emph{is} the $D_5=\mathfrak{so}(10)$
+half-spinor, the weak mixing inherits the canonical $\mathfrak{so}(10)$ unification value
+$\sin^2\theta_W=\tfrac38=\Nfam/h(D_5)$ at the carrier scale, running to $0.231$ at $M_Z$ (standard).
+\mE\ (structural) / \mC\ (running).
+
+\paragraph{Honest note on the search.} A generic ``spine-ratio'' scan ($\sin^2\theta_W$, $\alpha_s$, the
+$\Omega$ ratios, $N_{\mathrm{eff}}$, $m_H/v$) finds $\le2\%$ hits abundantly --- which is \emph{weak}
+evidence, since $O(1)$ numbers are densely covered by ratios of $\{8,\dots,60\}$. We therefore count only
+\emph{named} invariants (like $3/8=\Nfam/h(D_5)$ or the exact endpoints), not generic ratios.
+
+% =====================================================================

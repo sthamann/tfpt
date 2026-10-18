@@ -88,7 +88,7 @@ export const DISCIPLINE: DisciplineStats =
   "contracts": {
     "ledgerRows": 61,
     "withKillCriteria": 48,
-    "texMentions": 85
+    "texMentions": 86
   },
   "replay": {
     "sample": [

@@ -1,0 +1,323 @@
+\section{Interface Table: TFPT Paper 2 \texorpdfstring{$\leftrightarrow$}{<->} Lean Status}
+\label{sec:interface-table}
+% ---------------------------------------------------------------- %
+
+The following table maps each load-bearing claim of TFPT
+Paper~2 to its current Lean status and the still-missing
+upstream proof. It is the primary defence against scope-creep:
+the present note formalises columns~1 and~2; column~3 is
+explicitly out of scope.
+
+\smallskip
+\begin{center}
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}p{0.30\textwidth}p{0.30\textwidth}Y@{}}
+\toprule
+\textbf{TFPT Paper 2 claim} & \textbf{Lean status (v11)} & \textbf{Missing upstream proof} \\
+\midrule
+$\varepsilon^2 = \mathbf 1$ on $E$ &
+  Two structural layers: \texttt{CalderonProjector}
+  (idempotent $\pi$ gives $\varepsilon := 2\pi-1$ with $\varepsilon^2 = 1$)
+  and \texttt{BoundaryPolarization} (any
+  $H = H_+ \oplus H_-$ gives such an idempotent via
+  \texttt{IsCompl.projection}); feeds
+  \texttt{CalderonCertificate}. &
+  Analytic construction of a boundary spectral decomposition
+  $H = H_+ \oplus H_-$ from Paper 1's elliptic Calder\'on
+  operator on Sobolev spaces. \\[3pt]
+$\dim E_+ = 2$ &
+  Stages A, B, and B+ all formalised
+  (\texttt{HiggsIndexCertificate},
+  \texttt{HiggsTopForm},
+  \texttt{HiggsSchemeCohomologyShadow});
+  \texttt{DegreeOneTwoVarForm}\,$K$ $\simeq_{\ell K}$
+  \texttt{MvPolynomial.homogeneousSubmodule (Fin 2) K 1}
+  $= K[X_0, X_1]_1$, the algebraic-geometry "Proj-side"
+  presentation of $H^0(\mathbb P^1, \mathcal O(1))$ &
+  Scheme-theoretic identification
+  $H^0(\mathrm{Proj}\,K[X,Y], \mathcal O(1)) \simeq K[X, Y]_1$
+  (a general algebraic-geometry theorem, independent of TFPT). \\[3pt]
+$\dim E_- = 3$ &
+  Stage A--D forward + Stage D backward
+  (\texttt{YukawaStageDExistence}, v10):
+  $\dim E_- = 3 \Rightarrow \exists\,\omega$
+  with \texttt{ContractionInjective} and
+  \texttt{ContractionSurjective}, via $b.\texttt{det}$ and
+  direct $3{\times}3$ matrix computation. The Stage D
+  characterisation
+  $\exists\,\omega\;(\textrm{CI} \wedge \textrm{CS})
+    \iff \dim E_- = 3$ holds under \texttt{Nontrivial}\,$E_-$. &
+  TFPT-internal construction of $\omega$ from boundary kernel
+  and representation data (the existence is now algebraically
+  closed by basis-determinant; what remains is whether TFPT's
+  boundary derivation produces \emph{this particular}
+  $\omega$). \\[3pt]
+$3 q_- + 2 q_+ = 0$ &
+  Theorem from determinant character of carrier torus
+  (\texttt{DeterminantCharacter}) &
+  Seam-winding $[u_\Sigma] = 1$ produces the determinant-
+  preserving condition. \\[3pt]
+$(q_-, q_+) = (-2, 3)$ &
+  Theorem from general $(m,n)$ lattice rigidity
+  (\texttt{LatticeRigidityGeneral}) with
+  \texttt{PrimitiveOrientedDeterminantCarrier} as input &
+  Orientation $q_- < 0 < q_+$ and primitivity
+  $\gcd = 1$ from seam-class data. \\[3pt]
+$Y = \mathrm{diag}(-\tfrac13,-\tfrac13,-\tfrac13,\tfrac12,\tfrac12)$ &
+  Bundled theorem
+  (\texttt{CarrierPremises.hypercharge\_carrier\_packet}) plus
+  concrete $5\times 5$ model (\texttt{Hypercharge}) &
+  None (this is the conclusion). \\[3pt]
+$\tr_E Y = 0$ &
+  Bundled theorem
+  (\texttt{CarrierPremises.trace\_Y\_eq\_zero}) &
+  None. \\[3pt]
+$6\, Y^2 - Y - \mathbf 1 = \mathbf 0$ &
+  Bundled theorem
+  (\texttt{CarrierPremises.carrier\_polynomial\_Y}) in
+  $\mathrm{End}_K M$ &
+  None. \\[3pt]
+$S^+ = \Lambda^{\mathrm{even}} E$, family $\nu^c$ &
+  \emph{Not formalised} &
+  Exterior-power packet construction; chiral-family decomposition. \\[3pt]
+$N_{\mathrm{fam}} = 3$ &
+  \emph{Not formalised} &
+  Seam winding $\to$ family count. \\[3pt]
+$G_{\mathrm{phys}} = (SU(3)\times SU(2)\times U(1)_Y)/\mathbb Z_6$ &
+  \emph{Not formalised} &
+  Stabilizer theorem for the carrier datum; $\mathbb Z_6$
+  quotient theorem. \\[3pt]
+SM hypercharges on all chiral multiplets &
+  \emph{Not formalised} &
+  Derived representations: dual, exterior powers,
+  tensor products of the carrier. \\[3pt]
+$b_1 = 41/10$, $\Omega_{\mathrm{adm}} = 48$, $N_\Phi = 1$ &
+  \emph{Not formalised} &
+  Index ledger; representation audit. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\smallskip\noindent
+The pattern is clear. The Lean note formalises the
+\emph{carrier-rigidity algebra} of Paper 2 in full; the
+\emph{TFPT-internal derivations} feeding that algebra remain
+upstream work; and the \emph{downstream SM-packet content}
+(derived representations, $\mathbb Z_6$ quotient, family
+counting, index ledger) is intentionally out of scope.
+
+% ---------------------------------------------------------------- %
+\section{Limitations}
+\label{sec:limits}
+% ---------------------------------------------------------------- %
+
+\paragraph{Yukawa: Stage D resolves the v5 critique.}
+The v5 critique of Stage C was that it bundled the contraction
+iso as data, so it was equivalent (in finite dimensions) to
+$\dim E = 3$ and did not "explain" the rank. v6 resolved this
+by introducing Stage D; v7 renamed its operational predicates
+to keep semantic-load words out of the Lean interface:
+
+\[
+\underbrace{\omega : \Lambda^3 E_- \to K}_{\text{primary datum}}
+\;\;
+\underbrace{+\;\texttt{ContractionInjective}\;+\;\texttt{ContractionSurjective}\;+\;\texttt{Nontrivial}\,E_-}_{\text{operational predicates and non-triviality}}
+\;\xRightarrow{\text{Lean theorem}}\;
+\dim E_- = 3.
+\]
+
+The contraction $C_\omega$ is a \emph{constructed} linear map;
+the iso conclusion is a Lean theorem under the two predicates
+and non-triviality of $E_-$; the rank-3 statement follows from
+the iso via elementary dimension counting. There is no longer
+any structural ambiguity at the Yukawa interface in Lean.
+
+\paragraph{Why \texttt{Nontrivial}\,$E_-$ is necessary.}
+Without the non-triviality hypothesis the rank-3 slogan would be
+false: for $E_- = 0$ the spaces $\Lambda^2 E_-$ and $\Lambda^3
+E_-$ are both zero, the contraction $C_\omega : 0 \to 0$ is
+trivially bijective, both operational predicates hold vacuously,
+but $\dim E_- = 0 \ne 3$. The transparency theorem
+\texttt{finrank\_E\_eq\_zero\_or\_three} (v9) records the
+unconditional disjunction $\dim E_- = 0 \lor \dim E_- = 3$;
+the rank-3 conclusion is the case under
+\texttt{Nontrivial}\,$E_-$. Both signatures are signature-locked
+in \texttt{AuditContract.lean}.
+
+\paragraph{Stage D characterisation, both directions formalised (v10).}
+For all four Yukawa stages the note now proves the full
+characterisation
+$\text{Nonempty}\,(\text{Stage}) \iff \dim E = 3$.
+For Stage D, under \texttt{Nontrivial}\,$E$:
+\[
+\text{Nonempty}\,\bigl\{\,Y : \texttt{YukawaTrilinearForm}\,K\,E
+  \;\big|\; Y.\texttt{ContractionInjective}
+  \land Y.\texttt{ContractionSurjective}\,\bigr\}
+\;\iff\;
+\dim E = 3.
+\]
+The forward direction is
+\texttt{finrank\_E\_eq\_three\_of\_condition}; the backward
+direction is \texttt{YukawaStageDExistence.exists\_yukawaTrilinearForm\_of\_finrank\_eq\_three},
+proved via \texttt{Module.Basis.det} transported through
+\texttt{exteriorPower.alternatingMapLinearEquiv} and direct
+$3\times 3$ matrix-determinant computation. The combined
+characterisation is \texttt{stage\_D\_iff\_finrank\_eq\_three}.
+
+\paragraph{What remains is upstream TFPT theory work.}
+The Lean chain takes the Stage D quadruple
+$(\omega, \texttt{ContractionInjective},
+\texttt{ContractionSurjective}, \texttt{Nontrivial}\,E_-)$
+as input. The remaining open question is whether TFPT itself
+produces such a quadruple from the boundary kernel. Concretely:
+
+\begin{itemize}[leftmargin=1.6em, itemsep=1pt]
+\item \emph{Existence of $\omega$.}\ Paper 2's Yukawa-type
+    argument should produce an explicit alternating trilinear
+    form on $E_-$. This is a representation-theoretic statement
+    about the boundary kernel output, not a Lean engineering
+    statement.
+\item \emph{Verification of the two predicates.}\ Once $\omega$
+    is constructed, the two predicates need to be checked.
+    These checks are local algebraic statements (injectivity:
+    no nonzero $v$ vanishes against all wedges; surjectivity:
+    every dual functional on $\Lambda^2 E_-$ is realised as a
+    contraction).
+\end{itemize}
+
+Neither task requires modifying the present Lean chain. They are
+TFPT mathematical work, properly upstream of this experiment.
+
+\paragraph{Remaining limitations of the Lean chain itself.}
+\begin{itemize}[leftmargin=1.6em, itemsep=1pt]
+\item \textbf{Calder\'on: two structural layers formalised,
+    analytic input of the polarisation open.}\
+    \texttt{CalderonProjector} proves $\pi^2 = \pi
+    \Rightarrow \varepsilon^2 = \mathbf 1$, and
+    \texttt{BoundaryPolarization} (v10) shows that any
+    direct-sum decomposition $H = H_+ \oplus H_-$ of a
+    $K$-module produces such an idempotent via Mathlib's
+    \texttt{IsCompl.projection}. What remains is the analytic
+    Paper 1 theorem producing the boundary spectral
+    decomposition itself --- a question of boundary elliptic
+    theory on Sobolev spaces, independent of the carrier
+    algebra.
+\item \textbf{Higgs: algebraic Stage B and scheme-cohomology
+    shadow formalised, Proj construction open.}\
+    \texttt{HiggsTopForm} identifies $E_+$ with the algebraic
+    shadow of $H^0(\mathbb P^1, \mathcal O(1))$ (degree-1 binary
+    forms), and v10's \texttt{HiggsSchemeCohomologyShadow}
+    refines this further: the algebraic shadow is now exhibited
+    as a Mathlib-native object,
+    \texttt{MvPolynomial.homogeneousSubmodule (Fin 2) K 1}.
+    What remains is the general algebraic-geometry theorem
+    $H^0(\mathrm{Proj}\,K[X,Y], \mathcal O(1)) \simeq K[X, Y]_1$,
+    which lives in \texttt{Mathlib.AlgebraicGeometry.*} and is
+    independent of TFPT.
+\item \textbf{Yukawa: Stage D both directions formalised.}\
+    v10's \texttt{YukawaStageDExistence} closes the backward
+    direction:
+    $\dim E_- = 3 \Rightarrow \exists\,\omega$ with
+    \texttt{ContractionInjective} and
+    \texttt{ContractionSurjective}, via $b.\texttt{det}$ and
+    direct $3{\times}3$ matrix-determinant computation. The
+    characterisation
+    $\exists\,\omega\;(\textrm{CI} \wedge \textrm{CS})
+      \iff \dim E_- = 3$ holds under
+    $\texttt{Nontrivial}\,E_-$. What remains is the
+    TFPT-internal question: does the boundary kernel produce
+    \emph{the same} $\omega$ (or one equivalent up to action of
+    the carrier symmetries)?
+\item \textbf{Scope discipline.}\ The Lean chain formalises the
+    $3+2$ carrier hypercharge. It does \emph{not} formalise the
+    full SM hypercharge spectrum on duals, exterior powers, and
+    tensor products. The $\mathbb Z_6$ quotient and the
+    derived-representation extensions are out of scope. See
+    \S\ref{sec:next}.
+\end{itemize}
+
+\paragraph{Other items deliberately out of scope.}
+\begin{itemize}[leftmargin=1.6em, itemsep=0pt]
+\item Full $\mathbb Z_6$-quotient theorem for
+    $G_{\mathrm{phys}} = (SU(3)\times SU(2)\times U(1)_Y)/\mathbb Z_6$.
+\item Derived Standard-Model representations (dual, exterior
+    powers, tensor products); the diagonal formalised here is
+    the carrier hypercharge, not the full SM hypercharge
+    spectrum.
+\item Analytic content of Paper~1 (Calder\'on polarisation,
+    boundary elliptic theory).
+\end{itemize}
+
+% ---------------------------------------------------------------- %
+\section{How It Was Verified}
+% ---------------------------------------------------------------- %
+
+The audit gate \texttt{scripts/audit.sh} enforces seven hard
+checks on every commit:
+
+\begin{enumerate}[leftmargin=1.6em, itemsep=0pt]
+\item \texttt{lake build} succeeds (currently $\sim 1\,800$ jobs,
+      $\sim 10$~s on top of the Mathlib cache).
+\item No \texttt{sorry} or \texttt{admit} in the source.
+\item No \texttt{axiom} or \texttt{constant} declarations.
+\item No \texttt{unsafe}, \texttt{opaque}, or \texttt{partial}
+      declarations.
+\item \texttt{\#print axioms} on every headline theorem returns a
+      subset of $\{\texttt{propext},\ \texttt{Classical.choice},\
+      \texttt{Quot.sound}\}$.
+\item Every headline name in
+      \texttt{TfptCarrier/AuditCheck.lean} elaborates via
+      Lean's \texttt{\#check}. This catches renames, deletions,
+      and elaboration failures that a text search would miss.
+\item Every headline theorem in
+      \texttt{TfptCarrier/AuditContract.lean} elaborates inside
+      an
+      \texttt{example : <exact intended type> := <theorem>}
+      pattern. This is strictly stronger than \texttt{\#check}:
+      if a future refactor silently weakens a theorem's
+      conclusion without renaming it, the
+      \texttt{example} fails to typecheck and the audit fails.
+\end{enumerate}
+
+Current verbatim output of \texttt{audit.sh}:
+
+\begin{lstlisting}
+=== Build ===
+  [PASS] lake build succeeded
+
+=== sorry / admit ===
+  [PASS] no sorry or admit found
+
+=== axiom / constant declarations ===
+  [PASS] no axiom or constant declarations
+
+=== unsafe / opaque / partial declarations ===
+  [PASS] no unsafe / opaque / partial declarations
+
+=== axiom audit (#print axioms) ===
+  [PASS] all theorems use only [propext, Classical.choice, Quot.sound]
+
+=== headline theorems (Lean #check) ===
+  [PASS] AuditCheck.lean elaborated; all headline #checks succeeded
+
+=== theorem signatures (Lean example signature-lock) ===
+  [PASS] AuditContract.lean elaborated; all signature locks hold
+
+=== Final verdict ===
+  AUDIT: PASS
+\end{lstlisting}
+
+\texttt{\#eval} smoke tests in \texttt{Sanity.lean}:
+
+\begin{lstlisting}
+info: TfptCarrier/Sanity.lean:27:0: 0
+info: TfptCarrier/Sanity.lean:30:0:
+  !![0, 0, 0, 0, 0; 0, 0, 0, 0, 0; 0, 0, 0, 0, 0;
+     0, 0, 0, 0, 0; 0, 0, 0, 0, 0]
+\end{lstlisting}
+
+% ---------------------------------------------------------------- %
+\section{Changelog}
+\label{sec:changes}
+% ---------------------------------------------------------------- %
+

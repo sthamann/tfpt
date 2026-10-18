@@ -1,0 +1,384 @@
+\subsection{A two-dimensional action lattice}
+
+All scales sit on the integer lattice spanned by two generators --- the gauge unit $\ainv/\gcar$ and
+the flavor unit $L_0=\ln(1/\useed)$ --- as $S_x=a_x(\ainv/\gcar)+b_x L_0+(\text{residue})$:
+\begin{center}\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+scale & $a_x$ & $b_x$ & axis \\
+\midrule
+$v_{\mathrm{geo}}/\Mbar$ & $1=\binom50$ & $0$ & gauge \\
+$H_0/\Mbar$ & $5=\binom51$ & $0$ & gauge \\
+$\rho_\Lambda/\Mbar^4$ & $10=\binom52$ & $0$ & gauge \\
+$m_e/\Mbar$ & $1$ & $5$ & flavor \\
+$m_\mu/\Mbar$ & $1$ & $3$ & flavor \\
+$m_\tau/\Mbar$ & $1$ & $2$ & flavor \\
+\bottomrule
+\end{tabular}
+\end{center}
+The cosmological/gauge sector runs along $b=0$ with binomial charges; the charged-fermion sector
+runs along $a=1$ with the integer flavor ladder $n_f=(5,3,2)$. This is the compact ``periodic table''
+of TFPT scales: two integer labels per scale. \mE\ (charges) / \mC\ (residues).
+
+\noindent A third (seam/gravity) generator completes the lattice: $L_c=\ln(1/\cthree)=\ln(8\pi)$.
+The scalaron lives purely on it, $M_{\mathrm{scal}}/\Mbar=\cthree^{7/2}=e^{-\frac72 L_c}$, and the seam
+defect is $\dtop=e^{-(4L_c-\ln48)}$. So the three log-generators are $\{\ainv\ (\text{hierarchy}),\,
+L_0=\ln(1/\useed)\ (\text{flavor}),\,L_c=\ln(1/\cthree)\ (\text{seam/gravity})\}$. \mE
+
+% =====================================================================
+\section{The Einstein normaliser as a corrected tree value}
+% =====================================================================
+\noindent\emph{Machine checks for this section:} \veri{v1\_\allowbreak e8\_\allowbreak glue.py}
+
+
+The gravitational normaliser $\xi=\cthree/\useed$ has a transparent exact form. Writing
+$\useed=\tfrac{1}{6\pi}\bigl[1+\tfrac{9}{128\pi^3}\bigr]$,
+\begin{equation}
+  \boxed{\ \xi=\frac{\cthree}{\useed}=\frac34\cdot\frac{1}{1+\dfrac{9}{128\pi^3}}=0.748303\ }\qquad\mE .
+\end{equation}
+So $\xi_{\mathrm{tree}}=\tfrac34=\dimg/\dim S^+=12/16$ is the exact leading value (the inverse of the
+$\tfrac43=\dim S^+/\dimg$ family/gauge compression that sits in the seed $u_{\mathrm{base}}=\tfrac43\cthree$,
+so $\xi_{\mathrm{tree}}\,u_{\mathrm{base}}=\cthree$), and the
+deviation is precisely the small topological seed correction $9/(128\pi^3)$, i.e.\ $0.226\%$.
+Gravity does not pick up a mysterious factor: first comes $3/4$, then the seam defect shifts it
+minimally.
+
+% =====================================================================
+\section{$\Lambda$-anchored metrology closure, and two anchors}
+% =====================================================================
+\noindent\emph{Machine checks for this section:} \veri{v60\_\allowbreak lambda\_\allowbreak metrology\_\allowbreak branch.py}
+
+
+The absolute SI scale is a calibration, not a compiler output. The dimensionless vacuum quotient lets one
+anchor it to the observed geometric curvature without circularity.
+
+\begin{theorem}[$\Lambda$-anchored metrology closure]
+With $\lambda_\Lambda:=\rho_\Lambda/\Mbar^4=\tfrac{3}{4\pi^2}e^{-2\ainv}$ and the observed geometric
+curvature $\Lamgeom^{\mathrm{obs}}>0$,
+\[
+  \Mbar^2=\frac{\Lamgeom^{\mathrm{obs}}}{\lambda_\Lambda},\qquad
+  \GN^{\TFPT}=\frac{c^3}{8\pi\hbar}\frac{\lambda_\Lambda}{\Lamgeom^{\mathrm{obs}}}
+  =\frac{3c^3}{32\pi^3\hbar\,\Lamgeom^{\mathrm{obs}}}\,e^{-2\ainv}.
+\]
+\end{theorem}
+\noindent\emph{Proof.} $\Mbar^2=1/(8\pi\GN)$ and $\Lamgeom=\rho_\Lambda/\Mbar^2$; the branch sets
+$\rho_\Lambda=\lambda_\Lambda\Mbar^4$, so $\Lamgeom=\lambda_\Lambda\Mbar^2$, giving $\Mbar^2$ and
+then $\GN=\lambda_\Lambda/(8\pi\Lamgeom^{\mathrm{obs}})$; restoring $c^3/\hbar$ closes it. $\square$
+
+\par\smallskip\noindent\textbf{Non-circularity (\mO, essential).}
+The anchor must be the curvature $\Lamgeom^{\mathrm{obs}}$ (units $\mathrm{m}^{-2}$), \emph{not} the
+SI vacuum energy density $\rho_\Lambda^{\mathrm{obs}}=\Lamgeom c^4/(8\pi\GN)$, which already contains
+$\GN$. The curvature follows from $\Lamgeom^{\mathrm{obs}}=3\Omega_\Lambda H_0^2/c^2$.
+\par\smallskip
+
+\noindent\textbf{Two independent anchors (crosscheck with teeth).} The metrology can be pinned in
+two ways that should agree:
+\begin{enumerate}
+\item \emph{Electroweak anchor}: the dimensionless $\GN v_{\mathrm{phys}}^2=4.06717\times10^{-34}$
+fixes $\GN$ once $v_{\mathrm{phys}}$ is calibrated non-gravitationally.
+\item \emph{$\Lambda$-curvature anchor} (this note): $\GN=\tfrac{3c^3}{32\pi^3\hbar\Lamgeom^{\mathrm{obs}}}e^{-2\ainv}$.
+\end{enumerate}
+With the example anchor $H_0=67.36\,\mathrm{km\,s^{-1}\,Mpc^{-1}}$, $\Omega_\Lambda=0.6847$
+($\Lamgeom^{\mathrm{obs}}=1.08914\times10^{-52}\,\mathrm{m^{-2}}$) the $\Lambda$ anchor gives
+\begin{equation}
+  \GN^{\TFPT}=6.65071\times10^{-11}\,\mathrm{m^3kg^{-1}s^{-2}},\qquad
+  \GN^{\TFPT}/\GN^{\mathrm{CODATA}}-1=-3.5\times10^{-3}.
+\end{equation}
+Closure algebra \mE; SI anchor and numerical match \mC\ (the cosmological anchor is model dependent;
+the Hubble tension applies). EW crosscheck: the $\Lambda$-pinned $\Mbar=2.43964\times10^{18}\,$GeV
+gives $v_{\mathrm{geo}}=242.6\,$GeV, needing $Z_{\mathrm{EW}}=(246.22/242.61)^2=1.030$.
+
+\par\smallskip\noindent\textbf{Prefactor branch (\mO).}
+This note uses $\LamIR/\MPl^4=\dtop e^{-2\ainv}$. A competing prefactor $2\cthree e^{-2\ainv}$ would
+differ by $2\cthree/\dtop=661.5$ and misscale $\GN$ by the same factor; the branch must be versioned.
+\par\smallskip
+
+\par\smallskip\noindent\textbf{Mandatory $\Lambda$-layer typing (\mO).}
+Three distinct $\Lambda$ objects must never be conflated:
+\[
+  \underbrace{\frac{\rho_\Lambda}{\Mbar^4}=\frac{3}{4\pi^2}e^{-2\ainv}}_{\text{vacuum density quotient (dimensionless)}}
+  \ \neq\
+  \underbrace{\frac{\LamIR}{\MPl^4}=\dtop e^{-2\ainv}}_{\text{seam-determinant / IR scale (dimensionless)}}
+  \ \neq\
+  \underbrace{\Lamgeom^{\mathrm{obs}}=\frac{3\Omega_\Lambda H_0^2}{c^2}}_{\text{observed curvature }[\mathrm{m}^{-2}]} .
+\]
+Only $\Lamgeom^{\mathrm{obs}}$ carries a dimension and is the non-circular anchor. Keeping the three
+typed protects the decuple bridge and the metrology closure from a spurious prefactor objection.
+\par\smallskip
+
+\noindent\textbf{Measurement-near (physical) decuple bridge.} Since $v_{\mathrm{phys}}=v_{\mathrm{geo}}\sqrt{Z_{\mathrm{EW}}}$
+(charged-current residue, not a fit), the decuple bridge in the observable vev reads
+\begin{equation}
+  \frac{\rho_\Lambda}{\Mbar^4}=\frac{3}{4\pi^2}e^{2\dph}
+  \left[\frac{v_{\mathrm{phys}}}{5\betarad^2\sqrt{Z_{\mathrm{EW}}}\,\Mbar}\right]^{10}.
+\end{equation}
+This is the same identity, written in the low-energy charged-current scale rather than the geometric
+source scale; both forms should appear side by side. \mE/\mC
+
+% =====================================================================
+\section{The landscape: $\gcar=5$ is overdetermined}
+% =====================================================================
+\noindent\emph{Machine checks for this section:} \veri{v6\_\allowbreak bootstrap.py} \veri{v14\_\allowbreak carrier\_\allowbreak uniqueness.py}
+
+
+Varying the carrier rank and rebuilding every constant from the same machinery ($\cthree$ fixed),
+the EM-closure value $\alpha^{-1}(\gcar)$ is monotone and meets the observed value only at $\gcar=5$:
+\begin{center}\small
+\begin{tabular}{@{}r r r r r r l@{}}
+\toprule
+$\gcar$ & $\Nfam$ & $\dim S^+$ & $\Oadm$ & $10b_1$ & $\alpha^{-1}(\gcar)$ & verdict \\
+\midrule
+3 & 2 & 4 & 8 & 7 & 258.15 & wrong $\alpha$, wrong family count \\
+4 & 2.5 & 8 & 20 & 17 & 187.31 & non-integer families \\
+\textbf{5} & \textbf{3} & \textbf{16} & \textbf{48} & \textbf{41} & \textbf{137.036} & \textbf{SM, 3 families, observed $\alpha$} \\
+6 & 3.5 & 32 & 112 & 97 & 101.30 & non-integer families \\
+7 & 4 & 64 & 256 & 225 & 75.61 & wrong $\alpha$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Several distinct requirements converge on $\gcar=5$: integer families ($\gcar$ odd); three families
+$(\gcar{+}1)/2=3$; the observed $\alpha^{-1}$ on the monotone curve; the SM structure $(b,s)=(3,2)$,
+$\dim S^+=16$; and $\Oadm=48$, $10b_1=41$. A clean algebraic shadow:
+$\tfrac{g(g+1)}{2}=2^{g-1}-1$ has $g=5$ as its non-trivial solution (\mC).
+
+% =====================================================================
+\section{The $E_8$ carrier atlas --- stated unambiguously}
+\noindent\emph{Machine checks for this section:} \veri{v5\_\allowbreak e8\_\allowbreak cascade.py}
+
+\label{sec:e8}
+% =====================================================================
+
+In the series $E_8$ is a \emph{downstream scale grammar}, not a primitive cause: the boundary kernel
+fixes $\alpha$, the carrier rank, families and admissibility without $E_8$ upstream. Three levels.
+
+\subsection{Level 1 --- original $E_8$ data of the series (\mE)}
+\begin{align}
+  |R(E_8)| &= 248-8=240=5\cdot48=5\,\Oadm=\operatorname{lcm}(\Oadm,\Dstart)=\operatorname{lcm}(48,60), \\
+  \Dstart &= \gcar\cdot\dimg=5\cdot12=60,\qquad \gcd(\Oadm,\Dstart)=12=\dimg, \\
+  \frac{|R(E_8)|}{\Dstart} &= \frac{240}{60}=4=\frac{\Oadm}{\dimg},\qquad
+  2880=\Dstart\,\Oadm=|R(E_8)|\cdot\dimg, \\
+  \kappaE &= \frac{\gamma_{\mathrm{car}}}{\ln(248/60)}=0.58723,\qquad
+  X(n,r,I_1)=\frac{\Mbar}{8}\sin^2\theta_{13}\Bigl(\frac{60-2n}{60}\Bigr)^{\kappaE}e^{-(8-r)/64}e^{-12\pi I_1}.
+\end{align}
+\textbf{Coxeter/gauge typing of the lcm--gcd pair.} Writing $\Dstart=60=2h_{E_8}$ and
+$\Oadm=48=6\operatorname{rank}(E_8)$, the relations become
+$\gcd(2h_{E_8},6r_{E_8})=\dimg=12$ and $\operatorname{lcm}(2h_{E_8},6r_{E_8})=|R(E_8)|=240$: the local
+SM algebra is the gcd of the Coxeter double-period and the $\mathbb Z_6$ rank-occupancy, and the $E_8$
+root count is their lcm. Likewise the EW exponent reads
+$I_1^{\mathrm{EW}}=\tfrac{41}{48}=\tfrac{h_{E_8}}{36}+\tfrac{1}{6r_{E_8}}=\tfrac56+\tfrac{1}{48}$
+(Coxeter principal part plus a rank singlet). \mE\ (arithmetic) / \mC\ (typing).
+
+\subsection{Level 2 --- new exact counting identities (\mE)}
+\begin{align}
+  |R(E_8)| &= 240 = 16\cdot15=\dim S^+\,(\dim S^+-1), \\
+  \dim E_8 &= 248 = 8\cdot31=(\gcar+\Nfam)(2^{\gcar}-1), \\
+  |R(E_8)| &= 8\,(31-1)=\operatorname{rank}(E_8)\,(2^{\gcar}-2),\qquad \operatorname{rank}(E_8)=8=\gcar+\Nfam=5+3, \\
+  10\,b_1 &= 41 = \frac{|R(E_8)|}{6}+1,\qquad I_1^{\mathrm{EW}}=\frac{41}{48}=\gamma_{\mathrm{car}}+\frac{1}{\Oadm},
+\end{align}
+with $31=2^{\gcar}-1$ the number of non-empty occupation words of the $[5,4,2]$ carrier code.
+
+\subsection{Level 2.5 --- the even-flip transition atlas (a falsifiable program)}
+Identify $S^+$ with the even-weight binary code on five bits. A transition $x\to y\neq x$ has flip
+$F=x\oplus y$, even and nonempty, so $|F|\in\{2,4\}$; per state there are
+$\binom52+\binom54=10+5=15$ flips, giving
+\begin{equation}
+  240=16\cdot(10+5)=\underbrace{160}_{|F|=2}+\underbrace{80}_{|F|=4},
+\end{equation}
+and the $120$ undirected flips match the $120$ $E_8$ root \emph{pairs} (\mE, counting). This makes the
+atlas conjecture \emph{testable}: a genuine root map must send each flip to a norm-$2$ vector in
+$\mathbb R^8$ with inner products in $\{-2,-1,0,1,2\}$ reproducing the $E_8$ profile (per root:
+$1$ self, $56$ at $+1$, $126$ orthogonal, $56$ at $-1$, $1$ anti).
+\par\smallskip\noindent\textbf{Honest obstruction (\mO).}
+The flip atlas splits $160+80$ by flip size; the standard $E_8$ ($D_8$) split is $112+128$. Since
+$160+80\neq112+128$, no flip-size-preserving map is an $E_8$ root system; a metrization, if it
+exists, must mix flip sizes. Until a norm-$2$, $E_8$-profile embedding is exhibited, $E_8$ stays a
+\emph{counting} atlas, not a derived root origin.
+\par\smallskip
+
+\noindent\textbf{Sharper two-stage audit (Coxeter before Weyl).} A full root-system isomorphism is
+hard; a much earlier, cheaper test is the Coxeter spectrum. \emph{Stage A:} find a natural order-$30$
+operator $C_{\mathrm{TFPT}}$ on the even-flip atlas (or its $8$-dimensional primitive-character space)
+with characteristic polynomial $\chi_{C_{\mathrm{TFPT}}}(t)=\Phi_{30}(t)$. \emph{Stage B (only if A
+holds):} the norm-$2$, $E_8$-profile, Weyl-closure metrization. Stage A can fail or carry far sooner
+than B, so it is the right first falsifier.
+\par\smallskip\noindent\textbf{Stage A is closed on the primitive-character space
+(\veri{v531\_coxeter\_tensor\_stage\_a.py}).} The explicit integer operator
+\[
+  T_{30}=\operatorname{Comp}(\Phi_5)\otimes\operatorname{Comp}(\Phi_6)
+\]
+(the $4{\times}4$ carrier clock of \vref{v418} tensor the $2{\times}2$ family/CP hexagon) has \emph{exact}
+order $30$ ($T_{30}^{30}=I$, $T_{30}^k\neq I$ for $1\le k<30$) and
+$\chi_{T_{30}}=\Phi_{30}=t^8+t^7-t^5-t^4-t^3+t+1$ exactly: by CRT ($\gcd(5,6)=1$) its eigenvalues are the
+products (primitive $5$th)$\times$(primitive $6$th) $=$ exactly the eight primitive $30$th roots --- the
+carrier clock times the family clock \emph{is} the Coxeter clock, as one integer operator. Its traces are
+the Ramanujan sums, $\operatorname{tr}(T_{30}^k)=c_{30}(k)=c_5(k)\,c_6(k)$ for all $k$, with the signed
+divisor table $(-1,1,2,4,-2,-4,-8,8)$ at $k=(1,2,3,5,6,10,15,30)$ and the atom readout
+$(|\operatorname{tr}T^3|,|\operatorname{tr}T^5|,|\operatorname{tr}T^{15}|)=(2,4,8)
+=(|\Z_2|,|\mu_4|,\operatorname{rank}E_8)$ --- eight integer traces type the clock \emph{without}
+diagonalisation, a cheap kill test for any flip-operator candidate (honest scope: $\Phi_{15}$ passes the
+unsigned triple since $\Phi_{30}(t)=\Phi_{15}(-t)$; the \emph{signed} table is the discriminator, and
+$\Phi_{16},\Phi_{20},\Phi_{24}$ die on the triple already). \mE\ \emph{What stays open (\mO):} a canonical
+intertwiner from the concrete even-flip atlas onto this primitive space
+(\texttt{COX.FLIP.INTERTWINER}), and Stage B.
+
+\par\smallskip\noindent\textbf{Audit only --- \emph{non-load-bearing} speculation: the $\dim 496$ heterotic count \mO.}
+\emph{This box feeds no derivation; it is an arithmetic coincidence kept for completeness only, under the
+no-free-pattern rule.} The even half $S^+$ and odd half $S^-$ of the exterior algebra each have dimension
+$2^{\gcar-1}=16$ and each carry $16\cdot15=240$ transitions. Together the full carrier ($2^{\gcar}=32$
+states) gives
+\[
+  \dim S^+(2^{\gcar}-1)=16\cdot31=496=\dim(E_8\times E_8)=\dim SO(32)=\binom{32}{2}\qquad(\text{count}),
+\]
+i.e.\ the two halves read as two $E_8$ root atlases, all $\binom{32}{2}=496$ pairs as $SO(32)$ --- the two
+anomaly-free heterotic gauge dimensions. The \emph{dimension} equality is exact; that the carrier algebra
+\emph{is} either gauge group is unproven and not used anywhere. \mO\ (audit-only). The same fingerprint
+recurs at checksum level: the dual products of the $E_8$ invariant degrees sum to $744=3\cdot248$ (the
+$j$-function constant), and the identical construction for $D_{16}$ gives $1488=3\cdot496=2\cdot744$
+(\veri{v532\_e8\_degree\_modular\_checksum.py}) --- the checksum measures the common heterotic
+rank-$16$/Coxeter-$30$ structure, \emph{not} $E_8$ uniqueness. \mE\ (audit-only).
+\par\smallskip
+
+\subsection{Level 2.7 --- the carrier Coxeter theorem (the strongest new bridge)}
+Use the universal root-system identity $|R|=\operatorname{rank}\cdot h$ (Coxeter number $h$). With the
+carrier values $\operatorname{rank}(E_8)=\gcar+\Nfam=8$ and $|R(E_8)|=\dim S^+(\dim S^+-1)=240$,
+\begin{equation}
+  \boxed{\ h_{E_8}=\frac{|R(E_8)|}{\operatorname{rank}(E_8)}=\frac{240}{8}=30
+  =\Nfam\binom{\gcar}{2}=\Nfam\,A_\Lambda=2\gcar\Nfam=2^{\gcar}-2\ }\qquad\mE .
+\end{equation}
+The Coxeter number of $E_8$ is exactly three families times the cosmological pair action: each family
+contributes one $\Lambda$-decuple ($A_\Lambda=\binom52=10$) to the Coxeter period. Equivalently the
+action ladder is a Coxeter ladder,
+\begin{equation}
+  A_H=\frac{h_{E_8}}{2\Nfam}=5,\qquad A_\Lambda=\frac{h_{E_8}}{\Nfam}=10,
+\end{equation}
+so Hubble reads half a Coxeter period per family and $\Lambda$ a full Coxeter period per family. \mC
+
+\noindent\textbf{Rank--Coxeter coupling.} Equivalently $\dim S^+=2\operatorname{rank}(E_8)=16$ and
+$h_{E_8}=2(\dim S^+-1)=2\cdot15=30$, so $\dim E_8=(\gcar+\Nfam)(h+1)=8\cdot31$. The two counting forms
+$16\cdot15=8\cdot30=240$ coincide because $\dim S^+=2r$. Dropping $\nu^c$ sends $\dim S^+\to15$, which
+breaks \emph{both} $\dim S^+=2r$ and $\dim S^+(\dim S^+-1)=240$: $\nu^c$ is the state that closes the
+rank--Coxeter coupling, not an optional singlet. \mE/\mC
+
+\subsection{Level 2.8 --- positive-root moment: $|R^+(E_8)|=\operatorname{Tr}_{S^+}X^2=5!$}
+The number of positive $E_8$ roots equals the master hypercharge moment:
+\begin{equation}
+  \boxed{\ |R^+(E_8)|=120=\operatorname{Tr}_{S^+}X^2=5!\ }\qquad\mE,
+\end{equation}
+so the second hypercharge moment of one family \emph{is} the positive-root half-system. The whole
+integer chain then reads off $|R^+|$:
+\begin{equation}
+  \sum_{f,j}L_{f,j}=\frac{|R^+(E_8)|}{3}=40,\qquad
+  10b_1=1+\frac{|R^+(E_8)|}{3}=41,\qquad
+  \dtwo=4!\,|R^+(E_8)|\,\cthree^8 .
+\end{equation}
+The $\mathbb Z_6$ slice is then $|R(E_8)|/6=\tfrac{|R^+|}{3}=40=\Oadm\gamma$: one $\mathbb Z_6$ phase
+slice of the $E_8$ root atlas is exactly the full flavor transport budget. \mE\ (arithmetic) / \mC\
+(interpretation).
+
+\subsection{Level 2.9 --- the $2{\cdot}3{\cdot}5$ Coxeter cyclotomic compiler (meta-theorem)}
+The three hard carrier atoms --- weak rank $2$, color rank / family count $3$, carrier rank
+$\gcar=5$ --- generate the $E_8$ data \emph{cyclotomically}, without taking $E_8$ as input. Set
+\begin{equation}
+  \boxed{\ h:=2\cdot3\cdot\gcar=30,\qquad r:=\varphi(h)=\varphi(30)=8=\gcar+\Nfam,\ }
+\end{equation}
+where $h$ is the Coxeter number and $r=\varphi(2{\cdot}3{\cdot}5)=8$ the rank. Then the standard
+$|R|=rh$, $\dim=r(h{+}1)$ give
+\begin{equation}
+  |R(E_8)|=rh=8\cdot30=240,\qquad \dim E_8=r(h+1)=8\cdot31=248,\qquad h+1=2^{\gcar}-1=31 .
+\end{equation}
+Moreover the $E_8$ \emph{exponents} are exactly the primitive residues modulo $h=30$:
+\begin{equation}
+  \operatorname{Exp}(E_8)=(\mathbb Z/30\mathbb Z)^\times=\{1,7,11,13,17,19,23,29\},\qquad
+  \sum_{m\in(\mathbb Z/30)^\times}\!\! m=120=\operatorname{Tr}_{S^+}X^2=|R^+(E_8)|,
+\end{equation}
+so the second hypercharge moment equals the sum of the $E_8$ exponents and the positive-root count.
+The $\mathbb Z_6\times\mathbb Z_5\simeq\mathbb Z_{30}$ tact has $\varphi(30)=8$ primitive characters,
+whose phases $e^{2\pi i m/30}$ are the Coxeter eigenphases of $E_8$; its characteristic polynomial is
+the $30$th cyclotomic polynomial
+\begin{equation}
+  \chi_C(t)=\Phi_{30}(t)=t^8+t^7-t^5-t^4-t^3+t+1 .
+\end{equation}
+\textbf{Reading:} $E_8$ here is not primarily a root count but the \emph{Coxeter cyclotomic readout of
+the $2,3,5$ carrier}. \mE\ (arithmetic) / \mC\ (interpretation).
+
+\subsection{Level 3 --- conjectural geometric readings (\mC)}
+\begin{conjecture}[Carrier transition atlas]
+$R(E_8)\cong\{(a,b)\in S^+\times S^+: a\neq b\}$ as a structure-bearing transition set, since
+$16\cdot15=240$. \emph{Open:} a structure-preserving map (roots, lengths, Weyl data), not only the
+count.
+\end{conjecture}
+\begin{conjecture}[Least common refinement / rank-8 over the exhausted carrier]
+$240=\operatorname{lcm}(\Oadm,\Dstart)$ reads $E_8$ as the least common refinement of the occupancy
+lattice and the $\mathbb Z_6$ phase lattice; $248=(\gcar+\Nfam)(2^{\gcar}-1)$ reads it as a rank-$8$
+structure over the $31$ non-empty carrier words.
+\end{conjecture}
+\par\smallskip\noindent\textbf{Two routes to $E_8$ --- keep their status separate.}
+Levels 1--2 are exact arithmetic. There are now \emph{two} distinct routes to $E_8$, and they must not
+be conflated:
+\begin{itemize}
+\item \textbf{Glue route (closed, \mE):} $E_8=(D_5\oplus A_3)+\mu_4$-glue is built explicitly in
+Section~\ref{sec:d5a3} ($\operatorname{disc}(D_5)=\operatorname{disc}(A_3)=\mathbb Z_4$, glue index $4$,
+$240$ roots of norm $2$, simple-root Gram $\det 1$). This closes the former ``blind $240$-metrisation''.
+\item \textbf{Direct flip-atlas route (open, \mO, optional bonus):} the even-flip transition set
+$240=160+80$ is \emph{not} a flip-size-preserving $E_8$ map, since $160+80\neq 112+128$. A direct
+structure-preserving metrisation of the flip graph remains open --- a nice-to-have, not load-bearing,
+because the glue route already delivers $E_8$.
+\end{itemize}
+So $E_8$ is closed via the glue; only the direct flip atlas is open.
+\par\smallskip
+
+% =====================================================================
+\section{$\mathbb Z_6$ monodromy, flavor and CP readouts}
+% =====================================================================
+\noindent\emph{Machine checks for this section:} \veri{v88\_\allowbreak cp\_\allowbreak phase\_\allowbreak audit.py}
+
+
+A single $\mathbb Z_6$ motif recurs in the quotient $G_{\mathrm{phys}}=(SU(3){\times}SU(2){\times}U(1)_Y)/\mathbb Z_6$,
+the transport cusps $\{1,(2/3)^6,(1/3)^6\}$, $\dph=z_\star^{1/6}$, and the CP phases
+\begin{equation}
+  \delta^{(0)}_{\mathrm{CKM}}=\frac{\pi}{3},\quad
+  \delta_{\mathrm{CKM}}=\frac{\pi}{3}+3\lC^2=1.19823\,\mathrm{rad},\quad
+  \delta^{\mathrm{PMNS}}_{\mathrm{CP}}=\frac{4\pi}{3}=240^\circ .
+\end{equation}
+From the documented inputs $s_{12}=\lC$, $s_{23}=\useed/(1+\lC)$, $s_{13}=\lC^3/3$ one gets the new
+derived readouts $|V_{td}|=0.00908$, $|V_{ts}|=0.04264$, $J_{\mathrm{CKM}}=3.33\times10^{-5}$. On
+the neutrino side, with $\sin^2\theta_{13}=e^{-5/6}\useed=0.02311$, $\sin^2\theta_{23}=0.4557$,
+$\delta_{\mathrm{CP}}=4\pi/3$ and the solar candidate $\sin^2\theta_{12}=\tfrac13-\tfrac{\useed}{2}=0.30675$,
+a near-maximal $|J^\nu_{\mathrm{CP}}|\approx0.030$ (sharp readout for DUNE/Hyper-Kamiokande). \mC
+
+\subsection{CP as triple seed variance; a closed observable quadrilateral}
+The Cabibbo angle is the Bernoulli width of the seed. The \emph{exact} CKM phase is the family
+transport holonomy (document~3), $\delta_{\mathrm{CKM}}=\arg\operatorname{Tr}\Pi_\triangle(\nabla_F^\star)$; on the
+small-area branch this has the compact readout form (with an $O(\lC^4)$ remainder)
+\begin{equation}
+  \lC=\sqrt{\useed(1-\useed)},\qquad
+  \boxed{\ \delta_{\mathrm{CKM}}-\frac{\pi}{3}=\Nfam\,\useed(1-\useed)=3\lC^2\ }\qquad\mE/\mC\ (\text{readout; exact}=\text{holonomy}) .
+\end{equation}
+The coefficient $3$ is the family number $\Nfam$: weak CP is the $\mathbb Z_6$ base angle $\pi/3$
+plus $\Nfam$ times the seed (Bernoulli) variance. The $\mathbb Z_6$ base angle now has an $A_3$ root:
+since $\mathbb Z_6=|R^+(A_3)|=6$ (the positive-root hexagon of the family algebra), the CP phases are
+integer steps of the $A_3$ holonomy quantum $2\pi/|R^+(A_3)|$,
+\begin{equation}
+  \boxed{\ \delta_{\mathrm{CKM}}=\frac{2\pi}{|R^+(A_3)|}+\Nfam\,\useed(1-\useed),\qquad
+  \delta^{\mathrm{PMNS}}_{\mathrm{CP}}=4\cdot\frac{2\pi}{|R^+(A_3)|}=\frac{4\pi}{3}\ }\qquad\mE/\mC .
+\end{equation}
+So weak CP $=$ ($A_3$ positive-root phase step) $+$ (family count $\times$ seed variance), while strong
+CP is the \emph{determinant} sector, erased. The solar angle reads as a carrier root plus a half-seed,
+$\sin^2\theta_{12}=\tfrac13-\tfrac{\useed}{2}=-y_- - \tfrac{\useed}{2}$ (since $-y_-=\tfrac13$), so
+PMNS $=$ carrier root $+$ seed $+$ $A_3$ holonomy phase. \mC
+Strong CP is killed by the determinant selector ($\arg\det M_u=\arg\det M_d=0$, $\bar\theta=0$),
+while weak CP survives as the seed-deformed $\mathbb Z_6$ holonomy: CP is not forbidden, only
+\emph{determinant} CP is. \mC\ --- the strong-CP closure lives on the admissible QFT branch and is
+\emph{conditional} on the analytic hypotheses of the QFT closure (document~3, Part~III: reflection positivity, temperedness,
+clustering, mass gap, OS reconstruction); its status is therefore weaker than the discrete lattice
+identities, even though the semantics ``determinant CP forbidden, holonomy CP allowed'' is robust. Since $\useed=\Omega_b+\betarad$ exactly, eliminating the seed closes the
+four UV-shadow observables into one cycle:
+\begin{equation}
+  \lC^2=(\Omega_b+\betarad)(1-\Omega_b-\betarad),\quad
+  \sin^2\theta_{13}=e^{-5/6}(\Omega_b+\betarad),\quad
+  \Omega_b=\Bigl(1-\tfrac{1}{4\pi}\Bigr)e^{5/6}\sin^2\theta_{13}. 
+\end{equation}
+One measured member of $\{\lC,\theta_{13},\Omega_b,\betarad\}$ fixes the other three. \mE\ (the four
+rows remain operationally distinct readout classes).
+
+% =====================================================================

@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Only canonical, crawlable routes — no in-page fragment anchors (#overview,
   // …): search engines drop URL fragments and fold them into the page URL.
   const pages: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/documentation`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     {
       url: SITE_URL,
       lastModified,

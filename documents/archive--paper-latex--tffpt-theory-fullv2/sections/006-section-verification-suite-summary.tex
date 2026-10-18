@@ -1,0 +1,394 @@
+\section{Verification Suite Summary}
+%=============================================================================
+
+The TFPT verification suite (v5) runs 10 independent modules:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Module} & \textbf{Status} & \textbf{Time [s]}\\
+\midrule
+birefringence (cosmology) & success & 0.00\\
+block\_constants & success & 0.00\\
+ckm\_pmns & success & 0.03\\
+core\_constants & success & 0.39\\
+cp\_violation & success & 0.00\\
+dark\_matter & success & 0.00\\
+e8\_chain & success & 0.89\\
+koide & success & 0.00\\
+mobius\_flavor & success & 0.00\\
+two\_loop & success & 0.00\\
+\midrule
+\textbf{Total} & \textbf{10/10} & \textbf{1.32}\\
+\bottomrule
+\end{tabular}
+\caption{Verification suite execution status.}
+\end{table}
+
+%=============================================================================
+\section{E$_8$ Chain Certificate}
+\label{app:E8cert}
+%=============================================================================
+
+This appendix provides the complete verification data for the E$_8$ chain uniqueness 
+theorem (Theorem~\ref{thm:chainunique}).
+
+\subsection{Orbit Data Structure}
+
+Each nilpotent orbit $\mathcal{O}$ of $\mathfrak{e}_8$ is characterized by:
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{Bala--Carter label:} Standard notation (e.g., $A_1$, $2A_1$, $A_2$, \ldots)
+    \item \textbf{Dimension:} $\dim(\mathcal{O})$
+    \item \textbf{Centralizer dimension:} $D(\mathcal{O}) = 248 - \dim(\mathcal{O})$
+    \item \textbf{Height:} $h(\mathcal{O})$ (sum of weighted Dynkin diagram coefficients)
+\end{itemize}
+
+\subsection{The Unique Chain (Excerpt)}
+
+The complete chain from $D = 58$ to $D = 8$:
+
+\begin{center}
+\small
+\begin{tabular}{@{}clccc@{}}
+\toprule
+$n$ & \textbf{Orbit Label} & $D_n$ & $\dim(\mathcal{O})$ & $h$\\
+\midrule
+1 & $A_1$ & 58 & 190 & 2\\
+2 & $2A_1$ & 56 & 192 & 4\\
+3 & $3A_1$ & 54 & 194 & 6\\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+12 & (EW anchor) & 36 & 212 & 24\\
+15 & (Hadronic) & 30 & 218 & 30\\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+26 & $E_8(a_1)$ & 8 & 240 & 58\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Full data:} Available in machine-readable format at the replication repository 
+(see Section~\ref{app:repro}).
+
+\subsection{Verification Algorithm}
+
+The uniqueness is verified by:
+\begin{enumerate}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item Constructing the complete Hasse diagram of $\mathcal{N}(\mathfrak{e}_8)$ 
+        from standard tables.
+    \item Computing all cover relations with $\Delta D = 2$.
+    \item Running dynamic programming to find \emph{all} paths from $D = 58$ to $D = 8$.
+    \item Applying the cost function $\mathcal{S} = \sum_n (\Delta^2 \ln D_n)^2$ 
+        (second-difference smoothness).
+    \item Verifying that the minimum-cost path is unique (cost gap to second-best $= 0$ 
+        indicates tie-breaker was not needed for the optimal path).
+\end{enumerate}
+
+%=============================================================================
+\section{Boundary Trace Derivation}
+\label{app:boundary}
+%=============================================================================
+
+This appendix derives the block index formula $k_B = \frac{3}{2} I_1(B)$ from 
+the APS index theorem.
+
+\subsection{Setup}
+
+Consider a 6D manifold $M^6$ with boundary $\partial M^6 = \Sigma^5$. For a 
+Weyl fermion coupled to a $U(1)$ gauge field $A$, the APS index theorem gives:
+\begin{equation}
+    \text{ind}(\not{\!D}) = \int_{M^6} \text{ch}(F) \wedge \hat{A}(M^6) 
+    - \frac{1}{2}\eta(\not{\!D}_\Sigma)
+\end{equation}
+where $\eta$ is the $\eta$-invariant of the boundary Dirac operator.
+
+\subsection{Flat Connection on Boundary Cycles}
+
+On the orientable double cover $\widetilde{M}$, the boundary decomposes as:
+\begin{equation}
+    \partial\widetilde{M} = C_1 \cup C_2 \cup C_T
+\end{equation}
+(two boundary cycles plus the twist seam).
+
+For a \emph{flat} $U(1)$ connection on each $C_i$ with holonomy $\theta_i = \oint_{C_i} A$, 
+the $\eta$-invariant contribution becomes:
+\begin{equation}
+    \eta_i \propto \sum_{\text{fermions}} q^2 \cdot \theta_i
+\end{equation}
+where $q$ is the $U(1)$ charge.
+
+\subsection{Derivation of $k_B$}
+
+\textbf{Step 1:} Each boundary cycle contributes a factor proportional to $I_1 = \sum q^2$.
+
+\textbf{Step 2:} Three cycles contribute additively: factor 3.
+
+\textbf{Step 3:} The double cover counts each physical state once across two sheets. 
+The effective weight is halved: factor $1/2$.
+
+\textbf{Result:}
+\begin{equation}
+    k_B = 3 \times \frac{1}{2} \times I_1(B) = \frac{3}{2} I_1(B)
+\end{equation}
+
+\textbf{Consistency check:} For the electroweak block, 
+$I_1^{\text{EW}} = \frac{41}{48}$ (SM hypercharge sum), giving 
+$k_{\text{EW}} = \frac{3}{2} \times \frac{41}{48} = \frac{41}{32}$, 
+as stated in Table~\ref{tab:blocks}.
+
+%=============================================================================
+\section{Orbifold Gauss--Bonnet and the Seam Term (Status and Open Formalization)}
+\label{app:seam}
+%=============================================================================
+
+This appendix records the current status of Postulate~A3 (effective seam boundary term) used in Axiom~\ref{ax:GB}.
+
+\subsection{Postulate restatement}
+We model the identification seam $\Gamma$ in the orientable double cover as contributing an effective boundary-type term in the (orbifold) Gauss--Bonnet balance. 
+In TFPT bookkeeping, this yields three $2\pi$ curvature contributions (two edges plus seam), fixing $\phitree = 1/(6\pi)$.
+
+\subsection{Motivation (sketch)}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{Orbifold viewpoint:} The M\"obius base can be viewed as a $\mathbb{Z}_2$ quotient; fixed-locus data naturally appear in geometric balance laws.
+    \item \textbf{Index-theory intuition:} In orbifold/APS settings, fixed loci and matching conditions can contribute terms that are boundary-like in form.
+    \item \textbf{Cut-and-glue:} Cutting along $\Gamma$ converts the seam matching condition into boundary data on a manifold-with-boundary, suggesting an additive seam contribution in the curvature bookkeeping.
+\end{itemize}
+
+\subsection{What remains to be formalized (one-page ledger)}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{Exact orbifold Gauss--Bonnet statement:} A precise theorem statement for the relevant $\mathbb{Z}_2$ quotient geometry, explicitly including fixed-locus (seam) contributions.
+    \item \textbf{Precise seam term definition:} A differential-geometric definition of the seam contribution (as a boundary term or distributional curvature term) compatible with the variational normalization used in Section~2.
+\end{itemize}
+
+%=============================================================================
+\section{Derivation of the Coefficient 48 in $\deltatop$}
+\label{app:48deriv}
+%=============================================================================
+
+This appendix explains the integer coefficient in $\deltatop = 48\cthree^4$.
+The key point is that the canonical quantity is
+\begin{equation}
+    \deltatop = \frac{3}{256\pi^4},
+\end{equation}
+and the appearance of ``48'' is simply the same number expressed in units of $\cthree^4$.
+
+\subsection{The Physical Setup}
+
+The topological correction $\deltatop$ arises from the leading gauge-invariant correction 
+to the tree-level geometric scale $\phitree$. The requirements are:
+\begin{enumerate}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{Gauge invariance:} The correction must be built from $\cthree$ only 
+        (no explicit $\alpha$ dependence at this order).
+    \item \textbf{Dimensionlessness:} Since $\cthree$ is dimensionless, the correction 
+        must be a pure power $\cthree^n$ with an integer coefficient.
+    \item \textbf{Discreteness:} Topological invariants take discrete values; the 
+        coefficient must be a rational number with simple structure.
+\end{enumerate}
+
+\subsection{Power Counting: Why $\cthree^4$?}
+
+The effective action on the M\"obius fiber includes the Chern--Simons term 
+$\cthree\, a F\tilde{F}$. The leading topological correction comes from the 
+one-loop determinant of the Dirac operator coupled to this background.
+
+\textbf{Dimensional analysis:} The Chern--Simons coupling enters as $\cthree$. The 
+Euler characteristic and Pontryagin invariants contribute at order $\cthree^2$ each. 
+The product yields:
+\begin{equation}
+    \deltatop \sim \cthree^2 \times \cthree^2 = \cthree^4
+\end{equation}
+
+\textbf{No $\cthree^2$ term:} A correction of order $\cthree^2$ would require a 
+pure Euler term, but this is already absorbed into $\phitree$ via Gauss--Bonnet. 
+The next allowed correction is $\cthree^4$.
+
+\subsection{Orbifold deficit sum rule (why the numerator is 3)}
+
+In the orbifold model underlying Axiom~\ref{ax:TC}, the relevant fixed-point data consists of four 
+$\mathbb{Z}_4$ fixed points. Each $\mathbb{Z}_4$ fixed point contributes a deficit factor
+\begin{equation}
+    1-\frac{1}{4}=\frac{3}{4},
+\end{equation}
+so the total deficit sum is
+\begin{equation}
+    \sum_{p=1}^{4}\left(1-\frac{1}{4}\right)=3.
+\end{equation}
+In TFPT normalization this yields the canonical form $\deltatop = 3/(256\pi^4)$.
+
+\subsection{Conversion to the $\cthree$ normalization}
+
+Using $\cthree = 1/(8\pi)$:
+\begin{equation}
+    48\cthree^4 = 48 \times \frac{1}{(8\pi)^4} 
+    = \frac{48}{4096\pi^4}
+    = \frac{3}{256\pi^4}
+\end{equation}
+so $\deltatop = 3/(256\pi^4)$ and $\deltatop = 48\cthree^4$ are exactly equivalent.
+
+\subsection{Status note}
+The deficit-sum explanation above is the intended bookkeeping origin of the integer coefficient and removes any appearance of numerology.
+A fully rigorous derivation (including a precise orbifold Gauss--Bonnet theorem statement and seam-term definition) is listed as open work in Appendix~\ref{app:seam}.
+
+%=============================================================================
+\section{Flavor Monodromy and Cross-Ratio}
+\label{app:flavor}
+%=============================================================================
+
+This appendix derives the M\"obius structure of flavor relations from boundary monodromy.
+
+\subsection{Projective Invariance on Boundaries}
+
+On a conformally flat boundary, the metric is locally:
+\begin{equation}
+    ds^2 = e^{2\omega(x)} \delta_{ij} dx^i dx^j
+\end{equation}
+Holomorphic automorphisms (Wilson lines of flat connections) act as M\"obius 
+transformations:
+\begin{equation}
+    z \mapsto \frac{az + b}{cz + d}, \quad ad - bc = 1
+\end{equation}
+
+\begin{remark}
+\textbf{Context:} $\mathrm{SL}(2,\mathbb{C})$ double-covers the proper orthochronous Lorentz group $\mathrm{SO}^+(3,1)$, 
+and its projectivization $\mathrm{PSL}(2,\mathbb{C})$ acts by M\"obius transformations on the Riemann sphere. 
+This links the M\"obius structure to standard Lorentz symmetry rather than an ad hoc choice.
+\end{remark}
+
+\subsection{Cross-Ratio as Unique Invariant}
+
+Given four marked points $\{z_1, z_2, z_3, z_4\}$ on the boundary, the unique 
+projective invariant is the cross-ratio:
+\begin{equation}
+    [z_1, z_2; z_3, z_4] = \frac{(z_1 - z_3)(z_2 - z_4)}{(z_1 - z_4)(z_2 - z_3)}
+\end{equation}
+
+\textbf{Consequence:} Any physical quantity depending only on boundary data must be 
+expressible as a function of cross-ratios, hence as a M\"obius map.
+
+\subsection{Cusp Selection}
+
+The cusps $y \in \{1, 1/3, 2/3\}$ arise from:
+\begin{enumerate}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{Rationality:} Quantized holonomies $\Rightarrow$ rational cusps.
+    \item \textbf{GUT compatibility:} SU(5) hypercharge assignments give 
+        $Y = 1/3$ (quarks), $Y = 1$ (leptons), etc.
+    \item \textbf{Uniqueness:} These are the only rational values that simultaneously 
+        separate the three SM sectors (up, down, lepton) and maintain GUT normalization.
+\end{enumerate}
+
+\subsection{Derivation of $\delta_\star$}
+
+The flavor phase is a first-order closure:
+\begin{equation}
+    \delta_\star = \delta_0 + \delta_1 \cdot \phiz + \mathcal{O}(\phiz^2)
+\end{equation}
+
+\textbf{Leading term:} $\delta_0 = 3/5$ from the abelian trace (same as $\bone$ numerator 
+divided by 41/10's denominator structure).
+
+\textbf{Correction:} $\delta_1 = 1/6$ from the M\"obius length scale. The factor $1/6$ 
+matches the boundary normalization ($6\pi$ total curvature).
+
+\textbf{Result:}
+\begin{equation}
+    \delta_\star = \frac{3}{5} + \frac{\phiz}{6} = 0.6 + 0.00886 = 0.6089
+\end{equation}
+
+%=============================================================================
+\section{Reproducibility}
+\label{app:repro}
+%=============================================================================
+
+\textbf{Replication package:} All numerical results can be reproduced using the 
+TFPT verification suite (v5).
+
+\textbf{Contents:}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item Python modules for each calculation domain
+    \item JSON files with all constants and derived quantities
+    \item Automated test suite with pass/fail status
+    \item Plot generation scripts
+\end{itemize}
+
+\textbf{Key output files:}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \texttt{tfpt\_complete\_analysis.json}: Master results file
+    \item \texttt{e8\_chain\_analysis.json}: Complete E$_8$ chain data
+    \item \texttt{gauge\_couplings.csv}: Two-loop RGE output (via PyR@TE)
+\end{itemize}
+
+\textbf{Execution:} \texttt{python -m tfpt\_verification5.run\_all}
+
+\textbf{Verification:} All 10 modules must report ``success'' status.
+
+%=============================================================================
+\section{Identity Catalogue and Status Labels}
+\label{app:identities}
+%=============================================================================
+
+This appendix labels frequently used equalities by logical status to prevent conflating definitions, algebraic rewrites, and genuine predictions.
+
+\textbf{Legend:}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{D}: Definition (input)
+    \item \textbf{K}: Consequence of definitions (algebraic)
+    \item \textbf{L}: Lemma from axioms/postulates
+    \item \textbf{P}: Prediction (output; not used as input)
+\end{itemize}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lp{12cm}@{}}
+\toprule
+\textbf{Tag} & \textbf{Statement}\\
+\midrule
+\textbf{D} & $\beta_{\text{rad}} := \phiz/(4\pi)$.\\
+\textbf{K} & $\phiz = 4\pi\beta_{\text{rad}}$.\\
+\textbf{K} & $\beta_{\text{deg}} := (180/\pi)\beta_{\text{rad}}$.\\
+\textbf{K} & $\gagg = -4\cthree = -1/(2\pi)$.\\
+\textbf{L} & $\gamma(0)=5/6$ (Definition~\ref{def:E8cascade}; discrete closure choice).\\
+\textbf{L} & $\phitree = 1/(6\pi)$ (Axiom~\ref{ax:GB}; depends on Postulate~A3).\\
+\textbf{L} & $\deltatop = \frac{1}{256\pi^4}\sum_{p=1}^{4}\left(1-\frac{1}{4}\right)=\frac{3}{256\pi^4}$ (Axiom~\ref{ax:TC}).\\
+\textbf{P} & CFE solution $\alpha^{-1}_{\text{TFPT}} = 137.035990390\ldots$ (Theorem~\ref{thm:selfconsistent}).\\
+\textbf{P} & Cabibbo $\lambda = \sqrt{\phiz}\left(1-\frac{1}{2}\phiz\right)=0.22445997\ldots$ (Corollary~\ref{cor:Cabibbo}).\\
+\textbf{P} & Birefringence $\beta_{\text{deg}} \approx 0.2424^\circ$ from $\Delta a \simeq \phiz$ (Theorem~\ref{thm:birefringence} + dynamical completion in Sec.~\ref{sec:deltaa}).\\
+\textbf{P} & $R^2$ inflation: $n_s=1-2/N$, $r=12/N^2$, $A_s \simeq \frac{N^2}{24\pi^2}(M/\Mpl)^2$ with $M/\Mpl=\sqrt{8\pi}\cthree^4$ (Theorem~\ref{thm:inflation}).\\
+\textbf{P} (spec.) & $\Omega_b = (4\pi-1)\beta_{\text{rad}}$ (Table~\ref{tab:beta}).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%=============================================================================
+\section*{References}
+%=============================================================================
+
+\begin{enumerate}[label={[\arabic*]}]
+    \item F.~W.~Hehl, P.~von der Heyde, G.~D.~Kerlick, J.~M.~Nester, 
+        ``General Relativity with Spin and Torsion: Foundations and Prospects,'' 
+        Rev.\ Mod.\ Phys.\ \textbf{48}, 393 (1976).
+    
+    \item K.~Fujikawa, ``Path-Integral Measure for Gauge-Invariant Fermion Theories,'' 
+        Phys.\ Rev.\ Lett.\ \textbf{42}, 1195 (1979).
+    
+    \item T.~Kawasaki, ``The Riemann--Roch theorem for complex V-manifolds,'' 
+        Osaka J.\ Math.\ \textbf{16}, 151--159 (1979).
+    
+    \item P.~Diego-Palazuelos \textit{et al.}, 
+        ``Cosmic Birefringence from the Planck Data Release 4,'' 
+        Phys.\ Rev.\ Lett.\ \textbf{128}, 091302 (2022);
+        Y.~Minami, E.~Komatsu, 
+        ``New Extraction of the Cosmic Birefringence from the Planck 2018 Polarization Data,'' 
+        Phys.\ Rev.\ Lett.\ \textbf{125}, 221301 (2020).
+    
+    \item E.~Tiesinga, P.~J.~Mohr, D.~B.~Newell, B.~N.~Taylor, 
+        ``CODATA Recommended Values of the Fundamental Physical Constants: 2022,'' 
+        J.\ Phys.\ Chem.\ Ref.\ Data \textbf{53}, 043103 (2024).
+    
+    \item V.~A.~Kosteleck\'y, N.~Russell, J.~D.~Tasson, 
+        ``Constraints on Torsion from Bounds on Lorentz Violation,'' 
+        Phys.\ Rev.\ Lett.\ \textbf{100}, 111102 (2008).
+    
+    \item I.~L.~Shapiro, ``Physical aspects of the space--time torsion,'' 
+        Phys.\ Rept.\ \textbf{357}, 113--213 (2002).
+\end{enumerate}
+
+\end{document}

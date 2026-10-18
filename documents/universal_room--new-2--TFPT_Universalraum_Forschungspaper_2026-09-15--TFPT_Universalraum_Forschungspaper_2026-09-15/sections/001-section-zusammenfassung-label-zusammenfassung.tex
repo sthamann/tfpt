@@ -1,0 +1,369 @@
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\section{Zusammenfassung}\label{zusammenfassung}
+
+Die Topological Fixed-Point Theory (TFPT) verbindet eine markierte
+algebraische Ausgangsstruktur mit Darstellungen, Gitterdaten und
+Kandidaten für physikalische Größen. Der Universalraum bezeichnet das
+weitergehende Ziel, Zustände, erlaubte Operationen, Aufzeichnungen und
+beobachtbare Entwicklung als Teile einer gemeinsamen Konstruktion zu
+verstehen. Die vorliegende Arbeit synthetisiert die bis zum 15.
+September 2026 verfügbaren Hauptdokumente, Fortsetzungen und
+ausgewählten aktuellen Forschungsartefakte. Sie integriert insbesondere
+die beiden verschiedenen v1.6.6-Linien und die neuere v1.6.7 mit ihrer
+korrigierten Hamilton-Lanczos-Kette.
+
+Der belastbare mathematische Kern umfasst eine markierte
+\(D_5\)--\(A_3\)-Verklebung zu \(E_8\), eine konkrete Darstellung
+desselben Gitters in einer Ordnung von \(M_2(\mathbb Q(i))\), endliche
+Kontextprozesse, kohärenzverträgliche Aufzeichnungen und eine native
+Paarwechselwirkung zwischen 64 Fermion- und 60 Bosonmoden. Für den
+ausdrücklich festgelegten nativen Hamiltonoperator liegen Grundzustands-
+und Antwortsätze vor. Die jüngste Fortsetzung bestimmt vier
+Singulett-Richtungen auf der zweiten Bosonstufe, fünf korrekte
+Lanczos-Glieder und zehn Momente der gefüllten Referenz. Sie verschärft
+eine Energieobergrenze, ohne die gesamte Bank diagonalisiert zu haben.
+Der jüngste Nachtrag identifiziert zusätzlich einen nativen
+Rang-60-Kodierer, prüft dessen Grenze bei Modenverlust und klassifiziert
+eine Z4-verträgliche Hamiltonfamilie bis zu einer konkreten kanonischen
+Reduktion.
+
+Der eigene Beitrag dieser Synthese besteht aus drei Verbindungen.
+Erstens wird ein gemeinsamer Prozess durch den positiven Gramkern seiner
+zulässigen Operationswörter rekonstruiert; daraus folgt ein präzises
+Kriterium dafür, wann zwei vermeintliche Teillösungen tatsächlich
+dieselbe Ausführung beschreiben. Zweitens erhält der bisher zusätzliche
+Vierzustands-Transfer eine explizite, achtdimensionale Erweiterung mit
+einer zweistufigen Ladungsreferenz. Sie erhält die betrachtete
+Gesamt-Cartanladung exakt und reproduziert den bekannten Transferblock;
+sie beweist nicht die Herkunft dieser Referenz. Drittens werden
+Überlappung, dynamische Kompression und Projektorgeometrie
+zusammengeführt. Ein bewegter physischer Unterraum kann geometrische
+Krümmung tragen, während eine bloße Basisrotation im festen
+vollständigen Raum keine erzeugt. Ein konkreter Zweikomponentenzeuge
+liefert sowohl Krümmung als auch Zustandsmetrik und eine exakt bezahlte
+selektive Schleifenwahrscheinlichkeit.
+
+Diese Ergebnisse liefern einen mathematisch zusammenhängenden Ansatz für
+weitere Forschung. Sie schließen die physische Auswahl von Dynamik und
+Zustand, den räumlichen Ursprung, die relativistische Feldtheorie oder
+die acht vollständigen TFPT-Abschlussaufgaben T1--T8 nicht. Insbesondere
+folgt weder eine Theory of Everything noch ein Beweis der Riemannschen
+Vermutung oder eine Lösung von P versus NP. Die offene Kernfrage lässt
+sich jedoch deutlich schärfer formulieren: Welche ursprüngliche Regel
+wählt einen positiven, komponierbaren Prozesskern samt lokal
+zugänglichen Operationen und einer geeigneten Größenfolge aus?
+
+\textbf{Schlüsselbegriffe:} TFPT, Universalraum, \(E_8\),
+Prozessrekonstruktion, native Fockdynamik, Gramoperator, relationale
+Ladung, Lanczos, geometrische Phase, physikalische Herkunft.
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Die gemeinsame Kette und ihre Beweisgrenzen. Die drei unteren Felder unterscheiden vorliegende Modellresultate, eigene Verbindungen und die noch fehlende physische Ableitung.}]{figures/01_gemeinsame_kette.pdf}}
+\caption{Die gemeinsame Kette und ihre Beweisgrenzen. Die drei unteren
+Felder unterscheiden vorliegende Modellresultate, eigene Verbindungen
+und die noch fehlende physische Ableitung.}
+\end{figure}
+
+\section{1. Fragestellung, Quellenstand und wissenschaftliche
+Reichweite}\label{fragestellung-quellenstand-und-wissenschaftliche-reichweite}
+
+\subsection{1.1 Was „ganzheitlich`` hier
+bedeutet}\label{was-ganzheitlich-hier-bedeutet}
+
+Eine ganzheitliche Theorie benötigt mehr als Ergebnisse mit ähnlichen
+Dimensionszahlen. Sie muss zeigen, dass ihre Algebra, ihr Zustand, ihre
+Dynamik und ihre Messungen zusammenpassen. Wenn ein Grundzustand in
+Modell A, ein Transport in Modell B und ein chirales Feld in Modell C
+berechnet werden, entsteht daraus erst dann eine gemeinsame Physik, wenn
+explizite Abbildungen die jeweiligen Annahmen und beobachtbaren Prozesse
+miteinander verbinden.
+
+Daher lautet die Leitfrage dieses Papers:
+
+Welche einheitlichen Ausgangsdaten bestimmen
+\((\mathcal A,\alpha_t,\omega,\mathfrak I)\) und deren physikalische
+Interpretation?
+
+Hier ist \(\mathcal A\) eine Algebra von Observablen, \(\alpha_t\) ihre
+Entwicklung, \(\omega\) ein Zustandsfunktional und \(\mathfrak I\) die
+Familie tatsächlich zugelassener Instrumente. Ein Instrument umfasst die
+möglichen Messausgänge samt Zustandsänderung und Wahrscheinlichkeit. Die
+Notation ist eine Spezifikation; sie wählt diese Daten noch nicht aus.
+
+Anschaulich beschreibt die bisherige TFPT-Grammatik, welche Bauteile
+zusammenpassen. Eine vollständige Ausführung muss zusätzlich erklären,
+welche Handgriffe vorkommen, was anfänglich vorliegt und welche Spuren
+die Handgriffe hinterlassen. Raum wäre dann eine besondere Struktur
+unabhängiger Zugriffsmöglichkeiten und endlicher Signalwege. Zeit wäre
+mehr als die Ordnung einer zyklischen Matrix: Sie müsste als gemeinsame
+Entwicklung mit lesbaren Korrelationen auftreten.
+
+\subsection{1.2 Quellenhierarchie und
+Stichtag}\label{quellenhierarchie-und-stichtag}
+
+Der Ausgangskorpus umfasst 74 eingefrorene Dokumentdateien
+einschließlich des nachgereichten Texts. Darunter befinden sich elf PDFs
+mit zusammen 830 Seiten; ihre Texte wurden extrahiert. Die zentralen und
+neu geänderten Abschnitte wurden gezielt gelesen, repräsentative
+Ausgangsseiten visuell kontrolliert. Die Zahl der inventarisierten
+Seiten bedeutet ausdrücklich keinen vollständigen erneuten Beweisaudit
+jeder historischen Aussage.
+
+Die Hauptquellen sind:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{S046:} Hauptdokument v1.6 vom 15. September, 168 PDF-Seiten;
+  breite historische und physikalische Grundlage.
+\item
+  \textbf{S033:} Clock/Gemeinsame-Quelle-Konsolidierung v1.6.6; innere
+  Spin-Identifikation, Operationsverträge, Transferzeuge und
+  Feldkorrekturen.
+\item
+  \textbf{S001:} andere v1.6.6-Linie, „Fundamentale Fortsetzung``;
+  Präparationslücke, quantitative Restantwort, Trennschnitte und
+  Feldstabilität.
+\item
+  \textbf{S003:} fundamentale Reduktion; symmetrische Gesamtantwort,
+  Multiplizitätsräume und operationaler Wirkungstest.
+\item
+  \textbf{S068/S070:} Ergebnisbericht und vollständige Konsolidierung
+  v1.6.7; korrekte H-Kette, Singulettprojektionen, bilineare Zerlegung
+  und Unterbestimmtheit.
+\item
+  \textbf{S074:} jüngster Nachtrag derselben v1.6.7 mit nativer
+  Kodierung, Schattenrekonstruktion, Interventionsgegenbeispiel und
+  Z4-/Bogoliubov-Analyse.
+\item
+  \textbf{S071/S072:} zentrale offene Probleme und Compiler-Synthese des
+  Repositorys.
+\end{itemize}
+
+S001 und S033 sind verschiedene Dokumentlinien trotz gleicher
+Versionsnummer. Inhalt, Tensorpin und Beweisvoraussetzungen entscheiden
+über ihre Kombination. S070 bewahrt große Teile älterer Fassungen als
+historische Anhänge; das bloße Wiederauftauchen einer Aussage ist kein
+neuer Beweis. In der vorliegenden Synthese stehen jeweils die neuesten
+kompatiblen Aussagen im Haupttext.
+
+Das Repository hatte bei der Bestandsaufnahme den Commit
+\texttt{66b91e40e245} (vollständiger Hash im Prüfpaket), aber viele
+neuere, nicht eingecheckte Forschungsdateien. Deshalb bezeichnet der
+Commit allein den hier ausgewerteten Stand nicht. Das Quellenmanifest
+hält die tatsächlich verwendeten Dateien mit SHA-256 fest. Aktive fremde
+Forschungsarbeiten wurden nicht verändert. Die Hauptsynthese
+berücksichtigt auch den während der Arbeit hinzugekommenen Nachtrag
+S074. Die früher eingefrorenen Fassungen bleiben zum Versionsvergleich
+erhalten; der letzte inhaltliche Nachtrag wurde am 15.09.2026 gegen
+12:30 Uhr MESZ gesichert.
+
+\subsection{1.3 Beweisstatus}\label{beweisstatus}
+
+\textbf{Gesetzt} sind Modellannahmen und Ressourcenzugänge.
+\textbf{Exakt} ist eine Identität oder ein mathematischer Schluss unter
+genannten Voraussetzungen. \textbf{Numerisch} bezeichnet eine
+Approximation ohne rigoroses Intervall. \textbf{Bedingt} bedeutet, dass
+ein Resultat zusätzliche, noch nicht hergeleitete Eingaben benötigt.
+\textbf{Offen} kennzeichnet fehlende Beweise oder physikalische
+Identifikationen.
+
+„Exakt`` und „bedingt`` können zugleich gelten. Beispielsweise ist die
+Ladungserhaltung der neuen Referenzkonstruktion exakt; dass TFPT diese
+Referenz erzeugt, bleibt offen. Ein bewiesener Satz über ein
+festgelegtes Modell ist außerdem noch keine empirische Bestätigung
+dieses Modells.
+
+Die eigenen Rechnungen umfassen 57 explizite exakte Prüfbedingungen,
+darunter native Tensoridentitäten, eine vollständige
+Graphcharakteristik, rationale Ritz-Einschließung, symbolische
+Referenzkopplung und Projektorgeometrie. Normaler und optimierter Lauf
+stimmen bytegenau überein. Zusätzlich wurde der 20 Bedingungen
+umfassende H-Ketten-Prüfer aus v1.6.7 in einer isolierten Kopie
+ausgeführt. Der große historische Grundzustandslauf und die vollständige
+Vier-Boson-Enumeration wurden hier nicht erneut gerechnet. Ihre
+Voraussetzungen bleiben entsprechend sichtbar.
+
+\section{2. Die algebraische Grundlage: was TFPT tatsächlich
+zusammenbindet}\label{die-algebraische-grundlage-was-tfpt-tatsuxe4chlich-zusammenbindet}
+
+\subsection{2.1 Ausgangsstruktur und
+Einheiten}\label{ausgangsstruktur-und-einheiten}
+
+Die historische Kurzfassung organisiert sich um
+
+\[c_3=\frac1{8\pi},\qquad g_{\mathrm{car}}=5.\]
+
+Der zweite Ausdruck ist eine Trägerzahl, nicht die Kopplung \(g\) des
+späteren Hamiltonoperators. Die erste Eingabe enthält mehr als eine
+Zahl: orientierte Rand- oder Nahtstruktur, einen geeigneten positiven
+Kern und eine Normierung. Die zweite benötigt einen konkreten komplexen
+Träger und Markierungen. Diese Daten dürfen nicht verschwinden, wenn man
+die Theorie verbal auf „zwei Zahlen`` verkürzt. {[}S046, Kap. 3; S072,
+§2{]}
+
+Der fünfteilige Träger liefert
+
+\[S^+=\Lambda^{\mathrm{even}}\mathbb C^5,
+\qquad \dim S^+=1+10+5=16.\]
+
+Das ist die chirale Spinordarstellung der inneren Gruppe
+\(\mathrm{Spin}(10)\). Daraus folgt noch nicht, dass die physikalische
+Raumzeit zehn- oder fünfdimensional wäre. Ebenso ist der arithmetische
+Familienzähler \((16-1)/5=3\) kein Beweis dreier leichter chiraler
+Familien.
+
+Eine dimensionslose Theorie kann Verhältnisse vorhersagen. Die Angabe
+einer Energie in GeV benötigt zusätzlich einen Bezug zu einer
+dimensional kalibrierten Größe. Einheitenwahl und Vorhersage
+dimensionsloser Verhältnisse sind getrennte Fragen; die Verwendung einer
+eingesetzten Planckskala muss im physikalischen Anschluss dokumentiert
+bleiben.
+
+\subsection{\texorpdfstring{2.2 Von \(D_5\oplus A_3\) zu
+\(E_8\)}{2.2 Von D\_5\textbackslash oplus A\_3 zu E\_8}}\label{von-d_5oplus-a_3-zu-e_8}
+
+Beide Wurzelgitter haben Determinante vier. Eine geeignete diagonale
+Verklebung ihrer Diskriminantklassen erzeugt einen geraden Überverband
+vom Index vier. Seine Determinante ist
+
+\[\det L=\frac{\det D_5\det A_3}{4^2}=1.\]
+
+Mit Positivität und Rang acht erhält man das gerade unimodulare
+\(E_8\)-Gitter. Die Aussage benötigt die Verklebungsform; die Rangsumme
+\(5+3=8\) allein reicht nicht. Die 240 Wurzeln sind 112 ganzzahlige
+Wurzeln mit zwei Einträgen \(\pm1\) und 128 Halbvektoren mit gerader
+Minusparität. {[}S046, Kap. 3{]}
+
+Die komplexe Lie-Algebra zerfällt als
+
+\[
+\mathfrak e_8=(45,1)\oplus(1,15)\oplus(16,4)
+\oplus(\overline{16},\overline4)\oplus(10,6).
+\]
+
+Die Dimensionen summieren sich zu 248. Insbesondere treten dieselben 64
+und 60 auf, die später den nativen Paarvertrag tragen. Diese
+Übereinstimmung ist strukturell relevant, weil ein konkreter Intertwiner
+die Paarung realisiert. Sie ersetzt dennoch keine Auswahl von Energie,
+Zustand oder räumlicher Ausführung.
+
+\subsection{2.3 Der kleine Matrixkern}\label{der-kleine-matrixkern}
+
+Im gemeinsamen Matrixkörper \(M_2(\mathbb Q(i))\) seien
+
+\[
+a=iI_2,\quad
+u_1=\begin{pmatrix}i&0\\0&-i\end{pmatrix},\quad
+u_2=\begin{pmatrix}0&1\\-1&0\end{pmatrix},\quad
+u_3=u_1u_2,
+\]
+
+Die Familie wird durch
+
+\[w=\frac12(I+u_1+u_2+u_3),\qquad w^3=-I\]
+
+ergänzt. Mit \(D=\mathbb Z[i]\) und
+
+\[P=\begin{pmatrix}1&(1+i)^{-1}\\0&(1+i)^{-1}\end{pmatrix}\]
+
+liegt eine maximale Ordnung \(\mathcal M=PM_2(D)P^{-1}\) vor. Unter der
+reellen Form
+
+\[\langle A,B\rangle=\operatorname{Re}\operatorname{Tr}(AB^\dagger)\]
+
+hat ihre ganzzahlige Acht-Basis positive führende Hauptminoren
+\(2,4,4,4,4,4,2,1\). Die Form ist gerade und unimodular: wiederum
+\(E_8\). Die Quellen enthalten außerdem eine markierungstreue Abbildung
+zum tatsächlich verwendeten Compiler-Gitter. {[}S046, Kap. 34{]}
+
+Das ist stärker als eine zufällige Zahlengleichheit. Gleichwohl sind nur
+96 der 240 Wurzelmatrizen unitär; 144 haben Rang eins. Eine Wurzel ist
+somit nicht automatisch eine ausführbare reversible Zeitoperation.
+Verschiedene Ordnungen können dieselbe hermitesche Kegelansicht haben
+und sich in ihren nicht-hermiteschen Operationen unterscheiden. Der
+positive Kegel wählt den vollständigen Operationssatz nicht allein aus.
+
+\subsection{2.4 Der Clock-Anschluss}\label{der-clock-anschluss}
+
+Die neuere native Clock-Konstruktion verwendet eine Permutation auf fünf
+Hilfsachsen und ihre vorzeichenrichtige Exteriorhebung. Mit zehn
+Majorana-Matrizen \(\gamma_j\), der Parität \(\Pi\) und
+
+\[R_{ab}=\tfrac12(\gamma_a-\gamma_b)(\gamma_{a+5}-\gamma_{b+5})\]
+
+wird explizit
+
+\[S=\gamma_0\cdots\gamma_9R_{01}R_{02}R_{34}
+=\Pi\Gamma(p)\in\mathrm{Spin}(10).\]
+
+Die Wirkung auf gerade Spinoren und Vektoren reproduziert die beiden
+nativen Darstellungen und erhält den Tensor. Dieser Clock hat Ordnung
+sechs. {[}S033, §3{]}
+
+Frühere Ordnung-3-Familienoperationen und Ordnung-12-Lifts gehören zu
+ihren jeweils bezeichneten Darstellungen. Matrixordnung, projektive
+Ordnung und Ordnung der Konjugationswirkung sind getrennt zu prüfen.
+Ihre Zahlen werden hier nicht zu einer einzigen universellen
+Periodizität zusammengezogen. Der neue Satz verbindet einen konkreten
+Clock mit der inneren Symmetrie; er liefert weder kontinuierliche
+Symmetriekontrollen noch eine Zeiteinheit.
+
+\section{3. Universalraum als Prozess: Zustand, Gedächtnis und
+Schatten}\label{universalraum-als-prozess-zustand-geduxe4chtnis-und-schatten}
+
+\subsection{3.1 Das endliche
+Kontextmodell}\label{das-endliche-kontextmodell}
+
+Im markierten komplexen Viererträger liegen 60 Strahlen in 15
+orthogonalen Viererkontexten vor. Bei der festgelegten Inzidenzregel
+\(B\) und gleichmäßiger Wahl der sieben zulässigen Nachfolgekontexte
+gilt
+
+\[
+T_{(D,t),(C,s)}=\frac{B_{DC}}7
+\operatorname{Tr}(\Pi_{D,t}\Pi_{C,s}).
+\]
+
+Jeder Ausgang besitzt einen Übergang mit Gewicht \(1/7\) und zwölf mit
+Gewicht \(1/14\). Die genaue Faktorisierung führt zu Rang 30 und dem
+Spektrum
+
+\[\{1^{[1]},(2/7)^{[9]},(-2/7)^{[5]},(3/7)^{[15]},0^{[30]}\}.\]
+
+Die Born-Regel, die zulässigen Kontexte und deren Gewichtung sind dabei
+Eingaben. Der stationäre Systemzustand \(I_4/4\) ist ein Fixpunkt dieses
+Messprozesses; er ist nicht bereits das physikalische Vakuum. {[}S046,
+Kap. 4{]}
+
+\subsection{3.2 Warum eine einzige Dichtematrix nicht immer
+genügt}\label{warum-eine-einzige-dichtematrix-nicht-immer-genuxfcgt}
+
+Für klassische Kontextinformation und ein Quantensystem kann man einen
+Zustand durch positive Blöcke \(X_C\) beschreiben. Die feste Ausführung
+lautet
+
+\[\Phi(X)_D=\sum_C K_{DC}\Delta_D(X_C).\]
+
+Die Quellen zeigen \(\operatorname{rank}\Phi=60\) und
+\(\operatorname{rank}\Phi^2=30\). Für eine bestimmte passive
+Marginalauslesung schließen sogar 45 lineare Größen. Dagegen können
+selektive Eingriffe oder wiederverwendete kohärente Register mehr
+Information zugänglich machen. Die minimale Beschreibung hängt somit vom
+tatsächlichen Operations- und Auslesevertrag ab. {[}S046, Kap. 5{]}
+
+Ein System kann nach einer Vormessung dieselbe reduzierte Dichtematrix
+haben, obwohl sein gemeinsamer Zustand mit einem behaltenen Register
+eine andere spätere Antwort liefert als mit einem frischen Register. Das
+ist kein Widerspruch: Die gemeinsame Korrelation fehlt in der
+reduzierten Beschreibung. Die etablierte Theorie von Quantennetzwerken
+und Prozesstensoren beschreibt genau solche Mehrzeitverträge. {[}E1,
+E2{]}
+

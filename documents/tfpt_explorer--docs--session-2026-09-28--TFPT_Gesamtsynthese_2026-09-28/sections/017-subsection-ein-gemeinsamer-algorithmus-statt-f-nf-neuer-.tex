@@ -1,0 +1,364 @@
+\subsection{Ein gemeinsamer Algorithmus statt fünf neuer Architekturen}
+\begin{center}
+\begin{tikzpicture}[node distance=7mm]
+\node[box,text width=12.5cm] (a) {Tatsächliche Antworten der vorhandenen Quelle oder Umwelt};
+\node[box,below=of a,text width=12.5cm] (b) {Trennende Fortsetzungen finden: Welche Vergangenheit wirkt später noch?};
+\node[box,below=of b,text width=12.5cm] (c) {Nötigen Zustand und Carry bestimmen; Symmetrie und Multiplizitäten erhalten};
+\node[box,below=of c,text width=12.5cm] (d) {Antworttreues Programm kompilieren; bewiesene Abkürzungen verwenden};
+\node[box,below=of d,text width=12.5cm] (e) {Nach Neustart anwenden und an neuer tatsächlicher Wirkung prüfen};
+\draw[arr] (a)--(b);\draw[arr] (b)--(c);\draw[arr] (c)--(d);\draw[arr] (d)--(e);
+\end{tikzpicture}
+\end{center}
+Der ambitionierte, messbare Anspruch lautet: Ein System gewinnt aus den Folgen seiner Handlungen ein kleines wiederverwendbares Programm und nutzt es nachweislich besser als bestehende Verfahren. Eine solche Leistung wäre ein möglicher Durchbruch. Die vorliegende Sitzung hat seine mathematischen Bausteine und Gegenfälle geschärft; sie hat die Überlegenheit noch nicht gezeigt.
+
+\section{Was das für Hylæan konkret bedeuten würde}\label{sec:hylaean}
+
+Der Anwendungsteil nimmt vorläufig an, dass mit ``hallieren'' Hylæan beziehungsweise Field Intelligence gemeint ist. Sein aktueller Produktionsstand wurde für dieses Dokument nicht neu geprüft. Die folgenden Aussagen sind ein konkreter Integrations- und Forschungsentwurf, keine Behauptung über bereits gelandete Fähigkeiten.
+
+Der stärkste Transfer besteht darin, Gedächtnis nach späterer Wirkung auszuwählen. Eine gespeicherte Unterscheidung ist relevant, wenn sie nach einem Neustart eine Vorhersage, Entscheidung oder Handlung verändert. Eine interne Phase, ein Projektionskoeffizient oder ein Statusfeld allein belegt diese Wirkung nicht.
+
+Ein vorhandener Hylæan-Pfad müsste dafür vollständig durchlaufen werden:
+\begin{equation*}
+\text{Eingabe}\to\text{Zustand}\to\text{Speicherung}\to\text{Restore}
+\to\text{spätere Aktion}\to\text{beobachtbares Ergebnis}.
+\end{equation*}
+Die TFPT-Regel ist an jeder Stelle dieselbe: Nichts zusammenlegen, was eine zugelassene Fortsetzung noch unterscheiden kann. Dafür muss Hylæan weder künstlich ein $E_8$-Gitter erhalten noch Quantenphasen simulieren. Eine klassische Zustandsvariable kann genau der nötige Carry sein.
+
+Der erste sinnvolle Einsatz wäre an einem bereits vorhandenen wiederkehrenden Handlungstyp. Zwei Vorgeschichten mit gleicher aktueller Anzeige, aber unterschiedlicher späterer Wirkung werden als Gegenfall benutzt. Der normale Producer muss die nötige Unterscheidung in den normalen Speicher schreiben; der reguläre Consumer muss sie nach einem frischen Prozessstart tatsächlich verwenden. Eine Ablation entfernt genau diese Unterscheidung und muss den erwarteten Fehler zurückbringen.
+
+Erst danach ist die weitergehende adaptive Kompression sinnvoll: Welche Teile des Speichers können unter dem echten Handlungssatz entfernt werden, ohne die gemessene Zukunftsantwort zu verschlechtern? Ein trennender neuer Fall erweitert den Speicher gezielt. Der Quellencompiler liefert hier das Vorbild für kontrollierte Umformungen; die reale Umwelt liefert die Autorität über Bedeutung und Erfolg.
+
+Als radikale Verbesserung wäre denkbar, dass Hylæan viel weniger irrelevante Historie dauerhaft speichert und trotzdem mehr nutzbare Erfahrung über Aufgaben hinweg wiederverwendet. Die passende Messgröße ist eine gemeinsame Kurve aus externem Erfolg, Interaktionen, dauerhaftem Speicher und Laufzeit. Ein einzelner Quotient darf nicht bessere Genauigkeit durch versteckte Zusatzabfragen oder größere Hilfscaches vortäuschen.
+
+Die stärksten Kontrollen sind ein guter gewöhnlicher Zustandsprädiktor, derselbe Hylæan-Pfad ohne den neuen Selektor, ein frischer Neustart, unbekannte Fortsetzungen und neue Kombinationen bekannter Operationen. Ein Vorteil nur auf dem ursprünglichen Demonstrationsfall wäre kein allgemeiner Lernfortschritt. Ein gegenüber starken Baselines stabiler Gewinn könnte dagegen einen echten, systematisch nutzbaren Beitrag aus dem Universalraumprinzip machen.
+
+\section{Verifikation, Lean und Experimente: Der tatsächliche Sitzungsstand}\label{sec:verification}
+
+Die historischen Ergebnisse dieses Abschnitts wurden aus den gespeicherten Originalprotokollen der Sitzung gelesen. Die Fortsetzung hat die neuen Herkunfts- und Realisierungsrechnungen gezielt frisch ausgeführt. Der gesamte tausendteilige Bestand wurde dafür nicht erneut ausgeführt; die folgenden Prüfstände bleiben voneinander unterscheidbar.
+
+\subsection{Frisch ausgeführte Forschungsfortsetzung}
+Die früheren gezielten Läufe bestanden 45 beziehungsweise 58 Tests. Nach Integration des Anker-/Faservorschlags bestand der neue gemeinsame Lauf \textbf{67 Tests}. Zusammen geprüft wurden \file{test_source_selection.py}, \file{test_source_realization.py}, \file{test_source_program.py} und \file{test_marked_source_process.py}. Die Zahlen werden nicht addiert; die früheren Testmengen sind enthalten. Die anschließende Prüfung der gemeinsamen Ereignishierarchie und des nativen Raumlifts bestand in denselben vier Testdateien \textbf{75 Tests}. Dies ist der neue lokale Lauf; die zufällig gleiche Zahl eines extern genannten Prüfpakets bezeichnet eine andere, hier nicht vorliegende Testmenge. Die im neuen Anhang behaupteten 75 Prüfbedingungen eines nicht mitgelieferten Pakets sind hiervon getrennt.
+
+Die neuen Tests prüfen die Paarungsnormierung symbolisch für allgemeine reelle Kreuzratio, ihren Gegenfall außerhalb der realen Geometrie, die gesamte Matrix aus einer unabhängigen Permutationsmischung, die tatsächlichen nativen Krausoperatoren, $B$ gegenüber $QB$, die höhere GNS-Antwort und den Verlust von $\rho_+$ gegenüber $\rho_-$. Ein symbolischer allgemeiner $2\times2$-Eingang prüft die kontrollierte Rückgewinnung mit erhaltenem Ereignisrecord. Die Reflexionszuordnung, Instrumentgrenzen und die Hauptsymbol-Gegenfamilie wurden zusätzlich unabhängig gegengelesen.
+
+Die jüngste Erweiterung prüft die gemeinsame Replica-/Ankeridentität symbolisch für alle $x$, konkrete native Einbettungen bei $x=1/5,1/2,4/5$, die Wirkung der Originalcharaktere auf allen 240 Wurzeln und die orthogonale Erweiterung der wirklichen Trine. Der Gedächtniskern wurde gegen das Schurkomplement der vollständigen neundimensionalen Operatorwirkung geprüft. Weitere Kontrollen betreffen den geschlossenen C-Weg samt positiver Norm und verschwindendem Vakuumüberlapp, den tetraedrischen Richtungsrahmen sowie die rationale uniforme Levelschranke. Diese Tests sind keine physische oder neue Lean-Bestätigung.
+
+Die Replica-Prüfung berechnet bei $x=1/5,1/2,4/5$ die elliptischen Perioden und unabhängig davon $E_4$ als Divisor-$q$-Reihe sowie $\eta$ als Produkt. Bei 60 Dezimalstellen Arbeitspräzision stimmen die normierten Antworten mit der rationalen Formel bis besser als $10^{-45}$ überein. Eine feste NS--NS-Fermionquelle kontrolliert denselben Überlagerungsfaktor unabhängig. Dies sind numerische Kontrollen der analytischen Theta-Herleitung, kein numerischer Beweis für alle $x$.
+
+Die Anomalieprüfung verwendet die tatsächlichen 16 komplexifizierten Gewichte von $E+E^*+\Lambda^2F$ und drei freie symbolische Liftparameter. Sie bestätigt die ganze Familie $\lambda=d c_1^2-c_2$, ihre P2-Restriktion und den geraden Determinantenkreislevel algebraisch. Neue Rechnungen und ihre Reichweite wurden außerdem unabhängig gegengeprüft. Die modulare Operatorfamilie ist analytisch bestimmt; ihr vollständiger E8-Kokzyklus wurde nicht numerisch implementiert und kein neuer Lean-Beweis für diese Fortsetzung erzeugt.
+
+Die mathematischen Level- und Realisierungsformeln wurden unabhängig gegengelesen. Der Geschichtskern wurde zusätzlich an einem gemischten C/X-Zeugen mit Wert $192/35$ über die ursprüngliche Ward-Regel bestätigt; die rationale Momentdarstellung und ihr Einfügungsfaktor wurden separat geprüft. Die ausführbaren neuen Resultate liegen unter \file{tfpt_explorer/runtime/source_selection.json} und \file{tfpt_explorer/runtime/source_realization.json}; die APIs unter \file{source_selection.py} und \file{source_realization.py}.
+
+Nach dem konstruktiven E8/CAR-Rückweg bestand der gemeinsame Lauf derselben vier Dateien \textbf{77 Tests}. Die anschließende Präzisierung der internen Glue-Wirkung bestand zusätzlich den gezielten Lauf der beiden neuen Tests; diese zwei werden nicht zu 77 addiert. Ein unabhängiges Gegenlesen bestätigte den Rekonstruktionsbeweis, seine Kovarianzkonvention und die tatsächliche Markierungswirkung. Die native LaTeX-Kompilierung wurde nach der Integration geprüft. Weder die Testzahl noch die Kompilierung beweist die noch offene P1/P2-Herkunft oder vierdimensionale Physik.
+
+Diese Fortsetzung verändert den nachfolgend dokumentierten älteren 316er-Schnappschuss nicht rückwirkend. Nach Integration des ursprünglichen Wegtransports, des neutralen Quellenzustands, des internen Spinlifts und der tatsächlichen Paaroperatoren bestand am 29.~September ein gemeinsamer gezielter Lauf \textbf{39 Tests} in den fünf zugehörigen Testdateien einschließlich der Syntheseintegration. Der frisch gestartete Explorer lieferte \textbf{24 Stufen mit 343 bestandenen internen Prüfungen}. Die neue Quellenidentität $4/z^2$ und die neuen Quellenverweise waren in der laufenden API vorhanden. Die erweiterten Spinlift- und Paaransichten wurden anschließend in der laufenden Tour geprüft; beide blieben nach dem Wechsel auf sechs Halbwege erhalten. Die sichtbare Paaransicht zeigte auch den ursprünglichen Familientransport und die neutrale Antwort $4/z^2$, ohne beobachtete Konsolenfehler. Die Paaroperatorrechnung und die neue Dokumentsektion wurden unabhängig gegengelesen. Dies sind Ausführungs- und Regressionsergebnisse; ihre Anzahl ist kein Beweis einer vollständigen physikalischen Lösung.
+
+\paragraph{Gemeinsames Quellenwörterbuch, vorheriger Stand vom 29.~September.}
+Die Fortsetzung integriert die tatsächliche Hyperladungsantwort, den expliziten
+CAR-Paaranschluss, das vollständige schwere Majorana-Tensorwörterbuch mit
+anschließender bestehender Seesaw-Rechnung sowie den gesamten neutralen
+Flavor-Defektkern. Nach Korrektur der linken/rechten RHP-Feldkonvention bestand
+im gemeinsamen gezielten Lauf \textbf{72 Tests} in den acht betroffenen
+Testdateien. Der neu gestartete Explorer liefert \textbf{24 Stufen mit
+367 bestandenen internen Prüfungen}. Die API enthält den korrigierten rationalen
+RR-Kern und die vollständige schwere Tensorabbildung.
+Die neue Ansicht \emph{Gemeinsame Physik} verbindet diese Antworten.
+Die Phasenbeispiele wurden per Tastatur durchgeschaltet: Bei unveränderten
+Massen ändern sich die berechneten Interferenzwerte, und der Phasenzustand
+bleibt beim Wechsel des Familienhalbwegs erhalten. Dabei wurden keine
+Konsolenfehler beobachtet. Der gemeinsame Mathematikanschluss wurde unabhängig
+gegengelesen; die Rückprüfung der ursprünglichen Differentialgleichung hat
+insbesondere die falsche Matrixreihenfolge als Gegenkontrolle ausgeschlossen.
+Diese Prüfungen sichern die erklärte Konstruktion und ihre Anzeige. Sie ersetzen
+keinen Herkunftssatz oder empirischen Nachweis der vollständigen Physik.
+
+\paragraph{Gemeinsamer Massentransport, anschließender Stand vom 29.~September.}
+Abschnitt~\ref{sec:masssourceconnection} verbindet die ursprüngliche
+Determinantenwindung mit dem vollständigen Paartransport und der neutralen
+Antwort. Im gemeinsamen gezielten Lauf bestanden \textbf{82 Tests} in neun
+Dateien, einschließlich zehn neuer Prüfungen des Massentransports. Geprüft
+wurden die tatsächlichen C-Gewichte, allgemeine nichtkommutierende
+Verbindungen, die Umkehrabbildung, die endliche Zusammensetzung, die duale
+Massenform samt Metrik und die lokale kovariante Punkttrennung. Zwei separat
+integrierte Differentialgleichungen kontrollieren den ursprünglichen Weg
+in beiden Richtungen. Der neu gestartete Explorer liefert \textbf{24 Stufen
+mit 372 bestandenen internen Prüfungen}. Diese Zahl wurde am laufenden
+Rechenstand abgelesen. Sie ergänzt die algebraischen Beweise, zählt sie aber
+nicht als unabhängige physikalische Beweise.
+
+\paragraph{Wand-Lesart und vollständiger geladener Quellenkanal, aktueller Stand.}
+Die neue Prüfung in Abschnitt~\ref{sec:wallaudit} testet alle zehn symmetrischen
+Paarzustände und ihre zehn Gegenladungen an sämtlichen acht nichtdiagonalen
+SM-Generatoren, den drei nichtabelschen Cartan-Gewichten und der Hyperladung.
+Ein farbgeladener Strom dient als Gegenkontrolle: Er wird nicht annihiliert.
+Die Quelle besitzt die behaupteten Ladung-zwei-Operatoren; eine physische
+Skalarabbildung oder Kondensation wird dadurch nicht behauptet.
+Die zugehörigen neun gezielt ausgeführten Testdateien bestanden
+\textbf{99 Tests}; der zusätzlich ausgeführte bestehende Syntheseintegrationstest
+bestätigte die Weitergabe an den tatsächlichen Tourdatenpfad.
+Der frisch gestartete laufende Explorer liefert \textbf{24 Stufen mit 375 bestandenen internen Prüfungen}; die API enthält den eingegrenzten Status \texttt{EXACT\_SOURCE\_CHARGE\_TWO\_OPERATOR\_EXISTS}. Die neue Ansicht \emph{Wand \& Neutrinos} und ihre aufklappbare Auswahlregeltabelle wurden am laufenden Browser geprüft, ohne beobachtete Warnungen oder Konsolenfehler.
+Die Rang-vier-Spinorbündelidentitäten wurden symbolisch ausgewertet,
+die Kommutanten an den tatsächlichen 240 E8-Wurzeln geprüft und die
+Neutrino- sowie Bündelschlüsse unabhängig gegengelesen. Die fremden
+27 Prüfungen wurden mangels lokalem Contract nicht reproduziert.
+Der vorhandene Originaltest \file{v254_inner_fluctuations.py} lief ebenfalls
+mit fünf grünen Prüfungen; sein bedingter Skalaron-Eintrag ist jedoch ein
+festes \texttt{True} und kein Identifikationsbeweis.
+
+\subsection{Der Explorer ist vollständig ausgeführt, der Originalbestand nicht vollständig grün}
+
+\textbf{Fortsetzung vom 29.~September: gemeinsame Zustands- und Wirkungsantwort.}
+Abschnitt~\ref{sec:stateactionclosure} ergänzt denselben Neutrinopfad
+um die direkte komprimierte KMS-Kovarianz, ihre Logit-Auswertung
+und den Vergleich mit der statischen Massenmatrix.
+Der gemeinsame gezielte Lauf derselben vier Testdateien bestand
+\textbf{43 Tests}. Die drei neuen Regressionen prüfen eine unabhängige
+analytische Zweiniveaulösung, die Matsubara-Rekonstruktion von Kovarianz
+und relativer komplexer CAR-Determinante sowie das Skalenfenster und seine
+kalte Gegenprobe an den vorhandenen TFPT-Eingaben.
+Die früheren 40 Tests sind darin enthalten.
+Die Filterformel samt Vorzeichen, Einheiten, Konvergenz und Geltungsbereich
+wurde unabhängig gegengelesen.
+
+\textbf{Fortsetzung vom 29.~September: wirklicher Majorana-Modenanschluss.}
+Abschnitt~\ref{sec:masszeromode} erweitert denselben ausführbaren Pfad um die
+Paarfeldwirkung auf allen 248 Stromrichtungen, ihre direkte Einsetzung in
+den ursprünglichen 96-dimensionalen endlichen Diracoperator und die
+Seesaw-/Gedächtnisantwort desselben schweren Blocks. Der gemeinsame
+gezielte Lauf von Paaroperatoren, Neutrinowörterbuch, Massentransport und
+Pipeline-Integration bestand \textbf{40 Tests}. Er enthält komplexe
+Koeffizienten, korrekte Adjungierte, den Level-zwei-Gegenfall, alle unteren
+Paargrade und die nichtstatische Resolventenantwort. Ein unabhängiges
+Gegenlesen bestätigte den Modenbeweis und präzisierte die Einheiten der
+Determinantenidentität. Weder die frühere Wand-Prüfung noch diese neue
+interne Identifikation wird als Auswahl eines physischen Kondensats
+oder als endgültige Gesamtlösung gezählt.
+Der abschließende Explorer-Schnappschuss vom 28. September 2026, 18:42:38 UTC, enthält 24 Stufen und 316 bestandene interne Prüfungen, keine fehlgeschlagene. Die Stufenliste steht in Anhang \ref{app:stages}. Der letzte protokollierte vollständige Python-Testlauf bestand 216 Tests. Nach späteren kleinen Korrekturen wurden die betroffenen Quellwort-, Tour- und HTTP-Tests gezielt erneut ausgeführt: 14 Quellworttests, 18 Quellwort-/Tourtests und zwei HTTP-Tests. Diese Mengen überlappen und werden hier nicht zu einer erfundenen Gesamtzahl addiert.
+
+Die fünf zuletzt ergänzten Tourstationen wurden im Browser geprüft, ohne beobachtete Konsolenfehler. Der live geänderte Sechserwert von $1/576$ auf $1/352$ zeigt, dass die Oberfläche den echten Quellenrechner anspricht. Eine funktionierende Tour beweist jedoch nicht die physische Identifikation ihrer Quelle.
+
+Der umfassende Originalmodullauf endete am selben Tag um 15:12:50 UTC mit folgendem Status:
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+Abgeschlossene Module & 1028\\
+Bestandene Module & 1025\\
+Fehlgeschlagene Module & 3\\
+Bestandene Einzelprüfungen & 16564\\
+Fehlgeschlagene Einzelprüfungen & 3\\\bottomrule
+\end{tabular}
+\end{center}
+Die drei Fehlschläge haben unterschiedliche Bedeutungen:
+\begin{longtable}{L{0.25\linewidth}L{0.67\linewidth}}
+\toprule
+Modul & Tatsächlicher Befund\\\midrule\endhead
+\file{v879_envelope_partition_closure} & 27 Prüfungen bestanden, eine Verdict-Prüfung fehlgeschlagen. Der ausgegebene Status lautet \texttt{ENVELOPE-EMPIRICAL-ONLY + PARTITION-CLASS-CLOSED}. Eine empirische Envelope-Aussage wurde nicht zum verlangten Abschluss aufgewertet.\\
+\file{v907_halfgap_registered_target} & 23 bestanden, eine fehlgeschlagen. Der blinde Holdout lieferte \texttt{WARD-BROKEN}; sechs statt erwarteter vierzehn Musterprüfungen, Fehler W5. Die eingefrorene Halbkonstante darf nicht nachträglich passend verändert werden.\\
+\file{v916_epstein_weil_violation} & 19 bestanden, eine fehlgeschlagen. C1 meldet einen abweichenden Hash des Zertifikatsvektors. Die separate negative Quadratikprüfung C2 bestand; der Pinfehler bleibt dennoch ein echter Reproduktionsfehler. Das geprüfte Epstein-Objekt ist ausdrücklich kein RH-Beweis oder RH-Gegenbeweis.\\\bottomrule
+\end{longtable}
+
+Ein Modulfehler bedeutet hier nicht automatisch, dass eine fundamentale TFPT-Aussage falsch ist. Er darf aber auch nicht hinter den grünen Explorerprüfungen verschwinden. Gerade registrierte Gegenfälle und gescheiterte Abschlussbehauptungen sind Teil des Forschungsbestands.
+
+\subsection{Der umfassendere Build-Audit}
+Der Build-Audit von 08:12:54 bis 10:42:14 UTC endete ebenfalls mit Status \texttt{failed}. Synchronisierung, RH-Katalog und Theoriegraph bestanden; die RH-Arbeitsstufe scheiterte. Das Protokoll enthält 264 bestandene und eine fehlgeschlagene RH-Prüfung sowie 264 Probeeinträge, davon 263 bestanden und einer fehlgeschlagen. Diese zwei Zählungen bezeichnen unterschiedliche Ebenen.
+
+Der fehlgeschlagene Probeeintrag ist \file{block_completion_probe.py}, Runde r484, mit \texttt{BLOCK\_COMPLETION FAILED}. Ein solcher endlicher Probeausgang entscheidet nicht über die Riemannsche Vermutung. Der Status des Audits bleibt gleichwohl fehlgeschlagen.
+
+\subsection{Was tatsächlich aus Lean ausgeführt wurde}
+Das Lean-Replay von 08:14:09 bis 08:15:00 UTC ist genauer als sein oberstes Zusammenfassungsfeld zu lesen:
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Phase & Status\\\midrule
+Carrier-Kern & bestanden\\
+RH-Bibliothek & bestanden\\
+Native Brücke & bestanden\\
+Automatischer Carrier-Export & bestanden\\
+Automatischer RH-Export & fehlgeschlagen\\\bottomrule
+\end{tabular}
+\end{center}
+Von 64 automatisch ausgewählten Kandidaten wurden 62 ausgeführt. Die beiden verbleibenden Definitionen \file{RH.PrimeWindow.cap} und \file{RH.VonMangoldtWindow.cap} benötigen konkrete Fensterobjekte als Argumente. Der Generator versuchte stattdessen, die Funktionen unmittelbar als Zahlen auszugeben; Lean meldete fehlende \texttt{ToString}-Instanzen für Funktionstypen. Das ist ein konkreter Adapterbedarf, kein Beweisfehler der zugrunde liegenden Sätze.
+
+Das oberste Replayfeld lautet trotzdem \texttt{passed}. Eine vollständige Darstellung muss deshalb die Phasenlage berichten und darf dieses Feld nicht als ``alle Exporte erfolgreich'' lesen. Vier native Gegenvergleiche bestanden, darunter die Ankerpotenzen $[3,4,6,10,18,34,66,130,258]$ für Eingaben $0$ bis $8$ sowie Wurzelzahl 240, Rang acht und Dimension 248.
+
+Der frühe browserseitige Inventarstand der Sitzung zählte 178 Lean-Dateien, 4571 Deklarationen, 39 Axiome und fünf \texttt{sorry}-Stellen. Das sind Inventarzahlen dieses damaligen Standes, keine Behauptung, jede Deklaration sei voraussetzungslos bewiesen. Sehr große Wall-Ladder-Zertifikate wurden beim Replay nicht erneut ausgeführt. Ein erfolgreicher RH-Bibliotheksbuild ist kein Beweis der RH.
+
+\subsection{Nicht reproduzierte Belege und Quellenalter}
+Die erneute Gesamtprüfung am 30.~September führte drei unabhängige Originallektüren für Ursprung, physikalische Auslesungen und Universalraum zusammen. Der allgemeine Auswahlbeweis aus Abschnitt~\ref{sec:globaloriginselection} wurde zusätzlich unabhängig gegengeprüft. Die exakte Bruchrechnung für $m=1,2,3,4$ bestätigt die illustrativen Diskriminantengruppen und Coset-Minima; die unendliche Aussage folgt aus dem ausgeschriebenen Beweis, nicht aus diesen vier Fällen. Es wurde dafür kein neuer Hilfsprozess eingesetzt und keine bestehende physische Verdict-Stufe angehoben. Die native LaTeX-Kompilierung bestand nach der Integration.
+
+Der oben genannte Claude-Artefaktlink ließ sich bei der erneuten Prüfung am 30.~September nicht direkt abrufen. Die frühere Lektüre und die lokal erhaltenen eingefügten Texte bleiben ihre datierten Quellen; eine unveränderte oder aktualisierte Onlinefassung wurde heute nicht bestätigt.
+
+Die Konsolidierungs-PDF nennt zusätzlich 177 plus 19 Prüfungen. Die beiden dafür genannten Originalprogramme konnten im untersuchten Bestand nicht gefunden und deshalb nicht erneut ausgeführt werden. Ihre Behauptungen bleiben als Dokumentaussagen erkennbar; sie werden nicht zu den tatsächlich ausgeführten Prüfungen addiert.
+
+Der verwendete Theoriegraph hatte bei seiner Prüfung 5969 Knoten und 64164 Kanten, stammte aber aus einem Stand vom 22. September. Die neuen Konsolidierungen vom 27./28. September waren darin nicht vollständig erfasst. Die Sitzung hat deshalb die neuen Originaldateien, den ausführbaren Explorer und die Protokolle direkt herangezogen. Ein Graphpfad ist eine Suchhilfe und keine neue Beweisquelle.
+
+\section{Die jetzt tragende Gesamtaussage}
+
+\key{TFPT besitzt ein zusammenhängendes Gerüst und zahlreiche vorhandene physikalische Herleitungsketten. Die erneute Untersuchung am Ursprung liefert jetzt einen allgemeinen bedingten Auswahlsatz: In der gesamten Familie $A_{d-1}\oplus D_{d+1}$ erzwingt bereits ein einziger lokaler Spinorstrom vom Gewicht eins innerhalb eines positiven geraden unimodularen Abschlusses genau $d=4$ und E8. Im bedingten Achtkanalrahmen ist sein führender Twist-Fusionskoeffizient ausdrücklich bestimmt. Die vollständige physische Ursprungslösung ist damit noch nicht bewiesen. Die lokale Realisierung auf dem ursprünglichen Träger und die gemeinsame physische Wirkung der Originalauslesungen müssen folgen; zusätzliche deklarierte Kopien oder eine endliche Clock-Matrix ersetzen dies nicht.}
+
+Der neue Satz in Abschnitt~\ref{sec:globaloriginselection} beseitigt eine konkrete Mehrdeutigkeit am Anfang: Holomorpher Abschluss allein erlaubt die unendliche Familie $d=4m^2$. Ihr Ausschluss durch den einen spinorgeladenen Strom gilt für alle $m>1$, nicht nur im Bereich eines endlichen Census. Damit werden vier Marken, Zyklengitterrang drei und Trägerrang fünf gemeinsam ausgewählt, sofern der ursprüngliche Prozess diesen Strom hervorbringt. Die A3/D3-Isometrie und der Halb-Twist waren im Repo bereits nachgewiesen; ihr OPE-Anschluss benennt jetzt die konkrete lokale Herkunftsidentität. Die zusätzliche originale Familien-/Materielesart bleibt ein nachzuweisender physischer Anschluss. Diese Bedingung ist ein gemeinsamer Auswahltest und keine neue Behauptung vollständiger Naturphysik.
+
+Der Zusammenhang lässt sich jetzt knapp und konkret lesen. Die Marken bestimmen die diskrete Architektur; ihr $S^+$-Träger liefert Ladungen und die drei Flavor-Cusp-Typen. Die originale Familiengeometrie realisiert den Sechserweg. Die vollständige Materiespur ergibt $48$ und mit Ladungsgewichtung das Budget $41$; die normalisierte Farbspur auf den schwachen Singulettkanälen ergibt exakt die ursprüngliche gemeinsame Flavorwirkung. Diese verschiedenen Auslesungen sind mit denselben $S^+$-Ladungsdaten und den ausdrücklich unterschiedenen Materie- und Transportregistern berechenbar.
+
+Die markierte E8-Quelle geht über diese Zahlen hinaus: Ihre ursprünglichen $24$ Felder samt Adjungierten erzeugen die gesamte Stromalgebra; Feldprodukte, höhere verbundene Antworten, positive Geschichte und Konformalzeit sind im angegebenen Quellenrahmen gemeinsam bestimmt. Die endlichen Fuchs-, Spinlift- und Massentensorabbildungen identifizieren bereits konkrete gemeinsame Operationen. Die schwere Neutrinowirkung liefert leichte Masse und Gedächtnisantwort aus demselben Block; die zusätzliche Wandlesart erzwingt keine unbedingte Dirac-Natur.
+
+Der Universalraum gehört mitten in diese Kette. Eine Geschichte ist durch die Informationen bestimmt, die alle erlaubten späteren Antworten benötigen. Beim Originaltransport zeigt das Schurkomplement explizit, wie ausgelassene Wegplätze weiterwirken. Zuse- und Hypergraphdarstellungen sind deshalb dann brauchbar, wenn ihre lokalen Schritte und ihre Vergröberung genau die markierten Antworten, Phasen und Records erhalten. Der Graph allein wählt weder die Wirkung noch eine vierdimensionale Raumzeit~\cite{gorardcausal}.
+
+Abschnitt~\ref{sec:commonvariation} beschreibt eine mögliche Konsistenzprüfung für einen ausdrücklich hergeleiteten gemeinsamen Operatoranschluss. Dass diese Route die entscheidende verbleibende Gesamtaufgabe ist, wurde bislang nicht gezeigt. Die gebildete normalisierte Farbspur ist darin ein konkreter Herkunftstest, kein versteckter neuer Parameter. Die physische Lokalordnung, der Zustand und die Transfer-/Messabbildungen gehören zum selben Abschluss. Die vorhandenen diskreten Rückbestätigungen und skalaren stationären Lösungen sind dabei starke Bedingungen; der Attraktor eines schon eingesetzten Transfers beweist die Wahl des vollständigen Gesetzes noch nicht.
+
+Die größeren Gitterabschlüsse sind mathematische Alternativen in der benannten Vergleichsklasse; sie sind keine ausgearbeiteten Gegenwelten, die sämtliche TFPT-Physik erfüllen. Ebenso beweist der Stromselektor noch nicht die positive Randantwort, den gebrochenen physischen Zustand, nichtabelsche Kopplungen oder die vierdimensionale Realisierung. Der erneute Ansatzpunkt ist jetzt präziser: vollständige lokale Erzeugung und vollständige Wirkungserhaltung an der ursprünglichen Naht nachweisen und ihre bereits berechneten Auslesungen gemeinsam prüfen. Weitere isolierte Clock-, KMS- oder Zahlenmodelle würden diese Herleitung nicht ersetzen.
+
+\appendix
+\section{Die 24 ausführbaren Stufen des letzten Explorerstands}\label{app:stages}
+Die folgende Tabelle dokumentiert den tatsächlichen Lauf. ``Bestanden'' bedeutet, dass die hinterlegte interne Prüfung bestand. Die physischen Herkunfts- und Transferannahmen der Stufen bleiben davon getrennt. Die vollständigen Einzelwerte sind im gespeicherten \file{TFPT_Ablauf.json} enthalten.
+
+\begin{longtable}{r L{0.22\linewidth}L{0.53\linewidth}r}
+\toprule
+Nr. & Kennung & Inhalt & Prüfungen\\\midrule\endhead
+1 & \file{origin} & Ursprungsanker & 6\\
+2 & \file{seam} & Seam und erhaltener Seed & 4\\
+3 & \file{carrier} & Fünferträger & 3\\
+4 & \file{e8} & $D_5+A_3$-Verklebung und $E_8$ & 37\\
+5 & \file{clocks} & Coxeter- und Galois-Clocks & 4\\
+6 & \file{flavor} & Flavor-Residuen und Auslesungen & 4\\
+7 & \file{alpha} & Elektromagnetische Fixpunktgleichung & 2\\
+8 & \file{transfer} & Transfer und rekursive Antwort & 4\\
+9 & \file{predictions} & Eingefrorenes Register: 16 neu berechnete Werte & 2\\
+10 & \file{gravity} & Bedingte gravitative Skalenbrücke & 2\\
+11 & \file{cosmology} & Bedingter kosmologischer Zweig & 2\\
+12 & \file{hamming} & Binärcode & 2\\
+13 & \file{rays} & Sechzig Richtungen & 5\\
+14 & \file{code} & Spektral ausgewählter Fünferraum & 13\\
+15 & \file{observables} & Fünfzehn Antwortflächen & 3\\
+16 & \file{quartic} & Nichtlineare Präparationsfläche & 2\\
+17 & \file{binding} & Bindung durch gemeinsame Ereignisse & 3\\
+18 & \file{recursion} & Ältere Dreierrekursion & 9\\
+19 & \file{space} & Markierter räumlicher Kandidat & 12\\
+20 & \file{sourcechannel} & Gemeinsame endliche Quellenfamilie & 34\\
+21 & \file{matterbridge} & Typisierter physischer Anschluss & 8\\
+22 & \file{observability} & Auslese und Kontrollabschluss & 6\\
+23 & \file{normalization} & Vollständige Normierungsreparatur & 7\\
+24 & \file{assembly} & Pfad, Raum, Hecke, geladene Quelle und Quellgesetz & 142\\\midrule
+ & & \textbf{Gesamt, alle bestanden} & \textbf{316}\\\bottomrule
+\end{longtable}
+
+\section{Befundregister: Ergebnis, Reichweite und offene Verbindung}\label{app:claims}
+\begin{longtable}{L{0.21\linewidth}L{0.38\linewidth}L{0.31\linewidth}}
+\toprule
+Gegenstand & Ergebnis und Status & Offene Verbindung\\\midrule\endhead
+P1/P2-Bootstrap & \E\ Rückkopplung der markierten diskreten Struktur in ihrer Vergleichsklasse & Herkunft der vollständigen Quantisierungswahl\\
+Markiertes $E_8$ & \E\ Gerade unimodulare Verklebung; wirkliche Ladungsdarstellung & Physische lokale Realisierung\\
+Markierter E8/CAR-Rückweg & \E\ $D_8\to\Z^8$ rekonstruiert $V_{16}$, NS-Vakuum, Konformalzeit und ursprüngliche Spinorerweiterung & Herkunft des lokalen $h=1/2$-Feldkeims aus P1/P2\\
+Mikroskopischer Paaranschluss & \E/\B\ Positiver distributionswertiger Gewicht-1-Zweipunktkern der erklärten Achtkopienquelle; volle Quelldeterminanten bleiben erhalten & $\Xi$-Identifikation des Originalträgers, geladener Nullmodus, lokale OPE und Chiralität\\
+Quartikfünfer & \E\ Erster positiver Pauli-Invariantengrad unter Minimalgradregel & Herkunft dieser Auswahlregel\\
+Alter Dreiecksencoder & \E\ Code und Ereigniskovarianz & Kein automatischer Anschluss an dreieckfreies Netz\\
+Ladungspfad $W$ & \E\ Echter P2-Intertwiner, später aus Quellenantwort gewonnen & Vollständige endliche-Abstands-Rekursion\\
+Neun-Port-Regel & \E\ Invarianz des Codes auf gegebenem endlichen Blockgraphen & Auswahl der zusätzlichen Kompositionsregel\\
+Markierter Raum & \N\ Dreidimensionale Blochantwort mit Zellkorrektor & Auswahl der Perioden, physische Zeit und Lorentzstruktur\\
+Clock-Fixalgebren & \Xclaim\ Falscher voller markierter $M_4$-Anschluss ausgeschlossen & Passender physischer Zeitanschluss der nativen Ebene\\
+Trine-Erwartungen & \Xclaim\ Keine Folge gleicher Trinemessungen & Richtige experimentelle Auslese\\
+Diskrete Ereignisfaser & \E\ Native Wortrealisierung und präzise RP-Historien & Herkunft der ausgewählten höheren Antwort\\
+Kontinuierliche $S_3$-Raten & \Xclaim\ $q=1/3$ liegt außerhalb der nichtnegativen reversiblen Klasse & Andere physische Dynamikklassen separat prüfen\\
+Geladener Hecke-Carry & \E\ Phasenerweiterung, Projektoren, tatsächlicher Verbraucher & Gesamte rekursive Raum-/Zeitabbildung\\
+Cartan-/Quartiklift & \Xclaim\ Mehrere falsche Operatorgleichsetzungen ausgeschlossen & Physische Rolle der jeweils wirklichen Lifts\\
+$C_4+X_{20}$ & \E\ Erzeugt alle 248 Ströme & Herkunft der gewählten Level-1-Quelle\\
+Gemeinsamer Stress-Tensor & \E\ Gleichheit durch Projektoren, nicht nur Zentralzahlen & Laborzeit und ursprüngliche Clockantworten\\
+$W_5\otimes W_4$ & \E\ Voller harmonischer $X$-Tensor & Kein Ersatz für gemischte Felder und Nachfahren\\
+Sechser-Hyperkante & \E\ Exakt verbunden, $1/576$, keine echte Teilantwort & Physische Einsetzung derselben Felder\\
+GNS/Universalraum & \E/\B\ Rekonstruktion bei positiver Quelle und festem Testsystem & Auswahl von Quelle und zulässigen physischen Eingriffen\\
+Gittervakuumquelle & \B\ Vollständiger mathematischer Quellkandidat & Ursprungshypothese und $3+1$-Realisierung\\
+Nativer $V_{16}$-Träger & \E\ Globaler Spin-Lift der ursprünglichen gemeinsamen Verklebung & Identifikation mit dem tatsächlichen Dirac-Multiplizitätsbündel\\
+Gemeinsame Anomalie & \E/\B\ Klasse $\lambda=d c_1^2-c_2$; Pfaffianantwort mit $-p_1/3$ bei wirklichem gleichchiralen Symbol & Tatsächliche Symbol-, Realitäts- und CAR-Realisierung\\
+Viermarken-Lokalisation & \E/\B\ Zweintervallalgebra, modulare Mischung und konjugierte Netzkopien in der erklärten E8-Quelle & Gemischte lokale Schnitte und physische Raumzeitordnung\\
+Replica-/Clockanschluss & \E\ $R_2(1/2)=3/2$ aus wirklichem Ising-Twist; beide Clockbeträge in signierter Antwort & Cusp-Auslese, komponierbare Operation und sechs Schritte\\
+Allumfassende Physik & \Opend\ Gemeinsame Funktional- und Determinantenidentität fehlt & Drei Brücken aus Abschnitt \ref{sec:completion}\\
+Bahnbrechender Algorithmus & \Opend\ Konkrete Kandidaten mit Vorläufern und Vergleichsplan & Vorteil an unbekannten Aufgaben und echter Wiederverwendung\\\bottomrule
+\end{longtable}
+
+\section{Die wichtigsten falschen Gleichsetzungen -- und ihre Reparatur}
+\begin{longtable}{L{0.42\linewidth}L{0.50\linewidth}}
+\toprule
+Nicht zulässiger Kurzschluss & Richtige Verbindung\\\midrule\endhead
+Gleiche Dimension bedeutet gleiche Physik & Gruppenwirkung, Ladung, Graduierung und Operatorwirkung abgleichen\\
+Alle fünfzehner Mengen sind dasselbe & Konkrete äquivariante Abbildungen und ihre Fasern bestimmen\\
+Familien-$\sigma_F$ und Decktausch $D$ sind dieselbe Clock & Ordnung drei und Ordnung zwei samt Wirkung getrennt halten\\
+Gleiche Pauli-Paarung bedeutet gleichen Reflexionslift & Eigenräume, Spuren und volle geladene Wirkung vergleichen\\
+Gleiche Gitterwirkung bedeutet gleiche Geschichte & Deckcharakter beziehungsweise relative Phase mitführen\\
+Ein gespeicherter Record genügt & Geladene Operationen müssen den Record tatsächlich fortschreiben\\
+Untergitterindex ist Raumwachstum & Arithmetische Nebenklassen von räumlichen Perioden unterscheiden\\
+Dreieckscode ist der räumliche Pfadcode & Tatsächliche Bindung, Geometrie und Intertwiner benutzen\\
+Kleiner $W$-Code ist die volle Quelle & Gemischte Felder, Nachfahren und endliche-Abstands-Leakage erhalten\\
+Gleiche Zentralzahl bedeutet gleiche Zeit & Hier ist der stärkere Projektor-/Virasorobeweis vorhanden; physische Zeit separat identifizieren\\
+GNS-Eindeutigkeit wählt das Weltgesetz & GNS rekonstruiert die gewählte positive Quelle\\
+Hankelrang ist GNS-Rang & Lineare Wortantwort und kohärenten Kreuzkern getrennt rekonstruieren\\
+Verlustfreie Vergröberung löscht alle Unterschiede & Rekodierung von dissipativem Vergessen unterscheiden\\
+Graphverzweigungen bestimmen Wahrscheinlichkeiten & Operatoren, Zustand und Normierung explizit herleiten\\
+Höherer Kumulant beweist fundamentale Mehrkörperkraft & Antwortkoeffizient von mikroskopischem Hamiltonterm unterscheiden\\
+Grüne Checks bedeuten fertige Gesamttheorie & Voraussetzungen, Auswahl, physische Abbildung und Beobachtung zusammen prüfen\\\bottomrule
+\end{longtable}
+
+\section{Quellenabdeckung und nachvollziehbare Fundstellen}\label{app:sources}
+
+\subsection{Ursprüngliche Paper und neue Konsolidierungen}
+Der lokale TFPT-Stammordner ist
+\file{/Users/stefanhamann/Projekte/tfpt-theoryv4/}.
+Die folgenden vom Nutzer genannten Paper bilden den ursprünglichen Quellenrahmen; soweit verfügbar wurden auch ihre durchsuchbaren TeX-Originale für die präzisen Aussagen herangezogen:
+\begin{itemize}
+\item \file{introduction.pdf}: Gesamtarchitektur und Lesekette.
+\item \file{origin_theory.pdf}: P1/P2, Abschlussrahmen und Bootstrap; TeX insbesondere um Zeilen 87 und 955.
+\item \file{tfpt_1_architecture_e8.pdf}: Träger, Gitterverklebung und $E_8$-Architektur.
+\item \file{tfpt_2_standard_model.pdf}: Standardmodell- und Flavoranschlüsse.
+\item \file{tfpt_3_e8_audit_bootstrap.pdf}: Audit und Rückkopplung der diskreten Struktur.
+\item \file{tfpt_4_frontier.pdf}: offene physische Fronten und bedingte Fortsetzungen.
+\item \file{tfpt_horizon_readouts.pdf}: Rand-/Horizontauslesungen und zugehörige Transferannahmen.
+\item \file{tfpt_research_contracts.pdf}: präzise Abschlussverträge. Im TeX: direkte Quellenroute um Zeile 1271, $4D$-Masterroute ab 13235, lokale Aktion ab 13530, Determinantenanschluss 13616--13661, erzeugendes Funktional 13663--13698.
+\end{itemize}
+
+Die sechs neuen Markdown-Dokumente wurden als eigenständige datierte Quellen im Unterordner \file{_newest2/} behandelt:
+\begin{enumerate}
+\item \file{TFPT_Gesamtdokumentation_Code_Quartik_Rekursion_2026-09-26.md}.
+\item \file{TFPT_Gesamtdokumentation_Ergebnisse_und_Herleitungen_2026-09-27.md}.
+\item \file{TFPT_Gesamtdokumentation2_20260927.md}.
+\item \file{TFPT_Universalraum_Gesamtdokumentation_20260927.md}.
+\item \file{TFPT_Gesamtdokumentation_20260927.md}.
+\item \file{TFPT_Universalraum_Gesamtdokumentation_2026-09-27.md}.
+\end{enumerate}
+Insbesondere enthält die letzte Fassung um die Zeilen 4348/4423 die ursprünglichen Ereignis-/Codeanschlüsse. Ähnlich benannte Dateien werden nicht stillschweigend für identisch erklärt.
+
+Die neueste Konsolidierung ist
+\file{/Users/stefanhamann/Documents/TFPT_Konsolidierung_20260928.pdf}.
+Die Seiten 42--44 und 63--64 waren unter anderem für Pfad-, Raum- und Bindungsanschlüsse relevant. Eine Arbeitskopie liegt unter \file{tfpt_explorer/sources/}; die extrahierte Textfassung unter \file{tfpt_explorer/runtime/consolidation_text.txt}. Die nicht auffindbaren Programme zu den dort genannten 177+19 Prüfungen bleiben ausdrücklich unverifiziert.
+
+\subsection{Die eingefügten Synthesevorschläge}
+Die folgenden Texte liegen jeweils als \texttt{Eingef\"ugter Text.txt} unter
+\file{/Users/stefanhamann/.codex/attachments/} mit den Kennungen:
+\begin{description}[style=nextline,leftmargin=0pt,labelindent=0pt,labelwidth=\linewidth]
+\item[400eb7a5-d4e0-4258-82b9-9cc2c14eeb9e] Ausgangspunkt bei der zuletzt berechenbaren Konstruktion.
+\item[814806cc-6aaa-471c-b995-49152ae80280] Zuse und die Frage nach einem rechnenden Raum.
+\item[c5fe92a6-cc32-44a2-9482-5dc0f7336b53] Zuse, neue TFPT-Ergebnisse und universeller Prozess.
+\item[e3100bc3-7890-4847-87ed-c7c34300e06b] Starker Abschlussvorschlag über positive Geschichte, GNS und primitiven Fixpunkt.
+\item[55f6a61b-610f-41af-9626-87e399bbb9d1] Gemeinsamer markierter Fermionprozess; neuer Pairing-Laplacian, verstärkte P1-Symbolklasse und vorgeschlagene Raumrichtungen. Geprüft in Abschnitt~\ref{sec:pairingcompletion}.
+\item[14360bff-eb1f-42b4-a10f-04c973ecd011] Anker-Viertelphase, nativer C-Intertwiner, Aufzeichnungsinstrument, Ladungsfasern und uniforme Sewing-Schranke. Geprüft und weitergeführt in Abschnitt~\ref{sec:anchorfibre}.
+\item[f548f0d4-2ae2-4067-8f27-3b19b7c82ae4] Gemeinsame Ereigniszeit, native Trine, Choi-Rang, Vakuumlokalität und Weyllauf. Eigenständig geprüft und zur vollständigen gemeinsamen Zeitklassifikation, Quellenliftprüfung und lokalen Impulsantwort weitergeführt in Abschnitt~\ref{sec:sharedtime}.
+\item[9df45383-826d-4f53-8687-bf615454c26c] Orientierte und mehrteilige Antworten, Ladungskokzyklus und Grenzen einer bloßen Carry-Erweiterung. Geprüft in Abschnitt~\ref{sec:orientationaudit}.
+\item[30ea245e-2aae-4de0-8aad-8e3655f3e12b] Spin-$\Z_4$-Anomalieauswahl, A3-Bandstruktur und Vorschläge zur physischen Prozesskette, samt vollständig gelesenem verlinktem Claude-Artefakt. Geprüft und über den tatsächlichen Spinlift, die nativen Paaroperatoren und ihre gemeinsame neutrale Antwort weitergeführt in Abschnitt~\ref{sec:spinliftsynthesis}. Die dort behaupteten externen Ausführungszahlen bleiben von den eigenen Läufen getrennt.
+\end{description}
+Diese Texte wurden als zu prüfende Aussagen behandelt. Ihre tragenden Ideen sind in den Abschnitten zu Quelle, Universalraum und Algorithmen verarbeitet; die zu starken Gleichsetzungen zu GNS, Primitivität, Metrik und physischem Abschluss sind im Haupttext ausdrücklich korrigiert. Anweisungen innerhalb solcher Dokumente wurden nicht mit dem Nutzerauftrag verwechselt.
+
+\subsection{Originale Herleitungs- und Ausschlussorte}
+Die folgenden Stellen tragen wichtige Detailaussagen und verhindern die Wiederholung bereits erkannter Sackgassen:
+\begin{itemize}
+\item \file{verification/v459_seam_lattice_voa_route.py}: direkte ursprüngliche Gitter-/VOA-Route.
+\item \file{verification/v487_transfer_clock_rungs.py}: wirklicher Decktausch und Survivaloperator.
+\item \file{verification/v3_em_alpha.py}: angegebene selbstkonsistente $\alpha$-Gleichung.
+\item \file{verification/predictions_frozen.json}: eingefrorenes Vergleichsregister; kein Ersatz für Herleitung oder Messdatenprüfung.
+\item \file{experiments/theory-contracts/matter-geometry-round15/PROOF.md}, um Zeile 126: ursprünglicher direkter Materie-/Gitteranschluss.
+\item \file{experiments/theory-contracts/compiler-current-product-20260919/PROOF.txt}: geladener Stromproduktanschluss.
+\item \file{experiments/theory-contracts/compiler-quartic-carry-20260919/PROOF.txt}: Carry-/Kompositionsbefund, Vertrag \file{UR.COMPILER.QUARTIC_LIFT.09}, Verdict \texttt{PARTIAL}.
+\item \file{experiments/theory-contracts/compiler-quartic-holonomy-20260919/PROOF.txt}: wirklicher Quartiklift und Holonomie.
+\item \file{experiments/theory-contracts/source-probe-carry-20260920/PROOF.txt}: \file{UR.SOURCE.PROBE_CARRY.01}, bedingter Anschluss, Verdict \texttt{PARTIAL}.
+\item \file{experiments/theory-contracts/source-three-route-closure-20260922/SELECTION.md}, um Zeile 24: Auswahlgrenze der Quellenrouten.
+\item \file{articles/2026-08-30/tfpt_thermodynamic_dynamics_en.tex}, ab Zeile 515: bereits vorhandener thermodynamischer Existenzrahmen.
+\end{itemize}
+Die Verdicts beziehen sich auf die jeweiligen Originalverträge. Neuere Explorerrechnungen schließen diese Verträge nicht automatisch administrativ oder logisch vollständig ab.
+

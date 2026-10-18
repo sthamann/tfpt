@@ -1,0 +1,319 @@
+\subsection*{Layer 6b --- Yukawa Stage B (algebraic content)}
+
+\begin{theorem}[\texttt{YukawaTopForm.finrank\_lambda3\_eq\_one}]
+A \texttt{YukawaTopForm K E}, defined as a linear equivalence
+$\Lambda^3 E \simeq K$, forces $\dim_K (\Lambda^3 E) = 1$.
+\end{theorem}
+
+\begin{theorem}[\texttt{YukawaTopForm.finrank\_E\_eq\_three}]
+For a finite-dimensional $K$-vector space, a \texttt{YukawaTopForm}
+forces $\dim_K E = 3$. The proof is the composition
+\[
+\Lambda^3 E \simeq K
+\;\Rightarrow\; \dim \Lambda^3 E = 1
+\;\xRightarrow{\text{\texttt{finrank\_eq}}}\; \binom{\dim E}{3} = 1
+\;\xRightarrow{\text{\texttt{choose\_eq\_one\_iff}}}\; \dim E = 3.
+\]
+\end{theorem}
+
+\begin{theorem}[\texttt{YukawaTopForm.ofFinrankEqThree}]
+Conversely, any finite-dimensional $K$-vector space with $\dim E = 3$
+admits a \texttt{YukawaTopForm}: pick any basis and read off the
+resulting one-dimensional $\Lambda^3 E$ as $K$.
+\end{theorem}
+
+\begin{theorem}[\texttt{YukawaTopForm.nonempty\_iff\_finrank\_eq\_three}]
+Characterisation: for a finite-dimensional $K$-vector space,
+\[
+\text{Nonempty}\,(\texttt{YukawaTopForm}\,K\,E)
+\;\iff\;
+\dim_K E = 3.
+\]
+The Stage B hypothesis is therefore \emph{precisely} the rank-3
+condition, expressed in exterior-algebra form.
+\end{theorem}
+
+\begin{theorem}[\texttt{YukawaTopForm.toYukawaRankCertificate}]
+A Stage B \texttt{YukawaTopForm} produces a Stage A
+\texttt{YukawaRankCertificate} by extracting $\dim E = 3$ and
+choosing an arbitrary basis.
+\end{theorem}
+
+\subsection*{Layer 6c --- Yukawa Stage C (primitive indecomposable
+coupling)}
+
+\begin{theorem}[\texttt{PrimitiveIndecomposableYukawaCoupling.finrank\_E\_eq\_three}]
+A \texttt{PrimitiveIndecomposableYukawaCoupling K E}, defined as
+a linear equivalence $E \simeq (\Lambda^2 E)^*$ plus
+non-triviality of $E$, forces $\dim_K E = 3$.
+
+\smallskip\noindent
+\emph{Proof sketch.}\ The contraction iso transports dimensions
+as
+\[
+\dim E
+  = \dim (\Lambda^2 E)^*
+  \overset{\text{dual}}{=} \dim \Lambda^2 E
+  \overset{\text{exteriorPower}}{=} \binom{\dim E}{2}
+  = \tfrac{n(n-1)}{2}.
+\]
+The integer equation $n = n(n-1)/2$ with $n \ge 1$ has the
+unique solution $n = 3$ (a finite case split / \texttt{omega}).
+\end{theorem}
+
+\begin{theorem}[\texttt{PrimitiveIndecomposableYukawaCoupling.toYukawaTopForm}]
+A Stage C coupling produces a Stage B
+\texttt{YukawaTopForm} via the v4 converse
+\texttt{YukawaTopForm.ofFinrankEqThree} applied to
+\texttt{finrank\_E\_eq\_three}.
+\end{theorem}
+
+\begin{theorem}[\texttt{PrimitiveIndecomposableYukawaCoupling.toYukawaRankCertificate}]
+A Stage C coupling produces a Stage A \texttt{YukawaRankCertificate}
+through the composition C $\Rightarrow$ B $\Rightarrow$ A.
+\end{theorem}
+
+\begin{theorem}[\texttt{PrimitiveIndecomposableYukawaCoupling.ofFinrankEqThree}]
+Conversely, any finite-dimensional $K$-vector space with
+$\dim E = 3$ admits a Stage C coupling: a contraction iso
+$E \simeq (\Lambda^2 E)^*$ exists by dimension count, since both
+sides have dimension $3$ (via
+\texttt{dual\_finrank\_eq} and \texttt{exteriorPower.finrank\_eq}).
+\end{theorem}
+
+\begin{theorem}[\texttt{PrimitiveIndecomposableYukawaCoupling.nonempty\_iff\_finrank\_eq\_three}]
+For a finite-dimensional $K$-vector space,
+$\text{Nonempty}\,(\texttt{PrimitiveIndecomposableYukawaCoupling}\,K\,E) \iff \dim_K E = 3$.
+\end{theorem}
+
+\subsection*{Layer 6d --- Yukawa Stage D (primary trilinear form)}
+
+\begin{theorem}[\texttt{YukawaTrilinearForm.contraction}]
+For every alternating trilinear form
+$\omega : \Lambda^3 E \to K$, the associated contraction map
+\[
+C_\omega : E \to (\Lambda^2 E)^*,
+\qquad
+C_\omega(v)(w \wedge x) := \omega(v \wedge w \wedge x),
+\]
+is constructible as a \texttt{LinearMap}. The Lean construction
+uses \texttt{exteriorPower.alternatingMapLinearEquiv} (to
+convert between $(\Lambda^n E)^*$ and the space of $K$-valued
+alternating maps on $E^n$) and \texttt{AlternatingMap.curryLeft}
+(to split off the first argument).
+\end{theorem}
+
+\begin{theorem}[\texttt{YukawaTrilinearForm.ContractionInjective} and \texttt{ContractionSurjective}]
+Two explicit operational \texttt{Prop} predicates on $\omega$:
+\[
+\texttt{ContractionInjective}\,\omega \;:=\; \texttt{Injective}\,C_\omega,
+\qquad
+\texttt{ContractionSurjective}\,\omega \;:=\; \texttt{Surjective}\,C_\omega.
+\]
+The TFPT-side phrases "non-degenerate" and "primitive / no
+spectator" are docstring synonyms for the two operational
+predicates respectively. The combined predicate
+\texttt{PrimitiveIndecomposableYukawaCondition} bundles both
+(plus \texttt{Nontrivial}\,$E$ at the use site).
+\end{theorem}
+
+\begin{theorem}[\texttt{YukawaTrilinearForm.contractionEquivOfBoth}]
+A trilinear form $\omega$ satisfying both predicates over a
+finite-dimensional vector space induces a linear iso
+$E \simeq (\Lambda^2 E)^*$ --- the contraction $C_\omega$ itself,
+upgraded to a \texttt{LinearEquiv} via
+\texttt{LinearEquiv.ofBijective}.
+\end{theorem}
+
+\begin{theorem}[\texttt{YukawaTrilinearForm.toPrimitiveIndecomposableYukawaCoupling}]
+A trilinear form with \texttt{ContractionInjective} and
+\texttt{ContractionSurjective} on a non-trivial finite-dimensional
+vector space yields a Stage C
+\texttt{PrimitiveIndecomposableYukawaCoupling}. Together with the
+Stage C $\Rightarrow$ Stage B $\Rightarrow$ Stage A chain, this means
+
+\[
+\boxed{\;
+\omega \,:\,\Lambda^3 E \to K
+\;\;\text{(alt.)}\;\;\text{plus}\;\;\texttt{CI}, \texttt{CS}, \texttt{Nontrivial}\,E
+\;\;\Longrightarrow\;\;
+\dim E = 3.
+\;}
+\]
+\end{theorem}
+
+\begin{theorem}[\texttt{YukawaTrilinearForm.finrank\_E\_eq\_zero\_or\_three} (v9)]
+\emph{Unconditional transparency form, no \texttt{Nontrivial}
+hypothesis.} For any finite-dimensional $K$-vector space $E$,
+a trilinear form $\omega$ satisfying \texttt{ContractionInjective}
+and \texttt{ContractionSurjective} forces
+\[
+\dim_K E = 0 \;\;\lor\;\; \dim_K E = 3.
+\]
+The two predicates are vacuously satisfied when $E = 0$;
+the rank-3 conclusion holds precisely when $E$ is non-trivial.
+This theorem records the fact that the operational predicates
+do \emph{not} themselves rule out the trivial case, which is the
+mathematical reason the rank-3 slogan above carries the
+\texttt{Nontrivial}\,$E$ hypothesis.
+\end{theorem}
+
+\textbf{What Stage D says about TFPT Paper~2.}
+The phrase "primitive indecomposable Yukawa type" in TFPT
+Paper~2 contains three semi-formal qualifiers:
+
+\begin{itemize}[leftmargin=1.6em, itemsep=0pt]
+\item \emph{primitive} --- the trilinear coupling does not
+    factor through a sub-trilinear form;
+\item \emph{indecomposable} --- the carrier does not split as
+    a direct sum that respects the coupling;
+\item \emph{no spectator} --- the closure
+    $E_- \otimes \Lambda^2 E_- \to \Lambda^3 E_-$ exhausts
+    $E_-$.
+\end{itemize}
+
+\noindent
+\emph{Lean translation in Stage D.}\ The primary datum is the
+alternating trilinear form $\omega$ on $E_-$. The three
+qualifiers translate to two explicit operational \texttt{Prop}
+predicates on $\omega$:
+\texttt{ContractionInjective} (the contraction is injective;
+equivalently, no nonzero $v$ has $C_\omega(v) = 0$ ---
+\emph{non-degenerate} in TFPT-side prose) and
+\texttt{ContractionSurjective} (the contraction is surjective;
+equivalently, every linear functional on $\Lambda^2 E_-$ is the
+contraction of $\omega$ with some vector --- \emph{primitive /
+no spectator} in TFPT-side prose). Together with
+\texttt{Nontrivial}\,$E_-$ they imply the Stage C contraction
+iso and hence $\dim E_- = 3$.
+
+\textbf{Where the standing Yukawa gap now lives.}
+The Lean chain takes the trilinear form $\omega$ together with
+the two predicates and \texttt{Nontrivial}\,$E_-$ as input.
+The remaining open question is \emph{purely upstream}: does the
+TFPT boundary kernel
+(\texttt{CalderonCertificate} \emph{plus} representation-
+theoretic data that the Yukawa coupling exists) produce a
+trilinear form satisfying \texttt{ContractionInjective} and
+\texttt{ContractionSurjective}? That question is TFPT theory
+work, not Lean engineering. The Lean chain is now flat: there is
+no hidden assumption between Stage D and $\dim E_- = 3$.
+
+\subsection*{Layer 7 --- Mathlib bridge}
+
+\begin{theorem}[\texttt{MathlibBridge.Polarization.toCompleteOrthogonalIdempotents}]
+A \texttt{TFPT.Carrier.Polarization} on a ring $A$ is canonically
+a Mathlib \texttt{CompleteOrthogonalIdempotents} on the pair
+$(P_-, P_+)$. A converse map
+\texttt{ofCompleteOrthogonalIdempotents} is also provided.
+\end{theorem}
+
+\subsection*{Layer 8 --- Bundled main theorems}
+
+The carrier-rigidity payload of the project is the following set
+of bundled theorems on
+\texttt{CarrierPremises K M}:
+
+\begin{theorem}[\texttt{CarrierPremises.primitive\_pair\_eq\_sm}]
+Under the primitive oriented determinant-preserving carrier
+condition with rank data $(m, n) = (3, 2)$, $(q_-, q_+) = (-2, 3)$.
+\end{theorem}
+
+\begin{theorem}[\texttt{CarrierPremises.trace\_Y\_eq\_zero}]
+$\tr_M Y = 0$ for $Y = -\tfrac13 P_- + \tfrac12 P_+$.
+\end{theorem}
+
+\begin{theorem}[\texttt{CarrierPremises.carrier\_polynomial\_Y}]
+$6\cdot(Y\cdot Y) - Y - \mathbf 1 = \mathbf 0$ in $\mathrm{End}_K M$.
+The hypothesis $[\texttt{CharZero K}]$ is used here to provide
+$\widehat 6 \in K$.
+\end{theorem}
+
+\begin{theorem}[\texttt{CarrierPremises.hypercharge\_carrier\_packet}]
+Under \texttt{CarrierPremises} and the primitive oriented
+determinant-preserving carrier condition, the three bundled
+conclusions above hold \emph{simultaneously}. This is the
+top-level claim of the project.
+\end{theorem}
+
+\subsection*{Concrete realisation}
+
+\begin{theorem}[\texttt{Hypercharge.trace\_Y, Hypercharge.Y\_carrier\_polynomial}]
+On the concrete $5\times 5$ rational diagonal model,
+$Y = \mathrm{diag}(-\tfrac13,-\tfrac13,-\tfrac13,\tfrac12,\tfrac12)$
+satisfies $\tr Y = 0$ and $6\,Y^2 - Y - \mathbf 1 = \mathbf 0$,
+proved by direct per-entry rational arithmetic.
+\end{theorem}
+
+% ---------------------------------------------------------------- %
+\section{Significance}
+\label{sec:significance}
+% ---------------------------------------------------------------- %
+
+The two load-bearing chains, with all hypotheses explicitly
+visible, are:
+
+\paragraph{Chain~A --- trace identity.}
+\[
+\text{Calderón certificate}
+\;\xRightarrow{\text{Paper 1 interface}}\;
+\varepsilon^2 = \mathbf 1
+\;\xRightarrow{\text{\texttt{InvolutionProjectors}}}\;
+P_-, P_+ \text{ orthogonal idempotents}
+\]
+together with the rank discharges
+\[
+\dim E_+ = 2 \quad (\text{\texttt{HiggsIndexCertificate}}),
+\qquad
+\omega : \Lambda^3 E_- \to K\,\text{+CI+CS+Nontrivial} \quad (\text{Stage D})
+\;\Rightarrow\;
+\dim E_- = 3
+\]
+and the determinant-normalised coefficient choice
+$Y := -\tfrac13 P_- + \tfrac12 P_+$ give, via
+\texttt{TraceProjection},
+\[
+\tr Y = -\tfrac13 \cdot 3 + \tfrac12 \cdot 2 = 0.
+\]
+The Yukawa input is now an alternating trilinear form with two
+explicit \texttt{Prop} predicates. The contraction iso and the
+rank-3 conclusion are both derived theorems.
+
+\paragraph{Chain~B --- integer rigidity.}
+The trace-zero condition
+\[
+m\,q_- + n\,q_+ = 0
+\]
+follows from the universal-$\lambda$ determinant character. Combined
+with the primitivity and orientation conditions
+\[
+q_- < 0 < q_+,\qquad
+\gcd(|q_-|, q_+) = 1,
+\]
+the general $(m,n)$ rigidity theorem gives
+\[
+q_- = -\frac{n}{\gcd(m,n)},\qquad q_+ = \frac{m}{\gcd(m,n)}.
+\]
+For $(m,n) = (3,2)$ this specialises to $(q_-,q_+) = (-2,3)$.
+The integer answer is a corollary of a parametric theorem; it is
+not hard-coded.
+
+\paragraph{Why both chains matter together.}
+The carrier polynomial $6 Y^2 - Y - \mathbf 1 = \mathbf 0$ is a
+consequence of the polarization layer alone (it does not need
+either rank discharge). The trace identity $\tr Y = 0$ requires
+the rank discharges. The integer pair $(-2, 3)$ requires the
+primitive oriented determinant-preserving condition together
+with $(m, n) = (3, 2)$. The bundled theorem
+\texttt{hypercharge\_carrier\_packet} is the unique statement
+that requires all upstream pieces simultaneously.
+
+\paragraph{What is \emph{not} claimed.} The $3+2$ multiplet
+$Y = \mathrm{diag}(-\tfrac13, -\tfrac13, -\tfrac13, \tfrac12, \tfrac12)$
+is the carrier. The \emph{full Standard-Model hypercharge
+spectrum} --- all chiral-multiplet hypercharges including duals,
+exterior powers, and tensor products --- is not formalised in
+this experiment. The title and main theorem both say "$3+2$
+hypercharge carrier", not "SM hypercharge spectrum".
+
+% ---------------------------------------------------------------- %

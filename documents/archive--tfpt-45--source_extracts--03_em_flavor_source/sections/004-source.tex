@@ -1,0 +1,389 @@
+
+\begin{theorem}[$D_4$-equivariant monodromy rigidity and Riemann--Hilbert closure]
+\label{thm:d4-monodromy-rigidity}
+\label{prop:generator-family-holonomy}
+\label{thm:d4-riemann-hilbert-rigidity}
+Choose positively oriented small loops
+\[
+\gamma_1,\gamma_i,\gamma_{-1},\gamma_{-i}\in\pi_1(X_f^\circ)
+\]
+around the punctures $1,i,-1,-i$, with the standard relation
+\[
+\gamma_1\gamma_i\gamma_{-1}\gamma_{-i}=1.
+\]
+Relative to the distinguished cycle basis $(C_1,C_2,C_T)$, set
+\[
+\omega:=e^{2\pi i/3},
+\qquad
+P:=
+\begin{pmatrix}
+0&1&0\\
+0&0&1\\
+1&0&0
+\end{pmatrix},
+\qquad
+D:=
+\begin{pmatrix}
+1&0&0\\
+0&\omega&0\\
+0&0&\omega^2
+\end{pmatrix}.
+\]
+If the determinant line is trivial, the local puncture spectra are
+\[
+\{1,\omega,\omega^2\},
+\]
+and the puncture square carries its inherited $D_4$ symmetry, then the admissible monodromy
+representation is forced, up to global $SU(3)_F$ conjugation, by
+\[
+\rho_F(\gamma_1)=D,
+\qquad
+\rho_F(\gamma_i)=PDP^{-1},
+\qquad
+\rho_F(\gamma_{-1})=P^2DP^{-2},
+\]
+\[
+\rho_F(\gamma_{-i})
+:=
+\bigl(\rho_F(\gamma_1)\rho_F(\gamma_i)\rho_F(\gamma_{-1})\bigr)^{-1}.
+\]
+Equivalently, the canonical monodromy package is no longer a generator input but a rigidity output
+of the puncture-square symmetry, unimodularity, and admissible cusp data.
+\end{theorem}
+
+\begin{proof}
+Because the local puncture spectrum is
+\[
+\{1,\omega,\omega^2\},
+\qquad
+\omega=e^{2\pi i/3},
+\]
+and the determinant line is trivial, every local monodromy matrix lies in $SU(3)_F$ and is
+diagonalizable with three distinct eigenvalues. After one global $SU(3)_F$ conjugation we may
+therefore assume
+\[
+\rho_F(\gamma_1)=D.
+\]
+
+Let $r$ denote the quarter-turn symmetry of the puncture square. Its action on the punctures sends
+\[
+1\mapsto i\mapsto -1\mapsto -i\mapsto 1,
+\]
+hence on the fundamental group it cyclically permutes the four puncture loops:
+\[
+r\gamma_1r^{-1}=\gamma_i,
+\qquad
+r\gamma_ir^{-1}=\gamma_{-1},
+\qquad
+r\gamma_{-1}r^{-1}=\gamma_{-i}.
+\]
+Because the family datum is $D_4$-equivariant, the same quarter-turn is implemented on the fiber by
+an element of $SU(3)_F$ carrying the ordered eigenspace packet of $D$ cyclically onto itself. Since
+the three eigenspaces are one-dimensional, a second global conjugation fixes that implementing
+matrix to be the cyclic permutation matrix
+\[
+P=
+\begin{pmatrix}
+0&1&0\\
+0&0&1\\
+1&0&0
+\end{pmatrix}.
+\]
+Therefore
+\[
+\rho_F(\gamma_i)=PDP^{-1},
+\qquad
+\rho_F(\gamma_{-1})=P^2DP^{-2}.
+\]
+
+The puncture loops satisfy exactly one relation,
+\[
+\gamma_1\gamma_i\gamma_{-1}\gamma_{-i}=1,
+\]
+so the last generator is forced:
+\[
+\rho_F(\gamma_{-i})
+=
+\bigl(\rho_F(\gamma_1)\rho_F(\gamma_i)\rho_F(\gamma_{-1})\bigr)^{-1}.
+\]
+Thus the monodromy representation is uniquely determined by the stated local spectra, determinant
+triviality, and $D_4$ symmetry, up to the initial global $SU(3)_F$ conjugation.
+\end{proof}
+
+\begin{theorem}[Rigid admissible family holonomy class]
+\label{thm:rigid-family-local-system}
+On the rigid four-punctured family section
+\[
+X_f^\circ\cong \mathbb P^1\setminus\mu_4,
+\]
+fix the determinant line, the local monodromy conjugacy classes at the four punctures, and the
+$D_4$ symmetry inherited from the seam winding theorem. Then there exists a unique admissible
+flat Hermitian family connection
+\[
+\nabla_F^\star
+\]
+on the flat Hermitian family bundle $L_F\to X_f^\circ$ with fiber
+$F\cong H^1(X_f^\circ,\mathbb C)\cong\mathbb C^3$ whose monodromy representation is the explicit
+holonomy datum $\rho_F$ of
+\TFPTxref{def:canonical-cycle-holonomy,thm:d4-monodromy-rigidity}. Hence its $SU(3)_F$
+conjugacy class $[\nabla_F^\star]$ is unique.
+\end{theorem}
+
+\begin{proof}
+By \TFPTxref{thm:topological-family-closure}, the family section is the rigid four-punctured sphere
+\[
+X_f^\circ\cong\mathbb P^1\setminus\mu_4,
+\]
+and it carries the full $D_4$ symmetry inherited from the seam winding data. The determinant line
+is fixed to be trivial, and the local puncture conjugacy classes are fixed by the admissible cusp
+labels. Therefore \TFPTxref{thm:d4-monodromy-rigidity} determines one monodromy representation
+\[
+\rho_F:\pi_1(X_f^\circ)\to SU(3)_F
+\]
+uniquely up to global $SU(3)_F$ conjugation.
+
+Construct the flat Hermitian bundle explicitly as
+\[
+L_F:=(\widetilde X_f^\circ\times\mathbb C^3)/\pi_1(X_f^\circ),
+\]
+where $\pi_1(X_f^\circ)$ acts on $\mathbb C^3$ through $\rho_F$. Because the image of $\rho_F$ lies
+in $SU(3)_F$, the standard Hermitian form on $\mathbb C^3$ descends to a Hermitian metric on
+$L_F$, and the trivial connection on $\widetilde X_f^\circ\times\mathbb C^3$ descends to a flat
+Hermitian connection realizing the same monodromy representation.
+
+Conversely, any admissible flat Hermitian family connection with the same puncture data has the same
+monodromy representation up to global $SU(3)_F$ conjugation. The unitary Riemann--Hilbert
+correspondence for flat Hermitian bundles then identifies it with the descended bundle above.
+Hence there is exactly one admissible flat Hermitian connection class realizing the rigid puncture
+data. We denote this distinguished class by
+\[
+[\nabla_F^\star].
+\]
+\end{proof}
+
+\begin{theorem}[Canonical transport kernel and single-winding closure]
+\label{thm:exact-transport-closure}
+\label{thm:canonical-transport-kernel}
+The admissible cusp set is
+\[
+\left\{1,\frac23,\frac13\right\},
+\]
+obtained from the singlet-projected hypercharge spectrum. On the base hexagon the residue packets
+are
+\[
+R_u=(0,3,1),
+\qquad
+R_d=(2,5,1),
+\qquad
+R_e=(3,5,2).
+\]
+Let $\mathcal G_{D_4}\subset X_f^\circ$ denote the unique $D_4$-invariant geodesic spine of the
+four-punctured family sphere, and let
+\[
+\Gamma_{ij}^{\min}
+\]
+be its canonical admissible edges. Then the Yukawa matrices are fixed intrinsically by the operator
+formula
+\[
+(Y_f)_{ij}
+:=
+\left\langle e_i,\mathrm{Hol}_{\mathcal G_{D_4}}(\nabla_F^\star)\,K_f^{\mathrm{str}}e_j\right\rangle,
+\]
+and on diagonal reduction this becomes the hard holonomy form
+\[
+(Y_f)_{ij}
+=
+\lambdaY^{L^L_{f,i}+L^R_{f,j}}
+\left\langle e_i,\mathrm{Hol}_{\Gamma_{ij}^{\min}}(\nabla_F^\star)e_j\right\rangle,
+\]
+so the bounded coefficients $\Lambda_{f,j}$ are exact matrix entries of the structural transport
+kernel rather than independent $O(1)$ amplitudes. The resonance pole of the transport kernel is the
+unique admissible root
+\[
+\delta_{\mathrm{ph}}\in\left(\frac13,\frac23\right)
+\]
+of \TFPTxref{thm:algebraic-transport-pole}. The exact sum rule is
+\[
+\sum_{f,j}L_{f,j}=\Oadm\gamma=40.
+\]
+The base residue sum is $22$, so the missing $18=3\cdot 6$ forces exactly one full winding in
+each first-generation direction. Therefore uniquely
+\[
+L_u^{\mathrm{diag}}=(7,3,0),\quad
+L_d^{\mathrm{diag}}=(7,5,2),\quad
+L_e^{\mathrm{diag}}=(8,5,3)
+\]
+on the closed branch.
+\end{theorem}
+
+\begin{proof}
+By \TFPTxref{thm:rigid-family-local-system}, the flat Hermitian family-connection class
+\[
+[\nabla_F^\star]
+\]
+is uniquely fixed on the rigid four-punctured family sphere. By
+\TFPTxref{def:canonical-cycle-holonomy,thm:d4-monodromy-rigidity}, its holonomy on the unique
+$D_4$-invariant geodesic spine $\mathcal G_{D_4}$ is therefore intrinsic. At the same time,
+\TFPTxref{def:structural-transport-kernel,thm:algebraic-transport-pole} fixes the structural positive
+transport kernel and its unique admissible resonance pole
+\[
+\delta_{\mathrm{ph}}\in\left(\frac13,\frac23\right).
+\]
+Consequently the operator product
+\[
+\mathrm{Hol}_{\mathcal G_{D_4}}(\nabla_F^\star)\,K_f^{\mathrm{str}}
+\]
+is uniquely determined on the canonical family basis, and its matrix entries are theorem-level
+transport data. This proves the operator formula for $Y_f$ and shows that the former coefficients
+$\Lambda_{f,j}$ are not independent amplitudes but exact entries of the same closed transport
+operator.
+
+On the diagonal branch, the canonical admissible edges $\Gamma_{ij}^{\min}$ recover the word-length
+reduction
+\[
+y_{f,j}^{\mathrm{UV}}=\lambdaY^{L_{f,j}}\Lambda_{f,j}.
+\]
+The admissible cusp set is the singlet-projected hypercharge packet
+\[
+\left\{1,\frac23,\frac13\right\},
+\]
+so the diagonal residue packets are exactly
+\[
+R_u=\{0,1,3\},
+\qquad
+R_d=\{1,2,5\},
+\qquad
+R_e=\{2,3,5\}.
+\]
+Write every diagonal length as
+\[
+L_{f,j}=r_{f,j}+6n_{f,j},
+\qquad
+r_{f,j}\in R_f,
+\qquad
+n_{f,j}\in\mathbb N_0.
+\]
+Summing over all sectors gives
+\[
+\sum_{f,j}L_{f,j}
+=
+\sum_{f,j}r_{f,j}+6\sum_{f,j}n_{f,j}.
+\]
+The residue sum is
+\[
+(0+1+3)+(1+2+5)+(2+3+5)=22,
+\]
+whereas \TFPTxref{eq:41-chain-main} and the closed transport sum rule give
+\[
+\sum_{f,j}L_{f,j}=\Oadm\gamma=40.
+\]
+Therefore
+\[
+6\sum_{f,j}n_{f,j}=40-22=18,
+\qquad
+\sum_{f,j}n_{f,j}=3.
+\]
+So exactly three full windings occur in total.
+
+The universal first-generation winding lock and the monotone hierarchy in each sector place every
+extra winding on the lightest family direction. Hence each sector contributes exactly one full
+winding in its first-generation slot. Reattaching the unique extra $6$ to the residue packets gives
+\[
+L_u^{\mathrm{diag}}=(7,3,0),\qquad
+L_d^{\mathrm{diag}}=(7,5,2),\qquad
+L_e^{\mathrm{diag}}=(8,5,3).
+\]
+This proves the closed-branch single-winding pattern.
+\end{proof}
+
+\begin{corollary}[Single-winding uniqueness on the transport branch]
+\label{cor:single-winding-transport}
+Writing the residue packets of \TFPTxref{thm:exact-transport-closure} as multisets
+\[
+R_u=\{0,1,3\},
+\qquad
+R_d=\{1,2,5\},
+\qquad
+R_e=\{2,3,5\},
+\]
+the closed-branch diagonal length multisets are
+\[
+\{L_{u,j}^{\mathrm{diag}}\}=\{0,3,1+6\},
+\qquad
+\{L_{d,j}^{\mathrm{diag}}\}=\{2,5,1+6\},
+\qquad
+\{L_{e,j}^{\mathrm{diag}}\}=\{3,5,2+6\}.
+\]
+Hence each sector carries the same winding excess
+\[
+\sum_j L_{f,j}^{\mathrm{diag}}-\sum_{r\in R_f}r=6,
+\]
+and therefore the total excess is $18$. For the charged-lepton packet one also has
+\[
+\frac{1}{3}\sum_{j=1}^3 L_{e,j}^{\mathrm{diag}}=\frac{16}{3},
+\qquad
+\operatorname{Var}(L_e^{\mathrm{diag}})
+=
+\frac{1}{3}\sum_{j=1}^3\left(L_{e,j}^{\mathrm{diag}}-\frac{16}{3}\right)^2
+=
+\frac{38}{9}.
+\]
+\end{corollary}
+
+\begin{proof}
+\TFPTxref{thm:exact-transport-closure} states that each sector is obtained from its residue packet by
+adding exactly one full winding of length $6$ to one entry; reordering gives the displayed
+multisets. The winding-excess identities are immediate. For $L_e^{\mathrm{diag}}=(8,5,3)$, direct
+calculation gives the mean $16/3$ and variance $38/9$.
+\end{proof}
+
+Here the closed branch uses the exact root of \Cref{thm:transport-pole-algebraic}, so
+\[
+\epsilon_f
+=
+\frac23-\delta_{\mathrm{ph}}
+\approx \num{0.073389386533443}.
+\]
+The later empirical readout ledgers now keep this same exact pole and only apply the declared threshold
+map to downstream observables. The regularized transport operator used for the finite
+hexagon analysis is
+\begin{equation}
+\label{eq:yukawa-kernel}
+\begin{aligned}
+D_y&=y\,\mathbf 1-\delta_{\mathrm{ph}}U_6,\\
+\mathcal Y_y^{(\varepsilon)}&=(D_y^\dagger D_y+\varepsilon^2)^{-1},
+\end{aligned}
+\end{equation}
+and the singular limit $\varepsilon\to0$ is taken only after admissibility has been restricted to the gap-stable sector defined below.
+
+\begin{proposition}[Finite hexagonal resolvent]
+\label{prop:finite-hexagonal-resolvent}
+Whenever
+\[
+y^6\neq \delta_{\mathrm{ph}}^6,
+\]
+the transport denominator has the exact inverse
+\begin{equation}
+\label{eq:finite-hexagonal-resolvent}
+D_y^{-1}
+=
+\frac{1}{y^6-\delta_{\mathrm{ph}}^6}
+\sum_{m=0}^{5}y^{5-m}\delta_{\mathrm{ph}}^{\,m}U_6^m.
+\end{equation}
+Thus the $C_6$ resolvent is finite and algebraically closed rather than an infinite formal Green-series expansion.
+\end{proposition}
+
+\begin{proof}
+Using $U_6^6=\mathbf 1$,
+\[
+\bigl(y\,\mathbf 1-\delta_{\mathrm{ph}}U_6\bigr)
+\sum_{m=0}^{5}y^{5-m}\delta_{\mathrm{ph}}^{\,m}U_6^m
+=
+y^6\mathbf 1-\delta_{\mathrm{ph}}^6U_6^6
+=
+\bigl(y^6-\delta_{\mathrm{ph}}^6\bigr)\mathbf 1.
+\]
+Dividing by $y^6-\delta_{\mathrm{ph}}^6$ gives \Cref{eq:finite-hexagonal-resolvent}.
+\end{proof}
+
+Equivalently, one may read \Cref{eq:yukawa-kernel} in the Fourier basis of the six-site ring: $U_6$ is the diagonal form of the step operator, $D_y$ is the shifted walk denominator, and $\mathcal Y_y^{(\varepsilon)}$ is the corresponding regularized Green function. In this reading the admissible path lengths $L_{f,j}$ are graph-distance data on $C_6$, while the transport matrix elements $\Lambda_{f,j}$ encode bounded local amplitudes rather than unrestricted fit parameters.

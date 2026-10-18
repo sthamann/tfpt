@@ -29,5 +29,13 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Check the complete content registry
+        run: python3 verification/make_content_registry.py --check
+
+      - name: Test modular source consumers and registry
+        run: |
+          python3 -m unittest discover -s verification -p "test_*tex*.py"
+          python3 -m unittest discover -s verification -p "test_content_registry.py"
+
       - name: Run the sync audit (audit_sync.py, must end "AUDIT OK")
         run: python3 verification/audit_sync.py

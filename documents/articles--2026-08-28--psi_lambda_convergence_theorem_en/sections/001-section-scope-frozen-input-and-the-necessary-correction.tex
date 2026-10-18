@@ -1,0 +1,266 @@
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove the strongest statement presently justified by the frozen
+finite-collar data on the proposed field $\Psi_\lambda$.  On every fixed
+finite window, trace-norm convergence of the restricted covariances gives,
+after the canonical Araki--Wyss purification, canonical Bogoliubov
+implementers with an explicit Shale bound.  Along every coherent
+subsequence these implementers converge, in fact in operator norm; the
+estimate on arbitrary finite-particle vectors is written out.  For a
+compatible inner $\mathbb Z_4$ tower we prove directly that crossed product
+commutes with the inductive limit and that the canonical expectations are
+unique with their necessary normalisations.  Finally, for the exact
+two-edge chiral free-fermion model we compute the Hilbert--Schmidt
+divergence caused by a quarter twist:
+\[
+ \norm{P_0-P_{1/4}}_{\HS}^{\,2}
+ =\frac{2}{\pi^2}\log N+O(1),
+ \qquad \frac{2}{\pi^2}=0.202642367\ldots .
+\]
+This agrees to $0.18\%$ with the measured QWZ-collar slope $0.203$.
+The document also proves that the measurements stated in the repository
+do \emph{not} establish the stronger net-level conclusion: compressed
+covariance data do not determine a Bogoliubov transformation, four energy
+moments do not prove an all-orders energy bound, and a finite logarithmic
+fit does not prove an asymptotic law.  The missing net-identification
+statement is isolated verbatim at the end.
+\end{abstract}
+
+\tableofcontents
+
+\section{Scope, frozen input, and the necessary correction}
+
+\subsection{The frozen input}
+
+The one-particle lattice Hamiltonian used in the quantitative probes is
+the Qi--Wu--Zhang collar
+\[
+ h(k_x,k_y)=\sin k_x\,\sigma_x+\sin k_y\,\sigma_y+
+ (M-\cos k_x-\cos k_y)\sigma_z
+\]
+on a cylinder of circumference $N_x$, open width $N_y=8$, and boundary
+twist $i^k$, $k=0,1,2,3$.  The topological and trivial controls are
+$M=1$ and $M=3$, respectively.  If $H_N^{(k)}$ denotes the finite
+one-particle matrix, the particle-hole symmetric covariance is
+\[
+ C_N^{(k)}
+ =\chi_{(-\infty,0)}(H_N^{(k)})
+   +\frac12\chi_{\{0\}}(H_N^{(k)}).
+\]
+The equal-particle Slater projection, used when the energy-sign fillings
+have different particle number, is denoted by $P_N^{(k)}$.
+
+The following numbers are inputs to this memorandum, not conclusions of
+the proof:
+\begin{enumerate}[label=(D\arabic*)]
+\item On fixed edge windows of widths $6$ and $8$, the compressed
+  sector differences are Cauchy, with a representative fitted rate
+  approximately $N_x^{-1.85}$.  The one-sided quantity
+  $\norm{(C_N^{(0)}-C_N^{(1)})E_w}_{\HS}^2$ plateaus below $0.376$.
+\item The restricted covariances converge in trace norm on every tested
+  fixed window.
+\item In the topological run,
+  \[
+  \norm{C_N^{(0)}-C_N^{(1)}}_{\HS}^2
+  =3.605+0.203\log N_x
+  \]
+  is the reported fit, while the trivial control saturates near $0.546$.
+\item On one polar-phase-fixed Pfaffian band, selected matrix elements
+  are Cauchy.  A second band has a different limit and is not mixed with
+  the first.
+\item For $n=1,\ldots,4$, the energy ratios tend toward $1$, and the
+  measured excitation norms obey
+  $f_n<C^{n+1}(n!)^2$ with probe-provenance constant $C=2.86$.
+\item The exact finite data give
+  \[
+  \lambda=(\omega_s,\omega_f),\qquad
+  \norm{\lambda}^2=2,\qquad h_\lambda=1,\qquad
+  [\lambda]^4=[0],\qquad [\lambda]^2=[v].
+  \]
+  The finite $\mathbb Z_4$ clock action is compatible with the tested
+  tower embeddings.
+\end{enumerate}
+
+\subsection{Why the originally proposed implication is false}
+
+Three distinctions are mathematically indispensable.
+
+\paragraph{A compressed covariance is not a polarization.}
+If $E$ is a proper window projection and $P$ is a global Fermi projection,
+then $EPE$ is generally a positive contraction, not a projection:
+\[
+ (EPE)^2-EPE=-EP(\id-E)PE.
+\]
+Consequently, Shale--Stinespring cannot be applied to $EPE$ as though it
+were a Fock polarization.  We repair this by the canonical
+Araki--Wyss purification in Section~\ref{sec:local}.
+
+\paragraph{Two covariances do not specify a sector automorphism.}
+Even in finite dimension, two mixed covariances $C$ and $D$ need not be
+unitarily conjugate: unitary conjugacy preserves the spectrum.  Thus
+$\norm{C-D}_{1}<\infty$ or $C_N-D_N\to0$ does not by itself produce a
+Bogoliubov map on the original window CAR algebra.  It does produce a
+canonical equivalence of the purified standard forms, which is the exact
+local result proved below.
+
+\paragraph{Finite observations are not asymptotic theorems.}
+A fit on $16\le N_x\le96$ cannot prove divergence as $N_x\to\infty$, and
+inequalities checked only for $n\le4$ cannot prove an energy estimate for
+every $n$.  We therefore prove the logarithm exactly for the universal
+two-chiral-edge model and state the precise uniform-remainder hypothesis
+under which its coefficient transfers to a lattice collar.
+
+\section{Classical theorems used, with full statements}
+
+Only two external analytic results are used in the proof.  They are
+quoted here in the form needed below.
+
+\begin{theorem}[Shale--Stinespring criterion for CAR]\label{thm:ss}
+Let $\K_{\mathbb R}$ be a real Hilbert space, let $J$ be an orthogonal
+complex structure ($J^*=-J$ and $J^2=-\id$), and let $\pi_J$ be the
+irreducible fermionic Fock representation of the Clifford algebra
+determined by $J$.  If $R$ is an orthogonal operator on
+$\K_{\mathbb R}$, then there exists a unitary $U_R$ on the Fock space
+such that
+\[
+ U_R\pi_J(B(f))U_R^*=\pi_J(B(Rf))
+ \quad\text{for every }f\in\K_{\mathbb R}
+\]
+if and only if $[R,J]$ is Hilbert--Schmidt.  When it exists, $U_R$ is
+unique up to multiplication by a complex scalar of modulus one.
+\end{theorem}
+
+This is the CAR theorem of D.~Shale and W.~F.~Stinespring,
+\emph{States of the Clifford algebra}, Annals of Mathematics
+\textbf{80} (1964), 365--381, in particular the implementability
+criterion in the main theorem on pp.~375--376.  In the equivalent
+polarization notation, with $P=(\id-iJ)/2$ and $Q=RPR^*$, the criterion
+is
+\[
+ [P,R]\in\mathcal L^2
+ \quad\Longleftrightarrow\quad
+ P-Q\in\mathcal L^2,
+\]
+because
+\[
+ [P,R]R^*=P-RPR^*=P-Q.
+\]
+Thus the two Hilbert--Schmidt norms are equal.  We will verify the
+hypothesis by an explicit estimate.
+
+\begin{theorem}[Powers--St{\o}rmer square-root inequality]
+\label{thm:ps}
+Let $A$ and $B$ be positive trace-class operators on a Hilbert space.
+Then
+\[
+ \norm{A^{1/2}-B^{1/2}}_2^2\le \norm{A-B}_1.
+\]
+The same assertion applies to $\id-A$ and $\id-B$ whenever
+$0\le A,B\le\id$ and the differences in question are trace class.
+\end{theorem}
+
+This is the square-root estimate proved in
+R.~T.~Powers and E.~St{\o}rmer,
+\emph{Free states of the canonical anticommutation relations},
+Communications in Mathematical Physics \textbf{16} (1970), 1--33.
+The finite-dimensional application below satisfies all hypotheses:
+the covariance matrices and their complements are positive, and every
+operator on the fixed window is trace class.
+
+\begin{remark}[The pure-state quasi-equivalence form]
+H.~Araki, \emph{On quasifree states of CAR and Bogoliubov
+automorphisms}, Publications of the Research Institute for Mathematical
+Sciences \textbf{6} (1970/71), 385--442, proves the general
+quasi-equivalence criterion.  For pure gauge-invariant quasi-free states
+with polarizations $P$ and $Q$, it reduces to:
+\[
+ \pi_P\text{ and }\pi_Q\text{ are unitarily equivalent}
+ \quad\Longleftrightarrow\quad P-Q\in\mathcal L^2.
+\]
+We use this form only to interpret the global obstruction.  The local
+construction itself is given explicitly and does not defer to Araki's
+theorem.
+\end{remark}
+
+\section{Finite-window implementers and convergence}
+\label{sec:local}
+
+\subsection{Canonical purification of a window covariance}
+
+Let $\mathfrak h_w$ be the finite-dimensional one-particle space of a
+fixed window and let $C$ be a covariance, so $0\le C\le\id$.  Put
+\[
+ V_C:\mathfrak h_w\longrightarrow\mathfrak h_w\oplus\mathfrak h_w,
+ \qquad
+ V_C f=
+ \begin{pmatrix}C^{1/2}f\\(\id-C)^{1/2}f\end{pmatrix},
+\]
+and define
+\[
+ \widehat P_C=V_CV_C^*
+ =
+ \begin{pmatrix}
+ C& C^{1/2}(\id-C)^{1/2}\\
+ C^{1/2}(\id-C)^{1/2}&\id-C
+ \end{pmatrix}.
+\]
+
+\begin{lemma}[Purification and its quantitative continuity]
+\label{lem:purification}
+For every covariance $C$, $\widehat P_C$ is an orthogonal projection of
+rank $\dim\mathfrak h_w$.  For any two covariances $C,D$,
+\[
+ \norm{\widehat P_C-\widehat P_D}_2
+ \le 2\sqrt{2\norm{C-D}_1}.
+\tag{3.1}\label{eq:purification-bound}
+\]
+\end{lemma}
+
+\begin{proof}
+Functional calculus makes $C^{1/2}$ commute with
+$(\id-C)^{1/2}$, and
+\[
+ V_C^*V_C=C+(\id-C)=\id.
+\]
+Hence $V_C$ is an isometry.  Therefore
+\[
+ \widehat P_C^*=\widehat P_C,\qquad
+ \widehat P_C^2
+ =V_C(V_C^*V_C)V_C^*
+ =V_CV_C^*=\widehat P_C.
+\]
+Its range is the range of the isometry $V_C$, so its rank is
+$\dim\mathfrak h_w$.
+
+Next,
+\[
+\begin{aligned}
+\widehat P_C-\widehat P_D
+ &=(V_C-V_D)V_C^*+V_D(V_C^*-V_D^*).
+\end{aligned}
+\]
+The ideal property
+$\norm{XY}_2\le\norm{X}_2\norm{Y}$ and
+$\norm{V_C}=\norm{V_D}=1$ give
+\[
+ \norm{\widehat P_C-\widehat P_D}_2
+ \le 2\norm{V_C-V_D}_2.
+\]
+Moreover,
+\[
+\begin{aligned}
+\norm{V_C-V_D}_2^2
+ &=
+ \norm{C^{1/2}-D^{1/2}}_2^2\\
+ &\quad+
+ \norm{(\id-C)^{1/2}-(\id-D)^{1/2}}_2^2\\
+ &\le \norm{C-D}_1+\norm{(\id-C)-(\id-D)}_1\\
+ &=2\norm{C-D}_1,
+\end{aligned}
+\]
+where Theorem~\ref{thm:ps} was used twice.  Combining the last two
+inequalities proves \eqref{eq:purification-bound}.
+\end{proof}
+

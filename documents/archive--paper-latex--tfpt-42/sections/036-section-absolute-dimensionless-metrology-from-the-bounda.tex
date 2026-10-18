@@ -1,0 +1,307 @@
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\resizebox{0.96\linewidth}{!}{%
+\begin{tikzpicture}[
+    >=Latex,
+    source/.style={draw=blue!60!black, fill=blue!6, rounded corners, text width=2.7cm, minimum height=0.95cm, align=center},
+    flow/.style={draw=orange!75!black, fill=orange!8, rounded corners, text width=2.9cm, minimum height=0.95cm, align=center},
+    result/.style={draw=green!50!black, fill=green!8, rounded corners, text width=2.8cm, minimum height=0.95cm, align=center},
+    aux/.style={draw=black!55, fill=gray!8, rounded corners, text width=2.55cm, minimum height=0.9cm, align=center}
+]
+\node[source] (hadm) at (-5.0,0.9) {$(\mathcal H_{\mathrm{adm}},\mathfrak A_{\mathrm{adm}})$\\admissible sector};
+\node[flow] (wk) at (-1.6,0.9) {$W_k[J]$\\regulated generator};
+\node[flow] (gk) at (1.8,0.9) {$\Gamma_k[\phi]$\\exact admissible flow};
+\node[result] (gren) at (5.2,0.9) {$\Gamma_{\mathrm{TFPT}}^{\mathrm{ren}}$\\infrared 1PI action};
+
+\node[aux] (alpha) at (-1.6,-1.25) {$\alpha_\ast$\\IR boundary value};
+\node[aux] (shadow) at (1.8,-1.25) {one-loop shadow\\$\left(\frac{41}{10},-\frac{19}{6},-7\right)$};
+\node[result] (obs) at (5.2,-1.25) {$\OphysTFPT$\\pole and response observables};
+\node[result] (scat) at (8.5,-1.25) {$S_{\mathrm{massive}},\ \mathcal I_{\mathrm{dress}}$\\massive scattering\\and dressed interface};
+
+\draw[->, thick] (hadm) -- (wk);
+\draw[->, thick] (wk) -- (gk);
+\draw[->, thick] (gk) -- (gren);
+\draw[->, thick] (gren) -- (obs);
+\draw[->, thick] (gren) -- (scat);
+\draw[->, thick, dashed] (alpha) -- (gk);
+\draw[->, thick, dashed] (gk) -- (shadow);
+\end{tikzpicture}}
+\caption{Exact admissible flow from the physical sector to observables and scattering. $\Padm$
+selects states; $\Gamma_k$ carries running couplings and 1PI graphs.}
+\label{fig:admissible-rg-flow}
+\end{figure}
+
+\begin{corollary}[No double counting after the seed-shadow split]
+\label{cor:no-double-counting}
+Rows sharing the same basis package in \Cref{def:minimal-observable-basis} define one underlying
+operational direction, not several independent confirmations or failures. In particular, the former
+quartet
+\[
+(\beta,\Omega_b,\lambda_C,\sin^2\theta_{13})
+\]
+no longer constitutes one seed package. Instead
+\[
+\beta\in R_{\mathrm{CS}},
+\qquad
+\Omega_b\in C_{\mathrm{cos}},
+\qquad
+\lambda_C\in F_{\mathrm{fl}},
+\qquad
+\sin^2\theta_{13}\in N_\nu,
+\]
+while the retained seed $\phiz$ belongs only to the UV kernel package $K_{\mathrm{UV}}$.
+\end{corollary}
+
+\begin{proof}
+This is the special case of \textbf{(O2)} for the rewritten basis packages of
+\Cref{def:minimal-observable-basis}.
+\end{proof}
+
+\begin{corollary}[Independent response-sector birefringence target]
+\label{cor:response-birefringence-target}
+On the minimal branch the determinant-response package $R_{\mathrm{CS}}$ fixes
+\[
+\beta_{\mathrm{rad}}=\frac{\phi_{\mathrm{ret}}^0}{4\pi},
+\]
+and hence the dimensionless birefringence readout itself. Under the declared comparison interface it
+is represented by
+\[
+\beta
+=
+\frac{180}{\pi}\,\beta_{\mathrm{rad}}
+=
+0.2424350309009295\ldots^\circ.
+\]
+This target factors through $R_{\mathrm{CS}}$ and not through the flavor package
+$F_{\mathrm{fl}}$ or the cosmology package $C_{\mathrm{cos}}$.
+\end{corollary}
+
+\begin{proof}
+By the exact seed relation of the determinant-response channel,
+\[
+\beta_{\mathrm{rad}}=\frac{\phi_{\mathrm{ret}}^0}{4\pi}.
+\]
+The theorem-level quantity is therefore the dimensionless angle $\beta_{\mathrm{rad}}$. Converting
+to degrees gives one scheme-facing representative,
+\[
+\beta=\frac{180}{\pi}\beta_{\mathrm{rad}}
+=
+\frac{180}{\pi}\frac{\phi_{\mathrm{ret}}^0}{4\pi}
+=
+0.2424350309009295\ldots^\circ.
+\]
+By \Cref{cor:no-double-counting}, $\beta$ belongs to $R_{\mathrm{CS}}$, whereas
+$\lambda_C\in F_{\mathrm{fl}}$ and $\Omega_b\in C_{\mathrm{cos}}$. Hence this is an operational
+direction distinct from the flavor and cosmology packages.
+\end{proof}
+
+\begin{corollary}[Independent cosmology-sector axion target]
+\label{cor:cosmology-axion-target}
+On the closed cosmology branch the package $C_{\mathrm{cos}}$ fixes the axion readout as one
+dimensionless cosmology package, equivalently as the boundary-normalized row
+\[
+\left(
+\frac{f_a}{\lambda_\Sigma},
+\frac{m_a}{\lambda_\Sigma},
+\frac{\nu_a}{\lambda_\Sigma},
+\lambda_\Sigma\left|g_{a\gamma\gamma}^{\mathrm{phys}}\right|
+\right),
+\]
+This target factors through $C_{\mathrm{cos}}$ and not through the flavor package
+$F_{\mathrm{fl}}$ or the determinant-response package $R_{\mathrm{CS}}$.
+\end{corollary}
+
+\begin{proof}
+The closed cosmology branch fixes the determinant-line / seam-transfer / scalaron saddle and thus
+the axion row as a single component of $C_{\mathrm{cos}}$. Its unitful representatives belong only
+to the declared comparison interface and are recorded in the appendix benchmark layer, together with
+the practical haloscope window and coupling representative extracted from the same cosmology
+package.
+By \Cref{cor:no-double-counting}, this row belongs to $C_{\mathrm{cos}}$, whereas $\beta$ belongs
+to $R_{\mathrm{CS}}$ and $\lambda_C$ belongs to $F_{\mathrm{fl}}$. Hence the axion target is an
+operational direction distinct from response and flavor.
+\end{proof}
+
+\begin{remark}[Why these two targets count as independent]
+The pair
+\[
+\beta\in R_{\mathrm{CS}},
+\qquad
+(\nu_a,m_a,g_{a\gamma\gamma}^{\mathrm{phys}})\in C_{\mathrm{cos}},
+\]
+samples two different basis packages of $\Bind(\Tstar)$. Therefore they are not two rewritings of
+the same seed constraint. This is the correct sharp-prediction surface for the present version.
+\end{remark}
+
+\section{Absolute dimensionless metrology from the boundary branch}
+\label{sec:absolute-dimensionless-metrology}
+
+The closed branch should not be read as a source of isolated SI numbers. Its hard content is an
+internal dimensionless metrology: the boundary datum carries its own spectral unit, the stationary
+geometric branch fixes the gravitational normalization relative to that unit, the renormalized 1PI
+action fixes physical electroweak and pole readouts, and only afterwards does one choose an
+external comparison scheme.
+In the compact gravitational chain,
+\[
+\Tbound
+\Rightarrow
+B_\Sigma
+\Rightarrow
+\lambda_\Sigma
+\Rightarrow
+\rho_\star
+\Rightarrow
+\chigeozero=\lambda_\Sigma\sqrt{\rho_\star}
+\Rightarrow
+\left(
+G_N\lambda_\Sigma^2,\,
+\frac{\Mpl}{\lambda_\Sigma},\,
+\frac{m_P}{\lambda_\Sigma},\,
+\lambda_\Sigma\ell_P,\,
+\lambda_\Sigma t_P
+\right).
+\]
+
+\subsection{Boundary spectral unit}
+
+\begin{definition}[Boundary-normalized readout]
+\label{def:boundary-spectral-unit}
+Let $\lambda_\Sigma$ be the intrinsic boundary mass unit fixed by
+\Cref{thm:boundary-spectral-unit-rigidity}. For a physical quantity $O$ of mass dimension $d_O$,
+define its boundary-normalized readout by
+\[
+\widehat O:=\frac{O}{\lambda_\Sigma^{d_O}}.
+\]
+\end{definition}
+
+\subsection{Stationary spectral Planck root}
+
+\begin{corollary}[Unique stationary spectral Planck root]
+\label{thm:unique-stationary-spectral-planck-root}
+By \Cref{thm:absolute-spectral-planck-closure}, the admissible geometric branch carries the unique
+positive stationary root
+\[
+\rho_\star=\frac{\chigeozero^2}{\lambda_\Sigma^2}>0.
+\]
+\[
+\partial_\rho\widehat V_{\mathrm{Pl}}^{\mathrm{ren}}(\rho_\star)=0.
+\]
+This root is the boundary-normalized Planck datum of the stationary branch.
+\end{corollary}
+
+\begin{corollary}[Dimensionless Planck metrology on the stationary branch]
+\label{cor:dimensionless-planck-metrology}
+On the stationary branch one has
+\[
+\frac{\Mpl}{\lambda_\Sigma}
+=
+\frac{\sqrt{\rho_\star}}{\sqrt2\pi},
+\qquad
+G_N\lambda_\Sigma^2
+=
+\frac{\pi}{4\rho_\star},
+\]
+\[
+\frac{m_P}{\lambda_\Sigma}
+=
+\frac{2\sqrt{\rho_\star}}{\sqrt\pi},
+\qquad
+\lambda_\Sigma\ell_P=\lambda_\Sigma t_P
+=
+\frac{\sqrt\pi}{2\sqrt{\rho_\star}}.
+\]
+\end{corollary}
+
+\begin{proof}
+Substitute
+\[
+\chigeozero=\lambda_\Sigma\sqrt{\rho_\star}
+\]
+into \Cref{cor:planck_normalization_stationary_branch}.
+\end{proof}
+
+\begin{corollary}[Dimensionless geometric hierarchy law for the UV source scale]
+\label{cor:dimensionless-geometric-hierarchy}
+On the exact geometric branch one has
+\[
+\frac{\vgeo}{\Mpl}
+=
+\gcar\,\beta_{\mathrm{rad}}^2
+\exp\!\left[-\frac{\alpha^{-1}(0)+\delta_{\mathrm{ph}}}{5}\right].
+\]
+Consequently
+\[
+G_N\vgeo^2
+=
+\frac{1}{8\pi}
+\left(\frac{\vgeo}{\Mpl}\right)^2
+=
+\frac{1}{8\pi}\gcar^2\beta_{\mathrm{rad}}^4
+\exp\!\left[-\frac{2(\alpha^{-1}(0)+\delta_{\mathrm{ph}})}{5}\right].
+\]
+This is the UV source-scale hierarchy law and not yet the physical electroweak benchmark relation.
+\end{corollary}
+
+\begin{proof}
+The first identity is exactly \Cref{eq:carrier-dressed-v} divided by $\Mpl$. The second uses the
+reduced-Planck relation $\Mpl^{-2}=8\pi G_N$.
+\end{proof}
+
+\subsection{Infrared seam and sector bifurcation}
+
+\begin{theorem}[Sector-dressed spectral scale bifurcation]
+\label{thm:sector-dressed-spectral-scale-bifurcation}
+The primitive response $\chiseed$ bifurcates on the closed branch into distinct dressed spectral
+channels:
+\[
+\chiseed\longrightarrow \chigeozero
+\qquad\text{and}\qquad
+\chiseed\longrightarrow \chi_{\QCD}.
+\]
+Here $\chigeozero$ is the stationary Einstein/Higgs background scale, while $\chi_{\QCD}$ is the
+transport-dressed hadronic scale. They share one boundary origin but are not identified on the
+closed theorem surface.
+\end{theorem}
+
+\begin{proof}
+The geometric channel is defined by the local spectral scale and its stationary branch
+\Cref{def:local-spectral-scale,thm:stationary_geometric_scale_equation}. The hadronic channel is
+kept separate by the sector-dressed transport/confinement bookkeeping recorded in the transport
+block and summarized in the scale-bifurcation diagram \Cref{fig:chi-bifurcation-clean}. Hence the
+same primitive response is dressed differently in the geometric and hadronic sectors.
+\end{proof}
+
+\begin{theorem}[Carrier-exhausted infrared seam eigenvalue under the exhaustion hypothesis]
+\label{thm:carrier-exhausted-ir-seam-eigenvalue}
+Let
+\[
+q_\star:=\deltatop e^{-2\alpha_\star},
+\qquad
+\phibase=\frac{1}{6\pi}.
+\]
+Assume the leading admissible infrared seam mode is rank one and exhausts the nonempty carrier
+occupancy shadow, so that
+\[
+\rho(U_\Sigma)=\phibase\,q_\star^{2^{\gcar}-1}.
+\]
+Then on the canonical branch $\gcar=5$ and therefore
+\[
+\rho(U_\Sigma)=\phibase\,q_\star^{31}.
+\]
+Moreover
+\[
+\frac{\Lambda_{\mathrm{IR}}}{\Mplunred^4}
+=
+-\log\!\bigl(1-\rho(U_\Sigma)\bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+The first displayed identity is exactly the carrier-exhaustion hypothesis written in closed-branch
+variables. On the canonical carrier branch, \Cref{cor:rank-5-master-compression} gives
+$\gcar=5$, hence $2^{\gcar}-1=31$. The final identity is the rank-one case of
+\Cref{cor:ir-seam-transfer-bounds}.
+\end{proof}
+

@@ -1,0 +1,395 @@
+\section{The v4.6.8 Measurement Bridge Contract}
+\label{sec:measurement468}
+% =====================================================================
+
+The v4.6.7 final closure proposal made the theory side complete; what
+remains is exactly five artefact-validation groups.  v4.6.8 ships
+those five groups as an executable contract
+(\texttt{tfpt\_cmb.measurement\_bridge\_v468}) with a deterministic
+acceptance gate.
+
+\subsection{The five validation groups}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{@{}p{0.06\textwidth}p{0.18\textwidth}p{0.27\textwidth}Y@{}}
+\toprule
+\textbf{ID} & \textbf{Group} & \textbf{Acceptance criterion} & \textbf{Closes (artefact)} \\
+\midrule
+G1 & \texttt{sprint\_2a\_branch\_bundle} (12 files) &
+\(\mathrm{branch\_origin}=\mathrm{real}\) AND 24/24 hard checks of
+\texttt{sprint2a\_contract.validate\_sprint2a\_branch} pass.
+& E1, E2, E3, E4, E5 \\
+G2 & \texttt{sprint\_2c\_thermal\_matter} (7 files) &
+QKE Ward residues
+\(\mathrm{Tr}_{\mathrm{adm}}(K_{\mathrm{weak}})=c_3\),
+\(\mathrm{Tr}_{\mathrm{adm}}(K_{\mathrm{EM}})=\beta\) numerically
+verified to \(10^{-5}\); BBN \(Y_p=1/4-\beta\) to \(10^{-4}\); 48
+neutral admissible modes enumerated.
+& C2, C3, D2 \\
+G3 & \texttt{sprint\_2d\_reionization} (5 files) &
+\(\tau_{\mathrm{numeric}}=\phi_0+c_3^2/2\) to \(10^{-3}\) relative.
+& C4 \\
+G4 & \texttt{planck\_likelihood} (4 files) &
+Official \texttt{clik} or \texttt{camb\_python\_likelihood};
+\(|\Delta(-2\ln\mathcal L)|<5\) vs Planck-2018 \(\Lambda\)CDM;
+lensed; no parameter refit.
+& --- \\
+G5 & \texttt{paper5\_metrology\_corollary} (1 file) &
+\texttt{paper5\_metrology\_corollary.tex} contains four formal
+identifications: \(\omega_\gamma=\pi^2 c_3^4\),
+\(\omega_b=\lambda_C/10\), \(\mathrm{Tr}_{\Lambda^2 E}(P_B\rho_{\mathrm{flavor}})=\Omega_b h^2\),
+\(E_\nu^\Sigma=1\,\mathrm{eV}\).
+& C1, D1, D3 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+In total: 29 required files, 8 numerical checks, 1 acceptance gate.
+
+\subsection{The 12 G1 files}
+
+\begin{center}
+\small
+\begin{tabular}{ll}
+\toprule
+File & Purpose \\
+\midrule
+\texttt{branch\_metadata.json}        & metadata, must declare \(\mathrm{branch\_origin}=\mathrm{real}\) \\
+\texttt{B\_sigma\_adm.npz}            & boundary Dirac/seam operator \\
+\texttt{P\_adm.npz}                   & admissible projector \(P_{\mathrm{prim}}P_{\mathrm{sing}}P_\Theta\) \\
+\texttt{P\_C.npz}                     & Calderon polarisation projector \\
+\texttt{iota\_C\_adm.npz}             & Calderon sheet involution \\
+\texttt{Delta\_prim\_adm.npz}         & primitive Laplacian \\
+\texttt{Q\_top\_adm.npz}              & topological phase generator \\
+\texttt{K\_zeta\_adm.npz}             & primordial-curvature Hessian \(K_\Sigma\) \\
+\texttt{u\_sigma\_adm.npz}            & primitive seam state, \([u_\Sigma]=1\) \\
+\texttt{spectral\_flag\_adm.json}     & canonical flag (no Haar seed) \\
+\texttt{observer\_embedding\_planck.json} & tetrad SO(3) Galactic, \(\eta_{\mathrm{LS}}\), parity \\
+\texttt{shell\_power\_validation.json} & per-shell \((P_{\mathrm{target}},P_{\mathrm{realized}})\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Forbidden inputs}
+
+Every group refuses any artefact whose filename matches
+\texttt{planck\_phase}, \texttt{planck\_alm}, \texttt{*\_phase}
+(SMICA/NILC/SEVEM/Commander), \texttt{haar\_random\_seed}, or
+\texttt{synthetic\_v46}.  The contract is \emph{strict}: even a single
+forbidden filename in a group's sub-tree fails that group, regardless
+of the numerical-check results.
+
+\subsection{Skeleton emitter and CLI}
+
+\begin{lstlisting}[language=bash]
+# Emit a documented skeleton tree (5 sub-directories with READMEs):
+python3 scripts/validate_measurement_bridge.py \
+  --emit-skeleton input/measurement_bridge_v5
+
+# Validate an existing tree:
+python3 scripts/validate_measurement_bridge.py \
+  --root input/measurement_bridge_v5
+
+# Smoke test: emit and validate a temp skeleton (FAILS by design):
+python3 scripts/validate_measurement_bridge.py --skeleton-and-validate
+\end{lstlisting}
+
+The validator emits \texttt{MEASUREMENT\_BRIDGE\_VALIDATION.json} into
+the root directory with full per-group, per-file, per-check detail.
+Exit code is 0 iff all five groups pass.
+
+\subsection{The acceptance gate}
+
+\begin{lstlisting}[language=Python]
+from tfpt_cmb.measurement_bridge_v468 import (
+    validate_measurement_bridge, can_flip_to_derived_tfpt,
+)
+
+report = validate_measurement_bridge("input/measurement_bridge_v5")
+ok, missing = can_flip_to_derived_tfpt(report)
+
+# After v4.6.7 (theory complete) plus v4.6.8 (artefacts validated):
+# ok == True  =>  status flips from
+#                   derived_tfpt_theory_complete_pending_artifacts
+#                 to
+#                   derived_tfpt
+\end{lstlisting}
+
+\subsection{The complete status flow}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{@{}p{0.36\textwidth}lY@{}}
+\toprule
+\textbf{Status} & \textbf{Cycle} & \textbf{What flips} \\
+\midrule
+\textsf{derived\_tfpt\_candidate\_v46} & v4.6 &
+Initial candidate; lemmas A--E proposed, none discharged. \\
+\textsf{derived\_tfpt\_theory\_complete\_\allowbreak{}pending\_artifacts}
+& v4.6.7 &
+\texttt{can\_flip\_to\_theory\_complete(REQUIRED\_DISCHARGE\_OUTCOMES\_V467)} returns \texttt{True}. All 14 hooks resolved by 7 bridge theorems. \\
+\textsf{derived\_tfpt} & v4.6.8 (final) &
+\texttt{can\_flip\_to\_derived\_tfpt(report)} returns \texttt{True}.
+All 5 measurement-bridge groups PASS. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{tfptfrontbox}
+\textbf{The bilance after v4.6.8:}\\
+\emph{Code complete. Audit gate armed. Proof skeletons complete.
+Proof discharge formalised. Theory closure complete. Measurement
+bridge contract executable. The path from candidate to
+derived\_tfpt requires nothing more than dropping 29 real artefacts
+into the bridge tree and running the validator.}
+\end{tfptfrontbox}
+
+% =====================================================================
+\section{Kill conditions and audit table}
+\label{sec:kills}
+% =====================================================================
+
+\begin{center}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{@{}p{0.26\textwidth}Y@{}}
+\toprule
+\textbf{Module} & \textbf{Kill condition} \\
+\midrule
+\texttt{ledger}        & \(\xi\) audit mismatch unresolved when used in production. \\
+\texttt{native\_closure\_v46} & Any of the seven primitives violated; any of Lemmas A--D falsified. \\
+\texttt{branch\_phase\_selection} & \(K_\Sigma\) not Hermitian; \(\iota_C\) not an involution; any input matching \texttt{planck\_phase}, \texttt{planck\_alm}, \texttt{smica\_alm\_as\_phase\_seed}, \texttt{nilc\_phase}, \texttt{sevem\_phase}, \texttt{commander\_phase} (Mode E refused). \\
+\texttt{birefringence} & Round-trip rotation by \(\pm\beta\) not returning the input within machine precision. \\
+\texttt{scalaron}      & \(\alpha_R^\Sigma\le 0\); \(A_s\le 0\); \(n_s\notin(0.5,1.2)\); \(r<0\). \\
+\texttt{thermal}       & \(T_{\mathrm{reh}}<1\,\mathrm{MeV}\). \\
+\texttt{baryogenesis}  & \(\eta_B\le 0\) or \(\eta_B>10^{-7}\). \\
+\texttt{neutrino}      & PMNS unitarity residual \(>10^{-12}\); negative individual mass. \\
+\texttt{axion}         & \(\Omega_a h^2\) cannot be saturated within the QCD axion window. \\
+\texttt{background}    & \(h\notin(0.4,1.0)\); non-flat with \(|\Omega_K|>10^{-3}\). \\
+\texttt{boltzmann}     & \texttt{TFPTCosmology.validate()} non-empty. \\
+\texttt{maps}          & Wrong HEALPix ordering or polarisation convention. \\
+\texttt{compare}       & A claim of map-level pixel agreement absent the conditioned reconstruction layer. \\
+\texttt{run\_cmb\_stage} & \texttt{--mode E} called without \texttt{--candidate-v46}; \texttt{derived\_tfpt\_candidate\_v46} accepted without \texttt{--candidate-v46}; strict-map mode mixed with \texttt{--allow-tau-nuisance}. \\
+\texttt{sprint2a\_contract} & Any of the ten hard checks failing on a bundle whose \texttt{branch\_origin.json::origin} is set to ``real''; any \texttt{planck\_phase}, \texttt{planck\_alm}, \texttt{*\_phase} or \texttt{haar\_random\_seed} pattern inside the bundle directory. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% =====================================================================
+\section{What this pipeline does \emph{not} claim}
+\label{sec:nonclaims}
+% =====================================================================
+
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{No theorem-level lemmas.}  Lemmas A--E are conjectures
+with proof skeletons (\S\ref{sec:lemmas}); none has a finished proof
+at TFPT v4.6.  The pipeline runs in \emph{candidate} mode only.
+\item \textbf{No real Mode-E branch.}  The Mode-E run uses the
+\textbf{candidate v4.6 synthetic} bundle, \emph{not} a real
+Sprint-2A extraction of \(K_\Sigma\), \(u_\Sigma\), \(\iota_C\) from
+the boundary data.  Real Mode E is a Sprint 2A--2D deliverable.
+\item \textbf{No claim of pixel-level Planck agreement.}  Mode~A is a
+random TFPT realisation, by construction independent of Planck phases.
+Mode~E phases come from \(\arg\langle e_j,u_\Sigma\rangle\), which
+is not the Planck realisation \emph{unless} the real
+\(K_\Sigma\) is supplied; the synthetic bundle is structural, not
+realisation-aware.
+\item \textbf{No Likelihood ``win'' against Planck.}  The TT
+\(\chi^2/\mathrm{dof}\) is diagonal-Knox, not the official Planck
+likelihood with its full covariance, foreground marginalisation, and
+beam/noise model.  TE/EE/BB/TB/EB on the component-separated maps are
+\emph{diagnostic only} per rules R\(_2\)/R\(_4\).
+\item \textbf{No claim that the Eskilt+22 birefringence
+\(0.34^\circ\) is the TFPT \(\beta\).}  The TFPT prediction is
+\(0.2424^\circ\); the in-pipeline EB on SMICA gives
+\(0.027^\circ\); the discrepancy is dominated by foreground/noise
+residuals on a single component map.
+\item \textbf{No anchoring on COBE / FIRAS / Planck.}  Strict-map mode
+explicitly forbids it; the runner refuses upstream JSONs whose
+\textsf{status\_flags} contain \texttt{calibration},
+\texttt{nuisance}, \texttt{operational\_closure\_v1},
+\texttt{audit\_mismatch}, or \texttt{derived\_fixture}.
+\end{itemize}
+
+% =====================================================================
+\section{Roadmap to a finished v5.0}
+\label{sec:roadmap}
+% =====================================================================
+
+The five outstanding theorem-level closures are
+\begin{enumerate}[leftmargin=1.4em]
+\item \textbf{Lemma A} (Seam Determinant): rigorous definition of
+\(\det_{\mathrm{adm}}^{\mathrm{prim}}\) and proof that
+non-primitive admissible repetitions vanish.
+\item \textbf{Lemma B} (Curvature Residue): proof of
+\(\chi_R = (4\pi/\Omega_{\mathrm{adm}})\,e^{-1/\phi_0}\) from the
+admissible curvature path-integral.
+\item \textbf{Lemma C}: subdivide into C1--C4; C4 (\(\tau_{\mathrm{reio}}\))
+is the weakest link --- needs SFR/\(N_\gamma\)/\(f_{\mathrm{esc}}\) to
+collapse onto \(\phi_0+c_3^2/2\) without astrophysical fitting.
+\item \textbf{Lemma D}: proof of the carrier traces plus the
+mass-metrology bridge identifying the dimensionless Takagi trace with
+eV.
+\item \textbf{Lemma E}: existence and uniqueness of a canonical
+spectral flag for \(K_\Sigma\); seam orientation convention; observer
+embedding; coupling to CAMB transfer functions.
+\end{enumerate}
+
+The pipeline is designed so that, once any of these proofs lands, the
+status flag flips from \textsf{derived\_tfpt\_candidate\_v46} to
+\textsf{derived\_tfpt} without changing any downstream module.  The
+Sprint-2A contract (\S\ref{sec:sprint2a}) provides the executable
+acceptance gate: the moment a real boundary extraction passes all
+24/24 hard checks with \(\mathrm{branch\_origin}=\mathrm{real}\), the
+status flag of every Mode-E run flips from
+\textsf{lemma\_E\_candidate\_v46} to
+\textsf{lemma\_E\_proven}.  No further code changes are required.
+
+\paragraph{Out-of-sample tests.} Even before the proofs land, the
+following are testable predictions of v4.6 and would either
+falsify the conjecture or sharpen the agreement:
+\begin{itemize}[leftmargin=1.4em]
+\item BAO scale (DESI Y3, eBOSS) at 0.5\% precision;
+\item CMB lensing power spectrum (Planck PR4, ACT DR6, SPT-3G);
+\item \(S_8\) tension (KiDS, DES, Euclid);
+\item Deuterium primordial abundance (high-resolution QSO absorption);
+\item Effective neutrino number from BBN (independent of CMB);
+\item Direct \(\sum m_\nu\) (\,KATRIN, Project~8, JUNO\,);
+\item Tensor-to-scalar ratio \(r=3.45\times 10^{-3}\) (LiteBIRD,
+PICO);
+\item 21~cm reionization signal (HERA, SKA-Low);
+\item Numerology grammar test: enumerate every reasonable
+algebraic combination of the seven primitives; count how many also
+land within \(2\sigma\) of Planck for the 26 parameters.  This is the
+sharpest single defence against ``hübsche Zahlenspielerei.''
+\end{itemize}
+
+\begin{tfptexports}
+\textbf{Code-side complete.} Exports: the primitive ledger JSON, the
+26-parameter \texttt{cosmology\_candidate.json} (every field
+\textsf{derived\_tfpt\_candidate\_v46}), the lensed CMB spectra
+\(C_\ell^{XY}\), Mode-A HEALPix maps at \(N_{\mathrm{side}}=1024\),
+Mode-E HEALPix maps at \(N_{\mathrm{side}}=512\) with the Lemma-E
+phases, the per-component Planck PR3 comparison report, the
+five-figure comparison suite, and the new v4.6.4 Sprint-2A contract
+validator.  v4.6.5 adds the full Lemma proof outlines
+(\texttt{tfpt\_cmb.lemma\_proof\_outlines}) with 14 hook solution
+sketches.
+
+\textbf{Data-side incomplete.} Real \(K_\Sigma\), \(u_\Sigma\),
+\(\iota_C\) extraction from a Sprint-2A boundary run; QKE collision
+kernels for \(N_{\mathrm{eff}}\); BBN reaction amplitudes from
+\(\Gamma_{\mathrm{adm,k}}\); reionization Boltzmann from the TFPT
+ionising history.
+
+\textbf{Proof-side incomplete.} 14 hooks across Lemmas A--E, all
+formally documented in Appendix~\ref{app:hooks} with proposed
+solutions.
+\end{tfptexports}
+
+% =====================================================================
+\section{v4.10--v4.12: Operator-Discharged Closure and the Planck Pass}
+\label{sec:v412}
+% =====================================================================
+
+The v4.6 cycle delivered the \emph{candidate} closure with five lemmas
+A--E and a 14-hook proof discharge.  The next two sprints (v4.7, v4.8)
+narrowed the geometry to the Lens space \(L(10,1)\times\mathbb Z_2\)
+on the spectral-action corridor, and v4.9's Fisher residual
+decomposition pinpointed the remaining \(\Delta(-2\ln L)=+6.04\) gap
+to two parameters: \(\log A\) and \(\tau_{\mathrm{reio}}\).  Sprints
+v4.10--v4.12 closed this gap operatorically, without touching any
+upstream Lemma~A--D module.  This section summarises the result.
+
+\subsection{Sprint history v4.6 \(\to\) v4.12}
+\label{sec:v412_history}
+
+Figure~\ref{fig:v412_sprint_history} shows the
+\(\Delta(-2\ln L)\) value vs Planck~2018 \(\Lambda\)CDM across all
+sprints between v4.6 and v4.12.  The strict TFPT mode never refits
+parameters and always uses \texttt{A\_planck = 1.0} on the official
+Plik-lite native + lowl TT/EE likelihood (Cobaya).  The drop from
+v4.9 (\(+6.04\)) to v4.10/v4.11/v4.12 (\(+0.61\)/\(+0.6119\)/\(+0.6083\))
+is \emph{not} a fit improvement --- it is the operator-derived BT2
+correction landing on the Fisher residual direction.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{fig12_v412_sprint_history.png}
+\caption{Sprint history of the strict-mode TFPT \(\Delta(-2\ln L)\)
+against Planck~2018 \(\Lambda\)CDM, from v4.6 tree-level
+(\(+189.86\)) through the v4.7.2 hyperbolic No-Go (\(+5754\)),
+v4.7.6 Spectral-Action UV identification of Lens \(L(10,1)\)
+(\(+8.5\)), v4.8 four-corner corridor hit (\(+6.04\)),
+v4.9 Fisher diagnosis, the v4.10 closed-form lemma refinements
+(\(+0.61\)), v4.11 BT2 operator discharge (\(+0.6119\)), and the
+v4.12 \(W_B\) BSE operator discharge (\(+0.6083\), canonical
+\texttt{A\_qcd\_curvature\_gauge}).  Dashed: Stefan's strict gate
+\(\Delta < 5\).  No parameter is refit; \texttt{A\_planck = 1.0}
+throughout.}
+\label{fig:v412_sprint_history}
+\end{figure}
+
+\subsection{The visibility-amplitude Ward identity (v4.11)}
+\label{sec:v412_ward}
+
+Stefan v4.11 brief Section~3 introduced the central new theorem:
+
+\begin{equation}
+\boxed{\;
+\Delta_R^\Sigma \;=\; 2\,\Delta\tau_{\mathrm{sheet}}
+\;+\; O(\delta_{\mathrm{top}})
+\;}
+\label{eq:ward_identity}
+\end{equation}
+
+with the explicit closed forms
+
+\begin{align}
+\Delta_R^\Sigma &= \beta\bigl(1-\tfrac{\lambda_C}{2}\bigr)
+\;-\; \delta_{\mathrm{top}}, \qquad
+\delta_{\mathrm{top}} = \Omega_{\mathrm{adm}}\,c_3^4 ,\\
+\Delta\tau_{\mathrm{sheet}} &= c_3^2\bigl(1+\tfrac{\lambda_C}{2}\bigr).
+\end{align}
+
+Numerically:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lr}\hline\hline
+quantity & value \\\hline
+\(\Delta_R^\Sigma\)                & \(+3.6363\times 10^{-3}\) \\
+\(2\,\Delta\tau_{\mathrm{sheet}}\) & \(+3.5215\times 10^{-3}\) \\
+\(\delta_{\mathrm{top}}\)          & \(+1.2030\times 10^{-4}\) \\
+residual / \(\delta_{\mathrm{top}}\) & \(0.954\) \\
+ward identity holds                  & TRUE \\\hline
+\end{tabular}
+\end{center}
+
+The Ward identity proves that the BT2 magnitude correction and the
+Lemma~C reionisation correction describe the \emph{same} physical
+direction in the visibility amplitude \(A_s\,e^{-2\tau}\):
+
+\begin{equation}
+\Delta\log A_s = -\Delta_R^\Sigma, \qquad
+e^{-2\Delta\tau_{\mathrm{sheet}}} \approx
+e^{-\Delta_R^\Sigma + O(\delta_{\mathrm{top}})}.
+\end{equation}
+
+Consequently applying both is double counting and is explicitly
+refused by the master pipeline:
+
+\begin{lstlisting}[language=Python]
+if apply_delta_R and apply_delta_tau and not orthogonalisation_present:
+    raise DoubleCountingError(
+        "BT2 and tau corrections are the same visibility-"
+        "amplitude direction A_s exp(-2 tau)"
+    )
+\end{lstlisting}
+
+The canonical choice is therefore the \emph{curvature gauge}: apply
+\(\Delta_R^\Sigma\) to \(Z_R\) and keep \(\tau\) at its
+leading-order Lemma C value \(\tau_{\mathrm{LO}}=\phi_0+\tfrac12 c_3^2\).
+The visibility gauge (\(\Delta\tau_{\mathrm{sheet}}\) only) is a
+candidate dual but \emph{not} an additive correction.
+

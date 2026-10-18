@@ -1,0 +1,411 @@
+\subsection{The multiplier rate extracted from UGF}
+
+For $m>0$ define the vertex multiplier
+\[
+ r_N(m)
+ :=\frac{\sqrt{mS_N(m)}}{\omega_N(m)}
+ =\sqrt{2m\,g_N(m)}
+\quad (m\le N/2),
+\qquad
+ r_N(m):=0\quad(m>N/2).
+\tag{5.5}\label{eq:vertexmultiplier}
+\]
+The creation part of the finite vertex exponential contains
+$r_N(m)a_{-m}/m$; the annihilation part is its adjoint.  Theorem
+\ref{thm:UGF} gives $0\le r_N(m)\le\pi/2$.
+
+\begin{lemma}[Uniform quadratic multiplier error]\label{lem:multiplier}
+For all even $N\ge16$ and $1\le m\le N/2$,
+\[
+ |r_N(m)-1|
+ \le A_0\frac{m^2}{N^2},
+\qquad
+ A_0:=4096\left(1+\frac\pi2\right).
+\tag{5.6}\label{eq:rNrate}
+\]
+Consequently, for $1\le m\le N$,
+\[
+ |r_{2N}(m)-r_N(m)|
+ \le A_{\rm TEL}\frac{m^2}{N^2},
+\qquad
+ A_{\rm TEL}:=\frac54A_0
+ =5120\left(1+\frac\pi2\right).
+\tag{5.7}\label{eq:dyadicmultiplier}
+\]
+\end{lemma}
+
+\begin{proof}
+Put $t=m/N$.  For $t\le1/64$, every momentum entering
+\eqref{eq:structurefactor} lies in $[-\pi/32,\pi/32]$.  Differentiating
+the explicit $M=1$ transfer recurrence gives
+\[
+ \sup_{|p|\le\pi/32}\norm{u'(p)}\le4.
+\tag{5.8}\label{eq:edgederivative}
+\]
+For completeness, the decaying transfer root is
+$\rho(p)=1-\cos p$; on this interval
+$|\rho|\le1-\cos(\pi/32)$ and $|\rho'|\le\sin(\pi/32)$.
+Differentiating the normalized geometric vector gives a norm below
+$1$, while the opposite-boundary correction is bounded by
+$2|\rho|^{N_y}/(1-|\rho|)$ and its derivative by the corresponding
+geometric derivative; their sum is below $4$ for $N_y=8$.
+Therefore
+\[
+ 0\le1-\frac{S_N(m)}m
+ \le\norm{u(p_{n+m})-u(p_n)}^2
+ \le64\pi^2t^2.
+\tag{5.9}\label{eq:Srate}
+\]
+Also, elementary Taylor remainder and
+Lemma~\ref{lem:sine} give
+\[
+ 0\le\frac{\pi t}{\sin(\pi t)}-1\le\pi^2t^2
+ \qquad(0\le t\le1/2).
+\tag{5.10}\label{eq:symbolrate}
+\]
+Since
+$r_N=(\pi t/\sin\pi t)\sqrt{S_N/m}$, these estimates prove
+\eqref{eq:rNrate} for $t\le1/64$ with a constant much smaller than
+$A_0$.  For $t\ge1/64$, the UGF bound gives
+$|r_N-1|\le1+\pi/2\le A_0t^2$, proving the global statement.
+
+For $m\le N/2$, apply \eqref{eq:rNrate} at $N$ and $2N$ and use the
+triangle inequality, giving the factor $1+1/4=5/4$.  For
+$N/2<m\le N$, $r_N(m)=0$ and
+$r_{2N}(m)\le\pi/2\le2\pi m^2/N^2<A_{\rm TEL}m^2/N^2$.
+\end{proof}
+
+\begin{lemma}[Lipschitz Wick estimate]\label{lem:WickLipschitz}
+Let $r,s$ be two cutoff multiplier sequences bounded by $\pi/2$ and
+suppose $|r(m)-s(m)|\le a m^2$.  For the norm-two charge
+$\lambda$ and every $f\in C^\infty(S^1)$,
+\[
+ \norm{\bigl(Y_r(e^\lambda,f)-Y_s(e^\lambda,f)\bigr)
+        (1+L_0)^{-3}}
+ \le C_\lambda\,a\,\norm{f}_{H^4},
+\tag{5.11}\label{eq:WickLipschitz}
+\]
+where $C_\lambda$ is independent of both cutoffs.  The same estimate
+holds for the adjoints.
+\end{lemma}
+
+\begin{proof}
+Interpolate $r_\tau=(1-\tau)r+\tau s$ and differentiate the finite
+normal-ordered exponential.  Every differentiated monomial has exactly
+one insertion
+\[
+ J_{s-r}(z)
+ =\sum_{m>0}\frac{s(m)-r(m)}m
+   \bigl(a_{-m}z^m-a_mz^{-m}\bigr)
+\]
+and otherwise the vertex exponential with multiplier $r_\tau$.
+The oscillator inequalities
+$\norm{a_{\pm m}(1+L_0)^{-1/2}}\le\sqrt{m+1}$, followed by
+Cauchy--Schwarz in $m$ and four integrations by parts in the smearing
+variable, give
+\[
+ \norm{:\!J_{s-r}Y_{r_\tau}(e^\lambda)\!:(f)
+       (1+L_0)^{-3}}
+ \le C_\lambda a\norm{f}_{H^4}.
+\]
+The constant is uniform because $0\le r_\tau(m)\le\pi/2$, so all
+undifferentiated Wick contractions are dominated by
+Theorem~\ref{thm:UGF}.  Integrating over $\tau\in[0,1]$ proves
+\eqref{eq:WickLipschitz}.  The finite-cutoff calculation is an
+absolutely convergent sum after the displayed graph weight; monotone
+cutoff removal gives the asserted bound.  Replacing $\lambda$ by
+$-\lambda$ and conjugating the coefficients proves the adjoint
+statement.
+\end{proof}
+
+\begin{theorem}[TEL-a: dyadic charged-field graph defect]
+\label{thm:TELa}
+The explicit isometries \eqref{eq:Fockisometry} satisfy, for every
+$f\in C^\infty(S^1)$,
+\[
+\begin{aligned}
+ &\norm{\bigl(\Psi_{\lambda,2N}(f)V_{N,2N}
+       -V_{N,2N}\Psi_{\lambda,N}(f)\bigr)(1+L_{0,N})^{-3}}\\
+ &\quad+
+ \norm{\bigl(\Psi_{\lambda,2N}(\overline f)^*V_{N,2N}
+       -V_{N,2N}\Psi_{\lambda,N}(\overline f)^*\bigr)
+       (1+L_{0,N})^{-3}}\\
+ &\hspace{35mm}\le
+ 2C_\lambda A_{\rm TEL}\norm{f}_{H^4}N^{-2}.
+\end{aligned}
+\tag{5.12}\label{eq:TELa}
+\]
+Thus TEL-a holds with $p=3$ and $\epsilon=1$.
+\end{theorem}
+
+\begin{proof}
+After applying $V_{N,2N}$, the coarse field is the fine Fock-space
+vertex field with multiplier $r_N$ extended by zero on the new modes.
+Apply Lemma~\ref{lem:WickLipschitz} with
+$a=A_{\rm TEL}N^{-2}$ from Lemma~\ref{lem:multiplier}; apply it again
+to the adjoint.  This proves \eqref{eq:TELa}.
+\end{proof}
+
+\begin{lemma}[Summable graph defects imply strong convergence]
+\label{lem:telescoping}
+The dyadic estimate \eqref{eq:TELa} implies that the transported fields
+and adjoints converge on $\Dfin$ along every dyadic cofinal sequence.
+\end{lemma}
+
+\begin{proof}
+Let $\xi$ have energy at most $E$ and represent it at scale $N_0$.
+For $K>L$, insert the compatible isometries and telescope:
+\[
+\norm{\Psi_{\lambda,2^KN_0}^{\rm tr}(f)\xi
+      -\Psi_{\lambda,2^LN_0}^{\rm tr}(f)\xi}
+\le
+2C_\lambda A_{\rm TEL}\norm{f}_{H^4}(1+E)^3
+\sum_{j=L}^{K-1}(2^jN_0)^{-2}.
+\tag{5.13}\label{eq:telestimate}
+\]
+The geometric tail tends to zero.  The adjoint half of
+\eqref{eq:TELa} gives graph convergence, and L1 makes the limit
+closable.  A dyadic subsystem is cofinal in the scaling parameter, so
+this is sufficient for the edge-mode scaling limit.
+\end{proof}
+
+\paragraph{Finite audit (numerical support, not proof).}
+The companion probe
+\path{experiments/tfpt-discovery/mmst_tel_probe.py}
+checks \eqref{eq:modeisometry}--\eqref{eq:dyadicmultiplier} at
+$N=16,24,32,48,64,96$.  The Gram and compatibility errors are exactly
+zero, the measured coefficient envelope is
+$\max N^2|r_{2N}(m)-r_N(m)|/m^2=3.420384012310$, and a smooth-test Wick
+seminorm fits $N^{-2.022861}$.  A wrong-rate $1/N$ mutant and a
+non-isometric embedding mutant are both rejected.
+
+\begin{remark}[Local support]
+The Shannon embedding \eqref{eq:modeisometry} is exact in momentum and
+is not sharply support-preserving in position.  Theorem~\ref{thm:TELa}
+therefore proves graph convergence of the edge-projected fields, not by
+itself convergence of sharply localized microscopic algebras.  The
+support/locality statement remains explicitly in \textup{(ALG-EXH)}.
+\end{remark}
+
+\subsection{TEL-b: the two-edge full-CAR remainder}
+
+The exact Hardy model gives the quarter-twist coefficient
+\[
+ \norm{P_0-P_{1/4}}_{\HS}^2
+ =\frac{2}{\pi^2}\log N+O(1),
+\qquad \frac2{\pi^2}=0.202642367\ldots .
+\tag{5.14}\label{eq:hardylog}
+\]
+For the frozen QWZ exhaustion, the computed decomposition is
+\[
+ C_N^{(0)}-C_N^{(1)}
+ =D_{N,\mathrm{top}}^{(1/4)}
+  \oplus D_{N,\mathrm{bottom}}^{(1/4)}+R_N,
+\tag{5.15}\label{eq:tworemainder}
+\]
+with
+\[
+ \max_{N\in\{16,24,32,48,64,96\}}\norm{R_N}_{\HS}
+ =2.105079358<2.11.
+\tag{5.16}\label{eq:measured211}
+\]
+A $1/N$ fit predicts $2.107565497$, with maximum fit residual
+$2.349\times10^{-5}$.  These values support boundedness of $R_N$ but do
+not prove either
+\[
+ \sup_N\norm{R_N}_{\HS}\le2.11
+\tag{5.17}\label{eq:allN211}
+\]
+for the full-CAR remainder.
+
+\begin{proposition}[Exact Hankel reduction of TEL-b]
+\label{prop:HankelReduction}
+Let
+\[
+ C(p)=\id_{(-\infty,0)}(h_{\rm strip}(p))
+       +\frac12\id_{\{0\}}(h_{\rm strip}(p))
+\]
+be the explicit $16\times16$ frozen QWZ Fermi symbol and let
+$P_{\rm t},P_{\rm b}$ be the rank-one boundary projections at $p=0$.
+The symbol left after the constant-profile Hardy subtraction is
+\[
+ B(p)=C(p)
+ -\id_{(0,\pi)}(p)P_{\rm t}
+ -\id_{(-\pi,0)}(p)P_{\rm b}.
+\tag{5.18}\label{eq:regularizedsymbol}
+\]
+Writing $B(p)=\sum_{k\in\Z}B_ke^{ikp}$, every finite Hankel corner
+obeys
+\[
+ \norm{H_N(B)}_{\HS}^2
+ \le\sum_{k\ne0}|k|\norm{B_k}_{\mathrm F}^2.
+\tag{5.19}\label{eq:PellerHS}
+\]
+Hence an all-$N$ TEL-b proof by this subtraction would follow from
+\[
+ 16\sum_{k\ne0}|k|\norm{B_k}_{\mathrm F}^2\le C_R^2.
+\tag{5.20}\label{eq:Hankeltarget}
+\]
+\end{proposition}
+
+\begin{proof}
+In the untwisted Hardy basis, multiplication by $B$ has matrix entries
+$B_{j-k}$.  Its off-diagonal Hardy corner has entries $B_{j+k+1}$.
+Counting the pairs $(j,k)\in\mathbb N_0^2$ with $j+k+1=\ell$ gives the exact
+Hilbert--Schmidt identity
+\[
+ \norm{H(B)}_{\HS}^2
+ =\sum_{\ell\ge1}\ell\norm{B_\ell}_{\mathrm F}^2.
+\]
+Finite corners are compressions and cannot increase this norm.  The
+opposite edge uses the negative coefficients.  There are at most four
+corner/orientation contributions; the triangle inequality gives the
+safe factor sixteen after squaring in \eqref{eq:Hankeltarget}.  This is
+the $p=2$ case of the Peller $B^{1/2}_{2,2}$ criterion \cite{Peller}.
+\end{proof}
+
+\begin{remark}[Second-angle verdict: \texttt{TEL-B-EXTERNAL}]
+The new Hankel route does not certify the requested constant.  On a
+$4096$-point symbol grid the companion probe finds
+\[
+ \sum_{k\ne0}|k|\norm{B_k}_{\mathrm F}^2
+ =4.482956087,\qquad
+ 4\norm{B}_{\dot H^{1/2}}=8.469196974>3.
+\]
+The constant edge-profile subtraction cancels the infrared jump at
+$p=0$ but exposes a Brillouin-seam ultraviolet contribution; the raw
+symbol seminorm on the same grid is $2.570232705$.  Thus neither a
+$C_R=2.5$ nor a $C_R=3$ proof follows, and the value is numerical rather
+than an all-mode enclosure.  UGF cannot repair this because it controls
+only the scalar edge branch, whereas \eqref{eq:regularizedsymbol} is a
+matrix-valued transverse cancellation.  This was the second distinct
+in-house attempt; by the stop rule TEL-b is now typed
+\texttt{TEL-B-EXTERNAL}.  No all-$N$ constant is claimed.
+\end{remark}
+
+\begin{remark}[Round-3 supersession, 2026-09-05]
+The preceding verdict records the historical raw-Hankel attempt.  It is not the
+current TEL-b residue.  Native $256$-bit Arb/Acb arithmetic on $5812$ rational
+cells now proves
+\[
+ \mathrm{TV}_p(F'')\le15.8176959629889243576\ldots<15.928674,
+ \qquad K_3^{\mathrm{TV}}<2.517464500835,
+\]
+including the exact Hilbert--Schmidt cut jump $2$
+(\texttt{v1022\_telb\_round3\_certificates.py}).  Separately, a $100$-bit
+certificate over $3888$ analytic rectangles proves
+$C_\star<0.1525$, and the Peano/Euler argument proves
+$\sup_k|\varphi_N(k)|<0.509/N$ for every even $N\ge16$
+(\texttt{v1025\_telb\_c1\_c2a\_certificates.py}).  These close the TV, C1 and
+C2a inputs. Round 4 additionally proves CF $<0.065697$, DG $<0.042959$,
+and the complete relaxed norm $\norm{R_N}_{\HS}<2.995906<3$ for every even
+$N\ge16$, including the finite-grid aliases
+(\texttt{v1026\_telb\_round4\_closure.py}). The remaining microscopic
+algebra identification is not a consequence of this norm theorem.
+\end{remark}
+
+\subsection{Third angle: certified finite part plus a dyadic tail}
+
+There are two natural full-CAR one-particle embeddings from circumference
+$N$ to $2N$.  The low-energy embedding $J_N^{\rm low}$ preserves the
+integer Fourier label $n$, while the physical-momentum dilation
+$J_N^{\rm dil}$ sends $n\mapsto2n$.  The proposed tail mechanism would
+require, for one of them,
+\[
+ \norm{R_{2N}-J_NR_NJ_N^*}_{\HS}\le DN^{-2}
+\tag{5.21}\label{eq:Rtailproposed}
+\]
+with one explicit $D$.  The reverse triangle inequality would then give
+\[
+ \left|\norm{R_{2N}}_{\HS}-\norm{R_N}_{\HS}\right|
+ \le DN^{-2},
+\tag{5.22}\label{eq:Rnormtail}
+\]
+and the dyadic tail from $N_0$ would be at most
+$DN_0^{-2}/(1-1/4)$.
+
+\begin{proposition}[The TEL-a embedding does not supply the proposed
+remainder tail]\label{prop:tailfailure}
+On the frozen finite matrices, neither natural embedding exhibits the
+defect required by \eqref{eq:Rtailproposed}.  The measured values are
+\[
+\begin{array}{c|c|c}
+N\to2N&
+\norm{R_{2N}-J_N^{\rm low}R_N(J_N^{\rm low})^*}_{\HS}&
+\norm{R_{2N}-J_N^{\rm dil}R_N(J_N^{\rm dil})^*}_{\HS}\\ \hline
+16\to32&2.071346866&2.066044074\\
+32\to64&2.067361892&2.072036965\\
+64\to128&2.065611659&2.075227063\\
+96\to192&2.065062404&2.076335188
+\end{array}
+\tag{5.23}\label{eq:Rdefecttable}
+\]
+Thus the certified-tail argument cannot inherit the proved TEL-a
+$N^{-2}$ comparison.
+\end{proposition}
+
+\begin{proof}
+In the untwisted Fourier basis, construct $R_N$ exactly as in
+\eqref{eq:tworemainder}; both embeddings are coordinate isometries.
+For either $J$,
+\[
+ \norm{R_{2N}-JR_NJ^*}_{\HS}^2
+ =\norm{R_{2N}}_{\HS}^2+\norm{R_N}_{\HS}^2
+ -2\Re\ip{J^*R_{2N}J}{R_N}_{\HS}.
+\]
+The companion probe evaluates this identity without forming $J$ and
+reproduces the established finite norms.  The table is numerical
+evidence, not an interval theorem; it shows that the proposed small
+TEL-a-type defect is absent on the tested scales.  Therefore
+high-precision recalculation of the same finite values cannot certify
+the missing infinite tail.
+\end{proof}
+
+\begin{remark}[The strictly smaller dyadic residue]
+The scalar norm increments are instead
+\[
+ 0.007486497094,\quad0.003790483818,\quad
+ 0.001913049365,\quad0.001279839965
+\]
+for the four rows of \eqref{eq:Rdefecttable}; the products $N$ times
+these increments are
+\[
+ 0.119783953,\quad0.121295482,\quad
+ 0.122435159,\quad0.122864637.
+\]
+This suggests, but does not prove,
+\[
+ \left|\norm{R_{2N}}_{\HS}-\norm{R_N}_{\HS}\right|
+ \le\frac{A_R}{N}\qquad(N\ge96).
+\tag{5.24}\label{eq:Rscalarresidue}
+\]
+Unlike an adjacent-size $1/N$ estimate, \eqref{eq:Rscalarresidue} is
+summable on a dyadic tower.  If proved, it gives
+\[
+ \sup_{k\ge0}\norm{R_{96\cdot2^k}}_{\HS}
+ \le\norm{R_{96}}_{\HS}+\frac{2A_R}{96}.
+\tag{5.25}\label{eq:Rdyadicbound}
+\]
+The edge-mode scaling theorem uses a cofinal dyadic subsystem, so
+\eqref{eq:Rdyadicbound}, not a supremum over every integer $N$, is the
+minimal required statement.  The six reported finite values are
+ordinary double-precision diagnostics.  Arbitrary-precision
+\texttt{mpmath} output alone is not a rigorous interval certificate;
+because the prerequisite tail theorem failed, no floating-point value
+is relabelled as certified.
+\end{remark}
+
+\begin{remark}[The dyadic-increment route is retired]
+Equations~\eqref{eq:Rscalarresidue}--\eqref{eq:Rdyadicbound} are retained as
+an audit trail, not as the current proof route.  The cover/sawtooth reduction
+and the round-3 C1/C2a/TV certificates supersede this proposed scalar
+increment.  No all-$N$ conclusion is imported from the measurements above.
+\end{remark}
+
+\paragraph{Third-angle audit.}
+\path{experiments/tfpt-discovery/mmst_telb_tail_probe.py} reproduces all
+six established finite norms, evaluates both embeddings through
+$N=192$, verifies the reverse-triangle inequality, and rejects an
+$N^{-1}$ mutant as an $N^{-2}$ tail.  Its verdict is
+\texttt{TAIL-TELESCOPING-FAILS}; all diagnostic and honesty guards pass.
+

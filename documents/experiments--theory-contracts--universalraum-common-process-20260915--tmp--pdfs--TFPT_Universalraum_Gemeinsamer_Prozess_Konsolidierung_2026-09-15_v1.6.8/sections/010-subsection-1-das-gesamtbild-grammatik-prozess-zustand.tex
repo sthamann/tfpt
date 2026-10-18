@@ -1,0 +1,386 @@
+\subsection{1. Das Gesamtbild: Grammatik, Prozess, Zustand,
+Antwort}\label{das-gesamtbild-grammatik-prozess-zustand-antwort}
+
+TFPTs Compiler beschreibt zunächst eine markierte algebraische
+Grammatik: welche Bausteine zusammenpassen, welche Symmetrien gelten und
+welche Zahlen innerhalb dieser Konstruktion folgen. Der Universalraum
+soll diese Grammatik als einen ausführbaren Prozess realisieren. Der
+entscheidende Unterschied ist der zwischen einem erlaubten Zusammenhang
+und einer tatsächlich erzeugten physikalischen Entwicklung.
+
+Im hier untersuchten Modell ist die Grundregel weiterhin sehr einfach:
+\textbf{Zwei Fermionen können in einen Vermittler umgewandelt werden und
+zurück.} Mit 64 Fermionmoden und 60 Bosonmoden lautet sie
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+H=\Delta N_b+g(T_++T_-),\qquad
+T_+=\sum_A b_A^\dagger P_A,\quad T_-=T_+^\dagger,
+\qquad P_A=\sum_{i<j}W_{A,ij}f_jf_i.
+$}\]
+
+Es gelten \(\Delta>0\), reelles \(g\) und die erhaltene Ladung
+\(N=N_f+2N_b\). Der Tensor W besitzt 480 Einträge mit Werten +1 oder -1,
+acht disjunkte Paare pro Zeile, und \(WW^\dagger=8I_{60}\). Seine innere
+Darstellung ist \((16,4)\) für Fermionen und \((10,6)\) für Bosonen
+unter Spin(10) mal SU(4).
+
+Die heutige Beweiskette sieht so aus:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Verbindung
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Was bereits trägt
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Was dadurch nicht automatisch folgt
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Compiler zu Paarregel & Konkreter Tensor, Symmetrie und Ladungserhaltung
+& Physische Wahl von Energie, Kopplung und Instrumenten \\
+Paarregel zu Zustand & Früherer eindeutiger Grundzustandssatz im
+festgelegten Vertrag & Herleitung dieses Vertrags oder dessen
+Präparation \\
+Zustand zu geladener Antwort & Isolierte niedrige Fermion-Entnahmelinie
+mit hohem Gewicht & Räumlich laufendes relativistisches Teilchen \\
+Antwort zu Bewegung & Zusätzliche Links erlauben nachgewiesenen Transfer
+& Dass derselbe Link aus dem ursprünglichen Operationssatz entsteht \\
+Bewegung zu Raumzeit & Prüfprogramm und bedingte Modelle & Gemeinsame
+3+1D-Welt, chirales Maß und dynamische Gravitation \\
+\end{longtable}
+}
+
+Der endliche dokumentierte Clock gehört zur inneren Spin(10)-Symmetrie.
+Er ist damit kein zusätzliches äußeres Symmetrieobjekt. Seine Periode
+sechs ist aber auch noch keine Herleitung einer physikalischen
+Zeiteinheit oder einer Raumzeit. Innere Spin(10)-Labels sind nicht von
+selbst Lorentzspin.
+
+\subsection{2. Was die beiden neuen Texte
+beitragen}\label{was-die-beiden-neuen-texte-beitragen}
+
+\subsubsection{2.1 Quellenstand und
+Reproduktionsgrenzen}\label{quellenstand-und-reproduktionsgrenzen}
+
+17 ausgewählte Eingaben wurden mit SHA-256 eingefroren: beide
+Nutzertexte, die zugehörigen Programme und Ergebnisdateien, der native
+Tensor sowie die vollständige frühere Fassung mit Prüfpaket. Keine
+fremde Quelldatei wurde verändert. Die Herkunftsdateien gehören zu
+parallel fortgeschriebenen Arbeitsständen; Dateipins sind deshalb
+wichtiger als Versionsnamen allein.
+
+Der neue Grundzustandslauf war beim ersten Blick noch ohne
+Ergebnisdatei. Beim Einfrieren lag bereits sein fertiges Ergebnis vor:
+\textbf{382 Guards, davon 379 exakt und drei numerisch}. Sein
+Quellenhash stimmt mit der eingefrorenen Programmdatei überein. Er
+findet ebenfalls die Multiplizitäten 1, 1 und 4. Der Zwischenhinweis
+dieser Prüfung auf eine noch leere Datei war bei der späteren Übernahme
+bereits überholt und wird hier korrigiert.
+
+Das Operations-JSON enthält \textbf{306}, nicht die im Begleittext
+genannten 307 Guards; sein interner Checkerhash passt nicht zur
+gleichzeitig eingefrorenen Programmdatei. Das ist ein Versionskonflikt
+des Berichts, kein Beweis, dass seine Mathematik falsch ist. Die
+tragenden Aussagen werden deshalb unabhängig geprüft, nicht als exakter
+Gesamtreplay dieses fremden Programms ausgegeben. Das Feld-JSON meldet
+2161 Guards und besitzt einen passenden Quellenhash; es enthält dennoch
+den unten korrigierten Normfehler und zu weit formulierte
+Interpretationen.
+
+Mit den weiteren Texten und zugehörigen Auditdateien sind es insgesamt
+24 eingefrorene Eingaben. Unsere eigene neue Suite hat \textbf{822
+exakte Prüfbedingungen pro Python-Modus}. Normaler und optimierter Lauf
+erzeugen identische Ergebnisdateien; Warnungen werden als Fehler
+behandelt. Zusätzlich wurde die ältere ganzzahlige Kontraktionsrechnung
+frisch kompiliert und wiederholt, mit identischen Zahlen. Die
+vier-Boson-Norm aus dem früheren Zertifikat bleibt ein gekennzeichneter
+Eingang: Ihre vollständige Enumeration wurde in dieser Runde nicht
+wiederholt. Auch die gesamten fremden Programme mit ihren Guards wurden
+nicht alle erneut ausgeführt. Prüfzahl und Beweisumfang werden
+ausdrücklich getrennt.
+
+\subsubsection{2.2
+Übernahmeentscheidung}\label{uxfcbernahmeentscheidung-1}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Aussage aus den Eingaben
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Entscheidung für v1.6.7
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Korrigierter Anfangskommutant 3829536 / 1444233216 & Bestätigt; keine
+neue Größe gegenüber v1.6.6 \\
+Nur SU(4) oder nur Spin(10) als zusätzliche Kontrollen & Übernommen;
+echte Zwischenstufen statt binärer Verfügbarkeit \\
+Volle Gruppe plus alle Modenbesetzungen erzeugt volle Sektoralgebra &
+Unabhängig bestätigt, ausdrücklich bedingt \\
+Clock außerhalb der zusammenhängenden Gruppe, weil nicht skalar &
+Verworfen; das explizite Spin-Wort aus v1.6.6 widerlegt den Schluss \\
+Vier Singuletts auf der zweiten Bosonstufe & Unabhängig bestätigt und
+durch konkrete Zustandsprojektionen ergänzt \\
+Eine Zustandsrichtung pro Bosonzahl könnte bis Stufe 32 genügen &
+Verworfen; schon Stufe zwei hat vier Richtungen \\
+Feldnorm 24 bei quadrierter Norm 192 & Korrigiert: Norm ist 8 mal Wurzel
+3 in derselben Konvention \\
+4035 bilineare Komponenten unbestimmt & Jetzt vollständig in drei innere
+Darstellungen zerlegt \\
+Jeder relativistische Abschluss müsse den Tensorfeldkanal verwenden &
+Nur unter dem festgelegten gleichhändigen, ableitungsfreien Ansatz
+gültig \\
+Schwächere Sektorschranken trennen N=64 nicht & Richtig für diese Sonde;
+widerlegt den stärkeren früheren Satz nicht \\
+\end{longtable}
+}
+
+Die Entropie von ungefähr 1,66 Bit im ersten Text gehört zum dortigen
+Ritz-Näherungszustand. Die Blockdiagonalität der reduzierten Bosondichte
+rechtfertigt die Shannon-Untergrenze für diesen Zustand, nicht ungeprüft
+denselben Zahlenwert für den wahren nativen Grundzustand. Ebenso ist
+eine Kreuzung mit dem leeren Zustand bei einem bestimmten chemischen
+Potential kein Beweis für die vollständige Sektor-Stabilitätszone.
+
+\subsection{3. Vollständig gelöst: der erste verzweigte
+Singulettbereich}\label{vollstuxe4ndig-geluxf6st-der-erste-verzweigte-singulettbereich}
+
+\subsubsection{3.1 Warum vier und nicht
+eins?}\label{warum-vier-und-nicht-eins}
+
+Im Ladungssektor N=64 schreiben wir Zustände relativ zur gefüllten
+Fermionreferenz \(F\). Bei k Bosonen gibt es 2k Löcher. Der
+Singulettbereich auf dieser Stufe liegt in
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+\mathcal S_k=
+\left[\Lambda^{2k}(\overline{16\otimes4})
+\otimes\operatorname{Sym}^k(10\otimes6)\right]^{G},
+\qquad G=\operatorname{Spin}(10)\times SU(4).
+$}\]
+
+Die ersten Dimensionen sind \textbf{1, 1, 4}. Dies ist eine Aussage über
+alle Singuletts dieser Stufen, nicht über vier verschiedene
+Grundzustände. Ein eindeutiger Grundzustand kann durchaus in einem
+größeren Singulettbereich liegen. Die Zentrumsregel N gleich 0 modulo 4
+ist nur eine notwendige Bedingung für Singuletts, kein Auswahlprinzip
+für N=64.
+
+Der Beweis für k=2 benötigt keinen riesigen Matrixkern. Die Bosonseite
+zerfällt nach der symmetrischen Cauchy-Identität in
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+\operatorname{Sym}^2(10\otimes6)=
+(1,1)\oplus(54,1)\oplus(1,20')\oplus(54,20')\oplus(45,15).
+$}\]
+
+Die Dimensionen 1, 54, 20, 1080 und 675 ergeben zusammen 1830. Die
+vierte äußere Potenz der Fermionseite wird durch die fünf Partitionen
+von vier beschrieben. Für die benötigten Überschneidungen reichen drei
+Spinor-Schurfunktoren:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Bosontyp
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Spinor-Schurfunktor auf der Fermionseite
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Anzahl gemeinsamer Typen
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(1,1) & Sym hoch 4 von 16 & 0 \\
+(54,1) & Sym hoch 4 von 16 & 1 \\
+(1,20') & S mit Partition (2,2) von 16 & 1 \\
+(54,20') & S mit Partition (2,2) von 16 & 1 \\
+(45,15) & S mit Partition (3,1) von 16 & 1 \\
+\end{longtable}
+}
+
+Die Charaktere wurden aus den fünf Konjugationsklassen von S4 mit
+ganzzahliger Arithmetik aufgebaut, durch eine unabhängige
+Jacobi-Trudi-Rechnung kontrolliert und mit der Weyl-Alternierung
+ausgewertet. Die volle äußere Potenz hat 635376 Dimensionen; der
+gemeinsame Singulettbereich hier nur vier. Die Berechnung des anderen
+Workers über den vollständigen Gewicht-Null-Raum kommt unabhängig auf
+denselben Wert.
+
+\subsubsection{3.2 Nicht nur gezählt: die vier Zustände und ihre
+Kopplungen}\label{nicht-nur-gezuxe4hlt-die-vier-zustuxe4nde-und-ihre-kopplungen}
+
+In der durch eine Bosonparität äquivalenten Lochdarstellung sei
+\(v_k=(T_+)^kF\). Alle 108240 von null verschiedenen Koeffizienten von
+\(v_2\) wurden neu berechnet, einschließlich der Boson-Fakultätsnormen.
+Das ergibt \(\|v_2\|^2=439680\).
+
+Sei \(P_R\) der orthogonale Projektor auf den jeweiligen inneren Typ der
+Zwei-Boson-Seite. Dann sind die vier Vektoren \(P_Rv_2\) nicht null,
+orthogonal und bilden wegen der bewiesenen Multiplizität eins die
+gesamte Singulettbasis auf Stufe zwei. Ihre Normen und die Kopplungen
+vom normierten Ein-Boson-Zustand lauten:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2727}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3636}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3636}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Typ R
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Normquadrat von P\_R v2
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Quadrierte Kopplung geteilt durch g hoch 2
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(54,1) & 17280 & 36 \\
+(1,20') & 7680 & 16 \\
+(54,20') & 241920 & 504 \\
+(45,15) & 172800 & 360 \\
+Summe & 439680 & 916 \\
+\end{longtable}
+}
+
+Diese Zahlen sind abgeleitet, nicht angepasst. Die Projektoren benutzen
+nur Symmetrisierung sowie die beiden vorhandenen invarianten
+Spurbildungen. Die gemeinsame skalare Projektion (1,1) verschwindet
+identisch.
+
+Nach Wahl der vier Basisphasen ist der Kopplungsvektor
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+g\,(6,\,4,\,6\sqrt{14},\,6\sqrt{10}).
+$}\]
+
+Alle vier Richtungen sind in v2 enthalten, aber von Stufe eins wird nur
+ihre eine feste Linearkombination angeregt. Drei dazu orthogonale
+Kombinationen sind \textbf{nach unten} dunkel. Sie sind nicht deshalb
+auch gegenüber den höheren Stufen entkoppelt.
+
+\subsubsection{3.3 Der vollständig bestimmte
+Sechszustands-Ausschnitt}\label{der-vollstuxe4ndig-bestimmte-sechszustands-ausschnitt}
+
+Die Kompression auf alle Singuletts mit k kleiner oder gleich zwei ist
+exakt äquivalent zu
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+P_{\leq2}HP_{\leq2}\simeq
+\begin{pmatrix}
+0&g\sqrt{480}&0\\
+g\sqrt{480}&\Delta&g\sqrt{916}\\
+0&g\sqrt{916}&2\Delta
+\end{pmatrix}
+\oplus 2\Delta I_3.
+$}\]
+
+Damit ist dieser Ausschnitt vollständig gelöst. \textbf{Er ist nicht
+invariant:} H führt von k=2 auch nach k=3. Seine Eigenwerte sind
+folglich nicht automatisch Eigenwerte der ganzen Bank. Eine räumliche
+Interpretation oder zusätzliche Wechselwirkung wurde für diese Reduktion
+nicht eingeführt.
+
+Explizit besitzt die Kompression dreimal den Wert 2 Delta und die drei
+reellen Nullstellen des Polynoms
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+E^3-3\Delta E^2+(2\Delta^2-1396g^2)E+960\Delta g^2.
+$}\]
+
+\subsection{4. Die richtige einfache Kette: Wiederholung von
+H}\label{die-richtige-einfache-kette-wiederholung-von-h}
+
+\subsubsection{4.1 Der Fehler war die Gleichsetzung zweier verschiedener
+Stufen}\label{der-fehler-war-die-gleichsetzung-zweier-verschiedener-stufen}
+
+Die Vektoren \(v_k=T_+^kF\) sind nach Bosonzahl geordnet. Schon bekannt
+ist
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+T_-v_3=\frac{299520}{229}v_2+w_2,\qquad
+\langle v_2,w_2\rangle=0,\qquad
+\|w_2\|^2=\frac{5001523200}{229}>0.
+$}\]
+
+Diese Rechnung wurde frisch reproduziert. Aus einer kleinen relativen
+Norm dieses Seitenzweigs folgt keine Konvergenz der gesamten
+Grundzustands- oder Spektralrechnung. Insbesondere fehlt dann immer noch
+der große Übergang nach v4.
+
+Eine Lanczos-Kette entsteht stattdessen aus \(F,HF,H^2F,\ldots\) durch
+Orthogonalisierung. Für einen selbstadjungierten endlichen
+Hamiltonoperator beschreibt sie dessen zyklischen Teilraum exakt. Das
+ist ein zulässiges einfaches Rechenbild, aber keine Behauptung, dass
+ihre Indizes physikalische Orte oder Bosonzahlen seien. Auch die gesamte
+Bank muss nicht mit diesem einen zyklischen Teilraum übereinstimmen.
+
+\subsubsection{4.2 Die ersten fünf Glieder sind jetzt exakt
+bestimmt}\label{die-ersten-fuxfcnf-glieder-sind-jetzt-exakt-bestimmt}
+
+Für die normierte Lanczos-Basis \(u_n\) schreiben wir
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+Hu_n=b_nu_{n-1}+a_nu_n+b_{n+1}u_{n+1},\qquad b_n>0.
+$}\]
+
+Die ersten Diagonalen lauten
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+\frac{(a_0,a_1,a_2,a_3,a_4)}{\Delta}
+=\left(0,1,2,3,\frac{105168998}{26292551}\right).
+$}\]
+
+Die ersten quadrierten Nebendiagonalen sind
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+\frac{(b_1^2,b_2^2,b_3^2,b_4^2)}{g^2}
+=\left(480,916,\frac{299520}{229},\frac{78877653}{47632}\right).
+$}\]
+
+Bis u3 stimmen die Vektoren, bis auf die Phase bei negativem g, mit den
+normierten vk überein. Der nächste Vektor ist proportional zu
+\(v_4+w_2\). Dabei liegen v4 und w2 auf verschiedenen Bosonstufen.
+Deshalb gilt
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+\frac{b_4^2}{g^2}
+=\frac{\|v_4\|^2+\|w_2\|^2}{\|v_3\|^2},
+\qquad
+\langle u_4,N_bu_4\rangle
+=\frac{4\|v_4\|^2+2\|w_2\|^2}{\|v_4\|^2+\|w_2\|^2}.
+$}\]
+
+Die Bosonzahlvarianz dieses Vektors ist exakt
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+\operatorname{Var}_{u_4}(N_b)
+=\frac{63416178576}{691298238087601}>0.
+$}\]
+
+Die frühere Quotientenfortsetzung mit nur \(\|v_4\|^2/\|v_3\|^2\) ließ
+den positiven Zusatz \(1809/47632\) weg. Die korrigierte Kette bleibt
+einfach, verliert aber gerade deshalb nicht die wirkliche
+Mehrkanalstruktur. Ihre Länge ist nicht durch die 33 möglichen
+Bosonzahlen festgelegt.
+

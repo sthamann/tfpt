@@ -1,0 +1,366 @@
+\section*{Research Contracts --- \texttt{DYN.MARKOV.EMBED.01} / \texttt{DYN.UNITARY.DILATION.01} (the three meanings of ``dynamics'')}
+\addcontentsline{toc}{section}{Research Contracts: DYN.MARKOV.EMBED.01 / DYN.UNITARY.DILATION.01}
+% =====================================================================
+\noindent\emph{Typing.} Two contracts that split what the corpus has loosely called ``dynamics''
+into its three inequivalent meanings: \textbf{(a)}~the positive relaxation $T^n$ to a fixed
+point; \textbf{(b)}~a continuous dissipative semigroup $e^{t\log T}$; \textbf{(c)}~reversible
+Lorentzian/unitary evolution $e^{-itH}$.  Step (a)$\to$(b) is now a machine-checked theorem for
+the concrete seam kernel (\mE\ at the finite level); step (b)$\to$(c) is genuinely open and gets
+its own contract (its \emph{discrete} collision/QCA leg is meanwhile executed exactly,
+\veri{v984\_markov\_qca\_dilation.py}; the continuous legs remain the contract).  Nothing here
+moves \texttt{CONTRACT.F.01} or the four observables.
+
+\par\smallskip\noindent\textbf{\texttt{DYN.MARKOV.EMBED.01} --- the finite kernel half is
+executed \mE.}  For the v221 seam transfer
+kernel $T=J+(2/3)^6\,u_2u_2^{\mathsf T}+(1/3)^6\,u_3u_3^{\mathsf T}$ (spectrum exactly
+$\{1,64/729,1/729\}$), the principal logarithm $Q=\log T$ is an \emph{exact classical Markov
+generator} \veri{v971\_markov\_embedding\_generator.py}: sympy-exact spectral calculus gives
+$e^Q=T$; every row of $Q$ sums to zero
+\emph{symbolically}; the three independent off-diagonal entries are exactly
+$\{\ln(9/8),\,2\ln 3,\,2\ln 3\}=\{0.117783,\,2.197225,\,2.197225\}$, all positive (the reviewer's
+independently verified numbers), with diagonals $-\ln(81/8),-\ln(81/8),-4\ln3$; the
+uniformization certificate $Q+(4\ln3)I\ge0$ entrywise (diagonals $\ln8,\ln8,0$, exact) proves
+$e^{tQ}=e^{-4t\ln3}\,e^{t(Q+4\ln3\,I)}$ entrywise nonnegative and doubly stochastic for
+\emph{all} $t\ge0$ --- so $T$ is embeddable and every root $T^{1/n}=e^{Q/n}$ is again a
+stochastic matrix.  The generator spectrum is
+$\operatorname{spec}(Q)=\{0,-6\ln(3/2),-6\ln3\}=-\operatorname{spec}(H_{\mathrm{mod}})$
+(\vref{v957}: $T=e^{-H_{\mathrm{mod}}}$), the gap is the seam gap $\Delta=6\ln(3/2)$, and $Q$ is
+symmetric (detailed balance w.r.t.\ the uniform state --- the KMS/OS-positive free level).
+\emph{Negative control (embeddability is not generic):} the same construction with second
+eigenvalue $-1/10$ is still doubly stochastic but has $\det=-1/200<0$, while every embeddable
+stochastic matrix has $\det e^Q=e^{\operatorname{tr}Q}>0$ --- provably \emph{not} embeddable.
+The RP/OS spectral positivity of the seam kernel (\texttt{CONTRACT.F.01} axiom 3) is exactly
+what makes (a)$\to$(b) real.  \emph{What stays \mO\ in this contract:} the same embedding
+statement at \emph{field} level (on the reconstructed net / quasi-local algebra, uniformly in
+system size), not just on the 3-state kernel.
+
+\par\smallskip\noindent\textbf{\texttt{DYN.UNITARY.DILATION.01} --- the (b)$\to$(c) step,
+\mO.}  The semigroup $e^{tQ}$ is \emph{irreversible statistical} dynamics --- an H-theorem, not
+a Schr\"odinger equation.  Fundamental quantum dynamics requires the chain
+$T=e^{-aH}\;\xrightarrow{\ \mathrm{OS}\ }\;U(t)=e^{-itH}$ with $H$ positive self-adjoint, and
+the dilation must be \emph{physical}: \textbf{(D1)}~a Stinespring/Hamiltonian dilation of the
+semigroup whose generator is (quasi-)local; \textbf{(D2)}~size consistency (the dilation is
+compatible with the thermodynamic limit --- no environment that grows pathologically with the
+system); \textbf{(D3)}~a Lieb--Robinson bound (finite propagation speed for the dilated
+dynamics); \textbf{(D4)}~the OS analytic continuation to a unitary one-parameter group on the
+reconstructed Hilbert space.  \emph{Kill tests:} every dilation of the seam semigroup is
+provably nonlocal; the Lieb--Robinson velocity diverges in the scaling limit; the OS
+continuation fails on the interacting algebra.  \emph{Relation:} demand D2 of
+\texttt{CCC.SEAM.CROSSOVER.01} (the Stinespring isometry at field level) already presupposes
+this contract; it is hereby named as the prerequisite.
+
+\par\smallskip\noindent\textbf{Executed sharpening --- the lift structure of the finite kernel
+(\mE\ at matrix level; the contract itself stays \mO).}  Two modules now pin down \emph{which}
+dilations are even candidates.  \textbf{(i)}~\emph{The no-go}: the Kraus dilation the corpus
+actually deploys, $K_{ij}=\sqrt{T_{ij}}\,|i\rangle\langle j|$, is measure-and-prepare --- one
+step kills every coherence (fully symbolic), its Choi matrix is diagonal in the product basis,
+hence the channel is \emph{entanglement breaking} with quantum capacity $0$, and $T>0$
+entrywise gives zero-error capacity $C_0(T)=0$ exactly
+(\veri{v976\_seam\_lift\_birkhoff.py}); any dilation satisfying D1--D4 must therefore be a
+genuinely different object.  \textbf{(ii)}~\emph{The hidden fibre}: the complete set of
+random-permutation (Birkhoff) quantizations of the single step $B$ is a one-parameter line
+$t\in[0,1/18]$ whose coordinate is the sign-character Fourier coefficient
+($\widehat w_t(\mathrm{sgn})=6t$); populations are exactly $t$-free, the one-step coherence
+spectrum is $\{1,\,6t,\,(2/3)^{\times2},\,(1/3)^{\times2}\}$, and the triangle loop current is
+an exact eigen-observable $\Psi_t(A)=6t\,A$ --- one step and one current readout measure $t$
+without an ancilla.  On the contrast qubit the Choi partial transpose has spectrum
+$\{-3t/2,\,1/6+3t/2,\,1/3+3t/2,\,1/2-3t/2\}$: the deployed sixth-root spectrum sits
+\emph{exactly} on the entanglement-breaking boundary because $2/3+1/3=1$ (mutated spectra miss
+by $\mp1/12$), while at the full three-level the family stays NPT at every tested iteration,
+$\lambda_{\min}=-(1/3)(2/3)^n$, $t$-independent (\veri{v976\_seam\_lift\_birkhoff.py}).
+\textbf{(iii)}~\emph{The coherent end}: $B$ is \emph{unistochastic} --- an exact $U\in SU(3)$
+with $|U_{ij}|^2=B_{ij}$ entrywise, unique up to rephasing and complex conjugation, with
+Jarlskog invariant $J=\pm1/27$ exactly; no \emph{fixed} microstep unitary generates the
+relaxing sequence ($B^2\neq|U^2|^2$; a Dirichlet recurrence witness returns $U^{n^*}$
+arbitrarily close to the identity while $B^{n^*}$ is uniform), so repeated steps
+\emph{require} environment contact between steps --- precisely the D1--D4 demand --- while the
+six-step macro-gate exists as its own reversible $U_6\neq U_1^6$
+(\veri{v977\_transfer\_unistochastic\_wilson.py}).  The classical kernel thus admits the full
+lift trichotomy \{EB dilation $\mid$ Birkhoff fibre with hidden circulation $t$ $\mid$
+reversible macro-gate with hidden orientation $\operatorname{sgn}J$\}: the same classical
+data, three inequivalent quantum dynamics.  Ledger rows:
+\texttt{TRANSFER.HIDDEN.CIRCULATION.01} and \texttt{TRANSFER.COHERENT.WILSON.01} (executed
+halves \mE; the fibre-point/branch selection, the defect--Birkhoff forcing functor --- named
+\texttt{TRANSFER.DEFECT.BIRKHOFF.01} --- and the center--transport intertwiner stay \mO).
+These results fix the contract's boundary conditions; they do not close it.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-28, external master-object review wave
+2): the \emph{discrete} leg of D1--D3 is realized constructively --- the exact collision-model
+dilation (\veri{v984\_markov\_qca\_dilation.py}; the continuous legs stay \mO).}  One fresh
+ancilla qutrit per step, the mod-3 record $C|j,k\rangle=|j,j{+}k\rangle$, and the step unitary
+$V=C\,(U_B\otimes I)$ (with $U_B$ the \vref{v977} lift) give, as \emph{exact symbolic operator
+identities}: $V^\dagger V=I$; the Stinespring identity
+$\Phi(\rho)=\operatorname{Tr}_A[V(\rho\otimes|0\rangle\langle0|)V^\dagger]
+=\sum_jP_jU_B\rho U_B^\dagger P_j$ (Kraus completeness $\sum_jK_j^\dagger K_j=I$);
+$\operatorname{diag}\Phi(\operatorname{diag}p)=Bp$ with vanishing off-diagonals; and six fresh
+ancillas give $\operatorname{diag}\Phi^6=B^6p=Tp$ --- the \vref{v977} macro-gate as the reduced
+dynamics of an exactly unitary, strictly radius-1 collision band (unitary amplitudes
+$\to$ local environment coupling $\to$ dephasing $\to$ Markov transfer, in one construction).
+The must-fail fires (the closed unitary has $|U_B^2|^2\neq B^2$), and a typed remark
+\emph{against} the review text: a \emph{reused} mod-3 adder ancilla still reproduces the
+populations exactly (the record $j_1{+}i$ stays distinguishable) --- fresh ancillas are needed
+for the coherences, not the diagonal chain.  The conjugate branch $V^*$ dilates the same $B$
+($\operatorname{sgn}J=\pm1/27$ rides through classically invisible; its selection stays \mO).
+What stays \mO: the (quasi-)local \emph{Hamiltonian} dilation, D2 in the thermodynamic limit,
+the OS continuation $T=e^{-aH}\to U(t)=e^{-itH}$ (D4), and any $3{+}1$D reading.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-28, promote round): the OS/dilation
+\emph{ladder} is executed at kernel $+$ free-band $+$ interacting-kernel $+$ quantum-coupled
+level (\veri{v987\_\allowbreak os\_\allowbreak dilation\_\allowbreak package.py}; continuous
+field-level OS and branch selection stay \mO).}
+The seam single-step $B=P_1+\tfrac23 P_2+\tfrac13 P_3>0$ with exact orthogonal projectors;
+$H=-\log B$ is PSD with gap $\log\tfrac32$; $T(t)=e^{-tH}$ is a stochastic semigroup inside
+the cone; $U(t)=e^{-itH}$ is a unitary group with Wick anchor $U(-in)=B^n$ for $n=1..6$.
+Must-fail: the v971 negative kernel (second eigenvalue $-1/10$) has no real half-step.
+Size-uniform free band: $T_L=B^{\otimes L}$ has commuting local $H_L=\sum_x h_x$ with gap
+$\log\tfrac32$ uniform in $L$; the per-cell reduced channel is $B$ at $L=1,2$; Lieb--Robinson
+radius $1$.  Interacting congruence: $T_\varepsilon=K^{1/2}B^{\otimes L}K^{1/2}$ is SPD for
+every tested diagonal coupling (one-sided mutant $KB^{\otimes L}$ is not symmetric); gap
+plateau $\sim0.18$ at $L=2..4$.  Quantum SWAP coupling: $d(\theta)\sim\theta^{1.99}$, CPTP
+preserved, LR radius $1$.  Display marker stays \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-29, review wave 4): the finite ladder
+is now \emph{complete} through continuous time
+(\veri{v999\_\allowbreak weak\_\allowbreak collision\_\allowbreak hp.py}; the thermodynamic
+field limit stays \mO).}
+The deployed strong collision is singular (rank $9/81$) and cannot be the exponential of a
+finite GKSL generator.  The typed successor is a fresh-ancilla weak-collision /
+Hudson--Parthasarathy family: generator extraction Richardson $1.098\times10^{-10}$;
+$\operatorname{diag}L_{\mathrm{GKSL}}=Q=\log B$ symbolically; $e^{Q}=B$ exact; GNS splitting
+defect $0$; locality $1.355\times10^{-20}$.  The finite ladder is now
+discrete / kernel / field-free / interacting-classical / quantum-coupled / continuous-time.
+Open $=$ the thermodynamic field limit only.  Display marker stays \mO.
+
+\par\smallskip\noindent\textbf{Precision (binding for all ``universal dynamics'' prose).}  The
+shared relaxation shape of the four \texttt{F\_transfer} sectors
+(\texttt{FR.DYNAMICS.01}/\texttt{DYN.TRANSFER.UNIVERSAL.01}) is a \emph{universal contraction
+class} --- shared gap, shared multiplier algebra --- \emph{not} one physical clock: both
+thermal-time routes are machine-killed (\vref{v723}/\vref{v724}) and the frozen external-clock
+contract fired its K1 kill exactly (\vref{v777}: no common continuous clock exists for the four
+jets).  Any corpus phrase of the form ``one native flow'' is to be read in this contraction-class
+sense; the clocks stay external and sector-specific.
+
+% =====================================================================
+\section*{Research Contract --- \texttt{QFT4D.OS.RECON.01} (the genuine 4D Euclidean lattice package)}
+\addcontentsline{toc}{section}{Research Contract: QFT4D.OS.RECON.01}
+% =====================================================================
+\noindent\emph{Typing.} A research contract \mO\ (ledger row \texttt{QFT4D.OS.RECON.01}: Open,
+research contract), \emph{not} a claim.  This is step (3) of the
+\texttt{DIMENSION.UPLIFT.FIREWALL.01} route ordering: the \emph{nonperturbative} 4D existence
+statement that no perturbative or seam-level result can substitute for.
+
+\par\smallskip\noindent\textbf{Input.}  TFPT fixes the discrete data: the representation content
+and charge lattice (carrier $+$ glue), the coupling relations at the matching scale, and the
+boundary conditions (the seam as internal/topological boundary module).  The 4D Euclidean
+lattice carries everything else: spacetime, gauge fields, Higgs, fermions.
+
+\par\smallskip\noindent\textbf{Target theorem (the OS package).}  For the so-specified 4D
+lattice theory prove: \textbf{(O1)}~reflection positivity of the lattice measure;
+\textbf{(O2)}~Euclidean covariance restoration (hypercubic $\to$ full Euclidean group in the
+limit); \textbf{(O3)}~clustering; \textbf{(O4)}~uniform bounds (moment/regularity estimates
+uniform in lattice spacing and volume); \textbf{(O5)}~existence of the continuum limit;
+\textbf{(O6)}~Osterwalder--Schrader reconstruction of the Wightman/Haag--Kastler theory.
+
+\par\smallskip\noindent\textbf{Firewall against the perturbative leg (binding phrasing rule).}
+The existing all-orders result (\texttt{QFT4D.EG.ALLORDER.01}, \vref{v381}) is a \emph{local
+perturbative construction under the stated Epstein--Glaser/BRST hypotheses} --- that and no
+more.  The weak adiabatic limit for massless particles exists as a cited theorem (Duch,
+\texttt{arXiv:1801.10147}), but its hypotheses must be \emph{verified for the concrete TFPT
+model}; a seam-transfer gap does not substitute for the infrared structure of massless
+photons/gluons.  Even a fully successful EG/BRST proof yields \emph{none} of: confinement or the
+hadron spectrum, the Yang--Mills mass gap, asymptotic charged states in QED (the infraparticle
+problem), the nonperturbative Higgs vacuum, or a controlled full S-matrix.  Every corpus phrase
+of the form ``the perturbative 4D leg closes to all orders'' is bound to this reading.
+Status: \texttt{QFT4D.OS.RECON.01} \mO.
+
+\par\smallskip\noindent\textbf{Registered decision (2026-08-28,
+\texttt{QFT4D.LATTICE.FUNDAMENTAL.01}): the lattice-fundamental reading --- a typed
+route/typing, \emph{not} an \mE\ claim and \emph{not} a marker move.}
+TFPT's \emph{physical} completeness criterion is the finite, local, unitary lattice quantum
+theory (Hamiltonian route: Gauss-law Hilbert space, hermitian local $H$, $T=e^{-aH}$ positive
+by construction, Lieb--Robinson cone).  This contract --- the exact continuum
+Osterwalder--Schrader limit --- is retyped as \emph{mathematical reinforcement}: a named
+strengthening programme, no longer the physical bottleneck.  Poincar\'e invariance is an IR
+fixed-point property with experimentally bounded irrelevant Lorentz-violating operators.
+Justification anchors (\veri{v989\_\allowbreak lattice\_\allowbreak gate\_\allowbreak battery.py}):
+the Euclidean overlap shortcut is killed at T2 (exact; $N_t$-exact confirmation: the
+$|\det D_{\rm ov}|^2$ Gram is PSD at $N_t=2$ and indefinite at $N_t=4$, det-only
+$\lambda_{\min}\approx-0.249$; Wilson control PSD everywhere --- pinned on overlap time
+nonlocality), and the Hamiltonian route clears T2 by construction.  Display: this row stays
+\mO\ as the math programme; nothing closes.
+
+\par\smallskip\noindent\textbf{Amendment (2026-08-29, review wave 4): the reviewer's precision
+is accepted --- ``a single finite box is not a world''.}
+The fundamental object is the \emph{quasilocal consistent family} $\{H_\Lambda\}$ with the
+thermodynamic-limit dynamics
+$\tau_t=\lim e^{itH_\Lambda}A e^{-itH_\Lambda}$.
+Binding phrasing: continuum ($a\to0$) \emph{optional} (mathematical reinforcement);
+thermodynamic limit ($|\Lambda|\to\infty$) \emph{and} controlled IR universality
+\emph{mandatory}.  Decision typing UNCHANGED; no \mE\ claim, no marker move.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-30, review wave~7): the $2{+}1$D
+master-object scaffold is coherent
+(\veri{v1008\_\allowbreak master\_\allowbreak assembly\_\allowbreak scaffold.py}; Decision
+typing UNCHANGED).}
+Combinatorial $K=0$ (every oriented plaquette has vanishing flat-$x$-holonomy exponent);
+frozen-link $q^2\sim4$ with $K(q=0)=0$; unique-contractive selector $\lvert R'\rvert<1$;
+QWZ wall $+$ DET4 mirror (physical slope $\approx-0.9989$, mirror gap $\ge1.5$ through
+$t=0.6$); four-block assembly with $\mathbb Z_6$ content $(1,2,3,0)$ and clock
+$[0,1,1,2]$.  $L=3$ Hilbert spaces of dimension $262144$ / $129024$ stay out of suite.
+No \mE\ claim, no marker move.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-30, afternoon harvest;
+\veri{v1011\_\allowbreak 3p1d\_\allowbreak ladder\_\allowbreak battery.py};
+Decision typing UNCHANGED).}
+The $3{+}1$D ladder B6--B9 is complete at scaffold level: the minimal $3{+}1$D object is
+viable (exact Gauss $32768$ checks, first $3{+}1$D confinement witness, wall separation,
+exact in-face isotropy, Kronecker-level stiffness $g_\star\approx1.915$); fully coupled
+link--wall dynamics are demonstrated (exact maximal-tree gauge fixing
+$524288\to4096$, tree-independence, DET survives coupling, back-reaction); the Kronecker
+limitation of the $2{+}1$D scaffold is removed.  No \mE\ claim, no marker move.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-30, late-evening harvest;
+\veri{v1013\_\allowbreak thermodynamic\_\allowbreak dynamics.py};
+Decision typing UNCHANGED).}
+The mandatory-dynamics leg is CLOSED at Hamiltonian-class level.  Cited
+\texttt{articles/2026-08-30/tfpt\_thermodynamic\_dynamics\_en.tex}: uniform Lieb--Robinson
+bound $J=12/5$, $R=2$, $z=4$, $\kappa=16043/450$, $v_{\mathrm{LR}}=32086e/225\sim387.64$;
+norm-convergent $\tau_t$; gauge-invariant quasilocal $\mathcal A^G$ (Gauss caveat resolved
+on the invariant subalgebra); existence of ground and $\beta$-KMS states.  Numeric twin:
+measured $v=2.0\ll$ proved bound; the analytic finite-volume bound dominates nested
+differences at buffers $8/16/32$.  Remaining: phase uniqueness, limit gap, IR universality.
+No \mE\ claim, no marker move.
+
+% =====================================================================
+\section*{Research Contract --- \texttt{CHIRAL4D.NOMIRROR.01} (the chiral 4D lattice matter theorem)}
+\addcontentsline{toc}{section}{Research Contract: CHIRAL4D.NOMIRROR.01}
+% =====================================================================
+\noindent\emph{Typing.} A research contract \mO\ (ledger row \texttt{CHIRAL4D.NOMIRROR.01}:
+Open, research contract), \emph{not} a claim.  Step (4) of the firewall route ordering: chirality
+and mirror decoupling must be proven \emph{in the same 4D model} that
+\texttt{QFT4D.OS.RECON.01} constructs --- the seam's $c_-{=}8$ and Chern/inflow structure are a
+boundary-\emph{anomaly} signal, not yet 4D matter.
+
+\par\smallskip\noindent\textbf{Target theorem.}  An explicit chiral lattice operator
+(Ginsparg--Wilson/overlap type) for the TFPT representation content with proofs of:
+\textbf{(C1)}~a local, gauge-invariant fermion measure; \textbf{(C2)}~perturbative \emph{and}
+global anomaly freedom; \textbf{(C3)}~no Witten $SU(2)$ anomaly; \textbf{(C4)}~no mirror
+generation in the physical spectrum (the mirror decouples with a mass that survives the
+continuum limit); \textbf{(C5)}~the correct index and charges (the TFPT charge lattice,
+generation count $\Nfam$); \textbf{(C6)}~a stable continuum limit compatible with the
+\texttt{QFT4D.OS.RECON.01} package.
+
+\par\smallskip\noindent\textbf{Calibration (state of the art, honestly).}  The strongest
+comparable theorem is Mastropietro's construction (\texttt{arXiv:2303.02790}): a \emph{weakly
+coupled} 4D $U(1)$ chiral gauge theory with a \emph{massive} gauge field.  The TFPT target ---
+chiral $SU(3){\times}SU(2){\times}U(1)$ with three generations, massless nonabelian gauge
+fields, EWSB and confinement downstream --- is far stronger; the gap between the two is the
+honest measure of this contract's difficulty.  \emph{Kill tests:} the mirror fails to decouple
+(kill test (3) of \texttt{WOIT.OS.TWISTOR.01} at lattice level); a Witten anomaly obstructs the
+carrier $SU(2)$; every gauge-invariant measure for the TFPT content is provably nonlocal.
+\emph{Consistency note (ledger wins):} the celestial-branch scope fence above honestly lists
+interacting RP, mirror decoupling, the internal $SU(2)$, both helicities, local matter fields,
+EWSB and confinement as \emph{not} closed; the contradictory ``zero open internal mechanisms''
+phrase in \texttt{docs/OPEN\_PROBLEMS.md} is corrected in the same change that registers this
+contract (that phrase was a certification statement about a \emph{different}, narrower residual
+matrix and had drifted into an overclaim).  Status: \texttt{CHIRAL4D.NOMIRROR.01} \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-28, promote round): a $1{+}1$D chiral
+Gauss census is executed on the Hamiltonian route
+(\veri{v989\_\allowbreak lattice\_\allowbreak gate\_\allowbreak battery.py}; the $3{+}1$D
+contract stays \mO).}
+Two-species $\mathbb Z_4$ Hamiltonian, factorized $16\times256$ (the $4096$ Kronecker is never
+materialised): a \emph{single-exponent} Gauss unitary exists iff $q_L\equiv q_R$; the covariant
+two-exponent Gauss exists for every charge pair (lattice Dirac doubling / Nielsen--Ninomiya as
+a Gauss statement); $V^4=I$; the mutant $(g_L,g_R)=(1,0)$ on vectorlike content fails.
+Honest: not the TFPT representation content and not $3{+}1$D.  Display marker stays \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-28, completeness wave): the SMG mechanism
+is toy-proved
+(\veri{v997\_\allowbreak spin2\_\allowbreak smg\_\allowbreak witnesses.py}; the $4$D theorem stays \mO).}
+Fidkowski--Kitaev SMG toy: at $N=8$ Majoranas a unique $\mathrm{Spin}(7)$-singlet ground state
+(Schmidt rank $1$) with volume-independent gap $14$ at $L=1,2,3$; the $N=4$ contrast is
+$2^L$-degenerate (must-fail); the physical chiral edge keeps its $\pi/L$ spectrum exactly.
+SMG mechanism toy-proved \mE; the $4$D $\mathrm{Spin}(10)$ theorem stays \mO.
+Display marker stays \mO.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-29, review wave~5): DET16 finite-cluster
+hit $+$ the Casimir-projector kill
+(\veri{v1002\_\allowbreak spin10\_\allowbreak mirror\_\allowbreak projector.py}; the $4$D theorem
+stays \mO).}
+The number-violating determinant vertex supplies an exact rank-one projector on the full
+$2^{16}$ cluster: $\Omega^\dagger\Omega=P_{16}$, $\Omega\Omega^\dagger=P_0$, defect $0$;
+$P_\phi$ hermitian idempotent ($2.8{\times}10^{-18}$), rank $1$; $h_{\mathrm{mir}}$ spectrum
+$\{0^1,1^{65535}\}$, gap exactly $1$; all $45$ $\mathfrak{so}(10)$ Fock commutators vanish
+($\det\rho_{16}=1$); parity commutator $0$; $\lvert0\rangle$ and $\lvert F\rangle$ are singlets.
+Hopping on the $4$-mode analogue is stable at $t=0.2$ (gaps $0.90$ / $0.86$); spectators
+untouched.  NEW candidate \texttt{CHIRAL4D.MIRROR.DET16.01} \mC.  Independently, the
+number-preserving Casimir projector route is \emph{excluded}: Weyl-alternant census
+$|W(D_5)|{=}1920$ gives $\{N{=}0{:}1,\,N{=}16{:}1\}$ (none at $N{=}8$), $k{=}2$ half-filling
+multiplicity $27$, $k{=}3{:}1463$ --- uniqueness fails at every cluster size.  Display marker of
+this contract stays \mO.
+
+% =====================================================================
+\section*{Research Contract --- \texttt{CHIRAL4D.MIRROR.DET16.01} (DET16 rank-one projector, finite cluster)}
+\addcontentsline{toc}{section}{Research Contract: CHIRAL4D.MIRROR.DET16.01}
+% =====================================================================
+\noindent\emph{Typing.} A candidate \mC\ (ledger row \texttt{CHIRAL4D.MIRROR.DET16.01}),
+registered 2026-08-29 from review wave~5.
+(\veri{v1002\_\allowbreak spin10\_\allowbreak mirror\_\allowbreak projector.py}.)
+\textbf{Content.}  Exact finite-cluster gapping on the full chiral $2^{16}$ Fock space via the
+number-violating determinant vertex, as executed above.  \textbf{Open.}  Dynamical gauge fields,
+domain-wall geometry, and a $4$D volume theorem --- this is not a $3{+}1$D closure.
+\textbf{Relation.}  Does \emph{not} upgrade \texttt{CHIRAL4D.NOMIRROR.01}; the Casimir-projector
+kill is recorded on that parent.  Status: Candidate \mC.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-30, review wave~7): T1/T2 proved, T3
+Michalakis--Zwolak cited-verified, dynamical [N], $1/192$ and BDL boxed
+(\veri{v1007\_\allowbreak det16\_\allowbreak stability\_\allowbreak battery.py};
+the candidate stays \mC).}
+The $12$-page memorandum
+\texttt{articles/2026-08-30/\allowbreak det16\_\allowbreak mirror\_\allowbreak gap\_\allowbreak theorem\_\allowbreak en.tex}
+proves T1/T2 and verifies every Michalakis--Zwolak hypothesis (Local-TQO, $t_*>0$, perturbed
+gap at least $1/2$).  Ordinary hopping is \emph{not} block-diagonal
+($\lVert(1-P)KP\rVert\neq0$), so $t_{0,\mathrm{count}}=1/192$ remains the uncertified counting
+threshold, not a theorem.  Dynamical $\mathbb Z_2/\mathbb Z_4$ links on the four-mode analogue
+are uniquely gapped on the compressed grid (full-probe minimum $0.728854416$ pinned);
+second-order Schrieffer--Wolff is $1-\alpha t^2+O(t^4)$ with $c_{\mathrm{geo}}/L$ bounded.
+BDL supplies a ground-energy truncation error with unspecified constants, not a volume-uniform
+gap remainder --- boxed.  Display marker stays \mC.
+
+\par\smallskip\noindent\textbf{Executed update (2026-08-31, Monday-morning harvest;
+\veri{v1016\_\allowbreak state\_\allowbreak gap\_\allowbreak batteries.py};
+the candidate stays \mC).}
+Fröhlich--Pizzo hypotheses cited-verified for $\mathbb Z_2/\mathbb Z_4$ DET open chains:
+volume-uniform spectral gap $\ge\Delta/2$ in the parametric window $\tau_{\mathrm{FP}}$
+($a=0.0233$, $a/16=0.00146$).  The dynamical-link leg is closed at that finite-group
+level.  Remaining: rotor links, wall mixing, $3{+}1$D placement.  Display marker stays \mC.
+
+\par\smallskip\noindent\textbf{Executed update (2026-09-05, round-3 integration):
+derivative-filtered wall block
+(\texttt{CHIRAL4D.MIRROR.DFILTER.BLOCK.01};
+\veri{v1023\_\allowbreak derivative\_\allowbreak filtered\_\allowbreak wall.py}; no parent
+marker move).}
+For
+\[
+ H_{\rm df}=\Delta b^\dagger b+
+ \lambda\bigl(b+gD_{\rm GW}p\bigr)^\dagger
+              \bigl(b+gD_{\rm GW}p\bigr)
+\]
+each singular-value sector is the exact $2{\times}2$ block with determinant
+$\lambda g^2\Delta s^2$.  It preserves $\ker D_{\rm GW}$ on the physical summand,
+the adiabatically mirror-continuated high branch is at least $\Delta+\lambda$, and
+\(
+ \mu_-(s)=\lambda g^2\Delta(\Delta+\lambda)^{-1}s^2+O(s^4).
+\)
+The finite covariance and SVD-reduction defects are
+$2.408{\times}10^{-15}$ and $1.776{\times}10^{-15}$.  This is only a finite
+quasi-free block lemma.  For $s\ne0$ the bare $b$ subspace is not invariant and has
+low-band weight, so no bare-mirror response gap is proved; the low branch has
+$z=2$, not a Weyl cone.  No canonical DET16/DET32 realization, interacting parent,
+admissibility/quasilocality theorem, measure/anomaly/index control, universality or
+$3{+}1$D continuum limit follows.  The derivative-filtered witness therefore does
+not upgrade \texttt{CHIRAL4D.MIRROR.DET16.01}~\mC,
+\texttt{CHIRAL4D.NOMIRROR.01}~\mO, T4, or TOE.
+
+% =====================================================================

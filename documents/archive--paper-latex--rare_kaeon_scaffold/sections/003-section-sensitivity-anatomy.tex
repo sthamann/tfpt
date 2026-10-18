@@ -1,0 +1,246 @@
+\section{Sensitivity anatomy}
+\label{sec:sensitivity}
+
+The charged and neutral branching ratios respond differently to the kernel
+parameters. Schematically:
+\begin{equation}
+\label{eq:sensitivity}
+\frac{\partial\ln\BR(K_L)}{\partial\ln\bar\eta}\;=\;2,
+\qquad
+\frac{\partial\ln\BR(K^+)}{\partial\ln\bar\eta}\;\approx\;1.4,
+\end{equation}
+so the neutral channel is the sharper probe of $\bar\eta$ and hence of
+$\sin\delta_{\mathrm{CKM}}$.
+
+Because $\delta_{\mathrm{CKM}}$ on the TFPT branch has the structure
+$\pi/3+3\lambda_C^2+\cdots$, a tension in $\BR(K_L)$ would
+propagate directly into either the holonomy base phase $\pi/3$
+or the transport area correction $3\lambda_C^2$.
+Conversely, the charged channel has a sizeable charm-sector
+admixture through $P_c+\delta P_{c,u}$ and is therefore a less clean
+probe of the CP phase alone, but a stronger test of the overall CKM norm.
+
+The $2\sigma$ tensions in $A$, $\bar\rho$, and $\delta$ visible in
+\Cref{tab:wolfenstein} are not fatal but make the rare kaon corridor a
+genuinely discriminating test: NA62 precision data will push the comparison
+from ``consistent'' to ``confirmed or excluded''.
+
+
+\section{Falsification matrix}
+\label{sec:falsification}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+    >=Latex,
+    kill/.style={draw=red!65!black, thick, rounded corners=3pt,
+        fill=red!6, align=center, text width=3.5cm, minimum height=1.0cm,
+        font=\small},
+    kernelnode/.style={draw=blue!60!black, thick, rounded corners=3pt,
+        fill=blue!5, align=center, text width=3.5cm, minimum height=1.0cm,
+        font=\small},
+    pressure/.style={draw=orange!70!black, thick, rounded corners=3pt,
+        fill=orange!6, align=center, text width=3.5cm, minimum height=1.0cm,
+        font=\small},
+    arrlabel/.style={font=\scriptsize, fill=white, inner sep=1.5pt,
+        text=gray!70!black},
+]
+\node[kernelnode] (seed) at (0,0) {\textbf{Kernel seed}\\$\phiz\to\lambda_C$};
+\node[kernelnode] (phase) at (4.5,0) {\textbf{Holonomy phase}\\$\delta_{\mathrm{CKM}}=1.198$ rad};
+
+\node[pressure] (kplus) at (0,-2.2)
+    {\textbf{$\BR(K^+)$}\\$=9.40\times10^{-11}$\\NA62};
+\node[kill] (kl) at (4.5,-2.2)
+    {\textbf{$\BR(K_L)$}\\$=3.47\times10^{-11}$\\KOTO / KOTO\,II};
+
+\node[pressure] (gn) at (2.25,-4.2)
+    {\textbf{GN ratio}\\$\BR(K_L)/\BR(K^+)=0.369$\\isospin corridor};
+
+\draw[->, thick, blue!50!black] (seed) -- (kplus)
+    node[arrlabel, midway, left=1pt]{$A^2\lambda^5$};
+\draw[->, thick, blue!50!black] (seed) -- (kl)
+    node[arrlabel, midway, left=2pt, pos=0.35]{$\lambda$};
+\draw[->, thick, blue!50!black] (phase) -- (kl)
+    node[arrlabel, midway, right=1pt]{$\sin\delta$};
+\draw[->, thick, blue!50!black] (phase) -- (kplus)
+    node[arrlabel, midway, right=2pt, pos=0.35]{$\cos\delta$};
+
+\draw[->, thick, orange!60!black] (kplus) -- (gn);
+\draw[->, thick, red!50!black] (kl) -- (gn);
+
+\node[font=\scriptsize\itshape, text=red!60!black, anchor=north]
+    at (2.25,-5.1) {all three rows must be mutually consistent};
+\end{tikzpicture}
+\caption{Falsification dependency graph. Blue anchors feed both branching
+ratio predictions. The GN ratio provides a correlated cross-check.
+A failure at any node propagates upward into the TFPT flavor bridge.}
+\label{fig:falsification-graph}
+\end{figure}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.21\linewidth}>{\raggedright\arraybackslash}p{0.23\linewidth}>{\centering\arraybackslash}p{0.13\linewidth}>{\raggedright\arraybackslash}Y@{}}
+\toprule
+Test & Kill criterion & Depends on & Consequence if failed \\
+\midrule
+$\BR(K^+)$ outside $[7,12]\times 10^{-11}$
+  & stable NA62 result
+  & CKM point
+  & breaks the full TFPT flavor bridge \\[4pt]
+$\BR(K_L)$ incompatible with TFPT point
+  & KOTO / KOTO\,II result
+  & $\im\lambda_t$ (phase)
+  & breaks the holonomy-phase prediction \\[4pt]
+GN ratio $>4.3$
+  & combined $K^+/K_L$ measurement
+  & isospin
+  & new-physics operator beyond SM basis \\[4pt]
+$\delta_{\mathrm{CKM}}$ excluded at ${\ge}3\sigma$
+  & global unitarity-triangle fit
+  & holonomy grammar
+  & breaks the $\mathbb Z_6$ transport base phase \\[4pt]
+$\lambda_C$ shifts by $>3\sigma$
+  & improved $|V_{us}|$ determination
+  & kernel seed $\phiz$
+  & breaks the seed-chain anchor \\
+\bottomrule
+\end{tabularx}
+\caption{Falsification matrix. The corridor $[7,12]\times10^{-11}$
+is an operational test window around the central $K^+$ prediction,
+not a formal confidence interval.
+The last two rows are upstream kernel anchors whose failure would
+propagate into the rare kaon prediction.}
+\label{tab:falsification}
+\end{table}
+
+\begin{itemize}[leftmargin=1.6em, itemsep=0.3em]
+\item The sharpest single kill test is a stable NA62 measurement of
+$\BR(K^+)$ outside $[7,12]\times 10^{-11}$. This operational corridor
+is chosen to bracket the TFPT central value including the dominant
+short-distance and CKM parametric uncertainties; it is not a formal
+$n\sigma$ band.
+The current NA62 observation $(13.0^{+3.3}_{-3.0})\times 10^{-11}$
+is consistent with the TFPT value at $1\sigma$.
+\item The cleanest CP-phase test is the $K_L$ channel: because
+$\BR(K_L)\propto(\im\lambda_t)^2\propto\bar\eta^2$, any
+disagreement between a future KOTO\,II measurement and
+$\num{3.47e-11}$ directly constrains $\sin\delta_{\mathrm{CKM}}$.
+\item A GN-violating measurement ($\BR(K_L)/\BR(K^+)>4.3$) would not
+kill TFPT specifically but would signal new-physics operators outside
+the SM basis used in the matching.
+\item The upstream kernel anchors $\lambda_C$ and $\delta_{\mathrm{CKM}}$
+are independently testable: $\lambda_C$ through precision $|V_{us}|$
+measurements, and $\delta_{\mathrm{CKM}}$ through the global CKM fit.
+The $\delta$ tension is currently at $2.0\sigma$ (\Cref{tab:wolfenstein}).
+\end{itemize}
+
+
+\section{Experimental landscape}
+\label{sec:experiment}
+
+The NA62 experiment at CERN has observed the decay
+$K^+\to\pi^+\nu\bar\nu$ with a combined (2016--2022)
+branching ratio measurement of \cite{NA62obs}
+\[
+\BR(K^+\to\pi^+\nu\bar\nu)
+=
+(13.0^{+3.3}_{-3.0})\times 10^{-11},
+\]
+based on 51 signal candidates at a significance exceeding $5\sigma$.
+The TFPT prediction of $\num{9.40e-11}$ is consistent with this
+measurement at the $1\sigma$ level and will be tested with improving
+precision as NA62 continues data-taking.
+
+The $K_L\to\pi^0\nu\bar\nu$ channel is pursued by the KOTO experiment
+at J-PARC, which currently sets the direct limit \cite{KOTO}
+\[
+\BR(K_L\to\pi^0\nu\bar\nu)<\num{2.2e-9}
+\quad\text{(90\% C.L.)},
+\]
+still more than an order of magnitude above the SM and TFPT predictions.
+The planned successor KOTO\,II aims to reach SM sensitivity, at which
+point the TFPT prediction of $\num{3.47e-11}$ becomes a genuine
+pressure test.
+
+The combined $(K^+,K_L)$ measurement in the Grossman--Nir plane
+provides the most powerful correlated test: the TFPT point
+$(\num{9.40e-11},\,\num{3.47e-11})$ is a fixed target that can be
+confronted with the experimental ellipse as both channels are measured.
+
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+\begin{tcolorbox}[colback=gray!4, colframe=gray!60, breakable,
+    title={\textbf{Summary}}, fonttitle=\bfseries]
+\begin{enumerate}[label=\arabic*., leftmargin=1.6em, itemsep=0.3em]
+\item The TFPT minimal kernel, through the retained seed $\phiz$ and the
+$\mathbb Z_6$ family transport grammar, fixes the full CKM matrix---including
+the exact apex coordinates $(\bar\rho,\bar\eta)=(0.1374,\,0.3509)$---without
+fitting to flavor data.
+\item The exact CKM point, combined with standard modern short-distance input
+($X_t$, $P_c$, $\delta P_{c,u}$, $\Delta_{\mathrm{EM}}$) and the
+derived factor $r_{\epsilon_K}^{\mathrm{TFPT}}=0.997$,
+yields TFPT-fixed branching ratios:
+$\BR(K^+)=\num{9.40e-11}$ and $\BR(K_L)=\num{3.47e-11}$.
+\item The sharpest falsification handle is a stable NA62 measurement of
+$\BR(K^+)$ outside the operational test corridor $[7,12]\times 10^{-11}$,
+or a KOTO\,II result for $\BR(K_L)$ incompatible with the predicted
+GN-plane point, either of which would break the TFPT flavor bridge.
+The current NA62 observation $(13.0^{+3.3}_{-3.0})\times 10^{-11}$
+is consistent at $1\sigma$.
+\end{enumerate}
+\end{tcolorbox}
+
+
+\begin{thebibliography}{9}
+
+\bibitem{TFPT}
+S.~Hamann and A.~Rizzo,
+\textit{TFPT: A carrier-first compiler for the Standard Model and beyond},
+(2026).
+
+\bibitem{BrodGorbahnStamou}
+J.~Brod, M.~Gorbahn, and E.~Stamou,
+Updated Standard Model prediction for $K\to\pi\nu\bar\nu$ and
+$\epsilon_K$,
+\textit{PoS} \textbf{BEAUTY2020} (2021) 056;
+see also \textit{Phys.\ Rev.\ D} \textbf{105} (2022) 014036.
+
+\bibitem{BurasRareKaons}
+A.~J.~Buras, D.~Buttazzo, J.~Girrbach-Noe, and R.~Knegjens,
+$K^+\to\pi^+\nu\bar\nu$ and $K_L\to\pi^0\nu\bar\nu$ in the Standard
+Model: status and perspectives,
+\textit{JHEP} \textbf{11} (2015) 033.
+
+\bibitem{GrossmanNir}
+Y.~Grossman and Y.~Nir,
+$K_L\to\pi^0\nu\bar\nu$ beyond the Standard Model,
+\textit{Phys.\ Lett.\ B} \textbf{398} (1997) 163.
+
+\bibitem{NA62obs}
+NA62 Collaboration,
+Observation of the decay $K^+\to\pi^+\nu\bar\nu$,
+CERN-EP-2024-252 (2024).
+
+\bibitem{KOTO}
+KOTO Collaboration,
+Search for $K_L\to\pi^0\nu\bar\nu$ and
+$K_L\to\pi^0 X^0$ decays at the J-PARC KOTO experiment,
+\textit{Phys.\ Rev.\ Lett.} \textbf{126} (2021) 121801.
+
+\bibitem{InamiLim}
+T.~Inami and C.~S.~Lim,
+Effects of superheavy quarks and leptons in low-energy weak processes
+$K_L\to\mu\bar\mu$, $K^+\to\pi^+\nu\bar\nu$ and $K^0\leftrightarrow\bar K^0$,
+\textit{Prog.\ Theor.\ Phys.} \textbf{65} (1981) 297.
+
+\bibitem{PDG2025}
+S.~Navas et al.\ (Particle Data Group),
+\textit{Review of Particle Physics},
+\textit{Phys.\ Rev.\ D} \textbf{110} (2024) 030001, updated 2025.
+
+\end{thebibliography}
+
+\end{document}

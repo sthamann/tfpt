@@ -1,0 +1,375 @@
+\subsection{M\"obius Mass Relations}
+%-----------------------------------------------------------------------------
+
+\begin{corollary}{Mass Ratios from M\"obius Map}{massratios}
+The M\"obius map $M_y(\delta) = (y + \delta)/(y - \delta)$ evaluated at 
+cusps $y \in \{1, 1/3, 2/3\}$ yields mass ratios:
+
+\begin{center}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Ratio} & \textbf{M\"obius Form} & \textbf{Prediction} & \textbf{Empirical} & \textbf{Status}\\
+\midrule
+$m_\tau/m_\mu$ & $(M_1(\delta))^2$ & 16.82 & 16.82 & anchor\\
+$m_\mu/m_e$ & $(M_1(\delta)|M_{1/3}(\delta)|)^2$ & 197.6 & $\approx 207$ & pre-RG\\
+$m_c/m_u$ & $(M_{2/3}(\delta))^2$ & 470.5 & $\approx 588$ & scheme-dep.\\
+$m_t/m_c$ & $(2/3/(2/3-\delta))^2$ & 128.7 & $\approx 136$ & scheme-dep.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Status key:}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textit{anchor}: Input used to fix $\delta$; consistency check only.
+    \item \textit{pre-RG}: Prediction before RG running; final comparison requires 
+        evolving to common scale.
+    \item \textit{scheme-dep.}: Quark masses are renormalization-scheme dependent 
+        ($\overline{\text{MS}}$ vs.\ pole mass). Raw ratios are indicative; 
+        precise comparison requires full RG treatment.
+\end{itemize}
+\end{corollary}
+
+%-----------------------------------------------------------------------------
+\subsection{Cabibbo Angle}
+%-----------------------------------------------------------------------------
+
+\begin{corollary}{Cabibbo Angle}{Cabibbo}
+The Cabibbo parameter is fixed by the birefringence invariant $\phiz$:
+\begin{equation}
+\lambda \equiv \sin\theta_C
+:= \sqrt{\phiz(1-\phiz)}
+:= \sqrt{4\pi\beta_{\text{rad}}\left(1-4\pi\beta_{\text{rad}}\right)}
+:= 0.22437623688472177\ldots
+\end{equation}
+Compared to the PDG reference value, this is a sub-permille level deviation (status: solid).
+\end{corollary}
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60, 
+    title={\textbf{CKM Conventions and Scale (Clarification)}}, fonttitle=\bfseries\small]
+\textbf{Convention:} We use the PDG/Wolfenstein identification $\lambda = |V_{us}|$.
+
+\textbf{Scope:} TFPT uses the Cabibbo relation above as a low-energy prediction anchored in $\phiz$; it does \emph{not} compute the full CKM fit, RG evolution of CKM parameters, or threshold matching.
+Any extension to a full CKM prediction must specify scheme and reference scale (e.g.\ $\overline{\mathrm{MS}}$ at $M_Z$) and propagate experimental/hadronic uncertainties.
+\textbf{Disposition:} A publication-grade CKM matrix reconstruction is treated as a separate, RG-complete program; the verification suite ships a deterministic RG-dressed texture pipeline (PyR@TE-generated two-loop betas with explicit threshold bookkeeping and a declared reference-scale comparison) to make the conventions and extraction steps explicit.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60,
+    title={\textbf{Convention Lock (Holdout Protocol; avoids ``convention shopping'')}}, fonttitle=\bfseries\small]
+\textbf{Problem:} Even if all candidates are discrete, a ``pick the smallest $\chi^2$'' rule can accidentally select a convention that fits a subset of entries but fails badly on the remaining ones.
+
+\textbf{Suite protocol (unconventional audit):} We therefore run a deterministic holdout scan (\texttt{ux\_flavor\_holdout\_search}) with
+\[
+\text{fit keys}=\{V_{ud},V_{us},V_{cd},V_{cs},V_{cb},V_{ts},V_{tb}\},\qquad
+\text{holdout}=\{V_{ub},V_{td}\}.
+\]
+\textbf{Outcome:} The best-fit candidate (\texttt{koide\_pi\_over\_12}) achieves $\chi^2_{\rm fit}\simeq 2.48$ but catastrophically fails the holdout ($\chi^2_{\rm holdout}\simeq 186$). The stable convention is \texttt{pi\_times\_1\_minus\_delta} with $\chi^2_{\rm total}\simeq 5.11$ and $\chi^2_{\rm holdout}\simeq 2.38$, and is treated as the preferred default (\texttt{v107sm\_default}) rather than as a post-hoc pick.
+\end{tcolorbox}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={group size=2 by 1, horizontal sep=1.2cm},
+    ybar,
+    width=0.48\textwidth,
+    height=0.42\textwidth,
+    xmin=0.5, xmax=4.5,
+    xtick={1,2,3,4},
+    xticklabels={
+        \texttt{pi\_times\_1\_minus\_delta},
+        \texttt{koide\_pi\_over\_12},
+        \texttt{pi\_times\_delta},
+        \texttt{2pi\_times\_delta}
+    },
+    x tick label style={rotate=25, anchor=east, font=\scriptsize},
+    grid=both,
+    legend style={font=\scriptsize},
+]
+\nextgroupplot[
+    title={fit $\chi^2$},
+    ylabel={$\chi^2_{\rm fit}$},
+    ymin=0, ymax=6.2,
+]
+\addplot coordinates {
+    (1,2.7273332483922754)
+    (2,2.479112421420773)
+    (3,4.05899978942247)
+    (4,5.162857066748017)
+};
+
+\nextgroupplot[
+    title={holdout $\chi^2$},
+    ylabel={$\chi^2_{\rm holdout}$},
+    ymode=log,
+    ymin=1, ymax=1000,
+]
+\addplot coordinates {
+    (1,2.378204155291164)
+    (2,168.10522472179576)
+    (3,173.9429926914698)
+    (4,347.6044990986585)
+};
+\end{groupplot}
+\end{tikzpicture}
+\caption{Unconventional holdout scan (\texttt{ux\_flavor\_holdout\_search}): discrete CKM convention candidates ranked by fit-$\chi^2$ with explicit holdout penalties.}
+\end{figure}
+
+\subsubsection{Suite benchmark: RG-dressed CKM pipeline (explicit conventions)}
+The shipped suite includes a deterministic CKM reconstruction pipeline with declared UV textures, two-loop RG dressing, and a reference-scale comparison at $M_Z$ (module \texttt{ckm\_full\_pipeline}). The baseline benchmark gives a CKM matrix close to PDG at the level quantified by the reported $\chi^2=\num{\TFPTCKMchiTwo}$.
+
+\begin{tcolorbox}[colback=yellow!3, colframe=yellow!60!black, breakable,
+title={\textbf{Benchmark hygiene: explicit external phase override (no hidden fit)}}, fonttitle=\bfseries\small]
+\textbf{What is compared:} the pipeline benchmarks the \emph{magnitudes} $|V_{ij}|$ at a declared reference scale (native $m_t$, comparison at $M_Z$) under a fully explicit RG/matching policy.
+
+\textbf{External anchor (declared):} the CKM CP phase is currently anchored by a declared convention,
+\[
+\delta_{\mathrm{CKM}} := \delta_{\mathrm{CP}}(\mathrm{PDG}) = \pi/3,
+\]
+i.e.\ the suite runs in \texttt{delta\_mode=external\_delta\_cp\_override} for this benchmark (report in Appendix~\ref{app:repro}).
+
+\textbf{Status:} this section is therefore a \emph{benchmark pipeline} (deterministic, audited, no continuous fitting), not a closed TFPT prediction of $\delta_{\mathrm{CKM}}$. Replacing the external phase override by a discrete topological phase selection is an explicit roadmap item.
+\end{tcolorbox}
+
+\TFPTCKMMatrixBlock
+
+\pgfplotstableread[col sep=space, row sep=\\]{
+x y residual label\\
+d u 0.9149958771 +0.91\\
+s u -0.9363431453 -0.94*\\
+b u -0.7995361673 -0.80*\\
+d c -0.9058922343 -0.91\\
+s c 0.9249081261 +0.92\\
+b c -0.1595473600 -0.16*\\
+d t -2.1046936070 -2.10*\\
+s t -0.0684426627 -0.07\\
+b t 0.1561092171 +0.16\\
+}\CkmResiduals
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    view={0}{90},
+    width=0.6\linewidth,
+    height=0.55\linewidth,
+    xlabel={d, s, b},
+    ylabel={u, c, t},
+    symbolic x coords={d,s,b},
+    symbolic y coords={u,c,t},
+    xtick=data,
+    ytick=data,
+    title={CKM residuals (pred--ref) / $\sigma$},
+    colormap/hot,
+    colorbar,
+    colorbar style={ylabel={$\sigma$ units}},
+]
+\addplot[
+    matrix plot*,
+    mesh/cols=3,
+    point meta=explicit,
+    nodes near coords,
+    nodes near coords align={center},
+    nodes near coords={\pgfmathprintnumber[fixed,precision=2,showpos]{\pgfplotspointmeta}}
+] table[x=x,y=y,meta=residual] {\CkmResiduals};
+\end{axis}
+\end{tikzpicture}
+\caption{CKM residuals (suite, RG-dressed). Deviation in $\sigma$ units at the reference scale $M_Z$.}
+\label{fig:ckm-residuals}
+\end{figure}
+
+\TFPTYukawaTextureBlock
+
+\TFPTYukawaHeatmapPlot
+
+\subsubsection{\texorpdfstring{Rare Kaon Decays: $K\to\pi\nu\bar{\nu}$ as a clean flavor null test}{Rare Kaon Decays: K to pi nu nu as a clean flavor null test}}
+\label{sec:rare-kaon}
+
+The ultra clean modes $K^+ \to \pi^+ \nu\bar{\nu}$ and $K_L \to \pi^0 \nu\bar{\nu}$ provide
+a stringent test of the TFPT flavor architecture, because long-distance hadronic uncertainties
+are strongly suppressed (see the companion note \cite{rareKaonNote2025}).
+
+We use the standard short-distance expression
+\begin{equation}
+\mathrm{BR}(K^+ \to \pi^+ \nu\bar{\nu}) =
+\kappa_+\left[
+\left(\frac{\mathrm{Im}\,\lambda_t}{\lambda^5}X_t\right)^2+
+\left(\frac{\mathrm{Re}\,\lambda_c}{\lambda}P_c+\frac{\mathrm{Re}\,\lambda_t}{\lambda^5}X_t\right)^2
+\right],
+\end{equation}
+with $\lambda_i := V_{is}^\ast V_{id}$ and $\lambda \equiv |V_{us}|$. The CKM inputs for
+$\lambda_t$ and $\lambda_c$ are taken from the benchmark matrix in Sec.~7.3.1
+(suite \texttt{ckm\_full\_pipeline}), and we adopt the Buras normalization in which the
+short-distance prefactors $\kappa_+$ and $\kappa_L$ already include the overall $\lambda^8$
+scaling and phase-space/isospin factors (so the explicit $\lambda$ and $\lambda^5$ factors
+above are not double-counted).
+
+For the neutral mode we use
+\begin{equation}
+\mathrm{BR}(K_L \to \pi^0 \nu\bar{\nu}) =
+\kappa_L\left(\frac{\mathrm{Im}\,\lambda_t}{\lambda^5}X_t\right)^2.
+\end{equation}
+
+Using the TFPT Cabibbo value from $\phiz$,\footnote{The companion note
+\cite{rareKaonNote2025} uses the v2.5 Cabibbo approximation
+$\lambda \simeq \sqrt{\varphi_0}(1-\varphi_0/2)$; the difference is sub-permille and does not
+change the quoted bands.}
+\begin{equation}
+\lambda_{\mathrm{TFPT}}=\sqrt{\phiz(1-\phiz)}=0.2243762369\ldots,
+\end{equation}
+and benchmark loop inputs $(X_t,P_c,\kappa_+,\kappa_L)$ as in the kaon literature
+\cite{brod2021,buras2022,na622024},
+the resulting branching ratios are
+\begin{equation}
+\mathrm{BR}(K^+ \to \pi^+ \nu\bar{\nu})_{\mathrm{TFPT}} = 8.22\times 10^{-11},
+\qquad
+\mathrm{BR}(K_L \to \pi^0 \nu\bar{\nu})_{\mathrm{TFPT}} = 2.65\times 10^{-11}.
+\end{equation}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    width=0.9\linewidth,
+    height=0.42\linewidth,
+    ymin=0, ymax=18,
+    symbolic x coords={TFPT, SM (Brod 2021), SM (Buras 2022), NA62},
+    xtick=data,
+    x tick label style={rotate=15, anchor=east, font=\scriptsize},
+    ylabel={BR($K^+\to\pi^+\nu\bar{\nu}$) [$\times 10^{-11}$]},
+    grid=major,
+    error bars/y dir=both,
+    error bars/y explicit,
+]
+\addplot+[fill=green!40!black] coordinates {
+    (TFPT,8.22) +- (0.0,0.0)
+    (SM (Brod 2021),7.73) +- (0.61,0.61)
+    (SM (Buras 2022),8.60) +- (0.42,0.42)
+    (NA62,13.0) +- (3.3,3.3)
+};
+\end{axis}
+\end{tikzpicture}
+\caption{Rare kaon decay comparison: TFPT prediction for $\mathrm{BR}(K^+ \to \pi^+ \nu\bar{\nu})$ versus Standard Model expectations and NA62 \cite{brod2021,buras2022,na622024}.}
+\label{fig:kaon_bar}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\linewidth,
+    height=0.52\linewidth,
+    xmin=0, xmax=10,
+    ymin=0, ymax=45,
+    xlabel={BR($K^+\to\pi^+\nu\bar{\nu}$) [$\times 10^{-11}$]},
+    ylabel={BR($K_L\to\pi^0\nu\bar{\nu}$) [$\times 10^{-11}$]},
+    grid=major,
+    legend style={font=\scriptsize},
+    legend pos=north west
+]
+    \addplot[gray, dashed, thick] coordinates {(0,0) (10,43)};
+    \addlegendentry{GN bound ($4.3\times$)}
+
+\addplot[only marks, mark=*, mark size=3pt, green!40!black] coordinates {(8.22,2.65)};
+    \addlegendentry{TFPT}
+\end{axis}
+\end{tikzpicture}
+\caption{Charged vs.\ neutral rare-kaon correlation with the Grossman--Nir bound line.}
+\label{fig:kaon_correlation}
+\end{figure}
+
+%-----------------------------------------------------------------------------
+\subsection{PMNS Neutrino Mixing: TM1 Pattern}
+%-----------------------------------------------------------------------------
+
+\begin{tcolorbox}[colback=blue!3, colframe=blue!50!black, 
+    title={\textbf{PMNS: closed sub-block vs.\ open interface}}, fonttitle=\bfseries]
+TFPT provides a \emph{closed} prediction for $(\theta_{13},\theta_{12})$ via a single kernel identity plus the TM1 pattern. The remaining PMNS degrees of freedom $(\theta_{23},\delta_{\mathrm{CP}})$ are treated as an \emph{open interface} requiring explicit Z$_3$-breaking and (eventually) correlated Yukawa/RG treatment; they must not be read as closed predictions at this stage.
+
+\textbf{Key identity} (from $\beta_{\text{rad}} = \phiz/(4\pi)$):
+\begin{equation}
+    \sin^2\theta_{13} = 4\pi\,\beta_{\text{rad}}\, e^{-\gamma(0)} 
+    = \frac{\phiz}{8\pi\cthree}\, e^{-\gamma(0)} = \num[round-mode=places,round-precision=6]{\TFPTsinSqThetaThirteen}
+\end{equation}
+where $\gamma(0)=g/(g+1)=5/6$ is fixed by holonomy degeneracy (Definition~\ref{def:E8cascade}; not fitted). 
+This predicts $\theta_{13} \approx 8.74^\circ$.
+
+\textbf{TM1 sum rule} (parameter-free $\theta_{12}$):
+\begin{equation}
+    \sin^2\theta_{12} = \frac{1}{3}\bigl(1 - 2\sin^2\theta_{13}\bigr) = 0.318
+\end{equation}
+
+\textbf{Leading-order (interface) values:} Z$_3$ symmetry gives $\sin^2\theta_{23}=0.5$ and $\delta_{\mathrm{CP}}=\pm 90^\circ$ at leading order, but these are not treated as closed outputs without the breaking corrections below.
+
+\medskip
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Category} & \textbf{Quantity} & \textbf{Status}\\
+\midrule
+Closed (kernel + TM1) & $(\sin^2\theta_{13},\sin^2\theta_{12})$ & derived / testable\\
+Open interface (requires Z$_3$ breaking + RG) & $(\theta_{23},\delta_{\mathrm{CP}})$ & candidates / scan (not closed)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Parameter} & \textbf{TFPT} & \textbf{Experiment} & \textbf{Deviation} & \textbf{Status}\\
+\midrule
+$\sin^2\theta_{13}$ & 0.02311 & 0.0220 & $+5.04\%$ & \textbf{closed (testable)}\\
+$\sin^2\theta_{12}$ & 0.318 & 0.307 & $+3.56\%$ & \textbf{closed (derived)}\\
+$\sin^2\theta_{23}$ & 0.500 (LO) & 0.546 & $-8.4\%$ & \textbf{open interface}\\
+$\delta_{\text{CP}}$ & $\pm 90^\circ$ (LO) & $\sim 195^\circ$ & --- & \textbf{open interface}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Refinement path}: The $\theta_{23}$ deviation and $\delta_{\mathrm{CP}}$ phase require 
+Z$_3$ breaking corrections of order $\phiz/6 \approx 0.009$, which shift $\theta_{23}$ toward 
+the experimental value. Full treatment requires the CKM--PMNS texture correlation via 
+Yukawa RG running (see Appendix~\ref{app:flavor}).
+\end{tcolorbox}
+
+\pgfplotstableread[col sep=space, row sep=\\]{
+x residual label\\
+s12 0.9106424912 +0.91*\\
+s13 1.5235704542 +1.52*\\
+s23 0.0920007924 +0.09*\\
+dcp 0.2051282051 +0.21*\\
+}\PmnsResiduals
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    width=0.8\linewidth,
+    height=0.25\linewidth,
+    ylabel={$\sigma$},
+    symbolic x coords={s12,s13,s23,dcp},
+    xtick=data,
+    xticklabels={$\sin^2\theta_{12}$,$\sin^2\theta_{13}$,$\sin^2\theta_{23}$,$\delta_{\mathrm{CP}}$},
+    ymin=0, ymax=1.8,
+    title={PMNS residuals (pred--ref) / $\sigma$},
+    grid=major
+]
+\addplot[
+    fill=blue!60,
+    point meta=y,
+    nodes near coords,
+    nodes near coords align={center},
+    nodes near coords={\pgfmathprintnumber[fixed,precision=2,showpos]{\pgfplotspointmeta}}
+] table[x=x,y=residual] {\PmnsResiduals};
+\end{axis}
+\end{tikzpicture}
+\caption{PMNS residuals (suite, RG-dressed). $\sigma$-level deviations from NuFIT reference.}
+\label{fig:pmns-residuals}
+\end{figure}
+
+\TFPTZthreePermutationMatrix
+
+\TFPTPMNSVariantTable
+
+%=============================================================================

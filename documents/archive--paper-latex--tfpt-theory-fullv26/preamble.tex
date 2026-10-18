@@ -1,0 +1,601 @@
+%!TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+% ===== PACKAGES =====
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{groupplots}
+\usetikzlibrary{arrows.meta,positioning,decorations.markings,decorations.pathmorphing,calc,patterns,shapes.geometric}
+
+% Define photon line style for Feynman diagrams
+\tikzset{
+    photon/.style={decorate, decoration={snake, amplitude=1.5pt, segment length=5pt}}
+}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{siunitx}
+\sisetup{
+    detect-all,
+    round-mode = figures,
+    round-precision = 8,
+    exponent-mode = input,
+    exponent-product = \times,
+    group-separator = {\,},
+    group-minimum-digits = 4
+}
+\renewcommand{\_}{\string_\allowbreak}
+\DeclareRobustCommand{\codepath}[1]{\begingroup\Urlmuskip=0mu plus 1mu\relax\path{#1}\endgroup}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems,skins,breakable}
+
+% ===== SUITE-EXTRACTED SNIPPETS (v2.6) =====
+% Centralized numerics/tables/plots extracted from tfpt-suite outputs.
+% Inlined (standalone build): formerly \input{tfpt-v25-snippets.tex}
+% -----------------------------------------------------------------------------
+% TFPT v2.6 verification snippets
+% Auto-extracted from tfpt-suite report (mp.dps=80)
+% Usage: \input{tfpt-v25-snippets.tex} somewhere after packages (siunitx, booktabs, pgfplots, tikz, float, tcolorbox).
+
+% --- Numerics (high precision) ---
+\newcommand{\TFPTcThreeNum}{0.039788735772973833942220940843128590508614911435114112186916836014724199408556634}
+\newcommand{\TFPTvarphiTreeNum}{0.053051647697298445256294587790838120678153215246818816249222448019632265878075512}
+\newcommand{\TFPTdeltaTopNum}{0.00012030447954708205299788417891154719697454455297232339122853166568719135947912407}
+\newcommand{\TFPTvarphiZeroNum}{0.053171952176845527309292471969749667875127759799791139640450979685319457237554636}
+\newcommand{\TFPTbetaRadNum}{0.0042312895113954151087468182088050163950728077266837257698944229030526732721556263}
+\newcommand{\TFPTbetaDegNum}{0.24243503090092952849243152047951445246859512239848881592836053961070607871616298}
+\newcommand{\TFPTgAggNum}{-0.15915494309189533576888376337251436203445964574045644874766734405981889679763422654}
+\newcommand{\TFPTMOverMplNum}{0.000012564942083228448969980786638197975376707921748468781310516248914585154899192637}
+
+% alpha: baseline self-consistent and refined two-defect
+\newcommand{\TFPTalphaInvSelfNum}{137.03599410158383008148619622913336009409257904171246722475352841304700901323215}
+\newcommand{\TFPTalphaInvTwoDefNum}{137.0359981932435869110224146843726714996000114935956757208545827539450219077872}
+\newcommand{\TFPTalphaInvGOverFourNum}{137.03599921615843479026171751711397398605568500258186146747743646328176776397918}
+\newcommand{\TFPTalphaInvCODATANum}{137.035999177}
+\newcommand{\TFPTalphaInvCODATASigma}{0.000000021}
+\newcommand{\TFPTalphaPpmTwoDefNum}{-0.0071788173837323352413040312917307695904786165477907034361613291839588627323760663}
+\newcommand{\TFPTalphaPpmGOverFourNum}{0.00028575290453192123198929586322751817361006829116847864863933342766974073215940791}
+\newcommand{\TFPTalphaZGOverFourNum}{1.8646873709648437}
+\newcommand{\TFPTdeltaTwoGOverFourNum}{0.000000018091459748867855014525576506215873427709357460729151458474190949106463016708746}
+\newcommand{\TFPTdeltaTwoOptimalNum}{1.79529470934477993569067565574491365815939289267429e-8}
+\newcommand{\TFPTdeltaTwoOverDeltaTopNum}{1.49229248636677043432223527146417707405844271475241e-4}
+\newcommand{\TFPTkEffNum}{1.97984799374161166800213443338796550879953534211621}
+
+% alpha MSbar at MZ (primary comparison observable; alpha_precision_audit)
+\newcommand{\TFPTalphaBarFiveInvMZPredNum}{127.94051574588975237575597444353510021974456512094373031810385305362533848241133}
+\newcommand{\TFPTalphaBarFiveInvMZRefNum}{127.93}
+\newcommand{\TFPTalphaBarFiveInvMZRefSigma}{0.008}
+\newcommand{\TFPTalphaBarFiveInvMZZ}{1.314468236219047}
+
+% two-loop RG fingerprints
+\newcommand{\TFPTalphaThreePeVNum}{0.05243714153896733}
+\newcommand{\TFPTalphaThreePeVRelDevPercent}{1.3819515887516742}
+
+\newcommand{\TFPTmuCrossVarphiZeroGeV}{792005.555441517}
+\newcommand{\TFPTmuCrosscThreeGeV}{216030451.17273504}
+
+% R^2 / Starobinsky numbers (effective_action_r2)
+\newcommand{\TFPTeffRtwoCoeffDimless}{1055668997.2030925063285921958931697786482178917384505743565947290283792722955}
+\newcommand{\TFPTeffRtwoCoeffInAction}{527834498.60154625316429609794658488932410894586922528717829736451418963614867773}
+\newcommand{\TFPTalphaR}{117864.3622405491}
+
+% A_s for N=55..57
+% NOTE: TeX control sequence names cannot contain digits, so we spell out N values.
+\newcommand{\TFPTAsNfiftyfive}{2.0162081878496864e-9}
+\newcommand{\TFPTAsNfiftysix}{2.09019136432946e-9}
+\newcommand{\TFPTAsNfiftyseven}{2.165507571016076e-9}
+
+% --- Omega_b conjecture ---
+\newcommand{\TFPTOmegaBPred}{0.048940662665450112200545653760944651480054952073107413870556556782266783965399009}
+\newcommand{\TFPTOmegaBRef}{0.049301692328524438476424754994611856173233055557122787616860658651215012327847394}
+\newcommand{\TFPTOmegaBRefSigma}{0.0008568114274714093}
+\newcommand{\TFPTOmegaBZ}{0.42136420161876677}
+\newcommand{\TFPTCoeffFourPiMinusOne}{11.566370614359172953850573533118011536788677597500423283899778369231265625144836}
+
+% --- CKM pipeline (rg-dressed, MZ) ---
+\newcommand{\TFPTCKMA}{0.8164965809277260}
+\newcommand{\TFPTCKMrho}{0.1666666666666667}
+\newcommand{\TFPTCKMeta}{0.3333333333333333}
+\newcommand{\TFPTCKMchiTwo}{44.05176935606062}
+\newcommand{\TFPTCKMJarlskog}{2.767084e-5}
+
+% --- PMNS baseline + eps scan ---
+\newcommand{\TFPTsinSqThetaThirteen}{0.023108435158881104}
+\newcommand{\TFPTthetaThirteenDeg}{8.743693}
+\newcommand{\TFPTthetaTwelveDeg}{34.322526}
+\newcommand{\TFPTepsRad}{0.008861992029474254}
+\newcommand{\TFPTepsDeg}{0.5077547413674498}
+
+% =============================================================================
+% Tables and plots
+% =============================================================================
+
+% --- Core invariants table ---
+\newcommand{\TFPTCoreInvariantTable}{%
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+Symbol & Definition & Value \\
+\midrule
+$c_3$ & $1/(8\pi)$ & \num{\TFPTcThreeNum} \\
+$\varphi_{\mathrm{tree}}$ & $1/(6\pi)$ & \num{\TFPTvarphiTreeNum} \\
+$\delta_{\mathrm{top}}$ & $48c_3^4 = 3/(256\pi^4)$ & \num{\TFPTdeltaTopNum} \\
+$\varphi_0$ & $\varphi_{\mathrm{tree}}+\delta_{\mathrm{top}}$ & \num{\TFPTvarphiZeroNum} \\
+$\beta_{\mathrm{rad}}$ & $\varphi_0/(4\pi)$ & \num{\TFPTbetaRadNum} \\
+$\beta_{\mathrm{deg}}$ & $(180/\pi)\beta_{\mathrm{rad}}$ & \num{\TFPTbetaDegNum}\,$^\circ$ \\
+$g_{a\gamma\gamma}$ & $-4c_3=-1/(2\pi)$ & \num{\TFPTgAggNum} \\
+$M/\bar M_{\mathrm{Pl}}$ & $\sqrt{8\pi}\,c_3^4$ & \num{\TFPTMOverMplNum} \\
+\bottomrule
+\end{tabular}
+\caption{TFPT invariants and derived scales, mp.dps=80.}
+\end{table}%
+}
+
+% --- Alpha audit table (k-sensitivity + delta2) ---
+\newcommand{\TFPTAlphaAuditTable}{%
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}lllX@{}}
+\toprule
+Case & $\alpha^{-1}_{\mathrm{pred}}$ & ppm vs CODATA 2022 & Note \\
+\midrule
+one-defect truncation (baseline) & \num[round-mode=places,round-precision=12]{\TFPTalphaInvSelfNum} & \num[round-mode=places,round-precision=6]{-0.037000} & $\delta_2=0$ \\
+two-defect template ($g=4$) & \num[round-mode=places,round-precision=12]{\TFPTalphaInvTwoDefNum} & \num[round-mode=places,round-precision=6]{\TFPTalphaPpmTwoDefNum} & $\delta_2=\delta_{\mathrm{top}}^2$ \\
+two-defect derived ($g=5$) & \num[round-mode=places,round-precision=12]{\TFPTalphaInvGOverFourNum} & \num[round-mode=places,round-precision=6]{\TFPTalphaPpmGOverFourNum} & $\delta_2=\frac54\,\delta_{\mathrm{top}}^2$ \\
+targeted match & \num[round-mode=places,round-precision=9]{\TFPTalphaInvCODATANum} & 0 & requires $\delta_2=\num[round-mode=figures,round-precision=6]{\TFPTdeltaTwoOptimalNum}$ \\
+\bottomrule
+\end{tabularx}
+\caption{Fine-structure constant: baseline and two-defect refinements (suite default vs.\ theoryv3), plus the required second-order term for exact CODATA matching.}
+\end{table}%
+}
+
+% --- Alpha backreaction exponent sensitivity plot (ppm vs k) ---
+\newcommand{\TFPTAlphaSensitivityPlot}{%
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.9\linewidth,
+    xlabel={$k$ (backreaction exponent) in $\varphi(\alpha)=\varphi_{\mathrm{tree}}+\delta_{\mathrm{top}}e^{-k\alpha}$},
+    ylabel={ppm$(\alpha^{-1}(0))$ vs CODATA 2022},
+    grid=both,
+    xmin=-0.1, xmax=3.1,
+    ymin=-2.2, ymax=4.2,
+    xtick={0,1,1.5,2,2.5,3},
+    legend pos=south west,
+]
+\addplot+[mark=*] coordinates {
+    (0.0, 3.665371791638453)
+    (1.0, 1.8074246412353618)
+    (1.5, 0.883514212976573)
+    (2.0, -0.03703710120260405)
+    (2.5, -0.9542414840493093)
+    (3.0, -1.8681110743677323)
+};
+\addlegendentry{single-defect ($\delta_2=0$)}
+
+\addplot+[only marks, mark=star, mark size=4pt] coordinates {
+    (2.0, \TFPTalphaPpmTwoDefNum)
+};
+\addlegendentry{two-defect template ($g=4$: $\delta_2=\delta_{\mathrm{top}}^2$)}
+
+\addplot+[only marks, mark=diamond*, mark size=3.5pt] coordinates {
+    (2.0, \TFPTalphaPpmGOverFourNum)
+};
+\addlegendentry{derived partition ($g=5$: $\delta_2=\tfrac54\,\delta_{\mathrm{top}}^2$)}
+
+\addplot[gray, dashed] coordinates {(2.0,-2.2) (2.0,4.2)};
+\addlegendentry{$k=2$ (double cover)}
+
+\addplot[gray, dotted] coordinates {(\TFPTkEffNum,-2.2) (\TFPTkEffNum,4.2)};
+\addlegendentry{$k_{\mathrm{match}}\approx\num{\TFPTkEffNum}$ (diagnostic)}
+
+\addplot[black!50, dashed] coordinates {(-0.1,0) (3.1,0)};
+\end{axis}
+\end{tikzpicture}
+\caption{Backreaction exponent sensitivity for the CFE closure. The canonical value $k=2$ is fixed by the orientable double cover; $k_{\mathrm{match}}$ is the diagnostic value that would null the CODATA residual in the single-defect truncation.}
+\end{figure}%
+}
+
+% --- Bounce transfer function data plot (from bounce_perturbations) ---
+\newcommand{\TFPTTransferFunctionPlot}{%
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.9\linewidth,
+    xmode=log, ymode=log,
+    xlabel={$\hat k$},
+    ylabel={$T(\hat k)$},
+    grid=both,
+    legend pos=south east
+]
+\addplot+[only marks, mark=x, mark size=3.0pt, red] coordinates {
+    (0.1,    0.0032255772038632126)
+    (0.15199110829529336, 0.0035703003593638466)
+};
+\addlegendentry{scalar (flagged by Wronskian diagnostic)}
+\addplot+[mark=*] coordinates {
+    (0.23101297000831597, 0.00000000399020695466708)
+    (0.35111917342151316, 0.000013156269894230775)
+    (0.533669923120631,   0.03550967159062275)
+    (0.8111308307896873,  1.6127872665381955)
+    (1.2328467394420662,  1.0077896948137592)
+    (1.873817422860383,   0.9810730551587763)
+    (2.848035868435802,   1.004402539575707)
+    (4.328761281083057,   1.0055829625872563)
+    (6.5793322465756825,  1.006832617067307)
+    (10.0,                1.007882155814805)
+};
+\addlegendentry{scalar (kept)}
+\addplot+[mark=square*] coordinates {
+    (0.1,    147270.05495615443)
+    (0.15199110829529336, 53875.473521817745)
+    (0.23101297000831597, 2.1302554245702106)
+    (0.35111917342151316, 1.1806392634784857)
+    (0.533669923120631,   1.1598025598647947)
+    (0.8111308307896873,  1.0319915300605456)
+    (1.2328467394420662,  1.035501225860808)
+    (1.873817422860383,   1.008365931672867)
+    (2.848035868435802,   0.9883585969391012)
+    (4.328761281083057,   1.007608072068884)
+    (6.5793322465756825,  1.0065676931381393)
+    (10.0,                1.0018456357164773)
+};
+\addlegendentry{tensor}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounce transfer functions from \texttt{bounce\_perturbations}. The two lowest-$\hat k$ scalar points are shown but marked as flagged by the Wronskian diagnostic (numerical consistency check).}
+\end{figure}%
+}
+
+% --- CKM matrix (absolute values at MZ) ---
+\newcommand{\TFPTCKMMatrixBlock}{%
+\[
+|V_{\mathrm{CKM}}|_{M_Z} \approx
+\begin{pmatrix}
+0.9744963993 & 0.2243732867 & 0.003660041745 \\
+0.2242539933 & 0.9736379853 & 0.04170395759 \\
+0.008180108215 & 0.04105729915 & 0.9991233077
+\end{pmatrix}.
+\]
+}
+
+% --- Yukawa textures (UV, used in ckm_full_pipeline) ---
+\newcommand{\TFPTYukawaTextureBlock}{%
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60, breakable,
+title={\textbf{UV Yukawa texture used in the CKM pipeline}}, fonttitle=\bfseries\small, fontupper=\small]
+The baseline verification pipeline uses a minimal hierarchical UV texture in powers of the TFPT Cabibbo parameter $\lambda$:
+\[
+\mathrm{diag}(Y_u^{UV})=(\lambda^8,\lambda^4,1),\qquad \mathrm{diag}(Y_d^{UV})=(\lambda^4,\lambda^2,\lambda^2)
+\]
+Numerically (using the report value $\lambda=\num{0.22437623688472177}$), this is
+\begingroup
+\sisetup{round-mode=figures, round-precision=6}
+\setlength{\arraycolsep}{3pt}
+\[
+\begin{aligned}
+Y_u^{UV} &= \begin{pmatrix}
+\num{6.424138271064622e-06} & 0 & 0\\
+0 & \num{2.534588382965688e-03} & 0\\
+0 & 0 & \num{1}
+\end{pmatrix} \\
+|Y_d^{UV}| &= \begin{pmatrix}
+\num{2.469947253009908e-03} & \num{1.1296004835353472e-02} & \num{1.842636878200426e-04}\\
+\num{5.683915662027918e-04} & \num{4.901750807101264e-02} & \num{2.099573053237608e-03}\\
+\num{2.0733207252319703e-05} & \num{2.067017231076976e-03} & \num{5.030055887217518e-02}
+\end{pmatrix}
+\end{aligned}
+\]
+\endgroup
+The down type texture is left rotated by a CKM proxy at the UV scale: $Y_d^{UV}=V_{UV}\,\mathrm{diag}(Y_d^{UV})$ (phase carried by $V_{UV}$).
+\end{tcolorbox}%
+}
+
+% --- Yukawa texture heatmap (log10 magnitudes) ---
+\newcommand{\TFPTYukawaHeatmapPlot}{%
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\linewidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    title={$\log_{10}|Y_u^{UV}|$},
+    width=\linewidth,
+    height=0.9\linewidth,
+    xmin=0.5, xmax=3.5,
+    ymin=0.5, ymax=3.5,
+    xtick={1,2,3}, ytick={1,2,3},
+    y dir=reverse,
+    axis on top,
+    enlargelimits=false,
+    colormap/hot,
+    point meta min=-6, point meta max=0,
+    tick label style={font=\scriptsize},
+    title style={font=\small},
+    colorbar=false,
+]
+\addplot[
+    matrix plot*,
+    mesh/cols=3,
+    point meta=explicit,
+] coordinates {
+    (1,1) [-5.1921851] (2,1) [-6]         (3,1) [-6]
+    (1,2) [-6]         (2,2) [-2.5960926] (3,2) [-6]
+    (1,3) [-6]         (2,3) [-6]         (3,3) [0]
+};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.48\linewidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    title={$\log_{10}|Y_d^{UV}|$},
+    width=\linewidth,
+    height=0.9\linewidth,
+    xmin=0.5, xmax=3.5,
+    ymin=0.5, ymax=3.5,
+    xtick={1,2,3}, ytick={1,2,3},
+    y dir=reverse,
+    axis on top,
+    enlargelimits=false,
+    colormap/hot,
+    point meta min=-6, point meta max=0,
+    tick label style={font=\scriptsize},
+    title style={font=\small},
+    colorbar,
+    colorbar style={ylabel={$\log_{10}|Y|$}, yticklabel style={font=\scriptsize}, ylabel style={font=\scriptsize}},
+]
+\addplot[
+    matrix plot*,
+    mesh/cols=3,
+    point meta=explicit,
+] coordinates {
+    (1,1) [-2.6073123] (2,1) [-1.9470751] (3,1) [-3.7345602]
+    (1,2) [-3.2453524] (2,2) [-1.3096488] (3,2) [-2.6778690]
+    (1,3) [-4.6833335] (2,3) [-2.6846559] (3,3) [-1.2984272]
+};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\caption{Heatmap of $\log_{10}|Y_u^{UV}|$ and $\log_{10}|Y_d^{UV}|$ used by the \texttt{ckm\_full\_pipeline} benchmark.}
+\end{figure}%
+}
+
+% --- Z3 permutation matrix P (PMNS module) ---
+\newcommand{\TFPTZthreePermutationMatrix}{%
+\[
+P =
+\begin{pmatrix}
+0 & 1 & 0\\
+0 & 0 & 1\\
+1 & 0 & 0
+\end{pmatrix}.
+\]
+}
+
+% --- PMNS variant table ---
+\newcommand{\TFPTPMNSVariantTable}{%
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Variant & $\theta_{23}$ [deg] & $\Delta\theta_{23}$ [deg] & $\delta_{\mathrm{CP}}$ [deg] & $\Delta\delta$ [deg]\\
+\midrule
+baseline (TM1, Z3) & 45.0000 & 0.0000 & 90.0000 & 0.0000\\
+L\_R23(+eps) & 45.5078 & +0.5078 & 90.0000 & 0.0000\\
+L\_R23(-eps) & 44.4922 & -0.5078 & 90.0000 & 0.0000\\
+R\_R23(+eps) & 45.4243 & +0.4243 & 88.1896 & -1.8104\\
+R\_R23(-eps) & 44.5757 & -0.4243 & 91.8104 & +1.8104\\
+L\_R23(+eps)*Z3phase & 45.5078 & +0.5078 & 90.0000 & 0.0000\\
+L\_R23(-eps)*Z3phase & 44.4922 & -0.5078 & 90.0000 & 0.0000\\
+\bottomrule
+\end{tabular}
+\caption{PMNS Z3-breaking scan with $\epsilon=\varphi_0/6=\num{\TFPTepsRad}$ rad.}
+\end{table}%
+}
+
+% --- Omega_b table ---
+\newcommand{\TFPTOmegaBTable}{%
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+Quantity & Expression & Value \\
+\midrule
+$\Omega_b$ (TFPT conjecture) & $(4\pi-1)\,\beta_{\mathrm{rad}}$ & \num{\TFPTOmegaBPred} \\
+$\Omega_b$ (Planck-derived ref) & $\Omega_b h^2 / h^2$ & \num{\TFPTOmegaBRef} \,$\pm$\,\num{\TFPTOmegaBRefSigma} \\
+z-score (ref) & $(\Omega_{b,\mathrm{pred}}-\Omega_{b,\mathrm{ref}})/\sigma$ & \num[round-mode=places,round-precision=3]{\TFPTOmegaBZ} \\
+\bottomrule
+\end{tabular}
+\caption{Baryon density conjecture: numeric prediction and reference comparison.}
+\end{table}%
+}
+
+% --- k-calibration table (ell mapping) ---
+\newcommand{\TFPTkCalibrationTable}{%
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Target $\ell$ & required $a_0/a_t$ (scalar) & required $a_0/a_t$ (tensor) & $N=\ln(a_0/a_t)$ (scalar) \\
+\midrule
+2   & $6.978\times 10^{58}$ & $2.590\times 10^{56}$ & 135.493 \\
+30  & $4.652\times 10^{57}$ & $1.727\times 10^{55}$ & 132.785 \\
+700 & $1.994\times 10^{56}$ & $7.400\times 10^{53}$ & 129.635 \\
+\bottomrule
+\end{tabular}
+\caption{Mapping the bounce scale to CMB multipoles: required overall scaling $a_0/a_t$ to place features at given $\ell$ (from \texttt{k\_calibration}).}
+\end{table}%
+}
+
+% --- Torsion bounds table ---
+\newcommand{\TFPTTorsionBoundsTable}{%
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Component & bound on $|S_\mu|$ [GeV] & mapping note \\
+\midrule
+$S_T$ & $2.9\times 10^{-27}$ & direct $A_\mu$ bound \\
+$S_X$ & $2.1\times 10^{-31}$ & direct $A_\mu$ bound \\
+$S_Y$ & $2.5\times 10^{-31}$ & direct $A_\mu$ bound \\
+$S_Z$ & $1.0\times 10^{-29}$ & direct $A_\mu$ bound \\
+\bottomrule
+\end{tabular}
+\caption{Component-wise torsion bounds ingested by \texttt{torsion\_bounds\_mapping}; TFPT local vacuum prediction used in the suite is $S_\mu(\mathrm{today})=0$.}
+\end{table}%
+}
+
+% ===== SUITE MANIFEST (AUTO-GENERATED; reviewer-proof counts) =====
+% Produced by: tfpt-suite/tfpt_suite/suite_manifest.py (scans out/ + out_physics/).
+% Provides: \TFPTSuite* macros and \TFPTSuiteProblemModules.
+% Inlined (standalone build): formerly \input{../tfpt-suite/out/suite_manifest_summary.tex}
+% -----------------------------------------------------------------------------
+% AUTO-GENERATED by tfpt_suite.suite_manifest.py — do not edit by hand.
+% generated_at_utc: 2026-01-30T08:20:34.659965+00:00
+
+\newcommand{\TFPTSuiteModulesTotal}{136}
+\newcommand{\TFPTSuiteUniqueModulesTotal}{68}
+\newcommand{\TFPTSuiteUniqueModulesEngineering}{68}
+\newcommand{\TFPTSuiteUniqueModulesPhysics}{68}
+\newcommand{\TFPTSuiteChecksTotal}{702}
+\newcommand{\TFPTSuiteModulesWithWarn}{6}
+\newcommand{\TFPTSuiteModulesWithFail}{1}
+\newcommand{\TFPTSuitePlotsExpectedTotal}{52}
+\newcommand{\TFPTSuitePlotsPresentTotal}{52}
+\newcommand{\TFPTSuitePlotsMissingTotal}{0}
+\newcommand{\TFPTSuitePlotsInvalidTotal}{0}
+
+% Problem modules (WARN/FAIL) and plot inventory issues:
+\newcommand{\TFPTSuiteProblemModules}{%
+\begin{itemize}
+\item \textbf{FAIL modules:}
+\begin{itemize}
+\item \texttt{torsion\_condensate} (physics): checks=8, WARN=2, FAIL=1 (out: \texttt{out\_physics/torsion\_condensate})
+\end{itemize}
+\item \textbf{WARN modules:}
+\begin{itemize}
+\item \texttt{alpha\_on\_shell\_bridge} (engineering): checks=7, WARN=1, FAIL=0 (out: \texttt{out/alpha\_on\_shell\_bridge})
+\item \texttt{matching\_finite\_pieces} (engineering): checks=5, WARN=1, FAIL=0 (out: \texttt{out/matching\_finite\_pieces})
+\item \texttt{torsion\_condensate} (engineering): checks=8, WARN=3, FAIL=0 (out: \texttt{out/torsion\_condensate})
+\item \texttt{alpha\_on\_shell\_bridge} (physics): checks=7, WARN=1, FAIL=0 (out: \texttt{out\_physics/alpha\_on\_shell\_bridge})
+\item \texttt{matching\_finite\_pieces} (physics): checks=5, WARN=1, FAIL=0 (out: \texttt{out\_physics/matching\_finite\_pieces})
+\item \texttt{torsion\_condensate} (physics): checks=8, WARN=2, FAIL=1 (out: \texttt{out\_physics/torsion\_condensate})
+\end{itemize}
+\end{itemize}
+}%
+
+% ===== THEORYV3 MANIFEST (AUTO-GENERATED; compressed evidence layer) =====
+% Produced by: tfpt-suite/2.5/theoryv3/theoryv3_manifest.py (scans 2.5/theoryv3/out).
+% Provides: \TFPTTheoryVThree* macros and a compact evidence table.
+% Inlined (standalone build): formerly \input{../tfpt-suite/2.5/theoryv3/out/theoryv3_manifest_summary.tex}
+% -----------------------------------------------------------------------------
+% AUTO-GENERATED by tfpt-suite/2.5/theoryv3/theoryv3_manifest.py — do not edit by hand.
+% generated_at_utc: 2026-01-30T08:20:50.711198+00:00
+
+\newcommand{\TFPTTheoryVThreeModulesTotal}{14}
+\newcommand{\TFPTTheoryVThreeChecksTotal}{50}
+\newcommand{\TFPTTheoryVThreeChecksPassTotal}{41}
+\newcommand{\TFPTTheoryVThreeChecksWarnTotal}{9}
+\newcommand{\TFPTTheoryVThreeChecksFailTotal}{0}
+\newcommand{\TFPTTheoryVThreeModulesWithWarn}{3}
+\newcommand{\TFPTTheoryVThreeModulesWithFail}{0}
+\newcommand{\TFPTTheoryVThreePlotsExpectedTotal}{16}
+\newcommand{\TFPTTheoryVThreePlotsPresentTotal}{16}
+\newcommand{\TFPTTheoryVThreePlotsMissingTotal}{0}
+\newcommand{\TFPTTheoryVThreePlotsInvalidTotal}{0}
+
+% ===== COLORS =====
+\definecolor{axiomcolor}{RGB}{0,80,160}
+\definecolor{theoremcolor}{RGB}{0,120,60}
+\definecolor{corollarycolor}{RGB}{120,60,0}
+\definecolor{definitioncolor}{RGB}{100,0,100}
+\definecolor{topologyblue}{RGB}{50,100,180}
+\definecolor{geometrygreen}{RGB}{50,150,80}
+\definecolor{quantumorange}{RGB}{220,120,40}
+\definecolor{observablepurple}{RGB}{140,60,160}
+
+% ===== THEOREM ENVIRONMENTS =====
+\newtcbtheorem[number within=section]{axiom}{Axiom}{
+    colback=axiomcolor!5,
+    colframe=axiomcolor,
+    fonttitle=\bfseries,
+    separator sign={.},
+    description delimiters parenthesis
+}{ax}
+
+\newtcbtheorem[number within=section]{theorem}{Theorem}{
+    colback=theoremcolor!5,
+    colframe=theoremcolor,
+    fonttitle=\bfseries,
+    separator sign={.},
+    description delimiters parenthesis
+}{thm}
+
+\newtcbtheorem[number within=section]{corollary}{Corollary}{
+    colback=corollarycolor!5,
+    colframe=corollarycolor,
+    fonttitle=\bfseries,
+    separator sign={.},
+    description delimiters parenthesis
+}{cor}
+
+\newtcbtheorem[number within=section]{lemma}{Lemma}{
+    colback=theoremcolor!5,
+    colframe=theoremcolor,
+    fonttitle=\bfseries,
+    separator sign={.},
+    description delimiters parenthesis
+}{lem}
+
+\newtcbtheorem[number within=section]{definition}{Definition}{
+    colback=definitioncolor!5,
+    colframe=definitioncolor,
+    fonttitle=\bfseries,
+    separator sign={.},
+    description delimiters parenthesis
+}{def}
+
+\newenvironment{remark}{\par\smallskip\noindent\textbf{Remark.}}{\par\smallskip}
+
+% ===== COMMANDS =====
+\newcommand{\Mpl}{\bar{M}_{\mathrm{Pl}}}
+\newcommand{\cthree}{c_3}
+\newcommand{\phiz}{\varphi_0}
+\newcommand{\phitree}{\varphi_{\mathrm{tree}}}
+\newcommand{\deltatop}{\delta_{\mathrm{top}}}
+\newcommand{\bone}{b_1}
+\newcommand{\gagg}{g_{a\gamma\gamma}}
+
+% ===== TITLE =====
+\title{%
+    \textbf{Topological Fixed Point Theory (TFPT)}\\[0.5em]
+    \Large A Parameter-Free Derivation of the Fine-Structure Constant\\
+    from Topology, Geometry, and Quantum Consistency
+}
+\author{%
+    Stefan Hamann \and Alessandro Rizzo
+}
+\date{Version 2.6 --- 30 January 2026}
+

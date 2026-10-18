@@ -1,0 +1,212 @@
+\section{Existence of equilibrium states}
+
+\begin{theorem}[Ground and KMS states]
+\label{thm:states}
+The infinite-volume system \((\A,\tau)\), and its invariant subalgebra
+\((\A^G,\tau|_{\A^G})\), have at least one ground state.  For every
+\(\beta\in(0,\infty)\), they have at least one \(\beta\)-KMS state.
+\end{theorem}
+
+\begin{proof}
+The state space \(S(\A)\) is weak-* compact.  Choose an exhaustion
+\(\Lambda_n\uparrow\Gamma\), a normalized ground vector of \(H_{\Lambda_n}\),
+and extend its vector state from \(\A_{\Lambda_n}\) to \(\A\).  Gauge-average
+the extension if necessary.  A subnet converges weak-* to a state
+\(\omega_\infty\).  If \(A\) is local, then for all sufficiently large
+\(n\), the finite-volume ground-state variational inequality gives
+\[
+ -i\,\omega_n(A^*\delta_{\Lambda_n}(A))
+ =\omega_n\!\left(A^*[H_{\Lambda_n},A]\right)\geq0.
+\tag{5.1}\label{eq:groundineq}
+\]
+For local \(A\), the commutator stabilizes to
+\(\delta(A)=i\sum_{X:X\cap\supp A\ne\varnothing}[\Phi(X),A]\).
+Passing to the weak-* limit proves the ground-state condition
+\(-i\omega_\infty(A^*\delta(A))\geq0\) on the local core, hence
+\(\omega_\infty\) is a ground state.
+
+For finite \(\beta\), take the finite Gibbs state
+\[
+ \omega_{n,\beta}(A)=
+ \frac{\operatorname{Tr}_{\Lambda_n}
+ (e^{-\beta H_{\Lambda_n}}A)}
+ {\operatorname{Tr}_{\Lambda_n}(e^{-\beta H_{\Lambda_n}})}
+\tag{5.2}\label{eq:gibbs}
+\]
+and any extension to \(\A\), again gauge-averaged if desired.  Weak-*
+compactness supplies a convergent subnet \(\omega_\beta\).
+To pass the KMS identity without assuming complex-time volume convergence,
+smear a local \(A\) with a Gaussian \(f\):
+\[
+ A_f=\int_{\mathbb R}f(t)\tau_t(A)\,dt,\qquad
+ A_{f,n}=\int_{\mathbb R}f(t)\tau_t^{\Lambda_n}(A)\,dt.
+\tag{5.3}\label{eq:smear}
+\]
+Theorem~\ref{thm:dynamics}, isometry, and the Gaussian tail imply
+\(A_{f,n}\to A_f\) in norm; the same holds after the imaginary translation
+of the entire Gaussian smear.  The finite Gibbs KMS identity
+\[
+ \omega_{n,\beta}(A_{f,n}B)
+ =\omega_{n,\beta}\!\left(B\tau_{i\beta}^{\Lambda_n}(A_{f,n})\right)
+\tag{5.4}\label{eq:finiteKMS}
+\]
+therefore passes to the subnet limit.  Gaussian-smeared local elements are
+a norm-dense entire analytic subalgebra.  Equation
+\eqref{eq:finiteKMS} on this core is equivalent to the full
+\(\beta\)-KMS condition, so \(\omega_\beta\) is a KMS state.
+Restriction gives states on \(\A^G\); alternatively, gauge averaging
+preserves both ground and KMS conditions because the gauge action commutes
+with \(\tau\).
+\end{proof}
+
+\section{Numeric twin}
+
+The companion
+\[
+ \texttt{experiments/tfpt-discovery/lieb\_robinson\_witness\_probe.py}
+\]
+uses the exact nearest-neighbour physical-edge sector of the assembled
+model while comparing it against the complete class constant
+\eqref{eq:TFPTvelocity}.  This is the same finite cone protocol as the
+earlier IR-universality witness.  It reports:
+\[
+\begin{array}{c|c}
+\toprule
+\text{quantity}&\text{value}\\
+\midrule
+v_{\rm LR}\text{ (proved class bound)}&387.639069990831\\
+v_{\rm measured}\text{ (commutator threshold }0.02)&2.000000000000\\
+\text{outside-cone leakage}&8.238\times10^{-3}\\
+\bottomrule
+\end{array}
+\tag{6.1}\label{eq:numericvelocity}
+\]
+For the one-site projector, \(t=10^{-3}\), and nested open volumes, the
+specialization of \eqref{eq:convergence} gives
+\[
+\begin{array}{c|cc}
+\toprule
+b&\norm{\tau_t^{\Lambda_b}(A)-\tau_t^{\Lambda_{64}}(A)}
+&S_2(b-2)(e^{2e\kappa t}-1)\\
+\midrule
+8&0&9.246214927512\times10^{-1}\\
+16&0&3.279645827421\times10^{-2}\\
+32&0&2.164381663985\times10^{-5}\\
+\bottomrule
+\end{array}
+\tag{6.2}\label{eq:numericconvergence}
+\]
+The zeros are numerical precision statements, not analytic finite-speed
+claims.  A \(1/r\) all-to-all mutant, which is outside
+\eqref{eq:LRhyp}, gives \(1.048309991863\times10^{-4}\) at \(b=32\),
+violating the inapplicable finite-range line by a factor \(4.843462\).
+The Gauss-positive control has
+\(\norm{[A,P_G]}=\norm{P_GAP_G-AP_G}=0\); the constraint-violating
+embedding has \(\norm{[A_{\rm bad},P_G]}=1\).  All eight checks pass.
+
+\section{Combined theorem and exact boundary}
+
+\begin{theorem}[Mandatory thermodynamic-dynamics leg]
+\label{thm:combined}
+For the TFPT master-Hamiltonian class \eqref{eq:H} with the frozen
+finite-dimensional local factors and coefficients of
+Table~\ref{tab:terms}:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item the finite-volume dynamics satisfy the uniform Lieb--Robinson bound
+\eqref{eq:LR} with the explicit estimate
+\(v_{\rm LR}=32086e/225\);
+\item the thermodynamic-limit dynamics exist in norm on all local
+observables and define a strongly continuous automorphism group;
+\item the group restricts consistently to the Gauss-invariant quasilocal
+algebra, with projector compatibility in the precise form
+\eqref{eq:projectorcompat}; and
+\item at least one thermodynamic ground state and at least one
+\(\beta\)-KMS state for every \(\beta>0\) exist.
+\end{enumerate}
+No continuum limit is used in any part of the proof.
+\end{theorem}
+
+\begin{proof}
+Part (i) is Theorem~\ref{thm:LRclassical} together with
+\eqref{eq:constants}.  Part (ii) is Theorem~\ref{thm:dynamics}, including
+the explicit norm-Cauchy estimate \eqref{eq:convergence}.  Part (iii) is
+Proposition~\ref{prop:gauss}; the warning following it excludes the false
+physical-Hilbert-space embedding.  Part (iv) is Theorem~\ref{thm:states}.
+\end{proof}
+
+\begin{center}
+\setlength{\fboxsep}{10pt}
+\fcolorbox{red!65!black}{red!3}{
+\begin{minipage}{0.91\textwidth}
+\textbf{BOUNDARY BOX --- what this does not give.}
+
+\smallskip
+This theorem does \emph{not} give uniqueness of the ground or KMS state;
+phase structure and spontaneous symmetry breaking remain undecided.  It
+does \emph{not} prove that the finite-volume spectral gap survives the
+thermodynamic limit.  It does \emph{not} establish an interacting
+continuum/scaling limit, Lorentz invariance, a common infrared light cone,
+or IR universality.  Those are precisely the remaining T3/T5 contents.
+The result proved here is the mandatory dynamics leg only: a uniformly
+local Hamiltonian class, a volume-independent Lieb--Robinson estimate,
+norm thermodynamic-limit dynamics, a compatible gauge-invariant
+quasilocal algebra, and existence (not uniqueness) of equilibrium states.
+\end{minipage}}
+\end{center}
+
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
+
+The amended contract makes the continuum limit optional but the
+thermodynamic limit mandatory.  The latter is now proved at the
+Hamiltonian-class level for the concrete finite-group, finite-local-space
+TFPT assembly.  The proof is insensitive to finite-volume boundary shape
+and does not infer thermodynamics from a finite scan.  Its explicit
+velocity is conservative, while the numerical witness checks the expected
+cone, the norm-convergence inequality, and both destructive mutants.
+The boundary box prevents this dynamics theorem from being misread as a
+gap, phase-uniqueness, or IR-universality theorem.
+
+\begin{thebibliography}{9}
+
+\bibitem{LR1972}
+E.~H.~Lieb and D.~W.~Robinson,
+\emph{The finite group velocity of quantum spin systems},
+Commun.\ Math.\ Phys.\ \textbf{28} (1972), 251--257,
+\href{https://doi.org/10.1007/BF01645779}
+{doi:10.1007/BF01645779}.
+
+\bibitem{NS2006}
+B.~Nachtergaele and R.~Sims,
+\emph{Lieb--Robinson bounds and the exponential clustering theorem},
+Commun.\ Math.\ Phys.\ \textbf{265} (2006), 119--130,
+\href{https://doi.org/10.1007/s00220-006-1556-1}
+{doi:10.1007/s00220-006-1556-1}.
+
+\bibitem{NS2010}
+B.~Nachtergaele and R.~Sims,
+\emph{Lieb--Robinson bounds in quantum many-body physics},
+Contemp.\ Math.\ \textbf{529} (2010), 141--176,
+\href{https://doi.org/10.1090/conm/529/10429}
+{doi:10.1090/conm/529/10429}.
+
+\bibitem{BR}
+O.~Bratteli and D.~W.~Robinson,
+\emph{Operator Algebras and Quantum Statistical Mechanics II},
+second edition, Springer, Berlin (1997), Theorem~6.2.11.
+
+\bibitem{GrundlingLledo}
+H.~Grundling and F.~Lled\'o,
+\emph{Local quantum constraints},
+Rev.\ Math.\ Phys.\ \textbf{12} (2000), 1159--1218.
+
+\bibitem{GrundlingRudolph}
+H.~Grundling and G.~Rudolph,
+\emph{QCD on an infinite lattice},
+Commun.\ Math.\ Phys.\ \textbf{349} (2017), 1163--1202,
+\href{https://doi.org/10.1007/s00220-013-1674-5}
+{doi:10.1007/s00220-013-1674-5}.
+
+\end{thebibliography}
+
+\end{document}

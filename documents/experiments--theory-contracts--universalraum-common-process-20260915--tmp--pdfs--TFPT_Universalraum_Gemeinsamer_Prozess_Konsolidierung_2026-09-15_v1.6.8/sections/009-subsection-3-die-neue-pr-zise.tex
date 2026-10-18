@@ -1,0 +1,340 @@
+\subsection{3. Die neue präzise
+Händigkeitsschranke}\label{die-neue-pruxe4zise-huxe4ndigkeitsschranke}
+
+Die eingefrorene Tabelle in \codeword{field\_dictionary.py}, Zeile 327,
+bezeichnet den zweiten Faktor als
+\codeword{f\textasciicircum{}dagger (1/2,0)}. Dafür muss die
+Feldabbildung explizit festgelegt werden. Für ein tatsächliches
+adjungiertes linkes Weylfeld gilt dagegen ψ† in (0,1/2). Hermitesche
+Konjugation vertauscht diese Darstellungen; siehe
+\href{https://arxiv.org/pdf/0812.1594\#page=9}{Dreiner, Haber und
+Martin, Abschnitt 2}.
+
+In diesem \textbf{wörtlichen Feldadjungierten-Fall} ist das Produkt
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ (1,0)\otimes(0,1/2)=(1,1/2)
+$}\]
+
+ein irreduzibler Lorentzraum mit komplexer Dimension sechs. Unter der
+Rotationsuntergruppe zerfällt er weiterhin in Spin 3/2 und Spin 1/2;
+diese beiden Rotationsräume sind aber nicht getrennt boostinvariant. Der
+Prüfer verifiziert den skalaren Kommutanten sämtlicher sechs Generatoren
+des komplexifizierten Lorentzraums; die beiden unabhängigen
+sl(2)-Faktoren wirken als irreduzibles äußeres Tensorprodukt.
+
+Ein konkreter Zeuge genügt bereits. In obiger Basis setze
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ J_z=J_z^{(1)}\otimes I_2+I_3\otimes J_z^{(1/2)},\qquad
+ K_z=J_z^{(1)}\otimes I_2-I_3\otimes J_z^{(1/2)}.
+$}\]
+
+Bis auf den konventionellen Faktor i ist K\_z der Boostgenerator für
+entgegengesetzte Händigkeit. Dann gilt exakt
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ [P_{1/2},J_z]=0,\qquad
+ [P_{1/2},K_z]=
+ \begin{pmatrix}
+ 0&0&0&0&0&0\\
+ 0&0&4/3&0&0&0\\
+ 0&-2/3&0&0&0&0\\
+ 0&0&0&0&2/3&0\\
+ 0&0&0&-4/3&0&0\\
+ 0&0&0&0&0&0
+ \end{pmatrix}.
+$}\]
+
+Dieser Kommutator hat Rang vier. Der Rotationsprojektor kann deshalb in
+diesem Vertrag nicht als Lorentz-kovarianter Weyl-Ausleseprojektor
+verwendet werden.
+
+\textbf{Das ist kein pauschaler Ausschluss des ursprünglichen
+Modenkomposits.} Ein bloßer Fock-Erzeuger f† ist noch kein adjungiertes
+lokales Weylfeld. Bereits die übliche linke Weylfeldentwicklung enthält
+Erzeugungs- und Vernichtungsterme mit passenden Spinorwellenfunktionen;
+siehe \href{https://arxiv.org/pdf/0812.1594\#page=24}{Dreiner, Haber und
+Martin, Gleichungen 3.1.3-3.1.5}. Eine unabhängige oder passend
+ladungskonjugierte gleichhändige Komponente kann den gleichhändigen
+Projektor erhalten. Sie muss aber als konkreter Adapter mit korrekter
+Ladung, CAR, W-Kontraktion und Dynamik gezeigt werden. Aus dem Symbol †
+allein folgt weder ihr Vorliegen noch ihr Ausschluss.
+
+\subsection{4. Konkreter nächster
+Annahmetest}\label{konkreter-nuxe4chster-annahmetest}
+
+Der Anschlussauftrag ist jetzt endlich und entscheidbar formuliert:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Den tatsächlichen Feldadapter für \codeword{D\_r ∼ b f†}
+  beziehungsweise den davon verschiedenen \codeword{χ† ∼ b†ηf†}
+  hinschreiben: gepunktete/ungepunktete Indizes, Ladung, Fourieranteile,
+  erlaubte Zusatzkomponenten.
+\item
+  Für genau diesen Adapter alle Rotations- \textbf{und Boostgeneratoren}
+  auf dem zusammengesetzten Träger berechnen. Ein Kandidat mit
+  Lorentz-Auslese C muss \codeword{C L\_composite = L\_Weyl C} erfüllen.
+  Der neue gleiche-/gegengängige Test liefert dafür positive und
+  negative Referenzfälle.
+\item
+  Die Kontraktion am unveränderten W ausführen und anschließend das
+  tatsächliche Matrixelement \codeword{C D\_r†|Ω>} beziehungsweise den
+  entsprechenden Ladungskanal berechnen. Erst dessen normiertes
+  Spektralgewicht kann den vorhandenen geladenen Pol mit einem
+  Spin-1/2-Feld verbinden.
+\item
+  Falls der wörtlich adjungierte Fall gewählt wird, keinen bloßen
+  Rotationsprojektor als Lorentzprojektor verwenden. Ein zusätzlicher
+  Impuls-/Ableitungsadapter oder eine andere Händigkeit kann untersucht
+  werden, zählt aber als ausdrückliche neue Struktur.
+\end{enumerate}
+
+Dieser Test ergänzt die gemeinsame Schattenrekonstruktion: Die dort
+bewiesene vollständige innere Tomographie ersetzt die hier fehlende
+Lorentz-Intertwining-Abbildung nicht. Umgekehrt definiert ein richtiger
+Lorentzprojektor noch kein ausführbares natives Messinstrument.
+
+\subsection{Reproduktion}\label{reproduktion}
+
+\begin{verbatim}
+python3 -B replay_late_field.py
+\end{verbatim}
+
+Benötigt werden nur Python und SymPy. Der separate Lauf verifiziert zwei
+Quellenpins sowie \textbf{36 exakte Bedingungen pro Modus}, keine
+numerischen Bedingungen. Normaler Lauf und \codeword{-OO} ergeben
+byte-identische JSON-Ausgaben; Warnungen gelten als Fehler und alle
+Guards bleiben unter Optimierung aktiv. Die vollständigen Matrizen
+stehen in \codeword{late\_field.normal.json}.
+
+Das Ergebnis-JSON hat SHA-256
+\codeword{cfd9e15cec5c2b0ce3de9397614836b16b24b4adb8f6711eb704925589965774}.
+Der Prüfer hat SHA-256
+\codeword{f18e6fd2af7c1a28a81e85654df68fe805e59b1d957801611d2668678550dfc2}.
+Die fremde Feldsuite wird nur eingefroren und punktuell unabhängig
+geprüft, nicht als vollständig fehlerfreie Gesamtreproduktion
+ausgegeben.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Nachtragsprüfung C: fundamentale Reduktion und globale
+Quelle}\label{nachtragspruxfcfung-c-fundamentale-reduktion-und-globale-quelle}
+
+\section{Nachtrag C: überwiegend bereits abgedeckte fundamentale
+Reduktion}\label{nachtrag-c-uxfcberwiegend-bereits-abgedeckte-fundamentale-reduktion}
+
+\subsection{Übernahmeurteil}\label{uxfcbernahmeurteil}
+
+Der neue Text ist eine ausführlichere Fassung der bereits eingefrorenen
+fundamentalen Reduktion, ergänzt um die weitgehend gleiche frühere
+Gesprächszusammenfassung. Er bringt \textbf{keinen neuen H-Term, keine
+neue Operationsquelle und keinen neuen Transferbeweis}. Seine
+wesentlichen mathematischen Einschränkungen sind richtig und bleiben in
+der gemeinsamen Darstellung erhalten. Eine neue Großrechnung ist dafür
+nicht notwendig.
+
+Neue Eingabe: 299 Zeilen, SHA-256
+\codeword{a10f702306c7409535df9f4d26f0995970833a62297a1cb93d8c95cdce746d4d}.
+Quelle:
+\codeword{/Users/stefanhamann/.codex/attachments/b0d7e533-3ca8-4a84-966c-2546b066dd08/pasted-text.txt}.
+
+Bereits eingefrorene Kurzfassung:
+\codeword{universalraum-singlet-observable-20260915/late\_sources/fundamental\_reduction.txt},
+99 Zeilen, SHA-256
+\codeword{0081cebd9759e8fa776995ee8efb3231c7611a82bea9cdeea86967073d1459a2}.
+Die Dateien sind nicht bytegleich; der Neuheitsbefund betrifft ihren
+Inhalt.
+
+\subsection{Was bestätigt und bereits abgedeckt
+ist}\label{was-bestuxe4tigt-und-bereits-abgedeckt-ist}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Aussage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Urteil und Grenze
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Volle Schur-Antwort T†F(H−E0)T=γF I64 & Richtig bei gruppeninvariantem H
+und Grundzustand sowie irreduziblem ursprünglichem Entnahmemultiplett.
+Gilt für die volle beschränkte Spektralfunktion, nicht nur einen
+dominanten Pol. Schon in v1.6.7 BIG\_PICTURE B2 und der eingefrorenen
+Kurzfassung enthalten. \\
+Aus C\_rs(t)=δ\_rs c(t) folgt kein Ortsindex in diesen 64 Labels &
+Richtig. Eine andere lineare Benennung erzeugt nur einen Gramfaktor.
+Keine pauschale Sperre gegen Vielteilchendynamik, nichtinvariante
+Referenzzustände oder andere Operatorfamilien. \\
+Symmetriekommutant und Operationskommutant haben verschiedene Bedeutung
+& Richtig und bereits unterschieden. Erstgenannter erlaubt Dynamik
+zwischen Vorkommen desselben Typs; ein großer Kommutant eines
+eingeschränkten Operationssatzes kann fehlenden Zugriff anzeigen. Seine
+Größe beweist weder Raum noch ausführbare Kontrolle. \\
+μN ist bei festem Gesamt-N eine Konstante & Richtig. Auf demselben
+präparierten Eingang bleiben freie Heisenbergentwicklungen neutraler
+Observablen identisch. Für ganze Interventionsfolgen muss auch deren
+zugelassener Gesamtvertrag respektiert werden. \\
+Eine globale Zustandsregel braucht keinen äußeren Präparator & Richtig.
+Das Verbot, mit N-erhaltenden Operationen aus N=0 nach N=64 zu gelangen,
+ist ein Satz über einen bestimmten Präparationsweg. Es verbietet weder
+eine globale Randbedingung noch eine andere begründete Zustandsregel.
+Interne Detektoren und Präparationen bleiben trotzdem herzuleiten. \\
+Keine nichttriviale Fermion-Teilparität in einer nativen Bank bei festen
+Bosonen & Bereits exakt geprüft: zusammenhängender W-Paargraph und
+binärer Rang 63. Ein Paritätsverbot getrennt kopierter Banken darf nicht
+auf beliebige Teilmengen derselben Bank übertragen werden. \\
+\end{longtable}
+}
+
+Das eigene v1.6.8-Ergebnis ergänzt diese Diagnose: Der bedingte lokale
+Phasenimpuls und die terminale Tomografie benutzen einen gemeinsamen
+invarianten N=2-Dreizustandsraum. Dessen Startzustand ist nicht der in
+Schurs Aussage vorausgesetzte invariante N=64-Grundzustand. Es gibt
+daher keinen Widerspruch und keine Berechtigung, die neue Umverteilung
+auf dessen geladenen Einlochpol oder auf räumliche Bewegung zu
+übertragen.
+
+\subsection{μ=Δ/50: gegen die älteren gepinnten Zertifikate
+bestätigt}\label{ux3bcux3b450-gegen-die-uxe4lteren-gepinnten-zertifikate-bestuxe4tigt}
+
+Das ältere
+\codeword{universalraum-native-ground-response-20260915/ground\_replay/weak\_coupling\_ground\_normal.json}
+enthält genau die genannte Grenze: g/Δ=1/20, μ/Δ=1/50 und neuer
+Grundsektor N=0. Sein SHA-256 ist
+\codeword{e1cd19988edd33c6799ec6b80f0a52d56e1a532bfe1b56870623a4efaf06bd0c};
+dies stimmt mit \codeword{ground\_replay\_manifest.json} überein.
+Normaler und optimierter vorhandener Bericht sind weiterhin bytegleich.
+Der eingetragene Programmpin
+\codeword{794554393c495ba395f34e6a58d490da821408d4f8effbc394653cd4cec4e80a}
+stimmt mit der vorhandenen
+\codeword{ground\_replay/work/many\_pair/weak\_coupling.py} überein.
+
+Die stärkere und direktere Begründung ist bereits in
+\codeword{universalraum-v16-integrated-20260915/RESULTS.md} §3 und
+dessen \codeword{new\_checks.json} dokumentiert. Der Checkerhash
+\codeword{c3304a1cf502e5c4fffd63391cfb29db02ad3f2b3517f96e047c07170b63416e}
+stimmt mit dem vorhandenen Programm und \codeword{replay\_manifest.json}
+überein. Aus der dort geprüften Voll-Fock-Schranke
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+A=\sum_A P_A^\dagger P_A\le\frac{15}{2}N_f
+$}\]
+
+und quadratischer Ergänzung folgt
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+H_\mu\ge\left(\mu-\frac{15g^2}{2\Delta}\right)N_f+2\mu N_b.
+$}\]
+
+Die einzige erneut benötigte Rechnung ist rational:
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+\frac1{50}-\frac{15}{2}\left(\frac1{20}\right)^2=\frac1{800},
+\qquad2\mu/\Delta=\frac1{25}.
+$}\]
+
+Also gilt \(H_\mu\ge\Delta N/800\). Da N=0 nur das leere Fockvakuum
+enthält und Hμ dieses mit Energie null annihiliert, ist es eindeutig
+minimal. Der globale Zustandsgegenvergleich ist damit bestätigt. Der
+vollständige ältere Grundzustands-/Casimir-Prüflauf wurde für diesen
+Nachtrag nicht neu ausgeführt; Pins, vorhandene Aussagen und die
+relevante exakte Ungleichung wurden geprüft.
+
+\subsection{Zwei Präzisierungen bei der
+Übernahme}\label{zwei-pruxe4zisierungen-bei-der-uxfcbernahme}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In §7 sollte „ein positiver Unterschied`` durch \textbf{„eine
+  nichtverschwindende Differenz``} ersetzt werden. Ein negativer
+  signierter Unterschied ist ebenso ein kausaler Interventionsnachweis;
+  genau dies zeigt der neue N=2-Phasenversuch.
+\item
+  Die globale Sektorwahl und die Beobachtbarkeit innerhalb eines festen
+  Gesamtsektors getrennt halten. Ein System-Referenz-Vergleich kann
+  relative Ladungsenergien aufdecken; ein Zusatz μN\_total auf einem
+  festgehaltenen Gesamtsektor bleibt dennoch eine unbeobachtbare
+  gemeinsame Phase.
+\end{enumerate}
+
+\textbf{Fazit:} Hauptpunkt abgedeckt, keine neue globale Schließung. Die
+ausführlichere Quelle stärkt die Dokumentation der Voraussetzungen und
+die Abgrenzung der Zustandsregel. Die tatsächliche neue Konstruktion
+dieser Runde bleibt die gemeinsame bedingte N=2-Ausführung aus kausalem
+Eingriff und terminaler Zustandstomografie.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Historischer Teil: vollständige Hauptfassung
+v1.6.7}\label{historischer-teil-vollstuxe4ndige-hauptfassung-v1.6.7}
+
+Die folgende Fassung bleibt wortgetreu erhalten. Den aktuellen Stand
+liefern die vorangestellten Kapitel v1.6.8. Frühere Aussagen, Fragen und
+Vorhaben werden dadurch nicht rückwirkend neu bewiesen. Die neue
+Synthese ist separat vollständig im eingefrorenen Prüfpaket enthalten.
+
+\section{TFPT / Universalraum: die richtige einfache
+Kette}\label{tfpt-universalraum-die-richtige-einfache-kette}
+
+\subsection{Vollständige Konsolidierung v1.6.7 - 15. September
+2026}\label{vollstuxe4ndige-konsolidierung-v1.6.7---15.-september-2026}
+
+\subsubsection{Ergebnis und
+Leseschlüssel}\label{ergebnis-und-leseschluxfcssel-1}
+
+Die zuletzt ergänzte Vogelperspektive steht im Teil B dieser Fassung:
+\textbf{Gesucht wird der kleinste gemeinsame beobachtbare Prozess hinter
+den verschiedenen Ansichten.} Ein nativer Rang-60-Kodierer ist bereits
+vorhanden. Seine Informationsverluste, die minimalen
+symmetrieverträglichen Dynamiken und der Unterschied zwischen
+Korrelation und kausalem Eingriff wurden neu berechnet. Das verschiebt
+die fundamentale Priorität von weiteren lokalen Näherungswerten zur
+Herkunft der Operationen und zur gemeinsamen Schattenkarte.
+
+Die neue Runde schließt zwei kleine Strukturfragen vollständig: Der
+symmetrische Zustandsraum bei zwei Bosonen hat exakt vier Dimensionen;
+der bisher unbestimmte Rest von 4035 bilinearen Komponenten zerfällt
+vollständig in drei Darstellungen. Die vier Zustandsrichtungen und ihre
+Kopplungen wurden zusätzlich am ursprünglichen Tensor berechnet. Daraus
+folgt ein vollständiger sechs-dimensionaler Ausschnitt.
+
+Die gewünschte einfache Kette existiert ebenfalls, aber anders als
+vorgeschlagen: Man muss den \textbf{ganzen Hamiltonoperator}
+wiederholen, nicht Bosonzahl und Iterationsnummer gleichsetzen. Die
+ersten fünf Lanczos-Glieder sind jetzt exakt bekannt. Sie bestimmen zehn
+Energiemomente des gefüllten Startzustands und verschärfen die obere
+Grundzustandsgrenze geringfügig.
+
+\textbf{Das ist keine vollständige TOE.} Insbesondere fehlen die
+physische Auswahl des Modellvertrags, ausführbare ursprüngliche
+Instrumente, derselbe geladene Transport im gemeinsamen Träger und die
+relativistische Kontinuumskonstruktion. Dass die bisherigen Grunddaten
+dafür noch nicht eindeutig genügen, wird unten an einer einfachen
+Familie verschiedener Dynamiken nachgewiesen.
+
+Kennzeichnungen: \textbf{exakt} bezeichnet eine bewiesene Aussage im
+genannten Modell; \textbf{bedingt} eine Aussage mit zusätzlich gewährter
+Operation oder bekanntem früherem Satz; \textbf{numerisch} eine
+Näherung; \textbf{offen} einen fehlenden Nachweis. Komplexe
+Algebradimensionen zählen weder physikalische Raumrichtungen noch
+unabhängig hergeleitete Teilchen oder ausführbare Operationen.
+
+Die Fassung baut auf dem vollständigen Hauptdokument v1.6.6 auf. Die
+aktuelle Gesamtdarstellung steht voran; die frühere Fassung
+einschließlich ihrer Herleitungen, Gegenbeispiele und älteren Anhänge
+bleibt vollständig erhalten. Alle sechs in dieser Runde eingesandten
+Texte werden unverändert dokumentiert und hier mit überprüften
+Ergänzungen und ausdrücklich benannten Korrekturen gelesen.
+

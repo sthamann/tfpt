@@ -8,6 +8,9 @@ form part of this physical-project audit. No mathematical status changes.
 The remaining anchors are Jacobi four-square, Construction A and G31.
 This check measures process, never a completed physical derivation.
 """
+
+from tex_sources import read_tex
+from pathlib import Path
 import ast
 import csv
 import os
@@ -207,9 +210,7 @@ def suite_census():
 # ---------------------------------------------------------------- D3 census
 def contracts_census(rows=None):
     rows = ledger_rows() if rows is None else rows
-    with open(os.path.join(ROOT, "tfpt_research_contracts.tex"),
-              encoding="utf-8") as fh:
-        tex = fh.read()
+    tex = read_tex(Path(ROOT) / "tfpt_research_contracts.tex")
     tex_mentions = len(re.findall(r"research contract", tex, re.I))
     prereg = [r for r in rows if re.search(
         r"preregist|research contract", (r.get("claim") or "")

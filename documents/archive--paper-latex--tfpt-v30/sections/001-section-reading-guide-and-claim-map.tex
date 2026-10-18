@@ -1,0 +1,349 @@
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A minimal carrier $E_3\oplus E_2$ on the oriented double cover is shown to be the unique rank-5 split satisfying $\dim\Lambda^{\mathrm{even}}E=16$ and $\tr_EY^2=5/6$. This carrier already forces the global Standard Model group $S(U(3)\times U(2))\cong(SU(3)\times SU(2)\times U(1)_Y)/\mathbb Z_6$, one chiral family with $\nu^c$ from the positive half-spinor, the hypercharge--seam inversion $6Y^2-Y-\mathbf 1=0$, and a self-consistent electromagnetic closure equation whose positive root gives $\alpha^{-1}(0)=\num{137.0360}$.
+
+On the canonical branch the carrier packet is overdetermined by a set of compression identities: the rank-lock $2^{g-3}=g-1$ has the unique integral solution $g=5$; the $41$-chain $48\,I_1^{\mathrm{EW}}=32\,k_{\mathrm{EW}}=10\,b_1=\Omega_{\mathrm{adm}}\gamma+1=41$ collapses four algebraic layers onto one integer; and the Cabibbo inversion $\varphi_0=\frac12(1-\sqrt{1-4\lambda_C^2})$ compresses the bridge outputs $(\beta,\Omega_b,\lambda_C,\sin^2\theta_{13})$ into a single seed. Wrong discrete worlds fail the electromagnetic closure categorically: two families give $\alpha^{-1}\approx 156$, four families give $\alpha^{-1}\approx 125$, and two Higgs doublets give $\alpha^{-1}\approx 136$.
+
+The remaining open problem is a finite completion program with five explicit interfaces: a family local-system theorem hardening the flavor lift and the occupancy interpretation of $\Omega_{\mathrm{adm}}=48$, a bosonic relative index selecting the unique light Higgs doublet, a $\chi$-channel heat-kernel closure generating $\bar M_{\mathrm{Pl}}$ and the electroweak vacuum from one geometric response, a discrete hexagonal transport kernel for Yukawas, mixings, confinement, and strong CP, and a comparison bridge fixing scheme and threshold conventions. E$_8$ is retained only as downstream scale grammar; record algebra, horizons, and prediction semantics are conditional appendix material. Benchmark tables, a falsification matrix, and finite proof obligations separate hard results from bridges and completion targets throughout.
+\end{abstract}
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60, breakable,
+    title={\textbf{Reading Status for the Present Paper}}, fonttitle=\bfseries]
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=3pt]
+    \item \textbf{Hard:} oriented double cover, seam $\Seam$, involution $\inv$, minimal carrier $E_3\oplus E_2$, global group $S(U(3)\times U(2))\cong \frac{SU(3)\times SU(2)\times U(1)_Y}{\mathbb Z_6}$, one chiral family, carrier norm $5/6$, the abelian-index formula, and the established kernel numerics $(\cthree,\deltatop,\phiz,\alpha)$.
+    \item \textbf{Bridge:} family space $F$, occupancy $\Oadm=48$, the occupancy reinterpretation $\deltatop=\Oadm\cthree^4$, the comparison map $\mathcal R_{\SM}$, and the benchmark interface from kernel outputs to observables.
+    \item \textbf{Completion:} bosonic relative index for Higgs selection, $\chi$-channel heat-kernel closure, regularized Yukawa kernels and path-length masses, confinement as admissible word selection, and strong-CP cancellation.
+    \item \textbf{Conditional:} downstream E$_8$ scale grammar, record algebra, horizons, prediction semantics, and the final compiler theorem.
+\end{itemize}
+\end{tcolorbox}
+
+\tableofcontents
+
+\section{Reading guide and claim map}
+
+The paper is organized in three reading layers:
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item \textbf{Big picture:} one section explains what TFPT claims in plain language before the detailed datum and conventions begin.
+    \item \textbf{Detail:} the main body then runs from primitive core and hard carrier kernel through kernel numerics, the two completion programs, the particle/mass compiler, and the benchmark interface.
+    \item \textbf{Proof sketches:} the main text gives only the central proof sketches, while dense technical derivations remain in appendices or companion material.
+\end{itemize}
+The status language is also fixed once and for all:
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item \textbf{Hard} means established carrier or kernel structure.
+    \item \textbf{Bridge} means a structural lift or comparison interface that organizes the compiler but is not yet a closed theorem.
+    \item \textbf{Completion} means a theorem-sized open interface that would close a genuine physics sector.
+    \item \textbf{Conditional} means a downstream or appendix-level statement that is only accepted once the completion layer is granted.
+\end{itemize}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+    scale=0.62,
+    transform shape,
+    >=Latex,
+    node distance=1.6cm and 1.7cm,
+    hard/.style={draw=blue!60!black, thick, rounded corners, fill=blue!4, align=center, minimum width=2.8cm, minimum height=1cm},
+    bridge/.style={draw=green!50!black, dashed, thick, rounded corners, fill=green!4, align=center, minimum width=2.9cm, minimum height=1cm},
+    completion/.style={draw=orange!70!black, dotted, thick, rounded corners, fill=orange!5, align=center, minimum width=3.0cm, minimum height=1cm},
+    conditional/.style={draw=purple!70!black, dash pattern=on 4pt off 2pt on 1pt off 2pt, thick, rounded corners, fill=purple!5, align=center, minimum width=3.0cm, minimum height=1cm}
+]
+\node[hard] (core) {$\Tcore$\\double cover, seam, involution};
+\node[hard, right=of core] (carrier) {$\Tker$\\carrier packet and one family};
+\node[bridge, right=of carrier] (bridge) {$F$, $\Oadm$\\family bridge and occupancy};
+\node[completion, below=of carrier] (geom) {$\Ageom$\\Higgs, $\chi$, superconnection};
+\node[completion, below=of bridge] (trans) {$\Atrans$\\Yukawas, confinement, strong CP};
+\node[bridge, right=of bridge] (cmp) {compiler interface\\RG map, ledgers, benchmarks};
+\node[conditional, below=of cmp] (cond) {conditional layer\\E$_8$, record, horizons, prediction};
+\draw[->, thick] (core) -- (carrier);
+\draw[->, thick] (carrier) -- (bridge);
+\draw[->, dashed, thick] (carrier) -- (geom);
+\draw[->, dashed, thick] (bridge) -- (trans);
+\draw[->, dashed, thick] (bridge) -- (cmp);
+\draw[->, dotted, thick] (geom) -- (cmp);
+\draw[->, dotted, thick] (trans) -- (cmp);
+\draw[->, dash pattern=on 4pt off 2pt on 1pt off 2pt, thick] (cmp) -- (cond);
+\coordinate (legone) at ($(geom.south west)+(-0.9,-2.3)$);
+\draw[->, thick] (legone) -- ++(1.2,0) node[right, black, font=\scriptsize] {Hard};
+\coordinate (legtwo) at ($(legone)+(0,-0.6)$);
+\draw[->, dashed, thick] (legtwo) -- ++(1.2,0) node[right, black, font=\scriptsize] {Bridge};
+\coordinate (legthree) at ($(legtwo)+(0,-0.6)$);
+\draw[->, dotted, thick] (legthree) -- ++(1.2,0) node[right, black, font=\scriptsize] {Completion};
+\coordinate (legfour) at ($(legthree)+(0,-0.6)$);
+\draw[->, dash pattern=on 4pt off 2pt on 1pt off 2pt, thick, purple!70!black] (legfour) -- ++(1.2,0) node[right, black, font=\scriptsize] {Conditional};
+\end{tikzpicture}
+\caption{Claim map for the carrier-first compiler form. Hard fixes the carrier and numerical kernel, Bridge organizes family lift and comparison, Completion closes geometry and transport, and Conditional collects downstream extensions.}
+\label{fig:dependency-map}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\scriptsize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.23\linewidth}>{\raggedright\arraybackslash}p{0.12\linewidth}YY@{}}
+\toprule
+Layer or statement & Status & Proof source or missing lemma & Main empirical or structural test \\
+\midrule
+Oriented double cover, seam, involution & Hard & starting geometric datum; fixed throughout the paper & structural consistency of all later layers \\
+Minimal carrier $E_3\oplus E_2$ & Hard & proof sketch given in \Cref{sec:minimal-carrier-proof} & failure would collapse the whole packet \\
+One-family packet $S^+=\Lambda^{\mathrm{even}}E$ & Hard & decomposition and proof sketch given in the main text & group/matter mismatch would be global \\
+Kernel numerics $(\cthree,\deltatop,\phiz,\alpha)$ & Hard & carrier-form closure equations summarized in the main text & scheme discipline for observable comparison \\
+Family count $N_{\mathrm{fam}}=3$ from patch deficit & Hard & patch-deficit route and proof sketch given & family-count interpretation \\
+Family space $F$ for flavor splitting & Bridge & monodromy for nondegeneracy and mixing still open & flavor phases, CKM / PMNS \\
+Occupancy $\Oadm=48$ and $\deltatop=\Oadm\cthree^4$ & Bridge & immediate count corollary; occupancy reinterpretation is bridge & topological surcharge \\
+Comparison map $\mathcal R_{\SM}$ & Bridge & declared RG / threshold bookkeeping & convention-complete theory-versus-data translation \\
+Bosonic relative index selecting $\Phi$ & Completion & missing bosonic index closure & unique light doublet / doublet-triplet split \\
+$\chi$-channel Einstein bridge & Completion & missing relative heat-kernel closure & one closure for $\Mpl$, $v$, and the scale map \\
+Regularized Yukawa kernel closure & Completion & missing phase-distance theorem & $m_f$, $\lambda_C$, $\theta_{13}$, CKM / PMNS sharpenings \\
+Confinement and strong CP closure & Completion & missing bound-state control and positivity hardening & hadron spectrum and $\bar\theta$ null tests \\
+E$_8$, record, horizons, prediction semantics & Conditional & deferred to appendices and the conditional compiler theorem & downstream extension rather than main-text hard claim \\
+\bottomrule
+\end{tabularx}
+\caption{Status matrix for the carrier-first compiler form.}
+\label{tab:status-matrix}
+\end{table}
+
+\section{Big picture: what TFPT actually claims}
+
+TFPT is presented here as a carrier-first theory of admissible vacua on the oriented double cover. The seam involution enforces the minimal carrier $E_3\oplus E_2$. That carrier fixes the global Standard Model group, hypercharge, and one chiral family. The family count $N_{\mathrm{fam}}=3$ is then supported by two independent routes: a local patch-deficit count and a global monodromy argument. The monodromy space $F$ is retained not as the origin of the number three, but as the carrier of nondegeneracy, flavor phases, and mixing. A bosonic relative index is intended to select the Higgs, the $\chi$ channel is intended to generate both the Planck scale and the electroweak vacuum, and a discrete phase transport is intended to generate Yukawas, mixings, confinement, and strong CP. The comparison map then translates this compiler into PDG-style observables.
+
+\begin{tcolorbox}[colback=blue!3, colframe=blue!50!black, breakable,
+    title={\textbf{Carrier-first compiler chain}}, fonttitle=\bfseries]
+\begin{equation}
+\label{eq:compiler-chain}
+\begin{aligned}
+(\widetilde M\to M,\Seam,\inv,\chi)
+&\Rightarrow
+(E_3\oplus E_2,\ G_{\SM}^{\mathrm{glob}},\ S^+)\\
+&\Rightarrow
+(N_{\mathrm{fam}}=3,\ \Oadm=48,\ \Phi)\\
+&\Rightarrow
+(\Mpl,\ v,\ \mathcal Y_f)\\
+&\Rightarrow
+(m_f,\ V_{\mathrm{CKM}},\ U_{\mathrm{PMNS}},\ \text{hadrons},\ \Pred).
+\end{aligned}
+\end{equation}
+\end{tcolorbox}
+
+The remainder of the main text sharpens each arrow of this chain in turn.
+
+\section{Primitive core and hard carrier kernel}
+
+\subsection{Primitive core and conventions}
+
+We use natural units $c=\hbar=1$. Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by $\Phi$, Hamiltonians by $\mathcal H$, and the cosmological Hubble rate by $\Hhub(t)$; this avoids overloading the letter $H$. Newton's constant is always $G_N$, while $G_{\SM}^{\mathrm{glob}}$ is reserved for the global Standard Model gauge quotient. The seam is denoted by $\Seam$, the involution by $\inv$, and word parity by $\varepsilon(w)$.
+
+When color-center notation is needed later, we use multiplicative notation
+\[
+z(w)\in\{1,\omega,\omega^2\},
+\qquad
+\omega=e^{2\pi i/3}.
+\]
+Thus center neutrality means $z(w)=1$.
+
+\[
+\Tcore
+:=
+\bigl(
+\widetilde M\to M,\ \Seam,\ \inv,\ D_{\mathrm{rel}},\ \mathsf{Adm}
+\bigr).
+\]
+Here \enquote{relative} always means comparison with a declared reference operator or reference-subtracted action, and $\mathsf{Adm}$ denotes the admissibility predicate on relative sectors. The technical tables for relative objects, layered bridge/completion data, and the constants atlas are collected in Appendix~\ref{app:tech} and Appendix~\ref{app:constants}; they are kept out of the early main-text flow so that the carrier kernel appears before the technical bookkeeping apparatus.
+
+\subsection{Minimal carrier theorem}
+\label{sec:minimal-carrier-proof}
+
+\begin{theorem}[Minimal carrier theorem]
+Let $E=E_b\oplus E_s$ be a split carrier with traceless diagonal generator
+\[
+Y_{b,s}
+=
+\mathrm{diag}\!\left(
+\underbrace{-\frac1b,\ldots,-\frac1b}_{b\ \text{times}},
+\underbrace{\frac1s,\ldots,\frac1s}_{s\ \text{times}}
+\right).
+\]
+If one simultaneously requires
+\begin{equation}
+\label{eq:minimal-carrier-conditions}
+\dim \Lambda^{\mathrm{even}}E=16,
+\qquad
+\tr_E Y_{b,s}^2=\frac56,
+\end{equation}
+then necessarily $\{b,s\}=\{3,2\}$.
+\end{theorem}
+
+\begin{proof}
+Write $g=b+s$. Since
+\[
+\dim \Lambda^{\mathrm{even}}E=2^{g-1},
+\]
+the first condition gives $g=5$. For the diagonal generator above one has
+\[
+\tr_E Y_{b,s}^2
+=
+b\left(\frac{1}{b^2}\right)+s\left(\frac{1}{s^2}\right)
+=
+\frac1b+\frac1s
+=
+\frac{b+s}{bs}
+=
+\frac{5}{bs}.
+\]
+Imposing $\tr_E Y_{b,s}^2=5/6$ yields $bs=6$. Together with $b+s=5$ this forces the unordered solution $\{b,s\}=\{3,2\}$.
+\end{proof}
+
+Hence from now on
+\[
+E=E_3\oplus E_2,
+\qquad
+P_3=\frac{\mathbf 1-\inv}{2},
+\qquad
+P_2=\frac{\mathbf 1+\inv}{2},
+\]
+and the hypercharge operator is read concretely as
+\begin{equation}
+\label{eq:explicit-hypercharge}
+Y
+=
+\mathrm{diag}\!\left(-\frac13,-\frac13,-\frac13,\frac12,\frac12\right)
+=
+-\frac13 P_3+\frac12 P_2
+=
+\frac1{12}\mathbf 1+\frac5{12}\inv.
+\end{equation}
+
+\begin{lemma}[Hypercharge--seam inversion]
+On the minimal carrier, the seam involution is recovered from hypercharge by
+\begin{align}
+\inv&=\frac{12Y-\mathbf 1}{5},
+\label{eq:hypercharge-seam-inversion}\\
+(12Y-\mathbf 1)^2&=25\,\mathbf 1,
+\nonumber\\
+6Y^2-Y-\mathbf 1&=0.
+\label{eq:carrier-polynomial}
+\end{align}
+Consequently the carrier projectors are
+\[
+P_2=\frac{\mathbf 1+\inv}{2}=\frac{2(3Y+\mathbf 1)}{5},
+\qquad
+P_3=\frac{\mathbf 1-\inv}{2}=\frac{3(\mathbf 1-2Y)}{5}.
+\]
+\end{lemma}
+
+\begin{proof}
+The affine relation between $Y$ and $\inv$ is inverted algebraically. Squaring the result and using $\inv^2=\mathbf 1$ gives the quadratic carrier polynomial. The projector formulas then follow from $P_2=(\mathbf 1+\inv)/2$ and $P_3=(\mathbf 1-\inv)/2$.
+\end{proof}
+
+\begin{remark}[Two-point carrier algebra]
+Because the minimal carrier satisfies $6Y^2-Y-\mathbf 1=0$, every analytic function of $Y$ reduces to
+\[
+f(Y)=A_f\,\mathbf 1+B_f\,Y,
+\qquad
+A_f=\frac{2f(1/2)+3f(-1/3)}{5},
+\qquad
+B_f=\frac{6\bigl(f(1/2)-f(-1/3)\bigr)}{5}.
+\]
+Thus the hard carrier is effectively a two-point algebra supported on the spectral values $-1/3$ and $1/2$, and the projectors $P_3,P_2$ are already polynomial functions of $Y$.
+\end{remark}
+
+The two carrier invariants used repeatedly below are
+\[
+\gamma=\tr_EY^2=\frac56,
+\qquad
+B=\frac{\rank E_3}{\rank E_2}=\frac32.
+\]
+\begin{corollary}[Carrier norm from the carrier polynomial]
+The carrier polynomial already fixes
+\[
+\gamma=\tr_EY^2=\frac16\tr_E(Y+\mathbf 1)=\frac56,
+\]
+since $\tr_EY=0$ and $\rank E=5$.
+\end{corollary}
+
+\begin{corollary}[Minimal carrier compression]
+On the minimal carrier branch,
+\[
+B\gamma=\frac32\cdot\frac56=\frac54.
+\]
+\end{corollary}
+
+We package the hard kernel as
+\[
+\Cmin=(E_3\oplus E_2,\ Y,\ S^+,\ \gamma,\ B).
+\]
+
+\subsection{Global gauge group and one-family packet}
+
+\begin{theorem}[Global Standard Model theorem]
+The determinant-preserving connected stabilizer of the minimal carrier split is
+\[
+G_{\SM}^{\mathrm{glob}}
+=
+S(U(3)\times U(2))
+\cong
+\frac{SU(3)\times SU(2)\times U(1)_Y}{\mathbb Z_6}.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Automorphisms preserving the split act independently on $E_3$ and $E_2$, while the determinant-one condition is imposed only on the full carrier. This gives $S(U(3)\times U(2))$. The standard covering map from $SU(3)\times SU(2)\times U(1)_Y$ to this determinant-preserving stabilizer has the canonical $\mathbb Z_6$ subgroup as kernel, yielding the stated global form.
+\end{proof}
+
+Matter is read from the positive half-spinor
+\[
+S^+=\Lambda^{\mathrm{even}}E,
+\qquad
+\dim S^+=16.
+\]
+
+\begin{theorem}[One carrier family]
+The positive half-spinor of the minimal carrier decomposes as
+\[
+S^+
+\cong
+(1,1)_0\oplus(3,2)_{1/6}\oplus(\bar 3,1)_{-2/3}\oplus(\bar 3,1)_{1/3}\oplus(1,2)_{-1/2}\oplus(1,1)_1,
+\]
+that is, exactly one chiral Standard Model family with $\nu^c$. Equivalently, in the familiar unified packaging language,
+\[
+S^+\cong \mathbf 1\oplus \mathbf{10}\oplus \overline{\mathbf 5}.
+\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+One has
+\[
+S^+=\Lambda^0E\oplus\Lambda^2E\oplus\Lambda^4E.
+\]
+For the minimal carrier,
+\[
+\Lambda^2E
+\cong
+\Lambda^2E_3\oplus(E_3\otimes E_2)\oplus\Lambda^2E_2.
+\]
+Because the full determinant is trivial in $S(U(3)\times U(2))$, the $\Lambda^4E$ sector is dual to $E$ and yields the remaining $(1,2)_{-1/2}$ and $(\bar 3,1)_{1/3}$ pieces. Hypercharges are obtained by adding the diagonal carrier charges from $Y=\mathrm{diag}(-1/3,-1/3,-1/3,1/2,1/2)$, and the multiplicities sum to $1+6+3+3+2+1=16$.
+\end{proof}
+
+In left-chiral notation the one-family decomposition takes the explicit form shown in \Cref{tab:one-family}. This is the place where the manuscript must be explicit: the carrier theorem is meaningful only if the reader can see how the sixteen states are organized.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedleft\arraybackslash}p{0.13\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedleft\arraybackslash}p{0.08\linewidth}@{}}
+\toprule
+Exterior component & $\SM$ representation & Hypercharge & Field content & Mult. \\
+\midrule
+$\Lambda^0E$ & $(1,1)_0$ & $0$ & $\nu^c$ & $1$ \\
+$\Lambda^2E_3$ & $(\bar 3,1)_{-2/3}$ & $-2/3$ & $u^c$ & $3$ \\
+$E_3\otimes E_2$ & $(3,2)_{1/6}$ & $1/6$ & $Q_L$ & $6$ \\
+$\Lambda^2E_2$ & $(1,1)_1$ & $1$ & $e^c$ & $1$ \\
+\makecell[l]{$\Lambda^3E_3$\\$\otimes E_2$} & $(1,2)_{-1/2}$ & $-1/2$ & $L_L$ & $2$ \\
+\makecell[l]{$\Lambda^2E_3$\\$\otimes\Lambda^2E_2$} & $(\bar 3,1)_{1/3}$ & $1/3$ & $d^c$ & $3$ \\
+\midrule
+\multicolumn{4}{r}{Total multiplicity} & $16$ \\
+\bottomrule
+\end{tabularx}
+\caption{One chiral family from $S^+=\Lambda^{\mathrm{even}}E$, written in left-chiral notation with charge-conjugate singlets.}
+\label{tab:one-family}
+\end{table}
+

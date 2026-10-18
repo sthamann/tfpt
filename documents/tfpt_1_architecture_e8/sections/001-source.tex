@@ -1,0 +1,391 @@
+\begin{document}
+\maketitle
+\vspace{-0.4cm}
+
+\begin{keybox}[What this document is about]
+The architecture layer: how the two axioms $c_3=\tfrac1{8\pi}$ and $g_{\mathrm{car}}=5$ build the
+Coxeter--cyclotomic compiler --- the carrier $C^+{=}D_5$, the family geometry $\mathbb P^1\setminus\mu_4{=}A_3$,
+the $\mu_4$ glue $D_5\oplus A_3+\mu_4\Rightarrow E_8$, the EM fixed point $\alpha^{-1}$ (with its ablation),
+and the whole number alphabet $16,40,41,48,240,248$ as carrier traces.
+\end{keybox}
+
+\input{tex-artefacts/tfpt_docset}
+\noindent\textbf{You are reading \textbf{document~1} (Architecture).}
+
+\input{tex-artefacts/tfpt_status}
+\TFPTbadges
+\TFPTclaimstack[compiler]
+
+
+\tableofcontents
+\clearpage
+\part{Architecture and the derivation map}
+\begin{abstract}
+This document develops the \emph{architecture layer} of TFPT: the two axioms, the derivation map,
+and the explicit $E_8$ construction. The thesis is that the bridge layer of TFPT is
+governed by \emph{three nested grammars}: a \textbf{carrier grammar} (from $3+2$ come charges,
+families, hypercharge, $\Oadm=48$, $b_1=41/10$), a \textbf{seed grammar} (one seed $\useed=\varphi^{\mathrm{ret}}_0$
+generates the Cabibbo angle, birefringence, the baryon fraction and the reactor angle), and an
+\textbf{action grammar} (the large scale ratios are exponential actions of $\ainv$ with rungs
+$1/\gcar,\,1,\,2$). Two new exact results sharpen the action grammar: the \emph{decuple bridge}
+$\rho_\Lambda/\Mbar^4=\tfrac{3}{4\pi^2}e^{2\dph}\,[\,v_{\mathrm{geo}}/(5\betarad^2\Mbar)\,]^{10}$ (the
+cosmological constant is, in essence, the tenth power of the stripped electroweak scale, with
+$10=2\gcar$), and the Hubble corollary $H_0/\Mbar=e^{-\ainv}/(2\pi\sqrt{\Omega_\Lambda})$. We also
+give the exact corrected tree form of the Einstein normaliser $\xi=\tfrac34/(1+9/128\pi^3)$, the
+dual-root dictionary that generates all hypercharges and transport cusps from $y_\pm=\{1/2,-1/3\}$,
+the $\Lambda$-anchored metrology closure, the overdetermination of $\gcar=5$, and the $E_8$ carrier
+atlas in three clearly separated levels. Section~\ref{sec:d5a3} adds the strongest structural result:
+the carrier code is the $D_5=\mathfrak{so}_{10}$ half-spinor ($\operatorname{Aut}=W(D_5)$, order $1920$;
+$R_4=$ Clebsch graph), the family geometry $\mathbb P^1\setminus\mu_4$ is an $A_3$, and $E_8$ is the
+explicit unimodular glue closure of $D_5\oplus A_3$ --- with the discriminant-form norms $q(D_5)=5/4$
+and $q(A_3)=3/4$ summing to the $E_8$ root norm $2$ and coinciding with the TFPT constants
+$\dtwo/\dtop^2$ and $\xi_{\mathrm{tree}}$. Status markers used throughout:
+\mE~exact identity, \mE~Lie/lattice theorem, \mE~formalised, \mE~numerical fixed point,
+\mC~physical/conditional, \mO~axiom/open. (All markers are explicit; the legacy \texttt{[M]}/\texttt{[C]} compatibility aliases have been removed.)
+\end{abstract}
+
+
+\newpage
+
+% =====================================================================
+\section{How to read this document}
+% =====================================================================
+
+\noindent\textbf{Notation convention.} We write $D_5\oplus A_3$ for the \emph{root-lattice} direct sum
+(used in the glue/lattice statements: discriminant forms, $\mu_4$ glue, $E_8$ as an even unimodular
+lattice), and $D_5\times A_3$ for the \emph{group/representation} branching (used for subalgebra
+embeddings and $E_8$-rep decompositions). The objects are the same atoms; the symbol marks whether the
+statement is lattice-theoretic ($\oplus$) or branching/representation-theoretic ($\times$).
+
+\smallskip
+\noindent Nothing here introduces a new primitive assumption; it reorganises existing outputs and
+proves the cross-links. The whole bridge layer rests on two inputs,
+\begin{equation}
+  \boxed{\ \cthree=\frac{1}{8\pi}\ \ (\text{axiom P1}),\qquad \gcar=5\ \ (\text{axiom P2}).\ }
+\end{equation}
+
+\begin{keybox}[Foundational postulates --- the two genuine axioms (hardenable, not derivable)]
+Everything downstream is a theorem \emph{given} two structural inputs that are not reduced further and
+are honestly flagged as the theory's axioms:
+\begin{description}[leftmargin=2.2em,style=nextline]
+  \item[\textnormal{(P1) Boundary kernel.}] A single oriented seam $\Sigma$ carries a primitive,
+  reflection-positive boundary kernel with unit winding $[u_\Sigma]=1$; its self-linking normalisation
+  fixes $\cthree=1/(8\pi)$. \emph{Status:} primitive postulate. \emph{Organizing identity (2026-08-06,
+  markers unchanged):} the closed normalization $I\cdot\beta_{\rm angle}\cdot\cthree=4\cdot2\pi\cdot
+  \tfrac1{8\pi}=1$ holds exactly with the Jones index $I=4=|\mu_4|$ a $\cthree$-free theorem and
+  $\beta_{\rm angle}=2\pi$ independently measured --- the identity \emph{explains} the value, it does
+  not derive it; the open bridge is the even modular-response normalization
+  (\texttt{P1.INDEX.KMS.01} \mO, \veri{v813\_p1\_index\_kms.py}). \emph{Hardenable by:} the Calder\'on
+  projector / determinant-character chain (the P1 hardening) and the Lean carrier-rigidity development
+  (\texttt{TfptCarrier.*}, boundary-polarization and Calder\'on interfaces).
+  \item[\textnormal{(P2) Carrier interface.}] This splits into an \emph{axiom} and a \emph{theorem},
+  which must not be conflated:
+  \begin{itemize}\setlength\itemsep{1pt}
+  \item \textbf{P2$_{\mathrm{interface}}$ \mO\ (axiom):} the seam is read out by a five-slot carrier
+  $\gcar=5$ ($3$ colour $+\,2$ weak) --- a postulate (the readout interface).
+  \item \textbf{P2$_{\mathrm{algebra}}$ \mE\ (theorem):} \emph{given} the carrier, hypercharge
+  ($y_-=-\tfrac13$, $y_+=\tfrac12$), rigidity and the family count follow from the idempotent/lattice
+  axioms --- machine-verified in Lean (\texttt{Hypercharge.lean}, \texttt{LatticeRigidityGeneral.lean},
+  \texttt{Rigidity.lean}).
+  \end{itemize}
+  So P2 is an \emph{interface axiom} whose \emph{algebraic consequences are a formalised theorem} ---
+  ``axiom or theorem?'' has the precise answer: interface axiom, algebra theorem.
+\end{description}
+These two are \emph{inputs}: they can be formalised and stress-tested (more Lean, more interface
+theorems) but not computed away. Every other number in this note --- $\Nfam=3$, $\Oadm=48$,
+$b_1=41/10$, $\ainv$, the flavor matrix, the $E_8$ glue, $A_s$ --- is a consequence of (P1),(P2).
+\smallskip\\
+\noindent\textbf{Anchor-first refinement.} The two inputs are themselves the elementary symmetric
+polynomials of the single parabolic anchor $a=(1,1,2)$ (the exponents-at-infinity of the splitting type
+$\mathcal O(-2)\oplus\mathcal O(-1)^2$): $e_1(a)=4=|\mu_4|$, $e_2(a)=5=\gcar$, $e_3(a)=2=|\Z_2|$, with
+$\cthree=1/(2e_1(a)\pi)=1/(8\pi)$. The power sums $p_n(a)=2+2^n$ then give $|R(E_8)|=p_1p_2p_3=240$,
+$\dim E_8=240+(p_4{-}p_3)=248$ and the binary ladder $p_{n+1}{-}p_n=2^n$. So the input set reduces to
+$\{a=(1,1,2),\,\pi\}$. \veri{v23\_anchor\_generator.py}  The whole ladder is one affine map: $p_{n+1}=2p_n-2$
+identically, with unique fixed point $2=|\Z_2|$ and the compiler quintet $(4,6,10,18,34)$ as the $T$-orbit
+of $4$ --- the affine normal form of Theorem~8 (\veri{v832\_anchor\_flavor\_checksum.py}).
+\par\smallskip\noindent\textbf{The parabolic self-code of the anchor
+(\veri{v566\_parabolic\_anchor\_selfcode.py}).} The anchor is not only
+generated --- it is \emph{coded twice} by one operator structure that
+already lives in the compiler.  The sheet-diamond direction operators
+$U=Q\,\mathrm{diag}(1,0,0)$ and $V=Q\,\mathrm{diag}(0,1,1)$ (\vref{v218};
+$\operatorname{Spec}V=\{0,1,2\}$) generate the \emph{full} $2|1$ parabolic
+(line-stabiliser) algebra $\mathcal A$ (dimension $7$, word determinant
+$-81$, multiplicatively closed; a perturbed $Q$ breaks it) \mE.  The
+Lagrange projector onto $V$'s dominant eigenvalue gives
+$H=I+\tfrac12V(V-I)$ with spectrum \emph{exactly} $\{1,1,2\}=a$, and
+$\chi_H(x)=x^3-4x^2+5x-2$ carries the double code
+$(4,5,2)=(|\mu_4|,\gcar,|\Z_2|)=(\dim_{\mathbb R}(GL_3/P),\dim(\mathcal
+A/J),\dim J)$ --- flag, Levi quotient and radical of $\mathcal A$ \mE.  A
+uniqueness theorem closes the family: the line-stabiliser structure
+polynomial factorises as $(x-m)(x^2-mx+1)$, and all-positive-integer
+spectra force $m=2$ --- $a=(1,1,2)$ is the \emph{only} anchor this
+parabolic family can code \mE.  Honest typing: this is a
+\emph{compression} of one operator system, not new independent evidence
+(no-free-pattern), and it is \emph{not} a $P2$ reduction --- the route
+``$\gcar=\dim(\mathcal A/J)$ as a derived value'' is conditional on the
+\emph{No Carrier Reconstruction} audit \mO; the axioms' markers are
+untouched.  \emph{Stage A of that audit is since executed}
+(\veri{v567\_carrier\_free\_q\_reconstruction.py}): with the v11 carrier
+budgets \emph{forbidden} (rows $(4,5,6)$, columns $(9,5,1)$, $\chi_Q$
+with its $5$), the carrier-free inputs --- sheet involution, winding
+normalisation, $A_3$ exponent spectrum, monodromy budget, seam-line
+demand --- admit exactly $28$ parabolic reconstructions, and \textbf{all
+$28$ code the same anchor} $\chi_{H'}=x^3-4x^2+5x-2$: the anchor
+self-code is carrier-free; the single family invariant $81=\Nfam^4$ then
+pins $Q$ to a two-element residual family ($q_{32}\in\{2{=}|\Z_2|,0\}$)
+on which every classical carrier-free certificate coincides --- the one
+separating certificate is exactly the forbidden column budget.  Verdict
+\textsc{reconstructs-to-family}; the audit relocates to
+\texttt{GATE.QGEO.01} (derive the geometric inputs themselves) and to
+the one binary sheet-coupling selector \mO\ --- which is since
+\emph{located and given a canonical witness}
+(\veri{v568\_bit\_selector\_ladder.py}): the twins generate different
+integral orders, and the \emph{ladder self-consistency} (the dominant
+mode reproduces its own eigenvalue as the geometric ladder
+$(1,2,4)=(2^0,2^1,2^2)$, the binary AnchorLadder) selects the compiler
+$Q$ uniquely on all $28$ members; the split geometry ($q_{32}=1$) is
+excluded by the demands already imposed; \emph{why} the ladder
+self-consistency should hold physically stays open (the RP-selection
+slot) \mO.  Three follow-ups since executed: the \emph{kinematic RP form}
+on the twins (\veri{v572\_rp\_bit\_form.py}) is spectrally blind
+(identical inertia for every declared corpus state; never PSD --- no
+kinematic positivity selection exists) but \emph{integrally
+anchor-visible}: the Smith towers of the anchor-state Gram separate the
+twins in one slot ($18$ vs $2$, a factor $9=\Nfam^2$) --- the bit shows
+to the RP form only through anchor-coupled states \mE; and \emph{Stage B
+is narrowed} (\veri{v574\_stageb\_winding.py}): the involution
+\emph{type} is forced by a rank theorem (a two-dim-positive involution
+cannot carry the binary trace code), and the winding normalisation
+$\Nfam=3$ is \emph{forced} by the double self-consistency --- the ladder
+selects one member for every $N\le3$ (higher $N$ die on the exponent
+demand), and $\mathrm{sat}=N^4$ holds only at $N=3$ ($81=3^4$; $N=1,2$
+give $32\neq1$, $512\neq16$): two of the five declared geometric inputs
+relocate to consistency-forced; \texttt{GATE.QGEO.01} is narrowed, not
+closed \mE/\mC.  The involution-\emph{existence} input is since
+\emph{derived} (\veri{v590\_involution\_existence.py}): the integral
+$V$-commuting involutions are exactly the spectral sign group
+$(\mathbb{Z}/2)^3$ (rigidity, both twins), and the v574 type theorem
+plus two named demands (seam reversal, zero-mode fixing) single out the
+explicit $S_0$ with exact $\Sigma$-signature uniquely --- existence is
+unconditional; the two demands' continuum derivation stays the named
+open \mE/\mC.  The \emph{interacting} follow-up
+(\veri{v584\_ext\_source\_response.py}) then separates the twins
+\emph{directionally}: rank-one Ext-source coupling on the Gibbs pencil
+has exact rational flip thresholds $J_c(s)=-1/(v^{T}K(s)^{-1}v)$ whose
+numerators are exactly the twins' pencil factors; in the crossed phase
+positive coupling $J_c\le 15/16<1$ heals exactly the compiler twin
+(through either Ext arrow), while the alt twin cannot be flipped by any
+positive coupling in the open unit box --- the healing direction is
+strictly positive, consistent with the v534 toy RP selection; the
+response pole sits on the golden polynomial $s^2-s-1$ (observed).
+Honest: a response-level selection, not an OS/RP positivity theorem ---
+the alignment-bit contract stays open \mE/\mC.  A \emph{geometric
+candidate} for the whole \texttt{GATE.QGEO} realization has since
+emerged (\veri{v597\_mu4\_cover\_model.py}): the $\mu_3$-cover
+$y^3=x^4-1$ of $\mathbb{P}^1$ branched at $\mu_4$ hits four compiler
+fingerprints at once --- $H_1$ is a rank-3 module over the Eisenstein
+integers; the $D_4$ rotation closes projectively via the deck
+($r^4=\omega$); the cusp-class group is $(\mathbb{Z}/3)^4$ of order
+$81$ (the saturation index, with the per-mark $\mathbb{Z}/3$ mechanism
+the self-code program asked for); and the unique invariant hermitian
+form has Lorentz signature $(1,2)$ --- so the RP-positivity route
+would become Riemann bilinear positivity if the identification
+completes.  The dictionary since stands at \emph{three} exact entries
+(\veri{v598\_cover\_dictionary.py}): the winding operator $U$ is a
+single-cusp Gram, the $\mu_4$ sheet coupling $Q_-$ is the
+\emph{difference of the opposite cusp Grams} (the diamond diagonal),
+and the binary AnchorLadder $(1,2,4)$ is identity plus the diagonal
+sum; the grading half ($Q_+$, hence $V$ and $Q$) is absent from $7296$
+scanned canonical combinations --- the named suspect for the missing
+generator is the anti-holomorphic $D_4$ reflection (the real
+structure); the gate does not move \mE/\mC.  The suspect has since
+been \emph{constructed} (\veri{v599\_real\_structure.py}: $R$ unique
+up to scale with $R^2=+1$; its grading functor closes the three gaps
+at char level, with the anchor spectrum $(1,1,2)$ appearing; the
+invariant form has $\det J=8$ and Lorentz signature $(1,2)$), and the
+\emph{joint embedding has landed}
+(\veri{v600\_joint\_embedding.py}): a $\Gamma$-even degree-2 pair
+$(U^*,V^*)$ is $\mathbb{Z}[\omega]$-integral, GL$_3$-conjugate to the
+compiler pair (explicit $g$, exact), restricts to \emph{integer}
+matrices on the saturated real fixed lattice, and its seven-word
+$\mathbb{Z}$-order has saturation index $81=3^4$ with the exact v566
+divisor pattern --- the self-code algebra lives on the cover;
+canonicity stays open and the gate still does not move \mE/\mC.  The
+canonicity question has since been answered
+(\veri{v601\_equivariant\_dual.py}): the J-adapted cusp projectors
+give a presentation that is $D_4$-\emph{equivariant by construction}
+(mark choice $=$ winding choice) and realizes the \emph{dual}
+parabolic exactly (conjugate to the transposed compiler pair), and
+the v590 Klein four-group lives integrally on the curve \mE/\mC.
+\emph{The cover program at a glance (v597--v605).}  Nine rounds close
+into one narrative: the $\mu_3$-cover $y^3=x^4-1$ carries the
+fingerprints (v597), the dictionary (v598), the real structure with
+$R^2{=}1$ and the Lorentz form $\det J=8$ (v599), the joint pair with
+saturation index $81=3^4$ (v600, Lean-certified), the
+$D_4$-equivariant canonical presentation and the integral Klein group
+(v601), the J-adjoint duality, the verbatim anchor formula
+$H=1+V(V-1)/2$ and exact Weil positivity (v602), the \emph{real} seam
+line with the geometric seam-reversal demand and the first per-mark
+$\mathbb{Z}/3$ witness (v603), the anti-isometry
+$M^\dagger JM=J^T$ with the integer form $J_{\mathrm{fix}}$
+($\det 72$), the full four-frame order of index $27=3^3$ and the
+torsion localization ($81$ at the marks, $27$ at infinity) (v604),
+and the RP translator
+$\theta_{\mathrm{corpus}}=J\mathrm{adj}\circ\mathrm{inner}(c)$ with
+$14c$ integral (v605).  The gate does \emph{not} move: the residual
+is the conformal seam identification (\texttt{QGEO.SYM.01}), the
+zero-mode selection (the zero-mode line is \emph{not} $R$-real ---
+honest negative), and the geometric identity of $c$ \mE/\mC/\mO.
+The honest decomposition (spectrum ablation): freeing
+the exponent spectrum too, the one surviving double-selfconsistent
+family is exactly $\{1,2,N\}$ with the compiler shape --- the
+self-consistency forces the \emph{sheet} spectrum $\{1,2\}$ (the binary
+code) and the shape, and the $A_3$ exponent demand contributes exactly
+\emph{one} datum, $N=3$ \mE.  And the redundancy ablation shrinks the
+input list further: relative to the self-code demands, the monodromy
+budget $(M)$ and the seam-line demand $(L)$ are \emph{redundant} (both
+dropped, the class widens to $1274$ members and the self-code still
+picks the compiler $Q$ uniquely), and the maximal ablation drops $(E)$
+too: the winding column $3(1,1,1)$ plus integrality plus the self-code
+already pin the compiler alone.  Even the winding \emph{form} is now
+located: dropped entirely, the self-code leaves a four-column family of
+which exactly one is uniform --- the compiler; the winding demand
+\emph{is} the uniformity choice ($1$ of $4$).  What remains declared:
+the involution \emph{existence}, the column \emph{uniformity}, and
+$\Nfam=3$ (independently anchored in the $E_8$ glue,
+$240=16\times5\times3$) \mE.  On the bit itself, the
+anchor-Hamiltonian \emph{Gibbs pencil} delivers the first dynamical
+distinction: the compiler twin's RP kernel degenerates at a finite
+critical temperature $s^*=(8-4\sqrt{19})/15$ (determinant constant
+$81^2$), the alternative twin's never does --- and the critical mode is
+the seam-row, sheet-flow-fixed direction (the $A_2$-Ext carrier): a
+rank-drop marker, not yet a positivity selection, but the resonance
+with the alignment bit now has a shared carrier \mE.
+\end{keybox}
+
+\begin{keybox}[The Gaussian code bridge and the quartic half (2026-08-03) --- the code section closes two loops]
+Two exact-arithmetic results tie the binary code layer directly to
+the $E_8$ lattice and its complex $\mu_4$ structure.  \emph{The
+Gaussian code bridge} (\veri{v689\_gaussian\_code\_bridge.py}, $26$
+checks, exact): the $\mu_4$ complex structure $J$ makes $E_8$ a
+rank-4 module over the Gaussian integers $\mathbb{Z}[i]$, and the
+quotient $E_8(\mathbb{Z}[i])/(1+i)$ \emph{is} $\mathbb{F}_2^4$ ---
+the information space of the Reed--Muller code $\mathrm{RM}(1,3)$
+(Smith normal form exact; standard model $|\det|=256=2^8$, SNF
+$[1^4,2^4]$, presentation-independent).  The $240$ roots fall
+$15\times16$ over the fifteen nontrivial classes (the zero class
+provably empty), each class is $4$ of the $60$ G31 lines
+($60=15\cdot4$), the compiler clock $\sigma=c^4$ acts as the
+$\mathrm{RM}(1,3)$ \emph{family permutation} (3-cycle plus fixed
+anchor --- the v638 info-bit action) with a residual gauge group of
+order $18$, and the coordinate block is the sum-of-families label
+$F_1{+}F_2{+}F_3$.  Three must-fail controls fire (naive placement,
+non-$\pi J$ placement, plain $\mathbb{Z}[i]^4$) \mE.  \emph{The
+quartic half} (\veri{v690\_quartic\_half.py}, $22$ checks, no
+floats): the vanishing of the $W(E_8)$ invariants of degrees
+$\{2,14,18,30\}$ under holomorphic $\mu_4$ restriction is proven
+symbolically but \emph{trivial} --- $W(J\alpha)=-i\,W(\alpha)$ kills
+every $J$-orbit contribution for all $d\not\equiv0\bmod4$ (honest
+typing); the substance is the surviving half: the restrictions
+$F_8|,F_{12}|,F_{20}|,F_{24}|$ are G31-invariant ($60/60$ mirrors),
+algebraically independent (exact Jacobian), with Molien-unique
+degrees of product $46080=|G31|$ --- by Chevalley (cited) a system
+of \emph{basic} invariants, i.e.\ the holomorphic restriction of
+the $W(E_8)$ ring generates the full G31 invariant ring; the
+Jacobian carries the $60$ mirror lines point-verified.  Controls: a
+non-root-preserving complex structure breaks the informative half,
+a root-preserving one keeps it --- the statement is about the
+compiler-compatible conjugacy class \mE.  No marker moves; both are
+structure statements of the code layer, registered as
+\texttt{E8.GAUSSCODE.01} and \texttt{E8.QUARTICHALF.01}.
+\emph{The orbit packet lemma (2026-08-04):} the code bridge's number
+family closes as one lemma (\veri{v736\_orbit\_packet.py}, $26/26$,
+\textsc{orbit-packet-exact}; companion Lean module
+\texttt{OrbitPacket.lean}, $34$ theorems, kernel-checked):
+\begin{center}
+\begin{tabular}{ll}
+$\sigma$ orbit census (Burnside) & $7=(15+3+3)/3$ \\
+canonical packet split & $240=5\times48$ ($1$ fixed $+$ $4$ moved, \\
+ & \quad $12$ Gaussian lines each, label-free) \\
+carrier reading & packets $=1+4=5=\gcar$, $240=\gcar\times48$ \\
+anchor & leader weights $(0,1,1,2)\to(1,1,2)$, pair $e_6/e_7$ \\
+$q=16$ normal form & $240=16\cdot15$, \quad $248=240+8$ \\
+\end{tabular}
+\end{center}
+\emph{The circularity fence is part of the lemma:} P1
+($\cthree=1/(8\pi)$) and P2 ($\gcar=5$) come back from the code as
+\emph{exact internal reconstruction} --- the packet law reconstructs
+the axioms, it does \emph{not} derive them; and the $1+4$ law is
+$\sigma$-\emph{class}-specific (the $160$ free order-$3$ elements of
+G31 give Burnside $5$, not $7$).  The sharpening to a canonical
+intertwiner with the $48$ regular five-cycles is \emph{dead} on its
+preregistered criterion (\veri{v737\_seam48\_intertwiner.py},
+$24/24$ machinery, \textsc{seam48-dead}: incidence distribution
+$0{:}96/1{:}64/2{:}64/3{:}16$ instead of $\equiv1$) --- $240=48\cdot5$
+remains a factorization \emph{without} coordinatization \mE.
+\emph{The symplectic code lemma (2026-08-04):} the quotient carries
+its own incidence geometry
+(\veri{v752\_projective\_hamming\_incidence.py}, $36/36$,
+\textsc{proj-hamming-exact}; companion Lean module
+\texttt{ProjectiveHamming.lean}, $32$ theorems): $h=H/4$ is
+$\Z[i]$-valued with hermitian Gram determinant $1$ --- the
+\emph{unimodular} hermitian E8 lattice over $\Z[i]$ --- and the
+reduction $\bar h$ makes $V=L/(1+i)L$ a symplectic
+$\mathbb{F}_2^4$ (doubly-even $\Rightarrow$ alternating; explicit
+Darboux basis); on the $15$ nonzero classes the hyperplane
+incidence matrix satisfies $BB^{\mathsf T}=4I+3J$ \emph{exactly},
+with design parameters $2/3/4/7/15/16$ and eigenvalues
+$7^1(+2)^9(-2)^5$ (the multiplicities $(1,9,5)$ are the symplectic
+signature), the channel $K=B/7$ obeys
+$K^2=(4/49)I+(45/49)\Pi_0$, and the NS/R parity is the point
+$y_0=\mathrm{FSUM}$ of the geometry
+($\chi_{\mathrm{NSR}}=\bar h(\cdot,y_0)$; $112+128=240$,
+$248=120+128$).  The lemma also \emph{resolves} the seam-48 kill:
+the distribution above is derived exactly ($16\times$ the
+$3\times5$ label table), and the $5\times48$ coordinatization
+exists via exactly one $\bar u$-invariant spread --- the kill is
+explained (wrong blocks), not revised \mE.
+\emph{The Arf/spinor compiler (2026-08-05):} the code layer now
+carries its canonical quadratic refinement
+(\veri{v774\_arf\_spinor\_compiler.py}, $46/46$,
+\textsc{arf-spinor-exact}; companion Lean module
+\texttt{ArfSpinorCompiler.lean}, $23$ kernel theorems): of the
+exactly $16$ refinements of $\bar h$ the frozen selector
+($\sigma$-invariance, $q(A){=}1$, $q(F_\Sigma){=}0$) picks a
+\emph{unique} $q^{*}$, which \emph{is} the parity-lift weight form
+under $\iota\colon V\cong C_{\rm even}(5)$ (crosslink
+$\beta=\bar h$ exact in all $256$ cells); $\mathrm{Stab}(q^{*})\cong
+S_5$ makes $16=1+\bar 5+10$ an \emph{Arf geometry}
+($Sp(4,2)\cong S_6$; $K_6$ duads; $B=I+A_{KG(6,2)}$ with exact
+ovoid eigenvectors), and the hypercharge table
+$X=(-2,-2,-2,3,3)$ reproduces the \texttt{v310}/\texttt{v14}
+dictionary with the master-moment chain $120/40/41/240/248$;
+the same $\sigma$ acts as the family 3-cycle $A_3^{\rm Fam}$ on
+message bits and as the $3{+}2$ slot split $A_3^{\rm PS}$ on
+carrier legs --- naming discipline, not a physics claim \mE.
+\emph{The fired matter fence (2026-08-05):} the preregistered
+kill test of the code$\to$matter reading \emph{fired}
+(\veri{v775\_gaussian\_class\_d5\_purity.py}, $18/18$,
+\textsc{rootclass-mixed}): no $D_5{\oplus}A_3$/$SU(5)$ convention
+makes even one full set of $15$ classes pure ($\ge7$ classes are
+adjoint-side for \emph{every} embedding, by the $128$-spinor-root
+counting bound); the code$\to$matter table --- including the
+``empty mailbox $=$ right-handed neutrino'' reading --- must not
+enter any main claim \mE.
+\emph{Boundary code uniqueness (2026-08-05):} the non-circular
+selection chain exists
+(\veri{v776\_boundary\_hamming\_uniqueness.py}, $31/31$,
+\textsc{boundary-code-unique}): among all doubly-even self-dual
+binary codes of length $8$ (direct census $30$, no Hamming/$E_8$
+input) the boundary data --- four $J$-paired marks, $\Z_3$ deck
+pair-coherence, and \emph{one} deck-invariant $\Z_2$ (the product
+of the four side orientations) --- select exactly one code;
+Construction~A of it \emph{is} $E_8$, and the deck packets output
+$\gcar=1+4=5$.  The circularity fence above is thereby
+\emph{relocated and shrunk}, not removed: the residuals named then
+were the doubly-even self-dual \emph{universe premise} (R1), the
+semantic deck placement (R2) and the anchor naming (R3); all three
+moved in round 21 (see the Type-II and metaplectic entries below)
+--- R1 is replaced by three physical axioms, R2 is placed, R3 is
+named; no P2-removal claim --- the sharpened contract form is
+\texttt{SEAM.CODE.TYPEII.01} \mC.

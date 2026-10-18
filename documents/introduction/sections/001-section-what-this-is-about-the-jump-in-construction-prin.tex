@@ -1,0 +1,380 @@
+\begin{document}
+\maketitle
+\vspace{-0.8cm}
+
+\begin{keyboxnb}[In one sentence]
+\textbf{Topological Fixed-Point Theory (TFPT)} constructs, from exactly \textbf{two inputs} --- a boundary
+constant $\cthree=\tfrac1{8\pi}$ (P1) and a five-slot carrier $\gcar=5$ (P2) --- a discrete compiler for
+the Standard-Model skeleton: the gauge group, three families, hypercharges and the flavor matrix, with
+$E_8$ ($D_5\oplus A_3+\mu_4\Rightarrow E_8$) as the consistency checksum. The \emph{algebraic core is
+machine-checkable} and the dimensionless constants follow as fixed points ($\ainv=137.0359992$);
+\emph{physical readouts} --- absolute scales, masses, inflation, gravity and cosmological transfers ---
+run through explicitly \emph{named, status-typed bridges} ($v_{\mathrm{geo}}$, $G_{\mathrm{net}}$,
+$F_{\mathrm{transfer}}$), not as free outputs. The honest one-line claim is on the status card below.
+\end{keyboxnb}
+
+\input{tex-artefacts/tfpt_docset}
+\noindent\textbf{You are reading the \textbf{introduction} --- the entry point and reading guide.}
+
+\input{tex-artefacts/tfpt_status}
+\TFPTbadges
+\TFPTclaimstack[none]
+
+
+\tableofcontents
+
+\noindent\textbf{Reading the markers.} Claims carry one of \emph{four} reader-facing classes, so one can
+see at a glance what is proven and what is conditional:
+\mE\ \emph{exact / machine-proven} --- an exact identity (e.g.\ $240=16\cdot5\cdot3$), a Lie/lattice
+theorem (e.g.\ $D_5{\oplus}A_3{+}\mu_4{=}E_8$), a Lean/script formalisation, or a reproduced numerical
+fixed point;
+\mC\ \emph{conditional} --- follows under explicitly named hypotheses (a physical bridge, readout or
+pending step);
+\mO\ \emph{open / axiom} --- a declared input or a genuine gap;
+\mX\ \emph{kill test} --- a falsifiable threshold.
+The finer per-claim type (Axiom / Formal / Lattice / Numerical / Identity / Physical) is kept in
+\texttt{verification/status\_ledger.csv}, the single source of truth.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  band/.style={rounded corners=1pt,inner sep=0pt,minimum height=6.6mm,text=white,font=\footnotesize\bfseries,align=center},
+  tag/.style={anchor=west,font=\scriptsize,black!70}]
+  \node[band,fill=tfgray!85,   minimum width=84mm] (b0) at (0,0.00) {Axiom --- declared inputs};
+  \node[band,fill=tfblue!55!black,minimum width=70mm] (b1) at (0,0.74) {Formal --- Lean / exact script};
+  \node[band,fill=tfblue,      minimum width=56mm] (b2) at (0,1.48) {Lattice --- Lie / glue / root system};
+  \node[band,fill=tfgreen,     minimum width=42mm] (b3) at (0,2.22) {Numerical --- fit-free fixed point};
+  \node[band,fill=tfgold,      minimum width=28mm] (b4) at (0,2.96) {Physical --- under hypotheses};
+  \node[tag] at (44mm,0.00) {P1 $\cthree$, P2 $\gcar$ \quad\texttt{AX.P1.01}};
+  \node[tag] at (44mm,0.74) {P2 algebra \quad\texttt{FORM.P2.02}};
+  \node[tag] at (44mm,1.48) {$E_8{=}(D_5{\oplus}A_3){+}\mu_4$ \quad\texttt{E8.GLU.01}};
+  \node[tag] at (44mm,2.22) {$\ainv,\Lambda,\theta_{12}$ \quad\texttt{EM.FP.01}};
+  \node[tag] at (44mm,2.96) {RG masses, QG \quad\texttt{QG.AMB.01}};
+\end{tikzpicture}
+\end{center}
+\noindent\emph{The claim stack} (bottom $=$ most certain/fewest, top $=$ conditional). Each claim sits on
+exactly one level; the bottom two are inputs, the middle two are proved/reproduced, only the top is
+conditional. The single source of truth for which claim sits where is
+\texttt{verification/status\_ledger.csv}.
+
+\smallskip
+\noindent\textbf{No-free-pattern rule.} To keep the structure from drowning in decorative coincidences, an
+identity enters the \emph{main text} only if it (1) is a necessary step in a derivation, (2) kills an
+alternative, (3) is ablation-relevant, (4) links two previously independent modules, or (5) is
+experimentally tested. Everything else is explicitly demoted to an \emph{audit fingerprint} \mE\ (clearly
+boxed as such) --- so the load-bearing beams stay visible and the ornament never gets promoted to spine.
+
+\noindent\textbf{Admissible-invariant classes (the harder filter).} Sharper still: a \emph{load-bearing}
+integer may only come from one of seven typed sources --- (i) a symmetric function $e_k(a)$ of the anchor
+$a=(1,1,2)$; (ii) a power sum $p_n(a)$ or difference $p_{n+1}{-}p_n$; (iii) a determinant, spectrum, Smith
+normal form or trace of $(R,Q,K,L)$; (iv) an anchor quadratic form $u^\top M v$ with $u,v\in\{\mathbf1,a\}$;
+(v) a Pl\"ucker coordinate of the anchor plane $\langle\mathbf1,a\rangle$; (vi) an $E_8$ Casimir degree or
+branching block; (vii) a pre-registered experimental observable. Anything else is an audit fingerprint or a
+frontier item, never spine. This is what converts TFPT from \emph{pattern hunting} (``look, another number'')
+into a typed compiler: \emph{fewer admissible kinds of explanation}, not more matches.
+
+\noindent\textbf{Reviewer path} (read in this order; the rest is support):
+\begin{enumerate}[leftmargin=1.7em,itemsep=1pt]
+\item the architecture: the two axioms $\{\cthree,\gcar\}$ and the two-engine picture (\S\ref{sec:docmap}, the figures);
+\item the $E_8$ glue $E_8{=}(D_5{\oplus}A_3){+}\mu_4$ --- document~1, Part~II, machine-checked (\texttt{v1\_e8\_glue.py});
+\item the $\alpha^{-1}$ fixed point plus ablation (\texttt{v3\_em\_alpha.py});
+\item the \textbf{single status ledger} \texttt{verification/status\_ledger.csv} --- the source of truth for every claim's grade, location, dependency and script;
+\item the \textbf{open gates} as numbered research contracts (\texttt{tfpt\_research\_contracts}: the residual classes R1--R5 and their current reductions) and the honest frontier list (document~4).
+\end{enumerate}
+\noindent Everything carries a claim ID (e.g.\ \texttt{E8.GLU.01}, \texttt{EM.FP.01}) that resolves to a row of the
+ledger. \textbf{If the text and the ledger ever disagree, the ledger wins.}
+
+% =====================================================================
+\section{What this is about: the jump in construction principle}\label{sec:docmap}
+% =====================================================================
+
+\subsection*{In plain words}
+
+\noindent\textbf{What we found.} TFPT reproduces dozens of real numbers of physics (particle masses, the
+fine-structure constant, dark-energy and inflation values) from a small set of inputs --- and the
+compiler closure says \emph{why} the same handful of small integers ($2,3,5,16,\dots$) reappears in
+every sector: those numbers are not separate lucky hits. A single tiny ``machine'' --- fed by just
+\textbf{two inputs} (a boundary number $\tfrac1{8\pi}$ and a five-slot carrier) --- builds the
+exceptional symmetry $E_8$, and $E_8$ is the unimodular ``audit hull'' that classifies the discrete
+Standard-Model readout: the constants, the flavor skeleton and the gravity/cosmology regime are then
+read off by projection and boundary dressing (not ``printed'' for free --- where a scheme or analytic
+interface is needed, it is named).
+
+\smallskip
+\noindent\textbf{Why this is simple.} There are not many separate derivations that happen to share numbers ---
+there is \emph{one generator and a handful of corollaries}, and the number of independent structural
+assumptions is \textbf{two}.
+
+\smallskip
+\noindent\textbf{How plausible it is.} A theory becomes more believable when it \emph{explains more from less}.
+Here the two inputs are even \emph{over-determined}: the machine reproduces the very two numbers it
+started from (the dashed bootstrap loop in the architecture diagram, \S2), so there is \emph{no free
+dial left to tune}. Pushed to the end (\veri{v353\_selfloop\_capstone.py}), this means TFPT is best read not as a
+\emph{linear} theory (axioms $\to$ theorems) but as a \emph{closed self-consistent loop} whose outputs fix its own
+inputs ($\gcar{=}5$ is the largest prime of the output $h(E_8){=}30$; the $8$ in $\cthree$ is $\operatorname{rank}E_8$),
+with a \emph{unique} fixed point (\vref{v6}/\vref{v56}) and \emph{zero} free adjustable dimensionless parameters.
+Even $\pi$ is not a free dial: it is the fixed geometric constant of the boundary $2$-sphere
+($\oint_{S^2}K=4\pi$), the one transcendental the continuous boundary contains. ``Which is the axiom?'' is the
+wrong question for a loop --- every part is fixed by the whole; the one remaining structural question, whether the loop
+also closes in the \emph{continuum} (the keystone \texttt{SEAM.EQUIV.01}), now carries two named routes (route
+split 2026-07-22, an ID restructuring with \emph{no} status change in substance): its MMST route
+\texttt{SEAM.EQUIV.MMST.01} is \emph{closed modulo cited
+theorems} --- the lattice model and $S_3$ stack pin it at every computable level and it is Lean-formalised
+(\texttt{FORM.SEAM.MMST.01}); only the cited continuum-existence theorems stay \mO\ (\vref{v367}/\vref{v368},
+\vref{v376}--\vref{v379}, \vref{v336}), their extension leg since re-founded on peer-reviewed crossed-product
+theorems with the realisation input reduced to invariant level (\vref{v469}) --- while its twistor route
+\texttt{SEAM.EQUIV.TWISTOR.01} (the open Costello--Li construction, prepared by \texttt{CELEST.SEAM.01}) stays
+\mO; the parent \texttt{SEAM.EQUIV.01} is closed if either route closes and, as an unconditional claim, stays \mO.
+
+\subsection*{Sharper still: one anchor $a=(1,1,2)$, and $E_8$ as a compiler hull \texorpdfstring{(\mE)}{}}
+
+\noindent The two axioms are not even independent: they are the \emph{elementary symmetric polynomials} of the
+single parabolic anchor $a=(1,1,2)$ (the exponents-at-infinity / splitting type $\mathcal O(-2)\oplus\mathcal O(-1)^2$):
+\[
+  e_1(a)=4=|\mu_4|,\qquad e_2(a)=5=\gcar,\qquad e_3(a)=2=|\Z_2|,\qquad
+  \cthree=\frac1{2e_1(a)\pi}=\frac1{8\pi}.
+\]
+Its \emph{power sums} $p_n(a)=1^n{+}1^n{+}2^n=2{+}2^n$ generate the big Lie data directly:
+$p_1{=}4{=}|\mu_4|$, $p_2{=}6{=}|R^+(A_3)|$, $p_3{=}10{=}\mathcal A_\Lambda$, and
+\[
+  |R(E_8)|=p_1p_2p_3=240,\quad \dim E_8=p_1p_2p_3+(p_4-p_3)=248,\quad p_4-p_3=8=\operatorname{rank}E_8,
+\]
+with the binary ladder $p_{n+1}-p_n=2^n$. So the inputs collapse from $\{\cthree,\gcar\}$ to
+$\boxed{\,a=(1,1,2)\ \text{plus}\ \pi\,}$. \veri{v23\_anchor\_generator.py}
+\par\smallskip
+\noindent\emph{And $a$ is itself half-forced} (\mE/\mC): on $\mathbb P^1$ every bundle splits
+(Birkhoff--Grothendieck), so once $|\mu_4|=4$, $\Nfam=3$, $\deg E=-4$ are set, the three positive
+anti-degrees are positive integers summing to $4$, and $4=2+1+1$ is the \emph{unique} partition into three
+positive parts --- machine-checked with all its negative controls as the partition corollary
+(\veri{v491\_p2\_partition\_corollary.py}, \texttt{P2.PARTITION.01}): the unique multiset $\{1,1,2\}$
+forces $e=(4,5,2)$, hence $\gcar=e_2=5$, $|\Z_2|=e_3=2$, $\Nfam=3$ as \emph{corollaries} (dropping
+positivity, the sum, the part count or integrality each destroys uniqueness --- Mehta--Seshadri-rational
+weights give $e_2=\tfrac{16}3$ or $\tfrac{44}9\neq5$), sharpening \vref{v53} which needs all three targets.
+The typing itself is now hardened (\veri{v499\_p2\_weights\_deligne\_bg.py}, \texttt{P2.TYPING.01}): given
+the four marks, rank $3$, the cusp class and unitarity (U), the Deligne canonical extension of the flavor
+connection has $\deg E=-4$ (residue traces) and Mehta--Seshadri stability forces $h^0(E)=0$, so
+integrality (Birkhoff--Grothendieck), positivity and the sum $4$ are \emph{theorems} --- the residual
+shrinks to the module identification and (U), both \mC; and that module-identification rest is now
+\emph{one} residual with the QGEO modulus rest (the order-$4$ clock $=$ the Coxeter/cusp-class carrier
+datum; \veri{v503\_qgeo\_emergence\_light.py}, \texttt{QGEO.EMERGE.LIGHT.01}, no marker moves).
+That common residual is itself now reduced to \emph{one alignment bit} --- the collar deck central in
+the mark-$D_4$; the clock's \emph{order} is fermionically forced, $U^2=(-1)^F$ exactly
+(\veri{v506\_seam\_clock\_rigidity.py}, \texttt{SEAM.CLOCK.RIGIDITY.01}, markers unchanged); and the
+bit is no tautology --- the deck's \emph{class} is derived (every mark-free collar deck is a
+half-period translation of the seam double), only its \emph{position} stays the \mC\ input
+(\veri{v507\_seam\_bit\_origin.py}, \texttt{SEAM.BIT.ORIGIN.01}, markers unchanged); and that
+position half is now \emph{topology} --- the covering deck is free on the seam circle, the
+edge class is excluded, and the bit reduces to the square-modulus datum $\tau=i$ alone
+(\veri{v510\_seam\_bit\_freedom.py}, \texttt{SEAM.BIT.FREEDOM.01}, markers unchanged); and that
+modulus datum now carries an equivalent \emph{discrete} form --- flag transitivity of the four marks
+(marks \emph{and} their two sides indistinguishable, $V_4\to D_4$) $\iff\tau=i$, a $13$-fold exact
+equivalence web (since $15$-fold by \vref{v528} facets \#14/\#15) in which bare mark-transitivity is
+automatic for every configuration and no local
+jet sees the side bit (\veri{v512\_seam\_tau\_flag.py}, \texttt{SEAM.TAU.FLAG.01}, markers
+unchanged); free OS positivity is since documented as the \emph{eighth} side-blind test on that
+scoreboard --- the bit is not derivable from free RP/$\Theta$ existence and remains genuine
+discrete input (\vref{v521}, \texttt{SEAM.BIT.RPBLIND.01}, markers unchanged); the
+mark-decorated \emph{state} class (twist/defect insertions --- everything Wick-computable)
+is since documented as the \emph{ninth}: the free-plus-twist class is exhausted
+(\vref{v525}, \texttt{SEAM.BIT.TWISTBLIND.01}, markers unchanged); and the first genuinely
+interacting Fidkowski--Kitaev seam toy is the \emph{tenth} side-blind test ($9\to10$), while
+Kill-Test 2 fires at toy level under a typed fence (\vref{v529}, \texttt{SEAM.INT.FKTOY.01},
+markers unchanged); the straddle filter it produced, since run as a \emph{selector} on the
+interacting mark family, keeps exactly \emph{one} member alive --- reflection positivity
+dynamically selects $\delta=\pi/2$ with positive coupling, the same member that carries the
+twist-class order parameter: the first \emph{positive} selection datum for the bit
+(\vref{v534}, \texttt{SEAM.STRADDLE.CONE.01}, markers unchanged; toy-level evidence,
+not a derivation); the straddle law itself is since refined to the \emph{odd-split law} ---
+the Jaffe--Pedrocchi reflection-positivity condition, made decidable on the toy, predicted RP
+survival on center-straddled ($2{+}2$) cuts and direct measurement confirmed it: a straddled
+cut kills RP iff the split is odd ($1{+}3$) --- while the quartet-avoiding cut family generates
+the full even seam algebra and carries a \emph{positive} OS/GNS inner product at $g=1$: the
+Kill-Test-2 counterweight is narrowed (an OS-viable cut geometry selected by the toy's own
+clock), not removed (\veri{v972\_seam\_interaction\_front.py}, toy level, fence inherited,
+markers unchanged). The bit itself is now the \emph{twist-class choice}, in principle
+interferometrically readable (\vref{v528}, \texttt{SEAM.BIT.TWISTCLASS.01}; it remains formal
+input). Temperature joins geometry and anomaly as the \emph{third leg} of $\cthree$
+(\vref{v526}, \texttt{SEAM.THERMAL.KMS.01}, \mC-typed reading).
+The genuine remaining axiom is therefore not ``why $a=(1,1,2)$'' but ``why the carrier
+$\gcar=5$ / $(|\mu_4|,\Nfam)=(4,3)$'' --- that interface (with $\cthree$), i.e.\ the weight-\emph{typing}
+postulate itself, is the \mO\ input layer (\texttt{AX.P2.01} stays a declared axiom). The consolidated
+reduction state (2026-07-23): the compiler's dimensionless inputs reduce to \emph{four marks} (derived
+from P1-side topology), \emph{one discrete symmetry-lift bit} --- the twist-class choice (flag
+transitivity $\iff\tau=i$; equivalently the clock, the CM-fixed half-period, or the non-split
+extension class on the free seam circle) --- and $\pi$ --- a reduction state, not an abolition of the axiom:
+\texttt{AX.P2.01} remains declared, and the \mC\
+identifications R1/R2 of \vref{v499} remain conditional.
+\par\smallskip
+\noindent\emph{Two readings, one source (no contradiction).} P1 and P2 are the \emph{operational compiler
+inputs}; their anchor provenance is $a=(1,1,2)$ plus $\pi$. The \emph{single structural bedrock postulate}
+is the keystone \texttt{SEAM.EQUIV.01}, whose conformal-deck face \texttt{QGEO.SYM.01} (the carrier $\mu_4$
+clock is the seam's conformal deck, see
+\texttt{tfpt\_research\_contracts}) forces the $\mu_4$ deck, hence $\Nfam=3$, $\deg E=-4$ and the
+tripartition $4=2{+}1{+}1$, of which $c_3$ and $\gcar$ are the two elementary readouts. ``Two inputs''
+(the working axioms) and ``one postulate'' (the geometric bedrock) are the same statement at two layers.
+Its geometric normal form and the mark-local$\Rightarrow\omega\circ\rho=\omega$ implication are now
+Lean-formalised (\texttt{FORM.QGEO.02}/\texttt{FORM.QGEO.01}); the postulate itself stays \mO.
+\par\smallskip
+\noindent\emph{One source, four readings (the cleanest origin).} The four-point seam divisor $\mu_4$ on
+$\PP^1$ generates the whole discrete skeleton by four canonical functors:
+\[
+  \underbrace{\cthree=\tfrac1{8\pi}}_{\text{thermal}}
+  \quad
+  \underbrace{\operatorname{rank}H_1(\PP^1\!\setminus\!\mu_4)=3=\Nfam}_{\text{cycles}\to A_3}
+  \quad
+  \underbrace{h^0(\PP^1,\mathcal O(\mu_4))=5=\gcar}_{\text{functions}\to D_5}
+\]
+\vspace{-3mm}
+\[
+  \underbrace{(D_5)_1\otimes(A_3)_1\rtimes\mu_4\cong(E_8)_1}_{\text{net}}
+\]
+and the function side even generates $D_5$ itself (\veri{v197\_rr\_carrier\_clifford\_d5.py}):
+$\Lambda^{\mathrm{even}}(\mathbb C^5)=\binom50+\binom52+\binom54=16=\dim S^+$, the $\mathfrak{so}(10)=D_5$
+half-spinor. So $\mu_4$ is not merely glue: it is the \emph{common source} of $A_3$, $D_5$, $\cthree$ and
+$E_8$ (\veri{v189\_riemann\_roch\_carrier.py}) --- the arithmetic is exact \mE, the physical reading of the
+carrier as the seam mode space stays \mC.
+\par\smallskip
+\noindent\textbf{What $E_8$ is (and is not).} In TFPT $E_8$ is \emph{not} an unbroken physical gauge group:
+it is the unimodular \emph{audit / compiler hull} that classifies the admissible discrete charge and
+residue structures. The Standard Model is a \emph{readout} after projection, not a direct $E_8$ gauge
+theory; the Lorentz signature appears only after projection; fermions are not ``everything in the
+adjoint''. This is exactly why the known no-go results against literal $E_8$ world-formulas
+(Distler--Garibaldi; Coleman--Mandula) do \emph{not} bite: they constrain $E_8$ as a spacetime gauge
+symmetry, which TFPT does not claim. The defensible claim is: \emph{TFPT is the unique parabolic
+compilation of the anchor $a=(1,1,2)$ into the $E_8$ audit hull.}
+\par\smallskip
+\noindent In one line:
+\begin{keyeq}
+The anchor generates the syntax; the boundary generates the scale; $E_8$ checks the consistency.
+\end{keyeq}
+i.e.\ the discrete content (carrier $D_5\oplus A_3+\mu_4$, the operators $R,Q,K,L$) flows from
+$a=(1,1,2)$; the continuous content ($c_3=\tfrac1{8\pi}$, $\varphi_0$, $\ainv$, the exponential scales) flows
+from $\pi$; and $E_8$ is the unimodular \emph{checksum container}, not the world group.
+\par\smallskip
+\noindent\textbf{The anchor ratio triad (\veri{v119\_review\_validation\_2.py}).} The three elementary
+symmetric values, normalised by the family count, are the theory's three recurring fractions \mE:
+\[
+  \frac{e_3}{p_0}=\frac23\ \text{(Koide branch / sheet ratio)},\quad
+  \frac{e_1}{p_0}=\frac43\ \text{(seed gain)},\quad
+  \frac{e_2}{p_0}=\frac53\ \text{(carrier branch)}
+\]
+--- the canonical flow's critical points are exactly $(2,5)=(e_3,e_2)$ with inflection
+$\tfrac72=\tfrac{e_3+e_2}2$: the fractions $\tfrac23,\tfrac43,\tfrac53$ are not scattered numbers but the
+three normalised anchor coefficients. Further micro-identities \mE:
+$\Omega_{\mathrm{adm}}=2p_1p_2=48$, $10b_1=1+p_1p_3=41$,
+$\Delta_Y=e_2^2=p_0^2+2\operatorname{rank}E_8=25$, $h(E_8)=e_3p_0e_2=30$,
+$\operatorname{rank}E_8=p_0+e_2$.
+
+\TFPTanchorcockpit
+
+\subsection*{The companion documents}
+
+\noindent The whole development is consolidated into \textbf{eight companion documents} (plus
+this introduction), organised in layers that build on one another; this introduction is the entry point
+and reading guide. Each document collects the material of its layer into self-contained parts:
+
+\begin{center}\scriptsize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}p{3.6cm}Y@{}}
+\toprule
+\textbf{Document} & \textbf{What it contains (former notes now as parts)} \\
+\midrule
+\texttt{tfpt\_1\_architecture\_e8} & \textbf{Core.} The two axioms $\{\cthree,\gcar\}$, the derivation map and the EM fixed point (Part~I); the Coxeter--cyclotomic compiler $\Z_{30}{=}2{\cdot}3{\cdot}5$, the explicit $D_5{\oplus}A_3{+}\mu_4$ $E_8$ construction, the machine-checkable $E_8$ appendix and the group-level glue $(\mathrm{Spin}(10){\times}SU(4))/\Delta\Z_4$ (Part~II). \\
+\texttt{tfpt\_2\_standard\_model} & \textbf{Standard Model.} The discrete Standard-Model \emph{structure} (charges, families, flavor operators) is derived under the axioms; $4$D existence, chiral measure, mirror gap, couplings and neutrino dynamics are open.  The $\phiz$-ladder formula (Part~I); the flavor block from parabolic weights and the transport theorem, H2 as a spectral selector (Part~II); the worked closures --- explicit gap, APS--Fredholm, truncation/$n_s,r$, Starobinsky $M$, derived $\theta_{12}$, quark $c$, the H2 splitting type, $\Lambda$-typing (Part~III). \\
+\texttt{tfpt\_3\_e8\_audit\_bootstrap} & \textbf{$E_8$ audit \& bootstrap.} The seven $E_8$ slices as an audit raster ($E_6{\times}A_2$ reads the flavor matrix) (Part~I); the old cascade $D{=}60{-}2n$ as the same even-integer spine (Part~II); the M\"obius bootstrap --- $\gcar{=}5$ and the ``$8$'' in $\cthree$ as overdetermined fixed points, only $\pi$ irreducible (Part~III). \\
+\texttt{tfpt\_4\_frontier} & \textbf{Frontier.} The honest status of $\eta_B$, $m_p/m_e$, Koide, dark matter and quantum gravity --- the genuine handle, the precision, and what is \emph{not} forced onto the ladder. \\
+\texttt{tfpt\_5\_redteam} & \textbf{Red Team.} The adversarial audit of the five load-bearing reductions (Targets A--E): the declared attacks, what survives each, what each one reduces to, and the explicit kill tests. \\
+\texttt{tfpt\_research\_contracts} & \textbf{Research contracts.} The open gates as numbered contracts with lemma chains and closing theorems: $(U_{\mathrm{wall}})$ (now reduced to the selector triangle: $(d,n)\Rightarrow R$ columnwise, residue $=$ \emph{two} line pairings, the third integrality-forced) and $G_{\mathrm{metric}}/G_{\mathrm{net}}$ (the index-$4$ seam-net identification --- one theorem, three doors, now realised at the finite Lie level). \\
+\texttt{tfpt\_horizon\_readouts} \textbf{(App.~H)} & \textbf{Appendix~H --- horizon unit system (reframe, not new physics).} One seam constant $\cthree{=}\tfrac1{8\pi}$ as the universal horizon thermal code: Hawking/de Sitter/Unruh, BH thermodynamics, Page, scrambling, Nariai bound, $v_{\rm GW}{=}c$ --- standard physics in seam units, two compiler fingerprints ($1920{=}|W(D_5)|$, $|\mu_4|{=}4$); plus the Nariai/anchor surface, the dual anchor and the resummed seam clock (\vref{v101}--\vref{v138}). \\
+\texttt{origin\_theory} & \textbf{Origin Theory.} Why no free \emph{dimensionless compiler dial} remains beyond the anchor and $\pi$ (the dimensionful $v_{\mathrm{geo}}$ and transfer physics stay typed): the $(\gcar,\Nfam)$ skeleton, the triply-forced $8$, the order-$30$ Coxeter cycle, one boundary transport for flavor and horizon, the gapped unique attractor; \mE\ core plus one honestly-typed \mC\ cyclic interpretation. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\noindent The five formerly ``research-level'' problems are now \emph{closed, reduced or typed} inside the
+documents where they belong --- the group-level closure $(\mathrm{Spin}(10){\times}SU(4))/\Delta\Z_4$ in
+document~1 (closed), and the H2 splitting type, the Starobinsky scalaron mass, the $\theta_{12}$ texture and
+the quark $c$ in document~2 (the first two closed; the quark \emph{ratios} now closed combinatorially
+(\vref{v49}/\vref{v71}), only the \emph{absolute} scale a $U_{\mathrm{point}}$ anchor; $\theta_{12}$ the
+seam-misalignment residual). Eight companion files (plus this introduction), each result
+where it logically lives.
+
+% =====================================================================
+\section{The architecture at a glance}
+% =====================================================================
+The diagram below shows the whole pipeline: \emph{two} inputs on the left, the discrete compiler in the
+middle, the physics on the right. Everything in between is a consequence.
+
+\begin{center}
+\begin{tikzpicture}[font=\small,
+  inp/.style={rectangle,rounded corners,draw=tfred!80!black,fill=tfred!8,thick,align=center,inner sep=4pt,minimum height=10mm},
+  atom/.style={rectangle,rounded corners,draw=tfblue,fill=tfblue!8,thick,align=center,inner sep=4pt},
+  comp/.style={rectangle,rounded corners,draw=tfgold!80!black,fill=tfgold!12,very thick,align=center,inner sep=5pt},
+  outp/.style={rectangle,rounded corners,draw=tfgreen!75!black,fill=tfgreen!8,thick,align=center,inner sep=4pt},
+  ar/.style={-{Stealth[length=2.2mm]},thick,tfgray},
+  back/.style={-{Stealth[length=2.2mm]},very thick,dashed,tfred!70!black}]
+% inputs
+\node[inp] (p1) at (0,1.2) {\textbf{(P1)} boundary\\$\cthree=\tfrac1{8\pi}$};
+\node[inp] (p2) at (0,-1.2) {\textbf{(P2)} carrier\\$\gcar=5\ (3{+}2)$};
+% atoms
+\node[atom] (cp) at (3.4,1.2) {$C^+$: $16$ even states\\$=D_5$ half-spinor};
+\node[atom] (a3) at (3.4,-1.2) {$\PP^1\!\setminus\!\mu_4$\\$=A_3$ geometry};
+% compiler
+\node[comp] (e8) at (7.3,0) {\textbf{Compiler}\\$\Z_{30}=2{\cdot}3{\cdot}5$\\$D_5\!\oplus\!A_3\xrightarrow{\ \mu_4\ }E_8$\\$240$ roots, $\det 1$};
+% outputs
+\node[outp] (sm)  at (11.2,1.7)  {Standard Model\\$\Nfam{=}3,\ \Oadm{=}48,\ b_1{=}\tfrac{41}{10}$};
+\node[outp] (con) at (11.2,0.0)  {constants\\$\ainv{=}137.0359992$};
+\node[outp] (cos) at (11.2,-1.7) {gravity \& cosmos\\$\Lambda,\ A_s,\ H_0$};
+\draw[ar] (p1)--(cp); \draw[ar] (p2)--(a3);
+\draw[ar] (p2) to[bend left=8] (cp);
+\draw[ar] (cp)--(e8); \draw[ar] (a3)--(e8);
+\draw[ar] (e8)--(sm); \draw[ar] (e8)--(con); \draw[ar] (e8)--(cos);
+% --- BACK-CHANNEL: the bootstrap loop (E8 closure fixes the inputs) ---
+\draw[back] (e8.south) to[bend left=22]
+  node[below,font=\footnotesize,align=center,yshift=-1pt]{\textcolor{tfred!70!black}{\textbf{bootstrap:} $E_8$ closure $\Rightarrow \gcar{=}5$,\ \ ``$8$''${=}\operatorname{rank}E_8$ in $\cthree$}}
+  (p2.south);
+\begin{scope}[on background layer]
+  \node[draw=tfgray!40,dashed,rounded corners,fit=(p1)(p2),inner sep=6pt,label=above:{\footnotesize\textcolor{tfred!80!black}{\textbf{2 axioms (only $\pi$ irreducible)}}}] {};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+\noindent\textbf{Key statement (the loop closes):} previously $D_5$, $A_3$ and $E_8$ sat \emph{as given} Lie
+structures in the background. Now they are \emph{intermediate products} of the two inputs --- \emph{and
+the red back-channel is the new part}: the $E_8$ closure feeds back and \emph{fixes the inputs}.
+$\gcar=5$ is the unique rank-fill/Coxeter/Pascal solution ($2^{g-1}=\binom g0{+}\binom g1{+}\binom g2$), and
+the integer $8$ in $\cthree=\tfrac1{8\pi}$ is $\operatorname{rank}E_8=h(D_5)=\det R$. \textbf{Inputs and
+output form an overdetermined fixed point} --- the structure does not ``prove itself''; it has fewer
+degrees of freedom than independent consistency conditions. The only thing \emph{not} produced by the loop
+is the continuous $\pi$ (Möbius/Gauss--Bonnet), the lone irreducible primitive. So it is not a one-way
+arrow chain but a closed, overdetermined self-consistency loop.
+
+\medskip
+\noindent\textbf{The master story is two engines.} Read from the two axioms, the whole theory factorises
+into exactly \emph{two} engines --- a \emph{discrete} closure and a \emph{boundary} dressing. Gravity is
+not a third block; it is the geometry channel of Engine~2.
+
+\begin{center}
+\begin{tikzpicture}[font=\small,
+  eng/.style={rectangle,rounded corners=3pt,line width=1pt,inner sep=6pt,align=center},
+  stp/.style={rectangle,rounded corners=2pt,draw=black!35,fill=white,inner sep=3pt,align=center,font=\footnotesize},
+  ar/.style={-{Stealth[length=2mm]},thick,black!55}]
+% Engine 1
+\node[eng,draw=tfblue,fill=tfblue!7,text width=\linewidth,minimum height=15mm] (e1box) at (0,0) {};
+\node[anchor=north west,font=\bfseries,tfblue] at (e1box.north west) {\;Engine 1 --- discrete closure (from $\gcar=5$)};
+\node[stp] (a) at (-5.2,-0.25) {$\gcar{=}5$\\$(3{+}2)$};
+\node[stp] (b) at (-2.2,-0.25) {$D_5\!\oplus\!A_3\xrightarrow{\mu_4}E_8$};
+\node[stp] (c) at (1.6,-0.25) {SM packet:\\$\Nfam,\Oadm,b_1,\dim S^+$};
+\node[stp] (d) at (5.2,-0.25) {flavor matrix $R$\\($\det 8$, minors $2,3,5$)};
+\draw[ar] (a)--(b); \draw[ar] (b)--(c); \draw[ar] (c)--(d);
+% Engine 2
+\node[eng,draw=tfgreen!70!black,fill=tfgreen!7,text width=\linewidth,minimum height=15mm] (e2box) at (0,-2.4) {};
+\node[anchor=north west,font=\bfseries,tfgreen!60!black] at (e2box.north west) {\;Engine 2 --- boundary dressing (from $\cthree=\tfrac1{8\pi}$)};
+\node[stp] (f) at (-5.2,-2.65) {$\cthree{=}\tfrac1{8\pi}$};
+\node[stp] (g) at (-2.4,-2.65) {seed $u{=}\phiz$,\\$\ainv$, $\xi$, $\cthree^7$};
+\node[stp] (h) at (1.4,-2.65) {scales $x^1{:}x^5{:}x^{10}$\\$v_{\rm EW},H_0,\Lambda$};
+\node[stp] (i) at (5.2,-2.65) {gravity\\(geometry channel)};
+\draw[ar] (f)--(g); \draw[ar] (g)--(h); \draw[ar] (h)--(i);
+\end{tikzpicture}
+\end{center}
+
+% =====================================================================

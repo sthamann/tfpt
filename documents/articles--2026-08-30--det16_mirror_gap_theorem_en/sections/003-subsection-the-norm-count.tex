@@ -1,0 +1,319 @@
+\subsection{The norm count}
+
+For unit-amplitude nearest-neighbour hopping across one bond,
+\[
+ K_{xy}=\sum_{\alpha,\beta=1}^{16}
+ \left(a_{x,\alpha}^\dagger U_{\alpha\beta}a_{y,\beta}
+ +a_{y,\beta}^\dagger U_{\alpha\beta}^*a_{x,\alpha}\right),
+\tag{6.4}\label{eq:hopping}
+\]
+with $U$ unitary, the one-particle bond matrix has sixteen eigenvalues
+$+1$ and sixteen eigenvalues $-1$.  Its fermionic second quantization
+therefore has
+\[
+ \norm{K_{xy}}=16.
+\tag{6.5}\label{eq:bondnorm}
+\]
+If the lattice coordination is $z$, at most $z$ such bonds touch one
+cluster.  The advertised count is consequently
+\[
+ c_{\mathrm{count}}=16z,\qquad
+ t_{0,\mathrm{count}}=\frac1{32z}.
+\tag{6.6}\label{eq:count}
+\]
+On a three-dimensional cubic spatial slice, $z=6$, so
+\[
+ c_{\mathrm{count}}=96,\qquad
+ t_{0,\mathrm{count}}=\frac1{192}
+ =0.005208333\ldots .
+\tag{6.7}\label{eq:count3d}
+\]
+
+This count controls the norm incident on one site.  It does not prove
+\eqref{eq:block} or \eqref{eq:formbound}.  In fact ordinary hopping
+creates a pair of defective clusters from components of the product
+ground state, so
+\[
+ QK P\ne0.
+\tag{6.8}\label{eq:notblock}
+\]
+The numeric twin measures
+$\norm{QKP}=\sqrt2$ on the two-cluster four-mode analogue.  Thus
+Proposition~\ref{prop:relative} cannot be applied to
+\eqref{eq:hopping}, and \eqref{eq:count3d} is not the explicit
+$t_*$ of Theorem~\ref{thm:T3}.  A global Weyl estimate would only give
+$1-2|t|\norm V$, whose right side scales with volume and is unsuitable.
+
+\begin{center}
+\setlength{\fboxsep}{9pt}
+\fcolorbox{orange!75!black}{orange!4}{
+\begin{minipage}{0.91\textwidth}
+\textbf{Uncertified explicit-threshold box.}
+The number $t_{0,\mathrm{count}}=1/192$ is the value obtained from the
+requested local norm count on a cubic spatial slice.  It is a valid
+threshold for the \emph{conditional} relative-form proposition if
+\eqref{eq:block}--\eqref{eq:formbound} are separately proved with
+$c=96$.  Ordinary hopping fails \eqref{eq:block}, visibly and
+numerically.  The applicable Michalakis--Zwolak theorem instead gives
+$t_*=J_0/J_V>0$ with $J_0=1/(3c_{\rm MZ})$, where $c_{\rm MZ}$ contains
+the quasi-local spectral-flow decay $w$ in \eqref{eq:MZc}.  No value of
+$c_{\rm MZ}$ has been derived for this model, so replacing it by $96$
+would be an unjustified theorem claim.
+\end{minipage}}
+\end{center}
+
+\section{Numeric twin}
+
+The companion probe is
+\[
+ \texttt{experiments/tfpt-discovery/det16\_gap\_stability\_probe.py}.
+\]
+It uses the exact four-mode determinant projectors and open-chain
+hopping machinery of the frozen \texttt{v1002} route.  All $19$ checks
+pass.  The direct comparison is:
+\[
+\begin{array}{c|rrrr}
+\toprule
+\text{clusters}&t=0.05&t=0.10&t=0.20&t=0.30\\
+\midrule
+2&0.973726995&0.946980790&0.902548402&0.837138848\\
+3&0.962836264&0.924929608&0.860366685&0.764340648\\
+4&0.957577627&0.914546582&0.842484121&0.726091276\\
+\bottomrule
+\end{array}
+\tag{7.1}\label{eq:numeric}
+\]
+Every entry lies above $1-2c_{\rm count}|t|$ with
+$c_{\rm count}=4$ for the two-cluster endpoint pair and $8$ for the
+three--four cluster chains.  Except at the smallest $t$, this linear
+line is already negative and hence not tight.
+
+The scan uses step $0.05$ for two and three clusters and step $0.10$
+for four clusters on $0\leq t\leq4$.  It finds no finite-volume gap
+closing.  The minimum scanned gaps are
+\[
+\begin{array}{c|cc}
+\toprule
+\text{clusters}&\min\gap&\text{minimizing }t\\
+\midrule
+2&0.764490286&0.55\\
+3&0.472500856&4.00\\
+4&0.549772255&0.60\\
+\bottomrule
+\end{array}
+\tag{7.2}\label{eq:scan}
+\]
+Consequently the requested finite-chain ``actual closing''
+$t_c$ is not located because it does not occur in the declared scan:
+\[
+ t_c^{\rm scan}>4,\qquad
+ \frac{t_{0,\mathrm{count}}^{\rm toy}}{t_c^{\rm scan}}
+ <\frac{1/16}{4}=0.015625.
+\tag{7.3}\label{eq:margin}
+\]
+This is an upper bound on a ratio, not an invented critical point.
+
+The positive and negative controls expose the theorem hypotheses:
+\[
+\begin{array}{ll}
+\text{Spin(4)-covariant flavor-diagonal hopping:}
+ &\max_A\norm{[K,G^A]}=0,\\
+\text{flavor-selective mutant:}
+ &\max_A\norm{[K_{\rm mut},G^A]}=1,\\
+\text{$1/3$ normalization mutant:}
+ &\norm{\widetilde P^2-\widetilde P}=1/9,\quad
+ \Tr\widetilde P=2/3.
+\end{array}
+\tag{7.4}\label{eq:mutants}
+\]
+Thus one mutant visibly leaves the covariant perturbation class and the
+other destroys the projector/frustration-free premise.
+
+\section{Combined strongest theorem}
+
+\begin{theorem}[Volume-independent DET16 mirror-gap theorem]
+\label{thm:main}
+For the matter-only DET16 cluster model
+\eqref{eq:cluster}--\eqref{eq:H0} on any finite bounded-degree lattice:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item the projectors are mutually commuting even CAR operators;
+$H_0$ has exact spectrum $\{0,\ldots,|\Lambda|\}$, multiplicities
+\eqref{eq:multiplicity}, unique product ground state
+\eqref{eq:productground}, and gap one in every volume;
+\item $H_0$ is locally Spin(10)-Gauss invariant, parity invariant, and
+translation invariant for constant $\phi$; its unique product ground
+state has neither spontaneous symmetry breaking nor torus/topological
+degeneracy;
+\item every uniformly bounded finite-range even perturbation has a
+volume-independent stability interval $|t|\leq t_*$ on which the gap
+is at least $1/2$, with $t_*>0$ supplied by the
+Michalakis--Zwolak theorem after the exact checks
+$\Delta_0=0$ and $\gamma(r)=1$;
+\item for finite $\mathbb Z_2/\mathbb Z_4$ links on an open chain,
+$h_E>0$, and gauge-covariant nearest-neighbour hopping, the physical
+Gauss sector has a unique ground state and volume-independent gap at
+least $\Delta/2$ throughout the cited window
+$|t|<\Delta\tau_{\rm FP}/16$, with
+$\Delta=\min(1,h_E)$ and $\tau_{\rm FP}>0$ parameterized by
+\eqref{eq:FPparametric};
+\item if, additionally, a perturbation obeys the block-diagonal
+relative-form hypotheses \eqref{eq:block}--\eqref{eq:formbound}, then
+the explicit elementary estimate \eqref{eq:linearbound} holds.
+\end{enumerate}
+No numerical identification of $t_*$ with
+$t_{0,\mathrm{count}}=1/(32z)$ is asserted.
+\end{theorem}
+
+\begin{proof}
+Part (a) is Theorem~\ref{thm:T1} and Lemma~\ref{lem:order}.
+Part (b) is Theorem~\ref{thm:T2}.  Part (c) is
+Theorem~\ref{thm:T3}, whose proof verifies every hypothesis of the
+quoted stability theorem against the concrete product model.  Part
+(d) is Proposition~\ref{prop:FPaudit}, including the ambient-to-physical
+gap restriction.  Part (e) is Proposition~\ref{prop:relative}.  The
+final sentence follows from \eqref{eq:notblock} and the
+explicit-threshold box.
+\end{proof}
+
+\section{Physical spectator and remaining boundary}
+\label{sec:boundary}
+
+\subsection{Exact spectator statement}
+
+Let $\Hh_{\rm wall}$ carry a wall Hamiltonian $H_{\rm wall}$ and let
+$\Hh_{\rm mir}$ carry $H_{0,\Lambda}$.  If the DET16 terms act as the
+identity on wall modes, then
+\[
+ H_{\rm total}(0)
+ =H_{\rm wall}\otimes\id_{\rm mir}
+ +\id_{\rm wall}\otimes H_{0,\Lambda}.
+\tag{9.1}\label{eq:spectator}
+\]
+Hence
+\[
+ \operatorname{spec}H_{\rm total}(0)
+ =\{E_{\rm wall}+k:
+ E_{\rm wall}\in\operatorname{spec}H_{\rm wall},\
+ k=0,\ldots,|\Lambda|\}.
+\tag{9.2}\label{eq:spectralsum}
+\]
+The $k=0$ copy is exactly the original wall spectrum, with every
+multiplicity preserved.
+
+For $t\ne0$, ``does not mix'' must mean that no interaction term
+contains both wall and mirror operators.  Exact preservation, rather
+than merely perturbative continuity, further requires
+\[
+ V=\id_{\rm wall}\otimes V_{\rm mir}.
+\tag{9.3}\label{eq:nomix}
+\]
+Then the total Hamiltonian remains a tensor sum, and the stable mirror
+ground band adds one common scalar energy to the wall spectrum.  If a
+wall-only term is allowed it changes the wall spectrum on its own; if a
+wall--mirror coupling is allowed, \eqref{eq:spectralsum} is no longer
+exact and a separate relative/local stability estimate is required.
+
+\begin{center}
+\setlength{\fboxsep}{10pt}
+\fcolorbox{red!65!black}{red!3}{
+\begin{minipage}{0.91\textwidth}
+\textbf{Remaining boundary for
+\texttt{CHIRAL4D.MIRROR.DET16.01}.}
+
+\smallskip
+\textbf{Compact/continuous dynamical gauge fields.}
+Section~\ref{sec:dynlinks} closes the finite
+$\mathbb Z_2/\mathbb Z_4$ open-chain item by
+Theorem~\ref{thm:FP} and Proposition~\ref{prop:FPaudit}; it is no longer
+part of this boundary box.  Compact-group rotor links have
+infinite-dimensional local Hilbert spaces and therefore violate the
+finite-$M$ hypothesis of the bounded-interaction FP theorem quoted here.
+They require the form-bounded extension with its domain hypotheses, or
+truncation-uniform estimates, neither of which is audited in this
+memorandum.
+
+\smallskip
+\textbf{Domain wall.}
+At $t=0$ the spectator theorem
+\eqref{eq:spectator}--\eqref{eq:spectralsum} is exact.  For
+$|t|<t_*$, exact preservation of the wall spectrum requires the
+factorization \eqref{eq:nomix}.  Gauge covariance or fermion parity
+alone does not forbid wall--mirror bilinears, so the microscopic
+domain-wall construction must prove their absence or bound them.
+
+\smallskip
+\textbf{Three spatial dimensions.}
+The count $z=6$ and $1/192$ assumes a cubic three-dimensional spatial
+slice, but no lattice domain-wall Hamiltonian, chirality localization,
+continuum limit, or Lorentz-covariant $3+1$-dimensional theory is
+constructed here.  The theorem is a uniform quantum-lattice statement
+for the mirror matter sector, not yet the physical four-dimensional
+placement.
+
+\smallskip
+\textbf{Explicit hopping threshold.}
+The applicable stability theorem proves $t_*>0$ and gap at least
+$1/2$, but its constant contains the spectral-flow decay
+$c_{\rm MZ}$.  The simple value $1/192$ is conditional and cannot be
+promoted to the hopping theorem because $QKP\ne0$.  Deriving a
+numerical $c_{\rm MZ}$, or proving a different explicit local
+block-diagonalization/Knabe estimate, remains open.
+\end{minipage}}
+\end{center}
+
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
+
+T1 and T2 are elementary, exact, and volume independent.  T3 is a
+genuine thermodynamic stability statement: the product projector has
+zero Local-TQO error and unit local gap, so the full
+Michalakis--Zwolak theorem applies to bounded finite-range even
+perturbations.  Its threshold is uniform but not numerically evaluated.
+The requested count $1/(32z)$ is retained only in the precise
+conditional proposition it actually satisfies; the numeric twin both
+passes the comparison and detects the missing block-diagonal premise.
+The dynamical-link audit repairs the tensor-product endpoint exactly and
+applies the Fröhlich--Pizzo theorem, which does control the spectral gap
+uniformly in chain length.  This moves finite
+$\mathbb Z_2/\mathbb Z_4$ open chains to cited-verified status with the
+parametric window $|t|<\Delta\tau_{\rm FP}/m$; it does not manufacture a
+numerical value for the paper's implicit induction constant.  Accordingly,
+the red box now retains only compact/continuous links, domain-wall
+mixing, and the $3+1$-dimensional placement, preventing the chain theorem
+from being mistaken for the complete dynamical-gauge contract.
+
+\begin{thebibliography}{9}
+
+\bibitem{BHM2010}
+S.~Bravyi, M.~B.~Hastings, and S.~Michalakis,
+\emph{Topological quantum order: stability under local perturbations},
+J.\ Math.\ Phys.\ \textbf{51} (2010), 093512,
+\href{https://doi.org/10.1063/1.3490195}
+{doi:10.1063/1.3490195}.
+
+\bibitem{MZ2013}
+S.~Michalakis and J.~P.~Zwolak,
+\emph{Stability of Frustration-Free Hamiltonians},
+Commun.\ Math.\ Phys.\ \textbf{322} (2013), 277--302,
+\href{https://doi.org/10.1007/s00220-013-1762-6}
+{doi:10.1007/s00220-013-1762-6}.
+
+\bibitem{BDL2011}
+S.~Bravyi, D.~P.~DiVincenzo, and D.~Loss,
+\emph{Schrieffer--Wolff transformation for quantum many-body systems},
+Ann.\ Phys.\ \textbf{326} (2011), 2793--2826,
+\href{https://doi.org/10.1016/j.aop.2011.06.004}
+{doi:10.1016/j.aop.2011.06.004}.
+
+\bibitem{FP2020}
+J.~Fröhlich and A.~Pizzo,
+\emph{Lie--Schwinger Block-Diagonalization and Gapped Quantum Chains},
+Commun.\ Math.\ Phys.\ \textbf{375} (2020), 2039--2069,
+\href{https://doi.org/10.1007/s00220-019-03613-2}
+{doi:10.1007/s00220-019-03613-2};
+\href{https://arxiv.org/abs/1812.02457}
+{arXiv:1812.02457}.
+
+\end{thebibliography}
+
+\end{document}

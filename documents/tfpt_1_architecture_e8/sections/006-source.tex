@@ -1,0 +1,228 @@
+\subsection{What the compiler outputs for the Standard Model and our reality}
+\label{subsec:smmap}
+Every entry below is an \emph{output} of $(\cthree,\gcar)$ through the $D_5\times A_3$ compiler; none is
+an independent input. ``Reads'' names the lattice object the observable comes from.
+
+\begin{center}\small
+\begin{tabularx}{\linewidth}{@{}p{0.30\linewidth}p{0.40\linewidth}p{0.13\linewidth}c@{}}
+\toprule
+\textbf{SM / cosmology observable} & \textbf{Compiler output} & \textbf{Reads} & \textbf{St.} \\
+\midrule
+Number of generations & $\Nfam=3=\operatorname{rank}A_3=\dim H^1(\mathbb P^1\setminus\mu_4)$ & $A_3$ & \mE \\
+Gauge algebra dimension & $\dimg=12=|R(A_3)|=\gcd(6r,2h)$ & $A_3$ & \mE \\
+One generation ($16$, incl.\ $\nu^c$) & $S^+=D_5$ half-spinor $=\Lambda^{0,2,4}E$ & $D_5$ & \mE \\
+Hypercharge spectrum & all $Y$ from $y_\pm=\{\tfrac12,-\tfrac13\}$; $\operatorname{Tr}X^2=120$ & $D_5$ root data & \mE \\
+Abelian index $b_1$ & $10b_1=1+|\mu_4||E(K_5)|=1+4\cdot10=41$ & $\mu_4\times K_5$ & \mE \\
+Fermion family occupancy & $\Oadm=\Nfam\dim S^+=(\Nfam{+}N_\Phi)|R(A_3)|=48$ & $A_3$ & \mE \\
+Fine structure $\ainv=137.0359992168$ & root of $F_{U(1)}(\alpha)=0$ (explicit, unique) & EM closure & \mE \\
+Cabibbo angle & $\lC=\sqrt{\useed(1-\useed)}$, $\useed=\tfrac43\cthree+48\cthree^4$ & seed & \mE \\
+CKM CP phase & $\delta_{\rm CKM}=\tfrac{2\pi}{|R^+(A_3)|}+\Nfam\useed(1-\useed)=\tfrac\pi3+3\lC^2$ & $A_3^+$, seed & \mE/\mC \\
+PMNS angles/phase & $\sin^2\theta_{12}=\tfrac13-\tfrac\useed2$, $\sin^2\theta_{13}=e^{-5/6}\useed$, $\delta^\nu=\tfrac{4\pi}{3}$ & $A_3^+$, seed & \mE/\mC \\
+Charged-lepton hierarchy & $\det M_\ell\propto\useed^{\,h/\Nfam}=\useed^{10}$; $(5,3,2)$ & decuple & \mE/\mC \\
+Mass-hierarchy transport & $\sum L=40=|R(D_5)|$; entries on $C_6=|R^+(A_3)|$ & $D_5\times A_3$ & \mE \\
+Strong CP & $\theta_{\rm eff}=0$ (determinant erasure, given RP; document~3, Part~III) & --- & \mE/\mC \\
+Weak CP & holonomy: $\delta_{\rm CKM}-\tfrac\pi3=\Nfam\,\useed(1-\useed)$ & $A_3^+$ & \mC \\
+Gravity tree normaliser & $\xi_{\rm tree}=\tfrac{\dimg}{\dim S^+}=\tfrac34=q(A_3)$ & $A_3$ glue & \mE \\
+Cosmological constant & $\rho_\Lambda/\Mbar^4=\tfrac{3}{4\pi^2}e^{2\dph}[v_{\rm geo}/(5\betarad^2\Mbar)]^{10}$ & decuple & \mE \\
+Hubble anchor & $H_0\sqrt{\Omega_\Lambda}=\Mbar e^{-\ainv}/(2\pi)$ & action & \mE \\
+Baryon density & $\omega_b=\lC/\AL=\lC/10$ & decuple & \mE/\mC \\
+Inflation (scalaron) & $M_{\rm scal}^2/\Mbar^2=\cthree^{\,\Oadm-10b_1}=\cthree^{7}$ & deficit $r-1$ & \mE \\
+Inflation amplitude & $A_s=N_\star^2\cthree^7/24\pi^2\approx2.2\times10^{-9}$ & deficit & \mC/\mO \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\markerkey
+
+\noindent\emph{Reading.} The discrete sector --- generations, gauge dimension, family content,
+hypercharge, $b_1$, occupancy --- is now \emph{group-theoretic output} of $D_5\times A_3$. The
+continuous sector --- $\alpha^{-1}$, $\lC$, the mixings, $\rho_\Lambda$, $H_0$, inflation --- is the
+seam seed $\cthree$ and the action exponentials read on the \emph{same} carrier graphs ($K_5$ pairs,
+the $C_6$ hexagon $=|R^+(A_3)|$, the decuple $\AL=\binom{\gcar}{2}=10$). What used to be a list of
+separate hits is, structurally, one machine: $D_5$ carries the family and the flavor budget, $A_3$
+carries the generations and the gauge dimension, $\mu_4$ glues them (and reappears as the $41$ chain,
+the discriminant norms, and the CP phase step $2\pi/6$), and $\cthree$ dresses everything.
+
+% =====================================================================
+\section{Grammar I --- the carrier grammar ($3+2$)}
+% =====================================================================
+\noindent\emph{Machine checks for this section:} \veri{v2\_\allowbreak carrier\_\allowbreak pascal.py}
+
+
+From $\gcar=5$ and the split $(b,s)=(3,2)$ the carrier data follow:
+\begin{equation}
+\begin{aligned}
+  &\gamma_{\mathrm{car}}=\frac{\gcar}{\gcar+1}=\frac56,\quad
+  \Nfam=\frac{\gcar+1}{2}=3,\quad
+  \dim S^+=2^{\gcar-1}=16,\\[2pt]
+  &\Oadm=\Nfam\,2^{\gcar-1}=48,\qquad
+  b_1=\frac{\gcar\,2^{\gcar-2}+1}{10}=\frac{41}{10}.
+\end{aligned}
+\end{equation}
+
+\subsection{Dual-root dictionary (everything from two charges)}
+
+\par\smallskip\noindent\textbf{Two carrier roots generate the family and the transport cusps \mE.}
+With $y_+=\tfrac12$ and $y_-=-\tfrac13$ (the determinant-normalised carrier eigenvalues), the full
+one-family hypercharge spectrum and the flavor-transport cusps are sums of the two roots:
+\[
+  \begin{aligned}
+  Y(Q_L)&=y_++y_-=\tfrac16, & Y(u^c)&=2y_-=-\tfrac23, & Y(d^c)&=-y_-=\tfrac13,\\
+  Y(L_L)&=-y_+=-\tfrac12, & Y(e^c)&=2y_+=1, & Y(\nu^c)&=0,
+  \end{aligned}
+\]
+\[
+  \{1,\tfrac23,\tfrac13\}=\{\,2y_+,\ -2y_-,\ 2(y_++y_-)\,\},\qquad
+  \gamma_{\mathrm{car}}=\operatorname{Tr}_E Y^2=3y_-^2+2y_+^2=\tfrac56,
+\]
+\[
+  \phibase=\frac{1-\gamma_{\mathrm{car}}}{\pi}=\frac{1}{6\pi}.
+\]
+All residuals are exactly zero. The Standard-Model charge table is not assumed; it is built by
+addition from $\{1/2,-1/3\}$.
+\par\smallskip
+
+\begin{keybox}[The $X=6Y$ quadratic and the hypercharge Pascal-sign duality \mE]
+Clearing denominators with $X=6Y$ turns the two base charges into the integer roots $x_+=3$, $x_-=-2$ of
+\[
+  \boxed{\ x^2-x-6=0\ }:\qquad
+  x_++x_-=1=N_\Phi,\quad x_+-x_-=5=\gcar,
+\]
+\[
+  -x_+x_-=6=|R^+(A_3)|,\qquad \sqrt{\Delta}=5,
+\]
+so the Higgs singleton, the carrier rank and the $A_3$ hexagon all fall out of one quadratic. Counting
+the signs of $X$ over a generation ($X=1^{\times6},2^{\times3},6^{\times1},(-4)^{\times3},(-3)^{\times2},0^{\times1}$)
+gives the \emph{Pascal triple} again:
+\[
+  \boxed{\ (\#X{=}0,\,\#X{<}0,\,\#X{>}0)=(1,5,10)=\tbinom50,\tbinom51,\tbinom52\ },
+\]
+\[
+  10{-}5{=}\gcar,\quad 5{-}1{=}|\mu_4|,\quad 10{-}1{=}\operatorname{tr}R,
+\]
+with $\nu^c\leftrightarrow\binom50$ the neutral singleton --- the right-handed neutrino is the Pascal zero
+with a job. The moment ladder adds $\operatorname{Tr}X^2=120=5!$ and
+$\operatorname{Tr}X^4/\operatorname{Tr}X^2=2280/120=19$ (an $E_8$ exponent; audit). \mE
+\end{keybox}
+
+\subsection{Carrier arithmetic (proved identities)}
+
+The discrete coefficients are not isolated numbers; they are exact carrier traces:
+\begin{align}
+  10\,b_1 &= 41 = \gcar^2+(\gcar-1)^2 = \Oadm\,\gamma_{\mathrm{car}}+1
+      = 1+h_{E_8}\tfrac{\dim S^+}{\dimg} = 1+30\cdot\tfrac{16}{12} = 40+1, &&\mE\\
+  I_1^{\mathrm{EW}} &= \frac{41}{48}=\operatorname{Var}_{S^+}(Y)\cdot b_1=\frac{5}{24}\cdot\frac{41}{10}
+      = \gamma_{\mathrm{car}}+\frac{1}{\Oadm}, &&\mE\\
+  \operatorname{Tr}_{S^+}(X^2) &= 120 = 5!\quad(X=6Y), \qquad
+  \dtwo = \tfrac54\dtop^2 = 2880\,\cthree^8 = 4!\cdot 5!\,\cthree^8 = 4!\,\operatorname{Tr}_{S^+}(X^2)\,\cthree^8, &&\mE\\
+  \frac54 &= \underbrace{\tfrac32\cdot\tfrac56}_{B\gamma}
+      = \underbrace{\tfrac{\Dstart}{\Oadm}}_{60/48}
+      = \underbrace{\tfrac{\gcar}{\gcar-1}}_{5/4}
+      = \frac{\dtwo}{\dtop^2}. &&\mE
+\end{align}
+So: $b_1$ is a Pythagorean carrier identity ($5^2+4^2$); equivalently the anchor-product form
+$10b_1=p_1p_3+(\gcar-p_1)=4\cdot10+(5-4)=41$ reads ``all four glue corners times all ten carrier pairs,
+plus the one leftover Higgs slot''; the electroweak exponent $41/48$ is the
+hypercharge variance times the $U(1)$ budget; the second seam defect $2880\,\cthree^8$ is a product
+of factorial traces $4!\cdot5!$; and the universal compression $5/4=\gcar/(\gcar-1)$ recurs whenever
+the five-slot carrier projects onto four effective directions. As a minor curiosity, the SU(5)-tree
+weak mixing angle rewrites as $\sin^2\theta_W^{\mathrm{tree}}=\tfrac38=\Nfam/(\gcar+\Nfam)=\Nfam/\operatorname{rank}(E_8)$
+(the value is the standard one; the rewrite is a coincidence to note, not a claim). \mC
+
+% =====================================================================
+\section{Grammar II --- the seed grammar (one decoder $\useed$)}
+% =====================================================================
+\noindent\emph{Machine checks for this section:} \veri{v106\_\allowbreak review\_\allowbreak validation.py}
+
+
+The seed is, exactly, a pure function of $\cthree$:
+\begin{equation}
+  \boxed{\ \useed=\varphi^{\mathrm{ret}}_0=\frac43\,\cthree+\Oadm\,\cthree^4
+  =\underbrace{\frac{1}{6\pi}}_{\phibase}+\underbrace{\frac{3}{256\pi^4}}_{\dtop}=0.0531719521768\ }\qquad\mE.
+\end{equation}
+Its two coefficients are themselves carrier data: $\tfrac43=\dim S^+/\dimg=16/12=8/(\gcar+1)$ (so
+$\phibase=1/((\gcar+1)\pi)$) and $48=\Oadm$. The seed is thus a pure function of $\cthree$ and the
+carrier counts.
+
+\par\smallskip\noindent\textbf{One seed, four readouts (and their inverses) \mE.}
+\[
+  \lC^2=\useed(1-\useed),\quad
+  \betarad=\frac{\useed}{4\pi},\quad
+  \Omega_b=\Bigl(1-\frac{1}{4\pi}\Bigr)\useed,\quad
+  \sin^2\theta_{13}=e^{-5/6}\,\useed,
+\]
+\[
+\begin{gathered}
+  \useed=\frac{1-\sqrt{1-4\lC^2}}{2}=4\pi\,\betarad=\frac{\Omega_b}{1-1/(4\pi)}=e^{5/6}\sin^2\theta_{13}\\[2pt]
+  =\sum_{n\ge0}C_n\,\lC^{2n+2}=\lC^2+\lC^4+2\lC^6+5\lC^8+\cdots
+\end{gathered}
+\]
+\par\smallskip
+
+\noindent One knob $\useed$ turns four dials simultaneously: Cabibbo mixing (the Bernoulli width
+$\sqrt{\useed(1-\useed)}$), cosmic birefringence, the baryon fraction, and the reactor angle. Turning
+one forces the others; there is no free per-observable tuning. The exponent $5/6$ is the carrier
+trace $\gamma_{\mathrm{car}}=\operatorname{Tr}_E Y^2$, \emph{not} the Euler--Mascheroni constant
+$0.5772\ldots$ (audit \mO).
+
+% =====================================================================
+\section{Grammar III --- the action grammar (exponentials of $\ainv$)}
+% =====================================================================
+
+\noindent\textbf{The relation in plain words.} The fine-structure constant is not just ``a number near
+$137$'': it is the \emph{one exponential engine} behind three wildly separated scales. Take the same
+$\ainv=137.036$ and divide the carrier into it: $\tfrac15$ of it sets the \emph{electroweak} scale,
+$1\times$ it sets the \emph{Hubble} scale, $2\times$ it sets the \emph{cosmological constant}. The three
+action charges are the Pascal row $1:5:10$ of the five-slot carrier, and the Hubble rung is just the
+square root of the vacuum energy. So one constant fixes the electroweak hierarchy, dark energy and the
+expansion rate at once.
+
+\begin{center}
+\begin{tikzpicture}[font=\small,
+  eng/.style={rectangle,rounded corners=3pt,draw=tfgold!80!black,fill=tfgold!16,line width=1pt,align=center,inner sep=6pt},
+  sc/.style={rectangle,rounded corners=2pt,draw=tfgreen!70!black,fill=tfgreen!8,align=center,inner sep=4pt,text width=46mm},
+  ar/.style={-{Stealth[length=2.6mm]},thick,tfgray}]
+  \node[eng] (e) at (0,0) {\textbf{one engine}\\$\ainv=137.0359992$};
+  \node[sc] (ew) at (6.2,2.0) {\textbf{electroweak} \;($q{=}\tfrac1{\gcar}$)\\$v_{\rm EW}/\Mbar\sim e^{-\ainv/5}$};
+  \node[sc] (h)  at (6.2,0.0) {\textbf{Hubble} \;($q{=}1$)\\$H_0/\Mbar\sim e^{-\ainv}=\sqrt{\rho_\Lambda}$};
+  \node[sc] (l)  at (6.2,-2.0){\textbf{cosm.\ constant} \;($q{=}2$)\\$\rho_\Lambda/\Mbar^4\sim e^{-2\ainv}$};
+  \draw[ar] (e) to[bend left=12] node[above,font=\scriptsize]{$\div\,5$} (ew);
+  \draw[ar] (e) -- node[above,font=\scriptsize]{$\times\,1$} (h);
+  \draw[ar] (e) to[bend right=12] node[below,font=\scriptsize]{$\times\,2$} (l);
+  \node[font=\scriptsize,tfgray,align=center] at (3.0,-3.25)
+    {action charges $1:\gcar:2\gcar=1:5:10=\binom50:\binom51:\binom52$ (Pascal row of $K_5$)};
+\end{tikzpicture}
+\end{center}
+
+Read every dimensionless ratio through its \emph{action} and ask for the action charge:
+\begin{equation}
+  \boxed{\ x=R_x\,e^{-A_x},\qquad A_x=q_x\,\ainv+\Delta_x,\qquad q_x\in\Bigl\{\tfrac{1}{\gcar},\,1,\,2\Bigr\}.\ }
+\end{equation}
+The robust ladder and its residues are
+\begin{center}\small
+\begin{tabular}{@{}lllll@{}}
+\toprule
+sector & action $A_x$ & charge $q_x$ & residue $R_x$ & value of $-\ln x$ \\
+\midrule
+electroweak $v_{\mathrm{geo}}/\Mbar$ & $(\ainv+\dph)/\gcar$ & $1/\gcar$ & $\gcar\betarad^2$ & $36.85$ \\
+Hubble $H_0/\Mbar$ & $\ainv$ & $1$ & $1/(2\pi\sqrt{\Omega_\Lambda})$ & $138.68$ \\
+cosm.\ const.\ $\rho_\Lambda/\Mbar^4$ & $2\ainv$ & $2$ & $3/(4\pi^2)$ & $276.65$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{equation}
+  \AEW=\frac{\ainv+\dph}{\gcar}=27.5259,\qquad \AL=2\ainv=274.072,\qquad
+  \boxed{\ \AEW{:}\AH{:}\AL=1{:}5{:}10\ }.
+\end{equation}
+The leading ratio is exact: $\AL/(\ainv/\gcar)=2\gcar=10$ (with the transport correction
+$\AL/\AEW=9.957$). The claim is that the \emph{action charges}, not the raw logarithms, form the
+ladder.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.82\linewidth]{figures/action_tower.pdf}
+\caption{Action tower (data plot, \texttt{verification/make\_figures.py}). The three action charges
+$A_x=-\ln x$ for the electroweak, Hubble and cosmological-constant ratios fall on the line
+$A=(\ainv/5)\binom5k$: one engine $\ainv$ generates all three scales with the Pascal exponents $1:5:10$.}
+\label{fig:actiontower}
+\end{figure}
+

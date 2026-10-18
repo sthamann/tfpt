@@ -1,0 +1,277 @@
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper documents the v4.6 incarnation of the CMB operational
+closure between the TFPT 4.6 closed branch and the Planck PR3 component
+maps, including the v4.6.4 audit upgrade.  We move beyond the v4.5
+``calibrated'' pipeline into a fully-strict, audit-disciplined
+comparison where \emph{every} entry of the cosmological parameter
+vector \(\Theta_{\mathrm{CMB}}^{\mathrm{TFPT}}\) is labelled
+\textsf{derived\_tfpt\_candidate\_v46} and traced back to one of five
+analytical claims --- \emph{Lemma A through Lemma E} --- about the
+admissible boundary operator branch.  Lemma E itself decomposes into
+five sub-theorems E1--E5 (existence, canonical flag, seam uniqueness,
+Calderon reality, observer embedding), each with its own status.  The
+pipeline is implemented as a strictly typed Python package
+\texttt{tfpt\_cmb} with 385 passing tests; the full source, JSON
+artifacts, and the final figures live in
+\texttt{full-plank/theory-work/}.  Stage~1 (parameter-free, lensed CAMB
+spectra) and Stage~2 (HEALPix sky realisation in four explicitly
+labelled modes A, B, C, E) are kept rigorously separate.  Mode~E
+constructs the primordial phases from
+\(\arg\langle e_j,u_\Sigma\rangle\) on the spectrum of the admissible
+curvature Hessian \(K_\Sigma\), without any Planck phase input.  We
+report the resulting Planck residual statistics, the EB birefringence
+diagnostic, the eight Mode-E acceptance checks, and an honest
+assessment of which lemma proofs remain pending.  Nothing is tuned to
+Planck; the four lemmas A--D give a 26-parameter analytic prediction,
+and Lemma~E elevates this from a power-spectrum prediction to a
+deterministic (per-observer) sky realisation.\par
+\textbf{New in v4.6.4.}  The audit loop is closed via the
+\emph{Sprint 2A Branch Extraction Contract}: an executable validator
+in \texttt{tfpt\_cmb.sprint2a\_contract} that runs ten hard checks on
+any candidate Branch Operator Bundle and reports per-sub-theorem
+pass/fail.  The v4.6.3 candidate bundle scores 18/24 hard checks;
+the six failures are exactly the audit gap.  A hand-built compliant
+bundle passes 24/24, demonstrating that the contract is reachable.
+\par
+\textbf{New in v4.6.5.}  The full 1:1 transcription of every proof
+structure from \texttt{full-plank/beschreibung.txt} is now formalised
+in \texttt{tfpt\_cmb.lemma\_proof\_outlines}: 14 lemma outlines, 14
+open hooks with explicit \texttt{proposed\_solution} sketches, full
+source-line traceability, and a hook-dependency DAG. See
+Appendix~\ref{app:hooks}.
+\par
+\textbf{New in v4.6.6.}  v4.6.6 delivered the \emph{Proof Discharge
+Package} --- the full proof body for every one of the 14 hooks plus
+a 12-class discharge taxonomy.
+\par
+\textbf{New in v4.6.7.}  Seven TFPT bridge theorems
+(\texttt{tfpt\_cmb.closure\_v467}) close all 14 hooks theory-internally:
+BT1 Primitive Zeta Convention,
+BT2 Curvature Instanton Theorem,
+BT3 Thermal Metrology and QKE Ward,
+BT4 BBN Holonomy Sensitivity,
+BT5 Reionization Transport Collapse (with C4a/C4b/C4c sub-theorems),
+BT6 Matter Occupancy and Mass Metrology,
+BT7 Canonical Branch Phase.  Pipeline status moves from
+\textsf{derived\_tfpt\_candidate\_v46} to
+\textsf{derived\_tfpt\_theory\_complete\_pending\_artifacts}.
+\par
+\textbf{New in v4.6.8.}  Stefan's v4.6.7 closing line was
+\emph{``Die Theoriebrücke ist geschlossen. Die Messbrücke muss noch
+laufen.''}  v4.6.8 ships the executable Measurement Bridge Contract
+(\texttt{tfpt\_cmb.measurement\_bridge\_v468}):  exactly five
+artefact-validation groups (G1 sprint-2A branch bundle, G2 sprint-2C
+thermal/matter, G3 sprint-2D reionization, G4 official Planck
+likelihood, G5 Paper 5 metrology corollary) with 29 required files,
+8 numerical checks, and a single acceptance gate
+\texttt{can\_flip\_to\_derived\_tfpt(report)} that flips the final
+status to \textsf{derived\_tfpt} iff every hard check in every group
+passes.  A skeleton emitter writes a documented empty tree that the
+validator correctly fails by design.  See
+\S\ref{sec:measurement468}.  Tests: \textbf{869/869 passing}
+(358 + 27 + 217 + 122 + 98 + 47).
+\par
+\textbf{New in v4.10--v4.12 (Operator-Discharged Closure).}
+After the v4.7 hyperbolic No-Go theorem, v4.7.6 identified Lens
+\(L(10,1)\times\mathbb Z_2\) as the canonical positive-curvature
+branch with \(Z_R=1.0083\) inside the spectral-action corridor.
+v4.8 demonstrated all four corrections (\(Z_R, Z_\Lambda, W_\sigma,
+W_B\)) landing in their corridors simultaneously, yielding
+\(\Delta(-2\ln L)=+6.04\).  v4.9's Fisher residual decomposition
+diagnosed the residual as living entirely in \(\log A\) and
+\(\tau\).  v4.10 added two TFPT-native closed-form lemma
+refinements --- \(\Delta_R^\Sigma=\beta(1-\lambda_C/2)-48c_3^4\)
+(BT2 boundary finite part) and
+\(\Delta\tau_{\mathrm{sheet}}=c_3^2(1+\lambda_C/2)\) (Lemma C
+next-order) --- and the canonical \texttt{A\_BT2\_only} variant
+passed Stefan's strict gate at \(\Delta=+0.6119\).
+\textbf{v4.11} discharged the BT2 closed form fully via the
+operator route (Spectral-Action $a_4$ + boundary $\eta$ + ghost
+determinant \(-\) topological subtraction), with relative error to
+the closed form of \(0.0\) (machine precision); proved the
+\emph{Visibility Amplitude Ward Identity}
+\(\Delta_R^\Sigma=2\Delta\tau_{\mathrm{sheet}}+O(\delta_{\mathrm{top}})\)
+that explains why combining BT2 and \(\tau\) corrections
+double-counts the same physical direction \(A_s e^{-2\tau}\); and
+replaced the numerical leakage scanner with a 14-entry
+\emph{Provenance DAG} plus perturbation test
+\((d\log A/d\phi_0=+316.74\), nonzero \(\Rightarrow\) \(\log A\)
+emergent).
+\textbf{v4.12} discharges the last remaining block: the baryonic
+trace \(W_B\) is now derived operatorically from the TFPT-native
+Bethe-Salpeter kernel
+(\(g_{\mathrm{BSE}}^2=(N_c c_3^2/\Omega_{\mathrm{adm}})\,
+|\eta_{\mathrm{Donnelly}}|\,T_{\mathrm{RS,Cheeger}}=2.37\times 10^{-5}\),
+\(\epsilon_{\mathrm{bind}}^{\mathrm{TFPT}}=g_{\mathrm{BSE}}^2\),
+\(W_B=0.99998\)) with the forbidden \(W_B=1-\lambda_C/10\) ansatz
+explicitly excluded by a \texttt{DoubleOccupancyError} guard.
+The canonical v4.12 variant
+\texttt{A\_qcd\_curvature\_gauge\_canonical} achieves
+\(\Delta(-2\ln L)=+0.6083\) against Planck~2018, marginally
+improving on v4.11.  All 12/12 final-gate checks pass.  Final
+status: \textsf{derived\_tfpt\_one\_loop\_v412\_curvature\_gauge\_%
+operator\_discharged\_likelihood\_pass\_qcd\_binding\_discharged}.
+See \S\ref{sec:v412}; the new figures
+\ref{fig:v412_sprint_history}--\ref{fig:v412_mollweide} document
+the sprint history and the regenerated TT/TE/EE/BB/Mollweide
+comparison.  Tests: \textbf{319+ across all sprints}.
+\end{abstract}
+
+\begin{tfptfrontbox}
+\textbf{Inputs from previous papers.} Papers 1--6 supply the closed
+branch \(\Tstar\), the carrier and Standard-Model packet, the
+electromagnetic and flavor closure, the strong-CP and QFT-closure
+results, the dimensionless metrology, and the cosmology-interface seam
+transfer.
+
+\textbf{New theorem contribution.} The CMB operational closure
+\(\{C_1,\dots,C_{12}\}\) and the Planck comparison protocol
+\(\mathcal P_{\mathrm{Planck}}\) are now backed by the
+\emph{Native\,Closure\,Conjecture v4.6}: five analytical lemmas that
+generate the entire 26-parameter cosmology vector and the realised
+sky from the seven primitives
+\(\{c_3,\phi_0,\lambda_C,\beta,\delta_{\mathrm{top}},
+\Omega_{\mathrm{adm}},\alpha_0^{-1}\}\).  Each lemma is stated, given a
+proof skeleton, and tagged with its proof status.
+
+\textbf{Not claimed here.} No theorem-level proof of any of the five
+lemmas; no claim that the Planck \emph{realisation} (as opposed to the
+\emph{statistical class}) has been reproduced.  Mode~E is presented
+explicitly as a candidate, not a prediction.
+
+\textbf{Falsification or audit surface.} The paper fails if any
+pipeline output is silently tuned to Planck, if a candidate is
+relabelled as \emph{derived}, if \(\xi\)-consistency fails, or if
+either the four-lemma cosmology or the Lemma-E sky reconstruction is
+sold without the qualifier \emph{candidate v4.6 unproven}.
+\end{tfptfrontbox}
+
+\begin{tfptclaimcontract}
+\textbf{Claim.} The TFPT 4.6 closed branch admits a complete
+operational closure into a CAMB-runnable parameter vector, a HEALPix
+sky realisation in four labelled modes \(\{A,B,C,E\}\), and a Planck
+PR3 comparison metric, with every step status-tagged.  All 26
+cosmological parameters in
+\(\Theta_{\mathrm{CMB}}^{\mathrm{TFPT}}\) are tagged
+\textsf{derived\_tfpt\_candidate\_v46} and computed analytically from
+the seven TFPT primitives via Lemmas A--D; Mode~E adds the
+deterministic phase prediction via Lemma~E.
+\par
+\textbf{Inputs.} Papers 1--6, plus seven dimensionless TFPT primitives
+\((c_3,\phi_0,\lambda_C,\beta,\delta_{\mathrm{top}},
+\Omega_{\mathrm{adm}},\alpha_0^{-1})\). \emph{No} external observational
+anchors (no FIRAS \(T_{\mathrm{CMB}}\), no Planck \(H_0\), no joint
+\(\eta_B\)).
+\par
+\textbf{First assumptions.} Spatial flatness branch \(\Omega_K=0\);
+\(R^2\) scalaron sector for inflation with
+\(\alpha_R^\Sigma=(\Omega_{\mathrm{adm}}/4\pi)\,e^{1/\phi_0}\);
+type-I seesaw for neutrinos; standard sphaleron conversion with
+\(N_{\mathrm{fam}}=3,N_\Phi=1\); native closure conjectures A--E
+defined in \S\ref{sec:lemmas}.
+\par
+\textbf{Proof status.} Lemmas A--D are formal claims (proof skeletons
+in \S\ref{sec:lemmas}); Lemma~E is conjectural (Stefan v4.6 brief
+\S11); the Branch Operator Bundle for the Mode-E run is the
+\emph{candidate v4.6 synthetic} bundle, not the real
+\(K_\Sigma\) extracted from Sprint 2A.
+\par
+\textbf{Kill condition.} Any closure used in production whose status
+is not in \(\{\)\textsf{derived\_tfpt}, \textsf{derived\_tfpt\_candidate\_v46}\(\}\)
+or whose lemma proof is later falsified.
+\par
+\end{tfptclaimcontract}
+
+\begin{tfptstatusbox}
+\textbf{\stag{L} (Lean verified) used as input.}\ The $3+2$
+hypercharge carrier of Paper~2 enters as the algebraic
+anchor of the CMB derivation. Nothing else in this paper
+is \stag{L}.
+
+\smallskip
+\textbf{\stag{I} (Lean interfaced).}\ Paper-1's
+\texttt{BoundaryPolarization} is the boundary-side typed
+input. No \stag{I} obligation is discharged here.
+
+\smallskip
+\textbf{\stag{P} (programmatic), the body's primary content.}\
+The complete CMB operational closure --- the Planck-band
+pipeline, the closure registry, derived branch operators,
+Mode-E inputs, lemma-driven sprints, and the synthetic
+candidate bundles --- is a \stag{P} programmatic target.
+Each closure carries its own internal production-status tag
+(e.g.\ \textsf{derived\_tfpt},
+\textsf{derived\_tfpt\_candidate\_v46}); \emph{these internal
+tags do not coincide with the \stag{L}/\stag{I}/\stag{M}
+taxonomy of the series}. They are the internal admissibility
+flags of the Planck-comparison machinery. Reproducibility is
+via the \texttt{tfpt\_cmb} pipeline, not via the Lean audit
+gate.
+
+\smallskip
+\textbf{\stag{C} (conditional comparison readouts).}\ Any
+numerical CMB readout produced by the pipeline is \stag{C},
+conditional on (a) the \stag{L} carrier core, (b) the
+\stag{I} Paper-1 input, (c) Paper~2's \stag{C} branch ledger,
+and (d) the analytic / nonperturbative \stag{C} content of
+Paper~4. None of these readouts is a present manuscript
+theorem.
+\end{tfptstatusbox}
+
+\tableofcontents
+
+% =====================================================================
+\section{What this paper does and does not do}
+\label{sec:what}
+% =====================================================================
+
+The downstream cosmology interface introduced in Paper~6 left two clean
+gaps for any honest CMB comparison:
+\begin{enumerate}[leftmargin=1.4em]
+\item the seam-transfer determinant, the scalaron coefficient
+\(\alpha_R^\Sigma\), and the leptogenesis Boltzmann were
+\emph{interfaces stated}, not yet \emph{closed};
+\item Stage~2 --- producing \emph{this} sky --- requires a boundary
+realisation operator \(\mathcal R_{\mathrm{boundary}}\) whose existence
+was a programmatic target, not a theorem.
+\end{enumerate}
+
+The v4.6 cycle answers both gaps with \emph{conjectures}, not with
+proofs:
+
+\begin{itemize}[leftmargin=1.4em]
+\item Lemmas~A--D analytically generate every entry of
+\(\Theta_{\mathrm{CMB}}^{\mathrm{TFPT}}\) from the seven primitives; the
+\textsf{operational\_closure\_v1} flag of v4.5 collapses to
+\textsf{derived\_tfpt\_candidate\_v46} on every parameter.
+\item Lemma~E (Branch Phase Selection) elevates the prediction from
+the statistical class \(\mathcal N(0,C_\ell^{\mathrm{TFPT}})\) to a
+deterministic per-observer realisation
+\(a_{\ell m}^{X,\mathrm{TFPT}}(\mathcal O)\) by reading the primordial
+phases off \(\arg\langle e_j,u_\Sigma\rangle\) on the eigenbasis of
+\(K_\Sigma\).
+\end{itemize}
+
+The paper does \emph{not} pretend that the four lemmas are
+mathematically closed.  Stefan's own v4.6 brief calls them
+\emph{pending canonical lemmas} and supplies proof skeletons;
+\S\ref{sec:lemmas} reproduces those skeletons in formal form and marks
+the critical hooks.
+
+\begin{tfptwarningbox}
+The reader should treat the pipeline output as a falsifiable
+\emph{candidate}.  No parameter is \emph{derived} in the strict
+v4.5 sense; every parameter is \textsf{derived\_tfpt\_candidate\_v46}.
+The status flag is the load-bearing entry of every JSON artifact: the
+runner in \texttt{scripts/run\_cmb\_stage.py} accepts a candidate
+upstream only when \texttt{--candidate-v46} is passed explicitly, and
+Mode~E only when both \texttt{--candidate-v46} and
+\texttt{--mode-E-candidate} (or a real
+\texttt{--branch-bundle-dir}) are supplied.  All five lemmas are
+listed under \texttt{cosmology\_candidate.json::\_meta::pending\_lemmas}.
+\end{tfptwarningbox}
+
+% =====================================================================

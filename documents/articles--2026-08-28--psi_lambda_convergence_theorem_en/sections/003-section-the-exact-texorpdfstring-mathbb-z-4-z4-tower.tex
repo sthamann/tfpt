@@ -1,0 +1,354 @@
+\section{The exact \texorpdfstring{$\mathbb Z_4$}{Z4} tower}
+\label{sec:tower}
+
+Let
+\[
+ \A_1\xrightarrow{\iota_1}\A_2\xrightarrow{\iota_2}\cdots
+\]
+be a unital inductive system of finite matrix algebras.  Suppose
+$u_N\in\A_N$ is unitary,
+\[
+ u_N^4=\id,\qquad \iota_N(u_N)=u_{N+1},
+\tag{4.1}\label{eq:compatible-clock}
+\]
+and let $\alpha_N=\operatorname{Ad}(u_N)$.
+Write $v_N$ for the canonical crossed-product unitary:
+\[
+ v_Nav_N^*=\alpha_N(a),\qquad v_N^4=\id.
+\]
+
+\begin{theorem}[Naturality, fusion, and expectations]
+\label{thm:crossed}
+Under \eqref{eq:compatible-clock}:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item There is a natural $*$-isomorphism
+\[
+ \Phi_N:\A_N\rtimes_{\alpha_N}\mathbb Z_4
+ \longrightarrow
+ \A_N\otimes C^*(\mathbb Z_4),
+\qquad
+ \Phi_N(av_N^g)=au_N^g\otimes w^g,
+\tag{4.2}\label{eq:phi}
+\]
+where $w$ is the canonical generator of $C^*(\mathbb Z_4)$.
+\item If $\A=\varinjlim\A_N$ and $\alpha=\varinjlim\alpha_N$, then
+\[
+ \varinjlim(\A_N\rtimes_{\alpha_N}\mathbb Z_4)
+ \cong\A\rtimes_\alpha\mathbb Z_4
+ \cong\A\otimes C^*(\mathbb Z_4).
+\tag{4.3}\label{eq:limit-crossed}
+\]
+\item The homogeneous subspaces
+$\mathcal B_g=\overline{\A v^g}$ obey
+\[
+ \mathcal B_g\mathcal B_h\subset\mathcal B_{g+h},
+\qquad
+\mathcal B_g^*=\mathcal B_{-g},
+\qquad
+v^4=\id\in\A.
+\tag{4.4}\label{eq:fusion}
+\]
+Thus a degree-one symbol $\Psi_\lambda:=v$ has
+$\Psi_\lambda^4$ in the neutral algebra, and
+$\Psi_\lambda^2$ is the unique order-two grade.  With the frozen label
+$[\lambda]^2=[v]$, this is exactly the abstract $\mathbb Z_4$ fusion
+law.
+\item The coefficient map
+\[
+ F\left(\sum_{g=0}^3a_gv^g\right)=a_0
+\tag{4.5}\label{eq:coefficient-expectation}
+\]
+extends to a faithful conditional expectation
+$F:\A\rtimes_\alpha\mathbb Z_4\to\A$.  It is the unique conditional
+expectation invariant under the dual $\widehat{\mathbb Z_4}$ action.
+\item If $\tau_N$ is a compatible faithful trace on the tower, then
+\[
+ E_N(a)=\frac14\sum_{g=0}^3\alpha_N^g(a)
+\tag{4.6}\label{eq:average-expectation}
+\]
+is the unique $\tau_N$-preserving conditional expectation
+$\A_N\to\A_N^{\mathbb Z_4}$.  The $E_N$ are natural and induce the
+corresponding trace-preserving expectation on the inductive limit.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Map $a\in\A_N$ to $a\otimes\id$ and $v_N$ to $u_N\otimes w$.
+The defining relations are preserved:
+\[
+\begin{aligned}
+(u_N\otimes w)(a\otimes\id)(u_N^*\otimes w^*)
+ &=u_Nau_N^*\otimes\id=\alpha_N(a)\otimes\id,\\
+(u_N\otimes w)^4&=u_N^4\otimes w^4=\id.
+\end{aligned}
+\]
+The universal property of the crossed product therefore gives a
+$*$-homomorphism $\Phi_N$.  It is onto because its range contains
+$a\otimes\id$ and also
+\[
+ \Phi_N(u_N^*v_N)=\id\otimes w.
+\]
+An inverse is given on generators by
+\[
+ a\otimes\id\longmapsto a,\qquad
+ \id\otimes w\longmapsto u_N^*v_N.
+\]
+Indeed, $u_N^*v_N$ commutes with $\A_N$:
+\[
+ (u_N^*v_N)a
+ =u_N^*\alpha_N(a)v_N
+ =u_N^*u_Nau_N^*v_N
+ =a(u_N^*v_N),
+\]
+and $(u_N^*v_N)^4=\id$ because $v_Nu_Nv_N^*=u_N$.
+Thus \eqref{eq:phi} is an isomorphism.
+
+For naturality, let
+$\widetilde\iota_N:\A_N\rtimes\mathbb Z_4
+\to\A_{N+1}\rtimes\mathbb Z_4$
+send $a$ to $\iota_N(a)$ and $v_N$ to $v_{N+1}$.  On a spanning
+monomial,
+\[
+\begin{aligned}
+\Phi_{N+1}\widetilde\iota_N(av_N^g)
+ &=\iota_N(a)u_{N+1}^g\otimes w^g\\
+ &=\iota_N(au_N^g)\otimes w^g\\
+ &=(\iota_N\otimes\id)\Phi_N(av_N^g).
+\end{aligned}
+\tag{4.7}\label{eq:naturality}
+\]
+So the diagrams commute exactly.  Taking inductive limits in
+\eqref{eq:naturality} gives the first isomorphism in
+\eqref{eq:limit-crossed}; applying the same generator argument to the
+limit unitary $u=\varinjlim u_N$ gives the second.
+
+For $a,b\in\A$,
+\[
+ (av^g)(bv^h)=a\alpha^g(b)v^{g+h}\in\A v^{g+h},
+\]
+and
+\[
+ (av^g)^*=v^{-g}a^*=\alpha^{-g}(a^*)v^{-g}.
+\]
+These identities prove \eqref{eq:fusion}, including $v^4=\id$.
+The order-two identification is precisely the frozen lattice equality
+$[\lambda]^2=[v]$; no net identification is inferred from the notation.
+
+Under $\Phi$, the map $F$ is
+\[
+ \id_\A\otimes\tau_{\mathbb Z_4},
+\qquad
+\tau_{\mathbb Z_4}(w^g)=\delta_{g0}.
+\]
+The group trace is positive and faithful on the finite-dimensional
+algebra $C^*(\mathbb Z_4)$, hence $F$ is positive, unital, faithful,
+idempotent, fixes $\A$, and satisfies
+$F(aXb)=aF(X)b$ for $a,b\in\A$.  Thus it is a faithful conditional
+expectation.
+
+Let $\widehat\alpha_\chi$ be the dual action,
+$\widehat\alpha_\chi(a)=a$ and
+$\widehat\alpha_\chi(v)=\chi(1)v$.  If $G$ is a dual-invariant
+conditional expectation onto $\A$, then for $g\ne0$ choose a character
+$\chi$ with $\chi(g)\ne1$.  For every $a\in\A$,
+\[
+ G(av^g)
+ =G(\widehat\alpha_\chi(av^g))
+ =\chi(g)G(av^g),
+\]
+so $G(av^g)=0$.  Also $G(a)=a$.  Hence $G=F$ on the algebraic crossed
+product, a dense subalgebra, and continuity gives $G=F$ everywhere.
+
+Finally, \eqref{eq:average-expectation} is plainly unital and fixes
+$\A_N^{\mathbb Z_4}$.  It is positive because it is an average of
+$*$-automorphisms, idempotent because
+\[
+ E_N(E_N(a))
+ =\frac1{16}\sum_{g,h=0}^3\alpha_N^{g+h}(a)
+ =\frac14\sum_{\ell=0}^3\alpha_N^\ell(a)=E_N(a),
+\]
+and bimodular because, for fixed $x,y$,
+\[
+ E_N(xay)=\frac14\sum_gx\alpha_N^g(a)y=xE_N(a)y.
+\]
+It preserves $\tau_N$ because traces are invariant under inner
+automorphisms.
+
+To prove uniqueness, equip $\A_N$ with
+$\ip{x}{y}_{2,\tau_N}=\tau_N(x^*y)$.  For $b$ fixed by the action,
+\[
+\begin{aligned}
+\ip{b}{a-E_N(a)}_{2,\tau_N}
+&=\tau_N(b^*a)
+ -\frac14\sum_g\tau_N(b^*\alpha_N^g(a))\\
+&=\tau_N(b^*a)
+ -\frac14\sum_g\tau_N(\alpha_N^{-g}(b^*)a)\\
+&=\tau_N(b^*a)-\tau_N(b^*a)=0.
+\end{aligned}
+\]
+Thus $E_N(a)$ is the orthogonal projection of $a$ onto the fixed
+subspace.  If $G_N$ is another $\tau_N$-preserving conditional
+expectation, then for fixed $b$ the bimodule property gives
+\[
+\ip{b}{a-G_N(a)}_{2,\tau_N}
+=\tau_N(b^*a)-\tau_N(G_N(b^*a))
+=\tau_N(b^*a)-\tau_N(b^*G_N(a))=0.
+\]
+So $G_N(a)$ is the same orthogonal projection, and $G_N=E_N$.
+Compatibility follows by substituting
+\eqref{eq:compatible-clock} into \eqref{eq:average-expectation}.
+\end{proof}
+
+\begin{remark}[Why the qualifier on uniqueness is necessary]
+For an inner action,
+$\A\rtimes\mathbb Z_4\cong\A\otimes C^*(\mathbb Z_4)$.
+An arbitrary state on the second tensor factor defines a conditional
+expectation onto $\A$, so a bare claim of uniqueness is false.
+The coefficient expectation is unique after imposing dual invariance
+(equivalently, the canonical group trace).  Separately, the averaging
+expectation $\A\to\A^{\mathbb Z_4}$ is unique after imposing preservation
+of the specified trace.  These are the two precise uniqueness statements
+supported by the finite data.
+\end{remark}
+
+\section{The quarter-twist logarithm and global obstruction}
+\label{sec:global}
+
+\subsection{One chiral edge}
+
+Let $\mathfrak h=L^2([0,1])$.  For $n,m\in\Z$ and
+$0<\alpha<1$, define
+\[
+ e_n(x)=e^{2\pi inx},\qquad
+ f_m^{(\alpha)}(x)=e^{2\pi i(m+\alpha)x}.
+\]
+Both families are orthonormal bases.  Let $P_0$ be the projection onto
+the closed span of $\{e_n:n\le0\}$ and $P_\alpha$ the projection onto
+the closed span of $\{f_m^{(\alpha)}:m\le0\}$.  The shift
+$\alpha=k/4$ is exactly the momentum displacement
+\[
+ \Delta p=\frac{2\pi k}{4N_x}
+\]
+relative to the spacing $2\pi/N_x$.
+
+\begin{lemma}[Exact overlap]\label{lem:overlap}
+For all $m,n\in\Z$,
+\[
+ \left|\ip{e_n}{f_m^{(\alpha)}}\right|^2
+ =\frac{\sin^2(\pi\alpha)}
+ {\pi^2(m-n+\alpha)^2}.
+\tag{5.1}\label{eq:overlap}
+\]
+\end{lemma}
+
+\begin{proof}
+Direct integration gives
+\[
+\begin{aligned}
+\ip{e_n}{f_m^{(\alpha)}}
+&=\int_0^1e^{2\pi i(m-n+\alpha)x}\,dx\\
+&=\frac{e^{2\pi i(m-n+\alpha)}-1}
+ {2\pi i(m-n+\alpha)}\\
+&=e^{\pi i(m-n+\alpha)}
+\frac{\sin(\pi(m-n+\alpha))}
+ {\pi(m-n+\alpha)}.
+\end{aligned}
+\]
+Since $m-n$ is an integer,
+$|\sin(\pi(m-n+\alpha))|=|\sin(\pi\alpha)|$.
+Taking the squared modulus proves \eqref{eq:overlap}.
+\end{proof}
+
+\begin{theorem}[One-edge Hilbert--Schmidt asymptotic]
+\label{thm:oneedge}
+Let $S_N(\alpha)$ be the contribution to
+$\norm{P_0-P_\alpha}_2^2$ obtained by restricting both occupied and
+unoccupied indices to absolute value at most $N$.  Then
+\[
+ S_N(\alpha)
+ =\frac{2\sin^2(\pi\alpha)}{\pi^2}\log N+O_\alpha(1).
+\tag{5.2}\label{eq:one-edge-log}
+\]
+In particular, $P_0-P_\alpha$ is not Hilbert--Schmidt.
+\end{theorem}
+
+\begin{proof}
+For any two orthogonal projections $P,Q$ for which the terms are
+defined,
+\[
+ (P-Q)^2=P(\id-Q)P+(\id-P)Q(\id-P).
+\]
+Taking the trace in orthonormal bases gives
+\[
+ \norm{P-Q}_2^2
+ =\Tr(P(\id-Q))+\Tr(Q(\id-P)).
+\tag{5.3}\label{eq:projection-distance}
+\]
+For the first term in \eqref{eq:projection-distance}, occupied
+$e_n$ have $n\le0$ and unoccupied $f_m^{(\alpha)}$ have $m\ge1$.
+For the second, occupied $f_m^{(\alpha)}$ have $m\le0$ and
+unoccupied $e_n$ have $n\ge1$.  By Lemma~\ref{lem:overlap}, the
+symmetrically truncated sum is
+\[
+ S_N(\alpha)
+ =\frac{\sin^2(\pi\alpha)}{\pi^2}
+ \sum_{d=1}^{2N}\mu_N(d)
+ \left(\frac1{(d+\alpha)^2}+\frac1{(d-\alpha)^2}\right),
+\tag{5.4}\label{eq:finite-sum}
+\]
+where
+\[
+ \mu_N(d)=
+ \#\{(m,n):1\le m\le N,\ -N\le n\le0,\ m-n=d\}.
+\]
+Counting the integer points on each diagonal gives
+\[
+ \mu_N(d)=
+ \begin{cases}
+ d,&1\le d\le N,\\
+ 2N-d+1,&N<d\le2N.
+ \end{cases}
+\tag{5.5}\label{eq:multiplicity}
+\]
+The possible one-unit convention change at $d=N+1$ affects only a
+bounded term and not the asymptotic; \eqref{eq:multiplicity} corresponds
+to the displayed index ranges.
+
+For $d\ge1$,
+\[
+\begin{aligned}
+d\left(\frac1{(d+\alpha)^2}+\frac1{(d-\alpha)^2}\right)
+&=\frac1d\left(
+\frac1{(1+\alpha/d)^2}
++\frac1{(1-\alpha/d)^2}\right)\\
+&=\frac2d+O_\alpha(d^{-3}).
+\end{aligned}
+\tag{5.6}\label{eq:summand-expand}
+\]
+The absence of a $d^{-2}$ term follows because the terms odd in
+$\alpha/d$ cancel.  Therefore the part $1\le d\le N$ of
+\eqref{eq:finite-sum} equals
+\[
+ 2\sum_{d=1}^N\frac1d+O_\alpha\left(\sum_{d=1}^\infty d^{-3}\right)
+ =2\log N+O_\alpha(1).
+\tag{5.7}\label{eq:harmonic}
+\]
+For the tail $N<d\le2N$, use $d-\alpha\ge d/2$ to obtain
+\[
+\begin{aligned}
+\sum_{d=N+1}^{2N}\mu_N(d)
+\left(\frac1{(d+\alpha)^2}+\frac1{(d-\alpha)^2}\right)
+&\le
+\sum_{d=N+1}^{2N}(2N-d+1)\frac8{d^2}\\
+&\le \frac8{N^2}\sum_{r=1}^{N}r
+\le 4+\frac4N.
+\end{aligned}
+\tag{5.8}\label{eq:tail}
+\]
+Thus the tail is uniformly bounded.  Substitution of
+\eqref{eq:harmonic} and \eqref{eq:tail} into \eqref{eq:finite-sum}
+proves \eqref{eq:one-edge-log}.  Since the nonnegative truncations
+diverge, the full sum in \eqref{eq:projection-distance} is infinite,
+so $P_0-P_\alpha$ is not Hilbert--Schmidt.
+\end{proof}
+

@@ -1,0 +1,207 @@
+% Auto-extracted from ../tfpt-42.tex for the TFPT 4.5 clean split.
+% Source body assigned by the TFPT 4.5 clean split.
+
+% ---- Hadronic admissibility and strong-CP ingredients: source lines 7157-7357 ----
+\subsection{Hadronic admissibility as singlet selection}
+
+\begin{proposition}[Admissible color words]
+For each carrier word $w$, let $z(w)\in\{1,\omega,\omega^2\}$ be its color-center charge and let $\varepsilon(w)\in\{\pm1\}$ be its seam parity. Physical hadronic words satisfy
+\[
+z(w)=1,
+\qquad
+\varepsilon(w)=+1.
+\]
+\end{proposition}
+
+This is a superselection statement on the retained branch, not a derivation of dynamical confinement from the microscopic Yang--Mills flow. The corresponding hadronic Hilbert space will be written explicitly in \TFPTxref{sec:closure-theorems}. A schematic version is shown in \Cref{fig:admissible-words}.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[>=Latex, node distance=1.1cm and 1.3cm]
+\node[draw=red!70!black, fill=red!4, rounded corners, minimum width=2.1cm, minimum height=1.0cm, align=center] (q) {free quark\\$z(w)\neq 1$};
+\node[draw=green!50!black, fill=green!4, rounded corners, minimum width=2.1cm, minimum height=1.0cm, align=center, right=of q] (m) {meson\\$z(w)=1$};
+\node[draw=green!50!black, fill=green!4, rounded corners, minimum width=2.1cm, minimum height=1.0cm, align=center, right=of m] (b) {baryon\\$z(w)=1$};
+\draw[red!70!black, very thick] ($(q.north west)+(0.12,-0.12)$) -- ($(q.south east)+(-0.12,0.12)$);
+\draw[red!70!black, very thick] ($(q.south west)+(0.12,0.12)$) -- ($(q.north east)+(-0.12,-0.12)$);
+\node[below=0.2cm of q] {\small excluded};
+\node[below=0.2cm of m] {\small admissible};
+\node[below=0.2cm of b] {\small admissible};
+\end{tikzpicture}
+\caption{Hadronic admissibility as singlet selection.}
+\label{fig:admissible-words}
+\end{figure}
+
+The transport-sector QCD string tension is written as
+\[
+\sigmaQCD=\cthree^2\chi_{\QCD}^2,
+\]
+so the relative Wilson loop obeys
+\[
+\langle W(C)\rangle_{\mathrm{rel}}\sim e^{-\sigmaQCD A(C)}.
+\]
+Throughout the manuscript we write $\sigmaQCD$ explicitly for the QCD string tension to keep
+it lexically distinct from the local Weyl conformal factor $\sigma$ of the geometric branch and
+from the standard-deviation $\sigma$ used in benchmark tables. The sector-dependent scale
+$\chi_{\QCD}$ is the minimal notation needed to avoid confusing the hadronic transport channel
+with the gravitational $\chigeozero$ background; the two channels are linked by the common
+underlying primitive response $\chiseed$ but not by a naive equality of scales.
+
+\subsection{Transport-side ingredients for the strong-CP sector}
+
+Define
+\begin{equation}
+\label{eq:strong-cp}
+\bar\theta=\theta_{\mathrm{QCD}}+\arg\det M_u+\arg\det M_d.
+\end{equation}
+\begin{definition}[Sheet-CP symmetry on the admissible branch]
+\label{def:sheet-cp-symmetry}
+Define the admissible sheet-CP operator by
+\[
+\mathcal C_\Sigma:=CP\circ\taudbl.
+\]
+\end{definition}
+
+\begin{theorem}[Determinant-line phase and strong-CP seed on the admissible branch]
+\label{thm:sheet-cp-protection}
+\label{thm:structural-strong-cp}
+On the closed branch the hard holonomy factorization gives, for $f=u,d$,
+\[
+Y_f=D_{L,f}U_f^\star D_{R,f},
+\qquad
+\;D_{L,f},D_{R,f}>0,
+\qquad
+U_f^\star\in SU(3)_F.
+\]
+For
+\[
+M_f=\frac{\vgeo}{\sqrt2}Y_f
+\]
+one has
+\[
+\det M_f>0,
+\qquad
+\arg\det M_u=\arg\det M_d=0.
+\]
+Moreover the polar unitary factor
+\[
+U_f^{\mathrm{pol}}:=M_f(M_f^\dagger M_f)^{-1/2}
+\]
+lies in $SU(3)_F$. The antiunitary sheet operation
+preserves the admissible relative action $\Gamma_{\mathrm{rel}}$:
+\[
+\mathcal C_\Sigma\,\Gamma_{\mathrm{rel}}\,\mathcal C_\Sigma^{-1}=\Gamma_{\mathrm{rel}},
+\qquad
+\mathcal C_\Sigma\,Q\,\mathcal C_\Sigma^{-1}=-Q,
+\]
+so the sheet operation acts as a stability symmetry of the same branch. The same admissible seam
+operator determines the canonical determinant-line phase
+\[
+a_\Sigma:=\arg\det_{\mathrm{adm}}U_\Sigma\in S^1_{\det},
+\]
+whose canonical winding is inherited from the unit boundary winding of the seam class. Weak CP may
+still survive through
+\[
+V_{\mathrm{CKM}}=U_{u,L}^\dagger U_{d,L}.
+\]
+\end{theorem}
+
+\begin{proof}
+From the hard holonomy factorization one gets
+\[
+\det M_f
+=
+\left(\frac{\vgeo}{\sqrt2}\right)^3
+\det D_{L,f}\det D_{R,f}\det U_f^\star
+>
+0,
+\]
+because the diagonal factors are positive and $\det U_f^\star=1$. Hence
+\[
+\arg\det M_f=0.
+\]
+Equivalently, in any admissible biunitary polar form
+\[
+M_f=U_{f,L}H_fU_{f,R}^\dagger,
+\qquad
+H_f>0,
+\qquad
+U_{f,L},U_{f,R}\in SU(3)_F,
+\]
+the spectral theorem gives $\det H_f>0$ and therefore
+\[
+\det M_f=\det(U_{f,L})\det(H_f)\overline{\det(U_{f,R})}=\det H_f>0,
+\]
+so the same determinant-phase suppression follows directly from $\det H_f>0$ and
+$\det U_{f,L}=\det U_{f,R}=1$.
+For the polar unitary factor one has
+\[
+\det U_f^{\mathrm{pol}}
+=
+\frac{\det M_f}{|\det M_f|}
+=
+1,
+\]
+so $U_f^{\mathrm{pol}}\in SU(3)_F$. Independently, the deck involution $\taudbl$
+implements sheet exchange on the admissible branch, so composing it with $CP$ yields an exact
+antiunitary symmetry of the relative action while flipping the sign of the topological charge.
+This shows that the sheet operation stabilizes the branch already selected by the determinant
+structure, rather than generating the vanishing from scratch. The same seam operator already
+carries a canonical determinant-line phase, and unit seam spectral flow upgrades that phase to the
+natural compact strong-CP angle variable of the branch. Weak CP may still survive through a
+nontrivial Jarlskog invariant in the relative family holonomies.
+\end{proof}
+
+\begin{corollary}[RG and matching invariance of determinant-phase suppression]
+\label{cor:strong-cp-rg-stability}
+In every renormalization scheme that respects $\Cseam$, $\Padm$, and the carrier structure, the
+determinant-phase suppression
+\[
+\arg\det M_u=\arg\det M_d=0
+\]
+of \TFPTxref{thm:sheet-cp-protection} is preserved under the declared RG flow and matching map.
+The same determinant-line phase $a_\Sigma$ remains scheme-stable, so the structural input to
+\Cref{thm:strong-cp-closure} survives RG flow as well.
+\end{corollary}
+
+\begin{lemma}[Retained-branch \texorpdfstring{$\gamma_5$}{gamma5}-Hermiticity]
+\label{lem:retained-gamma5-hermiticity}
+For each quark sector $f=u,d$, let $D_{E,f}$ be the Euclidean kinetic Dirac operator on the
+admissible branch and define
+\[
+\mathcal D_f:=D_{E,f}+M_fP_R+M_f^\dagger P_L,
+\qquad
+P_{L,R}:=\frac{1\mp\gamma_5}{2}.
+\]
+Then
+\[
+\mathcal D_f^\dagger=\gamma_5\mathcal D_f\gamma_5.
+\]
+\end{lemma}
+
+\begin{proof}
+The Euclidean kinetic operator is anti-Hermitian and anticommutes with $\gamma_5$. The mass block
+on the admissible branch is the positive polar mass map of \TFPTxref{thm:sheet-cp-protection}, hence
+enters as the Hermitian chiral pair $M_fP_R+M_f^\dagger P_L$. The displayed identity follows
+immediately.
+\end{proof}
+
+The positive-branch clause is still essential here: the closure statement is about the physical
+mass map once the admissible transport branch has been fixed, not about an arbitrary unitary
+dressing of the same singular values. What changes in the present rewrite is the logical source
+of the null result: the branch no longer relies on a promise not to insert a bad counterterm by
+hand, but on the polar structure first, the determinant line second, and the antiunitary sheet
+symmetry third. The later strong-CP theorem closes the effective angle by combining exactly these
+three ingredients with vacuum positivity.
+
+\begin{remark}[Admissibility as a unified three-sector motif]
+The admissibility pair $(\mathsf{Adm},\Padm)$ acts as a single structural principle with three sector projections:
+\begin{itemize}[leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item \textbf{Electroweak:} seam-even selection picks the unique light Higgs doublet ($\taudbl^{\ast}\Phi=+\Phi$).
+    \item \textbf{QCD:} center neutrality selects confined hadronic words ($z(w)=1$, $\varepsilon(w)=+1$).
+    \item \textbf{Strong CP:} the determinant structure, $\gamma_5$-Hermiticity, and the sheet involution close the strong angle internally on the admissible branch.
+\end{itemize}
+These are not three independent rules bolted onto different sectors. They are three projections of the same admissible-versus-inadmissible boundary: seam parity, center charge, and sheet exchange are all encoded in the double-cover and involution data of the primitive core. This unification is the conceptual backbone of the transport program.
+\end{remark}
+
+
+% ---- Closure theorems from the admissibility complex: source lines 7358-8906 ----

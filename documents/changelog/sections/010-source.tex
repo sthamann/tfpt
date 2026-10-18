@@ -1,0 +1,371 @@
+\subsection*{2026-07-03 (\texttt{v472} --- the determinant line over the $U(1)$-twist moduli of the collar model carries curvature $=$ the inflow level: the \texttt{v470} bridge lemma exhibited at the finite/model level; \texttt{ALPHA.QUILLEN.EXACT.01} stays \mO. Plus: bird's-eye rounds --- electron-sector/Cabibbo whitespot probes, Calder\'on UV-universality, parameter-free flat-budget closure (sandbox); the flat-budget closure enters the evidence scorecard)}
+\begin{itemize}[leftmargin=1.5em]
+\item \textbf{\texttt{v472\_quillen\_detline\_moduli.py} (\texttt{ALPHA.QUILLEN.DETLINE.01}).}
+\texttt{ALPHA.QUILLEN.EXACT.01} names the $\alpha^3$ level as the curvature of the \emph{determinant line
+over the $U(1)$ seam moduli} (Quillen 1985 / Bismut--Freed CMP 106 (1986) curvature; Dai--Freed JMP 35
+(1994) section); \texttt{v470} computed the bulk Chern invariant only over the Bloch Brillouin zone (the
+translation-invariant shortcut). \texttt{v472} computes the Quillen-shaped object itself: the same collar
+Hamiltonian ($h(k)=\sin k_x\,\sigma_x+\sin k_y\,\sigma_y+(M-\cos k_x-\cos k_y)\,\sigma_z$,
+\texttt{v367}/\texttt{v470}) in real space on an $L\times L$ torus with \emph{twisted} boundary conditions --- the twist
+torus $(\theta_x,\theta_y)$ \emph{is} the moduli space of flat $U(1)$ connections --- and the
+Fukui--Hatsugai--Suzuki curvature of the \emph{determinant line of the occupied frame} over that torus:
+$\oint = 2\pi\cdot 1$ exactly (integer to $10^{-9}$) at $M{=}1$ for $L{=}4$ AND $L{=}6$ (size-independent);
+controls: trivial collar $M{=}3\to 0$, orientation flip $M{=}{-}1\to-1$; the twist-moduli integer equals
+the Bloch-BZ integer for all three $M$ (Niu--Thouless--Wu PRB 31 (1985), exhibited on the S3 collar model);
+the Fermi gap ($=2.0$) stays open over the whole twist torus, so the Dai--Freed section has no zero.
+\textbf{Reading \mC:} det-line holonomy over the $U(1)$ moduli $=$ inflow level $k_0=|C|=1$ --- the
+\texttt{v470} bridge lemma ``$\delta\log\det_\zeta(\mathrm{seam})=$ the inflow response'' holds
+\emph{verbatim at the finite/model level}, where $\log\det$ of the occupied frame replaces
+$\log\det_\zeta$. \textbf{Not closed \mO:} the \emph{continuum} $\zeta$-determinant identification on the
+abstract seam ($=$ the \texttt{SEAM.EQUIV.01} face); \texttt{ALPHA.QUILLEN.EXACT.01} stays \mO; $\ainv$
+stays \mE. Structurally the same manoeuvre as \texttt{v471} for \texttt{SEAM.THEOREM.01}'s replica side.
+$7/7$ checks; suite green through \texttt{v472} (466 modules); numerical (dense eigh $+$ FHS twist grid),
+Python-only by nature. Papers updated: \texttt{tfpt\_1} (sixth honest step in the EM closure),
+\texttt{tfpt\_research\_contracts} (residual certification), \texttt{tfpt\_safeguards} ($\alpha$-form
+lever), root \texttt{README}, \texttt{zenodo\_description.html}. Exploration original:
+\texttt{experiments/tfpt-discovery/quillen\_detline\_twist\_moduli.py} (same day).
+\item \textbf{Bird's-eye whitespot rounds (sandbox, \texttt{experiments/tfpt-discovery/}, nothing else
+promoted).} (i) \texttt{electron\_sector\_cabibbo\_probe.py}: the $\alpha$ metrology triangle (TFPT
+$\ainv=137.0359992168$ vs Rb-2020 $+0.99\sigma$ / CODATA22 $+1.90\sigma$ / $a_e$-route $+3.39\sigma$ /
+Cs-2018 $+6.33\sigma$ --- TFPT takes the Rb side of the $5.5\sigma$ metrology split; new honest pressure
+point recorded); the \texttt{v204} seam-vertex universality catch (a flavor-universal reading of
+$a_\mu^{\mathrm{seam}}=2.879\times10^{-9}$ is excluded by the electron at ${\sim}2\times10^4\sigma$; linear
+scaling at ${\sim}10^2\sigma$; quadratic survives --- the \mC\ bridge must scale at least quadratically in
+$m_\ell$); the Cabibbo-angle anomaly as a third dissolution watchdog ($\lambda_C=0.2243762$ exact sits
+$+0.08\sigma$ on the PDG-2026 rescaled kaon average, between $K_{\ell3}$ and $K_{\mu2}$; exact unitarity
+puts $V_{ud}=0.97450$ --- superallowed is the outlier at $+2.6\sigma$, all neutron/pion routes agree).
+(ii) \texttt{kernel\_calderon\_uv\_universality.py}: the raw-collar Calder\'on/DtN datum is UV-universal
+(mode-by-mode first-order convergence to the exact Bessel symbol $m I_\nu'(mR)/I_\nu(mR)$, Richardson
+residual $3\times10^{-4}$; $N_\theta$-independent; $|k|$ principal symbol; $\mu_4$ block structure at
+machine precision; both spec-$T$ masses; $3$-fold mesh-defect negative control) --- the operator equality
+demanded by \texttt{QGEO.KERNEL.01} has a well-defined discretization-independent left-hand side (gate
+stays \mO). (iii) \texttt{flat\_budget\_closure.py} $+$ scorecard row: see next bullet.
+\item \textbf{Flat-budget closure enters the evidence scorecard (experiments-only, pattern candidate).}
+The zero-dial closure $\{\Omega_b=\phiz(1-\tfrac{1}{4\pi})$ [frozen], $\Omega_c=\tfrac27(1-\tfrac{1}{4\pi})$
+[the 2026-07-02 numerology-flagged Nebenbefund], $\rho_\Lambda/\Mbar^4=(3/4\pi^2)e^{-2\ainv}$ [frozen],
+$\Sigma m_\nu=0.0588$\,eV [\texttt{v468} route]$\}$ $+$ spatial flatness determines the whole flat
+$\Lambda$CDM budget: $H_0=67.15$\,km/s/Mpc ($-0.39\sigma$ Planck18, $-5.67\sigma$ SH0ES22 --- the
+parameter-free Planck side of the Hubble tension), $\Omega_m=0.3133$ ($-0.27\sigma$), $t_0=13.86$\,Gyr;
+honest stresses recorded: $\omega_b$ $-2.02\sigma$ (BBN-only $-0.73\sigma$), $\omega_c$ $-1.19\sigma$,
+DESI-DR2 $H_0$ $-2.16\sigma$ (one correlated low-$h$ direction). Scorecard row \texttt{cosmo / flat budget
+closure} (\texttt{consistent}, composite: shares the \texttt{phi0\_seed} group (and the $\rho_\Lambda$ leg
+the $\alpha$ engine), $\Omega_c$ leg in \texttt{alternative\_group=axion\_branch} vs the axion-spine DM
+reading --- never double-counted); nothing promoted to \texttt{verification/}.
+\end{itemize}
+
+\subsection*{2026-07-02 (\texttt{v471} --- the Seam--Horizon replica chain exercised numerically on the discretized collar: the kernel-identification premise of \texttt{SEAM.THEOREM.01} discharged at the finite/model level; residual retypes to the continuum MMST leg $+$ the anchor; gate stays \mO. Plus: the GW ringdown-echo channel hardened --- 10 loudest events incl.\ GW250114, redshift-corrected templates, stacked search and a 12-variant signature battery, all null)}
+\begin{itemize}[leftmargin=1.5em]
+\item \textbf{\texttt{v471\_seam\_horizon\_replica.py} (\texttt{SEAM.EHMODEL.04}).} The residual isolated by
+\texttt{v150}/\texttt{v151}/\texttt{v152} --- ``the RP seam kernel \emph{is} this BFK Calder\'on datum'' ---
+is exercised numerically on a discretized seam collar with the seam's \emph{own} kernel and \emph{real}
+replica sheets: the matched conical deficit has slope $2C(\gamma)$ on deficit cones ($0.01$--$0.05\%$) and
+replica sheets $n{=}2$ ($0.8\%$), $n{=}3$ ($1.5\%$); the EH coefficient is cutoff-independent ($0.5\%$
+drift) while the $\zeta$-scale $\mu_{\mathrm{lat}}$ drifts --- the \texttt{v152} anchor exhibited on data,
+with \emph{no} canonical $\ln(m/\mu){=}3/4$ emerging (recorded honestly); the BFK/Schur split is exact
+(${\sim}10^{-16}$) with the Calder\'on factor conically clean \emph{measured on the kernel} (pure cut-edge
+law, tip term $0$, power-checked) and the halves carrying $2C_{\mathrm{cone}}$ via Kac doubling; the
+\texttt{v302} transfer masses $6\ln(3/2)$, $6\ln 3$ sit on the calibrated EH line ($\le0.05\%$); and the
+Perron/attractor mode ($m{=}0$) is IR-divergent --- \textbf{the recovery gap $\Delta{=}6\ln(3/2)$ is what
+makes the induced-gravity coefficient finite} (the same gap that makes the attractor unique makes $1/G$
+finite). \texttt{SEAM.THEOREM.01} stays \mO; its residual retypes to the \emph{continuum} scaling limit
+(the MMST class --- the same single residual as \texttt{SEAM.EQUIV.01}, \texttt{v336}) plus the one declared
+anchor. $16/16$ checks; suite green through \texttt{v471} (465 modules); numerical (sparse lattice
+determinants), Python-only by nature. Papers updated: \texttt{origin\_theory} (new collar paragraph in the
+Seam--Horizon gapbox $+$ residual retyping), \texttt{tfpt\_research\_contracts} (R3 premise),
+\texttt{tfpt\_4\_frontier} ($3/4$ audit note), root \texttt{README}, \texttt{verification/README},
+\texttt{zenodo\_description.html}. Exploration original:
+\texttt{experiments/theory-contracts/seam\_horizon\_replica.py} ($17/17$, same day).
+\item \textbf{GW ringdown-echo channel hardened (\texttt{experiments/gw-ringdown-echo}, scorecard row
+\texttt{data\_limited}${\to}$\texttt{consistent}).} (i) Strain coverage extended to the \emph{10 loudest}
+ringdown events incl.\ GW250114 (network SNR $78.6$, O4b; new \texttt{fetch\_strain\_4096.py} crops the
+4096\,s GWOSC archive segments). (ii) \textbf{Redshift correction}: the GWTC catalogue reports source-frame
+masses, the observed ringdown is at $f_0/(1{+}z)$ --- all templates moved to detector-frame $M(1{+}z)$
+(before the fix GW190521, $z{=}0.56$, was filtered ${\sim}1.6\times$ too high); all stages re-run.
+(iii) Stage~1b \emph{stacked} search over 23 detector streams: stacked $p{=}0.262$, kernel-consistent
+streams $0/23$ --- STACKED NULL. (iv) Stage~1c \emph{signature battery} (Bonferroni $\times12$): ratio
+semantics (amplitude $(2/3)^6$ vs \emph{energy reading} $(2/3)^3$ vs step $2/3$) $\times$ $\mu_4$
+per-bounce phases $\{0,\pi/2,\pi,3\pi/2\}$ (the boundary-birefringence analogue --- path birefringence
+from parity violation $c_-{=}8$ cancels in the inter-echo ratio; only a per-reflection phase does not)
+$\times$ lags $0.5$--$350$\,ms (ECO through Planckian window), with joint $(2,2,0){+}(2,2,1)$ subtraction
+and a template-agnosticism control: \texttt{NO\_VARIANT\_ECHO} on all 10 events --- the null is robust
+against alternative signature readings. Search-target firewall unchanged: upper bound, no detection, no
+tension claim.
+\end{itemize}
+
+\subsection*{2026-07-02 (\texttt{v295} robustness patch --- external-review follow-up: the numeric $a_2$-kernel tolerance must dominate its own finite-difference floor)}
+\begin{itemize}
+\item \textbf{\texttt{v295\_flataway\_a2\_exact.py} (\texttt{FLATAWAY.A2.01}).} Alessandro's Git-baseline audit
+(commit \texttt{8cb8ad0}) hit a platform-marginal failure in check~3: the exact divided-difference $a_2$ kernel
+is compared against an $\varepsilon{=}10^{-3}$ second finite difference whose \emph{own} truncation error is
+$O(\varepsilon^2)\sim10^{-6}$, yet the tolerance was $10^{-6}$ --- on his machine $k{=}3$ landed at
+$1.1\times10^{-6}$ (ours: $2.9\times10^{-7}$). Fix: tolerance widened to $5\times10^{-6}$ so it \emph{dominates}
+the control's error floor, with the reasoning recorded in the check text; the load-bearing anchor remains the
+\emph{closed form} at machine precision (\texttt{v296}), the numeric witness stays as the independent
+cross-check. A numerical-robustness patch, no claim or status change; ledger row updated; suite green
+(\textsc{all checks passed} through \texttt{v470}).
+\end{itemize}
+
+\subsection*{2026-07-02 (\texttt{v469}/\texttt{v470} --- the closure-route round on the two named targets: the \texttt{SEAM.EQUIV.01} extension leg re-founded on 1995--2001 peer-reviewed crossed-product theorems $+$ the realisation axiom reduced to invariant level; the $\alpha^3$ level $=$ the \emph{computed} bulk Chern invariant $+$ the seam $F$-normalisation $=$ the embedding index $k_Y{=}5/3$; both targets stay \mO)}
+\begin{itemize}
+\item \textbf{\texttt{v469\_seam\_crossedproduct\_route.py} (\texttt{SEAM.EQUIV.CROSSEDPRODUCT.01}).}
+The $128$-spinor extension leg of \texttt{SEAM.EQUIV.01} no longer rests on 2024/2025 preprints:
+\mE\ the $SO(16)_1$ spinor has $h_s{=}N/16{=}16/16{=}1{\in}\Z$, so its statistics phase is $+1$ ---
+\emph{exactly} the Longo--Rehren locality criterion --- and the $\Z_2$ simple-current crossed product
+$SO(16)_1{\rtimes}\{1,s\}$ is a \emph{local} index-$2$ extension by the peer-reviewed subfactor package
+(Longo--Rehren, Rev.\ Math.\ Phys.\ 7 (1995); the level-$1$ $so(N)$ net with its DHR sectors from
+even-CAR: B\"ockenhauer, Rev.\ Math.\ Phys.\ 8 (1996); simple-current extensions of nets:
+B\"ockenhauer--Evans, Comm.\ Math.\ Phys.\ 197 (1998)); KLM (Comm.\ Math.\ Phys.\ 219 (2001)) gives
+$\mu(B){=}4/2^2{=}1$ $\Rightarrow$ holomorphic $\Rightarrow$ $(E_8)_1$ by the \texttt{v463} pin.
+The AGT/AMT lattice-VOA route (\texttt{v459}) is \emph{demoted to an independent second witness}.
+\mE\ the index-$4$ $\mu_4$ glue runs on the same integer: $h(J^k){=}\{1,1,1\}$ for $k{=}1,2,3$
+(the \texttt{v125} isotropy $q(k(1,1)){=}k^2$ at net level), $\mu{=}16/4^2{=}1$, same endpoint.
+\mE\ the realisation input is reduced from model fiat to \emph{invariants} (R1$'$): quasi-free
+\mC\ (\texttt{v155}/\texttt{v160}) $+$ gap \mE\ (\texttt{v302}) $+$ class D $+$ $c_-{=}8$ \mE\
+(\texttt{v456}, from P1), with the invariants \emph{computed} --- per-copy FHS Chern $|C|{=}1$ vs $0$
+(control), $\nu{=}16{\times}|C|{=}16$, $c_-{=}\nu/2{=}8$ --- and $\nu\equiv 0\ (\mathrm{mod}\ 16)$ is
+exactly Kitaev's class-D phase whose edge admits a purely bosonic description $=$ the $(E_8)_1$
+level-$1$ state (Ann.\ Phys.\ 321 (2006), sixteen-fold way); the phase-invariance of $c_-$ is cited
+(Kapustin--Spodyneiko, PRB 101 (2020); Kim et al., PRL 129 (2022)). \mO\ \emph{not closed}: the cited
+theorems stay cited; \texttt{SEAM.EQUIV.01} stays \mO.
+\item \textbf{Lean hardening.} \texttt{TfptCarrier/SeamResidualAxiom.lean} gains the \emph{parallel}
+peer-reviewed derivation \texttt{seamResidualClosed$'$}: the invariant-level axiom
+\texttt{collar\_invariants} (R1$'$) $+$ \emph{one} combined 1995--2001 package
+\texttt{crossedproduct\_route\_theorem}; the new joints are kernel facts with \emph{no} axioms ---
+\texttt{lr\_locality\_integer} ($h_s{=}16/16{\in}\Z$), \texttt{glue\_locality\_integers}
+($\mu_4$ $h(J^k){\in}\Z$), \texttt{klm\_holomorphic} ($4/2^2{=}1$, $16/4^2{=}1$),
+\texttt{sixteenfold\_pin} ($\nu{=}16{\equiv}0\bmod 16$, $c_-{=}8$), bundled as
+\texttt{crossedproduct\_arithmetic} (\texttt{[propext]} only); \texttt{\#print axioms
+seamResidualClosed$'$} $=$ exactly four; the original \texttt{seamResidualClosed} (AGT/AMT witness)
+is kept unchanged as the independent second route; \texttt{lake build} OK ($3285$ jobs).
+\item \textbf{\texttt{v470\_alpha\_inflow\_level.py} (\texttt{ALPHA.QUILLEN.INFLOW.01}).}
+Both residuals left on \texttt{ALPHA.QUILLEN.EXACT.01} after \texttt{v433}--\texttt{v435} are
+upgraded. \mE\ target re-verified ($\ainv{=}137.0359992168$; Quillen split ${<}10^{-35}$).
+\mC\ \emph{the level is computed, not minimal}: the $a^3$ coefficient $k_0{=}1$ \emph{equals} the
+FHS bulk Chern invariant $|C|{=}1$ of the \emph{same} p$+$ip collar that realises S3
+(\texttt{v367}/\texttt{v461}) --- ``why exactly $1$'' is answered by computation plus the cited
+inflow identification (TKNN PRL 49 (1982) / Avron--Seiler--Simon PRL 51 (1983) quantisation;
+Callan--Harvey, Nucl.\ Phys.\ B250 (1985) inflow; APS 1975 / Alvarez-Gaum\'e--Della~Pietra--Moore
+1985 / Witten, Rev.\ Mod.\ Phys.\ 88 (2016) $\eta{=}$CS part of $\delta\log\det$; Quillen 1985 /
+Bismut--Freed 1986 determinant-line integrality), \emph{replacing} \texttt{v435}'s minimality
+assumption. \mE\ $k_Y{=}\operatorname{tr}(Y^2)/\operatorname{tr}(T_3^2){=}(5/6)/(1/2){=}5/3$
+(Ginsparg, Phys.\ Lett.\ B197 (1987)): $(3/5){\times}\tfrac{41}{6}{=}\tfrac{41}{10}{=}b_1$ --- the
+``GUT $3/5$'' \emph{is} the inverse embedding index; $\tfrac{41}{6}{=}\tfrac{20}{3}{+}\tfrac16$
+(carrier decomposition). \mC\ the seam $F$-normalisation (the one \mC\ of \texttt{v434}) is
+\emph{retyped}: once the seam net is $(E_8)_1$ level $1$, $\langle JJ\rangle{=}k/(z{-}w)^2$ is fixed
+by $k_Y$ --- level-$1$ current-algebra rigidity, zero independent content, a face of
+\texttt{SEAM.EQUIV.01} (per the \texttt{v382} typing). \mE\ \emph{structural unification}: one
+invertible phase, two quantised responses --- $c_-{=}8$ (gravitational, feeds
+\texttt{SEAM.EQUIV.01}/S3) and $C{=}1$ ($U(1)$, feeds EM1) --- so closing R1$'$ feeds \emph{both}
+named targets. \mO\ \emph{not closed}: the bridge lemma ``$\delta\log\det_\zeta(\mathrm{seam}){=}$
+the inflow response'' stays the named cited step; \texttt{ALPHA.QUILLEN.EXACT.01} stays \mO;
+$\ainv$ stays \mE.
+\item \textbf{Integration.} Both registered in \texttt{run\_all.py} $+$
+\texttt{script\_registry.csv} (cluster \texttt{frontier}); ledger rows
+\texttt{SEAM.EQUIV.CROSSEDPRODUCT.01} $+$ \texttt{ALPHA.QUILLEN.INFLOW.01};
+\texttt{FORM.SEAM.RESIDUAL.01} updated (the \texttt{seamResidualClosed$'$} route); the exact joints
+Wolfram-mirrored ($365\to368$: the LR/glue locality integers, the KLM $\mu$-arithmetic, the
+sixteen-fold pin, the $k_Y{=}5/3$/$b_1$ identities); cited in \texttt{tfpt\_1} ($\alpha$ fixed point
+$+$ EM-Ward residual prose), \texttt{tfpt\_research\_contracts} (seam residual $+$ Lean section),
+\texttt{introduction} (closure ledger), \texttt{tfpt\_5\_redteam} (Target~A residual wording) and
+the README/website status surfaces; exploration provenance
+\texttt{experiments/tfpt-discovery/closure\_route\_*.py} (2026-07-02 note in
+\texttt{experiments/next.txt}). Suite \textsc{all checks passed} through \texttt{v470}.
+Curated version bumped to \textbf{v5.4} (Zenodo deposit updated).
+\end{itemize}
+
+\subsection*{2026-07-02 (\texttt{v467}/\texttt{v468} --- two named post-hoc \mO\ flavor candidates, record unchanged: the three ${\sim}2\sigma$ mixing tensions as \emph{one} third-generation $-\varphi_0$ pattern, and the splitting ratio $\Delta m^2_{21}/\Delta m^2_{31}=|J_{\mathrm{PMNS}}|$)}
+\begin{itemize}
+\item \textbf{\texttt{v467\_thirdgen\_mixing\_pattern.py} (\texttt{FLAV.THIRDGEN.PATTERN.01}).} The suite's
+three ${\sim}2\sigma$ mixing tensions ($\sin^2\theta_{13}$ $+2.0\sigma$, $\sin^2\theta_{23}$ $+1.76\sigma$,
+$|V_{cb}|$ $+1.79\sigma$; \texttt{v307}) are exactly the three \emph{third-generation} channels and share
+\emph{one} relative deviation $-5.36\%\pm1.67\%$ --- non-zero at $3.2\sigma$, $-0.03\sigma$ from $-\varphi_0$.
+\textbf{[E]} vocabulary identities: $\lambda_C^2{=}\varphi_0(1{-}\varphi_0)$ (the frozen Cabibbo);
+$\sin^2\theta_{23}{=}(1{-}\varphi_0)/2\Leftrightarrow\cos2\theta_{23}{=}\varphi_0$; the suppression size
+$\varphi_0{=}5.3\%$ sits inside the seam-gapped band $(2/3)^6{=}8.8\%$ (\texttt{v393}). \textbf{[N]} the
+ladder-base forms $\lambda_C^2e^{-5/6}{=}0.021880$ / $(1{-}\varphi_0)/2{=}0.473414$ /
+$\lambda_C^2/(1{+}\lambda_C){=}0.041119$ drop the joint four-observable $\chi^2$ from $10.4$ to $0.11$ with
+\emph{zero} new parameters; $|V_{ub}|$ (no bare $\varphi_0$) and the $1$--$2$ channels stay untouched and
+correct (dressing $\lambda_C$ would fail at $-24\sigma$ --- scope checked, not chosen); Daya~Bay alone already
+prefers the pattern form ($\Delta\chi^2{=}4.3$). \textbf{[C] honest:} post-hoc ($5/16$ equally-simple dressings
+fix the two PMNS tensions; $(1{-}\varphi_0)/(1{-}c_3)$/resolvent degenerate ${<}1.4\%$). \textbf{[O]} no
+seam-transport derivation (the Bernoulli-variance reading $\lambda_Y^2{=}\mathrm{Var}[\mathrm{Bernoulli}(\varphi_0)]$
+is an exact identity but only an interpretation) --- the frozen record (\texttt{v84}/\texttt{REG.FREEZE.01})
+is \emph{unchanged}. \textbf{[X]} pre-registered, symmetric: $\theta_{13}$ stable at $0.0231$ kills the pattern,
+at ${\sim}0.0219$ (sub-1\%) kills the record's bare-$\varphi_0$ reading, exclusive $|V_{cb}|{\sim}0.0395$ kills
+both --- JUNO-era reactors $+$ Belle~II decide. Python-only.
+\item \textbf{\texttt{v468\_dm2\_ratio\_jarlskog.py} (\texttt{FLAV.DM2RATIO.01}).} The splitting ratio
+$\Delta m^2_{21}/\Delta m^2_{31}$ was previously \emph{unpredicted}; the frozen PMNS matrix
+(\texttt{v9}/\texttt{v268}/\texttt{v270}, $\delta{=}4\pi/3$) has one canonical derived CP invariant, and
+\textbf{[N]} $|J_{\mathrm{PMNS}}|{=}0.029653$ meets the NuFIT~6.0 measured ratio $0.029805\pm0.000792$ at
+$-0.19\sigma$ (equivalently $m_2/m_3{=}\sqrt{|J|}{=}0.17220$ vs $0.17264(229)$) --- zero dials.
+\textbf{[N]} the informal \texttt{tfpt\_2} table heuristic $m_2/m_3{\sim}\pi\varphi_0{=}0.16704$ (a ``$\sim$''
+entry, never frozen) is now $-2.44\sigma$ and is \emph{superseded as the comparator}. \textbf{[C]} spectrum
+consistency: $\Sigma m_\nu{=}m_3(1{+}\sqrt{|J|}){=}0.0588$ eV reproduces the documented $0.0586$ eV
+(\texttt{v272}); no absolute number is added. \textbf{[O]} no mechanism (the $\mu\tau$ texture gives
+$\theta_{13}{=}0$ at leading order). \textbf{[X]} JUNO shrinks the window ${\sim}4\times$; adopting the
+\texttt{v467} pattern would shift $|J|\to0.028849$ ($-1.21\sigma$ today) --- the two candidates
+\emph{cross-discriminate} at JUNO precision. Python-only.
+\item \textbf{Integration.} Both registered in \texttt{run\_all.py} and \texttt{script\_registry.csv}
+(cluster \texttt{neutrinos}); ledger rows \texttt{FLAV.THIRDGEN.PATTERN.01} and \texttt{FLAV.DM2RATIO.01}
+(both \mO\ candidates); cited in \texttt{tfpt\_2} (\S~Neutrinos: pressure-point block $+$ new candidate
+paragraphs, the $m_2/m_3$ table row retyped to the $|J|$ comparator, the octant prose kept honest ---
+record does not select, the candidate would), \texttt{introduction} (closure ledger), \texttt{tfpt\_4\_frontier}
+(live kill-test board) and \texttt{tfpt\_5\_redteam} (seed-hyperplane caption); \texttt{v328}'s
+``single outlier'' wording scoped to the seed observables; exploration provenance
+\texttt{experiments/tfpt-discovery/pattern\_hunt\_pmns\_dressing.py} (2026-07-02 note in
+\texttt{experiments/next.txt}); Python-only (flagged in the Wolfram README).
+\end{itemize}
+
+\subsection*{2026-07-01 (\texttt{v466} --- a sixth seed channel from a new measurement sector: the charged-lepton mass ratio $m_e/m_\mu{=}\tfrac{12}{7}\varphi_0^2$ back-solves the same axiom seed to $-0.11\%$, extending the empirical over-determination to \emph{five} sectors)}
+\begin{itemize}
+\item \textbf{\texttt{v466\_seed\_leptonmass\_channel.py} (\texttt{SEED.LEPTONMASS.01}).} The seed
+over-determination of \texttt{v306}/\texttt{v465} used five observables spanning three measurement
+sectors (neutrino mixing, CMB, quark mixing). This module adds the \emph{charged-lepton mass} sector:
+the ratio $m_e/m_\mu{=}\tfrac{12}{7}\varphi_0^2$ is a sixth independent readout of the \emph{one} axiom
+seed $\varphi_0{=}1/(6\pi){+}48c_3^4$. \textbf{[E]} plumbing: the axiom $\varphi_0$ reproduces the frozen
+$m_e/m_\mu{=}\tfrac{12}{7}\varphi_0^2{=}0.00484673$ to $10^{-9}$. \textbf{[N] new sector (headline):}
+back-solving $\varphi_0$ from the measured \emph{pole} ratio $m_e/m_\mu{=}0.004836$ (PDG~2024) gives
+$\varphi_0{=}0.053113$, only $-0.11\%$ from the axiom --- a fourth measurement sector beyond
+\{neutrino mixing, CMB, quark mixing\}. \textbf{[C] transport caveat:} the formula is the \emph{source}
+ratio and the datum the \emph{pole} ratio; the source$\to$pole shift is the seam-gapped correction class
+(bound $(2/3)^6{=}8.78\%$, \texttt{v393}) but largely cancels for $m_e/m_\mu$, so the $0.11\%$ residual sits
+far inside the band --- the channel is added as a \emph{consistent new sector}, not a sharper pin.
+\textbf{[N] extends:} the six-channel cluster (\texttt{v306}'s five $+$ this) has $\chi^2/\mathrm{dof}{<}1$
+and the error-weighted mean stays at the axiom to ${<}0.1\%$; with the corroborating heavy-quark
+$m_t/m_b$ ($-0.23\%$) it is a seven-channel, five-sector agreement. \textbf{[N] power:} a
+data$\leftrightarrow$formula shuffle explodes the cluster $\chi^2$ by ${>}100\times$, and the
+scheme-ambiguous $m_c/m_s{=}(34/47)/\varphi_0$ (FLAG $11$--$14$) is deliberately not counted.
+\textbf{[C] honest:} theoretically still the \emph{one} seed (\texttt{v305} multiplicity $1$) --- an
+\emph{empirical} strengthening, not theoretical independence; $\varphi_0$ is fixed by the axioms, so it
+upgrades \emph{no} prediction and closes \emph{no} gate. Python-only (floats).
+\item \textbf{Integration.} Registered in \texttt{run\_all.py} and \texttt{script\_registry.csv}
+(cluster \texttt{registry}); ledger row \texttt{SEED.LEPTONMASS.01}; cited in \texttt{tfpt\_5\_redteam}
+(the seed-cross-validation firewall winbox, alongside \texttt{v305}/\texttt{v306}/\texttt{v465});
+Python-only (flagged in the Wolfram README).
+\end{itemize}
+
+\subsection*{2026-07-01 (\texttt{v465} --- the cross-sector one-parameter seed test: a CMB birefringence angle and a quark Cabibbo angle point to the same seed within $0.01\sigma$, the $\theta_{13}$-independent externally-runnable slice of \texttt{v306})}
+\begin{itemize}
+\item \textbf{\texttt{v465\_seed\_crosssector\_joint.py} (\texttt{SEED.CROSSSECTOR.01}).} The sharpest
+falsifiable signature of a \emph{shared-origin} theory is a correlation no non-shared-origin model
+predicts. In the Standard Model the cosmic-birefringence rotation $\beta$ (a CMB $EB/TB$ polarisation
+observable) and the Cabibbo angle $\lambda_C{=}|V_{us}|$ (a quark-flavour observable) are unrelated;
+TFPT reads both as functions of the \emph{one} axiom seed $\varphi_0{=}1/(6\pi){+}48c_3^4$.
+\textbf{[E]} plumbing: the axiom $\varphi_0$ reproduces the frozen $\lambda_C$, $\sin^2\theta_{12}$,
+$\beta$ to $10^{-9}$. \textbf{[N] cross-sector (headline):} back-solving $\varphi_0$ \emph{independently}
+from $\beta$ (CMB; ACT DR6 $+$ Planck PR4 combined) and from $\lambda_C$ (quark; PDG 2024) gives the
+same seed within $0.01\sigma_{\mathrm{comb}}$. \textbf{[N] one-parameter fit:} the error-weighted mean
+of the three back-solved $\varphi_0$ reproduces the axiom to $0.06\%$; the joint $\chi^2$ at the axiom
+(zero free parameters, $3$ dof) is $0.007$, $\chi^2/\mathrm{dof}{<}1$, combined pull $0.08\sigma$.
+\textbf{[N] $\theta_{13}$ exclusion declared:} adding $\sin^2\theta_{13}$ raises $\chi^2$ by ${\sim}4$
+(the documented ${\sim}2\sigma$ pressure point, \texttt{v328}/\texttt{v338}), so this slice is the honest
+$\theta_{13}$-independent statement, not a hidden dilution. \textbf{[N] power:} a data$\leftrightarrow$formula
+shuffle explodes the cluster $\chi^2$ by ${>}5{\times}10^4$. A consistency / out-of-sample statistic
+(a subset of \texttt{v306}); $\varphi_0$ is fixed by the axioms, so it upgrades \emph{no} prediction and
+closes \emph{no} gate. Python-only (floats).
+\item \textbf{Integration.} Registered in \texttt{run\_all.py} and \texttt{script\_registry.csv}
+(cluster \texttt{registry}); ledger row \texttt{SEED.CROSSSECTOR.01}; cited in \texttt{tfpt\_5\_redteam}
+(the seed-cross-validation firewall winbox, alongside \texttt{v305}/\texttt{v306}) and in the
+\texttt{origin\_theory} birefringence dependency chain; Python-only (flagged in the Wolfram README).
+\end{itemize}
+
+\subsection*{2026-06-30 (\texttt{v463}/\texttt{v464} + Lean + Wolfram --- the $c{=}8$ holomorphic-uniqueness pin and the one-particle realisation rigidity: the \texttt{SEAM.EQUIV.01} residual reduced to \emph{entirely certification} on both halves)}
+\begin{itemize}
+\item \textbf{The bird's-eye reframing.} The recent G-block modules all sharpened the \emph{target} of the
+scaling limit; this round attacks the two halves that actually remain. The \emph{continuum existence} is already
+citable (\texttt{v458} MMST $+$ \texttt{v459} AGT/AMT); what was implicit was (B) \emph{why} a $c{=}8$ holomorphic
+limit must be $(E_8)_1$, and (A) the \emph{realisation} input $R_1$ that the abstract seam IS the concrete quasi-free
+collar. \texttt{v463} closes B; \texttt{v464} reduces A to its one-particle data.
+\item \textbf{\texttt{v463\_seam\_c8\_holomorphic\_uniqueness.py} (\texttt{SEAM.EQUIV.UNIQ.01}).} The $c{=}8$
+holomorphic-uniqueness pin. \mE\ $c{=}8$ is NOT unique at level $1$: $c{=}\dim\mathfrak g/(1{+}h^\vee){=}8$ has THREE
+simple solutions $A_8$ ($\dim 80$), $D_8{=}\mathfrak{so}(16)$ ($\dim 120$), $E_8$ ($\dim 248$), so the $\det K{=}4$
+$SO(16)$ rival is a genuine same-$c$ competitor. \mE\ HOLOMORPHY FORCES $\dim V_1{=}248$: the only weight-$0$ form with
+leading $q^{-1/3}$ and integer coefficients is $j^{1/3}{=}E_4/\eta^8$, $q^1$ coefficient $248$ (the $1$-dim candidate
+space, vacuum $a_0{=}1$). \mE\ $\dim 248 + $ level-$1$ $c{=}8 \Rightarrow E_8$ uniquely ($248/(1{+}30){=}8$);
+tower $\{1,248,4124,34752,213126\}{=}E_4/\eta^8{=}j^{1/3}$. \mC\ Dong--Mason/Schellekens: the holomorphic $c{=}8$ VOA is
+unique $={}V_{E_8}$ (even unimodular rank-$8$ lattice unique $={}E_8$, Mordell--Witt) --- so the identification half is
+classification-forced.
+\item \textbf{\texttt{v464\_seam\_oneparticle\_rigidity.py} (\texttt{SEAM.EQUIV.ONEPARTICLE.01}).} The one-particle
+rigidity attacking $R_1$. The seam is quasi-free (\texttt{v113}/\texttt{v160}/\texttt{v161}), so by Araki self-dual
+CAR the net is the second quantisation of its one-particle symbol $P$. \mE\ RIGIDITY: the gapped ground state is the
+UNIQUE quasi-free state with $P{=}$ projection onto $K{<}0$ ($P^2{=}P$ to $<10^{-12}$), $K$ fixed by gap $+$ chirality
+$+$ reflection (\texttt{v426}). \mE\ ONE-PARTICLE LIMIT EXISTS: the kernel is Cauchy on a fixed window
+($\max|P_{2N}{-}P_N|{\sim}1/N{\to}0$). \mE\ the limit is $c{=}1$ Dirac: entanglement $S(L){=}(c/3)\ln L$ gives
+$c{\to}1$, $16$ copies $\Rightarrow c_-{=}8$ (ties \texttt{v450}). \mC\ Shale--Stinespring makes the Bogoliubov map
+implementable, so $R_1$ is upgraded from a bald axiom to ``the unique quasi-free realisation, modulo the named CAR
+functor''. Python-only (numpy).
+\item \textbf{Lean (\texttt{SeamResidualAxiom.lean}).} Adds the \texttt{v463} kernel facts
+\texttt{c8\_three\_candidates} ($A_8/D_8/E_8$ each $\dim{=}8(1{+}h^\vee)$) and \texttt{holomorphy\_selects\_e8}
+(forced $\dim V_1{=}248{=}E_8 \neq 80,120$) to \texttt{residual\_arithmetic} (still \texttt{[propext]}-only); \texttt{v464}
+is numerical. \texttt{\#print axioms seamResidualClosed} still lists exactly FOUR axioms.
+\item \textbf{Wolfram + integration.} \texttt{v463} mirrored (the three candidates, the forced $248$, the $E_4/\eta^8$
+tower); the extension count is now $365/365$. Integrated across the contracts paper (attacks (xxx)/(xxxi)), README,
+zenodo, ledger and website. Net effect: across (v)--(xxxi) the \texttt{SEAM.EQUIV.01} residual is now \emph{entirely
+certification} --- a named, hypothesis-audited package (MMST, AGT/AMT, Dong--Mason, Araki, Shale--Stinespring) with no
+open internal mechanism --- yet \texttt{SEAM.EQUIV.01} stays \mO\ because it still rests on cited continuum-existence
+theorems we do not re-prove.
+\end{itemize}
+
+\subsection*{2026-06-30 (\texttt{v461}/\texttt{v462} + Lean axiom merge --- the strict-locality obstruction made explicit, the 128-spinor extension exhibited at character level, and the \texttt{SEAM.EQUIV.01} residual reduced to ONE realisation axiom $+$ ONE combined cited theorem)}
+\begin{itemize}
+\item \textbf{\texttt{v461\_seam\_strict\_locality.py} (\texttt{SEAM.S3.LOCALITY.01}).} Sharpens \texttt{v460}'s verdict
+from a \emph{cited} statement to an \emph{exhibited} topological obstruction on the same \texttt{v367} $p{+}ip$
+collar. \mE\ CHERN INTEGER: the FHS Chern is $C{=}{+}1$ (chiral $M{=}1$), $0$ (trivial $M{=}3$), $-1$ (opposite
+mass). \mE\ WILSON-LOOP / WANNIER-CENTRE WINDING $={}$ CHERN: the hybrid Wannier centre $\theta(k_y)$ winds by
+$|C|{=}1$ (chiral) and $0$ (trivial) over the BZ; exponentially-localised Wannier exist IFF the winding is $0$
+(Brouder--Panati et al., PRL 98 046402; Thouless), so the chiral collar has NONE. \mE\ OBSTRUCTION INTEGERS TIED:
+winding $={}|C|{=}1{\neq}0$ and $c_-{=}8{=}\gcar{+}\Nfam{=}\operatorname{rank}E_8{\neq}0$ (the same $8$ as $c_3$'s
+one-sided count, \texttt{v456}). \mE\ NEG CONTROL: BOTH phases are gapped, yet only the trivial (winding $0$) admits
+exp-localised Wannier and a strict finite-range commuting projector --- it is the CHIRALITY, not the gap. \mC\mO\
+Kapustin--Fidkowski (\texttt{arXiv:1810.07756}): a strictly finite-range commuting projector would force winding $0$,
+$C{=}0$; since $C{=}1{\neq}0$ NONE exists, so \texttt{v424} sub-step (i)'s realisation is PROVABLY the quasi-local
+NPW26 LTO net (strict locality topologically forbidden, not a missing premise). \texttt{SEAM.EQUIV.01} stays \mO.
+Python-only (numpy); the winding/Chern integers Wolfram- and Lean-mirrored.
+\item \textbf{\texttt{v462\_seam\_spinor\_continuum.py} (\texttt{SEAM.EQUIV.SPINOR.01}).} The constructive companion
+of the \texttt{v458} (MMST audit) / \texttt{v459} (lattice-VOA) residual: the 128-spinor extension
+$SO(16)_1{\to}(E_8)_1$ exhibited three ways. \mE\ $(E_8)_1$ TOWER FROM $SO(16)_1$ SECTORS: the exact Jacobi/$E_8$
+identity $\theta_2^8{+}\theta_3^8{+}\theta_4^8{=}2E_4$ gives $\chi_{(E_8)_1}{=}E_4/\eta^8{=}\chi_o^{SO16}{+}\chi_s^{SO16}$
+--- the holomorphic $(E_8)_1$ character IS the $SO(16)_1$ vacuum $+$ spinor sector sum. \mE\ THE 128 SPINOR WEIGHT-1
+STATES FILL $120{\to}248$: $\chi_o$ gives $120$, $\chi_s$ gives $128$, summing to the exact tower
+$\{1,248,4124,34752\}$ ($248{=}120{+}128$). \mE\ FINITE 16-MAJORANA FOCK: $C(16,2){=}120$ NS bilinear currents and
+$2^{16/2}{=}256$ Ramond ground states $={}128$ spinor $+$ $128$ cospinor. \mE\ FINITE-$L\to$ CONTINUUM CONVERGENCE:
+the critical free-fermion ring Casimir gives $c_-{\to}8$ and the lowest scaled NS gap $x_1{\to}1$ with
+$|x_1{-}1|{\sim}1/L^2$ ($L{=}64..1024$). \mC\mO\ AGT/AMT (\texttt{v459}) supply the rigorous extension;
+\texttt{SEAM.EQUIV.01} existence (\texttt{v336}) stays \mO. Mixed exact ($\theta$ identity $+$ tower $+$
+$120/128/256$, Wolfram-mirrored) $+$ numerical (finite-$L$, Python-only).
+\item \textbf{Lean (\texttt{TfptCarrier/SeamResidualAxiom.lean}, \texttt{FORM.SEAM.RESIDUAL.01}).} The two former
+cited axioms \texttt{mmst\_existence} $\circ$ \texttt{agt\_lattice\_extension} are MERGED into ONE combined external
+axiom \texttt{seam\_realisation\_theorem} (dropping the intermediate \texttt{ChiralCFT\_c8}), so
+\texttt{\#print axioms seamResidualClosed} now lists exactly FOUR axioms (down from six). Two more kernel facts are
+added axiom-free: \texttt{strict\_locality\_forbidden} (\texttt{v461}: winding $={}|C|{=}1{\neq}0$, $c_-{\neq}0$) and
+\texttt{fock\_sectors} (\texttt{v462}: $C(16,2){=}120$, $2^8{=}256$, spinor $128$, $120{+}128{=}248$);
+\texttt{residual\_arithmetic} (now including both) depends only on \texttt{[propext]}. \texttt{lake build} OK. So the
+residual is reduced to ONE realisation axiom $+$ ONE combined cited theorem.
+\item \textbf{Wolfram.} \texttt{tfpt\_readouts\_extension.wl} adds 3 exact mirrors (total $363/363$): the \texttt{v461}
+obstruction integer-logic and the \texttt{v462} $\theta$-identity $+$ $120{+}128{=}248$ sector / Fock counts.
+\end{itemize}
+
+\subsection*{2026-06-30 (\texttt{v460} --- the explicit flat-band commuting-projector (LTO) realisation of the S3 input: advancing the \texttt{SEAM.EQUIV.01} sub-step (i) from abstract existence to an explicit gap-protected quasi-local projector net carrying the $\Z_2$ reflection and the $\mu_4$ clock)}
+\begin{itemize}
+\item \textbf{\texttt{v460\_seam\_s3\_lto.py} (\texttt{SEAM.S3.LTO.01}).} NPW26 (\texttt{arXiv:2605.10693}) prove the
+intrinsic Bisognano--Wichmann lemma for \emph{commuting-projector} (local-topological-order) models with a $\Z_2$
+reflection; \texttt{v424} reduced the keystone BW residual to that theorem modulo two open sub-steps, of which (ii)
+was settled by \texttt{v426} and the continuum lift of BW by the uniform-in-$N$ tower \texttt{v455}. This module
+attacks the \emph{commuting-projector} side of sub-step (i) on the same explicit \texttt{v367} $p{+}ip$ collar.
+\mE\ FLAT-BAND PARENT: the flattened Bloch $Q{=}h/|h|$ has $Q^2{=}I$ (flat $\pm1$ bands) and $P{=}(I{-}Q)/2$ is an
+exact projector EQUAL to \texttt{v367}'s occupied ground-state projector --- a frustration-free commuting-projector
+parent with the same gapped ground state (machine precision over a $k$-grid). \mE\ GAP-PROTECTED QUASI-LOCALITY:
+the gapped projector kernel $|P(n,0)|$ decays rapidly ($\xi{\approx}1.14$ at $M{=}1$, exp $R^2{=}0.995$,
+$|P(20,0)|{<}10^{-6}$) and $\xi$ grows as the gap closes ($2.7$ at gap $0.02$); at the gapless point it decays as a
+clean power law $|R|^{-2.1}$ ($R^2{=}0.999$) --- locality needs the gap. \mE\ $\Z_2$ REFLECTION $+$ $\mu_4$
+INHERITED: the flattened modular Hamiltonian $K_{\mathrm{flat}}{=}\operatorname{sign}(K)$ inherits
+$\Theta K_{\mathrm{flat}}\Theta{=}{-}K_{\mathrm{flat}}$ ($u_\Theta{=}J$) and $[\rho,K_{\mathrm{flat}}]{=}0$ EXACTLY
+($\operatorname{sign}$ is odd; $\rho$ commutes with any $f(K)$), with side-even and off-$\mu_4$ neg controls firing.
+\mC\mO\ the chiral $c_-{=}8{\neq}0$ (FHS Chern $|C|{=}1$) obstructs STRICT finite-range commuting-projector locality
+(Kapustin--Fidkowski, \texttt{arXiv:1810.07756}; $C{\neq}0$ forbids exponentially-localised Wannier), so the
+realisation is the quasi-local LTO net NPW26 use --- the form sub-step (i) asks for. Advances \texttt{v424} sub-step
+(i); \texttt{SEAM.EQUIV.01} stays \mO\ (the continuum theorem MMST \texttt{v336} is the backbone). Python-only
+(numpy); registered in \texttt{run\_all.py}, the registry, the ledger and cited in
+\texttt{tfpt\_research\_contracts} (route (xxvii) of the convergent attacks).
+\end{itemize}
+

@@ -40,6 +40,8 @@ Wolfram engine DEFERRED_NO_ENGINE).
 """
 from __future__ import annotations
 
+from tex_sources import read_tex
+
 import importlib
 import sys
 from pathlib import Path
@@ -75,7 +77,8 @@ def load_probe(name: str):
 
 
 def source_contains(relative_path: str, *needles: str) -> bool:
-    source = (ROOT / relative_path).read_text(encoding="utf-8")
+    path = ROOT / relative_path
+    source = read_tex(path) if path.suffix == ".tex" else path.read_text(encoding="utf-8")
     return all(needle in source for needle in needles)
 
 

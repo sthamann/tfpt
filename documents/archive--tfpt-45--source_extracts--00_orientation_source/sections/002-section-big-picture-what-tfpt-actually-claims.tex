@@ -1,0 +1,348 @@
+\section{Big picture: what TFPT actually claims}
+
+TFPT is presented here as a boundary-polarized closed theory of admissible vacua on the oriented
+double cover. The formal theorem stack now starts from a thinner operational seed which functorially
+induces the one-sided boundary datum, and the manuscript also shows that within the induced
+boundary class no extra primitive discrete datum is needed. On the
+one-sided branch, the self-adjoint boundary operator $B_\Sigma$ determines the Calder\'on projector,
+the Calder\'on projector determines the seam polarization
+$\iC$, and the canonical doubling then reconstructs the doubled scaffold $\Tprim$ together with
+the primitive Hodge projector $\Pprim$. From this boundary kernel the manuscript next solves one
+joint discrete admissibility problem, now best read through three decoders. The trace-balanced
+carrier decoder
+\[
+6Y^2-Y-\mathbf 1=0,
+\qquad
+\tr Y=0
+\]
+fixes the rigid $E_3\oplus E_2$ split, hypercharge, and the one-family packet $S^+$. The global
+winding decoder $[u_\Sigma]=1$ fixes the rigid family surface $X_f^\circ\cong\mathbb P^1\setminus
+\mu_4$, the minimal family count $N_{\mathrm{fam}}=3$, and the admissible occupancy
+$\Omega_{\mathrm{adm}}=48$. On the retained branch the seed decoder
+\[
+u:=\phiz
+\]
+simultaneously bridges $(\lambda_C,\beta_{\mathrm{rad}},\Omega_b,\theta_{13})$, while
+$P'(z)=0$ fixes the intrinsic transport pole and the closed budget
+$\sum_{f,j}L_{f,j}^{\mathrm{diag}}+N_\Phi=41$ closes the electromagnetic fixed point $\alpha$.
+Only after that discrete theorem is the selector promoted to its full form
+$\Padm=\Pprim P_{\mathrm{sing}}P_{\Theta}$, and the projected modular free energy drives the
+continuous electromagnetic, geometric, transport, and vacuum closure: the geometric Hodge sector
+yields the gravity/scalaron branch, and the exact transport grammar emits Yukawas, hadronic
+admissibility, and strong-CP closure on the same admissible branch. The resulting theorem stack
+does not merely emit a closed output package; it characterizes a canonical rigid object $\Tstar$ in
+the rigid TFPT theorem class. The structural falsification map $\Ffals(\Tstar)$ stays in the main
+text, while all comparison conventions live only in the appendix-level $\Rcmp(\Tstar)$ side card.
+
+\Cref{fig:tfpt-headline-claims} compresses that statement into six headline claims. The point is
+that the manuscript now presents three hard decoders inside one joint discrete theorem, one
+continuous master functional, and one canonical rigid object rather than competing closure stories
+with a separate readout layer.
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\begin{tikzpicture}[
+    headline/.style={draw=black!65, fill=gray!10, rounded corners, text width=11.2cm, minimum height=0.9cm, align=center, font=\bfseries},
+    hard/.style={draw=blue!60!black, fill=blue!6, rounded corners, text width=3.25cm, minimum height=1.75cm, align=left, inner sep=6pt, font=\scriptsize},
+    closure/.style={draw=orange!75!black, fill=orange!8, rounded corners, text width=3.25cm, minimum height=1.75cm, align=left, inner sep=6pt, font=\scriptsize},
+    bridge/.style={draw=green!50!black, fill=green!8, rounded corners, text width=3.25cm, minimum height=1.75cm, align=left, inner sep=6pt, font=\scriptsize},
+    note/.style={font=\footnotesize\itshape, text=black!60, align=center}
+]
+\node[headline] (head) at (0,0) {TFPT in one glance: three decoders and six structural payoffs};
+
+\node[hard] (a) at (-3.95,-1.95) {\textbf{Hard: Boundary polarization}\\[2pt]$\Tbound$ fixes $(\taudbl,\iC)$, the doubled scaffold, and $\Pprim$ before any carrier split.};
+\node[hard] (b) at (0,-1.95) {\textbf{Hard: Carrier decoder}\\[2pt]$6Y^2-Y-\mathbf1=0$, $\tr Y=0$ force the rigid $3+2$ split and $S^+$.};
+\node[closure] (c) at (3.95,-1.95) {\textbf{Hard: Winding decoder}\\[2pt]$[u_\Sigma]=1$ fixes counting: $\mathbb P^1\setminus\mu_4$, $N_{\mathrm{fam}}=3$, and $\Oadm=48$.};
+
+\node[closure] (d) at (-3.95,-4.2) {\textbf{Closure: Geometric Hodge sector}\\[2pt]One seam-even channel yields $\Mpl$, $\vgeo$, the Einstein term, and the scalaron branch.};
+\node[closure] (e) at (0,-4.2) {\textbf{Closure: Transport \& seed}\\[2pt]$P'(z)=0$ fixes $\delta_{\mathrm{ph}}$; $u=\phiz$ and the $41$ budget close flavor and $\alpha$.};
+\node[bridge] (f) at (3.95,-4.2) {\textbf{Closed outputs}\\[2pt]The branch ends in $\Tstar$, predictions, null tests, and falsifiers without a bridge layer.};
+
+\node[note] at (0,-5.55) {$Y$ generates structure, $[u_\Sigma]=1$ generates counting, and $u$ generates bridge observables.};
+\end{tikzpicture}
+\caption{Headline claims of the present draft. The figure is intentionally simpler than the
+dependency maps that follow: its job is to put the manuscript's decoder core on one page while
+keeping the closed datum, theorem, and derived-consequence flow visible.}
+\label{fig:tfpt-headline-claims}
+\end{figure}
+
+\begin{tcolorbox}[colback=tfptblue!3, colframe=tfptblue, breakable,
+    title={TFPT master equation and closed indices}, colbacktitle=tfptblue]
+\begin{equation}
+\label{eq:tfpt-master}
+\begin{aligned}
+S_{\mathrm{TFPT}}
+=
+\operatorname{Tr}f\!\left(\frac{D_{\mathrm{rel}}+A_{\Sigma}^{\mathrm{seed}}}{\chiseed}\right)
+-
+\operatorname{Tr}f\!\left(\frac{D_{\mathrm{ref}}}{\chiseed}\right)
++\frac{i\pi}{2}\Delta\eta_\Sigma,
+\qquad
+A_{\Sigma}^{\mathrm{seed}}:=\mathcal B_{\mathrm{rel}}\oplus\nabla_{\chiseed}.
+\end{aligned}
+\end{equation}
+\begin{equation}
+\label{eq:tfpt-selectors}
+\begin{aligned}
+\operatorname*{Stat}_{\alpha,\chiseed,e,\wspin}S_{\mathrm{TFPT}}=0,
+\qquad
+\Padm:=\Pi_{\ker\Delta_{\mathrm{adm}}},
+\qquad
+\partial_\alpha\Gamma_{U(1)}(\alpha)=0,
+\\
+\operatorname{Ind}(D^+_{\mathrm{fam}})=3,
+\qquad
+\operatorname{Ind}(\mathcal B^+_{E_2})=1,
+\qquad
+\operatorname{Ind}(\mathcal B^+_{E_3})=0.
+\end{aligned}
+\end{equation}
+\end{tcolorbox}
+
+The hard carrier theorems below do not require the full theorem stack behind
+\TFPTxref{eq:tfpt-master,eq:tfpt-selectors}. In the present paper the master equation is the
+organizing closed form: the carrier theorems are hard, the later closure theorems are internal
+statements on the reconstructed branch, and the empirical interface is kept outside this theorem
+box. At
+this overview level the seed package is written as $A_{\Sigma}^{\mathrm{seed}}$; on the later
+geometric branch it is reorganized as $A_{\Sigma}^{\mathrm{geo}}$ with
+$\chiseed\mapsto\chigeo=\Lambda e^\sigma$.
+
+\begin{remark}[Selector versus dynamics]
+\label{rem:selector-versus-dynamics}
+The admissibility projector $\Padm$ selects the physical sector but is not itself the full
+Minkowski dynamics. The actual dynamics is carried by the relative generating functional
+$Z_{\mathrm{rel}}$, its Schwinger distributions, the reconstructed local net on the admissible
+Hilbert space, the running effective actions $\Gamma_k$ and
+$\Gamma_{\mathrm{TFPT}}^{\mathrm{ren}}$, and the resulting scattering theory.
+\end{remark}
+
+\begin{tcolorbox}[colback=tfptblue!3, colframe=tfptblue, breakable,
+    title={Closed TFPT Chain}, colbacktitle=tfptblue]
+\begin{equation}
+\label{eq:compiler-chain}
+\begin{aligned}
+\Tbound
+&\;\Rightarrow\;
+(\taudbl,\iC,\Pprim,[u_\Sigma],\cthree)
+\;\Rightarrow\;
+d^\star_{\mathrm{disc}}\\
+&\;\Rightarrow\;
+\Padm
+\\
+&\;\Rightarrow\;
+\mathcal M_{d^\star_{\mathrm{disc}}}
+\;\Rightarrow\;
+\mathcal Z_{\mathrm{cl}}=\{x^\star_{\mathrm{cl}}\}
+\;\Rightarrow\;
+\Tstar,\\
+\Tstar
+&=
+\bigl(
+E_3\oplus E_2,\ X,\ Y,\ a_\Sigma,\ \Gamma_{\mathrm{grav}},\\
+&\qquad
+\Lambda_{\mathrm{IR}},\ x_{\mathrm{cl}}^\star
+\bigr).
+\end{aligned}
+\end{equation}
+At chain level the same architecture is read through three hard decoders:
+\[
+\begin{aligned}
+Y&\Rightarrow \text{carrier structure},\\
+[u_\Sigma]=1&\Rightarrow \text{family counting},\\
+u=\phiz&\Rightarrow \text{bridge observables}.
+\end{aligned}
+\]
+On the retained branch this further compresses to
+\[
+P'(z)=0\Rightarrow \delta_{\mathrm{ph}},
+\qquad
+\sum_{f,j}L_{f,j}^{\mathrm{diag}}+N_\Phi=41\Rightarrow \alpha.
+\]
+From $\Tstar$ the structural falsification card $\Ffals(\Tstar)$ remains inside the main text;
+the appendix-only comparison card $\Rcmp(\Tstar)$ collects scheme conventions and empirical
+ledgers.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=tfptorange!4, colframe=tfptorange!80!black, breakable,
+    title={Closed Theorem Stack in the Present Version}, colbacktitle=tfptorange!85!black]
+\[
+\Tbound
+\;\Rightarrow\;
+(\taudbl,\iC,\Pprim,[u_\Sigma],\cthree)
+\;\Rightarrow\;
+d^\star_{\mathrm{disc}}
+\;\Rightarrow\;
+\Padm
+\;\Rightarrow\;
+\mathcal M_{d^\star_{\mathrm{disc}}}
+\;\Rightarrow\;
+\mathcal Z_{\mathrm{cl}}=\{x^\star_{\mathrm{cl}}\}
+\;\Rightarrow\;
+\Tstar.
+\]
+Hard-decoder form:
+\[
+\begin{aligned}
+6Y^2-Y-\mathbf 1=0,\ \tr Y=0
+&\Rightarrow
+3+2,\\
+[u_\Sigma]=1
+&\Rightarrow
+N_{\mathrm{fam}}=3,\\
+u=\phiz
+&\Rightarrow
+(\lambda_C,\beta_{\mathrm{rad}},\Omega_b,\theta_{13}).
+\end{aligned}
+\]
+The manuscript contains no additional primitive ontology beyond the operational seed layer. The
+falsification map $\Ffals$ is a structural side card on the main-text side; the comparison map
+$\Rcmp$, optional arithmetic continuations, asymptotic expansions, and horizon language are
+kept only in appendices.
+\end{tcolorbox}
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\begin{tikzpicture}[
+    closed/.style={draw=blue!60!black, fill=blue!6, rounded corners, text width=2.45cm, minimum height=1.05cm, align=center},
+    star/.style={draw=blue!70!black, very thick, fill=blue!12, rounded corners, text width=2.45cm, minimum height=1.05cm, align=center},
+    fals/.style={draw=orange!70!black, fill=orange!8, rounded corners, text width=2.55cm, minimum height=0.95cm, align=center},
+    appendix/.style={draw=green!50!black, dashed, line width=0.8pt, fill=green!4, rounded corners, text width=2.55cm, minimum height=0.95cm, align=center},
+    note/.style={font=\footnotesize\itshape, text=black!70, align=center}
+]
+\node[closed] (a) at (-6.7,0) {boundary datum\\$\Tbound$};
+\node[closed] (b) at (-3.95,0) {doubling / polarization\\$\taudbl,\iC,\Tprim$};
+\node[closed] (c) at (-1.2,0) {decoder core\\$Y,\ [u_\Sigma],\ u$};
+\node[closed] (d) at (1.55,0) {full projector $\Padm$\\and closure stack};
+\node[star]   (e) at (4.3,0) {canonical rigid object\\$\Tstar$};
+\node[fals]      (f) at (1.55,-1.85) {structural falsification\\map $\Ffals(\Tstar)$};
+\node[appendix]  (g) at (4.3,-1.85)  {appendix comparison\\map $\Rcmp(\Tstar)$};
+\draw[->, thick] (a) -- (b);
+\draw[->, thick] (b) -- (c);
+\draw[->, thick] (c) -- (d);
+\draw[->, thick] (d) -- (e);
+\draw[->, thick, orange!70!black] (e.south) .. controls +(0,-0.6) and +(0.5,0.4) .. (f.east);
+\draw[->, dashed, line width=0.8pt, green!50!black] (e) -- (g);
+\node[note] at (-1.2,-2.6) {$Y$ fixes structure, $[u_\Sigma]=1$ fixes counting, and $u$ fixes bridge observables.};
+\end{tikzpicture}
+\caption{Closed theorem surface with two hard-separated side maps and a decoder core.}
+\label{fig:status-ladder}
+\end{figure}
+
+The remainder of the main text sharpens each arrow of this chain in turn.
+
+
+% ---- Canonical rigid object and falsification interface: source lines 11175-11327 ----
+\section{Canonical rigid object and falsification interface}
+
+\subsection{Canonical rigid object}
+
+Collecting the operational-seed generation theorem, the minimal-packaging theorem for the induced
+boundary class, the boundary datum, the
+boundary primitive kernel, the joint discrete admissibility theorem, the derived selector, and the continuous closure
+theorems of
+\TFPTxref{sec:closure-theorems}, the main-text reconstruction now takes the rigid two-stage form
+\begin{equation}
+\label{eq:closed-output-chain}
+\begin{aligned}
+\mathfrak S_{\min}
+&\;\Rightarrow\;
+\mathcal B_{\min}
+\;\Rightarrow\;
+\Tbound
+\;\Rightarrow\;
+(\taudbl,\iC,\Pprim,[u_\Sigma],\cthree)
+\;\Rightarrow\;
+d^\star_{\mathrm{disc}}
+\\
+&\;\Rightarrow\;
+\Padm
+\;\Rightarrow\;
+\mathcal M_{d^\star_{\mathrm{disc}}}
+\;\Rightarrow\;
+\mathcal Z_{\mathrm{cl}}=\{x^\star_{\mathrm{cl}}\}
+\;\Rightarrow\;
+\Tstar.
+\end{aligned}
+\end{equation}
+Here
+\[
+\Tstar
+:=
+\bigl(
+E_3\oplus E_2,\ X,\ Y,\ G_{\mathrm{phys}},\ S^+,\ X_f^\circ,\ [\nabla_F^\star],\ \Phi,\ a_\Sigma,\ U_\Sigma,\\
+\Gamma_{\mathrm{grav}},\ \mathcal H_{\mathrm{phys}},\ \Lambda_{\mathrm{IR}},\ \{Y_f\},\ x_{\mathrm{cl}}^\star
+\bigr)
+\]
+is the canonical rigid object of \TFPTxref{thm:no-alternatives-tfpt}, and the intrinsic branch is
+the singleton $\mathcal Z_{\mathrm{cl}}=\{x_{\mathrm{cl}}^\star\}$ carried by that object.
+This line is not meant as a slogan: each arrow is attached to a hard theorem or one of the
+closure theorems of \TFPTxref{sec:closure-theorems}. From $\Tstar$ the manuscript opens exactly two
+side cards: the structural falsification map $\Ffals(\Tstar)$ of
+\TFPTxref{sec:structural-falsification-map} (main text) and the appendix-level empirical comparison
+map $\Rcmp(\Tstar)$ of \TFPTxref{sec:appendix-empirical-readout}. Neither side card enters the
+theorem chain.
+Section~\TFPTxref{sec:downstream_closure_modules} records additional downstream closure modules starting
+from $\Tstar$, the admissible local net, the renormalized branch, and the cosmology interface
+package, but it does not insert new arrows into this core theorem chain.
+
+The corresponding selector-to-dynamics extension of the closed branch is
+\[
+\Padm
+\;\Rightarrow\;
+Z_{\mathrm{rel}}
+\;\Rightarrow\;
+\{S_n^T\}
+\;\Rightarrow\;
+(\mathcal H_{\mathrm{adm}},\mathfrak A_{\mathrm{adm}})
+\;\Rightarrow\;
+\Gamma_k
+\;\Rightarrow\;
+\begin{aligned}[t]
+\Gamma_{\mathrm{TFPT}}^{\mathrm{ren}}
+&\;\Rightarrow\;
+(\OphysTFPT,S_{\mathrm{massive}})\\
+&\qquad\text{together with}\qquad
+\mathcal I_{\mathrm{dress}}.
+\end{aligned}
+\]
+Here
+\[
+\mathcal I_{\mathrm{dress}}
+:=
+\bigl(\Omega_+^{\mathrm{dress}},\Omega_-^{\mathrm{dress}},S_{\mathrm{dress}}\bigr)
+\]
+denotes the dressed massless interface package on the low-curvature branch.
+Thus $\Padm$ is the selector of the physical branch, while local dynamics, running couplings, 1PI
+graphs, and scattering are carried by $Z_{\mathrm{rel}}$, its reconstructed local net, and the
+exact admissible flow.
+
+\subsection{Canonical rigid-object corollary}
+
+\begin{corollary}[Canonical rigid object]
+\label{cor:canonical-rigid-object}
+By \TFPTxref{thm:intrinsic-closed-branch,thm:canonical-rigid-reconstruction-essential-injective,thm:spectral-completeness-rigid-tfpt},
+there exists a canonical rigid object
+\[
+\Tstar
+:=
+\bigl(
+E_3\oplus E_2,\ X,\ Y,\ G_{\mathrm{phys}},\ S^+,\ X_f^\circ,\ [\nabla_F^\star],\ \Phi,\ a_\Sigma,\ U_\Sigma,\ \Gamma_{\mathrm{grav}},\ \mathcal H_{\mathrm{phys}},\ \Lambda_{\mathrm{IR}},\ \{Y_f\},\ x_{\mathrm{cl}}^\star
+\bigr)
+\]
+in $\mathbf{TFPT}^{\mathrm{rig}}$ such that $\mathcal Z_{\mathrm{cl}}=\{x_{\mathrm{cl}}^\star\}$
+and every rigid closed admissible realization is uniquely unitarily equivalent to $\Tstar$.
+\end{corollary}
+
+\begin{remark}[Status of the corollary]
+This statement is recorded as a corollary rather than as a separate theorem because it adds no
+content beyond \TFPTxref{thm:intrinsic-closed-branch,thm:canonical-rigid-reconstruction-essential-injective,thm:spectral-completeness-rigid-tfpt}.
+In plain language: once the intrinsic branch is closed and essential injectivity rules out a
+second rigid realization, the canonical object $\Tstar$ is already fixed. The present corollary
+only collects its data tuple; the physically relevant main-text consequences below are reported as
+structural predictions and falsifiers in $\Ffals(\Tstar)$, while appendix-level empirical readout
+through $\Rcmp(\Tstar)$ does not define extra theorem objects.
+\end{remark}
+

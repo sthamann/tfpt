@@ -1,0 +1,378 @@
+\section{The setup: parabolic data on the family curve}
+% =====================================================================
+The family curve is the rigid four-punctured sphere $X_f^\circ\cong\mathbb P^1\setminus\mu_4$,
+$\mu_4=\{1,i,-1,-i\}$ (the flavor construction above). The flavor bundle is a rank-$\Nfam=3$ parabolic bundle $E_\bullet$ on
+$(\mathbb P^1,\mu_4)$. At each puncture the local monodromy is the order-$3$ cusp class with eigenvalues
+$\{1,\omega,\omega^2\}$, $\omega=e^{2\pi i/3}$; by the Mehta--Seshadri dictionary the corresponding
+\emph{parabolic weights} are the cusp exponents
+\begin{equation}
+  \boxed{\ \alpha=\Bigl(0,\tfrac13,\tfrac23\Bigr)\ \text{at each of the four punctures}\ }\qquad\mE ,
+\end{equation}
+i.e.\ the three transport cusps $\{1,\tfrac23,\tfrac13\}=\{2y_+,-2y_-,2(y_++y_-)\}$ written as
+exponents $e^{2\pi i\alpha}$ from the $D_5$ dual roots $y_\pm=\{\tfrac12,-\tfrac13\}$.
+
+\begin{figure}[h]\centering
+\begin{tikzpicture}[font=\footnotesize,scale=1]
+% --- left: P^1 minus mu_4 ---
+\begin{scope}[shift={(0,0)}]
+  \draw[thick,blue!55!black] (0,0) circle (1.5);
+  \node[blue!55!black] at (0,1.85) {\scriptsize $\mathbb P^1\setminus\mu_4$};
+  \foreach \ang/\lab in {0/{$1$},90/{$i$},180/{$-1$},270/{$-i$}}{
+     \fill[orange!80!black] (\ang:1.5) circle (2.2pt);
+     \node[orange!60!black] at (\ang:1.85) {\scriptsize\lab};}
+  \node at (0,0) {\scriptsize $A_3=\mathfrak{su}_4$};
+  \node[align=center,below=2pt] at (0,-1.9) {\scriptsize 4 cusps $\Rightarrow$ anchor\\[-1pt]\scriptsize $a=(1,1,2)$, $\sum a=4=|\mu_4|$};
+\end{scope}
+% --- right: C6 hexagon with sector residues ---
+\begin{scope}[shift={(6,0)}]
+  \draw[thick,gray!50] (0,0) circle (1.5);
+  \foreach \k in {0,...,5}{
+     \coordinate (h\k) at ({90-60*\k}:1.5);
+     \fill[gray!30] (h\k) circle (1.2pt);
+     \node[gray!60] at ({90-60*\k}:1.82) {\scriptsize \k};}
+  \draw[gray!40] (h0)--(h1)--(h2)--(h3)--(h4)--(h5)--cycle;
+  % sector residue sets: u={0,1,3} d={1,2,5} e={2,3,5}
+  \node[blue!60!black] at (h0) {$\bullet$}; \node[blue!60!black] at (h1) {$\bullet$}; \node[blue!60!black] at (h3) {$\bullet$};
+  \node at (0,0.15) {\scriptsize $R_u{=}\{0,1,3\}$};
+  \node at (0,-0.2) {\scriptsize\textcolor{red!70!black}{$R_d{=}\{1,2,5\}$}};
+  \node at (0,-0.55) {\scriptsize\textcolor{green!50!black}{$R_e{=}\{2,3,5\}$}};
+  \node[align=center,below=2pt] at (0,-1.9) {\scriptsize $C_6$ transport hexagon\\[-1pt]\scriptsize distinct distances $\Rightarrow\{0,1,3\}$ up to $D_6$};
+\end{scope}
+\draw[-{Stealth[length=2mm]},thick,gray] (1.7,0)--(4.3,0) node[midway,above,align=center]{\scriptsize corner rot.\\[-2pt]\scriptsize $=A_3$ Coxeter};
+\end{tikzpicture}
+\caption{\small Left: the rigid four-punctured sphere $\mathbb P^1\setminus\mu_4$ ($\mu_4$ as the four
+cusps) giving $A_3$; the corner rotation $z\mapsto iz$ is the $A_3$ Coxeter element. Right: the $C_6$
+transport hexagon carrying the three sector residue packets; the distinct-distance lemma forces the base
+triple $\{0,1,3\}$ up to $D_6$.}
+\end{figure}
+
+% =====================================================================
+\section{Exact scaffolding (proved)}
+% =====================================================================
+\begin{proposition}[Parabolic degree zero fixes the underlying degree]
+For a unitary (flat) family local system, $E_\bullet$ is parabolic-polystable of parabolic degree zero
+(Mehta--Seshadri). With full flags and weights $(0,\tfrac13,\tfrac23)$ at each of the four punctures,
+\begin{equation}
+  \pardeg(E)=\deg E+\sum_{p\in\mu_4}\bigl(0+\tfrac13+\tfrac23\bigr)=\deg E+4=0
+  \quad\Longrightarrow\quad \boxed{\ \deg E=-|\mu_4|=-4\ }\qquad\mE .
+\end{equation}
+The balanced (stable) underlying splitting is therefore $E\cong\mathcal O(-2)\oplus\mathcal O(-1)\oplus\mathcal O(-1)$. \mE
+\end{proposition}
+
+\begin{remark}
+$\deg E=-|\mu_4|$ is the same ``four corners'' integer that gives the $\mu_4$ glue and the $41$ chain:
+the underlying flavor bundle has degree exactly minus the number of family corners.
+\end{remark}
+
+\begin{proposition}[Word-length splitting: windings are degrees, residues live in $\mathbb Z_6$]
+Write each diagonal word-length as $L_{f,j}=6\,n_{f,j}+r_{f,j}$. Then the winding $n_{f,j}$ is the
+integer degree of the generation's parabolic line sub-bundle, and the residue is
+\begin{equation}
+  \boxed{\ r_{f,j}\equiv \underbrace{6\,w_{f,j}}_{\in\{0,2,4\}}+\underbrace{3\,s_{f,j}}_{\text{sheet}}\!\!\pmod 6,\qquad
+  w_{f,j}\in\{0,\tfrac13,\tfrac23\},\ s_{f,j}\in\{0,1\}\ }\qquad\mE ,
+\end{equation}
+because the cusp weights contribute $6\alpha\in\{0,2,4\}$ (even) and the $\mathbb Z_2$ sheet parity (the
+deck involution $\tau$) shifts by $3$. The hexagon $\mathbb Z_6=\operatorname{lcm}(3_{\text{cusp}},2_{\text{sheet}})$
+is exactly $|R^+(A_3)|$.
+\end{proposition}
+
+\noindent The TFPT budget is then bookkept as
+\begin{equation}
+  \sum_{f,j}L_{f,j}=\underbrace{\sum r_{f,j}}_{=22}+6\underbrace{\sum n_{f,j}}_{=\Nfam=3}=22+18=40=|R(D_5)| ,
+\end{equation}
+so the three windings are exactly the three family line-bundle degree shifts, and the residue sum $22$
+is the non-primitive $\mathbb Z_{30}$ load $h-r$ of the main note. \mE
+
+% =====================================================================
+\section{The Riemann--Hilbert side (what the monodromy fixes)}
+% =====================================================================
+Constructing the rigid $\mathbb Z_4$-symmetric local system explicitly (four monodromies
+$M_k=R^kCR^{-k}$, $C\sim\operatorname{diag}(1,\omega,\omega^2)$, $R^4=\mathbb 1$), the closure
+$M_0M_1M_2M_3=\mathbb 1$ is solvable to machine precision, and the unique rotation $R$ has eigenvalues
+$\{i,-1,-i\}$: the $A_3$ Coxeter element. \mE\ This independently reproduces the corner-rotation
+$=$ Coxeter identity and confirms the family connection exists.
+
+\par\smallskip\noindent\textbf{Rigidity: honest count.}
+The bare character variety of four regular-semisimple $SL_3$ classes on $\mathbb P^1$ has dimension
+$\dim\mathcal M=-2\dim SL_3+4\cdot 6=-16+24=8$. The $\mathbb Z_4$-reduction (four punctures $\to$ one
+orbifold image, plus the two rotation fixed points) gives a three-point system, still with
+$\dim\mathcal M=-16+3\cdot 6=2$ for three regular classes --- \emph{not} cohomologically rigid on its
+own (a hypergeometric/pseudo-reflection point would be needed for $\dim=0$). Full rigidity is therefore
+the \emph{full} $D_4$ (including the reflection $z\mapsto 1/z$) together with the determinant-trivial
+branch, i.e.\ the flavor classification above, which the explicit solution above is consistent with. We do not
+claim Katz rigidity for the bare $\mathbb Z_4$ system.
+\par\smallskip
+
+\par\smallskip\noindent\textbf{Why the monodromy alone does not give the integers.}
+The flat monodromy fixes the \emph{exponents} $\alpha\in\{0,\tfrac13,\tfrac23\}$ but not the integer
+\emph{degrees} $n_{f,j}$ nor the per-generation flag positions. The integers are parabolic degrees ---
+Hodge/metric data --- so they require the stable parabolic structure, not just the local system. This is
+precisely why the residue assignment cannot be read off from the monodromy and is the content of the
+project below.
+\par\smallskip
+
+% =====================================================================
+\section{The parabolic-weight computation (resolved this round)}
+% =====================================================================
+\noindent\textbf{Status (no drift).} The splitting type is now \emph{closed}: the unique partition
+$4{=}1{+}1{+}2$ fixes the anchor and $\operatorname{coker}R=\Z_8$ fixes the residue branch (verified, below
+and \veri{v4\_flavor\_matrix.py}), and the solar texture is built (\veri{v9\_neutrino\_texture.py}). The
+roadmap below is kept as the \emph{derivation record} of how $L_{f,j}$ is obtained; it is no longer an open
+project. The only residual is the parabolic$\leftrightarrow$transport equivalence, conditional on
+Mehta--Seshadri unitarity (U).
+\par\smallskip\noindent\textbf{Derivation record for $L_{f,j}$ (how the word-lengths are obtained).}
+\textbf{(1)} Fix the $D_4$-equivariant stable parabolic structure on
+$E=\mathcal O(-2)\oplus\mathcal O(-1)\oplus\mathcal O(-1)$ (the descended three-orbifold-point bundle
+with weights: cusp class $\{0,\tfrac13,\tfrac23\}$ at the puncture image; $A_3$-Coxeter exponents at the
+two rotation fixed points $0,\infty$).\\
+\textbf{(2)} For each sector $f\in\{u,d,e\}$ select the sector cusp
+$\{2y_+,-2y_-,2(y_++y_-)\}=\{1,\tfrac23,\tfrac13\}$ (a $D_5$ datum) as the reference weight; this is the
+$D_6$ orbit shift $\{0,+2,-2\}$ on the residue triple.\\
+\textbf{(3)} Compute, per generation $j$ (an $R$-eigenline, $R$-eigenvalue $\{i,-1,-i\}$), the parabolic
+degree of the corresponding parabolic line sub-bundle: the integer part is the winding $n_{f,j}$, the
+fractional part times $6$ (plus the sheet) is the residue $r_{f,j}$.\\
+\textbf{(4)} Verify the output equals
+$\{0,1,3\}$ (up), $\{1,2,5\}$ (down), $\{2,3,5\}$ (lepton), and the per-sector anchors $(1,1,2)$.
+\par\smallskip
+
+\noindent\textbf{What is already pinned down for step (3).} The residue must be of the form
+$6w+3s\bmod 6$ with $w\in\{0,\tfrac13,\tfrac23\}$; the candidate compact map of the main note,
+$a_f=\operatorname{round}(2\,\mathrm{cusp}_f)=(1,1,2)$, is the predicted first-generation anchor and must
+emerge as the minimal-weight (dominant) flag step of each sector.
+
+\begin{proposition}[Single-fibre reduction]
+Because each generation is an $R$-eigenline ($Rv_j=\zeta_j v_j$) and the puncture flags are $R$-rotated
+($M_k=R^kCR^{-k}$, so $F_\bullet(M_k)=R^kF_\bullet(C)$), the weight of $v_j$ is the same at every
+puncture, $\alpha(v_j,M_k)=\alpha(v_j,C)$ for all $k$. Hence the parabolic degree collapses to
+\begin{equation}
+  \boxed{\ \mu_j=d_j+\textstyle\sum_{k=1}^4\alpha(v_j,M_k)=d_j+4\,\alpha_j,\qquad \alpha_j=\alpha(v_j,C)\ }\qquad\mE .
+\end{equation}
+\end{proposition}
+
+\par\smallskip\noindent\textbf{What the explicit computation shows: the local model is insufficient.}
+Evaluating $\alpha_j$ from the Riemann--Hilbert solution (the $R$-eigenvectors against the $C$-flag,
+$F_1{=}\langle e_1\rangle$ weight $0$, $F_2{=}\langle e_1,e_2\rangle$ weight $\tfrac13$, $F_3$ weight
+$\tfrac23$) gives \emph{degenerate} weights --- generically all $\tfrac23$, at best $\{\tfrac23,0,\tfrac23\}$
+--- not the non-degenerate permutation $\{0,\tfrac13,\tfrac23\}$. This is decisive: the residues are
+\textbf{not} a single-fibre (monodromy) quantity. The generations are \emph{global} parabolic line
+sub-bundles whose weight at each puncture comes from the holomorphic degeneration of the saturated
+sub-sheaf, not from the fibre alignment of an eigenvector. So the computation genuinely requires the
+global stable parabolic structure (the holomorphic Hecke modification matching the weights, with
+parabolic stability fixing the saturation), confirming the $\mC$ classification: it is an
+algebraic-geometry computation on $\mathbb P^1$, not a linear-algebra one on a single fibre.
+\par\smallskip
+
+\noindent The open piece is therefore the explicit \emph{global} parabolic-degree evaluation at the
+$D_4$-fixed point --- the holomorphic Hecke modifications of $\mathcal O(-2)\oplus\mathcal O(-1)^2$
+matching the prescribed weights, saturated for parabolic stability --- not a search and not a free
+choice, but a genuine moduli computation. The single-fibre reduction $\mu_j=d_j+4\alpha_j$ shows the
+\emph{form} of the answer; the holomorphic structure supplies the integers $d_j$ and the global weights
+$\alpha_j$.
+
+% =====================================================================
+\section{Global computation: the anchor multiset is derived}
+% =====================================================================
+The global (Fuchsian/Hecke) computation does resolve one integer datum exactly. Work in the rotation
+eigenbasis $R=\operatorname{diag}(i,-1,-i)$ and take the $\mathbb Z_4$-symmetric Fuchsian residues
+$A_k=R^kA_0R^{-k}$ with $\operatorname{spec}(A_0)=\{0,\tfrac13,\tfrac23\}$ (the cusp exponents). Then the
+symmetrisation collapses exactly,
+\begin{equation}
+  \boxed{\ \sum_{k=0}^{3}R^kA_0R^{-k}=4\operatorname{diag}(A_0)\ }\qquad\mE ,
+\end{equation}
+because $\sum_{k=0}^3(r_a/r_b)^k=4\,\delta_{ab}$ for $r=(i,-1,-i)$ (off-diagonal terms are summed fourth
+roots of unity). The exponents at infinity --- equivalently the splitting type of the Deligne extension,
+$A_\infty=-\sum_k A_k$ --- are therefore $4\operatorname{diag}(A_0)$, integers (regularity at $\infty$)
+summing to $4\operatorname{tr}(A_0)=4$.
+
+\begin{theorem}[The anchor multiset from stability]
+With $\operatorname{spec}(A_0)=\{0,\tfrac13,\tfrac23\}$ the diagonal entries satisfy
+$4(A_0)_{aa}=\tfrac43(q_{a2}+2q_{a3})\in[0,\tfrac83)$, so each exponent at infinity is in $\{0,1,2\}$
+(the value $3$ is \emph{unreachable}). By Schur--Horn the only integer multisets of exponents
+realisable with this spectrum are
+\[
+  \{0,2,2\}\quad\text{and}\quad\{1,1,2\}.
+\]
+Parabolic stability (minimal-variance / balanced splitting; $\{0,2,2\}$ has a spurious weight-$0$ flat
+direction) selects
+\begin{equation}
+  \boxed{\ \text{exponents at }\infty=\{1,1,2\}=(a_u,a_d,a_e)=-\deg\bigl(\mathcal O(-2)\oplus\mathcal O(-1)^2\bigr)\ }\qquad\mE .
+\end{equation}
+An explicit realising matrix is
+\[
+  A_0=\begin{pmatrix} \tfrac14 & -\tfrac1{12} & \tfrac{\sqrt6}{12}\\[2pt]
+  -\tfrac1{12} & \tfrac14 & \tfrac{\sqrt6}{12}\\[2pt]
+  \tfrac{\sqrt6}{12} & \tfrac{\sqrt6}{12} & \tfrac12 \end{pmatrix},\qquad
+  \operatorname{diag}(A_0)=\bigl(\tfrac14,\tfrac14,\tfrac12\bigr),\quad \operatorname{spec}(A_0)=\{0,\tfrac13,\tfrac23\}
+\]
+(verified), so the Schur--Horn point realising the anchor $(1,1,2)$ is explicit, not merely abstract.
+\end{theorem}
+
+\noindent So the three per-sector \emph{anchors} $(1,1,2)$ are \emph{not} free: they are the balanced
+integer splitting type of the $\mathbb Z_4$-symmetric parabolic flavor connection, fixed by Schur--Horn
+plus stability, and they coincide with the underlying bundle degrees $\mathcal O(-2)\oplus\mathcal O(-1)^2$.
+The ``balanced'' selection is now \emph{typed}, not heuristic: $\{0,2,2\}$ contains an $\mathcal O(0)$
+summand with $h^0=1$, while stability of the Deligne extension (irreducible unitary monodromy,
+\vref{v117}) forces $h^0(E)=0$ --- positivity \emph{is} the selection, and the Schur--Horn and
+Deligne/Birkhoff--Grothendieck routes converge on $\{1,1,2\}$
+(\veri{v499\_p2\_weights\_deligne\_bg.py}, \texttt{P2.TYPING.01}). The \vref{v499} residual R1 (the
+module identification) is now identified with the QGEO modulus rest: both reduce to the \emph{same}
+order-$4$ carrier input --- the clock $=$ Coxeter of $W(A_3)$ $=$ the cusp class
+(\veri{v503\_qgeo\_emergence\_light.py}, \texttt{QGEO.EMERGE.LIGHT.01}; one common residual, markers
+unchanged). That common residual is now \emph{one alignment bit} --- the collar deck central in the
+mark-$D_4$; the clock's order itself is fermionically forced, $U^2=(-1)^F$ exactly
+(\veri{v506\_seam\_clock\_rigidity.py}, \texttt{SEAM.CLOCK.RIGIDITY.01}; markers unchanged); and the
+bit's origin is settled --- the deck's \emph{class} is derived (a half-period translation of the
+seam double, equivalence tetrad with the nonsplit NS Fock face), only its \emph{position} stays the
+carrier input (\veri{v507\_seam\_bit\_origin.py}, \texttt{SEAM.BIT.ORIGIN.01}; markers unchanged);
+and that position half is now \emph{topology} --- the covering deck is free on the seam circle, the
+edge class is excluded, and the residual is the square-modulus datum $\tau=i$ alone
+(\veri{v510\_seam\_bit\_freedom.py}, \texttt{SEAM.BIT.FREEDOM.01}; markers unchanged) ---
+equivalently, since \vref{v512}: one discrete symmetry-lift bit (flag transitivity of the four
+marks, $V_4\to D_4$, $\iff\tau=i$). That bit has since survived \emph{ten} side-blind derivation
+attacks --- free RP/$\Theta$ (the eighth, \vref{v521}), the exhausted Wick-computable
+free-plus-twist state class (the ninth, \vref{v525}), the first genuinely interacting seam toy
+(the tenth, \vref{v529}) --- and is now physically \emph{defined} as the twist-class choice:
+a $15$-facet exact equivalence web with a gauge-robust order parameter ($O=\tfrac12$ at $m=4$,
+$0$ elsewhere), in principle interferometrically readable (\vref{v528},
+\texttt{SEAM.BIT.TWISTCLASS.01}; the bit remains formal input, no marker moves) --- and it now
+carries the first \emph{positive} selection datum: reflection positivity, imposed on the
+interacting mark family, keeps exactly \emph{one} member alive, $\delta=\pi/2$ with positive
+coupling --- the carrier of that order parameter
+(\veri{v534\_seam\_straddle\_cone.py}, \texttt{SEAM.STRADDLE.CONE.01}; toy-level evidence for a
+dynamical origin, not a derivation).
+
+\begin{proposition}[Per-sector assignment from the cusp ordering --- part (i) closed]
+A parabolic line sub-bundle $\ell$ of the slope-$0$ semistable $E$ obeys
+$\pardeg(\ell)=d_\ell+w^{\mathrm{cusp}}_\ell+(\text{other weights})\le 0$, so a \emph{larger} right-handed
+cusp weight forces a \emph{more negative} degree $d_\ell$. Hence the sector with the largest cusp carries
+the most-negative summand $\mathcal O(-2)$, i.e.\ the exponent $2$. With the $D_5$ cusps
+\[
+  \text{lepton}\leftrightarrow 2y_+=1\ >\ \text{up}\leftrightarrow -2y_-=\tfrac23\ >\ \text{down}\leftrightarrow 2(y_++y_-)=\tfrac13 ,
+\]
+the unique exponent $2$ goes to the lepton sector, giving
+\begin{equation}
+  \boxed{\ (a_u,a_d,a_e)=(1,1,2)=\bigl(\operatorname{round}(2\,\mathrm{cusp}_f)\bigr)_f\ }\qquad\mE/\mC ,
+\end{equation}
+the unique stable distribution of the multiset $\{1,1,2\}$ over the cusp-ordered sectors. Physically the
+lepton's first generation (electron) is the lightest first-generation fermion, so it is the most
+suppressed --- exponent $2$ --- consistent with $m_e<m_u<m_d$.
+\end{proposition}
+
+\noindent\textbf{Fused statement.} The anchors are now fully fixed: the \emph{multiset} $\{1,1,2\}$ from
+$A_3$ stability (Schur--Horn $+$ balance) $=$ splitting type $\mathcal O(-2)\oplus\mathcal O(-1)^2$, and
+the \emph{assignment} lepton$\to2$, up$\to1$, down$\to1$ from the $D_5$ cusp ordering via parabolic
+stability. Multiset from $A_3$, assignment from $D_5$.
+\par\smallskip\noindent\textbf{The single remaining piece --- part (ii).}
+Only the \emph{full} residue sets $\{0,1,3\}$, $\{1,2,5\}$, $\{2,3,5\}$ stay open. The value $3$ exceeds
+the exponent-at-infinity bound $\tfrac83$, so it is a genuine \emph{per-puncture} parabolic degree (an
+asymmetric Hecke saturation at the individual punctures), not an exponent at infinity. The anchors (the
+first-generation entries) are fixed above; the remaining two entries per sector require the non-symmetric
+per-puncture saturation. \mC
+\par\smallskip
+
+\subsection{Part (ii): the $\mathbb Z_6$ structure of the residues, and the frontier}
+Every residue decomposes \emph{uniquely} into a cusp index $c\in\{0,1,2\}$ (the $\mathbb Z_3$ family
+phase, $c=3w$) and a sheet parity $s\in\{0,1\}$ (the $\mathbb Z_2$ deck involution), via the bijection
+$r=2c+3s\bmod 6$:
+\[
+  0\!\to\!(0,0),\ 1\!\to\!(2,1),\ 2\!\to\!(1,0),\ 3\!\to\!(0,1),\ 4\!\to\!(2,0),\ 5\!\to\!(1,1).
+\]
+The full transport table in these parabolic coordinates is
+\begin{center}\small
+\begin{tabular}{l|ccc|ccc}
+\toprule
+ & \multicolumn{3}{c|}{cusp index $c$ (g1,g2,g3)} & \multicolumn{3}{c}{sheet $s$ (g1,g2,g3)} \\
+\midrule
+up     & $2,0,0$ & & & $1,1,0$ & & \\
+down   & $2,1,1$ & & & $1,1,0$ & & \\
+lepton & $1,1,0$ & & & $0,1,1$ & & \\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Provable structure \mE:} (a) windings are first-generation only, $n=(1,0,0)$ per sector,
+$\sum n=\Nfam=3$; (b) every sector has exactly \emph{two} sheet-odd generations (sheet row-sums all
+$=2$); (c) the gen-$1$ entries are the anchors $(1,1,2)$ of part~(i). The \emph{column} sums of the two
+coordinate tables read carrier and Coxeter data:
+\begin{equation}
+\begin{aligned}
+  &\text{cusp-index } C\!:\ \text{col sums }(5,2,1)=(\gcar,\,s,\,N_\Phi),\ \textstyle\sum=8=r(E_8);\\
+  &\text{sheet } S\!:\ \text{col sums }(2,3,1)\ \text{(a perm.\ of }A_3\text{ exponents }1,2,3),\ \textstyle\sum=6=|R^+(A_3)| .
+\end{aligned}\tag{$\ast$}
+\end{equation}
+
+\begin{keybox}[The $\mathbb Z_3\times\mathbb Z_2$ lift lemma --- the winding is almost automatic]
+Assembling the cusp matrix $C$ and sheet matrix $S$ above into the natural integer lift
+$T:=2C+3S$ gives
+\[
+  T=\begin{pmatrix}7&3&0\\7&5&2\\2&5&3\end{pmatrix},\qquad
+  T\bmod 6=R,\qquad L-T=6\,E_{31},
+\]
+i.e.\ the $\mathbb Z_3\times\mathbb Z_2$ lift already produces the $+6$ overflow of the up- and
+down-sector first generation; the \emph{only} extra global $+6$ winding sits on the lepton first
+generation (the strongest cusp, $\mathcal O(-2)$). Moreover $\sum T=34=p_5(a)$ and $\sum L=40=p_1p_3$, so
+the natural lift carries the anchor power $p_5$ and the single lepton winding completes it to the flavor
+budget $40$. \mE
+\end{keybox}
+
+\subsection{The flavor transport theorem}
+We now state the result as a theorem: under three precisely-stated hypotheses --- two of which are
+already established in this note --- the entire transport matrix (anchors \emph{and} the six non-anchor
+residues) is forced. The combinatorial core is proved by complete enumeration.
+
+\begin{theorem}[Flavor transport residues on $\mathbb P^1\setminus\mu_4$]
+\label{thm:flavor}
+Let the three charged sectors $f\in\{u,d,e\}$ have transport residues $r_{f,j}\in C_6=\mathbb Z_6$
+($j=1,2,3$). Assume:
+\begin{itemize}[leftmargin=1.6em]
+\item[\textbf{(H1)}] \emph{(non-degeneracy)} within each sector the three residues have pairwise
+\emph{distinct} cyclic distances on $C_6$;
+\item[\textbf{(H2)}] \emph{(cusp labelling)} the three sectors are the three $D_6$-images of one base
+triple under the cusp action of $\mathbb P^1\setminus\mu_4$: $u=\mathrm{id}$, $d:x\mapsto 2{-}x$,
+$e:x\mapsto 2{+}x$ (fixed by the right-handed cusps $-2y_-,\,2(y_+{+}y_-),\,2y_+$);
+\item[\textbf{(H3)}] \emph{(anchor \& winding)} the first (lightest) generation of each sector carries
+the single full $+6$ winding, with anchor residue $(a_u,a_d,a_e)=(1,1,2)$, and within a sector lengths
+decrease with generation (mass hierarchy).
+\end{itemize}
+Then the base triple is uniquely $\{0,1,3\}$, the sector residue sets are
+$\{0,1,3\},\{1,2,5\},\{2,3,5\}$, and the full transport matrix is
+\begin{equation}
+  \boxed{\ L_u=(7,3,0),\quad L_d=(7,5,2),\quad L_e=(8,5,3)\ }\qquad
+  \Bigl(\textstyle\sum L=40,\ (G_1,G_2,G_3)=(22,13,5)\Bigr).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+\emph{(Step 1 --- base triple.)} By complete enumeration of the $\binom63=20$ three-subsets of
+$\mathbb Z_6$, the cyclic-distance multiset is one of $\{1,1,2\}$ (six subsets), $\{2,2,2\}$ (two), or
+$\{1,2,3\}$ (twelve). Hypothesis (H1) selects the distinct case $\{1,2,3\}$. These twelve subsets form a
+single $D_6$-orbit with trivial stabiliser (verified: the only $(r,s)$ with $sx+r\equiv\{0,1,3\}$ is the
+identity), of which $\{0,1,3\}$ is the representative. \emph{(Step 2 --- sets.)} Applying the three
+$D_6$-elements of (H2) gives $u:\{0,1,3\}$, $d:2{-}\{0,1,3\}=\{1,2,5\}$, $e:2{+}\{0,1,3\}=\{2,3,5\}$;
+the trivial stabiliser guarantees these are three \emph{distinct} sets, one per sector.
+\emph{(Step 3 --- matrix.)} By (H3) the anchor occupies generation $1$ with a $+6$ winding; deleting it
+from the set leaves exactly two residues, which the monotone order assigns to generations $2,3$:
+\[
+  u:\{0,1,3\}\!\setminus\!\{1\}=\{0,3\}\Rightarrow(1{+}6,3,0),\quad
+  d:\{1,2,5\}\!\setminus\!\{1\}\Rightarrow(7,5,2),\quad
+  e:\{2,3,5\}\!\setminus\!\{2\}\Rightarrow(8,5,3).
+\]
+Summing gives $\sum L=40$ and column sums $(22,13,5)$.
+\end{proof}
+
+\noindent\textbf{Status of the hypotheses (honest grounding).}
+\begin{itemize}[leftmargin=1.6em]
+\item (H1) is the parabolic genericity/spread statement (distinct masses $\Rightarrow$ distinct
+transport gaps); it is physically forced but stated here as a hypothesis. \mC
+\item (H3) is \emph{derived}: the anchor multiset $\{1,1,2\}$ is the Schur--Horn$+$stability splitting
+type (Section above), and the per-sector assignment $(1,1,2)$ is the $D_5$ cusp ordering. \mE/\mC
+\item (H2) is now \emph{small and not a free choice}: with (H1),(H3) the up and lepton sectors are fixed
+(sum $4$ unique; sum $10$ with anchor $2$ unique), leaving only the down branch $\{1,2,5\}$ vs
+$\{1,3,4\}$. The transport-kernel theorem \emph{derives} the former (down $=\{1,2,5\}$) from the
+uniquely-fixed family-connection holonomy, and it satisfies the spectral selector ($\det R=h(D_5)$,
+principal minors $(2,3,5)$); the sibling $\{1,3,4\}$ does not arise. So (H2)'s answer is determined; only
+the parabolic$\leftrightarrow$transport equivalence remains. \mE/\mC
+\end{itemize}
+So the matrix is a \emph{theorem} (combinatorial core fully proved), resting on three hypotheses of which
+(H3) is derived, (H1) is a genericity statement, and (H2) is the single cusp-geometry input.
+
+% =====================================================================

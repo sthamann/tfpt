@@ -1,0 +1,395 @@
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present the complete axiomatic foundation of Topological Fixed Point Theory (TFPT), 
+which derives the fine-structure constant $\alpha$ and other fundamental quantities 
+from eight minimal assumptions rooted in topology, geometry, and quantum field theory. 
+The theory rests on two fundamental invariants: the topological coupling 
+$\cthree = 1/(8\pi)$ from 11D Chern--Simons quantization and the geometric scale 
+$\phiz = 1/(6\pi) + 3/(256\pi^4)$ from M\"obius fiber geometry. 
+These invariants, combined with the Standard Model abelian trace $\bone = 41/10$, 
+yield a cubic fixed-point equation (CFE) whose unique positive root gives 
+$\alpha^{-1} = 137.035990\ldots$, achieving $-0.064$ ppm agreement with CODATA~2022 
+without any free parameters. The same structure determines the axion--photon coupling 
+$\gagg = -4\cthree$ and predicts cosmic birefringence $\beta = \phiz/(4\pi) \approx 0.004231~\text{rad} \approx 0.2424^\circ$, 
+consistent with Planck PR4 observations at the 0.5--1.7$\sigma$ level.
+\end{abstract}
+
+%=============================================================================
+% CLAIM MAP - Reader's Contract
+%=============================================================================
+\vspace{1em}
+\begin{tcolorbox}[colback=gray!5, colframe=gray!60, title={\textbf{Claim Map: What This Paper Establishes}}, fonttitle=\bfseries]
+\textbf{Theorems (given axioms A1--A8):}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item Fine-structure constant: $\alpha^{-1} = 137.0360\ldots$ at $-0.064$ ppm (CFE)
+    \item Cosmic birefringence: $\beta = 0.2424^\circ$ (UFE + minimal excursion)
+    \item Cabibbo angle: $\lambda = 0.2245$ at $-0.15\%$ deviation
+    \item Two-loop RG fingerprints: $\alpha_3(\mu) \approx \phiz, \cthree$ at sub-percent
+\end{itemize}
+
+\textbf{Structural extensions (status: testable):}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item E$_8$ cascade with $\gamma(0)=5/6$ (discrete closure; no physical anchor)
+    \item Block constants $\zeta_B$ with discrete indices $k_B, r_B$
+    \item Z$_3$ flavor architecture with single phase $\delta$
+    \item PMNS: $\sin^2\theta_{13} \approx 0.0231$ via TM1 pattern (few-\% dev.)
+    \item Inflation: $A_s \sim 2\times10^{-9}$, $n_s \approx 0.964$, $r \approx 0.0038$ via $R^2$ completion
+    \item Axion DM: $m_a \approx 64\,\mu$eV, $\nu = 15.6$ GHz (background + DM modes)
+\end{itemize}
+
+\textbf{Direct falsification paths:}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item Any future $\alpha$ measurement deviating $>1$ ppm from TFPT
+    \item Birefringence $\beta$ outside $[0.1^\circ, 0.4^\circ]$ with $<0.05^\circ$ error
+    \item RG fingerprint $\alpha_3(1\,\mathrm{PeV})$ deviating $>2\%$ from $\phiz$
+    \item Inflation $r$ outside $[0.001, 0.005]$ with precision $\sigma_r < 0.001$
+    \item PMNS $\sin^2\theta_{13}$ deviating $>10\%$ from $0.0231$
+    \item Axion haloscope non-detection at $15.6 \pm 0.5$ GHz (given local DM density)
+\end{itemize}
+\end{tcolorbox}
+
+%=============================================================================
+% ASSUMPTION LEDGER - Transparency about what is assumed
+%=============================================================================
+\vspace{0.5em}
+\begin{tcolorbox}[colback=yellow!5, colframe=yellow!60!black, 
+    title={\textbf{Assumption Ledger: Established vs.\ New}}, fonttitle=\bfseries]
+
+\textbf{Established physics (citable):}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item Riemann--Cartan geometry with torsion (Hehl et al.~1976)
+    \item Fujikawa anomaly and chiral measure (Fujikawa 1979)
+    \item Background-field gauge and Ward identities (standard QFT)
+    \item SM abelian trace $\bone = 41/10$ (particle content, GUT normalization)
+    \item GR limit requirement ($K \to 0 \Rightarrow$ Einstein--Hilbert)
+\end{itemize}
+
+\textbf{New postulates (to be justified or tested):}
+\begin{center}
+\begin{tabular}{@{}p{4cm}p{4cm}p{4.5cm}@{}}
+\toprule
+\textbf{Postulate} & \textbf{Justification} & \textbf{Falsification Test}\\
+\midrule
+Orientable double cover (A2) & Spinor structure requires orientability & CPT tests, spin-torsion bounds\\
+$\phitree = 1/(6\pi)$ from 3 cycles & Gauss--Bonnet on M\"obius fiber & Modify topology $\Rightarrow$ shift $\alpha$\\
+$\deltatop = 48\cthree^4$ & Gauge-invariant discrete correction & See Appendix~\ref{app:48deriv}\\
+Backreaction factor $=2$ & Double cover symmetry & Sensitivity analysis (Sec.~\ref{sec:sensitivity})\\
+$\Delta a \approx \phiz$ (birefringence) & Late-time axion attractor (Sec.~\ref{sec:deltaa}) & $\beta(z)$ tomography inconsistent\\
+$\gamma(0) = 5/6$ (E$_8$) & Closure from SU(5) and M\"obius normalizations & Block-scale deviations $>5\%$\\
+$R^2$ completion with $M/\Mpl=\sqrt{8\pi}\cthree^4$ & Leading higher-curvature closure & $(A_s,n_s,r)$ inconsistent\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Parameter count:} The core CFE uses 0 free parameters. With $\gamma(0)=5/6$, the E$_8$ cascade 
+introduces no continuous fit parameters (only discrete E$_8$ data and the TFPT invariants). 
+The postulates above are \emph{structural choices}, not continuous fits.
+\end{tcolorbox}
+
+\tableofcontents
+\newpage
+
+%=============================================================================
+\section{Introduction: The Problem of Parameters}
+%=============================================================================
+
+The Standard Model of particle physics contains approximately 19 free parameters 
+that must be determined experimentally. Among these, the fine-structure constant 
+$\alpha \approx 1/137$ stands out as a dimensionless number whose value has no 
+explanation within conventional frameworks.
+
+TFPT addresses this problem by demonstrating that $\alpha$ is not a free parameter 
+but a \emph{fixed point} of an effective potential, uniquely determined by:
+\begin{enumerate}[label=(\roman*)]
+    \item Topological quantization from 11D Chern--Simons theory
+    \item Geometric reduction on a M\"obius fiber
+    \item Quantum consistency via background-field gauge Ward identities
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    scale=1.0,
+    box/.style={draw, rounded corners, minimum width=2.8cm, minimum height=1cm, align=center, font=\small},
+    arrow/.style={-{Stealth[length=3mm]}, thick}
+]
+    % Boxes
+    \node[box, fill=topologyblue!20] (topo) at (0,3) {Topology\\$\cthree = \frac{1}{8\pi}$};
+    \node[box, fill=geometrygreen!20] (geom) at (4,3) {Geometry\\$\phiz = \frac{1}{6\pi}+\frac{3}{256\pi^4}$};
+    \node[box, fill=quantumorange!20] (qft) at (2,1.5) {Quantum FPE\\CFE: $\alpha^3 - 2\cthree^3\alpha^2 - \ldots = 0$};
+    \node[box, fill=observablepurple!20] (obs1) at (-0.5,0) {$\alpha^{-1}$\\$137.0360$};
+    \node[box, fill=observablepurple!20] (obs2) at (2,0) {$\gagg$\\$-4\cthree$};
+    \node[box, fill=observablepurple!20] (obs3) at (4.5,0) {$\beta$\\$0.2424^\circ$};
+    
+    % Arrows
+    \draw[arrow, topologyblue] (topo) -- (qft);
+    \draw[arrow, geometrygreen] (geom) -- (qft);
+    \draw[arrow, observablepurple] (qft) -- (obs1);
+    \draw[arrow, observablepurple] (qft) -- (obs2);
+    \draw[arrow, observablepurple] (qft) -- (obs3);
+    
+    % Labels
+    \node[font=\footnotesize, topologyblue] at (-0.8,2.3) {fixes $A$};
+    \node[font=\footnotesize, geometrygreen] at (4.8,2.3) {fixes $\mathcal{K}$};
+\end{tikzpicture}
+\caption{Logical flow of TFPT: topological and geometric invariants determine quantum 
+fixed-point parameters, which yield observables without free inputs.}
+\label{fig:flow}
+\end{figure}
+
+%=============================================================================
+\section{Axiomatic Foundation}
+%=============================================================================
+
+TFPT is built on eight axioms, organized into three categories: geometric structure, 
+quantum field theory, and closure conditions. Each axiom is either derived from 
+established physics or explicitly marked as a new postulate.
+
+%-----------------------------------------------------------------------------
+\subsection{Geometric Axioms (A1--A4)}
+%-----------------------------------------------------------------------------
+
+\begin{axiom}{Riemann--Cartan Geometry}{RC}
+The fundamental spacetime connection possesses torsion; the Levi-Civita 
+connection is a limiting case when torsion vanishes.
+
+\tcblower
+\textbf{Status:} Established (Einstein--Cartan theory, Hehl et al.~1976).
+
+\textbf{Consequence:} Axial torsion couples to spinor fields and is dynamically active.
+\end{axiom}
+
+\begin{axiom}{Orientable Double Cover}{ODC}
+The physically relevant manifold is the orientable double cover $\widetilde{M}$ 
+of a non-orientable base with M\"obius structure.
+
+\tcblower
+\textbf{Status:} New assumption; mathematically rigorous, physically motivated 
+by spinor structure, chirality, and anomaly cancellation.
+
+\textbf{Consequence:} The geometry carries two identical boundary contributions 
+plus a seam $\Gamma$, yielding a factor of 2 in backreaction.
+\end{axiom}
+
+\begin{tcolorbox}[colback=blue!3, colframe=blue!40, title={\textbf{Lemma (Spin Structure Requires Orientability)}}, fonttitle=\bfseries\itshape]
+If a theory defines fundamental spinors globally, the effective manifold must be 
+orientable. When the base topology is non-orientable (M\"obius structure), the 
+physical carrier space is necessarily the orientable double cover.
+
+\textbf{Physical necessity:}
+\begin{enumerate}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item Chiral fermions require a globally consistent spin structure; this fails 
+        on non-orientable manifolds.
+    \item Anomaly cancellation (ABJ) demands well-defined $\gamma_5$ eigenvalues, 
+        which exist only on the orientable cover.
+    \item The double cover provides exactly two sheets, which enforce the factor 2 
+        in the backreaction formula $\phiz(\alpha) = \phitree + \deltatop(1-2\alpha)$.
+    \item The ``seam'' $\Gamma$ is not decorative but the geometric origin of the 
+        third $2\pi$ contribution in the Gauss--Bonnet normalization.
+\end{enumerate}
+
+\textbf{Causal chain:} Spinors $\to$ orientability required $\to$ double cover 
+$\to$ (Postulate A3) effective seam term $\to$ 3 curvature contributions $\to$ $\phitree = 1/(6\pi)$.
+\end{tcolorbox}
+
+\begin{axiom}{Gauss--Bonnet Normalization with Seam Postulate}{GB}
+Gauss--Bonnet fixes the curvature bookkeeping on the orientable double cover $\widetilde{M}$.
+
+\textbf{Postulate A3 (effective seam boundary term):} We postulate that the identification seam 
+$\Gamma$ contributes as an \emph{effective boundary term} in the relevant (orbifold) Gauss--Bonnet balance. 
+This assumption fixes the total boundary curvature to $6\pi$.
+
+\tcblower
+\textbf{Status:} Gauss--Bonnet is established. The \emph{seam-as-boundary} contribution is an explicit postulate; 
+Appendix~\ref{app:seam} summarizes the motivation and what remains to be formalized.
+
+\textbf{Consequence:} Three cycles of $2\pi$ each yield total curvature $6\pi$, 
+which fixes
+\begin{equation}
+    \phitree = \frac{1}{6\pi}
+\end{equation}
+\end{axiom}
+
+\noindent\textbf{Why this is plausible.} In $\mathbb{Z}_2$ orbifolds, fixed loci can produce boundary-type 
+contributions in index theorems and curvature balances. Cutting $\widetilde{M}$ along $\Gamma$ and applying the 
+manifold-with-boundary formula suggests a localized term supported on the seam. Appendix~\ref{app:seam} records the 
+current proof status and lists the missing formal steps.
+
+\begin{tcolorbox}[colback=green!3, colframe=green!50!black, 
+    title={\textbf{Proof Sketch for $\phitree = 1/(6\pi)$ (with Postulate A3)}}, fonttitle=\bfseries\small]
+\textbf{Setup:} Let $\widetilde{M}$ be the orientable double cover of the effective 
+M\"obius fiber. As a 2D surface with boundary, it has:
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item Two boundary components $C_1, C_2$ from the ``top'' and ``bottom'' edges
+    \item One effective boundary $C_T$ from the identification seam $\Gamma$
+\end{itemize}
+
+\textbf{Gauss--Bonnet theorem (with boundary):}
+\begin{equation}
+    \int_{\widetilde{M}} K\, dA + \sum_i \oint_{C_i} \kappa_g\, ds = 2\pi\chi(\widetilde{M})
+\end{equation}
+where $K$ is the Gaussian curvature, $\kappa_g$ is the geodesic curvature of the boundary, 
+and $\chi$ is the Euler characteristic.
+
+\textbf{Step 1 (Topology):} The double cover of a M\"obius strip is a cylinder (annulus), 
+so $\chi(\widetilde{M}) = 0$ in the usual smooth-manifold sense. Postulate A3 asserts that the 
+identification seam $\Gamma$ contributes an additional boundary-type term in the relevant (orbifold) 
+curvature balance.
+
+\textbf{Step 2 (Boundary contributions):} Each boundary cycle is topologically $S^1$ and 
+contributes $2\pi$ to the total curvature integral (geodesic curvature of a flat circle). 
+Three cycles give:
+\begin{equation}
+    \sum_i \oint_{C_i} \kappa_g\, ds = 3 \times 2\pi = 6\pi
+\end{equation}
+
+\textbf{Step 3 (Normalization):} The stationarity condition $\partial_\varphi V_{\text{eff}} = 0$ 
+at the topological fixed point requires:
+\begin{equation}
+    \varphi \cdot R_{\text{total}} = 1 \quad\Rightarrow\quad \phitree = \frac{1}{6\pi}
+\end{equation}
+where $R_{\text{total}} = 6\pi$ is the total integrated curvature.
+
+\textbf{Motivation and current status (not yet a full proof):}
+
+The seam $\Gamma$ is \emph{not} a physical boundary but an \emph{effective boundary} arising 
+from the orbifold structure. The points below motivate Postulate~A3:
+
+\begin{enumerate}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item \textbf{Orbifold interpretation:} The M\"obius base $M_{\text{base}}$ is an orbifold 
+        with a $\mathbb{Z}_2$ action. The double cover $\widetilde{M}$ resolves this orbifold, 
+        and the fixed-point locus of $\mathbb{Z}_2$ becomes the seam $\Gamma$.
+    \item \textbf{Boundary conditions at $\Gamma$:} Spinors on $\widetilde{M}$ must satisfy 
+        \emph{matching conditions} across $\Gamma$ (continuity + $\mathbb{Z}_2$ twist). 
+        These matching conditions contribute to the $\eta$-invariant exactly as boundary 
+        conditions would.
+    \item \textbf{``Cut and compute'':} Equivalently, one can cut $\widetilde{M}$ along $\Gamma$, 
+        compute boundary contributions on the resulting manifold-with-boundary, and verify that 
+        gluing back gives the same answer. This ``surgery'' argument shows $\Gamma$ contributes 
+        like a third boundary.
+    \item \textbf{Curvature concentration:} In the limit where the M\"obius twist is sharp, 
+        curvature concentrates on $\Gamma$ as a delta-function contribution. Integrating this 
+        gives exactly $2\pi$, matching the other two boundaries.
+\end{enumerate}
+
+\textbf{Reference pointer:} Orbifold index theory treats fixed loci as additional geometric data; 
+see Kawasaki (1979) and related orbifold index literature. For TFPT, the remaining formal steps 
+are listed explicitly in Appendix~\ref{app:seam}.
+\end{tcolorbox}
+
+\begin{axiom}{Discrete Topological Corrections}{TC}
+Additional contributions to $\phiz$ arise only from topological invariants 
+that are discrete and universal.
+
+\tcblower
+\textbf{Status:} Consequence of gauge-invariance constraints.
+
+\textbf{Consequence:} The topological surcharge is uniquely determined by $\cthree$:
+\begin{equation}
+    \deltatop 
+    = \frac{1}{256\pi^4}\sum_{p=1}^{4}\left(1-\frac{1}{4}\right)
+    = \frac{3}{256\pi^4}
+    = 48\cthree^4
+\end{equation}
+\end{axiom}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.2]
+    % M\"obius strip representation
+    \fill[blue!10] (0,0) ellipse (2.5 and 1);
+    
+    % Top boundary
+    \draw[thick, blue] (0,1) ellipse (2.2 and 0.3);
+    \node[blue, font=\footnotesize] at (3.2,1) {top boundary ($2\pi$)};
+    
+    % Bottom boundary
+    \draw[thick, blue] (0,-1) ellipse (2.2 and 0.3);
+    \node[blue, font=\footnotesize] at (3.4,-1) {bottom boundary ($2\pi$)};
+    
+    % Seam
+    \draw[thick, green!60!black, dashed] (-2.5,0) -- (2.5,0);
+    \node[green!60!black, font=\footnotesize] at (3.5,0) {seam $\Gamma$ ($2\pi$)};
+    
+    % Arrow showing M\"obius identification
+    \draw[-{Stealth}, thick, red] (2.8,0.7) arc[start angle=40, end angle=-40, radius=0.8];
+    \node[red, font=\footnotesize] at (3.8,0.4) {M\"obius};
+    \node[red, font=\footnotesize] at (3.7,0.1) {twist};
+    
+    % Total
+    \node[font=\small] at (0,-1.8) {Total integrated curvature: $3 \times 2\pi = 6\pi$};
+    \node[font=\small] at (0,-2.2) {$\Rightarrow \phitree = 1/(6\pi)$};
+\end{tikzpicture}
+\caption{Orientable double cover $\widetilde{M}$: two boundary cycles plus effective 
+seam $\Gamma$ contribute $6\pi$ total curvature, fixing $\phitree$.}
+\label{fig:doublecover}
+\end{figure}
+
+%-----------------------------------------------------------------------------
+\subsection{Quantum Field Theory Axioms (A5--A6)}
+%-----------------------------------------------------------------------------
+
+\begin{tcolorbox}[colback=yellow!5, colframe=yellow!60!black, 
+    title={\textbf{Conventions: Units, Masses, and Normalizations}}, fonttitle=\bfseries]
+
+\textbf{Units and constants:}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item Natural units: $\hbar = c = 1$; energies in GeV, lengths in GeV$^{-1}$.
+    \item Reference data: CODATA 2022, PDG 2024.
+    \item Metric signature: $(+,-,-,-)$.
+    \item Levi-Civita tensor: $\varepsilon^{0123} = +1$, $\tilde{F}^{\mu\nu} = \frac{1}{2}\varepsilon^{\mu\nu\rho\sigma}F_{\rho\sigma}$.
+\end{itemize}
+
+\textbf{Planck mass definitions:}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Symbol} & \textbf{Definition} & \textbf{Value}\\
+\midrule
+$M_{\mathrm{Pl}}$ (unreduced) & $G^{-1/2}$ & $1.221 \times 10^{19}$ GeV\\
+$\Mpl$ (reduced) & $(8\pi G)^{-1/2}$ & $2.435 \times 10^{18}$ GeV\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Convention:} Block formulas (Section~6) use $M_{\mathrm{Pl}}$ (unreduced). 
+Relation: $M_{\mathrm{Pl}} = \sqrt{8\pi}\,\Mpl$.
+
+\textbf{Axion sector:}
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+    \item Axion field $a$: Dimensionless, $2\pi$-periodic. Physical field: $a_{\text{phys}} = f_a \cdot a$.
+    \item Chern--Simons term: $\mathcal{L} \supset \cthree\, a\, F\tilde{F}$ with $\cthree = 1/(8\pi)$.
+    \item Coupling: $\gagg = -4\cthree$ is dimensionless; $g_{a\gamma\gamma}^{\text{(phys)}} = \gagg / f_a$ has dimension $[\text{energy}]^{-1}$.
+\end{itemize}
+\end{tcolorbox}
+
+\begin{axiom}{Axion--Photon Anomaly Coupling}{APC}
+The unique additional coupling in the low-energy effective theory is a 
+pseudoscalar axion--photon interaction of the form $\cthree\, a F\tilde{F}$, 
+fixed by the abelian anomaly (Fujikawa method).
+
+\tcblower
+\textbf{Status:} Standard in anomaly physics; follows from chiral measure.
+
+\textbf{Consequence:} The axion--photon coupling is
+\begin{equation}
+    \cthree = \frac{1}{8\pi}
+\end{equation}
+with no remaining normalization freedom.
+\end{axiom}
+
+\begin{axiom}{Background-Field Gauge Stationarity}{BFG}
+In background-field gauge, the effective potential $U(\alpha)$ satisfies a 
+Ward identity that makes natural constants stationary points:
+\begin{equation}
+    \frac{\partial U}{\partial \alpha} = 0
+\end{equation}
+
+\tcblower
+\textbf{Status:} Follows from RG consistency and BFG Ward identities.
+
+\textbf{Consequence:} $\alpha$ is a fixed point, not a free parameter.
+\end{axiom}
+
+%-----------------------------------------------------------------------------

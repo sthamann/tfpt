@@ -1,0 +1,213 @@
+\par\smallskip\noindent\textbf{Earlier research update through Round 27 (2026-09-07).}
+The shipped non-RH theory contracts now extend to the original finite-regulator
+$g=0$ scalar/charge model, with every integer charge and E8 phase retained.
+A complete charge-diagonal reference $Z_D$ gives
+$e^{-48\beta NJ}Z_D\le Z\le Z_{\rm abs}\le Z_D$ by all-block pinching
+and joint scalar/charge H\"older. The artificial extra charge heat-trace
+factor is removed from the sign, memory and hop error budgets, not the
+remaining exponential dependence on volume and hopping.
+At the earlier $N=27,T=3,\beta=1,J=0.1$ comparison, certified cutoffs improve
+from $K4096/P962$ to $K2670/P354$ for less than $1\%$ omission error.
+A specified weak-hopping $L9/T33$ example retains $25$ of $33$ quadratic
+time offsets with summed memory error at most $0.2045\%$ and combined
+omission error below $1\%$. Its full scalar determinant remains unchanged.
+The complete interacting partition is not evaluated; practical charge
+summation, interacting continuum, real-time dynamics, common-parent
+selection, chirality and gravity are still open. Proof, costs and
+reproduction are in the contracts paper and
+\path{experiments/theory-contracts/ROUND27_STATUS.md}. No status moves.
+\smallskip\\
+\noindent\emph{Tier B made concrete (\veri{v277\_seam\_calderon\_e8\_match.py}).} The
+seam-Calder\'on $\to(E_8)_1$ identification is reduced to a \emph{single} bit. \mE\ the full $(E_8)_1$ matching
+target is computed and matches: $c{=}8$ (Sugawara $248/31$), $\det\mathrm{Cartan}(E_8){=}1$, the holomorphic
+character $E_4/\eta^8{=}j^{1/3}{=}q^{-1/3}(1{+}248q{+}\dots)$ with a single primary and exactly $248{=}\dim E_8$
+weight-1 currents. \mE\ the discriminator is \emph{holomorphy}: the $c{=}8$ counterexample
+$(D_8){=}SO(16)_1$ has $\det\mathrm{Cartan}{=}4$ (four primaries, non-holomorphic) --- same $c$, different
+$\det$, so the one discriminating condition is $|\det K|{=}1$. \mC\ the seam side matches via the flat
+$\tau{=}i$ pillowcase (\vref{v276}) and the Kummer/K3 (\vref{v260}). \mC\ the residual is exactly that single
+holomorphy bit --- now \emph{closed modulo cited theorems} on the MMST route \texttt{SEAM.EQUIV.MMST.01}
+(lattice \vref{v367}/\vref{v368} $+$ the $S_3$ stack
+\vref{v376}--\vref{v379}, Lean \texttt{FORM.SEAM.MMST.01}; cited continuum existence \mO, \vref{v336})
+(\texttt{QGAMB.TIERB.01}).
+\smallskip\\
+\noindent\emph{The modular-data view (\veri{v281\_holomorphy\_modular\_data.py}).} The Tier-B bit is the
+anyon count: $\#\text{anyons}=|\det\mathrm{Gram}|$ (E8 $\to1$ holomorphic, $SO(16)\to4$), the
+condensation tower $D_5{\oplus}A_3\,(16)\to D_8\,(4)\to E_8\,(1)$ each step a Lagrangian $Z_2$ boson, and
+Gauss--Milgram returns $c{=}8$ --- so the open bit is simply ``does the seam net condense to $\det K{=}1$''
+(\texttt{QGAMB.MODULAR.01}).
+\par\smallskip\noindent\textbf{The live kill-test scorecard (\veri{v283\_live\_killtest\_scorecard.py}).} The
+recent round's computable predictions confronted with current data: $\sin^2\theta_{12}$ ($+0.31\sigma$),
+$\sin^2\theta_{13}$ ($+1.45\sigma$), $J_{\mathrm{PMNS}}{=}{-}0.0297$, $\Sigma m_\nu$ floor $0.0586$ eV,
+proton decay $\tau_p{=}1.55{\times}10^{35}$ yr --- all consistent at $<2\sigma$, with two sharp near-term kill
+tests ($\Sigma m_\nu$: DESI/CMB-S4; proton decay: Hyper-K) (\texttt{PRED.LIVE.01}). Two \emph{named post-hoc}
+\mO\ candidates sit next to this board without touching the frozen record: the third-generation ladder-base
+pattern (the three ${\sim}2\sigma$ mixing tensions $\theta_{13}/\theta_{23}/|V_{cb}|$ as one common $-\phiz$
+suppression, \texttt{FLAV.THIRDGEN.PATTERN.01}, \vref{v467}) and the splitting-ratio relation
+$\Delta m^2_{21}/\Delta m^2_{31}=|J_{\mathrm{PMNS}}|$ at $-0.19\sigma$ (\texttt{FLAV.DM2RATIO.01}, \vref{v468})
+--- both pre-registered with symmetric kills (JUNO / Belle~II), see document~2.
+\smallskip\\
+\noindent\emph{Update (QBL chain, \vref{v108}--\vref{v113}):} the boundary-net residual now carries \emph{double}
+weight --- the carrier choice $g=5$ has been reduced to the \emph{same} premise. The certified scalar
+kernel exists iff it pairs the two sheets, the certified channel counts the code identically (Pascal
+closure $=$ channel identity), pair transport is minimally complete, and the single quasi-free kernel
+(rank $=c$: $5$ carrier block, $8$ seam hull) is the defining datum of the free $c=8$ net this gate
+already posits. Closing the index-$4$ statement therefore also closes the carrier selection \mE\
+(see \texttt{tfpt\_1} and \texttt{tfpt\_research\_contracts}). \veri{v113\_quasifree\_kernel.py}
+\smallskip\\
+\noindent\emph{Update (free-bulk premise discharged, \vref{v160}--\vref{v165}):} that ``free $c{=}8$ net''
+premise is no longer free-standing. It is a fixed-point theorem (quasi-free $\Rightarrow$ all higher
+cumulants $\kappa_{2n}{=}0$, \vref{v160}); the infinite Schwinger cone is \emph{eliminated} --- by
+Bogoliubov second quantisation the cone gap equals the one-particle gap $(2/3)^6$ (\vref{v161}), forced by
+$\mu_4$-equivariance (\vref{v162}); and the residual factors into the already-open $A_2$ net-existence (an
+assembly of established net constructions, \mC) and $R_1=$ the seam-realisation keystone \texttt{SEAM.EQUIV.01}, with the irreducible core
+$\{\pi,v_{\mathrm{geo}}\}$ a theorem (\vref{v165}). So the metric-sector gate carries \emph{zero new}
+independent open content. \veri{v165\_premise\_a\_closure.py}
+\smallskip\\
+\noindent\emph{The deduction below the premise is Lean-formalised (\texttt{FORM.QGEO.02}/\texttt{FORM.QGEO.01}).}
+After the residual reduces to the single seam-realisation postulate \texttt{QGEO.SYM.01} (the carrier
+$\mu_4$ clock is the conformal deck of the seam; \texttt{tfpt\_research\_contracts}), its geometric normal
+form (the \textsc{Uniform} node: $z\mapsto iz$, $\sigma\rho\sigma=\rho^{-1}$, orbit$\to\mu_4$, multiplier
+order-$4\Leftrightarrow\zeta{=}\pm i$) and the conditional implication mark-local$\Rightarrow\omega\circ
+\rho=\omega$ are machine-proved in the carrier-rigidity Lean project (\textsc{audit: pass}, only the three
+standard kernel axioms; mirrors \veri{v177\_seam\_marking\_kernel.py} and \veri{v210\_mark\_local\_dtn.py}).
+So everything \emph{downstream} of the postulate is \mE; \texttt{QGEO.SYM.01} \emph{itself} is the downstream
+face of the keystone \texttt{SEAM.EQUIV.01}, which is now \emph{closed modulo cited theorems on its MMST route}
+\texttt{SEAM.EQUIV.MMST.01} (lattice $+$ $S_3$
+stack, Lean \texttt{FORM.SEAM.MMST.01}; only the cited continuum existence stays \mO\ --- its extension leg since
+re-founded on peer-reviewed crossed-product theorems, the realisation input reduced to invariant level R1$'$,
+\vref{v469}; the twistor route \texttt{SEAM.EQUIV.TWISTOR.01} and the unconditional parent stay \mO).
+\smallskip\\
+\noindent\emph{A second, independent route (\veri{v207\_asymptotic\_safety.py}, \mO).} Beside the seam-net
+programme, the boundary data also support a \textbf{continuum} attack: an FRG truncation with an independent
+torsion field (the old UFE truncation) has a non-Gaussian UV fixed point --- $\partial_t g=(2+\eta_R)g$ is
+UV-repulsive at $g\!\to\!0$ and damped at large $g$ by the positive-definite torsion $K^2$ term, so
+$2+\eta_R=0$ has a root $g_\star>0$ (intermediate value), with the scale-invariant axion coupling fixed and
+small, $y^2=16\cthree^2=1/(4\pi^2)=0.0253$. This is recorded as a \emph{plausibility cross-check} that the
+QG gap is reachable from a second direction --- it is \textbf{not} load-bearing and does \emph{not} close
+$G_{\mathrm{metric}}$; the primary, machine-checked route stays the seam-net. A third, quantitative
+approach to the keystone --- the celestial and twistor continuum route, now named
+\texttt{SEAM.EQUIV.TWISTOR.01} (contract \texttt{CELEST.SEAM.01}, WP1--WP5d, both
+WP5d stages, plus the
+WP5e $\alpha$, $\beta$, $\gamma$, $\delta_1$, $\delta_2$, $\varepsilon_2$ and $\varepsilon_1$
+stages and the
+M1--M3 back-reaction milestones executed:
+the level-2 null ideal derived, its deleting operator explicit, the GNS limit state constructed, the
+two-interval index chain measured, split $+$ strong additivity witnessed on the lattice (all three
+KLM ingredients of complete rationality; the continuum uplift is Xu's theorem, cited not claimed),
+the $q^{-1/3}$ prefactor $+$ level $k{=}1$ pinned on the CFT
+side, the equivariant anomaly ledger exact on the twistor side (index bridge, $-78$ defect,
+rigid $32\,T_3$ residual, the honest $a_0$ refutation), the sphere-axion exchange sub-branch closed
+with a certificate, the collapse confirmed full-tensorially with the one cubic $d$-symbol door
+open (its $c_d=1920=|W(D_5)|$ fingerprint honestly typed look-elsewhere-loaded and
+convention-contingent, the stable core $c_d=32\times60$, \vref{v513}), ``one level'' lifted to
+a theorem of clock invariance with the sector
+counter pinning $k=1$ (\vref{v508}/\vref{v509}/\vref{v511}/\vref{v513}), the $O(-2)$ bulk-axion
+slot built with $\tilde\lambda=6$ triply pinned (\vref{v514}), the back-reacted $\Omega_N$
+closed-form with $(2\pi i)^2$-integral lockstep periods and the lens-forced source charge
+$4=|\mu_4|$ (\vref{v515}), the twisted KS measure on the declared completion reading cancelling
+the $32\,T_3$ residual and supplying the $\psi=64$ slice without the cubic $d$-channel
+(\vref{v516}), the $a_0$ uplift coupled to the centre count on four scales, monodromy $i$
+(\vref{v517}), the $\delta_1$ chain decided --- kill under the derived measure, the
+declared/derived measure tension stated honestly (\vref{v518}) --- the measure question
+since decided at probe level for the declared reading (single-valuedness derived from
+F-independence $+$ the Quillen pairing under the typed premises TP-1..TP-4, \vref{v520}),
+and the $w_m$ normalisation since derived constructively at probe level ($1/\det_j$ = the
+Atiyah--Bott/zeta-determinant fixed-point factor, three independent sources, \vref{v523});
+WP5e proper \mO, the global BCOV
+quantisation --- narrowed to the global BCOV integral beyond the fibre zero-mode factor ---
+the single remaining milestone) --- is
+synthesised as a
+dedicated section in \texttt{tfpt\_3\_e8\_audit\_bootstrap}; it does not close \texttt{SEAM.EQUIV.01}
+either.
+\end{keybox}
+
+\begin{keybox}[The mass anchor is \emph{over-determined} --- no derivable absolute scale is a theorem \mE/\mO]
+The single dimensionful input ($v_{\mathrm{geo}}=$ the reduced Planck mass $\Mpl$) is not a hidden gap but the
+\emph{unit}, and it is over-determined (\veri{v274\_scale\_overdetermination.py}). \mE\ every dimensionful output
+is a pure number $\times\,\Mpl^d$: $\rho_\Lambda/\Mpl^4=(3/4\pi^2)e^{-2\alpha^{-1}}$, $M_{\mathrm{scal}}/\Mpl
+=\cthree^{7/2}$, the whole spectrum --- the absolute $\nu$-scale (\vref{v272}) and $v_{\mathrm{geo}}$ are the
+\emph{same} anchor. \mC\ \textbf{two independent routes agree}: gravity gives $\Mpl=(8\pi G)^{-1/2}
+=2.4353{\times}10^{18}$ GeV, and inverting the compiler's dark-energy prediction with the measured
+$\rho_\Lambda^{1/4}=2.24$ meV gives $\Mpl=2.438{\times}10^{18}$ GeV --- the same Planck mass to $0.11\%$
+(\emph{conditional} on the $\Lambda$-branch readout \texttt{LAMBDA.BRANCH.01}, \mC; the gravity route is
+unconditional --- red-team \veri{redteam/rt\_F\_qft4d.py}). \mE\ and
+the reason there is \emph{no} deeper reduction is a theorem, not a gap: the seam is a conformal $c{=}8$ chiral CFT
+(\vref{v157}/\vref{v158}), scale-invariant by construction, so it has no intrinsic scale; the scale is
+gravitational, entering only through the ambient measure. So TFPT is scale-complete up to one over-determined
+anchor --- the maximal predictivity a dimensionless compiler can have (\texttt{SCALE.OVERDET.01}).
+\end{keybox}
+
+% =====================================================================
+\section*{Summary}
+% =====================================================================
+\addcontentsline{toc}{section}{Summary}
+\begin{center}\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}p{2.9cm}cY@{}}
+\toprule
+\textbf{Item} & \textbf{Status} & \textbf{Honest handle / what is missing} \\
+\midrule
+$\eta_B$ & \mC & downstream readout $=6.1{\times}10^{-10}$ from closed $\Omega_b h^2$; leptogenesis interface, cleanest scenario $M_1{=}M_{\mathrm{scal}}(\phiz)^2/A_\Lambda$, $\tilde m_1{=}m_3/A_\Lambda$ (shared decuple, no seesaw scale) \\
+$m_p/m_e$ & \mC & cross-sector (QCD scale / closed $m_e$); typed runnable solver with ${\pm}7.5\%$ uncertainty budget (\vref{v374}), not a compiler power \\
+Koide $Q$ & \mC & source ratio $Q=0.664$ near $2/3$; the source$\to$pole factor $53/54$ is an \emph{exact operator readout} of the missing $F{=}R{+}Q$ Sheet-Diamond corner \mE; the physical pole transfer ($F_{\mathrm{pole}}$) stays \mC \\
+dark matter & \mC & determinant-line axion: $f_a{=}M_{\mathrm{scal}}/128$, $m_a\approx23.8\,\mu$eV. \emph{Post-inflationary} ($H_{\mathrm{inf}}/f_a{\approx}66$, isocurvature): the misalignment angle is a horizon average (\emph{not} observable), the relic follows from $f_a$ (in the post-inflationary window), domain-wall-safe via $N_{\mathrm{DW}}{=}|C|{=}1$ (\vref{v470}/\vref{v472}); the $3\pi/5$ spine value is retained as a structural rational, not a relic prediction --- branch-level kill test, not a theory closure \\
+muon $a_\mu$ & \mX & seam vertex $a_\mu^{\mathrm{seam}}{=}\delta_2/(2\pi){=}45/(524288\pi^9){=}2.879{\times}10^{-9}$; exact \emph{value} \mE, but the vertex-projection bridge is \textbf{dissolved} (dated kill fired 2026-08-04: WP25$+$BMW lattice-HVP consensus, experiment$-$SM $=0.5\sigma$); compiler core untouched \\
+quantum gravity & \mE/\mC & local field eq.\ carries no free dimensionless Newton coupling under named QFT/entanglement premises \mC\ ($G_{ab}{+}\Lambda g_{ab}{=}\cthree^{-1}T_{ab}$, \vref{v358}/\vref{v359}); $R+R^2$ heat-kernel grounded (G2); perturbative graviton unitarity established (Stelle ghost a truncation artefact, \vref{v304}/\vref{v370}/\vref{v380}); ambient measure (G6) a \mC\ redundancy (\vref{v369}) \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\markerkey
+
+\noindent\textbf{Net (honest).} Two of the five have a genuine quantitative handle that already lands on
+the data ($\eta_B=6.1\times10^{-10}$ via the closed $\Omega_b$; the axion DM candidate with a closed
+misalignment angle). One is a computed \emph{near}-miss reported without tuning (Koide $0.664$ vs $2/3$).
+One is a typed runnable transfer ($m_p/m_e$ as a cross-sector ratio, \vref{v374}); quantum gravity has been
+sharpened --- its local field equation carries no free dimensionless Newton coupling under the named QFT/entanglement premises \mC\ (the full covariant
+$G_{ab}{+}\Lambda g_{ab}{=}\cthree^{-1}T_{ab}$ from fixed-volume entanglement equilibrium, \vref{v358}/\vref{v359}),
+its $R+R^2$ form heat-kernel grounded (G2), its physical sector gap-decoupled
+(G5), and \emph{perturbative} graviton unitarity established (the Stelle ghost a truncation artefact,
+\vref{v304}/\vref{v370}/\vref{v380}; the entire-form-factor graviton-exchange amplitude $e^{-p^2/M^2}/p^2$ is
+finite, UV-softened and tree-unitary, \veri{v386\_grav\_amplitude.py}, and UV-\emph{finite at every loop order} by
+power counting --- the super-polynomial falloff drives the superficial degree of divergence to $-\infty$, regulated
+by the seam scale $M_{\mathrm{scal}}$, \veri{v389\_grav\_loop\_finiteness.py}, with full loop \emph{unitarity} of the
+nonlocal form factor honestly the still-open point; the nonlocal action's IR projection \emph{is} the atom-scaled
+$R+R^2$, $M_{\mathrm{scal}}^2/\Mpl^2=\cthree^7$, so the local readout is its shadow, not a truncation with sawn-off legs,
+\veri{v400\_grav\_nonlocal\_action.py}), leaving the ambient projective \emph{measure} (G6) as a \mC\ redundancy
+(\vref{v369}), not an open hole. None has been
+forced onto the compiler ladder --- which is exactly the right call: the strong results stay strong
+precisely because the weak ones are not oversold.
+
+\par\smallskip\noindent\textbf{The $F_{\mathrm{transfer}}$ functor as typed, runnable solvers.} The four
+frontier transfers are one functor --- compiler \emph{source} $\to$ measured observable via cited standard
+physics --- now promoted from contracts to runnable solvers with kill tests, each \mC\ (never a compiler
+power). \emph{Koide} (\veri{v371\_ftransfer\_pole.py}): a clean \emph{negative} --- standard QED running cannot
+be the source$\to$pole transfer (it pushes $Q$ \emph{above} $2/3$; the required $\epsilon$ is negative while
+QED's is positive), so the transfer is the non-QED $53/54$ operator / $(2/3)^6$ Moebius generator
+(\vref{v183}/\vref{v82}). \emph{$\eta_B$} (\veri{v372\_ftransfer\_boltzmann.py}): the integrated BDP Boltzmann
+ODE at the frozen $M_1{=}M_{\mathrm{scal}}(\phiz)^2/A_\Lambda$ gives $\eta_B$ within a factor ${\sim}1.1$ of
+$6.1{\times}10^{-10}$ with no $M_R$ dial. \emph{Axion} (\veri{v373\_ftransfer\_relic.py}): the finite-$T$
+misalignment ODE \emph{decides} the branch --- the frozen spine angle $3\pi/5$ lands $\Omega_a h^2$ on
+$\Omega_{\mathrm{DM}}$ (in band) while the hilltop $170^\circ$ over-produces (${\sim}5.4\times$); in the
+natural post-inflationary scenario ($H_{\mathrm{inf}}/f_a{\approx}66$) the angle is instead a horizon
+average and the relic follows from $f_a$ with $N_{\mathrm{DW}}{=}1$.
+\emph{$m_p/m_e$} (\veri{v374\_ftransfer\_qcd.py}): the observed $1836.15$ sits inside the propagated
+${\pm}7.5\%$ band of the two declared externals ($\alpha_s(M_Z)$, $C_p$), with lattice tightening as the kill.
+Each remains \mC\ --- a transfer target, not a forced compiler number.
+
+% =====================================================================
+\section*{Appendix: computational verification}
+\addcontentsline{toc}{section}{Appendix: computational verification}
+% =====================================================================
+These are the \emph{frontier} items: most carry \mO\ (open) or \mC\ (conditional) and are therefore
+\emph{not} part of the pass/fail suite. The one quantitative handle that is reproduced is
+$\Omega_b{=}(1{-}\tfrac1{4\pi})\phiz$ (whence the $\eta_B$ order) in
+\texttt{verification/v7\_gravity\_cosmo.py}. The $R+R^2$ structure and the gap-decoupling of the physical
+QG sector \emph{are} machine-checked (\texttt{v28\_gravity\_fR.py}, \texttt{v36\_spectral\_action\_g2.py}); the
+proton/electron ratio is now a typed runnable \mC\ transfer (\vref{v374}) and the ambient projective limit (G6) a
+\mC\ redundancy (\vref{v369}) --- both conditional, not bare \mO. The compiler/SM
+identities they build on are checked by the suite in \texttt{verification/} (run
+\texttt{python verification/run\_all.py}; see \texttt{verification/README.md}).
+
+\input{tex-artefacts/tfpt_references}
+
+\end{document}

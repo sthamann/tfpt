@@ -1,0 +1,385 @@
+\subsection*{2026-06-15 (Lean: QGEO.COHOM.01 character grading + MODULE parity machine-proved)}
+\begin{itemize}
+\item \textbf{The cohomology character grading is now Lean-formalised}
+  (\texttt{CohomologyGrading.lean}, ledger \texttt{FORM.QGEO.03}, \mO). A new module machine-proves the
+  \textsc{Cohom} node of the QGEO proof tree (\texttt{v177}; \textsc{audit: pass}, no
+  \texttt{sorry}/\texttt{admit}, axioms \texttt{propext, Classical.choice, Quot.sound} only): the three
+  $H^1(\PP\setminus\mu_4)$ eigenforms $\omega_k=z^{k-1}/(z^4-1)$ ($k{=}1,2,3$) have pullback character
+  $\rho^*\omega_k=i^k\omega_k$ under the clock $\rho:z\mapsto iz$ (each an exact rational-function identity,
+  the denominator clock-invariant since $i^4{=}1$), so the grading is $(i,-1,-i)$ with weights $(1,2,3)$ =
+  the $A_3$ exponents $=\operatorname{Spec}(Q_+)$, rank $3=\Nfam$. The \textsc{Module} \emph{parity} is also
+  proved: the reflection $\sigma:z\mapsto1/z$ satisfies $\sigma^*\omega_1=\omega_3$,
+  $\sigma^*\omega_2=\omega_2$, $\sigma^*\omega_3=\omega_1$ (swap $\omega_1\!\leftrightarrow\!\omega_3$,
+  $\omega_2$ fixed). Signature-locked in \texttt{AuditContract.lean}. The geometric \textsc{Cohom}/\textsc{Module}-parity
+  nodes are now \mE; the \textsc{Marks}/\textsc{Kernel} obligations and the \textsc{Module} \emph{uniqueness}
+  stay \mO.
+\end{itemize}
+
+\subsection*{2026-06-15 (Lean: QGEO.UNIFORM.01 geometric normal form machine-proved)}
+\begin{itemize}
+\item \textbf{The M\"obius uniformisation normal form is now Lean-formalised}
+  (\texttt{Mobius\allowbreak Uniformisation.lean}, ledger \texttt{FORM.QGEO.02}, \mO). A new module machine-proves the
+  constructive \textsc{Uniform} node of the QGEO proof tree (\texttt{v177}; \textsc{audit: pass}, no
+  \texttt{sorry}/\texttt{admit}, axioms \texttt{propext, Classical.choice, Quot.sound} only): the clock
+  $\rho:z\mapsto iz$ has $\rho^4{=}\mathrm{id}$ and $\rho^2{\neq}\mathrm{id}$ (order exactly $4$); the
+  reflection $\sigma:z\mapsto1/z$ is an involution with $\sigma\rho\sigma=\rho^{-1}$ (so $\langle\rho,\sigma
+  \rangle$ is the dihedral $D_4$ of order $8$); a non-fixed orbit $\{a,ia,-a,-ia\}$ scales to
+  $\mu_4=\{1,i,-1,-i\}$; $\sigma$ permutes $\mu_4$ (fixes $1,-1$, swaps $i,-i$); and the multiplier
+  classification ``$z\mapsto\zeta z$ has order exactly $4\Leftrightarrow\zeta=\pm i$''. Signature-locked in
+  \texttt{AuditContract.lean}. This formalises the geometric half of the seam realisation \emph{given} the
+  four marks and the clock; the raw-seam marking obligation \texttt{QGEO.MARKS.01} stays \mO, \emph{not}
+  closed.
+\end{itemize}
+
+\subsection*{2026-06-15 (Lean: the QGEO.SYM.01 conditional theorem machine-proved)}
+\begin{itemize}
+\item \textbf{The mark-local $\Rightarrow\omega\circ\rho=\omega$ implication is now Lean-formalised}
+  (\texttt{SeamDeckClosure.lean}, ledger \texttt{FORM.QGEO.01}, \mO). A new module in the
+  carrier-rigidity Lean project machine-proves the algebraic core of \texttt{v201}/\texttt{v210}
+  (\textsc{audit: pass}, no \texttt{sorry}/\texttt{admit}, no domain axioms --- \texttt{\#print axioms} $=$
+  \texttt{propext, Classical.choice, Quot.sound} only): (i) the $4$th-root character orthogonality
+  $\sum_{j<4}\zeta^j=(\text{if }\zeta{=}1\text{ then }4\text{ else }0)$ for $\zeta^4{=}1$ (so a $\mu_4$-mark
+  sum is supported only on modes $\equiv0\bmod4$); (ii) the clock generator $-i$ has order $4$;
+  (iii) \texttt{markLocal\_blockDiagonal}: a mark-local Toeplitz symbol connects only equal clock-characters,
+  $[\rho,M_f]=0$; (iv) the premise is a typed \texttt{structure} \texttt{SeamDeckPremise} (the physical seam
+  DtN \emph{is} mark-local) --- consumed, \emph{not} proved, exactly as \texttt{CalderonProjector} encodes the
+  Paper-1 analytic input; (v) \texttt{SeamDeckPremise.clock\_invariant}: \emph{given} the premise, the clock
+  commutes with the DtN, whence $\omega\circ\rho=\omega$. So the \emph{implication} is now \mE\ (formally
+  proved); the \emph{premise} (the physical seam being mark-local) stays \mO\ --- the one fundamental
+  seam-identification postulate, \emph{not} closed.
+\end{itemize}
+
+\subsection*{2026-06-15 (QGEO sharpening: mark-local DtN certified on realistic profiles)}
+\begin{itemize}
+\item \textbf{Mark-local DtN $\Rightarrow\omega\circ\rho=\omega$, certified on realistic Steklov profiles and
+  at the state level (\texttt{v210\_mark\_local\_dtn}, \texttt{tfpt\_research\_contracts}, \mO).} A numerical
+  sharpening of \texttt{QGEO.SUBPRIN.01}/\texttt{v201}: a real von-Mises curvature bump summed over the four
+  $\mu_4$ marks, $f(\theta)=\sum_{j=0}^3 g(\theta-j\pi/2)$, builds the Steklov DtN $\Lambda=|D_\theta|+M_f$
+  whose off-$(\mathrm{mod}\,4)$ Fourier support vanishes to $<10^{-16}$, $\|[\rho,\Lambda]\|<10^{-15}$, and ---
+  the genuinely new step --- the quasi-free covariance $C=\tfrac12(1+\operatorname{sgn}H_1)$ is clock-invariant
+  ($\rho C\rho^\dagger=C$ to $<10^{-13}$), i.e.\ the actual $\omega\circ\rho=\omega$. Negative controls (single
+  off-centre bump, $\Z_3$ source, four generic marks) break both by $O(1)$; convergence stable for
+  $N\in\{16,32,64\}$. This certifies the \emph{implication}; the premise that the physical seam \emph{is}
+  mark-local stays \mO\ (it does \emph{not} close \texttt{QGEO.SYM.01}; net existence and full-cone RP remain
+  the \mE\ of \texttt{v175}). Ledger \texttt{QGEO.MARKLOCAL.01}. Python-only (the exact mark-sum identity is
+  Wolfram-mirrored via \texttt{v201}).
+\end{itemize}
+
+\subsection*{2026-06-15 (archive integration \#5: six dormant results revived from the old papers)}
+\begin{itemize}
+\item \textbf{Muon $g-2$ as a seam vertex (\texttt{v204\_muon\_seam\_g2}, \texttt{tfpt\_4\_frontier}, \mC).}
+  The carrier's second-order topological defect $\delta_2=\tfrac54\delta_{\mathrm{top}}^2$ projected through the
+  seam-loop phase gives $a_\mu^{\mathrm{seam}}=\delta_2/(2\pi)=45/(524288\,\pi^9)\approx2.879\times10^{-9}$
+  ($0.81\sigma$ vs the dispersive $\Delta a_\mu$; ${\sim}1.5\sigma$ vs lattice/CMD-3). The value is exact \mE;
+  the vertex identification is the \mC\ bridge. Ledger \texttt{FR.MUONG2.01}; Wolfram-mirrored.
+\item \textbf{An independent gravitational $3/4$ (\texttt{v205\_xi\_threequarter}, \texttt{tfpt\_4\_frontier}, \mE/\mC).}
+  $\xi=\cthree/\varphi_{\mathrm{tree}}=3/4$ exactly (Einstein limit of $\kappa^2=\xi\phiz/\cthree^2$) --- the
+  same $3/4=q(A_3)=\ln(m/\mu)$ as the seam-determinant replica (\texttt{v152}), an over-determination. Ledger
+  \texttt{GRAV.XI.01}; Wolfram-mirrored.
+\item \textbf{Quantitative $H_0$ from the $\Lambda$ branch (\texttt{v206\_h0\_lambda\_branch}, \texttt{tfpt\_4\_frontier}, \mC).}
+  $\delta_\Sigma=48\,e^{-2\pi\ainv/3}\approx1.085\times10^{-123}$, the $(8\pi)^2$ Planck-convention split, and
+  $H_0=66.5$--$67.1$ km/s/Mpc (below Planck, far below SH0ES --- the Hubble tension is \emph{not} relieved).
+  Ledger \texttt{GRAV.H0.01}.
+\item \textbf{Asymptotic Safety as a second QG route (\texttt{v207\_asymptotic\_safety}, \texttt{tfpt\_4\_frontier}, \mO).}
+  A complementary continuum-FRG argument (a non-Gaussian UV fixed point from the same axioms;
+  $y^2=16\cthree^2=1/(4\pi^2)$) --- a plausibility cross-check, \emph{not} load-bearing, does \emph{not} close
+  $G_{\mathrm{metric}}$. Ledger \texttt{GRAV.ASYMP.01}.
+\item \textbf{Black-hole thermodynamics from the seam} (\texttt{v208\_bh\_\allowbreak thermodynamics},
+  \texttt{tfpt\_horizon\_\allowbreak readouts}, \mE/\mC).
+  Modular $T_H=\kappa/(2\pi)$ (the $2\pi=1/(4\cthree)$ seam unit, ties to \texttt{v198}/\texttt{v199}) and the
+  scalaron-corrected Wald entropy $S_W=(A/4G)(1+R_h/3M_s^2)$ (exact from \texttt{v28}). Ledger
+  \texttt{HOR.BHTHERMO.01}; Wolfram-mirrored.
+\item \textbf{The black hole as a seam fixed point} (\texttt{v209\_bh\_\allowbreak regular\_core},
+  \texttt{tfpt\_horizon\_\allowbreak readouts}, \mC).
+  No singularity ($\varphi\to\varphi_\star$ at the gapped attractor $(2/3)^6$); the maximal BH $=$ the anchor
+  (Nariai roots $(1,1,-2)$); information via Page recovery; a Planck-scale holographic floor. The superseded
+  RN/torsion metric is \emph{not} resurrected. Ledger \texttt{HOR.BHCORE.01}.
+\end{itemize}
+
+\subsection*{2026-06-15 (archive integration \#4: M\"obius $\cong$ Lorentz foundation citation)}
+\begin{itemize}
+\item \textbf{The M\"obius seam is the boundary Lorentz structure (\texttt{tfpt\_3}, \mO).} Added a paragraph
+  to the ``M\"obius origin of $\pi$'' section: $\mathrm{M\ddot{o}b}(\hat{\mathbb C})\cong\mathrm{PSL}(2,\mathbb C)
+  \cong\mathrm{SO}^+(3,1)$ (Penrose \& Rindler, \emph{Spinors and Space-time}, Vol.~1, \S1.2--1.4), the
+  celestial sphere of null directions via stereographic projection. This gives the self-consistency loop a
+  spacetime meaning --- the carrier clock $z\mapsto iz$ is an elliptic $\mathrm{PSL}(2,\mathbb C)$ rotation
+  (\vref{v180}) and the RP$\to$OS causal cone is the same Lorentz structure --- so ``M\"obius origin of $\pi$''
+  and ``one Lorentzian cone'' are two faces of one boundary $\mathrm{PSL}(2,\mathbb C)$. A foundation citation,
+  not a new claim ($\pi$ stays primitive).
+\end{itemize}
+
+\subsection*{2026-06-15 (archive integration \#3: axion coupling $g_{a\gamma\gamma}=-4c_3$ + retired small-angle reading)}
+\begin{itemize}
+\item \textbf{Haloscope coupling tied to $c_3$ (\texttt{tfpt\_4\_frontier}, \mC).} Made explicit: in the
+  determinant-line normalization the axion--photon anomaly coefficient is $g_{a\gamma\gamma}=-4c_3=-1/(2\pi)$
+  ($y^2=16c_3^2=1/(4\pi^2)\approx0.0253$), so the haloscope $F\tilde F$ coupling is set by the \emph{same}
+  $c_3$ that fixes $\alpha$ and $\beta_{\mathrm{rad}}=\varphi_0/4\pi$ --- a \mC\ structural relation (the
+  coefficient, not a parameter-free physical $g_{a\gamma\gamma}$). The earlier small-angle
+  $\theta_i=\varphi_0$ reading (old determinant-line note, a much higher axion mass) is \emph{superseded} by
+  the closed near-hilltop $\theta_i=\pi(1-\varphi_{\mathrm{seam}})=170.4^\circ$, recorded as a retired reading
+  and guarded by \vref{v188} (a new sentinel forbids that stale axion mass from re-entering the active docs).
+\end{itemize}
+
+\subsection*{2026-06-15 (archive integration \#2: the EHT achromatic polarization intercept --- v203)}
+\begin{itemize}
+\item \textbf{\texttt{HOR.EHT.01} (\vref{v203}, \mE/\mC/\mX).} The surviving core of the old UFE/black-hole
+  notes (\emph{not} the RN-type metric --- superseded by the Nariai/seam$=$horizon readouts
+  \vref{v101}--\vref{v104}/\vref{v190}; only the polarization signature survives): a local achromatic
+  polarization-rotation intercept around a horizon-scale black hole,
+  $\beta_{\mathrm{BH}}(r)=16c_3^4\,Q_e^{\mathrm{eff}}Q_m^{\mathrm{eff}}/r^2$. The coupling
+  $16c_3^4=1/(256\pi^4)=\delta_{\mathrm{top}}/3$ is \emph{exact} (\mE, Wolfram-mirrored) --- the \emph{same}
+  top-form coefficient $\delta_{\mathrm{top}}=48c_3^4$ that fixes the $\alpha$-kernel precision-zone
+  correction, one row from the cosmic-birefringence seed $\beta_{\mathrm{rad}}=\varphi_0/4\pi$. TFPT fixes the
+  $1/r^2$ shape, achromaticity and sign-flip (\mC); the amplitude $Q_eQ_m$ is an MHD/GR weight, never a
+  pixel prediction. \textbf{Dated kill test \mX}: the residual intercept must pass three nulls (frequency,
+  spatial $1/r^2$, sign-flip) after honest GRMHD subtraction. Integrated into \texttt{tfpt\_horizon\_readouts}
+  (new EHT section), the ledger, registry, Wolfram ($243/243$), and the website (\texttt{predictions.ts}).
+  Suite $202$ modules.
+\end{itemize}
+
+\subsection*{2026-06-15 (archive integration \#1: the rare kaon sector $K\to\pi\nu\bar\nu$ --- v202)}
+\begin{itemize}
+\item \textbf{\texttt{FR.RAREKAON.01} (\vref{v202}, \mC).} The closed TFPT CKM point ($s_{12}{=}\lambda_C$,
+  $s_{23}{=}\varphi_0/(1{+}\lambda_C){=}|V_{cb}|$, $s_{13}{=}\lambda_C^3/3$, $\delta{=}\pi/3{+}3\lambda_C^2{=}1.19823$
+  rad; \vref{v18}/\vref{v88}, no flavor fit) feeds the cleanest FCNC probe. With standard external
+  short-distance input (Brod--Gorbahn--Stamou $X_t,P_c,\kappa_\pm$) it gives
+  $\mathrm{BR}(K^+\!\to\pi^+\nu\bar\nu)=9.45\times10^{-11}$ and $\mathrm{BR}(K_L\to\pi^0\nu\bar\nu)=3.33\times10^{-11}$
+  --- a \mC\ downstream flavor readout, \emph{not} a compiler power (the SD functions are external). Recomputed
+  from the \emph{current} CKM point (an earlier archive scaffold quoted $\mathrm{BR}(K_L)=3.47\times10^{-11}$
+  from an $\Im(\lambda_t)/\lambda^5$ slip, corrected here). Grossman--Nir ratio $0.352\ll4.3$; NA62
+  $(13.0^{+3.3}_{-3.0})\times10^{-11}$ is $\sim1.2\sigma$ above. \textbf{Dated kill test \mX}: a stable NA62
+  $\mathrm{BR}(K^+)$ outside $[7,12]\times10^{-11}$, or a KOTO-II $\mathrm{BR}(K_L)$ off the GN point, breaks the
+  flavor bridge (core untouched). Integrated into \texttt{tfpt\_2\_standard\_model} (\S rare kaon), the ledger,
+  \vref{v187} guard (new \texttt{FR.RAREKAON.} family), registry, and the website (\texttt{predictions.ts}).
+  Python-only. Suite $201$ modules.
+\end{itemize}
+
+\subsection*{2026-06-15 (bedrock: the $\omega\circ\rho=\omega$ residual reduced once more --- v201)}
+\begin{itemize}
+\item \textbf{\texttt{QGEO.SUBPRIN.01} (\vref{v201}, \mE/\mO).} The \vref{v199} bedrock residual --- ``the
+  bounded sub-principal symbol of the raw seam DtN has no off-character (mod 4) matrix elements'' --- is
+  reduced one genuine step further: block-diagonality is \emph{not} an independent postulate. Writing the
+  DtN as $\Lambda=|k|+M_f$ with $M_f$ the bounded sub-principal piece $=$ multiplication by a curvature
+  $f(\theta)$ (standard Steklov structure), $M_f$ is $\mu_4$-character-block-diagonal iff $f$ is
+  $\Z_4$-invariant (\mE; principal $|k|$ already commutes, \vref{v198}); and a $\mu_4$-mark sum
+  $f=\sum_{j=0}^3 g(\theta-2\pi j/4)$ has $f_m=4g_m[m\equiv0\bmod4]$ for any profile $g$, hence is
+  automatically $\Z_4$-invariant (\mE). So the $\mu_4$-mark orbit (forced by \vref{v195}) \emph{forces} the
+  sub-principal symbol block-diagonal; $3$ marks ($\Z_3$) and $4$ generic marks break it (negative
+  controls). The residual collapses to ``the DtN sub-principal symbol is mark-local (seam flat away from the
+  $\mu_4$ marks $=$ conformal deck, \vref{v177})'', structurally definitional --- the narrowest form yet of
+  \texttt{QGEO.SYM.01}, \mO. Registered in \texttt{run\_all.py}, the ledger, \texttt{tfpt\_research\_contracts},
+  \texttt{origin\_theory}; Wolfram-mirrored (the mark-sum Fourier identity is exact; extension now
+  $242/242$). Suite $200$ modules.
+\end{itemize}
+
+\subsection*{2026-06-15 (F\_transfer workshop: the axion relic solver --- an honest over-production tension)}
+\begin{itemize}
+\item \textbf{Axion relic solver (\texttt{experiments/ftransfer/axion\_relic/relic\_solver.py}, \mC).} The
+  first real $F_{\mathrm{transfer}}$ pipeline computation (work package C / review \S6.2): a standard
+  misalignment relic with a numerically-computed anharmonic factor $F(\theta_i)\approx4$ at the hilltop.
+  Honest finding: at the \emph{predicted} $\theta_i\approx170^\circ$ the estimate \emph{over}-produces dark
+  matter, $\Omega_a h^2\sim0.6$--$2.3$ (robustly $>0.12$), because the large $\theta_i^2\approx8.8$ times $F$
+  overshoots. So the determinant-line axion as the \emph{dominant} DM is in \emph{mild tension} (it would
+  prefer $\theta_i\sim120$--$130^\circ$ or extra dilution) --- this \emph{refines} \vref{v185}'s optimistic
+  ``can be all-DM'' toward an over-production tension. The near-hilltop regime is O(1)-uncertain, so a full
+  finite-$T$ solve decides; over-production kills only the axion-as-dominant-DM \emph{branch}, not the
+  compiler. Reflected in \texttt{tfpt\_4\_frontier} (dark-matter section) and the \vref{v185} docstring;
+  experiments-only, not a suite/ledger claim. No refitted exponents; $\theta_i=\pi(1-\varphi_{\mathrm{seam}})$
+  only.
+\item \textbf{Full finite-$T$ solve confirms it (\texttt{axion\_relic/full\_finiteT\_solve.py}).} A converged
+  nonlinear misalignment solve ($\theta''+(3+\mathrm{d}\ln H/\mathrm{d}N)\theta'+(m_a(T)/H)^2\sin\theta=0$,
+  lattice $\chi(T)\propto T^{-8.16}$, realistic $g_*(T)$; normalised so $\theta_i{=}1\to\Omega_a h^2\approx0.03$,
+  the standard value) gives $\Omega_a h^2\approx0.66$ at the predicted $\theta_i\approx170^\circ$ ---
+  $\sim$5.5$\times$ above $\Omega_{\mathrm{DM}}=0.12$, reached only at $\theta_i\approx106^\circ$. The
+  over-production is thus \emph{confirmed} (not the optimistic ``all-DM''); \texttt{tfpt\_4\_frontier},
+  \vref{v185} docstring and the website updated accordingly. Stays \mC; kills only the
+  axion-as-dominant-DM branch.
+\end{itemize}
+
+\subsection*{2026-06-14 (work packages A+B: attacking $\omega\circ\rho=\omega$ + the variational scan --- v199, v200)}
+\begin{itemize}
+\item \textbf{\texttt{v199\_seam\_state\_invariance.py} \mE/\mO\ (claim \texttt{QGEO.STATE.01}, work package A).}
+  Attacking $\omega\circ\rho=\omega$ directly on the \emph{raw} seam. (1) \mE\ the setup is non-circular:
+  $\rho$ is the Coxeter element of $W(A_3)=S_4$ ($\rho^4=1$, \vref{v117}), an automorphism of the raw CAR
+  algebra (16 Majoranas) --- both carrier-side, no seam geometry. (2) \mE\ for a quasi-free RP state
+  $C_\Sigma=\tfrac12(1{+}\operatorname{sgn}H_1)$, so $\omega\circ\rho=\omega\Leftrightarrow[\rho,H_1]=0$.
+  (3) \mE\ $[\rho,H_1]=0\Leftrightarrow H_1$ is block-diagonal in the four $\mu_4$-character classes
+  $\{n{=}r\bmod4\}$ (verified). (4) \mO\ the residual is sharpened to ``the bounded sub-principal symbol has
+  no off-character matrix elements'' --- a bounded, finite-character condition, not a diffuse geometry; not
+  a closure. Cited in \texttt{tfpt\_research\_contracts}; Wolfram-mirrored.
+\item \textbf{\texttt{v200\_seam\_variational\_scan.py} \mC/\mO\ (claim \texttt{QGEO.VARI.02}, work package B).}
+  The discretised variational test: with the clock angle free, $E_{\mathrm{fail}}(\theta)$ has its unique
+  minimum at $\theta=\pi/2$ (the $\mu_4$ clock $z\mapsto iz$) --- order-4 \emph{and} the three distinct
+  characters $i,-1,-i$ = the $(1,2,3)$ grading; decoys ($0,\pi,\pi/3,2\pi/3$) all lose. A numerical sign
+  that the variational principle selects $\mu_4$; the full operator-valued minimisation stays the
+  \vref{v199} residual \mO. Cited in \texttt{tfpt\_research\_contracts}.
+\item \emph{Also (this pass, \texttt{experiments/} only, not the ledger): the $F_{\mathrm{transfer}}$
+  four-pipeline scaffold (\texttt{experiments/ftransfer/}) with one CONTRACT per interface, and confirmation
+  that the FRB preregistration (\texttt{frb\_tfpt\_v1.yaml}) and its status semantics already exist.}
+  Suite now 199 modules, highest ID \texttt{v200}; Wolfram extension $241/241$.
+\end{itemize}
+
+\subsection*{2026-06-14 (cracking the bedrock to a state-invariance: principal symbol $+$ Tomita--Takesaki --- v198)}
+\begin{itemize}
+\item \textbf{\texttt{v198\_modular\_commutator\_reduction.py} \mO\ (claim \texttt{QGEO.MODULAR.01}).} The
+  decisive crack on the last residual. (1)~\mE\ the DtN principal symbol
+  $|k|=\sqrt{-\partial_\theta^2}=\mathrm{diag}(|n|)$ and the clock $\rho{:}z\mapsto iz=\mathrm{diag}(i^n)$ are
+  both diagonal in the Fourier basis, so $[\rho,|k|]=0$ \emph{exactly} on all of $L^2$ (verified on 33
+  modes) --- the leading-order commutation is free on the whole boundary, never the open part. (2)~\mE\ by
+  Tomita--Takesaki the modular operator is intrinsic to $(M,\Omega)$, so a state-preserving symmetry
+  ($\rho\Omega=\Omega$) commutes with $\log\Delta\sim\Lambda_\Sigma$: hence $[\rho,\Lambda_\Sigma]=0$
+  \emph{follows from} $\omega\circ\rho=\omega$, using only the state $+$ reflection (RP) and \emph{no}
+  conformal covariance --- which \textbf{removes the v194 Bisognano--Wichmann circularity worry}. (3)~\mE\
+  the finite $H^1$ block is already $\mu_4$-invariant (\vref{v177}). So the entire residual collapses to the
+  single \emph{state-invariance} ``the raw quasi-free seam state is $\mu_4$-invariant''
+  ($\omega\circ\rho=\omega$ $\Leftarrow$ the Gaussian bulk measure is deck-invariant) --- the
+  maximally-operational, non-circular form of \texttt{QGEO.SYM.01}, \mO. \emph{Not} a full closure (a
+  foundational symmetry cannot be derived from nothing, like $c=\text{const}$), but the sharpest falsifiable
+  form, with the circularity gone. Cited in \texttt{tfpt\_research\_contracts}; \texttt{OpenGates} updated.
+  Suite now 197 modules, highest ID \texttt{v198}; Wolfram extension $240/240$.
+\end{itemize}
+
+\subsection*{2026-06-14 (three review levers: Marks-via-Lefschetz, E\_fail functional, RR$\to$D5 --- v195--v197)}
+\begin{itemize}
+\item \textbf{\texttt{v195\_marks\_lefschetz\_character.py} \mE/\mO\ (claim \texttt{QGEO.MARKS.02}).} The four
+  seam marks are \emph{forced} (not posited): $\rho{:}z\mapsto iz$ fixes only $\{0,\infty\}$, $H^1=
+  \chi_1{\oplus}\chi_2{\oplus}\chi_3$ (the $A_3$ exponents, $\operatorname{Tr}(\rho|H^1)=i{+}i^2{+}i^3={-}1$)
+  has no trivial component $\Rightarrow$ no puncture at a fixed point, and $\operatorname{rank}H^1=n{-}1=3
+  \Rightarrow n=4 \Rightarrow$ a single free $\mu_4$ orbit (cross-ratio $2$). So \textsc{Marks} reduces from
+  the geometric posit ``$D_4$ marks'' to the milder premise ``$H^1$ carries the $A_3$-exponent rep'' ---
+  less circular, still \mO. Cited in \texttt{tfpt\_research\_contracts}.
+\item \textbf{\texttt{v196\_seam\_energy\_functional.py} \mE/\mO\ (claim \texttt{QGEO.VARI.01}).} The
+  failure functional $E_{\mathrm{fail}}=\|[\rho,\Lambda_\Sigma]\|^2_{HS}+\|\rho^4{-}1\|^2+\|\Theta\rho\Theta-\rho^{-1}\|^2$,
+  zero locus $=$ the \texttt{QGEO.SYM.01} conditions; on the finite $H^1$ block it vanishes at the $\mu_4$
+  config \mE\ and is $>0$ for any $\mu_4$-breaking perturbation, so $\mu_4$ is a true minimiser. The
+  full-operator minimisation is the \vref{v194} Bisognano--Wichmann residual --- a concrete discretisable
+  \emph{target} on the open bedrock, \mO. Cited in \texttt{tfpt\_research\_contracts}.
+\item \textbf{\texttt{v197\_rr\_carrier\_clifford\_d5.py} \mE/\mC\ (claim \texttt{ARCH.RRCAR.02}).} Hardens
+  the Riemann--Roch carrier from $g_{\mathrm{car}}$ to $D_5$ itself: $\Lambda^{\mathrm{even}}(C_{\mathrm{car}})
+  =\binom50{+}\binom52{+}\binom54=16=2^{g_{\mathrm{car}}-1}=\dim S^+$, the $\mathfrak{so}(10)=D_5$
+  half-spinor --- so $D_5$ is the Clifford spinor of the $5$-dim mode space, closing $\mu_4{\to}g_{\mathrm{car}}{\to}D_5$.
+  \mE\ arithmetic, \mC\ identification (as \vref{v189}). Cited in \texttt{origin\_theory}.
+\item All three are validated external-review levers (the axion-hilltop ``$\pi-3\phi_0$'' proposal was
+  \emph{rejected} as a $\pi\approx3$ coincidence, not built). Suite now 196 modules, highest ID
+  \texttt{v197}; Wolfram extension $239/239$.
+\end{itemize}
+
+\subsection*{2026-06-14 (subclaim 2 of ENERGY.02 tackled: raw-seam-DtN RP-definability --- v194)}
+\begin{itemize}
+\item \textbf{\texttt{v194\_raw\_seam\_dtn\_rp.py} \mO\ (claim \texttt{QGEO.DTN.01}).} The next hard lever ---
+  ``is the raw RP-seam DtN definable from RP data alone?'' (sub-claim 2 of \texttt{QGEO.ENERGY.02}) --- was
+  tackled, and the honest result is a \emph{reduction}, not a closure. (1)~\mE\ the commutator
+  $[\rho,\Lambda_\Sigma]=0$ closes on the finite cohomology $H^1$ ($\rho^*w_k=i^k w_k$, distinct $\mu_4$
+  characters; \vref{v177}). (2)~\mE\ the \emph{hinge} is met: the DtN/transfer operator is RP-canonical
+  (Osterwalder--Schrader, \vref{v54}) on a quasi-free seam state (\vref{v155}), so $\Lambda_\Sigma$ is
+  RP-definable without naming $\PP^1\!\setminus\!\mu_4$. (3)~\mO\ the residual relocates: the full-$L^2$
+  commutation $\Leftrightarrow$ Bisognano--Wichmann geometric modular flow of the quasi-free seam state
+  (which must be intrinsic, else it re-circulates). So \texttt{QGEO.SYM.01} reduces from a definitional
+  postulate to ``intrinsic BW geometric modular covariance'' --- one notch sharper, still \mO; the last
+  structural fog point sharpens, it does \emph{not} close to \mE. Cited in
+  \texttt{tfpt\_research\_contracts}; \texttt{OpenGates} updated. Suite now 193 modules, highest ID
+  \texttt{v194}.
+\end{itemize}
+
+\subsection*{2026-06-14 (QGEO.ENERGY.02 energy-commutator + QFT-wording hardening --- v193)}
+\begin{itemize}
+\item \textbf{\texttt{v193\_qgeo\_energy\_commutator.py} \mO\ (claim \texttt{QGEO.ENERGY.02}).} The
+  non-circular sharpening of \texttt{QGEO.ENERGY.01}: the energy commutator
+  $[\rho,\Lambda_\Sigma]=0$ on the rank-$8$ Calder\'on polarisation, with three sub-claims --- (1) \mE\
+  $\rho$ is carrier-defined (Coxeter of $W(A_3){=}S_4$, \vref{v117}), not imported from the seam; (2) \mO\
+  the non-circularity hinge: $\Lambda_\Sigma$ must be the \emph{raw} RP-seam DtN, not the $\mu_4$ normal
+  form; (3) \mE\ the commutator forces the $(1,2,3)$ grading on $H^1$ (\texttt{QGEO.COHOM.01}). Exact \mE\
+  rider (Wolfram-mirrored): the induced EH coefficient $k=(\ln m)/(12\pi)$ (\vref{v150}) reproduces
+  $c_3/2$ iff $\ln m=q(A_3)=\tfrac34$ (\emph{family}), not $q(D_5)=\tfrac54$ (carrier, off by $5/3$) ---
+  gravity is family-geometry-induced. A \emph{proof target}; if sub-claim (2) holds, \texttt{QGEO.SYM.01}
+  becomes an energy-rigidity theorem. Cited in \texttt{tfpt\_research\_contracts}. Suite now 192 modules,
+  highest ID \texttt{v193}; Wolfram extension $236/236$.
+\item \textbf{QFT-wording hardening (review point 7).} \texttt{tfpt\_2\_standard\_model} \S(4) was
+  retitled to ``Constructive QFT closure of the admissible physical sector'', and its standalone
+  opening over-claim replaced by an explicitly scoped sentence (the unprojected ambient metric measure is
+  not constructed; $G_{\mathrm{metric}}$ frontier). The two superseded standalone phrasings were added to
+  the \texttt{v188} prose guard so a frozen release cannot re-introduce them.
+\end{itemize}
+
+\subsection*{2026-06-14 (geometry round: Riemann-Roch carrier, Nariai bound, branch line, energy clock --- v189--v192)}
+\begin{itemize}
+\item \textbf{\texttt{v189\_riemann\_roch\_carrier.py} \mE/\mC\ (claim \texttt{ARCH.RRCAR.01}).} The pair
+  $(\gcar,\Nfam)=(5,3)$ are the two canonical invariants of \emph{one} object, the four-point seam divisor
+  $D=\mu_4$ on $\PP^1$: the cycle side $\operatorname{rank}H_1(\PP^1\!\setminus\!\mu_4)=\deg{-}1=3=\Nfam$
+  (already \texttt{QGEO.COHOM.01}) and the function side $h^0(\PP^1,\mathcal O(\mu_4))=\deg{+}1=5=\gcar$,
+  matched by $\operatorname{rank}(D_5)=5$. The carrier-as-mode-space reading is \mC\ (geometric, does not
+  displace the over-determined $\gcar=5$). Cited in \texttt{origin\_theory}; Wolfram-mirrored.
+\item \textbf{\texttt{v190\_nariai\_entropy\_bound.py} \mE\ (claim \texttt{HOR.NARIAI.02}).} A
+  variation-free one-line proof of the SdS entropy floor: $3(x^2{+}1)-2\Phi_3(x)=(x{-}1)^2\ge0$, so
+  $S_{\mathrm{tot}}\ge\tfrac23 S_{dS}$ with equality iff $x=1$ (the Nariai merge). Cited in
+  \texttt{tfpt\_horizon\_readouts}; Wolfram-mirrored.
+\item \textbf{\texttt{v191\_universal\_branch\_line.py} \mC\ (claim \texttt{HOR.BRANCHLINE.01}).} The affine
+  map $q=\tfrac72+\tfrac{\Nfam^2}{2}m$ carries the SdS branch points ${\pm}1/\Nfam$ onto the flavor labels
+  $\{2,5\}$. \emph{Honestly typed \mC} --- an exact \emph{relabeling}, not a theorem (a decoy pair $\{3,4\}$
+  admits an equally exact map; the shared content is the known $2/3$ ramification). Cited in
+  \texttt{tfpt\_horizon\_readouts}; Wolfram-mirrored.
+\item \textbf{\texttt{v192\_qgeo\_energy\_clock.py} \mO\ (claim \texttt{QGEO.ENERGY.01}).} An
+  operator-checkable restatement of the bedrock: $\rho^*\Lambda_\Sigma\rho=\Lambda_\Sigma$ (the clock
+  preserves the DtN energy form). \emph{Honestly typed:} it \emph{relocates} \texttt{QGEO.SYM.01} to a more
+  falsifiable surface but does \emph{not} eliminate it (plausibly equivalent unless $\rho$ is independently
+  defined and the invariance proven). Cited in \texttt{tfpt\_research\_contracts}. Suite now 191 modules,
+  highest ID \texttt{v192} (v186 skipped).
+\item \emph{All four are validated external-review proposals (\texttt{problem\_b}); each is built with the
+  honest typing determined on review --- the branch line is recorded as an alignment, not a theorem, and
+  the energy clock as a relocation, not a closure.}
+\end{itemize}
+
+\subsection*{2026-06-14 (Zenodo release 5.1 (rev 120) --- F\_transfer firewall, v184--v188)}
+\begin{itemize}
+\item \textbf{Published to Zenodo.} Version \texttt{5.1 (rev 120)} of the ten-PDF document set was
+  published as a new version of the TFPT deposit --- record \texttt{20687564},
+  DOI \texttt{10.5281/zenodo.20687564}. This version carries the F\_transfer-firewall round
+  (\vref{v184}--\vref{v188}): the honest $\eta_B$ anchored-Boltzmann test (sharper scenario, not a
+  closure), the axion hilltop-relic typing, the ledger \texttt{v187} and prose \texttt{v188} guards, and
+  the Route~B/Koide/dark-matter wording fixes plus the P1/P2-vs-\texttt{QGEO.SYM.01} two-layer
+  clarification. The uploader's \texttt{DEFAULT\_RECORD\_ID} was advanced to the new record for the next
+  release. Suite 187 modules (highest ID \texttt{v188}; v186 skipped). \texttt{run\_all.py} green, audit
+  clean, website built.
+\end{itemize}
+
+\subsection*{2026-06-14 (F\_transfer round: eta\_B honest test v184, axion relic v185, discipline guard v187)}
+\begin{itemize}
+\item \textbf{\texttt{v184\_etaB\_anchored\_boltzmann.py} \mC\ (claim \texttt{FR.ETAB.03}).} An honest
+  test of the external-review $\eta_B$ proposal ($M_1=M_R\varphi_0^4$, $\tilde m_1=m_3/A_\Lambda$).
+  Firewall verdict: \emph{sharper scenario, not a closure}. The washout anchors plausibly
+  ($\tilde m_1=m_3/10\approx5$ meV, $A_\Lambda=10$ atom, in the strong-washout window) \mC; but $M_1$
+  does \emph{not} --- $M_R$ is the seesaw scale $\sim v^2/m_3$ and the nearest clean TFPT powers of
+  $\bar M_{\mathrm{Pl}}$ both miss it ($c_3$-/$\varphi_0$-powers off ${\sim}75\%$/${\sim}40\%$), so
+  $M_1=M_R\varphi_0^4$ merely relocates the free input. $\eta_B$ stays \mC, the route viable but with one
+  (not zero) free input. Cited in \texttt{tfpt\_4\_frontier}.
+\item \textbf{\texttt{v185\_axion\_relic\_solver.py} \mC\ (claim \texttt{FR.DM.03}).} Honest misalignment
+  estimate: the determinant-line axion $f_a=M_{\mathrm{scal}}/128\approx2.39{\times}10^{11}$ GeV
+  ($m_a\approx23.8\,\mu$eV) CAN be all dark matter, but the harmonic misalignment under-produces
+  (${\sim}21\%$ at $\theta\sim O(1)$), so the $\theta_i\approx170^\circ$ hilltop anharmonic enhancement is
+  \emph{required} --- where the relic is exponentially sensitive. Hence a \mC\ scenario, not a sharp
+  prediction; the relic contract is a kill test for the BRANCH, not the theory. Cited in
+  \texttt{tfpt\_4\_frontier}.
+\item \textbf{\texttt{v187\_ftransfer\_laws.py} \mE\ (claim \texttt{FR.TRANSFER.01}).} A CI-style
+  firewall guard: the four continuous-transfer frontier observables (Koide, $\eta_B$, axion,
+  $m_p/m_e$) are read from the ledger and required to carry a \mC/\mO\ marker --- never a primitive
+  \mE\ compiler prediction (exact sub-parts like the Koide $53/54$ factor or $b_3=-7$ may be \mE, the
+  physical prediction never is). Records the four interfaces $F_{\mathrm{pole}}/F_{\mathrm{Boltzmann}}/
+  F_{\mathrm{relic}}/F_{\mathrm{QCD}}$; prevents any future edit from quietly promoting a frontier
+  number to a closed output. Cited in \texttt{tfpt\_4\_frontier}.
+\item \textbf{\texttt{v188\_frontier\_wording\_guard.py} \mE\ (claim \texttt{AUDIT.WORDING.01}).} A prose
+  sentinel (no new physics): \texttt{v187} protects the ledger \emph{typing}, this guard protects the
+  \emph{prose}. It scans the 10 active documents and forbids five stale phrasings whose semantics earlier
+  rounds superseded (the old \mE-typed Route~B leptogenesis claim and its heavy-scale wording $\to$ v184
+  \mC; the old ``open relic scale'' dark-matter line $\to$ v185; the old ``near, not exact'' Koide line
+  $\to$ v183; and the module-count/ID conflation), so a frozen Zenodo release can never re-introduce
+  wording that was true yesterday and is half-true today. The same pass updated the
+  \texttt{tfpt\_4\_frontier} Route~B (to \mC), the Koide and dark-matter summary lines, and added the
+  P1/P2-vs-\texttt{QGEO.SYM.01} two-layer clarification to the introduction. Suite now has \textbf{187
+  modules}, highest verification ID \texttt{v188} (v186 was intentionally skipped as redundant ---
+  $m_p/m_e$ is already typed \mO\ as a QCD matching contract, \texttt{QCD.LAMBDA.01}).
+\item \emph{Review framing points (P1/P2 as projections of the seam-deck postulate, $v_{\mathrm{geo}}$
+  as unit gauge, $G_{\mathrm{net}}$ a corollary of \texttt{QGEO.SYM.01}, grammar tuning $=$ data) were
+  validated as already implemented in the prior rounds; $m_p/m_e$ is already typed \mO\ as a QCD
+  matching contract (\texttt{QCD.LAMBDA.01}), so no redundant module was added.}
+\end{itemize}
+

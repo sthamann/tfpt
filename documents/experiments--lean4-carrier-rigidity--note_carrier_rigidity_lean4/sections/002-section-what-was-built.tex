@@ -1,0 +1,357 @@
+\section{What Was Built}
+\label{sec:built}
+% ---------------------------------------------------------------- %
+
+Twenty-seven Lean modules under
+\texttt{experiments/lean4-carrier-rigidity/TfptCarrier/}:
+
+\begin{center}
+\footnotesize
+\begin{tabularx}{0.98\textwidth}{@{}p{0.28\textwidth}p{0.08\textwidth}Y@{}}
+\toprule
+\textbf{Module} & \textbf{Lines} & \textbf{Content} \\
+\midrule
+\texttt{Polarization.lean}        & $\sim150$ & Orthogonal-idempotent algebra; $\mathrm{sixY}^2-\mathrm{sixY}-6=0$. \\
+\texttt{InvolutionProjectors.lean}& $\sim200$ & $\varepsilon^2=\mathbf 1 \Rightarrow P_-, P_+$ complete orthogonal idempotents. \\
+\texttt{CalderonInterface.lean}   & $\sim110$ & Paper~1 \texttt{CalderonCertificate}: explicit interface wrapper feeding \texttt{CarrierInvolution}. \\
+\texttt{CalderonProjector.lean}   & $\sim125$ & Structural derivation: idempotent $\pi^2=\pi$ $\Rightarrow$ $\varepsilon := 2\pi-1$ satisfies $\varepsilon^2 = 1$. \\
+\texttt{BoundaryPolarization.lean}& $\sim200$ & v10 upstream: $H = H_+ \oplus H_-$ produces an idempotent endomorphism on $H$ via Mathlib's \texttt{IsCompl.projection}; feeds \texttt{CalderonProjector}. \\
+\texttt{MathlibBridge.lean}       & $\sim55$  & \texttt{Polarization} $\leftrightarrow$ \texttt{CompleteOrthogonalIdempotents}. \\
+\texttt{LatticeRigidityGeneral.lean}&$\sim200$& General $(m,n)$ primitive rigidity; SM corollary $(3,2)\to(-2,3)$. \\
+\texttt{Rigidity.lean}            & $\sim40$  & SM-case wrapper. \\
+\texttt{OrientedDeterminantCarrier.lean} & $\sim100$ & \texttt{PrimitiveOrientedDeterminantCarrier (m n)}: trace-zero + orientation + primitivity bundled. \\
+\texttt{TraceProjection.lean}     & $\sim100$ & $\tr(aP_-+bP_+) = a\dim E_- + b\dim E_+$; trace-zero corollary. \\
+\texttt{DeterminantCharacter.lean}& $\sim130$ & $\det T(\lambda) = \lambda^{m q_-+n q_+}$; universal-$\lambda$ and at-two headlines. \\
+\texttt{HiggsIndexShadow.lean}    & $\sim125$ & Stage-A \texttt{HiggsIndexCertificate}; algebraic shadow has dim 2. \\
+\texttt{HiggsTopForm.lean}        & $\sim210$ & Stage-B \texttt{HiggsTopForm}: $E_+ \simeq$ space of $\alpha X + \beta Y$ (degree-1 in two formal vars), $\dim = 2$ derived. \\
+\texttt{HiggsSchemeCohomologyShadow.lean} & $\sim200$ & v10 upstream: \texttt{DegreeOneTwoVarForm}\,$K$ $\simeq_{\ell K}$ \texttt{MvPolynomial.homogeneousSubmodule}\,(\texttt{Fin}\,2)\,$K$\,1 ($= K[X_0, X_1]_1$, Proj-side $H^0$). \\
+\texttt{YukawaRank.lean}          & $\sim135$ & Stage-A \texttt{YukawaRankCertificate} (rank witness, $E_- \simeq K^3$). \\
+\texttt{YukawaTopForm.lean}       & $\sim195$ & Stage-B \texttt{YukawaTopForm} ($\Lambda^3 E_- \simeq K$) + rank-3 theorem + characterisation. \\
+\texttt{YukawaPrimitive.lean}     & $\sim215$ & Stage-C \texttt{PrimitiveIndecomposableYukawaCoupling} ($E_- \simeq (\Lambda^2 E_-)^*$) + rank-3 theorem + characterisation. \\
+\texttt{YukawaTrilinearForm.lean} & $\sim210$ & Stage-D \texttt{YukawaTrilinearForm} ($\omega : \Lambda^3 E_- \to K$) + operational \texttt{ContractionInjective}/\texttt{ContractionSurjective} predicates + constructed contraction + rank-3 theorem (under \texttt{Nontrivial}\,$E$) + unconditional $0\lor3$ transparency theorem. \\
+\texttt{YukawaStageDExistence.lean}& $\sim280$ & v10 Stage D backward: $\dim E = 3 \Rightarrow \exists\,\omega$ with CI $\wedge$ CS via $b.\texttt{det}$ + direct $3\times 3$ matrix-determinant computation. \\
+\texttt{BoundaryYukawaKernelInterface.lean}& $\sim120$ & v11 abstract typed target: \texttt{BoundaryYukawaKernel} packages $(\omega, \textrm{CI}, \textrm{CS}, \texttt{Nontrivial})$ with characterisation $\iff \dim E_- = 3$. \\
+\texttt{SeamWindingInterface.lean}& $\sim130$ & v11 abstract typed target: \texttt{SeamWindingData}\,$(m, n)$ packages the seam-class consequences (trace-zero, orientation, primitivity); bidirectional bridge to \texttt{PrimitiveOrientedDeterminantCarrier}. \\
+\texttt{CarrierData.lean}         & $\sim200$ & Bundled main theorems: pair, trace, polynomial, packet. \\
+\texttt{Hypercharge.lean}         & $\sim95$  & Concrete $5\times5$ model: $\tr Y=0$ and $6Y^2-Y-\mathbf 1 = \mathbf 0$. \\
+\texttt{Sanity.lean}              & $30$      & \texttt{\#eval} smoke tests. \\
+\texttt{AxiomCheck.lean}          & $80$      & \texttt{\#print axioms} on every headline theorem. \\
+\texttt{AuditCheck.lean}          & $80$      & \texttt{\#check} elaboration of every headline name. \\
+\texttt{AuditContract.lean}       & $\sim180$ & Signature-lock \texttt{example} patterns for every headline theorem (strict signature audit). \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Plus:
+\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
+\item \texttt{scripts/audit.sh} --- seven-check hard CI gate
+      (build / \texttt{sorry} / \texttt{axiom} /
+      \texttt{unsafe-opaque-partial} / axiom-print /
+      headline-\texttt{\#check} / signature-lock \texttt{example}).
+\item \texttt{lakefile.lean} pinning Lean~4.29.1 and Mathlib~v4.29.1.
+\end{itemize}
+
+% ---------------------------------------------------------------- %
+\section{Dependency Graph}
+\label{sec:graph}
+% ---------------------------------------------------------------- %
+
+Every node is a separately formalised Lean theorem; every arrow
+is a discharged proof obligation in \texttt{TfptCarrier}. Blue
+nodes are unconditional Lean theorems. Orange nodes are Stage-A
+structured hypotheses. Green nodes are the bundled conclusions.
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=8mm,
+    box/.style={rectangle, rounded corners=2pt, draw=tfptblue!65, fill=tfptblue!5,
+        align=center, text width=4.0cm, inner sep=4pt, font=\footnotesize\sffamily},
+    cert/.style={rectangle, rounded corners=2pt, draw=tfptorange!70!black, fill=tfptorange!8,
+        align=center, text width=4.0cm, inner sep=4pt, font=\footnotesize\sffamily},
+    bundle/.style={rectangle, rounded corners=2pt, draw=tfptgreen!70!black, fill=tfptgreen!7,
+        align=center, text width=4.8cm, inner sep=4pt, font=\footnotesize\sffamily},
+    arr/.style={-{Latex[length=2mm]}, thick, draw=tfptgray!85}
+]
+\node[box] (bndpol) {BoundaryPolarization (v10)\\$H = H_+ \oplus H_-$};
+\node[box, below=of bndpol] (calproj) {CalderonProjector (Paper 1, struct.)\\$\pi^2 = \pi$, $\varepsilon := 2\pi-1$};
+\node[cert, below=of calproj] (calderon) {CalderonCertificate (Paper 1, iface)\\$\varepsilon^2 = \mathbf 1$};
+\node[box, below=of calderon] (eps)    {Boundary involution\\$\varepsilon^2 = \mathbf 1$};
+\node[box, below=of eps] (proj)   {InvolutionProjectors\\$\Rightarrow P_-, P_+$ idempotent};
+\node[box, right=22mm of calproj] (higgstop) {HiggsTopForm (Stage B Higgs)\\$E_+ \simeq \alpha X{+}\beta Y$};
+\node[cert, below=of higgstop] (higgs) {HiggsIndexCertificate (Stage A)\\$\Rightarrow n = \dim E_+ = 2$};
+\node[box, below=of higgs]        (trilinear){YukawaTrilinearForm (Stage D)\\$\omega : \Lambda^3 E_- \to K$, NDeg+Prim};
+\node[box, below=of trilinear]    (primitive){YukawaPrimitive (Stage C)\\$E_- \simeq (\Lambda^2 E_-)^*$};
+\node[box, below=of primitive]    (topform){YukawaTopForm (Stage B)\\$\Lambda^3 E_- \simeq K$};
+\node[cert, below=of topform]     (yukawa) {YukawaRankCertificate (Stage A)\\$\Rightarrow m = \dim E_- = 3$};
+\node[box, below=of proj]         (trc)    {TraceProjection\\$\tr(aP_-+bP_+) = am+bn$};
+\node[box, below=of trc]          (det)    {DeterminantCharacter\\$\det T(\lambda)=1 \Rightarrow m q_-+n q_+=0$};
+\node[box, below=of det]          (lat)    {LatticeRigidityGeneral\\$+\,$primitive orient.\,$\Rightarrow (q_-,q_+)$};
+\node[bundle, right=12mm of lat]  (carrier){CarrierData\\$(-2,3),\ \tr Y=0,\ 6Y^2{-}Y{-}\mathbf 1=\mathbf 0$};
+\node[bundle, below=10mm of carrier] (hyp){Hypercharge ($5\times 5$ model)\\$Y = \mathrm{diag}(-\tfrac13,-\tfrac13,-\tfrac13,\tfrac12,\tfrac12)$};
+
+% Arrows: only the logically correct ones.
+\draw[arr] (bndpol) -- (calproj);      % v10: polarisation → idempotent
+\draw[arr] (calproj) -- (calderon);    % Paper 1 structural → interface
+\draw[arr] (calderon) -- (eps);
+\draw[arr] (eps) -- (proj);
+\draw[arr] (proj) -- (trc);
+\draw[arr] (higgstop) -- (higgs);      % Higgs Stage B → Stage A
+\draw[arr] (trilinear) -- (primitive); % Stage D → Stage C
+\draw[arr] (primitive) -- (topform);   % Stage C → Stage B
+\draw[arr] (topform) -- (yukawa);      % Stage B → Stage A
+\draw[arr] (higgs.south west) to[bend right=8] (trc.east);
+\draw[arr] (yukawa.west) to[bend right=8] (trc.east);
+\draw[arr] (trc) -- (carrier);
+\draw[arr] (det) -- (lat);
+\draw[arr] (lat) -- (carrier);
+\draw[arr] (proj.east) to[bend right=10] (carrier.west);
+\draw[arr] (carrier) -- (hyp);
+\end{tikzpicture}
+\end{center}
+
+\noindent
+Three things to note about the graph that the previous version
+got wrong, and one new feature:
+
+\begin{itemize}[leftmargin=1.6em, itemsep=2pt]
+\item \textbf{No \texttt{InvolutionProjectors} $\to$
+    \texttt{LatticeRigidityGeneral} arrow.} The projector
+    construction does not imply lattice rigidity; the two
+    branches are independent until they meet at
+    \texttt{CarrierData}.
+\item \textbf{The arrow runs \texttt{DeterminantCharacter} $\to$
+    \texttt{LatticeRigidityGeneral}, not the reverse.} The
+    determinant character produces the trace-zero equation
+    $m q_- + n q_+ = 0$; the rigidity theorem then upgrades it to
+    a unique pair when combined with the primitivity and sign
+    conditions.
+\item \textbf{No \texttt{HiggsIndexCertificate} $\to$
+    \texttt{YukawaRankCertificate} arrow.} The two certificates
+    discharge different ranks via independent mathematical
+    arguments. Both feed into \texttt{CarrierData} separately.
+\item \textbf{New in v4: \texttt{YukawaTopForm} $\to$
+    \texttt{YukawaRankCertificate} arrow.} The Yukawa input was
+    split into two layers. Stage B (\texttt{YukawaTopForm})
+    is the algebraic statement $\Lambda^3 E_- \simeq K$, which is
+    the precise Lean reading of TFPT Paper~2's "$\Lambda^3 E_- =
+    \det E_-$". The Stage A rank witness drops out as a corollary
+    via an arbitrary basis.
+\item \textbf{New in v5: \texttt{YukawaPrimitive} $\to$
+    \texttt{YukawaTopForm} arrow.} The Yukawa input is further
+    refined into a Stage C
+    \texttt{PrimitiveIndecomposableYukawaCoupling}: a
+    contraction iso $E_- \simeq (\Lambda^2 E_-)^*$ plus
+    non-triviality.
+\item \textbf{New in v6: \texttt{YukawaTrilinearForm} (Stage D)
+    $\to$ \texttt{YukawaPrimitive} arrow.} Stage D introduces an
+    alternating trilinear form $\omega : \Lambda^3 E_- \to K$ as
+    primary datum, together with two explicit operational
+    \texttt{Prop} predicates (\texttt{ContractionInjective} and
+    \texttt{ContractionSurjective} from v7 onwards, originally
+    \texttt{Nondegenerate} and \texttt{Primitive} in v6).
+    The contraction $C_\omega$ is \emph{constructed} from
+    $\omega$ (no longer data), and the iso conclusion of Stage C
+    becomes a Lean theorem under the two predicates and
+    \texttt{Nontrivial}\,$E_-$. This is the upstream-most layer
+    of the Yukawa tower; the rank-3 conclusion is now derived
+    from an alternating trilinear form together with two
+    structural predicates and non-triviality.
+\item \textbf{New in v6: \texttt{CalderonCertificate} $\to$
+    \texttt{CarrierInvolution} arrow.} The Paper 1 input is no
+    longer silently consumed: a \texttt{CalderonCertificate} is
+    a thin wrapper that names the Calder\'on-induced carrier
+    involution as a Lean datum, with a forgetful map into the
+    \texttt{InvolutionProjectors} chain.
+\item \textbf{New in v7: \texttt{AuditContract.lean} signature
+    locks.} Each headline theorem is used in an
+    \texttt{example : <exact intended type> := <theorem>}
+    pattern, detecting silent weakening of theorem statements
+    that \texttt{\#check} would miss.
+\item \textbf{New in v7:
+    \texttt{PrimitiveOrientedDeterminantCarrier (m n)}.}\ The
+    three-part TFPT carrier condition (trace-zero, orientation,
+    primitivity) is bundled as a single Lean structure, removing
+    the semantic-drift risk of an unstructured triple of
+    hypotheses.
+\item \textbf{New in v8: \texttt{CalderonProjector} $\to$
+    \texttt{CalderonCertificate} arrow.}\ The algebraic step
+    $\pi^2 = \pi \Rightarrow \varepsilon^2 = \mathbf 1$ (for
+    $\varepsilon := 2\pi - 1$) is now a Lean theorem, upgrading
+    the Calder\'on layer from documentary interface to a
+    structural algebraic derivation.
+\item \textbf{New in v8: \texttt{HiggsTopForm} $\to$
+    \texttt{HiggsIndexCertificate} arrow.}\ A Higgs Stage B
+    structure identifies $E_+$ with the algebraic shadow of
+    $H^0(\mathbb P^1, \mathcal O(1))$, namely
+    \texttt{DegreeOneTwoVarForm K}, and derives $\dim E_+ = 2$
+    from this polynomial-space iso rather than from a bare
+    rank witness.
+\item \textbf{New in v9: \texttt{finrank\_E\_eq\_zero\_or\_three}.}\
+    Unconditional Stage D transparency theorem: without
+    \texttt{Nontrivial}\,$E$ the operational predicates force
+    only $\dim E = 0 \lor \dim E = 3$, which is the precise
+    mathematical reason the rank-3 slogan must carry the
+    \texttt{Nontrivial}\,$E$ hypothesis at the use site.
+\item \textbf{New in v10: \texttt{BoundaryPolarization} $\to$
+    \texttt{CalderonProjector} arrow.}\ Any $H = H_+ \oplus H_-$
+    gives an idempotent endomorphism on $H$ via Mathlib's
+    \texttt{IsCompl.projection}. The Calder\'on input is now
+    derived from a polarisation datum (one step closer to
+    Paper 1's analytic source).
+\item \textbf{New in v10:
+    \texttt{HiggsSchemeCohomologyShadow} $\to$
+    \texttt{HiggsTopForm} arrow.}\ The Higgs Stage-B shadow is
+    pinned to Mathlib's
+    \texttt{MvPolynomial.homogeneousSubmodule (Fin 2) K 1},
+    i.e.\ the Proj-side degree-1 piece of $K[X_0, X_1]$.
+\item \textbf{New in v10: \texttt{YukawaStageDExistence}.}\
+    Stage D backward direction: $\dim E = 3 \Rightarrow
+    \exists\,\omega\;(\textrm{CI} \wedge \textrm{CS})$. The
+    Stage D characterisation
+    $\exists\,\omega \iff \dim E = 3$ now holds under
+    \texttt{Nontrivial}\,$E$.
+\end{itemize}
+
+% ---------------------------------------------------------------- %
+\section{The Headline Theorems}
+\label{sec:theorems}
+% ---------------------------------------------------------------- %
+
+We list the headline theorems by graph layer. Every name is
+elaborated by \texttt{TfptCarrier/AuditCheck.lean}.
+
+\subsection*{Layer 1 --- Polarization (algebraic core)}
+
+\begin{theorem}[\texttt{Polarization.sixY\_carrier\_polynomial}]
+Let $A$ be a ring with two orthogonal idempotents $P_-, P_+$
+summing to $\mathbf 1$. Then $\mathrm{sixY}:=-2 P_- + 3 P_+$
+satisfies
+$\mathrm{sixY}^2 - \mathrm{sixY} - 6 = \mathbf 0$.
+\end{theorem}
+
+\subsection*{Layer 0+ --- Calderón structural certificate (Paper 1)}
+
+\begin{theorem}[\texttt{CalderonProjector.eps\_sq}]
+Let $A$ be a ring with $2$ invertible and let
+$\pi \in A$ satisfy $\pi^2 = \pi$. Define
+$\varepsilon := 2\pi - 1$. Then $\varepsilon^2 = \mathbf 1$.
+\end{theorem}
+
+\begin{theorem}[\texttt{CalderonProjector.toCalderonCertificate}]
+Every \texttt{CalderonProjector} produces a
+\texttt{CalderonCertificate} (the Paper 1 interface).
+The Calder\'on entry point is now derived from a single
+algebraic hypothesis --- the existence of the
+boundary-spectral idempotent.
+\end{theorem}
+
+\subsection*{Layer 2 --- Involution to projectors}
+
+\begin{theorem}[\texttt{InvolutionProjectors.CarrierInvolution.toPolarization}]
+Let $\varepsilon$ be an element of a ring $A$ with $\varepsilon^2 = \mathbf 1$ and
+$2$ invertible in $A$. The spectral projectors $P_-, P_+$ defined
+by $P_\pm := (\mathbf 1\pm\varepsilon)\cdot\widehat 2$ form a
+\texttt{Polarization} of $A$. Each of the four polarization
+axioms is discharged directly from $\varepsilon^2 = \mathbf 1$.
+\end{theorem}
+
+\subsection*{Layer 3 --- General lattice rigidity}
+
+\begin{theorem}[\texttt{LatticeRigidityGeneral.primitive\_trace\_free\_pair\_general}]
+Let $m, n$ be positive integers and $q_-, q_+ \in \mathbb Z$ satisfy
+\[
+m q_- + n q_+ = 0,\qquad q_- < 0 < q_+,\qquad
+\gcd(|q_-|, q_+) = 1.
+\]
+Then
+$q_- = -n/\gcd(m,n)$ and $q_+ = m/\gcd(m,n)$.
+\end{theorem}
+
+\begin{corollary}[\texttt{Rigidity.unique\_carrier\_pair}]
+For $(m, n) = (3, 2)$ the same three hypotheses force
+$(q_-, q_+) = (-2, 3)$.
+\end{corollary}
+
+\subsection*{Layer 4 --- Structural trace}
+
+\begin{theorem}[\texttt{TraceProjection.trace\_linear\_combination\_of\_idempotents}]
+For any two idempotent endomorphisms $P_-, P_+$ of a finite-
+dimensional $K$-vector space $M$, and any $a, b \in K$,
+\[
+\tr_M(a\cdot P_- + b\cdot P_+)
+= a \cdot \dim_K(\operatorname{range} P_-)
++ b \cdot \dim_K(\operatorname{range} P_+).
+\]
+\end{theorem}
+
+\begin{corollary}[\texttt{TraceProjection.trace\_carrier\_Y\_eq\_zero}]
+With $a=-\tfrac13, b=\tfrac12$ and the rank discharges
+$\dim E_- = 3, \dim E_+ = 2$, the structural identity gives
+$\tr Y = 0$ for $Y = -\tfrac13 P_- + \tfrac12 P_+$.
+The hypothesis $[\texttt{CharZero K}]$ is genuinely used here.
+\end{corollary}
+
+\subsection*{Layer 5 --- Determinant character}
+
+\begin{theorem}[\texttt{DeterminantCharacter.det\_torusMatrix}]
+For nonzero $\lambda$ in a field $K$ and integer charges $q_-, q_+$,
+\[
+\det T(\lambda)
+= \lambda^{\,m \cdot q_- \,+\, n \cdot q_+},
+\quad
+T(\lambda) :=
+\mathrm{diag}\bigl(
+\underbrace{\lambda^{q_-},\ldots,\lambda^{q_-}}_{m},
+\underbrace{\lambda^{q_+},\ldots,\lambda^{q_+}}_{n}
+\bigr).
+\]
+\end{theorem}
+
+\begin{corollary}[\texttt{DeterminantCharacter.trace\_zero\_of\_det\_one\_forall\_rat}]
+If $\det T(\lambda) = 1$ for \emph{every} positive rational
+$\lambda \neq 1$, then $m q_- + n q_+ = 0$. The single-point form
+$\det T(2) = 1 \Rightarrow m q_- + n q_+ = 0$ is recorded
+separately as \texttt{trace\_zero\_of\_det\_one\_at\_two}.
+\end{corollary}
+
+\begin{remark}
+The Diophantine equation $m q_- + n q_+ = 0$ from the determinant
+character is necessary but \emph{not sufficient} to fix $(q_-,
+q_+)$: in $(m,n)=(3,2)$ it is satisfied by every pair of the form
+$(-2 k, 3 k)$. The primitivity ($\gcd = 1$) and sign ($q_- <
+0 < q_+$) conditions are what reduce that infinite family to the
+unique pair $(-2, 3)$. The combined hypothesis is therefore
+phrased throughout as the \emph{primitive oriented determinant-
+preserving} carrier condition.
+\end{remark}
+
+\subsection*{Layer 6 --- Stage-A and Stage-B rank certificates}
+
+\begin{theorem}[\texttt{HiggsTopForm.DegreeOneTwoVarForm.finrank\_eq\_two}]
+The space of homogeneous degree-1 polynomials in two formal
+variables, defined concretely as
+$\texttt{DegreeOneTwoVarForm K} := \{(\alpha, \beta) : K \times K\}$
+with the natural $K$-module structure, has $K$-rank $2$.
+\end{theorem}
+
+\begin{theorem}[\texttt{HiggsTopForm.HiggsTopForm.finrank\_Eplus\_eq\_two}]
+A Higgs Stage-B certificate (a linear equivalence
+$E_+ \simeq \texttt{DegreeOneTwoVarForm}\,K$) forces
+$\dim_K E_+ = 2$. The Stage A → Stage B refinement is a real
+algebraic statement: $E_+$ is identified with the polynomial
+space, not just with $K^2$.
+\end{theorem}
+
+\subsection*{Layer 6 --- Stage-A rank certificates}
+
+\begin{theorem}[\texttt{HiggsIndexShadow.HiggsIndexCertificate.finrank\_Eplus\_eq\_two}]
+A \texttt{HiggsIndexCertificate}, defined as a linear equivalence
+$E_+ \simeq H^0(\mathbb P^1, \mathcal O(1))^{\mathrm{alg}}
+\simeq K^2$, forces $\dim_K E_+ = 2$.
+\end{theorem}
+
+\begin{theorem}[\texttt{YukawaRank.YukawaRankCertificate.finrank\_Eminus\_eq\_three}]
+A \texttt{YukawaRankCertificate} (Stage A), defined as a linear
+equivalence $E_- \simeq K^3$, forces $\dim_K E_- = 3$.
+\end{theorem}
+

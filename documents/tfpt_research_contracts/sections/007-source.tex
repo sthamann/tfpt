@@ -1,0 +1,395 @@
+\section*{Research Contract 2 --- $(G_{\mathrm{metric}})$}
+\addcontentsline{toc}{section}{Research Contract 2: (G\_metric)}
+% =====================================================================
+\noindent\textbf{Goal.} Construct the TFPT metric measure
+\[
+  Z[J]=\lim_{\chi\to\infty}\int_{\mathcal G_\chi/\mathrm{Diff}}
+  \exp\!\bigl(-S_{\mathrm{rel},\chi}[g,A,\psi]+J\!\cdot\!O\bigr)\,d\mu_{\mathrm{Cal},\chi},
+\]
+\[
+  S_{\mathrm{rel},\chi}=\operatorname{Tr}f\!\Bigl(\tfrac{D_{\mathrm{rel}}+A_\Sigma}{\chi}\Bigr)
+  -\operatorname{Tr}f\!\Bigl(\tfrac{D_{\mathrm{ref}}}{\chi}\Bigr)+\tfrac{i\pi}{2}\Delta\eta_\Sigma,
+\]
+the relative spectral action whose low-curvature shadow is the already-closed $R+R^2$ equation.
+
+\begin{lemma}[G0--G1 --- configuration space \& BRST/Hodge Fredholm]
+For $s>5/2$ a Sobolev space of $\Theta$-symmetric metrics on the doubled seam collar $M_\Sigma$ admits a
+gauge slice; the gauge-fixed gravitational complex
+$\Omega^0(TM)\xrightarrow{K}\Gamma(S^2T^*M)\xrightarrow{K^*}\Omega^0(TM)$ with
+$\Delta_{\mathrm{gh}}=K^*K$ and $\Pi_{\mathrm{phys}}=\Pi_{\mathrm{BRST/Hodge}}\Pi_{TT}$ is elliptic
+Fredholm; the conformal mode is removed as BRST-exact / non-propagating in the Calderón polarisation
+(\emph{not} rhetorically). \emph{Machine: principal symbols in xAct/Cadabra; linear-algebra certificates
+in Lean (medium).}
+\end{lemma}
+
+\begin{lemma}[G2 --- finite relative spectral action, \emph{heat-kernel grounded} \mE]
+$S_{\mathrm{rel},\chi}$ is finite, differentiable, with a local Seeley--DeWitt expansion
+$\operatorname{Tr}f(D^2/\chi^2)\sim f_4\chi^4 a_0+f_2\chi^2 a_2+f_0 a_4+\cdots$. For the Lichnerowicz
+Dirac operator $D^2=\nabla^2+\tfrac R4$ (so $E=-\tfrac R4$, spinor trace $\operatorname{tr}\mathbf1=4$) the
+Gilkey coefficients give, per $(4\pi)^{-2}$,
+\[
+  a_2=\tfrac16\operatorname{tr}(6E+R\,\mathbf1)=-\tfrac R3
+  \quad(\text{Einstein--Hilbert }\textstyle\int\!R),\qquad
+  a_4\big|_{R^2}=\tfrac1{360}\operatorname{tr}(180E^2{+}60RE{+}5R^2\mathbf1)=\tfrac{R^2}{72}
+\]
+(the $R^2$/Starobinsky term), so the spectral action \emph{structurally} produces
+$S_{\mathrm{eff}}=\int\!\sqrt g\,\tfrac{\Mpl^2}{2}(R+\tfrac{R^2}{6M^2})+\cdots$ with the scalaron mass ratio
+fixed by the cutoff moment, $M^2/\Mpl^2=6(4\pi)^2/f_0$. The TFPT closure $M^2/\Mpl^2=\cthree^7$ fixes
+$f_0=6(4\pi)^2/\cthree^7$, i.e.\ $M=\cthree^{7/2}\Mpl=3.06\times10^{13}\,$GeV --- the boundary normalisation
+$\cthree$ \emph{is} the gravitational scale --- and hence the Starobinsky slow-roll forms
+$n_s\simeq1-\tfrac2N$, $r\simeq\tfrac{12}{N^2}$. The $R+R^2$ \emph{structure} is convention-independent
+(standard Gilkey); the precise rational $\tfrac1{72}$ and factor $6$ are the standard Dirac conventions used
+here (\veri{v36\_spectral\_action\_g2.py}, \veri{v28\_gravity\_fR.py}).
+\end{lemma}
+
+\par\smallskip\noindent\textbf{The simpler resolution: ``full QG'' for physics is the gap-decoupled admissible sector} (\mE).
+The infinite-dimensional ambient measure (G6) is the summit, but the admissible IR sector does not wait for
+it. The metric coupling is gap-dominated (G5): $2\|V_{\mathrm{metric}}\|=0.785<\Delta=6\log\tfrac32=2.433$,
+so the admissible sector keeps a \emph{strictly positive} effective gap $\Delta_{\mathrm{eff}}=1.648>0$
+under the stated RP and metric-coupling assumptions. A positive gap dynamically \emph{isolates} the
+admissible sector from the un-built ambient/deep-UV: under those assumptions the admissible (IR) measure is
+closed, and the ambient completion is decoupled from it (we do \emph{not} assert it is physically
+irrelevant --- that would itself be a physical interpretation). So the honest reading is
+\[
+  \boxed{\ \begin{gathered}
+  \text{admissible IR sector}=\text{closed under stated RP};\\[2pt]
+  \text{ambient metric measure (G6)}=G_{\mathrm{metric}}\ \text{gate}
+  \end{gathered}\ }
+\]
+G2 supplies the local action ($R+R^2$, heat-kernel); G5 supplies the decoupling of the admissible sector;
+together they reduce $(G_{\mathrm{metric}})$ to the ambient projective limit (G6). \textbf{Precise status
+(Alessandro's boundary):} the admissible IR sector is closed under the stated RP and gap-dominance
+assumptions; the ambient metric projective measure is now discharged as a \mC\ \emph{redundancy} (\vref{v369},
+the holographic-route keybox below), a certification object rather than a missing piece. Its
+absence does \emph{not} affect the bounded IR claim. \veri{v36\_spectral\_action\_g2.py}
+
+
+\par\smallskip\noindent\textbf{The glue Q-system: the index-$4$ object of the $G_{\mathrm{net}}$ statement exists explicitly} (\mE/\mC).
+The $G_{\mathrm{net}}$ target --- \emph{``the seam--Calder\'on inclusion has Jones index $4=|\mu_4|$''}
+--- no longer refers to an unknown object. On the glue group algebra $A=\mathbb C[\Z_4]$ (multiplication
+$\delta_a\otimes\delta_b\mapsto\delta_{a+b}$, unit $\delta_0$) \emph{all} Longo Q-system axioms hold
+exactly \mE: associativity, unit law, the Frobenius identity
+$(m\otimes1)(1\otimes m^*)=m^*m=(1\otimes m)(m^*\otimes1)$, and specialness $mm^*=|\Z_4|\,\mathbf1$ ---
+a special C$^*$ Frobenius algebra with
+\[
+  \boxed{\ \dim\theta=4=|\mu_4|=[B:A]\ }
+\]
+exactly the Carrier Index Lemma value (KLM: $\mu_{\mathrm{carrier}}=16=4^2\mu_{E_8}$ re-verified).
+\emph{Locality $=$ isotropy \mE:} on the Lagrangian glue $\langle(1,1)\rangle$ the discriminant form
+gives $q(k(1,1))=k^2\in\Z$ for every $k$ --- the braiding obstruction vanishes (\vref{v92} in Q-system
+language); the two Lagrangian glues (the sheet pair) are the only maximal isotropic choices.
+\emph{Halfway step \mE:} $\{0,2\}<\Z_4$ closes and gives the unique intermediate Q-system
+$\mathbb C[\Z_2]$ $=$ the $SO(16)_1$ tower step, with index factorisation $4=2\times2$. \emph{R2 sharpened
+\mC\ (recorded, not claimed):} what remains is the operator-algebraic \emph{identification} ``the
+seam--Calder\'on inclusion of the $16$-Majorana net (\vref{v113}) realises \emph{this} Q-system'' --- matching
+two constructed objects, not a search; the three loads (metric $+$ carrier $+$ QBL, \vref{v123}) hang on this
+one identification.
+\emph{[2026-08-03 update, the index side measured on the ladder:}
+\veri{v726\_phys\_car\_pp\_index.py} ($57/57$,
+\texttt{T2-SLICE-GO}) measures the inclusion on the CAR ladder
+$N=48$--$384$: the $\mu_4$-average conditional expectation has
+optimal Pimsner--Popa constant \emph{exactly} $1/4$ (explicit
+rank-one minimizer $+$ pinching theorem) and Watatani index
+\emph{exactly} $4$ via an explicit quasi-basis with \emph{forced}
+weights (uniform weights break scalarness; the $\Z_2$-only average
+gives index $2$ --- $\mu_4$ distinguished from $\mu_2$), with
+$\mu_4$ \emph{derived} from the clock $L=S^{N/12}$ (order $4$
+forced by the NS spin structure) and the Ramond sector healed
+\emph{state-preservingly} by the Klein zero-mode dressing
+($[\rho,U']=0$ exactly).  The remaining half is unchanged in type
+--- the \emph{identification} of this ladder Q-system with the
+constructed $\mathbb C[\Z_4]$ object --- now registered with kill
+criteria as the open half of \texttt{GNET.RAMIFIED.01} (Frobenius
+mismatch; index $\ne4$ on the state-preserving ladder; dressing
+incompatible with the $\sigma$ descent); no marker move.]
+\emph{[2026-08-05 update, the finite precursor of the
+identification (\veri{v779\_gnet\_gns\_arf.py}, $27/27+27/27$):}
+the coherent \emph{commuting} system of index-4 expectations along
+the Haar scaling tower (restriction coherence, $[E_I,E_J]=0$,
+joint idempotency, all exact) is the finite half of the Longo
+Q-system identification, and the exact dim law
+$d_c(\ell)=4^{\ell-1}+2^{\ell-1}\cos(\pi c/2)$ makes the
+$4$-element $\mathbb C[\Z_4]$ group-layer quasi-basis obstruction
+exactly $2^{-\ell}$ at every finite level ($d_0-d_2=2^\ell>0$),
+restored only asymptotically --- the crossed-product structure is
+\emph{exactly asymptotic}, and $d_2(1)=0$ \emph{is} the $\ell=1$
+index-3 anomaly.  Typing unchanged; no marker move.]
+\emph{[2026-08-06 registration ---
+\texttt{GNET.MARTINGALE.LIMIT.01}, \mO\ (the analytic remainder),
+finite hypotheses measured in \veri{v802\_gnet\_martingale.py}
+($15/15$, \textsc{martingale-hypotheses-met}): the Haar ladder is
+an exact filtration with \emph{one} index-4 Watatani expectation
+for the whole tower (quasi-basis explicit, $185/3041$ elements at
+$\ell=2/3$); the local-state defects are summable at measured rate
+${\sim}0.25$ per doubling (one power better than the $2^{-\ell}$
+dim-law envelope; reported, not forced); the unique limit state
+follows by elementary telescoping and is verified on every rung;
+the split/normality precursors are uniform (determinant witness
+$\ge0.985$, stabilizing at $0.9928$); the decimation control
+converges to the \emph{wrong} degenerate limit --- the coherent
+Haar bond is load-bearing.  \emph{The registered remainder (steps
+5--7, typed, not executed):} GNS reconstruction of
+$\omega_\infty$; local normality on each $A(W)$ (the uniform S4
+witnesses as the finite input); split property and the $\mu_4$
+simple-current extension (\texttt{GATE.METRIC.11}) on the limit
+net.  The open QGEO majorant residues (b)/(c) are bypassed for
+limit existence and relocated into the normality step --- a
+reallocation, not a proof.  Kill: non-summable defects at a deeper
+reachable rung, or a determinant-witness collapse.  No marker
+move.]}
+\smallskip\\
+\noindent\textbf{The hull is the graded module of the Q-system (\veri{v128\_graded\_hull.py}).} The
+Q-system is not merely an abstract companion of $E_8$ --- $E_8$ \emph{realises} it \mE: the $240$
+roots, built as explicit norm-$2$ vectors in $D_5\oplus A_3+$glue coordinates, decompose as
+$240=52+64+60+64$ over the glue $\Z_4$ (the \vref{v89} branching as vectors), and for \emph{all} $6720$ root
+pairs whose sum is again a root, $\operatorname{coset}(r_1{+}r_2)=\operatorname{coset}(r_1)+
+\operatorname{coset}(r_2)\bmod4$:
+\[
+  \boxed{\ E_8\ \text{is a $\Z_4$-graded Lie algebra over the carrier; the grading group is the glue
+  $=$ the Q-system}\ }
+\]
+--- the checksum hull is the Q-system's graded module, realised in $248$ dimensions. The R2
+identification thus matches the Calder\'on inclusion against a structure that $E_8$ already
+\emph{carries}. \veri{v125\_glue\_qsystem.py}
+\smallskip\\
+\noindent\textbf{Graded Frobenius (\veri{v143\_graded\_frobenius.py}).} The identification holds at the
+finite Lie level: the graded module is in fact a graded \emph{Frobenius} structure,
+i.e.\ everything the Q-system demands of its module is already exact inside $E_8$ \mE: (i) \emph{coset
+duality} --- $\operatorname{coset}(-r)=-\operatorname{coset}(r)\bmod4$ for all $240$ roots ($-C_1=C_3$
+bijectively, $C_0,C_2$ self-dual), so the Killing form restricts to a \emph{nondegenerate} invariant
+pairing $g_k\times g_{-k}\to\mathbb C$; (ii) the glue character average $\tfrac14\sum_k i^{k\deg}$ is
+\emph{exactly} the carrier projector (the conditional-expectation shadow, quasi-basis index $|\Z_4|=4$);
+(iii) each glue sector is \emph{one} $W(D_5){\times}W(A_3)$ orbit with multiplicity-one dimensions
+$64=16\cdot4=(\mathbf{16},\bar{\mathbf4})$, $60=10\cdot6=(\mathbf{10},\mathbf6)$ --- simple currents,
+sector ring $=\Z_4=$ the $\mathbb C[\Z_4]$ fusion, halfway subgroup $\{0,2\}=SO(16)_1$. \emph{R2 residue
+\mC\ (final form):} exactly \emph{one} conformal-net statement remains --- the seam--Calder\'on inclusion
+of the $16$-Majorana \emph{net} carries this Q-system --- with no remaining finite freedom.
+\smallskip\\
+\noindent\textbf{Where that statement lives: the NS/R sector census (\veri{v148\_fock\_census.py}).}
+The remaining work is scoped exactly. Every \emph{untwisted} (Neveu--Schwarz) state of the $16$
+Majoranas has \emph{integer} $(D_5,SO(6))$ weights, and integer weights lie in the even discriminant
+classes --- so the NS module supports only $\{(0,0),(2,0),(0,2),(2,2)\}$: \textbf{the odd glue classes
+$k(1,1)$ --- the actual $\mu_4$ simple currents --- have zero NS support; they are twisted
+(Ramond-type) modules.} The Ramond zero-mode module ($2^8=256$ ground states) carries exactly the four
+odd class pairs, $64$ each, and splits $128+128$ into the odd sectors of the \emph{two} Lagrangian
+glues $\langle(1,1)\rangle$ and $\langle(1,3)\rangle$ (\vref{v92}): \emph{choosing the glue is choosing
+the Ramond projection} ($128=$ one $SO(16)$ spinor chirality), and $E_8$ assembles as
+$248=120_{\mathrm{NS}}+128_{\mathrm R}$. \emph{Consequence \mC:} the index-$4$ extension cannot even be
+\emph{stated} on the untwisted module alone; R2's one remaining statement is irreducibly about the
+twisted-sector structure of the seam--Calder\'on net, with the sheet choice realised as the R-projection;
+the finite shadow is exhausted (\vref{v113}/\vref{v125}/\vref{v143} $+$ this census).
+\emph{[2026-08-03 update, the NS/R grading acquires an arithmetic
+home:} \veri{v722\_phys\_ramified\_ns\_r.py} ($9/9$,
+\texttt{RAMIFIED-SEES-NSR}) shows the NS/R grading \emph{is} the
+parity character of $E_8(\Z[i])/(1{+}i)=\mathbb F_2^4$: $(1{+}i)L$
+lies in the even/NS sublattice (proved on a $\Z$-basis), the $240$
+roots fall into $15\times16$ classes of \emph{pure} parity ($7$ NS
+$+$ $8$ R), and parity is a homomorphism $\mathbb
+F_2^4\to\mathbb F_2$ --- the Ramond projection is
+$(1{+}i)$-\emph{adic}, at the one ramified edge of the
+$\Z[i]$-E8 Hecke tower (both controls fire: the $\Z[i]^4$ census is
+not $15\times16$, scrambled labels break purity).  Together with
+the ladder index measurement (\veri{v726\_phys\_car\_pp\_index.py};
+$\chi=1\leftrightarrow$ half-integer labels on both sides, the
+ramified defect in $\ker\chi$) this gives the groupoid reading of
+$G_{\mathrm{net}}$ its first \emph{exact} witnesses; the gate
+typing is unchanged.]
+
+\par\smallskip\noindent\textbf{The flavor-filtration fingerprint
+(\texttt{FLAVOR.GRAPH.FILTRATION.01}).}
+{\sloppy
+\emph{Registered} 2026-08-06
+(\veri{v812\_flavor\_graph\_filtration.py}, $16/16$ incl.\ the
+four must-fire controls, \textsc{filtration-fingerprint-only}).
+The $Q\to K\to L$ row budgets are exact, order-exact counts of
+the $K_{3,2}$/prism/$K_5$/$H_8$ incidence chain with level-wise
+additivity mirroring $L=K+Q$; \emph{no} entry-level
+reconstruction from any frozen candidate; exhaustive
+false-positive rates $0.005$--$0.75\%$ make the misses
+informative.  Typed audit fingerprint --- beside the audit
+identities, in no derivation.  No marker move.\par}
+
+\par\smallskip\noindent\textbf{The P1 index-KMS identity
+(\texttt{P1.INDEX.KMS.01}).}
+{\sloppy
+\emph{OPEN} (registered 2026-08-06;
+\veri{v813\_p1\_index\_kms.py}, $13/13$ incl.\ the two must-fire
+controls, \textsc{p1-identity-closed}).  \emph{The identity:}
+$I\cdot\beta_{\rm angle}\cdot\cthree=4\cdot2\pi\cdot
+\tfrac1{8\pi}=1$ exact in formal arithmetic, each factor
+independently sourced --- the Jones index $I=4=|\mu_4|$ a
+$\cthree$-free theorem (zero occurrences gated in all four
+sources), $\beta_{\rm angle}=2\pi$ independently measured
+(\texttt{v526}; the radian pin is the one shared convention and
+cancels), $\cthree$ the P1 axiom the identity \emph{explains},
+not derives.  \emph{Measured precursor:} $w_1=w_3=\tfrac14$
+exactly at every level with symmetric zero-sum offset
+$\pm2^{-(l+1)}$ (the no-anomaly shape); the sea state does
+\emph{not} equidistribute (dev $0.188$).  \emph{The one open
+bridge:} the even modular-response normalization over the $I$
+deck sectors.  \emph{Kill:} any asymmetric sector offset.
+\emph{Control:} index $2$ gives $1/(4\pi)$, booked elsewhere by
+the corpus.  P1 stays a declared input; no marker move.\par}
+
+\par\smallskip\noindent\textbf{The finite-compiler compressions
+of round 30 (\texttt{MESSAGE.LADDER.01},
+\texttt{DOILY.PASCAL.RANK.01}, \texttt{NORMALFORM.CFIN.01}).}
+{\sloppy
+\emph{Recorded} 2026-08-07 (evidence lines, not contracts; exact
+identity grade; no marker moves).  The message ladder
+$M_n = 15\cdot2^n = (15, 30, 60, 120, 240)$ with one named
+structure per rung and $h(E_8) = 30$ derived from the rebuilt
+root system, and the Doily--Pascal rank theorem
+$NN^{\mathsf T} = B + 2I$ with $\operatorname{rank} N = 10 =
+A_\Lambda$, $\dim\ker N = 5 = \gcar$ and recovery value $2/3$
+(\veri{v844\_message\_doily\_rank.py}, $23/23 + 16/16$); and the
+finite compiler normal form $C_{\rm fin} = (V, \hbar, q^{*},
+\sigma, \iota)$ assembled as one object with the code-to-matter
+kill built in and P2 narrowed to the \texttt{v799} residual
+R1$'$ (\mC), not eliminated
+(\veri{v845\_cfin\_normal\_form.py}, $28/28$, SPEC v2).  Full
+statements and keyboxes in Paper~1; audit cards in Paper~3.  The
+$(1/3)^6$ typed gap of the six-step decision is re-affirmed with
+no upgrade.\par}
+
+\par\smallskip\noindent\textbf{The E8 audit compressions of
+round 32 (\texttt{E8.SIMPLEX.FOURIER.01},
+\texttt{E8.G31.CLOCK\_ALPHABET.01},
+\texttt{FLAVOR.WINDING.QUADRATIC.01}).}
+{\sloppy
+\emph{Recorded} 2026-08-08 (evidence lines, not contracts;
+exact identity grade; no marker moves).  The simplex-Fourier
+character theorem: the census $240 = 15\times16$ \emph{is} the
+spectral statement $\hat r = (240, -16^{15})$ --- the
+uniform-nonzero channel $P = (J - I)/15$ with spectrum $\{1,
+(-1/15)^{15}\}$; (\veri{v857\_simplex\_fourier\_winding.py}, $26/26$; upgraded in
+round 36 to \emph{all} odd shells, \texttt{E8.SHELL.GLOBAL.01}
+--- see the round-36 record below).  The
+winding quadratic: the whole \texttt{tfpt\_2} winding line is
+one adjugate quadratic $q_{\rm wind} = t^2 - \gcar t + |\Z_2|$
+with the triple lock $s = 6$, $\Delta(6) = 39200 = 2\cdot140^2$
+and the reality threshold $s^* \approx 2.8250$ typed
+(\veri{v857\_simplex\_fourier\_winding.py}, $20/20$).  The G31
+clock alphabet: $\mathrm{Deg}(G_{31})/4 = \{2,3,5,6\}$ as a
+normal form with the unique product-$46080$/sum-$64$ quadruple,
+the $607$-group kill scan ($G_{31}$ the sole full-battery
+passer) and the $W(D_5)\times W(A_3)$ fence re-killed by
+computed centers $4$ vs $1$
+(\veri{v858\_g31\_clock\_alphabet.py}, $19/19$).  Full
+statements and keyboxes in Papers~1 and~2; audit cards in
+Paper~3.\par}
+
+\par\smallskip\noindent\textbf{The round-36 compiler theorems
+(\texttt{FLAVOR.FEEDBACK.\allowbreak NORMALFORM.01},
+\texttt{E8.WINDING.\allowbreak DECODER.01},
+\texttt{E8.SHELL.GLOBAL.01}; Lean:
+\texttt{FORM.FLAVOR.\allowbreak FEEDBACK.01} [F],
+\texttt{FORM.E8.SHELL.\allowbreak GLOBAL.01} [F]).}
+{\sloppy
+\emph{Recorded/Registered} 2026-08-08 (exact identity grade; no
+marker moves; \veri{v874\_feedback\_decoder\_lean.py} $14/14 +
+11/11$, \veri{v875\_shell\_global\_lean.py} $15/15$).  The
+feedback normal form: $P = [\,2\cdot\mathbf 1 \mid e_3 \mid
+R e_3\,]$ conjugates the whole winding line, symbolic in $s$,
+to the gain-plus-companion form with $\chi_{R_s} = (t - s -
+|\mu_4|)\,q_{\rm wind} - 12t$ and the honest $\Z_2^2$-not-$\mu_4$
+typing load-bearing (keybox in Paper~2).  The winding decoder:
+$q_{\rm wind}$ maps the clock alphabet to
+$(-|\mu_4|,-|\mu_4|,|Z_2|,h(D_5))$, the decoder polynomial
+$(y{+}4)^2(y{-}2)(y{-}8)$ carries budget coefficients
+$(2,48,32,256)$, and $|\mu_4|\,q(|Z_2|)/|R(E_8)| = -1/15$ is
+exactly the Walsh message eigenvalue --- typed \emph{audit}
+theorem, not a functor (keybox in Paper~1).  The global shell
+theorem: $\hat\Theta_u/\Theta_L = -1/15$ for \emph{all} odd
+shells from $\mathrm{Sp}(4,2)$ transitivity $+$ $(1{+}i)$
+doubling $+$ $\Theta_L = 240\,\sigma_3$; the $16500$ census
+retained as the exact ward (keybox in Paper~1).  \emph{The Lean
+records:} \texttt{TfptCarrier/FlavorFeedback.lean} ($16$
+declarations, $11$ theorems --- the action identities, the
+inverse-free conjugation $PF_s = R_sP$ over $\Z$ symbolic in
+$s$, $\chi_{R_s}$ in $\Z[X]$, the SNF determinantal divisors)
+and \texttt{TfptCarrier/GaussianShells.lean} (the
+\texttt{ShellSystem} hypothesis bundle with provenance typed on
+each field, named \emph{not} proven, $+$ $7$ consequence
+theorems, every statement an exact integer identity, no
+division) --- both kernel-checked: lake build green at $3418$
+jobs, no \texttt{sorry}, no \texttt{native\_decide}, axioms
+propext/Classical.choice/Quot.sound on all $18$ theorems
+(\texttt{\#print axioms}), carried in the shipped Lean manifest
+at $90$ files.  \emph{The honest boundaries:} no $\mu_4$
+identification from the $\Z_2^2$ quotient; the decoder needs an
+intertwiner to be causal; the shell theorem's three inputs stay
+named hypotheses.  No RH statement.\par}
+
+\par\smallskip\noindent\textbf{The ledger integrity guard and
+the \texttt{FORM.QGEO.04} QA fix (\texttt{GATE.LEDGER.01}).}
+{\sloppy
+\emph{Recorded} 2026-08-08 (a QA/CI note, no new physics;
+\veri{v878\_ledger\_integrity.py}, $10/10$).  The round-36
+ledger audit found the first \emph{primary-key violation} in
+\texttt{status\_ledger.csv}: the claim id \texttt{FORM.QGEO.03}
+was double-booked (2026-06-15 the CohomologyGrading
+formalisation; 2026-06-18 the SeamDeckClosure flat all-orders
+closure).  The fix, dated: the SeamDeckClosure row is renamed
+\texttt{FORM.QGEO.04} with a QA note in its claim text, and
+every flat-closure reference is updated (this document, the two
+2026-06-18 changelog mentions, \texttt{v279}/\texttt{v284}/%
+\texttt{v286} $+$ \texttt{seam\_equivalence.json},
+\texttt{make\_figures}, the website residual chain, registry
+and \texttt{run\_all}); the CohomologyGrading row keeps
+\texttt{FORM.QGEO.03}; claim contents unchanged.  The guard
+enforces from this round: globally unique claim ids (the fix
+pinned), existing supersession targets with an acyclic
+supersession graph, unique \emph{active} supersession targets
+modulo a frozen remove-only allowlist (the two legitimate
+2026-06 joint closures), and the dependency cross-reference
+census frozen remove-only ($13$ SCCs / $265$ ids ---
+acyclicity enforced as \emph{no new cycles}; the
+\texttt{audit\_baseline} precedent).\par}
+
+\par\smallskip\noindent\textbf{The $Gr(2,5)$ Pl\"ucker reading,
+the Specht channels, the Hadamard anchor and the vacuum
+selection (\texttt{DOILY.PLUCKER.\allowbreak GR25.01},
+closed).}
+{\sloppy
+\emph{Registered and closed} 2026-08-09
+(\veri{v888\_finite\_pfaffian\_signature.py}, $27/27$,
+\textsc{s6plucker-closed}; exact integer/sympy).  \emph{Exact:}
+the $15$ doily lines are the $15$ monomials of the five
+Pl\"ucker quadrics of $Gr(2,5)$ --- bijection $15/15$ with
+perfect sign match (every quadric reads $(+,-,+)$, the
+\texttt{v880} Hodge table); the $S_6$ duad representation
+decomposes $15 = 1 + 5 + 9$ with the doily operator acting by
+the exact scalars $(1, 0, 2/3)$, $2/3 = e_3/(e_2 - e_3)$ at the
+anchor $(4, 5, 2)$; the $q^{*}$ zero set is a $(16, 6, 2)$
+Hadamard difference set with anchor signature $(2^{e_1}, p_2,
+e_3, \binom{e_2}{2}) = (16, 6, 2, 10)$; and the
+vacuum-selection theorem: $\mathrm{Stab}(q^{*})$ of order $120$
+acts faithfully and surjectively as $S_5$ on the remaining five
+Arf-$1$ refinements, orbits $[1, 5, 10] = (\Lambda^0,
+\Lambda^4, \Lambda^2)$.  \emph{Controls:} Arf-$0$ census
+$(16,10,6)$; a secant breaks the bijection; the wrong scalar
+breaks the channel law.  The physical vacuum-selection
+mechanism stays [O].  No marker move; no RH statement.\par}
+
+\par\smallskip\noindent\textbf{The flavor-hexagon automorphism
+orbit (\texttt{CFIN.AUT.\allowbreak FLAVOR.C6.01}, closed).}
+{\sloppy
+\emph{Registered and closed} 2026-08-09
+(\veri{v888\_finite\_pfaffian\_signature.py}, $19/19$,
+\textsc{c6flavor-measured} $+$ \textsc{intertwined}).
+\emph{Exact:} $\mathrm{Aut}(C_{\rm fin}) \cong C_6$ by
+exhaustive enumeration; the pinned generator satisfies $g^2 =
+\sigma$ (the deployed family $3$-cycle) exactly and $g^3 =$ the
+$W$-edge sheet swap; the action on $\Lambda^2 E$ has cycle type
+$1 + 3 + 6$ with orbits equal to the charge shells; the
+$g$-orbit of $\{f_1, w_1\}$ is the deployed hexagon transport
+edge for edge ($D_6$-equivalent); and $(|Z_2|/\Nfam)^{|
+\mathrm{Aut}(C_{\rm fin})|} = (2/3)^6 = 64/729$ equals the
+frozen recovery value as an exact Fraction.  \emph{Typed
+honestly:} the exponent reading is a consistent \emph{new
+reading}, not the unique derivation (the corpus route via $p_2
+= |R_+(A_3)|$ stands).  \emph{Control:} $0$ of $600$ symplectic
+non-automorphisms factor; scrambled transport fails the $D_6$
+match.  No marker move; no RH statement.\par}
+

@@ -1,0 +1,370 @@
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We attempt the complete scaling-limit theorem for the concrete order-four
+charged field
+\[
+ \Psi_{\lambda,N}(f)
+ =\varepsilon_\lambda:\!\exp(i\lambda\cdot\phi_N)\!:(f),
+ \qquad
+ \lambda=(\omega_s,\omega_f),\quad
+ \norm{\lambda}^2=2,\quad h_\lambda=1.
+\]
+The algebraic limit-exchange statement is proved in full for an arbitrary
+finite group: equivariant injective inductive limits commute isometrically
+with crossed products, coefficient and fixed-point expectations commute
+with the limit, and their Pimsner--Popa constants remain uniform.  Assuming
+the charged field and local algebras exist, the identification of the
+extension with the holomorphic $(E_8)_1$ net is reduced, with every
+hypothesis displayed, to the Kawahigashi--Longo--M\"uger index theorem,
+the rank-eight even-unimodular lattice classification, the
+Dong--Mason central-charge-eight theorem, and the
+Carpi--Kawahigashi--Longo--Weiner VOA--net correspondence.
+
+The uniform Green-form problem is closed here for the edge-projected
+frozen collar, with the explicit all-volume constant
+$K_G=\pi^2/4$.  The proof combines an exact particle--hole count,
+the sharp fundamental-domain sine inequality, and analytic perturbation
+of the isolated edge doublet.  For the edge-projected boson modes we
+also construct exact compatible dyadic Fock isometries and prove the
+charged-field graph defect with rate $N^{-2}$, including adjoints.
+The remaining hard lattice-to-field step is microscopic local-algebra
+exhaustion.  The frozen computations
+verify the proposed two-edge remainder bound
+$\norm{R_N}_{\HS}\le2.11$ only for
+$N=16,24,32,48,64,96$ (maximum $2.105079358$), not for all $N$.
+Consequently the master theorem remains conditional on one analytic
+gap box, stated quantitatively at the end.  This is a full proof attempt,
+not a claim that finite observations establish a type-$\mathrm{III}$
+scaling limit.
+\end{abstract}
+
+\tableofcontents
+
+\section{Verdict and logical form}
+
+\begin{theorem}[Charged MMST master theorem: exact proved form]
+\label{thm:master}
+Let the finite collars, scaling maps, neutral current limit and charged
+operators be as in Section~\ref{sec:setup}.  Suppose the scaling algebra
+is exhausted by the neutral currents and
+the four charged grades as specified in \textup{(ALG-EXH)} there.  Then:
+\begin{enumerate}[label=\textup{(L\arabic*)}]
+\item For every $f\in C^\infty(S^1)$ there are $p<\infty$ and
+  $C_f<\infty$, independent of $N$, such that on the finite-energy core
+  \[
+    \norm{\Psi_{\lambda,N}(f)\xi}
+    \le C_f\norm{(1+L_{0,N})^p\xi}.
+  \tag{1.1}\label{eq:L1}
+  \]
+\item After the canonical scaling identifications,
+  $\Psi_{\lambda,N}(f)$ converges strongly on the common finite-energy
+  core to a nonzero closable field $\Psi_\lambda(f)$.  The generated local
+  algebras converge to a local, conformal extension net
+  $I\mapsto\B(I)$ of the neutral net $I\mapsto\A(I)$.
+\item The finite $\Z_4$ crossed products, the canonical coefficient
+  expectations, and the fixed-point expectations commute with the
+  inductive/scaling limit.  The limiting Pimsner--Popa bound is still
+  $E(x)\ge\frac14x$ for $x\ge0$.
+\item The resulting extension is the strongly local lattice net
+  $\A_{V_{E_8}}$, equivalently the level-one $E_8$ current net.  It is
+  holomorphic, has $\mu=1$, central charge $8$, vacuum character
+  $E_4/\eta^8$, and local algebras equal to the hyperfinite
+  type-$\mathrm{III}_1$ factor.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+L1 follows from Theorem~\ref{thm:L1reduction}.  L2 follows from
+Theorem~\ref{thm:L2reduction}.  L3 is the unconditional
+Theorem~\ref{thm:crossedlimit}.  L4 follows from
+Theorem~\ref{thm:identification}.  The Green estimate used by L1 is the
+all-volume Theorem~\ref{thm:UGF}; the graph estimate used by L2 is the
+all-volume dyadic Theorem~\ref{thm:TELa}.  The condition still used by L2
+is precisely \textup{(ALG-EXH)} in the final gap box; it is not silently
+replaced by a finite-volume fit.
+\end{proof}
+
+\begin{remark}[What is and is not proved]
+The implication in Theorem~\ref{thm:master} is proved.  Uniform Green
+domination and local Sobolev convergence are proved in
+Theorem~\ref{thm:UGF}, and edge-mode graph convergence is proved in
+Theorem~\ref{thm:TELa}.  The antecedent \textup{(ALG-EXH)} is not proved
+for the frozen microscopic collar.  Therefore
+this memorandum does not close
+\texttt{SEAM.MMST.TYPEIII.CHARGED.01}.  It proves L3, completes the
+classical reduction of L4, closes L1 and the edge-projected TEL-a part
+of L2, and isolates the remaining microscopic local-algebra statement.
+\end{remark}
+
+\section{Setup: the frozen collar and charged generator}
+\label{sec:setup}
+
+\subsection{The finite CAR collar}
+
+For circumference $N$ and fixed open width $N_y=8$, the one-particle
+Qi--Wu--Zhang collar is
+\[
+ h(k_x,k_y)
+ =\sin k_x\,\sigma_x+\sin k_y\,\sigma_y+
+   (1-\cos k_x-\cos k_y)\sigma_z .
+\tag{2.1}\label{eq:qwz}
+\]
+The $r$th deck sector, $r\in\Z_4$, has boundary phase $i^r$, hence
+longitudinal momenta
+\[
+ p_n^{(r)}=\frac{2\pi}{N}\left(n+\frac r4\right).
+\tag{2.2}\label{eq:momentum}
+\]
+Sixteen Majorana copies produce the carrier central charge
+$16\cdot\frac12=8$.  We write $\mathfrak h_N$ for the one-particle space,
+$H_N^{(r)}$ for the corresponding one-particle matrix, and
+\[
+ C_N^{(r)}
+ =\chi_{(-\infty,0)}(H_N^{(r)})
+  \frac12\chi_{\{0\}}(H_N^{(r)})
+\tag{2.3}\label{eq:covariance}
+\]
+for the particle--hole symmetric covariance.  The finite observable
+algebra is a matrix CAR algebra.  Its low-energy GNS space is denoted
+$\Hh_N$, and $L_{0,N}$ denotes the shifted, nonnegative edge-energy
+operator in the scaling normalization.
+
+\begin{remark}[Necessary correction: there is no uniform full gap]
+\label{rem:gapcorrection}
+The topological collar has chiral edge levels with spacing $O(N^{-1})$.
+Thus a claim of a spectral gap
+$\inf_N\operatorname{gap}(H_N)>0$ is false.  The usable hypothesis is a
+\emph{uniform bulk gap after removing the edge band}.  If $Q_N$ is the
+edge-band projection, the correct statement is
+\[
+ \operatorname{spec}\bigl((1-Q_N)H_N(1-Q_N)\bigr)
+ \cap(-\delta_{\rm bulk},\delta_{\rm bulk})=\varnothing
+\tag{2.4}\label{eq:bulkgap}
+\]
+for one $\delta_{\rm bulk}>0$ independent of $N$.  This controls bulk
+resolvents but does not control the massless longitudinal Green function
+by itself.
+\end{remark}
+
+\subsection{The exact order-four vector}
+
+In rational coordinates,
+\[
+ \omega_s=\left(\frac12,\frac12,\frac12,\frac12,\frac12\right),
+ \qquad
+ \omega_f=\left(\frac34,-\frac14,-\frac14,-\frac14\right),
+ \qquad
+ \lambda=(\omega_s,\omega_f).
+\tag{2.5}\label{eq:lambda}
+\]
+The exact finite calculation gives
+\[
+ \norm{\omega_s}^2=\frac54,\quad
+ \norm{\omega_f}^2=\frac34,\quad
+ \norm{\lambda}^2=2,\quad h_\lambda=1,
+\tag{2.6}\label{eq:lambda-norm}
+\]
+and
+\[
+ [\lambda]^4=[0],\qquad [\lambda]^2=[v].
+\tag{2.7}\label{eq:lambda-order}
+\]
+The norm-two vectors in
+$D_5\oplus A_3+k\lambda$, $k=0,1,2,3$, have census
+\[
+ [52,64,60,64],
+\tag{2.8}\label{eq:census}
+\]
+so the four cosets contain $240$ roots and the two odd grades contain the
+full $128$-dimensional spinor contribution.
+
+\subsection{The finite charged field}
+
+Let $\phi_N=(\phi_N^1,\ldots,\phi_N^8)$ be the bosonic current obtained
+from the sixteen Majorana copies by edge-projected collar bosonization,
+with zero mode fixed by the $\Z_4$ charge sector.  Each complex-fermion
+pair gives one boson.  The longitudinal derivative uses the frozen
+lattice symbol
+\[
+ \omega_N(m)=\frac{N}{\pi}\left|\sin\frac{\pi m}{N}\right|,
+ \qquad 0<|m|\le\frac N2.
+\tag{2.9}\label{eq:latticesymbol}
+\]
+The edge projection is the analytic top (or bottom) eigenbranch through
+the zero-energy crossing; massive bulk-complement modes are not included
+in $\phi_N$.  For a fixed normalized
+two-cocycle $\varepsilon_\lambda$, define on the finite-energy vectors
+\[
+ \Psi_{\lambda,N}(f)
+ =\sum_{m}\widehat f_m\,
+   \varepsilon_\lambda
+   :\!\exp(i\lambda\cdot\phi_N)\!:_m .
+ \tag{2.10}\label{eq:chargedfield}
+\]
+Normal ordering is with respect to $C_N^{(0)}$.  Formula
+\eqref{eq:chargedfield} is meaningful at every finite $N$.  The theorem
+does not follow merely from that fact: the normal-ordering constant and
+the graph norm of the exponential can grow with $N$.
+
+\begin{definition}[Scaling convergence used below]
+Let $V_N:\Hh_N\to\Hh_\infty$ be the canonical isometries of the chosen
+operator-algebraic renormalization system.  A sequence of closable
+operators $X_N$ converges on the finite-energy core
+\[
+ \Dfin=\bigcup_{E<\infty}\id_{[0,E]}(L_0)\Hh_\infty
+ \tag{2.11}\label{eq:core}
+\]
+if for every $\xi\in\Dfin$, represented at sufficiently large scale,
+\[
+ V_NX_NV_N^*\xi\longrightarrow X\xi,\qquad
+ V_NX_N^*V_N^*\xi\longrightarrow X^*\xi.
+ \tag{2.12}\label{eq:graphconv}
+\]
+The adjoint clause is included because bare pointwise convergence of
+unbounded fields is too weak to determine local von Neumann algebras.
+\end{definition}
+
+\section{Classical inputs, quoted in the forms used}
+\label{sec:classical}
+
+\begin{theorem}[Osborne--Stottmeister free-fermion scaling theorem,
+form used here]\label{thm:OS}
+For the massless chiral lattice fermion systems constructed by
+operator-algebraic renormalization, with the regular scaling functions
+and compatible ground states specified in their construction, the
+renormalized Koo--Saleur approximants converge strongly on the
+finite-particle core to the corresponding Virasoro generators.
+The smeared approximants converge on that core, and the same argument
+applies to level-one Wess--Zumino--Witten currents which are fermion
+bilinears.  Their dynamical correlation functions converge uniformly on
+compact time intervals under the stated regularity assumptions on the
+smearing functions.
+\end{theorem}
+
+This is the content used from Osborne--Stottmeister,
+\emph{Conformal field theory from lattice fermions},
+Theorems 4.11, 4.16, 5.1, 6.1 and 6.3
+\cite{OsborneStottmeister}.  It supplies the neutral bilinear current net
+and the common stress tensor.  It does not contain
+\eqref{eq:chargedfield}: a spin/lattice exponential changes sectors and
+is not a fermion bilinear.
+
+\begin{theorem}[Energy bounds and smearing for unitary VOAs]
+\label{thm:CKLWenergy}
+Let $V$ be a unitary VOA with conformal Hamiltonian $L_0$, and let
+$a\in V$ be homogeneous.  The field $Y(a,z)=\sum_na_nz^{-n-d_a}$
+is polynomially energy bounded if there exist $M>0$ and integers
+$s,p\ge0$ such that
+\[
+ \norm{a_n b}
+ \le M(1+|n|)^s\norm{(1+L_0)^p b}
+\tag{3.1}\label{eq:modebound}
+\]
+for every finite-energy vector $b$.  Under this hypothesis, for every
+$f\in C^\infty(S^1)$ the series
+$Y(a,f)=\sum_n\widehat f_n a_n$ converges on finite-energy vectors,
+defines a closable operator, preserves
+$\Hh^\infty=\bigcap_{q\ge0}\operatorname{Dom}(L_0^q)$, and obeys
+\[
+ \norm{Y(a,f)b}
+ \le M\,\norm{f}_{H^{s+1}}\,
+       \norm{(1+L_0)^p b}.
+\tag{3.2}\label{eq:smearedbound}
+\]
+If a unitary VOA is generated by homogeneous energy-bounded fields, all
+of its fields are energy bounded.  A simple unitary VOA generated by
+weight-one affine currents and conformal vectors is strongly local; its
+smeared fields generate an irreducible conformal net.
+\end{theorem}
+
+This combines CKLW Proposition 6.1, Theorems 6.8, 8.1 and 8.3
+\cite{CKLW}, in exactly the direction used below.  The newer extension
+theorem also states that every positive-definite even lattice VOA is
+energy bounded \cite[Proposition 4.2]{CarpiTomassini}.  These are
+\emph{continuum} statements; they do not assert a bound uniform in a
+lattice cutoff.
+
+\begin{theorem}[Kawahigashi--Longo--M\"uger]
+\label{thm:KLM}
+Let $\mathcal N$ be a local irreducible conformal net satisfying the split
+property and strong additivity, and suppose its two-interval inclusion
+\[
+ \mathcal N(E)\subset\widehat{\mathcal N}(E)
+ :=\mathcal N(E')'
+\]
+has finite index.  Then $\mathcal N$ is completely rational, its DHR
+category is a nondegenerate finite braided tensor category, and
+\[
+ \mu_{\mathcal N}
+ =[\widehat{\mathcal N}(E):\mathcal N(E)]
+ =\sum_{\rho\in\operatorname{Irr}(\mathcal N)}d(\rho)^2.
+\tag{3.3}\label{eq:KLMsum}
+\]
+If $\mathcal N\subset\mathcal M$ is an irreducible finite-index local
+extension of completely rational nets, then
+\[
+ \mu_{\mathcal M}
+ =\frac{\mu_{\mathcal N}}{[\mathcal M:\mathcal N]^2}.
+\tag{3.4}\label{eq:KLMextension}
+\]
+In particular $\mu_{\mathcal M}=1$ exactly when the vacuum is the only
+irreducible DHR sector.
+\end{theorem}
+
+This is the multi-interval/global-index and extension theorem of
+Kawahigashi--Longo--M\"uger \cite{KLM}.
+
+\begin{theorem}[Q-systems and local extensions]
+\label{thm:Qsystems}
+Let $N\subset M$ be a finite-index inclusion of factors.  A conjugate of
+the inclusion determines a standard Q-system $(\theta,w,x)$ in
+$\operatorname{End}(N)$, and every standard Q-system reconstructs the
+inclusion up to isomorphism fixing $N$.  If the endomorphisms are DHR
+endomorphisms of a conformal net, the reconstructed extension is local
+if and only if the Q-system is commutative with respect to the DHR
+braiding.  For a finite outer group action $G\curvearrowright M$,
+$N=M^G$ has index $|G|$, group-average expectation, and the regular
+Q-system.
+\end{theorem}
+
+This is the Longo--Rehren reconstruction in the local-extension form
+\cite{LongoRehren}.
+
+\begin{theorem}[Trace class implies split]\label{thm:split}
+Let $\mathcal N$ be a conformal net with conformal Hamiltonian $L_0$.
+If
+\[
+ \Tr(e^{-\beta L_0})<\infty\qquad\text{for every }\beta>0,
+\tag{3.5}\label{eq:traceclass}
+\]
+then $\mathcal N$ has the split property.  More quantitatively, the
+trace-class condition implies the conformal Buchholz--Wichmann
+nuclearity maps are nuclear; the Buchholz--Wichmann condition implies
+statistical independence for strictly separated intervals.
+\end{theorem}
+
+The implication is due to Buchholz--Wichmann and its conformal
+refinements by Buchholz--D'Antoni--Longo \cite{BuchholzWichmann,BDL}.
+
+\begin{theorem}[Central charge eight and the $E_8$ theory]
+\label{thm:DM}
+Let $V$ be a simple, rational, $C_2$-cofinite, holomorphic unitary VOA of
+CFT type and central charge $8$.  Then its character is
+\[
+ \operatorname{ch}_V(\tau)
+ =\frac{E_4(\tau)}{\eta(\tau)^8}
+ =q^{-1/3}(1+248q+4124q^2+34752q^3+\cdots),
+\tag{3.6}\label{eq:E8char}
+\]
+$V_1$ is the simple Lie algebra $E_8$ at level one, and
+$V\cong V_{E_8}$.  The strongly local net associated by the CKLW
+construction is the level-one $E_8$ current net.
+\end{theorem}
+
+The VOA classification statement is the central-charge-eight theorem of
+Dong--Mason \cite{DongMason}; the last sentence is CKLW.  We stress that
+KLM alone proves holomorphy, not the name ``$E_8$''.  The VOA
+reconstruction/weight-one argument is the additional identification step.
+

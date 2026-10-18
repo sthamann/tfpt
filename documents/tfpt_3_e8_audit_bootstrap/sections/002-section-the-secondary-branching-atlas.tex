@@ -1,0 +1,379 @@
+\section{The secondary branching atlas}
+% =====================================================================
+Each maximal subalgebra of $E_8$ mirrors a TFPT module. The dimension identities are exact \mE; the
+readings are audit-level \mO. The seven \emph{slices} of $\dim E_8=248$ are shown below: the same total
+cut seven ways, each cut a different TFPT module.
+
+\begin{figure}[h]\centering
+\begin{tikzpicture}[x=0.0495cm,y=1cm,font=\scriptsize]
+  % helper: \seg{xstart}{width}{ybase}{fillcolor}{label}
+  \def\bh{0.62}
+  \newcommand{\seg}[5]{%
+    \fill[#4] (#1,#3) rectangle (#1+#2,#3+\bh);
+    \draw[white,line width=0.4pt] (#1,#3) rectangle (#1+#2,#3+\bh);
+    \node[font=\scriptsize\bfseries,text=white] at (#1+#2/2,#3+\bh/2) {#5};}
+  % row y-levels
+  \foreach \nm/\y in {D_8/6,D_5{\times}A_3/5,E_6{\times}A_2/4,E_7{\times}A_1/3,F_4{\times}G_2/2,A_4{\times}A_4/1,A_8/0}{
+    \node[anchor=east,font=\footnotesize] at (-6,\y+\bh/2) {$\nm$};}
+  % D8: 120,128
+  \seg{0}{120}{6}{tfblue!75}{120}\seg{120}{128}{6}{tfgold!75!black}{128}
+  % D5xA3: 45,15,60,64,64
+  \seg{0}{45}{5}{tfblue!75}{45}\seg{45}{15}{5}{tfblue!45}{15}\seg{60}{60}{5}{tfgreen!60!black}{60}\seg{120}{64}{5}{tfgold!75!black}{64}\seg{184}{64}{5}{tfgold!60!black}{64}
+  % E6xA2: 78,8,81,81
+  \seg{0}{78}{4}{tfred!70!black}{78}\seg{78}{8}{4}{tfred!45!black}{8}\seg{86}{81}{4}{tfgreen!55!black}{81}\seg{167}{81}{4}{tfgreen!42!black}{81}
+  % E7xA1: 133,3,112
+  \seg{0}{133}{3}{tfblue!75}{133}\seg{133}{3}{3}{tfblue!40}{3}\seg{136}{112}{3}{tfgold!75!black}{112}
+  % F4xG2: 52,14,182
+  \seg{0}{52}{2}{tfblue!75}{52}\seg{52}{14}{2}{tfblue!45}{14}\seg{66}{182}{2}{tfgray!60}{182}
+  % A4xA4: 24,24,50x4
+  \seg{0}{24}{1}{tfblue!75}{24}\seg{24}{24}{1}{tfblue!55}{24}
+  \foreach \i in {0,1,2,3}{\seg{48+\i*50}{50}{1}{tfgreen!55!black}{50}}
+  % A8: 80,84,84
+  \seg{0}{80}{0}{tfblue!75}{80}\seg{80}{84}{0}{tfgold!75!black}{84}\seg{164}{84}{0}{tfgold!60!black}{84}
+  \draw[-{Stealth[length=1.6mm]},tfgray] (0,-0.5)--(248,-0.5) node[midway,below,font=\scriptsize]{$\dim E_8=248$};
+\end{tikzpicture}
+\caption{\small The $E_8$ slice atlas: seven maximal-subalgebra cuts of $248$. Gold $=$ spinor-glue
+($64{=}(16,4)$, $112{=}7{\cdot}16$, $84{=}7{\cdot}12$, $128$); red $=$ flavor-residue ($78{=}\|R\|_F^2$,
+$8{=}\det R$); green $=$ family/action blocks; blue $=$ Lie adjoints.}
+\end{figure}
+
+\begin{center}\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}p{2.1cm}p{4.1cm}Y@{}}
+\toprule
+\textbf{Subalgebra} & \textbf{$248=$} & \textbf{TFPT reading} \\
+\midrule
+$D_8$ & $120+128$ & family-transition adjoint $+$ two spinor-glue sheets ($128{=}2\dim S^+|\mu_4|$) \\
+$D_5\times A_3$ & $45+15+60+64+64$ & \textbf{main split}: $\dim D_5$, $\dim A_3$, $\AL|R^+(A_3)|$, two $(16,4)$ glue sheets \\
+$E_6\times A_2$ & $78+8+81+81$ & \textbf{flavor residue}: $\|R\|_F^2$, $\det R{=}\dim A_2$, cubic family blocks \\
+$E_7\times A_1$ & $133+3+112$ & \textbf{scalaron}: $112{=}7\cdot16$ (exponent $\times$ one family) \\
+$F_4\times G_2$ & $52+14+182$ & \textbf{occupancy/gauge}: $|R(F_4)|{=}48{=}\Oadm$, $|R(G_2)|{=}12{=}\dim\mathfrak g_{\mathrm{SM}}$ \\
+$A_4\times A_4$ & $24+24+4\cdot50$ & \textbf{action ladder}: $24{+}24{=}48{=}\Oadm$; off-diagonal $(5,10)$ reps $\AH,\AL$ \\
+$A_8$ & $80+84+84$ & rank-decuple $+$ scalaron: $80{=}8\cdot10$, $84{=}7\cdot12$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{keybox}[The $D_8$ split is a magnitude/phase channel \mE/\mC/\mO\ (\veri{v227\_degree\_exponent\_channel\_split.py})]
+The $D_8$ row $248=120+128$ is the canonical \emph{exponent/degree} split of $E_8$: the exponents sum to
+$120=|R^+(E_8)|$ (a \textbf{magnitude} channel --- positive roots, root transitions, the dimensionless
+ratio/product readouts), the fundamental degrees $\{2,8,12,14,18,20,24,30\}$ sum to
+$128=2^{\operatorname{rank}-1}=\operatorname{rank}E_8\cdot\dim S^+$ (a \textbf{phase/glue} channel --- the
+spinor/Ramond sheets). This gives the red-team Target~D CP residual a clean home: the
+$(\text{ratios},\text{product})\Rightarrow v_{\mathrm{geo}}$ magnitude bijection lives in the $120$ channel,
+the un-covered CP phases in the $128$ channel (cf.\ the hexagonal phase fiber, red team Target~D). Whether
+$128$ also hosts a dark sector is Frontier \mO\ --- this is the honest replacement for the over-strong
+``$S^-$ is dark matter'' reading, not an assertion of it. The conjugate sheet $S^-$ and the double-cover
+deck sit in this \emph{matched} channel ($|\Z_2|=2$ and $128=\sum\deg$), forced-disjoint from the five
+unmapped degrees $\{12,14,18,20,24\}$ (\vref{v430}): the seam's ``other side'' is not the hull overhead.
+\end{keybox}
+
+\begin{keybox}[$E_8$ Slice Compression Lemma \mE\ (audit)]
+The seven slices are not seven separate narratives --- they are \emph{one}
+projection of two small alphabets. The anchor power sums $p_n(a)=2+2^n$ give
+$P=(p_0,p_1,p_2,p_3)=(3,4,6,10)$, whose six $K_4$ edge products are exactly the
+carrier blocks $(p_0p_1,\dots,p_2p_3)=(12,18,30,24,40,60)=(|R(A_3)|,\Nfam|R^+(A_3)|,
+h(E_8),|W(A_3)|,|R(D_5)|,D_{\mathrm{start}})$; the six Sheet-Diamond operators carry
+determinants $(\det Q,\det K,\det R,\det C,\det L,\det F)=(3,4,8,14,20,32)$ with
+$\sum\det=81=\Nfam^4$, the total determinant charge of the flavour space. All seven
+$248$-slices, the row-budget cross
+$\operatorname{row}(C+sU+tV)=(7,11,13)+s(3,3,3)+t(1,2,3)$ (democratic winding $+$
+$A_3$ exponents), and $\dim E_6=78=p_2(p_0+p_3)$ then follow from $P$, those
+determinants and $\Delta=p_0+p_3=13$. The atlas is therefore a closed grammar over
+admissible invariant classes (power sums, determinants, branching dimensions), not a
+shelf of trophies (\veri{v170\_diamond\_slice\_compression.py}).
+\end{keybox}
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.95\linewidth]{figures/slice_compression.pdf}
+\caption{\small The same seven $248$-slices, now coloured by their \emph{alphabet}
+source rather than by physics module: blue $=$ anchor power-sum blocks ($P=(3,4,6,10)$),
+gold $=$ Sheet-Diamond determinant blocks ($D=(3,4,8,14,20,32)$, $\sum\det=81=\Nfam^4$),
+green $=$ symmetric/glue data. Every slice is one projection of the two alphabets
+(\veri{v170\_diamond\_slice\_compression.py}).}
+\label{fig:slice_compression}
+\end{figure}
+
+\begin{theorem}[$E_6\times A_2$ flavor-residue shadow \mO]
+The principal flavor branching reads the residue matrix:
+\[
+  \|R\|_F^2=78=\dim E_6,\qquad \det R=8=\dim A_2=h(D_5),\qquad \onev^\top R\,a=27,
+\]
+and the full $E_6\times A_2$ dimension count is the residue identity
+\[
+  \boxed{\ 248=\|R\|_F^2+\det R+2\,(\onev^\top R\,a)\,\Nfam=78+8+2\cdot27\cdot3 .\ }
+\]
+Here $E_6$ reads the Frobenius norm of the residue matrix, $A_2$ the pure three-family symmetry, and the
+$\mathbf{27}$ the cubic family block. (Strongest new $E_8$ flavor fingerprint.)
+\end{theorem}
+
+\begin{theorem}[$E_7\times A_1$ scalaron shadow \mO]
+With the scalaron exponent $7=\Oadm-10b_1=-\deg E+\operatorname{rk}E$,
+\[
+  248=133+3+112,\qquad 112=7\cdot\dim S^+=7\cdot16,\qquad |R(E_7)|=126=7\cdot18,
+\]
+where $18=\Nfam|R^+(A_3)|$. The scalaron exponent $7$ (the seam power $M_{\mathrm{scal}}^2/\bar M_{\mathrm{Pl}}^2=c_3^7$)
+is thus exactly the $E_7$ off-block coefficient. \emph{Cross-check:} the centred $E_8$ exponents give
+$\sum_{m\in\mathrm{Exp}(E_8)}|m-15|=56=\dim\mathbf{56}_{E_7}$ (exponents $\{1,7,11,13,17,19,23,29\}$,
+the primitive residues mod $30$).
+\end{theorem}
+
+\begin{proposition}[$A_4\times A_4$ action-ladder and $F_4\times G_2$ occupancy \mO]
+$248=24+24+4(5\cdot10)$ with $24+24=48=\Oadm$ and off-diagonal reps $(\mathbf 5,\mathbf{10})=(\AH,\AL)$
+--- the action ladder appears inside $E_8$ (an audit, \emph{not} an $SU(5)$ GUT). And
+$F_4\times G_2$: $|R(F_4)|=48=\Oadm$, $|R(G_2)|=12=\dim\mathfrak g_{\mathrm{SM}}$,
+$\operatorname{rank}F_4=4=|\mu_4|$, $\operatorname{rank}G_2=2=|\Z_2|$.
+\end{proposition}
+
+\par\smallskip\noindent\textbf{Flavor-matrix and prime-table fingerprints (audit-level, machine-verified).}
+Five exact linear-algebra readouts of $R,L$ and the prime atoms, kept here under the no-free-pattern rule.
+\begin{itemize}\setlength\itemsep{2pt}
+\item\textbf{Row norms ladder.} $\|R_u\|^2,\|R_d\|^2,\|R_e\|^2=(10,30,38)=(\AL,\,h(E_8),\,2\cdot19)$ with
+$10{+}30{+}38=78=\dim E_6$ ($19\in\operatorname{Exp}(E_8)$).
+\item\textbf{Residue inventory.} The entries of $R$ on $C_6$ are $m=(1,2,2,2,0,2)$: the \emph{only} gap is
+$4=|\mu_4|=\sum a$. Moments $\sum R=22$, $\sum R^2=78=\dim E_6$ --- so $\|R\|_F^2=78$ is the second moment
+of the $C_6$ inventory with the $\mu_4$ hole.
+\item\textbf{First-column norm $\to$ $E_6{\times}A_2$ off-blocks.} $L_{\cdot1}=(7,7,8)$, $\|L_{\cdot1}\|^2=162=81+81$
+--- the two $\mathbf{81}$ off-blocks of the $E_6{\times}A_2$ slice are exactly the wound first-generation column.
+\item\textbf{Lepton exponent polynomial.} The $\phiz$-ladder lepton powers $(k_e,k_\mu,k_\tau)=(5,3,2)$ are
+the Coxeter primes $30=2\cdot3\cdot5$ in hierarchy order: $(t-5)(t-3)(t-2)=t^3-10t^2+31t-30$
+($e_1=\AL$, $e_3=h(E_8)$). The lepton $c$-ratios obey $\tfrac{(16/7)(7/6)}{4/3}=2=|\Z_2|$ and
+$\tfrac{(16/7)(7/6)}{(4/3)^2}=\tfrac32$ (the near-Koide factor).
+\item\textbf{The $2,3,5$ multiplication table} (the shortest integer-landscape compression):
+\[
+  (2,3,5)\xrightarrow{\times}(6,10,15,30)\xrightarrow{}(8{=}3{+}5,\,16,\,240{=}8\cdot30,\,248{=}240{+}8).
+\]
+\end{itemize}
+\par\smallskip
+
+% =====================================================================
+\section{Group-theoretic audits (optional)}
+% =====================================================================
+\par\smallskip\noindent\textbf{Weyl completion index.}
+Over the main stabiliser,
+\[
+  \frac{|W(E_8)|}{|W(D_5)|\,|W(A_3)|}=\frac{696729600}{1920\cdot24}=15120=63\cdot240=(2^6-1)\,|R(E_8)| .
+\]
+A group-theory machine-check, not physics: it quantifies the Weyl symmetry created beyond the
+$D_5\times A_3$ stabiliser. \mE\ (arithmetic) / \mO\ (reading)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{$E_8$ theta series as a higher-shell raster.}
+$\Theta_{E_8}=E_4=1+240\sum_{n\ge1}\sigma_3(n)q^n$ has shell degeneracies
+$240,\ 2160,\ 6720,\ 17520,\dots$ The first is $|R(E_8)|=240$; the second is
+$2160=9\cdot240=\Nfam^2|R(E_8)|$. The prime shells read the sheet-generator bilinears of \vref{v410}:
+$\sigma_3(2)=9=a^TV\mathbf 1=\Nfam^2$, $\sigma_3(3)=28=\mathbf 1^TV^3a=\det(I{+}R)$ and
+$\sigma_3(5)=126$ --- the local $E_7$ root shell $\{0{:}126\}$ of lemma (v) below. If later one-loop or CMB
+shell degeneracies touch these multiplicities, the theta series is the right place to type them --- as an
+audit raster, not a claim. \mO\ (\veri{v410\_sheet\_generator\_binary.py})
+
+\par\smallskip\noindent\textbf{The interacting Ext-source response
+(\texttt{DIAMOND.BIT.EXTSOURCE.01}).}
+The v572 remaining route is executed ($8$ checks, ${\sim}1$\,s):
+rank-one Ext-source coupling on the Gibbs pencil has exact rational
+flip thresholds $J_c(s)=-1/(v^{T}K(s)^{-1}v)$ whose numerators are
+exactly the twins' pencil factors; in the crossed phase positive
+coupling $J_c\le15/16<1$ heals exactly the compiler twin, while the
+alt twin cannot be flipped by any positive coupling in the open unit
+box --- the healing direction is strictly positive (consistent with
+v534); the response pole sits on the golden polynomial $s^2-s-1$
+(observed).  A response-level selection, not a positivity theorem; the
+alignment-bit contract stays open. Machine-checked:
+\veri{v584\_ext\_source\_response.py}.
+\mE\ (thresholds exact; response level only; no marker moves)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The sheet-involution existence
+(\texttt{QGEO.INVOL.01}).}
+The involution-existence input of \texttt{GATE.QGEO.01} is derived
+($7$ checks, $<1$\,s): the integral $V$-commuting involutions are
+exactly $(\mathbb{Z}/2)^3$ (rigidity, both twins); the v574 type
+theorem plus seam reversal plus zero-mode fixing single out the
+explicit $S_0$ of exact $\Sigma$-signature uniquely --- existence
+unconditional; the corpus RP reflection is a different structure
+(anti-automorphism, does not commute with $V$); the two demands'
+continuum derivation stays the named open. Machine-checked:
+\veri{v590\_involution\_existence.py}.
+\mE\ (exact sympy; demands declared; no marker moves)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The $\mu_3$-cover candidate
+(\texttt{QGEO.COVER.01}).}
+Strategy I/II, first executed step ($6$ checks, $<1$\,s): the cover
+$y^3=x^4-1$ hits four compiler fingerprints --- rank-3 Eisenstein
+$H_1$ (Chevalley--Weil $(1,2)$), projective $D_4$ via the deck
+($r^4=\omega$, Burau at $t=\omega$ with verified braid relations),
+cusp-class group $(\mathbb{Z}/3)^4$ of order $81$ (the saturation
+index with the per-mark mechanism), and the unique invariant hermitian
+form of LORENTZ signature $(1,2)$ (matching Paper~II's rank-3
+polarization --- Strategy II's first prediction).  The $Q/V$
+dictionary and the RP map are the named next steps; the gate does not
+move. Machine-checked: \veri{v597\_mu4\_cover\_model.py}.
+\mE\ (exact sympy; convention validated; no marker moves)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The cover dictionary, round 2
+(\texttt{QGEO.DICT.01}).}
+Three compiler objects located exactly ($4$ checks, $<1$\,s):
+$U\sim G_2$ (single-cusp Gram, char $x^2(x-3)$); $Q_-\sim G_1-G_3$
+(the $\mu_4$ sheet coupling as the \emph{diamond-diagonal} Gram
+difference, char $x(x^2-3)$); the binary AnchorLadder
+$\sim1+G_1+G_3$ (char $(x-1)(x-2)(x-4)$); opposite-twist products
+nilpotent; the grading half ($Q_+$/$V$/$H$/$Q$) absent from $7296$
+scanned canonical combinations --- the real structure is the named
+suspect; the Strategy-I kill criterion is not triggered.
+Machine-checked: \veri{v598\_cover\_dictionary.py}.
+\mE\ (exact entries; quantified negatives; no marker moves)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The real structure
+(\texttt{QGEO.REAL.01}).}
+The v598 suspect constructed ($18$ checks, ${\sim}3$\,s): the
+anti-holomorphic $D_4$ reflection acts semi-linearly,
+$R(v)=M\overline{v}$, with a \emph{one-dimensional} intertwiner space
+($R$ unique up to scale), $R^2=+1$ exactly, and all four twist
+intertwinings $RT_kR^{-1}=T_{5-k}^{-1}$ exact.  Its grading functor
+$\Gamma(A)=M\overline{A}M^{-1}$ closes the three dictionary gaps at
+char level: $V\sim G_2+G_3-\Gamma(G_3)$ (char $x(x-1)(x-2)$),
+$H\sim 1+G_2-\Gamma(G_3)$ (char $(x-1)^2(x-2)$ --- \emph{the anchor
+spectrum}), $Q_+\sim 1+G_2+G_3-\Gamma(G_3)$ (char $(x-1)(x-2)(x-3)$);
+the $\Gamma$-even/odd cusp elements carry $\{0,1,5\}$ ($\gcar=5$),
+$\{0,3,9\}$, $\pm\sqrt5$, $\pm\sqrt{27}$ and one nilpotent.  Honest
+joint negative, quantified: $4\times6$ candidates, zero pairs pass
+$\operatorname{tr}(UV)=3$ and $\operatorname{char}(U{+}V)=
+\operatorname{char}Q$ --- char-matching is not yet an algebra
+embedding (kill not triggered).  The invariant hermitian form is
+unique up to scale with $\det J=8$ --- a sheet-diamond
+determinant-list member --- and Lorentz signature $(1,2)$: Strategy
+II's Hodge prediction pinned at form level.
+Machine-checked: \veri{v599\_real\_structure.py}.
+\mE\ (exact existence/uniqueness; quantified joint negative; no
+marker moves)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The joint embedding
+(\texttt{QGEO.EMBED.01}).}
+The compiler pair is \emph{realized} on the $\mu_3$-cover ($15$
+checks, ${\sim}4$\,s): in the $\Gamma$-even degree-2 sector the pair
+$U^*=-2E_1+(G_1\Gamma(G_1)+\Gamma(G_1)G_1)+3$,
+$V^*=-E_3+\tfrac12(G_2\Gamma(G_2)+\Gamma(G_2)G_2)+1$ is
+$\mathbb{Z}[\omega]$-integral with compiler-exact spectra and joint
+traces ($\operatorname{tr}(U^*V^*)=3$,
+$\operatorname{tr}(U^*V^{*2})=6$,
+$\operatorname{char}(U^*{+}V^*)=\operatorname{char}Q$); the seven
+words have rank $7$ (the full $2|1$ parabolic) and an explicit
+invertible $g$ solves $gU^*g^{-1}=U_c$, $gV^*g^{-1}=V_c$ exactly ---
+the v566 self-code algebra lives on the cover.  On the explicit
+saturated $\mathrm{Fix}(R)$ lattice (SNF certificate $(1,1,1)$) the
+restrictions are \emph{integer} matrices whose seven-word
+$\mathbb{Z}$-order has Smith divisors $(1,1,1,3,3,3,3)$ ---
+saturation index $81=3^4$, exactly the v566 self-code index.
+Must-break control passes (the degree-1 pair fails the joint
+criterion); canonicity is open and typed open (existence, not
+uniqueness); the gate does not move.
+Machine-checked: \veri{v600\_joint\_embedding.py}.
+\mE\ (exact realization; canonicity open; no marker moves)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The canonical equivariant realization
+(\texttt{QGEO.CANON.01}).}
+The canonicity question answered ($14$ checks, ${\sim}12$\,s): the
+Burau image preserves $J$, not the standard hermitian form, so the
+canonical building blocks are the J-adapted cusp projectors
+$GJ_k=(1-T_k)J^{-1}(1-T_k)^\dagger J$ --- idempotent rank-1
+J-self-adjoint projectors rotating \emph{exactly} under $D_4$
+($rGJ_kr^{-1}=GJ_{k+1}$; opposite cusps J-orthogonal).  The pair
+family $U_k=3\,GJ_k$, $V_k=1+GJ_{k-1}-GJ_kGJ_{k+1}$ is
+$\mathbb{Z}[\omega]$-integral, compiler-exact (spectra, joint data,
+seven-word rank $7$) and $D_4$-\emph{equivariant by construction}:
+the mark choice is the compiler's winding choice.  The duality
+surprise: the equivariant pair is \emph{not} conjugate to
+$(U_c,V_c)$ (the intertwiner is identically singular --- must-fail
+documented) but exactly conjugate to the \emph{transposed} pair ---
+the equivariant presentation realizes the DUAL (plane-stabilizer)
+parabolic, the v600 pair the line-stabilizer: the cover carries both
+types, exchanged by duality.  And the v590 Klein four-group lives
+\emph{integrally} on the curve: all eight spectral-sign involutions
+of $V_1$ are $\mathbb{Z}[\omega]$-integral, the two demands select
+the explicit $S_0$ (trace $-1$), and $AB=S_0$ closes the group.
+Honest: the naive J-word Gram has inertia $(3,2,2)$, not the v572
+pattern $(4,0,3)$ --- the Hodge/RP comparison needs the Weil-twisted
+polarization (named open); the seam identification stays open.
+Machine-checked: \veri{v601\_equivariant\_dual.py}.
+\mE\ (exact equivariance/duality/Klein; typed opens; no marker moves)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The duality-and-forms round
+(\texttt{QGEO.DUALFORMS.01}).}
+The duality mechanism identified ($17$ checks, ${\sim}8$\,s): $U_1$
+is J-\emph{self-adjoint}, the J-adjoint of $V_1$ is the exact product
+reversal, and $(U_1,V_1^J)$ is exactly conjugate to the compiler
+line-stabilizer pair while $(U_1,V_1)$ realizes the transposed dual
+--- the J-adjoint exchanges the two parabolic types inside one
+equivariant structure.  The dictionary completes in the J-projector
+language: $H=1+V(V-1)/2$ carries char $(x-1)^2(x-2)$ --- \emph{the
+corpus anchor formula holds verbatim on the curve}; $Q_+\sim
+2-GJ_1+GJ_2GJ_3$ and the binary ladder $\sim 2-GJ_1+2\,GJ_2GJ_3$ are
+exact.  Weil positivity holds exactly: the twisted form $JC$ is
+positive definite with eigenvalues $\{2\sqrt2-2,\,2,\,2+2\sqrt2\}$
+--- the Riemann bilinear relations on the $\omega$-sheet; and the
+canonical bilinear form $B=M^\dagger J$ (real structure $\times$
+polarization) is symmetric with $\det B=8$.  Honest negatives, typed:
+$g^Tg\ne\lambda B$ (the corpus transpose is not the $(R,J)$-form);
+the naive mark-local cokernel map fails; the seam normal is explicit
+but not a deck eigenvector.  The v600 integer core is Lean-certified
+(\texttt{FORM.QGEO.04}, \texttt{TfptCarrier/CoverEmbedding.lean}:
+determinant-free Smith certificates, kernel \texttt{decide}).
+Machine-checked: \veri{v602\_duality\_forms.py}.
+\mE\ (exact duality/dictionary/positivity; quantified negatives; no
+marker moves)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The seam-and-marks round
+(\texttt{QGEO.SEAMMARKS.01}).}
+The seam line found, and it is \emph{real} ($15$ checks, ${\sim}7$\,s):
+the line-stabilizer pair has a unique common eigenline $v$ ($Uv=0$,
+$Vv=v$ --- the transported compiler seam), explicitly
+$v=(0,(\sqrt3-i)/(\sqrt3+i),1)$; the real structure \emph{fixes} this
+line and the two-demand involution \emph{reverses} it ($S_0v=-v$) ---
+the v590 seam-reversal demand holds geometrically on the curve.  The
+infinity cusp separates in the unreduced Burau module (invariant
+column $(1,1,1,1)$; full twist eigenvalues $\{1,\omega^{\times3}\}$).
+And the first per-mark $\mathbb{Z}/3$ witness lands: $E_1$ restricts
+to an integer matrix lying in the seven-word algebra with
+denominator lcm exactly $3$ --- an order-$3$ class in the word-order
+cokernel (the v566/v597 mechanism's first exact witness); $E_4$'s
+class is trivial and $E_2/E_3$ lie outside the mark-1-anchored
+algebra (equivariant per-mark framing typed).  The corpus-transpose
+translator negatives are quantified ($F_2=g^T\Sigma g$ matches no
+canonical menu form); named open.
+Machine-checked: \veri{v603\_seam\_marks.py}.
+\mE\ (exact seam/infinity/witness; quantified negatives; no marker
+moves)
+\par\smallskip
+
+\par\smallskip\noindent\textbf{The equivariant order and the infinity
+bridge (\texttt{QGEO.EQORDER.01}).}
+Three integral statements ($12$ checks, ${\sim}4$\,s).  First, a
+correction with a payoff: $R$ \emph{is} an anti-isometry of the
+polarization --- the correct compatibility equation
+$M^\dagger JM=J^T$ holds exactly --- so $J$ restricts to a real
+symmetric \emph{integer} form on the saturated fixed lattice,
+$J_{\mathrm{fix}}=[[16,2,4],[2,-2,2],[4,2,-2]]$ with
+$\det=72=8\cdot9$.  Second, the four mark frames together generate a
+\emph{full} order: the joint lattice of all $28$ rotated words has
+rank $18$ in $M_3(\mathbb{Z}[\omega])$ with Smith divisors
+$(1^{15},3,3,3)$ --- index $27=3^3$ (one frame: the $7$-dim parabolic
+of index $81=3^4$; all four: the full algebra of index $27$).  Third,
+the 3-torsion \emph{localizes at infinity}:
+$\mathrm{coker}(1-T_\infty)=\mathbb{Z}^2\oplus(\mathbb{Z}/3)^3$ while
+every finite cusp twist is torsion-free --- three objects share
+$(\mathbb{Z}/3)^3=27$ (infinity monodromy, equivariant order,
+$\det_{\mathbb{Z}}(1-\mathrm{deck})$): the compiler constants
+localize, $81$ at the finite marks and $27$ at infinity.  Translator
+negatives extended ($J_{\mathrm{fix}}$-menu and algebra twists fail;
+the $\bar\omega$-sheet is the named candidate).
+Machine-checked: \veri{v604\_equivariant\_order.py}.
+\mE\ (exact integral statements; typed localization reading; no
+marker moves)
+\par\smallskip

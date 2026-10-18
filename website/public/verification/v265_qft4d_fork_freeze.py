@@ -39,6 +39,9 @@ Status: [X] SM-only GUT killed + proton safety rule; [E] E8 content + sin^2 thet
 + wording guard; [C] kappa band + the frozen decision.  Carrier gauging stays a
 contract [O] (PS.DIRAC.* ; not derived here).  Python-only (numpy + text guard).
 """
+
+from tex_sources import source_chunks
+from pathlib import Path
 import json
 import os
 import re
@@ -80,6 +83,18 @@ GEN = [("Q", 3, 2, F(1, 6)), ("u^c", 3, 1, F(-2, 3)), ("e^c", 1, 1, F(1)),
 
 def t3_values(weak):
     return [F(1, 2), F(-1, 2)] if weak == 2 else [F(0)]
+
+
+def document_body(path: Path) -> str:
+    """Read active prose, excluding the separate generated index/history.
+
+    These reference appendices were not part of the former root-file guard;
+    their historical quotations must not become current prose by expansion.
+    """
+    excluded = {(Path(ROOT) / "tex-artefacts/verification.tex").resolve(),
+                (Path(ROOT) / "changelog.tex").resolve()}
+    return "".join(chunk.text for chunk in source_chunks(path)
+                   if not excluded.intersection(chunk.include_chain))
 
 
 def run():
@@ -138,7 +153,7 @@ def run():
           "(carrier gauging itself stays a contract [O], PS.DIRAC.*)", True)
 
     # 6. wording guard
-    texts = {d: (open(os.path.join(ROOT, d), encoding="utf-8").read()
+    texts = {d: (document_body(Path(ROOT) / d)
                  if os.path.exists(os.path.join(ROOT, d)) else "") for d in ACTIVE_DOCS}
     blob = "\n".join(texts.values())
     bare_hits = {p: [d for d, t in texts.items() if re.search(p, t, re.I)]

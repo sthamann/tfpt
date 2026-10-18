@@ -1,0 +1,378 @@
+\section{Die Quelle bewegt sich wirklich: Eine exakte Zeitentwicklung mit ihrem Rest}\label{sec:mobius}
+
+\subsection{Die höheren Moden gehören zur Bewegung}
+Der bisherige Einwand $L_0=1$ auf allen Stromzuständen vom Grad eins ist richtig, aber er bedeutet nicht, dass die Quelle keine nichttriviale geometrische Zeit besitzt. Mit der positiven Hermiteschen Strommetrik und tatsächlichem Adjungieren bilden
+\begin{equation}
+\ket{A,n}=\frac{J_{-(n+1)}^A\Omega}{\sqrt{k(n+1)}}\quad(n\ge0)
+\end{equation}
+einen normierten Nachfahrenturm. Aus $[L_m,J_n]=-nJ_{m+n}$ folgen die Leiterkoeffizienten $\sqrt{(n+1)(n+2)}$ und $\sqrt{n(n+1)}$. Der antihermitesche Generator
+\begin{equation}
+G=\frac{L_{-1}-L_1}{2},\qquad U(s)=e^{sG},\qquad r=\tanh(s/2)
+\end{equation}
+liegt bereits in derselben konformen Quelle. Seine exakte Wirkung lautet
+\begin{equation}\label{eq:mobiustower}
+U(s)\ket{A,0}=(1-r^2)\sum_{n\ge0}\sqrt{n+1}\,r^n\ket{A,n}.
+\end{equation}
+Dies ist die entsprechende bekannte $SU(1,1)$-Kohärenzstruktur \cite{perelomovstates}, hier aus den wirklichen Strommoden gewonnen. Es wurde kein zusätzlicher Oszillator-Hamiltonoperator gewählt.
+
+Die Modengewichte und der exakte Rest sind
+\begin{equation}
+p_n=(n+1)(1-r^2)^2r^{2n},\qquad
+\sum_{n\ge N}p_n=r^{2N}(N+1-Nr^2).
+\end{equation}
+Diese Größen sind konforme Gradgewichte eines kohärenten Zustands. Sie sind keine automatisch stattfindenden Detektorklicks. Zwischen zwei Bewegungsständen gilt
+\begin{equation}
+\langle A,s|B,t\rangle=\delta_{AB}\operatorname{sech}^2\!\left(\frac{s-t}{2}\right).
+\end{equation}
+
+\subsection{Warum eine endliche Projektion Gedächtnis verliert}
+Für den Projektor $P_1$ auf die anfänglichen Grad-eins-Ströme folgt
+\begin{equation}
+P_1U(s)P_1=\operatorname{sech}^2(s/2)P_1.
+\end{equation}
+Bei $s=\log3$ ist diese Amplitude $3/4$. Die ununterbrochene Bewegung bis $2s$ hat Amplitude $9/25$, während zweimaliges Projizieren $9/16$ ergibt. Die scheinbare endliche Dynamik komponiert somit nicht wie der volle Prozess. Sie hat Anteile entfernt, die später zurückwirken können.
+
+\picturetext{Ein angestoßener Ton verteilt sich auf Obertöne. Wer zwischendurch nur den Grundton behält, beschreibt beim nächsten Schritt ein anderes Instrument. Die rationale Gedächtnisdarstellung und der genaue Rest sagen, was beim Vergröbern erhalten bleiben muss.}
+
+Mit $g_s(z)=(z+r)/(1+rz)$ und der Cayley-Koordinate $x=i(1-z)/(1+z)$ gilt $x\mapsto e^{-s}x$. In der üblichen geometrischen Einintervall-Modularkonvention ist daher $s=2\pi t$ für $\Delta_I^{it}$ \cite{cklw}. Mehrere disjunkte Intervalle besitzen zusätzliche Struktur; die einfache Formel darf dort nicht unverändert eingesetzt werden \cite{longomodular}.
+
+Die Bewegung wirkt auf jede orthonormierte interne Stromrichtung gleich. Sie erzeugt somit selbst keine Flavorhierarchie. Der konforme Parameter ist ferner noch nicht mit Laborzeit, kosmischer Zeit oder den historischen Compilerclocks identifiziert. Die neue Aussage ist die ausdrücklich konstruierte gemeinsame Quellenbewegung mit kontrolliertem Nachfahrengedächtnis.
+
+\section{Der physikalische Anschluss nach diesen Rechnungen}\label{sec:physicalfollow}
+
+\key{Die Quelle, ihre vollständigen Wurzelantworten, ihr positiver Geschichtskern und ihre geometrische Bewegung passen jetzt in einer Konstruktion zusammen. Die physische Aufgabe ist die Abbildung dieser Konstruktion auf tatsächlich realisierte Raumzeitfelder. Ein bloßer Ersatz durch eine passende Kovarianz würde bereits die berechneten höheren Antworten verändern.}
+
+\subsection{Warum die Massenrekonstruktion noch keine Massenherkunft ist}
+Die ursprüngliche \file{v258_dirac_covariance_induction.py} verwendet
+\begin{equation}
+H_{\rm mod}=\log((I-C_F)C_F^{-1}),\qquad
+D_F^{\rm ind}=\mu_{\rm geo}\,\Pi_{\rm odd}H_{\rm mod}.
+\end{equation}
+Dabei ist $\mu_{\rm geo}$ der geometrische Maßstab und $\Pi_{\rm odd}$ die Projektion auf den chiraliätsungeraden Anteil. Im ausgeführten chiralen Beispiel ist $\mu_{\rm geo}=1$; die Projektion ändert den eingesetzten Operator nicht. Die Rekonstruktion setzt neun Massen in $D$ ein, erzeugt daraus $C$ und gewinnt anschließend $D$ zurück. Der physische Pfeil $C_F=P_FC_\Sigma P_F$ steht als bedingte Identifikation mit einer auf \texttt{True} gesetzten Prüfung im Programm. Die spätere gezielte Quellprovenienzprüfung vom 21. September behandelt genau diesen noch fehlenden Vorwärtspfeil. Dieser Befund betrifft die spezielle Kovarianzroute; er hebt die ursprünglichen Quellenmassenformeln und ihre Herleitungen aus Abschnitt~\ref{sec:physicalconstraints} nicht auf.
+
+Im invarianten E8-Vakuum haben gleich gesmearte orthonormierte Ströme dagegen die Paarung $K(f,f)I$. Eine reine isometrische interne Auswahl bleibt skalar. Selbst bei einer zusätzlich postulierten CAR-Identifikation wäre ihr Logit skalar. Unterschiedliche Massen können daraus nicht durch bloßes Umbenennen der 24 Indizes entstehen.
+
+Die neue Kompositdarstellung behebt einen möglichen Statistikfehler, aber sie wählt weder den physischen Materieprojektor $P_F$ noch feldabhängige räumliche Profile. Dafür müssen die ursprünglichen P2- und Clockmarkierungen mit einer tatsächlich begründeten räumlichen und geladenen Restriktion verbunden werden. Der echte höhere Stromring und die C-Erweiterungsantwort müssen dabei erhalten bleiben.
+
+\subsection{Der räumliche Ausschnitt ist ein Teil der Herleitung}
+Die originale Vierintervallrechnung \file{v480_multilocal_four_interval.py} verwendet vier echte Teilintervalle mit Lücken eines freien fermionischen Rings: 256 Orte, jeweils 48 gewählte Orte im Abstand 64. Vier markierte Punkte allein wählen diese Lücken nicht aus. Im stark additiven vollen Netz erzeugen nur durch Punkte getrennte anstoßende Bögen wieder die globale Algebra; das ist nicht derselbe reduzierte Zustand.
+
+Der vorhandene Kompressionssatz
+\begin{equation}
+C_F-C_F^2=(QC_\Sigma P_F)^\dagger(QC_\Sigma P_F),\qquad Q=I-P_F,
+\end{equation}
+für einen reinen projektorwertigen Quellzustand zeigt, wo die gemischte endliche Kovarianz herkommen kann: aus der Kopplung an ausgelassene Freiheitsgrade. Er ist ein bereits vorhandenes Ergebnis. Die explizite Möbiusbewegung zeigt jetzt am gemeinsamen Stromturm, wie eine autonome endliche Ersatzzeit genau diese Information verlieren würde.
+
+\subsection{Welche gemeinsame Abbildung jetzt wirklich geprüft werden kann}
+Für eine behauptete physische Realisierung wird ein Feldtransfer $\iota$ benötigt, so dass für alle zugelassenen Quellwörter
+\begin{equation}
+\omega_{4D}\bigl(\iota(J_1)\cdots\iota(J_n)\bigr)
+=\omega_{E_8}\bigl(J_1\cdots J_n\bigr)
+\end{equation}
+gilt, mit verträglicher Lokalisation, P2-Ladung, Statistik, Adjungierung und Zeit. Die neue Produktformel macht die rechte Seite für beliebig lange endliche C/X-Wörter direkt berechenbar. Der positive Kernel prüft zusätzlich den gemeinsamen Zustand; die Möbiusformel prüft seine geometrische Bewegung.
+
+Die bisher ausgeführte 3+1-Wandprobe besitzt eine 2+1-dimensionale Wand und spinlose Jordan-Wigner-Moden. Sie enthält noch keinen nachgewiesenen Transfer der 1+1-dimensionalen C/X-Naht als Defekt innerhalb dieser Wand. Ebenso bleibt der Seamterm der vierdimensionalen Masterwirkung eine noch zu realisierende Anschlussanforderung. Diese fehlende Abbildung verhindert derzeit, die neue Wandprobe als gemeinsame Realisierung der bereits vorhandenen Massen-, Kopplungs- und Gravitationsgesetze auszugeben. Die dafür nötige Operatoridentität folgt nicht durch Einsetzen der Zielgrößen in eine Kovarianz.
+
+Die tragende Arbeitsrichtung ist damit zusammenhängend: den ursprünglichen geladenen Quelltransfer konstruieren, seinen Level durch den einzelnen Wurzelzeugen festlegen und denselben Transfer räumlich sowie zeitlich fortsetzen. Das erhält Double Cover, P2, $\phi_0$, $\alpha$ und die Clocks als gemeinsam zu erfüllende markierte Zielantworten. Eine optionale E8-Kaskadengeschichte wird dafür nicht zur zusätzlichen Pflichtannahme erklärt.
+
+\section{Gesamtprüfung: Ursprung, Universalraum, Raumzeit und Materie an einem Objekt}\label{sec:jointclosure}
+
+\key{\textbf{Ergebnis dieser Fortsetzung:} Die stärkste zusammenhängende Route hat zwei noch nicht ausgefüllte Eingänge: die \emph{Auswahl der gemeinsamen Quelle} und die \emph{Auswahl ihrer physischen Lokalisation}. Dazwischen liegen echte Konstruktions- und Rekonstruktionssätze. Diese unterscheiden wir von den Eingängen, die sie voraussetzen. Dadurch wird sichtbar, welche zusätzliche Herleitung mehrere bisher getrennte Probleme gleichzeitig verbinden würde.}
+
+\subsection{Ein wirklicher topologischer Zusammenhang: Warum der Faktor 16 erscheint}
+\label{sec:bordism16}
+Die originale Kummer-/K3-Konstruktion besitzt einen präzisen Anschluss an die Quantisierung einer gravitativen Antwort. Er beruht auf den Gruppen glatter geschlossener Viermannigfaltigkeiten modulo Bordismus:
+\begin{equation}
+\Omega_4^{\mathrm{Spin}}\cong\Z,\qquad
+\Omega_4^{SO}\cong\Z.
+\end{equation}
+K3 erzeugt die erste Gruppe, $\mathbb{CP}^2$ die zweite, jeweils bis auf Orientierung. Die Signaturen sind $-16$ und $1$. Beim Vergessen der Spinstruktur gilt daher
+\begin{equation}\label{eq:forgetspin}
+f:\Omega_4^{\mathrm{Spin}}\longrightarrow\Omega_4^{SO},
+\qquad [\mathrm{K3}]\longmapsto-16[\mathbb{CP}^2].
+\end{equation}
+Für die ganzzahligen Antwortfunktionen $q_{SO}=\sigma$ und $q_{\mathrm{Spin}}=\sigma/16$ lautet der duale Pfeil
+\begin{equation}
+f^*q_{SO}=16q_{\mathrm{Spin}}.
+\end{equation}
+Dies ist eine echte Abbildung mit erklärtem Definitions- und Zielbereich. Sie identifiziert keine sechzehn Knoten mit sechzehn Teilchen.
+
+Für die hier betrachtete invertible rein gravitative Antwort in $2+1$ Dimensionen, mit Konvention $c_-=\nu/2$, verändert eine geschlossene Viermannigfaltigkeit $X$ als Füllungsdifferenz die Wirkung um
+\begin{equation}\label{eq:gravextension}
+\Delta S_{\rm grav}=2\pi\nu\,\frac{\sigma(X)}{16}.
+\end{equation}
+Spinfüllungen erlauben ganzzahliges $\nu$, weil ihre Signatur durch 16 teilbar ist. Soll die Antwort unabhängig von einer Spinwahl auf allen orientierten Hintergründen definiert sein, verlangt Füllungsunabhängigkeit $\nu\in16\Z$. Der primitive positive nichttriviale Generator hat dann
+\begin{equation}
+\boxed{\nu=16,\qquad c_-=8.}
+\end{equation}
+Die Normierung und die Unterscheidung von Spin- und orientierten Füllungen stehen ausdrücklich im Anhang von Kapustin et al.~\cite{kapustinbordism}. Der Übergang ist zunächst ein Satz über quantisierte Antworten. Seine Interpretation als mikroskopische Phasenäquivalenz benötigt die entsprechenden Voraussetzungen einer invertiblen Niedrigenergietheorie; diese Reichweite wird bei Freed--Hopkins unterschieden~\cite{freedhopkins}.
+
+Hier ist $c_-=c_L-c_R$ die \emph{chirale Differenz}. Erst eine nachgewiesen rein chirale Realisierung mit $c_R=0$ macht daraus die Zentralzahl $c_L=8$. Zusätzliche gegenläufige Sektoren können dieselbe gravitative Antwort besitzen. Der Antwortpfeil allein liefert daher noch nicht die im Levelselektor benötigte obere Zentralzahlgrenze.
+
+\textbf{Der entscheidende gemeinsame Test liegt außerhalb von K3.}
+Auf K3 ist $\exp(i\Delta S_{\rm grav})=\exp(-2\pi i\nu)=1$ für jedes ganzzahlige $\nu$. K3 allein unterscheidet deshalb einen einzelnen Majorana-Index nicht von sechzehn. Auf dem nicht-Spin-Hintergrund $\mathbb{CP}^2$ gilt dagegen
+\begin{equation}
+\exp(i\Delta S_{\rm grav})=
+\begin{cases}
+e^{\pi i/8},&\nu=1,\\
+1,&\nu=16.
+\end{cases}
+\end{equation}
+Der zusätzliche Inhalt ist also die \emph{Existenz derselben Antwort ohne Spinwahl}. Ein Double Cover liefert diesen Abstieg noch nicht.
+
+\picturetext{Wer nur auf Wegen prüft, deren Länge immer ein Vielfaches von 16 ist, kann Einerschritte und Sechzehnerschritte nicht unterscheiden. Erst ein zulässiger Weg der Länge eins trennt sie. K3 und $\mathbb{CP}^2$ übernehmen hier diese beiden Rollen; die gemeinte Größe ist die Signatur.}
+
+Die Operatorwahl bleibt wesentlich. Am selben K3 liefern der komplexe Spin-Diracoperator den Index $\widehat A=2$, der Signaturkomplex den Index $-16$ und der Eulerkomplex den Index $24$. Der reelle/quaternionische Diracindex ist der primitive Wert $1$; seine Komplexifizierung ergibt $2$~\cite{absindex,atiyahsinger3}. Es gibt folglich keinen operatorunabhängigen Schluss von K3 auf den Wert 16. Ebenso würde die \emph{ganze} K3-Schnittform $U^3\oplus E_8(-1)^2$ als abelsche Chern--Simons-$K$-Matrix $c_-=-16$ liefern, nicht den einzelnen $E_8$-Wert $8$.
+
+Auch $\Omega_4^{\mathrm{Pin}^+}\cong\Z_{16}$ darf nicht eingesetzt werden, als sei es derselbe ganzzahlige thermische Index. Hier ändern sich Symmetrietyp und Raumzeitdimension; die entsprechende Zeitumkehr ist antiunitär. Eine $\mu_4$-Markierung oder die Dimension eines Cliffordmoduls identifiziert diese Struktur nicht.
+
+\textbf{Was damit am Ursprung wirklich fehlt.} P1 spezifiziert eine primitive Nahtwindung. Zu zeigen wäre, dass das \emph{tatsächliche} relative Determinanten-/Pfaffianfunktional diese Windung auf den primitiven positiven Generator der obigen bosonischen gravitativen Antwort abbildet. In den nachgelesenen Originalen ist das noch nicht geschehen: \file{v367_seam_s3_lattice.py} setzt $N_{\rm Maj}=2^{g_{\rm car}-1}=16$ vor der Berechnung von $c_-$ ein; \file{v470_alpha_inflow_level.py} verbindet den $U(1)$-Chernindex anschließend über denselben eingesetzten Komponentenfaktor mit $c_-$. \file{v260_k3_kummer_unification.py} prüft die K3-Gitterstruktur. Keine dieser Rechnungen wertet diesen fehlenden Antwortpfeil des Rohoperators aus.
+
+\subsection{Wie dieser Auswahlpfeil an die schon vorhandene E8-Verklebung anschließt}
+Der Anschluss benutzt die ursprüngliche markierte Struktur:
+\begin{equation}
+\mathcal A=(D_5)_1\otimes(A_3)_1,\qquad c_{\mathcal A}=5+3=8.
+\end{equation}
+Ihre $16$ irreduziblen invertiblen Sektoren sind $(p,q)\in\Z_4^2$. Die Twistphasen sind
+\begin{equation}
+\theta_{p,q}=\exp\!\left(2\pi i\,\frac{5p^2+3q^2}{8}\right).
+\end{equation}
+Die diagonale Untergruppe $H=\langle(1,1)\rangle$ hat vier Elemente. Ihre tatsächlichen niedrigsten Gewichte sind $0,1,1,1$; insbesondere sind alle Twistphasen eins. Wird die entsprechende \emph{lokale} einfache Stromerweiterung realisiert, gilt
+\begin{equation}
+[\mathcal B:\mathcal A]=4,\qquad
+\mu_{\mathcal B}=\frac{16}{4^2}=1,\qquad
+c_{\mathcal B}=8.
+\end{equation}
+Die Originalroute identifiziert damit in ihrer erklärten Klasse das holomorphe $E_{8,1}$-Netz. Über den Zwischenschritt $(D_8)_1$ sind die beiden lokalen Erweiterungsindizes jeweils zwei. Die alternative Spinorerweiterung von $(D_8)_1$ ist auf VOA-Ebene in der Primärliteratur explizit konstruiert~\cite{chuzheng}; der Netzübergang verwendet die bereits genannten Unitaritäts- und Lokalitätsvoraussetzungen~\cite{cklw}.
+
+Damit verbindet sich die topologische Auswahl aus Abschnitt~\ref{sec:bordism16} mit der bereits ausgeführten Quelle: Sie liefert unter der erklärten Antwortidentifikation $c_-=8$; bei zusätzlich nachgewiesener reiner Chiralität ist dies $c=8$. Die markierte lokale Erweiterung liefert dann die tatsächlichen Felder und ihre Produkte. Ein Gravitationsantwortwert allein bestimmt jedoch noch kein vollständiges Randnetz; die Erweiterungs- und Chiralitätshypothesen bleiben Teil des Schlusses. Insbesondere bezeichnet der alte Kommentar in \file{v154_simple_current_theorem.py} die Identifikation des physischen RP-Seamnetzes mit $\mathcal A$ ausdrücklich als externen Eingang.
+
+\textbf{Dies löst zugleich eine Verwechslung beim Materieanschluss.} Im vollen E8-Gitternetz gibt es wegen $E_8^*/E_8=0$ nur den Vakuumsektor~\cite{dongxu}. Die 248 Ströme sind Zustände dieses Sektors. Bei Einschränkung auf $\mathcal A$ zerfällt der E8-Vakuumraum in die vier Glue-Sektoren. Deren geladene Stromblöcke haben $64+60+64$ Komponenten. Das interne Spinorfeld in $(16,4)$ besitzt gemeinsames konformes Gewicht $5/8+3/8=1$ und bosonische Statistik.
+
+Die vollen 16 Sektoren des Unternetzes besitzen dagegen teilweise fraktionelle Austauschphasen; etwa hat $(1,0)$ mit sich die Monodromie $i$. Sie sind somit nicht unverändert die symmetrische Kategorie punktlokalisierter Ladungen einer $3+1$-dimensionalen Theorie. Die Glue-Erweiterung rekonstruiert tatsächlich die Quelle; sie ist noch keine Herleitung von vierdimensionalen Fermionen oder der Standardmodell-Eichgruppe. Die nötige physische Auswahl betrifft die lokalen Observablen, ihre Ladungssektoren und deren Raumzeitwirkung gemeinsam~\cite{doplicherroberts}.
+
+\subsection{Warum der Universalraum die lokale Zuordnung braucht}\label{sec:localmodular}
+Der positive Geschichtskern aus Abschnitt~\ref{sec:constructive} liefert Zustandsvektoren und deren Überlappungen. Für die erklärte irreduzible E8-Vakuumdarstellung erzeugen sämtliche lokalen Felder global die schwache Algebra $B(\mathcal H)$. Daraus entsteht \emph{nicht} bereits eine globale modulare Zeit des Vektorzustands.
+
+Das folgt unmittelbar: Sei $\|\Omega\|=1$, $v\perp\Omega$ und $v\ne0$. Für
+\begin{equation}
+A=|\Omega\rangle\langle v|\in B(\mathcal H)
+\end{equation}
+gilt $A\Omega=0$, aber $A^\dagger\Omega=v$. Die Vorschrift
+$S(A\Omega)=A^\dagger\Omega$ wäre folglich nicht wohldefiniert. $\Omega$ ist global nicht separierend. Dies ist eine Aussage über den gegebenen reinen irreduziblen Vakuumzustand; sie betrifft nicht alle GNS-Darstellungen oder gemischten Zustände.
+
+Beim wirklichen lokalen Intervallpaar $(\mathcal A_{E_8}(I),\Omega)$ ist $\Omega$ dagegen zyklisch und separierend. Dort existieren Tomitaoperator, Modulargruppe und die bereits konstruierte geometrische Bewegung. Die \emph{Wahl der lokalen Operationen} ist also keine nachträgliche Beschriftung eines fertigen Universalraums. Sie gehört zu den Daten, aus denen seine intrinsische lokale Zeit entsteht.
+
+Beim Wechsel zum markierten Unternetz muss auch die Darstellung stimmen: Auf dem ganzen $\mathcal H_{E_8}=\bigoplus_{h\in H}\mathcal H_h$ erreicht $\mathcal A\Omega$ nur den Vakuumsektor $\mathcal H_0$. Dort wird die Vakuumdarstellung des Unternetzes aufgebaut. Der Wechsel der beobachtbaren Algebra und die Zustandsrekonstruktion dürfen nicht unabhängig voneinander vorgenommen werden.
+
+\picturetext{Aus der Liste aller möglichen gemeinsamen Antworten folgt noch nicht, was ein örtlicher Beobachter selbst verändern kann. Hat man seine Operationen bestimmt, sieht derselbe Gesamtzustand für ihn anders aus. Erst an diesem Paar aus zugänglichen Operationen und Zustand setzt die modulare Bewegung an.}
+
+\subsection{Was die bisherigen Symmetrien gemeinsam leisten -- und was sie nicht erzeugen}
+Betrachtet man genau die bislang konstruierten geometrischen Möbiusbewegungen und die mit ihnen kommutierende kompakte interne E8-Wirkung, ist ihre zusammenhängende Liealgebra
+\begin{equation}
+\mathfrak{sl}_2(\R)\oplus\mathfrak e_{8,\mathrm{kompakt}}.
+\end{equation}
+Aus diesen Symmetrien allein lässt sich keine nichttriviale Wirkung der Lorentzalgebra $\mathfrak{so}(1,3)$ durch eine Liealgebraabbildung in dieses Produkt bilden.
+
+\textbf{Beweis.} $\mathfrak{so}(1,3)$ ist reell einfach. Jede Projektion einer solchen Abbildung auf einen Faktor ist daher null oder injektiv. In $\mathfrak{sl}_2(\R)$ ist eine Injektion wegen $6>3$ ausgeschlossen. Eine Unteralgebra einer kompakten Liealgebra erbt eine positiv definite ad-invariante Form; eine nichtkompakte einfache Liealgebra wie $\mathfrak{so}(1,3)$ besitzt diese nicht. Auch die zweite Projektion ist null. Damit verschwindet die ganze Abbildung.
+
+Dieser Satz betrifft ausdrücklich die genannte Symmetriegruppe, \emph{nicht} die gesamte unendlichdimensionale Stromalgebra. Endliche interne Clocks ändern ihre zusammenhängende Liealgebra nicht. Zusätzliche relative lokale Algebren und ihre modularen Wirkungen sind damit nicht ausgeschlossen. Der Satz erklärt präzise, weshalb immer neue Kombinationen derselben internen Markierungen keine zusätzlichen Lorentzboosts liefern.
+
+\subsection{Der konstruktive gemeinsame Anschluss: Lokalisation bestimmt Bewegung}
+Die vorhandene chiral-konforme Theorie hat bereits einen echten holographischen Anschluss. Rehrens Konstruktion setzt
+\begin{equation}
+\mathcal B(W)=\mathcal A(\alpha(W)),\qquad
+\mathcal B(O)=\bigcap_{W\supset O}\mathcal B(W).
+\end{equation}
+Dabei übersetzt $\alpha$ AdS-Keile in Randgebiete. Für das vorhandene schwach additive chirale Netz entsteht so ein AdS$_2$-Netz; Vakuum und positive Energie werden übertragen. Eine entsprechende AdS$_4$-Konstruktion benötigt bereits einen $2+1$-dimensionalen konformen Rand~\cite{rehren}. Dies ist der genaue vorhandene Bulk-Anschluss, keine Herleitung unserer vierdimensionalen Physik.
+
+Für den nächsten Dimensionsschritt ist der präziseste bekannte Ansatz modular: Gesucht wird \emph{aus den TFPT-Daten} eine Familie
+\begin{equation}\label{eq:localizationtarget}
+(\mathcal A_{E_8},\Omega,\text{P1/P2-Markierungen})
+\ \longmapsto\
+\{\mathcal M_W\}_{W\in\mathcal W_{1,3}}
+\end{equation}
+mit der richtigen Inklusions- und Kommutationsordnung. Der Satz von Buchholz--Dreyer--Florig--Summers rekonstruiert aus einer geeigneten nichtredundanten Keil-Algebraordnung, einem gemeinsamen zyklisch-separierenden Zustand, geometrischer modularer Wirkung, Transitivität und Netzkontinuität die Poincaré-Wirkung. Modulare Stabilität führt zur Spektralbedingung bis auf die Zeitrichtung. Nach deren positiver Festlegung sind die positiven Translationen unter den dortigen Voraussetzungen durch Netz und Zustand eindeutig~\cite{bdfs}.
+
+Der wichtige positive Schluss lautet: Ein zusätzlich frei gewählter Hamiltonoperator ist auf diesem Weg nicht der erste fehlende Eingang. Die \emph{relative lokale Algebraordnung} kann Raumbewegung und Zeit zusammen bestimmen. Der genannte Satz setzt allerdings die vierdimensionale Keilstruktur voraus; er wählt sie nicht aus P1/P2 aus. Auch nichttriviale lokale Schnittalgebren und die gewünschten Ladungssektoren müssen für die konkrete Konstruktion nachgewiesen werden.
+
+Die bislang als interne, vakuumerhaltende Automorphismen realisierten P1/P2-Markierungen erhalten die bestehenden Intervallalgebren. Geometrisches Möbius bewegt deren Intervalle. Beides liefert noch keine transversale Lokalisation. Genau diese zusätzliche Information wird auch in der Primärliteratur zur Lichtfrontholographie benötigt~\cite{schroer}. Die Lorentzform $\det X=t^2-\mathbf x^2$ auf $\mathrm{Herm}_2(\C)$ und die positive Dreierkomponente der K3-Schnittform sind hierfür geometrische Vergleichsstrukturen; sie liefern noch keine Wirkung auf denselben lokalen Feldalgebren.
+
+Eine gelungene modulare Rekonstruktion wäre ein wesentlicher physischer Anschluss, aber noch kein automatischer Beweis der Standardmodell-Wechselwirkungen oder dynamischer Einstein-Gravitation. Diese müssen anschließend aus den Observablen und Antworten \emph{desselben} Netzes folgen. Ebenso beschreibt $c_-=8$ oben eine gravitative Antwort einer niedrigerdimensionalen invertiblen Theorie; sie ist nicht bereits die vierdimensionale Einsteinwirkung.
+
+\subsection{Die ursprüngliche Prime Completion bleibt brauchbar, wenn die Algebren richtig gewählt sind}
+Für eine normale unital injektive Einbettung $\iota$ einer \emph{ganzen von-Neumann-Quellenalgebra} und eine exakt autonome Zeitwirkung durch Automorphismen
+\begin{equation}
+\tau_t^{\rm bulk}\circ\iota=\iota\circ\tau_t^\Sigma
+\end{equation}
+gilt notwendig
+\begin{equation}
+\operatorname{vN}\!\left(\bigcup_t
+\tau_t^{\rm bulk}(\iota(\mathcal A_\Sigma))\right)
+=\iota(\mathcal A_\Sigma).
+\end{equation}
+Jedes Zeitbild ist dieselbe Algebra; ihre Vereinigung erzeugt keine größere. Eine schon abgeschlossene autonome Quelle wächst durch Wiederholung ihrer eigenen Zeit deshalb nicht zu einer größeren Algebra.
+
+Der Originalvertrag \file{BULK.PRIME_COMPLETION} fordert jedoch bereits eine Familie von Unteralgebren. Seine endliche Prüfung \file{v1020_spectator_sector_obstruction.py} beginnt mit einem echten Randunterraum und erzeugt dessen Krylovraum unter einem gelieferten Bulkoperator. Die obige Identität widerlegt diesen Vertrag nicht. Sie bestimmt seine zwei möglichen konsistenten Lesarten: Entweder verlässt die physische Zeit eine ausgewählte echte lokale Randalgebra, oder der Bulk ist in der Gesamtalgebra bereits kodiert und benötigt eine andere, ausdrücklich konstruierte lokale Zuordnung. Die Auswahl dieser Wirkung beziehungsweise Zuordnung ist der gemeinsame fehlende Konstruktor.
+
+\subsection{Warum die älteren Gesamtvariationen die Auswahl noch nicht ersetzen}
+Die archivierte dreiteilige Gesamtkonstruktion wurde an ihren entscheidenden Eingangssätzen erneut geprüft. Ihr Defektvektor liegt in $\mathbb N^4$; ein lexikographischer Minimalwert ist unter den genannten Nichtleerheitsannahmen auswählbar. Daraus folgt jedoch noch keine Eindeutigkeit des Operators, der diesen Wert besitzt. Mehrere nichtäquivalente Operatoren können denselben Defektvektor haben. Benötigt wird die Klassifikation dieser Faser oder ein weiterer, begründeter Trennsatz.
+
+Die anschließende Mastervariation arbeitet bereits über dem gewählten $B_{\min}$ und enthält eine Sperre, die für $B\not\cong B_{\min}$ unendlich ist. Eine solche Sperre setzt dessen Auswahl durch; sie beweist sie nicht. Die OS-Rekonstruktion setzt ihrerseits das vollständige geeignete Schwingerfunktional voraus. Für vierdimensionale Physik gehören dessen vierdimensionale Argumente, Lokalität, Kovarianz und Wachstumsbedingungen zum Eingang~\cite{os1975}. Die exakten chiralen C/X-Wortantworten ersetzen diese räumlichen Argumente nicht.
+
+Diese Befunde decken sich mit den bereits datierten Verträgen
+\file{UR.SOURCE.THREE_ROUTE_CLOSURE.01} und den Herkunftsprüfungen vom 22.~September. Die Fortsetzung behauptet keine bewiesene Nicht-Eindeutigkeit nach \emph{allen} TFPT-Bedingungen. Sie zeigt, an welcher Stelle die zitierten Eindeutigkeitsschlüsse die dafür nötige Auswahl noch voraussetzen.
+
+\subsection{Die zusammenhängende Schlusskette und ihre genaue Reichweite}
+\begin{center}
+\begin{tikzpicture}[node distance=7mm]
+\node[box,text width=13.2cm] (o) {\textbf{Originaler P1/P2-Prozess}\\Nahtoperator, relative Antwort, Markierungen};
+\node[box,below=of o,text width=13.2cm] (t) {\textbf{Topologische Auswahl}\\Abstieg ohne Spinwahl und primitive gravitative Antwort\\$\nu=16$, $c_-=8$; passende lokale markierte Erweiterung};
+\node[box,below=of t,text width=13.2cm] (s) {\textbf{Gemeinsame Quelle und Universalraum}\\E8-Feldprodukte, positives Vakuum, vollständige Geschichten};
+\node[box,below=of s,text width=13.2cm] (l) {\textbf{Physische lokale Zuordnung}\\Welche Operationen gehören zusammen, welche sind räumlich getrennt?};
+\node[box,below=of l,text width=13.2cm] (p) {\textbf{Antworten desselben lokalisierten Prozesses}\\Modulare Bewegung, Ladungssektoren, Wechselwirkungen und Spektren};
+\draw[dasharr] (o)--(t);
+\draw[arr] (t)--node[right,font=\scriptsize]{bedingt durch Erweiterung}(s);
+\draw[dasharr] (s)--(l);
+\draw[dasharr] (l)--node[right,font=\scriptsize]{jeweilige Rekonstruktionshypothesen}(p);
+\end{tikzpicture}
+\end{center}
+
+Die gestrichelten Übergänge sind nicht durch das Diagramm bewiesen. Der erste verlangt die tatsächliche Antwortberechnung des ursprünglichen Operators. Der zweite verlangt eine aus den Markierungen ausgewählte lokale Algebraordnung. Danach werden Standardmodell, Kopplungen und Gravitation weiterhin an denselben Antworten geprüft; sie werden durch das Wort Rekonstruktion nicht vorweggenommen.
+
+Zuses lokale Komposition und Wolframs kausale Graphidee passen als Forderung an diese Konstruktion: Zulässige Umordnungen derselben kausalen Komposition müssen dieselbe Antwort liefern. Die hierfür schon bearbeiteten Ward-/KZ-Kohärenzregeln bleiben erhalten. Kausale Konsistenz allein wählt aber weder die Übergangsregel und ihren Zustand noch die Dimension; die untersuchten Graphansätze führen Grenz- und Dynamikvoraussetzungen zusätzlich mit~\cite{gorardcausal}. Damit wird die Graphidee an derselben Gesamtstruktur geprüft, statt eine zweite Welt mit frei gewählten Regeln daneben zu setzen.
+
+\key{\textbf{Was jetzt tatsächlich zusammenklickt:} Topologie kann die zulässige Antwortklasse auswählen; die lokale Erweiterung realisiert ihre geladenen Felder; der positive Kern stellt ihre Geschichten im Universalraum dar. Der folgende Abschnitt konstruiert zusätzlich den ursprünglichen Spin-Träger und eine von den Quadratmarken bestimmte lokale Algebraordnung innerhalb der Quelle. Damit wird die bislang nur allgemein formulierte Lokalisationsfrage teilweise geschlossen. Die Auswahl des tatsächlichen Nahtoperators und die vierdimensionale Fortsetzung bleiben gesondert zu beweisen.}
+
+\section{Die neue gemeinsame Verbindung: Originalträger, vier Marken und dieselbe Antwortquelle}\label{sec:nativeclosure}
+
+\key{\textbf{Fortsetzung vom 29. September: Drei zuvor getrennte Teile greifen konkret ineinander.}
+Die gemeinsame Verklebung beseitigt die Spin-Obstruktion des ursprünglichen Trägers. Die vier Quadratmarken wählen zwei getrennte Nahtabschnitte ohne zusätzliche Abstandsparameter. Dieselbe vollständige E8-Quelle bestimmt deren Korrelation, eine nichttriviale modulare Mischung und eine exakt berechenbare Zweifach-Replica-Antwort. Die folgenden Herleitungen unterscheiden die jetzt konstruierten Verbindungen von den noch fehlenden physischen Identifikationen.}
+
+\subsection{Der ursprüngliche gemeinsame Träger hebt wirklich nach Spin(16)}
+Das ursprüngliche Rang-fünf-Bündel $E$ und die Familienverklebung liefern den reellen Träger
+\begin{equation}\label{eq:nativeV16}
+V_{16}=E_{\R}\oplus V_6,\qquad
+V_6=\operatorname{Fix}\bigl(J_6:\Lambda^2F\longrightarrow\Lambda^2F\bigr).
+\end{equation}
+Hier ist $J_6$ die reelle Struktur der selbstdualen SU(4)-Darstellung. Die tatsächliche Darstellung lautet $(10,1)\oplus(1,6)$. Der komplexe Spin(10)-Halbspinor mit 16 komplexen Komponenten ist ein anderes Objekt; er darf nicht als dieser reelle Einteilchenträger eingesetzt werden.
+
+Der ursprüngliche gemeinsame Lift ist eine ganze Familie. Mit $D=\det E$ und
+\begin{equation}
+m_j\in\Z,\qquad \sum_{j=1}^4m_j=-2,\qquad \beta_j=m_j+\frac12
+\end{equation}
+haben die lokalen Familiengewichte die Form $\beta_j c_1(D)$. Obwohl $F$ selbst nur projektiv gegeben sein kann, ist
+\begin{equation}
+\Lambda^2F_m=\bigoplus_{i<j}D^{m_i+m_j+1}
+\end{equation}
+global wohldefiniert. Komplementäre Paare tragen entgegengesetzte Exponenten. Drei Vertreter sind $a_i=m_i+m_4+1$, $i=1,2,3$, mit $\sum_i a_i=1+2m_4$. Damit gilt
+\begin{equation}
+w_2(V_6)=c_1(D)\bmod2=w_2(E_{\R}),\qquad
+\boxed{w_2(V_{16})=0.}
+\end{equation}
+Die beiden einzeln ungeraden Stiefel--Whitney-Beiträge heben sich auf. Ein Quadratwurzelbündel von $D$ muss dafür nicht hinzuerfunden werden.
+
+Auch die Gruppenwirkung ist explizit. Für den ursprünglichen diagonalen Zentrumsgenerator $h=(z,-iI_4)$ wirkt $h$ auf $V_{16}$ als $-I$, $h^2$ jedoch trivial. Der Träger lebt deshalb auf
+\begin{equation}
+K_f=\frac{\mathrm{Spin}(10)\times SU(4)}{\langle h^2\rangle}
+\subset\mathrm{Spin}(16),\qquad K_f/\Z_2=K.
+\end{equation}
+Der vorhandene gemeinsame $U(5)$-Lift hebt bereits nach $K_f$. Dies ist ein tatsächlicher globaler Spin-Anschluss des Originalbündels. Es ist noch keine Aussage, dass der physische Nahtoperator auf genau diesem Bündel wirkt.
+
+\picturetext{Die Fünferseite allein kommt nach einer Schleife mit einem Vorzeichenfehler zurück. Die Familienseite besitzt genau den passenden zweiten Vorzeichenfehler. Gemeinsam schließen sie sich zu einem konsistenten Träger. Die sechzehn reellen Richtungen entstehen aus dieser vorhandenen Verklebung, nicht aus sechzehn nachträglich ausgesuchten Teilchen.}
+
+\subsection{Eine gemeinsame Formel für Eich- und Gravitationsantwort}\label{sec:nativeanomaly}
+Die charakteristische Klasse des Trägers lässt sich für \emph{alle} ursprünglichen Lifts berechnen:
+\begin{equation}\label{eq:nativelambda}
+d=\frac12\sum_jm_j^2\in\Z_{\ge1},\qquad
+\boxed{\lambda(V_{16})=\frac{p_1(V_{16})}{2}
+=d\,c_1(E)^2-c_2(E).}
+\end{equation}
+Denn $(V_{16})_{\C}=E\oplus E^*\oplus\Lambda^2F$ und
+$\operatorname{ch}_2(\Lambda^2F)=2\operatorname{ch}_2(F)$ bei $c_1(F)=0$.
+Ganzzahligkeit folgt aus $m_j^2\equiv m_j\bmod2$; das Minimum $d=1$ erreichen genau die Permutationen von $(0,0,-1,-1)$.
+
+\textbf{Bedingter, aber vollständiger Antwortsatz.}
+Besitzt der tatsächliche Nahtoperator das gleichchirale reelle Spin-Dirac-Symbol mit Koeffizient $V_{16}$ und die entsprechende Pfaffian-Struktur, dann ist sein absolutes Anomaliepolynom
+\begin{equation}\label{eq:nativeI4}
+\boxed{
+I_4^{\mathrm{Pf}}
+=\frac12\bigl[\widehat A(T)\operatorname{ch}((V_{16})_{\C})\bigr]_4
+=d\,c_1(E)^2-c_2(E)-\frac13p_1(T).
+}
+\end{equation}
+Verwendet wird $\widehat A=1-p_1/24+\cdots$; Chiraliätsumkehr kehrt das gemeinsame Vorzeichen um. Die Normierung stammt aus dem Familienindexsatz für die Determinantenlinie, mit der Pfaffian-Hälfte für reelle Fermionen~\cite{freeddeterminant}. Die Gravitationsantwort entspricht für jeden Lift $c_-=8$. Ihre Berechnung benötigt die tatsächliche Symbolklasse, nicht bereits das ganze Spektrum oder jede Mehrpunktfunktion.
+
+Auf dem ursprünglichen P2-Generator
+\begin{equation}
+Y=\diag\!\left(-\frac13,-\frac13,-\frac13,\frac12,\frac12\right),
+\qquad x_Y=\frac{F_Y}{2\pi},
+\end{equation}
+verschwindet $c_1(E)$. Der nur über $\det E$ wirkende Familienanteil bleibt neutral. Somit folgt unabhängig von $m$
+\begin{equation}
+I_4^{\mathrm{Pf}}\big|_Y
+=\frac5{12}x_Y^2-\frac13p_1(T),\qquad
+\left|\frac{5/12}{-1/3}\right|=\frac54.
+\end{equation}
+Der bekannte Faktor $5/4$ erscheint damit \emph{in der ursprünglichen P2-Normierung} als Koeffizientenverhältnis derselben Eich-/Gravitationsantwort. Er ist kein normierungsunabhängiger neuer Invariant: Für $X=6Y$ lautet der Eichterm $15x_X^2$, und das Verhältnis wäre $45$. Ein Exponent der $\alpha$-Gleichung oder eine vierdimensionale Newtonkopplung folgt daraus noch nicht.
+
+Eine zweite Restriktion trennt eine verführerische Gleichsetzung. Auf der Determinantenrichtung $E=\mathbf1^4\oplus L$ ist
+\begin{equation}
+I_4^{\mathrm{Pf}}=d\,x_D^2-\frac13p_1(T),\qquad
+\boxed{k_D=2d=\sum_jm_j^2\in2\Z_{\ge2}.}
+\end{equation}
+Beim minimalen Lift ist $V_6=D_{\R}\oplus\R^4$; zusammen mit $E_{\R}$ gibt es zwei komplexe Ladung-eins-Kanäle. Ein einzelner ursprünglicher Pump-eins-Kanal besitzt dagegen $k_D=1$ und den Eichterm $x_D^2/2$. \emph{Kein Lift dieser ganzen natürlichen Familie ist bei identischer Kreis- und Ladungsnormierung dieser einzelne Kanal.} Primitive Spin-Klasse $d=1$ und primitiver U(1)-Pump $k=1$ sind verschiedene Aussagen.
+
+\subsection{Der Ursprungspfeil wird auf einen konkreten Operator- und Feldanschluss verdichtet}
+Der neue Bündelsatz liefert die rechte Seite der gesuchten Identifikation. Für einen wirklichen Diracoperator $D_\Sigma$ müsste sein Clifford-Multiplizitätsbündel
+\begin{equation}
+W_{D_\Sigma}:=\operatorname{Hom}_{\mathrm{Cl}}(S,\mathcal E_{D_\Sigma})
+\end{equation}
+mit $(V_{16})_{\C}$ identifiziert werden, einschließlich Basisgeometrie, Realität, Chiraliät und ursprünglicher Markierung. Ein lediglich elliptischer Operator erster Ordnung erfüllt nicht automatisch die Cliffordrelation seines Hauptsymbols~\cite{baerballmann}. Der Übergang vom allgemeinen elliptischen Collar-Generator des Archivs zu einem Spin-Dirac-Symbol muss deshalb bewiesen werden.
+
+Der gezielte Abgleich mit dem Originaloperator benennt nun die fehlende Abbildung ausdrücklich:
+\begin{equation}\label{eq:originalmultiplicitybridge}
+ \Xi:W_{D_\Sigma}\xrightarrow{\ \cong\ }(V_{16})_{\C},
+ \qquad \Xi\ \text{unitär, realitäts- und }K_f\text{-verträglich}.
+\end{equation}
+Dabei muss auch die tatsächlich geerbte Verbindung transportiert werden. Im Dirac-Fall ergibt sich dann
+$D_\Sigma=c\circ\nabla^{S\otimes V_{16}}+\Phi$ mit dem originalen Term nullter Ordnung $\Phi$; ihn neu anzupassen wäre eine weitere Quellenwahl. Erst die gleichchirale Majorana-/Pfaffian-Realisierung auf diesem Bündel liefert aus dessen reellem Rang die Zentralzahl acht.
+
+Dies wird nicht schon durch die frühere Operatornotation vorausgesetzt. Der archivierte Dirac-Ansatz bezeichnet die Faktorisierung $L^2(\widetilde M,S)\otimes H_{\rm int}$ ausdrücklich als analytische Realisierungswahl; der operative Seed liefert Operator, Algebra, Zustand und Zeit als Eingang. Das Hauptsymbol rekonstruiert Metrik und geometrische Spinverbindung, aber nicht von sich aus das interne $10+6$-Bündel. Maßgebliche Originalstellen sind \file{01_boundary_kernel_source.tex:65-91,480-520,629-683} und \file{02_carrier_source.tex:1792-1814} im Archiv \file{_archive/tfpt-45/source_extracts/}.
+
+Auch die späteren diskreten Eindeutigkeitssätze schließen genau diesen Pfeil nicht. \file{v799_seam_code_typeii.py} selektiert unter den drei Nahtaxiomen und der OPE-Linearitätsannahme einen Type-II-Code in einer bereits achtkanaligen Construction-A-Wortklasse. Der Normalform-/Eindeutigkeitssatz für $C_{\rm fin}$ erhält diese Auswahl und die originale Compilerwirkung; er erzeugt nicht das Multiplizitätsbündel des Rohoperators. Die aktuelle Architektur sagt ausdrücklich, dass die Normalform diese Voraussetzungen eingrenzt, aber nicht herleitet. Der Ein-Kanal-QWZ-Grenzwert ist deshalb weder eine Widerlegung einer tatsächlichen $V_{16}$-Quelle noch bereits deren Implementierung.
+
+Die Quantisierung benötigt dann eine lokale CAR-Realisierung in der \emph{graduierten ursprünglichen Fermionen-Feldalgebra}:
+\begin{equation}
+\psi_{\mathrm{raw}}:L^2(\Sigma,(V_{16})_{\C})
+\longrightarrow\mathcal F_{\mathrm{raw}}^{\mathrm{odd}},
+\qquad C_{\mathrm{raw}}\cong P_C(D_\Sigma).
+\end{equation}
+Die Gleichheit der physischen Zweipunktkovarianz mit der Calderón-Projektion auf Cauchydaten ist ein OS-/Hardy-Anschluss. $P_C^2=P_C$ allein beweist ihn nicht.
+
+Ist dieser Anschluss mit einer reinen Basisprojektion $P=P^*=P^2$, $JPJ=1-P$ gegeben, folgt der vollständige Zustand bereits eindeutig \emph{unter allen CAR-Zuständen}. Verschwindende Zweipunktnormen lassen die entsprechenden Vernichter den Vakuumvektor auslöschen; CAR-Normalordnung reduziert jedes höhere Wort auf die Zweipunktdaten. Quasi-Freiheit ist danach keine weitere unabhängige Annahme. Dies ist Arakis Projektionslemma~\cite{arakicar}.
+
+Diese CAR-Felder liegen nicht als gewöhnliche lokale Felder im bosonischen E8-Netz: Ihre konformen Gewichte sind $1/2$. Die korrekte Folge lautet
+\begin{equation}
+\mathcal F_{\mathrm{raw}}^{\mathrm{even}}\cong(D_8)_1
+\quad\longrightarrow\quad E_{8,1}
+\end{equation}
+durch die ursprüngliche lokale Spinorerweiterung vom Gewicht eins. Die $D_5+A_3$-Glue-Markierung bestimmt den beschrifteten Anschluss.
+
+Derselbe tatsächliche Einteilchenoperator kann auch den Transfer liefern. Auf einem positiven Halbzylinder mit $D=\partial_\tau+B$, $B=B^*$ und passender reeller Struktur ist für $\tau>0$
+\begin{equation}
+G(\tau)=e^{-\tau B}P_+,\quad P_+=1_{(0,\infty)}(B),\qquad
+T(\tau)=\Gamma(e^{-\tau h}),\quad h=B|_{\operatorname{Ran}P_+}>0.
+\end{equation}
+Hier ist $\Gamma$ die Fermion-Zweitquantisierung, und $T(\tau)\Omega=\Omega$. Nullmoden und Randbedingungen sind gesondert zu behandeln; auf einem thermischen Collar ist die Kovarianz im Allgemeinen keine Projektion.
+
+Damit lässt sich ein Fehler der älteren Fixraumroute präzise korrigieren: Die Polarisation wählt Erzeuger und Vernichter; \emph{der Vakuumvektor} ist Fixpunkt des zweitquantisierten Transfers. Würde ein selbstdualer reeller Einteilchenkontraktor $T$ mit $TJ=JT$ die ganze $\operatorname{Ran}P$ punktweise fixieren, so fixierte er wegen $J\operatorname{Ran}P=\operatorname{Ran}(1-P)$ auch ihr Komplement und wäre $T=I$. Ein nichttrivialer Gap könnte so nicht entstehen. Die acht eingesetzten Einsen eines endlichen Spektrums belegen daher keine Calderón-Polarisation.
+
+\textbf{Geometrische und analytische Reflexionen auseinanderhalten.}
+Der archivierte Satz, der geometrische Decklift sei schlicht $2P_C-I$, trägt für einen lokalen geometrischen Lift nicht. Im üblichen Dirac-Collar hat die Calderón-Reflexion das Hauptsymbol
+\begin{equation}
+\sigma_0(2P_C-I)(x,\xi)=i\,c(\nu)c(\xi)/|\xi|.
+\end{equation}
+Es ist ungerade in der tangentialen Kovariable $\xi$. Ein Decklift, der die Nahtpunkte fixiert, wirkt durch eine von $\xi$ unabhängige Fasermatrix. Beide können nicht bei $\xi$ und $-\xi$ übereinstimmen. Die positive Ersatzstruktur ist die \emph{nichtlokale} Calderón-/Streureflexion: In der dazugehörigen konform kompakten Streukonstruktion gilt $S_D(0)=2P_C-I$~\cite{calderonscattering}. Dies identifiziert weder jeden kompakten Operator mit einer Streutheorie noch diese Reflexion mit Decklift oder Tomita-Konjugation.
+
+

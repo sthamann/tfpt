@@ -1,0 +1,44 @@
+\documentclass[11pt,a4paper]{article}
+\input{tfpt45-common}
+
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{subcaption}
+\definecolor{tfptcodebg}{RGB}{248,248,250}
+\definecolor{tfptred}{RGB}{160,40,40}
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  backgroundcolor=\color{tfptcodebg},
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{tfptblue!40},
+  breaklines=true,
+  showstringspaces=false,
+  columns=fullflexible,
+  xleftmargin=4pt, xrightmargin=4pt,
+  aboveskip=6pt, belowskip=6pt,
+}
+
+\graphicspath{{paper07_figs/}}
+
+% Reproducible-build fallback: a missing pipeline figure becomes a labeled
+% placeholder instead of a fatal error. When paper07_figs/*.png are present the
+% real plots are used unchanged.
+\makeatletter
+\let\tfpt@orig@includegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{%
+  \IfFileExists{paper07_figs/#2}{\tfpt@orig@includegraphics[#1]{#2}}{%
+    \IfFileExists{#2}{\tfpt@orig@includegraphics[#1]{#2}}{%
+      \fbox{\parbox[c][3cm][c]{0.7\linewidth}{\centering\ttfamily\small
+        [pipeline figure not bundled]\\ \detokenize{#2}}}}}}
+\makeatother
+
+\title{\color{tfptblue}\textbf{CMB Operational Closure and the\\
+Planck Comparison Pipeline}\\[0.35em]
+{\Large From the TFPT~4.6 Native Closure to a HEALPix Sky Realization,\\
+the Lemma A--E Conjectures, Seven TFPT Bridge Theorems,\\
+and the v4.6.8 Measurement Bridge Contract\\
+(Five Artefact Validation Groups closing the Final Status Flip)}}
+\author{Stefan Hamann \and Alessandro Rizzo}
+\date{{\normalsize\color{tfptgray}\sffamily Paper 7 of the TFPT 4.6 series \,---\, v4.6.8 \,---\, \today}}
+

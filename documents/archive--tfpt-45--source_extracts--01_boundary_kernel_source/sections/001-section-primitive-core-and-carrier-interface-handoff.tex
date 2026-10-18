@@ -1,0 +1,377 @@
+% Auto-extracted from ../tfpt-42.tex for the TFPT 4.5 clean split.
+% Source body assigned by the TFPT 4.5 clean split.
+
+% ---- Primitive core and primitive relative spectral dynamics: source lines 849-1305 ----
+\section{Primitive core and carrier interface handoff}
+
+\subsection{Primitive core and conventions}
+
+We use natural units $c=\hbar=1$. Relative operators are formulated in Euclidean signature and compared through a declared Wick-rotation bridge when Lorentzian language is needed. Higgs fields are denoted by $\Phi$, Hamiltonians by $\mathcal H$, and the cosmological Hubble rate by $\Hhub(t)$; this avoids overloading the letter $H$. Newton's constant is always $G_N$, while $G_{\mathrm{car}}$ is reserved for the internal carrier stabilizer. The seam is denoted by $\Seam$, geometric reflection by $\taudbl$, boundary polarization by $\iC$, carrier polarization by $\epscar$, and word parity by $\varepsilon(w)$.
+
+Here $S\to \widetilde M$ denotes the spinor bundle on the oriented double cover, and by the same symbol we denote its restriction to
+\[
+\Xbulk=\widetilde M\setminus\Seam.
+\]
+
+When color-center notation is needed later, we use multiplicative notation
+\[
+z(w)\in\{1,\omega,\omega^2\},
+\qquad
+\omega=e^{2\pi i/3}.
+\]
+Thus center neutrality means $z(w)=1$.
+
+\[
+\Tcore^{\mathrm{kin}}
+:=
+\bigl(
+\widetilde M\to M,\ \Seam,\ \taudbl,\ \iC,\ D_{\mathrm{ref}},\ D_{\mathrm{rel}},\ \chiseed
+\bigr).
+\]
+When a chosen almost-commutative factorization
+$\mathcal H\cong L^2(\widetilde M,S)\otimes\Hint$ is used, $S$ and $\Hint$ refer to that
+choice and are not part of the kinematic core datum.
+Here \enquote{relative} always means comparison with a declared reference operator or
+reference-subtracted action. The canonical admissibility complex is introduced immediately below,
+while any Bernstein or other spectral test profile is treated only as an analytic realization
+choice rather than as part of the boundary datum. The technical tables for relative objects,
+layered closure/benchmark data, and the constants atlas are collected in
+Appendix~\ref{app:tech} and Appendix~\TFPTxref{app:constants}; they are kept out of the early
+main-text flow so that the carrier kernel appears before the technical bookkeeping apparatus.
+
+\begin{remark}[Boundary datum versus derived closed structure]
+The primitive ontology now stops one step earlier. The one-sided boundary datum $\Tbound$
+contains only one-sided operator data together with the self-adjoint boundary operator
+$B_\Sigma$. Its Calder\'on projector defines the polarization
+\[
+\iC:=2P_C-1.
+\]
+From that boundary polarization and the exact double one reconstructs the deck involution
+$\taudbl$, the physical quotient $M=\widetilde M/\taudbl$, the seam
+$\Seam=\mathrm{Fix}(\taudbl)$, the reference/relative operator split
+$(D_{\mathrm{ref}},D_{\mathrm{rel}})$, the primitive seam response
+$\chiseed=\lambda_1^+(|B_\Sigma|)^{-1}$, and the doubled closed datum
+$\Tmin^{\mathrm{cl}}$. The seam is therefore no longer primitive ontology but the fixed locus of
+the deck involution extracted from the one-sided boundary problem.
+\end{remark}
+
+\subsection{Primitive relative spectral dynamics}
+
+The carrier theorem is not intended to float above an unspecified microscopic dynamics. The
+starting point is therefore the one-sided boundary datum from which the primitive layer, the
+derived closed datum, and the canonical admissibility projector are reconstructed before the later
+closure theorems are invoked.
+
+\begin{definition}[One-sided boundary admissibility datum]
+\label{def:reduced-theorem-datum}
+The one-sided boundary admissibility datum is
+\[
+\Tbound:=(\mathcal A_+,\mathcal H_+,D_+,J,\Gamma,B_\Sigma)
+\]
+with the following built-in admissibility conditions:
+\begin{enumerate}[label=(\roman*), leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item $Z(\mathcal A_+)$ is spectrally regular and its Gelfand spectrum is a smooth compact oriented manifold with boundary $M_+$;
+    \item $B_\Sigma$ is a self-adjoint tangential boundary operator on $\Sigma:=\partial M_+$ compatible with the boundary restrictions of $J$ and $\Gamma$;
+    \item in a collar neighborhood of $\Sigma$, the Dirac operator has canonical product form
+    \[
+    D_+=\gamma_n(\partial_n+B_\Sigma);
+    \]
+    \item the boundary collar is reflection-regular so that canonical doubling, the Calder\'on projector, and the admissibility complex are well posed on the same datum.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}[Almost-commutative realizations]
+\label{ass:almost-commutative-factorization}
+When a factorized realization is useful, one may choose
+\[
+\mathcal H\cong L^2(\widetilde M,S)\otimes \Hint,
+\]
+with $S\to\widetilde M$ the spinor bundle on the oriented double cover and $\Hint$ a finite
+internal Hilbert space. This is an analytic realization choice rather than part of the boundary
+datum.
+\end{remark}
+
+\begin{theorem}[Doubling, deck involution, and boundary polarization]
+\label{thm:primitive-datum-from-reduced-datum}
+\label{thm:primitive-scaffold-from-reduced-datum}
+Let $\Tbound$ be as above. Let
+\[
+\widetilde M:=M_+\cup_{\Sigma} M_+^{\mathrm{op}}
+\]
+be the doubled manifold and let
+\[
+\taudbl:\widetilde M\to\widetilde M
+\]
+be its deck involution. Let $P_C$ be the Calder\'on projector of the APS-realized boundary problem
+for $D_+$ on $\Sigma$, and define the boundary polarization operator
+\[
+\iC:=2P_C-1
+\]
+on the Cauchy-data Hilbert space $\mathcal H_{\partial}$.
+
+Then:
+\begin{enumerate}[label=(\roman*), leftmargin=1.8em, topsep=3pt, itemsep=2pt]
+    \item the geometric objects are
+    \[
+    M=\widetilde M/\taudbl,
+    \qquad
+    \Seam=\mathrm{Fix}(\taudbl),
+    \qquad
+    \Xbulk=\widetilde M\setminus\Seam;
+    \]
+    \item the doubled operator and its even and odd parts are
+    \[
+    D=D_+\cup_{\Sigma}D_+^{\mathrm{op}},
+    \qquad
+    D_{\mathrm{ref}}:=\frac12\bigl(D+\taudbl^{\ast}D\taudbl^{\ast}\bigr),
+    \qquad
+    D_{\mathrm{rel}}:=\frac12\bigl(D-\taudbl^{\ast}D\taudbl^{\ast}\bigr);
+    \]
+    \item on boundary Cauchy data the induced reflection $R_{\taudbl}$ satisfies
+    \[
+    \operatorname{Ran}(P_C)=\ker(R_{\taudbl}-1),
+    \qquad
+    \ker(P_C)=\ker(R_{\taudbl}+1),
+    \qquad
+    \iC=R_{\taudbl}.
+    \]
+\end{enumerate}
+Hence the primitive scaffold
+\[
+\Tprim^{\mathrm{kin}}
+:=
+(\Xbulk,\widetilde M,M,\Seam,\taudbl,\iC,D_{\mathrm{ref}},D_{\mathrm{rel}},\chiseed)
+\]
+is derived, not assumed. The derived doubled datum may be recorded as
+\[
+\Tmin^{\mathrm{cl}}:=(\mathcal A,\mathcal H,D,J,\Gamma,\taudbl,\iC),
+\]
+If one further chooses an almost-commutative factorization
+\[
+\mathcal H_{\mathrm{prim}}\cong L^2(\Xbulk,S)\otimes \Hint,
+\]
+then $S$ and $\Hint$ refer only to that chosen realization and are not additional
+reconstruction outputs.
+\end{theorem}
+
+\begin{proof}
+Reflection regularity on an exact collar produces the doubled manifold together with the deck
+involution $\taudbl$. The APS-realized boundary problem has a Calder\'on projector $P_C$ whose
+range is the Cauchy-data space of interior solutions. On the doubled collar the deck reflection
+acts on Cauchy data by $R_{\taudbl}$, and the solution space splits into the $\pm1$ eigenspaces of
+this reflection. Therefore
+\[
+P_C=\frac{1+R_{\taudbl}}{2},
+\qquad
+\iC=2P_C-1=R_{\taudbl}.
+\]
+The formulas for $D_{\mathrm{ref}}$ and $D_{\mathrm{rel}}$ are the even and odd parts of $D$ under
+the induced involution.
+\end{proof}
+
+\begin{corollary}[No confusion among the three involutions]
+Geometric reflection is carried by $\taudbl$, boundary polarization by $\iC$, and the finite
+carrier split by the restricted involution
+\[
+\epscar:=\iC|_{\mathcal H_{\mathrm{car}}}.
+\]
+No later theorem may identify these three operators literally; only the displayed restriction and
+transport maps are allowed.
+\end{corollary}
+
+The canonical admissibility projector is built in two transparent stages. The primitive stage
+uses only data already available from $\Tbound$ through the derived boundary polarization $\iC$,
+namely the seam-even selector on Cauchy data, an APS realization that makes the geometric anchor
+self-adjoint Fredholm, and the relative operator $D_{\mathrm{rel}}$. The full stage upgrades this
+primitive projector by the color and determinant projectors that become available only after the
+carrier theorem of \TFPTxref{sec:minimal-carrier-proof} identifies the color factor and after the
+compact bosonic index of \TFPTxref{sec:closure-theorems} fixes the determinant involution. The full
+complex and the upgrade theorem appear once these later inputs are in place; here we close the
+primitive stage.
+
+\begin{definition}[Primitive admissibility complex and primitive projector]
+\label{def:admissibility-complex}
+\label{def:primitive-admissibility-complex}
+Let the primitive Hilbert space carry only the seam factor and the gap sector accessible from
+$D_{\mathrm{rel}}$ alone:
+\[
+\mathcal H_{\mathrm{prim}}=\mathcal H_{\Seam}\otimes\mathcal H_t,
+\qquad
+\mathcal H_{\mathrm{prim}}^{\mathrm{ext}}
+:=
+\mathcal H_{\mathrm{prim}}\otimes\Lambda(\eta_\Sigma,\eta_g),
+\]
+with primitive seam selector
+\[
+P_{\Seam,+}:=\frac{\mathbf 1+\iC}{2}.
+\]
+Fix $\epsilon_{\mathrm{adm}}>0$ and let $D_{\mathrm{prim}}$ be the APS-realized restriction of
+the primitive sector operator to $\mathrm{Ran}(P_{\Seam,+})$, controlled by $D_{\mathrm{rel}}$
+relative to the geometric anchor. Define the primitive admissibility penalties
+\[
+K_\Sigma:=\sqrt{\lambda_\Sigma}\,\frac{\mathbf 1-\iC}{2},
+\qquad
+K_g:=\sqrt{\lambda_{\mathrm{gap}}}\,
+\mathbf 1_{[0,\epsilon_{\mathrm{adm}}^2/4)}\!
+\bigl(P_{\Seam,+}D_{\mathrm{prim}}^\dagger D_{\mathrm{prim}}P_{\Seam,+}\bigr),
+\]
+the primitive admissibility differential
+\[
+Q_{\mathrm{prim}}
+:=
+\eta_\Sigma^\dagger K_\Sigma
++\eta_g^\dagger K_g,
+\]
+and the primitive admissibility Laplacian
+\[
+\Delta_{\mathrm{prim}}:=\{Q_{\mathrm{prim}},Q_{\mathrm{prim}}^\dagger\}.
+\]
+The primitive admissibility projector is the Hodge projector
+\[
+\Pprim
+:=
+\Pi_{\ker\Delta_{\mathrm{prim}}}.
+\]
+\end{definition}
+
+\begin{lemma}[Primitive nilpotency and primitive Hodge projector]
+\label{lem:admissibility-nilpotency}
+\label{lem:hodge-admissibility-projector}
+\label{lem:primitive-admissibility-nilpotency}
+On the primitive scaffold reconstructed from $\Tbound$,
+\[
+Q_{\mathrm{prim}}^2=0,
+\qquad
+\Delta_{\mathrm{prim}}
+=
+K_\Sigma^2+K_g^2,
+\qquad
+\Pprim
+=
+\operatorname*{s-lim}_{\beta\to\infty}e^{-\beta(K_\Sigma^2+K_g^2)}.
+\]
+In particular $\Pprim$ depends only on $\iC$, the APS realization, and $D_{\mathrm{rel}}$, and
+is therefore reconstructed from the closed datum at the primitive level. Equivalently,
+\[
+\Pprim=P_{\Seam,+}P_{\mathrm{prim,gap}},
+\qquad
+P_{\mathrm{prim,gap}}
+:=
+\mathbf 1_{[\epsilon_{\mathrm{adm}}^2/4,\infty)}
+\!\bigl(P_{\Seam,+}D_{\mathrm{prim}}^\dagger D_{\mathrm{prim}}P_{\Seam,+}\bigr).
+\]
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+The auxiliary generators $\eta_\Sigma^\dagger$ and $\eta_g^\dagger$ anticommute, so the square
+of $Q_{\mathrm{prim}}$ reduces to commutators of $K_\Sigma$ and $K_g$. Both penalties act on
+commuting sectors of $\mathcal H_{\mathrm{prim}}$, hence the mixed terms vanish and
+$\Delta_{\mathrm{prim}}=K_\Sigma^2+K_g^2$. The zero-temperature limit projects onto the
+intersection of seam-even and gapped admissible vectors, which is the factorized form recorded
+above.
+\end{proof}
+
+\begin{definition}[Carrier polarization on the finite block]
+\label{def:carrier-polarization-involution}
+Let $\mathcal H_{\mathrm{car}}$ denote the finite-dimensional carrier block selected after
+primitive admissibility compression. Define
+\[
+\epscar:=\iC|_{\mathcal H_{\mathrm{car}}},
+\qquad
+E_-:=\ker(\epscar+1),
+\qquad
+E_+:=\ker(\epscar-1).
+\]
+Then the finite carrier decomposition is
+\[
+E=E_-\oplus E_+.
+\]
+\end{definition}
+
+\begin{remark}[Forward reference to the full admissibility complex]
+\label{rem:forward-Padm}
+The full admissibility projector is obtained by upgrading $\Pprim$ with the color center
+projector $P_{\mathrm{sing}}$ and the determinant involution projector $P_\Theta$, which are
+available only after the carrier theorem of \TFPTxref{sec:minimal-carrier-proof} identifies the
+color factor $\mathcal H_c$ and after the compact bosonic index of \TFPTxref{sec:closure-theorems}
+fixes the determinant involution $Q_\Theta$. The full complex and the explicit upgrade are
+stated in \TFPTxref{def:full-admissibility-complex,thm:padm-upgrade}; nothing in the present
+primitive subsection depends on those inputs.
+\end{remark}
+
+\begin{definition}[Primitive Euclidean action]
+For any declared spectral test profile $f$, the primitive Euclidean action is the relative
+spectral seed
+\[
+S_{\mathrm{prim}}[\chiseed]
+:=
+\tr f\!\left(\frac{D_{\mathrm{rel}}}{\chiseed}\right)
+-
+\tr f\!\left(\frac{D_{\mathrm{ref}}}{\chiseed}\right)
++\frac{i\pi}{2}\Delta\eta_\Sigma.
+\]
+Gauge fixing, ghosts, and carrier-compatible bosonic fluctuations are introduced only after the
+hard carrier theorem and the canonical admissibility projector are in place. Whenever convenient,
+the compressed expression $\Padm A\Padm$ may be used as shorthand for matrix elements on the
+physical admissible sector, but it is not the definition of a local operator net.
+\end{definition}
+
+\begin{definition}[Physical admissible local net]
+\label{def:physical-admissible-local-net}
+Let $\mathfrak A_E(\mathcal O)$ be the Euclidean source algebra generated by local field insertions
+with test-function support in $\mathcal O$. After the later Osterwalder--Schrader reconstruction,
+let $\mathfrak A_M(\mathcal O)$ denote the corresponding Minkowski local algebra and let
+$\mathcal H_{\mathrm{OS}}$ be the reconstructed Hilbert space. Define the physical admissible
+Hilbert space by
+\[
+\mathcal H_{\mathrm{adm}}:=\operatorname{Ran}(\Padm)\subset \mathcal H_{\mathrm{OS}}.
+\]
+Define the physical admissible local net by
+\[
+\mathfrak A_{\mathrm{adm}}(\mathcal O)
+:=
+\left\{
+A|_{\mathcal H_{\mathrm{adm}}}\;:\;
+A\in\mathfrak A_M(\mathcal O),\;
+A\mathcal H_{\mathrm{adm}}\subset \mathcal H_{\mathrm{adm}},\;
+A^\ast\mathcal H_{\mathrm{adm}}\subset \mathcal H_{\mathrm{adm}}
+\right\}.
+\]
+Thus $\Padm$ acts as the selector of the physical state space, while the local net is defined by
+restriction to the invariant admissible subspace rather than by compression with a global
+projector.
+\end{definition}
+
+\begin{remark}[Bernstein realizations as analytic choices]
+\label{ass:bernstein-positivity}
+Whenever a Bernstein representation of a spectral test profile is used, it is treated only as an
+analytic realization of a transfer channel already fixed by the closed datum and the canonical
+projector. Positivity or reflection stability therefore does not enter the main text as a
+primitive source of admissibility.
+\end{remark}
+
+\begin{theorem}[Primitive self-adjoint realization without extra analytic assumption]
+\label{thm:well-posed-primitive-dynamics}
+\label{thm:primitive-selfadjoint-realization}
+Let $M_\Lambda$ be a finite cutoff of the primitive geometric anchor, so that $M_\Lambda$ is
+compact with boundary. Let $D_{\mathrm{geo}}$ be the formally self-adjoint Dirac-type anchor and
+let $A_\partial$ be an adapted boundary operator. Choose a self-adjoint $D_{\mathrm{geo}}$-elliptic
+boundary condition $B_{\mathrm{sa}}$ of modified APS type:
+\[
+B_{\mathrm{sa}}=
+\begin{cases}
+H^{1/2}_{(-\infty,0)}(A_\partial), & \ker A_\partial=0,\\[2mm]
+H^{1/2}_{(-\infty,0)}(A_\partial)\oplus L, & \ker A_\partial\neq0,
+\end{cases}
+\]
+where $L\subset\ker A_\partial$ is chosen as in the normal form for self-adjoint $D$-elliptic
+boundary conditions. Then the closed realization $D_{\mathrm{geo},B_{\mathrm{sa}}}$ is self-adjoint
+Fredholm with discrete spectrum. If $D_{\mathrm{rel}}$ is a symmetric differential perturbation of
+order at most one with bounded coefficients on $M_\Lambda$, then $D_{\mathrm{rel}}$ is
+infinitesimally $D_{\mathrm{geo},B_{\mathrm{sa}}}$-bounded and therefore
+\[
+D_{\mathrm{geo},B_{\mathrm{sa}}}+D_{\mathrm{rel}}
+\]
+is self-adjoint on the same domain. In particular the finite-cutoff relative spectral seed is well
+defined without an additional analytic existence hypothesis.
+\end{theorem}

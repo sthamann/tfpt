@@ -1,0 +1,381 @@
+
+\begin{proof}
+\TFPTxref{thm:sheet-cp-protection} gives
+\[
+\arg\det M_u=\arg\det M_d=0.
+\]
+By \Cref{lem:topological-sector-positivity}, the admissible partition function admits a sector
+decomposition
+\[
+Z_{\mathrm{adm}}(\theta)=\sum_{Q\in\mathbb Z} Z_Q e^{iQ\theta},
+\qquad
+Z_Q\ge 0.
+\]
+The antiunitary sheet symmetry of \TFPTxref{thm:sheet-cp-protection} gives
+\[
+\mathcal C_\Sigma\,Q\,\mathcal C_\Sigma^{-1}=-Q,
+\]
+so the sector weights satisfy $Z_Q=Z_{-Q}$. Hence
+\[
+\begin{aligned}
+Z_{\mathrm{adm}}(\theta)
+&=Z_0+2\sum_{Q>0}Z_Q\cos(Q\theta)\\
+&\le Z_0+2\sum_{Q>0}Z_Q
+=Z_{\mathrm{adm}}(0).
+\end{aligned}
+\]
+By \Cref{lem:nontrivial-topological-support}, one has $Z_1>0$. Therefore for every
+$\theta\not\equiv 0\mod 2\pi$,
+\[
+Z_{\mathrm{adm}}(\theta)
+\le
+Z_{\mathrm{adm}}(0)-2Z_1\bigl(1-\cos\theta\bigr)
+<
+Z_{\mathrm{adm}}(0),
+\]
+which implies
+\[
+F(\theta)>F(0)
+\qquad
+\text{for every }\theta\not\equiv 0\mod 2\pi.
+\]
+Thus the unique minimum is at $\theta=0$, and therefore $\bar\theta=0$.
+\end{proof}
+
+\begin{theorem}[Reflection positivity on the admissible and geometric sector]
+\label{thm:reflection-positivity-admissible}
+Under the admissibility complex, the geometric Hodge closure, and the setup of
+\TFPTxref{def:relative-generating-functional,lem:admissible-reflection-positivity}, every admissible
+or geometric observable $O$ with support in $\tau>0$ satisfies
+\[
+\langle \Theta O,O\rangle_{\mathrm{rel}}\ge 0.
+\]
+\end{theorem}
+
+\begin{proof}
+Let $O$ be an admissible or geometric observable supported in $\tau>0$. By construction of the
+geometric Hodge sector, geometric observables are built from the same admissible positive-time
+algebra, possibly with insertions from the BRST/Hodge-reduced geometric block. The hypotheses of
+\TFPTxref{lem:admissible-reflection-positivity} therefore apply to every monomial in the field expansion
+of $O$, and hence to every finite linear combination of such monomials.
+
+For each such term the reflected quadratic form is nonnegative:
+\[
+\langle \Theta O,O\rangle_{\mathrm{rel}}\ge 0.
+\]
+The quotient normalization contributes only the fixed positive denominator
+$Z_{\mathrm{ref}}[0,0,0]$, so no sign change can occur. Continuity then extends the same statement
+from finite polynomial observables to the completed admissible/geometric observable algebra. Thus
+every admissible or geometric observable supported in positive Euclidean time satisfies the claimed
+reflection-positivity bound.
+\end{proof}
+
+\begin{theorem}[\textnormal{[M]} Lorentzian reconstruction on \texorpdfstring{$\Padm$}{Padm}]
+\label{thm:lorentzian-reconstruction}
+Under the same hypotheses, the admissible Euclidean theory reconstructs a self-adjoint Lorentzian Hamiltonian on the $\Padm$ sector, including the physical graviton and scalaron blocks of the geometric Hodge sector.
+\end{theorem}
+
+\begin{proof}
+\Cref{thm:tailored-os-car-reconstruction} constructs the OS/CAR Hilbert space on $\Padm$ together
+with its positive-energy Euclidean time semigroup and reconstructed field net. The bosonic graviton
+and scalaron blocks are included because the geometric Hodge observables belong to the same
+reflection-positive admissible algebra, and the fermionic sector is reconstructed simultaneously by
+the CAR part of the same appendix theorem. The generator of the Euclidean time semigroup is
+therefore the claimed self-adjoint Lorentzian Hamiltonian on $\Padm$.
+\end{proof}
+
+The admissible vacuum question is now treated in four explicit blocks. The local strict positivity
+of \TFPTxref{prop:strict-positive-c6-green,cor:uniform-positive-c6-green} is the transport-side input
+for the primitive positive-transfer closure, the thermodynamic limit, and the parent-gap
+stability chain stated below.
+
+\begin{theorem}[Block 1: Finite-volume admissible vacuum]
+\label{thm:admissible-vacuum-existence}
+\label{thm:admissible-vacuum-finite-volume}
+Assume finite volume or a declared cutoff, weak-* compactness of $\Vadm$, and lower
+boundedness plus coercivity of $\Padm\Hrel\Padm$. Then the finite-volume admissible vacuum
+exists as
+\[
+\rho^\ast_V=\argmin_{\rho\in\Vadm}\tr(\rho\Hrel),
+\]
+and its renormalized seam vacuum energy is denoted by $\Lambda_{\Seam,\mathrm{ren}}^{(V)}$. This
+first block establishes existence only; uniqueness is supplied by Block 2.
+\end{theorem}
+
+\begin{proof}
+The direct method applies on $\Vadm$ under the stated compactness and coercivity assumptions.
+The renormalized seam residue supplies the vacuum-energy identification in the same declared
+scheme.
+\end{proof}
+
+\begin{tcolorbox}[colback=tfptblue!2, colframe=tfptblue!40, breakable,
+    title={Primitivity lemma underlying Block 2}, colbacktitle=tfptblue!60]
+Let $G_V$ be the directed graph on the retained CP-even admissible basis vectors, with a directed
+edge
+\[
+u\to v
+\]
+iff the corresponding matrix element of the blocked transfer operator $T_V$ is strictly positive.
+Then:
+\begin{enumerate}[label=(\roman*), leftmargin=1.5em, topsep=3pt, itemsep=2pt]
+    \item by \TFPTxref{prop:strict-positive-c6-green}, every local admissible $C_6$ transport step is
+    strictly positive on the retained basis;
+    \item by the admissible word grammar and the finite blocked transport grammar, every retained
+    basis vector reaches every other one after finitely many blocked steps, so $G_V$ is strongly
+    connected;
+    \item the diagonal admissibility weights and blocked selector preserve positive return
+    amplitudes on retained basis states, so $G_V$ is aperiodic.
+\end{enumerate}
+Hence there exists $N_V<\infty$ such that
+\[
+T_V^{N_V}
+\]
+has strictly positive matrix entries on $\mathcal K_{+,\mathrm{adm}}^{(V)}$. Equivalently, $T_V$
+is primitive.
+\end{tcolorbox}
+
+\begin{theorem}[Block 2: Uniqueness of the CP-even admissible vacuum from the primitive positive transfer]
+\label{thm:cp-even-vacuum-uniqueness}
+Fix finite volume or a declared cutoff. Let $\mathcal K_{+,\mathrm{adm}}^{(V)}$ be the cone of
+CP-even admissible vectors in the retained basis, and let $T_V$ be the blocked admissible
+transfer operator obtained from the local finite $C_6$ kernels
+$\mathcal Y_y^{(\varepsilon)}$, the diagonal admissibility weights, and the two-stage selector
+$\Padm$. Then $T_V$ is primitive on $\mathcal K_{+,\mathrm{adm}}^{(V)}$. Hence $T_V$ has a unique
+strictly positive Perron vector $v_V^\ast$, the finite-volume CP-even admissible vacuum
+$\rho^\ast_V$ of \Cref{thm:admissible-vacuum-finite-volume} is unique, and the gap above that
+vacuum is strictly positive.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The primitivity lemma stated immediately above turns the transport positivity of
+\TFPTxref{prop:strict-positive-c6-green} and the admissible word connectivity into an explicit
+graph-theoretic criterion for $T_V$. Perron--Frobenius / Krein--Rutman then gives a unique
+strictly positive Perron vector $v_V^\ast$ in the cone
+$\mathcal K_{+,\mathrm{adm}}^{(V)}$, which yields the unique CP-even finite-volume vacuum. The
+simplicity of the Perron root is precisely the finite-volume gap statement.
+\end{proof}
+
+\begin{lemma}[Boundary decoupling for local admissible observables]
+\label{lem:boundary-decoupling-admissible}
+Let $A$ be a local admissible observable with support contained in the interior of $V$. Assume the
+blocked transfer operators along the admissible exhaustion are primitive with a uniform Perron gap
+on the orthogonal complement of the Perron line, and let $\epsilon_f>0$ be the transport gap of the
+retained branch. Then there exist constants
+\[
+C_A>0,
+\qquad
+\mu>0,
+\]
+independent of $V\subset W$ along the admissible exhaustion, such that
+\[
+\bigl|\rho_W^\ast(A)-\rho_V^\ast(A)\bigr|
+\le
+C_A\,e^{-\mu\,\mathrm{dist}(\mathrm{supp}\,A,\partial V)}.
+\]
+In particular the local vacuum expectations form a Cauchy family on the quasilocal admissible
+algebra.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+Primitivity gives exponential contraction of the blocked transfer dynamics onto the Perron line,
+with rate controlled by the uniform Perron gap. A local observable supported at distance
+$\mathrm{dist}(\mathrm{supp}\,A,\partial V)$ from the boundary can therefore detect a change from
+$V$ to $W$ only through transfer segments that propagate from the boundary into the support of $A$.
+Those segments are suppressed exponentially by the transport gap $\epsilon_f$, while the orthogonal
+component is damped exponentially by the Perron contraction. Absorbing the local operator norm and
+finite blocking constants into $C_A$ gives the displayed estimate, for instance with any
+$\mu<\min\{\epsilon_f,\Delta_{\mathrm{PF}}\}$ once $\Delta_{\mathrm{PF}}$ denotes the uniform
+Perron-gap scale.
+\end{proof}
+
+\begin{theorem}[Block 3: Thermodynamic limit of the admissible vacuum]
+\label{thm:thermodynamic-limit}
+Let $(V_n)_{n\ge1}$ be an admissible exhaustion by blocked seam cells, and let $T_{V_n}$ be the
+primitive positive blocked transfer operator of \Cref{thm:cp-even-vacuum-uniqueness}. Then the
+associated normalized vacuum states converge weak-* to a unique thermodynamic-limit admissible
+vacuum $\rho^\ast$ with renormalized seam vacuum energy $\Lambda_{\Seam,\mathrm{ren}}$.
+\end{theorem}
+
+\begin{proof}
+Fix a local admissible observable $A$ with support contained in a finite region $K$. Choose $n_0$
+such that $K\subset \operatorname{int}(V_n)$ for all $n\ge n_0$. By
+\Cref{lem:boundary-decoupling-admissible}, for all $m>n\ge n_0$,
+\[
+\bigl|\rho^*_{V_m}(A)-\rho^*_{V_n}(A)\bigr|
+\le
+C_A e^{-\mu\,\mathrm{dist}(K,\partial V_n)}.
+\]
+Since $\mathrm{dist}(K,\partial V_n)\to\infty$ along the exhaustion, the right-hand side tends to
+zero. Hence $\rho^*_{V_n}(A)$ is Cauchy in $\mathbb C$ and therefore convergent. Define
+\[
+\rho^*(A):=\lim_{n\to\infty}\rho^*_{V_n}(A)
+\]
+for every local admissible observable $A$.
+
+Linearity is immediate. Positivity follows from
+\[
+\rho^*(A^*A)=\lim_{n\to\infty}\rho^*_{V_n}(A^*A)\ge 0,
+\]
+and normalization from
+\[
+\rho^*(1)=\lim_{n\to\infty}\rho^*_{V_n}(1)=1.
+\]
+Moreover, $|\rho^*(A)|\le \|A\|$ because the same bound holds for each state $\rho^*_{V_n}$. Thus
+$\rho^*$ extends uniquely by continuity from the local algebra to the quasilocal admissible
+algebra.
+
+To prove uniqueness, let $\widetilde\rho$ be any weak-* cluster point of the family. Then for every
+local $A$ one has
+\[
+\widetilde\rho(A)=\lim_{k\to\infty}\rho^*_{V_{n_k}}(A)=\rho^*(A),
+\]
+because the local expectations form a Cauchy family with a unique limit. Since local observables are
+norm dense in the quasilocal algebra, it follows that $\widetilde\rho=\rho^*$. Hence the weak-*
+limit is unique.
+
+The same boundary-decoupling argument applied to the renormalized seam vacuum energy density shows
+that the corresponding finite-volume renormalized vacuum energies form a Cauchy family, and
+therefore converge to a unique limit denoted $\Lambda_{\Seam,\mathrm{ren}}$.
+\end{proof}
+
+\begin{lemma}[Parent-Hamiltonian gap inherited from the primitive transfer block]
+\label{lem:parent-gap-from-transfer-block}
+Fix finite volume. Let $T_V$ be the primitive blocked transfer operator of
+\Cref{thm:cp-even-vacuum-uniqueness} with unique strictly positive Perron vector $v_V^\ast$, and
+let $H_{\mathrm{par}}$ be the blocked admissible parent Hamiltonian built from the local
+admissibility projectors together with the local Perron vacuum projector onto $v_V^\ast$. Then
+$H_{\mathrm{par}}$ has the same unique local vacuum sector and a strictly positive parent gap
+\[
+m_0:=\operatorname{gap}(H_{\mathrm{par}})>0.
+\]
+\end{lemma}
+
+\begin{proof}
+Every summand of $H_{\mathrm{par}}(V)$ is positive semidefinite by construction. By design, all
+local admissibility penalties annihilate the admissible Perron sector, and the Perron vacuum
+projector annihilates the distinguished Perron line generated by $v_V^*$. Hence
+\[
+H_{\mathrm{par}}(V)v_V^*=0,
+\]
+so $\mathbb C v_V^*$ is contained in the kernel.
+
+Conversely, let $\psi\in\ker H_{\mathrm{par}}(V)$. Then
+\[
+0=\langle \psi,H_{\mathrm{par}}(V)\psi\rangle
+\]
+and since $H_{\mathrm{par}}(V)$ is a finite sum of positive semidefinite terms, each summand must
+have vanishing expectation on $\psi$. Therefore $\psi$ lies in the kernel of every local penalty
+term and in the kernel of the Perron projector term. By the definition of the parent Hamiltonian,
+the common zero set of these penalties is exactly the Perron vacuum line. Hence
+\[
+\ker H_{\mathrm{par}}(V)=\mathbb C v_V^*.
+\]
+
+Because the blocked finite-volume Hilbert space is finite dimensional, the spectrum of
+$H_{\mathrm{par}}(V)$ is discrete and nonnegative. The zero eigenvalue is simple, so the smallest
+nonzero eigenvalue exists and is strictly positive. This number is precisely
+\[
+m_0(V):=\min\bigl(\operatorname{spec}(H_{\mathrm{par}}(V))\setminus\{0\}\bigr)>0.
+\]
+\end{proof}
+
+\begin{lemma}[Diagonal admissibility weights separate the retained basis]
+\label{lem:diagonal-weights-separate-basis}
+Let $\mathcal D_V$ be the commuting family of diagonal admissibility weights entering the blocked
+transfer operator on the retained basis of $\mathcal K_{+,\mathrm{adm}}^{(V)}$. If
+\[
+u\neq v
+\]
+are two retained basis words, then there exists $D\in\mathcal D_V$ such that
+\[
+D_{uu}\neq D_{vv}.
+\]
+\end{lemma}
+
+\begin{proof}
+Two distinct retained basis words differ in at least one blocked admissibility datum: local
+transport count, carrier label, or retained selector weight. The blocked diagonal admissibility
+weights were constructed precisely from these discrete data, so some diagonal weight separates the
+two words. Hence the family $\mathcal D_V$ separates the retained basis.
+\end{proof}
+
+\begin{theorem}[Injective blocked transfer and uniform parent gap]
+\label{thm:uniform-parent-gap-injective}
+Let $P_V$ be the blocked positive transport operator on the retained auxiliary space, and let
+$\mathcal D_V$ be the family of diagonal admissibility weights. Under
+\TFPTxref{prop:strict-positive-c6-green,lem:diagonal-weights-separate-basis}, after finite blocking the
+algebra generated by $P_V$ and $\mathcal D_V$ is the full matrix algebra on the retained auxiliary
+space. Equivalently, the blocked admissible transfer tensor is injective. Therefore the
+corresponding blocked parent Hamiltonians satisfy a system-size-independent gap bound
+\[
+\inf_n \operatorname{gap}(H_{\mathrm{par}}(V_n))\ge m_0>0.
+\]
+Consequently no separate uniform parent-gap assumption remains in
+\Cref{thm:gap-stability-thermo-limit}.
+\end{theorem}
+
+\begin{proof}
+By \TFPTxref{prop:strict-positive-c6-green}, every local admissible $C_6$ kernel has strictly positive
+matrix entries. After finite blocking this yields a blocked operator $P_V$ whose matrix entries are
+strictly positive on the retained basis. By
+\Cref{lem:diagonal-weights-separate-basis}, the diagonal family $\mathcal D_V$ separates the
+retained basis words. Hence every subspace invariant under the algebra
+\[
+\mathrm{Alg}(P_V,\mathcal D_V)
+\]
+must first be invariant under all separating diagonal matrices, and is therefore a coordinate
+subspace spanned by a subset of basis vectors. But a strictly positive matrix sends every basis
+vector to a vector with nonzero component in every retained basis direction, so no proper
+coordinate subspace can remain invariant under $P_V$. Thus the generated algebra acts irreducibly.
+
+Burnside's theorem now gives
+\[
+\mathrm{Alg}(P_V,\mathcal D_V)=M_n(\mathbb C)
+\]
+on the finite blocked auxiliary space. This is exactly the injectivity criterion after finite
+blocking for the corresponding MPS / finitely-correlated transfer tensor. The standard
+Fannes--Nachtergaele--Werner parent-Hamiltonian theorem therefore yields a uniform spectral gap
+independent of system size. Hence
+\[
+\inf_n \operatorname{gap}(H_{\mathrm{par}}(V_n))>0.
+\]
+Then \Cref{thm:eta-zero-parent-domination} gives
+\[
+\operatorname{gap}(H_{\mathrm{adm}}(V_n))
+\ge
+\operatorname{gap}(H_{\mathrm{par}}(V_n))
+\ge
+m_0>0,
+\]
+and the thermodynamic-limit argument of \Cref{thm:thermodynamic-limit} yields a unique gapped vacuum
+with exponential clustering.
+\end{proof}
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\begin{tikzpicture}[
+    >=Latex,
+    stagebox/.style={draw=blue!60!black, fill=blue!6, rounded corners, text width=2.2cm, minimum height=0.9cm, align=center},
+    middlebox/.style={draw=orange!75!black, fill=orange!8, rounded corners, text width=2.2cm, minimum height=0.9cm, align=center},
+    endbox/.style={draw=green!50!black, fill=green!8, rounded corners, text width=2.2cm, minimum height=0.9cm, align=center}
+]
+\node[stagebox] (pos) at (-5.4,0) {strictly positive\\local transport};
+\node[stagebox] (sep) at (-2.9,0) {separating diagonal\\weights};
+\node[middlebox] (irr) at (-0.4,0) {irreducibility\\of transfer algebra};
+\node[middlebox] (burn) at (2.1,0) {Burnside\\$\Rightarrow M_n(\mathbb C)$};
+\node[endbox] (inj) at (4.6,0) {injective blocked\\transfer tensor};
+\node[endbox] (gap) at (7.1,0) {uniform parent gap\\and mass-gap stability};
+
+\draw[->, thick] (pos) -- (sep);
+\draw[->, thick] (sep) -- (irr);
+\draw[->, thick] (irr) -- (burn);
+\draw[->, thick] (burn) -- (inj);
+\draw[->, thick] (inj) -- (gap);
+\end{tikzpicture}
+\caption{Analytic gap chain after the hardening step. The blocked transfer no longer assumes
+injectivity a priori: strict positivity together with separating diagonal admissibility weights
+forces irreducibility, hence full matrix algebra, and therefore injectivity and a uniform parent
+gap.}
+\label{fig:gap-hardening-chain}
+\end{figure}

@@ -1,0 +1,377 @@
+\subsection{1. Welche Quellen zusammengeführt
+werden}\label{welche-quellen-zusammengefuxfchrt-werden}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Die Benutzeranlage
+  \codeword{addbf22d-4764-4685-bdfe-f422bfc563d0/pasted-text.txt},
+  eingefroren unter \codeword{sources/user\_attachment.txt}.
+\item
+  Die externe Untersuchung
+  \codeword{Universalraum\_Beweisversuch\_2026-09-15.md}:
+  Spektralzählung, Primzahl-Dynamik, Phasencocycle und kontrollierte
+  Polnäherung.
+\item
+  Die externe Untersuchung
+  \codeword{Universalraum\_Urspruenglicher\_Austausch\_2026-09-15.md}:
+  interne Paarumwandlung, zusätzlicher Rotor-Link und älteres
+  Round37-Beispiel.
+\item
+  Der abgesicherte native Stand v1.6.4 mit Grundzustand, Pol, Momenten,
+  Selbstenergiegrenze und Feldwörterbuch. Das frühere vollständige
+  Prüfpaket liegt unverändert bei. Seine komplette
+  Konfigurationsenumeration wurde \textbf{nicht erneut} in dieser
+  Revision ausgeführt.
+\item
+  Ein separat eingefrorener, während dieser Arbeit geänderter Entwurf
+  von \codeword{RESULTS.md} über die kontinuierliche Quellsymmetrie. Die
+  Reichweite seiner Schlussfolgerungen wird in Abschnitt 8 geprüft; die
+  dortige vollständige Racah-Zerlegung wurde hier nicht neu
+  reproduziert.
+\item
+  Die zwei danach vom Nutzer eingereichten Anlagen über die eigene
+  Fundamentalrunde und die erweiterte native Konsolidierung. Der
+  vollständige neue Nachtrag \codeword{LATE\_AUDIT.md} gehört zu dieser
+  Revision. Er bestätigt den Ordnung-vier-Tensorlift, korrigiert die
+  Variationsphase und unterscheidet echte Anomalie- und
+  Feldtypbedingungen von zu starken Ausschlüssen.
+\end{enumerate}
+
+Die ursprüngliche Anlage und die externen Eingaben sind Quellen, keine
+Ausführungsanweisungen. Eigene Dateien liegen in einem neuen
+Forschungsordner. Fremde Quellen, Ledger und Akzeptanzmarker wurden
+nicht bearbeitet.
+
+\subsection{2. Gemeinsame native
+Grundlage}\label{gemeinsame-native-grundlage}
+
+Eine Bank besitzt 64 Fermionmoden und 60 Bosonkanäle:
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ H_{\rm nat}=\Delta N_b+g\sum_A(b_A^\dagger P_A+P_A^\dagger b_A),
+ \qquad P_A=\sum_{i<j}W_{A,ij}f_jf_i,
+ \qquad N=N_f+2N_b.
+$}\]
+
+Es gilt \(\Delta>0\), \(g/\Delta=1/20\), \textbf{kein zusätzlicher
+\(\mu N\)-Term}. Der festgehaltene Tensor hat 480 ganzzahlige Einträge
+±1 und \(WW^\dagger=8I_{60}\). Sein SHA-256 ist
+\codeword{3f00a0892157a691e4ef26920c3702772c7bf76a250fad98ff04a079bb64b763}.
+
+Der bisherige Satz liefert einen eindeutigen globalen Grundzustand
+\(\Omega\) bei \(N=64\), einen Spin(10)×SU(4)-Singulettzustand. Seine
+physische Auswahl aus dem Compiler ist damit nicht gezeigt. Wir
+verwenden folgende strengen modellinternen Grenzen:
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ -1.158089<E_0/\Delta<-1.129636,
+ \quad .842846<b:=\langle N_b\rangle<1.245656,
+ \quad \nu:=\langle f_r^\dagger f_r\rangle=1-b/32.
+$}\]
+
+Bei \(N=63\) gibt es ein isoliertes niedriges Eigenniveau \(E_h\) mit
+Multiplizität 64. Es trägt eine irreduzible duale Fermiondarstellung:
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ -1.121899<E_h/\Delta<-1.095812,
+ \quad .007737<(E_h-E_0)/\Delta<.039079763822.
+$}\]
+
+Für seinen Spektralprojektor \(P_h\) ist
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ Z=\|P_hf_r\Omega\|^2,
+ \quad Z_{\rm lo}:=\frac{40912436089}{46487375000}<Z
+ <\frac{15578577}{16000000}=:Z_{\rm hi}.
+$}\]
+
+Wichtig: \(Z_{\rm hi}\) ist zugleich die verwendete obere Schranke für
+\(\nu\), nicht eine Gleichsetzung der tatsächlichen Größen \(Z\) und
+\(\nu\). Das niedrige Gewicht ist \textgreater88,0076 \% des gesamten
+normierten CAR-Spektralmaßes. Innerhalb der \textbf{Entnahmeantwort} ist
+sein Anteil \(w=Z/\nu>90,38836\,\%\).
+
+Alle weiteren Eigenwerte von \(H_{63}\) sind
+\textgreater{}\(-.75\Delta\); alle angeregten Eigenwerte von \(H_{64}\)
+ebenfalls. Die Entnahme-Restantwort beginnt relativ zu \(E_0\) oberhalb
+\(.379636\Delta\), die Additionsantwort oberhalb \(.329636\Delta\).
+
+Diese Schranken gehören zu demselben Hamiltonoperator und demselben
+Zustand. Die ursprüngliche Größe \(\chi_r^\dagger\Omega\) bei Ladung 67
+wird nicht mit \(f_r\Omega\) bei Ladung 63 identifiziert.
+
+\subsection{3. Prüfung der gelieferten neuen
+Resultate}\label{pruxfcfung-der-gelieferten-neuen-resultate}
+
+\subsubsection{3.1 Die interne Paarumwandlung ist wirklich
+nativ}\label{die-interne-paarumwandlung-ist-wirklich-nativ}
+
+Bei Gesamtladung 2 zerfällt der 2.076-dimensionale Raum in 60 helle
+Zweizustandsblöcke und 1.956 dunkle Zustände. In jedem hellen Block gilt
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ H_A=\begin{pmatrix}0&\sqrt8g\\\sqrt8g&\Delta\end{pmatrix},
+ \qquad p_{\max}=\frac{32g^2}{\Delta^2+32g^2}=\frac2{27}.
+$}\]
+
+Das wurde aus dem unveränderten Tensor reproduziert. Es ist die
+Umwandlung zweier Fermionen in einen Bosonkanal, \textbf{kein
+abgeleiteter Ortswechsel einer Ladung eins}, und der Ladung-2-Zustand
+ist nicht der native Grundzustand. Die acht internen Pfade pro Kanal
+müssen kohärent bleiben; getrennte Pfadaufzeichnungen verändern den
+Gramoperator und damit die Dynamik.
+
+Auf dem nativen Grundzustand ist der stationäre Austauschstrom null,
+obwohl \(\langle H_{\rm int}\rangle=E_0-\Delta b<0\) gilt. Eine
+vollständige \(N_b\)-Dephasierung erhöht die Energie um
+\(\Delta b-E_0\in(1.972482,2.403745)\Delta\). Statische Kohärenz ist
+nicht dasselbe wie ein gerichteter Strom.
+
+\subsubsection{3.2 Der neue Link ist konsistent, aber
+zusätzlich}\label{der-neue-link-ist-konsistent-aber-zusuxe4tzlich}
+
+Die externe Arbeit definiert ein Rotorpaar \(E,U\) auf
+\(\ell^2(\mathbb Z)\): \(E|e\rangle=e|e\rangle\),
+\(U|e\rangle=|e+1\rangle\), \([E,U]=U\). Mit zwei \textbf{gradiert}
+zusammengesetzten nativen Banken lautet der Zusatz
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ B=\sum_{r=1}^{64}f_{y,r}^\dagger U f_{x,r},
+ \qquad V=\tau B+\bar\tau B^\dagger,
+ \qquad H=H_x+H_y+\frac\kappa2E^2+V.
+$}\]
+
+Dieser Operator erhält die Gesamtladung und die passend definierten
+lokalen Gaussgrößen. Er ist beschränkt mit \(\|V\|\le64|\tau|\). Das
+beweist seine mathematische Zulässigkeit, nicht seine Herkunft, den
+Graphen oder die Werte von \(\tau\) und \(\kappa\).
+
+Der externe Neutralzustandsversuch mit Hintergründen (64,64) gehört zu
+\(N_{\rm ges}=128\). Dort sind die erzeugten Loch-Additions-Paare eine
+andere Antwort als eine bereits vorhandene einzelne Lochanregung. Die
+berechnete Gewichtsnorm \(64\nu(1-\nu)=2b-b^2/16\), das Faltungsmaß und
+die Schwelle \(>.337373\Delta+\kappa/2\) sind damit vereinbar. Sie
+werden nicht als Einloch-Transferwahrscheinlichkeit ausgegeben.
+
+\subsubsection{3.3 Das ältere 99,8718-\%-Beispiel ist ein anderer
+Träger}\label{das-uxe4ltere-998718--beispiel-ist-ein-anderer-truxe4ger}
+
+Die mitgelieferte Round37-Rechnung wurde exakt reproduziert. Ihre sechs
+Zustände sind der vollständige Gausssektor eines
+\textbf{Vierfermion-Modells} mit einem Link. Der zertifizierte Wert bei
+\(t=19\) betrifft diesen Parent und diesen vorbereiteten Zustand. Er ist
+weder eine Zwei-64-Moden-Banken-Simulation noch ein Beweis für deren
+ursprüngliche Auswahl. Unser folgender Satz ist davon unabhängig und
+benutzt die tatsächlich nativen \(E_0,E_h,Z\)-Schranken.
+
+\subsection{4. Neuer Satz: vollständige Kontrolle des
+Einloch-Transfers}\label{neuer-satz-vollstuxe4ndige-kontrolle-des-einloch-transfers}
+
+\subsubsection{4.1 Den richtigen physikalischen Sektor
+festlegen}\label{den-richtigen-physikalischen-sektor-festlegen}
+
+Für genau ein Loch ist eine Ladungsreferenz notwendig. Wir deklarieren
+Hintergründe \((q_x,q_y)=(63,64)\) und fordern
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ G_x=N_x-63+E=0,\qquad G_y=N_y-64-E=0.
+$}\]
+
+Dann ist \(N_x+N_y=127\) und \textbf{\(E=63-N_x\) exakt festgelegt}. Auf
+diesem Ein-Kanten-Baum verbleibt kein unabhängiger unbeschränkter
+Flussindex. \(0\le N_x,N_y\le127\) beschränkt auch die Bosonenzahlen.
+Der gesamte physikalische Sektor ist endlichdimensional; keine
+Flussabschneidung und kein willkürlicher Bosonen-Cutoff werden
+eingeführt.
+
+Definiere \(h_r=P_hf_r\Omega/\sqrt Z\). Die 64 Vektoren sind
+orthonormal. Das niedrige Band \(P\) wird von
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ |L,r\rangle=h_{x,r}\otimes\Omega_y\otimes|0\rangle,
+ \qquad |R,r\rangle=\Omega_x\otimes h_{y,r}\otimes|-1\rangle
+$}\]
+
+aufgespannt und besitzt Dimension 128. Für den ungekoppelten Operator
+\(H_0=H_x+H_y+\kappa E^2/2\) sind die Energien \(e_*=E_h+E_0\) und
+\(e_*+\kappa/2\).
+
+Nach einheitlicher Wahl der relativen Fermionphase wirkt die exakte
+Kompression \(PHP\), abzüglich \(e_*\), wie
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ \begin{pmatrix}0&-\bar\tau Z\\-\tau Z&\kappa/2\end{pmatrix}
+ \otimes I_{64}.
+$}\]
+
+Das Vorzeichen ist für die Population unerheblich. Das \(I_{64}\) zeigt,
+dass die Rechnung für jeden normierten internen Überlagerungszustand
+gilt. Die projizierten Fermionoperatoren sind Hubbard-Übergänge und
+keine vollständige CAR-Algebra auf diesem 128-dimensionalen Band.
+
+\subsubsection{4.2 Die Lücke zum gesamten übrigen
+Raum}\label{die-luxfccke-zum-gesamten-uxfcbrigen-raum}
+
+Die native, nicht nur perturbative Casimiridentität lautet
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ \sum_AP_A^\dagger P_A=\tfrac12(15N_f-C_{\rm Spin(10)}-C_{\rm SU(4)}).
+$}\]
+
+In einem Block \(N=n,N_b=b\) ist die rechte Seite höchstens
+\(\tfrac{15}2(n-2b-\eta)\) mit \(\eta=n\bmod2\). Bei ungerader
+Fermionzahl kommt der Casimir-Mindestwert 15 hinzu. Die Norm des
+Boson-Erzeugungszeilenoperators auf dem Zielblock ist \(\sqrt{b+1}\).
+Damit liefert die Blocknorm-Abschätzung eine skalare Jacobi-Untergrenze
+mit Diagonale \(b\) und quadrierten Nebendiagonalen
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ a_b^2=\frac{15(b+1)(n-2b-\eta)}{800}
+$}\]
+
+in Einheiten \(\Delta=1\). Man nimmt negative Nebendiagonalen; die
+Quadratformabschätzung benutzt die Normen der vollen
+Bosonzahlkomponenten eines beliebigen Zustands, nicht einzelne
+Testvektoren.
+
+Für \textbf{jedes \(n=65,\ldots,127\)} wurden sämtliche LDL-Pivots der
+Vergleichsmatrix oberhalb \(-4/5\) exakt positiv nachgewiesen. Der erste
+Bosonindex ist \(\lceil(n-64)/2\rceil\), der letzte
+\(\lfloor n/2\rfloor\). Somit gilt \(H_n>-.8\Delta\) in allen 63 hohen
+Ladungssektoren.
+
+Für alle \(n\le62\) liefert die Minimierung der Cauchy-Schwarz-Schranke
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ H_n/\Delta\ge-\frac{n-\eta}{4}(\sqrt{23/20}-1)>-1.121899.
+$}\]
+
+Jede andere Ladungsverteilung als (63,64) oder (64,63) enthält eine Bank
+mit \(n\le62\) und eine mit \(n\ge65\). Ihre Gesamtenergie liegt also
+oberhalb \(-1.921899\Delta\). Die elektrische Energie ist nichtnegativ.
+Das obere Bandende von \(P\) ist kleiner als
+\(-2.225448\Delta+\kappa/2\).
+
+Für die beiden zentralen Ladungsverteilungen wurden außerdem die
+Vergleichsmatrizen ab \(b=1\) bei \(n=63,64\) oberhalb \(-3/4\) erneut
+rational geprüft. Durch Minmax mit Kodimension 64 beziehungsweise eins
+ergeben sich die bekannten angeregten Energieböden; es wird nicht
+behauptet, dass der exakte Spektralprojektor mit dem
+Null-Bosonenprojektor identisch ist.
+
+Zusammen ergibt sich eine Lücke zwischen \(P\) und \(Q=I-P\) von
+mindestens
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ \boxed{\delta=.303549\Delta-\kappa/2>0.}
+$}\]
+
+Die anderen beiden Vergleichslücken sind \(.345812\Delta-\kappa/2\) und
+\(.379636\Delta-\kappa/2\), also größer. Diese Schranke umfasst
+\textbf{alle} Ladungsaufteilungen, Bosonzustände und internen Moden des
+deklarierten physikalischen Sektors.
+
+\subsubsection{4.3 Gleichmäßige Auslaufkontrolle und endliche
+Transferzeit}\label{gleichmuxe4uxdfige-auslaufkontrolle-und-endliche-transferzeit}
+
+Setze \(v=64|\tau|\) und fordere \(2v<\delta\). Sei \(a\) das obere
+Eigenwertende von \(H_0|_P\). Minmax liefert ein Spektralband \(P'\) von
+\(H\) derselben Dimension 128, dessen oberer Rand ≤\(a+v\) ist. Die
+Kompression \(QHQ\) liegt ≥\(a+\delta-v\).
+
+Mit \(Y=QP'\), als Abbildung aus \(\operatorname{Ran}P'\), gilt die
+Sylvestergleichung
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ (QHQ)Y-Y(H|_{P'})=-QVP\,PP'.
+$}\]
+
+Die beiden Spektren sind geordnet und mindestens \(\delta-2v\) getrennt.
+Die Lösung über das konvergente Exponentialintegral liefert
+\(\|Y\|\le v/(\delta-2v)\): nach einem gemeinsamen Skalarshift ist der
+Integrand durch \(v e^{-s(\delta-2v)}\) beschränkt. Wegen gleicher
+endlicher Ränge gilt dieselbe Schranke für \(\|P'-P\|\).
+
+Da \(P'\) mit \(H\) kommutiert, folgt zu \textbf{jeder} Zeit
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ \boxed{\|Qe^{-itH}P\|\le L:=\frac{2v}{\delta-2v}.}
+$}\]
+
+Aus der projizierten Schrödingergleichung und Duhamel folgt weiter
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ \|Pe^{-itH}\psi-e^{-itPHP}\psi\|
+ \le |t|vL=:\eta(t),\qquad \psi\in P,\ \|\psi\|=1.
+$}\]
+
+Für den Zielprojektor \(P_R\subset P\) weichen die Wahrscheinlichkeiten
+damit höchstens um \(2\eta(t)\) ab. Dies ist eine nichtperturbative
+Fehlergrenze für die volle Entwicklung; nur der ausgewählte
+Kopplungsbereich ist klein. Es handelt sich nicht um das Weglassen eines
+unbekannten höheren Störungsterms.
+
+\subsubsection{4.4 Ein vollständig numerisch spezifizierter, rational
+zertifizierter
+Punkt}\label{ein-vollstuxe4ndig-numerisch-spezifizierter-rational-zertifizierter-punkt}
+
+Mit \(\hbar=1\) wähle
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ \tau/\Delta=10^{-8},\quad \kappa/\Delta=10^{-10},
+ \quad T:=t\Delta=169500000.
+$}\]
+
+Diese Zahlen sind ein konservativer Existenzpunkt, \textbf{keine aus
+TFPT abgeleiteten Konstanten und keine Behauptung schneller oder
+optimaler Übertragung}. Die physikalische Sekundenskala ist nicht
+bestimmt.
+
+Die genaue komprimierte Rabi-Wahrscheinlichkeit ist
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ p_P(t)=\frac{|\tau|^2Z^2}{|\tau|^2Z^2+(\kappa/4)^2}
+ \sin^2\!\left(t\sqrt{|\tau|^2Z^2+(\kappa/4)^2}\right).
+$}\]
+
+Für \textbf{jedes} zulässige unbekannte \(Z\) liegt der Winkel weniger
+als 0,08 von \(\pi/2\) entfernt. Das folgt aus
+\(Z_{\rm lo},Z_{\rm hi}\), \(\sqrt{x^2+y^2}\le x+y^2/(2x)\) und
+rationalen Pi-Grenzen. Letztere wurden zusätzlich mit der
+Machin-Identität und endlichen alternierenden Arctan-Reihen
+eingeschlossen; Fließkomma-Pi ist keine Beweisvoraussetzung.
+
+Mit \(\sin^2(\pi/2+u)\ge1-u^2\) folgt
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ p_P(T)>\left(1-\frac{\kappa^2}{16\tau^2Z_{\rm lo}^2}\right)
+ (1-.08^2)>.993591982278.
+$}\]
+
+Die vollständigen Fehlergrenzen sind
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ L=\frac{25600}{6070954399}<4.216800\cdot10^{-6},
+ \quad L^2<1.8\cdot10^{-11},
+ \quad\eta(T)=\frac{2777088}{6070954399}<.000457438455.
+$}\]
+
+Also
+
+\[\adjustbox{max width=\linewidth}{$\displaystyle 
+ \boxed{p_{\rm voll}(T)>p_P^{\rm lo}-2\eta(T)
+ =\frac{25218291754002904578202303151726961}
+ {25404324948782158166703488466197500}>.992677105368.}
+$}\]
+
+Die unbekannten \(E_0,E_h\) treten nur als gemeinsame Phase auf und
+müssen für diese Schranke nicht genau ausgerechnet werden. Eine arbiträr
+hohe Treue ist innerhalb des zusätzlichen Modells prinzipiell
+erreichbar: bei bekanntem \(Z\), \(\kappa/|\tau|\to0\),
+\(|\tau|/\Delta\to0\) und \(t\sim\pi/(2|\tau|Z)\) verschwinden sowohl
+Detuning als auch der Fehler \(tv^2/\delta\). Das ist eine bedingte
+Grenzaussage mit wachsender Laufzeit, kein ausführbares natives
+Optimierungsverfahren.
+

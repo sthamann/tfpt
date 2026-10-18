@@ -12,21 +12,28 @@ Every **load-bearing** claim: machine-checked in `verification/vN_*.py`, cited i
 
 1. **Summary before edits** — after any script run, report exact numbers/pass-fail **before** touching papers, ledger, changelog, website, manifests. No summary ⇒ no edits.
 2. **Ledger wins** on status/disagreement. Display markers: `[E]/[C]/[O]/[X]` in TeX/website; fine types in ledger only. Never silently upgrade.
-3. **Generated — never hand-edit:** `tex-artefacts/verification.tex`, `ScriptIndex.tsx`, `changelog.ts`, `version.ts`, `docs_map.csv`, `website_map.csv`, `docs_map_dates.json`, `verification/theory_graph.json`, `verification/theory_primer.md`. Regenerate via `bash build.sh gen` / `bash build.sh website`.
+3. **Generated — never hand-edit:** `tex-artefacts/verification.tex`, `ScriptIndex.tsx`, `changelog.ts`, `version.ts`, `docs_map.csv`, `website_map.csv`, `docs_map_dates.json`, `docs/registry/` generated inventories. Regenerate via `bash build.sh gen` / `bash build.sh website`.
 4. **Exit gate:** `bash build.sh audit` → `AUDIT OK` before calling verification/paper work done. Suite green: `run_all.py` → ALL CHECKS PASSED.
-5. **Single sources:** doc list → `tfpt_docset.tex`; changelog → `changelog.tex`; status → ledger. Papers/website English; `next.txt` German OK.
+5. **Single sources:** content ownership → `docs/registry/`; reader-facing document box → `tfpt_docset.tex`; history → modular `changelog.tex` entry point; status → ledger. Papers/website English; `next.txt` German OK.
 6. **No summary `.md` files** unless explicitly asked.
 7. **Cheap models work, expensive models decide** — spawn L0/L1 workers, escalate only on a named
    failure signal, hand over STATE blocks not history. Rule **`agent-economics`** (hook-enforced).
 
-## Four workspaces
+## Source ownership
+
+Start with `AGENTS.md`, `docs/registry/INDEX.md` and `docs/LATEX_MAINTENANCE.md`.
+`documents/` owns modular source bodies; root `.tex` files are stable compilation
+entry points. Use `verification/tex_sources.py` for expanded source reads. The
+content registry maps structure and citations; the ledger still owns status.
+
+## Workspaces
 
 | Path | Role |
 |------|------|
 | `verification/` | Load-bearing suite → papers + ledger + website |
 | `experiments/` | Search surfaces / scorecard — **not** claims until promoted |
 | `website/` | Public mirror — same change as theory/scripts |
-| `rh/` | Consolidated RH home: Lean + paper + RH suite — sync via `rh-sync` skill |
+| External `sthamann/prime-front` | Independent RH/prime/Weil/factorisation sources and site |
 
 ## Skill routing (load on demand — `.cursor/skills/`)
 
