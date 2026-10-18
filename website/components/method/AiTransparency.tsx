@@ -33,12 +33,7 @@ export function AiTransparency() {
         >
           repository
         </a>{" "}
-        contains everything needed to do so. The erratum culture is part of the
-        same contract: when the W1 chain misread a convention in its source
-        paper, the error was found by the suite&rsquo;s own consistency checks
-        and published as a dated erratum the same day (v643) — labels
-        corrected, numbers unchanged, nothing quietly rewritten. Tools may
-        propose; only the suite disposes.
+        contains everything needed to do so. Dated corrections retain the original claim identifiers and their stated scope. Tools may propose; the source argument and independent checks determine the result.
       </p>
     </div>
   );

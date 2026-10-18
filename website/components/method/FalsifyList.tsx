@@ -18,16 +18,8 @@ const CRITERIA: { title: string; body: string; refs: string }[] = [
     body: "The scalaron sector predicts r inside the declared N★ band. CMB-S4 / LiteBIRD sensitivity reaches it; a detection well outside the band kills the inflation readout.",
     refs: "freeze file · v65 / v86",
   },
-  {
-    title: "A fresh complete window breaks C = 1",
-    body: "The W3 candidate mechanism (kill test K2 of the Weil-operator contract) dies if a complete fresh window stably exceeds the frozen C = 1 bound — the complete-comb surface is definitional, so there is no room to re-fit.",
-    refs: "PRIME.WEIL.OPERATOR.01 · v618 / v619",
-  },
-  {
-    title: "The operator identification fails beyond a fit",
-    body: "Kill test K1: if the window form is not the Galerkin matrix of the localized Weil operator on the declared bases (exactly, or up to the named rank-one transform), the W1–W4 chain is dead. K3: losing the explicit-formula bookkeeping in the odd sector kills it too.",
-    refs: "PRIME.WEIL.OPERATOR.01 · v631 / v643",
-  },
+  
+  
   {
     title: "Strong-CP, ordering, or w ≠ −1",
     body: "The remaining frozen criteria of the falsification surface: a strong-CP signal inconsistent with the null, an inverted neutrino ordering, or dark energy measurably away from w = −1 each kill their sector outright.",

@@ -208,16 +208,6 @@ if [[ "$QUICK" == "0" ]]; then
     if [[ -z "$AXIOM_LOG" ]]; then
         log_fail "no #print axioms output captured; AxiomCheck.lean may have regressed"
     else
-        if [[ "$CORE" == "0" ]]; then
-            WALL_AXIOM_LOG=$(grep -E "^info: TfptCarrier/WallLadderAudit" /tmp/tfpt-lake-build.log 2>/dev/null || echo "")
-            if [[ -z "$WALL_AXIOM_LOG" ]]; then
-                log_fail "no #print axioms output captured; WallLadderAudit.lean may have regressed"
-            else
-                AXIOM_LOG="${AXIOM_LOG}
-${WALL_AXIOM_LOG}"
-            fi
-        fi
-        if [[ "$CORE" == "1" || -n "${WALL_AXIOM_LOG:-}" ]]; then
             BAD_AXIOM=$(echo "$AXIOM_LOG" \
                 | grep -oE '\[[^]]*\]' \
                 | tr ',' '\n' \
@@ -228,7 +218,7 @@ ${WALL_AXIOM_LOG}"
                 || true)
             if [[ -z "$BAD_AXIOM" ]]; then
                 if [[ "$CORE" == "0" ]]; then
-                    log_pass "all theorems (AxiomCheck + WallLadderAudit) use only [propext, Classical.choice, Quot.sound]"
+                    log_pass "all TFPT theorems use only [propext, Classical.choice, Quot.sound]"
                 else
                     log_pass "all theorems use only [propext, Classical.choice, Quot.sound]"
                 fi
@@ -236,7 +226,6 @@ ${WALL_AXIOM_LOG}"
                 log_fail "unexpected axiom dependencies:"
                 echo "$BAD_AXIOM" >&2
             fi
-        fi
     fi
 else
     echo "  [SKIP] axiom audit (--quick mode)"

@@ -35,14 +35,7 @@ const GRAVES: {
       "Killed by a parity theorem: 12-cycles of any square arise in pairs from 24-cycles, and the clock's census 19×12 + 3×4 has odd counts — impossible even in S₂₄₀. A power-census scan over all 46080 elements confirms it.",
     refs: "v647",
   },
-  {
-    title: "Fine Hodge invariants ↔ the C = 1 margin",
-    tempting:
-      "Raw correlations of ±0.40 suggested the fine geometric invariants of the prime front predict the arithmetic contraction margin — a geometry-to-primes bridge.",
-    died:
-      "After controlling for the ladder parameter h, the partial correlation is ρ = −0.040 (p = 0.75) — the raw signal was entirely the h-trend. Promoted as an honest negative; the bridge, if it exists, needs a different functional.",
-    refs: "v637",
-  },
+  
   {
     title: "The naive 48 × 5 incidence on the E₈ roots",
     tempting:
@@ -59,14 +52,7 @@ const GRAVES: {
       "Machine-checked and found ill-posed as stated — recorded as such in the module instead of being silently reinterpreted until it passed.",
     refs: "v624",
   },
-  {
-    title: "The Lerch −1 convention (erratum)",
-    tempting:
-      "The W1 dictionary chain read Suzuki's screw function with Lerch coefficient −1; four modules and a two-layer dictionary were built on that reading.",
-    died:
-      "Self-found and corrected the same day: the paper's own data lock +1/4. Every measured number transfers verbatim via an exact identity; the dictionary collapses to one scalar. Documented as dated erratum blocks across modules, ledger, papers and site.",
-    refs: "v643 (erratum on v631, v640–v642)",
-  },
+  
 ];
 
 export function Graveyard() {

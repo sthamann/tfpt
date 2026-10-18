@@ -233,6 +233,7 @@ def check_website(registered: list[str]) -> None:
     # 1. verification mirror
     pub_v = WEB / "public" / "verification"
     want = {f"{s}.py" for s in registered} | {"tfpt_constants.py"}
+    want |= {p.name for p in VERIF.glob("math_support*.py")}
     have = {p.name for p in pub_v.glob("*.py")}
     for name in sorted(want - have):
         err("D.verification", f"website/public/verification/{name} missing")

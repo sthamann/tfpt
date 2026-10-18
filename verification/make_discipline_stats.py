@@ -142,7 +142,7 @@ def build() -> dict[Path, str]:
             "total": 12,
         },
         "anchors": {
-            "recomputed": 5,
+            "recomputed": aud.ANCHORS_MIN,
             "citations": cites,
             "arxivModules": arxiv,
         },

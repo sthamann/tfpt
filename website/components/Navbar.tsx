@@ -30,7 +30,6 @@ const moreLinks = [
   { href: "/predictions", label: "Predictions" },
   { href: "/architecture", label: "Architecture" },
   { href: "/compiler", label: "Compiler" },
-  { href: "/prime-front", label: "Prime Front" },
   { href: "/review", label: "For reviewers" },
   { href: "/objections", label: "Objections" },
   { href: "/changelog", label: "Changelog" },

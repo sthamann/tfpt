@@ -62,33 +62,33 @@ export interface DisciplineStats {
 export const DISCIPLINE: DisciplineStats =
 {
   "ledger": {
-    "rows": 1194,
-    "active": 1189,
+    "rows": 788,
+    "active": 783,
     "retired": 5,
     "dist": {
-      "E": 403,
-      "C": 275,
-      "O": 398,
-      "X": 42,
+      "E": 192,
+      "C": 217,
+      "O": 328,
+      "X": 39,
       "AXIOM": 2,
-      "OTHER": 74
+      "OTHER": 10
     },
-    "killRows": 470
+    "killRows": 261
   },
   "suite": {
-    "modules": 1028,
-    "checkSites": 16647,
-    "mustfailOccurrences": 9127,
-    "mustfailModules": 544,
-    "eMarks": 4583,
-    "cMarks": 1563,
-    "seededModules": 205,
-    "sympyModules": 539
+    "modules": 707,
+    "checkSites": 8230,
+    "mustfailOccurrences": 3343,
+    "mustfailModules": 301,
+    "eMarks": 3710,
+    "cMarks": 1412,
+    "seededModules": 81,
+    "sympyModules": 443
   },
   "contracts": {
-    "ledgerRows": 168,
-    "withKillCriteria": 105,
-    "texMentions": 90
+    "ledgerRows": 61,
+    "withKillCriteria": 48,
+    "texMentions": 85
   },
   "replay": {
     "sample": [
@@ -99,32 +99,29 @@ export const DISCIPLINE: DisciplineStats =
       "v305_witness_independence",
       "v405_seam_equiv_omega",
       "v505_celestial_wp5e_beta_equivariant_ledger",
-      "v555_pareto_tv_identities",
+      "v1_e8_glue",
       "v600_joint_embedding",
       "v634_st31_structure",
-      "v643_w1_theorem",
-      "v648_sign_uncertainty"
+      "v2_carrier_pascal",
+      "v3_em_alpha"
     ],
     "passed": 12,
     "total": 12
   },
   "anchors": {
-    "recomputed": 5,
+    "recomputed": 3,
     "citations": {
-      "Jacobi": 68,
-      "Hecke": 39,
-      "Construction A": 12,
-      "Suzuki": 31,
-      "Weil": 113,
-      "Eisenstein": 34
+      "Jacobi": 17,
+      "Construction A": 10,
+      "Shephard": 2
     },
-    "arxivModules": 61
+    "arxivModules": 38
   },
   "lean": {
-    "modules": 119
+    "modules": 67
   },
   "openGates": {
-    "count": 394
+    "count": 324
   }
 };
 

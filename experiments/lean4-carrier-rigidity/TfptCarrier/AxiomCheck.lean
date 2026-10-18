@@ -48,19 +48,6 @@ import TfptCarrier.SeamRigidityForcing
 import TfptCarrier.SeamEdgeChern
 import TfptCarrier.SeamScalingLimit
 import TfptCarrier.SeamResidualAxiom
-import TfptCarrier.CofinalPredefinition
-import TfptCarrier.EulerPick
-import TfptCarrier.DeltaOneNoGo
-import TfptCarrier.ParityLemma
-import TfptCarrier.SVSkeleton
-import TfptCarrier.Radius4Algebra
-import TfptCarrier.MatchedPin
-import TfptCarrier.NFClosure
-import TfptCarrier.SpacingProduct
-import TfptCarrier.JetSumRules
-import TfptCarrier.PinchIdentity
-import TfptCarrier.SpectralBalance
-import TfptCarrier.MomentLaurent
 
 -- Layer 1: Polarization (algebraic core)
 #print axioms TFPT.Carrier.Polarization.sixY_carrier_polynomial
@@ -269,88 +256,35 @@ import TfptCarrier.MomentLaurent
 -- wrapper additionally requires the named external contract certificate.
 -- The negative and constantization theorems expose exactly why ordinary
 -- extensional types do not recover construction provenance.
-#print axioms TfptCarrier.CofinalPredefinition.cofinal_weil_for_fixed_idx
-#print axioms TfptCarrier.CofinalPredefinition.cofinal_weil_predefined
-#print axioms TfptCarrier.CofinalPredefinition.old_api_accepts_sign_mined_idx
-#print axioms TfptCarrier.CofinalPredefinition.signMinedIndex_not_familyNoninterfering
-#print axioms TfptCarrier.CofinalPredefinition.constantizedSelector_familyNoninterfering
-#print axioms TfptCarrier.CofinalPredefinition.constantizedSelector_agrees
 
 -- Euler–Pick forward direction (round 93 V0c, finite-sum core; 2026-08-15)
 -- Real ordinates ⇒ every finite Pick section is PSD: the per-zero rank-two
 -- Gram identity is exact in the kernel, the PSD conclusion holds at every
 -- witness and as Matrix.PosSemidef, and the Stieltjes–Vitali node
 -- instantiation is unconditional.  No hypothesis touches ζ.
-#print axioms TfptCarrier.EulerPick.pick_entry_decomposition
-#print axioms TfptCarrier.EulerPick.pickMatrix_entry_eq_gram_sum
-#print axioms TfptCarrier.EulerPick.pickForm_nonneg
-#print axioms TfptCarrier.EulerPick.pickMatrix_posSemidef
-#print axioms TfptCarrier.EulerPick.pickMatrix_svNodes_posSemidef
 
 -- The δ₁ no-go (round 93 V0b; 2026-08-15)
 -- Pin finiteness/positivity coexists with singular, non-PD moment sections
 -- at every size ≥ 2 — the counterexample package, all components proven.
-#print axioms TfptCarrier.DeltaOneNoGo.toeplitz_deltaOneMoment
-#print axioms TfptCarrier.DeltaOneNoGo.allOnes_posSemidef
-#print axioms TfptCarrier.DeltaOneNoGo.allOnes_det_eq_zero
-#print axioms TfptCarrier.DeltaOneNoGo.allOnes_not_posDef
-#print axioms TfptCarrier.DeltaOneNoGo.caratheodoryDeltaOne_pos
-#print axioms TfptCarrier.DeltaOneNoGo.delta_one_no_go
 
 -- The secular parity lemma (round 85 TPL T4 / S6; 2026-08-15)
 -- Blow-up laws and the same-sign existence direction are proven
 -- unconditionally; the assembled parity theorems carry the named
 -- SIMPLICITY hypothesis (alternating gap-sample signs) explicitly.
-#print axioms TfptCarrier.ParityLemma.tendsto_secular_atTop
-#print axioms TfptCarrier.ParityLemma.tendsto_secular_atBot
-#print axioms TfptCarrier.ParityLemma.sign_constant_of_no_zero
-#print axioms TfptCarrier.ParityLemma.exists_zero_of_pos_pos
-#print axioms TfptCarrier.ParityLemma.exists_zero_of_same_sign
-#print axioms TfptCarrier.ParityLemma.exists_zero_adjacent
-#print axioms TfptCarrier.ParityLemma.parity_of_alternating
-#print axioms TfptCarrier.ParityLemma.zero_count_odd_of_pos_pos
-#print axioms TfptCarrier.ParityLemma.zero_count_even_of_pos_neg
-#print axioms TfptCarrier.ParityLemma.zero_count_even_iff_opposite_residues
 
 -- The (SV) ⇒ RH skeleton (rounds 92–93 V0a/V0c backward chain; 2026-08-15)
 -- The V0a pin geometry is proven; the chain is a typed hypothesis package
 -- whose honesty lock proves no unconditional conclusion can be extracted.
-#print axioms TfptCarrier.SVSkeleton.svNode_mem_Ioc
-#print axioms TfptCarrier.SVSkeleton.svNode_strictAnti
-#print axioms TfptCarrier.SVSkeleton.svNode_tendsto_one
-#print axioms TfptCarrier.SVSkeleton.sv_implies_rh
-#print axioms TfptCarrier.SVSkeleton.skeleton_inhabited
-#print axioms TfptCarrier.SVSkeleton.skeleton_not_unconditional
 
 -- The radius-4 field algebra (round 117 / note CDXVII; 2026-08-16)
 -- The on-line quarter bound, the matched-pin strict violation, the
 -- determinant factor and the 2-to-1 partner rigidity are pure field
 -- identities over ℝ/ℂ, all proven unconditionally.
-#print axioms TfptCarrier.Radius4Algebra.w_eq_y_one_sub_y
-#print axioms TfptCarrier.Radius4Algebra.diagonal_identity
-#print axioms TfptCarrier.Radius4Algebra.det_factor
-#print axioms TfptCarrier.Radius4Algebra.wOnLine_nonneg
-#print axioms TfptCarrier.Radius4Algebra.wOnLine_le_quarter
-#print axioms TfptCarrier.Radius4Algebra.w_onLine_eq
-#print axioms TfptCarrier.Radius4Algebra.matched_w
-#print axioms TfptCarrier.Radius4Algebra.matched_excess_pos
-#print axioms TfptCarrier.Radius4Algebra.partner_w
-#print axioms TfptCarrier.Radius4Algebra.partner_weight_sum
 
 -- The matched-pin algebra (round 125 / note CDXXVI; 2026-08-16)
 -- y* = (γ+iδ)/(2γ), weight exactly 1, v* = 1 + ε exactly real, the
 -- v = 4w dictionary lock and the on-line (0,1] rate contrast — all
 -- exact complex/real field lemmas, proven unconditionally.
-#print axioms TfptCarrier.MatchedPin.vRate_eq_four_w
-#print axioms TfptCarrier.MatchedPin.matched_y
-#print axioms TfptCarrier.MatchedPin.matched_y_conj
-#print axioms TfptCarrier.MatchedPin.matched_weight_sum
-#print axioms TfptCarrier.MatchedPin.matched_y_re
-#print axioms TfptCarrier.MatchedPin.matched_v
-#print axioms TfptCarrier.MatchedPin.matched_v_gt_one
-#print axioms TfptCarrier.MatchedPin.onLine_y_v
-#print axioms TfptCarrier.MatchedPin.onLine_rate_pos
-#print axioms TfptCarrier.MatchedPin.onLine_rate_le_one
 
 -- The NF-closure kernel (round 122 / note CDXXIII; 2026-08-16)
 -- The scalar/eigenvalue contraction into [0,1/4], the determinant
@@ -358,60 +292,28 @@ import TfptCarrier.MomentLaurent
 -- proven; the operator statement and the Vitali/Hurwitz hull are a
 -- typed hypothesis package whose honesty lock proves no
 -- unconditional conclusion can be extracted.
-#print axioms TfptCarrier.NFClosure.contractionKernel_mem_Icc
-#print axioms TfptCarrier.NFClosure.eigenvalues_mem_Icc
-#print axioms TfptCarrier.NFClosure.det_factor_vieta
-#print axioms TfptCarrier.NFClosure.det_factor_kernel
-#print axioms TfptCarrier.NFClosure.sum_pow_le_trace
-#print axioms TfptCarrier.NFClosure.log_inv_one_sub_le
-#print axioms TfptCarrier.NFClosure.nf_implies_rh
-#print axioms TfptCarrier.NFClosure.nfSkeleton_inhabited
-#print axioms TfptCarrier.NFClosure.nfSkeleton_not_unconditional
 
 -- The spacing-product identity (round 135 D1; 2026-08-18)
 -- The general-K secular-derivative spacing form F′(y_j) =
 -- A₀·∏(y_j−y_i)/∏(y_j−b_k) at every numerator root off the lattice,
 -- via the per-pole Wronskian collapse — pure polynomial/field
 -- algebra over an arbitrary field, all proven unconditionally.
-#print axioms TfptCarrier.SpacingProduct.nodal_erase_wronskian
-#print axioms TfptCarrier.SpacingProduct.spacing_product_cleared
-#print axioms TfptCarrier.SpacingProduct.spacing_product
-#print axioms TfptCarrier.SpacingProduct.fderivWeight_ne_zero
 
 -- The jet sum rules (rounds 135 D2 / 154 P5; 2026-08-18)
 -- All four reciprocal-derivative sum rules proven EXACTLY at K = 2
 -- (sympy-verified before formalization); the general-K residue
 -- forms are a typed hypothesis package whose honesty lock proves
 -- no unconditional conclusion can be extracted.
-#print axioms TfptCarrier.JetSumRules.spacing_two
-#print axioms TfptCarrier.JetSumRules.sum_rule_first
-#print axioms TfptCarrier.JetSumRules.sum_rule_second
-#print axioms TfptCarrier.JetSumRules.sum_rule_jet
-#print axioms TfptCarrier.JetSumRules.sum_rule_jet_second
-#print axioms TfptCarrier.JetSumRules.jet_sum_rules_conditional
-#print axioms TfptCarrier.JetSumRules.jetSkeleton_inhabited
-#print axioms TfptCarrier.JetSumRules.jetSkeleton_not_unconditional
 
 -- The s×gap pinch (round 142 W1; 2026-08-18)
 -- The defect identity 1 − s·g = (g²/ρ²)Σẽᵢ²/(δᵢ(δᵢ−g)) and the
 -- two-sided pinch 1 − g/δ₁ ≤ s·g ≤ 1 on the abstract finite
 -- eigenstructure — all proven unconditionally.
-#print axioms TfptCarrier.PinchIdentity.defect_identity
-#print axioms TfptCarrier.PinchIdentity.defect_sum_nonneg
-#print axioms TfptCarrier.PinchIdentity.sg_le_one
-#print axioms TfptCarrier.PinchIdentity.one_sub_div_le_sg
-#print axioms TfptCarrier.PinchIdentity.pinch
 
 -- The spectral balance (round 157 SB1/SB2/SB3; 2026-08-18)
 -- The trace-loop tail closure 1 ≤ tf ≤ K−1, the loop identity
 -- τ·TrH = tf/FULLGAP, the χ-cap s·ρ²·δ₁ ≤ 1−ρ², and the secular
 -- enclosure ρ²·δ₁ ≤ g ≤ δ₁ — all proven unconditionally.
-#print axioms TfptCarrier.SpectralBalance.tf_ge_one
-#print axioms TfptCarrier.SpectralBalance.tf_le_card
-#print axioms TfptCarrier.SpectralBalance.trace_loop_identity
-#print axioms TfptCarrier.SpectralBalance.chi_cap
-#print axioms TfptCarrier.SpectralBalance.enclosure_lower
-#print axioms TfptCarrier.SpectralBalance.secular_enclosure
 
 -- The moment-Laurent law (round 156 L1/L2; 2026-08-18)
 -- The jet recursion, the secular dictionary, the finite Laurent
@@ -419,11 +321,3 @@ import TfptCarrier.MomentLaurent
 -- moment-Laurent law, the quarter cap z(1−z) ≤ 1/4 and the
 -- top-root cap algebra — all proven unconditionally with explicit
 -- remainders (no limit taken).
-#print axioms TfptCarrier.MomentLaurent.y_mul_S
-#print axioms TfptCarrier.MomentLaurent.secular_dictionary
-#print axioms TfptCarrier.MomentLaurent.geom_remainder
-#print axioms TfptCarrier.MomentLaurent.T_laurent
-#print axioms TfptCarrier.MomentLaurent.moment_laurent_law
-#print axioms TfptCarrier.MomentLaurent.z_mul_one_sub_z_le_quarter
-#print axioms TfptCarrier.MomentLaurent.quarter_cap_algebra
-#print axioms TfptCarrier.MomentLaurent.quarter_cap_bound

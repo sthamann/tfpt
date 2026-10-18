@@ -46,9 +46,12 @@ representations. Clock, cocycle and parent-selection audits identify the
 remaining source-to-E8 bridge. These constructions are **not yet one derived
 microscopic theory**; all physical T1–T8 gates remain open.
 
-Earlier records keep their source-pinned historical wording. Related
-double-cover, inter-sheet and prime-event investigations are shipped with
-their own scope and negative controls, not as TOE or RH solutions.
+Earlier records keep their source-pinned historical wording. RH, prime-number,
+prime-event and factorisation research now lives in the independent
+[Prime Front repository](https://github.com/sthamann/prime-front) and
+[website](https://prime-front-zeta.vercel.app). TFPT retains the physical compiler,
+its mathematical dependencies and its own verification suite. Neither project
+claims a proof of the Riemann hypothesis.
 
 ### Earlier non-RH update — 7 September 2026
 
@@ -95,7 +98,7 @@ git clone https://github.com/sthamann/tfpt && cd tfpt
 pip install -r requirements.txt
 
 ./verify            # ~1s    : the core claim, re-derived from the axioms
-./verify --full     # ~4-5h  : the entire Python suite, 1028 modules (ALL CHECKS PASSED)
+./verify --full     # ~4-5h  : the entire Python suite, the TFPT modules registered in run_all.py
 ./verify --release  #         : documents + suite + website + sync audit
 ```
 
@@ -224,13 +227,11 @@ just an archive.
 ├── README.md              # you are here
 ├── docs/                  # THEORY · CLAIMS · OPEN_PROBLEMS · FALSIFICATION
 │                          # VERIFICATION · FOR_PHYSICISTS · FOR_MATHEMATICIANS
-├── verification/          # 1028 registered modules, run_all.py, the status ledger,
+├── verification/          # scoped TFPT modules, run_all.py, the status ledger,
 │                          # the Wolfram second path, the red-team layer
 ├── experiments/           # research explorations + the Lean 4 proofs (not claims until promoted)
-├── rh/                    # the consolidated RH-program workspace (inventory, Lean pilot, paper,
-│                          # run_rh.py suite — gated by build.sh audit; no RH claim)
 ├── website/               # the public mirror (fixpoint-theory.com), kept byte-identical by the audit
-├── *.tex                  # the 12 published theory documents + the repo-only prime-front
+├── *.tex                  # the published TFPT theory documents
 │                          # research documentation (see docs/THEORY.md)
 └── build.sh               # the build + sync pipeline (notes · gen · website · audit · release)
 ```

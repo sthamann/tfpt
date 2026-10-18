@@ -1,87 +1,12 @@
-"""v649 -- META.DISCIPLINE.01: the discipline audit -- the suite measures
-its OWN scientific process discipline and freezes the result as checks.
+"""v649 -- META.DISCIPLINE.01: TFPT process census and deterministic replay.
 
-The suspicion to be defused is "numerology / AI slop": a large corpus of
-machine-checked claims could in principle be a confirmation-bias
-generator (only positives promoted, nothing preregistered, nothing
-reproducible, no external anchor).  This module parses the suite's own
-files -- ledger, module sources, contracts paper, Lean tree -- and
-certifies the measured discipline metrics as frozen minimum bars.  A
-project that documents and keeps its own buried hypotheses is not a
-confirmation-bias generator; this module makes that statement
-machine-checkable instead of rhetorical.
-
-SECTIONS (all censuses are static and deterministic; D4 replays live):
-
-  D1 [E]  LEDGER CENSUS: verification/status_ledger.csv -- total rows,
-          active rows, display-class distribution (the public
-          E/C/O/X mapping of the fine types, mirroring
-          make_changelog_web.MARKERS), and the census of documented
-          honest negatives / kills / retypes (keyword census over the
-          claim + canonical_status columns: kill, ill-posed, honest
-          negative, no-independent, must-fail, must-break, retyped,
-          superseded, dead, bingo, numerology).
-  D2 [E]  MUST-FAIL CENSUS: all verification/v*.py -- module count,
-          static check() call sites (call-site count; the runtime
-          count differs where checks sit in loops -- both clear the
-          externally quoted 5452), keyword census of must-fail /
-          must-break / kill / scramble / negative-control semantics,
-          and the [E]-vs-[C] typing marks in module sources.
-  D3 [E]  PREREGISTRATION CENSUS: research contracts in
-          tfpt_research_contracts.tex + contract/preregistration rows
-          in the ledger, kill criteria named BEFORE execution; two
-          named executed chains verified in the ledger (FTR.PGL2.01:
-          preregistered v533 -> executed v632; PRIME.WEIL.OPERATOR.01:
-          kill tests K1-K3 named -> W1 theorem-closed v643) + the
-          frozen prediction registry (REG.FREEZE.01 /
-          predictions_frozen.json, frozen 2026-06-09).
-  D4 [E]  REPRODUCIBILITY: a DECLARED 12-module sample across the
-          number range (v55, v91, v108, v205, v305, v405, v505, v555,
-          v600, v634, v643, v648) is executed twice in fresh
-          subprocesses; outputs must be identical up to timing lines
-          (deterministic replay); plus corpus counts of explicit seeds
-          and sympy-exact arithmetic.
-  D5 [E]  EXTERNAL ANCHORS: five classical results recomputed HERE
-          against the literature values the suite quotes -- Jacobi
-          1834 four-square counts (the classical layer under v625's
-          theta = Eisenstein/Hecke identities), Construction A
-          [8,4,4] -> E8 with 240 minimal vectors (v626),
-          Shephard-Todd G31 degrees (8,12,20,24) (v634), the Suzuki
-          archimedean constants psi(1/4) / L / A to 25+ digits
-          (v630/v631/v643), and the completed-zeta functional equation
-          underlying the v563 Weil frame -- plus a corpus citation
-          census.
-  D6 [E]  LEAN LAYER: committed formal proof modules in
-          experiments/lean4-carrier-rigidity/TfptCarrier/ (git
-          ls-files -- uncommitted sandbox WIP is EXCLUDED), build
-          artefacts present.  HONEST: `lake build` is NOT re-run
-          inside the suite (runtime; the last green build -- 3380
-          jobs, no sorry -- is quoted from changelog 2026-08-02
-          XLIII); this check certifies the committed count and the
-          artefacts, not a fresh build.
-  D7 [C]  THE LIMIT, honest: this module measures PROCESS discipline
-          (censuses, replay, anchors), NOT the truth of the physics.
-          Typed [C] observations stay observations; the open gates
-          stay open (the class-O rows, incl. SEAM.THEOREM.01 and
-          PRIME.WEIL.OPERATOR.01 W2-W4); a discipline certificate is
-          a necessary, not a sufficient, condition against numerology.
-
-FREEZE DISCIPLINE: every bar below is the value MEASURED at freeze time
-(2026-08-02, after registering this module itself -- the censuses count
-v649 too); the checks are >= bars, so the suite can only grow past
-them.  If a future cleanup legitimately shrinks a census, this module
-fails and forces an honest re-freeze with a dated note -- exactly the
-quote discipline used elsewhere (e.g. v648's V618 quotes).
-
-FIREWALL: read-only -- this module writes nothing, moves no marker,
-changes no status.  It requires the FULL repository tree (ledger,
-contracts paper, Lean tree); it is not runnable from the website script
-mirror alone.  Python-only (stdlib + mpmath for D5), counted per
-GATE.WOLFRAM.02.  Verdict enums (frozen): DISCIPLINE-CERTIFIED,
-REPLAY-BROKEN, CENSUS-REGRESSED.
-
-PROVENANCE: discovery probe discipline_audit_probe.py (2026-08-02,
-17/17, verdict DISCIPLINE-MEASURED).
+Prime Front separation, 2026-10-18: the historical corpus-size minimum
+bars remain unchanged and are evaluated on TFPT alone. Three transferred
+replay modules are replaced by retained v1/v2/v3 compiler modules; the
+separate Prime Front Weil contract and two zeta/Suzuki anchors no longer
+form part of this physical-project audit. No mathematical status changes.
+The remaining anchors are Jacobi four-square, Construction A and G31.
+This check measures process, never a completed physical derivation.
 """
 import ast
 import csv
@@ -111,7 +36,7 @@ CONTRACT_ROWS_MIN = 47       # D3: contract/preregistration ledger rows
 CONTRACT_KILL_MIN = 29       # D3: of which name kill criteria
 SEED_MODS_MIN = 77           # D4: modules with explicit seeds
 SYMPY_MODS_MIN = 396         # D4: modules with sympy-exact arithmetic
-ANCHORS_MIN = 5              # D5: classical anchors recomputed
+ANCHORS_MIN = 3              # D5: classical anchors recomputed
 LEAN_MODS_MIN = 54           # D6: committed TfptCarrier/*.lean modules
 SANDBOX_QUOTE = 5452         # D2 cross-quote: published check counter
 
@@ -315,8 +240,8 @@ REPRO_SAMPLE = [
     "v55_coxeter_cycle", "v91_spine_tetrahedron", "v108_pascal_ladder",
     "v205_xi_threequarter", "v305_witness_independence",
     "v405_seam_equiv_omega", "v505_celestial_wp5e_beta_equivariant_ledger",
-    "v555_pareto_tv_identities", "v600_joint_embedding",
-    "v634_st31_structure", "v643_w1_theorem", "v648_sign_uncertainty",
+    "v1_e8_glue", "v600_joint_embedding",
+    "v634_st31_structure", "v2_carrier_pascal", "v3_em_alpha",
 ]
 TIME_LINE_RE = re.compile(
     r"elapsed|\(\s*\d+(?:\.\d+)?\s*s\s*\)|\b\d+(?:\.\d+)?\s*s\b", re.I)
@@ -427,44 +352,11 @@ def anchor_st31():
     return ok, "8*12*20*24 = 46080 = 1920*24, sum(d_i - 1) = 60"
 
 
-def anchor_suzuki(mp):
-    """Suzuki arXiv:2606.09096 (v630/v631/v643): the archimedean
-    constants -- psi(1/4) = -gamma - 3 log 2 - pi/2 (25+ digits, two
-    routes), the delta_0 weight L = log pi - psi(1/4), and the printed
-    origin constant A = (1/2)(log 2 pi - psi(2)) = 0.70754637."""
-    mp.mp.dps = 40
-    psi_q = mp.digamma(mp.mpf(1) / 4)
-    closed = -mp.euler - 3 * mp.log(2) - mp.pi / 2
-    dev1 = abs(psi_q - closed)
-    a_const = (mp.log(2 * mp.pi) - mp.digamma(2)) / 2
-    dev2 = abs(a_const - mp.mpf("0.70754637"))
-    l_const = mp.log(mp.pi) - psi_q
-    ok = (dev1 < mp.mpf(10) ** -25 and dev2 < mp.mpf(10) ** -8
-          and abs(l_const - mp.mpf("5.372184")) < mp.mpf(10) ** -6)
-    return ok, ("psi(1/4) closed form dev %s; A dev %s; L = %s"
-                % (mp.nstr(dev1, 3), mp.nstr(dev2, 3),
-                   mp.nstr(l_const, 8)))
 
 
-def anchor_xi(mp):
-    """Riemann 1859 / the Weil 1952 explicit-formula frame (v563): the
-    completed zeta xi(s) = (1/2) s (s-1) pi^(-s/2) Gamma(s/2) zeta(s)
-    satisfies xi(s) = xi(1-s), recomputed at three strip points."""
-    mp.mp.dps = 30
-
-    def xi(s):
-        return (s * (s - 1) / 2 * mp.pi ** (-s / 2)
-                * mp.gamma(s / 2) * mp.zeta(s))
-
-    devs = [abs(xi(s) - xi(1 - s)) / abs(xi(s)) for s in
-            (mp.mpf(3) / 10 + mp.mpf(7) / 10 * 1j, mp.mpf(1) / 5,
-             mp.mpf(4) / 5 - mp.mpf(2) / 5 * 1j)]
-    return max(devs) < mp.mpf(10) ** -20, ("worst rel dev %s"
-                                           % mp.nstr(max(devs), 3))
 
 
-ANCHOR_CITES = ["Jacobi", "Hecke", "Construction A", "Suzuki", "Weil",
-                "Eisenstein"]
+ANCHOR_CITES = ["Jacobi", "Construction A", "Shephard"]
 
 
 def citation_census():
@@ -493,7 +385,7 @@ def lean_census():
              "experiments/lean4-carrier-rigidity/TfptCarrier/"],
             capture_output=True, text=True, timeout=60)
         names = [ln for ln in p.stdout.splitlines()
-                 if ln.endswith(".lean")]
+                 if ln.endswith(".lean") and os.path.isfile(os.path.join(ROOT, ln))]
         if p.returncode != 0 or not names:
             raise RuntimeError
     except Exception:
@@ -611,11 +503,10 @@ def run():
           and cc["tex_mentions"] >= CONTRACT_TEX_MIN)
     check("D3.2 [E] executed-contract chains verified in the ledger: "
           "FTR.PGL2.01 (preregistered v533 -> executed v632) = %s; "
-          "PRIME.WEIL.OPERATOR.01 (kill tests K1-K3 named -> W1 "
-          "theorem-closed v643) = %s; REG.FREEZE.01 + "
+          "REG.FREEZE.01 + "
           "predictions_frozen.json (frozen 2026-06-09) = %s"
-          % (cc["ex_ftr"], cc["ex_weil"], cc["ex_reg"]),
-          cc["ex_ftr"] and cc["ex_weil"] and cc["ex_reg"])
+          % (cc["ex_ftr"], cc["ex_reg"]),
+          cc["ex_ftr"] and cc["ex_reg"])
 
     # ------------------------------------------------------------- D4
     print("\nD4 -- reproducibility replay (declared 12-module sample, "
@@ -624,7 +515,7 @@ def run():
     n_det = sum(1 for r in rr if r[3])
     check("D4.1 [E] deterministic replay: %d/12 sample modules produce "
           "identical output on two fresh subprocess runs (timing lines "
-          "filtered; sample spans v55..v648 incl. v634/v643/v648)"
+          "filtered; sample retains nine original modules plus compiler v1/v2/v3)"
           % n_det, n_det == 12)
     check("D4.2 [E] exactness census: %d modules import sympy "
           "(bar >= %d), %d modules carry explicit seeds (bar >= %d) -- "
@@ -639,14 +530,10 @@ def run():
           "literature)")
     import mpmath as mp
     anchors = [
-        ("Jacobi 1834 four-square counts (v625 layer)",) + anchor_jacobi(),
+        ("Jacobi 1834 four-square counts",) + anchor_jacobi(),
         ("Construction A -> E8 from [8,4,4] (v626)",)
         + anchor_construction_a(),
         ("Shephard-Todd G31 degrees (v634)",) + anchor_st31(),
-        ("Suzuki archimedean constants (v630/v631/v643)",)
-        + anchor_suzuki(mp),
-        ("completed-zeta functional equation (v563 frame)",)
-        + anchor_xi(mp),
     ]
     n_ok = 0
     for name, ok, detail in anchors:
@@ -689,7 +576,7 @@ def run():
                                "PRIME.WEIL.OPERATOR", "QGEO."))]
     print("      open/contract rows (display class O): %d" % len(open_ids))
     print("      majors (%d): %s" % (len(majors), ", ".join(majors)))
-    named = {"SEAM.THEOREM.01", "PRIME.WEIL.OPERATOR.01"}
+    named = {"SEAM.THEOREM.01"}
     check("D7.1 [C] the limit, typed: this module measures PROCESS "
           "discipline (censuses, replay, anchors), NOT the truth of "
           "the physics; typed [C] observations stay observations; the "

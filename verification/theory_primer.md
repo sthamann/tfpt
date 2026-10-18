@@ -25,59 +25,55 @@ python3 verification/theorycat.py path AX.P1.01 EM.FP.01   # Abhängigkeitspfad
 
 | | n |
 |---|---:|
-| nodes | 5969 |
-| edges | 64164 |
-| nodes.claim | 1194 |
+| nodes | 2352 |
+| edges | 40722 |
+| nodes.claim | 788 |
 | nodes.constraint | 11 |
 | nodes.contract | 279 |
-| nodes.experiment | 59 |
+| nodes.experiment | 57 |
 | nodes.failure | 25 |
 | nodes.gate | 8 |
 | nodes.hub | 1 |
-| nodes.lean | 179 |
+| nodes.lean | 69 |
 | nodes.prediction | 16 |
-| nodes.rh | 2755 |
 | nodes.scorecard | 127 |
-| nodes.script | 1028 |
-| nodes.section | 277 |
+| nodes.script | 707 |
+| nodes.section | 254 |
 | nodes.transition | 10 |
 | edges.checked_by | 12 |
-| edges.cites | 1952 |
+| edges.cites | 1344 |
 | edges.constrains_claim | 8 |
 | edges.contradicts | 1 |
-| edges.depends_on | 3056 |
-| edges.excludes | 44 |
+| edges.depends_on | 2181 |
+| edges.excludes | 5 |
 | edges.followup_of | 42 |
-| edges.formalized_in | 178 |
-| edges.imports | 561 |
-| edges.kills | 194 |
+| edges.imports | 257 |
 | edges.leaves_open | 409 |
 | edges.measures | 9 |
-| edges.proves | 74 |
-| edges.ran_in | 1278 |
-| edges.references | 1427 |
+| edges.proves | 45 |
+| edges.references | 508 |
 | edges.sourced_from | 74 |
-| edges.stated_in | 53343 |
+| edges.stated_in | 34756 |
 | edges.supersedes | 14 |
-| edges.tests | 243 |
-| edges.verified_by | 1245 |
+| edges.tests | 239 |
+| edges.verified_by | 818 |
 | contracts with verdict | 273 / 279 |
 
 ## 3 · Claim-Status-Marker (Ledger, `[X]` im Status-Freitext)
 
 | marker | n |
 |---|---:|
-| [E] | 663 |
-| [C] | 389 |
-| [O] | 351 |
-| [X] | 41 |
+| [E] | 443 |
+| [C] | 331 |
+| [O] | 293 |
+| [X] | 38 |
 | [P] | 90 |
 | [L] | 40 |
 | [A] | 28 |
 | [N] | 52 |
-| [F] | 23 |
+| [F] | 18 |
 
-Claims gesamt: 1194; davon aktiv: 1189.
+Claims gesamt: 788; davon aktiv: 783.
 
 ## 4 · Offene Gates / Fronten (Marker `[O]` oder Status `Open*`, Top 30)
 
@@ -114,7 +110,7 @@ Claims gesamt: 1194; davon aktiv: 1189.
 | CELEST.WP4.01 | Formal/Identity [E] (exact counting/character/theta arithmetic, integer/Fract... | v496_celestial_wp4_character_shadow |
 | CELEST.WP5A.01 | Formal/Identity [E] (exact stabilisation/derivation/control arithmetic, integ... | v497_celestial_wp5a_null_ideal |
 
-Offene Claims gesamt: 350 (davon GATE.*: 7).
+Offene Claims gesamt: 297 (davon GATE.*: 7).
 
 ## 5 · Letzte 20 Contract-Verdicts
 
@@ -147,16 +143,6 @@ RH-Katalog `failure_class`:
 
 | failure_class | n |
 |---|---:|
-| NOT_APPLICABLE | 1996 |
-| STRUCTURAL_MISMATCH | 191 |
-| NO_BRIDGE | 163 |
-| UNCONVERGED | 131 |
-| LOSSY_CONSTANT | 118 |
-| WORLD_BLIND | 58 |
-| RESTATEMENT | 37 |
-| NUMERIC_ARTIFACT | 28 |
-| CIRCULAR | 28 |
-| ORACLE_LEAK | 5 |
 
 Contract `verdict_class`:
 
@@ -185,69 +171,67 @@ Contract `verdict_class`:
 
 ## 8 · Experiments coverage (keine toten Stellen)
 
-Coverage: **59 / 59** Verzeichnisse mit Node · Contracts mit Verdict: **273 / 279** (unknown: 6).
+Coverage: **57 / 57** Verzeichnisse mit Node · Contracts mit Verdict: **273 / 279** (unknown: 6).
 
 Backfill `parse_source`: contract_index=89, contract_index_llm=43, results_md=5, run_json=36, validation=106.
 
 | dir | kind | verdict_class | n_files |
 |---|---|---|---:|
 | bbn-lithium-watchdog | empirical_search | consistent | 5 |
-| ccbh-dark-energy | empirical_search | consistent | 6 |
+| ccbh-dark-energy | discovery_sandbox | unknown | 5 |
 | ccc-crossover-disc | empirical_search | null | 10 |
-| cmb-birefringence-seed | empirical_search | consistent | 12 |
+| cmb-birefringence-seed | discovery_sandbox | unknown | 11 |
 | cmb-eb-logcomb | empirical_search | null | 8 |
-| cmb-inflation-scalaron | empirical_search | tension | 10 |
+| cmb-inflation-scalaron | discovery_sandbox | unknown | 9 |
 | cmb-primordial-logcomb | empirical_search | other | 7 |
 | comb-meta-limit | empirical_search | unknown | 10 |
 | cosmic-dipole-watchdog | empirical_search | other | 5 |
-| cosmic-handedness | empirical_search | other | 6 |
+| cosmic-handedness | discovery_sandbox | unknown | 5 |
 | crust-cooling-comb | empirical_search | consistent | 10 |
-| dark-energy-w-watchdog | empirical_search | other | 6 |
-| double-cover-rh-audit-2026-09-08 | audit | unknown | 31 |
+| dark-energy-w-watchdog | discovery_sandbox | unknown | 5 |
+| double-cover-rh-audit-2026-09-08 | audit | unknown | 0 |
 | dsi-false-positive-control | empirical_search | consistent | 16 |
 | e8-ladder-bed | empirical_search | pass | 22 |
-| eht-achromatic-residual | empirical_search | unknown | 27 |
+| eht-achromatic-residual | empirical_search | unknown | 25 |
 | extended-signatures | empirical_search | unknown | 14 |
 | fixed-point-watchdog | empirical_search | unknown | 5 |
 | frb-kernel-couplings | empirical_search | null | 11 |
 | frb-ontology | empirical_search | unknown | 18 |
 | frb-parity-comb | empirical_search | unknown | 18 |
-| frb-tfpt-signatures | empirical_search | null | 132 |
-| ftransfer | discovery_sandbox | unknown | 15 |
+| frb-tfpt-signatures | empirical_search | null | 53 |
+| ftransfer | discovery_sandbox | unknown | 13 |
 | ftransfer-clocks | empirical_search | unknown | 10 |
 | gauge-unification | empirical_search | consistent | 9 |
-| gravastar-compactness | empirical_search | other | 6 |
-| gw-ringdown-echo | empirical_search | other | 42 |
-| gw-ringdown-spectroscopy | empirical_search | other | 6 |
-| gw-speed-multimessenger | empirical_search | consistent | 6 |
-| hfqpo-ladder | empirical_search | unknown | 98 |
-| higgs-criticality | empirical_search | consistent | 6 |
+| gravastar-compactness | discovery_sandbox | unknown | 5 |
+| gw-ringdown-echo | empirical_search | unknown | 26 |
+| gw-ringdown-spectroscopy | discovery_sandbox | unknown | 5 |
+| gw-speed-multimessenger | discovery_sandbox | unknown | 5 |
+| hfqpo-ladder | empirical_search | unknown | 82 |
+| higgs-criticality | discovery_sandbox | unknown | 5 |
 | inter-sheet-dynamics-audit-2026-09-08 | audit | unknown | 4 |
-| lab-residuals | empirical_search | unknown | 11 |
-| lambda-h0-engine | empirical_search | consistent | 6 |
-| lean4-carrier-rigidity | lean | unknown | 137 |
-| neutrino-mixing | empirical_search | tension | 8 |
+| lab-residuals | discovery_sandbox | unknown | 8 |
+| lambda-h0-engine | discovery_sandbox | unknown | 5 |
+| lean4-carrier-rigidity | lean | unknown | 78 |
+| neutrino-mixing | discovery_sandbox | unknown | 7 |
 | nu-scalaron-falsification | empirical_search | consistent | 11 |
-| older_tests | legacy | unknown | 20 |
 | p9-forecast | empirical_search | other | 16 |
-| pi-prime-event-log-2026-09-08 | discovery_sandbox | fail | 136 |
+| pi-prime-event-log-2026-09-08 | discovery_sandbox | unknown | 0 |
 | proton-decay | empirical_search | tension | 10 |
-| pulsar-glitch-recovery | empirical_search | consistent | 50 |
-| pyrate | tooling | unknown | 596 |
+| pulsar-glitch-recovery | empirical_search | consistent | 42 |
 | qc-recovery-kernel | empirical_search | consistent | 13 |
 | qgeo-eit-soff | empirical_search | pass | 8 |
 | qpe-recurrence | empirical_search | null | 8 |
 | quantum-recovery-analog | discovery_sandbox | unknown | 1 |
 | quantum-testbed | empirical_search | consistent | 12 |
-| rare-kaon-bridge | empirical_search | consistent | 6 |
-| recovery-channel | empirical_search | other | 11 |
+| rare-kaon-bridge | discovery_sandbox | unknown | 5 |
+| recovery-channel | discovery_sandbox | unknown | 9 |
 | recovery-comb-domains | empirical_search | unknown | 21 |
 | repeater-cascade | empirical_search | null | 19 |
 | seam-emergence-probe | discovery_sandbox | unknown | 2 |
-| seed-consistency | empirical_search | pass | 16 |
+| seed-consistency | discovery_sandbox | unknown | 10 |
 | strange-metal-comb | empirical_search | null | 12 |
-| tfpt-correspondence | empirical_search | consistent | 13 |
-| tfpt-discovery | discovery_sandbox | null | 2444 |
+| tfpt-correspondence | empirical_search | unknown | 11 |
+| tfpt-discovery | discovery_sandbox | null | 426 |
 | uhecr-energy-dsi | empirical_search | null | 8 |
 | watch-channels | discovery_sandbox | unknown | 5 |
 
@@ -290,16 +274,16 @@ Findings gesamt: 381.
 
 | claim | score |
 |---|---:|
-| GATE.QGEO.01 | 1710 |
-| FLAV.UGATE.01 | 1702 |
-| GATE.UWALL.01 | 1700 |
-| CONTRACT.U.01 | 1695 |
-| ANCHOR.VGEO.01 | 1621 |
-| GATE.HOLO.01 | 1580 |
-| GATE.HOLO.02 | 1580 |
-| GATE.HOLO.03 | 1580 |
-| GATE.METRIC.01 | 1580 |
-| GATE.METRIC.19 | 1580 |
+| GATE.QGEO.01 | 1102 |
+| FLAV.UGATE.01 | 1088 |
+| GATE.UWALL.01 | 1086 |
+| CONTRACT.U.01 | 1081 |
+| ANCHOR.VGEO.01 | 1007 |
+| GATE.HOLO.01 | 966 |
+| GATE.HOLO.02 | 966 |
+| GATE.HOLO.03 | 966 |
+| GATE.METRIC.01 | 966 |
+| GATE.METRIC.19 | 966 |
 
 ## 12 · Widersprüche (contradicts + refutes/no_go + tension)
 
@@ -317,6 +301,6 @@ _v2: transitions=10 constraints=11 failure_scopes=25 (Sidecars in `verification/
 
 ## 13 · Zyklen-Warnung (Claim-Graph depends_on/supersedes)
 
-depends_on-pure Zyklen (Gate rot): **5** · mit supersedes-Beteiligung (Warnung): **0**.
+depends_on-pure Zyklen (Gate rot): **1** · mit supersedes-Beteiligung (Warnung): **0**.
 
-_Generiert: 2026-09-29T11:51:01+00:00 · schema v1_
+_Generiert: 2026-10-18T05:26:11+00:00 · schema v1_

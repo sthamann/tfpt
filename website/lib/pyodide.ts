@@ -142,15 +142,7 @@ function parseOutput(raw: string): Omit<RunResult, "raw" | "error"> {
 const SCRIPT_ASSETS: Record<string, string[]> = {
   "v84_frozen_registry.py": ["predictions_frozen.json"],
   "v100_numerology_null_mc.py": ["predictions_frozen.json"],
-  "v909_finite_wall_closure.py": [
-    "verified_zeros_n7000.json",
-    "v563_paper2_readouts.py",
-  ],
-  "v910_finite_zero_transfer.py": [
-    "verified_zeros_n7000.json",
-    "v909_finite_wall_closure.py",
-    "v563_paper2_readouts.py",
-  ],
+
 };
 
 export async function runScript(

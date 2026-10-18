@@ -41,7 +41,6 @@ import TfptCarrier.CarrierData
 import TfptCarrier.Hypercharge
 import TfptCarrier.GlueUniqueness
 import TfptCarrier.CoxeterPrime2
-import TfptCarrier.CofinalPredefinition
 
 -- Layer 1: Polarization (algebraic core)
 #check @TFPT.Carrier.Polarization.sixY_carrier_polynomial
@@ -197,12 +196,3 @@ import TfptCarrier.CofinalPredefinition
 #check @TFPT.Carrier.CoxeterPrime2.parity_eigenvalue_remembers_start
 #check @TFPT.Carrier.CoxeterPrime2.seam_rate_has_attractor
 
--- Cofinal PREDEFINED/noninterference hardening
-#check @TfptCarrier.CofinalPredefinition.NoninterferenceContract
-#check @TfptCarrier.CofinalPredefinition.PredefinedCofinalHypothesis
-#check @TfptCarrier.CofinalPredefinition.cofinal_weil_for_fixed_idx
-#check @TfptCarrier.CofinalPredefinition.cofinal_weil_predefined
-#check @TfptCarrier.CofinalPredefinition.old_api_accepts_sign_mined_idx
-#check @TfptCarrier.CofinalPredefinition.signMinedIndex_not_familyNoninterfering
-#check @TfptCarrier.CofinalPredefinition.constantizedSelector_familyNoninterfering
-#check @TfptCarrier.CofinalPredefinition.constantizedSelector_agrees

@@ -5,19 +5,8 @@ name: Sync Audit
 # audit_sync.py is stdlib-only and platform-neutral, so this is exactly what a
 # third party can reproduce from a checkout.
 #
-# What is deliberately NOT run here: the rh/ gate that the local exit gate
-# `bash build.sh audit` appends (rh/verification/run_rh.py --fast). It
-# re-executes SHA-pinned, sealed campaign probes in --smoke mode, and those are
-# bound to the reference machine, not to the repository (measured 2026-09-03):
-#   * r464 / r475 / r487 read rh/lean/.lake/packages/mathlib/... -- the local,
-#     git-ignored Lake package cache, absent from every checkout;
-#   * on Linux (glibc + OpenBLAS; arm64 and x86-64 alike) 19/257 sealed probes
-#     miss their frozen control bars / "bit-near" record anchors by round-off
-#     (e.g. r257 G21: controls 9.9e-03 vs bar 1e-03);
-#   * on macos-latest (Apple Silicon) 6/257 still fail (the three .lake readers,
-#     r448 `math domain error`, r409 / r446 numeric gates).
-# The sealed sources must not be edited to fit a platform, so the rh/ gate stays
-# where it was sealed: the local `bash build.sh audit` on the reference machine.
+# RH/prime verification and its platform-specific campaign probes live in
+# https://github.com/sthamann/prime-front and have their own workflow.
 
 on:
   push:

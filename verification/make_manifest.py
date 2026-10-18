@@ -66,8 +66,8 @@ TEX = [
     "tfpt_1_architecture_e8.tex", "tfpt_2_standard_model.tex",
     "tfpt_3_e8_audit_bootstrap.tex", "tfpt_4_frontier.tex", "tfpt_5_redteam.tex",
     "tfpt_horizon_readouts.tex", "tfpt_research_contracts.tex",
-    "origin_theory.tex", "tfpt_safeguards.tex", "tfpt_prime_front.tex",
-    "note_e8_gaussian_code.tex", "note_hilbert_polya_truncations.tex",
+    "origin_theory.tex", "tfpt_safeguards.tex",
+    "note_e8_gaussian_code.tex",
 ]
 FIG = ["figures/action_tower.pdf", "figures/alpha_ablation.pdf",
        "figures/mass_ladder.pdf", "figures/status_heatmap.pdf",

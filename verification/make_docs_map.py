@@ -57,7 +57,6 @@ DOCS = [
     "origin_theory",
     "tfpt_safeguards",
     "note_e8_gaussian_code",
-    "note_hilbert_polya_truncations",
 ]
 
 SCRIPT_RX = re.compile(r"v\d+_[A-Za-z0-9_]+\.py")

@@ -178,7 +178,7 @@ kernel and real replica sheets** (`v471`). The residual is the one irreducible d
 MMST-class statement that is the single residual of `SEAM.EQUIV.01`. See
 [`OPEN_PROBLEMS.md`](OPEN_PROBLEMS.md) for the full treatment.
 
-## The theory documents (12 published LaTeX documents + 1 repo-only research note)
+## The TFPT theory documents
 
 | File | Contents |
 |---|---|
@@ -193,8 +193,9 @@ MMST-class statement that is the single residual of `SEAM.EQUIV.01`. See
 | [`origin_theory.tex`](../origin_theory.tex) | Synthesis: the seam-as-horizon formulation, the attractor, one honestly-typed `[P]` cyclic interpretation. |
 | [`tfpt_safeguards.tex`](../tfpt_safeguards.tex) | **Safeguards.** The verification discipline: status calculus, no-free-pattern, the over-determination map, the firewall, frozen predictions + null model, the independent Wolfram and Lean paths, the red team. |
 | [`note_e8_gaussian_code.tex`](../note_e8_gaussian_code.tex) | **Working note N1.** The Gaussian code bridge: `E8` over `Z[i]` via Construction A over the extended Hamming code `[8,4,4]`, the four-bit quotient `L/(1+i)L ≅ F₂⁴`, the `G₃₁` quartic companion. |
-| [`note_hilbert_polya_truncations.tex`](../note_hilbert_polya_truncations.tex) | **Working note N2.** A computable, zeta-free truncation family for the Weil measure; measurements on a Hilbert–Pólya candidate (prediction-freeze methodology; no RH claim). |
-| [`tfpt_prime_front.tex`](../tfpt_prime_front.tex) | **Repo-only research documentation** (not on the website). The prime / zeta line: the load-bearing modules on the `E8` glue census, the sandbox localization program, the kill list. Documentation, not a result — no claim about the Riemann Hypothesis. |
 
 The published set is the one compiled by `build.sh` and mirrored to the website; the single source
 for the list is [`tex-artefacts/tfpt_docset.tex`](../tex-artefacts/tfpt_docset.tex).
+
+RH and prime-number papers, including the Hilbert–Pólya truncation note, now live
+in the independent [Prime Front publications](https://prime-front-zeta.vercel.app/publications).

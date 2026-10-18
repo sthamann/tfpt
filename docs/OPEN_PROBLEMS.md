@@ -188,7 +188,8 @@ with connection — would unify seam extension, anomaly freedom, generation inde
 orientation); and the **generating-functional contract** `FTRANSFER.GENERATING.01` `[O]` (all four
 `F_transfer` bridges from one `W[J] = log Z[J]`; the `FR.TRANSFER.01` guard stays binding).
 Everything constructive stays `[O]` with registered kill criteria; RH and `PRIME.*` remain
-separate programmes (a green RH probe is neither necessary nor sufficient for the 4D physics).
+the independent [Prime Front project](https://github.com/sthamann/prime-front)
+(a green RH probe is neither necessary nor sufficient for the 4D physics).
 
 **`SEAM.EQUIV.01` is closed modulo a cited theorem.** The explicit lattice model (`v367`/`v368`) and
 the S3 closure stack pin the target at every computable level — central charge `c=8` (`v376`), the

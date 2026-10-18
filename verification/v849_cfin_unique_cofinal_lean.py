@@ -1,43 +1,23 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-r"""v849 -- CFIN.UNIQUE.01 + the CofinalWeil Lean mirror: the compiler object is UNIQUE and its automorphisms are C6, and the RH-side wall hypothesis is formally MINIMIZED -- every admissible compiler tuple is isomorphic to C_fin (one orbit of 14400 under Sp(4,2) x S_5, unique up to NON-unique isomorphism with Aut(C_fin) ~= C6), and the kernel-checked minimal H theorem TfptCarrier/CofinalWeil.lean REPLACES UniformMarginBound by the strictly weaker cofinal hypothesis (H_cof) in the load-bearing chain -- UniformMarginBound is hereby formally DEMOTED to an over-strong sufficient lemma, ONE module from one probe plus the kernel-checked Lean mirror (22/22 checks, verdict CFIN-UNIQUE; + 4 mirror checks; discovery probe cfin_uniqueness_probe.py, 2026-08-07, re-run identically at promotion, embedded BYTE-EXACT and executed verbatim, ~7 s; Lean core TfptCarrier/CofinalWeil.lean, lake build green 3411 jobs, kernel axioms clean).  PART A, THE UNIQUENESS THEOREM (work package F of the evening plan; exhaustive finite verification over F_2^4): (a) WLOG LADDER -- the 28 nondegenerate alternating forms are ONE GL(4,2) orbit (so omega = hbar WLOG); Sp(4,2) (order 720, verified by exhaustive image enumeration) is TRANSITIVE on the 6 Arf-1 refinements (so q = q* WLOG); per Arf-1 refinement there are EXACTLY 20 admissible sigma (order 3, symplectic, q-preserving, 3 nonzero fixed points, 4 free 3-orbits), forming ONE orbit under Stab_Sp(q*) (order 120); per (q*, sigma) there are EXACTLY 120 admissible sigma-equivariant iota (image = C_even(5), beta = hbar, q_wt = q*), forming ONE orbit under Stab(q*, sigma) x S_5; (b) UNIQUENESS -- the full admissible tuple census at omega = hbar has N = 14400 members and the G = Sp(4,2) x S_5 action has EXACTLY ONE orbit (orbit-stabilizer verified: 14400 x 6 = 86400 = |G|); every admissible compiler object is isomorphic to C_fin = (V, hbar, q*, sigma, iota); (c) AUTOMORPHISMS -- |Aut(C_fin)| = 6 with element orders [1,2,3,3,6,6], abelian and cyclic: Aut(C_fin) ~= C6, the projection to Sp(4,2) is FAITHFUL and the S_5 slot permutation is DETERMINED by the symplectic part; (d) THE GAUSSIAN-REDUCTION DIAGRAM typed -- the parent lattice fixes the carrier triple (V, hbar, sigma) up to EXACTLY the 18-element centralizer torsor; the selector pins q* uniquely (16 -> 4 -> 2 -> 1); the 120 iota-completions form a single orbit; the STRICT initial/terminal reading FAILS honestly (120 completions vs 6 automorphisms: 'unique up to isomorphism with 6 automorphism arrows' -- a one-object groupoid, NOT a terminal object; measured, typed either way); (e) CONTROLS FIRE -- dropping alternation kills the object (0 refinements), the wrong Arf class kills iota (C_even(5) weight census (1,10,5) forces Arf 1; admissible set EMPTY), dropping sigma kills CANONICITY (the pinned completion census becomes 16 -> 8 -> 4 != 1), and the typed side measurement: without sigma the bare (q, iota) set is 720 in ONE orbit -- sigma is load-bearing for the selector, not for the orbit count.  P2 sharpens: the axiom's object is not merely assembled (v845 NORMALFORM.CFIN.01) but UNIQUE; what remains of P2 is the v799 residual R1' (why THIS normal form at all), unchanged.  PART B, THE LEAN MIRROR (v843/v837/v817 precedent; numeric witnesses here, kernel statements there): TfptCarrier/CofinalWeil.lean -- 11 declarations, kernel-checked (lake build green, 3411 jobs; no sorry, no native_decide; axioms propext/Classical.choice/Quot.sound only, verified by #print axioms on all 8 theorems; import wired in TfptCarrier.lean; Lean manifest 84 -> 85 files): (1) CofinalHypothesis (H_cof) -- a PRE-FIXED strictly monotone index sequence along which the ladder matrices are PSD; the sequence is DATA of the structure, never mined from measured signs (the preregistration demand, formalized as field order: ladder first, certificates second); (2) limit_nonneg_of_cofinal_seq -- THE MINIMAL IMPLICATION, the eps/2 argument PROVEN (q_m(v) -> L and q_{m_j}(v) >= 0 on the ladder force L >= 0), and weil_nonneg_of_cofinal: per-element form convergence + (H_cof) => the limit functional is nonnegative on the WHOLE dense family -- NO diagonal argument (one PSD certificate per rung covers every element simultaneously, ladderForm_nonneg); (3) THE STRICT HIERARCHY kernel-checked: uniform SUBSET-NEQ pointwise SUBSET-NEQ cofinal -- uniformMarginBound_to_cofinal and pointwise_to_cofinal proven, cofinal_not_uniform (witness 1/(m+1), reusing the v843 kernel gap pointwise_pos_not_uniform) and cofinal_not_pointwise (witness +-1 on the even ladder: cofinal positivity does not even give all-rung positivity); (4) cofinal_weil -- the assembly: ladder matrices + sampling maps + per-element form convergence + (H_cof) => nonnegative ladder values at every cofinal rung, convergence along the ladder, nonnegativity of the limit functional; ABSENT BY DESIGN: no uniform margin, no inverse/resolvent, no Mosco coercivity, no limit operator, no diagonal argument.  THE FORMAL DEMOTION (the round's status statement, explicit): the load-bearing chain of PRIME.EXTRACTION.CHAIN.01 consumes EXACTLY (H_cof); UniformMarginBound (FORM.PRIME.EXCESS.SKELETON.01) implies (H_cof) and the converse FAILS kernel-checked -- the old hypothesis is STRICTLY stronger twice over and is from this round an over-strong SUFFICIENT LEMMA, no longer the named wall; the wall content has strictly decreased to cofinal PSD on one pre-fixed ladder.  (H_cof) itself stays a hypothesis everywhere; nothing evaluates positivity of any actual tower form.  NO RH claim.  Python-only per GATE.WOLFRAM.02.
+"""v849 TFPT scope: finite compiler uniqueness, CFIN.UNIQUE.01.
 
-PROVENANCE: discovery probe cfin_uniqueness_probe.py (22/22, verdict
-CFIN-UNIQUE), 2026-08-07, re-run identically at promotion.  ROUND-31
-EMBEDDING CONVENTION: the frozen probe source is embedded BYTE-EXACT
-(raw string below) and executed verbatim in an isolated module
-namespace -- the printed FROZEN_SPEC SHA-256 reproduces exactly, and
-when the original file is present the harness verifies byte-equality
-(provenance ward inside the pattern gate).  The Lean mirror part
-follows the v843/v837/v817 precedent: the kernel-checked statements
-live in experiments/lean4-carrier-rigidity/TfptCarrier/
-CofinalWeil.lean (shipped as lean4-carrier-rigidity/), the module
-witnesses their numeric content.  The original probe file lives
-verbatim in experiments/tfpt-discovery/.
-
-FIREWALL: part A is pure finite algebra over F_2 (no floats, no RNG,
-no fit; exhaustive enumeration); part B uses elementary sequences and
-one seeded PSD witness batch only.  Nothing here evaluates the
-positivity of any actual tower form; (H_cof) is never instantiated
-with deployed data.  NO RH claim.
+Scope extraction from original module at ba2f0fc; original ID and
+mathematical statements preserved. Original full source is retained
+in the extraction provenance; no proof/status promotion.
 """
-
 import contextlib
+
 import io
-import math
+
 import os
+
 import re
+
 import sys
-import time
+
 import types
 
-import numpy as np
-
 _HERE = os.path.dirname(os.path.abspath(__file__))
-if _HERE not in sys.path:
-    sys.path.insert(0, _HERE)
 
-# ------------- frozen probe source (embedded BYTE-EXACT, raw string)
 _SRC_CFIN = r'''
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -785,16 +765,14 @@ raise SystemExit(0 if (n_pass == n_tot
                        and VERDICT.startswith("CFIN-UNIQUE")) else 1)
 '''
 
-# --------------------------------------------------------------- harness
 _PF_RE = re.compile(r"^\s*\[(PASS|FAIL)\]\s+(\S+)", re.M)
-_VD_RE = re.compile(r"VERDICT[:\]]")
 
+_VD_RE = re.compile(r"VERDICT[:\]]")
 
 def _probe_file(name):
     cand = os.path.abspath(os.path.join(
         _HERE, os.pardir, "experiments", "tfpt-discovery", name + ".py"))
     return cand if os.path.isfile(cand) else None
-
 
 def _census(out):
     marks = _PF_RE.findall(out)
@@ -804,7 +782,6 @@ def _census(out):
         if _VD_RE.search(line):
             verdict = line.strip()
     return len(marks), fails, verdict
-
 
 def _exec_probe(name, src, run_entry=True):
     """Execute one embedded frozen probe source BYTE-EXACT in its own
@@ -842,7 +819,6 @@ def _exec_probe(name, src, run_entry=True):
     sys.stdout.flush()
     return out, code, same
 
-
 def _gate(name, out, code, same, exp_n, exp_fails, exp_verdict,
           exp_code, gates):
     n, fails, verdict = _census(out)
@@ -861,159 +837,17 @@ def _gate(name, out, code, same, exp_n, exp_fails, exp_verdict,
              code, exp_code, prov, verdict), flush=True)
     return ok
 
-
-# ====== PART B -- the Lean mirror (CofinalWeil.lean; kernel-checked
-# statements cited, numeric witnesses only -- v843/v837/v817 precedent)
-
-_B_CHECKS = []
-
-
-def _bcheck(name, ok, detail=""):
-    _B_CHECKS.append(bool(ok))
-    print("  [%s] %s%s" % ("PASS" if ok else "FAIL", name,
-                           ("  -- " + detail) if detail else ""),
-          flush=True)
-    return bool(ok)
-
-
-def part_b():
-    print("\n" + "-" * 74)
-    print("v849 PART B -- the Lean mirror: TfptCarrier/CofinalWeil."
-          "lean (kernel-checked;")
-    print("numeric witnesses here; (H_cof) never instantiated with "
-          "deployed data)")
-    print("-" * 74, flush=True)
-
-    # B1: the minimal implication (limit_nonneg_of_cofinal_seq /
-    # weil_nonneg_of_cofinal) -- the eps/2 argument at sequence level
-    ok_seq = True
-    for (seq, lim) in (
-            (lambda m: 1.0 / (m + 1.0), 0.0),
-            (lambda m: 2.0 + math.sin(m) / (m + 1.0), 2.0),
-            (lambda m: 0.25 + (-0.5) ** m / (m + 2.0) ** 2, 0.25)):
-        idx = [2 * j for j in range(2000)]           # pre-fixed ladder
-        ok_seq &= all(idx[a] < idx[a + 1] for a in range(1999))
-        ok_seq &= all(seq(m) >= 0.0 for m in idx)
-        tail = [seq(m) for m in range(5000, 5050)]
-        ok_seq &= (min(tail) >= lim - 1e-3) and (lim >= 0.0)
-    rng = np.random.default_rng(20260807)
-    ok_psd = True
-    for _ in range(6):
-        base = rng.normal(size=(7, 7))
-        A = base @ base.T                            # PSD rung matrix
-        for _v in range(24):                         # 'dense family'
-            x = rng.normal(size=7)
-            ok_psd &= float(x @ (A @ x)) >= -1e-10
-    _bcheck("B1 THE MINIMAL IMPLICATION (limit_nonneg_of_cofinal_seq, "
-            "PROVEN eps/2 argument): convergent sequences nonneg on a "
-            "PRE-FIXED strictly monotone ladder have nonneg limits (3 "
-            "witness families, ladder = even integers); and the "
-            "no-diagonal reason (ladderForm_nonneg): ONE PSD rung "
-            "certificate makes the form nonneg at EVERY element "
-            "simultaneously (6 seeded PSD matrices x 24 witnesses "
-            ">= -1e-10) -- weil_nonneg_of_cofinal needs only "
-            "per-element convergence + (H_cof)", ok_seq and ok_psd)
-
-    # B2: the strict hierarchy uniform < pointwise < cofinal
-    margin_pw = [1.0 / (m + 1.0) for m in range(100000)]
-    ok_pw = all(v > 0.0 for v in margin_pw)          # pointwise strict
-    ok_nu = True                                     # ... not uniform
-    for dlt in (1e-2, 1e-6, 1e-12):
-        n_w = int(math.ceil(1.0 / dlt))
-        ok_nu &= 1.0 / (n_w + 1.0) < dlt
-    def margin_pm(m):                                # +-1 witness
-        return 1.0 if m % 2 == 0 else -1.0
-    even = [2 * j for j in range(100000)]
-    ok_cof = all(margin_pm(m) >= 0.0 for m in even)  # cofinal on evens
-    ok_np = any(margin_pm(m) < 0.0 for m in range(100))
-    _bcheck("B2 THE STRICT HIERARCHY (kernel-checked: "
-            "uniformMarginBound_to_cofinal, pointwise_to_cofinal, "
-            "cofinal_not_uniform, cofinal_not_pointwise): witness "
-            "1/(m+1) is strictly positive at EVERY rung yet below "
-            "every delta > 0 eventually (pointwise strict, NOT "
-            "uniform; the v843 kernel gap reused), and the +-1 "
-            "sequence is nonneg on the pre-fixed even ladder while "
-            "strictly negative on every odd rung (cofinal, NOT "
-            "pointwise) -- uniform SUBSET-NEQ pointwise SUBSET-NEQ "
-            "cofinal, both inclusions strict",
-            ok_pw and ok_nu and ok_cof and ok_np)
-
-    # B3: the preregistration shape of (H_cof)
-    idx = [2 * j for j in range(1000)]
-    ok_mono = all(a < b for a, b in zip(idx[:-1], idx[1:]))
-    ok_indep = (idx == [2 * j for j in range(1000)])  # data, not mined
-    ok_order = ok_mono and ok_cof                     # ladder -> signs
-    _bcheck("B3 THE PREREGISTRATION SHAPE (CofinalHypothesis): the "
-            "index sequence is DATA of the structure -- supplied "
-            "first, strictly monotone by field (checked), chosen "
-            "independently of any measured sign (the even ladder "
-            "here is a pure function of j); the positivity "
-            "certificates quantify over the GIVEN ladder only -- "
-            "formally a consumer must exhibit the ladder before any "
-            "form value is evaluated",
-            ok_mono and ok_indep and ok_order)
-
-    # B4: the formal demotion statement
-    ok_dem = ok_nu and ok_cof and ok_np              # strictness twice
-    _bcheck("B4 THE FORMAL DEMOTION: the load-bearing chain "
-            "(PRIME.EXTRACTION.CHAIN.01, v848 step 2) consumes "
-            "EXACTLY (H_cof); UniformMarginBound implies (H_cof) "
-            "(proven) and the converse FAILS kernel-checked "
-            "(witnesses above) -- from this round UniformMarginBound "
-            "is an over-strong SUFFICIENT LEMMA, no longer the named "
-            "wall; the wall content is cofinal PSD on ONE pre-fixed "
-            "ladder and nothing else; (H_cof) itself stays a "
-            "hypothesis everywhere", ok_dem)
-    print("  (kernel-checked statements: experiments/"
-          "lean4-carrier-rigidity/TfptCarrier/CofinalWeil.lean -- "
-          "11 declarations, lake build green, 3411 jobs, no sorry, "
-          "no native_decide, axioms propext/Classical.choice/"
-          "Quot.sound only; import wired in TfptCarrier.lean; "
-          "lean_manifest.sha256 at 85 files)")
-
-
 _PLAN = (
     ("cfin_uniqueness_probe", _SRC_CFIN, 22, (), "CFIN-UNIQUE", 0),
 )
 
-
 def run():
-    t0 = time.time()
-    _B_CHECKS.clear()
-    print("=" * 74)
-    print("v849 -- CFIN.UNIQUE.01 + the CofinalWeil Lean mirror")
-    print("(every admissible compiler tuple isomorphic to C_fin -- "
-          "one orbit of 14400,")
-    print("Aut(C_fin) ~= C6, unique up to NON-unique isomorphism; "
-          "H_cof formally")
-    print("replaces UniformMarginBound in the load-bearing chain; "
-          "NO RH claim)")
-    print("=" * 74, flush=True)
     gates = []
     for name, src, exp_n, exp_fails, exp_verdict, exp_code in _PLAN:
-        print("\n" + "-" * 74)
-        print("EMBEDDED FROZEN PROBE: %s" % name)
-        print("-" * 74, flush=True)
         out, code, same = _exec_probe(name, src)
-        _gate(name, out, code, same, exp_n, exp_fails, exp_verdict,
-              exp_code, gates)
-    part_b()
-    ok_b = all(_B_CHECKS) and len(_B_CHECKS) == 4
-    gates.append(ok_b)
-    ok = all(gates)
-    print("\n" + "=" * 74)
-    print("v849: %d/%d gates passed (probe pattern gate + %d/4 mirror "
-          "checks) | runtime %.1f s"
-          % (sum(gates), len(gates), sum(_B_CHECKS), time.time() - t0))
-    print("NO RH claim; (H_cof) stays a hypothesis everywhere -- the "
-          "arithmetic wall,")
-    print("now in its minimal kernel-checked shape; the C_fin "
-          "uniqueness leaves P2's")
-    print("residual R1' (why THIS normal form) unchanged.")
-    print("[%s] v849 VERDICT GATE: CFIN-UNIQUE + the minimal H "
-          "theorem mirrored" % ("PASS" if ok else "FAIL"))
-    return 0 if ok else 1
-
+        _gate(name, out, code, same, exp_n, exp_fails, exp_verdict, exp_code, gates)
+    print("v849 compiler uniqueness: %d/%d pattern gates passed" % (sum(gates), len(gates)))
+    return 0 if all(gates) else 1
 
 if __name__ == "__main__":
     raise SystemExit(run())
