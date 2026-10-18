@@ -263,3 +263,20 @@ just an archive.
 
 *Claim discipline: nothing in this repository is marked closed that is not machine-verified, and no
 dimensionful quantity is claimed as a derivation from pure numbers.*
+
+## Research boundaries and reproducibility
+
+Exploratory experiments, registered Python verifications and Lean formalizations
+are distinct evidence types. The Python suite does not compile Lean, and a
+source consistency audit does not prove a mathematical claim. Physical TFPT
+sources are owned by `sthamann/tfpt`; prime/RH/factorisation sources by
+`sthamann/prime-front`. Generic helper copies and frozen historical provenance
+are explicitly scoped; neither build needs the other checkout.
+
+`python3 verification/check_project_scope.py` checks local Python dependencies,
+Lean imports and excluded source ownership. The normal source audit runs it
+in CI as well. For the finite/conditional formal support, use
+`bash scripts/audit.sh --core` from `experiments/lean4-carrier-rigidity/`.
+The separate `rh/lean/` research project in Prime Front retains its explicit
+open hypotheses and `sorry` declarations; its status is not merged into the
+sorry-free finite-support audit.

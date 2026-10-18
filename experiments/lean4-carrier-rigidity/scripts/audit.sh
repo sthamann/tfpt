@@ -6,24 +6,22 @@
 # Refuses to pass unless every load-bearing invariant is satisfied:
 #
 #   (1) `lake build` succeeds (full mode) / `lake build TfptCarrier.CIRoot`
-#       (`--core`). The core target is every non-wall module plus the
-#       audit modules; it does not elaborate WallCertifiedHead,
-#       WallLadderAudit, or WallLadder/RungKz*.
+#       (`--core`). The core target contains the physical TFPT modules and audits.
 #   (2) No `sorry` or `admit` appears in TfptCarrier/.
 #   (3) No domain-specific axiom or `constant` declaration is used.
 #   (4) No `unsafe`, `opaque`, or `partial` declaration is used.
 #   (5) `#print axioms` on every headline theorem returns *only*
 #       the three standard Lean axioms (propext, Classical.choice,
 #       Quot.sound). Source: `AxiomCheck.lean` in every non-quick
-#       mode; full mode also inspects `WallLadderAudit.lean`.
+#       mode.
 #   (6) Every headline theorem name in `AuditCheck.lean` typechecks
 #       via `#check` (i.e. survives Lean elaboration, not just grep).
 #   (7) `AuditContract.lean` signature-locks headline theorem types.
 #   (8) CI root consistency: imports of `CIRoot.lean` equal imports of
-#       `TfptCarrier.lean` minus {WallCertifiedHead, WallLadderAudit}.
+#       `TfptCarrier.lean`.
 #
 # Usage:
-#   ./scripts/audit.sh            # full audit (includes wall rungs)
+#   ./scripts/audit.sh            # full physical TFPT audit
 #   ./scripts/audit.sh --core     # CI core: TfptCarrier.CIRoot + audit gate
 #   ./scripts/audit.sh --quick    # static checks only (no lake build)
 #
@@ -289,7 +287,7 @@ ci = Path("TfptCarrier/CIRoot.lean")
 if not root.is_file() or not ci.is_file():
     print("missing TfptCarrier.lean or TfptCarrier/CIRoot.lean")
     sys.exit(1)
-excluded = {"TfptCarrier.WallCertifiedHead", "TfptCarrier.WallLadderAudit"}
+excluded = set()
 want = imports(root) - excluded
 got = imports(ci)
 if got != want:
@@ -305,7 +303,7 @@ PY
 )
 CIROOT_RC=$?
 if [[ "$CIROOT_RC" -eq 0 ]]; then
-    log_pass "CIRoot.lean imports = TfptCarrier.lean minus {WallCertifiedHead, WallLadderAudit}"
+    log_pass "CIRoot.lean imports = TfptCarrier.lean (same physical modules)"
 else
     log_fail "CIRoot.lean import set drifted from TfptCarrier.lean:"
     printf '%s\n' "$CIROOT_CHECK" >&2

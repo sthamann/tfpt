@@ -360,6 +360,9 @@ def main() -> None:
     if SHADOW:
         print("shadow mode: website/ absent -- skipping website mirror (D), "
               "website version (E) and website wolfram-page (F) checks")
+    import check_project_scope
+    for problem in check_project_scope.check(ROOT):
+        err("G.ownership", problem)
     check_suite(registered)
     check_papers(registered, baseline)
     check_csv_wellformed()

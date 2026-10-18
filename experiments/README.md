@@ -1,3 +1,14 @@
+# TFPT experiments
+
+Physical TFPT experiments and their own finite mathematical support live here.
+RH, prime-number, factorisation and Weil-window campaigns have moved to
+[Prime Front](https://github.com/sthamann/prime-front/tree/main/experiments).
+`tfpt-discovery/ramified_fiber.py` contains only the E8 lattice-coordinate
+algebra needed by the local KMS experiment, extracted from v738; the prime
+Hecke verification remains in Prime Front. Experiments are exploratory;
+registered checks live in `../verification/`, Lean proofs in
+`lean4-carrier-rigidity/`. The repository audit checks their project boundary.
+
 ## Inhalt
 
 | Ordner | Zweck | Status |

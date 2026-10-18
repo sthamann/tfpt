@@ -46,7 +46,7 @@ _VERIFY = os.path.abspath(os.path.join(_HERE, "..", "..", "verification"))
 sys.path.insert(0, _HERE)
 sys.path.insert(0, _VERIFY)
 
-import v738_hecke_mod_ramified as ramified  # noqa: E402
+import ramified_fiber as ramified  # noqa: E402
 
 
 LABEL_DIM = 15
