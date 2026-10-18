@@ -4,6 +4,20 @@ Scientific findings, their original scope and dated publication history remain
 in the modular `changelog.tex` document. This file records repository structure,
 navigation and maintenance changes that make no new scientific claim.
 
+## 2026-10-18 — Retire the shadow mirror and clarify semantic coverage
+
+At the user's request, the automated `tfpt5-shadow` mirror is retired. Its
+GitHub workflow was disabled and the workflow source removed. The remote
+repository is archived/read-only with its history retained; no shadow-sync token
+renewal is needed. `scripts/export-shadow.sh` remains an optional legacy
+utility with its source-coherence safeguards; it has no active mirror workflow.
+
+`SEMANTIC_NAVIGATION.md` documents the distinction between complete structural
+registry navigation and incomplete reviewed section-level semantics, with
+dated Atlas observations and a precise next-session retrieval route. Registry
+entries, lexical topics, AI annotations and vector availability do not upgrade
+scientific status. All scientific sources and historical statements are unchanged.
+
 ## 2026-10-18 — Modular LaTeX and central source registry
 
 The long authored LaTeX sources were moved into document-owned preambles and

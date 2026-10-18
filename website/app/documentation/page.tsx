@@ -50,6 +50,7 @@ export default function DocumentationPage() {
             { href: `${REPO_URL}/blob/main/docs/registry/INDEX.md`, label: "Browse the registry" },
             { href: "/documentation/registry.json", label: "Download JSON" },
             { href: `${REPO_URL}/blob/main/docs/LATEX_MAINTENANCE.md`, label: "Maintenance guide" },
+            { href: "/documentation/SEMANTIC_NAVIGATION.md", label: "Semantic coverage and research navigation" },
           ].map(({ href, label }) => <a key={href} href={href} className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:border-blue-400 hover:text-blue-800">{label}</a>)}
         </div>
       </section>

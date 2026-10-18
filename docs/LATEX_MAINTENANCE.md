@@ -16,6 +16,9 @@ explicit cross-references, original ledger statuses and reverse indexes are
 navigation aids. The [relation guide](registry/RELATIONS.md) explains their
 limits. Do not treat a file link, lexical topic hit, declaration name, source
 hash or passing source-integrity check as a mathematical proof.
+The [semantic navigation guide](SEMANTIC_NAVIGATION.md) distinguishes complete
+structural section navigation from partial semantic review and gives the
+source/Atlas/evidence route for future sessions.
 
 ## Where changes belong
 
@@ -72,6 +75,11 @@ caches and compiled outputs. A Gitless export uses the shipped source inventory
 and the same ownership manifest, so it remains reproducible without scanning an
 unrelated machine. Archive source text and required include dependencies must
 ship with that export; historical compiled PDFs are optional.
+The automated `tfpt5-shadow` mirror was retired on 2026-10-18. Its workflow is
+removed; `scripts/export-shadow.sh` remains an optional legacy filtered-export
+utility. No active workflow updates that remote, and retirement does not delete
+the remote repository or any scientific source. The retained remote is now
+archived/read-only; no shadow-sync token renewal is needed.
 
 ## Alternative reading editions
 

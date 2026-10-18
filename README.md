@@ -24,6 +24,16 @@ references. It distinguishes a citation from a proof and an inferred topic
 match from an explicit reference. Missing or ambiguous evidence links remain
 visible.
 
+All registry sections are structurally located; complete reviewed section-level
+semantics remain unfinished. The [semantic navigation guide](docs/SEMANTIC_NAVIGATION.md)
+explains the current coverage and the source → Atlas → original-evidence route
+for future sessions.
+
+The former `tfpt5-shadow` mirror was retired on 2026-10-18: its repository is
+archived/read-only and automatic synchronization is disabled. Its history is
+retained; no shadow-sync token renewal is needed. The optional legacy export
+utility remains documented in the maintenance guide.
+
 The [LaTeX maintenance guide](docs/LATEX_MAINTENANCE.md) explains source
 ownership, builds, registry updates and change validation. Do not edit a
 published PDF, generated index or website mirror to change the theory.

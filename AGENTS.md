@@ -15,6 +15,9 @@ reintroduce its modules, registries or runtime dependency into TFPT.
    `registry.json` is a large machine graph: query it in bounded slices rather
    than loading it wholesale into an agent context. Read the original
    statements; registry links alone do not establish a proof.
+   Read `docs/SEMANTIC_NAVIGATION.md` for coverage limits and the next-session
+   route. Structural section coverage is not complete semantic review; a
+   missing reviewed Atlas match is not evidence that a scientific question is open.
 3. Read the relevant `.cursor/rules/` and any nested `AGENTS.md` that applies
    to the files being changed. Current user instructions take precedence.
 4. Inspect the working tree. Preserve unrelated staged, modified, untracked

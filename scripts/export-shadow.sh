@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Export a filtered working tree for the Overleaf GitHub-sync mirror (tfpt5-shadow).
+# Optional legacy filtered export utility; the tfpt5-shadow mirror is retired.
+# No active GitHub workflow invokes this utility (retired 2026-10-18).
+# The remote is archived/read-only; no shadow-sync token renewal is needed.
 #
 # Included:  all git-tracked files except the exclusions below.
 #            figures/*.pdf ARE mirrored (the manifest references them).
@@ -13,7 +15,7 @@
 #   rm -rf /tmp/tfpt5-shadow && mkdir /tmp/tfpt5-shadow
 #   bash scripts/export-shadow.sh /tmp/tfpt5-shadow
 #
-# The GitHub Action .github/workflows/shadow-sync.yml runs this on every push to main.
+# Run explicitly only when a filtered local/Overleaf export is wanted.
 
 set -euo pipefail
 
@@ -133,10 +135,14 @@ for folder, dirs, files in os.walk(root, topdown=False):
 PYPRUNE
 
 cat > "$DEST/SHADOW_MIRROR.md" <<EOF
-# tfpt5-shadow (auto-generated mirror)
+# Optional legacy TFPT filtered export
 
-This repository is a **one-way mirror** of the main TFPT repository, maintained for
-[Overleaf GitHub synchronization](https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/github-synchronization).
+This directory is an explicitly requested filtered export of the main TFPT
+repository. The automated \`tfpt5-shadow\` mirror was retired on 2026-10-18;
+no active GitHub workflow maintains that remote. The remote repository is
+archived/read-only with its history retained; no shadow-sync token renewal is
+needed. This optional utility can still prepare a coherent local/Overleaf
+source bundle.
 
 | Included | Excluded |
 |----------|----------|
@@ -157,7 +163,8 @@ website version and website wolfram-page checks and prints which sections it ski
 (shadow-aware) \`audit_sync.py\` on this filtered tree before the mirror is published, so a package
 that says \"ALL CHECKS PASSED\" cannot ship unless it actually reproduces as exported.
 
-**Do not edit here.** Changes flow: main repo → this mirror (GitHub Action) → Overleaf pull.
+**Generated export.** Make source changes in the main repository and rerun this
+utility explicitly when another filtered export is needed.
 
 Source: \`${GITHUB_REPOSITORY:-sthamann/tfpt}\` @ \`${GITHUB_SHA:-local}\`
 Last export: $(date -u +"%Y-%m-%d %H:%M:%SZ")

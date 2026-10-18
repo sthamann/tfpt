@@ -134,6 +134,7 @@ run_website() {  # mirror PDFs + scripts into website/, stamp version + hashes
   cp "$ROOT/docs/registry/INDEX.md" "$ROOT/website/public/documentation/INDEX.md"
   cp "$ROOT/docs/editions.json" "$ROOT/website/public/documentation/editions.json"
   cp "$ROOT/docs/LATEX_MAINTENANCE.md" "$ROOT/website/public/documentation/LATEX_MAINTENANCE.md"
+  cp "$ROOT/docs/SEMANTIC_NAVIGATION.md" "$ROOT/website/public/documentation/SEMANTIC_NAVIGATION.md"
   shopt -s nullglob
   rm -f "$ROOT"/website/public/verification/v*.py "$ROOT"/website/public/verification/math_support*.py
   cp "$ROOT/verification/tex_sources.py" "$ROOT/verification/tfpt_constants.py" "$ROOT"/verification/math_support*.py "$ROOT"/verification/v[0-9]*.py \
