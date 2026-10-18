@@ -11,12 +11,15 @@ SKIP = {".git", ".lake", ".venv", "node_modules", "__pycache__", "provenance", "
 
 
 def sources(root, suffix):
+    scope = json.loads((root / "verification/project_scope.json").read_text())
+    vendors = set(scope.get("vendor_roots", []))
     for directory in ("verification", "experiments", "rh"):
         base = root / directory
         if not base.is_dir():
             continue
         for folder, dirs, files in os.walk(base):
-            dirs[:] = [d for d in dirs if d not in SKIP and not d.startswith(".")]
+            dirs[:] = [d for d in dirs if d not in SKIP and not d.startswith(".")
+                       and (Path(folder) / d).relative_to(root).as_posix() not in vendors]
             for name in files:
                 if name.endswith(suffix):
                     yield Path(folder) / name
