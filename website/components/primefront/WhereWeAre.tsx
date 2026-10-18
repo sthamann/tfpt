@@ -54,7 +54,7 @@ const CARDS: readonly {
     kind: "proven",
     marker: "PROVEN",
     border: "border-emerald-500/35",
-    chip: "border-emerald-400/40 bg-emerald-500/10 text-emerald-200",
+    chip: "border-emerald-400/40 bg-emerald-500/10 text-emerald-800",
     title: "W1 — the identification theorem",
     body: (
       <>
@@ -70,7 +70,7 @@ const CARDS: readonly {
     kind: "measured",
     marker: "MEASURED",
     border: "border-sky-500/35",
-    chip: "border-sky-400/40 bg-sky-500/10 text-sky-200",
+    chip: "border-sky-400/40 bg-sky-500/10 text-sky-800",
     title: "C = 1 and the chamber",
     body: (
       <>
@@ -84,7 +84,7 @@ const CARDS: readonly {
     kind: "open",
     marker: "OPEN",
     border: "border-amber-500/35",
-    chip: "border-amber-400/40 bg-amber-500/10 text-amber-200",
+    chip: "border-amber-400/40 bg-amber-500/10 text-amber-800",
     title: "W2 / W3 — the RH-hard part",
     body: (
       <>
@@ -105,7 +105,7 @@ export function WhereWeAre() {
       {CARDS.map((c) => (
         <div
           key={c.marker}
-          className={`rounded-2xl border bg-slate-950/60 p-4 sm:p-5 ${c.border}`}
+          className={`rounded-2xl border bg-slate-50/60 p-4 sm:p-5 ${c.border}`}
         >
           <div className="flex items-center gap-2">
             <span
@@ -115,10 +115,10 @@ export function WhereWeAre() {
               {c.marker}
             </span>
           </div>
-          <h3 className="mt-3 font-serif text-base font-semibold leading-snug text-slate-100">
+          <h3 className="mt-3 font-serif text-base font-semibold leading-snug text-slate-900">
             {c.title}
           </h3>
-          <p className="mt-1.5 text-[13px] leading-relaxed text-slate-400">
+          <p className="mt-1.5 text-[13px] leading-relaxed text-slate-600">
             {c.body}
           </p>
         </div>

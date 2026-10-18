@@ -8,17 +8,17 @@ const STYLES: Record<
   sandbox: {
     label: "sandbox",
     className:
-      "border-amber-400/30 bg-amber-500/10 text-amber-200",
+      "border-amber-400/30 bg-amber-500/10 text-amber-800",
   },
   "machine-verified": {
     label: "machine-verified",
     className:
-      "border-emerald-400/35 bg-emerald-500/10 text-emerald-200",
+      "border-emerald-400/35 bg-emerald-500/10 text-emerald-800",
   },
   running: {
     label: "running",
     className:
-      "border-sky-400/35 bg-sky-500/10 text-sky-200",
+      "border-sky-400/35 bg-sky-500/10 text-sky-800",
   },
 };
 

@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/method`,
   },
   openGraph: {
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
     type: "article",
     title: "Method — The verification framework",
     description:
@@ -41,6 +42,7 @@ export const metadata: Metadata = {
     authors: ["Stefan Hamann", "Alessandro Rizzo"],
   },
   twitter: {
+    images: [`${SITE_URL}/opengraph-image`],
     card: "summary_large_image",
     title: "Method — The verification framework",
     description:
@@ -98,24 +100,25 @@ export default function MethodPage() {
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-6">
             <Link
+              prefetch={false}
               href="/"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-200"
+              className="inline-flex items-center gap-1.5 text-sm text-slate-600 transition-colors hover:text-slate-800"
             >
               <ArrowLeft size={14} />
               Back to overview
             </Link>
           </nav>
-          <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-emerald-200">
+          <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-emerald-800">
             <span className="uppercase">Method · the verification framework</span>
           </span>
-          <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-slate-50 sm:text-5xl md:text-6xl">
+          <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-slate-950 sm:text-5xl md:text-6xl">
             Every claim is machine-checked.
             <br />
             Every temptation is{" "}
-            <span className="text-emerald-300">promoted with controls</span> —
-            or <span className="text-rose-300">buried in public</span>.
+            <span className="text-emerald-700">promoted with controls</span> —
+            or <span className="text-rose-700">buried in public</span>.
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-300">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-700">
             A project built around exact integer and lattice identities has to
             answer one suspicion before any other:{" "}
             <em>how is this not numerology?</em> This page is the answer — not
@@ -124,10 +127,10 @@ export default function MethodPage() {
             suite, one versioned ledger, and a public graveyard of the
             coincidences that did not survive.
           </p>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-400">
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600">
             The discipline itself is a suite claim: module{" "}
-            <code className="text-slate-300">v649_discipline_audit.py</code>{" "}
-            (<code className="text-slate-300">META.DISCIPLINE.01</code>) parses
+            <code className="text-slate-700">v649_discipline_audit.py</code>{" "}
+            (<code className="text-slate-700">META.DISCIPLINE.01</code>) parses
             the repository on every run and fails if any census below
             regresses.
           </p>
@@ -150,34 +153,34 @@ export default function MethodPage() {
           <div className="mt-8">
             <MethodPipeline />
           </div>
-          <div className="mt-6 grid gap-4 text-sm leading-relaxed text-slate-400 md:grid-cols-3">
+          <div className="mt-6 grid gap-4 text-sm leading-relaxed text-slate-600 md:grid-cols-3">
             <p>
-              <span className="font-semibold text-slate-200">
+              <span className="font-semibold text-slate-800">
                 The firewall.
               </span>{" "}
-              Results in <code className="text-slate-300">experiments/</code>{" "}
+              Results in <code className="text-slate-700">experiments/</code>{" "}
               are search surfaces, not claims — they cannot be cited by a
               paper, cannot move a status, and are labelled sandbox on this
               site until promoted.
             </p>
             <p>
-              <span className="font-semibold text-slate-200">
+              <span className="font-semibold text-slate-800">
                 The one gate.
               </span>{" "}
               Promotion means: a{" "}
-              <code className="text-slate-300">verification/vN_*.py</code>{" "}
+              <code className="text-slate-700">verification/vN_*.py</code>{" "}
               module with named checks and frozen tolerances, a ledger row, a
               citation in a paper body, and a green{" "}
-              <code className="text-slate-300">run_all.py</code>. A finding
+              <code className="text-slate-700">run_all.py</code>. A finding
               that skips any of these does not exist.
             </p>
             <p>
-              <span className="font-semibold text-slate-200">
+              <span className="font-semibold text-slate-800">
                 The mirrors.
               </span>{" "}
               The script index, the changelog, the maps and the numbers on
               this page are generated files.{" "}
-              <code className="text-slate-300">bash build.sh audit</code>{" "}
+              <code className="text-slate-700">bash build.sh audit</code>{" "}
               fails if any mirror drifts from its source.
             </p>
           </div>
@@ -187,7 +190,7 @@ export default function MethodPage() {
       {/* ── The numbers ──────────────────────────────────────────────── */}
       <section
         id="numbers"
-        className="relative scroll-mt-20 border-t border-slate-800/60 py-12 sm:py-14"
+        className="relative scroll-mt-20 border-t border-slate-200/60 py-12 sm:py-14"
         aria-labelledby="numbers-heading"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -206,7 +209,7 @@ export default function MethodPage() {
       {/* ── The graveyard ────────────────────────────────────────────── */}
       <section
         id="graveyard"
-        className="relative scroll-mt-20 border-t border-slate-800/60 py-12 sm:py-14"
+        className="relative scroll-mt-20 border-t border-slate-200/60 py-12 sm:py-14"
         aria-labelledby="graveyard-heading"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -225,7 +228,7 @@ export default function MethodPage() {
       {/* ── What would falsify this ──────────────────────────────────── */}
       <section
         id="falsify"
-        className="relative scroll-mt-20 border-t border-slate-800/60 py-12 sm:py-14"
+        className="relative scroll-mt-20 border-t border-slate-200/60 py-12 sm:py-14"
         aria-labelledby="falsify-heading"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -244,7 +247,7 @@ export default function MethodPage() {
       {/* ── Status honesty ───────────────────────────────────────────── */}
       <section
         id="status"
-        className="relative scroll-mt-20 border-t border-slate-800/60 py-12 sm:py-14"
+        className="relative scroll-mt-20 border-t border-slate-200/60 py-12 sm:py-14"
         aria-labelledby="status-heading"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -263,7 +266,7 @@ export default function MethodPage() {
       {/* ── AI transparency ──────────────────────────────────────────── */}
       <section
         id="ai"
-        className="relative scroll-mt-20 border-t border-slate-800/60 py-12 pb-20 sm:py-14"
+        className="relative scroll-mt-20 border-t border-slate-200/60 py-12 pb-20 sm:py-14"
         aria-labelledby="ai-heading"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

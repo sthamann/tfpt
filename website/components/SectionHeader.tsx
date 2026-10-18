@@ -10,12 +10,13 @@ interface SectionHeaderProps {
   align?: "left" | "center";
   className?: string;
   /**
-   * DOM id assigned to the `<h2>`. When set, sibling sections can use
+   * DOM id assigned to the heading. When set, sibling sections can use
    * `aria-labelledby={id}` to expose this heading as the section's
    * accessible name. Optional; safe to omit when no `<section>` needs to
    * reference it.
    */
   id?: string;
+  as?: "h1" | "h2";
 }
 
 export function SectionHeader({
@@ -25,7 +26,9 @@ export function SectionHeader({
   align = "left",
   className,
   id,
+  as = "h2",
 }: SectionHeaderProps) {
+  const Heading = as === "h1" ? motion.h1 : motion.h2;
   return (
     <div
       className={cn(
@@ -40,22 +43,22 @@ export function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.05 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-blue-300"
+          className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-blue-700"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
           {eyebrow}
         </motion.span>
       )}
-      <motion.h2
+      <Heading
         id={id}
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.05 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="font-serif text-3xl font-semibold leading-tight text-slate-50 sm:text-4xl md:text-5xl"
+        className="font-serif text-3xl font-semibold leading-tight text-slate-950 sm:text-4xl md:text-5xl"
       >
         {title}
-      </motion.h2>
+      </Heading>
       {description && (
         <motion.p
           initial={{ opacity: 0, y: 12 }}
@@ -63,7 +66,7 @@ export function SectionHeader({
           viewport={{ once: true, amount: 0.05 }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className={cn(
-            "max-w-2xl text-base text-slate-400 sm:text-lg",
+            "max-w-2xl text-base text-slate-600 sm:text-lg",
             align === "center" && "mx-auto",
           )}
         >

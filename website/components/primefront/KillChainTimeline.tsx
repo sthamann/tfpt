@@ -31,14 +31,14 @@ const STAGES = [
 
 export function KillChainTimeline() {
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-6">
-      <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-rose-300/90">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-6">
+      <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-rose-700/90">
         Kill chain as a feature — preregistered, not a failure of nerve
       </p>
       <ol className="relative space-y-0">
         <div
           aria-hidden
-          className="absolute bottom-3 left-[1.15rem] top-3 w-px bg-gradient-to-b from-rose-400/60 via-amber-400/40 to-slate-600/40"
+          className="absolute bottom-3 left-[1.15rem] top-3 w-px bg-gradient-to-b from-rose-400/60 via-amber-400/40 to-slate-400/40"
         />
         {STAGES.map((s, i) => (
           <motion.li
@@ -49,22 +49,22 @@ export function KillChainTimeline() {
             transition={{ duration: 0.45, delay: i * 0.12 }}
             className="relative flex gap-4 pb-6 last:pb-0"
           >
-            <span className="relative z-10 mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-rose-400/40 bg-slate-950 font-mono text-[10px] text-rose-200">
+            <span className="relative z-10 mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-rose-400/40 bg-slate-50 font-mono text-[10px] text-rose-800">
               {i + 1}
             </span>
-            <div className="min-w-0 flex-1 rounded-xl border border-slate-700/40 bg-slate-900/50 px-3 py-2.5">
+            <div className="min-w-0 flex-1 rounded-xl border border-slate-300/40 bg-slate-100/50 px-3 py-2.5">
               <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                <span className="font-mono text-[10px] text-slate-500">
+                <span className="font-mono text-[10px] text-slate-600">
                   {s.id}
                 </span>
-                <span className="font-serif text-base text-slate-100">
+                <span className="font-serif text-base text-slate-900">
                   {s.title}
                 </span>
-                <span className="ml-auto font-mono text-[9px] uppercase tracking-wider text-rose-300/80">
+                <span className="ml-auto font-mono text-[9px] uppercase tracking-wider text-rose-700/80">
                   {s.verdict}
                 </span>
               </div>
-              <p className="mt-1 text-sm leading-relaxed text-slate-400">
+              <p className="mt-1 text-sm leading-relaxed text-slate-600">
                 {s.detail}
               </p>
             </div>

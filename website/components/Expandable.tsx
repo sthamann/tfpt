@@ -48,7 +48,7 @@ export function Expandable({
         {clamped && (
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-slate-950/95 to-transparent"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-slate-50/95 to-transparent"
           />
         )}
       </div>
@@ -57,7 +57,7 @@ export function Expandable({
           type="button"
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
-          className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-widest text-blue-300/80 transition-colors hover:text-blue-200"
+          className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-widest text-blue-700/80 transition-colors hover:text-blue-800"
         >
           {open ? "Show less" : "Show more"}
           <ChevronDown

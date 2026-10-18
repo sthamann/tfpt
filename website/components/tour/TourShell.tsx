@@ -153,27 +153,28 @@ export function TourShell() {
         <div className="relative mx-auto max-w-3xl px-4 sm:px-6">
           <nav aria-label="Breadcrumb" className="mb-5">
             <Link
+              prefetch={false}
               href="/"
-              className="text-sm text-slate-400 transition-colors hover:text-slate-200"
+              className="text-sm text-slate-600 transition-colors hover:text-slate-800"
             >
               ← Back to overview
             </Link>
           </nav>
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-blue-200">
+          <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-blue-800">
             Guided tour · 10 steps
           </span>
-          <h1 className="mt-5 font-serif text-4xl font-semibold leading-tight text-slate-50 sm:text-5xl">
+          <h1 className="mt-5 font-serif text-4xl font-semibold leading-tight text-slate-950 sm:text-5xl">
             What TFPT claims — and how to check it
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg">
             A distill-style walkthrough for curious non-specialists and skeptical
             physicists. Plain English first; technical depth on demand. Not a
             &ldquo;proven TOE&rdquo; pitch — an honest map of axioms, machine
             checks, open gates, and kill tests. Facts as of {TOUR_AS_OF}.
           </p>
-          <p className="mt-3 text-xs text-slate-500">
+          <p className="mt-3 text-xs text-slate-600">
             Tip: ← / → keys move between steps · deep links look like{" "}
-            <span className="font-mono text-slate-400">#step-seam</span>
+            <span className="font-mono text-slate-600">#step-seam</span>
           </p>
         </div>
       </header>
@@ -184,18 +185,18 @@ export function TourShell() {
         visual={
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <div className="rounded-2xl border border-blue-400/25 bg-blue-500/5 p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-blue-300">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-blue-700">
                 {AXIOMS.c3.label}
               </p>
-              <p className="mt-2 font-mono text-2xl text-slate-50">
+              <p className="mt-2 font-mono text-2xl text-slate-950">
                 {AXIOMS.c3.symbol} = {AXIOMS.c3.value}
               </p>
             </div>
             <div className="rounded-2xl border border-emerald-400/25 bg-emerald-500/5 p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-300">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">
                 {AXIOMS.gCar.label}
               </p>
-              <p className="mt-2 font-mono text-2xl text-slate-50">
+              <p className="mt-2 font-mono text-2xl text-slate-950">
                 {AXIOMS.gCar.symbol} = {AXIOMS.gCar.value}
               </p>
             </div>
@@ -233,18 +234,18 @@ export function TourShell() {
             {PREDICTIONS.examples.map((ex) => (
               <li
                 key={ex.id}
-                className="rounded-2xl border border-slate-700/40 bg-slate-950/40 p-4"
+                className="rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4"
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="font-serif text-lg text-slate-50">{ex.title}</h3>
-                  <span className="font-mono text-sm text-emerald-200">
+                  <h3 className="font-serif text-lg text-slate-950">{ex.title}</h3>
+                  <span className="font-mono text-sm text-emerald-800">
                     {ex.value}
                   </span>
                 </div>
-                <p className="mt-1.5 text-sm text-slate-400">{ex.note}</p>
+                <p className="mt-1.5 text-sm text-slate-600">{ex.note}</p>
               </li>
             ))}
-            <li className="rounded-xl border border-dashed border-slate-700/50 px-4 py-3 text-sm text-slate-400">
+            <li className="rounded-xl border border-dashed border-slate-300/50 px-4 py-3 text-sm text-slate-600">
               Plus {PREDICTIONS.frozenCount - 3} further frozen predictions in the
               registry — {PREDICTIONS.frozenCount} total, blind-committed.
             </li>
@@ -255,7 +256,7 @@ export function TourShell() {
             Headline EM line: {ALPHA.label} = {ALPHA.inverse} ({ALPHA.sigmaToCodata}{" "}
             to CODATA). Mass ratios and mixings are readouts of the residue /
             carrier structure, not independent knobs. See{" "}
-            <Link href="/#predictions" className="text-blue-300 hover:text-blue-200">
+            <Link prefetch={false} href="/#predictions" className="text-blue-700 hover:text-blue-800">
               predictions
             </Link>{" "}
             and the freeze file for the full surface.
@@ -270,29 +271,29 @@ export function TourShell() {
         depth={
           <ul className="list-disc space-y-2 pl-5">
             <li>
-              <strong className="text-slate-200">Frozen predictions:</strong>{" "}
+              <strong className="text-slate-800">Frozen predictions:</strong>{" "}
               {PREDICTIONS.frozenCount} entries committed before decisive data
               (registry + freeze file).
             </li>
             <li>
-              <strong className="text-slate-200">Null MCs / LEE discipline:</strong>{" "}
+              <strong className="text-slate-800">Null MCs / LEE discipline:</strong>{" "}
               look-elsewhere and null-model batteries sit with the empirical
               searches; proximity to data never upgrades a ledger marker.
             </li>
             <li>
-              <strong className="text-slate-200">Honesty markers:</strong> every
+              <strong className="text-slate-800">Honesty markers:</strong> every
               load-bearing claim is typed [E]/[C]/[O]/[X]; the ledger is the
               single source of truth.
             </li>
             <li>
-              <strong className="text-slate-200">Triple stack:</strong>{" "}
+              <strong className="text-slate-800">Triple stack:</strong>{" "}
               {VERIFICATION.pythonModules} Python modules; Wolfram mirror{" "}
               {VERIFICATION.wolfram}; Lean carrier {VERIFICATION.leanCarrier}.
             </li>
           </ul>
         }
       >
-        <p className="mt-5 text-sm leading-relaxed text-slate-400">
+        <p className="mt-5 text-sm leading-relaxed text-slate-600">
           Empirics that returned nulls (e.g. {EMPIRICAL_NULLS.rxte};{" "}
           {EMPIRICAL_NULLS.nicer}) stay search targets — never quietly promoted
           to theory claims.
@@ -320,25 +321,26 @@ export function TourShell() {
         step={stepById.get("check-yourself")!}
         visual={
           <div className="mt-6 space-y-3">
-            <div className="rounded-2xl border border-slate-700/40 bg-slate-950/60 p-4 font-mono text-sm text-slate-200">
-              <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest text-emerald-300">
+            <div className="rounded-2xl border border-slate-300/40 bg-slate-50/60 p-4 font-mono text-sm text-slate-800">
+              <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest text-emerald-700">
                 <Terminal size={14} aria-hidden />
                 One-liner
               </div>
               <code className="block whitespace-pre-wrap break-all">
                 {VERIFICATION.runCommand}
               </code>
-              <p className="mt-2 text-xs text-slate-400">
+              <p className="mt-2 text-xs text-slate-600">
                 Expected terminus:{" "}
-                <span className="text-emerald-300">
+                <span className="text-emerald-700">
                   {VERIFICATION.runPassLine}
                 </span>{" "}
                 ({VERIFICATION.pythonModules} modules).
               </p>
             </div>
             <Link
+              prefetch={false}
               href={LINKS.verificationDag}
-              className="inline-flex items-center gap-2 rounded-xl border border-blue-400/30 bg-blue-500/10 px-4 py-3 text-sm font-medium text-blue-100 transition-colors hover:bg-blue-500/20"
+              className="inline-flex items-center gap-2 rounded-xl border border-blue-400/30 bg-blue-500/10 px-4 py-3 text-sm font-medium text-blue-800 transition-colors hover:bg-blue-500/20"
             >
               Open the Pyodide DAG on /verification
               <ArrowRight size={16} aria-hidden />
@@ -351,7 +353,7 @@ export function TourShell() {
             algebra in Lean 4 with {VERIFICATION.leanCarrier}. You can also clone{" "}
             <a
               href={REPO_URL}
-              className="text-blue-300 hover:text-blue-200"
+              className="text-blue-700 hover:text-blue-800"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -368,19 +370,20 @@ export function TourShell() {
         visual={
           <div className="mt-6 space-y-3">
             <div className="rounded-2xl border border-rose-400/30 bg-rose-500/5 p-4">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-rose-300">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-rose-700">
                 Toy kill · banked
               </p>
-              <p className="mt-2 font-serif text-xl text-slate-50">
+              <p className="mt-2 font-serif text-xl text-slate-950">
                 {TOY_KILL.id} · {TOY_KILL.name}
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-slate-300">
+              <p className="mt-2 text-sm leading-relaxed text-slate-700">
                 {TOY_KILL.plain} Status: {TOY_KILL.status}.
               </p>
             </div>
             <Link
+              prefetch={false}
               href={LINKS.falsification}
-              className="inline-flex items-center gap-2 text-sm font-medium text-blue-300 hover:text-blue-200"
+              className="inline-flex items-center gap-2 text-sm font-medium text-blue-700 hover:text-blue-800"
             >
               <ShieldAlert size={16} aria-hidden />
               Full kill board & freeze criteria
@@ -406,35 +409,35 @@ export function TourShell() {
           <ul className="mt-6 space-y-3">
             <li className="rounded-2xl border border-rose-400/25 bg-rose-500/5 p-4">
               <div className="flex items-center justify-between gap-2">
-                <span className="font-mono text-sm text-slate-50">
+                <span className="font-mono text-sm text-slate-950">
                   {OPEN.seamEquiv.id}
                 </span>
-                <span className="rounded-full bg-rose-500/15 px-2 py-0.5 font-mono text-[10px] font-semibold text-rose-200 ring-1 ring-rose-400/30">
+                <span className="rounded-full bg-rose-500/15 px-2 py-0.5 font-mono text-[10px] font-semibold text-rose-800 ring-1 ring-rose-400/30">
                   {OPEN.seamEquiv.marker}
                 </span>
               </div>
-              <p className="mt-2 text-sm text-slate-300">{OPEN.seamEquiv.plain}</p>
+              <p className="mt-2 text-sm text-slate-700">{OPEN.seamEquiv.plain}</p>
             </li>
             <li className="rounded-2xl border border-amber-400/25 bg-amber-500/5 p-4">
               <div className="flex items-center justify-between gap-2">
-                <span className="font-mono text-sm text-slate-50">
+                <span className="font-mono text-sm text-slate-950">
                   the one input bit
                 </span>
-                <span className="rounded-full bg-rose-500/15 px-2 py-0.5 font-mono text-[10px] font-semibold text-rose-200 ring-1 ring-rose-400/30">
+                <span className="rounded-full bg-rose-500/15 px-2 py-0.5 font-mono text-[10px] font-semibold text-rose-800 ring-1 ring-rose-400/30">
                   {INPUT_BIT.status}
                 </span>
               </div>
-              <p className="mt-2 text-sm text-slate-300">
+              <p className="mt-2 text-sm text-slate-700">
                 {INPUT_BIT.failedDerivations} side-blind derivation attempts
                 failed — that&apos;s the point. Now defined as the{" "}
-                <strong className="font-medium text-slate-100">
+                <strong className="font-medium text-slate-900">
                   {INPUT_BIT.definition}
                 </strong>
                 , {INPUT_BIT.measurable}. It remains an input.
               </p>
             </li>
-            <li className="rounded-2xl border border-slate-700/40 bg-slate-950/40 p-4">
-              <p className="text-sm text-slate-300">{OPEN.interactingSeam.plain}</p>
+            <li className="rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4">
+              <p className="text-sm text-slate-700">{OPEN.interactingSeam.plain}</p>
             </li>
           </ul>
         }
@@ -452,24 +455,24 @@ export function TourShell() {
         step={stepById.get("two-bridges")!}
         visual={
           <div className="mt-6 space-y-4">
-            <div className="rounded-2xl border border-slate-700/40 bg-slate-950/40 p-4">
+            <div className="rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <h3 className="font-serif text-base font-semibold text-slate-50">
+                <h3 className="font-serif text-base font-semibold text-slate-950">
                   {BRIDGES.celestial.name}
                 </h3>
-                <span className="rounded-full bg-sky-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-sky-200 ring-1 ring-sky-400/30">
+                <span className="rounded-full bg-sky-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-sky-800 ring-1 ring-sky-400/30">
                   {BRIDGES.celestial.steps} steps
                 </span>
               </div>
-              <p className="mt-2 text-sm text-slate-300">
+              <p className="mt-2 text-sm text-slate-700">
                 {BRIDGES.celestial.progressLabel}. Measure chain:{" "}
-                <span className="text-emerald-200">
+                <span className="text-emerald-800">
                   {BRIDGES.celestial.measureChain}
                 </span>
                 .
               </p>
               <div
-                className="mt-3 h-2 overflow-hidden rounded-full bg-slate-800"
+                className="mt-3 h-2 overflow-hidden rounded-full bg-slate-200"
                 role="progressbar"
                 aria-valuenow={90}
                 aria-valuemin={0}
@@ -478,7 +481,7 @@ export function TourShell() {
               >
                 <div className="h-full w-[90%] rounded-full bg-sky-400/80" />
               </div>
-              <p className="mt-1.5 text-[11px] text-slate-500">
+              <p className="mt-1.5 text-[11px] text-slate-600">
                 Progress cue only — not a ledger upgrade.
               </p>
             </div>
@@ -501,27 +504,29 @@ export function TourShell() {
         visual={
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <Link
+              prefetch={false}
               href={LINKS.replication}
-              className="rounded-2xl border border-slate-700/40 bg-slate-950/40 p-4 transition-colors hover:border-blue-400/40 hover:bg-blue-500/5"
+              className="rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4 transition-colors hover:border-blue-400/40 hover:bg-blue-500/5"
             >
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-blue-300">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-blue-700">
                 Reproduce
               </p>
-              <p className="mt-2 font-serif text-lg text-slate-50">/replication</p>
-              <p className="mt-1 text-xs text-slate-400">
+              <p className="mt-2 font-serif text-lg text-slate-950">/replication</p>
+              <p className="mt-1 text-xs text-slate-600">
                 Self-verified scorecard · {VERIFICATION.externalReplications}{" "}
                 external replications yet
               </p>
             </Link>
             <Link
+              prefetch={false}
               href={LINKS.review}
-              className="rounded-2xl border border-slate-700/40 bg-slate-950/40 p-4 transition-colors hover:border-blue-400/40 hover:bg-blue-500/5"
+              className="rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4 transition-colors hover:border-blue-400/40 hover:bg-blue-500/5"
             >
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-blue-300">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-blue-700">
                 Review
               </p>
-              <p className="mt-2 font-serif text-lg text-slate-50">/review</p>
-              <p className="mt-1 text-xs text-slate-400">
+              <p className="mt-2 font-serif text-lg text-slate-950">/review</p>
+              <p className="mt-1 text-xs text-slate-600">
                 Hostile-reviewer entry in five minutes
               </p>
             </Link>
@@ -529,14 +534,14 @@ export function TourShell() {
               href={REPO_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-2xl border border-slate-700/40 bg-slate-950/40 p-4 transition-colors hover:border-emerald-400/40 hover:bg-emerald-500/5"
+              className="rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4 transition-colors hover:border-emerald-400/40 hover:bg-emerald-500/5"
             >
-              <p className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-emerald-300">
+              <p className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-emerald-700">
                 <Github size={12} aria-hidden />
                 Falsify
               </p>
-              <p className="mt-2 font-serif text-lg text-slate-50">GitHub</p>
-              <p className="mt-1 inline-flex items-center gap-1 text-xs text-slate-400">
+              <p className="mt-2 font-serif text-lg text-slate-950">GitHub</p>
+              <p className="mt-1 inline-flex items-center gap-1 text-xs text-slate-600">
                 Clone · run · open an issue
                 <ExternalLink size={11} aria-hidden />
               </p>
@@ -546,11 +551,11 @@ export function TourShell() {
         depth={
           <p>
             Also useful:{" "}
-            <Link href={LINKS.orientation} className="text-blue-300 hover:text-blue-200">
+            <Link prefetch={false} href={LINKS.orientation} className="text-blue-700 hover:text-blue-800">
               /orientation
             </Link>{" "}
             (one-map reading guide) and{" "}
-            <Link href={LINKS.falsification} className="text-blue-300 hover:text-blue-200">
+            <Link prefetch={false} href={LINKS.falsification} className="text-blue-700 hover:text-blue-800">
               /falsification
             </Link>{" "}
             (kill board). We will record external reproductions and disputes on
@@ -561,8 +566,8 @@ export function TourShell() {
 
       {/* End CTA strip */}
       <div className="mx-auto max-w-3xl px-4 pb-8 sm:px-6">
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-700/40 bg-slate-950/40 px-4 py-4">
-          <p className="text-sm text-slate-400">
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-300/40 bg-slate-50/40 px-4 py-4">
+          <p className="text-sm text-slate-600">
             Step {activeIndex + 1} of {steps.length}
           </p>
           <div className="flex gap-2">
@@ -570,7 +575,7 @@ export function TourShell() {
               type="button"
               onClick={onPrev}
               disabled={activeIndex <= 0}
-              className="rounded-lg border border-slate-700/60 px-3 py-1.5 text-sm text-slate-200 disabled:opacity-30"
+              className="rounded-lg border border-slate-300/60 px-3 py-1.5 text-sm text-slate-800 disabled:opacity-30"
             >
               Previous
             </button>
@@ -578,7 +583,7 @@ export function TourShell() {
               type="button"
               onClick={onNext}
               disabled={activeIndex >= steps.length - 1}
-              className="rounded-lg border border-blue-400/40 bg-blue-500/15 px-3 py-1.5 text-sm text-blue-100 disabled:opacity-30"
+              className="rounded-lg border border-blue-400/40 bg-blue-500/15 px-3 py-1.5 text-sm text-blue-800 disabled:opacity-30"
             >
               Next
             </button>

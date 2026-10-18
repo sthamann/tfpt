@@ -18,14 +18,15 @@ const MATH_LABEL_RE =
   /[\u0370-\u03FF\u00B9\u00B2\u00B3⁰¹²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉ξφθαβγδεζηικλμνπρστυχψωΣΞΦΘΛΠΩΓΔ\[\]√⁻⁺×⋅·]/;
 const isMathLabel = (s: string) => MATH_LABEL_RE.test(s);
 
-export function PaperSection({ paper }: { paper: Paper }) {
+export function PaperSection({ paper, headingLevel = "h2" }: { paper: Paper; headingLevel?: "h1" | "h2" }) {
+  const Heading = headingLevel;
   const meta = STATUS_META[paper.status];
   const isEven = paper.number % 2 === 0;
 
   return (
     <article
       id={`paper-${paper.id}`}
-      className="relative scroll-mt-20 border-b border-slate-800/40 py-24 first:pt-0 sm:py-32"
+      className="relative scroll-mt-20 border-b border-slate-200/40 py-24 first:pt-0 sm:py-32"
       aria-labelledby={`paper-${paper.id}-title`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -65,15 +66,15 @@ export function PaperSection({ paper }: { paper: Paper }) {
               </span>
             </div>
 
-            <h2
+            <Heading
               id={`paper-${paper.id}-title`}
-              className="mt-5 font-serif text-3xl font-semibold leading-tight text-slate-50 sm:text-4xl md:text-5xl"
+              className="mt-5 font-serif text-3xl font-semibold leading-tight text-slate-950 sm:text-4xl md:text-5xl"
             >
               {paper.title}
-            </h2>
-            <p className="mt-2 text-lg text-slate-400">{paper.subtitle}</p>
+            </Heading>
+            <p className="mt-2 text-lg text-slate-600">{paper.subtitle}</p>
 
-            <p className="mt-6 max-w-3xl text-base leading-relaxed text-slate-300">
+            <p className="mt-6 max-w-3xl text-base leading-relaxed text-slate-700">
               {paper.abstract}
             </p>
 
@@ -102,6 +103,7 @@ export function PaperSection({ paper }: { paper: Paper }) {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
+                prefetch={false}
                 href={paper.pdf}
                 target="_blank"
                 rel="noopener"
@@ -114,12 +116,13 @@ export function PaperSection({ paper }: { paper: Paper }) {
                     title: paper.title,
                   })
                 }
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-105"
+                className="inline-flex items-center gap-2 rounded-full bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-105"
               >
                 <Download size={16} />
                 Download {paperLabel(paper)}
               </Link>
               <Link
+                prefetch={false}
                 href={paper.pdf}
                 target="_blank"
                 rel="noopener"
@@ -132,7 +135,7 @@ export function PaperSection({ paper }: { paper: Paper }) {
                     title: paper.title,
                   })
                 }
-                className="inline-flex items-center gap-2 rounded-full border border-slate-600/60 bg-slate-900/40 px-5 py-2.5 text-sm font-semibold text-slate-100 backdrop-blur transition-colors hover:bg-slate-800/60"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-400/60 bg-slate-100/40 px-5 py-2.5 text-sm font-semibold text-slate-900 backdrop-blur transition-colors hover:bg-slate-200/60"
               >
                 <FileText size={16} />
                 View PDF
@@ -147,49 +150,49 @@ export function PaperSection({ paper }: { paper: Paper }) {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5"
           >
-            <div className="glass sticky top-24 rounded-2xl ring-1 ring-slate-700/40">
-              <div className="flex items-center gap-2 border-b border-slate-800/60 px-5 py-3">
-                <span className="text-[11px] font-semibold uppercase tracking-widest text-slate-300">
+            <div className="glass sticky top-24 rounded-2xl ring-1 ring-slate-300/40">
+              <div className="flex items-center gap-2 border-b border-slate-200/60 px-5 py-3">
+                <span className="text-[11px] font-semibold uppercase tracking-widest text-slate-700">
                   Highlights
                 </span>
               </div>
-              <div className="grid grid-cols-2 gap-px bg-slate-800/60">
+              <div className="grid grid-cols-2 gap-px bg-slate-200/60">
                 {paper.highlights.map((h) => (
                   <div
                     key={h.label}
-                    className="flex flex-col gap-1 bg-slate-950/40 px-4 py-4 transition-colors hover:bg-slate-900/60"
+                    className="flex flex-col gap-1 bg-slate-50/40 px-4 py-4 transition-colors hover:bg-slate-100/60"
                   >
                     <span
                       className={cn(
-                        "text-[10px] font-semibold tracking-widest text-blue-300/80",
+                        "text-[10px] font-semibold tracking-widest text-blue-700/80",
                         isMathLabel(h.label) ? "math-label" : "uppercase",
                       )}
                     >
                       {h.label}
                     </span>
-                    <span className="font-serif text-xl font-semibold text-slate-50 sm:text-2xl">
+                    <span className="font-serif text-xl font-semibold text-slate-950 sm:text-2xl">
                       {h.value}
                     </span>
-                    <span className="text-[11px] leading-snug text-slate-400">
+                    <span className="text-[11px] leading-snug text-slate-600">
                       {h.description}
                     </span>
                   </div>
                 ))}
               </div>
 
-              <div className="border-t border-slate-800/60 p-5">
-                <h3 className="text-[11px] font-semibold uppercase tracking-widest text-slate-300">
+              <div className="border-t border-slate-200/60 p-5">
+                <h3 className="text-[11px] font-semibold uppercase tracking-widest text-slate-700">
                   Key formulas
                 </h3>
                 <ul className="mt-3 space-y-3">
                   {paper.keyFormulas.map((f) => (
                     <li
                       key={f.label}
-                      className="rounded-lg border border-slate-800/60 bg-slate-950/40 p-3"
+                      className="rounded-lg border border-slate-200/60 bg-slate-50/40 p-3"
                     >
                       <div
                         className={cn(
-                          "text-[11px] font-semibold tracking-widest text-blue-300/80",
+                          "text-[11px] font-semibold tracking-widest text-blue-700/80",
                           isMathLabel(f.label) ? "math-label" : "uppercase",
                         )}
                       >
@@ -199,7 +202,7 @@ export function PaperSection({ paper }: { paper: Paper }) {
                         <Math block>{f.latex}</Math>
                       </div>
                       {f.description && (
-                        <div className="mt-1 text-[11px] leading-snug text-slate-400">
+                        <div className="mt-1 text-[11px] leading-snug text-slate-600">
                           {f.description}
                         </div>
                       )}
@@ -221,19 +224,19 @@ export function PaperSection({ paper }: { paper: Paper }) {
           {paper.sections.map((s) => (
             <div
               key={s.title}
-              className="group glass relative overflow-hidden rounded-2xl ring-1 ring-slate-800/60 transition-shadow hover:ring-slate-600/50"
+              className="group glass relative overflow-hidden rounded-2xl ring-1 ring-slate-200/60 transition-shadow hover:ring-slate-400/50"
             >
               <div className="px-6 py-6">
-                <h3 className="font-serif text-lg font-semibold text-slate-50">
+                <h3 className="font-serif text-lg font-semibold text-slate-950">
                   {s.title}
                 </h3>
                 <Expandable collapsedHeight={150} className="mt-3">
-                  <p className="break-words text-sm leading-relaxed text-slate-300">
+                  <p className="break-words text-sm leading-relaxed text-slate-700">
                     {s.body}
                   </p>
                 </Expandable>
                 {s.formulas && s.formulas.length > 0 && (
-                  <div className="mt-4 space-y-2 border-t border-slate-800/60 pt-4">
+                  <div className="mt-4 space-y-2 border-t border-slate-200/60 pt-4">
                     {s.formulas.map((f, i) => (
                       <div key={i} className="overflow-x-auto">
                         <Math block>{f}</Math>
@@ -261,14 +264,14 @@ function FrontBox({
 }) {
   return (
     <div className={cn("rounded-xl border-0 px-4 py-4 ring-1", tone)}>
-      <div className="text-[10px] font-semibold uppercase tracking-widest text-slate-300/90">
+      <div className="text-[10px] font-semibold uppercase tracking-widest text-slate-700/90">
         {title}
       </div>
       <Expandable collapsedHeight={170} className="mt-2">
-        <ul className="space-y-1.5 text-xs leading-relaxed text-slate-300">
+        <ul className="space-y-1.5 text-xs leading-relaxed text-slate-700">
           {items.map((it, i) => (
             <li key={i} className="flex gap-2">
-              <span className="mt-0.5 text-slate-500">›</span>
+              <span className="mt-0.5 text-slate-600">›</span>
               <span className="min-w-0 break-words">{it}</span>
             </li>
           ))}

@@ -139,7 +139,7 @@ export function HorizonStory() {
   return (
     <section
       aria-labelledby="horizon-story-heading"
-      className="relative border-t border-white/5 bg-slate-950 py-20 sm:py-24"
+      className="relative border-t border-white/5 bg-slate-50 py-20 sm:py-24"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
@@ -154,9 +154,9 @@ export function HorizonStory() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5 }}
-            className="rounded-2xl border border-white/10 bg-white/[0.03] p-5"
+            className="rounded-2xl border border-white/10 bg-slate-900/[0.03] p-5"
           >
-            <h3 className="text-sm font-semibold text-slate-200">
+            <h3 className="text-sm font-semibold text-slate-800">
               The maximal black hole in the de Sitter bulk
             </h3>
             <div className="mt-3"><BulkDiagram /></div>
@@ -166,9 +166,9 @@ export function HorizonStory() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="rounded-2xl border border-white/10 bg-white/[0.03] p-5"
+            className="rounded-2xl border border-white/10 bg-slate-900/[0.03] p-5"
           >
-            <h3 className="text-sm font-semibold text-slate-200">
+            <h3 className="text-sm font-semibold text-slate-800">
               One orientation: away from the anchor, toward the democratic
               endpoint
             </h3>
@@ -183,17 +183,17 @@ export function HorizonStory() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="rounded-xl border border-white/10 bg-white/[0.03] p-4"
+              className="rounded-xl border border-white/10 bg-slate-900/[0.03] p-4"
             >
               <div className="flex items-center justify-between gap-2">
-                <h4 className="text-sm font-semibold text-slate-200">
+                <h4 className="text-sm font-semibold text-slate-800">
                   {f.title}
                 </h4>
-                <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-semibold text-emerald-200 ring-1 ring-emerald-400/30">
+                <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-semibold text-emerald-800 ring-1 ring-emerald-400/30">
                   {f.marker}
                 </span>
               </div>
-              <p className="mt-2 text-[13px] leading-relaxed text-slate-400">
+              <p className="mt-2 text-[13px] leading-relaxed text-slate-600">
                 {f.body}
               </p>
             </motion.div>

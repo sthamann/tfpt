@@ -536,7 +536,7 @@ export function SprintPhase2Recap() {
 /** Section 24: the full end-of-series + phase-2 recap (T125 finale → T176). */
 export function SeriesEndRecap() {
   return (
-        <p className="rounded-xl border border-slate-700/40 bg-slate-900/40 px-4 py-3 text-sm text-slate-400">
+        <p className="rounded-xl border border-slate-300/40 bg-slate-100/40 px-4 py-3 text-sm text-slate-600">
           Where the series ends: a finite, machine-certified chain whose
           load-bearing spine is 96.2% identity or Cholesky certificate and whose
           only hypothesis is a declared accounting convention; a relay mechanism
@@ -1206,7 +1206,7 @@ const NEAR_LEVEL_TEXT =
 /** Section 25 ("What would it mean"): the full "Near" level recap. */
 export function NearLevelRecap() {
   return (
-    <p className="mt-3 text-sm leading-relaxed text-slate-400">
+    <p className="mt-3 text-sm leading-relaxed text-slate-600">
       {NEAR_LEVEL_TEXT}
     </p>
   );
@@ -1215,12 +1215,12 @@ export function NearLevelRecap() {
 /** Program status callout: the full "Phase 2: the full proof" narrative. */
 export function Phase2FullProofRecap() {
   return (
-    <p className="mt-3 text-xs leading-relaxed text-slate-400">
-          <strong className="font-medium text-slate-200">
+    <p className="mt-3 text-xs leading-relaxed text-slate-600">
+          <strong className="font-medium text-slate-800">
             Phase 2: the full proof.
           </strong>{" "}
           The first post-series probe{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             uniformity_seams_probe.py
           </span>{" "}
           (T126 · UNIFORMITY.SEAMS — SEAMS-CERTIFIED, 31/31) finishes the seam
@@ -1230,7 +1230,7 @@ export function Phase2FullProofRecap() {
           fractional-Dirichlet identity, and the full-proof map contains
           exactly two genuinely new inequalities — a direction lemma (U3) and a
           zone-uniform seam floor (U5). T127 ·{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             two_inequalities_probe.py
           </span>{" "}
           (TWO.INEQUALITIES — BOTH-SHAPED, 28/28) dissects both, and both
@@ -1239,7 +1239,7 @@ export function Phase2FullProofRecap() {
           band covering 99.26% of real seams with the 8 exceptions enumerated
           (Mersenne/Fermat pairs and one twin), and U3 collapses to a coarse
           floor via the harmonic-mean identity. T128 (TEML —{" "}
-          <span className="font-mono text-slate-300">teml_probe.py</span>,
+          <span className="font-mono text-slate-700">teml_probe.py</span>,
           THREE-OF-FOUR, 27/27) works the resulting four-point list cheapest
           first, and three of the four points stand at their preregistered
           bars: the exception list is derived and closed (the affordable seams
@@ -1249,7 +1249,7 @@ export function Phase2FullProofRecap() {
           while the fourth point, the protrusion concentration kappa, missed
           its own bar by 3.6%, systematically in the ratio, which is what
           distinguishes a bound from a fit. T129 (KAPPA.DEEP.SEAMS,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             kappa_deep_seams_probe.py
           </span>
           , KAPPA-WILD, 28/28) is the most productive break of the phase: the
@@ -1268,7 +1268,7 @@ export function Phase2FullProofRecap() {
           results. A narrow verification module on the five identity/theorem
           pieces is ready in principle; two irreducibles remain (the word
           &ldquo;for all&rdquo;, the RH address). T130 (CURVATURE.BRIDGE,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             curvature_bridge_probe.py
           </span>
           , ONE-OF-TWO, 30/30) then attacked the two named pieces and exactly
@@ -1286,7 +1286,7 @@ export function Phase2FullProofRecap() {
           bound honestly broke its frozen shape band on 13/545 disjoint test
           transports and is reduced to a zone-uniform bound on one exponent
           (M22). T131 (SELF.SUPPLY,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             self_supply_probe.py
           </span>
           , SUPPLY-PARTIAL, 25/25) then tested exactly that candidate and
@@ -1305,7 +1305,7 @@ export function Phase2FullProofRecap() {
           load-bearing v542, and the reverse-flow probes T132 (BD.SEAM) and
           T133 (CERT.FLOOR) carried the certified toolkit back to the theory
           side. T134 (POLE.FREE.FLOOR,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             pole_free_floor_probe.py
           </span>
           , PARTIAL, 21/21) then attacked that floor and closed its
@@ -1315,7 +1315,7 @@ export function Phase2FullProofRecap() {
           opening (an M-matrix question: the lumped Stieltjes comparison
           S_B = S + L_Δ is certified on 900/900 blocks), and the whitening
           honestly corrects T131&apos;s diagnosis. T135 (COMB.COMPRESS,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             comb_compressibility_probe.py
           </span>
           , BOUNDED-STATE, 13/13) ported the T116 Riccati machinery to the
@@ -1323,7 +1323,7 @@ export function Phase2FullProofRecap() {
           falling out to h = 1e5) where the Weil window provably has none —
           driver weight summability, value partly circular, QEC.SEAM.01 not
           advanced. T136 (M.MATRIX.PAIR,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             m_matrix_pair_probe.py
           </span>
           , ONE-CARRIES, 30/30) took that M-matrix question and closed one of
@@ -1336,7 +1336,7 @@ export function Phase2FullProofRecap() {
           degradation in the margin and M17 closes negatively (the bad subspace
           is delocalised, its dimension tracking the atom count). T137
           (LONG.LAG,{" "}
-          <span className="font-mono text-slate-300">long_lag_probe.py</span>,
+          <span className="font-mono text-slate-700">long_lag_probe.py</span>,
           BOTH-RESIST, 22/22) then made the perturbation explicit — the support
           is a comb stripe set at the prime-power atoms, each stripe a perfect
           matching, the amplitude certified — and killed a whole family by
@@ -1345,7 +1345,7 @@ export function Phase2FullProofRecap() {
           floor; the Green function is bracketed two-sidedly, and the residue is
           one named object, a sign-preserving bound. Thirteen mature statements
           of both parts are promoted as v543 and v544. T138 (SIGN.COMPENSATION,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             sign_compensation_probe.py
           </span>
           , PAIR-EXACT, 26/26) kept the signs: the coupling sign follows the
@@ -1353,14 +1353,14 @@ export function Phase2FullProofRecap() {
           m-paired Neumann certificate removes the arithmetic wall on all 77
           dead blocks (pool 563 → 875/900), and the margin question returns
           one level down as ρ(W_S). T139 (GREEN.DECAY,{" "}
-          <span className="font-mono text-slate-300">green_decay_probe.py</span>
+          <span className="font-mono text-slate-700">green_decay_probe.py</span>
           , DENSE-RESISTS, 30/30) refuted the classical decay lemma at its
           hypothesis — arithmetically: the certified kernel envelope decays
           like d^−0.15..−0.04 where Jaffard needs p &gt; 1 — while deriving
           T138&apos;s sign law from one exact telescoping identity and killing
           the never-truncating layer series from below; the core shrinks to one
           signed inequality at stripe distance b ≤ 16. T140 (SIGNED.BAND,{" "}
-          <span className="font-mono text-slate-300">signed_band_probe.py</span>
+          <span className="font-mono text-slate-700">signed_band_probe.py</span>
           , FINITE-CORE, 31/31) attacked exactly that inequality: the telescope
           identity lifts to the form level (Gram = CHCᵀ exactly, rank ≤ h−1),
           the spectral radius is the exact finite-core eigenvalue
@@ -1371,7 +1371,7 @@ export function Phase2FullProofRecap() {
           1.2–10.1× is the mechanism), and all the D-dependence sits in the
           geometry — the remaining ingredient is a zone-uniform discrete Hardy
           inequality. T141 (DISCRETE.HARDY,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             discrete_hardy_probe.py
           </span>
           , HARDY-RESISTS, 22/22) attacked exactly that ingredient: four exact
@@ -1384,7 +1384,7 @@ export function Phase2FullProofRecap() {
           The rest collapses to one closed conductance profile (R1b); the
           identity blocks of T140 and T141 are promoted as v545. T142
           (CONDUCTANCE.PROFILE,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             conductance_profile_probe.py
           </span>
           , PROFILE-RESISTS, 24/24) then constructed that profile instead of
@@ -1397,7 +1397,7 @@ export function Phase2FullProofRecap() {
           below r*/m = 0.995 ever crosses 1) — no comparison argument can
           deliver D-uniformity, so the next move is the sharp
           capacity-Rayleigh route (R1c). T143 (SHARP.CAPACITY,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             sharp_capacity_probe.py
           </span>
           , SHARP-CARRIES, 24/24) then ran exactly that route, and it
@@ -1411,7 +1411,7 @@ export function Phase2FullProofRecap() {
           |A|·λ₀/c₀ with an absolute c₀ (a non-Markovian Maz&apos;ya
           capacity bound, pointing at Muckenhoupt&apos;s 1972 two-weight
           calculus). T144 (CAPACITY.INEQUALITY,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             capacity_inequality_probe.py
           </span>
           , INTERVAL-CARRIES, 31/31) then ran the interval route at exactly
@@ -1426,7 +1426,7 @@ export function Phase2FullProofRecap() {
           unproven input: the absolute Maz&apos;ya constant c₀, whose
           sharpest shape S1′ is a Muckenhoupt-type hypothesis. T145
           (MAZYA.PROOF,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             mazya_proof_probe.py
           </span>
           , ONE-STEP-MISSING, 33/33) then ran the proof attempt itself, and
@@ -1441,7 +1441,7 @@ export function Phase2FullProofRecap() {
           is ONE named lemma — L1, an a-priori delocalization bound for the
           minimiser&apos;s layer-cake constant; the identity spine of
           T142–T145 is promoted as v546. T146 (LEVEL.LEMMA,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             level_lemma_probe.py
           </span>
           , LEVEL-CARRIES, 30/30) then ran the proof attempt for exactly
@@ -1454,7 +1454,7 @@ export function Phase2FullProofRecap() {
           at the size of Maz&apos;ya&apos;s classical Dirichlet value 4 —
           closes the chain at loss factor 0.0422–0.1586; the a-priori core
           is promoted as v547. T147 (GREEN.ASYMPTOTIC,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             green_asymptotic_probe.py
           </span>
           , ASYMPTOTIC-SHAPED, 39/39) then made the remaining all-D
@@ -1462,7 +1462,7 @@ export function Phase2FullProofRecap() {
           factor times a purely geometric one, both certified on the
           surface, the mechanism named (Szegő/Widom, Q_B ≤ 2|B| holding) —
           and T148 (SZEGO.BOTTOM,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             szego_bottom_probe.py
           </span>
           , ONE-INPUT-MISSING, 31/31) dissected the lifting statement: Sw
@@ -1474,7 +1474,7 @@ export function Phase2FullProofRecap() {
           certified chain delivers 8.4–15.9% of the true gap end to end;
           the identity/certificate core of T147+T148 is promoted as v548.
           T149 (WEIGHT.SMOOTHING,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             weight_smoothing_probe.py
           </span>
           , PARTIAL-SMOOTHING, 30/30) then attacked exactly that input
@@ -1487,7 +1487,7 @@ export function Phase2FullProofRecap() {
           missing input relocates to the deep modes of the pure
           Toeplitz-minus-Hankel section (ladder form ν_k ≤ C·k² with
           m-free C). T150 (MODE.LADDER,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             mode_ladder_probe.py
           </span>
           , ONE-TERM-MISSING, 36/36) then ran exactly that ladder and named
@@ -1503,7 +1503,7 @@ export function Phase2FullProofRecap() {
           against the bar 0.25), the gap from π exactly the arithmetic
           leakage of the bottom mode; the identity/certificate core of
           T149+T150 is promoted as v549. T151 (ODD.LADDER,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             odd_ladder_probe.py
           </span>
           , ODD-CARRIES, 27/27) then closed exactly that inequality by
@@ -1522,7 +1522,7 @@ export function Phase2FullProofRecap() {
           x^0.037), exactly where the T145 no-go breaks (x^1.986); the
           identity/certificate core of T151 is promoted as v550. T152
           (PENCIL.RATIO,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             pencil_ratio_probe.py
           </span>
           , ONE-TERM-MISSING, 37/37) then attacked exactly that scalar:
@@ -1536,7 +1536,7 @@ export function Phase2FullProofRecap() {
           m-free ceiling on K_bot); the Ψ map locates 89–92% of the
           dominant loss on the eight modes the certified ladder already
           controls (a 3.5–5.3× reserve). T153 (PSI.LADDER,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             psi_ladder_probe.py
           </span>
           , REBUILD-RESISTS, 33/33) then carried out exactly that rebuild
@@ -1549,7 +1549,7 @@ export function Phase2FullProofRecap() {
           estimate of two inverse-iteration columns, which already yields a
           flat ceiling on a fixed-size certificate — lose to the same
           missing object. T154 (GREEN.ALIGN,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             green_align_probe.py
           </span>
           , ALIGN-RESISTS, 29/29) then attacked exactly that estimate, and
@@ -1569,7 +1569,7 @@ export function Phase2FullProofRecap() {
           arithmetic-free (only the tridiagonal parity Laplacian and one
           8-dim subspace, worth 91–100% of the price); the certificate core
           is promoted as v551. T155 (BOTTOM.FLOOR,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             bottom_floor_probe.py
           </span>
           , FLOORS-RESIST, 27/27) then attacked exactly those two floors:
@@ -1588,7 +1588,7 @@ export function Phase2FullProofRecap() {
           be Fejér cancellation in the finite section (the arch half alone
           IS its symbol infimum to 5e-4 — a theorem candidate). T156
           (TWELVE.EIGHT,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             twelve_by_eight_probe.py
           </span>
           , TERMS-RESIST, 37/37) then attacked exactly those two objects,
@@ -1611,7 +1611,7 @@ export function Phase2FullProofRecap() {
           0.2661–0.4436 on the minimiser, at 52.7–90.0° from the
           atom-extremal vector; the no-go breaks on three axes, including
           a collapse of p₁ itself (7e-15–7e-10). T157 (ANGLE.FLOOR,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             angle_floor_probe.py
           </span>
           , ANGLES-RESIST, 32/32) then attacked exactly those two angles,
@@ -1633,7 +1633,7 @@ export function Phase2FullProofRecap() {
           margin and a shrinking trend; the no-go family breaks on five
           axes, and the four instrument candidates of T155/T157 are
           promoted as v552. T158 (SCHUR.ENTRY,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             schur_entry_probe.py
           </span>
           , ENTRY-RESISTS, 36/36) then found exactly that bound, and it is
@@ -1653,7 +1653,7 @@ export function Phase2FullProofRecap() {
           bound on ONE 16×16 quadratic form whose halves cancel to depth
           h², and the sign structure of the off-band arch entries. T159
           (EXACT.FORM,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             exact_form_probe.py
           </span>
           , FORM-RESISTS, 41/41) then executed the cancellation
@@ -1664,7 +1664,7 @@ export function Phase2FullProofRecap() {
           the archimedean bulk block turns out to be a raw symmetric
           Z-matrix with a closed sign-based floor above target (theorem
           count 6 → 13, cores promoted as v553). T160 (PAIRING,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             pairing_probe.py
           </span>
           , PAIRING-RESISTS, 46/46) then attacked the pairing through
@@ -1676,7 +1676,7 @@ export function Phase2FullProofRecap() {
           arch half down to the double-precision floor — the h²
           cancellation is the intrinsic arithmetic hardness of the
           problem. T161 (CLASSICAL.CLOSURE,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             classical_closure_probe.py
           </span>
           , CLOSURE-RESISTS, 35/35) then ran the circularity triage,
@@ -1691,7 +1691,7 @@ export function Phase2FullProofRecap() {
           schedule O(log h)); R-B is refuted and replaced by a
           certified fraction bound ≤ 1/4; the closed cores are promoted
           as v554. T162 (THIRD.SPLIT,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             third_split_probe.py
           </span>
           , DELTA-REDUCED, 30/30) then delivered the third split and
@@ -1708,7 +1708,7 @@ export function Phase2FullProofRecap() {
           three routes); R-B′ is refuted (the 16×16 Gram form is
           indefinite on every window; the a-weighted quarter bar
           survives). T163 (PARETO.FRONT,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             pareto_front_probe.py
           </span>
           , FRONT-RESISTS, 32/32) then surveyed exactly that front, and
@@ -1723,7 +1723,7 @@ export function Phase2FullProofRecap() {
           Laplacian; R-C‴ closes negatively, the cores of T162+T163 are
           promoted as v555, and the successor R-E has two prime-free
           arms. T164 (SECTOR.CHANGE,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             sector_change_probe.py
           </span>
           , TOLERANCE-CARRIES / SECTOR-RESISTS, 28/28) then decided both
@@ -1733,7 +1733,7 @@ export function Phase2FullProofRecap() {
           collapses onto one quantifier — and no sector can help, as a
           theorem: the entry normalisation is a gauge, floor × transfer
           reproduces the h² identically. T165 (ALIGNMENT.ETA,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             alignment_eta_probe.py
           </span>
           , ETA-RESISTS, 30/30) then closed the alignment successor by
@@ -1742,7 +1742,7 @@ export function Phase2FullProofRecap() {
           ONE genuine open object remains — the cascade lower bound
           inf_m g₁₆(m) &gt; 0; the theorem cores of T164+T165 are
           promoted as v556. T166 (SCHUR.CASCADE,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             schur_cascade_probe.py
           </span>
           , CASCADE-RESISTS, 30/30) then dissected exactly that lower
@@ -1757,7 +1757,7 @@ export function Phase2FullProofRecap() {
           best closed route reaches h^+1.32 against the target h^+3.11
           — an exponent gap: the one missing inequality IS the
           cancellation, in three equivalent dresses. T167 (NULL.VECTOR,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             null_vector_probe.py
           </span>
           , VECTOR-RESISTS, 39/39) then closed the most constructive
@@ -1771,7 +1771,7 @@ export function Phase2FullProofRecap() {
           block itself, and the rest is one scalar — an m-free upper
           bound on 1 − r₁₂²; the theorem cores of T166+T167 are promoted
           as v557. T168 (LAGRANGE.MINORS,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             lagrange_minors_probe.py
           </span>
           , MINORS-RESIST, 39/39) then ran the Lagrange identity on that
@@ -1782,7 +1782,7 @@ export function Phase2FullProofRecap() {
           the one open factor is a single ratio t* = Q₁₂/Q₁₁, by
           T168-TH7 the target itself rewritten: the hardness is
           self-similar under exact reformulation. T169 (TSTAR.RATIO,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             tstar_ratio_probe.py
           </span>
           , RATIO-RESISTS, 41/41) then PROVED the self-similarity: the
@@ -1793,7 +1793,7 @@ export function Phase2FullProofRecap() {
           touches the Weil-shaped positivity, and R1 in standard shape
           for the first time — a bilinear von Mangoldt sum against
           closed Dirichlet weights. T170 (BILINEAR.SIEVE,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             bilinear_sieve_probe.py
           </span>
           , SIEVE-RESISTS, 40/40) then ran that toolbox, and the
@@ -1809,7 +1809,7 @@ export function Phase2FullProofRecap() {
           becoming collinear at h^−3 — beyond any size-bounding tool;
           the theorem cores of T168+T169+T170 are promoted as v558.
           T171 (FINAL.MAP,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             final_map_probe.py
           </span>
           , MAP-COMPLETE, 43/43) then assembled the capstone, and the
@@ -1820,7 +1820,7 @@ export function Phase2FullProofRecap() {
           new uniform statements, the capstone promoted as v559: phase
           2 is a certified map with one open object (R1). T172
           (FRAME.BEYOND,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             frame_beyond_probe.py
           </span>
           , PARTIALLY-PORTABLE, 44/44) then tested how far the map
@@ -1833,7 +1833,7 @@ export function Phase2FullProofRecap() {
           frame-bound (h^−1.83 to h^−2.87), and the scramble at fixed
           Λ-value multiset removes the decay — the collapse belongs to
           the actual prime-power placement. T173 (FRAME.RATE,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             frame_rate_probe.py
           </span>
           , DEFICIT-VARIES, 40/40) then showed the demanded rate is
@@ -1844,7 +1844,7 @@ export function Phase2FullProofRecap() {
           rule and the lever split, not yet constant in ν — no frame
           closes it, frame shopping is over by numbers, and R1 stands
           frame-free. T174 (CANCEL.IDENTITY,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             cancellation_identity_probe.py
           </span>
           , PARTIAL-CANCEL) then exhausted the gauge route by theorems —
@@ -1853,7 +1853,7 @@ export function Phase2FullProofRecap() {
           deficit frame-free at +0.1111 ± 0.0222 (5.0σ), its driver the
           comb density per lag cell; the theorem cores of T172–T174 are
           load-bearing as v560. T175 (PHASE.PLACEMENT,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             phase_placement_probe.py
           </span>
           , PHASES-RESIST) then measured the placement phases directly:
@@ -1865,7 +1865,7 @@ export function Phase2FullProofRecap() {
           5σ deficit untouched), and the densest reachable density bin
           is consistent with zero, undecidable under this sieve. T176
           (DENSE.LIMIT,{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             dense_limit_probe.py
           </span>
           , SITS-AT-ZERO) then ran the larger sieve — the last

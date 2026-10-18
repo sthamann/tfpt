@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/faq` },
   openGraph: {
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
     type: "article",
     title: "Hostile-Referee FAQ — TFPT",
     description:
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
     authors: ["Stefan Hamann", "Alessandro Rizzo"],
   },
   twitter: {
+    images: [`${SITE_URL}/opengraph-image`],
     card: "summary_large_image",
     title: "Hostile-Referee FAQ — TFPT",
     description: "The sharpest objections, answered directly.",
@@ -68,20 +70,21 @@ export default function FaqPage() {
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-6">
             <Link
+              prefetch={false}
               href="/"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-200"
+              className="inline-flex items-center gap-1.5 text-sm text-slate-600 transition-colors hover:text-slate-800"
             >
               <ArrowLeft size={14} />
               Back to overview
             </Link>
           </nav>
-          <span className="inline-flex items-center gap-2 rounded-full border border-rose-400/20 bg-rose-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-rose-200">
+          <span className="inline-flex items-center gap-2 rounded-full border border-rose-400/20 bg-rose-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-rose-800">
             <span className="uppercase">Hostile-referee FAQ</span>
           </span>
-          <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-slate-50 sm:text-5xl">
+          <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-slate-950 sm:text-5xl">
             The sharpest objections, <span className="text-gradient-blue">answered</span>.
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-300">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-700">
             A theory at this scope deserves an adversary, not a cheerleader.
             These are the first questions a sceptical physicist asks — E₈,
             &ldquo;Standard Model derived&rdquo;, &ldquo;zero fitted

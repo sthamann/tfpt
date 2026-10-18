@@ -1,33 +1,33 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Newsreader, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import "katex/dist/katex.min.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ReproducerProvider } from "@/components/Reproducer";
-import { papers } from "@/lib/papers";
-import { predictions } from "@/lib/predictions";
 import { REPO_URL, SITE_URL } from "@/lib/utils";
 import { SITE_VERSION } from "@/lib/version";
 
+const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
+const newsreader = Newsreader({ subsets: ["latin"], display: "swap", variable: "--font-newsreader" });
+const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], display: "swap", variable: "--font-jetbrains", preload: false });
+
 const SITE_NAME = "TFPT — Topological Fixed-Point Theory";
-const SITE_DESCRIPTION = `Topological Fixed-Point Theory (TFPT) derives the discrete Standard-Model structure (charges, families, flavor operators) under two axioms — the seam constant c₃ = 1/(8π) and the carrier rank g_car = 5 — together with the fine-structure constant α⁻¹ = 137.0359992 (1.9σ from CODATA-2022). 4D existence, chiral measure, mirror gap, couplings and neutrino dynamics remain open. A discrete compiler reads off the gauge group, three fermion generations, the flavor sector and the scale grammar: ${predictions.length} falsifiable test surfaces. The physics theory by Hamann & Rizzo — distinct from the Brouwer–Lefschetz fixed-point theory of mathematics.`;
+const SITE_DESCRIPTION = "Explore Topological Fixed-Point Theory (TFPT): research papers, testable predictions and an open verification suite by Stefan Hamann and Alessandro Rizzo.";
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#0b1220" },
-    { media: "(prefers-color-scheme: dark)", color: "#06091a" },
-  ],
+  themeColor: "#fcfbf8",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  colorScheme: "dark",
+  colorScheme: "light",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME}: Two Axioms, One Compiler, the Standard-Model Skeleton Derived`,
+    default: "Topological Fixed-Point Theory (TFPT) — Research & Papers",
     template: "%s · TFPT",
   },
   description: SITE_DESCRIPTION,
@@ -80,8 +80,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
-    title: `${SITE_NAME}: Two Axioms, One Compiler, the Standard-Model Skeleton Derived`,
-    description: `From two numbers, c₃ = 1/(8π) and g_car = 5, a discrete compiler reads off the Standard Model, α⁻¹ = 137.0359992 (1.9σ from CODATA-2022), the flavor sector, strong-CP closure, and the scale grammar. ${predictions.length} falsifiable test surfaces, zero fitted constants.`,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
     locale: "en_US",
     url: SITE_URL,
   },
@@ -106,17 +106,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
   },
-  other: {
-    "google-site-verification": process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || "",
-    // Highwire Press tags (Google Scholar). The spec defines `citation_author`
-    // and expects the meta tag to be repeated once per author. There is no
-    // `citation_author_2` — using it makes the second author invisible to
-    // Scholar. Next.js renders an array as repeated <meta> elements.
-    citation_title:
-      "TFPT — Topological Fixed-Point Theory: Two Axioms, One Compiler, the Standard-Model Skeleton Derived",
-    citation_author: ["Hamann, Stefan", "Rizzo, Alessandro"],
-    citation_publication_date: "2026",
-    citation_language: "en",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || undefined,
   },
 };
 
@@ -177,37 +168,6 @@ const researchProjectJsonLd = {
   ],
 };
 
-const collectionJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Collection",
-  name: `TFPT ${SITE_VERSION} Compiler-Closure Document Set`,
-  url: `${SITE_URL}/papers`,
-  description:
-    `The TFPT ${SITE_VERSION} document set: the introduction reading guide, the architecture and E₈ compiler, the Standard Model, the E₈ audit and bootstrap, the honest frontier, the adversarial Red-Team audit, and the four companions — Appendix H (horizon), the Origin Theory synthesis, the research contracts, and the safeguards discipline.`,
-  hasPart: papers.map((p) => ({
-    "@type": "ScholarlyArticle",
-    name: p.title,
-    headline: p.title,
-    alternateName: p.subtitle,
-    abstract: p.abstract,
-    url: `${SITE_URL}#paper-${p.id}`,
-    inLanguage: "en",
-    author: [
-      { "@type": "Person", name: "Stefan Hamann" },
-      { "@type": "Person", name: "Alessandro Rizzo" },
-    ],
-    isPartOf: {
-      "@type": "PublicationIssue",
-      name: `TFPT ${SITE_VERSION} compiler-closure document set`,
-      issueNumber: String(p.number),
-    },
-    encoding: {
-      "@type": "MediaObject",
-      contentUrl: `${SITE_URL}${p.pdf}`,
-      encodingFormat: "application/pdf",
-    },
-  })),
-};
 
 const softwareJsonLd = {
   "@context": "https://schema.org",
@@ -240,26 +200,6 @@ const ledgerDatasetJsonLd = {
   ],
 };
 
-const predictionsJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Dataset",
-  name: "TFPT prediction surface",
-  description:
-    "Falsifiable predictions of the TFPT compiler closure: α⁻¹(0), the solar angle sin²θ₁₂ = 1/3 − φ₀/2, sin²θ₁₃, the inflation tensor ratio r, n_s, A_s, the strong-CP null θ_eff = 0, cosmic birefringence β, Ω_b, η_B, the axion window, and the flavor invariants (det R = 8).",
-  url: `${SITE_URL}/predictions`,
-  creator: [
-    { "@type": "Person", name: "Stefan Hamann" },
-    { "@type": "Person", name: "Alessandro Rizzo" },
-  ],
-  keywords: predictions.map((p) => p.shortTitle).join(", "),
-  variableMeasured: predictions.map((p) => ({
-    "@type": "PropertyValue",
-    name: p.shortTitle,
-    description: p.title,
-    value: p.numericValue,
-    unitText: p.unit,
-  })),
-};
 
 export default function RootLayout({
   children,
@@ -267,28 +207,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${newsreader.variable} ${mono.variable}`}>
       <head>
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-        />
         <meta name="format-detection" content="telephone=no" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="TFPT" />
       </head>
-      <body className="font-sans antialiased text-slate-200 selection:bg-blue-500/30">
+      <body className="font-sans antialiased text-slate-800 selection:bg-blue-500/30">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
@@ -296,14 +222,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(researchProjectJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(predictionsJsonLd) }}
         />
         <script
           type="application/ld+json"
@@ -315,7 +233,7 @@ export default function RootLayout({
         />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-slate-900 focus:px-4 focus:py-2 focus:text-white focus:ring-2 focus:ring-blue-400"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-slate-100 focus:px-4 focus:py-2 focus:text-slate-950 focus:ring-2 focus:ring-blue-400"
         >
           Skip to main content
         </a>

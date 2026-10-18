@@ -14,7 +14,7 @@ const READING_GUIDE = "/papers/introduction.pdf";
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden pt-8 pb-8 sm:pt-12 sm:pb-12">
+    <section className="hero-surface relative isolate overflow-hidden pt-12 pb-12 sm:pt-20 sm:pb-16">
       <div
         aria-hidden="true"
         className="absolute inset-0 grid-bg pointer-events-none"
@@ -27,13 +27,13 @@ export function Hero() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-center text-center"
         >
           <div className="flex flex-wrap items-center justify-center gap-2">
-            <span className="inline-flex items-center gap-2 border border-slate-600/50 bg-slate-950/70 px-3 py-1 font-mono text-[11px] tracking-wide text-slate-300">
+            <span className="inline-flex items-center gap-2 rounded-lg border border-slate-400/50 bg-slate-50/70 px-3 py-1 font-mono text-[11px] tracking-wide text-slate-700">
               v{SITE_VERSION} · ledger-synced · {SCRIPT_TOTAL} checks green
             </span>
             <SuiteBadge />
@@ -41,16 +41,16 @@ export function Hero() {
 
           <h1
             aria-label="Two axioms. One compiler. A testable Standard-Model skeleton."
-            className="mt-4 max-w-4xl font-serif text-[1.85rem] font-semibold leading-[1.08] text-slate-50 sm:mt-5 sm:text-5xl md:text-6xl"
+            className="mt-4 max-w-5xl font-serif text-[2.2rem] font-semibold leading-[1.08] text-slate-950 sm:mt-5 sm:text-5xl md:text-6xl"
           >
             <span className="block">Two axioms. One compiler.</span>{" "}
             <span className="block">
               A testable{" "}
-              <span className="text-blue-300">Standard-Model skeleton</span>.
+              <span className="text-blue-700">Standard-Model skeleton</span>.
             </span>
           </h1>
 
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-700 sm:text-base">
             A discrete programme that builds the Standard-Model skeleton from
             two fixed inputs — and ships every load-bearing step as
             machine-checked code you can run yourself.
@@ -60,8 +60,9 @@ export function Hero() {
 
           <div className="mt-5 flex flex-col items-stretch gap-2 sm:mt-7 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-2.5">
             <Link
+              prefetch={false}
               href="#intro-video"
-              className="group inline-flex items-center justify-center gap-2 border border-blue-400/40 bg-blue-500/15 px-5 py-2.5 text-sm font-semibold text-blue-100 transition-colors hover:bg-blue-500/25"
+              className="hero-primary group inline-flex items-center justify-center gap-2 rounded-lg border border-blue-400/40 bg-blue-500/15 px-5 py-3 text-sm font-semibold text-blue-800 transition-colors hover:bg-blue-500/25"
             >
               <Play size={15} aria-hidden />
               Watch the film (5½ min)
@@ -72,30 +73,34 @@ export function Hero() {
               />
             </Link>
             <Link
+              prefetch={false}
               href="/verification#dag"
-              className="group inline-flex items-center justify-center gap-2 border border-slate-600/60 bg-slate-900/60 px-5 py-2.5 text-sm font-semibold text-slate-100 transition-colors hover:bg-slate-800/80"
+              className="group inline-flex items-center justify-center gap-2 rounded-lg border border-slate-400/60 bg-slate-100/60 px-5 py-3 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-200/80"
             >
               <Terminal size={15} aria-hidden />
               Run one check in your browser
             </Link>
             <Link
+              prefetch={false}
               href="/falsification"
-              className="group inline-flex items-center justify-center gap-2 border border-rose-400/35 bg-rose-500/10 px-5 py-2.5 text-sm font-semibold text-rose-100 transition-colors hover:bg-rose-500/20"
+              className="group inline-flex items-center justify-center gap-2 rounded-lg border border-rose-400/35 bg-rose-500/10 px-5 py-3 text-sm font-semibold text-rose-800 transition-colors hover:bg-rose-500/20"
             >
               <ShieldAlert size={15} aria-hidden />
               How it can fail
             </Link>
           </div>
 
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-xs text-slate-500">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-xs text-slate-600">
             <Link
+              prefetch={false}
               href="/orientation"
-              className="inline-flex items-center gap-1 hover:text-slate-300"
+              className="inline-flex items-center gap-1 hover:text-slate-700"
             >
               <BookOpen size={12} aria-hidden />
               Reading guide
             </Link>
             <Link
+              prefetch={false}
               href={READING_GUIDE}
               target="_blank"
               rel="noopener"
@@ -108,16 +113,17 @@ export function Hero() {
                   title: "Reading guide (introduction)",
                 })
               }
-              className="inline-flex items-center gap-1 hover:text-slate-300"
+              className="inline-flex items-center gap-1 hover:text-slate-700"
             >
               <Download size={12} aria-hidden />
               PDF
             </Link>
             <Link
+              prefetch={false}
               href={REPO_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-slate-300"
+              className="inline-flex items-center gap-1 hover:text-slate-700"
             >
               <Github size={12} aria-hidden />
               GitHub

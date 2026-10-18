@@ -12,10 +12,10 @@ import { SectionHeader } from "./SectionHeader";
  */
 
 const MARKER_TONE: Record<string, string> = {
-  "[E]": "text-emerald-200 bg-emerald-500/15 ring-emerald-400/30",
-  "[C]": "text-amber-200 bg-amber-500/15 ring-amber-400/30",
-  "[E]/[C]": "text-amber-200 bg-amber-500/15 ring-amber-400/30",
-  "[O]": "text-rose-200 bg-rose-500/15 ring-rose-400/30",
+  "[E]": "text-emerald-800 bg-emerald-500/15 ring-emerald-400/30",
+  "[C]": "text-amber-800 bg-amber-500/15 ring-amber-400/30",
+  "[E]/[C]": "text-amber-800 bg-amber-500/15 ring-amber-400/30",
+  "[O]": "text-rose-800 bg-rose-500/15 ring-rose-400/30",
 };
 
 interface CardItem {
@@ -130,13 +130,13 @@ export function CodePrimesBand() {
                 className={`flex flex-col border p-5 ${c.tone}`}
               >
                 <div className="flex items-center justify-between gap-2">
-                  <span className="inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-widest text-slate-400">
-                    <Icon size={14} className="text-slate-500" aria-hidden />
+                  <span className="inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-widest text-slate-600">
+                    <Icon size={14} className="text-slate-600" aria-hidden />
                     {c.kicker}
                   </span>
-                  <span className="font-mono text-[10px] text-slate-500">{c.refs}</span>
+                  <span className="font-mono text-[10px] text-slate-600">{c.refs}</span>
                 </div>
-                <h3 className="mt-3 font-serif text-lg font-semibold leading-snug text-slate-50">
+                <h3 className="mt-3 font-serif text-lg font-semibold leading-snug text-slate-950">
                   {c.title}
                 </h3>
                 <ul className="mt-3 flex-1 space-y-2.5">
@@ -149,13 +149,13 @@ export function CodePrimesBand() {
                       >
                         {it.marker}
                       </span>
-                      <span className="text-xs leading-relaxed text-slate-300">
+                      <span className="text-xs leading-relaxed text-slate-700">
                         {it.text}
                       </span>
                     </li>
                   ))}
                 </ul>
-                <p className="mt-4 border-t border-slate-800/60 pt-3 text-[11px] leading-relaxed text-slate-500">
+                <p className="mt-4 border-t border-slate-200/60 pt-3 text-[11px] leading-relaxed text-slate-600">
                   {c.scope}
                 </p>
               </article>
@@ -165,8 +165,9 @@ export function CodePrimesBand() {
 
         <div className="mt-6">
           <Link
+            prefetch={false}
             href="/verification"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-300 transition-colors hover:text-blue-200"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-700 transition-colors hover:text-blue-800"
           >
             Run these checks in the browser
             <ArrowRight size={14} aria-hidden />

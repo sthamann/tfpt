@@ -41,9 +41,9 @@ export function LogoMark({
           gradientUnits="objectBoundingBox"
         >
           <stop offset="0%" stopColor="#1d4ed8" />
-          <stop offset="40%" stopColor="#6366f1" />
-          <stop offset="80%" stopColor="#a855f7" />
-          <stop offset="100%" stopColor="#ec4899" />
+          <stop offset="40%" stopColor="#2563eb" />
+          <stop offset="80%" stopColor="#0e7490" />
+          <stop offset="100%" stopColor="#0f766e" />
         </linearGradient>
         <radialGradient id={`${id}-glow`} cx="50%" cy="50%" r="55%">
           <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
@@ -143,10 +143,10 @@ export function Logo({
       <LogoMark size={size} animated={animated} />
       {showWordmark && (
         <span className="leading-tight">
-          <span className="block font-serif text-base font-semibold tracking-tight text-slate-100">
+          <span className="block font-serif text-base font-semibold tracking-tight text-slate-900">
             TFPT
           </span>
-          <span className="hidden text-[10px] uppercase tracking-[0.18em] text-slate-400 sm:block">
+          <span className="hidden text-[10px] uppercase tracking-[0.18em] text-slate-600 sm:block">
             Fixed-Point Theory
           </span>
         </span>

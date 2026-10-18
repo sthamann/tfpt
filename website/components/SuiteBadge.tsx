@@ -17,10 +17,11 @@ export function SuiteBadge({
   const label = `suite green · ${SCRIPT_TOTAL}/${SCRIPT_TOTAL} · synced ${SITE_DATE}`;
   return (
     <Link
+      prefetch={false}
       href={href}
       title="Verification suite status for this site release (static, not live)"
       className={cn(
-        "inline-flex items-center gap-1.5 border border-slate-600/50 bg-slate-950/70 px-2 py-0.5 font-mono text-[10px] tracking-wide text-slate-300 transition-colors hover:border-slate-500 hover:text-slate-100",
+        "inline-flex items-center gap-1.5 border border-slate-400/50 bg-slate-50/70 px-2 py-0.5 font-mono text-[10px] tracking-wide text-slate-700 transition-colors hover:border-slate-500 hover:text-slate-900",
         className,
       )}
     >

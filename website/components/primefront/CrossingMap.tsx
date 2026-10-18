@@ -41,12 +41,12 @@ const REST_BOTTOM = 62;
 
 export function CrossingMap() {
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-violet-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-violet-700/90">
           Crossing map · support width a · Teile 87–93
         </p>
-        <span className="font-mono text-[10px] text-slate-500">
+        <span className="font-mono text-[10px] text-slate-600">
           λ_min ≥ 0 on all 16 windows
         </span>
       </div>
@@ -83,14 +83,14 @@ export function CrossingMap() {
                 y={REST_BOTTOM - h - 4}
                 textAnchor="middle"
                 fontSize="9"
-                className="fill-violet-200 font-mono"
+                className="fill-violet-800 font-mono"
               >
                 {s.dim}
               </text>
             </g>
           );
         })}
-        <text x={PAD_L} y={REST_TOP - 3} fontSize="8" className="fill-slate-500 font-mono">
+        <text x={PAD_L} y={REST_TOP - 3} fontSize="8" className="fill-slate-600 font-mono">
           dim residual (of 32)
         </text>
 
@@ -147,7 +147,7 @@ export function CrossingMap() {
               y={AXIS_Y + 14}
               textAnchor={t.anchor}
               fontSize="9"
-              className="fill-slate-400 font-mono"
+              className="fill-slate-600 font-mono"
             >
               {t.label}
             </text>
@@ -163,7 +163,7 @@ export function CrossingMap() {
               y={AXIS_Y + (i % 2 === 0 ? 25 : 34)}
               textAnchor="middle"
               fontSize="8"
-              className="fill-slate-500 font-mono"
+              className="fill-slate-600 font-mono"
             >
               {m.label}
             </text>
@@ -171,19 +171,19 @@ export function CrossingMap() {
         ))}
       </svg>
 
-      <ul className="mt-2 space-y-1 font-mono text-[10px] text-slate-500">
+      <ul className="mt-2 space-y-1 font-mono text-[10px] text-slate-600">
         <li>
-          <span className="text-emerald-300">green</span> — proven zone a ≤ log 2:
+          <span className="text-emerald-700">green</span> — proven zone a ≤ log 2:
           prime side identically zero; classical unconditional positivity
           (Yoshida, Bombieri, Connes–Consani)
         </li>
         <li>
-          <span className="text-amber-200">amber</span> — the thin band
+          <span className="text-amber-800">amber</span> — the thin band
           log 2 &lt; a ≤ a* = 0.9253: the real attackable content, atom↔arch
           balance; a* &lt; log 3, so the whole band is a one-atom zone (T91)
         </li>
         <li>
-          <span className="text-slate-300">slate</span> — beyond a*: further
+          <span className="text-slate-700">slate</span> — beyond a*: further
           prime atoms enter and the deep near-zeros are classical
           band-limitation, no crossing content
         </li>
@@ -193,15 +193,15 @@ export function CrossingMap() {
         {MARKERS.map((m) => (
           <div
             key={m.a}
-            className="rounded-lg border border-slate-700/40 bg-slate-900/50 px-2 py-1.5"
+            className="rounded-lg border border-slate-300/40 bg-slate-100/50 px-2 py-1.5"
           >
-            <p className="font-mono text-[11px] text-slate-200">a = {m.label}</p>
-            <p className="text-[10px] leading-tight text-slate-500">{m.note}</p>
+            <p className="font-mono text-[11px] text-slate-800">a = {m.label}</p>
+            <p className="text-[10px] leading-tight text-slate-600">{m.note}</p>
           </div>
         ))}
       </div>
 
-      <p className="mt-3 text-xs leading-relaxed text-slate-500">
+      <p className="mt-3 text-xs leading-relaxed text-slate-600">
         The boundary is not sharp — the margin falls smoothly and the atom
         turn-on is (a − log 2)³-soft. T90 dissects the residual: the 1–4 vectors
         are n-stable (≤ 2.1°) and explicit (Gauss×cos / Gauss×sin, 99+%

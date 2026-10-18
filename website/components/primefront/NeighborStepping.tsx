@@ -52,12 +52,12 @@ export function NeighborStepping() {
   const activeEdge = step % EDGES.length;
 
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-700/90">
           Kneser neighbour stepping · p = {row.p}
         </p>
-        <p className="font-mono text-[11px] text-slate-400">
+        <p className="font-mono text-[11px] text-slate-600">
           #lines = {row.lines.toLocaleString("en-US")} = σ₃·#P³
         </p>
       </div>
@@ -92,7 +92,7 @@ export function NeighborStepping() {
               cy={n.y}
               r={n.id === 3 ? 9 : 7}
               fill={n.id === 0 || n.id === 6 ? "#0f766e" : "#1e293b"}
-              stroke="#94a3b8"
+              stroke="#526278"
               strokeWidth="1.25"
             />
           </g>
@@ -105,8 +105,8 @@ export function NeighborStepping() {
         </text>
       </svg>
 
-      <div className="mt-4 overflow-x-auto rounded-xl border border-slate-700/40 bg-slate-900/60 p-3">
-        <p className="mb-2 font-mono text-[10px] text-slate-500">
+      <div className="mt-4 overflow-x-auto rounded-xl border border-slate-300/40 bg-slate-100/60 p-3">
+        <p className="mb-2 font-mono text-[10px] text-slate-600">
           Frozen marked operator · ν_p = a·Id + b·T_p · b = σ₃ + a_p
         </p>
         <div className="flex flex-wrap items-center gap-4">
@@ -114,16 +114,16 @@ export function NeighborStepping() {
             label={`T_${row.p}`}
             values={[row.sigma3, row.sigma3, row.sigma3, row.ap]}
           />
-          <div className="font-mono text-xs text-slate-400">
+          <div className="font-mono text-xs text-slate-600">
             <div>
               (a, b) ={" "}
-              <span className="text-slate-200">
+              <span className="text-slate-800">
                 ({row.a}, {row.b})
               </span>
             </div>
             <div className="mt-1">
               a_p = b − σ₃ ={" "}
-              <span className="text-emerald-300">{row.ap}</span>
+              <span className="text-emerald-700">{row.ap}</span>
             </div>
           </div>
         </div>
@@ -140,13 +140,13 @@ function MatrixDiag({
   values: readonly number[];
 }) {
   return (
-    <div className="font-mono text-[11px] text-slate-300">
-      <span className="text-slate-500">{label} ≈ </span>
-      <span className="inline-block border-y border-slate-600 px-1 py-0.5">
+    <div className="font-mono text-[11px] text-slate-700">
+      <span className="text-slate-600">{label} ≈ </span>
+      <span className="inline-block border-y border-slate-400 px-1 py-0.5">
         diag(
         {values.map((v, i) => (
           <span key={i}>
-            <span className={i === 3 ? "text-emerald-300" : "text-sky-300"}>
+            <span className={i === 3 ? "text-emerald-700" : "text-sky-700"}>
               {v}
             </span>
             {i < values.length - 1 ? ", " : ""}

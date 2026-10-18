@@ -25,7 +25,7 @@ const DECODERS: DecoderEntry[] = [
       "b₁ = 41/10, det R = 8",
     ],
     accent: "from-blue-500 to-violet-500",
-    chip: "bg-blue-500/15 text-blue-200 ring-blue-400/30",
+    chip: "bg-blue-500/15 text-blue-800 ring-blue-400/30",
   },
   {
     id: "constants",
@@ -38,7 +38,7 @@ const DECODERS: DecoderEntry[] = [
       "θ_eff = 0 (strong CP)",
     ],
     accent: "from-violet-500 to-fuchsia-500",
-    chip: "bg-violet-500/15 text-violet-200 ring-violet-400/30",
+    chip: "bg-violet-500/15 text-violet-800 ring-violet-400/30",
   },
   {
     id: "cosmos",
@@ -52,7 +52,7 @@ const DECODERS: DecoderEntry[] = [
       "Λ ∼ e⁻²ᵅ⁻¹, H₀ ∼ √Λ",
     ],
     accent: "from-emerald-500 to-teal-500",
-    chip: "bg-emerald-500/15 text-emerald-200 ring-emerald-400/30",
+    chip: "bg-emerald-500/15 text-emerald-800 ring-emerald-400/30",
   },
 ];
 
@@ -62,14 +62,14 @@ export function ThreeDecoderMap() {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      className="glass mx-auto mt-12 max-w-5xl overflow-hidden rounded-2xl ring-1 ring-slate-700/40"
+      className="glass mx-auto mt-12 max-w-5xl overflow-hidden rounded-2xl ring-1 ring-slate-300/40"
       aria-label="The compiler map: two axioms, the two atoms, the E8 glue, and three readouts."
     >
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/60 px-5 py-3">
-        <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-300/80">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200/60 px-5 py-3">
+        <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
           Two axioms · one compiler · three readouts
         </span>
-        <span className="rounded-full bg-slate-800/60 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-widest text-slate-300 ring-1 ring-slate-700/40">
+        <span className="rounded-full bg-slate-200/60 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-widest text-slate-700 ring-1 ring-slate-300/40">
           15-second overview
         </span>
       </div>
@@ -80,7 +80,7 @@ export function ThreeDecoderMap() {
             n="1"
             label="Two axioms"
             tex="c_3 = \tfrac{1}{8\pi}, \qquad g_{\mathrm{car}} = 5\ (3{+}2)"
-            accent="from-slate-400 to-slate-500"
+            accent="from-slate-600 to-slate-500"
           />
           <TrunkConnector />
           <TrunkStep
@@ -111,7 +111,7 @@ export function ThreeDecoderMap() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
-              className="relative overflow-hidden rounded-xl border border-slate-700/40 bg-slate-950/40 p-3"
+              className="relative overflow-hidden rounded-xl border border-slate-300/40 bg-slate-50/40 p-3"
             >
               <div
                 aria-hidden="true"
@@ -122,13 +122,13 @@ export function ThreeDecoderMap() {
               >
                 {d.role}
               </div>
-              <div className="mt-2 text-base font-mono font-semibold text-slate-50">
+              <div className="mt-2 text-base font-mono font-semibold text-slate-950">
                 <Math>{d.tex}</Math>
               </div>
-              <ul className="mt-2 space-y-0.5 text-[11px] leading-snug text-slate-300">
+              <ul className="mt-2 space-y-0.5 text-[11px] leading-snug text-slate-700">
                 {d.bullets.map((b) => (
                   <li key={b} className="flex gap-1.5">
-                    <span aria-hidden="true" className="text-slate-500">
+                    <span aria-hidden="true" className="text-slate-600">
                       ›
                     </span>
                     <span>{b}</span>
@@ -169,7 +169,7 @@ function TrunkStep({
       className={`flex items-start gap-3 rounded-xl border p-3 ${
         highlight
           ? "border-blue-400/40 bg-blue-500/10 ring-1 ring-blue-400/30"
-          : "border-slate-700/40 bg-slate-950/40"
+          : "border-slate-300/40 bg-slate-50/40"
       }`}
     >
       <span
@@ -178,14 +178,14 @@ function TrunkStep({
         {n}
       </span>
       <div className="min-w-0 flex-1">
-        <div className="text-[11px] font-semibold uppercase tracking-widest text-slate-200">
+        <div className="text-[11px] font-semibold uppercase tracking-widest text-slate-800">
           {label}
         </div>
         <div className="mt-1 overflow-x-auto formula-scroll">
           <Math block>{tex}</Math>
         </div>
         {sublabel && (
-          <p className="mt-1 text-[11px] leading-snug text-slate-400">
+          <p className="mt-1 text-[11px] leading-snug text-slate-600">
             {sublabel}
           </p>
         )}
@@ -198,9 +198,9 @@ function TrunkConnector() {
   return (
     <li
       aria-hidden="true"
-      className="flex h-5 items-center justify-center pl-3.5 text-slate-500"
+      className="flex h-5 items-center justify-center pl-3.5 text-slate-600"
     >
-      <span className="block h-3 w-px bg-gradient-to-b from-slate-600/40 via-slate-500/30 to-slate-600/40" />
+      <span className="block h-3 w-px bg-gradient-to-b from-slate-400/40 via-slate-500/30 to-slate-400/40" />
     </li>
   );
 }
@@ -236,7 +236,7 @@ function ThreeWayFork() {
         <line x1="300" y1="20" x2="300" y2="44" stroke="url(#forkStroke)" strokeWidth="1.5" />
         <line x1="500" y1="20" x2="500" y2="44" stroke="url(#forkStroke)" strokeWidth="1.5" />
       </svg>
-      <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-900/85 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-violet-200 ring-1 ring-violet-400/30">
+      <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-100/85 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-violet-800 ring-1 ring-violet-400/30">
         Three readouts
       </span>
     </div>
@@ -284,7 +284,7 @@ function ClosedBranchPill() {
   return (
     <div className="rounded-xl border border-rose-400/30 bg-rose-500/10 px-4 py-3">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="rounded-full bg-rose-500/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-rose-200 ring-1 ring-rose-400/30">
+        <span className="rounded-full bg-rose-500/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-rose-800 ring-1 ring-rose-400/30">
           Bootstrap loop
         </span>
         <span className="text-[11px] text-rose-50/90">

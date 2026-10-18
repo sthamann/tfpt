@@ -42,21 +42,22 @@ export function FalsifyList() {
         {CRITERIA.map((c) => (
           <li
             key={c.title}
-            className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-5"
+            className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-5"
           >
-            <h3 className="text-sm font-semibold text-slate-100">{c.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-400">
+            <h3 className="text-sm font-semibold text-slate-900">{c.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-600">
               {c.body}
             </p>
-            <div className="mt-3 font-mono text-[11px] text-slate-500">
+            <div className="mt-3 font-mono text-[11px] text-slate-600">
               {c.refs}
             </div>
           </li>
         ))}
-        <li className="flex items-center justify-center rounded-2xl border border-dashed border-slate-700/50 bg-slate-950/30 p-5">
+        <li className="flex items-center justify-center rounded-2xl border border-dashed border-slate-300/50 bg-slate-50/30 p-5">
           <Link
+            prefetch={false}
             href="/falsification"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-rose-200 underline decoration-rose-400/40 underline-offset-2 hover:text-rose-100"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-rose-800 underline decoration-rose-400/40 underline-offset-2 hover:text-rose-800"
           >
             The full kill board with thresholds
             <ArrowRight size={14} aria-hidden />

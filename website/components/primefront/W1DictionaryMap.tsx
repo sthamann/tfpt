@@ -46,20 +46,20 @@ const TONES = {
   emerald: {
     border: "border-emerald-400/35",
     bg: "bg-emerald-500/[0.07]",
-    text: "text-emerald-200",
-    line: "stroke-emerald-400/70",
+    text: "text-emerald-800",
+    line: "stroke-emerald-700/70",
   },
   sky: {
     border: "border-sky-400/35",
     bg: "bg-sky-500/[0.07]",
-    text: "text-sky-200",
-    line: "stroke-sky-400/70",
+    text: "text-sky-800",
+    line: "stroke-sky-700/70",
   },
   violet: {
     border: "border-violet-400/35",
     bg: "bg-violet-500/[0.07]",
-    text: "text-violet-200",
-    line: "stroke-violet-400/70",
+    text: "text-violet-800",
+    line: "stroke-violet-700/70",
   },
 } as const;
 
@@ -93,12 +93,12 @@ const CHAIN = [
 export function W1DictionaryMap() {
   const reduce = useReducedMotion();
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-4 flex items-baseline justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-sky-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-sky-700/90">
           The W1 dictionary · TFPT ↔ Suzuki
         </p>
-        <span className="font-mono text-[10px] text-slate-500">
+        <span className="font-mono text-[10px] text-slate-600">
           v630 · v631 · v640–v643
         </span>
       </div>
@@ -119,7 +119,7 @@ export function W1DictionaryMap() {
                 className={`rounded-xl border ${t.border} ${t.bg} px-3 py-2.5`}
               >
                 <p className={`text-xs font-medium ${t.text}`}>{r.tfpt}</p>
-                <p className="mt-0.5 font-mono text-[10px] leading-snug text-slate-400">
+                <p className="mt-0.5 font-mono text-[10px] leading-snug text-slate-600">
                   {r.tfptSub}
                 </p>
               </div>
@@ -161,11 +161,11 @@ export function W1DictionaryMap() {
                 className={`rounded-xl border ${t.border} ${t.bg} px-3 py-2.5`}
               >
                 <p className={`text-xs font-medium ${t.text}`}>{r.suzuki}</p>
-                <p className="mt-0.5 font-mono text-[10px] leading-snug text-slate-400">
+                <p className="mt-0.5 font-mono text-[10px] leading-snug text-slate-600">
                   {r.suzukiSub}
                 </p>
               </div>
-              <p className="col-span-3 -mt-1 text-center font-mono text-[9px] text-slate-500">
+              <p className="col-span-3 -mt-1 text-center font-mono text-[9px] text-slate-600">
                 {r.detail}
               </p>
             </motion.div>
@@ -173,8 +173,8 @@ export function W1DictionaryMap() {
         })}
       </div>
 
-      <div className="mt-5 border-t border-slate-800/60 pt-4">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-slate-500">
+      <div className="mt-5 border-t border-slate-200/60 pt-4">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-slate-600">
           The honest implication map
         </p>
         <div className="mt-3 flex flex-wrap items-center gap-1.5">
@@ -189,28 +189,28 @@ export function W1DictionaryMap() {
               >
                 <p
                   className={`font-mono text-[11px] font-semibold ${
-                    c.open ? "text-amber-200" : "text-emerald-300"
+                    c.open ? "text-amber-800" : "text-emerald-700"
                   }`}
                 >
                   {c.id}
-                  <span className="ml-1.5 font-normal normal-case tracking-normal text-slate-400">
+                  <span className="ml-1.5 font-normal normal-case tracking-normal text-slate-600">
                     {c.status}
                   </span>
                 </p>
-                <p className="mt-0.5 max-w-[180px] text-[10px] leading-snug text-slate-400">
+                <p className="mt-0.5 max-w-[180px] text-[10px] leading-snug text-slate-600">
                   {c.label}
                 </p>
               </div>
               {i < CHAIN.length - 1 && (
-                <span aria-hidden className="font-mono text-slate-600">
+                <span aria-hidden className="font-mono text-slate-500">
                   →
                 </span>
               )}
             </div>
           ))}
         </div>
-        <p className="mt-3 text-xs leading-relaxed text-slate-500">
-          Closing W1 does <strong className="text-slate-300">not</strong> move
+        <p className="mt-3 text-xs leading-relaxed text-slate-600">
+          Closing W1 does <strong className="text-slate-700">not</strong> move
           W3. The RH-hard step is untouched — stated in the contract, kept
           explicit here.
         </p>

@@ -51,7 +51,7 @@ export function GlossTerm({
         onBlur={() => setOpen(false)}
         title={definition}
         className={cn(
-          "cursor-help border-b border-dotted border-blue-400/50 align-baseline text-left text-inherit transition-colors hover:text-blue-200 focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-blue-400/40",
+          "cursor-help border-b border-dotted border-blue-400/50 align-baseline text-left text-inherit transition-colors hover:text-blue-800 focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-blue-400/40",
           className,
         )}
       >
@@ -66,14 +66,14 @@ export function GlossTerm({
         <span
           id={id}
           role="tooltip"
-          className="absolute left-1/2 top-full z-30 mt-2 w-72 max-w-[80vw] -translate-x-1/2 rounded-xl border border-slate-700/60 bg-slate-950/95 p-3 text-xs leading-relaxed text-slate-200 shadow-2xl ring-1 ring-blue-400/20 backdrop-blur-md"
+          className="absolute left-1/2 top-full z-30 mt-2 w-72 max-w-[80vw] -translate-x-1/2 rounded-xl border border-slate-300/60 bg-slate-50/95 p-3 text-xs leading-relaxed text-slate-800 shadow-2xl ring-1 ring-blue-400/20 backdrop-blur-md"
         >
           {entry && (
-            <span className="block text-[10px] font-semibold uppercase tracking-widest text-blue-300/80">
+            <span className="block text-[10px] font-semibold uppercase tracking-widest text-blue-700/80">
               {entry.term}
             </span>
           )}
-          <span className="mt-1 block text-slate-200">{definition}</span>
+          <span className="mt-1 block text-slate-800">{definition}</span>
         </span>
       )}
     </span>

@@ -28,7 +28,7 @@ export function DownloadsTeaser() {
   return (
     <section
       id="downloads"
-      className="relative scroll-mt-20 border-t border-slate-800/60 py-14 sm:py-16"
+      className="relative scroll-mt-20 border-t border-slate-200/60 py-14 sm:py-16"
       aria-labelledby="downloads-heading"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -54,18 +54,18 @@ export function DownloadsTeaser() {
                   title: c.label,
                 })
               }
-              className="group flex items-start gap-3 border border-slate-700/50 bg-slate-950/50 px-4 py-4 transition-colors hover:border-slate-500/60"
+              className="group flex items-start gap-3 border border-slate-300/50 bg-slate-50/50 px-4 py-4 transition-colors hover:border-slate-500/60"
             >
               <FileText
                 size={18}
-                className="mt-0.5 flex-none text-slate-500 group-hover:text-blue-300"
+                className="mt-0.5 flex-none text-slate-600 group-hover:text-blue-700"
                 aria-hidden
               />
               <span>
-                <span className="block text-sm font-semibold text-slate-100">
+                <span className="block text-sm font-semibold text-slate-900">
                   {c.label}
                 </span>
-                <span className="mt-0.5 block font-mono text-[11px] text-slate-500">
+                <span className="mt-0.5 block font-mono text-[11px] text-slate-600">
                   {c.note}
                 </span>
               </span>
@@ -74,8 +74,9 @@ export function DownloadsTeaser() {
         </div>
         <div className="mt-5">
           <Link
+            prefetch={false}
             href="/papers"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-300 hover:text-blue-200"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-700 hover:text-blue-800"
           >
             All papers →
             <ArrowRight size={14} aria-hidden />

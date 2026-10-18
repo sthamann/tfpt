@@ -54,12 +54,12 @@ function bandPath(): string {
 
 export function HandoverCrossing() {
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-violet-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-violet-700/90">
           The crossing · σ_k(δ) vs μ_k/2 · T102
         </p>
-        <span className="font-mono text-[10px] text-slate-500">
+        <span className="font-mono text-[10px] text-slate-600">
           sandwich holds 16/16 zones
         </span>
       </div>
@@ -110,7 +110,7 @@ export function HandoverCrossing() {
             y={PAD_T + 26}
             textAnchor="middle"
             fontSize="8"
-            className="fill-amber-200 font-mono"
+            className="fill-amber-800 font-mono"
           >
             2w_k lands here
           </text>
@@ -119,7 +119,7 @@ export function HandoverCrossing() {
             y={PAD_T + 36}
             textAnchor="middle"
             fontSize="7"
-            className="fill-amber-200/80 font-mono"
+            className="fill-amber-800/80 font-mono"
           >
             16/16 · ratio 0.749…0.940
           </text>
@@ -140,7 +140,7 @@ export function HandoverCrossing() {
           y={yOf(BARE_LEVEL) - 4}
           textAnchor="end"
           fontSize="8"
-          className="fill-slate-400 font-mono"
+          className="fill-slate-600 font-mono"
         >
           bare E₋ form · 2.65…3.52 ≈ 4–14× μ_k/2 (clipped)
         </text>
@@ -170,7 +170,7 @@ export function HandoverCrossing() {
             x={xOf(0.11)}
             y={yOf(3.35)}
             fontSize="8"
-            className="fill-violet-200 font-mono"
+            className="fill-violet-800 font-mono"
           >
             Schur dressing against E₀⊕E₊
           </text>
@@ -178,7 +178,7 @@ export function HandoverCrossing() {
             x={xOf(0.11)}
             y={yOf(3.35) + 10}
             fontSize="8"
-            className="fill-violet-200/80 font-mono"
+            className="fill-violet-800/80 font-mono"
           >
             takes 35.7%…97.3%
           </text>
@@ -220,7 +220,7 @@ export function HandoverCrossing() {
           x={xOf(0.72)}
           y={yOf(sigmaUpper(0.72)) - 14}
           fontSize="8"
-          className="fill-violet-200 font-mono"
+          className="fill-violet-800 font-mono"
         >
           Schur profile σ_k(δ)
         </text>
@@ -243,7 +243,7 @@ export function HandoverCrossing() {
           y={yOf(1) + 12}
           textAnchor="end"
           fontSize="8"
-          className="fill-sky-300 font-mono"
+          className="fill-sky-700 font-mono"
         >
           atom line μ_k/2
         </text>
@@ -271,7 +271,7 @@ export function HandoverCrossing() {
             y={VIEW_H - PAD_B - 6}
             textAnchor="middle"
             fontSize="8"
-            className="fill-amber-200 font-mono"
+            className="fill-amber-800 font-mono"
           >
             δ_c = 2w_k · anchored · R² 0.968
           </text>
@@ -291,7 +291,7 @@ export function HandoverCrossing() {
           y={VIEW_H - PAD_B + 12}
           textAnchor="end"
           fontSize="8"
-          className="fill-slate-500 font-mono"
+          className="fill-slate-600 font-mono"
         >
           window depth δ →
         </text>
@@ -299,13 +299,13 @@ export function HandoverCrossing() {
           x={PAD_L}
           y={VIEW_H - PAD_B + 12}
           fontSize="8"
-          className="fill-slate-500 font-mono"
+          className="fill-slate-600 font-mono"
         >
           w ~ μ^(−0.563 ± 0.098) · q = −1.84 ± 0.37 (fits)
         </text>
       </svg>
 
-      <p className="mt-3 text-xs leading-relaxed text-slate-500">
+      <p className="mt-3 text-xs leading-relaxed text-slate-600">
         The onset is an <em>anchored</em> crossing of two finite quantities —
         the falling Schur profile σ_k(δ) meets the flat atom line μ_k/2, and
         2w_k lands between the two sandwich crossings in 16/16 zones. Honest

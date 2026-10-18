@@ -6,19 +6,19 @@ const META: Record<
 > = {
   "[E]": {
     meaning: "exact / machine-proven",
-    tone: "text-emerald-200 bg-emerald-500/15 ring-emerald-400/30",
+    tone: "text-emerald-800 bg-emerald-500/15 ring-emerald-400/30",
   },
   "[C]": {
     meaning: "conditional under named hypotheses",
-    tone: "text-amber-200 bg-amber-500/15 ring-amber-400/30",
+    tone: "text-amber-800 bg-amber-500/15 ring-amber-400/30",
   },
   "[O]": {
     meaning: "open / declared input",
-    tone: "text-rose-200 bg-rose-500/15 ring-rose-400/30",
+    tone: "text-rose-800 bg-rose-500/15 ring-rose-400/30",
   },
   "[X]": {
     meaning: "falsifiable kill test",
-    tone: "text-blue-200 bg-blue-500/15 ring-blue-400/30",
+    tone: "text-blue-800 bg-blue-500/15 ring-blue-400/30",
   },
 };
 
@@ -31,7 +31,7 @@ export function MarkerLegend() {
           className={`flex items-start gap-2 rounded-xl px-3 py-2 text-xs ring-1 ${META[m].tone}`}
         >
           <span className="font-mono font-semibold">{m}</span>
-          <span className="text-slate-300">{META[m].meaning}</span>
+          <span className="text-slate-700">{META[m].meaning}</span>
         </li>
       ))}
     </ul>

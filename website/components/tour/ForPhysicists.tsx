@@ -23,7 +23,7 @@ export function ForPhysicists({
   return (
     <div
       className={cn(
-        "mt-5 rounded-xl border border-slate-700/50 bg-slate-950/50",
+        "mt-5 rounded-xl border border-slate-300/50 bg-slate-50/50",
         className,
       )}
     >
@@ -32,16 +32,16 @@ export function ForPhysicists({
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left transition-colors hover:bg-slate-900/60"
+        className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left transition-colors hover:bg-slate-100/60"
       >
-        <span className="text-xs font-semibold uppercase tracking-widest text-blue-300/90">
+        <span className="text-xs font-semibold uppercase tracking-widest text-blue-700/90">
           {label}
         </span>
         <ChevronDown
           size={16}
           aria-hidden
           className={cn(
-            "shrink-0 text-slate-400 transition-transform duration-200",
+            "shrink-0 text-slate-600 transition-transform duration-200",
             open && "rotate-180",
           )}
         />
@@ -49,7 +49,7 @@ export function ForPhysicists({
       {open && (
         <div
           id={panelId}
-          className="border-t border-slate-800/80 px-4 py-4 text-sm leading-relaxed text-slate-300"
+          className="border-t border-slate-200/80 px-4 py-4 text-sm leading-relaxed text-slate-700"
         >
           {children}
         </div>

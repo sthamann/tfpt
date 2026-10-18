@@ -46,12 +46,12 @@ function tileMeta(i: number): {
 export function TBWindowMap() {
   const reduce = useReducedMotion();
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-3 flex items-baseline justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-700/90">
           The T-B closure map · 70 complete windows
         </p>
-        <span className="font-mono text-[10px] text-slate-500">
+        <span className="font-mono text-[10px] text-slate-600">
           v692 · v693
         </span>
       </div>
@@ -81,7 +81,7 @@ export function TBWindowMap() {
         })}
       </div>
 
-      <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[10px] text-slate-400">
+      <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[10px] text-slate-600">
         <span className="inline-flex items-center gap-1.5">
           <span className="h-2.5 w-2.5 rounded-[2px] border border-emerald-400/30 bg-emerald-500/25" />
           60 closed · unconditionally-modulo-citations
@@ -96,13 +96,13 @@ export function TBWindowMap() {
         </span>
       </div>
 
-      <p className="mt-3 text-xs leading-relaxed text-slate-500">
-        <strong className="font-medium text-emerald-200">
+      <p className="mt-3 text-xs leading-relaxed text-slate-600">
+        <strong className="font-medium text-emerald-800">
           Machine-verified (v692 + v693, 12 checks):
         </strong>{" "}
         v692 types the razor-thin T-B margin as{" "}
         <em>transverse zero mass</em> — a sum of squares via the identity{" "}
-        <span className="font-mono text-slate-300">
+        <span className="font-mono text-slate-700">
           det(G_Z + P) = det G_Z + c_P(s⊥ᵀG_Z s⊥)
         </span>{" "}
         — and v693 builds in the cited explicit bounds (Platt–Trudgian 3e12,

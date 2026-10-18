@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/objections` },
   openGraph: {
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
     type: "article",
     title: "Objection ledger — the sharpest objections, tracked",
     description:
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
     authors: ["Stefan Hamann", "Alessandro Rizzo"],
   },
   twitter: {
+    images: [`${SITE_URL}/opengraph-image`],
     card: "summary_large_image",
     title: "TFPT objection ledger",
     description: "The sharpest objections, tracked with status and location.",
@@ -40,9 +42,9 @@ export const metadata: Metadata = {
 type Status = "Answered" | "Conditional" | "Open";
 
 const STATUS_META: Record<Status, { tone: string }> = {
-  Answered: { tone: "bg-emerald-500/15 text-emerald-200 ring-emerald-400/30" },
-  Conditional: { tone: "bg-amber-500/15 text-amber-200 ring-amber-400/30" },
-  Open: { tone: "bg-rose-500/15 text-rose-200 ring-rose-400/30" },
+  Answered: { tone: "bg-emerald-500/15 text-emerald-800 ring-emerald-400/30" },
+  Conditional: { tone: "bg-amber-500/15 text-amber-800 ring-amber-400/30" },
+  Open: { tone: "bg-rose-500/15 text-rose-800 ring-rose-400/30" },
 };
 
 /**
@@ -118,20 +120,21 @@ export default function ObjectionsPage() {
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-6">
             <Link
+              prefetch={false}
               href="/"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-200"
+              className="inline-flex items-center gap-1.5 text-sm text-slate-600 transition-colors hover:text-slate-800"
             >
               <ArrowLeft size={14} />
               Back to overview
             </Link>
           </nav>
-          <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-violet-200">
+          <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-violet-800">
             <span className="uppercase">Public objection ledger</span>
           </span>
-          <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-slate-50 sm:text-5xl md:text-6xl">
+          <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-slate-950 sm:text-5xl md:text-6xl">
             The sharpest <span className="text-gradient-blue">objections</span>, tracked.
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg">
             A ledger, not a brochure: every recurring objection with its answer
             status, where it is addressed, and whether anything stays open. The
             full answers live in the hostile-referee FAQ; disagreements belong in
@@ -153,7 +156,7 @@ export default function ObjectionsPage() {
             description="Each row links to where the objection is addressed in depth. Status is honest: most are answered, the parameter question is conditional on the declared layer, and the residual is genuinely open."
           />
 
-          <div className="mt-8 overflow-hidden rounded-2xl border border-slate-700/40">
+          <div className="mt-8 overflow-hidden rounded-2xl border border-slate-300/40">
             <div className="overflow-x-auto formula-scroll">
               <table className="w-full min-w-[860px] border-separate border-spacing-0 text-left text-sm">
                 <thead>
@@ -162,7 +165,7 @@ export default function ObjectionsPage() {
                       <th
                         key={h}
                         scope="col"
-                        className="border-b border-slate-800/60 bg-slate-950/60 px-4 py-3 text-[10px] font-semibold uppercase tracking-widest text-slate-300"
+                        className="border-b border-slate-200/60 bg-slate-50/60 px-4 py-3 text-[10px] font-semibold uppercase tracking-widest text-slate-700"
                       >
                         {h}
                       </th>
@@ -171,29 +174,30 @@ export default function ObjectionsPage() {
                 </thead>
                 <tbody>
                   {ROWS.map((row) => (
-                    <tr key={row.objection} className="hover:bg-slate-900/30">
-                      <td className="border-b border-slate-800/60 px-4 py-3 align-top text-xs font-semibold leading-relaxed text-slate-100">
+                    <tr key={row.objection} className="hover:bg-slate-100/30">
+                      <td className="border-b border-slate-200/60 px-4 py-3 align-top text-xs font-semibold leading-relaxed text-slate-900">
                         {row.objection}
                       </td>
-                      <td className="border-b border-slate-800/60 px-4 py-3 align-top text-xs leading-relaxed text-slate-300">
+                      <td className="border-b border-slate-200/60 px-4 py-3 align-top text-xs leading-relaxed text-slate-700">
                         {row.answer}
                       </td>
-                      <td className="border-b border-slate-800/60 px-4 py-3 align-top">
+                      <td className="border-b border-slate-200/60 px-4 py-3 align-top">
                         <span
                           className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider ring-1 ${STATUS_META[row.status].tone}`}
                         >
                           {row.status}
                         </span>
                       </td>
-                      <td className="border-b border-slate-800/60 px-4 py-3 align-top text-xs">
+                      <td className="border-b border-slate-200/60 px-4 py-3 align-top text-xs">
                         <Link
+                          prefetch={false}
                           href={row.whereHref}
-                          className="font-semibold text-blue-300 transition-colors hover:text-blue-200"
+                          className="font-semibold text-blue-700 transition-colors hover:text-blue-800"
                         >
                           {row.where}
                         </Link>
                       </td>
-                      <td className="border-b border-slate-800/60 px-4 py-3 align-top text-xs leading-relaxed text-slate-300">
+                      <td className="border-b border-slate-200/60 px-4 py-3 align-top text-xs leading-relaxed text-slate-700">
                         {row.stillOpen}
                       </td>
                     </tr>
@@ -205,16 +209,18 @@ export default function ObjectionsPage() {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
+              prefetch={false}
               href="/faq"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-105"
+              className="inline-flex items-center gap-2 rounded-full bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-105"
             >
               Full answers — hostile-referee FAQ
             </Link>
             <Link
+              prefetch={false}
               href={`${REPO_URL}/issues`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-600/60 bg-slate-900/60 px-5 py-2.5 text-sm font-semibold text-slate-100 transition-colors hover:bg-slate-800/80"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-400/60 bg-slate-100/60 px-5 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-200/80"
             >
               Raise a new objection
               <ArrowUpRight size={14} aria-hidden />

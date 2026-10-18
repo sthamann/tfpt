@@ -60,28 +60,28 @@ export function DisciplineNumbers() {
         {cards.map((c) => (
           <div
             key={c.label}
-            className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-5"
+            className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-5"
           >
-            <div className="font-mono text-3xl font-semibold tracking-tight text-slate-50">
+            <div className="font-mono text-3xl font-semibold tracking-tight text-slate-950">
               {c.value}
             </div>
-            <div className="mt-1.5 text-sm font-semibold text-slate-200">
+            <div className="mt-1.5 text-sm font-semibold text-slate-800">
               {c.label}
             </div>
-            <p className="mt-1.5 text-xs leading-relaxed text-slate-400">
+            <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
               {c.note}
             </p>
           </div>
         ))}
       </div>
-      <p className="mt-4 text-xs leading-relaxed text-slate-500">
+      <p className="mt-4 text-xs leading-relaxed text-slate-600">
         Every number on this page is generated from the repository by{" "}
-        <code className="text-slate-400">
+        <code className="text-slate-600">
           verification/make_discipline_stats.py
         </code>{" "}
         and certified as frozen minimum bars by{" "}
-        <code className="text-slate-400">v649_discipline_audit.py</code>{" "}
-        (claim <code className="text-slate-400">META.DISCIPLINE.01</code>) on
+        <code className="text-slate-600">v649_discipline_audit.py</code>{" "}
+        (claim <code className="text-slate-600">META.DISCIPLINE.01</code>) on
         every suite run. Nothing here is typed in by hand.
       </p>
     </div>

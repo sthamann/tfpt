@@ -68,6 +68,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/prime-front` },
   openGraph: {
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
     type: "article",
     title: "The Prime Front — TFPT research diary",
     description:
@@ -77,6 +78,7 @@ export const metadata: Metadata = {
     locale: "en_US",
   },
   twitter: {
+    images: [`${SITE_URL}/opengraph-image`],
     card: "summary_large_image",
     title: "The Prime Front — TFPT",
     description:
@@ -100,22 +102,23 @@ export default function PrimeFrontPage() {
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-6">
             <Link
+              prefetch={false}
               href="/"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-200"
+              className="inline-flex items-center gap-1.5 text-sm text-slate-600 transition-colors hover:text-slate-800"
             >
               <ArrowLeft size={14} aria-hidden />
               Back to overview
             </Link>
           </nav>
 
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-sky-300/90">
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-sky-700/90">
             Research diary · {DIARY_RUN_COUNT} agent runs · 6638+ sandbox
             checks · suite {SCRIPT_TOTAL} scripts
           </p>
-          <h1 className="mt-3 font-serif text-4xl font-semibold leading-tight text-slate-50 sm:text-5xl md:text-6xl">
+          <h1 className="mt-3 font-serif text-4xl font-semibold leading-tight text-slate-950 sm:text-5xl md:text-6xl">
             The Prime Front
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg">
             The Prime Front is TFPT&apos;s number-theory line: a research
             diary of how the compiler&apos;s E₈ bookkeeping kept producing
             the classical machinery of primes. One identification is now a
@@ -139,7 +142,7 @@ export default function PrimeFrontPage() {
                 key={g.label}
                 className="flex flex-wrap items-baseline gap-2"
               >
-                <span className="w-full font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500 sm:w-44 sm:shrink-0">
+                <span className="w-full font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600 sm:w-44 sm:shrink-0">
                   {g.label}
                 </span>
                 <span className="flex min-w-0 flex-wrap gap-2">
@@ -147,7 +150,7 @@ export default function PrimeFrontPage() {
                     <a
                       key={s.id}
                       href={`#${s.id}`}
-                      className="rounded-full border border-slate-700/50 bg-slate-900/40 px-3 py-1 font-mono text-[11px] text-slate-400 transition hover:border-slate-500 hover:text-slate-200"
+                      className="rounded-full border border-slate-300/50 bg-slate-100/40 px-3 py-1 font-mono text-[11px] text-slate-600 transition hover:border-slate-500 hover:text-slate-800"
                     >
                       {s.label}
                     </a>
@@ -178,7 +181,7 @@ export default function PrimeFrontPage() {
           arXiv:2606.09096 and 2607.24830) starts with W1: identify the TFPT
           window form with the Galerkin matrix of Suzuki&apos;s localized
           Weil operator. First contact (v630):{" "}
-          <strong className="font-medium text-emerald-200">
+          <strong className="font-medium text-emerald-800">
             the atom layers are the same object, literally
           </strong>{" "}
           — positions log n, weights Λ(n)/√n, exact on all 40 atoms — while
@@ -191,11 +194,11 @@ export default function PrimeFrontPage() {
           dictionary sturdy — v640 closed the boundary cells symbolically,
           v641 froze the dictionary and ran it unchanged on three fresh
           windows (a preregistered kill test:{" "}
-          <strong className="font-medium text-slate-200">portable</strong>),
+          <strong className="font-medium text-slate-800">portable</strong>),
           v642 lifted it to the full quadratic form at operator level.
         </p>
         <p>
-          <strong className="font-medium text-amber-200">
+          <strong className="font-medium text-amber-800">
             Erratum (2026-08-02, corrected the same day):
           </strong>{" "}
           that chain read Suzuki&apos;s eq. (1.3) with Lerch coefficient −1;
@@ -204,9 +207,9 @@ export default function PrimeFrontPage() {
           g̃ = g − (5/4)·Lerch, and every measured number transfers verbatim
           via the exact identity cgal(g̃) = −4·cgal(g) — only the labels
           change: Suzuki&apos;s own smooth layer is{" "}
-          <span className="font-mono text-slate-200">+ρ</span> (not −4ρ),
+          <span className="font-mono text-slate-800">+ρ</span> (not −4ρ),
           the dictionary is the{" "}
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             single scalar +1/D on both layers
           </strong>{" "}
           (sign-compatible with positivity), and the origin constant
@@ -214,7 +217,7 @@ export default function PrimeFrontPage() {
         </p>
         <p>
           On the corrected reading, v643 proves the{" "}
-          <strong className="font-medium text-emerald-200">
+          <strong className="font-medium text-emerald-800">
             measure-level W1 theorem
           </strong>
           : Suzuki&apos;s L²₀ mean-zero condition is automatic on the u-side
@@ -229,7 +232,7 @@ export default function PrimeFrontPage() {
           d = 1 — while the W3 surface itself is empirically positive on all
           67 complete windows (min λ_min = +8.26e−4).
         </p>
-        <p className="text-slate-400">
+        <p className="text-slate-600">
           The honest map: W1 (theorem-closed) → W2 (started, not closed) →
           W3 (uniform positivity — the RH-hard step, open; the toolbox
           diagnosis closes one candidate route) → W4 (classical given
@@ -247,25 +250,25 @@ export default function PrimeFrontPage() {
       >
         <p>
           The equidistribution conjecture of the theory-open section asks for{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             |q_real/q_model| ≤ C·h⁻¹
           </span>{" "}
           uniformly. The measured constant is now frozen:{" "}
-          <strong className="font-medium text-emerald-200">C = 1</strong>. On
+          <strong className="font-medium text-emerald-800">C = 1</strong>. On
           the declared surface (69 floor-passed windows, h = 142…1445) the
           model value keeps <em>one</em> sign on the whole ladder — no model
           zero crossing anywhere — and on every lock-sign window{" "}
-          <span className="font-mono text-slate-200">eps·h ≤ 0.982</span>,
+          <span className="font-mono text-slate-800">eps·h ≤ 0.982</span>,
           with tertile medians 0.61 / 0.45 / 0.39 falling with depth (v618).
         </p>
         <p>
           Exactly two windows violated the bound, and both carried a{" "}
-          <span className="font-mono text-slate-200">q_real</span> sign flip.
+          <span className="font-mono text-slate-800">q_real</span> sign flip.
           v619 found the mechanism, and it is disarmingly concrete: a
           window&apos;s atom demand runs to{" "}
-          <span className="font-mono text-slate-200">u ≤ 2α</span>, the
+          <span className="font-mono text-slate-800">u ≤ 2α</span>, the
           prime-power data cap sits at{" "}
-          <span className="font-mono text-slate-200">U_max = 12.899</span> —
+          <span className="font-mono text-slate-800">U_max = 12.899</span> —
           and the two flip windows are exactly the two whose demand exceeds
           the cap. Injecting the same truncation into healthy windows
           reproduces the flips in sign <em>and</em> magnitude at both scales.
@@ -273,7 +276,7 @@ export default function PrimeFrontPage() {
         <p>
           On the complete-comb surface — 67 windows — the C = 1 bound holds
           with{" "}
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             zero exceptions
           </strong>
           . The “sign-flip windows” are retired as data-boundary artifacts:
@@ -306,34 +309,38 @@ export default function PrimeFrontPage() {
           counts. The question became: which of those links are mechanism, and
           which are beautiful coincidence?
         </p>
-        <p className="text-slate-400">
+        <p className="text-slate-600">
           What follows is the arc from first surprise (Teil 11) through a
           four-stage kill of the “archimedean-from-seam” slogan, through Hecke
           from geometry, to the July&nbsp;25 reframe: a{" "}
           <Link
+            prefetch={false}
             href="/verification"
-            className="text-emerald-300 underline decoration-emerald-400/30 underline-offset-2 hover:text-emerald-200"
+            className="text-emerald-700 underline decoration-emerald-400/30 underline-offset-2 hover:text-emerald-800"
           >
             relative-trace identity (v538)
           </Link>
           , a{" "}
           <Link
+            prefetch={false}
             href="/verification"
-            className="text-emerald-300 underline decoration-emerald-400/30 underline-offset-2 hover:text-emerald-200"
+            className="text-emerald-700 underline decoration-emerald-400/30 underline-offset-2 hover:text-emerald-800"
           >
             Weil structure with two named obstructions (v539)
           </Link>
           , an{" "}
           <Link
+            prefetch={false}
             href="/verification"
-            className="text-emerald-300 underline decoration-emerald-400/30 underline-offset-2 hover:text-emerald-200"
+            className="text-emerald-700 underline decoration-emerald-400/30 underline-offset-2 hover:text-emerald-800"
           >
             amplitude route with a positive linear carrier (v540)
           </Link>
           , a{" "}
           <Link
+            prefetch={false}
             href="/verification"
-            className="text-emerald-300 underline decoration-emerald-400/30 underline-offset-2 hover:text-emerald-200"
+            className="text-emerald-700 underline decoration-emerald-400/30 underline-offset-2 hover:text-emerald-800"
           >
             matching-lemma and transport-ledger package with two named limits
             (v541)
@@ -341,7 +348,7 @@ export default function PrimeFrontPage() {
           , and the consolidated stand below —{" "}
           <a
             href="#program-status"
-            className="text-sky-300 underline decoration-sky-400/30 underline-offset-2 hover:text-sky-200"
+            className="text-sky-700 underline decoration-sky-400/30 underline-offset-2 hover:text-sky-800"
           >
             what remains TFPT-specific is exactly one object: I5 — now
             geographically framed
@@ -363,15 +370,15 @@ export default function PrimeFrontPage() {
       >
         <p>
           The discrete compiler starts with two numbers only: the seam constant{" "}
-          <span className="font-mono text-slate-200">c₃ = 1/(8π)</span> and the
+          <span className="font-mono text-slate-800">c₃ = 1/(8π)</span> and the
           carrier rank{" "}
-          <span className="font-mono text-slate-200">g_car = 5</span>. From
+          <span className="font-mono text-slate-800">g_car = 5</span>. From
           those, the theory forces a split{" "}
-          <span className="font-mono text-slate-200">D₅ ⊕ A₃</span> completed by
+          <span className="font-mono text-slate-800">D₅ ⊕ A₃</span> completed by
           a four-element glue group{" "}
-          <span className="font-mono text-slate-200">μ₄</span> to the unique even
+          <span className="font-mono text-slate-800">μ₄</span> to the unique even
           unimodular lattice in eight dimensions —{" "}
-          <span className="font-mono text-slate-200">E₈</span>.
+          <span className="font-mono text-slate-800">E₈</span>.
         </p>
         <p>
           Everything on this page is about what that lattice&apos;s point counts
@@ -394,30 +401,30 @@ export default function PrimeFrontPage() {
         <p>
           Colour every E₈ shell point by its μ₄ “glue class” (four colours).
           Ordinary counting recovers the classical Eisenstein series{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             1 + 240 Σ σ₃(n) qⁿ
           </span>
           . The surprise is the <em>signed</em> difference between opposite
           colours:
         </p>
-        <p className="rounded-xl border border-slate-700/40 bg-slate-900/50 px-4 py-3 font-mono text-sm text-sky-200">
+        <p className="rounded-xl border border-slate-300/40 bg-slate-100/50 px-4 py-3 font-mono text-sm text-sky-800">
           Θ₀ − Θ₂ = θ₃(q)² · θ₄(q)⁶
         </p>
         <p>
           Here θ₃² is the theta series of the Gaussian integers ℤ[i] — the
           classical object whose L-value{" "}
-          <span className="font-mono text-slate-200">L(1, χ₄) = π/4</span>{" "}
+          <span className="font-mono text-slate-800">L(1, χ₄) = π/4</span>{" "}
           produces π. It appears as a literal tensor factor of the
           compiler&apos;s signed glue census (classical Jacobi theta algebra;
           the probe content is the in-suite correlation).
         </p>
         <p>
           Three character channels sit on the same shells:{" "}
-          <strong className="font-medium text-slate-200">total</strong> (all
+          <strong className="font-medium text-slate-800">total</strong> (all
           primes, ζ(s)ζ(s−3)),{" "}
-          <strong className="font-medium text-slate-200">signed</strong> (entire
+          <strong className="font-medium text-slate-800">signed</strong> (entire
           L-series — the glue character kills the pole), and{" "}
-          <strong className="font-medium text-slate-200">spinor</strong>{" "}
+          <strong className="font-medium text-slate-800">spinor</strong>{" "}
           (2-adic).
         </p>
       </DiarySection>
@@ -433,19 +440,19 @@ export default function PrimeFrontPage() {
       >
         <p>
           The cuspidal piece of the signed count is the weight-4 form{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             f₈ = η(2τ)⁴ η(4τ)⁴
           </span>{" "}
           — classically the Beukers / Ahlgren–Ono form tied to Apéry&apos;s
           proof that ζ(3) is irrational. For every odd prime p ≤ 97 the probe
           checks{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             A((p−1)/2) ≡ a_p mod p²
           </span>
           . Via Teil 11, the signed E₈ count at odd prime shells satisfies the
           same congruence. Placebos on nearby eta products fail.
         </p>
-        <p className="text-slate-400">
+        <p className="text-slate-600">
           Beautiful, form-specific, and still sandbox: a correlation inside the
           suite, not a new proof of irrationality.
         </p>
@@ -463,7 +470,7 @@ export default function PrimeFrontPage() {
         <p>
           An early slogan said the seam&apos;s measured angle 2π was “the
           self-dual temperature.” Teil 14{" "}
-          <strong className="font-medium text-rose-200">deflated</strong> that:
+          <strong className="font-medium text-rose-800">deflated</strong> that:
           the steps parameter is compiler-specific; the angle is universal
           Bisognano–Wichmann / Unruh conversion.
         </p>
@@ -475,7 +482,7 @@ export default function PrimeFrontPage() {
           explicit formula is treated as a classical externum for recovery
           work.
         </p>
-        <p className="text-slate-400">
+        <p className="text-slate-600">
           Killing your own favourite story on purpose is the method. Null
           results are first-class outcomes.
         </p>
@@ -491,25 +498,25 @@ export default function PrimeFrontPage() {
         visual={<PrimeDetector />}
       >
         <p>
-          <strong className="font-medium text-slate-200">(a) Exact geometric
+          <strong className="font-medium text-slate-800">(a) Exact geometric
           primality.</strong>{" "}
           n&gt;1 is prime if and only if the E₈ shell at norm 2n has exactly{" "}
-          <span className="font-mono text-slate-200">240(1+n³)</span> vectors —
+          <span className="font-mono text-slate-800">240(1+n³)</span> vectors —
           the classical σ₃ criterion, checked with zero false
           positives/negatives to 10⁴.
         </p>
         <p>
-          <strong className="font-medium text-slate-200">(b) Per-prime
+          <strong className="font-medium text-slate-800">(b) Per-prime
           properties.</strong>{" "}
           Glue characters predict arithmetic type: χ₄-fibre ⟺ p = a²+b²
           (100% for p&lt;1000 in the probe). The compiler says what a prime
           does, not where the next one sits.
         </p>
         <p>
-          <strong className="font-medium text-slate-200">(c) Positional
+          <strong className="font-medium text-slate-800">(c) Positional
           prediction</strong>{" "}
           needs the zero spectrum. Measured budget:{" "}
-          <span className="font-mono text-slate-200">x_max ≈ 0.31 · T</span>.
+          <span className="font-mono text-slate-800">x_max ≈ 0.31 · T</span>.
           No continuum Hilbert–Pólya theorem exists in the suite. A zeta-free
           glued truncation candidate now exists at measurement level
           (v716–v721, the moonshot arc) — stated honestly: a measurement,
@@ -529,17 +536,17 @@ export default function PrimeFrontPage() {
         <p>
           Kneser p-neighbours — isotropic lines in E₈/pE₈ — carry the Hecke
           structure of the census. The count of lines is{" "}
-          <span className="font-mono text-slate-200">σ₃(p) · #P³(𝔽_p)</span>{" "}
+          <span className="font-mono text-slate-800">σ₃(p) · #P³(𝔽_p)</span>{" "}
           (enumerated at p = 2, 3, 5, 7: 135 / 1120 / 19656 / 137600).
         </p>
         <p>
           The frozen marked neighbour-sum operator is an affine Hecke element{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             ν_p = a · Id + b · T_p
           </span>{" "}
-          with <span className="font-mono text-slate-200">b = σ₃(p) + a_p</span>
+          with <span className="font-mono text-slate-800">b = σ₃(p) + a_p</span>
           . Prime fingerprints fall out of geometry:{" "}
-          <span className="font-mono text-emerald-300">
+          <span className="font-mono text-emerald-700">
             a₃ = −4, a₅ = −2, a₇ = 24
           </span>
           . Census redundancy is purely 2-adic oldform structure (dim 7 = 5+2);
@@ -547,7 +554,7 @@ export default function PrimeFrontPage() {
         </p>
         <p>
           Promoted as{" "}
-          <span className="font-mono text-emerald-300">
+          <span className="font-mono text-emerald-700">
             verification/v535_hecke_from_geometry.py
           </span>{" "}
           (HECKE.GEOM.01, 25/25, AUDIT OK). Classical theorems (Kneser, Hecke,
@@ -569,12 +576,12 @@ export default function PrimeFrontPage() {
         <p>
           Once the neighbour operator is frozen, the geometric count splits as
           an elementary Witt piece plus{" "}
-          <span className="font-mono text-slate-200">exactly a_p²</span> — like
+          <span className="font-mono text-slate-800">exactly a_p²</span> — like
           a smooth melody with a coherent flicker on top. Two-sided
           confirmation (mod-p geometry on one side, eta-product on the other)
           holds at p ≤ 5; closed forms extend the identity to p ≤ 100.
         </p>
-        <p className="text-slate-400">
+        <p className="text-slate-600">
           Promoted as v536 (Eichler trace layer). Together with v535 and the
           half-integral bridge v537, it becomes one finite relative-trace
           identity — v538.
@@ -593,17 +600,17 @@ export default function PrimeFrontPage() {
         <p>
           Rankin–Selberg translates{" "}
           <em>only</em> the abelian shadow into GL(1) products of{" "}
-          <span className="font-mono text-slate-200">{"{1, χ₄}"}</span>. The
+          <span className="font-mono text-slate-800">{"{1, χ₄}"}</span>. The
           centre atlas shows the ξ-line (centre 1/2) is reached exactly by
           weight ≤ 1 theta factors: Mellin(θ₃) → ζ(2s) and{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             ζ_ℚ(i) = ζ(s) L(s, χ₄)
           </span>
           . That abelian weight drop is factorisation + Mellin — typed closed.
         </p>
         <p>
           The cuspidal channel — where the{" "}
-          <span className="font-mono text-slate-200">a_p</span> live — still
+          <span className="font-mono text-slate-800">a_p</span> live — still
           sits at centre 2 and needs its own bridge. Possessing ζ as a{" "}
           <em>function</em> is not possessing its zeros as a{" "}
           <em>spectrum</em>.
@@ -633,9 +640,9 @@ export default function PrimeFrontPage() {
           diary switched to a <em>family</em> plus a relative trace formula —
           see the next section.
         </p>
-        <p className="rounded-xl border border-slate-700/40 bg-slate-900/40 px-4 py-3 text-sm text-slate-400">
+        <p className="rounded-xl border border-slate-300/40 bg-slate-100/40 px-4 py-3 text-sm text-slate-600">
           Verdict of the terrain map:{" "}
-          <span className="font-mono text-slate-200">TERRAIN-MAPPED</span>.
+          <span className="font-mono text-slate-800">TERRAIN-MAPPED</span>.
           Cartography, not a proof attempt. Distance to RH — stated without
           theatre — remains large.
         </p>
@@ -652,9 +659,9 @@ export default function PrimeFrontPage() {
       >
         <p>
           The day&apos;s reframe: stop asking for one infinite operator. Ask for
-          a <strong className="font-medium text-slate-200">family</strong> of
+          a <strong className="font-medium text-slate-800">family</strong> of
           central values plus a{" "}
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             relative trace formula
           </strong>
           . Sandbox Teile&nbsp;51–64 built that map; two pieces graduated into
@@ -662,19 +669,19 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">(i) The reframe.</strong>{" "}
+          <strong className="font-medium text-slate-800">(i) The reframe.</strong>{" "}
           v535, v536 and v537 are three projections of{" "}
           <em>one</em> finite relative-trace identity — promoted as{" "}
-          <span className="font-mono text-emerald-300">v538</span>. The
+          <span className="font-mono text-emerald-700">v538</span>. The
           half-integral object g is literally the quaternary lattice form{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             n = (x²+y²)/2 + 2z² + u² + 2w²
           </span>
           .
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             (ii) First non-collapsing infinite carrier.
           </strong>{" "}
           The Waldspurger family kernel K_D (classical Waldspurger periods) has
@@ -685,18 +692,18 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             (iii) Self-generating Hilbert space.
           </strong>{" "}
           The weight |d|<sup>−5/2</sup> is only the critical line of the family
           measure, not a canonical measure. The RTF forces |d|<sup>−1</sup>. At
           that weight, a positive pairing is cutoff-independent and builds its
           own space by GNS:{" "}
-          <span className="font-mono text-slate-200">ℓ²(d, b²/|d|)</span>.
+          <span className="font-mono text-slate-800">ℓ²(d, b²/|d|)</span>.
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             (iv) Both infinities in one object.
           </strong>{" "}
           The double series Z(s,w) packs p-towers (closed Euler factors) and the
@@ -707,11 +714,11 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             (v) Exact GL(1) core.
           </strong>{" "}
           Inside the positive form, the trivial Sato–Tate isotype is exactly{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             G₀ = ζ_p(w−3)² / ζ_p(2w−6)
           </span>
           . Fibre decomposition after character patterns kills twist-mix
@@ -719,13 +726,13 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             (vi) Final linear relation — two obstructions.
           </strong>{" "}
           Machine-checked (and promoted as{" "}
-          <span className="font-mono text-emerald-300">v539</span>):
+          <span className="font-mono text-emerald-700">v539</span>):
         </p>
-        <p className="rounded-xl border border-amber-400/35 bg-amber-500/10 px-4 py-3 font-mono text-sm text-amber-100">
+        <p className="rounded-xl border border-amber-400/35 bg-amber-500/10 px-4 py-3 font-mono text-sm text-amber-800">
           Q_fam = 2Q_ζ − 2Q_ζ(♭) + Arch + Corr
         </p>
         <p>
@@ -739,7 +746,7 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             (vii)–(viii) Progression — see status.
           </strong>{" "}
           Sandbox Teil&nbsp;64 resolves Corr as the det/det₂ Jacobian; the
@@ -748,11 +755,11 @@ export default function PrimeFrontPage() {
           stand in the next section.
         </p>
 
-        <p className="rounded-xl border border-slate-700/40 bg-slate-900/40 px-4 py-3 text-sm text-slate-400">
+        <p className="rounded-xl border border-slate-300/40 bg-slate-100/40 px-4 py-3 text-sm text-slate-600">
           Display markers: sandbox probes stay{" "}
-          <span className="font-mono text-amber-200">[sandbox]</span>;
+          <span className="font-mono text-amber-800">[sandbox]</span>;
           v538–v541 are{" "}
-          <span className="font-mono text-emerald-200">[machine-verified]</span>.
+          <span className="font-mono text-emerald-800">[machine-verified]</span>.
           Ledger fine types live in the verification suite only. No silent
           marker upgrades.
         </p>
@@ -773,22 +780,22 @@ export default function PrimeFrontPage() {
         }
       >
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             A single arithmetic machine.
           </strong>{" "}
           Three load-bearing modules are projections of{" "}
           <em>one</em> finite relative-trace identity{" "}
-          <span className="font-mono text-emerald-300">[machine-verified · v538]</span>
+          <span className="font-mono text-emerald-700">[machine-verified · v538]</span>
           . Geometric side (E₈ lattice / glue census) and spectral side (modular
           coefficients / twisted L-values) are computed independently and agree
           exactly on the verified finite modules.
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             A canonical infinite state space.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox]</span> A family
+          <span className="font-mono text-amber-800">[sandbox]</span> A family
           over fundamental discriminants: rank grows without saturation
           (&gt;&nbsp;6000 active discriminants; Hecke integral and exact). The
           Hilbert space is not chosen by hand — a positive pairing produces the
@@ -797,10 +804,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Packing the two infinities.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox]</span> The double
+          <span className="font-mono text-amber-800">[sandbox]</span> The double
           series Z(s,w) packs two infinite directions — Euler towers over p, and
           the discriminant family — in the classical frame of multiple Dirichlet
           series / relative trace formulas (Goldfeld–Hoffstein named classical).
@@ -810,11 +817,11 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The Weil structure and its two obstructions.
           </strong>{" "}
           Compared with the Weil structure of the explicit formula (Weil 1952):{" "}
-          <span className="font-mono text-emerald-300">
+          <span className="font-mono text-emerald-700">
             [machine-verified · v539]
           </span>{" "}
           isolates <em>two</em> discrepancies — an exponential correction factor,
@@ -823,10 +830,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Exact determinant stabilization.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T64]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T64]</span>{" "}
           exp(−Σ p<sup>−u</sup>) = det(1−K)/det₂(1−K) (Hilbert–Carleman),
           verified ~1.5×10<sup>−16</sup>. In a consistent det₂ formulation the
           correction vanishes identically — it is the regularisation Jacobian of
@@ -839,10 +846,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The remaining categorical minus.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox]</span> Survives
+          <span className="font-mono text-amber-800">[sandbox]</span> Survives
           every tested canonical projection. Source identified: the channel
           collects even prime powers, bound to the square form of the twist
           family (Waldspurger: L<sub>central</sub> ~ b(d)²) — the construction
@@ -858,14 +865,14 @@ export default function PrimeFrontPage() {
           format,
           modulo proven classics only). What remains TFPT-specific is exactly
           ONE object: I5 in one-family form —{" "}
-          <span className="font-mono text-violet-100">
+          <span className="font-mono text-violet-800">
             {"Q_cert + Δ₂ + A_fam − A_shift ≥ 0"}
           </span>{" "}
           — provably equivalent to Weil positivity ⟺ RH.
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The remaining mathematical problem — absolute compression.
           </strong>{" "}
           Rest list:{" "}
@@ -873,9 +880,9 @@ export default function PrimeFrontPage() {
           Matching Lemma: closed on all atom classes (window 10⁶ proved ·
           signed pairing on non-coherent · λ-channel on coherent · 2-line
           exact){" "}
-          <span className="font-mono text-amber-200">[sandbox · T86]</span>
+          <span className="font-mono text-amber-800">[sandbox · T86]</span>
           {" / "}
-          <span className="font-mono text-emerald-200">
+          <span className="font-mono text-emerald-800">
             [machine-verified · v541]
           </span>
           . I5 core = explicit Gaussian-mode family in the one-atom band
@@ -883,46 +890,46 @@ export default function PrimeFrontPage() {
           (recalibrated by T93); named target (T); finite-block zone extension
           certified only on an 8-dim window — structurally the wrong instrument
           for the full claim{" "}
-          <span className="font-mono text-amber-200">[sandbox · T87–T93]</span>.
+          <span className="font-mono text-amber-800">[sandbox · T87–T93]</span>.
           Blind demo: 753/753 primes, zero errors, no division{" "}
-          <span className="font-mono text-amber-200">[sandbox · T94]</span>.
+          <span className="font-mono text-amber-800">[sandbox · T94]</span>.
           Induction skeleton: identities proved, zones 2–4 closed, zone-5 tip =
           equality problem, asymptotics = one named arithmetic bound (A){" "}
-          <span className="font-mono text-amber-200">[sandbox · T99–T101]</span>.
+          <span className="font-mono text-amber-800">[sandbox · T99–T101]</span>.
           Milestone at T101: 2428/2428 sandbox checks (3139/3139 at T125).
           Fence: fits/extrapolations marked; geography locates; it does not
           attack; I5 remains ⟺ RH. This is not RH evidence.
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">Current status.</strong>
+          <strong className="font-medium text-slate-800">Current status.</strong>
         </p>
-        <ul className="list-disc space-y-1.5 pl-5 text-sm text-slate-400">
+        <ul className="list-disc space-y-1.5 pl-5 text-sm text-slate-600">
           <li>
-            <span className="text-rose-200">Not present:</span> RH proof,
+            <span className="text-rose-800">Not present:</span> RH proof,
             almost-RH, a zeros operator, a proof of I5.
           </li>
           <li>
-            <span className="text-emerald-200">Present:</span> mechanism through
+            <span className="text-emerald-800">Present:</span> mechanism through
             v541{" "}
-            <span className="font-mono text-emerald-200">
+            <span className="font-mono text-emerald-800">
               [machine-verified]
             </span>
             ; Matching Lemma closed on all atom classes{" "}
-            <span className="font-mono text-amber-200">[sandbox · T86]</span>;
+            <span className="font-mono text-amber-800">[sandbox · T86]</span>;
             I5 geography complete{" "}
-            <span className="font-mono text-amber-200">[sandbox · T87–T93]</span>
+            <span className="font-mono text-amber-800">[sandbox · T87–T93]</span>
             ; a<sub>neg</sub> recalibrated to 0.7486; blind lattice demo{" "}
-            <span className="font-mono text-amber-200">[sandbox · T94]</span>;
+            <span className="font-mono text-amber-800">[sandbox · T94]</span>;
             induction skeleton: zones 2–4 closed; asymptotics = arithmetic bound
             (A){" "}
-            <span className="font-mono text-amber-200">[sandbox · T99–T101]</span>
+            <span className="font-mono text-amber-800">[sandbox · T99–T101]</span>
             ; I5 in one-family form — the single remaining TFPT-specific object.
           </li>
           <li>
-            <span className="text-sky-200">Since then:</span> the induction
+            <span className="text-sky-800">Since then:</span> the induction
             sprint{" "}
-            <span className="font-mono text-amber-200">
+            <span className="font-mono text-amber-800">
               [sandbox · T102–T125]
             </span>{" "}
             compressed that named bound from one matrix inequality to one sign
@@ -931,7 +938,7 @@ export default function PrimeFrontPage() {
             chain end to end on 52 zones — told in{" "}
             <a
               href="#compression"
-              className="text-sky-300 underline decoration-sky-400/30 underline-offset-2 hover:text-sky-200"
+              className="text-sky-700 underline decoration-sky-400/30 underline-offset-2 hover:text-sky-800"
             >
               sections 22–24
             </a>
@@ -940,8 +947,8 @@ export default function PrimeFrontPage() {
         </ul>
 
         <p>
-          <strong className="font-medium text-slate-200">On π — closed.</strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T65–T66]</span>{" "}
+          <strong className="font-medium text-slate-800">On π — closed.</strong>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T65–T66]</span>{" "}
           Not the decimal digits of π are the key. Digit probes are closed:
           π digits at prime places are uniform; density-detrended
           cross-correlations null; full placebo battery (e, √2, log&nbsp;2,
@@ -971,10 +978,10 @@ export default function PrimeFrontPage() {
         }
       >
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Square level closed — every squaring deletes.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T67–T69]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T67–T69]</span>{" "}
           The amplitude Dirac D = [[0,V],[Vᵀ,0]] with D² = family kernel exists
           exactly and is Hecke-equivariant; signs of b(d) are a genuine
           metaplectic residue (52% mixed fibres — Kohnen depth, classical).
@@ -990,19 +997,19 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             A positive linear carrier — plus-only ζ-balance.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T70–T71]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T70–T71]</span>{" "}
           The linear positive measure stands: Θ(d) = −48·L(−1,χ_d) exact (Cohen
           1975); full weights [1,1,1,1]; Weil balance{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             Q = Q_ζ(g₋) + Q_ζ(g₊)
           </span>{" "}
           is plus-only (~1e-15). The ζ(2s) factor appears only as the squarefree
           sieve of the carrier — bookkeeping, not weight deletion.           Functional
           equation exact:{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             {"Λ_Θ(s) = 8^{1−s}Λ_Θ†(5/2−s)"}
           </span>{" "}
           (rel ~1e-40; Fricke closed via Jacobi inversions). Plus survives
@@ -1015,17 +1022,17 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The cone library saturates — one measurable gap.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T72]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T72]</span>{" "}
           Twisting absorbs the sign class n&nbsp;≡&nbsp;0,1&nbsp;mod&nbsp;4 (gap
           −26% mean, −90% max), but coverage saturates at 5/24. The pin h(0)&nbsp;&gt;&nbsp;0
           blocks every Weil element against every twist. Final compression: the
           entire residual distance to the Weil cone is the FE-covariant gap
           functional λ* on the atoms n&nbsp;≡&nbsp;6&nbsp;mod&nbsp;8 — no finite
           theta library can erase it (Farkas/LP certificates). Promoted as{" "}
-          <span className="font-mono text-emerald-300">v540</span> with λ*
+          <span className="font-mono text-emerald-700">v540</span> with λ*
           named inside the claim. The doors that furnish this wall are the next
           section. This is not RH evidence.
         </p>
@@ -1046,10 +1053,10 @@ export default function PrimeFrontPage() {
         }
       >
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Uniform cone route closed — hybrids live per direction.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T73]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T73]</span>{" "}
           Even in the continuum, the direction-uniform cone route is closed
           (sign-constancy lemma; window pin on [0,&nbsp;δ<sub>h</sub>)). But for
           every one of the 19 uncovered Weil directions an explicit,
@@ -1058,10 +1065,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Door A — vacuum structure, spectral no-go.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T74]</span> The
+          <span className="font-mono text-amber-800">[sandbox · T74]</span> The
           spectral Dirac phase carries the metaplectic sign datum (~93%) but
           has a Hecke defect. L2 no-go: every ε-equivariant spectral functional
           is exactly re-signing invariant — the spectral world is provably
@@ -1076,10 +1083,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Door B — λ* gets its own calculus.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T75]</span> The
+          <span className="font-mono text-amber-800">[sandbox · T75]</span> The
           gap functional now has closed form, its own functional equation (orbit
           invariant tanh(σ²ω²/2) under positive multipliers ⋊ dilations),
           critical width σ<sub>c</sub>&nbsp;=&nbsp;√2, and convexity (averaging
@@ -1092,10 +1099,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Door C — a universal recipe, and its named lemma.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T76]</span> The
+          <span className="font-mono text-amber-800">[sandbox · T76]</span> The
           hybrid recipe certifies 91/91 nontrivial adversarial Weil directions
           (100%); cost is polynomial / window-extensive (λ<sub>m</sub> ~
           m<sup>5/2</sup> = Eisenstein law). Lattice discreteness is the floor —
@@ -1110,10 +1117,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Matching Lemma — classically shaped, then window-proved.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T77–T78]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T77–T78]</span>{" "}
           T77: classically shaped (Gronwall/Robin; lemma not yet proven). T78
           WINDOW-PROVED (25/25): machine-proved on [4,&nbsp;10⁶] — exact-integer
           inequality chain, full enumeration over 939 870 clash atoms, 0
@@ -1127,10 +1134,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Avoidance fails — theorem-shaped.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T81]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T81]</span>{" "}
           AVOIDANCE-FAILS (31/31): the same multiplicativity that makes the
           lever exact proves the counter-lever: coherent targets are reachable
           only by coherent rescalings — the freedom does not exist on coherent
@@ -1140,12 +1147,12 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The transport ledger closes — the wall is I5.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T79]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T79]</span>{" "}
           LEDGER-CLOSES (22/22):{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             {"Q_Weil = Q_cert + Δ_arch + Δ₂"}
           </span>{" "}
           (identity ~7e-16 on 100/100); Δ<sub>pole</sub> ≡ Δ<sub>conv</sub> ≡ 0
@@ -1156,7 +1163,7 @@ export default function PrimeFrontPage() {
           Guinand, digamma terms.
         </p>
 
-        <p className="rounded-xl border border-slate-700/40 bg-slate-900/40 px-4 py-3 text-sm text-slate-400">
+        <p className="rounded-xl border border-slate-300/40 bg-slate-100/40 px-4 py-3 text-sm text-slate-600">
           After T81 the constructive recipe chain saturated. Three new
           perspectives (next section) retype I5 and reopen the Z[i] channel —
           without claiming RH progress.
@@ -1178,13 +1185,13 @@ export default function PrimeFrontPage() {
         }
       >
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The archimedean term was never external.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T82]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T82]</span>{" "}
           ARCH-INTERNAL (22/22): Δ<sub>arch</sub> is exactly the internal
           Γ-difference via Legendre duplication{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             {"((2π)^{−s}Γ(s) = ½Γ_R(s)Γ_R(s+1))"}
           </span>
           ; battery 18/18 rel 6.6e-15. The family carries its Γ factor as the
@@ -1193,7 +1200,7 @@ export default function PrimeFrontPage() {
           residue 8<sup>−3/2</sup> exactly from pure counting. Consequence: I5
           changes type. New form — for all autocorrelations h:
         </p>
-        <p className="rounded-xl border border-amber-400/35 bg-amber-500/10 px-4 py-3 font-mono text-sm text-amber-100">
+        <p className="rounded-xl border border-amber-400/35 bg-amber-500/10 px-4 py-3 font-mono text-sm text-amber-800">
           {"Q_cert(h) + Δ₂(h) + A_fam(h) − A_shift(h) ≥ 0"}
         </p>
         <p>
@@ -1205,10 +1212,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The wall is FE-transversal, not FE-positional.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T83]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T83]</span>{" "}
           INVARIANT-NULL (27/27): FE symmetrization is fully absorbed — 5/24 and
           λ* already are the numbers of the symmetric sector (the test region
           was right). Depth find: the product of the two FE reflections
@@ -1221,10 +1228,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The last class is the compiler&apos;s home.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T84]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T84]</span>{" "}
           LIFT-WORKS-UNANCHORED (29/29): the coherent class equals primitive
           ℤ[i]-norms exactly; Grossencharacter phases replace Mertens divergence
           by L(1,λ)-convergence — the lifted chain never crosses; frontier jumps
@@ -1232,7 +1239,7 @@ export default function PrimeFrontPage() {
           in the ℤ[i] sector — the origin object of the series (μ₄-glue, χ₄,
           θ₃²) — and exactly there the compiler&apos;s own character structure
           supplies the control that is provably impossible over ℚ. T85{" "}
-          <span className="font-mono text-amber-200">
+          <span className="font-mono text-amber-800">
             [sandbox · LEMMA-CLOSES-LAMBDA]
           </span>{" "}
           closes the coherent class via the λ-channel (90/90 certificates;
@@ -1257,23 +1264,23 @@ export default function PrimeFrontPage() {
         }
       >
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The Connes dictionary is exact at the core.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T87]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T87]</span>{" "}
           DICTIONARY-EXACT-CORE (22/22): Q<sub>cert</sub> atoms equal Connes&apos;
           finite orbit terms (rel&nbsp;6e-16); A<sub>fam</sub> − A<sub>shift</sub>{" "}
           equals Connes&apos; archimedean W<sub>∞</sub> term including the
           principal-value constant (rel&nbsp;3e-23); the internal kernel is
           exactly the Riemann–Siegel phase derivative{" "}
-          <span className="font-mono text-slate-200">{"k_ζ = 2θ'_RS"}</span>{" "}
+          <span className="font-mono text-slate-800">{"k_ζ = 2θ'_RS"}</span>{" "}
           (rel&nbsp;0.0); the dihedral shift is the scaling group R<sup>*</sup>
           <sub>+</sub> (Weyl commutation exact). Classical: Connes 1999,
           Connes–Consani 2021, Weil, Guinand, Bombieri, Burnol, Yoshida.
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Two positivity programs are complementary.
           </strong>{" "}
           Connes–Consani prove positivity <em>before</em> the primes (a
@@ -1287,10 +1294,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The tight set is eight parametrized curves.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T88]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T88]</span>{" "}
           TIGHT-SET-PARAMETRIZED (27/27): band-limited zero plateau (support
           below log&nbsp;2, consistent with the T87 boundary), safe zones, and
           eight nearly vertical tight curves whose spacing follows the Γ-side
@@ -1303,12 +1310,12 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The crossing, measured: no sharp wall at log&nbsp;2 — a thin band
             where atom and arch balance, and a 1–4-dimensional residual
             subspace that carries the minimum.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T89]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T89]</span>{" "}
           CROSSING-MAPPED (19/19): window compression of the Weil form is
           exactly Bombieri&apos;s classical object (Bombieri 2000 —
           unconditional positivity classically known precisely up to support
@@ -1334,11 +1341,11 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The residual, dissected: explicit Gaussian modes — and three
             directions under no control.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T90]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T90]</span>{" "}
           CORE-DISSECTED (17/17): the 1–4 residual vectors are n-stable across
           the discretisation ladder (angles ≤ 2.1°) and explicit — closed
           Gauss×cos / Gauss×sin fits with 99+% capture, the I5 core as a small
@@ -1357,17 +1364,17 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The core, dissected: explicit Gaussian modes; and the band&apos;s
             law: the first prime rescues positivity where the archimedean
             margin ends — with a named, provable-shaped target inequality
             extending the classical zone.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T91]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T91]</span>{" "}
           BAND-PARTIAL (19/19, 3/4 closed): the band is the one-atom zone
           log&nbsp;2&nbsp;&lt;&nbsp;a&nbsp;≤&nbsp;0.9253 with inner edge
           a<sub>neg</sub>&nbsp;=&nbsp;0.7486{" "}
-          <span className="font-mono text-sky-300">
+          <span className="font-mono text-sky-700">
             (recalibrated by T93; was 0.7410)
           </span>
           . Beyond a<sub>neg</sub> the prime-free margin changes sign and the
@@ -1378,9 +1385,9 @@ export default function PrimeFrontPage() {
           (Wirtinger) and a·t<sub>cent</sub>&nbsp;→&nbsp;2Si(π)&nbsp;−&nbsp;4/π
           =&nbsp;2.4306. Band and tight curves are two orbit regions of the same
           functional with shared exact scale{" "}
-          <span className="font-mono text-slate-200">{"∫k_ζ = 2θ_RS"}</span>.
+          <span className="font-mono text-slate-800">{"∫k_ζ = 2θ_RS"}</span>.
           Named target (T), for a in the band and ‖f‖&nbsp;=&nbsp;1:{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             {"(P_pole + A_arch)(f) ≥ √2·log2·h_f(log2)"}
           </span>{" "}
           — provable-shaped as a zone extension beyond Bombieri&apos;s
@@ -1391,22 +1398,22 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Zone-extension attempt — and the self-check that found the
             checker&apos;s bug.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T92]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T92]</span>{" "}
           T-SKELETON (36/36): certified is Q&nbsp;≥&nbsp;6.7e-12&nbsp;&gt;&nbsp;0
           on the 8-dim window subspace over the whole scanned region (error
           certificate, 1057-point covering). The full extension does{" "}
           <em>not</em> stand — λ<sub>min</sub> collapses geometrically (factor
           ~11 per mode); the complement would need ~5000 modes: the finite-block
           route is structurally the wrong instrument. Pearl:{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             {"k(0) = −γ − 3log2 − π/2 − log π"}
           </span>{" "}
           exact.{" "}
-          <span className="font-mono text-amber-200">[sandbox · T93]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T93]</span>{" "}
           MIXED (41/41): T92&apos;s calibration flags against the band map were
           resolved by a third independent implementation — the T89/T91 map
           survives; the only real bug was in the checker (constants imported
@@ -1420,12 +1427,12 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The relay, measured: each prime rescues the direction the previous
             zone exhausts — and arrives before it is needed. The proof target
             shifts from fragile minima to robust counterfactuals.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T95]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T95]</span>{" "}
           T-CONTINUUM-NUMERIC (28/28): C1 fully proved — |h<sub>f</sub>
           (log&nbsp;2)|&nbsp;≤&nbsp;1/2 via disjoint support intervals;
           ‖S‖&nbsp;=&nbsp;1/2 exact with characterised eigenspace; atom-extremal
@@ -1433,7 +1440,7 @@ export default function PrimeFrontPage() {
           maximize the atom cost are provably safe”); continuum margin curve
           positive everywhere; extremizer is not the two-bump — binding
           mechanism is atom rescue. Lower bound open; missing instrument named.{" "}
-          <span className="font-mono text-amber-200">[sandbox · T96]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T96]</span>{" "}
           EDGE-ARTIFACT + RELAY-CONFIRMED (21/21): the T95 “edge” at α* was a
           map artefact — value exactly reproduced, edge reading withdrawn
           (λ<sub>min</sub>&nbsp;&gt;&nbsp;0 on all [0.38,&nbsp;0.86]; margin
@@ -1451,28 +1458,28 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The induction takes shape: self-similarity puts the hypothesis
             inside the decomposition; the target is now one scalar inequality
             per zone — and the third self-correction of the weekend replaced a
             circular lemma by an exact identity.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T97]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T97]</span>{" "}
           ALIGNMENT-ONLY with certified half-step (105/105): alignment is sharp
           (sign alignment ⟺ coupling window nonempty, without exception); the
           t=0 killer loss on the anti-bump space is proved (
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             {"k_eff = (1−cos(tu))k(t)"}
           </span>
           , gain ×2–4.8); structure pearl: the E₀ block is literally the same
           form on the smaller window — “the induction hypothesis appears inside
           its own decomposition as self-similarity” (7e-14).{" "}
-          <span className="font-mono text-amber-200">[sandbox · T98]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T98]</span>{" "}
           LAW-CONFIRMED-MECHANISM-OPEN (44/44): the conjectured one-vector lemma
           was circular (Douglas range inclusion — the law is forced by
           positivity itself); three T97 premises honestly refuted; replacement
           target:{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             {"D_k(α) ≤ μ_k/2"}
           </span>{" "}
           — exact scalar inequality, no constant, no vector; holds in all four
@@ -1484,34 +1491,34 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Induction closeout (T99–T101).
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T99]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T99]</span>{" "}
           DECAY-LAW-FOUND (23/23): exact parity selection rule (
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             {"J₋Q₋₀J₀ = −Q₋₀"}
           </span>
           ) — the fragile near-null mode is excluded from the binding channel by
           symmetry; recursive inequality with only 1.01–1.20× loss; termination
           is arithmetic (240/240 in ≤&nbsp;4 steps to the classical zone).{" "}
-          <span className="font-mono text-amber-200">[sandbox · T100]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T100]</span>{" "}
           REMAINDER-CLOSES-ZONES (27/27) — the 100th probe: closure 11/24 →
           24/24 (6/6 in every zone); the drift was a lattice artefact; one lever
           gained 1.7–69× (“the Bessel step threw the induction data away
           twice”); zones 2–4 fully closed; zone-5 tip typed as an equality
           problem (Fredholm shape, simple degeneration). Classical:
           Bessel/Parseval, Slepian, Schur test, Fredholm alternative.{" "}
-          <span className="font-mono text-amber-200">[sandbox · T101]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T101]</span>{" "}
           CROWDING-TRENDS (31/31) — the fork across 16 zones (n&nbsp;=&nbsp;2..29):
           collapsed law{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             {"w_k = 0.0838·(atom gap)/μ_k"}
           </span>{" "}
           (fit) — “the handoff window is the atom spacing divided by the atom
           strength”; primitives flat; D<sub>k</sub>&nbsp;≤&nbsp;μ<sub>k</sub>/2
           holds 64/64 and never fails; only the closing instrument loses (
-          <span className="font-mono text-slate-200">{"r ~ exp(−0.16k)"}</span>,
+          <span className="font-mono text-slate-800">{"r ~ exp(−0.16k)"}</span>,
           fit/extrapolation). Core: “The crowding sits in the proof family, not
           in the mathematics it is trying to prove — the most hopeful version of
           the verdict.” Asymptotics would need (A) the arithmetic lower bound of
@@ -1519,7 +1526,7 @@ export default function PrimeFrontPage() {
           margin, (C) a better bulk instrument, (D) a finite check.
         </p>
 
-        <p className="rounded-xl border border-slate-700/40 bg-slate-900/40 px-4 py-3 text-sm text-slate-400">
+        <p className="rounded-xl border border-slate-300/40 bg-slate-100/40 px-4 py-3 text-sm text-slate-600">
           The relay induction, audited across 16 zones: the mathematics trends
           self-sustaining — flat primitives, a collapsed one-parameter law for
           the handoff, and a target inequality that never fails; what loses the
@@ -1533,7 +1540,7 @@ export default function PrimeFrontPage() {
           twenty-three parts is{" "}
           <a
             href="#compression"
-            className="text-sky-300 underline decoration-sky-400/30 underline-offset-2 hover:text-sky-200"
+            className="text-sky-700 underline decoration-sky-400/30 underline-offset-2 hover:text-sky-800"
           >
             the compression story below
           </a>
@@ -1551,13 +1558,13 @@ export default function PrimeFrontPage() {
         visual={<HandoverCrossing />}
       >
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The mechanism is exact.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T102]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T102]</span>{" "}
           MECHANISM-IDENTIFIED (42/42): the k-th atom acts on the three
           induction blocks E₋/E₀/E₊ as exactly{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             diag(−1/2, 0, +1/2)
           </span>
           , so the atom strength μ_k enters the handoff exactly once,
@@ -1569,7 +1576,7 @@ export default function PrimeFrontPage() {
           singled out — the onset is a crossing of two finite quantities.
         </p>
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The binding constraint flips.
           </strong>{" "}
           No concentration condition binds: the bare E₋ form is strongly
@@ -1579,13 +1586,13 @@ export default function PrimeFrontPage() {
           <em>Schur dressing against E₀⊕E₊</em> — the coupling to the
           induction hypothesis — which takes 35.7%…97.3% of the bare
           eigenvalue. The window law is a pure μ-power:{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             w ~ μ^(−0.563 ± 0.098)
           </span>
           , q = −1.84 ± 0.37 (fits); no log, no g_k.
         </p>
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             C/g was a proxy — refuted three ways.
           </strong>{" "}
           The T101 decomposition with the atom gap g_k is triply negative:
@@ -1616,36 +1623,36 @@ export default function PrimeFrontPage() {
         }
       >
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             T101 lost the race by the instrument, not the math.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T101]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T101]</span>{" "}
           Across 16 zones the primitives are flat and the target inequality
           never fails — but the closing instrument&apos;s race quantity r_k
           decays as r ~ exp(−0.1622k) (fit, ± 0.0562): only zone 2 closes
           throughout, 7/64 cells on the zone × wing-fraction map.
         </p>
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             T103 rebuilds the tool.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T103]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T103]</span>{" "}
           INSTRUMENT-IMPROVED (29/29), pure tool-building at door C: the T101
           race curve is first reproduced exactly, then re-run with a
           θ-weighted band sum (certified weights, chain ρ ≤ b_band ≤ b_tail ≤
           b_t99 at 64/64 samples) and full m(Λ) exploitation. The demand
           Λ_ok stays bounded across all 16 zones —{" "}
-          <span className="font-mono text-slate-200">0.771…3.640</span>{" "}
+          <span className="font-mono text-slate-800">0.771…3.640</span>{" "}
           instead of 2.3…376, a reduction of 3.0×…103.4× — at the honest
           price of explicit modes growing 2 → 232. The new race slope is{" "}
-          <span className="font-mono text-slate-200">−0.0748 ± 0.0116</span>{" "}
+          <span className="font-mono text-slate-800">−0.0748 ± 0.0116</span>{" "}
           (fit, 2.2× flatter): r_k falls only 9.33 → 2.70 and{" "}
           <em>never leaves the spectrum</em>. The closure map jumps 7/64 →
           44/64 with one fixed, k-uniform instrument (Λ₀ = 3, r = 2 — no
           zone tuning).
         </p>
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Measured verdict: the loss is in the wing, not the bulk.
           </strong>{" "}
           θ-weighting and finite rank are exhausted — the bulk is not
@@ -1681,18 +1688,18 @@ export default function PrimeFrontPage() {
           lower bound on the Schur profile σ_k(δ_ref) just above atom entry,
           i.e. quantitative Weil positivity at the atom edge. Provable-shaped
           next to it: resolvent edge-regularity{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             σ_k(δ) ≥ σ_k(δ_ref)·(δ/δ_ref)^q_k
           </span>
           .
         </p>
-        <p className="rounded-xl border border-slate-700/40 bg-slate-900/40 px-4 py-3 text-sm text-slate-400">
+        <p className="rounded-xl border border-slate-300/40 bg-slate-100/40 px-4 py-3 text-sm text-slate-600">
           Result — T104 (SCHUR.PROFILE.BOUND, two independent arms:{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             schur_profile_bound_probe.py
           </span>{" "}
           +{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             schur_profile_chain_probe.py
           </span>
           ) is CHAIN-PARTIAL: the naive margin route is dead, exact
@@ -1702,7 +1709,7 @@ export default function PrimeFrontPage() {
           that core —{" "}
           <a
             href="#compression"
-            className="text-sky-300 underline decoration-sky-400/30 underline-offset-2 hover:text-sky-200"
+            className="text-sky-700 underline decoration-sky-400/30 underline-offset-2 hover:text-sky-800"
           >
             the next three sections
           </a>
@@ -1719,11 +1726,11 @@ export default function PrimeFrontPage() {
         badge="sandbox"
       >
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The bare bound gets a closed form; the avoidance law becomes a
             theorem.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T105]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T105]</span>{" "}
           ONE-OF-TWO (28/28): the T104 arm discrepancy dissolves — one currency,
           exact split bare = μ_k/2 + b0 — and three classical steps (Bessel;
           Legendre; Cauchy–Schwarz at the pole pair) collapse into a closed lower
@@ -1734,10 +1741,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Parity halves the object.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T106]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T106]</span>{" "}
           DENSITY-MAPPED (32/32): the Weil pole splits exactly into a positive
           rank-1 lift in the even channel and a negative rank-1 pressure in the
           odd one. The even channel closes 16/16; the odd channel — the one with
@@ -1748,18 +1755,18 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             One scalar, then one number.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T107]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T107]</span>{" "}
           SCALAR-TRACTABLE (30/30): the matrix statement becomes exactly one
           scalar ratio{" "}
-          <span className="font-mono text-slate-200">r = κ/ε ≤ 1</span>, measured
+          <span className="font-mono text-slate-800">r = κ/ε ≤ 1</span>, measured
           r = 0.005…0.18 — two orders of magnitude of room instead of five
           decimal places. The symbol route is structurally dead: the certified
           symbol bound is negative (−2.54…−0.81) where the truth is positive, so
           Grenander–Szegő cannot deliver here in principle.{" "}
-          <span className="font-mono text-amber-200">[sandbox · T108]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T108]</span>{" "}
           EPSILON-IDENTITY (44/44): ε turns out to be exactly the square of the
           last Cholesky pivot — the classical Szegő–Levinson prediction error —
           so its positivity <em>coincides with</em> the induction&apos;s own
@@ -1769,10 +1776,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Both scalars certified; the circle closes on the measured zones.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T109]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T109]</span>{" "}
           BOUNDARY-CERTIFIED (29/29): the mechanism is not decay but
           cancellation (the source sits <em>on</em> the boundary), so
           Combes–Thomas is refuted with the exact Green row and replaced by a
@@ -1780,7 +1787,7 @@ export default function PrimeFrontPage() {
           it away; ω is cracked unconditionally by a graded matrix cap. The chain
           closes 16/16 on exactly one strict-margin input, 10²–10⁶ weaker than
           the conclusion.{" "}
-          <span className="font-mono text-amber-200">[sandbox · T110]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T110]</span>{" "}
           MARGIN-PROPAGATES (28/28): that input propagates — certified base case,
           15 certified handover steps, and the atom entry is structurally free
           (the new atom <em>raises</em> the floor on 15/15). Three sharp gaps
@@ -1788,11 +1795,11 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Then the ladder is driven deep — and the wall is measured, not
             extrapolated.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T111]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T111]</span>{" "}
           CROSSING-CONFIRMED (23/23): 199 zones, 117 handovers to n = 521. The
           crossing sits at n* ≈ 462 — an upper bound; T110&apos;s n ≈ 170 was a
           fit artefact — and it splits into three separate walls: the margin wall
@@ -1800,14 +1807,14 @@ export default function PrimeFrontPage() {
           requirement wall at n = 727. Decisive detail: the handover mechanism
           itself never fails, 117/117 at retention 1.000000. The chain tears at
           a ratio, never at a step.{" "}
-          <span className="font-mono text-amber-200">[sandbox · T112]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T112]</span>{" "}
           SCALING-PARTIAL (20/20): rebuilt in a frame whose cell width follows
           the local prime gap, two of the three walls fall structurally — but the
           margin wall is frame-invariant at exponent −0.974. It is the substance
           of the requirement, not the geometry.
         </p>
 
-        <p className="rounded-xl border border-slate-700/40 bg-slate-900/40 px-4 py-3 text-sm text-slate-400">
+        <p className="rounded-xl border border-slate-300/40 bg-slate-100/40 px-4 py-3 text-sm text-slate-600">
           Eight parts, one direction: every stage removed something and named
           what was left. The honest state at T112 is a wall that survives every
           reframing — and the next part asks the question that decides its
@@ -1825,10 +1832,10 @@ export default function PrimeFrontPage() {
         visual={<DepthReachCallout />}
       >
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The currency question: the wall measures the ruler.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T113]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T113]</span>{" "}
           SUBSTANCE-CONFIRMED (27/27): the falling ratio carries the same
           exponent −1.168 ± 0.259 in <em>all five</em> currencies (raw, /λ_max,
           /trace density, /D, /D²), so it cannot be normalised away. But the
@@ -1836,7 +1843,7 @@ export default function PrimeFrontPage() {
           <em>no plateau</em>: both eigenvalues carry the same power of the cell
           width (D^1.83 and D^1.76). The continuum window form has no gap at all
           — the quantity that was falling measures the{" "}
-          <strong className="font-medium text-slate-200">discretization</strong>
+          <strong className="font-medium text-slate-800">discretization</strong>
           , not the spectrum. And the positive floor survives only as a
           cancellation of relative size ~1e-7, so norm perturbation theory is
           five orders of magnitude too coarse. Consequence: the T109 requirement
@@ -1844,13 +1851,13 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Remove the division, and the wall dissolves.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T114]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T114]</span>{" "}
           WALL-DISSOLVES (22/22): rebuilt without the margin division, the exact
           Schur complement (Albert 1969) certifies 27/27 ladder steps —{" "}
-          <strong className="font-medium text-emerald-200">
+          <strong className="font-medium text-emerald-800">
             eleven of them beyond the old wall, up to n = 1331
           </strong>{" "}
           — and all seven zones where the T109 chain tore, including the wall
@@ -1863,17 +1870,17 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Compression breaks the cap: a certified step at zone 155,921.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T115]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T115]</span>{" "}
           TRANSPORT-BLOCKED (26/26), with a large compression gain. Transport
           between the ladder&apos;s non-nested grids certifies only mild
           refinement — and for a principled reason, not a weak bound: on nested
           ladders, where the transport error is exactly zero, the Schur floor
           itself falls like ρ^−1.7, so no bound can undo it. The two-scale
           compression, however, keeps the step bit-exactly margin-free and{" "}
-          <strong className="font-medium text-emerald-200">
+          <strong className="font-medium text-emerald-800">
             certifies a step at n = 155,921
           </strong>{" "}
           (117× deeper than T114), on a fine lattice of 93,470 cells compressed
@@ -1885,11 +1892,11 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The induction step is a boundary process — and the prime comb refuses
             to be compressed.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T116]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T116]</span>{" "}
           RICCATI-PARTIAL (33/33): the global pole rides exactly in a
           12×12+12+1 state (bordered elimination, no truncation anywhere), and
           the Riccati march runs 169,236 prepends to 1,354,088 cells — 903× the
@@ -1904,10 +1911,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Theorem-shaped, and no rate lost.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T117]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T117]</span>{" "}
           THEOREM-SHAPED (23/23): the family is exactly nested, so ε is a
           Galerkin best-approximation error of <em>one</em> bilinear form and its
           monotonicity is a theorem rather than a fit; positivity becomes a
@@ -1923,11 +1930,11 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Two of three lemmas stand — and the arithmetic half closes as a
             theorem.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T118]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T118]</span>{" "}
           TWO-OF-THREE (36/36): the first route is refuted with a reason (the
           exact two-grid symbol is a <em>harmonic</em> mean, which the comb dips
           make vacuous on 14/14 windows), and the rescue is a classical shift
@@ -1939,27 +1946,27 @@ export default function PrimeFrontPage() {
           were under-resolved, not obstructed. Saturation turns out to be an
           identity here, so its constant is computed (0.252–0.336) rather than
           assumed.{" "}
-          <span className="font-mono text-amber-200">[sandbox · T119]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T119]</span>{" "}
           ARITHMETIC-DONE (27/27): the arithmetic half closes as a theorem —
           positivity of the symbol for every cell width below an{" "}
           <em>explicit</em>{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             D₀(α) = exp(−(Ξ(α) + B))
           </span>
           , with Ξ the prime-power atom count and B = −1.0474 universal (drift
           ≤ 3.1e-4). The energy route to the remaining statement is proven{" "}
           <em>empty</em> — a tautology — which is what makes that statement
           genuinely new content. And the sharpest identity of the run,{" "}
-          <span className="font-mono text-slate-200">κ_end = 1/(1+R)</span>{" "}
+          <span className="font-mono text-slate-800">κ_end = 1/(1+R)</span>{" "}
           exactly (1.1e-16), reduces everything to one discrete Harnack
           inequality with a classical address.
         </p>
 
-        <p className="rounded-xl border border-slate-700/40 bg-slate-900/40 px-4 py-3 text-sm text-slate-400">
+        <p className="rounded-xl border border-slate-300/40 bg-slate-100/40 px-4 py-3 text-sm text-slate-600">
           Worth stating plainly, because it is the load-bearing fence of the
           whole sprint: this chain is classical numerical analysis from end to
           end and{" "}
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             contains no zeta input anywhere
           </strong>
           . As a conditional lemma the material is essentially complete — what is
@@ -1978,17 +1985,17 @@ export default function PrimeFrontPage() {
         visual={<TelescopeRungs />}
       >
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The Harnack core becomes proof-shaped — at the price of one more
             defect.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T120]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T120]</span>{" "}
           HARNACK-EXPLAINED (21/21): the mysterious constant R ≈ 1 is not a
           constant at all but a <em>symmetry</em>. The two increment families are
           the odd and the even half of <em>one</em> sequence, offset by a single
           fine cell — so given one sign on the corner cells their difference is a
           sum over disjoint neighbour pairs, and{" "}
-          <span className="font-mono text-slate-200">|R − 1| ≤ 0.04745</span>{" "}
+          <span className="font-mono text-slate-800">|R − 1| ≤ 0.04745</span>{" "}
           follows <em>unconditionally</em>, dominating the measurement on
           3112/3112 sign-pure rows. Two negative results count as much: the
           per-cell version of the inequality is provably <em>false</em> (ratios
@@ -2002,11 +2009,11 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Against the real ladder: a section statement survives where a symbol
             statement dies.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T121]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T121]</span>{" "}
           WIDE-RESTRUCTURED (21/21): the chain never needed the symbol to be
           positive — it needs the finite <em>section</em> to be, at the
           frame&apos;s own resolution. Over 16 windows of the real ladder
@@ -2024,13 +2031,13 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Both repairs land: the refuted link was an identity all along.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T122]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T122]</span>{" "}
           NET-IMPROVED (20/20): the term that broke T121&apos;s link is not an
           error term but the reflection half of an{" "}
-          <strong className="font-medium text-slate-200">isometry</strong> — the
+          <strong className="font-medium text-slate-800">isometry</strong> — the
           oscillation block is exactly a compression of one window Toeplitz form.
           From that plus a certified cell envelope and Parseval follows a
           certified band floor, non-vacuous 36/36 up to α = 6.31, where
@@ -2045,10 +2052,10 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The coupling resists — structurally, and the reason is the result.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T123]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T123]</span>{" "}
           CBS-RESISTS (20/20): the band margin closes almost for free (that
           reduction costs under 1%) and the oscillation block gains{" "}
           <em>uniform</em> certified positivity on every row of the ladder. But
@@ -2067,16 +2074,16 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The telescope carries — because the rung is a maximum.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T124]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T124]</span>{" "}
           TELESCOPE-CARRIES (28/28): the nested level chain is <em>one</em>{" "}
           window form on nested spaces (nesting exact to 2.4e-14), so the whole
           two-level system of the previous part is literally one rung of a
           ladder, every rung is the saturation identity, and the rungs telescope:
           their sum is the whole quantity (9.2e-10). Then the key of the part —
-          the <strong className="font-medium text-slate-200">
+          the <strong className="font-medium text-slate-800">
             direction flip
           </strong>
           . Read as a residual in the inverse norm, the rung is a{" "}
@@ -2092,7 +2099,7 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             What that leaves — stated as the diary states it.
           </strong>{" "}
           The coupling defect{" "}
@@ -2107,11 +2114,11 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The finale: the chain composes, and the Harnack pair leaves the
             spine.
           </strong>{" "}
-          <span className="font-mono text-amber-200">[sandbox · T125]</span>{" "}
+          <span className="font-mono text-amber-800">[sandbox · T125]</span>{" "}
           ASSEMBLY-GREEN (34/34): every certificate of the arc mounted on one
           ladder, end to end. All five stages — base Cholesky, telescope rungs, ε
           lower bound, the κ chain, the margin-free handover — complete on 52 of
@@ -2127,7 +2134,7 @@ export default function PrimeFrontPage() {
           pays with its length. The load-bearing finding is a change of shape:
           the weakest stage of the whole mounting is the κ chain, but that chain
           is the second, independent route — the{" "}
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             load-bearing spine is Cholesky-certified on all 52 zones
           </strong>
           , so the Harnack pair no longer carries anything. 430 completed
@@ -2137,7 +2144,7 @@ export default function PrimeFrontPage() {
         </p>
 
         <p>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             And then the accounting.
           </strong>{" "}
           Theorem V-final is printed with line-by-line attribution — 25 lines: 10
@@ -2154,7 +2161,7 @@ export default function PrimeFrontPage() {
           named as what it is: <em>uniformity</em> in the zone index, not size.
         </p>
 
-        <p className="rounded-xl border border-slate-700/40 bg-slate-900/40 px-4 py-3 text-sm text-slate-400">
+        <p className="rounded-xl border border-slate-300/40 bg-slate-100/40 px-4 py-3 text-sm text-slate-600">
           Where the series ends: a finite, machine-certified chain whose
           load-bearing spine is 96.2% identity or Cholesky certificate and
           whose only hypothesis is a declared accounting convention; a relay
@@ -2233,9 +2240,9 @@ export default function PrimeFrontPage() {
           arithmetic? The checkable core of that reading is exact, on the
           compiler&apos;s own objects. The E₈ theta function, computed from
           the glue decomposition, <em>is</em> the Eisenstein series{" "}
-          <span className="font-mono text-slate-200">Θ_E8 = E₄</span>: shell
+          <span className="font-mono text-slate-800">Θ_E8 = E₄</span>: shell
           counts{" "}
-          <span className="font-mono text-slate-200">r(2n) = 240·σ₃(n)</span>,
+          <span className="font-mono text-slate-800">r(2n) = 240·σ₃(n)</span>,
           and the first shell is literally 240 — the root count.
         </p>
         <p>
@@ -2243,18 +2250,18 @@ export default function PrimeFrontPage() {
           counts factor over coprime addresses; the must-fail control shows
           non-coprime does not). The “independent check channels” reading is
           a theorem: the Hecke operators{" "}
-          <span className="font-mono text-slate-200">T_p</span> act with
+          <span className="font-mono text-slate-800">T_p</span> act with
           eigenvalue{" "}
-          <span className="font-mono text-slate-200">1 + p³</span> for every
+          <span className="font-mono text-slate-800">1 + p³</span> for every
           prime, they <em>commute</em>, and the compiler&apos;s theta is a
           simultaneous eigenvector of all of them. And{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             L(E₄, s) = ζ(s)·ζ(s−3)
           </span>
           : the Riemann zeta function appears as the factorized shadow of the
           E₈ counting function.
         </p>
-        <p className="text-slate-400">
+        <p className="text-slate-600">
           Honest scope: these are classical facts (Jacobi, Hecke) — the
           content is that the compiler&apos;s own objects realize them
           verbatim, fixing the direction of explanation inside TFPT&apos;s
@@ -2275,7 +2282,7 @@ export default function PrimeFrontPage() {
         <p>
           “E₈ is an error-correcting code” is now a theorem in the suite:
           Construction A on the self-dual extended Hamming code{" "}
-          <span className="font-mono text-slate-200">[8,4,4]</span> — the
+          <span className="font-mono text-slate-800">[8,4,4]</span> — the
           Reed–Muller code RM(1,3) — yields E₈ exactly (even, unimodular,
           shells 240/2160), and every single-bit error is exhaustively
           correctable: 16×8 corrupted words, a unique nearest codeword every
@@ -2291,19 +2298,19 @@ export default function PrimeFrontPage() {
           placements of the code exactly <em>one</em> (up to the anchor
           orientation) carries both compiler symmetries. On that placement
           the code&apos;s coordinates organise as{" "}
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             four μ₄ pairs — one bit per pair
           </strong>
           : the family 3-cycle rotates three of the pairs and fixes the
           fourth, the anchor —{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             3 families + 1 anchor
           </span>
           , read off the code. The placement reproduces the v629 root
           censuses verbatim, and the syndrome space factors along the same
           structure.
         </p>
-        <p className="text-slate-400">
+        <p className="text-slate-600">
           Compiler ties, typed: 8 = rank, 4 = d = |μ₄|, 16 = the carrier
           half-spinor. Robustness language on this page now has an exact
           anchor — a code with a decoder, not a metaphor.
@@ -2322,7 +2329,7 @@ export default function PrimeFrontPage() {
         <p>
           The surprise of the third external review (v624): an explicit
           integer matrix P with det −6 satisfies{" "}
-          <span className="font-mono text-slate-200">
+          <span className="font-mono text-slate-800">
             Pᵀ J_det P = J_fix
           </span>{" "}
           exactly — the prime-front determinant form (det 2) and the cover
@@ -2334,7 +2341,7 @@ export default function PrimeFrontPage() {
         </p>
         <p>
           v627 measured what that buys: transported through the congruence,{" "}
-          <strong className="font-medium text-emerald-200">
+          <strong className="font-medium text-emerald-800">
             all 67 complete windows land in the positive cone
           </strong>{" "}
           of the cover polarization lattice — on one sheet, det S &gt; 0
@@ -2343,7 +2350,7 @@ export default function PrimeFrontPage() {
           class, and it is <em>constructed</em> from canonical operator data
           (the null-cone rays are exactly ker C_V and fix C_V), not guessed.
         </p>
-        <p className="text-slate-400">
+        <p className="text-slate-600">
           Honesty, twice: chamber membership is a density-layer statement —
           scrambled combs do not leave the chamber (v582) — so the fine
           C&nbsp;=&nbsp;1 arithmetic lives <em>inside</em> the chamber; and
@@ -2366,28 +2373,28 @@ export default function PrimeFrontPage() {
           240 E₈ roots with exactly 60 orbits — and 60 = D_start, the
           cascade&apos;s starting value. v633 built the quotient properly:
           the 60 orbits are 60 lines in{" "}
-          <span className="font-mono text-slate-200">ℤ[i]⁴</span> carrying a
+          <span className="font-mono text-slate-800">ℤ[i]⁴</span> carrying a
           hermitian form (the “complex E₈”), and the 60 order-2 unitary
           reflections they define generate a group of order{" "}
-          <span className="font-mono text-slate-200">46080</span>.
+          <span className="font-mono text-slate-800">46080</span>.
         </p>
         <p>
           v634 identified it: exactly 60 reflections, invariant degrees{" "}
-          <span className="font-mono text-slate-200">(8, 12, 20, 24)</span> —
+          <span className="font-mono text-slate-800">(8, 12, 20, 24)</span> —
           the Shephard–Todd group{" "}
-          <strong className="font-medium text-slate-200">G31</strong>, pinned
+          <strong className="font-medium text-slate-800">G31</strong>, pinned
           by fingerprints computed, not cited. The compiler sits inside it
           canonically:{" "}
-          <span className="font-mono text-emerald-300">
+          <span className="font-mono text-emerald-700">
             σ = c⁴, J = c⁹
           </span>{" "}
           — the family 3-cycle and the μ₄ clock are <em>powers of one
           order-12 element</em>, and the μ₄ center is a power of the clock.
         </p>
-        <p className="text-slate-400">
+        <p className="text-slate-600">
           The kill that keeps it honest: |G31| = 46080 = |W(D₅)|·|W(A₃)| —
           the compiler&apos;s glue factors — looks like destiny and is{" "}
-          <strong className="font-medium text-rose-200">numerology</strong>.
+          <strong className="font-medium text-rose-800">numerology</strong>.
           The abstract isomorphism dies on cheap invariants, and stronger:
           W(D₅) embeds in <em>no</em> rank-4 group at all, so the order
           coincidence carries no subgroup structure. Also reproduced one
@@ -2422,18 +2429,18 @@ export default function PrimeFrontPage() {
       <section
         id="updates"
         aria-labelledby="updates-heading"
-        className="scroll-mt-24 border-t border-slate-800/60 py-12 sm:py-16"
+        className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
       >
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
               41 · Live updates
             </span>
             <StatusBadge badge="sandbox" />
           </div>
           <h2
             id="updates-heading"
-            className="mt-3 font-serif text-2xl font-semibold text-slate-50 sm:text-3xl md:text-4xl"
+            className="mt-3 font-serif text-2xl font-semibold text-slate-950 sm:text-3xl md:text-4xl"
           >
             Feed — one entry per completed agent run
           </h2>
@@ -2443,19 +2450,19 @@ export default function PrimeFrontPage() {
         </div>
       </section>
 
-      <footer className="border-t border-slate-800/60 py-10">
-        <div className="mx-auto max-w-5xl px-4 text-sm text-slate-500 sm:px-6 lg:px-8">
+      <footer className="border-t border-slate-200/60 py-10">
+        <div className="mx-auto max-w-5xl px-4 text-sm text-slate-600 sm:px-6 lg:px-8">
           Numbers and verdicts are taken from{" "}
-          <code className="font-mono text-slate-400">experiments/next.txt</code>{" "}
+          <code className="font-mono text-slate-600">experiments/next.txt</code>{" "}
           (2026-07-23 … 2026-08-02 diary and backflow rounds) and the promoted
           modules{" "}
-          <code className="font-mono text-slate-400">
+          <code className="font-mono text-slate-600">
             verification/v535_*.py
           </code>{" "}
           …{" "}
-          <code className="font-mono text-slate-400">v648_sign_uncertainty.py</code>.
+          <code className="font-mono text-slate-600">v648_sign_uncertainty.py</code>.
           Exploratory probes live under{" "}
-          <code className="font-mono text-slate-400">
+          <code className="font-mono text-slate-600">
             experiments/tfpt-discovery/
           </code>
           .
@@ -2470,11 +2477,11 @@ function AugustOffensivesSection() {
     <section
       id="august-offensives"
       aria-labelledby="august-offensives-heading"
-      className="scroll-mt-24 border-t border-slate-800/60 py-12 sm:py-16"
+      className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
             30 · The proof offensives of August 3 · v682–v735 + sandbox probes
           </span>
           <StatusBadge badge="machine-verified" />
@@ -2482,12 +2489,12 @@ function AugustOffensivesSection() {
         </div>
         <h2
           id="august-offensives-heading"
-          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-50 sm:text-3xl md:text-4xl"
+          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-950 sm:text-3xl md:text-4xl"
         >
           One day, five offensives — four pictures
         </h2>
-        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-400">
-          <span className="font-medium text-sky-300/90">In plain words: </span>
+        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-600">
+          <span className="font-medium text-sky-700/90">In plain words: </span>
           on August 3 the diary ran five parallel proof offensives against the
           open positivity step — and kept going: fifty-four modules were
           promoted in six rounds (v682–v735), closing the day with the
@@ -2500,9 +2507,9 @@ function AugustOffensivesSection() {
           the still-exploratory ones clearly separated.
         </p>
 
-        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-300">
+        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-700">
           <p>
-            <strong className="font-medium text-emerald-200">
+            <strong className="font-medium text-emerald-800">
               Promoted (machine-verified):
             </strong>{" "}
             v691 extracted the target factorisation A = B*B + P from the
@@ -2514,7 +2521,7 @@ function AugustOffensivesSection() {
             listed window by window.
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               Sandbox (exploration, not promoted):
             </strong>{" "}
             the chain probes measured a <em>just-in-time positivity
@@ -2533,7 +2540,7 @@ function AugustOffensivesSection() {
           <DeckSectorViz />
         </div>
 
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-500">
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-600">
           Honest fence, as everywhere on this page: the promoted results are
           statements about the declared finite window family and the Ihara
           laboratory — full W3 positivity (the RH-hard step) remains the
@@ -2628,11 +2635,11 @@ function FiniteClosureSection() {
     <section
       id="finite-closure"
       aria-labelledby="finite-closure-heading"
-      className="scroll-mt-24 border-t border-slate-800/60 py-12 sm:py-16"
+      className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
             31 · The finite closure and the phase architecture · v905–v911 +
             sandbox probes
           </span>
@@ -2641,12 +2648,12 @@ function FiniteClosureSection() {
         </div>
         <h2
           id="finite-closure-heading"
-          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-50 sm:text-3xl md:text-4xl"
+          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-950 sm:text-3xl md:text-4xl"
         >
           The finite wall closes — and gets a price tag
         </h2>
-        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-400">
-          <span className="font-medium text-sky-300/90">In plain words: </span>
+        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-600">
+          <span className="font-medium text-sky-700/90">In plain words: </span>
           the reflux rounds sixty-four through seventy-one finish the{" "}
           <em>finite</em> surface of the wall end-form: every reachable wall
           face on the deployed ladder is now certified from cited inputs, the
@@ -2656,9 +2663,9 @@ function FiniteClosureSection() {
           clearly separated, as always.
         </p>
 
-        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-300">
+        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-700">
           <p>
-            <strong className="font-medium text-emerald-200">
+            <strong className="font-medium text-emerald-800">
               Promoted (machine-verified):
             </strong>{" "}
             <em>the finite wall closure</em> (v909): the composed census B ∧
@@ -2692,7 +2699,7 @@ function FiniteClosureSection() {
             the research-contracts companion.)
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               Sandbox (exploration, not promoted):
             </strong>{" "}
             the phase architecture. The <em>Euler phase identity</em>: the
@@ -2721,7 +2728,7 @@ function FiniteClosureSection() {
           </p>
         </div>
 
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-500">
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-600">
           Honest fence, as everywhere on this page: the finite closure is a
           statement about the deployed finite ladder from cited inputs — a
           finite verified-zero sum can never prove RH, the all-h and
@@ -2741,24 +2748,24 @@ function SigmaChainSection() {
     <section
       id="sigma-chain"
       aria-labelledby="sigma-chain-heading"
-      className="scroll-mt-24 border-t border-slate-800/60 py-12 sm:py-16"
+      className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
             32 · The σ chain and the regional theorem · sandbox probes
           </span>
           <StatusBadge badge="sandbox" />
         </div>
         <h2
           id="sigma-chain-heading"
-          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-50 sm:text-3xl md:text-4xl"
+          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-950 sm:text-3xl md:text-4xl"
         >
           The last cap becomes a derived chain — and seals as a theorem
           package
         </h2>
-        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-400">
-          <span className="font-medium text-sky-300/90">In plain words: </span>
+        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-600">
+          <span className="font-medium text-sky-700/90">In plain words: </span>
           the σ-chain rounds (freeze rounds seventy-three through
           seventy-five, plus the next morning&apos;s package round) replace
           the program&apos;s last attractive cap by a <em>derived</em>,
@@ -2771,13 +2778,13 @@ function SigmaChainSection() {
           chapter&apos;s freeze.
         </p>
 
-        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-300">
+        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-700">
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The σ identity, and the chain (Level 1):
             </strong>{" "}
             the wall&apos;s decisive ratio is exactly its own Schur quotient,{" "}
-            <span className="font-mono text-emerald-300">σ = 1 − s/n</span>{" "}
+            <span className="font-mono text-emerald-700">σ = 1 − s/n</span>{" "}
             (warded at 3.8×10⁻¹⁵) — so <em>any</em> cap on σ is the open half
             restated, mechanism-importing. The preceding round&apos;s
             attractive σ ≤ 0.665 closure is dismantled <em>by provenance</em>:
@@ -2787,7 +2794,7 @@ function SigmaChainSection() {
             provenances. The cap is replaced by a derived per-cell chain
             (n &gt; 0 ∧ certified ordered co-block floors ∧ Gauss–Radau
             moment bound, every inequality exact-rational): σ ≤ 0.727, hence
-            M ≻ 0, on <strong className="font-medium text-slate-100">151/151
+            M ≻ 0, on <strong className="font-medium text-slate-900">151/151
             built wall-legal cells plus 59/59 deep steps</strong> to h = 6344
             (worst margin 0.2124) — the first wall-positivity chain with{" "}
             <em>no member in the cancellation currency</em>: the margins are
@@ -2795,7 +2802,7 @@ function SigmaChainSection() {
             screen passes flat.
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The class theorem, sealed (Level 2):
             </strong>{" "}
             the <em>joint</em> Radau relation lifts definiteness from the
@@ -2806,7 +2813,7 @@ function SigmaChainSection() {
             sum-of-squares certificates (closed-form Markov–Lukács Grams,
             PSD by structure, zero numerical error), census 151/151 at
             η = 0.273. And the morning&apos;s round seals it as a{" "}
-            <strong className="font-medium text-slate-100">three-part
+            <strong className="font-medium text-slate-900">three-part
             theorem package</strong>: a purely symbolic relation certificate
             (no numeric input anywhere), the positivity certificate
             re-verified digit-identically against the stored proof object,
@@ -2820,13 +2827,13 @@ function SigmaChainSection() {
             all three doctored packages die at exactly the named barrier.
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The endform of the quantifier (Level 3):
             </strong>{" "}
             the legality frontier is the quantifier&apos;s likely final
             address. h = 8003 turned out to be a hole, not a wall — the
             legal sub-ladder extends to{" "}
-            <span className="font-mono text-emerald-300">h = 8204</span> —
+            <span className="font-mono text-emerald-700">h = 8204</span> —
             but every built cell beyond is negative: the frozen enum returns,
             for the first time, a measured <em>termination signal</em> of
             the built horizon, with the sign living in the{" "}
@@ -2839,7 +2846,7 @@ function SigmaChainSection() {
             measured <em>unfinished</em> — its driver is a cancellation of
             giants (median factor 10⁵), and the direct reading closes
             razor-thin at{" "}
-            <span className="font-mono text-emerald-300">+0.0104</span>,
+            <span className="font-mono text-emerald-700">+0.0104</span>,
             typed as an <em>irreducible measurement</em> that no certified
             constant can move. Of the three named missing bounds, B3 is now{" "}
             <em>Lipschitz-certified</em> (a 400-bit interval proof object),
@@ -2849,7 +2856,7 @@ function SigmaChainSection() {
             the arithmetic AR–OSC cancellation.
           </p>
           <p>
-            <strong className="font-medium text-rose-200">
+            <strong className="font-medium text-rose-800">
               The closed no-gos:
             </strong>{" "}
             the Pick / one-bad-atom compression is DEAD (a symbolically
@@ -2865,7 +2872,7 @@ function SigmaChainSection() {
           </p>
         </div>
 
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-500">
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-600">
           Honest fence, and the closing map in its frozen form: the finite
           theory is complete and machine-verified; the class theorem is a
           machine-verifiable proof object; <em>the quantifier is RH</em> —
@@ -2889,11 +2896,11 @@ function KillAtlasSection() {
     <section
       id="kill-atlas"
       aria-labelledby="kill-atlas-heading"
-      className="scroll-mt-24 border-t border-slate-800/60 py-12 sm:py-16"
+      className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
             33 · The kill atlas and the Obstruction Completeness Theorem ·
             sandbox probes
           </span>
@@ -2901,13 +2908,13 @@ function KillAtlasSection() {
         </div>
         <h2
           id="kill-atlas-heading"
-          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-50 sm:text-3xl md:text-4xl"
+          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-950 sm:text-3xl md:text-4xl"
         >
           The whole campaign becomes one falsifiable object — and one named
           endpoint
         </h2>
-        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-400">
-          <span className="font-medium text-sky-300/90">In plain words: </span>
+        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-600">
+          <span className="font-medium text-sky-700/90">In plain words: </span>
           four consolidation rounds (discovery freeze rounds seventy-nine
           through eighty-two, 2026-08-14) audit the entire RH campaign into
           one machine-refutable map, adjudicate every remaining candidate
@@ -2919,14 +2926,14 @@ function KillAtlasSection() {
           (954 today, after the v914/v915 promotion of chapters 37–39, the v916/v917 Epstein detection-arc promotion of 2026-08-16, the v918–v921 prime-front theorem-arc promotion of 2026-08-18, the v922–v925 spectral-balance/edge arc and v926–v930 endgame-arc promotions of 2026-08-19, the v931–v935 triple-cofinal-arc and v936–v941 post-bughunt-arc promotions of 2026-08-20, the v942–v948 mechanism-arc promotion of 2026-08-21, the v949–v954 Bughunt-X-arc promotion of 2026-08-22, the v955/v956 integrable-dictionary-arc promotion of 2026-08-24, the v958 bordered-dictionary-arc and v959 coupled-tau-terminal-arc promotions of 2026-08-24/25, and the v960/v961 wave-4 surface-closure/orientation promotions of 2026-08-25).
         </p>
 
-        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-300">
+        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-700">
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The map as one object (round 79, 43/43):
             </strong>{" "}
             the RH implication chain is reconstructed explicitly as an
             11-node, 10-edge DAG with{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               exactly one open edge, E4
             </strong>{" "}
             — positivity at every rung of one sign-independently
@@ -2944,7 +2951,7 @@ function KillAtlasSection() {
             <em>did not move it</em>.
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The external proposal is coordinate system #7 (round 80,
               35/35, SAT-DISGUISE):
             </strong>{" "}
@@ -2964,7 +2971,7 @@ function KillAtlasSection() {
             scalar.
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The candidate map completes (round 81, 33/33):
             </strong>{" "}
             the five formerly untested classes all fail with exact killing
@@ -2973,7 +2980,7 @@ function KillAtlasSection() {
             renamed (margin exactly s/n); the named unconditional
             ordinate-position types are empty, with the required ordinate
             precision priced at{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               ~1% of the mean zero spacing
             </strong>{" "}
             on the 2×10⁷-ordinate certified cache; the minimal alignment
@@ -2982,7 +2989,7 @@ function KillAtlasSection() {
             every classical zero-free width); and every enumerated global
             source-profile inequality dies on the downward-closure lemma.
             Final tally:{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               24 candidate sign sources, 0 pass, 19 fail, no
               blanket-untested class left.
             </strong>{" "}
@@ -2994,7 +3001,7 @@ function KillAtlasSection() {
             uniformity of Möbius.)
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The bird&apos;s-eye round (round 82, 35/35):
             </strong>{" "}
             the three degrees of freedom every route held fixed are
@@ -3016,7 +3023,7 @@ function KillAtlasSection() {
             precision, is the deficit.
           </p>
           <p>
-            <strong className="font-medium text-emerald-200">
+            <strong className="font-medium text-emerald-800">
               The Obstruction Completeness Theorem:
             </strong>{" "}
             (i) the DAG has exactly one open edge; (ii) the candidate map
@@ -3033,7 +3040,7 @@ function KillAtlasSection() {
           </p>
         </div>
 
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-500">
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-600">
           Honest fence: this theorem turns &quot;why does RH not fall to
           this program?&quot; into a machine-checked statement with an
           exact domain of validity. It says nothing about the truth,
@@ -3055,11 +3062,11 @@ function RealRootSignposSection() {
     <section
       id="realroot-signpos"
       aria-labelledby="realroot-signpos-heading"
-      className="scroll-mt-24 border-t border-slate-800/60 py-12 sm:py-16"
+      className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
             34 · The real-root architecture, the Parity Lemma, and the
             sign-position predictor · sandbox probes
           </span>
@@ -3067,13 +3074,13 @@ function RealRootSignposSection() {
         </div>
         <h2
           id="realroot-signpos-heading"
-          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-50 sm:text-3xl md:text-4xl"
+          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-950 sm:text-3xl md:text-4xl"
         >
           The missing object gets its most concrete form yet — and stays
           exactly as open
         </h2>
-        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-400">
-          <span className="font-medium text-sky-300/90">In plain words: </span>
+        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-600">
+          <span className="font-medium text-sky-700/90">In plain words: </span>
           six discovery freeze rounds (rounds eighty-three through
           eighty-eight, 2026-08-14) attack the one direction the
           Obstruction Completeness Theorem leaves untyped —{" "}
@@ -3086,9 +3093,9 @@ function RealRootSignposSection() {
           record — and this chapter carries only the corrected numbers.
         </p>
 
-        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-300">
+        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-700">
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The real-root architecture (round 83, three lanes: 16/16 +
               4/4 + 20/20):
             </strong>{" "}
@@ -3104,7 +3111,7 @@ function RealRootSignposSection() {
             cache&apos;s own float64 quantization of γ₁), mean displacement
             0.0 at float64 resolution. Lane two proves the structural
             point:{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               the surviving convergence statement alone implies Weil
               positivity
             </strong>{" "}
@@ -3115,7 +3122,7 @@ function RealRootSignposSection() {
             an arbiter.
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The arbiter (round 84, 17/17, REALROOT-DEPTH-UNDECIDED):
             </strong>{" "}
             the conflict resolves <em>by mechanism</em> — different
@@ -3125,7 +3132,7 @@ function RealRootSignposSection() {
             extremal family stays <em>exactly</em> on the Ξ census —
             (0,30) = 3, (0,60) = 13, (0,100) = 29 — with all 50 excess
             zeros exiled to the band edge. But the{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               Z1-transfer identity
             </strong>{" "}
             names the catch: the Galerkin matrix <em>is</em> the Gram
@@ -3135,7 +3142,7 @@ function RealRootSignposSection() {
             full RH strength.
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The TPL round (round 85, three lanes: 7/7 + 32/32 + 9/9):
             </strong>{" "}
             energy sign and zero census are locally independent
@@ -3143,7 +3150,7 @@ function RealRootSignposSection() {
             count — Rouché); the ARCH block <em>is</em> the smooth zero
             density exactly, so the entire positivity is supplied by the
             prime block alone;{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               the Parity Lemma
             </strong>
             : the persistence statement is — with no analysis — a finite
@@ -3160,12 +3167,12 @@ function RealRootSignposSection() {
             dps ~ 2×10¹².
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The simplicity round (round 86, 22/22) and the bughunt
               (round 87, 24/24):
             </strong>{" "}
             the one principle that threads everything is{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               Gram transcription
             </strong>{" "}
             — TFPT&apos;s positivity is always Gram positivity of node
@@ -3183,14 +3190,14 @@ function RealRootSignposSection() {
             things were tested.
           </p>
           <p>
-            <strong className="font-medium text-emerald-200">
+            <strong className="font-medium text-emerald-800">
               The sign-position round (round 88, 19/19,
               SIGNPOS-PREDICTOR-EXACT):
             </strong>{" "}
             a source-only predictor of the sign-change positions — the
             parity of a rounded band-limited prime phase at the Nyquist
             lattice — is{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               exact at all 79 reachable lattice points
             </strong>{" "}
             (x = 3/5/8/13), with arithmetic load exactly 4: the density
@@ -3206,7 +3213,7 @@ function RealRootSignposSection() {
           </p>
         </div>
 
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-500">
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-600">
           Honest fence: the wall route is closed as a theorem (chapter 33);
           the only escape architecture is adjudicated DEPTH-UNDECIDED with
           its measured support convicted circular; and the missing object
@@ -3218,7 +3225,7 @@ function RealRootSignposSection() {
           the complete map of why. All of it is sandbox: no claim moves
           until it is promoted, and nothing here is a claim of progress
           toward the Riemann Hypothesis.{" "}
-          <strong className="font-medium text-amber-200/90">
+          <strong className="font-medium text-amber-800/90">
             Correction of record (round 97, 2026-08-15, chapter 37):
           </strong>{" "}
           the predictor&apos;s exactness holds at x ≤ 13 only — its
@@ -3240,11 +3247,11 @@ function SvpinKreinSection() {
     <section
       id="svpin-krein"
       aria-labelledby="svpin-krein-heading"
-      className="scroll-mt-24 border-t border-slate-800/60 py-12 sm:py-16"
+      className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
             35 · The Stieltjes–Vitali pin route and the Krein screw-function
             carrier · sandbox probes
           </span>
@@ -3252,13 +3259,13 @@ function SvpinKreinSection() {
         </div>
         <h2
           id="svpin-krein-heading"
-          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-50 sm:text-3xl md:text-4xl"
+          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-950 sm:text-3xl md:text-4xl"
         >
           Countable pins, a carrier that sees the primes — and the same
           single input at the bottom
         </h2>
-        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-400">
-          <span className="font-medium text-sky-300/90">In plain words: </span>
+        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-600">
+          <span className="font-medium text-sky-700/90">In plain words: </span>
           two closing discovery freeze rounds (rounds eighty-nine and
           ninety, 2026-08-14) take the <em>resolvent</em> direction to its
           endpoint: an externally proposed reduction of the whole trace
@@ -3269,9 +3276,9 @@ function SvpinKreinSection() {
           claim in any direction.
         </p>
 
-        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-300">
+        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-700">
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The Stieltjes–Vitali pin route (round 89, externally
               proposed, 17/17, SVPIN-ROUTE-OPEN):
             </strong>{" "}
@@ -3281,7 +3288,7 @@ function SvpinKreinSection() {
             Vitali on the pins accumulating at the interior point i, the
             identity theorem, and the pole contradiction give (SV) ⟹ RH.
             The skeleton is{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               sound gate by gate
             </strong>{" "}
             (the one named condition is the CF realness hypothesis) — and
@@ -3296,7 +3303,7 @@ function SvpinKreinSection() {
             no disguise.
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The honest weight (round 89, Z1-typed):
             </strong>{" "}
             on the extremal family the measured pin convergence{" "}
@@ -3304,7 +3311,7 @@ function SvpinKreinSection() {
             ~10⁻¹²) — instrument consistency, never source-side content —
             and the naive Suzuki spectral readout is dead (a form-spectrum
             ladder, not the ordinates). The route is the{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               second architecture of the campaign to survive every gate
             </strong>
             , and its reduction — countably many safe scalars in place of
@@ -3314,7 +3321,7 @@ function SvpinKreinSection() {
             screw function.
           </p>
           <p>
-            <strong className="font-medium text-emerald-200">
+            <strong className="font-medium text-emerald-800">
               The Krein carrier (round 90, 22/22, SUZKREIN-CARRIER-OPEN):
             </strong>{" "}
             the priced ingredient, built. The screw function is extracted
@@ -3322,7 +3329,7 @@ function SvpinKreinSection() {
             fitted; the classical Krein accelerant hypothesis{" "}
             <em>certified</em>, not assumed), the Levinson/Szegő solve{" "}
             <em>is</em> the discrete Gelfand–Levitan equation, and{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               the realized Hamiltonian sees the primes
             </strong>
             : coefficient spikes at r = log q for q = 2, 3, 4, 5, 7
@@ -3330,7 +3337,7 @@ function SvpinKreinSection() {
             under a measured Weyl-disk contraction law R ~ e^(−(σ+1.36)L),
             and the disk center <em>resums the missing tail</em> (beating
             the truncated source sum by ×600 at σ = 0.6). It is{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               the first pin carrier to pass the Z1 screen
             </strong>{" "}
             — no zero-cache transcription (minimum relative deviation
@@ -3340,7 +3347,7 @@ function SvpinKreinSection() {
             true primes are necessary for it.
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The repriced lemma, and its honest price:
             </strong>{" "}
             the literal trace-class norm of the pin contract is measured
@@ -3349,7 +3356,7 @@ function SvpinKreinSection() {
             contraction of the Krein realization on σ ≥ 1/2 + ε,{" "}
             <em>given</em> positivity of every finite section of the
             accelerant. And that hypothesis{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               is localized Weil positivity itself
             </strong>
             : the carrier localizes the remaining task (one contraction
@@ -3358,7 +3365,7 @@ function SvpinKreinSection() {
           </p>
         </div>
 
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-500">
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-600">
           Honest fence: the day&apos;s arc is complete — the wall route
           closed as a theorem (chapter 33), the real-root architecture
           adjudicated with its support convicted circular (chapter 34),
@@ -3386,11 +3393,11 @@ function CohomSpecSection() {
     <section
       id="cohomspec"
       aria-labelledby="cohomspec-heading"
-      className="scroll-mt-24 border-t border-slate-800/60 py-12 sm:py-16"
+      className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
             36 · What any cohomology for Spec ℤ must supply · sandbox
             probes
           </span>
@@ -3398,13 +3405,13 @@ function CohomSpecSection() {
         </div>
         <h2
           id="cohomspec-heading"
-          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-50 sm:text-3xl md:text-4xl"
+          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-950 sm:text-3xl md:text-4xl"
         >
           The cohomological specification sheet — the missing theorem,
           stated as a testable interface
         </h2>
-        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-400">
-          <span className="font-medium text-sky-300/90">In plain words: </span>
+        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-600">
+          <span className="font-medium text-sky-700/90">In plain words: </span>
           three closing discovery freeze rounds (rounds ninety-one,
           ninety-two and the specification round, 2026-08-15) compile the
           campaign&apos;s machine-checked characterization of the one
@@ -3416,18 +3423,18 @@ function CohomSpecSection() {
           claim in any direction.
         </p>
 
-        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-300">
+        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-700">
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The patterns round (round 91, two honest negatives):
             </strong>{" "}
             the program&apos;s first magnetar giant-flare QPO bed is{" "}
-            <strong className="font-medium text-slate-100">NULL</strong>{" "}
+            <strong className="font-medium text-slate-900">NULL</strong>{" "}
             (SGR 1806−20 and SGR 1900+14 against the geometric 3/2
             ladder: Fisher-joint p = 0.3584 under a 20000-draw null with
             a 17-base look-elsewhere battery), and the LEE-controlled
             scan for an unclaimed dimensionless observable is{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               SCAN-UNDECIDABLE
             </strong>{" "}
             with the structural finding as the content: the compiler
@@ -3437,7 +3444,7 @@ function CohomSpecSection() {
             come from numeric scanning; they must be derived theory-side.
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The Verblunsky round (round 92, 23/23,
               VERBLUNSKY-NO-INVARIANT):
             </strong>{" "}
@@ -3449,21 +3456,21 @@ function CohomSpecSection() {
             Schur disk after p = 2/3/5/7 and only re-enters through later
             packets: the rescue is collective, not local. What the round
             pins on the way is load-bearing for the sheet: the{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               Euler–Pick criterion
             </strong>{" "}
             (RH ⟺ explicit Pick matrices built from ξ′/ξ(1/2+σ) at σ =
             1+1/r stay positive semidefinite for every N; the source-only
             falsification ladder reads λ_min = 4.59×10⁻² down to
             2.44×10⁻⁶² at N = 12, all positive) and the{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               (AC) identity
             </strong>
             : Euler–Pick positivity <em>is</em> Weil positivity on
             exponential autocorrelations, by identity.
           </p>
           <p>
-            <strong className="font-medium text-emerald-200">
+            <strong className="font-medium text-emerald-800">
               The specification sheet (cohomspec_probe.py, 20/20,
               COHOMSPEC-COMPILED):
             </strong>{" "}
@@ -3477,7 +3484,7 @@ function CohomSpecSection() {
             statement (Littlewood floor 214.7/1527.1; the existence
             direction closed at border membership, det M = s·det B exact);
             its Gram form on exponential autocorrelations{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               must be the Euler–Pick matrices
             </strong>{" "}
             — a proposed cohomological trace formula can be tested against
@@ -3490,7 +3497,7 @@ function CohomSpecSection() {
             renamed (the τ-screen that killed fifteen routes).
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The function-field precedent, mapped to where it breaks:
             </strong>{" "}
             in Weil&apos;s proof the pairing is the intersection pairing
@@ -3512,7 +3519,7 @@ function CohomSpecSection() {
           </p>
         </div>
 
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-500">
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-600">
           Honest fence: the specification sheet is a requirements document
           derived from machine-checked no-gos. It proves nothing about
           Deninger&apos;s program or Connes–Consani, asserts no defect and
@@ -3534,11 +3541,11 @@ function ThreeLemmaFormsSection() {
     <section
       id="three-lemma-forms"
       aria-labelledby="three-lemma-forms-heading"
-      className="scroll-mt-24 border-t border-slate-800/60 py-12 sm:py-16"
+      className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
             37 · The three lemma forms and the certified instruments ·
             sandbox probes
           </span>
@@ -3546,13 +3553,13 @@ function ThreeLemmaFormsSection() {
         </div>
         <h2
           id="three-lemma-forms-heading"
-          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-50 sm:text-3xl md:text-4xl"
+          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-950 sm:text-3xl md:text-4xl"
         >
           The instrument tier — three RH-sufficient lemma forms, two
           certified falsification instruments, and a correction of record
         </h2>
-        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-400">
-          <span className="font-medium text-sky-300/90">In plain words: </span>
+        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-600">
+          <span className="font-medium text-sky-700/90">In plain words: </span>
           nine discovery freeze rounds (rounds ninety-three and
           ninety-five through one-hundred-two, 2026-08-15, several as
           concurrent lanes) finish the campaign&apos;s instrument tier
@@ -3570,9 +3577,9 @@ function ThreeLemmaFormsSection() {
           in this chapter remains sandbox. No RH claim in any direction.
         </p>
 
-        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-300">
+        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-700">
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The correction of record (round 97, 13/13,
               SP-OPERATIVE-FALSIFIED):
             </strong>{" "}
@@ -3581,7 +3588,7 @@ function ThreeLemmaFormsSection() {
             measurement overtook the pricing. Extending the census from
             79 points (x ≤ 13) to 18798 points (x ≤ 890, the cache edge)
             shows the <em>operative</em> form{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               false from x = 21 onward, with 567 τ-screened
               counterexamples
             </strong>
@@ -3599,14 +3606,14 @@ function ThreeLemmaFormsSection() {
             the correction is the record.
           </p>
           <p>
-            <strong className="font-medium text-emerald-200">
+            <strong className="font-medium text-emerald-800">
               The two certified falsification instruments:
             </strong>{" "}
             the Euler–Pick ladder is rebuilt to certified standard (round
             95, 31/31: N ≤ 3 with outward-rounded interval floors, decay
             measured generic, detection law N* = 6.1 + 1.95·log₁₀(1/δ),
             γ-blind beyond γ ≈ 50) and then extended (round 100, 22/22):{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               λ_min(𝒫₄) ∈ [8.28×10⁻¹⁵, 1.38×10⁻¹⁴] certified positive at
               sieve cap 10¹³
             </strong>
@@ -3621,7 +3628,7 @@ function ThreeLemmaFormsSection() {
             recompute/pin split disclosed in the module and the ledger
             row. And the Hausdorff safe-point round (round 102, 40/40)
             builds{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               the cheapest certified RH-consequence instrument in the
               corpus
             </strong>
@@ -3651,14 +3658,14 @@ function ThreeLemmaFormsSection() {
             not live falsification power.
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The interface and the kernel (rounds 98 and 99):
             </strong>{" "}
             the one external published RH reduction —
             Connes–Consani–Moscovici&apos;s P(n) property — is
             adjudicated: its published local terms reproduce the corpus
             Euler–Pick matrices{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               entrywise
             </strong>{" "}
             (ξ′/ξ to rel 2.3×10⁻⁵⁰), all six prime-bearing Galerkin
@@ -3677,7 +3684,7 @@ function ThreeLemmaFormsSection() {
             showing the packaging alone yields nothing.
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The mechanism rounds (93, 96, 101):
             </strong>{" "}
             round 92&apos;s exit/re-entry is fully explained as support
@@ -3688,7 +3695,7 @@ function ThreeLemmaFormsSection() {
             arithmetic weights). The rigidity round answers the inverse
             problem: screw positivity to depth r pins the measure onto
             the prime comb exponentially tightly —{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               all 17 adversarial impostors die
             </strong>
             , and the moduli law c_mod = 1.073 is conditioning-priced:
@@ -3696,7 +3703,7 @@ function ThreeLemmaFormsSection() {
             new arithmetic-free law. The α-induction round sets a
             positivity depth record (r = 9.0, both meshes) with an exact
             kick law (deviation ≤ 2.8×10⁻¹⁶) and the finding that{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               prime arrivals stabilize
             </strong>{" "}
             — the naive atoms-push-down picture is wrong; the wall
@@ -3706,7 +3713,7 @@ function ThreeLemmaFormsSection() {
           </p>
         </div>
 
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-500">
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-600">
           Honest fence (wording corrected of record by the round-108
           logic audit and the round-109 bughunt, chapter 39): the one
           open input now holds three RH-sufficient lemma forms —
@@ -3740,23 +3747,23 @@ function RoadmapSection() {
     <section
       id="roadmap"
       aria-labelledby="roadmap-heading"
-      className="scroll-mt-24 border-t border-slate-800/60 py-12 sm:py-16"
+      className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
             38 · The roadmap · sandbox probes
           </span>
           <StatusBadge badge="sandbox" />
         </div>
         <h2
           id="roadmap-heading"
-          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-50 sm:text-3xl md:text-4xl"
+          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-950 sm:text-3xl md:text-4xl"
         >
           The road from here — a machine-gated path to a complete proof
         </h2>
-        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-400">
-          <span className="font-medium text-sky-300/90">In plain words: </span>
+        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-600">
+          <span className="font-medium text-sky-700/90">In plain words: </span>
           three discovery freeze rounds (rounds one-hundred-three through
           one-hundred-five, 2026-08-15) compile the campaign&apos;s complete
           machine-checked map into the one artifact it never produced: a
@@ -3775,15 +3782,15 @@ function RoadmapSection() {
           roadmap itself remains sandbox.
         </p>
 
-        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-300">
+        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-700">
           <p>
-            <strong className="font-medium text-emerald-200">
+            <strong className="font-medium text-emerald-800">
               The two feeder rounds:
             </strong>{" "}
             the Form-A round (round 103, MOONSHOT-PARTIAL) proves, from
             cited inputs alone (Platt–Trudgian 2021 + Rosser 1941 + the
             classical γ₁ isolation — no zero table, no zeta evaluator),{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               the largest positivity region of the campaign: C_(n,k)(256)
               &gt; 0 for every n ≥ 0 and every k ≤ 10¹⁹
             </strong>{" "}
@@ -3802,18 +3809,18 @@ function RoadmapSection() {
             proportion theorem must come within 1 − κ* &lt; 4.8×10⁻³ of{" "}
             <em>all</em> zeros (κ*_ledger = 0.9952/0.9983/0.9988, lower
             bounds) before it can feed the wall.{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               The atlas tally moves 24 → 25 candidates, 0 PASS
             </strong>{" "}
             — every named unconditional classical theorem type about zero
             positions is now formally priced.
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The roadmap (round 105, roadmap_probe.py, 29/29,
               ROADMAP-COMPILED):
             </strong>{" "}
-            <strong className="font-medium text-slate-100">Stage 0</strong>{" "}
+            <strong className="font-medium text-slate-900">Stage 0</strong>{" "}
             (done, frozen): the atlas at 25/0, one open edge E4, the three
             lemma forms (each RH-sufficient; only the Hausdorff form a
             proven equivalence — the rounds-108/109 correction of record,
@@ -3821,7 +3828,7 @@ function RoadmapSection() {
             open-and-empty channels, the k ≤ 10¹⁹ theorem (re-derived
             inside the probe from the cited constants), the rigidity law,
             the specification sheet, 27 kernel theorems.{" "}
-            <strong className="font-medium text-slate-100">Stage 1</strong>{" "}
+            <strong className="font-medium text-slate-900">Stage 1</strong>{" "}
             (open — new mathematics): structural positivity of Hodge-index
             type for Spec ℤ; the verified literature state: Deninger&apos;s
             trace formula is proved for smooth foliated flows
@@ -3834,14 +3841,14 @@ function RoadmapSection() {
             on the square of the scaling site — acceptance gate: the
             intersection pairing on exponential autocorrelations must
             reproduce the certified 𝒫_N ladder (N ≤ 4 frozen floors).{" "}
-            <strong className="font-medium text-slate-100">Stage 2</strong>{" "}
+            <strong className="font-medium text-slate-900">Stage 2</strong>{" "}
             (open — new mathematics): the Hodge-index/Castelnuovo analog on
             the Stage-1 substrate; gates: fail the surrogates exactly at r
             = 0.264/0.744, be signed and alignment-carrying (v913 class),
             survive the τ-screen (bands 0.30/0.70), reproduce the certified
             Hausdorff cells (depth 86) and strictly extend the k ≤ 10¹⁹
             reach.{" "}
-            <strong className="font-medium text-slate-100">Stage 3</strong>{" "}
+            <strong className="font-medium text-slate-900">Stage 3</strong>{" "}
             (conditional-complete — assembly the machine already holds):
             from the index inequality to localized Weil positivity in any
             one lemma form, then v848&apos;s extraction chain, v912&apos;s
@@ -3858,7 +3865,7 @@ function RoadmapSection() {
             positivity).
           </p>
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The falsification spine (parallel, permanent):
             </strong>{" "}
             the two certified instruments keep running as standing disproof
@@ -3879,7 +3886,7 @@ function RoadmapSection() {
           </p>
         </div>
 
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-500">
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-600">
           Honest fence: a roadmap is not progress on RH; no stage is claimed
           started; Stages 1–2 require mathematics that does not yet exist,
           and the corpus proves interfaces and obstructions, never
@@ -3900,11 +3907,11 @@ function FrontierAuditsSection() {
     <section
       id="frontier-audits"
       aria-labelledby="frontier-audits-heading"
-      className="scroll-mt-24 border-t border-slate-800/60 py-12 sm:py-16"
+      className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
             39 · The frontier extension, the code reading, and the audits ·
             sandbox probes
           </span>
@@ -3912,13 +3919,13 @@ function FrontierAuditsSection() {
         </div>
         <h2
           id="frontier-audits-heading"
-          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-50 sm:text-3xl md:text-4xl"
+          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-950 sm:text-3xl md:text-4xl"
         >
           The campaign audited — the corrections of record, a 530× frontier
           extension, and the code reading vindicated
         </h2>
-        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-400">
-          <span className="font-medium text-sky-300/90">In plain words: </span>
+        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-600">
+          <span className="font-medium text-sky-700/90">In plain words: </span>
           four discovery freeze rounds (rounds one-hundred-six through
           one-hundred-nine, 2026-08-15, concurrent lanes) extend the
           roadmap&apos;s frontier, adjudicate the program&apos;s founding
@@ -3942,9 +3949,9 @@ function FrontierAuditsSection() {
           claim in any direction.
         </p>
 
-        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-300">
+        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-700">
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The corrections of record (round 108,
               bigpicture_logic_probe.py, 31/31, BIGPICTURE-FINDINGS(3);
               round 109, bughunt2_r86_r105_probe.py, 30/30,
@@ -3953,26 +3960,26 @@ function FrontierAuditsSection() {
             </strong>{" "}
             &quot;three equivalent lemma forms&quot; overstated the machine
             record. The honest table: the{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               Hausdorff form is a genuine proven RH-equivalence
             </strong>{" "}
             (its continuation chain independently re-derived gap-free in
             round 109), while the Weyl-disk and sign-position forms are{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               one-sided pendants
             </strong>{" "}
             — form ⇒ RH established, RH ⇒ form open (the round-90 lemma and
             the CF-realness/Connes-§6.6 hypotheses respectively). Every
             mutual equivalence that holds routes <em>through</em> RH — no
             direct form-to-form edge exists — and{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               transfer is none
             </strong>
             , demonstrated by an explicit counterexample world: an off-line
             quadruple at γ = 20 keeps <em>every</em> Hausdorff cell
             positive (n + k ≤ 50) while the Euler–Pick section fires at
             N = 12 (certified negative pivot at 200 dps).{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               Certified regions are form-local
             </strong>
             : the k ≤ 10¹⁹/7.4×10²¹ Form-A theorems imply nothing about
@@ -4000,18 +4007,18 @@ function FrontierAuditsSection() {
             N = 4 certification re-derived, the Hausdorff continuation
             gap-free, the Lean theorems saying exactly what round 99
             claims, all 16 in-scope probes re-run green —{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               no round verdict flips
             </strong>
             .
           </p>
           <p>
-            <strong className="font-medium text-emerald-200">
+            <strong className="font-medium text-emerald-800">
               The frontier extension (round 106, moonshot_o3_probe.py,
               16/16, MOONSHOT3-EXTENDED):
             </strong>{" "}
             the round-103 theorem extends 530-fold —{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               C_(n,k)(256) &gt; 0 for every n ≥ 0 and every k ≤
               7,444,682,106,464,286,365,865
             </strong>{" "}
@@ -4026,7 +4033,7 @@ function FrontierAuditsSection() {
             from the run-of-record, a six-cell full-packet subsample
             including the worst cell recomputed at every suite run). The
             general law is derived:{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               k_front(T) = λ·T²/(a − ½) with λ∞ = 0.226987
             </strong>{" "}
             — verification height buys quadratically many columns — and
@@ -4036,7 +4043,7 @@ function FrontierAuditsSection() {
             RH-<em>equivalence</em> (not a proof), total sign-regularity
             in the reversed-k orientation, the fixed-N
             eventual-positivity theorem — and two measured warnings:{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               Hankel positivity alone is not Form A
             </strong>{" "}
             (the uniform measure on [2,3] has every Hankel matrix positive
@@ -4045,7 +4052,7 @@ function FrontierAuditsSection() {
             fixed-N positivity cannot be propagated down to a = 256).
           </p>
           <p>
-            <strong className="font-medium text-emerald-200">
+            <strong className="font-medium text-emerald-800">
               The code reading vindicated (round 107,
               code_synthesis_probe.py, 18/18,
               CODE-READING-TRUE-DECODING-DIRECTION):
@@ -4053,7 +4060,7 @@ function FrontierAuditsSection() {
             the program&apos;s founding intuition — the primes as an
             error-correcting code — got its first formal adjudication
             under that name, and it is{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               true as measured structure
             </strong>
             : the primes are the unique codeword of an error-correcting
@@ -4061,12 +4068,12 @@ function FrontierAuditsSection() {
             the round-96 rigidity law, re-measured independently to four
             digits; decoding radius the exact impostor exits; rate → 0) —
             the{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               same grammar as the compiler&apos;s E8 code layer
             </strong>{" "}
             ([8,4,4] self-dual, rebuilt exactly in-probe), but a different
             dual type. The decisive number:{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               the dual rank grows with slope 1.0000
             </strong>{" "}
             (the binding check index never stabilizes; a non-codeword
@@ -4080,7 +4087,7 @@ function FrontierAuditsSection() {
           </p>
         </div>
 
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-500">
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-600">
           Honest fence: the corrections change no number and flip no
           verdict — they grade the record&apos;s own language against the
           machine state, per the standing correction-of-record convention
@@ -4101,11 +4108,11 @@ function UnpricedResolventSection() {
     <section
       id="unpriced-resolvent"
       aria-labelledby="unpriced-resolvent-heading"
-      className="scroll-mt-24 border-t border-slate-800/60 py-12 sm:py-16"
+      className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
             40 · The vocabulary boundary priced, and the resolvent closure ·
             sandbox probes
           </span>
@@ -4113,13 +4120,13 @@ function UnpricedResolventSection() {
         </div>
         <h2
           id="unpriced-resolvent-heading"
-          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-50 sm:text-3xl md:text-4xl"
+          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-950 sm:text-3xl md:text-4xl"
         >
           The atlas at 30 candidates, 0 pass — and the CCM operator is the
           corpus&apos;s own record family
         </h2>
-        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-400">
-          <span className="font-medium text-sky-300/90">In plain words: </span>
+        <p className="mt-3 max-w-3xl border-l-2 border-sky-400/40 pl-3 text-[15px] leading-relaxed text-slate-600">
+          <span className="font-medium text-sky-700/90">In plain words: </span>
           two discovery freeze rounds (rounds one-hundred-eleven and
           one-hundred-twelve, 2026-08-15, concurrent lanes) close the two
           flanks the audits left open: the five argument classes named as
@@ -4135,25 +4142,25 @@ function UnpricedResolventSection() {
           any direction.
         </p>
 
-        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-300">
+        <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-700">
           <p>
-            <strong className="font-medium text-amber-200">
+            <strong className="font-medium text-amber-800">
               The unpriced classes adjudicated (round 111,
               unpriced_classes_probe.py, 26/26, UNPRICED-ADJUDICATED —
               tally 25 → 30, 0 PASS):
             </strong>{" "}
             all five classes outside the original enumeration are priced
             and killed; none survives as an open lever. The headline is{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               Zagier&apos;s published horocycle RH-equivalence
             </strong>{" "}
             (Zagier 1979/81; Sarnak 1981; Verjovsky 1994) — a published
             RH-equivalence never adjudicated until now: the instrument
             measures the deep-window error exponent at{" "}
-            <strong className="font-medium text-slate-100">0.7451</strong>{" "}
+            <strong className="font-medium text-slate-900">0.7451</strong>{" "}
             (the RH-range 3/4 in the classically verified region), and
             planted-zero synthetic worlds recover the exact affine law{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               θ = 1 − Θ/2 to sup Re ρ
             </strong>{" "}
             (|dev| ≤ 0.0029) — the horocycle rate <em>is</em> the emptied
@@ -4179,7 +4186,7 @@ function UnpricedResolventSection() {
             <em>cancellation-only and ineffective</em> (the entire content
             sits in Siegel–Walfisz-ineffective constants; the sharpest
             signed corollary of |X| ≤ env is X ≥ −env).{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               The atlas stands at 30 candidates, 0 pass, with the
               vocabulary boundary itself now adjudicated — every named
               argument class inside and outside the original enumeration is
@@ -4187,13 +4194,13 @@ function UnpricedResolventSection() {
             </strong>
           </p>
           <p>
-            <strong className="font-medium text-emerald-200">
+            <strong className="font-medium text-emerald-800">
               The resolvent closure adjudicated (round 112,
               resolvent_closure_probe.py, 36/36, RESOLVENT-TRANSCRIPTION +
               CROSSCARRIER-BOUNDS + JENSEN-NO-DICTIONARY):
             </strong>{" "}
             the identification first —{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               arXiv:2511.22755&apos;s operator (CCM&apos;s det_reg
               construction) is, mode for mode, the corpus&apos;s own
               round-89 record extremal family
@@ -4203,7 +4210,7 @@ function UnpricedResolventSection() {
             determinant identity to 10⁻⁷⁵ — the corpus had independently
             built CCM&apos;s operator before their paper. The
             groundspace-block variant{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               eliminates CCM&apos;s simplicity and evenness hypotheses at
               construction level
             </strong>{" "}
@@ -4212,7 +4219,7 @@ function UnpricedResolventSection() {
             identity to 5.2×10⁻¹⁵; the remaining realness step is the
             named block-CCM lemma, finite-dimensional and ζ-free). The
             pins converge 16/16 —{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               but the Z1 screen fires
             </strong>
             : band pins equal cache partial sums to rel 7.7×10⁻¹² — the
@@ -4220,7 +4227,7 @@ function UnpricedResolventSection() {
             CCM carrier; side by side, the Krein benchmark extrapolates
             genuinely (2.9×10⁻⁴) while the CCM carrier band-transcribes
             (1.3×10⁻¹) —{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               the Krein carrier remains the only non-transcribing attack
               surface in the corpus
             </strong>
@@ -4236,7 +4243,7 @@ function UnpricedResolventSection() {
             once, while finite certificates are form-local — correct, and
             precisely therefore worthless without a non-transcribing
             carrier. The remaining theorem is doubly named:{" "}
-            <strong className="font-medium text-slate-100">
+            <strong className="font-medium text-slate-900">
               CCM&apos;s own §7–8 prolate approximation — equivalently the
               round-90 Weyl-disk contraction, pointwise at the pins
             </strong>
@@ -4244,7 +4251,7 @@ function UnpricedResolventSection() {
           </p>
         </div>
 
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-500">
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-600">
           Honest fence: the identification is a finite mode-for-mode
           certification at the built rungs, never a claim about the limit;
           the transcription conviction types the finite ladder, not
@@ -4263,22 +4270,22 @@ function BigPictureSection() {
     <section
       id="big-picture"
       aria-labelledby="big-picture-heading"
-      className="scroll-mt-24 border-t border-slate-800/60 py-12 sm:py-16"
+      className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
             00 · Start here
           </span>
           <StatusBadge badge="sandbox" />
         </div>
         <h2
           id="big-picture-heading"
-          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-50 sm:text-3xl md:text-4xl"
+          className="mt-3 font-serif text-2xl font-semibold leading-tight text-slate-950 sm:text-3xl md:text-4xl"
         >
           The big picture, in plain words
         </h2>
-        <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-300">
+        <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-700">
           The rest of this page is a diary, written as the work happened, in the
           language of the work. This section says the same thing in ordinary
           words. Every number below is copied from the diary. Every limit is
@@ -4287,13 +4294,13 @@ function BigPictureSection() {
 
         <div className="mt-8 grid gap-4 lg:grid-cols-2">
           <article className="rounded-2xl border border-sky-400/30 bg-sky-500/[0.07] p-5 sm:p-6">
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-sky-300/90">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-sky-700/90">
               What we are trying to do
             </p>
             <h3 className="mt-2 font-serif text-xl text-sky-50">
               A relay that has to work forever
             </h3>
-            <div className="mt-3 space-y-3 text-sm leading-relaxed text-slate-300">
+            <div className="mt-3 space-y-3 text-sm leading-relaxed text-slate-700">
               <p>
                 There is one quantity in this story that must never go negative.
                 It is assembled out of the prime numbers, one prime at a time.
@@ -4306,7 +4313,7 @@ function BigPictureSection() {
               </p>
               <p>
                 If it does, a classical statement called{" "}
-                <strong className="font-medium text-slate-100">
+                <strong className="font-medium text-slate-900">
                   Weil positivity
                 </strong>{" "}
                 holds — and that statement is equivalent to the Riemann
@@ -4319,24 +4326,24 @@ function BigPictureSection() {
           </article>
 
           <article className="rounded-2xl border border-emerald-400/30 bg-emerald-500/[0.07] p-5 sm:p-6">
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-300/90">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-700/90">
               What actually works today
             </p>
             <h3 className="mt-2 font-serif text-xl text-emerald-50">
               The mechanism has never failed a step
             </h3>
-            <div className="mt-3 space-y-3 text-sm leading-relaxed text-slate-300">
+            <div className="mt-3 space-y-3 text-sm leading-relaxed text-slate-700">
               <p>
                 Every handover that has been checked, checks out. 117 of 117 in
                 the deep ladder{" "}
-                <span className="font-mono text-amber-200">[T111]</span>, 400 of
+                <span className="font-mono text-amber-800">[T111]</span>, 400 of
                 400 rungs of the nested ladder{" "}
-                <span className="font-mono text-amber-200">[T124]</span>, and a
+                <span className="font-mono text-amber-800">[T124]</span>, and a
                 single certified step as deep as{" "}
-                <strong className="font-medium text-emerald-100">
+                <strong className="font-medium text-emerald-800">
                   zone 155,921
                 </strong>{" "}
-                <span className="font-mono text-amber-200">[T115]</span>.
+                <span className="font-mono text-amber-800">[T115]</span>.
               </p>
               <p>
                 When a chain of steps stops, it stops because the computer runs
@@ -4345,7 +4352,7 @@ function BigPictureSection() {
               <p>
                 It did not always look like that. For a while there seemed to be
                 a wall near zone 462{" "}
-                <span className="font-mono text-amber-200">[T111]</span>. Then
+                <span className="font-mono text-amber-800">[T111]</span>. Then
                 T113 showed the wall was measuring our own grid rather than the
                 mathematics, and T114 removed the division that produced it. The
                 wall dissolved, and eleven steps opened up beyond it at once.
@@ -4355,16 +4362,16 @@ function BigPictureSection() {
         </div>
 
         <div className="mt-8 grid gap-4 lg:grid-cols-2 lg:items-start">
-          <div className="space-y-3 text-base leading-relaxed text-slate-300">
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <div className="space-y-3 text-base leading-relaxed text-slate-700">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
               The great compression
             </p>
-            <h3 className="font-serif text-xl text-slate-50">
+            <h3 className="font-serif text-xl text-slate-950">
               One huge inequality, squeezed down to two small ones
             </h3>
             <p className="text-sm">
               At T104 the thing left to prove was a{" "}
-              <strong className="font-medium text-slate-100">
+              <strong className="font-medium text-slate-900">
                 matrix inequality
               </strong>
               : a statement about every direction of a large window at once.
@@ -4377,14 +4384,14 @@ function BigPictureSection() {
               — and several times a step of our own was refuted and replaced,
               which is why the list is shorter and not longer.
             </p>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-slate-600">
               What is left today: on the load-bearing spine, one <em>sign</em>{" "}
               that the induction already carries on its own plus one declared{" "}
-              <strong className="font-medium text-slate-200">
+              <strong className="font-medium text-slate-800">
                 accounting convention
               </strong>{" "}
-              <span className="font-mono text-amber-200">[T124, T125]</span>. The{" "}
-              <strong className="font-medium text-slate-200">
+              <span className="font-mono text-amber-800">[T124, T125]</span>. The{" "}
+              <strong className="font-medium text-slate-800">
                 Harnack pair
               </strong>{" "}
               — two statements that hold on every window measured so far —
@@ -4396,12 +4403,12 @@ function BigPictureSection() {
         </div>
 
         <aside className="mt-8 rounded-2xl border border-rose-400/35 bg-rose-500/[0.08] p-5 sm:p-6">
-          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-rose-300">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-rose-700">
             The honest box — what this is not
           </p>
-          <ul className="mt-3 space-y-2.5 text-sm leading-relaxed text-slate-300">
+          <ul className="mt-3 space-y-2.5 text-sm leading-relaxed text-slate-700">
             <li>
-              <strong className="font-medium text-rose-100">
+              <strong className="font-medium text-rose-800">
                 No zeta input anywhere.
               </strong>{" "}
               The chain is classical numerical analysis from end to end. The
@@ -4409,7 +4416,7 @@ function BigPictureSection() {
               circular re-derivation of it.
             </li>
             <li>
-              <strong className="font-medium text-rose-100">
+              <strong className="font-medium text-rose-800">
                 No infinite statement.
               </strong>{" "}
               Every certificate is a finite computation on a finite window. An
@@ -4417,7 +4424,7 @@ function BigPictureSection() {
               whole point of naming them.
             </li>
             <li>
-              <strong className="font-medium text-rose-100">
+              <strong className="font-medium text-rose-800">
                 A measured ladder is not all zones.
               </strong>{" "}
               Where this page says “certified”, it means the zones that were
@@ -4425,13 +4432,14 @@ function BigPictureSection() {
               extrapolations, never as results.
             </li>
             <li>
-              <strong className="font-medium text-rose-100">
+              <strong className="font-medium text-rose-800">
                 Sandbox, not verified physics.
               </strong>{" "}
               This entire diary is exploratory. Only the promoted modules{" "}
               <Link
+                prefetch={false}
                 href="/verification"
-                className="font-mono text-emerald-300 underline decoration-emerald-400/40 underline-offset-2 hover:text-emerald-200"
+                className="font-mono text-emerald-700 underline decoration-emerald-400/40 underline-offset-2 hover:text-emerald-800"
               >
                 v535–v970 (this front)
               </Link>{" "}
@@ -4439,7 +4447,7 @@ function BigPictureSection() {
               move a status marker.
             </li>
             <li>
-              <strong className="font-medium text-rose-100">
+              <strong className="font-medium text-rose-800">
                 Not RH, and not almost-RH.
               </strong>{" "}
               “I5 ⟺ RH” is a <em>typing</em> of what the remaining core is
@@ -4451,7 +4459,7 @@ function BigPictureSection() {
         </aside>
 
         <div className="mt-8">
-          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
             Where it stands now
           </p>
           <dl className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -4476,19 +4484,19 @@ function BigPictureSection() {
               tone="violet"
             />
           </dl>
-          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-400">
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-600">
             The chain is written as a{" "}
-            <strong className="font-medium text-slate-200">
+            <strong className="font-medium text-slate-800">
               conditional theorem
             </strong>
             : everything after the word “suppose” is proved or certified. The
             finale{" "}
-            <span className="font-mono text-slate-300">
+            <span className="font-mono text-slate-700">
               grand_assembly_probe.py
             </span>{" "}
             assembled it end to end on 52 zones and changed what has to be
             supposed:{" "}
-            <strong className="font-medium text-slate-200">
+            <strong className="font-medium text-slate-800">
               the series is complete, and the chain&apos;s spine needs no Harnack
               pair
             </strong>{" "}
@@ -4507,10 +4515,10 @@ function BigPictureSection() {
 }
 
 const BIG_PICTURE_TONE = {
-  sky: "border-sky-400/30 bg-sky-500/[0.08] text-sky-100",
-  amber: "border-amber-400/30 bg-amber-500/[0.08] text-amber-100",
-  emerald: "border-emerald-400/30 bg-emerald-500/[0.08] text-emerald-100",
-  violet: "border-violet-400/30 bg-violet-500/[0.08] text-violet-100",
+  sky: "border-sky-400/30 bg-sky-500/[0.08] text-sky-800",
+  amber: "border-amber-400/30 bg-amber-500/[0.08] text-amber-800",
+  emerald: "border-emerald-400/30 bg-emerald-500/[0.08] text-emerald-800",
+  violet: "border-violet-400/30 bg-violet-500/[0.08] text-violet-800",
 } as const;
 
 function BigPictureStat({
@@ -4525,7 +4533,7 @@ function BigPictureStat({
   return (
     <div className={`rounded-xl border px-3 py-3 ${BIG_PICTURE_TONE[tone]}`}>
       <dt className="font-mono text-xl leading-none">{term}</dt>
-      <dd className="mt-1.5 text-[11px] leading-tight text-slate-400">
+      <dd className="mt-1.5 text-[11px] leading-tight text-slate-600">
         {desc}
       </dd>
     </div>
@@ -4535,7 +4543,7 @@ function BigPictureStat({
 function ProgramStatusCallout() {
   return (
     <aside className="rounded-2xl border border-violet-400/35 bg-violet-500/10 p-5 sm:p-6">
-      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-violet-300/90">
+      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-violet-700/90">
         Strongest current sentence
       </p>
       <p className="mt-3 font-serif text-lg leading-relaxed text-violet-50 sm:text-xl">
@@ -4578,9 +4586,9 @@ function ProgramStatusCallout() {
         named residue: a sign-preserving bound. Thirteen of those statements are
         now load-bearing as v543 and v544.
       </p>
-      <ul className="mt-4 space-y-2 text-xs leading-relaxed text-slate-400">
+      <ul className="mt-4 space-y-2 text-xs leading-relaxed text-slate-600">
         <li>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The mechanism never failed.
           </strong>{" "}
           Every certified handover step holds — 117/117 on the deep ladder at
@@ -4588,7 +4596,7 @@ function ProgramStatusCallout() {
           Chains stop at the compute budget, never at a step (T114 onward).
         </li>
         <li>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Depth reached, certified.
           </strong>{" "}
           Margin-free steps up to n = 1331 (T114) and a single certified step at
@@ -4596,7 +4604,7 @@ function ProgramStatusCallout() {
           (T116, declared a cost-geometry demonstration, not a Weil certificate).
         </li>
         <li>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             The wall was a ruler.
           </strong>{" "}
           The apparent margin wall near zone 462 (T111) is currency-invariant
@@ -4604,7 +4612,7 @@ function ProgramStatusCallout() {
           dissolves once the artifact division is removed (T114).
         </li>
         <li>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             What is left, named.
           </strong>{" "}
           On the spine: one sign the coarse-to-fine induction already carries
@@ -4616,11 +4624,11 @@ function ProgramStatusCallout() {
           and uniformity in the zone index is open (T125).
         </li>
         <li>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Series balance — complete.
           </strong>{" "}
           125 parts, 3139/3139 sandbox checks, seven promoted modules; the finale{" "}
-          <span className="font-mono text-slate-300">
+          <span className="font-mono text-slate-700">
             grand_assembly_probe.py
           </span>{" "}
           (ASSEMBLY-GREEN, 34/34) assembled the chain end to end — 52 zones, 430
@@ -4630,14 +4638,14 @@ function ProgramStatusCallout() {
           in{" "}
           <a
             href="#compression"
-            className="text-sky-300 underline decoration-sky-400/30 underline-offset-2 hover:text-sky-200"
+            className="text-sky-700 underline decoration-sky-400/30 underline-offset-2 hover:text-sky-800"
           >
             sections 22–24
           </a>
           . Not almost-RH. This is not RH evidence.
         </li>
         <li>
-          <strong className="font-medium text-slate-200">
+          <strong className="font-medium text-slate-800">
             Phase 2: the full proof.
           </strong>{" "}
           The first post-series probe (T126 · SEAMS-CERTIFIED, 31/31)
@@ -4672,7 +4680,7 @@ const DEPTH_REACH = [
 function DepthReachCallout() {
   return (
     <aside className="rounded-2xl border border-emerald-400/35 bg-emerald-500/10 p-5 sm:p-6">
-      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-300/90">
+      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-700/90">
         Depth reach · what the chain certified, part by part
       </p>
       <dl className="mt-4 space-y-2.5">
@@ -4681,15 +4689,15 @@ function DepthReachCallout() {
             key={`${d.part}-${d.value}`}
             className="flex flex-wrap items-baseline gap-x-2 border-b border-emerald-400/15 pb-2 last:border-0 last:pb-0"
           >
-            <dt className="font-mono text-[11px] text-emerald-200">{d.part}</dt>
+            <dt className="font-mono text-[11px] text-emerald-800">{d.part}</dt>
             <dd className="font-mono text-sm text-emerald-50">{d.value}</dd>
-            <dd className="min-w-0 flex-1 text-right text-[11px] text-slate-400">
+            <dd className="min-w-0 flex-1 text-right text-[11px] text-slate-600">
               {d.label}
             </dd>
           </div>
         ))}
       </dl>
-      <p className="mt-4 text-xs leading-relaxed text-slate-400">
+      <p className="mt-4 text-xs leading-relaxed text-slate-600">
         Chains stop at the compute budget, never at a step. T116&apos;s march is
         a cost-geometry demonstration, not a Weil certificate — declared as such
         in the probe. Sandbox; not RH evidence.
@@ -4701,14 +4709,14 @@ function DepthReachCallout() {
 function AmplitudeRouteCallout() {
   return (
     <aside className="rounded-2xl border border-sky-400/35 bg-sky-500/10 p-5 sm:p-6">
-      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-sky-300/90">
+      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-sky-700/90">
         Transport compressed · v540
       </p>
       <p className="mt-3 font-serif text-lg leading-relaxed text-sky-50 sm:text-xl">
         The transport problem, compressed to a single measurable object: the
         FE-covariant gap functional λ* on the atoms n&nbsp;≡&nbsp;6&nbsp;mod&nbsp;8.
       </p>
-      <p className="mt-4 text-xs leading-relaxed text-slate-400">
+      <p className="mt-4 text-xs leading-relaxed text-slate-600">
         Square closed → linear plus-carrier stands → cone library saturates at
         5/24. Euler-region positivity ≠ central-line claim. This is not RH
         evidence.
@@ -4720,7 +4728,7 @@ function AmplitudeRouteCallout() {
 function DoorsFurnishedCallout() {
   return (
     <aside className="rounded-2xl border border-amber-400/35 bg-amber-500/10 p-5 sm:p-6">
-      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-amber-300/90">
+      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-amber-700/90">
         The wall, named
       </p>
       <p className="mt-3 font-serif text-lg leading-relaxed text-amber-50 sm:text-xl">
@@ -4728,7 +4736,7 @@ function DoorsFurnishedCallout() {
         provably equivalent to RH. Everything else on the route is either
         proved or classically provable-shaped.
       </p>
-      <p className="mt-4 text-xs leading-relaxed text-slate-400">
+      <p className="mt-4 text-xs leading-relaxed text-slate-600">
         After T81 the recipe chain saturated. Three new perspectives (next)
         retype I5 without claiming RH progress.
       </p>
@@ -4739,19 +4747,19 @@ function DoorsFurnishedCallout() {
 function ThreePerspectivesCallout() {
   return (
     <aside className="rounded-2xl border border-sky-400/35 bg-sky-500/10 p-5 sm:p-6">
-      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-sky-300/90">
+      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-sky-700/90">
         New I5 form — fence
       </p>
-      <p className="mt-3 font-mono text-sm leading-relaxed text-sky-100">
+      <p className="mt-3 font-mono text-sm leading-relaxed text-sky-800">
         {"Q_cert(h) + Δ₂(h) + A_fam(h) − A_shift(h) ≥ 0"}
       </p>
       <p className="mt-3 font-serif text-base leading-relaxed text-sky-50">
         Self-consistency of one heat family. Type change ≠ proof; I5 remains ⟺
         RH. Coherent class closed via λ-channel.
       </p>
-      <p className="mt-4 text-xs leading-relaxed text-slate-400">
+      <p className="mt-4 text-xs leading-relaxed text-slate-600">
         T86{" "}
-        <span className="font-mono text-amber-200">
+        <span className="font-mono text-amber-800">
           [sandbox · LEMMA-FULLY-CLOSED]
         </span>
         : all atom classes covered. Geography next. This is not RH evidence.
@@ -4763,13 +4771,13 @@ function ThreePerspectivesCallout() {
 function BlindPrimeCallout() {
   return (
     <aside className="mt-8 rounded-2xl border border-emerald-400/40 bg-emerald-500/10 p-5 sm:p-6">
-      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-300/90">
+      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-700/90">
         Blind demo · T94 · sandbox
       </p>
       <p className="mt-3 font-serif text-xl leading-relaxed text-emerald-50 sm:text-2xl">
         753/753 primes predicted — zero errors, no division.
       </p>
-      <p className="mt-3 text-sm leading-relaxed text-slate-300">
+      <p className="mt-3 text-sm leading-relaxed text-slate-700">
         All primes in the never-seen window [1,000,001–1,010,000], from pure
         lattice counting (Jacobi 1834: odd n prime ⟺ r₄(n)&nbsp;=&nbsp;8(n+1)),
         with an AST-enforced prediction path containing no divisibility tests.
@@ -4785,14 +4793,14 @@ function BlindPrimeCallout() {
 function I5GeographyCallout() {
   return (
     <aside className="rounded-2xl border border-violet-400/35 bg-violet-500/10 p-5 sm:p-6">
-      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-violet-300/90">
+      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-violet-700/90">
         Geography — not an attack
       </p>
       <p className="mt-3 font-serif text-lg leading-relaxed text-violet-50 sm:text-xl">
         Identities proved; zones 2–4 closed; zone-5 tip = equality; asymptotics
         = one named arithmetic bound (A).
       </p>
-      <p className="mt-4 text-xs leading-relaxed text-slate-400">
+      <p className="mt-4 text-xs leading-relaxed text-slate-600">
         I5 remains ⟺ RH; the geography locates where any attack must work, it
         does not perform one. 2428/2428 sandbox checks at T101 (5360/5360
         today). This is not RH evidence.
@@ -4815,15 +4823,15 @@ function MeaningLevel({
   children?: React.ReactNode;
 }) {
   return (
-    <li className="rounded-2xl border border-slate-700/45 bg-slate-950/40 p-4">
+    <li className="rounded-2xl border border-slate-300/45 bg-slate-50/40 p-4">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-slate-500">
+        <span className="font-mono text-[10px] uppercase tracking-widest text-slate-600">
           {level}
         </span>
         <StatusBadge badge={badge} />
       </div>
-      <h3 className="mt-1 font-serif text-lg text-slate-100">{title}</h3>
-      <p className="mt-1 text-sm leading-relaxed text-slate-400">{body}</p>
+      <h3 className="mt-1 font-serif text-lg text-slate-900">{title}</h3>
+      <p className="mt-1 text-sm leading-relaxed text-slate-600">{body}</p>
       {children}
     </li>
   );

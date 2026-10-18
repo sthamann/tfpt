@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     "The TFPT compiler pipeline (reconstruction chain), the seam=horizon story, and gravity emergence under the named QFT/entanglement premises — narrative architecture pages moved off the homepage archive.",
   alternates: { canonical: `${SITE_URL}/architecture` },
   openGraph: {
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
     type: "website",
     title: "Architecture — TFPT",
     description:
@@ -29,14 +30,17 @@ export default function ArchitecturePage() {
     <>
       <div className="mx-auto max-w-5xl px-4 pt-10 sm:px-6 lg:px-8">
         <Link
+          prefetch={false}
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-200"
+          className="inline-flex items-center gap-1.5 text-sm text-slate-600 transition-colors hover:text-slate-800"
         >
           <ArrowLeft size={14} aria-hidden />
           Back to start
         </Link>
         <div className="mt-6 mb-4">
           <SectionHeader
+          as="h1"
+          id="architecture-heading"
             eyebrow="Architecture"
             title="How the pieces lock"
             description="The dependency chain from two axioms to the Standard-Model skeleton, the seam=horizon identification, and the classical covariant field equation that carries no free dimensionless Newton coupling under the named QFT/entanglement premises [C] — archived here so the homepage stays a narrative, not a museum."
@@ -48,7 +52,7 @@ export default function ArchitecturePage() {
       <section
         id="gravity"
         aria-labelledby="gravity-heading"
-        className="relative border-t border-slate-800/60 py-16 sm:py-20"
+        className="relative border-t border-slate-200/60 py-16 sm:py-20"
       >
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <SectionHeader

@@ -29,11 +29,11 @@ const FINDING_META: Record<
   PredictionExperiment["finding"],
   { label: string; tone: string }
 > = {
-  consistent: { label: "consistent", tone: "text-emerald-200 bg-emerald-500/15 ring-emerald-400/30" },
-  robust: { label: "robust", tone: "text-teal-200 bg-teal-500/15 ring-teal-400/30" },
-  tension: { label: "tension", tone: "text-amber-200 bg-amber-500/15 ring-amber-400/30" },
-  null: { label: "null", tone: "text-slate-300 bg-slate-500/15 ring-slate-400/30" },
-  data_limited: { label: "data-limited", tone: "text-sky-200 bg-sky-500/15 ring-sky-400/30" },
+  consistent: { label: "consistent", tone: "text-emerald-800 bg-emerald-500/15 ring-emerald-400/30" },
+  robust: { label: "robust", tone: "text-teal-800 bg-teal-500/15 ring-teal-400/30" },
+  tension: { label: "tension", tone: "text-amber-800 bg-amber-500/15 ring-amber-400/30" },
+  null: { label: "null", tone: "text-slate-700 bg-slate-500/15 ring-slate-600/30" },
+  data_limited: { label: "data-limited", tone: "text-sky-800 bg-sky-500/15 ring-sky-400/30" },
 };
 
 export function PredictionCard({
@@ -52,7 +52,7 @@ export function PredictionCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.05 }}
       transition={{ duration: 0.5, delay: Math.min(index, 8) * 0.04 }}
-      className="group glass relative flex flex-col overflow-hidden rounded-2xl ring-1 ring-slate-700/40 transition-all hover:ring-slate-500/60"
+      className="group glass relative flex flex-col overflow-hidden rounded-2xl ring-1 ring-slate-300/40 transition-all hover:ring-slate-500/60"
     >
       <div
         aria-hidden="true"
@@ -64,7 +64,7 @@ export function PredictionCard({
 
       <div className="flex flex-col gap-2 px-5 pt-5">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full border border-slate-600/40 bg-slate-900/50 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-300">
+          <span className="rounded-full border border-slate-400/40 bg-slate-100/50 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-700">
             {cat.label}
           </span>
           <span
@@ -79,19 +79,19 @@ export function PredictionCard({
           </span>
         </div>
 
-        <h3 className="font-serif text-lg font-semibold leading-snug text-slate-50">
+        <h3 className="font-serif text-lg font-semibold leading-snug text-slate-950">
           {prediction.title}
         </h3>
         {CLAIM_ID[prediction.id] && (
-          <span className="font-mono text-[10px] tracking-wider text-slate-500">
+          <span className="font-mono text-[10px] tracking-wider text-slate-600">
             Claim ID: {CLAIM_ID[prediction.id]}
           </span>
         )}
       </div>
 
       <div className="px-5 pb-3 pt-3">
-        <div className="rounded-lg border border-slate-700/40 bg-slate-950/40 p-3">
-          <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-300/80">
+        <div className="rounded-lg border border-slate-300/40 bg-slate-50/40 p-3">
+          <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-700/80">
             Target
           </div>
           <div className="mt-1 overflow-x-auto">
@@ -101,38 +101,38 @@ export function PredictionCard({
       </div>
 
       <Expandable collapsedHeight={130} className="px-5">
-        <p className="break-words text-sm leading-relaxed text-slate-300">
+        <p className="break-words text-sm leading-relaxed text-slate-700">
           {prediction.description}
         </p>
       </Expandable>
 
-      <div className="mt-4 grid grid-cols-1 gap-px bg-slate-800/60">
-        <div className="flex items-start gap-2 bg-slate-950/40 px-5 py-3">
+      <div className="mt-4 grid grid-cols-1 gap-px bg-slate-200/60">
+        <div className="flex items-start gap-2 bg-slate-50/40 px-5 py-3">
           <Target
             size={14}
-            className="mt-0.5 flex-none text-blue-300/70"
+            className="mt-0.5 flex-none text-blue-700/70"
             aria-hidden="true"
           />
           <div>
-            <div className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+            <div className="text-[10px] font-semibold uppercase tracking-widest text-slate-600">
               Dependency class
             </div>
-            <div className="text-xs text-slate-200">
+            <div className="text-xs text-slate-800">
               {prediction.dependencyClass}
             </div>
           </div>
         </div>
-        <div className="flex items-start gap-2 bg-slate-950/40 px-5 py-3">
+        <div className="flex items-start gap-2 bg-slate-50/40 px-5 py-3">
           <AlertTriangle
             size={14}
-            className="mt-0.5 flex-none text-orange-300/70"
+            className="mt-0.5 flex-none text-orange-700/70"
             aria-hidden="true"
           />
           <div>
-            <div className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+            <div className="text-[10px] font-semibold uppercase tracking-widest text-slate-600">
               Kill / pressure test
             </div>
-            <div className="text-xs leading-snug text-slate-200">
+            <div className="text-xs leading-snug text-slate-800">
               {prediction.killTest}
             </div>
           </div>
@@ -140,14 +140,14 @@ export function PredictionCard({
       </div>
 
       {prediction.experiment && (
-        <div className="border-t border-slate-800/60 bg-emerald-500/[0.03] px-5 py-3">
+        <div className="border-t border-slate-200/60 bg-emerald-500/[0.03] px-5 py-3">
           <div className="flex items-center gap-2">
             <FlaskConical
               size={14}
-              className="flex-none text-emerald-300/80"
+              className="flex-none text-emerald-700/80"
               aria-hidden="true"
             />
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-emerald-300/80">
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-emerald-700/80">
               Empirical audit
             </span>
             <span
@@ -159,18 +159,19 @@ export function PredictionCard({
               {FINDING_META[prediction.experiment.finding].label}
             </span>
           </div>
-          <p className="mt-2 text-xs leading-relaxed text-slate-300">
+          <p className="mt-2 text-xs leading-relaxed text-slate-700">
             {prediction.experiment.summary}
           </p>
-          <p className="mt-1.5 text-xs leading-relaxed text-slate-200">
-            <span className="font-semibold text-slate-100">Result: </span>
+          <p className="mt-1.5 text-xs leading-relaxed text-slate-800">
+            <span className="font-semibold text-slate-900">Result: </span>
             {prediction.experiment.result}
           </p>
           <Link
+            prefetch={false}
             href={`${REPO_URL}/tree/main/${prediction.experiment.repoPath}`}
             target="_blank"
             rel="noopener"
-            className="mt-2 inline-flex items-center gap-1.5 font-mono text-[11px] text-emerald-300/90 transition-colors hover:text-emerald-200"
+            className="mt-2 inline-flex items-center gap-1.5 font-mono text-[11px] text-emerald-700/90 transition-colors hover:text-emerald-800"
           >
             <Github size={12} aria-hidden="true" />
             {prediction.experiment.repoPath}
@@ -178,7 +179,7 @@ export function PredictionCard({
         </div>
       )}
 
-      <div className="mt-auto flex items-center justify-between gap-2 border-t border-slate-800/60 px-5 py-3">
+      <div className="mt-auto flex items-center justify-between gap-2 border-t border-slate-200/60 px-5 py-3">
         {(() => {
           const linkState = prediction.linkStatus ?? "available";
           const linkMeta = LINK_STATUS_META[linkState];
@@ -205,6 +206,7 @@ export function PredictionCard({
           }
           return (
             <Link
+              prefetch={false}
               href={prediction.pdf}
               target="_blank"
               rel="noopener"
@@ -228,8 +230,9 @@ export function PredictionCard({
           );
         })()}
         <Link
+          prefetch={false}
           href="/verification"
-          className="inline-flex flex-none items-center gap-1 text-xs font-semibold text-slate-400 transition-colors hover:text-blue-200"
+          className="inline-flex flex-none items-center gap-1 text-xs font-semibold text-slate-600 transition-colors hover:text-blue-800"
           title="See this claim in the verification ledger"
         >
           Ledger →

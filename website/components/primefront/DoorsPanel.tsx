@@ -20,8 +20,8 @@ const yOf = (safety: number) =>
 
 export function DoorsPanel() {
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
-      <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-amber-300/90">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
+      <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-amber-700/90">
         Three doors · Teile 73–81
       </p>
 
@@ -35,7 +35,7 @@ export function DoorsPanel() {
           note="The spectral Dirac phase carries the metaplectic sign datum, but every ε-equivariant spectral functional is exactly re-signing invariant."
         >
           <Meter label="phase carries sign datum" percent={93} tone="rose" />
-          <p className="mt-1.5 font-mono text-[10px] text-rose-200/80">
+          <p className="mt-1.5 font-mono text-[10px] text-rose-800/80">
             L² no-go — the spectral world is provably sign-blind. Requirement
             list R1–R5 (Krein quotient, ♭ as null sector).
           </p>
@@ -88,7 +88,7 @@ export function DoorsPanel() {
               <text
                 x={xOf(1) + 7}
                 y={yOf(SAFETY_AT_OMEGA_1) + 4}
-                className="fill-amber-200 font-mono"
+                className="fill-amber-800 font-mono"
                 fontSize="9"
               >
                 273 @ ω=1
@@ -97,14 +97,14 @@ export function DoorsPanel() {
                 x={xOf(OMEGA_CROSSING) - 4}
                 y={yOf(1) - 6}
                 textAnchor="end"
-                className="fill-rose-200 font-mono"
+                className="fill-rose-800 font-mono"
                 fontSize="9"
               >
                 1 @ ω=4.2
               </text>
             </svg>
           </div>
-          <p className="font-mono text-[10px] text-slate-500">
+          <p className="font-mono text-[10px] text-slate-600">
             Both endpoints measured; the dashed link is schematic. Two named open
             inequalities remain (hull positivity = transport wall; universal
             λ*-vs-A).
@@ -120,7 +120,7 @@ export function DoorsPanel() {
           note="The hybrid recipe certifies every nontrivial adversarial Weil direction; cost is window-extensive (λ_m ~ m^{5/2}, Eisenstein law)."
         >
           <Meter label="adversarial directions certified" percent={100} tone="sky" />
-          <p className="mt-1.5 font-mono text-[10px] text-sky-200/80">
+          <p className="mt-1.5 font-mono text-[10px] text-sky-800/80">
             Named core: the Matching Lemma on the log lattice — window-proved on
             [4, 10⁶] (939 870 clash atoms, 0 violations, exact margin 0.082159).
           </p>
@@ -129,24 +129,24 @@ export function DoorsPanel() {
 
       {/* transport ledger */}
       <div className="mt-3 rounded-xl border border-emerald-400/30 bg-emerald-500/10 p-3">
-        <p className="font-mono text-[10px] uppercase tracking-wider text-emerald-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-wider text-emerald-700/90">
           Transport ledger closes · Teil 79
         </p>
-        <p className="mt-1.5 text-center font-mono text-sm text-emerald-100">
+        <p className="mt-1.5 text-center font-mono text-sm text-emerald-800">
           Q_Weil = Q_cert + Δ_arch + Δ₂
         </p>
         <div className="mt-2 grid grid-cols-3 gap-2 text-center font-mono text-[10px]">
-          <span className="rounded-md bg-slate-900/60 px-1 py-1 text-slate-400">
+          <span className="rounded-md bg-slate-100/60 px-1 py-1 text-slate-600">
             identity ~7e-16
           </span>
-          <span className="rounded-md bg-slate-900/60 px-1 py-1 text-slate-400">
+          <span className="rounded-md bg-slate-100/60 px-1 py-1 text-slate-600">
             100/100 rows
           </span>
-          <span className="rounded-md bg-slate-900/60 px-1 py-1 text-slate-400">
+          <span className="rounded-md bg-slate-100/60 px-1 py-1 text-slate-600">
             Δ_pole ≡ Δ_conv ≡ 0
           </span>
         </div>
-        <p className="mt-2 text-xs leading-relaxed text-slate-400">
+        <p className="mt-2 text-xs leading-relaxed text-slate-600">
           What is left is one named inequality I5 (prime↔archimedean coupling),
           typed ⟺ Weil positivity ⟺ RH. Equivalence typing, not progress toward
           proving it.
@@ -159,17 +159,17 @@ export function DoorsPanel() {
 const TONE = {
   rose: {
     box: "border-rose-400/30 bg-rose-500/5",
-    badge: "border-rose-400/40 bg-rose-500/15 text-rose-100",
+    badge: "border-rose-400/40 bg-rose-500/15 text-rose-800",
     bar: "bg-rose-400/70",
   },
   amber: {
     box: "border-amber-400/30 bg-amber-500/5",
-    badge: "border-amber-400/40 bg-amber-500/15 text-amber-100",
+    badge: "border-amber-400/40 bg-amber-500/15 text-amber-800",
     bar: "bg-amber-400/70",
   },
   sky: {
     box: "border-sky-400/30 bg-sky-500/5",
-    badge: "border-sky-400/40 bg-sky-500/15 text-sky-100",
+    badge: "border-sky-400/40 bg-sky-500/15 text-sky-800",
     bar: "bg-sky-400/70",
   },
 } as const;
@@ -204,14 +204,14 @@ function Door({
         >
           {letter}
         </span>
-        <span className="min-w-0 flex-1 font-serif text-base text-slate-100">
+        <span className="min-w-0 flex-1 font-serif text-base text-slate-900">
           {title}
         </span>
         <span className={`rounded-full border px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider ${t.badge}`}>
           {verdict}
         </span>
       </div>
-      <p className="mt-1 text-xs leading-relaxed text-slate-400">{note}</p>
+      <p className="mt-1 text-xs leading-relaxed text-slate-600">{note}</p>
       {children}
     </motion.div>
   );
@@ -228,11 +228,11 @@ function Meter({
 }) {
   return (
     <div className="mt-2">
-      <div className="flex items-baseline justify-between font-mono text-[10px] text-slate-500">
+      <div className="flex items-baseline justify-between font-mono text-[10px] text-slate-600">
         <span>{label}</span>
         <span>{percent}%</span>
       </div>
-      <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-slate-800">
+      <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-slate-200">
         <motion.div
           className={`h-full rounded-full ${TONE[tone].bar}`}
           initial={{ width: 0 }}

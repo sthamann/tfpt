@@ -32,8 +32,9 @@ export function OrientationHero() {
           className="mb-8"
         >
           <Link
+            prefetch={false}
             href="/"
-            className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-200"
+            className="inline-flex items-center gap-1.5 text-sm text-slate-600 transition-colors hover:text-slate-800"
           >
             <ArrowLeft size={14} />
             Back to overview
@@ -45,24 +46,24 @@ export function OrientationHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-blue-200">
+          <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-blue-800">
             <Sigma size={14} className="opacity-80" />
             <span className="uppercase">Introduction · Reading guide</span>
           </span>
 
-          <h1 className="mt-6 font-serif text-4xl font-semibold leading-[1.05] text-slate-50 sm:text-5xl md:text-6xl">
+          <h1 className="mt-6 font-serif text-4xl font-semibold leading-[1.05] text-slate-950 sm:text-5xl md:text-6xl">
             TFPT in <span className="text-gradient-blue">one map</span>.
           </h1>
 
-          <p className="mt-2 font-serif text-xl text-slate-400 sm:text-2xl">
+          <p className="mt-2 font-serif text-xl text-slate-600 sm:text-2xl">
             Two axioms, one discrete compiler, the Standard Model.
           </p>
 
-          <p className="mt-6 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg">
+          <p className="mt-6 max-w-3xl text-base leading-relaxed text-slate-700 sm:text-lg">
             The entry document for the TFPT {SITE_VERSION} set. It does not introduce new
             physics — it is the reading guide. Its purpose is to state{" "}
-            <span className="font-semibold text-slate-100">what TFPT claims</span>,{" "}
-            <span className="font-semibold text-slate-100">what it does not claim</span>,
+            <span className="font-semibold text-slate-900">what TFPT claims</span>,{" "}
+            <span className="font-semibold text-slate-900">what it does not claim</span>,
             how the compiler closure is organized, and where each load-bearing
             argument is isolated in the document set — every claim graded and
             resolving to a single machine-checked ledger.
@@ -70,6 +71,7 @@ export function OrientationHero() {
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
+              prefetch={false}
               href={ORIENTATION_PDF}
               target="_blank"
               rel="noopener"
@@ -82,12 +84,13 @@ export function OrientationHero() {
                   title: ORIENTATION_TITLE,
                 })
               }
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 ring-1 ring-blue-400/40 transition-transform hover:scale-105 focus:scale-105"
+              className="inline-flex items-center gap-2 rounded-full bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 ring-1 ring-blue-400/40 transition-transform hover:scale-105 focus:scale-105"
             >
               <Download size={16} />
               Open the introduction (PDF)
             </Link>
             <Link
+              prefetch={false}
               href={ORIENTATION_PDF}
               target="_blank"
               rel="noopener"
@@ -100,12 +103,12 @@ export function OrientationHero() {
                   title: ORIENTATION_TITLE,
                 })
               }
-              className="inline-flex items-center gap-2 rounded-full border border-slate-600/60 bg-slate-900/60 px-5 py-2.5 text-sm font-semibold text-slate-100 backdrop-blur transition-colors hover:bg-slate-800/80"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-400/60 bg-slate-100/60 px-5 py-2.5 text-sm font-semibold text-slate-900 backdrop-blur transition-colors hover:bg-slate-200/80"
             >
               <FileText size={16} />
               View in browser
             </Link>
-            <span className="ml-1 inline-flex items-center gap-2 text-xs text-slate-500">
+            <span className="ml-1 inline-flex items-center gap-2 text-xs text-slate-600">
               by Stefan Hamann &amp; Alessandro Rizzo
             </span>
           </div>
@@ -117,14 +120,14 @@ export function OrientationHero() {
           transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="mt-12"
         >
-          <div className="glass overflow-hidden rounded-2xl ring-1 ring-slate-700/40">
-            <div className="flex items-center gap-2 border-b border-slate-800/60 px-5 py-3">
+          <div className="glass overflow-hidden rounded-2xl ring-1 ring-slate-300/40">
+            <div className="flex items-center gap-2 border-b border-slate-200/60 px-5 py-3">
               <div className="flex gap-1.5">
                 <span className="h-2.5 w-2.5 rounded-full bg-rose-400/60" />
                 <span className="h-2.5 w-2.5 rounded-full bg-amber-400/60" />
                 <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/60" />
               </div>
-              <span className="ml-2 text-xs font-mono uppercase tracking-widest text-slate-400">
+              <span className="ml-2 text-xs font-mono uppercase tracking-widest text-slate-600">
                 The compiler closure (one-line claim)
               </span>
             </div>

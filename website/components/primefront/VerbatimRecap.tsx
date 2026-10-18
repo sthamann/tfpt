@@ -21,8 +21,8 @@ const RECAPS = {
 export type VerbatimRecapId = keyof typeof RECAPS;
 
 const TONES = {
-  slate: "text-slate-400 hover:text-slate-200",
-  amber: "text-amber-300/80 hover:text-amber-200",
+  slate: "text-slate-600 hover:text-slate-800",
+  amber: "text-amber-700/80 hover:text-amber-800",
 } as const;
 
 export function VerbatimRecap({
@@ -74,13 +74,13 @@ export function VerbatimRecap({
       {open && (
         <div id={regionId}>
           {failed ? (
-            <p className="mt-3 font-mono text-[11px] text-rose-300/80">
+            <p className="mt-3 font-mono text-[11px] text-rose-700/80">
               The preserved text could not be loaded — please try again.
             </p>
           ) : Recap ? (
             <Recap />
           ) : (
-            <p className="mt-3 font-mono text-[11px] text-slate-500">
+            <p className="mt-3 font-mono text-[11px] text-slate-600">
               Loading the preserved text…
             </p>
           )}

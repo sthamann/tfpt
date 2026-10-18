@@ -673,7 +673,7 @@ const CLUSTERS: Cluster[] = [
   {
     title: "Open gate (G_metric) & the frontier",
     purpose: "The quantum-gravity measure contract, the audit ledger, the data scorecard, and the honestly-typed frontier items.",
-    accent: "from-slate-500 to-slate-600",
+    accent: "from-slate-500 to-slate-400",
     scripts: [
       { file: "v5_e8_cascade.py", what: "cascade D = 60 − 2n: endpoints, exponent rungs → 240" },
       { file: "v13_open_gates.py", what: "gate closures: M = 41 = 10 b₁; Q₊ = A₃ exponents" },
@@ -1128,15 +1128,15 @@ export function ScriptIndex() {
   return (
     <div>
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-        <p className="max-w-3xl text-sm leading-relaxed text-slate-400">
+        <p className="max-w-3xl text-sm leading-relaxed text-slate-600">
           The suite is organised by what it proves. Each script is one claim
           cluster, cited inline in the documents via{" "}
-          <span className="font-mono text-slate-300">\veri&#123;vN&#125;</span>{" "}
-          and registered in <span className="font-mono text-slate-300">run_all.py</span>,
-          which ends <span className="font-mono text-emerald-300">ALL CHECKS PASSED</span>.{" "}
-          <span className="text-slate-300">Click any script to inspect it. Browser-compatible scripts run live; native-only certificates show their pinned local command.</span>
+          <span className="font-mono text-slate-700">\veri&#123;vN&#125;</span>{" "}
+          and registered in <span className="font-mono text-slate-700">run_all.py</span>,
+          which ends <span className="font-mono text-emerald-700">ALL CHECKS PASSED</span>.{" "}
+          <span className="text-slate-700">Click any script to inspect it. Browser-compatible scripts run live; native-only certificates show their pinned local command.</span>
         </p>
-        <span className="rounded-full bg-slate-800/60 px-3 py-1 text-[11px] font-mono uppercase tracking-widest text-slate-300 ring-1 ring-slate-700/40">
+        <span className="rounded-full bg-slate-200/60 px-3 py-1 text-[11px] font-mono uppercase tracking-widest text-slate-700 ring-1 ring-slate-300/40">
           {TOTAL} scripts
         </span>
       </div>
@@ -1152,7 +1152,7 @@ export function ScriptIndex() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.04 }}
             transition={{ duration: 0.5, delay: (i % 2) * 0.05 }}
-            className="glass relative block break-inside-avoid overflow-hidden rounded-2xl ring-1 ring-slate-700/40"
+            className="glass relative block break-inside-avoid overflow-hidden rounded-2xl ring-1 ring-slate-300/40"
           >
             <div
               aria-hidden
@@ -1160,14 +1160,14 @@ export function ScriptIndex() {
             />
             <div className="p-5 sm:p-6">
               <div className="flex items-center justify-between gap-3">
-                <h3 className="font-serif text-base font-semibold text-slate-50">
+                <h3 className="font-serif text-base font-semibold text-slate-950">
                   {c.title}
                 </h3>
-                <span className="rounded-full bg-slate-800/60 px-2 py-0.5 text-[10px] font-mono text-slate-400">
+                <span className="rounded-full bg-slate-200/60 px-2 py-0.5 text-[10px] font-mono text-slate-600">
                   {c.scripts.length}
                 </span>
               </div>
-              <p className="mt-1.5 text-xs leading-relaxed text-slate-400">
+              <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
                 {c.purpose}
               </p>
               <ul className="mt-4 space-y-1">
@@ -1179,15 +1179,15 @@ export function ScriptIndex() {
                       className="group flex w-full items-start gap-2 rounded-md px-2 py-1.5 text-left transition-colors hover:bg-blue-500/5"
                       title={`Open ${s.file} — full description + reproduction path`}
                     >
-                      <span className="mt-0.5 font-mono text-[11px] font-semibold text-blue-300 group-hover:text-blue-200">
+                      <span className="mt-0.5 font-mono text-[11px] font-semibold text-blue-700 group-hover:text-blue-800">
                         {s.file.split("_")[0]}
                       </span>
-                      <span className="flex-1 text-[11px] leading-snug text-slate-300">
+                      <span className="flex-1 text-[11px] leading-snug text-slate-700">
                         <RichText text={shortText(s.what)} />
                       </span>
                       <Play
                         size={12}
-                        className="mt-0.5 flex-none text-slate-600 transition-colors group-hover:text-blue-300"
+                        className="mt-0.5 flex-none text-slate-500 transition-colors group-hover:text-blue-700"
                         aria-hidden
                       />
                     </button>

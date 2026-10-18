@@ -41,26 +41,26 @@ const CLASS_META: Record<
 > = {
   win: {
     label: "Exact / closed",
-    chip: "border-sky-400/40 bg-sky-500/10 text-sky-200",
-    text: "text-sky-300",
+    chip: "border-sky-400/40 bg-sky-500/10 text-sky-800",
+    text: "text-sky-700",
     dot: "bg-sky-400",
   },
   promoted: {
     label: "Promotions",
-    chip: "border-emerald-400/40 bg-emerald-500/10 text-emerald-200",
-    text: "text-emerald-300",
+    chip: "border-emerald-400/40 bg-emerald-500/10 text-emerald-800",
+    text: "text-emerald-700",
     dot: "bg-emerald-400",
   },
   negative: {
     label: "Kills / honest negatives",
-    chip: "border-rose-400/40 bg-rose-500/10 text-rose-200",
-    text: "text-rose-300",
+    chip: "border-rose-400/40 bg-rose-500/10 text-rose-800",
+    text: "text-rose-700",
     dot: "bg-rose-400",
   },
   open: {
     label: "Resists / open",
-    chip: "border-amber-400/40 bg-amber-500/10 text-amber-200",
-    text: "text-amber-200",
+    chip: "border-amber-400/40 bg-amber-500/10 text-amber-800",
+    text: "text-amber-800",
     dot: "bg-amber-300",
   },
 };
@@ -227,8 +227,8 @@ export function DiaryFeed() {
                 active
                   ? meta
                     ? meta.chip
-                    : "border-slate-400/60 bg-slate-200/10 text-slate-100"
-                  : "border-slate-700/50 bg-slate-900/40 text-slate-400 hover:border-slate-500 hover:text-slate-200"
+                    : "border-slate-600/60 bg-slate-800/10 text-slate-900"
+                  : "border-slate-300/50 bg-slate-100/40 text-slate-600 hover:border-slate-500 hover:text-slate-800"
               }`}
             >
               {meta ? meta.label : "All runs"}
@@ -241,11 +241,11 @@ export function DiaryFeed() {
         })}
       </div>
 
-      <p className="mt-3 text-sm text-slate-400">
+      <p className="mt-3 text-sm text-slate-600">
         One entry per completed agent run, newest first. Headlines and key
         facts are distilled from each run&apos;s own record; the full diary
         text of every entry stays available under{" "}
-        <span className="text-slate-300">Read the full entry</span>.
+        <span className="text-slate-700">Read the full entry</span>.
       </p>
 
       <ol className="mt-6 space-y-8">
@@ -258,19 +258,19 @@ export function DiaryFeed() {
               />
               <time
                 dateTime={g.date}
-                className="font-mono text-xs uppercase tracking-[0.18em] text-slate-400"
+                className="font-mono text-xs uppercase tracking-[0.18em] text-slate-600"
               >
                 {g.date}
               </time>
-              <span className="font-mono text-[10px] text-slate-600">
+              <span className="font-mono text-[10px] text-slate-500">
                 {g.items.length} {g.items.length === 1 ? "run" : "runs"}
               </span>
               <span
                 aria-hidden
-                className="h-px flex-1 bg-gradient-to-r from-slate-700/60 to-transparent"
+                className="h-px flex-1 bg-gradient-to-r from-slate-300/60 to-transparent"
               />
             </div>
-            <ol className="ml-[3px] space-y-3 border-l border-slate-800/70 pl-5 sm:pl-6">
+            <ol className="ml-[3px] space-y-3 border-l border-slate-200/70 pl-5 sm:pl-6">
               {g.items.map((e) => (
                 <FeedCard key={`${e.date}-${e.idx}`} entry={e} />
               ))}
@@ -289,7 +289,7 @@ export function DiaryFeed() {
                   loadArchive();
                   setVisibleCount((c) => c + STEP);
                 }}
-                className="rounded-full border border-slate-600/60 bg-slate-900/60 px-4 py-1.5 font-mono text-xs text-slate-200 transition hover:border-sky-400/50 hover:text-sky-200 motion-reduce:transition-none"
+                className="rounded-full border border-slate-400/60 bg-slate-100/60 px-4 py-1.5 font-mono text-xs text-slate-800 transition hover:border-sky-400/50 hover:text-sky-800 motion-reduce:transition-none"
               >
                 Show {Math.min(STEP, remaining)} more
               </button>
@@ -299,7 +299,7 @@ export function DiaryFeed() {
                   loadArchive();
                   setVisibleCount(filtered.length + pendingArchive);
                 }}
-                className="rounded-full border border-slate-700/50 bg-slate-900/40 px-4 py-1.5 font-mono text-xs text-slate-400 transition hover:border-slate-500 hover:text-slate-200 motion-reduce:transition-none"
+                className="rounded-full border border-slate-300/50 bg-slate-100/40 px-4 py-1.5 font-mono text-xs text-slate-600 transition hover:border-slate-500 hover:text-slate-800 motion-reduce:transition-none"
               >
                 Show all {filtered.length + (filter === "all" ? pendingArchive : 0)}
               </button>
@@ -309,12 +309,12 @@ export function DiaryFeed() {
             <button
               type="button"
               onClick={() => setVisibleCount(INITIAL_VISIBLE)}
-              className="rounded-full border border-slate-700/50 bg-slate-900/40 px-4 py-1.5 font-mono text-xs text-slate-500 transition hover:border-slate-500 hover:text-slate-300 motion-reduce:transition-none"
+              className="rounded-full border border-slate-300/50 bg-slate-100/40 px-4 py-1.5 font-mono text-xs text-slate-600 transition hover:border-slate-500 hover:text-slate-700 motion-reduce:transition-none"
             >
               Collapse
             </button>
           )}
-          <span className="font-mono text-[11px] text-slate-600">
+          <span className="font-mono text-[11px] text-slate-500">
             {visible.length} of{" "}
             {filtered.length + (filter === "all" ? pendingArchive : 0)} shown
             {pendingArchive > 0 && " · older runs load automatically"}
@@ -339,7 +339,7 @@ function FeedCard({ entry }: { entry: FeedEntry }) {
   return (
     <li
       ref={ref}
-      className={`relative rounded-2xl border border-slate-700/45 bg-slate-950/50 p-4 transition duration-500 ease-out motion-reduce:transition-none sm:p-5 ${
+      className={`relative rounded-2xl border border-slate-300/45 bg-slate-50/50 p-4 transition duration-500 ease-out motion-reduce:transition-none sm:p-5 ${
         inView ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
       }`}
     >
@@ -349,7 +349,7 @@ function FeedCard({ entry }: { entry: FeedEntry }) {
       />
       <div className="flex flex-wrap items-center gap-2">
         {entry.part > 0 && (
-          <span className="font-mono text-[11px] text-slate-500">
+          <span className="font-mono text-[11px] text-slate-600">
             Teil {entry.part}
           </span>
         )}
@@ -361,7 +361,7 @@ function FeedCard({ entry }: { entry: FeedEntry }) {
         </span>
       </div>
 
-      <h3 className="mt-2.5 font-serif text-base leading-snug text-slate-100 sm:text-lg">
+      <h3 className="mt-2.5 font-serif text-base leading-snug text-slate-900 sm:text-lg">
         {headline}
       </h3>
 
@@ -370,7 +370,7 @@ function FeedCard({ entry }: { entry: FeedEntry }) {
           {entry.keyFacts.map((f, i) => (
             <li
               key={i}
-              className="flex gap-2 text-[13px] leading-relaxed text-slate-400"
+              className="flex gap-2 text-[13px] leading-relaxed text-slate-600"
             >
               <span
                 aria-hidden
@@ -381,7 +381,7 @@ function FeedCard({ entry }: { entry: FeedEntry }) {
           ))}
         </ul>
       ) : (
-        <p className="mt-2 text-sm leading-relaxed text-slate-400">
+        <p className="mt-2 text-sm leading-relaxed text-slate-600">
           {entry.summary}
         </p>
       )}
@@ -398,12 +398,12 @@ function FeedCard({ entry }: { entry: FeedEntry }) {
           >
             <div className="overflow-hidden">
               {mounted && (
-                <div className="mt-3 space-y-3 border-t border-slate-800/60 pt-3">
-                  <p className="whitespace-pre-line text-sm leading-relaxed text-slate-300/90">
+                <div className="mt-3 space-y-3 border-t border-slate-200/60 pt-3">
+                  <p className="whitespace-pre-line text-sm leading-relaxed text-slate-700/90">
                     {entry.title}
                   </p>
                   {entry.keyFacts && entry.keyFacts.length > 0 && (
-                    <p className="text-[12px] leading-relaxed text-slate-500">
+                    <p className="text-[12px] leading-relaxed text-slate-600">
                       {entry.summary}
                     </p>
                   )}
@@ -420,13 +420,13 @@ function FeedCard({ entry }: { entry: FeedEntry }) {
               }}
               aria-expanded={open}
               aria-controls={bodyId}
-              className="inline-flex items-center gap-1.5 font-mono text-[11px] text-sky-300/90 transition hover:text-sky-200 motion-reduce:transition-none"
+              className="inline-flex items-center gap-1.5 font-mono text-[11px] text-sky-700/90 transition hover:text-sky-800 motion-reduce:transition-none"
             >
               <Chevron open={open} />
               {open ? "Collapse" : "Read the full entry"}
             </button>
             {entry.script && (
-              <span className="font-mono text-[10px] text-slate-600">
+              <span className="font-mono text-[10px] text-slate-500">
                 {entry.script}
               </span>
             )}
@@ -434,7 +434,7 @@ function FeedCard({ entry }: { entry: FeedEntry }) {
         </>
       )}
       {!hasBody && entry.script && (
-        <p className="mt-2 font-mono text-[10px] text-slate-600">
+        <p className="mt-2 font-mono text-[10px] text-slate-500">
           {entry.script}
         </p>
       )}

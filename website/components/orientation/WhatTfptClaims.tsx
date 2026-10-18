@@ -43,13 +43,13 @@ export function WhatTfptClaims() {
           >
             <div className="flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/15 ring-1 ring-emerald-400/30">
-                <CheckCircle2 size={18} className="text-emerald-300" />
+                <CheckCircle2 size={18} className="text-emerald-700" />
               </div>
-              <h3 className="font-serif text-xl font-semibold text-slate-50">
+              <h3 className="font-serif text-xl font-semibold text-slate-950">
                 Claimed at the primitive level
               </h3>
             </div>
-            <ul className="mt-5 space-y-3 text-sm leading-relaxed text-slate-300">
+            <ul className="mt-5 space-y-3 text-sm leading-relaxed text-slate-700">
               {CLAIMS.map((c, i) => (
                 <li key={i} className="flex gap-3">
                   <span
@@ -71,13 +71,13 @@ export function WhatTfptClaims() {
           >
             <div className="flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-orange-500/15 ring-1 ring-orange-400/30">
-                <XCircle size={18} className="text-orange-300" />
+                <XCircle size={18} className="text-orange-700" />
               </div>
-              <h3 className="font-serif text-xl font-semibold text-slate-50">
+              <h3 className="font-serif text-xl font-semibold text-slate-950">
                 Not claimed at this level
               </h3>
             </div>
-            <ul className="mt-5 space-y-3 text-sm leading-relaxed text-slate-300">
+            <ul className="mt-5 space-y-3 text-sm leading-relaxed text-slate-700">
               {NOT_CLAIMS.map((c, i) => (
                 <li key={i} className="flex gap-3">
                   <span
@@ -96,20 +96,20 @@ export function WhatTfptClaims() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.05 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-10 rounded-2xl border border-slate-700/40 bg-slate-950/40 p-6 sm:p-8"
+          className="mt-10 rounded-2xl border border-slate-300/40 bg-slate-50/40 p-6 sm:p-8"
         >
-          <h3 className="font-serif text-lg font-semibold text-slate-50">
+          <h3 className="font-serif text-lg font-semibold text-slate-950">
             The two axioms
           </h3>
-          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-300">
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
             Everything is generated from the seam constant and the five-slot
             carrier. They are not even independent: both are elementary symmetric
             polynomials of the single anchor a = (1,1,2), so the inputs collapse
             to the anchor plus the lone continuous primitive π.
           </p>
           <div className="mt-5 grid gap-3 lg:grid-cols-2">
-            <div className="rounded-lg border border-slate-700/40 bg-slate-950/60 p-4">
-              <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-300/80">
+            <div className="rounded-lg border border-slate-300/40 bg-slate-50/60 p-4">
+              <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-700/80">
                 P1 — seam constant
               </div>
               <div className="mt-2 overflow-x-auto">
@@ -118,8 +118,8 @@ export function WhatTfptClaims() {
                 </Math>
               </div>
             </div>
-            <div className="rounded-lg border border-slate-700/40 bg-slate-950/60 p-4">
-              <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-300/80">
+            <div className="rounded-lg border border-slate-300/40 bg-slate-50/60 p-4">
+              <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-700/80">
                 P2 — five-slot carrier
               </div>
               <div className="mt-2 overflow-x-auto">

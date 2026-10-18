@@ -73,14 +73,14 @@ const FACES: { face: string; statement: string }[] = [
 function ResidualTreemap() {
   return (
     <figure
-      className="mt-8 rounded-2xl border border-slate-700/40 bg-slate-950/30 p-4 sm:p-5"
+      className="mt-8 rounded-2xl border border-slate-300/40 bg-slate-50/30 p-4 sm:p-5"
       aria-label="The complete open residual: compiler Rest = v_geo ⊕ G_net ⊕ F_transfer, beside Rest_TOE"
     >
-      <figcaption className="mb-3 text-center font-mono text-sm text-slate-300">
-        Rest = <span className="text-amber-200">v_geo</span> ⊕{" "}
-        <span className="text-amber-200">G_net</span> ⊕{" "}
-        <span className="text-slate-200">F_transfer</span>
-        <span className="block mt-1 text-[11px] font-sans text-slate-400">
+      <figcaption className="mb-3 text-center font-mono text-sm text-slate-700">
+        Rest = <span className="text-amber-800">v_geo</span> ⊕{" "}
+        <span className="text-amber-800">G_net</span> ⊕{" "}
+        <span className="text-slate-800">F_transfer</span>
+        <span className="block mt-1 text-[11px] font-sans text-slate-600">
           compiler rest · beside it Rest_TOE (ten named [O] contracts / eight TFPT.TOE.COMPLETE.01 gates; nothing claimed closed)
         </span>
       </figcaption>
@@ -91,14 +91,14 @@ function ResidualTreemap() {
             className={`flex flex-col gap-2 rounded-xl border bg-gradient-to-br p-4 ${r.tone}`}
           >
             <div className="flex items-center justify-between gap-2">
-              <span className="font-mono text-base font-semibold text-slate-50">
+              <span className="font-mono text-base font-semibold text-slate-950">
                 {r.label}
               </span>
-              <span className="rounded-full bg-slate-900/60 px-2 py-0.5 font-mono text-[10px] font-semibold text-slate-300 ring-1 ring-slate-600/40">
+              <span className="rounded-full bg-slate-100/60 px-2 py-0.5 font-mono text-[10px] font-semibold text-slate-700 ring-1 ring-slate-400/40">
                 {r.marker}
               </span>
             </div>
-            <p className="text-xs leading-relaxed text-slate-300">{r.blurb}</p>
+            <p className="text-xs leading-relaxed text-slate-700">{r.blurb}</p>
           </div>
         ))}
       </div>
@@ -115,14 +115,14 @@ function ResidualTreemap() {
 function ClosingCondition() {
   return (
     <figure className="mt-8 rounded-2xl border border-emerald-400/25 bg-emerald-500/[0.04] p-5 sm:p-6">
-      <figcaption className="text-sm font-semibold text-emerald-200">
+      <figcaption className="text-sm font-semibold text-emerald-800">
         The historical finite seam/compiler residual is{" "}
         <span className="underline decoration-emerald-400/40 underline-offset-4">
           one condition
         </span>{" "}
         — the seam carries no nontrivial abelian sector
       </figcaption>
-      <p className="mt-2 text-sm leading-relaxed text-slate-300">
+      <p className="mt-2 text-sm leading-relaxed text-slate-700">
         The metric inclusion (G_net), the carrier P2 and red-team Target A are not
         three gates but three faces of a single condition — and all three force E₈:
       </p>
@@ -130,18 +130,18 @@ function ClosingCondition() {
         {FACES.map((f) => (
           <div
             key={f.face}
-            className="rounded-xl border border-slate-700/40 bg-slate-950/40 p-3"
+            className="rounded-xl border border-slate-300/40 bg-slate-50/40 p-3"
           >
-            <div className="font-mono text-[11px] font-semibold uppercase tracking-wider text-emerald-300/80">
+            <div className="font-mono text-[11px] font-semibold uppercase tracking-wider text-emerald-700/80">
               {f.face}
             </div>
-            <div className="mt-1 text-xs leading-relaxed text-slate-300">
+            <div className="mt-1 text-xs leading-relaxed text-slate-700">
               {f.statement}
             </div>
           </div>
         ))}
       </div>
-      <div className="mt-4 overflow-x-auto rounded-lg border border-slate-700/40 bg-slate-950/50 p-2.5">
+      <div className="mt-4 overflow-x-auto rounded-lg border border-slate-300/40 bg-slate-50/50 p-2.5">
         <Math
           block
           plain="The seam has exactly one one-dimensional representation (a trivial abelianisation, a homology-sphere link) if and only if it is E₈ — equivalently, the K-matrix has determinant one."
@@ -149,37 +149,37 @@ function ClosingCondition() {
           {"\\#(\\text{1-dim irreps}) = |\\Gamma^{\\mathrm{ab}}| = |H_1(S^3/\\Gamma)| = 1 \\iff E_8 \\iff |\\det K| = 1"}
         </Math>
       </div>
-      <p className="mt-4 text-sm leading-relaxed text-slate-300">
-        <span className="font-semibold text-emerald-200">In short.</span> Within the historical finite
+      <p className="mt-4 text-sm leading-relaxed text-slate-700">
+        <span className="font-semibold text-emerald-800">In short.</span> Within the historical finite
         boundary-net/MMST lane, the Modular Spectral Closure (v258–v261) reduces the listed Dirac,
         cutoff, gauging and glue data to this one premise, so{" "}
-        <span className="font-mono text-emerald-200">SEAM.EQUIV.01</span> is{" "}
-        <span className="text-emerald-200">closed modulo cited theorems</span>: the explicit lattice model
+        <span className="font-mono text-emerald-800">SEAM.EQUIV.01</span> is{" "}
+        <span className="text-emerald-800">closed modulo cited theorems</span>: the explicit lattice model
         (v367/v368) and the S3 stack (v376–v379, ground-state witnesses v489/v490) pin the target at every computable level, Lean-pinned
         (FORM.SEAM.MMST.01) to the published MMST/Adamo theorems — the only residual{" "}
-        <span className="text-amber-200">[O]</span> is their abstract continuum-existence (v336; its 128-spinor
+        <span className="text-amber-800">[O]</span> is their abstract continuum-existence (v336; its 128-spinor
         extension leg is certified at net level by the peer-reviewed crossed-product package v469, LR/Böckenhauer/KLM,
         with AGT/AMT an independent second witness; stays [O]). The ambient
-        measure QG.AMB.01 is a <span className="text-amber-200">[C] redundancy</span> (v369/v379) — a
+        measure QG.AMB.01 is a <span className="text-amber-800">[C] redundancy</span> (v369/v379) — a
         certification object, not missing dynamics — and perturbative spin-2 graviton unitarity is
         established (the Stelle ghost is a truncation artefact, v304/v370/v380).
       </p>
-      <details className="group mt-3 rounded-lg border border-slate-700/40 bg-slate-950/40">
-        <summary className="cursor-pointer list-none px-3 py-2 text-xs font-semibold text-slate-200 transition-colors hover:text-slate-50 [&::-webkit-details-marker]:hidden">
-          <span className="text-blue-300 group-open:hidden">＋ </span>
-          <span className="hidden text-blue-300 group-open:inline">－ </span>
+      <details className="group mt-3 rounded-lg border border-slate-300/40 bg-slate-50/40">
+        <summary className="cursor-pointer list-none px-3 py-2 text-xs font-semibold text-slate-800 transition-colors hover:text-slate-950 [&::-webkit-details-marker]:hidden">
+          <span className="text-blue-700 group-open:hidden">＋ </span>
+          <span className="hidden text-blue-700 group-open:inline">－ </span>
           The full argument (Modular Spectral Closure · the QG-decoupling theorem · the 4D-QFT fork)
         </summary>
-        <div className="space-y-2 px-3 pb-3 text-xs leading-relaxed text-slate-400">
+        <div className="space-y-2 px-3 pb-3 text-xs leading-relaxed text-slate-600">
           <p>
-            <span className="font-semibold text-slate-300">Modular Spectral Closure (v258–v261).</span> The
+            <span className="font-semibold text-slate-700">Modular Spectral Closure (v258–v261).</span> The
             finite Dirac is a covariance induction of the seam KMS state, the spectral-action cutoff <em>is</em>{" "}
             that KMS weight (f₂/f₀ = 1), and seam, carrier-16 and E₈ live on one Kummer/K3 surface — so Dirac,
             cutoff, gauging, glue and orientability are readouts of one seam state. QGEO.SYM.01 is then a
             corollary (a conformal net&apos;s vacuum is rotation-invariant by axiom, v335).
           </p>
           <p>
-            <span className="font-semibold text-slate-300">Seam keystone.</span> The keystone&apos;s residual is
+            <span className="font-semibold text-slate-700">Seam keystone.</span> The keystone&apos;s residual is
             a composition of standard cited theorems (OS/clustering, the Kitaev free-fermion classification,
             the AQFT stack) over established TFPT facts — Lean-pinned to those named steps plus the derived gap
             Δ = 6·ln(3/2) ≈ 2.43 &gt; 0, with no further finite MMST/compiler assumption in that lane.
@@ -190,22 +190,22 @@ function ClosingCondition() {
             LR/Böckenhauer/KLM), with the AGT/AMT route demoted to an independent second witness; stays [O].
           </p>
           <p>
-            <span className="font-semibold text-slate-300">QG decoupling is a theorem (v337).</span> Every
+            <span className="font-semibold text-slate-700">QG decoupling is a theorem (v337).</span> Every
             readout factors through the gapped admissible spectrum (χ = 729/665, margin 1.648 &gt; 0), so TFPT
             provably does not need the ambient measure.
           </p>
           <p>
-            <span className="font-semibold text-slate-300">4D-QFT fork (v265).</span> Finite boundary-net/MMST
+            <span className="font-semibold text-slate-700">4D-QFT fork (v265).</span> Finite boundary-net/MMST
             lane — closed modulo cited theorems; ambient QG — discharged as redundancy [C]; 4D GUT — not claimed (E₈ is the
             audit hull, not a 4D gauge group); optional UV branch — carrier-native Pati–Salam, falsifiable by
             thresholds and proton decay. The sprint-by-sprint reduction (v234 → v302) is on the{" "}
-            <Link href="/changelog" className="text-blue-300 underline-offset-2 hover:underline">
+            <Link prefetch={false} href="/changelog" className="text-blue-700 underline-offset-2 hover:underline">
               changelog
             </Link>
             .
           </p>
           <p>
-            <span className="font-semibold text-amber-200">Strict TOE scope.</span> Round 4
+            <span className="font-semibold text-amber-800">Strict TOE scope.</span> Round 4
             (v1026–v1030) closes the relaxed TEL-B norm at fixed M=1, Ny=8:
             ||R_N||HS &lt; 2.995906 &lt; 3 for every even N≥16. Native v1026 uses
             v1022/v1025 to discharge the former CF/DG estimates for this bound; the
@@ -260,21 +260,21 @@ export function OpenGates() {
               className={`flex flex-col rounded-2xl border p-6 ${g.tone}`}
             >
               <div className="flex items-center gap-2">
-                <span className="rounded-full border border-slate-600/40 bg-slate-900/50 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-300">
+                <span className="rounded-full border border-slate-400/40 bg-slate-100/50 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-700">
                   {g.tag}
                 </span>
-                <span className="rounded-full bg-rose-500/15 px-2 py-0.5 font-mono text-[10px] font-semibold text-rose-200 ring-1 ring-rose-400/30">
+                <span className="rounded-full bg-rose-500/15 px-2 py-0.5 font-mono text-[10px] font-semibold text-rose-800 ring-1 ring-rose-400/30">
                   {g.marker}
                 </span>
               </div>
-              <h3 className="mt-3 font-serif text-base font-semibold text-slate-50">
+              <h3 className="mt-3 font-serif text-base font-semibold text-slate-950">
                 {g.title}
               </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-300">
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-700">
                 {g.body}
               </p>
               {g.formula && (
-                <div className="mt-3 overflow-x-auto rounded-lg border border-slate-700/40 bg-slate-950/40 p-2.5">
+                <div className="mt-3 overflow-x-auto rounded-lg border border-slate-300/40 bg-slate-50/40 p-2.5">
                   <Math block>{g.formula}</Math>
                 </div>
               )}
@@ -284,11 +284,12 @@ export function OpenGates() {
 
         <FTransferDynamics />
 
-        <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-slate-400">
+        <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-slate-600">
           <span>The gates are written up as numbered research contracts.</span>
           <Link
+            prefetch={false}
             href="/papers/research-contracts"
-            className="inline-flex items-center gap-1.5 font-semibold text-blue-300 transition-colors hover:text-blue-200"
+            className="inline-flex items-center gap-1.5 font-semibold text-blue-700 transition-colors hover:text-blue-800"
           >
             Read the contracts
             <ArrowRight size={14} aria-hidden />

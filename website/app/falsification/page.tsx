@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/falsification`,
   },
   openGraph: {
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
     type: "article",
     title: "How to kill TFPT — Falsification Surface and No-Knobs Audit",
     description:
@@ -39,6 +40,7 @@ export const metadata: Metadata = {
     authors: ["Stefan Hamann", "Alessandro Rizzo"],
   },
   twitter: {
+    images: [`${SITE_URL}/opengraph-image`],
     card: "summary_large_image",
     title: "How to kill TFPT — Falsification Surface",
     description:
@@ -94,31 +96,32 @@ export default function FalsificationPage() {
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-6">
             <Link
+              prefetch={false}
               href="/"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-200"
+              className="inline-flex items-center gap-1.5 text-sm text-slate-600 transition-colors hover:text-slate-800"
             >
               <ArrowLeft size={14} />
               Back to overview
             </Link>
           </nav>
-          <span className="inline-flex items-center gap-2 rounded-full border border-rose-400/20 bg-rose-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-rose-200">
+          <span className="inline-flex items-center gap-2 rounded-full border border-rose-400/20 bg-rose-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-rose-800">
             <span className="uppercase">Falsification surface · 2026</span>
           </span>
-          <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-slate-50 sm:text-5xl md:text-6xl">
-            How to <span className="text-blue-300">kill</span> TFPT.
+          <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-slate-950 sm:text-5xl md:text-6xl">
+            How to <span className="text-blue-700">kill</span> TFPT.
           </h1>
-          <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-300">
+          <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-700">
             A theory that cannot fail explains nothing. This page lists the
             committed kill criteria of the TFPT {SITE_VERSION} compiler closure — frozen in
             advance in the freeze file — together with the experiment or
             structural argument that would{" "}
-            <span className="font-semibold text-slate-100">
+            <span className="font-semibold text-slate-900">
               kill the construction
             </span>
             . The no-knobs audit underneath records what the theory may
             consume as input and what it may not.
           </p>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-400">
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600">
             Each output is killed by{" "}
             <em>any single</em> satisfied criterion. The construction does not
             survive on most outputs being right.
@@ -144,7 +147,7 @@ export default function FalsificationPage() {
 
       <section
         id="confrontation-table-section"
-        className="relative scroll-mt-20 border-t border-slate-800/60 py-12 sm:py-16"
+        className="relative scroll-mt-20 border-t border-slate-200/60 py-12 sm:py-16"
         aria-labelledby="confrontation-table-heading"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -160,7 +163,7 @@ export default function FalsificationPage() {
 
       <section
         id="kill-criteria-section"
-        className="relative scroll-mt-20 border-t border-slate-800/60 py-12 sm:py-16"
+        className="relative scroll-mt-20 border-t border-slate-200/60 py-12 sm:py-16"
         aria-labelledby="kill-criteria-heading"
       >
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -176,7 +179,7 @@ export default function FalsificationPage() {
 
       <section
         id="no-knobs-section"
-        className="relative scroll-mt-20 border-t border-slate-800/60 py-12 sm:py-16"
+        className="relative scroll-mt-20 border-t border-slate-200/60 py-12 sm:py-16"
         aria-labelledby="no-knobs-heading"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

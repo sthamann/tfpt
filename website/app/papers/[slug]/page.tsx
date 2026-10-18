@@ -66,6 +66,7 @@ export async function generateMetadata(
       canonical: `${SITE_URL}/papers/${paper.slug}`,
     },
     openGraph: {
+    images: [{ url: `${SITE_URL}/papers/${paper.slug}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
       type: "article",
       title,
       description: oneSentence,
@@ -76,6 +77,7 @@ export async function generateMetadata(
       tags: [paper.title, meta.label, `TFPT ${SITE_VERSION}`],
     },
     twitter: {
+    images: [`${SITE_URL}/papers/${paper.slug}/opengraph-image`],
       card: "summary_large_image",
       title,
       description: oneSentence,
@@ -188,15 +190,16 @@ export default async function PaperPage({ params }: PaperPageProps) {
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-4">
             <Link
+              prefetch={false}
               href="/papers"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-200"
+              className="inline-flex items-center gap-1.5 text-sm text-slate-600 transition-colors hover:text-slate-800"
             >
               <ArrowLeft size={14} />
               Back to paper series
             </Link>
           </nav>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full border border-slate-600/40 bg-slate-900/50 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-widest text-slate-300">
+            <span className="rounded-full border border-slate-400/40 bg-slate-100/50 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-widest text-slate-700">
               Document {paper.number} of the TFPT {SITE_VERSION} set
             </span>
             <span
@@ -206,7 +209,7 @@ export default async function PaperPage({ params }: PaperPageProps) {
             </span>
           </div>
           {release && (
-            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[11px] font-mono text-slate-500">
+            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[11px] font-mono text-slate-600">
               <span>{release.version}</span>
               <span>{release.releaseDate}</span>
               <span>{formatBytes(release.bytes)}</span>
@@ -218,27 +221,27 @@ export default async function PaperPage({ params }: PaperPageProps) {
         </div>
       </section>
 
-      <PaperSection paper={paper} />
+      <PaperSection paper={paper} headingLevel="h1" />
 
-      <section className="relative border-t border-slate-800/60 py-12">
+      <section className="relative border-t border-slate-200/60 py-12">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-xl font-semibold text-slate-100">
+          <h2 className="font-serif text-xl font-semibold text-slate-900">
             Key formulas at a glance
           </h2>
           <ul className="mt-4 grid gap-4 md:grid-cols-2">
             {paper.keyFormulas.map((f) => (
               <li
                 key={f.label}
-                className="rounded-xl border border-slate-700/40 bg-slate-950/40 p-4"
+                className="rounded-xl border border-slate-300/40 bg-slate-50/40 p-4"
               >
-                <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-300/80">
+                <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-700/80">
                   {f.label}
                 </div>
                 <div className="mt-2 overflow-x-auto formula-scroll">
                   <Math block>{f.latex}</Math>
                 </div>
                 {f.description && (
-                  <p className="mt-2 text-xs leading-snug text-slate-400">
+                  <p className="mt-2 text-xs leading-snug text-slate-600">
                     {f.description}
                   </p>
                 )}
@@ -261,18 +264,19 @@ export default async function PaperPage({ params }: PaperPageProps) {
 
       <nav
         aria-label="Paper navigation"
-        className="mx-auto flex max-w-5xl flex-wrap justify-between gap-4 border-t border-slate-800/60 px-4 py-8 sm:px-6 lg:px-8"
+        className="mx-auto flex max-w-5xl flex-wrap justify-between gap-4 border-t border-slate-200/60 px-4 py-8 sm:px-6 lg:px-8"
       >
         {prev ? (
           <Link
+            prefetch={false}
             href={`/papers/${prev.slug}`}
-            className="inline-flex flex-col gap-1 rounded-xl border border-slate-700/40 bg-slate-950/40 p-4 transition-colors hover:bg-slate-900/40"
+            className="inline-flex flex-col gap-1 rounded-xl border border-slate-300/40 bg-slate-50/40 p-4 transition-colors hover:bg-slate-100/40"
           >
-            <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-widest text-blue-300/80">
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-widest text-blue-700/80">
               <ArrowLeft size={11} />
               Previous · {paperLabel(prev)}
             </span>
-            <span className="text-sm font-semibold text-slate-100">
+            <span className="text-sm font-semibold text-slate-900">
               {prev.title}
             </span>
           </Link>
@@ -281,14 +285,15 @@ export default async function PaperPage({ params }: PaperPageProps) {
         )}
         {next ? (
           <Link
+            prefetch={false}
             href={`/papers/${next.slug}`}
-            className="ml-auto inline-flex flex-col gap-1 rounded-xl border border-slate-700/40 bg-slate-950/40 p-4 text-right transition-colors hover:bg-slate-900/40"
+            className="ml-auto inline-flex flex-col gap-1 rounded-xl border border-slate-300/40 bg-slate-50/40 p-4 text-right transition-colors hover:bg-slate-100/40"
           >
-            <span className="inline-flex items-center gap-1 self-end text-[10px] font-semibold uppercase tracking-widest text-blue-300/80">
+            <span className="inline-flex items-center gap-1 self-end text-[10px] font-semibold uppercase tracking-widest text-blue-700/80">
               Next · {paperLabel(next)}
               <ArrowRight size={11} />
             </span>
-            <span className="text-sm font-semibold text-slate-100">
+            <span className="text-sm font-semibold text-slate-900">
               {next.title}
             </span>
           </Link>

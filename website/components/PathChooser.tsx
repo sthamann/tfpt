@@ -40,7 +40,7 @@ export function PathChooser() {
   return (
     <section
       id="path"
-      className="relative scroll-mt-20 border-t border-slate-800/60 py-14 sm:py-16"
+      className="relative scroll-mt-20 border-t border-slate-200/60 py-14 sm:py-16"
       aria-labelledby="path-heading"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -55,23 +55,24 @@ export function PathChooser() {
             const Icon = p.icon;
             return (
               <Link
+                prefetch={false}
                 key={p.role}
                 href={p.href}
-                className="group flex flex-col border border-slate-700/50 bg-slate-950/50 p-5 transition-colors hover:border-slate-500/60 hover:bg-slate-900/40"
+                className="group flex flex-col border border-slate-300/50 bg-slate-50/50 p-5 transition-colors hover:border-slate-500/60 hover:bg-slate-100/40"
               >
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-slate-400">
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-slate-600">
                     {p.role}
                   </span>
-                  <Icon size={16} className="text-slate-500" aria-hidden />
+                  <Icon size={16} className="text-slate-600" aria-hidden />
                 </div>
-                <h3 className="mt-3 font-serif text-lg font-semibold text-slate-50">
+                <h3 className="mt-3 font-serif text-lg font-semibold text-slate-950">
                   {p.title}
                 </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
                   {p.body}
                 </p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-300 group-hover:text-blue-200">
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-700 group-hover:text-blue-800">
                   {p.cta}
                   <ArrowRight
                     size={14}

@@ -30,7 +30,7 @@ export function TourNav({
   return (
     <nav
       aria-label="Tour steps"
-      className="sticky top-0 z-30 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md"
+      className="sticky top-0 z-30 border-b border-slate-200/80 bg-slate-50/90 backdrop-blur-md"
     >
       <div className="mx-auto flex max-w-3xl items-center gap-2 px-3 py-2.5 sm:px-4">
         <button
@@ -38,17 +38,17 @@ export function TourNav({
           onClick={onPrev}
           disabled={atStart}
           aria-label="Previous step"
-          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-700/60 text-slate-200 transition-colors hover:bg-slate-800/80 disabled:cursor-not-allowed disabled:opacity-30"
+          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-300/60 text-slate-800 transition-colors hover:bg-slate-200/80 disabled:cursor-not-allowed disabled:opacity-30"
         >
           <ChevronLeft size={18} aria-hidden />
         </button>
 
         <div className="min-w-0 flex-1">
           <div className="flex items-center justify-between gap-2">
-            <p className="truncate text-[11px] font-semibold uppercase tracking-widest text-blue-300/90">
+            <p className="truncate text-[11px] font-semibold uppercase tracking-widest text-blue-700/90">
               Step {active.n} / {steps.length}
             </p>
-            <p className="hidden truncate text-xs text-slate-400 sm:block">
+            <p className="hidden truncate text-xs text-slate-600 sm:block">
               {active.short}
             </p>
           </div>
@@ -68,7 +68,7 @@ export function TourNav({
                       "block h-1.5 w-full rounded-full transition-colors",
                       current && "bg-blue-400",
                       done && !current && "bg-emerald-500/70",
-                      !done && !current && "bg-slate-700/80 hover:bg-slate-600",
+                      !done && !current && "bg-slate-300/80 hover:bg-slate-400",
                     )}
                   />
                 </li>
@@ -82,7 +82,7 @@ export function TourNav({
           onClick={onNext}
           disabled={atEnd}
           aria-label="Next step"
-          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-700/60 text-slate-200 transition-colors hover:bg-slate-800/80 disabled:cursor-not-allowed disabled:opacity-30"
+          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-300/60 text-slate-800 transition-colors hover:bg-slate-200/80 disabled:cursor-not-allowed disabled:opacity-30"
         >
           <ChevronRight size={18} aria-hidden />
         </button>

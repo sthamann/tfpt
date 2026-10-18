@@ -18,4 +18,4 @@ export const REPO_URL = "https://github.com/sthamann/tfpt";
  * NEXT_PUBLIC_SITE_URL env var in Vercel; the fallback is the production domain.
  */
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.fixpoint-theory.com";
+  (process.env.NEXT_PUBLIC_SITE_URL || "https://www.fixpoint-theory.com").replace(/\/+$/, "");

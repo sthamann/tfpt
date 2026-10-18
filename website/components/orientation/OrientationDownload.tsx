@@ -50,7 +50,7 @@ export function OrientationDownload() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.05 }}
           transition={{ duration: 0.7 }}
-          className="relative overflow-hidden rounded-3xl border border-slate-700/50 bg-slate-950/60 p-8 sm:p-12"
+          className="relative overflow-hidden rounded-3xl border border-slate-300/50 bg-slate-50/60 p-8 sm:p-12"
         >
           <div
             aria-hidden
@@ -65,11 +65,11 @@ export function OrientationDownload() {
             <div>
               <h2
                 id="download-heading"
-                className="font-serif text-3xl font-semibold leading-tight text-slate-50 sm:text-4xl"
+                className="font-serif text-3xl font-semibold leading-tight text-slate-950 sm:text-4xl"
               >
                 Read the full reading guide.
               </h2>
-              <p className="mt-3 max-w-xl text-base leading-relaxed text-slate-300">
+              <p className="mt-3 max-w-xl text-base leading-relaxed text-slate-700">
                 The introduction is the entry document of the TFPT {SITE_VERSION} set. It
                 states the compiler closure, the two-engine picture, the
                 dependency DAG, the proof ledger, and the live experimental
@@ -78,6 +78,7 @@ export function OrientationDownload() {
 
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
+                  prefetch={false}
                   href={ORIENTATION_PDF}
                   target="_blank"
                   rel="noopener"
@@ -90,12 +91,13 @@ export function OrientationDownload() {
                       title: ORIENTATION_TITLE,
                     })
                   }
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 ring-1 ring-blue-400/40 transition-transform hover:scale-105 focus:scale-105"
+                  className="inline-flex items-center gap-2 rounded-full bg-blue-700 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 ring-1 ring-blue-400/40 transition-transform hover:scale-105 focus:scale-105"
                 >
                   <Download size={16} />
                   Open the introduction (PDF)
                 </Link>
                 <Link
+                  prefetch={false}
                   href={ORIENTATION_PDF}
                   target="_blank"
                   rel="noopener"
@@ -108,14 +110,14 @@ export function OrientationDownload() {
                       title: ORIENTATION_TITLE,
                     })
                   }
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-600/60 bg-slate-900/60 px-6 py-3 text-sm font-semibold text-slate-100 backdrop-blur transition-colors hover:bg-slate-800/80"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-400/60 bg-slate-100/60 px-6 py-3 text-sm font-semibold text-slate-900 backdrop-blur transition-colors hover:bg-slate-200/80"
                 >
                   <FileText size={16} />
                   View in browser
                 </Link>
               </div>
 
-              <ul className="mt-8 grid gap-2 text-xs text-slate-400 sm:grid-cols-3">
+              <ul className="mt-8 grid gap-2 text-xs text-slate-600 sm:grid-cols-3">
                 <li>· Stefan Hamann</li>
                 <li>· Alessandro Rizzo</li>
                 <li>· TFPT {SITE_VERSION} document set</li>
@@ -125,6 +127,7 @@ export function OrientationDownload() {
             <div className="space-y-3">
               {SIDEBAR_LINKS.map((link) => (
                 <Link
+                  prefetch={false}
                   key={link.href}
                   href={link.href}
                   target="_blank"
@@ -138,17 +141,17 @@ export function OrientationDownload() {
                       title: link.label,
                     })
                   }
-                  className="group flex items-center justify-between rounded-xl border border-slate-700/40 bg-slate-950/40 p-4 transition-colors hover:bg-slate-900/40"
+                  className="group flex items-center justify-between rounded-xl border border-slate-300/40 bg-slate-50/40 p-4 transition-colors hover:bg-slate-100/40"
                 >
                   <div>
-                    <div className="font-serif text-sm font-semibold text-slate-100">
+                    <div className="font-serif text-sm font-semibold text-slate-900">
                       {link.label}
                     </div>
-                    <div className="text-xs text-slate-400">{link.desc}</div>
+                    <div className="text-xs text-slate-600">{link.desc}</div>
                   </div>
                   <ArrowRight
                     size={16}
-                    className="text-slate-500 transition-transform group-hover:translate-x-0.5 group-hover:text-slate-200"
+                    className="text-slate-600 transition-transform group-hover:translate-x-0.5 group-hover:text-slate-800"
                   />
                 </Link>
               ))}

@@ -14,7 +14,7 @@ export function SeamClock() {
 
   return (
     <figure
-      className="mt-6 overflow-hidden rounded-2xl border border-slate-700/40 bg-slate-950/40 p-4 sm:p-5"
+      className="mt-6 overflow-hidden rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4 sm:p-5"
       aria-label="Seam clock with four marks and Hawking temperature"
     >
       <svg
@@ -117,7 +117,7 @@ export function SeamClock() {
           T_seam = 4c₃
         </text>
       </svg>
-      <figcaption className="mt-2 text-center text-xs leading-relaxed text-slate-400">
+      <figcaption className="mt-2 text-center text-xs leading-relaxed text-slate-600">
         Four marks · quarter-beat · temperature = Hawking normalisation (third leg of c₃)
       </figcaption>
     </figure>

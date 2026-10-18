@@ -36,12 +36,12 @@ const POINTS = conePoints();
 export function HodgeConeMap() {
   const reduce = useReducedMotion();
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-3 flex items-baseline justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-700/90">
           The positive cone · one sheet
         </p>
-        <span className="font-mono text-[10px] text-slate-500">
+        <span className="font-mono text-[10px] text-slate-600">
           v624 · v627
         </span>
       </div>
@@ -105,7 +105,7 @@ export function HodgeConeMap() {
           x={CX}
           y={APEX_Y + 16}
           textAnchor="middle"
-          className="fill-slate-500"
+          className="fill-slate-600"
           fontSize="9"
           fontFamily="var(--font-mono, monospace)"
         >
@@ -115,7 +115,7 @@ export function HodgeConeMap() {
           x={CX}
           y={30}
           textAnchor="middle"
-          className="fill-emerald-200"
+          className="fill-emerald-800"
           fontSize="9.5"
           fontFamily="var(--font-mono, monospace)"
         >
@@ -123,9 +123,9 @@ export function HodgeConeMap() {
         </text>
       </svg>
 
-      <p className="mt-3 text-xs leading-relaxed text-slate-500">
+      <p className="mt-3 text-xs leading-relaxed text-slate-600">
         Transported by the exact integer congruence{" "}
-        <span className="font-mono text-slate-300">Pᵀ J_det P = J_fix</span>{" "}
+        <span className="font-mono text-slate-700">Pᵀ J_det P = J_fix</span>{" "}
         (det P = −6), every complete window sits inside the positive cone of
         the cover polarization lattice, all on one sheet. Honest typing:
         scrambled combs do <em>not</em> leave the chamber — membership is a

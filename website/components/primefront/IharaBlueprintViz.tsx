@@ -50,7 +50,7 @@ function PlusSign({ delay, reduce }: { delay: number; reduce: boolean | null }) 
     <motion.div
       {...(reduce ? {} : REVEAL)}
       transition={{ duration: 0.3, delay: reduce ? 0 : delay }}
-      className="text-center font-mono text-sm text-slate-500"
+      className="text-center font-mono text-sm text-slate-600"
     >
       +
     </motion.div>
@@ -60,22 +60,22 @@ function PlusSign({ delay, reduce }: { delay: number; reduce: boolean | null }) 
 export function IharaBlueprintViz() {
   const reduce = useReducedMotion();
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-3 flex items-baseline justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-700/90">
           The blueprint · A = B*B + P
         </p>
-        <span className="font-mono text-[10px] text-slate-500">v691</span>
+        <span className="font-mono text-[10px] text-slate-600">v691</span>
       </div>
 
       <div className="grid grid-cols-2 gap-3">
         {/* Ihara lab column — proved */}
         <div className="space-y-2">
-          <p className="text-center font-mono text-[10px] uppercase tracking-widest text-emerald-300/80">
+          <p className="text-center font-mono text-[10px] uppercase tracking-widest text-emerald-700/80">
             Ihara lab · exists exactly
           </p>
           <Box
-            tone="border-slate-600/60 bg-slate-900/60 text-slate-200"
+            tone="border-slate-400/60 bg-slate-100/60 text-slate-800"
             delay={0.1}
             reduce={reduce}
           >
@@ -84,28 +84,28 @@ export function IharaBlueprintViz() {
           <motion.div
             {...(reduce ? {} : REVEAL)}
             transition={{ duration: 0.3, delay: reduce ? 0 : 0.25 }}
-            className="text-center font-mono text-sm text-slate-500"
+            className="text-center font-mono text-sm text-slate-600"
           >
             =
           </motion.div>
           <Box
-            tone="border-emerald-400/40 bg-emerald-500/10 text-emerald-100"
+            tone="border-emerald-400/40 bg-emerald-500/10 text-emerald-800"
             delay={0.4}
             reduce={reduce}
           >
             B*B — Chebyshev columns of the Hecke operator
-            <span className="mt-1 block text-[9px] text-emerald-300/70">
+            <span className="mt-1 block text-[9px] text-emerald-700/70">
               recursion · no Cholesky · no spectrum
             </span>
           </Box>
           <PlusSign delay={0.55} reduce={reduce} />
           <Box
-            tone="border-emerald-400/40 bg-emerald-500/10 text-emerald-100"
+            tone="border-emerald-400/40 bg-emerald-500/10 text-emerald-800"
             delay={0.7}
             reduce={reduce}
           >
             P — closed defect Gram
-            <span className="mt-1 block text-[9px] text-emerald-300/70">
+            <span className="mt-1 block text-[9px] text-emerald-700/70">
               P ⪰ 0 ⟺ Ramanujan
             </span>
           </Box>
@@ -113,28 +113,28 @@ export function IharaBlueprintViz() {
 
         {/* ζ column — the missing part */}
         <div className="space-y-2">
-          <p className="text-center font-mono text-[10px] uppercase tracking-widest text-sky-300/80">
+          <p className="text-center font-mono text-[10px] uppercase tracking-widest text-sky-700/80">
             ζ deployment · same shape
           </p>
           <Box
-            tone="border-slate-600/60 bg-slate-900/60 text-slate-200"
+            tone="border-slate-400/60 bg-slate-100/60 text-slate-800"
             delay={0.9}
             reduce={reduce}
           >
             deployed window form
-            <span className="mt-1 block text-[9px] text-slate-400">
+            <span className="mt-1 block text-[9px] text-slate-600">
               = the sine/defect half of the canonical split
             </span>
           </Box>
           <motion.div
             {...(reduce ? {} : REVEAL)}
             transition={{ duration: 0.3, delay: reduce ? 0 : 1.0 }}
-            className="text-center font-mono text-sm text-slate-500"
+            className="text-center font-mono text-sm text-slate-600"
           >
             =
           </motion.div>
           <Box
-            tone="border-sky-400/40 bg-sky-500/10 text-sky-100"
+            tone="border-sky-400/40 bg-sky-500/10 text-sky-800"
             delay={1.15}
             reduce={reduce}
           >
@@ -142,14 +142,14 @@ export function IharaBlueprintViz() {
           </Box>
           <PlusSign delay={1.3} reduce={reduce} />
           <Box
-            tone="border-amber-400/50 bg-amber-500/10 text-amber-100"
+            tone="border-amber-400/50 bg-amber-500/10 text-amber-800"
             delay={1.45}
             reduce={reduce}
             dashed
             pulse={!reduce}
           >
             Z1 = ?
-            <span className="mt-1 block text-[9px] text-amber-300/80">
+            <span className="mt-1 block text-[9px] text-amber-700/80">
               a self-adjoint geometric operator whose polynomial traces are
               the window moments — OPEN
             </span>
@@ -157,8 +157,8 @@ export function IharaBlueprintViz() {
         </div>
       </div>
 
-      <p className="mt-4 text-xs leading-relaxed text-slate-500">
-        <strong className="font-medium text-emerald-200">
+      <p className="mt-4 text-xs leading-relaxed text-slate-600">
+        <strong className="font-medium text-emerald-800">
           Machine-verified (v691, 27 checks):
         </strong>{" "}
         on a proven RH analogue (the Ihara zeta of Ramanujan graphs) the

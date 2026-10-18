@@ -12,9 +12,9 @@ import { SectionHeader } from "./SectionHeader";
  */
 
 const MARKER_TONE: Record<string, string> = {
-  "[E]": "text-emerald-200 bg-emerald-500/15 ring-emerald-400/30",
-  "[E]/[C]": "text-amber-200 bg-amber-500/15 ring-amber-400/30",
-  "[O]": "text-rose-200 bg-rose-500/15 ring-rose-400/30",
+  "[E]": "text-emerald-800 bg-emerald-500/15 ring-emerald-400/30",
+  "[E]/[C]": "text-amber-800 bg-amber-500/15 ring-amber-400/30",
+  "[O]": "text-rose-800 bg-rose-500/15 ring-rose-400/30",
 };
 
 interface Step {
@@ -82,7 +82,7 @@ function ArcMap() {
       {/* ── Panel 1: the seam ───────────────────────────────────────── */}
       <circle cx="150" cy="128" r="62" fill="none" stroke="#475569" strokeWidth="1.5" />
       {seamSites.map((p, i) => (
-        <circle key={`s${i}`} cx={p.x} cy={p.y} r="2.4" fill="#94a3b8" />
+        <circle key={`s${i}`} cx={p.x} cy={p.y} r="2.4" fill="#526278" />
       ))}
       {seamMarks.map((p, i) => (
         <rect
@@ -92,7 +92,7 @@ function ArcMap() {
           width="8"
           height="8"
           transform={`rotate(45 ${p.x} ${p.y})`}
-          fill="#0f172a"
+          fill="#f1f5f9"
           stroke="#93c5fd"
           strokeWidth="1.5"
         />
@@ -159,7 +159,7 @@ function ArcMap() {
       {rootRingInner.map((p, i) => (
         <circle key={`i${i}`} cx={p.x} cy={p.y} r="2" fill="#475569" />
       ))}
-      <text x="810" y="132" textAnchor="middle" fill="#e2e8f0" fontSize="15" fontFamily="var(--font-serif, serif)">
+      <text x="810" y="132" textAnchor="middle" fill="#263b53" fontSize="15" fontFamily="var(--font-serif, serif)">
         E₈
       </text>
       <text x="810" y="34" textAnchor="middle" fill="#cbd5e1" fontSize="13" fontFamily="var(--font-mono, monospace)">
@@ -182,7 +182,7 @@ export function GeometryArc() {
   return (
     <section
       id="geometry"
-      className="relative scroll-mt-20 border-t border-slate-800/60 py-14 sm:py-16"
+      className="relative scroll-mt-20 border-t border-slate-200/60 py-14 sm:py-16"
       aria-labelledby="geometry-heading"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -193,7 +193,7 @@ export function GeometryArc() {
           description="Until mid-2026 the seam was an axiomatized boundary. A chain of machine-checked steps now realizes it geometrically: the seam axioms force one concrete algebraic curve, and the seam's kernel structure is recovered on it exactly. The bedrock premise itself stays open — these are exact slices that narrow it."
         />
 
-        <div className="mt-8 overflow-x-auto border border-slate-700/40 bg-slate-950/40 p-4 sm:p-6">
+        <div className="mt-8 overflow-x-auto border border-slate-300/40 bg-slate-50/40 p-4 sm:p-6">
           <div className="min-w-[640px]">
             <ArcMap />
           </div>
@@ -203,7 +203,7 @@ export function GeometryArc() {
           {STEPS.map((s) => (
             <li
               key={s.title}
-              className="flex flex-col border border-slate-700/40 bg-slate-950/40 p-4"
+              className="flex flex-col border border-slate-300/40 bg-slate-50/40 p-4"
             >
               <div className="flex flex-wrap items-center gap-2">
                 <span
@@ -213,14 +213,14 @@ export function GeometryArc() {
                 >
                   {s.marker}
                 </span>
-                <h3 className="font-serif text-base font-semibold text-slate-50">
+                <h3 className="font-serif text-base font-semibold text-slate-950">
                   {s.title}
                 </h3>
-                <span className="ml-auto font-mono text-[10px] text-slate-500">
+                <span className="ml-auto font-mono text-[10px] text-slate-600">
                   {s.refs}
                 </span>
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-slate-300">
+              <p className="mt-2 text-sm leading-relaxed text-slate-700">
                 {s.body}
               </p>
             </li>
@@ -228,13 +228,13 @@ export function GeometryArc() {
         </ol>
 
         <div className="mt-6 flex flex-col gap-3 border border-rose-500/20 bg-rose-500/[0.04] px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-xs leading-relaxed text-slate-700">
             <span
               className={`mr-2 rounded-sm px-1.5 py-0.5 font-mono text-[10px] font-semibold ring-1 ${MARKER_TONE["[O]"]}`}
             >
               [O]
             </span>
-            <span className="font-semibold text-slate-200">Not claimed closed:</span>{" "}
+            <span className="font-semibold text-slate-800">Not claimed closed:</span>{" "}
             the seam-realization bedrock (GATE.QGEO / QGEO.SYM.01) is still open. The
             parafermionic RP twist of the ℤ₃ orbifold (v639) is since resolved at the
             lattice OS level (v645: mirror × charge conjugation, η = (1,1) unique); the
@@ -242,8 +242,9 @@ export function GeometryArc() {
             are tracked in the ledger, not hidden.
           </p>
           <Link
+            prefetch={false}
             href="/verification#open-gates"
-            className="inline-flex flex-none items-center gap-1.5 text-xs font-semibold text-blue-300 transition-colors hover:text-blue-200"
+            className="inline-flex flex-none items-center gap-1.5 text-xs font-semibold text-blue-700 transition-colors hover:text-blue-800"
           >
             The open gates
             <ArrowRight size={13} aria-hidden />

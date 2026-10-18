@@ -44,7 +44,7 @@ const PILLARS: Pillar[] = [
         <GlossTerm term="readout">readout</GlossTerm> after projection.
       </>
     ),
-    accent: "from-slate-500 to-slate-400",
+    accent: "from-slate-500 to-slate-600",
   },
   {
     icon: Target,
@@ -99,7 +99,7 @@ export function Overview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.05 }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="group relative overflow-hidden rounded-2xl border border-slate-700/40 bg-slate-950/40 p-6 transition-all hover:bg-slate-900/50 hover:ring-1 hover:ring-slate-500/40"
+                className="group relative overflow-hidden rounded-2xl border border-slate-300/40 bg-slate-50/40 p-6 transition-all hover:bg-slate-100/50 hover:ring-1 hover:ring-slate-500/40"
               >
                 <div
                   className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${p.accent} opacity-60`}
@@ -109,10 +109,10 @@ export function Overview() {
                 >
                   <Icon size={20} className="text-white" />
                 </div>
-                <h3 className="font-serif text-lg font-semibold text-slate-50">
+                <h3 className="font-serif text-lg font-semibold text-slate-950">
                   {p.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-300">{p.body}</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-700">{p.body}</p>
               </motion.div>
             );
           })}
@@ -125,36 +125,36 @@ export function Overview() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-14 grid gap-6 lg:grid-cols-2"
         >
-          <div className="glass rounded-2xl ring-1 ring-blue-400/20">
-            <div className="border-b border-slate-800/60 px-5 py-3">
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-300/80">
+          <div className="glass min-w-0 rounded-2xl ring-1 ring-blue-400/20">
+            <div className="border-b border-slate-200/60 px-5 py-3">
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
                 The μ₄ glue — E₈ as a closure, not an input
               </span>
             </div>
             <div className="p-6">
-              <p className="text-sm leading-relaxed text-slate-300">
+              <p className="text-sm leading-relaxed text-slate-700">
                 D₅ = so(10) (spinor 16) and A₃ = su(4) (the four-puncture family
                 geometry) share the{" "}
-                <span className="font-semibold text-slate-100">same</span>{" "}
+                <span className="font-semibold text-slate-900">same</span>{" "}
                 discriminant group ℤ₄. Their glue norms add to the E₈ root norm:
               </p>
-              <div className="mt-3 grid gap-2 text-xs">
-                <div className="rounded-lg border border-slate-700/40 bg-slate-950/40 p-3">
-                  <span className="font-mono text-blue-300">1.</span>{" "}
+              <div className="mt-3 grid gap-2 overflow-x-auto text-xs">
+                <div className="rounded-lg border border-slate-300/40 bg-slate-50/40 p-3">
+                  <span className="font-mono text-blue-700">1.</span>{" "}
                   <Math>{"\\operatorname{disc}(D_5) = \\operatorname{disc}(A_3) = \\mathbb{Z}_4"}</Math>
                 </div>
-                <div className="rounded-lg border border-slate-700/40 bg-slate-950/40 p-3">
-                  <span className="font-mono text-blue-300">2.</span>{" "}
+                <div className="rounded-lg border border-slate-300/40 bg-slate-50/40 p-3">
+                  <span className="font-mono text-blue-700">2.</span>{" "}
                   <Math>{"q(D_5) + q(A_3) = \\tfrac{5}{4} + \\tfrac{3}{4} = 2"}</Math>
-                  <span className="text-slate-400">
+                  <span className="text-slate-600">
                     {" "}
                     = the E₈ root norm
                   </span>
                 </div>
-                <div className="rounded-lg border border-slate-700/40 bg-slate-950/40 p-3">
-                  <span className="font-mono text-blue-300">3.</span>{" "}
+                <div className="rounded-lg border border-slate-300/40 bg-slate-50/40 p-3">
+                  <span className="font-mono text-blue-700">3.</span>{" "}
                   <Math>{"|R(E_8)| = 16\\cdot 5\\cdot 3 = 240"}</Math>
-                  <span className="text-slate-400">
+                  <span className="text-slate-600">
                     {" "}
                     , <Math>{"\\dim E_8 = 240 + 8 = 248"}</Math>
                   </span>
@@ -168,27 +168,27 @@ export function Overview() {
                   {"E_8 = (D_5 \\oplus A_3) + \\mu_4"}
                 </Math>
               </div>
-              <p className="mt-2 text-xs text-slate-400">
+              <p className="mt-2 text-xs text-slate-600">
                 A closed lattice-theoretic construction — not a blind positing
                 of 248. The E₈ numbers are carrier traces, not inputs.
               </p>
             </div>
           </div>
 
-          <div className="glass rounded-2xl ring-1 ring-emerald-400/20">
-            <div className="border-b border-slate-800/60 px-5 py-3">
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-emerald-300/80">
+          <div className="glass min-w-0 rounded-2xl ring-1 ring-emerald-400/20">
+            <div className="border-b border-slate-200/60 px-5 py-3">
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700/80">
                 The electromagnetic fixed point{" "}
                 <span className="math-label">α</span>
               </span>
             </div>
             <div className="p-6">
-              <p className="text-sm leading-relaxed text-slate-300">
+              <p className="text-sm leading-relaxed text-slate-700">
                 The fine-structure constant is the unique positive root of a
                 parameter-free cubic built only from c₃ and the abelian
                 coefficient 41 = 10 b₁ — existence and uniqueness are proved:
               </p>
-              <div className="mt-3 overflow-x-auto rounded-lg border border-slate-700/40 bg-slate-950/40 p-3">
+              <div className="mt-3 overflow-x-auto rounded-lg border border-slate-300/40 bg-slate-50/40 p-3">
                 <Math
                   block
                   plain="A parameter-free cubic in α, built only from c₃ and the abelian coefficient 41, set to zero."
@@ -204,14 +204,14 @@ export function Overview() {
                   {"\\Rightarrow \\alpha^{-1} = 137.035\\,999\\,216\\,8\\ldots"}
                 </Math>
               </div>
-              <p className="mt-3 text-xs text-slate-400">
+              <p className="mt-3 text-xs text-slate-600">
                 CODATA-2022 recommends{" "}
-                <span className="font-mono text-slate-200">
+                <span className="font-mono text-slate-800">
                   137.035 999 177(21)
                 </span>
                 ; the deviation is{" "}
-                <span className="font-mono text-slate-200">2.9 × 10⁻¹⁰</span>,
-                about <span className="font-mono text-slate-200">1.9σ</span> of
+                <span className="font-mono text-slate-800">2.9 × 10⁻¹⁰</span>,
+                about <span className="font-mono text-slate-800">1.9σ</span> of
                 its uncertainty — a fixed point, not a fit.
               </p>
             </div>
@@ -229,23 +229,23 @@ export function Overview() {
         </motion.div>
 
         {/* Progressive disclosure: the deep mechanism visuals live here, not in the hero */}
-        <details className="group mt-14 border border-slate-700/50 bg-slate-950/40 open:bg-slate-950/60">
+        <details className="group mt-14 border border-slate-300/50 bg-slate-50/40 open:bg-slate-50/60">
           <summary className="cursor-pointer list-none px-5 py-4 marker:content-none [&::-webkit-details-marker]:hidden">
             <div className="flex items-center justify-between gap-3">
               <div>
-                <div className="font-mono text-[11px] font-semibold uppercase tracking-widest text-slate-500">
+                <div className="font-mono text-[11px] font-semibold uppercase tracking-widest text-slate-600">
                   How it works — detail
                 </div>
-                <div className="mt-1 font-serif text-lg font-semibold text-slate-100">
+                <div className="mt-1 font-serif text-lg font-semibold text-slate-900">
                   Unpack the compiler &amp; the three decoders
                 </div>
               </div>
-              <span className="font-mono text-xs text-slate-500 transition-transform group-open:rotate-90">
+              <span className="font-mono text-xs text-slate-600 transition-transform group-open:rotate-90">
                 →
               </span>
             </div>
           </summary>
-          <div className="border-t border-slate-800/60 px-2 pb-6 sm:px-4">
+          <div className="border-t border-slate-200/60 px-2 pb-6 sm:px-4">
             <TheoryUnpacking />
             <ThreeDecoderMap />
           </div>

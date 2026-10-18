@@ -21,26 +21,26 @@ const TONE: Record<PhaseTone, { dot: string; ring: string; text: string; chip: s
   blue: {
     dot: "bg-blue-400",
     ring: "border-blue-400/30 bg-blue-500/[0.06]",
-    text: "text-blue-200",
-    chip: "hover:border-blue-400/50 hover:bg-blue-500/10 hover:text-blue-100",
+    text: "text-blue-800",
+    chip: "hover:border-blue-400/50 hover:bg-blue-500/10 hover:text-blue-800",
   },
   green: {
     dot: "bg-emerald-400",
     ring: "border-emerald-400/30 bg-emerald-500/[0.06]",
-    text: "text-emerald-200",
-    chip: "hover:border-emerald-400/50 hover:bg-emerald-500/10 hover:text-emerald-100",
+    text: "text-emerald-800",
+    chip: "hover:border-emerald-400/50 hover:bg-emerald-500/10 hover:text-emerald-800",
   },
   gold: {
     dot: "bg-amber-400",
     ring: "border-amber-400/30 bg-amber-500/[0.06]",
-    text: "text-amber-200",
-    chip: "hover:border-amber-400/50 hover:bg-amber-500/10 hover:text-amber-100",
+    text: "text-amber-800",
+    chip: "hover:border-amber-400/50 hover:bg-amber-500/10 hover:text-amber-800",
   },
   red: {
     dot: "bg-rose-400",
     ring: "border-rose-400/30 bg-rose-500/[0.06]",
-    text: "text-rose-200",
-    chip: "hover:border-rose-400/50 hover:bg-rose-500/10 hover:text-rose-100",
+    text: "text-rose-800",
+    chip: "hover:border-rose-400/50 hover:bg-rose-500/10 hover:text-rose-800",
   },
 };
 
@@ -183,12 +183,12 @@ export function SuiteTimeline() {
   const { open } = useReproducer();
 
   return (
-    <div className="glass overflow-hidden rounded-2xl ring-1 ring-slate-700/40">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/60 px-5 py-3">
-        <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-300/80">
+    <div className="glass overflow-hidden rounded-2xl ring-1 ring-slate-300/40">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200/60 px-5 py-3">
+        <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
           The suite timeline — {PHASES.length} phases, live
         </span>
-        <span className="text-[10px] font-medium text-slate-400">
+        <span className="text-[10px] font-medium text-slate-600">
           click a script to run it in your browser
         </span>
       </div>
@@ -197,7 +197,7 @@ export function SuiteTimeline() {
         {/* the timeline spine */}
         <div
           aria-hidden
-          className="absolute bottom-8 left-[27px] top-8 w-px bg-slate-700/60 sm:left-[31px]"
+          className="absolute bottom-8 left-[27px] top-8 w-px bg-slate-300/60 sm:left-[31px]"
         />
         {PHASES.map((p, i) => {
           const tone = TONE[p.tone];
@@ -213,7 +213,7 @@ export function SuiteTimeline() {
               <span
                 aria-hidden
                 className={cn(
-                  "relative z-10 mt-4 h-3 w-3 flex-none rounded-full ring-4 ring-slate-950",
+                  "relative z-10 mt-4 h-3 w-3 flex-none rounded-full ring-4 ring-slate-50",
                   tone.dot,
                 )}
               />
@@ -222,11 +222,11 @@ export function SuiteTimeline() {
                   <span className={cn("font-mono text-xs font-semibold", tone.text)}>
                     {p.range}
                   </span>
-                  <h4 className="font-serif text-base font-semibold text-slate-50">
+                  <h4 className="font-serif text-base font-semibold text-slate-950">
                     {p.title}
                   </h4>
                 </div>
-                <p className="mt-1.5 break-words text-xs leading-relaxed text-slate-300">
+                <p className="mt-1.5 break-words text-xs leading-relaxed text-slate-700">
                   {p.body}
                 </p>
                 <div className="mt-2.5 flex flex-wrap gap-1.5">
@@ -236,7 +236,7 @@ export function SuiteTimeline() {
                       type="button"
                       onClick={() => open(s)}
                       className={cn(
-                        "group inline-flex max-w-full items-center gap-1.5 rounded-md border border-slate-700/50 bg-slate-950/60 px-2 py-0.5 font-mono text-[10px] text-slate-300 transition-colors",
+                        "group inline-flex max-w-full items-center gap-1.5 rounded-md border border-slate-300/50 bg-slate-50/60 px-2 py-0.5 font-mono text-[10px] text-slate-700 transition-colors",
                         tone.chip,
                       )}
                     >
@@ -252,7 +252,7 @@ export function SuiteTimeline() {
         })}
       </ol>
 
-      <p className="border-t border-slate-800/60 px-5 py-4 text-xs leading-relaxed text-slate-400">
+      <p className="border-t border-slate-200/60 px-5 py-4 text-xs leading-relaxed text-slate-600">
         The two axioms <span className="font-mono">c₃ = 1/(8π)</span> and{" "}
         <span className="font-mono">g_car = 5</span> are not free knobs: they reduce to the
         single parabolic anchor <span className="font-mono">a = (1,1,2)</span> plus π, and{" "}

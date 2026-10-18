@@ -58,25 +58,25 @@ export function ShellCensus() {
   const highlight = phase < 2 ? "total" : "signed";
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="overflow-hidden rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-slate-400">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-slate-600">
           Glue-coloured shells · shell n = {shell}
         </p>
-        <p className="font-mono text-[11px] text-slate-300">
+        <p className="font-mono text-[11px] text-slate-700">
           {highlight === "total" ? (
             <>
               total roots ={" "}
-              <span className="text-sky-300">
+              <span className="text-sky-700">
                 {shell === 1 ? 240 : 180}
               </span>
             </>
           ) : (
             <>
               signed (0 − 2) ={" "}
-              <span className="text-rose-300">{signed}</span>
+              <span className="text-rose-700">{signed}</span>
               {shell === 1 && (
-                <span className="text-slate-500"> = −rank(E₈)</span>
+                <span className="text-slate-600"> = −rank(E₈)</span>
               )}
             </>
           )}
@@ -130,7 +130,7 @@ export function ShellCensus() {
           x="160"
           y="268"
           textAnchor="middle"
-          fill="#94a3b8"
+          fill="#526278"
           fontSize="11"
           fontFamily="ui-monospace, monospace"
         >
@@ -141,7 +141,7 @@ export function ShellCensus() {
         {LABELS.map((lab, i) => (
           <li
             key={lab}
-            className="flex items-center gap-1.5 font-mono text-[10px] text-slate-400"
+            className="flex items-center gap-1.5 font-mono text-[10px] text-slate-600"
           >
             <span
               className="inline-block h-2 w-2 rounded-full"

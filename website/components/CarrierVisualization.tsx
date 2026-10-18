@@ -21,17 +21,17 @@ export function CarrierVisualization() {
     <div className="space-y-8">
       <div className="rounded-2xl border border-amber-400/25 bg-amber-500/5 p-5 sm:p-6">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full bg-amber-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-amber-200 ring-1 ring-amber-400/30">
+          <span className="rounded-full bg-amber-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-amber-800 ring-1 ring-amber-400/30">
             Proof tree cut
           </span>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-amber-200/80">
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-amber-800/80">
             Reading order matters
           </span>
         </div>
-        <p className="mt-2 text-sm leading-relaxed text-amber-100/90">
+        <p className="mt-2 text-sm leading-relaxed text-amber-800/90">
           The carrier polynomial{" "}
           <Math>{"6Y^2 - Y - \\mathbf{1} = 0"}</Math> is{" "}
-          <span className="font-semibold text-amber-200">not</span> an entry
+          <span className="font-semibold text-amber-800">not</span> an entry
           assumption. It is the algebraic shadow of the 3+2 split forced by the
           five-slot carrier{" "}
           <Math>{"g_{\\mathrm{car}} = 5"}</Math> — the same split that gives the
@@ -80,9 +80,9 @@ export function CarrierVisualization() {
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
-        <div className="glass rounded-2xl ring-1 ring-slate-700/40">
-          <div className="border-b border-slate-800/60 px-5 py-3">
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-300/80">
+        <div className="glass rounded-2xl ring-1 ring-slate-300/40">
+          <div className="border-b border-slate-200/60 px-5 py-3">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
               Derived rank split — visualized
             </span>
           </div>
@@ -101,13 +101,13 @@ export function CarrierVisualization() {
                 transition={{ duration: 0.7 }}
                 className="relative rounded-xl border border-orange-400/30 bg-gradient-to-br from-orange-500/10 to-red-500/5 p-5"
               >
-                <div className="text-[10px] font-semibold uppercase tracking-widest text-orange-200/90">
+                <div className="text-[10px] font-semibold uppercase tracking-widest text-orange-800/90">
                   E_- (colour block)
                 </div>
-                <div className="mt-2 font-serif text-3xl font-semibold text-slate-50">
+                <div className="mt-2 font-serif text-3xl font-semibold text-slate-950">
                   dim 3
                 </div>
-                <div className="mt-1 text-xs text-slate-400">
+                <div className="mt-1 text-xs text-slate-600">
                   the 3 colour slots of the carrier
                 </div>
                 <div className="mt-4 flex gap-2">
@@ -124,7 +124,7 @@ export function CarrierVisualization() {
                     </motion.div>
                   ))}
                 </div>
-                <div className="mt-3 text-[10px] font-mono uppercase tracking-widest text-orange-200/70">
+                <div className="mt-3 text-[10px] font-mono uppercase tracking-widest text-orange-800/70">
                   Y = −1/3 (after determinant normalization)
                 </div>
               </motion.div>
@@ -136,13 +136,13 @@ export function CarrierVisualization() {
                 transition={{ duration: 0.7, delay: 0.15 }}
                 className="relative rounded-xl border border-violet-400/30 bg-gradient-to-br from-violet-500/10 to-purple-500/5 p-5"
               >
-                <div className="text-[10px] font-semibold uppercase tracking-widest text-violet-200/90">
+                <div className="text-[10px] font-semibold uppercase tracking-widest text-violet-800/90">
                   E_+ (weak block)
                 </div>
-                <div className="mt-2 font-serif text-3xl font-semibold text-slate-50">
+                <div className="mt-2 font-serif text-3xl font-semibold text-slate-950">
                   dim 2
                 </div>
-                <div className="mt-1 text-xs text-slate-400">
+                <div className="mt-1 text-xs text-slate-600">
                   the 2 weak slots of the carrier
                 </div>
                 <div className="mt-4 flex gap-2">
@@ -159,14 +159,14 @@ export function CarrierVisualization() {
                     </motion.div>
                   ))}
                 </div>
-                <div className="mt-3 text-[10px] font-mono uppercase tracking-widest text-violet-200/70">
+                <div className="mt-3 text-[10px] font-mono uppercase tracking-widest text-violet-800/70">
                   Y = +1/2 (after determinant normalization)
                 </div>
               </motion.div>
             </div>
 
-            <div className="mt-5 rounded-lg border border-emerald-400/25 bg-emerald-500/5 p-4 text-xs leading-relaxed text-emerald-100/90">
-              <strong className="text-emerald-200">Trace, automatic.</strong>{" "}
+            <div className="mt-5 rounded-lg border border-emerald-400/25 bg-emerald-500/5 p-4 text-xs leading-relaxed text-emerald-800/90">
+              <strong className="text-emerald-800">Trace, automatic.</strong>{" "}
               <Math>
                 {"\\operatorname{tr}_E Y = 3 \\!\\cdot\\! (-1/3) + 2 \\!\\cdot\\! (1/2) = 0"}
               </Math>{" "}
@@ -175,13 +175,13 @@ export function CarrierVisualization() {
             </div>
 
             <div className="mt-5 rounded-xl border border-blue-400/25 bg-blue-500/5 p-4">
-              <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-blue-200">
+              <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-blue-800">
                 <ArrowDown size={12} aria-hidden />
                 Determinant-normalized generator{" "}
                 <span className="math-label">→</span> polynomial as corollary
               </div>
               <div className="mt-2 grid gap-2">
-                <div className="overflow-x-auto formula-scroll rounded-md border border-slate-700/40 bg-slate-950/60 p-3">
+                <div className="overflow-x-auto formula-scroll rounded-md border border-slate-300/40 bg-slate-50/60 p-3">
                   <Math block>
                     {"Y = -\\tfrac{1}{3}\\,P_- + \\tfrac{1}{2}\\,P_+"}
                   </Math>
@@ -191,9 +191,9 @@ export function CarrierVisualization() {
                     {"\\Rightarrow \\;\\; \\left(Y+\\tfrac{1}{3}\\right)\\!\\left(Y-\\tfrac{1}{2}\\right) = 0 \\;\\;\\Longleftrightarrow\\;\\; 6Y^2 - Y - \\mathbf{1} = 0"}
                   </Math>
                 </div>
-                <p className="text-[11px] leading-relaxed text-blue-100/85">
+                <p className="text-[11px] leading-relaxed text-blue-800/85">
                   The polynomial is{" "}
-                  <span className="font-semibold text-amber-200">not</span>{" "}
+                  <span className="font-semibold text-amber-800">not</span>{" "}
                   assumed. It is the algebraic shadow of the forced 3+2 split.
                 </p>
               </div>
@@ -201,9 +201,9 @@ export function CarrierVisualization() {
           </div>
         </div>
 
-        <div className="glass rounded-2xl ring-1 ring-slate-700/40">
-          <div className="border-b border-slate-800/60 px-5 py-3">
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-300/80">
+        <div className="glass rounded-2xl ring-1 ring-slate-300/40">
+          <div className="border-b border-slate-200/60 px-5 py-3">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
               Spinor packet S⁺ = Λ^even E (read off after carrier)
             </span>
           </div>
@@ -217,14 +217,14 @@ export function CarrierVisualization() {
             <div className="mt-6">
               <table className="w-full text-left text-xs">
                 <thead>
-                  <tr className="border-b border-slate-700/60 text-slate-300">
+                  <tr className="border-b border-slate-300/60 text-slate-700">
                     <th className="py-2 font-semibold">Multiplet</th>
                     <th className="py-2 font-semibold">SU(3)×SU(2)×U(1)</th>
                     <th className="py-2 text-right font-semibold">Y</th>
                     <th className="py-2 text-right font-semibold">Dim</th>
                   </tr>
                 </thead>
-                <tbody className="text-slate-300">
+                <tbody className="text-slate-700">
                   {[
                     { mp: "Q_L", repr: "(3, 2, 1/6)", y: "1/6", dim: "6" },
                     { mp: "u_R", repr: "(3, 1, 2/3)", y: "2/3", dim: "3" },
@@ -239,21 +239,21 @@ export function CarrierVisualization() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, amount: 0.05 }}
                       transition={{ duration: 0.4, delay: i * 0.05 }}
-                      className="border-b border-slate-800/40 transition-colors hover:bg-slate-900/40"
+                      className="border-b border-slate-200/40 transition-colors hover:bg-slate-100/40"
                     >
                       <td className="py-2 font-mono">{row.mp}</td>
-                      <td className="py-2 text-slate-400">{row.repr}</td>
-                      <td className="py-2 text-right font-mono text-blue-300">
+                      <td className="py-2 text-slate-600">{row.repr}</td>
+                      <td className="py-2 text-right font-mono text-blue-700">
                         {row.y}
                       </td>
                       <td className="py-2 text-right font-mono">{row.dim}</td>
                     </motion.tr>
                   ))}
-                  <tr className="text-slate-100">
+                  <tr className="text-slate-900">
                     <td className="py-2 font-semibold" colSpan={3}>
                       One chiral family (incl. ν_R)
                     </td>
-                    <td className="py-2 text-right font-mono font-semibold text-emerald-300">
+                    <td className="py-2 text-right font-mono font-semibold text-emerald-700">
                       16
                     </td>
                   </tr>
@@ -269,17 +269,17 @@ export function CarrierVisualization() {
               ].map((c) => (
                 <div
                   key={c.label}
-                  className="rounded-lg border border-slate-700/40 bg-slate-950/40 px-4 py-3 text-center"
+                  className="rounded-lg border border-slate-300/40 bg-slate-50/40 px-4 py-3 text-center"
                 >
                   <div
                     className={cn(
-                      "text-[10px] font-semibold tracking-widest text-blue-300/80",
+                      "text-[10px] font-semibold tracking-widest text-blue-700/80",
                       c.isMath ? "math-label" : "uppercase",
                     )}
                   >
                     {c.label}
                   </div>
-                  <div className="mt-1 font-serif text-lg font-semibold text-slate-50">
+                  <div className="mt-1 font-serif text-lg font-semibold text-slate-950">
                     {c.value}
                   </div>
                 </div>
@@ -289,26 +289,26 @@ export function CarrierVisualization() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-700/40 bg-slate-950/40 p-6 sm:p-7">
-        <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-300/80">
+      <div className="rounded-2xl border border-slate-300/40 bg-slate-50/40 p-6 sm:p-7">
+        <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-700/80">
           Why this coefficient is forced — not guessed
         </div>
-        <h3 className="mt-1 font-serif text-lg font-semibold text-slate-50">
+        <h3 className="mt-1 font-serif text-lg font-semibold text-slate-950">
           The general split check
         </h3>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-300">
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
           For any essential split E_b ⊕ E_s with determinant-normalized roots
           −1/b and 1/s, the two-point generator satisfies the family
         </p>
-        <div className="mt-3 overflow-x-auto rounded-lg border border-slate-700/40 bg-slate-950/60 p-3">
+        <div className="mt-3 overflow-x-auto rounded-lg border border-slate-300/40 bg-slate-50/60 p-3">
           <Math block>
             {"b s\\, Y^2 + (s - b)\\, Y - \\mathbf{1} = 0"}
           </Math>
         </div>
-        <p className="mt-3 text-sm leading-relaxed text-slate-300">
+        <p className="mt-3 text-sm leading-relaxed text-slate-700">
           The carrier and family arguments fix{" "}
           <Math>{"(b, s) = (3, 2)"}</Math>. The coefficient{" "}
-          <span className="font-mono text-slate-100">6 = 3 · 2</span> is the
+          <span className="font-mono text-slate-900">6 = 3 · 2</span> is the
           determinant-periodized block normalization of the rigid 3+2 carrier
           — not phenomenologically tuned, not guessed.
         </p>
@@ -340,7 +340,7 @@ function ProofStep({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.05 }}
       transition={{ duration: 0.6, delay: step * 0.06 }}
-      className="group glass relative flex flex-col overflow-hidden rounded-2xl ring-1 ring-slate-700/40 transition-all hover:ring-slate-500/60"
+      className="group glass relative flex flex-col overflow-hidden rounded-2xl ring-1 ring-slate-300/40 transition-all hover:ring-slate-500/60"
     >
       <div
         aria-hidden
@@ -354,18 +354,18 @@ function ProofStep({
             {step}
           </span>
           <div>
-            <h4 className="font-serif text-base font-semibold leading-tight text-slate-50">
+            <h4 className="font-serif text-base font-semibold leading-tight text-slate-950">
               {title}
             </h4>
-            <p className="text-[11px] font-medium uppercase tracking-widest text-slate-400">
+            <p className="text-[11px] font-medium uppercase tracking-widest text-slate-600">
               {subtitle}
             </p>
           </div>
         </div>
-        <p className="text-xs leading-relaxed text-slate-300">{body}</p>
+        <p className="text-xs leading-relaxed text-slate-700">{body}</p>
 
-        <div className="rounded-lg border border-slate-700/40 bg-slate-950/40 p-3">
-          <div className="text-[9px] font-semibold uppercase tracking-widest text-blue-300/70">
+        <div className="rounded-lg border border-slate-300/40 bg-slate-50/40 p-3">
+          <div className="text-[9px] font-semibold uppercase tracking-widest text-blue-700/70">
             Step formula
           </div>
           <div className="mt-1 overflow-x-auto">
@@ -373,12 +373,12 @@ function ProofStep({
           </div>
         </div>
 
-        <div className="flex items-center justify-center text-slate-500">
+        <div className="flex items-center justify-center text-slate-600">
           <ArrowDown size={14} aria-hidden />
         </div>
 
         <div className="rounded-lg border border-emerald-400/25 bg-emerald-500/5 p-3">
-          <div className="text-[9px] font-semibold uppercase tracking-widest text-emerald-300/80">
+          <div className="text-[9px] font-semibold uppercase tracking-widest text-emerald-700/80">
             Conclusion
           </div>
           <div className="mt-1 overflow-x-auto">

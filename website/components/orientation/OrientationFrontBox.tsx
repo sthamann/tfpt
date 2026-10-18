@@ -26,7 +26,7 @@ const ITEMS: {
     icon: XOctagon,
     title: "Not introduced here",
     body: "No new physics. The load-bearing derivations — the E₈ glue, the SM packet, the masses, the gravity sector — live in the companion documents.",
-    tone: "from-slate-500/15 to-slate-500/5 ring-slate-400/25",
+    tone: "from-slate-500/15 to-slate-500/5 ring-slate-600/25",
   },
   {
     icon: Crosshair,
@@ -60,14 +60,14 @@ export function OrientationFrontBox() {
                 className={`relative overflow-hidden rounded-2xl bg-gradient-to-br p-5 ring-1 ${it.tone}`}
               >
                 <div className="flex items-center gap-2.5">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-950/40 ring-1 ring-white/10">
-                    <Icon size={16} className="text-slate-100" />
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-50/40 ring-1 ring-white/10">
+                    <Icon size={16} className="text-slate-900" />
                   </span>
-                  <h3 className="font-serif text-base font-semibold text-slate-50">
+                  <h3 className="font-serif text-base font-semibold text-slate-950">
                     {it.title}
                   </h3>
                 </div>
-                <p className="mt-3 text-sm leading-relaxed text-slate-300">
+                <p className="mt-3 text-sm leading-relaxed text-slate-700">
                   {it.body}
                 </p>
               </motion.div>

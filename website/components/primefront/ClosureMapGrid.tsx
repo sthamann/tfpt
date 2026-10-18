@@ -61,14 +61,14 @@ const NEW_CELLS = CELLS.filter((c) => c.state === "new");
 
 export function ClosureMapGrid() {
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-700/90">
           Closure map · 16 zones × 4 wing fractions · T103
         </p>
-        <span className="font-mono text-[10px] text-slate-400">
+        <span className="font-mono text-[10px] text-slate-600">
           7/64{" "}
-          <span aria-hidden className="text-slate-600">
+          <span aria-hidden className="text-slate-500">
             →
           </span>{" "}
           <motion.span
@@ -76,7 +76,7 @@ export function ClosureMapGrid() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.4, delay: 1.0 }}
-            className="text-emerald-300"
+            className="text-emerald-700"
           >
             44/64
           </motion.span>
@@ -150,7 +150,7 @@ export function ClosureMapGrid() {
             y={yOf(f) + CELL / 2 + 3}
             textAnchor="end"
             fontSize="8"
-            className="fill-slate-500 font-mono"
+            className="fill-slate-600 font-mono"
           >
             {label}
           </text>
@@ -164,7 +164,7 @@ export function ClosureMapGrid() {
             y={VIEW_H - 4}
             textAnchor="middle"
             fontSize="8"
-            className="fill-slate-500 font-mono"
+            className="fill-slate-600 font-mono"
           >
             {zone}
           </text>
@@ -174,13 +174,13 @@ export function ClosureMapGrid() {
           y={VIEW_H - 4}
           textAnchor="end"
           fontSize="7"
-          className="fill-slate-600 font-mono"
+          className="fill-slate-500 font-mono"
         >
           zone
         </text>
       </svg>
 
-      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[10px] text-slate-500">
+      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[10px] text-slate-600">
         <span>
           <span
             aria-hidden
@@ -198,13 +198,13 @@ export function ClosureMapGrid() {
         <span>
           <span
             aria-hidden
-            className="mr-1.5 inline-block h-2.5 w-2.5 rounded-sm border border-slate-600 bg-slate-800/60 align-middle"
+            className="mr-1.5 inline-block h-2.5 w-2.5 rounded-sm border border-slate-400 bg-slate-200/60 align-middle"
           />
           open (20)
         </span>
       </div>
 
-      <p className="mt-3 text-xs leading-relaxed text-slate-500">
+      <p className="mt-3 text-xs leading-relaxed text-slate-600">
         One fixed, k-uniform instrument (Λ₀ = 3, r = 2 — no zone tuning) jumps
         the closure map from 7/64 to 44/64. Which cells are drawn closed is
         schematic (only the zone-2 column of T101 is placed as measured); the

@@ -70,12 +70,12 @@ const EXIT_ZONE = 3;
 
 export function InstrumentRace() {
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-700/90">
           The race r_k · 16 zones · T101 → T103
         </p>
-        <span className="font-mono text-[10px] text-slate-500">
+        <span className="font-mono text-[10px] text-slate-600">
           log scale · slopes are fits
         </span>
       </div>
@@ -103,7 +103,7 @@ export function InstrumentRace() {
           x={xOf(11)}
           y={yOf(floorOf(11)) + 11}
           fontSize="8"
-          className="fill-slate-500 font-mono"
+          className="fill-slate-600 font-mono"
         >
           spectrum edge (schematic)
         </text>
@@ -138,7 +138,7 @@ export function InstrumentRace() {
             x={xOf(EXIT_ZONE) + 6}
             y={yOf(rOld(EXIT_ZONE)) - 5}
             fontSize="8"
-            className="fill-rose-300 font-mono"
+            className="fill-rose-700 font-mono"
           >
             leaves the spectrum at zone 3
           </text>
@@ -147,7 +147,7 @@ export function InstrumentRace() {
           x={xOf(10.5)}
           y={yOf(rOld(10.5)) + 12}
           fontSize="8"
-          className="fill-rose-300/90 font-mono"
+          className="fill-rose-700/90 font-mono"
         >
           old · slope −0.1622 ± 0.0562
         </text>
@@ -179,7 +179,7 @@ export function InstrumentRace() {
             x={xOf(ZONES) + 5}
             y={yOf(R_END_NEW) + 3}
             fontSize="9"
-            className="fill-emerald-300 font-mono"
+            className="fill-emerald-700 font-mono"
           >
             2.70
           </text>
@@ -188,7 +188,7 @@ export function InstrumentRace() {
           x={xOf(1) + 4}
           y={yOf(R_START) - 4}
           fontSize="9"
-          className="fill-slate-300 font-mono"
+          className="fill-slate-700 font-mono"
         >
           9.33
         </text>
@@ -196,7 +196,7 @@ export function InstrumentRace() {
           x={xOf(5.5)}
           y={yOf(rNew(5.5)) - 6}
           fontSize="8"
-          className="fill-emerald-300/90 font-mono"
+          className="fill-emerald-700/90 font-mono"
         >
           new m(Λ) · slope −0.0748 ± 0.0116
         </text>
@@ -217,7 +217,7 @@ export function InstrumentRace() {
             y={VIEW_H - PAD_B + 12}
             textAnchor="middle"
             fontSize="8"
-            className="fill-slate-500 font-mono"
+            className="fill-slate-600 font-mono"
           >
             {k}
           </text>
@@ -227,7 +227,7 @@ export function InstrumentRace() {
           y={VIEW_H - PAD_B + 12}
           textAnchor="start"
           fontSize="8"
-          className="fill-slate-600 font-mono"
+          className="fill-slate-500 font-mono"
         >
           {" "}
           zone
@@ -236,28 +236,28 @@ export function InstrumentRace() {
 
       <div className="mt-3 grid gap-2 sm:grid-cols-3">
         <div className="rounded-lg border border-emerald-400/30 bg-emerald-500/10 px-2 py-1.5 text-center">
-          <p className="font-serif text-lg text-emerald-100">3.0× – 103.4×</p>
-          <p className="text-[10px] leading-tight text-slate-500">
+          <p className="font-serif text-lg text-emerald-800">3.0× – 103.4×</p>
+          <p className="text-[10px] leading-tight text-slate-600">
             demand reduction across the 64 samples
           </p>
         </div>
-        <div className="rounded-lg border border-slate-700/40 bg-slate-900/50 px-2 py-1.5 text-center">
-          <p className="font-mono text-sm text-slate-200">
+        <div className="rounded-lg border border-slate-300/40 bg-slate-100/50 px-2 py-1.5 text-center">
+          <p className="font-mono text-sm text-slate-800">
             Λ_ok 0.77…3.64
           </p>
-          <p className="text-[10px] leading-tight text-slate-500">
+          <p className="text-[10px] leading-tight text-slate-600">
             bounded over all 16 zones (was 2.3…376)
           </p>
         </div>
-        <div className="rounded-lg border border-slate-700/40 bg-slate-900/50 px-2 py-1.5 text-center">
-          <p className="font-mono text-sm text-slate-200">modes 2 → 232</p>
-          <p className="text-[10px] leading-tight text-slate-500">
+        <div className="rounded-lg border border-slate-300/40 bg-slate-100/50 px-2 py-1.5 text-center">
+          <p className="font-mono text-sm text-slate-800">modes 2 → 232</p>
+          <p className="text-[10px] leading-tight text-slate-600">
             honest price: explicit modes grow
           </p>
         </div>
       </div>
 
-      <p className="mt-3 text-xs leading-relaxed text-slate-500">
+      <p className="mt-3 text-xs leading-relaxed text-slate-600">
         The race quantity r_k must stay inside the spectrum for a zone to
         close. The old two-factor chain (T101) decays as r ~ exp(−0.1622k)
         (fit) and only zone 2 survives throughout (7/64). The θ-weighted

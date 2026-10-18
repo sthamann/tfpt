@@ -83,18 +83,18 @@ const LABEL_FLIP_THRESHOLD = 55;
 const CHANNEL_STYLE = {
   abelian: {
     dot: "border-violet-300/70 bg-violet-400",
-    text: "text-violet-200",
+    text: "text-violet-800",
     ring: "ring-violet-300/60",
   },
   cuspidal: {
     dot: "border-rose-300/70 bg-rose-400",
-    text: "text-rose-200",
+    text: "text-rose-800",
     ring: "ring-rose-300/60",
   },
   other: {
-    dot: "border-slate-400/70 bg-slate-400",
-    text: "text-slate-300",
-    ring: "ring-slate-300/60",
+    dot: "border-slate-600/70 bg-slate-600",
+    text: "text-slate-700",
+    ring: "ring-slate-700/60",
   },
 } as const;
 
@@ -105,12 +105,12 @@ export function CenterAtlas() {
   const selected = OBJECTS.find((o) => o.id === active) ?? OBJECTS[0];
 
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-violet-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-violet-700/90">
           Centre atlas · click an object
         </p>
-        <ul className="flex gap-3 font-mono text-[10px] text-slate-400">
+        <ul className="flex gap-3 font-mono text-[10px] text-slate-600">
           <li className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-violet-400" aria-hidden />
             abelian
@@ -130,14 +130,14 @@ export function CenterAtlas() {
             style={{ left: `${trackPosition(tick.centre)}%` }}
             className={cn(
               "absolute top-0 -translate-x-1/2 font-mono text-[10px]",
-              tick.centre === 0.5 ? "text-violet-300" : "text-slate-500",
+              tick.centre === 0.5 ? "text-violet-700" : "text-slate-600",
             )}
           >
             {tick.label}
           </span>
         ))}
       </div>
-      <div className="relative h-1.5 rounded-full bg-slate-800">
+      <div className="relative h-1.5 rounded-full bg-slate-200">
         <span
           style={{
             left: `${trackPosition(0)}%`,
@@ -147,8 +147,8 @@ export function CenterAtlas() {
           aria-hidden
         />
       </div>
-      <div className="mt-1.5 flex justify-between gap-3 font-mono text-[9px] uppercase tracking-widest text-slate-600">
-        <span className="text-violet-400/80">ξ-line · Re s = ½</span>
+      <div className="mt-1.5 flex justify-between gap-3 font-mono text-[9px] uppercase tracking-widest text-slate-500">
+        <span className="text-violet-700/80">ξ-line · Re s = ½</span>
         <span>weight 4</span>
       </div>
 
@@ -160,7 +160,7 @@ export function CenterAtlas() {
             style={{ left: `${trackPosition(tick.centre)}%` }}
             className={cn(
               "absolute inset-y-0 w-px",
-              tick.centre === 0.5 ? "bg-violet-500/25" : "bg-slate-700/40",
+              tick.centre === 0.5 ? "bg-violet-500/25" : "bg-slate-300/40",
             )}
             aria-hidden
           />
@@ -178,8 +178,8 @@ export function CenterAtlas() {
               aria-pressed={isActive}
               onClick={() => setActive(o.id)}
               className={cn(
-                "relative block h-8 w-full rounded-md text-left transition hover:bg-white/[0.04]",
-                isActive && "bg-white/[0.06]",
+                "relative block h-8 w-full rounded-md text-left transition hover:bg-slate-900/[0.04]",
+                isActive && "bg-slate-900/[0.06]",
               )}
             >
               <span
@@ -205,7 +205,7 @@ export function CenterAtlas() {
                 }
                 className={cn(
                   "absolute top-1/2 -translate-y-1/2 overflow-hidden text-ellipsis whitespace-nowrap font-mono text-[10px] transition",
-                  isActive ? style.text : "text-slate-400",
+                  isActive ? style.text : "text-slate-600",
                 )}
               >
                 {o.name}
@@ -215,14 +215,14 @@ export function CenterAtlas() {
         })}
       </div>
 
-      <div className="mt-3 rounded-xl border border-slate-700/40 bg-slate-900/50 p-3">
+      <div className="mt-3 rounded-xl border border-slate-300/40 bg-slate-100/50 p-3">
         <div className="flex flex-wrap items-baseline gap-2">
-          <h3 className="font-serif text-lg text-slate-100">{selected.name}</h3>
-          <span className="font-mono text-[10px] text-slate-500">
+          <h3 className="font-serif text-lg text-slate-900">{selected.name}</h3>
+          <span className="font-mono text-[10px] text-slate-600">
             weight {selected.weight} · centre {formatCentre(selected.centre)}
           </span>
         </div>
-        <p className="mt-1 text-sm leading-relaxed text-slate-400">
+        <p className="mt-1 text-sm leading-relaxed text-slate-600">
           {selected.note}
         </p>
       </div>

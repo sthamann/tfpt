@@ -112,12 +112,12 @@ export function NoKnobsAudit() {
   return (
     <div id="no-knobs" className="relative py-12">
       <div className="mx-auto max-w-6xl">
-        <div className="glass overflow-hidden rounded-2xl ring-1 ring-slate-700/40">
-          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/60 px-5 py-3">
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-300/80">
+        <div className="glass overflow-hidden rounded-2xl ring-1 ring-slate-300/40">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200/60 px-5 py-3">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
               No-knobs audit — what is allowed, what is forbidden
             </span>
-            <span className="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-200 ring-1 ring-emerald-400/30">
+            <span className="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-800 ring-1 ring-emerald-400/30">
               Free knobs: 0
             </span>
           </div>
@@ -137,7 +137,7 @@ export function NoKnobsAudit() {
                     <th
                       key={h}
                       scope="col"
-                      className="border-b border-slate-800/60 bg-slate-950/60 px-4 py-3 text-[10px] font-semibold uppercase tracking-widest text-slate-300"
+                      className="border-b border-slate-200/60 bg-slate-50/60 px-4 py-3 text-[10px] font-semibold uppercase tracking-widest text-slate-700"
                     >
                       {h}
                     </th>
@@ -152,27 +152,28 @@ export function NoKnobsAudit() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true, amount: 0.05 }}
                     transition={{ duration: 0.3, delay: i * 0.03 }}
-                    className="hover:bg-slate-900/30"
+                    className="hover:bg-slate-100/30"
                   >
-                    <td className="border-b border-slate-800/60 px-4 py-3 align-top font-mono text-xs font-semibold text-slate-100">
+                    <td className="border-b border-slate-200/60 px-4 py-3 align-top font-mono text-xs font-semibold text-slate-900">
                       {row.output}
                     </td>
-                    <td className="border-b border-slate-800/60 px-4 py-3 align-top text-xs leading-relaxed text-slate-300">
+                    <td className="border-b border-slate-200/60 px-4 py-3 align-top text-xs leading-relaxed text-slate-700">
                       {row.inputsAllowed}
                     </td>
-                    <td className="border-b border-slate-800/60 px-4 py-3 align-top text-xs leading-relaxed text-rose-200/80">
+                    <td className="border-b border-slate-200/60 px-4 py-3 align-top text-xs leading-relaxed text-rose-800/80">
                       {row.inputsForbidden}
                     </td>
-                    <td className="border-b border-slate-800/60 px-4 py-3 align-top text-xs font-semibold text-emerald-200">
+                    <td className="border-b border-slate-200/60 px-4 py-3 align-top text-xs font-semibold text-emerald-800">
                       {row.freeKnobs}
                     </td>
-                    <td className="border-b border-slate-800/60 px-4 py-3 align-top text-xs leading-relaxed text-amber-200/90">
+                    <td className="border-b border-slate-200/60 px-4 py-3 align-top text-xs leading-relaxed text-amber-800/90">
                       {row.kill}
                     </td>
-                    <td className="border-b border-slate-800/60 px-4 py-3 align-top text-xs">
+                    <td className="border-b border-slate-200/60 px-4 py-3 align-top text-xs">
                       <Link
+                        prefetch={false}
                         href="/verification#dag"
-                        className="inline-flex items-center gap-1 font-semibold text-blue-300 transition-colors hover:text-blue-200"
+                        className="inline-flex items-center gap-1 font-semibold text-blue-700 transition-colors hover:text-blue-800"
                       >
                         Run it
                         <ArrowUpRight size={12} aria-hidden />
@@ -184,8 +185,8 @@ export function NoKnobsAudit() {
             </table>
           </div>
 
-          <div className="border-t border-slate-800/60 px-5 py-3 text-[11px] leading-relaxed text-slate-400">
-            <strong className="text-slate-200">Reading rule.</strong> For every
+          <div className="border-t border-slate-200/60 px-5 py-3 text-[11px] leading-relaxed text-slate-600">
+            <strong className="text-slate-800">Reading rule.</strong> For every
             row, the output value must be reproducible from the &ldquo;allowed
             inputs&rdquo; alone — without touching the &ldquo;forbidden
             inputs&rdquo;. The free-knob count is the number of parameters the

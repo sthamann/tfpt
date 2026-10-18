@@ -60,7 +60,7 @@ export function EcosystemSection() {
   return (
     <section
       id="ecosystem"
-      className="relative scroll-mt-20 border-t border-slate-800/60 py-20 sm:py-24"
+      className="relative scroll-mt-20 border-t border-slate-200/60 py-20 sm:py-24"
       aria-labelledby="ecosystem-heading"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -79,9 +79,10 @@ export function EcosystemSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group glass flex flex-col overflow-hidden rounded-2xl ring-1 ring-slate-700/40 transition-all hover:ring-blue-400/50"
+              className="group glass flex flex-col overflow-hidden rounded-2xl ring-1 ring-slate-300/40 transition-all hover:ring-blue-400/50"
             >
               <Link
+                prefetch={false}
                 href={p.href}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -97,22 +98,22 @@ export function EcosystemSection() {
                   className="aspect-[16/10] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                 />
                 <div
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-50/80 via-transparent to-transparent"
                   aria-hidden
                 />
-                <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-slate-600/40 bg-slate-950/70 px-2.5 py-1 font-mono text-[10px] font-medium tracking-wide text-slate-300 backdrop-blur">
+                <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-slate-400/40 bg-slate-50/70 px-2.5 py-1 font-mono text-[10px] font-medium tracking-wide text-slate-700 backdrop-blur">
                   {p.domain}
                 </span>
               </Link>
 
               <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-300/80">
+                <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
                   {p.eyebrow}
                 </span>
-                <h3 className="mt-2 font-serif text-xl font-semibold text-slate-50">
+                <h3 className="mt-2 font-serif text-xl font-semibold text-slate-950">
                   {p.name}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
                   {p.body}
                 </p>
 
@@ -120,7 +121,7 @@ export function EcosystemSection() {
                   {p.tags.map((t) => (
                     <span
                       key={t}
-                      className="rounded-full border border-slate-700/40 bg-slate-900/50 px-3 py-1 text-[11px] font-medium text-slate-300"
+                      className="rounded-full border border-slate-300/40 bg-slate-100/50 px-3 py-1 text-[11px] font-medium text-slate-700"
                     >
                       {t}
                     </span>
@@ -128,10 +129,12 @@ export function EcosystemSection() {
                 </div>
 
                 <Link
+
+                  prefetch={false}
                   href={p.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-5 inline-flex items-center gap-1.5 self-start text-sm font-semibold text-blue-300 transition-colors hover:text-blue-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                  className="mt-5 inline-flex items-center gap-1.5 self-start text-sm font-semibold text-blue-700 transition-colors hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
                   Visit {p.domain}
                   <ArrowUpRight size={15} aria-hidden />

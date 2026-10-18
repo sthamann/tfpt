@@ -45,31 +45,31 @@ const COMPARISON: Array<{
 
 export function AlphaVisualization() {
   return (
-    <div className="glass rounded-2xl ring-1 ring-slate-700/40">
-      <div className="border-b border-slate-800/60 px-5 py-3">
-        <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-300/80">
+    <div className="glass rounded-2xl ring-1 ring-slate-300/40">
+      <div className="border-b border-slate-200/60 px-5 py-3">
+        <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
           Electromagnetic closure —{" "}
           <span className="math-label">α</span> as a self-consistent root
         </span>
       </div>
       <div className="grid gap-8 p-6 md:p-8 lg:grid-cols-2">
         <div>
-          <h3 className="font-serif text-lg font-semibold text-slate-50">
+          <h3 className="font-serif text-lg font-semibold text-slate-950">
             The closure equation
           </h3>
-          <p className="mt-2 text-sm leading-relaxed text-slate-300">
+          <p className="mt-2 text-sm leading-relaxed text-slate-700">
             With <Math>{"c_3 = \\tfrac{1}{8\\pi}"}</Math>,{" "}
             <Math>{"b_1 = \\tfrac{41}{10}"}</Math>, and{" "}
             <Math>{"\\sum L_{f,j} + N_\\Phi = 41"}</Math> from the carrier
             packet, the seam opening
           </p>
-          <div className="mt-3 overflow-x-auto rounded-lg border border-slate-700/40 bg-slate-950/40 p-3">
+          <div className="mt-3 overflow-x-auto rounded-lg border border-slate-300/40 bg-slate-50/40 p-3">
             <Math block>
               {"\\varphi_{\\mathrm{seam}}(\\alpha) = \\frac{1}{6\\pi} + \\frac{3 e^{-2\\alpha}}{256\\pi^4}\\!\\left(1-\\frac{3 e^{-2\\alpha}}{256\\pi^4}\\right)^{-5/4}"}
             </Math>
           </div>
-          <p className="mt-3 text-sm text-slate-300">enters the closure function</p>
-          <div className="mt-3 overflow-x-auto formula-scroll rounded-lg border border-slate-700/40 bg-slate-950/40 p-3">
+          <p className="mt-3 text-sm text-slate-700">enters the closure function</p>
+          <div className="mt-3 overflow-x-auto formula-scroll rounded-lg border border-slate-300/40 bg-slate-50/40 p-3">
             <Math block>
               {String.raw`\begin{aligned}
 F_{U(1)}(\alpha) \;&=\; \alpha^3 \;-\; 2 c_3^3\,\alpha^2 \\
@@ -77,7 +77,7 @@ F_{U(1)}(\alpha) \;&=\; \alpha^3 \;-\; 2 c_3^3\,\alpha^2 \\
 \end{aligned}`}
             </Math>
           </div>
-          <p className="mt-3 text-sm text-slate-300">
+          <p className="mt-3 text-sm text-slate-700">
             and the prediction is the unique positive root.
           </p>
           <div className="mt-3 overflow-x-auto rounded-lg border border-blue-400/30 bg-blue-500/5 p-3">
@@ -95,26 +95,26 @@ F_{U(1)}(\alpha) \;&=\; \alpha^3 \;-\; 2 c_3^3\,\alpha^2 \\
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="relative overflow-hidden rounded-xl border border-slate-700/40 bg-slate-950/40 px-5 py-4"
+              className="relative overflow-hidden rounded-xl border border-slate-300/40 bg-slate-50/40 px-5 py-4"
             >
               <div
                 className={`absolute left-0 top-0 h-full w-1 bg-gradient-to-b ${c.accent}`}
                 aria-hidden="true"
               />
-              <div className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+              <div className="text-[10px] font-semibold uppercase tracking-widest text-slate-600">
                 {c.label}
               </div>
-              <div className="mt-1 font-mono text-xl font-semibold text-slate-50 sm:text-2xl">
+              <div className="mt-1 font-mono text-xl font-semibold text-slate-950 sm:text-2xl">
                 {c.value}
               </div>
-              <div className="mt-1 text-xs leading-snug text-slate-400">
+              <div className="mt-1 text-xs leading-snug text-slate-600">
                 {c.note}
               </div>
             </motion.div>
           ))}
 
-          <div className="mt-6 rounded-lg border border-amber-400/20 bg-amber-500/5 p-4 text-xs leading-relaxed text-amber-100/90">
-            <strong className="text-amber-200">No-knobs audit.</strong>{" "}
+          <div className="mt-6 rounded-lg border border-amber-400/20 bg-amber-500/5 p-4 text-xs leading-relaxed text-amber-800/90">
+            <strong className="text-amber-800">No-knobs audit.</strong>{" "}
             The exact opening{" "}
             <Math>{"\\varphi_{\\mathrm{seam}}(\\alpha)"}</Math> must remain inside
             the root equation. Freezing it at <Math>{"\\varphi_0"}</Math> shifts
@@ -124,15 +124,15 @@ F_{U(1)}(\alpha) \;&=\; \alpha^3 \;-\; 2 c_3^3\,\alpha^2 \\
         </div>
       </div>
 
-      <div className="border-t border-slate-800/60 p-6 md:p-8">
+      <div className="border-t border-slate-200/60 p-6 md:p-8">
         <AlphaComparator />
       </div>
 
-      <div className="grid gap-6 border-t border-slate-800/60 p-6 md:p-8 lg:grid-cols-2">
+      <div className="grid gap-6 border-t border-slate-200/60 p-6 md:p-8 lg:grid-cols-2">
         <AlphaRootPlot />
         <AlphaInputAudit />
       </div>
-      <div className="border-t border-slate-800/60 p-6 md:p-8">
+      <div className="border-t border-slate-200/60 p-6 md:p-8">
         <AlphaSelfConsistencyLoop />
       </div>
     </div>
@@ -172,19 +172,19 @@ function AlphaInputAudit() {
       forbid: <span>Freezing at <Math>{"\\varphi_0"}</Math> inside the root equation</span>,
     },
     {
-      element: <span className="font-mono text-slate-200">CODATA 2022</span>,
+      element: <span className="font-mono text-slate-800">CODATA 2022</span>,
       from: "External comparison row",
       forbid: "Being used as input",
     },
   ];
 
   return (
-    <div className="rounded-xl border border-slate-700/40 bg-slate-950/40 p-4 sm:p-5">
+    <div className="rounded-xl border border-slate-300/40 bg-slate-50/40 p-4 sm:p-5">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h4 className="font-serif text-base font-semibold text-slate-50">
+        <h4 className="font-serif text-base font-semibold text-slate-950">
           What feeds the closure — and what must not
         </h4>
-        <span className="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-200 ring-1 ring-emerald-400/30">
+        <span className="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-800 ring-1 ring-emerald-400/30">
           Free knobs: 0
         </span>
       </div>
@@ -195,19 +195,19 @@ function AlphaInputAudit() {
             <tr>
               <th
                 scope="col"
-                className="border-b border-slate-800/60 px-2 py-2 text-[10px] font-semibold uppercase tracking-widest text-slate-300"
+                className="border-b border-slate-200/60 px-2 py-2 text-[10px] font-semibold uppercase tracking-widest text-slate-700"
               >
                 Element
               </th>
               <th
                 scope="col"
-                className="border-b border-slate-800/60 px-2 py-2 text-[10px] font-semibold uppercase tracking-widest text-slate-300"
+                className="border-b border-slate-200/60 px-2 py-2 text-[10px] font-semibold uppercase tracking-widest text-slate-700"
               >
                 Comes from
               </th>
               <th
                 scope="col"
-                className="border-b border-slate-800/60 px-2 py-2 text-[10px] font-semibold uppercase tracking-widest text-slate-300"
+                className="border-b border-slate-200/60 px-2 py-2 text-[10px] font-semibold uppercase tracking-widest text-slate-700"
               >
                 Must not
               </th>
@@ -215,14 +215,14 @@ function AlphaInputAudit() {
           </thead>
           <tbody>
             {ROWS.map((row, i) => (
-              <tr key={i} className="hover:bg-slate-900/30">
-                <td className="border-b border-slate-800/60 px-2 py-2 align-top font-mono text-slate-100">
+              <tr key={i} className="hover:bg-slate-100/30">
+                <td className="border-b border-slate-200/60 px-2 py-2 align-top font-mono text-slate-900">
                   {row.element}
                 </td>
-                <td className="border-b border-slate-800/60 px-2 py-2 align-top leading-snug text-slate-300">
+                <td className="border-b border-slate-200/60 px-2 py-2 align-top leading-snug text-slate-700">
                   {row.from}
                 </td>
-                <td className="border-b border-slate-800/60 px-2 py-2 align-top leading-snug text-rose-200/85">
+                <td className="border-b border-slate-200/60 px-2 py-2 align-top leading-snug text-rose-800/85">
                   {row.forbid}
                 </td>
               </tr>
@@ -231,7 +231,7 @@ function AlphaInputAudit() {
         </table>
       </div>
 
-      <p className="mt-3 text-[11px] leading-relaxed text-slate-400">
+      <p className="mt-3 text-[11px] leading-relaxed text-slate-600">
         Every quantity on the left is fixed by an upstream paper before the
         closure equation is touched. Anything in the right column would
         silently turn the α prediction into a fit.

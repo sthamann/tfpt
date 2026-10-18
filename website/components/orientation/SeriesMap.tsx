@@ -34,7 +34,7 @@ export function SeriesMap() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.05 }}
                   transition={{ duration: 0.5, delay: i * 0.06 }}
-                  className="group glass relative flex flex-col overflow-hidden rounded-2xl ring-1 ring-slate-700/40 transition-all hover:ring-slate-500/60"
+                  className="group glass relative flex flex-col overflow-hidden rounded-2xl ring-1 ring-slate-300/40 transition-all hover:ring-slate-500/60"
                 >
                   <div
                     className={cn(
@@ -44,7 +44,7 @@ export function SeriesMap() {
                   />
                   <div className="flex flex-1 flex-col p-6">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded-full border border-slate-600/40 bg-slate-900/50 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-widest text-slate-300">
+                      <span className="rounded-full border border-slate-400/40 bg-slate-100/50 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-widest text-slate-700">
                         Doc {p.number}
                       </span>
                       <span
@@ -58,14 +58,15 @@ export function SeriesMap() {
                         {meta.label}
                       </span>
                     </div>
-                    <h3 className="mt-4 font-serif text-lg font-semibold leading-snug text-slate-50">
+                    <h3 className="mt-4 font-serif text-lg font-semibold leading-snug text-slate-950">
                       {p.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600">
                       {p.subtitle}
                     </p>
                     <div className="mt-auto flex flex-wrap items-center gap-3 pt-5">
                       <Link
+                        prefetch={false}
                         href={p.pdf}
                         target="_blank"
                         rel="noopener"
@@ -78,14 +79,15 @@ export function SeriesMap() {
                             title: p.title,
                           })
                         }
-                        className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/15 px-3 py-1.5 text-xs font-semibold text-blue-200 ring-1 ring-blue-400/30 transition-colors hover:bg-blue-500/25"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/15 px-3 py-1.5 text-xs font-semibold text-blue-800 ring-1 ring-blue-400/30 transition-colors hover:bg-blue-500/25"
                       >
                         <Download size={13} />
                         Download
                       </Link>
                       <Link
+                        prefetch={false}
                         href={`/papers/${p.slug}`}
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 transition-colors hover:text-white"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 transition-colors hover:text-slate-950"
                       >
                         Open in detail
                         <ArrowRight size={13} />

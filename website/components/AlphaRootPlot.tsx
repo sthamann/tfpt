@@ -21,12 +21,12 @@ export function AlphaRootPlot() {
   const ROOT_X = X_TFPT;
 
   return (
-    <div className="rounded-xl border border-slate-700/40 bg-slate-950/40 p-4 sm:p-5">
+    <div className="rounded-xl border border-slate-300/40 bg-slate-50/40 p-4 sm:p-5">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h4 className="font-serif text-base font-semibold text-slate-50">
+        <h4 className="font-serif text-base font-semibold text-slate-950">
           F<sub>U(1)</sub>(α) crosses zero exactly once
         </h4>
-        <span className="rounded-full bg-blue-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-blue-200 ring-1 ring-blue-400/30">
+        <span className="rounded-full bg-blue-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-blue-800 ring-1 ring-blue-400/30">
           Schematic
         </span>
       </div>
@@ -66,7 +66,7 @@ export function AlphaRootPlot() {
         <text
           x="585"
           y={Y_AXIS - 6}
-          fill="#94a3b8"
+          fill="#526278"
           fontSize="11"
           fontFamily="ui-monospace, monospace"
         >
@@ -75,7 +75,7 @@ export function AlphaRootPlot() {
         <text
           x="60"
           y="42"
-          fill="#94a3b8"
+          fill="#526278"
           fontSize="11"
           fontFamily="ui-monospace, monospace"
         >
@@ -84,7 +84,7 @@ export function AlphaRootPlot() {
         <text
           x="60"
           y={Y_AXIS + 4}
-          fill="#94a3b8"
+          fill="#526278"
           fontSize="11"
           fontFamily="ui-monospace, monospace"
         >
@@ -133,7 +133,7 @@ export function AlphaRootPlot() {
         <text
           x={X_CODATA}
           y={Y_AXIS + 95}
-          fill="#94a3b8"
+          fill="#526278"
           fontSize="10"
           textAnchor="middle"
           fontFamily="ui-monospace, monospace"
@@ -177,7 +177,7 @@ export function AlphaRootPlot() {
         <text
           x={ROOT_X}
           y="77"
-          fill="#94a3b8"
+          fill="#526278"
           fontSize="10"
           textAnchor="middle"
         >
@@ -223,7 +223,7 @@ export function AlphaRootPlot() {
         </g>
       </svg>
 
-      <p className="mt-2 text-[11px] leading-relaxed text-slate-400">
+      <p className="mt-2 text-[11px] leading-relaxed text-slate-600">
         Hand-shaped sketch — the residual is shown enlarged so it is visible.
         The actual numerical separation is 39.8 parts per billion in α⁻¹.
       </p>

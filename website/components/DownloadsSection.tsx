@@ -29,7 +29,7 @@ export function DownloadsSection() {
         />
 
         <div className="mt-12">
-          <h3 className="font-serif text-lg font-semibold text-slate-100">
+          <h3 className="font-serif text-lg font-semibold text-slate-900">
             The document set
           </h3>
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -43,7 +43,7 @@ export function DownloadsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.05 }}
                   transition={{ duration: 0.5, delay: i * 0.05 }}
-                  className="group glass relative flex flex-col overflow-hidden rounded-xl ring-1 ring-slate-700/40 transition-all hover:ring-slate-500/60"
+                  className="group glass relative flex flex-col overflow-hidden rounded-xl ring-1 ring-slate-300/40 transition-all hover:ring-slate-500/60"
                 >
                   <div
                     className={cn(
@@ -53,7 +53,7 @@ export function DownloadsSection() {
                   />
                   <div className="flex flex-1 flex-col p-5">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded-full border border-slate-600/40 bg-slate-900/50 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-widest text-slate-300">
+                      <span className="rounded-full border border-slate-400/40 bg-slate-100/50 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-widest text-slate-700">
                         {paperLabel(p)}
                       </span>
                       <span
@@ -67,10 +67,10 @@ export function DownloadsSection() {
                         {meta.label}
                       </span>
                     </div>
-                    <h4 className="mt-3 font-serif text-base font-semibold leading-snug text-slate-50">
+                    <h4 className="mt-3 font-serif text-base font-semibold leading-snug text-slate-950">
                       {p.title}
                     </h4>
-                    <p className="mt-1 text-xs leading-relaxed text-slate-400">
+                    <p className="mt-1 text-xs leading-relaxed text-slate-600">
                       {p.subtitle}
                     </p>
 
@@ -78,6 +78,7 @@ export function DownloadsSection() {
 
                     <div className="mt-auto flex items-center gap-3 pt-4">
                       <Link
+                        prefetch={false}
                         href={p.pdf}
                         target="_blank"
                         rel="noopener"
@@ -90,12 +91,13 @@ export function DownloadsSection() {
                             title: p.title,
                           })
                         }
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-300 transition-colors hover:text-blue-200"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 transition-colors hover:text-blue-800"
                       >
                         <Download size={13} />
                         Download
                       </Link>
                       <Link
+                        prefetch={false}
                         href={p.pdf}
                         target="_blank"
                         rel="noopener"
@@ -108,7 +110,7 @@ export function DownloadsSection() {
                             title: p.title,
                           })
                         }
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 transition-colors hover:text-slate-100"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 transition-colors hover:text-slate-900"
                       >
                         <FileText size={13} />
                         View
@@ -124,20 +126,21 @@ export function DownloadsSection() {
             const changelog = getReleaseAsset("/papers/changelog.pdf");
             if (!changelog) return null;
             return (
-              <div className="mt-6 flex flex-col gap-3 rounded-xl border border-slate-700/40 bg-slate-900/40 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+              <div className="mt-6 flex flex-col gap-3 rounded-xl border border-slate-300/40 bg-slate-100/40 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <FileText size={16} className="flex-none text-slate-300" aria-hidden />
-                    <h4 className="font-serif text-sm font-semibold text-slate-100">
+                    <FileText size={16} className="flex-none text-slate-700" aria-hidden />
+                    <h4 className="font-serif text-sm font-semibold text-slate-900">
                       Changelog — the dated record of every change
                     </h4>
                   </div>
-                  <p className="mt-1 text-xs leading-relaxed text-slate-400">
+                  <p className="mt-1 text-xs leading-relaxed text-slate-600">
                     {changelog.changelog}
                   </p>
                   <ReleaseLine release={changelog} compact />
                 </div>
                 <Link
+                  prefetch={false}
                   href="/papers/changelog.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -150,7 +153,7 @@ export function DownloadsSection() {
                       title: "Changelog",
                     })
                   }
-                  className="inline-flex flex-none items-center gap-2 rounded-full border border-slate-600/50 bg-slate-900/60 px-4 py-2 text-xs font-semibold text-slate-200 transition-colors hover:border-slate-400/60 hover:text-white"
+                  className="inline-flex flex-none items-center gap-2 rounded-full border border-slate-400/50 bg-slate-100/60 px-4 py-2 text-xs font-semibold text-slate-800 transition-colors hover:border-slate-600/60 hover:text-slate-950"
                 >
                   <Download size={14} aria-hidden />
                   Changelog (PDF)
@@ -164,12 +167,12 @@ export function DownloadsSection() {
           <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr] lg:items-center">
             <div>
               <div className="flex items-center gap-2">
-                <Github size={18} className="text-slate-200" aria-hidden />
-                <h3 className="font-serif text-lg font-semibold text-slate-100">
+                <Github size={18} className="text-slate-800" aria-hidden />
+                <h3 className="font-serif text-lg font-semibold text-slate-900">
                   Reproducibility — everything is on GitHub
                 </h3>
               </div>
-              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-300">
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-700">
                 Every claim marked exact identity, lattice theorem or numerical
                 fixed point is re-derived from the two axioms by a self-contained
                 Python verification suite, mirrored in an independent Wolfram
@@ -188,7 +191,7 @@ export function DownloadsSection() {
                 ].map((t) => (
                   <span
                     key={t}
-                    className="rounded-full border border-slate-700/40 bg-slate-900/50 px-3 py-1 text-[11px] font-medium text-slate-300"
+                    className="rounded-full border border-slate-300/40 bg-slate-100/50 px-3 py-1 text-[11px] font-medium text-slate-700"
                   >
                     {t}
                   </span>
@@ -197,16 +200,17 @@ export function DownloadsSection() {
             </div>
             <div className="flex flex-col items-start gap-2 lg:items-end">
               <Link
+                prefetch={false}
                 href={REPO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-105"
+                className="inline-flex items-center gap-2 rounded-full bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-105"
               >
                 <Github size={16} />
                 View the source &amp; verification suite
                 <ArrowUpRight size={16} />
               </Link>
-              <span className="font-mono text-[11px] text-slate-500">
+              <span className="font-mono text-[11px] text-slate-600">
                 github.com/sthamann/tfpt
               </span>
             </div>
@@ -237,48 +241,48 @@ function ReleaseLine({
   return (
     <dl
       className={cn(
-        "mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-md border border-slate-800/60 bg-slate-950/60 px-2.5 py-1.5 text-[10px] text-slate-400",
+        "mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-md border border-slate-200/60 bg-slate-50/60 px-2.5 py-1.5 text-[10px] text-slate-600",
         compact && "mt-2",
       )}
     >
       <div className="flex items-center gap-1">
-        <dt className="font-semibold uppercase tracking-widest text-blue-300/80">
+        <dt className="font-semibold uppercase tracking-widest text-blue-700/80">
           Version
         </dt>
-        <dd className="font-mono text-slate-200">{release.version}</dd>
+        <dd className="font-mono text-slate-800">{release.version}</dd>
       </div>
       <div className="flex items-center gap-1">
-        <dt className="font-semibold uppercase tracking-widest text-blue-300/80">
+        <dt className="font-semibold uppercase tracking-widest text-blue-700/80">
           Date
         </dt>
-        <dd className="font-mono text-slate-200">{release.releaseDate}</dd>
+        <dd className="font-mono text-slate-800">{release.releaseDate}</dd>
       </div>
       <div className="flex items-center gap-1">
-        <dt className="font-semibold uppercase tracking-widest text-blue-300/80">
+        <dt className="font-semibold uppercase tracking-widest text-blue-700/80">
           Size
         </dt>
-        <dd className="font-mono text-slate-200">{formatBytes(release.bytes)}</dd>
+        <dd className="font-mono text-slate-800">{formatBytes(release.bytes)}</dd>
       </div>
       <div className="flex items-center gap-1">
-        <dt className="font-semibold uppercase tracking-widest text-blue-300/80">
+        <dt className="font-semibold uppercase tracking-widest text-blue-700/80">
           SHA-256
         </dt>
-        <dd className="font-mono text-slate-200" title={release.sha256}>
+        <dd className="font-mono text-slate-800" title={release.sha256}>
           {formatHashShort(release.sha256)}
         </dd>
         <button
           type="button"
           onClick={handleCopy}
           aria-label={`Copy SHA-256 hash to clipboard (${release.sha256})`}
-          className="rounded p-0.5 text-slate-500 transition-colors hover:bg-slate-800/60 hover:text-slate-200"
+          className="rounded p-0.5 text-slate-600 transition-colors hover:bg-slate-200/60 hover:text-slate-800"
           title="Copy full SHA-256"
         >
           <Copy size={11} aria-hidden />
         </button>
       </div>
       {release.changelog && (
-        <div className="basis-full text-[10px] leading-snug text-slate-500">
-          <span className="font-semibold text-slate-400">Changelog.</span>{" "}
+        <div className="basis-full text-[10px] leading-snug text-slate-600">
+          <span className="font-semibold text-slate-600">Changelog.</span>{" "}
           {release.changelog}
         </div>
       )}

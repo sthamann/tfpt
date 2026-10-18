@@ -33,22 +33,22 @@ export const LINK_STATUS_META: Record<
 > = {
   available: {
     label: "Open the source document",
-    tone: "text-blue-300 hover:text-blue-200",
+    tone: "text-blue-700 hover:text-blue-800",
     disabled: false,
   },
   note: {
     label: "View standalone note",
-    tone: "text-emerald-300 hover:text-emerald-200",
+    tone: "text-emerald-700 hover:text-emerald-800",
     disabled: false,
   },
   forthcoming: {
     label: "Paper forthcoming",
-    tone: "text-amber-300/80 cursor-not-allowed",
+    tone: "text-amber-700/80 cursor-not-allowed",
     disabled: true,
   },
   soon: {
     label: "Coming soon",
-    tone: "text-slate-400 cursor-not-allowed",
+    tone: "text-slate-600 cursor-not-allowed",
     disabled: true,
   },
 };
@@ -303,21 +303,21 @@ export const EXPERIMENTS_AUDIT = {
 } as const;
 
 export const STATUS_BADGE: Record<PredictionStatus, { color: string; bg: string }> = {
-  "Exact identity": { color: "text-blue-200", bg: "bg-blue-500/15 ring-blue-400/30" },
+  "Exact identity": { color: "text-blue-800", bg: "bg-blue-500/15 ring-blue-400/30" },
   "Lattice theorem": {
-    color: "text-cyan-200",
+    color: "text-cyan-800",
     bg: "bg-cyan-500/15 ring-cyan-400/30",
   },
   "Numerical fixed point": {
-    color: "text-emerald-200",
+    color: "text-emerald-800",
     bg: "bg-emerald-500/15 ring-emerald-400/30",
   },
   Conditional: {
-    color: "text-amber-200",
+    color: "text-amber-800",
     bg: "bg-amber-500/15 ring-amber-400/30",
   },
   "Open / not forced": {
-    color: "text-rose-200",
+    color: "text-rose-800",
     bg: "bg-rose-500/15 ring-rose-400/30",
   },
 };
@@ -1307,25 +1307,25 @@ export const CORRECTION_CLASS_META: Record<
     label: "Seam-gapped",
     band: "(2/3)⁶ ≈ 8.78% (QG capped at 64/665 ≈ 9.62%)",
     note: "Carries the seam rate λ₂ = (2/3)⁶ (Koide F_pole, recovery, the QG bound capped by χ−1 = 64/665), or the compiler's golden (φ+2)/4. First-correction magnitude computed in v393.",
-    tone: "border-emerald-400/25 bg-emerald-500/5 text-emerald-200",
+    tone: "border-emerald-400/25 bg-emerald-500/5 text-emerald-800",
   },
   "exact-identity": {
     label: "Exact identity",
     band: "0 (structural)",
     note: "A lattice/integer/topological-null readout (det R = 8, N_Φ = 1, θ_eff = 0, sin²θ₁₃ = φ₀e⁻⁵ᐟ⁶). No λ₂ → correction 0 structurally; a band here would contradict the [E] status.",
-    tone: "border-blue-400/25 bg-blue-500/5 text-blue-200",
+    tone: "border-blue-400/25 bg-blue-500/5 text-blue-800",
   },
   "external-rate": {
     label: "External rate",
     band: "external physics (firewalled v187)",
     note: "The gapped shape holds but the rate is thermal/cosmological/RG, not the seam — only F_pole carries the seam rate (v303). η_B washout, axion freeze, m_p/m_e RG, reheating-N★ bands.",
-    tone: "border-amber-400/25 bg-amber-500/5 text-amber-200",
+    tone: "border-amber-400/25 bg-amber-500/5 text-amber-800",
   },
   "fixed-point": {
     label: "Fixed point",
     band: "≈ 0.227% (the φ₀ puncture 36c₃⁴/c₃ = 9/(128π³))",
     note: "The value is the exact attractor; the first correction is the explicit φ₀ puncture term already in the closed form (sin²θ₁₂: ε = c₃ + 36c₃⁴), magnitude 9/(128π³) ≈ 0.227% (v393).",
-    tone: "border-violet-400/25 bg-violet-500/5 text-violet-200",
+    tone: "border-violet-400/25 bg-violet-500/5 text-violet-800",
   },
 };
 
@@ -1403,22 +1403,22 @@ export const TEST_SURFACE_GROUPS: {
 }[] = [
   {
     label: "Closed numerical tests",
-    tone: "border-emerald-400/25 bg-emerald-500/5 text-emerald-200",
+    tone: "border-emerald-400/25 bg-emerald-500/5 text-emerald-800",
     items: ["α⁻¹", "sin²θ₁₂", "sin²θ₁₃", "λ_C", "β_rad", "det R / minors"],
   },
   {
     label: "Structural kill tests",
-    tone: "border-blue-400/25 bg-blue-500/5 text-blue-200",
+    tone: "border-blue-400/25 bg-blue-500/5 text-blue-800",
     items: ["no 2nd Higgs (N_Φ=1)", "neutron EDM (θ_eff=0)", "no 4th generation"],
   },
   {
     label: "Conditional cosmology tests",
-    tone: "border-amber-400/25 bg-amber-500/5 text-amber-200",
+    tone: "border-amber-400/25 bg-amber-500/5 text-amber-800",
     items: ["r", "n_s", "A_s", "α_s", "μ-distortion", "Ω_b", "η_B", "w ≠ −1"],
   },
   {
     label: "Honest non-claims",
-    tone: "border-rose-400/25 bg-rose-500/5 text-rose-200",
+    tone: "border-rose-400/25 bg-rose-500/5 text-rose-800",
     items: ["m_p/m_e", "exact Koide", "axion relic abundance"],
   },
 ];

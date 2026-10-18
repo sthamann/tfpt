@@ -33,6 +33,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/changelog` },
   openGraph: {
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
     type: "article",
     title: "TFPT Changelog — every change, by date",
     description:
@@ -43,6 +44,7 @@ export const metadata: Metadata = {
     authors: ["Stefan Hamann", "Alessandro Rizzo"],
   },
   twitter: {
+    images: [`${SITE_URL}/opengraph-image`],
     card: "summary_large_image",
     title: "TFPT Changelog",
     description: "Every change and new result, by date.",
@@ -238,82 +240,85 @@ export default async function ChangelogPage({
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-6">
             <Link
+              prefetch={false}
               href="/"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-200"
+              className="inline-flex items-center gap-1.5 text-sm text-slate-600 transition-colors hover:text-slate-800"
             >
               <ArrowLeft size={14} />
               Back to overview
             </Link>
           </nav>
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-blue-200">
+          <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-blue-800">
             <span className="uppercase">Changelog</span>
-            <span aria-hidden className="text-blue-400/60">·</span>
+            <span aria-hidden className="text-blue-700/60">·</span>
             <span className="font-mono">{CHANGELOG_COUNT} entries</span>
-            <span aria-hidden className="text-blue-400/60">·</span>
+            <span aria-hidden className="text-blue-700/60">·</span>
             <span className="font-mono">{days.length} days</span>
           </span>
-          <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-slate-50 sm:text-5xl">
+          <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-slate-950 sm:text-5xl">
             Every change and new result,{" "}
             <span className="text-gradient-blue">by date</span>.
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-300">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-700">
             The canonical, dated record of the TFPT development: new
-            verification modules (<code className="font-mono text-slate-200">vN</code>),
+            verification modules (<code className="font-mono text-slate-800">vN</code>),
             status changes, editorial passes and infrastructure. Browse one day
             at a time, step between days, or filter across every entry. This page
             is generated directly from the repository&rsquo;s{" "}
-            <code className="font-mono text-slate-200">changelog.tex</code>, so it
+            <code className="font-mono text-slate-800">changelog.tex</code>, so it
             never drifts from the source. Module numbers refer to{" "}
-            <code className="font-mono text-slate-200">verification/vN_*.py</code>;
+            <code className="font-mono text-slate-800">verification/vN_*.py</code>;
             claim IDs refer to rows of the status ledger.
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <Link
+              prefetch={false}
               href="/papers/changelog.pdf"
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-105"
+              className="inline-flex items-center gap-2 rounded-full bg-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-105"
             >
               <FileText size={15} aria-hidden />
               Changelog (PDF)
             </Link>
             <Link
+              prefetch={false}
               href={REPO_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-slate-300 ring-1 ring-slate-700/50 transition-colors hover:bg-white/5 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-slate-700 ring-1 ring-slate-300/50 transition-colors hover:bg-slate-900/5 hover:text-slate-950"
             >
               <Github size={15} aria-hidden />
               Repository
             </Link>
             {latest && (
-              <span className="font-mono text-xs text-slate-500">
+              <span className="font-mono text-xs text-slate-600">
                 TFPT {SITE_VERSION} · {earliest} → {latest}
               </span>
             )}
           </div>
 
-          <dl className="mt-6 flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-slate-400">
+          <dl className="mt-6 flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-slate-600">
             <div className="flex items-center gap-1.5">
-              <span className="rounded bg-emerald-500/10 px-1 font-mono font-semibold text-emerald-300 ring-1 ring-emerald-400/30">
+              <span className="rounded bg-emerald-500/10 px-1 font-mono font-semibold text-emerald-700 ring-1 ring-emerald-400/30">
                 [E]
               </span>
               <dd>exact / proven</dd>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="rounded bg-amber-500/10 px-1 font-mono font-semibold text-amber-300 ring-1 ring-amber-400/30">
+              <span className="rounded bg-amber-500/10 px-1 font-mono font-semibold text-amber-700 ring-1 ring-amber-400/30">
                 [C]
               </span>
               <dd>conditional</dd>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="rounded bg-slate-500/10 px-1 font-mono font-semibold text-slate-300 ring-1 ring-slate-400/30">
+              <span className="rounded bg-slate-500/10 px-1 font-mono font-semibold text-slate-700 ring-1 ring-slate-600/30">
                 [O]
               </span>
               <dd>open / axiom</dd>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="rounded bg-rose-500/10 px-1 font-mono font-semibold text-rose-300 ring-1 ring-rose-400/30">
+              <span className="rounded bg-rose-500/10 px-1 font-mono font-semibold text-rose-700 ring-1 ring-rose-400/30">
                 [X]
               </span>
               <dd>kill test</dd>

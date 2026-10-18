@@ -72,8 +72,8 @@ export function Math({
           <CopyLatex tex={children} />
         </div>
         {plain && (
-          <p className="mt-1.5 text-xs leading-relaxed text-slate-400">
-            <span className="font-semibold text-slate-500">In words: </span>
+          <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+            <span className="font-semibold text-slate-600">In words: </span>
             {plain}
           </p>
         )}
@@ -114,10 +114,10 @@ function CopyLatex({ tex }: { tex: string }) {
       onClick={copy}
       aria-label={copied ? "LaTeX copied to clipboard" : "Copy LaTeX source"}
       title={copied ? "Copied!" : "Copy LaTeX"}
-      className="absolute right-1 top-1 rounded-md border border-slate-700/50 bg-slate-900/85 p-1 text-slate-400 opacity-50 backdrop-blur transition-opacity hover:text-slate-100 hover:opacity-100 focus:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/40 group-hover:opacity-100"
+      className="absolute right-1 top-1 rounded-md border border-slate-300/50 bg-slate-100/85 p-1 text-slate-600 opacity-50 backdrop-blur transition-opacity hover:text-slate-900 hover:opacity-100 focus:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/40 group-hover:opacity-100"
     >
       {copied ? (
-        <Check size={12} aria-hidden className="text-emerald-300" />
+        <Check size={12} aria-hidden className="text-emerald-700" />
       ) : (
         <Copy size={12} aria-hidden />
       )}

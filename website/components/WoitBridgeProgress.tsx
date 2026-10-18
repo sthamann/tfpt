@@ -54,9 +54,9 @@ const STAGES: Stage[] = [
 
 export function WoitBridgeProgress() {
   return (
-    <div className="mt-8 overflow-hidden rounded-2xl border border-slate-700/40 bg-slate-950/40 p-4 sm:p-6">
+    <div className="mt-8 overflow-hidden rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4 sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h4 className="font-serif text-base font-semibold text-slate-50">
+        <h4 className="font-serif text-base font-semibold text-slate-950">
           The OS twistor bridge — <span className="font-mono">WOIT.OS.TWISTOR.01</span>
         </h4>
         <span className="rounded-full bg-fuchsia-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-fuchsia-200 ring-1 ring-fuchsia-400/30">
@@ -64,7 +64,7 @@ export function WoitBridgeProgress() {
         </span>
       </div>
 
-      <p className="mt-2 text-xs leading-relaxed text-slate-400">
+      <p className="mt-2 text-xs leading-relaxed text-slate-600">
         The actual bridge from compiler to physics: a global real structure Θ plus interacting
         reflection positivity plus OS reconstruction on the twistorial algebra. Three of its
         preregistered stages are executed; the contract itself stays open.
@@ -81,37 +81,37 @@ export function WoitBridgeProgress() {
             className={`rounded-xl border p-3 ${
               s.state === "done"
                 ? "border-emerald-400/25 bg-emerald-500/[0.05]"
-                : "border-slate-600/40 bg-slate-800/20"
+                : "border-slate-400/40 bg-slate-200/20"
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1.5 font-mono text-sm font-semibold text-slate-100">
+              <span className="flex items-center gap-1.5 font-mono text-sm font-semibold text-slate-900">
                 {s.state === "done" ? (
-                  <Check size={13} className="text-emerald-300" aria-hidden />
+                  <Check size={13} className="text-emerald-700" aria-hidden />
                 ) : (
-                  <CircleDashed size={13} className="text-slate-400" aria-hidden />
+                  <CircleDashed size={13} className="text-slate-600" aria-hidden />
                 )}
                 {s.label}
               </span>
               <span
                 className={`rounded px-1.5 py-0.5 font-mono text-[9px] font-semibold ${
                   s.state === "done"
-                    ? "bg-emerald-500/15 text-emerald-200"
-                    : "bg-slate-700/40 text-slate-300"
+                    ? "bg-emerald-500/15 text-emerald-800"
+                    : "bg-slate-300/40 text-slate-700"
                 }`}
               >
                 {s.src}
               </span>
             </div>
-            <p className="mt-1.5 text-[11px] leading-snug text-slate-400">{s.sub}</p>
+            <p className="mt-1.5 text-[11px] leading-snug text-slate-600">{s.sub}</p>
           </motion.div>
         ))}
       </div>
 
-      <div className="mt-3 flex items-start gap-2 rounded-md border border-amber-400/30 bg-amber-500/[0.06] p-3 text-[11px] leading-relaxed text-amber-100/90">
-        <TriangleAlert size={14} className="mt-0.5 flex-none text-amber-300" aria-hidden />
+      <div className="mt-3 flex items-start gap-2 rounded-md border border-amber-400/30 bg-amber-500/[0.06] p-3 text-[11px] leading-relaxed text-amber-800/90">
+        <TriangleAlert size={14} className="mt-0.5 flex-none text-amber-700" aria-hidden />
         <span>
-          <strong className="text-amber-100">Toy-level kill, honestly banked (v529).</strong>{" "}
+          <strong className="text-amber-800">Toy-level kill, honestly banked (v529).</strong>{" "}
           On the first genuinely interacting seam toy, Kill-Test 2 fires: reflection positivity
           breaks for every <span className="font-mono">g &gt; 0</span> following the{" "}
           <em>straddle law</em> (RP fails exactly on quartet-straddled cuts, 24/24). Fenced — one

@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/tour` },
   openGraph: {
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
     type: "article",
     title: "Guided tour — What TFPT claims, in ten steps",
     description:
@@ -32,6 +33,7 @@ export const metadata: Metadata = {
     authors: ["Stefan Hamann", "Alessandro Rizzo"],
   },
   twitter: {
+    images: [`${SITE_URL}/opengraph-image`],
     card: "summary_large_image",
     title: "TFPT guided tour — ten steps",
     description:

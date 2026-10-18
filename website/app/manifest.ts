@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "A discrete compiler that builds E₈ from two axioms {c₃ = 1/(8π), g_car = 5} and reads off the Standard Model, α, the flavor sector, and the scale grammar.",
     start_url: "/",
     display: "standalone",
-    background_color: "#06091a",
-    theme_color: "#1e3a8a",
+    background_color: "#fcfbf8",
+    theme_color: "#fcfbf8",
     icons: [
       {
         src: "/icon",

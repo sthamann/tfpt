@@ -314,12 +314,12 @@ const SANDBOX_CHECKS = 6427;
 
 export function ModuleLadder() {
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-700/90">
           Load-bearing modules · checks per module
         </p>
-        <span className="font-mono text-[10px] text-slate-500">
+        <span className="font-mono text-[10px] text-slate-600">
           {TOTAL_CHECKS} checks · {MODULES.length} modules
         </span>
       </div>
@@ -328,17 +328,17 @@ export function ModuleLadder() {
         {MODULES.map((m, i) => (
           <li key={m.id}>
             <div className="flex items-baseline justify-between gap-2">
-              <span className="font-mono text-[11px] text-emerald-200">
+              <span className="font-mono text-[11px] text-emerald-800">
                 {m.id}
               </span>
-              <span className="min-w-0 flex-1 truncate text-xs text-slate-300">
+              <span className="min-w-0 flex-1 truncate text-xs text-slate-700">
                 {m.title}
               </span>
-              <span className="font-mono text-[10px] text-slate-500">
+              <span className="font-mono text-[10px] text-slate-600">
                 {m.checks}
               </span>
             </div>
-            <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-slate-800">
+            <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-slate-200">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-emerald-500/70 to-emerald-300/70"
                 initial={{ width: 0 }}
@@ -347,7 +347,7 @@ export function ModuleLadder() {
                 transition={{ duration: 0.6, delay: i * 0.07, ease: "easeOut" }}
               />
             </div>
-            <p className="mt-0.5 font-mono text-[9px] uppercase tracking-wider text-slate-600">
+            <p className="mt-0.5 font-mono text-[9px] uppercase tracking-wider text-slate-500">
               {m.claim}
             </p>
           </li>
@@ -364,7 +364,7 @@ export function ModuleLadder() {
         <Stat value="1" label="object remains · I5" tone="violet" />
       </div>
 
-      <p className="mt-3 text-xs leading-relaxed text-slate-500">
+      <p className="mt-3 text-xs leading-relaxed text-slate-600">
         Sandbox probes never move a marker; only the {MODULES.length} modules
         above are cited in the papers and the ledger. I5 is an equivalence
         typing (⟺ Weil positivity ⟺ RH), not a proof claim.
@@ -374,9 +374,9 @@ export function ModuleLadder() {
 }
 
 const TONE = {
-  emerald: "border-emerald-400/30 bg-emerald-500/10 text-emerald-100",
-  amber: "border-amber-400/30 bg-amber-500/10 text-amber-100",
-  violet: "border-violet-400/30 bg-violet-500/10 text-violet-100",
+  emerald: "border-emerald-400/30 bg-emerald-500/10 text-emerald-800",
+  amber: "border-amber-400/30 bg-amber-500/10 text-amber-800",
+  violet: "border-violet-400/30 bg-violet-500/10 text-violet-800",
 } as const;
 
 function Stat({
@@ -391,7 +391,7 @@ function Stat({
   return (
     <div className={`rounded-xl border px-2 py-2 ${TONE[tone]}`}>
       <p className="font-mono text-lg leading-none">{value}</p>
-      <p className="mt-1 text-[10px] leading-tight text-slate-400">{label}</p>
+      <p className="mt-1 text-[10px] leading-tight text-slate-600">{label}</p>
     </div>
   );
 }

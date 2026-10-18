@@ -45,7 +45,7 @@ const LAYERS: Layer[] = [
     kill: "A fourth chiral generation (N_fam ≠ 3) or a different carrier rank breaks the compiler at the source.",
     link: { href: "/orientation", label: "How the two inputs close" },
     tone: "border-sky-400/30 bg-sky-500/[0.06]",
-    markerTone: "bg-sky-500/15 text-sky-200 ring-sky-400/30",
+    markerTone: "bg-sky-500/15 text-sky-800 ring-sky-400/30",
   },
   {
     key: "exact",
@@ -60,7 +60,7 @@ const LAYERS: Layer[] = [
     kill: "Any failure of the E₈ glue identities or the Lean-checked carrier rigidity.",
     link: { href: "/verification", label: "Run the proofs in your browser" },
     tone: "border-emerald-400/30 bg-emerald-500/[0.06]",
-    markerTone: "bg-emerald-500/15 text-emerald-200 ring-emerald-400/30",
+    markerTone: "bg-emerald-500/15 text-emerald-800 ring-emerald-400/30",
   },
   {
     key: "numerical",
@@ -76,7 +76,7 @@ const LAYERS: Layer[] = [
     kill: "A unique-root failure for α, or JUNO landing clearly off 0.3067 at high significance.",
     link: { href: "/predictions", label: "The prediction surface" },
     tone: "border-teal-400/30 bg-teal-500/[0.06]",
-    markerTone: "bg-teal-500/15 text-teal-200 ring-teal-400/30",
+    markerTone: "bg-teal-500/15 text-teal-800 ring-teal-400/30",
   },
   {
     key: "conditional",
@@ -91,7 +91,7 @@ const LAYERS: Layer[] = [
     kill: "A robust r ≳ 0.01 kills the R² branch; a transfer that misses its target demotes that bridge — the kernel is untouched.",
     link: { href: "/papers/frontier", label: "The honest frontier" },
     tone: "border-amber-400/30 bg-amber-500/[0.06]",
-    markerTone: "bg-amber-500/15 text-amber-200 ring-amber-400/30",
+    markerTone: "bg-amber-500/15 text-amber-800 ring-amber-400/30",
   },
   {
     key: "open",
@@ -107,7 +107,7 @@ const LAYERS: Layer[] = [
     kill: "Compiler scope: v_geo is the [O] unit while G_net and F_transfer are status-typed contracts. Strict scope: Round 4 (v1026–v1030) closes only the fixed-M=1, Ny=8 relaxed TEL-B norm below 2.995906 and adds narrow identities/counterbounds. FE-GEN/ALG-EXH, every T1–T8 gate and TFPT.TOE.COMPLETE.01 remain [O], with no shared 3+1D parent; v1029 is not a TFPT embedding.",
     link: { href: "/verification#open-gates", label: "The research contracts" },
     tone: "border-rose-400/30 bg-rose-500/[0.06]",
-    markerTone: "bg-rose-500/15 text-rose-200 ring-rose-400/30",
+    markerTone: "bg-rose-500/15 text-rose-800 ring-rose-400/30",
   },
 ];
 
@@ -148,21 +148,21 @@ export function ClaimStack() {
                   >
                     {layer.marker}
                   </span>
-                  <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-600">
                     {layer.kicker}
                   </span>
                 </div>
 
                 <div className="mt-2 grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
                   <div>
-                    <h3 className="font-serif text-lg font-semibold text-slate-50">
+                    <h3 className="font-serif text-lg font-semibold text-slate-950">
                       {layer.title}
                     </h3>
                     <ul className="mt-2 space-y-1.5">
                       {layer.items.map((it) => (
                         <li
                           key={it}
-                          className="flex gap-2 text-sm leading-relaxed text-slate-300"
+                          className="flex gap-2 text-sm leading-relaxed text-slate-700"
                         >
                           <span aria-hidden className="mt-2 h-1 w-1 flex-none rounded-full bg-slate-500" />
                           {it}
@@ -171,18 +171,19 @@ export function ClaimStack() {
                     </ul>
                   </div>
 
-                  <div className="flex flex-col justify-between gap-3 rounded-xl border border-slate-700/40 bg-slate-950/40 p-4">
+                  <div className="flex flex-col justify-between gap-3 rounded-xl border border-slate-300/40 bg-slate-50/40 p-4">
                     <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-widest text-rose-300/80">
+                      <div className="text-[10px] font-semibold uppercase tracking-widest text-rose-700/80">
                         How it fails
                       </div>
-                      <p className="mt-1 text-xs leading-relaxed text-slate-300">
+                      <p className="mt-1 text-xs leading-relaxed text-slate-700">
                         {layer.kill}
                       </p>
                     </div>
                     <Link
+                      prefetch={false}
                       href={layer.link.href}
-                      className="inline-flex w-fit items-center gap-1.5 text-xs font-semibold text-blue-300 transition-colors hover:text-blue-200"
+                      className="inline-flex w-fit items-center gap-1.5 text-xs font-semibold text-blue-700 transition-colors hover:text-blue-800"
                     >
                       {layer.link.label}
                       <ArrowRight size={13} aria-hidden />
@@ -193,7 +194,7 @@ export function ClaimStack() {
 
               {i < LAYERS.length - 1 && (
                 <div className="flex justify-center py-1" aria-hidden>
-                  <ArrowDown size={16} className="text-slate-600" />
+                  <ArrowDown size={16} className="text-slate-500" />
                 </div>
               )}
             </li>

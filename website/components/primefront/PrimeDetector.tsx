@@ -42,17 +42,17 @@ export function PrimeDetector() {
   );
 
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-widest text-slate-400">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-slate-600">
             Geometric primality demo
           </p>
-          <p className="mt-1 font-serif text-lg text-slate-100">
-            n = <span className="font-mono text-sky-300">{n}</span>
+          <p className="mt-1 font-serif text-lg text-slate-900">
+            n = <span className="font-mono text-sky-700">{n}</span>
           </p>
         </div>
-        <label className="flex flex-col gap-1 text-[11px] text-slate-400">
+        <label className="flex flex-col gap-1 text-[11px] text-slate-600">
           Pick n ∈ [2, 40]
           <input
             type="range"
@@ -66,44 +66,44 @@ export function PrimeDetector() {
       </div>
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        <div className="rounded-xl border border-slate-700/40 bg-slate-900/50 p-3">
-          <p className="font-mono text-[10px] text-slate-500">
+        <div className="rounded-xl border border-slate-300/40 bg-slate-100/50 p-3">
+          <p className="font-mono text-[10px] text-slate-600">
             Shell target · 240(1+n³)
           </p>
-          <p className="mt-1 font-mono text-xl text-slate-100">
+          <p className="mt-1 font-mono text-xl text-slate-900">
             {target.toLocaleString("en-US")}
           </p>
-          <p className="mt-2 text-xs leading-relaxed text-slate-400">
+          <p className="mt-2 text-xs leading-relaxed text-slate-600">
             Classical σ₃ criterion (Teil 21): n&gt;1 is prime iff the E₈ shell at
             norm 2n has exactly this many vectors —{" "}
-            <span className="text-slate-300">0 errors to 10⁴</span> in the probe.
+            <span className="text-slate-700">0 errors to 10⁴</span> in the probe.
           </p>
         </div>
         <div
           className={`rounded-xl border p-3 ${
             match
               ? "border-emerald-400/35 bg-emerald-500/10"
-              : "border-slate-700/40 bg-slate-900/50"
+              : "border-slate-300/40 bg-slate-100/50"
           }`}
         >
-          <p className="font-mono text-[10px] text-slate-500">Verdict</p>
+          <p className="font-mono text-[10px] text-slate-600">Verdict</p>
           <p
             className={`mt-1 font-serif text-xl ${
-              match ? "text-emerald-200" : "text-slate-300"
+              match ? "text-emerald-800" : "text-slate-700"
             }`}
           >
             {match ? "prime — shell matches" : "composite — shell mismatches"}
           </p>
-          <p className="mt-2 text-xs leading-relaxed text-slate-400">
+          <p className="mt-2 text-xs leading-relaxed text-slate-600">
             χ₄ fibre (property channel):{" "}
             {isPrime(n) ? (
               isSumOfTwoSquares(n) ? (
-                <span className="text-sky-300">p = a²+b² (p≡1 mod 4 or 2)</span>
+                <span className="text-sky-700">p = a²+b² (p≡1 mod 4 or 2)</span>
               ) : (
-                <span className="text-amber-200">not a sum of two squares</span>
+                <span className="text-amber-800">not a sum of two squares</span>
               )
             ) : (
-              <span className="text-slate-500">— (n not prime)</span>
+              <span className="text-slate-600">— (n not prime)</span>
             )}
           </p>
         </div>
@@ -134,16 +134,16 @@ export function PrimeDetector() {
             } ${
               p
                 ? twoSq
-                  ? "bg-sky-500/25 text-sky-100 hover:bg-sky-500/40"
-                  : "bg-emerald-500/20 text-emerald-100 hover:bg-emerald-500/35"
-                : "bg-slate-800/80 text-slate-500 hover:bg-slate-700"
+                  ? "bg-sky-500/25 text-sky-800 hover:bg-sky-500/40"
+                  : "bg-emerald-500/20 text-emerald-800 hover:bg-emerald-500/35"
+                : "bg-slate-200/80 text-slate-600 hover:bg-slate-300"
             }`}
           >
             {k}
           </button>
         ))}
       </div>
-      <p className="mt-2 font-mono text-[10px] text-slate-500">
+      <p className="mt-2 font-mono text-[10px] text-slate-600">
         Green = prime · cyan = prime and sum of two squares · gray = composite
       </p>
     </div>

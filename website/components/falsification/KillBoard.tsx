@@ -23,16 +23,16 @@ import { cn } from "@/lib/utils";
 type Finding = NonNullable<Prediction["experiment"]>["finding"];
 
 const FINDING_META: Record<Finding, { label: string; tone: string }> = {
-  consistent: { label: "Live · consistent", tone: "bg-emerald-500/15 text-emerald-200 ring-emerald-400/30" },
-  robust: { label: "Live · robust", tone: "bg-emerald-500/15 text-emerald-200 ring-emerald-400/30" },
-  tension: { label: "Live · tension", tone: "bg-amber-500/15 text-amber-200 ring-amber-400/30" },
-  null: { label: "Live · null", tone: "bg-slate-500/15 text-slate-200 ring-slate-400/30" },
-  data_limited: { label: "Data-limited", tone: "bg-sky-500/15 text-sky-200 ring-sky-400/30" },
+  consistent: { label: "Live · consistent", tone: "bg-emerald-500/15 text-emerald-800 ring-emerald-400/30" },
+  robust: { label: "Live · robust", tone: "bg-emerald-500/15 text-emerald-800 ring-emerald-400/30" },
+  tension: { label: "Live · tension", tone: "bg-amber-500/15 text-amber-800 ring-amber-400/30" },
+  null: { label: "Live · null", tone: "bg-slate-500/15 text-slate-800 ring-slate-600/30" },
+  data_limited: { label: "Data-limited", tone: "bg-sky-500/15 text-sky-800 ring-sky-400/30" },
 };
 
 const STRUCTURAL_META = {
   label: "Structural / committed",
-  tone: "bg-blue-500/15 text-blue-200 ring-blue-400/30",
+  tone: "bg-blue-500/15 text-blue-800 ring-blue-400/30",
 };
 
 export function KillBoard() {
@@ -40,8 +40,8 @@ export function KillBoard() {
     // Rendered inside an already-labelled <section>, so this is a plain <div>.
     <div id="kill-board" className="relative py-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-5 flex flex-wrap items-center gap-2 text-[11px] text-slate-400">
-          <span className="font-semibold uppercase tracking-widest text-slate-300">
+        <div className="mb-5 flex flex-wrap items-center gap-2 text-[11px] text-slate-600">
+          <span className="font-semibold uppercase tracking-widest text-slate-700">
             Status legend
           </span>
           {(["consistent", "robust", "tension", "null", "data_limited"] as Finding[]).map((f) => (
@@ -71,10 +71,10 @@ export function KillBoard() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.05 }}
                   transition={{ duration: 0.35, delay: (i % 6) * 0.04 }}
-                  className="flex h-full flex-col rounded-2xl border border-slate-700/40 bg-slate-950/40 p-4"
+                  className="flex h-full flex-col rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4"
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <h3 className="font-mono text-sm font-semibold text-slate-50">
+                    <h3 className="font-mono text-sm font-semibold text-slate-950">
                       {p.shortTitle}
                     </h3>
                     <span
@@ -88,13 +88,13 @@ export function KillBoard() {
                     </span>
                   </div>
 
-                  <div className="mt-1 text-xs font-medium text-slate-300">{p.target}</div>
+                  <div className="mt-1 text-xs font-medium text-slate-700">{p.target}</div>
 
                   <div className="mt-3">
-                    <div className="text-[10px] font-semibold uppercase tracking-widest text-rose-300/80">
+                    <div className="text-[10px] font-semibold uppercase tracking-widest text-rose-700/80">
                       Kill condition
                     </div>
-                    <p className="mt-1 text-xs leading-relaxed text-slate-300">{p.killTest}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-slate-700">{p.killTest}</p>
                   </div>
 
                   <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-3">
@@ -108,20 +108,22 @@ export function KillBoard() {
                     </span>
                     {p.experiment?.repoPath ? (
                       <Link
+                        prefetch={false}
                         href={`${REPO_URL}/tree/main/${p.experiment.repoPath}`}
                         target="_blank"
                         rel="noopener"
-                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-300 transition-colors hover:text-blue-200"
+                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-700 transition-colors hover:text-blue-800"
                       >
                         Empirical audit
                         <ArrowUpRight size={12} aria-hidden />
                       </Link>
                     ) : (
                       <Link
+                        prefetch={false}
                         href={p.pdf}
                         target="_blank"
                         rel="noopener"
-                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-300 transition-colors hover:text-blue-200"
+                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-700 transition-colors hover:text-blue-800"
                       >
                         Source document
                         <ArrowUpRight size={12} aria-hidden />

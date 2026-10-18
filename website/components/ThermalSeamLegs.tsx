@@ -18,7 +18,7 @@ const LEGS = [
     formula: "c_3 = \\frac{1}{|\\mathbb{Z}_2|\\cdot 2\\pi\\,\\chi(S^2)} = \\frac{1}{8\\pi}",
     note: "seam winding 8 = 2|μ₄|",
     ring: "ring-sky-400/40",
-    badge: "bg-sky-500/15 text-sky-200",
+    badge: "bg-sky-500/15 text-sky-800",
     src: "v58",
   },
   {
@@ -28,7 +28,7 @@ const LEGS = [
     formula: "T_H = \\frac{\\kappa}{2\\pi},\\quad \\frac{1}{2\\pi} = 4c_3",
     note: "Δ^{it} = e^{−2πtK_H}",
     ring: "ring-amber-400/40",
-    badge: "bg-amber-500/15 text-amber-200",
+    badge: "bg-amber-500/15 text-amber-800",
     src: "v208",
   },
   {
@@ -38,31 +38,31 @@ const LEGS = [
     formula: "\\beta_{\\mathrm{angle}} = 2\\pi\\ \\text{exact} \\;\\Rightarrow\\; T_{\\mathrm{seam}} = 4c_3",
     note: "β = N clock steps (N = 8 and 16)",
     ring: "ring-emerald-400/40",
-    badge: "bg-emerald-500/15 text-emerald-200",
+    badge: "bg-emerald-500/15 text-emerald-800",
     src: "v526",
   },
 ];
 
 export function ThermalSeamLegs() {
   return (
-    <div className="mt-8 overflow-hidden rounded-2xl border border-slate-700/40 bg-slate-950/40 p-4 sm:p-6">
+    <div className="mt-8 overflow-hidden rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4 sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h4 className="font-serif text-base font-semibold text-slate-50">
+        <h4 className="font-serif text-base font-semibold text-slate-950">
           The seam is thermal — three legs of <span className="font-mono">c₃</span>
         </h4>
-        <span className="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-200 ring-1 ring-emerald-400/30">
+        <span className="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-800 ring-1 ring-emerald-400/30">
           v526 · [E]/[C]
         </span>
       </div>
 
-      <p className="mt-2 text-xs leading-relaxed text-slate-400">
+      <p className="mt-2 text-xs leading-relaxed text-slate-600">
         The Hawking normalisation is no longer only postulated into the horizon sector: the
         reconstructed free seam OS quotient admits exactly <em>one</em> detailed-balance thermal
         representation, and its temperature comes out{" "}
         <span className="font-mono">T_seam = 4c₃</span> — the same{" "}
-        <strong className="text-slate-200">Bisognano–Wichmann/Hawking normalisation</strong> the
+        <strong className="text-slate-800">Bisognano–Wichmann/Hawking normalisation</strong> the
         geometry and anomaly legs carry. Temperature is the{" "}
-        <strong className="text-slate-200">third leg</strong> of{" "}
+        <strong className="text-slate-800">third leg</strong> of{" "}
         <span className="font-mono">c₃ = 1/(8π)</span>.
       </p>
 
@@ -75,21 +75,21 @@ export function ThermalSeamLegs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.45, delay: i * 0.12 }}
-            className={`rounded-xl border border-slate-700/40 bg-slate-950/60 p-3 ring-1 ${o.ring}`}
+            className={`rounded-xl border border-slate-300/40 bg-slate-50/60 p-3 ring-1 ${o.ring}`}
           >
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-300">
+              <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-700">
                 {o.label}
               </span>
               <span className={`rounded px-1.5 py-0.5 font-mono text-[9px] font-semibold ${o.badge}`}>
                 {o.src}
               </span>
             </div>
-            <div className="mt-0.5 text-[11px] text-slate-500">{o.sub}</div>
-            <div className="mt-2 text-slate-100">
+            <div className="mt-0.5 text-[11px] text-slate-600">{o.sub}</div>
+            <div className="mt-2 text-slate-900">
               <Math>{o.formula}</Math>
             </div>
-            <div className="mt-1 font-mono text-[10px] text-slate-400">{o.note}</div>
+            <div className="mt-1 font-mono text-[10px] text-slate-600">{o.note}</div>
           </motion.div>
         ))}
       </div>
@@ -100,7 +100,7 @@ export function ThermalSeamLegs() {
         whileInView={{ opacity: 1, scaleY: 1 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.4, delay: 0.45 }}
-        className="mx-auto mt-3 flex flex-col items-center text-slate-500"
+        className="mx-auto mt-3 flex flex-col items-center text-slate-600"
         aria-hidden
       >
         <div className="flex w-full max-w-md items-center justify-around text-lg">
@@ -118,21 +118,21 @@ export function ThermalSeamLegs() {
         transition={{ duration: 0.5, delay: 0.6, type: "spring", stiffness: 120 }}
         className="mx-auto max-w-md rounded-xl border border-emerald-400/40 bg-emerald-500/5 p-3 text-center"
       >
-        <div className="text-[10px] font-semibold uppercase tracking-widest text-emerald-200/90">
+        <div className="text-[10px] font-semibold uppercase tracking-widest text-emerald-800/90">
           geometry + anomaly + temperature
         </div>
         <div className="mt-1 text-emerald-50">
           <Math>{"c_3 = \\tfrac{1}{8\\pi}, \\qquad T_H = \\tfrac{c_3}{M} = \\tfrac{1}{8\\pi M}"}</Math>
         </div>
-        <div className="mt-1.5 text-[11px] leading-snug text-emerald-100/80">
+        <div className="mt-1.5 text-[11px] leading-snug text-emerald-800/80">
           the axiom <strong>is</strong> the Hawking coefficient — now derived from the seam KMS
           structure; SdS <Math>{"\\tfrac{1}{4\\pi} = 2c_3"}</Math>, Nariai{" "}
           <Math>{"T_N = 4c_3\\sqrt{\\Lambda}"}</Math>
         </div>
       </motion.div>
 
-      <div className="mt-4 rounded-md border border-slate-700/40 bg-slate-950/60 p-3 text-[11px] leading-relaxed text-slate-300">
-        <strong className="text-slate-100">Honest fences.</strong> The [C]-typed reading is
+      <div className="mt-4 rounded-md border border-slate-300/40 bg-slate-50/60 p-3 text-[11px] leading-relaxed text-slate-700">
+        <strong className="text-slate-900">Honest fences.</strong> The [C]-typed reading is
         &ldquo;seam euclidean circle = thermal circle of the reconstructed horizon dynamics&rdquo;;
         &ldquo;the seam <em>is</em> a horizon&rdquo; stays [C]. The temperature bridge closes, the
         entropy-<em>fraction</em> bridge (the v129 fractions {"{1/3, 2/3}"}, the v190 floor) honestly

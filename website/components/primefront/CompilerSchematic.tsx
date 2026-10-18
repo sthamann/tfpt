@@ -7,7 +7,7 @@ import { motion } from "motion/react";
  */
 export function CompilerSchematic() {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-6">
+    <div className="relative overflow-hidden rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-6">
       <svg
         viewBox="0 0 640 220"
         className="mx-auto h-auto w-full max-w-2xl"
@@ -17,11 +17,11 @@ export function CompilerSchematic() {
         <defs>
           <linearGradient id="pf-block" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="#1e3a8a" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#0f172a" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#f1f5f9" stopOpacity="0.95" />
           </linearGradient>
           <linearGradient id="pf-e8" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="#047857" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#0f172a" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#f1f5f9" stopOpacity="0.95" />
           </linearGradient>
           <marker
             id="pf-arrow"
@@ -31,7 +31,7 @@ export function CompilerSchematic() {
             refY="3"
             orient="auto"
           >
-            <path d="M0,0 L6,3 L0,6 Z" fill="#94a3b8" />
+            <path d="M0,0 L6,3 L0,6 Z" fill="#526278" />
           </marker>
         </defs>
 
@@ -55,7 +55,7 @@ export function CompilerSchematic() {
           <text x="91" y="66" textAnchor="middle" fill="#93c5fd" fontSize="11" fontFamily="ui-monospace, monospace">
             axiom P1
           </text>
-          <text x="91" y="88" textAnchor="middle" fill="#e2e8f0" fontSize="14" fontFamily="Georgia, serif">
+          <text x="91" y="88" textAnchor="middle" fill="#263b53" fontSize="14" fontFamily="Georgia, serif">
             c₃ = 1/(8π)
           </text>
         </motion.g>
@@ -80,7 +80,7 @@ export function CompilerSchematic() {
           <text x="91" y="154" textAnchor="middle" fill="#93c5fd" fontSize="11" fontFamily="ui-monospace, monospace">
             axiom P2
           </text>
-          <text x="91" y="176" textAnchor="middle" fill="#e2e8f0" fontSize="14" fontFamily="Georgia, serif">
+          <text x="91" y="176" textAnchor="middle" fill="#263b53" fontSize="14" fontFamily="Georgia, serif">
             g_car = 5
           </text>
         </motion.g>
@@ -98,7 +98,7 @@ export function CompilerSchematic() {
             width="100"
             height="56"
             rx="8"
-            fill="#0f172a"
+            fill="#f1f5f9"
             stroke="#64748b"
             strokeWidth="1.25"
           />
@@ -111,14 +111,14 @@ export function CompilerSchematic() {
             width="100"
             height="56"
             rx="8"
-            fill="#0f172a"
+            fill="#f1f5f9"
             stroke="#64748b"
             strokeWidth="1.25"
           />
           <text x="270" y="162" textAnchor="middle" fill="#f8fafc" fontSize="16" fontFamily="Georgia, serif">
             A₃
           </text>
-          <text x="270" y="118" textAnchor="middle" fill="#94a3b8" fontSize="18">
+          <text x="270" y="118" textAnchor="middle" fill="#526278" fontSize="18">
             ⊕
           </text>
         </motion.g>
@@ -210,7 +210,7 @@ export function CompilerSchematic() {
           </text>
         </motion.g>
       </svg>
-      <p className="mt-3 text-center font-mono text-[11px] text-slate-500">
+      <p className="mt-3 text-center font-mono text-[11px] text-slate-600">
         D₅ ⊕ A₃ + μ₄ ⇒ E₈ — discrete compiler, not a continuum guess
       </p>
     </div>

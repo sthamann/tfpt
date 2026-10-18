@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/compiler` },
   openGraph: {
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
     type: "website",
     title: "The Compiler in Action — TFPT",
     description:
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
     locale: "en_US",
   },
   twitter: {
+    images: [`${SITE_URL}/opengraph-image`],
     card: "summary_large_image",
     title: "The Compiler in Action — TFPT",
     description:
@@ -39,14 +41,14 @@ export const metadata: Metadata = {
 export default function CompilerPage() {
   return (
     <section className="flex h-[calc(100vh-4rem)] flex-col">
-      <div className="flex shrink-0 items-center justify-between gap-4 border-b border-slate-800/60 bg-slate-950/40 px-4 py-2.5 sm:px-6">
+      <div className="flex shrink-0 items-center justify-between gap-4 border-b border-slate-200/60 bg-slate-50/40 px-4 py-2.5 sm:px-6">
         <div className="min-w-0">
-          <h1 className="truncate font-serif text-base font-semibold text-slate-100 sm:text-lg">
+          <h1 className="truncate font-serif text-base font-semibold text-slate-900 sm:text-lg">
             The Compiler in Action
           </h1>
-          <p className="truncate text-xs text-slate-400">
-            Two numbers — <span className="font-mono text-slate-300">c₃ = 1/(8π)</span> and{" "}
-            <span className="font-mono text-slate-300">g_car = 5</span> — compile the Standard
+          <p className="truncate text-xs text-slate-600">
+            Two numbers — <span className="font-mono text-slate-700">c₃ = 1/(8π)</span> and{" "}
+            <span className="font-mono text-slate-700">g_car = 5</span> — compile the Standard
             Model, the constants and a 23-readout prediction board.{" "}
             <span className="hidden sm:inline">Click any part of the machine to inspect it.</span>
           </p>
@@ -55,7 +57,7 @@ export default function CompilerPage() {
           href="/compiler/index.html?v=4"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-slate-700/60 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-200 transition-colors hover:bg-white/10 hover:text-white"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-slate-300/60 bg-slate-900/5 px-3 py-1.5 text-xs font-medium text-slate-800 transition-colors hover:bg-slate-900/5 hover:text-slate-950"
         >
           <ExternalLink size={13} aria-hidden />
           Full screen

@@ -15,26 +15,26 @@ const TONE: Record<
 > = {
   classical: {
     label: "classical",
-    chip: "border-slate-500/40 bg-slate-500/10 text-slate-300",
-    icon: "text-slate-300",
-    ring: "border-slate-600/50",
+    chip: "border-slate-500/40 bg-slate-500/10 text-slate-700",
+    icon: "text-slate-700",
+    ring: "border-slate-400/50",
   },
   measured: {
     label: "measured",
-    chip: "border-sky-400/40 bg-sky-500/10 text-sky-200",
-    icon: "text-sky-300",
+    chip: "border-sky-400/40 bg-sky-500/10 text-sky-800",
+    icon: "text-sky-700",
     ring: "border-sky-500/40",
   },
   theorem: {
     label: "theorem · machine-verified",
-    chip: "border-emerald-400/40 bg-emerald-500/10 text-emerald-200",
-    icon: "text-emerald-300",
+    chip: "border-emerald-400/40 bg-emerald-500/10 text-emerald-800",
+    icon: "text-emerald-700",
     ring: "border-emerald-500/40",
   },
   open: {
     label: "open",
-    chip: "border-amber-400/40 bg-amber-500/10 text-amber-200",
-    icon: "text-amber-300",
+    chip: "border-amber-400/40 bg-amber-500/10 text-amber-800",
+    icon: "text-amber-700",
     ring: "border-amber-500/40",
   },
 };
@@ -171,9 +171,9 @@ export function StorySixty() {
   return (
     <section
       aria-label="The story in 60 seconds"
-      className="mt-10 rounded-2xl border border-slate-700/50 bg-slate-950/60 p-5 sm:p-6"
+      className="mt-10 rounded-2xl border border-slate-300/50 bg-slate-50/60 p-5 sm:p-6"
     >
-      <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-sky-300">
+      <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-sky-700">
         The story in 60 seconds
       </p>
       <ol className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
@@ -182,19 +182,19 @@ export function StorySixty() {
           return (
             <li key={s.title} className="relative flex flex-col">
               <div
-                className={`flex h-14 w-14 items-center justify-center rounded-xl border bg-slate-900/60 ${tone.ring} ${tone.icon}`}
+                className={`flex h-14 w-14 items-center justify-center rounded-xl border bg-slate-100/60 ${tone.ring} ${tone.icon}`}
               >
                 <StepIcon kind={s.icon} />
               </div>
               {i < STEPS.length - 1 && (
                 <span
                   aria-hidden
-                  className="absolute left-[64px] top-[27px] hidden h-px w-[calc(100%-76px)] bg-gradient-to-r from-slate-600/60 to-transparent lg:block"
+                  className="absolute left-[64px] top-[27px] hidden h-px w-[calc(100%-76px)] bg-gradient-to-r from-slate-400/60 to-transparent lg:block"
                 />
               )}
               <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1">
-                <span className="font-serif text-[15px] font-semibold leading-snug text-slate-100">
-                  <span className="mr-1.5 font-mono text-[11px] text-slate-500">
+                <span className="font-serif text-[15px] font-semibold leading-snug text-slate-900">
+                  <span className="mr-1.5 font-mono text-[11px] text-slate-600">
                     {i + 1}
                   </span>
                   {s.title}
@@ -205,14 +205,14 @@ export function StorySixty() {
               >
                 {tone.label}
               </span>
-              <p className="mt-2 text-[13px] leading-relaxed text-slate-400">
+              <p className="mt-2 text-[13px] leading-relaxed text-slate-600">
                 {s.text}
               </p>
             </li>
           );
         })}
       </ol>
-      <p className="mt-4 border-t border-slate-800/60 pt-3 text-xs leading-relaxed text-slate-500">
+      <p className="mt-4 border-t border-slate-200/60 pt-3 text-xs leading-relaxed text-slate-600">
         Steps 1–2 are classical mathematics. Step 3 is measured inside the
         suite; step 4 is machine-verified (v535–v648, all green); step 5 is
         honestly open. Everything below tells this story in full detail.

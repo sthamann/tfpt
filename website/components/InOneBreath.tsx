@@ -28,7 +28,7 @@ export function InOneBreath() {
   return (
     <section
       id="in-one-breath"
-      className="relative scroll-mt-20 border-t border-slate-800/60 py-14 sm:py-16"
+      className="relative scroll-mt-20 border-t border-slate-200/60 py-14 sm:py-16"
       aria-labelledby="in-one-breath-heading"
     >
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
@@ -38,19 +38,19 @@ export function InOneBreath() {
           title="In one breath"
           description="The whole story in four lines — everyday language first, jargon only in parentheses."
         />
-        <ol className="mt-8 space-y-0 border border-slate-700/50 bg-slate-950/50">
+        <ol className="mt-8 space-y-0 border border-slate-300/50 bg-slate-50/50">
           {LINES.map((line, i) => (
             <li
               key={line.plain}
-              className="flex gap-3 border-b border-slate-800/70 px-4 py-3.5 last:border-b-0 sm:gap-4 sm:px-5"
+              className="flex gap-3 border-b border-slate-200/70 px-4 py-3.5 last:border-b-0 sm:gap-4 sm:px-5"
             >
-              <span className="mt-0.5 font-mono text-[11px] font-semibold text-slate-500">
+              <span className="mt-0.5 font-mono text-[11px] font-semibold text-slate-600">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <p className="text-sm leading-relaxed text-slate-200 sm:text-[15px]">
+              <p className="text-sm leading-relaxed text-slate-800 sm:text-[15px]">
                 {line.plain}
                 {line.technical ? (
-                  <span className="text-slate-500">
+                  <span className="text-slate-600">
                     {" "}
                     ({line.technical})
                   </span>

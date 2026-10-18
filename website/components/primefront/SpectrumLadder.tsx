@@ -23,9 +23,9 @@ export function SpectrumLadder() {
   const sel = PRIMES[idx];
 
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-slate-400">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-slate-600">
           Gelfand spectrum · what is there vs what is needed
         </p>
         <div className="flex gap-1">
@@ -38,8 +38,8 @@ export function SpectrumLadder() {
               className={cn(
                 "rounded-md px-2 py-0.5 font-mono text-[10px] transition",
                 i === idx
-                  ? "bg-slate-700 text-slate-100"
-                  : "bg-slate-800/70 text-slate-400 hover:bg-slate-700/70",
+                  ? "bg-slate-300 text-slate-900"
+                  : "bg-slate-200/70 text-slate-600 hover:bg-slate-300/70",
               )}
             >
               p = {r.p}
@@ -51,13 +51,13 @@ export function SpectrumLadder() {
       <div className="grid gap-3 sm:grid-cols-2">
         {/* measured: two points */}
         <div className="rounded-xl border border-sky-400/30 bg-sky-500/5 p-3">
-          <p className="font-mono text-[10px] uppercase tracking-wider text-sky-300/90">
+          <p className="font-mono text-[10px] uppercase tracking-wider text-sky-700/90">
             In the suite · two points
           </p>
           <div className="relative mt-4 flex min-h-40 flex-col justify-around gap-4">
             <span
               aria-hidden
-              className="absolute inset-y-0 left-6 w-px bg-slate-700/60"
+              className="absolute inset-y-0 left-6 w-px bg-slate-300/60"
             />
             <SpectrumPoint
               colour="bg-sky-400 border-sky-200/70"
@@ -72,20 +72,20 @@ export function SpectrumLadder() {
               detail="cuspidal f₈ · 2 copies"
             />
           </div>
-          <p className="mt-1 font-mono text-[10px] text-slate-500">
+          <p className="mt-1 font-mono text-[10px] text-slate-600">
             dim V = 7 = 5 + 2 · commutative algebra
           </p>
         </div>
 
         {/* needed: infinitely many */}
         <div className="rounded-xl border border-violet-400/30 bg-violet-500/5 p-3">
-          <p className="font-mono text-[10px] uppercase tracking-wider text-violet-300/90">
+          <p className="font-mono text-[10px] uppercase tracking-wider text-violet-700/90">
             Hilbert–Pólya needs · infinitely many
           </p>
           <div className="relative mt-4 h-40 overflow-hidden">
             <span
               aria-hidden
-              className="absolute inset-y-0 left-6 w-px bg-slate-700/60"
+              className="absolute inset-y-0 left-6 w-px bg-slate-300/60"
             />
             <motion.div
               aria-hidden
@@ -106,22 +106,22 @@ export function SpectrumLadder() {
             </motion.div>
             <span
               aria-hidden
-              className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-slate-950 to-transparent"
+              className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-slate-50 to-transparent"
             />
             <span
               aria-hidden
-              className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-slate-950 to-transparent"
+              className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-slate-50 to-transparent"
             />
           </div>
-          <p className="mt-1 font-mono text-[10px] text-slate-500">
+          <p className="mt-1 font-mono text-[10px] text-slate-600">
             unbounded / non-commutative · no such operator in the suite
           </p>
         </div>
       </div>
 
-      <p className="mt-3 text-xs leading-relaxed text-slate-500">
+      <p className="mt-3 text-xs leading-relaxed text-slate-600">
         Teil 40, verdict{" "}
-        <span className="font-mono text-slate-300">TERRAIN-MAPPED</span>: the
+        <span className="font-mono text-slate-700">TERRAIN-MAPPED</span>: the
         census operator algebra is commutative with exactly two Gelfand points
         (plus oldform copies). Cartography, not a proof attempt — the July 25
         reframe replaced the hunt for one infinite operator by a family plus a
@@ -151,10 +151,10 @@ function SpectrumPoint({
         )}
       />
       <div className="min-w-0">
-        <p className="font-mono text-sm text-slate-100">
+        <p className="font-mono text-sm text-slate-900">
           {label} = {value}
         </p>
-        <p className="font-mono text-[10px] leading-tight text-slate-500">
+        <p className="font-mono text-[10px] leading-tight text-slate-600">
           {detail}
         </p>
       </div>

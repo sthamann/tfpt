@@ -18,9 +18,9 @@ import { useReproducer } from "./Reproducer";
 type StepTone = "gray" | "green" | "gold";
 
 const TONE: Record<StepTone, { tag: string; ring: string }> = {
-  gray: { tag: "text-slate-400", ring: "border-slate-600/40 bg-slate-800/20" },
-  green: { tag: "text-emerald-300", ring: "border-emerald-400/25 bg-emerald-500/[0.05]" },
-  gold: { tag: "text-amber-300", ring: "border-amber-400/40 bg-amber-500/[0.10]" },
+  gray: { tag: "text-slate-600", ring: "border-slate-400/40 bg-slate-200/20" },
+  green: { tag: "text-emerald-700", ring: "border-emerald-400/25 bg-emerald-500/[0.05]" },
+  gold: { tag: "text-amber-700", ring: "border-amber-400/40 bg-amber-500/[0.10]" },
 };
 
 interface Step {
@@ -139,12 +139,12 @@ export function ResidualChain() {
   const { open } = useReproducer();
 
   return (
-    <div className="glass overflow-hidden rounded-2xl ring-1 ring-slate-700/40">
-      <div className="border-b border-slate-800/60 px-5 py-3">
-        <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-300/80">
+    <div className="glass overflow-hidden rounded-2xl ring-1 ring-slate-300/40">
+      <div className="border-b border-slate-200/60 px-5 py-3">
+        <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
           The finite seam/compiler reduction chain — live
         </span>
-        <p className="mt-1 break-words text-xs leading-relaxed text-slate-400">
+        <p className="mt-1 break-words text-xs leading-relaxed text-slate-600">
           This historical seam/certification lane narrows, one checked step at a time,
           to whether the raw seam is (E₈)₁ at τ=i. It is not the full quantum-gravity
           or strict-TOE problem: T1–T8 remain [O].
@@ -167,9 +167,9 @@ export function ResidualChain() {
                   <span className={cn("font-mono text-[11px] font-semibold", tone.tag)}>
                     {s.tag}
                   </span>
-                  <span className="text-sm font-semibold text-slate-100">{s.head}</span>
+                  <span className="text-sm font-semibold text-slate-900">{s.head}</span>
                 </div>
-                <p className="mt-1 break-words text-xs leading-relaxed text-slate-400">
+                <p className="mt-1 break-words text-xs leading-relaxed text-slate-600">
                   {s.sub}
                 </p>
                 {s.scripts && (
@@ -179,7 +179,7 @@ export function ResidualChain() {
                         key={f}
                         type="button"
                         onClick={() => open(f)}
-                        className="group inline-flex max-w-full items-center gap-1.5 rounded-md border border-slate-700/50 bg-slate-950/60 px-2 py-0.5 font-mono text-[10px] text-slate-300 transition-colors hover:border-blue-400/50 hover:bg-blue-500/10 hover:text-blue-100"
+                        className="group inline-flex max-w-full items-center gap-1.5 rounded-md border border-slate-300/50 bg-slate-50/60 px-2 py-0.5 font-mono text-[10px] text-slate-700 transition-colors hover:border-blue-400/50 hover:bg-blue-500/10 hover:text-blue-800"
                       >
                         <FileCode2 size={11} className="flex-none group-hover:hidden" aria-hidden />
                         <Play size={11} className="hidden flex-none group-hover:inline" aria-hidden />
@@ -191,7 +191,7 @@ export function ResidualChain() {
               </div>
               {i < STEPS.length - 1 && (
                 <div className="flex justify-center py-1" aria-hidden>
-                  <ArrowDown size={14} className="text-slate-600" />
+                  <ArrowDown size={14} className="text-slate-500" />
                 </div>
               )}
             </motion.li>
@@ -199,12 +199,12 @@ export function ResidualChain() {
         })}
       </ol>
 
-      <p className="border-t border-slate-800/60 px-5 py-4 text-xs italic leading-relaxed text-slate-500">
+      <p className="border-t border-slate-200/60 px-5 py-4 text-xs italic leading-relaxed text-slate-600">
         Everything above the bedrock is a theorem, a Lean proof or an established citation; the
         bedrock, once a definition (QGEO.SYM.01), is now one falsifiable physical question — and
         the emergent-QFT layer (v258–v261, the Modular Spectral Closure) collapses onto this same
         bedrock, so the boundary QFT adds no new open item. The full step-by-step reduction lives
-        on the <span className="not-italic text-slate-300">/changelog</span> page.
+        on the <span className="not-italic text-slate-700">/changelog</span> page.
       </p>
     </div>
   );

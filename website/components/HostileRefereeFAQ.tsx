@@ -23,30 +23,30 @@ export function HostileRefereeFAQ() {
         {FAQ_ITEMS.map((item) => (
           <details
             key={item.q}
-            className="group glass rounded-2xl ring-1 ring-slate-700/40 [&_summary::-webkit-details-marker]:hidden"
+            className="group glass rounded-2xl ring-1 ring-slate-300/40 [&_summary::-webkit-details-marker]:hidden"
           >
             <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-left">
-              <span className="font-serif text-base font-semibold text-slate-50">
+              <span className="font-serif text-base font-semibold text-slate-950">
                 {item.q}
               </span>
               <ChevronDown
                 size={18}
-                className="flex-none text-slate-400 transition-transform group-open:rotate-180"
+                className="flex-none text-slate-600 transition-transform group-open:rotate-180"
                 aria-hidden
               />
             </summary>
-            <div className="border-t border-slate-800/60 px-5 py-4 text-sm leading-relaxed text-slate-300">
+            <div className="border-t border-slate-200/60 px-5 py-4 text-sm leading-relaxed text-slate-700">
               {item.a}
             </div>
           </details>
         ))}
       </div>
 
-      <div className="mt-10 rounded-2xl border border-slate-700/40 bg-slate-950/40 p-6">
-        <h3 className="font-serif text-base font-semibold text-slate-50">
+      <div className="mt-10 rounded-2xl border border-slate-300/40 bg-slate-50/40 p-6">
+        <h3 className="font-serif text-base font-semibold text-slate-950">
           Experimental comparison sources
         </h3>
-        <p className="mt-1 text-xs leading-relaxed text-slate-400">
+        <p className="mt-1 text-xs leading-relaxed text-slate-600">
           These are comparison surfaces, not inputs. The closed branch is built
           only from the two axioms.
         </p>
@@ -57,15 +57,15 @@ export function HostileRefereeFAQ() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between gap-2 rounded-lg border border-slate-800/50 bg-slate-950/40 px-3 py-2 transition-colors hover:border-blue-400/40 hover:bg-blue-500/5"
+                className="group flex items-center justify-between gap-2 rounded-lg border border-slate-200/50 bg-slate-50/40 px-3 py-2 transition-colors hover:border-blue-400/40 hover:bg-blue-500/5"
               >
                 <span className="text-sm">
-                  <span className="font-semibold text-slate-100">{s.name}</span>
-                  <span className="text-slate-400"> — {s.what}</span>
+                  <span className="font-semibold text-slate-900">{s.name}</span>
+                  <span className="text-slate-600"> — {s.what}</span>
                 </span>
                 <ExternalLink
                   size={13}
-                  className="flex-none text-slate-600 transition-colors group-hover:text-blue-300"
+                  className="flex-none text-slate-500 transition-colors group-hover:text-blue-700"
                   aria-hidden
                 />
               </a>

@@ -82,19 +82,19 @@ function formatDay(iso: string): string {
 
 const MARKER: Record<string, { cls: string; title: string }> = {
   E: {
-    cls: "bg-emerald-500/10 text-emerald-300 ring-emerald-400/30",
+    cls: "bg-emerald-500/10 text-emerald-700 ring-emerald-400/30",
     title: "Exact / machine-proven (identity, lattice, formalised, numerical fixed point)",
   },
   C: {
-    cls: "bg-amber-500/10 text-amber-300 ring-amber-400/30",
+    cls: "bg-amber-500/10 text-amber-700 ring-amber-400/30",
     title: "Conditional (physical / bridge / readout, under named hypotheses)",
   },
   O: {
-    cls: "bg-slate-500/10 text-slate-300 ring-slate-400/30",
+    cls: "bg-slate-500/10 text-slate-700 ring-slate-600/30",
     title: "Open / axiom",
   },
   X: {
-    cls: "bg-rose-500/10 text-rose-300 ring-rose-400/30",
+    cls: "bg-rose-500/10 text-rose-700 ring-rose-400/30",
     title: "Falsifiable kill test",
   },
 };
@@ -103,15 +103,15 @@ const MARKER_ORDER = ["E", "C", "O", "X"];
 
 /** Theory areas (navigational aid). Keys match classifyArea() in page.tsx. */
 const AREA_META: Record<string, { label: string; cls: string; dot: string }> = {
-  celestial: { label: "Celestial route", cls: "bg-violet-500/10 text-violet-200 ring-violet-400/30", dot: "bg-violet-400" },
-  seam: { label: "Seam & QGEO", cls: "bg-blue-500/10 text-blue-200 ring-blue-400/30", dot: "bg-blue-400" },
-  p2: { label: "P2 & carrier", cls: "bg-cyan-500/10 text-cyan-200 ring-cyan-400/30", dot: "bg-cyan-400" },
-  em: { label: "EM fixed point", cls: "bg-amber-500/10 text-amber-200 ring-amber-400/30", dot: "bg-amber-400" },
-  flavor: { label: "Flavor & masses", cls: "bg-emerald-500/10 text-emerald-200 ring-emerald-400/30", dot: "bg-emerald-400" },
-  gravity: { label: "Gravity & cosmology", cls: "bg-sky-500/10 text-sky-200 ring-sky-400/30", dot: "bg-sky-400" },
-  horizon: { label: "Horizon & BH", cls: "bg-indigo-500/10 text-indigo-200 ring-indigo-400/30", dot: "bg-indigo-400" },
-  experiment: { label: "Experiments", cls: "bg-rose-500/10 text-rose-200 ring-rose-400/30", dot: "bg-rose-400" },
-  infra: { label: "Infrastructure", cls: "bg-slate-500/10 text-slate-300 ring-slate-400/30", dot: "bg-slate-400" },
+  celestial: { label: "Celestial route", cls: "bg-violet-500/10 text-violet-800 ring-violet-400/30", dot: "bg-violet-400" },
+  seam: { label: "Seam & QGEO", cls: "bg-blue-500/10 text-blue-800 ring-blue-400/30", dot: "bg-blue-400" },
+  p2: { label: "P2 & carrier", cls: "bg-cyan-500/10 text-cyan-800 ring-cyan-400/30", dot: "bg-cyan-400" },
+  em: { label: "EM fixed point", cls: "bg-amber-500/10 text-amber-800 ring-amber-400/30", dot: "bg-amber-400" },
+  flavor: { label: "Flavor & masses", cls: "bg-emerald-500/10 text-emerald-800 ring-emerald-400/30", dot: "bg-emerald-400" },
+  gravity: { label: "Gravity & cosmology", cls: "bg-sky-500/10 text-sky-800 ring-sky-400/30", dot: "bg-sky-400" },
+  horizon: { label: "Horizon & BH", cls: "bg-indigo-500/10 text-indigo-800 ring-indigo-400/30", dot: "bg-indigo-400" },
+  experiment: { label: "Experiments", cls: "bg-rose-500/10 text-rose-800 ring-rose-400/30", dot: "bg-rose-400" },
+  infra: { label: "Infrastructure", cls: "bg-slate-500/10 text-slate-700 ring-slate-600/30", dot: "bg-slate-600" },
   core: { label: "Compiler core", cls: "bg-fuchsia-500/10 text-fuchsia-200 ring-fuchsia-400/30", dot: "bg-fuchsia-400" },
 };
 
@@ -169,7 +169,7 @@ function Math({ tex, macros }: { tex: string; macros: Record<string, string> }) 
     }
   }, [tex, macros]);
   return (
-    <span ref={ref} role="math" aria-label={tex} className="text-cyan-300">
+    <span ref={ref} role="math" aria-label={tex} className="text-cyan-700">
       {tex}
     </span>
   );
@@ -189,7 +189,7 @@ function renderNodes(
         return (
           <code
             key={i}
-            className="rounded bg-blue-500/10 px-1 py-0.5 font-mono text-[0.85em] font-medium text-blue-200 ring-1 ring-blue-400/20"
+            className="rounded bg-blue-500/10 px-1 py-0.5 font-mono text-[0.85em] font-medium text-blue-800 ring-1 ring-blue-400/20"
           >
             {nd.v}
           </code>
@@ -198,13 +198,13 @@ function renderNodes(
         return <StatusMarker key={i} value={nd.v ?? "O"} />;
       case "b":
         return (
-          <strong key={i} className="font-semibold text-slate-100">
+          <strong key={i} className="font-semibold text-slate-900">
             {renderNodes(nd.c ?? [], macros)}
           </strong>
         );
       case "i":
         return (
-          <em key={i} className="italic text-slate-200">
+          <em key={i} className="italic text-slate-800">
             {renderNodes(nd.c ?? [], macros)}
           </em>
         );
@@ -436,7 +436,7 @@ export function ChangelogBrowser({
   return (
     <div>
       {/* ---- Controls: day paging + filter bar --------------------------- */}
-      <div className="mb-8 space-y-4 rounded-2xl border border-slate-800/60 bg-slate-900/40 p-4 sm:p-5">
+      <div className="mb-8 space-y-4 rounded-2xl border border-slate-200/60 bg-slate-100/40 p-4 sm:p-5">
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-1.5">
             <button
@@ -444,7 +444,7 @@ export function ChangelogBrowser({
               onClick={() => olderDay && goToDay(olderDay.date)}
               disabled={!olderDay}
               aria-label="Older day"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-lg ring-1 ring-slate-700/60 text-slate-300 transition-colors hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-30"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-lg ring-1 ring-slate-300/60 text-slate-700 transition-colors hover:bg-slate-900/5 disabled:cursor-not-allowed disabled:opacity-30"
             >
               <ChevronLeft size={18} />
             </button>
@@ -453,7 +453,7 @@ export function ChangelogBrowser({
               onClick={() => newerDay && goToDay(newerDay.date)}
               disabled={!newerDay}
               aria-label="Newer day"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-lg ring-1 ring-slate-700/60 text-slate-300 transition-colors hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-30"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-lg ring-1 ring-slate-300/60 text-slate-700 transition-colors hover:bg-slate-900/5 disabled:cursor-not-allowed disabled:opacity-30"
             >
               <ChevronRight size={18} />
             </button>
@@ -467,7 +467,7 @@ export function ChangelogBrowser({
               id="cl-day"
               value={selectedDay}
               onChange={(e) => goToDay(e.target.value)}
-              className="max-w-[16rem] rounded-lg border border-slate-700/60 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-blue-400/50 focus:outline-none"
+              className="max-w-[16rem] rounded-lg border border-slate-300/60 bg-slate-50/60 px-3 py-2 text-sm text-slate-800 focus:border-blue-400/50 focus:outline-none"
             >
               {days.map((d) => (
                 <option key={d.date} value={d.date}>
@@ -477,16 +477,16 @@ export function ChangelogBrowser({
             </select>
           </div>
 
-          <span className="ml-auto font-mono text-xs text-slate-500">
+          <span className="ml-auto font-mono text-xs text-slate-600">
             {dayIdx + 1} / {days.length} days
           </span>
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-slate-800/60 pt-4">
+        <div className="flex flex-col gap-3 border-t border-slate-200/60 pt-4">
           <div className="relative">
             <Search
               size={15}
-              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"
+              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-600"
               aria-hidden
             />
             <input
@@ -494,14 +494,14 @@ export function ChangelogBrowser({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search all entries — module id, claim id, keyword…"
-              className="w-full rounded-lg border border-slate-700/60 bg-slate-950/60 py-2 pl-9 pr-9 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-400/50 focus:outline-none"
+              className="w-full rounded-lg border border-slate-300/60 bg-slate-50/60 py-2 pl-9 pr-9 text-sm text-slate-800 placeholder:text-slate-600 focus:border-blue-400/50 focus:outline-none"
             />
             {filtering && (
               <button
                 type="button"
                 onClick={clearFilters}
                 aria-label="Clear filters"
-                className="absolute right-2 top-1/2 -translate-y-1/2 inline-flex h-6 w-6 items-center justify-center rounded text-slate-400 hover:bg-white/5 hover:text-slate-200"
+                className="absolute right-2 top-1/2 -translate-y-1/2 inline-flex h-6 w-6 items-center justify-center rounded text-slate-600 hover:bg-slate-900/5 hover:text-slate-800"
               >
                 <XIcon size={15} />
               </button>
@@ -528,7 +528,7 @@ export function ChangelogBrowser({
                 </button>
               );
             })}
-            <span aria-hidden className="mx-1 h-4 w-px bg-slate-700/60" />
+            <span aria-hidden className="mx-1 h-4 w-px bg-slate-300/60" />
             {MARKER_ORDER.map((m) => {
               const on = activeMarkers.has(m);
               return (
@@ -554,12 +554,12 @@ export function ChangelogBrowser({
       {/* ---- Filter results (global) ------------------------------------- */}
       {filtering ? (
         <div>
-          <p className="mb-4 text-sm text-slate-400">
-            <span className="font-semibold text-slate-200">{results.length}</span>{" "}
+          <p className="mb-4 text-sm text-slate-600">
+            <span className="font-semibold text-slate-800">{results.length}</span>{" "}
             {results.length === 1 ? "entry" : "entries"} match your filter.
           </p>
           {results.length === 0 ? (
-            <div className="rounded-2xl border border-slate-800/60 bg-slate-900/30 px-6 py-10 text-center text-sm text-slate-400">
+            <div className="rounded-2xl border border-slate-200/60 bg-slate-100/30 px-6 py-10 text-center text-sm text-slate-600">
               No entries match. Try a different keyword or clear the filters.
             </div>
           ) : (
@@ -567,20 +567,21 @@ export function ChangelogBrowser({
               {results.map((r) => (
                 <li key={r.anchor}>
                   <Link
+                    prefetch={false}
                     href={`${pathname}?day=${r.date}#${r.anchor}`}
                     onClick={clearFilters}
-                    className="group flex gap-3 rounded-xl border border-slate-800/60 bg-slate-900/30 px-4 py-3 transition-colors hover:border-slate-600/60 hover:bg-slate-900/60"
+                    className="group flex gap-3 rounded-xl border border-slate-200/60 bg-slate-100/30 px-4 py-3 transition-colors hover:border-slate-400/60 hover:bg-slate-100/60"
                   >
                     <div className="flex shrink-0 flex-col items-start gap-1">
                       <time
                         dateTime={r.date}
-                        className="font-mono text-xs font-semibold text-blue-300"
+                        className="font-mono text-xs font-semibold text-blue-700"
                       >
                         {formatDay(r.date)}
                       </time>
                       <AreaBadge area={r.area} />
                     </div>
-                    <p className="text-sm leading-relaxed text-slate-300 group-hover:text-slate-200">
+                    <p className="text-sm leading-relaxed text-slate-700 group-hover:text-slate-800">
                       {r.lead}
                     </p>
                   </Link>
@@ -594,10 +595,10 @@ export function ChangelogBrowser({
         <div>
           <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-baseline gap-3">
-              <h2 className="font-serif text-2xl font-semibold text-slate-50">
+              <h2 className="font-serif text-2xl font-semibold text-slate-950">
                 {formatDay(selectedDay)}
               </h2>
-              <span className="font-mono text-xs text-slate-500">
+              <span className="font-mono text-xs text-slate-600">
                 {entries.length} {entries.length === 1 ? "update" : "updates"}
               </span>
             </div>
@@ -605,7 +606,7 @@ export function ChangelogBrowser({
               <button
                 type="button"
                 onClick={() => setAll(!allOpen)}
-                className="rounded-full px-3 py-1 text-xs font-medium text-slate-400 ring-1 ring-slate-700/50 transition-colors hover:bg-white/5 hover:text-slate-200"
+                className="rounded-full px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-slate-300/50 transition-colors hover:bg-slate-900/5 hover:text-slate-800"
               >
                 {allOpen ? "Collapse all" : "Expand all"}
               </button>
@@ -617,17 +618,17 @@ export function ChangelogBrowser({
               const isOpen = open.has(entry.anchor);
               return (
                 <li key={entry.anchor} id={entry.anchor} className="scroll-mt-24">
-                  <article className="glass overflow-hidden rounded-2xl ring-1 ring-slate-700/40">
+                  <article className="glass overflow-hidden rounded-2xl ring-1 ring-slate-300/40">
                     <button
                       type="button"
                       onClick={() => toggleOpen(entry.anchor)}
                       aria-expanded={isOpen}
-                      className="flex w-full flex-col gap-2 px-5 py-4 text-left transition-colors hover:bg-white/[0.02] sm:px-6"
+                      className="flex w-full flex-col gap-2 px-5 py-4 text-left transition-colors hover:bg-slate-900/[0.02] sm:px-6"
                     >
                       <div className="flex items-center gap-2">
                         <AreaBadge area={entry.area} />
                         {entry.enumr && (
-                          <span className="rounded bg-slate-800/70 px-1.5 py-0.5 font-mono text-[0.65rem] font-semibold text-slate-400">
+                          <span className="rounded bg-slate-200/70 px-1.5 py-0.5 font-mono text-[0.65rem] font-semibold text-slate-600">
                             {entry.enumr}
                           </span>
                         )}
@@ -635,34 +636,34 @@ export function ChangelogBrowser({
                           size={18}
                           aria-hidden
                           className={cn(
-                            "ml-auto shrink-0 text-slate-500 transition-transform",
+                            "ml-auto shrink-0 text-slate-600 transition-transform",
                             isOpen && "rotate-180",
                           )}
                         />
                       </div>
                       <div
                         className={cn(
-                          "text-[0.98rem] font-semibold leading-snug text-slate-100",
+                          "text-[0.98rem] font-semibold leading-snug text-slate-900",
                           !isOpen && "line-clamp-2",
                         )}
                       >
                         {renderNodes(entry.title, macros)}
                       </div>
                       {!isOpen && entry.summary.length > 0 && (
-                        <div className="line-clamp-2 text-sm leading-relaxed text-slate-400">
+                        <div className="line-clamp-2 text-sm leading-relaxed text-slate-600">
                           {renderNodes(entry.summary, macros)}
                         </div>
                       )}
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-slate-800/60 px-5 pb-5 pt-4 sm:px-6">
+                      <div className="border-t border-slate-200/60 px-5 pb-5 pt-4 sm:px-6">
                         {entry.summary.length > 0 && (
-                          <div className="rounded-xl border border-slate-800/50 bg-slate-900/40 px-4 py-3">
-                            <p className="mb-1.5 text-[0.7rem] font-semibold uppercase tracking-wider text-slate-500">
+                          <div className="rounded-xl border border-slate-200/50 bg-slate-100/40 px-4 py-3">
+                            <p className="mb-1.5 text-[0.7rem] font-semibold uppercase tracking-wider text-slate-600">
                               Summary
                             </p>
-                            <p className="text-sm leading-7 text-slate-200">
+                            <p className="text-sm leading-7 text-slate-800">
                               {renderNodes(entry.summary, macros)}
                             </p>
                           </div>
@@ -670,16 +671,16 @@ export function ChangelogBrowser({
 
                         {entry.points.length > 0 && (
                           <div className="mt-4">
-                            <p className="mb-2.5 text-[0.7rem] font-semibold uppercase tracking-wider text-slate-500">
+                            <p className="mb-2.5 text-[0.7rem] font-semibold uppercase tracking-wider text-slate-600">
                               Key points
                             </p>
                             <ol className="space-y-2.5">
                               {entry.points.map((p, k) => (
                                 <li key={k} className="flex gap-3">
-                                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-500/15 font-mono text-[0.7rem] font-semibold text-blue-200 ring-1 ring-blue-400/30">
+                                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-500/15 font-mono text-[0.7rem] font-semibold text-blue-800 ring-1 ring-blue-400/30">
                                     {p.label}
                                   </span>
-                                  <div className="min-w-0 flex-1 text-sm leading-7 text-slate-300">
+                                  <div className="min-w-0 flex-1 text-sm leading-7 text-slate-700">
                                     {renderNodes(p.nodes, macros)}
                                   </div>
                                 </li>
@@ -689,8 +690,8 @@ export function ChangelogBrowser({
                         )}
 
                         {entry.items.length > 0 && (
-                          <div className="mt-5 border-t border-slate-800/40 pt-4">
-                            <p className="mb-2.5 text-[0.7rem] font-semibold uppercase tracking-wider text-slate-500">
+                          <div className="mt-5 border-t border-slate-200/40 pt-4">
+                            <p className="mb-2.5 text-[0.7rem] font-semibold uppercase tracking-wider text-slate-600">
                               Details
                             </p>
                             <ul className="space-y-3">
@@ -700,14 +701,14 @@ export function ChangelogBrowser({
                                   <li
                                     key={j}
                                     className={cn(
-                                      "text-sm leading-7 text-slate-400",
+                                      "text-sm leading-7 text-slate-600",
                                       label
                                         ? "flex gap-2.5"
-                                        : "relative pl-4 before:absolute before:left-0 before:top-[0.7em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-slate-600",
+                                        : "relative pl-4 before:absolute before:left-0 before:top-[0.7em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-slate-400",
                                     )}
                                   >
                                     {label && (
-                                      <span className="mt-0.5 shrink-0 rounded bg-slate-800/70 px-1.5 py-0.5 font-mono text-[0.65rem] font-semibold text-slate-400">
+                                      <span className="mt-0.5 shrink-0 rounded bg-slate-200/70 px-1.5 py-0.5 font-mono text-[0.65rem] font-semibold text-slate-600">
                                         {label}
                                       </span>
                                     )}
@@ -733,7 +734,7 @@ export function ChangelogBrowser({
               <button
                 type="button"
                 onClick={() => goToDay(olderDay.date)}
-                className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-300 ring-1 ring-slate-700/60 transition-colors hover:bg-white/5"
+                className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-700 ring-1 ring-slate-300/60 transition-colors hover:bg-slate-900/5"
               >
                 <ChevronLeft size={16} />
                 {formatDay(olderDay.date)}
@@ -745,7 +746,7 @@ export function ChangelogBrowser({
               <button
                 type="button"
                 onClick={() => goToDay(newerDay.date)}
-                className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-300 ring-1 ring-slate-700/60 transition-colors hover:bg-white/5"
+                className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-700 ring-1 ring-slate-300/60 transition-colors hover:bg-slate-900/5"
               >
                 {formatDay(newerDay.date)}
                 <ChevronRight size={16} />

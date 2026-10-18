@@ -145,7 +145,7 @@ export function PrimeFrontVideo() {
         />
 
         <figure className="mt-10">
-          <div className="relative overflow-hidden border border-slate-700/50 bg-slate-950/60">
+          <div className="relative overflow-hidden border border-slate-300/50 bg-slate-50/60">
             <video
               ref={ref}
               className="aspect-video w-full"
@@ -182,9 +182,9 @@ export function PrimeFrontVideo() {
                 type="button"
                 onClick={play}
                 aria-label="Play the film — The Prime Front, explained"
-                className="group absolute inset-0 flex items-center justify-center bg-slate-950/30 transition-colors hover:bg-slate-950/15 focus-visible:outline-none"
+                className="group absolute inset-0 flex items-center justify-center bg-slate-50/30 transition-colors hover:bg-slate-50/15 focus-visible:outline-none"
               >
-                <span className="flex h-20 w-20 items-center justify-center rounded-full border border-sky-400/40 bg-sky-500/20 text-sky-100 ring-1 ring-white/10 transition-transform group-hover:scale-105 group-focus-visible:scale-105">
+                <span className="flex h-20 w-20 items-center justify-center rounded-full border border-sky-400/40 bg-sky-500/20 text-sky-800 ring-1 ring-white/10 transition-transform group-hover:scale-105 group-focus-visible:scale-105">
                   <Play size={34} className="ml-1" aria-hidden />
                 </span>
               </button>
@@ -202,16 +202,16 @@ export function PrimeFrontVideo() {
                 type="button"
                 onClick={() => seek(c.t)}
                 className={cn(
-                  "inline-flex items-center gap-2 rounded-full border border-slate-700/50 bg-slate-900/60 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:border-sky-400/40 hover:text-sky-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/40",
+                  "inline-flex items-center gap-2 rounded-full border border-slate-300/50 bg-slate-100/60 px-3 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:border-sky-400/40 hover:text-sky-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/40",
                 )}
               >
-                <span className="font-mono text-sky-300/80">{fmt(c.t)}</span>
+                <span className="font-mono text-sky-700/80">{fmt(c.t)}</span>
                 {c.label}
               </button>
             ))}
           </nav>
 
-          <figcaption className="mt-3 text-center text-xs text-slate-500">
+          <figcaption className="mt-3 text-center text-xs text-slate-600">
             English narration with English captions burned into the picture;
             selectable English and German subtitle tracks and the full
             transcript below are generated from the same source. Every number
@@ -221,20 +221,20 @@ export function PrimeFrontVideo() {
         </figure>
 
         {/* transcript — accessible + indexable */}
-        <details className="group mt-8 rounded-2xl border border-slate-700/40 bg-slate-950/40 p-5 sm:p-6">
-          <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-semibold text-slate-200 transition-colors hover:text-white">
+        <details className="group mt-8 rounded-2xl border border-slate-300/40 bg-slate-50/40 p-5 sm:p-6">
+          <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-semibold text-slate-800 transition-colors hover:text-slate-950">
             <span>Read the transcript</span>
-            <span className="text-slate-500 transition-transform group-open:rotate-180">
+            <span className="text-slate-600 transition-transform group-open:rotate-180">
               ⌄
             </span>
           </summary>
           <div className="prose-tfpt mt-5 space-y-5">
             {TRANSCRIPT.map((s) => (
               <div key={s.heading}>
-                <h3 className="font-serif text-base font-semibold text-slate-100">
+                <h3 className="font-serif text-base font-semibold text-slate-900">
                   {s.heading}
                 </h3>
-                <p className="mt-1 text-sm leading-relaxed text-slate-300">
+                <p className="mt-1 text-sm leading-relaxed text-slate-700">
                   {s.body}
                 </p>
               </div>

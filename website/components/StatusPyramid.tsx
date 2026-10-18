@@ -20,9 +20,9 @@ const LAYERS: Layer[] = [
     label: "[O] Axioms — declared inputs",
     short: "Axiom",
     examples: "c₃ = 1/(8π) (P1) · five-slot carrier g_car = 5 (P2 — since v108–v113 reduced to the boundary-net premise: gate closes ⇒ carrier becomes [E])",
-    tone: "from-slate-600 to-slate-500",
-    ring: "ring-slate-400/40",
-    text: "text-slate-100",
+    tone: "from-slate-400 to-slate-500",
+    ring: "ring-slate-600/40",
+    text: "text-slate-900",
     width: "w-full",
   },
   {
@@ -80,12 +80,12 @@ const LAYERS: Layer[] = [
 
 export function StatusPyramid() {
   return (
-    <div className="glass rounded-2xl ring-1 ring-slate-700/40">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/60 px-5 py-3">
-        <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-300/80">
+    <div className="glass rounded-2xl ring-1 ring-slate-300/40">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200/60 px-5 py-3">
+        <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
           The claim stack — not all outputs share the same grade
         </span>
-        <span className="rounded-full bg-slate-800/60 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-widest text-slate-300 ring-1 ring-slate-700/40">
+        <span className="rounded-full bg-slate-200/60 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-widest text-slate-700 ring-1 ring-slate-300/40">
           Foundation{" "}
           <span className="math-label">→</span> conditional
         </span>
@@ -134,9 +134,9 @@ export function StatusPyramid() {
         ))}
       </div>
 
-      <div className="border-t border-slate-800/60 px-6 py-4 sm:px-8">
-        <p className="text-xs leading-relaxed text-slate-400">
-          <strong className="text-slate-200">Reading rule.</strong> The two
+      <div className="border-t border-slate-200/60 px-6 py-4 sm:px-8">
+        <p className="text-xs leading-relaxed text-slate-600">
+          <strong className="text-slate-800">Reading rule.</strong> The two
           axioms at the top are the foundation; each lower band{" "}
           <em>depends on</em> the bands above. Exact identities and lattice
           theorems fail with a single counterexample; numerical fixed points

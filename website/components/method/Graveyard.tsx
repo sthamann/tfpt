@@ -75,27 +75,27 @@ export function Graveyard() {
       {GRAVES.map((g) => (
         <article
           key={g.title}
-          className="flex flex-col rounded-2xl border border-rose-500/20 bg-slate-950/60 p-5"
+          className="flex flex-col rounded-2xl border border-rose-500/20 bg-slate-50/60 p-5"
         >
           <div className="flex items-start justify-between gap-3">
-            <h3 className="font-mono text-sm font-semibold text-rose-100">
+            <h3 className="font-mono text-sm font-semibold text-rose-800">
               {g.title}
             </h3>
-            <span className="shrink-0 rounded-full bg-rose-500/10 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-widest text-rose-300 ring-1 ring-rose-400/30">
+            <span className="shrink-0 rounded-full bg-rose-500/10 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-widest text-rose-700 ring-1 ring-rose-400/30">
               buried
             </span>
           </div>
-          <p className="mt-3 text-sm leading-relaxed text-slate-300">
-            <span className="font-semibold text-slate-200">
+          <p className="mt-3 text-sm leading-relaxed text-slate-700">
+            <span className="font-semibold text-slate-800">
               What was tempting.{" "}
             </span>
             {g.tempting}
           </p>
-          <p className="mt-2 text-sm leading-relaxed text-slate-400">
-            <span className="font-semibold text-rose-200">How it died. </span>
+          <p className="mt-2 text-sm leading-relaxed text-slate-600">
+            <span className="font-semibold text-rose-800">How it died. </span>
             {g.died}
           </p>
-          <div className="mt-auto pt-3 font-mono text-[11px] text-slate-500">
+          <div className="mt-auto pt-3 font-mono text-[11px] text-slate-600">
             evidence: {g.refs}
           </div>
         </article>

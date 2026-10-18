@@ -30,6 +30,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/review` },
   openGraph: {
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
     type: "article",
     title: "Read this first — the skeptical reviewer's entry point",
     description:
@@ -40,6 +41,7 @@ export const metadata: Metadata = {
     authors: ["Stefan Hamann", "Alessandro Rizzo"],
   },
   twitter: {
+    images: [`${SITE_URL}/opengraph-image`],
     card: "summary_large_image",
     title: "TFPT — read this first if you are skeptical",
     description:
@@ -64,7 +66,7 @@ const BLOCKS: Block[] = [
     body: (
       <>
         A two-input discrete compiler whose algebraic kernel derives the{" "}
-        <strong className="text-slate-100">Standard-Model skeleton</strong> — the
+        <strong className="text-slate-900">Standard-Model skeleton</strong> — the
         gauge group, three families, hypercharge and the flavor invariants — and
         several dimensionless readouts (α⁻¹, the neutrino angles, β_rad). It is
         built only from two axioms: the seam constant{" "}
@@ -81,9 +83,9 @@ const BLOCKS: Block[] = [
     tone: "border-slate-500/30 bg-slate-500/[0.05]",
     body: (
       <>
-        It is <strong className="text-slate-100">not</strong> an E₈ gauge theory
+        It is <strong className="text-slate-900">not</strong> an E₈ gauge theory
         (so the Distler–Garibaldi / Coleman–Mandula no-gos do not apply), and{" "}
-        <strong className="text-slate-100">not</strong> a certified strict
+        <strong className="text-slate-900">not</strong> a certified strict
         physical theory of everything end-to-end — the keystone SEAM.EQUIV.01 is
         closed only on its MMST route (SEAM.EQUIV.MMST.01), modulo a cited
         published theorem (the cited continuum scaling-limit existence, v336;
@@ -114,7 +116,7 @@ const BLOCKS: Block[] = [
         tensor ratio <span className="font-mono">r ≳ 0.01</span>; a robust{" "}
         <span className="font-mono">w ≠ −1</span>; a JUNO solar angle clearly away
         from 0.307; or any verification script failing to reproduce its claim.{" "}
-        <Link href="/falsification" className="font-semibold text-blue-300 hover:text-blue-200">
+        <Link prefetch={false} href="/falsification" className="font-semibold text-blue-700 hover:text-blue-800">
           The full kill board →
         </Link>
       </>
@@ -129,14 +131,14 @@ const BLOCKS: Block[] = [
       <>
         Every exact identity, lattice/Lie theorem and numerical fixed point is
         re-derived from the two axioms by{" "}
-        <strong className="text-slate-100">{SCRIPT_TOTAL} Python checks</strong>{" "}
+        <strong className="text-slate-900">{SCRIPT_TOTAL} Python checks</strong>{" "}
         (<span className="font-mono">run_all.py</span> ends ALL CHECKS PASSED),
         mirrored on an independent Wolfram path, and the carrier algebra is
         formalised in Lean 4 with{" "}
         <span className="font-mono">0 sorry</span>. Every claim is typed in a
         single versioned ledger — if the prose and the ledger disagree, the
         ledger wins.{" "}
-        <Link href="/verification" className="font-semibold text-blue-300 hover:text-blue-200">
+        <Link prefetch={false} href="/verification" className="font-semibold text-blue-700 hover:text-blue-800">
           The verification stack →
         </Link>
       </>
@@ -178,11 +180,11 @@ const BLOCKS: Block[] = [
         zero-mode removal and is not a TFPT embedding. These native certificates are
         not browser certificates. The
         step-by-step reduction lives on the{" "}
-        <Link href="/changelog" className="font-semibold text-blue-300 hover:text-blue-200">
+        <Link prefetch={false} href="/changelog" className="font-semibold text-blue-700 hover:text-blue-800">
           changelog
         </Link>
         .{" "}
-        <Link href="/verification#open-gates" className="font-semibold text-blue-300 hover:text-blue-200">
+        <Link prefetch={false} href="/verification#open-gates" className="font-semibold text-blue-700 hover:text-blue-800">
           The open residual →
         </Link>
       </>
@@ -200,7 +202,7 @@ const BLOCKS: Block[] = [
         browser (via Pyodide / WebAssembly) and re-derives{" "}
         <span className="font-mono">α⁻¹ = 137.0359992…</span> as the unique root
         of the parameter-free cubic — no install, no fit.{" "}
-        <Link href="/verification#dag" className="font-semibold text-blue-300 hover:text-blue-200">
+        <Link prefetch={false} href="/verification#dag" className="font-semibold text-blue-700 hover:text-blue-800">
           Run it now →
         </Link>{" "}
         Or clone the repository and run the whole suite locally.
@@ -225,20 +227,21 @@ export default function ReviewPage() {
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-6">
             <Link
+              prefetch={false}
               href="/"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-200"
+              className="inline-flex items-center gap-1.5 text-sm text-slate-600 transition-colors hover:text-slate-800"
             >
               <ArrowLeft size={14} />
               Back to overview
             </Link>
           </nav>
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-blue-200">
+          <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-blue-800">
             <span className="uppercase">For the skeptical reviewer</span>
           </span>
-          <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-slate-50 sm:text-5xl md:text-6xl">
+          <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-slate-950 sm:text-5xl md:text-6xl">
             Read this <span className="text-gradient-blue">first</span>.
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg">
             If the claim &ldquo;a derived Standard-Model skeleton&rdquo; set off
             an alarm, good — keep it on. This page is the five-minute orientation:
             what is claimed, what is <em>not</em>, what would falsify it, what is
@@ -254,16 +257,16 @@ export default function ReviewPage() {
             {BLOCKS.map((b) => (
               <li key={b.kicker}>
                 <article className={`rounded-2xl border p-5 sm:p-6 ${b.tone}`}>
-                  <div className="flex items-center gap-2 text-slate-200">
+                  <div className="flex items-center gap-2 text-slate-800">
                     {b.icon}
-                    <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-600">
                       {b.kicker}
                     </span>
                   </div>
-                  <h2 className="mt-2 font-serif text-xl font-semibold text-slate-50">
+                  <h2 className="mt-2 font-serif text-xl font-semibold text-slate-950">
                     {b.title}
                   </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-300">{b.body}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-700">{b.body}</p>
                 </article>
               </li>
             ))}
@@ -271,29 +274,33 @@ export default function ReviewPage() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
+              prefetch={false}
               href="/verification"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-105"
+              className="inline-flex items-center gap-2 rounded-full bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-105"
             >
               Verification stack
               <ArrowRight size={15} aria-hidden />
             </Link>
             <Link
+              prefetch={false}
               href="/falsification"
-              className="inline-flex items-center gap-2 rounded-full border border-rose-400/40 bg-rose-500/10 px-5 py-2.5 text-sm font-semibold text-rose-100 transition-colors hover:bg-rose-500/20"
+              className="inline-flex items-center gap-2 rounded-full border border-rose-400/40 bg-rose-500/10 px-5 py-2.5 text-sm font-semibold text-rose-800 transition-colors hover:bg-rose-500/20"
             >
               How to kill it
             </Link>
             <Link
+              prefetch={false}
               href="/objections"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-600/60 bg-slate-900/60 px-5 py-2.5 text-sm font-semibold text-slate-100 transition-colors hover:bg-slate-800/80"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-400/60 bg-slate-100/60 px-5 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-200/80"
             >
               Objection ledger
             </Link>
             <Link
+              prefetch={false}
               href={`${REPO_URL}/issues`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-600/60 bg-slate-900/60 px-5 py-2.5 text-sm font-semibold text-slate-100 transition-colors hover:bg-slate-800/80"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-400/60 bg-slate-100/60 px-5 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-200/80"
             >
               Open an issue
             </Link>

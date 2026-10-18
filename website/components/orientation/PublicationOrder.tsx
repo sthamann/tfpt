@@ -46,8 +46,8 @@ export function PublicationOrder() {
             transition={{ duration: 0.6 }}
             className="glass rounded-2xl ring-1 ring-blue-400/20"
           >
-            <div className="flex items-center gap-2 border-b border-slate-800/60 px-5 py-3">
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-300/80">
+            <div className="flex items-center gap-2 border-b border-slate-200/60 px-5 py-3">
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
                 Recommended public order
               </span>
             </div>
@@ -55,21 +55,21 @@ export function PublicationOrder() {
               {PUBLIC_ORDER.map((p, i) => (
                 <li
                   key={p.n}
-                  className="flex items-center gap-4 rounded-xl border border-slate-800/40 bg-slate-950/40 px-4 py-3 transition-colors hover:bg-slate-900/40"
+                  className="flex items-center gap-4 rounded-xl border border-slate-200/40 bg-slate-50/40 px-4 py-3 transition-colors hover:bg-slate-100/40"
                 >
-                  <span className="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/30 to-violet-500/30 font-mono text-xs font-semibold text-blue-100 ring-1 ring-blue-400/30">
+                  <span className="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/30 to-violet-500/30 font-mono text-xs font-semibold text-blue-800 ring-1 ring-blue-400/30">
                     {p.n}
                   </span>
                   <div className="flex-1">
-                    <div className="font-serif text-sm font-semibold text-slate-100">
+                    <div className="font-serif text-sm font-semibold text-slate-900">
                       Doc {p.n} — {p.label}
                     </div>
-                    <div className="text-xs text-slate-400">{p.note}</div>
+                    <div className="text-xs text-slate-600">{p.note}</div>
                   </div>
                   {i < PUBLIC_ORDER.length - 1 && (
                     <ArrowRight
                       size={14}
-                      className="flex-none text-slate-600"
+                      className="flex-none text-slate-500"
                       aria-hidden
                     />
                   )}
@@ -85,8 +85,8 @@ export function PublicationOrder() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="glass rounded-2xl ring-1 ring-emerald-400/20"
           >
-            <div className="flex items-center gap-2 border-b border-slate-800/60 px-5 py-3">
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-emerald-300/80">
+            <div className="flex items-center gap-2 border-b border-slate-200/60 px-5 py-3">
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700/80">
                 Mathematical dependency order
               </span>
             </div>
@@ -94,20 +94,20 @@ export function PublicationOrder() {
               {MATH_ORDER.map((p, i) => (
                 <li
                   key={p.n}
-                  className="flex items-center gap-4 rounded-xl border border-slate-800/40 bg-slate-950/40 px-4 py-3 transition-colors hover:bg-slate-900/40"
+                  className="flex items-center gap-4 rounded-xl border border-slate-200/40 bg-slate-50/40 px-4 py-3 transition-colors hover:bg-slate-100/40"
                 >
-                  <span className="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500/30 to-teal-500/30 font-mono text-xs font-semibold text-emerald-100 ring-1 ring-emerald-400/30">
+                  <span className="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500/30 to-teal-500/30 font-mono text-xs font-semibold text-emerald-800 ring-1 ring-emerald-400/30">
                     {p.n}
                   </span>
                   <div className="flex-1">
-                    <div className="font-serif text-sm font-semibold text-slate-100">
+                    <div className="font-serif text-sm font-semibold text-slate-900">
                       Doc {p.n} — {p.label}
                     </div>
                   </div>
                   {i < MATH_ORDER.length - 1 && (
                     <ArrowRight
                       size={14}
-                      className="flex-none text-slate-600"
+                      className="flex-none text-slate-500"
                       aria-hidden
                     />
                   )}

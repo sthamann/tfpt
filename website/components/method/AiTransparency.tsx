@@ -7,9 +7,9 @@ import { REPO_URL } from "@/lib/utils";
  */
 export function AiTransparency() {
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-5 sm:p-6">
-      <p className="text-sm leading-relaxed text-slate-300 sm:text-[15px]">
-        <span className="font-semibold text-slate-100">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-5 sm:p-6">
+      <p className="text-sm leading-relaxed text-slate-700 sm:text-[15px]">
+        <span className="font-semibold text-slate-900">
           AI agents are used in this project — as instruments.
         </span>{" "}
         They write and run the exploratory probes, draft module code and keep
@@ -18,10 +18,10 @@ export function AiTransparency() {
         with named checks, typed status markers and frozen tolerances, replayed
         in full by
       </p>
-      <pre className="mt-3 overflow-x-auto rounded-xl border border-slate-800/70 bg-slate-900/60 px-4 py-3 font-mono text-[13px] text-emerald-300">
+      <pre className="mt-3 overflow-x-auto rounded-xl border border-slate-200/70 bg-slate-100/60 px-4 py-3 font-mono text-[13px] text-emerald-700">
         <code>python3 verification/run_all.py</code>
       </pre>
-      <p className="mt-3 text-sm leading-relaxed text-slate-400 sm:text-[15px]">
+      <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-[15px]">
         Anyone can replay it — the suite is deterministic (the replay sample
         above is re-certified on every run), the papers and this site are
         generated mirrors of the same ledger, and the{" "}
@@ -29,7 +29,7 @@ export function AiTransparency() {
           href={REPO_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-slate-200 underline decoration-slate-600 underline-offset-2 hover:text-white"
+          className="text-slate-800 underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
         >
           repository
         </a>{" "}

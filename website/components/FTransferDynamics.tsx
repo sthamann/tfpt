@@ -223,13 +223,13 @@ export function FTransferDynamics() {
   }, [render, reduced, runKey]);
 
   return (
-    <figure className="my-4 rounded-xl border border-slate-700/40 bg-slate-950/40 p-4">
+    <figure className="my-4 rounded-xl border border-slate-300/40 bg-slate-50/40 p-4">
       <figcaption className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <div>
-          <p className="text-sm font-semibold text-slate-100">
+          <p className="text-sm font-semibold text-slate-900">
             F_transfer: one shape, four rates
           </p>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-600">
             Every transfer instance is a gapped relaxation to a unique attractor — the same
             shape as the main-branch update to the E₈ marks.
           </p>
@@ -238,7 +238,7 @@ export function FTransferDynamics() {
           <button
             type="button"
             onClick={() => setRunKey((k) => k + 1)}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700/50 bg-slate-900/60 px-2.5 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:bg-slate-800/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/40"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300/50 bg-slate-100/60 px-2.5 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:bg-slate-200/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/40"
             aria-label="Replay the F_transfer relaxation animation"
           >
             <RotateCw size={13} aria-hidden /> Replay
@@ -253,15 +253,15 @@ export function FTransferDynamics() {
             ref={(el) => {
               canvasRefs.current[i] = el;
             }}
-            className="h-[150px] w-full rounded-lg bg-slate-900/40"
+            className="h-[150px] w-full rounded-lg bg-slate-100/40"
             role="img"
             aria-label={`${p.title}: a ${p.rate} relaxation converging to ${p.attractorLabel}`}
           />
         ))}
       </div>
 
-      <p className="mt-3 text-xs leading-relaxed text-slate-400">
-        <span className="font-semibold text-amber-300/90">Only F_pole (Koide)</span> runs at the{" "}
+      <p className="mt-3 text-xs leading-relaxed text-slate-600">
+        <span className="font-semibold text-amber-700/90">Only F_pole (Koide)</span> runs at the{" "}
         <span className="font-mono">seam</span> rate — its Möbius multiplier is{" "}
         <span className="font-mono">(2/3)⁶ = λ₂</span>, the seam-clock eigenvalue. The other three
         share the <em>shape</em> with external rates (thermal washout, cosmological freeze, RG

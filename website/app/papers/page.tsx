@@ -1,3 +1,4 @@
+import { collectionJsonLd } from "@/lib/structured-data";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     `The full TFPT ${SITE_VERSION} document set: reading guide, five core papers, and four companions — architecture, Standard Model, audit & bootstrap, frontier, Red Team, horizon, Origin Theory, research contracts, safeguards.`,
   alternates: { canonical: `${SITE_URL}/papers` },
   openGraph: {
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
     type: "website",
     title: "Papers — TFPT Document Set",
     description: `The TFPT ${SITE_VERSION} document set: reading guide, five core papers, four companions.`,
@@ -24,10 +26,12 @@ export const metadata: Metadata = {
 export default function PapersIndexPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }} />
       <div className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 lg:px-8">
         <Link
+          prefetch={false}
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-200"
+          className="inline-flex items-center gap-1.5 text-sm text-slate-600 transition-colors hover:text-slate-800"
         >
           <ArrowLeft size={14} aria-hidden />
           Back to start

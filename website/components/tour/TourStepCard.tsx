@@ -24,19 +24,19 @@ export function TourStepCard({
     <section
       id={`step-${step.id}`}
       aria-labelledby={`tour-heading-${step.id}`}
-      className="scroll-mt-24 border-t border-slate-800/60 py-12 sm:py-16"
+      className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <p className="text-xs font-semibold uppercase tracking-widest text-blue-300/90">
+        <p className="text-xs font-semibold uppercase tracking-widest text-blue-700/90">
           {step.n.toString().padStart(2, "0")} · {step.short}
         </p>
         <h2
           id={`tour-heading-${step.id}`}
-          className="mt-3 font-serif text-3xl font-semibold leading-tight text-slate-50 sm:text-4xl"
+          className="mt-3 font-serif text-3xl font-semibold leading-tight text-slate-950 sm:text-4xl"
         >
           {step.title}
         </h2>
-        <p className="mt-4 text-lg leading-relaxed text-slate-300 sm:text-xl">
+        <p className="mt-4 text-lg leading-relaxed text-slate-700 sm:text-xl">
           {step.plain}
         </p>
 

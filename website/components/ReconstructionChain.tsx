@@ -33,33 +33,33 @@ const STATUS_META: Record<
 > = {
   operational: {
     label: "Axiom — declared input",
-    tone: "from-slate-400 to-slate-500",
-    ring: "ring-slate-400/30",
-    chip: "bg-slate-500/15 text-slate-200",
+    tone: "from-slate-600 to-slate-500",
+    ring: "ring-slate-600/30",
+    chip: "bg-slate-500/15 text-slate-800",
   },
   "theorem-core": {
     label: "Lattice / identity",
     tone: "from-blue-500 to-violet-500",
     ring: "ring-blue-400/40",
-    chip: "bg-blue-500/15 text-blue-200",
+    chip: "bg-blue-500/15 text-blue-800",
   },
   decoder: {
     label: "Readout",
     tone: "from-violet-500 to-fuchsia-500",
     ring: "ring-violet-400/40",
-    chip: "bg-violet-500/15 text-violet-200",
+    chip: "bg-violet-500/15 text-violet-800",
   },
   conditional: {
     label: "Open / frontier",
     tone: "from-orange-500 to-red-500",
     ring: "ring-orange-400/40",
-    chip: "bg-orange-500/15 text-orange-200",
+    chip: "bg-orange-500/15 text-orange-800",
   },
   bridge: {
     label: "Bridge readout",
     tone: "from-emerald-500 to-teal-500",
     ring: "ring-emerald-400/40",
-    chip: "bg-emerald-500/15 text-emerald-200",
+    chip: "bg-emerald-500/15 text-emerald-800",
   },
   downstream: {
     label: "Geometry channel",
@@ -212,7 +212,7 @@ function StepCard({ node, delay }: StepCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.05 }}
       transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
-      className={`group glass relative overflow-hidden rounded-2xl ring-1 ring-slate-700/40 transition-shadow hover:ring-slate-500/50`}
+      className={`group glass relative overflow-hidden rounded-2xl ring-1 ring-slate-300/40 transition-shadow hover:ring-slate-500/50`}
     >
       <div
         aria-hidden="true"
@@ -225,7 +225,7 @@ function StepCard({ node, delay }: StepCardProps) {
           >
             {node.step}
           </span>
-          <h3 className="font-serif text-lg font-semibold text-slate-50">
+          <h3 className="font-serif text-lg font-semibold text-slate-950">
             {node.label}
           </h3>
           <span
@@ -266,21 +266,21 @@ function Cell({
           ? "border-emerald-400/25 bg-emerald-500/5"
           : warn
             ? "border-orange-400/25 bg-orange-500/5"
-            : "border-slate-700/40 bg-slate-950/40"
+            : "border-slate-300/40 bg-slate-50/40"
       }`}
     >
       <dt
         className={`text-[10px] font-semibold uppercase tracking-widest ${
           highlight
-            ? "text-emerald-300/85"
+            ? "text-emerald-700/85"
             : warn
-              ? "text-orange-300/85"
-              : "text-blue-300/80"
+              ? "text-orange-700/85"
+              : "text-blue-700/80"
         }`}
       >
         {label}
       </dt>
-      <dd className="mt-1 leading-relaxed text-slate-300">{body}</dd>
+      <dd className="mt-1 leading-relaxed text-slate-700">{body}</dd>
     </div>
   );
 }
@@ -288,9 +288,9 @@ function Cell({
 function Connector({ label }: { label?: string }) {
   return (
     <div className="relative flex flex-col items-center" aria-hidden="true">
-      <div className="h-8 w-px bg-gradient-to-b from-slate-600/40 via-slate-500/30 to-slate-600/40" />
+      <div className="h-8 w-px bg-gradient-to-b from-slate-400/40 via-slate-500/30 to-slate-400/40" />
       {label && (
-        <span className="mt-1 rounded-full bg-slate-900/60 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-400 ring-1 ring-slate-700/40">
+        <span className="mt-1 rounded-full bg-slate-100/60 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-600 ring-1 ring-slate-300/40">
           {label}
         </span>
       )}
@@ -355,10 +355,10 @@ export function ReconstructionChain() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.05 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="mx-auto mt-12 max-w-5xl rounded-2xl border border-amber-400/20 bg-amber-500/5 px-6 py-5 text-sm text-amber-100/90"
+          className="mx-auto mt-12 max-w-5xl rounded-2xl border border-amber-400/20 bg-amber-500/5 px-6 py-5 text-sm text-amber-800/90"
         >
-          <strong className="font-semibold text-amber-200">Status discipline.</strong>
-          <span className="ml-2 text-amber-100/85">
+          <strong className="font-semibold text-amber-800">Status discipline.</strong>
+          <span className="ml-2 text-amber-800/85">
             The diagram is a status map of the dependency DAG, not a claim that
             all displayed outputs share the same grade. Axioms, lattice/identity
             steps, readouts, the bridge ladder and the open residual are all
@@ -368,8 +368,9 @@ export function ReconstructionChain() {
           </span>
           <div className="mt-4">
             <Link
+              prefetch={false}
               href="/verification"
-              className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-500/10 px-4 py-2 text-xs font-semibold text-amber-100 transition-colors hover:bg-amber-500/20"
+              className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-500/10 px-4 py-2 text-xs font-semibold text-amber-800 transition-colors hover:bg-amber-500/20"
             >
               Explore the interactive dependency graph
               <ArrowRight size={13} aria-hidden />

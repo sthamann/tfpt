@@ -87,12 +87,12 @@ function curvePath(f: (t: number) => number): string {
 export function DeckSectorViz() {
   const reduce = useReducedMotion();
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-3 flex items-baseline justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-amber-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-amber-700/90">
           Three deck sectors · one arch density
         </p>
-        <span className="font-mono text-[10px] text-slate-500">
+        <span className="font-mono text-[10px] text-slate-600">
           chain_deck_sector · sandbox
         </span>
       </div>
@@ -131,7 +131,7 @@ export function DeckSectorViz() {
           x={CX}
           y={CY + 4}
           textAnchor="middle"
-          className="fill-slate-500"
+          className="fill-slate-600"
           fontSize="9"
           fontFamily="var(--font-mono, monospace)"
         >
@@ -168,7 +168,7 @@ export function DeckSectorViz() {
                 x={lbl.x}
                 y={lbl.y + 8}
                 textAnchor="middle"
-                className="fill-slate-500"
+                className="fill-slate-600"
                 fontSize="8"
                 fontFamily="var(--font-mono, monospace)"
               >
@@ -210,7 +210,7 @@ export function DeckSectorViz() {
         <text
           x={PX0 + 2}
           y={PY1 - 8}
-          className="fill-slate-200"
+          className="fill-slate-800"
           fontSize="9"
           fontFamily="var(--font-mono, monospace)"
         >
@@ -228,7 +228,7 @@ export function DeckSectorViz() {
           x={(PX0 + PX1) / 2}
           y={PY0 + 16}
           textAnchor="middle"
-          className="fill-slate-500"
+          className="fill-slate-600"
           fontSize="8.5"
           fontFamily="var(--font-mono, monospace)"
         >
@@ -240,7 +240,7 @@ export function DeckSectorViz() {
           x={CX}
           y={CY + R + 36}
           textAnchor="middle"
-          className="fill-slate-400"
+          className="fill-slate-600"
           fontSize="8.5"
           fontFamily="var(--font-mono, monospace)"
         >
@@ -250,7 +250,7 @@ export function DeckSectorViz() {
           x={CX}
           y={CY + R + 48}
           textAnchor="middle"
-          className="fill-slate-500"
+          className="fill-slate-600"
           fontSize="8.5"
           fontFamily="var(--font-mono, monospace)"
         >
@@ -258,17 +258,17 @@ export function DeckSectorViz() {
         </text>
       </svg>
 
-      <p className="mt-3 text-xs leading-relaxed text-slate-500">
-        <strong className="font-medium text-amber-200">
+      <p className="mt-3 text-xs leading-relaxed text-slate-600">
+        <strong className="font-medium text-amber-800">
           Sandbox exploration — not promoted:
         </strong>{" "}
         the three digamma channels of the arch density (arguments{" "}
-        <span className="font-mono text-slate-300">1/12, 5/12, 3/4</span> on
+        <span className="font-mono text-slate-700">1/12, 5/12, 3/4</span> on
         the ζ₁₂ grid) are exactly the tower traces of the three deck sectors
         of the v623 cover lift, carrying the v628 twist classes{" "}
-        <span className="font-mono text-slate-300">{"{1/6, 1/2, 5/6}"}</span>{" "}
+        <span className="font-mono text-slate-700">{"{1/6, 1/2, 5/6}"}</span>{" "}
         — with the global scalar forced to 1 and the wrong twist set{" "}
-        <span className="font-mono text-slate-300">{"{1/4, 1/2, 3/4}"}</span>{" "}
+        <span className="font-mono text-slate-700">{"{1/4, 1/2, 3/4}"}</span>{" "}
         failing as demanded (≥ 30% off). A geometric anchor for the arch
         layer, not a positivity statement.
       </p>

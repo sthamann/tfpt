@@ -11,22 +11,22 @@ const SEVERITY_META: Record<
 > = {
   conditional: {
     label: "Conditional frontier test (not frozen)",
-    chip: "bg-sky-500/15 text-sky-200 ring-sky-400/30",
+    chip: "bg-sky-500/15 text-sky-800 ring-sky-400/30",
     tone: "from-sky-500 to-cyan-500",
   },
   theorem: {
     label: "Identity / theorem kill",
-    chip: "bg-blue-500/15 text-blue-200 ring-blue-400/30",
+    chip: "bg-blue-500/15 text-blue-800 ring-blue-400/30",
     tone: "from-blue-500 to-violet-500",
   },
   bridge: {
     label: "Numerical kill",
-    chip: "bg-emerald-500/15 text-emerald-200 ring-emerald-400/30",
+    chip: "bg-emerald-500/15 text-emerald-800 ring-emerald-400/30",
     tone: "from-emerald-500 to-teal-500",
   },
   structural: {
     label: "Structural kill",
-    chip: "bg-orange-500/15 text-orange-200 ring-orange-400/30",
+    chip: "bg-orange-500/15 text-orange-800 ring-orange-400/30",
     tone: "from-orange-500 to-red-500",
   },
   downstream: {
@@ -185,7 +185,7 @@ export function KillCriteria() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.05 }}
                 transition={{ duration: 0.4, delay: i * 0.04 }}
-                className="glass relative overflow-hidden rounded-2xl ring-1 ring-slate-700/40"
+                className="glass relative overflow-hidden rounded-2xl ring-1 ring-slate-300/40"
               >
                 <div
                   aria-hidden="true"
@@ -194,11 +194,11 @@ export function KillCriteria() {
                 <div className="grid gap-4 p-5 sm:grid-cols-[1fr_2fr] sm:gap-6">
                   <div>
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="font-serif text-base font-semibold text-slate-50">
+                      <h3 className="font-serif text-base font-semibold text-slate-950">
                         {row.area}
                       </h3>
                     </div>
-                    <div className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                    <div className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-slate-600">
                       {row.paper}
                     </div>
                     <span
@@ -208,10 +208,10 @@ export function KillCriteria() {
                     </span>
                   </div>
                   <div>
-                    <p className="text-sm leading-relaxed text-slate-300">
+                    <p className="text-sm leading-relaxed text-slate-700">
                       {row.criterion}
                     </p>
-                    <div className="mt-3 overflow-x-auto formula-scroll rounded-md border border-slate-700/40 bg-slate-950/40 p-3">
+                    <div className="mt-3 overflow-x-auto formula-scroll rounded-md border border-slate-300/40 bg-slate-50/40 p-3">
                       <Math block>{row.formal}</Math>
                     </div>
                   </div>

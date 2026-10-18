@@ -106,12 +106,12 @@ export function PredictionMatrix() {
   );
 
   return (
-    <div className="glass mt-10 overflow-hidden rounded-2xl ring-1 ring-slate-700/40">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/60 px-5 py-3">
-        <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-300/80">
+    <div className="glass mt-10 overflow-hidden rounded-2xl ring-1 ring-slate-300/40">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200/60 px-5 py-3">
+        <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
           Prediction matrix — proof status × testability
         </span>
-        <span className="rounded-full bg-slate-800/60 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-widest text-slate-300 ring-1 ring-slate-700/40">
+        <span className="rounded-full bg-slate-200/60 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-widest text-slate-700 ring-1 ring-slate-300/40">
           {predictions.length} entries
         </span>
       </div>
@@ -122,7 +122,7 @@ export function PredictionMatrix() {
             <tr>
               <th
                 scope="col"
-                className="sticky left-0 z-10 min-w-[160px] border-b border-r border-slate-800/60 bg-slate-950/80 px-3 py-3 text-[10px] font-semibold uppercase tracking-widest text-slate-300"
+                className="sticky left-0 z-10 min-w-[160px] border-b border-r border-slate-200/60 bg-slate-50/80 px-3 py-3 text-[10px] font-semibold uppercase tracking-widest text-slate-700"
               >
                 Status <span className="math-label">↓</span> / Testability{" "}
                 <span className="math-label">→</span>
@@ -131,7 +131,7 @@ export function PredictionMatrix() {
                 <th
                   key={t}
                   scope="col"
-                  className="border-b border-slate-800/60 px-3 py-3 text-left text-[10px] font-semibold uppercase tracking-widest text-slate-300"
+                  className="border-b border-slate-200/60 px-3 py-3 text-left text-[10px] font-semibold uppercase tracking-widest text-slate-700"
                 >
                   {TESTABILITY_LABEL[t]}
                 </th>
@@ -146,7 +146,7 @@ export function PredictionMatrix() {
                   <th
                     scope="row"
                     className={cn(
-                      "sticky left-0 z-10 border-b border-r border-slate-800/60 bg-slate-950/80 px-3 py-3 align-top text-xs font-semibold",
+                      "sticky left-0 z-10 border-b border-r border-slate-200/60 bg-slate-50/80 px-3 py-3 align-top text-xs font-semibold",
                       badge.color,
                     )}
                   >
@@ -167,13 +167,13 @@ export function PredictionMatrix() {
                     return (
                       <td
                         key={t}
-                        className="border-b border-slate-800/60 align-top px-2 py-2"
+                        className="border-b border-slate-200/60 align-top px-2 py-2"
                       >
                         <div className="flex flex-col gap-1.5">
                           {items.length === 0 && (
                             <span
                               aria-hidden
-                              className="text-[10px] text-slate-700"
+                              className="text-[10px] text-slate-400"
                             >
                               ·
                             </span>
@@ -192,7 +192,7 @@ export function PredictionMatrix() {
         </table>
       </div>
 
-      <div className="border-t border-slate-800/60 px-5 py-3 text-[11px] leading-relaxed text-slate-400">
+      <div className="border-t border-slate-200/60 px-5 py-3 text-[11px] leading-relaxed text-slate-600">
         Rows mirror the proof-status layer; columns mirror the experimental
         timeline. The same prediction never appears twice. Long-term and
         structural cells are kill criteria, not promises of imminent
@@ -221,10 +221,10 @@ function MatrixChip({
     <div className="flex items-start gap-1.5">
       <Icon size={11} className="mt-0.5 flex-none opacity-80" aria-hidden />
       <div className="min-w-0">
-        <div className="font-mono text-[11px] font-semibold leading-tight text-slate-100">
+        <div className="font-mono text-[11px] font-semibold leading-tight text-slate-900">
           {prediction.shortTitle}
         </div>
-        <div className="truncate text-[10px] leading-snug text-slate-400">
+        <div className="truncate text-[10px] leading-snug text-slate-600">
           {prediction.title}
         </div>
       </div>
@@ -236,7 +236,7 @@ function MatrixChip({
       <span
         aria-disabled="true"
         title={linkMeta.label}
-        className="block rounded-md border border-slate-700/40 bg-slate-950/40 px-2 py-1.5 text-slate-300/80"
+        className="block rounded-md border border-slate-300/40 bg-slate-50/40 px-2 py-1.5 text-slate-700/80"
       >
         {inner}
       </span>
@@ -251,6 +251,7 @@ function MatrixChip({
       transition={{ duration: 0.3, delay: index * 0.03 }}
     >
       <Link
+        prefetch={false}
         href={prediction.pdf}
         target="_blank"
         rel="noopener"
@@ -263,7 +264,7 @@ function MatrixChip({
             title: prediction.title,
           })
         }
-        className="block rounded-md border border-slate-700/40 bg-slate-950/40 px-2 py-1.5 transition-colors hover:border-blue-400/40 hover:bg-blue-500/5"
+        className="block rounded-md border border-slate-300/40 bg-slate-50/40 px-2 py-1.5 transition-colors hover:border-blue-400/40 hover:bg-blue-500/5"
       >
         {inner}
       </Link>

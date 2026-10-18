@@ -59,12 +59,12 @@ const DATA = buildSlots();
 export function KorridorViz() {
   const reduce = useReducedMotion();
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-3 flex items-baseline justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-amber-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-amber-700/90">
           The positivity corridor · per prime-power slot
         </p>
-        <span className="font-mono text-[10px] text-slate-500">
+        <span className="font-mono text-[10px] text-slate-600">
           chain_* probes · sandbox
         </span>
       </div>
@@ -88,7 +88,7 @@ export function KorridorViz() {
           x={(PAD_L + W - PAD_R) / 2}
           y={BOTTOM + 14}
           textAnchor="middle"
-          className="fill-slate-500"
+          className="fill-slate-600"
           fontSize="8.5"
           fontFamily="var(--font-mono, monospace)"
         >
@@ -168,7 +168,7 @@ export function KorridorViz() {
         <text
           x={PAD_L - 2}
           y={16}
-          className="fill-amber-200"
+          className="fill-amber-800"
           fontSize="9"
           fontFamily="var(--font-mono, monospace)"
         >
@@ -177,7 +177,7 @@ export function KorridorViz() {
         <text
           x={PAD_L - 2}
           y={27}
-          className="fill-sky-200"
+          className="fill-sky-800"
           fontSize="9"
           fontFamily="var(--font-mono, monospace)"
         >
@@ -185,18 +185,18 @@ export function KorridorViz() {
         </text>
       </svg>
 
-      <p className="mt-3 text-xs leading-relaxed text-slate-500">
-        <strong className="font-medium text-amber-200">
+      <p className="mt-3 text-xs leading-relaxed text-slate-600">
+        <strong className="font-medium text-amber-800">
           Sandbox exploration — not promoted:
         </strong>{" "}
         the corridor edges come from a closed resolvent identity
         (machine-verified in the probe); the true mass lies{" "}
         <em>inside every corridor measured</em>, at relative position with
         pooled median{" "}
-        <span className="font-mono text-slate-300">0.529</span>, IQR{" "}
-        <span className="font-mono text-slate-300">[0.511, 0.559]</span>, and
+        <span className="font-mono text-slate-700">0.529</span>, IQR{" "}
+        <span className="font-mono text-slate-700">[0.511, 0.559]</span>, and
         a slow negative log-n drift (corr ≈{" "}
-        <span className="font-mono text-slate-300">−0.68</span>). No closed
+        <span className="font-mono text-slate-700">−0.68</span>). No closed
         law for the position yet — that is the open question, stated as such.
       </p>
     </div>

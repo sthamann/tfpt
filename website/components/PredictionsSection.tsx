@@ -27,36 +27,36 @@ import { cn, REPO_URL } from "@/lib/utils";
 import { trackPdfInteraction } from "@/lib/track";
 
 const AUDIT_COUNTS: { label: string; value: number; tone: string }[] = [
-  { label: "typed rows", value: EXPERIMENTS_AUDIT.rows, tone: "text-slate-100" },
-  { label: "consistent", value: EXPERIMENTS_AUDIT.consistent, tone: "text-emerald-300" },
-  { label: "tension", value: EXPERIMENTS_AUDIT.tension, tone: "text-amber-300" },
-  { label: "null", value: EXPERIMENTS_AUDIT.null, tone: "text-slate-300" },
-  { label: "data-limited", value: EXPERIMENTS_AUDIT.dataLimited, tone: "text-sky-300" },
-  { label: "parked", value: EXPERIMENTS_AUDIT.parked, tone: "text-slate-400" },
-  { label: "kill-channel", value: EXPERIMENTS_AUDIT.killChannel, tone: "text-rose-300" },
+  { label: "typed rows", value: EXPERIMENTS_AUDIT.rows, tone: "text-slate-900" },
+  { label: "consistent", value: EXPERIMENTS_AUDIT.consistent, tone: "text-emerald-700" },
+  { label: "tension", value: EXPERIMENTS_AUDIT.tension, tone: "text-amber-700" },
+  { label: "null", value: EXPERIMENTS_AUDIT.null, tone: "text-slate-700" },
+  { label: "data-limited", value: EXPERIMENTS_AUDIT.dataLimited, tone: "text-sky-700" },
+  { label: "parked", value: EXPERIMENTS_AUDIT.parked, tone: "text-slate-600" },
+  { label: "kill-channel", value: EXPERIMENTS_AUDIT.killChannel, tone: "text-rose-700" },
 ];
 
 const VERDICT_TONE: Record<AuditRound["verdict"], string> = {
-  "clean null": "text-slate-300 bg-slate-500/15 ring-slate-400/30",
-  "null / data-limited": "text-sky-200 bg-sky-500/15 ring-sky-400/30",
-  consistent: "text-emerald-200 bg-emerald-500/15 ring-emerald-400/30",
-  "data-limited": "text-sky-200 bg-sky-500/15 ring-sky-400/30",
-  "watchdogs armed": "text-amber-200 bg-amber-500/15 ring-amber-400/30",
-  "pattern candidate": "text-violet-200 bg-violet-500/15 ring-violet-400/30",
-  "preregistered kill test": "text-blue-200 bg-blue-500/15 ring-blue-400/30",
-  "forward band": "text-teal-200 bg-teal-500/15 ring-teal-400/30",
-  mixed: "text-rose-200 bg-rose-500/15 ring-rose-400/30",
+  "clean null": "text-slate-700 bg-slate-500/15 ring-slate-600/30",
+  "null / data-limited": "text-sky-800 bg-sky-500/15 ring-sky-400/30",
+  consistent: "text-emerald-800 bg-emerald-500/15 ring-emerald-400/30",
+  "data-limited": "text-sky-800 bg-sky-500/15 ring-sky-400/30",
+  "watchdogs armed": "text-amber-800 bg-amber-500/15 ring-amber-400/30",
+  "pattern candidate": "text-violet-800 bg-violet-500/15 ring-violet-400/30",
+  "preregistered kill test": "text-blue-800 bg-blue-500/15 ring-blue-400/30",
+  "forward band": "text-teal-800 bg-teal-500/15 ring-teal-400/30",
+  mixed: "text-rose-800 bg-rose-500/15 ring-rose-400/30",
 };
 
 /** One dated audit round as a compact, expandable row. */
 function AuditRoundRow({ round }: { round: AuditRound }) {
   return (
-    <details className="group rounded-xl border border-slate-700/40 bg-slate-950/40 open:bg-slate-950/60">
+    <details className="group rounded-xl border border-slate-300/40 bg-slate-50/40 open:bg-slate-50/60">
       <summary className="flex cursor-pointer select-none flex-wrap items-center gap-x-2.5 gap-y-1 rounded-xl px-3.5 py-2.5 text-left [&::-webkit-details-marker]:hidden">
-        <span className="font-mono text-[10px] font-medium tracking-wide text-slate-500">
+        <span className="font-mono text-[10px] font-medium tracking-wide text-slate-600">
           {round.date}
         </span>
-        <span className="min-w-0 flex-1 break-words text-xs font-semibold text-slate-200">
+        <span className="min-w-0 flex-1 break-words text-xs font-semibold text-slate-800">
           {round.title}
         </span>
         <span
@@ -70,16 +70,16 @@ function AuditRoundRow({ round }: { round: AuditRound }) {
         <ChevronDown
           size={14}
           aria-hidden
-          className="flex-none text-slate-500 transition-transform group-open:rotate-180"
+          className="flex-none text-slate-600 transition-transform group-open:rotate-180"
         />
       </summary>
-      <div className="border-t border-slate-800/60 px-3.5 py-3">
-        <p className="break-words text-xs leading-relaxed text-slate-300">{round.summary}</p>
+      <div className="border-t border-slate-200/60 px-3.5 py-3">
+        <p className="break-words text-xs leading-relaxed text-slate-700">{round.summary}</p>
         <details className="mt-2">
-          <summary className="cursor-pointer select-none text-[10px] font-semibold uppercase tracking-widest text-slate-500 transition-colors hover:text-slate-300 [&::-webkit-details-marker]:hidden">
+          <summary className="cursor-pointer select-none text-[10px] font-semibold uppercase tracking-widest text-slate-600 transition-colors hover:text-slate-700 [&::-webkit-details-marker]:hidden">
             Full record ▾
           </summary>
-          <p className="mt-2 break-words text-[11px] leading-relaxed text-slate-400">
+          <p className="mt-2 break-words text-[11px] leading-relaxed text-slate-600">
             {round.detail}
           </p>
         </details>
@@ -130,6 +130,8 @@ export function PredictionsSection() {
       />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
+          as="h1"
+          id="predictions-heading"
           eyebrow="The prediction surface"
           title="Sharp, falsifiable readouts"
           description="Every row is a single readout with an explicit status marker, dependency class, and a stated kill or pressure criterion. Each links to the source document that derives it — and the freeze file commits the decisive kill criteria in advance. Some rows are closed numerical tests, some are structural kill tests, some are conditional, and a few are honestly-typed non-claims."
@@ -143,16 +145,16 @@ export function PredictionsSection() {
           className="mt-8 rounded-2xl border border-emerald-400/20 bg-emerald-500/[0.04] p-5 sm:p-6"
         >
           <div className="flex flex-wrap items-center gap-2">
-            <FlaskConical size={16} className="flex-none text-emerald-300" aria-hidden />
-            <h3 className="font-serif text-base font-semibold text-slate-50">
+            <FlaskConical size={16} className="flex-none text-emerald-700" aria-hidden />
+            <h3 className="font-serif text-base font-semibold text-slate-950">
               Empirical audit — standalone <code className="font-mono text-sm">experiments/</code> tree
             </h3>
-            <span className="ml-auto rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-200">
+            <span className="ml-auto rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-800">
               search targets · not load-bearing
             </span>
           </div>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-300">
-            <span className="font-semibold text-slate-100">{EXPERIMENTS_AUDIT.headline}</span>{" "}
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-700">
+            <span className="font-semibold text-slate-900">{EXPERIMENTS_AUDIT.headline}</span>{" "}
             {EXPERIMENTS_AUDIT.rows} typed scorecard rows across{" "}
             {EXPERIMENTS_AUDIT.domains.length} domains — every search preregistered,
             surrogate-calibrated and status-typed. The dated rounds below expand to the full
@@ -162,10 +164,10 @@ export function PredictionsSection() {
             {AUDIT_COUNTS.map((c) => (
               <div
                 key={c.label}
-                className="rounded-xl border border-slate-700/40 bg-slate-950/40 px-3 py-2 text-center"
+                className="rounded-xl border border-slate-300/40 bg-slate-50/40 px-3 py-2 text-center"
               >
                 <div className={cn("font-serif text-xl font-semibold", c.tone)}>{c.value}</div>
-                <div className="text-[10px] font-medium uppercase tracking-wider text-slate-400">
+                <div className="text-[10px] font-medium uppercase tracking-wider text-slate-600">
                   {c.label}
                 </div>
               </div>
@@ -175,7 +177,7 @@ export function PredictionsSection() {
             {EXPERIMENTS_AUDIT.domains.map((d) => (
               <span
                 key={d}
-                className="rounded-md border border-slate-700/40 bg-slate-950/40 px-2 py-0.5 font-mono text-[10px] text-slate-400"
+                className="rounded-md border border-slate-300/40 bg-slate-50/40 px-2 py-0.5 font-mono text-[10px] text-slate-600"
               >
                 {d}
               </span>
@@ -186,40 +188,43 @@ export function PredictionsSection() {
               <AuditRoundRow key={`${r.date}-${r.title}`} round={r} />
             ))}
           </div>
-          <p className="mt-3 text-[11px] leading-relaxed text-slate-500">
-            <span className="font-semibold text-slate-400">Counting discipline:</span>{" "}
+          <p className="mt-3 text-[11px] leading-relaxed text-slate-600">
+            <span className="font-semibold text-slate-600">Counting discipline:</span>{" "}
             {EXPERIMENTS_AUDIT.countingNote}
           </p>
-          <p className="mt-4 text-xs leading-relaxed text-slate-400">
-            <span className="font-semibold text-slate-300">Firewall:</span> FRB / EHT / GW are
+          <p className="mt-4 text-xs leading-relaxed text-slate-600">
+            <span className="font-semibold text-slate-700">Firewall:</span> FRB / EHT / GW are
             search fields for residual boundary-recovery patterns, frontier observables (axion,
             η_B, kaons, g−2) are <code className="font-mono">F_transfer</code> downstream bridges —
             never primitive compiler outputs, and no row is upgraded to [E] by data proximity.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <Link
+              prefetch={false}
               href={`${REPO_URL}/tree/main/${EXPERIMENTS_AUDIT.repoPath}`}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3.5 py-1.5 text-xs font-semibold text-emerald-200 transition-colors hover:bg-emerald-500/20"
+              className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3.5 py-1.5 text-xs font-semibold text-emerald-800 transition-colors hover:bg-emerald-500/20"
             >
               <Github size={13} aria-hidden />
               experiments/ on GitHub
             </Link>
             <Link
+              prefetch={false}
               href={`${REPO_URL}/blob/main/${EXPERIMENTS_AUDIT.readmePath}`}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-1.5 rounded-full border border-slate-600/40 bg-slate-900/50 px-3.5 py-1.5 text-xs font-semibold text-slate-300 transition-colors hover:text-white"
+              className="inline-flex items-center gap-1.5 rounded-full border border-slate-400/40 bg-slate-100/50 px-3.5 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:text-slate-950"
             >
               <FileText size={13} aria-hidden />
               Audit README
             </Link>
             <Link
+              prefetch={false}
               href={`${REPO_URL}/blob/main/${EXPERIMENTS_AUDIT.scorecardPath}`}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-1.5 rounded-full border border-slate-600/40 bg-slate-900/50 px-3.5 py-1.5 text-xs font-semibold text-slate-300 transition-colors hover:text-white"
+              className="inline-flex items-center gap-1.5 rounded-full border border-slate-400/40 bg-slate-100/50 px-3.5 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:text-slate-950"
             >
               <Table2 size={13} aria-hidden />
               evidence_scorecard.json
@@ -245,7 +250,7 @@ export function PredictionsSection() {
                 {g.items.map((it) => (
                   <li
                     key={it}
-                    className="rounded-md border border-slate-700/40 bg-slate-950/40 px-2 py-0.5 font-mono text-[10px] text-slate-300"
+                    className="rounded-md border border-slate-300/40 bg-slate-50/40 px-2 py-0.5 font-mono text-[10px] text-slate-700"
                   >
                     {it}
                   </li>
@@ -256,11 +261,11 @@ export function PredictionsSection() {
         </div>
 
         <div className="mt-8 grid gap-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8">
-          <div className="glass flex flex-col rounded-xl px-4 py-3 ring-1 ring-slate-700/40">
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+          <div className="glass flex flex-col rounded-xl px-4 py-3 ring-1 ring-slate-300/40">
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-600">
               Total
             </span>
-            <span className="font-serif text-2xl font-semibold text-slate-50">
+            <span className="font-serif text-2xl font-semibold text-slate-950">
               {predictions.length}
             </span>
           </div>
@@ -273,13 +278,13 @@ export function PredictionsSection() {
                 "glass relative flex flex-col rounded-xl px-4 py-3 text-left ring-1 transition-colors",
                 filter === c
                   ? "ring-blue-400/50 bg-blue-500/10"
-                  : "ring-slate-700/40 hover:ring-slate-500/60",
+                  : "ring-slate-300/40 hover:ring-slate-500/60",
               )}
             >
-              <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+              <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-600">
                 {CATEGORY_META[c].label}
               </span>
-              <span className="font-serif text-xl font-semibold text-slate-50">
+              <span className="font-serif text-xl font-semibold text-slate-950">
                 {counts[c] || 0}
               </span>
             </button>
@@ -290,7 +295,7 @@ export function PredictionsSection() {
           <div
             role="tablist"
             aria-label="Prediction view"
-            className="inline-flex rounded-full bg-slate-900/50 p-0.5 ring-1 ring-slate-700/40"
+            className="inline-flex rounded-full bg-slate-100/50 p-0.5 ring-1 ring-slate-300/40"
           >
             <button
               type="button"
@@ -301,7 +306,7 @@ export function PredictionsSection() {
                 "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors",
                 view === "cards"
                   ? "bg-blue-500 text-white shadow-md shadow-blue-500/20"
-                  : "text-slate-300 hover:text-white",
+                  : "text-slate-700 hover:text-slate-950",
               )}
             >
               <LayoutGrid size={13} aria-hidden />
@@ -316,7 +321,7 @@ export function PredictionsSection() {
                 "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors",
                 view === "matrix"
                   ? "bg-blue-500 text-white shadow-md shadow-blue-500/20"
-                  : "text-slate-300 hover:text-white",
+                  : "text-slate-700 hover:text-slate-950",
               )}
             >
               <Table2 size={13} aria-hidden />
@@ -324,7 +329,7 @@ export function PredictionsSection() {
             </button>
           </div>
 
-          <span className="mx-2 hidden h-5 w-px bg-slate-800 sm:block" aria-hidden />
+          <span className="mx-2 hidden h-5 w-px bg-slate-200 sm:block" aria-hidden />
 
           {FILTERS.map((f) => (
             <button
@@ -336,7 +341,7 @@ export function PredictionsSection() {
                 "rounded-full px-4 py-1.5 text-xs font-medium transition-colors ring-1",
                 filter === f.id && view === "cards"
                   ? "bg-blue-500 text-white ring-blue-400/40 shadow-md shadow-blue-500/20"
-                  : "bg-slate-900/40 text-slate-300 ring-slate-700/40 hover:bg-slate-800/60",
+                  : "bg-slate-100/40 text-slate-700 ring-slate-300/40 hover:bg-slate-200/60",
                 view === "matrix" && "cursor-not-allowed opacity-40",
               )}
               aria-pressed={filter === f.id}
@@ -364,16 +369,17 @@ export function PredictionsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.05 }}
           transition={{ duration: 0.6 }}
-          className="mt-12 flex flex-col items-center gap-4 rounded-2xl border border-slate-700/40 bg-slate-950/40 p-8 text-center"
+          className="mt-12 flex flex-col items-center gap-4 rounded-2xl border border-slate-300/40 bg-slate-50/40 p-8 text-center"
         >
-          <h3 className="font-serif text-xl font-semibold text-slate-50">
+          <h3 className="font-serif text-xl font-semibold text-slate-950">
             Want the full reading guide?
           </h3>
-          <p className="max-w-xl text-sm text-slate-400">
+          <p className="max-w-xl text-sm text-slate-600">
             The introduction states the compiler closure, the dependency DAG,
             the predictions, and the single proof ledger.
           </p>
           <Link
+            prefetch={false}
             href={READING_GUIDE}
             target="_blank"
             rel="noopener"
@@ -386,7 +392,7 @@ export function PredictionsSection() {
                 title: "Reading guide (introduction)",
               })
             }
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-105"
+            className="inline-flex items-center gap-2 rounded-full bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-105"
           >
             <Download size={16} />
             Open the reading guide

@@ -140,17 +140,17 @@ export function TheoryUnpacking() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-      className="glass mx-auto mt-12 max-w-6xl overflow-hidden rounded-2xl ring-1 ring-slate-700/40"
+      className="glass mx-auto mt-12 max-w-6xl overflow-hidden rounded-2xl ring-1 ring-slate-300/40"
       aria-label="Animated theory unpacking — six geometric frames"
       aria-roledescription="carousel"
     >
       <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-5 py-3.5">
         <div className="flex min-w-0 flex-col gap-0.5">
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-blue-300/70">
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-blue-700/70">
             How the compiler works · two axioms → E₈ → the observables
           </span>
           <span className="flex items-baseline gap-2">
-            <span className="font-mono text-[11px] font-semibold text-violet-300/90">
+            <span className="font-mono text-[11px] font-semibold text-violet-700/90">
               {String(step + 1).padStart(2, "0")}
             </span>
             <AnimatePresence mode="wait">
@@ -160,7 +160,7 @@ export function TheoryUnpacking() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.3 }}
-                className="truncate font-serif text-base font-semibold text-slate-100"
+                className="truncate font-serif text-base font-semibold text-slate-900"
               >
                 {current.short}
               </motion.span>
@@ -172,7 +172,7 @@ export function TheoryUnpacking() {
             type="button"
             onClick={prev}
             aria-label="Previous frame"
-            className="rounded-full bg-slate-900/60 p-1.5 text-slate-300 ring-1 ring-slate-700/40 transition-colors hover:bg-slate-800/80 hover:text-white"
+            className="rounded-full bg-slate-100/60 p-1.5 text-slate-700 ring-1 ring-slate-300/40 transition-colors hover:bg-slate-200/80 hover:text-slate-950"
           >
             <ChevronLeft size={12} aria-hidden />
           </button>
@@ -181,7 +181,7 @@ export function TheoryUnpacking() {
             onClick={() => setPlaying((p) => !p)}
             aria-label={playing ? "Pause autoplay" : "Resume autoplay"}
             aria-pressed={playing}
-            className="rounded-full bg-slate-900/60 p-1.5 text-slate-300 ring-1 ring-slate-700/40 transition-colors hover:bg-slate-800/80 hover:text-white"
+            className="rounded-full bg-slate-100/60 p-1.5 text-slate-700 ring-1 ring-slate-300/40 transition-colors hover:bg-slate-200/80 hover:text-slate-950"
             disabled={!!reduced}
             title={
               reduced
@@ -201,7 +201,7 @@ export function TheoryUnpacking() {
             type="button"
             onClick={next}
             aria-label="Next frame"
-            className="rounded-full bg-slate-900/60 p-1.5 text-slate-300 ring-1 ring-slate-700/40 transition-colors hover:bg-slate-800/80 hover:text-white"
+            className="rounded-full bg-slate-100/60 p-1.5 text-slate-700 ring-1 ring-slate-300/40 transition-colors hover:bg-slate-200/80 hover:text-slate-950"
           >
             <ChevronRight size={12} aria-hidden />
           </button>
@@ -210,7 +210,7 @@ export function TheoryUnpacking() {
 
       {/* Autoplay progress: a live bar that fills over each frame's dwell time
           while playing, and otherwise shows overall progress through the arc. */}
-      <div className="h-0.5 w-full bg-slate-800/60" aria-hidden="true">
+      <div className="h-0.5 w-full bg-slate-200/60" aria-hidden="true">
         {autoplaying ? (
           <motion.div
             key={step}
@@ -232,7 +232,7 @@ export function TheoryUnpacking() {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <div className="border-b border-slate-800/60 lg:border-b-0 lg:border-r">
+        <div className="border-b border-slate-200/60 lg:border-b-0 lg:border-r">
           <UnpackingCanvas step={step} />
         </div>
 
@@ -245,13 +245,13 @@ export function TheoryUnpacking() {
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h3 className="font-serif text-xl font-semibold leading-snug text-slate-50">
+              <h3 className="font-serif text-xl font-semibold leading-snug text-slate-950">
                 {current.title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-300">
+              <p className="mt-3 text-sm leading-relaxed text-slate-700">
                 {current.body}
               </p>
-              <div className="mt-4 overflow-x-auto formula-scroll rounded-md border border-slate-700/40 bg-slate-950/60 p-3">
+              <div className="mt-4 overflow-x-auto formula-scroll rounded-md border border-slate-300/40 bg-slate-50/60 p-3">
                 <Math block plain={current.plain}>{current.formula}</Math>
               </div>
             </motion.div>
@@ -262,7 +262,7 @@ export function TheoryUnpacking() {
       <div
         role="tablist"
         aria-label="Step navigation"
-        className="flex gap-1 border-t border-slate-800/60 bg-slate-950/40 px-2 py-2.5 sm:gap-1.5 sm:px-3"
+        className="flex gap-1 border-t border-slate-200/60 bg-slate-50/40 px-2 py-2.5 sm:gap-1.5 sm:px-3"
       >
         {STEPS.map((s) => {
           const active = step === s.id;
@@ -282,7 +282,7 @@ export function TheoryUnpacking() {
                 "group flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-lg px-1.5 py-1.5 ring-1 transition-colors sm:justify-start sm:px-2.5",
                 active
                   ? "bg-blue-500/15 ring-blue-400/40"
-                  : "bg-slate-900/40 ring-slate-700/40 hover:bg-slate-800/70",
+                  : "bg-slate-100/40 ring-slate-300/40 hover:bg-slate-200/70",
               )}
             >
               <span
@@ -290,10 +290,10 @@ export function TheoryUnpacking() {
                 className={cn(
                   "flex h-5 w-5 shrink-0 items-center justify-center rounded-full font-mono text-[10px] font-semibold transition-colors",
                   active
-                    ? "bg-gradient-to-r from-blue-400 to-violet-400 text-slate-950"
+                    ? "bg-gradient-to-r from-blue-400 to-violet-400 text-slate-100"
                     : done
-                      ? "bg-slate-600/70 text-slate-100"
-                      : "bg-slate-800 text-slate-400 group-hover:text-slate-200",
+                      ? "bg-slate-400/70 text-slate-900"
+                      : "bg-slate-200 text-slate-600 group-hover:text-slate-800",
                 )}
               >
                 {s.id + 1}
@@ -302,8 +302,8 @@ export function TheoryUnpacking() {
                 className={cn(
                   "hidden truncate text-[11px] font-medium sm:block",
                   active
-                    ? "text-blue-100"
-                    : "text-slate-400 group-hover:text-slate-200",
+                    ? "text-blue-800"
+                    : "text-slate-600 group-hover:text-slate-800",
                 )}
               >
                 {s.short}
@@ -451,7 +451,7 @@ function UnpackingCanvas({ step }: { step: number }) {
             <text
               x={CX - 220}
               y={CY - R - 4}
-              fill="#94a3b8"
+              fill="#526278"
               fontSize="11"
               fontFamily="ui-monospace, monospace"
             >
@@ -510,7 +510,7 @@ function UnpackingCanvas({ step }: { step: number }) {
           <text
             x={CX + 10}
             y={CY + R + 24}
-            fill="#94a3b8"
+            fill="#526278"
             fontSize="11"
             fontFamily="ui-monospace, monospace"
           >
@@ -536,7 +536,7 @@ function UnpackingCanvas({ step }: { step: number }) {
           <text
             x={CX - R + 18}
             y={CY + 18}
-            fill="#94a3b8"
+            fill="#526278"
             fontSize="11"
             fontFamily="ui-monospace, monospace"
           >
@@ -555,7 +555,7 @@ function UnpackingCanvas({ step }: { step: number }) {
           <text
             x={CX + R - 32}
             y={CY + 18}
-            fill="#94a3b8"
+            fill="#526278"
             fontSize="11"
             fontFamily="ui-monospace, monospace"
           >
@@ -691,7 +691,7 @@ function CountingClusters({ step }: { step: number }) {
               cy={p.y + d.dy}
               r="5"
               fill={TRIPLET_COLOURS[j]}
-              stroke="#0f172a"
+              stroke="#f1f5f9"
               strokeWidth="1"
               initial={{ scale: 0 }}
               animate={{ scale: fan ? 1 : 0 }}
@@ -706,7 +706,7 @@ function CountingClusters({ step }: { step: number }) {
           <text
             x={p.x - 28}
             y={p.y + 36}
-            fill="#94a3b8"
+            fill="#526278"
             fontSize="10"
             fontFamily="ui-monospace, monospace"
           >
@@ -838,7 +838,7 @@ function ObservableReadouts({ step }: { step: number }) {
             ry="6"
             width="114"
             height="40"
-            fill="rgba(15, 23, 42, 0.85)"
+            fill="rgba(255, 255, 255, 0.96)"
             stroke={r.accent}
             strokeOpacity="0.55"
             strokeWidth="1"
@@ -884,7 +884,7 @@ function ObservableReadouts({ step }: { step: number }) {
         <text
           x={CX}
           y={CY + R + 82}
-          fill="#94a3b8"
+          fill="#526278"
           fontSize="11"
           textAnchor="middle"
           fontFamily="ui-monospace, monospace"

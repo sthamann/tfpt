@@ -26,34 +26,34 @@ const TONE: Record<
   { dot: string; ring: string; activeRing: string; chip: string }
 > = {
   axiom: {
-    dot: "bg-slate-400",
-    ring: "ring-slate-400/40",
-    activeRing: "ring-slate-300",
-    chip: "bg-slate-500/15 text-slate-200 ring-slate-400/30",
+    dot: "bg-slate-600",
+    ring: "ring-slate-600/40",
+    activeRing: "ring-slate-700",
+    chip: "bg-slate-500/15 text-slate-800 ring-slate-600/30",
   },
   lattice: {
     dot: "bg-cyan-400",
     ring: "ring-cyan-400/40",
     activeRing: "ring-cyan-300",
-    chip: "bg-cyan-500/15 text-cyan-200 ring-cyan-400/30",
+    chip: "bg-cyan-500/15 text-cyan-800 ring-cyan-400/30",
   },
   identity: {
     dot: "bg-emerald-400",
     ring: "ring-emerald-400/40",
     activeRing: "ring-emerald-300",
-    chip: "bg-emerald-500/15 text-emerald-200 ring-emerald-400/30",
+    chip: "bg-emerald-500/15 text-emerald-800 ring-emerald-400/30",
   },
   numerical: {
     dot: "bg-violet-400",
     ring: "ring-violet-400/40",
     activeRing: "ring-violet-300",
-    chip: "bg-violet-500/15 text-violet-200 ring-violet-400/30",
+    chip: "bg-violet-500/15 text-violet-800 ring-violet-400/30",
   },
   conditional: {
     dot: "bg-amber-400",
     ring: "ring-amber-400/40",
     activeRing: "ring-amber-300",
-    chip: "bg-amber-500/15 text-amber-200 ring-amber-400/30",
+    chip: "bg-amber-500/15 text-amber-800 ring-amber-400/30",
   },
 };
 
@@ -954,13 +954,13 @@ export function VerificationDag() {
     );
 
   return (
-    <div className="glass overflow-hidden rounded-2xl ring-1 ring-slate-700/40">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/60 px-5 py-3">
-        <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-300/80">
+    <div className="glass overflow-hidden rounded-2xl ring-1 ring-slate-300/40">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200/60 px-5 py-3">
+        <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
           Interactive dependency graph — click any node
         </span>
-        <div className="flex flex-wrap items-center gap-3 text-[10px] font-medium text-slate-400">
-          <LegendDot className="bg-slate-400" label="axiom" />
+        <div className="flex flex-wrap items-center gap-3 text-[10px] font-medium text-slate-600">
+          <LegendDot className="bg-slate-600" label="axiom" />
           <LegendDot className="bg-cyan-400" label="lattice" />
           <LegendDot className="bg-emerald-400" label="identity" />
           <LegendDot className="bg-violet-400" label="numerical" />
@@ -1032,10 +1032,10 @@ export function VerificationDag() {
                 style={{ left: `${n.x}%`, top: `${n.y}%` }}
                 className={cn(
                   "absolute -translate-x-1/2 -translate-y-1/2 rounded-xl px-3 py-2 text-center transition-all",
-                  "border bg-slate-950/85 ring-1 backdrop-blur",
+                  "border bg-slate-50/85 ring-1 backdrop-blur",
                   n.id === "boot"
                     ? "border-rose-400/40 ring-rose-400/30"
-                    : "border-slate-700/60",
+                    : "border-slate-300/60",
                   isSel
                     ? cn("z-20 scale-105 ring-2", tone.activeRing)
                     : cn("z-10", tone.ring),
@@ -1048,7 +1048,7 @@ export function VerificationDag() {
                     aria-hidden
                     className={cn("h-1.5 w-1.5 flex-none rounded-full", tone.dot)}
                   />
-                  <span className="font-mono text-[11px] font-semibold text-slate-50 sm:text-xs">
+                  <span className="font-mono text-[11px] font-semibold text-slate-950 sm:text-xs">
                     {n.label}
                   </span>
                 </span>
@@ -1064,11 +1064,11 @@ export function VerificationDag() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
-        className="border-t border-slate-800/60 p-5 sm:p-6"
+        className="border-t border-slate-200/60 p-5 sm:p-6"
         aria-live="polite"
       >
         <div className="flex flex-wrap items-center gap-2">
-          <h3 className="font-serif text-lg font-semibold text-slate-50">
+          <h3 className="font-serif text-lg font-semibold text-slate-950">
             {node.title}
           </h3>
           <span
@@ -1081,12 +1081,12 @@ export function VerificationDag() {
           </span>
         </div>
         {node.scopeFence && (
-          <p className="mt-3 max-w-3xl rounded-lg border border-amber-400/25 bg-amber-500/[0.06] px-3 py-2 text-xs leading-relaxed text-amber-100/90">
+          <p className="mt-3 max-w-3xl rounded-lg border border-amber-400/25 bg-amber-500/[0.06] px-3 py-2 text-xs leading-relaxed text-amber-800/90">
             <RichText text={node.scopeFence} />
           </p>
         )}
         <Expandable collapsedHeight={140} className="mt-2 max-w-3xl">
-          <p className="break-words text-sm leading-relaxed text-slate-300">
+          <p className="break-words text-sm leading-relaxed text-slate-700">
             <RichText text={node.summary} />
           </p>
         </Expandable>
@@ -1098,7 +1098,7 @@ export function VerificationDag() {
         </div>
 
         <div className="mt-4">
-          <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-300/80">
+          <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-700/80">
             Verified by ({node.scripts.length} script
             {node.scripts.length > 1 ? "s" : ""}) — click for its reproduction path
           </div>
@@ -1108,10 +1108,10 @@ export function VerificationDag() {
                 key={s}
                 type="button"
                 onClick={() => open(s)}
-                className="group inline-flex items-center gap-1.5 rounded-md border border-slate-700/50 bg-slate-900/60 px-2.5 py-1 font-mono text-[11px] text-slate-200 transition-colors hover:border-blue-400/50 hover:bg-blue-500/10 hover:text-blue-100"
+                className="group inline-flex items-center gap-1.5 rounded-md border border-slate-300/50 bg-slate-100/60 px-2.5 py-1 font-mono text-[11px] text-slate-800 transition-colors hover:border-blue-400/50 hover:bg-blue-500/10 hover:text-blue-800"
               >
                 <FileCode2 size={12} className="group-hover:hidden" aria-hidden />
-                <Play size={12} className="hidden text-blue-300 group-hover:inline" aria-hidden />
+                <Play size={12} className="hidden text-blue-700 group-hover:inline" aria-hidden />
                 {s}
               </button>
             ))}
@@ -1150,22 +1150,22 @@ function DetailCell({
           ? "border-emerald-400/25 bg-emerald-500/5"
           : warn
             ? "border-orange-400/25 bg-orange-500/5"
-            : "border-slate-700/40 bg-slate-950/40",
+            : "border-slate-300/40 bg-slate-50/40",
       )}
     >
       <div
         className={cn(
           "text-[10px] font-semibold uppercase tracking-widest",
           highlight
-            ? "text-emerald-300/85"
+            ? "text-emerald-700/85"
             : warn
-              ? "text-orange-300/85"
-              : "text-blue-300/80",
+              ? "text-orange-700/85"
+              : "text-blue-700/80",
         )}
       >
         {label}
       </div>
-      <ul className="mt-1.5 space-y-1 break-words text-xs leading-relaxed text-slate-300">
+      <ul className="mt-1.5 space-y-1 break-words text-xs leading-relaxed text-slate-700">
         {items.map((it, i) => (
           <li key={i}>
             <RichText text={it} />

@@ -59,16 +59,16 @@ export function Decoders() {
                 className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${d.accent} opacity-70`}
                 aria-hidden
               />
-              <div className="flex h-10 items-center justify-center overflow-x-auto rounded-lg bg-slate-950/50 px-3">
+              <div className="flex h-10 items-center justify-center overflow-x-auto rounded-lg bg-slate-50/50 px-3">
                 <Math>{d.symbol}</Math>
               </div>
-              <p className="mt-4 text-[10px] font-semibold uppercase tracking-widest text-blue-300/80">
+              <p className="mt-4 text-[10px] font-semibold uppercase tracking-widest text-blue-700/80">
                 {d.role}
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-slate-300">
+              <p className="mt-2 text-sm leading-relaxed text-slate-700">
                 {d.body}
               </p>
-              <div className="mt-4 rounded-lg border border-slate-700/40 bg-slate-950/40 p-3">
+              <div className="mt-4 rounded-lg border border-slate-300/40 bg-slate-50/40 p-3">
                 <Math block>{d.formula}</Math>
               </div>
             </motion.article>

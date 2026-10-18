@@ -61,13 +61,21 @@ export function Navbar() {
     return () => document.removeEventListener("mousedown", onDoc);
   }, [moreOpen]);
 
+  useEffect(() => {
+    const dismiss = (event: KeyboardEvent) => {
+      if (event.key === "Escape") { setOpen(false); setMoreOpen(false); }
+    };
+    document.addEventListener("keydown", dismiss);
+    return () => document.removeEventListener("keydown", dismiss);
+  }, []);
+
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
         scrolled
-          ? "glass-strong backdrop-saturate-200 border-b border-slate-700/40"
-          : "bg-transparent",
+          ? "glass-strong backdrop-saturate-200 border-b border-slate-300/40"
+          : "bg-white/95 border-b border-slate-200/70",
       )}
     >
       <nav
@@ -76,6 +84,7 @@ export function Navbar() {
       >
         <div className="flex items-center gap-2.5">
           <Link
+            prefetch={false}
             href="/"
             className="group flex items-center"
             aria-label="TFPT home"
@@ -83,10 +92,10 @@ export function Navbar() {
             <Logo size={36} />
           </Link>
           <span
-            className="hidden shrink-0 select-none items-baseline gap-1.5 whitespace-nowrap border border-slate-700/40 bg-slate-800/50 px-2.5 py-1 font-mono text-[10px] tracking-wide text-slate-400 xl:inline-flex"
+            className="hidden shrink-0 select-none items-baseline gap-1.5 whitespace-nowrap border border-slate-300/40 bg-slate-200/50 px-2.5 py-1 font-mono text-[10px] tracking-wide text-slate-600 xl:inline-flex"
             title={`TFPT ${SITE_VERSION} — document set last synced ${SITE_DATE} (build rev ${SITE_REV})`}
           >
-            <span className="font-semibold text-slate-300">v{SITE_VERSION}</span>
+            <span className="font-semibold text-slate-700">v{SITE_VERSION}</span>
             <span aria-hidden>·</span>
             <time dateTime={SITE_DATE}>{SITE_DATE}</time>
           </span>
@@ -97,8 +106,9 @@ export function Navbar() {
           {primaryLinks.map((l) => (
             <li key={l.href}>
               <Link
+                prefetch={false}
                 href={l.href}
-                className="whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+                className="whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-900/5 hover:text-slate-950"
               >
                 {l.label}
               </Link>
@@ -110,7 +120,7 @@ export function Navbar() {
               onClick={() => setMoreOpen((v) => !v)}
               aria-expanded={moreOpen}
               aria-haspopup="true"
-              className="inline-flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+              className="inline-flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-900/5 hover:text-slate-950"
             >
               More
               <ChevronDown
@@ -120,13 +130,14 @@ export function Navbar() {
               />
             </button>
             {moreOpen && (
-              <ul className="absolute right-0 top-full mt-1 min-w-[12rem] border border-slate-700/50 bg-slate-950/95 py-1 shadow-xl backdrop-blur">
+              <ul className="absolute right-0 top-full mt-1 min-w-[12rem] border border-slate-300/50 bg-slate-50/95 py-1 shadow-xl backdrop-blur">
                 {moreLinks.map((l) => (
                   <li key={l.href}>
                     <Link
+                      prefetch={false}
                       href={l.href}
                       onClick={() => setMoreOpen(false)}
-                      className="block px-3 py-2 text-sm text-slate-300 hover:bg-white/5 hover:text-white"
+                      className="block px-3 py-2 text-sm text-slate-700 hover:bg-slate-900/5 hover:text-slate-950"
                     >
                       {l.label}
                     </Link>
@@ -134,11 +145,12 @@ export function Navbar() {
                 ))}
                 <li>
                   <Link
+                    prefetch={false}
                     href={REPO_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setMoreOpen(false)}
-                    className="flex items-center gap-1.5 px-3 py-2 text-sm text-slate-300 hover:bg-white/5 hover:text-white"
+                    className="flex items-center gap-1.5 px-3 py-2 text-sm text-slate-700 hover:bg-slate-900/5 hover:text-slate-950"
                   >
                     <Github size={14} aria-hidden />
                     GitHub
@@ -152,7 +164,8 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-slate-300 hover:bg-white/5 hover:text-white lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-md text-slate-700 hover:bg-slate-900/5 hover:text-slate-950 lg:hidden"
+          aria-controls="mobile-menu"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
@@ -163,31 +176,33 @@ export function Navbar() {
       {open && (
         <div
           id="mobile-menu"
-          className="glass-strong border-t border-slate-700/40 px-4 pb-4 pt-2 lg:hidden"
+          className="glass-strong border-t border-slate-300/40 px-4 pb-4 pt-2 lg:hidden"
         >
           <ul className="flex flex-col gap-1">
             {primaryLinks.map((l) => (
               <li key={l.href}>
                 <Link
+                  prefetch={false}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-md px-3 py-2 text-base text-slate-200 hover:bg-white/5"
+                  className="block rounded-md px-3 py-2 text-base text-slate-800 hover:bg-slate-900/5"
                 >
                   {l.label}
                 </Link>
               </li>
             ))}
-            <li className="mt-2 border-t border-slate-800/60 pt-2">
-              <div className="px-3 pb-1 font-mono text-[10px] uppercase tracking-widest text-slate-500">
+            <li className="mt-2 border-t border-slate-200/60 pt-2">
+              <div className="px-3 pb-1 font-mono text-[10px] uppercase tracking-widest text-slate-600">
                 More
               </div>
             </li>
             {moreLinks.map((l) => (
               <li key={l.href}>
                 <Link
+                  prefetch={false}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-md px-3 py-2 text-sm text-slate-300 hover:bg-white/5"
+                  className="block rounded-md px-3 py-2 text-sm text-slate-700 hover:bg-slate-900/5"
                 >
                   {l.label}
                 </Link>
@@ -195,11 +210,12 @@ export function Navbar() {
             ))}
             <li>
               <Link
+                prefetch={false}
                 href={REPO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-slate-300 hover:bg-white/5"
+                className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-slate-700 hover:bg-slate-900/5"
               >
                 <Github size={16} aria-hidden />
                 GitHub

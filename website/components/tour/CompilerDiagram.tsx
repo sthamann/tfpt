@@ -4,7 +4,7 @@
 export function CompilerDiagram() {
   return (
     <figure
-      className="mt-6 overflow-hidden rounded-2xl border border-slate-700/40 bg-slate-950/40 p-4 sm:p-5"
+      className="mt-6 overflow-hidden rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4 sm:p-5"
       aria-label="Compiler pipeline from two axioms to Standard Model readouts"
     >
       <svg
@@ -181,7 +181,7 @@ export function CompilerDiagram() {
           </marker>
         </defs>
       </svg>
-      <figcaption className="mt-3 text-center font-mono text-[11px] text-slate-500">
+      <figcaption className="mt-3 text-center font-mono text-[11px] text-slate-600">
         D5 ⊕ A3 + μ4 ⇒ E8 ⇒ SM readouts
       </figcaption>
     </figure>

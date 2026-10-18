@@ -39,7 +39,7 @@ const STAGES: {
     x: 778,
     title: "papers + website",
     sub: ["generated mirrors", "never hand-edited"],
-    accent: "#94a3b8",
+    accent: "#526278",
   },
 ];
 
@@ -54,7 +54,7 @@ function Arrow({ x1, x2, y }: { x1: number; x2: number; y: number }) {
 
 export function MethodPipeline() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-6">
+    <div className="overflow-hidden rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-6">
       <svg
         viewBox="0 0 960 258"
         role="img"
@@ -69,7 +69,7 @@ export function MethodPipeline() {
               width={172}
               height={86}
               rx={14}
-              fill="#020617"
+              fill="#ffffff"
               stroke="#334155"
               strokeWidth="1.5"
             />
@@ -78,7 +78,7 @@ export function MethodPipeline() {
               x={s.x + 86}
               y={78}
               textAnchor="middle"
-              fill="#e2e8f0"
+              fill="#263b53"
               fontSize="14"
               fontWeight="600"
               fontFamily="var(--font-mono, monospace)"
@@ -91,7 +91,7 @@ export function MethodPipeline() {
                 x={s.x + 86}
                 y={98 + i * 15}
                 textAnchor="middle"
-                fill="#94a3b8"
+                fill="#526278"
                 fontSize="11"
               >
                 {line}
@@ -119,7 +119,7 @@ export function MethodPipeline() {
           width={364}
           height={62}
           rx={14}
-          fill="#020617"
+          fill="#ffffff"
           stroke="#fb7185"
           strokeOpacity="0.45"
           strokeWidth="1.5"
@@ -136,7 +136,7 @@ export function MethodPipeline() {
         >
           the graveyard
         </text>
-        <text x={374} y={224} textAnchor="middle" fill="#94a3b8" fontSize="11">
+        <text x={374} y={224} textAnchor="middle" fill="#526278" fontSize="11">
           a probe that hits its kill criterion is published as a negative — not deleted
         </text>
 

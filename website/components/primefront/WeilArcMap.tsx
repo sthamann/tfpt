@@ -169,49 +169,49 @@ const BEATS = [
 
 const TONE = {
   step: {
-    ring: "border-sky-400/40 bg-slate-950 text-sky-200",
-    pill: "text-sky-300/80",
-    box: "border-slate-700/40 bg-slate-900/50",
+    ring: "border-sky-400/40 bg-slate-50 text-sky-800",
+    pill: "text-sky-700/80",
+    box: "border-slate-300/40 bg-slate-100/50",
   },
   obstruction: {
-    ring: "border-amber-400/50 bg-slate-950 text-amber-200",
-    pill: "text-amber-300/90",
+    ring: "border-amber-400/50 bg-slate-50 text-amber-800",
+    pill: "text-amber-700/90",
     box: "border-amber-400/35 bg-amber-500/10",
   },
   resolved: {
-    ring: "border-emerald-400/45 bg-slate-950 text-emerald-200",
-    pill: "text-emerald-300/90",
+    ring: "border-emerald-400/45 bg-slate-50 text-emerald-800",
+    pill: "text-emerald-700/90",
     box: "border-emerald-400/30 bg-emerald-500/10",
   },
   open: {
-    ring: "border-violet-400/40 bg-slate-950 text-violet-200",
-    pill: "text-violet-300/90",
+    ring: "border-violet-400/40 bg-slate-50 text-violet-800",
+    pill: "text-violet-700/90",
     box: "border-violet-400/30 bg-violet-500/10",
   },
 } as const;
 
 export function WeilArcMap() {
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-6">
-      <p className="mb-1 font-mono text-[10px] uppercase tracking-widest text-sky-300/90">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-6">
+      <p className="mb-1 font-mono text-[10px] uppercase tracking-widest text-sky-700/90">
         July 25–26 arc · Teile 51–101
       </p>
-      <p className="mb-4 text-xs leading-relaxed text-slate-500">
-        <span className="text-amber-200/90">Two isolated</span>
+      <p className="mb-4 text-xs leading-relaxed text-slate-600">
+        <span className="text-amber-800/90">Two isolated</span>
         {" "}
-        <span className="font-mono text-[9px] text-emerald-300/80">
+        <span className="font-mono text-[9px] text-emerald-700/80">
           [machine-verified]
         </span>
         {" → "}
-        <span className="text-emerald-200/90">v540 / λ* / v541</span>
+        <span className="text-emerald-800/90">v540 / λ* / v541</span>
         {" → "}
-        <span className="text-sky-200/90">I5 geography + relay</span>
+        <span className="text-sky-800/90">I5 geography + relay</span>
         {" "}
-        <span className="font-mono text-[9px] text-amber-300/80">[sandbox]</span>
+        <span className="font-mono text-[9px] text-amber-700/80">[sandbox]</span>
         {" → "}
-        <span className="text-sky-200/90">induction closeout (T99–T101)</span>
+        <span className="text-sky-800/90">induction closeout (T99–T101)</span>
         {" → "}
-        <span className="text-violet-200/90">one object remains: I5</span>
+        <span className="text-violet-800/90">one object remains: I5</span>
         . Geography ≠ attack. Not almost-RH.
       </p>
       <ol className="relative space-y-0">
@@ -237,10 +237,10 @@ export function WeilArcMap() {
               </span>
               <div className={`min-w-0 flex-1 rounded-xl border px-3 py-2.5 ${t.box}`}>
                 <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                  <span className="font-mono text-[10px] text-slate-500">
+                  <span className="font-mono text-[10px] text-slate-600">
                     {b.id}
                   </span>
-                  <span className="font-serif text-base text-slate-100">
+                  <span className="font-serif text-base text-slate-900">
                     {b.title}
                   </span>
                   <span
@@ -255,7 +255,7 @@ export function WeilArcMap() {
                           : "SANDBOX"}
                   </span>
                 </div>
-                <p className="mt-1 text-sm leading-relaxed text-slate-400">
+                <p className="mt-1 text-sm leading-relaxed text-slate-600">
                   {b.detail}
                 </p>
               </div>

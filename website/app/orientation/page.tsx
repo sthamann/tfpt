@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/orientation`,
   },
   openGraph: {
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
     type: "article",
     title: "TFPT in One Map — The Compiler Closure (Introduction)",
     description:
@@ -48,6 +49,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
+    images: [`${SITE_URL}/opengraph-image`],
     card: "summary_large_image",
     title: "TFPT in One Map — The Compiler Closure",
     description:

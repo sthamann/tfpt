@@ -5,8 +5,8 @@ import { StatusBadge } from "./StatusBadge";
 
 export function TwoDoorsConvergence() {
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
-      <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-emerald-300/90">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
+      <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-emerald-700/90">
         Two doors, one object · T102 + T103
       </p>
 
@@ -18,14 +18,14 @@ export function TwoDoorsConvergence() {
           transition={{ duration: 0.4 }}
           className="rounded-xl border border-violet-400/40 bg-violet-500/10 p-3"
         >
-          <p className="font-mono text-[10px] uppercase tracking-wider text-violet-300/90">
+          <p className="font-mono text-[10px] uppercase tracking-wider text-violet-700/90">
             Door A · handover mechanism
           </p>
-          <p className="mt-1.5 text-xs leading-relaxed text-violet-100">
+          <p className="mt-1.5 text-xs leading-relaxed text-violet-800">
             The onset is manufactured by the Schur dressing against E₀⊕E₊ —
             it takes 35.7%…97.3% of the bare eigenvalue.
           </p>
-          <p className="mt-1.5 font-mono text-[10px] text-slate-500">
+          <p className="mt-1.5 font-mono text-[10px] text-slate-600">
             T102 · arithmetic_bound_probe.py
           </p>
         </motion.div>
@@ -37,15 +37,15 @@ export function TwoDoorsConvergence() {
           transition={{ duration: 0.4, delay: 0.15 }}
           className="rounded-xl border border-sky-400/40 bg-sky-500/10 p-3"
         >
-          <p className="font-mono text-[10px] uppercase tracking-wider text-sky-300/90">
+          <p className="font-mono text-[10px] uppercase tracking-wider text-sky-700/90">
             Door C · instrument race
           </p>
-          <p className="mt-1.5 text-xs leading-relaxed text-sky-100">
+          <p className="mt-1.5 text-xs leading-relaxed text-sky-800">
             The remaining loss is the wing slack S = 1 − ρ (falls
             0.2091 → 0.0392); the pencil is nearly saturated, the bulk is not
             low-rank.
           </p>
-          <p className="mt-1.5 font-mono text-[10px] text-slate-500">
+          <p className="mt-1.5 font-mono text-[10px] text-slate-600">
             T103 · instrument_probe.py
           </p>
         </motion.div>
@@ -92,7 +92,7 @@ export function TwoDoorsConvergence() {
           x={64}
           y={30}
           fontSize="8"
-          className="fill-slate-500 font-mono"
+          className="fill-slate-600 font-mono"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -104,7 +104,7 @@ export function TwoDoorsConvergence() {
           x={222}
           y={30}
           fontSize="8"
-          className="fill-slate-500 font-mono"
+          className="fill-slate-600 font-mono"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -121,7 +121,7 @@ export function TwoDoorsConvergence() {
         transition={{ duration: 0.45, delay: 1.4 }}
         className="rounded-xl border border-emerald-400/40 bg-emerald-500/10 p-3 text-center"
       >
-        <p className="font-mono text-[10px] uppercase tracking-wider text-emerald-300/90">
+        <p className="font-mono text-[10px] uppercase tracking-wider text-emerald-700/90">
           The wing near-null direction
         </p>
         <p className="mt-1.5 text-sm leading-relaxed text-emerald-50">
@@ -129,9 +129,9 @@ export function TwoDoorsConvergence() {
         </p>
       </motion.div>
 
-      <div className="mt-2 flex flex-wrap items-start gap-2 rounded-xl border border-dashed border-sky-400/35 bg-slate-900/50 p-3">
+      <div className="mt-2 flex flex-wrap items-start gap-2 rounded-xl border border-dashed border-sky-400/35 bg-slate-100/50 p-3">
         <StatusBadge badge="sandbox" />
-        <p className="min-w-0 flex-1 text-xs leading-relaxed text-slate-400">
+        <p className="min-w-0 flex-1 text-xs leading-relaxed text-slate-600">
           T104 · SCHUR.PROFILE.BOUND — CHAIN-PARTIAL (two independent arms,
           21/21 + 47/47): the naive margin route is dead, exact spectral-split
           chains close 16/16 with finite data, and the hard core moves to a
@@ -148,7 +148,7 @@ export function TwoDoorsConvergence() {
           told in{" "}
           <a
             href="#compression"
-            className="text-sky-300 underline decoration-sky-400/30 underline-offset-2 hover:text-sky-200"
+            className="text-sky-700 underline decoration-sky-400/30 underline-offset-2 hover:text-sky-800"
           >
             sections 20–22
           </a>
@@ -310,7 +310,7 @@ export function TwoDoorsConvergence() {
         </p>
       </div>
 
-      <p className="mt-3 text-xs leading-relaxed text-slate-500">
+      <p className="mt-3 text-xs leading-relaxed text-slate-600">
         The convergence is a measured typing of where the hardness sits — not
         progress on it. Sandbox; not RH evidence.
       </p>

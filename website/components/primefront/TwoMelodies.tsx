@@ -112,12 +112,12 @@ export function TwoMelodies() {
   }, [primes]);
 
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-slate-400">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-slate-600">
           Two melodies · λ = λ_Eis + a_p²
         </p>
-        <ul className="flex gap-4 font-mono text-[10px] text-slate-400">
+        <ul className="flex gap-4 font-mono text-[10px] text-slate-600">
           <li className="flex items-center gap-1.5">
             <span className="h-1.5 w-4 rounded-full bg-sky-400" aria-hidden />
             Witt / smooth
@@ -133,7 +133,7 @@ export function TwoMelodies() {
         className="h-44 w-full sm:h-52"
         aria-label="Animated chart of smooth background plus oscillating a_p squared residual"
       />
-      <p className="mt-2 text-xs leading-relaxed text-slate-500">
+      <p className="mt-2 text-xs leading-relaxed text-slate-600">
         Schematic of the Eichler split (Teile 33, 36): elementary geometry plus
         exact cuspidal interference. Two-sided (no f₈ input) at p ≤ 5; closed
         forms to p ≤ 100.

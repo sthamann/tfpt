@@ -90,7 +90,7 @@ export function RosettaLexicon() {
   return (
     <section
       id="rosetta"
-      className="relative scroll-mt-20 border-t border-slate-800/60 py-20 sm:py-24"
+      className="relative scroll-mt-20 border-t border-slate-200/60 py-20 sm:py-24"
       aria-labelledby="rosetta-heading"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -99,10 +99,10 @@ export function RosettaLexicon() {
           title="Compiler-speak → standard physics"
           description="TFPT’s vocabulary comes from discrete mathematics and computer science; a phenomenologist looks for Lagrangians and RG flows. This Rosetta maps each TFPT term onto the orthodox concept it plays the role of — a reading aid, not a new claim."
         />
-        <div className="mt-10 overflow-hidden rounded-2xl border border-slate-700/40">
+        <div className="mt-10 overflow-hidden rounded-2xl border border-slate-300/40">
           <table className="w-full border-collapse text-left text-sm">
             <thead>
-              <tr className="bg-slate-900/60 text-[11px] uppercase tracking-widest text-blue-300/80">
+              <tr className="bg-slate-100/60 text-[11px] uppercase tracking-widest text-blue-700/80">
                 <th className="w-1/3 px-4 py-3 font-semibold">TFPT term</th>
                 <th className="px-4 py-3 font-semibold">Standard QFT / mathematical reading</th>
               </tr>
@@ -111,12 +111,12 @@ export function RosettaLexicon() {
               {LEXICON.map((row, i) => (
                 <tr
                   key={row.term}
-                  className={i % 2 === 0 ? "bg-slate-950/30" : "bg-slate-900/20"}
+                  className={i % 2 === 0 ? "bg-slate-50/30" : "bg-slate-100/20"}
                 >
-                  <td className="px-4 py-3 align-top font-mono text-xs font-semibold text-slate-100">
+                  <td className="px-4 py-3 align-top font-mono text-xs font-semibold text-slate-900">
                     {row.term}
                   </td>
-                  <td className="px-4 py-3 align-top leading-relaxed text-slate-300">
+                  <td className="px-4 py-3 align-top leading-relaxed text-slate-700">
                     {row.reading}
                   </td>
                 </tr>
@@ -124,9 +124,9 @@ export function RosettaLexicon() {
             </tbody>
           </table>
         </div>
-        <p className="mt-5 text-sm leading-relaxed text-slate-400">
+        <p className="mt-5 text-sm leading-relaxed text-slate-600">
           The one honest layer a physicist will scrutinise is{" "}
-          <span className="font-mono text-slate-200">F_transfer</span>: the discrete kernel and the
+          <span className="font-mono text-slate-800">F_transfer</span>: the discrete kernel and the
           dimensionless readouts are exact, while the continuous transport that drives the
           source data to the physical pole is the external transfer layer — now a typed, runnable
           solver suite (v371–v375), explicitly{" "}

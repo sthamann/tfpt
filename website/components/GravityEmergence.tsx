@@ -19,7 +19,7 @@ const ORIGINS = [
     formula: "c_3 = \\frac{1}{2\\,e_1(a)\\,\\pi}",
     note: "e₁(a) = 4",
     ring: "ring-amber-400/40",
-    badge: "bg-amber-500/15 text-amber-200",
+    badge: "bg-amber-500/15 text-amber-800",
     src: "v23",
   },
   {
@@ -29,7 +29,7 @@ const ORIGINS = [
     formula: "c_3 = \\frac{1}{|\\mathbb{Z}_2|\\,2\\pi\\,\\chi(S^2)}",
     note: "|Z₂|·χ = 2·2",
     ring: "ring-sky-400/40",
-    badge: "bg-sky-500/15 text-sky-200",
+    badge: "bg-sky-500/15 text-sky-800",
     src: "v58",
   },
   {
@@ -39,30 +39,30 @@ const ORIGINS = [
     formula: "c_3 = \\frac{\\eta}{2\\pi},\\ \\eta = \\frac{1}{|\\mu_4|}",
     note: "δS = δ⟨K⟩",
     ring: "ring-violet-400/40",
-    badge: "bg-violet-500/15 text-violet-200",
+    badge: "bg-violet-500/15 text-violet-800",
     src: "v358",
   },
 ];
 
 export function GravityEmergence() {
   return (
-    <div className="mt-8 overflow-hidden rounded-2xl border border-slate-700/40 bg-slate-950/40 p-4 sm:p-6">
+    <div className="mt-8 overflow-hidden rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4 sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h4 className="font-serif text-base font-semibold text-slate-50">
+        <h4 className="font-serif text-base font-semibold text-slate-950">
           The classical covariant field equation carries no free dimensionless Newton coupling under the named QFT/entanglement premises [C] — three origins of <span className="font-mono">c₃</span> converge
         </h4>
-        <span className="rounded-full bg-orange-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-orange-200 ring-1 ring-orange-400/30">
+        <span className="rounded-full bg-orange-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-orange-800 ring-1 ring-orange-400/30">
           v358 / v359 · [C]
         </span>
       </div>
 
-      <p className="mt-2 text-xs leading-relaxed text-slate-400">
+      <p className="mt-2 text-xs leading-relaxed text-slate-600">
         The entanglement first law <Math>{"\\delta S = \\delta\\langle K\\rangle"}</Math> (Jacobson;
         Faulkner et al.), run with TFPT&rsquo;s atoms, gives the <em>full covariant</em> Einstein equation
-        (fixed-volume stationarity → the Einstein tensor, v359) with <strong className="text-slate-200">both
+        (fixed-volume stationarity → the Einstein tensor, v359) with <strong className="text-slate-800">both
         coefficients fixed</strong> under the named QFT/entanglement premises [C] — no free dimensionless Newton coupling. The seam constant{" "}
         <span className="font-mono">c₃ = 1/(8π)</span> arrives by{" "}
-        <strong className="text-slate-200">three independent routes</strong> that all agree.
+        <strong className="text-slate-800">three independent routes</strong> that all agree.
       </p>
 
       {/* three origins */}
@@ -74,21 +74,21 @@ export function GravityEmergence() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.45, delay: i * 0.12 }}
-            className={`rounded-xl border border-slate-700/40 bg-slate-950/60 p-3 ring-1 ${o.ring}`}
+            className={`rounded-xl border border-slate-300/40 bg-slate-50/60 p-3 ring-1 ${o.ring}`}
           >
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-300">
+              <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-700">
                 {o.label}
               </span>
               <span className={`rounded px-1.5 py-0.5 font-mono text-[9px] font-semibold ${o.badge}`}>
                 {o.src}
               </span>
             </div>
-            <div className="mt-0.5 text-[11px] text-slate-500">{o.sub}</div>
-            <div className="mt-2 text-slate-100">
+            <div className="mt-0.5 text-[11px] text-slate-600">{o.sub}</div>
+            <div className="mt-2 text-slate-900">
               <Math>{o.formula}</Math>
             </div>
-            <div className="mt-1 font-mono text-[10px] text-slate-400">{o.note}</div>
+            <div className="mt-1 font-mono text-[10px] text-slate-600">{o.note}</div>
           </motion.div>
         ))}
       </div>
@@ -99,7 +99,7 @@ export function GravityEmergence() {
         whileInView={{ opacity: 1, scaleY: 1 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.4, delay: 0.45 }}
-        className="mx-auto mt-3 flex flex-col items-center text-slate-500"
+        className="mx-auto mt-3 flex flex-col items-center text-slate-600"
         aria-hidden
       >
         <div className="flex w-full max-w-md items-center justify-around text-lg">
@@ -117,13 +117,13 @@ export function GravityEmergence() {
         transition={{ duration: 0.5, delay: 0.6, type: "spring", stiffness: 120 }}
         className="mx-auto max-w-md rounded-xl border border-emerald-400/40 bg-emerald-500/5 p-3 text-center"
       >
-        <div className="text-[10px] font-semibold uppercase tracking-widest text-emerald-200/90">
+        <div className="text-[10px] font-semibold uppercase tracking-widest text-emerald-800/90">
           triply over-determined
         </div>
         <div className="mt-1 text-emerald-50">
           <Math>{"c_3 = \\tfrac{1}{8\\pi}\\quad\\Longrightarrow\\quad c_3^{-1} = 8\\pi"}</Math>
         </div>
-        <div className="mt-1.5 text-[11px] leading-snug text-emerald-100/80">
+        <div className="mt-1.5 text-[11px] leading-snug text-emerald-800/80">
           thermo origin <Math>{"2\\pi/\\eta"}</Math> <strong>=</strong> geo origin{" "}
           <Math>{"|\\mathbb{Z}_2|\\,2\\pi\\,\\chi"}</Math> &nbsp;iff&nbsp;{" "}
           <span className="font-mono">|μ₄| = |Z₂|·χ = 4</span>
@@ -138,21 +138,21 @@ export function GravityEmergence() {
         transition={{ duration: 0.5, delay: 0.85 }}
         className="mt-4 rounded-xl border border-blue-400/30 bg-blue-500/5 p-4 text-center"
       >
-        <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-200/90">
+        <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-800/90">
           classical covariant field equation [C]
         </div>
         <div className="mt-1 text-lg text-blue-50">
           <Math>{"G_{ab} + \\Lambda g_{ab} = c_3^{-1}\\, T_{ab} = 8\\pi\\, T_{ab}"}</Math>
         </div>
-        <div className="mt-1 text-[11px] text-blue-100/75">
+        <div className="mt-1 text-[11px] text-blue-800/75">
           no free dimensionless Newton coupling under the named QFT/entanglement premises [C];{" "}
           <span className="font-mono">G</span> is the one unit{" "}
           <span className="font-mono">v_geo</span>
         </div>
       </motion.div>
 
-      <div className="mt-4 rounded-md border border-slate-700/40 bg-slate-950/60 p-3 text-[11px] leading-relaxed text-slate-300">
-        <strong className="text-slate-100">Honest residual.</strong> This closes the{" "}
+      <div className="mt-4 rounded-md border border-slate-300/40 bg-slate-50/60 p-3 text-[11px] leading-relaxed text-slate-700">
+        <strong className="text-slate-900">Honest residual.</strong> This closes the{" "}
         <em>full covariant</em> equation with no free dimensionless Newton coupling under the named
         QFT/entanglement premises [C] (v359: fixed-volume → the Einstein tensor, with
         Lovelock making matter conservation an output); the matter flux is assembled (the Casini–Huerta–Myers

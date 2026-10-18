@@ -41,12 +41,12 @@ export function AperyBridge() {
   const row = ROWS.find((r) => r.p === active) ?? ROWS[0];
 
   return (
-    <div className="rounded-2xl border border-slate-700/50 bg-slate-950/60 p-4 sm:p-5">
+    <div className="rounded-2xl border border-slate-300/50 bg-slate-50/60 p-4 sm:p-5">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-slate-400">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-slate-600">
           Apéry congruence · click a prime
         </p>
-        <span className="rounded-full border border-emerald-400/35 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-200">
+        <span className="rounded-full border border-emerald-400/35 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-800">
           {ROWS.length}/{ROWS.length} match
         </span>
       </div>
@@ -68,7 +68,7 @@ export function AperyBridge() {
               "h-7 min-w-7 rounded-md px-1.5 font-mono text-[10px] transition",
               r.p === active
                 ? "bg-emerald-500/30 text-emerald-50 ring-2 ring-emerald-300/60"
-                : "bg-emerald-500/10 text-emerald-200/80 hover:bg-emerald-500/25",
+                : "bg-emerald-500/10 text-emerald-800/80 hover:bg-emerald-500/25",
             )}
           >
             {r.p}
@@ -77,36 +77,36 @@ export function AperyBridge() {
       </div>
 
       <div className="mt-4 grid gap-2 sm:grid-cols-2">
-        <div className="rounded-xl border border-slate-700/40 bg-slate-900/50 p-3">
-          <p className="font-mono text-[10px] text-slate-500">
+        <div className="rounded-xl border border-slate-300/40 bg-slate-100/50 p-3">
+          <p className="font-mono text-[10px] text-slate-600">
             Cusp form side · f₈ = η(2τ)⁴η(4τ)⁴
           </p>
-          <p className="mt-1 font-mono text-xl text-sky-200">
+          <p className="mt-1 font-mono text-xl text-sky-800">
             a<sub>{row.p}</sub> = {row.ap}
           </p>
-          <p className="mt-2 text-xs leading-relaxed text-slate-400">
+          <p className="mt-2 text-xs leading-relaxed text-slate-600">
             The same a<sub>p</sub> the frozen neighbour operator reads off E₈
             geometry (Teile 27–32).
           </p>
         </div>
-        <div className="rounded-xl border border-slate-700/40 bg-slate-900/50 p-3">
-          <p className="font-mono text-[10px] text-slate-500">
+        <div className="rounded-xl border border-slate-300/40 bg-slate-100/50 p-3">
+          <p className="font-mono text-[10px] text-slate-600">
             Apéry side · A(({row.p}−1)/2) mod {row.p}²
           </p>
-          <p className="mt-1 font-mono text-xl text-violet-200">
+          <p className="mt-1 font-mono text-xl text-violet-800">
             {row.residue}
           </p>
-          <p className="mt-2 text-xs leading-relaxed text-slate-400">
+          <p className="mt-2 text-xs leading-relaxed text-slate-600">
             Apéry&apos;s ζ(3) numbers, reduced mod p² = {row.p * row.p}.
           </p>
         </div>
       </div>
 
-      <p className="mt-3 rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-3 py-2 text-center font-mono text-sm text-emerald-100">
+      <p className="mt-3 rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-3 py-2 text-center font-mono text-sm text-emerald-800">
         A(({row.p}−1)/2) ≡ a<sub>{row.p}</sub> ≡ {row.residue} (mod {row.p * row.p})
       </p>
 
-      <p className="mt-2 text-xs leading-relaxed text-slate-500">
+      <p className="mt-2 text-xs leading-relaxed text-slate-600">
         Classical Beukers / Ahlgren–Ono congruence, verified here for every odd
         prime p ≤ 97. Placebos on nearby eta products fail. The probe content is
         that the signed E₈ count at odd prime shells satisfies the same

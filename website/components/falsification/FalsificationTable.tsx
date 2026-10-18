@@ -24,12 +24,12 @@ import { REPO_URL, cn } from "@/lib/utils";
 type Finding = NonNullable<Prediction["experiment"]>["finding"];
 
 const DEVIATION_TONE: Record<Finding | "structural", string> = {
-  consistent: "text-emerald-200",
-  robust: "text-emerald-200",
-  tension: "text-amber-200",
-  null: "text-slate-200",
-  data_limited: "text-sky-200",
-  structural: "text-blue-200",
+  consistent: "text-emerald-800",
+  robust: "text-emerald-800",
+  tension: "text-amber-800",
+  null: "text-slate-800",
+  data_limited: "text-sky-800",
+  structural: "text-blue-800",
 };
 
 const COLUMNS = [
@@ -47,12 +47,12 @@ export function FalsificationTable() {
     // Rendered inside an already-labelled <section>, so this is a plain <div>.
     <div id="confrontation-table" className="relative py-8">
       <div className="mx-auto max-w-6xl">
-        <div className="glass overflow-hidden rounded-2xl ring-1 ring-slate-700/40">
-          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/60 px-5 py-3">
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-300/80">
+        <div className="glass overflow-hidden rounded-2xl ring-1 ring-slate-300/40">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200/60 px-5 py-3">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-700/80">
               Confrontation table — value · derivation · TFPT · measured · deviation · source · decisive year
             </span>
-            <span className="rounded-full bg-slate-800/60 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-widest text-slate-300 ring-1 ring-slate-700/40">
+            <span className="rounded-full bg-slate-200/60 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-widest text-slate-700 ring-1 ring-slate-300/40">
               {predictions.length} readouts
             </span>
           </div>
@@ -72,10 +72,10 @@ export function FalsificationTable() {
                       key={h}
                       scope="col"
                       className={cn(
-                        "border-b border-slate-800/60 px-4 py-3 text-[10px] font-semibold uppercase tracking-widest text-slate-300",
+                        "border-b border-slate-200/60 px-4 py-3 text-[10px] font-semibold uppercase tracking-widest text-slate-700",
                         h === "Readout"
-                          ? "sticky left-0 z-10 min-w-[150px] bg-slate-950"
-                          : "bg-slate-950/60",
+                          ? "sticky left-0 z-10 min-w-[150px] bg-slate-50"
+                          : "bg-slate-50/60",
                       )}
                     >
                       {h}
@@ -102,14 +102,14 @@ export function FalsificationTable() {
                       whileInView={{ opacity: 1 }}
                       viewport={{ once: true, amount: 0.02 }}
                       transition={{ duration: 0.3, delay: (i % 8) * 0.02 }}
-                      className="group hover:bg-slate-900/30"
+                      className="group hover:bg-slate-100/30"
                     >
                       <th
                         scope="row"
-                        className="sticky left-0 z-10 border-b border-slate-800/60 bg-slate-950 px-4 py-3 align-top group-hover:bg-slate-900"
+                        className="sticky left-0 z-10 border-b border-slate-200/60 bg-slate-50 px-4 py-3 align-top group-hover:bg-slate-100"
                       >
                         <div className="flex items-center gap-2">
-                          <span className="font-mono text-xs font-semibold text-slate-50">
+                          <span className="font-mono text-xs font-semibold text-slate-950">
                             {p.shortTitle}
                           </span>
                           <span
@@ -123,38 +123,39 @@ export function FalsificationTable() {
                           </span>
                         </div>
                         <Link
+                          prefetch={false}
                           href={link.href}
                           target="_blank"
                           rel="noopener"
-                          className="mt-1 inline-flex items-center gap-1 text-[10px] font-medium text-blue-300/80 transition-colors hover:text-blue-200"
+                          className="mt-1 inline-flex items-center gap-1 text-[10px] font-medium text-blue-700/80 transition-colors hover:text-blue-800"
                         >
                           {link.label}
                           <ArrowUpRight size={10} aria-hidden />
                         </Link>
                       </th>
-                      <td className="border-b border-slate-800/60 px-4 py-3 align-top">
-                        <div className="overflow-x-auto formula-scroll text-xs text-slate-200">
+                      <td className="border-b border-slate-200/60 px-4 py-3 align-top">
+                        <div className="overflow-x-auto formula-scroll text-xs text-slate-800">
                           <Math>{c.derivation}</Math>
                         </div>
                       </td>
-                      <td className="border-b border-slate-800/60 px-4 py-3 align-top font-mono text-xs font-semibold text-slate-100">
+                      <td className="border-b border-slate-200/60 px-4 py-3 align-top font-mono text-xs font-semibold text-slate-900">
                         {c.tfptValue}
                       </td>
-                      <td className="border-b border-slate-800/60 px-4 py-3 align-top text-xs leading-relaxed text-slate-300">
+                      <td className="border-b border-slate-200/60 px-4 py-3 align-top text-xs leading-relaxed text-slate-700">
                         {c.measured}
                       </td>
                       <td
                         className={cn(
-                          "border-b border-slate-800/60 px-4 py-3 align-top text-xs font-semibold leading-relaxed",
+                          "border-b border-slate-200/60 px-4 py-3 align-top text-xs font-semibold leading-relaxed",
                           tone,
                         )}
                       >
                         {c.deviation}
                       </td>
-                      <td className="border-b border-slate-800/60 px-4 py-3 align-top text-xs leading-relaxed text-slate-400">
+                      <td className="border-b border-slate-200/60 px-4 py-3 align-top text-xs leading-relaxed text-slate-600">
                         {c.source}
                       </td>
-                      <td className="border-b border-slate-800/60 px-4 py-3 align-top text-xs leading-relaxed text-amber-200/90">
+                      <td className="border-b border-slate-200/60 px-4 py-3 align-top text-xs leading-relaxed text-amber-800/90">
                         {c.decisive}
                       </td>
                     </motion.tr>
@@ -164,8 +165,8 @@ export function FalsificationTable() {
             </table>
           </div>
 
-          <div className="border-t border-slate-800/60 px-5 py-3 text-[11px] leading-relaxed text-slate-400">
-            <strong className="text-slate-200">Reading rule.</strong> Every value
+          <div className="border-t border-slate-200/60 px-5 py-3 text-[11px] leading-relaxed text-slate-600">
+            <strong className="text-slate-800">Reading rule.</strong> Every value
             is repo-documented — the measured central values and deviations come
             from the v307 data watchdog and the standalone{" "}
             <code className="font-mono">experiments/</code> tree (current bests:

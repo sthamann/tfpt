@@ -23,25 +23,25 @@ const STATS: {
     big: "13 / 13",
     small: "TFPT hits all 13 frozen observables; 200k random pseudo-theories reach ≤ 5/13.",
     icon: Dice5,
-    tone: "text-emerald-300",
+    tone: "text-emerald-700",
   },
   {
     big: "≈ 4.40σ",
     small: "Assumption-minimal counting floor: of 94,500 declared F_U(1) variants exactly one α path lands in the CODATA window (1 in 94,500), with no subjective probability (v436).",
     icon: Crosshair,
-    tone: "text-blue-300",
+    tone: "text-blue-700",
   },
   {
     big: "3 / 8",
     small: "Only 3 of 8 E₈ Casimir degrees feed a readout — and the 5/8 overhead is forced two-family structure (6·spine ⊔ det-ladder, v431), not diffuse slack.",
     icon: Layers,
-    tone: "text-cyan-300",
+    tone: "text-cyan-700",
   },
   {
     big: "≤ 10⁻³⁰·⁷",
     small: "≈ 102 bits that a random theory of equal complexity reproduces the scorecard — conditional on the declared grammar (v100).",
     icon: ShieldCheck,
-    tone: "text-slate-300",
+    tone: "text-slate-700",
   },
 ];
 
@@ -101,7 +101,7 @@ export function Safeguards({ compact = false }: { compact?: boolean }) {
     <section
       id="safeguards"
       aria-labelledby="safeguards-heading"
-      className="relative border-t border-slate-800/60 py-14 sm:py-16"
+      className="relative border-t border-slate-200/60 py-14 sm:py-16"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -124,13 +124,13 @@ export function Safeguards({ compact = false }: { compact?: boolean }) {
               <motion.div
                 key={s.big}
                 variants={item}
-                className="border border-slate-700/40 bg-slate-950/50 p-4"
+                className="border border-slate-300/40 bg-slate-50/50 p-4"
               >
                 <Icon size={18} className={s.tone} aria-hidden />
                 <div className={`mt-2 font-serif text-2xl font-semibold ${s.tone}`}>
                   {s.big}
                 </div>
-                <p className="mt-1 text-xs leading-relaxed text-slate-400">
+                <p className="mt-1 text-xs leading-relaxed text-slate-600">
                   {s.small}
                 </p>
               </motion.div>
@@ -151,12 +151,12 @@ export function Safeguards({ compact = false }: { compact?: boolean }) {
                 <motion.li
                   key={l}
                   variants={item}
-                  className="flex items-center gap-3 border border-slate-700/40 bg-slate-900/50 px-3 py-2.5"
+                  className="flex items-center gap-3 border border-slate-300/40 bg-slate-100/50 px-3 py-2.5"
                 >
-                  <span className="flex h-6 w-6 flex-none items-center justify-center bg-emerald-500/15 text-xs font-semibold text-emerald-300">
+                  <span className="flex h-6 w-6 flex-none items-center justify-center bg-emerald-500/15 text-xs font-semibold text-emerald-700">
                     {i + 1}
                   </span>
-                  <span className="text-xs leading-snug text-slate-300">{l}</span>
+                  <span className="text-xs leading-snug text-slate-700">{l}</span>
                 </motion.li>
               ))}
             </motion.ol>
@@ -172,7 +172,7 @@ export function Safeguards({ compact = false }: { compact?: boolean }) {
                 <motion.figure
                   key={f.src}
                   variants={item}
-                  className="overflow-hidden border border-slate-700/40 bg-slate-950/40"
+                  className="overflow-hidden border border-slate-300/40 bg-slate-50/40"
                 >
                   <Image
                     src={f.src}
@@ -183,7 +183,7 @@ export function Safeguards({ compact = false }: { compact?: boolean }) {
                     className="w-full bg-white"
                     style={{ height: "auto" }}
                   />
-                  <figcaption className="px-4 py-3 text-xs leading-relaxed text-slate-400">
+                  <figcaption className="px-4 py-3 text-xs leading-relaxed text-slate-600">
                     {f.cap}
                   </figcaption>
                 </motion.figure>
@@ -194,16 +194,18 @@ export function Safeguards({ compact = false }: { compact?: boolean }) {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
+            prefetch={false}
             href="/papers/safeguards"
-            className="inline-flex items-center gap-2 bg-emerald-500/15 px-5 py-2.5 text-sm font-semibold text-emerald-200 ring-1 ring-emerald-400/30 transition-colors hover:bg-emerald-500/25"
+            className="inline-flex items-center gap-2 bg-emerald-500/15 px-5 py-2.5 text-sm font-semibold text-emerald-800 ring-1 ring-emerald-400/30 transition-colors hover:bg-emerald-500/25"
           >
             Read the Safeguards paper <ArrowRight size={15} aria-hidden />
           </Link>
           <Link
+            prefetch={false}
             href="/verification"
-            className="inline-flex items-center gap-2 border border-slate-600/60 bg-slate-900/60 px-5 py-2.5 text-sm font-semibold text-slate-100 transition-colors hover:bg-slate-800/80"
+            className="inline-flex items-center gap-2 border border-slate-400/60 bg-slate-100/60 px-5 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-200/80"
           >
-            <GitBranch size={15} className="text-blue-300" aria-hidden /> The
+            <GitBranch size={15} className="text-blue-700" aria-hidden /> The
             verification suite
           </Link>
         </div>

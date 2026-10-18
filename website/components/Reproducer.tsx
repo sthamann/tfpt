@@ -204,7 +204,7 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[60] flex items-end justify-center bg-slate-950/70 p-0 backdrop-blur-sm sm:items-center sm:p-4"
+      className="fixed inset-0 z-[60] flex items-end justify-center bg-slate-50/70 p-0 backdrop-blur-sm sm:items-center sm:p-4"
       role="dialog"
       aria-modal="true"
       aria-label={`Reproducer for ${file}`}
@@ -212,19 +212,19 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="glass-strong flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-t-2xl border border-slate-700/50 sm:rounded-2xl">
+      <div className="glass-strong flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-t-2xl border border-slate-300/50 sm:rounded-2xl">
         {/* Header */}
-        <div className="flex items-start justify-between gap-3 border-b border-slate-800/60 px-5 py-4">
+        <div className="flex items-start justify-between gap-3 border-b border-slate-200/60 px-5 py-4">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-md bg-blue-500/15 px-2 py-0.5 font-mono text-xs font-semibold text-blue-200 ring-1 ring-blue-400/30">
+              <span className="rounded-md bg-blue-500/15 px-2 py-0.5 font-mono text-xs font-semibold text-blue-800 ring-1 ring-blue-400/30">
                 {id}
               </span>
-              <h2 className="truncate font-mono text-sm font-semibold text-slate-100">
+              <h2 className="truncate font-mono text-sm font-semibold text-slate-900">
                 {file}
               </h2>
             </div>
-            <p className="mt-1 text-[11px] leading-snug text-slate-400">
+            <p className="mt-1 text-[11px] leading-snug text-slate-600">
               {nativeOnly ? (
                 <>Native verification — use the full local repository environment.</>
               ) : (
@@ -239,7 +239,7 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
             type="button"
             onClick={onClose}
             aria-label="Close reproducer"
-            className="flex-none rounded-md p-1.5 text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
+            className="flex-none rounded-md p-1.5 text-slate-600 transition-colors hover:bg-slate-900/5 hover:text-slate-950"
           >
             <X size={18} />
           </button>
@@ -249,18 +249,18 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
         <div className="flex-1 overflow-y-auto px-5 py-4">
           {/* What the script checks — pulled from the file's docstring */}
           {doc.title && (
-            <div className="mb-4 rounded-xl border border-slate-700/40 bg-slate-950/40 px-4 py-3">
-              <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-300/80">
+            <div className="mb-4 rounded-xl border border-slate-300/40 bg-slate-50/40 px-4 py-3">
+              <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-700/80">
                 What this script checks
               </div>
-              <p className="mt-1 text-[13px] font-medium leading-snug text-slate-100">
+              <p className="mt-1 text-[13px] font-medium leading-snug text-slate-900">
                 <RichText text={doc.title} />
               </p>
               {doc.body && (
                 <>
                   <div
                     className={cn(
-                      "mt-2 overflow-hidden whitespace-pre-wrap break-words text-[11px] leading-relaxed text-slate-400",
+                      "mt-2 overflow-hidden whitespace-pre-wrap break-words text-[11px] leading-relaxed text-slate-600",
                       docOpen ? "" : "max-h-[3.9rem]",
                     )}
                   >
@@ -269,7 +269,7 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
                   <button
                     type="button"
                     onClick={() => setDocOpen((v) => !v)}
-                    className="mt-1.5 text-[11px] font-semibold text-blue-300 transition-colors hover:text-blue-200"
+                    className="mt-1.5 text-[11px] font-semibold text-blue-700 transition-colors hover:text-blue-800"
                   >
                     {docOpen ? "Show less" : "Show more"}
                   </button>
@@ -279,8 +279,8 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
           )}
 
           {(phase === "loading" || phase === "running") && (
-            <div className="flex items-center gap-3 rounded-xl border border-slate-700/40 bg-slate-950/40 px-4 py-4 text-sm text-slate-300">
-              <Loader2 size={16} className="animate-spin text-blue-300" aria-hidden />
+            <div className="flex items-center gap-3 rounded-xl border border-slate-300/40 bg-slate-50/40 px-4 py-4 text-sm text-slate-700">
+              <Loader2 size={16} className="animate-spin text-blue-700" aria-hidden />
               <span>{status}</span>
             </div>
           )}
@@ -297,7 +297,7 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
               <div
                 className={cn(
                   "flex items-center gap-2 text-sm font-semibold",
-                  nativeOnly ? "text-amber-200" : "text-rose-200",
+                  nativeOnly ? "text-amber-800" : "text-rose-800",
                 )}
               >
                 {nativeOnly ? (
@@ -309,7 +309,7 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
                   ? "Native runtime required — not a browser failure"
                   : "This script did not complete in the browser sandbox"}
               </div>
-              <p className="mt-2 text-xs leading-relaxed text-slate-300">
+              <p className="mt-2 text-xs leading-relaxed text-slate-700">
                 {nativeOnly
                   ? "This check deliberately does not run in the browser runtime. You can still read the source, open it on GitHub, or reproduce it in the full local repository environment with the command below."
                   : "Some heavier scripts (large SciPy solves) are best run locally. You can still read the source, open it on GitHub, or run it with the command below."}
@@ -317,8 +317,8 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
               {result.error && (
                 <pre
                   className={cn(
-                    "mt-3 max-h-48 overflow-auto whitespace-pre-wrap break-words rounded-md border border-slate-800/60 bg-slate-950/70 p-3 text-[11px] leading-relaxed",
-                    nativeOnly ? "text-amber-100/90" : "text-rose-200/90",
+                    "mt-3 max-h-48 overflow-auto whitespace-pre-wrap break-words rounded-md border border-slate-200/60 bg-slate-50/70 p-3 text-[11px] leading-relaxed",
+                    nativeOnly ? "text-amber-800/90" : "text-rose-800/90",
                   )}
                 >
                   {result.error}
@@ -340,27 +340,27 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
               >
                 <div className="flex items-center gap-2">
                   {result.ok ? (
-                    <Check size={16} className="text-emerald-300" aria-hidden />
+                    <Check size={16} className="text-emerald-700" aria-hidden />
                   ) : (
-                    <XCircle size={16} className="text-rose-300" aria-hidden />
+                    <XCircle size={16} className="text-rose-700" aria-hidden />
                   )}
                   <span
                     className={cn(
                       "text-sm font-semibold",
-                      result.ok ? "text-emerald-200" : "text-rose-200",
+                      result.ok ? "text-emerald-800" : "text-rose-800",
                     )}
                   >
                     {result.ok ? "ALL CHECKS PASSED" : "Some checks failed"}
                   </span>
                 </div>
-                <span className="font-mono text-xs text-slate-300">
+                <span className="font-mono text-xs text-slate-700">
                   {result.passed} passed
                   {result.failed > 0 ? ` · ${result.failed} failed` : ""}
                 </span>
               </div>
 
               {result.header && (
-                <p className="mt-3 font-mono text-[11px] text-slate-400">
+                <p className="mt-3 font-mono text-[11px] text-slate-600">
                   {result.header}
                 </p>
               )}
@@ -370,28 +370,28 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
                 {shown.map((c, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-2 rounded-md border border-slate-800/50 bg-slate-950/40 px-3 py-1.5"
+                    className="flex items-start gap-2 rounded-md border border-slate-200/50 bg-slate-50/40 px-3 py-1.5"
                   >
                     {c.ok ? (
                       <Check
                         size={13}
-                        className="mt-0.5 flex-none text-emerald-400"
+                        className="mt-0.5 flex-none text-emerald-700"
                         aria-hidden
                       />
                     ) : (
                       <XCircle
                         size={13}
-                        className="mt-0.5 flex-none text-rose-400"
+                        className="mt-0.5 flex-none text-rose-700"
                         aria-hidden
                       />
                     )}
-                    <span className="text-[12px] leading-snug text-slate-300">
+                    <span className="text-[12px] leading-snug text-slate-700">
                       <RichText text={c.label} />
                     </span>
                   </li>
                 ))}
                 {revealed < checks.length && (
-                  <li className="flex items-center gap-2 px-3 py-1 text-[11px] text-slate-500">
+                  <li className="flex items-center gap-2 px-3 py-1 text-[11px] text-slate-600">
                     <Loader2 size={12} className="animate-spin" aria-hidden />
                     {checks.length - revealed} more…
                   </li>
@@ -399,7 +399,7 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
               </ol>
 
               {checks.length === 0 && result.raw && (
-                <pre className="mt-3 max-h-72 overflow-auto whitespace-pre-wrap break-words rounded-md border border-slate-800/60 bg-slate-950/70 p-3 text-[11px] leading-relaxed text-slate-300">
+                <pre className="mt-3 max-h-72 overflow-auto whitespace-pre-wrap break-words rounded-md border border-slate-200/60 bg-slate-50/70 p-3 text-[11px] leading-relaxed text-slate-700">
                   {result.raw}
                 </pre>
               )}
@@ -411,12 +411,12 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
             <button
               type="button"
               onClick={toggleSource}
-              className="text-xs font-semibold text-blue-300 transition-colors hover:text-blue-200"
+              className="text-xs font-semibold text-blue-700 transition-colors hover:text-blue-800"
             >
               {showSource ? "Hide" : "Show"} the script source
             </button>
             {showSource && (
-              <pre className="mt-2 max-h-80 overflow-auto whitespace-pre-wrap break-words rounded-md border border-slate-800/60 bg-slate-950/80 p-3 text-[11px] leading-relaxed text-slate-300">
+              <pre className="mt-2 max-h-80 overflow-auto whitespace-pre-wrap break-words rounded-md border border-slate-200/60 bg-slate-50/80 p-3 text-[11px] leading-relaxed text-slate-700">
                 <code className="font-mono">{source ?? "Loading…"}</code>
               </pre>
             )}
@@ -424,12 +424,12 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
         </div>
 
         {/* Footer */}
-        <div className="flex flex-wrap items-center gap-2 border-t border-slate-800/60 px-5 py-3">
+        <div className="flex flex-wrap items-center gap-2 border-t border-slate-200/60 px-5 py-3">
           <button
             type="button"
             onClick={run}
             disabled={phase === "loading" || phase === "running"}
-            className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-4 py-2 text-xs font-semibold text-white shadow-md shadow-blue-500/20 transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+            className="inline-flex items-center gap-1.5 rounded-full bg-blue-700 px-4 py-2 text-xs font-semibold text-white shadow-md shadow-blue-500/20 transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
           >
             {phase === "loading" || phase === "running" ? (
               <Loader2 size={13} className="animate-spin" aria-hidden />
@@ -443,7 +443,7 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
           <button
             type="button"
             onClick={copyCmd}
-            className="inline-flex items-center gap-1.5 rounded-full border border-slate-600/60 bg-slate-900/60 px-3 py-2 font-mono text-[11px] text-slate-200 transition-colors hover:bg-slate-800/80"
+            className="inline-flex items-center gap-1.5 rounded-full border border-slate-400/60 bg-slate-100/60 px-3 py-2 font-mono text-[11px] text-slate-800 transition-colors hover:bg-slate-200/80"
             title="Copy the command to run it locally"
           >
             {copied ? <Check size={12} aria-hidden /> : <Copy size={12} aria-hidden />}
@@ -453,7 +453,7 @@ function ReproducerModal({ file, onClose }: { file: string; onClose: () => void 
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-slate-600/60 bg-slate-900/60 px-3 py-2 text-xs font-semibold text-slate-200 transition-colors hover:bg-slate-800/80"
+            className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-slate-400/60 bg-slate-100/60 px-3 py-2 text-xs font-semibold text-slate-800 transition-colors hover:bg-slate-200/80"
           >
             <Github size={13} aria-hidden />
             GitHub
