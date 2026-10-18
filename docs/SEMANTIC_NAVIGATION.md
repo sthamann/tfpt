@@ -1,78 +1,105 @@
-# Semantic navigation and coverage
+# Paper semantics, source navigation and research review
 
-All **6,693 registry section records** have structural navigation: physical
-source locations, source excerpts, document ownership and lexical topic hints.
-They do **not** all have reviewed summaries of their mathematical content or
-reviewed links explaining how their arguments depend on one another. The
-registry and the local Knowledge Atlas serve different purposes.
+The central registry locates all **6,693 public section records** with exact
+source spans, excerpts, document ownership and typed references. The local
+Knowledge Atlas adds dedicated paper search, outlines, section descriptions and
+evidence tools using those same IDs. Its source-grounded AI summaries and the
+Atlas's curated scientific reviews remain different layers.
 
 | Layer | What it supplies | What it does not establish |
 |---|---|---|
-| [Content registry](registry/INDEX.md) | Exact editable source spans, opening excerpts, includes, explicit citations and bounded topic queries | Complete semantic understanding, reviewed conclusions or proof validity |
-| Local Atlas corpus | Searchable source context and structural section/theorem/formula records | A reviewed interpretation of every section |
-| Curated Atlas research state | Source-reviewed findings, scoped problems, prerequisites and recorded decisions | Coverage of the whole corpus or a proof beyond each record's stated scope |
-| Original ledger and formal sources | Original claim status; exact Lean statements, hypotheses and axiom dependencies | A broader conclusion inferred from a filename, graph edge or passing finite check |
+| [Content registry](registry/INDEX.md) | Exact editable source spans, includes, explicit citations, lexical topics and bounded queries | Semantic review or proof validity |
+| Atlas paper layer | Full-body source search and, when complete/current, AI summaries of concepts, assumptions, results and limits | Curated review, a new ledger verdict or a proof |
+| Curated Atlas research state | Source-reviewed findings, scoped problems, prerequisites and recorded decisions | Automatic review of every paper section |
+| Original ledger and formal sources | Original status; exact Lean statements, hypotheses and axiom dependencies | A broader conclusion inferred from a graph edge or finite check |
 
-## Observed coverage on 2026-10-18
+## Check actual coverage
 
-These are dated navigation/service observations, **not scientific coverage or
-completion percentages**. Consult live `graph_status` for subsequent sessions.
+Use live `paper_coverage` for paper-specific inventory and semantic processing.
+It distinguishes expected/imported sections; `complete`, `pending`, `error`,
+`stale` and `source_error`; public/private scope; documents/physical sources;
+and current/total chunks. Complete inventory alone is not complete AI coverage.
+Only source-current, validated AI summaries/quotes covering every bounded chunk
+of the full source body count as complete. Even `semantic_complete: true` leaves
+the AI annotations `reviewed:false`: it does not certify scientific correctness.
+Check source freshness separately from `context_state` (`current`, `stale`,
+`incomplete`): a complete available-body summary can lack original document
+prerequisites. Coverage exposes stale and incomplete context separately. Exact
+quotation spans establish where text came from, not that the summary follows
+from those quotations.
 
-- The local corpus snapshot contains **1,084 `paper_section` nodes**. All use
-  the structural-only section summary; none has `reviewed: true`. The Atlas
-  `parse_tex` extractor explicitly creates section headings with structural
-  summaries and `reviewed: false`. The service composes this corpus with its
-  other data; the base knowledge file alone has no `paper_section` records.
-  Its section count and granularity differ from the registry's physical records.
-- `graph_status.meta.research_program` reports **156 reviewed findings,
-  16 reviewed problems and zero stale reviewed findings**. This describes that
-  curated subset, not all sections or all scientific questions.
-- The separate AI claim-annotation cache reports **778 stale annotations out
-  of 788**. Those unreviewed interpretations are distinct from the curated
-  findings; their cache state does not change the original ledger verdicts.
-- The semantic-search subsystem reports **7,579 existing graph vectors plus
-  one hydrated vector for 43,887 nodes in its reported denominator**, about
-  **17.3%**. That measures partial vector availability, not source review or
-  mathematical validity. The overall service node count is a different metric.
+Consult `graph_status` separately for curated research review, other annotation
+caches and semantic-vector availability. A stale source requires re-extraction,
+not a scientific status reversal. Vector availability is not a percentage of
+proved or reviewed science. Missing reviewed coverage does not establish that
+the scientific question is open.
 
-The extractor's own wording is “semantic status is structural only.” Neither
-regex topic suggestions nor embeddings supply missing reviewed semantics.
+The earlier structural-only corpus snapshot on **2026-10-18**, before this paper
+layer, had 1,084 `paper_section` records with structural summaries and no reviewed
+section nodes. The same dated service observation reported 156 curated findings,
+16 problems, zero stale curated findings, a separate stale AI claim cache
+(778/788), and partial vector availability (7,580/43,887 in that subsystem).
+These describe separate historical layers and denominators; none is a current
+paper-completion or scientific-validity score. Use live tools after each import.
 
 ## Route for the next session
 
-1. Start with [the compact registry](registry/summary.json) and a bounded query:
+1. Start with `graph_status` and `theory_overview`, then `paper_coverage`.
+2. Use `search_papers(query, scope="public", limit=5)` or `list_papers` to find
+   the document or phrase. For example, search `carrier_rank_pascal_unique`.
+3. Copy the returned exact `document:` ID into `paper_outline(document_id)`.
+   Copy the relevant exact `section:` ID into `paper_section(section_id)`.
+   Read its summary state, source freshness, parent context and every premise.
+4. Use `paper_evidence(id)` to follow typed evidence links, then `read_source`
+   with the returned `source_id` and bounded inclusive line ranges. Original
+   source reads are hash checked and limited to 200 lines per call. Continue
+   across ranges when the complete section or prerequisites require it.
+5. Use `research_state` for the exact topic/problem or actual scientific
+   question. Preserve its findings, strategies and conjunctive premise IDs;
+   follow the existing plan/update discipline before retrying a strategy or
+   recording a source-reviewed result.
+6. Check the [original ledger](../verification/status_ledger.csv), cited proof
+   and actual Lean/Wolfram scope. Finding a theorem does not execute Lean;
+   report a kernel, script or Wolfram run only when it actually occurred.
 
-   ```sh
-   python3 verification/make_content_registry.py --query 'carrier_rank_pascal_unique' --limit 2
-   python3 verification/make_content_registry.py --document origin_theory --limit 5
-   ```
+Paged paper tools return totals, offsets, omissions, continuation and character
+budgets. Follow `next_offset` and `budget.truncated`; a bounded sample is not
+the entire corpus. A section response has no offset: use its source references
+to retrieve omitted original context. Lexical topics, identifier joins, explicit
+citations and logical derivations keep their distinct relation types.
 
-2. Read the exact original section, its parent context and every stated premise.
-   Follow its owning document/include chain; an isolated excerpt can omit a
-   condition or an earlier definition.
-3. When the local Atlas is available, start with `graph_status` and
-   `theory_overview`, then use `research_state` for the exact topic or problem.
-   Preserve the resulting problem, finding, strategy and conjunctive premise
-   IDs. A missing reviewed match can mean missing review coverage; it does
-   **not** establish that the scientific question is open.
-4. Check the [original ledger](../verification/status_ledger.csv), cited source
-   and actual Lean/Wolfram scope. Read the Lean theorem's hypotheses and axiom
-   dependencies. Finding a theorem is not a fresh kernel run; report execution
-   only when it actually occurred.
+The canonical shared skill documents exact argument defaults in
+`semantic_explorer/skills/tfpt-knowledge/references/papers-navigation.md` on the
+local installation. Reconnect an old MCP client if its catalog lacks
+`list_papers`, `search_papers`, `paper_outline`, `paper_section`, `paper_evidence`
+or `paper_coverage`; do not replace a missing tool with a whole-graph dump.
 
-For example, registry retrieval can locate the physical `origin_theory`
-section discussing `carrier_rank_pascal_unique`; Atlas search can locate the
-corresponding Lean proposition. These are complementary retrieval results,
-not a new proof or a fresh Lean execution.
+## Public, private and historical material
 
-## Remaining semantic work
+List/search default to public records. `scope="local_private"` (alias `private`)
+explicitly selects private records; `scope="all"` includes both. Exact-ID reads
+can access an explicitly known private record and retain its scope labels.
+Historical, archive, support and exploratory material remain marked rather
+than being presented as current scientific conclusions.
 
-Complete section-level semantics would require reviewed summaries stating each
-section's conclusion, assumptions and limits, together with justified typed
-relations to original evidence and other sections. Those reviews need exact
-source provenance and freshness. This work remains incomplete; lexical matches
-must remain navigation suggestions rather than being relabelled as reviewed
-scientific relationships.
+Private paper inputs and semantic caches belong only in the local ignored
+Atlas. Public importing does not consult private records/cache. Do not copy
+private sources, summaries or the complete private overlay into a public
+registry, website download or publication. A public checkout can use bounded
+registry queries and original sources when the local Atlas is unavailable:
 
-See [the agent instructions](../AGENTS.md), [relation semantics](registry/RELATIONS.md)
+```sh
+python3 verification/make_content_registry.py --query 'carrier_rank_pascal_unique' --limit 2
+python3 verification/make_content_registry.py --document origin_theory --limit 5
+```
+
+## What reviewed semantics still requires
+
+AI descriptions make paper content retrievable beyond headings and lexical
+topics. Scientific review still requires checking each load-bearing summary's
+conclusion, assumptions and limits against its original source and justifying
+its typed relations. Only that source review can support a curated finding or
+research-state update; an import must not promote the ledger automatically.
+
+See [agent instructions](../AGENTS.md), [relation semantics](registry/RELATIONS.md)
 and [LaTeX maintenance](LATEX_MAINTENANCE.md) for the operational boundaries.

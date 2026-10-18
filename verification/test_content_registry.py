@@ -45,6 +45,43 @@ class ContentRegistryTests(unittest.TestCase):
             self.assertEqual(target, "documents/archive-note/preamble.tex")
             self.assertIsNone(registry.resolve_include("../../outside.tex", "note.tex", {"outside.tex"}, "."))
 
+    def test_nested_fragment_uses_document_compile_root_and_keeps_membership(self):
+        config=json.loads(registry.CONFIG.read_text())
+        config.update(active_entry_points=["book/main.tex"],explicit_public_sources=[],topics=[])
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);out=root/"docs/registry";out.mkdir(parents=True)
+            files={
+                "book/main.tex":r"\documentclass{article}\input{chapters/appendix}",
+                "book/chapters/appendix.tex":r"\section{Appendix}Exact introduction.\input{sources_manifest}\input{empty}",
+                "book/sources_manifest.tex":r"\section{Manifest}Exact required evidence.",
+                "book/empty.tex":"",
+                "verification/make_content_registry.py":"# fixture generator\n",
+                "verification/tex_sources.py":"# fixture helper\n",
+                "verification/script_registry.csv":"script,cluster,what_web\n",
+                "verification/status_ledger.csv":"claim_id,status\n",
+            }
+            for name,text in files.items():
+                path=root/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_text(text)
+            (out/"config.json").write_text(json.dumps(config))
+            (out/"source_inventory.json").write_text(json.dumps({"evidence_sources":[]}))
+            tex=sorted(p for p in files if p.endswith(".tex"))
+            with patch.object(registry,"ROOT",root),patch.object(registry,"OUT",out):
+                data,_=registry.build(config,tex,tex)
+                document=data["documents"][0];sections={s["id"]:s for s in data["sections"]}
+                self.assertEqual(document["expansion_status"],"complete_literal_expansion")
+                self.assertEqual(document["physical_sources"],list(files)[:4])
+                self.assertEqual([sections[i]["title"]for i in document["ordered_section_ids"]],["Front matter / support","Appendix","Manifest"])
+                for sid in document["ordered_section_ids"]:
+                    self.assertIn(document["id"],sections[sid]["owner_documents"])
+                appendix=next(s for s in data["sources"]if s["path"]=="book/chapters/appendix.tex")
+                self.assertEqual(appendix["includes"][0]["target"],"book/sources_manifest.tex")
+                self.assertFalse(any(d["kind"]in {"unresolved_include","document_expansion_incomplete"}for d in data["diagnostics"]))
+                # Existing but undeclared evidence must still fail closed.
+                undeclared=[p for p in tex if p!="book/sources_manifest.tex"]
+                incomplete,_=registry.build(config,undeclared,tex)
+                self.assertEqual(incomplete["documents"][0]["expansion_status"],"incomplete_literal_expansion")
+                self.assertIn("outside declared authored source inventory",incomplete["documents"][0]["expansion_error"])
+
     def test_pure_wrapper_has_no_second_content_body(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(registry, "ROOT", Path(directory)):
             Path(directory, "note.tex").write_text("% compatibility\n\\input{documents/note/main.tex}")

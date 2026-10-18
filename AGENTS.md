@@ -16,8 +16,14 @@ reintroduce its modules, registries or runtime dependency into TFPT.
    than loading it wholesale into an agent context. Read the original
    statements; registry links alone do not establish a proof.
    Read `docs/SEMANTIC_NAVIGATION.md` for coverage limits and the next-session
-   route. Structural section coverage is not complete semantic review; a
-   missing reviewed Atlas match is not evidence that a scientific question is open.
+   route. In the local Atlas use `paper_coverage`, `search_papers`/`list_papers`,
+   `paper_outline`, `paper_section`, `paper_evidence` and `read_source` before
+   joining the exact question to `research_state`. Source-grounded AI summaries
+   remain `reviewed:false`; check freshness, incomplete states and scope.
+   Structural/AI coverage is not curated scientific review; a missing reviewed
+   Atlas match is not evidence that a scientific question is open. Paper search
+   defaults public; explicitly include local/private material only for local work
+   and never copy it automatically into public artifacts.
 3. Read the relevant `.cursor/rules/` and any nested `AGENTS.md` that applies
    to the files being changed. Current user instructions take precedence.
 4. Inspect the working tree. Preserve unrelated staged, modified, untracked

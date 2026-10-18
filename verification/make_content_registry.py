@@ -21,7 +21,7 @@ import re
 import subprocess
 import sys
 
-from tex_sources import literal_includes, source_chunks, TexSourceError
+from tex_sources import dependency_paths, literal_includes, source_chunks, TexSourceError
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs/registry"
@@ -362,7 +362,6 @@ def build(config, paths, public_paths, include_local=False):
             target=resolve_include(raw,row["path"],available,compile_dirs.get(row["path"]))
             inc={"literal":raw,"line":raw_sources[row["path"]].count("\n",0,start)+1,"target":target,"relation_type":"includes_source"}
             row["includes"].append(inc)
-            if target is None:diagnostics.append({"kind":"unresolved_include","source":row["path"],"line":inc["line"],"token":raw,"resolution":"not resolved within the declared authored source inventory; conditional/dynamic/historical inputs are not executed"})
         if row["is_wrapper"]:
             row["alias_of"]=next((x["target"]for x in row["includes"]if x["target"]and x["target"].startswith("documents/")and x["target"].endswith("/main.tex")),None)
     by_section={s["id"]:s for s in sections};documents=[]
@@ -377,19 +376,21 @@ def build(config, paths, public_paths, include_local=False):
             if source["path"]in module_by_path:source["modular_ownership"]=module_by_path[source["path"]]
 
     roots=[s for s in sources if s["path"]in config["active_entry_points"]or s["path"]in known_standalones or("\\documentclass"in mask_tex_comments(raw_sources[s["path"]])and not s["path"].startswith("documents/"))]
+    include_contexts=defaultdict(set)
     for source in roots:
         entry=source["path"];did="document:"+entry.removesuffix(".tex");owners=[];spans=[];status="complete_literal_expansion";err=None
         try:
-            # Reject known external/missing inputs before the common expander can read them.
-            visited=set()
-            def closure(p):
-                if p in visited:return
-                visited.add(p)
-                for inc in source_by_path.get(p,{}).get("includes",[]):
-                    if inc["target"]is None:raise ValueError("unresolved declared include "+inc["literal"])
-                    closure(inc["target"])
-            closure(entry)
-            chunks=source_chunks(ROOT/entry)
+            # TeX resolves nested inputs from the containing document's compile
+            # directory. A fragment's static include row is not its closure.
+            compile_dir=compile_dirs.get(entry,str(Path(entry).parent))
+            dependencies=dependency_paths(ROOT/entry,compile_dir=ROOT/compile_dir)
+            for dependency in dependencies:
+                p=rel(dependency)  # also rejects dependencies outside the repository
+                if p not in source_by_path:
+                    raise ValueError("include outside declared authored source inventory: "+p)
+            chunks=source_chunks(ROOT/entry,compile_dir=ROOT/compile_dir)
+            owners.extend(rel(p)for p in dependencies)  # retain empty/pure include sources
+            for p in owners:include_contexts[p].add(compile_dir)
             for chunk in chunks:
                 try:p=rel(chunk.path)
                 except ValueError:raise ValueError("expansion escaped repository")
@@ -421,7 +422,18 @@ def build(config, paths, public_paths, include_local=False):
         for sid in contents:by_section[sid]["owner_documents"].append(did)
         raw_title=source["title_latex"]or next((source_by_path[p]["title_latex"]for p in owners if source_by_path[p]["title_latex"]),"")
         nav_title=config.get("document_titles",{}).get(entry,Path(entry).stem.replace("_"," "))
-        documents.append({"id":did,"entry_point":entry,"canonical_source":source["alias_of"]or entry,"role":"active"if entry in config["active_entry_points"]else source["role"],"title":nav_title,"title_latex_as_written":raw_title,"title_basis":"curated navigation title"if entry in config.get("document_titles",{})else"source filename; original mathematical title preserved separately","compile_dir":str(Path(entry).parent),"expansion_status":status,"expansion_error":err,"physical_sources":list(dict.fromkeys(owners)),"ordered_section_ids":contents,"source_spans":spans})
+        documents.append({"id":did,"entry_point":entry,"canonical_source":source["alias_of"]or entry,"role":"active"if entry in config["active_entry_points"]else source["role"],"title":nav_title,"title_latex_as_written":raw_title,"title_basis":"curated navigation title"if entry in config.get("document_titles",{})else"source filename; original mathematical title preserved separately","compile_dir":compile_dirs.get(entry,str(Path(entry).parent)),"expansion_status":status,"expansion_error":err,"physical_sources":list(dict.fromkeys(owners)),"ordered_section_ids":contents,"source_spans":spans})
+    # Source-level include navigation follows the actual owning compile contexts.
+    # Shared fragments can have several contexts; never guess when they disagree.
+    for source in sources:
+        contexts=include_contexts.get(source["path"],())
+        for inc in source["includes"]:
+            if contexts:
+                targets={resolve_include(inc["literal"],source["path"],available,c)for c in contexts}
+                inc["target"]=next(iter(targets))if len(targets)==1 else None
+                if len(targets)>1:inc["context_targets"]=sorted(t for t in targets if t is not None)
+            if inc["target"]is None:
+                diagnostics.append({"kind":"unresolved_include","source":source["path"],"line":inc["line"],"token":inc["literal"],"resolution":"not uniquely resolved within the declared authored source inventory and owning compile contexts; conditional/dynamic/historical inputs are not executed"})
     for source in sources:
         source["owner_documents"]=sorted(set(source["owner_documents"]))
         source["primary_owner"]=source["owner_documents"][0]if len(source["owner_documents"])==1 else "shared-source:"+source["path"]if source["owner_documents"]else "unreferenced-source:"+source["path"]

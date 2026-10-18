@@ -24,10 +24,12 @@ references. It distinguishes a citation from a proof and an inferred topic
 match from an explicit reference. Missing or ambiguous evidence links remain
 visible.
 
-All registry sections are structurally located; complete reviewed section-level
-semantics remain unfinished. The [semantic navigation guide](docs/SEMANTIC_NAVIGATION.md)
-explains the current coverage and the source → Atlas → original-evidence route
-for future sessions.
+All registry sections are structurally located. The local Atlas also exposes
+dedicated paper search, outlines, section summaries and evidence tools; consult
+`paper_coverage` for actual completed, pending, failed and stale AI coverage.
+Source-grounded AI descriptions remain separate from reviewed scientific
+findings. The [semantic navigation guide](docs/SEMANTIC_NAVIGATION.md) explains
+the paper → original evidence → research-state route and public/private scopes.
 
 The former `tfpt5-shadow` mirror was retired on 2026-10-18: its repository is
 archived/read-only and automatic synchronization is disabled. Its history is
