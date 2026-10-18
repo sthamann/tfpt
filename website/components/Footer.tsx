@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Github } from "lucide-react";
 import { Logo } from "./Logo";
-import { REPO_URL } from "@/lib/utils";
+import { REPO_URL, PRIME_FRONT_URL } from "@/lib/utils";
 import { trackPdfInteraction, type DownloadKind } from "@/lib/track";
 import { SITE_VERSION } from "@/lib/version";
 import { SuiteBadge } from "./SuiteBadge";
@@ -154,6 +154,11 @@ export function Footer() {
                 <Github size={13} aria-hidden />
                 GitHub
               </Link>
+            </li>
+            <li>
+              <a href={PRIME_FRONT_URL} className="text-slate-600 hover:text-slate-950">
+                Prime Front — primes &amp; RH ↗
+              </a>
             </li>
             <li>
               <a

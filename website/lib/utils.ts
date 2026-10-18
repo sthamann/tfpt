@@ -19,3 +19,6 @@ export const REPO_URL = "https://github.com/sthamann/tfpt";
  */
 export const SITE_URL =
   (process.env.NEXT_PUBLIC_SITE_URL || "https://www.fixpoint-theory.com").replace(/\/+$/, "");
+
+/** Independent prime-number and RH research project. */
+export const PRIME_FRONT_URL = "https://prime.fixpoint-theory.com";

@@ -49,7 +49,7 @@ microscopic theory**; all physical T1–T8 gates remain open.
 Earlier records keep their source-pinned historical wording. RH, prime-number,
 prime-event and factorisation research now lives in the independent
 [Prime Front repository](https://github.com/sthamann/prime-front) and
-[website](https://prime-front-zeta.vercel.app). TFPT retains the physical compiler,
+[website](https://prime.fixpoint-theory.com). TFPT retains the physical compiler,
 its mathematical dependencies and its own verification suite. Neither project
 claims a proof of the Riemann hypothesis.
 

@@ -198,4 +198,4 @@ The published set is the one compiled by `build.sh` and mirrored to the website;
 for the list is [`tex-artefacts/tfpt_docset.tex`](../tex-artefacts/tfpt_docset.tex).
 
 RH and prime-number papers, including the Hilbert–Pólya truncation note, now live
-in the independent [Prime Front publications](https://prime-front-zeta.vercel.app/publications).
+in the independent [Prime Front publications](https://prime.fixpoint-theory.com/publications).

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Github, Menu, X } from "lucide-react";
-import { cn, REPO_URL } from "@/lib/utils";
+import { cn, REPO_URL, PRIME_FRONT_URL } from "@/lib/utils";
 import { SITE_VERSION, SITE_DATE, SITE_REV } from "@/lib/version";
 import { Logo } from "./Logo";
 import { SuiteBadge } from "./SuiteBadge";
@@ -23,6 +23,7 @@ const primaryLinks = [
   { href: "/replication", label: "Replication" },
   { href: "/papers", label: "Papers" },
   { href: "/faq", label: "FAQ" },
+  { href: PRIME_FRONT_URL, label: "Prime Front ↗" },
 ];
 
 const moreLinks = [
