@@ -16,7 +16,7 @@ export function HonestyBanner() {
       <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-700">
         Honesty first
       </p>
-      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-amber-50/95 sm:text-base">
+      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-amber-900/95 sm:text-base">
         Research diary. Everything here is exploratory sandbox work unless
         explicitly marked as machine-verified (currently:{" "}
         <Link
@@ -35,7 +35,7 @@ export function HonestyBanner() {
           No claim of progress toward the Riemann Hypothesis is made.
         </strong>
       </p>
-      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-amber-50/80">
+      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-amber-900/80">
         How this discipline works — the sandbox firewall, the kill criteria
         declared before execution, the graveyard of buried coincidences, and
         the suite module that measures all of it (v649) — is documented on{" "}
@@ -58,7 +58,7 @@ export function HonestyBanner() {
           </span>
           The full status paragraph (v535–v648), preserved verbatim
         </summary>
-        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-amber-50/80">
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-amber-900/80">
           The sprint T102–T125
           compressed the remaining arithmetic bound to one sign plus one declared
           accounting convention; phase 2 (T126–T176) closed its measurement

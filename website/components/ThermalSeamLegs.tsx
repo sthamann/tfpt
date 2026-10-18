@@ -121,7 +121,7 @@ export function ThermalSeamLegs() {
         <div className="text-[10px] font-semibold uppercase tracking-widest text-emerald-800/90">
           geometry + anomaly + temperature
         </div>
-        <div className="mt-1 text-emerald-50">
+        <div className="mt-1 text-emerald-900">
           <Math>{"c_3 = \\tfrac{1}{8\\pi}, \\qquad T_H = \\tfrac{c_3}{M} = \\tfrac{1}{8\\pi M}"}</Math>
         </div>
         <div className="mt-1.5 text-[11px] leading-snug text-emerald-800/80">

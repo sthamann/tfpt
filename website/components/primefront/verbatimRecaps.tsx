@@ -15,7 +15,7 @@
 /** HonestyBanner: the full sprint + phase-2 recap (T102–T176). */
 export function SprintPhase2Recap() {
   return (
-        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-amber-50/80">
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-amber-900/80">
         Load-bearing v539 isolates <em>two</em> obstructions; load-bearing
         v540 consolidates the amplitude/linear route with the open boundary{" "}
         <em>inside</em> the claim; load-bearing v541 promotes the

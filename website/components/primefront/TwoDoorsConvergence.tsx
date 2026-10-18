@@ -124,7 +124,7 @@ export function TwoDoorsConvergence() {
         <p className="font-mono text-[10px] uppercase tracking-wider text-emerald-700/90">
           The wing near-null direction
         </p>
-        <p className="mt-1.5 text-sm leading-relaxed text-emerald-50">
+        <p className="mt-1.5 text-sm leading-relaxed text-emerald-900">
           One scalar per zone: a lower bound on σ_k just above atom entry.
         </p>
       </motion.div>

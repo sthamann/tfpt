@@ -32,7 +32,7 @@ const LAYERS: Layer[] = [
     examples: "P2 algebra (Lean, 0 sorry) · E₈ glue machine-checked",
     tone: "from-blue-600 to-blue-500",
     ring: "ring-blue-400/40",
-    text: "text-blue-50",
+    text: "text-blue-900",
     width: "w-[88%]",
   },
   {
@@ -42,7 +42,7 @@ const LAYERS: Layer[] = [
     examples: "E₈ = (D₅ ⊕ A₃) + μ₄ · bootstrap μ² − 5μ + 4 = 0 · order-30 Coxeter",
     tone: "from-cyan-500 to-blue-500",
     ring: "ring-cyan-400/40",
-    text: "text-cyan-50",
+    text: "text-cyan-900",
     width: "w-[76%]",
   },
   {
@@ -52,7 +52,7 @@ const LAYERS: Layer[] = [
     examples: "240 = 16·5·3 · 248 = 240+8 · b₁ = 41/10 · det R = 8 · Einstein 8π = c₃⁻¹",
     tone: "from-emerald-500 to-teal-500",
     ring: "ring-emerald-400/40",
-    text: "text-emerald-50",
+    text: "text-emerald-900",
     width: "w-[64%]",
   },
   {
@@ -62,7 +62,7 @@ const LAYERS: Layer[] = [
     examples: "α⁻¹ = 137.0359992 · sin²θ₁₂ = 0.3067 · sin²θ₁₃ = 0.0231 · β_rad",
     tone: "from-violet-500 to-fuchsia-500",
     ring: "ring-violet-400/40",
-    text: "text-violet-50",
+    text: "text-violet-900",
     width: "w-[52%]",
   },
   {
@@ -72,7 +72,7 @@ const LAYERS: Layer[] = [
     examples: "masses · A_s, n_s, r · η_B · Koide · S_pert (EG, 1-loop unitary) · v_geo scale [O] (interface torsor-closed in calibration form, v725) · G_net [C] (MMST route SEAM.EQUIV.MMST.01 closed modulo cited theorems, parent SEAM.EQUIV.01 [O], twistor route SEAM.EQUIV.TWISTOR.01 [O]; 128-spinor leg crossed-product certified, v469; index witnesses v722/v726) · QG.AMB.01 [C] (redundancy)",
     tone: "from-amber-500 to-orange-600",
     ring: "ring-amber-400/40",
-    text: "text-amber-50",
+    text: "text-amber-900",
     width: "w-[40%]",
     dashed: true,
   },

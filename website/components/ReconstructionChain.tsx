@@ -65,7 +65,7 @@ const STATUS_META: Record<
     label: "Geometry channel",
     tone: "from-fuchsia-500 to-pink-500",
     ring: "ring-fuchsia-400/40",
-    chip: "bg-fuchsia-500/15 text-fuchsia-200",
+    chip: "bg-fuchsia-500/15 text-fuchsia-800",
   },
 };
 

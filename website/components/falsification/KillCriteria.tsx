@@ -31,7 +31,7 @@ const SEVERITY_META: Record<
   },
   downstream: {
     label: "Cosmology kill",
-    chip: "bg-fuchsia-500/15 text-fuchsia-200 ring-fuchsia-400/30",
+    chip: "bg-fuchsia-500/15 text-fuchsia-800 ring-fuchsia-400/30",
     tone: "from-fuchsia-500 to-pink-500",
   },
 };

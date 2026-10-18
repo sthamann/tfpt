@@ -120,7 +120,7 @@ export function GravityEmergence() {
         <div className="text-[10px] font-semibold uppercase tracking-widest text-emerald-800/90">
           triply over-determined
         </div>
-        <div className="mt-1 text-emerald-50">
+        <div className="mt-1 text-emerald-900">
           <Math>{"c_3 = \\tfrac{1}{8\\pi}\\quad\\Longrightarrow\\quad c_3^{-1} = 8\\pi"}</Math>
         </div>
         <div className="mt-1.5 text-[11px] leading-snug text-emerald-800/80">
@@ -141,7 +141,7 @@ export function GravityEmergence() {
         <div className="text-[10px] font-semibold uppercase tracking-widest text-blue-800/90">
           classical covariant field equation [C]
         </div>
-        <div className="mt-1 text-lg text-blue-50">
+        <div className="mt-1 text-lg text-blue-900">
           <Math>{"G_{ab} + \\Lambda g_{ab} = c_3^{-1}\\, T_{ab} = 8\\pi\\, T_{ab}"}</Math>
         </div>
         <div className="mt-1 text-[11px] text-blue-800/75">

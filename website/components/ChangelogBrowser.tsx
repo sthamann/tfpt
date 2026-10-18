@@ -112,7 +112,7 @@ const AREA_META: Record<string, { label: string; cls: string; dot: string }> = {
   horizon: { label: "Horizon & BH", cls: "bg-indigo-500/10 text-indigo-800 ring-indigo-400/30", dot: "bg-indigo-400" },
   experiment: { label: "Experiments", cls: "bg-rose-500/10 text-rose-800 ring-rose-400/30", dot: "bg-rose-400" },
   infra: { label: "Infrastructure", cls: "bg-slate-500/10 text-slate-700 ring-slate-600/30", dot: "bg-slate-600" },
-  core: { label: "Compiler core", cls: "bg-fuchsia-500/10 text-fuchsia-200 ring-fuchsia-400/30", dot: "bg-fuchsia-400" },
+  core: { label: "Compiler core", cls: "bg-fuchsia-500/10 text-fuchsia-800 ring-fuchsia-400/30", dot: "bg-fuchsia-400" },
 };
 
 const AREA_ORDER = [

@@ -59,7 +59,7 @@ export function WoitBridgeProgress() {
         <h4 className="font-serif text-base font-semibold text-slate-950">
           The OS twistor bridge — <span className="font-mono">WOIT.OS.TWISTOR.01</span>
         </h4>
-        <span className="rounded-full bg-fuchsia-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-fuchsia-200 ring-1 ring-fuchsia-400/30">
+        <span className="rounded-full bg-fuchsia-500/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-fuchsia-800 ring-1 ring-fuchsia-400/30">
           research contract · [O]
         </span>
       </div>

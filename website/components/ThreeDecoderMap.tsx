@@ -287,7 +287,7 @@ function ClosedBranchPill() {
         <span className="rounded-full bg-rose-500/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-rose-800 ring-1 ring-rose-400/30">
           Bootstrap loop
         </span>
-        <span className="text-[11px] text-rose-50/90">
+        <span className="text-[11px] text-rose-900/90">
           The E₈ closure feeds back as an internal consistency check: g_car = 5
           and the denominator 8 in c₃ are recovered independently, so the
           bootstrap overdetermines the discrete core — only π stays free

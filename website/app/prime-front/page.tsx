@@ -859,7 +859,7 @@ export default function PrimeFrontPage() {
           regularisation artefact — a categorical feature of the square level.
         </p>
 
-        <p className="rounded-xl border border-violet-400/35 bg-violet-500/10 px-4 py-3 text-sm leading-relaxed text-violet-50 sm:text-base">
+        <p className="rounded-xl border border-violet-400/35 bg-violet-500/10 px-4 py-3 text-sm leading-relaxed text-violet-900 sm:text-base">
           At T86 — 91 probes in — and with seven promoted modules (v535–v541),
           the matching lemma is closed on ALL atom classes (window-certificate
           format,
@@ -4297,7 +4297,7 @@ function BigPictureSection() {
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-sky-700/90">
               What we are trying to do
             </p>
-            <h3 className="mt-2 font-serif text-xl text-sky-50">
+            <h3 className="mt-2 font-serif text-xl text-sky-900">
               A relay that has to work forever
             </h3>
             <div className="mt-3 space-y-3 text-sm leading-relaxed text-slate-700">
@@ -4329,7 +4329,7 @@ function BigPictureSection() {
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-700/90">
               What actually works today
             </p>
-            <h3 className="mt-2 font-serif text-xl text-emerald-50">
+            <h3 className="mt-2 font-serif text-xl text-emerald-900">
               The mechanism has never failed a step
             </h3>
             <div className="mt-3 space-y-3 text-sm leading-relaxed text-slate-700">
@@ -4546,7 +4546,7 @@ function ProgramStatusCallout() {
       <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-violet-700/90">
         Strongest current sentence
       </p>
-      <p className="mt-3 font-serif text-lg leading-relaxed text-violet-50 sm:text-xl">
+      <p className="mt-3 font-serif text-lg leading-relaxed text-violet-900 sm:text-xl">
         After the T102–T176 sprint (its identity cores promoted module by
         module), what remains TFPT-specific is exactly one object: I5 — and the
         induction that would carry it is now
@@ -4690,7 +4690,7 @@ function DepthReachCallout() {
             className="flex flex-wrap items-baseline gap-x-2 border-b border-emerald-400/15 pb-2 last:border-0 last:pb-0"
           >
             <dt className="font-mono text-[11px] text-emerald-800">{d.part}</dt>
-            <dd className="font-mono text-sm text-emerald-50">{d.value}</dd>
+            <dd className="font-mono text-sm text-emerald-900">{d.value}</dd>
             <dd className="min-w-0 flex-1 text-right text-[11px] text-slate-600">
               {d.label}
             </dd>
@@ -4712,7 +4712,7 @@ function AmplitudeRouteCallout() {
       <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-sky-700/90">
         Transport compressed · v540
       </p>
-      <p className="mt-3 font-serif text-lg leading-relaxed text-sky-50 sm:text-xl">
+      <p className="mt-3 font-serif text-lg leading-relaxed text-sky-900 sm:text-xl">
         The transport problem, compressed to a single measurable object: the
         FE-covariant gap functional λ* on the atoms n&nbsp;≡&nbsp;6&nbsp;mod&nbsp;8.
       </p>
@@ -4731,7 +4731,7 @@ function DoorsFurnishedCallout() {
       <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-amber-700/90">
         The wall, named
       </p>
-      <p className="mt-3 font-serif text-lg leading-relaxed text-amber-50 sm:text-xl">
+      <p className="mt-3 font-serif text-lg leading-relaxed text-amber-900 sm:text-xl">
         The wall is no longer a metaphor: it is one named inequality —
         provably equivalent to RH. Everything else on the route is either
         proved or classically provable-shaped.
@@ -4753,7 +4753,7 @@ function ThreePerspectivesCallout() {
       <p className="mt-3 font-mono text-sm leading-relaxed text-sky-800">
         {"Q_cert(h) + Δ₂(h) + A_fam(h) − A_shift(h) ≥ 0"}
       </p>
-      <p className="mt-3 font-serif text-base leading-relaxed text-sky-50">
+      <p className="mt-3 font-serif text-base leading-relaxed text-sky-900">
         Self-consistency of one heat family. Type change ≠ proof; I5 remains ⟺
         RH. Coherent class closed via λ-channel.
       </p>
@@ -4774,7 +4774,7 @@ function BlindPrimeCallout() {
       <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-700/90">
         Blind demo · T94 · sandbox
       </p>
-      <p className="mt-3 font-serif text-xl leading-relaxed text-emerald-50 sm:text-2xl">
+      <p className="mt-3 font-serif text-xl leading-relaxed text-emerald-900 sm:text-2xl">
         753/753 primes predicted — zero errors, no division.
       </p>
       <p className="mt-3 text-sm leading-relaxed text-slate-700">
@@ -4796,7 +4796,7 @@ function I5GeographyCallout() {
       <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-violet-700/90">
         Geography — not an attack
       </p>
-      <p className="mt-3 font-serif text-lg leading-relaxed text-violet-50 sm:text-xl">
+      <p className="mt-3 font-serif text-lg leading-relaxed text-violet-900 sm:text-xl">
         Identities proved; zones 2–4 closed; zone-5 tip = equality; asymptotics
         = one named arithmetic bound (A).
       </p>

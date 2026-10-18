@@ -100,7 +100,7 @@ export const STATUS_META: Record<
   },
   horizon: {
     label: "Appendix H — reframe",
-    color: "text-fuchsia-300",
+    color: "text-fuchsia-800",
     bg: "bg-fuchsia-500/10",
     ring: "ring-fuchsia-500/30",
     gradient: "from-fuchsia-500 to-pink-500",

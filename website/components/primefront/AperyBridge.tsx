@@ -67,7 +67,7 @@ export function AperyBridge() {
             className={cn(
               "h-7 min-w-7 rounded-md px-1.5 font-mono text-[10px] transition",
               r.p === active
-                ? "bg-emerald-500/30 text-emerald-50 ring-2 ring-emerald-300/60"
+                ? "bg-emerald-500/30 text-emerald-900 ring-2 ring-emerald-300/60"
                 : "bg-emerald-500/10 text-emerald-800/80 hover:bg-emerald-500/25",
             )}
           >

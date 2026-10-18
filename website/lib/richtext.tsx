@@ -23,18 +23,18 @@ import { Fragment, type ReactNode } from "react";
 // Status marker -> tone, following the /changelog palette (E emerald,
 // C amber, O slate, X rose). Fine ledger types fold into their display class.
 const MARKER_TONE: Record<string, string> = {
-  E: "bg-emerald-500/10 text-emerald-300 ring-emerald-400/30",
-  I: "bg-emerald-500/10 text-emerald-300 ring-emerald-400/30",
-  L: "bg-emerald-500/10 text-emerald-300 ring-emerald-400/30",
-  F: "bg-emerald-500/10 text-emerald-300 ring-emerald-400/30",
-  N: "bg-emerald-500/10 text-emerald-300 ring-emerald-400/30",
-  C: "bg-amber-500/10 text-amber-300 ring-amber-400/30",
-  P: "bg-amber-500/10 text-amber-300 ring-amber-400/30",
-  B: "bg-amber-500/10 text-amber-300 ring-amber-400/30",
-  R: "bg-amber-500/10 text-amber-300 ring-amber-400/30",
-  O: "bg-slate-500/10 text-slate-300 ring-slate-400/30",
-  A: "bg-slate-500/10 text-slate-300 ring-slate-400/30",
-  X: "bg-rose-500/10 text-rose-300 ring-rose-400/30",
+  E: "bg-emerald-500/10 text-emerald-700 ring-emerald-400/30",
+  I: "bg-emerald-500/10 text-emerald-700 ring-emerald-400/30",
+  L: "bg-emerald-500/10 text-emerald-700 ring-emerald-400/30",
+  F: "bg-emerald-500/10 text-emerald-700 ring-emerald-400/30",
+  N: "bg-emerald-500/10 text-emerald-700 ring-emerald-400/30",
+  C: "bg-amber-500/10 text-amber-700 ring-amber-400/30",
+  P: "bg-amber-500/10 text-amber-700 ring-amber-400/30",
+  B: "bg-amber-500/10 text-amber-700 ring-amber-400/30",
+  R: "bg-amber-500/10 text-amber-700 ring-amber-400/30",
+  O: "bg-slate-500/10 text-slate-700 ring-slate-400/30",
+  A: "bg-slate-500/10 text-slate-700 ring-slate-400/30",
+  X: "bg-rose-500/10 text-rose-700 ring-rose-400/30",
 };
 
 const MARKER_GLOBAL = /\[(E|C|O|X|I|L|F|N|P|B|R|A)\]/g;
@@ -71,7 +71,7 @@ function StatusBadge({ code }: { code: string }) {
 
 function FormulaChip({ value }: { value: string }) {
   return (
-    <span className="rounded bg-slate-800/50 px-1 font-mono text-[0.92em] text-blue-200/95">
+    <span className="rounded bg-slate-100/80 px-1 font-mono text-[0.92em] text-blue-800">
       {value}
     </span>
   );

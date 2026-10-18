@@ -83,7 +83,7 @@ const TONE: Record<
   downstream: {
     label: "[O]",
     bg: "bg-fuchsia-500/15",
-    text: "text-fuchsia-200",
+    text: "text-fuchsia-800",
     ring: "ring-fuchsia-400/30",
     bar: "from-fuchsia-500 to-pink-500",
   },
