@@ -138,5 +138,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  return [...pages, ...paperPages, ...releaseFiles];
+  // These visible editorial pages changed independently of the PDF release.
+  const updatedPages = new Set([SITE_URL, `${SITE_URL}/papers`, `${SITE_URL}/faq`]);
+  return [...pages.map((page) => updatedPages.has(page.url)
+    ? { ...page, lastModified: new Date("2026-10-23") }
+    : page), ...paperPages, ...releaseFiles];
 }

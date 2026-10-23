@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -8,22 +9,7 @@ import { ThermalSeamLegs } from "@/components/ThermalSeamLegs";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SITE_URL } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Architecture — Compiler Pipeline, Horizon & Gravity",
-  description:
-    "The TFPT compiler pipeline (reconstruction chain), the seam=horizon story, and gravity emergence under the named QFT/entanglement premises — narrative architecture pages moved off the homepage archive.",
-  alternates: { canonical: `${SITE_URL}/architecture` },
-  openGraph: {
-    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
-    type: "website",
-    title: "Architecture — TFPT",
-    description:
-      "Compiler pipeline, seam=horizon story, and gravity emergence (no free dimensionless Newton coupling under the named QFT/entanglement premises [C]).",
-    url: `${SITE_URL}/architecture`,
-    siteName: "TFPT — Topological Fixed-Point Theory",
-    locale: "en_US",
-  },
-};
+export const metadata: Metadata = pageMetadata("/architecture");
 
 export default function ArchitecturePage() {
   return (

@@ -1,42 +1,9 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { ExternalLink } from "lucide-react";
 import { SITE_URL } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Compiler in Action — Watch Two Numbers Build the Standard Model",
-  description:
-    "An interactive walkthrough of the TFPT compiler: from one boundary edge — the seam constant c₃ = 1/(8π) and the carrier rank g_car = 5 — E₈ validates the closure and the machine reads off the Standard Model, the constants (α⁻¹ = 137.0359992), the flavor sector and a 23-readout prediction board. Turn the dials and watch every universe but ours fail to close.",
-  keywords: [
-    "TFPT compiler",
-    "interactive Standard Model",
-    "E8 audit hull",
-    "c3 = 1/(8π)",
-    "g_car = 5",
-    "fine-structure constant 137",
-    "ablation console",
-    "TFPT machine",
-    "Stefan Hamann",
-    "Alessandro Rizzo",
-  ],
-  alternates: { canonical: `${SITE_URL}/compiler` },
-  openGraph: {
-    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
-    type: "website",
-    title: "The Compiler in Action — TFPT",
-    description:
-      "Interactive: two numbers (c₃ = 1/(8π), g_car = 5) compile the Standard Model, the constants and a 23-readout prediction board. E₈ validates the closure; turn the dials and only the audited universe survives.",
-    url: `${SITE_URL}/compiler`,
-    siteName: "TFPT — Topological Fixed-Point Theory",
-    locale: "en_US",
-  },
-  twitter: {
-    images: [`${SITE_URL}/opengraph-image`],
-    card: "summary_large_image",
-    title: "The Compiler in Action — TFPT",
-    description:
-      "Watch two numbers build the Standard Model. Interactive E₈ compiler with a live ablation console.",
-  },
-};
+export const metadata: Metadata = pageMetadata("/compiler");
 
 export default function CompilerPage() {
   return (

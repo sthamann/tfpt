@@ -1696,6 +1696,8 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   experimental: {
+    // Deliver the critical Tailwind and math styles with the initial HTML.
+    inlineCss: true,
     optimizePackageImports: ["lucide-react", "motion"],
   },
 };

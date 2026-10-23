@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -5,39 +6,7 @@ import { HostileRefereeFAQ } from "@/components/HostileRefereeFAQ";
 import { FAQ_ITEMS } from "@/lib/faq";
 import { SITE_URL } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Hostile-Referee FAQ — The Sharpest Objections, Answered",
-  description:
-    "The best objections to TFPT, answered directly: is this just E₈ unification, where does experimental input enter, what is fitted, what would kill the theory fastest, and what is still open. With the experimental comparison sources.",
-  keywords: [
-    "TFPT FAQ",
-    "E8 unification objection",
-    "Distler Garibaldi",
-    "what is fitted",
-    "falsification",
-    "open gates",
-    "Stefan Hamann",
-    "Alessandro Rizzo",
-  ],
-  alternates: { canonical: `${SITE_URL}/faq` },
-  openGraph: {
-    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
-    type: "article",
-    title: "Hostile-Referee FAQ — TFPT",
-    description:
-      "The sharpest objections to TFPT, answered: E₈ as audit hull, where input enters, what is fitted, what kills it fastest, and what is open.",
-    url: `${SITE_URL}/faq`,
-    siteName: "TFPT — Topological Fixed-Point Theory",
-    locale: "en_US",
-    authors: ["Stefan Hamann", "Alessandro Rizzo"],
-  },
-  twitter: {
-    images: [`${SITE_URL}/opengraph-image`],
-    card: "summary_large_image",
-    title: "Hostile-Referee FAQ — TFPT",
-    description: "The sharpest objections, answered directly.",
-  },
-};
+export const metadata: Metadata = pageMetadata("/faq");
 
 const faqJsonLd = {
   "@context": "https://schema.org",

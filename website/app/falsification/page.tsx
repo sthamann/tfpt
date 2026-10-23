@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -9,44 +10,7 @@ import { NoKnobsAudit } from "@/components/falsification/NoKnobsAudit";
 import { SITE_VERSION } from "@/lib/version";
 import { SITE_URL } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "How to kill TFPT — Falsification Surface and No-Knobs Audit",
-  description:
-    `An explicit falsification surface for the TFPT ${SITE_VERSION} compiler closure, paired with a no-knobs audit. The freeze file commits the decisive kill criteria — JUNO θ₁₂, the tensor ratio r, neutrino ordering, the strong-CP null, and w = −1 — in advance. The construction is killed by any single satisfied criterion.`,
-  keywords: [
-    "TFPT falsification",
-    "How to kill TFPT",
-    "Topological Fixed-Point Theory falsification",
-    "No-knobs audit",
-    "Freeze file",
-    "Strong-CP null",
-    "JUNO solar angle",
-    "Tensor ratio r",
-    "Stefan Hamann",
-    "Alessandro Rizzo",
-  ],
-  alternates: {
-    canonical: `${SITE_URL}/falsification`,
-  },
-  openGraph: {
-    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
-    type: "article",
-    title: "How to kill TFPT — Falsification Surface and No-Knobs Audit",
-    description:
-      `Explicit falsification surface for the TFPT ${SITE_VERSION} compiler closure, with a no-knobs audit. Every output has a committed kill criterion.`,
-    url: `${SITE_URL}/falsification`,
-    siteName: "TFPT — Topological Fixed-Point Theory",
-    locale: "en_US",
-    authors: ["Stefan Hamann", "Alessandro Rizzo"],
-  },
-  twitter: {
-    images: [`${SITE_URL}/opengraph-image`],
-    card: "summary_large_image",
-    title: "How to kill TFPT — Falsification Surface",
-    description:
-      "Each TFPT output ships with its own committed kill criterion. Free knobs: 0.",
-  },
-};
+export const metadata: Metadata = pageMetadata("/falsification");
 
 const articleJsonLd = {
   "@context": "https://schema.org",

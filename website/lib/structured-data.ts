@@ -5,34 +5,27 @@ import { SITE_VERSION } from "@/lib/version";
 
 export const collectionJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Collection",
-  name: `TFPT ${SITE_VERSION} Compiler-Closure Document Set`,
+  "@type": "CollectionPage",
+  "@id": `${SITE_URL}/papers#collection`,
+  name: "TFPT research papers",
   url: `${SITE_URL}/papers`,
-  description:
-    `The TFPT ${SITE_VERSION} document set: the introduction reading guide, the architecture and E₈ compiler, the Standard Model, the E₈ audit and bootstrap, the honest frontier, the adversarial Red-Team audit, and the four companions — Appendix H (horizon), the Origin Theory synthesis, the research contracts, and the safeguards discipline.`,
-  hasPart: papers.map((p) => ({
-    "@type": "ScholarlyArticle",
-    name: p.title,
-    headline: p.title,
-    alternateName: p.subtitle,
-    abstract: p.abstract,
-    url: `${SITE_URL}/papers/${p.slug}`,
-    inLanguage: "en",
-    author: [
-      { "@type": "Person", name: "Stefan Hamann" },
-      { "@type": "Person", name: "Alessandro Rizzo" },
-    ],
-    isPartOf: {
-      "@type": "PublicationIssue",
-      name: `TFPT ${SITE_VERSION} compiler-closure document set`,
-      issueNumber: String(p.number),
-    },
-    encoding: {
-      "@type": "MediaObject",
-      contentUrl: `${SITE_URL}${p.pdf}`,
-      encodingFormat: "application/pdf",
-    },
-  })),
+  description: "Research papers by Stefan Hamann and Alessandro Rizzo on TFPT, E₈, Standard Model structure and the alpha fixed point, with assumptions and research status.",
+  inLanguage: "en",
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: papers.length,
+    itemListElement: papers.map((paper, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "ScholarlyArticle",
+        "@id": `${SITE_URL}/papers/${paper.slug}#article`,
+        name: paper.title,
+        url: `${SITE_URL}/papers/${paper.slug}`,
+      },
+    })),
+  },
 };
 
 export const predictionsJsonLd = {

@@ -1,23 +1,10 @@
 import { SectionHeader } from "./SectionHeader";
 
-const LINES: { plain: string; technical?: string }[] = [
-  {
-    plain: "Two small inputs set the rules of a discrete compiler.",
-    technical: "axioms",
-  },
-  {
-    plain:
-      "The compiler assembles a rigid mathematical shell that only closes one way.",
-    technical: "E₈ audit hull",
-  },
-  {
-    plain:
-      "From that shell it reads off the Standard-Model skeleton — forces, three families, hypercharge — and a board of concrete predictions.",
-  },
-  {
-    plain:
-      "Every load-bearing step is machine-checked; what is still open or failed is published, not buried.",
-  },
+const LINES = [
+  { plain: "Two starting assumptions specify a seam normalization c₃ = 1/(8π) and a carrier rank of five.", href: "/papers/architecture-e8", source: "Inputs and E₈ construction" },
+  { plain: "A lattice construction joins D₅ and A₃ through their discriminant data to obtain E₈ under the stated assumptions.", href: "/papers/e8-audit-bootstrap", source: "Lattice audit and bootstrap" },
+  { plain: "The compiler relates this structure to Standard Model representations, flavor readouts and an electromagnetic fixed-point equation.", href: "/papers/standard-model", source: "Standard Model and flavor" },
+  { plain: "The published checks test specific mathematical and numerical claims. Physical interpretations and remaining derivations have separate status in the ledger.", href: "/verification", source: "Reproduce a claim and inspect its status" },
 ];
 
 /**
@@ -35,8 +22,8 @@ export function InOneBreath() {
         <SectionHeader
           id="in-one-breath-heading"
           eyebrow="Mechanism"
-          title="In one breath"
-          description="The whole story in four lines — everyday language first, jargon only in parentheses."
+          title="How does TFPT work?"
+          description="Follow the construction from its inputs to the published papers and reproducible evidence."
         />
         <ol className="mt-8 space-y-0 border border-slate-300/50 bg-slate-50/50">
           {LINES.map((line, i) => (
@@ -49,12 +36,7 @@ export function InOneBreath() {
               </span>
               <p className="text-sm leading-relaxed text-slate-800 sm:text-[15px]">
                 {line.plain}
-                {line.technical ? (
-                  <span className="text-slate-600">
-                    {" "}
-                    ({line.technical})
-                  </span>
-                ) : null}
+                {" "}<a href={line.href} className="text-blue-800 underline underline-offset-2">{line.source} →</a>
               </p>
             </li>
           ))}

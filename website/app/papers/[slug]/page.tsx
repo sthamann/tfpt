@@ -1,3 +1,4 @@
+import { PAPER_SEARCH } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -27,17 +28,8 @@ export async function generateMetadata(
 
   const meta = STATUS_META[paper.status];
 
-  // One-sentence description: Inputs → Contribution → Not claimed.
-  const oneSentence = [
-    paper.contribution[0]
-      ? paper.contribution[0]
-      : `A document of the TFPT ${SITE_VERSION} compiler-closure set.`,
-    paper.notClaimed[0] ? `Not claimed: ${paper.notClaimed[0]}` : null,
-  ]
-    .filter(Boolean)
-    .join(" ");
-
-  const title = `${paperLabel(paper)} — ${paper.title}`;
+  const [searchTitle, oneSentence] = PAPER_SEARCH[paper.slug] ?? [paper.title, paper.subtitle];
+  const title = searchTitle;
 
   // Highwire `citation_publication_date` prefers YYYY/MM/DD; fall back to the year.
   const release = getReleaseAsset(paper.pdf);
@@ -112,6 +104,8 @@ export default async function PaperPage({ params }: PaperPageProps) {
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
+    "@id": `${SITE_URL}/papers/${paper.slug}#article`,
+    mainEntityOfPage: `${SITE_URL}/papers/${paper.slug}`,
     headline: paper.title,
     alternateName: paper.subtitle,
     abstract: paper.abstract,

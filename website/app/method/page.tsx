@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -12,43 +13,7 @@ import { DISCIPLINE } from "@/lib/discipline";
 import { SITE_VERSION } from "@/lib/version";
 import { SITE_URL } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Method — The verification framework",
-  description:
-    `How TFPT ${SITE_VERSION} keeps itself honest: a sandbox firewall, preregistered kill criteria, a deterministic ${DISCIPLINE.suite.modules}-module suite, one status ledger as single source of truth, and generated mirrors. ${DISCIPLINE.ledger.killRows} documented kills and honest negatives, ${DISCIPLINE.suite.mustfailOccurrences.toLocaleString("en-US")} negative controls — the discipline itself is measured and certified by the suite (v649).`,
-  keywords: [
-    "TFPT method",
-    "verification framework",
-    "machine-checked physics",
-    "preregistration",
-    "falsifiability",
-    "honest negatives",
-    "reproducibility",
-    "Topological Fixed-Point Theory",
-    "Stefan Hamann",
-  ],
-  alternates: {
-    canonical: `${SITE_URL}/method`,
-  },
-  openGraph: {
-    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
-    type: "article",
-    title: "Method — The verification framework",
-    description:
-      "Every load-bearing claim is machine-checked; every temptation is either promoted with controls or buried in public. The discipline is measured, not asserted.",
-    url: `${SITE_URL}/method`,
-    siteName: "TFPT — Topological Fixed-Point Theory",
-    locale: "en_US",
-    authors: ["Stefan Hamann", "Alessandro Rizzo"],
-  },
-  twitter: {
-    images: [`${SITE_URL}/opengraph-image`],
-    card: "summary_large_image",
-    title: "Method — The verification framework",
-    description:
-      "Sandbox firewall, preregistered kill criteria, deterministic suite, one ledger, generated mirrors — and a graveyard of buried coincidences.",
-  },
-};
+export const metadata: Metadata = pageMetadata("/method");
 
 const articleJsonLd = {
   "@context": "https://schema.org",

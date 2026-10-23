@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -14,40 +15,7 @@ import { SCRIPT_TOTAL } from "@/lib/suite";
 import { SITE_VERSION } from "@/lib/version";
 import { REPO_URL, SITE_URL } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Read this first — the skeptical reviewer's entry point",
-  description:
-    `A 5-minute orientation for a hostile reviewer of TFPT ${SITE_VERSION}: what is claimed, what is explicitly not claimed, what would kill it, what is machine-checked, what remains open, and how to reproduce one result in five minutes.`,
-  keywords: [
-    "TFPT review",
-    "skeptical reviewer",
-    "what TFPT claims",
-    "what would kill TFPT",
-    "machine-checked",
-    "reproducibility",
-    "Stefan Hamann",
-    "Alessandro Rizzo",
-  ],
-  alternates: { canonical: `${SITE_URL}/review` },
-  openGraph: {
-    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
-    type: "article",
-    title: "Read this first — the skeptical reviewer's entry point",
-    description:
-      "Claims, non-claims, kill conditions, what is machine-checked, what is open, and a five-minute reproduction — for the hostile reviewer.",
-    url: `${SITE_URL}/review`,
-    siteName: "TFPT — Topological Fixed-Point Theory",
-    locale: "en_US",
-    authors: ["Stefan Hamann", "Alessandro Rizzo"],
-  },
-  twitter: {
-    images: [`${SITE_URL}/opengraph-image`],
-    card: "summary_large_image",
-    title: "TFPT — read this first if you are skeptical",
-    description:
-      "Claims, non-claims, kill conditions, machine-checked layer, open residual, and a five-minute reproduction.",
-  },
-};
+export const metadata: Metadata = pageMetadata("/review");
 
 interface Block {
   icon: React.ReactNode;

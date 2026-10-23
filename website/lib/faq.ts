@@ -11,6 +11,18 @@ export interface FaqItem {
 
 export const FAQ_ITEMS: FaqItem[] = [
   {
+    q: "What is Topological Fixed-Point Theory (TFPT)?",
+    a: "TFPT is a research programme by Stefan Hamann and Alessandro Rizzo connecting two starting assumptions to a discrete mathematical compiler, E₈ lattice structure and Standard Model readouts. Its papers distinguish exact consequences under assumptions, numerical results, conditional physical interpretations and open derivations. The published code and status ledger let readers inspect those distinctions.",
+  },
+  {
+    q: "What does TFPT say about the fine-structure constant?",
+    a: "TFPT defines an electromagnetic fixed-point equation whose positive target root is approximately α⁻¹ = 137.03599921684. The root is calculated within the specified equation and compared with experiment. Deriving the equation's physical inputs and identifying its root with the measured Thomson-limit coupling are separate physical questions. The architecture paper and verification suite provide the formulas, assumptions and checks.",
+  },
+  {
+    q: "Is TFPT a completed physical theory of everything?",
+    a: "TFPT does not establish a completed physical theory of everything. Its discrete mathematical construction and numerical readouts have explicit assumptions and verification paths. A common local interacting 3+1-dimensional theory, the chiral measure, physical source and state selection, and other interfaces remain separate obligations. The frontier paper and claim ledger record their scope and status.",
+  },
+  {
     q: "Is this just E₈ unification again?",
     a: "No. In TFPT, E₈ is the unimodular audit / compiler hull that classifies the admissible discrete charge and residue structures — not an unbroken physical gauge group. The Standard Model is a readout after projection, not an E₈ gauge theory. This is exactly why the no-go results against literal E₈ world-formulas (Distler–Garibaldi; Coleman–Mandula) do not apply: they constrain E₈ as a spacetime gauge symmetry, which TFPT does not claim.",
   },

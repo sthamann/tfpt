@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Github, TerminalSquare } from "lucide-react";
@@ -15,42 +16,7 @@ import { NonRhResearchUpdate } from "@/components/NonRhResearchUpdate";
 import { SCRIPT_TOTAL } from "@/lib/suite";
 import { REPO_URL, SITE_URL } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Verification & Workflow — Every Number Machine-Checked",
-  description:
-    "How TFPT is verified: an interactive dependency graph showing exactly how each result is computed and on which inputs it depends (including the self-consistency loop), the four-path verification stack (Python suite, independent Wolfram mirror, Lean carrier proof, versioned status ledger), and the full script index linked to GitHub.",
-  keywords: [
-    "TFPT verification",
-    "dependency graph",
-    "reproducibility",
-    "verification suite",
-    "status ledger",
-    "Wolfram",
-    "Lean proof",
-    "self-consistency",
-    "Stefan Hamann",
-    "Alessandro Rizzo",
-  ],
-  alternates: { canonical: `${SITE_URL}/verification` },
-  openGraph: {
-    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
-    type: "article",
-    title: "Verification & Workflow — Every Number Machine-Checked",
-    description:
-      "An interactive dependency graph of the TFPT compiler closure, the four-path verification stack, and the full script index — all linked to the public repository.",
-    url: `${SITE_URL}/verification`,
-    siteName: "TFPT — Topological Fixed-Point Theory",
-    locale: "en_US",
-    authors: ["Stefan Hamann", "Alessandro Rizzo"],
-  },
-  twitter: {
-    images: [`${SITE_URL}/opengraph-image`],
-    card: "summary_large_image",
-    title: "Verification & Workflow — TFPT",
-    description:
-      "Interactive dependency graph + four-path verification stack + full script index.",
-  },
-};
+export const metadata: Metadata = pageMetadata("/verification");
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -61,6 +27,15 @@ const jsonLd = {
   description:
     "Interactive dependency graph of the TFPT compiler closure and the full verification stack.",
   sameAs: [REPO_URL],
+  distribution: [{
+    "@type": "DataDownload",
+    encodingFormat: "text/csv",
+    contentUrl: `${REPO_URL.replace("github.com", "raw.githubusercontent.com")}/main/verification/status_ledger.csv`,
+  }, {
+    "@type": "DataDownload",
+    encodingFormat: "application/json",
+    contentUrl: `${SITE_URL}/verification/predictions_frozen.json`,
+  }],
   isBasedOn: REPO_URL,
 };
 
@@ -86,7 +61,7 @@ const datasetJsonLd = {
   "@type": "Dataset",
   name: "TFPT status ledger & frozen prediction registry",
   description:
-    "The versioned status_ledger.csv (single source of truth for every typed claim: id, status, location, dependency, script) and predictions_frozen.json (the blind prediction registry, frozen 2026-06-09).",
+    "The versioned status_ledger.csv (single source of truth for every typed claim: id, status, location, dependency, script) and predictions_frozen.json (the prediction registry, frozen 2026-06-09).",
   inLanguage: "en",
   url: `${SITE_URL}/verification`,
   isBasedOn: REPO_URL,

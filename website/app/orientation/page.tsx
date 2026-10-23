@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { OrientationHero } from "@/components/orientation/OrientationHero";
 import { OrientationFrontBox } from "@/components/orientation/OrientationFrontBox";
@@ -11,51 +12,7 @@ import { RosettaLexicon } from "@/components/RosettaLexicon";
 import { SITE_VERSION } from "@/lib/version";
 import { SITE_URL } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "TFPT in One Map — The Compiler Closure (Introduction)",
-  description:
-    `The TFPT ${SITE_VERSION} reading guide. What Topological Fixed-Point Theory claims and does not claim, the compiler closure from two axioms {c₃ = 1/(8π), g_car = 5} to E₈, the two engines, the bootstrap loop, the status matrix, and the document map. By Stefan Hamann & Alessandro Rizzo.`,
-  keywords: [
-    "TFPT introduction",
-    "TFPT in one map",
-    "Compiler closure",
-    "E8 audit hull",
-    "Two axioms",
-    "Bootstrap loop",
-    "Status ledger",
-    "Stefan Hamann",
-    "Alessandro Rizzo",
-    "Topological Fixed-Point Theory",
-  ],
-  alternates: {
-    canonical: `${SITE_URL}/orientation`,
-  },
-  openGraph: {
-    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "TFPT — Topological Fixed-Point Theory" }],
-    type: "article",
-    title: "TFPT in One Map — The Compiler Closure (Introduction)",
-    description:
-      `The entry document for the TFPT ${SITE_VERSION} set: the compiler closure from two axioms to E₈, the two engines, the bootstrap loop, the status matrix, and the document map.`,
-    url: `${SITE_URL}/orientation`,
-    siteName: "TFPT — Topological Fixed-Point Theory",
-    locale: "en_US",
-    publishedTime: "2026-06-08T00:00:00.000Z",
-    authors: ["Stefan Hamann", "Alessandro Rizzo"],
-    tags: [
-      "Topological Fixed-Point Theory",
-      "Compiler closure",
-      "E8",
-      "Standard Model",
-    ],
-  },
-  twitter: {
-    images: [`${SITE_URL}/opengraph-image`],
-    card: "summary_large_image",
-    title: "TFPT in One Map — The Compiler Closure",
-    description:
-      "What TFPT claims, what it doesn't, the two engines, the bootstrap loop, and the document map.",
-  },
-};
+export const metadata: Metadata = pageMetadata("/orientation");
 
 const articleJsonLd = {
   "@context": "https://schema.org",

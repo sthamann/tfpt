@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { readFileSync } from "node:fs";
@@ -6,11 +7,7 @@ import { ArrowRight, BookOpen, Download, FileCode2, Network } from "lucide-react
 import { REPO_URL, SITE_URL } from "@/lib/utils";
 
 export const dynamic = "force-static";
-export const metadata: Metadata = {
-  title: "Document library and source registry",
-  description: "Find TFPT topics, modular LaTeX sources, verification scripts, and explicit Lean and Wolfram references in one documented source registry.",
-  alternates: { canonical: `${SITE_URL}/documentation` },
-};
+export const metadata: Metadata = pageMetadata("/documentation");
 
 type Document = { id: string; entry_point: string; canonical_source: string; role: string; title: string; topic_ids?: string[]; ordered_section_ids: string[] };
 type Topic = { id: string; title: string };

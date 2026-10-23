@@ -3,6 +3,7 @@ import { Inter, Newsreader, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import "katex/dist/katex.min.css";
+import "./math-fonts.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ReproducerProvider } from "@/components/Reproducer";
@@ -89,7 +90,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_NAME,
     description:
-      "Two axioms build E₈; E₈ reads off the Standard Model, the constants, and the scale grammar — no fitted constants, only π irreducible.",
+      SITE_DESCRIPTION,
     creator: "@tfpttheory",
   },
   robots: {
@@ -114,6 +115,8 @@ export const metadata: Metadata = {
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  alternateName: "TFPT",
   name: SITE_NAME,
   url: SITE_URL,
   description: SITE_DESCRIPTION,
@@ -137,6 +140,7 @@ const websiteJsonLd = {
 const researchProjectJsonLd = {
   "@context": "https://schema.org",
   "@type": "ResearchProject",
+  "@id": `${SITE_URL}/#research-project`,
   name: SITE_NAME,
   url: SITE_URL,
   description: SITE_DESCRIPTION,
@@ -169,38 +173,6 @@ const researchProjectJsonLd = {
 };
 
 
-const softwareJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareSourceCode",
-  name: "TFPT verification suite",
-  description:
-    "The independent verification stack for TFPT: a Python suite (one file per claim cluster), an independent Wolfram mirror, a Lean 4 carrier-rigidity proof, and a versioned status ledger. Every exact identity, lattice theorem and numerical fixed point is re-derived from the two axioms.",
-  codeRepository: REPO_URL,
-  url: REPO_URL,
-  programmingLanguage: ["Python", "Wolfram Language", "Lean 4", "TypeScript"],
-  license: "https://www.mozilla.org/MPL/2.0/",
-  author: [
-    { "@type": "Person", name: "Stefan Hamann" },
-    { "@type": "Person", name: "Alessandro Rizzo" },
-  ],
-};
-
-const ledgerDatasetJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Dataset",
-  name: "TFPT status ledger & content checksums",
-  description:
-    "The versioned per-claim status ledger (claim id, status grade, location, dependency, verifying script) and the SHA-256 content manifests that pin the documents, figures and verification suite.",
-  url: `${REPO_URL}/blob/main/verification/status_ledger.csv`,
-  isAccessibleForFree: true,
-  sameAs: [REPO_URL],
-  creator: [
-    { "@type": "Person", name: "Stefan Hamann" },
-    { "@type": "Person", name: "Alessandro Rizzo" },
-  ],
-};
-
-
 export default function RootLayout({
   children,
 }: {
@@ -222,14 +194,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(researchProjectJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(ledgerDatasetJsonLd) }}
         />
         <a
           href="#main"

@@ -1,3 +1,6 @@
+import { pageMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
+export const metadata: Metadata = pageMetadata("/");
 import { Hero } from "@/components/Hero";
 import { IntroVideo } from "@/components/IntroVideo";
 import { InOneBreath } from "@/components/InOneBreath";

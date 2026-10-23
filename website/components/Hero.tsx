@@ -40,20 +40,18 @@ export function Hero() {
           </div>
 
           <h1
-            aria-label="Two axioms. One compiler. A testable Standard-Model skeleton."
+            aria-label="Topological Fixed-Point Theory (TFPT)"
             className="mt-4 max-w-5xl font-serif text-[2.2rem] font-semibold leading-[1.08] text-slate-950 sm:mt-5 sm:text-5xl md:text-6xl"
           >
-            <span className="block">Two axioms. One compiler.</span>{" "}
-            <span className="block">
-              A testable{" "}
-              <span className="text-blue-700">Standard-Model skeleton</span>.
-            </span>
+            <span className="block">Topological Fixed-Point Theory</span>{" "}
+            <span className="block text-blue-700">TFPT</span>
           </h1>
 
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-700 sm:text-base">
-            A discrete programme that builds the Standard-Model skeleton from
-            two fixed inputs — and ships every load-bearing step as
-            machine-checked code you can run yourself.
+            TFPT is a research programme connecting two starting assumptions to
+            E₈ mathematics, Standard Model structure and a fixed-point equation
+            for the fine-structure constant. Explore the papers, reproduce the
+            calculations and follow the open physical questions.
           </p>
 
           <ProofStrip className="mt-5 sm:mt-6" />
