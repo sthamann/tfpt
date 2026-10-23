@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import Link from "next/link";
 import { ArrowRight, BookOpen, Download, Github, Play, ShieldAlert, Terminal } from "lucide-react";
 import { trackPdfInteraction } from "@/lib/track";
@@ -26,10 +25,7 @@ export function Hero() {
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={false}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        <div
           className="flex flex-col items-center text-center"
         >
           <div className="flex flex-wrap items-center justify-center gap-2">
@@ -127,7 +123,7 @@ export function Hero() {
               GitHub
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

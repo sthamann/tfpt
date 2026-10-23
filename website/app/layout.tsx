@@ -10,9 +10,9 @@ import { ReproducerProvider } from "@/components/Reproducer";
 import { REPO_URL, SITE_URL } from "@/lib/utils";
 import { SITE_VERSION } from "@/lib/version";
 
-const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
-const newsreader = Newsreader({ subsets: ["latin"], display: "swap", variable: "--font-newsreader" });
-const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], display: "swap", variable: "--font-jetbrains", preload: false });
+const inter = Inter({ subsets: ["latin"], display: "optional", variable: "--font-inter" });
+const newsreader = Newsreader({ subsets: ["latin"], display: "optional", variable: "--font-newsreader", preload: false });
+const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], display: "optional", variable: "--font-jetbrains", preload: false });
 
 const SITE_NAME = "TFPT — Topological Fixed-Point Theory";
 const SITE_DESCRIPTION = "Explore Topological Fixed-Point Theory (TFPT): research papers, testable predictions and an open verification suite by Stefan Hamann and Alessandro Rizzo.";
