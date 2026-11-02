@@ -3,6 +3,8 @@ import { ChargeExplorer, ClockExplorer } from "./InteractiveReadouts";
 import { Math } from "@/components/Math";
 import { BudgetBridge, LeptonLadder } from "./DerivationFigures";
 import { GuideNav } from "./GuideNav";
+import { StartingStructures } from "./StartingStructures";
+import { PatternConnections } from "./PatternConnections";
 import { AlphaDerivation } from "./AlphaDerivation";
 
 const evidence = (q: string) => `/results?search=${encodeURIComponent(q)}`;
@@ -41,9 +43,10 @@ export function TheoryGuide() {
   return <article className="guide-shell">
     <header className="guide-introduction">
       <h1>Work one connection all the way through.</h1>
-      <p className="guide-lead">Build one family of charges. Follow its charge trace into the compiler budget and the specified alpha equation.</p><Link className="guide-link inline-flex min-h-11 items-center mt-3" href="/#outcomes">Start with the overall results and connections</Link>
+      <p className="guide-lead">Understand the two starting principles. Build one family of charges, follow the alpha equation and explore the structural connections.</p><Link className="guide-link inline-flex min-h-11 items-center mt-3" href="/#outcomes">Start with the overall results and connections</Link>
     </header>
     <GuideNav />
+    <StartingStructures embedded />
     <section className="guide-section" id="matter">
       <h2>Build the charges of one family</h2><p className="guide-lead">Select one colour slot and one weak slot. Their hypercharges add to 1/6: a quark component. Every even selection has a place in the family.</p>
       <p className="figure-note">Given here: the marked five slot carrier, normalized hypercharge and the even exterior representation. <a className="guide-link" href="#inputs">Inspect the starting inputs</a>.</p>
@@ -56,13 +59,6 @@ export function TheoryGuide() {
     </section>
     <BudgetBridge />
     <AlphaDerivation />
-    <section className="guide-section" id="inputs">
-      <h2>First, what is supplied?</h2>
-      <p className="guide-lead">A seam is the oriented boundary structure used to define a response. A carrier is the internal space on which the algebra acts. A compiler is the collection of specified mathematical maps taking these data to representations, operators and numerical readouts.</p>
-      <div className="grid gap-8 sm:grid-cols-2"><div><h3 className="text-2xl">Boundary normalization</h3><p className="mt-3">P1 specifies a primitive boundary kernel, winding and the normalization c₃ = 1/(8π). It carries geometric and positivity assumptions, beyond the decimal value.</p></div><div><h3 className="text-2xl">Five slot carrier</h3><p className="mt-3">P2 supplies the five dimensional carrier and its 3+2 interface. These are internal degrees of freedom, not five spatial dimensions.</p></div></div>
-      <p className="mt-6">The anchor a = (1,1,2), four marked points and the bootstrap reveal rigidity within explicitly defined classes. Compressing the inputs does not remove the need to explain their physical realization.</p>
-      <SourceLine query="AX.P" label="P1, P2 and the anchor" />
-    </section>
     <section className="guide-section" id="e8">
       <h2>Why E₈ appears</h2><p className="guide-lead">The carrier and family sides have compatible lattice data. The matching is an operation that can be checked.</p>
       <ol className="guide-steps"><li><strong>Build the two sides.</strong> D₅ has rank 5; A₃ has rank 3. Each has discriminant group ℤ₄.</li><li><strong>Check the glue.</strong> The two discriminant norms add to 5/4 + 3/4 = 2. The index 4 extension has determinant (4 × 4)/4² = 1.</li><li><strong>Identify the result.</strong> The positive even unimodular lattice of rank 8 is E₈, with 240 roots. Its Lie algebra has dimension 248.</li></ol>
@@ -87,14 +83,15 @@ export function TheoryGuide() {
     <section className="guide-section" id="quantum">
       <h2>The same structure also carries quantum and information geometry</h2>
       <p className="guide-lead">E₈, the Hamming code, the finite quantum representation and the local source are connected through explicit maps. The recent results extend well beyond a list of numerical constants.</p>
-      <ul className="guide-steps"><li><strong>Coding and quantum geometry:</strong> Construction A on the extended Hamming code gives E₈. With the specified complex structure, Gaussian lines connect to the named two qubit stabilizer geometry.</li><li><strong>A common 4/5/20 object:</strong> native quartic and erasure intertwiners connect these representations. The numbers name actual spaces and maps, not three physical dimensions.</li><li><strong>Intrinsic event geometry:</strong> full field products reconstruct six complex projective rays and the associated sixty marked flags. The unmarked geometry and a physically selected mark are distinct results.</li><li><strong>Source and memory:</strong> the existing local E₈ current construction has modes, charged sectors and exterior paths. A finite compressed readout can lose information needed for later responses; the source history retains it.</li></ul>
-      <SourceLine query="quartic" label="The native source and intrinsic geometry" /><SourceLine query="memory" label="Histories, exterior response and reconstruction" />
+      <p>The interactive gallery below follows the code construction, the Gaussian and quantum dictionary, the actual clock actions, shared operator budgets and later source geometry. Each connection has its own premises and source.</p>
     </section>
+    <PatternConnections embedded />
     <section className="guide-section" id="source">
-      <h2>From connected mathematics to a common physical source</h2><p className="guide-lead">The current work asks whether one original process supplies the fields, state, time, admissible events and gravitational response together. The constructed pieces remain available while that joint identification is tested.</p>
-      <h3 className="mt-7 text-2xl">Local fields and the Higgs source</h3><p className="mt-3">Source, state and time bridges have been worked out in specified representations. Recent results construct dynamical and local Higgs source responses, including a local causal net in the given 1+1 dimensional cylinder. This does not turn that supplied geometry into physical 3+1 dimensional spacetime.</p>
+      <h2>From connected mathematics to a common physical source</h2><p className="guide-lead">The original papers already provide a common conditional route from the boundary source to fields, state and positive time. Read its actual reconstruction hypotheses alongside the later source and event results.</p>
+      <h3 className="mt-7 text-2xl">Local fields and the Higgs source</h3><p className="mt-3">The source route is structured P1/P2 → admissible carrier → action and partition functional → full field moments → OS/CAR reconstruction → the common renormalized action → physical readers. Under reflection positivity, temperedness, graded Euclidean covariance and symmetry, clustering and the named measure and limit conditions, the reconstruction supplies the Hilbert space, vacuum, local net and positive time together. Later dynamical Higgs responses and the specified 1+1 dimensional cylinder construction retain their own geometry and premises.</p>
+      <p className="mt-4"><Link className="guide-link" href="/documentation?section=section%3A591993c8c68b37136f0d">Read the original common OS/CAR reconstruction theorem</Link></p>
       <h3 className="mt-7 text-2xl">E₈ events and continuous time</h3><p className="mt-3">The original epsilon bracket constrains the Hodge response even for correlated inputs under the stated complete, trace preserving operation assumptions. That finite event response cannot by itself be a continuous evolution beginning at a unitary identity. Event branches, records, additional time branches and their original source realization have to be distinguished.</p>
-      <h3 className="mt-7 text-2xl">Gravity, cosmology and units</h3><p className="mt-3">The conditional entanglement and boundary channels connect c₃⁻¹ = 8π to the Einstein normalization; the scale grammar and cosmological branches have explicit readouts. A dimensionless construction still needs dimensional calibration. The common local geometry, spin 2 and dynamical source remain separate obligations.</p>
+      <h3 className="mt-7 text-2xl">Gravity, cosmology and units</h3><p className="mt-3">The conditional entanglement and boundary channels connect c₃⁻¹ = 8π to the Einstein normalization; the scale grammar and cosmological branches have explicit readouts. A dimensionless construction still needs dimensional calibration. Applications to local geometry, spin 2 and dynamical gravity retain the hypotheses of the corresponding source and continuum construction.</p>
       <details className="guide-details mt-5"><summary>A later correction to an earlier gap argument</summary><p>The later source review shows that the specified Dirichlet to Neumann form bound alone does not imply the printed transfer gap Δ−2v. A comparison with the actual transfer operator is still required. Earlier broad “gap decoupled” summaries must be read with this correction.</p><Link href={evidence("metric-dtn-form-bound-needs-transfer-comparison-for-gap")}>Read the corrected scope and counterexample</Link></details>
       <SourceLine query="Higgs" label="Local and dynamical Higgs source results" /><SourceLine query="hodge" label="E₈ events, time and records" /><SourceLine query="gravity" label="Gravitational channels and their conditions" />
     </section>

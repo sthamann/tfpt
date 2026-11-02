@@ -18,7 +18,9 @@ import { DownloadsTeaser } from "@/components/DownloadsTeaser";
 import { LegacyAnchorRedirect } from "@/components/LegacyAnchorRedirect";
 import { TheoryMap } from "@/components/explain/TheoryGuide";
 import { ResearchSnapshot } from "@/components/explain/ResearchSnapshot";
-import { OutcomeAtlas, ConnectionStory, MethodAndDiscoveries } from "@/components/explain/TheoryExperience";
+import { OutcomeAtlas, ConnectionStory } from "@/components/explain/TheoryExperience";
+import { StartingStructures } from "@/components/explain/StartingStructures";
+import { PatternConnections } from "@/components/explain/PatternConnections";
 import { DerivationPreview } from "@/components/explain/DerivationPreview";
 
 export default function HomePage() {
@@ -30,8 +32,9 @@ export default function HomePage() {
       <LegacyAnchorRedirect />
       <Hero />
       <OutcomeAtlas />
+      <StartingStructures />
       <ConnectionStory />
-      <MethodAndDiscoveries />
+      <PatternConnections />
       <div className="guide-shell"><ResearchSnapshot />
       <details className="guide-details my-8"><summary>Work through a concrete derivation: charges, the family and the alpha budget</summary><DerivationPreview /></details>
       <details className="guide-details my-8"><summary>Explore the full theory map and its source links</summary><TheoryMap compact /></details></div>

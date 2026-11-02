@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const chapters = [["matter", "Charges"], ["budget", "Charge budget"], ["alpha", "Alpha"], ["inputs", "Inputs & E₈"], ["flavor", "Flavour"], ["clocks", "Clocks"], ["quantum", "Quantum structure"], ["source", "Physical source"], ["status", "Status"]];
+const chapters = [["inputs", "Starting principles"], ["matter", "Charges"], ["budget", "Charge budget"], ["alpha", "Alpha"], ["flavor", "Flavour"], ["clocks", "Clocks"], ["quantum", "Quantum structure"], ["source", "Physical source"], ["status", "Status"]];
 
 export function GuideNav() {
-  const [active, setActive] = useState("matter");
+  const [active, setActive] = useState("inputs");
   const navRef = useRef<HTMLElement>(null);
   useEffect(() => {
     const initial = window.location.hash.slice(1);
