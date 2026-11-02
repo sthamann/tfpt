@@ -40,7 +40,7 @@ export function TheoryGuide() {
   return <article className="guide-shell">
     <header className="guide-introduction">
       <h1>Work one connection all the way through.</h1>
-      <p className="guide-lead">Build one family of charges. Follow its charge trace into the compiler budget and the specified alpha equation.</p>
+      <p className="guide-lead">Build one family of charges. Follow its charge trace into the compiler budget and the specified alpha equation.</p><Link className="guide-link inline-flex min-h-11 items-center mt-3" href="/#outcomes">Start with the overall results and connections</Link>
     </header>
     <GuideNav />
     <section className="guide-section" id="matter">

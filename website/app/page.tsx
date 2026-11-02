@@ -18,6 +18,7 @@ import { DownloadsTeaser } from "@/components/DownloadsTeaser";
 import { LegacyAnchorRedirect } from "@/components/LegacyAnchorRedirect";
 import { TheoryMap } from "@/components/explain/TheoryGuide";
 import { ResearchSnapshot } from "@/components/explain/ResearchSnapshot";
+import { OutcomeAtlas, ConnectionStory, MethodAndDiscoveries } from "@/components/explain/TheoryExperience";
 import { DerivationPreview } from "@/components/explain/DerivationPreview";
 
 export default function HomePage() {
@@ -28,8 +29,12 @@ export default function HomePage() {
           /predictions, /architecture, /verification, /orientation). */}
       <LegacyAnchorRedirect />
       <Hero />
-      <DerivationPreview />
-      <div className="guide-shell"><TheoryMap compact /><ResearchSnapshot /></div>
+      <OutcomeAtlas />
+      <ConnectionStory />
+      <MethodAndDiscoveries />
+      <div className="guide-shell"><ResearchSnapshot />
+      <details className="guide-details my-8"><summary>Work through a concrete derivation: charges, the family and the alpha budget</summary><DerivationPreview /></details>
+      <details className="guide-details my-8"><summary>Explore the full theory map and its source links</summary><TheoryMap compact /></details></div>
       <div className="guide-shell py-8"><details className="guide-details">
       <summary>Open the detailed publication overview and historical film</summary>
       <p>The following sections preserve the publication narrative and its dated comparisons. The current result library also includes later source reviewed research and scope corrections. Script totals describe an inventory; they do not announce a new suite run.</p>
