@@ -7,7 +7,6 @@ import { ChevronDown, Github, Menu, X } from "lucide-react";
 import { cn, REPO_URL, PRIME_FRONT_URL } from "@/lib/utils";
 import { SITE_VERSION, SITE_DATE, SITE_REV } from "@/lib/version";
 import { Logo } from "./Logo";
-import { SuiteBadge } from "./SuiteBadge";
 import researchSummary from "@/lib/research-summary.json";
 
 const primaryLinks = [
@@ -109,7 +108,6 @@ export function Navbar() {
             <span aria-hidden>·</span>
             <span>Research <time dateTime={researchSummary.generatedAt}>{researchSummary.generatedAt.slice(0,10)}</time></span>
           </span>
-          <SuiteBadge className="hidden 2xl:inline-flex" />
         </div>
 
         <ul className="hidden items-center gap-0.5 lg:flex">
