@@ -1,0 +1,83 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_joint_higgs_twoface_response_20261102.py
+Original file SHA-256: ae371b2f9917fd5cfafa8a754a125bf2def5fa79ed2d5bc0775ad07e092a0424
+Inclusive original lines: 1-75
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Conditional two-face/Higgs identities: original constructor and exact controls.
+000002 | 
+000003 | The chosen weights and collar length are diagnostics, not a physical measure.
+000004 | """
+000005 | from fractions import Fraction as F
+000006 | from pathlib import Path
+000007 | import sys
+000008 | import numpy as np
+000009 | 
+000010 | ROOT = Path(__file__).resolve().parents[4]
+000011 | sys.path.insert(0, str(ROOT / 'verification'))
+000012 | import v252_full_finite_triple as v
+000013 | 
+000014 | rng = np.random.default_rng(252)
+000015 | ys = [rng.normal(size=(3, 3)) + 1j*rng.normal(size=(3, 3)) for _ in range(4)]
+000016 | mr = rng.normal(size=(3, 3)); MR = mr + mr.T
+000017 | z3 = np.zeros((3, 3), complex); z2 = np.zeros((2, 2), complex)
+000018 | DY = v.full_D(*ys, z3); DM = v.full_D(z3, z3, z3, z3, MR)
+000019 | K = v.Kswap(); P = v.rep(1, z2, z3); gamma = v.grading()
+000020 | p, ell = .25, 1.
+000021 | quarks = [v.IDX[(name, ch, col, gen)] for name in ('u', 'd')
+000022 |           for ch in ('L', 'R') for col in range(3) for gen in range(3)]
+000023 | left = [v.IDX[(name, 'L', 0, gen)] for name in ('u', 'd') for gen in range(3)]
+000024 | sing = np.r_[np.linalg.svd(ys[0], compute_uv=False), np.linalg.svd(ys[1], compute_uv=False)]
+000025 | 
+000026 | def source(H):
+000027 |     h1, h2 = H
+000028 |     q = np.array([[np.conj(h2), h1], [-np.conj(h1), h2]])
+000029 |     a = v.rep(0, q, z3)
+000030 |     b = a @ (DY @ P - P @ DY); b = b + b.conj().T
+000031 |     phi = b + K @ b.conj() @ K + DM
+000032 |     h = p*gamma - 1j*gamma @ phi
+000033 |     assert np.max(abs(h-h.conj().T)) < 1e-12
+000034 |     ev, U = np.linalg.eigh(h)
+000035 |     C = (U * (1/(1+np.exp(2*ell*ev)))) @ U.conj().T
+000036 |     X = (U * (1/(2*np.cosh(ell*ev)))) @ U.conj().T
+000037 |     G = np.block([[np.eye(96)-C, X], [X, C]])
+000038 |     assert np.max(abs(G @ G-G)) < 1e-12
+000039 |     u = sum(abs(z)**2 for z in H)
+000040 |     g = float(np.trace(X[np.ix_(quarks, quarks)]).real)
+000041 |     expected = float(6*np.sum(1/(2*np.cosh(ell*np.sqrt(p*p+u*sing*sing)))))
+000042 |     assert abs(g-expected) < 2e-12
+000043 |     return G, float(np.trace(C[np.ix_(left,left)]).real), g
+000044 | 
+000045 | samples = [source(H) for H in [(0j,0j),(0j,1+0j),(.6j,.8+0j),(0j,2+0j)]]
+000046 | assert len(quarks) == 36 and len(left) == 6
+000047 | assert abs(samples[1][2]-samples[2][2]) < 2e-12
+000048 | assert samples[0][2] > samples[1][2] > samples[3][2]
+000049 | assert samples[0][1] < samples[1][1] < samples[3][1]
+000050 | G0,m0,g0 = samples[0]; G1,m1,g1 = samples[1]
+000051 | Gbar = (G0+G1)/2
+000052 | idx = [96+i for i in left]
+000053 | defect = Gbar-Gbar@Gbar
+000054 | lhs = float(np.trace(defect[np.ix_(idx,idx)]).real)
+000055 | variance = (m0-m1)**2/4
+000056 | assert lhs+1e-12 >= variance/6 and variance > 0
+000057 | assert np.linalg.eigvalsh(defect).min() > -1e-12
+000058 | f0,f1 = 0.,.5
+000059 | mixed_covariance = (f0-f1)*(g0-g1)/4
+000060 | assert mixed_covariance < 0
+000061 | 
+000062 | # Independent exact rational saturation of the rank-six inequality.  These
+000063 | # are abstract 12-mode projectors, not an identification with the TFPT source.
+000064 | a,b = F(1,5),F(4,5)
+000065 | var = (6*a-6*b)**2/4
+000066 | exact_lhs = 6*(F(1,2)-F(1,2)**2-F(2,5)**2)
+000067 | assert exact_lhs == var/6
+000068 | delta = 24*var
+000069 | assert exact_lhs == delta/144
+000070 | assert (24*a*a+24*b*b)/2 == 8*(3*a*a+3*b*b)/2
+000071 | print({'result':'PASS','original96_g': [x[2] for x in samples],
+000072 |        'original96_m': [x[1] for x in samples],
+000073 |        'diagnostic_projected_defect':lhs,'diagnostic_variance_over_6':variance/6,
+000074 |        'diagnostic_mixed_covariance':mixed_covariance,
+000075 |        'exact_saturation':str(exact_lhs), 'physical_measure_selected':False})

@@ -1,0 +1,35 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_original_excitation_cluster_20261102.py
+Original file SHA-256: 14e051950e7f29239f9475289989b5ce993d2157f2dae73c92f7864b93a8d7f7
+Inclusive original lines: 1-27
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact test of the original five source states and their J8 response."""
+000002 | import json
+000003 | from pathlib import Path
+000004 | import sympy as s
+000005 | 
+000006 | root = Path(__file__).resolve().parents[4]
+000007 | source = root / 'experiments/theory-contracts/joint-native-algebra-selection-20261016'
+000008 | car = json.loads((source / 'original_density_current_results.json').read_text())
+000009 | hall = json.loads((source / 'original_current_hall_kernel_results.json').read_text())
+000010 | det = s.Rational(1607041858632363297, 1073741824)
+000011 | expected_r32 = {'1/4': s.Rational(1142672, 328635469),
+000012 |                 '3/4': s.Rational(1560464, 331641421)}
+000013 | for alpha in ('1/4', '3/4'):
+000014 |     case = car['cases'][alpha]
+000015 |     assert case['source_input_energy'] == 32
+000016 |     assert hall['cases'][alpha]['weighted_degree'] == 32
+000017 |     g = s.Matrix([[s.sympify(z) for z in row] for row in
+000018 |         case['all_positive_density_mode_responses']['8']['raw_gram']])
+000019 |     assert g == g.conjugate().T
+000020 |     assert all(s.det(g[:k, :k]) > 0 for k in range(1, 6))
+000021 |     assert s.factor(g.det()) == det
+000022 |     g0 = s.sympify(hall['cases'][alpha]['normal_ordered_first_mode_jet'][0]['raw_gram'][0][0])
+000023 |     g32 = s.sympify(case['all_positive_density_mode_responses']['32']['raw_gram'][0][0])
+000024 |     assert s.factor(g32 / g0) == expected_r32[alpha]
+000025 |     print(alpha, 'J8 Gram positive definite, determinant:', det,
+000026 |           'normalized J32 vacuum weight:', expected_r32[alpha])
+000027 | print('PASS: exact Gram and original state data; no physical P1 identification')

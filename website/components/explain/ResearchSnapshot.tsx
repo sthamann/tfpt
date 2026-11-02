@@ -11,6 +11,11 @@ export function ResearchSnapshot() {
       <div><dt>Connected recent results</dt><dd>The common 4/5/20 source, intrinsic event geometry, state and time bridges, source memory, local Higgs responses and the distinction between E₈ events and continuous evolution.</dd></div>
       <div><dt>Remaining physical connections</dt><dd>The joint original source, its actual local observables and events, physical 3+1 dimensional spacetime and gravity. Each problem preserves the solved subresults it already uses.</dd></div>
     </dl>
+    <details className="guide-details mt-7"><summary>Latest source work: quarter responses, the source vacuum and a joint Higgs constraint</summary>
+      <p>The newest source work distinguishes the two quarter states through their ordered current response and tests the actual eight arc localization. It also separates the five excited inputs from the clustering vacuum under the given source time.</p>
+      <p>The joint Higgs and two boundary calculation gives a quantitative source constraint using one shared mixture. These are connected results with explicit premises; the physical P1 source and its field, state and time identification remain the common task.</p>
+      <div className="flex flex-wrap gap-4"><Link className="guide-link" href="/results?search=r093">Quarter response and locality</Link><Link className="guide-link" href="/results?search=r094">Source inputs and vacuum</Link><Link className="guide-link" href="/results?search=r096">Joint Higgs constraint</Link></div>
+    </details>
     <p className="mt-6 text-sm text-slate-600">Snapshot {data.meta.generatedAt.slice(0,10)}: {c.ledgerActive} active ledger claims and {c.reviewedFindings} scientific research findings. Includes scoped exclusions and corrections. The {c.registeredScripts} registered scripts are a separate inventory, not a new full suite run.</p>
     <div className="mt-6 flex flex-wrap gap-3"><Link className="guide-primary" href="/results">Read the complete result library</Link><Link className="readout-button" href="/explain#status">Understand the status labels</Link><Link className="readout-button" href="/verification">Reproduce a calculation</Link></div>
   </section>;

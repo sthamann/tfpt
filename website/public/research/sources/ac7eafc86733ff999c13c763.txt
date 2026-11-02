@@ -1,0 +1,72 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_original_kink_quarter_response_20261102.py
+Original file SHA-256: c9f5ce1b9236118be417e24bdee43f98d2e18e6f039ccc8ad1dd8548b7db7114
+Inclusive original lines: 1-64
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Original five-state Schur source, neutral Weyl line and quarter response.
+000002 | 
+000003 | No P1 field identification. The saved source states and CAR responses are read,
+000004 | not reconstructed from a chosen or fitted source model.
+000005 | """
+000006 | from fractions import Fraction
+000007 | from pathlib import Path
+000008 | import hashlib
+000009 | import json
+000010 | import sys
+000011 | 
+000012 | import sympy as s
+000013 | 
+000014 | ROOT = Path(__file__).resolve().parents[4]
+000015 | SOURCE = ROOT / 'experiments/theory-contracts/joint-native-algebra-selection-20261016'
+000016 | sys.path.insert(0, str(SOURCE))
+000017 | import check_original_current_schur_kernel as original
+000018 | 
+000019 | hall_file = SOURCE / 'original_current_hall_kernel_results.json'
+000020 | car_file = SOURCE / 'original_density_current_results.json'
+000021 | hall = json.loads(hall_file.read_text())
+000022 | car = json.loads(car_file.read_text())
+000023 | expected = {
+000024 |  '1/4': [Fraction(328635469,1048576), Fraction(2994963,4096), Fraction(189873,512), Fraction(174393,4096), Fraction(71417,65536)],
+000025 |  '3/4': [Fraction(331641421,1048576), Fraction(3008787,4096), Fraction(194481,512), Fraction(215865,4096), Fraction(97529,65536)],
+000026 | }
+000027 | ratios = {}
+000028 | for alpha in ('1/4','3/4'):
+000029 |     case = hall['cases'][alpha]
+000030 |     assert case['weighted_degree'] == 32
+000031 |     state = {tuple(x['partition']): original.Q.from_sympy(s.sympify(x['coefficient']))
+000032 |              for x in case['schur_coefficients'][0]}
+000033 |     norm = original.Q.to_sympy(original.car.inner(state,state))
+000034 |     assert norm == s.Rational(str(expected[alpha][0]))
+000035 |     assert norm == s.sympify(case['normal_ordered_first_mode_jet'][0]['raw_gram'][0][0])
+000036 |     values = []
+000037 |     for index, mode in enumerate((8,16,24,32),1):
+000038 |         lowered = original.lower(state, mode)
+000039 |         value = original.Q.to_sympy(original.car.inner(lowered,lowered))
+000040 |         assert value == s.Rational(str(expected[alpha][index]))
+000041 |         # Previously saved, independently constructed original CAR occupation basis.
+000042 |         assert value == s.sympify(car['cases'][alpha]['all_positive_density_mode_responses'][str(mode)]['raw_gram'][0][0])
+000043 |         values.append(value/norm)
+000044 |     ratios[alpha] = values
+000045 |     print(alpha, 'norm:', norm, 'R_8,16,24,32:', *values)
+000046 | 
+000047 | delta = s.factor(ratios['1/4'][0]-ratios['3/4'][0])
+000048 | assert delta == s.Rational(1141672523857920,108989133930161449) and delta > 0
+000049 | # Verify the one-mode BCH exponent and the energy-order identity symbolically.
+000050 | b, t, n = s.symbols('b t n', real=True, positive=True)
+000051 | z = s.symbols('z', complex=True) # z=e^{int}, conjugate(z)=1/z
+000052 | phi = -b/z
+000053 | psi = b
+000054 | comm = 8*n*(s.conjugate(phi)*psi - phi*s.conjugate(psi))
+000055 | comm = comm.subs(s.conjugate(z),1/z)
+000056 | d = phi + psi
+000057 | gauss = -4*n*s.expand_complex(d*s.conjugate(d)).subs({s.re(z): (z+1/z)/2, s.im(z): (z-1/z)/(2*s.I)})
+000058 | # Direct analytic identity: |1-z^-1|^2=2-z-z^-1.
+000059 | exponent = -4*n*b*b*(2-z-1/z) - comm/2
+000060 | assert s.simplify(exponent + 8*n*b*b*(1-z)) == 0
+000061 | print('R8 difference:',delta)
+000062 | print('Weyl BCH and CAR versus Hall:', 'PASS')
+000063 | for path in (hall_file,car_file,SOURCE/'check_original_current_schur_kernel.py',SOURCE/'ORIGINAL-ORDERED-CURRENT-KERNEL-AND-SEAM-GRADING.txt'):
+000064 |  print('sha256',hashlib.sha256(path.read_bytes()).hexdigest(),path.relative_to(ROOT))

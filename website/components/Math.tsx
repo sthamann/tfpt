@@ -93,7 +93,7 @@ export function Math({
 
 /**
  * A subtle copy-to-clipboard button for the LaTeX source of a display formula.
- * Hidden until the formula is hovered or the button is focused (keyboard).
+ * Visible with a full touch target and keyboard focus treatment.
  */
 function CopyLatex({ tex }: { tex: string }) {
   const [copied, setCopied] = useState(false);
@@ -114,7 +114,7 @@ function CopyLatex({ tex }: { tex: string }) {
       onClick={copy}
       aria-label={copied ? "LaTeX copied to clipboard" : "Copy LaTeX source"}
       title={copied ? "Copied!" : "Copy LaTeX"}
-      className="absolute right-1 top-1 rounded-md border border-slate-300/50 bg-slate-100/85 p-1 text-slate-600 opacity-50 backdrop-blur transition-opacity hover:text-slate-900 hover:opacity-100 focus:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/40 group-hover:opacity-100"
+      className="absolute right-0 top-0 inline-flex h-11 w-11 items-center justify-center rounded-md text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700"
     >
       {copied ? (
         <Check size={12} aria-hidden className="text-emerald-700" />

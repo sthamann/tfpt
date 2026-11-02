@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./site-fonts.css";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
+import "./figures.css";
 import "./katex.css";
 import "./math-fonts.css";
 import { Navbar } from "@/components/Navbar";

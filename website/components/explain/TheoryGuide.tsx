@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ChargeExplorer, AlphaExplorer, ClockExplorer } from "./InteractiveReadouts";
 import { Math } from "@/components/Math";
+import { BudgetBridge, AlphaComparison, LeptonLadder } from "./DerivationFigures";
+import { GuideNav } from "./GuideNav";
 
 const evidence = (q: string) => `/results?search=${encodeURIComponent(q)}`;
 const areas = [
@@ -14,13 +16,12 @@ const areas = [
 
 export function TheoryMap({ compact = false }: { compact?: boolean }) {
   return <section className="guide-section" aria-labelledby="map-heading" id="theory-map">
-    <h2 id="map-heading">Keep the whole construction in view</h2>
+    <h2 id="map-heading">Explore the wider construction</h2>
     <p className="guide-lead">Two connected mechanisms run through TFPT: a discrete representation and lattice construction, and a boundary response feeding the constants and scale relations. Their shared inputs make the outputs related.</p>
-    <ol className="theory-map">{areas.map((area, i) => <li key={area.id}>
-      <span className="text-sm text-blue-800">{i < 2 ? "Structure" : i < 4 ? "Readouts" : "Connections"}</span>
+    <ol className="theory-map">{areas.map((area) => <li key={area.id}>
       <h3 className="mt-2 text-xl"><Link href={compact ? `/explain${area.href}` : area.href}>{area.title}</Link></h3>
-      <p className="mt-2 text-sm leading-relaxed">{area.text}</p>
-      <Link className="guide-link mt-3 inline-block" href={evidence(area.query)}>Results and sources</Link>
+      <div><p className="leading-relaxed">{area.text}</p>
+      <Link className="guide-link mt-3 inline-block text-sm" href={evidence(area.query)}>Results and sources</Link></div>
     </li>)}</ol>
     <p className="mt-5 text-sm text-slate-600">The bootstrap is a consistency relation. It does not let a consequence prove its own premises. Physical identifications have their own conditions at each connection.</p>
   </section>;
@@ -37,12 +38,31 @@ function Scope({ achieved, given, open }: { achieved: string; given: string; ope
 
 export function TheoryGuide() {
   return <article className="guide-shell">
-    <header className="pt-12 pb-8 sm:pt-16">
-      <h1 className="max-w-4xl font-serif text-4xl leading-tight text-slate-950 sm:text-5xl">Follow the construction, one question at a time.</h1>
-      <p className="guide-lead mt-5">Why these charges, three families and a coupling near 1/137? TFPT connects these questions through a small geometric and algebraic structure. Here you can work through an actual readout, then inspect the source of every step.</p>
-      <nav aria-label="Explanation chapters" className="mt-7 flex flex-wrap gap-x-5 gap-y-3 text-sm">{[["inputs","Starting assumptions"],["matter","Particles"],["flavor","Flavour"],["alpha","Alpha"],["clocks","Clocks"],["quantum","Quantum structure"],["source","Physical source"],["status","What is established?"]].map(([id,title]) => <a className="guide-link py-1" key={id} href={`#${id}`}>{title}</a>)}</nav>
+    <header className="guide-introduction">
+      <h1>Work one connection all the way through.</h1>
+      <p className="guide-lead">Build one family of charges. Follow its charge trace into the compiler budget and the specified alpha equation.</p>
     </header>
-    <TheoryMap />
+    <GuideNav />
+    <section className="guide-section" id="matter">
+      <h2>Build the charges of one family</h2><p className="guide-lead">Select one colour slot and one weak slot. Their hypercharges add to 1/6: a quark component. Every even selection has a place in the family.</p>
+      <p className="figure-note">Given here: the marked five slot carrier, normalized hypercharge and the even exterior representation. <a className="guide-link" href="#inputs">Inspect the starting inputs</a>.</p>
+      <ChargeExplorer />
+      <details className="guide-details mt-6"><summary>Gauge structure and the three families</summary>
+      <p className="mt-6">The two weak components then have electric charges 2/3 and −1/3. The other even selections give the conjugate quark and lepton sectors. The subgroup preserving the normalized 3+2 structure supplies the familiar SU(3), SU(2) and U(1) Lie algebra, with its central quotient handled separately.</p>
+      <h3 className="mt-8 text-2xl">Where do the three families enter?</h3><p className="mt-3">A sphere with four marked punctures has three independent one cycle directions: a loop around all four punctures gives one relation. Its family lattice is the A₃ side of the construction. Relating those three directions to physical families is part of the specified dictionary. Three colours and three families play different roles.</p>
+      <SourceLine query="family" label="Family geometry, representations and anomalies" />
+      </details>
+    </section>
+    <BudgetBridge />
+    <section className="guide-section" id="alpha">
+      <h2>Why does a number near 137 appear?</h2><p className="guide-lead">Alpha measures electromagnetic coupling strength. TFPT specifies a self consistent boundary equation whose positive root gives α⁻¹ = 137.0359992168407… . Solving this equation and deriving its complete physical origin are separate claims.</p>
+      <Math block plain="The specified electromagnetic closure balances a cubic term, a quadratic term and an alpha dependent boundary response.">{String.raw`F(\alpha)=\alpha^3-2c_3^3\alpha^2-\frac45\,41c_3^6\log\frac1{\varphi_s(\alpha)}=0`}</Math>
+      <details className="guide-details"><summary>Open the ingredients and their connections</summary><p>q(α) = 48c₃⁴ exp(−2α), and φs(α) = 1/(6π) + q(1−q)^(−5/4). The 48 is the three family carrier count; 5/4 is the D₅ discriminant norm; the 41 connects the flavour and Higgs budget with b₁ = 41/10. These identities explain the specified coefficients. Their common physical source still has a separate obligation.</p><p>The later source work also reconstructs the original circle defect line and the marked D₅ response (1−uq)^(−5/4). The remaining EM question is the actual local response, measure and Quillen/Thomson identification, rather than another arbitrary choice of a defect projector.</p></details>
+      <AlphaExplorer />
+      <AlphaComparison />
+      <ol className="guide-steps"><li><strong>Existence and uniqueness:</strong> for the specified function, an analytic argument shows F &lt; 0 up to 2c₃³, strict convexity afterwards and growth to infinity. Hence there is exactly one simple positive root.</li><li><strong>Location:</strong> the source interval calculation encloses that root. The interactive plot illustrates it; the plot is not the proof.</li><li><strong>Data comparison:</strong> the published comparison uses CODATA 2022, 137.035999177(21), about 1.9 experimental standard deviations away. Alpha was measured before this formula was frozen.</li><li><strong>Physical origin:</strong> exact coefficient identities and the mathematical root do not alone prove that this is the actual electromagnetic response functional of nature.</li></ol>
+      <details className="guide-details mt-6"><summary>Proof, coefficient origins and the remaining physical connection</summary><SourceLine query="alpha-global-positive-root" label="The analytic root theorem" /><SourceLine query="EM.WARD" label="Coefficient identities and the Ward origin" /><SourceLine query="defect" label="The reconstructed defect and response" /></details>
+    </section>
     <section className="guide-section" id="inputs">
       <h2>First, what is supplied?</h2>
       <p className="guide-lead">A seam is the oriented boundary structure used to define a response. A carrier is the internal space on which the algebra acts. A compiler is the collection of specified mathematical maps taking these data to representations, operators and numerical readouts.</p>
@@ -56,28 +76,14 @@ export function TheoryGuide() {
       <Scope achieved="A lattice construction under the specified glue data." given="The carrier, family lattice, matching and positive lattice setting." open="E₈ is the closure and consistency object here. Its appearance does not by itself identify E₈ as the unbroken physical gauge group." />
       <SourceLine query="glue" label="The lattice and bootstrap results" />
     </section>
-    <section className="guide-section" id="matter">
-      <h2>Build the charges of one family</h2><p className="guide-lead">The five slots split into three colour and two weak directions. In the even exterior representation, selecting slots adds their hypercharges. Try one colour and one weak slot.</p>
-      <ChargeExplorer />
-      <p className="mt-6">The two weak components then have electric charges 2/3 and −1/3. The other even selections give the conjugate quark and lepton sectors. The subgroup preserving the normalized 3+2 structure supplies the familiar SU(3), SU(2) and U(1) Lie algebra, with its central quotient handled separately.</p>
-      <h3 className="mt-8 text-2xl">Where do the three families enter?</h3><p className="mt-3">A sphere with four marked punctures has three independent one cycle directions: a loop around all four punctures gives one relation. Its family lattice is the A₃ side of the construction. Relating those three directions to physical families is part of the specified dictionary. Three colours and three families play different roles.</p>
-      <SourceLine query="family" label="Family geometry, representations and anomalies" />
-    </section>
     <section className="guide-section" id="flavor">
       <h2>A common ladder for masses and mixing</h2><p className="guide-lead">The charged flavour construction already contains fixed word lengths, amplitudes and mass ratios. Its achievements should stay visible alongside the remaining source and scale questions.</p>
-      <Math block plain="One seed determines a common suppression factor. Different compiler word lengths give different levels of the hierarchy.">{String.raw`\varphi_0=\frac1{6\pi}+\frac3{256\pi^4},\qquad \lambda_Y=\sqrt{\varphi_0(1-\varphi_0)},\qquad \widehat m_{f,j}=\frac{v_{\rm geo}}{\sqrt2}\lambda_Y^{L_{f,j}}\Lambda_{f,j}`}</Math>
+      <div className="formula-sequence"><Math block>{String.raw`\varphi_0=\frac1{6\pi}+\frac3{256\pi^4}`}</Math><Math block>{String.raw`\lambda_Y=\sqrt{\varphi_0(1-\varphi_0)}`}</Math><Math block>{String.raw`\widehat m_{f,j}=\frac{v_{\rm geo}}{\sqrt2}\lambda_Y^{L_{f,j}}\Lambda_{f,j}`}</Math></div>
+      <LeptonLadder />
       <ol className="guide-steps"><li><strong>One seed:</strong> φ₀ ≈ 0.053172 gives λY ≈ 0.224376. Powers of a number smaller than one produce a hierarchy.</li><li><strong>Fixed steps:</strong> the residue and winding operators supply L = R + 6W, with det R = 8. The exponent for each component is a compiler output.</li><li><strong>Closed readouts:</strong> charged lepton amplitudes and quark ratios are worked out. For example, the derived selector stratum gives cᵤ/c_d = 55/117.</li><li><strong>Shared dependencies:</strong> the same seed enters mixing, the boundary response and conditional cosmological readouts. These are correlated theoretical outputs.</li></ol>
       <Scope achieved="The stated charged flavour branch, lepton amplitudes and quark ratio readouts; explicit mixing and neutrino constructions with individual statuses." given="The residue/transport construction, its selected stratum and source scale conventions." open="Absolute calibration, transfer to observed mass schemes and the full common physical source remain distinct from the closed dimensionless relations. Neutrino candidates retain their own assumptions and history." />
       <SourceLine query="flavor-ratio-closed" label="Closed flavour ratios and the remaining absolute anchor" />
       <Link className="guide-link inline-block mt-3" href="/predictions">Compare the registered textures, bands and later candidates</Link>
-    </section>
-    <section className="guide-section" id="alpha">
-      <h2>Why does a number near 137 appear?</h2><p className="guide-lead">Alpha measures electromagnetic coupling strength. TFPT specifies a self consistent boundary equation whose positive root gives α⁻¹ = 137.0359992168407… . Solving this equation and deriving its complete physical origin are separate claims.</p>
-      <Math block plain="The specified electromagnetic closure balances a cubic term, a quadratic term and an alpha dependent boundary response.">{String.raw`F(\alpha)=\alpha^3-2c_3^3\alpha^2-\frac45\,41c_3^6\log\frac1{\varphi_s(\alpha)}=0`}</Math>
-      <details className="guide-details"><summary>Open the ingredients and their connections</summary><p>q(α) = 48c₃⁴ exp(−2α), and φs(α) = 1/(6π) + q(1−q)^(−5/4). The 48 is the three family carrier count; 5/4 is the D₅ discriminant norm; the 41 connects the flavour and Higgs budget with b₁ = 41/10. These identities explain the specified coefficients. Their common physical source still has a separate obligation.</p><p>The later source work also reconstructs the original circle defect line and the marked D₅ response (1−uq)^(−5/4). The remaining EM question is the actual local response, measure and Quillen/Thomson identification, rather than another arbitrary choice of a defect projector.</p></details>
-      <AlphaExplorer />
-      <ol className="guide-steps"><li><strong>Existence and uniqueness:</strong> for the specified function, an analytic argument shows F &lt; 0 up to 2c₃³, strict convexity afterwards and growth to infinity. Hence there is exactly one simple positive root.</li><li><strong>Location:</strong> the source interval calculation encloses that root. The interactive plot illustrates it; the plot is not the proof.</li><li><strong>Data comparison:</strong> the published comparison uses CODATA 2022, 137.035999177(21), about 1.9 experimental standard deviations away. Alpha was measured before this formula was frozen.</li><li><strong>Physical origin:</strong> exact coefficient identities and the mathematical root do not alone prove that this is the actual electromagnetic response functional of nature.</li></ol>
-      <SourceLine query="alpha-global-positive-root" label="The analytic root theorem" /><SourceLine query="EM.WARD" label="Coefficient identities and the Ward origin" /><SourceLine query="defect" label="The reconstructed defect and response" />
     </section>
     <section className="guide-section" id="clocks">
       <h2>Several clocks, connected by actual actions</h2><p className="guide-lead">The clock network is part of the construction. Each operator acts on a particular space; an order or a recurring number does not identify two operators.</p>
@@ -99,6 +105,7 @@ export function TheoryGuide() {
       <details className="guide-details mt-5"><summary>A later correction to an earlier gap argument</summary><p>The later source review shows that the specified Dirichlet to Neumann form bound alone does not imply the printed transfer gap Δ−2v. A comparison with the actual transfer operator is still required. Earlier broad “gap decoupled” summaries must be read with this correction.</p><Link href={evidence("metric-dtn-form-bound-needs-transfer-comparison-for-gap")}>Read the corrected scope and counterexample</Link></details>
       <SourceLine query="Higgs" label="Local and dynamical Higgs source results" /><SourceLine query="hodge" label="E₈ events, time and records" /><SourceLine query="gravity" label="Gravitational channels and their conditions" />
     </section>
+    <TheoryMap />
     <section className="guide-section" id="status">
       <h2>What does “established” mean here?</h2><p className="guide-lead">Read the precise statement together with its premises. A mathematical result, a numerical calculation and a physical identification answer different questions.</p>
       <dl className="scope-list"><div><dt>[E] Established in its stated scope</dt><dd>The accompanying type distinguishes a formal theorem, lattice result, identity or numerical readout. An [E] marker does not certify all of physics.</dd></div><div><dt>[C] Conditional</dt><dd>A specified physical interpretation or construction depends on named hypotheses. The conditions travel with the result.</dd></div><div><dt>[O] Open or supplied</dt><dd>An unproved connection or declared input. Inputs and research tasks are described separately in the record.</dd></div><div><dt>[X] Test or exclusion</dt><dd>A test has a defined target. A counterexample rules out its stated class, rather than every possible realization.</dd></div></dl>

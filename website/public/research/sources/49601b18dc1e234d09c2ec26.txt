@@ -1,0 +1,37 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_kink_current_insertion_20261102.py
+Original file SHA-256: 92cf5db12144f624148182e3af0dc5b06b62281e4f800105cd9309f2a26af560
+Inclusive original lines: 1-29
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """One-mode independent check of the source Weyl and current order.
+000002 | 
+000003 | The one-quantum state below diagnoses the CCR identity; it is NOT an
+000004 | identification of that state with any original TFPT quarter source state.
+000005 | """
+000006 | import sympy as s
+000007 | m=s.symbols('m',positive=True,real=True)
+000008 | h,eps=s.symbols('h eps',real=True)
+000009 | d,dc=s.symbols('d dc') # independent conjugate coordinates; dc=conj(d)
+000010 | 
+000011 | def F(x,xc):
+000012 |     y=m*x*xc
+000013 |     return s.exp(-y/2)*(1-y) # number state |1>
+000014 | 
+000015 | # Source current J(h)=sqrt(m)(h a* + h a) for real h, [a,a*]=1.
+000016 | # W(eps h) W(d)=exp[-eps m h(d-dc)/2] W(d+eps h).
+000017 | generated=s.diff(s.exp(-eps*m*h*(d-dc)/2)*F(d+eps*h,dc+eps*h),eps).subs(eps,0)/s.I
+000018 | # Independent Fock calculation: alpha=i sqrt(m)d, <1|a*D(alpha)|1>
+000019 | # = -alpha* exp(-|alpha|²/2), <1|a D(alpha)|1>
+000020 | # = alpha (2-|alpha|²) exp(-|alpha|²/2).
+000021 | operator=s.I*m*h*s.exp(-m*d*dc/2)*(dc+d*(2-m*d*dc))
+000022 | assert s.simplify(generated-operator)==0
+000023 | value=s.simplify(operator.subs({m:8,h:1,d:1+s.I,dc:1-s.I}))
+000024 | assert s.simplify(value-(120-104*s.I)*s.exp(-8))==0
+000025 | # Reversing current and Weyl word changes the answer by the CCR commutator.
+000026 | reverse=s.diff(s.exp(+eps*m*h*(d-dc)/2)*F(d+eps*h,dc+eps*h),eps).subs(eps,0)/s.I
+000027 | assert s.simplify(generated-reverse-s.I*m*h*(d-dc)*F(d,dc))==0
+000028 | print('PASS one-mode Fock versus Weyl derivative; current order matters')
+000029 | print('m=8, h=1, d=1+i:',value)

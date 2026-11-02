@@ -18,6 +18,7 @@ import { DownloadsTeaser } from "@/components/DownloadsTeaser";
 import { LegacyAnchorRedirect } from "@/components/LegacyAnchorRedirect";
 import { TheoryMap } from "@/components/explain/TheoryGuide";
 import { ResearchSnapshot } from "@/components/explain/ResearchSnapshot";
+import { DerivationPreview } from "@/components/explain/DerivationPreview";
 
 export default function HomePage() {
   return (
@@ -27,6 +28,7 @@ export default function HomePage() {
           /predictions, /architecture, /verification, /orientation). */}
       <LegacyAnchorRedirect />
       <Hero />
+      <DerivationPreview />
       <div className="guide-shell"><TheoryMap compact /><ResearchSnapshot /></div>
       <div className="guide-shell py-8"><details className="guide-details">
       <summary>Open the detailed publication overview and historical film</summary>

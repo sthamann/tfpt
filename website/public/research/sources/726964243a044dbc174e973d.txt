@@ -1,0 +1,103 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/mixed-current-origin-20261014/replay_targeted.py
+Original file SHA-256: 772860e1fbf4d6261fafc41c605cfcc7147f0a9c9235421109e147931fac20c1
+Inclusive original lines: 1-95
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Run the unchanged mixed-current checker with pinned historical inputs.
+000002 | 
+000003 | This is a targeted historical replay, not ``historical_overlay``: the latter
+000004 | also checks the active ledger against its manifest and currently rejects an
+000005 | unrelated ledger edit. No checker pins, active files or receipts are changed.
+000006 | """
+000007 | from __future__ import annotations
+000008 | 
+000009 | import argparse
+000010 | import hashlib
+000011 | import json
+000012 | import os
+000013 | from pathlib import Path
+000014 | import shutil
+000015 | import subprocess
+000016 | import sys
+000017 | import tempfile
+000018 | 
+000019 | ROOT = Path(__file__).resolve().parents[3]
+000020 | sys.path.insert(0, str(ROOT / "verification"))
+000021 | from historical_source_replay import checked, reader_only_adapter, reconstruct_tex, source_paths
+000022 | 
+000023 | 
+000024 | def sha(data: bytes) -> str:
+000025 |     return hashlib.sha256(data).hexdigest()
+000026 | 
+000027 | 
+000028 | def main() -> None:
+000029 |     parser = argparse.ArgumentParser(description=__doc__)
+000030 |     parser.add_argument("--out", required=True, type=Path,
+000031 |                         help="new result JSON outside the repository")
+000032 |     args = parser.parse_args()
+000033 |     output = args.out.resolve()
+000034 |     if output.is_relative_to(ROOT) or output.exists():
+000035 |         parser.error("--out must be a new path outside the repository")
+000036 |     manifest_path = ROOT / "verification/historical_replay/manifest.json"
+000037 |     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+000038 |     replacements = {}
+000039 |     for record in manifest["inputs"]:
+000040 |         kind = record["kind"]
+000041 |         if kind == "reader_only_python_adapter":
+000042 |             original = checked(ROOT, record["snapshot"], record["historical_sha256"])
+000043 |             current = checked(ROOT, record["path"], record["current_sha256"])
+000044 |             reader_only_adapter(original, current)
+000045 |         elif kind == "exact_modular_tex":
+000046 |             checked(ROOT, record["path"], record["current_sha256"])
+000047 |             original = reconstruct_tex(ROOT, record)
+000048 |         elif kind == "relocated_neutral_helper":
+000049 |             original = checked(ROOT, record["current_path"], record["historical_sha256"])
+000050 |         elif kind == "frozen_external_historical_input":
+000051 |             original = checked(ROOT, record["snapshot"], record["historical_sha256"])
+000052 |         elif kind == "retained_ledger_projection":
+000053 |             continue
+000054 |         else:
+000055 |             raise ValueError(f"Unknown manifest kind: {kind}")
+000056 |         if sha(original) != record["historical_sha256"]:
+000057 |             raise ValueError(f"Historical input changed: {record['path']}")
+000058 |         replacements[record["path"]] = original
+000059 | 
+000060 |     checker = "experiments/theory-contracts/mixed-current-origin-20261014/checker.py"
+000061 |     with tempfile.TemporaryDirectory(prefix="tfpt-mixed-targeted-") as temporary:
+000062 |         overlay = Path(temporary)
+000063 |         for relative in source_paths(ROOT):
+000064 |             target = overlay / relative
+000065 |             target.parent.mkdir(parents=True, exist_ok=True)
+000066 |             shutil.copy2(ROOT / relative, target)
+000067 |         for relative, data in replacements.items():
+000068 |             target = overlay / relative
+000069 |             target.parent.mkdir(parents=True, exist_ok=True)
+000070 |             target.write_bytes(data)
+000071 |         checker_output = overlay / "target-result.json"
+000072 |         env = dict(os.environ)
+000073 |         env["PYTHONPATH"] = str(overlay / "verification")
+000074 |         subprocess.run([sys.executable, "-B", str(overlay / checker), "--repo",
+000075 |                         str(overlay), "--out", str(checker_output)],
+000076 |                        env=env, check=True)
+000077 |         report = {
+000078 |             "scope": "targeted_historical_replay_not_full_historical_overlay",
+000079 |             "ledger_projection_checked": False,
+000080 |             "current_source_pin_pass": False,
+000081 |             "active_files_or_pins_modified": False,
+000082 |             "manifest_sha256": sha(manifest_path.read_bytes()),
+000083 |             "checker_sha256": sha((ROOT / checker).read_bytes()),
+000084 |             "historical_inputs": {name: sha(data) for name, data in replacements.items()},
+000085 |             "result": json.loads(checker_output.read_text(encoding="utf-8")),
+000086 |         }
+000087 |         output.parent.mkdir(parents=True, exist_ok=True)
+000088 |         with output.open("x", encoding="utf-8") as handle:
+000089 |             json.dump(report, handle, indent=2, ensure_ascii=False)
+000090 |             handle.write("\n")
+000091 |     print(f"Targeted historical replay report: {output}")
+000092 | 
+000093 | 
+000094 | if __name__ == "__main__":
+000095 |     main()

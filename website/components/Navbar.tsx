@@ -45,6 +45,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const moreRef = useRef<HTMLLIElement>(null);
+  const mobileButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -66,11 +67,14 @@ export function Navbar() {
 
   useEffect(() => {
     const dismiss = (event: KeyboardEvent) => {
-      if (event.key === "Escape") { setOpen(false); setMoreOpen(false); }
+      if (event.key === "Escape") {
+        if (open) { setOpen(false); mobileButtonRef.current?.focus(); }
+        if (moreOpen) { setMoreOpen(false); moreRef.current?.querySelector("button")?.focus(); }
+      }
     };
     document.addEventListener("keydown", dismiss);
     return () => document.removeEventListener("keydown", dismiss);
-  }, []);
+  }, [open, moreOpen]);
 
   return (
     <header
@@ -169,6 +173,7 @@ export function Navbar() {
         </ul>
 
         <button
+          ref={mobileButtonRef}
           type="button"
           onClick={() => setOpen((v) => !v)}
           className="inline-flex h-11 w-11 items-center justify-center rounded-md text-slate-700 hover:bg-slate-900/5 hover:text-slate-950 lg:hidden"
