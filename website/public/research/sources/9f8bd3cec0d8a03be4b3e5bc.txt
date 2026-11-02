@@ -1,0 +1,123 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-positive-kernel-search-20261015/certify_response_segment.py
+Original file SHA-256: 914b2b4f377a316a34643c1c51b24d61622c95279e9668a764a2e7166f1ec4dd
+Inclusive original lines: 1-115
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Certify an entire response segment between stored exact finite processes.
+000002 | 
+000003 | Only succeeds when ALL supplied moment polynomials stay constant, both full
+000004 | representations pass the existing independent checker, and state, fields and
+000005 | quarter map agree. This is not physical P1 source selection.
+000006 | """
+000007 | import argparse
+000008 | from functools import lru_cache
+000009 | from fractions import Fraction
+000010 | import hashlib
+000011 | import json
+000012 | from pathlib import Path
+000013 | 
+000014 | import sympy as sp
+000015 | 
+000016 | from proof_check import check_pair, _matrix
+000017 | 
+000018 | 
+000019 | def certify(run):
+000020 |     run = Path(run)
+000021 |     payload = json.loads((run/'moments.json').read_text())
+000022 |     low = json.loads((run/'min-trace.json').read_text())
+000023 |     high = json.loads((run/'max-trace.json').read_text())
+000024 |     question = json.loads((run/'next-source-question.json').read_text())
+000025 |     checked = check_pair(low, high, payload, question)
+000026 |     if not checked.get('ok'):
+000027 |         raise ValueError('Stored endpoints failed existing exact full-process checks: '+str(checked))
+000028 |     if sp.Rational(str(payload.get('cluster_gap', 0))) <= 0:
+000029 |         raise ValueError('This segment certificate requires an explicitly positive common clustering gap')
+000030 |     for key in ('Omega', 'gammas', 'quarter'):
+000031 |         if low['exact_matrices'][key] != high['exact_matrices'][key]:
+000032 |             raise ValueError('Segment requires the same original state/fields/quarter: '+key)
+000033 |     for key in ('m', 'dimension', 'inferred_occupations', 'Omega_basis_index'):
+000034 |         if low[key] != high[key]:
+000035 |             raise ValueError('Endpoint representation mismatch: '+key)
+000036 |     n, s = low['dimension'], sp.Symbol('s', real=True)
+000037 |     a = _matrix(low['exact_matrices']['T'], n, n, 'Tmin')
+000038 |     b = _matrix(high['exact_matrices']['T'], n, n, 'Tmax')
+000039 |     omega = _matrix(low['exact_matrices']['Omega'], n, 1, 'Omega')
+000040 |     operators = {-1: a+s*(b-a)}
+000041 |     operators.update({j: _matrix(g, n, n, 'gamma') for j, g in enumerate(low['exact_matrices']['gammas'])})
+000042 |     annihilates_vacuum = (b-a)*omega == sp.zeros(n, 1)
+000043 |     annihilates_single_fields = [(b-a)*operators[j]*omega == sp.zeros(n, 1) for j in range(2*low['m'])]
+000044 |     columns = {}
+000045 |     for token, operator in operators.items():
+000046 |         entries = [[] for _ in range(n)]
+000047 |         for (row, col), coefficient in operator.todok().items():
+000048 |             entries[col].append((row, coefficient))
+000049 |         columns[token] = entries
+000050 |     @lru_cache(None)
+000051 |     def vector(word):
+000052 |         if not word:
+000053 |             return tuple((row, c) for (row, col), c in omega.todok().items())
+000054 |         answer = {}
+000055 |         for col, value in vector(word[1:]):
+000056 |             for row, coefficient in columns[word[0]][col]:
+000057 |                 answer[row] = answer.get(row, 0)+coefficient*value
+000058 |         return tuple((row, sp.expand(value)) for row, value in sorted(answer.items()) if sp.expand(value) != 0)
+000059 |     def moment(word):
+000060 |         values = dict(vector(tuple(word)))
+000061 |         return sp.expand(sum(sp.conjugate(c)*values.get(row, 0) for (row, col), c in omega.todok().items()))
+000062 |     def recover(value):
+000063 |         q = Fraction(value).limit_denominator(64)
+000064 |         if abs(float(q)-value) > 1e-6:
+000065 |             raise ValueError('Moment rational recovery failed')
+000066 |         return sp.Rational(q.numerator, q.denominator)
+000067 |     for row in payload['moments']:
+000068 |         expected = recover(row['re'])+sp.I*recover(row['im'])
+000069 |         if sp.expand(moment(row['word'])-expected) != 0:
+000070 |             raise ValueError('Intermediate processes change supplied moment: '+str(row['word']))
+000071 |     responses = []
+000072 |     for row in question['differences']:
+000073 |         polynomial = moment(row['word'])
+000074 |         derivative = sp.diff(polynomial, s)
+000075 |         if derivative.has(s) or derivative == 0:
+000076 |             raise ValueError('This response does not have a nonconstant affine segment')
+000077 |         ends = [polynomial.subs(s, x) for x in (0, 1)]
+000078 |         if not all(x.is_real for x in ends):
+000079 |             raise ValueError('Response endpoints must be real')
+000080 |         responses.append({'word': row['word'], 'polynomial': str(polynomial),
+000081 |                           'attained_interval_on_this_segment': [str(min(ends)), str(max(ends))]})
+000082 |     # Reference-vector relation, quarter commutation and both positivity/gap
+000083 |     # Loewner inequalities are affine in T. Equal original endpoints satisfy
+000084 |     # them, hence every convex combination does. No spectrum interpolation
+000085 |     # identity is claimed. All nonlinear input moments were checked above.
+000086 |     return {'schema': 'tfpt.exact-full-response-segment.v1', 'status': 'EXACT_FULL_PROCESS_SEGMENT',
+000087 |             'parameter': '0 <= s <= 1', 'transfer': 'T(s)=(1-s)Tmin+sTmax',
+000088 |             'dimension': n, 'all_replayed_moment_polynomials_constant': len(payload['moments']),
+000089 |             'structural_annihilator': {'difference_annihilates_reference': annihilates_vacuum,
+000090 |                                       'difference_annihilates_each_single_field': annihilates_single_fields},
+000091 |             'retained_constraints': ['same full CAR representation and normalized vector',
+000092 |                                      'same internal quarter action', 'selfadjoint positive bounded transfer',
+000093 |                                      'same reference eigenvector', 'same declared positive clustering gap'],
+000094 |             'responses': responses, 'endpoint_check': checked,
+000095 |             'source_sha256': {name: hashlib.sha256((run/name).read_bytes()).hexdigest()
+000096 |                               for name in ('moments.json', 'min-trace.json', 'max-trace.json', 'next-source-question.json')},
+000097 |             'scope': 'Constructed full finite segment, not all admissible processes. Attained intervals are not global extrema. Original input moments were rationally recovered under the existing checker contract; they are not P1-derived data.',
+000098 |             'physical_P1_source_identified': False, 'absolute_Z0_recovered': False,
+000099 |             'fundamental_solution': False}
+000100 | 
+000101 | 
+000102 | def main():
+000103 |     parser = argparse.ArgumentParser(description=__doc__)
+000104 |     parser.add_argument('run', type=Path)
+000105 |     parser.add_argument('--out', required=True, type=Path)
+000106 |     args = parser.parse_args()
+000107 |     result = certify(args.run)
+000108 |     args.out.parent.mkdir(parents=True, exist_ok=True)
+000109 |     with args.out.open('x') as stream:
+000110 |         json.dump(result, stream, indent=2); stream.write('\n')
+000111 |     print(json.dumps({k: result[k] for k in ('status', 'dimension', 'all_replayed_moment_polynomials_constant', 'responses', 'fundamental_solution')}, indent=2))
+000112 | 
+000113 | 
+000114 | if __name__ == '__main__':
+000115 |     main()

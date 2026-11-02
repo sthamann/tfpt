@@ -102,8 +102,8 @@ export default function FalsificationPage() {
           <SectionHeader
             id="kill-board-heading"
             eyebrow="The kill board"
-            title="Every readout, its kill condition, and where it stands now"
-            description="The full status-graded surface as a board: each card carries the predicted value, the single condition that would falsify it, and — where a standalone empirical audit exists in the experiments/ tree — its live status. These confrontations are search targets, not load-bearing claims; no card is upgraded by data proximity."
+            title="Published failure criteria and recorded comparisons"
+            description="Each card preserves its published value, failure criterion and original empirical comparison. These are historical source records. The dated empirical audit linked below provides the updated primary comparisons; data proximity does not promote a claim."
           />
           <KillBoard />
         </div>
@@ -118,9 +118,10 @@ export default function FalsificationPage() {
           <SectionHeader
             id="confrontation-table-heading"
             eyebrow="The confrontation table"
-            title="Every readout against the data, with its decisive year"
-            description="The same prediction surface as one dense table: for each readout, the derivation, the TFPT value, the current measured value, the deviation, the dated experimental source, and the experiment — with an approximate year — that will turn it into a definitive hit or kill (typically a sharper, future measurement). Every value is repo-documented; nothing is fitted."
+            title="The published comparison record"
+            description="This historical table preserves the published prediction surface, dated source labels and original forecasts. The dates in each row identify its evidence; they are not a statement that every measurement or forecast remains current."
           />
+          <p className="mb-6 mt-4 max-w-3xl leading-relaxed text-slate-700">For primary measurements checked on 2 November 2026, read the <Link href="/empirical-audit" className="font-semibold text-blue-700 underline underline-offset-4">current dated empirical audit</Link>. The frozen formulas and failure criteria are unchanged.</p>
           <FalsificationTable />
         </div>
       </section>

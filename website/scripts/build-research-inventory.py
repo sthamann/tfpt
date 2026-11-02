@@ -17,6 +17,7 @@ WEBSITE = Path(__file__).resolve().parents[1]
 PUBLIC = WEBSITE / 'public/research'
 DATA = WEBSITE / 'lib/research-inventory.json'
 SUMMARY = WEBSITE / 'lib/research-summary.json'
+ATLAS = WEBSITE / 'lib/semantic-atlas.json'
 SNAPSHOT = PUBLIC / 'research-snapshot.json'
 APPROVED = ('experiments/theory-contracts/', 'experiments/lean4-carrier-rigidity/',
             'documents/', 'verification/', 'docs/research/', 'tex-artefacts/', 'tfpt_explorer/')
@@ -92,7 +93,159 @@ def excerpt_bytes(path, raw, start, end):
   body.append(f'{i:06d} | ' + ('[OMITTED: non-scientific conversation or execution metadata]' if i in omitted else line))
  return ('\n'.join(header+body)+'\n').encode(), sorted(omitted)
 
+def semantic_snapshot(root, program, findings, premises, source_refs):
+ """Public authored semantics plus original inventoried attempt metadata.
+
+ Never read papers.json, annotation caches, embeddings or the private overlay.
+ Historical source pins are checked but are not silently refreshed: stale pins
+ remain stale handles. Attempt verdicts retain their unreviewed source status.
+ """
+ paths=['semantic_explorer/orientation.json','semantic_explorer/theory_map.json',
+        'semantic_explorer/data/context.json']
+ raw={p:(root/p).read_bytes() for p in paths}
+ orientation=json.loads(raw[paths[0]]);theory=json.loads(raw[paths[1]]);context=json.loads(raw[paths[2]])
+ src_index={s['id']:s for s in context['sources']};handles={s['id']:dict(s) for s in source_refs}
+ omitted=[];file_cache={}
+ def clean(value, record_id, field):
+  if value is None:return None
+  text=safe_text({'en':str(value)})[0]
+  if PRIVATE.search(text) or (field not in ('titleEN','questionEN') and NARRATIVE.search(text)):
+   omitted.append({'id':record_id,'field':field,'reason':'Non-scientific or personal provenance omitted.'})
+   return None
+  return text
+ def handle(ref):
+  original_id=ref if isinstance(ref,str) else ref.get('source_id') or ref.get('id')
+  s=src_index.get(ref) if isinstance(ref,str) else ref
+  if not s:return None
+  path=s.get('path','')
+  if Path(path).is_absolute():
+   try:path=str(Path(path).relative_to(root))
+   except ValueError:return None
+  if '..' in Path(path).parts or not path or 'local_private' in path or path.startswith(('semantic_explorer/','_newest','private/')):
+   return None
+  a=s.get('line_start');b=s.get('line_end');expected=s.get('sha256')
+  ident=original_id or 'semantic-source:'+sha(f'{path}:{expected}:{a}:{b}'.encode())[:24]
+  if ident in handles:return ident
+  if path not in file_cache:
+   q=root/path;file_cache[path]=q.read_bytes() if q.is_file() else None
+  body=file_cache[path];actual=sha(body) if body is not None else None
+  valid_range=bool(body is not None and isinstance(a,int) and isinstance(b,int) and 1<=a<=b<=len(body.splitlines()))
+  freshness='missing-source' if body is None else 'source-stale' if expected and expected!=actual else 'invalid-range' if a is not None and not valid_range else 'current-at-snapshot' if expected else 'unhashed-navigation'
+  matching=next((r for r in source_refs if r['path']==path and r['sha256']==expected and r['lineStart']==a and r['lineEnd']==b),None)
+  handles[ident]={'id':ident,'path':path,'sha256':expected,'actualSha256':actual,'lineStart':a,'lineEnd':b,
+   'freshness':freshness,'publicationState':'public-provenance-metadata','href':matching['href'] if matching else None,
+   'notice':'Historical source metadata only; no execution or reviewed conclusion inferred.'}
+  return ident
+ def refs(items):return list(dict.fromkeys(i for r in items if (i:=handle(r))))
+ topics=[]
+ for t in orientation['topics']:
+  topics.append({'id':t['id'],'titleEN':clean(t.get('label_en') or t['label'],t['id'],'titleEN') or t['id'],
+   'summaryEN':clean(t.get('summary_en') or t['summary'],t['id'],'summaryEN') or '',
+   'orientation':{k:clean(v,t['id'],k) for k,v in t.get('topic_orientation',{}).items() if k.endswith('_en')},
+   'problemIds':[p['id'] for p in program['problems'] if t['id'] in p['topics']],
+   'findingIds':[f['id'] for f in findings if t['id'] in f['topicIds']],
+   'reviewState':'authored-navigation','sourceRefIds':refs(t.get('source_refs',[]))})
+ goals=[{'id':g['id'],'titleEN':g.get('label_en') or g['label'],'summaryEN':g.get('summary_en') or g['summary'],
+  'status':g['status'],'topicIds':g.get('topic_ids',[]),'claimIds':g.get('claim_ids',[]),
+  'sourceRefIds':refs(g.get('source_refs',[])),'reviewState':'authored-navigation'} for g in orientation['goals']]
+ structures=[{'id':s['id'],'titleEN':s.get('label_en') or s['label'],'summaryEN':s.get('summary_en') or s['summary'],
+  'epistemic':s.get('epistemic'),'topicIds':s.get('topic_ids',[]),'claimIds':s.get('claim_ids',[]),
+  'sourceRefIds':refs(s.get('source_refs',[])),'reviewState':'authored-navigation'} for s in orientation['structures']]
+ tasks=[];strategies=[];connections=[];problems=[];relations=[]
+ def relation(a,b,kind,review='reviewed-authored',native_id=None,**extra):
+  relations.append({'id':native_id or 'semantic-edge:'+sha(f'{a}|{b}|{kind}'.encode())[:24],
+   'from':a,'to':b,'type':kind,'reviewState':review,**extra})
+ for p in program['problems']:
+  pf=[f['id'] for f in findings if f['problemId']==p['id']]
+  problems.append({'id':p['id'],'titleEN':english(p['title']),'questionEN':english(p['question']),
+   'topicIds':p['topics'],'goalIds':p['goals'],'acceptedPremiseIds':p['accepted_premise_ids'],
+   'findingIds':pf,'taskIds':[t['id'] for t in p['tasks']],'strategyIds':[s['id'] for s in p['strategies']],
+   'connectionIds':[c['id'] for c in p.get('connections',[])],'reviewedAttemptIds':p.get('reviewed_attempt_ids',[]),
+   'reviewState':'reviewed-authored'})
+  for tid in p['topics']:relation(p['id'],tid,'about_topic')
+  for gid in p['goals']:relation(p['id'],gid,'addresses_goal')
+  for t in p['tasks']:
+   tasks.append({'id':t['id'],'problemId':p['id'],'titleEN':clean(english(t['title']),t['id'],'titleEN') or t['id'],
+    'kind':t.get('kind'),'status':t['status'],'dependsOn':t.get('depends_on',[]),'resolutionIds':t.get('resolution_ids',[]),
+    'requiredPremiseIds':t.get('required_premise_ids',[]),'successCriterionEN':clean(english(t.get('success_criterion',{})),t['id'],'successCriterionEN'),
+    'nextActionEN':clean(english(t.get('next_action',{})),t['id'],'nextActionEN'),'reviewState':'reviewed-authored'})
+   for dep in t.get('depends_on',[]):relation(t['id'],dep,'depends_on')
+   for resolved in t.get('resolution_ids',[]):relation(t['id'],resolved,'resolved_by')
+   for prem in t.get('required_premise_ids',[]):relation(t['id'],prem,'requires_premise')
+  for s in p['strategies']:
+   strategies.append({'id':s['id'],'problemId':p['id'],'titleEN':clean(english(s['title']),s['id'],'titleEN') or s['id'],
+    'outcome':s['outcome'],'premiseIds':s.get('premise_ids',[]),'findingIds':s.get('finding_ids',[]),
+    'explanationEN':clean(english(s.get('explanation',{})),s['id'],'explanationEN'),
+    'changesRequiredEN':clean(english(s.get('changes_required',{})),s['id'],'changesRequiredEN'),'reviewState':'reviewed-authored'})
+   for fid in s.get('finding_ids',[]):relation(s['id'],fid,'records_outcome')
+  for c in p.get('connections',[]):
+   connections.append({'id':c['id'],'problemId':p['id'],'targetProblemId':c['target_problem_id'],'kind':c['kind'],
+    'premiseIds':c.get('premise_ids',[]),'findingIds':c.get('finding_ids',[]),
+    'explanationEN':clean(english(c.get('explanation',{})),c['id'],'explanationEN'),'reviewState':'reviewed-authored'})
+   relation(p['id'],c['target_problem_id'],c['kind'],native_id=c['id'],premiseIds=c.get('premise_ids',[]),findingIds=c.get('finding_ids',[]))
+ for f in findings:
+  relation(f['problemId'],f['id'],'records_finding')
+  for prem in f['premiseIds']:relation(f['id'],prem,'requires_premise')
+  for aid in f['attemptIds']:relation(f['id'],aid,'source_review_of')
+ attempts=[]
+ for n in context['nodes']:
+  if n['type']!='attempt':continue
+  a=n['attrs'];ident=n['id'];sources=refs(a.get('source_refs',[]))
+  attempts.append({'id':ident,'titleEN':clean(a.get('name') or n['label'],ident,'titleEN') or ident,
+   'questionEN':clean(a.get('question') or a.get('observable'),ident,'questionEN'),
+   'date':a.get('date'),'kind':a.get('attempt_kind'),'status':a.get('status'),
+   'verdictRaw':clean(a.get('verdict_raw'),ident,'verdictRaw'),'verdictClass':a.get('verdict_class'),
+   'stage':a.get('stage'),'evidenceClass':a.get('evidence_class'),'domain':a.get('domain'),
+   'scopeEN':clean(a.get('scope') or a.get('claim_scope'),ident,'scopeEN'),
+   'sourceRefIds':sources,'historical':True,'reviewState':'inventoried-not-reviewed',
+   'reviewedFindingIds':[f['id'] for f in findings if ident in f['attemptIds']],
+   'notice':'Original historical attempt metadata. A reported PASS is not a reviewed theorem, a fresh run or physical completion.'})
+ attemptids={a['id'] for a in attempts}
+ for ident in sorted({a for f in findings for a in f['attemptIds']}-attemptids):
+  attempts.append({'id':ident,'titleEN':ident,'kind':'referenced-attempt','reviewState':'referenced-without-inventory',
+   'historical':False,'sourceRefIds':[],'reviewedFindingIds':[f['id'] for f in findings if ident in f['attemptIds']],
+   'notice':'Referenced by a reviewed finding; no original attempt inventory record is available in this frozen context.'})
+ for e in context['edges']:
+  if e['src'] not in attemptids and e['dst'] not in attemptids:continue
+  method=e.get('attrs',{}).get('method')
+  # Topic mapping/candidate/LLM edges are not established semantic relationships.
+  if method in ('topic_mapping','llm') or e['type']=='about':continue
+  relation(e['src'],e['dst'],e['type'],'inventoried-not-reviewed',e['id'])
+ patterns=[]
+ for c in theory.get('patterns',[]):
+  if not c.get('reviewed'):continue
+  patterns.append({'id':c['id'],'titleEN':c.get('label_en'),'summaryEN':c.get('summary_en'),'kind':c['kind'],
+   'relatedIds':c.get('related_ids',[]),'conditions':[r.get('label_en') or r.get('label_de') for r in c.get('conditions',[])],
+   'counterevidence':[r.get('label_en') or r.get('label_de') for r in c.get('counterevidence',[])],
+   'sourceRefIds':refs(c.get('source_refs',[])),'reviewState':'source-reviewed-relationship',
+   'reviewScope':c.get('review_scope')})
+ for e in orientation.get('relations',[]):
+  relation(e['src'],e['dst'],e['type'],'authored-navigation',
+   explanationEN=clean(e.get('explanation_en'),e['src'],'relationExplanation'),
+   explanationDE=clean(e.get('explanation'),e['src'],'relationExplanation'),
+   conditionsDE=[clean(c,e['src'],'relationCondition') for c in e.get('conditions',[])],
+   sourceRefIds=refs(e.get('source_refs',[])))
+ included={r['id'] for group in (topics,goals,structures,problems,findings,premises,tasks,strategies,connections,attempts) for r in group}
+ external=sorted({r[k] for r in relations for k in ('from','to') if r[k] not in included})
+ for r in relations:
+  r['fromState']='included' if r['from'] in included else 'external-reference'
+  r['toState']='included' if r['to'] in included else 'external-reference'
+ sem={'schemaVersion':1,'topics':topics,'goals':goals,'structures':structures,'problems':problems,
+  'findings':[{**{k:v for k,v in f.items() if k!='sources'},'sourceRefIds':[s['id'] for s in f['sources']],'reviewState':'reviewed-authored'} for f in findings],
+  'premises':premises,'tasks':tasks,'strategies':strategies,'connections':connections,'patterns':patterns,
+  'attempts':attempts,'relations':relations,'sourceRefs':list(handles.values()),
+  'coverage':{'attemptInventoryDate':context['meta'].get('generated_at'),'attemptInventoryIds':sorted(attemptids),
+   'excludedAdministrativeRecordIds':list(ADMIN_IDS),
+   'externalRelationEndpointIds':external,
+   'omittedNonScientificFields':omitted,'sourceFreshness':dict(collections.Counter(s['freshness'] for s in handles.values())),
+   'notice':'Exact authored memberships and typed research connections. Historical inventory excludes inferred topic/LLM edges. No private paper overlay or generated AI science annotations.'},
+  'inputHashes':{p:sha(b) for p,b in raw.items()}}
+ for path,body in raw.items():
+  if (root/path).read_bytes()!=body:raise ValueError(f'Semantic authoring source changed during freeze: {path}')
+ return sem
+
 def freeze(root):
+ previous=load(SNAPSHOT) if SNAPSHOT.exists() else None
  program_raw=(root/'semantic_explorer/research/program.json').read_bytes(); program=json.loads(program_raw)
  ledger_raw=(root/'verification/status_ledger.csv').read_bytes()
  ledger=list(csv.DictReader(io.StringIO(ledger_raw.decode())))
@@ -103,7 +256,7 @@ def freeze(root):
  tree={}
  for line in git(root,'ls-tree','-r',public_head).splitlines():
   meta,path=line.split('\t',1);tree[path]=meta.split()[2]
- rawcache={};sources={};errors=[];artifacts=[]
+ rawcache={};sources={};errors=[];source_issues=[];artifacts=[]
  def source(s):
   path=s['path'];a=s['line_start'];b=s['line_end'];key=f"{path}:{s['sha256']}:{a}:{b}"
   ident='source:'+sha(key.encode())[:24]
@@ -116,7 +269,21 @@ def freeze(root):
   if path not in rawcache:rawcache[path]=(root/path).read_bytes()
   raw=rawcache[path];actual=sha(raw);n=len(raw.splitlines())
   if actual!=s['sha256'] or not 1<=a<=b<=n:
-   raise ValueError(f'Invalid source SHA/range: {path}:{a}-{b}; expected {s["sha256"]}, actual {actual}, lines {n}')
+   prior=next((r for r in (previous or {}).get('sourceRefs',[]) if r['id']==ident and r.get('excerptSha256') and r.get('href')),None)
+   excerpt=PUBLIC/prior['href'].removeprefix('/research/') if prior else None
+   if not prior or not excerpt.is_file() or sha(excerpt.read_bytes())!=prior['excerptSha256']:
+    raise ValueError(f'Invalid source SHA/range without a previously validated excerpt: {path}:{a}-{b}; expected {s["sha256"]}, actual {actual}, lines {n}')
+   item={**prior,'freshness':'source-stale','publicationState':'retained-previously-validated-excerpt',
+    'actualSha256':actual,'currentLineCount':n,
+    'previouslyValidatedAt':prior.get('previouslyValidatedAt') or previous['meta']['generatedAt'],
+    'lastValidatedRevision':prior.get('lastValidatedRevision') or previous['meta']['sourceRevision'],
+    'notice':'The current working source differs from the reviewed pin. This unchanged excerpt was validated in the stated earlier snapshot; it is not claimed source-current.'}
+   sources[ident]=item
+   artifacts.append({'path':prior['href'].removeprefix('/research/'),'sha256':prior['excerptSha256']})
+   source_issues.append({'sourceId':ident,'path':path,'lineStart':a,'lineEnd':b,'expectedSha256':s['sha256'],
+    'actualSha256':actual,'currentLineCount':n,'currentRangeValid':1<=a<=b<=n,
+    'state':'retained-previously-validated-excerpt','lastValidatedRevision':item['lastValidatedRevision']})
+   return item
   payload,omitted=excerpt_bytes(path,raw,a,b);filename=f'sources/{ident.split(":")[1]}.txt'
   write(PUBLIC/filename,payload);artifacts.append({'path':filename,'sha256':sha(payload)})
   blob=hashlib.sha1(f'blob {len(raw)}\0'.encode()+raw).hexdigest()
@@ -165,7 +332,7 @@ def freeze(root):
   'findingContracts':{f['id']:{'status':f['status'],'scopeSha256':sha(english(f['scope']).encode()),'premiseIds':f['premise_ids'],
     'sourceCount':len(f['sources'])} for p in program['problems'] for f in p['findings'] if f['id'] not in ADMIN_IDS},
   'predictionIds':{k:[r['id'] for r in predictions[k]] for k in ('predictions','assigned_texture_values','conditional_bands','derived_variants_not_predictions')},
-  'sourceOmissions':errors,'publicDisplayEdits':display_edits,
+  'sourceOmissions':errors,'sourceIssues':source_issues,'publicDisplayEdits':display_edits,
   'privacyPolicy':'Only reviewed scientific records and bounded cited scientific excerpts. No generated AI annotations, private paper inputs, chats, credentials or complete private Atlas overlay. Excerpt omissions are explicit by original line.',
   'omittedPremiseAttributions':[p['id'] for p in program['premises'] if p['id'] in used and (safe_text(p['title'])[1] or safe_text(p['statement'])[1])],
   'scope':'Exact coverage of the frozen active/inactive ledger and eligible reviewed decision records, not every paper section or all unreviewed attempts; no fresh proof execution.'
@@ -177,6 +344,9 @@ def freeze(root):
   'ledger':ledgers,'findings':findings,'problems':problems,'premises':premises,'predictions':predictions,
   'scripts':[{'id':r['script'],'cluster':r['cluster'],'descriptionEN':r['what_web']} for r in registry],
   'sourceRefs':list(sources.values()),'expectedCoverage':manifest,'artifacts':artifacts}
+ snap['semanticAtlas']=semantic_snapshot(root,program,findings,premises,list(sources.values()))
+ snap['expectedCoverage']['semanticExpectedIds']={k:[r['id'] for r in snap['semanticAtlas'][k]] for k in
+  ('topics','goals','structures','problems','findings','tasks','strategies','connections','patterns','attempts','relations','sourceRefs')}
  # No read after this point may mix a later authoring revision into this snapshot.
  if (root/'semantic_explorer/research/program.json').read_bytes()!=program_raw:
   raise ValueError('Reviewed authoring program changed during freeze; no coherent snapshot published. Retry live export.')
@@ -190,14 +360,23 @@ def build(snap):
  'findingStatuses':dict(collections.Counter(f['status'] for f in snap['findings'])),
  'predictionCategories':{k:len(v) for k,v in manifest['predictionIds'].items()},
  'excludedAdministrativeFindings':len(manifest['excludedFindings']),
- 'sourcesWithExplicitOmissions':sum(bool(s.get('omittedOriginalLines')) for s in snap['sourceRefs'])}
+ 'sourcesWithExplicitOmissions':sum(bool(s.get('omittedOriginalLines')) for s in snap['sourceRefs']),
+ 'reviewedSourceFreshness':dict(collections.Counter(s['freshness'] for s in snap['sourceRefs']))}
  coverage={**manifest,'counts':counts,'checks':{'exactLedgerIds':True,'exactEligibleFindingIds':True,
- 'exactProblemIds':True,'exactPremiseIds':True,'exactSourceRefIds':True,'allSourceHashesAndRangesValidatedAtFreeze':True,
+ 'exactProblemIds':True,'exactPremiseIds':True,'exactSourceRefIds':True,
+ 'allSourceReferencesAuditedAtFreeze':True,'allSourceHashesAndRangesValidatedAtFreeze':not manifest.get('sourceIssues'),
  'allExcerptHashesValidated':True,'allPremisesResolved':True,'statusScopeAndSourcesPresent':True},
  'freshProofExecution':False}
  data={k:snap[k] for k in ['schemaVersion','ledger','findings','problems','premises','predictions','scripts','sourceRefs']}
  data['meta']={**snap['meta'],'counts':counts,'snapshotSha256':sha(encode(snap))};data['coverage']=coverage
  return data,coverage
+
+def build_semantics(snap, meta):
+ sem=dict(snap['semanticAtlas'])
+ sem['meta']={**meta,'counts':{k:len(sem[k]) for k in
+  ('topics','goals','structures','problems','findings','tasks','strategies','connections','patterns','attempts','relations','sourceRefs')},
+  'notice':'Reviewed findings, authored navigation and historical unreviewed attempts retain distinct reviewState values. Typed edges are not automatic proofs.'}
+ return sem
 
 def validate(snap, data):
  m=snap['expectedCoverage']
@@ -220,7 +399,10 @@ def validate(snap, data):
   assert r['id']==original['claim_id'] and r['claim']==original['claim'] and r['status']==original['status'] and r['canonicalStatus']==original['canonical_status'] and r['dependencies']==original['dependencies'] and r['script']==original['script'],'ledger original text/status changed'
   assert r['sourceHref']
  for ref in data['sourceRefs']:
-  assert ref['path'].startswith(APPROVED) and ref['freshness']=='current-at-snapshot' and ref.get('excerptSha256')
+  assert ref['path'].startswith(APPROVED) and ref['freshness'] in ('current-at-snapshot','source-stale') and ref.get('excerptSha256')
+  if ref['freshness']=='source-stale':
+   assert ref['publicationState']=='retained-previously-validated-excerpt' and ref.get('previouslyValidatedAt') and ref.get('lastValidatedRevision')
+   assert ref.get('actualSha256') and ref['actualSha256']!=ref['sha256']
   text=(PUBLIC/ref['href'].removeprefix('/research/')).read_text()
   assert not PRIVATE.search('\n'.join(text.splitlines()[8:])),f'private text in excerpt {ref["id"]}'
  for artifact in snap['artifacts']:
@@ -228,16 +410,29 @@ def validate(snap, data):
  for k,ids in m['predictionIds'].items():assert [r['id'] for r in data['predictions'][k]]==ids
  assert not any(PRIVATE.search(f[k]) for f in data['findings'] for k in ('titleEN','statementEN','scopeEN')), 'Private or personal narrative remains in public finding text'
  assert not any('/Users/' in str(x) or 'local_private' in str(x) for x in [data['ledger'],data['premises']])
+ sem=snap['semanticAtlas'];known=set()
+ for k,ids in m['semanticExpectedIds'].items():
+  got=[r['id'] for r in sem[k]]
+  assert len(got)==len(set(got)) and set(got)==set(ids),f'Semantic duplicate/missing {k}'
+  known.update(got)
+ assert {r['id'] for r in sem['findings']}==set(m['eligibleFindingIds'])
+ assert set(sem['coverage']['attemptInventoryIds'])<={a['id'] for a in sem['attempts']}
+ assert all(a['reviewState'] in ('inventoried-not-reviewed','referenced-without-inventory') for a in sem['attempts'])
+ assert not any('/Users/' in str(r) or '/home/' in str(r) or 'local_private' in str(r) or 'relations_llm' in str(r) for r in [sem])
+ for group in ('topics','findings','goals','structures','patterns','attempts'):
+  for r in sem[group]:assert set(r.get('sourceRefIds',[]))<={s['id'] for s in sem['sourceRefs']}
 
 def main():
  ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--source-root',type=Path);ap.add_argument('--frozen-input',type=Path,default=SNAPSHOT);ap.add_argument('--check',action='store_true');args=ap.parse_args()
  if args.source_root and not args.check:
   snap=freeze(args.source_root.resolve());write(SNAPSHOT,encode(snap))
  else:snap=load(args.frozen_input)
- data,coverage=build(snap);validate(snap,data)
+ data,coverage=build(snap);validate(snap,data);semantics=build_semantics(snap,data['meta'])
  if args.check:
   assert DATA.read_bytes()==encode(data),'generated inventory differs from frozen input'
   assert SUMMARY.read_bytes()==encode(data['meta']),'generated summary differs from frozen meta'
+  assert ATLAS.read_bytes()==encode(semantics),'generated semantic atlas differs from frozen input'
+  assert (PUBLIC/'semantic-atlas.json').read_bytes()==encode(semantics),'semantic download differs from frozen input'
   assert (PUBLIC/'inventory.json').read_bytes()==encode(data),'download differs from UI inventory'
   assert (PUBLIC/'coverage.json').read_bytes()==encode(coverage),'coverage differs from frozen input'
   if args.source_root:
@@ -246,6 +441,7 @@ def main():
     'addedReviewedFindingIds':sorted({f['id'] for p in live['problems'] for f in p['findings']}-set(snap['expectedCoverage']['allReviewedFindingIds']))}))
  else:
   write(DATA,encode(data));write(SUMMARY,encode(data['meta']));write(PUBLIC/'inventory.json',encode(data));write(PUBLIC/'coverage.json',encode(coverage))
+  write(ATLAS,encode(semantics));write(PUBLIC/'semantic-atlas.json',encode(semantics))
  print(json.dumps({'ok':True,'mode':'check' if args.check else 'build','revision':data['meta']['sourceRevision'],'counts':data['meta']['counts']}))
 if __name__=='__main__':
  try:main()

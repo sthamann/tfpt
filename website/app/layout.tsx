@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import "./figures.css";
 import "./experience.css";
+import "./atlas.css";
+import "./learning.css";
 import "./katex.css";
 import "./math-fonts.css";
 import { Navbar } from "@/components/Navbar";

@@ -83,12 +83,13 @@ export function Footer() {
           </h3>
           <ul className="mt-4 space-y-2 text-sm">
             <li><Link prefetch={false} href="/explain" className="text-slate-600 hover:text-slate-950">Understand the theory</Link></li>
-            <li><Link prefetch={false} href="/results" className="text-slate-600 hover:text-slate-950">Complete result library</Link></li>
+            <li><Link prefetch={false} href="/results" className="text-slate-600 hover:text-slate-950">Research knowledge atlas</Link></li>
             <li>
               <Link prefetch={false} href="/verification" className="text-slate-600 hover:text-slate-950">
                 Verification
               </Link>
             </li>
+            <li><Link prefetch={false} href="/empirical-audit" className="text-slate-600 hover:text-slate-950">Empirical audit</Link></li>
             <li>
               <Link prefetch={false} href="/falsification" className="text-slate-600 hover:text-slate-950">
                 Kill board

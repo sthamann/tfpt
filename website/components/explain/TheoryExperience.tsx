@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowDown, ArrowRight } from "lucide-react";
+import { OutputPlate, MechanismWalkthrough } from "./LearningFigures";
 
 const outcomes = [
   { title: "Particles & charges", short: "Particles", second: "& charges", text: "The representations and charges of one Standard Model family, with a separate geometric construction for three families.", scope: "Representation and charge results", query: "hypercharge", href: "/explain#matter" },
@@ -13,27 +13,14 @@ const outcomes = [
   { title: "Clocks & dynamics", short: "Clocks", second: "& dynamics", text: "Related finite clock actions, exact relaxation in the specified transfer model and constructed state and time bridges.", scope: "Operator relations; physical time and a common source remain separate", query: "clock", href: "/explain#clocks" },
 ];
 
-const points = [[300,65],[490,170],[490,350],[300,455],[110,350],[110,170]];
-
-function Constellation({ scene = 0 }: { scene?: number }) {
-  const active = scene === 1 ? [0,4] : scene === 2 ? [1,2,3] : [0,1,2,3,4,5];
-  return <svg className="theory-constellation" viewBox="0 0 600 550" role="img" aria-label={scene === 1 ? "The carrier and lattice construction connect particle representations and quantum geometry." : scene === 2 ? "Shared seeds and budgets connect flavour, alpha and conditional cosmological readouts." : "Overview of six connected TFPT research areas: particles and charges, masses and mixing, alpha, cosmology, quantum structure, clocks and dynamics. This is a map of dependencies, not a picture of physical space."}>
-    <g className="constellation-paths">{points.map(([x,y],i)=><path key={`${i}-${active.includes(i)}`} pathLength="1" className={active.includes(i)?"is-lit":""} d={`M300 275 Q${x < 300 ? 205 : x > 300 ? 395 : 350} ${(275+y)/2} ${x} ${y}`} />)}</g>
-    <circle className="constellation-core" cx="300" cy="275" r="78" />
-    <text className="constellation-center" x="300" y="265" textAnchor="middle"><tspan x="300">{scene === 1 ? "Carrier" : scene === 2 ? "Shared seeds" : "One shared"}</tspan><tspan x="300" dy="31">{scene === 1 ? "& lattices" : scene === 2 ? "& budgets" : "construction"}</tspan></text>
-    {points.map(([x,y],i)=><g key={i} className={`constellation-branch ${active.includes(i)?"is-lit":""}`}><circle cx={x} cy={y} r="10" /><text x={x} y={y<275?y-60:y+35} textAnchor="middle"><tspan x={x}>{outcomes[i].short}</tspan><tspan x={x} dy="27">{outcomes[i].second}</tspan></text></g>)}
-  </svg>;
-}
-
 export function BigPictureHero() {
-  return <section className="big-picture-hero" aria-labelledby="big-picture-title"><div className="experience-shell big-picture-layout">
-    <div className="big-picture-copy"><h1 id="big-picture-title">Connecting the particles and constants of nature.</h1>
-      <p className="big-picture-lead">TFPT investigates how much of the Standard Model of particle physics and its constants can follow from one mathematical construction, without fitting each result separately.</p>
-      <p>Particle charges. Mass relations. Electromagnetic coupling. Connections reaching into quantum structure, time and cosmology. Start with the results, then follow what connects them.</p>
-      <div className="experience-actions"><a href="#outcomes" className="experience-primary">See what the theory determines <ArrowDown size={18} aria-hidden /></a><a href="#connections" className="experience-secondary">Follow the connections <ArrowRight size={18} aria-hidden /></a></div>
+  return <section className="big-picture-hero learning-hero" aria-labelledby="big-picture-title"><div className="experience-shell big-picture-layout">
+    <div className="big-picture-copy"><h1 id="big-picture-title">From a common structure to particles and constants.</h1>
+      <p className="big-picture-lead">TFPT studies whether the particle content and constants of nature can be explained together. Its construction already fixes charge assignments, mass relations and a boundary equation for the electromagnetic coupling.</p>
+      <p className="big-picture-route">Start with the outputs. Then inspect the actual maps, shared inputs and calculations that connect them.</p>
+      <div className="experience-actions"><a href="#outcomes" className="experience-primary">Explore the results <ArrowDown size={18} aria-hidden /></a><a href="#connections" className="experience-secondary">See how it works <ArrowRight size={18} aria-hidden /></a></div>
       <p className="experience-byline">Topological Fixed-Point Theory · Stefan Hamann & Alessandro Rizzo</p>
-    </div>
-    <figure className="big-picture-figure"><Constellation /><figcaption>A map of connected research areas. The status of each result appears below.</figcaption></figure>
+    </div><OutputPlate/>
   </div></section>;
 }
 
@@ -46,39 +33,7 @@ export function OutcomeAtlas() {
   </section>;
 }
 
-const scenes = [
-  { title: "One construction feeds several parts of physics.", text: "The results are connected. Particle representations, the lattice structure, flavour operators and boundary response reuse the same starting data. The point is to understand those shared dependencies.", link: "/explain#inputs", label: "See the starting structure" },
-  { title: "Geometry organizes the particle content.", text: "The marked carrier supplies representations and charges. Compatible lattice data on the carrier and family sides join into E₈. The lattice closure and the interpretation as physical fields are distinct steps.", link: "/explain#e8", label: "Follow the lattice construction" },
-  { title: "Shared seeds connect the numerical readouts.", text: "Flavour relations, the electromagnetic boundary equation and conditional cosmological readouts share seeds or budgets. Their agreement has to be assessed with those dependencies in view; the outputs are correlated.", link: "/explain#alpha", label: "Follow a connection into alpha" },
-];
-
-export function ConnectionStory() {
-  const [scene,setScene]=useState(0);
-  const [manual,setManual]=useState(false);
-  const [compact,setCompact]=useState(false);
-  const root=useRef<HTMLElement>(null);
-  useEffect(()=>{
-    const media=window.matchMedia("(max-width:900px)");
-    const update=()=>setCompact(media.matches);
-    update();media.addEventListener("change",update);
-    return ()=>media.removeEventListener("change",update);
-  },[]);
-  useEffect(()=>{
-    if(manual || compact) return;
-    const observer=new IntersectionObserver(entries=>{
-      const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio);
-      if(visible[0]) setScene(Number((visible[0].target as HTMLElement).dataset.scene));
-    },{rootMargin:window.matchMedia("(max-width:900px)").matches?"-60% 0px -5% 0px":"-25% 0px -30% 0px",threshold:[0,.25,.5,.75]});
-    root.current?.querySelectorAll("[data-scene]").forEach(el=>observer.observe(el));
-    return ()=>observer.disconnect();
-  },[manual,compact]);
-  return <section ref={root} id="connections" className="connection-story" data-compact={compact} aria-labelledby="connections-title">
-    <div className="experience-shell"><div className="experience-heading"><h2 id="connections-title">How does it all connect?</h2><p>Explore the shared construction, then follow two threads: the geometric structure and the numerical readouts.</p></div>
-      <div className="connection-layout"><div className="connection-stage"><Constellation scene={scene}/><div className="connection-controls" role="group" aria-label="Connection map views">{["Whole picture","Geometry","Shared readouts"].map((label,i)=><button key={label} type="button" aria-pressed={scene===i} onClick={()=>{setManual(true);setScene(i);}}>{label}</button>)}</div><button className="connection-follow" type="button" aria-pressed={!manual} onClick={()=>setManual(v=>!v)}>{manual?"Follow the text":"Following text · switch to manual"}</button><p className="connection-caption">Lines show shared construction and dependencies. This is a reading map, not physical spacetime.</p></div>
-      <div className="connection-chapters">{scenes.map((item,i)=><article key={item.title} data-scene={i} className={scene===i?"is-current":""}><h3>{item.title}</h3><p>{item.text}</p><Link className="guide-link" href={item.link}>{item.label} <ArrowRight size={18} aria-hidden /></Link>{i<scenes.length-1&&<button type="button" className="compact-story-next" onClick={()=>{setManual(true);setScene(i+1);root.current?.querySelectorAll<HTMLButtonElement>(".connection-controls button")[i+1]?.focus({preventScroll:true});root.current?.querySelector(".connection-stage")?.scrollIntoView({block:"start",behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}}>Next connection <ArrowRight size={18} aria-hidden /></button>}</article>)}</div></div>
-    </div>
-  </section>;
-}
+export function ConnectionStory() { return <MechanismWalkthrough/>; }
 
 export function MethodAndDiscoveries() {
   return <div className="experience-shell">

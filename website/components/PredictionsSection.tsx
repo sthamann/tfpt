@@ -7,10 +7,7 @@ import {
   Download,
   LayoutGrid,
   Table2,
-  FlaskConical,
-  Github,
-  FileText,
-  ChevronDown,
+  ArrowRight,
 } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { PredictionCard } from "./PredictionCard";
@@ -18,75 +15,11 @@ import { PredictionMatrix } from "./PredictionMatrix";
 import {
   predictions,
   Prediction,
-  AuditRound,
   CATEGORY_META,
   TEST_SURFACE_GROUPS,
-  EXPERIMENTS_AUDIT,
 } from "@/lib/predictions";
 import { cn, REPO_URL } from "@/lib/utils";
 import { trackPdfInteraction } from "@/lib/track";
-
-const AUDIT_COUNTS: { label: string; value: number; tone: string }[] = [
-  { label: "typed rows", value: EXPERIMENTS_AUDIT.rows, tone: "text-slate-900" },
-  { label: "consistent", value: EXPERIMENTS_AUDIT.consistent, tone: "text-emerald-700" },
-  { label: "tension", value: EXPERIMENTS_AUDIT.tension, tone: "text-amber-700" },
-  { label: "null", value: EXPERIMENTS_AUDIT.null, tone: "text-slate-700" },
-  { label: "data-limited", value: EXPERIMENTS_AUDIT.dataLimited, tone: "text-sky-700" },
-  { label: "parked", value: EXPERIMENTS_AUDIT.parked, tone: "text-slate-600" },
-  { label: "kill-channel", value: EXPERIMENTS_AUDIT.killChannel, tone: "text-rose-700" },
-];
-
-const VERDICT_TONE: Record<AuditRound["verdict"], string> = {
-  "clean null": "text-slate-700 bg-slate-500/15 ring-slate-600/30",
-  "null / data-limited": "text-sky-800 bg-sky-500/15 ring-sky-400/30",
-  consistent: "text-emerald-800 bg-emerald-500/15 ring-emerald-400/30",
-  "data-limited": "text-sky-800 bg-sky-500/15 ring-sky-400/30",
-  "watchdogs armed": "text-amber-800 bg-amber-500/15 ring-amber-400/30",
-  "pattern candidate": "text-violet-800 bg-violet-500/15 ring-violet-400/30",
-  "preregistered kill test": "text-blue-800 bg-blue-500/15 ring-blue-400/30",
-  "forward band": "text-teal-800 bg-teal-500/15 ring-teal-400/30",
-  mixed: "text-rose-800 bg-rose-500/15 ring-rose-400/30",
-};
-
-/** One dated audit round as a compact, expandable row. */
-function AuditRoundRow({ round }: { round: AuditRound }) {
-  return (
-    <details className="group rounded-xl border border-slate-300/40 bg-slate-50/40 open:bg-slate-50/60">
-      <summary className="flex cursor-pointer select-none flex-wrap items-center gap-x-2.5 gap-y-1 rounded-xl px-3.5 py-2.5 text-left [&::-webkit-details-marker]:hidden">
-        <span className="font-mono text-[10px] font-medium tracking-wide text-slate-600">
-          {round.date}
-        </span>
-        <span className="min-w-0 flex-1 break-words text-xs font-semibold text-slate-800">
-          {round.title}
-        </span>
-        <span
-          className={cn(
-            "inline-flex flex-none items-center rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider ring-1",
-            VERDICT_TONE[round.verdict],
-          )}
-        >
-          {round.verdict}
-        </span>
-        <ChevronDown
-          size={14}
-          aria-hidden
-          className="flex-none text-slate-600 transition-transform group-open:rotate-180"
-        />
-      </summary>
-      <div className="border-t border-slate-200/60 px-3.5 py-3">
-        <p className="break-words text-xs leading-relaxed text-slate-700">{round.summary}</p>
-        <details className="mt-2">
-          <summary className="cursor-pointer select-none text-[10px] font-semibold uppercase tracking-widest text-slate-600 transition-colors hover:text-slate-700 [&::-webkit-details-marker]:hidden">
-            Full record ▾
-          </summary>
-          <p className="mt-2 break-words text-[11px] leading-relaxed text-slate-600">
-            {round.detail}
-          </p>
-        </details>
-      </div>
-    </details>
-  );
-}
 
 const READING_GUIDE = "/papers/introduction.pdf";
 
@@ -137,100 +70,12 @@ export function PredictionsSection() {
           description="Every row is a single readout with an explicit status marker, dependency class, and a stated kill or pressure criterion. Each links to the source document that derives it — and the freeze file commits the decisive kill criteria in advance. Some rows are closed numerical tests, some are structural kill tests, some are conditional, and a few are honestly-typed non-claims."
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.5 }}
-          className="mt-8 rounded-2xl border border-emerald-400/20 bg-emerald-500/[0.04] p-5 sm:p-6"
-        >
-          <div className="flex flex-wrap items-center gap-2">
-            <FlaskConical size={16} className="flex-none text-emerald-700" aria-hidden />
-            <h3 className="font-serif text-base font-semibold text-slate-950">
-              Empirical audit — standalone <code className="font-mono text-sm">experiments/</code> tree
-            </h3>
-            <span className="ml-auto rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-800">
-              search targets · not load-bearing
-            </span>
-          </div>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-700">
-            <span className="font-semibold text-slate-900">{EXPERIMENTS_AUDIT.headline}</span>{" "}
-            {EXPERIMENTS_AUDIT.rows} typed scorecard rows across{" "}
-            {EXPERIMENTS_AUDIT.domains.length} domains — every search preregistered,
-            surrogate-calibrated and status-typed. The dated rounds below expand to the full
-            record.
-          </p>
-          <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-6">
-            {AUDIT_COUNTS.map((c) => (
-              <div
-                key={c.label}
-                className="rounded-xl border border-slate-300/40 bg-slate-50/40 px-3 py-2 text-center"
-              >
-                <div className={cn("font-serif text-xl font-semibold", c.tone)}>{c.value}</div>
-                <div className="text-[10px] font-medium uppercase tracking-wider text-slate-600">
-                  {c.label}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {EXPERIMENTS_AUDIT.domains.map((d) => (
-              <span
-                key={d}
-                className="rounded-md border border-slate-300/40 bg-slate-50/40 px-2 py-0.5 font-mono text-[10px] text-slate-600"
-              >
-                {d}
-              </span>
-            ))}
-          </div>
-          <div className="mt-4 space-y-1.5">
-            {EXPERIMENTS_AUDIT.rounds.map((r) => (
-              <AuditRoundRow key={`${r.date}-${r.title}`} round={r} />
-            ))}
-          </div>
-          <p className="mt-3 text-[11px] leading-relaxed text-slate-600">
-            <span className="font-semibold text-slate-600">Counting discipline:</span>{" "}
-            {EXPERIMENTS_AUDIT.countingNote}
-          </p>
-          <p className="mt-4 text-xs leading-relaxed text-slate-600">
-            <span className="font-semibold text-slate-700">Firewall:</span> FRB / EHT / GW are
-            search fields for residual boundary-recovery patterns, frontier observables (axion,
-            η_B, kaons, g−2) are <code className="font-mono">F_transfer</code> downstream bridges —
-            never primitive compiler outputs, and no row is upgraded to [E] by data proximity.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            <Link
-              prefetch={false}
-              href={`${REPO_URL}/tree/main/${EXPERIMENTS_AUDIT.repoPath}`}
-              target="_blank"
-              rel="noopener"
-              className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3.5 py-1.5 text-xs font-semibold text-emerald-800 transition-colors hover:bg-emerald-500/20"
-            >
-              <Github size={13} aria-hidden />
-              experiments/ on GitHub
-            </Link>
-            <Link
-              prefetch={false}
-              href={`${REPO_URL}/blob/main/${EXPERIMENTS_AUDIT.readmePath}`}
-              target="_blank"
-              rel="noopener"
-              className="inline-flex items-center gap-1.5 rounded-full border border-slate-400/40 bg-slate-100/50 px-3.5 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:text-slate-950"
-            >
-              <FileText size={13} aria-hidden />
-              Audit README
-            </Link>
-            <Link
-              prefetch={false}
-              href={`${REPO_URL}/blob/main/${EXPERIMENTS_AUDIT.scorecardPath}`}
-              target="_blank"
-              rel="noopener"
-              className="inline-flex items-center gap-1.5 rounded-full border border-slate-400/40 bg-slate-100/50 px-3.5 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:text-slate-950"
-            >
-              <Table2 size={13} aria-hidden />
-              evidence_scorecard.json
-            </Link>
-          </div>
-        </motion.div>
+        <aside aria-labelledby="empirical-audit-heading" className="mt-8 border-y border-slate-300 py-6">
+          <h2 id="empirical-audit-heading" className="font-serif text-2xl font-semibold text-slate-950">Read the dated empirical audit</h2>
+          <p className="mt-3 max-w-3xl leading-relaxed text-slate-700">The audit checked on 2 November 2026 compares frozen readouts with primary measurements, including the first JUNO result and NuFIT 6.1. It separates numerical agreement, conditional interpretations, assigned textures and the historical search catalogue.</p>
+          <Link href="/empirical-audit" className="mt-4 inline-flex items-center gap-2 font-semibold text-blue-700 underline underline-offset-4">Open the current empirical audit<ArrowRight size={16} aria-hidden /></Link>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-600">The cards below preserve the published prediction surface and its original comparison notes. Use the dated audit for the updated comparisons. The register remains frozen on 9 June 2026.</p>
+        </aside>
 
         <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {TEST_SURFACE_GROUPS.map((g) => (

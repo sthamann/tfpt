@@ -8,8 +8,8 @@ export const PAGE_SEARCH = {
     "Work through TFPT charge assignments and the alpha equation. Follow the connected E8, flavour, clock and physical source results with their inputs and limits."
   ],
   "/results": [
-    "TFPT Result Library: Claims, Achievements & Open Questions",
-    "Search the complete active TFPT claim ledger and source reviewed findings. Read exact statements, assumptions, source excerpts, exclusions and remaining physical connections."
+    "TFPT Knowledge Atlas: Questions, Results & Research History",
+    "Explore TFPT by research question and topic. Follow reviewed results, approaches, historical attempts, assumptions, exclusions and remaining tasks into original evidence."
   ],
   "/": [
     "Topological Fixed-Point Theory (TFPT): Research & Papers",

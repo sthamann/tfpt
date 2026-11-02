@@ -1,0 +1,70 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_genesis_twin_transport_20261102.py
+Original file SHA-256: 93490c0f6cc891812413934c9d5723695c4df8659608478337fe2b49bf7285c8
+Inclusive original lines: 1-62
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact original Q-twin transport; no physical source selection is assumed."""
+000002 | from pathlib import Path
+000003 | import sys
+000004 | import sympy as s
+000005 | 
+000006 | sys.path.insert(0, str(Path(__file__).resolve().parents[4] / 'verification'))
+000007 | from v568_bit_selector_ladder import Qc, UV
+000008 | 
+000009 | I = s.eye(3)
+000010 | G = s.Matrix([[1, 0, 0], [0, 1, 0], [0, 2, -1]])
+000011 | Sigma = s.diag(1, -1, -1)
+000012 | U0, V0 = UV(Qc(0)); U2, V2 = UV(Qc(2))
+000013 | if not (G*G == I and G.det() == -1):
+000014 |     raise AssertionError('control at original line 13')
+000015 | if not (G*U0 == U2*G and G*V0 == V2*G):
+000016 |     raise AssertionError('control at original line 14')
+000017 | if not (G*Sigma == Sigma*G):
+000018 |     raise AssertionError('control at original line 15')
+000019 | if not (G*s.Matrix([1, 0, 0]) == s.Matrix([1, 0, 0])):
+000020 |     raise AssertionError('control at original line 16')
+000021 | if not (G*s.ones(3, 1) == s.ones(3, 1)):
+000022 |     raise AssertionError('control at original line 17')
+000023 | if not (G*s.Matrix([1, 2, 0]) == s.Matrix([1, 2, 4])):
+000024 |     raise AssertionError('control at original line 18')
+000025 | 
+000026 | # The simultaneous intertwiner space is exactly one-dimensional, not merely
+000027 | # an example. Its nonzero members cannot preserve the stipulated Sigma form.
+000028 | xx = s.symbols('x0:9'); X = s.Matrix(3, 3, xx)
+000029 | solutions = s.linsolve(list(X*U0-U2*X)+list(X*V0-V2*X), xx)
+000030 | if not (solutions == s.FiniteSet(tuple(-xx[8]*G))):
+000031 |     raise AssertionError('control at original line 24')
+000032 | B = G.T*Sigma*G
+000033 | if not (B == s.Matrix([[1, 0, 0], [0, -5, 2], [0, 2, -1]])):
+000034 |     raise AssertionError('control at original line 26')
+000035 | if not (B != Sigma):
+000036 |     raise AssertionError('control at original line 27')
+000037 | theta = lambda A: Sigma*A.T*Sigma
+000038 | theta_transport = lambda A: G*theta(G*A*G)*G
+000039 | if not (s.trace(theta(V0)*V0) == 4):
+000040 |     raise AssertionError('control at original line 30')
+000041 | if not (s.trace(theta(V2)*V2) == 8):
+000042 |     raise AssertionError('control at original line 31')
+000043 | if not (s.trace(theta_transport(V2)*V2) == 4):
+000044 |     raise AssertionError('control at original line 32')
+000045 | if not (theta_transport(U2) == G*theta(U0)*G):
+000046 |     raise AssertionError('control at original line 33')
+000047 | 
+000048 | M = s.Matrix([[1, 0, 0], [0, s.Rational(1, 2), s.Rational(1, 6)],
+000049 |               [0, s.Rational(1, 6), s.Rational(1, 2)]])
+000050 | c = s.symbols('c', real=True)
+000051 | Gc = s.Matrix([[1,0,0],[0,s.Rational(1,2),s.Rational(1,2)],
+000052 |                [0,(c+1)/2,(c-1)/2]])
+000053 | Qplus = (Qc(c)+Sigma*Qc(c)*Sigma)/2
+000054 | if not (s.simplify(Gc*M-Qplus*Gc/3) == s.zeros(3)):
+000055 |     raise AssertionError('control at original line 41')
+000056 | if not (Gc.det() == -s.Rational(1,2)):
+000057 |     raise AssertionError('control at original line 42')
+000058 | 
+000059 | print('PASS: complete original pairs are GL3(Z)-conjugate; winding and grading retained.')
+000060 | print('Fixed reflected word values: 4 and 8. Fully transported reflected value: 4 and 4.')
+000061 | print('The original three-rate clock admits an intertwiner for both twins.')
+000062 | print('No physical P1 equivalence, selected source metric, state or normalization is inferred.')

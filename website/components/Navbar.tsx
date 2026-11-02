@@ -13,12 +13,13 @@ import researchSummary from "@/lib/research-summary.json";
 const primaryLinks = [
   { href: "/", label: "Start" },
   { href: "/explain", label: "Understand" },
-  { href: "/results", label: "Results" },
+  { href: "/results", label: "Research atlas" },
   { href: "/papers", label: "Papers" },
   { href: "/verification", label: "Verification" },
 ];
 
 const moreLinks = [
+  { href: "/empirical-audit", label: "Empirical audit" },
   { href: "/tour", label: "Guided tour" },
   { href: "/method", label: "Method" },
   { href: "/falsification", label: "Kill board" },
