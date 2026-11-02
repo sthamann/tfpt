@@ -1,0 +1,158 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/dynamic_reconstruction_20261027/check_a7_e7_clock.py
+Original file SHA-256: 08cdb278a583fec135d3596b16c1dabc4152d0032219a40519a025516fe77d5d
+Inclusive original lines: 1-150
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact finite check of the A7 clock direction and the E8 -> E7 x U1 root census."""
+000003 | 
+000004 | from collections import Counter
+000005 | from fractions import Fraction as F
+000006 | from itertools import combinations, product
+000007 | import json
+000008 | from pathlib import Path
+000009 | 
+000010 | 
+000011 | def require(name, condition):
+000012 |     if not condition:
+000013 |         raise RuntimeError(f"FAIL: {name}")
+000014 | 
+000015 | 
+000016 | def dot(left, right):
+000017 |     return sum((x * y for x, y in zip(left, right)), F(0))
+000018 | 
+000019 | 
+000020 | def e8_roots():
+000021 |     roots = []
+000022 |     for i, j in combinations(range(8), 2):
+000023 |         for si, sj in product((-1, 1), repeat=2):
+000024 |             v = [F(0)] * 8
+000025 |             v[i], v[j] = F(si), F(sj)
+000026 |             roots.append(tuple(v))
+000027 |     for signs in product((-1, 1), repeat=8):
+000028 |         if sum(s < 0 for s in signs) % 2 == 0:
+000029 |             roots.append(tuple(F(s, 2) for s in signs))
+000030 |     return tuple(roots)
+000031 | 
+000032 | 
+000033 | def as_string_dict(counter):
+000034 |     return {str(k): counter[k] for k in sorted(counter)}
+000035 | 
+000036 | 
+000037 | def main():
+000038 |     roots = e8_roots()
+000039 |     q = (F(1),) * 8
+000040 |     rho = tuple(F(7 - 2 * j, 2) for j in range(8))
+000041 |     pstar = (F(1, 2),) * 4 + (F(-1, 2),) * 4
+000042 |     charge = lambda v: sum(v, F(0))
+000043 |     is_integer = lambda v: all(x.denominator == 1 for x in v)
+000044 | 
+000045 |     require("240 distinct norm-two E8 roots",
+000046 |             len(roots) == len(set(roots)) == 240
+000047 |             and all(dot(v, v) == 2 for v in roots))
+000048 | 
+000049 |     # delta_j = c_j + a/8.  Compare constant and a coefficients exactly.
+000050 |     delta_constants = tuple(F(j, 8) - F(1, 2) for j in range(8))
+000051 |     rhs_constants = tuple(-rho[j] / 8 - F(1, 16) for j in range(8))
+000052 |     require("delta is -rho_A7/8 plus the uniform U1 term",
+000053 |             delta_constants == rhs_constants)
+000054 | 
+000055 |     require("pstar is omega4 and an E8 root",
+000056 |             pstar in roots and dot(pstar, pstar) == 2
+000057 |             and dot(rho, pstar) == 8 and charge(pstar) == 0)
+000058 | 
+000059 |     by_q = Counter(charge(v) for v in roots)
+000060 |     expected_q = {F(-4): 1, F(-2): 56, F(0): 126, F(2): 56, F(4): 1}
+000061 |     require("complete E8 charge census", dict(by_q) == expected_q)
+000062 | 
+000063 |     by_q_type = Counter((charge(v), "integer" if is_integer(v) else "half")
+000064 |                         for v in roots)
+000065 |     expected_type = {
+000066 |         (F(-4), "half"): 1,
+000067 |         (F(-2), "integer"): 28, (F(-2), "half"): 28,
+000068 |         (F(0), "integer"): 56, (F(0), "half"): 70,
+000069 |         (F(2), "integer"): 28, (F(2), "half"): 28,
+000070 |         (F(4), "half"): 1,
+000071 |     }
+000072 |     require("integer and half-root refinement", dict(by_q_type) == expected_type)
+000073 | 
+000074 |     neutral = {v for v in roots if charge(v) == 0}
+000075 |     a7_roots = {v for v in neutral if is_integer(v)}
+000076 |     lambda4 = {v for v in neutral if not is_integer(v)}
+000077 |     expected_a7 = set()
+000078 |     for i, j in combinations(range(8), 2):
+000079 |         for sign in (-1, 1):
+000080 |             v = [F(0)] * 8
+000081 |             v[i], v[j] = F(sign), F(-sign)
+000082 |             expected_a7.add(tuple(v))
+000083 |     expected_lambda4 = set()
+000084 |     for plus in combinations(range(8), 4):
+000085 |         chosen = set(plus)
+000086 |         expected_lambda4.add(tuple(F(1, 2) if j in chosen else F(-1, 2)
+000087 |                                    for j in range(8)))
+000088 |     require("neutral shell is A7 roots plus Lambda4 weights",
+000089 |             a7_roots == expected_a7 and lambda4 == expected_lambda4
+000090 |             and len(a7_roots) == 56 and len(lambda4) == 70)
+000091 | 
+000092 |     # The neutral roots form a rank-seven reflection-closed subsystem.
+000093 |     require("neutral root span has rank seven",
+000094 |             __import__("sympy").Matrix([[int(2 * x) for x in v]
+000095 |                                          for v in neutral]).rank() == 7)
+000096 |     reflection_closed = True
+000097 |     for alpha in neutral:
+000098 |         for beta in neutral:
+000099 |             reflected = tuple(beta[j] - dot(alpha, beta) * alpha[j]
+000100 |                               for j in range(8))
+000101 |             if reflected not in neutral:
+000102 |                 reflection_closed = False
+000103 |                 break
+000104 |         if not reflection_closed:
+000105 |             break
+000106 |     require("neutral roots are reflection closed", reflection_closed)
+000107 | 
+000108 |     # For a root state J_{alpha,-1}|0>, the H8 commutator coefficient is
+000109 |     # 8-rho.alpha+(2a-1)Q(alpha)/2.  Record the a-independent base part.
+000110 |     grade_base = {}
+000111 |     for Q in sorted(by_q):
+000112 |         grade_base[str(Q)] = as_string_dict(Counter(
+000113 |             F(8) - dot(rho, v) for v in roots if charge(v) == Q
+000114 |         ))
+000115 |     require("unique neutral zero-grade root is pstar",
+000116 |             [v for v in neutral if F(8) - dot(rho, v) == 0] == [pstar])
+000117 | 
+000118 |     result = {
+000119 |         "root_count": len(roots),
+000120 |         "delta_identity": "delta=-rho_A7/8+(2a-1)q/16",
+000121 |         "rho_A7": [str(x) for x in rho],
+000122 |         "pstar": {
+000123 |             "vector": [str(x) for x in pstar],
+000124 |             "norm2": str(dot(pstar, pstar)),
+000125 |             "rho_dot": str(dot(rho, pstar)),
+000126 |             "Q": str(charge(pstar)),
+000127 |             "H8_root_commutator_grade": "0",
+000128 |         },
+000129 |         "charge_census": as_string_dict(by_q),
+000130 |         "charge_type_census": {
+000131 |             f"Q={Q},{kind}": count
+000132 |             for (Q, kind), count in sorted(by_q_type.items(), key=lambda x: (x[0][0], x[0][1]))
+000133 |         },
+000134 |         "neutral_decomposition": {
+000135 |             "E7_roots": len(neutral),
+000136 |             "A7_integer_roots": len(a7_roots),
+000137 |             "Lambda4_half_weights": len(lambda4),
+000138 |             "rank": 7,
+000139 |             "reflection_closed": reflection_closed,
+000140 |         },
+000141 |         "commutator": "[H8,J_(alpha,-1)]=(8-rho_A7.alpha+(2a-1)Q(alpha)/2)J_(alpha,-1)",
+000142 |         "grade_base_by_charge": grade_base,
+000143 |     }
+000144 |     out = Path(__file__).with_name("a7-e7-clock-results.json")
+000145 |     out.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+000146 |     print(json.dumps(result, indent=2, sort_keys=True))
+000147 | 
+000148 | 
+000149 | if __name__ == "__main__":
+000150 |     main()

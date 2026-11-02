@@ -1,0 +1,189 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/check_native_spin5_source_record.py
+Original file SHA-256: 72fe426e34b1fb6b6195b8a333a71208d73b998be3719acb1ba66515f8dd40ee
+Inclusive original lines: 201-381
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |     paulis = pauli_basis(old.SYMMETRIC_BITS)
+000202 |     bell_to_sym = sp.Matrix.hstack(*[
+000203 |         sp.Matrix([pauli[a, b] / 2 for a, b in symmetric_pairs]) for pauli in paulis
+000204 |     ])
+000205 |     require(bell_to_sym.conjugate().T * symmetric_metric * bell_to_sym == sp.eye(10),
+000206 |             "Bell to Sym2 chart includes the exact Hilbert Schmidt factor one half")
+000207 |     wedge_real = exterior_action(real_frame, pairs5)
+000208 |     native_chart = sp.simplify(wedge_real.conjugate().T * spin5_map * bell_to_sym)
+000209 |     require(native_chart.conjugate().T * native_chart == sp.eye(10),
+000210 |             "native Bell10 to compact Spin5 wedge chart is unitary")
+000211 | 
+000212 |     # First generator test.  The chi^-1 twist on G is part of the functor.
+000213 |     w_c = sp.simplify(primitive.conjugate().T * exterior_action(c_native, pairs4) * primitive)
+000214 |     w_g = sp.simplify(-ii * primitive.conjugate().T *
+000215 |                       exterior_action(g_native, pairs4) * primitive)
+000216 |     w_c_real = sp.simplify(real_frame.conjugate().T * w_c * real_frame)
+000217 |     w_g_real = sp.simplify(real_frame.conjugate().T * w_g * real_frame)
+000218 |     require(w_c_real.conjugate() == w_c_real and w_g_real.conjugate() == w_g_real,
+000219 |             "native F20 five acts in the compact real frame")
+000220 |     source_c = sp.simplify(bell_to_sym.inv() * symmetric_action(c_native, symmetric_pairs) *
+000221 |                            bell_to_sym)
+000222 |     source_g = sp.simplify(-ii * bell_to_sym.inv() *
+000223 |                            symmetric_action(g_native, symmetric_pairs) * bell_to_sym)
+000224 |     target_c = exterior_action(w_c_real, pairs5)
+000225 |     target_g = exterior_action(w_g_real, pairs5)
+000226 |     require(sp.simplify(native_chart * source_c - target_c * native_chart) == sp.zeros(10) and
+000227 |             sp.simplify(native_chart * source_g - target_g * native_chart) == sp.zeros(10),
+000228 |             "native chart intertwines both exact F20 generators")
+000229 | 
+000230 |     standard_hodge = hodge_amplitudes()
+000231 |     native_hodge = [sp.simplify(native_chart.conjugate().T * operator * native_chart)
+000232 |                     for operator in standard_hodge]
+000233 |     V = sp.Matrix.hstack(*[vec(operator) for operator in native_hodge])
+000234 |     require(V.rank() == 5 and
+000235 |             sp.simplify(V.conjugate().T * V) == 6 * sp.eye(5),
+000236 |             "native Hodge Kraus space has rank five and Gram six I")
+000237 |     require(sp.simplify(sum((operator.conjugate().T * operator for operator in native_hodge),
+000238 |                            sp.zeros(10))) == 3 * sp.eye(10),
+000239 |             "native Hodge Kraus amplitudes normalize Phi trace preservingly")
+000240 | 
+000241 |     rays = old.source_rays()
+000242 |     bell_np, _, _ = old.reflection_actions(rays)
+000243 |     bell = [exact_gaussian(matrix) for matrix in bell_np]
+000244 |     W1 = sp.Matrix.hstack(*[vec(matrix) for matrix in bell])
+000245 |     one_joint_rank = W1.row_join(V).rank()
+000246 |     one_intersection = W1.rank() + V.rank() - one_joint_rank
+000247 |     require(W1.rank() == 55, "actual one-record source span has rank 55")
+000248 |     require(one_intersection == 5 and one_joint_rank == W1.rank(),
+000249 |             "native Hodge space is fully contained in the actual one-record span")
+000250 |     frame1 = W1 * W1.conjugate().T
+000251 |     frame1_eigenvalues = frame1.eigenvals()
+000252 |     native_frame_residual = sp.simplify(frame1 * V - 8 * V)
+000253 |     require(native_frame_residual == sp.zeros(100, 5),
+000254 |             "native Hodge lies in the source frame eigenvalue eight space")
+000255 | 
+000256 |     # Exact minimum-norm coefficient matrix for W1 X1=V.  Start with the
+000257 |     # unique solution on pivot columns and remove its component along ker W1.
+000258 |     _, pivots = W1.rref()
+000259 |     require(len(pivots) == 55, "one-record frame has 55 independent event columns")
+000260 |     independent = W1[:, list(pivots)]
+000261 |     pivot_solution = independent.gauss_jordan_solve(V)[0]
+000262 |     X1_seed = sp.zeros(60, 5)
+000263 |     for row, event in enumerate(pivots):
+000264 |         X1_seed[event, :] = pivot_solution[row, :]
+000265 |     nullspace1 = sp.Matrix.hstack(*W1.nullspace())
+000266 |     require(nullspace1.shape == (60, 5), "one-record coefficient kernel has dimension five")
+000267 |     orthogonal_projector = sp.simplify(
+000268 |         sp.eye(60) - nullspace1 *
+000269 |         (nullspace1.conjugate().T * nullspace1).inv() * nullspace1.conjugate().T
+000270 |     )
+000271 |     X1 = sp.simplify(orthogonal_projector * X1_seed)
+000272 |     require(W1 * X1 == V and nullspace1.conjugate().T * X1 == sp.zeros(5),
+000273 |             "exact minimum-norm one-record coefficient solution")
+000274 |     coefficient_gram1 = sp.simplify(X1.conjugate().T * X1)
+000275 |     gram1_eigenvalues = coefficient_gram1.eigenvals()
+000276 |     require(coefficient_gram1 == sp.Rational(3, 4) * sp.eye(5),
+000277 |             "one-record coefficient Gram is exactly three quarters I5")
+000278 |     maximum1 = sp.Rational(3, 4)
+000279 |     pmax1 = sp.simplify(1 / (20 * maximum1))
+000280 |     contraction_gram1 = sp.simplify(20 * pmax1 * coefficient_gram1)
+000281 |     require(pmax1 == sp.Rational(1, 15) and contraction_gram1 == sp.eye(5),
+000282 |             "optimal one-record probability one fifteenth and contraction Gram I5")
+000283 |     coefficient_projector = sp.simplify(sp.Rational(4, 3) * X1 * X1.conjugate().T)
+000284 |     physical_effect = coefficient_projector.T
+000285 |     require(coefficient_projector**2 == coefficient_projector and
+000286 |             coefficient_projector.conjugate().T == coefficient_projector and
+000287 |             coefficient_projector.rank() == 5,
+000288 |             "minimal coefficient record projector is orthogonal of rank five")
+000289 |     require(sp.simplify(W1 * physical_effect.T * W1.conjugate().T / 60 -
+000290 |                        V * V.conjugate().T / 45) == sp.zeros(100),
+000291 |             "physical record effect transpose convention gives exactly one fifteenth Phi")
+000292 | 
+000293 |     products_np = [second @ first for first in bell_np for second in bell_np]
+000294 |     products = [exact_gaussian(matrix) for matrix in products_np]
+000295 |     W2 = sp.Matrix.hstack(*[vec(matrix) for matrix in products])
+000296 |     require(W2.rank() == 100, "actual two-record word span is all M10")
+000297 |     # The frame operator is kept at 100 by 100 before exact inversion.
+000298 |     A = np.stack([matrix.reshape(-1, order="F") for matrix in products_np], axis=1)
+000299 |     S2 = exact_gaussian(A @ A.conj().T)
+000300 |     require(S2.rank() == 100, "actual two-record frame is invertible")
+000301 |     coefficient_gram = sp.simplify(V.conjugate().T * S2.inv() * V)
+000302 |     gram_eigenvalues = coefficient_gram.eigenvals()
+000303 |     require(coefficient_gram == sp.Rational(1, 64) * sp.eye(5),
+000304 |             "two-record coefficient Gram is exactly one sixty fourth I5")
+000305 |     maximum = sp.Rational(1, 64)
+000306 |     pmax = sp.simplify(1 / (1200 * maximum))
+000307 |     contraction_gram = sp.simplify(1200 * pmax * coefficient_gram)
+000308 |     require(pmax == sp.Rational(4, 75) and contraction_gram == sp.eye(5),
+000309 |             "optimal two-record probability four seventy fifths and contraction Gram I5")
+000310 | 
+000311 |     result = {
+000312 |         "verdict": [
+000313 |             "NATIVE_SPIN5_FUNCTOR_FIXES_THE_BELL10_HODGE_KRAUS_SPACE",
+000314 |             "ACTUAL_ONE_RECORD_ALREADY_CONTAINS_THE_FULL_NATIVE_HODGE_KRAUS_SPACE",
+000315 |             "ONE_RECORD_EXACT_NATIVE_HODGE_SUBCHANNEL_HAS_OPTIMAL_SUCCESS_1_OVER_15",
+000316 |             "ACTUAL_TWO_RECORD_SPAN_CONTAINS_THE_NATIVE_HODGE_SPACE",
+000317 |             "TWO_RECORD_EXACT_NATIVE_HODGE_SUBCHANNEL_HAS_OPTIMAL_SUCCESS_4_OVER_75",
+000318 |         ],
+000319 |         "normalization": {
+000320 |             "symmetric_tensor_metric": "diag(1,2,2,2,1,2,2,1,2,1)",
+000321 |             "symmetric_Pauli_HS_norm_squared": 4,
+000322 |             "Bell_to_Sym2_factor": "1/2",
+000323 |             "native_chart_unitary": True,
+000324 |             "compact_real_frame_used": True,
+000325 |         },
+000326 |         "generator_test": {
+000327 |             "C": "U Bell(C) = Lambda2(W(C)) U",
+000328 |             "G": "U (-i Bell(G)) = Lambda2(W(G)) U",
+000329 |             "exact": True,
+000330 |         },
+000331 |         "one_record": {
+000332 |             "source_count": 60,
+000333 |             "source_span_rank": W1.rank(),
+000334 |             "hodge_span_rank": V.rank(),
+000335 |             "joint_rank": one_joint_rank,
+000336 |             "intersection_dimension": one_intersection,
+000337 |             "full_hodge_support_contained": one_joint_rank == W1.rank(),
+000338 |             "source_frame_eigenvalues": {str(k): v for k, v in frame1_eigenvalues.items()},
+000339 |             "native_hodge_frame_eigenvalue": 8,
+000340 |             "minimal_record_effect_rank": 5,
+000341 |             "coefficient_record_projector_real": coefficient_projector == coefficient_projector.conjugate(),
+000342 |             "physical_record_effect": "E=(4/3) conjugate(X1) X1^T; J_E=W1 E^T W1^dagger/60",
+000343 |             "coefficient_gram": encode(coefficient_gram1),
+000344 |             "coefficient_gram_eigenvalues": {str(k): v for k, v in gram1_eigenvalues.items()},
+000345 |             "maximum_exact_hodge_success_probability": str(pmax1),
+000346 |             "optimal_record_contraction_gram": encode(contraction_gram1),
+000347 |             "resulting_success_map": f"({pmax1}) Phi_native",
+000348 |             "input_independent_success": True,
+000349 |             "record_filter_source_selected": False,
+000350 |         },
+000351 |         "two_record": {
+000352 |             "history_count": 3600,
+000353 |             "word_span_rank": W2.rank(),
+000354 |             "coefficient_gram": encode(coefficient_gram),
+000355 |             "coefficient_gram_eigenvalues": {str(k): v for k, v in gram_eigenvalues.items()},
+000356 |             "maximum_exact_hodge_success_probability": str(pmax),
+000357 |             "optimal_record_contraction_gram": encode(contraction_gram),
+000358 |             "resulting_success_map": f"({pmax}) Phi_native",
+000359 |             "input_independent_success": True,
+000360 |             "record_filter_source_selected": False,
+000361 |         },
+000362 |         "scope": (
+000363 |             "The native metric, compact real form and full Spin5 functor fix the target Kraus space "
+000364 |             "without a duad label chart. The calculation proves exact coherent one-record and "
+000365 |             "two-record support and their optimal target filters. It does not show that the source "
+000366 |             "selects or implements either coherent record contraction."
+000367 |         ),
+000368 |         "source_sha256": PINS,
+000369 |         "checks": len(checks),
+000370 |     }
+000371 |     if output is not None:
+000372 |         output.parent.mkdir(parents=True, exist_ok=True)
+000373 |         output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+000374 |     return result
+000375 | 
+000376 | 
+000377 | if __name__ == "__main__":
+000378 |     parser = argparse.ArgumentParser()
+000379 |     parser.add_argument("--out", type=Path)
+000380 |     args = parser.parse_args()
+000381 |     print(json.dumps(main(args.out), indent=2, sort_keys=True))

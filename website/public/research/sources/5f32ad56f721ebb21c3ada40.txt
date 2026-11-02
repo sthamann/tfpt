@@ -1,0 +1,34 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/dynamic_reconstruction_20261027/v395-after.py
+Original file SHA-256: 0025f7252fa63f267881b4fb16ddd3ba6afa9ff42ebc0874f69d494048aa41a1
+Inclusive original lines: 201-226
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 | 
+000202 |     # 5. growth + fiber: v299 trajectory unchanged with M attached
+000203 |     seq = _grow([1, 2, 2])
+000204 |     expected = [(1, 2, 2), (1, 2, 3), (1, 2, 4), (1, 2, 5)]
+000205 |     m_aff, _ = _witness_localgate(_star([1, 2, 5]))
+000206 |     marks_growth = sorted(np.round(m_aff).astype(int).tolist())
+000207 |     # fiber attachment: at E8 stage (9 nodes in affine diagram), coupled operator matches
+000208 |     n_e8 = _star([1, 2, 4]).shape[0]
+000209 |     check("GROWTH + FIBER [E]: v299 autonomous growth E6->E7->E8->Ê8 (seq=%s, witness=%s) "
+000210 |           "is unchanged when a constant M-fiber sits on every node -- the family rule acts "
+000211 |           "on rows, the balance gate on columns; E8 star has %d nodes, affine-E8 diagram "
+000212 |           "9 (the +1 is the affine extension at Ê8)" % (seq, marks_growth, n_e8),
+000213 |           seq == expected and marks_growth == [1, 2, 2, 3, 3, 4, 4, 5, 6])
+000214 | 
+000215 |     # 6. honest residual
+000216 |     Z2 = g_car - N_fam
+000217 |     check("HONEST RESIDUAL [O]: the coupled rule unifies the MECHANISM (carrier x family "
+000218 |           "from one local rewrite); the irreducible inputs remain the 3-arm (2,3,r) seed "
+000219 |           "= P2 (v299) and the analytic seed phi0 (v312) -- NOT derived here",
+000220 |           Z2 == 2 and N_fam == 3 and g_car == 5)
+000221 | 
+000222 |     return summary("v395 coupled hypergraph rewrite: one local rule (network diffusion + full v486/v487 M) unifies v299/v327/v324; joint attractor marks⊗e0, recovery (2/3)^6 after one hand; v324 fiber emerges as cusp readout")
+000223 | 
+000224 | 
+000225 | if __name__ == "__main__":
+000226 |     raise SystemExit(1 if run() else 0)

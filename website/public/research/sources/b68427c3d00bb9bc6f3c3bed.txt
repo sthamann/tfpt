@@ -1,0 +1,120 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/two_face_source_20261029/REVIEW.txt
+Original file SHA-256: 1e21acc2b106d5b7d1895a5de57c91b70c2b239144cfb7cb61ffa14f26147a75
+Inclusive original lines: 1-112
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | Independent review: existing two-face source and typed reflections
+000002 | 29 October 2026
+000003 | 
+000004 | Verdict: ACCEPTED IN THE STATED GIVEN-SOURCE SCOPE.
+000005 | 
+000006 | Read check_two_face_source.py in full, then executed it directly with
+000007 | python3 and independently with python3 -B -OO. Both exited 0 and produced
+000008 | the same result. The source test uses two positive NS modes pi and 3pi,
+000009 | with z=exp(-pi/12), W=1/2 and beta=1. Its four-dimensional exterior Fock
+000010 | space must not be described as four distinct one-particle source modes.
+000011 | 
+000012 | The checker correctly reuses the old source lift, graph projection and
+000013 | graded double implementations. The two sewing null relations, all four
+000014 | covariance blocks, midpoint Green values, graded odd partner, occupation
+000015 | hole image, neutral current orientation, noncommuting neutral insertions,
+000016 | bounded cross Gram and ordered reflected histories are checked on the
+000017 | same thermal source. Finite matrices are expressly not claimed to realize
+000018 | a nonzero central current CCR. The +/- mode graph-reflection control is
+000019 | separate from the two positive-mode thermal control.
+000020 | 
+000021 | Independent analytic sign review
+000022 | 
+000023 | For J_HS X=X*, J_HS L_A J_HS=R_(A*) is conjugate-linear multiplicative.
+000024 | With W_L(f)=R_(W(f)*), right multiplication reverses products, so W_L has
+000025 | the opposite Weyl cocycle. Neutral even partners need no Klein factor.
+000026 | The odd CAR partner retains the original whole-GNS parity Gamma. For a
+000027 | Hermitian finite-mode quadratic current with the displayed subtraction,
+000028 | j_L(A)=-R_(j(A)) and J n_R J=I-n_L are correct, including complex
+000029 | Hermitian off-diagonal A such as sigma_y.
+000030 | 
+000031 | For any normal density rho, not necessarily Gaussian,
+000032 | Tr(sqrt(rho) W_i* sqrt(rho) W_j)
+000033 | is the Hilbert-Schmidt Gram of rho^(1/4) W_i rho^(1/4).
+000034 | Boundedness of W_i and Schatten Holder make these vectors Hilbert-Schmidt.
+000035 | This establishes positivity of the joint bounded pairing without asserting
+000036 | that an arbitrary density has the free projector occupation covariance.
+000037 | 
+000038 | For H>=0 and Z_beta=Tr exp(-beta H)<infinity, W=beta/2, and
+000039 | 0<t_1<...<t_n<W, the full heat history is
+000040 |  K_F=exp(-(W-t_n)H) A_n exp(-(t_n-t_(n-1))H) ...
+000041 |        A_1 exp(-t_1 H).
+000042 | All intervening heat factors are essential. Their durations sum to W.
+000043 | Schatten Holder with p_j=beta/duration_j gives
+000044 |  ||K_F||_2 <= sqrt(Z_beta) product_j ||A_j||.
+000045 | Hence Tr(K_F* K_G)/Z_beta is a positive kernel for all bounded insertions.
+000046 | For the neutral even histories considered here it is the time-ordered
+000047 | reflected Gibbs Schwinger word. It is not an unordered product of imaginary
+000048 | time-conjugated operators. No claim that every such imaginary-time
+000049 | conjugate is itself everywhere bounded is needed. Extension to arbitrary
+000050 | odd fermionic words requires their separate graded ordering conventions.
+000051 | 
+000052 | The actual Schottky reflection is (t,s)->(-t,s). Its ordinary spatial
+000053 | profile map is -I on reflected neutral Weyls, not minus spatial reflection.
+000054 | The previous single-chiral spatial-reflection obstruction therefore does
+000055 | not exclude this already existing elliptic OS source. The independently
+000056 | derived right-current orientation does not identify a geometric P1 second
+000057 | face with the modular partner.
+000058 | 
+000059 | This review accepts the analytic theorem supplied with the review request.
+000060 | At this stage PROOF.txt was not yet present in the output directory; no
+000061 | claim is made to have reviewed a later saved exposition. No physical P1
+000062 | measure, field coupling, source map, physical time or full TFPT completion
+000063 | is proved by the finite checks or by these general HS identities.
+000064 | 
+000065 | SHA256:
+000066 | check_two_face_source.py
+000067 | c5075473da6daeb5284cb7d4f16fa4f6c82d53a88945b856c2a8fa348c1549ce
+000068 | two-face-source-results.json
+000069 | e862327f829aa1721e505865ee785657c4c8a4bf08a07a0c89ca9453cf284f98
+000070 | 
+000071 | Only this review was added. No original source or ledger was changed.
+000072 | 
+000073 | Completed saved-text review
+000074 | 
+000075 | Subsequently read the now saved PROOF.txt and STAND-EINFACH-DE.md in full.
+000076 | This completed review supersedes the earlier interim note about PROOF.txt
+000077 | not yet being present. No additional checker run was needed or performed.
+000078 | 
+000079 | The bounded extension in PROOF.txt is valid under its explicit premise
+000080 | that the neutral current Weyls already belong to the given source von
+000081 | Neumann algebra. Kaplansky density supplies uniformly bounded strong-star
+000082 | approximating nets from the generating even CAR star algebra. All heat
+000083 | durations in a strictly interior history are positive. Each corresponding
+000084 | heat operator lies in its stated finite Schatten class. Approximate these
+000085 | heat operators by finite-rank operators in those Schatten norms. With
+000086 | finite-rank factors, bounded strong-star convergence of the insertions
+000087 | gives norm convergence of the history; Schatten Holder bounds the remaining
+000088 | tails uniformly. Thus K_F converges in Hilbert-Schmidt norm and
+000089 | Tr(K_F* K_G)/Z converges. The same reasoning with rho^(1/4) in Schatten4
+000090 | gives Hilbert-Schmidt convergence of the bounded joint-pairing vectors.
+000091 | No norm approximation of a von Neumann Weyl by CAR polynomials is asserted.
+000092 | 
+000093 | The saved proof retains every intermediate heat factor, distinguishes
+000094 | time ordering from an ordinary unordered opposite-time product, and
+000095 | explicitly does not assume bounded imaginary-time conjugates. It limits
+000096 | the bounded operator theorem to neutral even insertions and does not
+000097 | extend it to odd Schwinger words without their graded conventions.
+000098 | 
+000099 | The geometric Schottky time reflection and the antiunitary modular
+000100 | conjugation have distinct stated product types. The particle-hole formula
+000101 | belongs to the latter partner construction. A small ambiguity in the
+000102 | simple-language text was pointed out: wording about a particle-hole change
+000103 | in a generic reflection could blend these two types. Read back the corrected
+000104 | text: it now explicitly refers to the correspondence of the representation
+000105 | sides and distinguishes it from geometric time reflection. This is
+000106 | consistent with the accepted proof.
+000107 | 
+000108 | No scientific overclaim was found in PROOF.txt. Its P1 field/sewing map,
+000109 | primitive source measure and physical time identification remain open.
+000110 | The saved all-mode conclusions concern the given source representation;
+000111 | the two-mode computation is not used as their proof. Final review verdict:
+000112 | ACCEPTED WITH THE STATED GIVEN-SOURCE AND NORMAL-REPRESENTATION PREMISES.

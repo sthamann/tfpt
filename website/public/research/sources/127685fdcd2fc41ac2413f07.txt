@@ -1,0 +1,191 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_mixed_spin_word.py
+Original file SHA-256: 5b3a2730275a17942ac954368c0cc9f584f6b330ab28f539c14230e19d37663a
+Inclusive original lines: 1-183
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R071: mixed original color-spin/CAR word on the retained thermal source.
+000002 | 
+000003 | No physical source selection or boson measure is made. Infinite sea and
+000004 | oscillator products are analytically retained; finite sums check formulas.
+000005 | """
+000006 | import importlib.util
+000007 | import json
+000008 | from pathlib import Path
+000009 | 
+000010 | import mpmath as mp
+000011 | import sympy as sp
+000012 | 
+000013 | HERE = Path(__file__).resolve().parent
+000014 | ROOT = HERE.parents[3]
+000015 | mp.mp.dps = 70
+000016 | 
+000017 | 
+000018 | def theta_one(T, delta, X, shift=0, N=10):
+000019 |     value = mp.fsum(mp.exp(-T * ((n + shift)**2 / 2 + delta * (n + shift)) + (n + shift) * X)
+000020 |                     for n in range(-N, N + 1))
+000021 |     h = mp.re(X) - T * delta
+000022 |     kp, km = N + 1 + shift, -N - 1 + shift
+000023 |     rp, rm = mp.exp(-T * (kp + mp.mpf('.5')) + h), mp.exp(T * (km - mp.mpf('.5')) - h)
+000024 |     tail = mp.exp(-T * kp**2 / 2 + h * kp) / (1 - rp) + mp.exp(-T * km**2 / 2 + h * km) / (1 - rm)
+000025 |     return value, tail
+000026 | 
+000027 | 
+000028 | def theta(T, delta, X, shift=0):
+000029 |     return mp.fprod(theta_one(T, d, x, shift)[0] for d, x in zip(delta, X))
+000030 | 
+000031 | 
+000032 | def prime(T, x, M=8):
+000033 |     return 2 * mp.sinh(x / 2) * mp.fprod(
+000034 |         (1 - mp.exp(-T*m + x)) * (1 - mp.exp(-T*m - x)) / (1 - mp.exp(-T*m))**2
+000035 |         for m in range(1, M + 1))
+000036 | 
+000037 | 
+000038 | def original_odd_pair(T, d, x, N=10):
+000039 |     # Entire negative sea summed exactly, only exponentially small thermal
+000040 |     # corrections truncated. This is independent of the theta reader.
+000041 |     sea = mp.exp((d - mp.mpf('.5')) * x) / (1 - mp.exp(-x))
+000042 |     correction = mp.fsum(
+000043 |         mp.exp(x * (n + mp.mpf('.5') + d)) / (1 + mp.exp(T * (n + mp.mpf('.5') + d)))
+000044 |         - mp.exp(-x * (n + mp.mpf('.5') - d)) / (1 + mp.exp(T * (n + mp.mpf('.5') - d)))
+000045 |         for n in range(N))
+000046 |     return sea + correction
+000047 | 
+000048 | 
+000049 | def main():
+000050 |     checks = []
+000051 | 
+000052 |     def need(name, condition):
+000053 |         if not bool(condition):
+000054 |             raise AssertionError(name)
+000055 |         checks.append(name)
+000056 | 
+000057 |     def close(name, x, y, tol=mp.mpf('1e-55')):
+000058 |         need(name, abs(x-y) < tol * max(1, abs(x), abs(y)))
+000059 | 
+000060 |     spec = importlib.util.spec_from_file_location('original_sector_cocycle', ROOT / 'experiments/theory-contracts/canonical-seam-fermionization-20261025/check_same_source_affine_defect.py')
+000061 |     old = importlib.util.module_from_spec(spec)
+000062 |     spec.loader.exec_module(old)
+000063 |     m = sp.Matrix(json.loads((ROOT / 'experiments/theory-contracts/v16-operator-pullback-20261014/fold-results.json').read_text())['explicit_Weyl_matrix'])
+000064 |     e = [sp.eye(8)[:, j] for j in range(8)]
+000065 |     charges = [m.T * q for q in [e[1]-e[2], e[2]-e[1], e[0]-e[2], e[2]-e[0]]]
+000066 |     beta = 4 * mp.pi
+000067 |     T = 8 * beta
+000068 |     xs = [mp.mpf(3), mp.mpf(2), mp.mpf(1), mp.mpf(0)]
+000069 |     wF = [1, -1, 0, -1, -1, -1, 0, -1]
+000070 |     zero_spin = sp.Matrix([sp.Rational(1, 2)]*4 + [-sp.Rational(1, 2)]*4)
+000071 |     perm = sp.zeros(8)
+000072 |     for j in range(8):
+000073 |         perm[j, (j+4) % 8] = 1
+000074 | 
+000075 |     def label(q):
+000076 |         c = 0 if all(x.q == 1 for x in q) else 1
+000077 |         return tuple(int(x-sp.Rational(c, 2)) for x in q), c
+000078 | 
+000079 |     def group_word(ps):
+000080 |         acc, phase = ((0,)*8, 0), 1+0j
+000081 |         for p in ps:
+000082 |             lb = label(p)
+000083 |             phase *= old.eps_ext(acc, lb)
+000084 |             acc = old.add_labels(acc, lb)
+000085 |         need('balanced original charge product', acc == ((0,)*8, 0))
+000086 |         return phase
+000087 | 
+000088 |     records = []
+000089 |     for alpha in [mp.mpf(1)/4, mp.mpf(3)/4]:
+000090 |         ds = [(j+alpha)/8-mp.mpf('.5') for j in range(8)]
+000091 |         zNS = theta(T, ds, [0]*8)
+000092 |         zR = theta(T, ds, [0]*8, mp.mpf('.5'))
+000093 |         d_exact = sp.Matrix([(j + sp.Rational(str(alpha))) / 8 - sp.Rational(1, 2) for j in range(8)])
+000094 |         need('original NS/R affine energy intertwiner', perm.T * (zero_spin+d_exact) == d_exact and zero_spin.dot(zero_spin)/2 + d_exact.dot(zero_spin) == 0)
+000095 |         close('exact affine NS/R partition identity', zNS, zR)
+000096 | 
+000097 |         def color_theta(X, shift=0, parity=None):
+000098 |             terms = []
+000099 |             for k in range(3):
+000100 |                 xx = [x+2j*mp.pi*k*w/3 for x, w in zip(X, wF)]
+000101 |                 ordinary = theta(T, ds, xx, shift)
+000102 |                 if parity is not None:
+000103 |                     marked = theta(T, ds, [x+1j*mp.pi for x in xx], shift)
+000104 |                     ordinary = (ordinary + parity*marked)/2
+000105 |                 terms.append(ordinary)
+000106 |             return mp.fsum(terms)/3
+000107 | 
+000108 |         zNS0 = color_theta([0]*8)
+000109 |         zR0 = color_theta([0]*8, mp.mpf('.5'))
+000110 |         zE80 = color_theta([0]*8, parity=1) + color_theta([0]*8, mp.mpf('.5'), parity=1)
+000111 |         need('center restricted NS/R states have positive weights', mp.re(zNS0)>0 and mp.re(zR0)>0)
+000112 |         need('affine NS/R identification fails fixed center intertwining', perm.T*sp.Matrix(wF) != sp.Matrix(wF))
+000113 |         need('center restricted partitions differ', abs(zNS0-zR0)>mp.mpf('1e-12'))
+000114 |         a_bound = (sp.Rational(1, 20)+sp.Rational(1, 20)**3)/(1-sp.Rational(1, 20)**4)
+000115 |         need('exact rational bound for whole source partition', 1/(1-a_bound)<sp.Rational(53, 50))
+000116 |         osc = mp.fprod((1-mp.exp(-T*n))**-8 for n in range(1, 9))
+000117 |         zfermion = mp.fprod((1+mp.exp(-beta*(n+alpha)))*(1+mp.exp(-beta*(n+1-alpha))) for n in range(50))
+000118 |         close('same whole one-source partition after actual eight-fold', zNS*osc, zfermion)
+000119 |         for j in range(8):
+000120 |             close('literal frequency transport', 8*(mp.mpf('.5')+ds[j]), j+alpha)
+000121 |             tj, bound = theta_one(T, ds[j], 1)
+000122 |             need('explicit theta tail bound', bound < mp.mpf('1e-1000'))
+000123 |             two = mp.exp(ds[j]) * tj / theta_one(T, ds[j], 0)[0] / prime(T, 1)
+000124 |             close('original entire sea equals theta odd two-point', two, original_odd_pair(T, ds[j], 1))
+000125 |         for k, q in enumerate(charges):
+000126 |             need('actual missing color root has h1', q.dot(q) == 2)
+000127 |             need('actual missing color root belongs to spinor coset s', label(q)[1] == 1 and sum(label(q)[0]) % 2 == 0)
+000128 |             for j, v in enumerate(e):
+000129 |                 ps = [q, v, -v, -q]
+000130 |                 # The old charge cocycle and actual adjoints fix the paired
+000131 |                 # coefficient; no arbitrary square-root phase is inserted.
+000132 |                 adj = old.eps_ext(label(v), label(-v)).conjugate() * old.eps_ext(label(q), label(-q)).conjugate()
+000133 |                 need('original paired adjoint cocycle is exactly one', group_word(ps) * adj == 1)
+000134 |                 rho = mp.mpf(str(q[j]))
+000135 |                 X = [mp.fsum(mp.mpf(str(p[a]))*x for p, x in zip(ps, xs)) for a in range(8)]
+000136 |                 thermal = mp.exp(mp.fdot(ds, X)) * theta(T, ds, X) / zNS
+000137 |                 cross = prime(T, 1)**2 / prime(T, 2)**2
+000138 |                 reduced = thermal * cross**rho / prime(T, 3)**2 / prime(T, 1)
+000139 |                 direct = thermal
+000140 |                 for a in range(4):
+000141 |                     for b in range(a+1, 4):
+000142 |                         direct *= prime(T, xs[a]-xs[b])**mp.mpf(str(ps[a].dot(ps[b])))
+000143 |                 close('whole mixed word agrees with cross-ratio reduction', direct, reduced)
+000144 |                 # Actual rectangular trace cyclicity: moving the color
+000145 |                 # spinor through the thermal cut changes NS to R. The
+000146 |                 # shifted insertion remains in a real ordered strip.
+000147 |                 rotated_ps = ps[1:]+ps[:1]
+000148 |                 rotated_xs = xs[1:]+[xs[0]-T]
+000149 |                 need('thermal cyclic word keeps exact original adjoint scalar', group_word(rotated_ps)*adj == 1)
+000150 |                 Y = [mp.fsum(mp.mpf(str(p[a]))*x for p, x in zip(rotated_ps, rotated_xs)) for a in range(8)]
+000151 |                 cyclic_kernel = mp.mpf(1)
+000152 |                 for a in range(4):
+000153 |                     for b in range(a+1, 4):
+000154 |                         cyclic_kernel *= prime(T, rotated_xs[a]-rotated_xs[b])**mp.mpf(str(rotated_ps[a].dot(rotated_ps[b])))
+000155 |                 cycled = mp.exp(mp.fdot(ds, Y))*theta(T, ds, Y, mp.mpf('.5'))/zR*cyclic_kernel
+000156 |                 close('complete thermal NS-to-R sewing of actual mixed word', direct*zNS, cycled*zR)
+000157 |                 need('nonzero mixed answer', abs(direct) > mp.mpf('1e-10'))
+000158 |                 need('full local monodromy remains minus one', sp.exp(2*sp.pi*sp.I*q[j]) == -1)
+000159 |                 if k == 0 and j in [0, 1]:
+000160 |                     records.append({'alpha':str(alpha),'root':'M^T(e2-e3)','odd_channel':j,'rho':str(rho),'mixed_word_value':mp.nstr(direct,25)})
+000161 |                 if k == 0 and j == 0:
+000162 |                     projected = mp.exp(mp.fdot(ds, X))*color_theta(X)/zNS0*cross**rho/prime(T, 3)**2/prime(T, 1)
+000163 |                     need('whole original color restriction retains actual mixed word', mp.re(projected)>0 and abs(mp.im(projected))<mp.mpf('1e-55'))
+000164 |                     cycled_color = mp.exp(mp.fdot(ds, Y))*color_theta(Y, mp.mpf('.5'))/zR0*cyclic_kernel
+000165 |                     close('center-restricted full cyclic sewing retains absolute block normalizers', projected*zNS0, cycled_color*zR0)
+000166 |                     records[-1]['center_restricted_mixed_value'] = mp.nstr(mp.re(projected),25)
+000167 |         # A single cyclic transfer by a spinor charge changes the base
+000168 |         # charge coset. These exact Fourier-period signs separate the blocks.
+000169 |         close('NS charge theta is 2pi-periodic', theta_one(T, ds[0], 2j*mp.pi)[0], theta_one(T, ds[0], 0)[0])
+000170 |         close('R charge theta is 2pi-antiperiodic', theta_one(T, ds[0], 2j*mp.pi, mp.mpf('.5'))[0], -theta_one(T, ds[0], 0, mp.mpf('.5'))[0])
+000171 |         records.append({'alpha':str(alpha),'original_NS_Z0':mp.nstr(zNS*osc,25),'whole_R_Z0':mp.nstr(zR*osc,25),'conditional_full_parent_NS_weight':mp.nstr(zNS/(zNS+zR),25),
+000172 |                         'center_NS_Z0':mp.nstr(mp.re(zNS0*osc),25),'center_R_Z0':mp.nstr(mp.re(zR0*osc),25),'center_E8_Z0':mp.nstr(mp.re(zE80*osc),25),
+000173 |                         'conditional_full_center_NS_weight':mp.nstr(mp.re(zNS0/(zNS0+zR0)),25)})
+000174 | 
+000175 |     out = {'result':'R071','verdict':'GIVEN_SOURCE_MIXED_WORD_AND_SECTOR_SEWING_EXACT_PHYSICAL_F1_OPEN',
+000176 |            'checks_passed':len(checks),'checks':checks,'examples':records,
+000177 |            'scope':'Actual fixed four color roots and all eight original folded odd channels, both given quarters, beta4pi. Full original NS source and its original cocycle. Positive full-parent Gibbs extension only conditional on the entire B(H) algebra with same given H and beta. No source/measure/96-matter/spacetime selection.'}
+000178 |     (HERE/'MIXED-SPIN-WORD.json').write_text(json.dumps(out,indent=2)+'\n')
+000179 |     print(json.dumps({'checks_passed':len(checks),'verdict':out['verdict'],'examples':records}))
+000180 | 
+000181 | 
+000182 | if __name__ == '__main__':
+000183 |     main()

@@ -1,0 +1,49 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/canonical-seam-fermionization-20261025/check_same_source_affine_defect.py
+Original file SHA-256: 0f51ab119938a05184a3f3e11b364dcb4ee02749487829bf65147bc86647131c
+Inclusive original lines: 34-74
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000034 |     out[0] += 1
+000035 |     return tuple(out)
+000036 | 
+000037 | 
+000038 | def eps_z(left, right):
+000039 |     return -1 if sum(left[i] * right[j] for i in range(8) for j in range(i)) % 2 else 1
+000040 | 
+000041 | 
+000042 | def eta_r(vector):
+000043 |     return -1 if vector[7] * sum(vector[:7]) % 2 else 1
+000044 | 
+000045 | 
+000046 | ONES = (1,) * 8
+000047 | ZERO = (0,) * 8
+000048 | E0 = (1,) + (0,) * 7
+000049 | 
+000050 | 
+000051 | def normalize(base, half):
+000052 |     """Unique n+c*s section, c in {0,1}, with 2s=(1,...,1)."""
+000053 |     if half < 2:
+000054 |         return tuple(base), half
+000055 |     return add(base, ONES), half - 2
+000056 | 
+000057 | 
+000058 | def add_labels(left, right):
+000059 |     return normalize(add(left[0], right[0]), left[1] + right[1])
+000060 | 
+000061 | 
+000062 | def eps_ext(left, right):
+000063 |     """Associative section cocycle for E_(n+c*s)=E_n X^c.
+000064 | 
+000065 |     Relations: X E_n X^-1=i^Q(n) E_n and X^2=-E_(1,...,1).
+000066 |     It restricts to the ordered CAR cocycle on Z8 and to the previously
+000067 |     fixed even E8 cocycle on D8 union (D8+s).
+000068 |     """
+000069 |     n, c = left
+000070 |     m, d = right
+000071 |     value = (I ** (c * sum(m))) * eps_z(n, m)
+000072 |     if c and d:
+000073 |         value *= -eps_z(add(n, m), ONES)
+000074 |     return complex(round(value.real), round(value.imag))

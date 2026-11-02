@@ -1,0 +1,58 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/V311-PROCESS-AMBIGUITY.txt
+Original file SHA-256: 9a36e58b5f60a8dfb61cfbb03856df37a879e79c510bce5a51079c849de80bce
+Inclusive original lines: 1-50
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | V311 TRANSFER: EXACT QUANTUM-PROCESS AMBIGUITY
+000002 | 
+000003 | Question. Does the whole population history of the existing three-state
+000004 | transfer determine its full quantum process? No, within the extension class
+000005 | constructed here. This answers an identifiability question about that reader;
+000006 | it does not prove any of these extensions is the original physical TFPT source.
+000007 | 
+000008 | Original input: verification/v311_gap_decoupled_measure.py, transfer(). The
+000009 | checker imports and compares the original numerical 3x3 matrix, and constructs
+000010 | its spectral-projector expression exactly over the rationals:
+000011 | 
+000012 |  T = [[1651/4374, 1267/4374, 728/2187],
+000013 |       [1267/4374, 1651/4374, 728/2187],
+000014 |       [728/2187,  728/2187,  731/2187]].
+000015 | 
+000016 | Set E_ij=|i><j| and, for 0 <= e <= 731/2187,
+000017 | 
+000018 |  Phi_e(X) = e X + sum_ij (T_ij - e delta_ij) E_ij X E_ij^*.
+000019 | 
+000020 | This is a diagnostic family on an auxiliary three-dimensional Hilbert space.
+000021 | The interval is sufficient for the construction; it is not claimed maximal.
+000022 | Every coefficient is nonnegative, so the displayed Kraus decomposition is
+000023 | completely positive. The column sums of T equal one, making Phi_e trace
+000024 | preserving. The checker independently verifies the exact Choi decomposition
+000025 | and its partial trace, symbolically in e. It checks the nine matrix units to
+000026 | establish, for every complex input matrix X,
+000027 | 
+000028 |  diag(Phi_e(X)) = T diag(X),  diag(Phi_e^n(X)) = T^n diag(X).
+000029 | 
+000030 | Thus all e have identical population histories for all initial matrices and
+000031 | all nonnegative integer times. Yet for rho=|0+1><0+1|/2 the off-diagonal
+000032 | entry is e/2: values e=0, 1/5, 1/3 give 0, 1/10, 1/6 respectively.
+000033 | The interval therefore contains uncountably many distinct channels with this
+000034 | same population reader. This does not claim the displayed interval exhausts
+000035 | all possible values or channels.
+000036 | 
+000037 | Additional TFPT source, E8/clock intertwiner, CAR, Higgs, locality and state
+000038 | constraints are not imposed here. They may distinguish or exclude these
+000039 | extensions. Identifying this qutrit with the full E8, 96-component or physical
+000040 | source carrier would be an additional, unproved assumption. A classical
+000041 | population history is not a complete multi-time process tensor with arbitrary
+000042 | interventions; the latter could distinguish the channels.
+000043 | 
+000044 | Run from repository root:
+000045 | 
+000046 |  python3 experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_v311_process_ambiguity.py
+000047 | 
+000048 | Requires numpy and sympy. Exit 0 means all listed exact identities and the
+000049 | comparison to the original floating-point transfer passed. This is a theory
+000050 | contract diagnostic, not an empirical prediction or ledger promotion.

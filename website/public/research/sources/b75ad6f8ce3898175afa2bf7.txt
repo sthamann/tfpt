@@ -1,0 +1,198 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/check_independent_seam_graph.py
+Original file SHA-256: 23f7c45a95f05cc966bc867681e04de8bce850fed1e8fd4392666d6802dbc0d4
+Inclusive original lines: 1-190
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact affine and graph audit for the equator lift on the square elliptic curve.
+000003 | 
+000004 | The group is generated on C/(Z+iZ) by
+000005 |     Q(z)=i z,
+000006 |     r(z)=i z+1/2,
+000007 |     kappa(z)=-i conjugate(z)+(1+i)/2.
+000008 | 
+000009 | Group closure, element orders and fixed-component counts are computed from
+000010 | the affine maps.  No real-form census table is supplied to the calculation.
+000011 | """
+000012 | 
+000013 | from __future__ import annotations
+000014 | 
+000015 | from collections import Counter, deque
+000016 | from fractions import Fraction as F
+000017 | from functools import reduce
+000018 | from math import gcd
+000019 | from pathlib import Path
+000020 | import hashlib
+000021 | import json
+000022 | import sympy as sp
+000023 | 
+000024 | 
+000025 | Matrix = tuple[tuple[int, int], tuple[int, int]]
+000026 | Vector = tuple[F, F]
+000027 | Affine = tuple[Matrix, Vector]
+000028 | 
+000029 | I: Matrix = ((1, 0), (0, 1))
+000030 | J: Matrix = ((0, -1), (1, 0))
+000031 | K: Matrix = ((0, -1), (-1, 0))
+000032 | ZERO: Vector = (F(0), F(0))
+000033 | T: Vector = (F(1, 2), F(1, 2))
+000034 | IDENTITY: Affine = (I, ZERO)
+000035 | 
+000036 | 
+000037 | def mm(a: Matrix, b: Matrix) -> Matrix:
+000038 |     return tuple(
+000039 |         tuple(sum(a[i][k] * b[k][j] for k in range(2)) for j in range(2))
+000040 |         for i in range(2)
+000041 |     )  # type: ignore[return-value]
+000042 | 
+000043 | 
+000044 | def mv(a: Matrix, v: Vector) -> Vector:
+000045 |     return (
+000046 |         a[0][0] * v[0] + a[0][1] * v[1],
+000047 |         a[1][0] * v[0] + a[1][1] * v[1],
+000048 |     )
+000049 | 
+000050 | 
+000051 | def add(v: Vector, w: Vector) -> Vector:
+000052 |     return v[0] + w[0], v[1] + w[1]
+000053 | 
+000054 | 
+000055 | def canonical(f: Affine) -> Affine:
+000056 |     matrix, shift = f
+000057 |     return matrix, (shift[0] % 1, shift[1] % 1)
+000058 | 
+000059 | 
+000060 | def compose(f: Affine, g: Affine) -> Affine:
+000061 |     """Return f after g, modulo the square lattice."""
+000062 |     mf, df = f
+000063 |     mg, dg = g
+000064 |     return canonical((mm(mf, mg), add(mv(mf, dg), df)))
+000065 | 
+000066 | 
+000067 | def power(f: Affine, n: int) -> Affine:
+000068 |     out = IDENTITY
+000069 |     for _ in range(n):
+000070 |         out = compose(f, out)
+000071 |     return out
+000072 | 
+000073 | 
+000074 | def closure(generators: tuple[Affine, ...]) -> set[Affine]:
+000075 |     group = {IDENTITY}
+000076 |     queue = deque([IDENTITY])
+000077 |     while queue:
+000078 |         a = queue.popleft()
+000079 |         for b in generators:
+000080 |             for candidate in (compose(a, b), compose(b, a)):
+000081 |                 if candidate not in group:
+000082 |                     group.add(candidate)
+000083 |                     queue.append(candidate)
+000084 |     return group
+000085 | 
+000086 | 
+000087 | def determinant(matrix: Matrix) -> int:
+000088 |     return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+000089 | 
+000090 | 
+000091 | def element_order(f: Affine, limit: int = 16) -> int:
+000092 |     for n in range(1, limit + 1):
+000093 |         if power(f, n) == IDENTITY:
+000094 |             return n
+000095 |     raise AssertionError(f"order exceeds {limit}: {f}")
+000096 | 
+000097 | 
+000098 | def fixed_components_of_real_involution(f: Affine) -> int:
+000099 |     """Count circles in Fix(f) by the rank-one Smith invariant of I-M.
+000100 | 
+000101 |     For (I-M)v=d mod Z^2, a primitive integer left-null vector tests
+000102 |     solvability.  If solvable, gcd of the entries of I-M is the component
+000103 |     group order of its torus kernel, hence the number of fixed circles.
+000104 |     """
+000105 |     matrix, shift = f
+000106 |     if determinant(matrix) != -1 or element_order(f) != 2:
+000107 |         raise ValueError("fixed-circle classification requires a real involution")
+000108 |     a = (
+000109 |         (1 - matrix[0][0], -matrix[0][1]),
+000110 |         (-matrix[1][0], 1 - matrix[1][1]),
+000111 |     )
+000112 |     nonzero_column = next(
+000113 |         (a[0][j], a[1][j]) for j in range(2) if (a[0][j], a[1][j]) != (0, 0)
+000114 |     )
+000115 |     divisor = gcd(abs(nonzero_column[0]), abs(nonzero_column[1]))
+000116 |     left_null = (nonzero_column[1] // divisor, -nonzero_column[0] // divisor)
+000117 |     obstruction = left_null[0] * shift[0] + left_null[1] * shift[1]
+000118 |     if obstruction.denominator != 1:
+000119 |         return 0
+000120 |     entries = [abs(x) for row in a for x in row if x]
+000121 |     return reduce(gcd, entries)
+000122 | 
+000123 | 
+000124 | def real_type(f: Affine) -> str:
+000125 |     order = element_order(f)
+000126 |     if order != 2:
+000127 |         return f"anti_order_{order}"
+000128 |     components = fixed_components_of_real_involution(f)
+000129 |     return {0: "empty", 1: "nondividing", 2: "dividing"}[components]
+000130 | 
+000131 | 
+000132 | def affine_row(f: Affine) -> dict[str, object]:
+000133 |     matrix, shift = f
+000134 |     return {
+000135 |         "linear": [list(matrix[0]), list(matrix[1])],
+000136 |         "shift": [str(shift[0]), str(shift[1])],
+000137 |         "order": element_order(f),
+000138 |         "type": real_type(f) if determinant(matrix) == -1 else "holomorphic",
+000139 |     }
+000140 | 
+000141 | 
+000142 | def fixes(f: Affine, point: Vector) -> bool:
+000143 |     matrix, shift = f
+000144 |     return canonical((I, add(mv(matrix, point), shift))) == canonical((I, point))
+000145 | 
+000146 | 
+000147 | def rational_rank(matrix: list[list[int]]) -> int:
+000148 |     a = [[F(x) for x in row] for row in matrix]
+000149 |     rows = len(a)
+000150 |     cols = len(a[0]) if rows else 0
+000151 |     rank = 0
+000152 |     for col in range(cols):
+000153 |         pivot = next((r for r in range(rank, rows) if a[r][col]), None)
+000154 |         if pivot is None:
+000155 |             continue
+000156 |         a[rank], a[pivot] = a[pivot], a[rank]
+000157 |         p = a[rank][col]
+000158 |         a[rank] = [x / p for x in a[rank]]
+000159 |         for r in range(rows):
+000160 |             if r != rank and a[r][col]:
+000161 |                 c = a[r][col]
+000162 |                 a[r] = [x - c * y for x, y in zip(a[r], a[rank])]
+000163 |         rank += 1
+000164 |     return rank
+000165 | 
+000166 | 
+000167 | def main() -> None:
+000168 |     q: Affine = (J, ZERO)
+000169 |     r: Affine = (J, (F(1, 2), F(0)))
+000170 |     kappa: Affine = (K, T)
+000171 |     h = power(r, 2)
+000172 |     seam_s = compose(r, kappa)
+000173 |     seam_hs = compose(h, seam_s)
+000174 | 
+000175 |     old_holomorphic = closure((q, h))
+000176 |     old_total = closure((q, h, kappa))
+000177 |     full_holomorphic = closure((q, r))
+000178 |     full_total = closure((q, r, kappa))
+000179 | 
+000180 |     old_anti = {f for f in old_total if determinant(f[0]) == -1}
+000181 |     full_anti = {f for f in full_total if determinant(f[0]) == -1}
+000182 |     new_anti = full_anti - old_anti
+000183 | 
+000184 |     old_census = Counter(real_type(f) for f in old_anti)
+000185 |     full_census = Counter(real_type(f) for f in full_anti)
+000186 |     new_census = Counter(real_type(f) for f in new_anti)
+000187 | 
+000188 |     # The old holomorphic order-eight group is abelian C4 x C2, not D4.
+000189 |     old_commutes = all(compose(a, b) == compose(b, a) for a in old_holomorphic for b in old_holomorphic)
+000190 |     old_orders = Counter(element_order(f) for f in old_holomorphic)

@@ -1,0 +1,61 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_sewing_20261028/sewing/check_ward_charged_module_selection.py
+Original file SHA-256: 0c86052189d99da72903065035efd576d0e849d6b02d905617aef640166622c8
+Inclusive original lines: 201-253
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |     require(canonical_result['source_gain'] == '12 I50',
+000202 |             'canonical full 50-current sum has gain 12 I50')
+000203 | 
+000204 |     result = {
+000205 |         'verdict': 'PASS',
+000206 |         'scope': (
+000207 |             'Conditional algebraic selection from the pinned Ward dictionary '
+000208 |             'and the actual local E8 current closure. This does not derive the '
+000209 |             'raw source map Xi or the inclusive reflected sewing operation.'
+000210 |         ),
+000211 |         'sources': {
+000212 |             'ward_source': {
+000213 |                 'path': str(WARD_SOURCE),
+000214 |                 'sha256': sha256(WARD_SOURCE),
+000215 |                 'pinned_statement': "q -> q'=2(e3+e6)",
+000216 |             },
+000217 |             'canonical_a4_checker': {
+000218 |                 'path': str(CANON_CHECKER),
+000219 |                 'sha256': sha256(CANON_CHECKER),
+000220 |             },
+000221 |             'canonical_a4_results': {
+000222 |                 'path': str(CANON_RESULTS),
+000223 |                 'sha256': sha256(CANON_RESULTS),
+000224 |             },
+000225 |         },
+000226 |         'ward_root_doubled': list(ward),
+000227 |         'carrier_weight': list(carrier_weight),
+000228 |         'family_dynkin_weight': list(family_weight),
+000229 |         'selected_module': '(5,10)',
+000230 |         'neutral_roots': len(neutral),
+000231 |         'neutral_orbit_size': len(reached),
+000232 |         'neutral_directed_edges': directed_edges,
+000233 |         'orbit_equals_full_target_sector': reached == target,
+000234 |         'old_D5xA3_grading': grading,
+000235 |         'p2_X': list(p2_x),
+000236 |         'p2_X_insertion_charge_spectrum': {
+000237 |             str(charge): multiplicity
+000238 |             for charge, multiplicity in x_spectrum.items()
+000239 |         },
+000240 |         'ward_p2_X_charge': -2,
+000241 |         'reflected_module': '(bar5,bar10)',
+000242 |         'single_ward_bracket_nonzero_columns': len(nonzero_columns),
+000243 |         'single_ward_bracket_rank': len(output_roots),
+000244 |         'inclusive_current_count': canonical_result['kraus_count'],
+000245 |         'inclusive_source_gain': canonical_result['source_gain'],
+000246 |     }
+000247 |     rendered = json.dumps(result, indent=2, sort_keys=True) + '\n'
+000248 |     OUTPUT.write_text(rendered)
+000249 |     print(rendered, end='')
+000250 | 
+000251 | 
+000252 | if __name__ == '__main__':
+000253 |     main()

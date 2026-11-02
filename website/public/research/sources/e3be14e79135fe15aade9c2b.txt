@@ -1,0 +1,44 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_cartan_family_dictionary.py
+Original file SHA-256: 91344d5d71b4fd7c163b7648460ab5127d5c026cd1927faa4510c126f3a02c4b
+Inclusive original lines: 50-85
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000050 |     sigma = sp.eye(8)[[4, 5, 0, 1, 2, 3, 6, 7], :]
+000051 |     c = j * sigma
+000052 |     hplus = sp.zeros(8, 4)
+000053 |     for k in range(4):
+000054 |         hplus[2*k, k], hplus[2*k+1, k] = 1, -sp.I
+000055 |     sigma4 = sigma.extract([0, 2, 4, 6], list(range(8))) * hplus
+000056 |     require(j*hplus == sp.I*hplus, "original positive Cartan polarization")
+000057 |     require(sigma*hplus == hplus*sigma4, "actual sigma restricts to Cartan four")
+000058 |     require(c**9 == j and c**4 == sigma and c**12 == sp.eye(8),
+000059 |             "actual marked C12 power identities")
+000060 |     t = sp.Symbol("t")
+000061 |     require(sigma4.charpoly(t).as_expr().expand() ==
+000062 |             ((t-1)**2*(t**2+t+1)).expand(), "Gaussian third character 2,1,1")
+000063 |     require(c.charpoly(t).as_expr().expand() ==
+000064 |             ((t**2+1)**2*sp.cyclotomic_poly(12, t)).expand(),
+000065 |             "original Cartan Phi4 squared times Phi12")
+000066 |     witness = hplus * sp.Matrix([1, 10, 100, 1000])
+000067 |     require(all((sp.Matrix([r]).dot(witness)) != 0 for r in roots),
+000068 |             "explicit regular semisimple point in original Cartan four")
+000069 | 
+000070 |     # A genuine integral E8 root basis; Smith form is not computed on Z8.
+000071 |     e = sp.eye(8)
+000072 |     columns = [sp.Matrix([1, -1, -1, -1, -1, -1, -1, 1])/2,
+000073 |                e[:, 0]+e[:, 1], -e[:, 0]+e[:, 1]]
+000074 |     columns.extend(-e[:, k]+e[:, k+1] for k in range(1, 6))
+000075 |     basis = sp.Matrix.hstack(*columns)
+000076 |     gram = basis.T*basis
+000077 |     require(gram.det() == 1 and all(x.is_Integer for x in gram),
+000078 |             "even unimodular integral E8 root basis")
+000079 |     lattice_j = basis.inv()*j*basis
+000080 |     require(all(x.is_Integer for x in lattice_j), "native J preserves E8 lattice")
+000081 |     snf = smith_normal_form(sp.eye(8)-lattice_j, domain=sp.ZZ)
+000082 |     diagonal = sorted(abs(int(snf[k, k])) for k in range(8))
+000083 |     require(diagonal == [1]*4+[2]*4, "torus correction kernel is F2 to fourth")
+000084 |     return {"Gaussian_third_multiplicities": [2, 1, 1],
+000085 |             "Gaussian_C12_exponents_J_positive": [3, 3, 7, 11],

@@ -1,0 +1,110 @@
+TFPT scientific source excerpt
+Original repository path: verification/v254_inner_fluctuations.py
+Original file SHA-256: 7a1e93470b65dc8aa56106aa420392a986e8448816f5aa624b44600a696b642c
+Inclusive original lines: 47-148
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000047 | def sm_basis():
+000048 |     """basis of A_F = C (+) H (+) M_3(C) as 96x96 representatives."""
+000049 |     sx = np.array([[0, 1], [1, 0]], complex)
+000050 |     sy = np.array([[0, -1j], [1j, 0]])
+000051 |     sz = np.array([[1, 0], [0, -1]], complex)
+000052 |     z2, z3 = np.zeros((2, 2), complex), np.zeros((3, 3), complex)
+000053 |     B = [t.rep(1.0, z2, z3)]
+000054 |     for q in (I2, 1j * sx, 1j * sy, 1j * sz):
+000055 |         B.append(t.rep(0.0, q, z3))
+000056 |     for k in range(3):
+000057 |         for l in range(3):
+000058 |             E = np.zeros((3, 3), complex); E[k, l] = 1.0
+000059 |             B.append(t.rep(0.0, z2, E))
+000060 |     return B
+000061 | 
+000062 | 
+000063 | def ps_basis():
+000064 |     z2, z3 = np.zeros((2, 2), complex), np.zeros((3, 3), complex)
+000065 |     qb = [t.quaternion(1, 0), t.quaternion(1j, 0), t.quaternion(0, 1), t.quaternion(0, 1j), z2]
+000066 |     B = []
+000067 |     for qL in qb:
+000068 |         for qR in qb:
+000069 |             B.append(t.rep_PS(qL, qR, z3))
+000070 |     for k in range(3):
+000071 |         for l in range(3):
+000072 |             E = np.zeros((3, 3), complex); E[k, l] = 1.0
+000073 |             B.append(t.rep_PS(z2, z2, E))
+000074 |     return B
+000075 | 
+000076 | 
+000077 | def run():
+000078 |     reset()
+000079 |     print("v254  PS.NCG.FLUCT.01: inner fluctuations Omega^1_D -> SM Higgs doublet (no 126, no junk) + sigma")
+000080 | 
+000081 |     NH, NP, IDX, NG, P = t.NH, t.NP, t.IDX, t.NG, t.P
+000082 |     gamma = t.grading()
+000083 |     rng = np.random.default_rng(254)
+000084 | 
+000085 |     def Y():
+000086 |         return rng.normal(size=(3, 3)) + 1j * rng.normal(size=(3, 3))
+000087 |     MR0 = rng.normal(size=(3, 3)); MR = MR0 + MR0.T
+000088 |     D = t.full_D(Y(), Y(), Y(), Y(), MR)
+000089 |     B = sm_basis()
+000090 | 
+000091 |     # 1. finite fluctuations are scalars (odd), gauge part 0
+000092 |     odd_norm = even_norm = 0.0
+000093 |     for a in B:
+000094 |         for b in B:
+000095 |             om = a @ (D @ b - b @ D)
+000096 |             even_norm += np.linalg.norm(0.5 * (om + gamma @ om @ gamma))
+000097 |             odd_norm += np.linalg.norm(0.5 * (om - gamma @ om @ gamma))
+000098 |     check("FINITE FLUCTUATIONS ARE SCALARS [E]: Omega^1_{D_F} is purely "
+000099 |           "chirality-odd (||even/gauge part|| = %.2e vs ||odd/scalar|| = %.1f) -- the "
+000100 |           "finite inner fluctuations are scalars only; gauge bosons come from the "
+000101 |           "continuum [D_M,a]" % (even_norm, odd_norm),
+000102 |           even_norm < 1e-9 and odd_norm > 1.0)
+000103 | 
+000104 |     # 2. no junk, no 126: support within the SM Higgs-doublet pattern
+000105 |     def sector(name):
+000106 |         return "lep" if name in ("nu", "e") else "q"
+000107 |     allowed = np.zeros((NH, NH), bool)
+000108 |     for blk in range(2):
+000109 |         off = blk * NP
+000110 |         for ni, (nm_i, ch_i, c_i, g_i) in enumerate(P):
+000111 |             for nj, (nm_j, ch_j, c_j, g_j) in enumerate(P):
+000112 |                 if ch_i != ch_j and c_i == c_j and sector(nm_i) == sector(nm_j):
+000113 |                     allowed[off + ni, off + nj] = True
+000114 |     nuR = [IDX[("nu", "R", 0, g)] for g in range(NG)]
+000115 |     for i in nuR:
+000116 |         for j in nuR:
+000117 |             allowed[i, NP + j] = True; allowed[NP + j, i] = True
+000118 |     union = np.zeros((NH, NH), bool)
+000119 |     for a in B:
+000120 |         for b in B:
+000121 |             union |= (np.abs(a @ (D @ b - b @ D)) > 1e-9)
+000122 |     extra = int((union & ~allowed).sum())
+000123 |     check("NO JUNK, NO 126 [E]: for the SM algebra every 1-form has support EXACTLY "
+000124 |           "inside the Higgs-doublet pattern (chirality-odd, colour-diagonal, no "
+000125 |           "quark<->lepton mixing) -- the one SM Higgs doublet (1,2)_{1/2}; %d junk "
+000126 |           "entries (no triplet, no (10,1,3)/126-type scalar)" % extra,
+000127 |           extra == 0)
+000128 | 
+000129 |     # 3. sigma needs beyond first order
+000130 |     maj = np.zeros((NH, NH), complex)
+000131 |     for ii, i in enumerate(nuR):
+000132 |         for jj, j in enumerate(nuR):
+000133 |             maj[i, NP + j] = MR[ii, jj]; maj[NP + j, i] = np.conj(MR[ii, jj])
+000134 | 
+000135 |     def in_span(basis_):
+000136 |         forms = [(a @ (D @ b - b @ D)).reshape(-1) for a in basis_ for b in basis_]
+000137 |         F = np.array(forms).T
+000138 |         sol, *_ = np.linalg.lstsq(F, maj.reshape(-1), rcond=None)
+000139 |         return np.linalg.norm(F @ sol - maj.reshape(-1)) / np.linalg.norm(maj) < 1e-6
+000140 |     sigma_sm = in_span(B)
+000141 |     sigma_ps = in_span(ps_basis())
+000142 |     check("sigma NEEDS BEYOND FIRST ORDER [E]: the sigma (nu_R Majorana) direction "
+000143 |           "is NOT in Omega^1_D for the SM algebra (%s, consistent with first order "
+000144 |           "holding) but IS for the Pati-Salam algebra (%s) -- sigma is the CCvS "
+000145 |           "beyond-first-order scalar (v251/v252)"
+000146 |           % ("absent" if not sigma_sm else "present",
+000147 |              "present" if sigma_ps else "absent"),
+000148 |           (not sigma_sm) and sigma_ps)

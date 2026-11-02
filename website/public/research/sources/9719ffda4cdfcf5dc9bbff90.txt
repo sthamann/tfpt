@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/local_source_origin_20261028/review/INDEPENDENT-SOURCE-SECTOR-RESPONSE-REVIEW.txt
+Original file SHA-256: b5450ef601e2e63c8a894a4fa3f32c2d2be308810261e25200975ac21b0921db
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | UNABHAENGIGER REVIEW DER SOURCE SECTOR RESPONSE
+000002 | ===============================================
+000003 | 
+000004 | Stand: 28. Oktober 2026
+000005 | 
+000006 | Geprüft wurden
+000007 | 
+000008 |   research-20261028-local-source-origin/check_source_sector_response.py
+000009 |   SHA256 3a7f2aff7076395b23e55aef744000747764c4f72c7d56ba9e48a7e90385cd45
+000010 | 
+000011 |   research-20261028-local-source-origin/source-sector-response-results.json
+000012 |   SHA256 9ff7a5a2635b81825a1fad5ac5c928c5517a12e33498dac2ec9bd2e983777d8b
+000013 | 
+000014 | 
+000015 | Urteil
+000016 | ------
+000017 | 
+000018 | Der Checker ist in seinem angegebenen Umfang mathematisch korrekt. Ich finde
+000019 | keinen materiellen Fehler. Er beweist eine neue und nützliche Trennung:
+000020 | 
+000021 |   Die volle Ward30 Antwort und ein positiv gewichteter NS14 Vergleichskanal
+000022 |   besitzen auf dem gegebenen gemeinsamen H40 dieselbe vollständige Carrier
+000023 |   Marginale Phi. Ihre Wirkung auf den ursprünglichen Quellenindex ist trotzdem
+000024 |   verschieden. Daher identifiziert die Carrierantwort allein die Quelle nicht.
+000025 | 
+000026 | Der NS14 Kanal ist kein aus P1 abgeleiteter Prozess. Seine Gewichte sind eine
+000027 | zusätzliche positive Lösung der TP Gleichungen. Der Checker kennzeichnet dies
+000028 | korrekt. Ebenso folgt aus seiner Existenz keine notwendige Spinorherleitung.
+000029 | 
+000030 | 
+000031 | 1. Tatsächliche Quellbasis und Sektorenzählung
+000032 | ----------------------------------------------
+000033 | 
+000034 | Der Checker verwendet die wirkliche alte Chevalley Tabelle über
+000035 | 
+000036 |   tfpt_explorer.current_block_geometry._actual_current_source()
+000037 | 
+000038 | und nicht eine neu aufgebaute Ersatzmatrix. Die aktuelle Quelldatei, der
+000039 | Chevalley Ursprung, die Foldmatrix und die signierte Cliffordantwort sind mit
+000040 | SHA256 Pins versehen.
+000041 | 
+000042 | Der Rücktransport einer gedoppelten E8 Wurzel r ist
+000043 | 
+000044 |   p_i=(1/2) sum_j M_(j i) r_j.
+000045 | 
+000046 | Ganzzahliges p erhält Grad null, einheitlich halbzahlige Ladung Grad eins. Die
+000047 | vollständigen Zählungen sind
+000048 | 
+000049 |   Eingang H40:       NS20 plus Spinor20,
+000050 |   Ausgang H40:       NS20 plus Spinor20,
+000051 |   Creation30:        NS14 plus Spinor16.                    (1)
+000052 | 
+000053 | Für jede der 360 nichtverschwindenden Spalten prüft der Checker zusätzlich
+000054 | 
+000055 |   grade(output)=grade(input)+grade(mediator) mod 2.          (2)
+000056 | 
+000057 | Die Übergangszählung lautet exakt
+000058 | 
+000059 |   NS input, NS mediator, NS output           84,
+000060 |   Spinor input, NS mediator, Spinor output   84,
+000061 |   NS input, Spinor mediator, Spinor output   96,
+000062 |   Spinor input, Spinor mediator, NS output   96.             (3)
+000063 | 
+000064 | Somit erhält NS14 den Rohquellsektor, während die 16 Spinormediatoren ihn
+000065 | vertauschen. Die Zahlen 84 und 96 bezeichnen je einen Eingangsgrad. Insgesamt
+000066 | sind es 168 sektorbewahrende und 192 sektorwechselnde Spalten.
+000067 | 
+000068 | 
+000069 | 2. Die uniforme NS14 Einschränkung ist nicht spurtreu
+000070 | -----------------------------------------------------
+000071 | 
+000072 | Bei gleichen Gewichten besitzt die NS14 Einschränkung je nach Eingangsvektor
+000073 | den Effekt 3, 4 oder 5. Für jeden der beiden Eingangsgrade lautet die
+000074 | Multiplizität
+000075 | 
+000076 |   Effekt 3:   2 Zustände,
+000077 |   Effekt 4:  12 Zustände,
+000078 |   Effekt 5:   6 Zustände.                                  (4)
+000079 | 
+000080 | Eine globale Normierung kann diese drei Werte nicht gleichzeitig auf eins
+000081 | setzen. Dies ist der richtige kleine Gegenfall gegen die Annahme, man könne
+000082 | den bloßen NS14 Support unverändert als Kanal übernehmen.
+000083 | 
+000084 | 
+000085 | 3. Die positive gewichtete Lösung ist wirklich TP
+000086 | --------------------------------------------------
+000087 | 
+000088 | Sei A die 40 mal 14 Inzidenzmatrix der nichtverschwindenden
+000089 | Wurzelklammern. Der Checker bestimmt exakt
+000090 | 
+000091 |   rank(A)=12.                                               (5)
+000092 | 
+000093 | Die vierzehn Gewichte
+000094 | 
+000095 |   1/6 auf den acht Wurzeln mit Carrierindex m=1,2,
+000096 |   1/3 auf den sechs Wurzeln mit Carrierindex m=3,4,5          (6)
+000097 | 
+000098 | sind positiv und erfüllen
+000099 | 
+000100 |   A w=1_40.                                                 (7)
+000101 | 
+000102 | Dies beweist die Spurtreue auf dem ganzen gegebenen H40. Es ist keine
+000103 | Beschränkung auf die zwanzig NS Eingänge.
+000104 | 
+000105 | Der stärkere operatorwertige Test wird ebenfalls exakt erfüllt. Für jeden
+000106 | Carrierindex m und jeden der vier Familieneingänge ergibt die gewichtete
+000107 | Summe der erlaubten Familienoperationen
+000108 | 
+000109 |   sum_(b mit Carrier m) w_b A_b^dagger A_b=I_4/3.           (8)
+000110 | 
+000111 | Die signierten Spalten wurden zuvor gegen die transportierte gemeinsame CAR
+000112 | Tensorwirkung geprüft. Daher ist (8) keine Rechnung mit bloßen Supports.
+000113 | 
+000114 | Mit den bereits bewiesenen Hodge Identitäten
+000115 | 
+000116 |   sum_m C_m^dagger C_m=3 I_10
+000117 | 
+000118 | folgt aus (8)
+000119 | 
+000120 |   sum_b L_b^dagger L_b=I_10 tensor I_4.                     (9)
+000121 | 
+000122 | Nach Familientrace gilt für jeden gemeinsamen Eingang rho, auch bei Carrier
+000123 | Familien Verschränkung,
+000124 | 
+000125 |   Tr_Fout E_NS14(rho)=Phi(Tr_Fin rho),
+000126 | 
+000127 |   Phi(x)=(1/3) sum_m C_m x C_m^dagger.                      (10)
+000128 | 
+000129 | Damit ist die behauptete volle Carrier Marginale bewiesen. Das Resultat ist
+000130 | stärker als eine Übereinstimmung der Petersen Populationen.
+000131 | 
+000132 | 
+000133 | 4. Die 4 plus 6 Einschränkung reiner NS Eingänge
+000134 | ------------------------------------------------
+000135 | 
+000136 | Der tatsächliche Rücktransport des Sourcegradings ist
+000137 | 
+000138 |   w=M e_1=(1/2,1/2,0,0,0,1/2,1/2,0).                      (11)
+000139 | 
+000140 | Auf dem Produktchart faktorisiert seine Parität als
+000141 | 
+000142 |   P_source=P_C(first two) tensor P_F(first two).            (12)
+000143 | 
+000144 | Im Carrierraum Lambda2 C5 haben die beiden Paritäten die Dimensionen 4 und
+000145 | 6. Ein reiner NS Eingang muss gleiche Carrier und Familienparität besitzen.
+000146 | Nach dem Familientrace verschwinden deshalb die gemischten 4 mal 6 Blöcke.
+000147 | Der lineare Raum möglicher Carrierreduktionen besitzt genau
+000148 | 
+000149 |   4^2+6^2=52                                               (13)
+000150 | 
+000151 | statt 10^2=100 Richtungen.
+000152 | 
+000153 | Diese Aussage betrifft reduzierte Carrierzustände aus dem Roh NS20 Raum. Sie
+000154 | ist keine Behauptung, dass der ganze physikalische Carrierraum nur 52
+000155 | Observablen besitzt, und sie bettet nicht alle vierzig Eingänge in den festen
+000156 | NS Vakuumraum ein.
+000157 | 
+000158 | 
+000159 | 5. Fehlende physische Kovarianz des NS14 Zeugen
+000160 | -----------------------------------------------
+000161 | 
+000162 | Der Checker gibt einen direkten Wurzelzeugen. Der ausgewählte NS Mediator
+000163 | 
+000164 |   beta=e_2+e_6
+000165 | 
+000166 | wird durch den wirklichen Farbstrom
+000167 | 
+000168 |   color=e_3-e_2
+000169 | 
+000170 | auf
+000171 | 
+000172 |   gamma=e_3+e_6
+000173 | 
+000174 | transportiert. beta liegt in NS14, gamma im Spinoranteil der Ward30. Die
+000175 | Chevalley Klammer ist nicht null. Damit ist der minimale Krausspan des NS14
+000176 | Kanals bereits unter dieser Farbaktion nicht invariant. Volle physische
+000177 | SU3 mal SU2 mal D3 Kovarianz folgt daher nicht und ist für diesen Zeugen
+000178 | konkret falsch.
+000179 | 
+000180 | Das beeinträchtigt den mathematischen TP Kanal (6) bis (10) nicht. Es verhindert
+000181 | aber, ihn als unveränderte physische P2 oder P1 Auswahl auszugeben.
+000182 | 
+000183 | 
+000184 | 6. Exakte Konsequenz für den Ursprungstest
+000185 | ------------------------------------------
+000186 | 
+000187 | Bewiesen ist:
+000188 | 
+000189 |   * Der unveränderte Ward30 besitzt die tatsächliche 14 plus 16
+000190 |     Quellsektorzerlegung und die Übergänge (3).
+000191 | 
+000192 |   * Es existiert auf demselben H40 eine positive, sektorbewahrende NS14
+000193 |     Gewichtung mit derselben vollständigen Carrier Marginale Phi.
+000194 | 
+000195 |   * Reine NS Eingänge tragen nur die reduzierte 4 plus 6 Carriergeometrie.
+000196 | 
+000197 |   * Die NS14 Gewichtung ist nicht unter der vollen vorhandenen Farbaktion
+000198 |     abgeschlossen.
+000199 | 
+000200 | Nicht bewiesen ist:

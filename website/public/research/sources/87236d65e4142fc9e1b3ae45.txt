@@ -1,0 +1,55 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/external_candidate_review/check_candidate.py
+Original file SHA-256: bdf6726bea9091133f54a377cce96d6d6a0ce82bfd17c34176382647e7cebda7
+Inclusive original lines: 1-47
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact controls for a scoped external-source candidate review."""
+000002 | import json
+000003 | from fractions import Fraction
+000004 | from pathlib import Path
+000005 | import sympy as s
+000006 | 
+000007 | q = s.symbols('q', positive=True)
+000008 | a, c = q**2 / (1 + q**2), q / (1 + q**2)
+000009 | A = s.diag(a, 1-a)
+000010 | cross = c*s.eye(2)
+000011 | G = A.row_join(cross).col_join(cross.row_join(s.eye(2)-A))
+000012 | X, Z = s.Matrix([[0,1],[1,0]]), s.diag(1,-1)
+000013 | naive = s.kronecker_product(s.eye(2), X)
+000014 | oriented = s.kronecker_product(Z, X)
+000015 | zero = s.zeros(4)
+000016 | 
+000017 | def eq(left, right):
+000018 |     return all(s.cancel(x) == 0 for x in left-right)
+000019 | 
+000020 | expected_defect = s.zeros(4)
+000021 | for i in range(2):
+000022 |     expected_defect[i,i+2] = expected_defect[i+2,i] = 2*c
+000023 | checks = {
+000024 |     'graph_is_projection': eq(G*G,G),
+000025 |     'graph_is_hermitian': G.T == G,
+000026 |     'oriented_conjugation_squares_to_identity': oriented*oriented == s.eye(4),
+000027 |     'oriented_conjugation_is_selfdual': eq(oriented*G*oriented,s.eye(4)-G),
+000028 |     'naive_conjugation_has_exact_nonzero_cross_defect':
+000029 |         eq(naive*G*naive-(s.eye(4)-G),expected_defect) and expected_defect != zero,
+000030 |     'one_face_is_mixed': eq(A*A-A,-c*c*s.eye(2)),
+000031 | }
+000032 | # Full Fourier formula, checked on rational labels without floating rank tests.
+000033 | for alpha in [Fraction(1,4),Fraction(3,4),Fraction(1,3)]:
+000034 |     checks[f'paired_fourier_energies_{alpha}'] = all(
+000035 |         2*(n+alpha) == -2*(-n-1+1-alpha) for n in range(-20,21))
+000036 | lam1, lam2, threshold = Fraction(1,2), Fraction(3,2), Fraction(3,4)
+000037 | checks['diagnostic_highpass_removes_lowest_block'] = (
+000038 |     lam1 < threshold <= lam2 and not lam1**2 >= threshold**2
+000039 |     and lam2**2 >= threshold**2)
+000040 | results = {'checks':checks, 'all_pass':all(checks.values()),
+000041 |     'scope':'Exact controls plus analytic proof; no physical P1 source derivation.',
+000042 |     'primary_purification_result':'Araki 1970/71, Definition 4.4, Lemmas 4.5-4.6'}
+000043 | if not results['all_pass']:
+000044 |     raise RuntimeError(results)
+000045 | Path(__file__).with_name('results.json').write_text(
+000046 |     json.dumps(results,ensure_ascii=False,indent=2)+'\n')
+000047 | print(json.dumps(results,ensure_ascii=False))

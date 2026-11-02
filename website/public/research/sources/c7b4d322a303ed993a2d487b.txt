@@ -1,0 +1,140 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/native-arc-charge-source-interface-20261026/algorithmic_source_probe.py
+Original file SHA-256: d3b0feaef1b73b7a9839bd4173e133bb04a88e731ae94f35861e87fb70264927
+Inclusive original lines: 1-132
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Reconstruct known native TFPT objects against a fixed quantum-information map.
+000003 | 
+000004 | This is a source-comparison probe, not a physical runtime or a new model.
+000005 | All identities below use bounded Gaussian/integer or rational arithmetic.
+000006 | """
+000007 | import hashlib
+000008 | import itertools as it
+000009 | import json
+000010 | import math
+000011 | from fractions import Fraction
+000012 | from pathlib import Path
+000013 | import sys
+000014 | 
+000015 | import numpy as np
+000016 | 
+000017 | [OMITTED: non-scientific conversation or execution metadata]
+000018 | sys.path.insert(0, str(REPO))
+000019 | from tfpt_explorer.process import _code_basis
+000020 | from tfpt_explorer.cartan_source import _roots, _rays
+000021 | 
+000022 | 
+000023 | def need(ok, message):
+000024 |     if not bool(ok):
+000025 |         raise RuntimeError(message)
+000026 | 
+000027 | 
+000028 | def main():
+000029 |     _, supports = _code_basis()
+000030 |     words = list(it.product(range(4), repeat=4))
+000031 |     index = {word: i for i, word in enumerate(words)}
+000032 |     pc24 = np.zeros((256, 256), dtype=np.int64)
+000033 |     for support in supports:
+000034 |         ids = [index[word] for word in support]
+000035 |         pc24[np.ix_(ids, ids)] = 24 // len(support)
+000036 |     ps24 = np.zeros_like(pc24)
+000037 |     orbits = {}
+000038 |     for i, word in enumerate(words):
+000039 |         orbits.setdefault(tuple(sorted(word)), []).append(i)
+000040 |     for ids in orbits.values():
+000041 |         ps24[np.ix_(ids, ids)] = 24 // len(ids)
+000042 | 
+000043 |     # Q = (1/16) sum_{a,b in F2^2} W_ab tensor4, in the ORIGINAL frame.
+000044 |     # W_ab = i^(a.b) X^a Z^b. Its phase disappears in four tensor factors.
+000045 |     # This signed-permutation formula uses int64 only, no complex tolerance.
+000046 |     q16 = np.zeros_like(pc24)
+000047 |     for a, b in it.product(range(4), repeat=2):
+000048 |         for col, word in enumerate(words):
+000049 |             row = index[tuple(x ^ a for x in word)]
+000050 |             parity = sum((b & x).bit_count() for x in word) % 2
+000051 |             q16[row, col] += 1 if parity == 0 else -1
+000052 |     need(np.array_equal(q16.T, q16), 'Pauli average is Hermitian')
+000053 |     need(np.array_equal(q16 @ q16, 16*q16), 'Full Pauli projector')
+000054 |     need(np.array_equal(q16 @ ps24, 16*pc24), 'Literal symmetric Pauli section is native code')
+000055 |     need(np.array_equal(ps24 @ q16, 16*pc24), 'Reverse ordered product agrees')
+000056 |     need(np.trace(q16) == 256, 'Full Pauli fixed rank is 16, not 5')
+000057 |     need(np.trace(pc24) == 120, 'Symmetric code rank is 5')
+000058 |     need(np.trace(ps24) == 840, 'Symmetric fourth tensor rank is 35')
+000059 |     wrong_pc24 = pc24.copy()
+000060 |     wrong_pc24[0, 0] += 1
+000061 |     need(not np.array_equal(q16 @ ps24, 16*wrong_pc24), 'Changed code negative control')
+000062 | 
+000063 |     # A standard external non-Clifford algorithmic gate is NOT declared physical.
+000064 |     # U=diag(1,1,exp(i*pi/4),exp(i*pi/4)); in four slots every code support
+000065 |     # has even first-bit occupation, so phases are exactly 1,i,-1,-i.
+000066 |     # The unchanged source code has literal compression diag(0,0,i,i,i).
+000067 |     nonclifford_compression = []
+000068 |     for support in supports:
+000069 |         real = imag = 0
+000070 |         for word in support:
+000071 |             count = sum((x >> 1) & 1 for x in word)
+000072 |             need(count % 2 == 0, 'Even code occupation')
+000073 |             dr, di = [(1,0),(0,1),(-1,0),(0,-1)][(count//2) % 4]
+000074 |             real += dr
+000075 |             imag += di
+000076 |         nonclifford_compression.append((Fraction(real,len(support)),Fraction(imag,len(support))))
+000077 |     need(nonclifford_compression == [(0,0),(0,0),(0,1),(0,1),(0,1)], 'Fixed non-Clifford control leaks exactly two code directions')
+000078 | 
+000079 |     # Direct erased-register error detection, independently of a dimension match.
+000080 |     # Pi_C (|a><b| on slot s) Pi_C = delta_ab Pi_C / 4.
+000081 |     for slot, a, b in it.product(range(4), range(4), range(4)):
+000082 |         op = np.zeros_like(pc24)
+000083 |         for col, word in enumerate(words):
+000084 |             if word[slot] == b:
+000085 |                 out = list(word)
+000086 |                 out[slot] = a
+000087 |                 op[index[tuple(out)], col] = 1
+000088 |         target = 6*pc24 if a == b else np.zeros_like(pc24)
+000089 |         need(np.array_equal(pc24 @ op @ pc24, target), 'Exact one-register Knill Laflamme identity')
+000090 | 
+000091 |     rays = _rays(_roots())
+000092 |     gram_squared = []
+000093 |     for x, y in it.product(rays, repeat=2):
+000094 |         re = sum(x[2*j]*y[2*j] + x[2*j+1]*y[2*j+1] for j in range(4))
+000095 |         im = sum(x[2*j]*y[2*j+1] - x[2*j+1]*y[2*j] for j in range(4))
+000096 |         gram_squared.append(re*re + im*im)
+000097 |     fp = {}
+000098 |     for t in range(1, 5):
+000099 |         actual = Fraction(sum(g**t for g in gram_squared), 60**2 * 16**t)
+000100 |         haar = Fraction(1, math.comb(t+3, 3))
+000101 |         fp[str(t)] = {'native': str(actual), 'haar': str(haar), 'ratio': str(actual/haar)}
+000102 |         need((actual == haar) == (t <= 3), 'Exact projective design order')
+000103 |     need(fp['4']['native'] == '1/32', 'Fourth native frame potential')
+000104 |     need(fp['4']['ratio'] == '35/32', 'Fourth excess is 35/32')
+000105 |     # Squared HS norm of M4 - Pi_sym4/35 follows from orthogonal projectors.
+000106 |     defect = 5*(Fraction(1,20)-Fraction(1,35))**2 + 30*(Fraction(1,40)-Fraction(1,35))**2
+000107 |     need(defect == Fraction(3,1120), 'Exact fourth-moment defect norm')
+000108 | 
+000109 |     # Equal three-register marginals do NOT imply full-state recoverability.
+000110 |     # For the known pair rho_C, rho_sym: D before = log(7), after = 0.
+000111 |     # These exact symbolic values follow from uniform projector spectra.
+000112 |     output = {
+000113 |         'verdict': 'SOURCE_COMPARISON_EXACT; KNOWN_STRUCTURE_RECONSTRUCTED; NO_PHYSICAL_LAW_DERIVED',
+000114 |         'full_pauli_fixed_rank': 16,
+000115 |         'symmetric_pauli_fixed_rank': 5,
+000116 |         'symmetric_fourth_tensor_rank': 35,
+000117 |         'operator_identity': 'Pi_native = Q_Pauli Pi_sym4 = Pi_sym4 Q_Pauli',
+000118 |         'one_register_erasure': {'matrix_unit_identities': 64, 'all_exact': True, 'meaning': 'Known finite quantum error correction property; no physical noise or recovery operation selected.'},
+000119 |         'projective_frame_potentials': fp,
+000120 |         'fourth_moment_defect_squared_hs_norm': str(defect),
+000121 |         'negative_controls': {'changed_code_rejected': True, 'external_T_tensor4_compression': ['0','0','i','i','i'], 'external_T_leakage_rank': 2, 'physical_permission': 'not claimed; external standard algorithm comparison only'},
+000122 |         'known_pair_compression': {'D_before': 'log(7)', 'D_after_any_proper_marginal': '0', 'global_trace_distance': '6/7', 'implication': 'This marginal map is not sufficient for this pair; not a no-go for other observations.'},
+000123 |         'source_sha256': {p: hashlib.sha256((REPO/p).read_bytes()).hexdigest() for p in ['tfpt_explorer/process.py','tfpt_explorer/cartan_source.py']},
+000124 |         'not_derived': ['simulation ontology','physical source selection','3+1D','native physical 3+2 mark','physical time generator or coupling','Born measurement rule','48*c3^4 or alpha input selection'],
+000125 |     }
+000126 |     target = Path(__file__).with_name('algorithmic_source_results.json')
+000127 |     target.write_text(json.dumps(output, indent=2, sort_keys=True)+'\n')
+000128 |     print(json.dumps(output, indent=2, sort_keys=True))
+000129 | 
+000130 | 
+000131 | if __name__ == '__main__':
+000132 |     main()

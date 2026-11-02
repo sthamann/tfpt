@@ -1,0 +1,138 @@
+TFPT scientific source excerpt
+Original repository path: tfpt_explorer/flavor_path_transport.py
+Original file SHA-256: 82b4fab94138ab3f5122cf40d507e7a4b7c8a5da25393d4f42dcd35259a9de92
+Inclusive original lines: 70-199
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000070 | def integrate_path_transport(x: float = 0.5, orientation: int = 1,
+000071 |                              rtol: float = ODE_RTOL,
+000072 |                              atol: float = ODE_ATOL) -> dict[str, Any]:
+000073 |     """Execute both original-connection paths and an independent full circle.
+000074 | 
+000075 |     P maps E_x to E_(1/x), Q maps it back, so H=QP. The block S merely
+000076 |     changes the second fiber's frame to the P-transported frame. S is not
+000077 |     asserted unitary in the raw Euclidean coordinates.
+000078 |     """
+000079 |     half_arc(0, x, orientation)  # Validate before constructing all paths.
+000080 |     p, pn, _ = _integrate(lambda t: half_arc(t, x, orientation), rtol, atol)
+000081 |     q, qn, _ = _integrate(lambda t: half_arc(t, x, orientation, True), rtol, atol)
+000082 |     center, radius = (x+1/x)/2, (1/x-x)/2
+000083 | 
+000084 |     def circle(t: float) -> tuple[complex, complex]:
+000085 |         phase = np.exp(orientation*2j*np.pi*t)
+000086 |         return center-radius*phase, -radius*orientation*2j*np.pi*phase
+000087 | 
+000088 |     loop, ln, determinant_samples = _integrate(circle, rtol, atol)
+000089 |     determinant_expected = np.array([(1-circle(t)[0]**4)/(1-x**4)
+000090 |                                      for t in np.linspace(0, 1, 257)])
+000091 |     determinant_angles = np.unwrap(np.angle(determinant_samples))
+000092 |     winding = float((determinant_angles[-1]-determinant_angles[0])/(2*np.pi))
+000093 |     h = q @ p
+000094 |     zero, eye = np.zeros((3, 3), complex), np.eye(3, dtype=complex)
+000095 |     raw_t = np.block([[zero, q], [p, zero]])
+000096 |     frame = np.block([[eye, zero], [zero, p]])
+000097 |     based_t = np.linalg.solve(frame, raw_t @ frame)
+000098 |     expected_based_t = np.block([[zero, h], [eye, zero]])
+000099 |     roots = np.exp(2j*np.pi*np.arange(3)/3)
+000100 |     eigenvalues = np.linalg.eigvals(h)
+000101 |     spectrum_error = min(float(np.max(np.abs(eigenvalues-roots[list(order)])))
+000102 |                          for order in permutations(range(3)))
+000103 |     return {
+000104 |         "x": x, "orientation": orientation, "P": p, "Q": q,
+000105 |         "monodromy": h, "independent_loop": loop, "raw_T": raw_t,
+000106 |         "transported_frame": frame, "based_T": based_t,
+000107 |         "eigenvalues": eigenvalues,
+000108 |         "errors": {
+000109 |             "composition_vs_full_circle": float(np.linalg.norm(h-loop)),
+000110 |             "monodromy_cube": float(np.linalg.norm(np.linalg.matrix_power(h, 3)-eye)),
+000111 |             "monodromy_spectrum": spectrum_error,
+000112 |             "based_frame_identity": float(np.linalg.norm(based_t-expected_based_t)),
+000113 |             "path_period_six": float(np.linalg.norm(np.linalg.matrix_power(raw_t, 6)-np.eye(6))),
+000114 |             "determinant_winding": abs(winding-orientation),
+000115 |             "determinant_curve_relative": float(np.max(np.abs(determinant_samples-determinant_expected)
+000116 |                                                         / (1+np.abs(determinant_expected)))),
+000117 |         },
+000118 |         "determinant_character": {
+000119 |             "trace_connection": "tr A(z)=4z³/(z⁴−1)",
+000120 |             "normalized_at_zero": "det Ψ(z)=1−z⁴, Ψ(0)=I",
+000121 |             "normalized_at_path_basepoint": "det PT(x→z)=(1−z⁴)/(1−x⁴)",
+000122 |             "integrated_phase_winding": winding,
+000123 |             "phase_samples": len(determinant_samples),
+000124 |             "largest_sample_phase_increment": float(np.max(np.abs(np.diff(determinant_angles)))),
+000125 |             "scope": "Die Phase auf dem primitiven Punkturkreis hat die P1-Einheitswindung als K1-Klasse. Das identifiziert noch nicht den vollständigen P1-Nahtoperator.",
+000126 |         },
+000127 |         "raw_euclidean_unitarity_defect": float(np.linalg.norm(raw_t.conj().T @ raw_t-np.eye(6))),
+000128 |         "solver": {"method": "DOP853", "rtol": rtol, "atol": atol,
+000129 |                    "rhs_evaluations": [pn, qn, ln]},
+000130 |     }
+000131 | 
+000132 | 
+000133 | def exact_clock_dictionary() -> dict[str, Any]:
+000134 |     """Independent exact v117/v118 matrices; no numerical ODE calibration."""
+000135 |     i = sp.I
+000136 |     m = sp.Matrix([[0, -(1+i)/2, (1-i)/2],
+000137 |                    [-(1+i)/2, -i/2, -sp.Rational(1, 2)],
+000138 |                    [(1-i)/2, -sp.Rational(1, 2), i/2]])
+000139 |     zero, eye = sp.zeros(3), sp.eye(3)
+000140 |     t = zero.row_join(m).col_join(eye.row_join(zero))
+000141 |     j = eye.row_join(eye).col_join(m.row_join(-m))/sp.sqrt(2)
+000142 |     u6 = sp.diag(m, -m)
+000143 |     y, delta = sp.symbols("y delta", real=True)
+000144 |     checks = {
+000145 |         "original_M_unitary": sp.simplify(m.H*m) == eye,
+000146 |         "original_M_cubic": sp.simplify(m**3) == eye,
+000147 |         "J_unitary": sp.simplify(j.H*j) == sp.eye(6),
+000148 |         "T_unitary": sp.simplify(t.H*t) == sp.eye(6),
+000149 |         "T_period_six": sp.simplify(t**6) == sp.eye(6),
+000150 |         "inverse_T_is_original_U6": sp.simplify(j.H*t.inv()*j) == u6,
+000151 |         "linear_sheet_parity": sp.simplify(j.H*t**3*j) == sp.diag(eye, -eye),
+000152 |         "transport_determinant": sp.expand((y*sp.eye(6)-delta*t.inv()).det()-(y**6-delta**6)) == 0,
+000153 |     }
+000154 |     return {"M": m, "T": t, "J": j, "U6": u6, "checks": checks}
+000155 | 
+000156 | 
+000157 | def finite_kernel_comparison(y: float = 2/3, delta: float | None = None,
+000158 |                              epsilon: float = 1e-3) -> dict[str, Any]:
+000159 |     """Full six-dimensional matrix identities, in the exact unitary frame.
+000160 | 
+000161 |     The default delta is the original archive's transport stationary root.
+000162 |     This is not an assertion about a compression of the infinite source.
+000163 |     """
+000164 |     if delta is None:
+000165 |         delta = float(((794-7*np.sqrt(9961))/2187)**(1/6))
+000166 |     if epsilon < 0:
+000167 |         raise ValueError("epsilon must be nonnegative")
+000168 |     exact = exact_clock_dictionary()
+000169 |     t, j, u6 = [np.array(exact[key].evalf(), complex) for key in ("T", "J", "U6")]
+000170 |     d_path = y*np.eye(6)-delta*t.conj().T
+000171 |     d_flavor = y*np.eye(6)-delta*u6
+000172 | 
+000173 |     def kernels(d: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+000174 |         positive = d.conj().T @ d + epsilon**2*np.eye(6)
+000175 |         values, vectors = np.linalg.eigh(positive)
+000176 |         if np.min(values) <= 0:
+000177 |             raise ValueError("Transport kernel is not positive and invertible")
+000178 |         root_inverse = (vectors/np.sqrt(values)) @ vectors.conj().T
+000179 |         return positive, np.linalg.inv(positive), root_inverse
+000180 | 
+000181 |     a_path, green_path, k_path = kernels(d_path)
+000182 |     a_flavor, green_flavor, k_flavor = kernels(d_flavor)
+000183 |     expected_spectrum = np.sort(y*y+delta*delta-2*y*delta*np.cos(np.pi*np.arange(6)/3)+epsilon**2)
+000184 |     return {
+000185 |         "parameters": {"y": float(y), "delta": float(delta), "epsilon": float(epsilon)},
+000186 |         "J": j, "D_path": d_path, "D_flavor": d_flavor,
+000187 |         "positive_path": a_path, "positive_flavor": a_flavor,
+000188 |         "Green_path": green_path, "Green_flavor": green_flavor,
+000189 |         "K_path": k_path, "K_flavor": k_flavor,
+000190 |         "expected_positive_spectrum": expected_spectrum,
+000191 |         "errors": {
+000192 |             "D_conjugacy": float(np.linalg.norm(j.conj().T @ d_path @ j-d_flavor)),
+000193 |             "positive_conjugacy": float(np.linalg.norm(j.conj().T @ a_path @ j-a_flavor)),
+000194 |             "Green_conjugacy": float(np.linalg.norm(j.conj().T @ green_path @ j-green_flavor)),
+000195 |             "inverse_square_root_conjugacy": float(np.linalg.norm(j.conj().T @ k_path @ j-k_flavor)),
+000196 |             "cyclotomic_determinant": float(abs(np.linalg.det(d_path)-(y**6-delta**6))),
+000197 |             "positive_spectrum": float(np.max(np.abs(np.linalg.eigvalsh(a_path)-expected_spectrum))),
+000198 |         },
+000199 |     }

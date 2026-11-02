@@ -177,7 +177,7 @@ export function IntroVideo() {
                 type="button"
                 onClick={() => seek(c.t)}
                 className={cn(
-                  "inline-flex items-center gap-2 rounded-full border border-slate-300/50 bg-slate-100/60 px-3 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:border-blue-400/40 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/40",
+                  "inline-flex min-h-11 items-center gap-2 rounded-full border border-slate-300/50 bg-slate-100/60 px-3 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:border-blue-400/40 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/40",
                 )}
               >
                 <span className="font-mono text-blue-800">{fmt(c.t)}</span>
@@ -189,7 +189,10 @@ export function IntroVideo() {
           <figcaption className="mt-3 text-center text-xs text-slate-600">
             English captions burned into the picture (silent track); a selectable
             subtitle track and the full transcript below are generated from the
-            same source.
+            same source. This film records an earlier project snapshot; its module
+            count (1,012) describes the time of recording. See{" "}
+            <a href="/results" className="text-blue-700 underline underline-offset-4">Results</a>{" "}
+            for the dated current inventory.
           </figcaption>
         </figure>
 

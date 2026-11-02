@@ -1,0 +1,115 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/native-arc-charge-source-interface-20261026/check_projector_state_rigidity.py
+Original file SHA-256: 8439a30ad767f138f9269aa2bc6beca1f2d3d7088e92862bcd76fbf40d5a7c16
+Inclusive original lines: 1-107
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Independent finite CAR checks of the analytic projector-state theorem."""
+000002 | import argparse
+000003 | import itertools
+000004 | import json
+000005 | from pathlib import Path
+000006 | import sympy as S
+000007 | 
+000008 | 
+000009 | def require(ok, message):
+000010 |     if not ok:
+000011 |         raise RuntimeError(message)
+000012 | 
+000013 | 
+000014 | def equal(a, b, message):
+000015 |     if isinstance(a, S.MatrixBase):
+000016 |         require(all(S.simplify(x) == 0 for x in a-b), message)
+000017 |     else:
+000018 |         require(S.simplify(a-b) == 0, message)
+000019 | 
+000020 | 
+000021 | def run():
+000022 |     r = S.symbols('r', positive=True)
+000023 |     I = S.eye(4)
+000024 |     # Basis |00>,|10>,|01>,|11>. a1 carries the occupation0 parity.
+000025 |     a0 = S.zeros(4); a0[0, 1] = 1; a0[2, 3] = 1
+000026 |     a1 = S.zeros(4); a1[0, 2] = 1; a1[1, 3] = -1
+000027 |     a = [a0, a1]
+000028 |     for i, j in itertools.product(range(2), repeat=2):
+000029 |         equal(a[i]*a[j]+a[j]*a[i], S.zeros(4), 'annihilator CAR')
+000030 |         equal(a[i]*a[j].T+a[j].T*a[i], I if i == j else S.zeros(4), 'star CAR')
+000031 |     v = S.Matrix([0, 1, r, 0])/S.sqrt(1+r*r)
+000032 |     rho = S.simplify(v*v.T)
+000033 |     def cov(state):
+000034 |         return S.Matrix(2, 2, lambda i, j:S.simplify(S.trace(state*a[i].T*a[j])))
+000035 |     P = S.Matrix([[1, r], [r, r*r]])/(1+r*r)
+000036 |     equal(cov(rho), P, 'actual two-face covariance')
+000037 |     equal(P*P, P, 'full projector')
+000038 |     p = r*r/(1+r*r)
+000039 |     x = r/(1+r*r)
+000040 |     equal(x*x, p*(1-p), 'maximal coherence')
+000041 |     n0, n1 = a0.T*a0, a1.T*a1
+000042 |     deph = S.diag(0, 1-p, p, 0)
+000043 |     prod = S.diag(p*(1-p), (1-p)**2, p**2, p*(1-p))
+000044 |     for state in [rho, deph, prod]:
+000045 |         equal(S.trace(state), 1, 'normalized states')
+000046 |         equal(S.trace(state*n0), 1-p, 'left occupation')
+000047 |         equal(S.trace(state*n1), p, 'right occupation')
+000048 |     equal(cov(deph), cov(prod), 'same mixed full two-point data')
+000049 |     equal(S.trace(deph*n0*n1), 0, 'dephased four point')
+000050 |     equal(S.trace(prod*n0*n1), p*(1-p), 'product four point')
+000051 |     equal(S.trace(rho*n0*n1), P.det(), 'pure four point Wick')
+000052 |     filled = (a0+r*a1)/S.sqrt(1+r*r)
+000053 |     empty = (-r*a0+a1)/S.sqrt(1+r*r)
+000054 |     Q = S.simplify(empty.T*empty+filled*filled.T)
+000055 |     equal(Q*v, S.zeros(4, 1), 'unique target zero vector')
+000056 |     require(Q.eigenvals() == {S.Integer(0):1, S.Integer(1):2, S.Integer(2):1}, 'counter spectrum')
+000057 |     require((Q-(I-rho)).eigenvals() == {S.Integer(0):3, S.Integer(1):1}, 'gap operator inequality')
+000058 |     for state in [rho, deph, prod]:
+000059 |         C = cov(state)
+000060 |         delta = S.trace((S.eye(2)-P)*C)+S.trace(P*(S.eye(2)-C))
+000061 |         equal(S.trace(state*Q), delta, 'delta from two-point data alone')
+000062 |     t = S.symbols('t', real=True)
+000063 |     Ct = S.Matrix([[1-p, t*x], [t*x, p]])
+000064 |     delta = S.simplify(S.trace((S.eye(2)-P)*Ct)+S.trace(P*(S.eye(2)-Ct)))
+000065 |     equal(delta, 4*p*(1-p)*(1-t), 'coherence error certificate')
+000066 |     # Exact noncommutative word control in the projected particle/hole basis.
+000067 |     # Compare matrix Wick recursion, without assuming it in the source matrix.
+000068 |     ops = [a0, a1, a0.T, a1.T]
+000069 |     def expect(mat):
+000070 |         return S.simplify((v.T*mat*v)[0])
+000071 |     def wick(word):
+000072 |         if not word:
+000073 |             return S.Integer(1)
+000074 |         if len(word) % 2:
+000075 |             return S.Integer(0)
+000076 |         return S.Add(*(S.Integer(-1)**(j-1)*expect(ops[word[0]]*ops[word[j]])*
+000077 |                        wick(word[1:j]+word[j+1:]) for j in range(1, len(word))))
+000078 |     checked = 0
+000079 |     for word in itertools.product(range(4), repeat=4):
+000080 |         mat = I
+000081 |         for j in word:
+000082 |             mat = mat*ops[j]
+000083 |         equal(expect(mat), wick(word), 'all ordered four-field words')
+000084 |         checked += 1
+000085 |     require(cov(deph) != P, 'missing cross coherence detected')
+000086 |     return dict(claim='UR.NATIVE.ARCCHARGE.PROJECTOR-STATE.01',
+000087 |         verdict='PASS_EXACT_SCOPED_PROJECTOR_STATE_AND_MARGINAL_CONTROLS',
+000088 |         actual_annulus_graph_projector=True, ordered_four_field_words_checked=checked,
+000089 |         arbitrary_positive_state_analytic_theorem='PROJECTOR-STATE-RIGIDITY.txt Section2',
+000090 |         additional_gaussian_premise_needed_for_projector_uniqueness=False,
+000091 |         actual_lowest_ns_mode=dict(p=str(S.N(1/(1+S.exp(S.pi)),24)),
+000092 |                                   x=str(S.N(1/(2*S.cosh(S.pi/2)),24))),
+000093 |         same_marginal_controls_have_different_fourpoint=True,
+000094 |         excitation_counter_spectrum={'0':1,'1':2,'2':1},
+000095 |         coherence_defect=str(S.factor(delta)),
+000096 |         infinite_source_identity_verified_by_finite_samples=False,
+000097 |         primitive_p1_joint_covariance_derived=False, promotion=False)
+000098 | 
+000099 | 
+000100 | if __name__ == '__main__':
+000101 |     ap = argparse.ArgumentParser()
+000102 |     ap.add_argument('--out', type=Path)
+000103 |     args = ap.parse_args()
+000104 |     result = json.dumps(run(), indent=2, ensure_ascii=False)+'\n'
+000105 |     if args.out:
+000106 |         args.out.write_text(result)
+000107 |     print(result, end='')

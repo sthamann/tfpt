@@ -1,0 +1,121 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/QUANTUM-OCTIC-INDEPENDENT-REVIEW.txt
+Original file SHA-256: 98e65d5a9210a4dd6e193b4a56f4e2fe89a5764c372c5c77aefa600db94a125c
+Inclusive original lines: 54-166
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000054 | 2. Unabhängiger Halbroot Test
+000055 | -----------------------------
+000056 | 
+000057 | Ich habe den Zustand aus den 17 gespeicherten rationalen Koeffizienten neu
+000058 | aufgebaut und nicht den bereits gespeicherten Screeningwert wiederverwendet.
+000059 | Für die halbzahlige E8 Wurzel
+000060 | 
+000061 |   alpha = (1/2,1/2,1/2,1/2,1/2,1/2,1/2,1/2)
+000062 | 
+000063 | wurde der tatsächliche Lattice VOA Nullmodenoperator eingesetzt. Seine beiden
+000064 | Faktoren haben die gegenläufigen Vorzeichen
+000065 | 
+000066 |   h_j(-n) -> h_j(-n) - alpha_j w^n,
+000067 |   exp(sum_(n>=1) alpha.h(-n) w^n/n).
+000068 | 
+000069 | Das Ergebnis ist als vollständiges Polynom in allen h_j(-n) exakt null:
+000070 | 
+000071 |   halfroot_screen_zero = True,
+000072 |   Anzahl verbleibender Monome = 0.
+000073 | 
+000074 | Damit ist insbesondere ausgeschlossen, dass der Ganzroot Test nur die
+000075 | D8 Koordinatenuntergruppe gesehen hat. Die Vorzeichenkonvention stimmt mit
+000076 | Zeilen 26 bis 31 des Probes überein: Dort ist die getestete Wurzel
+000077 | alpha=e0-e1, die Oszillatorverschiebung ist -alpha und der exponentielle
+000078 | Erzeugungsfaktor trägt +alpha. Ein Wurzelkokykel multipliziert die gesamte
+000079 | Ladung alpha nur mit einem von null verschiedenen Skalar und kann das
+000080 | Verschwinden nicht ändern.
+000081 | 
+000082 | 3. Virasoro Bedingung und Norm
+000083 | ------------------------------
+000084 | 
+000085 | Die in Zeilen 32 bis 35 benutzte Differentialwirkung ist die korrekte
+000086 | Heisenbergwirkung
+000087 | 
+000088 |   [L_k,h_j(-r)] = r h_j(k-r)
+000089 | 
+000090 | auf dem ladungsfreien Fockraum. Der zweite Ableitungsterm hat korrekt den
+000091 | Faktor m(k-m)/2. Mit den gespeicherten Koeffizienten erhielt ich unabhängig
+000092 | 
+000093 |   L1 W8 = 0,
+000094 |   L2 W8 = 0.
+000095 | 
+000096 | Für einen homogenen Zustand genügt das: Die positiven Virasoromoden werden
+000097 | von L1 und L2 erzeugt, und Moden oberhalb des Gewichts wirken ohnehin null.
+000098 | Der Zustand ist daher Virasoro primär, nicht nur quasiprimär.
+000099 | 
+000100 | Die Normrechnung verwendet für jedes Besetzungsmonom exakt
+000101 | 
+000102 |   || product_(n,j) h_j(-n)^(a_nj) Omega ||^2
+000103 |     = product_(n,j) n^(a_nj) a_nj!.
+000104 | 
+000105 | Alle Koeffizienten sind reell, sodass das im Code stehende c*c hier der
+000106 | Hilbertraumkonjugation entspricht. Die unabhängige Auswertung reproduziert
+000107 | 
+000108 |   ||W8||^2 = 65028096000/43.
+000109 | 
+000110 | Es gibt an dieser Stelle keinen versteckten Wechsel der CAR Polarisation.
+000111 | Für die ursprüngliche positive Polarisation
+000112 | 
+000113 |   x_(2k)=z_k/sqrt(2),
+000114 |   x_(2k+1)=-i z_k/sqrt(2)
+000115 | 
+000116 | habe ich zusätzlich als vollständige Polynome geprüft:
+000117 | 
+000118 |   sum_j x_j^2 = 0,
+000119 |   p8(x) = (15/2) I8(z).
+000120 | 
+000121 | Damit haben sowohl der radiale Subtraktionsterm als auch alle Q_ab Produkte
+000122 | keinen rein positiven Anteil. Nur H8 trägt zur Überlappung mit F8hat bei,
+000123 | und wegen
+000124 | 
+000125 |   F8hat = I8/(96 sqrt(140))
+000126 | 
+000127 | gilt
+000128 | 
+000129 |   <F8hat,W8> = 720 sqrt(140),
+000130 |   |<F8hat,W8>|^2/(||F8hat||^2 ||W8||^2) = 43/896.
+000131 | 
+000132 | Der gespeicherte Wert ist somit keine bloß eingesetzte Zahl, sondern folgt
+000133 | aus der originalen isotropen Polarisation und der Rootmoment Identität.
+000134 | 
+000135 | 4. Was global folgt
+000136 | -------------------
+000137 | 
+000138 | Der Zustand liegt im neutralen Heisenbergteil des bereits verwendeten
+000139 | E8_1 VOA. Die Root Screenings zeigen zusammen mit den Cartan Nullmoden
+000140 | 
+000141 |   x(0) W8 = 0   für jedes x in e8.
+000142 | 
+000143 | Da die kompakte E8 Gruppe zusammenhängend ist, ist W8 unter ihrer ganzen
+000144 | inneren Wirkung invariant. Insbesondere ist es unter dem vorhandenen
+000145 | 
+000146 |   K = (Spin(10) x SU(4))/mu4
+000147 | 
+000148 | invariant. Für jedes K Hauptbündel, dessen Übergänge durch genau diese
+000149 | E8_1 Automorphismen wirken, ist daher die Linie
+000150 | 
+000151 |   P_K x_K C W8
+000152 | 
+000153 | kanonisch trivial. Eine lokale Cartanwahl, ein globaler Cartanvierer oder
+000154 | eine Reduktion auf seinen endlichen Normalisator ist dafür nicht nötig. Auch
+000155 | eine K Verbindung wirkt auf dieser Linie trivial. In diesem klaren internen
+000156 | Sinn ist Y(W8,z) ein global assoziiertes skalares Quellenfeld.
+000157 | 
+000158 | "Skalar" bezeichnet hier die interne K Darstellung. Konform transformiert
+000159 | Y(W8,z) als Primärfeld vom Gewicht 8. Auf einer gekrümmten oder nur lokal
+000160 | koordinierten Basis braucht es daher weiterhin die passende konforme
+000161 | Gewichtslinie und den vorhandenen State Field Transport. Die Nullmodenrechnung
+000162 | allein macht daraus keine gewöhnliche skalare Funktion auf P1 und keine
+000163 | physikalisch ausgewählte Kopplung.
+000164 | 
+000165 | 5. Verhältnis zum vorhandenen CAR Operator und zu S8
+000166 | ----------------------------------------------------

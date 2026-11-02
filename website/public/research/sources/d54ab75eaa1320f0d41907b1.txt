@@ -1,0 +1,93 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/joint-native-algebra-selection-20261016/operator_audit.md
+Original file SHA-256: f1849345563b8d81cd3861a5a5eaa96f1355ff7d5d55bdbc00e73ab90b7b64e5
+Inclusive original lines: 1-85
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | # Native operator audit: one actual 4/5/20 chain, its clocks, and its remaining choices
+000002 | 
+000003 | **Verdict.** There is a precise shared object, but it is representation-theoretic rather than a single clock:
+000004 | 
+000005 | \[
+000006 | H_8\xrightarrow{\text{Construction A}}(E_8,J)
+000007 | \longrightarrow G_{31}\curvearrowright V_4
+000008 | \longrightarrow V_5=(\operatorname{Sym}^4V_4)^{P_{64}}
+000009 | \longrightarrow V_{20}=V_5\otimes\overline {V_4}.
+000010 | \]
+000011 | 
+000012 | All arrows above use existing constructors.  The audit corrects one important typing error: the fixed space of `P64` in the **full** tensor power `V4^tensor4` has dimension **16**; the dimension-five carrier is the fixed space inside **`Sym^4(V4)`**.  The actual sparse code lies in that symmetric subspace and is pointwise fixed by `P64`.
+000013 | 
+000014 | The chain jointly forces the block algebra `M4(C) direct-sum M5(C) direct-sum M20(C)`, its commutant `C^3`, the erasure isometry, a canonical orbit of fifteen `2+3` response splittings, and a sharply bounded normalizer.  The physical rank-two mark `P2` is **not** a member of that fifteen-projector orbit, so the orbit does not derive or explain the actual marked `3+2` split.  It also does not select the marked order-four `R`.  The carrier-five/Galois structure is stronger: the six literal copies left by the point mark form one orbit under the already marked stabilizer, hence one equivalence class rather than six independent physical choices.
+000015 | 
+000016 | ## 1. Actual constructors and the corrected Pauli statement
+000017 | 
+000018 | `P64=mu4*P2` is constructed as 64 exact `4 by 4` matrices in `quartic_selection.py:49-61`.  The symmetric-power characters are computed by Newton recursion at lines 64-75 and averaged at lines 153-190.  The exact result is
+000019 | 
+000020 | \[
+000021 | \dim (\operatorname{Sym}^dV_4)^{P_{64}}=(1,0,0,0,5),\qquad 0\le d\le4.
+000022 | \]
+000023 | 
+000024 | Thus degree four is the first nonconstant symmetric invariant degree and has dimension five.  By contrast,
+000025 | 
+000026 | \[
+000027 | \dim (V_4^{\otimes4})^{P_{64}}
+000028 | =\frac1{64}\sum_{p\in P_{64}}\operatorname{tr}(p)^4=16.
+000029 | \]
+000030 | 
+000031 | The actual five sparse vectors are the five permutation-orbit sums in `process.py:242-258`.  The checker verifies directly, with exact monomial phases, that every one of the 64 Paulis fixes all five vectors and that every support is closed under all four tensor-slot permutations.  No five-dimensional subspace was chosen from the 16-dimensional full-tensor fixed space after the fact.
+000032 | 
+000033 | The same existing process applies the 60 native reflections in four tensor slots and reduces them to fifteen matrices (`process.py:336-380`).  These are the standard five-dimensional `S6` transpositions.  In group terms, the exact native structure calculation finds `|G31|=46080`, its central `mu4`, the normal 64-subgroup, and
+000034 | 
+000035 | \[
+000036 | G_{31}/P_{64}\cong\operatorname{Sp}_4(2)\cong S_6
+000037 | \]
+000038 | 
+000039 | in `v634_st31_structure.py:238-278,561-673`.  The compiler elements satisfy `c=J sigma`, `ord(c)=12`, `sigma=c^4`, `J=c^9` at lines 724-737.
+000040 | 
+000041 | ### The native `3+2` structure is an orbit, not a unique split
+000042 | 
+000043 | The original process enumerates the fifteen perfect matchings of six labels and sets
+000044 | 
+000045 | \[
+000046 | \tau_m=(ab)(cd)(ef),\quad P_m=(I+\rho_5(\tau_m))/2,
+000047 | \quad Y_m=(5P_m-2I)/6
+000048 | \]
+000049 | 
+000050 | (`process.py:384-393,698-722`).  A fixed-point-free involution has trace `-1` on the standard `S6` module, so its multiplicities are `+1^2,-1^3`; hence every `P_m` has rank two and every `Y_m` has the claimed `2+3` spectrum.  The fifteen matchings form one canonical conjugacy orbit.  This is a positive intrinsic `3+2` family.  It does not mark one member as physical; `process.py:721` states that selection boundary explicitly.
+000051 | 
+000052 | A double transposition also yields a `3+2` decomposition, but with `+1^3,-1^2`, so `(I+tau)/2` has rank three.  The original response constructor singles out the perfect-matching class, not every involution with the same unordered dimensions.  The native quotient also carries the actual fifteen nonidentity Pauli labels.  The perfect matchings are its companion fifteen-object `S6` orbit (the classical duad/syntheme or outer-automorphism correspondence once the existing `Sp4(2)=S6` identification is fixed).  This is a real Pauli/response correspondence of families.
+000053 | 
+000054 | It is **not**, however, the actual physical mark.  The checker compares
+000055 | 
+000056 | \[
+000057 | P_2=(6Y_5+2I)/5
+000058 | \]
+000059 | 
+000060 | exactly with all fifteen `Q_t=(I+rho5(tau_t))/2`; all fifteen equalities are false.  There is also a basis-free proof.  `P2` commutes with the color subgroup `S3_(234)`.  If `P2=Q_t`, then `rho5(tau_t)=2P2-I` would commute with that subgroup.  Faithfulness of the standard `S6` representation would force the fixed-point-free involution `tau_t` into
+000061 | 
+000062 | \[
+000063 | \operatorname{Cent}_{S_6}(S_{3,(234)})=S_{3,(015)}.
+000064 | \]
+000065 | 
+000066 | That centralizer has order six and contains no fixed-point-free involution: its involutions move only two of the complementary labels.  Therefore the canonical fifteen-projector family supplies possible native `2+3` response planes, but it cannot be used as the origin of the already marked physical `P2`.  The common rank is only a shared dimension.
+000067 | 
+000068 | ## 2. Actual erasure map and the 20-dimensional carrier
+000069 | 
+000070 | The code supports in `process.py:242-258` give, without a basis choice beyond the stored code basis, the sparse Schmidt isometry
+000071 | 
+000072 | \[
+000073 | W:V_5\otimes\overline V_4\longrightarrow V_4^{\otimes3},
+000074 | \quad W^*W=I_{20}.
+000075 | \]
+000076 | 
+000077 | Its explicit row/column constructor is `hyper_common_reflection_check.py:67-77`; the actual native test is at lines 174-181.  For the existing marked color triangle, native ray IDs `(1,21,32)` compress to the logical transpositions `(23),(24),(34)` and satisfy exactly
+000078 | 
+000079 | \[
+000080 | r_g^{\otimes3}W=W\bigl(C_g\otimes\overline{r_g}\bigr)
+000081 | \]
+000082 | 
+000083 | for all three generating reflections (`hyper_mark_compatible_search.py:118-171`).  The associated erasure preparation is
+000084 | 
+000085 | \[

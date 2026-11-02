@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/check_native_spin5_functor.py
+Original file SHA-256: 86911d6e7634592fe9e61d232535224e9b8148308433a05a8ccf983e5a110fa2
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact native Sp4 to Spin5 functor and basis-independent Hodge Kraus space."""
+000003 | 
+000004 | from __future__ import annotations
+000005 | 
+000006 | from itertools import combinations, combinations_with_replacement, product
+000007 | import hashlib
+000008 | import json
+000009 | from pathlib import Path
+000010 | 
+000011 | import sympy as sp
+000012 | 
+000013 | 
+000014 | [OMITTED: non-scientific conversation or execution metadata]
+000015 | V783_PIN = "8f4851634b83f61671b04f3a6211059c40758d21caaf1f779302c799e1e9d6c4"
+000016 | 
+000017 | 
+000018 | def require(value: bool, label: str, checks: list[str]) -> None:
+000019 |     if not bool(value):
+000020 |         raise AssertionError(label)
+000021 |     checks.append(label)
+000022 | 
+000023 | 
+000024 | def is_zero(matrix: sp.Matrix) -> bool:
+000025 |     return sp.simplify(matrix) == sp.zeros(*matrix.shape)
+000026 | 
+000027 | 
+000028 | def exterior_action(matrix: sp.Matrix, pairs: list[tuple[int, int]]) -> sp.Matrix:
+000029 |     return sp.Matrix.hstack(*[
+000030 |         sp.Matrix([
+000031 |             matrix[i, a] * matrix[j, b] - matrix[j, a] * matrix[i, b]
+000032 |             for i, j in pairs
+000033 |         ])
+000034 |         for a, b in pairs
+000035 |     ])
+000036 | 
+000037 | 
+000038 | def exterior_lie_action(matrix: sp.Matrix, dimension: int,
+000039 |                         pairs: list[tuple[int, int]]) -> sp.Matrix:
+000040 |     result = sp.zeros(len(pairs))
+000041 |     for column, (a, b) in enumerate(pairs):
+000042 |         for i in range(dimension):
+000043 |             coefficient = matrix[i, a]
+000044 |             if coefficient and i != b:
+000045 |                 pair = tuple(sorted((i, b)))
+000046 |                 sign = 1 if i < b else -1
+000047 |                 result[pairs.index(pair), column] += sign * coefficient
+000048 |             coefficient = matrix[i, b]
+000049 |             if coefficient and i != a:
+000050 |                 pair = tuple(sorted((a, i)))
+000051 |                 sign = 1 if a < i else -1
+000052 |                 result[pairs.index(pair), column] += sign * coefficient
+000053 |     return result
+000054 | 
+000055 | 
+000056 | def symmetric_action(matrix: sp.Matrix,
+000057 |                      pairs: list[tuple[int, int]]) -> sp.Matrix:
+000058 |     columns = []
+000059 |     for a, b in pairs:
+000060 |         tensor = sp.zeros(matrix.rows)
+000061 |         tensor[a, b] = 1
+000062 |         tensor[b, a] = 1
+000063 |         image = matrix * tensor * matrix.T
+000064 |         columns.append(sp.Matrix([image[i, j] for i, j in pairs]))
+000065 |     return sp.Matrix.hstack(*columns)
+000066 | 
+000067 | 
+000068 | def symmetric_lie_action(matrix: sp.Matrix,
+000069 |                          basis: list[sp.Matrix],
+000070 |                          pairs: list[tuple[int, int]]) -> sp.Matrix:
+000071 |     return sp.Matrix.hstack(*[
+000072 |         sp.Matrix([(matrix * tensor + tensor * matrix.T)[i, j]
+000073 |                    for i, j in pairs])
+000074 |         for tensor in basis
+000075 |     ])
+000076 | 
+000077 | 
+000078 | def permutation(images: list[int]) -> sp.Matrix:
+000079 |     result = sp.zeros(len(images))
+000080 |     for source, target in enumerate(images):
+000081 |         result[target, source] = 1
+000082 |     return result
+000083 | 
+000084 | 
+000085 | def encode(matrix: sp.Matrix) -> list[list[str]]:
+000086 |     return [[str(sp.simplify(value)) for value in row] for row in matrix.tolist()]
+000087 | 
+000088 | 
+000089 | def main() -> None:
+000090 |     checks: list[str] = []
+000091 |     source = ROOT / "verification/v783_two_qubit_clifford.py"
+000092 |     require(hashlib.sha256(source.read_bytes()).hexdigest() == V783_PIN,
+000093 |             "v783 source pin", checks)
+000094 | 
+000095 |     ii = sp.I
+000096 |     sqrt2 = sp.sqrt(2)
+000097 |     identity2 = sp.eye(2)
+000098 |     identity4 = sp.eye(4)
+000099 |     H = sp.Matrix([[1, 1], [1, -1]]) / sqrt2
+000100 |     S = sp.diag(1, ii)
+000101 |     Y = sp.Matrix([[0, -ii], [ii, 0]])
+000102 |     Z = sp.diag(1, -1)
+000103 |     CNOT = sp.Matrix([
+000104 |         [1, 0, 0, 0], [0, 1, 0, 0],
+000105 |         [0, 0, 0, 1], [0, 0, 1, 0],
+000106 |     ])
+000107 |     c_native = sp.simplify(
+000108 |         -ii * sp.kronecker_product(identity2, H) * CNOT *
+000109 |         sp.kronecker_product(S, identity2) *
+000110 |         sp.kronecker_product(H, identity2)
+000111 |     )
+000112 |     g_native = sp.simplify(
+000113 |         sp.kronecker_product(Y, Z) * CNOT *
+000114 |         sp.kronecker_product(identity2, S) *
+000115 |         sp.kronecker_product(S, identity2)
+000116 |     )
+000117 |     omega = sp.Matrix([
+000118 |         [0, 1, 0, 0], [-1, 0, 0, 0],
+000119 |         [0, 0, 0, 1], [0, 0, -1, 0],
+000120 |     ])
+000121 |     require(c_native.T * omega * c_native == omega and
+000122 |             g_native.T * omega * g_native == ii * omega,
+000123 |             "native F20 is conformal symplectic with multipliers one and i", checks)
+000124 | 
+000125 |     pairs4 = list(combinations(range(4), 2))
+000126 |     pairs5 = list(combinations(range(5), 2))
+000127 |     symmetric_pairs = list(combinations_with_replacement(range(4), 2))
+000128 | 
+000129 |     # W is the primitive complement to the inverse symplectic bivector in
+000130 |     # Lambda2(V). The columns are Hermitian orthonormal.
+000131 |     primitive_basis = sp.Matrix.hstack(
+000132 |         sp.Matrix([1/sqrt2, 0, 0, 0, 0, -1/sqrt2]),
+000133 |         sp.eye(6)[:, 1], sp.eye(6)[:, 2],
+000134 |         sp.eye(6)[:, 3], sp.eye(6)[:, 4],
+000135 |     )
+000136 |     primitive_left_inverse = primitive_basis.conjugate().T
+000137 |     wedge_pairing6 = sp.zeros(6)
+000138 |     wedge_pairing6[0, 5] = wedge_pairing6[5, 0] = 1
+000139 |     wedge_pairing6[1, 4] = wedge_pairing6[4, 1] = -1
+000140 |     wedge_pairing6[2, 3] = wedge_pairing6[3, 2] = 1
+000141 |     q5 = sp.simplify(primitive_basis.T * wedge_pairing6 * primitive_basis)
+000142 |     require(q5.T == q5 and q5.conjugate().T * q5 == sp.eye(5) and q5**2 == sp.eye(5),
+000143 |             "primitive W has compatible unitary symmetric form", checks)
+000144 | 
+000145 |     # chi(C)=1, chi(G)=i. The chi^-1 twist makes the primitive five orthogonal.
+000146 |     w_c = sp.simplify(primitive_left_inverse * exterior_action(c_native, pairs4) *
+000147 |                       primitive_basis)
+000148 |     w_g = sp.simplify(-ii * primitive_left_inverse *
+000149 |                       exterior_action(g_native, pairs4) * primitive_basis)
+000150 |     require(w_c.conjugate().T * w_c == sp.eye(5) and
+000151 |             w_g.conjugate().T * w_g == sp.eye(5),
+000152 |             "W5 F20 action is Hermitian unitary", checks)
+000153 |     require(w_c.T * q5 * w_c == q5 and w_g.T * q5 * w_g == q5,
+000154 |             "W5 F20 action preserves q", checks)
+000155 |     require(is_zero(q5 * w_c.conjugate() - w_c * q5) and
+000156 |             is_zero(q5 * w_g.conjugate() - w_g * q5),
+000157 |             "W5 action preserves the canonical real form j equals q conjugation", checks)
+000158 | 
+000159 |     p_c = permutation([(j + 1) % 5 for j in range(5)])
+000160 |     p_g = permutation([(2 * j) % 5 for j in range(5)])
+000161 |     sign_permutation_g = -p_g
+000162 |     character_rows = []
+000163 |     for b, a in product(range(4), range(5)):
+000164 |         native_trace = sp.simplify(sp.trace(w_c**a * w_g**b))
+000165 |         slot_trace = sp.trace(p_c**a * sign_permutation_g**b)
+000166 |         require(native_trace == slot_trace,
+000167 |                 f"W5 equals sign tensor Perm5 character a={a} b={b}", checks)
+000168 |         character_rows.append({"a": a, "b": b, "trace": str(native_trace)})
+000169 | 
+000170 |     # The slot chart itself is not unique under F20 because sign*Perm5=1+4.
+000171 |     variables5 = sp.symbols("l0:25")
+000172 |     slot_map = sp.Matrix(5, 5, variables5)
+000173 |     equations5 = list(slot_map * w_c - p_c * slot_map)
+000174 |     equations5 += list(slot_map * w_g - sign_permutation_g * slot_map)
+000175 |     coefficient5, _ = sp.linear_eq_to_matrix(equations5, variables5)
+000176 |     require(25 - coefficient5.rank() == 2,
+000177 |             "F20 slot intertwiner space has dimension two", checks)
+000178 | 
+000179 |     # Canonical Spin5 map. For a symmetric tensor S, A=S Omega lies in sp4.
+000180 |     # Let L_A be its action on W. The bivector corresponding to L_A is L_A q.
+000181 |     symmetric_basis = []
+000182 |     for a, b in symmetric_pairs:
+000183 |         tensor = sp.zeros(4)
+000184 |         tensor[a, b] = 1
+000185 |         tensor[b, a] = 1
+000186 |         symmetric_basis.append(tensor)
+000187 |     spin5_columns = []
+000188 |     source_lie_actions = []
+000189 |     target_lie_actions = []
+000190 |     for tensor in symmetric_basis:
+000191 |         lie_element = tensor * omega
+000192 |         lambda2_lie = exterior_lie_action(lie_element, 4, pairs4)
+000193 |         w_lie = sp.simplify(primitive_left_inverse * lambda2_lie * primitive_basis)
+000194 |         require(is_zero(w_lie.T * q5 + q5 * w_lie),
+000195 |                 "induced W endomorphism lies in so5", checks)
+000196 |         bivector = sp.simplify(w_lie * q5)
+000197 |         require(bivector.T == -bivector,
+000198 |                 "so5 endomorphism raises to an alternating bivector", checks)
+000199 |         spin5_columns.append(sp.Matrix([bivector[i, j] for i, j in pairs5]))
+000200 |         source_lie_actions.append(

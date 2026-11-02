@@ -73,7 +73,7 @@ const howToJsonLd = {
       position: 3,
       name: "What comes out",
       url: `${SITE_URL}/tour#step-outputs`,
-      text: "α⁻¹, mixings, and 27 frozen predictions.",
+      text: "α⁻¹, mixings, 16 main values, two assigned textures and two conditional bands.",
     },
     {
       "@type": "HowToStep",

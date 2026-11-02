@@ -8,7 +8,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 const CLAIMS = [
   "TFPT is a discrete compiler with two inputs: the seam constant c₃ = 1/(8π) and the five-slot carrier g_car = 5. Nothing else is inserted by hand. (The value of c₃ is now explained — not derived — by the exact index-KMS identity I·β·c₃ = 4·2π·1/(8π) = 1 with a c₃-free Jones index; c₃ stays the axiom, v813.)",
   "The carrier gives D₅, the family geometry gives A₃, and the μ₄ glue closes E₈ = (D₅ ⊕ A₃) + μ₄ as a lattice theorem — 240 = 16·5·3, 248 = 240 + 8 are carrier traces.",
-  "α⁻¹ = 137.0359992168 is the unique root of a parameter-free cubic (existence + uniqueness proved), and the flavor matrix, masses and θ₁₂ = 1/3 − φ₀/2 follow from one φ₀-ladder.",
+  "α⁻¹ = 137.0359992168 is the unique root of a parameter-free self-consistent closure equation (existence + uniqueness proved), and the flavor matrix, masses and θ₁₂ = 1/3 − φ₀/2 follow from one φ₀-ladder.",
   "The bootstrap loop re-derives the inputs: g_car = 5 is forced three ways and the 8 in c₃ equals rank E₈ — the discrete core is overdetermined, with only π irreducible.",
 ];
 

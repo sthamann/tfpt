@@ -1,0 +1,199 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/original_insertions/check_original_insertions.py
+Original file SHA-256: ed2a7cd49a68528ea68f92c2cbf039d1e6980b563d1d8915aea7acdc76123cde
+Inclusive original lines: 1-191
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact controls on actual original insertions. No physical-source promotion."""
+000002 | from pathlib import Path
+000003 | import hashlib
+000004 | import importlib.util
+000005 | import json
+000006 | import sys
+000007 | 
+000008 | import numpy as np
+000009 | import sympy as sp
+000010 | 
+000011 | ROOT = Path(__file__).resolve().parents[4]
+000012 | sys.path.insert(0, str(ROOT / "verification"))
+000013 | SOURCE = ROOT / "verification/v252_full_finite_triple.py"
+000014 | spec = importlib.util.spec_from_file_location("original_v252", SOURCE)
+000015 | v = importlib.util.module_from_spec(spec)
+000016 | spec.loader.exec_module(v)
+000017 | 
+000018 | 
+000019 | def exact(array):
+000020 |     """Reject noninteger entries instead of silently rationalizing floats."""
+000021 |     def entry(z):
+000022 |         z = complex(z)
+000023 |         if not (z.real.is_integer() and z.imag.is_integer()):
+000024 |             raise ValueError("Constructor control left Gaussian integers")
+000025 |         return sp.Integer(int(z.real)) + sp.I * sp.Integer(int(z.imag))
+000026 |     return sp.MutableSparseMatrix(sp.Matrix(np.asarray(array).tolist()).applyfunc(entry))
+000027 | 
+000028 | 
+000029 | def require(condition, message):
+000030 |     if not condition:
+000031 |         raise RuntimeError(message)
+000032 | 
+000033 | 
+000034 | def equal(a, b, message):
+000035 |     require(a == b, message)
+000036 | 
+000037 | 
+000038 | def comm(a, b):
+000039 |     return a * b - b * a
+000040 | 
+000041 | 
+000042 | def zero(a, message):
+000043 |     equal(a, sp.zeros(*a.shape), message)
+000044 | 
+000045 | 
+000046 | def run():
+000047 |     # Controls of the real constructor, not measured or derived mass values.
+000048 |     ys = [np.diag(x).astype(complex) for x in
+000049 |           ([1, 2, 3], [2, 3, 4], [3, 4, 5], [4, 5, 6])]
+000050 |     mr = np.array([[2, 1, 0], [1, 3, 1], [0, 1, 4]], complex)
+000051 |     phi = exact(v.full_D(*ys, mr))
+000052 |     gf = exact(v.grading())
+000053 |     equal(phi.shape, (96, 96), "actual finite dimension")
+000054 |     equal(phi, phi.H, "actual D_F adjoint")
+000055 |     zero(phi * gf + gf * phi, "actual internal oddness")
+000056 |     equal(gf.trace(), 0, "actual grading balance")
+000057 |     rank = phi.rank()
+000058 |     equal(rank, 96, "invertible-input constructor rank")
+000059 | 
+000060 |     z2, z3 = np.zeros((2, 2), complex), np.zeros((3, 3), complex)
+000061 |     qbasis = [np.eye(2, dtype=complex),
+000062 |               np.array([[0, 1j], [1j, 0]]),
+000063 |               np.array([[0, 1], [-1, 0]], complex),
+000064 |               np.diag([1j, -1j])]
+000065 |     bf = exact(v.rep(1, z2, z3))
+000066 |     for q in qbasis:
+000067 |         af = exact(v.rep(0, q, z3))
+000068 |         zero(af * bf, "one-form derivative term vanishes")
+000069 |         ins = af * comm(phi, bf)
+000070 |         expected = sp.MutableSparseMatrix(96, 96, {})
+000071 |         # Independently populate the claimed particle LR quaternion/Y block.
+000072 |         for gen in range(3):
+000073 |             for colour, up, down, yu, yd in [(0, "nu", "e", ys[3], ys[2])] + [
+000074 |                     (c, "u", "d", ys[0], ys[1]) for c in range(3)]:
+000075 |                 for row, name in enumerate((up, down)):
+000076 |                     for col, target in enumerate((up, down)):
+000077 |                         for gj in range(3):
+000078 |                             ii = v.IDX[(name, "L", colour, gen)]
+000079 |                             jj = v.IDX[(target, "R", colour, gj)]
+000080 |                             y = (yu, yd)[col]
+000081 |                             expected[ii, jj] = exact([[q[row, col] * y[gen, gj]]])[0, 0]
+000082 |         equal(ins, expected, "actual quaternion one-form image")
+000083 |         require(ins != sp.zeros(96), "nonzero actual one-form")
+000084 | 
+000085 |     gamma = sp.diag(1, -1)
+000086 |     jn = sp.Matrix([[0, -1], [1, 0]])
+000087 |     s = jn * gamma
+000088 |     pr = (sp.eye(2) + gamma) / 2
+000089 |     equal(jn * jn, -sp.eye(2), "normal Clifford square")
+000090 |     equal(s, sp.Matrix([[0, 1], [1, 0]]), "product factor sign")
+000091 |     equal(comm(s, pr), jn, "bare-right mixing sign")
+000092 |     p = sp.Symbol("p", real=True)
+000093 |     n = sp.Symbol("n", integer=True)
+000094 |     # Use sparse actual 192-dimensional product, keeping actual gamma_F.
+000095 |     bp = sp.kronecker_product(gamma, sp.eye(96)) * p - sp.kronecker_product(s, phi)
+000096 |     pbare = sp.kronecker_product(pr, sp.eye(96))
+000097 |     equal(comm(bp, pbare), -sp.kronecker_product(jn, phi), "actual bare-right mixing")
+000098 |     equal(bp.subs(p, p-n)*pbare-pbare*bp,
+000099 |           -n*pbare-sp.kronecker_product(jn, phi), "all-mode same-time Ward defect")
+000100 |     total = sp.kronecker_product(gamma, gf)
+000101 |     zero(comm(bp, total), "actual TOTAL grading preserved")
+000102 |     rp = sp.kronecker_product(s, gf)
+000103 |     # Reflection reverses partial_r: test its symbol and both remaining terms.
+000104 |     jprod = sp.kronecker_product(jn, sp.eye(96))
+000105 |     tprod = sp.kronecker_product(s, sp.eye(96))
+000106 |     pot = sp.kronecker_product(gamma, phi)
+000107 |     equal(rp * jprod * rp, -jprod, "product reflection normal symbol")
+000108 |     equal(rp * tprod * rp, tprod, "product reflection tangent symbol")
+000109 |     equal(rp * pot * rp, pot, "product reflection finite potential")
+000110 | 
+000111 |     dims = []
+000112 |     for masses, expected_dim in [([1, 2], 2), ([1, -1], 4),
+000113 |                                  ([1, 0], 3), ([1, -1, 0], 6)]:
+000114 |         ph = sp.diag(*masses)
+000115 |         size = 2 * len(masses)
+000116 |         gg = sp.kronecker_product(gamma, sp.eye(len(masses)))
+000117 |         ss = sp.kronecker_product(s, ph)
+000118 |         basis = [sp.Matrix(size, size, lambda r, c: int(r == i and c == j))
+000119 |                  for i in range(size) for j in range(size)]
+000120 |         columns = [sp.Matrix(list(comm(gg, x)) + list(comm(ss, x))) for x in basis]
+000121 |         constraints = sp.Matrix.hstack(*columns)
+000122 |         null = constraints.nullspace()
+000123 |         equal(len(null), expected_dim, "complete constant linear commutant")
+000124 |         for vector in null:
+000125 |             x = sp.Matrix(size, size, list(vector))
+000126 |             zero(comm(gg, x), "commutant basis grading")
+000127 |             zero(comm(ss, x), "commutant basis finite coupling")
+000128 |         dims.append({"masses": masses, "commutant_complex_dimension": len(null)})
+000129 | 
+000130 |     # A genuinely nondiagonal reducing projection, including opposite masses.
+000131 |     ph = sp.diag(1, -1)
+000132 |     q = sp.Matrix([[9, 12], [12, 16]]) / 25
+000133 |     el = ph * q * ph
+000134 |     e = sp.diag(q, el)
+000135 |     b = sp.kronecker_product(gamma, sp.eye(2)) * p - sp.kronecker_product(s, ph)
+000136 |     equal(e * e, e, "nondiagonal orthoprojection")
+000137 |     equal(e.H, e, "nondiagonal selfadjoint projection")
+000138 |     zero(comm(b, e), "nondiagonal projection time reduction")
+000139 |     nprime = sp.kronecker_product(jn, ph)
+000140 |     equal(nprime * b * nprime.H, -b, "massive complement pairing")
+000141 |     zero(comm(e, nprime), "massive projection respects pairing")
+000142 |     equal(q.rank() - el.rank(), 0, "massive chiral balance")
+000143 |     ph0 = sp.diag(1, 0)
+000144 |     e0 = sp.kronecker_product(pr, sp.diag(0, 1))
+000145 |     b0 = sp.kronecker_product(gamma, sp.eye(2)) * p - sp.kronecker_product(s, ph0)
+000146 |     zero(comm(b0, e0), "unpaired actual kernel channel")
+000147 |     equal(e0.rank(), 1, "unit kernel level witness")
+000148 | 
+000149 |     # The pre-existing normal E2 example has index1 for every k, but its
+000150 |     # whole scalar current has a single right Ward only at k=1.
+000151 |     kernel_examples = []
+000152 |     for k in range(1, 5):
+000153 |         g0 = sp.diag(*([1]*k + [-1]*(k-1)))
+000154 |         equal(g0.trace(), 1, "old E2 normal kernel net level")
+000155 |         single_right_ward = (-n*g0 == -n*sp.eye(2*k-1))
+000156 |         equal(single_right_ward, k == 1, "net index does not force time Ward")
+000157 |         kernel_examples.append({"positive": k, "negative": k-1,
+000158 |                                 "net_level": 1, "single_right_time_ward": single_right_ward})
+000159 | 
+000160 |     # Singular finite odd examples retain zero TOTAL graded kernel index.
+000161 |     gtest = sp.diag(1, 1, -1, -1)
+000162 |     for cross in (sp.diag(1, 0), sp.zeros(2)):
+000163 |         odd = sp.BlockMatrix([[sp.zeros(2), cross], [cross.H, sp.zeros(2)]]).as_explicit()
+000164 |         kernel = sp.Matrix.hstack(*odd.nullspace())
+000165 |         equal((kernel.H*gtest*kernel).trace(), 0, "balanced finite TOTAL kernel index")
+000166 | 
+000167 |     c = -2 * sp.I
+000168 |     va = sp.Matrix([[1, 1], [1, -1]])
+000169 |     k = va * sp.diag(c, -c) * va.T
+000170 |     equal(k, sp.Matrix([[0, 2*c], [2*c, 0]]), "mixed VA cocycles")
+000171 |     right = sp.Matrix([[sp.Rational(1, 2), sp.Rational(1, 2)]])
+000172 |     equal((right * k * right.T)[0, 0], c, "right current cocycle recovered")
+000173 |     return {
+000174 |         "verdict": "EXACT_CONTROLS_PASS_WITH_ANALYTIC_CLASSIFICATION_IN_PROOF",
+000175 |         "original_source_sha256": hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
+000176 |         "finite_constructor_control": {"dimension": 96, "rank": rank,
+000177 |              "positive_internal_grades": 48, "negative_internal_grades": 48,
+000178 |              "quaternion_insertion_witnesses": 4, "input_status": "integer controls, not physical Yukawas"},
+000179 |         "constant_commutants": dims,
+000180 |         "existing_normal_kernel_controls": kernel_examples,
+000181 |         "mixed_va_cocycle_at_original_profiles": str(2*c),
+000182 |         "right_cocycle_at_original_profiles": str(c),
+000183 |         "actual_product_grading_and_reflection_symbols": "PASS",
+000184 |         "state": "retained pure two-face CAR graph; right face thermal",
+000185 |         "actual_physical_P1_source_image_derived": False,
+000186 |         "full_TFPT_solution": False,
+000187 |     }
+000188 | 
+000189 | 
+000190 | if __name__ == "__main__":
+000191 |     print(json.dumps(run(), ensure_ascii=False, indent=2))

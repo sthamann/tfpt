@@ -1,0 +1,44 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_fold_ward_pair_20261102.py
+Original file SHA-256: 5b0822971cde0d869d3eeaa9b48a741e4c904dc78de6a52610650cf9d4b11e35
+Inclusive original lines: 1-36
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact algebraic Ward target: not a primitive P1 correlation calculation."""
+000002 | import json
+000003 | from pathlib import Path
+000004 | import sympy as s
+000005 | 
+000006 | root = Path(__file__).resolve().parents[2]
+000007 | p = json.loads((root / 'v16-operator-pullback-20261014/fold-results.json').read_text())
+000008 | M = s.Matrix([[s.Rational(x) for x in row] for row in p['explicit_Weyl_matrix']])
+000009 | q = s.ones(8, 1)
+000010 | lam_source = q / 2
+000011 | lam_target = M * lam_source
+000012 | expected = s.Matrix([0, 0, 1, 0, 0, 1, 0, 0])
+000013 | assert M.T * M == s.eye(8) and lam_target == expected
+000014 | assert (lam_source.T * lam_source)[0] == 2
+000015 | assert M * q == 2 * expected
+000016 | 
+000017 | z, w, u = s.Integer(0), s.Integer(1), s.Integer(3)
+000018 | pair = 1 / (w - u)**2
+000019 | ward_factor = 1 / (z - w) - 1 / (z - u)
+000020 | source = [s.factor(x * pair * ward_factor) for x in lam_source]
+000021 | target = [s.factor(x * pair * ward_factor) for x in lam_target]
+000022 | assert pair == s.Rational(1, 4)
+000023 | assert source == [-s.Rational(1, 12)] * 8
+000024 | assert target == [0, 0, -s.Rational(1, 6), 0, 0, -s.Rational(1, 6), 0, 0]
+000025 | assert (q.T * lam_source)[0] * pair * ward_factor == -s.Rational(2, 3)
+000026 | assert (2 * lam_target.T * lam_target)[0] * pair * ward_factor == -s.Rational(2, 3)
+000027 | X = s.Matrix([[0, 1], [1, 0]])
+000028 | Y = s.Matrix([[0, -s.I], [s.I, 0]])
+000029 | Z = s.diag(1, -1)
+000030 | t1, t5 = s.kronecker_product(X, s.eye(2)) / 2, s.kronecker_product(Z, s.eye(2)) / 2
+000031 | assert s.trace(t1*t1) == s.trace(t5*t5) == 1 and s.trace(t1*t5) == 0
+000032 | assert t1*t5-t5*t1 == -s.I*s.kronecker_product(Y, s.eye(2))/2
+000033 | print('PASS: exact existing fold matrix, root charges and Ward target')
+000034 | print('source eight:', source, 'target eight:', target, 'total:', -s.Rational(2,3))
+000035 | print('PASS: two native current directions are independent and do not commute')
+000036 | print('SCOPE: Ward target uses normalized lattice-vacuum CFT; no P1 source correlation computed')

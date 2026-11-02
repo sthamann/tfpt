@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/theta_lattice_closure_20261027/review/THETA-E8-LATTICE-INDEPENDENT-REVIEW.txt
+Original file SHA-256: 1eb3b754f55fe871fca1aa59e2d4d21b9d48cee31b9db4aac0609e8a74056393
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | INDEPENDENT REVIEW OF THE THETA E8 LATTICE CONSTRUCTION
+000002 | 27 October 2026
+000003 | 
+000004 | REVIEWED OBJECTS
+000005 | 
+000006 |   research-20261027-fundamental-next/lattice/check_theta_lattice.py
+000007 |     SHA256 a45fcf5c66ebd208a050c30b9297dfca6dfccc28a68398d75cd91285f9e18b5e
+000008 | 
+000009 |   research-20261027-fundamental-next/lattice/theta-lattice.json
+000010 |     SHA256 a4d9bd7a09feddf2e4f0b2133ed2152229bd2cde231d8816c5806ad6c9e89992
+000011 | 
+000012 |   research-20261027-fundamental-next/direct/
+000013 |     THETA-E8-LATTICE-COVARIANCE.txt
+000014 |     SHA256 81132e7d111ea83bb5ac7e360839083433fc9efb3c2a1e74dab0e5ce1866424e
+000015 | 
+000016 | VERDICT
+000017 | 
+000018 | ACCEPTED in the stated mathematical scope.
+000019 | 
+000020 | The checker proves an actual integral reconstruction, not a dimension or
+000021 | character coincidence.  Starting from the q norm completed theta module, a
+000022 | marked level two Schrodinger frame, its affine stabilizer supports and the
+000023 | declared primitive Gaussian normalization, the support weighted vectors
+000024 | produce 240 norm two vectors.  Their integer span has an even integral
+000025 | unimodular Gram matrix of rank eight.  The explicit orthogonal coordinate map
+000026 | then sends the entire generated shell bijectively to the standard 112 plus 128
+000027 | E8 shell.
+000028 | 
+000029 | The conclusion is precisely an E8 lattice after choosing the theta frame and a
+000030 | unit of the q norm line, and an E8 isometry or complex homothety class after
+000031 | forgetting those choices.  The result does not establish a unique embedded E8
+000032 | lattice among all lattices compatible with some Heisenberg action, nor does it
+000033 | fix a physical metric scale from P1.
+000034 | 
+000035 | The actual source spin lift alpha is correctly typed as a transition between
+000036 | two lattice copies.  It is not an automorphism of the constructed single
+000037 | lattice.  The old C12 operator c=i sigma remains an honest automorphism of
+000038 | each copy.
+000039 | 
+000040 | 
+000041 | 1. ROOT CONSTRUCTION AND E8 IDENTIFICATION
+000042 | 
+000043 | The relevant source module is
+000044 | 
+000045 |   W_q=H_theta tensor N_q^(-1).
+000046 | 
+000047 | The bare theta space H_theta is beta neutral.  The inverse q norm line supplies
+000048 | beta=+i, so the source relation alpha^2=i belongs to W_q.  A unit nu of that
+000049 | one-dimensional norm line is part of the displayed Schrodinger coordinates.
+000050 | 
+000051 | For support dimension d=0,1,2 the checker then uses the Gaussian weights
+000052 | 
+000053 |   pi^(2-d),    pi=1+i,
+000054 | 
+000055 | and the common physical factor 1/sqrt(2).  A support contains 2^d entries.
+000056 | Its squared norm is therefore
+000057 | 
+000058 |   (1/2) |pi|^(4-2d) 2^d=2.
+000059 | 
+000060 | The allowed central units absorb every Gaussian associate.  After requiring
+000061 | the numerator to be a primitive element of Z[i], the three squared norms
+000062 | force pi^2, pi and 1 up to those units.  Equal norm, support size and the
+000063 | central i alone would still allow arbitrary continuous phases on the rays.
+000064 | Thus the primitive Gaussian integral recipe is genuine additional arithmetic
+000065 | input.  Z[i] is the smallest integer coefficient ring containing the marked
+000066 | mu4, but the construction does not derive the uniqueness of every integral
+000067 | form on the underlying complex module.  It does not import E8 coordinates.
+000068 | 
+000069 | The exact support counts are
+000070 | 
+000071 |   d=0: 16 vectors,
+000072 |   d=1: 96 vectors,
+000073 |   d=2: 128 vectors.
+000074 | 
+000075 | All 240 vectors have physical norm two.  Hermite normal form gives an
+000076 | eight-dimensional basis B with |det B|=16 in unscaled Gaussian coordinates.
+000077 | Thus B/sqrt(2) has covolume one.  Its Gram matrix
+000078 | 
+000079 |   G=B^T B/2
+000080 | 
+000081 | is integral, even and has determinant one.
+000082 | 
+000083 | The shell comparison is decisive.  On every Gaussian coordinate the real
+000084 | orthogonal map is, in doubled standard coordinates,
+000085 | 
+000086 |   a+ib -> (a+b,a-b).
+000087 | 
+000088 | After the corresponding factor of two is interpreted, it preserves the
+000089 | physical norm and maps the generated 240 vectors exactly onto the standard
+000090 | E8 roots.  Since both lattices are generated by those roots, this also maps
+000091 | the whole generated lattice to the standard E8 lattice.  No classification
+000092 | argument or hidden E8 basis is needed for this last step.
+000093 | 
+000094 | 
+000095 | 2. CLIFFORD COVARIANCE AND ITS LIMIT
+000096 | 
+000097 | The checker verifies integral Gram isometries for
+000098 | 
+000099 |   X1,X2,Z1,Z2,S1,S2,CNOT,
+000100 |   zeta8^(-1)H1 and zeta8^(-1)H2.
+000101 | 
+000102 | These generators prove covariance under the compensated Clifford frame
+000103 | changes used in the report.  The compensation is legitimate for a projective
+000104 | theta coordinate change because two odd changes differ on composition only
+000105 | by the central unit -i.
+000106 | 
+000107 | This does not turn an actual fixed operator into a frame gauge.  The source
+000108 | operator
+000109 | 
+000110 |   alpha=zeta8 V,    V^2=I,
+000111 | 
+000112 | has alpha^2=iI.  Removing zeta8 would change its square to I.  The report
+000113 | therefore correctly refuses that rephasing for the physical alpha.
+000114 | 
+000115 | The construction is canonical only relative to the marked theta structure,
+000116 | Schrodinger polarization, central Gaussian unit, primitive Z[i]
+000117 | normalization, root norm convention and a chosen unit nu of N_q^(-1).
+000118 | Changing nu rotates or rescales the embedded lattice.  Without the theta frame
+000119 | and norm-line unit, only the abstract E8 isometry class and the complex
+000120 | homothety class descend.  The finite irreducible module alone fixes an
+000121 | invariant Hermitian form only up to positive scale; the normalization to root
+000122 | norm two fixes that remaining homothety after the stated choices.
+000123 | 
+000124 | 
+000125 | 3. TWO LATTICES, NOT ONE
+000126 | 
+000127 | The checked operators satisfy
+000128 | 
+000129 |   sigma Lambda=Lambda,
+000130 |   i Lambda=Lambda,
+000131 |   alpha Lambda=zeta8 Lambda,
+000132 |   alpha(zeta8 x)=iVx in Lambda.
+000133 | 
+000134 | Thus alpha exchanges the two objects and alpha squared is multiplication by i
+000135 | on either one.  This is exactly the claimed spin square-root action on W_q.  It
+000136 | must not be reassigned to the beta-neutral bare theta space.
+000137 | 
+000138 | The obstruction to merging the branches is stronger than failure of closure
+000139 | of their union.  In physical coordinates
+000140 | 
+000141 |   Lambda subset 2^(-1/2) Q(i)^4.
+000142 | 
+000143 | If a nonzero vector lay in both Lambda and zeta8 Lambda, some nonzero Gaussian
+000144 | coordinate would imply zeta8 belongs to Q(i), which is false.  Hence
+000145 | 
+000146 |   Lambda intersect zeta8 Lambda={0}.
+000147 | 
+000148 | Their additive span has Z rank sixteen in an eight-dimensional real vector
+000149 | space and is not discrete.  No common discrete overlattice in this fixed
+000150 | embedding can contain both full-rank lattices.  This proves that neither the
+000151 | union nor its generated group is a lattice.
+000152 | 
+000153 | This obstruction remains scoped.  It does not prove that no differently
+000154 | embedded E8 lattice can be invariant under a conjugated or otherwise changed
+000155 | order-eight operator.  The checker itself correctly reports only failure for
+000156 | the constructed lattice.
+000157 | 
+000158 | 
+000159 | 4. CLOCK AND FIELD SCOPE
+000160 | 
+000161 | The retained cubic sigma and central quarter J=iI preserve both branches.
+000162 | Their product
+000163 | 
+000164 |   c=i sigma
+000165 | 
+000166 | has exact order twelve and satisfies c^4=sigma and c^9=iI.  The old C12 clock
+000167 | therefore acts inside either E8 lattice.  Alpha is an additional spin lift
+000168 | above J and reverses sigma; it is not the old C12 compiler.
+000169 | 
+000170 | An orthogonal lattice isometry Lambda -> zeta8 Lambda admits a lattice VOA
+000171 | isomorphism.  The revised report correctly states the remaining qualification:
+000172 | the lift through the lattice central extension is unique only up to character
+000173 | gauge, and the finite checker neither chooses that cocycle lift nor identifies
+000174 | it with an already marked source field operator.  It therefore proves no
+000175 | single alpha invariant VOA, no two-branch local extension and no primitive P1
+000176 | field realization.
+000177 | 
+000178 | The alternative same-spin Fredholm representative contains the additional
+000179 | factor B_O^(-1).  It changes the retained sign of alpha and keeps the odd
+000180 | Fredholm parity.  Forgetting that parity yields the same ungraded lattice
+000181 | comparison; a graded physical sewing statement may not discard it.
+000182 | 
+000183 | 
+000184 | 5. COVER MINIMALITY
+000185 | 
+000186 | For the actual fixed matrix image F, membership in the two Clifford cosets
+000187 | defines the character
+000188 | 
+000189 |   chi:F -> Z/2.
+000190 | 
+000191 | Its kernel preserves each branch and alpha has chi(alpha)=1.  The associated
+000192 | index-two cover is therefore sufficient and minimal for this fixed two-object
+000193 | system.  This is a statement about the displayed representation and its two
+000194 | branches.  It is not a universal minimality theorem over all possible lattice
+000195 | embeddings or physical source constructions.
+000196 | 
+000197 | 
+000198 | 6. REPLAY
+000199 | 
+000200 | I ran the exact checker once in ordinary mode and once with Python -OO.  Both

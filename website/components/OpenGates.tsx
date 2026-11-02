@@ -190,9 +190,9 @@ function ClosingCondition() {
             LR/Böckenhauer/KLM), with the AGT/AMT route demoted to an independent second witness; stays [O].
           </p>
           <p>
-            <span className="font-semibold text-slate-700">QG decoupling is a theorem (v337).</span> Every
-            readout factors through the gapped admissible spectrum (χ = 729/665, margin 1.648 &gt; 0), so TFPT
-            provably does not need the ambient measure.
+            <span className="font-semibold text-slate-700">Metric gap claim: later scope correction.</span> The
+            historical v337 estimate does not follow from the Dirichlet to Neumann form bound alone.
+            A comparison with the actual transfer operator is still required. <Link className="guide-link" href="/results?search=metric-dtn-form-bound-needs-transfer-comparison-for-gap">Read the R082 correction and counterexample.</Link>
           </p>
           <p>
             <span className="font-semibold text-slate-700">4D-QFT fork (v265).</span> Finite boundary-net/MMST

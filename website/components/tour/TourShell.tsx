@@ -10,6 +10,7 @@ import {
   Terminal,
 } from "lucide-react";
 import { WoitBridgeProgress } from "@/components/WoitBridgeProgress";
+import { SITE_DATE } from "@/lib/version";
 import { REPO_URL } from "@/lib/utils";
 import {
   ALPHA,
@@ -48,7 +49,7 @@ function scrollToStep(index: number, updateHash: boolean) {
   if (!step) return;
   const el = document.getElementById(`step-${step.id}`);
   if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    el.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
   }
   if (updateHash) {
     const url = `${window.location.pathname}#step-${step.id}`;
@@ -75,7 +76,9 @@ export function TourShell() {
       const idx = stepIndexFromHash();
       setActiveIndex(idx);
       // delay so layout is ready
-      requestAnimationFrame(() => scrollToStep(idx, false));
+      if (window.location.hash.startsWith("#step-")) {
+        requestAnimationFrame(() => scrollToStep(idx, false));
+      }
     };
     apply();
     window.addEventListener("hashchange", apply);
@@ -170,7 +173,11 @@ export function TourShell() {
             A distill-style walkthrough for curious non-specialists and skeptical
             physicists. Plain English first; technical depth on demand. Not a
             &ldquo;proven TOE&rdquo; pitch — an honest map of axioms, machine
-            checks, open gates, and kill tests. Facts as of {TOUR_AS_OF}.
+            checks, open gates, and kill tests.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">
+            Tour narrative snapshot: {TOUR_AS_OF}. Shared module inventory synced: {SITE_DATE}.{" "}
+            <Link prefetch={false} href="/results" className="text-blue-700 underline underline-offset-4">Results and source dates</Link>.
           </p>
           <p className="mt-3 text-xs text-slate-600">
             Tip: ← / → keys move between steps · deep links look like{" "}
@@ -246,8 +253,10 @@ export function TourShell() {
               </li>
             ))}
             <li className="rounded-xl border border-dashed border-slate-300/50 px-4 py-3 text-sm text-slate-600">
-              Plus {PREDICTIONS.frozenCount - 3} further frozen predictions in the
-              registry — {PREDICTIONS.frozenCount} total, blind-committed.
+              Register frozen {PREDICTIONS.freezeDate}: {PREDICTIONS.mainCount} main values,
+              {" "}{PREDICTIONS.assignedCount} assigned textures and {PREDICTIONS.bandCount} conditional bands.
+              {" "}{PREDICTIONS.variantCount} further variants are explicitly not new predictions.
+              The broader count of 27 test surfaces uses a different scope.
             </li>
           </ul>
         }
@@ -272,8 +281,9 @@ export function TourShell() {
           <ul className="list-disc space-y-2 pl-5">
             <li>
               <strong className="text-slate-800">Frozen predictions:</strong>{" "}
-              {PREDICTIONS.frozenCount} entries committed before decisive data
-              (registry + freeze file).
+              The {PREDICTIONS.freezeDate} freeze records formulas and their scope.
+              It does not make comparisons with previously known data blind.
+              See the registry and freeze file for each commitment.
             </li>
             <li>
               <strong className="text-slate-800">Null MCs / LEE discipline:</strong>{" "}

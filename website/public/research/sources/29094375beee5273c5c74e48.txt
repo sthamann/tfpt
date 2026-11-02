@@ -1,0 +1,159 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/admissible_pair_20261028/HODGE-TIME-IDENTITY-TEST-20261102.txt
+Original file SHA-256: 8e6ee0625b6b38800b7a63d0bec9d7b0b54cbcc2de202e786f5648f7eab5ef00
+Inclusive original lines: 1-151
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | HODGE CHANNEL AND A CONTINUOUS IDENTITY START
+000002 | ============================================
+000003 | 
+000004 | 2 November 2026. Exact finite-dimensional consequence of the given Hodge
+000005 | amplitudes. This is not an identification of TFPT physical time, a deduction
+000006 | of an original measurement, or a no-go for a larger process with additional
+000007 | amplitudes, registers, memory, or a distinguished finite-time event.
+000008 | 
+000009 | Let H=Lambda^2 C^5, dim H=10, and C_i:H -> H* be the five original epsilon
+000010 | amplitudes from hodge_complement_channel.py. An arbitrary unitary identification
+000011 | H* -> H may be made before comparing them with an identity evolution. Since the
+000012 | result below is uniform over all unitary target maps, that identification does
+000013 | not affect the bound.
+000014 | 
+000015 | Write |A>> for vectorization, <A|B>>=tr(A*B), and
+000016 | 
+000017 |  P5 = (1/6) sum_i |C_i>><<C_i|,
+000018 |  J(Phi) = (1/3) sum_i |C_i>><<C_i| = 2 P5,
+000019 |  tr J(Phi)=10.
+000020 | 
+000021 | The original amplitudes satisfy tr(C_i* C_j)=6 delta_ij. For EVERY complex
+000022 | coefficient vector z, C(z)=sum_i z_i C_i obeys
+000023 | 
+000024 |  (C(z)*C(z))^2 = ||z||^2 C(z)*C(z),
+000025 |  tr(C(z)*C(z)) = 6 ||z||^2.
+000026 | 
+000027 | The checker verifies both identities as polynomials for all five complex
+000028 | coefficients, with the conjugate variables independent until the end. Thus for
+000029 | z != 0 precisely six singular values equal ||z||, and the remaining four are
+000030 | zero. For any unitary U:H -> H*, Holder's inequality gives
+000031 | 
+000032 |  |tr(C(z)*U)| <= ||C(z)||_1 = 6||z||,
+000033 |  <<U|P5|U>> = (1/6) sum_i |tr(C_i*U)|^2 <= 6.              (1)
+000034 | 
+000035 | The second line also follows by maximizing over the unit coefficient vector
+000036 | z. The bound is sharp: the checker extends the actual signed partial
+000037 | permutation C_0 to a 10 by 10 unitary, attaining 6. Set omega_U=|U>><<U|/10
+000038 | and omega_Phi=J(Phi)/10. They are the normalized Choi output states obtained
+000039 | from the same maximally entangled reference input. The effect P5 gives
+000040 | 
+000041 |  tr(P5 omega_Phi)=1,   tr(P5 omega_U)<=3/5.
+000042 | 
+000043 | For any two states, their trace distance is at least the absolute difference
+000044 | of the probabilities for an effect. The diamond norm includes this single
+000045 | reference-assisted input, hence
+000046 | 
+000047 |  ||Phi - Ad_U||_diamond >= 2(1 - 3/5) = 4/5                 (2)
+000048 | 
+000049 | for every U. In fact the exact normalized Choi trace distance sharpens this.
+000050 | Let u=|U>>/sqrt(10), q=<u|P5|u> <= 3/5. There are four eigenvalues 1/5
+000051 | on P5 perpendicular to its projection of u; the two remaining eigenvalues
+000052 | have opposite sign for q<1 and give
+000053 | 
+000054 |  ||P5/5 - |u><u|||_1 = 4/5 + sqrt(36/25 - 4q/5)
+000055 |                        >= (4+2 sqrt(6))/5 = 1.779795897... .  (3)
+000056 | 
+000057 | The unitary completing C0 has q=3/5, so the MINIMUM OF THIS CHOI lower bound
+000058 | over unitaries is attained. The actual diamond distance is nevertheless 2,
+000059 | and this holds FOR EVERY U, by the following separate argument.
+000060 | 
+000061 | For fixed U, let K be the set of complex five-vectors with coordinates
+000062 | Tr(rho U* C_i), where rho runs over all density operators on H. K is a
+000063 | compact convex subset of C^5. If zero were not in K, strict convex separation
+000064 | would give a complex vector z such that Re Tr(rho U* C(z))>0 for every rho.
+000065 | This would mean Re(U* C(z)) is strictly positive definite. However, C(z) has
+000066 | a nonzero kernel for every z, so for a nonzero x in that kernel,
+000067 | <x,Re(U* C(z))x>=0. Contradiction. Thus some density rho obeys
+000068 | Tr(rho U* C_i)=0 simultaneously for all i.
+000069 | 
+000070 | Here C^5 is treated as R^10: every real linear functional can be expressed as
+000071 | Re sum_i z_i a_i after relabelling the arbitrary complex coefficients z_i.
+000072 | Hence no unstated complex linear separation or conjugation convention is used.
+000073 | 
+000074 | Purify rho=sum_j p_j |e_j><e_j| as the unit vector
+000075 | |Omega_rho>=sum_j sqrt(p_j)|e_j> tensor |j> on an untouched reference.
+000076 | It has norm one, and for any A on the carrier,
+000077 | <Omega_rho|(A tensor I)|Omega_rho>=Tr(rho A). The inner product of the output for U
+000078 | and each Hodge Kraus output is precisely Tr(rho U* C_i)/sqrt(3)=0. Hence the
+000079 | pure unitary output is orthogonal to the support of the Hodge output, and the
+000080 | states are perfectly distinguishable in one use. Both output states have
+000081 | trace one because U and Phi are trace preserving. Consequently
+000082 | 
+000083 |  ||Phi - Ad_U||_diamond = 2   for every U:H -> H*.           (4)
+000084 | 
+000085 | This convex argument is not an original general distinguishability theorem;
+000086 | compare the operator-subspace criterion for channel discrimination in the
+000087 | primary papers https://arxiv.org/abs/1605.02294 and
+000088 | https://arxiv.org/abs/0908.0119. Its present input is the specific rank-six
+000089 | identity of the original epsilon amplitudes.
+000090 | 
+000091 | Explicitly, in the original ordered duad basis (01,02,03,04,12,13,14,23,
+000092 | 24,34), U equals C0 on the last six basis states and is identity on the
+000093 | first four. On the input |01>, U outputs |01>, while C0|01>=C1|01>=0,
+000094 | C2|01>=|34>, C3|01>=-|24>, C4|01>=|23>. The Hodge output is therefore
+000095 | (|34><34|+|24><24|+|23><23|)/3, orthogonal to |01><01|. This is an
+000096 | unassisted perfect distinguisher and proves distance 2 for that actual U.
+000097 | 
+000098 | Combined with the already established R086 shared-TP theorem, any complete
+000099 | globally TP operation whose every joint Kraus operator lies strictly in
+000100 | span{C_i} tensor B(F,F') has precisely Phi as carrier marginal, including on
+000101 | correlated inputs. Consequently such a family cannot be a finite-dimensional
+000102 | continuous evolution with a unitary/identity carrier limit at t=0 for all
+000103 | sufficiently small t. Finite-dimensional strong continuity gives the needed
+000104 | channel norm continuity. This remains true for any unitary choice of the
+000105 | carrier/dual identification, even if that choice varies with t.
+000106 | 
+000107 | An explicit compatible mathematical embedding
+000108 | ---------------------------------------------
+000109 | 
+000110 | Fix any unitary U:H -> H*, and write Psi=Ad_(U*) o Phi, now a CPTP map on H.
+000111 | For any separately chosen lambda>0 the bounded generator L=lambda(Psi-id)
+000112 | defines the continuous CPTP semigroup
+000113 | 
+000114 |  E_t = exp(t L) = exp(-lambda t) sum_(k>=0) (lambda t)^k Psi^k/k!,
+000115 |  E_t = id + lambda t(Psi-id) + O(t^2).
+000116 | 
+000117 | Every term is CPTP and the nonnegative Poisson weights sum to one. The k=0
+000118 | Kraus operator exp(-lambda t/2)I is the unchanged carrier branch; the
+000119 | other branches concatenate the actual original epsilon Kraus operators
+000120 | U*C_i/sqrt(3). The checker verifies trace preservation for the one- and
+000121 | two-jump terms. The jump intensity lambda, the Poisson schedule and the
+000122 | identification U are mathematical choices here, not outputs of P1, S_adm,
+000123 | the TFPT clock network or a physical time scale.
+000124 | 
+000125 | Each nonzero C(z) has rank six, whereas U has rank ten. Thus U is outside
+000126 | span{C_i}; equivalently I is outside span{U*C_i}. Further, this is not merely
+000127 | an artifact of the displayed Kraus decomposition. If any Kraus decomposition
+000128 | of E_t were entirely in that strict span, the original 25-product TP theorem
+000129 | would force E_t=Psi. But E_t -> id as t -> 0, while (3) bounds Psi away from
+000130 | id (indeed (4) gives distance 2). Moreover
+000131 | ||E_t-id||_diamond <= 2(1-exp(-lambda t)) < 2 for EVERY finite t, so E_t
+000132 | cannot equal Psi at ANY finite time. Hence at least one Kraus amplitude must
+000133 | be outside the strict span for EVERY Kraus decomposition of E_t at EVERY
+000134 | finite t. This conclusion says nothing about which extra amplitudes are
+000135 | actually supplied by the original source or about the infinite-time limit.
+000136 | 
+000137 | This is an actual compatibility condition on how the previously identified
+000138 | E8 bracket operation can enter a source/time dictionary: it can be a
+000139 | particular event or finite transition; alternatively, a full continuous
+000140 | process needs other components, such as an identity/no-event amplitude,
+000141 | outside this strict bracket-only Kraus span. We do not infer which of these
+000142 | the original source chooses. A single sub-TP branch need not obey R086's
+000143 | global-TP conclusion. Original reflection, two boundaries, dynamics, family,
+000144 | Eta, reference, and the measured or discarded register must still be mapped.
+000145 | 
+000146 | Reproduction from repository root:
+000147 |  python3 -B experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/admissible_pair_20261028/check_hodge_time_identity.py
+000148 | 
+000149 | Output: PASS 14 exact checks, including polynomial identities in all complex
+000150 | coefficients and a sharpness witness for (1). No Lean run, physical validation,
+000151 | claim promotion, or construction of the full source is asserted.

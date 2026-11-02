@@ -1,0 +1,73 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/RELATIVE-PAIRING-REVIEW.txt
+Original file SHA-256: ef280950f70a108ecff5dde9f57c67d097494e3824fdd65aea2ca176b5b83a34
+Inclusive original lines: 411-475
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000411 | 7. Exact faithful KMS continuation on the existing one-face circle
+000412 | -------------------------------------------------------------------
+000413 | 
+000414 | Let psi_l, l in Z, be the twisted circle basis, 0<a<1, and let
+000415 | 
+000416 |   B_a psi_l=(l+a)psi_l,
+000417 |   u psi_l=psi_(l+1),
+000418 |   C_beta psi_l=n_l psi_l,
+000419 |   n_l=(1+exp(beta(l+a)))^(-1),  beta>0.
+000420 | 
+000421 | The proposed collar specialization sets beta=2 ell, but the proof is independent
+000422 | of that value and holds for every beta>0. Since n_l is strictly decreasing,
+000423 | 
+000424 |   D_beta:=u C_beta u^*-C_beta
+000425 | 
+000426 | is diagonal with eigenvalues d_l=n_(l-1)-n_l>0. Moreover
+000427 | 
+000428 |   sum_l d_l=lim_(L->infinity)[n_(-L-1)-n_L]=1.          (12)
+000429 | 
+000430 | Thus D_beta is positive trace class, Tr D_beta=1. Both C_beta and
+000431 | u C_beta u^* are faithful contractions: no eigenvalue is zero or one. For
+000432 | |z|<1 the relative operator
+000433 | 
+000434 |   R_beta(z)=(I-z u C_beta u^*)(I-z C_beta)^(-1)
+000435 | 
+000436 | differs from the identity by trace class. Its determinant exists, and the
+000437 | symmetric finite products telescope:
+000438 | 
+000439 |   product_(l=-L)^L (1-z n_(l-1))/(1-z n_l)
+000440 |     =(1-z n_(-L-1))/(1-z n_L)
+000441 |     ->1-z.                                               (13)
+000442 | 
+000443 | Trace-norm convergence of the diagonal perturbations justifies passage to the
+000444 | Fredholm determinant. Therefore
+000445 | 
+000446 |   det_F R_beta(z)=1-z                                  (14)
+000447 | 
+000448 | exactly at every finite beta. As beta tends to infinity, D_beta tends in trace
+000449 | norm to the rank-one projector Pi and (14) recovers the pure-sea formula. This
+000450 | proves a faithful KMS continuation, not a regularization chosen to fit the
+000451 | answer.
+000452 | 
+000453 | The ingredients were already present separately: the actual twisted-circle
+000454 | thermal product and source winding are recorded in
+000455 | 
+000456 |   experiments/theory-contracts/mixed-current-origin-20261014/
+000457 |   ATLAS-KMS-LOCALITY-AND-SOURCE-WINDING.txt:75-121,
+000458 | 
+000459 | and the active source contracts use Fermi-Dirac covariances
+000460 | C_beta=(1+exp(beta K))^(-1). The targeted source and Atlas search found no
+000461 | previous calculation of the telescoping relative determinant (13). In
+000462 | particular, the earlier conclusion that an exact faithful factor 1-z would
+000463 | force a rank-one endpoint perturbation applies only to a rank-one compressed
+000464 | ansatz; (12)-(14) are its explicit trace-class countercase.
+000465 | 
+000466 | On the reflected face take C_beta^ref=I-C_beta. Then
+000467 | 
+000468 |   u C_beta^ref u^*=C_beta^ref-D_beta,
+000469 | 
+000470 | and the same telescoping calculation gives determinant (1-z)^(-1). Hence the
+000471 | ordinary full two-face determinant and its Quillen norm remain one. The KMS
+000472 | continuation therefore closes only the one-face faithfulness gap. It does not
+000473 | select R_pos and does not prove the missing marginal equality (11). Once (11)
+000474 | is supplied, the written one-sided EM domain is already the correct type for
+000475 | the directed determinant (14).

@@ -1,0 +1,128 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/collective-native-marginal-origin-20261026/check_collective_dynamics.py
+Original file SHA-256: b2a4d111830a2fc85489d0da033eef1bd1feb464edbada38231700db4e128dc6
+Inclusive original lines: 1-120
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Actual root-frame duality, source metric, and overlap compatibility.
+000003 | No new microscopic Hamiltonian or physical execution is assumed.
+000004 | """
+000005 | from __future__ import annotations
+000006 | import argparse
+000007 | from collections import Counter
+000008 | from fractions import Fraction as Q
+000009 | import hashlib
+000010 | import itertools as it
+000011 | import json
+000012 | from pathlib import Path
+000013 | import sys
+000014 | import numpy as np
+000015 | import sympy as sp
+000016 | 
+000017 | REPO=Path(__file__).resolve().parents[3]
+000018 | sys.path.insert(0,str(REPO))
+000019 | from tfpt_explorer.cartan_source import _roots,_rays
+000020 | from tfpt_explorer.process import _code_basis
+000021 | from check_collective_origin import need,sym_scaled
+000022 | 
+000023 | 
+000024 | def main():
+000025 |     parser=argparse.ArgumentParser()
+000026 |     parser.add_argument('--out',type=Path,default=Path(__file__).with_name('dynamics_results.json'))
+000027 |     args=parser.parse_args()
+000028 |     rays=_rays(_roots())
+000029 |     words=list(it.product(range(4),repeat=4))
+000030 |     fr=np.zeros((256,60),dtype=np.int64)
+000031 |     fi=np.zeros_like(fr)
+000032 |     zs=[[(r[2*j],r[2*j+1]) for j in range(4)] for r in rays]
+000033 |     for j,z in enumerate(zs):
+000034 |         for i,w in enumerate(words):
+000035 |             a,b=1,0
+000036 |             for k in w:
+000037 |                 a,b=a*z[k][0]-b*z[k][1],a*z[k][1]+b*z[k][0]
+000038 |             fr[i,j],fi[i,j]=a,b
+000039 |     g=fr.T@fr+fi.T@fi
+000040 |     gi=fr.T@fi-fi.T@fr
+000041 |     need(not np.any(gi),'Actual fourth Gram is real')
+000042 |     # Independent construction by fourth powers of one-copy inner products.
+000043 |     direct=np.zeros_like(g)
+000044 |     direct_i=np.zeros_like(g)
+000045 |     for i,a in enumerate(zs):
+000046 |         for j,b in enumerate(zs):
+000047 |             re=sum(x*u+y*v for (x,y),(u,v) in zip(a,b))
+000048 |             im=sum(x*v-y*u for (x,y),(u,v) in zip(a,b))
+000049 |             x,y=1,0
+000050 |             for _ in range(4):
+000051 |                 x,y=x*re-y*im,x*im+y*re
+000052 |             direct[i,j],direct_i[i,j]=x,y
+000053 |     need(np.array_equal(g,direct) and not np.any(direct_i),'Direct kernel matches tensor Gram')
+000054 |     unit=np.eye(60,dtype=np.int64)
+000055 |     need(not np.any(g@(g-384*unit)@(g-768*unit)),'Exact spectral polynomial')
+000056 |     tr,tr2=int(np.trace(g)),int(np.trace(g@g))
+000057 |     top=Q(tr2-384*tr,768*(768-384))
+000058 |     middle=Q(tr-768*top,384)
+000059 |     need(top==5 and middle==30,'Spectral multiplicities from exact traces')
+000060 |     row_counts=[]
+000061 |     for row in g:
+000062 |         row_counts.append({str(Q(int(k),256)):v for k,v in sorted(Counter(map(int,row)).items())})
+000063 |     need(all(c=={'-1/4':12,'0':15,'1/16':32,'1':1} for c in row_counts),'All60 interaction rows')
+000064 |     triangle=next(t for t in it.combinations(range(60),3) if g[t[0],t[1]]*g[t[1],t[2]]*g[t[2],t[0]]<0)
+000065 |     product=Q(int(g[triangle[0],triangle[1]])*int(g[triangle[1],triangle[2]])*int(g[triangle[2],triangle[0]]),256**3)
+000066 |     need(product==Q(-1,64),'Gauge-invariant negative cycle')
+000067 |     need(not np.any(g.sum(axis=1)),'Canonical constant label vector is null')
+000068 |     ag=np.abs(g)
+000069 |     need(np.all(ag.sum(axis=1)==1536) and np.all(ag@ag>0),'Magnitude-only Perron mode is unique at6')
+000070 |     need(np.any(ag@(ag-384*unit)@(ag-768*unit)),'Magnitude-only negative control breaks spectrum')
+000071 |     # K^+=(7K-2K^2)/9; K=g/256. F=(fr+i fi)/16.
+000072 |     pin=7*256*g-2*g@g
+000073 |     wr=fr@pin@fr.T+fi@pin@fi.T
+000074 |     wi=fi@pin@fr.T-fr@pin@fi.T
+000075 |     need(np.array_equal(wr,6291456*sym_scaled(4)) and not np.any(wi),'F K+ F* is entire Sym4')
+000076 |     # This is the literal code overlap on five registers, not a chosen chain.
+000077 |     _,supports=_code_basis()
+000078 |     overlap=np.zeros((20,20),dtype=np.int64)
+000079 |     target=np.zeros_like(overlap)
+000080 |     for i,S in enumerate(supports):
+000081 |         for j,T in enumerate(supports):
+000082 |             for w in S:
+000083 |                 for v in T:
+000084 |                     if w[1:]==v[:3]:
+000085 |                         overlap[4*i+v[3],5*w[0]+j]+=1
+000086 |         for a in range(4):
+000087 |             target[4*i+a,5*a+i]=len(S)//4
+000088 |     need(np.array_equal(overlap,target),'Adjacent code isometries have overlap1/4 times a permutation')
+000089 |     # Actual normalized f0 and an original Gaussian root alpha=sqrt2 e0.
+000090 |     need((2,0,0,0,0,0,0,0) in _roots(),'Witness is an original root')
+000091 |     x,y,x2,x3=sp.symbols('x y x2 x3',real=True)
+000092 |     t=(x+sp.I*y)/sp.sqrt(2)
+000093 |     a1,a2,a3=sp.sqrt(2)*x,sp.sqrt(2)*x2,sp.sqrt(2)*x3
+000094 |     response=sp.expand((-4*t**3+6*t**2*a1-4*t*(a2/2+a1**2/2)+a3/3+a1*a2/2+a1**3/6)/sp.sqrt(96))
+000095 |     coeff=sp.simplify(response.coeff(x3))
+000096 |     norm2=sp.simplify(3*coeff**2)
+000097 |     need(norm2==sp.Rational(1,144),'Actual charged partition3 root-zero-mode leakage')
+000098 |     files=['tfpt_explorer/process.py','tfpt_explorer/cartan_source.py',
+000099 |         'experiments/theory-contracts/original-admissible-source-closure-20261025/QUANTUM-OCTIC-COMPLETION.txt']
+000100 |     result={
+000101 |         'verdict':'EXACT_FINITE_DUALITY_AND_COMPATIBILITY_BOUNDARIES; PHYSICAL_ORIGIN_OPEN',
+000102 |         'arithmetic':'Gaussian/int64 tensor identities and exact rational/symbolic witness',
+000103 |         'kernel':'K_ab=<z_a,z_b>^4=F*F',
+000104 |         'kernel_spectrum':{'3':int(top),'3/2':int(middle),'0':60-int(top+middle)},
+000105 |         'row_counts':row_counts[0],
+000106 |         'negative_triangle':{'indices':list(triangle),'roots':[list(rays[i]) for i in triangle],'product':str(product)},
+000107 |         'magnitude_only_kernel':{'perron_eigenvalue':6,'perron_multiplicity':1,'square_strictly_positive':True},
+000108 |         'source_metric':{'pseudoinverse':'K+=(7K-2K^2)/9','whitened_frame':'F K+ F*=Pi_sym4','conformal_energy':'L0=4 on all35 one-mode quartics','generalized_problem':'4 K c=E K c; E=4 on rank35 support'},
+000109 |         'overlap':{'adjacent_isometry_overlap':'(1/4) permutation20','adjacent_intersection':0,'projector_penalty_spectrum':{'3/4':20,'5/4':20,'2':984},'native_parent_pair_lower_bound':'3/8','all_identical_overlapping_blocks':'zero intersection for overlap sizes1,2,3 by symmetry transport; no independently rotated-code classification'},
+000110 |         'root_zero_mode':{'input':'f0=sum_a(u_a.h(-1))^4/sqrt96','alpha':'sqrt2 e0 in original Gaussian chart','charged_partition3_coefficient':str(coeff),'charged_partition3_norm_squared':str(norm2),'outside_charge_zero_code':True},
+000111 |         'analytic_consequence':'Any operator commuting with all horizontal E8 zero modes cannot have precisely this C5 as an isolated eigen/ground space in the full grade4 source; applies to the screened W8 zero mode if used as such a selector',
+000112 |         'generator_nonuniqueness':'L_t=(3I-K)(I+tK),t>=0, shares top-five kernel; remaining eigenvalues3/2*(1+3t/2) and3. This is a finite polynomial-family witness, not full P1 countermodels.',
+000113 |         'source_sha256':{f:hashlib.sha256((REPO/f).read_bytes()).hexdigest() for f in files},
+000114 |         'not_claimed':['Actual physical60-site network','Physical identification of Gram with energy','All rotated-code or open-system exclusion','W8 cannot contribute to larger E8 multiplets or state-dependent dynamics','Complete TFPT origin or 3+2/clock/seed selection']
+000115 |     }
+000116 |     args.out.write_text(json.dumps(result,indent=2,sort_keys=True)+'\n')
+000117 |     print(json.dumps({'kernel_spectrum':result['kernel_spectrum'],'negative_cycle':str(product),'metric_full35':True,'overlap_intersection':0,'root_witness_norm2':str(norm2),'magnitude_control_fires':True},sort_keys=True))
+000118 | 
+000119 | if __name__=='__main__':
+000120 |     main()

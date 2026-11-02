@@ -1,0 +1,158 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_quarter_stress_current.py
+Original file SHA-256: 9e0378b16674598c99b08c19e633cc3108c84ba33c1ae14d5235f695f1544007
+Inclusive original lines: 32-181
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000032 |     parser.add_argument('--repo', type=Path,
+000033 | [OMITTED: non-scientific conversation or execution metadata]
+000034 |     parser.add_argument('--out', type=Path, required=True)
+000035 |     args = parser.parse_args()
+000036 |     old = args.repo / 'experiments/theory-contracts'
+000037 |     stress_file = old / 'original-admissible-source-closure-20261025/check_w8_stress_cyclic.py'
+000038 |     spec = importlib.util.spec_from_file_location('old_actual_stress', stress_file)
+000039 |     module = importlib.util.module_from_spec(spec)
+000040 |     spec.loader.exec_module(module)
+000041 | 
+000042 |     # The original CAR coefficient is affine in alpha at EVERY mode.
+000043 |     a, b, r, n = sp.symbols('a b r n')
+000044 |     coefficient = a * (r + n / 2 + sp.Rational(3, 4)) \
+000045 |                 + b * (r + n / 2 + sp.Rational(1, 4)) - 1
+000046 |     equations = sp.Poly(coefficient, r, n).coeffs()
+000047 |     solutions = sp.solve(equations, (a, b), dict=True)
+000048 |     need(solutions == [{a: 2, b: -2}], 'current synthesis is not unique')
+000049 |     need(sp.expand(coefficient.subs(solutions[0])) == 0, 'all-mode identity')
+000050 |     p1, p3 = -sp.Rational(1, 4), sp.Rational(1, 4)
+000051 |     need(p1**2 / 2 == p3**2 / 2 == sp.Rational(1, 32), 'ground terms')
+000052 | 
+000053 |     # The existing full-cover sectors must NOT be silently identified. For
+000054 |     # independent c1 factors, the same subtraction has a Virasoro cubic term.
+000055 |     k = sp.Symbol('k', positive=True, integer=True)
+000056 |     h = sp.Rational(1, 32)
+000057 |     independent_norm = sp.expand(4 * (4 * k * h + 2 * k * (k**2 - 1) / 12))
+000058 |     need(sp.expand(independent_norm - k * (4*k**2 - 1) / 6) == 0,
+000059 |          'two-factor Virasoro norm')
+000060 |     independent_values = [independent_norm.subs(k, j) for j in range(1, 5)]
+000061 |     need(independent_values[:2] == [sp.Rational(1, 2), sp.Integer(5)],
+000062 |          'first two independent-factor tests')
+000063 |     scales = [sp.cancel(j / independent_values[j-1]) for j in (1, 2)]
+000064 |     need(scales[0] != scales[1], 'a common rescaling unexpectedly fits')
+000065 |     # For any real self-adjoint combination aL+ + bL-, its vacuum norm is
+000066 |     # (a²+b²)(2kh+k(k²-1)/12). A nonzero Heisenberg level would require
+000067 |     # a²+b²=0 to remove the cubic term, hence a=b=0 over the reals.
+000068 |     aa, bb = sp.symbols('aa bb', real=True)
+000069 |     independent_general = (aa**2 + bb**2) * (2*k*h + k*(k**2-1)/12)
+000070 |     need(sp.Poly(sp.expand(independent_general), k).coeff_monomial(k**3)
+000071 |          == (aa**2 + bb**2) / 12, 'independent-factor cubic coefficient')
+000072 | 
+000073 |     # Old actual comparison: u_cov W0=W1 and u_cov W1=W0 u_base.
+000074 |     # Cover indices move as 2m -> 2m+1 -> 2m+2. Pull back the odd-sector
+000075 |     # matrix units using the FIRST arrow, retaining the full wrap carry.
+000076 |     m, step = sp.symbols('m step', integer=True)
+000077 |     need(sp.expand((2*m+1)-1-2*m) == 0, 'source generator pullback')
+000078 |     need(sp.expand((2*(m+step)+1)-1-2*(m+step)) == 0,
+000079 |          'target generator pullback')
+000080 |     for mm in range(-100, 101):
+000081 |         need((2*mm+1 < 0) == (2*mm < 0), 'first-arrow sea mismatch')
+000082 |     wrap_changes = [mm for mm in range(-100, 101)
+000083 |                     if (2*mm+1 < 0) != (2*mm+2 < 0)]
+000084 |     need(wrap_changes == [-1], 'winding carry was lost')
+000085 | 
+000086 |     # Replay the real old CAR moves, with the original common sea and ALL
+000087 |     # intermediate states. Tests do not project to the folded residue sector.
+000088 |     def action(vector, step, alpha=None):
+000089 |         if alpha is not None and step > 0:
+000090 |             return module.original_stress_action(vector, step, alpha)
+000091 |         result = {}
+000092 |         for mask, value in vector.items():
+000093 |             for i in range(16):
+000094 |                 j = i + step
+000095 |                 if not 0 <= j < 16:
+000096 |                     continue
+000097 |                 moved = module.fermion_move(mask, i, j)
+000098 |                 if moved is None:
+000099 |                     continue
+000100 |                 target, sign = moved
+000101 |                 factor = F(1) if alpha is None else F(i - 8) + alpha + F(step, 2)
+000102 |                 result[target] = result.get(target, F(0)) + value * sign * factor
+000103 |         return {key: value for key, value in result.items() if value}
+000104 | 
+000105 |     sea = (1 << 8) - 1
+000106 |     vectors = [{sea: F(1)}]
+000107 |     for k in range(1, 5):
+000108 |         vectors.append(action({sea: F(1)}, k))
+000109 |         vectors.append(module.original_stress_action({sea: F(1)}, k, F(1, 4)))
+000110 |     tested = 0
+000111 |     for vector in vectors:
+000112 |         for step in list(range(-7, 0)) + list(range(1, 8)):
+000113 |             recovered = add(action(vector, step, F(3, 4)),
+000114 |                             action(vector, step, F(1, 4)), F(2), F(-2))
+000115 |             need(recovered == action(vector, step), 'literal CAR family difference')
+000116 |             tested += 1
+000117 |     # At step zero the diagonal normal ordering is explicit.
+000118 |     for charge in range(-4, 5):
+000119 |         grade = sp.Symbol('grade')
+000120 |         h1 = grade + sp.Rational(charge)**2/2 + p1*charge + p1**2/2
+000121 |         h3 = grade + sp.Rational(charge)**2/2 + p3*charge + p3**2/2
+000122 |         need(sp.expand(2*(h3-h1)) == charge, 'zero-mode charge term lost')
+000123 | 
+000124 |     central = []
+000125 |     for k in range(1, 8):
+000126 |         # J_+k annihilates the sea; J_-k creates the finite interior excitation.
+000127 |         value = add(action(action({sea: F(1)}, k), -k),
+000128 |                     action(action({sea: F(1)}, -k), k), F(1), F(-1))
+000129 |         need(value == {sea: F(k)}, 'interior-core current central term')
+000130 |         central.append(k)
+000131 |     # Finite cut matrices cannot satisfy CCR on every state: retain this
+000132 |     # negative control instead of treating their commutator as an operator
+000133 |     # identity on the full truncated Fock space.
+000134 |     empty = {}
+000135 |     need(action(action({0: F(1)}, 1), -1) == empty, 'empty-state control')
+000136 |     need(action(action({0: F(1)}, -1), 1) == empty, 'empty-state control')
+000137 | 
+000138 |     sources = [stress_file,
+000139 |                old / 'joint-native-algebra-selection-20261016/ORIGINAL-ORDERED-CURRENT-KERNEL-AND-SEAM-GRADING.txt',
+000140 |                old / 'native-octic-seam-origin-20261025/GEOMETRIC-SOURCE-JET.txt',
+000141 |                old / 'canonical-seam-fermionization-20261025/MOBIUS-QUARTER-OPERATOR-DICTIONARY.txt']
+000142 |     result = {
+000143 |         'claim': 'MATH.ORIGINAL-SEAM.QUARTER-STRESS-CURRENT.01',
+000144 |         'verdict': 'EXACT_IN_THE_EXISTING_COMMON_CAR_FRAME',
+000145 |         'synthesis': {'L_3_4_coefficient': 2, 'L_1_4_coefficient': -2,
+000146 |                       'all_nonzero_modes_symbolic': True,
+000147 |                       'zero_mode_including_all_charge_terms': True},
+000148 |         'finite_literal_car_replay': {'vector_mode_pairs': tested,
+000149 |                                       'central_term_modes': central,
+000150 |                                       'full_truncation_ccr_negative_control': True},
+000151 |         'independent_cover_factor_negative_control': {
+000152 |             'difference_vacuum_norm_polynomial': str(sp.factor(independent_norm)),
+000153 |             'norms_modes_1_to_4': list(map(str, independent_values)),
+000154 |             'level_one_current_norms_modes_1_to_4': [1, 2, 3, 4],
+000155 |             'no_common_rescaling': True,
+000156 |             'no_nonzero_real_linear_stress_combination_is_heisenberg': True,
+000157 |         },
+000158 |         'old_winding_comparison': {
+000159 |             'u_cov_W0_equals_W1': True,
+000160 |             'u_cov_W1_equals_W0_u_base': True,
+000161 |             'first_arrow_matrix_units_pull_back_exactly': True,
+000162 |             'first_arrow_sea_and_subtraction_agree': True,
+000163 |             'wrap_sea_change_base_mode': -1,
+000164 |             'full_cover_vacuum_preservation_claimed': False,
+000165 |             'current': '2(Ad_Gamma(u_cov)^(-1)(L_3_4)-L_1_4)',
+000166 |         },
+000167 |         'scope': 'Same original periodic CAR frame, sea, subtraction and finite-energy core. '
+000168 |                  'Old cut-cover winding comparison retained. No bare-P1 CAR-kernel derivation '
+000169 |                  'or point-local unfolded W8 map.',
+000170 |         'physical_gates_closed': [],
+000171 |         'complete_TFPT_solution': False,
+000172 |         'sources': [{'path': str(path.relative_to(args.repo)),
+000173 |                      'sha256': sha256(path.read_bytes()).hexdigest()} for path in sources],
+000174 |     }
+000175 |     args.out.write_text(json.dumps(result, indent=2, sort_keys=True) + '\n')
+000176 |     print(json.dumps({'verdict': result['verdict'], 'literal_pairs': tested,
+000177 |                       'all_mode_identity': True, 'physical_gates_closed': []}))
+000178 | 
+000179 | 
+000180 | if __name__ == '__main__':
+000181 |     main()

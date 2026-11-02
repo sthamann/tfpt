@@ -1,0 +1,183 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/SEAM-GRAPH-REVIEW.txt
+Original file SHA-256: d5701f6475333f77ac7870a7917518bbe69f637fe6727e2eeb90e59edf3345c8
+Inclusive original lines: 191-365
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000191 | 
+000192 |   G0=<Q,h,kappa>
+000193 | 
+000194 | has order 16, with eight holomorphic elements and an antiholomorphic coset of
+000195 | eight real involutions. Strictly speaking, those eight real maps form a
+000196 | coset, not a subgroup.
+000197 | 
+000198 | Now adjoin r. Set t_x=r Q^(-1), the half translation z->z+1/2. Conjugation by
+000199 | Q gives t_y:z->z+i/2. The four half translations form V4, and
+000200 | 
+000201 |   H=<Q,r>=V4 semidirect C4,
+000202 |   |H|=16.                                  (8)
+000203 | 
+000204 | The deck h is central. The lifted dihedral relation is
+000205 | 
+000206 |   r Q r^(-1)=h Q^(-1),                    (9)
+000207 | 
+000208 | so after quotienting by <h>, relation (9) becomes the ordinary D4 reflection
+000209 | relation. Hence H is a central deck extension of the base D4 group, not D4
+000210 | itself. This is the required scope correction: the old canonical H0 of order
+000211 | eight is a proper abelian subgroup of the full lifted action.
+000212 | 
+000213 | Finally
+000214 | 
+000215 |   G=<Q,r,kappa>
+000216 | 
+000217 | has order 32. Orientation separates it into 16 holomorphic and 16
+000218 | antiholomorphic maps.
+000219 | 
+000220 | 4. Real-form census computed from fixed equations
+000221 | ==================================================
+000222 | 
+000223 | Every antiholomorphic affine map on the square torus is represented in real
+000224 | coordinates by
+000225 | 
+000226 |   v -> M v+d,  det(M)=-1.                 (10)
+000227 | 
+000228 | The checker first computes its order in the finite affine group. For an
+000229 | involution it solves
+000230 | 
+000231 |   (I-M)v=d mod Z^2.                       (11)
+000232 | 
+000233 | This is a rank-one torus equation. A primitive integer vector in the left
+000234 | kernel of I-M detects whether (11) is soluble. If it is, the nonzero Smith
+000235 | invariant
+000236 | 
+000237 |   gcd(entries of I-M)
+000238 | 
+000239 | is the number of fixed circles. Thus the program classifies an involution as
+000240 | 
+000241 |   0 circles: empty,
+000242 |   1 circle: nondividing,
+000243 |   2 circles: dividing.
+000244 | 
+000245 | This procedure independently yields for the old antiholomorphic coset:
+000246 | 
+000247 |   nondividing 4, empty 2, dividing 2.      (12)
+000248 | 
+000249 | For the eight maps added by r it yields:
+000250 | 
+000251 |   dividing 2, empty 2, antiholomorphic order four 4.     (13)
+000252 | 
+000253 | Combining (12) and (13), the full set of 16 antiholomorphic maps contains
+000254 | 
+000255 |   4 nondividing real involutions,
+000256 |   4 empty real involutions,
+000257 |   4 dividing real involutions,
+000258 |   4 antiholomorphic order-four maps.       (14)
+000259 | 
+000260 | Consequently the phrase "16 real forms" would be wrong. There are 16
+000261 | antiholomorphic affine symmetries, but only 12 are involutions and hence real
+000262 | structures.
+000263 | 
+000264 | 5. Old OS forms versus marked-equator forms
+000265 | ============================================
+000266 | 
+000267 | The two dividing members of the old coset are
+000268 | 
+000269 |   rho_+=hQkappa,
+000270 |   rho_-=hQ^3kappa.
+000271 | 
+000272 | In affine coordinates their fixed circles lie at
+000273 | 
+000274 |   t=0,1/2  or  s=0,1/2.
+000275 | 
+000276 | They avoid all four branch points (5). These are the previously classified
+000277 | dividing Schottky/OS forms whose halves are smooth annuli.
+000278 | 
+000279 | The new dividing members are
+000280 | 
+000281 |   S=rkappa,
+000282 |   hS.
+000283 | 
+000284 | Their fixed circles are (4), and each real structure fixes all four branch
+000285 | points. Together they give the full marked pullback (3). The distinction is
+000286 | not cosmetic:
+000287 | 
+000288 |   rho_+/-: smooth dividing OS boundaries, no marked branch point fixed;
+000289 | 
+000290 |   S,hS: marked-equator lifts, all four branch points fixed, union is a graph.
+000291 | 
+000292 | The old NS spin character on E can still be restricted to these circles, but
+000293 | that does not identify the complete graph with one old NS circle. A boundary
+000294 | Dirac operator on one selected component and a graph Dirac operator with
+000295 | vertex conditions are different closed operators and have different domains.
+000296 | 
+000297 | 6. Consequence for the source bridge
+000298 | ====================================
+000299 | 
+000300 | The earlier source audit remains valid but its target now needs one sharper
+000301 | typing condition. A proposed P1-to-elliptic map must say whether the original
+000302 | smooth seam is transported to
+000303 | 
+000304 |   a. one old OS oval of rho_+ or rho_-,
+000305 |   b. one selected component of Fix(S) or Fix(hS),
+000306 |   c. the normalization of all four marked ovals, or
+000307 |   d. the full V4/E8 graph with explicit vertex conditions.
+000308 | 
+000309 | These targets are not interchangeable. In particular, identifying the old
+000310 | smooth circle with (d) is false before any field or state question is asked.
+000311 | Selecting (b), (c), or a smoothing of (d) adds boundary data and must be
+000312 | derived from the original source rather than hidden in a cover dictionary.
+000313 | 
+000314 | This does not invalidate the elliptic annulus, its dividing OS cuts, or the
+000315 | quarter boundary calculation. It separates two real structures that were
+000316 | previously close enough to confuse:
+000317 | 
+000318 |   the OS/Schottky cut rho_+/- produces a smooth annulus boundary;
+000319 |   the lifted marked equator S produces the ramified seam graph.
+000320 | 
+000321 | The smallest next test is therefore no longer a comparison of group orders.
+000322 | It is the domain-level question whether the original P1 seam trace lands on
+000323 | one smooth rho oval, or whether the original theory supplies graph vertex
+000324 | conditions at the four ramification points. Without that relation, the full
+000325 | marked pullback cannot be used as the original one-circle source.
+000326 | 
+000327 | 7. Independent checker
+000328 | =======================
+000329 | 
+000330 | Files:
+000331 | 
+000332 |   research-20261026-elliptic-source-continuation/
+000333 |   check_independent_seam_graph.py
+000334 |   independent-seam-graph-results.json
+000335 | 
+000336 | The checker performs 21 exact tests. It:
+000337 | 
+000338 |   * verifies algebraically that r preserves y^2=x^4-1 and r^2=h;
+000339 |   * closes the old and enlarged affine groups by breadth-first composition;
+000340 |   * computes element orders rather than assigning them from names;
+000341 |   * computes every fixed-component count from equation (11);
+000342 |   * separates the original and newly added antiholomorphic cosets;
+000343 |   * verifies that the old dividing forms avoid all branch marks;
+000344 |   * identifies the new dividing forms as exactly S and hS;
+000345 |   * constructs the seam graph, incidence matrix, rank, b1, and torus face
+000346 |     count.
+000347 | 
+000348 | Observed result:
+000349 | 
+000350 |   PASS 21/21
+000351 |   RESULT_SHA256 e7cb292768c5432840f188c865c81924350fbbc2eb14defacb100be3d82ece6f
+000352 | 
+000353 | Scope
+000354 | =====
+000355 | 
+000356 | PROVED: the r extension, the 32-element affine group, the 12-real-involution
+000357 | census, the distinction between old OS forms and new marked-equator forms,
+000358 | and the V4/E8/F4, b1=5 seam graph.
+000359 | 
+000360 | REFUTED: the direct identification of the full marked equator pullback with
+000361 | the old smooth one-circle NS source.
+000362 | 
+000363 | OPEN: which smooth oval or graph domain the original P1 boundary trace
+000364 | actually selects. That is an operator-domain source question, not a missing
+000365 | finite group calculation.

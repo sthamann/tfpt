@@ -1,0 +1,49 @@
+TFPT scientific source excerpt
+Original repository path: experiments/lean4-carrier-rigidity/TfptCarrier/SeamScalingLimit.lean
+Original file SHA-256: bee4682972036d8f9944348a6259a07a1d610341ee5ee89e01905c5093275648
+Inclusive original lines: 63-103
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000063 | /-! ### The collar's structural hypotheses and the target (abstract Props). -/
+000064 | 
+000065 | /-- The collar is a gapped quasi-free (CAR) lattice free-fermion phase
+000066 |     (carrier-forced gap Δ = 6 ln(3/2) > 0; v302/v367). -/
+000067 | axiom CollarGappedQuasifree : Prop
+000068 | /-- The massless scaling limit is a chiral CFT of central charge 8. -/
+000069 | axiom ChiralCFT_c8 : Prop
+000070 | /-- The scaling-limit net is the (E₈)₁ net.  This is `SEAM.EQUIV.01`. -/
+000071 | axiom SeamIsE8 : Prop
+000072 | 
+000073 | /-- The carrier forces the collar to be a gapped quasi-free phase (v302/v367):
+000074 |     the single carrier-forced structural input. -/
+000075 | axiom collar_gapped : CollarGappedQuasifree
+000076 | 
+000077 | /-! ### The cited published theorems (named external axioms, the [C] links). -/
+000078 | 
+000079 | /-- Osborne–Stottmeister (CMP 398 (2023), arXiv:2107.13834; the seam scaling-limit
+000080 |     theorem, legacy token "MMST", on the MMST OAR framework): a gapped quasi-free lattice
+000081 |     free-fermion collar that is in the applicability range `rank ≤ c ≤ D` and chiral
+000082 |     (`c₋ ≠ 0`) has a massless scaling limit that is a chiral CFT with the matching
+000083 |     central charge.  CITED, not re-proved; the arithmetic hypotheses are the provable
+000084 |     facts `mmst_range` and `chiral` above. -/
+000085 | axiom mmst_scaling_limit :
+000086 |     CollarGappedQuasifree → (rankE8 ≤ c ∧ c ≤ D) → cMinus ≠ 0 → ChiralCFT_c8
+000087 | 
+000088 | /-- Adamo–Moriwaki–Tanimoto (2024) OS reconstruction + the order-4 μ₄ clock
+000089 |     holomorphy selector: a chiral c = 8 net that is holomorphic (det K = 1) is the
+000090 |     (E₈)₁ lattice net — the same-c rival SO(16) (det K = 4) is excluded.  CITED, not
+000091 |     re-proved; the holomorphy hypothesis is the provable `holomorphic_discriminator`. -/
+000092 | axiom adamo_holomorphic_e8 :
+000093 |     ChiralCFT_c8 → (detK_E8 = 1 ∧ detK_SO16 ≠ detK_E8) → SeamIsE8
+000094 | 
+000095 | /-! ### The composition theorem: S3 closed modulo the two cited theorems. -/
+000096 | 
+000097 | /-- `SEAM.EQUIV.01` follows from: the carrier-forced collar gap (`collar_gapped`), the
+000098 |     *provable* MMST hypotheses (`mmst_range`, `chiral`), the cited MMST scaling-limit
+000099 |     theorem, the *provable* holomorphy discriminator, and the cited Adamo OS theorem.
+000100 |     A well-typed composition; `#print axioms` below pins the exact residual. -/
+000101 | theorem seamScalingLimit : SeamIsE8 :=
+000102 |   adamo_holomorphic_e8
+000103 |     (mmst_scaling_limit collar_gapped mmst_range chiral.2)

@@ -1,0 +1,54 @@
+TFPT scientific source excerpt
+Original repository path: verification/v233_cp_triality_phase.py
+Original file SHA-256: 43b34998aa882f2207fc1ebaa74b67cf157a5c8de977a62afa363d8f0284b94c
+Inclusive original lines: 43-88
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000043 | from tfpt_constants import check, summary, reset, N_fam
+000044 | 
+000045 | 
+000046 | def run():
+000047 |     reset()
+000048 |     print("v233  CP = the universal family/triality phase, sheet-split (mu6 = mu3 x mu2)")
+000049 | 
+000050 |     rho = sp.exp(sp.I * sp.pi / 3)              # hexagonal CM unit, order 6
+000051 |     omega = sp.exp(2 * sp.I * sp.pi / 3)        # Z3 family / triality centre, order 3
+000052 |     sheet = sp.Integer(-1)                      # Z2 sheet = rho^3
+000053 | 
+000054 |     check("mu6 = mu3 x mu2 (gcd(3,2)=1): family triality centre {1,omega,omega^2} "
+000055 |           "= cusp weights {0,1/3,2/3} x 2pi; sheet mu2 = {1,-1}",
+000056 |           sp.gcd(3, 2) == 1 and sp.simplify(omega**3) == 1 and sp.simplify(sheet**2) == 1
+000057 |           and sp.simplify(rho**3 - sheet) == 0)
+000058 |     check("rho = omega^2 * (-1): the hexagonal CM unit = (family triality omega^2) x "
+000059 |           "(sheet -1)", sp.simplify(rho - omega**2 * sheet) == 0)
+000060 | 
+000061 |     # cusp weights {0,1/3,2/3} -> triality phases {1, omega, omega^2}
+000062 |     cusp = [sp.exp(2 * sp.I * sp.pi * w) for w in (sp.Integer(0), sp.Rational(1, 3), sp.Rational(2, 3))]
+000063 |     check("the three cusp weights {0,1/3,2/3} give the triality centre {1,omega,omega^2}",
+000064 |           set(sp.simplify(c) for c in cusp) == {sp.simplify(omega**k) for k in range(3)})
+000065 | 
+000066 |     # quark rho^1, lepton rho^4: same family class (mu6/mu2), opposite sheet
+000067 |     # family quotient: reduce exponent mod 2 is the SHEET; the family class is exponent mod 3
+000068 |     q_fam, q_sheet = 1 % 3, (-1)**1
+000069 |     l_fam, l_sheet = 4 % 3, (-1)**4
+000070 |     check("SAME FAMILY CLASS: rho^4 = rho^1 * rho^3 with rho^3 in mu2, so rho^1 and "
+000071 |           "rho^4 have the SAME image in mu6/mu2 ~ mu3 (family class %d == %d); "
+000072 |           "OPPOSITE sheet ((-1)^1=%d vs (-1)^4=%d)" % (q_fam, l_fam, q_sheet, l_sheet),
+000073 |           sp.simplify(rho**4 - rho**1 * rho**3) == 0
+000074 |           and q_fam == l_fam and q_sheet == -l_sheet)
+000075 |     # the common family element is omega^2 (= the 2/3 cusp weight)
+000076 |     check("the common family/triality phase of BOTH sectors is omega^2 (the 2/3 "
+000077 |           "cusp-weight Z3 centre); the sheet (-1)^k splits quark/lepton",
+000078 |           sp.simplify(rho**1 * sheet - omega**2) == 0          # quark family part
+000079 |           and sp.simplify(rho**4 - omega**2) == 0)             # lepton family part (sheet +1)
+000080 | 
+000081 |     # omega sits in the (2,3,5) Milnor/Coxeter monodromy spectrum (E8 exponents /30)
+000082 |     e8_exps = [1, 7, 11, 13, 17, 19, 23, 29]
+000083 |     monodromy = {sp.exp(2 * sp.I * sp.pi * m / 30) for m in e8_exps}
+000084 |     # omega = e^{2pi i/3} = e^{2pi i*10/30}; omega^2 = e^{2pi i*20/30}. Check the family
+000085 |     # Z3 factor divides the order-30 monodromy: omega^3 = 1 and 30/3 = 10 (= A_Lambda)
+000086 |     check("the triality centre omega is the mu3 factor of the order-30 (2,3,5) "
+000087 |           "monodromy: omega^3=1, 30/|mu3|=10=A_Lambda; the family CP phase lives "
+000088 |           "inside the same Coxeter/Milnor cycle that builds E8 (v232)",

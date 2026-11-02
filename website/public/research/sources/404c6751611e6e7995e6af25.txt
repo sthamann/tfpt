@@ -1,0 +1,71 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_b1_operator_information.py
+Original file SHA-256: 3fcbbc88f79fcaeaf0b6c53b3381efb97d2ac77f95e8a11200ff4b3f6314adcb
+Inclusive original lines: 1-63
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | from pathlib import Path
+000002 | import sys,json
+000003 | import numpy as np
+000004 | import sympy as s
+000005 | R=Path(__file__).resolve().parents[4]
+000006 | sys.path.insert(0,str(R/'verification'))
+000007 | import v252_full_finite_triple as f
+000008 | N=np.array([[0,-1],[1,0]],complex);Z=np.diag([1,-1]);S=N@Z
+000009 | g=f.grading();I=np.eye(96);zero=np.zeros((3,3),complex)
+000010 | y=[np.array([[1+1j,2,0],[0,3-1j,1],[1j,0,4]],complex)+j*np.eye(3) for j in range(4)]
+000011 | mr=np.array([[2+1j,1,0],[1,3,1j],[0,1j,4-1j]],complex)
+000012 | DY=f.full_D(*y,zero);MR=f.full_D(zero,zero,zero,zero,mr)
+000013 | phi=[DY+MR,2*DY+MR];ell=1/64;p=1/4;Gamma=np.kron(Z,g)
+000014 | close=lambda a,b: bool(np.linalg.norm(a-b)<1e-10)
+000015 | checks={'original_Y_MR_trace_orthogonal':close(np.trace(DY@MR),0),
+000016 |         'radial_source_trace_separates_frame_orbits': np.trace(phi[0]@phi[0])!=np.trace(phi[1]@phi[1]),
+000017 |         'radial_trace_difference_formula':close(np.trace(phi[1]@phi[1]-phi[0]@phi[0]),3*np.trace(DY@DY))}
+000018 | cs=[];gs=[];hs=[]
+000019 | for j,Phi in enumerate(phi):
+000020 |  h=p*g-1j*g@Phi;hs.append(h)
+000021 |  D=1j*np.pi/2*np.kron(N,I)+np.kron(S,p*I)+np.kron(Z,Phi)
+000022 |  checks[f'full_D_odd_{j}']=close(Gamma@D+D@Gamma,0)
+000023 |  checks[f'boundary_h_not_gamma_odd_{j}']=close(g@h+h@g,2*p*I)
+000024 |  ev,U=np.linalg.eigh(h);c=(U*(1/(1+np.exp(2*ell*ev))))@U.conj().T
+000025 |  x=(U*(1/(2*np.cosh(ell*ev))))@U.conj().T
+000026 |  Cev,CU=np.linalg.eigh(c);logC=(CU*np.log((1-Cev)/Cev))@CU.conj().T
+000027 |  G=np.block([[I-c,x],[x,c]]);cs.append(c);gs.append(G)
+000028 |  checks[f'whole_source_projection_{j}']=close(G@G,G)
+000029 |  checks[f'logodds_recovers_given_h_{j}']=close(logC,2*ell*h)
+000030 | checks['original_radial_family_changes_C']=bool(np.linalg.norm(cs[1]-cs[0])>1e-3)
+000031 | checks['original_radial_family_changes_whole_G']=bool(np.linalg.norm(gs[1]-gs[0])>1e-3)
+000032 | checks['bounded_perturbation_exact']=close(hs[1]-hs[0],-1j*g@DY)
+000033 | # Exact two-level typed comparison, no proposed new physical profile.
+000034 | a=s.log(2);k=s.diag(a,-a);C=s.diag(s.Rational(1,3),s.Rational(2,3))
+000035 | weight=s.diag(s.Rational(1,2),2);heat=s.exp(-a*a)*s.eye(2)
+000036 | checks['one_particle_weight_is_odds']=C*(s.eye(2)-C).inv()==weight
+000037 | checks['signed_weight_not_even_heat']=weight[0,0]!=weight[1,1] and heat[0,0]==heat[1,1]
+000038 | rho=s.diag(s.Rational(2,9),s.Rational(1,9),s.Rational(4,9),s.Rational(2,9))
+000039 | checks['fock_density_normalized']=s.trace(rho)==1
+000040 | checks['fock_occupations_equal_C']=rho[1,1]+rho[3,3]==C[0,0] and rho[2,2]+rho[3,3]==C[1,1]
+000041 | u=s.symbols('u',nonnegative=True);epsilon=s.Rational(1,20)
+000042 | pol=u**3-6*u**2+6*u;profile=s.exp(-u)*(1+epsilon*pol)
+000043 | mom=[s.integrate(u**j*profile,(u,0,s.oo)) for j in range(3)]
+000044 | checks['alternative_positive_profile_same_f0']=profile.subs(u,0)==1
+000045 | checks['alternative_positive_profile_same_f2']=mom[0]==1
+000046 | checks['alternative_positive_profile_same_f4']=mom[1]==1
+000047 | checks['alternative_profile_higher_moment_differs']=mom[2]==s.Rational(13,5) and mom[2]!=2
+000048 | minimum=s.simplify(1+epsilon*pol.subs(u,2+s.sqrt(2)))
+000049 | checks['alternative_profile_global_positive']=s.simplify(minimum-(1-(4+4*s.sqrt(2))/20))==0 and bool(minimum>0)
+000050 | checks['alternative_profile_not_original']=profile.subs(u,1)!=s.exp(-1)
+000051 | checks['alternative_profile_not_positive_laplace']=s.diff(profile,u,2).subs(u,0)==-s.Rational(1,5)
+000052 | x0,m0,m1,m2=s.symbols('x0 m0 m1 m2',positive=True)
+000053 | checks['general_variance_expansion']=s.expand(m2-2*(m1/m0)*m1+(m1/m0)**2*m0)==m2-m1**2/m0
+000054 | checks['point_measure_moments_exact']=s.simplify(m0*(m0/(m0/m1)**2)-m1**2)==0
+000055 | result={'contract':'B1-OPERATOR-INFORMATION-20261030','checks':{n:bool(v) for n,v in checks.items()},
+000056 |  'all_passed':all(checks.values()),'actual96_Tr_Phi_squared':[float(np.trace(t@t).real) for t in phi],
+000057 |  'actual96_whole_C_change_frobenius':float(np.linalg.norm(cs[1]-cs[0])),
+000058 |  'actual96_whole_G_change_frobenius':float(np.linalg.norm(gs[1]-gs[0])),
+000059 |  'positive_profile_counterexample':{'polynomial':str(pol),'epsilon':str(epsilon),'f0':1,'f2':1,'f4':1,'next_moment':str(mom[2]),'positive_multiplier_lower_bound':str(minimum)},
+000060 |  'scope':'Actual v252 structural probes, fixed-mode numerical controls and exact profile counterexample. KK homotopy and unbounded-domain claims use the separate analytic proof; no finite truncation is a proof of those. No physical source or action is selected.'}
+000061 | out=R/'experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/B1-OPERATOR-INFORMATION.json'
+000062 | out.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+000063 | print(json.dumps(result,ensure_ascii=False,indent=2));assert result['all_passed']

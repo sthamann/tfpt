@@ -1,0 +1,52 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/atlas-defect-synthesis-20261024/COVARIANT-INSTRUMENTS.txt
+Original file SHA-256: 858d770e27f80aadb347194c4a9d1a8c869b12163d6cfe8433e4b12b1275ab10
+Inclusive original lines: 201-244
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 | 
+000202 | All endpoint Choi entries are consequently rational.  Positivity follows
+000203 | from the projector factors in
+000204 | 
+000205 |     J(I_a) = E_a^T tensor sigma_a.
+000206 | 
+000207 | Explicit endpoint Kraus descriptions are
+000208 | 
+000209 |     p=1: M_a = sqrt(6/5) u_a u_a^T,
+000210 | 
+000211 | and, for any orthonormal basis v_{a,1},...,v_{a,4} of the complement of u_a
+000212 | inside H5,
+000213 | 
+000214 |     p=0: M_{a,r} = (1/2) v_{a,r} u_a^T.
+000215 | 
+000216 | The checker verifies rationality, ranks, trace five, and both H5 partial
+000217 | traces for the total endpoint Choi matrices without floating point arithmetic.
+000218 | 
+000219 | Exact boundary of the result
+000220 | ----------------------------
+000221 | 
+000222 | The theorem removes all finite instrument freedom except p once the native
+000223 | H5, its fixed six effects, and actual G31 outcome covariance are accepted.
+000224 | It does not derive p, one-Kraus minimality, physical time, transition rates,
+000225 | spacetime propagation, an entanglement source, complete state tomography,
+000226 | unmeasured GNS coherences, or any P2 or D5 carrier map.
+000227 | 
+000228 | Reproduction
+000229 | ------------
+000230 | 
+000231 | From the repository root:
+000232 | 
+000233 |     PYTHONDONTWRITEBYTECODE=1 python3 \
+000234 |       experiments/theory-contracts/atlas-defect-synthesis-20261024/covariant_instruments.py \
+000235 |       --output /tmp/covariant-instruments-normal.json
+000236 | 
+000237 |     PYTHONDONTWRITEBYTECODE=1 PYTHONOPTIMIZE=2 python3 \
+000238 |       experiments/theory-contracts/atlas-defect-synthesis-20261024/covariant_instruments.py \
+000239 |       --output /tmp/covariant-instruments-oo.json
+000240 | 
+000241 |     cmp /tmp/covariant-instruments-normal.json \
+000242 |         /tmp/covariant-instruments-oo.json
+000243 | 
+000244 | The checked repository result is covariant-instruments-results.json.

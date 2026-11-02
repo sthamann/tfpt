@@ -1,0 +1,126 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/FLAVOR-PATH-TRANSPORT-G-METRIC-ADDENDUM.txt
+Original file SHA-256: 2630f1de582645bef554537c6c16aa8004dfeff83631097a4850aa502c85c443
+Inclusive original lines: 1-118
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | FLAVOR PATH TRANSPORT: G METRIC ADDENDUM
+000002 | Independent correction and positive closure, 2026-10-30
+000003 | 
+000004 | This addendum updates the scoped conclusion of
+000005 | FLAVOR-PATH-TRANSPORT-SOURCE-TYPE-REVIEW.txt.  That review correctly found
+000006 | that flavor_path_transport.py does not itself pass the raw ODE frame into
+000007 | finite_kernel_comparison.  Its proposed metric intertwiner is nevertheless
+000008 | already fixed by the existing algebraic fundamental frame.  It is therefore
+000009 | a missing connection in that code path, not an open choice of source metric.
+000010 | 
+000011 | 1. FIXED SOURCE METRIC
+000012 | 
+000013 | ORIGINAL-FUCHS-ALGEBRAIC-FRAME.txt gives an explicit fundamental matrix G(z)
+000014 | for the same plus-sign equation Psi'=A Psi on the actual negative q Kummer
+000015 | cover.  Its right deck matrices are unitary.  Hence
+000016 | 
+000017 |   H(z)=G(z)^(-dagger) G(z)^(-1)
+000018 | 
+000019 | is the fixed flat positive metric, unique up to an irrelevant positive
+000020 | scalar.  No fit to P, Q or T is involved.
+000021 | 
+000022 | For x=1/2 let P:E_x->E_2 and Q:E_2->E_x be the actual outputs of
+000023 | integrate_path_transport and put
+000024 | 
+000025 |   C_pair=diag(G_x,P G_x),
+000026 |   H_pair=diag(H_x,H_2).
+000027 | 
+000028 | The signed three-cycle on the chosen lift is
+000029 | 
+000030 |   C_s=[[0,0,1],[-1,0,0],[0,-1,0]].
+000031 | 
+000032 | With the actual h signs h0=h1=-omega and h2=+omega, the algebraic G and the
+000033 | numerically integrated path obey
+000034 | 
+000035 |   G_x^(-1) Q P G_x=C_s,
+000036 |   C_pair^(-1) T_raw C_pair=[[0,C_s],[I,0]],
+000037 |   C_pair^dagger H_pair C_pair=I.
+000038 | 
+000039 | Thus T_raw is unitary for the source metric even though it is not unitary for
+000040 | the raw Euclidean coordinate metric.
+000041 | 
+000042 | 2. INDEPENDENT REPLAY
+000043 | 
+000044 | I independently evaluated the displayed algebraic G column formulas at
+000045 | x=1/2, using w^3=(x^2-1)/(x^2+1), h0 h1 h2=1, and reused only P,Q from the
+000046 | public integrate_path_transport function.  The resulting errors were
+000047 | 
+000048 |   ||G_x^(-1) Q P G_x-C_s||                         8.4991e-13
+000049 |   ||P^dagger H_2 P-H_x||                           3.7064e-16
+000050 |   ||Q^dagger H_x Q-H_2||                           5.6361e-14
+000051 |   ||C_pair^(-1)T_raw C_pair-[[0,C_s],[I,0]]||      8.4981e-13
+000052 |   ||C_pair^dagger H_pair C_pair-I||                7.2433e-16
+000053 |   ||T_raw^dagger H_pair T_raw-H_pair||             5.6362e-14.
+000054 | 
+000055 | These agree with the separate ROOT-ACTUAL-PATH-G-METRIC-CHECK.json replay,
+000056 | whose corresponding errors are at most 1.26e-12.
+000057 | 
+000058 | The remaining finite change to the original exact M is also already fixed.
+000059 | Let F=(e1,M e1,M^2 e1), as constructed by source_cycle_frame, and
+000060 | D=diag(1,-1,1).  Directly
+000061 | 
+000062 |   F^dagger M F=P_c,
+000063 |   C_s=D P_c D,
+000064 |   B=F D,
+000065 |   B^dagger M B=C_s.
+000066 | 
+000067 | B is unitary.  More precisely, with
+000068 | 
+000069 |   C_M=C_pair diag(B^dagger,B^dagger)
+000070 | 
+000071 | one has
+000072 | 
+000073 |   C_M^(-1) T_raw C_M=[[0,M],[I,0]],
+000074 | 
+000075 | the exact unitary path operator used by exact_clock_dictionary.  There is no
+000076 | new e0, norm or fitted phase in this repair.
+000077 | 
+000078 | 3. THE TWO ADJOINTS
+000079 | 
+000080 | The earlier numerical statements T_raw^dagger != T_raw^(-1) remain correct
+000081 | only for the raw Euclidean coordinate adjoint.  The source adjoint is
+000082 | 
+000083 |   T_raw^sharp=H_pair^(-1) T_raw^dagger H_pair=T_raw^(-1).
+000084 | 
+000085 | Under the isometry C_pair it becomes the ordinary adjoint of the signed-cycle
+000086 | operator.  After B it is exactly the adjoint used in
+000087 | 
+000088 |   J^dagger T^(-1) J=U6.
+000089 | 
+000090 | Consequently the original path, its source metric, T^dagger, D, Green and the
+000091 | positive inverse square root now form one concrete finite operator chain.
+000092 | The earlier report must not be read as leaving the metric or its
+000093 | normalization free.
+000094 | 
+000095 | 4. RETAINED SCOPE
+000096 | 
+000097 | This closes the first metric and frame bridge.  It does not by itself prove
+000098 | that this one primitive puncture path is the full D4-invariant geodesic spine,
+000099 | derive every Gamma_ij^min word, or identify the full P_str compression and
+000100 | all matrix elements of Hol_G K_f^str.  It also does not add a CAR state,
+000101 | reflection, domain or physical time.  Those are separate whole-source and
+000102 | consumer statements.
+000103 | 
+000104 | The precise positive status is therefore:
+000105 | 
+000106 |   actual original Fuchs path + canonical source metric + exact U6 functional
+000107 |   calculus are now one isometric finite source path;
+000108 | 
+000109 |   the promotion from that path to the entire original Hol_G K_f^str consumer
+000110 |   remains to be checked with its fixed spine, compression and endpoint basis.
+000111 | 
+000112 | SOURCES
+000113 | 
+000114 |   aps_source_review/ORIGINAL-FUCHS-ALGEBRAIC-FRAME.txt
+000115 |   aps_source_review/FUCHS-FRAME-INDEPENDENT-TRACE-REVIEW.txt
+000116 |   tfpt_explorer/flavor_path_transport.py:28-199
+000117 |   tfpt_explorer/source_neutrino_dictionary.py:91-106
+000118 |   outputs/multi-model-source-search-20261029/ROOT-ACTUAL-PATH-G-METRIC-CHECK.json

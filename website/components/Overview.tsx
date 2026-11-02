@@ -185,13 +185,14 @@ export function Overview() {
             <div className="p-6">
               <p className="text-sm leading-relaxed text-slate-700">
                 The fine-structure constant is the unique positive root of a
-                parameter-free cubic built only from c₃ and the abelian
-                coefficient 41 = 10 b₁ — existence and uniqueness are proved:
+                parameter-free self-consistent closure built from c₃, the abelian
+                coefficient 41 = 10 b₁ and the α-dependent seam function.
+                Existence and uniqueness are proved within this equation:
               </p>
               <div className="mt-3 overflow-x-auto rounded-lg border border-slate-300/40 bg-slate-50/40 p-3">
                 <Math
                   block
-                  plain="A parameter-free cubic in α, built only from c₃ and the abelian coefficient 41, set to zero."
+                  plain="A self-consistent closure equation for α, using c₃, the abelian coefficient 41 and the α-dependent seam function, set to zero."
                 >
                   {"F_{U(1)}(\\alpha) = \\alpha^3 - 2c_3^3\\alpha^2 - \\tfrac{4}{5}c_3^6\\cdot 41 \\log\\tfrac{1}{\\varphi_{\\mathrm{seam}}(\\alpha)} = 0"}
                 </Math>

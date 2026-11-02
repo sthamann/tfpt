@@ -1,0 +1,22 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/mixed-current-origin-20261014/check_kms_locality_and_source_winding.py
+Original file SHA-256: 7c6e4579da19d55089a95f751e72a37af250e51360ee4b02fa499df7e2fba2a7
+Inclusive original lines: 20-33
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000020 | 
+000021 | # Exact two-mode subalgebra of the original CAR, not a finite-net substitute.
+000022 | def car(n,j):
+000023 |     a=s.zeros(2**n)
+000024 |     for b in range(2**n):
+000025 |         if (b>>j)&1:
+000026 |             a[b^(1<<j),b]=(-1)**sum((b>>k)&1 for k in range(j))
+000027 |     return a
+000028 | 
+000029 | a,b=car(2,0),car(2,1)
+000030 | nf=a.H*a
+000031 | exterior=a.H*b+b.H*a
+000032 | comm=nf*exterior-exterior*nf
+000033 | need(comm==a.H*b-b.H*a,'analytic even exterior commutator')

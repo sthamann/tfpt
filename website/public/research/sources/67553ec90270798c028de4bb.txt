@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/source_record_hodge.py
+Original file SHA-256: 5fb344b8ad49a6d85bf97228ba6d5b093576f69164fa3a3139e02eec19683119
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact support test for Hodge heralding from the original event records.
+000003 | 
+000004 | Only the source Kraus matrices and their recorded coherent span are used.  A
+000005 | record effect can change the positive coefficient matrix on that span, but it
+000006 | cannot add a Kraus direction outside it.  The checker therefore tests the
+000007 | necessary support inclusion before any optimization over record effects.
+000008 | """
+000009 | from __future__ import annotations
+000010 | 
+000011 | import argparse
+000012 | import hashlib
+000013 | import importlib.util
+000014 | import json
+000015 | from pathlib import Path
+000016 | 
+000017 | import numpy as np
+000018 | import sympy as sp
+000019 | 
+000020 | 
+000021 | HERE = Path(__file__).resolve().parent
+000022 | [OMITTED: non-scientific conversation or execution metadata]
+000023 | SOURCE_DIR = REPO / "experiments/theory-contracts/compiler-correlated-event-clock-20260919"
+000024 | OLD_DIR = REPO / "experiments/theory-contracts/primitive-transfer-selection-20260912"
+000025 | SOURCE = SOURCE_DIR / "source_channel.py"
+000026 | SOURCE_PROOF = SOURCE_DIR / "PROOF.txt"
+000027 | HODGE = REPO / "experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/hodge_complement_20261028/hodge_complement_channel.py"
+000028 | PLUCKER = REPO / "experiments/tfpt-discovery/s6_plucker_hadamard_probe.py"
+000029 | V888 = REPO / "verification/v888_finite_pfaffian_signature.py"
+000030 | 
+000031 | PINS = {
+000032 |     str(SOURCE): "3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593",
+000033 |     str(SOURCE_PROOF): "bf1f85c99f5f89a0a15da1af5e3ff321c2756fda132a9f8d644f9ce0e08c2f5c",
+000034 |     str(HODGE): "72b04a5bf8b3bd805568af49dec76bd97926fcff4009a830137e2d318807522b",
+000035 |     str(PLUCKER): "d65e7dae7cfe8dafac2153a75b350e7c23a6640d59b40f0fa6ad951d8f0caf13",
+000036 |     str(V888): "f29ae2e0d7c6e679987b2b71413a4ee9c659cbcd74d9b7e3e6297a71ff0b280c",
+000037 |     str(OLD_DIR / "coherent_compiler_record.py"): "db28d0111b8455439e1abb43c961ac67f5fc6572c9efe76449f17c11b71b6b55",
+000038 |     str(OLD_DIR / "coherent_record_selection.py"): "6f3ee9f4b815a397d607355c0e07872c47a834b25e654db3e73bb2ac0419120c",
+000039 |     str(OLD_DIR / "primitive_record_recovery.py"): "f0c2919798ef7c79f71f2f5fa454bd2226c220fd6c2c699f2e2cdb7f626f6cbb",
+000040 |     str(OLD_DIR / "COHERENT_COMPILER_RECORD.md"): "d38fa6a5fa163f4deac47cfa1e377a57139b825353b84c3eb547d0b22db5bbe8",
+000041 |     str(OLD_DIR / "COHERENT_RECORD_SELECTION.md"): "41fdf493a664ee3c56119a818c032edc2d24a7b833219af0f057e404cdfdb6a9",
+000042 |     str(OLD_DIR / "PRIMITIVE_RECORD_RECOVERY.md"): "1af5a9c94358a6dd30c260a01dd8422a8ff47f9ce75104ecb8a10a0b04705154",
+000043 |     str(OLD_DIR / "ASSEMBLY_NOT_HISTORY.md"): "c4897a92da4aa73effff021330d436324d3d7c9a3d959b81e7ee204bac164385",
+000044 | }
+000045 | 
+000046 | checks: list[str] = []
+000047 | 
+000048 | 
+000049 | def require(ok: bool, name: str) -> None:
+000050 |     if not bool(ok):
+000051 |         raise RuntimeError(name)
+000052 |     checks.append(name)
+000053 | 
+000054 | 
+000055 | def load_module(name: str, path: Path):
+000056 |     spec = importlib.util.spec_from_file_location(name, path)
+000057 |     require(spec is not None and spec.loader is not None, f"import specification {name}")
+000058 |     module = importlib.util.module_from_spec(spec)
+000059 |     spec.loader.exec_module(module)
+000060 |     return module
+000061 | 
+000062 | 
+000063 | def exact_gaussian(a: np.ndarray) -> sp.Matrix:
+000064 |     require(np.allclose(a.real, np.rint(a.real), atol=0, rtol=0), "Gaussian integer real coordinates")
+000065 |     require(np.allclose(a.imag, np.rint(a.imag), atol=0, rtol=0), "Gaussian integer imaginary coordinates")
+000066 |     return sp.Matrix([
+000067 |         [sp.Integer(int(round(z.real))) + sp.I * sp.Integer(int(round(z.imag))) for z in row]
+000068 |         for row in a
+000069 |     ])
+000070 | 
+000071 | 
+000072 | def vector_columns(matrices: list[np.ndarray]) -> np.ndarray:
+000073 |     return np.stack([a.reshape(-1, order="F") for a in matrices], axis=1)
+000074 | 
+000075 | 
+000076 | def intersection_data(W: sp.Matrix, V: sp.Matrix) -> tuple[int, list[int]]:
+000077 |     """Return intersection dimension and its coordinates in the Hodge basis."""
+000078 |     joint = W.row_join(V)
+000079 |     dimension = W.rank() + V.rank() - joint.rank()
+000080 |     relations = W.row_join(-V).nullspace()
+000081 |     hodge_parts = [r[W.cols:, :] for r in relations]
+000082 |     B = sp.Matrix.hstack(*hodge_parts) if hodge_parts else sp.zeros(V.cols, 0)
+000083 |     require(B.rank() == dimension, "relation nullspace recovers intersection dimension")
+000084 |     support = [i for i in range(V.cols) if any(B[i, j] != 0 for j in range(B.cols))]
+000085 |     require(len(support) == dimension, "Hodge intersection is a coordinate plane")
+000086 |     require(all(B[i, j] == 0 for i in range(V.cols) if i not in support for j in range(B.cols)),
+000087 |             "no hidden Hodge direction outside reported plane")
+000088 |     return dimension, support
+000089 | 
+000090 | 
+000091 | def no_scalar_success(Cs: list[np.ndarray], support: list[int]) -> None:
+000092 |     """Even arbitrary coefficients on the accessible plane cannot sum to p I except at zero."""
+000093 |     columns = []
+000094 |     for m in support:
+000095 |         for n in support:
+000096 |             columns.append((Cs[n].conj().T @ Cs[m]).reshape(-1, order="F"))
+000097 |     columns.append(-np.eye(10).reshape(-1, order="F"))
+000098 |     system = exact_gaussian(np.stack(columns, axis=1))
+000099 |     require(system.rank() == len(columns), "accessible Hodge plane has no nonzero scalar-effect solution")
+000100 | 
+000101 | 
+000102 | def plucker_typing(Cs: list[np.ndarray]) -> dict:
+000103 |     """Separate the wedge map from multiplication in the Pluecker quotient."""
+000104 |     symmetric_basis = [(a, b) for a in range(10) for b in range(a, 10)]
+000105 |     require(len(symmetric_basis) == 55, "Sym2 of the ten dimensional carrier has dimension 55")
+000106 |     quadrics = sp.Matrix([
+000107 |         [int(C[a, a]) if a == b else int(C[a, b] + C[b, a]) for a, b in symmetric_basis]
+000108 |         for C in Cs
+000109 |     ])
+000110 |     require(quadrics.rank() == 5, "five independent epsilon wedge components")
+000111 |     require(all(sum(int(x != 0) for x in quadrics.row(m)) == 3 for m in range(5)),
+000112 |             "each epsilon component is one three-term Pluecker quadric")
+000113 |     require(all(abs(int(x)) in (0, 2) for x in quadrics),
+000114 |             "symmetric-coordinate Pluecker coefficients have the expected common factor two")
+000115 |     require(len(quadrics.nullspace()) == 50, "wedge map has kernel dimension 50")
+000116 |     return {
+000117 |         "domain": "Sym^2(Lambda^2 C5)",
+000118 |         "domain_dimension": 55,
+000119 |         "wedge_map_image_dimension": 5,
+000120 |         "wedge_map_kernel_dimension": 50,
+000121 |         "holomorphic_coordinate_multiplication_kernel_dimension": 5,
+000122 |         "holomorphic_coordinate_multiplication_image_dimension": 50,
+000123 |         "typing": "the same five tensors are wedge components and Pluecker relations for complementary maps",
+000124 |     }
+000125 | 
+000126 | 
+000127 | def marked_jump_kraus(old, mark: int, bell, six, mapping, chart: np.ndarray) -> list[np.ndarray]:
+000128 |     indices, *_ = old.marked_data(mark, bell, six, mapping)
+000129 |     out = []
+000130 |     for k in indices:
+000131 |         U = bell[k]
+000132 |         permutation = old.bell_permutation(U)
+000133 |         jump = np.eye(10) - np.diag([int(permutation[a] == a) for a in range(10)])
+000134 |         out.append(chart.T @ (U @ jump) @ chart)
+000135 |     require(len(out) == 20, f"mark {mark}: actual twenty jump Kraus matrices")
+000136 |     return out
+000137 | 
+000138 | 
+000139 | def two_event_record(Cs: list[np.ndarray], V: sp.Matrix, bell, chart: np.ndarray,
+000140 |                      one_step_plane: list[int], mark: int) -> dict:
+000141 |     """Exact optimal Hodge subchannel inside two actual sixty-event steps."""
+000142 |     unitaries = [chart.T @ U @ chart for U in bell]
+000143 |     products = [second @ first for first in unitaries for second in unitaries]
+000144 |     A = vector_columns(products)
+000145 |     # S=A A^dagger is the unnormalised two-step Choi frame.  Computing S
+000146 |     # first keeps the exact calculation at 100 by 100 rather than 100 by 3600.
+000147 |     S = exact_gaussian(A @ A.conj().T)
+000148 |     require(S.rank() == 100, f"chart {mark}: two actual events span all M10")
+000149 |     Y = S.inv() * V
+000150 |     require(S * Y == V, f"chart {mark}: exact minimum-norm inverse equation")
+000151 |     gram = sp.simplify(V.conjugate().T * Y)
+000152 |     expected = sp.diag(*[sp.Rational(1, 64) if m in one_step_plane else sp.Rational(1, 48)
+000153 |                          for m in range(5)])
+000154 |     require(gram == expected, f"chart {mark}: exact minimum-norm record coefficient Gram matrix")
+000155 | 
+000156 |     # C60 composed twice has source amplitude 1/60 for every word.  At success
+000157 |     # probability p the record contraction has row Gram 1200*p*gram.  Hence
+000158 |     # p=1/25 gives 48*gram <= I, and any larger p violates the 1/48 directions.
+000159 |     contraction_gram = 48 * gram
+000160 |     require(all(contraction_gram[m, n] == 0 for m in range(5) for n in range(5) if m != n),
+000161 |             f"chart {mark}: optimal record contraction rows are orthogonal")
+000162 |     require([contraction_gram[m, m] for m in range(5)] ==
+000163 |             [sp.Rational(3, 4) if m in one_step_plane else sp.Integer(1) for m in range(5)],
+000164 |             f"chart {mark}: optimal record contraction is positive and contractive")
+000165 |     require(sp.eye(5) - contraction_gram ==
+000166 |             sp.diag(*[sp.Rational(1, 4) if m in one_step_plane else sp.Integer(0)
+000167 |                       for m in range(5)]),
+000168 |             f"chart {mark}: exact complement of optimal record contraction")
+000169 |     return {
+000170 |         "duad_chart_mark": mark,
+000171 |         "actual_history_count": 3600,
+000172 |         "word_kraus_span_rank": 100,
+000173 |         "minimum_norm_coefficient_gram_diagonal": [str(gram[m, m]) for m in range(5)],
+000174 |         "one_step_intersection_indices": one_step_plane,
+000175 |         "optimal_record_contraction_row_gram_diagonal":
+000176 |             [str(contraction_gram[m, m]) for m in range(5)],
+000177 |         "maximum_exact_hodge_success_probability": "1/25",
+000178 |         "resulting_success_map": "(1/25) Phi",
+000179 |         "input_independent_success": True,
+000180 |         "filter_formula": (
+000181 |             "A has columns vec(U_second U_first); X=A^dagger(AA^dagger)^-1 V; "
+000182 |             "R_mw=60 sqrt((1/25)/3) X_wm"
+000183 |         ),
+000184 |         "filter_is_source_selected": False,
+000185 |     }
+000186 | 
+000187 | 
+000188 | def main(output: Path | None) -> dict:
+000189 |     checks.clear()
+000190 |     for path, digest in PINS.items():
+000191 |         require(hashlib.sha256(Path(path).read_bytes()).hexdigest() == digest, "source pin " + path)
+000192 | 
+000193 |     old = load_module("pinned_source_channel", SOURCE)
+000194 |     hodge = load_module("pinned_hodge_channel", HODGE)
+000195 |     rays = old.source_rays()
+000196 |     bell, raw_six, _ = old.reflection_actions(rays)
+000197 |     six, _ = old.outer_mark_action(raw_six)
+000198 |     mapping = old.find_bell_partition_intertwiner(bell, six)
+000199 |     Cs = hodge.hodge_amplitudes()
+000200 |     V = exact_gaussian(vector_columns(Cs).astype(complex))

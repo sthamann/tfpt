@@ -1,0 +1,73 @@
+TFPT scientific source excerpt
+Original repository path: verification/v117_monodromy_weyl_a3.py
+Original file SHA-256: 55eca6a64144f6e49789f3f1bbe84e256764e7ce92b207044be693f8684d5df5
+Inclusive original lines: 14-78
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000014 |                    [-(1+i)/2, -i/2, -1/2],
+000015 |                    [(1-i)/2, -1/2, i/2]]
+000016 |          is unitary with det 1, tr 0, char poly lam^3 - 1 (the cusp
+000017 |          class {1, w, w^2} EXACTLY), M0^3 = 1, and
+000018 |              diag M0 = (0, -i/2, +i/2)
+000019 |          -- d1 = 0 and delta = 1/2 are now exact matrix entries, not
+000020 |          numerical observations.  The v20 hand value, the v40/v41
+000021 |          observation, the v114 torsion value and the v115 anchor slice
+000022 |          all meet in this one exact matrix.
+000023 |   [I] 2. TORSION AND FLATNESS.  (M0 U)^4 = 1 with tr(M0 U) = 1 (the
+000024 |          {1, i, -i} branch, d1 = 0 slice -- exactly where v114/v115
+000025 |          located the physical point), and the flatness identity
+000026 |          prod_k U^k M0 U^{-k} = 1 holds exactly (v114 normal form).
+000027 |   [I] 3. THE GROUP IS W(A3) = S4.  Exact enumeration of <U, M0> gives
+000028 |          ORDER 24 with order statistics (1, 9, 8, 6) for element orders
+000029 |          (1, 2, 3, 4) and character values (3, -1, 0, 1) -- uniquely the
+000030 |          symmetric group S4 in its standard x sign representation
+000031 |          (= the reflection representation of the WEYL GROUP OF A3,
+000032 |          twisted by sign).  The flavor-wall monodromy group IS the Weyl
+000033 |          group of the family lattice A3 of the glue D5 + A3 + mu4:
+000034 |          U = image of a 4-cycle (the mu_4 deck), M0 = a 3-cycle (the
+000035 |          cusp / family rotation), 24 = |W(A3)| = 4!.
+000036 |   [N] 4. IDENTIFICATION.  The ODE monodromy of the exact A0* system,
+000037 |          unitarised in the harmonic frame (v40 method), equals the
+000038 |          exact M0 to ~1e-7, and the invariant form H is U-invariant to
+000039 |          ~1e-10 (so the harmonic frame preserves the equivariance).
+000040 |   [P] 5. STATUS (recorded): holonomy VALUES are now [I] (properties of
+000041 |          the exact W(A3) representation); the identification of that
+000042 |          representation with the analytic monodromy of A0* stays [N]
+000043 |          (transcendental ODE matching, sharp to 1e-7).
+000044 | """
+000045 | import numpy as np
+000046 | import scipy.linalg as sl
+000047 | import sympy as sp
+000048 | from scipy.integrate import solve_ivp
+000049 | 
+000050 | from tfpt_constants import check, summary, reset
+000051 | 
+000052 | II = sp.I
+000053 | M0_EXACT = sp.Matrix([[0, -(1 + II) / 2, (1 - II) / 2],
+000054 |                       [-(1 + II) / 2, -II / 2, sp.Rational(-1, 2)],
+000055 |                       [(1 - II) / 2, sp.Rational(-1, 2), II / 2]])
+000056 | U_EXACT = sp.diag(1, II, -II)
+000057 | 
+000058 | 
+000059 | def enumerate_group(gens):
+000060 |     def freeze(m):
+000061 |         return tuple(sp.simplify(x) for x in m)
+000062 | 
+000063 |     elems = {freeze(sp.eye(3)): sp.eye(3)}
+000064 |     frontier = [sp.eye(3)]
+000065 |     while frontier:
+000066 |         new = []
+000067 |         for e in frontier:
+000068 |             for g in gens:
+000069 |                 x = sp.expand(g * e)
+000070 |                 kx = freeze(x)
+000071 |                 if kx not in elems:
+000072 |                     elems[kx] = x
+000073 |                     new.append(x)
+000074 |         frontier = new
+000075 |     return list(elems.values())
+000076 | 
+000077 | 
+000078 | def ode_monodromy():

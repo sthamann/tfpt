@@ -1,0 +1,49 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/mixed-current-origin-20261014/check_kms_locality_and_source_winding.py
+Original file SHA-256: 7c6e4579da19d55089a95f751e72a37af250e51360ee4b02fa499df7e2fba2a7
+Inclusive original lines: 104-144
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000104 |     es,vs=np.linalg.eigh(h)
+000105 |     t=.2
+000106 |     U=(vs*np.exp(1j*t*es))@vs.conj().T
+000107 |     j0=0                  # source site inside column0
+000108 |     j1=2*ny              # exterior observable in adjacent column1
+000109 |     f=U[:,j0]
+000110 |     number_t=np.outer(f,f.conj())
+000111 |     number_out=np.zeros_like(h);number_out[j1,j1]=1
+000112 |     c=number_t@number_out-number_out@number_t
+000113 |     cnorm=float(np.linalg.norm(c,2))
+000114 |     need(cnorm>1e-4,'actual original-time fixed-region invariance fails')
+000115 |     original=np.zeros_like(h);original[j0,j0]=1
+000116 |     need(np.linalg.norm(original@number_out-number_out@original)<1e-14,
+000117 |          'the original even local observables commute before time transport')
+000118 |     # Single-mode reduced thermal state: modular flow fixes its number.
+000119 |     beta=.7
+000120 |     C=(vs*(1/(1+np.exp(beta*es))))@vs.conj().T
+000121 |     occupation=float(C[j0,j0].real)
+000122 |     need(0<occupation<1,'actual restricted finite thermal state is faithful')
+000123 |     actual.append({'sector':sector,'Nx':nx,'Ny':ny,'physical_source_time':t,
+000124 |         'outside_even_number_commutator_norm':cnorm,
+000125 |         'local_thermal_occupation':occupation,
+000126 |         'local_modular_one_mode_energy':math.log((1-occupation)/occupation)})
+000127 | 
+000128 | result={'date':'2026-10-23','checks_passed':True,
+000129 |     'verdict':'KMS_GIVEN_EXTENSION_DOES_NOT_SUPPLY_MICROSCOPIC_LOCAL_SPINOR_MAP',
+000130 |     'analytic_CAR_witness_rank':int(comm.rank()),
+000131 |     'refined_charge_samples':len(charges),
+000132 |     'finite_edge_fock_states':2**len(levels),
+000133 |     'thermal_original_edge_controls':thermal,'actual_QWZ_time_controls':actual,
+000134 |     'actual_source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),
+000135 |     'global_rotations_equal_fixed_interval_modular_flow':False,
+000136 |     'conditional_expectation_uniqueness_refuted':False,
+000137 |     'source_W1_identified_with_primitive_P1_circle':False,
+000138 |     'unitary_source_winding_Cartan_four_word_signs':{'old':1,'target':-1},
+000139 |     'new_microscopic_spinor_sector':False,'all_P1_no_go':False}
+000140 | (HERE/'kms-locality-and-source-winding-results.json').write_text(
+000141 |     json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+000142 | print(json.dumps({'checks_passed':True,'actual_quarters':2,
+000143 |     'fixed_interval_invariance_failed':True,'thermal_dictionary_witness':True,
+000144 |     'source_W1_survives_left_even_projection':False}))

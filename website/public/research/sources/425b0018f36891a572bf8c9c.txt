@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/bracket_process_origin_20261028/original/SOURCE-CHARGE-GLUE-QUARTER-IDENTITY.txt
+Original file SHA-256: adbf414bf1105de1087740b3bd1707e9f0dcfe7504eb0da4467a0e01a2289b9c
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | SOURCE CHARGE GLUE QUARTER IDENTITY
+000002 | ===================================
+000003 | 
+000004 | Stand: 28. Oktober 2026
+000005 | Atlasstand der Quellenpruefung: 63fab31610450cc88e168232
+000006 | 
+000007 | 
+000008 | Ergebnis
+000009 | --------
+000010 | 
+000011 | Der neue Zusammenhang ist exakt. Der im vorhandenen Fold bereits gegebene
+000012 | geladene Cartan Holonomieoperator enthaelt nach Abzug seiner ebenfalls
+000013 | gegebenen Quellladung genau den inversen internen Nahtcharakter:
+000014 | 
+000015 |   g_alpha^2
+000016 |     = exp(2 pi i alpha Q_source/4) C_int^(-1),
+000017 | 
+000018 |   Q_source=(M q).H=2(H_3+H_6),
+000019 |   C_int=exp(2 pi i v_int.H),
+000020 |   v_int=(0,0,0,0,0,1/2,1/2,1/2).
+000021 | 
+000022 | Das ist eine Identitaet auf der gesamten markierten E8 Gitterdarstellung.
+000023 | Sie ist nicht nur eine Uebereinstimmung auf den 240 Wurzeln. Insbesondere
+000024 | wird weder die geladene Phase weggelassen noch ein weiterer Viertelclock
+000025 | angepasst.
+000026 | 
+000027 | Gemeinsam mit dem bereits vorhandenen U5 Rest 3 Filter hat die Identitaet
+000028 | eine direkte algebraische Folge. Im vollen E8 Wurzelraum enthaelt U5 Rest 3
+000029 | fuenfzig Richtungen. Die zusaetzliche Bedingung
+000030 | 
+000031 |   g_alpha^2 exp(-2 pi i alpha Q_source/4) hat Eigenwert -1
+000032 | 
+000033 | waehlt davon exakt die dreissig Erzeugungsstroeme des bereits bewiesenen
+000034 | Ward Kanals. Der zwanzigdimensionale Rest wird ausgeschlossen. Damit ist
+000035 | die zuvor nur als Kandidat benannte Kompensation keine neu gewaehlte
+000036 | Operation. Sie ist das Produkt zweier Operatoren, die der Fold bereits
+000037 | gemeinsam traegt.
+000038 | 
+000039 | 
+000040 | 1. Der kurze Gitterbeweis
+000041 | -------------------------
+000042 | 
+000043 | Der kanonische Fold gibt
+000044 | 
+000045 |   mu_alpha=(j+alpha q)/8,
+000046 |   j=(0,1,2,3,4,5,6,7),
+000047 |   q=(1,1,1,1,1,1,1,1),
+000048 | 
+000049 | und den expliziten E8 Weyloperator M aus fold-results.json. Setze
+000050 | 
+000051 |   c_alpha=M mu_alpha,
+000052 |   c_0=M(j/4).
+000053 | 
+000054 | Da g_alpha=exp(2 pi i c_alpha.H), ist der Cocharakter seines Quadrats
+000055 | 
+000056 |   2 c_alpha=c_0+alpha Mq/4.
+000057 | 
+000058 | Direkte exakte Multiplikation mit dem gespeicherten M ergibt
+000059 | 
+000060 |   c_0=(-1,0,2,-1,0,3/2,-1/2,-1/2),
+000061 |   Mq=(0,0,2,0,0,2,0,0),
+000062 | 
+000063 | und daher
+000064 | 
+000065 |   c_0+v_int=(-1,0,2,-1,0,2,0,0).
+000066 | 
+000067 | Der letzte Vektor ist ganzzahlig und seine Koordinatensumme ist 2. Er liegt
+000068 | also in D8 und damit in E8. Weil E8 unimodular ist, gilt fuer jedes
+000069 | Gittermomentum p in E8
+000070 | 
+000071 |   exp(2 pi i c_0.p)=exp(-2 pi i v_int.p).
+000072 | 
+000073 | Die Gleichheit erstreckt sich auf den ganzen E8 Gitter VOA Raum, weil beide
+000074 | Seiten Nullmodencharaktere sind und auf den Oszillatoranteilen gleich wirken.
+000075 | Zusammen mit Mq.H=Q_source folgt die angegebene Operatoridentitaet.
+000076 | 
+000077 | Das Minuszeichen ist wesentlich. Der 240 Wurzel Test ergibt fuer c_0 und
+000078 | v_int dieselben Multiplizitaeten 52,60,64,64, aber auf allen 128
+000079 | Halbwurzeln unterscheiden sich ihre Phasen. c_0 stimmt dort mit
+000080 | -v_int modulo E8 ueberein, nicht mit v_int. C_int hat Ordnung 4, also darf
+000081 | sein Inverses ausserhalb des Eigenwerts -1 nicht mit ihm gleichgesetzt
+000082 | werden.
+000083 | 
+000084 | 
+000085 | 2. Exakter gemeinsamer Feldfilter
+000086 | ---------------------------------
+000087 | 
+000088 | Verwende die originale P2 Ladung
+000089 | 
+000090 |   X=(-2,-2,-2,3,3,0,0,0),
+000091 |   U5=exp(2 pi i X.H/5).
+000092 | 
+000093 | Die exakte Wurzelrechnung liefert:
+000094 | 
+000095 |   E8 Wurzeln                                      240,
+000096 |   U5 Rest 3                                        50,
+000097 |   davon C_int Eigenwert -1                         30,
+000098 |   davon uebrige Viertelphasen                       20.
+000099 | 
+000100 | Die dreissig gemeinsamen Wurzeln sind genau die im vorhandenen
+000101 | WARD-U5-CREATION-CHANNEL bewiesene Creation30. Auf ihnen ist
+000102 | v_int.p=1/2 modulo 1. Die Bedingung kann deshalb gleichwertig mit dem
+000103 | kompensierten tatsaechlichen Foldoperator formuliert werden:
+000104 | 
+000105 |   p in Creation30
+000106 |     genau dann, wenn
+000107 |   X.p=3 modulo 5
+000108 |     und
+000109 |   [2 M mu_alpha-alpha Mq/4].p=1/2 modulo 1.
+000110 | 
+000111 | Das gilt fuer beide physischen Viertelphasen alpha=1/4 und 3/4. Der
+000112 | Ladungsfaktor ist dabei nicht optional. Wenn man nur die rohe g_alpha^2
+000113 | Phase mit der Wardphase vergleicht, erhaelt man innerhalb des Rest 3
+000114 | Sektors Dimension 1 beziehungsweise 11. In beiden Faellen liegt nur eine
+000115 | der dreissig Creation Richtungen darin. Erst das exakt mittransportierte
+000116 | Q_source Produkt stellt den ganzen Dreissiger her.
+000117 | 
+000118 | 
+000119 | 3. Was im Altbestand schon vorhanden war
+000120 | ----------------------------------------
+000121 | 
+000122 | FOLD-AUDIT.md Zeilen 168 bis 196 hatte bereits alle Bestandteile:
+000123 | 
+000124 |   Mq=2(e3+e6),
+000125 |   M nu_alpha=t+lambda+(alpha/2)(e3+e6),
+000126 |   g_alpha^2(p)=exp(2 pi i t.p) exp(pi i alpha (e3+e6).p).
+000127 | 
+000128 | ORIGINAL-ORDERED-CURRENT-KERNEL-AND-SEAM-GRADING.txt Zeilen 164 bis 183
+000129 | hatte unabhaengig den internen Charakter v_int und die globale Identitaet
+000130 | 
+000131 |   t_v=(-1)^Q W_alpha^(-1).
+000132 | 
+000133 | Der jetzt benutzte Schluss stand in den gelesenen Quellen und im Atlas noch
+000134 | nicht explizit: Auf E8 gilt t=-v_int modulo E8, beziehungsweise in der
+000135 | gespeicherten M Darstellung c_0=-v_int modulo E8. Der Alttext verlangte
+000136 | deshalb noch einen inversen Kompensationscharakter, ohne zu erkennen, dass
+000137 | genau dieser Charakter schon als Quadrat des tatsaechlichen geladenen
+000138 | Foldoperators nach Abzug seiner Quellladung vorliegt.
+000139 | 
+000140 | Die beiden alten W Symbole duerfen trotzdem nicht identifiziert werden.
+000141 | Das W_alpha in t_v=(-1)^Q W_alpha^(-1) ist der affine Windungsoperator der
+000142 | urspruenglichen Stromdarstellung. g_alpha ist die gegebene innere Cartan
+000143 | Holonomie der gefalteten E8 Erweiterung. Die neue Gleichung verbindet ihre
+000144 | Gittercharaktere. Sie beweist keine Gleichheit der vollen affinen
+000145 | Operatoren, ihrer Domains oder ihrer Zeitwirkung.
+000146 | 
+000147 | Die gezielte Atlasabfrage am genannten Stand fand die beiden getrennten
+000148 | Altresultate und die bekannte Warnung, internen t_v und geladenes g^2 nicht
+000149 | allein wegen ihrer Ordnung gleichzusetzen. Sie fand keine schon registrierte
+000150 | Fassung der obigen inversen Gitteridentitaet. Das ist ein begrenzter
+000151 | Quellenbefund fuer die gelesenen aktiven Treffer, keine Behauptung ueber
+000152 | jede historische Notiz.
+000153 | 
+000154 | 
+000155 | 4. Geltungsbereich
+000156 | ------------------
+000157 | 
+000158 | Bewiesen ist eine Identitaet innerer Toruswirkungen auf der bereits
+000159 | stipulierten markierten E8 Gitterdarstellung. Sie liefert dort einen exakten
+000160 | gemeinsamen Gradfilter fuer Creation30. Sie aendert weder Zustand noch
+000161 | Hamiltonoperator und fuegt keine Phase hinzu.
+000162 | 
+000163 | Nicht daraus folgt, dass die rohe P1 Naht diesen gemeinsamen Feldsektor als
+000164 | physische Ereignisregel projiziert, dass U5 eine Messung ausfuehrt oder dass
+000165 | der inklusive Dreissiger ungelesen ausgemittelt wird. Die Gleichung ist auch
+000166 | keine OS Zeit, kein Rohwindungsoperator E_e Rhat und kein NS nach R
+000167 | Sektorwechsel. Ein Cartan Charakter verschiebt kein Gittermomentum und
+000168 | bleibt daher innerhalb des vorhandenen Sektors.
+000169 | 
+000170 | Der neue Fortschritt ist enger und konkret: Fuer den bereits gegebenen E8
+000171 | Fold ist der frueher als zusaetzliche Kompensation behandelte inverse
+000172 | Nahtcharakter vollstaendig aus derselben geladenen Holonomie und derselben
+000173 | Quellladung abgeleitet.
+000174 | 
+000175 | 
+000176 | 5. Quellen und Reproduktion
+000177 | ----------------------------
+000178 | 
+000179 | Kanonische M Matrix und Foldphasen:
+000180 | 
+000181 | [OMITTED: non-scientific conversation or execution metadata]
+000182 | [OMITTED: non-scientific conversation or execution metadata]
+000183 | [OMITTED: non-scientific conversation or execution metadata]
+000184 | 
+000185 | Herleitung von M, mu_alpha und Q_source:
+000186 | 
+000187 |   gleicher Ordner, FOLD-AUDIT.md, besonders Zeilen 88 bis 114 und 168 bis 196.
+000188 | 
+000189 | Interner Nahtcharakter und affine globale Identitaet:
+000190 | 
+000191 | [OMITTED: non-scientific conversation or execution metadata]
+000192 | [OMITTED: non-scientific conversation or execution metadata]
+000193 | [OMITTED: non-scientific conversation or execution metadata]
+000194 | [OMITTED: non-scientific conversation or execution metadata]
+000195 | 
+000196 | Wardwurzel und Typgrenze:
+000197 | 
+000198 | [OMITTED: non-scientific conversation or execution metadata]
+000199 | [OMITTED: non-scientific conversation or execution metadata]
+000200 | [OMITTED: non-scientific conversation or execution metadata]

@@ -1,0 +1,106 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/session_coverage/supplements/check_dihedral_cover_bridge.py
+Original file SHA-256: 2a535be9286fc6b8f99449944f9e7edf0cc259446f8b0dafb724e4e467fa68b4
+Inclusive original lines: 1-98
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact finite certificate for the NS/C2/C12 reflection dictionary."""
+000003 | 
+000004 | from math import gcd
+000005 | 
+000006 | 
+000007 | def mm(a, b):
+000008 |     return tuple(tuple(sum(a[i][k] * b[k][j] for k in range(2)) for j in range(2)) for i in range(2))
+000009 | 
+000010 | 
+000011 | def tr(a):
+000012 |     return tuple(zip(*a))
+000013 | 
+000014 | 
+000015 | def need(condition: bool, message: str) -> None:
+000016 |     if not condition:
+000017 |         raise RuntimeError(message)
+000018 | 
+000019 | 
+000020 | def order_pair(a: int, b: int, n: int) -> int:
+000021 |     """Order of Q^a Delta^b in C4 x Cn."""
+000022 |     for k in range(1, 4 * n + 1):
+000023 |         if (a * k) % 4 == 0 and (b * k) % n == 0:
+000024 |             return k
+000025 |     raise AssertionError("finite order not found")
+000026 | 
+000027 | 
+000028 | def main() -> None:
+000029 |     # NS zero-branch representation in the ordered (+i,-i) Pin basis.
+000030 |     # A=diag(i,-i), R swaps the two sectors.  Encode i^e by exponents e mod 4.
+000031 |     A = (1, 3)
+000032 |     A_inv = tuple((-e) % 4 for e in A)
+000033 |     RAR = (A[1], A[0])
+000034 |     need(tuple((2 * e) % 4 for e in A) == (2, 2), "A^2 != -I")
+000035 |     need(tuple((4 * e) % 4 for e in A) == (0, 0), "A^4 != I")
+000036 |     need(RAR == A_inv, "RAR != A^-1")
+000037 | 
+000038 |     # C2: Q(x,y)=(ix,y), kappa(x,y)=(bar x,bar y).
+000039 |     # On eta=dx/y and bar(eta), Q has the same eigen-exponents (+1,-1).
+000040 |     Q_H1 = (1, 3)
+000041 |     need(Q_H1 == A, "C2 and NS quarter characters differ")
+000042 |     need((Q_H1[1], Q_H1[0]) == tuple((-e) % 4 for e in Q_H1), "kappa does not invert Q")
+000043 | 
+000044 |     # The bridge also preserves the actual polarized real Hodge carrier.
+000045 |     # In (Re eta, Im eta), Q is a quarter rotation and K=kappa* is reflection.
+000046 |     Q = ((0, 1), (-1, 0))
+000047 |     K = ((1, 0), (0, -1))
+000048 |     Om = ((0, 1), (-1, 0))  # intersection/cup form
+000049 |     g = ((1, 0), (0, 1))    # Hodge L2 metric, up to its positive scale
+000050 |     I = ((1, 0), (0, 1))
+000051 |     minus_Om = tuple(tuple(-x for x in row) for row in Om)
+000052 |     need(mm(Q, Q) == ((-1, 0), (0, -1)), "Q^2 != -I")
+000053 |     need(mm(K, K) == I, "K^2 != I")
+000054 |     need(mm(mm(K, Q), K) == ((0, -1), (1, 0)), "KQK != Q^-1")
+000055 |     need(mm(mm(tr(Q), Om), Q) == Om, "Q does not preserve intersection form")
+000056 |     need(mm(mm(tr(K), Om), K) == minus_Om, "K is not anti-symplectic")
+000057 |     need(mm(mm(tr(Q), g), Q) == g, "Q is not a Hodge isometry")
+000058 |     need(mm(mm(tr(K), g), K) == g, "K is not a Hodge isometry")
+000059 | 
+000060 |     # eta=(1,i), bar_eta=(1,-i): K swaps them.  Coefficient conjugation
+000061 |     # swaps them too, so the anti-linear C K fixes each quarter eigenline.
+000062 |     eta = (1, 1j)
+000063 |     bar_eta = (1, -1j)
+000064 |     Kv = lambda v: (v[0], -v[1])
+000065 |     Cv = lambda v: tuple(z.conjugate() for z in v)
+000066 |     need(Kv(eta) == bar_eta and Kv(bar_eta) == eta, "linear kappa does not swap Hodge lines")
+000067 |     need(Cv(Kv(eta)) == eta and Cv(Kv(bar_eta)) == bar_eta, "anti-linear Ckappa does not fix lines")
+000068 | 
+000069 |     # C12 marked clock R12=Q Delta^4.  Conjugation inverts both factors.
+000070 |     n = 12
+000071 |     R12 = (1, 4)
+000072 |     need(order_pair(*R12, n) == 12, "R12 order differs from 12")
+000073 |     kappa_R12_kappa = ((-R12[0]) % 4, (-R12[1]) % n)
+000074 |     R12_inv = kappa_R12_kappa
+000075 |     need(kappa_R12_kappa == R12_inv, "kappa does not invert R12")
+000076 | 
+000077 |     # Powers and descents from the pinned cover contract.
+000078 |     need(((4 * R12[0]) % 4, (4 * R12[1]) % n) == (0, 4), "wrong fourth power")
+000079 |     need(((9 * R12[0]) % 4, (9 * R12[1]) % n) == (1, 0), "wrong ninth power")
+000080 |     # y=s^6: Delta^4 acts trivially because 6*4=24=0 mod 12.
+000081 |     need((6 * R12[1]) % n == 0, "deck factor does not vanish on y=s^6")
+000082 | 
+000083 |     # Branch data for C2 -> P1_x: four simple finite branch points, infinity unramified.
+000084 |     need(gcd(2, 4) == 2, "wrong infinity fiber count")
+000085 |     genus_c2 = (3 * 2 - gcd(2, 4) - 2) // 2
+000086 |     need(genus_c2 == 1, "C2 genus differs from one")
+000087 | 
+000088 |     print("PASS NS D4 relation: A^2=-I, A^4=I, RAR=A^-1")
+000089 |     print("PASS C2 H1 carrier: Q*=diag(i,-i), kappa Q kappa=Q^-1")
+000090 |     print("PASS polarized carrier: Q symplectic, kappa anti-symplectic, both Hodge isometries")
+000091 |     print("PASS reflection types: linear kappa swaps Hodge lines; anti-linear Ckappa fixes each")
+000092 |     print("PASS C12 real structure: kappa R12 kappa=R12^-1, ord(R12)=12")
+000093 |     print("PASS marked descent: R12^4=Delta12^4, R12^9=Q, C12->C2 kills Delta12^4")
+000094 |     print("PASS C2->P1_x is genus-one double cover branched at mu4")
+000095 | 
+000096 | 
+000097 | if __name__ == "__main__":
+000098 |     main()

@@ -1,0 +1,146 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_sewing_20261028/polarization/check_charge_typed_hodge_bridge.py
+Original file SHA-256: 1b8d76fb62e2b91d897765cd6fb25e1796b5ad87ab07c8b9afc0a8fd8c1a8ede
+Inclusive original lines: 1-138
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact charge, centre and affine-grade typecheck for the native Gamma/Hodge bridge."""
+000002 | 
+000003 | from collections import Counter
+000004 | from fractions import Fraction as Q
+000005 | from hashlib import sha256
+000006 | import json
+000007 | from pathlib import Path
+000008 | 
+000009 | 
+000010 | HERE = Path(__file__).resolve().parent
+000011 | WORK = HERE.parent
+000012 | [OMITTED: non-scientific conversation or execution metadata]
+000013 | 
+000014 | GAMMA_CHECKER = WORK / "current" / "check_native_gamma_current.py"
+000015 | GAMMA_RESULT = WORK / "current" / "native-gamma-current-results.json"
+000016 | CURRENT_DESCENDANT = REPO / "experiments/theory-contracts/compiler-current-descendant-20260919/PROOF.txt"
+000017 | ROOT_PHASE = REPO / "experiments/theory-contracts/compiler-root-phase-lift-20260919/PROOF.txt"
+000018 | A4_RESPONSE = REPO / "experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/hodge_complement_20261028/E8-A4-PETERSEN-RESPONSE.txt"
+000019 | 
+000020 | PINS = {
+000021 |     GAMMA_CHECKER: "e00ac829026c15d949672601bd5971187a767a23a25424abfbc5defc72be44b8",
+000022 |     GAMMA_RESULT: "5b8ee6ccab21c3cdb02c55fe12d42359ce73a623f00336f7e999875e4d22ea4b",
+000023 |     CURRENT_DESCENDANT: "ad45198c44b84365a862b709e8b7e49af708f2e1a58adff67dc55d7cf4fa459b",
+000024 |     ROOT_PHASE: "d7465bd8ee3514d29bfcb4238b4772d7d2ee631301465682e50bcbfca5b4879f",
+000025 |     A4_RESPONSE: "8311a51e2f9a0e5e9eb9307fc329cdce77e5d65a599da3fa5692b7460ec63a38",
+000026 | }
+000027 | 
+000028 | checks = []
+000029 | 
+000030 | 
+000031 | def need(value, label):
+000032 |     if not bool(value):
+000033 |         raise RuntimeError(label)
+000034 |     checks.append(label)
+000035 | 
+000036 | 
+000037 | def qstr(value):
+000038 |     return str(value.numerator) if value.denominator == 1 else f"{value.numerator}/{value.denominator}"
+000039 | 
+000040 | 
+000041 | def spectrum(values):
+000042 |     return {qstr(key): count for key, count in sorted(Counter(values).items())}
+000043 | 
+000044 | 
+000045 | def poly_from_roots(values):
+000046 |     # Coefficients from highest degree to constant term.
+000047 |     coeff = [Q(1)]
+000048 |     for root in values:
+000049 |         new = [Q(0)] * (len(coeff) + 1)
+000050 |         for index, value in enumerate(coeff):
+000051 |             new[index] += value
+000052 |             new[index + 1] -= root * value
+000053 |         coeff = new
+000054 |     return [qstr(value) for value in coeff]
+000055 | 
+000056 | 
+000057 | for path, expected in PINS.items():
+000058 |     need(path.is_file(), f"source exists: {path.name}")
+000059 |     need(sha256(path.read_bytes()).hexdigest() == expected, f"source pin: {path.name}")
+000060 | 
+000061 | gamma = json.loads(GAMMA_RESULT.read_text())
+000062 | need(gamma["gamma_names"] == ["XI", "YX", "YY", "YZ", "ZI"], "actual five Gamma directions")
+000063 | need(gamma["verdict"] == "NATIVE_HODGE_EQUALS_FIVE_ACTUAL_COLLECTIVE_PAULI_CURRENT_ACTIONS", "actual Gamma/Hodge operator identity")
+000064 | 
+000065 | descendant_text = CURRENT_DESCENDANT.read_text()
+000066 | phase_text = ROOT_PHASE.read_text()
+000067 | a4_text = A4_RESPONSE.read_text()
+000068 | need("10_D5 tensor E(Bell10_A3)" in descendant_text and "conformal weight1/2+3/2=2" in descendant_text, "old Bell corner is E8 weight two")
+000069 | need("J_0(X) E = E [X tensor I+I tensor X]|_Sym²" in descendant_text, "Gamma acts as an A3 horizontal zero mode")
+000070 | need("The diagonal Z4 glue acts trivially: (-1)*(-1)=+1." in descendant_text, "old corner has glue classes two plus two")
+000071 | need("Die bestehende P2-Einbettung zerlegt den D5-Vektor" in phase_text, "original P2 vector charge statement present")
+000072 | need("Eingabe:     (10,bar5)" in a4_text and "Einsatz:     (5,10)" in a4_text and "Ausgabe:     (bar10,5)" in a4_text, "existing charged A4 by A4 current route present")
+000073 | need("q_output + q_env = q_input" in a4_text, "existing mixed-current route has explicit charge balance")
+000074 | 
+000075 | # Original carrier hypercharge on the five D5 vector coordinates.
+000076 | y5 = [Q(-1, 3)] * 3 + [Q(1, 2)] * 2
+000077 | y_vector = y5 + [-value for value in y5]
+000078 | y_wedge = [y5[i] + y5[j] for i in range(5) for j in range(i + 1, 5)]
+000079 | 
+000080 | need(spectrum(y_vector) == {"-1/2": 2, "-1/3": 3, "1/3": 3, "1/2": 2}, "D5 vector hypercharge spectrum")
+000081 | need(spectrum(y_wedge) == {"-2/3": 3, "1/6": 6, "1": 1}, "spinor Lambda2(5) hypercharge spectrum")
+000082 | 
+000083 | shared_y = sorted(set(y_vector).intersection(y_wedge))
+000084 | hom_y_dimension = sum(Counter(y_vector)[value] * Counter(y_wedge)[value] for value in shared_y)
+000085 | need(shared_y == [] and hom_y_dimension == 0, "Hom_Y(vector10,Lambda2(5)) is zero")
+000086 | need(poly_from_roots(y_vector) != poly_from_roots(y_wedge), "hypercharge characteristic polynomials differ")
+000087 | 
+000088 | # Spin(10) centre classes are recorded additively modulo four.
+000089 | # vector10 is class 2, while the two half-spinors are classes 1 and 3.
+000090 | old_d5_class = 2
+000091 | old_a3_class = 2
+000092 | spinor_classes = [1, 3]
+000093 | paired_a3_classes = [3, 1]
+000094 | need((old_d5_class + old_a3_class) % 4 == 0, "old vector by descendant corner is glue neutral")
+000095 | need(all((d5 + a3) % 4 == 0 for d5, a3 in zip(spinor_classes, paired_a3_classes)), "mixed spinor by fundamental corners are glue neutral")
+000096 | need(all(old_d5_class != value for value in spinor_classes), "D5 centre character differs for vector and spinor")
+000097 | 
+000098 | # Affine conformal weights in the original level-one embedding.
+000099 | h_old_d5 = Q(1, 2)
+000100 | h_old_a3_descendant = Q(3, 2)
+000101 | h_spinor_d5 = Q(5, 8)
+000102 | h_fundamental_a3 = Q(3, 8)
+000103 | need(h_old_d5 + h_old_a3_descendant == 2, "old Bell corner has E8 weight two")
+000104 | need(h_spinor_d5 + h_fundamental_a3 == 1, "mixed spinor corner has E8 weight one")
+000105 | need(h_old_d5 + h_old_a3_descendant != h_spinor_d5 + h_fundamental_a3, "zero mode cannot identify the two affine grades")
+000106 | 
+000107 | result = {
+000108 |     "verdict": "ABSTRACT_HODGE_CHANNEL_IDENTITY_ONLY_IN_OLD_BELL_CHART__NO_UNCHANGED_P2_CARRIER_IDENTIFICATION",
+000109 |     "actual_gamma_directions": gamma["gamma_names"],
+000110 |     "old_bell_corner": {
+000111 |         "module": "(10_D5_vector, 10_A3_descendant)",
+000112 |         "e8_conformal_weight": "2",
+000113 |         "mu4_classes": [2, 2],
+000114 |         "d5_hypercharge_spectrum": spectrum(y_vector),
+000115 |     },
+000116 |     "desired_p2_carrier_corner": {
+000117 |         "module": "Lambda2(5)_SU5 inside 16_D5_spinor, paired with an A3 fundamental in E8",
+000118 |         "e8_conformal_weight": "1",
+000119 |         "mu4_class_options": [[1, 3], [3, 1]],
+000120 |         "carrier_hypercharge_spectrum": spectrum(y_wedge),
+000121 |     },
+000122 |     "decisive_intertwiner_test": {
+000123 |         "shared_hypercharges": [qstr(value) for value in shared_y],
+000124 |         "dimension_Hom_Y": hom_y_dimension,
+000125 |         "vector_characteristic_polynomial_coefficients": poly_from_roots(y_vector),
+000126 |         "wedge_characteristic_polynomial_coefficients": poly_from_roots(y_wedge),
+000127 |     },
+000128 |     "meaning": "The five Gamma zero modes act in the A3 Bell descendant and leave the D5 vector charge, Spin(10) centre class and L0 grade unchanged. They therefore realize the Hodge channel only as an abstract operator identity in that old Bell chart. They do not furnish the unchanged physical P2 carrier readout.",
+000129 |     "existing_positive_route": "The already verified A4 by A4 E8 bracket (5,10) x (10,bar5) -> (bar10,5) uses charged mixed currents, has explicit q_output+q_env=q_input on all 600 edges, and yields the Hodge carrier response after the stated inclusive family trace.",
+000130 |     "scope": "This excludes only the neutral family-current identification with the unchanged D5/P2 charge dictionary. The positive A4 by A4 route is a different charged cut through the same E8 algebra, not an identification of the old D5 vector with Lambda2(5). Physical selection of its 50 directions remains open.",
+000131 |     "checks": len(checks),
+000132 |     "check_names": checks,
+000133 |     "source_sha256": {str(path): expected for path, expected in PINS.items()},
+000134 | }
+000135 | 
+000136 | output = json.dumps(result, indent=2, sort_keys=True) + "\n"
+000137 | (HERE / "charge-typed-hodge-bridge-results.json").write_text(output)
+000138 | print(output, end="")

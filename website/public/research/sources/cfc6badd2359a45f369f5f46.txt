@@ -1,0 +1,188 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/STABILITY-SOURCE-RECONCILIATION.txt
+Original file SHA-256: 416ae9572c5f42706796c3a7c4a237aebe33c20f152a25e9b18209ecf60c5b7e
+Inclusive original lines: 181-360
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000181 | 
+000182 | wobei v_1 das Gewicht 1/3 und v_2 das Gewicht 2/3 traegt. Setze
+000183 | 
+000184 |     U=diag(1,i,-i),       p_k=i^k,
+000185 |     H_k=span(U^k v_1,U^k v_2),
+000186 |     h_k=C U^k v_2.
+000187 | 
+000188 | Die absteigende volle Flagge am Punkt p_k ist
+000189 | 
+000190 |     E_{p_k} superset H_k superset h_k superset 0.
+000191 | 
+000192 | Der Stabilitaetstest setzt hier zunaechst das algebraische Objekt fest: das
+000193 | splitte Buendel O(-2)+O(-1)^2 wird ueber der affinen Karte in seiner
+000194 | Standardbasis trivialisiert und traegt an p_k die obigen Flags. In genau diesem
+000195 | Objekt bleiben die endlichen Faserkoordinaten unveraendert.
+000196 | 
+000197 | Ob dieselbe affine Basis tatsaechlich direkt aus der A0* Verbindung folgt, ist
+000198 | eine zweite Frage. Setze w=1/z und N=diag(2,1,1). Die affine Verbindungsform
+000199 | mit endlichen Residuen A_k hat am Punkt unendlich den fuehrenden Term
+000200 | -N dw/w. Fuer O(-2)+O(-1)^2 ist der diagonale Framewechsel
+000201 | 
+000202 |     g(w)=diag(w^2,w,w).
+000203 | 
+000204 | Waere dies bereits die richtige Deligne Lattice, muesste
+000205 | 
+000206 |     Gamma_infty = g^-1 Gamma_aff g + g^-1 dg
+000207 | 
+000208 | bei w=0 holomorph sein. Die exakte Rechnung ergibt jedoch
+000209 | 
+000210 |     Res_{w=0}(Gamma_infty)=-(2 sqrt(2)/3) E_12.
+000211 | 
+000212 | Die reine diagonale Scherung entfernt also den diagonalen Pol, aber nicht den
+000213 | resonanten E_12 Pol. Eine weitere Levelt oder Birkhoff Latticewahl ist noetig.
+000214 | Sie kann die affine Spaltungsbasis und damit die Darstellung der endlichen
+000215 | Flags veraendern. Deshalb beweist der folgende Test exakt die Stabilitaet des
+000216 | deklarierten splitten Flagobjekts, noch nicht dessen Identitaet mit der
+000217 | Deligne Erweiterung der v115 ODE.
+000218 | 
+000219 | Aus U A_k U^-1=A_{k+1} folgt fuer diese Rohflags exakt C4 Kovarianz. Eine D4
+000220 | Reflexionslinearisierung folgt daraus nicht und wird hier nicht behauptet. Das
+000221 | stabile D4 aequivariante Mehta Seshadri Objekt aus v117 existiert davon
+000222 | unabhaengig.
+000223 | 
+000224 | Eine besonders kurze exakte Gleichung fuer die mittlere Ebene ist
+000225 | 
+000226 |     n_0=(-sqrt(10),3 sqrt(5),-5),
+000227 |     H_k=ker(n_0 U^-k).
+000228 | 
+000229 | Damit sind alle unten verwendeten Inzidenzbedingungen unmittelbar lineare
+000230 | Gleichungen mit ausgeschriebenen Koeffizienten.
+000231 | 
+000232 | Fuer eine Unterlinie L gilt in Einheiten von 1/3:
+000233 | 
+000234 |     m_k(L)=0, wenn L_{p_k} nicht in H_k liegt,
+000235 |            =1, wenn L_{p_k} in H_k, aber nicht h_k liegt,
+000236 |            =2, wenn L_{p_k}=h_k.
+000237 | 
+000238 | Alle Rechnungen unten sind exakte lineare Algebra ueber
+000239 | Q(i,sqrt(2),sqrt(5)). Es gibt keine numerische Toleranz und keine Annahme ueber
+000240 | die v117 ODE Identifikation.
+000241 | 
+000242 | 4. Alle Rang 1 Unterbuendel sind strikt negativ
+000243 | ------------------------------------------------
+000244 | 
+000245 | Jedes Linienunterbuendel von E hat Grad hoechstens -1.
+000246 | 
+000247 | Grad -1.
+000248 | 
+000249 | Jede Injektion O(-1) -> E liegt in
+000250 | 
+000251 |     V=span(e2,e3)
+000252 | 
+000253 | und ist dort eine konstante Linie. Keine h_k liegt in V, weil die erste
+000254 | Komponente von U^k v_2 ungleich null ist. Die Schnitte H_k cap V sind genau
+000255 | zwei alternierende Linien:
+000256 | 
+000257 |     k gerade: C(0, sqrt(5)/3, 1),
+000258 |     k ungerade: C(0,-sqrt(5)/3, 1).
+000259 | 
+000260 | Eine feste Linie in V trifft daher H_k an hoechstens zwei Punkten. Somit
+000261 | 
+000262 |     sum_k m_k <= 2,
+000263 |     pardeg L <= -1 + 2/3 = -1/3 < 0.
+000264 | 
+000265 | Grad -2.
+000266 | 
+000267 | Eine Injektion O(-2) -> E hat in der affinen Karte die Form
+000268 | 
+000269 |     s(z)=(a,bz+c,dz+e).
+000270 | 
+000271 | Fuer a ungleich null ist sie automatisch nirgends null. Fuer a=0 ist sie
+000272 | genau dann gesaettigt, wenn be-cd ungleich null ist. Die Bedingungen
+000273 | 
+000274 |     s(p_k) in H_k
+000275 | 
+000276 | sind je eine lineare Gleichung in (a,b,c,d,e), die Bedingungen
+000277 | s(p_k) in h_k je zwei. Exakte Zeilenreduktion der 3^4 moeglichen
+000278 | Inzidenzmuster ergibt
+000279 | 
+000280 |     max sum_k m_k = 4.
+000281 | 
+000282 | Es gibt 31 Muster mit Summe mindestens 5. Bei jedem hat die aus
+000283 | n_0 U^-k s(i^k)=0 und den beiden Proportionalitaetsgleichungen zu U^k v_2
+000284 | gebildete Koeffizientenmatrix Rang 5. Sie besitzen also nur die Nullloesung.
+000285 | Die Schranke ist scharf. Das Muster (1,1,1,1) wird zum Beispiel durch
+000286 | 
+000287 |     s(z)=(3 sqrt(2)/2,z,0)
+000288 | 
+000289 | realisiert. Daher
+000290 | 
+000291 |     pardeg L <= -2 + 4/3 = -2/3 < 0.
+000292 | 
+000293 | Grad kleiner gleich -3.
+000294 | 
+000295 | Selbst das maximale Gewicht 4 mal 2/3 liefert
+000296 | 
+000297 |     pardeg L <= -3 + 8/3 = -1/3 < 0.
+000298 | 
+000299 | Damit destabilisiert kein Linienunterbuendel.
+000300 | 
+000301 | 5. Alle Rang 2 Unterbuendel sind strikt negativ
+000302 | ------------------------------------------------
+000303 | 
+000304 | Sei F ein gesaettigtes Rang 2 Unterbuendel und Q=E/F das Quotientenlinienbuendel.
+000305 | Mit den induzierten Strukturen ist der parabolische Grad additiv. Da
+000306 | pardeg(E)=0, genuegt
+000307 | 
+000308 |     pardeg(Q)>0.
+000309 | 
+000310 | Ein Quotient E -> O(q) existiert nur fuer q >= -2.
+000311 | 
+000312 | q=-2.
+000313 | 
+000314 | Der Quotient ist bis auf Skalar die Projektion auf den O(-2) Summanden. Wegen
+000315 | der ersten Komponente sqrt(10) von v_2 gilt q(U^k v_2) ungleich null an allen
+000316 | vier Punkten. Sein Gewicht ist daher viermal 2/3 und
+000317 | 
+000318 |     pardeg(Q)=-2+8/3=2/3>0.
+000319 | 
+000320 | q=-1.
+000321 | 
+000322 | Jeder Quotient hat die Form
+000323 | 
+000324 |     q(z)=(az+b,c,d),       (c,d) ungleich (0,0).
+000325 | 
+000326 | Fuer Quotienten ist das Gewicht in Einheiten von 1/3 gleich
+000327 | 
+000328 |     0, wenn q(H_k)=0,
+000329 |     1, wenn q(U^k v_2)=0, aber q(H_k) nicht 0 ist,
+000330 |     2, wenn q(U^k v_2) nicht 0 ist.
+000331 | 
+000332 | Die exakte Zeilenreduktion aller 3^4 oberen Inzidenzmuster ergibt
+000333 | 
+000334 |     min sum_k m_k = 4.
+000335 | 
+000336 | Es gibt 31 Muster mit Summe hoechstens 3. Fuer jedes hat die aus
+000337 | q(U^k v_2)=0 und q(H_k)=0 gebildete Koeffizientenmatrix Rang 4, also nur die
+000338 | Nullloesung. Die Schranke ist scharf. Das Muster (1,1,1,1) wird durch
+000339 | 
+000340 |     q(z)=(-z/sqrt(2),1,0)
+000341 | 
+000342 | realisiert. Also
+000343 | 
+000344 |     pardeg(Q) >= -1+4/3=1/3>0.
+000345 | 
+000346 | q=0.
+000347 | 
+000348 | Ein Quotient hat die Form
+000349 | 
+000350 |     q(z)=(Az^2+Bz+C,Dz+E,Fz+G).
+000351 | 
+000352 | Gewicht null an allen vier Punkten wuerde q(H_k)=0 fuer jedes k verlangen.
+000353 | Die acht linearen Gleichungen in den sieben Koeffizienten besitzen Rang 7.
+000354 | Es gibt also keinen von null verschiedenen solchen Quotienten. Da die
+000355 | Gewichte Vielfache von 1/3 sind,
+000356 | 
+000357 |     pardeg(Q) >= 1/3>0.
+000358 | 
+000359 | q>0.
+000360 | 

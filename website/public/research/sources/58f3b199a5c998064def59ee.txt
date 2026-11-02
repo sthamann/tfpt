@@ -1,0 +1,110 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_calderon_operation_source.py
+Original file SHA-256: 6ea781b3365c4a7c24146fa3639944e1e777423a2026cab3714344ad415c49a8
+Inclusive original lines: 1-102
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R074: original graph replay and exact whole-source identity controls.
+000002 | 
+000003 | Infinite class statements are proved analytically in the companion text.
+000004 | Numerical windows below only check the tail-controlled whole-sea formulas.
+000005 | """
+000006 | import json
+000007 | from pathlib import Path
+000008 | import sys
+000009 | import mpmath as mp
+000010 | import sympy as s
+000011 | 
+000012 | REPO = Path(__file__).resolve().parents[4]
+000013 | sys.path.insert(0, str(REPO / 'experiments/theory-contracts/seam-collar-multifield-20261016'))
+000014 | from boundary_amplitude import graph_projection
+000015 | 
+000016 | 
+000017 | def run():
+000018 |     checks = []
+000019 |     def check(ok, label):
+000020 |         if not ok:
+000021 |             raise AssertionError(label)
+000022 |         checks.append(label)
+000023 |     def equal(a, b, label):
+000024 |         d = a-b
+000025 |         entries = list(d) if isinstance(d, s.MatrixBase) else [d]
+000026 |         check(all(s.factor(x) == 0 for x in entries), label)
+000027 | 
+000028 |     t, z = s.symbols('t z', positive=True)
+000029 |     G = graph_projection(s.Matrix([[1/t]]))
+000030 |     expected = s.Matrix([[t*t,t],[t,1]])/(1+t*t)
+000031 |     equal(G, expected, 'unchanged old graph builder and original face labels')
+000032 |     equal(G*G, G, 'whole two-face projector')
+000033 |     Gz = G.subs(t,z*t)
+000034 |     C = 1/(1+t*t)
+000035 |     delta = (Gz-G)**2
+000036 |     equal(s.trace(delta), 2*(z-1)/(z+1)*(C-C.subs(t,z*t)),
+000037 |           'exact full shift norm identity at arbitrary positive spectral ratio')
+000038 |     a,b,c,d = s.symbols('a b c d')
+000039 |     A = s.Matrix([[a,b],[c,d]])
+000040 |     P = s.diag(1,0)
+000041 |     tail = P*A-A*P
+000042 |     equal(tail, s.Matrix([[0,b],[-c,0]]), 'UV tail forces both off-face blocks zero')
+000043 |     diagA = s.diag(a,d)
+000044 |     equal((G*diagA-diagA*G)[0,1], (d-a)*t/(1+t*t),
+000045 |           'same-momentum cross coherence forces same face weight')
+000046 |     equal((Gz*diagA-diagA*G)[1,1], d*(C.subs(t,z*t)-C),
+000047 |           'different momentum strictly monotone diagonal condition')
+000048 |     equal(s.trace((P*s.Matrix([[0,1],[1,0]])-s.Matrix([[0,1],[1,0]])*P).H
+000049 |                   *(P*s.Matrix([[0,1],[1,0]])-s.Matrix([[0,1],[1,0]])*P)), 2,
+000050 |           'bare face swap has nondecaying squared UV defect2')
+000051 |     for m in [-2,-1,0,1,2]:
+000052 |         remaining = [(k,l) for k in range(8) for l in range(8) if 8*m+k-l == 0]
+000053 |         check(remaining == ([(k,k) for k in range(8)] if m == 0 else []),
+000054 |               f'independent finite residue shift classification m{m}')
+000055 |     fold = json.loads((REPO / 'experiments/theory-contracts/v16-operator-pullback-20261014/fold-results.json').read_text())
+000056 |     M = s.Matrix(fold['explicit_Weyl_matrix'])
+000057 |     root = s.Matrix([0,1,-1,0,0,0,0,0])
+000058 |     q = M.T*root
+000059 |     equal((q.T*q)[0], 2, 'unchanged original M gives actual q level2')
+000060 | 
+000061 |     # beta=4pi and original quarters only. Whole infinite identities have
+000062 |     # analytic proofs; these finite sums have exponentially tiny tails.
+000063 |     mp.mp.dps = 65
+000064 |     beta = 4*mp.pi
+000065 |     def occ(p): return 1/(1+mp.exp(beta*p))
+000066 |     def block(p):
+000067 |         v = mp.exp(-beta*p/2)
+000068 |         return mp.matrix([[1,v],[v,v*v]])/(1+v*v)
+000069 |     rows = []
+000070 |     for alpha in [mp.mpf(1)/4,mp.mpf(3)/4]:
+000071 |         for m in [-3,-1,1,3,8]:
+000072 |             total = mp.mpf(0)
+000073 |             telescope = mp.mpf(0)
+000074 |             for r in range(-36,37):
+000075 |                 diff = block(r+alpha+m)-block(r+alpha)
+000076 |                 total += mp.fsum(abs(diff[i,j])**2 for i in range(2) for j in range(2))
+000077 |                 telescope += occ(r+alpha)-occ(r+alpha+m)
+000078 |             target = 2*m*mp.tanh(beta*m/4)
+000079 |             check(abs(total-target) < mp.mpf('1e-55'),f'original whole-source shift norm alpha{alpha} m{m}')
+000080 |             check(abs(telescope-m) < mp.mpf('1e-55'),f'original signed whole-sea telescoping alpha{alpha} m{m}')
+000081 |             rows.append({'alpha':str(alpha),'m':m,'norm2':str(total),'target':str(target)})
+000082 |         for m in [-1,1,2]:
+000083 |             total = mp.mpf(0)
+000084 |             for k in range(8):
+000085 |                 norm = mp.mpf(0)
+000086 |                 for n in range(-12,13):
+000087 |                     diff=block(8*(n+m)+k+alpha)-block(8*n+k+alpha)
+000088 |                     norm+=mp.fsum(abs(diff[i,j])**2 for i in range(2) for j in range(2))
+000089 |                 total += mp.mpf(str(q[k]))**2 * norm
+000090 |             target = 4*m*mp.tanh(2*beta*m)
+000091 |             check(abs(total-target) < mp.mpf('1e-55'),f'original weighted folded common-source norm alpha{alpha} m{m}')
+000092 |     data = {'result':'R074','passed':len(checks),'checks':checks,'q':[str(x) for x in q],
+000093 |             'original_graph_builder':'seam-collar-multifield-20261016.boundary_amplitude.graph_projection',
+000094 |             'whole_class_proof':'CALDERON-OPERATION-SOURCE-PROOF.txt',
+000095 |             'norm_controls':rows,'finite_sums_are_not_all_mode_proofs':True,
+000096 |             'complete_TFPT_solution':False,'ledger_changed':False}
+000097 |     Path(__file__).with_name('CALDERON-OPERATION-SOURCE.json').write_text(json.dumps(data,indent=2)+'\n')
+000098 |     print(json.dumps({'result':'R074','passed':len(checks),'complete_TFPT_solution':False}))
+000099 | 
+000100 | 
+000101 | if __name__ == '__main__':
+000102 |     run()

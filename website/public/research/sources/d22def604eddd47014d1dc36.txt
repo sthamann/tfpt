@@ -1,0 +1,196 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_quarter_tower_higgs_inverse.py
+Original file SHA-256: a09c2e4a8e2f9dcdf3b3868fc66f744bd3ec84b64a00ef9d56919dbbd4dd7da0
+Inclusive original lines: 1-188
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Original quarter/H source inverse, exact deconvolution and finite reader.
+000002 | Diagnostics do not choose a physical measure or prove infinite injectivity.
+000003 | """
+000004 | from pathlib import Path
+000005 | import sys,json,math
+000006 | from fractions import Fraction as Q
+000007 | from collections import defaultdict
+000008 | import numpy as np
+000009 | import sympy as sp
+000010 | import mpmath as mp
+000011 | ROOT=Path(__file__).resolve().parents[4];sys.path.insert(0,str(ROOT/'verification'))
+000012 | import v252_full_finite_triple as v
+000013 | mp.mp.dps=120
+000014 | checks=[]
+000015 | def need(ok,label):
+000016 |  if not bool(ok):raise RuntimeError(label)
+000017 |  checks.append(dict(label=label,passed=True))
+000018 | rng=np.random.default_rng(252);Ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000019 | mr=rng.normal(size=(3,3));MR=mr+mr.T;z3=np.zeros((3,3),complex);z2=np.zeros((2,2),complex)
+000020 | DY=v.full_D(*Ys,z3);DM=v.full_D(z3,z3,z3,z3,MR);swap=v.Kswap();P=v.rep(1,z2,z3);gamma=v.grading()
+000021 | eigs,V=np.linalg.eigh(Ys[0].conj().T@Ys[0]);y2=float(eigs[-1]);yq=mp.mpf(str(y2));vec=V[:,-1]
+000022 | embed=np.zeros((96,3),complex)
+000023 | for c in range(3):
+000024 |  for fam in range(3):embed[v.IDX[('u','R',c,fam)],c]=vec[fam]
+000025 | ell=2*mp.pi
+000026 | def phi(H):
+000027 |  h1,h2=H;q=np.array([[np.conj(h2),h1],[-np.conj(h1),h2]])
+000028 |  aa=v.rep(0,q,z3);b=aa@(DY@P-P@DY);b=b+b.conj().T
+000029 |  return b+swap@b.conj()@swap+DM
+000030 | def Ft(p,u):
+000031 |  E=mp.sqrt(p*p+yq*u);return p*mp.tanh(ell*E)/E
+000032 | def occ(p,u):return (1+Ft(p,u))/2
+000033 | actual=[]
+000034 | for alpha in [.25,.75]:
+000035 |  for n in [0,1,3]:
+000036 |   p=n+alpha
+000037 |   for H in [(0j,0j),(.6j,.8+0j),(0j,2+0j)]:
+000038 |    h=p*gamma-1j*gamma@phi(H);ee,UU=np.linalg.eigh(h)
+000039 |    C=(UU*(.5*(1-np.tanh(float(ell)*ee))))@UU.conj().T
+000040 |    expected=float(occ(mp.mpf(p),mp.mpf(sum(abs(x)**2 for x in H))))
+000041 |    need(np.max(abs(embed.conj().T@C@embed-expected*np.eye(3)))<5e-13,'Unchanged original96 same fixed rightvector whole mode block '+str((alpha,n,H)))
+000042 |    actual.append(dict(alpha=alpha,n=n,H=str(H),occupation=expected))
+000043 | for alpha in [mp.mpf(1)/4,mp.mpf(3)/4]:
+000044 |  need(abs(1-occ(alpha,0)-1/(1+mp.exp(4*mp.pi*alpha)))<mp.mpf('1e-115'),'Actual elliptic quarter normalization and right complement '+str(alpha))
+000045 | # Standard analytic identities, including convergence tail on real axis.
+000046 | x,y,a=sp.symbols('x y a',real=True);q=sp.symbols('q',positive=True)
+000047 | need(sp.factor((x/(x*x+a)+y/(y*y+a))/(x+y)-(x*y+a)/((x*x+a)*(y*y+a)))==0,'Exact positive-real Pick Gram identity')
+000048 | xx,yy,aa=sp.symbols('xx yy aa',positive=True);zz=xx+sp.I*yy
+000049 | need(sp.simplify(sp.re(zz/(zz**2+aa))-xx*(xx**2+yy**2+aa)/abs(zz**2+aa)**2)==0,'Exact RHP real part of every original thermal resolvent')
+000050 | for p,u in [(mp.mpf('.25'),0),(mp.mpf('.75'),2),(mp.mpf('3.25'),mp.mpf('1e6'))]:
+000051 |  J=2048;partial=(2/ell)*sum(p/(p*p+yq*u+(mp.pi*(j+mp.mpf('.5'))/ell)**2) for j in range(J))
+000052 |  tail=2*p*ell/(mp.pi**2*(J-mp.mpf('.5')))
+000053 |  need(0<Ft(p,u)-partial<tail,'Original tanh partial fractions retain bounded positive tail '+str((p,u)))
+000054 | for z in [mp.mpc('.01','2.5'),mp.mpc('.7','-4.2'),mp.mpc('3','1')]:
+000055 |  for u in [0,mp.mpf('.5'),mp.mpf('1e8')]:
+000056 |   f=Ft(z,u);need(mp.re(f)>0,'Actual analytic response stays positive-real '+str((z,u)))
+000057 |   w=(z-1)/(z+1);bound=(1+abs(w))/(1-abs(w))
+000058 |   need(abs(f)<=Ft(1,u)*bound,'Uniform Harnack-Schwarz bound on original conditional function '+str((z,u)))
+000059 | # Exact occupation/Cayley normalization, including the nonexpansive range.
+000060 | ss=sp.symbols("ss",real=True)
+000061 | need(sp.simplify((1+(1+ss)/(1-ss))/2-1/(1-ss))==0,"Exact occupation readout is 1/(1-Schur), not raw Cayley output")
+000062 | # On s<=0 denominator(1-s)^2>=1, so derivative<=1.
+000063 | need(sp.diff(1/(1-ss),ss)==1/(1-ss)**2,"Exact occupation derivative gives nonexpansive constant1 on actual negative Schur range")
+000064 | # Exact telescoping at the original two offsets; no fitted dense grid.
+000065 | bl=[]
+000066 | for N in [1,2,8,32,1000]:
+000067 |  prod=[]
+000068 |  for alpha in [Q(1,4),Q(3,4)]:
+000069 |   b=math.prod(abs((Q(1,2)-(n+alpha))/(Q(1,2)+(n+alpha))) for n in range(N));prod.append(b)
+000070 |  need(prod[0]==Q(1,4*N-1) and prod[1]==Q(1,4*N+1),'Exact single-quarter finite Blaschke factors N='+str(N))
+000071 |  need(prod[0]*prod[1]==Q(1,16*N*N-1),'Exact shared two-quarter occupation ambiguity N='+str(N))
+000072 |  bl.append(dict(samples_per_quarter=N,occupation_pairwise_bound=str(2*prod[0]*prod[1])))
+000073 | # A deterministic bounded source reader applied to a diagnostic full law.
+000074 | us=list(map(mp.mpf,['0','.5','2']));ws=[mp.mpf(1)/5,mp.mpf(3)/10,mp.mpf(1)/2]
+000075 | F=lambda p:sum(w*Ft(p,u) for u,w in zip(us,ws))
+000076 | def source_interval(nodes,values,target):
+000077 |  vals=[(f-1)/(f+1) for f in values];cs=[]
+000078 |  for j,p in enumerate(nodes):
+000079 |   c=vals[0];need(abs(c)<1,'Finite multipoint Schur interior pivot '+str(j)+'/'+str(len(nodes)))
+000080 |   cs.append(c)
+000081 |   vals=[(val-c)/((1-c*val)*(pp-p)/(pp+p)) for pp,val in zip(nodes[j+1:],vals[1:])]
+000082 |  interval=[mp.mpf(-1),mp.mpf(1)]
+000083 |  for p,c in reversed(list(zip(nodes,cs))):
+000084 |   b=(target-p)/(target+p);interval=sorted((c+b*r)/(1+c*b*r) for r in interval)
+000085 |  mapped=[(1+r)/(1-r) for r in interval]
+000086 |  return [max(mp.mpf(0),mapped[0]),min(mp.tanh(ell*target),mapped[1])]
+000087 | intervals=[]
+000088 | for N in [1,2,4,8]:
+000089 |  nodes=[mp.mpf(k)/2+mp.mpf(1)/4 for k in range(2*N)];target=mp.mpf('.5')
+000090 |  lo,hi=source_interval(nodes,[F(p) for p in nodes],target)
+000091 |  need(lo<=F(target)<=hi,'Actual full diagnostic law lies in finite original-quarter source interval '+str(N))
+000092 |  bound=mp.mpf(4)/(16*N*N-1)
+000093 |  need(hi-lo<=bound+mp.mpf('1e-95'),'Finite reader interval respects analytic ambiguity bound '+str(N))
+000094 |  intervals.append(dict(samples=2*N,F_target=float(F(target)),F_interval=[float(lo),float(hi)],occupation_interval=[float((1+lo)/2),float((1+hi)/2)],physical_law_selected=False))
+000095 | nodes=[mp.mpf(k)/2+mp.mpf(1)/4 for k in range(8)]
+000096 | K=np.array([[float((F(pi)+F(pj))/(pi+pj)) for pj in nodes] for pi in nodes]);need(np.linalg.eigvalsh(K)[0]>-1e-13,'Whole thermal Pick matrix necessary PSD condition on actual diagnostic law')
+000097 | # Exact triangular inversion of the shifted thermal Stieltjes measure.
+000098 | # Dimensionless radial vbar=(ell/pi)^2*y²u, known change of variables only.
+000099 | truth={Q(0):Q(1,5),Q(1,2):Q(1,4),Q(7,3):Q(1,3),Q(20,3):Q(13,60)};R=Q(30)
+000100 | deltas=[Q(j*(j+1)) for j in range(1,6)];rho=defaultdict(Q)
+000101 | for pos,weight in truth.items():
+000102 |  for shift in [Q(0)]+deltas:
+000103 |   if pos+shift<=R:rho[pos+shift]+=weight
+000104 | candidate=set()
+000105 | for pos in rho:
+000106 |  for k in range(16):
+000107 |   if pos+2*k<=R:candidate.add(pos+2*k)
+000108 | recovered={}
+000109 | for pos in sorted(candidate):recovered[pos]=rho.get(pos,Q(0))-sum(recovered.get(pos-d,Q(0)) for d in deltas if d<=pos)
+000110 | need(all(recovered[pos]==truth.get(pos,Q(0)) for pos in candidate),'Exact triangular inverse recovers entire radial measure and cancels every spurious thermal atom on compact range')
+000111 | need(sum(recovered.values())==1 and min(recovered.values())>=0,'Exact recovered diagnostic law remains positive and normalized')
+000112 | wrong_rho={Q(0):Q(1)};wrong_rec={}
+000113 | for pos in range(0,9,2):wrong_rec[Q(pos)]=wrong_rho.get(Q(pos),Q(0))-sum(wrong_rec.get(Q(pos)-d,Q(0)) for d in deltas if d<=pos)
+000114 | need(wrong_rec[Q(2)]==-1,'Positive shifted Stieltjes atom alone fails positive original-law deconvolution')
+000115 | # A finite prefix really is ambiguous: exact cofactor algebra, high precision replay.
+000116 | A=sp.Matrix(3,4,sp.symbols('A0:12'));cof=sp.Matrix([(-1)**j*A[:,[k for k in range(4) if k!=j]].det() for j in range(4)])
+000117 | need(all(sp.expand(z)==0 for z in A*cof),'Exact general finite-prefix null direction by signed maximal minors')
+000118 | prefix=[mp.mpf('.25'),mp.mpf('1.25')];support=list(map(mp.mpf,['0','.25','1','4']))
+000119 | AM=mp.matrix([[1]*4]+[[Ft(p,u) for u in support] for p in prefix]);direction=[(-1)**j*mp.det(mp.matrix([[AM[i,k] for k in range(4) if k!=j] for i in range(3)])) for j in range(4)]
+000120 | size=max(abs(x) for x in direction);laws=[[mp.mpf(1)/4+sign*x/(8*size) for x in direction] for sign in [1,-1]]
+000121 | need(all(x>0 for law in laws for x in law) and all(abs(sum(law)-1)<mp.mpf('1e-110') for law in laws),'Finite prefix countercontrols are positive normalized laws in original finite-H class')
+000122 | resp=lambda law,p:sum(w*Ft(p,u) for u,w in zip(support,law))
+000123 | need(max(abs(resp(laws[0],p)-resp(laws[1],p)) for p in prefix)<mp.mpf('1e-110'),'Distinct exact cofactor laws agree on supplied finite original-quarter prefix')
+000124 | nextdiff=abs(resp(laws[0],mp.mpf('2.25'))-resp(laws[1],mp.mpf('2.25')))
+000125 | need(nextdiff>mp.mpf('1e-6'),'Additional actual quarter mode distinguishes finite-prefix ambiguity')
+000126 | # The direct original free source assignment is a sharp endpoint, not a physical identification.
+000127 | for p in [mp.mpf('.25'),mp.mpf('.75')]:
+000128 |  need(F(p)<Ft(p,0) and occ(p,mp.mpf('1e-6'))<occ(p,0),'Positive nonzero original H strictly changes given free right occupation '+str(p))
+000129 | # The previous fixed-mode ambiguity is broken by genuine extra modes.
+000130 | points=[mp.mpf(11)/20+mp.mpf(j)/100 for j in range(4)]
+000131 | def inverse_at_fixed_p(t):
+000132 |  lo=mp.mpf(0);hi=mp.mpf(1)
+000133 |  while occ(mp.mpf('.25'),hi)>t:hi*=2
+000134 |  for _ in range(320):
+000135 |   mid=(lo+hi)/2
+000136 |   if occ(mp.mpf('.25'),mid)>t:lo=mid
+000137 |   else:hi=mid
+000138 |  return (lo+hi)/2
+000139 | oldus=[inverse_at_fixed_p(t) for t in points];direction0=[-1,3,-3,1]
+000140 | oldlaws=[[mp.mpf(1)/4+sign*mp.mpf(d)/24 for d in direction0] for sign in [1,-1]]
+000141 | oldmom=[[sum(w*occ(mp.mpf('.25'),u)**j for w,u in zip(law,oldus)) for j in range(4)] for law in oldlaws]
+000142 | need(max(abs(oldmom[0][j]-oldmom[1][j]) for j in range(3))<mp.mpf('1e-90'),'R062 actual same two/four-field law ambiguity retained at fixed original mode')
+000143 | need(abs(abs(oldmom[0][3]-oldmom[1][3])-mp.mpf(1)/2000000)<mp.mpf('1e-90'),'R062 exact six-field discrepancy replayed without Wick replacement')
+000144 | extra_mode_diff=abs(sum((wp-wm)*occ(mp.mpf('1.25'),u) for wp,wm,u in zip(oldlaws[0],oldlaws[1],oldus)))
+000145 | need(extra_mode_diff>mp.mpf('1e-8'),'Whole actual quarter route distinguishes R062 finite-marginal ambiguity using an additional two-field answer')
+000146 | # An actual probability with infinite mean still has a well-defined reader.
+000147 | RR=sp.symbols('RR',positive=True)
+000148 | need(sp.limit(sp.log(1+RR)+1/(1+RR)-1,RR,sp.oo)==sp.oo,'Radial density 1/(1+u)^2 is allowed despite infinite Higgs u moment')
+000149 | heavy=[]
+000150 | for pp in [mp.mpf('.25'),mp.mpf('1.25')]:
+000151 |  val=mp.quad(lambda ss:Ft(pp,ss/(1-ss)) if ss!=1 else 0,[0,mp.mpf('.5'),1])
+000152 |  need(0<val<Ft(pp,0),'No-finite-moment source response exists in same original class at '+str(pp))
+000153 |  heavy.append(dict(p=str(pp),F=float(val),finite_mean_assumed=False))
+000154 | 
+000155 | # Read the actually given zero-H elliptic covariance, under the EXPLICIT
+000156 | # identity candidate for the marked rightup field; not a derived carrier map.
+000157 | original_free_reader=[]
+000158 | for count in [1,2,4]:
+000159 |  pp=[mp.mpf(k)/2+mp.mpf(1)/4 for k in range(2*count)]
+000160 |  ff=[1-2/(1+mp.exp(4*mp.pi*pk)) for pk in pp]
+000161 |  lo,hi=source_interval(pp,ff,mp.mpf('.5'));target=mp.tanh(mp.pi)
+000162 |  need(lo<=target<=hi+mp.mpf('1e-100'),'Given original free elliptic covariance replayed in explicit identity-map candidate '+str(count))
+000163 |  original_free_reader.append(dict(samples=len(pp),F_interval=[float(lo),float(hi)],source='actual given elliptic zero-H right complement',carrier_identity_is_hypothesis=True,positive_radial_law_forced='delta_u0 only within this marked conditional identification'))
+000164 | 
+000165 | # Shared radial inverse predicts a SECOND GIVEN Yukawa channel.
+000166 | lee,leV=np.linalg.eigh(Ys[2].conj().T@Ys[2]);le_y2=float(lee[-1]);le_vec=leV[:,-1];le_embed=np.zeros(96,complex)
+000167 | for fam in range(3):le_embed[v.IDX[('e','R',0,fam)]]=le_vec[fam]
+000168 | cross=[]
+000169 | for pp in [mp.mpf('.25'),mp.mpf('1.25')]:
+000170 |  direct=mp.mpf(0);predicted=mp.mpf(0)
+000171 |  for rad,weight in recovered.items():
+000172 |   if not weight:continue
+000173 |   u=(mp.pi/ell)**2*mp.mpf(rad.numerator)/rad.denominator/yq;H=(0j,complex(float(mp.sqrt(u))))
+000174 |   h=float(pp)*gamma-1j*gamma@phi(H);ee,UU=np.linalg.eigh(h);C=(UU*(.5*(1-np.tanh(float(ell)*ee))))@UU.conj().T
+000175 |   direct+=mp.mpf(weight.numerator)/weight.denominator*mp.mpf(float((le_embed.conj()@C@le_embed).real))
+000176 |   energy=mp.sqrt(pp*pp+mp.mpf(str(le_y2))*u)
+000177 |   predicted+=mp.mpf(weight.numerator)/weight.denominator*(1+pp*mp.tanh(ell*energy)/energy)/2
+000178 |  need(abs(direct-predicted)<mp.mpf('5e-13'),'Recovered quark radial law predicts actual charged-lepton original96 source '+str(pp))
+000179 |  cross.append(dict(p=str(pp),direct_original96=float(direct),shared_law_prediction=float(predicted),new_Y_fit=False))
+000180 | # Original full matrix has angular information invisible to this tower.
+000181 | Cs=[]
+000182 | for H in [(0j,1+0j),(1+0j,0j)]:
+000183 |  h=.25*gamma-1j*gamma@phi(H);ee,UU=np.linalg.eigh(h);Cs.append((UU*(.5*(1-np.tanh(float(ell)*ee))))@UU.conj().T)
+000184 | need(np.linalg.norm(Cs[0]-Cs[1])>.1 and np.linalg.norm(embed.conj().T@(Cs[0]-Cs[1])@embed)<1e-12,'Same radial tower does not determine angular conditional source without existing weak-invariance premise')
+000185 | 
+000186 | out=dict(verdict='EXACT_SCOPED_WHOLE_QUARTER_TOWER_RADIAL_IDENTIFIABILITY; PHYSICAL_SOURCE_VALUES_OPEN',all_passed=True,control_count=len(checks),checks=checks,original_builder=dict(seed=252,y_squared=y2,ell='2pi original elliptic normalization',mode_checks=actual,physical_Y_values_selected=False),cross_channel_original_diagnostics=cross,original_free_source_reader=original_free_reader,finite_pairwise_bounds=bl,finite_source_reader_diagnostics=intervals,exact_deconvolution=dict(original_radial_atoms={str(k):str(v) for k,v in truth.items()},range=str(R),recovered_nonzero_atoms={str(k):str(v) for k,v in recovered.items() if v},inferred_candidate_atoms=len(candidate),physical_law_selected=False),noncompact_infinite_mean_diagnostic=heavy,R062_extra_mode_discrepancy=float(extra_mode_diff),finite_prefix_counterexample=dict(modes=[str(p) for p in prefix],common_radial_support=[str(u) for u in support],positive_weights=[[float(w) for w in law] for law in laws],additional_mode_difference=float(nextdiff)),scope='One common positive normalized constant-H original conditional source over entire actual quarter tower; no finite H moments assumed. Exact uniqueness proved analytically,not by diagnostics. Radial theorem needs no H moments. With additional existing R057 genuine weak-invariant positive constant-H marginal,whole H marginal and supplied conditional fermion words are fixed;angular law otherwise unidentifiable. Actual master/source values,other-field joint law,primitive physical carrier/localization/time/4D remain open. Schur diagnostics use high precision but not interval arithmetic/noisy-data certification;theorem error bound assumes exact coincident samples. Primitive free source before H integration remains possible. No newLean/ledger/paper promotion.')
+000187 | Path(__file__).with_name('QUARTER-TOWER-HIGGS-INVERSE.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+000188 | print(json.dumps({k:val for k,val in out.items() if k not in ['checks','original_builder']},ensure_ascii=False,indent=2))

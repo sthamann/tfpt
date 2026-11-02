@@ -1,0 +1,163 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/MODULAR-C3-SOURCE-TEST.txt
+Original file SHA-256: cf2fc1a89b7582ed4986b71c7a9e243525cd4ea2333cdd1cd4c86dce107b3993
+Inclusive original lines: 191-345
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000191 | 
+000192 |     spec(-A_S) = {1,-1,-1},
+000193 |     (-A_S)^2 = I,
+000194 |     tr(-A_S) = -1.
+000195 | 
+000196 | Dagegen besitzt der ursprüngliche v117-Marker
+000197 | 
+000198 |     U_v117 = diag(1,i,-i)
+000199 | 
+000200 | die drei verschiedenen Eigenwerte {1,i,-i}, Ordnung 4 und Spur 1. Eine
+000201 | skalare Multiplikation oder ein Basiswechsel kann die Eigenwertverhältnisse
+000202 | und ihre Multiplizitäten nicht ändern. Deshalb ist
+000203 | 
+000204 |     Q_Theta nicht projektiv konjugiert zu U_v117.
+000205 | 
+000206 | Unter dem oben erzwungenen Intertwiner X wird vielmehr
+000207 | 
+000208 |     modular T       -> U_v117,
+000209 |     modular S T     -> M0_v117,
+000210 |     geometrisch Q=S -> ein anderer v117-S4-Involutionsoperator.
+000211 | 
+000212 | Dies ist der entscheidende Originalgegenzeuge. Die Darstellung stimmt, aber
+000213 | der benannte ursprüngliche Generator stimmt nicht.
+000214 | 
+000215 | 4. Vergleich mit den vorhandenen TFPT-Quellen
+000216 | ---------------------------------------------
+000217 | 
+000218 | v117, verification/v117_monodromy_weyl_a3.py, Zeilen 1 bis 43 und 52 bis 56,
+000219 | setzt U als mu4-Decktwist und M0 als lokale kubische Cuspmonodromie ein. Die
+000220 | exakte S4-Struktur ist bewiesen. Die Identifikation mit der analytischen
+000221 | A0*-Monodromie bleibt dort ausdrücklich numerisch, Zeilen 184 bis 200.
+000222 | 
+000223 | v499, verification/v499_p2_weights_deligne_bg.py, Zeilen 10 bis 20 und 70 bis
+000224 | 89, setzt zusätzlich voraus, dass der dreidimensionale Generationenraum
+000225 | gerade H^1(P1 minus mu4) mit dieser flachen, irreduziblen, unitären Verbindung
+000226 | ist. Seine eigene Resteliste führt diese Modulidentifikation weiterhin als
+000227 | bedingt und P2 weiterhin als Axiom. Der Theta-Moduliraum ist dort nicht
+000228 | enthalten.
+000229 | 
+000230 | Der aktuelle Carrier-Quellauszug
+000231 | 
+000232 |     documents/archive--tfpt-45--source_extracts--02_carrier_source/
+000233 |     sections/006-subsection-family-monodromy-and-occupancy.tex
+000234 | 
+000235 | definiert in Zeilen 3 bis 17 nur
+000236 | 
+000237 |     F = H^1(P1 minus mu4,C)
+000238 | 
+000239 | mit einer ausgezeichneten Zyklusbasis. Zeilen 74 bis 110 leiten den festen
+000240 | vierpunktierten Raum und seine Ortswirkung r(z)=iz her. Die spätere
+000241 | SU(3)-Holonomieaussage, Zeilen 211 bis 234, beginnt mit einer angenommenen
+000242 | flachen Hermiteschen Verbindung und einer angenommenen trivialisierten
+000243 | Determinantenlinie. Sie konstruiert keine Gauss-Manin-Verbindung über den
+000244 | elliptischen Level-4-Modulraum.
+000245 | 
+000246 | Der vorhandene modulare Originalzweig trennt die zwei Familien ausdrücklich.
+000247 | In
+000248 | 
+000249 |     documents/tfpt_3_e8_audit_bootstrap/sections/
+000250 |     011-section-the-celestial-and-twistor-continuum-route-label-.tex
+000251 | 
+000252 | Zeilen 51 bis 58 ist a0 eine reine Skala, j=1728 und tau=i bleiben in jedem
+000253 | Faserpunkt fest. Die dortige Schleife ist die Picard-Lefschetz-Schleife
+000254 | a0 -> exp(2 pi i)a0 der A3-Deformation. v493 bestätigt in Zeilen 14 bis 33
+000255 | und 308 bis 316: Sie rotiert die vier Wurzeln und wirkt auf den drei
+000256 | A3-Auflösungssphären als Coxeteroperator. Sie ist kein elliptischer
+000257 | T-Moduliweg tau -> tau+1 auf den drei Theta-Linien.
+000258 | 
+000259 | Schließlich zeigt v512, verification/v512_seam_tau_flag.py, Zeilen 679 bis
+000260 | 716, dass die v117-Cuspmonodromie als pi_1-Relation des festen
+000261 | vierpunktierten Raums positionsblind ist. Auch daraus entsteht kein
+000262 | Moduli- oder Braidparalleltransport, der den modularen T-Generator auswählt.
+000263 | 
+000264 | 5. Präzise neue Herkunftsoption und Abbruchkriterium
+000265 | ----------------------------------------------------
+000266 | 
+000267 | Die neue Route ist damit enger als eine freie S4-Nachrüstung. Eine
+000268 | hinreichende fehlende Brücke wäre ein aus P1/P2 konstruierter Funktor
+000269 | 
+000270 |     markierte elliptische Level-4-Familie
+000271 |         -> Gewicht-1-Theta-Linienlokalsystem
+000272 |         -> F = H^1(P1 minus mu4,C),
+000273 | 
+000274 | der gleichzeitig
+000275 | 
+000276 |     a) den modularen T-Loop auf den vorhandenen U_v117 transportiert,
+000277 |     b) den modularen ST-Loop auf M0_v117 transportiert,
+000278 |     c) die Phasensektion (-i,i) aus der vorhandenen Determinanten- oder
+000279 |        Spintrivialisierung festlegt,
+000280 |     d) die lokale Cuspmonodromie des festen P1 minus mu4 mit dieser
+000281 |        Moduli-Monodromie identifiziert.
+000282 | 
+000283 | Wenn eine dieser vier Relationen aus dem Originalsewing folgt, wäre der
+000284 | v117-S4 nicht mehr ein nachträglich gewählter Holonomiesatz. Ohne diesen
+000285 | Funktor bleibt der exakte Intertwiner eine starke Konvergenz, aber kein
+000286 | Herkunftsbeweis.
+000287 | 
+000288 | Das kleinste Abbruchkriterium ist bereits erfüllt, falls die Brücke die
+000289 | vorhandene Q-Markierung bewahren soll: Q wirkt standardmäßig als S und kann
+000290 | spektral nicht U_v117 sein. Eine erfolgreiche Fortsetzung muss daher
+000291 | explizit erklären, warum der v117-Marker der Moduli-T-Loop und nicht die
+000292 | ursprüngliche Ortsvierteldrehung Q ist, oder eine zusätzliche transportierte
+000293 | Markierung mitführen. Ein bloßes Umbenennen von S und T genügt wegen ihrer
+000294 | verschiedenen Ordnungen und Fixpunkte nicht.
+000295 | 
+000296 | Verdict
+000297 | -------
+000298 | 
+000299 | [E] Exakt bewiesen:
+000300 | 
+000301 | * Spinlabelwirkung S3, phasenerweiterte projektive Wirkung S4.
+000302 | * Rohgruppe der Thetaquadrate Ordnung 96 mit skalarem mu4-Kern.
+000303 | * Normalisiertes Paar (U_Theta,M_Theta) erzeugt S4 und erfüllt alle v117-
+000304 |   Relationen.
+000305 | * Der explizite unitäre Intertwiner X transportiert das Paar exakt auf
+000306 |   (U_v117,M0_v117).
+000307 | * Die geometrische Q-Markierung wirkt als modular S und ist spektral nicht
+000308 |   U_v117.
+000309 | 
+000310 | [C] Bedingter Herkunftskandidat:
+000311 | 
+000312 | * Eine aus dem Original abgeleitete Level-4-Gauss-Manin/Theta-Linienbrücke
+000313 |   mit festgelegter Phasensektion würde v117 direkt rekonstruieren.
+000314 | 
+000315 | [O] Im Original weiterhin offen:
+000316 | 
+000317 | * Herkunft dieses Moduli-Lokalsystems aus P1/P2.
+000318 | * Identifikation des modularen T-Loops mit dem vorhandenen U_v117 trotz der
+000319 |   anderen ursprünglichen Q-Markierung.
+000320 | * Ableitung der benötigten linearen Phasensektion aus Spin,
+000321 |   Determinantentrivialisierung oder Sewing.
+000322 | 
+000323 | Es wurde kein Atlas-Eintrag verändert.
+000324 | 
+000325 | Ausgeführte Gegenprüfung
+000326 | ------------------------
+000327 | 
+000328 | Die bestehenden Zertifikate wurden nach der Quellenprüfung unverändert neu
+000329 | ausgeführt:
+000330 | 
+000331 |     python3 verification/v117_monodromy_weyl_a3.py
+000332 |         5 passed, 0 failed
+000333 | 
+000334 |     python3 verification/v493_celestial_wp2_clock_deformation.py
+000335 |         47 passed, 0 failed
+000336 | 
+000337 |     python3 verification/v499_p2_weights_deligne_bg.py
+000338 |         23 passed, 0 failed
+000339 | 
+000340 | Die zusätzliche exakte Sympy-Rechnung arbeitete direkt mit den oben
+000341 | angegebenen 3x3-Matrizen. Sie bestätigte Gruppe 96 samt vier skalaren
+000342 | Elementen für <A_S,A_T>, Gruppe 24 mit der v117-Ordnungs- und
+000343 | Charakterstatistik für <U_Theta,M_Theta>, beide Intertwineridentitäten,
+000344 | X^*X=I und die spektrale Nichtgleichheit der Q- und U-Marker. Dafür wurde
+000345 | kein neues Hilfsmodell oder dauerhaftes Prüfskript angelegt.

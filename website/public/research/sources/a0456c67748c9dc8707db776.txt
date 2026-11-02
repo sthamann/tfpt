@@ -1,0 +1,135 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_sewing_20261028/current/INDEPENDENT-CURRENT-INTEGRATION-REVIEW.txt
+Original file SHA-256: 09c4da15cfc7bb72d80c1664015e258d51e7a67f7ca4b47f09853badbc86387f
+Inclusive original lines: 1-127
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | UNABHAENGIGE PRUEFUNG DER NATIVEN GAMMA STROMINTEGRATION
+000002 | =======================================================
+000003 | 
+000004 | 28. Oktober 2026
+000005 | 
+000006 | Urteil
+000007 | ------
+000008 | 
+000009 | Die Erweiterung ist mathematisch korrekt. Ich finde keinen materiellen Fehler
+000010 | in `check_native_gamma_current.py` oder im JSON. Die signierte Krausmischung,
+000011 | der Mittelkanal der sechs Ovoiden, die Recordtransponierte und p=1/5 stimmen.
+000012 | Der Satz bleibt eine exakte Operatoridentitaet plus eine optionale bedingte
+000013 | Recordoperation. Er ist keine physische Stromausfuehrung oder P1 Auswahlregel.
+000014 | 
+000015 | 1. Signierte Krausmischung
+000016 | --------------------------
+000017 | 
+000018 | Mit Zeilen K_0,...,K_4 und Spalten XI,YX,YY,YZ,ZI ist O reell orthogonal.
+000019 | Der Checker prueft in der richtigen Richtung
+000020 | 
+000021 |     D_n = sum_m O_(m,n) K_m
+000022 | 
+000023 | und damit woertlich
+000024 | 
+000025 |     D_XI=K_4,  D_YX=-K_1,  D_YY=K_2,  D_YZ=K_3,  D_ZI=K_0.
+000026 | 
+000027 | Der einzige Minusfaktor bleibt also erhalten. Wegen
+000028 | 
+000029 |     O_(m,n)=Tr(K_m^dagger D_n)/6,   O^T O=I
+000030 | 
+000031 | folgt auch die Gleichheit der normierten Kraussummen. Das Original
+000032 | `compiler-current-descendant-20260919/PROOF.txt` gibt
+000033 | 
+000034 |     J_0(X) E = E (X tensor I + I tensor X)|Sym2.
+000035 | 
+000036 | D_Gamma=(Gamma P+P Gamma^T)/2 ist daher genau die horizontale A3 Nullmode
+000037 | fuer X=Gamma/2 auf Bell10. Die endliche Identitaet ist exakt. Die affine
+000038 | Deutung benutzt weiterhin die im Originalvertrag benannte Stromalgebra und
+000039 | konforme Einbettung als Voraussetzung.
+000040 | 
+000041 | 2. Sechs Ovoiden und Spektrum
+000042 | -----------------------------
+000043 | 
+000044 | Jede der sechs Formen IY,XY,YI,YX,YZ,ZY waehlt fuenf Pauli Richtungen, und
+000045 | jede der fuenfzehn Richtungen kommt genau zweimal vor. Deshalb
+000046 | 
+000047 |     (1/6) sum_omega Phi_omega
+000048 |       = (1/9) sum_(Gamma=1)^15 Ad(D_Gamma)
+000049 |       = Psi_current.
+000050 | 
+000051 | Die Normierung ist `sum D_Gamma^dagger D_Gamma=9 I_10`. Unabhaengig davon
+000052 | zerfaellt
+000053 | 
+000054 |     End(Sym2 C4) = 1 + 15 + 84.
+000055 | 
+000056 | Mit den Casimireigenwerten 0,8,20 in dieser Pauli Normierung wirkt der Kanal
+000057 | als `1-C_R/18`. Sein Spektrum ist daher exakt
+000058 | 
+000059 |     1^1, (5/9)^15, (-1/9)^84.
+000060 | 
+000061 | Das stimmt mit der 100 mal 100 Rechnung des Checkers ueberein. Das Mittel
+000062 | zeichnet keine einzelne Ovoidform aus, waehlt aber noch keine physische
+000063 | gleichgewichtete Nutzung der Stromrichtungen.
+000064 | 
+000065 | 3. Recordeffekte und p=1/5
+000066 | --------------------------
+000067 | 
+000068 | Fuer W mit den 60 Quellkrausvektoren und V mit den 15 Stromvektoren prueft
+000069 | der Checker
+000070 | 
+000071 |     W W^dagger V=8V,   V^dagger V=6I,
+000072 |     X=W^dagger V/8,    X^dagger X=3I/4.
+000073 | 
+000074 | Somit ist `E_15=(4/3)XX^dagger` der Rang 15 Projektor. Die sechs Teilprojektoren
+000075 | `E_omega` haben Rang 5 und summieren sich wegen der doppelten Inzidenz zu
+000076 | `2E_15`.
+000077 | 
+000078 | Die Transponierte ist erforderlich. Fuer
+000079 | 
+000080 |     V_source=sum_l |l> tensor K_l/sqrt(60)
+000081 | 
+000082 | erzeugt ein Recordeffekt F den Choioperator
+000083 | 
+000084 |     J_F=W F^T W^dagger/60.
+000085 | 
+000086 | Daher liefern die sechs Effekte `F_omega=E_omega^T/2` je
+000087 | `J_(Phi_omega)/30`, zusammen `Psi_current/5`; der Fehlerausgang ist
+000088 | `I-E_15^T`.
+000089 | 
+000090 | Die Zahl 1/5 ist in diesem kohaerent zugaenglichen 60er Record optimal. Auf
+000091 | dem Stromprojektor P_15 gilt
+000092 | 
+000093 |     J_C60=(8/60)P_15,   J_Psi=(2/3)P_15.
+000094 | 
+000095 | Positivitaet von `J_C60-p J_Psi` erzwingt
+000096 | 
+000097 |     p <= (8/60)/(2/3) = 1/5.
+000098 | 
+000099 | E_15 erreicht die Schranke. Die einzelnen Choiidentitaeten sind keine eigenen
+000100 | `need` Aufrufe, folgen jedoch direkt aus den bereits geprueften Gleichungen
+000101 | `WX=V` und `X^dagger X=3I/4`. Hier fehlt kein mathematischer Schritt.
+000102 | 
+000103 | 4. Physischer Umfang und Hyperladung
+000104 | ------------------------------------
+000105 | 
+000106 | Bewiesen sind der fuenfdimensionale Hodge Raum aus A3 Nullmoden, sein
+000107 | sechsfacher Ovoidmittelkanal und die optionale kohaerente Recordfilterung mit
+000108 | maximaler inputunabhaengiger Wahrscheinlichkeit 1/5.
+000109 | 
+000110 | Nicht hergeleitet sind physischer Recordzugriff, Messung von E_15, Kopplung,
+000111 | lokale Feldinsertion, Zeitentwicklung oder eine P1 Regel. Die Zahl 1/5 ist
+000112 | eine bedingte Quellenkapazitaet, keine vorhergesagte Ereignisrate.
+000113 | 
+000114 | Alle Rechnungen bleiben auf dem A3 Bell10 Faktor. Dieser sitzt laut
+000115 | Originalvertrag zusammen mit dem D5 Vektor im E8 Gewichtsraum 2. Weder die
+000116 | Ovoiden noch E_15 erzeugen eine Y aequivariante Karte zum P2 Traeger im D5
+000117 | Spinor. Der separat gepruefte Satz
+000118 | 
+000119 |     Hom_Y(10_D5_vector,Lambda2(5))=0
+000120 | 
+000121 | bleibt unberuehrt. Eine P2 Antwort benoetigt weiterhin einen geladenen Einsatz,
+000122 | etwa den getrennt geprueften A4 mal A4 Bracketweg, samt eigener Auswahlregel.
+000123 | 
+000124 | Ein kleiner unabhaengiger Exakttest bestaetigte O^T O=I, die Inzidenz
+000125 | 6 mal 5 mit Punktmultiplizitaet 2, Spektraldimension 100, Superoperatorspur 0
+000126 | und p=1/5. Kein grosser Quelllauf und keine Aenderung am Checker wurden
+000127 | vorgenommen.

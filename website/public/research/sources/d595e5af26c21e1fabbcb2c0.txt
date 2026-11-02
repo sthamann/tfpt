@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/e-series-joint-source-20261023/COMPILER-CLOSURE.txt
+Original file SHA-256: de73510dc40b968940c68662ab07252995f96a98363e6cb1e9436937ecf62b3c
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | MATH.SEAM.ESERIES.JOINT.05
+000002 | 23 October 2026
+000003 | 
+000004 | Minimal joint closure of the native D5+A3 compiler cuts
+000005 | 
+000006 | 1. Result
+000007 | 
+000008 | Let Phi be the existing E8 root system in the standard real eight coordinate
+000009 | chart. Let
+000010 | 
+000011 |   H = W(D5) x W(D3),
+000012 | 
+000013 | where D5 uses coordinates 0,...,4 and D3=A3 uses coordinates 5,6,7. Retain the
+000014 | actual native quarter rotation
+000015 | 
+000016 |   J(x0,x1,...,x7)=(-x1,x0,-x3,x2,-x5,x4,-x7,x6).
+000017 | 
+000018 | The two exact transition group closures are
+000019 | 
+000020 |   <H,J> = W(D8),                         |W(D8)| = 5,160,960,
+000021 | 
+000022 | and, for the original 60 G31 pair reflections,
+000023 | 
+000024 |   <H,G31> = W(E8),                       |W(E8)| = 696,729,600.       (1.1)
+000025 | 
+000026 | The first equality closes the four original D5 compatible E6 cuts to exactly
+000027 | 224 integer A2 normal E6 cuts. They form 56 coordinate three block frames,
+000028 | with four tetrahedral cuts in every frame. On the entire 128 dimensional half
+000029 | root current module, every frame gives four literal orthogonal projectors of
+000030 | rank 32 whose sum is the identity. For each projector P,
+000031 | 
+000032 |   rank P = 32,       rank(1-P) = 96,
+000033 |   Tr(I128)/Tr(1-P) = 128/96 = 4/3.                              (1.2)
+000034 | 
+000035 | This is the chirality free form of the previous rank 16 plus rank 48 result.
+000036 | It uses both native chiral blocks together and therefore introduces no chosen
+000037 | 64 dimensional block.
+000038 | 
+000039 | The second equality enlarges the orbit to all 1120 regular A2 normal E6 cuts.
+000040 | The fixed 128 dimensional half root sector is not invariant under this larger
+000041 | group. The W(E8) covariant replacement is the complete unordered family of
+000042 | 1120 E6 projectors on the full E8 root or adjoint carrier.
+000043 | 
+000044 | These are transition groups on transported compiler flags. They are not
+000045 | stabilizers of one fixed object carrying the original D5+A3 split and J.
+000046 | 
+000047 | 2. Why H and J close to W(D8)
+000048 | 
+000049 | Every element of H is an even signed coordinate permutation. J is also an
+000050 | even signed coordinate permutation, so <H,J> is contained in W(D8).
+000051 | 
+000052 | The coordinate permutation of J is
+000053 | 
+000054 |   (01)(23)(45)(67).
+000055 | 
+000056 | The product (01)(23)(67) already lies in S5 x S3 inside H. Therefore the
+000057 | permutation image of <H,J> contains the crossing transposition (45). Together
+000058 | with the adjacent transpositions internal to the two original blocks, this
+000059 | generates all of S8.
+000060 | 
+000061 | H already contains a sign reversal on any pair within either original block.
+000062 | Conjugating one such pair reversal by the now available S8 image gives every
+000063 | two coordinate sign reversal. These vectors span the seven dimensional even
+000064 | sign space. Hence the kernel is the complete group 2^7 of even sign changes.
+000065 | Thus
+000066 | 
+000067 |   <H,J> = 2^7 : S8 = W(D8).
+000068 | 
+000069 | The checker verifies the crossing transposition explicitly, verifies rank 7
+000070 | of the pair sign span over F2, and verifies that the resulting action has the
+000071 | two expected root orbits: 112 integer D8 roots and 128 half roots.
+000072 | 
+000073 | 3. The 224 cut closure and the 56 projector frames
+000074 | 
+000075 | A regular A2 inside D8 is supported on exactly three coordinate axes. A fixed
+000076 | triple carries a D3=A3 root system, and that D3 contains four A2 subsystems.
+000077 | Therefore
+000078 | 
+000079 |   number of integer A2 subsystems = binomial(8,3) times 4 = 56 times 4 = 224.
+000080 | 
+000081 | The checker constructs these subsystems from the exact root relation
+000082 | 
+000083 |   A(alpha,beta)={plus or minus alpha, plus or minus beta,
+000084 |                  plus or minus(alpha+beta)},
+000085 |   (alpha,beta)=-1,
+000086 | 
+000087 | and proves that one W(D8) orbit contains all 224. This is exactly the union of
+000088 | the four integer normal orbit rows in the previous H classification:
+000089 | 
+000090 |   40 + 120 + 60 + 4 = 224.
+000091 | 
+000092 | For an integer A2 subsystem A, define a diagonal operator on the literal half
+000093 | root basis M128 by
+000094 | 
+000095 |   P_A e_lambda = e_lambda  if (lambda,A)=0,
+000096 |                  0         otherwise.                            (3.1)
+000097 | 
+000098 | Every P_A has rank 32. If A1,...,A4 are the four A2 faces in one coordinate
+000099 | D3 frame, then
+000100 | 
+000101 |   P_Ai P_Aj = delta_ij P_Ai,
+000102 |   P_A1 + P_A2 + P_A3 + P_A4 = I128.                              (3.2)
+000103 | 
+000104 | The reason is literal. Restrict a half root sign vector to the selected three
+000105 | coordinates. Its projective sign axis is exactly one of the four tetrahedral
+000106 | axes. Equation (3.2) follows without a fitted embedding.
+000107 | 
+000108 | The complement of one face is the sum of the other three projectors, so it
+000109 | has rank 96. Equation (1.2) is therefore structural and is independent of a
+000110 | chosen face. Relative to each transported five plus three coordinate split,
+000111 | every half root also has the unchanged squared projection norms
+000112 | 
+000113 |   ||lambda_D5||^2 = 5/4,       ||lambda_A3||^2 = 3/4.            (3.3)
+000114 | 
+000115 | Thus the projector ranks, the ratio 4/3, and the glue norms 5/4 and 3/4 belong
+000116 | to one common carrier dictionary.
+000117 | 
+000118 | J acts by exact conjugation,
+000119 | 
+000120 |   J P_A J^-1 = P_(JA).
+000121 | 
+000122 | It permutes the 56 frames and their four faces. In particular it sends the
+000123 | original coordinate frame {5,6,7} to {4,6,7}. It sends all four original
+000124 | D5 compatible cuts outside the originally fixed family. The closure retains
+000125 | the entire transported dictionary and supplies no preferred face.
+000126 | 
+000127 | 4. Why the original G31 pair operations force W(E8)
+000128 | 
+000129 | The preceding E7 pair certificate proves that every original G31 reflection
+000130 | is literally
+000131 | 
+000132 |   g_alpha = s_alpha s_(J alpha),                                (4.1)
+000133 | 
+000134 | where alpha and J alpha are orthogonal E8 roots. Hence every g_alpha belongs
+000135 | to W(E8). The native v634 certificate also proves that J itself belongs to the
+000136 | group generated by the 60 reflections. Consequently it is enough to determine
+000137 | what one actual pair reflection does to the two W(D8) root orbits.
+000138 | 
+000139 | In doubled integral coordinates, take
+000140 | 
+000141 |   2 alpha = (-1,-1,-1,-1,-1,-1,-1,-1),
+000142 |   2 beta  = (-2,-2,0,0,0,0,0,0).
+000143 | 
+000144 | The exact original operation (4.1) gives
+000145 | 
+000146 |   2 g_alpha(beta) = (-1,-1,1,1,1,1,1,1).                       (4.2)
+000147 | 
+000148 | Thus an actual G31 pair reflection maps an integer D8 root to an E8 half root.
+000149 | Since W(D8) is transitive on each of the 112 and 128 root sectors, adding this
+000150 | one operation makes the joint group transitive on all 240 E8 roots.
+000151 | 
+000152 | Now W(D8) already contains the root reflection s_delta for every integer D8
+000153 | root delta. For any E8 root gamma, choose a joint group element k with
+000154 | k delta=gamma. Then
+000155 | 
+000156 |   k s_delta k^-1 = s_gamma.
+000157 | 
+000158 | The joint group therefore contains all 240 E8 root reflections. Those
+000159 | reflections generate W(E8). Conversely H, J, and every operation (4.1) lie in
+000160 | W(E8). This proves both inclusions and hence the second equality in (1.1).
+000161 | No enumeration of the 696,729,600 group elements is used.
+000162 | 
+000163 | 5. The larger closure scope
+000164 | 
+000165 | W(E8) is transitive on the 1120 regular A2 subsystems. Therefore the minimal
+000166 | full closure of any original E6 cut is the complete family
+000167 | 
+000168 |   { C_A = Phi intersect span(A)^perp : A is a regular A2 in E8 },
+000169 |   |{C_A}| = 1120.                                                (5.1)
+000170 | 
+000171 | On the 240 root current basis, the literal cut projector has rank 72. Adding
+000172 | the six dimensional Cartan complement of the normal A2 plane gives the usual
+000173 | rank 78 E6 adjoint projector. This complete 1120 member family is exactly
+000174 | W(E8) covariant.
+000175 | 
+000176 | The coordinate tetrahedra also enlarge. The 56 disjoint D3 frames close to
+000177 | 7560 regular A3=D3 root subsystems. Each contains four A2 faces. The incidence
+000178 | identity is
+000179 | 
+000180 |   7560 times 4 = 1120 times 27 = 30240.                          (5.2)
+000181 | 
+000182 | Thus every E6 cut belongs to 27 transported A3 tetrahedra. Unlike the 56
+000183 | coordinate frames, the 7560 full frames overlap and do not partition the cut
+000184 | family.
+000185 | 
+000186 | The witness (4.2) proves at the same time that the integer plus half root
+000187 | polarization is not W(E8) invariant. Therefore the uniform rank 32 projector
+000188 | description on a fixed M128 is the exact intermediate W(D8) structure. It
+000189 | must not be advertised as a fixed W(E8) module. Full W(E8) covariance uses
+000190 | the 240 root current or 248 adjoint carrier and transports the complete flag.
+000191 | 
+000192 | 6. Canonical content and retained mark
+000193 | 
+000194 | The mathematical canonical objects are:
+000195 | 
+000196 |   * under W(D8), the unordered 224 cuts, their 56 four projector resolutions,
+000197 |     and the transported five plus three polarizations;
+000198 |   * under W(E8), the unordered 1120 E6 cuts and 7560 overlapping A3 frames.
+000199 | 
+000200 | An individual E6 cut, one tetrahedral vertex, one chiral 64 block, and the

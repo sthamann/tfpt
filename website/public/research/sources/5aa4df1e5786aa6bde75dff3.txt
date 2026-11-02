@@ -1,0 +1,55 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_joint_lift_native_clock.py
+Original file SHA-256: eea4b77219cd9d3192a64e257e4e69cd57f68137cc1573ef4908bd8c3dbce3e1
+Inclusive original lines: 192-238
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000192 |         m for m in combinations_with_replacement(range(-10, 10), 4)
+000193 |         if sum(m) == -2 and sum((2 * x + 1) ** 2 for x in m) <= 396
+000194 |     ]
+000195 |     colors = [
+000196 |         k for k in combinations_with_replacement(range(-10, 11), 3)
+000197 |         if sum(k) == 0
+000198 |     ]
+000199 |     carriers = [
+000200 |         k + (a, 1 - a) for k in colors for a in range(-9, 1)
+000201 |         if sum(x * x for x in k) + a * a + (1 - a) ** 2 <= 99
+000202 |     ]
+000203 |     matches = []
+000204 |     checked = 0
+000205 |     all_branches_agree = True
+000206 |     for k in carriers:
+000207 |         for m in families:
+000208 |             h = cocharacter(k, m)
+000209 |             norm = sum(x * x for x in h)
+000210 |             if norm > 100:
+000211 |                 continue
+000212 |             checked += 1
+000213 |             grades = root_grades(roots, k, m)
+000214 |             all_branches_agree &= grades == branch_grades(k, m)
+000215 |             if phases(grades, 12, -1) == target:
+000216 |                 matches.append({"norm_squared": norm, "k": k, "m": m, "h": h})
+000217 |     require("all bounded clutches agree with literal E8 branch weights", all_branches_agree)
+000218 |     require("complete bounded search has 6939 ordered-weight representatives", checked == 6939)
+000219 |     require("155 full-clock matches at norm 100; none below", (
+000220 |         len(matches) == 155 and {x["norm_squared"] for x in matches} == {100}
+000221 |     ))
+000222 |     return {"checked": checked, "norm_bound": 100, "matching_representatives": matches}
+000223 | 
+000224 | 
+000225 | def main():
+000226 |     parser = argparse.ArgumentParser()
+000227 |     parser.add_argument("--output", type=Path, default=BASE / "joint-lift-native-clock-results.json")
+000228 |     args = parser.parse_args()
+000229 |     for path, expected in PINS.items():
+000230 |         require("source pin: " + path, sha256((REPO / path).read_bytes()).hexdigest() == expected)
+000231 |     native = json.loads(NATIVE_RESULTS.read_text())
+000232 |     quarter_native = tuple(native["V1_character_1_i_minus1_minusi"][j] for j in (0, 2, 1, 3))
+000233 |     compiler_native = tuple(native["native_compiler_C12_character"])
+000234 |     require("actual native character conventions", quarter_native == (60, 60, 64, 64))
+000235 |     require("actual native C12 fixed dimension", compiler_native[0] == 22)
+000236 |     require("full actual native C12 character", compiler_native == (22, 20, 19, 24, 19, 20, 22, 20, 19, 24, 19, 20))
+000237 |     roots = roots_doubled()
+000238 |     require("240 exact roots, doubled norm squared 8", (

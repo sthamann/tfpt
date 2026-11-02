@@ -1,0 +1,117 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_whole_color_selection.py
+Original file SHA-256: 7990930b7824acdb9f019a1667ebafebe2a26b154a09a78407f981bb67de8311
+Inclusive original lines: 1-109
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R068: original whole graph, actual builder, independent exterior/Fock test."""
+000002 | from pathlib import Path
+000003 | from fractions import Fraction as F
+000004 | from itertools import combinations
+000005 | import sys,json
+000006 | import numpy as np
+000007 | from scipy.linalg import eigh,expm,block_diag
+000008 | r=Path(__file__).resolve().parents[4];sys.path.insert(0,str(r/'verification'))
+000009 | import v252_full_finite_triple as v
+000010 | checks=[]
+000011 | def need(name,x,tol=2e-12):
+000012 |  if abs(x)>=tol:raise RuntimeError((name,x,tol))
+000013 |  checks.append(dict(name=name,error=float(abs(x)),tolerance=tol))
+000014 | rng=np.random.default_rng(252)
+000015 | ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000016 | m=rng.normal(size=(3,3));mr=m+m.T;z=np.zeros((3,3),complex)
+000017 | dy=v.full_D(*ys,z);dm=v.full_D(z,z,z,z,mr);gamma=v.grading()
+000018 | iq=[i for i,t in enumerate(v.P) if t[0] in ['u','d']]
+000019 | gam=gamma[np.ix_(iq,iq)];d=36;eye=np.eye(d)
+000020 | def lift(g):
+000021 |  raw=v.rep(1,np.eye(2),g.conj());ks=v.Kswap()
+000022 |  return (raw@ks@raw.conj()@ks)[np.ix_(iq,iq)]
+000023 | ha=np.array([[.2,.3+.1j,0],[.3-.1j,-.1,.2j],[0,-.2j,-.1]])
+000024 | hb=np.array([[.1,-.2j,.15],[.2j,.3,.1j],[.15,-.1j,-.4]])
+000025 | ga=expm(1j*ha);gb=expm(1j*hb);ua=lift(ga);ub=lift(gb)
+000026 | t=lift(np.diag([-1,-1,1]));gen=np.zeros(d)
+000027 | for i,oi in enumerate(iq):gen[i]=[1,-1,0][v.P[oi][2]]
+000028 | gen=np.diag(gen);zeta=np.exp(2j*np.pi/3)
+000029 | need('original color matrices are not a commuting-only diagnostic',max(0,.01-np.linalg.norm(ga@gb-gb@ga)),1e-14)
+000030 | for hh in [0.,.13,.6]:
+000031 |  ph=(hh*dy+dm)[np.ix_(iq,iq)]
+000032 |  for p in [.25,-.75]:
+000033 |   h=p*gam-1j*gam@ph;ev,vec=eigh(h)
+000034 |   cvals=np.exp(-np.logaddexp(0,4*np.pi*ev))
+000035 |   sq=(vec*np.sqrt(cvals))@vec.conj().T
+000036 |   sp=(vec*np.sqrt(1-cvals))@vec.conj().T
+000037 |   c=(vec*cvals)@vec.conj().T
+000038 |   e=np.vstack([sp,sq]);g=e@e.conj().T
+000039 |   need(f'whole original graph projection H{hh} p{p}',np.linalg.norm(g@g-g),1e-11)
+000040 |   need(f'original second-face marginal H{hh} p{p}',np.linalg.norm(g[d:,d:]-c))
+000041 |   for label,ul,ur in [('diagonal',ua,ua),('relative',ua,ub),('oneface',eye,t)]:
+000042 |    joint=np.linalg.det(e.conj().T@block_diag(ul,ur)@e)
+000043 |    relative=np.linalg.det(eye-c+c@ul.conj().T@ur)
+000044 |    need(f'whole joint-to-relative {label} H{hh} p{p}',joint-relative,2e-11)
+000045 |    if label=='diagonal':need(f'whole diagonal color singlet H{hh} p{p}',joint-1,2e-11)
+000046 |   udiag=block_diag(lift(zeta*np.eye(3)),lift(zeta*np.eye(3)))
+000047 |   need(f'whole center commutes graph H{hh} p{p}',np.linalg.norm(udiag@g-g@udiag),1e-11)
+000048 |   need(f'whole center Slater determinant H{hh} p{p}',np.linalg.det(e.conj().T@udiag@e)-1,3e-11)
+000049 |   # Wick covariance of disjoint-face bilinears is -Tr(A G B G).
+000050 |   al=block_diag(gen,np.zeros((d,d)));ar=block_diag(np.zeros((d,d)),gen)
+000051 |   kl=np.trace(al@al@g-al@g@al@g).real
+000052 |   kr=np.trace(ar@ar@g-ar@g@ar@g).real
+000053 |   cross=-np.trace(al@g@ar@g).real
+000054 |   k=np.trace(gen@gen@c@(eye-c)).real
+000055 |   need(f'left current variance H{hh} p{p}',kl-k,4e-12)
+000056 |   need(f'right current variance H{hh} p{p}',kr-k,4e-12)
+000057 |   need(f'exact opposite-face connected current H{hh} p{p}',cross+k,4e-12)
+000058 |   need(f'whole total color has zero variance H{hh} p{p}',kl+kr+2*cross,5e-12)
+000059 | 
+000060 | # Independent explicit 3-particle wedge in a 6-orbital/64-state Fock space.
+000061 | # This is one existing color-degenerate eigenvalue triplet, not a new model.
+000062 | c=F(1,5);ef=np.vstack([np.sqrt(float(1-c))*np.eye(3),np.sqrt(float(c))*np.eye(3)])
+000063 | occ=list(combinations(range(6),3));amp={sum(1<<i for i in ii):np.linalg.det(ef[list(ii)]) for ii in occ}
+000064 | need('independent64 Fock Slater normalization',sum(abs(a)**2 for a in amp.values())-1)
+000065 | # Fock action on 3-particle sector constructed from minors, not graph determinant.
+000066 | uf=block_diag(ga,ga)
+000067 | vv=np.array([amp[sum(1<<i for i in ii)] for ii in occ])
+000068 | wedge=np.array([[np.linalg.det(uf[np.ix_(ii,jj)]) for jj in occ] for ii in occ])
+000069 | need('independent64 Fock all-SU3 diagonal singlet',np.linalg.norm(wedge@vv-vv))
+000070 | probs={}
+000071 | for state,a in amp.items():
+000072 |  right=state>>3;probs[right]=probs.get(right,0)+abs(a)**2
+000073 | one=0;center_weight=0;projected=0;global_center=0
+000074 | for st,a in amp.items():
+000075 |  nr=(st>>3).bit_count();nl=(st&7).bit_count()
+000076 |  phase=(-1)**((st>>3&1)+(st>>4&1));prob=abs(a)**2
+000077 |  one+=prob*phase
+000078 |  if nr%3==0:center_weight+=prob;projected+=prob*phase
+000079 |  global_center+=prob*zeta**(nl+nr)
+000080 | need('whole singlet oneface nontrivial counting',one-float(F(9,25)))
+000081 | need('whole total triality fixes state',global_center-1)
+000082 | need('oneface postselection changes normalized counting',projected/center_weight-1)
+000083 | # Exact rational verification, including normalization and conditioned state.
+000084 | weights={st:c**st.bit_count()*(1-c)**(3-st.bit_count()) for st in range(8)}
+000085 | raw=sum(pr*((-1)**((st&1)+((st>>1)&1))) for st,pr in weights.items())
+000086 | den=sum(pr for st,pr in weights.items() if st.bit_count()%3==0)
+000087 | num=sum(pr*((-1)**((st&1)+((st>>1)&1))) for st,pr in weights.items() if st.bit_count()%3==0)
+000088 | assert raw==F(9,25) and den==F(13,25) and num/den==1
+000089 | checks.append(dict(name='exact oneface center conditioning counterexample',raw=str(raw),weight=str(den),conditioned=str(num/den)))
+000090 | # Restricting the state to center-invariant observables leaves this expectation.
+000091 | # Group averaging a STATE by conjugation differs from charged-sector conditioning.
+000092 | need('original Gstar commutes color center',np.linalg.norm(np.diag([-1,-1,1])@(zeta*np.eye(3))-(zeta*np.eye(3))@np.diag([-1,-1,1])))
+000093 | need('quotient by fixed original reference cancels in normalized state',(F(7,11)/F(13,17))/(F(5,3)/F(13,17))-F(7,11)/F(5,3))
+000094 | # First decisive representation test of a SAME-SPACE center compression.
+000095 | raw=v.rep(1,np.eye(2),(zeta*np.eye(3)).conj());ks=v.Kswap()
+000096 | zc=raw@ks@raw.conj()@ks
+000097 | pc=(np.eye(v.NH)+zc+zc@zc)/3
+000098 | need('original96 oneparticle center is projector',np.linalg.norm(pc@pc-pc))
+000099 | need('same-space center retains24 lepton slots',np.trace(pc)-24)
+000100 | need('same-space center kills36 particle quark slots',np.linalg.norm(pc[:,iq]))
+000101 | need('same-space center kills36 antiquark slots',np.linalg.norm(pc[:,[i+v.NP for i in iq]]))
+000102 | need('original quark center is fundamental',np.linalg.norm(zc[np.ix_(iq,iq)]-zeta*np.eye(36)))
+000103 | lept=[i for i in range(v.NH) if i%v.NP not in iq]
+000104 | need('same-space center retains all actual lepton slots',np.linalg.norm(pc[np.ix_(lept,lept)]-np.eye(24)))
+000105 | out=dict(verdict='SCOPED_WHOLE_SOURCE_COLOR_SELECTION_AND_RELATIVE_READER',controls=len(checks),checks=checks,
+000106 |  exact_counterexample=dict(single_face='9/25',total_center='1',conditioned_single_face='1',conditioning_probability='13/25'),
+000107 |  scope='Existing conditional whole G quark source and actual pi/J color lift; original carrier-to-source admissibility map is NOT assumed; no new H measure, physical Gauss law or spacetime derivation.')
+000108 | Path(__file__).with_name('WHOLE-COLOR-SELECTION.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+000109 | print(json.dumps(dict(verdict=out['verdict'],controls=len(checks))))

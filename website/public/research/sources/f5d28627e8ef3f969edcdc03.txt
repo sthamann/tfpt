@@ -1,0 +1,92 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_pin_winding_descent.py
+Original file SHA-256: b7cc2dcd1f41bc1a6d345463c22d834f6cf17b337bf619920a1557f5cd87d391
+Inclusive original lines: 1-84
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact first operator test for the old winding times charge conjugation.
+000003 | 
+000004 | The infinite Hilbert-Schmidt exclusion uses the analytic lower bound in
+000005 | PIN-WINDING-DESCENT.txt, not a fitted growth rate of a finite matrix.
+000006 | """
+000007 | import argparse
+000008 | from fractions import Fraction as F
+000009 | import json
+000010 | from pathlib import Path
+000011 | 
+000012 | import sympy as s
+000013 | 
+000014 | 
+000015 | def need(test, message):
+000016 |     if not test:
+000017 |         raise RuntimeError(message)
+000018 | 
+000019 | 
+000020 | def main():
+000021 |     parser = argparse.ArgumentParser()
+000022 |     parser.add_argument('--out', type=Path, required=True)
+000023 |     args = parser.parse_args()
+000024 |     sig1 = s.Matrix([[0, 1], [1, 0]])
+000025 |     sig2 = s.Matrix([[0, -s.I], [s.I, 0]])
+000026 |     eye = s.eye(2)
+000027 |     k, ell = s.symbols('k ell', real=True)
+000028 |     symbol = k*sig1+ell*sig2
+000029 |     # A=e^(i*pi*x) sigma1 K changes plane momenta to(pi-k,-ell).
+000030 |     a_symbol = (s.pi-k)*sig1-ell*sig2
+000031 |     need(a_symbol*sig1 + sig1*s.conjugate(symbol) - s.pi*eye
+000032 |          == s.zeros(2), 'D A = -A D + pi sigma1 A')
+000033 |     need(sig1*s.conjugate(sig1) == eye, 'A squared')
+000034 |     for c in (s.I, -s.I):
+000035 |         need(-s.conjugate(c) == c, 'fixed Pin-minus multiplier')
+000036 |     for b in (-1, 1):
+000037 |         boundary = (eye+b*sig1)/2
+000038 |         need(sig1*s.conjugate(boundary) == b*boundary,
+000039 |              'charge conjugation preserves boundary eigenline')
+000040 | 
+000041 |     x, mu = s.symbols('x mu', real=True, positive=True)
+000042 |     energy0sq = x*x+mu*mu
+000043 |     energy1sq = (x-s.pi)**2+mu*mu
+000044 |     inner = x*(x-s.pi)+mu*mu
+000045 |     need(s.expand(energy0sq*energy1sq-inner**2-s.pi**2*mu**2) == 0,
+000046 |          'projector angle determinant identity')
+000047 |     # Under |x|<=mu and mu>=2*pi:
+000048 |     # E0²<=2mu², E1²<=13mu²/4; rationalization gives
+000049 |     # ||P1-P0||HS² >= pi²/(13mu²)=4/(13n²).
+000050 |     need(s.Rational(1, 1)/(2*2*s.Rational(13, 4)) == s.Rational(1, 13),
+000051 |          'uniform analytic projector lower bound')
+000052 |     tested = 0
+000053 |     for n in range(4, 129):
+000054 |         for theta in (F(1, 4), F(3, 4)):
+000055 |             count = sum(abs(2*(F(m)+theta)) <= F(n, 2)
+000056 |                         for m in range(-n, n+1))
+000057 |             need(count >= F(n, 4), 'quarter grid count')
+000058 |             need(count*F(4, 13*n*n) >= F(1, 13*n), 'level lower bound')
+000059 |             tested += 1
+000060 |     result = {
+000061 |         'claim': 'MATH.ORIGINAL-SEAM.PIN-WINDING-DESCENT.01',
+000062 |         'verdict': 'FIXED_DOMAIN_DESCENT_PROVED; FULL_2D_SEA_PH_LIFT_EXCLUDED',
+000063 |         'operator': 'A=exp(i*pi*x)*sigma1*K',
+000064 |         'A_squared': 1,
+000065 |         'domain': 'same fixed c=plus/minus i,b=plus/minus1,H1,cover support',
+000066 |         'Dirac_identity': 'A D A=-D+pi*sigma1',
+000067 |         'centering_changes_given_operator': True,
+000068 |         'projector_hs_lower_bound_each_level_n_ge_4': '1/(13*n)',
+000069 |         'quarter_grid_control_cases': tested,
+000070 |         'infinite_result_basis': 'analytic harmonic-series lower bound',
+000071 |         'calderon_boundary_range': 'OPEN; bulk nonintertwining alone does not decide it',
+000072 |         'scope': 'Given flat Moebius Dirac family with specified local b boundary '
+000073 |                  'and canonical full D sea. Not all P1 sources or reduced-circle seas.',
+000074 |         'physical_gates_closed': [],
+000075 |         'complete_TFPT_solution': False,
+000076 |     }
+000077 |     args.out.write_text(json.dumps(result, indent=2, sort_keys=True)+'\n')
+000078 |     print(json.dumps({'domain': 'PASS', 'operator_identity': 'PASS',
+000079 |                       'analytic_hs_lower_bound': '1/(13*n)',
+000080 |                       'grid_cases': tested, 'physical_gates_closed': []}))
+000081 | 
+000082 | 
+000083 | if __name__ == '__main__':
+000084 |     main()

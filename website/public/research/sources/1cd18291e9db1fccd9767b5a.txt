@@ -1,0 +1,83 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/canonical-seam-fermionization-20261025/check_lattice_source_frame.py
+Original file SHA-256: 0a1e2e607b07a71b35ec44ef6ea9245cf40c8c66988960cb4220f2536b8863bb
+Inclusive original lines: 201-275
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |             "root_grade_counts_0_1_2_3": [grade_counts[k] for k in range(4)],
+000202 |             "intermediate_root_count": len(canonical_roots),
+000203 |             "O_maps_original_E8_to_target_frame": True,
+000204 |         },
+000205 |         "frame_comparison": {
+000206 |             "canonical_D8_roots": len(canonical_roots),
+000207 |             "M_transported_CAR_D8_roots": len(folded_roots),
+000208 |             "intersection": len(intersection),
+000209 |             "canonical_only": len(canonical_roots - folded_roots),
+000210 |             "fold_only": len(folded_roots - canonical_roots),
+000211 |             "equal": False,
+000212 |             "canonical_only_root": vecstr(canonical_only),
+000213 |             "canonical_only_fold_preimage": vecstr(mat_vec(MT, canonical_only)),
+000214 |             "fold_only_root": vecstr(folded_only),
+000215 |             "fold_only_fold_preimage": vecstr(mat_vec(MT, folded_only)),
+000216 |         },
+000217 |         "legitimacy_boundary": {
+000218 |             "fixed_simultaneous_marking": "The identity comparison with both supplied O and M frozen is false.",
+000219 |             "common_Weyl_transport": "A single Weyl map applied to the D5+A3 flag, O frame, time vector, source embedding, field words and cocycles is a coordinate-equivalent presentation.",
+000220 |             "partial_alignment": "Rotating only one D8 while retaining the other marked data is a new identification and is not licensed by abstract D8 conjugacy.",
+000221 |             "TFPT_no_go": False,
+000222 |         },
+000223 |         "Cartan_character_comparison": {
+000224 |             "canonical_character_vector": vecstr(h_canonical),
+000225 |             "fold_character_vector_Me0": vecstr(h_folded),
+000226 |             "joint_root_sign_counts": {f"{a},{b}": n for (a, b), n in sorted(joint.items())},
+000227 |             "both_act_trivially_on_the_eight_Cartan_currents": True,
+000228 |             "charged_root_actions_equal": False,
+000229 |         },
+000230 |         "quarter_time": time_cases,
+000231 |         "spinor_zero_ground": {
+000232 |             "source_spinor_p": vecstr(p_spinor),
+000233 |             "norm_squared": fstr(dot(p_spinor, p_spinor)),
+000234 |             "p_minus_standard_spinor_representative": vecstr(p_minus_s),
+000235 |             "in_standard_E8_even_spinor_coset": True,
+000236 |             "in_ODD_SECTOR_odd_parity_c_convention": False,
+000237 |             "in_bare_integer_CAR_charge_lattice": False,
+000238 |             "M_p_target": vecstr(q_target),
+000239 |             "target_line_one_based_name": "C e^(e1+e4)",
+000240 |             "in_canonical_D8_but_not_M_transported_CAR_D8": True,
+000241 |             "already_known_equal_energy_target_root": True,
+000242 |             "consequence": "The full E8 charge extension has an additional zero-energy line absent from the bare integer CAR charge lattice; state/time compatibility requires an explicit sector rule.",
+000243 |         },
+000244 |         "gated_followups": {
+000245 |             "nonisotropic_vector_coset_and_odd_neighbor_Z8": "NOT_RUN_AFTER_FAILED_EQUALITY_GATE",
+000246 |             "E8_Z2_defect_sector_v_plus_c": "NOT_IDENTIFIED_ACROSS_THE_TWO_FRAMES",
+000247 |             "reason": "Those discriminant labels belong to a chosen D8 embedding; the two actual embeddings are unequal.",
+000248 |         },
+000249 |         "sources": {
+000250 |             "O_and_marked_glue": {
+000251 |                 "path": "tfpt_explorer/cartan_source.py",
+000252 |                 "sha256": hashlib.sha256((ROOT / "tfpt_explorer/cartan_source.py").read_bytes()).hexdigest(),
+000253 |             },
+000254 |             "M": {
+000255 |                 "path": "experiments/theory-contracts/v16-operator-pullback-20261014/fold-results.json",
+000256 |                 "sha256": hashlib.sha256((ROOT / "experiments/theory-contracts/"
+000257 |                     "v16-operator-pullback-20261014/fold-results.json").read_bytes()).hexdigest(),
+000258 |             },
+000259 |             "known_locality_exclusion": {
+000260 |                 "path": "experiments/theory-contracts/mixed-current-origin-20261014/ODD-SECTOR-REFIELDING-AND-NAHT.txt",
+000261 |                 "sha256": hashlib.sha256((ROOT / "experiments/theory-contracts/"
+000262 |                     "mixed-current-origin-20261014/ODD-SECTOR-REFIELDING-AND-NAHT.txt").read_bytes()).hexdigest(),
+000263 |             },
+000264 |             "known_equal_energy_target_root": {
+000265 |                 "path": "experiments/theory-contracts/joint-native-algebra-selection-20261016/FOLD-COVARIANCE-TO-NATIVE-FIELD-RESPONSE.txt",
+000266 |                 "atlas_source_id": "research-source:1a8c7c3f539e779301a7377d",
+000267 |                 "sha256": hashlib.sha256((ROOT / "experiments/theory-contracts/"
+000268 |                     "joint-native-algebra-selection-20261016/FOLD-COVARIANCE-TO-NATIVE-FIELD-RESPONSE.txt").read_bytes()).hexdigest(),
+000269 |             },
+000270 |         },
+000271 |     }
+000272 | 
+000273 | 
+000274 | if __name__ == "__main__":
+000275 |     print(json.dumps(calculate(), indent=2, sort_keys=True))

@@ -1,0 +1,71 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_current_action_argument.py
+Original file SHA-256: 74e83fe9fec0f880236b37db5b2c039bf253dfafb54098082d7af5d6850fb89d
+Inclusive original lines: 1-63
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Current v255/v259 argument audit; original Higgs moments retained.
+000002 | No new physical cutoff, Y/MR, reference, domain or ledger promotion.
+000003 | """
+000004 | from pathlib import Path
+000005 | import json
+000006 | import sympy as s
+000007 | u,r,p,m,L=s.symbols('u r p m L',positive=True)
+000008 | checks={};values={}
+000009 | def need(k,b):
+000010 |  checks[k]=bool(b)
+000011 |  if not b:raise AssertionError(k)
+000012 | def eq(k,a,b):need(k,s.simplify(a-b)==0)
+000013 | def moment(F):return [s.limit(F,u,0,dir='+'),s.integrate(F,(u,0,s.oo)),s.integrate(u*F,(u,0,s.oo))]
+000014 | Mh=moment(s.exp(-u));Mp=moment(s.exp(-s.sqrt(u)))
+000015 | need('heat_squared_argument_moments_1_1_1',Mh==[1,1,1])
+000016 | need('original_positive_source_in_squared_argument_moments_1_2_12',Mp==[1,2,12])
+000017 | for name,f,w in [('poisson',s.exp(-r),[1,2,12]),('heat',s.exp(-r*r),[1,1,1])]:
+000018 |  rr=[f.subs(r,0),2*s.integrate(r*f,(r,0,s.oo)),2*s.integrate(r**3*f,(r,0,s.oo))]
+000019 |  need('Dirac_and_squared_argument_dictionary_'+name,rr==w)
+000020 | # Source coefficient table, in the order (a0,a2,a4).
+000021 | printed=[2,2,1];poisson=[12,2,1];heat=[1,1,1]
+000022 | need('printed_triplet_is_neither_heat_nor_poisson',printed!=poisson and printed!=heat)
+000023 | need('printed_triplet_excluded_from_entire_positive_Laplace_cone',printed[2]*printed[0]-printed[1]**2==-2)
+000024 | need('Poisson_Higgs_and_Einstein_weight_matches_printed_a2_a4',poisson[1:]==printed[1:])
+000025 | need('relative_same_symbol_a0_cancels',s.expand(2*s.Symbol('a0')-2*s.Symbol('a0'))==0)
+000026 | sg=s.symbols('sigma',real=True)
+000027 | need('unscaled_reference_keeps_nonzero_scaled_volume_jet',s.diff(2*(s.exp(4*sg)-1),sg).subs(sg,0)==8)
+000028 | # Independent exact flat four-dimensional phase-space integral, per spin/internal eigenvalue.
+000029 | # This is the existing CONDITIONAL ordinary4D consumer, not a new spacetime origin.
+000030 | q=s.symbols('q',positive=True)
+000031 | IP=s.integrate((q**3-m*m*q)*s.exp(-q/L),(q,m,s.oo))
+000032 | IPformula=s.exp(-m/L)*(6*L**4+6*m*L**3+2*m*m*L**2)
+000033 | eq('exact_Poisson_constant_fibre_integral',IP,IPformula)
+000034 | IH=s.integrate(p**3*s.exp(-(p*p+m*m)/L**2),(p,0,s.oo))
+000035 | eq('exact_heat_constant_fibre_integral',IH,L**4*s.exp(-m*m/L**2)/2)
+000036 | x=s.symbols('x',positive=True)
+000037 | PS=s.series((IPformula.subs(L,1/x))*x**4,x,0,7).removeO()
+000038 | HS=s.series((IH.subs(L,1/x))*x**4,x,0,7).removeO()
+000039 | eq('Poisson_a0_weight_12',PS.coeff(x,0),6)
+000040 | eq('Poisson_a2_weight_2',PS.coeff(x,2),-m*m)
+000041 | eq('Poisson_a4_weight_1',PS.coeff(x,4),m**4/4)
+000042 | eq('heat_a0_weight_1',HS.coeff(x,0),s.Rational(1,2))
+000043 | eq('heat_a2_weight_1',HS.coeff(x,2),-m*m/2)
+000044 | eq('heat_a4_weight_1',HS.coeff(x,4),m**4/4)
+000045 | need('Poisson_remainder_need_not_be_heat_even_power_remainder',PS.coeff(x,5)!=0 and HS.coeff(x,5)==0)
+000046 | A,B,C,RR,chi=s.symbols('A B C R chi',positive=True);U,kin=s.symbols('U kin',real=True)
+000047 | a2H=-A*U/(4*s.pi**2)
+000048 | a4H=(A*kin+B*U**2+4*C*U)/(8*s.pi**2)+A*RR*U/(48*s.pi**2)
+000049 | SP=2*chi**2*a2H+a4H;SH=chi**2*a2H+a4H
+000050 | eq('current_Poisson_whole_Higgs_response',SP,(A*kin+B*U**2+4*C*U-4*A*chi**2*U)/(8*s.pi**2)+A*RR*U/(48*s.pi**2))
+000051 | Z=A/(8*s.pi**2)
+000052 | eq('canonical_Poisson_mu_squared',-s.diff(SP,U).subs(U,0)/Z,4*chi**2-4*C/A-RR/6)
+000053 | eq('canonical_heat_mu_squared',-s.diff(SH,U).subs(U,0)/Z,2*chi**2-4*C/A-RR/6)
+000054 | eq('same_canonical_quartic',s.diff(SP,U,2)/(2*Z*Z),8*s.pi**2*B/(A*A))
+000055 | eq('current_conditional_Higgs_threshold',s.solve(s.diff(SP,U).subs(U,0),chi**2)[0],C/A+RR/24)
+000056 | eh=s.symbols('EH');eq('same_weight_multiplies_original_Einstein_a2',s.diff(2*chi**2*eh,eh),2*chi**2)
+000057 | # The archived ratio problem is an operator heat-coefficient question, not fixed by changing this moment.
+000058 | c2=s.symbols('c2',nonzero=True)
+000059 | eq('no_new_resolution_of_archived_factor_six',s.cancel(c2*(-12)/c2),-12)
+000060 | values={'ordinary_heat_coefficient_order':['a0','a2','a4'],'heat_weights':heat,'Poisson_weights':poisson,'printed_v255_v259_weights':printed,'printed_positive_Laplace_Gram_determinant':-2,'independent_phase_space_Poisson_series':str(PS),'independent_phase_space_heat_series':str(HS),'mu_squared_Poisson':str(4*chi**2-4*C/A-RR/6),'scope':'Conditional same ordinary4D Dirac consumer and original whole96 moments. No identification of positive boundaryQ with original bosonic fullK or Tr_rel. R016/R017/R019 reused,not reclassified as new findings. a0 obstruction does not apply after its exact same-symbol relative cancellation.'}
+000061 | result={'contract':'CURRENT-ACTION-ARGUMENT-20261031','all_passed':all(checks.values()),'checks':checks,'values':values}
+000062 | Path(__file__).with_name('CURRENT-ACTION-ARGUMENT.json').write_text(json.dumps(result,indent=2)+'\n')
+000063 | print(json.dumps({'all_passed':result['all_passed'],'count':len(checks),'weights':values}))

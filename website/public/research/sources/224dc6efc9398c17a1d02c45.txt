@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/paper-source-reconstruction-20261025/SMEARED-OCTIC-ENERGY-BOUND.txt
+Original file SHA-256: 9ba6c518b6f254ff1c4152fb27d8525154cbd92b47377c5c59ba597b8823f563
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | SMEARED OCTIC ENERGY BOUND AND MICROSCOPIC ITERATED LIMIT
+000002 | =========================================================
+000003 | 
+000004 | 25 October 2026. Repair of the ultraviolet step in
+000005 | MICROSCOPIC-TO-OCTIC-COMPOSITION.txt after independent review.
+000006 | No Atlas, index, ledger or original source was changed.
+000007 | 
+000008 | Verdict
+000009 | -------
+000010 | 
+000011 | PROVED on the algebraic finite-energy core, in the following exact sense.
+000012 | 
+000013 | The shifted neutral octic has a closable smooth smearing F8(rho), and both
+000014 | F8(rho) and its adjoint are absolute strong mode sums on every fixed energy
+000015 | cutoff. There is an energy-independent sequence of globally defined finite
+000016 | CAR-word operators G_K which eventually agrees with the current-mode cutoff
+000017 | on every fixed energy sector. The existing QWZ elementary-field theorem
+000018 | therefore gives the transported iterated limit
+000019 | 
+000020 |   first N -> infinity, then current-mode cutoff K -> infinity.
+000021 | 
+000022 | This already repairs the strong smeared-operator claim. The finite microscopic
+000023 | operators G_(N,K) are global Fourier operators, so this route does not assert
+000024 | exact microscopic interval support.
+000025 | 
+000026 | The separately mollified local route also works as an iterated limit. One must
+000027 | first combine the old point-splitting subtractions into their finite Wick and
+000028 | divided-difference form. Then take
+000029 | 
+000030 |   N -> infinity at fixed mollifier scale sigma and split epsilon,
+000031 |   sigma -> 0 at fixed epsilon,
+000032 |   epsilon -> 0.
+000033 | 
+000034 | This gives the same F8(rho) strongly on the finite-energy core, together with
+000035 | its adjoint. It does not give a bound uniform in N,sigma,epsilon, a simultaneous
+000036 | ultraviolet limit, or a point field as a bounded operator.
+000037 | 
+000038 | 1. Current algebra and energy convention
+000039 | -----------------------------------------
+000040 | 
+000041 | Let j^a_n, a=0,...,7, be the eight folded eigenchannel current modes in the
+000042 | negative-sea alpha=1/4 presentation. On the algebraic finite-energy domain,
+000043 | 
+000044 |   [j^a_n,j^b_m]=n delta_ab delta_(n,-m),
+000045 |   (j^a_n)^*=j^a_-n.
+000046 | 
+000047 | The eigenchannel quasifree covariance is diagonal, so these channels admit
+000048 | the usual derived graded tensor-product factorization. They are nevertheless
+000049 | the eight images of the one fixed folded CAR source, not eight independently
+000050 | chosen source copies. In the original arc chart their covariance is generally
+000051 | correlated.
+000052 | 
+000053 | On one fixed charge sector, including the source p=0 sector, the zero modes
+000054 | are fixed scalars. The shift delta_alpha therefore changes only those scalar
+000055 | zero-mode entries. Let
+000056 | 
+000057 |   H_osc=sum_(a=0)^7 sum_(n>0) j^a_-n j^a_n
+000058 | 
+000059 | and let P_E be its spectral projection for energy at most E. Additive fixed
+000060 | ground and charge energies do not change any estimate below.
+000061 | 
+000062 | For a projection in the whole CAR Hilbert space one must also bound the
+000063 | charge sectors. P_E for H_osc alone would have infinite rank. The actual
+000064 | positive source generator, in folded energy units, is
+000065 | 
+000066 |   H_source/8 = H_osc + sum_k [q_k^2/2 + delta_k q_k].
+000067 | 
+000068 | Here q_k is an integer and |delta_k|<=15/32 in the alpha=1/4 chart. Therefore
+000069 | 
+000070 |   q_k^2/2 + delta_k q_k >= q_k^2/32.
+000071 | 
+000072 | An actual source-energy cutoff consequently includes only finitely many
+000073 | charge sectors and bounds |q_k+delta_k| by C sqrt(1+E). The zero modes then
+000074 | obey the same square-root energy estimate as the nonzero modes. Equations
+000075 | (9)--(18) extend with one uniform coefficient constant to this full positive
+000076 | source-energy cutoff. Whenever finite dimensionality or V_N is used below,
+000077 | P_E means this actual source cutoff, or one explicitly fixed charge sector,
+000078 | and not H_osc alone with unrestricted charges. No oscillator index is being
+000079 | identified with a spacetime dimension.
+000080 | 
+000081 | The four positive currents h^c_n=sum_a A_ca j^a_n use the already fixed matrix
+000082 | A=U_+^T O^T M. Since A is finite and AA*=I4, bounds for j transfer to h with
+000083 | one fixed constant. The isotropy AA^T=0 is needed for the octic field identity,
+000084 | but the estimates below do not rely on cancellations from isotropy.
+000085 | 
+000086 | The normalized shifted octic is
+000087 | 
+000088 |   F8^d(z)=:I8(h(z)+b/z):/[96 sqrt(140)],
+000089 |   b=A delta_alpha.
+000090 | 
+000091 | It is a finite linear combination of normal-ordered current monomials of
+000092 | current degree r<=8. Every occurrence of b is a scalar zero-mode insertion and
+000093 | therefore lowers r.
+000094 | 
+000095 | 2. One-current energy bounds
+000096 | ----------------------------
+000097 | 
+000098 | For n>0 and psi=P_E psi,
+000099 | 
+000100 |   ||j^a_n psi||^2
+000101 |     =<psi,j^a_-n j^a_n psi>
+000102 |     <=E ||psi||^2.                                        (1)
+000103 | 
+000104 | The commutator gives
+000105 | 
+000106 |   ||j^a_-n psi||^2
+000107 |     =||j^a_n psi||^2+n||psi||^2
+000108 |     <=(E+n)||psi||^2.                                     (2)
+000109 | 
+000110 | Equations (1) and (2) hold componentwise and hence, with a fixed coefficient
+000111 | constant, for h^c_n and its conjugate current. They also hold after an earlier
+000112 | finite string of current modes, with E replaced by the largest intermediate
+000113 | energy.
+000114 | 
+000115 | 3. Polynomial bound for every octic mode
+000116 | ----------------------------------------
+000117 | 
+000118 | Consider a degree-r normal-ordered current monomial of total mode m,
+000119 | 
+000120 |   W_m=sum_(n_1+...+n_r=m) :h^(c_1)_n1 ... h^(c_r)_nr: .    (3)
+000121 | 
+000122 | Zero modes are fixed scalars and can be omitted from the count. For one term
+000123 | in (3), let
+000124 | 
+000125 |   P=sum_(n_i>0) n_i,
+000126 |   Q=sum_(n_i<0) |n_i|.
+000127 | 
+000128 | Normal ordering places the positive modes on the right. Acting on P_E, the
+000129 | term vanishes unless
+000130 | 
+000131 |   P<=E.                                                    (4)
+000132 | 
+000133 | Since m=P-Q,
+000134 | 
+000135 |   Q=P-m<=E+|m|.                                           (5)
+000136 | 
+000137 | Thus only finitely many integer r-tuples can act on P_E. Their number is at
+000138 | most
+000139 | 
+000140 |   C_r (1+E+|m|)^(r-1).                                    (6)
+000141 | 
+000142 | After all positive modes have acted, the negative modes can raise the energy
+000143 | by at most Q. Every intermediate energy is bounded by 2E+|m|. Repeated use of
+000144 | (1) and (2) therefore bounds the norm of each surviving term by
+000145 | 
+000146 |   C_r (1+E+|m|)^(r/2) ||psi||.                            (7)
+000147 | 
+000148 | Combining (6) and (7),
+000149 | 
+000150 |   ||W_m P_E||
+000151 |     <=C_r (1+E+|m|)^(3r/2-1).                             (8)
+000152 | 
+000153 | For r<=8 the largest exponent is eleven. Since I8 has finitely many fixed
+000154 | coefficients and b is fixed,
+000155 | 
+000156 |   ||F8_m P_E|| <= C (1+E+|m|)^11,                         (9)
+000157 | 
+000158 | where C depends only on A,b and the chosen normalization. Applying the same
+000159 | argument to the conjugated polynomial gives
+000160 | 
+000161 |   ||(F8^#)_m P_E|| <= C# (1+E+|m|)^11.                    (10)
+000162 | 
+000163 | Here F8^# is the field adjoint, with conjugated A,b and reversed radial
+000164 | ordering. Equation (10) is not inferred from (9) by a formal symbol; it is the
+000165 | same current-mode proof for the actual adjoint field.
+000166 | 
+000167 | 4. Smooth smearing, strong convergence and closability
+000168 | ------------------------------------------------------
+000169 | 
+000170 | Let rho be smooth on the fold circle and write rhohat_m for its Fourier
+000171 | coefficients in the convention paired with F8_m. For every q,
+000172 | 
+000173 |   sum_m |rhohat_m| (1+|m|)^q < infinity.                  (11)
+000174 | 
+000175 | Define on the algebraic finite-energy core D_fin
+000176 | 
+000177 |   F8(rho) psi=sum_m rhohat_m F8_m psi.                     (12)
+000178 | 
+000179 | Equations (9) and (11) make (12) absolutely convergent in Hilbert norm for
+000180 | every psi in D_fin. The symmetric cutoff
+000181 | 
+000182 |   F8^[K](rho)=sum_(|m|<=K) rhohat_m F8_m                  (13)
+000183 | 
+000184 | satisfies the operator estimate
+000185 | 
+000186 |   ||(F8(rho)-F8^[K](rho))P_E||
+000187 |    <=C(1+E)^11 sum_(|m|>K)|rhohat_m|(1+|m|)^11 ->0.        (14)
+000188 | 
+000189 | In particular, with
+000190 | 
+000191 |   C_rho=C sum_m |rhohat_m|(1+|m|)^11,
+000192 | 
+000193 | the full smeared field obeys the explicit energy bound
+000194 | 
+000195 |   ||F8(rho)P_E|| <= C_rho (1+E)^11.                       (14a)
+000196 | 
+000197 | The adjoint field obeys the same estimate. Let rho^# denote the smooth test
+000198 | function obtained from rho by the retained circle/radial adjoint convention;
+000199 | it includes complex conjugation and the fixed conformal coordinate factor.
+000200 | On D_fin the mode adjoint identity therefore passes through the absolutely

@@ -1,0 +1,122 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_sewing_20261028/clock/check_native_six_ovoid_clock_bundle.py
+Original file SHA-256: 003259b0ecb7d3b47007a0b36b3b5e16c826d9efae2927acfa1c2206548af4b3
+Inclusive original lines: 201-314
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |     }
+000202 |     require(s5_order_census == {
+000203 |         "1": 1, "2": 25, "3": 20, "4": 30, "5": 24, "6": 20
+000204 |     }, "order census of the 120-element group")
+000205 |     require(pJ == tuple(range(6)), "J acts projectively trivially on fibers")
+000206 |     require(len({p[0] for p in group_s5}) == 6,
+000207 |             "C,G,sigma group is transitive on six fibers")
+000208 | 
+000209 |     # Prove the named identification, rather than infer it from the census:
+000210 |     # find an explicit relabeling under which the computed permutation group
+000211 |     # is exactly PGL(2,5) on P^1(F5).  The classical faithful degree-six
+000212 |     # action gives PGL(2,5) ~= S5.
+000213 |     pgl2 = pgl2_five_group()
+000214 |     pgl2_relabel = next((r for r in itertools.permutations(range(6))
+000215 |                          if {conjugate_permutation(p, r) for p in group_s5}
+000216 |                          == pgl2), None)
+000217 |     require(pgl2_relabel is not None,
+000218 |             "computed 120-group is conjugate to PGL(2,5) in S6")
+000219 | 
+000220 |     # Each form canonically determines the five Hodge/Clifford currents.
+000221 |     # They are the six point-ovoids of the Pauli doily, not the raw spread
+000222 |     # labels of v783; those are related by v783's point-line duality.
+000223 |     ovoids = {}
+000224 |     nontrivial = [name for name in sorted(pauli) if name != "II"]
+000225 |     for omega_name in forms:
+000226 |         omega = pauli[omega_name]
+000227 |         currents = [
+000228 |             name for name in nontrivial
+000229 |             if is_zero(pauli[name].T * omega - omega * pauli[name])
+000230 |         ]
+000231 |         require(len(currents) == 5, "each alternating form selects five currents")
+000232 |         require(all(is_zero(pauli[a] * pauli[b] + pauli[b] * pauli[a])
+000233 |                     for i, a in enumerate(currents) for b in currents[i+1:]),
+000234 |                 "each selected five-current set pairwise anticommutes")
+000235 |         ovoids[omega_name] = currents
+000236 |     require(ovoids["IY"] == ["XI", "YX", "YY", "YZ", "ZI"],
+000237 |             "IY fiber is the identified Hodge K5")
+000238 |     require(len({tuple(v) for v in ovoids.values()}) == 6,
+000239 |             "six current ovoids are distinct")
+000240 |     require(all(sum(name in v for v in ovoids.values()) == 2
+000241 |                 for name in nontrivial),
+000242 |             "every nontrivial Pauli lies in two ovoids")
+000243 |     require(all(len(set(ovoids[a]) & set(ovoids[b])) == 1
+000244 |                 for i, a in enumerate(forms) for b in forms[i+1:]),
+000245 |             "each pair of ovoids intersects in one Pauli")
+000246 | 
+000247 |     # Direct covariance of both the form and its five-current fiber.
+000248 |     for op_name, op in (("C", C), ("G", G), ("sigma", sigma),
+000249 |                         ("alpha", alpha), ("J", J)):
+000250 |         image_map = actions[op_name]["images"]
+000251 |         for omega_name in forms:
+000252 |             target = image_map[omega_name]
+000253 |             transported = set()
+000254 |             for current in ovoids[omega_name]:
+000255 |                 image = (op * pauli[current] * op.conjugate().T).applyfunc(canonical)
+000256 |                 hit = next(name for name in nontrivial
+000257 |                            if any(is_zero(image - phase * pauli[name])
+000258 |                                   for phase in phase_set))
+000259 |                 transported.add(hit)
+000260 |             require(transported == set(ovoids[target]),
+000261 |                     "full five-current fibers transport covariantly")
+000262 | 
+000263 |     result = {
+000264 |         "verdict": "NATIVE_SIX_FIBER_CLOCK_BUNDLE_EXACT",
+000265 |         "fiber_labels": forms,
+000266 |         "fiber_ovoids": ovoids,
+000267 |         "actions": actions,
+000268 |         "permutation_group_orders": {
+000269 |             "F20_C_G": len(group_f20),
+000270 |             "F20_plus_sigma": len(group_s5),
+000271 |             "F20_plus_sigma_plus_alpha": len(group_s6),
+000272 |         },
+000273 |         "S5_element_order_census": s5_order_census,
+000274 |         "S5_identification_certificate": {
+000275 |             "model": "PGL(2,5) on P^1(F5), classically isomorphic to S5",
+000276 |             "fiber_to_projective_line_relabeling": list(pgl2_relabel),
+000277 |             "exact_group_equality_after_relabeling": True,
+000278 |         },
+000279 |         "trace_typing": {
+000280 |             "native_sigma_complex_C4": 1,
+000281 |             "native_sigma_realification_R8": 2,
+000282 |         },
+000283 |         "transitive_with_sigma": True,
+000284 |         "named_group_identifications": {
+000285 |             "F20_C_G": "F20 stabilizer of the marked IY fiber",
+000286 |             "F20_plus_sigma": "transitive S5 action on six fibers",
+000287 |             "F20_plus_sigma_plus_alpha": "S6 action on six fibers",
+000288 |             "J": "projectively trivial on fibers",
+000289 |         },
+000290 |         "matrix_relations": {
+000291 |             "C5": "I",
+000292 |             "G4": "I",
+000293 |             "G_C_Ginv": "C^2",
+000294 |             "sigma3": "I",
+000295 |             "alpha2": "iI",
+000296 |             "alpha_sigma_alpha_inv": "sigma^-1",
+000297 |         },
+000298 |         "source_scope": [
+000299 |             "C and G are the selected native F20 word pair already exactly intertwined with v419",
+000300 |             "sigma is the frozen v783 native family clock",
+000301 |             "alpha is the reviewed scalar-square theta lift",
+000302 |             "the bundle removes the false requirement of one sigma-fixed symplectic form",
+000303 |             "selection of this conjugate native F20 as the physical v419 subgroup remains a source marking premise",
+000304 |             "no P1/P2 state, time, or source instrument follows from the finite bundle alone",
+000305 |         ],
+000306 |     }
+000307 |     payload = json.dumps(result, indent=2, sort_keys=True) + "\n"
+000308 |     RESULT.write_text(payload)
+000309 |     print(payload, end="")
+000310 |     print("RESULT_SHA256", hashlib.sha256(payload.encode()).hexdigest())
+000311 | 
+000312 | 
+000313 | if __name__ == "__main__":
+000314 |     main()

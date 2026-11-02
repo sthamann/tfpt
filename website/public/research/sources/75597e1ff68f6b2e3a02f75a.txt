@@ -1,0 +1,109 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_mobius_zero_mode_rp.py
+Original file SHA-256: 9554a64c350e9b444c52093f328e0688c29ab968e5adbc934f1e562747c62b70
+Inclusive original lines: 1-101
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact zero-transverse-mode reflection-positivity test.
+000003 | 
+000004 | This is not a model construction.  It restricts the stated flat Moebius
+000005 | Dirac Green operator to the invariant transverse zero branch from Theorem
+000006 | 8.2 of arXiv:2610.03745v1.
+000007 | """
+000008 | 
+000009 | from __future__ import annotations
+000010 | 
+000011 | import argparse
+000012 | import hashlib
+000013 | import json
+000014 | from pathlib import Path
+000015 | 
+000016 | import sympy as sp
+000017 | 
+000018 | 
+000019 | def encode(x: sp.Expr) -> str:
+000020 |     return str(sp.simplify(x))
+000021 | 
+000022 | 
+000023 | def main() -> None:
+000024 |     parser = argparse.ArgumentParser()
+000025 |     parser.add_argument("--output", type=Path, required=True)
+000026 |     args = parser.parse_args()
+000027 | 
+000028 |     rows = []
+000029 |     for label, q in (("plus_i", sp.I), ("minus_i", -sp.I)):
+000030 |         # Green kernel of partial_x on q-twisted functions.  On (-1,0) and
+000031 |         # (0,1) it is constant.  The jump is one and G(s+1)=q G(s).
+000032 |         g_minus = sp.simplify(1 / (q - 1))
+000033 |         g_plus = sp.simplify(q / (q - 1))
+000034 |         occupation = sp.simplify(-g_minus)
+000035 | 
+000036 |         assert sp.simplify(g_plus - g_minus) == 1
+000037 |         assert sp.simplify(g_plus - q * g_minus) == 0
+000038 |         assert sp.im(g_minus) != 0
+000039 |         assert sp.im(occupation) != 0
+000040 | 
+000041 |         # The same functional is the normalized one-mode trace with the
+000042 |         # temporal insertion z=-q^{-1}.
+000043 |         z = sp.simplify(-1 / q)
+000044 |         c = sp.Matrix([[0, 1], [0, 0]])
+000045 |         cdag = c.T
+000046 |         number = cdag * c
+000047 |         rho_num = sp.diag(1, z)
+000048 |         omega_number = sp.simplify(sp.trace(rho_num * number) /
+000049 |                                    sp.trace(rho_num))
+000050 |         assert number * number == number
+000051 |         assert sp.simplify(omega_number - occupation) == 0
+000052 | 
+000053 |         # Every unit-modulus phase in the standard charge-exchanging,
+000054 |         # order-reversing fermionic reflection cancels on c^* c.  Thus its
+000055 |         # reflected square has the same non-real value omega(N^2)=omega(N).
+000056 |         reflected_number_norm = omega_number
+000057 | 
+000058 |         rows.append({
+000059 |             "sector": label,
+000060 |             "q": encode(q),
+000061 |             "green_0_minus": encode(g_minus),
+000062 |             "green_0_plus": encode(g_plus),
+000063 |             "twisted_trace_insertion_z": encode(z),
+000064 |             "occupation": encode(occupation),
+000065 |             "occupation_real": bool(sp.im(occupation) == 0),
+000066 |             "neutral_number_reflected_norm": encode(reflected_number_norm),
+000067 |             "neutral_number_norm_real": bool(sp.im(reflected_number_norm) == 0),
+000068 |             "standard_linear_reflection_target_q": encode(1 / q),
+000069 |             "fixed_sector_under_standard_linear_reflection": bool(
+000070 |                 sp.simplify(1 / q - q) == 0),
+000071 |         })
+000072 | 
+000073 |     ratio = sp.simplify(
+000074 |         sp.sympify(rows[0]["green_0_minus"]) /
+000075 |         sp.sympify(rows[1]["green_0_minus"])
+000076 |     )
+000077 |     assert ratio == sp.I
+000078 | 
+000079 |     result = {
+000080 |         "claim": "fixed Pin-minus zero branch fails full CAR OS positivity",
+000081 |         "convention": (
+000082 |             "Euclidean skew Dirac is slashD=iD; on f0 it is b*partial_x. "
+000083 |             "The Clifford b cancels in the reflected scalar kernel."
+000084 |         ),
+000085 |         "half_interval": "0 < x < 1/2",
+000086 |         "sectors": rows,
+000087 |         "ratio_of_two_standard_reflected_constants": encode(ratio),
+000088 |         "conclusion": (
+000089 |             "The standard linear Clifford reflection exchanges q and q^-1. "
+000090 |             "A constant field phase may rotate a charged one-particle rank-one "
+000091 |             "form, but cancels on the neutral number word; its reflected norm "
+000092 |             "is non-real in both quarter sectors."
+000093 |         ),
+000094 |     }
+000095 |     body = json.dumps(result, indent=2, sort_keys=True) + "\n"
+000096 |     args.output.write_text(body, encoding="utf-8")
+000097 |     print(hashlib.sha256(body.encode("utf-8")).hexdigest())
+000098 | 
+000099 | 
+000100 | if __name__ == "__main__":
+000101 |     main()

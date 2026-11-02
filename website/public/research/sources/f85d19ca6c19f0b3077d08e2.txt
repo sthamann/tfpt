@@ -1,0 +1,110 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_admissibility_total_chiral_trace.py
+Original file SHA-256: ad580dc2326e87e4dae7686dca215d328fae091ac7b049fe6c240958264a702b
+Inclusive original lines: 1-102
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Original96 total grading, own-operator spectral selection and full trace.
+000002 | Small rectangular matrices are identity controls, not physical normal models.
+000003 | """
+000004 | from pathlib import Path
+000005 | import sys,json
+000006 | import numpy as np
+000007 | import sympy as s
+000008 | ROOT=Path(__file__).resolve().parents[4]
+000009 | sys.path.insert(0,str(ROOT/'verification'))
+000010 | import v252_full_finite_triple as original
+000011 | checks={}
+000012 | def need(k,b):
+000013 |     checks[k]=bool(b)
+000014 |     if not b:raise AssertionError(k)
+000015 | def eq(a,b):return all(s.simplify(v)==0 for v in a-b)
+000016 | I=s.I;p=[s.Matrix([[0,1],[1,0]]),s.Matrix([[0,-I],[I,0]]),s.diag(1,-1)]
+000017 | gam=[s.kronecker_product(p[0],s.eye(2))]+[s.kronecker_product(p[1],v) for v in p]
+000018 | g5=gam[0]*gam[1]*gam[2]*gam[3]
+000019 | der=[I*g*g5 for g in gam];two=[gam[i]*gam[j] for i in range(4) for j in range(i+1,4)]
+000020 | need('H_scalar_and_derivative_terms_have_zero_chiral_spin_trace',s.trace(g5)==0 and all(s.trace(g5*q)==0 for q in der))
+000021 | need('H_kinetic_pair_has_no_local_chiral_index_component',all(s.trace(g5*a*b)==0 for a in der for b in der))
+000022 | need('H_mixed_curvature_terms_have_no_local_chiral_index_component',all(s.trace(g5*a)==0 for a in two) and all(s.trace(g5*a*b)==0 for a in two for b in der))
+000023 | need('pure_gauge_index_density_cannot_be_dropped_just_from_H_test',any(s.trace(g5*a*b)!=0 for a in two for b in two))
+000024 | z3=np.zeros((3,3),complex);z2=np.zeros((2,2),complex)
+000025 | ys=[np.array([[1+1j,2,0],[0,1,1j],[1,-1j,2]],complex),np.array([[2,1j,1],[1,3,-1j],[0,1,1]],complex),np.array([[1,0,1j],[2,1,0],[0,-1j,2]],complex),np.array([[1,1j,0],[1,2,1],[0,1,3j]],complex)]
+000026 | mr=np.array([[2,1j,1],[1j,3,2],[1,2,1j]],complex)
+000027 | DY=original.full_D(*ys,z3);DM=original.full_D(z3,z3,z3,z3,mr)
+000028 | eR=original.rep(1,z2,z3);swap=original.Kswap();GF=original.grading()
+000029 | def L(h):
+000030 |     h1,h2=np.asarray(h,complex);q=np.array([[h2.conjugate(),h1],[-h1.conjugate(),h2]])
+000031 |     aa=original.rep(0,q,z3);v=aa@(DY@eR-eR@DY);v=v+v.conj().T
+000032 |     return v+swap@v.conj()@swap
+000033 | gn=[np.array(g,dtype=complex) for g in gam];g5n=np.array(g5,dtype=complex)
+000034 | G=np.kron(g5n,GF);Pc=(np.eye(384)+G)/2;Pi=np.kron(np.eye(4),(np.eye(96)+GF)/2)
+000035 | need('two_halves_have_same_rank_but_different_actual_action',np.trace(Pc)==192 and np.trace(Pi)==192 and not np.array_equal(Pc,Pi))
+000036 | need('total_chiral_half_is_not_spin_commuting_internal_half',not np.array_equal(Pc@np.kron(gn[0],np.eye(96)),np.kron(gn[0],np.eye(96))@Pc))
+000037 | h=np.array([1+2j,3-1j]);Phi=L(h)+DM
+000038 | need('original_whole96_Phi_is_odd_in_fixed_finite_grading',np.array_equal(GF@Phi+Phi@GF,np.zeros((96,96))))
+000039 | K=2*np.kron(gn[0],np.eye(96))+np.kron(g5n,Phi);KK=K@K
+000040 | need('actual_whole_product_is_odd_in_total_grading',np.array_equal(G@K+K@G,np.zeros((384,384))))
+000041 | need('actual_total_chiral_half_reduces_square_not_first_order_operator',np.array_equal(Pc@KK,KK@Pc) and np.array_equal(Pc@K@Pc,np.zeros((384,384))) and not np.array_equal(Pc@K,K@Pc))
+000042 | for n in [1,2]:
+000043 |     power=np.linalg.matrix_power(KK,n)
+000044 |     need('actual_total_chiral_square_moment_half_'+str(n),np.trace(Pc@power)==np.trace(power)/2)
+000045 | A=4*(3*np.trace(ys[0].conj().T@ys[0]+ys[1].conj().T@ys[1])+np.trace(ys[2].conj().T@ys[2]+ys[3].conj().T@ys[3])).real
+000046 | pcdiag=np.diag(Pc);pidiag=np.diag(Pi)
+000047 | for i,v in enumerate([[1,0],[1j,0],[0,1],[0,1j]]):
+000048 |     dv=L(v);dd=np.kron(np.array(der[i],complex),dv)
+000049 |     cp=pcdiag[:,None]*dd*pcdiag[None,:];ip=pidiag[:,None]*dd*pidiag[None,:]
+000050 |     need('actual_variable_H_direction_'+str(i)+'_survives_total_not_internal_half',np.count_nonzero(cp)>0 and np.count_nonzero(ip)==0 and np.array_equal(G@dd,dd@G))
+000051 |     need('actual_variable_H_kinetic_moment_half_'+str(i),np.sum(cp*cp.T)==2*A and np.sum(dd*dd.T)==4*A)
+000052 | # Exact rectangular positive-spectrum pairing, including an unpaired zero.
+000053 | u,lam,t,z=s.symbols('u lam t z',real=True)
+000054 | T=s.Matrix([[1,u,0],[0,1,u]]);plus=T.T*T;minus=T*T.T
+000055 | need('whole_rectangular_positive_spectra_pair_with_multiplicity',s.expand((lam*s.eye(3)-plus).det()-lam*(lam*s.eye(2)-minus).det())==0)
+000056 | need('index_term_is_present_for_every_rectangular_parameter',T.rank()==2 and len(plus.nullspace())-len(minus.nullspace())==1)
+000057 | T1=T.subs(u,1);Lp=T1.T*T1;Lm=T1*T1.T
+000058 | hp=s.trace((-t*Lp).exp());hm=s.trace((-t*Lm).exp())
+000059 | need('whole_heat_supertrace_including_zero_is_index',s.simplify(hp-hm)==1)
+000060 | need('absolute_chiral_heat_needs_half_index_term',s.simplify(hp-(hp+hm)/2)==s.Rational(1,2))
+000061 | need('zero_excluded_whole_spectral_trace_is_exact_half',s.simplify((hp-1)-(hp+hm-1)/2)==0)
+000062 | sn=s.symbols('s');zp=3**(-sn)+7**(-sn)
+000063 | need('positive_zeta_half_has_no_unpaired_zero_added',s.simplify(zp-(2*3**(-sn)+2*7**(-sn))/2)==0)
+000064 | # Same positive high-pass applied to both graded halves, kappa between1 and3.
+000065 | Pgp=Lp*(Lp-s.eye(3))/6;Pgm=Lm*(Lm-s.eye(2))/6
+000066 | need('combined_chirality_and_highpass_has_no_index_term',s.simplify(s.trace(Pgp*(-t*Lp).exp())-s.trace(Pgm*(-t*Lm).exp()))==0 and s.simplify(s.trace(Pgp*(-t*Lp).exp())-s.exp(-3*t))==0)
+000067 | need('combined_highpass_removes_unpaired_zero_without_new_grading',eq(Pgp*Pgp,Pgp) and eq(Pgm*Pgm,Pgm) and all(eq(Pgp*v,s.zeros(3,1)) for v in Lp.nullspace()))
+000068 | # A low eigenvalue u² touches zero without crossing kappa=2.
+000069 | # Full zero-excluded FP count and removed positive count jump together.
+000070 | need('zero_appearance_jumps_cancel_in_cut_FP_without_threshold_crossing',(2-1)==(1-0) and s.limit(s.exp(-t*u*u)+s.exp(-4*t),u,0)-s.exp(-4*t)==1)
+000071 | # Both signs of the grading under a supplied reference lift preserve oddness.
+000072 | GF2=s.diag(1,-1);KD=s.Matrix([[0,2],[2,0]])
+000073 | for name,tau in [('preserves',s.diag(1,-1)),('swaps',s.Matrix([[0,1],[1,0]]))]:
+000074 |     ref=(KD+tau*KD*tau.inv())/2
+000075 |     need('bound_reference_is_odd_when_lift_'+name+'_grading',eq(GF2*ref+ref*GF2,s.zeros(2)))
+000076 | need('multiplying_by_internal_grading_does_not_make_it_odd',GF2*GF2==s.eye(2) and GF2*GF2+GF2*GF2!=s.zeros(2))
+000077 | # Exact own-operator spectral restriction in a non-diagonal fixed chart.
+000078 | U=s.Matrix([[1,2,2],[2,1,-2],[-2,2,-1]])/3
+000079 | LL=U*s.diag(0,1,4)*U.T;PP=U*s.diag(0,0,1)*U.T;SS=U[:,2:]
+000080 | need('actual_selector_form_reduces_its_own_positive_operator',eq(PP*LL,LL*PP))
+000081 | need('own_operator_positive_spectral_cut_kills_its_zero_mode',eq(PP*U[:,:1],s.zeros(3,1)))
+000082 | heat=U*s.diag(1,s.exp(-t),s.exp(-4*t))*U.T
+000083 | need('whole_weighted_heat_equals_restricted_heat_for_same_spectral_cut',s.simplify(s.trace(PP*heat)-s.exp(-4*t))==0 and eq(SS.T*LL*SS,s.Matrix([[4]])))
+000084 | need('first_order_compression_need_not_match_restricted_square',eq(s.diag(1,0)*KD*KD*s.diag(1,0),s.diag(4,0)) and eq(s.diag(1,0)*KD*s.diag(1,0),s.zeros(2)))
+000085 | # Cutoff: finite low positive eigenvalue varies, FP0 does not; logdet does.
+000086 | low=(1+u*u)**(-sn)
+000087 | need('finite_low_removal_is_entire_at_Einstein_pole',s.residue(low,sn,1)==0)
+000088 | need('finite_low_removal_changes_FP0_by_count_not_eigenvalue',low.subs(sn,0)==1 and s.diff(low,u,2).subs(sn,0)==0 and s.diff(low,u,4).subs(sn,0)==0)
+000089 | need('logdet_low_mode_has_H2_and_H4_jets_unlike_FP0',s.diff(s.log(1+u*u),u,2).subs(u,0)/2==1 and s.diff(s.log(1+u*u),u,4).subs(u,0)/24==-s.Rational(1,2))
+000090 | fullheat=1+s.exp(-t*(1+u*u))+s.exp(-t*(4+u*u));cutheat=s.exp(-t*(4+u*u))
+000091 | need('heat_count_includes_zero_while_positive_zeta_count_does_not',s.limit(cutheat-fullheat,t,0)==-2 and low.subs(sn,0)==1)
+000092 | # Moving spectral projection with a fixed threshold branch, no guessed P'.
+000093 | rot=s.Matrix([[s.cos(u),-s.sin(u)],[s.sin(u),s.cos(u)]])
+000094 | LM=rot*s.diag(1+u,4+2*u)*rot.T;PM=rot*s.diag(0,1)*rot.T
+000095 | HM=rot*s.diag(s.exp(-t*(1+u)),s.exp(-t*(4+2*u)))*rot.T
+000096 | need('moving_spectral_projector_has_offdiagonal_derivative',eq(PM*PM.diff(u)*PM,s.zeros(2)) and not eq(PM.diff(u),s.zeros(2)))
+000097 | need('first_trace_derivative_from_moving_projection_is_zero',s.trigsimp(s.trace(PM.diff(u)*HM))==0)
+000098 | need('whole_moving_cutoff_trace_has_original_eigenvalue_derivative',s.trigsimp(s.diff(s.trace(PM*HM),u)+t*s.trace(PM*HM*LM.diff(u)))==0)
+000099 | need('H_mass_curvature_ratio_unchanged_under_common_chiral_halving',(-s.Rational(1,8))/s.Rational(1,96)==-12)
+000100 | result={'contract':'ORIGINAL-ADMISSIBILITY-TOTAL-CHIRAL-TRACE-20261031','all_passed':all(checks.values()),'checks':checks,'scope':'Actual96 finite constructor and existing conditional spin4 product; generic spectral-cut,rectangular index and moving-projection identity controls. No chosen physical normal module,trace or source. No new Lean proof,original Dadm/Ksigma identification,physical chirality selection or whole TFPT closure.'}
+000101 | Path(__file__).with_name('ORIGINAL-ADMISSIBILITY-AND-TOTAL-CHIRAL-TRACE.json').write_text(json.dumps(result,indent=2)+'\n')
+000102 | print(json.dumps({'all_passed':result['all_passed'],'count':len(checks)}))

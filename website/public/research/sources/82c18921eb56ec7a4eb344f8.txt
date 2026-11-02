@@ -1,0 +1,125 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/collar-current-source-bridge-20261021/check_dirac_lift.py
+Original file SHA-256: 1e0047ba99ab68b3d1bc71d10a8ef7d894cd86bab6b7e401bdd4cbff1dee7c02
+Inclusive original lines: 1-117
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Complete the original scalar endpoint family in its existing Dirac module.
+000002 | 
+000003 | Exact algebraic controls accompany DIRAC-LIFT-ADMISSIBILITY.md. No finite CCR,
+000004 | physical chirality, Padm identification, or complete TFPT solution is asserted.
+000005 | """
+000006 | from pathlib import Path
+000007 | import hashlib
+000008 | import importlib.util
+000009 | import json
+000010 | import sympy as s
+000011 | 
+000012 | HERE = Path(__file__).resolve().parent
+000013 | ROOT = HERE.parents[2]
+000014 | SOURCE = ROOT / 'experiments/theory-contracts/seam-full-collar-reconstruction-20261015/checker.py'
+000015 | spec = importlib.util.spec_from_file_location('original_collar_dirac_lift', SOURCE)
+000016 | original = importlib.util.module_from_spec(spec)
+000017 | spec.loader.exec_module(original)
+000018 | 
+000019 | def central(C, X, Y):
+000020 |     Q = s.eye(C.rows) - C
+000021 |     return s.simplify(s.trace(C*X*Q*Y*C - C*Y*Q*X*C))
+000022 | 
+000023 | def zero(M):
+000024 |     return all(s.simplify(x) == 0 for x in M)
+000025 | 
+000026 | rows = {}
+000027 | for alpha in (s.Rational(1, 4), s.Rational(3, 4)):
+000028 |     modes = list(range(-2, 3))
+000029 |     d = len(modes)
+000030 |     I, Z = s.eye(d), s.zeros(d)
+000031 |     A = s.diag(*[r+alpha for r in modes])
+000032 |     B = s.diag(A, -A)
+000033 |     Jn = Z.row_join(-I).col_join(I.row_join(Z))
+000034 |     Gamma = s.diag(I, -I)
+000035 |     T = s.diag(*[s.Integer(2)**(-4*B[k, k]) for k in range(2*d)])
+000036 |     a, c, G = original.graph(T)
+000037 |     N = s.diag(-Jn, Jn)
+000038 |     assert N*G*N.conjugate().T == s.eye(4*d)-G
+000039 |     assert Jn*B + B*Jn == s.zeros(2*d)
+000040 |     n = s.eye(2*d)-a
+000041 |     assert n[d:, d:] == s.eye(d)-n[:d, :d]
+000042 |     shift = s.zeros(d)
+000043 |     for k in range(d-1):
+000044 |         shift[k+1, k] = 1
+000045 |     f, h = (shift+shift.T)/2, (-s.I*shift+s.I*shift.T)/2
+000046 |     xp, yp = s.diag(Z, Z, f, Z), s.diag(Z, Z, h, Z)
+000047 |     xm, ym = s.diag(Z, Z, Z, f), s.diag(Z, Z, Z, h)
+000048 |     x, y = xp+xm, yp+ym
+000049 |     cp, cm, cv = central(G, xp, yp), central(G, xm, ym), central(G, x, y)
+000050 |     assert cp != 0 and cp == -cm and cv == 0
+000051 |     assert zero(N*x-x*N) and zero(N*y-y*N)
+000052 |     assert not zero(N*xp-xp*N)
+000053 |     # A constant relative face phase already moves the Cauchy trace graph.
+000054 |     endpoint = s.diag(s.eye(2*d), s.I*s.eye(2*d))
+000055 |     moved = endpoint*G*endpoint.conjugate().T
+000056 |     assert moved != G
+000057 |     assert moved[2*d:, 2*d:] == G[2*d:, 2*d:]
+000058 |     assert s.diag(s.I*I, I)*Jn != Jn*s.diag(s.I*I, I)
+000059 |     rows[str(alpha)] = {
+000060 |         'normal_complement_identity': True,
+000061 |         'second_face_opposite_occupations': True,
+000062 |         'finite_component_plus_cocycle': str(cp),
+000063 |         'finite_component_minus_cocycle': str(cm),
+000064 |         'finite_full_vector_cocycle': str(cv),
+000065 |         'nontrivial_endpoint_moves_trace_graph': True,
+000066 |         'scalar_eta_analytic': str(1-2*alpha),
+000067 |         'paired_B_eta_analytic': '0',
+000068 |     }
+000069 | 
+000070 | Jn = s.Matrix([[0, -1], [1, 0]])
+000071 | Gamma = s.diag(1, -1)
+000072 | a, b, c, d = s.symbols('a b c d')
+000073 | M = s.Matrix([[a, b], [c, d]])
+000074 | commutant = s.solve(list(M*Jn-Jn*M)+list(M*Jn*Gamma-Jn*Gamma*M), [a,b,c,d])
+000075 | assert commutant == {a:d, b:0, c:0}
+000076 | 
+000077 | r, theta, t = s.symbols('r theta t', real=True)
+000078 | alpha = s.symbols('alpha', real=True)
+000079 | chi, phi = s.Function('chi')(r), s.Function('phi')(theta)
+000080 | v = s.Matrix([s.Function('x')(r,theta), s.Function('y')(r,theta)])
+000081 | g = s.exp(s.I*t*chi*phi)
+000082 | def D(v):
+000083 |     return Jn*v.diff(r) + Jn*Gamma*(-s.I*v.diff(theta)+alpha*v)
+000084 | transported = s.simplify(g*D(v/g))
+000085 | V = -s.I*t*s.diff(chi,r)*phi*Jn - t*chi*s.diff(phi,theta)*Jn*Gamma
+000086 | assert zero(transported-D(v)-V*v)
+000087 | q, z = s.symbols('q z', real=True)
+000088 | potential = -s.I*q*Jn-z*Jn*Gamma
+000089 | assert potential.conjugate().T == potential
+000090 | assert zero(s.diff(transported,t,2))
+000091 | 
+000092 | # The original four-mark-fixed profiles still move the fixed Hardy/APS space.
+000093 | f, h = s.sin(4*theta), 1-s.cos(4*theta)
+000094 | assert all(f.subs(theta,k*s.pi/2) == h.subs(theta,k*s.pi/2) == 0 for k in range(4))
+000095 | leak_f = s.integrate(s.expand_trig(f)*s.exp(-4*s.I*theta), (theta,0,2*s.pi))/(2*s.pi)
+000096 | leak_h = s.integrate(h*s.exp(-4*s.I*theta), (theta,0,2*s.pi))/(2*s.pi)
+000097 | assert s.simplify(leak_f) == -s.I/2 and s.simplify(leak_h) == -s.Rational(1,2)
+000098 | 
+000099 | result = {
+000100 |     'verdict': 'CONDITIONAL_FULL_DIRAC_VECTOR_COCYCLE_CANCELLATION_AND_DOMAIN_DICHOTOMY',
+000101 |     'source_graph_constructor': str(SOURCE.relative_to(ROOT)),
+000102 |     'source_graph_sha256': hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
+000103 |     'cases': rows,
+000104 |     'fixed_symbol_pointwise_commutant': 'scalar I2 (no additional internal multiplicities classified)',
+000105 |     'full_Dirac_differential_lift_exact': True,
+000106 |     'full_Dirac_potential_Hermitian_exact': True,
+000107 |     'four_mark_profile_APS_leakage_minus1_to_plus3': {'sin4theta':'-I/2', '1-cos4theta':'-1/2'},
+000108 |     'analytic_four_mark_cocycles': {'component_plus':'-2I','component_minus':'+2I','complete_vector':'0'},
+000109 |     'analytic_four_mark_Weyl_rectangles': {'component_plus':'exp(2I s t)','component_minus':'exp(-2I s t)','complete_vector':'1'},
+000110 |     'unchanged_previous_scalar_result': True,
+000111 |     'scope': 'Existing complete two-component Dirac module, complete two-face graph, given charged CAR state, implementable normal-commuting generators. Infinite claims require the proof, not a mode cutoff.',
+000112 |     'not_derived': ['P1 physical chiral measure/line connection', 'original OS Padm and A/A* operator dictionary', 'physical boundary attachment selection', '4D chirality or determinant-line unification'],
+000113 |     'complete_TFPT_solution': False,
+000114 |     'physical_gates_closed': [],
+000115 | }
+000116 | (HERE/'dirac_lift_results.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+000117 | print(json.dumps(result,ensure_ascii=False,indent=2))

@@ -1,0 +1,147 @@
+TFPT scientific source excerpt
+Original repository path: verification/v994_mmst_criteria_battery.py
+Original file SHA-256: d8f044ca6958cdcfadea12df0a0dada377bddfd6c749e342d61f5be10da252a3
+Inclusive original lines: 232-370
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000232 | def run():
+000233 |     reset()
+000234 |     print("v994  SEAM.EQUIV.MMST.01 / SEAM.SIMPLECURRENT.GENERATOR.01: "
+000235 |           "5-of-7 MMST identification criteria (completeness wave)")
+000236 | 
+000237 |     c_fits = []
+000238 |     r2_fits = []
+000239 |     for length in L_ENTROPY:
+000240 |         c_fit, entropy_r2 = entropy_c_fit(length)
+000241 |         c_fits.append(c_fit)
+000242 |         r2_fits.append(entropy_r2)
+000243 |         print("  entropy L=%3d: c_Majorana=%.6f  R^2=%.8f"
+000244 |               % (length, c_fit, entropy_r2))
+000245 |     c_single = c_fits[-1]
+000246 |     c_carrier = N_MAJORANA * c_single
+000247 |     check("C1 EXECUTED [E-measured]: one-cut Majorana c~1/2 and 16 copies "
+000248 |           "give c~8 (convention S_M,1cut = S_scalar/4)",
+000249 |           abs(c_single - 0.5) < 0.015
+000250 |           and abs(c_carrier - 8.0) < 0.25
+000251 |           and max(c_fits) - min(c_fits) < 0.01
+000252 |           and min(r2_fits) > 0.99)
+000253 |     print("  measured c_single=%.6f; 16*c=%.6f" % (c_single, c_carrier))
+000254 | 
+000255 |     ks, energies, localisations = top_edge_branch(L_SPECTRUM)
+000256 |     near = np.abs(ks) < 0.35
+000257 |     velocity, intercept = np.polyfit(ks[near], energies[near], 1)
+000258 |     predicted = velocity * ks[near] + intercept
+000259 |     velocity_r2 = 1 - np.sum((energies[near] - predicted) ** 2) / np.sum(
+000260 |         (energies[near] - energies[near].mean()) ** 2
+000261 |     )
+000262 |     positive = np.where((energies > 0) & (ks > 0) & (ks < 0.4))[0]
+000263 |     positive = positive[np.argsort(energies[positive])][:4]
+000264 |     scaled_levels = (
+000265 |         energies[positive] * L_SPECTRUM / (2 * pi * abs(velocity))
+000266 |     )
+000267 |     expected_levels = np.arange(4) + 0.5
+000268 |     level_degeneracies = single_majorana_vacuum_degeneracies()
+000269 |     check("C2 EXECUTED [E-measured]: velocity ~1, NS levels ~ r+1/2, "
+000270 |           "single-Majorana vacuum degeneracies [1,0,1,1,2]",
+000271 |           abs(abs(velocity) - 1.0) < 0.03
+000272 |           and velocity_r2 > 0.999
+000273 |           and np.max(np.abs(scaled_levels - expected_levels)) < 0.04
+000274 |           and level_degeneracies == [1, 0, 1, 1, 2]
+000275 |           and float(np.min(localisations[near])) > 0.99)
+000276 |     print("  v=%.6f R2=%.7f; scaled=%s; deg=%s"
+000277 |           % (velocity, velocity_r2,
+000278 |              [round(float(value), 6) for value in scaled_levels],
+000279 |              level_degeneracies))
+000280 | 
+000281 |     characters = so16_characters()
+000282 |     e8_projected = [
+000283 |         characters["O"][i] + characters["S"][i]
+000284 |         for i in range(MAX_T_POWER + 1)
+000285 |     ]
+000286 |     e8_flagship = [1, 0, 248, 0, 4124, 0, 34752]
+000287 |     e8_expected = e8_flagship + [0, 213126]
+000288 |     check("C3 EXECUTED [E]: mu4/GSO-projected lattice character sums "
+000289 |           "reproduce the (E8)_1 vacuum character [1,0,248,0,4124,0,34752] "
+000290 |           "three orders deep",
+000291 |           e8_projected[:7] == e8_flagship
+000292 |           and e8_projected[:9] == e8_expected)
+000293 |     print("  O(q even): %s; S(q even): %s; O+S: %s"
+000294 |           % (characters["O"][::2][:5], characters["S"][::2][:5],
+000295 |              e8_projected[:9]))
+000296 | 
+000297 |     correlation = edge_correlation(ks, energies)
+000298 |     odd_separations = np.arange(1, L_SPECTRUM // 8, 2)
+000299 |     amplitudes = []
+000300 |     for separation in odd_separations:
+000301 |         chord = L_SPECTRUM / pi * np.sin(pi * separation / L_SPECTRUM)
+000302 |         amplitudes.append(0.5 * abs(correlation[0, separation]) * chord)
+000303 |     majorana_amplitude = float(np.mean(amplitudes))
+000304 |     amplitude_spread = float(np.std(amplitudes))
+000305 |     current_level = (2 * pi * majorana_amplitude) ** 2
+000306 |     check("C4 EXECUTED [E]: current-algebra two-point normalisation "
+000307 |           "k=(2 pi A_psi)^2 = 1 (Wick)",
+000308 |           abs(majorana_amplitude - 1 / (2 * pi)) < 1e-10
+000309 |           and abs(current_level - 1.0) < 1e-10
+000310 |           and amplitude_spread < 1e-10)
+000311 |     print("  A_psi=%.12f; k=%.12f" % (majorana_amplitude, current_level))
+000312 | 
+000313 |     d8_edges = tuple((i, i + 1) for i in range(6)) + ((5, 7),)
+000314 |     e8_edges = tuple((i, i + 1) for i in range(6)) + ((2, 7),)
+000315 |     det_d8 = bareiss_determinant(cartan(8, d8_edges))
+000316 |     det_e8 = bareiss_determinant(cartan(8, e8_edges))
+000317 |     nonzero_sector_heads = {
+000318 |         name: next(i for i, value in enumerate(series) if value)
+000319 |         for name, series in characters.items()
+000320 |     }
+000321 |     check("C5 EXECUTED [E]: four SO(16)_1 sectors -> mu-index-one lattice "
+000322 |           "shadow (det D8=4 -> det E8=1; selector O+S)",
+000323 |           det_d8 == 4
+000324 |           and det_e8 == 1
+000325 |           and set(characters) == {"O", "V", "S", "C"}
+000326 |           and nonzero_sector_heads == {"O": 0, "V": 1, "S": 2, "C": 2})
+000327 |     print("  heads(t)=%s; det(D8)=%d -> det(E8)=%d"
+000328 |           % (nonzero_sector_heads, det_d8, det_e8))
+000329 | 
+000330 |     analytic_slope = 2.0 / (pi ** 2)
+000331 |     relative_vs_measured = abs(V988_HS2_SLOPE / analytic_slope - 1.0)
+000332 |     check("C6 CITED [C]: quasi-free log coefficient 2/pi^2 matches the "
+000333 |           "written theorem and the v988 measured slope 0.203 at 0.18% "
+000334 |           "(articles/2026-08-28/psi_lambda_convergence_theorem_en.tex; "
+000335 |           "NOT re-proved here)",
+000336 |           abs(analytic_slope - 0.202642367) < 1e-9
+000337 |           and relative_vs_measured < 0.002)
+000338 |     print("  2/pi^2=%.12f vs measured %.3f (rel %.4f%%)"
+000339 |           % (analytic_slope, V988_HS2_SLOPE, 100 * relative_vs_measured))
+000340 | 
+000341 |     check("C7 CITED [O]: modular invariance/covariance of the completed "
+000342 |           "mu4/GSO extension remains cited; finite q-coefficients are not "
+000343 |           "that theorem",
+000344 |           True)
+000345 | 
+000346 |     check("MUST-FAIL [X]: dropping GSO (O alone) misses the (E8)_1 vacuum "
+000347 |           "character -- the 248 lives in O+S",
+000348 |           characters["O"][:7] != e8_flagship
+000349 |           and characters["O"][2] != 248)
+000350 |     eight_copy = so16_characters(8)
+000351 |     eight_projected = [
+000352 |         eight_copy["O"][i] + eight_copy["S"][i]
+000353 |         for i in range(7)
+000354 |     ]
+000355 |     check("MUST-FAIL [X]: N_MAJORANA=8 cannot produce the 248 current "
+000356 |           "coefficient of (E8)_1",
+000357 |           eight_projected != e8_flagship
+000358 |           and eight_projected[2] != 248)
+000359 | 
+000360 |     executed = 5
+000361 |     check("CRITERIA TALLY: 5 of 7 EXECUTED (C1-C5); C6 written-out [C]; "
+000362 |           "C7 cited [O] -- verdict MMST_CRITERIA_5_OF_7_EXECUTED",
+000363 |           executed == 5)
+000364 |     check("FIREWALL (scope): finite QWZ strips + finite character "
+000365 |           "truncations; no conformal-net isomorphism; no marker move; "
+000366 |           "1+1D in and out; Python-only",
+000367 |           True)
+000368 | 
+000369 |     return summary("v994 MMST criteria battery: 5/7 executed; "
+000370 |                    "O+S character [1,0,248,0,4124,0,34752]; C6 written-out")

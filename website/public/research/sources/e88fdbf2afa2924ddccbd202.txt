@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/hodge_complement_20261028/hodge_complement_channel.py
+Original file SHA-256: 72b04a5bf8b3bd805568af49dec76bd97926fcff4009a830137e2d318807522b
+Inclusive original lines: 201-400
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |     return sp.Matrix([[sp.Integer(int(round(z.real))) + sp.I * sp.Integer(int(round(z.imag))) for z in row]
+000202 |                       for row in a])
+000203 | 
+000204 | 
+000205 | def mu4_exponent(z: complex) -> int:
+000206 |     values = (1, 1j, -1, -1j)
+000207 |     hits = [k for k, value in enumerate(values) if abs(z - value) < 1e-9]
+000208 |     require(len(hits) == 1, "phase is in mu4")
+000209 |     return hits[0]
+000210 | 
+000211 | 
+000212 | def projective_phase_code(values: np.ndarray) -> tuple[int, ...]:
+000213 |     exponents = [mu4_exponent(z) for z in values]
+000214 |     origin = exponents[0]
+000215 |     return tuple((x - origin) % 4 for x in exponents)
+000216 | 
+000217 | 
+000218 | def multiplicities_from_moments(matrix: np.ndarray, roots: tuple[int, ...]) -> list[int]:
+000219 |     moments = [int(np.trace(np.linalg.matrix_power(matrix, k))) for k in range(len(roots))]
+000220 |     vandermonde = sp.Matrix([[r**k for r in roots] for k in range(len(roots))])
+000221 |     return [int(x) for x in vandermonde.inv() * sp.Matrix(moments)]
+000222 | 
+000223 | 
+000224 | def duad_chart(mark: int, mapping: dict[int, tuple[int, ...]]) -> tuple[np.ndarray, dict[int, int]]:
+000225 |     others = [i for i in range(6) if i != mark]
+000226 |     rename = {old: new for new, old in enumerate(others)}
+000227 |     P = np.zeros((10, 10), dtype=np.int64)
+000228 |     for bell_label, part in mapping.items():
+000229 |         side = set(part)
+000230 |         if mark not in side:
+000231 |             side = set(range(6)) - side
+000232 |         duad = tuple(sorted(rename[x] for x in side - {mark}))
+000233 |         P[bell_label, PAIR_INDEX[duad]] = 1
+000234 |     require(np.array_equal(P.T @ P, np.eye(10, dtype=np.int64)), f"mark {mark}: duad chart permutation")
+000235 |     return P, rename
+000236 | 
+000237 | 
+000238 | def old_mark_comparison(old, mark, bell, six, mapping, Cs, Snew):
+000239 |     idx, counts, adjacency_bell, stay, jump, _c20, *_ = old.marked_data(mark, bell, six, mapping)
+000240 |     P, rename = duad_chart(mark, mapping)
+000241 |     Q = np.kron(P, P)
+000242 |     J = gaussian_integer(Q.T @ jump @ Q)
+000243 |     require(not np.any(J.imag), f"mark {mark}: old jump is real in duad chart")
+000244 |     J = J.real.astype(np.int64)
+000245 |     require(np.array_equal(J, J.T), f"mark {mark}: old jump Hilbert-Schmidt self-adjoint")
+000246 |     vec_identity = np.eye(10, dtype=np.int64).reshape(-1, order="F")
+000247 |     require(np.array_equal(J @ vec_identity, 12 * vec_identity), f"mark {mark}: old normalized jump unital")
+000248 | 
+000249 |     adjacency = np.zeros((10, 10), dtype=np.int64)
+000250 |     for a, e in enumerate(PAIRS):
+000251 |         for b, f in enumerate(PAIRS):
+000252 |             adjacency[b, a] = int(a != b and set(e).isdisjoint(f))
+000253 |     require(np.array_equal(P.T @ adjacency_bell @ P, adjacency), f"mark {mark}: Petersen chart")
+000254 | 
+000255 |     # New channel is Snew/3; normalized old jump channel is J/12.
+000256 |     for a in range(10):
+000257 |         col = a + 10 * a
+000258 |         require(np.array_equal(J[:, col], 4 * Snew[:, col]), f"mark {mark}: equal populations column {a}")
+000259 |     require(not np.array_equal(J, 4 * Snew), f"mark {mark}: full channels differ")
+000260 |     require(int(sp.Matrix(J).rank()) == 40, f"mark {mark}: old normalized jump superoperator rank 40")
+000261 |     old_roots = (12, 4, -8, -4, 0)
+000262 |     poly = np.eye(100, dtype=np.int64)
+000263 |     for root in old_roots:
+000264 |         poly = poly @ (J - root * np.eye(100, dtype=np.int64))
+000265 |     require(not np.any(poly), f"mark {mark}: old jump spectral polynomial")
+000266 |     old_mult = multiplicities_from_moments(J, old_roots)
+000267 |     require(old_mult == [1, 20, 4, 15, 60], f"mark {mark}: old jump spectrum multiplicities")
+000268 | 
+000269 |     groups: dict[int, list[np.ndarray]] = {m: [] for m in range(5)}
+000270 |     for k in idx:
+000271 |         U = bell[k]
+000272 |         perm = old.bell_permutation(U)
+000273 |         D_jump = np.eye(10) - np.diag([int(perm[a] == a) for a in range(10)])
+000274 |         K = gaussian_integer(P.T @ (U @ D_jump) @ P)
+000275 |         target = six[k][mark]
+000276 |         groups[rename[target]].append(K)
+000277 | 
+000278 |     all_kraus = []
+000279 |     group_ranks = []
+000280 |     phase_options: dict[int, list[np.ndarray]] = {}
+000281 |     phase_edge_options: dict[int, list[list[tuple[int, int, int, int]]]] = {}
+000282 |     phase_group_codes = []
+000283 |     for m in range(5):
+000284 |         require(len(groups[m]) == 4, f"mark {mark}: four old lifts in complement group {m}")
+000285 |         effect = sum((K.conj().T @ K for K in groups[m]), start=np.zeros((10, 10), dtype=complex))
+000286 |         require(np.array_equal(effect, 4 * (Cs[m].T @ Cs[m])),
+000287 |                 f"mark {mark}: grouped old effect equals four P_m")
+000288 |         vectors = np.stack([K.reshape(-1, order="F") for K in groups[m]], axis=1)
+000289 |         gram = gaussian_integer(vectors.conj().T @ vectors)
+000290 |         require(np.array_equal(gram @ gram, 8 * gram), f"mark {mark}: grouped old Choi Gram polynomial {m}")
+000291 |         rank = int(exact_gaussian_matrix(gram).rank())
+000292 |         require(rank == 3, f"mark {mark}: grouped old Choi rank three {m}")
+000293 |         group_ranks.append(rank)
+000294 |         support = [i for i, pair in enumerate(PAIRS) if m not in pair]
+000295 |         factor_data = []
+000296 |         for K in groups[m]:
+000297 |             D = K @ Cs[m]
+000298 |             require(np.array_equal(D, np.diag(np.diag(D))),
+000299 |                     f"mark {mark}: old Kraus is diagonal phase times C_{m}")
+000300 |             require(all(abs(D[i, i]) == 1 for i in support) and
+000301 |                     all(D[i, i] == 0 for i in range(10) if i not in support),
+000302 |                     f"mark {mark}: phase factor has exact P_{m} support")
+000303 |             require(np.array_equal(K, D @ Cs[m]), f"mark {mark}: exact phase factorization {m}")
+000304 |             factor_data.append((projective_phase_code(np.diag(D)[support]), D))
+000305 |         factor_data.sort(key=lambda item: item[0])
+000306 |         phase_options[m] = [item[1] for item in factor_data]
+000307 |         phase_edge_options[m] = []
+000308 |         for D in phase_options[m]:
+000309 |             edges = []
+000310 |             for e in range(10):
+000311 |                 hits = np.flatnonzero(Cs[m][:, e])
+000312 |                 if len(hits) and e < int(hits[0]):
+000313 |                     f = int(hits[0])
+000314 |                     edges.append((e, f, m, mu4_exponent(D[f, f])))
+000315 |             phase_edge_options[m].append(edges)
+000316 |         D0 = factor_data[0][1]
+000317 |         relative_codes = []
+000318 |         relative_diagonals = []
+000319 |         for _code, D in factor_data:
+000320 |             relative = D @ D0.conj().T
+000321 |             code = projective_phase_code(np.diag(relative)[support])
+000322 |             relative_codes.append(code)
+000323 |             relative_diagonals.append(relative)
+000324 |         canonical_klein = [
+000325 |             (0, 0, 0, 0, 0, 0),
+000326 |             (0, 0, 2, 2, 0, 0),
+000327 |             (0, 2, 0, 0, 2, 0),
+000328 |             (0, 2, 2, 2, 2, 0),
+000329 |         ]
+000330 |         require(relative_codes == canonical_klein,
+000331 |                 f"mark {mark}: relative phase records form canonical Klein four on support {m}")
+000332 |         require(all(tuple((a + b) % 4 for a, b in zip(x, y)) in relative_codes
+000333 |                     for x in relative_codes for y in relative_codes),
+000334 |                 f"mark {mark}: relative phase codes close projectively {m}")
+000335 |         characters = [tuple(code[j] for code in relative_codes) for j in range(6)]
+000336 |         character_multiplicities = sorted(characters.count(c) for c in set(characters))
+000337 |         require(character_multiplicities == [2, 2, 2],
+000338 |                 f"mark {mark}: Klein phase representation has three characters twice {m}")
+000339 |         phase_group_codes.append(relative_codes)
+000340 |         G = sum((np.kron(K.conj(), K) for K in groups[m]), start=np.zeros((100, 100), dtype=complex))
+000341 |         N = np.kron(Cs[m], Cs[m])
+000342 |         for a in range(10):
+000343 |             col = a + 10 * a
+000344 |             require(np.array_equal(G[:, col], 4 * N[:, col]),
+000345 |                     f"mark {mark}: grouped population equals Hodge outcome {m},{a}")
+000346 |         require(not np.array_equal(G, 4 * np.kron(Cs[m], Cs[m])),
+000347 |                 f"mark {mark}: grouped old operation differs from one Hodge Kraus {m}")
+000348 |         phase_twirl = sum((np.kron((H @ D0).conj(), H @ D0) @ N
+000349 |                            for H in relative_diagonals),
+000350 |                           start=np.zeros((100, 100), dtype=complex))
+000351 |         require(np.array_equal(G, phase_twirl),
+000352 |                 f"mark {mark}: old block is conditional Klein phase twirl after Hodge outcome {m}")
+000353 |         for D in phase_options[m]:
+000354 |             # Each individual three-transposition lift has no cycle flux on
+000355 |             # its own support.  The obstruction below only appears when all
+000356 |             # five complement classes must share one ten-label gauge.
+000357 |             for e in support:
+000358 |                 f = int(np.flatnonzero(Cs[m][:, e])[0])
+000359 |                 require(D[e, e] * D[f, f] == 1,
+000360 |                         f"mark {mark}: individual phase lift has trivial two-cycle flux {m},{e}")
+000361 |         all_kraus.extend(groups[m])
+000362 | 
+000363 |     vectors = np.stack([K.reshape(-1, order="F") for K in all_kraus], axis=1)
+000364 |     gram = gaussian_integer(vectors.conj().T @ vectors)
+000365 |     require(np.array_equal(gram @ gram, 8 * gram), f"mark {mark}: old Choi Gram polynomial")
+000366 |     require(int(exact_gaussian_matrix(gram).rank()) == 15, f"mark {mark}: old Choi rank fifteen")
+000367 | 
+000368 |     # Test whether one diagonal gauge on all ten duad labels could remove a
+000369 |     # choice of one baseline lift in every complement class.  Global phases
+000370 |     # of Hermitian monomial lifts reduce to signs.  Exhaust all 4^5 choices
+000371 |     # and 2^5 class signs; propagation on the connected Petersen graph is an
+000372 |     # exact Z4 linear consistency test.
+000373 |     def common_gauge_exists(choice: tuple[int, ...], class_signs: tuple[int, ...]) -> bool:
+000374 |         equations = [equation for m, option in enumerate(choice)
+000375 |                      for equation in phase_edge_options[m][option]]
+000376 |         labels: list[int | None] = [None] * 10
+000377 |         labels[0] = 0
+000378 |         changed = True
+000379 |         while changed:
+000380 |             changed = False
+000381 |             for e, f, m, phase in equations:
+000382 |                 sign = class_signs[m]
+000383 |                 if labels[e] is not None and labels[f] is None:
+000384 |                     labels[f] = (phase - sign + labels[e]) % 4
+000385 |                     changed = True
+000386 |                 elif labels[f] is not None and labels[e] is None:
+000387 |                     labels[e] = (sign + labels[f] - phase) % 4
+000388 |                     changed = True
+000389 |         return all(labels[e] is not None and
+000390 |                    (class_signs[m] + labels[f] - labels[e] - phase) % 4 == 0
+000391 |                    for e, f, m, phase in equations)
+000392 | 
+000393 |     gauge_solutions = 0
+000394 |     for choice in it.product(range(4), repeat=5):
+000395 |         for signs in it.product((0, 2), repeat=5):
+000396 |             gauge_solutions += int(common_gauge_exists(choice, signs))
+000397 |     require(gauge_solutions == 0,
+000398 |             f"mark {mark}: no common diagonal gauge removes the five baseline phase lifts")
+000399 | 
+000400 |     # A concrete coherence witness: the new map preserves two terms for every

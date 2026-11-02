@@ -26,6 +26,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Only canonical, crawlable routes — no in-page fragment anchors (#overview,
   // …): search engines drop URL fragments and fold them into the page URL.
   const pages: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/explain`, lastModified: new Date("2026-11-02"), changeFrequency: "monthly", priority: 0.95 },
+    { url: `${SITE_URL}/results`, lastModified: new Date("2026-11-02"), changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/documentation`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     {
       url: SITE_URL,
@@ -139,8 +141,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
 
   // These visible editorial pages changed independently of the PDF release.
-  const updatedPages = new Set([SITE_URL, `${SITE_URL}/papers`, `${SITE_URL}/faq`]);
+  const updatedPages = new Set([SITE_URL, ...["papers", "faq", "orientation", "predictions", "tour", "verification", "review"].map((path) => `${SITE_URL}/${path}`)]);
   return [...pages.map((page) => updatedPages.has(page.url)
-    ? { ...page, lastModified: new Date("2026-10-23") }
+    ? { ...page, lastModified: new Date("2026-11-02") }
     : page), ...paperPages, ...releaseFiles];
 }

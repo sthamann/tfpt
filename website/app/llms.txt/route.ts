@@ -54,7 +54,7 @@ License: documents CC-BY; code MPL-2.0
 ## What TFPT claims
 - The Standard Model gauge group (SU(3)×SU(2)×U(1))/Z6, hypercharge, and exactly
   three families follow from the two axioms — not fitted.
-- alpha^-1 = 137.0359992 is the unique positive root of a parameter-free cubic
+- alpha^-1 = 137.0359992 is the unique positive root of a parameter-free self-consistent closure equation
   boundary Ward identity (a fixed point, with proven existence and uniqueness),
   not a fit.
 - The strong-CP angle closes structurally: theta_eff = 0.

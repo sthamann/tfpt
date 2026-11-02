@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/check_native_pauli_f20_bridge.py
+Original file SHA-256: e1200c58403e5854d91a2ad6d20d4844ff077ea2b92d4248ae8b9b1606c32149
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact native Pauli F20 subgroup and unitary bridge to the v419 four."""
+000003 | 
+000004 | from __future__ import annotations
+000005 | 
+000006 | from itertools import combinations_with_replacement, product
+000007 | import hashlib
+000008 | import json
+000009 | from pathlib import Path
+000010 | 
+000011 | import sympy as sp
+000012 | 
+000013 | 
+000014 | [OMITTED: non-scientific conversation or execution metadata]
+000015 | V419_PIN = "cc6152ad7ea68c67725020e386e49eec32810ab25bb483c76bae99964399c2fd"
+000016 | V783_PIN = "8f4851634b83f61671b04f3a6211059c40758d21caaf1f779302c799e1e9d6c4"
+000017 | 
+000018 | 
+000019 | def require(value: bool, label: str, checks: list[str]) -> None:
+000020 |     if not bool(value):
+000021 |         raise AssertionError(label)
+000022 |     checks.append(label)
+000023 | 
+000024 | 
+000025 | def is_zero(matrix: sp.Matrix) -> bool:
+000026 |     return sp.simplify(matrix) == sp.zeros(*matrix.shape)
+000027 | 
+000028 | 
+000029 | def encode(matrix: sp.Matrix) -> list[list[str]]:
+000030 |     return [[str(sp.simplify(value)) for value in row] for row in matrix.tolist()]
+000031 | 
+000032 | 
+000033 | def sym2_character(matrix: sp.Matrix) -> sp.Expr:
+000034 |     return sp.simplify((sp.trace(matrix) ** 2 + sp.trace(matrix**2)) / 2)
+000035 | 
+000036 | 
+000037 | def symmetric_square(matrix: sp.Matrix) -> sp.Matrix:
+000038 |     pairs = list(combinations_with_replacement(range(matrix.rows), 2))
+000039 |     columns = []
+000040 |     for a, b in pairs:
+000041 |         tensor = sp.zeros(matrix.rows)
+000042 |         tensor[a, b] = 1
+000043 |         tensor[b, a] = 1
+000044 |         image = matrix * tensor * matrix.T
+000045 |         columns.append(sp.Matrix([image[i, j] for i, j in pairs]))
+000046 |     return sp.Matrix.hstack(*columns)
+000047 | 
+000048 | 
+000049 | def induced_symmetric_gram(gram: sp.Matrix) -> sp.Matrix:
+000050 |     pairs = list(combinations_with_replacement(range(gram.rows), 2))
+000051 |     vectors = []
+000052 |     for a, b in pairs:
+000053 |         vector = sp.zeros(gram.rows**2, 1)
+000054 |         vector[a * gram.rows + b] = 1
+000055 |         if a != b:
+000056 |             vector[b * gram.rows + a] = 1
+000057 |         vectors.append(vector)
+000058 |     basis = sp.Matrix.hstack(*vectors)
+000059 |     return sp.simplify(basis.conjugate().T * sp.kronecker_product(gram, gram) * basis)
+000060 | 
+000061 | 
+000062 | def main() -> None:
+000063 |     checks: list[str] = []
+000064 |     v419_path = ROOT / "verification/v419_seam_galois_carrier.py"
+000065 |     v783_path = ROOT / "verification/v783_two_qubit_clifford.py"
+000066 |     require(hashlib.sha256(v419_path.read_bytes()).hexdigest() == V419_PIN,
+000067 |             "v419 source pin", checks)
+000068 |     require(hashlib.sha256(v783_path.read_bytes()).hexdigest() == V783_PIN,
+000069 |             "v783 source pin", checks)
+000070 | 
+000071 |     ii = sp.I
+000072 |     sqrt2 = sp.sqrt(2)
+000073 |     identity2 = sp.eye(2)
+000074 |     identity4 = sp.eye(4)
+000075 |     X = sp.Matrix([[0, 1], [1, 0]])
+000076 |     Y = sp.Matrix([[0, -ii], [ii, 0]])
+000077 |     Z = sp.diag(1, -1)
+000078 |     H = sp.Matrix([[1, 1], [1, -1]]) / sqrt2
+000079 |     S = sp.diag(1, ii)
+000080 |     CNOT = sp.Matrix([
+000081 |         [1, 0, 0, 0],
+000082 |         [0, 1, 0, 0],
+000083 |         [0, 0, 0, 1],
+000084 |         [0, 0, 1, 0],
+000085 |     ])
+000086 |     H1, H2 = sp.kronecker_product(H, identity2), sp.kronecker_product(identity2, H)
+000087 |     S1, S2 = sp.kronecker_product(S, identity2), sp.kronecker_product(identity2, S)
+000088 | 
+000089 |     # Rightmost gate acts first. These are words in the frozen v783 source
+000090 |     # generators, followed only by source-proved Pauli/central corrections.
+000091 |     c_raw = sp.simplify(H2 * CNOT * S1 * H1)
+000092 |     g_raw = sp.simplify(CNOT * S2 * S1)
+000093 |     c_native = sp.simplify(-ii * c_raw)
+000094 |     g_native = sp.simplify(sp.kronecker_product(Y, Z) * g_raw)
+000095 | 
+000096 |     require(is_zero(c_raw**5 - ii * identity4), "raw Singer word fifth power i", checks)
+000097 |     require(is_zero(c_native**5 - identity4), "normalized native C has order five", checks)
+000098 |     require(is_zero(g_native**4 - identity4), "Pauli corrected native G has order four", checks)
+000099 |     require(is_zero(g_native * c_native * g_native.inv() - c_native**2),
+000100 |             "exact native Frobenius relation", checks)
+000101 |     require(sp.trace(c_native) == -1 and sp.trace(g_native) == 0 and
+000102 |             sp.trace(g_native**2) == 0,
+000103 |             "native four has F20 character generators", checks)
+000104 | 
+000105 |     paulis = {name1 + name2: sp.kronecker_product(p1, p2)
+000106 |               for name1, p1 in (("I", identity2), ("X", X), ("Y", Y), ("Z", Z))
+000107 |               for name2, p2 in (("I", identity2), ("X", X), ("Y", Y), ("Z", Z))}
+000108 |     zeta8 = (1 + ii) / sqrt2
+000109 |     exact_lifts: list[dict[str, object]] = []
+000110 |     for name, pauli in paulis.items():
+000111 |         for k in range(8):
+000112 |             candidate = sp.simplify(zeta8**k * pauli * g_raw)
+000113 |             if is_zero(candidate**4 - identity4) and is_zero(
+000114 |                     candidate * c_native * candidate.inv() - c_native**2):
+000115 |                 exact_lifts.append({"pauli": name, "zeta8_power": k})
+000116 |     require(exact_lifts == [
+000117 |         {"pauli": "YZ", "zeta8_power": 0},
+000118 |         {"pauli": "YZ", "zeta8_power": 2},
+000119 |         {"pauli": "YZ", "zeta8_power": 4},
+000120 |         {"pauli": "YZ", "zeta8_power": 6},
+000121 |     ], "all exact source lift corrections are the mu4 orbit of YZ", checks)
+000122 | 
+000123 |     # The actual v419 cyclotomic carrier.
+000124 |     x = sp.symbols("x")
+000125 |     phi5 = x**4 + x**3 + x**2 + x + 1
+000126 |     c_v419 = sp.Matrix([
+000127 |         [0, 0, 0, -1], [1, 0, 0, -1],
+000128 |         [0, 1, 0, -1], [0, 0, 1, -1],
+000129 |     ])
+000130 | 
+000131 |     def galois_column(exponent: int) -> sp.Matrix:
+000132 |         polynomial = sp.Poly(sp.rem(x**exponent, phi5, x), x)
+000133 |         return sp.Matrix([polynomial.coeff_monomial(x**j) for j in range(4)])
+000134 | 
+000135 |     g_v419 = sp.Matrix.hstack(*(galois_column(2 * k) for k in range(4)))
+000136 |     field_trace_gram = 5 * identity4 - sp.ones(4)
+000137 |     require(c_v419.T * field_trace_gram * c_v419 == field_trace_gram and
+000138 |             g_v419.T * field_trace_gram * g_v419 == field_trace_gram,
+000139 |             "v419 field trace Gram is F20 invariant", checks)
+000140 |     require(field_trace_gram.det() == 125 and
+000141 |             field_trace_gram.eigenvals() == {sp.Integer(1): 1, sp.Integer(5): 3},
+000142 |             "v419 Gram is positive with eigenvalues one five five five", checks)
+000143 | 
+000144 |     intertwiner = sp.Matrix([
+000145 |         [-1-ii, ii, ii, ii],
+000146 |         [-1+ii, -2-ii, 1, 1],
+000147 |         [1-ii, -1, -1, 2+ii],
+000148 |         [-1+ii, 1, -2-ii, 1],
+000149 |     ])
+000150 |     require(is_zero(intertwiner * c_v419 - c_native * intertwiner) and
+000151 |             is_zero(intertwiner * g_v419 - g_native * intertwiner),
+000152 |             "exact four dimensional F20 intertwiner", checks)
+000153 |     require(intertwiner.det() == -8 + 44*ii, "intertwiner determinant", checks)
+000154 |     require(is_zero(intertwiner.conjugate().T * intertwiner - 2 * field_trace_gram),
+000155 |             "intertwiner pulls standard metric back to twice field trace Gram", checks)
+000156 | 
+000157 |     # The solution space is one-dimensional, so the relative unitary is unique
+000158 |     # up to a phase. U=T/sqrt(2) obeys U^dagger U=H, the correct notion of
+000159 |     # unitarity from (V,H) to standard C^4.
+000160 |     variables = sp.symbols("t0:16")
+000161 |     unknown = sp.Matrix(4, 4, variables)
+000162 |     equations = list(unknown * c_v419 - c_native * unknown)
+000163 |     equations += list(unknown * g_v419 - g_native * unknown)
+000164 |     coefficient, _ = sp.linear_eq_to_matrix(equations, variables)
+000165 |     require(16 - coefficient.rank() == 1,
+000166 |             "four dimensional intertwiner space has dimension one", checks)
+000167 |     relative_unitary = sp.simplify(intertwiner / sqrt2)
+000168 |     require(is_zero(relative_unitary.conjugate().T * relative_unitary - field_trace_gram),
+000169 |             "T over sqrt two is a metric preserving isomorphism", checks)
+000170 |     require(sp.simplify(abs(relative_unitary.det())**2) == 125,
+000171 |             "relative unitary determinant matches Gram determinant", checks)
+000172 | 
+000173 |     character_rows: list[dict[str, object]] = []
+000174 |     for b, a in product(range(4), range(5)):
+000175 |         matrix = sp.simplify(c_native**a * g_native**b)
+000176 |         value = sp.simplify(sp.trace(matrix))
+000177 |         expected = 4 if (a, b) == (0, 0) else (-1 if b == 0 else 0)
+000178 |         require(value == expected, f"native F20 character a={a} b={b}", checks)
+000179 |         character_rows.append({"a": a, "b": b, "trace": str(value)})
+000180 | 
+000181 |     # The native source realizes the same conformal symplectic multiplier.
+000182 |     standard_symplectic = sp.diag(1, 1, 1, 1)
+000183 |     standard_symplectic[0, 0] = 0
+000184 |     standard_symplectic[1, 1] = 0
+000185 |     standard_symplectic[2, 2] = 0
+000186 |     standard_symplectic[3, 3] = 0
+000187 |     standard_symplectic[0, 1], standard_symplectic[1, 0] = 1, -1
+000188 |     standard_symplectic[2, 3], standard_symplectic[3, 2] = 1, -1
+000189 |     require(c_native.T * standard_symplectic * c_native == standard_symplectic,
+000190 |             "native C preserves standard alternating form", checks)
+000191 |     require(g_native.T * standard_symplectic * g_native == ii * standard_symplectic,
+000192 |             "native G has conformal multiplier i", checks)
+000193 |     g_spin = sp.simplify(zeta8**-1 * g_native)
+000194 |     require(is_zero(g_spin.T * standard_symplectic * g_spin - standard_symplectic) and
+000195 |             is_zero(g_spin**4 + identity4) and is_zero(g_spin**8 - identity4),
+000196 |             "mu8 normalized native G is symplectic of order eight", checks)
+000197 | 
+000198 |     omega_a = sp.Matrix([
+000199 |         [0, 0, 1, -1], [0, 0, 0, 1],
+000200 |         [-1, 0, 0, 0], [1, -1, 0, 0],

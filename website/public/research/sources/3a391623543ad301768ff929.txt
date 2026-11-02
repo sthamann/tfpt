@@ -1,0 +1,100 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/ELLIPTIC-COVER-COMPARISON-REVIEW.txt
+Original file SHA-256: ff40821957cab57540041a9f4261a95f4bd70bd8971b38a0b8a612e448ac95cc
+Inclusive original lines: 202-293
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000202 | orbit.
+000203 | 
+000204 | This is the maximal source-backed statement.  The sign representatives and
+000205 | ordering implement an orientation choice.  The original data do not identify
+000206 | the family-D3 direction sphere with the physical seam normal sphere, do not
+000207 | select one tetrahedral vertex and do not add a Bott degree to the cover map.
+000208 | 
+000209 | 6. Minimal finite symbolic certificate
+000210 | ----------------------------------------
+000211 | 
+000212 | The following identities were executed both normally and with python3 -OO
+000213 | while the review was prepared:
+000214 | 
+000215 |   gcd(6,4)=2,
+000216 |   [C(x,s^6),C(x,s^4)] = C(x,s^2),
+000217 |   deg(pi_i)=6,
+000218 |   deg(pi_omega)=8,
+000219 |   ord_pair(Delta)=lcm(2,3)=6,
+000220 |   ord_pair(R1)=ord_pair(R4)=lcm(4,6)=12,
+000221 |   lambda_omega^2-lambda_omega+1=0,
+000222 |   lambda_tetra^2-lambda_tetra+1=0,
+000223 |   j(lambda_omega)=j(lambda_tetra)=0,
+000224 |   lambda_square=2,
+000225 |   j(lambda_square)=1728.
+000226 | 
+000227 | For reproducibility, the independent scalar core is:
+000228 | 
+000229 |   import sympy as sp
+000230 |   from math import gcd, lcm
+000231 |   I = sp.I
+000232 |   rt3 = sp.sqrt(3)
+000233 |   omega = (-1+I*rt3)/2
+000234 |   rho = (1+I*rt3)/2
+000235 |   lam_w = sp.simplify((-1+omega**2)/(-omega+omega**2))
+000236 |   assert sp.simplify(lam_w**2-lam_w+1) == 0
+000237 |   def cr(a,b,c,d):
+000238 |       return sp.simplify((a-c)*(b-d)/((a-d)*(b-c)))
+000239 |   tet = ((1,1,1),(1,-1,-1),(-1,1,-1),(-1,-1,1))
+000240 |   zz = [sp.simplify((x/rt3+I*y/rt3)/(1-z/rt3)) for x,y,z in tet]
+000241 |   lam_t = sp.simplify(sp.expand_complex(cr(*zz)))
+000242 |   assert sp.simplify(lam_t-rho) == 0
+000243 |   def j(lam):
+000244 |       return sp.simplify(256*(1-lam+lam**2)**3/(lam**2*(1-lam)**2))
+000245 |   assert j(lam_w) == j(lam_t) == 0
+000246 |   assert cr(1,I,-1,-I) == 2 and j(2) == 1728
+000247 |   assert gcd(6,4) == 2 and lcm(2,3) == 6 and lcm(4,6) == 12
+000248 | 
+000249 | The pinned checker was temporarily extended only to execute these independent
+000250 | identities in its existing arithmetic environment.  Those additions are not
+000251 | part of the canonical checker and are removed after this report is secured.
+000252 | 
+000253 | Verdict
+000254 | -------
+000255 | 
+000256 | PASS in the stated mathematical scope.
+000257 | 
+000258 | The existing C3 has the explicit elliptic quotient E_omega of j=0, while the
+000259 | existing C2 has j=1728.  Their simultaneous image from C12 normalizes to the
+000260 | existing C6.  The pair loses the sign s->-s and therefore does not retain the
+000261 | full C4 kernel field.  Pure deck order is 6 on the paired image, whereas the
+000262 | existing mixed lifts remain order 12.  The compiler-marked lift remains R4.
+000263 | 
+000264 | The equianharmonic branch orbit equals the projective orbit of the existing
+000265 | family-D3 tetrahedron after an orientation choice.  No physical seam/source
+000266 | identification, canonical vertex, new cover or Bott-degree conclusion follows.
+000267 | 
+000268 | Restoration record
+000269 | ------------------
+000270 | 
+000271 | The temporary review states immediately before reversal were:
+000272 | 
+000273 |   COVERS.txt
+000274 |     SHA256 7ad5522883e34f630843c6748d568e915f6210de499303a6f639b246d4fd2685
+000275 | 
+000276 |   cover_dictionary.py
+000277 |     SHA256 5681a08caebeff3e46a1d9eeef439592bb6482da620b7df543bb8381ecee3a64
+000278 | 
+000279 | Only the additions represented in this review were reversed.  The restored
+000280 | hashes are byte-for-byte equal to the pre-review pinned states:
+000281 | 
+000282 |   COVERS.txt
+000283 |     SHA256 cdd04f5f38819b60ddd8488eb1c3c316c6849829387205e78ec5e4bf767f80bf
+000284 | 
+000285 |   cover_dictionary.py
+000286 |     SHA256 426ca453e7359d7f08bbee7b9c93a38017daf32f91417ad34d9100058920cc27
+000287 | 
+000288 | Post-restoration verification:
+000289 | 
+000290 |   python3 cover_dictionary.py       PASS
+000291 |   python3 -OO cover_dictionary.py   PASS
+000292 |   check_normal_connection_marks.py PASS_EXACT_SCOPED_COMPARISONS
+000293 |                                    73 checks passed

@@ -1,0 +1,82 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/check_boundary_source.py
+Original file SHA-256: 1ce6a612aae1190204dcbb44cb4c71b5c330c0efd01643d3d1d3b261567fe6bd
+Inclusive original lines: 1-74
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact identities for the existing elliptic cut, not a P1 field simulation."""
+000002 | import json
+000003 | from fractions import Fraction as F
+000004 | from pathlib import Path
+000005 | 
+000006 | import sympy as s
+000007 | 
+000008 | checks = []
+000009 | 
+000010 | 
+000011 | def need(name, condition, scope):
+000012 |     if not condition:
+000013 |         raise RuntimeError(name)
+000014 |     checks.append(dict(name=name, status="PASS", scope=scope))
+000015 | 
+000016 | 
+000017 | k = s.Symbol("k", integer=True)
+000018 | need("quarter-fold-domains", s.simplify((2*k+s.Rational(1, 2))-2*(k+s.Rational(1, 4))) == 0
+000019 |      and s.simplify((2*k+s.Rational(3, 2))-2*(k+s.Rational(3, 4))) == 0,
+000020 |      "Analytic mode identity for every integer k; Sobolev domains in proof")
+000021 | need("half-period-characters", s.simplify(s.exp(s.I*s.pi*(2*k+s.Rational(1, 2)))-s.I) == 0
+000022 |      and s.simplify(s.exp(s.I*s.pi*(2*k+s.Rational(3, 2)))+s.I) == 0,
+000023 |      "Complex-linear boundary translation, not Q rotation or antiunitary OS")
+000024 | 
+000025 | 
+000026 | def fold(n):
+000027 |     block = n % 2
+000028 |     return block, (n-block)//2
+000029 | 
+000030 | 
+000031 | need("winding-with-carry", all(
+000032 |     fold(n+1) == ((1, fold(n)[1]) if fold(n)[0] == 0 else (0, fold(n)[1]+1))
+000033 |     for n in range(-50, 51)),
+000034 |     "Finite replay of the analytic even/odd-index formula")
+000035 | need("fixed-dimensionless-modulus", 2*F(1, 2)*2 == 2,
+000036 |      "2 W B_Sigma = 2 pi B_cov, at W=1/2 and circumference1")
+000037 | need("distinct-full-collar-moduli", F(2, 2) != F(1, 2),
+000038 |      "Old full flat Pin test has modulus1, elliptic annulus has modulus1/2")
+000039 | 
+000040 | x = s.Symbol("x", positive=True)
+000041 | graph = s.Matrix([[x*x, x], [x, 1]])/(1+x*x)
+000042 | need("two-boundary-calderon-projector", s.simplify(graph*graph-graph) == s.zeros(2)
+000043 |      and graph.T == graph and s.simplify(s.trace(graph)) == 1,
+000044 |      "Exact rational identity with x=exp(W lambda); chiral product Dirac")
+000045 | need("selected-face-fermi-factor", graph[1, 1] == 1/(1+x*x),
+000046 |      "Face1 covariance (1+exp(2 W B))^-1; opposite face is complementary")
+000047 | need("face-is-not-hardy-projector", s.simplify(graph[1, 1]**2-graph[1, 1]) != 0,
+000048 |      "Every finite real mode has strictly mixed face covariance")
+000049 | 
+000050 | lam, r = s.symbols("lambda r", positive=True)
+000051 | for c in (s.I, -s.I):
+000052 |     t = -c*r
+000053 |     p = s.Matrix([[1, s.conjugate(t)], [t, r*r]])/(1+r*r)
+000054 |     b = s.diag(lam, -lam)
+000055 |     comm = b*p-p*b
+000056 |     need("crosscap-nonstationarity-"+str(c),
+000057 |          s.simplify(comm[0, 1]-2*lam*s.conjugate(t)/(1+r*r)) == 0
+000058 |          and s.simplify(comm[1, 0]+2*lam*t/(1+r*r)) == 0
+000059 |          and comm != s.zeros(2),
+000060 |          "Signed boundary B, finite collar r=exp(-2 L lambda)>0; no all-P1 exclusion")
+000061 |     h = s.diag(0, 2*lam)
+000062 |     mean = s.simplify(s.trace(h*p))
+000063 |     var = s.simplify(s.trace(h*h*p)-mean*mean)
+000064 |     need("crosscap-energy-variance-"+str(c),
+000065 |          s.simplify(mean-2*lam*r*r/(1+r*r)) == 0
+000066 |          and s.simplify(var-4*lam*lam*r*r/(1+r*r)**2) == 0,
+000067 |          "Pair sector energy test, not a W8 field identification")
+000068 | 
+000069 | out = dict(status="PASS", exact_checks=len(checks), checks=checks,
+000070 |            physical_gates_closed=[], complete_TFPT_solution=False,
+000071 |            scope="Original elliptic cut under declared free chiral CAR interpretation; source transport remains open")
+000072 | text = json.dumps(out, ensure_ascii=False, sort_keys=True, indent=2)+"\n"
+000073 | Path(__file__).with_name("boundary-source-results.json").write_text(text)
+000074 | print(text, end="")

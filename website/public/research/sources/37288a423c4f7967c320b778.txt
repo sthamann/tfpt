@@ -1,0 +1,179 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/automatic_identification/CLOCK-CLASS-REVIEW.txt
+Original file SHA-256: 0a2927c4022f0e3a1cb1c6f6430a815aaee66347beebf3d5945c0b7da0406539
+Inclusive original lines: 1-171
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | INDEPENDENT REVIEW: SM CENTRALIZER AND FAMILY FOUR-CYCLE CLASS
+000002 | 29 October 2026. Analytical review; no duplicate suite or checker run.
+000003 | 
+000004 | Reviewed CLOCK-CLASS-PROOF.txt, check_clock_four_cycle_class.py,
+000005 | clock-four-cycle-class-test.json, clock-general-spin10-class.json,
+000006 | the unchanged compiler_closure.py root extraction, and the existing actual
+000007 | native-clock theorem. Verdict: the stated class exclusion is correct.
+000008 | The larger class without SM commutation contains native-clock matches;
+000009 | its matches have too small a Spin10 centralizer for an SM subgroup there.
+000010 | These are conditional representation statements, not a TFPT exclusion.
+000011 | 
+000012 | 1. Actual source and normalizations
+000013 | 
+000014 | The fixed original carrier hypercharge is
+000015 |   Y=diag(-1/3,-1/3,-1/3,1/2,1/2).
+000016 | The original connected group is S(U3 x U2). See
+000017 | documents/archive--paper-latex--tfpt-v29/sections/
+000018 | 001-section-overview-and-claim-map.tex:166-174,187-197.
+000019 | Here Spin10 Cartan parameters t_j act on its real vector10 by rotations
+000020 | with eigenvalues exp(+/-2pi i t_j). The Spin period lattice is D5,
+000021 | not Z5. This distinction is necessary for the lift count.
+000022 | 
+000023 | The actual original Jhat character is not an assumption about an arbitrary
+000024 | quarter operator. Its root spaces form sixty length-four cycles; the actual
+000025 | lift has fourth power1, so every cycle contributes one of each fourth root.
+000026 | The Cartan contributes four+i and four-i. Hence its multiplicities are
+000027 |   (60,64,60,64), and Tr_248(Jhat)=0.
+000028 | This is explicitly justified in the existing
+000029 | e-series-source-reconstruction-20261024/NATIVE-CLOCK-CONJUGACY.txt:61-76.
+000030 | The stronger old theorem classifies its complete toral matching set and
+000031 | proves the full inner field conjugacy with kappa; see the same file:32-76.
+000032 | No part of that positive theorem is contradicted or re-opened here.
+000033 | 
+000034 | 2. Completeness of the SM-commuting Spin10 list
+000035 | 
+000036 | An element commuting pointwise with the specified SM must commute with Y.
+000037 | In SO10 the two nonopposite, nonzero Y frequencies have multiplicities
+000038 | three and two. The centralizer of this circle is U3 x U2. Commuting also
+000039 | with its SU3 and SU2 subgroups leaves their scalar block rotations.
+000040 | Thus the entire centralizer lifts to the two-dimensional Spin torus
+000041 |   t=(x,x,x,y,y).
+000042 | This is the whole pointwise centralizer, not only an arbitrary chosen
+000043 | Cartan subsection. An equivalent root argument is that no D5 root
+000044 | restricts to zero on the rank-four SM Cartan; commuting with the color
+000045 | and weak root groups then imposes the scalar block phases.
+000046 | 
+000047 | There is no missing disconnected lift: the preimage of the scalar U1^2
+000048 | in Spin10 is connected. A scalar loop in its first block winds three
+000049 | vector planes and reaches the nontrivial Spin sheet. Explicitly its
+000050 | periods are
+000051 |   (Delta x,Delta y) in Z^2, 3 Delta x+2 Delta y even,
+000052 | so x has period2 and y has period1. Integer differences among individual
+000053 | slot angles only change the Spin central sign; x -> x+1 already includes
+000054 | that sign. They do not supply further components or representatives.
+000055 | 
+000056 | For g5^4=-1_Spin, vector triviality requires a=4x,b=4y integral, and
+000057 | the Spin sign is (-1)^(3a+2b). Thus a is odd. Complete distinct Spin-torus
+000058 | representatives are
+000059 |   a=1,3,5,7 modulo8; b=0,1,2,3 modulo4;
+000060 |   t5=(a,a,a,b,b)/4.
+000061 | This gives sixteen covering representatives. They are not claimed to be
+000062 | sixteen inequivalent E8 conjugacy classes.
+000063 | 
+000064 | 3. Family lift and quotient condition
+000065 | 
+000066 | A four-cycle permutation C4 has determinant-1. A scalar lift eta C4 lies
+000067 | in SU4 precisely when eta^4=-1. The four choices all have the same four
+000068 | eigenvalues, the four odd eighth roots. Consequently all are SU4-conjugate
+000069 | and have fourth power -I4. A unitary conjugator can be made determinant1
+000070 | by multiplying by a commuting scalar, so SU4 conjugacy is sufficient.
+000071 | 
+000072 | For the actual D3 tetrahedral spinor weights
+000073 |   (+++),(+--),(-+-),(--+) divided by2,
+000074 | t3=(1/2,-1/4,0) gives phases (1,-1,3,-3)/8, the same unordered list.
+000075 | Its vector6 is Lambda^2(4) and has eigenvalues {-1,-1,i,-i,1,1}.
+000076 | In particular Tr_4(g3)=Tr_6(g3)=Tr_4(g3^2)=0,
+000077 | Tr_6(g3^2)=2 and Tr_15(g3)=Tr_15(g3^2)=-1.
+000078 | 
+000079 | The actual subgroup is (Spin10 x Spin6)/Z4. In particular its kernel
+000080 | contains (-1_Spin,-I4). Necessity of g5^4=-1_Spin can also be seen without
+000081 | choosing a generator of this Z4: the E8 branching contains (16,4).
+000082 | Since g3^4=-I4, triviality of g^4 on that summand requires g5^4=-I on
+000083 | the faithful Spin10 chiral spinor. This is exactly -1_Spin. Thus the
+000084 | fourth-power restriction used to enumerate the class is both necessary
+000085 | and sufficient. The vector6 factor already has exact order4, so the
+000086 | resulting E8 element does not accidentally have order1 or2.
+000087 | 
+000088 | This covers arbitrary conjugates of the four-cycle lift and all pointwise
+000089 | SM-commuting Spin10 factors. A continuous connected SM cannot acquire
+000090 | additional commuting elements by quotienting by the finite kernel: any
+000091 | commutator lying in that kernel is continuously constant and equals1.
+000092 | 
+000093 | 4. Independent character calculation, without a second root enumeration
+000094 | 
+000095 | Use the actual branching
+000096 |   248=(45,1)+(1,15)+(10,6)+(16,4)+(16bar,4bar).
+000097 | The family traces in section3 kill all mixed terms at g and the two
+000098 | spinor terms at g^2. For the restricted t5 let s=(-1)^b. Then
+000099 |   Tr_10(g5)=4 cos(pi b/2),
+000100 |   Tr_10(g5^2)=-6+4s,
+000101 |   Tr_10(g5^4)=10,
+000102 | and Tr_45(u)=((Tr_10 u)^2-Tr_10(u^2))/2. Consequently
+000103 |   b even: Tr_248(g)=8, Tr_248(g^2)=-8;
+000104 |   b odd:  Tr_248(g)=4, Tr_248(g^2)=24.
+000105 | Real adjoint characters imply N_i=N_-i. Solving the total dimension248
+000106 | and these two traces gives exactly
+000107 |   b even: (N_1,N_i,N_-1,N_-i)=(64,64,56,64),
+000108 |   b odd:                         (70,56,66,56).
+000109 | Thus the JSON values agree with an independent analytical calculation.
+000110 | Already Tr(g)=8 or4 differs from native Tr(Jhat)=0. No full inner E8
+000111 | conjugation can identify these elements with Jhat.
+000112 | 
+000113 | The checker uses the correct doubled original roots. If r=2alpha and
+000114 | av=4v, its exponent av.r/2 equals4v.alpha, giving precisely i to that
+000115 | power. av has even coordinate sum, so the exponent is integral on all
+000116 | 240 E8 roots. Adding eight fixed toral currents is correct for these
+000117 | toral candidates; this is not the non-toral original J Cartan action.
+000118 | The helper's ROOTS is explicitly checked against the standard112+128
+000119 | shell in compiler_closure.py:63-84. No floating rank tolerance is used.
+000120 | 
+000121 | 5. General Spin10 factor without SM commutation
+000122 | 
+000123 | Every compact Spin10 element is conjugate into its torus. The condition
+000124 | g5^4=-1 means n=4t is integral with odd sum. Modulo4D5, a complete set is
+000125 |   n in {0,1,2,3}^5 with odd sum,
+000126 |   together with each such n+4e_1.
+000127 | There are512 base residues and two Spin sheets, hence1024 distinct
+000128 | Spin-torus representatives. This is a covering list for E8 conjugacy,
+000129 | not1024 distinct E8 conjugacy classes.
+000130 | 
+000131 | Let k count odd n_j and d=count(n_j=0)-count(n_j=2) in the base residues.
+000132 | Then k is1,3 or5, and the same branching gives
+000133 |   Tr_248(g)=2(d^2+k-3).
+000134 | Thus native trace0 is possible exactly when k=3 and d=0: of the two
+000135 | remaining even planes one has residue0 and the other residue2. For this
+000136 | case Tr(g^2)=-8, and the full character is exactly(60,64,60,64).
+000137 | The old complete native-clock theorem, not a general assumption that
+000138 | characters suffice, then identifies these candidates' inner E8 class.
+000139 | 
+000140 | Independent combinatorial counts reproduce the complete JSON histogram:
+000141 |   k=1,d^2=16: 40 representatives, (82,56,54,56);
+000142 |   k=1,d^2=4: 160,               (70,56,66,56);
+000143 |   k=1,d=0: 120,                 (66,56,70,56);
+000144 |   k=3,d^2=4: 320,               (64,64,56,64);
+000145 |   k=3,d=0: 320,                 (60,64,60,64);
+000146 |   k=5,d=0: 64,                  (70,56,66,56).
+000147 | The merged histogram is therefore40,224,120,320,320 in the corresponding
+000148 | five classes, exactly as clock-general-spin10-class.json records.
+000149 | 
+000150 | For every native-matching Spin10 representative the only fixed D5 roots
+000151 | are the six roots among its three odd planes. Sign changes put them in
+000152 | the A2 form; the even0 and2 planes have no common fixed root and no fixed
+000153 | root connects an odd plane to an even plane. Therefore the Lie centralizer
+000154 | is A2+u1^3. It cannot contain commuting su3 and su2: an su3 image uses the
+000155 | entire A2 factor, whose remaining Lie centralizer is abelian. This excludes
+000156 | an SM subgroup INSIDE THIS Spin10 centralizing that g5, even if its SM
+000157 | embedding there is allowed to move. It does not constrain SM groups that
+000158 | mix the Spin10 and SU4 factors or lie in a fully transported E8 subgroup.
+000159 | 
+000160 | 6. Exact scope and conclusion
+000161 | 
+000162 | The proof covers a specified family four-cycle SU4 class and Spin10 factor
+000163 | with exact E8 quarter order. With fixed SM commutation there are no native
+000164 | Jhat matches. Removing that commutation admits320 matching torus points,
+000165 | but their Spin10 centralizers have only A2 as a semisimple factor.
+000166 | No statement excludes all clocks, arbitrary family actions, a transported
+000167 | SM embedded across the full E8 centralizer, or the already established
+000168 | native kappa/glue conjugacy. A geometric rotation of four marked points
+000169 | can be a different operation until its entire original field action is
+000170 | identified. No physical source, state, Yukawa field or P1 selection has
+000171 | been derived by these character tests.

@@ -1,0 +1,57 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/admissible_pair_20261028/check_source_clock_wedge_cycle.py
+Original file SHA-256: e76d515e58538f3c45337e33c02d72570d73b64ed48e0f5dc9a5c4bb0fcdbdd6
+Inclusive original lines: 201-249
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |             "cycle": "e0->e1->e2->e3->e4->e0; e5,e6,e7 fixed",
+000202 |             "order": 5,
+000203 |             "preserves_all_50_insertion_roots": True,
+000204 |             "advances_carrier_5_label": True,
+000205 |             "witness": {
+000206 |                 "beta1_doubled": list(beta1),
+000207 |                 "beta1": "e1-e8",
+000208 |                 "beta1_h8_grade": "1",
+000209 |                 "beta2_doubled": list(beta2),
+000210 |                 "beta2": "e2-e8",
+000211 |                 "beta2_h8_grade": "2",
+000212 |                 "cycle_beta1_equals_beta2": True,
+000213 |                 "commutator": "[H8,W5]|beta1> = + W5|beta1>, up to the nonzero lift phase",
+000214 |             },
+000215 |             "all_50_commutator_grade_differences": {
+000216 |                 "+1": delta_counts[(Fraction(1), Fraction(0))],
+000217 |                 "-4": delta_counts[(Fraction(-4), Fraction(0))],
+000218 |             },
+000219 |             "commutes_with_h8_on_insertion_sector": False,
+000220 |             "phase_independent": "any nonzero signed Chevalley lift has the same nonzero grade differences",
+000221 |         },
+000222 |         "original_u5_clock": {
+000223 |             "definition": "U5=exp(2*pi*i*X/5)",
+000224 |             "X": list(x5),
+000225 |             "on_carrier_5": "zeta5^3 I5",
+000226 |             "on_carrier_Lambda2_10": "zeta5 I10",
+000227 |             "permutes_slots": False,
+000228 |             "equals_literal_carrier_cycle": False,
+000229 |         },
+000230 |         "scope": {
+000231 |             "proved": "the literal carrier slot cycle preserves the actual (5,10) sector but fails the H8 commutator on every one of its 50 roots",
+000232 |             "distinction": "the original U5 degree clock is scalar and cannot be substituted for that slot cycle",
+000233 |             "not_claimed": "no physical P1 execution, source-clock replacement, or new E8 reader is selected",
+000234 |         },
+000235 |     }
+000236 |     OUTPUT.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+000237 |     print(json.dumps({
+000238 |         "verdict": result["verdict"],
+000239 |         "insertion_roots": len(insertion),
+000240 |         "signed_gram": result["signed_gram"],
+000241 |         "h8_affine_classes": len(grade_counts),
+000242 |         "cycle_commutator_grade_differences": result["literal_carrier_cycle"]["all_50_commutator_grade_differences"],
+000243 |         "witness": result["literal_carrier_cycle"]["witness"],
+000244 |         "output": str(OUTPUT),
+000245 |     }, indent=2, sort_keys=True))
+000246 | 
+000247 | 
+000248 | if __name__ == "__main__":
+000249 |     main()

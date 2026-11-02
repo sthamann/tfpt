@@ -1,0 +1,109 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/collective-native-marginal-origin-20261026/RECURSIVE-SOM-AUDIT.txt
+Original file SHA-256: d52d1cbb7b88572d4ee097fd412e8e611c3f7019baace049eb3ee6d1a6476c1c
+Inclusive original lines: 1-101
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | [OMITTED: non-scientific conversation or execution metadata]
+000002 | [OMITTED: non-scientific conversation or execution metadata]
+000003 | [OMITTED: non-scientific conversation or execution metadata]
+000004 | 
+000005 | 1. Object and hypotheses
+000006 | X,W are60 by35 complex matrices of signals and memories. K60 is the given
+000007 | native fourth-root Gram matrix, normalized by its top eigenvalue3. H is a
+000008 | fixed neighborhood on memory labels. Its chosen off-diagonal weights use
+000009 | the native one-copy ray fidelity1/2, with weight nu=1/4.
+000010 | For c,beta,eta in[0,1] the executed map is
+000011 |   Y=N(((1-c)I+c K60/3)X),
+000012 |   winner(a)=argmin_i ||Y_a-W_i||^2,
+000013 |   T_i=sum_a H[winner(a),i]Y_a / sum_a H[winner(a),i],
+000014 |   W'_i=(1-eta)W_i+eta T_i for nonempty sums, unchanged otherwise,
+000015 |   X'_a=N((1-beta)Y_a+beta W'_[winner(a)]).
+000016 | N acts rowwise, dividing by a positive norm; a zero row remains zero.
+000017 | The implementation uses the same fixed small-norm guard in both runs.
+000018 | Defaults c=1/2,beta=1/4,eta=0.15; initial noise0.05, seed7.
+000019 | The native five code readout C is NOT an argument of this update.
+000020 | The native source and initial alignment remain given premises.
+000021 | 
+000022 | 2. Exact covariance of the defined mathematical rule
+000023 | For EVERY unitary U in U(35), row norms and every signal-memory Euclidean
+000024 | distance are unchanged by X->XU,W->WU. Hence the same deterministic tie
+000025 | rule gives the same winners. All left matrix products, weighted means,
+000026 | learning updates and row normalizations commute with right multiplication
+000027 | by U. Therefore F(XU,WU)=(F_X(X,W)U,F_W(X,W)U), and induction proves this
+000028 | for every iterate. This includes zero rows and unchanged inactive memories.
+000029 | Thus the rule by itself cannot prefer an absolute feature-space five-plane.
+000030 | Any unique preferred feature projector invariant under every such U would
+000031 | be scalar, of rank0 or35. State-dependent spontaneous planes are allowed.
+000032 | An initial native frame aligned with its native readout is additional data.
+000033 | This is NOT an exclusion of selection by that complete given source object.
+000034 | 
+000035 | The numerical test rotates both initial X and W, holds C fixed for the
+000036 | active comparison, and executes5000 steps of both machines. Signal and
+000037 | memory relative errors against the rotated original trajectory are
+000038 | 1.3621084337250817e-14 and1.329180972711536e-14; final winners coincide.
+000039 | Original code weight is0.9809168197519311. Rotated state with FIXED readout
+000040 | has0.1324321369255997. Transporting the readout as U* C restores
+000041 | 0.9809168197519305, as required for a PASSIVE coordinate change.
+000042 | 128 transported orientations of the verified trajectory give mean fixed
+000043 | code weight0.14176884144411367, range0.07626834055946129 to
+000044 | 0.24056557713751459. Haar expectation is5/35=1/7.
+000045 | The128 orientations are NOT128 independently executed trajectories;
+000046 | they use the proved covariance, with one rotated trajectory directly run.
+000047 | 
+000048 | IMPORTANT SCOPE: a generic U(35) does NOT preserve the native Veronese
+000049 | inputs z^tensor4, native quartic products, charges or full field algebra.
+000050 | This is a symmetry of the DECLARED numerical update, not an all-P1 or
+000051 | all-native TFPT countermodel. The native alignment may be supplied and
+000052 | justified upstream. This audit specifies what the recursion alone omits.
+000053 | 
+000054 | 3. Finite rate sensitivity, not a physical-clock identification
+000055 | Nine prescribed pairs beta in{.125,.25,.5},eta in{.075,.15,.3} were run for
+000056 | 5000 steps with c=.5, seed7 and unchanged source. Effective ranks range
+000057 | 3.625346250564475 to4.999804522850639. Three pairs reach numerical rest:
+000058 | (.125,.075),(.5,.075),(.5,.3). Others retain movement in the tested window.
+000059 | At beta=.25,eta=.15 the two frozen-response periods are approximately
+000060 | 11201.2123 and64540.3822 iterations. At beta=.25,eta=.075 they become
+000061 | 18550.7760 and106907.1483. They are not independent of the chosen rates.
+000062 | For each pair the actual winners/normalizers define a frozen120 by120
+000063 | response on the joint X,W state; its1000-step prediction was compared with
+000064 | actual nonlinear execution. All relative errors are below8e-14.
+000065 | This is NOT a full nonlinear Jacobian, a global attractor theorem or a
+000066 | physical time calibration. No TFPT Clock/monodromy is identified by this.
+000067 | Three generic complex starts at seeds0,7,19 likewise compress to effective
+000068 | ranks3.6469,4.9156,4.9096, but fixed code weights are only.15169,.12955,.10527.
+000069 | Compression alone does not establish selection of the native code frame.
+000070 | 
+000071 | 4. Constructive consequence and existing source-memory connection
+000072 | Use this machine as a comparator for collective dynamics and hidden-input
+000073 | audits. A source-derived recursion must carry more native information than
+000074 | pair distances/linear feature mixing, or justify its initial native frame.
+000075 | Do not insert the known code projector and call this a derivation.
+000076 | The full native product/erasure/clock object is already available and must
+000077 | be retained, together with exterior charges, modes and memory.
+000078 | The existing SOURCE-RETURN-MEMORY.txt, equations3-5, already derives for
+000079 | its SPECIFIED original SINGLE-beta response L=S* S and code split P,Q:
+000080 |   Kc=PLP, B=QLP, D=QLQ,
+000081 |   x[n+1]=Kc x[n]+sum[j=0..n-1] B*D^(n-1-j)B x[j], for y0=0.
+000082 | Kc here is NOT K60. These are ordered response powers, not a selected
+000083 | physical time evolution. No projection is executed by splitting the vector.
+000084 | Reuse this exact source-dependent memory result; do not rebuild an arbitrary
+000085 | small helper model or claim a freely learned memory is its derivation.
+000086 | The next origin test is the actual original boundary variation/insertion
+000087 | map with the same state,time,reflection and domains, fixing WHICH history
+000088 | and generator are realized. The existing native field net is retained.
+000089 | Original covariance K60 alone is not its physical Hessian or energy.
+000090 | A route to full completion must additionally preserve native quartic,
+000091 | erasure and actual Clock actions, admissible states, locality, chirality,
+000092 | continuum and the stated T1-T8 interfaces. This audit closes none of them.
+000093 | 
+000094 | 5. Reproduction and status
+000095 | recursive_machine_audit contains a frozen portable copy of the actual
+000096 | machine.py, native_operators.npz, native_manifest.json and fundamental_audit.py.
+000097 | provenance.json pins all input files and the normal result bytes.
+000098 | Run with OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 fundamental_audit.py.
+000099 | The same checker under -OO reproduces the numerical results; runtime need()
+000100 | checks do not disappear under optimization. Exact covariance has the proof
+000101 | above independently of floating-point tests. No suite/ledger/paper promotion.

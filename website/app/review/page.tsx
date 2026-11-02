@@ -169,7 +169,7 @@ const BLOCKS: Block[] = [
         <span className="font-mono">α⁻¹</span> node: the real Python runs in your
         browser (via Pyodide / WebAssembly) and re-derives{" "}
         <span className="font-mono">α⁻¹ = 137.0359992…</span> as the unique root
-        of the parameter-free cubic — no install, no fit.{" "}
+        of the parameter-free self-consistent closure equation — no install, no fit.{" "}
         <Link prefetch={false} href="/verification#dag" className="font-semibold text-blue-700 hover:text-blue-800">
           Run it now →
         </Link>{" "}

@@ -1,0 +1,107 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-collar-multifield-20261016/P1-INSERTION-TANGENT.txt
+Original file SHA-256: b49aa4ec77bc22029545c4f8f2584e80e63fd8bb6b8a0ce8536baf4137d3ea55
+Inclusive original lines: 34-132
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000034 | 2. What can be differentiated before assuming a coupling
+000035 | 
+000036 | For a differentiable source curve with fixed reflection R, fixed f and chi,
+000037 | V=dot D gives V_rel=(V-RVR)/2 and V_ref=(V+RVR)/2. In a finite regulator,
+000038 |   dot S_prim = chi^-1 Tr[f'(D_rel/chi) V_rel]
+000039 |              -chi^-1 Tr[f'(D_ref/chi) V_ref] + i*pi*dot Delta_eta/2.
+000040 | This uses trace cyclicity, not commutativity of D and V. If the original
+000041 | chi=lambda_1^+(|B|)^-1 varies, its derivative also contributes. If R varies,
+000042 | dot(RDR)=dot R D R+R dot D R+R D dot R. These terms cannot be dropped while
+000043 | claiming an unrestricted source derivation. Spectral crossings, eta jumps
+000044 | and changing domains require separate treatment.
+000045 | 
+000046 | The unknown V is precisely the insertion to be derived. Substituting a desired
+000047 | matrix into V would beg the question. The one-form mechanism likewise needs
+000048 | the ACTUAL represented a,b in A_+: A=sum a[D,b]. Its usual real completion
+000049 | requires order one; without it retain the generalized quadratic term, rather
+000050 | than importing an SM calculation. Chamseddine/Connes/van Suijlekom,
+000051 | arXiv:1304.7583, equations(2),(3) and section III.
+000052 | 
+000053 | 3. Follow the existing modular/covariance route without replacing it
+000054 | 
+000055 | verification/v258_dirac_covariance_induction.py:65-76 supplies the actual reader
+000056 |   h(C)=log(I-C)-log C,       0<C<I,
+000057 | and its inverse f_FD(H)=(I+exp H)^-1. This is the standard faithful quasi-free
+000058 | one-particle dictionary (Peschel, cond-mat/0212631); it is not valid for an
+000059 | arbitrary interacting current state from its two-point function alone.
+000060 | Use the covariance convention C_ij=omega(c_j^* c_i) of this existing collar
+000061 | construction; Peschel's opposite index convention has a transpose in eq.(12).
+000062 | 
+000063 | The script:85-128 constructs C from random Dirac/Yukawa matrices and a given
+000064 | mass list before inversion. Line150 checks the seam identification with a
+000065 | literal True. The inverse identity remains valid; those calculations do not
+000066 | derive the physical embedding or its Phi variation. No verification script
+000067 | or original ledger status is changed here.
+000068 | 
+000069 | For a differentiable embedded carrier use an isometry Q(Phi):H_F -> H_Sigma,
+000070 | not a silent basis identification. Then
+000071 |   C_F = Q* C_Sigma Q,
+000072 |   dot C_F = Q* dot C_Sigma Q + dot Q* C_Sigma Q + Q* C_Sigma dot Q.
+000073 | Even a fixed ambient covariance can have a changing compressed covariance
+000074 | when Q moves. Source charge/field maps and their motion must be derived.
+000075 | 
+000076 | For finite faithful C with eigenvalues c_m, diagonalize C, not dot C. The exact
+000077 | Frechet derivative is
+000078 |   [dot h(C)]_mn = h^[1](c_m,c_n) [dot C]_mn,
+000079 | where h^[1](x,y)=(h(x)-h(y))/(x-y) for x!=y and
+000080 |   h^[1](x,x)=-1/[x(1-x)].
+000081 | Proof: differentiate both matrix logarithms using
+000082 |   D log(X)[E]=integral_0^infty (X+t)^-1 E (X+t)^-1 dt.
+000083 | For the first logarithm delta X=-E; for the second it is E with a minus sign.
+000084 | Every coefficient is strictly negative. Thus the derivative is an invertible
+000085 | linear map on finite Hermitian matrices. This is not the commuting shortcut
+000086 | -E/[C(I-C)] when E and C do not commute.
+000087 | 
+000088 | If the stated sector projectors commute with the background C, the same
+000089 | spectral decomposition can be taken within their sectors. The Frechet map
+000090 | restricts invertibly to every sector block. Consequently
+000091 |   P_a dot h(C) P_b = 0  iff  P_a dot C P_b = 0.
+000092 | It neither creates a missing sector block nor chooses one. Do not apply this
+000093 | block claim to arbitrary projectors not commuting with C. Chirality-odd
+000094 | projection, a varying chirality, a varying scale and moving readouts are extra
+000095 | explicit operations; their source provenance must be retained. In particular
+000096 | the result does not exclude preexisting background mixing or nonlinear effects.
+000097 | An infinite-dimensional/unbounded extension needs its own domains and bounds.
+000098 | 
+000099 | 4. Resolve the projection-versus-occupation distinction on the retained source
+000100 | 
+000101 | The original Calderon Cauchy operator is a PROJECTION. h(P_C) is not a finite
+000102 | faithful-covariance logarithm. For finite isometric Q,
+000103 |   Q* P_C Q has eigenvalue1 iff Ran Q meets Ran P_C nontrivially,
+000104 |   Q* P_C Q has eigenvalue0 iff Ran Q meets ker P_C nontrivially.
+000105 | Proof: norm equalities for an orthogonal projection. In particular, restriction
+000106 | to its own range is I, not a mixed occupation. Therefore one cannot identify
+000107 | the same positive admissibility subspace with a faithful occupation simply by
+000108 | using a compression symbol. This is a conditional consistency test, not a
+000109 | claim that every compression of a projection is pure.
+000110 | 
+000111 | The previously constructed TWO-FACE collar supplies the correct mixed object.
+000112 | For its given selfadjoint B and positive length ell, put R_c=exp(-ell B). Then
+000113 |   A=(I+R_c^2)^-1,
+000114 |   P_graph=[[A,A R_c],[R_c A,R_c^2 A]],
+000115 |   n=I-A=(I+exp(2ell B))^-1.
+000116 | The full P_graph is a projection; n is the mixed one-face occupation. Hence
+000117 |   h(n)=2ell B,
+000118 |   D h(n)[dot n]=2ell dot B+2 dot ell B.
+000119 | The last identity holds also for a noncommuting bounded variation on a common
+000120 | appropriate finite/regulated domain; it follows by differentiating the exact
+000121 | functional inverse, without a freely chosen vertex. It recovers the insertion
+000122 | already in B(Phi), and cannot supply a previously unspecified dot B.
+000123 | 
+000124 | Reuse the retained lowest charged particle/hole transfer pair R_c=diag(1/4,1/64).
+000125 | The exact graph projection has A=diag(16/17,4096/4097),
+000126 | n=diag(1/17,1/4097), h(n)=diag(log16,log4096).
+000127 | At ell=8log2 this returns B=diag(1/4,3/4), with the already specified transfer
+000128 | and quarter source in its POSITIVE particle/hole excitation chart. It is not
+000129 | the signed raw one-particle B before the sea/particle-hole transformation.
+000130 | Its own-range covariance is I, exactly as above.
+000131 | This preserves the prior positive construction; it is not a new source choice.
+000132 | Numerical eigenvalue clipping in v258 is a regulator, not a proof of h(I).

@@ -1,0 +1,73 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/collective-native-marginal-origin-20261026/baseline_machine_evidence/inspect_dynamics.py
+Original file SHA-256: 4db50b15e60f53929eb5e0f2b7a91a781b7d6b744e2934a05ca19915e93e8a6e
+Inclusive original lines: 1-65
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Explain ongoing motion in a saved run by a frozen response operator.
+000002 | 
+000003 | This is not the full Jacobian. Winners and row normalization factors are frozen
+000004 | at the observed state, then its predicted trajectory is checked against the
+000005 | actual nonlinear machine. No frequencies are inputs to the machine.
+000006 | """
+000007 | import argparse
+000008 | import json
+000009 | from pathlib import Path
+000010 | 
+000011 | import numpy as np
+000012 | 
+000013 | from machine import HERE, Machine
+000014 | 
+000015 | 
+000016 | def inspect(checkpoint, steps):
+000017 |     machine = Machine.load(checkpoint)
+000018 |     start = machine.step_number
+000019 |     x, w, config = machine.x.copy(), machine.memory.copy(), machine.config
+000020 |     machine.advance(1)
+000021 |     raw = (1-config.coupling)*x + config.coupling*(machine.coupler@x)
+000022 |     response = ((1-config.coupling)*np.eye(60) + config.coupling*machine.coupler)
+000023 |     response /= np.linalg.norm(raw, axis=1)[:, None]
+000024 |     select = np.eye(60)[machine.last_winners]
+000025 |     weights = machine.neighbors[machine.last_winners]
+000026 |     mass = weights.sum(axis=0)
+000027 |     batch = weights.T / np.where(mass[:, None] > 0, mass[:, None], 1)
+000028 |     retain = np.diag(1-config.learning*(mass > 0))
+000029 |     learned_response = config.learning*batch@response
+000030 |     pre = (1-config.feedback)*(response@x) + config.feedback*select@(learned_response@x+retain@w)
+000031 |     norms = np.linalg.norm(pre, axis=1)[:, None]
+000032 |     operator = np.block([
+000033 |         [((1-config.feedback)*response + config.feedback*select@learned_response)/norms,
+000034 |          (config.feedback*select@retain)/norms],
+000035 |         [learned_response, retain]])
+000036 |     state = np.concatenate([x, w])
+000037 |     eig = np.linalg.eigvals(operator)
+000038 |     modes = [dict(real=float(z.real), imag=float(z.imag), modulus=float(abs(z)),
+000039 |                   frozen_response_period_steps=float(2*np.pi/abs(np.angle(z))))
+000040 |              for z in eig if abs(abs(z)-1) < 1e-8 and z.imag > 1e-7]
+000041 |     machine.advance(999)
+000042 |     predicted = np.linalg.matrix_power(operator, 1000)@state
+000043 |     error = float(np.linalg.norm(predicted-np.concatenate([machine.x, machine.memory]))/np.linalg.norm(predicted))
+000044 |     if error > 1e-9:
+000045 |         raise RuntimeError(f'Frozen response does not reproduce this trajectory: {error}')
+000046 |     report = dict(frozen_response_modes=modes, frozen_1000_step_relative_prediction_error=error, history=[])
+000047 |     endpoints = sorted({start+1000, *[start+n for n in [10000, 40000, steps] if n <= steps]})
+000048 |     for endpoint in endpoints:
+000049 |         machine.advance(endpoint-machine.step_number, measure_every=100)
+000050 |         report['history'].append(dict(**machine.history[-1],
+000051 |             signal_distance_from_start=float(np.linalg.norm(machine.x-x)/np.sqrt(60))))
+000052 |     report['full_history'] = machine.history
+000053 |     machine.save(HERE/'runs'/'long_run.npz')
+000054 |     (HERE/'runs'/'long_run.json').write_text(json.dumps(report, indent=2)+'\n')
+000055 |     print(json.dumps({key: value for key, value in report.items() if key != 'full_history'}, indent=2))
+000056 | 
+000057 | 
+000058 | if __name__ == '__main__':
+000059 |     parser = argparse.ArgumentParser(description=__doc__)
+000060 |     parser.add_argument('--checkpoint', type=Path, default=HERE/'runs'/'recursive.npz')
+000061 |     parser.add_argument('--steps', type=int, default=90000)
+000062 |     args = parser.parse_args()
+000063 |     if args.steps < 1000:
+000064 |         parser.error('--steps must be at least 1000')
+000065 |     inspect(args.checkpoint, args.steps)

@@ -1,0 +1,90 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/mixed-current-origin-20261014/check_continuous_time_sector_test.py
+Original file SHA-256: bfab38f6ed057f368a28a037c068b26cfde3aadc856583ee79363de7f2244679
+Inclusive original lines: 44-125
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000044 |     norm_dist2 = 2 - 2*s.sqrt(1-mass)
+000045 |     need(expectation == n, 'first moment diverges')
+000046 |     need(norm_dist2 <= 2*mass, 'state still norm-converges to vacuum')
+000047 |     first_moment_controls.append({'N': n, 'mean_energy': str(expectation),
+000048 |                                   'positive_time_norm_defect_bound': str(mass)})
+000049 | 
+000050 | # Off-grade weight identity, no assumption of a homogeneous microscopic field.
+000051 | Z = s.diag(1, s.I, -1, -s.I)
+000052 | v = s.Matrix([s.Rational(1, 3), s.I/s.Integer(4),
+000053 |               -s.Rational(1, 5), (1+s.I)/7])
+000054 | grade_cases = []
+000055 | for r0 in range(4):
+000056 |     defect = (Z - s.I**r0*s.eye(4))*v
+000057 |     lhs = s.expand((defect.H*defect)[0])
+000058 |     rhs = sum(s.Abs(s.I**r-s.I**r0)**2*s.Abs(v[r])**2 for r in range(4))
+000059 |     off_norm = sum(s.Abs(v[r])**2 for r in range(4) if r != r0)
+000060 |     need(s.simplify(lhs-rhs) == 0, 'exact register grade identity')
+000061 |     need(s.simplify(lhs-2*off_norm) >= 0, 'off-grade norm bound')
+000062 |     grade_cases.append({'initial_register': r0, 'commutator_norm2': str(lhs)})
+000063 | 
+000064 | # Closed heat-filtered pair formulas and the noncommuting sharp/time limits.
+000065 | r, u = s.symbols('r u', positive=True)
+000066 | F = ((1+r*u)*(1-r)/((1-r*u)*(1+r)))**4
+000067 | need(s.cancel(F.subs(u, 1)-1) == 0, 'finite heat time has norm1')
+000068 | need(s.limit(F.subs(u, s.Rational(1, 2)), r, 1, dir='-') == 0,
+000069 |      'sharp limit loses all positive-time norm')
+000070 | need(s.limit(F.subs(u, s.Rational(1, 2))/(1-r)**4, r, 1, dir='-')
+000071 |      == s.Rational(81, 16), 'quantitative sharp-limit rate')
+000072 | need(s.cancel((-u*s.diff(F,u)).subs(u,1) + 8*r/(1-r*r)) == 0,
+000073 |      'time derivative gives the energy')
+000074 | heat_controls = []
+000075 | for rv in (s.Rational(1, 2), s.Rational(3, 4), s.Rational(7, 8), s.Rational(15, 16)):
+000076 |     exact_energy = 8*rv/(1-rv*rv)
+000077 |     exact_kernel = s.cancel(F.subs({r:rv,u:s.Rational(1,2)}))
+000078 |     heat_controls.append({'exp_minus_2s': str(rv), 'mean_K': str(exact_energy),
+000079 |                           'F_s_log2': str(exact_kernel)})
+000080 | for stime, d, t in ((0.3, math.pi, 0.4), (0.7, 0.9, 0.2)):
+000081 |     n = np.arange(1, 401, dtype=float)
+000082 |     q = math.exp(-2*stime)
+000083 |     amplitude2 = 4*np.exp(-2*stime*n)*(1-np.cos(n*d))/n
+000084 |     e_sum = float(np.sum(n*amplitude2))
+000085 |     e_closed = 4*(q/(1-q)-(q*np.exp(1j*d)/(1-q*np.exp(1j*d))).real)
+000086 |     b = lambda x: 4*math.log(abs(1-x*np.exp(1j*d))/(1-x))
+000087 |     f_sum = math.exp(-float(np.sum(amplitude2*(1-np.exp(-t*n)))))
+000088 |     f_closed = math.exp(b(q*math.exp(-t))-b(q))
+000089 |     need(abs(e_sum-e_closed) < 1e-11, 'heat energy exact geometric series')
+000090 |     need(abs(f_sum-f_closed) < 1e-11, 'heat time kernel exact logarithmic sum')
+000091 | 
+000092 | # Actual source energies in all four original register backgrounds.
+000093 | sys.path.insert(0, str(REPO/'verification'))
+000094 | src = REPO/'verification/v1033_charged_disorder.py'
+000095 | spec = importlib.util.spec_from_file_location('continuous_sector_v1033', src)
+000096 | mod = importlib.util.module_from_spec(spec)
+000097 | sys.modules[spec.name] = mod
+000098 | spec.loader.exec_module(mod)
+000099 | offset_controls = []
+000100 | for nx in (8, 16, 32, 64, 128):
+000101 |     energies = [mod.momentum_ground_energy(nx, k, ny=8) for k in range(4)]
+000102 |     shifts = [(e-energies[1])*nx/(2*math.pi) for e in energies]
+000103 |     need(abs(shifts[3]) < 1e-7, 'opposite quarter common vacuum energy')
+000104 |     # Diagnostic only: the UNIFORM all-N bound is proved via BV Fourier tails.
+000105 |     need(max(abs(x) for x in shifts) < 0.3, 'actual common-reference control')
+000106 |     if nx == 8:
+000107 |         for k in range(4):
+000108 |             h = mod.qwz_cylinder(nx,8,1.,k)
+000109 |             vals = np.linalg.eigvalsh(h)
+000110 |             need(abs(float(np.sum(vals[vals<0]))-energies[k]) < 1e-10,
+000111 |                  'Bloch and complete builder vacuum energies agree')
+000112 |     offset_controls.append({'Nx':nx, 'scaled_offsets_relative_r1':shifts})
+000113 | cusp = []
+000114 | e0 = -np.sum(np.abs(np.linalg.eigvalsh(mod.strip_at_momentum(0.,8))))/2
+000115 | for p in (1e-3, 1e-4, 1e-5):
+000116 |     hp = mod.strip_at_momentum(p,8)
+000117 |     ep = -np.sum(np.abs(np.linalg.eigvalsh(hp)))/2
+000118 |     need(abs(np.trace(hp)) < 1e-12, 'original Bloch trace vanishes')
+000119 |     cusp.append({'p':p,'one_sided_slope':float((ep-e0)/p)})
+000120 | need(abs(cusp[-1]['one_sided_slope']+1) < 1e-3,
+000121 |      'the two zero branches produce the stated -abs(p) cusp')
+000122 | 
+000123 | # ACTUAL nonunitary attempt: normalized exp(-s H_N) P_E Omega_N.
+000124 | # Imaginary-time quadratic evolution preserves a Slater state. The Thouless
+000125 | # matrix avoids cancellation of huge occupied-sea exponential factors.

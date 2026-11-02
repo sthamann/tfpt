@@ -1,0 +1,202 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/admissible_pair_20261028/single_ward_refinement/check_covariant_rigidity.py
+Original file SHA-256: 46a0edd1825f3e6a440f26a452fe333742dce26e40f5f87e19c2711a3bc9fce1
+Inclusive original lines: 1-194
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact channel rigidity with fixed input/output representations, not P1 selection."""
+000003 | from pathlib import Path
+000004 | import importlib.util
+000005 | import itertools as it
+000006 | import hashlib
+000007 | import json
+000008 | import numpy as np
+000009 | import sympy as sp
+000010 | 
+000011 | HERE=Path(__file__).resolve().parent
+000012 | PREV=HERE.parent/'research-20261028-hodge-complement-channel/hodge_complement_channel.py'
+000013 | [OMITTED: non-scientific conversation or execution metadata]
+000014 | spec=importlib.util.spec_from_file_location('hodge_previous',PREV)
+000015 | h=importlib.util.module_from_spec(spec); spec.loader.exec_module(h)
+000016 | C=h.hodge_amplitudes(); pairs=h.PAIRS
+000017 | checks=[]
+000018 | def require(v,name):
+000019 |  if not bool(v): raise RuntimeError(name)
+000020 |  checks.append(name)
+000021 | def ptout(M): return np.einsum('aiaj->ij',M.reshape(10,10,10,10))
+000022 | def choi_to_super(J): return J.reshape(10,10,10,10).transpose(0,2,1,3).reshape(100,100)
+000023 | I=np.eye(100,dtype=np.int64); F=np.zeros((100,100),dtype=np.int64)
+000024 | for a in range(10):
+000025 |  for b in range(10): F[10*b+a,10*a+b]=1
+000026 | vs=[x.reshape(-1) for x in C]
+000027 | M=sum(np.outer(v,v) for v in vs)
+000028 | Q=[M,3*(I-F),3*(I+F)-M] # six times orthogonal projectors
+000029 | D=[5,45,50]
+000030 | for i,q in enumerate(Q):
+000031 |  require(np.array_equal(q@q,6*q),f'projector {D[i]} exact idempotence')
+000032 |  require(np.trace(q)==6*D[i],f'projector {D[i]} exact rank')
+000033 |  require(np.array_equal(ptout(q)*10,6*D[i]*np.eye(10,dtype=np.int64)),f'projector {D[i]} TP partial trace')
+000034 |  for j,r in enumerate(Q):
+000035 |   if i!=j: require(not np.any(q@r),f'orthogonality {D[i]}/{D[j]}')
+000036 | require(np.array_equal(sum(Q),6*I),'complete three-projector decomposition')
+000037 | # Actual complexified dual representation on bar10 tensor bar10.
+000038 | G={}
+000039 | for a in range(5):
+000040 |  for b in range(5):
+000041 |   X=np.zeros((5,5),dtype=np.int64); X[b,a]=1
+000042 |   r=-h.exterior_two_differential(X)
+000043 |   G[a,b]=np.kron(r,np.eye(10,dtype=np.int64))+np.kron(np.eye(10,dtype=np.int64),r)
+000044 | for a in range(5):
+000045 |  for b in range(5):
+000046 |   for d,q in zip(D,Q): require(np.array_equal(G[a,b]@q,q@G[a,b]),f'dual gl5 E{a}{b} commutes P{d}')
+000047 | cas=5*sum(G[a,b]@G[b,a] for a in range(5) for b in range(5))-16*I
+000048 | for ev,q in zip([24,64,84],Q): require(np.array_equal(cas@q,ev*q),f'quadratic Casimir eigenvalue {ev}/5')
+000049 | raising=sp.Matrix(np.vstack([G[i,i+1] for i in range(4)]))
+000050 | N=raising.nullspace()
+000051 | require(len(N)==3,'three highest-weight lines in full tensor product')
+000052 | Nmat=sp.Matrix.hstack(*N)
+000053 | for d,q in zip(D,Q): require((sp.Matrix(q)*Nmat).rank()==1,f'one highest weight in P{d}; irreducible')
+000054 | # Choi vertex transition law. Every population entry checked as rational.
+000055 | transitions=[]
+000056 | for q,d in zip(Q,D):
+000057 |  vals={k:set() for k in ['stay','intersect','disjoint']}
+000058 |  for a,e in enumerate(pairs):
+000059 |   for b,f in enumerate(pairs):
+000060 |    kind='stay' if a==b else 'disjoint' if set(e).isdisjoint(f) else 'intersect'
+000061 |    vals[kind].add(sp.Rational(10*int(q[10*b+a,10*b+a]),6*d))
+000062 |  expected={5:{'stay':0,'intersect':0,'disjoint':sp.Rational(1,3)},45:{'stay':0,'intersect':sp.Rational(1,9),'disjoint':sp.Rational(1,9)},50:{'stay':sp.Rational(1,5),'intersect':sp.Rational(1,10),'disjoint':sp.Rational(1,15)}}[d]
+000063 |  for k in vals: require(vals[k]=={expected[k]},f'P{d} all {k} population entries')
+000064 |  transitions.append({k:str(v) for k,v in expected.items()})
+000065 | p5,p45,p50,s,o=sp.symbols('p5 p45 p50 s o')
+000066 | sol=sp.solve([p5+p45+p50-1,s-p50/5,o-sp.Rational(2,3)*p45-sp.Rational(3,5)*p50],[p5,p45,p50])
+000067 | require(sol[p50]==5*s and sol[p45]==(3*o-9*s)/2,'leakage reconstructs three covariant weights')
+000068 | require(sp.simplify(2*(sol[p45]+sol[p50])-(3*o+s))==0,'diamond distance from orthogonal Choi sectors equals 3o+s')
+000069 | # Analytic norm proof: T-Phi=sum_{45,50}p_i(T_i-Phi) has diamond norm
+000070 | # at most 2*sum(p_i), since all three vertices are CPTP. The maximally
+000071 | # entangled probe gives exactly that trace norm on the orthogonal Choi
+000072 | # supports. The lower and upper bounds match, without a numerical SDP.
+000073 | # SU3 plus actual five-cycle Lie algebra generation, with exact matrices.
+000074 | cycle=np.zeros((5,5),dtype=np.int64)
+000075 | for j in range(5): cycle[(j+1)%5,j]=1
+000076 | roots=set()
+000077 | for k in range(5):
+000078 |  for a,b in [(0,1),(1,0),(1,2),(2,1),(0,2),(2,0)]: roots.add(((a+k)%5,(b+k)%5))
+000079 | change=True
+000080 | while change:
+000081 |  change=False
+000082 |  for a,b in list(roots):
+000083 |   for c,d in list(roots):
+000084 |    if b==c and a!=d and (a,d) not in roots: roots.add((a,d)); change=True
+000085 | require(len(roots)==20,'SU3 and fivecycle conjugates generate all twenty sl5 root directions')
+000086 | # Fixed-dictionary SM phase counterexample: rank five and same populations.
+000087 | U=np.diag([-1 if all(j<3 for j in e) else 1 for e in pairs]).astype(np.int64)
+000088 | Mu=sum(np.outer((c@U).reshape(-1),(c@U).reshape(-1)) for c in C)
+000089 | require(np.array_equal(np.diag(Mu),np.diag(M)),'SM phase variant has identical Petersen populations')
+000090 | require(np.array_equal(ptout(Mu),3*np.eye(10,dtype=np.int64)),'SM phase variant trace preserving')
+000091 | require(np.array_equal(Mu@Mu,6*Mu) and np.trace(Mu)==30,'SM phase variant has Choi rank five')
+000092 | require(not np.array_equal(Mu,M),'SM phase variant is a different quantum channel')
+000093 | sm=[]
+000094 | for a,b in it.product(range(5),repeat=2):
+000095 |  if (a<3)==(b<3):
+000096 |   X=np.zeros((5,5),dtype=np.int64); X[a,b]=1
+000097 |   r=h.exterior_two_differential(X); sm.append(r)
+000098 |   require(np.array_equal(r@U,U@r),f'phase counterexample commutes block E{a}{b}')
+000099 | Sj=choi_to_super(M); Su=choi_to_super(Mu)
+000100 | for j,r in enumerate(sm):
+000101 |  # Complexified covariance input r, target dual -r.T.
+000102 |  Lin=np.kron(r,np.eye(10,dtype=np.int64))-np.kron(np.eye(10,dtype=np.int64),r.T)
+000103 |  rout=-r.T
+000104 |  Lout=np.kron(rout,np.eye(10,dtype=np.int64))-np.kron(np.eye(10,dtype=np.int64),rout.T)
+000105 |  require(np.array_equal(Su@Lin,Lout@Su),f'SM covariance phase variant generator {j}')
+000106 | R=np.zeros((10,10),dtype=np.int64)
+000107 | for j,(a,b) in enumerate(pairs):
+000108 |  aa,bb=(a+1)%5,(b+1)%5; f=tuple(sorted((aa,bb)))
+000109 |  R[pairs.index(f),j]=1 if aa<bb else -1
+000110 | RR=np.kron(R,R)
+000111 | require(np.array_equal(RR@M@RR.T,M),'Hodge actual wedge fivecycle Choi covariance')
+000112 | require(not np.array_equal(RR@Mu@RR.T,Mu),'SM phase variant violates actual wedge fivecycle covariance')
+000113 | prob=sp.Rational(int(np.trace(M@Mu)),180)
+000114 | require(prob==sp.Rational(4,15),'neutral P5 witness separates SM phase variant with probability 4/15')
+000115 | require(sp.Rational(int(np.trace(M@M)),180)==1,'neutral P5 Hodge witness probability one')
+000116 | # Same invariant family can transport across every color marking. Covariance
+000117 | # between different marked fibers is weaker than covariance in one fiber.
+000118 | new_colors={(i+1)%5 for i in range(3)}
+000119 | Unew=np.diag([-1 if set(e)<=new_colors else 1 for e in pairs]).astype(np.int64)
+000120 | require(np.array_equal(Unew,R@U@R.T),'phase construction transports to moved color mark')
+000121 | Mu_new=sum(np.outer((c@Unew).reshape(-1),(c@Unew).reshape(-1)) for c in C)
+000122 | require(np.array_equal(Mu_new,RR@Mu@RR.T),'non-Hodge channel family passes actual fivecycle transport between marks')
+000123 | # A real, unital, HS-selfadjoint variant also defeats spectral selection.
+000124 | Mtwo=sum(np.outer((U@c@U).reshape(-1),(U@c@U).reshape(-1)) for c in C)
+000125 | Stwo=choi_to_super(Mtwo)
+000126 | AU=np.kron(U,U)
+000127 | require(np.array_equal(Stwo,AU@Sj@AU),'two-sided phase variant is exact superoperator similarity in fixed real chart')
+000128 | require(np.array_equal(Stwo,Stwo.T),'two-sided phase variant HS selfadjoint')
+000129 | require(np.array_equal(np.diag(Mtwo),np.diag(M)),'two-sided phase variant same Petersen population')
+000130 | require(np.array_equal(ptout(Mtwo),3*np.eye(10,dtype=np.int64)),'two-sided phase variant TP')
+000131 | require(np.array_equal(Mtwo@Mtwo,6*Mtwo) and np.trace(Mtwo)==30,'two-sided phase variant Choi rank five')
+000132 | require(not np.array_equal(Mtwo,M),'two-sided phase variant different in fixed input/output dictionary')
+000133 | for c in C:
+000134 |  require(np.array_equal((U@c@U).T,U@c@U),'two-sided Kraus real symmetric')
+000135 |  require(np.array_equal((U@c@U).T@(U@c@U),c.T@c),'two-sided phase variant same individual effects')
+000136 | prob_two=sp.Rational(int(np.trace(M@Mtwo)),180)
+000137 | require(prob_two==sp.Rational(7,15),'two-sided phase variant neutral P5 probability seven fifteenths')
+000138 | Mtwo_new=sum(np.outer((Unew@c@Unew).reshape(-1),(Unew@c@Unew).reshape(-1)) for c in C)
+000139 | require(np.array_equal(Mtwo_new,RR@Mtwo@RR.T),'two-sided variant also passes fivecycle transport between marks')
+000140 | for n in range(1,7):
+000141 |  require(np.array_equal(np.linalg.matrix_power(Stwo,n),AU@np.linalg.matrix_power(Sj,n)@AU),'two-sided phase variant power similarity '+str(n))
+000142 | # Source U5 is the P2 degree phase exp(2pi i X/5), not the cycle above.
+000143 | X=np.diag([-2,-2,-2,3,3]).astype(np.int64)
+000144 | Xtwo=h.exterior_two_differential(X)
+000145 | require(all(int(q)%5==3 for q in np.diag(X)),'original U5 is scalar zeta5^3 on carrier V')
+000146 | require(all(int(q)%5==1 for q in np.diag(Xtwo)),'original U5 is scalar zeta5 on duads')
+000147 | require(not np.array_equal(cycle@X@cycle.T,X),'literal slot cycle moves original P2 charge mark')
+000148 | require(U[0,0]*U[9,9]!=U[pairs.index((0,3)),pairs.index((0,3))]*U[pairs.index((1,4)),pairs.index((1,4))],
+000149 |         'CC phaseflip violates exterior square phase relation and is not a carrier torus gauge')
+000150 | # Stronger source criterion: no SU5 covariance premise is required if a
+000151 | # positive TP Choi saturates its rank-five process witness. Positivity gives
+000152 | # support inside P5, so J=sum K_mn |C_m>><<C_n| with K positive. Its TP map
+000153 | # (actual Choi output partial trace) is tr(K)I-dGamma(K.T). The adjoint
+000154 | # effect T*(I) is its transpose, tr(K)I-dGamma(K). Both TP conditions are
+000155 | # equivalent, but we test the actual partial trace, including complex K.
+000156 | tp_columns=[]
+000157 | for m,n in it.product(range(5),repeat=2):
+000158 |  E=np.zeros((5,5),dtype=np.int64); E[m,n]=1
+000159 |  lhs=C[m].T@C[n]
+000160 |  rhs=(np.eye(10,dtype=np.int64) if m==n else np.zeros((10,10),dtype=np.int64))-h.exterior_two_differential(E.T)
+000161 |  require(np.array_equal(lhs,rhs),f'TP Choi coefficient A(E{m}{n})=trE I-dGamma(E.T)')
+000162 |  require(np.array_equal(ptout(np.outer(vs[m],vs[n])),lhs),f'actual Choi partial trace coefficient {m}{n}')
+000163 |  tp_columns.append(lhs.reshape(-1))
+000164 | tp_matrix=sp.Matrix(np.stack(tp_columns,axis=1))
+000165 | require(tp_matrix.rank()==25,'all 25 source Choi coefficients fixed injectively by trace preservation')
+000166 | target=sp.Matrix(np.eye(10,dtype=np.int64).reshape(-1))
+000167 | tp_solution=tp_matrix.gauss_jordan_solve(target)[0]
+000168 | expected=sp.Matrix((np.eye(5,dtype=np.int64).reshape(-1))).applyfunc(lambda x:x/3)
+000169 | require(tp_solution==expected,'unique supported TP Choi has K=I5/3 without covariance assumption')
+000170 | K2=2*np.eye(5,dtype=np.complex128);K2[0,1]=1j;K2[1,0]=-1j
+000171 | V=np.stack(vs,axis=1)
+000172 | partial=ptout(V@K2@V.T)
+000173 | direct=sum(K2[m,n]*(C[m].T@C[n]) for m in range(5) for n in range(5))
+000174 | require(np.array_equal(partial,direct),'complex Hermitian K Choi partial trace follows transposed convention')
+000175 | wrong=sum(K2[m,n]*(C[n].T@C[m]) for m in range(5) for n in range(5))
+000176 | require(not np.array_equal(partial,wrong),'complex K distinguishes Choi partial trace from adjoint TP effect transpose')
+000177 | # Word expansion is explicit finite rank-5 neutral pair projector, not asserted P1 image.
+000178 | result={
+000179 |  'scope':'Fixed H=Lambda2 C5, target dual10; exact representation/channel theorem, not original P1 source selection.',
+000180 |  'choi_projector_dimensions':D,'scaled_casimir_eigenvalues':[24,64,84],
+000181 |  'highest_weight_lines':len(N),'covariant_simplex_vertex_populations':transitions,
+000182 |  'rigidity':'SU5 conjugate covariance and Petersen support imply unique Phi, including all coherences.',
+000183 |  'weights_from_leakage':{str(k):str(v) for k,v in sol.items()},
+000184 |  'diamond_distance':'3 * intersecting_leakage + stay_leakage (within exact covariant simplex)',
+000185 |  'SM_plus_actual_wedge_fivecycle_generates_SU5':True,
+000186 |  'SM_alone_counterexample':{'U':'minus on CC, plus on CW and WW','choi_rank':5,'same_population':True,'P5_probability':str(prob),'wedge_cycle_covariance':False},
+000187 |  'mark_transport_does_not_select_channel':{'one_sided_family':True,'two_sided_family':True,'scope':'Full family covariance over Gr(3,5) is weaker than full covariance at one fixed mark.'},
+000188 |  'real_selfadjoint_isospectral_counterexample':{'Kraus':'U C_m U / sqrt(3), fixed real marked chart','P5_probability':str(prob_two),'same_full_spectrum_and_effects':True,'physical_dictionary_fixed':True},
+000189 |  'original_U5':{'carrier':'zeta5^3 I5','duads':'zeta5 I10','mixes_slots':False,'literal_cycle_moves_charge_mark':True},
+000190 |  'stronger_no_covariance_selection':{'criterion':'T CPTP and Tr(P5 J_T/10)=1','unique_channel':'Phi','TP_Choi_partial_trace_map':'K -> tr(K) I10 - dGamma(K.T)','TP_adjoint_effect_map':'K -> tr(K) I10 - dGamma(K)','coefficient_rank':25,'unique_K':'I5/3','physical_P1_process_saturation_proved':False},
+000191 |  'source_sha256':hashlib.sha256(PREV.read_bytes()).hexdigest(),
+000192 |  'checks':len(checks),'full_check_labels':checks}
+000193 | (HERE/'covariant-rigidity-results.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
+000194 | print(json.dumps({k:v for k,v in result.items() if k!='full_check_labels'},indent=2,ensure_ascii=False))

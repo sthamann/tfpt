@@ -1,0 +1,192 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/hodge_complement_20261028/E8-CLIFFORD-INDEPENDENT-REVIEW.txt
+Original file SHA-256: d5a6d94da6640c60c755c0a330f7962b27c1883686b7736c2577f78074877f6d
+Inclusive original lines: 1-184
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | UNABHAENGIGE PRUEFUNG DES E8 ZU CLIFFORD KANALS
+000002 | ================================================
+000003 | 
+000004 | 28. Oktober 2026
+000005 | 
+000006 | Urteil
+000007 | ------
+000008 | 
+000009 | Der neue algebraische Herkunftssatz ist korrekt. Im fest vorgegebenen
+000010 | D5 x A3 Rahmen transportiert der tatsaechliche E8 Chevalley Cocyklus die
+000011 | volle g2=(10,6) Wirkung auf g1=(16,4) nach g3=(bar16,bar4) in den
+000012 | Tensor CAR Kanal. Fuer die sechzig Wurzeloperatoren B_beta gilt exakt
+000013 | 
+000014 |     sum_beta B_beta^dagger B_beta = 15 I_64,
+000015 |     sum_beta B_beta B_beta^dagger = 15 I_64.
+000016 | 
+000017 | Damit sind K_beta=B_beta/sqrt(15) Krausoperatoren eines bistochastischen
+000018 | 64 zu 64 Kanals. In dem durch den Cocyklus Intertwiner transportierten
+000019 | Tensorchart faktorisiert er als
+000020 | 
+000021 |     E = Q_carrier tensor Q_family,
+000022 | 
+000023 |     Q_carrier(rho) = (1/5) sum_i
+000024 |         (a_i rho a_i^dagger + a_i^dagger rho a_i),
+000025 | 
+000026 |     Q_family(rho) = (1/3) sum_j
+000027 |         (b_j rho b_j^dagger + b_j^dagger rho b_j).
+000028 | 
+000029 | Das ist eine normierte inklusive Antwort der vorhandenen Stromalgebra. Es
+000030 | ist noch keine aus P1 hergeleitete Ereignisauswahl, Zeitentwicklung oder
+000031 | physische Familienauslese.
+000032 | 
+000033 | Eine Praezisierung ist tragend: Die Tensorfaktorisierung und jede partielle
+000034 | Spur beziehen sich auf den transportierten (16,4) Tensorchart. Die vom
+000035 | Checker gefundene diagonale Chevalley Phaseneichung ist in der rohen
+000036 | achtstelligen Bitbasis nicht selbst ein Produkt aus einer Carrier und einer
+000037 | Familienphase. Daher darf dort nicht ohne den Intertwiner die naive bitweise
+000038 | partielle Spur eingesetzt werden. Das ist kein Fehler der abstrakten
+000039 | Faktorisierung, sondern die genaue Stelle, an der der tatsaechliche Cocyklus
+000040 | zum Woerterbuch gehoert.
+000041 | 
+000042 | Dies wurde nicht nur an der ausgegebenen einzelnen Loesung abgelesen. Ein
+000043 | zusaetzlicher Loesungstest ueber F2 mit 32 Carrierphasen, 8 Familienphasen und 112
+000044 | weiterhin freien Wurzelphasen ist inkonsistent. Es existiert also innerhalb
+000045 | dieser diagonalen Ansatzklasse keine Produktphaseneichung, welche den
+000046 | Transport entbehrlich macht.
+000047 | 
+000048 | 1. Tatsaechliche Quelle und vollstaendige Phaseneichung
+000049 | -------------------------------------------------------
+000050 | 
+000051 | Der Checker laedt `_actual_current_source()` und damit die vorhandene v498
+000052 | Chevalley Algebra. Er vergleicht alle 112 D8 Wurzeloperatoren auf allen 128
+000053 | Halbwurzeln mit den geordneten achtmodigen CAR Bilinearen. Das sind 3584
+000054 | nichtverschwindende vorzeichenbehaftete Wirkungsgleichungen. Das lineare
+000055 | F2 System besitzt Rang 231 bei 240 Phasenvariablen und ist konsistent.
+000056 | 
+000057 | Die neun freien Koordinaten sind Eichfreiheit, keine freien Amplituden:
+000058 | Wurzelvorzeichen verschwinden einzeln in B rho B^dagger, und
+000059 | Gewichtsphasen sind ein unitaerer Basistransport. Der Kanal, sein Gain und
+000060 | seine Ladungen haengen nicht von einer Wahl in diesem Loesungsraum ab.
+000061 | 
+000062 | Entscheidend ist, dass nicht nur die sechzig g2 Spalten geprueft wurden.
+000063 | Fuer jeden D8 Wurzelgenerator E_beta gilt nach dem diagonalen
+000064 | Gewichtsintertwiner U und einem Wurzelbasiszeichen s_beta
+000065 | 
+000066 |     U rho_source(E_beta) U^-1 = s_beta rho_CAR(E_beta).
+000067 | 
+000068 | Die Quelloperatoren stammen aus einer Chevalley Darstellung. Deshalb folgen
+000069 | aus ihren Kommutatoren automatisch die Cartanoperatoren
+000070 | 
+000071 |     H_beta = [E_beta,E_-beta]
+000072 | 
+000073 | und alle Strukturkonstanten. Die Halbspin Darstellung von so(16) ist treu.
+000074 | Somit transportiert die Gleichung die ganze Liealgebrawirkung und nach
+000075 | Exponentiation die Wirkung der zusammenhaengenden einfach
+000076 | zusammenhaengenden Spin(16) Gruppe. Es wurde also nicht fuer jede Krausspalte
+000077 | eine voneinander unabhaengige physische Matchabbildung angepasst.
+000078 | 
+000079 | Der Satz bleibt auf diese D8 beziehungsweise Spin(16) Wirkung und den
+000080 | gegebenen D5 x A3 Rahmen beschraenkt. Er behauptet keine neue globale
+000081 | E8 Feldidentifikation.
+000082 | 
+000083 | 2. Gain und Normierung
+000084 | ----------------------
+000085 | 
+000086 | Eine g2 Wurzel hat genau eine Carrier Koordinate i aus fuenf und eine
+000087 | Familienkoordinate j aus drei, jeweils mit zwei Vorzeichen. Das gibt
+000088 | 
+000089 |     5 x 3 x 4 = 60
+000090 | 
+000091 | Wurzelrichtungen. Auf einem festen g1 Basiszustand ist fuer jedes Paar
+000092 | (i,j) genau eine der vier Erzeugungs beziehungsweise Vernichtungskombinationen
+000093 | nicht null. Jede nichtverschwindende Spalte hat Norm eins. Daher tragen
+000094 | genau 5 x 3 = 15 Operatoren bei und
+000095 | 
+000096 |     sum B_beta^dagger B_beta = 15 I_64.
+000097 | 
+000098 | Dieselbe Zaehhlung auf der Ausgangsbasis ergibt 15 I_64 auf g3. Der Checker
+000099 | verifiziert beide Aussagen fuer alle 64 Basisvektoren und vergleicht alle
+000100 | 960 nichtverschwindenden signierten Spalten mit den separaten Carrier und
+000101 | Familienleitern.
+000102 | 
+000103 | In der reellen Majoranabasis ist dieselbe normierte Familie
+000104 | 
+000105 |     Gamma_10 tensor Gamma_6 / sqrt(60).
+000106 | 
+000107 | In einer komplexen Keilbasis des Sechstraegers kann der Nenner sqrt(30)
+000108 | auftreten, weil dort die zwei reellen Majoranarichtungen zu einer komplexen
+000109 | Erzeugungs Vernichtungsrichtung zusammengefasst sind. Das ist ein
+000110 | Basiswechsel, kein anderer Gain.
+000111 | 
+000112 | 3. Ladungen und die 3/5 zu 2/5 Zerlegung
+000113 | ----------------------------------------
+000114 | 
+000115 | Der Checker vergleicht bei jeder der 960 nichtverschwindenden Spalten die
+000116 | vollstaendige achtkomponentige Zielmaske. Damit werden alle fuenf Carrier
+000117 | und alle drei Familien Cartanladungen transportiert, nicht nur Paritaet oder
+000118 | Dimension.
+000119 | 
+000120 | Auf einem Carrierzustand in Lambda^2 C^5 sind drei Modi unbesetzt und zwei
+000121 | besetzt. Der inklusive Kanal besitzt deshalb exakt
+000122 | 
+000123 |     Erzeugung Lambda^2 -> Lambda^3:  3/5,
+000124 |     Vernichtung Lambda^2 -> Lambda^1: 2/5.
+000125 | 
+000126 | Nach dem vorhandenen Komplementfold ist der erste Anteil die
+000127 | Petersenbewegung A/5. Der zweite Anteil bleibt ein fuenfdimensionaler Carry
+000128 | mit Gewicht 2/5. Er ist weder ein Stay Term noch ein Reset. Erst die
+000129 | Konditionierung auf den Erzeugungszweig und die Renormierung mit 5/3 ergibt
+000130 | den reinen Petersenkanal A/3.
+000131 | 
+000132 | 4. Familienreduktion fuer korrelierte Eingaben
+000133 | -----------------------------------------------
+000134 | 
+000135 | Die im Source Audit fuer Produktzustaende angegebene Reduktion gilt staerker
+000136 | fuer jeden, auch korrelierten Operator rho_CF im transportierten Tensorchart:
+000137 | 
+000138 |     Tr_F' [(Q_carrier tensor Q_family)(rho_CF)]
+000139 |         = Q_carrier(Tr_F rho_CF).
+000140 | 
+000141 | Der Beweis benutzt nur die Spurtreue des Familienkanals. Fuer jeden
+000142 | Carrier Testoperator X gilt
+000143 | 
+000144 |     Tr[(X tensor I)(Q_carrier tensor Q_family)(rho_CF)]
+000145 |       = Tr[(Q_carrier^dagger(X) tensor Q_family^dagger(I)) rho_CF]
+000146 |       = Tr[(Q_carrier^dagger(X) tensor I) rho_CF].
+000147 | 
+000148 | Da Q_family^dagger(I)=I, folgt die Identitaet ohne Produktannahme. Sie
+000149 | rechtfertigt die mathematische Reduktion eines bereits gegebenen
+000150 | gemeinsamen Zustands. Sie liefert selbst keine physische Vorschrift, den
+000151 | Familienausgang unbeobachtet zu lassen.
+000152 | 
+000153 | 5. Verbleibender Quellenpfeil
+000154 | -----------------------------
+000155 | 
+000156 | Nach dieser Pruefung gibt es im algebraischen Kanal keine freie
+000157 | Koeffizienten oder Phasenpassung mehr. Der D5 x A3 Rahmen, die tatsaechliche
+000158 | Chevalley Wirkung, die Killing orthogonale volle g2 Familie und der daraus
+000159 | bestimmte Tensorintertwiner legen die normierte inklusive Antwort fest.
+000160 | 
+000161 | Offen bleibt genau die operative Aussage, dass die P1/P2 Quelle diese volle
+000162 | g2 Familie als nicht beobachtetes Ereignisregister einsetzt und den
+000163 | transportierten Familienfaktor ausspurt. Fuer einen reinen Petersenprozess
+000164 | kommt zusaetzlich die Auswahl des Erzeugungszweigs hinzu. Keine der beiden
+000165 | Regeln folgt aus dem Lieprodukt allein.
+000166 | 
+000167 | Reproduktion
+000168 | ------------
+000169 | 
+000170 | Ausgefuehrt wurden
+000171 | 
+000172 |     python3 check_e8_clifford_response.py
+000173 |     python3 -OO check_e8_clifford_response.py
+000174 | 
+000175 | Beide Ausgaben waren bytegleich. SHA256:
+000176 | 
+000177 |     Checker: 75ce80dbec9d943573ba96e64eaf85088c0cbc47577673cbe99673ba34957aa9
+000178 |     JSON:    67fe9e3f06140c5c23452e9a7bfaefc02441ff1e7b55708e55409cd0a398e7ee
+000179 |     Output:  44831e465e3b5d2854a9a045b91785dd0759af38fdab6b06a956b019f3170ae2
+000180 | 
+000181 | Die Programmausgabe prueft die endlichen Wurzelaktionen, Gains, Zielmasken
+000182 | und Schalenwahrscheinlichkeiten. Der Gruppenabschluss, die korrelierte
+000183 | Partialspuridentitaet und die Chartpraezisierung oben sind analytische
+000184 | Folgerungen aus diesen Operatorgleichungen.

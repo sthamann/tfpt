@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/older-paper-source-recovery-20261025/ORIGINAL-CIRCLE-REVIEW.txt
+Original file SHA-256: b4519375a8e1ecfec4beb7ba10da90155c3f17a84bde5b48b1a3f5252341b69c
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | INDEPENDENT REVIEW: THE RECOVERED ORIGINAL CIRCLE OPERATOR
+000002 | ==========================================================
+000003 | 
+000004 | 25 October 2026. Read-only source review and exact analytic check. No Atlas,
+000005 | index, paper or original source was changed.
+000006 | 
+000007 | Verdict
+000008 | -------
+000009 | 
+000010 | The older fullv21 paper contains a concrete one-particle circle model, not
+000011 | only an abstract winding number. After one necessary orientation correction,
+000012 | it supplies an exact same-space pair
+000013 | 
+000014 |   B_alpha=-i partial_theta on D_alpha,
+000015 |   D_alpha={f in H1([0,2pi]):f(2pi)=exp(2pi i alpha)f(0)},
+000016 |   u=M_z,                         0<alpha<1,              (1)
+000017 | 
+000018 | with the strong Ward relation, Toeplitz index -1 and canonical line
+000019 | 
+000020 |   Pi_alpha=|psi_0><psi_0|,
+000021 |   psi_n(theta)=exp(i(n+alpha)theta).                     (2)
+000022 | 
+000023 | This closes the existence and internal compatibility of the one-particle
+000024 | circle/shift construction inside the older declared gluing model. It does not
+000025 | show that the later operational seed's B_Sigma and u_Sigma are this pair. The
+000026 | paper also does not select a fixed alpha, identify B_alpha with physical OS
+000027 | time, or identify (2) with the later electromagnetic transfer projector.
+000028 | 
+000029 | The quarter value alpha=1/4 follows only after the actual monodromy
+000030 | exp(2 pi i B)=i I is supplied. Winding one and spectral flow one do not choose
+000031 | that value.
+000032 | 
+000033 | 1. The necessary sign correction
+000034 | ---------------------------------
+000035 | 
+000036 | The older source prints
+000037 | 
+000038 |   D_Gamma=i partial_theta,
+000039 |   U_Gamma(theta)=exp(i theta),
+000040 |   lambda_n(phi)=n+phi/(2pi).                             (3)
+000041 | 
+000042 | The three formulas do not have a common sign. On the twisted domain with
+000043 | alpha=phi/(2pi),
+000044 | 
+000045 |   i partial_theta psi_n=-(n+alpha)psi_n.                 (4)
+000046 | 
+000047 | Thus the displayed positive spectrum in (3) belongs to
+000048 | 
+000049 |   B_alpha=-D_Gamma=-i partial_theta,                     (5)
+000050 | 
+000051 | or equivalently to the opposite orientation of the printed D_Gamma. This is
+000052 | not cosmetic: retaining i partial_theta reverses the Ward and spectral-flow
+000053 | signs.
+000054 | 
+000055 | The domain in (1) is self-adjoint. Multiplication by exp(-i alpha theta)
+000056 | maps it unitarily to periodic H1, under which B_alpha becomes
+000057 | -i partial_theta+alpha. Hence
+000058 | 
+000059 |   B_alpha psi_n=(n+alpha)psi_n,
+000060 |   sigma(B_alpha)={n+alpha:n in Z}.                       (6)
+000061 | 
+000062 | Multiplication by z=exp(i theta) preserves D_alpha and gives
+000063 | 
+000064 |   B_alpha u psi=u(B_alpha+1)psi,
+000065 |   exp(itB_alpha)u exp(-itB_alpha)=exp(it)u.              (7)
+000066 | 
+000067 | This is the exact one-particle Ward relation on a common invariant operator
+000068 | domain, rather than a match of dimensions or winding numbers.
+000069 | 
+000070 | 2. Toeplitz defect and the zero endpoint
+000071 | ---------------------------------------
+000072 | 
+000073 | For 0<alpha<1,
+000074 | 
+000075 |   P_+=1_(0,infinity)(B_alpha)
+000076 | 
+000077 | projects onto psi_n with n>=0. The compression P_+uP_+ is the unilateral
+000078 | shift psi_n -> psi_(n+1), so
+000079 | 
+000080 |   ind(P_+uP_+)=-1,
+000081 |   P_+-uP_+u*=|psi_0><psi_0|.                            (8)
+000082 | 
+000083 | Here the isometry is proved by (7); the rank-one conclusion is not inferred
+000084 | from the index alone.
+000085 | 
+000086 | At alpha=0, zero belongs to the spectrum and the invertible spectral theorem
+000087 | does not apply. Two common conventions select different defect lines:
+000088 | 
+000089 |   P_(>0):  span{psi_n:n>=1},  defect line span{psi_1};
+000090 |   P_(>=0): span{psi_n:n>=0},  defect line span{psi_0}.   (9)
+000091 | 
+000092 | The source's interpolation alpha in [0,1] therefore has noninvertible
+000093 | endpoints. Its phrase "exactly one eigenvalue crosses zero" needs an endpoint
+000094 | convention. A domain-safe version starts at any fixed 0<alpha<1 and uses
+000095 | 
+000096 |   B_t=B_alpha+t,       0<=t<=1,
+000097 |   B_1=u*B_alpha u.                                     (10)
+000098 | 
+000099 | Exactly psi_(-1) crosses upward at t=1-alpha, so
+000100 | 
+000101 |   SF(B_t)=+1,
+000102 |   ind(P_+uP_+)=-SF(B_t)=-1.                             (11)
+000103 | 
+000104 | Equivalently one may regularize the original endpoint path or state an APS
+000105 | half-endpoint convention. Without that convention the closed-interval wording
+000106 | in fullv21 is incomplete.
+000107 | 
+000108 | 3. What is genuinely recovered
+000109 | -------------------------------
+000110 | 
+000111 | The old source really supplies the following concrete data:
+000112 | 
+000113 |   * the Hilbert space L2(S1);
+000114 |   * the twisted self-adjoint domains D_alpha;
+000115 |   * the circle generator B_alpha after the sign correction;
+000116 |   * the multiplication operator M_z on the same space;
+000117 |   * the Ward relation (7), same-pair spectral flow (11), index and defect
+000118 |     projector (8).
+000119 | 
+000120 | Thus the missing one-particle operator construction was present as an
+000121 | explicit A3 circle ansatz. It was obscured by the sign mismatch and by later
+000122 | texts retaining only its abstract K1/spectral-flow summary.
+000123 | 
+000124 | What the old source does not prove is equally concrete. Its wording "take"
+000125 | and "modeled by" installs the circle and gluing function. It does not derive
+000126 | them from the later operational tuple, collar domain, reflection or full
+000127 | source functional. It also varies alpha through a loop but never declares
+000128 | which interior alpha is the physical seam sector. Therefore it proves a
+000129 | one-particle representative, not uniqueness or recovery of the original
+000130 | physical source.
+000131 | 
+000132 | 4. Quarter phase, electromagnetic transfer and OS time
+000133 | ------------------------------------------------------
+000134 | 
+000135 | On D_alpha,
+000136 | 
+000137 |   exp(2 pi i B_alpha)=exp(2 pi i alpha) I.               (12)
+000138 | 
+000139 | Hence an actual monodromy i selects alpha=1/4 and an actual monodromy -i
+000140 | selects alpha=3/4. Neither choice follows from U_Gamma=M_z, whose winding is
+000141 | one for every alpha, or from the index in (8).
+000142 | 
+000143 | At a fixed interior alpha, equation (8) supplies a canonical projector which
+000144 | could replace the later freely named
+000145 | 
+000146 |   U_Sigma^min=|psi_Sigma><psi_Sigma|.                    (13)
+000147 | 
+000148 | The existing papers do not make that identification. To recover the original
+000149 | electromagnetic transfer, they must state that its trace is taken on this same
+000150 | H, with psi_Sigma=psi_0 up to phase, and with the same chosen alpha and
+000151 | admissible restriction. The scalar equality det(1-q Pi)=1-q cannot supply
+000152 | those operator identifications.
+000153 | 
+000154 | Likewise B_alpha generates rotations of the installed seam circle. Nothing
+000155 | in the cited fullv21 passage proves that it is the reconstructed positive OS
+000156 | time generator, the later collar B_Sigma, or the time acting on the full
+000157 | graded source. Those remain separate source maps.
+000158 | 
+000159 | 5. U_Gamma squared and operator typing
+000160 | --------------------------------------
+000161 | 
+000162 | The appendix states both
+000163 | 
+000164 |   U_Gamma^2=I,
+000165 |   U_Gamma(theta)=exp(i theta).                           (14)
+000166 | 
+000167 | If both symbols mean multiplication on L2(S1), (14) is false because
+000168 | 
+000169 |   M_z^2=M_(z^2) !=I.                                    (15)
+000170 | 
+000171 | This need not invalidate the winding-one gluing model. It shows that two
+000172 | operator types were written with one symbol. A genuine two-sheet involution
+000173 | can be built from the clutching map as
+000174 | 
+000175 |   R=[[0,M_z*],[M_z,0]],          R^2=I,                  (16)
+000176 | 
+000177 | and a multiplication-plus-reflection operator can also square to I. Neither
+000178 | construction is defined in the cited appendix, so it cannot be silently
+000179 | identified with its U_Gamma. The source must distinguish the winding-one
+000180 | clutching map M_z from the Z2 sheet-exchange involution.
+000181 | 
+000182 | 6. The Toeplitz line is not always the gap line
+000183 | ------------------------------------------------
+000184 | 
+000185 | For every 0<alpha<1, the positive-band defect in (8) is span{psi_0}. The
+000186 | smallest positive eigenvalue of |B_alpha| instead selects
+000187 | 
+000188 |   span{psi_0},    0<alpha<1/2;
+000189 |   span{psi_(-1)}, 1/2<alpha<1,                            (17)
+000190 | 
+000191 | and is twofold degenerate at alpha=1/2. In particular,
+000192 | 
+000193 |   alpha=1/4:  Pi_alpha=P_gap=|psi_0><psi_0|;
+000194 |   alpha=3/4:  Pi_alpha=|psi_0><psi_0|,
+000195 |               P_gap=|psi_(-1)><psi_(-1)|.                (18)
+000196 | 
+000197 | Thus a later rule based on lambda_min^+(|B|) is not generally the same as the
+000198 | Toeplitz defect projector. Their equality at the quarter phase is a useful
+000199 | compatibility check after alpha=1/4 has been independently established; it is
+000200 | not a derivation of that quarter phase.

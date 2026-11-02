@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/older-paper-source-recovery-20261025/ORIGINAL-CIRCLE-REVIEW.txt
+Original file SHA-256: b4519375a8e1ecfec4beb7ba10da90155c3f17a84bde5b48b1a3f5252341b69c
+Inclusive original lines: 201-400
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 | 
+000202 | 7. Decision-relevant result
+000203 | ---------------------------
+000204 | 
+000205 | PROVED: fullv21 already contains a concrete circle representative which,
+000206 | after B=-D_Gamma, realizes the exact one-particle Ward relation, spectral flow
+000207 | +1, Toeplitz index -1 and a canonical seam line for each fixed 0<alpha<1.
+000208 | 
+000209 | NOT PROVED THERE: selection of alpha=1/4, equality with the later original
+000210 | B_Sigma/u_Sigma pair, equality with the electromagnetic projector, physical
+000211 | OS time, full CAR/source reconstruction, or spacetime localization.
+000212 | 
+000213 | FIRST REQUIRED REPAIR: state the operator types and orientation explicitly,
+000214 | choose or derive the actual twisted sector, and give the map from this older
+000215 | circle pair to the later operational boundary pair. Without that map the old
+000216 | construction is a concrete representative, not the recovered physical seed.
+000217 | 
+000218 | Sources reviewed
+000219 | ----------------
+000220 | 
+000221 | 1. documents/archive--paper-latex--tfpt-theory-fullv21/sections/
+000222 |    001-section-introduction-the-problem-of-parameters.tex:220--251.
+000223 | 
+000224 | 2. documents/archive--paper-latex--tfpt-theory-fullv21/sections/
+000225 |    007-subsection-m-obius-matching-and-the-minimal-gluing-class.tex:1--23.
+000226 | 
+000227 | 3. documents/archive--tfpt-45--source_extracts--03_em_flavor_source/sections/
+000228 |    001-section-kernel-numerics-and-electromagnetic-closure.tex:9--45,94--122.
+000229 | 
+000230 | 4. experiments/theory-contracts/primitive-seam-operator-reconstruction-20261025/
+000231 |    SPECTRAL-SEAM-RECONSTRUCTION.txt.
+000232 | 
+000233 | 
+000234 | INDEPENDENT IR CHECK: FULL HEAT TRANSFER TO THE RANK-ONE FACTOR
+000235 | ================================================================
+000236 | 
+000237 | Additional verdict
+000238 | ------------------
+000239 | 
+000240 | On either already chosen quarter circle, the later rank-one determinant is a
+000241 | controlled ground-mode infrared limit of the full circle heat transfer. It is
+000242 | not the exact Fredholm determinant at finite heat time.
+000243 | 
+000244 | This result introduces no new geometry or auxiliary source. It uses only the
+000245 | circle operator B_alpha already reviewed above. It still does not identify
+000246 | that circle Hilbert space with Ran(P_adm), the circle heat parameter with the
+000247 | electromagnetic response variable, or |B_alpha| evolution with charged CAR or
+000248 | physical OS time.
+000249 | 
+000250 | 8. Exact heat spectrum and trace-norm limit
+000251 | ------------------------------------------
+000252 | 
+000253 | For alpha=1/4 and alpha=3/4, the eigenvalues of |B_alpha| are simple and,
+000254 | listed increasingly, are
+000255 | 
+000256 |   lambda_m=(2m+1)/4,             m=0,1,2,... .           (19)
+000257 | 
+000258 | The ground vector is psi_0 for alpha=1/4 and psi_(-1) for alpha=3/4. Let
+000259 | 
+000260 |   P_gap=1_{1/4}(|B_alpha|),
+000261 |   T_t=exp(-t|B_alpha|),                 t>0,
+000262 |   R_t=exp(t/4)T_t,
+000263 |   r=exp(-t/2).                                           (20)
+000264 | 
+000265 | In the increasing-|B| eigenbasis, R_t has the exact eigenvalues
+000266 | 
+000267 |   1,r,r^2,r^3,... .                                     (21)
+000268 | 
+000269 | It follows immediately that
+000270 | 
+000271 |   ||R_t-P_gap||_1=sum_(m>=1) r^m=r/(1-r),               (22)
+000272 | 
+000273 | and therefore R_t converges to P_gap in trace norm as t tends to infinity.
+000274 | The corresponding operator-norm error is r. This proves more than a weak or
+000275 | matrix-element ground-state approximation.
+000276 | 
+000277 | The same heat spectrum occurs for alpha=1/4 and 3/4. Thus the positive heat
+000278 | transfer alone cannot distinguish monodromy i from -i; that orientation is
+000279 | lost when B is replaced by |B|.
+000280 | 
+000281 | 9. Fredholm determinant and explicit logarithmic error
+000282 | ------------------------------------------------------
+000283 | 
+000284 | For every complex Q with |Q|<1, R_t is trace class and
+000285 | 
+000286 |   det(I-Q R_t)=product_(m>=0)(1-Q r^m)
+000287 |        ->1-Q                                                (23)
+000288 | 
+000289 | as t tends to infinity. For real 0<=Q<1 the error has the fixed sign and the
+000290 | exact elementary bound
+000291 | 
+000292 |   |log det(I-Q R_t)-log(1-Q)|
+000293 |     =sum_(m>=1) -log(1-Q r^m)
+000294 |     <=sum_(m>=1) Q r^m/(1-Q r)
+000295 |     =Q r/[(1-r)(1-Q r)].                                (24)
+000296 | 
+000297 | The first inequality uses -log(1-x)<=x/(1-x) and
+000298 | 1-Qr^m>=1-Qr. Hence the rank-one logarithm is uniformly controlled away from
+000299 | Q=1, rather than being inferred only from the leading eigenvalue.
+000300 | 
+000301 | For the unnormalized heat transfer set
+000302 | 
+000303 |   q=exp(-t/4),             r=q^2.
+000304 | 
+000305 | Then T_t=q R_t and its exact full determinant is
+000306 | 
+000307 |   D(q):=det(I-T_t)
+000308 |        =product_(m>=0)(1-q^(2m+1)).                     (25)
+000309 | 
+000310 | The rank-one truncation keeps only the m=0 factor 1-q. Every finite t has
+000311 | q>0 and all higher factors are nontrivial, so D(q) is never exactly 1-q.
+000312 | 
+000313 | 10. Exact infrared series and the first correction
+000314 | --------------------------------------------------
+000315 | 
+000316 | Let b=5/4 and form the full heat expression
+000317 | 
+000318 |   Phi_heat(q)=q D(q)^(-b).                              (26)
+000319 | 
+000320 | Its rank-one infrared truncation is
+000321 | 
+000322 |   Phi_1(q)=q(1-q)^(-b).                                (27)
+000323 | 
+000324 | Since the first omitted heat factor is (1-q^3), their difference begins at
+000325 | order q^4:
+000326 | 
+000327 |   Phi_heat(q)
+000328 |     =q+(5/4)q^2+(45/32)q^3+(355/128)q^4+O(q^5),
+000329 | 
+000330 |   Phi_1(q)
+000331 |     =q+(5/4)q^2+(45/32)q^3+(195/128)q^4+O(q^5),
+000332 | 
+000333 |   Phi_heat(q)-Phi_1(q)=(5/4)q^4+O(q^5).                 (28)
+000334 | 
+000335 | The agreement through q^3 and the first positive correction are therefore
+000336 | structural consequences of the odd-quarter heat spectrum, not a numerical
+000337 | fit.
+000338 | 
+000339 | There is also an exact all-order recurrence. Write
+000340 | 
+000341 |   D(q)^(-b)=sum_(n>=0) t_n q^n,          t_0=1,
+000342 | 
+000343 | and define
+000344 | 
+000345 |   sigma_odd(k)=sum_{d divides k, d odd} d.
+000346 | 
+000347 | Logarithmic differentiation of (25) gives
+000348 | 
+000349 |   q d/dq log D(q)^(-b)
+000350 |     =b sum_(k>=1) sigma_odd(k) q^k.
+000351 | 
+000352 | Equating coefficients yields
+000353 | 
+000354 |   n t_n=b sum_(k=1)^n sigma_odd(k)t_(n-k).               (29)
+000355 | 
+000356 | Equation (29) reproduces exactly
+000357 | 
+000358 |   t_0=1,  t_1=5/4,  t_2=45/32,  t_3=355/128.
+000359 | 
+000360 | 11. Exact scope of the positive historical connection
+000361 | ------------------------------------------------------
+000362 | 
+000363 | PROVED MATHEMATICALLY ON THE ORIGINAL CIRCLE CHOICE:
+000364 | 
+000365 |   * the full positive heat transfer has the complete determinant (25);
+000366 |   * its ground-energy-normalized operator converges in trace norm to the
+000367 |     canonical P_gap with the exact error (22);
+000368 |   * the Fredholm determinant converges to the rank-one factor with (24);
+000369 |   * the full finite-time correction to the scalar series is (28), with all
+000370 |     coefficients fixed by (29).
+000371 | 
+000372 | FIRST ADDITIONAL PHYSICAL IDENTIFICATION:
+000373 | 
+000374 | To call this the original admissible electromagnetic transfer, one must give
+000375 | an isometry from this quarter-circle sector into Ran(P_adm) which intertwines
+000376 | |B_alpha|, P_gap and the trace used in the EM determinant. No such
+000377 | intertwiner is supplied by the circle heat calculation. After that, one must
+000378 | also identify the heat weight
+000379 | 
+000380 |   q_heat=exp(-t/4)
+000381 | 
+000382 | with the separately defined EM response variable
+000383 | 
+000384 |   q_EM=delta_top exp(-2 alpha_EM).                       (30)
+000385 | 
+000386 | The equality in (30), the exponent b=5/4 and its physical normalization are
+000387 | not consequences of the heat spectrum.
+000388 | 
+000389 | Finally, exp(-t|B|) is a positive Euclidean heat evolution. It is not the
+000390 | oriented unitary evolution generated by B, and it does not by itself provide
+000391 | charged CAR time, the full OS source, an E8 field identification or infrared
+000392 | physics. The positive result is exactly a controlled ground-mode completion
+000393 | of the old heat determinant inside the already chosen circle model.
+000394 | 
+000395 | Additional historical source for this appendix
+000396 | ----------------------------------------------
+000397 | 
+000398 | 5. documents/archive--paper-latex--tfpt-31/sections/
+000399 |    014-section-downstream-cosmology-module-on-the-observation-c.tex:4--24,
+000400 |    57--68, where the positive heat transfer is first written. The equality of

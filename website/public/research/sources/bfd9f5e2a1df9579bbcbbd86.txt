@@ -1,0 +1,175 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/geometric_sector_response/check_geometric_sector_response.py
+Original file SHA-256: a0a151e05bff917c1ea2c971e24d2b6f00b304e5b43502267200833ca3bc49f8
+Inclusive original lines: 1-167
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Source-derived geometric response of the retained canonical seam defect.
+000002 | 
+000003 | Reuse the actual Dirac family, old sea and its zero-branch particle. The
+000004 | relative rank-one covariance is transported on the same history as the sea.
+000005 | This is not an identification with the primitive action or its P1 sectors.
+000006 | """
+000007 | from pathlib import Path
+000008 | import json
+000009 | import numpy as np
+000010 | import sympy as sp
+000011 | from source_geometric_machine import dirac_block,old_covariance,profile_values,require
+000012 | 
+000013 | HERE=Path(__file__).resolve().parent
+000014 | 
+000015 | 
+000016 | def exact_identities():
+000017 |     e,k=sp.symbols('e k',positive=True)
+000018 |     a2=e*e-k*k
+000019 |     minus=(2*k*k+a2/2-(2*k**3+sp.Rational(3,2)*k*a2)/e)/8
+000020 |     wm=(e-k)**3/(16*e);wp=(e+k)**3/(16*e)
+000021 |     require(sp.simplify(minus-wm)==0,'negative spectral weight')
+000022 |     require(sp.simplify(wm+wp-k*k/2-a2/8)==0,'full spectral weight')
+000023 |     require(sp.simplify(2*(wp*(k-e)+wm*(k+e))+k*a2/2)==0,'initial causal slope')
+000024 |     require(sp.simplify(wm/(e+k)**2-a2**3/(16*e*(e+k)**5))==0,'occupation coefficient')
+000025 |     return {'weights_exact':True,'initial_slope':'chi_hg_prime(0)=-k <h_prime g_prime>',
+000026 |             'negative_weight':'(E-k)^3/(16 E)','positive_weight':'(E+k)^3/(16 E)'}
+000027 | 
+000028 | 
+000029 | def geometric_matrix(modes,w,weights,epsilon,k,order):
+000030 |     nmax=len(modes)//2
+000031 |     h,_=profile_values(w,'collar_bump')
+000032 |     indices=np.arange(-2*nmax,2*nmax+1)
+000033 |     moments=np.cos(np.pi*indices[:,None]*w)@(weights*((-h)**order)*np.exp(-epsilon*h))
+000034 |     return (k+.5j*np.pi*(modes[:,None]-modes[None,:]))*moments[(modes[:,None]+modes[None,:])+2*nmax]
+000035 | 
+000036 | 
+000037 | def source_run(nmax,epsilon,k,times):
+000038 |     modes,d,w,weights=dirac_block(nmax,epsilon,k)
+000039 |     dp=geometric_matrix(modes,w,weights,epsilon,k,1)
+000040 |     lam,v=np.linalg.eigh(d)
+000041 |     states=v@(np.exp(-1j*lam[:,None]*times)*v[nmax,:].conj()[:,None])
+000042 |     force=np.sum(states.conj()*(dp@states),axis=0).real
+000043 |     c0=old_covariance(modes,k)
+000044 |     test_vectors=v@(np.exp(1j*lam[:,None]*times)*v[nmax,:].conj()[:,None])
+000045 |     occupation=np.sum(test_vectors.conj()*(c0@test_vectors),axis=0).real
+000046 |     return force,occupation
+000047 | 
+000048 | 
+000049 | def spectral_response(coefficients,k,times):
+000050 |     m=np.arange(1,len(coefficients)+1);a=np.pi*m;e=np.sqrt(k*k+a*a)
+000051 |     # Stable forms avoid subtracting E-k and 1-cos near zero.
+000052 |     dm=a*a/(e+k);dp=e+k
+000053 |     wm=dm**3/(16*e);wp=dp**3/(16*e)
+000054 |     chi=2*np.sum(coefficients[:,None]**2*(wp[:,None]*np.sin(-dm[:,None]*times)
+000055 |                                          +wm[:,None]*np.sin(dp[:,None]*times)),axis=0)
+000056 |     step=4*np.sum(coefficients[:,None]**2*(-wp[:,None]*np.sin(dm[:,None]*times/2)**2/dm[:,None]
+000057 |                                            +wm[:,None]*np.sin(dp[:,None]*times/2)**2/dp[:,None]),axis=0)
+000058 |     occupation=4*np.sum((coefficients**2*wm/(e+k)**2)[:,None]
+000059 |                          *np.sin((e+k)[:,None]*times/2)**2,axis=0)
+000060 |     return chi,step,occupation
+000061 | 
+000062 | 
+000063 | def pulse_run(nmax,epsilon,k):
+000064 |     """50 deformed and 50 undeformed steps; same final geometry as control."""
+000065 |     modes,d,w,weights=dirac_block(nmax,epsilon,k)
+000066 |     _,d0,_,_=dirac_block(nmax,0,k)
+000067 |     v0=geometric_matrix(modes,w,weights,0,k,1)
+000068 |     lam,q=np.linalg.eigh(d);lam0,q0=np.linalg.eigh(d0)
+000069 |     state=q@(np.exp(-1j*lam*.5)*q[nmax,:].conj())
+000070 |     state=q0@(np.exp(-1j*lam0*.5)*(q0.conj().T@state))
+000071 |     up=(q*np.exp(-1j*lam*.01))@q.conj().T
+000072 |     u0=(q0*np.exp(-1j*lam0*.01))@q0.conj().T
+000073 |     recursive=np.eye(len(modes),dtype=complex)[:,nmax]
+000074 |     for _ in range(50):recursive=up@recursive
+000075 |     for _ in range(50):recursive=u0@recursive
+000076 |     error=float(np.linalg.norm(recursive-state))
+000077 |     require(error<1e-10,'pulse recursion versus full piecewise evolution')
+000078 |     evolution=((q0*np.exp(-1j*lam0*.5))@q0.conj().T)@((q*np.exp(-1j*lam*.5))@q.conj().T)
+000079 |     p=evolution@old_covariance(modes,k)@evolution.conj().T
+000080 |     pi=state[:,None]@state.conj()[None,:]
+000081 |     z=1/3;identity=np.eye(len(modes))
+000082 |     ratio=np.linalg.solve((identity-z*p).T,(identity-z*(p+pi)).T).T
+000083 |     ratio_error=float(np.max(abs(ratio-(identity-z*pi))))
+000084 |     det_phase,det_log=np.linalg.slogdet(ratio)
+000085 |     determinant=det_phase*np.exp(det_log)
+000086 |     require(ratio_error<1e-10 and abs(determinant-(1-z))<1e-10,'transported actual rank-one index factor')
+000087 |     return float(np.real(state.conj()@v0@state)),error,dict(z=z,determinant_real=float(determinant.real),
+000088 |               determinant_imaginary=float(determinant.imag),ratio_identity_error=ratio_error)
+000089 | 
+000090 | 
+000091 | def main():
+000092 |     nmax=64;k=np.pi/2;times=np.linspace(0,4,401)
+000093 |     modes,d0,w,weights=dirac_block(nmax,0,k)
+000094 |     h,_=profile_values(w,'collar_bump')
+000095 |     hcoeff=2*np.cos(np.pi*np.arange(1,nmax+1)[:,None]*w)@(weights*h)
+000096 |     chi,step,occupation_coefficient=spectral_response(hcoeff,k,times)
+000097 |     contact=float(k*(weights@(h*h)))
+000098 |     baseline=float(-k*(weights@h))
+000099 |     predicted=contact+step
+000100 |     # Independent direct commutator in the actual finite original source.
+000101 |     v0=geometric_matrix(modes,w,weights,0,k,1)
+000102 |     lam,q=np.linalg.eigh(d0);initial=np.eye(len(modes),dtype=complex)[:,nmax]
+000103 |     differences=[]
+000104 |     for t in [.05,.2,1.,2.,4.]:
+000105 |         u=(q*np.exp(1j*lam*t))@q.conj().T
+000106 |         vt=u@v0@u.conj().T
+000107 |         value=float(np.real(-1j*(initial.conj()@(vt@v0-v0@vt)@initial)))
+000108 |         target=float(spectral_response(hcoeff,k,np.array([t]))[0][0])
+000109 |         differences.append(abs(value-target))
+000110 |     require(max(differences)<1e-9,'direct source commutator versus spectral causal response')
+000111 |     tests=[]
+000112 |     final_central=None;previous_central=None
+000113 |     for epsilon in [.02,.01,.005,.0025,.00125]:
+000114 |         fp,op=source_run(nmax,epsilon,k,times)
+000115 |         fm,om=source_run(nmax,-epsilon,k,times)
+000116 |         central=(fp-fm)/(2*epsilon)
+000117 |         occ=(op+om)/(2*epsilon**2)
+000118 |         tests.append(dict(epsilon=epsilon,max_force_derivative_error=float(np.max(abs(central-predicted))),
+000119 |                           max_occupation_coefficient_error=float(np.max(abs(occ-occupation_coefficient))),
+000120 |                           force_derivative_at_t1=float(central[100])))
+000121 |         previous_central=final_central
+000122 |         final_central=central
+000123 |     require(tests[-1]['max_force_derivative_error']<tests[0]['max_force_derivative_error']/10,
+000124 |             'direct full family must converge to the derived response')
+000125 |     require(tests[-1]['max_occupation_coefficient_error']<tests[0]['max_occupation_coefficient_error']/10,
+000126 |             'direct occupation must converge to its source coefficient')
+000127 |     extrapolated=(4*final_central-previous_central)/3
+000128 |     extrapolation_error=float(np.max(abs(extrapolated-predicted)))
+000129 |     require(extrapolation_error<tests[-1]['max_force_derivative_error']/100,
+000130 |             'independent full family extrapolation')
+000131 |     require(np.max(abs(final_central-step))>.3,'omitted geometric contact control')
+000132 |     pulse_plus,pulse_error,pulse_index=pulse_run(nmax,.01,k)
+000133 |     pulse_minus,_,_=pulse_run(nmax,-.01,k)
+000134 |     pulse_zero,_,_=pulse_run(nmax,0,k)
+000135 |     pulse_prediction=float(np.diff(spectral_response(hcoeff,k,np.array([.5,1.]))[1])[0])
+000136 |     pulse_central=(pulse_plus-pulse_minus)/.02
+000137 |     require(abs(pulse_central-pulse_prediction)<1e-4,'same final geometry, retarded pulse response')
+000138 |     require(abs(pulse_plus-pulse_zero)>.003,'past pulse must remain visible after geometry return')
+000139 |     # The computed second covariance response is trace class on the old circle:
+000140 |     # d_n=sgn(k_n)*4 sum h_m^2 A_m sin^2((E+|k_n|)t/2),
+000141 |     # |d_n| <= S6/(128 |k_n|^6), S6=sum h_m^2(pi m)^6 finite for smooth h.
+000142 |     # This is a response/tangent statement, not an unproved all-epsilon theorem.
+000143 |     result=dict(scope='Given Pin Dirac family, same initial sea and its zero-mode particle; relative response only, no primitive source identification',
+000144 |                 exact=exact_identities(),baseline_geometry_response=baseline,contact=contact,
+000145 |                 retarded_response_at_t1=float(step[100]),complete_derivative_at_t1=float(predicted[100]),
+000146 |                 original_sea_occupation_coefficient_at_t1=float(occupation_coefficient[100]),
+000147 |                 direct_commutator_max_error=max(differences),direct_family_tests=tests,
+000148 |                 direct_family_extrapolation_error=extrapolation_error,
+000149 |                 omitted_contact_control_error=float(np.max(abs(extrapolated-step))),
+000150 |                 pulse=dict(epsilon=.01,pulse_duration=.5,measurement_time=1.,steps=100,
+000151 |                            final_operator='Exactly D0 for pulse and no-pulse histories',
+000152 |                            unperturbed_relative_response=pulse_zero,past_positive_pulse_response=pulse_plus,
+000153 |                            past_negative_pulse_response=pulse_minus,
+000154 |                            predicted_first_derivative=pulse_prediction,direct_first_derivative=pulse_central,
+000155 |                            recurrence_error=pulse_error,actual_index_factor_check=pulse_index),
+000156 |                 index_functional='On the actual same-history pair P_t=U C0 U*, Q_t=P_t+U Pi U*, the exact relative operator is I-z U Pi U* and its determinant is1-z; no C_t-C0 trace-class assumption is needed',
+000157 |                 geometric_weight='Q_full=e^(-2alpha)R(g,alpha); at fixed alpha, delta log Q_full=delta log R. The original q_min=delta_top e^(-2alpha) equals this only under its retained residual normalization contract',
+000158 |                 circle_second_response_bound='|d_n(t)| <= [sum h_m^2(pi m)^6]/[128 |k_n|^6]',
+000159 |                 infinite_cutoff_scope='Second response summability proved; no all-epsilon trace-class or higher local-field regularity claim',
+000160 |                 times=times.tolist(),causal_kernel=chi.tolist(),step_response=step.tolist(),
+000161 |                 total_first_derivative=predicted.tolist(),direct_small_epsilon_derivative=final_central.tolist(),
+000162 |                 physical_gates_closed=[],complete_TFPT_solution=False)
+000163 |     (HERE/'runs/geometric_sector_response.json').write_text(json.dumps(result,indent=2)+'\n')
+000164 |     print(json.dumps({key:val for key,val in result.items() if key not in ['times','causal_kernel','step_response','total_first_derivative','direct_small_epsilon_derivative']},indent=2))
+000165 | 
+000166 | 
+000167 | if __name__=='__main__':main()

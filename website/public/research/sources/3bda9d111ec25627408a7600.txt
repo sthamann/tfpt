@@ -1,0 +1,63 @@
+TFPT scientific source excerpt
+Original repository path: experiments/lean4-carrier-rigidity/TfptCarrier/CarrierRankUniqueness.lean
+Original file SHA-256: b872e8ced3fc07b2e0af4a0acd7e107f4792a4a8006ed34a74f455f566de735b
+Inclusive original lines: 32-86
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000032 | 
+000033 | namespace TFPT.Carrier.CarrierRankUniqueness
+000034 | 
+000035 | /--
+000036 | **Growth lemma.** For `g ≥ 6` the quadratic carrier count is strictly
+000037 | below the half-spinor exhaustion `2^g`. Proved by induction from `g = 6`:
+000038 | the right side doubles each step while the left side grows only
+000039 | quadratically (`n ≤ n²` carries the step).
+000040 | -/
+000041 | theorem pascal_growth : ∀ g : ℕ, 6 ≤ g → g ^ 2 + g + 2 < 2 ^ g := by
+000042 |   intro g hg
+000043 |   induction g, hg using Nat.le_induction with
+000044 |   | base => decide
+000045 |   | succ n hn ih =>
+000046 |       have hnn : n ≤ n ^ 2 := by nlinarith [hn]
+000047 |       have hexp : (n + 1) ^ 2 + (n + 1) + 2 = (n ^ 2 + n + 2) + (2 * n + 2) := by ring
+000048 |       have hpow : 2 ^ (n + 1) = 2 * 2 ^ n := by rw [pow_succ]; ring
+000049 |       calc (n + 1) ^ 2 + (n + 1) + 2
+000050 |           = (n ^ 2 + n + 2) + (2 * n + 2) := hexp
+000051 |         _ ≤ 2 * (n ^ 2 + n + 2) := by omega
+000052 |         _ < 2 * 2 ^ n := by omega
+000053 |         _ = 2 ^ (n + 1) := hpow.symm
+000054 | 
+000055 | /--
+000056 | **Theorem A (lattice core).** The carrier-rank Pascal condition
+000057 | `2^g = g^2 + g + 2` has the \emph{unique} solution `g = 5`.
+000058 | -/
+000059 | theorem carrier_rank_pascal_unique (g : ℕ) :
+000060 |     2 ^ g = g ^ 2 + g + 2 ↔ g = 5 := by
+000061 |   constructor
+000062 |   · intro h
+000063 |     by_contra hne
+000064 |     rcases Nat.lt_or_ge g 6 with hlt | hge
+000065 |     · interval_cases g
+000066 |       all_goals first | exact absurd h (by decide) | exact hne rfl
+000067 |     · have hgrow := pascal_growth g hge
+000068 |       omega
+000069 |   · intro h; subst h; decide
+000070 | 
+000071 | /--
+000072 | **Carrier corollary.** `g_car = 5` is the unique carrier rank, and it is a
+000073 | genuine solution.
+000074 | -/
+000075 | theorem g_car_unique : (∃! g : ℕ, 2 ^ g = g ^ 2 + g + 2) := by
+000076 |   refine ⟨5, by decide, ?_⟩
+000077 |   intro g hg
+000078 |   exact (carrier_rank_pascal_unique g).mp hg
+000079 | 
+000080 | /--
+000081 | **Closure integers.** From `g_car = 5` the family count and the `E₈` rank
+000082 | follow by computation: `N_fam = (2^(g-1) - 1)/g = 3` and
+000083 | `g_car + N_fam = rank E₈ = 8`.
+000084 | -/
+000085 | theorem carrier_closure_integers :
+000086 |     (2 ^ (5 - 1) - 1) / 5 = 3 ∧ 5 + 3 = 8 := by decide

@@ -1,0 +1,104 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/native-source-reconstruction-20261014/PROOF.md
+Original file SHA-256: d16b6af2c90491ac94eeb4ab04a8c96b072d37bb6bc5015b3db85c023f8a96e2
+Inclusive original lines: 7-102
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000007 | ## 1. Source, assumptions, and prior results
+000008 | 
+000009 | [OMITTED: non-scientific conversation or execution metadata]
+000010 | 
+000011 |     H0 = l2(C0) tensor L2(R^N).
+000012 | 
+000013 | [OMITTED: non-scientific conversation or execution metadata]
+000014 | 
+000015 |     e(n)=n^T G n/2,
+000016 |     D(n)=sum_x e(n_x)/N + nu sum_edges e(n_x-n_y),
+000017 |     A(n)=-Delta_a + m^2 I + 2u diag(e(n_x)),
+000018 |     K=sum_x pi_x^2/2,
+000019 |     V(n,phi)=D(n)+phi^T A(n)phi/2.
+000020 | 
+000021 | The native two-site unitaries are W_xy,p=T_y,p T_x,p*, p in the eight integral basis directions. Their phases are retained. The hopping term is
+000022 | 
+000023 |     Hhop=J sum_(positive edges,p)(2I-W_xy,p-W_xy,p*) >= 0.
+000024 | 
+000025 | It is bounded at fixed N, with norm <=96JN. The constant 48JN is retained. There is no conversion of eight lattice coordinates into eight particle species or spacetime dimensions.
+000026 | 
+000027 | [OMITTED: non-scientific conversation or execution metadata]
+000028 | 
+000029 |     Q_delta = e^(-delta V/2) e^(-delta (K+Hhop)) e^(-delta V/2), delta>0.
+000030 | 
+000031 | [OMITTED: non-scientific conversation or execution metadata]
+000032 | 
+000033 | The earlier `charged-cocycle-lift` already establishes the minimal onsite sign quotient L/2L and its 16-dimensional irreducible representation; the four-bit Gaussian compiler quotient is not a quotient of the complete charged sign algebra. The older `source-continuous-marked-time-search-20260922` already excludes every homogeneous GKLS logarithm of the marked M4 channel and its positive integer powers. Our previous 14 October rank argument is an alternative scoped proof, not the first project proof of that broader exclusion.
+000034 | 
+000035 | ## 2. The existing source has a common self-adjoint Hamiltonian
+000036 | 
+000037 | At each charge configuration, A(n)>=m^2 I and the scalar operator is a finite-dimensional confining oscillator. Define the direct sum
+000038 | 
+000039 |     Hdiag = direct_sum_n [K + phi^T A(n)phi/2 + D(n)].
+000040 | 
+000041 | This is positive self-adjoint. Finite charge support tensored with scalar Schwartz functions is a core. The original full operator
+000042 | 
+000043 |     H = Hdiag + Hhop
+000044 | 
+000045 | is positive self-adjoint on Dom(Hdiag), by bounded self-adjoint perturbation. The same core applies. Equivalently it is the densely defined positive form sum of V and K+Hhop. No new oscillator, pulse, bath supply, coupling or reset is introduced in this step.
+000046 | 
+000047 | G is positive definite and D(n)>=||n||^2/(62N), while every oscillator frequency is at least m. Thus Hdiag has compact resolvent. Hhop preserves compact resolvent. At every prescribed beta>0 the thermal state exists, with
+000048 | 
+000049 |     0 < Z(beta)=Tr exp(-beta H)
+000050 |       <= Tr exp(-beta Hdiag)
+000051 |       <= Theta(beta) [2 sinh(beta m/2)]^(-N) < infinity,
+000052 | 
+000053 | where Theta(beta)=sum_(n in C0)exp(-beta D(n)). The middle inequality is an eigenvalue/min-max trace bound, not an invalid assertion that the exponential is operator monotone. Consequently
+000054 | 
+000055 |     rho_beta = exp(-beta H)/Z(beta)
+000056 | 
+000057 | is faithful, invariant under U(t)=exp(-itH), and a Gibbs/KMS state for the same H. This is a thermal family conditional on beta; it is not a proof that the physical source chooses beta or a unique pure ground state. Frustrated cocycle signs are not bypassed by a Perron–Frobenius assumption.
+000058 | 
+000059 | ## 3. Reconstruct time from the actual transfer
+000060 | 
+000061 | ### 3.1 A fixed regulator
+000062 | 
+000063 | All three positive factors in Q_delta are injective contractions: their spectral functions e^(-delta x) are positive at every finite x. For any psi !=0, e^(-delta V/2)psi !=0 and the quadratic form against e^(-delta(K+Hhop)) is strictly positive. Hence ker Q_delta=0. Its spectrum may approach zero; no bounded inverse is assumed.
+000064 | 
+000065 | Functional calculus defines the densely defined positive self-adjoint operator
+000066 | 
+000067 |     H_delta = -log(Q_delta)/delta,
+000068 |     U_delta(t) = exp(-it H_delta) = Q_delta^(it/delta).
+000069 | 
+000070 | The domain consists of vectors with square-integrable log(lambda)/delta in their Q_delta spectral measure. This is an all-real-time unitary group of the *specified regulated operator*, not a logarithm of a reduced quantum channel. If beta=T delta with integer T>=1, its thermal density is precisely
+000071 | 
+000072 |     rho_(beta,delta)=Q_delta^T / Tr(Q_delta^T).
+000073 | 
+000074 | Thus the original Euclidean partition state and this regulated time are generated by the same operator. At fixed delta one must not silently replace H_delta by H.
+000075 | 
+000076 | ### 3.2 Remove only the temporal regulator
+000077 | 
+000078 | Put S_delta=(I-Q_delta)/delta. It is bounded positive self-adjoint for each delta. On the common finite-charge/Schwartz core,
+000079 | 
+000080 |     S_delta psi -> (V+K+Hhop)psi=H psi.
+000081 | 
+000082 | This follows by telescoping the three semigroup factors and applying their strong derivatives to core vectors. The standard common-core convergence theorem for self-adjoint operators yields S_delta -> H in strong resolvent sense.
+000083 | 
+000084 | The logarithmic generator has the same limit. For z>0, put x=delta h>=0 and b=delta z. Spectral calculus gives
+000085 | 
+000086 |     0 <= (S_delta+z)^(-1) - (H_delta+z)^(-1) <= delta I.
+000087 | 
+000088 | Indeed the scalar difference is
+000089 | 
+000090 |     delta [1/(1-exp(-x)+b) - 1/(x+b)].
+000091 | 
+000092 | It is nonnegative and bounded by delta: adding b only reduces the difference, and
+000093 | 
+000094 |     0 <= 1/(1-exp(-x)) - 1/x <= 1
+000095 | 
+000096 | for x>0, using exp(x)>=1+x. The expression at x=0 is interpreted by continuity with b>0. Therefore H_delta -> H in strong resolvent sense. Self-adjoint functional calculus then gives
+000097 | 
+000098 |     U_delta(t)psi -> exp(-itH)psi
+000099 | 
+000100 | strongly, uniformly for t in each compact real interval.
+000101 | 
+000102 | This closes the mathematical transfer-to-real-time connection for the original declared source at fixed finite spatial volume. It is not a spatial continuum limit, Lorentz theorem, selection of the primitive source, or a uniform efficient numerical error bound. No operator-norm convergence or trace-norm convergence of rho_(beta,delta) is inferred solely from strong resolvent convergence.

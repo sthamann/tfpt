@@ -1,0 +1,56 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/check_distinct_quarter_lifts.py
+Original file SHA-256: a815efb60b4853b362b24244365269894d66c89fc3d11d46e94af5edaf58e94e
+Inclusive original lines: 1-48
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Distinguish the old scalar-square theta lift from the new F20 lift."""
+000002 | from pathlib import Path
+000003 | import hashlib
+000004 | import json
+000005 | import sympy as s
+000006 | 
+000007 | [OMITTED: non-scientific conversation or execution metadata]
+000008 | old = repo/'experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/MARKED-Q-DIVISOR-CENTRAL-TWIST.txt'
+000009 | pin = 'da1f75831a46a0c0662f931486b77e6e2085126df452b009d1a90351d413d904'
+000010 | checks = []
+000011 | 
+000012 | 
+000013 | def need(value, label):
+000014 |     if not bool(value):
+000015 |         raise RuntimeError(label)
+000016 |     checks.append(label)
+000017 | 
+000018 | 
+000019 | need(hashlib.sha256(old.read_bytes()).hexdigest() == pin, 'old marked theta source unchanged')
+000020 | I = s.I
+000021 | S = s.diag(1,I)
+000022 | Y = s.Matrix([[0,-I],[I,0]])
+000023 | Z = s.diag(1,-1)
+000024 | cx = s.Matrix([[1,0,0,0],[0,1,0,0],[0,0,0,1],[0,0,1,0]])
+000025 | G = s.kronecker_product(Y,Z)*cx*s.kronecker_product(s.eye(2),S)*s.kronecker_product(S,s.eye(2))
+000026 | z8 = (1+I)/s.sqrt(2)
+000027 | Ghat = s.simplify(G/z8)
+000028 | need(G**4 == s.eye(4), 'native F20 G fourth power')
+000029 | need(G**2 != s.eye(4) and G**2 != -s.eye(4), 'native F20 G has nonscalar square')
+000030 | need(s.trace(G**2) == 0, 'native F20 square trace zero')
+000031 | need(s.simplify(Ghat**2 + I*G**2) == s.zeros(4), 'symplectic lift square minus i times G square')
+000032 | need(s.simplify(Ghat**4 + s.eye(4)) == s.zeros(4), 'both lifts can share fourth power minus I')
+000033 | need(s.simplify(Ghat**2 - I*s.eye(4)) != s.zeros(4), 'symplectic F20 lift not the old theta scalar-square lift')
+000034 | result = {
+000035 |     'checks':checks,
+000036 |     'checks_pass':True,
+000037 |     'old_theta_relation_source':str(old.relative_to(repo)),
+000038 |     'old_theta_relation_sha256':pin,
+000039 |     'old_theta_relation':'alpha^2=+i I4; projective order2',
+000040 |     'new_f20_relation':'Ghat^2=-i G^2 nonscalar; projective order4',
+000041 |     'trace_of_new_square':'0',
+000042 |     'trace_of_old_square':'4i',
+000043 |     'verdict':'NO_CONJUGACY_EVEN_UP_TO_CENTRAL_PHASE_BETWEEN_THE_TWO_LIFTS',
+000044 |     'scope':'The scalar mu8 resource is shared. These distinct group operations are not identified by equal order8 and fourth power minusI. This does not contradict either separate source construction or the native F20 representation bridge.'
+000045 | }
+000046 | text=json.dumps(result,ensure_ascii=False,indent=2,sort_keys=True)+'\n'
+000047 | Path(__file__).with_name('distinct-quarter-lifts-results.json').write_text(text)
+000048 | print(text,end='')

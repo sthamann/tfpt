@@ -1,0 +1,44 @@
+TFPT scientific source excerpt
+Original repository path: verification/v983_simple_current_generator.py
+Original file SHA-256: 769a9c5cb5e6518d8d2a445d347150f5ce0d1410c95db263ca2db72466e176c8
+Inclusive original lines: 60-95
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000060 | OMEGA_S = [sp.Rational(1, 2)] * 5
+000061 | OMEGA_F = [sp.Rational(3, 4), sp.Rational(-1, 4),
+000062 |            sp.Rational(-1, 4), sp.Rational(-1, 4)]
+000063 | LAM = OMEGA_S + OMEGA_F
+000064 | 
+000065 | 
+000066 | def in_D5(x):
+000067 |     return all(v.is_integer for v in x) and sum(x) % 2 == 0
+000068 | 
+000069 | 
+000070 | def in_A3(y):
+000071 |     return all(v.is_integer for v in y) and sum(y) == 0
+000072 | 
+000073 | 
+000074 | def in_L0(z):
+000075 |     return in_D5(z[:5]) and in_A3(z[5:])
+000076 | 
+000077 | 
+000078 | def coset_roots(k):
+000079 |     """number of norm-2 vectors in L0 + k*lambda (exact rational count),
+000080 |     combining D5-part and A3-part norm multisets."""
+000081 |     t = [k * v for v in LAM]
+000082 |     d5 = {}
+000083 |     for x in itertools.product(range(-5, 4), repeat=5):
+000084 |         if sum(x) % 2 != 0:
+000085 |             continue
+000086 |         n = sum((x[i] + t[i]) ** 2 for i in range(5))
+000087 |         if n <= 2:
+000088 |             d5[n] = d5.get(n, 0) + 1
+000089 |     a3 = {}
+000090 |     for y in itertools.product(range(-6, 7), repeat=3):
+000091 |         y4 = list(y) + [-sum(y)]
+000092 |         n = sum((y4[i] + t[5 + i]) ** 2 for i in range(4))
+000093 |         if n <= 2:
+000094 |             a3[n] = a3.get(n, 0) + 1
+000095 |     return sum(c * a3.get(2 - n, 0) for n, c in d5.items())

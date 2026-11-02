@@ -1,0 +1,24 @@
+TFPT scientific source excerpt
+Original repository path: verification/v519_woit_theta_rp_free.py
+Original file SHA-256: e86e3a055b58051c7978d8f10ee527948bac758fd4665ac216e18a71cc8c1ee9
+Inclusive original lines: 769-784
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000769 | def theta_mono(mono, r, s, eta):
+000770 |     """theta(g_{i1}...g_{ik}) = eta^k * s_{ik}...s_{i1} g_{r(ik)}...g_{r(i1)}
+000771 |     sorted back to increasing order; returns (coeff, tuple)."""
+000772 |     imgs = [r(a) for a in reversed(mono)]
+000773 |     coeff = eta ** len(mono)
+000774 |     for a in mono:
+000775 |         coeff *= s(a)
+000776 |     lst = list(imgs)
+000777 |     sign = 1
+000778 |     for i in range(len(lst)):
+000779 |         for j in range(len(lst) - 1 - i):
+000780 |             if lst[j] > lst[j + 1]:
+000781 |                 lst[j], lst[j + 1] = lst[j + 1], lst[j]
+000782 |                 sign = -sign
+000783 |     assert len(set(lst)) == len(lst)
+000784 |     return coeff * sign, tuple(lst)

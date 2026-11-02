@@ -1,0 +1,73 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/check_c4_triangle_source.py
+Original file SHA-256: edc60a3c3c556f7a0079eaec11858075e251998e8ad853a79ae956bb9c415375
+Inclusive original lines: 181-245
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000181 | pairs = [(c, m) for c in cycles4 for m in cycles3
+000182 |          if cycle_type(compose(m, c)) == (1, 1, 2)]
+000183 | first = pairs[0]
+000184 | orbit = {
+000185 |     (compose(compose(k, first[0]), inverse(k)),
+000186 |      compose(compose(k, first[1]), inverse(k)))
+000187 |     for k in permutations
+000188 | }
+000189 | require("unique marked 4 3 2 Nielsen orbit", len(pairs) == 24 and set(pairs) == orbit)
+000190 | 
+000191 | 
+000192 | # Actual degree-four source coordinate for the spherical finite quotient.
+000193 | J_actual = 1 - z**-4
+000194 | require("actual map is C4 invariant", clean_matrix(sp.Matrix([[J_actual.subs(z, I*z)-J_actual]])) == sp.zeros(1, 1))
+000195 | require("actual map is not D4 invariant", sp.simplify(J_actual.subs(z, 1/z)-J_actual) != 0)
+000196 | require("actual map labels",
+000197 |         sp.simplify(z**4*(J_actual-1)) == -1
+000198 |         and sp.limit(J_actual, z, sp.oo) == 1
+000199 |         and all(sp.simplify(J_actual.subs(z, I**k)) == 0 for k in range(4)))
+000200 | 
+000201 | 
+000202 | # Concise exact replay of the already proved absence of a rational inversion
+000203 | # lift.  Pole analysis in D4-CONNECTION-LIFT.txt proves this nine-parameter
+000204 | # polynomial is exhaustive; here we certify that its coefficient system has
+000205 | # full rank.
+000206 | names = sp.symbols("a b c d e f g h j")
+000207 | a, b, c, d, e, f, g, h, j = names
+000208 | G = sp.Matrix([
+000209 |     [a*z**2, b*z+c*z**2, d*z+e*z**2],
+000210 |     [0, f*z, g*z],
+000211 |     [0, h*z, j*z],
+000212 | ])
+000213 | inversion_equation = clean_matrix(sp.diff(G, z) - A*G - z**-2*G*A.subs(z, 1/z))
+000214 | numerators = []
+000215 | for entry in inversion_equation:
+000216 |     numerator, _ = sp.together(entry).as_numer_denom()
+000217 |     polynomial = sp.Poly(sp.expand(numerator), z)
+000218 |     numerators.extend(polynomial.all_coeffs())
+000219 | linear_matrix, linear_rhs = sp.linear_eq_to_matrix(numerators, names)
+000220 | require("old rational inversion obstruction has rank nine",
+000221 |         linear_rhs == sp.zeros(linear_rhs.rows, 1) and linear_matrix.rank() == 9)
+000222 | 
+000223 | 
+000224 | result = {
+000225 |     "verdict": "PASS_EXACT_REUSED_SOURCE",
+000226 |     "exact_checks": len(checks),
+000227 |     "checks": checks,
+000228 |     "B0": str(B0.tolist()),
+000229 |     "B1": str(B1.tolist()),
+000230 |     "Binf": str(Binf.tolist()),
+000231 |     "residue_characteristic_polynomials": [str(char0), str(char1), str(charinf)],
+000232 |     "extended_orbifold_group_order": len(extended),
+000233 |     "ordinary_four_puncture_group_order": len(ordinary),
+000234 |     "actual_source_map": "1 - z**(-4)",
+000235 |     "recovered_source": {
+000236 |         "id": "paper-source:10bdafe2930b29584f91db06",
+000237 |         "sha256": "574058876ebe23d693a9fce061f68da6fdec63419af78243ac9d457d7858f74b",
+000238 |         "lines": "203-327",
+000239 |     },
+000240 |     "analytic_scope": (
+000241 |         "The report proves regular-singular reduction, triangle-group "
+000242 |         "faithfulness, and exact marked conjugacy."
+000243 |     ),
+000244 | }
+000245 | print(json.dumps(result, indent=2, sort_keys=True))

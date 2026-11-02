@@ -1,0 +1,98 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/bracket_process_origin_20261028/process/OPERATOR-VALUED-BRANCH-RIGIDITY.txt
+Original file SHA-256: c81495ad22225fe5e4701d4edfa0f876089d222d79750f2765809e76c0951dd6
+Inclusive original lines: 1-90
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | OPERATORWERTIGE RIGIDITAET DES MARKIERTEN ERZEUGUNGSASTS
+000002 | =======================================================
+000003 | 
+000004 | 28. Oktober 2026
+000005 | 
+000006 | Dieser kurze Beweis wendet den bereits vorhandenen TP Eindeutigkeitssatz
+000007 | auf den kleineren Ward Dreissiger an. Er setzt keine neue Symmetrie,
+000008 | gleichgewichtete Krauszerlegung oder unkorrelierte Familie voraus.
+000009 | 
+000010 | Sei C_m: Lambda2 C5 -> Lambda2(C5)*, m=1,...,5, der bereits signiert
+000011 | verifizierte Hodge Intertwiner. Es gelten
+000012 | 
+000013 |   sum_m C_m^dagger C_m = 3 I10,
+000014 | 
+000015 | und die 25 Matrizen C_m^dagger C_n sind linear unabhaengig.
+000016 | Der alte SINGLE-PROCESS-WARD-CRITERION.txt beweist beide Aussagen, sein
+000017 | Checker prueft die Injektivitaet exakt. Keine neue Zahlensuche ist noetig.
+000018 | 
+000019 | Betrachte nun eine tatsaechliche CP Quellenkomponente mit Krausoperatoren
+000020 | 
+000021 |   L_r = sum_m C_m tensor F_rm
+000022 | 
+000023 | zwischen den gemeinsamen Carrier und Familienraeumen. Die Familienraeume
+000024 | duerfen beliebige endliche Dimension haben. Fuer den Ward Dreissiger sind
+000025 | sie 4 und bar4; F_rm darf innerhalb des gegebenen Familien Cliffordspans
+000026 | liegen. Die folgende Aussage verlangt nicht einmal diese letzte
+000027 | Einschraenkung, sondern nur den bezeichneten Carrier Kraussupport.
+000028 | 
+000029 | Angenommen, ihr Effekt ist ein vorgegebenes Skalarvielfaches des Einers:
+000030 | 
+000031 |   sum_r L_r^dagger L_r = p I10 tensor I_F,  p>0.          (1)
+000032 | 
+000033 | Definiere die operatorwertige Grammatrix
+000034 | 
+000035 |   G_mn = sum_r F_rm^dagger F_rn.
+000036 | 
+000037 | Dann lautet (1)
+000038 | 
+000039 |   sum_mn C_m^dagger C_n tensor G_mn = p I10 tensor I_F.
+000040 | 
+000041 | Wegen der linearen Unabhaengigkeit der 25 Carriermatrizen und der bekannten
+000042 | Darstellung I10=(1/3)sum_m C_m^dagger C_m folgt koeffizientenweise
+000043 | 
+000044 |   G_mn = (p/3) delta_mn I_F.                            (2)
+000045 | 
+000046 | Fuer jede Carrierobservable A ist damit die adjungierte Antwort
+000047 | 
+000048 |   E^*(A tensor I_Fout)
+000049 |     = sum_mn C_m^dagger A C_n tensor G_mn
+000050 |     = p Phi^*(A) tensor I_Fin,
+000051 | 
+000052 |   Phi(rho)=(1/3)sum_m C_m rho C_m^dagger.
+000053 | 
+000054 | Durch Dualitaet folgt fuer jeden gemeinsamen Eingang, einschliesslich
+000055 | beliebiger Carrier Familien Verschraenkung,
+000056 | 
+000057 |   Tr_Fout E(rho_CF) = p Phi(Tr_Fin rho_CF).              (3)
+000058 | 
+000059 | Die normierte Antwort E/p ist deshalb CPTP und besitzt exakt dieselbe
+000060 | Carriermarginale Phi. Fuer einen ganzen spurtreuen Kanal ist p=1.
+000061 | Fuer den Erzeugungsast des alten normierten sechziger Prozesses ist
+000062 | p=3/5. Seine direkte dreissiger Normierung 1/9 und die bedingte
+000063 | sechziger Normierung (5/3)(1/15) stimmen exakt ueberein.
+000064 | 
+000065 | Das ist keine neue behauptete P1 Auswahlregel. Es entfernt eine zu starke
+000066 | Forderung an deren Herleitung: Die Quelle braucht weder alle dreissig
+000067 | Richtungen gleich zu gewichten noch eine spezielle Krausbasis oder eine
+000068 | volle physische SU5 Kovarianz. Fuer ihre sektoraufgeloeste Antwort genuegen
+000069 | der tatsaechliche bezeichnete Support und der skalare Effekt (1). Ein
+000070 | einzelner Wardstrom ist rangdefizient und erfuellt (1) nicht automatisch.
+000071 | Die Existenz der Felder oder eines Zustandsprojektors ersetzt (1) ebenfalls
+000072 | nicht. Die konkrete lokale P1 Feldkarte und ihr wirklicher Prozess bleiben
+000073 | am Original nachzuweisen.
+000074 | 
+000075 | Quellen:
+000076 | 
+000077 |   experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/
+000078 |   admissible_pair_20261028/single_ward_refinement/
+000079 |   SINGLE-PROCESS-WARD-CRITERION.txt
+000080 |   SHA256 4af9dd295fae970d03e90c224183d7ea635cc6e02f1c46587418e41eefa87a36
+000081 | 
+000082 |   gleicher Vertrag, source_sewing_20261028/current/
+000083 |   CARRIER-MARGINAL-RIGIDITY.txt
+000084 | 
+000085 |   ../closure/WARD-U5-CREATION-CHANNEL.txt
+000086 |   STATE-INDEPENDENT-CREATION-BRANCH.txt
+000087 | 
+000088 | Dies ist eine analytische operatorwertige Kurzform des bestehenden
+000089 | Marginalsatzes, angewandt auf den nun kleineren Quellenzweig. Kein neuer
+000090 | numerischer Rangtest und kein genetischer Fit werden dafuer vorausgesetzt.

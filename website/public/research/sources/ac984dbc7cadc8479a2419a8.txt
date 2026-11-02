@@ -1,0 +1,149 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_w8_source_twopoint.py
+Original file SHA-256: b70b38c25833490a15c2847a3612fa31c08e855f147f66418107976860c92851
+Inclusive original lines: 216-356
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000216 | 
+000217 | 
+000218 | def reconstruct_pole_coefficients(level_norms):
+000219 |     """Solve a_l=sum_(r<=l) binom(l+r-1,2r-1) A_r."""
+000220 |     coefficients = [level_norms[0]]
+000221 |     for level in range(1, MAX_LEVEL + 1):
+000222 |         remainder = level_norms[level]
+000223 |         for r in range(1, level):
+000224 |             remainder -= comb(level + r - 1, 2 * r - 1) * coefficients[r]
+000225 |         coefficients.append(remainder)
+000226 |     return coefficients
+000227 | 
+000228 | 
+000229 | def standard_root_action_check(fold, d_quarters):
+000230 |     reversal = s.zeros(8)
+000231 |     for j in range(8):
+000232 |         reversal[7 - j, j] = 1
+000233 |     action = s.simplify(-fold * reversal * fold.inv())
+000234 |     roots = set(standard_roots())
+000235 |     need(s.simplify(action.T * action) == s.eye(8), "quarter transport is not orthogonal")
+000236 |     need({tuple(action * s.Matrix(root)) for root in roots} == roots,
+000237 |          "quarter transport does not preserve the actual E8 roots")
+000238 |     need(s.simplify(action * s.Matrix(d_quarters["1/4"]) - s.Matrix(d_quarters["3/4"])) == s.zeros(8, 1),
+000239 |          "quarter transport does not map the two actual source charges")
+000240 |     return action
+000241 | 
+000242 | 
+000243 | def main():
+000244 |     h, variables, state, completion = build_state()
+000245 |     old = load_old_source()
+000246 |     lattice, orthogonal, _positive, fold = old.original_transport()
+000247 | 
+000248 |     # The W8 polynomial above uses canonical standard E8 coordinates.  The
+000249 |     # old root chart is O*(old physical root), while the source charge is M*delta.
+000250 |     roots = set(standard_roots())
+000251 |     chart_roots = {
+000252 |         tuple(s.simplify(value) for value in orthogonal * (s.Matrix(root) / s.sqrt(2)))
+000253 |         for root in lattice["roots"]
+000254 |     }
+000255 |     need(chart_roots == roots, "old O chart does not reach the canonical root set")
+000256 | 
+000257 |     d_quarters = {}
+000258 |     preliminary = {}
+000259 |     for alpha in (s.Rational(1, 4), s.Rational(3, 4)):
+000260 |         label = str(alpha)
+000261 |         delta = s.Matrix([(j + alpha) / 8 - s.Rational(1, 2) for j in range(8)])
+000262 |         d = tuple(s.Rational(value) for value in fold * delta)
+000263 |         d_quarters[label] = d
+000264 |         onepoint, vector, norm, ward = level_one_test(h, state, d)
+000265 |         expected_onepoint = s.Rational(
+000266 |             completion["original_quarter_source_cases"][label]["W8_onepoint_times_z8"]
+000267 |         )
+000268 |         need(onepoint == expected_onepoint, "old W8 one-point coefficient changed")
+000269 |         preliminary[label] = {
+000270 |             "d_standard": [str(value) for value in d],
+000271 |             "d_squared": str(s.factor(sum(value * value for value in d))),
+000272 |             "onepoint": str(onepoint),
+000273 |             "level_1_vector": [str(value) for value in vector],
+000274 |             "d_dot_level_1": str(ward),
+000275 |             "level_1_norm_squared": str(norm),
+000276 |             "cauchy_lower_bound": str(s.factor(64 * onepoint**2 / sum(value * value for value in d))),
+000277 |             "level_1_excess_over_cauchy_bound": str(s.factor(
+000278 |                 norm - 64 * onepoint**2 / sum(value * value for value in d)
+000279 |             )),
+000280 |         }
+000281 | 
+000282 |     action = standard_root_action_check(fold, d_quarters)
+000283 |     level_one_left = s.Matrix([s.Rational(value) for value in preliminary["1/4"]["level_1_vector"]])
+000284 |     level_one_right = s.Matrix([s.Rational(value) for value in preliminary["3/4"]["level_1_vector"]])
+000285 |     need(s.simplify(action * level_one_left - level_one_right) == s.zeros(8, 1),
+000286 |          "level-one vectors do not obey the actual quarter Weyl transport")
+000287 | 
+000288 |     cases = {}
+000289 |     for label, d in d_quarters.items():
+000290 |         levels = shifted_levels(state, d)
+000291 |         level_norms = [fock_norm(level) for level in levels]
+000292 |         pole_coefficients = reconstruct_pole_coefficients(level_norms)
+000293 |         need(level_norms[0] == as_fraction(s.Rational(preliminary[label]["onepoint"]))**2,
+000294 |              "level-zero norm is not the one-point square")
+000295 |         need(level_norms[1] == as_fraction(s.Rational(preliminary[label]["level_1_norm_squared"])),
+000296 |              "sparse level-one result differs from the Ward precheck")
+000297 |         need(pole_coefficients[8] == as_fraction(s.Rational(completion["norm_squared"])),
+000298 |              "leading collision coefficient is not the W8 vacuum norm")
+000299 |         # Independent stress-tensor Ward check.  For weight8 and c=8,
+000300 |         # the T coefficient in W8 W8 is (2*8/8)*||W8||^2=2||W8||^2.
+000301 |         # With <T(z)>=h_d/z^2 this fixes A7=2*h_d*||W8||^2.
+000302 |         h_d = sum(value*value for value in d)/2
+000303 |         stress_expected = as_fraction(2*h_d*s.Rational(completion["norm_squared"]))
+000304 |         need(pole_coefficients[7] == stress_expected,
+000305 |              "next collision coefficient fails the independent stress Ward identity")
+000306 |         need(all(value >= 0 for value in level_norms), "a shifted Fock norm is negative")
+000307 |         cases[label] = {
+000308 |             **preliminary[label],
+000309 |             "level_support_sizes": [len(level) for level in levels],
+000310 |             "level_norms": [rational_text(value) for value in level_norms],
+000311 |             "pole_basis_coefficients": [rational_text(value) for value in pole_coefficients],
+000312 |             "independent_stress_Ward_A7": rational_text(stress_expected),
+000313 |         }
+000314 | 
+000315 |     need(cases["1/4"]["level_norms"] == cases["3/4"]["level_norms"],
+000316 |          "Weyl-related quarters have different level norms")
+000317 |     need(cases["1/4"]["pole_basis_coefficients"] == cases["3/4"]["pole_basis_coefficients"],
+000318 |          "Weyl-related quarters have different separated two-point functions")
+000319 | 
+000320 |     output = {
+000321 |         "claim": "MATH.ORIGINAL-SEAM.W8-SOURCE-TWOPOINT.01",
+000322 |         "status": "PASS_EXACT_IN_EXISTING_SHIFTED_CURRENT_SOURCE",
+000323 |         "radial_variable": "q_rad=w/z=exp(-tau), |q_rad|<1",
+000324 |         "radial_generator": "N=Lhat_0-85/256=(Lcal_0^alpha-1/32)/8=K_alpha on the folded neutral sector",
+000325 |         "original_grading": "H0=Lcal_0^alpha-1/32=8*K_alpha=8*N; h_j(-r) has N-level r and original H0-grade 8r",
+000326 |         "time_scope": "tau is quotient radial-cylinder separation; this algebraic conversion does not supply an absolute physical-time calibration",
+000327 |         "pole_variable": "X=q_rad/(1-q_rad)^2",
+000328 |         "formula": "z^8 w^8 <W8(z)W8(w)>_d=sum_(r=0)^8 A_r X^r",
+000329 |         "connected_formula": "subtract A_0=<W8>_d^2",
+000330 |         "reconstruction": "a_l=||v_l||^2=sum_(r=1)^l binom(l+r-1,2r-1)A_r for l>0",
+000331 |         "completeness_reason": "bosonic exchange gives F(q)=F(1/q); after z^8w^8 the only finite pole is q=1 of order at most 16, so F is a degree-at-most-8 polynomial in X",
+000332 |         "root_chart": "old O maps all 240 old physical roots to the canonical standard E8 roots",
+000333 |         "quarter_relation": {
+000334 |             "description": "d_3/4=g d_1/4 with g=-M R M^-1 preserving the actual 240-root set",
+000335 |             "matrix": [[str(action[i, j]) for j in range(8)] for i in range(8)],
+000336 |         },
+000337 |         "vacuum_control": {
+000338 |             "d": "0",
+000339 |             "a_0": "0",
+000340 |             "a_1": "0",
+000341 |             "first_possible_level": 8,
+000342 |             "level_8_norm_squared": completion["norm_squared"],
+000343 |         },
+000344 |         "cases": cases,
+000345 |         "not_claimed": [
+000346 |             "a new state, coupling, direction, or source model",
+000347 |             "an identification of the two complete CAR modules",
+000348 |             "a physical measurement or preparation",
+000349 |             "a full P1 source derivation",
+000350 |         ],
+000351 |     }
+000352 |     print(json.dumps(output, indent=2) + "\n", end="")
+000353 | 
+000354 | 
+000355 | if __name__ == "__main__":
+000356 |     main()

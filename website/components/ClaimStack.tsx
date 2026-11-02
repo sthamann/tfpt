@@ -68,7 +68,7 @@ const LAYERS: Layer[] = [
     kicker: "Numerical fixed points",
     title: "α⁻¹, sin²θ₁₂, sin²θ₁₃, β_rad",
     items: [
-      "α⁻¹ = 137.0359992 — unique cubic root, 1.9σ from CODATA-2022",
+      "α⁻¹ = 137.0359992 — unique positive root of the self-consistent closure, 1.9σ from CODATA-2022",
       "sin²θ₁₂ = 1/3 − φ₀/2 = 0.3067 — frozen JUNO prediction",
       "β_rad = φ₀/(4π) = 0.2424° — within 0.4σ of ACT DR6",
       "sin²θ₁₃ = 0.0231 — the honest stress: ~2.0σ from current global fits, the largest single pull (named and tracked)",

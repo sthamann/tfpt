@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/atlas-defect-synthesis-20261024/DOILY-QUARTIC.txt
+Original file SHA-256: 666355194ef46ca3e8768dcb05a6c4158c7f3f9d2a5f64aa10e5eaa94dc6c853
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | DOILY QUARTIC BRIDGE
+000002 | ====================
+000003 | 
+000004 | Statement
+000005 | ---------
+000006 | 
+000007 | Let L be the Construction A E8 lattice used by the original compiler and let
+000008 | J be its fixed integral complex structure.  Put
+000009 | 
+000010 |     A = L/(1-J)L.
+000011 | 
+000012 | The Bakalov Kac commutator form makes A a four dimensional symplectic F2
+000013 | space.  Its fifteen nonzero vectors and fifteen isotropic planes form the
+000014 | doily W(3,2).  Let B be the 15 by 15 point line incidence matrix.
+000015 | 
+000016 | The original native quartic five is G31 equivariantly isomorphic to the
+000017 | point side kernel ker(B^T).  This kernel is the centered permutation module
+000018 | on the six ovoids.  It is not the centered module on the six spreads, and no
+000019 | sign twist of either module works.
+000020 | 
+000021 | This is an exact finite representation theorem.  It does not identify the
+000022 | native four with the J twisted ground space, does not identify conformal
+000023 | states, and does not identify this five with a P2 or D5 carrier by dimension.
+000024 | 
+000025 | Exact construction
+000026 | ------------------
+000027 | 
+000028 | The checker imports only the tracked constructors
+000029 | 
+000030 |     tfpt_explorer/process.py
+000031 |     tfpt_explorer/twisted_source.py
+000032 | 
+000033 | and reconstructs every further object.
+000034 | 
+000035 | The deterministic Darboux order is (e1,f1,e2,f2).  The JSON certificate lists
+000036 | all fifteen points, all fifteen lines, all six ovoids, all six spreads, the
+000037 | five quartic word supports, and every one of the sixty roots and action
+000038 | matrices.  Therefore the displayed intertwiner has no hidden relabeling.
+000039 | 
+000040 | For an ovoid O define the point vector
+000041 | 
+000042 |     v_O = 3 1_O - 1.
+000043 | 
+000044 | The six such vectors obey
+000045 | 
+000046 |     B^T v_O = 0,
+000047 |     sum_O v_O = 0,
+000048 |     (v_O,v_O') = 36 delta_O,O' - 6.
+000049 | 
+000050 | They have rank five and span ker(B^T).  The incidence calculation is
+000051 | 
+000052 |     rank(B) = 10,
+000053 |     spectrum(B B^T) = 9^1, 4^9, 0^5.
+000054 | 
+000055 | Thus the orthogonal projector onto the ovoid five is both
+000056 | 
+000057 |     P5 = (1/36) sum_O v_O v_O^T
+000058 | 
+000059 | and the incidence polynomial
+000060 | 
+000061 |     P5 = ((B B^T - 9 I)(B B^T - 4 I))/36.
+000062 | 
+000063 | All sixty marked reflections
+000064 | -----------------------------
+000065 | 
+000066 | For every Gaussian ray z from process._hamming_rays(), the checker converts z
+000067 | back to its actual eight dimensional E8 root.  twisted_source then computes
+000068 | the induced action on A.  Every action is a symplectic transvection.
+000069 | 
+000070 | On the six ovoids every root reflection is one transposition.  Hence its
+000071 | centered five dimensional trace is 3.  On the six spreads it is a product of
+000072 | three transpositions and the centered trace is -1.
+000073 | 
+000074 | The native quartic action is rebuilt without importing another checker.  If
+000075 | r is the native four dimensional reflection, the checker applies (2r)^tensor4
+000076 | to the five unnormalised equal coefficient word sums.  The result is an
+000077 | integral numerator N_r, with quartic action N_r/16.  For all sixty roots,
+000078 | 
+000079 |     N_r^2 = 256 I,
+000080 |     tr(N_r/16) = 3.
+000081 | 
+000082 | Solving all simultaneous intertwiner equations over Q gives
+000083 | 
+000084 |     candidate              constraint rank   Hom dimension
+000085 |     ovoid standard               24                 1
+000086 |     ovoid sign twist             25                 0
+000087 |     spread standard              25                 0
+000088 |     spread sign twist            25                 0.
+000089 | 
+000090 | In the centered ovoid basis f_j=e_j-e_5 and the listed unnormalised quartic
+000091 | word basis, the primitive generator of the one dimensional Hom space is
+000092 | 
+000093 |         [ 3  3  3  0  3]
+000094 |         [-1  1  1  0 -1]
+000095 |     T = [-1 -1  1  0  1]
+000096 |         [-1  1 -1  0  1]
+000097 |         [ 1  1  1  2  1].
+000098 | 
+000099 | Its determinant is -96.  The checker verifies separately for every root that
+000100 | 
+000101 |     N_r T = 16 T D_r,
+000102 | 
+000103 | where D_r is the centered ovoid permutation.  Since the sixty reflections
+000104 | generate G31, this is the full marked equivariance statement.
+000105 | 
+000106 | The interface is precisely
+000107 | 
+000108 |     G31/N64 = Sp(4,2) = S6,
+000109 | 
+000110 | where
+000111 | 
+000112 |     N64 = Z4 central-product 2^(1+4).
+000113 | 
+000114 | Here 2^(1+4) is the extraspecial two-qubit Pauli group of order 32 and
+000115 | its central involution is identified with the involution in Z4.  Thus N64
+000116 | has order 64.  It is not a direct product of mu4 with a sixteen-element
+000117 | Pauli label set; those sixteen labels describe the projective quotient.
+000118 | 
+000119 | Both A and the native quartic five kill the kernel.  The quartic five is the
+000120 | standard S6 representation supplied by the six actual A ovoids.
+000121 | 
+000122 | Why the four dimensional identification remains false
+000123 | ------------------------------------------------------
+000124 | 
+000125 | The checker also reconstructs the native Clifford conjugation action on the
+000126 | four Pauli labels.  Over F2 it solves
+000127 | 
+000128 |     X rho_A(g) = phi_native(g) X
+000129 | 
+000130 | for all sixty roots.  The Hom space has dimension zero, so there is no
+000131 | invertible marked identification between A and the native Pauli label module.
+000132 | They remain related by the S6 outer duality.
+000133 | 
+000134 | The independent spectral obstruction is retained as well.  For a twisted
+000135 | ground transvection, the sixteen Clifford lifts have squared trace magnitude
+000136 | 8 twice and 0 fourteen times.  A native complex reflection has squared trace
+000137 | magnitude 4.  All 60 times 16 comparisons therefore fail exactly.  The new
+000138 | five dimensional theorem does not repair or reinterpret the failed native
+000139 | four bridge.
+000140 | 
+000141 | What this supplies for state and selection
+000142 | ------------------------------------------
+000143 | 
+000144 | The ovoid construction does supply canonical representation level selection
+000145 | data:
+000146 | 
+000147 | 1. P5 is a basis independent rational projector selecting the unique point
+000148 |    side incidence kernel.
+000149 | 2. The six operators
+000150 | 
+000151 |        E_O = v_O v_O^T / 36
+000152 | 
+000153 |    are positive rank one operators, are permuted by G31, and sum to P5.  They
+000154 |    form a canonical six outcome covariant resolution on the selected channel.
+000155 | 3. The invariant positive form on the native quartic five is unique up to a
+000156 |    positive scalar.  In the unnormalised word basis its primitive matrix is
+000157 | 
+000158 |        diag(1,3,3,3,6).
+000159 | 
+000160 |    This is also the form inherited from the tensor Hilbert space because the
+000161 |    five word support sizes are 4,12,12,12,24.
+000162 | 
+000163 | Transporting the six centered ovoid rays through T gives the following six
+000164 | primitive rays directly in the native quartic word basis:
+000165 | 
+000166 |     ( 1,-1,-1,-1, 0)
+000167 |     ( 1, 1,-1, 1, 0)
+000168 |     ( 1, 1, 1,-1, 0)
+000169 |     (-2, 0, 0, 0, 1)
+000170 |     ( 1,-1, 1, 1, 0)
+000171 |     (-2, 0, 0, 0,-1).
+000172 | 
+000173 | Each has squared norm 10 for G=diag(1,3,3,3,6).  The native operators
+000174 | 
+000175 |     E_a = q_a q_a^T G / 12
+000176 | 
+000177 | are positive with respect to G, are permuted exactly by all sixty native
+000178 | quartic actions, and sum to I_5.  Thus the bridge supplies a concrete
+000179 | six-outcome covariant POVM on the original quartic five, not merely an
+000180 | abstract dimension match.
+000181 | 
+000182 | The exact symmetric form calculation has dimension one.  Representation
+000183 | theory therefore leaves only its overall positive scale.  The equivariant
+000184 | intertwiner is likewise unique up to a nonzero scalar.  Requiring it to be an
+000185 | isometry fixes the modulus, leaving a complex phase, or only a sign over R.
+000186 | 
+000187 | The full commutant is one dimensional, and there is no nonzero vector fixed
+000188 | by all sixty reflections.  Consequently the
+000189 | geometry does not select one pure state or one ovoid.  After choosing the
+000190 | invariant form and trace normalization, the only fully invariant density
+000191 | operator is the maximally mixed state I_V5/5.  Selecting one of the six rank
+000192 | one effects needs an additional symmetry breaking datum, such as an anchored
+000193 | quadratic refinement.  That datum is not supplied by A, J, and incidence
+000194 | alone.
+000195 | 
+000196 | Reproduction
+000197 | ------------
+000198 | 
+000199 | From the repository root:
+000200 | 

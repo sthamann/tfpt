@@ -1,0 +1,59 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/graded_boundary_functor/check_finite_typing.py
+Original file SHA-256: 404cd24e04ae86ca95b981c5fc6a728930bbc2579aaefdd22e2bf2da9113f06e
+Inclusive original lines: 20-70
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000020 |         if not(z.real.is_integer() and z.imag.is_integer()):
+000021 |             raise ValueError('Constructor input is not a Gaussian integer')
+000022 |         return s.Integer(int(z.real))+s.I*s.Integer(int(z.imag))
+000023 |     return s.SparseMatrix(s.Matrix(arr.tolist()).applyfunc(entry))
+000024 | 
+000025 | ys=[np.diag(x).astype(complex) for x in
+000026 |     ([1,2,3],[2,3,4],[3,4,5],[4,5,6])]
+000027 | mr=np.array([[2,1,0],[1,3,1],[0,1,4]],complex)
+000028 | phi=exact(v.full_D(*ys,mr))
+000029 | g=exact(v.grading())
+000030 | n=g.rows
+000031 | one=s.eye(n)
+000032 | Z=s.diag(1,-1)
+000033 | N=s.Matrix([[0,-1],[1,0]])
+000034 | S=N*Z
+000035 | Gt=s.kronecker_product(Z,g)
+000036 | Ic=s.I*Gt
+000037 | C=s.kronecker_product(s.I*N,one)
+000038 | plus,minus=(one+g)/2,(one-g)/2
+000039 | E=plus.col_join(s.I*minus)
+000040 | p=s.symbols('p',real=True)
+000041 | B=s.kronecker_product(Z,p*one)-s.kronecker_product(S,phi)
+000042 | h=p*g-s.I*g*phi
+000043 | checks={
+000044 |  'actual_dimension':n==96,
+000045 |  'actual_phi_selfadjoint':phi.H==phi,
+000046 |  'actual_phi_odd':phi*g+g*phi==s.zeros(n),
+000047 |  'actual_total_B_even':Gt*B==B*Gt,
+000048 |  'C_B_anticommutes':C*B==-B*C,
+000049 |  'new_C_antilinear':C*Ic==-Ic*C,
+000050 |  'E_isometry':E.H*E==one,
+000051 |  'E_positive_total_chirality':Gt*E==E,
+000052 |  'whole_original_mass_operator_intertwiner':B*E==E*h,
+000053 |  'selfadjoint_h':h.H==h,
+000054 |  'squared_h':h*h==p*p*one+phi*phi,
+000055 | }
+000056 | # The same original coefficient with arbitrary smooth scalar amplitude and
+000057 | # connection, represented by independent value/first-derivative jets.
+000058 | f,fp,a,ap=s.symbols('f fp a ap',real=True)
+000059 | h1=-s.I*g
+000060 | h0=a*g-s.I*g*f*phi
+000061 | h0prime=ap*g-s.I*g*fp*phi
+000062 | checks.update({
+000063 |  'profile_second_derivative_coefficient':h1*h1==-one,
+000064 |  'profile_first_derivative_coefficient':h1*h0+h0*h1==-2*s.I*a*one,
+000065 |  'profile_zeroth_coefficient_retains_derivative':
+000066 |      s.simplify(h1*h0prime+h0*h0-((a*a-s.I*ap)*one+f*f*phi*phi-fp*phi))==s.zeros(n),
+000067 | })
+000068 | if not all(checks.values()):
+000069 |     raise RuntimeError(checks)
+000070 | result={'all_pass':True,'checks':checks,'constructor_sha256':

@@ -1,0 +1,19 @@
+TFPT scientific source excerpt
+Original repository path: verification/v231_cp_mu6_phases.py
+Original file SHA-256: 9e3567f184de3b5ec14f21df3c969d89bf3953d69edc288c29a3b564ccad3b26
+Inclusive original lines: 65-75
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000065 |           sp.simplify(rho**4 + rho) == 0
+000066 |           and sp.simplify(sp.Rational(4, 3) * sp.pi - sp.pi / 3 - sp.pi) == 0)
+000067 | 
+000068 |     # C6 / mu6 monodromy carries rho
+000069 |     U6 = sp.Matrix(6, 6, lambda i, j: 1 if (j - i) % 6 == 1 else 0)
+000070 |     t = sp.symbols('t')
+000071 |     check("the C6/mu6 monodromy U6 has charpoly t^6-1 (spectrum mu6, contains rho)",
+000072 |           sp.expand(U6.charpoly(t).as_expr()) == t**6 - 1)
+000073 | 
+000074 |     # orientation (v225): sheet-flipped Jarlskog orientations
+000075 |     d = (A.T * R.inv())

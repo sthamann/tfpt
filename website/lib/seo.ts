@@ -3,6 +3,14 @@ import { SITE_URL } from "@/lib/utils";
 
 // Search descriptions summarize published scope; they do not change claim status.
 export const PAGE_SEARCH = {
+  "/explain": [
+    "Understand TFPT: Charges, Alpha, Clocks & Their Derivations",
+    "Work through TFPT charge assignments and the alpha equation. Follow the connected E8, flavour, clock and physical source results with their inputs and limits."
+  ],
+  "/results": [
+    "TFPT Result Library: Claims, Achievements & Open Questions",
+    "Search the complete active TFPT claim ledger and source reviewed findings. Read exact statements, assumptions, source excerpts, exclusions and remaining physical connections."
+  ],
   "/": [
     "Topological Fixed-Point Theory (TFPT): Research & Papers",
     "Explore TFPT by Stefan Hamann and Alessandro Rizzo: E₈ mathematics, the alpha fixed point, research papers, reproducible checks and open physical questions."

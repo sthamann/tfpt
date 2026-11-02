@@ -1,0 +1,94 @@
+TFPT scientific source excerpt
+Original repository path: verification/v258_dirac_covariance_induction.py
+Original file SHA-256: 16c60e831dceba773f3629466895f1009654827286e5b760ae01bd755fd5c0b1
+Inclusive original lines: 65-150
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000065 | def induce(C):
+000066 |     """one-particle modular Hamiltonian H = log((1-C) C^{-1}) of a covariance C."""
+000067 |     w, V = np.linalg.eigh(C)
+000068 |     w = np.clip(w, 1e-15, 1 - 1e-15)
+000069 |     return V @ np.diag(np.log((1 - w) / w)) @ V.conj().T
+000070 | 
+000071 | 
+000072 | def kms_cov(H, mu=1.0):
+000073 |     """Fermi-Dirac / KMS covariance C = (1 + e^{H/mu})^{-1} of a Hermitian H."""
+000074 |     w, V = np.linalg.eigh(H)
+000075 |     occ = 1.0 / (1.0 + np.exp(np.clip(w / mu, -700.0, 700.0)))   # stable Fermi function
+000076 |     return V @ np.diag(occ) @ V.conj().T
+000077 | 
+000078 | 
+000079 | def run():
+000080 |     reset()
+000081 |     print("v258  PS.DIRAC.03: D_F as the modular/covariance induction of the seam state")
+000082 |     rng = np.random.default_rng(258)
+000083 | 
+000084 |     # ---- 1. inversion identity on a random Hermitian + on a Dirac-type block ----
+000085 |     A = rng.normal(size=(8, 8)) + 1j * rng.normal(size=(8, 8))
+000086 |     H = A + A.conj().T
+000087 |     ok_rand = np.allclose(induce(kms_cov(H)), H, atol=1e-9)
+000088 | 
+000089 |     # a small chirality-graded Dirac block (Yukawa: L<->R off-diagonal), like v252
+000090 |     Y = rng.normal(size=(3, 3)) + 1j * rng.normal(size=(3, 3))
+000091 |     Dblk = np.block([[np.zeros((3, 3)), Y], [Y.conj().T, np.zeros((3, 3))]])
+000092 |     ok_dirac = np.allclose(induce(kms_cov(Dblk)), Dblk, atol=1e-9)
+000093 |     check("INVERSION IDENTITY [E]: log((1-C)C^-1) = H exactly for C = (1+e^H)^-1 "
+000094 |           "(Araki/Casini-Huerta modular Hamiltonian = inverse of the KMS "
+000095 |           "occupation) -- verified on a random Hermitian and on a chirality-graded "
+000096 |           "Yukawa Dirac block; the induction is the exact inverse, not a fit",
+000097 |           ok_rand and ok_dirac)
+000098 | 
+000099 |     # ---- 2. covariance is a legal quasi-free state (positive contraction) ----
+000100 |     C = kms_cov(Dblk)
+000101 |     ev = np.linalg.eigvalsh(C)
+000102 |     check("COVARIANCE IS A LEGAL STATE [E]: C_F = (1+e^{D/mu})^-1 is a positive "
+000103 |           "contraction, spec(C_F) in (0,1) (min %.3f, max %.3f) -- a bona fide "
+000104 |           "quasi-free two-point function; the carrier Dirac data ARE the data of a "
+000105 |           "boundary Gaussian (KMS) state" % (ev.min(), ev.max()),
+000106 |           np.all(ev > 0) and np.all(ev < 1))
+000107 | 
+000108 |     # ---- 3. chirality-odd: the induced operator anticommutes with gamma ----
+000109 |     gamma = np.diag([1.0, 1.0, 1.0, -1.0, -1.0, -1.0])     # +1 on L, -1 on R
+000110 |     Hind = induce(C)
+000111 |     odd = np.allclose(Hind @ gamma + gamma @ Hind, 0, atol=1e-9)
+000112 |     check("CHIRALITY-ODD = A DIRAC OPERATOR [E]: the induced modular Hamiltonian "
+000113 |           "anticommutes with the chirality grading, D_F^ind gamma = -gamma D_F^ind "
+000114 |           "-- the entanglement Hamiltonian of a chirality-graded covariance is "
+000115 |           "automatically an odd (Dirac-type) operator (Pi_odd is the identity here)",
+000116 |           odd)
+000117 | 
+000118 |     # ---- 4. unitary equivalence to the v252-built Dirac (same mass spectrum) ----
+000119 |     masses = np.array([0.000511, 0.0022, 0.0047, 0.095, 0.1057,
+000120 |                        1.27, 1.777, 4.18, 172.76]) / 174.0     # Yukawas (v18/v252)
+000121 |     Dmass = np.zeros((18, 18))
+000122 |     for i, y in enumerate(masses):
+000123 |         Dmass[i, 9 + i] = Dmass[9 + i, i] = y                  # L<->R block
+000124 |     mu_geo = 1.0
+000125 |     Drec = mu_geo * induce(kms_cov(Dmass / mu_geo, mu_geo))
+000126 |     same_spec = np.allclose(np.sort(np.linalg.eigvalsh(Drec)),
+000127 |                             np.sort(np.linalg.eigvalsh(Dmass)), atol=1e-9)
+000128 |     check("UNITARY EQUIVALENCE TO v252 [E]: building C_F from the v252 charged "
+000129 |           "spectrum (9 Yukawas) and inducing returns the SAME spectrum, "
+000130 |           "spec(D_F^ind) = spec(D_F^v252) up to mu_geo -- the built finite Dirac "
+000131 |           "operator and the boundary-covariance readout are unitarily equivalent",
+000132 |           same_spec)
+000133 | 
+000134 |     # ---- 5. Majorana / seesaw is an off-diagonal covariance entry ----
+000135 |     mD, MR = 100.0, 1.0e14
+000136 |     Dnu = np.array([[0.0, mD], [mD, MR]])                       # nu_L<->nu_R, nu_R Majorana
+000137 |     Crec = kms_cov(Dnu / 1.0)
+000138 |     Dnu_rec = induce(Crec)
+000139 |     seesaw_in = min(abs(np.linalg.eigvalsh(Dnu)))
+000140 |     seesaw_rec = min(abs(np.linalg.eigvalsh(Dnu_rec)))
+000141 |     check("MAJORANA = OFF-DIAGONAL COVARIANCE [E]: the type-I seesaw block (the "
+000142 |           "particle<->antiparticle Majorana off-diagonal of C_F) induces back to "
+000143 |           "the seesaw eigenvalue m_light = m_D^2/M_R (= %.2e GeV) -- the "
+000144 |           "sigma/Majorana term is a covariance entry, not an extra postulate"
+000145 |           % (mD ** 2 / MR),
+000146 |           abs(seesaw_rec - seesaw_in) < 1e-6 * seesaw_in
+000147 |           and abs(seesaw_in - mD ** 2 / MR) < 1e-3 * mD ** 2 / MR)
+000148 | 
+000149 |     # ---- 6. physical identification (recorded) ----
+000150 |     check("PHYSICAL IDENTIFICATION [C]: C_F = P_F C_Sigma P_F -- the carrier "

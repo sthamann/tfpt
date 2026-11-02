@@ -1,0 +1,64 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/e-series-source-reconstruction-20261024/source_reproduction.py
+Original file SHA-256: ba667dfb7cee7df999876a1da48128d1b86ebfb268b306be397eff59ddea765f
+Inclusive original lines: 174-229
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000174 |     P = V1@V1.conj().T
+000175 |     Q = np.eye(h0.shape[0])-P
+000176 |     energy = float(np.trace(P@h0).real)
+000177 |     variance = float(np.trace(P@h0@Q@h0@P).real)
+000178 |     variance_hs = float(np.linalg.norm(Q@h0@P,"fro")**2)
+000179 |     need(variance > 7 and abs(variance-variance_hs) < 1e-9, "actual first excitation norm, not occupied diagonal proxy")
+000180 |     occupied_energies = np.diag(V1.conj().T@h0@V1).real
+000181 |     proxy_sum = float(sum(occupied_energies-occupied_energies.mean()))
+000182 |     need(abs(proxy_sum) < 1e-9 and np.sqrt(variance) > 2.6, "original first central sum cannot be f1")
+000183 |     shadow = [float(abs(np.sum((occupied_energies-occupied_energies.mean())**n))**0.5+1e-15)
+000184 |               for n in range(1,5)]
+000185 |     fitted_C = max(1.0,1.05*max((f/factorial(n)**2)**(1/(n+1))
+000186 |                               for n,f in enumerate(shadow,1)))
+000187 |     need(np.sqrt(variance) > fitted_C**2,
+000188 |          "the original fitted proxy constant fails as a bound on the ACTUAL first energy norm")
+000189 |     for relative, digest in PINS.items():
+000190 |         need(sha256((REPO/relative).read_bytes()).hexdigest() == digest, "unchanged original input")
+000191 |     return {
+000192 |         "research_id":"MATH.SEAM.ESERIES.SOURCE-RECONSTRUCTION.06.REPRODUCTION",
+000193 |         "exact_mathematical_certificate":"PASS", "fundamental_source_goal":"PARTIAL",
+000194 |         "T_D3_to_A3":[[str(x) for x in T.row(i)] for i in range(4)],
+000195 |         "F_2q_equals_original_lambda":True,
+000196 |         "quarter_twist_weight":"1/4", "double_twist_weight":"1",
+000197 |         "glue_order_over_D5_A3":4,"glue_order_over_D8":2,
+000198 |         "extension_indices":[2,2],"mu_indices":[16,4,1],
+000199 |         "canonical_scalar_quarter_V1_spectrum_1_i_minus1_minusi":spectra[0],
+000200 |         "alternate_scalar_extension_V1_spectrum_1_i_minus1_minusi":spectra[1],
+000201 |         "complete_extensions_over_fixed_D8":2,
+000202 |         "both_scalar_extensions_have_order":2,
+000203 |         "fixed_VOAs":["V_E7 tensor V_A1","V_D8_prime"],
+000204 |         "native_J_V1_spectrum_1_i_minus1_minusi":native_spectrum,
+000205 |         "native_J_equals_either_scalar_extension":False,
+000206 |         "cartan_certificates":cartan_data,
+000207 |         "all_nonopposite_root_OPE_channels":brackets,
+000208 |         "actual_v988_slater_case":{"Nx":Nx,"Ny":Ny,"dimension":len(h0),"rank_P":V1.shape[1],
+000209 |             "mean_energy":round(energy,10),"exact_variance_formula_evaluated":round(variance,10),
+000210 |             "first_excitation_norm":round(float(np.sqrt(variance)),10),"first_central_proxy_sum_exact":0,
+000211 |             "original_fitted_proxy_C":round(fitted_C,10),
+000212 |             "bound_C_squared_for_n1":round(fitted_C**2,10),
+000213 |             "proxy_fitted_C_bounds_actual_f1":False,
+000214 |             "numeric_identity_tolerance":1e-9},
+000215 |         "not_proved":["microscopic P1 or QWZ charged field exists on the common scaling core",
+000216 |                       "scalar-quarter and native J operator identification",
+000217 |                       "uniform energy bounds for the microscopic charged field",
+000218 |                       "physical state, time or 3+1D completion"],
+000219 |         "source_sha256":PINS,"promotion":False,
+000220 |     }
+000221 | 
+000222 | 
+000223 | if __name__ == "__main__":
+000224 |     parser = argparse.ArgumentParser()
+000225 |     parser.add_argument("--output",type=Path,default=HERE/"source-reproduction-results.json")
+000226 |     args = parser.parse_args()
+000227 |     result = calculate()
+000228 |     args.output.write_text(json.dumps(result,indent=2)+"\n")
+000229 |     print(json.dumps({k:v for k,v in result.items() if k not in ("cartan_certificates","source_sha256")},indent=2))

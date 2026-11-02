@@ -1,0 +1,148 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/HEAT-COVARIANCE-REVIEW.txt
+Original file SHA-256: 169194868f1ccbe1ca45e4b6166a3ccb65eb286331fde105b6992442e7455989
+Inclusive original lines: 1-140
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | SPECTRAL HEAT MIXTURE AND GEOMETRIC TIME: TARGETED ORIGINAL REVIEW
+000002 | 29 October 2026. Independent analytic review; no new source/model choice,
+000003 | large numerics, original edit or Atlas mutation.
+000004 | 
+000005 | Verdict
+000006 | The original proof names a Euclidean COVARIANCE and reflection tau->-tau,
+000007 | but never specifies its actual heat-mixture variable or covariance operator.
+000008 | A positive Laplace mixture of spectral heat operators does NOT by itself
+000009 | establish this geometric-time RP. A single heat covariance has an explicit
+000010 | negative reflected2x2 minor. If 'reflection-stable' is intended to mean that
+000011 | each component is already OS positive, positive superposition is valid, but
+000012 | that stronger property is a premise needing its actual kernel proof.
+000013 | 
+000014 | 1. What the original says, and does not say
+000015 | Original archive45 QFT source:
+000016 | documents/archive--tfpt-45--source_extracts--04_qft_source/sections/
+000017 | 002-section-closure-theorems-from-the-admissibility-complex.tex:267-310,
+000018 | registered paper-source:35c4c41ef6cded2368b36527, read directly.
+000019 | 
+000020 | The lemma assumes commutation with admissibility projectors, a bosonic kernel
+000021 | with the Bernstein property and reflection stability, and an RP fermionic CAR
+000022 | kernel. Its proof:299-306 calls the bosonic object a Euclidean covariance and
+000023 | claims a positive superposition of 'reflection-stable heat kernels', followed
+000024 | by positivity under reflection across tau=0. No equation C=f(K), integral
+000025 | parameter, or factorization into positive-time vectors occurs in these lines.
+000026 | 
+000027 | The cited Bernstein remark in boundary source001:345-350 only calls the
+000028 | spectral test profile an analytic realization of an already fixed channel.
+000029 | It does not identify the spectral heat parameter with geometric time or
+000030 | state that the actual covariance is f(-partial_tau^2+omega^2). That specific
+000031 | covariance must therefore not be reported as the computed original TFPT one.
+000032 | The exact general inference from spectral heat positivity can nevertheless
+000033 | be tested without inventing or replacing the original physical source.
+000034 | 
+000035 | 2. Smallest decisive spectral-heat covariance test
+000036 | Fix a single spatial frequency with omega>=0 and geometric time tau on R:
+000037 |   K=-partial_tau^2+omega^2,
+000038 |   C_s=exp(-s K), s>0.
+000039 | This is a positive covariance operator with a positive point Laplace measure
+000040 | at spectral heat parameter s. Its translation kernel is real, positive and
+000041 | invariant under tau reflection:
+000042 |   c_s(u)=exp(-s omega^2)(4pi s)^(-1/2)exp(-u^2/(4s)).
+000043 | The reflected covariance on positive times a,b is c_s(a+b), not c_s(a-b).
+000044 | For any distinct a,b>0 its2x2 Gram determinant has ratio
+000045 |   c_s(2a)c_s(2b)/c_s(a+b)^2
+000046 |     =exp(-(a-b)^2/(2s))<1.
+000047 | Thus the determinant is strictly negative despite covariance positivity and
+000048 | reflection invariance. For example s=1,a=1,b=2, set
+000049 |   d=exp(-omega^2)/(2sqrt(pi)),
+000050 |   f=delta_1-exp(7/4)delta_2.
+000051 | Then its reflected quadratic form is exactly
+000052 |   q(f)=d[exp(-1)-exp(-1/2)]<0.
+000053 | The deltas can be replaced by smooth real mollifiers supported in small
+000054 | neighborhoods of1 and2 inside tau>0; smoothness of c_s preserves the strict
+000055 | negative sign. Hence this is a genuine supported-test-function obstruction,
+000056 | not an artifact of allowing delta insertions.
+000057 | 
+000058 | This one atom already disproves sufficiency of an arbitrary positive Laplace
+000059 | measure for time RP of f(K). It does NOT assert that every mixture fails:
+000060 | integrating heat kernels with suitable weights can yield an RP covariance.
+000061 | It is not a complete P1/P2 or admissibility countermodel.
+000062 | 
+000063 | 3. The whole continuous smooth scalar covariance class
+000064 | There is an elementary stronger class test, not a new general mathematical
+000065 | theorem. Let c:R->R be continuous, even, ordinarily positive definite, with
+000066 | c(0)>0. Assume its positive-time Hankel matrices [c(t_i+t_j)] are PSD and
+000067 | c is C1 at0. Then c is constant.
+000068 | 
+000069 | Proof: continuity extends the Hankel positivity to a time0 entry and gives
+000070 |   c(0)c(2t)>=c(t)^2, t>=0.
+000071 | Ordinary PD gives |c(t)|<=c(0). Put d(t)=1-c(t)/c(0)>=0. The displayed
+000072 | Hankel inequality becomes
+000073 |   d(2t)<=2d(t)-d(t)^2<=2d(t).
+000074 | Iterating yields d(t)<=2^n d(t/2^n). Evenness and C1 at0 imply c'(0)=0,
+000075 | hence d(u)=o(u). For each fixed t the right side therefore tends to0,
+000076 | so d(t)=0 globally. Evenness covers negative t. Conversely a nonnegative
+000077 | constant covariance plainly meets both positivity conditions.
+000078 | 
+000079 | Thus no nonconstant continuous scalar translation-invariant time covariance
+000080 | that is differentiable through0 can have both ordinary PD and time RP. In
+000081 | particular this applies to any genuinely time-smoothed Gaussian covariance
+000082 | with these hypotheses; no scan over individual positive heat weights is
+000083 | needed. It does NOT apply to distribution/contact kernels, infinite c(0),
+000084 | nontranslation-invariant kernels, nontrivial reflection matrices or graded
+000085 | fermionic kernels. Smoothing only spatial coordinates does not imply C1
+000086 | through geometric time0. The usual free covariance exp(-E|t|)/(2E) has
+000087 | precisely a time cusp at0 and is not excluded. Positive heat mixtures which
+000088 | produce such a cusp remain compatible with the sufficient criterion below.
+000089 | 
+000090 | 4. Strong valid statements, with the two parameters kept separate
+000091 | An actual positive ENERGY semigroup has a different reflected kernel. For
+000092 | H>=0 and vectors v_i, times tau_i>0,
+000093 |   M_ij=<v_i,exp(-(tau_i+tau_j)H)v_j>
+000094 |       =<exp(-tau_i H)v_i,exp(-tau_j H)v_j>.
+000095 | This is a positive Gram matrix. Positive integrable superpositions of such
+000096 | already RP kernels remain RP. The heat covariance counterexample does not
+000097 | touch this statement, the existing HS heat-word construction, the positive
+000098 | coupled excitation semigroup, or their given full Clifford source.
+000099 | 
+000100 | A useful sufficient covariance criterion in the scalar translation-invariant
+000101 | class is a positive Stieltjes/resolvent representation
+000102 |   F(z)=integral_(mu>=0) d rho(mu)/(z+mu), rho>=0,
+000103 | with the required convergence and positive frequencies. For
+000104 | K=-partial_tau^2+omega^2 it gives
+000105 |   c(u)=integral d rho(mu) exp(-sqrt(omega^2+mu)|u|)
+000106 |                              /[2sqrt(omega^2+mu)].
+000107 | The reflected c(tau_i+tau_j) is a positive integral of rank-one Gram matrices.
+000108 | This is stronger than arbitrary positive Laplace measure in spectral heat
+000109 | parameter s. For example the full resolvent integral of exp(-sK) is RP even
+000110 | though each individual heat covariance above fails. No choice of such a
+000111 | representation for the original source is made here.
+000112 | 
+000113 | 5. Relation to the old finding and exact original obligation
+000114 | The Atlas finding positive-spectral-reweighting-does-not-establish-original-
+000115 | source-rp and source_sewing_20261029/PROOF.txt:1-184 were reread. Its actual
+000116 | counterexample concerns a Boltzmann/Schur reweighting of a reflected measure
+000117 | by exp[-Tr f(D^2)]. It does not contain the heat COVARIANCE minor above.
+000118 | These are distinct mathematical inferences; neither is a new all-P1 no-go.
+000119 | 
+000120 | For the original lemma, either 'reflection-stable' denotes only covariance
+000121 | under reflection, in which case the generic heat-mixture inference is false,
+000122 | or it includes reflected positivity itself, in which case that part is an
+000123 | explicit hypothesis rather than a derivation from Bernstein weights. The
+000124 | first decisive original input is the actual bosonic covariance and its
+000125 | reflection, followed by a positive-time kernel factorization or direct RP
+000126 | test. The fixed positive Z_ref denominator preserves an already RP form; it
+000127 | cannot change the sign of the negative minor. Full joint boson/fermion
+000128 | positivity also retains its separate source assumptions.
+000129 | 
+000130 | Primary context, checked directly: Arthur Jaffe, Stochastic PDE, Reflection
+000131 | Positivity, and Quantum Fields, https://arxiv.org/pdf/1411.2964 , sectionIII.
+000132 | That paper distinguishes auxiliary stochastic time from physical reflection
+000133 | time and proves RP failures for its finite-time stochastic covariance. It is
+000134 | context for the type distinction, not a claim that its covariance is the
+000135 | single heat atom used in this independent elementary calculation.
+000136 | 
+000137 | Given Seed RP, the existing whole Clifford RP intertwiner and all valid
+000138 | energy-semigroup Gram proofs remain intact. No original covariance value,
+000139 | complete source-map exclusion, physical-time identification or T1-T8 closure
+000140 | is asserted here.

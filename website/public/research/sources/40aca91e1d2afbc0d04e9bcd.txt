@@ -1,0 +1,80 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/e-series-incidence-algebra-20261024/THEOREMS.txt
+Original file SHA-256: e80821d422297cfdfce23e892c1b099cc23505ae22ae92f01dcf77d4062f0a5d
+Inclusive original lines: 92-163
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000092 | Ranks are obtained from normalized primitive idempotents, and the exact
+000093 | weighted character orthogonality is checked. No floating-point eigensolver
+000094 | or approximate rank threshold is used.
+000095 | 
+000096 | 4. Two incidence transforms on the SAME E6 carrier
+000097 | 
+000098 | Let N have rows the 1120 E6 cuts and columns the 120 E7 cuts, with N(E,F)=1
+000099 | for E subset F. Let M have the same rows and columns the 7560 tetrahedra,
+000100 | with M(E,T)=1 for E in T. Both are actual Weyl intertwiners because their
+000101 | entries are defined by root inclusions. Both are independent of field-lift
+000102 | phases, which cancel in conjugation of root-support projectors.
+000103 | 
+000104 | Two distinct E6 cuts share an E7 precisely when their A2 normals share one
+000105 | root line. Their generated normal system is then A3 and their intersection
+000106 | is D5. The shared root line determines exactly one E7; the A3 hull determines
+000107 | exactly one tetrahedron. There are 45360 such unordered pairs, partitioned
+000108 | both into 7560 sets of six tetrahedron edges and 120 sets of C(28,2) edges.
+000109 | Therefore
+000110 | 
+000111 |     N N^T = A1 + 3 I,            M M^T = A1 + 27 I.            (4.1)
+000112 | 
+000113 | The diagonal entries count 3 and 27 incidences. Every off-diagonal entry is
+000114 | one exactly for the D5 relation, zero otherwise. The checker tests EVERY
+000115 | entry of both identities, and the unique tetrahedron of every D5 edge.
+000116 | 
+000117 | On the E7 side, N^T N=28I+B, with B the root-line nonorthogonality graph.
+000118 | It has strongly regular parameters (120,56,28,24). Thus
+000119 | 
+000120 |     spec(B)  = 56^1, 8^35, (-4)^84,
+000121 |     spec(A1) = 81^1,33^35,21^84,(-3)^1000,
+000122 |     rank(N)=120,     ker(N^T)=V300 direct-sum V700.
+000123 | 
+000124 | The kernel splitting is explicit. If Pker is the orthogonal projector onto
+000125 | ker(N^T), then
+000126 | 
+000127 |     P300 = Pker (A2+6I)/24,
+000128 |     P700 = Pker (18I-A2)/24.                              (4.2)
+000129 | 
+000130 | These formulas follow from the actual eigenvalues18 and-6 of A2 on the
+000131 | kernel. All five orbital matrices commute, so the formulas are unambiguous.
+000132 | 
+000133 | 5. Lossless reconstruction: the additional simplification
+000134 | 
+000135 | Subtracting (4.1) gives the especially small identity
+000136 | 
+000137 |              M M^T = N N^T + 24 I.                         (5.1)
+000138 | 
+000139 | For every real or complex E6 signal f, with the counting inner products,
+000140 | 
+000141 |     ||M^T f||^2 = ||N^T f||^2 + 24 ||f||^2.               (5.2)
+000142 | 
+000143 | Hence the tetrahedron-sum map M^T is injective with lower singular bound
+000144 | sqrt(24). Unlike the E7 sum map, it loses none of the E6 information.
+000145 | This result does not need the character table or irreducibility in Section3.
+000146 | Its exact Weyl-equivariant inverse on its image is
+000147 | 
+000148 |     f = (N N^T+24I)^(-1) M (M^T f).                       (5.3)
+000149 | 
+000150 | Equivalently the Gram spectrum is108^1,60^35,48^84,24^1000 and rank(M)=1120.
+000151 | An explicit rational polynomial q with q(A1)=(A1+27I)^(-1) is
+000152 | 
+000153 |     q(x) = 10471/276480 - 199x/165888
+000154 |            +53x^2/2488320 - x^3/7464960.                (5.4)
+000155 | 
+000156 | The checker verifies this polynomial at every distinct eigenvalue of A1.
+000157 | Thus (5.3) can be evaluated with a degree-three adjacency polynomial.
+000158 | 
+000159 | Reconstruction preserves a supplied signal; it does not create one. The
+000160 | root geometry is Weyl-transitive and every diagonal of its orbital algebra
+000161 | is constant. That algebra therefore cannot contain a singleton vertex
+000162 | projector or equivariantly choose an E6 corner without another input.
+000163 | The earlier stronger fixed-mark field-stabilizer obstruction also survives.

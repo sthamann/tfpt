@@ -1,0 +1,199 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/atlas-defect-synthesis-20261024/native_event_channel_intersection.py
+Original file SHA-256: 715f61e467b7e3eebb42d3e1bb6d1e66caa798a0fa1faff4493f430e2cc1409d
+Inclusive original lines: 180-370
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000180 |                 continue
+000181 |             full = tuple(
+000182 |                 solution[support.index(index)] if index in support else sp.Integer(0)
+000183 |                 for index in range(len(class_rows))
+000184 |             )
+000185 |             average_chi5 = sp.factor(
+000186 |                 sum(full[index] * class_rows[index]["chi5"] for index in range(len(class_rows)))
+000187 |             )
+000188 |             lambda5 = sp.factor(average_chi5 / 5)
+000189 |             parameter = sp.factor(lambda5 + sp.Rational(1, 5))
+000190 |             vertices[full] = {
+000191 |                 "p": parameter,
+000192 |                 "lambda5": lambda5,
+000193 |                 "average_chi5": average_chi5,
+000194 |                 "weights": [
+000195 |                     {
+000196 |                         "cycle_type": list(class_rows[index]["cycle_type"]),
+000197 |                         "total_class_weight": solution[position],
+000198 |                         "class_size": class_rows[index]["size"],
+000199 |                         "per_element_weight": sp.factor(
+000200 |                             solution[position] / class_rows[index]["size"]
+000201 |                         ),
+000202 |                     }
+000203 |                     for position, index in enumerate(support)
+000204 |                 ],
+000205 |                 "full_weight_vector": full,
+000206 |             }
+000207 |     return sorted(
+000208 |         vertices.values(),
+000209 |         key=lambda vertex: (
+000210 |             vertex["p"],
+000211 |             len(vertex["weights"]),
+000212 |             tuple(tuple(weight["cycle_type"]) for weight in vertex["weights"]),
+000213 |         ),
+000214 |     )
+000215 | 
+000216 | 
+000217 | def serialise_vertex(vertex: dict[str, Any]) -> dict[str, Any]:
+000218 |     return {
+000219 |         "p": expr_json(vertex["p"]),
+000220 |         "lambda5": expr_json(vertex["lambda5"]),
+000221 |         "average_chi5": expr_json(vertex["average_chi5"]),
+000222 |         "weights": [
+000223 |             {
+000224 |                 "cycle_type": weight["cycle_type"],
+000225 |                 "total_class_weight": expr_json(weight["total_class_weight"]),
+000226 |                 "class_size": weight["class_size"],
+000227 |                 "per_element_weight": expr_json(weight["per_element_weight"]),
+000228 |             }
+000229 |             for weight in vertex["weights"]
+000230 |         ],
+000231 |         "full_weight_vector": [expr_json(value) for value in vertex["full_weight_vector"]],
+000232 |     }
+000233 | 
+000234 | 
+000235 | def endpoint_word_certificate(
+000236 |     weights: dict[tuple[int, ...], sp.Rational],
+000237 |     classes: dict[tuple[int, ...], list[tuple[tuple[int, ...], sp.Matrix, list[int]]]],
+000238 | ) -> list[dict[str, Any]]:
+000239 |     certificate = []
+000240 |     for cycles, total_weight in weights.items():
+000241 |         members = sorted(classes[cycles], key=lambda item: item[0])
+000242 |         certificate.append(
+000243 |             {
+000244 |                 "cycle_type": list(cycles),
+000245 |                 "class_size": len(members),
+000246 |                 "total_class_weight": expr_json(total_weight),
+000247 |                 "per_element_weight": expr_json(total_weight / len(members)),
+000248 |                 "actual_native_words": [
+000249 |                     {"permutation": list(permutation), "reflection_indices": word}
+000250 |                     for permutation, _, word in members
+000251 |                 ],
+000252 |             }
+000253 |         )
+000254 |     return certificate
+000255 | 
+000256 | 
+000257 | def main(output: Path) -> dict[str, Any]:
+000258 |     doily = load_doily()
+000259 |     bridge = doily.build_report()
+000260 |     rows = bridge["quartic_bridge"]["per_reflection"]
+000261 |     require(len(rows) == 60, "native reflection count changed")
+000262 | 
+000263 |     unique_generators: dict[tuple[int, ...], tuple[int, sp.Matrix]] = {}
+000264 |     for row in rows:
+000265 |         permutation = tuple(row["ovoid_permutation"])
+000266 |         matrix = sp.Matrix(row["quartic_numerator"]) / 16
+000267 |         if permutation in unique_generators:
+000268 |             require(unique_generators[permutation][1] == matrix, "duplicate action mismatch")
+000269 |         else:
+000270 |             unique_generators[permutation] = (row["index"], matrix)
+000271 |     require(len(unique_generators) == 15, "expected fifteen transposition actions")
+000272 |     generators = [
+000273 |         (index, permutation, matrix)
+000274 |         for permutation, (index, matrix) in sorted(unique_generators.items())
+000275 |     ]
+000276 |     group = group_closure(generators)
+000277 |     require(len(group) == 720, "native words did not generate S6")
+000278 | 
+000279 |     cycle_types = list(partitions(6))
+000280 |     require(len(cycle_types) == 11, "S6 class count changed")
+000281 |     classes: dict[tuple[int, ...], list[tuple[tuple[int, ...], sp.Matrix, list[int]]]] = {
+000282 |         cycles: [] for cycles in cycle_types
+000283 |     }
+000284 |     for permutation, (matrix, word) in group.items():
+000285 |         classes[cycle_type(permutation)].append((permutation, matrix, word))
+000286 |     require(sum(map(len, classes.values())) == 720, "class partition lost group elements")
+000287 | 
+000288 |     class_rows: list[dict[str, Any]] = []
+000289 |     class_averages: dict[tuple[int, ...], sp.Matrix] = {}
+000290 |     for cycles in cycle_types:
+000291 |         chi5, chi9, chi10 = characters(cycles)
+000292 |         members = classes[cycles]
+000293 |         average = clean(
+000294 |             sum((conjugation_superoperator(matrix) for _, matrix, _ in members), sp.zeros(25))
+000295 |             / len(members)
+000296 |         )
+000297 |         class_averages[cycles] = average
+000298 |         class_rows.append(
+000299 |             {
+000300 |                 "cycle_type": cycles,
+000301 |                 "size": len(members),
+000302 |                 "m1": cycles.count(1),
+000303 |                 "m2": cycles.count(2),
+000304 |                 "chi5": chi5,
+000305 |                 "chi9": chi9,
+000306 |                 "chi10": chi10,
+000307 |                 "lambda5": sp.factor(chi5 / 5),
+000308 |                 "lambda9": sp.factor(chi9 / 9),
+000309 |                 "lambda10": sp.factor(chi10 / 10),
+000310 |                 "actual_class_channel_sha256": matrix_hash(average),
+000311 |             }
+000312 |         )
+000313 | 
+000314 |     # Reconstruct the four isotypic projectors on End(H5) from the actual
+000315 |     # class channel matrices and the exact S6 characters.
+000316 |     dimensions = {"1": 1, "5": 5, "9": 9, "10": 10}
+000317 |     character_key = {"1": None, "5": "chi5", "9": "chi9", "10": "chi10"}
+000318 |     isotypic: dict[str, sp.Matrix] = {}
+000319 |     for label, dimension in dimensions.items():
+000320 |         projector = sp.zeros(25)
+000321 |         for class_row in class_rows:
+000322 |             character = 1 if label == "1" else class_row[character_key[label]]
+000323 |             projector += class_row["size"] * character * class_averages[class_row["cycle_type"]]
+000324 |         isotypic[label] = clean(sp.Rational(dimension, 720) * projector)
+000325 |     require(
+000326 |         all(isotypic[label].rank() == dimensions[label] for label in dimensions),
+000327 |         "End(H5) isotypic ranks changed",
+000328 |     )
+000329 |     require(
+000330 |         all(clean(projector**2 - projector) == sp.zeros(25) for projector in isotypic.values()),
+000331 |         "central character operator is not a projector",
+000332 |     )
+000333 |     require(
+000334 |         all(
+000335 |             clean(isotypic[left] * isotypic[right]) == sp.zeros(25)
+000336 |             for left in dimensions
+000337 |             for right in dimensions
+000338 |             if left != right
+000339 |         ),
+000340 |         "isotypic projectors overlap",
+000341 |     )
+000342 |     require(clean(sum(isotypic.values(), sp.zeros(25))) == sp.eye(25), "isotypic sum is not I25")
+000343 |     for class_row in class_rows:
+000344 |         average = class_averages[class_row["cycle_type"]]
+000345 |         for label, dimension in dimensions.items():
+000346 |             character = 1 if label == "1" else class_row[character_key[label]]
+000347 |             require(
+000348 |                 clean(average * isotypic[label] - sp.Rational(character, dimension) * isotypic[label])
+000349 |                 == sp.zeros(25),
+000350 |                 "actual class channel disagrees with its character ratio",
+000351 |             )
+000352 | 
+000353 |     vertices = exact_lp_vertices(class_rows)
+000354 |     require(len(vertices) == 29, "LP vertex census changed")
+000355 |     minimum_p = min(vertex["p"] for vertex in vertices)
+000356 |     maximum_p = max(vertex["p"] for vertex in vertices)
+000357 |     require((minimum_p, maximum_p) == (sp.Rational(1, 10), sp.Rational(1, 2)), "p interval changed")
+000358 | 
+000359 |     # Analytic dual certificate for the complete interval.  Put chi=chi5.
+000360 |     # The two zero-eigenvalue constraints imply E[chi^2]=1+E[chi].
+000361 |     # Since chi is integral, chi(chi+1)>=0 and (chi-1)(chi-2)>=0 pointwise.
+000362 |     # Averaging and substituting the moment identity yields
+000363 |     # -1/2 <= E[chi] <= 3/2, hence 1/10 <= p=(1+E[chi])/5 <= 1/2.
+000364 |     possible_chi5 = sorted({row["chi5"] for row in class_rows})
+000365 |     require(
+000366 |         all(value * (value + 1) >= 0 for value in possible_chi5),
+000367 |         "lower dual polynomial lost positivity",
+000368 |     )
+000369 |     require(
+000370 |         all((value - 1) * (value - 2) >= 0 for value in possible_chi5),

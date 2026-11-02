@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/dynamic_reconstruction_20261027/HYPERGRAPH-RECURSION-SOURCE-AUDIT.txt
+Original file SHA-256: cb41e97eebbbf5412ace4e84ae42a3959a4c5002f2d37a47b404c7dc65e4c032
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | HYPERGRAPH RECURSION SOURCE AUDIT
+000002 | =================================
+000003 | 
+000004 | 27 October 2026
+000005 | 
+000006 | Question
+000007 | --------
+000008 | 
+000009 | Can an existing recursive or hypergraph operation supply carrier dynamics,
+000010 | the family clock and a state selector from the same source, instead of freezing
+000011 | the discussion at H = 8K?  The smallest decisive test is the claimed coupled
+000012 | 9 x 3 rule in v395, because the old synthesis calls it the point where v299,
+000013 | v327 and v324 become one local recursion.
+000014 | 
+000015 | Result
+000016 | ------
+000017 | 
+000018 | There is a real finite recursion here, but the published v395 implementation
+000019 | does not implement it.  Its `_micro_step` drops the complete network update.
+000020 | The executable checks never call `_micro_step`, so the error is invisible.
+000021 | The same file also uses the superseded uniform family matrix and therefore
+000022 | cannot equal the full cusp readout in any basis.  Replacing that matrix by the
+000023 | already derived v486/v487 lazy rule repairs the full family spectrum exactly.
+000024 | 
+000025 | The corrected statement is slightly more structured than the old one:
+000026 | 
+000027 | * one local coupled step is
+000028 | 
+000029 |       F(m) = T_net m M_lazy^T ;
+000030 | 
+000031 | * one clock hand is a scheduled composition of one carrier step and six
+000032 |   family substeps,
+000033 | 
+000034 |       H = (T_net tensor I) (I tensor M_lazy)^6
+000035 |         = T_net tensor M_lazy^6 .
+000036 | 
+000037 | It is not the sixth iterate of one isotropic microstep.  That iterate would be
+000038 | 
+000039 |       F^6 = T_net^6 tensor M_lazy^6 .
+000040 | 
+000041 | Thus the original order six clock supplies an actual two rate recursion.  It
+000042 | does not yet identify the recursion with a local charged quantum field or with
+000043 | the physical OS transfer operator.
+000044 | 
+000045 | 1. The source claim and the implementation
+000046 | ------------------------------------------
+000047 | 
+000048 | The original synthesis states that a microstep applies network lazy diffusion
+000049 | to every cusp column and the family rule to every network row, with
+000050 | `T_micro = T_net tensor M` on 27 cells.  It further says that one clock hand
+000051 | contains one network step and six family microsteps, and that the cusp matrix
+000052 | is the same substrate in a readout basis:
+000053 | 
+000054 | [OMITTED: non-scientific conversation or execution metadata]
+000055 | [OMITTED: non-scientific conversation or execution metadata]
+000056 | [OMITTED: non-scientific conversation or execution metadata]
+000057 | 
+000058 | The actual function is at
+000059 | 
+000060 | [OMITTED: non-scientific conversation or execution metadata]
+000061 | [OMITTED: non-scientific conversation or execution metadata]
+000062 | 
+000063 | It first writes `T_net @ m[:,k]` into every column of `out`.  The second loop
+000064 | then overwrites every row of `out` with `M @ m[i,:]`, using the original `m`.
+000065 | Because M is symmetric, its actual return value is simply
+000066 | 
+000067 |       _micro_step(m) = m M^T.
+000068 | 
+000069 | The network factor has disappeared.  The test at lines 144 to 150 proves the
+000070 | abstract Kronecker identity, but it never calls `_micro_step`.  The later
+000071 | iteration at lines 152 to 163 uses the separately constructed 27 x 27 matrix
+000072 | `T_micro`.  It therefore verifies the intended matrix and not the named local
+000073 | implementation.
+000074 | 
+000075 | 2. Three direct inputs
+000076 | ----------------------
+000077 | 
+000078 | I imported the unchanged v395 module and compared its actual function with
+000079 | `T_net @ m @ M.T`.
+000080 | 
+000081 | For E_00, one unit in network node 0 and family slot 0:
+000082 | 
+000083 |       actual:       (0,0) = 1
+000084 |       corrected:    (0,0) = 1/2, (1,0) = 1/4
+000085 |       Frobenius error = sqrt(5)/4.
+000086 | 
+000087 | For E_01, one unit in network node 0 and family slot 1:
+000088 | 
+000089 |       actual:       (0,1) = 1/3, (0,2) = 1/3
+000090 |       corrected:    (0,1) = 1/6, (0,2) = 1/6,
+000091 |                     (1,1) = 1/12, (1,2) = 1/12
+000092 |       Frobenius error = sqrt(10)/12.
+000093 | 
+000094 | For `MARKS tensor e0`, the two outputs agree exactly.  This is not a partial
+000095 | repair.  It explains why the defect hides at the advertised attractor:
+000096 | 
+000097 |       T_net MARKS = MARKS,     M e0 = e0.
+000098 | 
+000099 | The special Perron line is insensitive to the lost network step, while generic
+000100 | local data are not.
+000101 | 
+000102 | 3. The stale family rule and its exact repair
+000103 | ---------------------------------------------
+000104 | 
+000105 | v395 uses
+000106 | 
+000107 |              [1   0    0 ]
+000108 |       M_u =  [0  1/3  1/3]
+000109 |              [0  1/3  1/3]
+000110 | 
+000111 | with spectrum {1, 2/3, 0}.  Hence every positive power retains a zero mode.
+000112 | Its sixth power cannot be the full cusp transfer, whose spectrum is
+000113 | {1, 64/729, 1/729}.  Nevertheless v395 check 4, lines 176 to 185, checks only
+000114 | the top eigenvalue and the 64/729 recovery mode.  It never tests the third
+000115 | mode or an actual basis conjugacy.
+000116 | 
+000117 | The old synthesis itself later supersedes this uniform rule.  The exact source
+000118 | is `input_4_origin_theory.tex`, lines 284 to 313.  The executable derivations
+000119 | are v486 lines 63 to 113 and v487 lines 73 to 119.  They force
+000120 | 
+000121 |                 [1   0    0 ]
+000122 |       M_lazy =  [0  1/2  1/6]
+000123 |                 [0  1/6  1/2]
+000124 | 
+000125 | from the full clock ladder.  Define the orthonormal columns
+000126 | 
+000127 |       e0 = (1,0,0),
+000128 |       e+ = (0,1,1)/sqrt(2),
+000129 |       e- = (0,1,-1)/sqrt(2),
+000130 | 
+000131 | and O = [e0 e+ e-].  Direct multiplication gives
+000132 | 
+000133 |       O^T M_lazy O   = diag(1, 2/3, 1/3),
+000134 |       O^T M_lazy^6 O = diag(1, 64/729, 1/729)
+000135 |                      = T_cusp.
+000136 | 
+000137 | This is the exact orthogonal readout basis that v395 claimed but could not
+000138 | possess with M_u.  It uses no fitted parameter.  v487 derives the two pair
+000139 | eigenvalues as the even and odd deck rungs of the existing resummed clock.
+000140 | 
+000141 | The minimal code correction would be
+000142 | 
+000143 |       def _micro_step(m, T_net, M):
+000144 |           return T_net @ m @ M.T
+000145 | 
+000146 | with `M = M_lazy`.  I did not edit the verification corpus because this task
+000147 | permits only a local research note.
+000148 | 
+000149 | 4. The clock schedule carries information that the Kronecker product hides
+000150 | ---------------------------------------------------------------------------
+000151 | 
+000152 | v395 defines
+000153 | 
+000154 |       T_micro = T_net tensor M,
+000155 |       T_hand  = T_net tensor M^6.
+000156 | 
+000157 | These formulas cannot both arise by repeating one autonomous map six times:
+000158 | 
+000159 |       (T_net tensor M)^6 = T_net^6 tensor M^6,
+000160 | 
+000161 | and `T_net^6` is not `T_net`.  Numerically, with the corrected M_lazy, the
+000162 | Frobenius distance between these two 27 x 27 operators is about 1.10448.
+000163 | 
+000164 | The formula for `T_hand` does have a clean operational meaning.  Let
+000165 | 
+000166 |       N = T_net tensor I,       C = I tensor M_lazy.
+000167 | 
+000168 | Then N and C commute and one hand is `N C^6`.  The existing sixfold family
+000169 | clock is therefore a scheduler: six family substeps occur per carrier update.
+000170 | This is a source backed finite time hierarchy.  Calling it the sixth iterate
+000171 | of one rule erases that hierarchy.
+000172 | 
+000173 | 5. What this recovers
+000174 | ---------------------
+000175 | 
+000176 | The corrected scheduled recursion has three exact properties from the old
+000177 | sources:
+000178 | 
+000179 | 1. `MARKS tensor e0` is its fixed Perron line.  The affine E8 Kac marks and the
+000180 |    family vacuum are selected by the same finite update.
+000181 | 2. The complete family ladder {1, 2/3, 1/3} appears at one step, and the full
+000182 |    cusp spectrum appears after six family steps.
+000183 | 3. The even and odd deck modes survive separately.  The zero mode in v395 was
+000184 |    a stale collapse of the odd rung, not a physical necessity.
+000185 | 
+000186 | This is genuine progress beyond a frozen H = 8K reading.  It gives a recursive
+000187 | state selector and a discrete time index on the finite carrier by family
+000188 | coefficient system.
+000189 | 
+000190 | It does not by itself give local charged fields.  The strongest nearby source
+000191 | for that further step is v808.  There the ten weight two carrier words form
+000192 | the Petersen graph, its shells of sizes 1, 3 and 6 are charge pure, and the
+000193 | outer shell is an actual C6.  Its radial stochastic quotient
+000194 | 
+000195 |              [0  3  0]
+000196 |       P = 1/3[1  0  2]
+000197 |              [0  1  2]
+000198 | 
+000199 | has eigenvalues {1, 1/3, -2/3}; its sixth power has precisely
+000200 | {1, 1/729, 64/729}.  This is the first existing rule that transports actual

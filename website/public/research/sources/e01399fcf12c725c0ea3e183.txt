@@ -1,0 +1,76 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/check_record_chart_f20_scope.py
+Original file SHA-256: 31cab4aea7adab2e518b1a84155160ef02cc9fe34a0efaf9526eb9eb61604112
+Inclusive original lines: 201-268
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |     require(bridge_plus.conjugate().T * bridge_plus == sp.eye(10) and
+000202 |             bridge_minus.conjugate().T * bridge_minus == sp.eye(10),
+000203 |             "repaired Bell-to-wedge charts are unitary")
+000204 |     require(bridge_plus.conjugate().T * bell_c * bridge_plus == hodge_c and
+000205 |             bridge_plus.conjugate().T * (sp.I * bell_g) * bridge_plus == hodge_g,
+000206 |             "positive repaired chart satisfies both generator equalities")
+000207 | 
+000208 |     Cs = hodge.hodge_amplitudes()
+000209 |     V = to_sympy_integer(vector_columns(Cs).astype(complex))
+000210 |     raw_gram = coefficient_gram(bell, raw_chart, V)
+000211 |     plus_gram = coefficient_gram(bell, bridge_plus, V)
+000212 |     minus_gram = coefficient_gram(bell, bridge_minus, V)
+000213 |     expected_raw = sp.diag(sp.Rational(1, 64), sp.Rational(1, 48), sp.Rational(1, 48),
+000214 |                            sp.Rational(1, 48), sp.Rational(1, 64))
+000215 |     expected_covariant = sp.eye(5) / 48
+000216 |     require(raw_gram == expected_raw, "raw label chart has the previous three-plus-two Gram spectrum")
+000217 |     require(plus_gram == expected_covariant and minus_gram == expected_covariant,
+000218 |             "both repaired F20 charts have scalar Hodge coefficient Gram")
+000219 |     require(raw_gram * p5 != p5 * raw_gram,
+000220 |             "raw three-plus-two eigenspaces are not covariant under the native five-cycle")
+000221 |     require(plus_gram * p5 == p5 * plus_gram and plus_gram * pg == pg * plus_gram,
+000222 |             "repaired coefficient Gram is F20 invariant")
+000223 | 
+000224 |     result = {
+000225 |         "verdict": [
+000226 |             "RAW_DUAD_CHART_IS_NOT_AN_F20_INTERTWINER",
+000227 |             "ONE_SLOT_RELABELING_PLUS_A_DIAGONAL_MU4_GAUGE_REPAIRS_BOTH_F20_GENERATORS",
+000228 |             "PMAX_REMAINS_1_OVER_25_FOR_THE_TWO_EXPLICIT_REPAIRED_UNITARY_CHARTS",
+000229 |             "RAW_THREE_PLUS_TWO_FILTER_SPLITTING_IS_NOT_F20_COVARIANT_AND_DISAPPEARS_AFTER_REPAIR",
+000230 |             "FULL_U2_TIMES_U1_TIMES_U1_TEN_INTERTWINER_GAUGE_IS_NOT_CLASSIFIED_BY_THIS_TEST",
+000231 |         ],
+000232 |         "native_outer_fixed_mark": 5,
+000233 |         "raw_chart": {
+000234 |             "f20_intertwiner": False,
+000235 |             "two_event_coefficient_gram_diagonal": ["1/64", "1/48", "1/48", "1/48", "1/64"],
+000236 |             "pmax": "1/25",
+000237 |             "three_plus_two_invariant_under_C5": False,
+000238 |         },
+000239 |         "repair": {
+000240 |             "slot_relabeling": list(relabel_hits[0]),
+000241 |             "positive_quarter_diagonal": [str(d_plus[j, j]) for j in range(10)],
+000242 |             "negative_quarter_diagonal": [str(d_minus[j, j]) for j in range(10)],
+000243 |             "generator_equalities_exact": True,
+000244 |             "unitary": True,
+000245 |             "two_event_coefficient_gram": "I5/48 for both quarter orientations",
+000246 |             "pmax": "1/25",
+000247 |             "minimal_record_contraction_row_gram_at_pmax": "I5",
+000248 |         },
+000249 |         "scope": (
+000250 |             "The value 1/25 survives the two explicit monomial unitary F20 repairs, but the raw chart "
+000251 |             "used previously was not itself an F20 intertwiner. The native ten has residual U(2) times "
+000252 |             "U(1) times U(1) intertwiner freedom; invariance over that full family is not proved."
+000253 |         ),
+000254 |         "source_sha256": PINS,
+000255 |         "checks": len(checks),
+000256 |     }
+000257 |     if output is not None:
+000258 |         output.parent.mkdir(parents=True, exist_ok=True)
+000259 |         output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+000260 |     return result
+000261 | 
+000262 | 
+000263 | if __name__ == "__main__":
+000264 |     parser = argparse.ArgumentParser()
+000265 |     parser.add_argument("--out", type=Path)
+000266 |     args = parser.parse_args()
+000267 |     result = main(args.out)
+000268 |     print(json.dumps(result, indent=2, sort_keys=True))

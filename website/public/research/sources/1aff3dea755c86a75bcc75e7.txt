@@ -1,0 +1,82 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_whole_scale_energy.py
+Original file SHA-256: aeeddfad191137e7a549ca35c5aaedd0b25860a77947647a0e3ec056536bef55
+Inclusive original lines: 1-74
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Controls for R040/R041. Existing quarter block; no physical source fit.
+000002 | Profile mutation checks the inverse map, not a newly selected TFPT geometry.
+000003 | The finite chiral matrix only falsifies an incorrect weighted-trace formula.
+000004 | """
+000005 | from pathlib import Path
+000006 | import json
+000007 | import sympy as s
+000008 | import mpmath as mp
+000009 | checks={};details={}
+000010 | def need(k,b):
+000011 |  checks[k]=bool(b)
+000012 |  if not b:raise AssertionError(k)
+000013 | def zero(v):return all(s.simplify(x)==0 for x in v)
+000014 | r,z,ep=s.symbols('r z ep',real=True);p,m=s.symbols('p m',real=True)
+000015 | sig=s.Function('sigma')(r);h=s.Function('h')(r);f=s.exp(-sig/2)
+000016 | u=s.Matrix([s.Function('u1')(r),s.Function('u2')(r)])
+000017 | N=s.Matrix([[0,s.I],[s.I,0]]);B=s.Matrix([[p,-s.I*m],[s.I*m,-p]])
+000018 | def K0(v):return N*(v.diff(r)+B*v)
+000019 | def K(v):return f*K0(f*v)
+000020 | need('original_normal_and_coupled_block_contract',N.H==-N and N*N==-s.eye(2) and zero(N*B+B*N))
+000021 | need('full_variable_scale_null_solution_transport',zero(K(u/f)-f*K0(u)))
+000022 | need('nonzero_energy_weight_exact_without_commutation',zero(K(u)-z*u-f*(K0(f*u)-z*s.exp(sig)*(f*u))))
+000023 | need('unweighted_energy_substitution_has_nonzero_defect',not zero(K(u)-z*u-f*(K0(f*u)-z*(f*u))))
+000024 | def Kep(v):
+000025 |  ff=s.exp(-(sig+ep*h)/2);return ff*K0(ff*v)
+000026 | dK=s.diff(Kep(u),ep).subs(ep,0)
+000027 | need('nonconstant_scale_operator_variation_is_anticommutator',zero(dK+(h*K(u)+K(h*u))/2))
+000028 | # Positive spectrum from the same historical p=1/4,m=1/3 odd block.
+000029 | mp.mp.dps=90;ell=mp.mpf(1);mu=mp.mpf(1)/3;alpha=mp.mpf(1)/4
+000030 | NN=mp.matrix([[0,1j],[1j,0]]);II=mp.eye(2)
+000031 | def data(n,profile):
+000032 |  pp=n+alpha;bb=mp.matrix([[pp,-1j*mu],[1j*mu,-pp]]);E=mp.sqrt(pp**2+mu**2);P=(II+bb/E)/2
+000033 |  if profile is None:
+000034 |   dt=mp.diff(lambda zz:mp.expm(-ell*(bb+zz*NN)),0)
+000035 |  else:
+000036 |   dt=mp.matrix(2)
+000037 |   for i in range(2):
+000038 |    for j in range(2):dt[i,j]=-mp.quad(lambda t:(mp.expm(-(ell-t)*bb)*NN*mp.expm(-t*bb))[i,j]*profile(t),[0,ell])
+000039 |  out=mp.exp(-ell*E)*sum((P*NN*dt)[i,i] for i in range(2))
+000040 |  return E,mp.re(out)
+000041 | Es=[];Ms=[];maxerr=mp.mpf(0)
+000042 | for n in range(7):
+000043 |  E,M=data(n,None);Es.append(E);Ms.append(M)
+000044 |  maxerr=max(maxerr,abs(M-(1-mp.exp(-2*ell*E))/(2*E)))
+000045 | need('independent_whole_transfer_energy_derivative_gives_flat_moments',maxerr<mp.mpf('1e-75'))
+000046 | a=mp.exp(-2*ell)
+000047 | def gram(k):return mp.matrix([[(1-a**(Es[i]+Es[j]-Es[0]))/(2*(Es[i]+Es[j]-Es[0])) for j in range(k+1)] for i in range(k+1)])
+000048 | c=mp.lu_solve(gram(6),mp.matrix(Ms))
+000049 | need('unchanged_original_flat_source_recovers_whole_profile_one',max(abs(c[i]-(1 if i==0 else 0)) for i in range(7))<mp.mpf('1e-60'))
+000050 | # Single positive scale mutation; tests recovery, no physical interpretation.
+000051 | lam=Es[1]-Es[0];profile=lambda t:1+mp.exp(-2*t*lam)/3
+000052 | mut=[]
+000053 | for n in range(3):
+000054 |  E,M=data(n,profile);mut.append(M)
+000055 |  cc=(1-mp.exp(-2*ell*E))/(2*E)+(1-mp.exp(-2*ell*(E+lam)))/(6*(E+lam))
+000056 |  need('normal_profile_mutation_transfer_moment_'+str(n),abs(M-cc)<mp.mpf('1e-75'))
+000057 | c=mp.lu_solve(gram(2),mp.matrix(mut))
+000058 | need('same_inverse_recovers_positive_profile_mutation_without_scan',max(abs(c[i]-([1,mp.mpf(1)/3,0][i])) for i in range(3))<mp.mpf('1e-70'))
+000059 | # Finite algebra control: total chirality commutes with L, not with K.
+000060 | T=s.Matrix([[1,1],[0,2]]);KK=s.zeros(4);KK[:2,2:]=T.T;KK[2:,:2]=T
+000061 | hh=s.diag(1,2,1,2);Pc=s.diag(1,1,0,0);LL=KK*KK
+000062 | varK=-(hh*KK+KK*hh)/2;varL=varK*KK+KK*varK
+000063 | actual=-s.trace(Pc*LL.inv()*varL*LL.inv())
+000064 | need('chiral_variation_is_half_whole_trace_not_naive_inserted_half',actual==s.trace(hh*LL.inv()) and actual!=2*s.trace(Pc*hh*LL.inv()))
+000065 | # Meromorphic and local-coefficient checks are independent symbolic identities.
+000066 | ss=s.symbols('s');rr,cc,dd=s.symbols('R0 C0 D0')
+000067 | flow=s.expand(2*ss*(rr/ss+cc+dd*ss))
+000068 | need('FP_and_logdet_read_different_Laurent_coefficients',flow.subs(ss,0)==2*rr and -s.diff(flow,ss).subs(ss,0)==-2*cc)
+000069 | need('smeared_Higgs_divergence_cannot_be_dropped',s.integrate((1+s.cos(r))*s.diff(2+s.cos(r),r,2),(r,0,2*s.pi))==-s.pi)
+000070 | need('local_Higgs_divergence_coefficient_from_full_heat_trace',s.Rational(60,360)*(-4)==-s.Rational(2,3))
+000071 | details={'flat_transfer_moment_max_abs_error':mp.nstr(maxerr,8),'flat_reconstruction_coefficients':[mp.nstr(x,8) for x in mp.lu_solve(gram(6),mp.matrix(Ms))],'diagnostics_only':'Numerical inversion of the existing historical odd block and one positive profile mutation; not a measured TFPT scale,full3+1D fit or infinite-data stability proof.'}
+000072 | out={'contract':'WHOLE-SCALE-ENERGY-RECONSTRUCTION-20261031','all_passed':all(checks.values()),'checks':checks,'details':details,'scope':'Analytic proof supplies whole profile uniqueness using the cited Muntz theorem. Controls test differential identities,independent energy response,Gram inversion,Laurent coefficients and a false chiral-weight shortcut. No new physical source,Y/MR,domain or metric selected;no new Lean formalization.'}
+000073 | Path(__file__).with_name('WHOLE-SCALE-ENERGY-RECONSTRUCTION.json').write_text(json.dumps(out,indent=2)+'\n')
+000074 | print(json.dumps({'all_passed':out['all_passed'],'count':len(checks),'details':details}))

@@ -1,0 +1,107 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/native-arc-charge-source-interface-20261026/check_conformal_trace_wick.py
+Original file SHA-256: c30f3058a971b28d17ba3af73f6cbb63fbac43d94a4640ad58d8c64fe613271d
+Inclusive original lines: 1-99
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact diagnostics for the analytic conformal Cauchy-space proof.
+000002 | 
+000003 | No finite projection is used as a proof of the infinite closed-space theorem.
+000004 | All checks remain active under python -OO.
+000005 | """
+000006 | import argparse
+000007 | import json
+000008 | from pathlib import Path
+000009 | import sympy as S
+000010 | 
+000011 | 
+000012 | def require(condition, label):
+000013 |     if not condition:
+000014 |         raise RuntimeError(label)
+000015 | 
+000016 | 
+000017 | def zero(expression, label):
+000018 |     require(S.simplify(expression) == 0, label)
+000019 | 
+000020 | 
+000021 | def projector(embedding):
+000022 |     return S.simplify(embedding * (embedding.T * embedding).inv() * embedding.T)
+000023 | 
+000024 | 
+000025 | def run():
+000026 |     d, x = S.symbols('d x', real=True)
+000027 |     # Common-bulk conjugation and physical-to-boundary density cancellation.
+000028 |     zero(d/2-(d+1)/2+S.Rational(1, 2), 'left bulk exponent')
+000029 |     zero((d-1)/2-d/2+S.Rational(1, 2), 'right bulk exponent')
+000030 |     zero(-(d-1)*x+(d-1)*x, 'boundary norm density')
+000031 |     zero(S.exp((d-1)*x/2)*S.exp(-(d-1)*x/2)-1, 'physical trace')
+000032 |     zero(S.exp(-x/2)*S.exp(x/2)-1, 'common-space trace')
+000033 |     t, s, lam = S.symbols('t s lambda', real=True)
+000034 |     sigma = S.Function('sigma')(t, s)
+000035 |     mode = S.exp(-lam*t+S.I*lam*s)
+000036 |     def chiral(v):
+000037 |         return S.diff(v, t)-S.I*S.diff(v, s)
+000038 |     zero(chiral(mode), 'original harmonic mode')
+000039 |     u = S.exp(sigma/2)*mode
+000040 |     zero(S.exp(-sigma/2)*chiral(S.exp(-sigma/2)*u), 'conformal harmonic mode')
+000041 |     for face in [S.Integer(0), S.Rational(1, 2)]:
+000042 |         zero((S.exp(-sigma/2)*u-mode).subs(t, face), 'both weighted traces')
+000043 |     # Two actual NS modes have positive graph slopes r=e^-pi/2,s=e^-3pi/2.
+000044 |     # Keep r,s symbolic: the projector identity does not rely on the slopes.
+000045 |     r, q, a, b = S.symbols('r q a b', positive=True)
+000046 |     E = S.Matrix([[1, 0], [0, 1], [r, 0], [0, q]])
+000047 |     M = S.diag(a, a, b, b)
+000048 |     P = projector(E)
+000049 |     correct = projector(M.inv()*M*E)
+000050 |     require(correct == P, 'weighted closed graph projector')
+000051 |     zero((P*P-P).norm(), 'idempotence')
+000052 |     raw = projector(M*E)
+000053 |     defect = S.factor(raw[2, 2]-P[2, 2])
+000054 |     expected = r**2*(b**2-a**2)/((a**2+b**2*r**2)*(1+r**2))
+000055 |     zero(defect-expected, 'raw trace nonzero defect formula')
+000056 |     require(defect.subs({a: 2, b: 3, r: 1}) != 0, 'wrong trace detected')
+000057 |     # Arbitrary weights/determinants must factor, rather than be discarded.
+000058 |     w0, w1, det0, det1, c00, c01, c10, c11 = S.symbols(
+000059 |         'w0 w1 det0 det1 c00 c01 c10 c11')
+000060 |     norm = w0*det0+w1*det1
+000061 |     four = c00*c11-c01*c10
+000062 |     zero((w0*det0*four+w1*det1*four)/norm-four, 'normalized four point')
+000063 |     F = S.Symbol('same_conditional_word')
+000064 |     zero((w0*det0*F+w1*det1*F)/norm-F, 'all identical words')
+000065 |     # A varying covariance need not factor: strict changing-covariance control.
+000066 |     p, v = S.symbols('p v', real=True)
+000067 |     C0, C1 = S.diag(p, 1-p), S.diag(p+v, 1-p-v)
+000068 |     mean = (C0+C1)/2
+000069 |     kappa = S.expand((C0.det()+C1.det())/2-mean.det())
+000070 |     zero(kappa+v**2/4, 'changing covariance connected defect')
+000071 |     require(kappa.subs(v, S.Rational(1, 8)) != 0, 'changed source detected')
+000072 |     return {
+000073 |         'claim': 'UR.NATIVE.ARCCHARGE.CONFORMAL-TRACE.01',
+000074 |         'verdict': 'PASS_EXACT_SCOPED_CONFORMAL_TRACE_AND_WICK_FACTORIZATION',
+000075 |         'dimension_independent_density_and_trace': True,
+000076 |         'arbitrary_smooth_sigma_product_rule': True,
+000077 |         'actual_ns_modes_lambda': '2*pi*(n+1/2)',
+000078 |         'both_original_annulus_faces': ['0', '1/2'],
+000079 |         'orthogonal_graph_projector_exact': True,
+000080 |         'raw_trace_compression_defect': str(defect),
+000081 |         'arbitrary_source_free_weights_and_determinants_retained': True,
+000082 |         'same_conditional_words_factor_exactly': True,
+000083 |         'changing_covariance_four_point_control': str(kappa),
+000084 |         'infinite_space_proof': 'CONFORMAL-TRACE-AND-WICK.txt Sections2-4',
+000085 |         'primitive_gaussian_measure_derived': False,
+000086 |         'physical_time_identified': False,
+000087 |         'promotion': False,
+000088 |     }
+000089 | 
+000090 | 
+000091 | if __name__ == '__main__':
+000092 |     ap = argparse.ArgumentParser()
+000093 |     ap.add_argument('--out', type=Path)
+000094 |     args = ap.parse_args()
+000095 |     result = run()
+000096 |     data = json.dumps(result, indent=2, ensure_ascii=False)+'\n'
+000097 |     if args.out:
+000098 |         args.out.write_text(data)
+000099 |     print(data, end='')

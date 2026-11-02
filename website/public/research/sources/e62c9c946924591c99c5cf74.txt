@@ -1,0 +1,46 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/check_sign_line_cover.py
+Original file SHA-256: 79ceadfaeb6aea66220f316dc6403a850fb48f47cf21d7a3b942568e6b978177
+Inclusive original lines: 181-218
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000181 |     check("fiber product over C(z) has degree twelve and A4", composite_degree == 12, composite_degree)
+000182 | 
+000183 |     w_valuations = [1, 1, -1, -1]
+000184 |     relative_e4 = [int(4 // sp.gcd(4, abs(v))) for v in w_valuations]
+000185 |     relative_e2 = [int(2 // sp.gcd(2, abs(v))) for v in w_valuations]
+000186 |     check("mu12 cover is ramified C4 over C", relative_e4 == [4, 4, 4, 4], relative_e4)
+000187 |     check("its unique quadratic intermediate is ramified", relative_e2 == [2, 2, 2, 2], relative_e2)
+000188 | 
+000189 |     z, h = sp.symbols("z h", nonzero=True)
+000190 |     f = (z**2 - 1) / (z**2 + 1)
+000191 |     check("base quarter sends f to its inverse", sp.simplify(f.subs(z, sp.I * z) - 1 / f) == 0, "f(iz)=f(z)^-1")
+000192 |     check("Q lift h->i/h sends w=h^4 to w^-1", sp.simplify((sp.I / h) ** 4 - 1 / h**4) == 0, "w->w^-1")
+000193 |     check("Q lift sends g=h^3 to -i g^-1", sp.simplify((sp.I / h) ** 3 + sp.I / h**3) == 0, "g->-i/g")
+000194 | 
+000195 |     verdict = "PASS_EXACT_Q_PACKET_V117_COEFFICIENT_LIFT" if all(c["ok"] for c in checks) else "FAIL"
+000196 |     result = {
+000197 |         "verdict": verdict,
+000198 |         "checks_passed": sum(bool(c["ok"]) for c in checks),
+000199 |         "checks_total": len(checks),
+000200 |         "objects": {
+000201 |             "genus_two_curve": "eta^2=1-w^6",
+000202 |             "selected_line_squares": "h_a^2=(w+omega^a)/(w+omega^(a+1))",
+000203 |             "selected_line_classes": "L_a^q=O(q_a-q_(a+1)), a mod 3",
+000204 |             "selected_passport": [4, 3, 2],
+000205 |             "rejected_positive_passport": [2, 3, 4],
+000206 |             "rejected_antipodal_passport": [4, 3, 4],
+000207 |             "common_cyclic_cover": "h^12=f(z), g=h^3, w=h^4",
+000208 |         },
+000209 |         "checks": checks,
+000210 |     }
+000211 |     args.out.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+000212 |     print(verdict)
+000213 |     print(f"wrote {args.out}")
+000214 |     return 0 if verdict.startswith("PASS") else 1
+000215 | 
+000216 | 
+000217 | if __name__ == "__main__":
+000218 |     raise SystemExit(main())

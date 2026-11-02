@@ -1,0 +1,178 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/mixed-current-origin-20261014/check_full_energy_sectors.py
+Original file SHA-256: 6c723ad3bb36cf50f81e22188d451c5206be8546cdf76e9528739b22e78b3c0a
+Inclusive original lines: 1-170
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Direct current-source spectral controls for the written all-energy argument.
+000002 | 
+000003 | Finite numerical spectra corroborate, but do not prove, the uniform theorem.
+000004 | No historical source pin is overwritten or bypassed with a fabricated PASS.
+000005 | """
+000006 | import argparse
+000007 | import hashlib
+000008 | import importlib
+000009 | import itertools
+000010 | import json
+000011 | import sys
+000012 | from fractions import Fraction as F
+000013 | from pathlib import Path
+000014 | 
+000015 | import numpy as np
+000016 | import sympy as S
+000017 | 
+000018 | 
+000019 | def need(condition, message):
+000020 |     if not condition:
+000021 |         raise ValueError(message)
+000022 | 
+000023 | 
+000024 | def exact(matrix):
+000025 |     return S.Matrix([[S.Rational(float(z.real)) + S.I*S.Rational(float(z.imag))
+000026 |                       for z in row] for row in matrix])
+000027 | 
+000028 | 
+000029 | def count_fock(energies, cutoff):
+000030 |     totals = [0.0]
+000031 |     for energy in energies:
+000032 |         totals += [total + energy for total in totals if total + energy < cutoff]
+000033 |     return len(totals)
+000034 | 
+000035 | 
+000036 | def run(repo):
+000037 |     sys.path.insert(0, str(repo / 'verification'))
+000038 |     source = importlib.import_module('v1033_charged_disorder')
+000039 |     h0n = source.qwz_cylinder(1, 8, 1.0, 0)
+000040 |     h0 = exact(h0n)
+000041 |     x = S.diag(*([exact(source.SX)]*8))
+000042 |     z = S.diag(*([exact(source.SZ)]*8))
+000043 |     ident = S.eye(16)
+000044 |     top, bottom = S.zeros(16,1), S.zeros(16,1)
+000045 |     top[14] = top[15] = 1/S.sqrt(2)
+000046 |     bottom[0], bottom[1] = 1/S.sqrt(2), -1/S.sqrt(2)
+000047 |     edge = S.Matrix.hstack(top,bottom)
+000048 |     identities = {
+000049 |         'H0_cubic': h0**3 == h0,
+000050 |         'H0_rank14': h0.rank() == 14,
+000051 |         'X_square': x*x == ident,
+000052 |         'Z_square': z*z == ident,
+000053 |         'X_H0_anticommutator': x*h0+h0*x == S.zeros(16),
+000054 |         'X_Z_anticommutator': x*z+z*x == S.zeros(16),
+000055 |         'pi_gap': (h0+2*z).det() != 0,
+000056 |         'edge_orthonormality': edge.T*edge == S.eye(2),
+000057 |         'edge_zero_vectors': h0*edge == S.zeros(16,2),
+000058 |         'opposite_edge_slopes': edge.T*(-x)*edge == S.diag(-1,1),
+000059 |     }
+000060 |     need(all(identities.values()), 'actual source does not satisfy theorem premises')
+000061 |     tx = np.kron(np.eye(8), source.TX)
+000062 | 
+000063 |     def bloch(p):
+000064 |         return h0n + (np.exp(-1j*p)-1)*tx + (np.exp(1j*p)-1)*tx.conj().T
+000065 | 
+000066 |     # Compare with the actual full-cylinder builder, not just our Bloch expression.
+000067 |     full_controls = []
+000068 |     for sector in (1, 3):
+000069 |         n = 8
+000070 |         blocks = np.sort(np.concatenate([
+000071 |             np.linalg.eigvalsh(bloch(2*np.pi*(j-sector/4)/n)) for j in range(n)]))
+000072 |         direct = np.linalg.eigvalsh(source.qwz_cylinder(n, 8, 1.0, sector))
+000073 |         error = float(np.max(abs(blocks-direct)))
+000074 |         need(error < 1e-12, 'Bloch blocks disagree with current full source')
+000075 |         full_controls.append({'sector': sector, 'N': n, 'max_error': error})
+000076 | 
+000077 |     # A grid is a diagnostic of the analytical three-region bound, not its proof.
+000078 |     bulk_min = 10.0
+000079 |     max_subhalf = 0
+000080 |     for p in np.linspace(-np.pi, np.pi, 513):
+000081 |         values = np.sort(abs(np.linalg.eigvalsh(bloch(p))))
+000082 |         bulk_min = min(bulk_min, float(values[2]))
+000083 |         max_subhalf = max(max_subhalf, int(np.sum(values < .5-1e-12)))
+000084 |     need(bulk_min >= .5-1e-12 and max_subhalf <= 2, 'uniform-gap grid control')
+000085 | 
+000086 |     spectral = []
+000087 |     for sector in (1, 3):
+000088 |         alpha = sector/4
+000089 |         for n in (64, 128, 256):
+000090 |             actual = np.sort(np.concatenate([
+000091 |                 abs(n*np.linalg.eigvalsh(bloch(2*np.pi*(j-alpha)/n))/(2*np.pi))
+000092 |                 for j in range(n)]))
+000093 |             for cutoff in (2.13, 3.13):
+000094 |                 low = actual[actual < cutoff]
+000095 |                 limit = sorted(abs(j-alpha) for j in range(-10, 11)
+000096 |                                for _ in range(2) if abs(j-alpha) < cutoff)
+000097 |                 need(len(low) == len(limit), 'one-body spectral rank mismatch')
+000098 |                 finite_fock = count_fock(low, cutoff)
+000099 |                 limiting_fock = count_fock(limit, cutoff)
+000100 |                 need(finite_fock == limiting_fock, 'many-body spectral rank mismatch')
+000101 |                 spectral.append({'sector': sector, 'N': n, 'cutoff': cutoff,
+000102 |                                  'one_body_rank': len(low),
+000103 |                                  'fock_spectral_rank': finite_fock,
+000104 |                                  'max_energy_error': float(max(abs(low-limit)))})
+000105 | 
+000106 |     # Exhaustive norm-two census: |m_i+1/4| <= sqrt(2) permits only -1,0,1.
+000107 |     quarter = []
+000108 |     for m in itertools.product((-1, 0, 1), repeat=8):
+000109 |         q = tuple(F(1, 4)+a for a in m)
+000110 |         if sum(a*a for a in q) == 2:
+000111 |             quarter.append((m, q))
+000112 |     need(len(quarter) == 64, 'quarter norm-two count')
+000113 |     need(all(sum(m) % 2 == 1 for m, q in quarter), 'relative odd dressing')
+000114 |     need(all((q[0]+q[1]).denominator == 2 for m, q in quarter),
+000115 |          'nontrivial monodromy against the fixed D8 root e1+e2')
+000116 |     # All four scalar Z4 phases, tested against all D8 roots: only 0 and 1/2 local.
+000117 |     scalar_locality = {str(F(r, 4)): r % 2 == 0 for r in range(4)}
+000118 |     for r in range(4):
+000119 |         pairings = [F(r,4)*(a+b) for a,b in itertools.product((-1,1),repeat=2)]
+000120 |         need(all(v.denominator == 1 for v in pairings) == scalar_locality[str(F(r,4))],
+000121 |              'scalar Z4 locality classification')
+000122 | 
+000123 |     half_twist_time = []
+000124 |     for alpha in (F(1,4), F(3,4)):
+000125 |         delta = [(F(k)+alpha)/8-F(1,2) for k in range(8)]
+000126 |         for chirality in (0,1):
+000127 |             values = [1+sum(F(s,2)*d for s,d in zip(signs,delta))
+000128 |                       for signs in itertools.product((-1,1),repeat=8)
+000129 |                       if sum(s<0 for s in signs)%2 == chirality]
+000130 |             minimum = min(values)
+000131 |             need(minimum == (F(0) if chirality==0 else F(1,32)),
+000132 |                  'actual common-time spinor-chirality minimum')
+000133 |             need(values.count(minimum)==1, 'spinor minimum multiplicity')
+000134 |             half_twist_time.append({'alpha':str(alpha),'minus_parity':chirality,
+000135 |                                    'minimum_fold_energy':str(minimum),'minimum_multiplicity':1})
+000136 | 
+000137 |     return {
+000138 |         'date': '2026-10-22',
+000139 |         'verdict': 'PASS_TARGETED_CONTROLS',
+000140 |         'analytical_theorem': 'FULL-FINITE-ENERGY-AND-SECTOR-MENU.txt',
+000141 |         'source_sha256': hashlib.sha256((repo/'verification/v1033_charged_disorder.py').read_bytes()).hexdigest(),
+000142 |         'exact_source_identities': identities,
+000143 |         'full_builder_controls': full_controls,
+000144 |         'gap_grid_diagnostic': {'minimum_third_absolute_eigenvalue': bulk_min,
+000145 |                                 'maximum_subhalf_eigenvalue_count': max_subhalf},
+000146 |         'spectral_controls': spectral,
+000147 |         'quarter_h1_count': len(quarter),
+000148 |         'quarter_h1_all_odd_relative_dressing': True,
+000149 |         'quarter_h1_all_nonlocal_to_full_D8': True,
+000150 |         'D8_relative_locality_of_uniform_scalar_Z4_classes': scalar_locality,
+000151 |         'half_twist_common_time_by_chirality': half_twist_time,
+000152 |         'source_vacuum_and_time_retained': True,
+000153 |         'new_P1_spinor_sector_constructed': False,
+000154 |         'full_P1_or_TFPT_exclusion': False,
+000155 |         'historical_pinned_checker_repaired_or_replayed': False,
+000156 |         'verification_boundary': 'Exact matrix/arithmetic checks plus finite floating spectral controls. The all-N and compactness claims rest on the written proof, not this finite run.',
+000157 |     }
+000158 | 
+000159 | 
+000160 | if __name__ == '__main__':
+000161 |     parser = argparse.ArgumentParser()
+000162 |     parser.add_argument('--repo', type=Path, required=True)
+000163 |     parser.add_argument('--out', type=Path, required=True)
+000164 |     args = parser.parse_args()
+000165 |     result = run(args.repo.resolve())
+000166 |     args.out.parent.mkdir(parents=True, exist_ok=True)
+000167 |     args.out.write_text(json.dumps(result, indent=2)+'\n')
+000168 |     print(json.dumps({'verdict': result['verdict'], 'source_identities': len(result['exact_source_identities']),
+000169 |                       'full_builder_controls': len(result['full_builder_controls']),
+000170 |                       'spectral_cases': len(result['spectral_controls']), 'quarter_fields': result['quarter_h1_count']}))

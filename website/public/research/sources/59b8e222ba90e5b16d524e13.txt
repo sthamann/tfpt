@@ -1,0 +1,149 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/mixed-current-origin-20261014/check_register_words_and_fold.py
+Original file SHA-256: 19b57b19a6456e7df7abf9d28559c33525b2a2b272ec9a306cfab51c99bd9bed
+Inclusive original lines: 1-141
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact decisive controls, without promoting finite tests to field limits.
+000002 | 
+000003 | All-word register obstruction, actual one-copy folded monodromy distinction,
+000004 | charge-conjugating countercontrol and original full-Dirac assertion replay.
+000005 | """
+000006 | from pathlib import Path
+000007 | import ast
+000008 | import contextlib
+000009 | import hashlib
+000010 | import importlib
+000011 | import io
+000012 | import json
+000013 | import sys
+000014 | import sympy as s
+000015 | 
+000016 | [OMITTED: non-scientific conversation or execution metadata]
+000017 | sys.path.insert(0,str(ROOT/'verification'))
+000018 | v1033=importlib.import_module('v1033_charged_disorder')
+000019 | 
+000020 | 
+000021 | def need(value,label):
+000022 |     if not value:raise ValueError(label)
+000023 | 
+000024 | 
+000025 | def zero(matrix):
+000026 |     return all(s.expand(x)==0 for x in matrix)
+000027 | 
+000028 | 
+000029 | Z=s.diag(1,s.I,-1,-s.I)
+000030 | X=s.zeros(4)
+000031 | for r in range(4):X[(r+1)%4,r]=1
+000032 | F=s.zeros(8)
+000033 | for r in range(4):
+000034 |     B=s.Matrix([[r+1,s.I*r],[1-r,s.Rational(r+2,2)]])
+000035 |     F[2*((r+2)%4):2*((r+2)%4)+2,2*r:2*r+2]=B
+000036 | Zfull=s.kronecker_product(Z,s.eye(2))
+000037 | need(Zfull*F*Zfull.conjugate().T==-F,'arbitrary nonunitary half-grade representative')
+000038 | need(zero(F.conjugate().T*Zfull.conjugate().T*F*Zfull+F.conjugate().T*F),
+000039 |      'all-word fourpoint sign identity')
+000040 | comm=Zfull*F-F*Zfull
+000041 | need(zero(comm.conjugate().T*comm-4*F.conjugate().T*F),'norm obstruction squared')
+000042 | n=s.trace(F.conjugate().T*F)/8
+000043 | need(n>0,'positive nonzero normalized word test')
+000044 | 
+000045 | # All register offdiagonals are killed by time invariance if the FULL
+000046 | # original even matter algebra is retained: Schur reduces P to one register
+000047 | # matrix per matter parity. Witness each offdiagonal with actual hopping.
+000048 | hs=[v1033.qwz_cylinder(3,8,1.,r) for r in range(4)]
+000049 | projection_witnesses=[]
+000050 | for r in range(4):
+000051 |     for t in range(4):
+000052 |         if r==t:continue
+000053 |         diff=hs[r]-hs[t]
+000054 |         hits=[(i,j) for i in range(48) for j in range(48) if i!=j and diff[i,j]!=0]
+000055 |         need(bool(hits),'each pair of register Hamiltonians differs on a matter transfer')
+000056 |         i,j=hits[0]
+000057 |         k=next(k for k in range(48) if k not in (i,j))
+000058 |         projection_witnesses.append({'r':r,'s':t,'one_particle_transfer':[i,j],
+000059 |                                      'even_sector_spectator':k})
+000060 | 
+000061 | # Same-x-orientation shared flux: no offdiagonal pair of background labels.
+000062 | need(Zfull-Zfull==s.zeros(8),'actual shared edge Wilson identity')
+000063 | ZL,ZR=s.kronecker_product(Z,s.eye(4)),s.kronecker_product(s.eye(4),Z)
+000064 | left=s.kronecker_product(X**2,s.eye(4))
+000065 | vac=s.eye(16)[:,0]
+000066 | defect=(ZL-ZR)*left*vac
+000067 | need((defect.conjugate().T*defect)[0]==4,'proposed one-edge flip violates joint word identity')
+000068 | 
+000069 | # Actual source fold: cyclic sheet monodromy C(h)^8=h I.
+000070 | h=s.symbols('h',nonzero=True)
+000071 | def cyclic(holonomy):
+000072 |     out=s.zeros(8)
+000073 |     for j in range(7):out[j+1,j]=1
+000074 |     out[0,7]=holonomy
+000075 |     return out
+000076 | C=cyclic(h)
+000077 | S=s.diag(*[(-1)**j for j in range(8)])
+000078 | need(C**8==h*s.eye(8),'actual eightfold cover holonomy')
+000079 | need(cyclic(-h)**8==-h*s.eye(8),'primitive half flux changes parent holonomy')
+000080 | need((-C)**8==h*s.eye(8),'uniform vector-minus spinor monodromy invisible on cover')
+000081 | need(S*C*S==-C,'two base lifts have the SAME cover holonomy')
+000082 | 
+000083 | # Mandatory countercontrol: at quarters an SO16 charge conjugation can
+000084 | # relate the real holonomies, but reverses the original U1 charge action.
+000085 | def realify(M):
+000086 |     re,im=M.applyfunc(s.re),M.applyfunc(s.im)
+000087 |     return re.row_join(-im).col_join(im.row_join(re))
+000088 | I=s.eye(8)
+000089 | complex_structure=s.zeros(8).row_join(-I).col_join(I.row_join(s.zeros(8)))
+000090 | K=s.diag(I,-I)
+000091 | O=realify(S)*K
+000092 | need(O*O.T==s.eye(16) and O.det()==1,'proper real charge-conjugation countercontrol')
+000093 | for q in [s.I,-s.I]:
+000094 |     need(O*realify(cyclic(-q))*O.T==realify(-cyclic(q)),
+000095 |          'quarter real holonomy conjugacy EXISTS when charge is reversed')
+000096 | need(O*complex_structure*O.T==-complex_structure,'this escape reverses charge,not fixed-Q map')
+000097 | 
+000098 | # Read-only replay: preserve all original assertions and suppress only its
+000099 | # result-file mutation. Do not run this assertion-based source under -OO.
+000100 | source=ROOT/'experiments/theory-contracts/collar-current-source-bridge-20261021/check_dirac_lift.py'
+000101 | tree=ast.parse(source.read_text(),filename=str(source))
+000102 | tree.body=[stmt for stmt in tree.body if not(
+000103 |     isinstance(stmt,ast.Expr) and isinstance(stmt.value,ast.Call)
+000104 |     and isinstance(stmt.value.func,ast.Attribute) and stmt.value.func.attr=='write_text')]
+000105 | # Replace Assert nodes with explicit raises so -OO also performs every check.
+000106 | class ExplicitAssertions(ast.NodeTransformer):
+000107 |     def visit_Assert(self,node):
+000108 |         return ast.copy_location(ast.If(test=ast.UnaryOp(op=ast.Not(),operand=node.test),
+000109 |             body=[ast.Raise(exc=ast.Call(func=ast.Name(id='RuntimeError',ctx=ast.Load()),
+000110 |                 args=[node.msg or ast.Constant(value='original assertion at line '+str(node.lineno))],keywords=[]),cause=None)],
+000111 |             orelse=[]),node)
+000112 | tree=ast.fix_missing_locations(ExplicitAssertions().visit(tree))
+000113 | buffer=io.StringIO()
+000114 | with contextlib.redirect_stdout(buffer):
+000115 |     exec(compile(tree,str(source),'exec'),{'__file__':str(source),'__name__':'read_only_assertion_replay'})
+000116 | dirac=json.loads(buffer.getvalue())
+000117 | need(all(c['finite_full_vector_cocycle']=='0' for c in dirac['cases'].values()),
+000118 |      'actual complete Dirac cancellation both quarters')
+000119 | 
+000120 | result={
+000121 |     'date':'2026-10-22',
+000122 |     'verdict':'ALL_WORD_REGISTER_OBSTRUCTION_AND_FIXED_CHARGE_FOLD_MISMATCH',
+000123 |     'nonunitary_four_word_positive_norm':str(n),
+000124 |     'half_flux_four_word_ratio':-1,
+000125 |     'required_remote_even_locality_ratio':1,
+000126 |     'uniform_operator_norm_commutator_ratio':2,
+000127 |     'actual_width8_projection_time_witnesses':projection_witnesses,
+000128 |     'shared_flux_one_edge_counterexample_norm_squared':4,
+000129 |     'parent_half_flux_cover_holonomy':'-h',
+000130 |     'uniform_D8_spinor_vector_twist_cover_holonomy':'h',
+000131 |     'complex_charge_preserving_conjugacy_possible':False,
+000132 |     'quarter_real_charge_reversing_conjugacy_possible':True,
+000133 |     'all_original_Dirac_assertions_executed_even_under_OO':True,
+000134 |     'original_Dirac_replay':dirac,
+000135 |     'source_hashes':{
+000136 |         str(source.relative_to(ROOT)):hashlib.sha256(source.read_bytes()).hexdigest(),
+000137 |         'verification/v1033_charged_disorder.py':hashlib.sha256((ROOT/'verification/v1033_charged_disorder.py').read_bytes()).hexdigest()},
+000138 |     'P1_E8_origin_derived':False,
+000139 | }
+000140 | Path(__file__).with_name('register-words-and-fold-results.json').write_text(json.dumps(result,indent=2)+'\n')
+000141 | print(json.dumps({k:v for k,v in result.items() if k not in ['actual_width8_projection_time_witnesses','original_Dirac_replay']},indent=2))

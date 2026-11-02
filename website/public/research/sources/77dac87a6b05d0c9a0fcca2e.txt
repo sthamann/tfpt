@@ -1,0 +1,95 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/ATLAS-D4-RETRIEVAL-REPAIR.txt
+Original file SHA-256: 9e6e12ab493168fe77df58604d02e1b5900f7bc085fde98e65b9e0204d579bdb
+Inclusive original lines: 1-87
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | Atlas D4 Abruf: Reparatur im bestehenden Aufrufpfad
+000002 | Datum: 2026-10-30
+000003 | 
+000004 | Ergebnis
+000005 | Die frische, isolierte stdio Verbindung über semantic_explorer/run.sh mcp
+000006 | liefert für die Anfrage
+000007 |   D4 monodromy vierte Matrix Identität C3xC3 rigid-family
+000008 | an erster Stelle den vorhandenen Befund
+000009 |   finding:archived-d4-puncture-formula-fails-and-existing-v117-repairs-existence
+000010 | bei unveränderter Datenrevision bbd1f7bb9943b7efec8f04d0.
+000011 | Der Aufruf endet regulär mit Exitcode 0 und ohne stderr. Die Antwort enthält
+000012 | den vollständigen zurückgegebenen ersten Befund einschließlich sieben Quellen,
+000013 | Scope und Prämissenverweisen. Sie belegt einen reparierten Abruf vorhandenen
+000014 | Wissens, keine neue theoretische Herleitung.
+000015 | 
+000016 | Konkrete Ursache
+000017 | Die Anfrage führte bereits zum richtigen großen Problem
+000018 | problem:atlas-clock-defect-and-operational-reconstruction. Dessen vollständige
+000019 | Darstellung umfasst 1.031.091 Zeichen. Innerhalb dieses Problems wurden
+000020 | Detailtreffer zuvor über die ganze JSON Darstellung bewertet. Einträge mit
+000021 | vielen Quellenpfaden und verknüpften IDs verdrängten den einschlägigen Befund,
+000022 | obwohl dessen mathematischer Inhalt zur Frage passt. Dazu kamen unterschiedliche
+000023 | Schreibweisen wie monodromy/Monodromie und Matrix/Matrizen.
+000024 | 
+000025 | Begrenzte Änderung an vorhandener Software
+000026 | 1. semantic_explorer/server/src/research.rs:590 und 689
+000027 |    Die bestehende Tokenisierung vereinheitlicht Monodromie/monodromy,
+000028 |    Matrix/Matrizen/matrices und Identität/identity.
+000029 | 2. semantic_explorer/server/src/research.rs:804
+000030 |    detail_records trennt Überschrift und inhaltliche Felder von übrigen Metadaten.
+000031 |    Echte ID Treffer bleiben zuerst. Danach zählt die Abdeckung verschiedener
+000032 |    inhaltlicher Anfragewörter, gefolgt von ihrer Seltenheit und Gewichtung:
+000033 |    Überschrift 20, Inhalt 5, reiner Metadatentreffer 1. Die vorhandene Reihenfolge
+000034 |    bleibt stabil für leere Anfragen und den unveränderten Problemabruf.
+000035 | 3. semantic_explorer/server/src/research.rs:1247
+000036 |    Die vorhandene Detailpackung berücksichtigt ihre Fortsetzungsmetadaten bereits
+000037 |    vor dem Einfügen. Dadurch verliert eine knappe Antwort ihre Navigationskarte
+000038 |    nicht nachträglich durch zu spät eingerechneten Platzbedarf.
+000039 | 
+000040 | Passende Regressionen
+000041 | semantic_explorer/server/src/research_tests.rs:1048,1069,1086 enthält drei
+000042 | zusätzliche Prüfungen: quellenreicher Ablenkungstreffer gegen einschlägigen
+000043 | Inhalt; unveränderter Vorrang einer exakten Befund ID; zweimal identische echte
+000044 | D4 Anfrage gegen vorhandenes research/program.json bei 24.000 Zeichen.
+000045 | Vor der Reparatur bestanden davon eine Prüfung und zwei scheiterten. Danach
+000046 | bestanden alle 19 Tests des vorhandenen research Moduls, null Fehler und
+000047 | 79 ausgefilterte Tests. Dies ist keine Behauptung einer vollständigen
+000048 | Serverprüfung. Die Tests wurden für diese frische Verbindungsprüfung nicht
+000049 | nochmals ausgeführt.
+000050 | 
+000051 | Beobachteter echter Aufruf
+000052 | Ein zusätzlicher subprocess startete ausschließlich run.sh mcp. Der vorhandene
+000053 | Startpfad erledigte seinen erforderlichen Release Build und öffnete eine neue
+000054 | stdio Verbindung. Nach initialize, notifications/initialized und tools/call
+000055 | research_state wurde stdin geschlossen. Bestehende Clients und Server wurden
+000056 | weder beendet noch neu gestartet. Die Verbindung benötigte 9,738 Sekunden.
+000057 | Die serverseitig gezählte Antwort hat 22.046 Zeichen bei max_chars=24.000.
+000058 | Die gespeicherte kompakte JSON Datei hat mit abschließendem Zeilenumbruch
+000059 | 22.047 Zeichen. Die Antwort ist ausdrücklich eine Teilseite: drei Befunde,
+000060 | korrekte Fortsetzung mit detail_offset=3 und derselben erwarteten Revision.
+000061 | Scope und Quellen des D4 Erratums bleiben in der Antwort erhalten.
+000062 | 
+000063 | Abgrenzung zur alten Verbindung
+000064 | Die schon laufende MCP Verbindung zeigte nach der Quelländerung, vor dem
+000065 | frischen Start, noch finding:matrix-clutch-degree-connects-weak-determinant-class-
+000066 | without-ray-selector an erster Stelle. Ihre exakte Befund ID Anfrage fand die
+000067 | vorhandene D4 Lösung trotzdem. Beide Aufrufe lesen dieselbe Datenrevision.
+000068 | Der neue Quellcode wird im laufenden alten Prozess nicht durch das Ersetzen
+000069 | der Release Datei nachgeladen. Eine frische Verbindung verwendet den Fix;
+000070 | bestehende Verbindungen können ihn bei ihrem normalen späteren Neustart laden.
+000071 | Ein Eingriff in diese fremden Verbindungen war für den Nachweis nicht nötig.
+000072 | 
+000073 | Dauerhafte Belege
+000074 | Workspace outputs/multi-model-source-search-20261029/
+000075 |   ATLAS-D4-FRESH-MCP-RESPONSE.json
+000076 |   ATLAS-D4-FRESH-MCP-CHECK.json
+000077 | Die zweite Datei enthält den konkreten Aufruf, Revision, ersten Befund,
+000078 | Antwortbudget, Exitcode, Quellhashes und Hash des frisch verwendbaren
+000079 | Release Programms. Die erste Datei enthält das vollständige begrenzte
+000080 | research_state Ergebnis als kompaktes UTF-8 JSON.
+000081 | 
+000082 | Geltungsbereich
+000083 | Es wurden nur die bestehende Rangfolge und Antwortpackung sowie die genannten
+000084 | Regressionen geändert. Keine Atlas Graphdaten wurden direkt geändert; API,
+000085 | Schema, Gates und Theorieaussagen bleiben unverändert. Der erste Befund sagt
+000086 | weiterhin nur das konkrete archivierte D4 Erratum und die bestehende v117
+000087 | Existenzkorrektur aus, ohne daraus einen allgemeinen P2 Ausschluss abzuleiten.

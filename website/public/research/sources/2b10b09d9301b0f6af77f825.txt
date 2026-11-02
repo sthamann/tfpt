@@ -1,0 +1,130 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/foundational-process-classification-20261016/observability_models.py
+Original file SHA-256: bc57e8c166f9b4ccd43d7cebd60202f0b7ef0e847e469c86503eb0e24ee7c5ee
+Inclusive original lines: 280-401
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000280 |         point_name(point): {candidate: Q(candidate == point) for candidate in POINTS}
+000281 |         for point in POINTS
+000282 |     }
+000283 |     i_preparations: Dict[str, Dict[Point, Q]] = {
+000284 |         **i_corners,
+000285 |         "center": {point: Q(1, 4) for point in POINTS},
+000286 |         "diag_even": {point: Q(1, 2) if point in ((1, 1), (-1, -1)) else Q(0) for point in POINTS},
+000287 |         "diag_odd": {point: Q(1, 2) if point in ((1, -1), (-1, 1)) else Q(0) for point in POINTS},
+000288 |     }
+000289 | 
+000290 |     # D cone positivity, instrument normalization, and repeatability.
+000291 |     positivity_checks: Dict[str, Dict[str, bool]] = {}
+000292 |     repeatability_checks: Dict[str, Dict[str, bool]] = {}
+000293 |     for measurement in "XZ":
+000294 |         positivity_checks[measurement] = {}
+000295 |         repeatability_checks[measurement] = {}
+000296 |         nonselective = d_nonselective_matrix(measurement)
+000297 |         assert nonselective[0] == (Q(1), Q(0), Q(0))
+000298 |         for corner_name, ray in d_corners.items():
+000299 |             for outcome in SIGNS:
+000300 |                 branch = d_branch(measurement, outcome, ray)
+000301 |                 assert d_positive(branch)
+000302 |                 positivity_checks[measurement][f"{corner_name}:{sign_string((outcome,))}"] = True
+000303 |         for outcome in SIGNS:
+000304 |             branch_matrix = d_branch_matrix(measurement, outcome)
+000305 |             same_twice = matrix_multiply(branch_matrix, branch_matrix)
+000306 |             opposite_after = matrix_multiply(
+000307 |                 d_branch_matrix(measurement, -outcome), branch_matrix
+000308 |             )
+000309 |             assert same_twice == branch_matrix
+000310 |             assert opposite_after == ZERO_MATRIX
+000311 |             repeatability_checks[measurement][sign_string((outcome,))] = True
+000312 | 
+000313 |     # All eight square symmetries are signed coordinate permutations.
+000314 |     square_symmetry_images: Dict[str, list[str]] = {}
+000315 |     corner_set = set(d_corners.values())
+000316 |     for swap in (False, True):
+000317 |         for sign_x in SIGNS:
+000318 |             for sign_z in SIGNS:
+000319 |                 name = f"{'swap' if swap else 'keep'}:{sign_string((sign_x, sign_z))}"
+000320 |                 images = []
+000321 |                 for corner_name, (t, x, z) in d_corners.items():
+000322 |                     source_x, source_z = (z, x) if swap else (x, z)
+000323 |                     image = (t, sign_x * source_x, sign_z * source_z)
+000324 |                     assert image in corner_set and d_positive(image)
+000325 |                     images.append(f"{corner_name}->{point_name((int(image[1]), int(image[2])))}")
+000326 |                 square_symmetry_images[name] = images
+000327 |     assert len(square_symmetry_images) == 8
+000328 | 
+000329 |     # Exact outcome tables for all requested preparations and words.
+000330 |     d_tables = {
+000331 |         preparation: {
+000332 |             word: table_strings(d_history_distribution(vector, word)) for word in words
+000333 |         }
+000334 |         for preparation, vector in d_preparations.items()
+000335 |     }
+000336 |     i_tables = {
+000337 |         preparation: {
+000338 |             word: table_strings(i_history_distribution(distribution, word)) for word in words
+000339 |         }
+000340 |         for preparation, distribution in i_preparations.items()
+000341 |     }
+000342 |     for preparation in d_preparations:
+000343 |         for word in words:
+000344 |             assert sum(d_history_distribution(d_preparations[preparation], word).values()) == 1
+000345 |             assert sum(i_history_distribution(i_preparations[preparation], word).values()) == 1
+000346 | 
+000347 |     # First and final X agree in I but only with probability 1/2 in D after XZX.
+000348 |     xzx_match: Dict[str, Dict[str, str]] = {}
+000349 |     for corner_name in d_corners:
+000350 |         d_distribution = d_history_distribution(d_corners[corner_name], "XZX")
+000351 |         i_distribution = i_history_distribution(i_corners[corner_name], "XZX")
+000352 |         d_match = sum(probability for outcomes, probability in d_distribution.items() if outcomes[0] == outcomes[2])
+000353 |         i_match = sum(probability for outcomes, probability in i_distribution.items() if outcomes[0] == outcomes[2])
+000354 |         assert d_match == Q(1, 2)
+000355 |         assert i_match == Q(1)
+000356 |         xzx_match[corner_name] = {"I": qstr(i_match), "D": qstr(d_match)}
+000357 | 
+000358 |     # The two diagonal I preparations have opposite parity.  Their D images are
+000359 |     # the same center and therefore have identical tables for every tested word.
+000360 |     i_parity = {}
+000361 |     for preparation, expected in (("diag_even", 1), ("diag_odd", -1)):
+000362 |         distribution = i_history_distribution(i_preparations[preparation], "Y")
+000363 |         expectation = sum(outcomes[0] * probability for outcomes, probability in distribution.items())
+000364 |         assert expectation == expected
+000365 |         i_parity[preparation] = {
+000366 |             "distribution": table_strings(distribution),
+000367 |             "expectation": qstr(expectation),
+000368 |         }
+000369 |     for word in words:
+000370 |         assert d_history_distribution(d_preparations["diag_even"], word) == d_history_distribution(
+000371 |             d_preparations["diag_odd"], word
+000372 |         )
+000373 | 
+000374 |     # D affine dependence versus I simplex independence.
+000375 |     d_order = ["++", "+-", "-+", "--"]
+000376 |     d_matrix_rows = [[d_corners[name][row] for name in d_order] for row in range(3)]
+000377 |     i_matrix_rows = [[Q(row == column) for column in range(4)] for row in range(4)]
+000378 |     d_rank = matrix_rank(d_matrix_rows)
+000379 |     i_rank = matrix_rank(i_matrix_rows)
+000380 |     assert d_rank == 3 and i_rank == 4
+000381 |     d_relation_left = add_vectors(d_corners["++"], d_corners["--"])
+000382 |     d_relation_right = add_vectors(d_corners["+-"], d_corners["-+"])
+000383 |     assert d_relation_left == d_relation_right == (Q(2), Q(0), Q(0))
+000384 | 
+000385 |     # Selective D branches do not commute, while their nonselective sums do.
+000386 |     x_plus = d_branch_matrix("X", 1)
+000387 |     z_plus = d_branch_matrix("Z", 1)
+000388 |     x_after_z = matrix_multiply(x_plus, z_plus)
+000389 |     z_after_x = matrix_multiply(z_plus, x_plus)
+000390 |     assert x_after_z != z_after_x
+000391 |     center = d_preparations["center"]
+000392 |     selective_order_outputs = {
+000393 |         "X_plus_after_Z_plus": vector_strings(matrix_apply(x_after_z, center)),
+000394 |         "Z_plus_after_X_plus": vector_strings(matrix_apply(z_after_x, center)),
+000395 |     }
+000396 |     nonselective_x = d_nonselective_matrix("X")
+000397 |     nonselective_z = d_nonselective_matrix("Z")
+000398 |     nonselective_xz = matrix_multiply(nonselective_x, nonselective_z)
+000399 |     nonselective_zx = matrix_multiply(nonselective_z, nonselective_x)
+000400 |     assert nonselective_xz == nonselective_zx
+000401 |     assert matrix_apply(nonselective_xz, center) == center

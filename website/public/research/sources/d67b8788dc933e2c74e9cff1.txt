@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/native-observation-arity-20261025/NATIVE-OBSERVATION-ARITY.txt
+Original file SHA-256: 3beb984ed44fdc1c9aab40626fc19357aaa5a0a15dcaa57259f6d71e487e5b39
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | NATIVE OBSERVATION ARITY
+000002 | ========================
+000003 | 
+000004 | Result
+000005 | ------
+000006 | 
+000007 | PROVED for the finite native G31 representation reconstructed by the checker:
+000008 | the first tensor power carrying a nonconstant POVM with the actual six Ovoid
+000009 | label action is n=3.  At n=1 and n=2 every covariant six-effect POVM is the
+000010 | uniform POVM.  On the full 64 dimensional V4 tensor3, every such POVM belongs
+000011 | to one exact one-parameter family.  Its informative centered part is forced
+000012 | to lie on the original twenty-dimensional Sym^3(V4) carrier.
+000013 | 
+000014 | The result covers arbitrary linear Hermitian effects, followed by positivity
+000015 | and normalization.  It is not restricted to projective or rank-one guesses.
+000016 | 
+000017 | Actual input, with no fitted representation
+000018 | --------------------------------------------
+000019 | 
+000020 | The checker imports these tracked constructors:
+000021 | 
+000022 | * tfpt_explorer/quartic_selection.py: the original N64=mu4.P2 matrices;
+000023 | * tfpt_explorer/process.py: the original five quartic word supports;
+000024 | * atlas-defect-synthesis-20261024/doily_quartic_bridge.py: the actual sixty
+000025 |   Gaussian root reflections, their E8/(1-J)E8 Ovoid permutations, the native
+000026 |   quartic H5 matrices, the six Ovoid rays, and the all-sixty intertwiner;
+000027 | * atlas-defect-synthesis-20261024/native_erasure_readout.py: the original
+000028 |   gauge-first isometry W:C4 tensor H5 -> C64;
+000029 | * compiler-correlated-event-clock-20260919/source_channel.py: provenance for
+000030 |   the Bell10 and outer-S6 comparison, reconstructed here from the matrices.
+000031 | 
+000032 | No new four-dimensional representation or relabelling is solved for.
+000033 | 
+000034 | Why covariance becomes an intertwiner question
+000035 | -----------------------------------------------
+000036 | 
+000037 | Let F_a, a=0,...,5, be effects with sum F_a=I and with the actual Ovoid
+000038 | permutation pi_g:
+000039 | 
+000040 |     rho_n(g) F_a rho_n(g)* = F_{pi_g(a)}.
+000041 | 
+000042 | Write X_a=F_a-I/6.  Then sum X_a=0.  The six labels therefore contribute
+000043 | their centered five-dimensional permutation representation.  A nonconstant
+000044 | POVM exists only if this target five occurs in End(V4 tensor n).  Conversely,
+000045 | at n=3 the checker supplies positive effects explicitly.  This reduces the
+000046 | minimality statement to a finite exact Hom computation.
+000047 | 
+000048 | Arity one
+000049 | ---------
+000050 | 
+000051 | The Ovoid labels are fixed by the normal Pauli kernel N64.  Hence every F_a
+000052 | must commute with N64.  The sixteen phase-free Pauli matrices span End(V4),
+000053 | and their exact simultaneous commutant has dimension one.  Thus every F_a is
+000054 | scalar.  The transitive S6 action makes the six scalars equal, and normalization
+000055 | gives
+000056 | 
+000057 |     F_a = I4/6.
+000058 | 
+000059 | Arity two: the decisive outer-action mismatch
+000060 | ---------------------------------------------
+000061 | 
+000062 | On V4 tensor V4, the sixteen vectors vec(P)/2, for the sixteen phase-free
+000063 | Paulis P, form an orthonormal Bell basis.  The checker diagonalizes every
+000064 | P tensor P in that basis and finds sixteen distinct joint characters.  The
+000065 | full N64-invariant operator algebra is therefore exactly the span of the
+000066 | sixteen Bell projectors.  Its dimension is 16.
+000067 | 
+000068 | Transpose parity splits these projectors canonically:
+000069 | 
+000070 |     16 = 10 symmetric + 6 antisymmetric.
+000071 | 
+000072 | Every one of the sixty actual root reflections preserves this split.  Its
+000073 | cycle types are
+000074 | 
+000075 |     actual Ovoid6 labels       : (2,1,1,1,1),
+000076 |     symmetric Bell10 labels   : (2,2,2,1,1,1,1),
+000077 |     antisymmetric Bell6 labels : (2,2,2).
+000078 | 
+000079 | Thus the antisymmetric six is precisely the outer six-point S6 action.  It is
+000080 | not the actual Ovoid six.  The fifteen target transpositions together with
+000081 | their Bell actions generate 720 paired permutations.  Exact character inner
+000082 | products over those 720 elements give
+000083 | 
+000084 |     Hom(target5, Bell10) = 0,
+000085 |     Hom(target5, Bell6)  = 0.
+000086 | 
+000087 | The Bell10 centered character has norm one and dimension nine.  The Bell6
+000088 | centered character has norm one and dimension five, but its inner product
+000089 | with the target five is zero.  Equal dimension five therefore does not supply
+000090 | the needed dictionary.  The complete N64 commutant contains no target five,
+000091 | so
+000092 | 
+000093 |     F_a = I16/6
+000094 | 
+000095 | for every covariant six-effect POVM at n=2.
+000096 | 
+000097 | Mixed-orientation control
+000098 | -------------------------
+000099 | 
+000100 | The checker does not infer the result for V4 tensor conjugate(V4) from the
+000101 | ordinary tensor square.  It separately reconstructs the similarity action
+000102 | 
+000103 |     vec(P) -> vec(R P R*)
+000104 | 
+000105 | on all sixteen Pauli Bell lines.  It separately diagonalizes every
+000106 | P tensor conjugate(P) and again finds sixteen distinct joint characters, so
+000107 | the mixed N64 commutant is exactly the span of these sixteen projectors.  The
+000108 | identity line is fixed, and the nonzero
+000109 | fifteen-label character decomposes exactly as
+000110 | 
+000111 |     15 = 1 + 9 + outer5.
+000112 | 
+000113 | The paired root permutations again generate all 720 elements.  The inner
+000114 | product of this permutation character with the actual Ovoid target five is
+000115 | zero.  Thus this alternative orientation also supplies only the uniform
+000116 | six-effect Ovoid POVM.  This is a separate exact check and does not identify
+000117 | the two tensor orientations.
+000118 | 
+000119 | Arity three: the existing original carrier
+000120 | -------------------------------------------
+000121 | 
+000122 | From the original quartic word supports the checker reconstructs the same
+000123 | 64 by 20 isometry W used by the erasure contract.  It proves exactly
+000124 | 
+000125 |     W*W = I20,
+000126 |     WW* = Pi20 = the three-slot symmetrizer,
+000127 |     image(W) = Sym^3(V4),
+000128 |     R4 tensor3 W = W [conjugate(R4) tensor C5]
+000129 | 
+000130 | for all sixty native root reflections.  For all sixteen phase-free Pauli
+000131 | kernel matrices it also proves
+000132 | 
+000133 |     P tensor3 W = W [conjugate(P) tensor I5].
+000134 | 
+000135 | Consequently the N64 commutant on this carrier is
+000136 | 
+000137 |     I4 tensor End(H5).
+000138 | 
+000139 | The actual quartic H5 is the actual Ovoid standard five by the independently
+000140 | reconstructed all-sixty bridge.  Over the generated S6, if chi is its
+000141 | character, the checker verifies the exact character decomposition
+000142 | 
+000143 |     End(H5) = 1 + 5 + 9 + 10
+000144 | 
+000145 | with pairwise orthonormal characters.  Equivalently,
+000146 | 
+000147 |     <chi, chi^2> = 1.
+000148 | 
+000149 | The target five occurs exactly once on the carrier.  The known centered Ovoid
+000150 | effects E_a-I5/6 are a nonzero copy of it.  Therefore every covariant
+000151 | six-effect POVM restricted to Sym^3(V4) has the form
+000152 | 
+000153 |     A_a(t) = I4 tensor [t E_a + (1-t) I5/6]
+000154 | 
+000155 | for one real t.  This is a classification, not only an example.
+000156 | 
+000157 | Full G31 character count
+000158 | ------------------------
+000159 | 
+000160 | The carrier calculation alone would still allow another target five on the
+000161 | 44 dimensional complementary sector.  The checker closes that possibility
+000162 | by an independent full representation character count.
+000163 | 
+000164 | It chooses one of the actual native four-dimensional root matrices above each
+000165 | of the fifteen Ovoid transpositions.  A breadth-first word construction gives
+000166 | one matrix G_pi for every one of the 720 permutations pi in S6.  The checker
+000167 | then verifies all multiplication data needed for a complete transversal:
+000168 | 
+000169 | * all sixty original root lifts lie in the expected Pauli coset;
+000170 | * the fifteen chosen lifts normalize the projective Pauli16;
+000171 | * every one of the 720 times 15 right-generator products lands in the expected
+000172 |   next coset;
+000173 | * the matrices P G_pi give exactly 11,520 distinct projective elements.
+000174 | 
+000175 | The four central phases of G31 do not change |tr|.  Hence the full G31
+000176 | multiplicity equals the projective average
+000177 | 
+000178 |     m_n = (1/11520) sum_(pi in S6, P in Pauli16)
+000179 |           chi5(pi) |tr(P G_pi)|^(2n).
+000180 | 
+000181 | The exact unnormalized sums for n=1,2,3 are
+000182 | 
+000183 |     0, 0, 11520,
+000184 | 
+000185 | so
+000186 | 
+000187 |     m_1=0, m_2=0, m_3=1.
+000188 | 
+000189 | Thus the target five occurs exactly once in the entire End(V4 tensor3), not
+000190 | once per chosen sector.  The already constructed centered family is nonzero,
+000191 | so it spans that unique full Hom space.  Every full covariant POVM is therefore
+000192 | 
+000193 |     F_a(t) = I64/6 + t W[I4 tensor (E_a-I5/6)]W*
+000194 | 
+000195 | or, equivalently,
+000196 | 
+000197 |     F_a(t) = W[I4 tensor (t E_a+(1-t)I5/6)]W*
+000198 |              + (I64-Pi20)/6.
+000199 | 
+000200 | The uniform action on the 44 dimensional complement and the support of the

@@ -1,0 +1,90 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_clock_higgs_global_synthesis.py
+Original file SHA-256: f277cbfba094fc613b6a0a331905bf7a651c43463f19b447c742e8421afda5d2
+Inclusive original lines: 1-82
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R083: conditional clock/Higgs unification tests on existing source data.
+000002 | 
+000003 | Shift and C5 carrier identifications are hypotheses, not physical TFPT maps.
+000004 | """
+000005 | from pathlib import Path
+000006 | import json, sys
+000007 | import numpy as np
+000008 | import sympy as sp
+000009 | from scipy.linalg import expm
+000010 | from scipy.special import expit
+000011 | 
+000012 | ROOT=Path(__file__).resolve().parents[4]
+000013 | sys.path.insert(0,str(ROOT/'verification'))
+000014 | import v252_full_finite_triple as original
+000015 | from v311_gap_decoupled_measure import transfer
+000016 | 
+000017 | checks={}
+000018 | def require(name, value):
+000019 |     checks[name]=bool(value)
+000020 |     if not value: raise RuntimeError(name)
+000021 | 
+000022 | # The actual R081 seeded input, not a new physical Yukawa fit.
+000023 | rng=np.random.default_rng(252)
+000024 | ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000025 | mr=rng.normal(size=(3,3))
+000026 | D=original.full_D(*ys,mr+mr.T)
+000027 | require('original_finite_triple_96',D.shape==(96,96))
+000028 | s=float(np.linalg.svd(ys[0],compute_uv=False)[0]);ell=.2;rad=.3;m=rad*s;alpha=.25
+000029 | def c(p, mass):
+000030 |     e=np.sqrt(p*p+mass*mass)
+000031 |     return (1+(p/e)*np.tanh(ell*e))/2
+000032 | def dc(p,mass):
+000033 |     e=np.sqrt(p*p+mass*mass);u=np.tanh(ell*e)
+000034 |     return p*mass/(2*e**3)*(ell*e*(1-u*u)-u)
+000035 | p=alpha;h=1e-5
+000036 | K=2*ell*np.array([[p,m],[m,-p]])
+000037 | e,u=np.linalg.eigh(K);numeric=((u*expit(e))@u.T)[0,0]
+000038 | require('actual_singular_pair_occupation',abs(c(p,m)-numeric)<1e-14)
+000039 | der=dc(p,m)
+000040 | require('higgs_derivative_nonzero',abs(der)>1e-5)
+000041 | require('higgs_derivative_finite_difference',abs(der-(c(p,m+h)-c(p,m-h))/(2*h))<1e-9)
+000042 | 
+000043 | # Conditional same scalar Hardy component and unilateral shift, not established
+000044 | # equivalence to the original full geometric or E8 carrier.
+000045 | z=.3; limits=[]
+000046 | for nmax in [100,1000,10000]:
+000047 |     ns=np.arange(-nmax,nmax+1,dtype=float)
+000048 |     cs=c(ns+alpha,m); prev=c(ns+alpha-1,m)
+000049 |     logdet=float(np.sum(np.log1p(-z*prev)-np.log1p(-z*cs)))
+000050 |     boundary=float(np.log1p(-z*c(-nmax+alpha-1,m))-np.log1p(-z*c(nmax+alpha,m)))
+000051 |     require('telescoping_identity_'+str(nmax),abs(logdet-boundary)<1e-11)
+000052 |     trace_dist=float(np.sum(abs(cs-(ns+alpha>0))))
+000053 |     limits.append({'cutoff':nmax,'relative_determinant':float(np.exp(logdet)),
+000054 |                    'distance_to_target':float(abs(np.exp(logdet)-1/(1-z))),
+000055 |                    'trace_distance_to_step':trace_dist})
+000056 | require('shifted_determinant_converges_to_winding',limits[-1]['distance_to_target']<1e-7)
+000057 | require('finite_cutoffs_improve',limits[-1]['distance_to_target']<limits[0]['distance_to_target'])
+000058 | require('relative_trace_tail_bounded',limits[-1]['trace_distance_to_step']<2*limits[0]['trace_distance_to_step'])
+000059 | # Compare topology against a genuinely varying matter response.
+000060 | require('same_higgs_response_varies',abs(c(p,m)-c(p,0))>1e-5)
+000061 | 
+000062 | # AGL(1,5) on the *natural five-letter permutation carrier*. This is only a
+000063 | # proposed common carrier; v311's 3x3 transfer is not asserted to live on it.
+000064 | C=sp.zeros(5);G=sp.zeros(5)
+000065 | for j in range(5): C[(j+1)%5,j]=1;G[(2*j)%5,j]=1
+000066 | require('actual_clock_semidirect_relation',G*C*G.inv()==C**2)
+000067 | xs=sp.symbols('x0:25');X=sp.Matrix(5,5,xs)
+000068 | eq=list(X*C-C*X)+list(X*G-G*X)
+000069 | M,_=sp.linear_eq_to_matrix(eq,xs);rank=M.rank(); nullity=25-rank
+000070 | require('five_carrier_commutant_dimension_two',nullity==2)
+000071 | require('all_ones_and_identity_in_commutant',C*sp.ones(5)==sp.ones(5)*C and G*sp.ones(5)==sp.ones(5)*G)
+000072 | T,l2,l3=transfer();eigs=np.linalg.eigvalsh(T)
+000073 | require('v311_three_distinct_levels',np.min(np.diff(eigs))>1e-6)
+000074 | 
+000075 | out={'scope':'conditional same scalar shift/Higgs carrier; natural five-letter clock representation; no identification with actual joint TFPT process',
+000076 |      'singular_value':s,'radius':rad,'ell':ell,'alpha':alpha,'mass_control':m,
+000077 |      'one_mode_occupation':float(c(p,m)),'one_mode_mass_derivative':float(der),
+000078 |      'relative_determinant_target':1/(1-z),'shift_cutoffs':limits,
+000079 |      'clock_commutant_dimension':nullity,'native_transfer_eigenvalues':eigs.tolist(),
+000080 |      'checks':checks,'passed':len(checks),'failed':0,'new_lean':False,'physical_source_or_spacetime_derived':False}
+000081 | Path(__file__).with_name('CLOCK-HIGGS-GLOBAL-SYNTHESIS.json').write_text(json.dumps(out,indent=2)+'\n')
+000082 | print(json.dumps(out,indent=2))

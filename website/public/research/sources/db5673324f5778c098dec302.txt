@@ -1,0 +1,39 @@
+TFPT scientific source excerpt
+Original repository path: verification/v252_full_finite_triple.py
+Original file SHA-256: 820254440e178430422e50605067775656236602996307f67c9e69124ba5d163
+Inclusive original lines: 102-132
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000102 | def full_D(Yu, Yd, Ye, Ynu, MR):
+000103 |     """D_F = [[S, T],[T^dag, conj S]] ; T = Majorana on nu_R (particle<->antiparticle)."""
+000104 |     S = dirac_block(Yu, Yd, Ye, Ynu)
+000105 |     T = np.zeros((NP, NP), complex)
+000106 |     for g in range(NG):
+000107 |         for gj in range(NG):
+000108 |             i = IDX[("nu", "R", 0, g)]
+000109 |             j = IDX[("nu", "R", 0, gj)]
+000110 |             T[i, j] = MR[g, gj]
+000111 |     D = np.zeros((NH, NH), complex)
+000112 |     D[:NP, :NP] = S
+000113 |     D[NP:, NP:] = np.conjugate(S)
+000114 |     D[:NP, NP:] = T
+000115 |     D[NP:, :NP] = T.conj().T
+000116 |     return D
+000117 | 
+000118 | 
+000119 | def grading():
+000120 |     gp = np.array([1.0 if ch == "L" else -1.0 for (_, ch, _, _) in P])
+000121 |     return np.diag(np.concatenate([gp, -gp]))      # antiparticles: opposite chirality
+000122 | 
+000123 | 
+000124 | def Kswap():
+000125 |     K = np.zeros((NH, NH))
+000126 |     K[:NP, NP:] = np.eye(NP)
+000127 |     K[NP:, :NP] = np.eye(NP)
+000128 |     return K
+000129 | 
+000130 | 
+000131 | def Japply(v, K):
+000132 |     return K @ np.conjugate(v)                       # antilinear J = swap . conj

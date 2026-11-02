@@ -1,0 +1,65 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_actual_marked_spectral_readout.py
+Original file SHA-256: 07d9954028194f3d3f3a9748783a350324fa9ebeb4c9a87aa0357038c729b15d
+Inclusive original lines: 1-57
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact full marked reader versus its linear scalar centralization.
+000002 | 
+000003 | No source, metric, clock or state is selected by this calculation.
+000004 | M0 is the already verified original v118/common Fuchs matrix.
+000005 | """
+000006 | import json
+000007 | from pathlib import Path
+000008 | import sympy as s
+000009 | 
+000010 | i = s.I
+000011 | M = s.Matrix([[0, -(1+i)/2, (1-i)/2],
+000012 |               [-(1+i)/2, -i/2, -s.Rational(1, 2)],
+000013 |               [(1-i)/2, -s.Rational(1, 2), i/2]])
+000014 | P = s.diag(1, 0, 0)
+000015 | Dsign = s.diag(1, -1, 1)
+000016 | a, b, y, delta, u, v = s.symbols('alpha beta y delta u v')
+000017 | F = a*M*P - b*P*M
+000018 | N = -Dsign*F*Dsign
+000019 | c = (a-b)/3
+000020 | centralize = lambda X: s.simplify(sum(
+000021 |     (M**k*X*M**(2*k) for k in range(3)), s.zeros(3))/3)
+000022 | full = s.expand((y*s.eye(3)-delta*M-u*F-v*N).det())
+000023 | expected_full = (y**3-delta**3-(a-b)*delta**2*u
+000024 |                  -i*(a-b)*delta*y*v+a*b*delta*u**2+2*i*a*b*y*u*v)
+000025 | central = s.expand((y*s.eye(3)-(delta+c*u)*M-i*c*v*M**2).det())
+000026 | expected_central = y**3-(delta+c*u)**3-(i*c*v)**3-3*y*(delta+c*u)*(i*c*v)
+000027 | expected_difference = (delta*u**2*(a*a+a*b+b*b)/3
+000028 |     +i*y*u*v*(a*a+4*a*b+b*b)/3+c**3*u**3-i*c**3*v**3)
+000029 | rho = s.Rational(1, 2)-i*s.sqrt(3)/2
+000030 | C = (s.sqrt(6)-s.sqrt(2))/4-i*(s.sqrt(6)+s.sqrt(2))/4
+000031 | A, B = s.symbols('A B', real=True)
+000032 | E = lambda r, q: s.eye(3)[:, r]*s.eye(3)[q, :]
+000033 | Fc = C*(A*E(0, 2)+B*E(2, 1))
+000034 | Nc = -i*C*(A*E(1, 2)+B*E(2, 0))
+000035 | checks = {
+000036 |     'original_cube': s.simplify(M**3)==s.eye(3),
+000037 |     'F_centralization': s.simplify(centralize(F)-c*M)==s.zeros(3),
+000038 |     'N_centralization': s.simplify(centralize(N)-i*c*M**2)==s.zeros(3),
+000039 |     'full_marked_determinant': s.simplify(full-expected_full)==0,
+000040 |     'central_determinant': s.simplify(central-expected_central)==0,
+000041 |     'nonlinear_difference': s.simplify(full-central-expected_difference)==0,
+000042 |     'linear_agreement': all(s.simplify(s.diff(full-central, z).subs({u:0,v:0}))==0 for z in (u,v)),
+000043 |     'actual_phase': s.simplify(s.expand_complex(rho*s.conjugate(C)-i*C))==0,
+000044 |     'full_adjoint_residual': s.simplify(s.expand_complex(
+000045 |         Nc-rho*Fc.conjugate().T+i*C*(A+B)*(E(1,2)+E(2,0))))==s.zeros(3),
+000046 |     'quadratic_not_identically_zero_for_real_ratio': s.discriminant(1+s.Symbol('r')+s.Symbol('r')**2,s.Symbol('r'))==-3,
+000047 | }
+000048 | result = {'checks':checks,'passed':all(checks.values()),
+000049 |     'full_determinant':str(expected_full),
+000050 |     'central_determinant':str(expected_central),
+000051 |     'full_minus_central':str(expected_difference),
+000052 |     'scope':'Full original marked coefficient family. Centralization is a linear scalar readout, not a whole nonlinear source replacement. Original real delta contract retained.'}
+000053 | path=Path(__file__).with_name('ROOT-ACTUAL-MARKED-SPECTRAL-READOUT-CHECK.json')
+000054 | path.write_text(json.dumps(result,indent=2)+'\n')
+000055 | print(json.dumps(result))
+000056 | if not result['passed']:
+000057 |     raise SystemExit(1)

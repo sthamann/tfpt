@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/REWEIGHTING-REVIEW.txt
+Original file SHA-256: aa7479fc2d4bb9eb11fd071e81550906bd4105e43a19af759da7054efbc3d49a
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | INDEPENDENT REVIEW OF THE OLD DEFECT REWEIGHTING LEMMA
+000002 | ======================================================
+000003 | 
+000004 | 25 October 2026. Narrow source and algebra review. No Atlas, index, paper or
+000005 | archived source was changed. This note does not identify the reweighting
+000006 | parameter with heat time, one-particle energy, charge or occupation number.
+000007 | 
+000008 | Verdict
+000009 | -------
+000010 | 
+000011 | The old formula
+000012 | 
+000013 |   q(alpha)=q(0) exp(-alpha d s),                         (1)
+000014 | 
+000015 | is exact as a RELATIVE action statement if all of the following are part of
+000016 | the sector contract:
+000017 | 
+000018 |   * the topological insertion d s is constant on the defect sector;
+000019 |   * it is absent from the trivial sector;
+000020 |   * after removing this insertion, the defect-to-trivial partition ratio is
+000021 |     independent of alpha, including the measure and normalization factors.
+000022 | 
+000023 | The archived lemma states the first two ingredients in its intended
+000024 | spectral-flow normalization, but its displayed hypotheses do not state the
+000025 | third one. Indeed it writes both Z_triv(alpha) and Z_def(alpha), then infers
+000026 | their ratio from an additive term in S_def alone. As written, that inference
+000027 | is incomplete. It is valid if "defect sector reweighting" means that alpha
+000028 | changes only the displayed relative topological action, or that every other
+000029 | alpha dependence is common and cancels in the ratio.
+000030 | 
+000031 | The old choices
+000032 | 
+000033 |   d=2,       s=SF=1                                    (2)
+000034 | 
+000035 | are retained here as the existing original normalization contract. This
+000036 | review neither derives nor rejects them and does not require identifying s
+000037 | with energy, charge or a number operator. Its only question is what follows
+000038 | from that contract for the complete sector ratio.
+000039 | 
+000040 | 1. The exact complete-source identity
+000041 | ---------------------------------------
+000042 | 
+000043 | Let X_s and X_0 be the defect and trivial configuration spaces. After putting
+000044 | both sectors over fixed reference descriptions, suppose
+000045 | 
+000046 |   S_s[x;alpha]=S_s^0[x;alpha]+alpha d s,                (3)
+000047 |   S_0[x;alpha]=S_0^0[x;alpha],                          (4)
+000048 | 
+000049 | where d s is independent of x. Allow the residual measures to depend on
+000050 | alpha. Define
+000051 | 
+000052 |   Z_s^0(alpha)=integral_(X_s) exp(-S_s^0[x;alpha])
+000053 |                               d mu_(s,alpha)(x),
+000054 |   Z_0^0(alpha)=integral_(X_0) exp(-S_0^0[x;alpha])
+000055 |                               d mu_(0,alpha)(x),
+000056 |   R(alpha)=Z_s^0(alpha)/Z_0^0(alpha).                   (5)
+000057 | 
+000058 | Then direct factorization gives
+000059 | 
+000060 |   Z_s(alpha)=exp(-alpha d s) Z_s^0(alpha),
+000061 |   Z_0(alpha)=Z_0^0(alpha),
+000062 | 
+000063 | and therefore
+000064 | 
+000065 |   q(alpha):=Z_s(alpha)/Z_0(alpha)
+000066 |            =exp(-alpha d s) R(alpha).                  (6)
+000067 | 
+000068 | At alpha=0 one has q(0)=R(0). Consequently the archived form (1) is exact on
+000069 | an interval precisely when
+000070 | 
+000071 |   R(alpha)=R(0)                                         (7)
+000072 | 
+000073 | throughout that interval. If R is positive and differentiable, (7) is
+000074 | equivalent to the relative Ward identity
+000075 | 
+000076 |   partial_alpha log R(alpha)=0                          (8)
+000077 | 
+000078 | throughout the interval. At only one value of alpha, equation (8) proves
+000079 | first-order stationarity there, not global constancy.
+000080 | 
+000081 | Equivalently,
+000082 | 
+000083 |   partial_alpha log q(alpha)
+000084 |      =-d s+partial_alpha log R(alpha).                  (9)
+000085 | 
+000086 | Thus -d s is the complete logarithmic slope exactly when the residual sector
+000087 | ratio contributes no slope.
+000088 | 
+000089 | If the supposed insertion is instead a field-dependent functional J[x], the
+000090 | factorization in (6) generally fails already within the defect sector:
+000091 | 
+000092 |   Z_s(alpha)=Z_s^0(alpha)
+000093 |       <exp(-alpha J)>_(s,alpha;0).                      (10)
+000094 | 
+000095 | Its logarithm contains the cumulants of J. The old single exponential is
+000096 | therefore exact only when the identified spectral-flow insertion is
+000097 | sectorwise constant, or when an equivalent zero-fluctuation theorem is
+000098 | provided. The intended identification J=d SF treats it as the constant
+000099 | topological label and satisfies this requirement.
+000100 | 
+000101 | 2. Fixed-measure Ward test
+000102 | --------------------------
+000103 | 
+000104 | Suppose first that mu_s and mu_0 do not depend on alpha and differentiation
+000105 | under both integrals is justified. Normalize expectations with the residual
+000106 | weights exp(-S_s^0) and exp(-S_0^0). Then
+000107 | 
+000108 |   partial_alpha log Z_s^0
+000109 |      =-<partial_alpha S_s^0>_s,
+000110 |   partial_alpha log Z_0^0
+000111 |      =-<partial_alpha S_0^0>_0.                         (11)
+000112 | 
+000113 | Hence
+000114 | 
+000115 |   partial_alpha log R
+000116 |      =-<partial_alpha S_s^0>_s
+000117 |       +<partial_alpha S_0^0>_0.                         (12)
+000118 | 
+000119 | The old reweighting follows exactly if and only if these two residual response
+000120 | expectations agree for every alpha in the claimed interval. A sufficient
+000121 | special case is that the residual actions are alpha independent. Another is
+000122 | a common alpha deformation whose normalized expectations agree in the two
+000123 | sectors. Neither conclusion follows merely from additivity of alpha d s in
+000124 | the defect action.
+000125 | 
+000126 | 3. Alpha-dependent measures
+000127 | ----------------------------
+000128 | 
+000129 | If the measures vary with alpha, first transport each sector to a fixed
+000130 | reference space and write
+000131 | 
+000132 |   d mu_(r,alpha)=w_r(alpha,x) d mu_(r,*),       r=s,0.
+000133 | 
+000134 | Let
+000135 | 
+000136 |   sigma_r(alpha,x)=partial_alpha log w_r(alpha,x)       (13)
+000137 | 
+000138 | be the measure score. Under the usual differentiation and integrability
+000139 | hypotheses,
+000140 | 
+000141 |   partial_alpha log R
+000142 |     =-<partial_alpha S_s^0>_s+<sigma_s>_s
+000143 |      +<partial_alpha S_0^0>_0-<sigma_0>_0.              (14)
+000144 | 
+000145 | Equation (14), rather than (12), is the complete Ward test. Moving domains,
+000146 | gauge-fixing Jacobians and determinant normalizations must be included in the
+000147 | scores after pullback. The archived exponential remains exact if the right
+000148 | side of (14) vanishes. Measure compatibility alone means the ratio is
+000149 | well-defined; cancellation still has to be stated or proved.
+000150 | 
+000151 | 4. Smallest decisive countercheck of the omitted condition
+000152 | -----------------------------------------------------------
+000153 | 
+000154 | Take one configuration in each sector, with unit counting measure, and set
+000155 | 
+000156 |   Z_s(alpha)=exp(-2 alpha),
+000157 |   Z_0(alpha)=exp(-alpha).                               (15)
+000158 | 
+000159 | The defect action has the exact additive term 2 alpha. Nevertheless
+000160 | 
+000161 |   q(alpha)=Z_s(alpha)/Z_0(alpha)=exp(-alpha),            (16)
+000162 | 
+000163 | not exp(-2 alpha). In the notation above,
+000164 | 
+000165 |   d s=2,
+000166 |   Z_s^0(alpha)=1,
+000167 |   Z_0^0(alpha)=exp(-alpha),
+000168 |   R(alpha)=exp(alpha).                                  (17)
+000169 | 
+000170 | Thus (6) gives exp(-2 alpha)exp(alpha)=exp(-alpha), as it
+000171 | must. This is only an algebraic diagnostic of the missing hypothesis. It is
+000172 | not a second P1 source, a physical countermodel or a refutation of the
+000173 | intended relative normalization.
+000174 | 
+000175 | If instead both sectors carry a common baseline alpha and the defect sector
+000176 | has the additional topological shift 2 alpha,
+000177 | 
+000178 |   Z_0(alpha)=exp(-alpha),
+000179 |   Z_s(alpha)=exp(-3 alpha),                             (18)
+000180 | 
+000181 | then their ratio is exactly exp(-2 alpha). Equation (18) is the intended
+000182 | relative-action situation in its smallest form.
+000183 | 
+000184 | 5. Exact reading of the archived lemma
+000185 | ---------------------------------------
+000186 | 
+000187 | The relevant statements are:
+000188 | 
+000189 |   documents/archive--paper-latex--tfpt-theory-fullv27/sections/
+000190 |   003-subsection-the-cubic-fixed-point-equation-cfe.tex:285-327
+000191 | 
+000192 | and
+000193 | 
+000194 |   documents/archive--paper-latex--tfpt-theory-fullv28/sections/
+000195 |   004-subsection-geometric-self-consistency-backreaction.tex:17-59.
+000196 | 
+000197 | They define
+000198 | 
+000199 |   Z(alpha)=Z_triv(alpha)+Z_def(alpha),
+000200 |   delta_top(alpha)=Z_def(alpha)/Z_triv(alpha),           (19)

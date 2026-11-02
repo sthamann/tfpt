@@ -1,0 +1,71 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/foundational-process-classification-20261016/classify_composable.py
+Original file SHA-256: 7e6cbf827c6367cd88b0f75340175729274dc15ae64177f287df2846a5ebbc72
+Inclusive original lines: 1-63
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Finite classical process classification. No TFPT imports or target fit.
+000002 | 
+000003 | All single-copy Boolean process functions and explicit two-copy counterexamples.
+000004 | Positive composability follows by triangular recursion, not finite sampling.
+000005 | """
+000006 | from itertools import product,permutations
+000007 | import json,time
+000008 | from pathlib import Path
+000009 | start=time.time();N=3
+000010 | bits=list(product(range(2),repeat=N));states=tuple(range(8))
+000011 | # Little-endian world encoding; a local bit function is its two output bits.
+000012 | contexts=[]
+000013 | for fs in product(range(4),repeat=N):
+000014 |  contexts.append(tuple(sum(((fs[k]>>((x>>k)&1))&1)<<k for k in range(N)) for x in states))
+000015 | valid=[]
+000016 | for cs in product(range(16),repeat=N):
+000017 |  w=[]
+000018 |  for o in states:
+000019 |   inp=0
+000020 |   for k,c in enumerate(cs):
+000021 |    others=[j for j in range(N) if j!=k]
+000022 |    idx=sum(((o>>j)&1)<<i for i,j in enumerate(others))
+000023 |    inp|=((c>>idx)&1)<<k
+000024 |   w.append(inp)
+000025 |  if all(sum(w[out[x]]==x for x in states)==1 for out in contexts):
+000026 |   deps=[]
+000027 |   for k in range(N):
+000028 |    deps.append({j for j in range(N) if j!=k and any(((w[o]^w[o^(1<<j)])>>k)&1 for o in states)})
+000029 |   orders=[pi for pi in permutations(range(N)) if all(deps[k]<=set(pi[:i]) for i,k in enumerate(pi))]
+000030 |   valid.append({'components':cs,'map':w,'orders':orders})
+000031 | print('single_copy',len(valid),'fixed_order',sum(bool(x['orders']) for x in valid),'no_first',sum(all(c not in (0,15) for c in x['components']) for x in valid),flush=True)
+000032 | # Each local input/output is two bits, encoded copy0+2copy1.
+000033 | xs=list(product(range(4),repeat=N));enc=lambda x:sum(v<<(2*k) for k,v in enumerate(x))
+000034 | x_by_enc=sorted(xs,key=enc)
+000035 | ops=list(permutations(range(4)))+[tuple([k]*4) for k in range(4)]
+000036 | # Prefer a small reusable witness bank; exhaustive search only if needed.
+000037 | bank=[];failed=[];witnesses=[]
+000038 | for num,v in enumerate(x for x in valid if not x['orders']):
+000039 |  w=v['map'];ww=[]
+000040 |  for x in x_by_enc:
+000041 |   a=w[sum((z&1)<<k for k,z in enumerate(x))];b=w[sum((z>>1)<<k for k,z in enumerate(x))]
+000042 |   ww.append(sum((((a>>k)&1)+2*((b>>k)&1))<<(2*k) for k in range(N)))
+000043 |  def fixed(fs):
+000044 |   return [x for x,xx in enumerate(x_by_enc) if ww[enc(tuple(fs[k][xx[k]] for k in range(N)))]==x]
+000045 |  found=None
+000046 |  for fs in bank:
+000047 |   fixeds=fixed(fs)
+000048 |   if len(fixeds)!=1:found=(fs,fixeds);break
+000049 |  if found is None:
+000050 |   for fs in product(ops,repeat=N):
+000051 |    fixeds=fixed(fs)
+000052 |    if len(fixeds)!=1:
+000053 |     found=(fs,fixeds);bank.append(fs);break
+000054 |  if found is None:failed.append(v)
+000055 |  else:witnesses.append({'components':v['components'],'map':w,'local_joint_maps':found[0],'fixed_inputs':found[1]})
+000056 | assert len(valid)==744 and sum(bool(x['orders']) for x in valid)==488
+000057 | assert len(witnesses)==256 and not failed
+000058 | assert all(all(sorted(f)==list(range(4)) for f in v['local_joint_maps']) for v in witnesses)
+000059 | print('non_fixed_order_with_failure',len(witnesses),'not_separated',len(failed),'witness_bank',len(bank),'seconds',time.time()-start,flush=True)
+000060 | result={'single_copy_valid':len(valid),'fixed_total_order':sum(bool(x['orders']) for x in valid),'no_constant_component':sum(all(c not in (0,15) for c in x['components']) for x in valid),'non_fixed_total_order':sum(not x['orders'] for x in valid),'non_fixed_order_two_copy_failures':len(witnesses),'not_separated':len(failed),'witness_operation_set':'24 reversible maps plus 4 constant maps on two local bits','valid_processes':valid,'two_copy_failure_witnesses':witnesses,'witness_bank':bank,'scope':'Binary deterministic three-party one-shot functions only. Fixed-order positives follow for all joint operations/copies by triangular recursion; negatives have explicit two-copy witnesses. No general-N or physical quantum/TFPT theorem.'}
+000061 | result['all_recorded_two_copy_witnesses_are_reversible']=True
+000062 | result['fixed_point_count_histogram']={str(k):sum(len(x['fixed_inputs'])==k for x in witnesses) for k in (0,1,2)}
+000063 | open(Path(__file__).with_name('composition_classification.json'),'w').write(json.dumps(result,indent=2)+'\n')

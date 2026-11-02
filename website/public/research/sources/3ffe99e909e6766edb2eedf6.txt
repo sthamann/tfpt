@@ -1,0 +1,122 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/CURRENT-CARRIER-ODD-READER-INDEPENDENT-REVIEW.txt
+Original file SHA-256: 2ff43ff3c17234a65ca073b540b0feb94c3eecafa2f6a284ee5e928bf9f8e7e4
+Inclusive original lines: 1-114
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | INDEPENDENT REVIEW: CURRENT CARRIER ODD READER ON THE WHOLE SOURCE
+000002 | 30 October 2026. Read-only review of the original and the new source chain.
+000003 | 
+000004 | VERDICT
+000005 | The operator identity in CURRENT-CARRIER-ODD-READER-WHOLE-SOURCE.txt is
+000006 | correct with its stated scope. The v258 odd projection is the finite
+000007 | chirality projection for gamma_F. After the already checked reducing map E,
+000008 | it acts on
+000009 | 
+000010 |   h_s=A gamma_F-i gamma_F Phi_s,
+000011 | 
+000012 | not on the total boundary grading Gamma_tot. For the actual second face
+000013 | 
+000014 |   C_s=(I+exp(2 ell h_s))^-1
+000015 | 
+000016 | functional calculus gives, on Dom(h_s)=H1,
+000017 | 
+000018 |   log((I-C_s)C_s^-1)=2 ell h_s,
+000019 |   Pi_odd^gamma log((I-C_s)C_s^-1)=-2 ell i gamma Phi_s.   (1)
+000020 | 
+000021 | Thus the reader extracts the complete bounded finite coefficient without a
+000022 | Fourier projection. It does not derive Phi_s or identify the still unnamed
+000023 | paper symbol P_F with E, p_E or the face map.
+000024 | 
+000025 | 1. The grading and carrier types agree
+000026 | v258_dirac_covariance_induction.py:24-27 defines Pi_odd using gamma_F. Its
+000027 | implemented diagnostic uses the same left/right chirality convention. The
+000028 | coupled source imports grading() from v252_full_finite_triple.py, so there is
+000029 | no second hidden parity. On the doubled normal fiber the total grading is
+000030 | 
+000031 |   Gamma_tot=Z tensor gamma_F,
+000032 | 
+000033 | and B_s is even for Gamma_tot. The constant isometry
+000034 | 
+000035 |   E v=(P_+v,i P_-v)
+000036 | 
+000037 | has EE*=(I+Gamma_tot)/2 and reduces B_s. Only after this reduction does the
+000038 | finite gamma_F odd projection in (1) remove A gamma_F and retain the Phi_s
+000039 | term. Applying Pi_odd to B_s with Gamma_tot would be the wrong operation.
+000040 | 
+000041 | The second-face map is separately nonreducing for the whole two-face graph,
+000042 | because its crossing block is nonzero. The reviewed report keeps this
+000043 | distinction and does not move a logarithm through an arbitrary compression.
+000044 | 
+000045 | 2. Exact comparison unitary, charge and gauge type
+000046 | For
+000047 | 
+000048 |   U_gamma=exp(-i pi gamma_F/4)=(I-i gamma_F)/sqrt(2)
+000049 | 
+000050 | and {gamma_F,Phi_s}=0,
+000051 | 
+000052 |   U_gamma Phi_s U_gamma*=-i gamma_F Phi_s.              (2)
+000053 | 
+000054 | Combining (1) and (2) gives exactly
+000055 | 
+000056 |   mu_geo Pi_odd log((I-C_s)C_s^-1)
+000057 |        =2 ell mu_geo U_gamma Phi_s U_gamma*.             (3)
+000058 | 
+000059 | The charge statement also has the right antilinear sign. Since J_F is
+000060 | antilinear and J_F gamma_F J_F^-1=-gamma_F, its conjugation changes both i
+000061 | and gamma_F, hence J_F U_gamma J_F^-1=U_gamma. The actual represented finite
+000062 | algebra is even and commutes with gamma_F, so it also commutes with U_gamma.
+000063 | This makes (2) a fixed charge-compatible comparison. It does not make
+000064 | U_gamma a physical gauge event.
+000065 | 
+000066 | 3. Scale audit
+000067 | Equation (3), with 2 ell mu_geo left explicit, is the strongest justified
+000068 | normalization. In v258 the general modular dictionary is
+000069 | 
+000070 |   C=(I+exp(D/mu_geo))^-1,
+000071 |   D=mu_geo log((I-C)C^-1).
+000072 | 
+000073 | For the present face exponent 2 ell h_s, the choice mu_geo=(2 ell)^-1 would
+000074 | normalize (3) to U_gamma Phi_s U_gamma*. That equality of scales has not
+000075 | been derived here and the reviewed report correctly does not impose it.
+000076 | 
+000077 | There is a small implementation limit worth recording. v258's executable
+000078 | scale test sets mu_geo=1. Its line125 passes Dmass/mu_geo into kms_cov and
+000079 | also passes mu_geo as the function scale, so that line would divide the
+000080 | exponent twice away from the unit convention. It therefore checks only the
+000081 | mu_geo=1 convention and is not evidence for a general scale relation. The
+000082 | analytic formula above is unaffected.
+000083 | 
+000084 | 4. Domain and smallest independent actual-96 check
+000085 | C_s and I-C_s are injective but have no bounded inverse on the whole circle.
+000086 | The logarithm in (1) is the spectral logarithm on Dom(h_s)=H1. Since gamma_F
+000087 | preserves H1 and Phi_s is bounded, the odd difference initially defined on
+000088 | H1 extends to the bounded multiplication operator in the right side of (1).
+000089 | This is the precise sense in which its finite96 coefficient is read on the
+000090 | whole circle.
+000091 | 
+000092 | An independent actual-v252 diagnostic used a generic complex full_D,
+000093 | symmetric Majorana block, ell=.73 and scalar A=.41. The residuals were
+000094 | 
+000095 |   ||Phi-Phi*||                         0,
+000096 |   ||{gamma,Phi}||                     0,
+000097 |   ||logit(C)-2 ell h||                2.44e-12,
+000098 |   ||Pi_odd(logit C)+2 ell i gammaPhi||1.86e-12,
+000099 |   ||U Phi U*+i gammaPhi||             5.39e-15,
+000100 |   ||J_F U J_F^-1-U||                  0,
+000101 |   ||[pi(a),gamma]|| and ||[pi(a),U]|| 0.
+000102 | 
+000103 | These numerical residuals only replay the exact algebra above; they add no
+000104 | source choice. The resulting statement is a positive whole-source reader
+000105 | for an already supplied Phi_s, not a derivation of its Yukawa values, a
+000106 | literal finite-rank circle compression, or a proof of the physical P_F
+000107 | binding in the current paper.
+000108 | 
+000109 | SOURCES CHECKED
+000110 | verification/v258_dirac_covariance_induction.py:10-27,65-76,79-125;
+000111 | verification/v252_full_finite_triple.py:86-132,139-168;
+000112 | graded_boundary_functor/FINITE-COUPLED.txt:10-68;
+000113 | graded_boundary_functor/check_finite_typing.py:28-54;
+000114 | aps_source_review/CURRENT-CARRIER-ODD-READER-WHOLE-SOURCE.txt:1-104.

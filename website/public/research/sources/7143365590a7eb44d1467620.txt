@@ -1,0 +1,141 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/e-series-compiler-closure-20261023/FIELDS.txt
+Original file SHA-256: 1ad4bbda485ff2e703a5fe5db9de09ce463103d5791933e9bf24dfa68d2d3b50
+Inclusive original lines: 1-133
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | MATH.SEAM.ESERIES.FIELDS.04
+000002 | 23 October2026. Actual root operations and the original full lattice fields.
+000003 | 
+000004 | 1. Fixed data and the question
+000005 | 
+000006 | Retain the original norm-two E8 root lattice L, Gaussian J with J^2=-I,
+000007 | ordered integral lattice basis, and literal eps_e8 from
+000008 | seam-joint-ward-state-20261014/operator_transport_check.py. The twisted
+000009 | group algebra has E_u E_v=eps_e8(u,v)E_(u+v), and the Heisenberg Fock
+000010 | factor is unchanged. The field space is the existing lattice VOA V_L.
+000011 | This is the accepted mathematical source, not a new source ansatz.
+000012 | 
+000013 | For each of60 Gaussian root lines choose one of its four roots alpha
+000014 | only to write coordinates, put beta=Jalpha, and let r=s_alpha s_beta.
+000015 | The earlier investigation proves r equals the original G31 root reflection
+000016 | on L. The present question is equality on ALL lattice fields, not only L.
+000017 | 
+000018 | 2. Actual Chevalley/Tits operators
+000019 | 
+000020 | Let e_alpha=E_alpha and f_alpha=eps(alpha,-alpha)E_-alpha so that
+000021 | [e_alpha,f_alpha]=h_alpha. Define
+000022 |   n_alpha=exp(ad e_alpha) exp(-ad f_alpha) exp(ad e_alpha).
+000023 | In the level-one lattice realization this is the root SL2 Weyl operator.
+000024 | Its exact action on every root vector is computed from the original epsilon.
+000025 | For m=(alpha,lambda) and k=eps(alpha,-alpha), its phase is
+000026 |   m=0:1;
+000027 |   m=1:-k eps(-alpha,lambda);
+000028 |   m=-1:eps(alpha,lambda);
+000029 |   m=+/-2:-k.
+000030 | Its lattice action is s_alpha. These formulas follow by expanding the
+000031 | nilpotent root SL2 exponentials; for m=+/-1 they are the two-dimensional
+000032 | SL2 string, and for m=+/-2 the adjoint string. In every case
+000033 |   n_alpha^2 E_lambda=(-1)^((alpha,lambda)) E_lambda.
+000034 | 
+000035 | Because alpha and beta are orthogonal, their two root SL2s commute. Put
+000036 |   T_alpha=n_alpha n_beta.
+000037 | Then
+000038 |   T_alpha^2=D_kalpha,
+000039 |   kalpha(lambda)=(alpha+Jalpha,lambda) mod2.                 (2.1)
+000040 | This character is independent of which root in the Gaussian line was
+000041 | chosen: replacing alpha by Jalpha changes alpha+Jalpha by -2alpha,
+000042 | which pairs evenly with every lambda in L. Sign reversal is similar.
+000043 | The character is nonzero. For alpha=e0+e1 it is pairing with2e1, hence
+000044 | is negative on all128 half-roots and positive on the112 integer roots.
+000045 | The complete60-line replay finds exactly128 negative roots for each line.
+000046 | Thus the raw Tits pair has order4 on V_L, although r has order2 on L.
+000047 | This is the standard distinction between Weyl action and its actual lift.
+000048 | 
+000049 | 3. Full dictionary to the original ordered lattice lift
+000050 | 
+000051 | Let S_r be the generator-normalized lift in the existing ordered basis:
+000052 | it sends each E_bi to E_(r bi). If
+000053 |   product_i E_bi^ni=c_B(n) E_lambda,
+000054 | then
+000055 |   S_r E_lambda=eta_r(lambda)E_(r lambda),
+000056 |   eta_r(lambda)=c_(rB)(n)/c_B(n).
+000057 | This is exactly the original ordered generator construction used by the
+000058 | existing marked-monodromy and global G31 lift studies. No replacement
+000059 | of the epsilon convention is made.
+000060 | 
+000061 | Two lifts of the same lattice isometry differ by a lattice character.
+000062 | Consequently there is a unique input character chi_alpha such that
+000063 |   T_alpha=S_r D_chi_alpha,                                (3.1)
+000064 | where D_chi E_lambda=(-1)^chi(lambda)E_lambda. It is determined by the
+000065 | eight generator phases. The script computes every chi_alpha and checks
+000066 | equation(3.1) on all240 roots for all60 lines. Equality on the eight
+000067 | generators, together with the common action on L and the group product,
+000068 | proves the equality on EVERY lattice vector, not merely the root shell.
+000069 | 
+000070 | For an arbitrary specified original lift R_r=S_r D_a the exact matching
+000071 | correction is T_alpha D_(chi_alpha+a). Thus the dictionary compares to
+000072 | every originally specified lift, not an arbitrarily assumed unique one.
+000073 | The coordinate masks depend on the ordered basis and oriented alpha;
+000074 | they are explicit conventions, not conjugacy invariants.
+000075 | 
+000076 | 4. Involutive lifts commuting with the fixed quarter lift
+000077 | 
+000078 | Keep the original generator-normalized lift Jhat of J. Correct on the
+000079 | input side: R_psi=T_alpha D_psi. The involution equation is
+000080 |   psi+psi composed r=kalpha.
+000081 | The commutator with Jhat supplies the second explicit linear equation.
+000082 | Both are equations in A=Hom(L,F2). For every60 lines the complete256
+000083 | character census gives exactly8 solutions. Their differences are
+000084 | A^<r,J>, of dimension3, so the solutions form a torsor for this fixed
+000085 | character subgroup. All solutions and the actual generator masks are
+000086 | stored in field-lift-results.json.
+000087 | 
+000088 | This does not split the global G31 extension. The previously proved
+000089 | global obstruction remains: per-reflection choices cannot satisfy all
+000090 | G31 group relations simultaneously. The original nontrivial extension
+000091 | must be carried along when operations are composed.
+000092 | 
+000093 | 5. Complete field and native4/5/20 diagram
+000094 | 
+000095 | A lattice lift acts by
+000096 |   R[h1(-n1)...hk(-nk) E_lambda]
+000097 |    =(rh1)(-n1)...(rhk)(-nk) phase(lambda) E_(r lambda).
+000098 | The Heisenberg action and lattice-group action determine the full field
+000099 | automorphism; the original cocycle identity preserves every vertex product.
+000100 | The checker verifies all13680 nonzero root brackets per line (13440
+000101 | root-sum brackets and240 opposite-root Cartan brackets). Higher lattice
+000102 | and oscillator products follow from the displayed defining action.
+000103 | 
+000104 | All D_chi act trivially on the neutral Cartan Fock sector. Therefore
+000105 | every matching correction preserves the actual native diagram:
+000106 |   V4=the J-positive complex Cartan oscillator space;
+000107 |   P5=the actual Pauli-fixed symmetric quartic space;
+000108 |   W20=span(partial_a f_i), the actual neutral erasure derivatives.
+000109 | The actions there are respectively r, Sym4(r) restricted to P5, and
+000110 | Sym3(r) restricted to W20, with the given erasure map equivariant.
+000111 | In particular the8 distinct corrected field lifts agree pointwise on
+000112 | this neutral diagram while differing on charged sectors. This W20 is
+000113 | not the distinct charged current20 that earlier work found mismatched.
+000114 | 
+000115 | 6. Certificates and scope
+000116 | 
+000117 | field_lift_dictionary.py extracts native root/J functions and the literal
+000118 | epsilon functions without executing their unrelated module-level suites.
+000119 | The integer epsilon formula is the algebraic substitution u=d+c*s,
+000120 | v=f+h*s into that literal source; it is checked against the original
+000121 | function on all64 basis pairs. The derivation applies to every lattice
+000122 | vector. Source hashes are checked at the end of the run.
+000123 | 
+000124 | The root-line/reflection dictionary is complete on all lattice fields,
+000125 | with its full residual character torsor. No representation or physical
+000126 | selection rule is added. Positive result: explicit all-field dictionary.
+000127 | Scoped correction: the uncorrected E7 Tits pair is not itself the
+000128 | involutive complex reflection lift. No global splitting is asserted.
+000129 | 
+000130 | Standard reference for Chevalley/Tits root operations:
+000131 |   https://docs.magma-maths.org/LieTheory/ChevalleyGroups/cst-presentations.html
+000132 |   Casselman, Structure constants, PartII§8 (Tits extended Weyl group):
+000133 |   https://personal.math.ubc.ca/~cass/research/pdf/Structure.pdf

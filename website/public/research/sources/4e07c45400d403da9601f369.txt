@@ -1,0 +1,198 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/C3-PAPER-INDEPENDENT-REVIEW.txt
+Original file SHA-256: a866494f4a88ab94cdc66bb97d824a6445fcb4e4a301c7807a373ba2fbc2c802
+Inclusive original lines: 1-190
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | INDEPENDENT REVIEW OF THE PRINTED C3 PUNCTURE PACKAGE
+000002 | =====================================================
+000003 | 
+000004 | 26 October 2026
+000005 | 
+000006 | Verdict
+000007 | -------
+000008 | 
+000009 | The defect reported in EXISTING-C3-SOURCE-DICTIONARY.txt is real and occurs
+000010 | in the displayed TFPT45 construction itself. It is not removable by reading
+000011 | P as a different orientation convention.
+000012 | 
+000013 | Its scope is archival. The same defective display occurs in archived TFPT42
+000014 | section 017, but the active TFPT2 source does not reuse its rigidity proof.
+000015 | TFPT2 section 008, lines 87-114 explicitly counts the bare Z4 character
+000016 | variety as positive dimensional, says that Z4 alone is not cohomologically
+000017 | rigid, and requires additional full-D4 and determinant-branch data. The
+000018 | finding below must therefore not be reported as an error in the current
+000019 | TFPT2 rigidity statement.
+000020 | 
+000021 | The printed formula can be repaired with the already existing exact v117
+000022 | pair, without introducing a new physical dictionary:
+000023 | 
+000024 |   M=M0_EXACT,
+000025 |   U=U_EXACT=diag(1,i,-i),
+000026 |   rho(gamma_(i^k))=U^k M U^(-k),     k=0,1,2,3.          (R)
+000027 | 
+000028 | This gives four monodromies in the required cusp conjugacy class and their
+000029 | ordered product is exactly I. It recovers the exact algebraic v117 packet.
+000030 | 
+000031 | What it does not recover is the printed rigidity theorem as stated. Formula
+000032 | (R) proves an explicit marked representation once (U,M) is fixed. The
+000033 | displayed argument does not show that local spectrum, determinant triviality
+000034 | and an abstract square symmetry select that pair uniquely. Nor does v117
+000035 | turn its numerical ODE match into a symbolic analytic identification. The
+000036 | minimal honest paper repair is
+000037 | therefore an existence/construction theorem conditional on the fixed marked
+000038 | v117 pair. A uniqueness theorem needs the additional anchor, residue and
+000039 | resonance hypotheses from the later verification chain.
+000040 | 
+000041 | 
+000042 | 1. What the original actually requires
+000043 | ---------------------------------------
+000044 | 
+000045 | TFPT45 source extract 03, section 004, lines 6-13 chooses four positively
+000046 | oriented puncture loops with
+000047 | 
+000048 |   gamma_1 gamma_i gamma_-1 gamma_-i=1.
+000049 | 
+000050 | Lines 35-44 then state literally
+000051 | 
+000052 |   rho(gamma_1)  =D,
+000053 |   rho(gamma_i)  =P D P^(-1),
+000054 |   rho(gamma_-1) =P^2 D P^(-2),
+000055 |   rho(gamma_-i) =(rho(gamma_1)rho(gamma_i)rho(gamma_-1))^(-1),
+000056 | 
+000057 | where lines 15-31 define
+000058 | 
+000059 |   P=[[0,1,0],[0,0,1],[1,0,0]],
+000060 |   D=diag(1,omega,omega^2).
+000061 | 
+000062 | Lines 65-91 explicitly interpret the same P as the fiber implementation of
+000063 | the geometric quarter turn
+000064 | 
+000065 |   1 -> i -> -1 -> -i -> 1.
+000066 | 
+000067 | Thus the questioned formula is genuinely required by the original theorem;
+000068 | it is not an inference added by the new report.
+000069 | 
+000070 | 
+000071 | 2. The exact internal failure
+000072 | -----------------------------
+000073 | 
+000074 | For the displayed matrices,
+000075 | 
+000076 |   P D P^(-1)=omega D,
+000077 |   P^2 D P^(-2)=omega^2 D.
+000078 | 
+000079 | Consequently
+000080 | 
+000081 |   D (PDP^(-1)) (P^2DP^(-2))
+000082 |     =omega^3 D^3
+000083 |     =I,
+000084 | 
+000085 | and hence
+000086 | 
+000087 |   rho(gamma_-i)=I.                                      (1)
+000088 | 
+000089 | This contradicts the theorem's own assumption that every puncture has local
+000090 | spectrum {1,omega,omega^2}. It also shows why an orientation reversal does
+000091 | not help: it can exchange omega and omega^2, but the product remains I.
+000092 | 
+000093 | There is a second, independent order mismatch. The base quarter turn has
+000094 | order four, whereas P has order three. If P is interpreted merely as a
+000095 | cyclic relabelling of the three eigenspaces, then it may explain the first
+000096 | three displayed conjugates, but it no longer implements the fourth base
+000097 | rotation. If it is interpreted as the actual fiber lift of the quarter turn,
+000098 | P^3=I contradicts that role and Ad_P does not return D after four steps.
+000099 | Therefore this is a mathematical defect, not harmless notation.
+000100 | 
+000101 | The proof at lines 95-107 only invokes the puncture product relation after
+000102 | the first three assignments. It never checks that the resulting fourth
+000103 | matrix remains in the prescribed local conjugacy class. Equation (1) is the
+000104 | first failed implication.
+000105 | 
+000106 | 
+000107 | 3. Minimal exact correction from v117
+000108 | --------------------------------------
+000109 | 
+000110 | The unchanged v117 file defines
+000111 | 
+000112 |   M = [[0,          -(1+i)/2, (1-i)/2],
+000113 |        [-(1+i)/2,   -i/2,     -1/2    ],
+000114 |        [(1-i)/2,    -1/2,      i/2    ]],
+000115 | 
+000116 |   U = diag(1,i,-i).
+000117 | 
+000118 | It verifies exactly
+000119 | 
+000120 |   U^4=I,
+000121 |   M^3=I,
+000122 |   spec(M)={1,omega,omega^2},
+000123 |   (MU)^4=I.
+000124 | 
+000125 | Define
+000126 | 
+000127 |   M_k=U^k M U^(-k),             k=0,1,2,3.              (2)
+000128 | 
+000129 | Every M_k is unitary, has determinant one and has the required local
+000130 | spectrum. Because U^4=I,
+000131 | 
+000132 |   M_0 M_1 M_2 M_3
+000133 |     =M(UMU^(-1))(U^2MU^(-2))(U^3MU^(-3))
+000134 |     =(MU)^4
+000135 |     =I.                                                   (3)
+000136 | 
+000137 | In particular,
+000138 | 
+000139 |   M_3=(M_0 M_1 M_2)^(-1)=U^3 M U^(-3).                 (4)
+000140 | 
+000141 | Equations (2)-(4) are the precise minimal correction to the printed
+000142 | monodromy formula. They preserve the same four labelled loops and the same
+000143 | ordered flatness relation. Exact enumeration in v117 further gives
+000144 | 
+000145 |   <U,M> congruent to W(A3)=S4,       |<U,M>|=24.
+000146 | 
+000147 | This correction is entirely internal to the already supplied mathematical
+000148 | package. It introduces no new field, state, geometry or physical map.
+000149 | 
+000150 | 
+000151 | 4. What must be weakened in the printed theorem
+000152 | -----------------------------------------------
+000153 | 
+000154 | Replacing (P,D) by (U,M) repairs existence and all four local classes. It
+000155 | does not prove the sentences "is forced" and "unique" in TFPT45 lines 33-47
+000156 | and 111-160 from the premises printed there. This review establishes a proof
+000157 | gap at that step; it does not claim a universal non-uniqueness theorem for
+000158 | every strengthened D4 moduli problem.
+000159 | 
+000160 | The active source already makes this distinction correctly. In
+000161 | 
+000162 |   documents/tfpt_2_standard_model/sections/
+000163 |   008-section-the-setup-parabolic-data-on-the-family-curve.tex:87-114
+000164 | 
+000165 | it gives dimensions 8 for the four-class character variety and 2 after the
+000166 | bare Z4 reduction, explicitly rejects Katz rigidity for that bare system,
+000167 | and names full D4 plus the determinant-trivial branch as extra input. Lines
+000168 | 115-172 further distinguish the parabolic and global holomorphic data from
+000169 | single-fibre monodromy. The archived D/P defect therefore motivates the v117
+000170 | existence correction; it does not overturn the active theory's scoped
+000171 | non-rigidity statement.
+000172 | 
+000173 | The project's own later source distinguishes the needed extra information:
+000174 | 
+000175 |   * tfpt_research_contracts section 005, lines 270-293 records a
+000176 |     two-parameter D4-fixed flat cusp branch before the anchor selection.
+000177 | 
+000178 |   * Lines 296-325 add the anchor residue and initially retain a numerical
+000179 |     gauge-orbit uniqueness statement.
+000180 | 
+000181 |   * Lines 328-350 add the exact resonance condition a_13=0 and the fixed
+000182 |     anchor moduli to obtain one gauge orbit inside that narrower ansatz.
+000183 | 
+000184 |   * v117 proves the exact algebraic properties of M and U. Its source header
+000185 |     and status at lines 36-43 and 184-200 retain the identification with the
+000186 |     analytic A0* monodromy as numerical.
+000187 | 
+000188 | The narrow corrected statement supported without further work is:
+000189 | 
+000190 |   Fix the simultaneous SU(3) conjugacy class of the marked pair (U,M) from

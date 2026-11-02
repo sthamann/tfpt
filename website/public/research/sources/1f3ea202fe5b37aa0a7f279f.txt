@@ -1,0 +1,134 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/admissible_pair_20261028/single_ward_refinement/SINGLE-PROCESS-WARD-CRITERION.txt
+Original file SHA-256: 4af9dd295fae970d03e90c224183d7ea635cc6e02f1c46587418e41eefa87a36
+Inclusive original lines: 1-126
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | EIN EINZIGES QUELLENKRITERIUM WAEHLT DIE VOLLSTAENDIGE ANTWORT
+000002 | =============================================================
+000003 | 
+000004 | 28. Oktober 2026
+000005 | 
+000006 | Der staerkere Satz
+000007 | ------------------
+000008 | 
+000009 | Sei T:End(Lambda2 C5)->End((Lambda2 C5)*) ein beliebiger CPTP Kanal im
+000010 | festen, dual typisierten Quellenwoerterbuch. Volle SU5 Kovarianz wird NICHT
+000011 | vorausgesetzt. Sei J_T sein Choi Operator mit Tr J_T=10 und
+000012 | 
+000013 |  P5=(1/6) sum_m |C_m>><<C_m|,
+000014 |  C_m[kl,ij]=epsilon(m,i,j,k,l).
+000015 | 
+000016 | Dann gilt die vollstaendige Aequivalenz
+000017 | 
+000018 |  T=Phi  <=>  Tr(P5 J_T/10)=1,
+000019 |  Phi(rho)=(1/3) sum_m C_m rho C_m*.
+000020 | 
+000021 | Damit genuegt eine einzige gemeinsame positive Prozesssaettigung, um den
+000022 | vollen ungelesenen Quantenkanal zu bestimmen. Nicht nur seine Population,
+000023 | sondern alle100 Eingabeoperatorrichtungen und ihre Phasen werden fixiert.
+000024 | Eine eigens vorausgesetzte Petersen Populationsmatrix ist ebenfalls nicht
+000025 | noetig; sie folgt aus dem bestimmten Kanal.
+000026 | 
+000027 | 1. Positivitaet macht Saettigung zu einer Traegeraussage
+000028 | -------------------------------------------------------
+000029 | 
+000030 | Tr((I-P5)J_T)=0 und J_T>=0 ergeben
+000031 | 
+000032 |  (I-P5)J_T=0=J_T(I-P5).
+000033 | 
+000034 | Zum Beispiel ist die Hilbert Schmidt Norm von
+000035 | J_T^(1/2)(I-P5) null. Daher liegt der ganze positive Choi Operator im
+000036 | fuenfdimensionalen Bild von P5. Mit V=[vecC0,...,vecC4] und V*V=6I5 gibt es
+000037 | ein eindeutiges K>=0 mit
+000038 | 
+000039 |  J_T=V K V*.
+000040 | 
+000041 | Alle Krausamplituden liegen also im vorhandenen Epsilon Intertwinerraum.
+000042 | Es wird keine Wahl einer Krausbasis oder eines beobachteten Registers
+000043 | vorausgesetzt.
+000044 | 
+000045 | 2. Spurtreue fixiert auch alle verbleibenden Koeffizienten
+000046 | ----------------------------------------------------------
+000047 | 
+000048 | Fuer die tatsaechlichen C_m gilt exakt
+000049 | 
+000050 |  C_m* C_n = delta_mn I10 - dGamma(E_nm).
+000051 | 
+000052 | dGamma ist die wirkliche infinitesimale Exteriorquadratwirkung auf Lambda2.
+000053 | Somit lautet die TP Bedingung fuer K
+000054 | 
+000055 |  A(K):=Tr_out(V K V*)=sum_mn K_mn C_m* C_n
+000056 |       =tr(K)I10-dGamma(K^T)=I10.                           (1)
+000057 | 
+000058 | Alle25 Matrizen C_m*C_n sind linear unabhaengig. Der Checker bestimmt ihren
+000059 | Rang exakt als25 und loest (1) ohne Rangtoleranz mit dem einzigen Ergebnis
+000060 | 
+000061 |  K=I5/3.
+000062 | 
+000063 | Auch der kurze analytische Beweis ist direkt: K ist Hermitesch und besitzt
+000064 | Eigenwerte k_i. K^T ist ebenfalls positiv Hermitesch und besitzt dieselben Eigenwerte.
+000065 | Die Eigenwerte von dGamma(K^T) sind k_i+k_j fuer i<j. (1)
+000066 | verlangt, dass alle diese Paarsummen gleich sind. Bei fuenf Slots folgt
+000067 | daraus k_i=c fuer alle i. Dann ist tr(K)I-dGamma(K)=3c I, also c=1/3.
+000068 | Es bleibt J_T=(1/3)VV*=2P5, genau der Hodge Kanal. Bei dieser
+000069 | Choi Konvention ist A(K) die partielle Spur; der adjungierte Effekt T*(I)
+000070 | ist deren Transponierte tr(K)I-dGamma(K). Beide Spurtreubedingungen sind
+000071 | aequivalent. Ein komplex Hermitesches K mit imaginaerem Nebendiagonaleintrag
+000072 | prueft im Checker ausdruecklich die richtige Zuordnung. Der Rueckschluss ist
+000073 | offensichtlich, weil J_Phi im Bild von P5 liegt.
+000074 | 
+000075 | 3. Warum das den Quellenweg wirklich verkuerzt
+000076 | -----------------------------------------------
+000077 | 
+000078 | Der groessere SU5 Eindeutigkeitssatz bleibt richtig. Fuer die konkrete
+000079 | Herkunftsableitung ist die neue Variante jedoch kuerzer: Die Quelle muss
+000080 | nicht zuerst eine noch unbewiesene grosse Symmetrie des physischen
+000081 | Ereignisprozesses liefern. Es genuegt eine positive Prozessidentitaet
+000082 | 
+000083 |  Tr((I-P5)J_source)=0                                    (2)
+000084 | 
+000085 | zusammen mit der tatsaechlichen Spurtreue des festgelegten Quelleneingriffs.
+000086 | Gleichwertig muessen die Quellenamplituden nach Zusammenfuehrung ihrer vier
+000087 | Carrierindizes voll im Epsilon Vierformraum liegen. (2) ist daher ein
+000088 | konkretes moegliches Sewing oder Ward Ziel am Original. Nach (2) folgt der
+000089 | vollstaendige Kanal ohne weitere Phasensuche, volle SU5 Kovarianz oder
+000090 | Populationsfit. Die algebraischen E8 Brackets liefern diesen Epsilonraum
+000091 | bereits; ihre physische Einsetzungsabbildung ist der zu pruefende Pfeil.
+000092 | 
+000093 | Die saemtlichen alten Zwanzig Ereignisse erfuellen (2) nicht: ihre
+000094 | normierte P5 Wahrscheinlichkeit ist1/5. Die anderen markenkovarianten
+000095 | Gegenfaelle liefern4/15 und7/15. Der neue Test entscheidet also eine
+000096 | wirkliche Alternative, statt bekannte passende Zahlen nochmals zu pruefen.
+000097 | 
+000098 | 4. Was die Originalquelle dafuer liefern muss
+000099 | ----------------------------------------------
+000100 | 
+000101 | Ein Erwartungswert omega(P5) im vorhandenen freien Zweirandzustand ist
+000102 | NICHT automatisch Tr(P5 J_source/10). Fuer den Schluss braucht es den
+000103 | wirklichen Prozess mit bezeichnetem Eingabe und Referenzraum oder eine
+000104 | bewiesene aequivalente Quellenamplitudengleichung. Die volle CAR
+000105 | Projektorkovarianz allein wird hier nicht zur Choi Prozesspraeparation
+000106 | umgedeutet. Die lokale, zeit und reflexionsvertraegliche Einbettung der
+000107 | konkreten Carrierworte sowie die Ereignis und Registerdeutung bleiben
+000108 | physische Herkunftsbedingungen.
+000109 | 
+000110 | Der Satz waehlt zudem den ungelesenen Kanal, nicht eine eindeutig
+000111 | beobachtete Instrumentzerlegung mit festem Pointerlabel. Verschiedene
+000112 | Krausdarstellungen desselben Kanals unterscheiden sich durch eine
+000113 | Umsetzung des Umgebungsregisters. Ein im Original beobachtetes Label muss
+000114 | weiterhin durch dessen Feld und Clockabbildung transportiert werden.
+000115 | 
+000116 | Dieses Ergebnis ist ein vollstaendiger mathematischer Auswahlsatz fuer
+000117 | den genannten Kanal. Es ist keine Behauptung, (2) sei schon aus P1
+000118 | bewiesen, und kein Beweis einer vollstaendigen fundamentalen TFPT Physik.
+000119 | 
+000120 | Reproduzierbarkeit
+000121 | ------------------
+000122 | 
+000123 | check_covariant_rigidity.py prueft zusaetzlich alle25 Koeffizientenidentitaeten,
+000124 | die Injektivitaet des TP Koeffizientenoperators und seine eindeutige rationale
+000125 | Loesung. Der Beweis beruht auf Positivitaet und dem wirklichen Epsilon
+000126 | Intertwinerraum, nicht auf einer weiteren Modellannahme oder Simulation.

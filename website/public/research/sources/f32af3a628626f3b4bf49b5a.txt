@@ -1,0 +1,94 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/joint-native-algebra-selection-20261016/MIXED-ORDERED-RETURN.md
+Original file SHA-256: 4093aee0cabf7b2073aff8d287335e651c168b1c917c356aa0add55344e179dc
+Inclusive original lines: 8-93
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000008 | ## 1. Use the isometry already supplied by the original source
+000009 | 
+000010 | `cartan_source._glue_deck_character_certificate` supplies both the native
+000011 | Construction-A simple-root matrix S and standard doubled-root matrix T.
+000012 | Its actual map is
+000013 | 
+000014 |     O=T S^(-1)/sqrt(2),  O^T O=I8,  OJ=JO.
+000015 | 
+000016 | All240 original roots are checked: O(r_native/sqrt2)=r_source/2, and the
+000017 | result is exactly the Chevalley root set used by `_actual_current_source`.
+000018 | No fitted Cartan identification or chosen Dynkin chamber is introduced.
+000019 | Its physical selection as a P1 source map remains an existing extra premise.
+000020 | Return beta and v_beta to the native frame with O^T. The original positive
+000021 | code coordinates remain u_j=(e_2j-i e_(2j+1))/sqrt2.
+000022 | 
+000023 | ## 2. Full first operator action, then its actual adjoint return
+000024 | 
+000025 | Reuse W_beta=(v_beta.h(-1))e^beta with
+000026 | v_beta=-AR beta+(beta^T AR beta)beta/2, beta.v_beta=0.
+000027 | Let b=U^T beta, c=U^T v_beta; B_n=beta(-n), V_n=v_beta(-n).
+000028 | For a homogeneous input f of degree d=4 (code) or d=3 (trimer), set
+000029 | 
+000030 |     F_k=(-1)^k D_b^k f/k!,
+000031 |     G_k=(-1)^k D_b^k(D_c f)/k!,
+000032 |     E_0=1, E_1=B1,
+000033 |     E_2=(B1^2+B2)/2,
+000034 |     E_3=B1^3/6+B1 B2/2+B3/3.
+000035 | 
+000036 | The complete energy-preserving source action is
+000037 | 
+000038 |     o(W_beta)f
+000039 |       =sum_(m=1..d-1) sum_(k=m+1..d) V_m F_k E_(k-m-1)
+000040 |        +sum_(k=0..d-1) G_k E_k.
+000041 | 
+000042 | Derivation: normal-order :v.h(z)Y(e^beta,z):. A creation term V_m z^(m-1)
+000043 | requires k=m+l+1 to contribute to z^-2. The annihilation term is
+000044 | z^-2 D_c f, requiring k=l. Transversality removes an extra root contraction.
+000045 | For d=4 all output vectors lie in charge beta, oscillator grade3, total
+000046 | grade4. The complete PBW carrier has dimension8+64+120=192. For d=3 it
+000047 | has oscillator grade2, dimension8+36=44, total grade3.
+000048 | 
+000049 | Define the ordered return matrix by the actual positive Fock adjoint:
+000050 | 
+000051 |     (K_beta)_ij=<o(W_beta)f_i, o(W_beta)f_j>.
+000052 | 
+000053 | There is NO code projection inserted between the two source operators.
+000054 | This is a source mode-insertion amplitude between specified original code
+000055 | states. Restricting its endpoints to the code does not define a physical
+000056 | postselection, repeated projection, measurement or transition channel.
+000057 | Each original root-field cocycle phase cancels between an amplitude and
+000058 | its adjoint. Different root charges are orthogonal.
+000059 | 
+000060 | ## 3. Actual five-code return: nontrivial, but wrong marking and clock
+000061 | 
+000062 | The exact sparse calculation uses the ORIGINAL five code polynomials with
+000063 | normalization squares(96,8,8,8,1). It keeps original v_beta coefficients.
+000064 | All194 nonzero first-response directions give positive definite rank5
+000065 | return matrices; none is scalar or commutes with the original P2. The
+000066 | remaining46 first responses and return matrices are zero.
+000067 | 
+000068 | The sum over the original unit-norm root-current INPUT basis is
+000069 | 
+000070 |     K_sum=diag(3581,4191,3419,3419,3790).
+000071 | 
+000072 | The W_beta response states have NOT been separately normalized. This is
+000073 | an original-R-weighted derivative-response Gram, not a selected physical
+000074 | equal-rate event ensemble. The eight Cartan input derivatives are zero.
+000075 | Its exact characteristic polynomial is
+000076 | 
+000077 |     (x-4191)(x-3790)(x-3581)(x-3419)^2.
+000078 | 
+000079 | It commutes with original tau, but not original sigma or P2. Exact witnesses:
+000080 | 
+000081 |     [K_sum,sigma]_(1,2)=772,
+000082 |     [K_sum,P2]_(0,1)=(488 sqrt2-61 sqrt3)/5 !=0.
+000083 | 
+000084 | Indices are zero-based. The original P2 has entry
+000085 | (P2)_(0,1)=(sqrt3-8sqrt2)/50. This compares ACTUAL operators, not only
+000086 | degeneracy counts. The response has spectral multiplicities1+1+1+2;
+000087 | collecting selected eigenvectors would add a new rule, and its unique
+000088 | two-dimensional eigenspace is not the required original marked plane.
+000089 | 
+000090 | All FOUR original `omitted_family` choices give EXACTLY THE SAME K_sum in
+000091 | the held native chart. Choosing another supplied family representative
+000092 | therefore does not repair this marking/clock mismatch. This says nothing
+000093 | about a different original process with different derived contraction data.

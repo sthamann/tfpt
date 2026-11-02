@@ -1,0 +1,150 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_sewing_20261029/INDEPENDENT-REVIEW.txt
+Original file SHA-256: a6232d863bf730a98c4d499326cd9457f866ad8896bfcaba726b46b33b1aab06
+Inclusive original lines: 1-142
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | Independent mathematical review of the spectral-weight RP implication
+000002 | 29 October 2026
+000003 | 
+000004 | Verdict: THE PROPOSED COUNTEREXAMPLE IS CORRECT FOR THE GENERAL IMPLICATION.
+000005 | It refutes preservation of reflection positivity by a merely positive,
+000006 | reflection-invariant spectral weight. It is not a complete TFPT/P1/P2
+000007 | countermodel and does not evaluate the actual physical TFPT kernel.
+000008 | 
+000009 | 1. Original scope read
+000010 | 
+000011 | Read documents/archive--tfpt-45--source_extracts--05_metrology_source/
+000012 | sections/005-section-absolute-dimensionless-metrology-from-the-bounda.tex,
+000013 | especially 60-105 and 136-179. The profile is explicitly
+000014 |  f(t)=integral_[0,infinity) exp(-s t) dnu(s), nu>=0 finite,
+000015 | at 67-68 and 103. The source calls this a Bernstein cone. In standard
+000016 | terminology this is a completely monotone Laplace profile, not an arbitrary
+000017 | increasing Bernstein function. The proposed general Delta formula uses
+000018 | exactly the positive Laplace representation displayed in the source.
+000019 | 
+000020 | The geometric measure theorem additionally concerns a BRST-reduced
+000021 | admissible geometric configuration class, a branch-compatible fixed profile,
+000022 | blocked geometric exhaustions and earlier admissible OS structure. These
+000023 | stronger actual-source identifications are not instantiated by the finite
+000024 | example below. However, the proof at 170-173 explicitly uses the general
+000025 | claim that the positive weight preserves the reflected forms. Positivity
+000026 | and reflection covariance alone do not justify that step. If admissibility
+000027 | already includes RP of the fully reweighted measure, that supplies an
+000028 | additional premise; it is not a consequence of weight positivity.
+000029 | 
+000030 | 2. Direct algebraic check
+000031 | 
+000032 | Take configurations (x,y) in {+a,-a}^2, reflection theta(x,y)=(y,x),
+000033 |  P=[[0,1],[1,0]], D_xy=[[x,g],[g,y]], a>g>0.
+000034 | Then P D_xy P=D_yx exactly. For x=y the squared eigenvalues are
+000035 | (a-g)^2,(a+g)^2. For x=-y both squared eigenvalues are a^2+g^2.
+000036 | All D_xy are invertible, with minimum absolute eigenvalue at least a-g.
+000037 | 
+000038 | The base configuration weight/RP matrix K0=[[10,9],[9,10]] has eigenvalues
+000039 | 19 and 1, so it is strictly RP; all entries are strictly positive as well.
+000040 | It may be normalized by its positive total mass without affecting RP.
+000041 | 
+000042 | For f(t)=exp(-t), a=2,g=1, write
+000043 |  S_same=exp(-1)+exp(-9), S_opp=2exp(-5),
+000044 |  Delta=S_same-S_opp=exp(-1)(1-exp(-4))^2>0.
+000045 | All four Dirac blocks have gap at least 1. The spectral weight is positive
+000046 | and reflection-invariant. Its reweighted RP matrix is
+000047 |  K=[[10exp(-S_same),9exp(-S_opp)],
+000048 |     [9exp(-S_opp),10exp(-S_same)]].
+000049 | The half-observable F(x)=sign(x) has reflected unnormalized square
+000050 |  F* K F=2[10exp(-S_same)-9exp(-S_opp)].
+000051 | This is strictly negative iff Delta>log(10/9).
+000052 | 
+000053 | The proposed strict rational estimate is correct. Put z=exp(-1), so
+000054 | 1/3<z<1/2. Then
+000055 |  Delta=z(1-z^4)^2 > (1/3)(15/16)^2=75/256
+000056 |        >1/9>log(10/9).
+000057 | The last inequality is log(1+u)<u for u>0. Thus the normalized reflected
+000058 | expectation is also strictly negative; the normalization constant is positive.
+000059 | There is no numerical tolerance, spectral crossing or zero-mode issue.
+000060 | 
+000061 | 3. General profile calculation
+000062 | 
+000063 | For the source's positive Laplace representation,
+000064 |  Delta=2 integral exp[-s(a^2+g^2)] [cosh(2sag)-1] dnu(s).
+000065 | The integral is strictly positive whenever nu gives positive mass to s>0,
+000066 | equivalently whenever this finite-measure Laplace profile is nonconstant.
+000067 | A constant part at s=0 cancels. All terms are finite for a>g>0.
+000068 | 
+000069 | For an arbitrary such profile the specific base ratio 9/10 need not violate
+000070 | RP: its violation still requires Delta>log(10/9). The general invalidity of
+000071 | the implication nevertheless persists for every nonconstant profile: choose
+000072 |  K0=[[1,r],[r,1]], exp(-Delta)<r<1.
+000073 | This base kernel is strictly RP and entry-positive, while its spectral
+000074 | reweighting has a negative sign-vector eigenvalue. This does not claim that
+000075 | the actual TFPT reference measure can be freely changed to that kernel.
+000076 | 
+000077 | 4. Positive repair criterion
+000078 | 
+000079 | For a fixed classical split reference measure, the exact required statement
+000080 | is positivity of the fully weighted reflected kernel. A useful stronger
+000081 | condition is that the weight itself be a positive-definite kernel across
+000082 | the reflection, or belong to the closed RP weight cone
+000083 |  w=sum_k c_k theta(B_k) B_k, c_k>=0,
+000084 | with B_k supported on the positive half and limits justified in a topology
+000085 | that preserves the relevant integrals. For an RP reference measure,
+000086 |  integral theta(F) F w dmu
+000087 |    =sum_k c_k integral theta(B_k F) (B_k F) dmu >=0.
+000088 | For a genuine positive reweighted measure also retain w>=0 and a finite
+000089 | positive normalizer. In finite split spaces the same sufficient statement
+000090 | is the Schur product theorem: K0>=0 and weight matrix W>=0 imply
+000091 | K0 entrywise-times W>=0. Entrywise positivity of W is insufficient.
+000092 | 
+000093 | Factorization w=theta(B)B is a simple special case; a reflection-splitting
+000094 | action has this form after exponentiation. The actual nonlocal spectral
+000095 | trace requires its own such factorization, cone membership, or a direct
+000096 | weighted RP proof. The example's W has same-diagonal value exp(-S_same)
+000097 | smaller than its off-diagonal value exp(-S_opp), so W is not positive
+000098 | semidefinite and the proposed preservation inference cannot be used.
+000099 | 
+000100 | Primary comparison checked online: Jobst Ziebell, theta-splitting densities
+000101 | and reflection positivity, Letters in Mathematical Physics 114,53 (2024),
+000102 | Definition3.4 and Theorem3.5; Lemma2.4 gives the Schur product argument.
+000103 | https://link.springer.com/article/10.1007/s11005-024-01799-8
+000104 | Its theorem uses an explicitly theta-splitting density and its stated
+000105 | Gaussian reference assumptions. It is not a general positive-weight theorem.
+000106 | The elementary finite split proof above is given separately and does not
+000107 | import a Gaussian hypothesis into this counterexample.
+000108 | 
+000109 | 5. Final source boundary
+000110 | 
+000111 | Established: the precise generic inference in the original proof is false
+000112 | under the advertised positivity/covariance reasons alone. Gappedness,
+000113 | primitivity of K0 and reflection covariance of D do not repair it.
+000114 | Not established: that F is a TFPT admissible observable; that this finite
+000115 | configuration space is the original BRST-reduced geometric class; that the
+000116 | chosen profile is the actual branch fixed point; or that the actual TFPT
+000117 | measure violates RP. No global P1/P2 exclusion, no replacement field theory
+000118 | and no full fundamental solution is claimed. The exhaustion and projective
+000119 | consistency parts of the original theorem were not tested here.
+000120 | 
+000121 | Independent analytic/source review only. No original source changed and
+000122 | no suite or new model-search harness was run. Only this report was written.
+000123 | 
+000124 | 6. Completed canonical wording and checker review
+000125 | 
+000126 | Subsequently read the full canonical PROOF.txt, the 123-line
+000127 | check_spectral_weight_rp.py and STAND-EINFACH-DE.txt under
+000128 | experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/
+000129 | source_sewing_20261029/. No additional execution was requested or performed.
+000130 | The checker implements the reviewed spectra, reflection covariance, gap,
+000131 | polynomial Delta identity, rational sign bound and normalized observable
+000132 | correctly. Matrix heat exponentials are marked as a numerical reproduction,
+000133 | not the proof of the strict sign. The reference check concerns a fixed
+000134 | source-independent denominator, not reference-dependent numerator terms.
+000135 | 
+000136 | The canonical text keeps the finite counterexample separate from the full
+000137 | BRST/geometric P1 class, retains the old microscopic/CAR/KMS/HS source path,
+000138 | and explicitly allows a direct neutral local embedding without first
+000139 | constructing the entire ambient geometric measure. Tr f(D^2), a fermionic
+000140 | kinetic determinant and a source normalization are not identified.
+000141 | No scientific correction is required. Canonical REVIEW-ADDENDUM.txt records
+000142 | this final source-text/code review and its limited scope.

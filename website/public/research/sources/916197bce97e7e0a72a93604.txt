@@ -1,0 +1,150 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-collar-multifield-20261016/PROOF.txt
+Original file SHA-256: 3537a2b080df0bb8b5d30c73da7dd83dc8e1ae5a6cfea4bb48a8b99f0080dfce
+Inclusive original lines: 35-176
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000035 | 
+000036 | The known product collar gives (partial_r+B)psi=0, R_l=exp(-l B) and its full
+000037 | two-face orthogonal Cauchy graph projection G_l. The previous contract proves
+000038 | that R_l and signed B are recoverable from the labeled full graph and known l.
+000039 | In infinite dimension this includes the closure of the spectral quotient.
+000040 | These are one-particle/classical boundary data.
+000041 | 
+000042 | Original source references:
+000043 |   01_boundary_kernel_source.tex:302-316: S_prim is a relative spectral trace
+000044 |   for a DECLARED test profile f, plus the eta phase. It is not an explicitly
+000045 |   supplied quadratic Grassmann action on the whole physical field algebra.
+000046 |   01_boundary_kernel_source.tex:319-343: local insertions are introduced as a
+000047 |   separate source algebra. Lines480-520: the operational seed tuple already
+000048 |   includes its algebra, time, reflection and state.
+000049 |   02_carrier_source.tex:8-39: S+=Lambda_even(E) is an INTERNAL half-spinor
+000050 |   carrier, not automatically the physical many-particle Fock representation.
+000051 |   04_qft_source.tex:2270-2301: higher derivatives S_adm^(n), n>=3, are retained
+000052 |   as interaction vertices. Therefore free dynamics cannot be imposed as a
+000053 |   general consequence of the original action.
+000054 | 
+000055 | GATE.METRIC.17/v161 and QFT.NETRP.01/v175 already supply second-quantization
+000056 | functoriality under an actual Bogoliubov field identification. The construction
+000057 | below reuses that mathematics; it does not rediscover a physical selection rule.
+000058 | 
+000059 | 3. A projection CAR covariance forces all state moments
+000060 | 
+000061 | Let c(f) obey CAR on a finite-dimensional one-particle space, and suppose the
+000062 | ACTUAL state has covariance C_ij=omega(c_j^* c_i)=G_ij with G=G*=G^2.
+000063 | For f in Ker G, positivity gives ||c(f)Omega||^2=0. For g in Ran G, CAR gives
+000064 | ||c^*(g)Omega||^2=0. These annihilation conditions and CAR determine all moments
+000065 | by normal ordering. In finite Fock space their common solution space is one
+000066 | dimension, the occupied Slater state for Ran G. Thus an independent assumption
+000067 | that this SAME state is quasifree is redundant.
+000068 | 
+000069 | state_from_projection implements these linear annihilation constraints and
+000070 | checks every entry of the supplied covariance. It does not start with a Wick
+000071 | formula or choose a vacuum occupation by minimizing a function.
+000072 | 
+000073 | IMPORTANT: the classical Cauchy projector being G does not prove that the
+000074 | physical state's CAR covariance is G. That identification remains a substantive
+000075 | source/field premise. A mixed subface covariance alone also does not satisfy
+000076 | this projection argument.
+000077 | 
+000078 | 4. Oriented boundary-state pairing determines the full operator ray
+000079 | 
+000080 | On two labeled m-dimensional faces (input first, output second), let V=[I;R] and
+000081 | G=V(V*V)^(-1)V*. Its forced boundary state ray is
+000082 |   wedge_j (e_in,j + sum_i R_ij e_out,i).
+000083 | Use the fixed ordered exterior input dual: an input subset J-complement is
+000084 | paired with input index J, with sign (-1)^inv(J), where inv(J) counts pairs
+000085 | j in J, k not in J, k>j. Expanding the wedge gives
+000086 |   Q_(I,J) / Q_(empty,empty) = det R_(I,J)   if |I|=|J|,
+000087 | and zero otherwise. Therefore Q is proportional to direct_sum_n Lambda^n R.
+000088 | boundary_amplitude reconstructs the state from G, performs this oriented
+000089 | unvectorization, and independently agrees with the creator-covariance recurrence.
+000090 | Complex nondiagonal controls verify the signs and avoid an unnoticed transpose
+000091 | or conjugation. Independent frame changes U_in,V_out give exactly
+000092 | Q'=Gamma(V_out) Q Gamma(U_in^*). An internal quarter iI gives phases i^n on
+000093 | n-field products. Projection of G alone does not imply positivity of Q:
+000094 | R=-1 gives Q=diag(1,-1). A positive amplitude additionally uses the actual
+000095 | selfadjoint collar transfer R=exp(-lB)>0.
+000096 | 
+000097 | The oriented operator-state identification is part of this specified fermionic
+000098 | quantization. It is not deduced just by observing that a matrix has matching
+000099 | dimension. This construction does not equate the internal CAR rotation with
+000100 | the physical chiral quarter domain, which remains separately labeled.
+000101 | 
+000102 | Only an OPERATOR RAY is determined by normalized G. Its overall complex factor,
+000103 | vacuum determinant and unnormalized source partition function are not recovered.
+000104 | The chart Q_(empty,empty)=1 is a normalization of that ray, not a physical
+000105 | derivation of the scalar, its seam phase, or a gravitational area coefficient.
+000106 | 
+000107 | 5. Complete multi-field covariance and chronological sewing
+000108 | 
+000109 | Equivalently suppose Q Omega=Omega and the FULL operator relations hold:
+000110 |   Q c_j^* = sum_i R_ij c_i^* Q.
+000111 | Pushing Q past a word of creators determines its value on every Fock basis
+000112 | vector. These vectors span, so the result is unique and equals the exterior
+000113 | lift above. It follows for all words, not only vacuum matrix elements. For two
+000114 | successive source maps,
+000115 |   Q(R2 R1)=Q(R2)Q(R1).
+000116 | This is verified for noncommuting R1,R2 so chronological order is actually tested.
+000117 | For a source semigroup R_(s+t)=R_s R_t this gives the normalized free multi-field
+000118 | sewing rule at every particle number; amplitudes are minors, not fitted factors.
+000119 | 
+000120 | For positive Euclidean R, this is NOT a CAR *-automorphism. The adjoint relation
+000121 | is c_j Q = Q sum_i conjugate(R_ij)c_i, not Q c_j=sum_i conjugate(R_ij)c_i Q.
+000122 | For unitary real-time source maps the exterior lift is unitary and conjugation
+000123 | does define the corresponding CAR *-automorphism.
+000124 | 
+000125 | An interaction can have the same reference and one-particle sector while
+000126 | violating this full covariance. For instance a different two-particle diagonal
+000127 | entry in diag(1,r,r,b) passes the vacuum creator relation but fails the full
+000128 | relation unless b=r^2. This is the adversarial test, not a proposed new TFPT model.
+000129 | 
+000130 | 6. The positive collar control and correct thermal representation
+000131 | 
+000132 | For the repeated-mode calibration use TWO DECLARED IDENTICAL COPIES of the
+000133 | lowest alpha=1/4 source mode, B=(1/4)I2, and DECLARED length l=4 log4.
+000134 | This is not the particle/hole pair of the full chiral source. Then R_l=(1/4)I2 and
+000135 |   G=(1/17)[[16I,4I],[4I,I]].
+000136 | The boundary CAR has four modes. Its pure state is a vector in dimension16;
+000137 | the source amplitude Q acts on TWO modes, dimension4. These are different
+000138 | spaces. The reconstructed Q has diagonal (1,1/4,1/4,1/16), and the restricted
+000139 | thermal state is Q^2/Tr Q^2. Its one-particle occupation is 1/17, so
+000140 |   log((1-n)/n)=log16=2 l B.
+000141 | This is state and heat amplitude from the same full graph in this canonical
+000142 | fermionic realization; no many-body H, density matrix or target Q is supplied.
+000143 | 
+000144 | A separate one-mode thermal GNS implementation uses left CAR on HS operators,
+000145 | Omega_rho=vec(sqrt rho) and L=H tensor I-I tensor H^T. It has both signs.
+000146 | For the same ratio r=1/4, exp(-l L) has eigenvalues {1,1,1/4,4} and fixes
+000147 | Omega_rho. It is positive but not a contraction. The repaired search accepts
+000148 | this source control with the source-derived finite ceiling4; ceiling1 is a
+000149 | different declared class. We do NOT replace this actual thermal generator by a
+000150 | chosen positive pure-state parent for the boundary purification.
+000151 | 
+000152 | The actual lowest particle/hole pair of the single chiral A_alpha component has
+000153 | energies
+000154 | (alpha,1-alpha)=(1/4,3/4). At the same given length its response is
+000155 | R=diag(1/4,1/64). The same boundary-projection and oriented-pairing construction
+000156 | therefore gives Q=diag(1,1/4,1/64,1/256) and the thermal density
+000157 | diag(65536,4096,16,1)/69649. Here the input-dual CAR covariance is
+000158 | diag(16/17,4096/4097); the output covariance is diag(1/17,1/4097).
+000159 | This is not an insertion of |D| as a new time operator: the signed source pair
+000160 | has D=diag(1/4,-3/4), R_raw=diag(1/4,64), Q_raw=diag(1,1/4,64,16).
+000161 | The second-mode CAR particle-hole conjugation, followed by division by the
+000162 | filled-sea eigenvalue 64, gives precisely the positive relative Q above.
+000163 | Explicitly C=c_-+c_-^* is unitary in this finite sector. With N=N_++N_-,
+000164 | C N C^*-I=N_+-N_- and
+000165 | C[(1/4)N_+-(3/4)N_-]C^*+(3/4)I=(1/4)N_++(3/4)N_-.
+000166 | The same conjugation applied to the original quarter Gamma(iI), divided by the
+000167 | filled-reference phase i, gives the charged relative W below. Thus charge,
+000168 | energy and quarter action use the same source map and the same filled reference.
+000169 | These subtracted reference scalars do not recover an absolute partition factor.
+000170 | The charged quarter is W=diag(1,i,-i,1), with opposite creator phases i and -i,
+000171 | and equals exp(2pi i H) for H=diag(0,1/4,3/4,1). It is not the i^N rotation
+000172 | of two equally charged creation operators. The actual source-pair control and
+000173 | the duplicated-mode calibration are stored separately.
+000174 | The actual-pair SCS run returns optimal_inaccurate at floor0 and infeasible at
+000175 | floor1/4. The exact reconstructed matrix independently proves feasibility;
+000176 | the solver warning is retained and is not a clean numerical optimality proof.

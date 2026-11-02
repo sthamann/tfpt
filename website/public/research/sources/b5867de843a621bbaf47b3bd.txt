@@ -1,0 +1,126 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_normal_connection_marks.py
+Original file SHA-256: 9ab96cb0dc52bbc3e05b01ad4ab1ea6692cf574b86247226a2d18f7310ffbe5a
+Inclusive original lines: 1-118
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact comparisons of existing tetrahedron, covers and reducing connections."""
+000003 | from itertools import permutations
+000004 | from pathlib import Path
+000005 | from math import gcd, lcm
+000006 | import json
+000007 | import sympy as S
+000008 | 
+000009 | I, rt = S.I, S.sqrt(3)
+000010 | eye, zero = S.eye(2), S.zeros(2)
+000011 | pauli = [S.Matrix([[0, 1], [1, 0]]), S.Matrix([[0, -I], [I, 0]]), S.diag(1, -1)]
+000012 | checks = []
+000013 | 
+000014 | 
+000015 | def eq(a, b=0):
+000016 |     if isinstance(a, S.MatrixBase):
+000017 |         return all(S.trigsimp(S.simplify(v), method="fu") == 0 for v in a - b)
+000018 |     return S.trigsimp(S.simplify(S.expand_complex(a - b)), method="fu") == 0
+000019 | 
+000020 | 
+000021 | def need(condition, name):
+000022 |     if not condition:
+000023 |         raise RuntimeError(name)
+000024 |     checks.append(name)
+000025 | 
+000026 | 
+000027 | def cr(a, b, c, d):
+000028 |     return S.simplify((a - c) * (b - d) / ((a - d) * (b - c)))
+000029 | 
+000030 | 
+000031 | def normal(v):
+000032 |     return S.simplify(S.expand_complex(v))
+000033 | 
+000034 | 
+000035 | ns = [S.Matrix(v) / rt for v in [(1, 1, 1), (1, -1, -1), (-1, 1, -1), (-1, -1, 1)]]
+000036 | ps = [(eye + sum((n[j] * pauli[j] for j in range(3)), zero)) / 2 for n in ns]
+000037 | need(all(eq(p * p, p) and eq(S.trace(p), 1) for p in ps), "four Bloch rank-one projectors")
+000038 | need(eq(sum(ps, zero), 2 * eye), "Bloch sum is 2I, not the root-block resolution I")
+000039 | need(all(eq(S.trace(ps[j] * ps[k]), S.Rational(1, 3))
+000040 |          for j in range(4) for k in range(4) if j != k), "nonorthogonal pair overlaps")
+000041 | traces = []
+000042 | for j, k, m in permutations(range(4), 3):
+000043 |     t = normal(S.trace(ps[j] * ps[k] * ps[m]))
+000044 |     need(eq(t * S.conjugate(t), S.Rational(1, 27)), f"face magnitude {j}{k}{m}")
+000045 |     need(eq((3 * rt * t) ** 2, -1), f"face quarter phase {j}{k}{m}")
+000046 |     traces.append(str(t))
+000047 | 
+000048 | zs = [S.simplify((n[0] + I * n[1]) / (1 + n[2])) for n in ns]
+000049 | tet = {normal(cr(*(zs[j] for j in p))) for p in permutations(range(4))}
+000050 | square = [1, I, -1, -I]
+000051 | sq = {normal(cr(*(square[j] for j in p))) for p in permutations(range(4))}
+000052 | need(tet == {(1 - I * rt) / 2, (1 + I * rt) / 2}, "all tetrahedral cross ratios")
+000053 | need(sq == {S.Integer(2), S.Rational(1, 2), S.Integer(-1)}, "all quarter cross ratios")
+000054 | need(not tet & sq, "no marked Mobius equivalence even after relabeling")
+000055 | tet_aut = [p for p in permutations(range(4)) if eq(cr(*(zs[j] for j in p)), cr(*zs))]
+000056 | sq_aut = [p for p in permutations(range(4)) if eq(cr(*(square[j] for j in p)), cr(*square))]
+000057 | need(len(tet_aut) == 12 and len(sq_aut) == 8, "different holomorphic four-mark automorphism groups")
+000058 | cycle = (1, 2, 3, 0)
+000059 | need(cycle not in tet_aut and cycle in sq_aut, "square four-cycle is not a tetrahedral holomorphic action")
+000060 | jfun = lambda a: S.simplify(256 * (1 - a + a * a) ** 3 / (a * a * (1 - a) ** 2))
+000061 | need(all(eq(jfun(a), 0) for a in tet) and all(eq(jfun(a), 1728) for a in sq), "elliptic invariants j0 and j1728")
+000062 | 
+000063 | omega = (-1 + I * rt) / 2
+000064 | q1, q2, q3 = -1, -omega, -omega ** 2
+000065 | lam = normal((q1 - q3) / (q2 - q3))
+000066 | need(eq(lam, cr(*zs)), "tetrahedron matches branch quartet of E_omega")
+000067 | Z = S.Symbol("Z")
+000068 | M = q1 + (q2 - q1) * (Z - zs[0]) * (zs[1] - zs[3]) / ((Z - zs[3]) * (zs[1] - zs[0]))
+000069 | need(all(eq(M.subs(Z, zs[k]), q) for k, q in enumerate([q1, q2, q3])), "explicit ordered Mobius map to E_omega branches")
+000070 | 
+000071 | x, s = S.symbols("x s")
+000072 | relation = s ** 12 - x ** 4 + 1
+000073 | need(S.rem((s ** 6) ** 2 - (x ** 4 - 1), relation, s) == 0, "C12 to E_i")
+000074 | need(S.rem((x ** 2) ** 2 - ((s ** 4) ** 3 + 1), relation, s) == 0, "C12 to E_omega")
+000075 | need(gcd(6, 4) == 2 and S.cancel(s ** 6 / s ** 4) == s ** 2, "joint image function field is C6")
+000076 | need(all(e % 2 == 0 for e in [6, 4]) and (-s) ** 3 == -s ** 3, "joint elliptic image loses sign retained by C4")
+000077 | need([k for k in range(12) if 6 * k % 12 == 0 and 4 * k % 12 == 0] == [0, 6], "full deck kernel of elliptic pair")
+000078 | # Existing forced compiler lift: R12 = Q12 Delta12^4 = (i x, omega s).
+000079 | need(lcm(4, 3) == 12, "original mixed compiler lift has order twelve")
+000080 | need([k for k in range(1, 13) if k % 4 == 0 and k % 6 == 0] == [12], "mixed order twelve is retained on elliptic pair")
+000081 | need(4 * 4 % 12 == 4 and 4 * 9 % 12 == 0, "original c4=sigma and c9=J marking retained")
+000082 | 
+000083 | theta, beta, aa, bb = S.symbols("theta beta aa bb", real=True)
+000084 | chi = S.Matrix([S.cos(beta / 2), S.exp(I * theta) * S.sin(beta / 2)])
+000085 | p = S.simplify(chi * chi.H)
+000086 | dp = p.diff(theta)
+000087 | kato = S.simplify(I * (dp * p - p * dp))
+000088 | need(eq(p * p, p) and eq(p * dp * p, zero), "differentiated projection identity")
+000089 | need(eq(kato.H, kato) and eq(p * kato * p, zero), "forced off-diagonal connection is Hermitian")
+000090 | need(eq(-I * dp + kato * p - p * kato, zero), "exact Kato reducing commutator")
+000091 | a = kato + aa * p + bb * (eye - p)
+000092 | need(eq(-I * dp + a * p - p * a, zero), "all diagonal freedoms preserve exact reduction")
+000093 | eff = S.simplify((chi.H * a * chi)[0] - I * (chi.H * chi.diff(theta))[0])
+000094 | need(eq(eff, aa + (1 - S.cos(beta)) / 2), "entire reduced circle connection including Berry term")
+000095 | need(eq(-I * chi.diff(theta) + a * chi - chi * eff, S.zeros(2, 1)), "operator intertwiner on all scalar Fourier functions")
+000096 | need(not eq(dp.subs(beta, S.pi / 2), zero), "scalar original matrix source does not reduce a moving line")
+000097 | 
+000098 | need(all(eq((3 * rt * t) * S.conjugate(3 * rt * t), 1) for t in [S.sympify(v) for v in traces]),
+000099 |      "dual homogeneous line cancels every normalized spin-line face phase")
+000100 | 
+000101 | result = {
+000102 |     "verdict": "PASS_EXACT_SCOPED_COMPARISONS",
+000103 |     "checks_passed": len(checks),
+000104 |     "checks": checks,
+000105 |     "tetra_crossratio_orbit": sorted(map(str, tet)),
+000106 |     "quarter_crossratio_orbit": sorted(map(str, sq)),
+000107 |     "ordered_face_trace": traces[0],
+000108 |     "elliptic_maps": {"E_i": "(x,y)=(x,s^6)", "E_omega": "(u,v)=(x^2,s^4)"},
+000109 |     "degrees": {"C3_to_Eomega": 2, "C12_to_Ei": 6, "C12_to_Eomega": 8, "joint_generic_fiber": 2},
+000110 |     "joint_image": "C6: t=s^2, t^6=x^4-1",
+000111 |     "forced_compiler_lift": "R12=(ix,omega*s); fourth=sigma, ninth=plain J",
+000112 |     "connection_class": "A=i[P_prime,P]+PAP+(I-P)A(I-P)",
+000113 |     "physical_source_identified": False,
+000114 |     "complete_TFPT_solution": False,
+000115 | }
+000116 | out = Path(__file__).with_name("normal-connection-marks-results.json")
+000117 | out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+000118 | print(json.dumps({"verdict": result["verdict"], "checks_passed": len(checks), "result": str(out)}))

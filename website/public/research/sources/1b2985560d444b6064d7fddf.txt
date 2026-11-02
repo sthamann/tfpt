@@ -1,0 +1,195 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/boundary_origin_20261027/source/ORIGINAL-BOUNDARY-NORM-ORIGIN.txt
+Original file SHA-256: 2a92d7c75aeed3fb09d85de0f9cf8be3c9fb8757b6686cf0c6724cd7b4a977a6
+Inclusive original lines: 201-387
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 | sequences and symmetry bookkeeping.  The Hardy/Fredholm passage and the
+000202 | determinant-line identity are the analytic argument above, not a conclusion
+000203 | drawn from truncation.  Normal Python and python -OO give byte-identical
+000204 | output.
+000205 | 
+000206 | 3. INDEX MINUS ONE IS NOT THE INVERSE NORM DEFECT
+000207 | 
+000208 | The old scalar circle shift has index -1.  The pulled-back S_0 cable has
+000209 | three sheets and index -3.  These are different operators, and their
+000210 | determinant orientations prevent a phase-only identification.
+000211 | 
+000212 | The quotient by c makes the distinction exact.  Set x=w^3.  Then
+000213 | 
+000214 |     C/<c>: eta^2=1-x^2,
+000215 | 
+000216 | and q_0,q_1,q_2 map to one unramified point qbar with x=-1.  The pushforward
+000217 | F=rho_*S_0 has rank three and
+000218 | 
+000219 |     F|qbar=F_1 direct_sum F_omega direct_sum F_omega2,
+000220 | 
+000221 | its regular C3 representation.  Modifying the whole fiber drops the index by
+000222 | three.  Modifying only the invariant character F_1 drops it by one.
+000223 | 
+000224 | But beta acts by +i on every q fiber.  Hence
+000225 | 
+000226 |     beta|F_1=+i,             beta|F_1^(-1)=-i,
+000227 |     beta|B_q=-i,             beta|B_q^(-1)=+i.          (10)
+000228 | 
+000229 | The directed Fredholm line of the rank-one modification is F_1^(-1), so it
+000230 | has the wrong beta and alpha-square character for N_q^(-1).  The undualized
+000231 | F_1 has the desired phase, but it is the opposite determinant orientation.
+000232 | The full three-fiber determinant succeeds precisely because
+000233 | (i^3)^(-1)=+i.
+000234 | 
+000235 | Therefore the base index-minus-one seam defect is not already the inverse q
+000236 | norm.  The positive construction is the full three-cabled pullback followed
+000237 | by the relative determinant quotient (7).  This is a degree-three
+000238 | pushforward, not an invertible identification of the old scalar operator
+000239 | with the full defect.
+000240 | 
+000241 | The exact check is check_c3_quotient_defect.py, with checked output
+000242 | c3-quotient-defect.json.  It verifies both indices and the determinant
+000243 | orientation under normal Python and python -OO.
+000244 | 
+000245 | 4. THE ORDINARY THETA EVALUATION SHORTCUT HAS THE OPPOSITE SIGN
+000246 | 
+000247 | This result must be distinguished from modifying one of the two positive
+000248 | theta determinants by vanishing at D_q.  With
+000249 | 
+000250 |     D(E)=det H^0(E) tensor det H^1(E)^(-1),
+000251 |     O(Theta)=D(E)^(-1),
+000252 | 
+000253 | and
+000254 | 
+000255 |     0 -> E(-D_q) -> E -> E|D_q -> 0,
+000256 | 
+000257 | one has
+000258 | 
+000259 |     D(E(-D_q))=D(E) tensor B_q^(-1).
+000260 | 
+000261 | Therefore
+000262 | 
+000263 |     D(E)^(-1) tensor D(E(-D_q))^(-1)
+000264 |       = O(2 Theta) tensor B_q,                         (11)
+000265 | 
+000266 | which is N_q, not N_q^(-1), after removing the ordering line.  Its beta
+000267 | phase is -i.  Conditioning both theta factors gives N_q^2 and phase -1.
+000268 | 
+000269 | The one inverse norm in (7) therefore comes from the determinant line of the
+000270 | original multiplication shift and its relative reference.  It does not come
+000271 | from imposing q vanishing inside one positive theta factor.
+000272 | 
+000273 | At D_p the analogous vanishing operation gives O(2Theta) tensor N_p and has
+000274 | the desired scalar beta phase +i, but N_p is a different typed line.  The
+000275 | source selects the q packet for the (4,3,2) triangle.  A scalar phase match
+000276 | does not identify N_p with N_q^(-1).
+000277 | 
+000278 | The exact convention audit is check_boundary_norm_conventions.py, with
+000279 | checked output boundary-norm-conventions.json.
+000280 | 
+000281 | 5. RELATION TO ETA AND PFAFFIAN SEWING
+000282 | 
+000283 | The three-cabled proof above is a relative Fredholm determinant statement.
+000284 | The general Dai--Freed theorem independently explains why a genuine Dirac
+000285 | bordism amplitude contains one inverse boundary determinant line.  For an
+000286 | odd-dimensional spin Dirac operator on X with boundary Y,
+000287 | 
+000288 |     tau_X in Det_Y^(-1),
+000289 | 
+000290 | and cutting introduces a pair L_Y tensor L_Y^(-1) which gluing contracts
+000291 | once.  See Daniel S. Freed, Determinant Line Bundles Revisited,
+000292 | https://arxiv.org/html/dg-ga/9505002, equations (2)--(3) and Theorems 5/8.
+000293 | 
+000294 | The primitive TFPT action contains +(i*pi/2) Delta eta_Sigma, suggesting the
+000295 | real/Majorana square-root, hence Pfaffian, refinement.  That physical
+000296 | application remains conditional because the September source itself treats
+000297 | the same-chirality real Spin--Dirac symbol and Pfaffian structure as a premise,
+000298 | not a completed identification of the raw seam operator.  Yonekura likewise
+000299 | states that the Majorana case requires a square-root refinement but does not
+000300 | carry it out in his Dirac derivation: https://arxiv.org/html/1607.01873,
+000301 | sections 1.2, 3.2 and 4.3.
+000302 | 
+000303 | Accordingly, two levels must remain separate:
+000304 | 
+000305 |   * (7) is an exact complex relative Fredholm line for the original
+000306 |     multiplier on the source-selected three-sheet cable;
+000307 | 
+000308 |   * identifying this line with the physical eta/Pfaffian boundary amplitude
+000309 |     still requires the actual Spin--Dirac/Pfaffian field map.
+000310 | 
+000311 | 6. ORIGINAL SOURCE CHECK
+000312 | 
+000313 | The relevant original passages are precise.
+000314 | 
+000315 | 1. fullv21 section001, lines 225--250, cuts the double cover along the seam,
+000316 |    declares the unitary seam gluing U_Gamma(theta)=exp(i theta), and computes
+000317 |    one scalar spectral-flow crossing.  After the already reviewed orientation
+000318 |    correction, its Hardy compression has index -1.
+000319 | 
+000320 | 2. The September genus-two reconstruction gives
+000321 |    w^3=(z^2-1)/(z^2+1), eta=z(1-w^3), eta^2=1-w^6 and the original Q lift.
+000322 |    These printed equations are exactly (1)--(2), so the three-cabled map is
+000323 |    recovered from the original coordinate rather than introduced as a new
+000324 |    model.
+000325 | 
+000326 | 3. The same September source warns that the finite point transport is not by
+000327 |    itself a field intertwiner or Calderon projector.  This warning is still
+000328 |    active: equations (3)--(7) become the physical source only after the actual
+000329 |    boundary field is identified with the S_0 cable.
+000330 | 
+000331 | 4. The TFPT45 primitive core has a declared relative split
+000332 |    (D_ref,D_rel) and the action
+000333 | 
+000334 |        tr f(D_rel/chi)-tr f(D_ref/chi)+(i*pi/2) Delta eta.
+000335 | 
+000336 |    It does not identify its two coefficient cables with
+000337 |    (S_0 tensor L,L).  That is the precise remaining reference premise in
+000338 |    (7).
+000339 | 
+000340 | 5. The Riemann--Hilbert free-fermion formula uses separate bases at z=0 and
+000341 |    z=infinity and retains a diagonal normalization ambiguity.  It confirms
+000342 |    the incoming q and outgoing p typing, but it does not by itself prove the
+000343 |    (S_0 tensor L,L) relative boundary pair.  See Gavrylenko--Marshakov,
+000344 |    https://arxiv.org/html/1605.04554, equations (4.1)--(4.3), (5.2)--(5.3),
+000345 |    and the normalization discussion after (4.1).
+000346 | 
+000347 | 7. VERDICT AND NEXT DECISIVE TEST
+000348 | 
+000349 | PROVED FROM THE EXISTING SOURCE GEOMETRY:
+000350 | 
+000351 |   * the old seam multiplier is the same function z whose zeros are exactly
+000352 |     D_q and whose poles are D_p;
+000353 | 
+000354 |   * its pullback to the three unramified q sheets has cokernel
+000355 |     direct_sum S_0|q_a, index -3 and Fredholm line B_q^(-1);
+000356 | 
+000357 |   * the half-form identity e^2=dz gives the standard Hardy norm on every open
+000358 |     sheet without a fitted measure; boundary ramification adds no point term;
+000359 | 
+000360 |   * relative to the otherwise identical cable L, with the spin twist S_0
+000361 |     present only in the relative member, winding n gives exactly N_q^(-n)
+000362 |     for every degree-zero L;
+000363 | 
+000364 |   * the original primitive spectral flow one sets n=1 and therefore fixes
+000365 |     the literal single inverse norm, beyond the finite clock congruence;
+000366 | 
+000367 |   * the c-invariant rank-one quotient channel has index -1 but its directed
+000368 |     Fredholm line has the opposite beta phase, so it is not N_q^(-1);
+000369 | 
+000370 |   * the ordinary mixed theta-determinant construction gives the opposite line
+000371 |     N_q and therefore is not the origin.
+000372 | 
+000373 | REMAINING PHYSICAL PREMISE:
+000374 | 
+000375 | Prove on the actual boundary Cauchy-data space that
+000376 | 
+000377 |     (D_rel coefficient cable, D_ref coefficient cable)
+000378 |        ~= (S_0 tensor L, L) on pi^(-1)(disc) for one common L,     (12)
+000379 | 
+000380 | with multiplication by the original z, and with the c,Q actions preserved.
+000381 | Equation (12), not another line-power choice or a rank-one character
+000382 | projection, is now the smallest decisive operator test.
+000383 | 
+000384 | If (12) holds, (7) derives the single inverse N_q factor directly from the
+000385 | original boundary operation.  If D_ref induces a different coefficient line,
+000386 | the relative factor is its actual defect determinant and need not be N_q^-1.
+000387 | This is a concrete falsifiable distinction.

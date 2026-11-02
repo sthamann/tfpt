@@ -1,0 +1,53 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-joint-source-origin-audit-20261016/process_reconstruction.py
+Original file SHA-256: 2398a46a57942ff8fc54f8735101dc1f271cd748eb25f85595bfed5308e75ad5
+Inclusive original lines: 1-45
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact diagnostic for process-first reconstruction; no physical source fit.
+000002 | 
+000003 | Checks finite counterexamples and exhausts quartic stationary spectra.
+000004 | The analytic argument and limits are in PROCESS_RECONSTRUCTION.txt.
+000005 | """
+000006 | import json
+000007 | import sys
+000008 | from pathlib import Path
+000009 | import sympy as s
+000010 | 
+000011 | 
+000012 | def operational_checks():
+000013 |     z, o, i = s.zeros(2), s.eye(2), s.I
+000014 |     pauli = [o, s.Matrix([[0, 1], [1, 0]]),
+000015 |              s.Matrix([[0, -i], [i, 0]]), s.diag(1, -1)]
+000016 |     vec = lambda x: s.Matrix(list(x))
+000017 |     f = s.Matrix.hstack(*(vec(x)/s.sqrt(2) for x in pauli))
+000018 |     h = s.Matrix([[1, 1, 1, 1], [1, -1, 1, -1],
+000019 |                   [1, 1, -1, -1], [1, -1, -1, 1]])/2
+000020 |     e = f*h
+000021 |     omega = vec(o)/s.sqrt(2)
+000022 |     classical = [s.simplify(e[:, k]*e[:, k].conjugate().T) for k in range(4)]
+000023 |     units = [s.Matrix(2, 2, lambda a,b: int(a == j and b == k))
+000024 |              for j in range(2) for k in range(2)]
+000025 |     left = [s.kronecker_product(x, o) for x in units]
+000026 |     assert s.simplify(e.conjugate().T*e) == s.eye(4)
+000027 |     assert all(s.simplify(x.conjugate().reshape(2,2).T-x.reshape(2,2)) == z
+000028 |                for x in [e[:,k] for k in range(4)])
+000029 |     assert s.Matrix.hstack(*(a*omega for a in classical)).rank() == 4
+000030 |     assert s.Matrix.hstack(*(a*omega for a in left)).rank() == 4
+000031 |     assert all(s.simplify(a*b-b*a) == s.zeros(4) for a in classical for b in classical)
+000032 |     assert any(a*b != b*a for a in left for b in left)
+000033 |     # A1 opposite action is matrix right multiplication; C4 opposite is itself.
+000034 |     right = [s.kronecker_product(o, x.T) for x in units]
+000035 |     assert all(a*b == b*a for a in left for b in right)
+000036 |     hh = s.Matrix([[1,1],[1,-1]])/s.sqrt(2)
+000037 |     rho = s.diag(1,0)
+000038 |     coherent = hh*hh*rho*hh.conjugate().T*hh.conjugate().T
+000039 |     transition = hh.applyfunc(lambda v: s.simplify(s.conjugate(v)*v))
+000040 |     dephased = transition*transition*s.Matrix([1,0])
+000041 |     assert coherent[0,0] == 1 and dephased[0] == s.Rational(1,2)
+000042 |     return {"same_J_same_omega_cyclic_algebras": ["C^4", "M_2(C)_left"],
+000043 |             "cyclic_dimensions": [4,4], "centers_differ": True,
+000044 |             "both_order_zero": True,
+000045 |             "two_coherent_pulses_vs_dephased_probability": ["1", "1/2"],

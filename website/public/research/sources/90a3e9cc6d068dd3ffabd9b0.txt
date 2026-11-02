@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/CANONICAL-CLIFFORD-DOUBLE-REVIEW.txt
+Original file SHA-256: 5fef5442dbdbfd035dd4a2eb11d17967ec2bd9335f527376354e1123313cd13d
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | CANONICAL CLIFFORD DOUBLE, ANTIPERIODIC NORMAL CIRCLE, AND SOURCE SCOPE
+000002 | Independent targeted review, 30 October 2026.
+000003 | Verdict: CANONICAL_PRODUCT_DOUBLE_FORCES_AP; ORIGINAL D_plus^op BINDING STILL REQUIRES THE STATED CLUTCH.
+000004 | No Atlas or original edit.
+000005 | 
+000006 | 1. The primary construction fixes the clutch
+000007 | 
+000008 | The standard invertible-double theorem is more specific than an arbitrary
+000009 | double.  On a product collar it writes
+000010 | 
+000011 |   D=J(partial_x+B),
+000012 |   J^2=-I,  J^*=-J,  B^*=B,  JB=-BJ,
+000013 | 
+000014 | and glues D to -D by the boundary clutch J=c(n_inward).  Booß-Bavnbek and
+000015 | Lesch, Proposition 1.4, use exactly the map
+000016 | 
+000017 |   f(x) -> J f(-x)
+000018 | 
+000019 | to identify the collar expressions of D and -D.  Green's formula and weak
+000020 | unique continuation then prove that the resulting closed operator is
+000021 | invertible.  Thus the clutch is part of the canonical double; it is not a
+000022 | freely selected spin closure.
+000023 | 
+000024 | Primary sources:
+000025 | 
+000026 |   Bernhelm Booß-Bavnbek and Matthias Lesch, The Invertible Double of Elliptic
+000027 |   Operators, arXiv:0803.4047, Proposition 1.4 and its proof on PDF page 8.
+000028 |   https://arxiv.org/abs/0803.4047
+000029 | 
+000030 |   Matthias Lesch, joint work with Booß-Bavnbek and Zhu, The Calderon
+000031 |   Projection: New Definition and Applications, EMS report, Proposition 1 and
+000032 |   its proof at pages 2410 ff. in the printed pagination.
+000033 |   https://ems.press/content/serial-article-files/46126
+000034 | 
+000035 | The AP conclusion below uses the exact product hypotheses.  A
+000036 | normal-dependent coefficient or a different boundary clutch is outside this
+000037 | calculation.
+000038 | 
+000039 | 2. Independent sign calculation on the interval
+000040 | 
+000041 | Use the actual constant product operator on 0<=x<=ell,
+000042 | 
+000043 |   D_1=N(partial_x+B),
+000044 |   N^2=-I,  N^*=-N,  NB=-BN.                         (1)
+000045 | 
+000046 | The inward normals give
+000047 | 
+000048 |   J_0=N,                 J_ell=-N.                    (2)
+000049 | 
+000050 | Write the reversed second copy with r=2 ell-x.  The operator -D on that copy
+000051 | is
+000052 | 
+000053 |   D_2=N(partial_r-B).                                  (3)
+000054 | 
+000055 | The canonical clutch conditions are therefore
+000056 | 
+000057 |   v(0)=N u(0),              v(ell)=-N u(ell).          (4)
+000058 | 
+000059 | Put the second copy in the same fixed frame as the first by w=Nv.  Both the
+000060 | input and output frames must be transformed.  Direct multiplication gives
+000061 | 
+000062 |   N D_2 N^-1=N(partial_r+B).                           (5)
+000063 | 
+000064 | At the joined point r=ell,
+000065 | 
+000066 |   w(ell)=N[-N u(ell)]=u(ell),
+000067 | 
+000068 | whereas after the full normal circuit,
+000069 | 
+000070 |   w(2 ell)=N[N u(0)]=-u(0).                            (6)
+000071 | 
+000072 | Consequently the canonical product double is the single operator
+000073 | 
+000074 |   D_tilde=N(partial_r+B)
+000075 | 
+000076 | on a circle of length 2 ell with the antiperiodic domain
+000077 | 
+000078 |   H1_AP={f in H1([0,2 ell]): f(2 ell)=-f(0)}.          (7)
+000079 | 
+000080 | This is a sign consequence of the two inward Clifford multiplications.  It
+000081 | does not follow merely from the numerical boundary covariance G.
+000082 | 
+000083 | 3. The actual TFPT coefficient satisfies the hypotheses
+000084 | 
+000085 | The existing graded-boundary construction fixes
+000086 | 
+000087 |   N=[[0,-1],[1,0]],     Z=diag(1,-1),     S=NZ,
+000088 |   B_Phi=Z tensor A-S tensor Phi,
+000089 |   Gamma_tot=Z tensor gamma_F.                           (8)
+000090 | 
+000091 | Here A is the even tangential connection, Phi is the odd bounded finite
+000092 | coefficient, and the family is normal-independent.  The exact matrix
+000093 | relations are
+000094 | 
+000095 |   NZ=-ZN,  NS=-SN,
+000096 | 
+000097 | so
+000098 | 
+000099 |   N B_Phi+B_Phi N=0.                                   (9)
+000100 | 
+000101 | This is also checked on the actual full96 v252 coefficient in
+000102 | graded_boundary_functor/check_finite_typing.py.  On the positive total-grade
+000103 | chart E,
+000104 | 
+000105 |   B_Phi E=E h_Phi,
+000106 |   h_Phi=A gamma_F-i gamma_F Phi,
+000107 | 
+000108 | and the selfdual charged chart is
+000109 | 
+000110 |   B_Phi = h_Phi directsum(-bar(h_Phi)).                (10)
+000111 | 
+000112 | The doubling and AP condition act on the entire normal times full96 space.
+000113 | They are not a one-charge-leg boundary choice.  In particular, N
+000114 | anticommutes with Gamma_tot, so each clutch crossing exchanges the two total
+000115 | grades.  The two crossings give N^2=-I and return the grade with the minus
+000116 | holonomy in (6).  Formula (10) may be used to evaluate the two charge legs,
+000117 | but neither leg may be silently discarded.  Since cosh is even,
+000118 | 
+000119 |   X(-bar(h_Phi))=bar(X(h_Phi)),
+000120 | 
+000121 | with the actual multiplicities retained in any determinant or trace.
+000122 | 
+000123 | 4. The deck lift is not the old reflection involution
+000124 | 
+000125 | Before the fixed-frame unfolding, the natural exchange on the pair domain
+000126 | v=Ju is
+000127 | 
+000128 |   T(u,v)=(-v,u).                                        (11)
+000129 | 
+000130 | It preserves the clutch domain and satisfies
+000131 | 
+000132 |   T^2=-I,
+000133 |   T (D directsum -D)=-(D directsum -D) T.              (12)
+000134 | 
+000135 | Thus this canonical spin deck lift has order four on fields.  Multiplying it
+000136 | by the old scalar complex unit i0 would make its square +I, but that operation
+000137 | changes its real and KO typing and is not supplied by the invertible-double
+000138 | theorem.  In particular, (11) is not automatically the original geometric
+000139 | tau with tau^2=1, the boundary polarization iC, or a physical OS reflection.
+000140 | Any such identification must compare the phase, grading and anti/linearity
+000141 | in the original chart.  The AP normal domain remains valid without making
+000142 | that additional identification.
+000143 | 
+000144 | There are already two distinct involutive lifts on the unfolded AP circle.
+000145 | Let
+000146 | 
+000147 |   (P_r f)(r)=f(2 ell-r).
+000148 | 
+000149 | Using the old scalar complex unit i0 and the actual total grading gives
+000150 | 
+000151 |   R_odd =i0 N P_r,
+000152 |   R_even=Gamma_tot N P_r.                              (13)
+000153 | 
+000154 | The exact operator algebra is
+000155 | 
+000156 |   R_odd^2=I,       R_odd D_tilde R_odd=-D_tilde,
+000157 |   R_even^2=I,      R_even D_tilde R_even=+D_tilde.     (14)
+000158 | 
+000159 | Here P_r reverses partial_r, N anticommutes with B_Phi and Gamma_tot, and
+000160 | Gamma_tot anticommutes with D_tilde.  In the two-copy description the
+000161 | grading compatible with the J clutch is diag(Gamma_tot,-Gamma_tot).  Equations
+000162 | (13)-(14) show that even after an involutive phase choice there are two
+000163 | different operator types.  The canonical-double theorem does not select one
+000164 | as the physical KO, deck or OS lift.
+000165 | 
+000166 | 5. What the one canonical double now derives
+000167 | 
+000168 | For the constant product coefficient, (1) and (9) give
+000169 | 
+000170 |   D_tilde^2=-partial_r^2+B_Phi^2.                      (15)
+000171 | 
+000172 | Hence the canonical double supplies the AP second-order spectrum.  With
+000173 | E_mu=sqrt(B_Phi^2+mu^2), a finite tangential Fourier cutoff gives, up to an
+000174 | E_mu-independent normalization,
+000175 | 
+000176 |   log det_AP,cut(-partial_r^2+B_Phi^2+mu^2)
+000177 |     =Tr_cut[2 log(2 cosh(ell E_mu))].                  (16)
+000178 | 
+000179 | On the full tangential circle this splits formally as
+000180 | 
+000181 |   2 ell Tr(E_mu)+2 Tr log(I+exp(-2 ell E_mu)).          (17)
+000182 | 
+000183 | The first term diverges and needs the already specified zeta or common local
+000184 | renormalization.  Equality of absolute determinants cannot be inferred by
+000185 | interchanging the two spectral sums without that prescription; local
+000186 | multiplicative-anomaly terms may remain.  The second term is canonical for
+000187 | the product operator: exp(-2 ell E_mu) is trace class and defines the
+000188 | positive gluing factor
+000189 | 
+000190 |   det_F(I+exp(-2 ell E_mu))^2.                          (18)
+000191 | 
+000192 | Thus the canonical double fixes the AP spectrum and the Fredholm gluing
+000193 | factor.  It does not choose the bulk counterterm, a first-order determinant
+000194 | phase or a selfdual Pfaffian convention.  All traces still retain both charge
+000195 | legs and the actual finite multiplicities.
+000196 | 
+000197 | Multiplication by -N identifies the unregulated first-order complex operator
+000198 | 
+000199 |   -N D_tilde=partial_r+B_Phi.                           (19)
+000200 | 

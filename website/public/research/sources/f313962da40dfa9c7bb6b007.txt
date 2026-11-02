@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/hodge_complement_20261028/check_e8_a4_response.py
+Original file SHA-256: 9659806dfc92ec5f7d322a066d8e6f5b7b7c80e9a5cc285257d5d44bc57ea1f0
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact E8 Chevalley test of the A4 x A4 Petersen response.
+000002 | 
+000003 | This checks the actual current source, its cocycle signs, both A4 actions,
+000004 | the 50 current insertions, and the normalized inclusive channel.  It does
+000005 | not turn that inclusive algebraic response into a physical P1 instrument.
+000006 | """
+000007 | from collections import Counter
+000008 | import hashlib
+000009 | import json
+000010 | from pathlib import Path
+000011 | import sys
+000012 | 
+000013 | [OMITTED: non-scientific conversation or execution metadata]
+000014 | sys.path.insert(0, str(REPO))
+000015 | from tfpt_explorer.current_block_geometry import _actual_current_source
+000016 | 
+000017 | 
+000018 | def need(condition, name):
+000019 |     if not condition:
+000020 |         raise RuntimeError(name)
+000021 | 
+000022 | 
+000023 | def dot(a, b):
+000024 |     return sum(x*y for x, y in zip(a, b))
+000025 | 
+000026 | 
+000027 | def add(a, b):
+000028 |     return tuple(x+y for x, y in zip(a, b))
+000029 | 
+000030 | 
+000031 | def sub(a, b):
+000032 |     return tuple(x-y for x, y in zip(a, b))
+000033 | 
+000034 | 
+000035 | def positive(root):
+000036 |     return next(x for x in root if x) > 0
+000037 | 
+000038 | 
+000039 | def perm_sign(word):
+000040 |     return -1 if sum(word[i] > word[j] for i in range(len(word))
+000041 |                      for j in range(i+1, len(word))) % 2 else 1
+000042 | 
+000043 | 
+000044 | def wedge_action(subset, u, v):
+000045 |     """E_uv on an ordered exterior word."""
+000046 |     if v not in subset or u in subset:
+000047 |         return None
+000048 |     word = list(subset)
+000049 |     word[word.index(v)] = u
+000050 |     return tuple(sorted(word)), perm_sign(word)
+000051 | 
+000052 | 
+000053 | def carrier_weight(root):
+000054 |     total = sum(root[:5])
+000055 |     return tuple(5*x-total for x in root[:5])
+000056 | 
+000057 | 
+000058 | def carrier_type(root):
+000059 |     values = sorted(carrier_weight(root))
+000060 |     table = {
+000061 |         (-2, -2, -2, -2, 8): '5',
+000062 |         (-8, 2, 2, 2, 2): 'bar5',
+000063 |         (-4, -4, -4, 6, 6): '10',
+000064 |         (-6, -6, 4, 4, 4): 'bar10',
+000065 |         (0, 0, 0, 0, 0): 'zero',
+000066 |     }
+000067 |     return table.get(tuple(values), 'carrier_root')
+000068 | 
+000069 | 
+000070 | def carrier_label(root, representation):
+000071 |     weight = carrier_weight(root)
+000072 |     if representation == '5':
+000073 |         return weight.index(8)
+000074 |     if representation == 'bar5':
+000075 |         return weight.index(-8)
+000076 |     if representation == '10':
+000077 |         return tuple(i for i, x in enumerate(weight) if x == 6)
+000078 |     if representation == 'bar10':
+000079 |         return tuple(i for i, x in enumerate(weight) if x == -6)
+000080 |     raise RuntimeError('unknown carrier representation')
+000081 | 
+000082 | 
+000083 | def source_hash(path):
+000084 |     return {
+000085 |         'path': path,
+000086 |         'sha256': hashlib.sha256((REPO/path).read_bytes()).hexdigest(),
+000087 |     }
+000088 | 
+000089 | 
+000090 | def solve_f2(equations, variables):
+000091 |     pivots = {}
+000092 |     for row, rhs in equations:
+000093 |         while row:
+000094 |             pivot = row.bit_length()-1
+000095 |             if pivot not in pivots:
+000096 |                 pivots[pivot] = (row, rhs)
+000097 |                 break
+000098 |             other, value = pivots[pivot]
+000099 |             row ^= other
+000100 |             rhs ^= value
+000101 |         need(bool(row) or rhs == 0, 'joint cocycle equations consistent')
+000102 |     solution = 0
+000103 |     for pivot in sorted(pivots):
+000104 |         row, rhs = pivots[pivot]
+000105 |         value = rhs ^ ((row & solution).bit_count() % 2)
+000106 |         if value:
+000107 |             solution |= 1 << pivot
+000108 |     need(all((row & solution).bit_count() % 2 == rhs
+000109 |              for row, rhs in equations), 'joint cocycle solution exact')
+000110 |     need(all(pivot < variables for pivot in pivots), 'phase pivots in range')
+000111 |     return solution, pivots
+000112 | 
+000113 | 
+000114 | def main():
+000115 |     source = _actual_current_source()
+000116 |     algebra = source['chevalley']
+000117 |     roots = sorted(algebra.roots)
+000118 |     root_set = set(roots)
+000119 |     need(len(roots) == 240, 'E8 has240 roots')
+000120 | 
+000121 |     # The first A4 is the given SU5 inside D5.  Its root centralizer is
+000122 |     # intrinsic: all first five doubled coordinates are equal.
+000123 |     carrier_roots = [r for r in roots
+000124 |                      if sum(x != 0 for x in r[:5]) == 2
+000125 |                      and all(x == 0 for x in r[5:])
+000126 |                      and sum(r[:5]) == 0]
+000127 |     family_roots = [r for r in roots if len(set(r[:5])) == 1]
+000128 |     need(len(carrier_roots) == len(family_roots) == 20,
+000129 |          'given carrier A4 has an exact20-root A4 centralizer')
+000130 | 
+000131 |     # Derive the family simple roots from the actual centralizer.  Lexical
+000132 |     # positivity fixes a chamber.  The chain orientation is then named so
+000133 |     # that the input five is bar5, a representation convention rather than
+000134 |     # a new embedding.
+000135 |     family_positive = [r for r in family_roots if positive(r)]
+000136 |     positive_set = set(family_positive)
+000137 |     family_simple_unordered = [
+000138 |         r for r in family_positive
+000139 |         if not any(sub(r, a) in positive_set for a in family_positive)
+000140 |     ]
+000141 |     need(len(family_simple_unordered) == 4, 'centralizer has four simple roots')
+000142 |     adjacency = {
+000143 |         i: [j for j, b in enumerate(family_simple_unordered)
+000144 |             if dot(a, b) == -4]
+000145 |         for i, a in enumerate(family_simple_unordered)
+000146 |     }
+000147 |     need(sorted(len(v) for v in adjacency.values()) == [1, 1, 2, 2],
+000148 |          'centralizer Dynkin graph is A4')
+000149 | 
+000150 |     endpoint_orders = []
+000151 |     for start in sorted(i for i, v in adjacency.items() if len(v) == 1):
+000152 |         order = []
+000153 |         previous = None
+000154 |         current = start
+000155 |         while True:
+000156 |             order.append(current)
+000157 |             following = [j for j in adjacency[current] if j != previous]
+000158 |             if not following:
+000159 |                 break
+000160 |             previous, current = current, following[0]
+000161 |         endpoint_orders.append([family_simple_unordered[i] for i in order])
+000162 | 
+000163 |     standard5 = (
+000164 |         (1, 0, 0, 0),
+000165 |         (-1, 1, 0, 0),
+000166 |         (0, -1, 1, 0),
+000167 |         (0, 0, -1, 1),
+000168 |         (0, 0, 0, -1),
+000169 |     )
+000170 |     standard5_set = set(standard5)
+000171 |     bar5_set = {tuple(-x for x in w) for w in standard5}
+000172 | 
+000173 |     sectors = {name: [r for r in roots if carrier_type(r) == name]
+000174 |                for name in ('5', 'bar5', '10', 'bar10')}
+000175 |     need(all(len(v) == 50 for v in sectors.values()),
+000176 |          'four nonneutral A4xA4 sectors have50 roots each')
+000177 | 
+000178 |     def old_d5a3_sector(root):
+000179 |         if sum(x != 0 for x in root) == 2:
+000180 |             carrier_support = sum(x != 0 for x in root[:5])
+000181 |             return 'g0' if carrier_support in (0, 2) else 'g2'
+000182 |         need(all(abs(x) == 1 for x in root), 'remaining E8 root is halfroot')
+000183 |         return 'g1' if sum(x > 0 for x in root[:5]) % 2 == 0 else 'g3'
+000184 | 
+000185 |     old_sector_overlap = {
+000186 |         name: dict(sorted(Counter(old_d5a3_sector(r) for r in values).items()))
+000187 |         for name, values in sectors.items()
+000188 |     }
+000189 |     need(old_sector_overlap == {
+000190 |         '5': {'g2': 30, 'g3': 20},
+000191 |         'bar5': {'g1': 20, 'g2': 30},
+000192 |         '10': {'g0': 10, 'g1': 40},
+000193 |         'bar10': {'g0': 10, 'g3': 40},
+000194 |     }, 'new A4 sectors cross the old D5xA3 grading exactly')
+000195 | 
+000196 |     def family_charge(root, simple):
+000197 |         return tuple(dot(root, a)//4 for a in simple)
+000198 | 
+000199 |     orientations = [
+000200 |         simple for simple in endpoint_orders

@@ -1,0 +1,142 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/SIGN-LINE-INDEPENDENT-REVIEW.txt
+Original file SHA-256: 0fe7f92d0155a0fc5b15d585ec2042930e1e3fa8508c346aee636b053b068280
+Inclusive original lines: 181-314
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000181 | 
+000182 | Im vorhandenen zyklischen Cover gilt relativ zu C
+000183 | 
+000184 |     H^4=w.
+000185 | 
+000186 | Der Divisor von w besitzt auf C zwei einfache Nullstellen und zwei einfache
+000187 | Pole. Der C4 Cover ist dort total verzweigt. Seine einzige quadratische
+000188 | Zwischenstufe sqrt(w) ist an denselben vier Stellen verzweigt. Alle drei
+000189 | L_a^q sind dagegen global unverzweigt. Daher enthaelt der bare mu_12 Cover
+000190 | keine der drei Koeffizientenlinien.
+000191 | 
+000192 | Der bekannte Viertellift H->i/H transportiert weiterhin w->w^(-1) und
+000193 | g=H^3 nach -i g^(-1). Das ist die Geometrie des zyklischen Covers. Die volle
+000194 | v117 Viertelmonodromie des Rank 3 Koeffizientensystems folgt hier aus dem
+000195 | markierten (4,3,2) Dreieckscover und seinem eindeutigen Nielsen Typ. Diese
+000196 | beiden Aussagen duerfen nicht miteinander gleichgesetzt werden.
+000197 | 
+000198 | 6. Checker und Beweisumfang
+000199 | ---------------------------
+000200 | 
+000201 | Der finale Checker wurde unabhaengig normal und mit Python -OO ausgefuehrt,
+000202 | jeweils mit Ausgabe unter /tmp. Beide Laeufe bestanden 25 von 25 Pruefungen
+000203 | und erzeugten byteidentische JSON Dateien mit SHA256
+000204 | 
+000205 |     708ac56062c090ad0320d6999736998476246d98ba6a1c757a2bac11d21a945f.
+000206 | 
+000207 | Die im Checker eingetragenen drei Passports sind keine rechnerische Ableitung
+000208 | der lokalen Bewertungen. Diese Ableitung steht in Abschnitt 2 dieses Reviews
+000209 | und im Hauptbericht. Der Checker zertifiziert die Kummerrelationen, den C3
+000210 | Transport, die Geschlechter, die v117 Matrixordnungen sowie die
+000211 | Verzweigungsabgrenzung des mu_12 Covers. Diese Trennung ist sachlich sauber.
+000212 | 
+000213 | Gepruefte Dateien
+000214 | -----------------
+000215 | 
+000216 | * research-20261026-real-boundary/SIGN-LINE-COVER-DICTIONARY.txt,
+000217 |   SHA256 555f75a2d3c67347fa5f8e3c4f7f46e79d94cb4172176c84010224585dc842e7.
+000218 | * research-20261026-real-boundary/check_sign_line_cover.py,
+000219 |   SHA256 79ceadfaeb6aea66220f316dc6403a850fb48f47cf21d7a3b942568e6b978177.
+000220 | * research-20261026-real-boundary/sign-line-cover-results.json,
+000221 |   SHA256 708ac56062c090ad0320d6999736998476246d98ba6a1c757a2bac11d21a945f.
+000222 | 
+000223 | 7. Nachtrag: tatsaechlicher Viertellift auf dem q Paket
+000224 | ------------------------------------------------------
+000225 | 
+000226 | Zusaetzlich geprueft wurde
+000227 | 
+000228 |     research-20261026-real-boundary/CLOCK-Q-PACKET-COMPATIBILITY.txt,
+000229 |     SHA256 fe37f20bbb2d959dfe678ca1bf435a69067cfcb859a3d36769294bbe9bf61c32.
+000230 | 
+000231 | Der scheinbare Widerspruch zwischen dem Viertellift und dem negativen Paket
+000232 | beruhte auf einem Vorzeichenverlust. Fuer
+000233 | 
+000234 |     f(z)=(z^2-1)/(z^2+1),
+000235 |     w^3=f(z),
+000236 |     eta=z(1-w^3)
+000237 | 
+000238 | gilt
+000239 | 
+000240 |     f(i z)=f(z)^(-1).
+000241 | 
+000242 | Mit der vorhandenen Markierung ist der Lift
+000243 | 
+000244 |     Q:(z,w,eta)->(i z,w^(-1),-i eta/w^3).
+000245 | 
+000246 | Die eta Komponente folgt direkt aus ihrer Definition. Zweimalige Anwendung
+000247 | ergibt
+000248 | 
+000249 |     Q^2:(z,w,eta)->(-z,w,-eta),
+000250 | 
+000251 | also die hyperelliptische Involution; Q hat Ordnung 4 auf C.
+000252 | 
+000253 | Entscheidend ist
+000254 | 
+000255 |     1/p_a=p_(-a),
+000256 |     1/q_a=q_(-a).
+000257 | 
+000258 | Q erhaelt positive und negative Weierstrassbahn jeweils getrennt. Es
+000259 | vertauscht sie nicht. Fuer das ausgewaehlte Paket folgt
+000260 | 
+000261 |     Q^*L_a^q=L_(-a-1)^q
+000262 | 
+000263 | und auf den Kummerfunktionen
+000264 | 
+000265 |     H_a(1/w)=omega^2/H_(-a-1)(w),
+000266 |     Q^*h_a=epsilon_a omega/h_(-a-1),
+000267 |     epsilon_0 epsilon_1 epsilon_2=1.
+000268 | 
+000269 | Diese Gleichungen allein erlauben sowohl Zweier als auch Viererlifts. Die
+000270 | lokale t=0 Geometrie trifft die Auswahl. Bei q_0=-1 mit delta=w+1 gilt
+000271 | 
+000272 |     t=constant*delta^2,
+000273 |     delta=constant*s^2
+000274 | 
+000275 | auf Z_q, folglich t=constant*s^4. Die positive lokale Trägheit wirkt als
+000276 | s->i s. Ihr Quadrat ist der V4 Verzweigungsoperator ueber q_0. Daher muss
+000277 | 
+000278 |     epsilon_0/epsilon_2=-1,
+000279 |     epsilon_1=-1.
+000280 | 
+000281 | Die zwei verbleibenden Vorzeichenwaehlen sind inverse Viertellifts und
+000282 | unterscheiden sich durch einen V4 Rahmenwechsel. Sie bilden dieselbe
+000283 | markierte Gaugeklasse; die Orientierung des positiven t Umlaufs waehlt Lift
+000284 | gegen Inverses.
+000285 | 
+000286 | In den Charakterrahmen kann man den determinanteneins Lift als
+000287 | 
+000288 |     A=[[0,0,-1],
+000289 |        [0,1, 0],
+000290 |        [1,0, 0]]
+000291 | 
+000292 | schreiben. Dann
+000293 | 
+000294 |     A^2=diag(-1,1,-1),
+000295 |     A^4=I,
+000296 |     det A=1,
+000297 |     spec A={1,i,-i}.
+000298 | 
+000299 | Das feste Vorzeichen auf L_1^q folgt aus der bereits in der Originalquelle
+000300 | bewiesenen determinanteneins S4 Darstellung. Es ist keine neue Phase aus dem
+000301 | zyklischen mu_12 Cover. Mit den im Bericht angegebenen konstanten Matrizen
+000302 | K und R gilt exakt
+000303 | 
+000304 |     K A K^(-1)=R=F^dagger U F.
+000305 | 
+000306 | Da die positive Schleifenmonodromie auf Loesungen kontravariant ist, wirkt
+000307 | sie durch A^(-1), also durch die Klasse von U^(-1). Damit sind q Paket,
+000308 | geometrischer Viertellift, sein Quadrat, determinanteneins Charakter und die
+000309 | alte positive Clockorientierung gleichzeitig kompatibel.
+000310 | 
+000311 | Dieser Nachtrag schliesst die C4 Equivarianz des flachen
+000312 | Koeffizientenlokalsystems. Der weiterhin offene Typwechsel zu geladenen CAR
+000313 | Feldern, Zustand und lokaler Operatorunterstuetzung wird dadurch nicht
+000314 | vorweggenommen.

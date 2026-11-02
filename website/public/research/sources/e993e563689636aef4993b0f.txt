@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/theta_lattice_closure_20261027/fields/check_small_vertex_lifts.py
+Original file SHA-256: 5493a6b479c554897eac88a5eea987f1f31f9c462c143f8d4607ef999da0ac42
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact standard-cocycle lift of the marked order-24 lattice subgroup.
+000002 | 
+000003 | The lattice basis, Gram matrix and marked J,V,sigma matrices are imported from
+000004 | the already checked theta-lattice construction.  The only freedom enumerated
+000005 | here is multiplication of each standard lattice-isometry lift by one of the
+000006 | 256 sign characters of Lambda/2 Lambda.
+000007 | """
+000008 | from __future__ import annotations
+000009 | 
+000010 | import contextlib
+000011 | import io
+000012 | import itertools
+000013 | import json
+000014 | import runpy
+000015 | from pathlib import Path
+000016 | 
+000017 | import numpy as np
+000018 | 
+000019 | 
+000020 | def require(test, message):
+000021 |     if not test:
+000022 |         raise RuntimeError(message)
+000023 | 
+000024 | 
+000025 | HERE = Path(__file__).resolve().parent
+000026 | LATTICE_CHECK = HERE.parent / "lattice" / "check_theta_lattice.py"
+000027 | with contextlib.redirect_stdout(io.StringIO()):
+000028 |     source = runpy.run_path(str(LATTICE_CHECK))
+000029 | 
+000030 | s = source["s"]
+000031 | B = source["B"]
+000032 | Gram_exact = source["Gram"]
+000033 | real_matrix = source["real_matrix"]
+000034 | 
+000035 | 
+000036 | def lattice_matrix(g):
+000037 |     A = s.simplify(B.inv() * real_matrix(g) * B)
+000038 |     require(all(x.is_Integer for x in A), "marked map is not integral")
+000039 |     require(A.T * Gram_exact * A == Gram_exact, "marked map is not an isometry")
+000040 |     return np.array(A.tolist(), dtype=np.int64)
+000041 | 
+000042 | 
+000043 | Amat_int = {
+000044 |     "J": lattice_matrix(s.I * s.eye(4)),
+000045 |     "V": lattice_matrix(source["V"]),
+000046 |     "sigma": lattice_matrix(source["sigma"]),
+000047 | }
+000048 | E = {name: s.Matrix(A.tolist()) for name, A in Amat_int.items()}
+000049 | I8_exact = s.eye(8)
+000050 | require(E["J"]**4 == I8_exact, "exact J^4")
+000051 | require(E["V"]**2 == I8_exact, "exact V^2")
+000052 | require(E["V"] * E["J"] == E["J"] * E["V"], "exact [V,J]")
+000053 | require(E["sigma"]**3 == I8_exact, "exact sigma^3")
+000054 | require(E["sigma"] * E["J"] == E["J"] * E["sigma"], "exact [sigma,J]")
+000055 | require(E["V"] * E["sigma"] * E["V"]**-1 == E["sigma"]**-1,
+000056 |         "exact V sigma V^-1")
+000057 | Amat = {name: A % 2 for name, A in Amat_int.items()}
+000058 | I8 = np.eye(8, dtype=np.uint8)
+000059 | 
+000060 | # Standard basis cocycle epsilon(m,n)=(-1)^(m^T F n).  The diagonal choice
+000061 | # makes epsilon(m,m)=(-1)^(<m,m>/2), while F+F^T=Gram modulo two.
+000062 | F = np.zeros((8, 8), dtype=np.uint8)
+000063 | for i in range(8):
+000064 |     F[i, i] = (int(Gram_exact[i, i]) // 2) % 2
+000065 |     for j in range(i):
+000066 |         F[i, j] = int(Gram_exact[i, j]) % 2
+000067 | Gram2 = np.array(Gram_exact.tolist(), dtype=np.int64) % 2
+000068 | require(np.array_equal((F + F.T) % 2, Gram2), "cocycle commutator")
+000069 | 
+000070 | vectors = np.array(
+000071 |     [[(mask >> i) & 1 for i in range(8)] for mask in range(256)],
+000072 |     dtype=np.uint8,
+000073 | )
+000074 | 
+000075 | 
+000076 | def mask_of(x):
+000077 |     return sum(int(x[i]) << i for i in range(8))
+000078 | 
+000079 | 
+000080 | def standard_q(A):
+000081 |     """Zero-on-basis quadratic correction for the fixed cocycle."""
+000082 |     D = (A.T @ F @ A + F) % 2
+000083 |     require(np.array_equal(D, D.T), "cocycle correction symmetric")
+000084 |     require(not np.any(np.diag(D)), "cocycle correction alternating")
+000085 |     q = np.zeros(256, dtype=np.uint8)
+000086 |     for mask, x in enumerate(vectors):
+000087 |         value = 0
+000088 |         for i in range(8):
+000089 |             for j in range(i + 1, 8):
+000090 |                 value ^= int(D[i, j] & x[i] & x[j])
+000091 |         q[mask] = value
+000092 |     # Exhaustive polarization identity on Lambda/2Lambda.
+000093 |     for xmask, x in enumerate(vectors):
+000094 |         for ymask, y in enumerate(vectors):
+000095 |             zmask = mask_of(x ^ y)
+000096 |             lhs = int(q[zmask] ^ q[xmask] ^ q[ymask])
+000097 |             rhs = int((x @ D @ y) % 2)
+000098 |             require(lhs == rhs, "quadratic cocycle correction")
+000099 |     return q
+000100 | 
+000101 | 
+000102 | qzero = {name: standard_q(A) for name, A in Amat.items()}
+000103 | 
+000104 | 
+000105 | def q_with_character(name, bits):
+000106 |     t = np.array([(bits >> i) & 1 for i in range(8)], dtype=np.uint8)
+000107 |     return qzero[name] ^ ((vectors @ t) % 2)
+000108 | 
+000109 | 
+000110 | # A lift is (A,q), acting by e_m -> (-1)^q(m) e_(A m).
+000111 | def compose(first, second):
+000112 |     """Return first after second."""
+000113 |     A1, q1 = first
+000114 |     A2, q2 = second
+000115 |     image_indices = np.array([mask_of((A2 @ x) % 2) for x in vectors])
+000116 |     return ((A1 @ A2) % 2, q2 ^ q1[image_indices])
+000117 | 
+000118 | 
+000119 | IDENTITY = (I8, np.zeros(256, dtype=np.uint8))
+000120 | 
+000121 | 
+000122 | def power(op, exponent):
+000123 |     result = IDENTITY
+000124 |     for _ in range(exponent):
+000125 |         result = compose(op, result)
+000126 |     return result
+000127 | 
+000128 | 
+000129 | def inverse(op):
+000130 |     A, q = op
+000131 |     # All matrices here are invertible over F2.
+000132 |     Ainv_exact = s.Matrix(A.tolist()).inv()
+000133 |     require(all(x.is_Integer for x in Ainv_exact), "inverse matrix")
+000134 |     Ainv = np.array(Ainv_exact.tolist(), dtype=np.int64) % 2
+000135 |     image_indices = np.array([mask_of((Ainv @ x) % 2) for x in vectors])
+000136 |     return (Ainv, q[image_indices])
+000137 | 
+000138 | 
+000139 | def equal(left, right):
+000140 |     return np.array_equal(left[0], right[0]) and np.array_equal(left[1], right[1])
+000141 | 
+000142 | 
+000143 | def operator_key(op):
+000144 |     A, q = op
+000145 |     return (tuple(int(x) for x in A.ravel()), tuple(int(x) for x in q))
+000146 | 
+000147 | 
+000148 | def candidate_lifts(name, order):
+000149 |     candidates = []
+000150 |     for bits in range(256):
+000151 |         op = (Amat[name], q_with_character(name, bits))
+000152 |         if equal(power(op, order), IDENTITY):
+000153 |             candidates.append((bits, op))
+000154 |     return candidates
+000155 | 
+000156 | 
+000157 | candidates = {
+000158 |     "J": candidate_lifts("J", 4),
+000159 |     "V": candidate_lifts("V", 2),
+000160 |     "sigma": candidate_lifts("sigma", 3),
+000161 | }
+000162 | require([len(candidates[x]) for x in ("J", "V", "sigma")] == [256, 16, 16],
+000163 |         "unexpected power-normalized lift counts")
+000164 | 
+000165 | solutions = []
+000166 | for jbits, Jhat in candidates["J"]:
+000167 |     for vbits, Vhat in candidates["V"]:
+000168 |         if not equal(compose(Jhat, Vhat), compose(Vhat, Jhat)):
+000169 |             continue
+000170 |         for sbits, Shat in candidates["sigma"]:
+000171 |             if not equal(compose(Shat, Jhat), compose(Jhat, Shat)):
+000172 |                 continue
+000173 |             if not equal(compose(compose(Vhat, Shat), Vhat), power(Shat, 2)):
+000174 |                 continue
+000175 |             solutions.append((jbits, vbits, sbits, Jhat, Vhat, Shat))
+000176 | 
+000177 | require(len(solutions) == 256, "strict marked lift census")
+000178 | require(not any(jbits == 0 for jbits, *_ in solutions),
+000179 |         "zero-on-basis J lift unexpectedly extends strictly")
+000180 | 
+000181 | # Lexicographically first exact section of C4 x S3.
+000182 | jbits, vbits, sbits, Jhat, Vhat, Shat = solutions[0]
+000183 | require((jbits, vbits, sbits) == (0x03, 0x35, 0x2A), "selected solution changed")
+000184 | 
+000185 | # Check the complete presentation on all 256 residue fields.
+000186 | require(equal(power(Jhat, 4), IDENTITY), "J^4")
+000187 | require(equal(power(Vhat, 2), IDENTITY), "V^2")
+000188 | require(equal(compose(Jhat, Vhat), compose(Vhat, Jhat)), "[J,V]")
+000189 | require(equal(power(Shat, 3), IDENTITY), "sigma^3")
+000190 | require(equal(compose(Shat, Jhat), compose(Jhat, Shat)), "[sigma,J]")
+000191 | require(equal(compose(compose(Vhat, Shat), Vhat), power(Shat, 2)),
+000192 |         "V sigma V = sigma^-1")
+000193 | 
+000194 | # Closure is exactly the geometric group C4 x S3 of order 24.
+000195 | generators = [Jhat, Vhat, Shat]
+000196 | group = {operator_key(IDENTITY): IDENTITY}
+000197 | frontier = [IDENTITY]
+000198 | while frontier:
+000199 |     old = frontier.pop()
+000200 |     for generator in generators:

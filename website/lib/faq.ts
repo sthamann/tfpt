@@ -48,6 +48,6 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "Why call α⁻¹ a prediction at 1.9σ from CODATA?",
-    a: "α⁻¹ = 137.0359992168 is the unique positive root of a parameter-free cubic with proven existence and uniqueness — it is a fixed point, not a fit. The deviation from the CODATA-2022 recommended value is 3.98×10⁻⁸ in α⁻¹, about 1.9σ of that adjustment's uncertainty. It is presented as a numerical fixed point [E], with its kill criterion stated.",
+    a: "α⁻¹ = 137.0359992168 is the unique positive root of a parameter-free self-consistent closure equation with proven existence and uniqueness — it is a fixed point, not a fit. The deviation from the CODATA-2022 recommended value is 3.98×10⁻⁸ in α⁻¹, about 1.9σ of that adjustment's uncertainty. It is presented as a numerical fixed point [E], with its kill criterion stated.",
   },
 ];

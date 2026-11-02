@@ -1,0 +1,53 @@
+TFPT scientific source excerpt
+Original repository path: tfpt_explorer/marker_selection.py
+Original file SHA-256: f6d9907f0e9fa242c4f50d67681c499d7bff046f0032abed37f66f332965842a
+Inclusive original lines: 58-102
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000058 | def build_marker_data() -> dict[str, Any]:
+000059 |     """Return the exact polar-transport and matching-selection calculation."""
+000060 | 
+000061 |     sqrt6 = sp.sqrt(6)
+000062 |     identity5 = sp.eye(5)
+000063 |     raw_metric = sp.diag(4, 12, 12, 12, 24)
+000064 |     metric_sqrt = sp.diag(2, 2 * sp.sqrt(3), 2 * sp.sqrt(3), 2 * sp.sqrt(3), 2 * sp.sqrt(6))
+000065 | 
+000066 |     # The six native simplex columns and canonical sigma action are the ones
+000067 |     # used by the existing P2 polar-transport calculation.  Sigma fixes
+000068 |     # columns 0, 1, 5 and cycles 2 -> 3 -> 4 -> 2; the source convention takes
+000069 |     # q*=fixed[-1]=5 rather than choosing a new basis or marker here.
+000070 |     simplex = sp.Matrix(
+000071 |         [
+000072 |             [2, 2, -1, -1, -1, -1],
+000073 |             [0, 0, -1, -1, 1, 1],
+000074 |             [0, 0, -1, 1, -1, 1],
+000075 |             [0, 0, 1, -1, -1, 1],
+000076 |             [1, -1, 0, 0, 0, 0],
+000077 |         ]
+000078 |     )
+000079 |     sigma_permutation = (0, 1, 3, 4, 2, 5)
+000080 |     fixed_points = tuple(index for index, image in enumerate(sigma_permutation) if index == image)
+000081 |     marked_point = fixed_points[-1]
+000082 |     other_points = tuple(index for index in range(6) if index != marked_point)
+000083 |     differences = simplex[:, other_points] - simplex[:, marked_point] * sp.ones(1, 5)
+000084 |     positive_factor = identity5 + (1 / sqrt6 - 1) * sp.ones(5) / 5
+000085 |     polar_transport = sp.simplify(metric_sqrt * differences * positive_factor / sp.sqrt(48))
+000086 |     slot_charges = tuple(
+000087 |         sp.Rational(-1, 3) if sigma_permutation[index] != index else sp.Rational(1, 2)
+000088 |         for index in other_points
+000089 |     )
+000090 |     native_charge = sp.simplify(
+000091 |         polar_transport * sp.diag(*slot_charges) * polar_transport.T
+000092 |     )
+000093 |     polar_isometry = sp.simplify(polar_transport.T * polar_transport) == identity5
+000094 |     native_spectrum_polynomial = sp.factor(native_charge.charpoly().as_expr())
+000095 | 
+000096 |     # N and C^T are two orthonormal frames of the same sum-zero hyperplane.
+000097 |     # The polar-transported charge above lives in the N frame.  The existing
+000098 |     # process transpositions live in the C frame.  Their nontrivial orthogonal
+000099 |     # relation N=O C^T must therefore be applied before taking overlaps or
+000100 |     # commutators.
+000101 |     simplex_frame = sp.simplify(metric_sqrt * simplex / sp.sqrt(48))
+000102 |     f3 = sp.Matrix(

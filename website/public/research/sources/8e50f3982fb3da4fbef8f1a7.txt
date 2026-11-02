@@ -1,0 +1,91 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/native-arc-charge-source-interface-20261026/check_original_bilocal_current.py
+Original file SHA-256: 05f4a1c59d2951fec7e4bcb0249551d5d1a3660a9d9e06a4eda77ca376f456fb
+Inclusive original lines: 1-83
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact neutral bilocal reconstruction in the retained quarter source.
+000002 | 
+000003 | Finite-energy matrix elements of an infinite-mode operator identity.
+000004 | These matrices are not an executed projection or a new dynamics.
+000005 | """
+000006 | from pathlib import Path
+000007 | import sys,json,argparse,hashlib
+000008 | import sympy as s
+000009 | [OMITTED: non-scientific conversation or execution metadata]
+000010 | ORIGINAL=REPO/'experiments/theory-contracts/joint-native-algebra-selection-20261016'
+000011 | sys.path[:0]=[str(ORIGINAL),str(REPO)]
+000012 | import check_original_current_schur_kernel as original
+000013 | 
+000014 | def need(ok,msg):
+000015 |  if not bool(ok):raise RuntimeError(msg)
+000016 | 
+000017 | def partitions(n,top=None):
+000018 |  if n==0:
+000019 |   yield ();return
+000020 |  for a in range(min(n,n if top is None else top),0,-1):
+000021 |   for tail in partitions(n-a,a):yield(a,)+tail
+000022 | 
+000023 | def occupancy(lam,depth):
+000024 |  return frozenset((lam[i-1] if i<=len(lam) else 0)-i for i in range(1,depth+1))
+000025 | 
+000026 | def truncated_exp(A,degree):
+000027 |  out=s.eye(A.rows);term=s.eye(A.rows)
+000028 |  for k in range(1,degree+1):
+000029 |   term=term*A/k;out+=term
+000030 |  need(term*A==s.zeros(A.rows),'Strict graded nilpotence')
+000031 |  return out
+000032 | 
+000033 | def one_case(degree,z,w):
+000034 |  basis=[lam for n in range(degree+1) for lam in partitions(n)]
+000035 |  index={lam:i for i,lam in enumerate(basis)}
+000036 |  depth=degree+3;occ=[occupancy(lam,depth) for lam in basis]
+000037 |  occindex={v:i for i,v in enumerate(occ)};vac=occ[0]
+000038 |  raising=s.zeros(len(basis));lowering=s.zeros(len(basis))
+000039 |  for mode in range(1,degree+1):
+000040 |   R=s.zeros(len(basis))
+000041 |   for col,lam in enumerate(basis):
+000042 |    for mu,sign in original.add_ribbons(lam,mode):
+000043 |     if mu in index:R[index[mu],col]+=sign
+000044 |   raising+=(z**mode-w**mode)*R/mode
+000045 |   lowering+=(w**(-mode)-z**(-mode))*R.T/mode
+000046 |  C=w/(z-w)
+000047 |  boson=C*truncated_exp(raising,degree)*truncated_exp(lowering,degree)
+000048 |  # Independent exact CAR occupancy computation with the infinite diagonal
+000049 |  # sea summed analytically; no finite-sea replacement.
+000050 |  car=s.zeros(len(basis))
+000051 |  for col,O in enumerate(occ):
+000052 |   car[col,col]=C+sum((z/w)**r for r in O-vac)-sum((z/w)**r for r in vac-O)
+000053 |   for remove in O:
+000054 |    for add in range(-depth,degree+1):
+000055 |     if add in O:continue
+000056 |     target=O-{remove}|{add}
+000057 |     if target not in occindex:continue
+000058 |     sign=(-1)**sum(min(remove,add)<r<max(remove,add) for r in O)
+000059 |     car[occindex[target],col]+=sign*z**add*w**(-remove)
+000060 |  need(car==boson,'Full finite-energy matrix equality of original bilocal and current vertex')
+000061 |  need(car!=C*s.eye(len(basis)),'Reconstruction is not a scalar vacuum contraction')
+000062 |  twist=[]
+000063 |  for alpha in (s.Rational(1,4),s.Rational(3,4)):
+000064 |   factor=(z/w)**alpha
+000065 |   need((factor*car)==factor*boson,'Same actual quarter factor')
+000066 |   need(factor*car!=car,'Omitting the original quarter phase is detected')
+000067 |   twist.append({'alpha':str(alpha),'factor':str(factor)})
+000068 |  return {'degree':degree,'basis_size':len(basis),'matrix_entries_checked':len(basis)**2,'z':str(z),'w':str(w),'quarters':twist,'equal':True}
+000069 | 
+000070 | def main():
+000071 |  parser=argparse.ArgumentParser();parser.add_argument('--out',type=Path,default=Path(__file__).with_name('bilocal_current_results.json'));args=parser.parse_args()
+000072 |  cases=[one_case(d,z,w) for d in (4,8) for z,w in [(s.Rational(1,2),s.Rational(1,32)),(s.Rational(3,4),s.Rational(3,64))]]
+000073 |  cauchy=[]
+000074 |  for n in (1,2,4,8):
+000075 |   zs=[s.Rational(1,2)+s.Rational(k,64) for k in range(n)];ws=[s.Rational(k,128) for k in range(1,n+1)]
+000076 |   K=s.Matrix([[w/(z-w) for w in ws] for z in zs])
+000077 |   numerator=s.prod(ws)*s.prod((zs[i]-zs[j])*(ws[j]-ws[i]) for i in range(n) for j in range(i+1,n))
+000078 |   denominator=s.prod(z-w for z in zs for w in ws)
+000079 |   need(K.det()==numerator/denominator,'Full neutral multi-fermion Cauchy/vertex contraction')
+000080 |   cauchy.append({'pairs':n,'exact_match':True,'nonzero':K.det()!=0})
+000081 |  result={'verdict':'EXACT_SCOPED_CURRENT_VERTEX_RECONSTRUCTION; ORIGINAL_P1_CURRENT_IMAGE_OPEN','cases':cases,'neutral_multi_fermion_checks':cauchy,'source_sha256':{str((ORIGINAL/'check_original_current_schur_kernel.py').relative_to(REPO)):hashlib.sha256((ORIGINAL/'check_original_current_schur_kernel.py').read_bytes()).hexdigest()},'scope':'Original infinite sea kept analytically. Finite-energy matrix elements checked, not a finite physical Hilbert space. Current strings require connected containing intervals or a specified relative-commutant extension, not the additive eight-arc subnet. No primitive field-dependent coupling or P1 map supplied.'}
+000082 |  args.out.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))
+000083 | if __name__=='__main__':main()

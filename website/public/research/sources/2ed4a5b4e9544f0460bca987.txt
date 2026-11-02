@@ -1,0 +1,142 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/source_record_hodge.py
+Original file SHA-256: 5fb344b8ad49a6d85bf97228ba6d5b093576f69164fa3a3139e02eec19683119
+Inclusive original lines: 201-334
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |     require(V.rank() == 5, "five independent Hodge Kraus directions")
+000202 |     product_typing = plucker_typing(Cs)
+000203 | 
+000204 |     marked = []
+000205 |     whole = []
+000206 |     two_event = []
+000207 |     for mark in range(6):
+000208 |         chart, _ = hodge.duad_chart(mark, mapping)
+000209 | 
+000210 |         W20 = exact_gaussian(vector_columns(marked_jump_kraus(old, mark, bell, six, mapping, chart)))
+000211 |         rank20 = W20.rank()
+000212 |         joint20 = W20.row_join(V).rank()
+000213 |         intersection20, plane20 = intersection_data(W20, V)
+000214 |         require(rank20 == 15, f"mark {mark}: exact marked jump Kraus rank 15")
+000215 |         require(joint20 == 18 and intersection20 == 2,
+000216 |                 f"mark {mark}: marked source intersects Hodge span in dimension two")
+000217 |         require(not W20.row_join(V).rank() == W20.rank(),
+000218 |                 f"mark {mark}: full Hodge support is not contained in marked source")
+000219 |         no_scalar_success(Cs, plane20)
+000220 |         marked.append({
+000221 |             "mark": mark,
+000222 |             "source_kraus_count": 20,
+000223 |             "source_span_rank": rank20,
+000224 |             "hodge_span_rank": 5,
+000225 |             "joint_span_rank": joint20,
+000226 |             "intersection_dimension": intersection20,
+000227 |             "intersection_hodge_indices": plane20,
+000228 |             "full_hodge_support_contained": False,
+000229 |             "largest_exact_hodge_cp_subchannel_probability": "0",
+000230 |             "input_independent_success_from_intersection_plane": False,
+000231 |         })
+000232 | 
+000233 |         # This is the one actual sixty-event source, represented in one of the
+000234 |         # six alternative source-derived duad charts.  The six charts are not
+000235 |         # stacked into a new 360-event process.
+000236 |         W60 = exact_gaussian(vector_columns([chart.T @ U @ chart for U in bell]))
+000237 |         rank60 = W60.rank()
+000238 |         joint60 = W60.row_join(V).rank()
+000239 |         intersection60, plane60 = intersection_data(W60, V)
+000240 |         require(rank60 == 55, f"chart {mark}: actual sixty-event Kraus rank 55")
+000241 |         require(joint60 == 58 and intersection60 == 2,
+000242 |                 f"chart {mark}: whole source intersects Hodge span in dimension two")
+000243 |         require(plane60 == plane20, f"chart {mark}: marked and whole-source Hodge planes agree")
+000244 |         require(not W60.row_join(V).rank() == W60.rank(),
+000245 |                 f"chart {mark}: full Hodge support is not contained in whole source")
+000246 |         no_scalar_success(Cs, plane60)
+000247 |         whole.append({
+000248 |             "duad_chart_mark": mark,
+000249 |             "same_actual_source_kraus_count": 60,
+000250 |             "source_span_rank": rank60,
+000251 |             "hodge_span_rank": 5,
+000252 |             "joint_span_rank": joint60,
+000253 |             "intersection_dimension": intersection60,
+000254 |             "intersection_hodge_indices": plane60,
+000255 |             "full_hodge_support_contained": False,
+000256 |             "largest_exact_hodge_cp_subchannel_probability": "0",
+000257 |             "input_independent_success_from_intersection_plane": False,
+000258 |         })
+000259 |         two_event.append(two_event_record(Cs, V, bell, chart, plane60, mark))
+000260 | 
+000261 |     require([x["intersection_hodge_indices"] for x in marked] ==
+000262 |             [[3, 4], [1, 2], [1, 2], [1, 2], [0, 4], [0, 4]],
+000263 |             "six exact marked intersection planes")
+000264 |     require([x["intersection_hodge_indices"] for x in whole] ==
+000265 |             [[3, 4], [1, 2], [1, 2], [1, 2], [0, 4], [0, 4]],
+000266 |             "six exact whole-source intersection planes")
+000267 | 
+000268 |     result = {
+000269 |         "verdict": [
+000270 |             "NO_SINGLE_MARK_COHERENT_RECORD_EFFECT_REALIZES_A_NONZERO_EXACT_HODGE_CHANNEL",
+000271 |             "NO_ONE_EVENT_WHOLE60_RECORD_EFFECT_REALIZES_A_NONZERO_EXACT_HODGE_CHANNEL",
+000272 |             "EACH_SOURCE_CHART_SHARES_EXACTLY_TWO_OF_THE_FIVE_HODGE_KRAUS_DIRECTIONS",
+000273 |             "THE_ACCESSIBLE_TWO_PLANE_CANNOT_HAVE_NONZERO_INPUT_INDEPENDENT_SUCCESS",
+000274 |             "TWO_ACTUAL_WHOLE60_EVENTS_DO_SUPPORT_AN_EXACT_HODGE_SUBCHANNEL_WITH_OPTIMAL_SUCCESS_1_OVER_25",
+000275 |             "THE_REQUIRED_COHERENT_RECORD_FILTER_IS_TARGET_CONSTRUCTED_AND_NOT_SOURCE_SELECTED",
+000276 |         ],
+000277 |         "one_event_mathematical_reason": (
+000278 |             "For a source Stinespring isometry sum_l |l> tensor K_l, every positive record effect E "
+000279 |             "has Choi range contained in span{vec K_l}. Positivity of J_source_effect-p J_Phi for p>0 "
+000280 |             "would require range(J_Phi) to lie in that source span. Exact ranks disprove this."
+000281 |         ),
+000282 |         "normalizations": {
+000283 |             "hodge": "Phi=(1/3) sum_m Ad(C_m)",
+000284 |             "marked": "normalized actual jump channel=(1/12) sum_{l in moving(mark)} Ad(U_l D_jump,l)",
+000285 |             "whole": "C60=(1/60) sum_l Ad(U_l)",
+000286 |             "note": "positive scalar normalizations do not alter Choi support",
+000287 |         },
+000288 |         "marked_twenty_records": marked,
+000289 |         "actual_unmarked_sixty_record_in_each_alternative_chart": whole,
+000290 |         "two_event_actual_whole_sixty_record": two_event,
+000291 |         "chart_boundary": (
+000292 |             "The six entries are coordinate tests of the same actual sixty matrices. They were not "
+000293 |             "combined into an artificial 360-event source. Without a fixed duad chart, the old Bell10 "
+000294 |             "and Lambda^2 C5 Hodge channel are not linearly identified."
+000295 |         ),
+000296 |         "source_boundary": (
+000297 |             "The old coherent-record contracts establish only conditional record constructions and "
+000298 |             "explicitly leave physical record access and dynamics underived. This calculation grants "
+000299 |             "coherent record access as the changed premise. The exact obstruction applies at one event; "
+000300 |             "two events become sufficient only after a target-specific coherent record filter is chosen."
+000301 |         ),
+000302 |         "holomorphic_product_boundary": (
+000303 |             "The same five epsilon tensors span the image of the wedge map Sym^2(Lambda^2 C5) to "
+000304 |             "Lambda^4 C5, but they are the five Plucker relations, hence the kernel of holomorphic "
+000305 |             "coordinate multiplication Sym^2(10) to the 50-dimensional degree-two coordinate ring. "
+000306 |             "The record subchannel is therefore not automatically an existing holomorphic product output."
+000307 |         ),
+000308 |         "plucker_wedge_typing": product_typing,
+000309 |         "one_event_extra_operation_needed": (
+000310 |             "At one event, producing full Phi would require a system operation that adds the three "
+000311 |             "missing Hodge Kraus directions or a different source. A record-space projection alone "
+000312 |             "cannot add them."
+000313 |         ),
+000314 |         "two_event_selection_boundary": (
+000315 |             "Two actual source events already span M10, so a coherent record contraction can realize "
+000316 |             "the exact subchannel (1/25)Phi. The minimum-norm contraction is fixed after a duad chart "
+000317 |             "and the Hodge target are supplied. Neither that target-specific record effect nor a physical "
+000318 |             "heralding apparatus is selected by the original source."
+000319 |         ),
+000320 |         "source_sha256": PINS,
+000321 |         "checks": len(checks),
+000322 |     }
+000323 |     if output is not None:
+000324 |         output.parent.mkdir(parents=True, exist_ok=True)
+000325 |         output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+000326 |     return result
+000327 | 
+000328 | 
+000329 | if __name__ == "__main__":
+000330 |     parser = argparse.ArgumentParser()
+000331 |     parser.add_argument("--out", type=Path)
+000332 |     args = parser.parse_args()
+000333 |     payload = main(args.out)
+000334 |     print(json.dumps(payload, indent=2, sort_keys=True))

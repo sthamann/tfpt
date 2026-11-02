@@ -1,0 +1,106 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/automatic_identification/check_clock_four_cycle_class.py
+Original file SHA-256: 0c74e5e98dd56a0eafcd7876ff799406ba35ff8259f576e52b2d386ca77cd5b8
+Inclusive original lines: 1-98
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | [OMITTED: non-scientific conversation or execution metadata]
+000002 | 
+000003 | The unchanged native helper performs its own old root/flag checks on import.
+000004 | Those checks are reused, not a new scientific result of this application.
+000005 | """
+000006 | from pathlib import Path
+000007 | from collections import Counter
+000008 | from itertools import product
+000009 | import importlib.util
+000010 | import json
+000011 | 
+000012 | ROOT=Path(__file__).resolve().parents[4]
+000013 | path=ROOT/'experiments/theory-contracts/e-series-joint-source-20261023/compiler_closure.py'
+000014 | spec=importlib.util.spec_from_file_location('existing_native_compiler',path)
+000015 | old=importlib.util.module_from_spec(spec)
+000016 | spec.loader.exec_module(old)
+000017 | 
+000018 | 
+000019 | def require(ok,message):
+000020 |     if not ok:
+000021 |         raise RuntimeError(message)
+000022 | 
+000023 | 
+000024 | def run():
+000025 |     rows=[]
+000026 |     for a in (1,3,5,7):
+000027 |         for b in range(4):
+000028 |             # Four times the actual torus parameter. Family eigenphases are
+000029 |             # (1,3,-3,-1)/8 on the four tetrahedral Spin6 weights.
+000030 |             av=(a,a,a,b,b,2,-1,0)
+000031 |             require(sum(av)%2==0, '4v belongs to actual E8 lattice')
+000032 |             c=[8,0,0,0]
+000033 |             for r in old.ROOTS:
+000034 |                 d=sum(x*y for x,y in zip(av,r))
+000035 |                 require(d%2==0,'quarter phase integrality')
+000036 |                 c[(d//2)%4]+=1
+000037 |             want=[64,64,56,64] if b%2==0 else [70,56,66,56]
+000038 |             require(c==want,'full exact E8 weight-one character')
+000039 |             rows.append({'a':a,'b':b,'char':c,
+000040 |                          'matches_native_J':c==[60,64,60,64]})
+000041 |     require(not any(x['matches_native_J'] for x in rows),
+000042 |             'none in the native full field conjugacy class')
+000043 |     out={'scope':'Given fixed Spin10/SU4 embedding, SM-commuting Spin10 torus with fourth power minus-one and one SU4 four-cycle lift. Complete covering representatives; no preferred field conjugator or physical Yukawa dictionary.',
+000044 |          'family_four_cycle_torus_four_v':[2,-1,0],
+000045 |          'candidates':rows,'native_matches':0,
+000046 |          'root_arithmetic':'exact doubled native E8 roots',
+000047 |          'complete_class_argument':'CLOCK-CLASS-PROOF.txt'}
+000048 |     Path(__file__).with_name('clock-four-cycle-class-test.json').write_text(
+000049 |         json.dumps(out,indent=2)+'\n')
+000050 |     histogram=Counter()
+000051 |     matches=[]
+000052 |     d5=[tuple(x//2 for x in r[:5]) for r in old.INTEGER_ROOTS
+000053 |         if all(x==0 for x in r[5:])]
+000054 |     for n0 in product(range(4),repeat=5):
+000055 |         if sum(n0)%2==0:
+000056 |             continue
+000057 |         for central in (0,1):
+000058 |             n=list(n0)
+000059 |             n[0]+=4*central
+000060 |             av=tuple(n)+(2,-1,0)
+000061 |             c=[8,0,0,0]
+000062 |             for r in old.ROOTS:
+000063 |                 d=sum(x*y for x,y in zip(av,r))
+000064 |                 require(d%2==0,'general lift phase integral')
+000065 |                 c[(d//2)%4]+=1
+000066 |             histogram[tuple(c)]+=1
+000067 |             if c==[60,64,60,64]:
+000068 |                 require(sum(x%2 for x in n)==3 and
+000069 |                         sorted(x%4 for x in n if x%2==0)==[0,2],
+000070 |                         'native class matching condition')
+000071 |                 fixed=[r for r in d5 if sum(x*y for x,y in zip(n,r))%4==0]
+000072 |                 require(len(fixed)==6,'Spin10 centralizer has six roots')
+000073 |                 # All fixed roots use exactly the three odd planes, and have
+000074 |                 # the A2 sum/difference pattern. Together with Cartan rank5
+000075 |                 # they give A2 plus three abelian directions.
+000076 |                 require(all(all(r[j]==0 for j in range(5) if n[j]%2==0)
+000077 |                             for r in fixed),'fixed roots confined to three planes')
+000078 |                 matches.append(n)
+000079 |     require(sum(histogram.values())==1024 and len(matches)==320,
+000080 |             'whole general Spin10 lift class')
+000081 |     general={'scope':'All Spin10 torus lifts with g5^4=-1 and fixed SU4 four-cycle conjugacy class, before fixed SM commutation. Complete covering representatives modulo4D5; original root helper.',
+000082 |              'representatives':1024,
+000083 |              'character_histogram':{str(k):v for k,v in sorted(histogram.items())},
+000084 |              'native_character_matches':320,
+000085 |              'matching_condition':'Exactly3 odd Spin vector planes and2 even planes with residues0,2',
+000086 |              'matching_Spin10_centralizer_root_count':6,
+000087 |              'Spin10_fixed_semisimple_algebra_for_matches':'A2 only, plus3 abelian directions',
+000088 |              'not_a_new_original_source_selection':True}
+000089 |     Path(__file__).with_name('clock-general-spin10-class.json').write_text(
+000090 |         json.dumps(general,indent=2)+'\n')
+000091 |     print(json.dumps({'covering_representatives':len(rows),
+000092 |                       'characters':sorted(set(tuple(x['char']) for x in rows)),
+000093 |                       'native_matches':0,'general_representatives':1024,
+000094 |                       'general_native_matches':320}))
+000095 | 
+000096 | 
+000097 | if __name__=='__main__':
+000098 |     run()

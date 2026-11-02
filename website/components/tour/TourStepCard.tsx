@@ -24,7 +24,8 @@ export function TourStepCard({
     <section
       id={`step-${step.id}`}
       aria-labelledby={`tour-heading-${step.id}`}
-      className="scroll-mt-24 border-t border-slate-200/60 py-12 sm:py-16"
+      style={{ scrollMarginTop: "11rem" }}
+      className="border-t border-slate-200/60 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <p className="text-xs font-semibold uppercase tracking-widest text-blue-700/90">

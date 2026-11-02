@@ -1,0 +1,103 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_color_spin_source_interface.py
+Original file SHA-256: 4796b8e1da63eed03269f5ed9e3396a5f3c71e7dee1c98f5b4c1f0c1feac7ee0
+Inclusive original lines: 1-95
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R070: exact original color action on the retained folded CAR charge frame.
+000002 | 
+000003 | This checks a necessary interface condition, not physical fermionization,
+000004 | source selection, local spacetime, or an alternative fitted frame.
+000005 | """
+000006 | import itertools
+000007 | import json
+000008 | from pathlib import Path
+000009 | 
+000010 | import sympy as s
+000011 | 
+000012 | HERE = Path(__file__).resolve().parent
+000013 | ROOT = HERE.parents[3]
+000014 | FOLD = ROOT / "experiments/theory-contracts/v16-operator-pullback-20261014/fold-results.json"
+000015 | 
+000016 | 
+000017 | def main():
+000018 |     m = s.Matrix(json.loads(FOLD.read_text())["explicit_Weyl_matrix"])
+000019 |     eye = s.eye(8)
+000020 |     axes = [eye[:, i] for i in range(8)]
+000021 |     a, b = axes[0] - axes[1], axes[1] - axes[2]
+000022 |     w = axes[0] + axes[1] - 2 * axes[2]
+000023 |     colors = [a, -a, b, -b, a + b, -a - b]
+000024 |     wf = m.T * w
+000025 |     tests = []
+000026 | 
+000027 |     def need(label, condition):
+000028 |         if not bool(condition):
+000029 |             raise AssertionError(label)
+000030 |         tests.append(label)
+000031 | 
+000032 |     need("original M is orthogonal", m.T * m == eye)
+000033 |     need("original color charge in source frame", list(wf) == [1, -1, 0, -1, -1, -1, 0, -1])
+000034 |     need("integer color charge on every NS integer charge", all(x.q == 1 for x in wf))
+000035 |     need("integer color charge on half-spinor E8 coset", sum(wf) / 2 == -2)
+000036 |     mapped = [m.T * q for q in colors]
+000037 |     integer = [all(x.q == 1 for x in q) for q in mapped]
+000038 |     need("exactly two of six original color roots belong to CAR D8", sum(integer) == 2)
+000039 |     need("retained color A1 is the actual first simple root", integer == [True, True, False, False, False, False])
+000040 |     need("first root exact preimage", list(mapped[0]) == [0, 0, 1, 0, 0, 0, -1, 0])
+000041 | 
+000042 |     for k, q in enumerate(mapped):
+000043 |         need(f"color root {k} has norm two", q.dot(q) == 2)
+000044 |         if integer[k]:
+000045 |             need(f"color root {k} has even integer charge", sum(q) % 2 == 0)
+000046 |         else:
+000047 |             need(f"color root {k} is the retained E8 half coset", all(x.q == 2 for x in q))
+000048 |             for j in range(8):
+000049 |                 need(f"color root {k} has nontrivial full monodromy with CAR generator {j}", (q[j] % 1) == s.Rational(1, 2))
+000050 | 
+000051 |     # On integer charges N=Z8 the original color character has order exactly3.
+000052 |     # On D8 it is also onto; e0+e2 has even sum and color charge1.
+000053 |     d8_witness = axes[0] + axes[2]
+000054 |     need("color map onto Z3 on Z8", wf.dot(axes[0]) == 1)
+000055 |     need("color map onto Z3 on D8", sum(d8_witness) % 2 == 0 and wf.dot(d8_witness) == 1)
+000056 |     odd_neutral = axes[2]
+000057 |     need("actual source has an odd neutral charge", wf.dot(odd_neutral) == 0 and odd_neutral.dot(odd_neutral) == 1)
+000058 |     need("odd neutral charge lies outside E8", sum(odd_neutral) % 2 == 1)
+000059 | 
+000060 |     # Independent complete norm-two root control of the same original matrix.
+000061 |     roots = []
+000062 |     for i, j in itertools.combinations(range(8), 2):
+000063 |         for x, y in itertools.product([-1, 1], repeat=2):
+000064 |             roots.append(x * axes[i] + y * axes[j])
+000065 |     for signs in itertools.product([-1, 1], repeat=8):
+000066 |         if signs.count(-1) % 2 == 0:
+000067 |             roots.append(s.Matrix(signs) / 2)
+000068 |     rootset = {tuple(q) for q in roots}
+000069 |     need("complete retained E8 shell", len(rootset) == 240)
+000070 |     need("M preserves every original E8 root", {tuple(m * q) for q in roots} == rootset)
+000071 |     need("original color roots lie in complete shell", all(tuple(q) in rootset for q in colors))
+000072 | 
+000073 |     out = {
+000074 |         "result": "R070",
+000075 |         "status": "SCOPED_INTERFACE_DECIDED_PHYSICAL_F1_OPEN",
+000076 |         "input": str(FOLD.relative_to(ROOT)),
+000077 |         "color_charge_in_original_fold_frame": [str(x) for x in wf],
+000078 |         "color_root_preimages": [[str(x) for x in q] for q in mapped],
+000079 |         "color_roots_in_unchanged_even_CAR_lattice": sum(integer),
+000080 |         "color_roots_requiring_NS_R_sector_change": len(colors) - sum(integer),
+000081 |         "monodromy_of_each_missing_root_with_each_odd_vector_generator": "-1",
+000082 |         "common_neutral_even_lattice_index_in_E8": 6,
+000083 |         "common_neutral_even_lattice_determinant": 36,
+000084 |         "bosonic_and_fermionic_neutral_neighbors_determinants": [9, 9],
+000085 |         "neighbor_index_over_common_even_lattice": 2,
+000086 |         "scope": "Original fixed M and color Cartan. Center action extends to NS CAR, full color root action does not preserve its charge lattice. Four-module parent is retained; no new physical field map, local sector endpoint, state/measure/time, 96-matter identification, 3+1 or gravity is derived.",
+000087 |         "checks_passed": len(tests),
+000088 |         "checks": tests,
+000089 |     }
+000090 |     (HERE / "COLOR-SPIN-SOURCE-INTERFACE.json").write_text(json.dumps(out, indent=2) + "\n")
+000091 |     print(json.dumps({k: out[k] for k in ["status", "color_charge_in_original_fold_frame", "color_roots_in_unchanged_even_CAR_lattice", "color_roots_requiring_NS_R_sector_change", "checks_passed"]}))
+000092 | 
+000093 | 
+000094 | if __name__ == "__main__":
+000095 |     main()

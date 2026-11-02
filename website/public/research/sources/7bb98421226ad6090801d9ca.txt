@@ -1,0 +1,188 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/C4-DESCENT-FINITE-MONODROMY.txt
+Original file SHA-256: b707e2d720a6dad3a74115b62f16d76077dfda3fe0d3eb8f0f8f76edaf5d7bd5
+Inclusive original lines: 1-180
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | RECOVERED C4 TRIANGLE SOURCE FOR THE ACTUAL v117 CONNECTION
+000002 | ===========================================================
+000003 | 
+000004 | 26 October 2026. Exact source recovery and independent replay. No Atlas,
+000005 | paper, ledger, or canonical verification file was changed.
+000006 | 
+000007 | Verdict
+000008 | =======
+000009 | 
+000010 | PROVED, BUT NOT NEW: the exact analytic closure of the v117 monodromy was
+000011 | already present in the 28 September Gesamtsynthese.  The actual four point
+000012 | connection descends by t=z^4 to a three point Fuchsian system with local
+000013 | orders (4,3,2).  Its orbifold monodromy is therefore the faithful
+000014 | three dimensional S4 representation.  With the original orientation the
+000015 | order four generator is U^(-1), and the marked representation is conjugate
+000016 | to the exact v117 pair (U^(-1),M0).  The numerical ODE comparison in v117 is
+000017 | only a basis calibration, not the proof of finiteness.
+000018 | 
+000019 | The shorter gauge used below makes the residue at infinity semisimple with
+000020 | no integral resonance.  It is meromorphically equivalent to the older
+000021 | printed gauge, whose one possible resonance was explicitly cancelled.  The
+000022 | two arguments prove the same result.
+000023 | 
+000024 | This positive C4 descent does not contradict the separately proved absence
+000025 | of a rational inversion lift.  C4 is sufficient.  The connection is not a
+000026 | D4 linearized connection.
+000027 | 
+000028 | 1. Recovered primary source
+000029 | ===========================
+000030 | 
+000031 | The result is printed in:
+000032 | 
+000033 | [OMITTED: non-scientific conversation or execution metadata]
+000034 | [OMITTED: non-scientific conversation or execution metadata]
+000035 | [OMITTED: non-scientific conversation or execution metadata]
+000036 | [OMITTED: non-scientific conversation or execution metadata]
+000037 | [OMITTED: non-scientific conversation or execution metadata]
+000038 | [OMITTED: non-scientific conversation or execution metadata]
+000039 | 
+000040 | Those lines contain the substitution t=z^4, the old gauge
+000041 | diag(1,z,z^3), the three residue spectra, the infinity resonance check,
+000042 | the triangle group argument, the marking U^(-1), the exact diagonal of M,
+000043 | and the distinction between the A4 four puncture image and the extended S4
+000044 | image.  They also continue to the signed permutation basis and the genus
+000045 | two curve.  The present report only restores the part needed for the v117
+000046 | analytic monodromy claim and checks it independently.
+000047 | 
+000048 | The active source modules against which it is reconciled are:
+000049 | 
+000050 |   source:80af15193155b4dcf60c
+000051 |   verification/v116_resonance_uniqueness.py:1-170
+000052 |   SHA256 e9cbeb665cf8c1a2bed3f34281be06aee4c661d784e7f13a5bd8e9be37f577ca;
+000053 | 
+000054 |   source:830238c9699fad6ae325
+000055 |   verification/v117_monodromy_weyl_a3.py:1-206
+000056 |   SHA256 55eca6a64144f6e49789f3f1bbe84e256764e7ce92b207044be693f8684d5df5.
+000057 | 
+000058 | The [N] status of the analytic identification still printed in v117 is
+000059 | therefore stale relative to the older source.  The exact matrix properties
+000060 | in v117 remain correct.
+000061 | 
+000062 | 2. Exact C4 descent in the short gauge
+000063 | ======================================
+000064 | 
+000065 | Start with the actual connection
+000066 | 
+000067 |   Y'(z)=A(z)Y(z),
+000068 |   A(z)=sum_(k=0)^3 U^k A0 U^(-k)/(z-i^k),
+000069 | 
+000070 |   U=diag(1,i,-i),
+000071 | 
+000072 |      [ 1/2       sqrt(2)/6       0          ]
+000073 |   A0=[ sqrt(2)/6 1/4             sqrt(5)/12 ],
+000074 |      [ 0         sqrt(5)/12      1/4        ]
+000075 | 
+000076 | whose exact rational form is
+000077 | 
+000078 |              1          [ 2z^3        2sqrt(2)z^2/3   0          ]
+000079 |   A(z)=-------------     [ 2sqrt(2)/3 z^3               sqrt(5)z/3 ].
+000080 |           z^4-1          [ 0           sqrt(5)z/3       z^3        ]
+000081 | 
+000082 | It obeys i A(iz)=U A(z)U^(-1).  Put
+000083 | 
+000084 |   t=z^4,       Y=diag(1,z,z^(-1)) X.
+000085 | 
+000086 | Then
+000087 | 
+000088 |   dX/dt=B(t)X,       B(t)=B0/t+B1/(t-1),
+000089 | 
+000090 |        [ 0          0       0          ]
+000091 |   B0 = [ -sqrt(2)/6 -1/4   -sqrt(5)/12 ],
+000092 |        [ 0          0       1/4        ]
+000093 | 
+000094 |   B1=A0,
+000095 | 
+000096 |           [ -1/2 -sqrt(2)/6  0          ]
+000097 |   Binf = [  0     0           0          ].
+000098 |           [  0    -sqrt(5)/12 -1/2       ]
+000099 | 
+000100 | The exact characteristic polynomials are
+000101 | 
+000102 |   det(lambda-B0)   = lambda(4lambda-1)(4lambda+1)/16,
+000103 |   det(lambda-B1)   = lambda(3lambda-1)(3lambda-2)/9,
+000104 |   det(lambda-Binf) = lambda(2lambda+1)^2/4.              (1)
+000105 | 
+000106 | Moreover
+000107 | 
+000108 |   Binf(Binf+I/2)=0.                                      (2)
+000109 | 
+000110 | Equation (2) proves that Binf is semisimple, despite the repeated
+000111 | eigenvalue -1/2.  At all three singularities every nonzero exponent
+000112 | difference has absolute value below one.  In the Frobenius recursion
+000113 | n-ad(Bj), n>=1, no eigenvalue can vanish.  Thus a holomorphic gauge reduces
+000114 | each local connection to its residue, with no logarithmic term.  The local
+000115 | monodromies consequently have exact orders 4, 3, and 2.
+000116 | 
+000117 | The older source uses
+000118 | 
+000119 |   Y=diag(1,z,z^3)v.
+000120 | 
+000121 | Its residues are the printed B0_old, A0, Binf_old with spectra
+000122 | (0,-1/4,-3/4), (0,1/3,2/3), and (-1/2,0,1/2).  The two quotient frames are
+000123 | related by
+000124 | 
+000125 |   X=diag(1,1,t)v.                                        (3)
+000126 | 
+000127 | This shifts one exponent by an integer.  In the old frame the only possible
+000128 | infinity resonance is cancelled by the printed coefficient
+000129 | (Cinf)_(3,1)=0.  In the short frame the same cancellation has already been
+000130 | absorbed by (3), leaving the semisimple identity (2).  Hence the new replay
+000131 | is a compact alternative proof, not a different connection.
+000132 | 
+000133 | 3. The marked monodromy is exactly S4
+000134 | ======================================
+000135 | 
+000136 | A positive loop about t=0 lifts from z to iz.  Returning the lifted fiber to
+000137 | the chosen quotient fiber uses the inverse deck identification.  Therefore
+000138 | 
+000139 |   c0 is conjugate to U^(-1)=diag(1,-i,i),                (4)
+000140 | 
+000141 | not to U.  Let m1 be the positive local monodromy about t=1 and use the
+000142 | oriented convention
+000143 | 
+000144 |   m1 c0 binf=I.
+000145 | 
+000146 | The local calculation gives
+000147 | 
+000148 |   c0^4=m1^3=binf^2=I.
+000149 | 
+000150 | Thus the image is a quotient of the spherical triangle group
+000151 | 
+000152 |   Delta(4,3,2)=<c,m | c^4=m^3=(mc)^2=1> congruent S4.   (5)
+000153 | 
+000154 | The image contains c0 of exact order four.  Every proper quotient of S4 is
+000155 | a quotient by V4 or A4, or is trivial, and none contains an element of order
+000156 | four.  The representation in (5) is therefore faithful, so its image has
+000157 | 24 elements.  A reducible three dimensional faithful S4 representation is
+000158 | impossible because the two dimensional irreducible representation kills
+000159 | V4.  The determinant one and trace(c0)=1 select the sign twist of the
+000160 | standard representation.
+000161 | 
+000162 | The exact v117 matrices satisfy
+000163 | 
+000164 |   c0=U^(-1),       m1=M0,       binf=M0 U^(-1),
+000165 |   c0^4=m1^3=binf^2=I.                                  (6)
+000166 | 
+000167 | There is one simultaneous conjugacy orbit of ordered S4 pairs consisting
+000168 | of a 4-cycle and a 3-cycle whose product is an involution.  The finite
+000169 | certificate enumerates its 24 representatives.  Equations (4)-(6) hence
+000170 | identify the analytic marked representation with the exact v117 pair up to
+000171 | one constant global basis change.  Choosing the printed v117 basis gives
+000172 | 
+000173 |   M0=[[0,        -(1+i)/2, (1-i)/2],
+000174 |       [-(1+i)/2, -i/2,     -1/2    ],
+000175 |       [(1-i)/2,  -1/2,      i/2    ]].                  (7)
+000176 | 
+000177 | This is the precise closure.  It proves the exact local system and all
+000178 | basis invariant statements.  Literal equality with a numerically produced
+000179 | harmonic frame still depends on that frame's constant basis convention.
+000180 | 

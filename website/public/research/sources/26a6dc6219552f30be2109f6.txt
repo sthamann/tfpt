@@ -1,0 +1,44 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/e-series-source-reconstruction-20261024/source_reproduction.py
+Original file SHA-256: ba667dfb7cee7df999876a1da48128d1b86ebfb268b306be397eff59ddea765f
+Inclusive original lines: 46-81
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000046 |     need(len(roots) == 240, "original root carrier")
+000047 |     T = sp.Matrix([[1,1,1], [1,-1,-1], [-1,1,-1], [-1,-1,1]])/2
+000048 |     need(T.T*T == sp.eye(3) and sp.ones(1,4)*T == sp.zeros(1,3), "A3/D3 isometry")
+000049 |     d3 = set()
+000050 |     for i, j in combinations(range(3), 2):
+000051 |         for a, b in product((-1,1), repeat=2):
+000052 |             v = [0]*3
+000053 |             v[i], v[j] = a, b
+000054 |             d3.add(tuple(v))
+000055 |     a3 = set()
+000056 |     for i, j in product(range(4), repeat=2):
+000057 |         if i != j:
+000058 |             v = [0]*4
+000059 |             v[i], v[j] = 1, -1
+000060 |             a3.add(tuple(v))
+000061 |     need({tuple(T*sp.Matrix(v)) for v in d3} == a3, "all twelve actual roots map bijectively")
+000062 |     q = sp.ones(8,1)/4
+000063 |     s = 2*q
+000064 |     F = sp.diag(sp.eye(5), T)
+000065 |     target = sp.Matrix([sp.Rational(1,2)]*5 + [sp.Rational(3,4)] + [sp.Rational(-1,4)]*3)
+000066 |     need(F.T*F == sp.eye(8) and F*s == target, "actual glue-vector identity F(2q)=lambda")
+000067 |     need(q.dot(q)/2 == sp.Rational(1,4) and s.dot(s)/2 == 1, "actual twist weights")
+000068 | 
+000069 |     def in_l0(v):
+000070 |         return all(x.q == 1 for x in v) and sum(v[:5]) % 2 == 0 and sum(v[5:]) % 2 == 0
+000071 | 
+000072 |     def in_d8(v):
+000073 |         return all(x.q == 1 for x in v) and sum(v) % 2 == 0
+000074 | 
+000075 |     need([in_l0(k*s) for k in range(1,5)] == [False,False,False,True], "glue has order four over L0")
+000076 |     need([in_d8(k*s) for k in (1,2)] == [False,True], "same glue has order two over D8")
+000077 |     block_parities = [(a,b) for a,b in product(range(2), repeat=2) if (a+b) % 2 == 0]
+000078 |     need(block_parities == [(0,0),(1,1)], "L0 plus 2s is exactly D8")
+000079 |     need(sp.Rational(16,2**2) == 4 and sp.Rational(4,2**2) == 1, "correct mu-index tower")
+000080 | 
+000081 |     # A root is stored as 2*alpha. Torus action exp(2pi i(q,alpha))

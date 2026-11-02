@@ -1,0 +1,98 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/e-series-source-reconstruction-20261024/source_reproduction.py
+Original file SHA-256: ba667dfb7cee7df999876a1da48128d1b86ebfb268b306be397eff59ddea765f
+Inclusive original lines: 83-172
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000083 |     def quarter_degree(root):
+000084 |         need(sum(root) % 2 == 0, "integer quarter exponent")
+000085 |         return (sum(root)//2) % 4
+000086 | 
+000087 |     def gamma_degree(root):
+000088 |         return 2*(root[0] % 2)
+000089 | 
+000090 |     def alternate_degree(root):
+000091 |         return (quarter_degree(root) + gamma_degree(root)) % 4
+000092 | 
+000093 |     degree_functions = [quarter_degree, alternate_degree]
+000094 |     fixed_roots = []
+000095 |     spectra = []
+000096 |     for degree in degree_functions:
+000097 |         counts = Counter(degree(root) for root in roots)
+000098 |         need(counts[1] == counts[3] == 0, "both full-field extensions are involutions")
+000099 |         fixed_roots.append({r for r in roots if degree(r) == 0})
+000100 |         counts[0] += 8  # zero modes fix every Heisenberg oscillator
+000101 |         spectra.append([counts[i] for i in range(4)])
+000102 |     need(spectra == [[136,0,112,0], [120,0,128,0]], "full V1 field-character spectra")
+000103 |     e7 = {r for r in roots if sum(r) == 0}
+000104 |     s_pair = {tuple([1]*8), tuple([-1]*8)}
+000105 |     need(len(e7) == 126 and fixed_roots[0] == e7 | s_pair, "actual E7 plus A1 root set")
+000106 | 
+000107 |     def simple_roots(shell):
+000108 |         positive = {r for r in shell if next(x for x in r if x) > 0}
+000109 |         decomposable = {tuple(a+b for a,b in zip(x,y)) for x,y in combinations(positive,2)}
+000110 |         return sorted(positive - decomposable)
+000111 | 
+000112 |     cartan_data = []
+000113 |     for shell in (e7, fixed_roots[0], fixed_roots[1]):
+000114 |         simple = simple_roots(shell)
+000115 |         gram = sp.Matrix([[sum(a*b for a,b in zip(x,y))/sp.Integer(4) for y in simple] for x in simple])
+000116 |         cartan_data.append({"roots":len(shell),"rank":len(simple),"determinant":int(gram.det()),
+000117 |                             "cartan":[list(map(int, gram.row(i))) for i in range(gram.rows)]})
+000118 |     need([(x["roots"],x["rank"],x["determinant"]) for x in cartan_data]
+000119 |          == [(126,7,2),(128,8,4),(112,8,4)], "fixed root-lattice types and determinants")
+000120 |     d8_degrees = sorted(sum(x != 0 for j,x in enumerate(row) if j != i)
+000121 |                         for i,row in enumerate(cartan_data[2]["cartan"]))
+000122 |     need(d8_degrees == [1,1,1,2,2,2,2,3], "alternate fixed root lattice is D8")
+000123 | 
+000124 |     # All-field order follows already on the integral E8 lattice basis:
+000125 |     # 2q=s is in E8*=E8; gamma is the nontrivial E8/D8 character.
+000126 |     basis = original["B"]/2
+000127 |     for j in range(8):
+000128 |         need((s.dot(basis[:,j])).q == 1, "square trivial on all lattice generators")
+000129 |         need((2*(q+sp.eye(8)[:,0]).dot(basis[:,j])).q == 1, "alternate square trivial")
+000130 |     root_set = set(roots)
+000131 |     brackets = 0
+000132 |     for a in roots:
+000133 |         for b in roots:
+000134 |             total = tuple(x+y for x,y in zip(a,b))
+000135 |             if total in root_set:
+000136 |                 need(all(degree(total) == (degree(a)+degree(b)) % 4 for degree in degree_functions),
+000137 |                      "actual character actions preserve every root product")
+000138 |                 brackets += 1
+000139 |     need(brackets == 13440, "complete nonopposite root OPE channels")
+000140 |     # J has 60 four-cycles with product phase+1, plus four +/-i Cartans.
+000141 |     J = original["J"]
+000142 |     Jstd = original["J_standard"]
+000143 |     unseen = set(roots)
+000144 |     cycles = 0
+000145 |     while unseen:
+000146 |         point = next(iter(unseen))
+000147 |         orb = []
+000148 |         for _ in range(4):
+000149 |             orb.append(point)
+000150 |             point = tuple(Jstd*sp.Matrix(point))
+000151 |         need(point == orb[0] and len(set(orb)) == 4, "native root clock is a four-cycle")
+000152 |         unseen -= set(orb)
+000153 |         cycles += 1
+000154 |     need(cycles == 60 and original["power_basis_phases"](J,0,4) == (1,)*8,
+000155 |          "unchanged native full-field J")
+000156 |     native_spectrum = [60,64,60,64]
+000157 |     need(all(row != native_spectrum for row in spectra), "neither scalar extension is native J")
+000158 | 
+000159 |     # Reproduce the FIRST exact excitation norm on the ACTUAL v988 case.
+000160 |     source = "verification/v988_psi_lambda_reduction.py"
+000161 |     tree = ast.parse(pin(source))
+000162 |     selected = []
+000163 |     names = {"SX","SY","SZ","TX","TY"}
+000164 |     for node in tree.body:
+000165 |         if isinstance(node,ast.Assign) and any(isinstance(t,ast.Name) and t.id in names for t in node.targets):
+000166 |             selected.append(node)
+000167 |         if isinstance(node,ast.FunctionDef) and node.name in {"qwz_cylinder","occ_frame"}:
+000168 |             selected.append(node)
+000169 |     env = {"np":np}
+000170 |     exec(compile(ast.Module(body=selected,type_ignores=[]),str(REPO/source),"exec"),env)
+000171 |     Nx, Ny = 16,6
+000172 |     h0 = env["qwz_cylinder"](Nx,Ny,1.0,0)

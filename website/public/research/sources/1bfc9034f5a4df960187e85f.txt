@@ -1,0 +1,110 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/marked-seam-monodromy-20261023/THEORY.txt
+Original file SHA-256: 83f6f464aff89acb5cc4194244a5636d4a4ff62600cdf5ee3c33ded4410f963a
+Inclusive original lines: 15-116
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000015 | 1. Category of marked seam geometries
+000016 | 
+000017 | Work with compact finite-CW pairs (Y,Sigma), and U=Y minus Sigma. For the
+000018 | surface subcategory Sigma is a finite ordered set of punctures. A reflected
+000019 | pair includes an involution tau of Y preserving Sigma. Additional clock
+000020 | actions, such as a C4 action, are optional explicitly marked automorphisms.
+000021 | 
+000022 | A lattice transport datum is a functor H:Pi_1(U)->Lat_q. The target has
+000023 | free finite-rank integral lattices with an even integral symmetric form;
+000024 | arrows are lattice isometries. Its finite quadratic datum is
+000025 |   q_L(x mod2L)=(x,x)/2 mod2.
+000026 | It is well defined since replacing x by x+2y changes this by
+000027 | 2(x,y)+2(y,y). Transport preserves q_L. An independently chosen finite
+000028 | quadratic module may instead be an additional marking, stated separately.
+000029 | 
+000030 | The local system L and, after choosing a basepoint and fiber chart, the
+000031 | representation rho are descriptions of H, not independent arbitrary
+000032 | inputs. Changing the fiber chart conjugates rho. For a reflected object
+000033 | include an isometric natural transformation T:H -> tau*H with
+000034 | T_(tau x) T_x=1. This reflection marking is real/integral; in a complex
+000035 | chart it may be semilinear and must not be called a complex reflection.
+000036 | 
+000037 | A morphism consists of a map of marked pairs f, avoiding Sigma' on U,
+000038 | and a natural fiberwise isometry H -> f*H'. It respects reflections and
+000039 | any clock/peripheral markings that were declared. Composition uses pullback
+000040 | and composition of natural transformations. Isomorphisms have f a marked
+000041 | homeomorphism and invertible fiber maps. Allowed homotopies are homotopies
+000042 | of such maps through the same pair/reflection constraints, together with
+000043 | the induced compatible transport identifications.
+000044 | 
+000045 | The direct-sum product uses
+000046 |   (Y,Sigma) times (Z,Lambda)
+000047 |    =(Y times Z, (Sigma times Z) union (Y times Lambda)),
+000048 |   H_product=pr_Y*H direct_sum pr_Z*K, q_product=q_H orthogonal_sum q_K.
+000049 | Its complement is U times V. The unit is a point with rank0 lattice.
+000050 | Ranks add, so the rank8 subcategory alone is not product-closed. Tensor
+000051 | products are a different optional operation and are not substituted here.
+000052 | 
+000053 | For seam gluing of oriented punctured surfaces replace punctures by boundary
+000054 | circles with collars. Supply an orientation-reversing boundary gluing and
+000055 | a fiber isometry F. If M,N are the corresponding positive peripheral
+000056 | holonomies, the descent condition is F M F^-1=N^-1. Under this condition
+000057 | the functors glue; necessity is the common loop relation and sufficiency
+000058 | follows by the fundamental-groupoid pushout/van Kampen presentation.
+000059 | Reflection markings must agree on the gluing collars. The gluing map and
+000060 | fiber identification are data, not a presumed unique composition.
+000061 | 
+000062 | Thus transport is a groupoid. Conjugacy classes alone do not have a
+000063 | single-valued multiplication: for example in S3 the product of two
+000064 | transpositions can be identity or a3cycle. Defect composition on classes
+000065 | is instead the correspondence {(a,b):a in C,b in D,ab in E}/G. This does
+000066 | not by itself define a semisimple fusion category or a higher category.
+000067 | 
+000068 | A concrete reflected base object uses tau(z)=conjugate(z) on CP1 and
+000069 | T0(x0,x1,...)=(x0,-x1,x2,-x3,...). T0 preserves E8 and its quadratic
+000070 | datum; T0 J T0=J^-1 matches the reversal/permutation of positive meridians.
+000071 | Thus the all-J base local system below admits this reflection marking.
+000072 | An extra reflection lift on its SIGN extension is additional mathematical
+000073 | marking and is not imposed in the finite classification of Section4.
+000074 | T0 is distinct from the complex-linear reflection R of Section5.
+000075 | 
+000076 | 2. Existing lattice and the actual factor set
+000077 | 
+000078 | Let L be the standard even unimodular E8 lattice in R8. Retain the actual
+000079 | native quarter-clock J(x0,x1,...)=(-x1,x0,-x3,x2,...). It preserves L,
+000080 | J^2=-1 and J^4=1. Let epsilon be the existing ordered lattice cocycle,
+000081 | retained literally by the source extraction in checker.py. Define
+000082 |   E_x E_y=epsilon(x,y) E_(x+y),
+000083 |   [E_x,E_y]=(-1)^((x,y)).
+000084 | This central extension of L is denoted Lhat. All sign automorphisms below
+000085 | fix its central generator. The sign-lift kernel is
+000086 |   A=Hom(L,{+1,-1})=Hom(L,F2).
+000087 | 
+000088 | For any isometry g fix an integral ordered basis b_i and define a lift
+000089 | S_g by E_(b_i) -> E_(g b_i). Inner-product invariance preserves all
+000090 | generator commutators; freeness of L gives an invertible automorphism.
+000091 | For x=sum n_i b_i let
+000092 |   product_i E_(b_i)^n_i=c_B(n) E_x,
+000093 |   product_i E_(g b_i)^n_i=c_(gB)(n) E_(g x),
+000094 |   eta_g(x)=c_(gB)(n)/c_B(n).
+000095 | Negative powers use E_b^-1=epsilon(b,-b) E_-b. This is an all-integral-
+000096 | vector definition, not just an evaluation on roots.
+000097 | 
+000098 | The COMPLETE factor formula is
+000099 |   d(g,h)(x)=eta_h(x) eta_g(hx)/eta_(gh)(x),
+000100 |   c(g,h)(y)=d(g,h)((gh)^-1 y),
+000101 |   S_g S_h=D_(c(g,h)) S_(gh),                            (2.1)
+000102 | where D_a(E_y)=a(y) E_y. The product projects to gh; the ratio projects
+000103 | to identity and hence is a character. Equivalently divide the two
+000104 | cocycle identities for eta to prove d(x+y)=d(x)d(y).
+000105 | 
+000106 | With left action (g.a)(y)=a(g^-1 y), associativity gives
+000107 |   c(g,h)+c(gh,k)=g.c(h,k)+c(g,hk)                        (2.2)
+000108 | in additive F2 notation. Formula(2.1) computes any requested pair in
+000109 | any specified lattice-isometry subgroup. This is a MODULE-valued group
+000110 | 2cocycle; the extension need not be central. Indeed S_g D_a S_g^-1=D_(g.a).
+000111 | The complete preimage of a subgroup is central over A only if its action
+000112 | on A is trivial. A character-valued factor is not a scalar multiplier.
+000113 | These statements are standard lattice-extension algebra, recalled with
+000114 | the actual cocycle conventions; see Okada§3 and AppendixA, arXiv2412.19430.
+000115 | The new classifications below are not attributed to that paper.
+000116 | 

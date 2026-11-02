@@ -1,0 +1,69 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_unification_20261027/review/DEFECT-ORIENTATION-CHECKER-REVIEW.txt
+Original file SHA-256: ccc0df23c5be8218189c3fbd30efd73f079239d2ea8b3443a2c8609b83b32ead
+Inclusive original lines: 1-61
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | INDEPENDENT REVIEW OF check_defect_orientation.py
+000002 | 2026-10-27
+000003 | 
+000004 | VERDICT
+000005 | 
+000006 | The finite CAR calculation is correct and its saved scope is properly
+000007 | conditional.  It proves the orientation statement for the given
+000008 | three-dimensional defect representation.  It does not prove that the
+000009 | physical P1 source supplies this C3 Hardy covariance or its operator map.
+000010 | 
+000011 | The checker uses the complete eight-dimensional exterior algebra.  Its
+000012 | Jordan-Wigner signs satisfy all 72 basis CAR tests.  With
+000013 | 
+000014 |   Q=zeta_8 times the transposition (q_1 q_2),
+000015 |   c=(q_0 q_1 q_2),
+000016 |   beta=i I_3,
+000017 | 
+000018 | the induced exterior actions obey
+000019 | 
+000020 |   c^3=I,
+000021 |   Q^2=beta,
+000022 |   beta^2=(-1)^F,
+000023 |   Q c Q^(-1)=c^(-1).
+000024 | 
+000025 | The code checks Q and c covariance for every creation operator on every
+000026 | exterior basis vector.  Since beta=Q^2 and the actions are unitary signed
+000027 | permutations, the corresponding beta and annihilation covariance follow.
+000028 | 
+000029 | On the filled three-mode ket it obtains, in zeta_8 exponents,
+000030 | 
+000031 |   ket:   c=0, Q=7, beta=6, parity odd,
+000032 |   dual:  c=0, Q=1, beta=2, parity odd.
+000033 | 
+000034 | Thus beta acts by -i on the ket and +i on the dual.  This agrees with the
+000035 | analytic determinant calculation and preserves odd parity under duality.
+000036 | The empty and filled annihilation relations checked at the end, together
+000037 | with CAR, give the expected zero and identity covariances on the defect
+000038 | space.
+000039 | 
+000040 | Normal Python and python -OO produced byte-identical output in the independent
+000041 | replay.  The output SHA256 was
+000042 | 
+000043 |   32972f51d03aa8336d275fd709ae86cab1e146a137f785a4922dbf813890a15a.
+000044 | 
+000045 | The checker source SHA256 was
+000046 | 
+000047 |   49f2017bd6cca278cc175a49590f4843069c669db1be5a141bdf8b05b5905071.
+000048 | 
+000049 | ONE WORDING CORRECTION
+000050 | 
+000051 | The source comment
+000052 | 
+000053 |   "Relative density matrices see no ray phase, but CAR charged words do."
+000054 | 
+000055 | is too broad.  Every expectation in the vector state is invariant under a
+000056 | common phase of the ket, including expectations of charged words.  The phase
+000057 | can appear in charged transition amplitudes between different sectors or in
+000058 | a separately oriented bra, ket or determinant line.  The executable checks,
+000059 | the JSON verdict and PROJECTOR-CAR-DEFECT-LINE-REVIEW use the correct narrower
+000060 | statement, so this comment does not invalidate any computed result.
+000061 | 

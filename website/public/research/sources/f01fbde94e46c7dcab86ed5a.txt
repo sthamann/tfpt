@@ -1,0 +1,104 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_v311_process_ambiguity.py
+Original file SHA-256: 2ef1e3874a6cc1edb0d4d2f6baca4995eb5eea54e54af240b3f7684b9d450d94
+Inclusive original lines: 1-96
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact source-relative process ambiguity, not a physical TFPT source.
+000002 | 
+000003 | The concrete 3-state matrix is reconstructed exactly from verification/v311's
+000004 | spectral projectors and checked against that module's numerical implementation.
+000005 | The CPTP channels below are diagnostic extensions, not claims that v311 or TFPT
+000006 | physically chooses these channels or identifies their qutrit with E8 or CAR.
+000007 | """
+000008 | from pathlib import Path
+000009 | import sys
+000010 | 
+000011 | import numpy as np
+000012 | import sympy as sp
+000013 | 
+000014 | ROOT = Path(__file__).resolve().parents[4]
+000015 | sys.path.insert(0, str(ROOT / "verification"))
+000016 | from v311_gap_decoupled_measure import transfer
+000017 | 
+000018 | R = sp.Rational
+000019 | I = sp.eye(3)
+000020 | v, w = sp.Matrix([1, -1, 0]), sp.Matrix([1, 1, -2])
+000021 | T = sp.ones(3) / 3 + R(64, 729) * v * v.T / 2 + R(1, 729) * w * w.T / 6
+000022 | eps = sp.symbols("eps", real=True)
+000023 | limit = min(T[i, i] for i in range(3))
+000024 | 
+000025 | 
+000026 | def check(label, condition):
+000027 |     if not condition:
+000028 |         raise RuntimeError("FAIL: " + label)
+000029 |     print("PASS", label)
+000030 | 
+000031 | 
+000032 | def channel(x, e):
+000033 |     """E(X)=e X+sum_ij(T_ij-e delta_ij) E_ij X E_ij*."""
+000034 |     result = e * x
+000035 |     for i in range(3):
+000036 |         for j in range(3):
+000037 |             unit = sp.zeros(3)
+000038 |             unit[i, j] = 1
+000039 |             result += (T[i, j] - e * int(i == j)) * unit * x * unit.T
+000040 |     return sp.simplify(result)
+000041 | 
+000042 | 
+000043 | def choi(e):
+000044 |     result = sp.zeros(9)
+000045 |     for a in range(3):
+000046 |         for b in range(3):
+000047 |             unit = sp.zeros(3)
+000048 |             unit[a, b] = 1
+000049 |             result += sp.kronecker_product(channel(unit, e), unit)
+000050 |     return sp.simplify(result)
+000051 | 
+000052 | 
+000053 | native, lam2, lam3 = transfer()
+000054 | check("v311 numerical matrix matches exact spectral-projector expression",
+000055 |       np.allclose(native, np.array(T.tolist(), dtype=float), rtol=0, atol=1e-15))
+000056 | check("v311 spectral values", abs(lam2 - 64 / 729) < 1e-15 and abs(lam3 - 1 / 729) < 1e-15)
+000057 | check("T columns sum exactly to one", all(sum(T[i, j] for i in range(3)) == 1 for j in range(3)))
+000058 | check("all T entries positive", all(T[i, j] > 0 for i in range(3) for j in range(3)))
+000059 | check("sufficient positivity interval endpoint", limit == R(731, 2187))
+000060 | check("all diagonal coefficients nonnegative at both interval endpoints",
+000061 |       all(T[i, i] >= 0 and T[i, i] - limit >= 0 for i in range(3)))
+000062 | 
+000063 | J = choi(eps)
+000064 | omega = sp.zeros(9, 1)
+000065 | for i in range(3):
+000066 |     omega[3 * i + i, 0] = 1
+000067 | diagonal = sp.zeros(9)
+000068 | for i in range(3):
+000069 |     for j in range(3):
+000070 |         diagonal[3 * i + j, 3 * i + j] = T[i, j] - eps * int(i == j)
+000071 | check("Choi decomposition exact", sp.simplify(J - eps * omega * omega.T - diagonal) == sp.zeros(9))
+000072 | check("Choi partial output trace is identity for all eps",
+000073 |       sp.Matrix(3, 3, lambda a, b: sp.simplify(sum(J[3*i+a, 3*i+b] for i in range(3)))) == I)
+000074 | print("PROOF CPTP: Choi is eps*|Omega><Omega| plus diagonal nonnegative weights")
+000075 | print("            for every 0 <= eps <=", limit, "; trace is identity.")
+000076 | 
+000077 | for a in range(3):
+000078 |     for b in range(3):
+000079 |         x = sp.zeros(3)
+000080 |         x[a, b] = 1
+000081 |         y = channel(x, eps)
+000082 |         expected = T[:, a] if a == b else sp.zeros(3, 1)
+000083 |         check(f"population intertwining E({a},{b})",
+000084 |               sp.Matrix([sp.simplify(y[i, i]) for i in range(3)]) == expected)
+000085 | 
+000086 | print("PROOF HISTORY: diag(E(X))=T diag(X) for every X; induction gives")
+000087 | print("               diag(E^n(X))=T^n diag(X) for all n >= 0.")
+000088 | rho = sp.Matrix([[R(1, 2), R(1, 2), 0], [R(1, 2), R(1, 2), 0], [0, 0, 0]])
+000089 | check("diagnostic density matrix normalized and rank one", rho.trace() == 1 and rho * rho == rho)
+000090 | check("exact coherence response for every eps", channel(rho, eps)[0, 1] == eps / 2)
+000091 | for e in (R(0), R(1, 5), R(1, 3)):
+000092 |     check(f"epsilon {e} lies in proved CPTP interval", 0 <= e <= limit)
+000093 |     print(f"  eps={e}, output coherence={channel(rho, e)[0, 1]}")
+000094 | check("distinct exact outputs at same population history", channel(rho, 0) != channel(rho, R(1, 3)))
+000095 | print("SCOPE: Only the v311 population reader is fixed. Additional original TFPT")
+000096 | print("       source constraints may remove any or all diagnostic extensions.")

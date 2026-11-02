@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/admissible_pair_20261028/check_source_clock_wedge_cycle.py
+Original file SHA-256: e76d515e58538f3c45337e33c02d72570d73b64ed48e0f5dc9a5c4bb0fcdbdd6
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Replay the signed E8 Gram and the literal carrier five-cycle.
+000002 | 
+000003 | This uses the existing actual Chevalley source, the existing A4 sector chart,
+000004 | and the existing ordered E8 lattice cocycle.  It checks a source-clock
+000005 | compatibility question; it does not introduce a physical P1 clock or reader.
+000006 | """
+000007 | 
+000008 | from collections import Counter
+000009 | from fractions import Fraction
+000010 | import hashlib
+000011 | import importlib.util
+000012 | import json
+000013 | from pathlib import Path
+000014 | import sys
+000015 | 
+000016 | 
+000017 | HERE = Path(__file__).resolve().parent
+000018 | WORKSPACE = HERE.parent
+000019 | [OMITTED: non-scientific conversation or execution metadata]
+000020 | A4_CHECKER = WORKSPACE / "research-20261028-hodge-complement-channel" / "check_e8_a4_response.py"
+000021 | if not A4_CHECKER.is_file():
+000022 |     A4_CHECKER = REPO / "experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/hodge_complement_20261028/check_e8_a4_response.py"
+000023 | E8_RESPONSE = REPO / "experiments/theory-contracts/seam-collar-multifield-20261016/e8_boundary_response.py"
+000024 | OUTPUT = HERE / "source-clock-wedge-cycle.json"
+000025 | 
+000026 | 
+000027 | def need(condition, message):
+000028 |     if not condition:
+000029 |         raise RuntimeError(message)
+000030 | 
+000031 | 
+000032 | def load_module(name, path):
+000033 |     spec = importlib.util.spec_from_file_location(name, path)
+000034 |     need(spec is not None and spec.loader is not None, f"load spec for {path}")
+000035 |     module = importlib.util.module_from_spec(spec)
+000036 |     spec.loader.exec_module(module)
+000037 |     return module
+000038 | 
+000039 | 
+000040 | def sha256(path):
+000041 |     return hashlib.sha256(path.read_bytes()).hexdigest()
+000042 | 
+000043 | 
+000044 | def physical(root):
+000045 |     return tuple(Fraction(x, 2) for x in root)
+000046 | 
+000047 | 
+000048 | RHO_A7 = tuple(Fraction(x, 2) for x in (7, 5, 3, 1, -1, -3, -5, -7))
+000049 | 
+000050 | 
+000051 | def h8_affine_grade(root):
+000052 |     """Return (b,Q) for h_beta(a)=b+aQ."""
+000053 |     beta = physical(root)
+000054 |     charge = sum(beta)
+000055 |     base = Fraction(8) - sum(x*y for x, y in zip(RHO_A7, beta)) - charge/2
+000056 |     return base, charge
+000057 | 
+000058 | 
+000059 | def carrier_cycle(root):
+000060 |     """Literal e0->e1->...->e4->e0, fixing e5,e6,e7."""
+000061 |     return (root[4], root[0], root[1], root[2], root[3],
+000062 |             root[5], root[6], root[7])
+000063 | 
+000064 | 
+000065 | def fraction_text(value):
+000066 |     return str(value.numerator) if value.denominator == 1 else f"{value.numerator}/{value.denominator}"
+000067 | 
+000068 | 
+000069 | def counter_rows(counter):
+000070 |     return [
+000071 |         {
+000072 |             "base": fraction_text(base),
+000073 |             "charge": fraction_text(charge),
+000074 |             "multiplicity": counter[(base, charge)],
+000075 |         }
+000076 |         for base, charge in sorted(counter, key=lambda item: (item[1], item[0]))
+000077 |     ]
+000078 | 
+000079 | 
+000080 | def main():
+000081 |     sys.path.insert(0, str(REPO))
+000082 |     a4 = load_module("existing_e8_a4_response", A4_CHECKER)
+000083 |     response = load_module("existing_e8_boundary_response", E8_RESPONSE)
+000084 | 
+000085 |     source = a4._actual_current_source()
+000086 |     roots = set(source["chevalley"].roots)
+000087 |     need(len(roots) == 240, "actual Chevalley source has 240 E8 roots")
+000088 | 
+000089 |     insertion = sorted(root for root in roots if a4.carrier_type(root) == "5")
+000090 |     need(len(insertion) == 50, "actual (5,10) insertion sector has 50 roots")
+000091 |     insertion_set = set(insertion)
+000092 |     need(all(tuple(-x for x in root) not in insertion_set for root in insertion),
+000093 |          "insertion sector contains no opposite root")
+000094 | 
+000095 |     cycle_images = [carrier_cycle(root) for root in insertion]
+000096 |     need(set(cycle_images) == insertion_set,
+000097 |          "literal carrier five-cycle preserves the actual insertion sector")
+000098 |     need(all(carrier_cycle(carrier_cycle(carrier_cycle(carrier_cycle(carrier_cycle(root))))) == root
+000099 |              for root in roots), "literal carrier cycle has order five on all E8 roots")
+000100 | 
+000101 |     # It acts on the carrier fundamental label and fixes the centralizer A4
+000102 |     # root coordinates literally, so this is the actual A4 x A4 chart rather
+000103 |     # than an arbitrary permutation of fifty labels.
+000104 |     need(all(a4.carrier_label(carrier_cycle(root), "5")
+000105 |              == (a4.carrier_label(root, "5") + 1) % 5
+000106 |              for root in insertion), "cycle advances every carrier 5 label")
+000107 |     family_roots = [root for root in roots if len(set(root[:5])) == 1]
+000108 |     need(len(family_roots) == 20, "actual family centralizer has 20 roots")
+000109 |     need(all(carrier_cycle(root) == root for root in family_roots),
+000110 |          "carrier cycle fixes the family A4 roots pointwise")
+000111 | 
+000112 |     beta1 = (2, 0, 0, 0, 0, 0, 0, -2)
+000113 |     beta2 = (0, 2, 0, 0, 0, 0, 0, -2)
+000114 |     need(beta1 in insertion_set and beta2 in insertion_set,
+000115 |          "e1-e8 and e2-e8 are actual insertion roots")
+000116 |     need(carrier_cycle(beta1) == beta2, "literal cycle maps e1-e8 to e2-e8")
+000117 |     need(a4.carrier_label(beta1, "5") == 0 and a4.carrier_label(beta2, "5") == 1,
+000118 |          "witnesses have consecutive carrier labels")
+000119 | 
+000120 |     grade_counts = Counter(h8_affine_grade(root) for root in insertion)
+000121 |     need(sum(grade_counts.values()) == 50 and len(grade_counts) == 26,
+000122 |          "complete insertion-sector H8 affine grade census")
+000123 |     need(h8_affine_grade(beta1) == (1, 0), "e1-e8 has H8 grade 1")
+000124 |     need(h8_affine_grade(beta2) == (2, 0), "e2-e8 has H8 grade 2")
+000125 | 
+000126 |     delta_counts = Counter()
+000127 |     for root in insertion:
+000128 |         base, charge = h8_affine_grade(root)
+000129 |         next_base, next_charge = h8_affine_grade(carrier_cycle(root))
+000130 |         delta_counts[(next_base-base, next_charge-charge)] += 1
+000131 |     need(delta_counts == Counter({(Fraction(1), Fraction(0)): 40,
+000132 |                                   (Fraction(-4), Fraction(0)): 10}),
+000133 |          "exact [H8,W5] support is +1 on40 and -4 on10 roots")
+000134 |     need(all(delta != 0 for delta, _ in delta_counts),
+000135 |          "no insertion root lies in the H8 commutant of the cycle")
+000136 | 
+000137 |     raw_signs = Counter()
+000138 |     compact_coefficients = Counter()
+000139 |     for root in insertion:
+000140 |         beta = physical(root)
+000141 |         minus_beta = tuple(-x for x in beta)
+000142 |         raw = response.vertex_response((minus_beta, beta), (2, 1))
+000143 |         sign = response.adjoint_sign(beta)
+000144 |         need(raw in (-1, 1), "raw opposite-root two-point coefficient is signed unit")
+000145 |         need(raw == sign, "raw two-point phase equals the actual adjoint sign")
+000146 |         raw_signs[int(raw)] += 1
+000147 |         compact_coefficients[int(sign*raw)] += 1
+000148 |     need(raw_signs == Counter({1: 26, -1: 24}),
+000149 |          "signed Gram replay has exact 26/24 split")
+000150 |     need(compact_coefficients == Counter({1: 50}),
+000151 |          "compact adjoint cancels every raw cocycle phase")
+000152 | 
+000153 |     # The already read original clock is central on the carrier modules.  The
+000154 |     # congruence check records the typed distinction from the slot cycle.
+000155 |     x5 = (-2, -2, -2, 3, 3)
+000156 |     need({x % 5 for x in x5} == {3}, "U5 is scalar zeta5^3 on the carrier 5")
+000157 |     wedge2_exponents = {(x5[i]+x5[j]) % 5 for i in range(5) for j in range(i+1, 5)}
+000158 |     need(wedge2_exponents == {1}, "U5 is scalar zeta5 on Lambda2 carrier")
+000159 |     need(carrier_cycle(beta1) != beta1, "slot cycle is not the scalar U5 action")
+000160 | 
+000161 |     result = {
+000162 |         "verdict": "EXACT_NONCOMMUTING_LITERAL_CARRIER_CYCLE; ORIGINAL_U5_IS_A_DISTINCT_SCALAR_CLOCK",
+000163 |         "sources": {
+000164 |             "actual_chevalley_source": {
+000165 |                 "path": str(REPO / "tfpt_explorer/current_block_geometry.py"),
+000166 |                 "function": "_actual_current_source",
+000167 |                 "sha256": sha256(REPO / "tfpt_explorer/current_block_geometry.py"),
+000168 |             },
+000169 |             "existing_a4_sector_checker": {
+000170 |                 "path": str(A4_CHECKER),
+000171 |                 "sha256": sha256(A4_CHECKER),
+000172 |             },
+000173 |             "existing_ordered_cocycle_response": {
+000174 |                 "path": str(E8_RESPONSE),
+000175 |                 "sha256": sha256(E8_RESPONSE),
+000176 |             },
+000177 |             "original_u5_audit": {
+000178 |                 "path": str(HERE / "P5-OBSERVABLE-IMAGE-AND-INSTRUMENT.txt"),
+000179 |                 "lines": "377-421",
+000180 |                 "sha256": sha256(HERE / "P5-OBSERVABLE-IMAGE-AND-INSTRUMENT.txt"),
+000181 |             },
+000182 |         },
+000183 |         "actual_root_data": {
+000184 |             "e8_roots": len(roots),
+000185 |             "insertion_sector": "(5,10)",
+000186 |             "insertion_roots": len(insertion),
+000187 |             "contains_opposite_roots": False,
+000188 |             "family_centralizer_roots_fixed_pointwise_by_cycle": len(family_roots),
+000189 |         },
+000190 |         "signed_gram": {
+000191 |             "raw_opposite_root_coefficients": {"+1": raw_signs[1], "-1": raw_signs[-1]},
+000192 |             "compact_adjoint_coefficients": {"+1": compact_coefficients[1]},
+000193 |             "meaning": "raw V_-beta,V_beta phases; compact V_beta^dagger,V_beta Gram is positive",
+000194 |         },
+000195 |         "h8_grades": {
+000196 |             "formula": "h_beta(a)=base+a*Q(beta)",
+000197 |             "affine_classes": len(grade_counts),
+000198 |             "distribution": counter_rows(grade_counts),
+000199 |         },
+000200 |         "literal_carrier_cycle": {

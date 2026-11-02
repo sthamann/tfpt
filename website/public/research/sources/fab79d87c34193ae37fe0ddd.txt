@@ -1,0 +1,91 @@
+TFPT scientific source excerpt
+Original repository path: verification/v252_full_finite_triple.py
+Original file SHA-256: 820254440e178430422e50605067775656236602996307f67c9e69124ba5d163
+Inclusive original lines: 86-168
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000086 | def dirac_block(Yu, Yd, Ye, Ynu):
+000087 |     """particle 48x48 Yukawa block S (Hermitian): L<->R per field/colour."""
+000088 |     S = np.zeros((NP, NP), complex)
+000089 |     table = {"u": Yu, "d": Yd, "e": Ye, "nu": Ynu}
+000090 |     for (name, ch, c, g) in P:
+000091 |         if ch != "L":
+000092 |             continue
+000093 |         Y = table[name]
+000094 |         for gj in range(NG):
+000095 |             i = IDX[(name, "L", c, g)]
+000096 |             j = IDX[(name, "R", c, gj)]
+000097 |             S[i, j] = Y[g, gj]
+000098 |             S[j, i] = np.conjugate(Y[g, gj])
+000099 |     return S
+000100 | 
+000101 | 
+000102 | def full_D(Yu, Yd, Ye, Ynu, MR):
+000103 |     """D_F = [[S, T],[T^dag, conj S]] ; T = Majorana on nu_R (particle<->antiparticle)."""
+000104 |     S = dirac_block(Yu, Yd, Ye, Ynu)
+000105 |     T = np.zeros((NP, NP), complex)
+000106 |     for g in range(NG):
+000107 |         for gj in range(NG):
+000108 |             i = IDX[("nu", "R", 0, g)]
+000109 |             j = IDX[("nu", "R", 0, gj)]
+000110 |             T[i, j] = MR[g, gj]
+000111 |     D = np.zeros((NH, NH), complex)
+000112 |     D[:NP, :NP] = S
+000113 |     D[NP:, NP:] = np.conjugate(S)
+000114 |     D[:NP, NP:] = T
+000115 |     D[NP:, :NP] = T.conj().T
+000116 |     return D
+000117 | 
+000118 | 
+000119 | def grading():
+000120 |     gp = np.array([1.0 if ch == "L" else -1.0 for (_, ch, _, _) in P])
+000121 |     return np.diag(np.concatenate([gp, -gp]))      # antiparticles: opposite chirality
+000122 | 
+000123 | 
+000124 | def Kswap():
+000125 |     K = np.zeros((NH, NH))
+000126 |     K[:NP, NP:] = np.eye(NP)
+000127 |     K[NP:, :NP] = np.eye(NP)
+000128 |     return K
+000129 | 
+000130 | 
+000131 | def Japply(v, K):
+000132 |     return K @ np.conjugate(v)                       # antilinear J = swap . conj
+000133 | 
+000134 | 
+000135 | def quaternion(a, b):
+000136 |     return np.array([[a, b], [-np.conjugate(b), np.conjugate(a)]], complex)
+000137 | 
+000138 | 
+000139 | def rep(lam, q, m):
+000140 |     """pi(a), a=(lam in C, q in H (2x2), m in M_3(C)).  Bimodule split:
+000141 |     particles -> (lam,q) colour-trivial ; antiparticles -> (lam,m) weak-trivial."""
+000142 |     pi = np.zeros((NH, NH), complex)
+000143 |     # ---- particle block: weak/hypercharge action, identity on colour ----
+000144 |     for g in range(NG):
+000145 |         # lepton doublet (nu_L,e_L) <- q ;  nu_R<-lam, e_R<-conj(lam)
+000146 |         nl, el = IDX[("nu", "L", 0, g)], IDX[("e", "L", 0, g)]
+000147 |         pi[nl, nl], pi[nl, el] = q[0, 0], q[0, 1]
+000148 |         pi[el, nl], pi[el, el] = q[1, 0], q[1, 1]
+000149 |         pi[IDX[("nu", "R", 0, g)], IDX[("nu", "R", 0, g)]] = lam
+000150 |         pi[IDX[("e", "R", 0, g)], IDX[("e", "R", 0, g)]] = np.conjugate(lam)
+000151 |         for c in range(3):
+000152 |             ul, dl = IDX[("u", "L", c, g)], IDX[("d", "L", c, g)]
+000153 |             pi[ul, ul], pi[ul, dl] = q[0, 0], q[0, 1]
+000154 |             pi[dl, ul], pi[dl, dl] = q[1, 0], q[1, 1]
+000155 |             pi[IDX[("u", "R", c, g)], IDX[("u", "R", c, g)]] = lam
+000156 |             pi[IDX[("d", "R", c, g)], IDX[("d", "R", c, g)]] = np.conjugate(lam)
+000157 |     # ---- antiparticle block: colour action m on quarks, lam on leptons ----
+000158 |     off = NP
+000159 |     for g in range(NG):
+000160 |         for (name, ch, c, gg) in [f for f in P if f[3] == g]:
+000161 |             i = off + IDX[(name, ch, c, g)]
+000162 |             if name in ("nu", "e"):
+000163 |                 pi[i, i] = lam
+000164 |             else:                                    # quark: colour matrix m
+000165 |                 for c2 in range(3):
+000166 |                     j = off + IDX[(name, ch, c2, g)]
+000167 |                     pi[i, j] = m[c, c2]
+000168 |     return pi

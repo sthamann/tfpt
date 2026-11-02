@@ -1,0 +1,39 @@
+TFPT scientific source excerpt
+Original repository path: verification/v252_full_finite_triple.py
+Original file SHA-256: 820254440e178430422e50605067775656236602996307f67c9e69124ba5d163
+Inclusive original lines: 225-255
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000225 |           herm and odd)
+000226 | 
+000227 |     # 3. reality J
+000228 |     e = np.eye(NH, dtype=complex)
+000229 |     J2 = np.array([Japply(Japply(e[:, i], K), K) for i in range(NH)]).T
+000230 |     J2_ok = np.allclose(J2, np.eye(NH))
+000231 |     JD = np.array([Japply(D @ e[:, i], K) for i in range(NH)]).T
+000232 |     DJ = np.array([D @ Japply(e[:, i], K) for i in range(NH)]).T
+000233 |     JD_eq_DJ = np.allclose(JD, DJ)
+000234 |     check("REALITY (J) [E]: J^2 = +1 and J D_F = D_F J -- a real spectral triple "
+000235 |           "(charge conjugation commutes with the Dirac operator; needs the Majorana "
+000236 |           "matrix symmetric, which it is)",
+000237 |           J2_ok and JD_eq_DJ)
+000238 | 
+000239 |     # 4. grading
+000240 |     g2 = np.allclose(gamma @ gamma, np.eye(NH))
+000241 |     Jg = np.array([Japply(gamma @ e[:, i], K) for i in range(NH)]).T
+000242 |     gJ = np.array([gamma @ Japply(e[:, i], K) for i in range(NH)]).T
+000243 |     Jg_anti = np.allclose(Jg, -gJ)
+000244 |     a_rand = rep(0.7 + 0.3j, quaternion(0.6 + 0.1j, 0.2 - 0.4j),
+000245 |                  rng.normal(size=(3, 3)) + 1j * rng.normal(size=(3, 3)))
+000246 |     even = np.allclose(gamma @ a_rand - a_rand @ gamma, 0)
+000247 |     check("GRADING (gamma) [E]: gamma^2 = 1, [gamma, pi(a)] = 0 (the algebra is even) "
+000248 |           "and J gamma = -gamma J -- the Z/2 grading of the even spectral triple",
+000249 |           g2 and even and Jg_anti)
+000250 | 
+000251 |     # 5. KO-dimension 6
+000252 |     check("KO-DIMENSION 6 [E]: (J^2, J D = +D J, J gamma = -gamma J) = (+1,+,-) "
+000253 |           "= KO-dimension 6 mod 8 -- the Chamseddine-Connes-Marcolli value for the "
+000254 |           "finite Standard-Model/Pati-Salam geometry",
+000255 |           J2_ok and JD_eq_DJ and Jg_anti)

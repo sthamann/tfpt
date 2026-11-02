@@ -1,0 +1,129 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/atlas-defect-synthesis-20261024/covariant_instruments.py
+Original file SHA-256: d65018b048c1f136a57c479d85227a453ded0b4a5c5603c741fcb0ea5d936adc
+Inclusive original lines: 515-635
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000515 |             for index in range(6)
+000516 |         ),
+000517 |         "rational simplex frame covariance failed",
+000518 |     )
+000519 | 
+000520 |     ambient_states = [
+000521 |         sp.simplify(
+000522 |             parameter * projector
+000523 |             + (1 - parameter) * (zero_sum_projector - projector) / 4
+000524 |         )
+000525 |         for projector in ambient_projectors
+000526 |     ]
+000527 |     endpoint_data: dict[str, Any] = {}
+000528 |     for endpoint in (0, 1):
+000529 |         outcome_choi = [
+000530 |             sp.kronecker_product(
+000531 |                 effect.T,
+000532 |                 state.subs(parameter, endpoint),
+000533 |             )
+000534 |             for effect, state in zip(ambient_effects, ambient_states)
+000535 |         ]
+000536 |         total_choi = sum(outcome_choi, sp.zeros(36))
+000537 |         expected_outcome_rank = 4 if endpoint == 0 else 1
+000538 |         require(
+000539 |             all(matrix.T == matrix for matrix in outcome_choi),
+000540 |             f"p={endpoint} outcome Choi symmetry failed",
+000541 |         )
+000542 |         require(
+000543 |             all(matrix.rank() == expected_outcome_rank for matrix in outcome_choi),
+000544 |             f"p={endpoint} minimal Kraus ranks changed",
+000545 |         )
+000546 |         require(
+000547 |             all(all(entry.is_Rational for entry in matrix) for matrix in outcome_choi),
+000548 |             f"p={endpoint} outcome Choi matrix is not rational",
+000549 |         )
+000550 |         require(
+000551 |             partial_trace_second(total_choi, 6) == zero_sum_projector,
+000552 |             f"p={endpoint} total Choi input marginal changed",
+000553 |         )
+000554 |         require(
+000555 |             partial_trace_first(total_choi, 6) == zero_sum_projector,
+000556 |             f"p={endpoint} total Choi output marginal changed",
+000557 |         )
+000558 |         endpoint_data[str(endpoint)] = {
+000559 |             "all_six_outcome_choi_entries_rational": True,
+000560 |             "outcome_choi_rank": expected_outcome_rank,
+000561 |             "total_choi_rank": int(total_choi.rank()),
+000562 |             "total_choi_trace": bridge.rational_json(sp.trace(total_choi)),
+000563 |             "total_choi_sha256": matrix_hash(total_choi),
+000564 |             "input_partial_trace_is_H5_identity": True,
+000565 |             "output_partial_trace_is_H5_identity": True,
+000566 |         }
+000567 | 
+000568 |     return {
+000569 |         "claim": "complete finite G31-covariant instrument classification for the native rank-one six-simplex POVM",
+000570 |         "status": "PASS",
+000571 |         "arithmetic": "exact rationals and algebraic numbers; no floating point",
+000572 |         "sources": {
+000573 |             "doily_quartic_bridge.py": file_hash(CONTRACT_DIR / "doily_quartic_bridge.py"),
+000574 |             **bridge_report["sources"],
+000575 |         },
+000576 |         "native_input": {
+000577 |             "hilbert_dimension": 5,
+000578 |             "outcome_count": 6,
+000579 |             "effect_rank": 1,
+000580 |             "effect_trace": "5/6",
+000581 |             "all_60_effect_covariances": all(effect_covariance),
+000582 |             "transitive_outcome_action": True,
+000583 |         },
+000584 |         "classification": {
+000585 |             "instrument_formula": "I_a(rho) = Tr(E_a rho) sigma_a",
+000586 |             "rank_one_effect_implication": "every CP instrument operation with effect E_a is measure-and-prepare",
+000587 |             "stabilizer_marked_reflections": len(stabilizer_indices),
+000588 |             "stabilizer_distinct_transpositions": len(stabilizer_permutations),
+000589 |             "stabilizer_commutant_dimension_over_Q": commutant_dimension,
+000590 |             "commutant_basis": ["I5", "P_a"],
+000591 |             "state_formula": "sigma_a(p) = p P_a + (1-p)(I5-P_a)/4",
+000592 |             "projector_formula": "P_a = (6/5) E_a",
+000593 |             "complete_positive_parameter_interval": "0 <= p <= 1",
+000594 |             "state_block_eigenvalues": {"P_a_rank_1": "p", "orthogonal_rank_4": "(1-p)/4"},
+000595 |             "minimal_kraus_rank": {
+000596 |                 "p=1": 1,
+000597 |                 "p=0": 4,
+000598 |                 "0<p<1": 5,
+000599 |             },
+000600 |             "tagged_instrument_total_kraus_rank": {
+000601 |                 "p=1": 6,
+000602 |                 "p=0": 24,
+000603 |                 "0<p<1": 30,
+000604 |             },
+000605 |             "one_kraus_or_pure_output_selects": "p=1",
+000606 |             "one_kraus_or_pure_output_is_additional_assumption": True,
+000607 |             "minimal_tagged_environment_selects": "p=1",
+000608 |             "minimal_tagged_environment_is_additional_assumption": True,
+000609 |             "primitive_P1_implies_one_kraus": False,
+000610 |         },
+000611 |         "channel": {
+000612 |             "formula": "Phi_p = ((5p-1)/4) Phi_Lueders + ((1-p)/4) Tr(rho) I5",
+000613 |             "exact_spectrum_on_End_H5": {"1": 1, "p-1/5": 5, "0": 19},
+000614 |             "spectral_subspace_ranks": {
+000615 |                 "identity": int(identity_projector.rank()),
+000616 |                 "standard": int(standard_projector.rank()),
+000617 |                 "residual": int(residual_projector.rank()),
+000618 |             },
+000619 |             "unique_stationary_density_for_0_le_p_le_1": bridge.matrix_json(identity5 / 5),
+000620 |             "stationarity_reason": "p-1/5 lies in [-1/5,4/5], so eigenvalue 1 is simple",
+000621 |             "p=1_is_Lueders": True,
+000622 |             "forgotten_outcome_choi_formula": "J_p = ((5p-1)/4) J_Lueders + ((1-p)/4) I25",
+000623 |             "forgotten_outcome_choi_spectrum": {
+000624 |                 "p": 1,
+000625 |                 "(15p+1)/20": 5,
+000626 |                 "(1-p)/4": 19,
+000627 |             },
+000628 |             "forgotten_outcome_choi_rank": {
+000629 |                 "p=1": 6,
+000630 |                 "p=0": 24,
+000631 |                 "0<p<1": 25,
+000632 |             },
+000633 |             "tagged_and_forgotten_kraus_ranks_are_distinct_notions": True,
+000634 |         },
+000635 |         "repeated_outcomes": {

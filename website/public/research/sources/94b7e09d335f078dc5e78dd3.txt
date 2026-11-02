@@ -1,0 +1,131 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_all_six_hardy_reader.py
+Original file SHA-256: 803af8ae538995516b25a46d668a954e45f17f518102ecec9b2b7ff58901fb64
+Inclusive original lines: 1-123
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Replay the existing six induced insertions, not a new source search."""
+000002 | from pathlib import Path
+000003 | import json
+000004 | import mpmath as mp
+000005 | import sympy as sp
+000006 | 
+000007 | mp.mp.dps = 65
+000008 | om = mp.exp(2j * mp.pi / 3)
+000009 | ii = mp.j
+000010 | hs = [-om, -om, om]
+000011 | C = 2 * mp.power(3, -mp.mpf(3) / 4) * mp.exp(-5j * mp.pi / 12)
+000012 | x = mp.root(3, 4) * mp.cos(5 * mp.pi / 12)
+000013 | aa = mp.atan2(2 * x, 1 - mp.sqrt(3))
+000014 | bb = mp.atan2(mp.sqrt(2) * x, 1 - mp.sqrt(3) / 2)
+000015 | ell = aa - mp.sqrt(2) * bb
+000016 | I02 = C * ell
+000017 | I21 = -C * (ell + mp.pi * (mp.sqrt(2) - 1))
+000018 | P = mp.matrix([[0, 0, 1], [1, 0, 0], [0, 1, 0]])
+000019 | F = mp.matrix([[0, 0, I02], [0, 0, 0], [0, I21, 0]])
+000020 | N = mp.matrix([[0, 0, 0], [0, 0, -ii * I02], [-ii * I21, 0, 0]])
+000021 | 
+000022 | def fmt(z):
+000023 |     return {"re": mp.nstr(mp.re(z), 60), "im": mp.nstr(mp.im(z), 60)}
+000024 | 
+000025 | def matrix_fmt(m):
+000026 |     return [[fmt(m[r, s]) for s in range(3)] for r in range(3)]
+000027 | 
+000028 | def maxnorm(m):
+000029 |     return max(abs(v) for v in m)
+000030 | 
+000031 | records = []
+000032 | all_error = mp.mpf(0)
+000033 | for a, b in [(0, 1), (1, 2), (2, 0), (1, 0), (2, 1), (0, 2)]:
+000034 |     m = mp.matrix(3, 3)
+000035 |     entries = []
+000036 |     for r in range(3):
+000037 |         for s in range(3):
+000038 |             t = (r + 1) % 3
+000039 |             entry = {"r": r, "s": s, "q": s, "p": t}
+000040 |             if r != s and r != (s + 1) % 3:
+000041 |                 entry["reason"] = "disjoint open supports"
+000042 |             else:
+000043 |                 eq = -1 if s in (a, (a + 1) % 3) else 1
+000044 |                 ep = -1 if t in (b, (b + 1) % 3) else 1
+000045 |                 entry["kummer_eta_sign"] = eq * ep
+000046 |                 if eq * ep == 1:
+000047 |                     entry["reason"] = "two eta arcs cancel"
+000048 |                 else:
+000049 |                     th = ((5 if r == s else 7) * mp.pi / 6
+000050 |                           + 2 * mp.pi * s / 3)
+000051 |                     ray = mp.exp(ii * th)
+000052 |                     z0 = -hs[(a - s) % 3] * hs[(b - t) % 3] / om**(a + b)
+000053 |                     # Each individual square root continues from 1 on this ray.
+000054 |                     # The whole squared differential must not be principal-rooted.
+000055 |                     def integrand(v):
+000056 |                         w = ray * v
+000057 |                         zeta = z0 * mp.sqrt(1 + w / om**((a + 2) % 3))
+000058 |                         zeta *= mp.sqrt(1 - w / om**((b + 2) % 3))
+000059 |                         return zeta * ray / (1 - w**3)
+000060 |                     period = mp.quad(integrand, [0, mp.mpf('0.25'), 1, 4, mp.inf])
+000061 |                     m[r, s] = (-1 if r == s else 1) * period
+000062 |                     entry.update({"reason": "nonzero signed continuous-root period",
+000063 |                                   "ray_angle_pi": mp.nstr(th / mp.pi, 30),
+000064 |                                   "zeta_at_0": fmt(z0), "period": fmt(period)})
+000065 |             entry["scalar_reader_entry_without_4X_over_pi"] = fmt(m[r, s])
+000066 |             entries.append(entry)
+000067 |     common = P**(1 - b) * m * P**a
+000068 |     k = a if b == (a + 1) % 3 else (a - 1) % 3
+000069 |     expected = om**(-k) * (F if b == (a + 1) % 3 else N)
+000070 |     error = maxnorm(common - expected)
+000071 |     all_error = max(all_error, error)
+000072 |     records.append({"a": a, "b": b, "entries": entries,
+000073 |                     "scalar_cable_matrix": matrix_fmt(m),
+000074 |                     "common_G_matrix": matrix_fmt(common),
+000075 |                     "expected_phase": f"omega^(-{k})",
+000076 |                     "expected_base": "F" if b == (a + 1) % 3 else "N",
+000077 |                     "max_abs_residual": mp.nstr(error, 10)})
+000078 | 
+000079 | # Independent exact algebra, with coefficients kept symbolic.
+000080 | u, v, w = sp.symbols("alpha beta w", nonzero=True)
+000081 | os = -sp.Rational(1, 2) + sp.sqrt(3) * sp.I / 2
+000082 | ps = sp.Matrix([[0, 0, 1], [1, 0, 0], [0, 1, 0]])
+000083 | def e(r, s):
+000084 |     m = sp.zeros(3)
+000085 |     m[r, s] = 1
+000086 |     return m
+000087 | fs = u * e(0, 2) + v * e(2, 1)
+000088 | ns = -sp.I * (u * e(1, 2) + v * e(2, 0))
+000089 | def zero(m):
+000090 |     return all(sp.simplify(z) == 0 for z in m)
+000091 | exact = {
+000092 |     "F_squared": zero(fs**2 - u*v*e(0, 1)),
+000093 |     "N_squared": zero(ns**2 + u*v*e(1, 0)),
+000094 |     "E00_product": zero((fs**2/(u*v))*(-ns**2/(u*v)) - e(0, 0)),
+000095 |     "E11_product": zero((-ns**2/(u*v))*(fs**2/(u*v)) - e(1, 1)),
+000096 |     "E02_recovery": zero(e(0, 0)*fs*e(2, 2)/u-e(0, 2)),
+000097 |     "E21_recovery": zero(e(2, 2)*fs*e(1, 1)/v-e(2, 1)),
+000098 |     "E12_recovery": zero(sp.I*e(1, 1)*ns*e(2, 2)/u-e(1, 2)),
+000099 |     "E20_recovery": zero(sp.I*e(2, 2)*ns*e(0, 0)/v-e(2, 0)),
+000100 | }
+000101 | for a, b in [(0, 1), (1, 2), (2, 0), (1, 0), (2, 1), (0, 2)]:
+000102 |     z2 = (1+w**3)/(1-w**3)
+000103 |     alpha2 = 1/((w+os**a)*(w+os**((a+1)%3))
+000104 |                 *(w-os**b)*(w-os**((b+1)%3)))
+000105 |     proposed = -(w+os**((a+2)%3))*(w-os**((b+2)%3))/(1-w**3)**2
+000106 |     exact[f"squared_differential_{a}{b}"] = sp.simplify(z2*alpha2-proposed) == 0
+000107 | assert all(exact.values())
+000108 | assert all_error < mp.mpf('1e-55')
+000109 | out = {"scope": "Existing NS Phi=0 Hardy/G/J reader; all six existing offdiagonal induced mu inputs. Not whole physical Yukawa/source selection.",
+000110 |        "normalization": "Multiply every reported scalar family matrix by 4 Xstar/pi and tensor P_gamma,+; Xstar=1/(2 cosh(ell_NS/2)).",
+000111 |        "frame": "G_a=G Pc^(-a), JE^(b-1) output. Common=P^(1-b) Scalar P^a.",
+000112 |        "working_decimal_digits": mp.mp.dps,
+000113 |        "I02": fmt(I02), "I21": fmt(I21),
+000114 |        "I21_over_I02": fmt(I21/I02),
+000115 |        "all_54_entries": records,
+000116 |        "total_entries": 54, "nonzero_entries": 12, "exact_zeros": 42,
+000117 |        "max_common_frame_residual": mp.nstr(all_error, 15),
+000118 |        "exact_symbolic_identities": exact,
+000119 |        "algebra_scope": "Unital coefficient algebra generated by F,N is M3(C). This is not a CAR-product or physical-insertion identification."}
+000120 | target = Path(__file__).with_name("HARDY-BMU-ALL-SIX-INPUT-READER.json")
+000121 | target.write_text(json.dumps(out, indent=2) + "\n")
+000122 | print(json.dumps({"output": str(target), "total_entries": 54, "nonzero": 12,
+000123 |                   "max_abs_residual": mp.nstr(all_error, 10), "exact_identities": exact}, indent=2))

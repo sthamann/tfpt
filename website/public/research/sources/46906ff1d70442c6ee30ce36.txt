@@ -1,0 +1,105 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/e_series_role_review/ROLE-CHECK-REVIEW.txt
+Original file SHA-256: 5451b0ccdb7965db4cac9bd82d7b7f69c6ee75eebfb604aa9bfb12f11ab0700e
+Inclusive original lines: 1-97
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | INDEPENDENT ANALYTICAL REVIEW OF THE THREE DIRECT ROLE CHECKS
+000002 | 29 October 2026. Read-only inspection of check_roles.py and its saved result;
+000003 | no duplicate execution, no original or Atlas change.
+000004 | 
+000005 | Verdict: the three calculations and their stated narrow scopes are correct.
+000006 | The root builder is the existing check_a7_e7_clock.e8_roots; its writing main
+000007 | is not called. The checks use exact doubled root coordinates, rational Cartan
+000008 | projections and exact SymPy rank, not numerical tolerances.
+000009 | 
+000010 | 1. Four D5-compatible E6 corners and six E7 edges
+000011 | 
+000012 | For a tetrahedral axis sigma the condition on the last three coordinates
+000013 | is exactly that the root lies in D5 direct-sum R sigma. It gives the intended
+000014 | E6 cut. Distinct corner systems intersect in the40 roots of the fixed D5,
+000015 | so their union has72+72-40=104 roots. The unique root line perpendicular to
+000016 | both is one of the six D3 normal lines; its complement is the corresponding
+000017 | D5-containing E7.
+000018 | 
+000019 | The iterative sum closure is complete: it starts with a sign-symmetric set,
+000020 | adds every ambient root obtained as a sum with the current frontier, and
+000021 | stops only when no further root sum is available. Its equality with the
+000022 | 126-root complement proves generation of exactly this E7. In the GIVEN
+000023 | ambient Chevalley algebra the brackets for root sums are nonzero; brackets
+000024 | of opposite roots give the Cartan span. Thus the corresponding embedded E6
+000025 | Lie subalgebras generate e7 as well. The common Cartan dimension is5, their
+000026 | span has dimension7, and the22 added root spaces complete
+000027 |   78+78-45+22=133.
+000028 | 
+000029 | This is the explicit fixed-tetrahedron realization of the old D5-edge/E7
+000030 | incidence, not evidence for a newly discovered physical intermediate stage.
+000031 | Original sources: e-series-compiler-closure-20261023/CUTS.txt:40-76,114-137;
+000032 | e-series-incidence-algebra-20261024/THEOREMS.txt:96-116.
+000033 | 
+000034 | 2. The tested orthogonal Lie-algebra projection is not a homomorphism
+000035 | 
+000036 | Specify P as the orthogonal vector-space projection onto the embedded cut
+000037 | Lie algebra: it discards removed root spaces and projects Cartans onto that
+000038 | cut's root span. It is not merely a projector on the root-label Hilbert space
+000039 | with unspecified treatment of Cartans.
+000040 | 
+000041 | For the E6 +++ cut, alpha=e0+e5 is removed, and its retained coroot is
+000042 |   e0+(e5+e6+e7)/3, with norm squared4/3.
+000043 | For the E7(q/2) cut, alpha=e0+e1 is removed, and its retained coroot is
+000044 |   alpha-q/4, with norm squared3/2.
+000045 | Both alpha and -alpha root vectors project to zero, whereas
+000046 |   P[e_alpha,e_-alpha]=P H_alpha !=0.
+000047 | Thus P cannot preserve this bracket. Coroots equal roots in these simply
+000048 | laced norm-two conventions. Either opposite-root phase convention leaves
+000049 | the nonzero discrepancy unchanged. The code's two rational vectors and
+000050 | norms are correct.
+000051 | 
+000052 | This excludes treating this projection itself as a Lie-algebra quotient
+000053 | map. It does not exclude subalgebra inclusions, conditional expectations,
+000054 | physical coarse graining or symmetry breaking with its actual dynamics.
+000055 | Original conventions: e-series-quarter-clock-20261023/PROOF.txt:14-46,81-91;
+000056 | e-series-compiler-closure-20261023/FIELDS.txt:18-34.
+000057 | 
+000058 | 3. Ordinary horizontal modes commuting with the retained H8
+000059 | 
+000060 | On the common algebraic finite-energy domain,
+000061 |   [H8,J_(alpha,n)]
+000062 |    =(-8n-rho.alpha+(2a-1)Q(alpha)/2) J_(alpha,n).
+000063 | Hence for Q-neutral ordinary n=0 modes the condition is rho.alpha=0.
+000064 | No integer root e_i-e_j satisfies it because all eight rho entries differ.
+000065 | The neutral half roots have four plus signs, and the four chosen entries
+000066 | of (7,5,3,1,-1,-3,-5,-7) must sum to zero. There are exactly eight choices:
+000067 | six choose two complete opposite pairs, and two choose the complementary
+000068 | balanced selections 7-5-3+1=0 and its negative. Their four root lines are
+000069 | mutually orthogonal and span rank4. Thus their root system is4A1.
+000070 | 
+000071 | For both quarters the additional charged-root test is exhaustive. Every
+000072 | rho.alpha is integral; Q=+/-2 would require a half-integer cancellation.
+000073 | The two Q=+/-4 roots are +/-q/2, have rho pairing0 and have nonzero quarter
+000074 | coefficient. Therefore the same eight roots are ALL commuting ordinary
+000075 | horizontal root modes among the240 roots, not just within the126 neutral
+000076 | ones. The Cartan zero modes also commute. If describing the full finite
+000077 | horizontal Lie centralizer, it is4A1+u1^4, not only4A1.
+000078 | 
+000079 | The counterexample alpha=e0-e1 has rho.alpha=1 and gives the saved
+000080 | commutator -J_(alpha,0). This checks actual operator action rather than
+000081 | equating charge neutrality with energy symmetry.
+000082 | 
+000083 | The result does not classify n!=0 modes or the whole affine commutant.
+000084 | In particular the previously known p* operators J_(p*,-1) and J_(-p*,1)
+000085 | also commute with H8. Nor does the calculation reopen the old ground-state
+000086 | question: the existing color-center selector removes the extra full-field
+000087 | p* ground state on its stated center-neutral branch.
+000088 | Original sources: dynamic_reconstruction_20261027/
+000089 | A7-E7-CLOCK-DECOMPOSITION.txt:19-54,80-112 under the existing
+000090 | elliptic-moebius-source-bridge-20261026 contract;
+000091 | seam-joint-ward-state-20261014/PROOF.txt:113-143;
+000092 | source_recursion_20261028/CLUSTERING-ADMISSIBLE-SECTOR.txt:10-36,80-118.
+000093 | 
+000094 | No calculation derives an E8/E7/E6 physical gauge cascade, an actual P1
+000095 | source image, a state-selection rule or physical OS time. The explicit
+000096 | false flags and the absence of an all-affine classification claim in the
+000097 | saved JSON correctly preserve these boundaries.

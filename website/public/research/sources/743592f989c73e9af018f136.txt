@@ -1,0 +1,126 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/compiler-correlated-event-clock-20260919/source_channel.py
+Original file SHA-256: 3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593
+Inclusive original lines: 293-410
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000293 | def marked_data(mark: int, bell: list[np.ndarray], six: list[tuple[int, ...]], mapping):
+000294 |     idx = [k for k, p in enumerate(six) if p[mark] != mark]
+000295 |     require(len(idx) == 20, f"mark {mark}: selected 20 lifts")
+000296 |     counts = np.zeros((10, 10), dtype=int)
+000297 |     for k in idx:
+000298 |         p = bell_permutation(bell[k])
+000299 |         for a, b in enumerate(p):
+000300 |             counts[b, a] += 1
+000301 |     require(sorted(set(counts.ravel())) == [0, 4, 8], f"mark {mark}: transition counts")
+000302 |     require(np.array_equal(np.diag(counts), 8*np.ones(10, dtype=int)), f"mark {mark}: eight self events")
+000303 |     A = (counts == 4).astype(int)
+000304 |     require(np.array_equal(A, A.T) and np.all(A.sum(axis=0) == 3), f"mark {mark}: cubic adjacency")
+000305 |     require(np.array_equal(A@A, 2*np.eye(10, dtype=int)-A+np.ones((10, 10), dtype=int)),
+000306 |             f"mark {mark}: Petersen identity")
+000307 | 
+000308 |     # The explicit mark readout turns each 3+3 partition into a duad of the other five.
+000309 |     others = [i for i in range(6) if i != mark]
+000310 |     duads = {}
+000311 |     for b, part in mapping.items():
+000312 |         side = set(part)
+000313 |         if mark not in side:
+000314 |             side = set(range(6))-side
+000315 |         duads[b] = tuple(sorted(side-{mark}))
+000316 |     require(len(set(duads.values())) == 10 and all(set(d).issubset(others) for d in duads.values()),
+000317 |             f"mark {mark}: Bell labels biject to five-point duads")
+000318 |     for a, b in it.product(range(10), repeat=2):
+000319 |         expected = int(a != b and set(duads[a]).isdisjoint(duads[b]))
+000320 |         require(A[b, a] == expected, f"mark {mark}: adjacency is duad disjointness {a},{b}")
+000321 | 
+000322 |     # Quantum stay/jump instruments.  D_S(l) selects labels fixed by l.
+000323 |     n = 10
+000324 |     S = np.zeros((n*n, n*n), dtype=np.complex128)
+000325 |     J = np.zeros_like(S)
+000326 |     C = superoperator_integer([bell[k] for k in idx])
+000327 |     fixed_phase_global = []
+000328 |     for k in idx:
+000329 |         U = bell[k]
+000330 |         perm = bell_permutation(U)
+000331 |         ds = np.diag([int(perm[a] == a) for a in range(n)]).astype(np.complex128)
+000332 |         dj = np.eye(n)-ds
+000333 |         Ks, Kj = U@ds, U@dj
+000334 |         S += np.kron(Ks.conj(), Ks)
+000335 |         J += np.kron(Kj.conj(), Kj)
+000336 |         fixed = [a for a in range(n) if perm[a] == a]
+000337 |         phases = [U[a, a] for a in fixed]
+000338 |         require(len(fixed) == 4 and len(set(phases)) == 1,
+000339 |                 f"mark {mark}: each no-jump event has one global phase on its fixed four-space")
+000340 |         fixed_phase_global.append((int(round(phases[0].real)), int(round(phases[0].imag))))
+000341 |     instrument_equals_channel = np.array_equal(S+J, C)
+000342 |     require(instrument_equals_channel, f"mark {mark}: stay/jump monitoring sums exactly to C20")
+000343 |     require(not np.any(C.imag), f"mark {mark}: C20 is real in the Bell basis")
+000344 |     c_roots = (20, 12, 4, -4, 0)
+000345 |     c_int = np.rint(C.real).astype(np.int64)
+000346 |     c_poly = np.eye(100, dtype=np.int64)
+000347 |     for root in c_roots:
+000348 |         c_poly = c_poly@(c_int-root*np.eye(100, dtype=np.int64))
+000349 |     require(not np.any(c_poly), f"mark {mark}: C20 spectral polynomial")
+000350 |     c_traces = [int(np.trace(np.linalg.matrix_power(c_int, k))) for k in range(5)]
+000351 |     c_vand = sp.Matrix([[r**k for r in c_roots] for k in range(5)])
+000352 |     c_mult = [int(v) for v in c_vand.inv()*sp.Matrix(c_traces)]
+000353 |     require(c_mult == [1, 5, 75, 15, 4], f"mark {mark}: C20 exact spectrum multiplicities")
+000354 |     effect_s = np.zeros((n, n), dtype=np.complex128)
+000355 |     effect_j = np.zeros_like(effect_s)
+000356 |     for k in idx:
+000357 |         U = bell[k]
+000358 |         perm = bell_permutation(U)
+000359 |         ds = np.diag([int(perm[a] == a) for a in range(n)]).astype(np.complex128)
+000360 |         dj = np.eye(n)-ds
+000361 |         effect_s += (U@ds).conj().T@(U@ds)
+000362 |         effect_j += (U@dj).conj().T@(U@dj)
+000363 |     require(np.array_equal(effect_s, 8*np.eye(n)) and np.array_equal(effect_j, 12*np.eye(n)),
+000364 |             f"mark {mark}: stay/jump effects 2/5 and 3/5")
+000365 | 
+000366 |     # Exact operator-basis action.  No-jump phases are global per event and
+000367 |     # cancel in conjugation; the coherence filtering comes from incidence.
+000368 |     for a, b in it.product(range(10), repeat=2):
+000369 |         col = a + 10*b  # column-major vec(E_ab)
+000370 |         overlap = len(set(duads[a]) & set(duads[b]))
+000371 |         expected_s = np.zeros(100, dtype=np.complex128)
+000372 |         expected_s[col] = 4*overlap
+000373 |         require(np.array_equal(S[:, col], expected_s),
+000374 |                 f"mark {mark}: S(E_{a}{b})=4|e cap f| E_{a}{b}")
+000375 |         if a != b and overlap == 1:
+000376 |             expected_c = np.zeros(100, dtype=np.complex128)
+000377 |             expected_c[col] = 4
+000378 |             require(np.array_equal(C[:, col], expected_c),
+000379 |                     f"mark {mark}: C20 intersecting offdiagonal E_{a}{b}/5")
+000380 |         if overlap == 0:
+000381 |             swap = b + 10*a
+000382 |             nz = np.flatnonzero(C[:, col])
+000383 |             require(len(nz) == 1 and int(nz[0]) == swap and abs(C[swap, col]) == 4,
+000384 |                     f"mark {mark}: C20 disjoint offdiagonal transpose with phase E_{a}{b}")
+000385 | 
+000386 |     # Stopped first-jump channel Phi=J(I-S)^-1.  With unnormalised integer
+000387 |     # S,J this is J(20I-S)^-1.  Scale by 240 to keep an integer certificate.
+000388 |     sdiag = np.diag(S).real.astype(int)
+000389 |     require(np.array_equal(S, np.diag(sdiag)), f"mark {mark}: S diagonal in Bell matrix units")
+000390 |     den = 20-sdiag
+000391 |     require(set(den.tolist()) == {12, 16, 20}, f"mark {mark}: stopped denominators 12,16,20")
+000392 |     T = J @ np.diag(240//den)
+000393 |     require(np.array_equal(T.real, np.rint(T.real)) and np.array_equal(T.imag, np.rint(T.imag)),
+000394 |             f"mark {mark}: 240 Phi Gaussian integer")
+000395 |     require(not np.any(T.imag), f"mark {mark}: 240 Phi real")
+000396 |     roots = (240, 80, -160, 0, 48, -48)
+000397 |     t_int = np.rint(T.real).astype(object)
+000398 |     poly = np.eye(100, dtype=object)
+000399 |     for root in roots:
+000400 |         poly = poly@(t_int-root*np.eye(100, dtype=object))
+000401 |     require(not np.any(poly), f"mark {mark}: stopped-channel spectral polynomial")
+000402 |     trace_moments = [int(np.trace(np.linalg.matrix_power(t_int, k))) for k in range(6)]
+000403 |     vand = sp.Matrix([[r**k for r in roots] for k in range(6)])
+000404 |     stopped_mult = [int(v) for v in vand.inv()*sp.Matrix(trace_moments)]
+000405 |     require(stopped_mult == [1, 5, 4, 60, 15, 15],
+000406 |             f"mark {mark}: stopped-channel multiplicities")
+000407 |     return (idx, counts, A, S, J, C, instrument_equals_channel,
+000408 |             {"global_phase_counts": {str(k): fixed_phase_global.count(k) for k in sorted(set(fixed_phase_global))},
+000409 |              "coherence_action": "S(E_ef)=|e intersection f|/5 E_ef; phases are global per event"},
+000410 |             stopped_mult, c_mult)

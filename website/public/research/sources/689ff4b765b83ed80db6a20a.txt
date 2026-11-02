@@ -1,0 +1,196 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/OLD-SOURCE-MAP-AUDIT.txt
+Original file SHA-256: 6f93a94456b33f286ae54233928afcc421d6d1971963c3349eb1b77abbd49aa4
+Inclusive original lines: 191-378
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000191 | 
+000192 | The same source defines SEAM.EQUIV.01 as the claim that the raw
+000193 | reflection-positive seam state is the holomorphic (E8)_1 net at tau=i and
+000194 | keeps the unconditional parent open; see lines 138-147. It also states at
+000195 | lines 305-316 that the common parent, microscopic MMST source, and global
+000196 | state are not supplied.
+000197 | 
+000198 | The MMST branch does not secretly provide the P1 map:
+000199 | 
+000200 |   * verification/v366_mmst_seam_collar.py:75-90 sets
+000201 |     inclass=True after arithmetic checks. It does not construct the local
+000202 |     source or an intertwiner from P1.
+000203 | 
+000204 |   * verification/v994_mmst_criteria_battery.py:72-85 defines a QWZ/p+ip strip
+000205 |     Hamiltonian, and lines 88 onward extracts its edge covariance. This is a
+000206 |     separately specified lattice collar.
+000207 | 
+000208 |   * v994's own header, lines 14-46, says Osborne-Stottmeister covers the free
+000209 |     fermion/Virasoro and bilinear limits, while the mu4/GSO spin-field
+000210 |     extension and net-level modular step remain outside the executed result.
+000211 | 
+000212 |   * verification/v998_seam_modular_closure.py:24-28 fences its scope to
+000213 |     finite QWZ cylinders and finite q-expansions and leaves conformal-net
+000214 |     modular covariance open.
+000215 | 
+000216 | Hence SEAM.EQUIV supplies a conditional or separately modeled downstream
+000217 | scaling route. It does not identify that QWZ covariance, state, or local net
+000218 | with the original P1 boundary kernel.
+000219 | 
+000220 | The similarly numbered software checks are not the bridge either.
+000221 | verification/v31_R_dictionary.py searches a D4-fixed monodromy dictionary and
+000222 | leaves a Hitchin/Mehta-Seshadri residual. verification/v42_exterior_leg.py
+000223 | computes an exterior-area ratio and retains a physical-identification premise.
+000224 | Neither acts on the P1 collar or its Cauchy data.
+000225 | 
+000226 | 2. Smallest decisive sewing theorem
+000227 | ====================================
+000228 | 
+000229 | There is one useful compression. The analytic boundary entries B and P_C do
+000230 | not need independent guesses once a genuine marked collared spin isomorphism
+000231 | has been supplied.
+000232 | 
+000233 | Let
+000234 | 
+000235 |   F:(M_1,S_1,D_1) -> (M_2,S_2,D_2)
+000236 | 
+000237 | be a unitary spin-bundle isomorphism of manifolds with boundary that preserves
+000238 | the oriented normal, collar coordinate, boundary trace, and the full Dirac
+000239 | operator:
+000240 | 
+000241 |   F D_1 F^(-1)=D_2,
+000242 |   Tr_2 F=W Tr_1.
+000243 | 
+000244 | Writing D_j=gamma_n(partial_n+B_j) in the transported product trivialization
+000245 | gives
+000246 | 
+000247 |   W B_1 W^(-1)=B_2.                                      (A)
+000248 | 
+000249 | Moreover F maps harmonic interior solutions bijectively, so it maps their
+000250 | boundary traces. The orthogonal projections onto those Cauchy-data spaces
+000251 | therefore satisfy
+000252 | 
+000253 |   W P_C,1 W^(-1)=P_C,2.                                  (B)
+000254 | 
+000255 | Equations (A) and (B) are direct consequences of intertwining and require no
+000256 | new model. They agree with the standard construction of Calderon projectors
+000257 | from the product collar, invertible double, and Poisson operator in
+000258 | Booss-Bavnbek, Lesch and Zhu, "The Calderon Projection: New Definition and
+000259 | Applications", J. Geom. Phys. 59 (2009), arXiv:0803.4160. That paper gives a
+000260 | canonical Calderon construction for a supplied elliptic first-order operator;
+000261 | it does not identify two previously unrelated physical sources. Guillarmou,
+000262 | Moroianu and Park, arXiv:1009.3179, likewise construct the natural orthogonal
+000263 | Calderon projector for a supplied spin Dirac operator. Neither theorem creates
+000264 | the missing F.
+000265 | 
+000266 | The scope is exact:
+000267 | 
+000268 |   * B and P_C follow from F.
+000269 | 
+000270 |   * The seam multiplier requires the extra marked relation
+000271 | 
+000272 |       W u_1 W^(-1)=u_2.                                  (C)
+000273 | 
+000274 |     Winding one alone does not imply (C). Many inequivalent unitary
+000275 |     representatives have the same K1 class.
+000276 | 
+000277 |   * Reflection follows only when F is equivariant for the relevant reflected
+000278 |     half and its Pin/Real lift. The Schottky reflection rho, free Moebius deck
+000279 |     delta_A, and quarter transport Q are distinct operations.
+000280 | 
+000281 |   * A quasifree covariance or OS state follows only if it is defined from the
+000282 |     same transported full Cauchy graph or is separately required to satisfy
+000283 | 
+000284 |       omega_2 = omega_1 o Ad(W^(-1)).                    (D)
+000285 | 
+000286 |     The Calderon projector alone is not a general interacting Schwinger
+000287 |     functional.
+000288 | 
+000289 |   * Local support follows only when F maps regions and intertwines the local
+000290 |     algebras. A Hilbert-space unitary can satisfy (A) while being nonlocal.
+000291 | 
+000292 | Thus there are not six unrelated gaps, but there is also not a bare
+000293 | one-particle shortcut. The minimal sufficient datum is one marked local
+000294 | collared spin/source isomorphism
+000295 | 
+000296 |   I_source=(F,W; seam faces, deck, Pin lift, Q, u, local net, state),
+000297 | 
+000298 | whose Dirac part automatically yields (A) and (B), while its marks impose (C)
+000299 | and (D).
+000300 | 
+000301 | 3. Exact gap dictionary
+000302 | =======================
+000303 | 
+000304 | Object          Present in older sources                 Missing equality
+000305 | ------          ------------------------                 ----------------
+000306 | B               fullv21 B_alpha; later B_Sigma          W B_alpha W^-1=B_Sigma
+000307 | domain          alpha-twisted H1; later collar domain   W Dom(B_alpha)=Dom(B_Sigma)
+000308 | u               fullv21 M_z; later only [u_Sigma]=1     W M_z W^-1=u_Sigma
+000309 | P_C             TFPT45 Cauchy projector                 full two-face relation (B)
+000310 | reflection      old Moebius/Pin data; later Theta/R_tau equivariant lift under F
+000311 | state           supplied omega in Seed_op; QWZ sea      transported equality (D)
+000312 | locality        supplied A_loc; separate QWZ support    region-preserving net map
+000313 | cover           old annulus; elliptic paired annuli     I_cover with seam traces
+000314 | metric          old flat source modulus 1; elliptic 1/2 full operator/conformal transport
+000315 | 
+000316 | The last row is a genuine full two-dimensional obstruction. Boundary spectra
+000317 | can be rescaled into the same angular units, but a uniform rescaling cannot
+000318 | change the annulus modulus. Therefore the exact boundary tuple found on the
+000319 | elliptic annulus does not by itself prove equality of the full old flat source.
+000320 | 
+000321 | 4. Relation to the recovered elliptic annulus
+000322 | ==============================================
+000323 | 
+000324 | The current elliptic work already supplies the target side of I_source:
+000325 | 
+000326 |   E:y^2=x^4-1,
+000327 |   {rho_+,rho_-}={hQkappa,hQ^3kappa},
+000328 |   delta=hQ^2,
+000329 |   chi(A)=chi(B)=-1,
+000330 | 
+000331 | and the exact NS boundary tuple. It also proves that Q exchanges the two
+000332 | dividing annulus charts, while rho, delta_A, and Q occupy different operator
+000333 | slots. See
+000334 | 
+000335 |   experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/
+000336 |   ORIGINAL-RELEVANCE.txt:23-79,113-152,293-307,381-418.
+000337 | 
+000338 | The same audit already isolates I_cover as the first additional premise. The
+000339 | present historical continuation adds the negative result that neither the
+000340 | v31 closure paper, the v42 master paper, TFPT45, nor the MMST branch supplies
+000341 | that premise under another name.
+000342 | 
+000343 | 5. Smallest decisive original-source test
+000344 | ==========================================
+000345 | 
+000346 | No further finite spectrum or character calculation is needed. The first
+000347 | decisive test is whether the original P1 construction supplies a marked local
+000348 | collar map W satisfying simultaneously
+000349 | 
+000350 |   W Dom(B_P1)=H1_NS,
+000351 |   W B_P1 W^-1=2 pi B_cov,
+000352 |   (W direct-sum W) P_C,P1 (W direct-sum W)^-1=P_C,ann,
+000353 |   W u_P1 W^-1=e^(2 pi i s),
+000354 | 
+000355 | with the original reflected local algebra and state transported as in (D).
+000356 | 
+000357 | Success criterion: these are consequences of the original P1 circle kernel
+000358 | and its canonical double, with elliptic annulus modulus 1/2 or an explicit
+000359 | operator/conformal transport from the old modulus.
+000360 | 
+000361 | Abort criterion: the source yields only [u]=1, a matching group order, a
+000362 | boundary spectral resemblance, or a separately chosen QWZ/Hardy state. Any
+000363 | one of those leaves I_source open.
+000364 | 
+000365 | Final classification
+000366 | ====================
+000367 | 
+000368 | PROVED IN THE ORIGINALS: an explicit old circle B_alpha,u pair; a later
+000369 | abstract operational seed; canonical Calderon reconstruction from a supplied
+000370 | collared Dirac problem; downstream heat and MMST/QWZ constructions.
+000371 | 
+000372 | PROVED BY THIS AUDIT: the analytic B and P_C entries collapse functorially to
+000373 | one supplied marked collared spin isomorphism. The old paper chain contains no
+000374 | such isomorphism and does not identify the state or local net.
+000375 | 
+000376 | OPEN: the actual P1-to-elliptic marked local source map I_source. This is the
+000377 | single load-bearing original relation. It is more precise than a request for
+000378 | a generic "field dictionary" and smaller than adding a new CAR model.

@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/theta_lattice_closure_20261027/fields/TWO-BRANCH-VERTEX-GROUPOID.txt
+Original file SHA-256: fe9459880a659895813853671b5959855d32826cc52c244ca167ff2453b6f8dc
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | TWO BRANCH LATTICE VERTEX GROUPOID
+000002 | The marked alpha transport is coherent on full vertex fields without splitting G31
+000003 | 2026-10-27
+000004 | 
+000005 | 
+000006 | VERDICT
+000007 | =======
+000008 | 
+000009 | The required full-field lift exists on the two already constructed objects
+000010 | 
+000011 |   Lambda_0=Lambda,              Lambda_1=zeta_8 Lambda.
+000012 | 
+000013 | The smallest construction does not require a same-object lift of V with
+000014 | V^2=1, does not require [V,J]=1 in the lattice central extension, and does not
+000015 | split the full G31 extension.
+000016 | 
+000017 | Start with the existing faithful C12 lattice-vertex lift on object zero,
+000018 | 
+000019 |   c_0^12=1,       beta_0=c_0^9,       sigma_0=c_0^4,
+000020 |   beta_0^4=1,     sigma_0^3=1,        [beta_0,sigma_0]=1.      (1)
+000021 | 
+000022 | Let
+000023 | 
+000024 |   T: V_(Lambda_0) -> V_(Lambda_1)                              (2)
+000025 | 
+000026 | be any unitary standard-cocycle lift of the actual lattice isometry
+000027 | alpha_01=zeta_8 V.  In the branch coordinate frames the underlying integral
+000028 | matrix of T is V.  Define
+000029 | 
+000030 |   beta_1  =T beta_0 T^(-1),
+000031 |   sigma_1 =T sigma_0^(-1) T^(-1),
+000032 |   alpha_01=T,
+000033 |   alpha_10=beta_0 T^(-1).                                     (3)
+000034 | 
+000035 | Then on V_(Lambda_0) direct sum V_(Lambda_1),
+000036 | 
+000037 |   alpha^2=diag(beta_0,beta_1),
+000038 |   alpha^8=1,
+000039 |   alpha sigma alpha^(-1)=sigma^(-1).                          (4)
+000040 | 
+000041 | Both branches carry a faithful C12 action
+000042 | 
+000043 |   c_j=beta_j sigma_j,
+000044 |   c_j^12=1,              c_j^4=sigma_j,       c_j^9=beta_j.   (5)
+000045 | 
+000046 | This closes the requested coherent two-object field family.  It does not form
+000047 | a single alpha-invariant lattice VOA.  Alpha remains an arrow between the two
+000048 | VOAs, exactly as required by the already proved lattice obstruction.
+000049 | 
+000050 | An optional stronger result also holds.  For the fixed standard cocycle there
+000051 | are 256 simultaneous sign-character sections for which J,V,sigma themselves
+000052 | obey the full same-frame presentation of C4 x S3.  Their lifted group has
+000053 | order 24 and c=J sigma has order 12.  That stronger section is unnecessary for
+000054 | (2)-(5), and every strict solution changes the zero-on-basis lift of J.  It
+000055 | must therefore not replace an already frozen J vertex lift without an explicit
+000056 | linearization choice.
+000057 | 
+000058 | 
+000059 | 1. FIXED STANDARD COCYCLE
+000060 | =========================
+000061 | 
+000062 | Let B be the integral basis produced by check_theta_lattice.py and let G be its
+000063 | even unimodular Gram matrix.  The checker fixes the standard bimultiplicative
+000064 | cocycle
+000065 | 
+000066 |   epsilon(m,n)=(-1)^(m^T F n),                                (6)
+000067 | 
+000068 | where
+000069 | 
+000070 |   F_ii=G_ii/2 mod 2,
+000071 |   F_ij=G_ij mod 2 for i>j,
+000072 |   F_ij=0 for i<j.
+000073 | 
+000074 | Thus
+000075 | 
+000076 |   F+F^T=G mod 2,
+000077 |   epsilon(m,m)=(-1)^(<m,m>/2).                                (7)
+000078 | 
+000079 | No cocycle is fitted to the desired group relations.  The same rule is used
+000080 | on both branch coordinate frames.
+000081 | 
+000082 | The mod-two calculation is a complete all-charge calculation, not a finite
+000083 | shell test.  Both epsilon(m,n) and every sign carry eta_A(m) depend only on the
+000084 | classes of m,n in Lambda/2Lambda.  Hence the 256 charge classes and the 65536
+000085 | ordered charge pairs exhaust the cocycle identities for every m,n in Lambda.
+000086 | The exact integral matrix identities A^T G A=G and the geometric relations of
+000087 | J,V,sigma are checked separately over Z by check_theta_lattice.py before this
+000088 | parity reduction is used.
+000089 | 
+000090 | For a lattice isometry A define
+000091 | 
+000092 |   D_A=A^T F A+F mod 2,
+000093 |   q_A^0(m)=sum_(i<j) (D_A)_ij m_i m_j mod 2.                  (8)
+000094 | 
+000095 | The checker proves exhaustively on Lambda/2Lambda that
+000096 | 
+000097 |   q_A^0(m+n)+q_A^0(m)+q_A^0(n)=m^T D_A n.                    (9)
+000098 | 
+000099 | Consequently
+000100 | 
+000101 |   Ahat(e^m)=(-1)^(q_A^0(m)) e^(A m)                          (10)
+000102 | 
+000103 | is an automorphism of the twisted lattice group algebra.  On the full lattice
+000104 | VOA it acts by
+000105 | 
+000106 |   Ahat[h_1(-n_1)...h_r(-n_r)e^m]
+000107 |     =(Ah_1)(-n_1)...(Ah_r)(-n_r)(-1)^(q_A^0(m))e^(Am).        (11)
+000108 | 
+000109 | Because A is orthogonal and the phase has modulus one, (11) is unitary.  It
+000110 | fixes the vacuum, preserves the conformal vector and intertwines every vertex
+000111 | operator.  The calculation on the group algebra together with the ordinary
+000112 | isometry relations on the Heisenberg generators therefore proves the
+000113 | relations on all vertex fields, not only on the root shell.
+000114 | 
+000115 | Multiplication by a sign character
+000116 | 
+000117 |   (-1)^(t^T m),              t in (F_2)^8                     (12)
+000118 | 
+000119 | changes the lift section but not epsilon, A, the lattice, or the vertex
+000120 | algebra.  The optional strict census enumerates exactly these 256 choices per
+000121 | marked generator.
+000122 | 
+000123 | 
+000124 | 2. WHY THE TWO OBJECT CONSTRUCTION NEEDS NO SPLITTING
+000125 | =====================================================
+000126 | 
+000127 | The identities in (3)-(5) are formal consequences of one existing C12 lift
+000128 | and one invertible VOA isomorphism T.
+000129 | 
+000130 | First,
+000131 | 
+000132 |   alpha_10 alpha_01
+000133 |     =beta_0 T^(-1)T
+000134 |     =beta_0,
+000135 | 
+000136 |   alpha_01 alpha_10
+000137 |     =T beta_0 T^(-1)
+000138 |     =beta_1.                                                   (13)
+000139 | 
+000140 | Since beta_0 and beta_1 have order four, alpha has exact order eight.
+000141 | 
+000142 | For the cubic mark, the first arrow obeys
+000143 | 
+000144 |   T sigma_0
+000145 |     =sigma_1^(-1) T,                                         (14)
+000146 | 
+000147 | because sigma_1^(-1)=T sigma_0 T^(-1).  On the return arrow,
+000148 | 
+000149 |   beta_0 T^(-1) sigma_1
+000150 |     =beta_0 sigma_0^(-1) T^(-1)
+000151 |     =sigma_0^(-1) beta_0 T^(-1),                             (15)
+000152 | 
+000153 | using only [beta_0,sigma_0]=1.  Equations (14),(15) are precisely the two
+000154 | components of alpha sigma alpha^(-1)=sigma^(-1).
+000155 | 
+000156 | Conjugation transports (1) to beta_1.  The inverse in the definition of
+000157 | sigma_1 does not change its order, and beta_1 still commutes with sigma_1.
+000158 | Equation (5) follows.
+000159 | 
+000160 | The actual geometry also matches.  In branch coordinates T has matrix V.
+000161 | The return arrow has matrix
+000162 | 
+000163 |   J V^(-1)=J V=iV,                                           (16)
+000164 | 
+000165 | because the geometric matrix V is an involution.  Likewise
+000166 | 
+000167 |   V sigma^(-1) V^(-1)=sigma,
+000168 | 
+000169 | so the transported branch-one cubic has the same geometric matrix sigma.
+000170 | Only its cocycle section has been transported, as it must be.
+000171 | 
+000172 | The exact checker deliberately uses a valid standard-cocycle lift T for which
+000173 | 
+000174 |   T^2 != 1,                 [T,beta_0] != 1.                  (17)
+000175 | 
+000176 | Nevertheless every identity (13)-(15) passes on all 256 residue fields.
+000177 | Thus no hidden same-frame split is being used.
+000178 | 
+000179 | The choice of T is unique only up to character gauge.  If T'=chi T, transport
+000180 | by chi conjugates all branch-one data beta_1,sigma_1,c_1 and the return arrow.
+000181 | It produces an isomorphic two-object vertex groupoid.  Thus the field family
+000182 | is canonical only up to this ordinary groupoid equivalence; the proof does not
+000183 | promote one character section to a physical observable.
+000184 | 
+000185 | 
+000186 | 3. OPTIONAL STRICT ORDER 24 SECTION
+000187 | ===================================
+000188 | 
+000189 | For completeness, the checker also asks the stronger question posed in the
+000190 | task.  For every A in {J,V,sigma} it enumerates
+000191 | 
+000192 |   eta_A^t(m)=(-1)^(q_A^0(m)+t^T m),       t in (F_2)^8,       (18)
+000193 | 
+000194 | and tests the complete relations on all m mod 2.
+000195 | 
+000196 | Power-normalized candidate counts are
+000197 | 
+000198 |   J^4=1:       256,
+000199 |   V^2=1:        16,
+000200 |   sigma^3=1:    16.                                          (19)

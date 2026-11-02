@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/primitive-seam-operator-reconstruction-20261025/OS-SOURCE-REPAIR.txt
+Original file SHA-256: 50bc771398e8a363a617c677f503f556c9f2adccf6e40cfcb460ca4eb9f55ba6
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | OS SOURCE REPAIR: FULL MOMENTS, GRADED WORDS, AND THE PRIMITIVE SEAM BOUNDARY
+000002 | ================================================================================
+000003 | 
+000004 | Scope and verdict
+000005 | -----------------
+000006 | 
+000007 | This note repairs one precise mathematical defect in the archived TFPT
+000008 | Osterwalder--Schrader argument.  It does not construct a new physical source.
+000009 | 
+000010 | PROVED here:
+000011 | 
+000012 | 1. The connected or truncated distributions
+000013 | 
+000014 |        kappa_n = delta^n log Z |_{0}
+000015 | 
+000016 |    cannot themselves be used as the full Schwinger moment functional in the OS
+000017 |    Gram form.  A two-variable Gaussian already gives a 2 by 2 counterexample.
+000018 | 
+000019 | 2. The correct input is the full normalized moment functional
+000020 | 
+000021 |        S_n = Z[0]^{-1} delta^n Z |_{0},
+000022 | 
+000023 |    equivalently the graded moment--cumulant expansion of exp(log Z).
+000024 | 
+000025 | 3. A unital, reflection-intertwining boundary word map which preserves the
+000026 |    complete original Z-functional on all reflected word products induces an OS
+000027 |    isometry.  This is a sufficient repair theorem.  It does not require odd CAR
+000028 |    fields to belong to the physical observable algebra.
+000029 | 
+000030 | OPEN after the repair:
+000031 | 
+000032 | The cited TFPT source does not construct Z_adm from D_+, B_Sigma, the Calderon
+000033 | projector, or the relative spectral/Chern--Simons expressions.  It also does not
+000034 | provide the state-preserving boundary word map required below.  Thus this note
+000035 | repairs the logical form of the OS step but does not close the primitive source
+000036 | gap.
+000037 | 
+000038 | 
+000039 | 1. The defect in the cited source
+000040 | ---------------------------------
+000041 | 
+000042 | The relevant original passages are:
+000043 | 
+000044 | * documents/archive--tfpt-45--source_extracts--04_qft_source/sections/
+000045 |   005-subsection-admissible-schwinger-functions-minkowski-loca.tex:144-161
+000046 |   defines W_rel = log Z_rel and explicitly calls
+000047 | 
+000048 |        S_n^T = delta^n W_rel |_{0}
+000049 | 
+000050 |   the truncated admissible Schwinger distributions.
+000051 | 
+000052 | * The same file, lines 163-184, then applies the OS axioms directly to
+000053 |   {S_n^T} and says that the reconstructed theory has these truncated
+000054 |   distributions as its Schwinger functions.
+000055 | 
+000056 | * documents/archive--tfpt-45--source_extracts--04_qft_source/sections/
+000057 |   008-section-relative-reflection-positivity-with-fermions.tex:181-196 and
+000058 |   217-254 repeats the same typing: it proves distributional properties of the
+000059 |   truncated family and supplies that family directly to the stated OS/CAR
+000060 |   reconstruction theorem.
+000061 | 
+000062 | This is not the standard OS input.  Reflection positivity is a positivity
+000063 | condition on the full moment functional, or equivalently on the normalized
+000064 | generating functional Z/Z[0].  It is nonlinear under passage from moments to
+000065 | connected cumulants.  Positivity of a reflected full Gram matrix is therefore
+000066 | not positivity of a matrix formed by replacing its entries with cumulants.
+000067 | 
+000068 | 
+000069 | 2. Small exact counterexample
+000070 | -----------------------------
+000071 | 
+000072 | Let X be a centered real Gaussian variable smeared at positive Euclidean time,
+000073 | and write Y = Theta X for its reflected copy.  Choose the covariance
+000074 | 
+000075 |        E[X^2] = E[Y^2] = a > 0,
+000076 |        E[YX] = c > 0,
+000077 | 
+000078 | with 0 < c <= a, so that the elementary covariance matrix
+000079 | 
+000080 |        [ a  c ]
+000081 |        [ c  a ]
+000082 | 
+000083 | is positive semidefinite.  Such a centered Gaussian field is reflection
+000084 | positive on the one-dimensional positive-time test space.  Explicitly, put
+000085 | rho=c/a and expand a polynomial F in Hermite polynomials for the normalized
+000086 | variable X/sqrt(a): F=sum_n f_n H_n.  The bivariate Gaussian identity gives
+000087 | 
+000088 |        E[(Theta F)F] = sum_n n! rho^n |f_n|^2 >= 0.
+000089 | 
+000090 | Thus positivity holds on the whole polynomial algebra, not merely at degree
+000091 | one.
+000092 | 
+000093 | Use the positive-time polynomial basis
+000094 | 
+000095 |        F_0 = 1,
+000096 |        F_1 = X^2.
+000097 | 
+000098 | The genuine OS Gram matrix is
+000099 | 
+000100 |        G_ij = E[(Theta F_i) F_j].
+000101 | 
+000102 | Wick's rule gives
+000103 | 
+000104 |        E[X^2]       = a,
+000105 |        E[Y^2 X^2]   = E[Y^2]E[X^2] + 2E[YX]^2
+000106 |                      = a^2 + 2c^2.
+000107 | 
+000108 | Hence
+000109 | 
+000110 |        G_full = [ 1       a          ],
+000111 |                 [ a   a^2 + 2c^2     ]
+000112 | 
+000113 | and
+000114 | 
+000115 |        det G_full = 2c^2 > 0.
+000116 | 
+000117 | Thus the full moment functional is positive on span{1,X^2}.
+000118 | 
+000119 | Now make exactly the erroneous replacement of a full four-point entry by its
+000120 | connected four-point cumulant.  For a centered Gaussian,
+000121 | 
+000122 |        kappa_4(Y,Y,X,X) = 0,
+000123 | 
+000124 | while the two-point cumulant is kappa_2(X,X)=a.  The resulting cumulant
+000125 | substitution is
+000126 | 
+000127 |        G_trunc = [ 1   a ],
+000128 |                  [ a   0 ],
+000129 | 
+000130 | with
+000131 | 
+000132 |        det G_trunc = -a^2 < 0.
+000133 | 
+000134 | Therefore an RP Gaussian theory becomes nonpositive if truncated functions are
+000135 | inserted as though they were full OS moments.  Conversely, separate properties
+000136 | of the cumulants cannot establish positivity of the full reflected word
+000137 | functional without the moment reconstruction.
+000138 | 
+000139 | This example is only a test of the theorem's mathematical typing.  It introduces
+000140 | no TFPT field, state, or physical source.
+000141 | 
+000142 | 
+000143 | 3. Correct bosonic and fermionic reconstruction
+000144 | ------------------------------------------------
+000145 | 
+000146 | Let the mixed source be mathcal J=(J,eta,bar eta), with J even and eta,bar eta
+000147 | Grassmann odd.  Assume Z[0] is nonzero and define
+000148 | 
+000149 |        W[mathcal J] = log Z[mathcal J] - log Z[0].
+000150 | 
+000151 | Connected distributions are derivatives of W.  Full distributions are
+000152 | 
+000153 |        S_n(z_1,...,z_n)
+000154 |          = Z[0]^{-1}
+000155 |            delta_{z_1} ... delta_{z_n} Z[mathcal J] |_{mathcal J=0}.
+000156 | 
+000157 | Equivalently,
+000158 | 
+000159 |        S_n(z_1,...,z_n)
+000160 |          = sum_{pi in Pi_n} epsilon(pi;z_1,...,z_n)
+000161 |              product_{B in pi} kappa_{|B|}(z_B).
+000162 | 
+000163 | Here Pi_n is the set of set partitions.  Inside each block and among blocks one
+000164 | uses one declared canonical order.  epsilon(pi;z_1,...,z_n) is the Koszul sign
+000165 | of the permutation which moves the odd source derivatives into that block
+000166 | order; even source derivatives contribute no sign.  This is precisely the
+000167 | coefficient identity Z/Z[0] = exp(W).
+000168 | 
+000169 | For a purely fermionic Gaussian source, W has degree two.  Thus connected
+000170 | cumulants above degree two vanish, but the full even moments do not:
+000171 | 
+000172 |        S_{2m}(f_1,...,f_{2m})
+000173 |           = Pf( K(f_i,f_j) )_{1 <= i,j <= 2m}.
+000174 | 
+000175 | This Pfaffian is the Grassmann-signed sum over pairings.  It is the fermionic
+000176 | analogue of the a^2+2c^2 term in the preceding bosonic example.  Reconstructing
+000177 | with exp W therefore retains the complete Wick family which the direct use of
+000178 | {S_n^T} discards.
+000179 | 
+000180 | 
+000181 | 4. Minimal repaired OS theorem
+000182 | ------------------------------
+000183 | 
+000184 | Let P_+ be the unital graded polynomial word algebra generated by admissible
+000185 | Euclidean field insertions with support at positive time.  Let Theta be the
+000186 | antilinear graded reflection, including the declared order reversal and CAR
+000187 | sign convention.  Let omega_Z be the normalized full moment functional obtained
+000188 | from Z/Z[0].
+000189 | 
+000190 | Assume:
+000191 | 
+000192 |   (R1) omega_Z is defined on every word (Theta F)G with F,G in P_+;
+000193 | 
+000194 |   (R2) full reflection positivity holds,
+000195 | 
+000196 |            omega_Z((Theta F)F) >= 0       for every F in P_+;
+000197 | 
+000198 |   (R3) positive Euclidean translations act on P_+, preserve the OS null space,
+000199 |        and the induced operators satisfy the symmetric contraction bounds and
+000200 |        strong continuity required for a self-adjoint positive generator;

@@ -1,0 +1,121 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/elliptic_quillen_response/check_elliptic_quillen_response.py
+Original file SHA-256: 54bf2d0789eae5ec37be893f9f8d1ad99ebc520e0dc1539c0679d6c6b8f149cd
+Inclusive original lines: 1-113
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Relative flat-connection determinant on the retained square NS/NS curve.
+000002 | 
+000003 | No new geometry, heat profile, EM identification or P1 measure is selected.
+000004 | The relative heat integral independently checks the theta determinant.
+000005 | """
+000006 | from pathlib import Path
+000007 | import json
+000008 | import mpmath as mp
+000009 | 
+000010 | HERE=Path(__file__).resolve().parent
+000011 | 
+000012 | 
+000013 | def require(condition,message):
+000014 |     if not condition:raise RuntimeError(message)
+000015 | 
+000016 | 
+000017 | def theta(z):
+000018 |     # Our Jacobi argument has period one; mpmath's argument has period pi.
+000019 |     return mp.jtheta(3,mp.pi*z,mp.exp(-mp.pi))
+000020 | 
+000021 | 
+000022 | def log_norm(z):
+000023 |     return -2*mp.pi*mp.im(z)**2+2*mp.log(abs(theta(z)/theta(0)))
+000024 | 
+000025 | 
+000026 | def heat_circle(t,a):
+000027 |     a=a-mp.nint(a)
+000028 |     if t<mp.mpf('.03'):
+000029 |         return (1+2*sum(mp.exp(-k*k/(4*t))*mp.cos(2*mp.pi*k*a)
+000030 |                         for k in range(1,21)))/mp.sqrt(4*mp.pi*t)
+000031 |     return sum(mp.exp(-4*mp.pi**2*t*(n+a)**2) for n in range(-20,21))
+000032 | 
+000033 | 
+000034 | def relative_heat_integral(z):
+000035 |     u,v=mp.im(z),mp.re(z)
+000036 |     def difference(t):
+000037 |         if t==0:return mp.mpf(0)
+000038 |         return (heat_circle(t,mp.mpf('.5')+v)*heat_circle(t,mp.mpf('.5')+u)
+000039 |                 -heat_circle(t,mp.mpf('.5'))**2)/t
+000040 |     return -mp.quad(difference,[0,mp.mpf('.03'),mp.mpf('.2'),1,mp.inf])
+000041 | 
+000042 | 
+000043 | def product_theta_ratio(z):
+000044 |     # Independent Jacobi product for theta3(z)/theta3(0).
+000045 |     q=mp.exp(-mp.pi);w=mp.exp(2*mp.pi*1j*z)
+000046 |     return mp.fprod((1+w*q**(2*n-1))*(1+q**(2*n-1)/w)
+000047 |                     /(1+q**(2*n-1))**2 for n in range(1,81))
+000048 | 
+000049 | 
+000050 | def main():
+000051 |     mp.mp.dps=60
+000052 |     probes=[mp.mpc('.17','.23'),mp.mpc('.5','0'),mp.mpc('.11','-.19')]
+000053 |     rows=[]
+000054 |     for z in probes:
+000055 |         target=log_norm(z);heat=relative_heat_integral(z)
+000056 |         require(abs(heat-target)<mp.mpf('1e-45'),'independent relative spectral heat determinant')
+000057 |         require(abs(product_theta_ratio(z)-theta(z)/theta(0))<mp.mpf('1e-55'),'independent Jacobi product')
+000058 |         err=max(abs(log_norm(z+1)-target),abs(log_norm(z+1j)-target),abs(log_norm(1j*z)-target))
+000059 |         require(err<mp.mpf('1e-55'),'both large gauges and square action preserve Quillen norm')
+000060 |         rows.append(dict(z=[float(mp.re(z)),float(mp.im(z))],relative_log_determinant=float(target),
+000061 |                          heat_integral_error=float(abs(heat-target)),gauge_and_quarter_error=float(err)))
+000062 |     hx=mp.diff(lambda x:log_norm(mp.mpc(x,0)),0,2)
+000063 |     hy=mp.diff(lambda y:log_norm(mp.mpc(0,y)),0,2)
+000064 |     require(abs(hx+2*mp.pi)<mp.mpf('1e-50') and abs(hy+2*mp.pi)<mp.mpf('1e-50'),'isotropic exact square susceptibility')
+000065 |     zero=mp.mpc('.5','.5')
+000066 |     require(abs(theta(zero))<mp.mpf('1e-55'),'explicit null-mode divisor')
+000067 |     circle=[theta(zero+mp.mpf('.07')*mp.exp(2*mp.pi*1j*j/128)) for j in range(129)]
+000068 |     divisor_winding=sum(mp.arg(circle[j+1]/circle[j]) for j in range(128))/(2*mp.pi)
+000069 |     require(abs(divisor_winding-1)<mp.mpf('1e-55'),'independent determinant-section divisor winding')
+000070 |     z=mp.mpc('.17','.23')
+000071 |     coefficient=lambda w:mp.exp(-mp.pi*mp.im(w)**2)*theta(w)
+000072 |     phase=coefficient(z+1j)/coefficient(z)
+000073 |     require(abs(phase-mp.exp(-2*mp.pi*1j*mp.re(z)))<mp.mpf('1e-55'),'unitary theta coefficient transition')
+000074 |     # Same old full-NS winding, finite open-window telescoping only.
+000075 |     # q is a diagnostic counting parameter, not alpha or a gauge holonomy.
+000076 |     q=mp.mpf(1)/3
+000077 |     occ=lambda n:1/(1+mp.exp(2*mp.pi*(mp.mpf(n)+mp.mpf('.5'))))
+000078 |     relative=(1-q*occ(-33))/(1-q*occ(32))
+000079 |     require(abs(relative-(1-q))<mp.mpf('1e-55'),'retained thermal winding factor')
+000080 |     c3=1/(8*mp.pi);q0=48*c3**4
+000081 |     target_slope=-mp.mpf('2.5')*q0/(1-q0)
+000082 |     require(target_slope<0,'old minimal EM transfer has nonzero slope at alpha0')
+000083 |     result=dict(curve='E=C/(Z+iZ), original untwisted nontrivial NS/NS spin',
+000084 |                 operator='K_z=(-i partial_x+2 pi v)+i(-i partial_y+2 pi u), z=v+i u; fixed H1_NSNS domain',
+000085 |                 positive_spectrum='K_z* K_z: 4 pi^2[(m+1/2+v)^2+(n+1/2+u)^2]',
+000086 |                 relative_log_determinant='log[det_zeta(K_z* K_z)/det_zeta(K_0* K_0)]=-2 pi u^2+2 log|theta3(z|i)/theta3(0|i)|',
+000087 |                 heat_contract='-integral_0^infinity [Tr exp(-t L_z)-Tr exp(-t L_0)]dt/t; flat UV coefficients cancel; invertible probes only',
+000088 |                 probes=rows,quillen_log_norm_hessian=[[float(hx),0.0],[0.0,float(hy)]],
+000089 |                 vector_dirac_effective_action='Gamma_vec=-log det_zeta L_z; Hessian at0=2 pi I2; chiral modulus has half this coefficient',
+000090 |                 null_divisor='z=(1+i)/2 modulo Z+iZ; one complex zero mode of K, simple theta zero, quadratic norm zero',
+000091 |                 independently_counted_divisor_winding=float(divisor_winding),
+000092 |                 line_convention='positive theta/determinant-section line; explicitly dualize if comparing with occupied Berry convention',
+000093 |                 line_unitary_frame_connection='A=2 pi i u dv; F=-2 pi i dv wedge du; (i/2pi) integral F=+1',
+000094 |                 frame_transitions='e_unit(z+1)=e_unit(z), e_unit(z+i)=exp(2pi i v)e_unit(z)',
+000095 |                 line_holonomies='v-cycle exp(-2 pi i u); u-cycle exp(2 pi i v), including endpoint frame identification',
+000096 |                 old_counting_q=float(q),old_relative_winding_determinant=float(relative),
+000097 |                 full_spectral_large_gauge_ratio=1.0,
+000098 |                 smooth_zero_twist_EM_test=dict(condition='Only if a proposed smooth z(alpha) has z(0)=0 and uses this norm alone',
+000099 |                                                quillen_first_derivative=0.0,old_minimal_transfer_first_derivative=float(target_slope),
+000100 |                                                verdict='They cannot agree up to a constant reference or fixed multiplicity under that condition; no exclusion for a derived nonzero background or additional original insertions'),
+000101 |                 conclusion='Full spectral norm and the old occupation-pair counting determinant have distinct insertions despite sharing the old circle and winding.',
+000102 |                 not_derived=['primitive P1 charged source/measure and cross-face embedding',
+000103 |                              'finite v472 Berry-to-continuum metric/connection limit',
+000104 |                              'identification z=z(alpha_EM) or determinant power5/4',
+000105 |                              'positive CAR/KMS state for arbitrary temporal gauge twist',
+000106 |                              'physical time, interacting native source, or complete TFPT solution'],
+000107 |                 physical_gates_closed=[],complete_TFPT_solution=False)
+000108 |     out=HERE/'runs/elliptic_quillen_response.json';out.parent.mkdir(exist_ok=True)
+000109 |     out.write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
+000110 |     print(json.dumps(result,indent=2,ensure_ascii=False))
+000111 | 
+000112 | 
+000113 | if __name__=='__main__':main()

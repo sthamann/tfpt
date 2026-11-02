@@ -1,0 +1,126 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/mixed-current-origin-20261014/check_continuous_time_sector_test.py
+Original file SHA-256: bfab38f6ed057f368a28a037c068b26cfde3aadc856583ee79363de7f2244679
+Inclusive original lines: 98-215
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000098 | spec.loader.exec_module(mod)
+000099 | offset_controls = []
+000100 | for nx in (8, 16, 32, 64, 128):
+000101 |     energies = [mod.momentum_ground_energy(nx, k, ny=8) for k in range(4)]
+000102 |     shifts = [(e-energies[1])*nx/(2*math.pi) for e in energies]
+000103 |     need(abs(shifts[3]) < 1e-7, 'opposite quarter common vacuum energy')
+000104 |     # Diagnostic only: the UNIFORM all-N bound is proved via BV Fourier tails.
+000105 |     need(max(abs(x) for x in shifts) < 0.3, 'actual common-reference control')
+000106 |     if nx == 8:
+000107 |         for k in range(4):
+000108 |             h = mod.qwz_cylinder(nx,8,1.,k)
+000109 |             vals = np.linalg.eigvalsh(h)
+000110 |             need(abs(float(np.sum(vals[vals<0]))-energies[k]) < 1e-10,
+000111 |                  'Bloch and complete builder vacuum energies agree')
+000112 |     offset_controls.append({'Nx':nx, 'scaled_offsets_relative_r1':shifts})
+000113 | cusp = []
+000114 | e0 = -np.sum(np.abs(np.linalg.eigvalsh(mod.strip_at_momentum(0.,8))))/2
+000115 | for p in (1e-3, 1e-4, 1e-5):
+000116 |     hp = mod.strip_at_momentum(p,8)
+000117 |     ep = -np.sum(np.abs(np.linalg.eigvalsh(hp)))/2
+000118 |     need(abs(np.trace(hp)) < 1e-12, 'original Bloch trace vanishes')
+000119 |     cusp.append({'p':p,'one_sided_slope':float((ep-e0)/p)})
+000120 | need(abs(cusp[-1]['one_sided_slope']+1) < 1e-3,
+000121 |      'the two zero branches produce the stated -abs(p) cusp')
+000122 | 
+000123 | # ACTUAL nonunitary attempt: normalized exp(-s H_N) P_E Omega_N.
+000124 | # Imaginary-time quadratic evolution preserves a Slater state. The Thouless
+000125 | # matrix avoids cancellation of huge occupied-sea exponential factors.
+000126 | actual_heat_controls = []
+000127 | nx, ny = 32, 8
+000128 | cols = np.arange(nx)
+000129 | mask = (cols % (nx//8) >= (nx//8)//4) & (cols % (nx//8) < (nx//8)//2)
+000130 | sigma = np.repeat(np.where(mask,-1.,1.), 2*ny)
+000131 | for sector in (1,3):
+000132 |     h = mod.qwz_cylinder(nx,ny,1.,sector)
+000133 |     es, vs = np.linalg.eigh(h)
+000134 |     occ, unocc = vs[:,es<0], vs[:,es>0]
+000135 |     en, ep = -es[es<0]*nx/(2*math.pi), es[es>0]*nx/(2*math.pi)
+000136 |     need(len(en)==len(ep)==nx*ny, 'actual quarter filling')
+000137 |     aa = occ.conj().T @ (sigma[:,None]*occ)
+000138 |     bb = unocc.conj().T @ (sigma[:,None]*occ)
+000139 |     kk = np.linalg.solve(aa.T,bb.T).T
+000140 |     loga = np.linalg.slogdet(aa)[1]
+000141 |     lognorm0 = 2*loga+np.linalg.slogdet(np.eye(len(en))+kk.conj().T@kk)[1]
+000142 |     need(abs(lognorm0)<1e-7, 'Thouless normalization of the actual parity state')
+000143 |     step = lambda ss: np.exp(-ss*ep)[:,None]*kk*np.exp(-ss*en)[None,:]
+000144 |     ss, tt = .25, .1
+000145 |     ks = step(ss)
+000146 |     dd = np.linalg.inv(np.eye(len(en))+ks.conj().T@ks)
+000147 |     particle = ks@dd@ks.conj().T
+000148 |     energy = float(np.sum(ep*particle.diagonal().real)
+000149 |                    +np.sum(en*(1-dd.diagonal().real)))
+000150 |     need(energy>=-1e-8,'heat-filtered excitation energy is nonnegative')
+000151 |     vv = occ+unocc@ks
+000152 |     cs = vv@dd@vv.conj().T
+000153 |     c0 = occ@occ.conj().T
+000154 |     need(np.linalg.norm(cs@cs-cs)<1e-8,'filtered full state remains a pure Slater state')
+000155 |     pp = np.array([mod.sector_momentum(nx,j,sector) for j in range(nx)])
+000156 |     fourier = np.exp(1j*np.outer(cols,pp))/math.sqrt(nx)
+000157 |     charge_changes = []
+000158 |     for residue in range(8):
+000159 |         ff = fourier[:,residue::8]
+000160 |         pk = np.kron(ff@ff.conj().T,np.eye(2*ny))
+000161 |         dq = float(np.sum(pk.T*(cs-c0)).real)
+000162 |         charge_changes.append(dq)
+000163 |     need(max(abs(x) for x in charge_changes)<1e-7,
+000164 |          'original heat and neutral parity preserve all eight residue charges')
+000165 |     knext=step(ss+tt/2)
+000166 |     ld=lambda k: np.linalg.slogdet(np.eye(len(en))+k.conj().T@k)[1]
+000167 |     ftime=math.exp(ld(knext)-ld(ks))
+000168 |     need(0<ftime<=1+1e-10,'actual normalized positive-time kernel')
+000169 |     # Independent full Slater evolution/QR checks the Thouless chart formula.
+000170 |     scaled=es*nx/(2*math.pi)
+000171 |     raw=(vs.conj().T@(sigma[:,None]*occ))*np.exp(-ss*scaled)[:,None]
+000172 |     qq,rr=np.linalg.qr(raw)
+000173 |     cq=vs@qq@qq.conj().T@vs.conj().T
+000174 |     need(np.linalg.norm(cq-cs)<1e-8,'direct full Slater covariance agrees')
+000175 |     gt=qq.conj().T@(np.exp(-tt*scaled)[:,None]*qq)
+000176 |     e0scaled=float(np.sum(scaled[es<0]))
+000177 |     ftime_qr=math.exp(np.linalg.slogdet(gt)[1]+tt*e0scaled)
+000178 |     need(abs(ftime_qr-ftime)<1e-9,'independent full Slater time kernel agrees')
+000179 |     lognorm_qr=2*np.log(np.abs(rr.diagonal())).sum()+2*ss*e0scaled
+000180 |     need(abs(lognorm_qr-(2*loga+ld(ks)))<1e-8,'raw sea-reference norm agrees')
+000181 |     edge_changes=[]
+000182 |     for y in (0,ny-1):
+000183 |         i,j=2*y,2*(ny+y)
+000184 |         edge_changes.append(float(np.linalg.norm((cs-c0)[i:i+2,j:j+2])))
+000185 |     need(min(edge_changes)>1e-9,'actual heat filter retains responses on both edges')
+000186 |     actual_heat_controls.append({'sector':sector,'Nx':nx,'Ny':ny,
+000187 |         'heat_s':ss,'time_t':tt,'mean_original_H_N':energy,
+000188 |         'normalized_time_kernel':ftime,'original_residue_charge_changes':charge_changes,
+000189 |         'both_edge_covariance_changes':edge_changes,
+000190 |         'independent_QR_kernel':ftime_qr,
+000191 |         'independent_QR_covariance_error':float(np.linalg.norm(cq-cs)),
+000192 |         'raw_norm_squared':math.exp(2*loga+ld(ks))})
+000193 | 
+000194 | result = {'date':'2026-10-23',
+000195 |           'verdict':'SCOPED_CONTINUOUS_TIME_COMPACTNESS_EXCLUDES_NEW_SECTOR_WITH_UNCHANGED_FULL_MAP',
+000196 |           'finite_checks_passed':True,
+000197 |           'spectral_tail_positive_margin':str(margin),
+000198 |           'real_time_average_tail_control':{'tail':real_tail,
+000199 |                                             'bound':2*real_average_defect},
+000200 |           'divergent_first_moment_countercontrols':first_moment_controls,
+000201 |           'register_grade_controls':grade_cases,
+000202 |           'heat_pair_controls':heat_controls,
+000203 |           'sharp_positive_time_limit':0,'sharp_norm_at_time_zero':1,
+000204 |           'source_common_reference_controls':offset_controls,
+000205 |           'source_cusp_controls':cusp,
+000206 |           'actual_nonunitary_QWZ_heat_filtered_pair':actual_heat_controls,
+000207 |           'actual_source_sha256':hashlib.sha256(src.read_bytes()).hexdigest(),
+000208 |           'general_compactness_and_uniform_reference_bounds':'written_analytic_proofs_not_extrapolations',
+000209 |           'inherited_full_observable_map_required':True,
+000210 |           'uniform_first_energy_moment_required':False,
+000211 |           'new_P1_spinor_sector_constructed':False,
+000212 |           'all_P1_no_go_claimed':False}
+000213 | (OUT/'continuous-time-sector-results.json').write_text(json.dumps(result,indent=2)+'\n')
+000214 | print(json.dumps({'finite_checks_passed':True,'original_register_backgrounds':4,
+000215 |                   'source_sizes':[8,16,32,64,128],'time_zero_norm_mismatch':True}))

@@ -1,0 +1,62 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/older-paper-source-recovery-20261025/EM-HISTORY.txt
+Original file SHA-256: 372d4cd7bc1b5a74127fc24cc8b5b08f8590a301152145fe06bc48ba6a198dd3
+Inclusive original lines: 201-254
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 | \]
+000202 | nicht `1-q`. Bereits der zweite Eigenwert `q^2>0` entscheidet die Frage. Nimmt man den Nullmode hinzu, ist der Spektralradius eins und der in v31 verlangte Determinant nicht von der behaupteten Form.
+000203 | 
+000204 | Ausführbarer endlicher Präfixtest:
+000205 | 
+000206 | ```python
+000207 | import sympy as s
+000208 | q=s.symbols('q', positive=True)
+000209 | eigs=[q**n for n in range(1,5)]
+000210 | det4=s.prod(1-x for x in eigs)
+000211 | assert all(x != 0 for x in eigs)
+000212 | assert s.simplify(det4-(1-q)) != 0
+000213 | assert s.simplify(det4/(1-q)-s.prod(1-q**n for n in range(2,5))) == 0
+000214 | ```
+000215 | 
+000216 | Der Test lief am 2026-10-25 durch. Er beweist nicht die unendliche Aussage durch Endlichkeit; diese folgt direkt aus der gezeigten Eigenbasis. Er zertifiziert den kleinsten unterscheidenden Präfix exakt symbolisch.
+000217 | 
+000218 | ## Minimaler wiedergewonnener Anschluss ohne freien Modus
+000219 | 
+000220 | Der alte Transfer erlaubt einen kanonischen Rang eins Anschluss genau unter einer zusätzlichen, prüfbaren Spektralaussage:
+000221 | 
+000222 | * `P_adm` reduziert `|B_Sigma|`.
+000223 | * Der kleinste positive admissible Eigenwert `lambda_1` ist isoliert und einfach.
+000224 | * Dann ist
+000225 |   \[
+000226 |   P_1=\mathbf 1_{\{\lambda_1\}}\bigl(|B_\Sigma|\vert_{\operatorname{Ran}P_{\rm adm}}\bigr)
+000227 |   \]
+000228 |   ein kanonischer Rang eins Projektor, und äquivalent
+000229 |   \[
+000230 |   P_1=\operatorname*{s-lim}_{t\to\infty}
+000231 |   e^{t\lambda_1}P_{\rm adm}e^{-t|B_\Sigma|}P_{\rm adm}.
+000232 |   \]
+000233 | 
+000234 | Dieser Anschluss wählt keinen freien Vektor. Er verwendet nur die bereits vorhandenen Operatoren. Die historischen Quellen beweisen seine Voraussetzungen für den EM Sektor jedoch nicht. Die v31 Begleitfassung setzt auf ihrem kosmologischen Ast sogar `m_1=48`, also das Gegenteil der benötigten Einfachheit. Eine vollständige positive Reparatur braucht deshalb genau einen der folgenden ursprünglichen Nachweise:
+000235 | 
+000236 | 1. einen EM spezifischen invariant reduzierenden Teilraum, auf dem der erste admissible Eigenwert einfach ist, samt Abbildung zum späteren `psi_Sigma`, oder
+000237 | 2. eine direkte Quellengleichheit `B_Sigma=D_Gamma` plus eine begründete admissible Projektion auf eine einfache erste Kreislinie.
+000238 | 
+000239 | Ohne einen solchen Nachweis bleibt die volle Wärmeübertragung historisch konstruiert und die Rang eins EM Determinante historisch angenommen. Das ist die kleinste verbleibende Lücke.
+000240 | 
+000241 | ## Kurzregister weiterer geprüfter Quellen
+000242 | 
+000243 | * `paper-source:b44aafebf2cbf89b4a6d47a4`, `tfpt-42/sections/036-section-absolute-dimensionless-metrology-from-the-bounda.tex`, Zeilen 252 bis 307, SHA256 `084a84dda258841c64b89b8a7a2d8861e3deb044a3214735e9949d484a8252e5`: formuliert Rang eins und Ausschöpfung des IR Blocks ausdrücklich als Annahme.
+000244 | * `paper-source:e66f2358afcfb634f61704f3`, `tfpt-42/sections/040-subsection-full-stage-atlas.tex`, Zeilen 314 bis 395, SHA256 `eafcd82930fa314a0ed69b3fa68f46082a6536c31d6a2e17d4d286335aa5a037`: führt die IR Fortsetzungen und Rang eins Trunkierung im bedingten Layer.
+000245 | * `paper-source:08d600e1a95d2e7d738df66a`, `_archive/paper-latex/old/eliminating_k.tex`, Zeilen 75 bis 112, SHA256 `94cec6ff6d98506955170ec3d5973d58c19a674a4109cfd2f697c00a9afb2097`: verwendet `phi_tree=1/(6pi)` nur in der Gravitationsnormierung, ohne Nahttransfer oder `tr_adm`.
+000246 | * `_archive/paper-latex/old/theory_root.tex`, Zeilen 103 bis 149, SHA256 `ff5e09a20f2665ce64e8b9b0155f00d4d7518a7096d490834cf164abc5d87b5a`: zeigt die Addition `2pi+2pi+2pi=6pi`, aber keinen Transferoperator.
+000247 | 
+000248 | ## Verdict
+000249 | 
+000250 | * **Quellengeprüft und präzisiert:** Die ältere konkrete Kreisfamilie ist der angegebene Ursprung des Naht Spektralflusses und der beanspruchten Normierung `1/(6pi)`. Nach Orientierungsreparatur ist der innere Kreis Spektralfluss exakt; globale Klebung und physische Normierung sind damit nicht neu bewiesen. Der v31 Wärmeübertrag ist als volle Spektralfunktion definiert, und `tr_adm` ist in der späteren Verwendung eine gewöhnliche Spur auf dem admissiblen Raum.
+000251 | * **Historisch als konkrete Formel definiert, aber nicht aus dem alten Kreisoperator hergeleitet:** Der positive spurklassige Transfer `P_adm exp(-ell|B_Sigma|)P_adm` steht in v31; die benötigten Reduktions und Spektralannahmen werden in der Begleitfassung offengelegt. v32 erklärt seine kosmologische Verwendung zur Vermutung. v42 übernimmt ihn wieder theoremförmig.
+000252 | * **Exakt ausgeschlossen:** Der natürliche Wärmeübertrag des alten Kreisoperators ist nicht Rang eins. Gleiche Basiskonstante, gleicher Dämpfungsmaßstab oder gleiche admissible Bezeichnung liefern keine Operatoridentität.
+000253 | * **Bedingt kanonisch reparierbar:** Ein einfacher isolierter niedrigster admissibler Eigenwert erzeugt über seinen Spektralprojektor die benötigte Linie ohne freie Wahl.
+000254 | * **Offen in den geprüften Quellen:** Einfachheit dieses EM Eigenwerts, die Gleichheit `B_Sigma=D_Gamma`, die genaue EM Teilprojektion und das Intertwining zum späteren `psi_Sigma`.

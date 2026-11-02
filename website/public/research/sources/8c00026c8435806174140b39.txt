@@ -1,0 +1,74 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_moving_normal_kernel.py
+Original file SHA-256: f8f6a14d0411aac4fedf14f8a6c09d6d34bbc37e3ef91eea111af5e5ea783839
+Inclusive original lines: 1-66
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Symbolic tangent identities for the original R035 normal-kernel map.
+000002 | Finite matrices are coordinate checks of universal identities, not physical models.
+000003 | """
+000004 | from pathlib import Path
+000005 | import json
+000006 | import sympy as s
+000007 | checks=[]
+000008 | def need(name,condition):
+000009 |  good=bool(condition);checks.append(dict(name=name,passed=good))
+000010 |  if not good:raise AssertionError(name)
+000011 | def eq(a,b):return all(s.simplify(v)==0 for v in a-b)
+000012 | def herm(prefix):
+000013 |  a,b,c,d=s.symbols(prefix+'0:4',real=True)
+000014 |  return s.Matrix([[a,c+s.I*d],[c-s.I*d,b]])
+000015 | def mat(prefix,n,m):
+000016 |  ar=s.symbols(prefix+'r0:'+str(n*m),real=True);ai=s.symbols(prefix+'i0:'+str(n*m),real=True)
+000017 |  return s.Matrix(n,m,[x+s.I*y for x,y in zip(ar,ai)])
+000018 | I=s.eye(2);T=s.Matrix.vstack(I,s.zeros(2));P=T*T.H;Q=s.eye(4)-P
+000019 | A0=s.I*herm('a');A1=s.I*herm('b');C0=mat('c',2,2);C1=mat('d',2,2)
+000020 | J0=T*A0+s.Matrix.vstack(s.zeros(2),C0);J1=T*A1+s.Matrix.vstack(s.zeros(2),C1)
+000021 | need('unitary-frame tangent constraints',eq(T.H*J0+J0.H*T,s.zeros(2)))
+000022 | need('whole moving-frame derivative splits orthogonally',eq(T*(T.H*J0)+Q*J0,J0))
+000023 | need('connection antihermitian',eq(A0.H,-A0))
+000024 | h=mat('h',2,1);dh=mat('v',2,1)
+000025 | v=J0*h+T*dh
+000026 | need('whole kinetic restriction retains positive normal Gram',eq(v.H*v,(dh+A0*h).H*(dh+A0*h)+h.H*C0.H*C0*h))
+000027 | curv=J0.H*J1-J1.H*J0+A0*A1-A1*A0
+000028 | need('moving-kernel curvature sign and full matrix order',eq(curv,C0.H*C1-C1.H*C0))
+000029 | need('off-diagonal Gram blocks need not be Hermitian',s.I*s.diag(1,-1)!=(s.I*s.diag(1,-1)).H)
+000030 | 
+000031 | V=s.Matrix([[0,s.I],[s.I,0]])
+000032 | need('passive frame covariance of connection',eq((T*V).H*(J0*V),V.H*A0*V))
+000033 | need('passive frame covariance of normal Gram',eq((Q*J0*V).H*(Q*J0*V),V.H*C0.H*C0*V))
+000034 | Gframe=s.I*herm('g')
+000035 | need('varying unitary-frame derivative has affine connection term',eq(T.H*(J0+T*Gframe),A0+Gframe))
+000036 | need('varying frame does not change orthogonal derivative',eq(Q*(J0+T*Gframe),Q*J0))
+000037 | 
+000038 | # Arbitrary Hermitian invertible paired-normal block and tangent off-diagonal.
+000039 | M=herm('m');X0=mat('x',2,2);X1=mat('y',2,2);Minv=M.inv()
+000040 | B=s.diag(s.zeros(2),M)
+000041 | dB=s.Matrix.vstack(s.Matrix.hstack(s.zeros(2),X0.H),s.Matrix.hstack(X0,s.zeros(2)))
+000042 | Coperator=-Minv*X0;Joperator=s.Matrix.vstack(A0,Coperator)
+000043 | need('differentiated actual normal kernel equation',eq(dB*T+B*Joperator,s.zeros(4,2)))
+000044 | need('reduced normal inverse gives whole positive kinetic Gram',eq(Coperator.H*Coperator,X0.H*Minv*Minv*X0))
+000045 | need('reduced normal inverse gives mixed ordered Gram',eq(Coperator.H*(-Minv*X1),X0.H*Minv*Minv*X1))
+000046 | 
+000047 | # Noncommuting Gram square root, with arbitrary positive branch understood.
+000048 | r0,r1,r2=s.symbols('r0 r1 r2',real=True);R=s.Matrix([[r0,r1],[r1,r2]])
+000049 | dR=herm('t');G=R*R;dG=R*dR+dR*R;Ri=R.inv()
+000050 | A=s.Rational(1,2)*Ri*dG*Ri-dR*Ri
+000051 | need('noncommuting square-root derivative keeps its Sylvester order',eq(A,s.Rational(1,2)*(Ri*dR-dR*Ri)))
+000052 | need('resulting scaled connection is antihermitian',eq(A.H,-A))
+000053 | 
+000054 | # Whole positive scalar multiplier class: a compressed multiplication algebra.
+000055 | # S is a passive orthonormal coordinate frame; no S2 metric/profile is selected.
+000056 | S=s.Matrix([[1/s.sqrt(2),1/s.sqrt(6)],[-1/s.sqrt(2),1/s.sqrt(6)],[0,-2/s.sqrt(6)]])
+000057 | ww=s.symbols('w0:3',positive=True);v0=s.symbols('v0:3',real=True);v1=s.symbols('q0:3',real=True)
+000058 | W=s.diag(*ww);dW0=s.diag(*v0);dW1=s.diag(*v1)
+000059 | GG=S.H*W*W*S;Ginv=GG.inv();PP=W*S*Ginv*S.H*W;QQ=s.eye(3)-PP
+000060 | need('scalar-multiplier compressed projector is exact',eq(PP*PP,PP))
+000061 | need('whole normal covariance including mixed matrix order',eq(S.H*dW0*QQ*dW1*S,S.H*dW0*dW1*S-(S.H*dW0*W*S)*Ginv*(S.H*W*dW1*S)))
+000062 | need('uniform normal multiplier derivative has zero covariance',eq(S.H*W*QQ*W*S,s.zeros(2)))
+000063 | 
+000064 | out=dict(date='2026-10-31',result='R051',scope='Original R035 moving normal kernel with supplied metric connection and smooth family. Universal tangent/positive-multiplier identities,not selection of physical geometry or exact band decoupling.',all_passed=all(x['passed'] for x in checks),checks=checks)
+000065 | Path(__file__).with_name('MOVING-NORMAL-KERNEL.json').write_text(json.dumps(out,indent=2)+'\n')
+000066 | print(json.dumps(dict(checks=len(checks),all_passed=out['all_passed'])))

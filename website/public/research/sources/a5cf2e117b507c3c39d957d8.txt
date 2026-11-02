@@ -1,0 +1,195 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/check_current_recognition.py
+Original file SHA-256: 4f6373a5a7c6559d25dc3fecfdf92ced5128b97a2f9a146278c7272e7f2d7237
+Inclusive original lines: 1-187
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact controls for the source recognition theorem, not a P1 source search.
+000002 | 
+000003 | The CAR matrix units are imported from the existing original-source checker.
+000004 | All-mode uniqueness is proved in DERIVATION.txt, not extrapolated from samples.
+000005 | """
+000006 | from collections import Counter
+000007 | from fractions import Fraction as F
+000008 | from functools import lru_cache
+000009 | from itertools import permutations, product
+000010 | from math import factorial
+000011 | from pathlib import Path
+000012 | import importlib.util
+000013 | import json
+000014 | 
+000015 | 
+000016 | ROOT = Path(__file__).resolve().parents[3]
+000017 | OLD = ROOT / 'experiments/theory-contracts/original-admissible-source-closure-20261025/check_w8_stress_cyclic.py'
+000018 | spec = importlib.util.spec_from_file_location('existing_original_car_units', OLD)
+000019 | old = importlib.util.module_from_spec(spec)
+000020 | spec.loader.exec_module(old)
+000021 | LOW, HIGH = -48, 48
+000022 | SEA = (1 << -LOW) - 1
+000023 | 
+000024 | 
+000025 | def need(ok, message):
+000026 |     if not ok:
+000027 |         raise RuntimeError(message)
+000028 | 
+000029 | 
+000030 | @lru_cache(None)
+000031 | def current_on_mask(mask, channel, n):
+000032 |     """j_(channel,n) = sum_l a*_(8l+channel) a_(8(l+n)+channel)."""
+000033 |     out = {}
+000034 |     for target in range(LOW + ((channel - LOW) % 8), HIGH, 8):
+000035 |         source = target + 8*n
+000036 |         if LOW <= source < HIGH:
+000037 |             moved = old.fermion_move(mask, source-LOW, target-LOW)
+000038 |             if moved is not None:
+000039 |                 bits, sign = moved
+000040 |                 out[bits] = out.get(bits, 0) + sign
+000041 |     return tuple(sorted((bits, c) for bits, c in out.items() if c))
+000042 | 
+000043 | 
+000044 | def act(v, channel, n):
+000045 |     out = {}
+000046 |     for mask, coefficient in v.items():
+000047 |         for bits, sign in current_on_mask(mask, channel, n):
+000048 |             out[bits] = out.get(bits, 0) + coefficient*sign
+000049 |     return {bits: c for bits, c in out.items() if c}
+000050 | 
+000051 | 
+000052 | @lru_cache(None)
+000053 | def car_word(word):
+000054 |     if not word:
+000055 |         return ((SEA, 1),)
+000056 |     return tuple(sorted(act(dict(car_word(word[1:])), *word[0]).items()))
+000057 | 
+000058 | 
+000059 | @lru_cache(None)
+000060 | def vacuum_recursion(word):
+000061 |     if not word:
+000062 |         return 1
+000063 |     channel, n = word[0]
+000064 |     if n < 0:
+000065 |         return 0
+000066 |     return sum(n*vacuum_recursion(word[1:j]+word[j+1:])
+000067 |                for j in range(1, len(word))
+000068 |                if word[j] == (channel, -n))
+000069 | 
+000070 | 
+000071 | def energy(mask, alpha):
+000072 |     return sum((F(r)+alpha)*(((mask >> (r-LOW)) & 1)-int(r < 0))
+000073 |                for r in range(LOW, HIGH))
+000074 | 
+000075 | 
+000076 | @lru_cache(None)
+000077 | def thermal_recursion(word, q):
+000078 |     if not word:
+000079 |         return F(1)
+000080 |     channel, n = word[0]
+000081 |     coefficient = F(n)/(1-q**n)
+000082 |     return sum((coefficient*thermal_recursion(word[1:j]+word[j+1:], q)
+000083 |                 for j in range(1, len(word))
+000084 |                 if word[j] == (channel, -n)), F(0))
+000085 | 
+000086 | 
+000087 | @lru_cache(None)
+000088 | def normal_order(word):
+000089 |     """Independent CCR sorting, then exact infinite Gibbs trace below."""
+000090 |     for j in range(len(word)-1):
+000091 |         a, b = word[j], word[j+1]
+000092 |         # All creators, sorted by mode, precede all annihilators.
+000093 |         key = lambda x: (int(x[1] > 0), x[0], abs(x[1]))
+000094 |         if key(a) > key(b):
+000095 |             out = dict(normal_order(word[:j]+(b, a)+word[j+2:]))
+000096 |             if a[1] > 0 and b == (a[0], -a[1]):
+000097 |                 for monomial, c in normal_order(word[:j]+word[j+2:]):
+000098 |                     out[monomial] = out.get(monomial, 0)+a[1]*c
+000099 |             return tuple((m, c) for m, c in out.items() if c)
+000100 |     return ((word, 1),)
+000101 | 
+000102 | 
+000103 | def infinite_gibbs_trace(word, q):
+000104 |     total = F(0)
+000105 |     for monomial, coefficient in normal_order(word):
+000106 |         creators = Counter((a, -n) for a, n in monomial if n < 0)
+000107 |         annihilators = Counter((a, n) for a, n in monomial if n > 0)
+000108 |         if creators != annihilators:
+000109 |             continue
+000110 |         value = F(coefficient)
+000111 |         for (_, n), k in creators.items():
+000112 |             # Exact sum (1-q^n) sum_l q^(nl) l!/(l-k)!, no cutoff.
+000113 |             value *= n**k*factorial(k)*(q**n/(1-q**n))**k
+000114 |         total += value
+000115 |     return total
+000116 | 
+000117 | 
+000118 | def main():
+000119 |     words = {()}
+000120 |     for a, b, n, m in product(range(8), range(8), (1, 2), (1, 2)):
+000121 |         words.update(permutations(((a, n), (a, -n), (b, m), (b, -m))))
+000122 |     for colors in ((0, 0, 0), (0, 0, 1), (0, 1, 2)):
+000123 |         word = tuple(item for a in colors for item in ((a, 1), (a, -1)))
+000124 |         words.update(permutations(word))
+000125 |     for word in sorted(words):
+000126 |         need(dict(car_word(word)).get(SEA, 0) == vacuum_recursion(word),
+000127 |              'original folded CAR moment versus recognition recursion')
+000128 | 
+000129 |     inputs = [{SEA: 1}]+[act({SEA: 1}, a, -1) for a in range(8)]
+000130 |     commutators = 0
+000131 |     labels = tuple(product(range(8), (-2, -1, 1, 2)))
+000132 |     for v in inputs:
+000133 |         for (a, n), (b, m) in product(labels, repeat=2):
+000134 |             left = act(act(v, b, m), a, n)
+000135 |             for mask, c in act(act(v, a, n), b, m).items():
+000136 |                 left[mask] = left.get(mask, 0)-c
+000137 |             left = {mask: c for mask, c in left.items() if c}
+000138 |             right = {mask: n*c for mask, c in v.items()} if a == b and n == -m else {}
+000139 |             need(left == right, 'actual folded current CCR on original CAR inputs')
+000140 |             commutators += 1
+000141 | 
+000142 |     energy_checks = 0
+000143 |     for alpha in (F(1, 4), F(3, 4)):
+000144 |         for v in inputs:
+000145 |             for a, n in labels:
+000146 |                 for mask, c in v.items():
+000147 |                     for bits, _ in current_on_mask(mask, a, n):
+000148 |                         need(energy(bits, alpha)-energy(mask, alpha) == -8*n,
+000149 |                              'same original energy, not a replacement time')
+000150 |                         energy_checks += 1
+000151 | 
+000152 |     thermal_words = {()}
+000153 |     for a, b, n, m in product(range(2), range(2), (1, 2), (1, 2)):
+000154 |         thermal_words.update(permutations(((a, n), (a, -n), (b, m), (b, -m))))
+000155 |     thermal_words.update(permutations(((0, 1), (0, -1))*3))
+000156 |     q = F(1, 3)  # q = exp(-8 beta), a diagnostic exact temperature.
+000157 |     for word in sorted(thermal_words):
+000158 |         need(thermal_recursion(word, q) == infinite_gibbs_trace(word, q),
+000159 |              'KMS recursion versus independently normal-ordered infinite trace')
+000160 | 
+000161 |     # An elementary condition countercontrol: stationary is weaker than ground.
+000162 |     # rho_A=|1><1|, rho_B=(|0><0|+|2><2|)/2 have same <N>, different <a*2 a2>.
+000163 |     rho_a, rho_b = {1: F(1)}, {0: F(1, 2), 2: F(1, 2)}
+000164 |     moment = lambda rho, k: sum((p*F(factorial(n), factorial(n-k))
+000165 |                                 for n, p in rho.items() if n >= k), F(0))
+000166 |     need(moment(rho_a, 1) == moment(rho_b, 1) == 1, 'equal oscillator covariance')
+000167 |     need(moment(rho_a, 2) == 0 and moment(rho_b, 2) == 1, 'distinct fourth moments')
+000168 | 
+000169 |     result = {
+000170 |         'status': 'PASS_SCOPED',
+000171 |         'original_folded_CAR_vacuum_word_comparisons': len(words),
+000172 |         'original_folded_CAR_CCR_vector_checks': commutators,
+000173 |         'original_energy_transition_checks_both_quarters': energy_checks,
+000174 |         'thermal_word_comparisons_to_exact_infinite_trace': len(thermal_words),
+000175 |         'CAR_window': '[−48,48): six levels per actual folded channel',
+000176 |         'checked_word_bound': 'at most six mode-energy units; no sampled boundary leakage',
+000177 |         'stationary_same_covariance_fourth_moments': ['0', '1'],
+000178 |         'folded_neutral_quarter_clock': 'identity: H=8N implies exp(-i*pi*H/2)=1',
+000179 |         'all_mode_proof': 'analytic representation/word recursion in DERIVATION.txt',
+000180 |         'P1_local_source_image_derived': False,
+000181 |         'complete_TFPT_solution': False,
+000182 |     }
+000183 |     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
+000184 | 
+000185 | 
+000186 | if __name__ == '__main__':
+000187 |     main()

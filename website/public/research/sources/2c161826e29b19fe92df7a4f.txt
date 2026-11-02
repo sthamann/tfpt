@@ -1,0 +1,25 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/dynamic_reconstruction_20261027/check_calderon_perron_test.py
+Original file SHA-256: c5761e4aff9cdea6a3d48775697bd0c3d718fe51246c22c5f856ba4d155a7bac
+Inclusive original lines: 1-17
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | import sympy as s
+000002 | import json
+000003 | M=s.Matrix([[1,0,0],[0,s.Rational(1,2),s.Rational(1,6)],[0,s.Rational(1,6),s.Rational(1,2)]])
+000004 | I=s.eye(3); R=(I+M*M).inv(); C=M*M*R; X=M*R
+000005 | P=(I-C).row_join(X).col_join(X.row_join(C))
+000006 | perron=s.diag(1,0,0)
+000007 | checks={
+000008 |  'doubled_graph_is_projector':P*P==P,
+000009 |  'doubled_graph_is_symmetric':P.T==P,
+000010 |  'full_rank_three':P.rank()==3,
+000011 |  'single_face_rank_three':C.rank()==3,
+000012 |  'single_face_eigenvalues':set(C.eigenvals())=={s.Rational(1,2),s.Rational(4,13),s.Rational(1,10)},
+000013 |  'single_face_not_perron':C!=perron and I-C!=perron,
+000014 |  'calderon_reflection_squared_identity':(2*P-s.eye(6))**2==s.eye(6)
+000015 | }
+000016 | if not all(checks.values()):raise RuntimeError(checks)
+000017 | print(json.dumps({'scope':'Given invertible finite family transfer used in the existing graph-Calderon formula; no physical source embedding inferred','checks':checks,'single_face_eigenvalues':['1/2','4/13','1/10']},indent=2))

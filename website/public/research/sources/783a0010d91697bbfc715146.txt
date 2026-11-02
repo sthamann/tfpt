@@ -1,0 +1,46 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_recursive_word_structure.py
+Original file SHA-256: a5d26d9708e26a4c1169411e4fee226640b7e13e4946e3fc0e840d03b83a21c7
+Inclusive original lines: 1-38
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact structure of the already derived original word realization."""
+000002 | from pathlib import Path
+000003 | import json
+000004 | import sympy as s
+000005 | p=Path(__file__).parent
+000006 | d=json.loads((p/'RECURSIVE-WORD-SOURCE.json').read_text())
+000007 | A=s.Matrix(d['operators']['L']);J=s.Matrix(d['operators']['J'])
+000008 | G=s.diag(*map(s.sympify,d['metric_diagonal']));N=G[:5,:5]
+000009 | C=J[5:,5:];U=A[:5,5:];B=A[5:,:5]
+000010 | powers=[s.eye(63),C,C*C,C**3]
+000011 | ws=[s.Integer(1),s.I,s.Integer(-1),-s.I];forms=[];dims=[]
+000012 | for w in ws:
+000013 |     E=sum((w**(-r)*powers[r] for r in range(4)),s.zeros(63))/4
+000014 |     forms.append(U*E*B);dims.append(s.trace(E))
+000015 | def mat(M):return [[str(a) for a in row] for row in M.tolist()]
+000016 | defect=s.Matrix(d['clock_ordered_word_defect'])
+000017 | minors=[(-N*defect)[:k,:k].det() for k in range(1,6)]
+000018 | checks={
+000019 |     'memory_dimension63':sum(dims)==63,
+000020 |     'sector_sum_is_original_memory_defect':sum(forms,s.zeros(5))==(A*A)[:5,:5]-A[:5,:5]**2,
+000021 |     'weighted_sector_sum_is_clock_defect':sum(((w-1)*F for w,F in zip(ws,forms)),s.zeros(5))==defect,
+000022 |     'clock_defect_metric_Hermitian':(N*defect).H==N*defect,
+000023 |     'negative_clock_defect_strictly_positive':all(x>0 for x in minors),
+000024 |     'opposite_imaginary_sector_input_forms_equal':forms[1]==forms[3],
+000025 | }
+000026 | out={'contract':d['contract'],'all_passed':all(checks.values()),'checks':checks,
+000027 |      'memory_clock_multiplicities':dict(zip(map(str,ws),map(int,dims))),
+000028 |      'clock_sector_input_Gram_forms':{str(w):mat(F) for w,F in zip(ws,forms)},
+000029 |      'input_form_ranks':[int(F.rank()) for F in forms],
+000030 |      'code_metric':list(map(str,N.diagonal())),
+000031 |      'negative_clock_defect_leading_minors':list(map(str,minors)),
+000032 |      'original_unit_f4_response_amplitudes':{
+000033 |          'L_L':str((A*A)[4,4]),'L_J_L':str((A*J*A)[4,4]),
+000034 |          'incorrect_code_only_L_L':str((A[:5,:5]**2)[4,4])},
+000035 |      'scope':'Same original single-beta L and native J alphabet only. Sector dimensions are not physical spatial dimensions or particle counts.'}
+000036 | (p/'RECURSIVE-WORD-SOURCE-STRUCTURE.json').write_text(json.dumps(out,indent=2)+'\n')
+000037 | print(json.dumps({k:v for k,v in out.items() if k!='clock_sector_input_Gram_forms'},indent=2))
+000038 | if not out['all_passed']:raise RuntimeError('Exact original word structure check failed')

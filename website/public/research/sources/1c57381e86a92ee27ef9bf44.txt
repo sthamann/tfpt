@@ -1,0 +1,142 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-collar-multifield-20261016/e8_boundary_response.py
+Original file SHA-256: 8a77bef68666dd18470fce78e04881676862075d216587b291c9e2c3761d5e6b
+Inclusive original lines: 161-294
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000161 | 
+000162 | 
+000163 | def polynomial_product(a, b, order):
+000164 |     return [sum(a[j] * b[k-j] for j in range(k+1)) for k in range(order+1)]
+000165 | 
+000166 | 
+000167 | def ns_character(order=4):
+000168 |     """Full 16-Majorana NS coefficients in x=q^(1/2), vacuum factor removed."""
+000169 |     p = [1] + [0] * order
+000170 |     for odd in range(1, order+1, 2):
+000171 |         factor = [int(sp.binomial(16, k//odd))
+000172 |                   if k % odd == 0 and k//odd <= 16 else 0 for k in range(order+1)]
+000173 |         p = polynomial_product(p, factor, order)
+000174 |     return p
+000175 | 
+000176 | 
+000177 | def run():
+000178 |     rr = roots()
+000179 |     assert len(set(rr)) == 240 and abs(BASIS.det()) == 1
+000180 |     assert GRAM.det() == 1 and all(GRAM[i, i] == 2 for i in range(8))
+000181 |     for a in rr:
+000182 |         coordinates(a)
+000183 |         assert dot(a, a) == 2
+000184 |     counts = Counter(grade(a) for a in rr)
+000185 |     assert [counts[i] for i in range(4)] == [52, 64, 60, 64]
+000186 |     branches = Counter((dot(a[:5], a[:5])/2, dot(a[5:], a[5:])/2, grade(a)) for a in rr)
+000187 |     assert branches == {(sp.S.One, sp.S.Zero, 0): 40,
+000188 |                         (sp.S.Zero, sp.S.One, 0): 12,
+000189 |                         (HALF, HALF, 2): 60,
+000190 |                         (sp.Rational(5, 8), sp.Rational(3, 8), 1): 64,
+000191 |                         (sp.Rational(5, 8), sp.Rational(3, 8), 3): 64}
+000192 |     # All root pairs: actual cocycle commutator exactly cancels the integral
+000193 |     # coordinate exchange sign. No identification with fermion parity is used.
+000194 |     locality_pairs = 0
+000195 |     for a, b in product(rr, repeat=2):
+000196 |         assert epsilon(a, b) == (-1 if int(dot(a, b)) % 2 else 1) * epsilon(b, a)
+000197 |         assert grade(add(a, b)) == (grade(a)+grade(b)) % 4
+000198 |         locality_pairs += 1
+000199 |     conjugate_pairs = 0
+000200 |     for a in rr:
+000201 |         assert adjoint_sign(a) * vertex_response((neg(a), a), (2, 1)) == 1
+000202 |         conjugate_pairs += 1
+000203 |     a = (HALF,) * 8
+000204 |     b = (sp.Integer(-1), sp.Integer(-1)) + (sp.S.Zero,) * 6
+000205 |     c = neg(add(a, b))
+000206 |     assert dot(a, b) == -1 and c in rr
+000207 |     triple = vertex_response((a, b, c), (3, 2, 1))
+000208 |     quartic = vertex_response((a, neg(a), b, neg(b)), (4, 3, 2, 1))
+000209 |     connected = connected_four((a, neg(a), b, neg(b)), (4, 3, 2, 1))
+000210 |     assert triple != 0 and connected != 0
+000211 |     assert sum(grade(x) for x in (a, b, c)) % 4 == 0
+000212 |     assert vertex_response((a, b), (2, 1)) == 0
+000213 |     cartan_root_response = adjoint_sign(a) * current_response(
+000214 |         (a, neg(a)), (3, 1), ((a, 4),))
+000215 |     assert cartan_root_response == sp.Rational(1, 3)
+000216 |     e0 = (sp.S.One,) + (sp.S.Zero,) * 7
+000217 |     assert current_response(cartan=((e0, 2), (e0, 1))) == 1
+000218 |     assert current_response(cartan=((e0, 4), (e0, 3), (e0, 2), (e0, 1))) == sp.Rational(169, 144)
+000219 |     free_ns = ns_character()
+000220 |     assert free_ns == [1, 16, 120, 576, 2076]
+000221 |     dictionary = []
+000222 |     for root in rr:
+000223 |         g = grade(root)
+000224 |         dictionary.append({
+000225 |             "charge": [str(x) for x in root], "quarter_grade": g,
+000226 |             "quarter_character": ["1", "i", "-1", "-i"][g],
+000227 |             "weight_D5": str(dot(root[:5], root[:5])/2),
+000228 |             "weight_A3": str(dot(root[5:], root[5:])/2),
+000229 |             "weight_total": "1", "boundary_statistics": "bosonic_current",
+000230 |             "adjoint_sign": adjoint_sign(root),
+000231 |         })
+000232 |     return {
+000233 |         "scope": "Stipulated E8 level-one vacuum lattice representation; separated-point boundary currents",
+000234 |         "selection_from_raw_P1P2": False,
+000235 |         "reverse_bootstrap": {
+000236 |             "source": "origin_theory.tex:954-981; v6, v15, v350-v352",
+000237 |             "retained": "Discrete E8 closure fixes g_car=5 and the eight normalization witnesses within its framework",
+000238 |             "not_inferred": "No automatic raw-kernel field pullback, 4D statistics, field-dependent kinetic operator or source state/time",
+000239 |         },
+000240 |         "quarter": {
+000241 |             "character_vector": [str(x) for x in V],
+000242 |             "root_grades": [counts[i] for i in range(4)],
+000243 |             "current_grades_including_Cartan": [60, 64, 60, 64],
+000244 |             "internal_character_not_physical_time": True,
+000245 |             "original_charged_quarter_control": "charged-pair-control.json, kernel-functional-control.json (unchanged)",
+000246 |         },
+000247 |         "dictionary": dictionary,
+000248 |         "boundary_current_blocks": [
+000249 |             {"Spin10_SU4_labels": "(45,1)+(1,15)", "dimension": 60, "grade": 0,
+000250 |              "meaning": "40 D5 roots +12 D3 roots +8 Cartan currents"},
+000251 |             {"Spin10_SU4_labels": "(10,6)", "dimension": 60, "grade": 2,
+000252 |              "weights": ["1/2", "1/2"]},
+000253 |             {"Spin10_SU4_labels": "(16,4) and conjugate, label orientation conventional",
+000254 |              "dimension_each": 64, "grades": [1, 3], "weights": ["5/8", "3/8"]},
+000255 |         ],
+000256 |         "Cartan_currents": {"count": 8, "weight": "1", "grade": 0,
+000257 |                            "definition": "H^a(z)=i partial X^a(z)",
+000258 |                            "OPE": "H^a(z)H^b(w) ~ delta_ab/(z-w)^2"},
+000259 |         "vertex_definition": "V_alpha(z)=e_alpha :exp(i alpha.X(z)):; declared ordered lattice cocycle",
+000260 |         "response_formula": "delta(sum alpha_i=0) product_(i<j) epsilon(alpha_i,alpha_j) (z_i-z_j)^(alpha_i.alpha_j)",
+000261 |         "Cartan_Ward_rule": "mean_i=sum_j d_i.alpha_j/(u_i-z_j); covariance_ij=d_i.d_j/(u_i-u_j)^2; recurse over means and pairings multiplying the root-vertex response",
+000262 |         "formal_current_source_series": "Z[J]/Z[0]=sum_n (1/n!) integral <product_i (sum_alpha J_alpha(z_i)V_alpha(z_i)+sum_a J_a(z_i)H^a(z_i))>; current_response computes mixed coefficients only away from diagonals",
+000263 |         "checks": {"locality_root_pairs": locality_pairs, "positive_adjoint_two_point_pairs": conjugate_pairs,
+000264 |                    "known_vacuum_NS_character_x": free_ns,
+000265 |                    "E8_character_q_first": [1, 248, 4124],
+000266 |                    "E8_character_scope": "Known original v156 control; no new equality of full NS and E8 local fields",
+000267 |                    "positivity_scope": "Root-state norms in the stipulated positive E8 lattice Fock representation, not a raw P1 reflection-positivity proof"},
+000268 |         "nonabelian_probe": {
+000269 |             "charges": [[str(y) for y in x] for x in (a, b, c)],
+000270 |             "grades": [grade(x) for x in (a, b, c)],
+000271 |             "three_point_at_3_2_1": str(triple),
+000272 |             "four_point_a_minus_a_b_minus_b_at_4_3_2_1": str(quartic),
+000273 |             "connected_four_point": str(connected),
+000274 |             "adjoint_normalized_H_a_V_a_V_minus_a_at_4_3_1": str(cartan_root_response),
+000275 |             "meaning": "Current responses are non-Gaussian even in the lattice/free-boson realization; no native Yukawa or independent boson-pair transfer is inferred",
+000276 |         },
+000277 |         "requires_for_physical_P1": [
+000278 |             "An original field insertion map into this representation, with local domains, charge, statistics and physical time",
+000279 |             "The actual map from physical field values to D_rel[Phi], D_ref[Phi] and the original spectral profile",
+000280 |             "Original absolute amplitude, determinant-line phase and contact/geometry prescription",
+000281 |         ],
+000282 |         "new_physics_claim": False,
+000283 |     }
+000284 | 
+000285 | 
+000286 | if __name__ == "__main__":
+000287 |     parser = argparse.ArgumentParser(description=__doc__)
+000288 |     parser.add_argument("--output", type=Path)
+000289 |     args = parser.parse_args()
+000290 |     result = run()
+000291 |     if args.output:
+000292 |         args.output.parent.mkdir(parents=True, exist_ok=True)
+000293 |         args.output.write_text(json.dumps(result, indent=2, ensure_ascii=False)+"\n")
+000294 |     print(json.dumps({k: result[k] for k in ("scope", "quarter", "checks", "nonabelian_probe")}, ensure_ascii=False))

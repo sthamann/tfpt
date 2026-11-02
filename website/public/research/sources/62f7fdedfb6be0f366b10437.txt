@@ -1,0 +1,102 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/joint-native-algebra-selection-20261016/operator_audit.md
+Original file SHA-256: f1849345563b8d81cd3861a5a5eaa96f1355ff7d5d55bdbc00e73ab90b7b64e5
+Inclusive original lines: 127-220
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000127 | \]
+000128 | 
+000129 | This is the block-preserving normalizer of the actual diagonal group action.  It is not a statement about arbitrary unitaries of the full matrix algebra, nor about spacetime or gauge symmetry.
+000130 | 
+000131 | ## 4. Marked `R`, compiler clock, Galois carrier, and the old sign twin
+000132 | 
+000133 | ### Marked `R` is an extra coherent operator
+000134 | 
+000135 | The actual marked completion constructs
+000136 | 
+000137 | \[
+000138 | R=P_3(I-2F_\sigma)+iP_2\tau,
+000139 | \qquad F_\sigma=(I+\sigma+\sigma^2)/3
+000140 | \]
+000141 | 
+000142 | in `marked_rr_completion.py:26-66`.  The same file explicitly types the first extra operation as a coherent polynomial/linear combination and says that neither clock nor generator is selected from the source (`:120-137`).  Its characteristic polynomial is
+000143 | 
+000144 | \[
+000145 | (x-1)^2(x+1)(x^2+1),
+000146 | \]
+000147 | 
+000148 | so its spectrum is `{1,1,-1,i,-i}` and its trace is `1`.  This corrects the tentative trace-three spectrum.  It has the same spectrum as an order-four element in the standard `S6` representation, so spectrum alone cannot exclude identification.
+000149 | 
+000150 | There is a short exact exclusion.  Direct symbolic commutators show that `R` centralizes the marked subgroup
+000151 | 
+000152 | \[
+000153 | H=S_{\{0,1\}}\times S_{\{2,3,4\}}\cong S_2\times S_3.
+000154 | \]
+000155 | 
+000156 | But `Cent_S6(H)={1,(01)}` has order two.  If `R=rho5(p)` for an actual `p in S6`, faithfulness of the standard representation would force `p` into this centralizer, hence `ord(R)<=2`, contradicting `ord(R)=4`.  Therefore `R` is not an actual native group word.  The 720-element fixed-frame census independently agrees: no matrix equals `R`; the nearest Frobenius distance is `2.6462860671`.  Its centralizer in the actual `S6` image has size 12.
+000157 | 
+000158 | The native compiler clock behaves differently.  Since `J^tensor4=I` on degree four, `c=J sigma` maps to `sigma5`, which has order three.  Thus the native compiler `c` and the marked `R` are different actual actions, even though both live in the generated algebra.
+000159 | 
+000160 | ### The carrier-five Galois relation exists natively as one marked-symmetry class
+000161 | 
+000162 | The standalone cyclotomic carrier uses the rational companion `C5` and Frobenius `G` with `G C5 G^-1=C5^2`, `G^4=I` (`v419_seam_galois_carrier.py:41-44,80-93`).  The new smallest native test fixes the existing marked `S6` label 5.  On the other five labels there are six Sylow-five subgroups.  For **each of all six**, the checker constructs exact native `4 by 4` matrices satisfying
+000163 | 
+000164 | \[
+000165 | C^5=I,\qquad G^4=I,\qquad GCG^{-1}=C^2.
+000166 | \]
+000167 | 
+000168 | For the first subgroup one explicit pair is
+000169 | 
+000170 | \[
+000171 | C={1\over2}\begin{pmatrix}
+000172 | -i&1&-1&-i\\-i&-1&1&-i\\-i&-1&-1&i\\-i&1&1&i
+000173 | \end{pmatrix},\quad
+000174 | G={1\over2}\begin{pmatrix}
+000175 | -i&-1&-i&1\\1&i&-1&i\\-1&i&1&i\\-i&1&-i&-1
+000176 | \end{pmatrix}.
+000177 | \]
+000178 | 
+000179 | The audit then solves, rather than chooses, an intertwiner `A` to the rational `v419` matrices:
+000180 | 
+000181 | \[
+000182 | C_{\rm native}A=A C_{\rm v419},\qquad
+000183 | G_{\rm native}A=A G_{\rm v419}.
+000184 | \]
+000185 | 
+000186 | For every one of the six copies the joint linear system has nullity one and its nonzero solution has rank four.  Thus the intertwiner is unique up to an irrelevant nonzero scalar.  For the displayed first pair, one normalization is
+000187 | 
+000188 | \[
+000189 | A=\begin{pmatrix}
+000190 | 1&1-2i&-1&i\\
+000191 | 1&-1&-i&-1+2i\\
+000192 | -1+2i&-i&-1&1\\
+000193 | 1&i&-2-i&-i
+000194 | \end{pmatrix}.
+000195 | \]
+000196 | 
+000197 | So the proposed central-phase obstruction is false: honest `F20=C5 semidirect C4` subgroups exist in the native carrier, and every surviving copy is actually equivalent to the standalone cyclotomic carrier.
+000198 | 
+000199 | The six are also **not six inequivalent physical choices**.  Let
+000200 | 
+000201 | \[
+000202 | H_0=S_{\{0,1\}}\times C_{3,(234)},\qquad
+000203 | H=S_{\{0,1\}}\times S_{\{2,3,4\}}.
+000204 | \]
+000205 | 
+000206 | On the **logical `V5` carrier**, both preserve the existing point/weak/color marks and `sigma5`; `H` also centralizes the marked `R`.  Exact conjugation on the six Sylow-five subgroups shows that `H0` acts regularly (orbit six, stabilizer one), while `H` acts transitively (orbit six, stabilizer two).  Therefore the logical marks determine one `F20` **orbit/equivalence class**.  No additional embedding has been chosen.  A literal subgroup and a normalized intertwiner matrix are gauge representatives; the remaining interpretive question is whether the marked stabilizer is quotiented as redundancy or later broken by further physical data.  This quotient-orbit result does not by itself prove that the conjugating lifts commute with the native `V4` representative of `sigma` or with a P1 physical source clock; that stronger simultaneous-lift statement was not used.
+000207 | 
+000208 | ### Which constraints eliminate the old `S3` sign twin?
+000209 | 
+000210 | For the actual `(1,21,32)` triangle, restriction gives
+000211 | 
+000212 | \[
+000213 | V_4\downarrow S_3=2\,\mathbf1\oplus\mathbf2,
+000214 | \quad V_5\downarrow S_3=3\,\mathbf1\oplus\mathbf2,
+000215 | \quad V_{20}\downarrow S_3=7\,\mathbf1\oplus\mathbf{sgn}\oplus6\,\mathbf2.
+000216 | \]
+000217 | 
+000218 | The central sign projector has ranks `(0,0,1)`, so `z=1-2e_sgn` is invisible on `V4,V5` and a nontrivial involution on `V20` (`hidden_sgn_check.py:29-63`).  The actual tests sharpen its status:
+000219 | 
+000220 | - **Marked `R` does not eliminate it.** `z20` commutes exactly with `R tensor I4`.

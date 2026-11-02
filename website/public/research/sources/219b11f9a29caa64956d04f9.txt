@@ -1,0 +1,65 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/admissible_pair_20261028/CLAUDE-FOLLOWUP-RESPONSE.txt
+Original file SHA-256: 940f7625ad343669daa2dd1bd47c89086afc9f82d7783d363ba7a2fbb638c372
+Inclusive original lines: 1-57
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | ## Verdict first
+000002 | 
+000003 | The shortcut **"global mark transport + local SM covariance forces Φ" is false.** Both constructions you give are genuine counterexamples, at two distinct levels, and a central lift of U₅ cannot repair the gap. The only thing that separates Φ from them is the **off‑diagonal coherence fixed by the ε‑sewing law**, i.e. the carrier‑gauge coherence relation φ_CC − 2φ_CW + φ_WW = 0 — which both U(P)‑based objects violate by construction. That relation, imposed within one fiber and mark‑independently, is the one genuinely stronger source condition needed.
+000004 | 
+000005 | ## 1. Family equation — correct
+000006 | 
+000007 | With R = Λ²g, P′ = gPg*, the sign‑labelled eigenspaces transport as Λ²(P′V) = R·Λ²(PV), etc., so indeed U(P′) = R U(P) R*. Then, using Φ's conjugate covariance Φ(RρR*) = R̄ Φ(ρ) R̄*:
+000008 | 
+000009 | T_{P′}(RρR*) = Φ(U(P′)RρR*U(P′)) = Φ(R·U(P)ρU(P)·R*) = R̄ Φ(Ad(U(P))ρ) R̄* = **R̄ T_P(ρ) R̄***. ✓
+000010 | 
+000011 | This is **family covariance**, not fiber covariance. Φ being fully SU5‑covariant is the *constant* section P ↦ Φ of the equivariant bundle over Gr(3,5)=SU5/G_P; {T_P} is a **different, non‑constant section** of the same bundle. Equivariance over mark space therefore has many sections and does not select the constant one. Transporting the mark and instrument covariantly — even under actual slot 5‑cycles — leaves this whole family intact. Correct and decisive.
+000012 | 
+000013 | ## 2. U(P) is a basis sign operator, not a gauge carrier — confirmed
+000014 | 
+000015 | On the three duad blocks the signs are (CC, CW, WW) = (−1, +1, +1), i.e. phases (π, 0, 0). A genuine carrier element Λ²g·(scalar) with g = diag(a·I₃, b·I₂) gives block phases (2α, α+β, 2β), which identically satisfy φ_CC − 2φ_CW + φ_WW = 0. For U(P): π − 0 + 0 = π ≠ 0. So U(P) ∉ {scalar·Λ²g}. This is the crux: U(P) is a legitimate real Hermitian unitary that commutes with G_P and is central‑U5‑compatible, yet is **not** in the carrier gauge orbit. The distinction is gauge‑vs‑basis, and you have it right.
+000016 | 
+000017 | ## 3. Pointwise counterexample S_P — verified, no hidden type error
+000018 | 
+000019 | S_P = Ad(U)∘Φ∘Ad(U) with U = U(P), Ū = U (U real). Checks:
+000020 | 
+000021 | - **CP / TP / unital:** Ad(U) is unitary conjugation, hence CP, TP, unital; composed with Φ it stays CP‑TP‑unital. The fixed density is Ad(U)(I₁₀/10)=I₁₀/10, preserved. ✓
+000022 | - **Spectrum / powers:** since U²=I, Ad(U) is an involutive superoperator similarity, so S_P = Ad(U)∘Φ∘Ad(U) is a *conjugate* of Φ as a superoperator. Identical full spectrum, S_P^n = Ad(U)∘Φ^n∘Ad(U). ✓
+000023 | - **Choi rank:** conjugation by a fixed unitary sends Kraus C_m ↦ U C_m U, an invertible relabelling → rank‑5 Choi unchanged. ✓
+000024 | - **Real Kraus / HS self‑adjoint:** U C_m U real if C_m, U real; (Ad(U)∘Φ∘Ad(U))† = Ad(U)∘Φ†∘Ad(U) = itself. ✓
+000025 | - **Effects:** diagonal effects E in the adapted basis obey U E U = E, so the five effects are literally unchanged. ✓
+000026 | - **Classical Petersen matrix:** diagonal‑to‑diagonal transfer is unchanged because U is diagonal (±1) in the adapted basis: for diagonal ρ, UρU = ρ, and Tr(E_k UΦ(ρ)U) = Tr(E_k Φ(ρ)). So all **classical** populations coincide with Φ. ✓
+000027 | - **Covariance:** G_P‑covariant and (trivially, see §5) central‑U5‑covariant; transports over mark space. ✓
+000028 | 
+000029 | Output dual action: the trailing Ad(U) lives on the output/dual leg with Ū = U, so there is no dual/conjugation mismatch. No type error.
+000030 | 
+000031 | **Where it differs from Φ:** only in the off‑diagonal coherence sector, where U flips signs. This is exactly why the P5 reading can change even though every classical datum above is identical — P5 is probed by the coherent ε‑source state, not a diagonal input.
+000032 | 
+000033 | ## 4. The P5 numbers — arithmetic and interpretation
+000034 | 
+000035 | Born‑rule probabilities use squared amplitudes. The corrected baseline flip: Tr(P₅ J/10) = [3·|4|² + 2·|0|²]/180 = 48/180 = **4/15**. Your earlier −1/5, 2/5 used unsquared amplitudes (e.g. (3·4+2·0)/60) and are not projector probabilities — correction accepted. For S_P: [3·|2|² + 2·|−6|²]/180 = (12+72)/180 = **7/15**. ✓ These differ from Φ's value, and from each other, purely through the coherent (off‑diagonal) content that the ε test state resolves. So the three objects are genuinely inequivalent instruments, distinguishable **only** by coherence, despite sharing spectrum, Choi rank, effects, classical Petersen matrix, reality, unitality, self‑adjointness and SM + central covariance.
+000036 | 
+000037 | ## 5. Central lift of U₅ cannot help — confirmed
+000038 | 
+000039 | With X = (−2,−2,−2,3,3): on V, U₅ = ζ₅^{−2}I₃ ⊕ ζ₅^{3}I₂ = ζ₅³ I₅ (since ζ₅^{−2}=ζ₅³); on Λ²V, U₅ = ζ₅^{3+3} = ζ₅ I₁₀. It is a **central scalar**, so Ad(U₅)=id. Central‑U5 covariance is therefore **vacuous** — satisfied by every superoperator, including T_P and S_P. Any central cover/lift only rescales scalar phases, which act trivially under conjugation; it adds no constraint on the coherence pattern that distinguishes Φ. Your instinct is right: **no central lift removes the ambiguity.** (Noncentral monodromy is a separate question, but note even actual S₅ 5‑cycles only transport the 3+2 mark; the fully marked object has Aut = C₆ with no order‑5 element, so no naked 5‑cycle acts *within* a fiber to kill coherence either.)
+000040 | 
+000041 | ## 6. What is and isn't ruled out
+000042 | 
+000043 | - **Fiber covariance** (G_P + central U5, at a fixed mark) does **not** pin Φ: S_P is a same‑mark, same‑dictionary counterexample.
+000044 | - **Family covariance** (full SU5 over Gr(3,5)) does **not** pin Φ: {T_P} is a nontrivial covariant section.
+000045 | - Adding reality, unitality, HS‑self‑adjointness, spectral identity, rank‑5 Choi, identical five effects, and the classical Petersen matrix still does **not** pin Φ — S_P passes all of them. Any further generic covariance‑family check is futile; S_P already passes the whole list.
+000046 | 
+000047 | The gap is one‑dimensional in character: it lives entirely in the **relative phases of the three duad blocks**, i.e. precisely the quantity φ_CC − 2φ_CW + φ_WW that all classical/spectral/covariance data leave free.
+000048 | 
+000049 | ## 7. The one stronger source condition
+000050 | 
+000051 | Require the instrument's Kraus/transfer operators to be **intertwined by the actual carrier representation Λ²g under the full SU5 (ultimately the ε‑tensor sewing) law**, not merely to preserve classical Petersen data and central phases. Concretely: impose the **gauge‑coherence constraint**
+000052 | 
+000053 |   φ_CC − 2φ_CW + φ_WW = 0
+000054 | 
+000055 | on every operator building the channel (the defining identity of the carrier orbit {scalar·Λ²g}, equivalently the statement that the Kraus maps transform as genuine Λ²V‑tensors under the ε sewing). This is a **within‑one‑fiber, mark‑independent** condition. It kills U(P) (phase defect π), hence excludes both T_P and S_P, while Φ — built from the explicit ε tensor — satisfies it identically. Because the only surviving ambiguity is the inter‑block coherence, and the ε law fixes exactly those phases, this is both necessary and sufficient to select Φ.
+000056 | 
+000057 | **Bottom line:** mark transport + local SM covariance (and any central lift) is strictly too weak; the decisive datum is the ε‑sewing coherence relation φ_CC − 2φ_CW + φ_WW = 0 enforced inside a single fiber. No physical‑solution claim is made here — this is purely the algebraic selection statement.

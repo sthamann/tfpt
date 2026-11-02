@@ -1,0 +1,142 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/collective-native-marginal-origin-20261026/recursive_machine_audit/fundamental_audit.py
+Original file SHA-256: 94e0bfa42f6e8442668ed3c7b0baa239e80229b7090ff7e8e706811f60f3d77e
+Inclusive original lines: 1-134
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Decisive tests of what recursive SOM dynamics selects by itself.
+000002 | 
+000003 | No claim about all native TFPT processes: U(35) is a symmetry of this numerical
+000004 | update, not generally a symmetry of the native quartic product or full field net.
+000005 | """
+000006 | import json
+000007 | from dataclasses import asdict
+000008 | 
+000009 | import numpy as np
+000010 | 
+000011 | from machine import HERE, Config, Machine, unit_rows
+000012 | 
+000013 | 
+000014 | def need(value, message):
+000015 |     if not value:
+000016 |         raise RuntimeError(message)
+000017 | 
+000018 | 
+000019 | def fresh_history(machine):
+000020 |     machine.history = []
+000021 |     machine.measure()
+000022 | 
+000023 | 
+000024 | def haar_unitary(rng, size=35):
+000025 |     a = rng.normal(size=(size, size)) + 1j*rng.normal(size=(size, size))
+000026 |     q, r = np.linalg.qr(a)
+000027 |     diagonal = np.diag(r)
+000028 |     return q * (diagonal/abs(diagonal))[None, :]
+000029 | 
+000030 | 
+000031 | def code_weight(x, readout):
+000032 |     return float(np.linalg.norm(x@readout)**2/np.linalg.norm(x)**2)
+000033 | 
+000034 | 
+000035 | def response_at(machine):
+000036 |     """Reconstruct one frozen response, then verify it predicts real steps."""
+000037 |     c = machine.config
+000038 |     x, w = machine.x.copy(), machine.memory.copy()
+000039 |     machine.advance(1)
+000040 |     raw = (1-c.coupling)*x+c.coupling*(machine.coupler@x)
+000041 |     R = ((1-c.coupling)*np.eye(60)+c.coupling*machine.coupler)/np.linalg.norm(raw, axis=1)[:, None]
+000042 |     S = np.eye(60)[machine.last_winners]
+000043 |     weights = machine.neighbors[machine.last_winners]
+000044 |     mass = weights.sum(axis=0)
+000045 |     B = weights.T/np.where(mass[:, None] > 0, mass[:, None], 1)
+000046 |     L = np.diag(1-c.learning*(mass > 0))
+000047 |     W_x = c.learning*B@R
+000048 |     pre = (1-c.feedback)*(R@x)+c.feedback*S@(W_x@x+L@w)
+000049 |     nx = np.linalg.norm(pre, axis=1)[:, None]
+000050 |     A = np.block([[((1-c.feedback)*R+c.feedback*S@W_x)/nx, c.feedback*S@L/nx], [W_x, L]])
+000051 |     initial = np.concatenate([x, w])
+000052 |     eig = np.linalg.eigvals(A)
+000053 |     periods = sorted([float(2*np.pi/abs(np.angle(z))) for z in eig
+000054 |                       if abs(abs(z)-1) < 1e-8 and z.imag > 1e-7])
+000055 |     machine.advance(999)
+000056 |     prediction = np.linalg.matrix_power(A, 1000)@initial
+000057 |     error = float(np.linalg.norm(prediction-np.concatenate([machine.x, machine.memory]))/np.linalg.norm(prediction))
+000058 |     return dict(periods_steps=periods, frozen_prediction_relative_error=error,
+000059 |                 prediction_valid_in_test=error < 1e-9)
+000060 | 
+000061 | 
+000062 | def equivariance():
+000063 |     rng = np.random.default_rng(20261026)
+000064 |     u = haar_unitary(rng)
+000065 |     a, b = Machine(), Machine()
+000066 |     b.x = b.x@u
+000067 |     b.memory = b.memory@u
+000068 |     fresh_history(b)
+000069 |     a.advance(5000, measure_every=100)
+000070 |     b.advance(5000, measure_every=100)
+000071 |     error_x = float(np.linalg.norm(b.x-a.x@u)/np.linalg.norm(a.x))
+000072 |     error_w = float(np.linalg.norm(b.memory-a.memory@u)/np.linalg.norm(a.memory))
+000073 |     need(error_x < 1e-10 and error_w < 1e-10, 'Unitary covariance failed')
+000074 |     need(np.array_equal(a.last_winners, b.last_winners), 'Winner covariance failed')
+000075 |     code = a.native['code']
+000076 |     fixed = code_weight(b.x, code)
+000077 |     transported = code_weight(b.x, u.conj().T@code)
+000078 |     original = code_weight(a.x, code)
+000079 |     need(abs(transported-original) < 1e-10, 'Passive readout transport failed')
+000080 |     # A larger orientation population needs no duplicate run: exact equivariance
+000081 |     # transports the already tested trajectory. Only one trajectory is rerun above.
+000082 |     orientations = [code_weight(a.x@haar_unitary(rng), code) for _ in range(128)]
+000083 |     return dict(original=a.history[-1], rotated=b.history[-1], signal_relative_error=error_x,
+000084 |                 memory_relative_error=error_w, fixed_code_weight=fixed,
+000085 |                 transported_code_weight=transported, original_code_weight=original,
+000086 |                 orientation_samples=128, orientation_code_mean=float(np.mean(orientations)),
+000087 |                 orientation_code_min=float(min(orientations)), orientation_code_max=float(max(orientations)),
+000088 |                 isotropic_expected_code_weight=5/35,
+000089 |                 scope='U(35) covariance of the declared update; generic U does not preserve native product inputs')
+000090 | 
+000091 | 
+000092 | def generic_starts():
+000093 |     results = []
+000094 |     for seed in [0, 7, 19]:
+000095 |         m = Machine(Config(seed=seed))
+000096 |         rng = np.random.default_rng(1000+seed)
+000097 |         m.x = unit_rows(rng.normal(size=(60, 35))+1j*rng.normal(size=(60, 35)))
+000098 |         m.memory = m.x[rng.permutation(60)].copy()
+000099 |         fresh_history(m)
+000100 |         m.advance(5000, measure_every=100)
+000101 |         results.append(dict(seed=seed, **m.history[-1]))
+000102 |     return results
+000103 | 
+000104 | 
+000105 | def rates():
+000106 |     results = []
+000107 |     # Factors of two around the implemented rates; no tuning to physical values.
+000108 |     for feedback in [.125, .25, .5]:
+000109 |         for learning in [.075, .15, .3]:
+000110 |             m = Machine(Config(feedback=feedback, learning=learning))
+000111 |             m.advance(5000, measure_every=100)
+000112 |             stats = dict(m.history[-1])
+000113 |             response = response_at(m)
+000114 |             results.append(dict(config=asdict(m.config), at_5000=stats, response=response))
+000115 |     return results
+000116 | 
+000117 | 
+000118 | def main():
+000119 |     result = dict(equivariance=equivariance(), generic_starts=generic_starts(), rates=rates())
+000120 |     path = HERE/'runs'/'fundamental_audit.json'
+000121 |     path.write_text(json.dumps(result, indent=2)+'\n')
+000122 |     e = result['equivariance']
+000123 |     print('U35 covariance:', e['signal_relative_error'], e['memory_relative_error'])
+000124 |     print('Original/fixed rotated/passively transported code:',e['original_code_weight'],e['fixed_code_weight'],e['transported_code_weight'])
+000125 |     print('128 orientations mean/min/max:',e['orientation_code_mean'],e['orientation_code_min'],e['orientation_code_max'])
+000126 |     for row in result['generic_starts']:
+000127 |         print('Generic:', row['seed'], row['effective_rank'], row['code_weight'])
+000128 |     for row in result['rates']:
+000129 |         c,s,r = row['config'],row['at_5000'],row['response']
+000130 |         print('Rates:',c['feedback'],c['learning'],'rank',s['effective_rank'],'code',s['code_weight'], 'change',s['change'],'periods',r['periods_steps'],'prediction',r['frozen_prediction_relative_error'])
+000131 | 
+000132 | 
+000133 | if __name__ == '__main__':
+000134 |     main()

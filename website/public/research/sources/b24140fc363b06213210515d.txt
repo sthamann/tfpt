@@ -1,0 +1,121 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_original_energy_source.py
+Original file SHA-256: afb784516df813cc21f47fdc7e1e75f743e1a26e684f327ae5537ce6e244a231
+Inclusive original lines: 1-113
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R042/R043: direct controls on the existing quarter/AP source.
+000002 | No source selection, geometry fit, new vertex or verification-suite change.
+000003 | """
+000004 | from pathlib import Path
+000005 | import json
+000006 | import mpmath as mp
+000007 | mp.mp.dps=70
+000008 | I=mp.eye(2);N=mp.matrix([[0,1j],[1j,0]])
+000009 | B=mp.matrix([[mp.mpf(1)/4,-mp.j/3],[mp.j/3,-mp.mpf(1)/4]])
+000010 | E=mp.mpf(5)/12;ell=mp.mpf(1);gap=mp.mpf(1)/4
+000011 | checks={};err={}
+000012 | def norm(a):return mp.sqrt(sum(abs(x)**2 for x in a))
+000013 | def need(k,ok):
+000014 |  checks[k]=bool(ok)
+000015 |  if not ok:raise AssertionError(k)
+000016 | def near(k,a,b,tol='1e-60'):
+000017 |  e=norm(a-b) if isinstance(a,mp.matrix) else abs(a-b)
+000018 |  err[k]=float(e);need(k,e<mp.mpf(tol))
+000019 | def block(a,b,c,d):
+000020 |  o=mp.matrix(4)
+000021 |  for i in range(2):
+000022 |   for j in range(2):o[i,j]=a[i,j];o[i,j+2]=b[i,j];o[i+2,j]=c[i,j];o[i+2,j+2]=d[i,j]
+000023 |  return o
+000024 | def pair(z):
+000025 |  A=B+z*N;T=mp.expm(-ell*A);a=(I+T*T)**-1
+000026 |  C=block(a,T*a,T*a,T*T*a)
+000027 |  aa=(I+T.H*T)**-1;Q=block(aa,aa*T.H,T*aa,T*aa*T.H)
+000028 |  return A,T,C,Q
+000029 | z=mp.mpf(1)/8
+000030 | A,T,C,Q=pair(z)
+000031 | kap=mp.sqrt(E*E-z*z);c=mp.cosh(ell*kap);s=mp.sinh(ell*kap)/kap;d=c*c+s*s*z*z
+000032 | tt=mp.tanh(ell*kap)/kap
+000033 | Cf=block((I+tt*A)/2,I/(2*c),I/(2*c),(I-tt*A)/2)
+000034 | Qf=block(I/2+c*s*B/(2*d)+s*s*z*N*B/(2*d),(c*I+s*z*N)/(2*d),(c*I-s*z*N)/(2*d),I/2-c*s*B/(2*d)+s*s*z*N*B/(2*d))
+000035 | near('raw_trace_closed_formula',C,Cf)
+000036 | near('orthogonal_trace_closed_formula',Q,Qf)
+000037 | near('raw_trace_idempotent',C*C,C)
+000038 | near('orthogonal_trace_idempotent',Q*Q,Q)
+000039 | near('orthogonal_trace_selfadjoint',Q,Q.H)
+000040 | need('real_energy_raw_trace_is_not_a_state_projector',norm(C-C.H)>mp.mpf('0.01'))
+000041 | _,T0,C0,Q0=pair(0);near('zero_energy_raw_equals_orthogonal',C0,Q0)
+000042 | for zz in [1j*mp.mpf(2)/3,-1j*mp.mpf(2)/3]:
+000043 |  az,tz,cz,qz=pair(zz)
+000044 |  near('imaginary_energy_raw_is_orthogonal_'+str(zz.imag),cz,qz)
+000045 | def Green(z,t):
+000046 |  az=B+z*N
+000047 |  return (mp.expm(-t*az) if t>=0 else -mp.expm(-(t+2*ell)*az))*(I+mp.expm(-2*ell*az))**-1
+000048 | near('original_AP_Green_jump',Green(z,0)-(-mp.expm(-2*ell*A)*(I+mp.expm(-2*ell*A))**-1),I)
+000049 | near('original_AP_Green_antiperiodicity',Green(z,-ell/3),-Green(z,2*ell-ell/3))
+000050 | near('Poisson_both_actual_face_limits',block(Green(z,0),-Green(z,-ell),Green(z,ell),T*T*(I+T*T)**-1),C)
+000051 | a=mp.tanh(ell*E)/E;b=1/mp.cosh(ell*E)
+000052 | Cp=block(a*N/2,mp.zeros(2),mp.zeros(2),-a*N/2)
+000053 | Qp=block(a*a*N*B/2,a*b*N/2,-a*b*N/2,a*a*N*B/2)
+000054 | near('raw_energy_derivative',mp.diff(lambda zz:pair(zz)[2],0),Cp)
+000055 | near('orthogonal_energy_derivative',mp.diff(lambda zz:pair(zz)[3],0),Qp)
+000056 | near('orthogonal_derivative_from_raw_commutator',Qp,Cp*C0-C0*Cp)
+000057 | near('exact_uniform_derivative_norm',Qp*Qp,(a*a/4)*mp.eye(4))
+000058 | need('all_mode_quarter_bound_not_finite_cutoff',a/2<=min(ell/2,1/(2*gap)))
+000059 | Tp=mp.diff(lambda zz:pair(zz)[1],0)
+000060 | Pplus=(I+B/E)/2
+000061 | moment=mp.exp(-ell*E)*sum((Pplus*N*Tp)[i,i] for i in range(2))
+000062 | near('whole_Green_trace_gives_existing_flat_moment',moment,(1-mp.exp(-2*ell*E))/(2*E))
+000063 | near('orthogonal_graph_reads_same_transfer',Q[:2,:2]**-1, (I+T.H*T))
+000064 | near('orthogonal_graph_transfer_quotient',Q[2:4,:2]*Q[:2,:2]**-1,T)
+000065 | # Keep the ACTUAL OLD endpoint projector; do not replace it by P_-(B).
+000066 | P=mp.matrix([[0,0],[0,1]]);Qold=I-P
+000067 | def fixed(z,r,s0):
+000068 |  az=B+z*N;tr=mp.expm(-r*az);te=mp.expm(-ell*az)
+000069 |  pinv=P/te[1,1]
+000070 |  return (mp.expm(-(r-s0)*az) if r>s0 else mp.zeros(2))-tr*pinv*mp.expm(-(ell-s0)*az)
+000071 | def incoming(z):
+000072 |  az=B+z*N;te=mp.expm(-ell*az);pinv=P/te[1,1]
+000073 |  R=Qold-pinv*te*Qold+pinv
+000074 |  U=mp.matrix(4,2)
+000075 |  U[:2,:]=R;U[2:,:]=te*R
+000076 |  return U
+000077 | U=incoming(z);Qu=U*(U.H*U)**-1*U.H
+000078 | near('actual_fixed_APS_two_face_source_recovers_whole_graph',Qu,Q)
+000079 | r=mp.mpf(2)/5
+000080 | Gstart=mp.expm(-r*A)-mp.expm(-r*A)*(P/T[1,1])*T
+000081 | Gend=-mp.expm(-r*A)*(P/T[1,1])
+000082 | near('actual_fixed_APS_boundary_columns_match_Poisson_source',Gstart*Qold-Gend*P,mp.expm(-r*A)*U[:2,:])
+000083 | near('actual_fixed_APS_left_domain',Qold*fixed(z,0,mp.mpf(1)/3),mp.zeros(2))
+000084 | near('actual_fixed_APS_right_domain',P*fixed(z,ell,mp.mpf(1)/3),mp.zeros(2))
+000085 | # Decisive counterexample to inferring full Tprime from a single cross kernel.
+000086 | Pad=(I-B/E)/2
+000087 | def adapted_cross(zz):
+000088 |  az=B+zz*N;te=mp.expm(-ell*az)
+000089 |  # M inverse on the one-dimensional negative eigenspace.
+000090 |  mm=sum((Pad*te)[i,i] for i in range(2))
+000091 |  return te-te*Pad/mm*te
+000092 | near('single_APS_cross_derivative_vanishes',mp.diff(adapted_cross,0),mp.zeros(2))
+000093 | need('whole_transfer_derivative_is_nonzero_despite_cross_zero',norm(Tp)>mp.mpf('0.1'))
+000094 | # Original AP normal Fourier mode k=pi/(2ell), same quarter/Yukawa block.
+000095 | k=mp.pi/(2*ell);K0=N*(1j*k*I+B);hh=mp.mpf(2)/3
+000096 | V=N*mp.matrix([[0,-mp.j/3],[mp.j/3,0]])
+000097 | near('actual_AP_normal_mode_K_selfadjoint',K0,K0.H)
+000098 | zz=1j*mp.mpf(3)/7
+000099 | def Ksigma(e,outer):
+000100 |  f=mp.exp(-e*hh/2)
+000101 |  return f*f*(K0-V)+ (V if outer else f*f*V)
+000102 | for outer in [False,True]:
+000103 |  KK=Ksigma(0,outer);G=(KK-zz*I)**-1
+000104 |  dg=mp.diff(lambda e:(Ksigma(e,outer)-zz*I)**-1,0)
+000105 |  W=hh*V if outer else mp.zeros(2)
+000106 |  defect=hh*G+zz*hh*G*G-dg
+000107 |  near('whole_scale_source_reads_actual_W_'+str(outer),defect,G*W*G)
+000108 |  reconstructed=(KK-zz*I)*defect*(KK-zz*I)
+000109 |  near('sandwich_readout_uniquely_recovers_W_'+str(outer),reconstructed,W)
+000110 | # These checks validate actual-source formulas, not an original Brel identity.
+000111 | result={'contract':'ORIGINAL-ENERGY-SOURCE-20261031','all_passed':all(checks.values()),'checks':checks,'errors':err,'scope':'Existing historical p=1/4,m=1/3 block and actual AP normal Fourier mode, unchanged old endpoint projector. Analytic proof treats all modes. No new Y/MR,physical scale,normal source or Brel map selected. No new Lean formalization or ledger promotion.'}
+000112 | Path(__file__).with_name('ORIGINAL-ENERGY-SOURCE.json').write_text(json.dumps(result,indent=2)+'\n')
+000113 | print(json.dumps({'all_passed':result['all_passed'],'checks':len(checks),'largest_error':max(err.values())}))

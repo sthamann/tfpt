@@ -1,0 +1,202 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/mixed-current-origin-20261014/check_neutral_pairs_and_vector_wards.py
+Original file SHA-256: 2f558542e6162dccdd123a2e68c2fd2a337e57adedb59a497779208c29a914c5
+Inclusive original lines: 1-194
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Original neutral parity pairs and complementary-vector controls.
+000003 | 
+000004 | No continuum field limit, E8 origin or arbitrary-time determinant is claimed.
+000005 | Assertions are explicit and stay active with -OO.
+000006 | """
+000007 | import hashlib
+000008 | import importlib.util
+000009 | import json
+000010 | import sys
+000011 | from pathlib import Path
+000012 | 
+000013 | import numpy as np
+000014 | import sympy as s
+000015 | 
+000016 | [OMITTED: non-scientific conversation or execution metadata]
+000017 | OUT = Path(__file__).resolve().parent
+000018 | 
+000019 | 
+000020 | def need(ok, msg):
+000021 |     if not bool(ok):
+000022 |         raise RuntimeError(msg)
+000023 | 
+000024 | 
+000025 | def zero(a):
+000026 |     return all(s.cancel(s.expand(z)) == 0 for z in a)
+000027 | 
+000028 | 
+000029 | def sha(p):
+000030 |     return hashlib.sha256(p.read_bytes()).hexdigest()
+000031 | 
+000032 | 
+000033 | # A BASE interval on four lattice points, lifted to eight source sheets.
+000034 | fold, width = 8, 4
+000035 | nx = fold * width
+000036 | region = {j * width + 1 for j in range(fold)}
+000037 | sigma = s.diag(*[-1 if x in region else 1 for x in range(nx)])
+000038 | deck = s.zeros(nx)
+000039 | for x in range(nx):
+000040 |     deck[(x + width) % nx, x] = 1
+000041 | need(zero(sigma * deck - deck * sigma), 'mask must be sheet-periodic')
+000042 | need(sigma[0, 0] == sigma[nx - 1, nx - 1] == 1,
+000043 |      'original seam is outside the pair support')
+000044 | need(all(sigma[j * width + x, j * width + x] == (-1 if x == 1 else 1)
+000045 |          for j in range(fold) for x in range(width)), 'uniform local base sign')
+000046 | z = s.diag(1, s.I, -1, -s.I)
+000047 | xreg = s.zeros(4)
+000048 | for r in range(4):
+000049 |     xreg[(r + 1) % 4, r] = 1
+000050 | # On two occupations, the two half strings have the same X^2 factor.
+000051 | p_a = s.diag(1, -1, 1, -1)
+000052 | p_b = s.diag(1, 1, -1, -1)
+000053 | f_a = s.kronecker_product(xreg ** 2, p_a)
+000054 | f_b = s.kronecker_product(xreg ** 2, p_b)
+000055 | pair = f_b * f_a.H
+000056 | need(pair == s.kronecker_product(s.eye(4), p_b * p_a), 'register cancels')
+000057 | need(zero(pair * s.kronecker_product(z, s.eye(4))
+000058 |           - s.kronecker_product(z, s.eye(4)) * pair), 'pair is register neutral')
+000059 | 
+000060 | # Exact Fourier selection and determinant factorization on a finite band.
+000061 | # This regulator has TWO Fermi edges, not a proved single-chiral limit.
+000062 | def mask_entry(m, n):
+000063 |     d = n - m
+000064 |     if d % 8:
+000065 |         return s.Integer(0)
+000066 |     k = d // 8
+000067 |     # Base interval I=(0,pi): a useful exact branch/zero countercontrol.
+000068 |     return s.Rational(1, 2) if k == 0 else (s.Integer(-1) ** k - 1) / (2 * s.pi * s.I * k)
+000069 | 
+000070 | 
+000071 | band_controls = []
+000072 | for length in (1, 2, 3, 4):
+000073 |     # Ordered by residue; entries prove the same identity for all lengths.
+000074 |     modes = [[-8 * length + j + 8 * ell for ell in range(length)]
+000075 |              for j in range(8)]
+000076 |     a = s.Matrix(length, length,
+000077 |                  lambda i, j: int(i == j) - 2 * mask_entry(modes[0][i], modes[0][j]))
+000078 |     for j in range(8):
+000079 |         need(zero(s.Matrix(length, length,
+000080 |                   lambda u, v: mask_entry(modes[j][u], modes[j][v]))
+000081 |                   - (s.eye(length) - a) / 2), 'equal residue blocks')
+000082 |         for k in range(j):
+000083 |             need(all(mask_entry(m, n) == 0 for m in modes[j] for n in modes[k]),
+000084 |                  'off-residue matrix elements vanish')
+000085 |     d = s.simplify(a.det())
+000086 |     if length % 2:
+000087 |         need(d == 0, 'odd half-circle band determinant must vanish')
+000088 |     band_controls.append({'occupied_modes_per_residue': length,
+000089 |                           'one_block_determinant': str(d),
+000090 |                           'full_expectation': str(s.expand(d ** 8))})
+000091 | 
+000092 | # Exact complementary-covariance determinant identity, both actual quarters.
+000093 | # L=2 log 2 makes n(A)=1/(1+2^(4 A)) rational at these source modes.
+000094 | complement_controls = []
+000095 | shift = s.zeros(4)
+000096 | for j in range(3):
+000097 |     shift[j + 1, j] = 1
+000098 | f = (shift + shift.H - shift ** 2 - (shift.H) ** 2) / 3
+000099 | g = (s.eye(4) + s.I * f) * (s.eye(4) - s.I * f).inv()
+000100 | need(zero(g.H * g - s.eye(4)), 'finite Cayley phase is unitary')
+000101 | for alpha in (s.Rational(1, 4), s.Rational(3, 4)):
+000102 |     c = s.diag(*[1 / (1 + s.Integer(2) ** (4 * (m + alpha)))
+000103 |                  for m in (-4, 0, 4, 8)])
+000104 |     d = s.factor((s.eye(4) - c + c * g).det())
+000105 |     dc = s.factor((c + (s.eye(4) - c) * g).det())
+000106 |     need(s.cancel(dc - g.det() * s.conjugate(d)) == 0,
+000107 |          'complementary determinant identity')
+000108 |     need(s.cancel(dc * d / g.det() - d * s.conjugate(d)) == 0,
+000109 |          'complete vector amplitude loses the single component phase')
+000110 |     need(s.im(d) != 0, 'single component phase must be nontrivial in control')
+000111 |     complement_controls.append({'alpha': str(alpha), 'exact': True,
+000112 |                                 'single_component_phase_nonzero': True})
+000113 | 
+000114 | # Original four-mark-fixed profiles, two opposite Dirac grading components.
+000115 | sin4 = {4: 1 / (2 * s.I), -4: -1 / (2 * s.I)}
+000116 | cos4_minus_cos8 = {4: s.Rational(1, 2), -4: s.Rational(1, 2),
+000117 |                        8: -s.Rational(1, 2), -8: -s.Rational(1, 2)}
+000118 | central = sum(m * (sin4.get(-m, 0) * cos4_minus_cos8.get(m, 0)
+000119 |                   - cos4_minus_cos8.get(-m, 0) * sin4.get(m, 0))
+000120 |               for m in (4, 8))
+000121 | need(central == 2 * s.I, 'one chiral central form')
+000122 | need(central + (-central) == 0, 'complete vector Ward central form cancels')
+000123 | 
+000124 | # Same original time: Fourier/Parseval factor for phi(theta)=f(8theta).
+000125 | # A pi rise and pi return of widths a,eps saturate the H1 ramp bound.
+000126 | energy_controls = []
+000127 | for q in (1, 2, 4, 8):
+000128 |     a, eps = s.pi / 8, s.pi / (8 * q)
+000129 |     derivative_norm2 = s.pi ** 2 / a + s.pi ** 2 / eps
+000130 |     delta_k = s.simplify(2 * derivative_norm2 / s.pi)
+000131 |     need(delta_k == 16 * (1 + q), 'same-time endpoint energy coefficient')
+000132 |     need(8 ** 2 / 8 == 8, 'source Fourier time/fold coefficient')
+000133 |     energy_controls.append({'return_width': str(eps),
+000134 |                             'H1_ramp_exact_DeltaK': str(delta_k),
+000135 |                             'all_smooth_profiles_lower_bound': str(2*s.pi/eps)})
+000136 | 
+000137 | # Actual FULL mass-one width-eight QWZ covariance, both quarter backgrounds.
+000138 | sys.path.insert(0, str(REPO / 'verification'))
+000139 | source = REPO / 'verification/v1033_charged_disorder.py'
+000140 | spec = importlib.util.spec_from_file_location('neutral_pair_original_v1033', source)
+000141 | mod = importlib.util.module_from_spec(spec)
+000142 | sys.modules[spec.name] = mod
+000143 | spec.loader.exec_module(mod)
+000144 | ny = 8
+000145 | signs = np.repeat([-1 if col in region else 1 for col in range(nx)], 2 * ny)
+000146 | controls = []
+000147 | for sector in (1, 3):
+000148 |     h = mod.qwz_cylinder(nx, ny, 1.0, sector)
+000149 |     es, vs = np.linalg.eigh(h)
+000150 |     need(np.min(np.abs(es)) > 1e-8, 'quarter state must have no zero modes')
+000151 |     occupied = vs[:, es < 0]
+000152 |     c = occupied @ occupied.conj().T
+000153 |     transported = signs[:, None] * c * signs[None, :]
+000154 |     transformed_h = signs[:, None] * h * signs[None, :]
+000155 |     # The seam phase is unchanged, not C(-h).
+000156 |     seam0, seam1 = 2 * (nx - 1) * ny, 0
+000157 |     need(np.array_equal(transformed_h[seam0:seam0+2, seam1:seam1+2],
+000158 |                         h[seam0:seam0+2, seam1:seam1+2]), 'global seam retained')
+000159 |     edge_changes = []
+000160 |     for y in (0, ny - 1):
+000161 |         ii = 2 * y
+000162 |         jj = 2 * (ny + y)
+000163 |         old = c[ii:ii+2, jj:jj+2]
+000164 |         new = transported[ii:ii+2, jj:jj+2]
+000165 |         need(np.linalg.norm(old) > 1e-6, 'nonzero actual edge witness')
+000166 |         need(np.max(np.abs(new + old)) < 1e-13, 'both edge covariances flip')
+000167 |         edge_changes.append(float(np.linalg.norm(new - old)))
+000168 |     sub = np.flatnonzero(signs < 0)
+000169 |     expectation = np.linalg.det(np.eye(len(sub)) - 2 * c[np.ix_(sub, sub)])
+000170 |     controls.append({'quarter_register_sector': sector,
+000171 |                      'all_occupied_modes_retained': int(occupied.shape[1]),
+000172 |                      'left_right_edge_covariance_change': edge_changes,
+000173 |                      'neutral_parity_expectation_real': float(expectation.real),
+000174 |                      'neutral_parity_expectation_imag': float(expectation.imag),
+000175 |                      'global_seam_unchanged': True})
+000176 | 
+000177 | result = {'date': '2026-10-22',
+000178 |           'verdict': 'ORIGINAL_NEUTRAL_DEFECT_PAIR_CONSTRUCTED_NOT_SINGLE_SPINOR_SECTOR',
+000179 |           'register_grade': 0, 'global_cover_holonomy_changed': False,
+000180 |           'uniform_eight_sheet_interval_sign_exact': True,
+000181 |           'finite_band_factorization': band_controls,
+000182 |           'finite_band_has_second_Fermi_edge': True,
+000183 |           'complement_determinant_controls': complement_controls,
+000184 |           'original_four_mark_central_forms': [str(central), str(-central), '0'],
+000185 |           'same_source_time_unitary_separation_energy_controls': energy_controls,
+000186 |           'actual_QWZ_full_covariance_controls': controls,
+000187 |           'source_sha256': sha(source),
+000188 |           'infinite_determinant_or_continuum_limit_claimed': False,
+000189 |           'single_128_spinor_generators_constructed': False,
+000190 |           'physical_chiral_measure_selected': False}
+000191 | (OUT / 'neutral-pairs-and-vector-wards-results.json').write_text(
+000192 |     json.dumps(result, indent=2) + '\n')
+000193 | print(json.dumps({'verdict': result['verdict'], 'checks_passed': True,
+000194 |                   'both_actual_quarters': True}))

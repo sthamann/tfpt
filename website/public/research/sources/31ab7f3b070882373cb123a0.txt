@@ -1,0 +1,178 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/global-g31-lattice-lift-20261023/THEOREMS.txt
+Original file SHA-256: a5db41f218483476fe623f0fc7353df5bfabf5f79af4a3eda58d7e05e0715fc0
+Inclusive original lines: 5-174
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000005 | 1. Genaues Problem und Ergebnis
+000006 | 
+000007 | L ist das ursprüngliche E8 Gitter, epsilon der unveränderte Kokykel aus
+000008 | seam-joint-ward-state-20261014/operator_transport_check.py. Es gilt
+000009 |   E_x E_y=epsilon(x,y)E_(x+y), epsilon in {+1,-1}.
+000010 | G=G31 ist die von den60 ursprünglichen komplexen Reflexionen erzeugte
+000011 | Gruppe der Ordnung46080. Untersucht wird genau die volle Urbildgruppe
+000012 |   1 -> A=Hom(L,Z/2) -> Gtilde -> G -> 1.
+000013 | Die Koeffizientenwirkung ist g.a=a composed g^-1, im Allgemeinen nicht trivial.
+000014 | Dies ist nicht die zuvor untersuchte zentrale Z/4 Erweiterung mit dem
+000015 | Determinantenkokykel. Alle unten genannten Zeichen sind Vorzeichen.
+000016 | 
+000017 | SatzI. Diese ursprüngliche charakterwertige Erweiterung spaltet über G31
+000018 | nicht. Ihre Klasse in H^2(G31,A) ist nicht null und hat Ordnung2.
+000019 | Ein explizites Zeugnis liegt schon in einer Untergruppe H der Ordnung16.
+000020 | Die Einschränkung auf jede echte Untergruppe dieses H spaltet dagegen.
+000021 | 
+000022 | SatzII. Für sämtliche62 ursprünglichen Clockmarkierungen auf der vierfach
+000023 | punktierten Kugel existieren strikte Monodromielifts in Gtilde. Ihr vollständiger
+000024 | Isomorphiezensus ist11356. Die44 Clockklassen über Grundklasse0 liefern6856,
+000025 | die15 über Grundklasse12 liefern4272 und die3 über Grundklasse15 liefern228.
+000026 | 
+000027 | SatzIII. Über den17 ursprünglichen ungeclockten Reflexionsviererklassen
+000028 | existieren zusammen835456 Isomorphieklassen von Monodromielifts in Gtilde.
+000029 | Die feste Strukturgruppe und die geordneten Punkturen werden erhalten.
+000030 | 
+000031 | Die globale Gruppenliftfrage und die Monodromieliftfrage unterscheiden sich:
+000032 | Ein Gruppenlift müsste ALLE Relationen von G31 erhalten. Ein Lift einer
+000033 | Darstellung rho:Pi->G31 muss die Relationen von Pi erhalten. Seine Bildgruppe
+000034 | kann eine größere Gruppe über im rho sein. Daher sind SatzI und SatzII
+000035 | miteinander vereinbar. Bei SatzII wird r_j^2=1 nicht als zusätzliche
+000036 | Relation der angehobenen Meridiane gefordert; Pi=C4*C4 hat nur die beiden
+000037 | konischen Potenzrelationen. Genau derselbe Monodromievertrag lag bereits
+000038 | der früheren zentralen Liftfrage zugrunde.
+000039 | 
+000040 | 2. Endlicher Quotient als exakte Beschreibung derselben Liftfrage
+000041 | 
+000042 | Der Originalkokykel erfüllt
+000043 |   epsilon(x,y)/epsilon(y,x)=(-1)^(x.y),
+000044 |   epsilon(x,x)=(-1)^(x.x/2), epsilon(2x,2y)=1.
+000045 | Diese Identitäten folgen direkt aus seiner Formel. Zur letzten Identität:
+000046 | 2x,2y haben in den Standardkoordinaten jeweils nur gerade oder nur ungerade
+000047 | Einträge. Bei zwei ungeraden Vektoren trägt die Dreieckssumme28 bei,
+000048 | sonst ist sie gerade. Die anderen beiden Identitäten folgen durch Einsetzen
+000049 | von x=d+c(1/2)^8 mit c=0,1 und sum d gerade.
+000050 | 
+000051 | K={E_(2x):x in L} ist damit eine zentrale Untergruppe, isomorph zu2L.
+000052 | Jeder ursprüngliche Lift eines g erhält K und wirkt darauf ohne zusätzliches
+000053 | Vorzeichen: Aus E_x^2=epsilon(x,x)E_(2x) und Normerhaltung folgt
+000054 |   ghat(E_(2x))=E_(2gx).
+000055 | Der Quotient Q=Lhat/K hat Ordnung512. Er wird durch die acht Basisbilder
+000056 | X_i und das zentrale Zeichen -1 mit den Relationen
+000057 |   X_i^2=(-1)^q_i, [X_i,X_j]=(-1)^G_ij
+000058 | beschrieben, q_i=(b_i.b_i)/2 mod2, G_ij=b_i.b_j.
+000059 | 
+000060 | In der geordneten Normalform X_1^x1...X_8^x8 lautet die Multiplikation
+000061 |   (x,t)(y,u)=(x+y,t+u+f(x,y)), x,y in F2^8,
+000062 |   f(x,y)=x^t F y,
+000063 |   F_ii=q_i, F_ij=G_ij fuer i>j, F_ij=0 fuer i<j.
+000064 | Die quadratische Form f(x,x)=x.x/2 mod2 ist die ursprüngliche Normverfeinerung.
+000065 | Sie hat136 Nullwerte und120 Einswerte; die Polarform ist nicht entartet.
+000066 | Insbesondere Z(Q)={+1,-1}. Es wird kein zusätzlicher Sektor eingeführt.
+000067 | 
+000068 | Zu jedem g gehört M_g in O(L/2L,q). Setze
+000069 |   D_g=M_g^t F M_g+F,
+000070 |   h_g(x)=sum_(i<j)(D_g)_ij x_i x_j.
+000071 | Normerhaltung bedeutet, dass D_g symmetrisch mit Null auf der Diagonale ist.
+000072 | Die Abbildung
+000073 |   phi_(g,l)(x,t)=(M_g x,t+h_g(x)+l.x), l in F2^8,
+000074 | ist daher ein Automorphismus von Q. Dies folgt durch Einsetzen in die
+000075 | Multiplikation: delta h_g=f+f composed(M_g,M_g).
+000076 | 
+000077 | Dieser endliche Quotient verliert keine für die Liftfrage relevante Wahl.
+000078 | Jeder g hat genau256 ursprüngliche Lifts, bestimmt durch seine acht freien
+000079 | Basisvorzeichen. Jeder der256 Automorphismen phi_(g,l) bestimmt ebenfalls
+000080 | genau solche Basisbilder. Zwei ursprüngliche Lifts über demselben g sind
+000081 | genau dann gleich, wenn ihre acht Basisvorzeichen und damit ihre endlichen
+000082 | Quotienten übereinstimmen. Somit ist Gtilde exakt der Rückzug von Aut(Q)
+000083 | entlang G31->O(L/2L,q). Eine endliche Sektion ist äquivalent zu einer
+000084 | ursprünglichen Sektion auf dem ganzen Gitter.
+000085 | 
+000086 | Die ursprüngliche Sektion E_bj->E_gbj und die endliche Normierung h_g(e_j)=0
+000087 | unterscheiden sich durch einen expliziten Basischarakter. Schreibe
+000088 |   product_i E_bi^n_i = c_B(n) E_(Bn), m_j=B^-1 g b_j.
+000089 | Dann besitzt E_gbj in der endlichen Normalform die Phase
+000090 |   k_g,j = exponent(c_B(m_j)) + sum_i floor(m_ij/2) q_i mod2.
+000091 | Ein endlicher Vorzeichenvektor l entspricht also den ursprünglichen
+000092 | Basisvorzeichen l_j+k_g,j. Auch negative Potenzen benutzen das tatsächliche
+000093 | Inverse epsilon(b,-b)E_-b. checker.py vollzieht diesen Vergleich mit den
+000094 | Originalfunktionen und prüft das Widerspruchszertifikat zusätzlich direkt.
+000095 | 
+000096 | Die vollständige binäre Darstellung hat Bildordnung23040 und Kern{+I,-I}.
+000097 | Dies wird an allen46080 tatsächlichen Matrizen exakt nachgerechnet.
+000098 | Die volle Gitterliftergruppe hat folglich Ordnung256*46080=11796480.
+000099 | 
+000100 | 3. Das kurze ursprüngliche Widerspruchszertifikat
+000101 | 
+000102 | In den ursprünglichen komplexen vier Koordinaten verwende
+000103 |   r0=diag(-1,1,1,1),
+000104 |   r1=[[0,-1],[-1,0]] directsum I2,
+000105 |   r2=[[0,-i],[i,0]] directsum I2.
+000106 | Alle drei sind ursprüngliche Reflexionen, mit ursprünglichen Linienvertretern
+000107 | (-2,0,0,0),(-1-i,-1-i,0,0),(-1-i,-1+i,0,0).
+000108 | Ihre Gruppe H hat16 Elemente. q=r0 r1 r2=diag(i,i,1,1) ist zentral in H,
+000109 | q^4=1 und[r0,r1]=q^2. Es ist die Pauli Gruppe der Ordnung16 mit
+000110 |   H=<q,r0,r1 | q^4=1, q zentral, r0^2=r1^2=1, [r0,r1]=q^2>.
+000111 | q ist von der globalen ursprünglichen Clock J=iI4 verschieden.
+000112 | 
+000113 | Für das Zertifikat ist die Gaussian Gitterbasis BG durch ihre Zeilen festgelegt:
+000114 |   (2,0,0,1,0,1,1,0)
+000115 |   (0,2,0,1,0,1,0,1)
+000116 |   (0,0,2,1,0,0,1,1)
+000117 |   (0,0,0,1,0,0,0,0)
+000118 |   (0,0,0,0,2,1,1,1)
+000119 |   (0,0,0,0,0,1,0,0)
+000120 |   (0,0,0,0,0,0,1,0)
+000121 |   (0,0,0,0,0,0,0,1).
+000122 | Die Standardkoordinaten des Originalkokykels erhält man durch
+000123 | T=directsum_4 (1/2)[[1,-1],[1,1]], also b_j=T BG e_j.
+000124 | 
+000125 | Seien a_j,b_j',c_j die acht frei gewählten ursprünglichen Basisvorzeichen
+000126 | der Lifts von r0,r1,r2 relativ zu E_bj->E_rbj. Im folgenden Gleichungssystem
+000127 | bezeichnet b_j' nur die Vorzeichenvariable; das Gitterbasiszeichen b_j
+000128 | wird nicht verwendet. Sämtliche Gleichungen liegen in F2:
+000129 | 
+000130 |   a1+a2=0                                      (r0^2, Basis4)
+000131 |   a1=1                                         (r0^2, Basis7)
+000132 |   b1'+b3'=0                                    (r1^2, Basis1)
+000133 |   b4'=1                                        (r1^2, Basis6)
+000134 |   c1+c2+c3+c4=0                                (r2^2, Basis6)
+000135 |   a4+b3'+b4'+c1+c2+c4=0                        (r2r0r1=r1r2r0, Basis6)
+000136 |   a2+a4+b1'+c3=1                               (r0r2r1=r2r1r0, Basis7).
+000137 | 
+000138 | Diese sieben Zeilen wurden durch Komposition der tatsächlichen Lifts mit
+000139 | dem unveränderten eps_e8 berechnet. Ihre Summe hat auf der linken Seite
+000140 | jede Variable genau zweimal und rechts den Wert1. Es folgt0=1.
+000141 | Die24 ursprünglichen Vorzeichen sind vollständig frei berücksichtigt.
+000142 | Somit existiert keine Sektion über H und daher keine über G31. Da A ein
+000143 | F2 Modul ist, hat die nichtverschwindende H2 Klasse genau Ordnung2.
+000144 | Dies beweist SatzI ohne numerische Extrapolation oder Skalarannahme.
+000145 | 
+000146 | 4. Alle echten Untergruppen dieses Hindernisses sind dagegen hebbar
+000147 | 
+000148 | H/[H,H]=C2^3. Daher besitzt H genau sieben maximale Untergruppen,
+000149 | jeweils der Ordnung8. Sie lauten
+000150 |   <r0,r1>, <r0,r2>, <r1,r2>                       (jeweils D8),
+000151 |   <q,r0>, <q,r1>, <q,r2>                         (jeweils C4 x C2),
+000152 |   <r0r1,r0r2>                                   (Q8).
+000153 | Jede echte Untergruppe liegt in einer dieser sieben.
+000154 | 
+000155 | Explizite endliche Basisvorzeichen l in der oben definierten Normierung
+000156 | (Bytebit i steht für Basis i+1) liefern Sektionen:
+000157 |   Generatorpaar          korrigierende Bytes
+000158 |   r0,r1                  3,8
+000159 |   r0,r2                  3,8
+000160 |   r1,r2                  8,8
+000161 |   q,r0                   2,11
+000162 |   q,r1                   0,8
+000163 |   q,r2                   0,8
+000164 |   r0r1,r0r2              2,14.
+000165 | 
+000166 | Die angehobenen Erzeuger erfüllen ihre vollständige endliche Gruppentabelle;
+000167 | es entsteht jeweils eine Gruppe der Ordnung8. Dadurch spaltet jede maximale
+000168 | und damit jede echte Untergruppe. Zusätzlich enumeriert checker.py alle23
+000169 | Untergruppen von H und prüft auf jeder der22 echten Untergruppen eine
+000170 | vollständige Sektion an allen256 Argumenten des endlichen Quotienten.
+000171 | Die Zahl der Sektionen ist2^12 für D8,2^11 für C4 x C2 und2^10 für Q8.
+000172 | Modulo Konjugation durch A entstehen jeweils2^8,2^7 und2^6 Klassen.
+000173 | Das Hindernis ist damit unter Einschränkung auf echte Untergruppen unsichtbar.
+000174 | 

@@ -1,0 +1,128 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/graded_boundary_functor/old_source_embedding/REVIEW-CLAUDE-P2.txt
+Original file SHA-256: 274bb0ff37dfd8362568de0d6851a1807449f2c2870efe0f0739922a51b4e9d5
+Inclusive original lines: 1-120
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | [OMITTED: non-scientific conversation or execution metadata]
+000002 | [OMITTED: non-scientific conversation or execution metadata]
+000003 | [OMITTED: non-scientific conversation or execution metadata]
+000004 | 
+000005 | VERDICT
+000006 | The positive grading is NOT merely dimension 16. With the real unimodular
+000007 | SM gauge lift of the actual v252 bimodule it is explicitly equivalent, per
+000008 | generation, to the ORIGINAL P2 exterior-even module under the whole group
+000009 | S(U(3)xU(2)), with the correct hypercharges. An explicit unitary wedge
+000010 | dictionary is given below. The raw left algebra representation alone is
+000011 | not this physical gauge action. Nor does v252 implement a complete original
+000012 | Spin(10) action or derive its status as a physical source symmetry.
+000013 | 
+000014 | A strongest conditional scalar selector also exists: SM invariance plus an
+000015 | EXPLICITLY GIVEN cyclic family permutation selects nu_R^c tensor (1,1,1)
+000016 | up to phase. This is not generally preserved by the actual Dirac coefficient.
+000017 | Its exact preservation condition is MR s=0 AND conjugate(Ynu) s=0.
+000018 | 
+000019 | 1. Actual original inputs and precise code sources
+000020 | 
+000021 | verification/v252_full_finite_triple.py:
+000022 |   63-83: three generations, explicit nu/e/u/d, L/R, color labels;
+000023 |   86-99: S_LR=Y_name and S_RL=Y_name^*;
+000024 |   102-116: D_F=[[S,T],[T^*,conjugate(S)]], T_nuR,nuR=MR;
+000025 |   119-121: particle L has gamma_F=+1, particle R=-1;
+000026 |            antiparticle signs are opposite;
+000027 |   124-132: actual J_F=Kswap times complex conjugation;
+000028 |   139-168: actual pi(lambda,q,m) on both blocks;
+000029 |   258-259: opposite-action matrix J_F b J_F^-1=Kswap conjugate(b) Kswap.
+000030 | The functions grading, rep, Kswap, Japply, dirac_block and full_D were
+000031 | discovered/read through the code graph before reading their exact file lines.
+000032 | 
+000033 | The ORIGINAL P2 comparison is not a guessed charge table:
+000034 | documents/archive--paper-latex--tfpt-v29/sections/
+000035 | 001-section-overview-and-claim-map.tex:
+000036 |   166-174: Y=diag(-1/3,-1/3,-1/3,+1/2,+1/2);
+000037 |   187-197: S(U(3)xU(2)) and its Z6 global SM form;
+000038 |   236-282: S+=Lambda_even(E3+E2), including the six actual SM multiplets.
+000039 | The same primitive integer normalization X=6Y is explicitly retained in
+000040 | documents/archive--paper-latex--tfpt-42/sections/
+000041 | 027-subsection-primitive-completion-from-the-boundary-kernel.tex:156-175.
+000042 | verification/v245_spectral_matter_content.py:44-52 and
+000043 | verification/v248_ps_algebra.py:42-56 record the corresponding Y and
+000044 | Y=T3R+(B-L)/2 tables. They do not replace the matrix check below.
+000045 | 
+000046 | 2. Actual real gauge action, including its essential opposite action
+000047 | 
+000048 | Use the real bimodule gauge lift
+000049 |   U(u)=pi(u) J_F pi(u) J_F^-1,
+000050 | with u=(lambda,q,m), |lambda|=1, q in SU(2), m in U(3).
+000051 | This formula specifies the gauge action being compared. v252 supplies pi
+000052 | and J but does not itself contain a separately implemented gauge_lift or Y
+000053 | function; its numerical axiom checks alone are not this identification.
+000054 | The following is a direct calculation with those supplied matrices.
+000055 | 
+000056 | For one generation det(pi(u))=(lambda det(m))^4; for three it is the twelfth
+000057 | power. Thus the connected unimodular branch is lambda det(m)=1. No charge
+000058 | fit is used: normalize its U(1) using the original P2 Y above and put
+000059 |   lambda=exp(i t/2), m=exp(-i t/6) conjugate(U3), q in SU(2).
+000060 | The physical color matrix U3 is the conjugate of the raw determinant-one
+000061 | part of m because the particle color action comes from J_F pi(u) J_F^-1.
+000062 | 
+000063 | Multiplying the actual blocks gives
+000064 |   particle Q_L: exp(+i t/6) (U3 tensor q),
+000065 |   particle L_L: exp(-i t/2) q,
+000066 |   antiparticle u_R^c: exp(-2i t/3) conjugate(U3),
+000067 |   antiparticle d_R^c: exp(+i t/3) conjugate(U3),
+000068 |   antiparticle e_R^c: exp(+i t),
+000069 |   antiparticle nu_R^c: 1.
+000070 | These are exactly the gamma_F=+1 slots. The dimensions are 6,2,3,3,1,1,
+000071 | and the complete hypercharge multiset is
+000072 |   (1/6)^6, (-1/2)^2, (-2/3)^3, (1/3)^3, (1)^1, (0)^1.
+000073 | This verifies SU(3), SU(2) and hypercharge together, not just the multiset.
+000074 | For comparison, raw pi(u) alone acts trivially on the lepton doublet when
+000075 | q=I; its missing factor conjugate(lambda) comes precisely from the opposite
+000076 | action. Using only that left representation would fail the Y=-1/2 test.
+000077 | 
+000078 | Equivalently this can be stated globally without a covering-parameter
+000079 | ambiguity. Take (x,z) in S(U(3)xU(2)). Choose lambda^2=det(z), and set
+000080 |   q=lambda^-1 z, m=lambda^-1 conjugate(x).
+000081 | Then q is in SU(2), lambda det(m)=1, and changing lambda to -lambda changes
+000082 | pi(u) by -1 on the full module, so U(u) is unchanged. The gauge action on
+000083 | the six gamma-positive pieces is respectively
+000084 |   x tensor z; det(x) z; det(x) conjugate(x);
+000085 |   conjugate(x); det(z); 1.
+000086 | These are the exterior-power actions in the next section. This establishes
+000087 | the global SM-group dictionary as well as its Lie algebra charges.
+000088 | 
+000089 | 3. Explicit unitary exterior dictionary, not a dimension match
+000090 | 
+000091 | Choose orthonormal color basis c1,c2,c3 of E3 and weak basis w1,w2 of E2.
+000092 | Let vol_c=c1 wedge c2 wedge c3, vol_w=w1 wedge w2. For color c define
+000093 |   eta_c=(1/2) sum_jk epsilon_cjk c_j wedge c_k.
+000094 | Each eta_c has norm one; eta_2=c3 wedge c1 includes its actual sign.
+000095 | At any one fixed generation define W on the original v252 slots:
+000096 |   nu_R^c                 -> 1;
+000097 |   (u_L,c,d_L,c)          -> (c_c wedge w1,c_c wedge w2);
+000098 |   u_R,c^c                -> eta_c;
+000099 |   e_R^c                  -> vol_w;
+000100 |   d_R,c^c                -> eta_c wedge vol_w;
+000101 |   (nu_L,e_L)             -> (vol_c wedge w1,vol_c wedge w2).
+000102 | 
+000103 | The images are the sixteen distinct orthonormal even wedge basis vectors,
+000104 | with their fixed signs. W is therefore unitary. The transformation laws
+000105 | in section2 prove
+000106 |   W U(u)|_(gamma=+) W^-1 = Lambda_even(x directsum z).
+000107 | In particular the particle color action, antiparticle conjugate color,
+000108 | weak doublet action and all hypercharges really intertwine.
+000109 | 
+000110 | For all three generations this is W tensor I_family. Since J_F flips the
+000111 | grading and commutes with the real gauge lift, gamma_F=-1 is the conjugate
+000112 | SM module. Thus the two internal grades can genuinely be read as the
+000113 | P2 16 and conjugate 16 at this representation level. This does not by itself
+000114 | identify internal chirality with physical spacetime chirality or field count.
+000115 | 
+000116 | The exterior construction does carry its usual full Spin(10) half-spinor
+000117 | action. W can TRANSPORT that action onto the positive v252 space. However
+000118 | the v252 builder implements the SM left/opposite action and a restricted
+000119 | PS-type left action, not explicit matrices for all Spin(10) generators.
+000120 | SM equivalence alone does not prove that the transported extra generators

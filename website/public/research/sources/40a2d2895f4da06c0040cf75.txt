@@ -1,0 +1,168 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-collar-multifield-20261016/e8_boundary_response.py
+Original file SHA-256: 8a77bef68666dd18470fce78e04881676862075d216587b291c9e2c3761d5e6b
+Inclusive original lines: 1-160
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact separated-point response of the stipulated E8 level-one lattice net.
+000003 | 
+000004 | This is an executable dictionary of the stipulated boundary current theory, not a
+000005 | selection of its realization, physical 4D fields, state, time or raw P1 kernel.
+000006 | No Gaussian current assumption is made. Cocycles and quarter characters remain
+000007 | explicit. Coordinates label an orthonormal R^8, split D5 + D3 (= A3).
+000008 | """
+000009 | from __future__ import annotations
+000010 | 
+000011 | import argparse
+000012 | from collections import Counter
+000013 | from functools import lru_cache
+000014 | from itertools import combinations, product
+000015 | import json
+000016 | from pathlib import Path
+000017 | 
+000018 | import sympy as sp
+000019 | 
+000020 | ZERO = (sp.S.Zero,) * 8
+000021 | HALF = sp.Rational(1, 2)
+000022 | V = (sp.S.Zero,) * 5 + (HALF,) * 3
+000023 | # Columns are a unimodular basis of the even E8 lattice in Euclidean coordinates.
+000024 | BASIS = sp.Matrix([
+000025 |     [HALF, 1, -1, 0, 0, 0, 0, 0],
+000026 |     [-HALF, 1, 1, -1, 0, 0, 0, 0],
+000027 |     [-HALF, 0, 0, 1, -1, 0, 0, 0],
+000028 |     [-HALF, 0, 0, 0, 1, -1, 0, 0],
+000029 |     [-HALF, 0, 0, 0, 0, 1, -1, 0],
+000030 |     [-HALF, 0, 0, 0, 0, 0, 1, -1],
+000031 |     [-HALF, 0, 0, 0, 0, 0, 0, 1],
+000032 |     [HALF, 0, 0, 0, 0, 0, 0, 0],
+000033 | ])
+000034 | GRAM = BASIS.T * BASIS
+000035 | BASIS_INV = BASIS.inv()
+000036 | 
+000037 | 
+000038 | def dot(a, b):
+000039 |     return sum((x * y for x, y in zip(a, b)), sp.S.Zero)
+000040 | 
+000041 | 
+000042 | def add(a, b):
+000043 |     return tuple(x + y for x, y in zip(a, b))
+000044 | 
+000045 | 
+000046 | def neg(a):
+000047 |     return tuple(-x for x in a)
+000048 | 
+000049 | 
+000050 | @lru_cache(None)
+000051 | def coordinates(a):
+000052 |     a = tuple(sp.Rational(x) for x in a)
+000053 |     if len(a) != 8:
+000054 |         raise ValueError("An E8 charge has eight Euclidean coordinates")
+000055 |     m = tuple(BASIS_INV * sp.Matrix(a))
+000056 |     if not all(x.is_Integer for x in m):
+000057 |         raise ValueError("Charge is outside the stipulated E8 lattice")
+000058 |     return tuple(int(x) for x in m)
+000059 | 
+000060 | 
+000061 | @lru_cache(None)
+000062 | def epsilon(a, b):
+000063 |     """Ordered lattice cocycle; diagonal zero is a declared basis convention."""
+000064 |     m, n = coordinates(a), coordinates(b)
+000065 |     exponent = sum(m[i] * n[j] * int(GRAM[i, j])
+000066 |                    for i in range(8) for j in range(i))
+000067 |     return -1 if exponent % 2 else 1
+000068 | 
+000069 | 
+000070 | def adjoint_sign(a):
+000071 |     # In this real cocycle convention V_a^dagger = epsilon(-a,a) V_-a.
+000072 |     return epsilon(neg(a), a)
+000073 | 
+000074 | 
+000075 | def grade(a):
+000076 |     x = 4 * dot(V, a)
+000077 |     if not x.is_Integer:
+000078 |         raise ValueError("Quarter grading is not integral on this charge")
+000079 |     return int(x) % 4
+000080 | 
+000081 | 
+000082 | def roots():
+000083 |     r = []
+000084 |     for i, j in combinations(range(8), 2):
+000085 |         for si, sj in product((-1, 1), repeat=2):
+000086 |             a = list(ZERO)
+000087 |             a[i], a[j] = sp.Integer(si), sp.Integer(sj)
+000088 |             r.append(tuple(a))
+000089 |     for signs in product((-1, 1), repeat=8):
+000090 |         if sum(x == -1 for x in signs) % 2 == 0:
+000091 |             r.append(tuple(HALF * x for x in signs))
+000092 |     return tuple(sorted(r))
+000093 | 
+000094 | 
+000095 | def vertex_response(charges, positions):
+000096 |     """Ordered chiral vacuum response of raw lattice vertex operators.
+000097 | 
+000098 |     Pairwise distinct real rational positions are sufficient for exact probes.
+000099 |     This function is a separated-point Taylor coefficient, not an integrated
+000100 |     source functional with an unspecified contact prescription.
+000101 |     """
+000102 |     charges = tuple(tuple(sp.Rational(x) for x in a) for a in charges)
+000103 |     positions = tuple(sp.Rational(z) for z in positions)
+000104 |     if len(charges) != len(positions):
+000105 |         raise ValueError("One position is required for each insertion")
+000106 |     if len(set(positions)) != len(positions):
+000107 |         raise ValueError("Coincident insertions need an additional contact prescription")
+000108 |     for a in charges:
+000109 |         coordinates(a)
+000110 |     if any(sum(a[j] for a in charges) != 0 for j in range(8)):
+000111 |         return sp.S.Zero
+000112 |     value = sp.S.One
+000113 |     for i, j in combinations(range(len(charges)), 2):
+000114 |         exponent = dot(charges[i], charges[j])
+000115 |         if not exponent.is_Integer:
+000116 |             raise AssertionError("E8 lattice locality was lost")
+000117 |         value *= epsilon(charges[i], charges[j]) * (positions[i] - positions[j]) ** exponent
+000118 |     return sp.factor(value)
+000119 | 
+000120 | 
+000121 | def connected_four(charges, positions):
+000122 |     value = vertex_response(charges, positions)
+000123 |     for pairs in (((0, 1), (2, 3)), ((0, 2), (1, 3)), ((0, 3), (1, 2))):
+000124 |         term = sp.S.One
+000125 |         for i, j in pairs:
+000126 |             term *= vertex_response((charges[i], charges[j]), (positions[i], positions[j]))
+000127 |         value -= term
+000128 |     return sp.factor(value)
+000129 | 
+000130 | 
+000131 | def current_response(charges=(), positions=(), cartan=()):
+000132 |     """All root/Cartan current responses, using the exact Heisenberg Ward rule.
+000133 | 
+000134 |     Each Cartan insertion is (direction_in_R8, position). This recursion uses
+000135 |     H-H contractions and H-V charge poles; root vertices remain exponential
+000136 |     operators rather than Gaussian current variables.
+000137 |     """
+000138 |     charges = tuple(tuple(sp.Rational(x) for x in a) for a in charges)
+000139 |     positions = tuple(sp.Rational(z) for z in positions)
+000140 |     cartan = tuple((tuple(sp.Rational(x) for x in d), sp.Rational(u)) for d, u in cartan)
+000141 |     all_positions = positions + tuple(u for _, u in cartan)
+000142 |     if len(set(all_positions)) != len(all_positions):
+000143 |         raise ValueError("Coincident current insertions require contact data")
+000144 |     if any(len(d) != 8 for d, _ in cartan):
+000145 |         raise ValueError("A Cartan direction has eight coordinates")
+000146 |     base = vertex_response(charges, positions)
+000147 | 
+000148 |     def ward(indices):
+000149 |         if not indices:
+000150 |             return sp.S.One
+000151 |         i, *rest = indices
+000152 |         d, u = cartan[i]
+000153 |         mean = sum((dot(d, a)/(u-z) for a, z in zip(charges, positions)), sp.S.Zero)
+000154 |         value = mean * ward(tuple(rest))
+000155 |         for j in rest:
+000156 |             e, w = cartan[j]
+000157 |             value += dot(d, e)/(u-w)**2 * ward(tuple(k for k in rest if k != j))
+000158 |         return value
+000159 | 
+000160 |     return sp.factor(base * ward(tuple(range(len(cartan)))))

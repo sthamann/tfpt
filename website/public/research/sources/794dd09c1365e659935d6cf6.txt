@@ -1,0 +1,91 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_fuchs_algebraic_frame.py
+Original file SHA-256: cbf63e92f2cce6d051702158da23d47086c43bc9c760862ec3a1ff23b6a58664
+Inclusive original lines: 1-83
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact two-coefficient character-sector test for the original v117 ODE.
+000002 | 
+000003 | All computations are rational functions over Q(omega); no numeric ODE.
+000004 | We use y=(h*p1/(a*b), h*z*p2/b, h*z*f), with a^2=8/9,b^2=5/9.
+000005 | The third and second equations define p2,p1; the first is the residual.
+000006 | """
+000007 | import sympy as S
+000008 | 
+000009 | w, om, c, d = S.symbols('w om c d')
+000010 | mod = om**2+om+1
+000011 | 
+000012 | def red(expr):
+000013 |     num, den = S.fraction(S.cancel(expr))
+000014 |     # Work in Q(omega)(w): invert denominator modulo omega^2+omega+1.
+000015 |     field = S.QQ.frac_field(w,c,d)
+000016 |     np = S.Poly(num,om,domain=field).rem(S.Poly(mod,om,domain=field))
+000017 |     dp = S.Poly(den,om,domain=field).rem(S.Poly(mod,om,domain=field))
+000018 |     return S.cancel((np*S.invert(dp,S.Poly(mod,om,domain=field))).rem(
+000019 |         S.Poly(mod,om,domain=field)).as_expr())
+000020 | 
+000021 | s=(1+w**3)/(1-w**3)  # z^2
+000022 | l=3*w**2/(1-w**6)  # z'/z, derivative with respect to w
+000023 | D=red(s*s-1)
+000024 | 
+000025 | def probe(H, exponent, label):
+000026 |     # row3=h*z^exponent*f, row2=h*z^exponent*p2/b,
+000027 |     # row1=h*z^(exponent-1)*p1/(a*b).
+000028 |     k=red(S.diff(H,w)/(2*H))
+000029 |     def ge(f,e):
+000030 |         return red(e*f+(S.diff(f,w)+k*f)/l)
+000031 |     f=c+d/H
+000032 |     p2=red((D*ge(f,exponent)-s*s*f)/s)
+000033 |     p1=red(D*ge(p2,exponent)-s*s*p2-S.Rational(5,9)*s*f)
+000034 |     residual=red(ge(p1,exponent-1)-s*s/D*(2*p1+S.Rational(8,9)*p2))
+000035 |     # c,d are constants in Q(omega), NOT restricted to rational/real values.
+000036 |     # Do not split coefficients in omega before solving for them.
+000037 |     eq=S.Poly(S.fraction(residual)[0],w).coeffs()
+000038 |     candidate=None
+000039 |     for equation in eq:
+000040 |         ec=red(S.diff(equation,c))
+000041 |         ed=red(S.diff(equation,d))
+000042 |         if ed != 0:
+000043 |             ratio=red(-ec/ed)
+000044 |             if red(residual.subs({d:ratio*c})) == 0:
+000045 |                 candidate=ratio
+000046 |             break
+000047 |     sol=[(c,candidate*c)] if candidate is not None else [(S.Integer(0),S.Integer(0))]
+000048 |     print(label,'solutions (c,d):',sol)
+000049 |     for v in sol:
+000050 |         if not any(v):
+000051 |             continue
+000052 |         sub={c:v[0],d:v[1]}
+000053 |         print('p3=',red(f.subs(sub)))
+000054 |         print('p2=',red(p2.subs(sub)))
+000055 |         print('p1=',red(p1.subs(sub)))
+000056 |         print('row1 residual=',red(residual.subs(sub)))
+000057 |         if label.startswith('q '):
+000058 |             ps=[red(p1.subs(sub).subs(c,1)),red(p2.subs(sub).subs(c,1)),red(f.subs(sub).subs(c,1))]
+000059 |             p,q,r=ps
+000060 |             direct=[red(D*ge(p,0)-s*s*(2*p+S.Rational(8,9)*q)),
+000061 |                     red(D*ge(q,1)-p-s*s*q-S.Rational(5,9)*s*r),
+000062 |                     red(D*ge(r,1)-s*q-s*s*r)]
+000063 |             print('all original row residuals, scaled=',direct)
+000064 |             P=S.Matrix([[red(t.subs(w,om**j*w)) for j in range(3)] for t in ps])
+000065 |             detP=red(P.det())
+000066 |             print('det of scaled column matrix P=',detP)
+000067 |             print('det G /(z^4-1)=',red(s*detP/D)*S.Rational(27,10)/S.sqrt(2))
+000068 |             kq=[-1,1,1]
+000069 |             eps=[1,-1,-1]
+000070 |             for j in range(3):
+000071 |                 aa=(-j)%3; pp=(-aa-1)%3; jj=(1-j)%3
+000072 |                 Hp=(w+om**pp)/(w+om**((pp+1)%3))
+000073 |                 fac=eps[aa]*om/Hp
+000074 |                 qrest=[]
+000075 |                 for row,t in enumerate(ps):
+000076 |                     lhs=fac*t.subs(w,om**j/w)
+000077 |                     rhs=kq[j]*t.subs(w,om**jj*w)
+000078 |                     qrest.append(red(lhs-rhs if row<2 else lhs+rhs))
+000079 |                 print('Q column',j,'residuals=',qrest)
+000080 |     return sol
+000081 | 
+000082 | probe((w+1)/(w+om),1,'q sector, row3=h*z*(c+d/H)')
+000083 | probe((w-1)/(w-om),0,'existing p alternative, row3=h*(c+d/H)')

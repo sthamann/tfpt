@@ -1,0 +1,188 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/check_parabolic_stability.py
+Original file SHA-256: a9962489103f28ae692ca7b53f27f1d12397e579579c2b887b1c0ee65e2f38ee
+Inclusive original lines: 181-360
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000181 |              * (lam - sp.Rational(2, 3))),
+000182 |         "char(A0*) = lambda(lambda-1/3)(lambda-2/3) exactly",
+000183 |     )
+000184 |     check(
+000185 |         "A0_EIGENVECTORS",
+000186 |         matrix_zero(A0 * V0)
+000187 |         and matrix_zero((A0 - sp.eye(3) / 3) * V1)
+000188 |         and matrix_zero((A0 - 2 * sp.eye(3) / 3) * V2),
+000189 |         "V0,V1,V2 are exact eigenvectors for weights 0,1/3,2/3",
+000190 |     )
+000191 | 
+000192 |     residues = [sp.simplify(U**k * A0 * (U**k).inv()) for k in range(4)]
+000193 |     check(
+000194 |         "C4_FLAGS",
+000195 |         all(matrix_zero(residues[(k + 1) % 4] - U * residues[k] * U.inv())
+000196 |             for k in range(4)),
+000197 |         "A_(k+1)=U A_k U^-1; this proves C4 covariance only",
+000198 |     )
+000199 |     check(
+000200 |         "RESIDUE_SUM",
+000201 |         matrix_zero(sum(residues, sp.zeros(3)) - N),
+000202 |         "sum A_k = diag(2,1,1)",
+000203 |     )
+000204 | 
+000205 |     peripheral_monodromies = [sp.expand(U**k * M0 * U**(-k)) for k in range(4)]
+000206 |     peripheral_group = enumerate_group(peripheral_monodromies)
+000207 |     covariance_group = enumerate_group([M0, U])
+000208 |     peripheral_characters = character_distribution(peripheral_group)
+000209 |     covariance_characters = character_distribution(covariance_group)
+000210 |     check(
+000211 |         "FOUR_PUNCTURE_MONODROMY_IS_A4",
+000212 |         len(peripheral_group) == 12
+000213 |         and peripheral_characters == {"-1": 3, "0": 8, "3": 1}
+000214 |         and sum(sp.simplify(g.trace() * sp.conjugate(g.trace()))
+000215 |                 for g in peripheral_group) == 12,
+000216 |         "the four M_k generate irreducible A4 of order 12, not S4",
+000217 |     )
+000218 |     check(
+000219 |         "U_EXTENDS_A4_TO_S4",
+000220 |         len(covariance_group) == 24
+000221 |         and covariance_characters == {"-1": 9, "0": 8, "1": 6, "3": 1},
+000222 |         "adjoining the C4 covariance U extends A4 to the sign-twisted standard S4 representation",
+000223 |     )
+000224 | 
+000225 |     line_variables = sp.symbols("a b c d e")
+000226 |     line_feasible = []
+000227 |     high_line_patterns = 0
+000228 |     high_line_full_rank = 0
+000229 |     for pattern in product(range(3), repeat=4):
+000230 |         matrix, nullspace = linear_system(
+000231 |             line_pattern_equations(pattern, line_variables), line_variables
+000232 |         )
+000233 |         if saturated_degree_minus_two_exists(nullspace, line_variables):
+000234 |             line_feasible.append(pattern)
+000235 |         if sum(pattern) >= 5:
+000236 |             high_line_patterns += 1
+000237 |             if matrix.rank() == 5:
+000238 |                 high_line_full_rank += 1
+000239 |     line_max = max(sum(pattern) for pattern in line_feasible)
+000240 |     line_witness = actual_line_weights(3 * SQ2 / 2, 1, 0, 0, 0)
+000241 |     check(
+000242 |         "RANK1_DEG_MINUS2_81_PATTERNS",
+000243 |         len(tuple(product(range(3), repeat=4))) == 81
+000244 |         and high_line_patterns == 31
+000245 |         and high_line_full_rank == 31
+000246 |         and line_max == 4
+000247 |         and line_witness == (1, 1, 1, 1),
+000248 |         "81 threshold patterns; all 31 with sum>=5 have rank 5; max sum=4",
+000249 |     )
+000250 | 
+000251 |     y, z = sp.symbols("y z")
+000252 |     degree_minus_one_feasible = []
+000253 |     for pattern in product(range(3), repeat=4):
+000254 |         equations = []
+000255 |         for k, threshold in enumerate(pattern):
+000256 |             value = sp.Matrix([0, y, z])
+000257 |             middle = U**k * V1
+000258 |             high = U**k * V2
+000259 |             if threshold >= 1:
+000260 |                 equations.append(sp.det(sp.Matrix.hstack(middle, high, value)))
+000261 |             if threshold >= 2:
+000262 |                 equations.extend([
+000263 |                     value[0] * high[1] - value[1] * high[0],
+000264 |                     value[0] * high[2] - value[2] * high[0],
+000265 |                 ])
+000266 |         _, nullspace = linear_system(equations, (y, z))
+000267 |         if nullspace:
+000268 |             degree_minus_one_feasible.append(pattern)
+000269 |     degree_minus_one_max = max(sum(pattern) for pattern in degree_minus_one_feasible)
+000270 |     check(
+000271 |         "RANK1_DEG_MINUS1",
+000272 |         degree_minus_one_max == 2,
+000273 |         "a degree -1 line lies in span(e2,e3) and has total weight at most 2/3",
+000274 |     )
+000275 | 
+000276 |     quotient_variables = sp.symbols("qa qb qc qd")
+000277 |     quotient_feasible = []
+000278 |     low_quotient_patterns = 0
+000279 |     low_quotient_full_rank = 0
+000280 |     for pattern in product(range(3), repeat=4):
+000281 |         matrix, nullspace = linear_system(
+000282 |             quotient_pattern_equations(pattern, quotient_variables),
+000283 |             quotient_variables,
+000284 |         )
+000285 |         if surjective_degree_minus_one_exists(nullspace):
+000286 |             quotient_feasible.append(pattern)
+000287 |         if sum(pattern) <= 3:
+000288 |             low_quotient_patterns += 1
+000289 |             if matrix.rank() == 4:
+000290 |                 low_quotient_full_rank += 1
+000291 |     quotient_min = min(sum(pattern) for pattern in quotient_feasible)
+000292 |     quotient_witness = actual_quotient_weights(-SQ2 / 2, 0, 1, 0)
+000293 |     check(
+000294 |         "RANK2_QUOTIENT_DEG_MINUS1_81_PATTERNS",
+000295 |         len(tuple(product(range(3), repeat=4))) == 81
+000296 |         and low_quotient_patterns == 31
+000297 |         and low_quotient_full_rank == 31
+000298 |         and quotient_min == 4
+000299 |         and quotient_witness == (1, 1, 1, 1),
+000300 |         "81 upper-weight patterns; all 31 with sum<=3 have rank 4; min sum=4",
+000301 |     )
+000302 | 
+000303 |     q0_variables = sp.symbols("A B C D E F G")
+000304 |     aa, bb, cc, dd, ee, ff, gg = q0_variables
+000305 |     q0_equations = []
+000306 |     for k, point in enumerate(POINTS):
+000307 |         functional = sp.Matrix([[
+000308 |             aa * point**2 + bb * point + cc,
+000309 |             dd * point + ee,
+000310 |             ff * point + gg,
+000311 |         ]])
+000312 |         q0_equations.extend([
+000313 |             (functional * (U**k * V1))[0],
+000314 |             (functional * (U**k * V2))[0],
+000315 |         ])
+000316 |     q0_matrix, q0_nullspace = linear_system(q0_equations, q0_variables)
+000317 |     check(
+000318 |         "RANK2_QUOTIENT_DEG_ZERO",
+000319 |         q0_matrix.rank() == 7 and not q0_nullspace,
+000320 |         "the eight all-zero-weight equations have rank 7 in seven variables",
+000321 |     )
+000322 | 
+000323 |     rank1_bounds = {
+000324 |         "degree_-1": "pardeg <= -1 + 2/3 = -1/3",
+000325 |         "degree_-2": "pardeg <= -2 + 4/3 = -2/3",
+000326 |         "degree_<=-3": "pardeg <= -3 + 8/3 = -1/3",
+000327 |     }
+000328 |     rank2_bounds = {
+000329 |         "quotient_degree_-2": "pardeg(Q) = -2 + 8/3 = 2/3",
+000330 |         "quotient_degree_-1": "pardeg(Q) >= -1 + 4/3 = 1/3",
+000331 |         "quotient_degree_0": "pardeg(Q) >= 1/3",
+000332 |         "quotient_degree_>0": "pardeg(Q) > 0",
+000333 |     }
+000334 |     check(
+000335 |         "ALGEBRAIC_PARABOLIC_STABILITY",
+000336 |         not failures,
+000337 |         "all saturated rank-1 subbundles have pardeg<0 and all rank-2 quotients have pardeg>0",
+000338 |     )
+000339 | 
+000340 |     # Infinity-patch audit.  Gamma is the connection form with finite residues +A_k.
+000341 |     # For O(-2)+O(-1)^2 the diagonal frame transition is g=diag(w^2,w,w).
+000342 |     # A genuine infinity-patch change leaves all finite fibres untouched, but it
+000343 |     # must also make Gamma regular.  The exact transformed form retains a
+000344 |     # resonant E12/w pole, so the raw A0* affine flags are not yet proved to be
+000345 |     # the flags of the claimed BG-split Deligne extension.
+000346 |     w = sp.symbols("w")
+000347 |     gamma_affine = -sum(
+000348 |         (residues[k] / (w * (1 - POINTS[k] * w)) for k in range(4)),
+000349 |         sp.zeros(3),
+000350 |     )
+000351 |     g = sp.diag(w**2, w, w)
+000352 |     gamma_infinity = sp.simplify(g.inv() * gamma_affine * g + N / w)
+000353 |     infinity_residue = gamma_infinity.applyfunc(
+000354 |         lambda entry: sp.simplify(sp.limit(w * entry, w, 0))
+000355 |     )
+000356 |     expected_resonance = sp.zeros(3)
+000357 |     expected_resonance[0, 1] = -2 * SQ2 / 3
+000358 |     pure_shear_holomorphic = matrix_zero(infinity_residue)
+000359 |     check(
+000360 |         "INFINITY_DIAGONAL_SHEAR_AUDIT",

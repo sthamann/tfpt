@@ -1,0 +1,120 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/joint-native-algebra-selection-20261016/check_erasure_multilocal_support.py
+Original file SHA-256: 7effbd2f160066f082efd71abdf2b5a6d5b24fdc73c0272bbc9031b58fc253f6
+Inclusive original lines: 1-112
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Literal native erasure20 and joint25 highest-CAR support under the original fold.
+000002 | 
+000003 | Preserves partial_a P_i / sqrt(N_i), with P_i the raw original quartic,
+000004 | original M/O and both quarters.
+000005 | No new physical source choice, operation menu, or source-energy assertion.
+000006 | """
+000007 | import argparse
+000008 | import hashlib
+000009 | import itertools
+000010 | import json
+000011 | from pathlib import Path
+000012 | import sys
+000013 | 
+000014 | BASE = Path(__file__).resolve().parent
+000015 | import check_native_quartic_multilocal_support as q
+000016 | 
+000017 | s, m, old = q.s, q.m, q.old
+000018 | 
+000019 | 
+000020 | def hashes():
+000021 |     return {n: hashlib.sha256((BASE/n).read_bytes()).hexdigest() for n in (
+000022 |         'check_native_quartic_multilocal_support.py',
+000023 |         'NATIVE-QUARTIC-MULTILOCAL-SUPPORT.txt',
+000024 |         'native_quartic_multilocal_support_results.json')}
+000025 | 
+000026 | 
+000027 | def main(output):
+000028 |     before = hashes()
+000029 |     m.need(hashlib.sha256(q.M_PATH.read_bytes()).hexdigest() == q.M_SHA,
+000030 |            'Original M source retained')
+000031 |     ld = m._lattice_data()
+000032 |     T = s.Matrix.hstack(*map(s.Matrix,m._TARGET_SIMPLE))
+000033 |     O = old.cl(T*ld['basis'].inv()/s.sqrt(2))
+000034 |     m.need(hashlib.sha256(json.dumps(q.rows(O),separators=(',',':')).encode()).hexdigest()
+000035 |            == q.O_ROWS_SHA, 'Original O retained')
+000036 |     M = s.Matrix(json.loads(q.M_PATH.read_text())['explicit_Weyl_matrix'])
+000037 |     Uplus = s.zeros(8,4)
+000038 |     for a in range(4):
+000039 |         Uplus[2*a,a] = 1/s.sqrt(2)
+000040 |         Uplus[2*a+1,a] = -s.I/s.sqrt(2)
+000041 |     V = old.cl(M.T*O*Uplus)
+000042 |     polys, norms = m.code()
+000043 |     labels = [(i,a) for i in range(5) for a in range(4)]
+000044 |     erasure = [m.deriv(polys[i], [m.Q.one if a==b else m.Q.zero for b in range(4)])
+000045 |                for i,a in labels]
+000046 |     original_gram = s.Matrix(20,20,lambda j,k:old.Q.to_sympy(m.inner(erasure[j],erasure[k])))
+000047 |     weights = [norms[i] for i,a in labels]
+000048 |     m.need(original_gram == s.diag(*weights), 'Actual twenty unit erasure fields are orthonormal')
+000049 |     subsets = list(itertools.combinations(range(8),3))
+000050 |     C = s.Matrix([
+000051 |         [s.simplify(sum(old.Q.to_sympy(c)*sum(
+000052 |             s.prod(V[k,a] for k,a in zip(K,perm))
+000053 |             for perm in itertools.permutations(word)) for word,c in f.items()))
+000054 |          for f in erasure] for K in subsets])
+000055 |     G = old.cl(C.conjugate().T*C)
+000056 |     m.need(C.shape == (56,20) and C.rank() == 20, 'Literal cubic principal map injective')
+000057 |     N = s.diag(*[1/s.sqrt(n) for n in weights])
+000058 |     Gn = old.cl(N*G*N)
+000059 |     D = s.Matrix.vstack(*[C[j:j+1,:] for j,K in enumerate(subsets) for _ in K])
+000060 |     Ga = old.cl(D.conjugate().T*D/8)
+000061 |     m.need(Ga == s.Rational(3,8)*G and Ga.rank() == 20,
+000062 |            'Every original sheet has injective degree-five CAR commutator')
+000063 |     h = s.symbols('h0:4')
+000064 |     hpoly = [sum(old.Q.to_sympy(c)*s.prod(h[a] for a in word) for word,c in f.items())
+000065 |              for f in erasure]
+000066 |     quarters = {}
+000067 |     for alpha in (s.Rational(1,4),s.Rational(3,4)):
+000068 |         delta = s.Matrix([(k+alpha)/8-s.Rational(1,2) for k in range(8)])
+000069 |         b = old.cl(V.T*delta)
+000070 |         for f in hpoly:
+000071 |             p = s.Poly(s.expand(f.subs(dict(zip(h,[h[a]+b[a]for a in range(4)])),
+000072 |                                      simultaneous=True)),*h)
+000073 |             top = sum(c*s.prod(h[a]**mon[a]for a in range(4))
+000074 |                       for mon,c in p.terms()if sum(mon)==3)
+000075 |             m.need(s.expand(top-f)==0,'Original b shift preserves cubic principal term')
+000076 |         quarters[str(alpha)] = {'b':[str(x)for x in b], 'cubic_shift_unchanged':True,
+000077 |                                 'all_sheet_ranks_from_uniform_gram_identity':[20]*8,
+000078 |                                 'sheet_gram_factor':'3/8'}
+000079 |     _, C4 = q.principal_coefficients(polys,V)
+000080 |     m.need(C4.rank()==5, 'Retain reviewed quartic principal rank')
+000081 |     after = hashes()
+000082 |     m.need(before==after,'All reviewed source/result files untouched')
+000083 |     result = {
+000084 |         'status':'PASS_SCOPED',
+000085 |         'source_inputs':{'M_file_sha256':q.M_SHA,'O_canonical_rows_sha256':q.O_ROWS_SHA,
+000086 |                          'V':q.rows(V)},
+000087 |         'column_order':[[i,a]for i,a in labels],
+000088 |         'field_definition':'g_(i,a)=partial_a P_i / sqrt(N_i), P_i raw original quartic',
+000089 |         'original_norms':weights, 'original_gram':q.rows(original_gram),
+000090 |         'subset_order':[list(K)for K in subsets],
+000091 |         'principal_coefficients_raw':q.rows(C), 'principal_gram_raw':q.rows(G),
+000092 |         'principal_rank':C.rank(), 'principal_nullity':20-C.rank(),
+000093 |         'principal_gram_raw_determinant':str(G.det()),
+000094 |         'principal_gram_unit':q.rows(Gn),
+000095 |         'principal_gram_unit_determinant':str(Gn.det()),
+000096 |         'sheet_commutator_gram_raw':q.rows(Ga),
+000097 |         'sheet_commutator_rank':Ga.rank(), 'quarters':quarters,
+000098 |         'joint25_graded_rank':C4.rank()+C.rank(),
+000099 |         'joint25_reason':'Any nonzero quartic coefficient survives CAR degree8 / commutator7; when it vanishes, any nonzero erasure coefficient survives degree6 / commutator5. No cancellation across these highest different filtration degrees.',
+000100 |         'scope':'Given original 8-fold M/O current dictionary only; no P1 source/reference/preparation selection or all-operations no-go.',
+000101 |         'protected_files_before':before, 'protected_files_after':after}
+000102 |     output.write_text(json.dumps(result,indent=2,sort_keys=True)+'\n')
+000103 |     print(json.dumps({k:result[k]for k in ('status','principal_rank','principal_nullity',
+000104 |                                          'principal_gram_raw_determinant',
+000105 |                                          'principal_gram_unit_determinant',
+000106 |                                          'sheet_commutator_rank','joint25_graded_rank')}))
+000107 | 
+000108 | 
+000109 | if __name__=='__main__':
+000110 |     p=argparse.ArgumentParser()
+000111 |     p.add_argument('--output',type=Path,default=BASE/'erasure_multilocal_support_results.json')
+000112 |     main(p.parse_args().output)

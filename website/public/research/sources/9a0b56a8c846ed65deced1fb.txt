@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/check_native_spin5_source_record.py
+Original file SHA-256: 72fe426e34b1fb6b6195b8a333a71208d73b998be3719acb1ba66515f8dd40ee
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact native Spin5 Hodge space against the actual one/two source records."""
+000003 | 
+000004 | from __future__ import annotations
+000005 | 
+000006 | import argparse
+000007 | from itertools import combinations, combinations_with_replacement
+000008 | import hashlib
+000009 | import importlib.util
+000010 | import json
+000011 | from pathlib import Path
+000012 | 
+000013 | import numpy as np
+000014 | import sympy as sp
+000015 | 
+000016 | 
+000017 | HERE = Path(__file__).resolve().parent
+000018 | [OMITTED: non-scientific conversation or execution metadata]
+000019 | SOURCE = ROOT / "experiments/theory-contracts/compiler-correlated-event-clock-20260919/source_channel.py"
+000020 | FUNCTOR = HERE / "check_native_spin5_functor.py"
+000021 | FUNCTOR_REPORT = HERE / "NATIVE-SPIN5-FUNCTOR-AND-KRAUS-SPACE.txt"
+000022 | PINS = {
+000023 |     str(SOURCE): "3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593",
+000024 |     str(FUNCTOR): "86911d6e7634592fe9e61d232535224e9b8148308433a05a8ccf983e5a110fa2",
+000025 |     str(FUNCTOR_REPORT): "3ffcad772d3f0a8fef31ff000cb716b18668f83d013ebe3a55b055d498080050",
+000026 | }
+000027 | 
+000028 | 
+000029 | checks: list[str] = []
+000030 | 
+000031 | 
+000032 | def require(value: bool, label: str) -> None:
+000033 |     if not bool(value):
+000034 |         raise AssertionError(label)
+000035 |     checks.append(label)
+000036 | 
+000037 | 
+000038 | def load(name: str, path: Path):
+000039 |     spec = importlib.util.spec_from_file_location(name, path)
+000040 |     require(spec is not None and spec.loader is not None, f"import specification {name}")
+000041 |     module = importlib.util.module_from_spec(spec)
+000042 |     spec.loader.exec_module(module)
+000043 |     return module
+000044 | 
+000045 | 
+000046 | def exact_gaussian(array: np.ndarray) -> sp.Matrix:
+000047 |     if not np.allclose(array.real, np.rint(array.real), atol=0, rtol=0):
+000048 |         raise AssertionError("Gaussian integer real coordinates")
+000049 |     if not np.allclose(array.imag, np.rint(array.imag), atol=0, rtol=0):
+000050 |         raise AssertionError("Gaussian integer imaginary coordinates")
+000051 |     return sp.Matrix([
+000052 |         [sp.Integer(int(round(z.real))) + sp.I * sp.Integer(int(round(z.imag))) for z in row]
+000053 |         for row in array
+000054 |     ])
+000055 | 
+000056 | 
+000057 | def vec(matrix: sp.Matrix) -> sp.Matrix:
+000058 |     return sp.Matrix([matrix[i, j] for j in range(matrix.cols) for i in range(matrix.rows)])
+000059 | 
+000060 | 
+000061 | def exterior_action(matrix: sp.Matrix, pairs: list[tuple[int, int]]) -> sp.Matrix:
+000062 |     return sp.Matrix.hstack(*[
+000063 |         sp.Matrix([
+000064 |             matrix[i, a] * matrix[j, b] - matrix[j, a] * matrix[i, b]
+000065 |             for i, j in pairs
+000066 |         ])
+000067 |         for a, b in pairs
+000068 |     ])
+000069 | 
+000070 | 
+000071 | def exterior_lie_action(matrix: sp.Matrix, dimension: int,
+000072 |                         pairs: list[tuple[int, int]]) -> sp.Matrix:
+000073 |     result = sp.zeros(len(pairs))
+000074 |     for column, (a, b) in enumerate(pairs):
+000075 |         for i in range(dimension):
+000076 |             coefficient = matrix[i, a]
+000077 |             if coefficient and i != b:
+000078 |                 pair = tuple(sorted((i, b)))
+000079 |                 result[pairs.index(pair), column] += coefficient * (1 if i < b else -1)
+000080 |             coefficient = matrix[i, b]
+000081 |             if coefficient and i != a:
+000082 |                 pair = tuple(sorted((a, i)))
+000083 |                 result[pairs.index(pair), column] += coefficient * (1 if a < i else -1)
+000084 |     return result
+000085 | 
+000086 | 
+000087 | def symmetric_action(matrix: sp.Matrix,
+000088 |                      pairs: list[tuple[int, int]]) -> sp.Matrix:
+000089 |     columns = []
+000090 |     for a, b in pairs:
+000091 |         tensor = sp.zeros(matrix.rows)
+000092 |         tensor[a, b] = 1
+000093 |         tensor[b, a] = 1
+000094 |         image = matrix * tensor * matrix.T
+000095 |         columns.append(sp.Matrix([image[i, j] for i, j in pairs]))
+000096 |     return sp.Matrix.hstack(*columns)
+000097 | 
+000098 | 
+000099 | def pauli_basis(bits) -> list[sp.Matrix]:
+000100 |     identity = sp.eye(2)
+000101 |     x = sp.Matrix([[0, 1], [1, 0]])
+000102 |     y = sp.Matrix([[0, -sp.I], [sp.I, 0]])
+000103 |     z = sp.diag(1, -1)
+000104 |     one = {(0, 0): identity, (1, 0): x, (0, 1): z, (1, 1): y}
+000105 |     return [sp.kronecker_product(one[(a, b)], one[(c, d)]) for a, b, c, d in bits]
+000106 | 
+000107 | 
+000108 | def hodge_amplitudes() -> list[sp.Matrix]:
+000109 |     pairs = list(combinations(range(5), 2))
+000110 |     result = []
+000111 |     for m in range(5):
+000112 |         operator = sp.zeros(10)
+000113 |         for column, (a, b) in enumerate(pairs):
+000114 |             if m in (a, b):
+000115 |                 continue
+000116 |             complement = [j for j in range(5) if j not in (m, a, b)]
+000117 |             sequence = [m, a, b] + complement
+000118 |             inversions = sum(sequence[i] > sequence[j]
+000119 |                              for i in range(5) for j in range(i + 1, 5))
+000120 |             operator[pairs.index(tuple(complement)), column] = (-1) ** inversions
+000121 |         result.append(operator)
+000122 |     return result
+000123 | 
+000124 | 
+000125 | def encode(matrix: sp.Matrix) -> list[list[str]]:
+000126 |     return [[str(sp.simplify(value)) for value in row] for row in matrix.tolist()]
+000127 | 
+000128 | 
+000129 | def main(output: Path | None) -> dict:
+000130 |     checks.clear()
+000131 |     for path, digest in PINS.items():
+000132 |         require(hashlib.sha256(Path(path).read_bytes()).hexdigest() == digest,
+000133 |                 "source pin " + path)
+000134 | 
+000135 |     old = load("pinned_source_channel_native_spin5", SOURCE)
+000136 |     pairs4 = list(combinations(range(4), 2))
+000137 |     pairs5 = list(combinations(range(5), 2))
+000138 |     symmetric_pairs = list(combinations_with_replacement(range(4), 2))
+000139 |     sqrt2 = sp.sqrt(2)
+000140 |     ii = sp.I
+000141 | 
+000142 |     # Frozen native V4 and its conformal symplectic F20 generators.
+000143 |     identity2 = sp.eye(2)
+000144 |     H = sp.Matrix([[1, 1], [1, -1]]) / sqrt2
+000145 |     S = sp.diag(1, ii)
+000146 |     Y = sp.Matrix([[0, -ii], [ii, 0]])
+000147 |     Z = sp.diag(1, -1)
+000148 |     CNOT = sp.Matrix([[1, 0, 0, 0], [0, 1, 0, 0],
+000149 |                       [0, 0, 0, 1], [0, 0, 1, 0]])
+000150 |     c_native = sp.simplify(-ii * sp.kronecker_product(identity2, H) * CNOT *
+000151 |                            sp.kronecker_product(S, identity2) *
+000152 |                            sp.kronecker_product(H, identity2))
+000153 |     g_native = sp.simplify(sp.kronecker_product(Y, Z) * CNOT *
+000154 |                            sp.kronecker_product(identity2, S) *
+000155 |                            sp.kronecker_product(S, identity2))
+000156 |     omega = sp.Matrix([[0, 1, 0, 0], [-1, 0, 0, 0],
+000157 |                        [0, 0, 0, 1], [0, 0, -1, 0]])
+000158 | 
+000159 |     primitive = sp.Matrix.hstack(
+000160 |         sp.Matrix([1/sqrt2, 0, 0, 0, 0, -1/sqrt2]),
+000161 |         sp.eye(6)[:, 1], sp.eye(6)[:, 2], sp.eye(6)[:, 3], sp.eye(6)[:, 4],
+000162 |     )
+000163 |     wedge_pairing = sp.zeros(6)
+000164 |     wedge_pairing[0, 5] = wedge_pairing[5, 0] = 1
+000165 |     wedge_pairing[1, 4] = wedge_pairing[4, 1] = -1
+000166 |     wedge_pairing[2, 3] = wedge_pairing[3, 2] = 1
+000167 |     q5 = sp.simplify(primitive.T * wedge_pairing * primitive)
+000168 | 
+000169 |     # Explicit orthonormal frame of Fix(j), j(w)=q conjugate(w).
+000170 |     real_frame = sp.Matrix.hstack(
+000171 |         ii * sp.eye(5)[:, 0],
+000172 |         (sp.eye(5)[:, 1] - sp.eye(5)[:, 4]) / sqrt2,
+000173 |         ii * (sp.eye(5)[:, 1] + sp.eye(5)[:, 4]) / sqrt2,
+000174 |         (sp.eye(5)[:, 2] + sp.eye(5)[:, 3]) / sqrt2,
+000175 |         ii * (sp.eye(5)[:, 2] - sp.eye(5)[:, 3]) / sqrt2,
+000176 |     )
+000177 |     require(real_frame.conjugate().T * real_frame == sp.eye(5),
+000178 |             "compact real frame is Hermitian orthonormal")
+000179 |     require(q5 * real_frame.conjugate() == real_frame,
+000180 |             "compact real frame is fixed by j")
+000181 | 
+000182 |     symmetric_basis = []
+000183 |     spin5_columns = []
+000184 |     for a, b in symmetric_pairs:
+000185 |         tensor = sp.zeros(4)
+000186 |         tensor[a, b] = 1
+000187 |         tensor[b, a] = 1
+000188 |         symmetric_basis.append(tensor)
+000189 |         lie = tensor * omega
+000190 |         w_lie = sp.simplify(primitive.conjugate().T *
+000191 |                             exterior_lie_action(lie, 4, pairs4) * primitive)
+000192 |         bivector = sp.simplify(w_lie * q5)
+000193 |         spin5_columns.append(sp.Matrix([bivector[i, j] for i, j in pairs5]))
+000194 |     spin5_map = sp.Matrix.hstack(*spin5_columns)
+000195 |     symmetric_metric = sp.diag(*[1 if a == b else 2 for a, b in symmetric_pairs])
+000196 |     require(spin5_map.conjugate().T * spin5_map == symmetric_metric,
+000197 |             "Spin5 map preserves the induced Sym2 metric")
+000198 | 
+000199 |     # The source Bell basis consists of symmetric Pauli matrices of HS norm 2.
+000200 |     # Dividing their Sym2 coordinate columns by two is the required isometry.

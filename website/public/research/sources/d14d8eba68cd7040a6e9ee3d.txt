@@ -1,0 +1,49 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/universalraum-primitive-source-audit-20260915/RESULTS.md
+Original file SHA-256: ae9880339326e402dee9783185defc0671bdec430a777d961d54e7636335aa80
+Inclusive original lines: 195-235
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000195 | ### 5.1 Zwei notwendige Bedingungen lassen sich nicht wegkürzen
+000196 | 
+000197 | Ohne Positivität hat [[1,2],[2,1]] auf (1,−1) die »Quadratnorm« −2.
+000198 | Ohne Fortsetzungsverträglichkeit darf ein positives K die Geschichten 1 und a
+000199 | gleichsetzen, obwohl a und a² orthogonal sind. Dann schickt die Operation a
+000200 | denselben Zustand auf zwei verschiedene Zustände. Der Checker enthält beide
+000201 | Gegenbeispiele.
+000202 | 
+000203 | ## 6. Der endliche Schließungstest — keine unendliche Stichprobensammlung
+000204 | 
+000205 | Seien h_1,...,h_d linear unabhängige, erreichbare Geschichten, deren Spann die
+000206 | Referenz enthält. Definiere aus derselben Quelle
+000207 | 
+000208 |     G_ij = K(h_i,h_j),
+000209 |     (B_a)_ij = K(h_i,a h_j),
+000210 |     (D_a)_ij = K(a h_i,a h_j).
+000211 | 
+000212 | G ist positiv definit. Schreibe V für den Operator mit Spalten |h_i>. Die
+000213 | orthogonale Projektion auf ihren Spann ist P=VG⁻¹V†. Dann ist
+000214 | 
+000215 |     R_a = D_a − B_a†G⁻¹B_a
+000216 |         = (aV)†(I−P)(aV) ≥ 0.
+000217 | 
+000218 | **Satz:** R_a=0 genau dann, wenn a jeden Basisvektor in denselben Spann abbildet.
+000219 | In diesem Fall ist die gesamte Operation in dieser Basis
+000220 | 
+000221 |     M_a=G⁻¹B_a.
+000222 | 
+000223 | Gilt dies für alle Generatoren des vollständigen deklarierten Operationssatzes
+000224 | (einschließlich benötigter Adjungierter), bleiben durch Induktion alle Wörter
+000225 | in diesem Spann. Ihr Verhalten folgt ohne weitere Zustandsparameter aus den
+000226 | Matrizen M_a und der Referenz. Jede andere zyklische Realisierung derselben
+000227 | Daten ist unitär äquivalent. Zusätzliche unzugängliche Sektoren bleiben dadurch
+000228 | ausdrücklich unbestimmt.
+000229 | 
+000230 | Der Satz ist ein genauer endlicher Nachweis, **wenn** die gemeinsamen Werte
+000231 | G,B_a,D_a gegeben oder aus einer Quelle hergeleitet sind. Man darf D_a nicht als
+000232 | B_a†G⁻¹B_a definieren und dann die Schließung als Befund feiern.
+000233 | 
+000234 | Im Checker: nichtorthogonale Zweierbasis, zwei nichtkommutierende Generatoren,
+000235 | zweite unitär verdrehte Realisierung, alle Wörter bis Länge fünf als Kontrollen.

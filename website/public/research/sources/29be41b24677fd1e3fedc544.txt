@@ -1,0 +1,127 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/boundary_origin_20261027/uniqueness/check_norm_power_uniqueness.py
+Original file SHA-256: e4c299a390f75f83deae2d0985235e5de0137fc6fefc0d07a3d8ac5cdcfd9fb8
+Inclusive original lines: 1-119
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact residue check for the marked q norm-power family.
+000003 | 
+000004 | All phases are exponents of zeta_8=exp(pi i/4), so the calculation is
+000005 | integer arithmetic modulo eight.  No floating-point comparison is used.
+000006 | """
+000007 | 
+000008 | from __future__ import annotations
+000009 | 
+000010 | import json
+000011 | from pathlib import Path
+000012 | 
+000013 | 
+000014 | OUT = Path(__file__).with_name("norm-power-uniqueness-results.json")
+000015 | 
+000016 | 
+000017 | def require(condition: bool, message: str) -> None:
+000018 |     if not condition:
+000019 |         raise RuntimeError(message)
+000020 | 
+000021 | 
+000022 | def phase_table(alpha_on_norm: int) -> list[dict[str, int | bool]]:
+000023 |     """Return the W_k central data for one of the two spin-lift signs."""
+000024 |     require(alpha_on_norm % 2 == 1, "alpha phase must have odd zeta_8 exponent")
+000025 |     require(
+000026 |         (2 * alpha_on_norm) % 8 == 6,
+000027 |         "alpha_N^2 must equal -i=zeta_8^6",
+000028 |     )
+000029 |     rows = []
+000030 |     for k in range(8):
+000031 |         beta_exp = (2 * k) % 8  # beta on N^{-k} is i^k
+000032 |         alpha_relative_exp = (-alpha_on_norm * k) % 8
+000033 |         rows.append(
+000034 |             {
+000035 |                 "k_mod_8": k,
+000036 |                 "beta_exp_mod_8": beta_exp,
+000037 |                 "alpha_relative_exp_mod_8": alpha_relative_exp,
+000038 |                 "native_beta_plus_i": beta_exp == 2,
+000039 |                 "alpha_fourth_is_minus_one": (2 * beta_exp) % 8 == 4,
+000040 |             }
+000041 |         )
+000042 |     return rows
+000043 | 
+000044 | 
+000045 | def main() -> None:
+000046 |     # The two choices differ by alpha -> -alpha.
+000047 |     tables = {str(a): phase_table(a) for a in (3, 7)}
+000048 | 
+000049 |     for rows in tables.values():
+000050 |         require(
+000051 |             [r["k_mod_8"] for r in rows if r["native_beta_plus_i"]] == [1, 5],
+000052 |             "native beta phase must select k=1,5 modulo eight",
+000053 |         )
+000054 |         require(
+000055 |             all(r["alpha_fourth_is_minus_one"] for r in rows if r["native_beta_plus_i"]),
+000056 |             "selected alpha must have fourth power -1",
+000057 |         )
+000058 | 
+000059 |         by_k = {int(r["k_mod_8"]): r for r in rows}
+000060 |         for k in range(4):
+000061 |             # Adding four norm copies flips alpha and leaves beta unchanged.
+000062 |             require(
+000063 |                 by_k[k + 4]["beta_exp_mod_8"] == by_k[k]["beta_exp_mod_8"],
+000064 |                 "adding four copies must preserve beta",
+000065 |             )
+000066 |             require(
+000067 |                 (
+000068 |                     int(by_k[k + 4]["alpha_relative_exp_mod_8"])
+000069 |                     - int(by_k[k]["alpha_relative_exp_mod_8"])
+000070 |                 )
+000071 |                 % 8
+000072 |                 == 4,
+000073 |                 "adding four copies must flip alpha",
+000074 |             )
+000075 | 
+000076 |     # eta is a local coordinate at each q point.  Q^*deta=i deta there,
+000077 |     # hence Omega=product_q deta has phase i^3=-i=zeta_8^6.
+000078 |     omega_q_exp = 6
+000079 |     require((4 * omega_q_exp) % 8 == 0, "Omega^4 must be Q invariant")
+000080 | 
+000081 |     # The sign eta -> -eta changes Omega by -1, but not Omega^4.
+000082 |     eta_sign_on_omega_exp = 4
+000083 |     require(
+000084 |         (4 * eta_sign_on_omega_exp) % 8 == 0,
+000085 |         "Omega^4 must be independent of eta sign",
+000086 |     )
+000087 | 
+000088 |     # alpha_N has exact order eight for either spin-lift sign.  Thus no
+000089 |     # smaller positive tensor power of N is equivariantly trivial.
+000090 |     for a in (3, 7):
+000091 |         require(
+000092 |             next(m for m in range(1, 9) if (m * a) % 8 == 0) == 8,
+000093 |             "the norm character must have exact order eight",
+000094 |         )
+000095 | 
+000096 |     result = {
+000097 |         "phase_convention": "zeta_8 exponent modulo 8",
+000098 |         "alpha_on_norm_choices": [3, 7],
+000099 |         "alpha_on_norm_square": 6,
+000100 |         "beta_on_inverse_norm_power": "2*k mod 8",
+000101 |         "native_allowed_k_mod_8": [1, 5],
+000102 |         "native_allowed_k_mod_4": [1],
+000103 |         "k_plus_4_effect": "same beta and gamma, alpha changes sign",
+000104 |         "k_plus_8_effect": "same full finite action",
+000105 |         "normK_omega_Q_exp": omega_q_exp,
+000106 |         "normK_omega_fourth_Q_exp": (4 * omega_q_exp) % 8,
+000107 |         "eta_sign_on_omega_fourth_exp": (4 * eta_sign_on_omega_exp) % 8,
+000108 |         "minimal_equivariantly_trivial_norm_power": 8,
+000109 |         "gamma_on_norm_power": 1,
+000110 |         "tables": tables,
+000111 |         "verdict": "FULL_RELATIONS_FIX_K_MOD_4_NOT_LITERAL_ONE_COPY",
+000112 |     }
+000113 |     payload = json.dumps(result, indent=2, sort_keys=True) + "\n"
+000114 |     OUT.write_text(payload, encoding="utf-8")
+000115 |     print(payload, end="")
+000116 | 
+000117 | 
+000118 | if __name__ == "__main__":
+000119 |     main()

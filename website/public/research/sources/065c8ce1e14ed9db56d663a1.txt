@@ -1,0 +1,145 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/native-observation-arity-20261025/coherent_quartic_response.py
+Original file SHA-256: d50aca63a57f8dd9309b2906b951a05da1606bd3524b57202157af6efc22c62a
+Inclusive original lines: 62-198
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000062 |     source_ray_equations = []
+000063 |     for q in rays:
+000064 |         a, b, c, d, e = q
+000065 |         residuals = [a*a - d*d - 4*e*e, b*b - d*d, c*c - d*d,
+000066 |                      a*b + c*d, a*c + b*d, a*d + b*c,
+000067 |                      b*e, c*e, d*e]
+000068 |         require(residuals == [0] * 9, "marked ovoid is not a source product ray")
+000069 |         source_ray_equations.append(list(map(str, residuals)))
+000070 |     x = sp.symbols("x0:4")
+000071 |     y = sp.symbols("y0:4")  # Algebraically independent conjugate variables.
+000072 |     word_polynomials = [
+000073 |         sp.expand(sum(sp.prod(x[j] for j in word) for word in support))
+000074 |         for support in supports
+000075 |     ]
+000076 |     phi = sp.Matrix([
+000077 |         word_polynomials[i] / sp.sqrt(sizes[i]) for i in range(5)
+000078 |     ])
+000079 |     diagonal = sp.diag(*[sp.sqrt(sp.Rational(size, 4)) for size in sizes])
+000080 |     original_W = load_module(
+000081 |         "erasure_for_coherent_response", PRIOR / "native_erasure_readout.py"
+000082 |     ).decoder_isometry_gauge_first(supports)
+000083 |     oldest_erasure_path = (
+000084 |         HERE.parent / "joint-native-algebra-selection-20261016/operator_checker.py"
+000085 |     )
+000086 |     original_logical_first = load_module(
+000087 |         "original_erasure_for_coherent_response", oldest_erasure_path
+000088 |     ).erasure_isometry(supports)
+000089 |     original_column_checks = [
+000090 |         original_W[:, 5 * gauge + logical]
+000091 |         == original_logical_first[:, 4 * logical + gauge]
+000092 |         for gauge, logical in it.product(range(4), range(5))
+000093 |     ]
+000094 |     require(all(original_column_checks), "W differs from the original erasure isometry")
+000095 |     require(original_W.H * original_W == sp.eye(20), "W is not isometric")
+000096 |     cubic_input = sp.Matrix([
+000097 |         sp.prod(x[j] for j in word) for word in it.product(range(4), repeat=3)
+000098 |     ])
+000099 |     decoded = original_W.H * cubic_input
+000100 |     derivative_checks = []
+000101 |     for gauge, logical in it.product(range(4), range(5)):
+000102 |         residual = sp.expand(
+000103 |             decoded[5 * gauge + logical] - sp.diff(phi[logical], x[gauge]) / 2
+000104 |         )
+000105 |         derivative_checks.append(residual == 0)
+000106 |     require(all(derivative_checks), "original W is not half the quartic derivative")
+000107 | 
+000108 |     six_quartics = [sp.expand((q.T * diagonal * phi)[0]) for q in rays]
+000109 |     require(sp.expand(sum(six_quartics)) == 0, "six coordinates do not sum to zero")
+000110 |     igusa = sp.expand(
+000111 |         sum(f**2 for f in six_quartics)**2
+000112 |         - 4 * sum(f**4 for f in six_quartics)
+000113 |     )
+000114 |     require(igusa == 0, "marked six-coordinate Igusa relation failed")
+000115 |     # The scalar in the actual same-source product is also the genus-two
+000116 |     # complete weight enumerator of the SAME original binary Hamming code.
+000117 |     # This is an exact polynomial equality, not a numerical coefficient match.
+000118 |     fock_phi = phi / sp.sqrt(sp.factorial(4))
+000119 |     scalar_source = sp.expand(sum(f*f for f in fock_phi))
+000120 |     hamming_words = _hamming_words()
+000121 |     require(len(hamming_words) == 16, "original Hamming code size changed")
+000122 |     hamming_tetrads = {
+000123 |         tuple(i for i, bit in enumerate(word) if bit)
+000124 |         for word in hamming_words if sum(word) == 4
+000125 |     }
+000126 |     ray_tetrads = set()
+000127 |     for row in bridge["quartic_bridge"]["per_reflection"]:
+000128 |         # A Gaussian ray is a mu4 orbit, not a single real root. Recover all
+000129 |         # four original real roots before comparing their binary supports.
+000130 |         # Taking only the 60 canonical representatives would miss 4 tetrads.
+000131 |         for quarter_turn in range(4):
+000132 |             coordinates = []
+000133 |             for real, imaginary in row["gaussian_ray"]:
+000134 |                 phase_orbit = [(real, imaginary), (-imaginary, real),
+000135 |                                (-real, -imaginary), (imaginary, -real)]
+000136 |                 coordinates.extend(phase_orbit[quarter_turn])
+000137 |             support = tuple(i for i, value in enumerate(coordinates) if value)
+000138 |             if len(support) == 4:
+000139 |                 ray_tetrads.add(support)
+000140 |     require(len(hamming_tetrads) == 14 and hamming_tetrads == ray_tetrads,
+000141 |             "enumerator code and actual Construction-A root tetrads differ")
+000142 |     complete_enumerator = sp.expand(sum(
+000143 |         sp.prod(x[2*left[k] + right[k]] for k in range(8))
+000144 |         for left, right in it.product(hamming_words, repeat=2)
+000145 |     ))
+000146 |     octic = sp.expand(
+000147 |         sum(z**8 for z in x)
+000148 |         + 14*sum(x[i]**4*x[j]**4 for i, j in it.combinations(range(4), 2))
+000149 |         + 168*sp.prod(z*z for z in x)
+000150 |     )
+000151 |     require(complete_enumerator == octic, "actual Hamming pair enumerator differs from octic")
+000152 |     require(sp.expand(octic - 96*scalar_source) == 0,
+000153 |             "normalized original source product differs from Hamming enumerator")
+000154 |     require(sp.expand(octic - sum(f*f for f in six_quartics)/3) == 0,
+000155 |             "marked six-quartic sum does not equal original Hamming enumerator")
+000156 |     fock_norm_squared = sp.simplify(sum(
+000157 |         sp.conjugate(coefficient)*coefficient
+000158 |         * sp.prod(sp.factorial(exponent) for exponent in powers)
+000159 |         for powers, coefficient in sp.Poly(scalar_source, *x).terms()
+000160 |     ))
+000161 |     require(fock_norm_squared == 140, "actual scalar source Fock normalization changed")
+000162 |     gradients = [sp.Matrix([sp.diff(f, z) for z in x]) for f in six_quartics]
+000163 |     gradient_probability_polynomials = []
+000164 |     direct_probability_polynomials = []
+000165 |     substitution = dict(zip(x, y))
+000166 |     for q, gradient in zip(rays, gradients):
+000167 |         gradient_probability = sp.expand(
+000168 |             sum(gradient[j] * gradient[j].subs(substitution) for j in range(4)) / 48
+000169 |         )
+000170 |         q_orthonormal = diagonal * q
+000171 |         effect5 = q_orthonormal * q_orthonormal.T / 12
+000172 |         direct = sp.expand(
+000173 |             (decoded.subs(substitution).T
+000174 |              * sp.kronecker_product(sp.eye(4), effect5) * decoded)[0]
+000175 |         )
+000176 |         require(direct == gradient_probability, "gradient and Born rule disagree")
+000177 |         gradient_probability_polynomials.append(gradient_probability)
+000178 |         direct_probability_polynomials.append(direct)
+000179 |     norm = sum(x[j] * y[j] for j in range(4))
+000180 |     require(
+000181 |         sp.expand(sum(gradient_probability_polynomials) - norm**3) == 0,
+000182 |         "six probabilities are not normalized on the entire coherent source",
+000183 |     )
+000184 | 
+000185 |     e0_substitution = {x[0]: 1, y[0]: 1}
+000186 |     e0_substitution.update({z: 0 for z in (*x[1:], *y[1:])})
+000187 |     e0_probabilities = [sp.simplify(p.subs(e0_substitution))
+000188 |                         for p in gradient_probability_polynomials]
+000189 |     require(
+000190 |         e0_probabilities == [sp.Rational(1, 12), sp.Rational(1, 12),
+000191 |                              sp.Rational(1, 12), sp.Rational(1, 3),
+000192 |                              sp.Rational(1, 12), sp.Rational(1, 3)],
+000193 |         "coherent witness changed",
+000194 |     )
+000195 |     # Also test a phase-sensitive source, rather than only a real basis input.
+000196 |     complex_vector = [sp.Rational(1, 2), sp.I / 2, -sp.Rational(1, 2), sp.I / 2]
+000197 |     complex_substitution = dict(zip(x, complex_vector))
+000198 |     complex_substitution.update(dict(zip(y, map(sp.conjugate, complex_vector))))

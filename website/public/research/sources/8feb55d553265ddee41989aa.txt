@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/bracket_process_origin_20261028/closure/check_ward_d5a3_creation_channel.py
+Original file SHA-256: 0ea0b00f8c17d53789b5459979eda319bd475abd92d93ce6f8562a61925ba8fb
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact Ward/U5 selection of the creation half of the actual E8 g2 channel.
+000002 | 
+000003 | This check uses the pinned Ward root, the original P2 X-mod-5 filter, and the
+000004 | actual E8 Chevalley source.  It proves algebraic current support and the
+000005 | resulting normalized bracket channel.  It does not assert that P1 physically
+000006 | applies the current projector or forgets its event record.
+000007 | """
+000008 | from collections import Counter, deque
+000009 | import hashlib
+000010 | import json
+000011 | from pathlib import Path
+000012 | import sys
+000013 | 
+000014 | 
+000015 | BASE = Path(__file__).resolve().parent
+000016 | [OMITTED: non-scientific conversation or execution metadata]
+000017 | sys.path.insert(0, str(REPO))
+000018 | from tfpt_explorer.current_block_geometry import _actual_current_source
+000019 | 
+000020 | CANON = (REPO / 'experiments/theory-contracts/'
+000021 |          'elliptic-moebius-source-bridge-20261026/'
+000022 |          'hodge_complement_20261028')
+000023 | CANON_CHECKER = CANON / 'check_e8_clifford_response.py'
+000024 | CANON_RESULT = CANON / 'e8-clifford-response-results.json'
+000025 | WARD_SOURCE = (REPO / 'experiments/theory-contracts/'
+000026 |                'seam-joint-ward-state-20261014/PROOF.txt')
+000027 | P2_SOURCE = (REPO / 'documents/'
+000028 |              'archive--tfpt-45--source_extracts--02_carrier_source/'
+000029 |              'sections/003-subsection-character-trace-identities-and-the-abelian-in.tex')
+000030 | CURRENT_SOURCE = REPO / 'tfpt_explorer/current_block_geometry.py'
+000031 | CHEVALLEY_SOURCE = REPO / 'verification/v498_celestial_wp5b_singular_vector.py'
+000032 | QUARTER_REPORT = BASE.parent / 'original/SOURCE-CHARGE-GLUE-QUARTER-IDENTITY.txt'
+000033 | QUARTER_RESULT = BASE.parent / 'source-charge-glue-quarter-results.json'
+000034 | OUTPUT = BASE / 'ward-d5a3-creation-channel-results.json'
+000035 | 
+000036 | EXPECTED = {
+000037 |     CANON_CHECKER: '75ce80dbec9d943573ba96e64eaf85088c0cbc47577673cbe99673ba34957aa9',
+000038 |     CANON_RESULT: '67fe9e3f06140c5c23452e9a7bfaefc02441ff1e7b55708e55409cd0a398e7ee',
+000039 |     WARD_SOURCE: '7c0cd92dfc5eca88260baae0af9edad66f958a27ce0d15d7965414b3971f8da0',
+000040 |     P2_SOURCE: 'dbd7f1020e414aeaa35ab3a7191fc5863d6b0afda270a2e347e9a0d6af2b0284',
+000041 |     CURRENT_SOURCE: 'c9efcac4ba33d4ee3dc20f8c3c69a0f6ff6b2084893a5edf4aaae6c204d9056b',
+000042 |     CHEVALLEY_SOURCE: '9f5a2d62523283595b754fea6f70ddc6501a251daf86752cbc67ded252b96180',
+000043 |     QUARTER_REPORT: 'adbf414bf1105de1087740b3bd1707e9f0dcfe7504eb0da4467a0e01a2289b9c',
+000044 |     QUARTER_RESULT: '19c5761a525a5b3be0265acc8f33598a106a9fe3aca73974fba7ccd0519fede6',
+000045 | }
+000046 | 
+000047 | 
+000048 | def need(condition, name):
+000049 |     if not condition:
+000050 |         raise RuntimeError(name)
+000051 | 
+000052 | 
+000053 | def sha256(path):
+000054 |     return hashlib.sha256(path.read_bytes()).hexdigest()
+000055 | 
+000056 | 
+000057 | def source_label(path):
+000058 |     # Keep the certificate identical after copying the whole proof folder.
+000059 |     if path == QUARTER_REPORT:
+000060 |         return '../original/SOURCE-CHARGE-GLUE-QUARTER-IDENTITY.txt'
+000061 |     if path == QUARTER_RESULT:
+000062 |         return '../source-charge-glue-quarter-results.json'
+000063 |     return str(path.relative_to(REPO))
+000064 | 
+000065 | 
+000066 | def add(a, b):
+000067 |     return tuple(x + y for x, y in zip(a, b))
+000068 | 
+000069 | 
+000070 | def key(root):
+000071 |     return ','.join(map(str, root))
+000072 | 
+000073 | 
+000074 | def ladder(mask, i, create):
+000075 |     occupied = (mask >> i) & 1
+000076 |     if occupied == create:
+000077 |         return None
+000078 |     sign = -1 if (mask & ((1 << i) - 1)).bit_count() % 2 else 1
+000079 |     return mask ^ (1 << i), sign
+000080 | 
+000081 | 
+000082 | def orbit(seed, generators, root_set):
+000083 |     reached = {seed}
+000084 |     pending = deque([seed])
+000085 |     edges = 0
+000086 |     while pending:
+000087 |         current = pending.popleft()
+000088 |         for generator in generators:
+000089 |             candidate = add(current, generator)
+000090 |             if candidate in root_set:
+000091 |                 edges += 1
+000092 |                 if candidate not in reached:
+000093 |                     reached.add(candidate)
+000094 |                     pending.append(candidate)
+000095 |     return reached, edges
+000096 | 
+000097 | 
+000098 | def main():
+000099 |     for path, expected in EXPECTED.items():
+000100 |         need(sha256(path) == expected, f'pinned source changed: {path}')
+000101 |     ward_text = WARD_SOURCE.read_text()
+000102 |     p2_text = P2_SOURCE.read_text()
+000103 |     need("q -> q'=2(e3+e6)" in ward_text,
+000104 |          'pinned Ward dictionary contains q-prime=2(e3+e6)')
+000105 |     need('not a derivation of the raw source map Xi' in ward_text,
+000106 |          'Ward source retains the raw-Xi scope boundary')
+000107 |     need('X:=6Y=3N_2-2N_3' in p2_text,
+000108 |          'P2 source defines the marked 3+2 charge X')
+000109 |     need('U_5:=e^{2\\pi iX/5}' in p2_text,
+000110 |          'P2 source defines the five-fold phase filter U5')
+000111 | 
+000112 |     source = _actual_current_source()
+000113 |     algebra = source['chevalley']
+000114 |     roots = tuple(sorted(algebra.roots))
+000115 |     root_set = set(roots)
+000116 |     halves = tuple(sorted(r for r in roots if all(abs(x) == 1 for x in r)))
+000117 |     d8 = tuple(sorted(r for r in roots if sum(x != 0 for x in r) == 2))
+000118 |     mixed = tuple(r for r in d8
+000119 |                   if sum(x != 0 for x in r[:5]) == 1
+000120 |                   and sum(x != 0 for x in r[5:]) == 1)
+000121 |     need((len(roots), len(halves), len(d8), len(mixed)) == (240, 128, 112, 60),
+000122 |          'actual E8 source sector counts')
+000123 | 
+000124 |     ward = (0, 0, 2, 0, 0, 2, 0, 0)
+000125 |     need(ward in root_set, 'Ward vector is an actual E8 root')
+000126 | 
+000127 |     # The first-five carrier sign is the exterior creation/annihilation sign
+000128 |     # in the already verified D5+A3 CAR intertwiner.
+000129 |     creation = {
+000130 |         root for root in mixed
+000131 |         if next(root[i] for i in range(5) if root[i]) == 2
+000132 |     }
+000133 |     annihilation = set(mixed) - creation
+000134 |     need(len(creation) == len(annihilation) == 30,
+000135 |          'mixed g2 splits into 30 creation plus 30 annihilation roots')
+000136 |     need(ward in creation and tuple(-x for x in ward) in annihilation,
+000137 |          'Ward orientation selects the creation half and reflection its dual')
+000138 | 
+000139 |     # Original neutral SU5_C x D3=A3_F root algebra.  This is an internal
+000140 |     # current algebra statement, not a claim that full SU5 is physical gauge.
+000141 |     su5 = {
+000142 |         root for root in d8
+000143 |         if all(x == 0 for x in root[5:]) and sum(root[:5]) == 0
+000144 |     }
+000145 |     d3 = {
+000146 |         root for root in d8
+000147 |         if all(x == 0 for x in root[:5])
+000148 |     }
+000149 |     need((len(su5), len(d3)) == (20, 12),
+000150 |          'neutral SU5 and D3 root counts are 20 and 12')
+000151 |     ward_orbit, neutral_edges = orbit(ward, su5 | d3, root_set)
+000152 |     need(ward_orbit == creation,
+000153 |          'neutral SU5 x D3 closure of Ward root is exactly creation30')
+000154 | 
+000155 |     # P2 X=(-2,-2,-2,3,3) supplies a stronger spectral description.  In the
+000156 |     # adjoint E8 current representation the root current E_beta has X weight
+000157 |     # X(beta).  All creation roots have residue 3 and all annihilation roots
+000158 |     # residue 2 modulo 5.  Thus the original Fourier filter separates them.
+000159 |     x5 = (-2, -2, -2, 3, 3)
+000160 | 
+000161 |     def x_charge(root):
+000162 |         value = sum(x5[i] * root[i] for i in range(5))
+000163 |         need(value % 2 == 0, 'doubled root gives integral P2 X charge')
+000164 |         return value // 2
+000165 | 
+000166 |     creation_x = Counter(x_charge(root) for root in creation)
+000167 |     annihilation_x = Counter(x_charge(root) for root in annihilation)
+000168 |     need(creation_x == Counter({-2: 18, 3: 12}),
+000169 |          'creation30 retains the marked 3+2 multiplicities 18+12')
+000170 |     need(annihilation_x == Counter({2: 18, -3: 12}),
+000171 |          'annihilation30 has the conjugate 3+2 multiplicities 18+12')
+000172 |     need({x_charge(root) % 5 for root in creation} == {3},
+000173 |          'U5 residue3 is exactly the creation orientation')
+000174 |     need({x_charge(root) % 5 for root in annihilation} == {2},
+000175 |          'U5 residue2 is exactly the annihilation orientation')
+000176 |     need({root for root in mixed if x_charge(root) % 5 == 3} == creation,
+000177 |          'the U5 Fourier projector selects exactly creation30 inside g2')
+000178 | 
+000179 |     # U5 alone has a 50-dimensional residue-3 sector on the whole E8 root
+000180 |     # system.  The 30 is the joint eigenspace with the existing internal Z4
+000181 |     # glue grade2.  This prevents promoting an in-g2 statement to a false
+000182 |     # global projector identity.
+000183 |     def old_internal_z4_grade(root):
+000184 |         if sum(x != 0 for x in root) == 2:
+000185 |             carrier_support = sum(x != 0 for x in root[:5])
+000186 |             return 0 if carrier_support in (0, 2) else 2
+000187 |         need(all(abs(x) == 1 for x in root),
+000188 |              'non-coordinate E8 root is a doubled halfroot')
+000189 |         return 1 if sum(x > 0 for x in root[:5]) % 2 == 0 else 3
+000190 | 
+000191 |     joint_census = Counter(
+000192 |         (old_internal_z4_grade(root), x_charge(root) % 5)
+000193 |         for root in roots
+000194 |     )
+000195 |     expected_joint_census = Counter({
+000196 |         (0, 0): 32, (0, 1): 10, (0, 4): 10,
+000197 |         (1, 0): 4, (1, 1): 40, (1, 2): 20,
+000198 |         (2, 2): 30, (2, 3): 30,
+000199 |         (3, 0): 4, (3, 3): 20, (3, 4): 40,
+000200 |     })

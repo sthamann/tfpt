@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-positive-kernel-search-20261015/README.md
+Original file SHA-256: cc1f61f292f825620ae35c67625fa254c27b8bf52d067a69d29099eb5a8c77fc
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | # Positive Quellenkerne automatisch konstruieren
+000002 | 
+000003 | ## Lineare Beziehungen zwischen Momenten
+000004 | 
+000005 | Der optionalen `--source-control` Datei kann `linear_relations` hinzugefügt
+000006 | werden. Jede Gleichung beschreibt eine komplexe Summe von Wortmomenten mit
+000007 | gaußschen rationalen Koeffizienten. `-1` steht für den Transfer T; andere
+000008 | Zahlen bezeichnen die Majorana Generatoren. Die folgende Gleichung ist
+000009 | **ausschließlich eine synthetische Softwarekontrolle**, keine TFPT Quellrelation:
+000010 | 
+000011 | ```json
+000012 | {
+000013 |   "linear_relations": [{
+000014 |     "terms": [
+000015 |       {"word": [0, -1, 0], "re": "1"},
+000016 |       {"word": [1, -1, 1], "re": "1"}
+000017 |     ],
+000018 |     "re": "1", "im": "0"
+000019 |   }],
+000020 |   "source_observables": {"label": "synthetische Kontrolle"}
+000021 | }
+000022 | ```
+000023 | 
+000024 | Jeder Term hat `word`, rationales `re` und optional rationales `im`;
+000025 | `re` und `im` am Ende der Gleichung bilden die rechte Seite. Ganze Zahlen
+000026 | und Bruchstrings werden akzeptiert, Fließkommazahlen und ausführbare Ausdrücke
+000027 | nicht. CAR Reduktion bewahrt das Vorzeichen und fasst gleiche Wörter zusammen.
+000028 | Die normierten Gleichungen und die Herkunftsmetadaten erscheinen in der
+000029 | Kampagnenkonfiguration sowie in der Momentdatei. Die SDP Suche rechnet weiterhin
+000030 | numerisch. Beide endlichen Vervollständigungen prüfen die Gleichungen danach
+000031 | zusätzlich exakt auf den rational rekonstruierten Momenten; ein fehlgeschlagener
+000032 | Test bleibt unentschieden. Der Offlineprüfer prüft sie ebenfalls exakt.
+000033 | Alte Eingaben ohne `linear_relations` bleiben zulässig.
+000034 | 
+000035 | Die Software liefert keine ursprüngliche Quellenrelation und keine vollständige
+000036 | E8, Higgs oder Geometrieabbildung. Die jeweils benannte physikalische Bedeutung
+000037 | und Zulässigkeit einer eingegebenen Beziehung müssen unabhängig begründet werden.
+000038 | 
+000039 | Aktualisierung 16. Oktober: Der Suchpfad verwendet jetzt standardmäßig reine
+000040 | Zulässigkeit (`--objective feasibility`) mit Floor und Cluster-Gap 0. Die
+000041 | nachstehenden Ergebnisse vom 15. Oktober sind historische Extremwertkontrollen;
+000042 | `diversity` und min/max-Spur wählen keine physische Quelle aus. Die Transferklasse
+000043 | ist ausdrücklich `vacuum_effect`, `thermal_gns` oder `bounded_positive`; ein
+000044 | thermischer GNS-Transfer darf größer als eins sein. Die neue positive Kragenkontrolle
+000045 | und die Mehrfeld-Herleitung stehen im benachbarten Contract
+000046 | `seam-collar-multifield-20261016/PROOF.txt`. Historische Ausgabedateien bleiben erhalten.
+000047 | 
+000048 | Für unnormierte Quellenamplituden ist außerdem `T Omega = lambda Omega` mit
+000049 | `--reference-eigenvalue` explizit möglich. Standard bleibt lambda=1. Zum Beispiel
+000050 | akzeptiert `--transfer-kind bounded_positive --reference-eigenvalue 0.0625
+000051 | --transfer-ceiling 0.0625` eine passende skalierte Quellenkontrolle. Lambda ist
+000052 | hier eine Eingabe, kein gefundener Vakuumfaktor. `omega(1)=1` normiert den
+000053 | bedingten Zustand und bedeutet nicht `Z[0]=1`. Eine Fock-Vervollständigung für
+000054 | lambda ungleich1 wird als unentschieden ausgewiesen. Auch der direkte
+000055 | Vervollständigungsaufruf prüft Klasse, Referenzamplitude und Deckel, bevor er ein
+000056 | exaktes Zertifikat erzeugt. Cacheidentität und
+000057 | Resultate behalten die neue Normierungsannahme.
+000058 | 
+000059 | Stand: 15. Oktober 2026. Forschungs-ID `UR.SEAM.POSITIVE_KERNEL_SEARCH.01`.
+000060 | 
+000061 | Die Suche konstruiert einen unbekannten gemeinsamen Wortkern: aus ihm werden
+000062 | Zustand und Wirkung eines Transferoperators gemeinsam realisiert. Ein fertiges H,
+000063 | eine Dichtematrix oder ein Zielkern werden dem Optimierer nicht vorgegeben.
+000064 | Die endliche CAR-Algebra, deklarierte Referenzeigenwirkung und interne Vierteldrehung sind
+000065 | deklarierte Suchannahmen. Sie wurden hier nicht aus P1/P2 hergeleitet.
+000066 | 
+000067 | ## Was wirklich ausgeführt wurde
+000068 | 
+000069 | `runs/certified-positive/summary.json` enthält den vollständigen Fünf-Moden-Lauf.
+000070 | Er sucht 2245 komplexe Wortmomente bis Grad 4 und vervollständigt sie auf zwei
+000071 | unterschiedliche vollständige, positive Kerne in Dimension 32. Beide geben alle
+000072 | 2245 rational rekonstruierten Momente exakt wieder, darunter 508 mit mehreren
+000073 | Transferfaktoren. Das sind keine bloß numerisch positiven Tabellen.
+000074 | 
+000075 | Die beiden Vervollständigungen stimmen für jedes Wort bis Länge 4 überein.
+000076 | Die automatisch gelieferte kürzeste Unterscheidung hat Länge 5:
+000077 | 
+000078 |     omega(gamma_0 gamma_2 T gamma_2 gamma_0) = 1/4  beziehungsweise 1.
+000079 | 
+000080 | Dies ist die Transferantwort nach einer zusammengesetzten Zweifeld-Anregung.
+000081 | Die Übereinstimmung aller kürzeren Antworten wird durch vollständigen Replay
+000082 | geprüft. Zehn solche Zweifeld-Proben unterscheiden dieselben beiden Treffer.
+000083 | Es geht um diese expliziten Kerne, nicht um eine Klassifikation aller Quellen.
+000084 | 
+000085 | Der Lauf verwendet die Suchschranke T >= (1/4) I, damit ein endlicher Logarithmus
+000086 | existiert. Diese 1/4 ist eine frei gewählte numerische Schranke und hat **keinen
+000087 | hergeleiteten Zusammenhang mit der ursprünglichen Viertelholonomie**. Der
+000088 | separate Lauf ohne positive Untergrenze liefert ebenfalls vollständige Kerne,
+000089 | aber mit Nullmoden; für diese wird kein endliches H=-log(T) behauptet.
+000090 | 
+000091 | Die Besetzungen werden aus den gefundenen Momenten gelesen. Die lineare
+000092 | Suchzielfunktion bevorzugt in diesem Lauf einen reinen Besetzungszustand; diese
+000093 | Auswahl ist keine physikalische Zustandsregel. Die beiden anschließenden
+000094 | Optimierungsziele min/max tr(T) erkunden unbestimmte Richtungen. Keines
+000095 | der Ziele wird als ursprüngliches Wirkungsprinzip ausgegeben.
+000096 | 
+000097 | ## Nachprüfung einer tatsächlichen Anforderung der Originalquelle
+000098 | 
+000099 | Die operational seed category verlangt in der Originalquelle zusätzlich
+000100 | Clustering. Beim ersten positiven Lauf besitzt der Maximalspur-Treffer einen
+000101 | 27-dimensionalen stationären Raum. Er erfüllt damit das endliche Gegenstück
+000102 | dieser Anforderung nicht. Das Programm weist dies jetzt automatisch aus:
+000103 | 
+000104 |     finite_clustering <=> rank(I-T) = dimension-1.
+000105 | 
+000106 | Für einen positiven selbstadjungierten Transfer mit T Omega=Omega bedeutet dies
+000107 | exakt T^n -> |Omega><Omega|. Der zusätzliche Lauf `runs/source-clustering`
+000108 | verlangt dieses Verhalten konstruktiv über
+000109 | 
+000110 |     T <= (1-gap) I + gap |Omega><Omega|,  gap=1/4.
+000111 | 
+000112 | Die positive numerische Gap ist eine ausgewiesene Suchschranke, keine aus der
+000113 | Quelle berechnete physikalische Skala. Sie liefert für alle endlichen A,B eine
+000114 | Abschätzung der verbundenen Antwort durch
+000115 | (1-gap)^n ||A*Omega|| ||B Omega||. Beide neuen Kerne besitzen nur noch Omega
+000116 | als stationäre Richtung; sie unterscheiden sich in der Zweifeld-Probe durch
+000117 | 1/4 gegenüber 3/4. Diese Kontrolle berücksichtigt somit eine Originalanforderung,
+000118 | ohne sie mit einer vollständigen lokalen OS-Netz-Realisierung gleichzusetzen.
+000119 | Die freie Auswahl zwischen diesen beiden verbleibenden Kernen ist weiter offen.
+000120 | 
+000121 | ## Die Suchbedingungen und die exakte Annahmegrenze
+000122 | 
+000123 | Das Alphabet besteht aus 2m selbstadjungierten Majoranas und einem zusätzlichen
+000124 | selbstadjungierten T. Die Majoranas erfüllen CAR. Zwischen T und den Majoranas
+000125 | wird keine Kommutatorrelation und für T keine Projektoreigenschaft eingesetzt.
+000126 | Insbesondere bleibt T T ein Wort mit zwei Transferfaktoren.
+000127 | 
+000128 | Für eine unbekannte Momentfunktion omega wird M[u,v]=omega(u* v) gesucht.
+000129 | Die Bedingungen sind Normierung, Sternverträglichkeit, M >= 0, T Omega=Omega
+000130 | und Invarianz unter gamma_(2j)->gamma_(2j+1), gamma_(2j+1)->-gamma_(2j), T->T.
+000131 | Stationarität entfernt ausschließlich äußere T in Erwartungswerten.
+000132 | 
+000133 | Für a=transfer_floor enthalten die endlichen Relaxationen getrennte Localizer
+000134 | für T-aI, I-T und zusätzlich (T-aI)(I-T)=(1+a)T-T²-aI. Die letzte Bedingung ist
+000135 | für einen echten beschränkten T notwendig und verschärft die endliche Stufe.
+000136 | Ohne sie passierte ein Gegenfall die beiden ersten lokalen Schranken, obwohl
+000137 | omega(gamma T² gamma)=13/16 > omega(gamma T gamma)=1/2 war. Das ist nun eine
+000138 | Regression. Ein früherer Floor-Lauf mit falscher zweiter Transferantwort wird
+000139 | ebenfalls verworfen; seine Daten bleiben als Entwicklungsgegenfall erhalten.
+000140 | 
+000141 | Die Fünf-Moden-SDP-Matrix ist nicht flach: Ränge 6 und 16 auf den beiden
+000142 | Wortstufen. Deshalb wird aus ihr kein eindeutiger GNS-Abschluss behauptet.
+000143 | `finite_completion.py` sucht stattdessen ausdrücklich in einer zusätzlichen
+000144 | minimalen irreduziblen CAR-Darstellung der Dimension 2^m. Sie ist nur zulässig,
+000145 | wenn die gelieferten CAR-Momente zum inferierten reinen Besetzungszustand passen.
+000146 | Der Transfer bleibt eine unbekannte hermitesche Matrix. Nach der Optimierung
+000147 | werden CAR, Positivität, Untergrenze, Stationarität, Viertelwirkung und sämtliche
+000148 | gelieferten Momente exakt geprüft. Ein Fehlversuch bleibt unentschieden, kein
+000149 | Ausschluss aller Darstellungen.
+000150 | 
+000151 | Ein separater Ein-Moden-Lauf demonstriert die andere, allgemeine Route:
+000152 | `runs/m1-exact-certificate.json` rekonstruiert ohne vorgegebenen Fockabschluss
+000153 | einen Rang-2-Kern durch exakte Gram-Faktorisierung auf drei aufeinanderfolgenden
+000154 | Wortstufen. Alle 240 Momente werden exakt wiedergegeben; alle Generatoren
+000155 | erhalten die Nullrelationen. Für Momente wie 1/256 beträgt die dokumentierte
+000156 | Rationalisierungsgrenze 256. Eine zu kleine Grenze 64 wird nicht als physische
+000157 | Unmöglichkeit interpretiert.
+000158 | 
+000159 | ## Warum die erfolgreichen Vervollständigungen vollständige Kerne sind
+000160 | 
+000161 | Die gespeicherten exakten Matrizen und Omega definieren für beliebig lange Wörter
+000162 | 
+000163 |     K(u,v) = <A_u Omega, A_v Omega>.
+000164 | 
+000165 | Jede endliche Gram-Matrix ist deshalb positiv. Multiplikation und Adjungierung
+000166 | werden durch tatsächliche Matrizen realisiert. Ein Nullvektor bleibt unter jeder
+000167 | Generatorfortsetzung null. Die CAR-Wörter erzeugen im minimalen Abschluss den
+000168 | gesamten Raum. Die Vollständigkeit dieses endlichen Kerns folgt daraus für alle
+000169 | Wortlängen, nicht aus einem numerischen Rangtest.
+000170 | 
+000171 | Der GNS-Implementer der internen Vierteldrehung ist R=i^(N-N_Omega), mit R^4=I
+000172 | und R Omega=Omega. Das ursprüngliche interne W=i^N wird separat ausgewiesen.
+000173 | Die globale Referenzphase ändert die Feldkonjugation nicht. Diese interne
+000174 | Wirkung ist noch keine Identifikation mit einer chiralen Nahtdomäne.
+000175 | 
+000176 | Wenn T strikt positiv ist, ist H=-log(T) ein endlicher selbstadjungierter Operator.
+000177 | U_t=T^(it) und alpha_t(A)=U_t A U_t* liefern eine unitäre Feldzeit und eine
+000178 | UCP-Automorphismusgruppe; Omega bleibt invariant. Die Zeiteinheit ist dabei
+000179 | deklariert. Dies beweist weder einen euklidischen UCP-Kanal mit GNS-Implementer T
+000180 | noch ein physisches Ereignisinstrument, eine native Zeitskala oder Raumzeit.
+000181 | 
+000182 | ## Wie die Suche künftig statt im Kreis weiterarbeitet
+000183 | 
+000184 | `run_search.py` verbindet unbekannte Momente, exakte Vervollständigung und
+000185 | Unterscheidung der Treffer in einem Aufruf. Kandidatenvorhersagen werden niemals
+000186 | automatisch zu Quellenannahmen gemacht. Code, Konfiguration und Ausgabedateien
+000187 | werden für die Wiederverwendung geprüft; geänderte Bedingungen brauchen einen
+000188 | neuen Laufordner. Ungeänderte abgeschlossene Läufe werden wiederverwendet.
+000189 | 
+000190 | Die erzeugte nächste Frage lautet konkret: Welche **ursprüngliche** Nahtrelation
+000191 | koppelt Transfer nach zwei Feldoperationen an die Einfeld-Antwort? Ein
+000192 | Wick-/quasifreier Abschluss oder eine additive Zweitquantisierung wäre eine
+000193 | solche zusätzliche Bindung, muss aber für dieselbe Quelle begründet sein.
+000194 | Ein Treffer allein rechtfertigt nicht, diese Regeln einzusetzen.
+000195 | 
+000196 | Im Atlas existiert bereits die vollständige Produktkragen-Rekonstruktion:
+000197 | der gesamte Zweiflächen-Graph bestimmt unter seinen Hypothesen B; die zusätzliche
+000198 | CAR-/Wick-Identifikation verbindet den eingeschränkten Zustand mit derselben
+000199 | Zeit. Diese positive Vorarbeit wird wiederverwendet. Die neue Methode sucht
+000200 | unbekannte Kerne, statt nur den bekannten inversen Leser erneut auszuführen.

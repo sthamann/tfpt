@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/dynamic_reconstruction_20261027/v395-after.py
+Original file SHA-256: 0025f7252fa63f267881b4fb16ddd3ba6afa9ff42ebc0874f69d494048aa41a1
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """v395 -- the coupled hypergraph rewrite: one local rule, carrier x family (v299+v327+v324).
+000002 | 
+000003 | v299 gives autonomous carrier growth (witness diffusion + balance gate -> E6->E7->E8->Ê8).
+000004 | v327 derives family survival 2/3; v486/v487 retain the full clock ladder
+000005 | {1, 2/3, 1/3} in its unique lazy Z2-pair rule M.
+000006 | v324 exhibits the minimal substrate as a FIBERED PRODUCT T = T_net (x) T_cusp, but the
+000007 | three modules were separate hand-built pieces.  This module closes the gap: ONE coupled
+000008 | local rewrite on a 9x3 labelled grid (network node x family channel) whose dynamics
+000009 | *generates* the v324 product structure -- network diffusion on each cusp column and the
+000010 | v486/v487 M-rule on each node's family vector, with the recovery rate (2/3)^6 appearing after
+000011 | one full clock hand (2 N_fam = 6 family micro-steps per network step).
+000012 | 
+000013 |   [E] 1. LOCAL COUPLED MICRO-RULE.  State m[i,j] on 9 affine-E8 nodes x 3 family slots.
+000014 |         One micro-step = (A) network lazy diffusion m[:,j] <- (A+2I)/4 m[:,j] for each j,
+000015 |         then (B) family branching m[i,:] <- M m[i,:] for each i (v486/v487).  Both steps are
+000016 |         purely local; they COMMUTE, so the micro-transfer is T_micro = T_net (x) M.
+000017 |   [E] 2. JOINT ATTRACTOR.  T_micro has top eigenvalue 1 with eigenvector marks (x) e_0
+000018 |         (Kac marks x democratic w=0); iteration from ANY positive 27-vector converges
+000019 |         to this joint attractor (Perron-Frobenius).
+000020 |   [E] 3. ONE HAND = RECOVERY.  One clock hand = 1 network step + 2 N_fam = 6 family
+000021 |         micro-steps gives T_hand = T_net (x) M^6.  The survival sector of M has eigenvalue
+000022 |         2/3, so M^6 has (2/3)^6 = 64/729 on the Galois pair [0,1,1]; T_hand carries this
+000023 |         as a genuine eigenvalue with eigenvector marks (x) v_surv (the recovery gap).
+000024 |   [E] 4. v324 EMERGES AS THE READOUT BASIS.  T_full = T_net (x) T_cusp (v324) has the
+000025 |         SAME full transfer in the orthogonal even/odd family basis:
+000026 |         O^T M^6 O = diag(1,(2/3)^6,(1/3)^6).
+000027 |         The cusp-diagonal T_cusp = diag(1,(2/3)^6,(1/3)^6) is the one-hand transfer in
+000028 |         the Galois/cusp readout basis {w=0,1/3,2/3} (v317); the dynamical M-rule and
+000029 |         the v324 fiber are the same scheduled transfer in different bases.
+000030 |         One hand is one network step and six family substeps, NOT T_micro^6.
+000031 |   [E] 5. GROWTH + FIBER CONSISTENT.  The v299 autonomous growth (3-arm seed, local gate)
+000032 |         is UNCHANGED when a constant M-fiber is attached at every node: E6->E7->E8->Ê8
+000033 |         with self-generated witness at each stage; the fiber does not affect the network
+000034 |         balance gate (family acts on rows, gate on columns).
+000035 |   [O] 6. HONEST RESIDUAL.  The 3-arm (2,3,r) seed (v299 HYP.SEED.01 = P2) and the
+000036 |         analytic seed phi0 (v312) remain the irreducible inputs; this module unifies the
+000037 |         MECHANISM (carrier x family from one coupled rule), not the full readout layer.
+000038 | 
+000039 | HONEST SCOPE: [E] the coupled local rule + joint attractor + recovery hand + v324 spectral
+000040 | match + growth consistency; [O] seed + phi0.  Unifies v299/v327/v324; not a derivation of
+000041 | P1/P2 or phi0.  Python-only (numpy)."""
+000042 | import numpy as np
+000043 | 
+000044 | from tfpt_constants import check, summary, reset, N_fam, g_car
+000045 | 
+000046 | MARKS = np.array([1, 2, 3, 4, 5, 6, 4, 2, 3], dtype=float)
+000047 | EDGES = [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 6), (6, 7), (5, 8)]
+000048 | THIRD = 1.0 / 3.0
+000049 | RECOVERY = (2.0 / 3.0) ** (2 * N_fam)          # (2/3)^6
+000050 | 
+000051 | 
+000052 | def _adjacency():
+000053 |     A = np.zeros((9, 9))
+000054 |     for i, j in EDGES:
+000055 |         A[i, j] = A[j, i] = 1.0
+000056 |     return A
+000057 | 
+000058 | 
+000059 | def _family_M():
+000060 |     # The full-clock rule from v486/v487; v327 killed the odd family rung.
+000061 |     return np.array([[1, 0, 0], [0, 0.5, 1.0 / 6.0], [0, 1.0 / 6.0, 0.5]])
+000062 | 
+000063 | 
+000064 | def _T_net():
+000065 |     return (_adjacency() + 2 * np.eye(9)) / 4.0
+000066 | 
+000067 | 
+000068 | def _T_cusp():
+000069 |     weights = np.array([0.0, THIRD, 2 * THIRD])
+000070 |     return np.diag((1.0 - weights) ** (2 * N_fam))
+000071 | 
+000072 | 
+000073 | def _in_spectrum(evals, x, tol=1e-9):
+000074 |     return any(abs(x - e) < tol for e in evals)
+000075 | 
+000076 | 
+000077 | def _star(legs):
+000078 |     nodes = 1
+000079 |     adj = []
+000080 |     for L in legs:
+000081 |         prev = 0
+000082 |         for _ in range(L):
+000083 |             adj.append((prev, nodes))
+000084 |             prev = nodes
+000085 |             nodes += 1
+000086 |     A = np.zeros((nodes, nodes))
+000087 |     for a, b in adj:
+000088 |         A[a, b] = A[b, a] = 1
+000089 |     return A
+000090 | 
+000091 | 
+000092 | def _witness_localgate(A):
+000093 |     d = A.shape[0]
+000094 |     M = (A + 2 * np.eye(d)) / 4
+000095 |     rng = np.random.default_rng(0)
+000096 |     m = rng.random(d)
+000097 |     for _ in range(5000):
+000098 |         m = M @ m
+000099 |         m = m / m.min()
+000100 |     return m, bool(np.all(A @ m <= 2 * m + 1e-6))
+000101 | 
+000102 | 
+000103 | def _grow(seed, cap=12):
+000104 |     legs = list(seed)
+000105 |     seq = []
+000106 |     for _ in range(cap):
+000107 |         seq.append(tuple(sorted(legs)))
+000108 |         legs2 = legs[:]
+000109 |         legs2[legs2.index(max(legs2))] += 1
+000110 |         if _witness_localgate(_star(legs2))[1]:
+000111 |             legs = legs2
+000112 |         else:
+000113 |             break
+000114 |     return seq
+000115 | 
+000116 | 
+000117 | def _micro_step(m, T_net, M):
+000118 |     """One coupled local micro-step on a (nodes x 3) array."""
+000119 |     return T_net @ m @ M.T
+000120 | 
+000121 | 
+000122 | def run():
+000123 |     reset()
+000124 |     print("v395  coupled hypergraph rewrite: one local rule unifies carrier x family (v299+v327+v324)")
+000125 | 
+000126 |     T_net = _T_net()
+000127 |     M = _family_M()
+000128 |     T_cusp = _T_cusp()
+000129 |     T_micro = np.kron(T_net, M)
+000130 |     T_hand = np.kron(T_net, np.linalg.matrix_power(M, 2 * N_fam))
+000131 |     T_full = np.kron(T_net, T_cusp)
+000132 | 
+000133 |     marks_n = MARKS / np.linalg.norm(MARKS)
+000134 |     e0 = np.array([1.0, 0.0, 0.0])
+000135 |     e1 = np.array([0.0, 1.0, 0.0])
+000136 |     v_top = np.kron(marks_n, e0)
+000137 |     v_rec = np.kron(marks_n, e1)
+000138 |     v_surv = np.array([0.0, 1.0, 1.0])
+000139 |     v_surv = v_surv / np.linalg.norm(v_surv)
+000140 |     v_hand = np.kron(marks_n, v_surv)
+000141 | 
+000142 |     # 1. local coupled micro-rule commutes -> Kronecker product
+000143 |     comm_ok = np.allclose(np.kron(T_net, np.eye(3)) @ np.kron(np.eye(9), M),
+000144 |                           T_micro, atol=1e-12)
+000145 |     # Test the actual local routine on the complete basis, away from the
+000146 |     # Perron attractor that concealed the previous overwritten network step.
+000147 |     local_matrix = np.column_stack([
+000148 |         _micro_step(v.reshape(9, 3), T_net, M).ravel()
+000149 |         for v in np.eye(27)
+000150 |     ])
+000151 |     check("LOCAL COUPLED MICRO-RULE [E]: one micro-step = network lazy diffusion on each "
+000152 |           "cusp column + v486/v487 M on each node's family vector; the steps commute, so "
+000153 |           "T_micro = T_net (x) M (purely local on 9x3 = 27 cells)",
+000154 |           comm_ok and T_micro.shape == (27, 27)
+000155 |           and np.allclose(local_matrix, T_micro, rtol=0, atol=1e-12))
+000156 | 
+000157 |     # 2. joint attractor from any positive start (flat micro-transfer iteration)
+000158 |     rng = np.random.default_rng(42)
+000159 |     flat = rng.random(27)
+000160 |     for _ in range(2000):
+000161 |         flat = _micro_step(flat.reshape(9, 3), T_net, M).ravel()
+000162 |         flat = flat / flat.sum()
+000163 |     cos_top = float(np.dot(flat / np.linalg.norm(flat), v_top / np.linalg.norm(v_top)))
+000164 |     evals_micro = sorted(np.linalg.eigvalsh(T_micro).tolist(), reverse=True)
+000165 |     check("JOINT ATTRACTOR [E]: T_micro has top eigenvalue 1 with eigenvector marks (x) e_0 "
+000166 |           "(Kac marks x democratic w=0); iteration from a random positive start converges "
+000167 |           "(cosine=%.12f to the joint attractor)" % cos_top,
+000168 |           abs(evals_micro[0] - 1.0) < 1e-9 and cos_top > 1 - 1e-9)
+000169 | 
+000170 |     # 3. one hand = recovery rate (2/3)^6 on the survival sector
+000171 |     evals_hand = sorted(np.linalg.eigvalsh(T_hand).tolist(), reverse=True)
+000172 |     rate_hand = float(v_hand @ T_hand @ v_hand)
+000173 |     check("ONE HAND = RECOVERY [E]: one clock hand (1 network step + 2 N_fam=%d family "
+000174 |           "micro-steps) gives T_hand = T_net (x) M^6; the survival eigenvalue is "
+000175 |           "(2/3)^6 = %.10f (in spectrum: %s; rate on marks (x) v_surv = %.10f)"
+000176 |           % (2 * N_fam, RECOVERY, _in_spectrum(evals_hand, RECOVERY), rate_hand),
+000177 |           _in_spectrum(evals_hand, RECOVERY)
+000178 |           and abs(rate_hand - RECOVERY) < 1e-9
+000179 |           and abs(sorted(np.linalg.eigvalsh(M).tolist(), reverse=True)[1] - 2.0 / 3.0) < 1e-12)
+000180 | 
+000181 |     # 4. The FULL basis conjugacy, including the formerly erased odd mode.
+000182 |     O = np.array([[1, 0, 0], [0, 1, 1], [0, 1, -1]], dtype=float)
+000183 |     O[:, 1:] /= np.sqrt(2.0)
+000184 |     full_basis = np.kron(np.eye(9), O)
+000185 |     conjugacy_ok = np.allclose(full_basis.T @ T_hand @ full_basis, T_full,
+000186 |                                rtol=0, atol=1e-12)
+000187 |     N = np.kron(T_net, np.eye(3))
+000188 |     C = np.kron(np.eye(9), M)
+000189 |     schedule_ok = np.allclose(N @ np.linalg.matrix_power(C, 2 * N_fam),
+000190 |                                T_hand, rtol=0, atol=1e-12)
+000191 |     schedule_distinct = not np.allclose(np.linalg.matrix_power(T_micro, 2 * N_fam),
+000192 |                                         T_hand, rtol=0, atol=1e-12)
+000193 |     evals_full = sorted(np.linalg.eigvalsh(T_full).tolist(), reverse=True)
+000194 |     rate_full = float(v_rec @ T_full @ v_rec)
+000195 |     top_ok = abs(evals_full[0] - 1.0) < 1e-9 and np.allclose(T_full @ v_top, v_top, atol=1e-9)
+000196 |     rec_ok = _in_spectrum(evals_full, RECOVERY) and abs(rate_full - RECOVERY) < 1e-9
+000197 |     check("v324 EMERGES [E]: full orthogonal conjugacy O^T M^6 O = "
+000198 |           "diag(1,64/729,1/729); one hand uses one network step and six family "
+000199 |           "substeps, and differs from T_micro^6 (recovery rate=%.10f)" % rate_full,
+000200 |           top_ok and rec_ok and conjugacy_ok and schedule_ok and schedule_distinct)

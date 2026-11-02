@@ -1,0 +1,97 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_higgs_bound_reference.py
+Original file SHA-256: 1a2790a3059d5e3c0949a56c17ae7953d425c36f8319b3c514f5a568423be951
+Inclusive original lines: 1-89
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Whole variable-H bound-reference response on the supplied two lift charts.
+000002 | Conditional source identifications; no new lift, spacetime, Y fit or ledger.
+000003 | """
+000004 | from pathlib import Path
+000005 | import sys,json
+000006 | import numpy as np
+000007 | import sympy as s
+000008 | ROOT=Path(__file__).resolve().parents[4]
+000009 | sys.path.insert(0,str(ROOT/'verification'))
+000010 | import v252_full_finite_triple as original
+000011 | checks={}
+000012 | def need(name,b):
+000013 |  checks[name]=bool(b)
+000014 |  if not b: raise AssertionError(name)
+000015 | # Spin4 anticommutant classification, not a search over Higgs coefficients.
+000016 | px=s.Matrix([[0,1],[1,0]]);py=s.Matrix([[0,-s.I],[s.I,0]]);pz=s.diag(1,-1)
+000017 | gam=[s.kronecker_product(py,s.eye(2))]+[s.kronecker_product(px,p) for p in [px,py,pz]]
+000018 | g5=gam[0]*gam[1]*gam[2]*gam[3]
+000019 | need('existing_normal_Z_is_spin4_volume_in_given_collar_chart',g5==s.kronecker_product(pz,s.eye(2)))
+000020 | coeff=s.symbols('v0:16');V=s.Matrix(4,4,coeff)
+000021 | lin=s.linear_eq_to_matrix([z for g in gam for z in g*V+V*g],coeff)[0]
+000022 | null=lin.nullspace()
+000023 | need('whole_Clifford_anticommutant_is_one_dimensional',lin.rank()==15 and len(null)==1)
+000024 | G=s.Matrix(4,4,list(null[0]));lam=G[0,0]/g5[0,0]
+000025 | need('only_mass_Clifford_factor_is_volume',G==lam*g5)
+000026 | S=s.kronecker_product(px,s.eye(2))
+000027 | need('normal_reversal_lift_preserves_tangent_and_reverses_normal_and_mass',S*gam[0]*S==-gam[0] and all(S*g*S==g for g in gam[1:]) and S*g5*S==-g5)
+000028 | # Generic four-real-field quartic identity, reflection-pair average.
+000029 | p=s.symbols('p0:4',real=True);m=s.symbols('m0:4',real=True)
+000030 | P=sum(x*x for x in p);M=sum(x*x for x in m);dot=sum(a*b for a,b in zip(p,m))
+000031 | Uplus=sum((a+b)**2 for a,b in zip(p,m));Uminus=sum((a-b)**2 for a,b in zip(p,m))
+000032 | need('generic_reflection_pair_quadratic_even_projection',s.expand((Uplus+Uminus)/2-M-P)==0)
+000033 | qS=P**2+2*P*M+4*dot**2;qT=M**2+2*P*M+4*dot**2
+000034 | need('generic_deck_S_relative_quartic',s.expand((Uplus**2+Uminus**2)/2-M**2-qS)==0)
+000035 | need('generic_product_lift_relative_quartic',s.expand((Uplus**2+Uminus**2)/2-P**2-qT)==0)
+000036 | need('pointwise_quartic_difference_need_not_be_positive',(Uplus**2-M**2).subs(dict(zip(p,[-1,0,0,0]))|dict(zip(m,[1,0,0,0])))==-1)
+000037 | # Direct original96 constructor controls, exact Gaussian-integer operations.
+000038 | z3=np.zeros((3,3),complex);z2=np.zeros((2,2),complex)
+000039 | Ys=[np.array([[1+1j,2,0],[0,1,1j],[1,-1j,2]],complex),np.array([[2,1j,1],[1,3,-1j],[0,1,1]],complex),np.array([[1,0,1j],[2,1,0],[0,-1j,2]],complex),np.array([[1,1j,0],[1,2,1],[0,1,3j]],complex)]
+000040 | MR=np.array([[2,1j,1],[1j,3,2],[1,2,1j]],complex)
+000041 | DY=original.full_D(*Ys,z3);DM=original.full_D(z3,z3,z3,z3,MR)
+000042 | proj=original.rep(1,z2,z3);K=original.Kswap();gf=original.grading()
+000043 | def L(h):
+000044 |  h1,h2=h;q=np.array([[h2.conjugate(),h1],[-h1.conjugate(),h2]])
+000045 |  a=original.rep(0,q,z3);b=a@(DY@proj-proj@DY);b=b+b.conj().T
+000046 |  return b+K@b.conj()@K
+000047 | def trpow(a,k):return np.trace(np.linalg.matrix_power(a,k))
+000048 | A=trpow(DY,2);B=trpow(DY,4);C=np.trace(DY@DY@DM@DM)
+000049 | pv=np.array([1+1j,2-1j]);mv=np.array([2-1j,1+3j]);fp=L(pv+mv)+DM;fm=L(pv-mv)+DM
+000050 | odd_ref=L(mv);even_ref=L(pv)+DM
+000051 | need('actual_H_map_is_real_linear_for_both_bound_refs',np.array_equal((fp-fm)/2,odd_ref) and np.array_equal((fp+fm)/2,even_ref))
+000052 | need('unequal_Y_matrix_square_not_equal_to_radial_matrix_square',not np.array_equal(L(pv)@L(pv),np.vdot(pv,pv).real*(DY@DY)))
+000053 | need('given_internal_grading_reverses_whole_H_and_Majorana',all(np.array_equal(gf@F@gf,-F) for F in [fp,fm]))
+000054 | normp=np.vdot(pv,pv).real;normm=np.vdot(mv,mv).real;dd=np.vdot(pv,mv).real
+000055 | need('whole96_deck_S_relative_a2_H_pair',((trpow(fp,2)+trpow(fm,2))/2-trpow(odd_ref,2)-trpow(DM,2))==A*normp)
+000056 | need('whole96_product_relative_a2_H_pair',((trpow(fp,2)+trpow(fm,2))/2-trpow(even_ref,2))==A*normm)
+000057 | need('whole96_deck_S_relative_a4_includes_Majorana_on_both_parities',((trpow(fp,4)+trpow(fm,4))/2-trpow(odd_ref,4)-trpow(DM,4))==B*(normp**2+2*normp*normm+4*dd**2)+4*C*(normp+normm))
+000058 | need('whole96_product_relative_a4_Majorana_only_odd_parity',((trpow(fp,4)+trpow(fm,4))/2-trpow(even_ref,4))==B*(normm**2+2*normp*normm+4*dd**2)+4*C*normm)
+000059 | da=np.array([2+1j,1-1j]);db=np.array([1-2j,-1+1j]);dplus=L(da+db);dminus=L(-da+db)
+000060 | need('whole_normal_derivative_reflection_chain_rule_S',((trpow(dplus,2)+trpow(dminus,2))/2-trpow(L(db),2))==A*np.vdot(da,da).real)
+000061 | need('whole_normal_derivative_reflection_chain_rule_product',((trpow(dplus,2)+trpow(dminus,2))/2-trpow(L(da),2))==A*np.vdot(db,db).real)
+000062 | need('seam_even_H_product_full_and_reference_equal_to_all_spectral_orders',np.array_equal(L(pv)+DM,even_ref))
+000063 | # No trace factor6 can result from these same-type bound reference subtractions.
+000064 | need('both_reference_class_linear_heat_ratios_remain_minus12',s.Rational(-1,4)/s.Rational(1,48)==-12)
+000065 | # Exact zero-order conformal sandwich expansion in the original fixed frame.
+000066 | xx=s.symbols('x',real=True);sig=s.Function('sigma')(xx);hh=s.Function('h')(xx)
+000067 | need('variable_scale_H_derivative_in_fixed_spin_frame',s.simplify(s.diff(s.exp(-sig)*hh,xx)-s.exp(-sig)*(s.diff(hh,xx)-hh*s.diff(sig,xx)))==0)
+000068 | # Conformal Dirac spinor weight in dimension4; scalar exponents identify
+000069 | # the full operator including the derivative on the right factor.
+000070 | need('L2_unitary_conformal_weight_yields_symmetric_D_sandwich',s.Rational(2)-s.Rational(5,2)==-s.Rational(1,2) and s.Rational(3,2)-2==-s.Rational(1,2))
+000071 | us=s.Function('u')(xx);ku,Rg=s.symbols('kin Rg',real=True)
+000072 | newkin=ku-s.diff(us,xx)*s.diff(sig,xx)+us*s.diff(sig,xx)**2
+000073 | newRu=us*(Rg-6*s.diff(sig,xx,2)-6*s.diff(sig,xx)**2)/6
+000074 | need('full_H_conformal_a4_changes_only_by_divergence',s.simplify(newkin+newRu-ku-Rg*us/6+s.diff(us*s.diff(sig,xx),xx))==0)
+000075 | need('quartic_conformal_weights_cancel',s.exp(4*sig)*s.exp(-4*sig)==1)
+000076 | need('mixed_Majorana_conformal_weights_cancel',s.exp(4*sig)*s.exp(-2*sig)*s.exp(-2*sig)==1)
+000077 | t,Nn=s.symbols('t N',positive=True)
+000078 | need('Higgs_ratio_repair_would_force_scale_one_sixth',s.solve(s.Eq(-12*t,-2),t)==[s.Rational(1,6)])
+000079 | need('same_unscaled_reference_Einstein_coefficient_has_opposite_sign_at_that_scale',s.simplify((-Nn*(t-1)/192).subs(t,s.Rational(1,6)))==5*Nn/1152)
+000080 | need('same_bundle_unscaled_reference_Einstein_residue_cancels_at_sigma0',(-Nn*(t-1)/192).subs(t,1)==0)
+000081 | need('unscaled_reference_odd_H_a2_weight_is_not_always_positive',(t-1).subs(t,s.Rational(1,6))<0)
+000082 | # A decisive operator-identity countercontrol, not a proposed physical model.
+000083 | f=s.exp(-xx/2)
+000084 | def d0(v):return -s.I*s.diff(v,xx)
+000085 | def ds(v):return f*d0(f*v)
+000086 | need('symmetric_first_order_sandwich_squared_is_not_sandwich_of_square',s.simplify(ds(ds(s.Integer(1)))-s.exp(-xx)*d0(d0(s.exp(-xx)))-s.exp(-2*xx)/4)==0)
+000087 | result={'contract':'ORIGINAL-HIGGS-BOUND-REFERENCE-SYMBOL-20261031','all_passed':all(checks.values()),'checks':checks,'control_invariants':{'A':str(A),'B':str(B),'C':str(C)},'scope':'Whole local spin4 fixed-connection classification and variable whole96 original H/MR reference response,conditional on supplied full deck lift/common double geometry and actual same-type geometric pair. No primitive lift selection,signature/trace normalization,physical vacuum,full Z/H covariance or RP promotion.'}
+000088 | Path(__file__).with_name('ORIGINAL-HIGGS-BOUND-REFERENCE.json').write_text(json.dumps(result,indent=2)+'\n')
+000089 | print(json.dumps(result,indent=2))

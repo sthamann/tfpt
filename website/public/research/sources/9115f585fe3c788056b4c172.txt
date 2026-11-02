@@ -1,0 +1,64 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/source-yukawa-forward-gate-20260921/covariance_compression_review_20260921.md
+Original file SHA-256: 0a460e9272a6da78e2bc199cd512807582c83dbccc4fedf08e51f8ab14c88f22
+Inclusive original lines: 166-221
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000166 | 
+000167 | Ohne die zweite Voraussetzung ist eine treue gemischte Kompression eines reinen globalen Zustands völlig möglich; dann ist die reduzierte Dynamik aber nicht die Kompression einer geschlossenen autonomen unitären Gruppe. Ohne die erste Voraussetzung, etwa bei einem global gemischten KMS-Zustand, folgt die Projektivität ebenfalls nicht.
+000168 | 
+000169 | ## 4. Volle Zeitprüfung: komprimierte Resolvente und Feshbach-Term
+000170 | 
+000171 | Schreibe \(h\) relativ zu \(\mathcal H=P\mathcal H\oplus Q\mathcal H\) als
+000172 | 
+000173 | \[
+000174 | h=\begin{pmatrix}
+000175 | A&B\\
+000176 | B^*&D_Q
+000177 | \end{pmatrix},
+000178 | \qquad
+000179 | A=PhP,\ B=PhQ,\ D_Q=QhQ.
+000180 | \]
+000181 | 
+000182 | Für \(z\) so, dass \(z-D_Q\) und der folgende Schur-Komplement-Operator invertierbar sind, ergibt die Blockinversion
+000183 | 
+000184 | \[
+000185 | \boxed{\;
+000186 | P(z-h)^{-1}P\big|_{P\mathcal H}
+000187 | =\left[z-h_{\mathrm{eff}}(z)\right]^{-1},
+000188 | \;}
+000189 | \]
+000190 | 
+000191 | mit
+000192 | 
+000193 | \[
+000194 | \boxed{\;
+000195 | h_{\mathrm{eff}}(z)
+000196 | =PhP+PhQ\,(z-QhQ)^{-1}QhP.
+000197 | \;}
+000198 | \]
+000199 | 
+000200 | Das Pluszeichen im effektiven Operator ist korrekt: Der Schur-Komplement-Nenner von \(z-h\) ist
+000201 | 
+000202 | \[
+000203 | z-PhP-PhQ(z-QhQ)^{-1}QhP
+000204 | =z-h_{\mathrm{eff}}(z).
+000205 | \]
+000206 | 
+000207 | Andere Feshbach-Schreibweisen können äußerlich ein Minuszeichen zeigen, wenn sie mit \(h-z\) oder \((QhQ-z)^{-1}\) beginnen; sie sind algebraisch äquivalent.
+000208 | 
+000209 | Die komprimierte Resolvente bestimmt die gesamte komprimierte Spektralmaß- und Zeitinformation. Im endlichen Fall kann \(Pe^{-ith}P\) durch Spektralinversion beziehungsweise eine Konturintegration der Resolvente rekonstruiert werden. Der energieabhängige Selbstenergieterm
+000210 | 
+000211 | \[
+000212 | \Sigma(z)=PhQ(z-QhQ)^{-1}QhP
+000213 | 
+000214 | \]
+000215 | 
+000216 | ist deshalb die korrekte Größe für die volle Zeitprüfung. Nur \(PhP\) zu vergleichen prüft weder Leckage noch Gedächtniseffekte des ausgeschlossenen Sektors.
+000217 | 
+000218 | ## Konsequenz für die vorhandene Brücke
+000219 | 
+000220 | - `v210_mark_local_dtn.py:98-103` baut mit \(C=(I+\operatorname{sgn}(h))/2\) einen reinen endlichen Projektorzustand.
+000221 | - `v258_dirac_covariance_induction.py:65-76` prüft korrekt die gegenseitige Inversion zwischen einem **bereits vorgegebenen** endlichen \(D\) und \(C_F=(I+e^{D/\mu})^{-1}\).

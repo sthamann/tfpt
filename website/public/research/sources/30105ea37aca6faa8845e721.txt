@@ -1,0 +1,75 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/admissible_pair_20261028/check_shared_hodge_process.py
+Original file SHA-256: a1f09288860186ec53e69dc7f4464b9e846c301347fb2824a999553c0328af4e
+Inclusive original lines: 1-67
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact joint Hodge-span TP identity and a sub-TP correlation counterexample.
+000003 | 
+000004 | Uses the existing integer epsilon amplitudes.  This proves a conditional finite
+000005 | operator statement; it does not construct the original TFPT event map.
+000006 | """
+000007 | from __future__ import annotations
+000008 | 
+000009 | import importlib.util
+000010 | from pathlib import Path
+000011 | import sympy as s
+000012 | 
+000013 | 
+000014 | SOURCE = Path(__file__).resolve().parents[1] / "hodge_complement_20261028" / "hodge_complement_channel.py"
+000015 | spec = importlib.util.spec_from_file_location("tfpt_hodge_existing", SOURCE)
+000016 | mod = importlib.util.module_from_spec(spec)
+000017 | spec.loader.exec_module(mod)
+000018 | C = [s.Matrix(x.tolist()) for x in mod.hodge_amplitudes()]
+000019 | I = s.eye(10)
+000020 | checks = []
+000021 | 
+000022 | def check(condition, label):
+000023 |     if not condition:
+000024 |         raise RuntimeError(label)
+000025 |     checks.append(label)
+000026 | 
+000027 | # The identity decomposes uniquely in the actual 25-product operator basis.
+000028 | products = [C[n].H*C[m] for m in range(5) for n in range(5)]
+000029 | basis = s.Matrix.hstack(*(p.reshape(100,1) for p in products))
+000030 | check(basis.rank() == 25, "25 products are linearly independent")
+000031 | target = s.Matrix([s.Rational(int(m == n), 3) for m in range(5) for n in range(5)])
+000032 | check(basis*target == I.reshape(100,1), "unique TP coefficient matrix is I5/3")
+000033 | check(sum((x.H*x for x in C), s.zeros(10)) == 3*I, "original amplitude normalization")
+000034 | check(all((C[m].H*C[n]).trace() == 6*int(m == n) for m in range(5) for n in range(5)), "five orthogonal epsilon amplitudes")
+000035 | 
+000036 | # Symbolic, operator-valued coefficients on the family space, represented by
+000037 | # an arbitrary 2x2 matrix per index pair.  This confirms the extraction used
+000038 | # in the analytic proof; the proof itself holds in any family dimension.
+000039 | g = s.symbols("g0:100")
+000040 | G = [s.Matrix(2,2,g[4*j:4*j+4]) for j in range(25)]
+000041 | joint = sum((s.kronecker_product(products[j], G[j]) for j in range(25)), s.zeros(20))
+000042 | for u in range(2):
+000043 |     for v in range(2):
+000044 |         block = joint.extract([2*i+u for i in range(10)], [2*i+v for i in range(10)])
+000045 |         coeff = s.Matrix([G[j][u,v] for j in range(25)])
+000046 |         check(block.reshape(100,1) == basis*coeff, f"operator-valued coefficient extraction {u}{v}")
+000047 | 
+000048 | # A and B have identical carrier marginal but different environment correlation.
+000049 | def ket(label):
+000050 |     v=s.zeros(10,1); v[mod.PAIR_INDEX[label],0]=1; return v
+000051 | e0=s.Matrix([1,0]); e1=s.Matrix([0,1]); p0=e0*e0.H; p1=e1*e1.H
+000052 | v12=ket((1,2)); v02=ket((0,2)); v34=ket((3,4))
+000053 | def proj(v): return v*v.H
+000054 | def prodstate(v,e): return proj(s.kronecker_product(v,e))
+000055 | A=(prodstate(v12,e0)+prodstate(v02,e1))/2
+000056 | B=(prodstate(v12,e1)+prodstate(v02,e0))/2
+000057 | def partial_family(M):
+000058 |     return s.Matrix(10,10,lambda i,j:sum(M[2*i+k,2*j+k] for k in range(2)))
+000059 | L=s.kronecker_product(C[0],p0)+s.kronecker_product(C[1],p1)
+000060 | defect=s.eye(20)-L.H*L
+000061 | check(partial_family(A)==partial_family(B), "same carrier marginal")
+000062 | check(defect==defect.H and defect*defect==defect, "sub-TP defect is a positive projection")
+000063 | check(partial_family(L*A*L.H)==proj(v34), "first correlated state outputs 34")
+000064 | check(partial_family(L*B*L.H)==s.zeros(10), "second correlated state has zero outcome probability")
+000065 | check((L*A*L.H).trace()==1 and (L*B*L.H).trace()==0, "outcome probabilities differ 1 versus 0")
+000066 | print(f"PASS {len(checks)} exact checks")
+000067 | for item in checks: print("  " + item)

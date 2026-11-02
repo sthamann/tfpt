@@ -1,0 +1,189 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_elliptic_local_insertion.py
+Original file SHA-256: e31115d6ad575adf245fbb40d60c8d000e25bb90e20338f05f4999d31e6cd7f1
+Inclusive original lines: 1-181
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Independent diagnostics for R066. Analytic proof covers infinite smooth class."""
+000002 | from pathlib import Path
+000003 | import json
+000004 | import numpy as np
+000005 | import mpmath as mp
+000006 | from scipy.linalg import expm, eigh
+000007 | 
+000008 | mp.mp.dps = 100
+000009 | b = 4 * mp.pi
+000010 | checks = []
+000011 | def check(name, error, tolerance):
+000012 |     error, tolerance = mp.mpf(str(abs(error))), mp.mpf(str(tolerance))
+000013 |     if not error < tolerance:
+000014 |         raise RuntimeError(f'{name}: {error} >= {tolerance}')
+000015 |     checks.append(dict(name=name, error=str(error), tolerance=str(tolerance)))
+000016 | 
+000017 | def theta(a, t=0):
+000018 |     return sum(mp.exp(-b*(mp.mpf(q*q)/2+(a-mp.mpf('.5'))*q)+1j*t*q)
+000019 |                for q in range(-30,31))
+000020 | 
+000021 | def moments(a):
+000022 |     z = theta(a).real
+000023 |     mean = sum(q*mp.exp(-b*(mp.mpf(q*q)/2+(a-mp.mpf('.5'))*q))
+000024 |                for q in range(-30,31))/z
+000025 |     second = sum(q*q*mp.exp(-b*(mp.mpf(q*q)/2+(a-mp.mpf('.5'))*q))
+000026 |                  for q in range(-30,31))/z
+000027 |     return mean, second-mean*mean
+000028 | 
+000029 | quarters = [mp.mpf(1)/4, mp.mpf(3)/4]
+000030 | quarter_data = []
+000031 | for a in quarters:
+000032 |     mean, var = moments(a)
+000033 |     fermi_mean = sum(1/(1+mp.exp(b*(r+a)))-(1 if r<0 else 0)
+000034 |                      for r in range(-80,81))
+000035 |     fermi_var = sum(1/(4*mp.cosh(b*(r+a)/2)**2) for r in range(-80,81))
+000036 |     check(f'original Fermi charge a={a}', fermi_mean-mean, '1e-95')
+000037 |     check(f'original Fermi variance a={a}', fermi_var-var, '1e-95')
+000038 |     check(f'exact quarter variance a={a}', var-1/(8*mp.pi), '1e-95')
+000039 |     check(f'original exterior half a={a}', 1-b*var-mp.mpf('.5'), '1e-95')
+000040 |     quarter_data.append(dict(a=str(a), mean=str(mean), var=str(var)))
+000041 | 
+000042 | def square(t):
+000043 |     return sum(mp.exp(-mp.pi*p*p+1j*t*p) for p in range(-30,31))
+000044 | for t in [mp.mpf(0), mp.mpf('.3'), mp.mpf('1.1'), mp.mpf('.3')+.2j]:
+000045 |     paired = theta(quarters[0],t)*theta(quarters[1],t)/(theta(quarters[0])*theta(quarters[1]))
+000046 |     check(f'full pair square theta t={t}', paired-square(t)/square(0), '1e-95')
+000047 | for v in [mp.mpf('.03'), mp.mpf('.2'), mp.mpf('.4')]:
+000048 |     phi=theta(quarters[0],2*mp.pi*v)*theta(quarters[1],2*mp.pi*v)/(theta(quarters[0])*theta(quarters[1]))
+000049 |     original_norm=(mp.jtheta(3,mp.pi*v,mp.exp(-mp.pi))/mp.jtheta(3,0,mp.exp(-mp.pi)))**2
+000050 |     check(f'original real Quillen norm v={v}',abs(phi)**2-original_norm,'1e-95')
+000051 | check('original Quillen real Hessian',mp.diff(lambda v:2*mp.log(square(2*mp.pi*v)/square(0)),0,2)+2*mp.pi,'1e-90')
+000052 | for scale in [mp.mpf('.7'), mp.mpf(1), mp.mpf('1.4')]:
+000053 |     z = lambda s: sum(mp.exp(-mp.pi*s*p*p) for p in range(-30,31))
+000054 |     check(f'Poisson modular scale={scale}', z(scale)-z(1/scale)/mp.sqrt(scale), '1e-95')
+000055 | 
+000056 | # Actual finite oscillator traces, not just evaluation of the claimed formula.
+000057 | cut = 32
+000058 | ann = np.diag(np.sqrt(np.arange(1,cut,dtype=float)),1).astype(complex)
+000059 | eps = .23
+000060 | finite_errors = []
+000061 | for n in [1,2,3]:
+000062 |     jn = np.sqrt(n)*ann
+000063 |     jm = jn.conj().T
+000064 |     hn = jm@jn
+000065 |     rho = np.diag(np.exp(-float(b)*n*np.arange(cut)))
+000066 |     rho /= np.trace(rho)
+000067 |     f, g = .31+.19j, -.24+.17j
+000068 |     jf = f*jm+f.conjugate()*jn
+000069 |     jg = g*jm+g.conjugate()*jn
+000070 |     h = hn+eps*jf
+000071 |     ev, vectors = eigh(h)
+000072 |     weights = np.exp(-float(b)*(ev-ev.min()))
+000073 |     re = (vectors*weights)@vectors.conj().T/weights.sum()
+000074 |     measured = np.trace(re@jg).real
+000075 |     expected = -2*eps*(f*g.conjugate()).real
+000076 |     check(f'forward perturbed Gibbs mean mode{n}', measured-expected, '4e-13')
+000077 |     logz = -float(b)*ev.min()+np.log(weights.sum())-np.log(np.diag(rho)[0]**-1)
+000078 |     check(f'original partition scalar mode{n}', logz-float(b)*eps**2*abs(f)**2, '4e-13')
+000079 |     k = 1j*eps*f/n
+000080 |     wk = expm(1j*(k*jm+k.conjugate()*jn))
+000081 |     transported = wk@rho@wk.conj().T
+000082 |     check(f'whole oscillator state transport mode{n}', np.linalg.norm(re-transported), '2e-13')
+000083 |     wg = expm(1j*jg)
+000084 |     analytic = np.exp(-2j*eps*(f*g.conjugate()).real-.5*n/np.tanh(float(b)*n/2)*abs(g)**2)
+000085 |     check(f'whole Gibbs Weyl mode{n}', np.trace(re@wg)-analytic, '3e-13')
+000086 |     pulse = expm(-1j*eps*jf)
+000087 |     # Independent real time observable, pulse on unchanged original rho.
+000088 |     t = .41
+000089 |     gt = g*np.exp(1j*n*t)
+000090 |     jgt = gt*jm+gt.conjugate()*jn
+000091 |     direct = np.trace(rho@pulse.conj().T@jgt@pulse)
+000092 |     comm = n*(f.conjugate()*gt-f*gt.conjugate())
+000093 |     check(f'causal pulse commutator mode{n}', direct-1j*eps*comm, '3e-13')
+000094 |     # Three ordered pulses vs exact central Magnus phase, including SK crossphase.
+000095 |     plus = [.18+.07j, -.09+.12j, .05-.03j]
+000096 |     minus = [-.04+.13j, .11-.05j]
+000097 |     def path(fs):
+000098 |         u = np.eye(cut,dtype=complex)
+000099 |         central = 0j
+000100 |         for i, v in enumerate(fs):
+000101 |             u = expm(-1j*(v*jm+v.conjugate()*jn))@u
+000102 |             for earlier in fs[:i]:
+000103 |                 central -= .5*n*(v.conjugate()*earlier-v*earlier.conjugate())
+000104 |         return u, sum(fs), central
+000105 |     up, fp, bp = path(plus)
+000106 |     um, fm, bm = path(minus)
+000107 |     c = n*(fm.conjugate()*fp-fm*fp.conjugate())
+000108 |     predicted = np.exp(bp-bm+c/2-.5*n/np.tanh(float(b)*n/2)*abs(fm-fp)**2)
+000109 |     check(f'closed contour unequal paths mode{n}', np.trace(rho@um.conj().T@up)-predicted, '3e-13')
+000110 |     check(f'closed contour equal paths mode{n}', np.trace(rho@up.conj().T@up)-1, '3e-13')
+000111 |     finite_errors.append(dict(mode=n, gibbs_mean=float(measured), expected=float(expected)))
+000112 | 
+000113 | # Duhamel integral from independent original thermal ordered mode contractions.
+000114 | for n in [1,2,3]:
+000115 |     f, g = mp.mpc('.23','.14'), mp.mpc('-.11','.2')
+000116 |     integrand = lambda tau: n*(f*mp.conj(g)*mp.exp(n*(tau-b))/(1-mp.exp(-b*n))
+000117 |                              +mp.conj(f)*g*mp.exp(-n*tau)/(1-mp.exp(-b*n)))
+000118 |     integral = mp.quad(integrand,[0,b/2,b])
+000119 |     check(f'original Duhamel ordered integral n={n}', integral-2*mp.re(f*mp.conj(g)), '1e-90')
+000120 | 
+000121 | # Direct finite-dimensional forward one-particle matrix perturbation and
+000122 | # divided-difference derivative; matrix eigenvalues do not assume a gauge answer.
+000123 | rr = np.arange(-6,7,dtype=float)
+000124 | fmat = np.zeros((len(rr),len(rr)),complex)
+000125 | coeffs = {0:.13,1:.27+.08j,2:-.09+.05j}
+000126 | for i,r in enumerate(rr):
+000127 |     for j,s in enumerate(rr):
+000128 |         d=int(r-s)
+000129 |         if abs(d) in coeffs:
+000130 |             fmat[i,j]=coeffs[abs(d)] if d>=0 else np.conj(coeffs[abs(d)])
+000131 | aa=.25
+000132 | def fermi_matrix(mat):
+000133 |     val, vec = eigh(mat)
+000134 |     occ=1/(1+np.exp(float(b)*val))
+000135 |     return (vec*occ)@vec.conj().T
+000136 | step=1e-5
+000137 | numeric=(fermi_matrix(np.diag(rr+aa)+step*fmat)-fermi_matrix(np.diag(rr+aa)-step*fmat))/(2*step)
+000138 | c=1/(1+np.exp(float(b)*(rr+aa)))
+000139 | pred=np.empty_like(fmat)
+000140 | for i,r in enumerate(rr):
+000141 |     for j,s in enumerate(rr):
+000142 |         pred[i,j]=(-float(b)*c[i]*(1-c[i]) if i==j else (c[i]-c[j])/(r-s))*fmat[i,j]
+000143 | check('actual forward Fermi Frechet response',np.linalg.norm(numeric-pred),'2e-9')
+000144 | 
+000145 | # Genuine smooth disjoint supports; Fourier truncation is only a numerical
+000146 | # diagnostic. Exact support/vanishing follows from the proof, not this grid.
+000147 | size=32768
+000148 | x=np.arange(size)*2*np.pi/size
+000149 | def bump(center,width):
+000150 |     dx=(x-center+np.pi)%(2*np.pi)-np.pi
+000151 |     z=dx/width
+000152 |     out=np.zeros_like(x)
+000153 |     inside=abs(z)<1
+000154 |     out[inside]=np.exp(-1/(1-z[inside]**2))
+000155 |     return out
+000156 | f=bump(1.,.35);g=bump(3.,.4)
+000157 | ff=np.fft.fft(f)/size;gg=np.fft.fft(g)/size
+000158 | osc=2*np.real(np.vdot(gg[1:size//2],ff[1:size//2]))
+000159 | mean0f,mean0g=f.mean(),g.mean()
+000160 | check('proper disjoint support integral',(f*g).mean(),'1e-30')
+000161 | check('full Fourier Parseval outside cancellation',osc+mean0f*mean0g,'1e-16')
+000162 | eq=-osc-.5*mean0f*mean0g
+000163 | check('actual equilibrium exterior half',eq-.5*mean0f*mean0g,'1e-16')
+000164 | if not eq>0: raise RuntimeError('outside response must be nonzero')
+000165 | dx=2*np.pi/size
+000166 | freq=np.fft.fftfreq(size,1/size)
+000167 | derivative=np.fft.ifft(1j*freq*np.fft.fft(f)).real
+000168 | check('proper exterior real time response at t0',(derivative*g).mean(),'1e-14')
+000169 | # Fixed holonomy insertion f=bump derivative has supported primitive k=-epsilon*bump.
+000170 | check('fixed holonomy derivative mean',derivative.mean(),'1e-14')
+000171 | check('fixed holonomy exterior response',np.mean((-.23*f)*g),'1e-30')
+000172 | 
+000173 | result=dict(verdict='EXACT_SCOPED_LOCAL_INSERTION_AND_CAUSAL_RESPONSE',
+000174 |             checks=len(checks),diagnostics=checks,quarters=quarter_data,
+000175 |             exterior_example=dict(f0=float(mean0f),g0=float(mean0g),
+000176 |                  normalized_equilibrium_derivative=float(eq),pulse_response_t0=0),
+000177 |             oscillator_diagnostics=finite_errors,
+000178 |             scope='Given original free elliptic quantization; all smooth-class proof separate; not primitive P1, physical4D or spin2 closure')
+000179 | out=Path(__file__).with_name('ELLIPTIC-LOCAL-INSERTION.json')
+000180 | out.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+000181 | print(json.dumps(dict(verdict=result['verdict'],checks=len(checks),output=str(out))))

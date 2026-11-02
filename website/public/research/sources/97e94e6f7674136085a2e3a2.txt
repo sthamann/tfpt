@@ -1,0 +1,104 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/geometric_source_return/check_source_boundary_response.py
+Original file SHA-256: 6486986571b2f1cab226a404d3e6365e6c75627ac365a4f1bddba543221dc80f
+Inclusive original lines: 105-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000105 |             need(zero(sp.I*sigma3*sp.diff(phi,w)-lam*phi),'Original spatial operator')
+000106 |             for endpoint in [-1,1]:
+000107 |                 need(zero((sigma1-b*identity)*phi.subs(w,endpoint)), 'Fixed boundary domain')
+000108 | 
+000109 |     sigma2=sp.Matrix([[0,-sp.I],[sp.I,0]])
+000110 |     need(zero(sigma1*sigma2*sigma1+sigma2), 'Normal metric variation preserves Pin covariance')
+000111 |     # The existing transverse zero branch of the PURE D-sea realizes the old
+000112 |     # quarter circle. It is a different source quantization from thermal C.
+000113 |     x=sp.symbols('x', real=True)
+000114 |     scale=sp.symbols('a', positive=True)
+000115 |     pure_bridge_checks=0
+000116 |     for b in [-1,1]:
+000117 |         phi0=sp.Matrix([1,b])/2
+000118 |         need(zero(sp.integrate((phi0.T*phi0)[0],(w,-1,1))-1),'Zero branch isometry')
+000119 |         need(zero(sp.integrate(w*(phi0.T*phi0)[0],(w,-1,1))),'Zero mean normal coordinate')
+000120 |         need(zero(sp.integrate(w*w*(phi0.T*phi0)[0],(w,-1,1))-sp.Rational(1,3)), 'Normal nonlocality witness')
+000121 |         for pin in [sp.I,-sp.I]:
+000122 |             quarter=pin*b
+000123 |             alpha=sp.Rational(1,4) if quarter==sp.I else sp.Rational(3,4)
+000124 |             for nlong in [-1,0,1]:
+000125 |                 f=sp.exp(2*sp.pi*sp.I*(nlong+alpha)*x)
+000126 |                 psi=phi0*f
+000127 |                 applied=-sp.I*(sigma1*sp.diff(psi,x)+scale*sigma2*sp.diff(psi,w))
+000128 |                 need(zero(applied-phi0*(-sp.I*b*sp.diff(f,x))), 'Pure source same-time intertwiner')
+000129 |                 need(zero(psi.subs(x,x+1)-pin*sigma1*psi.subs(w,-w)), 'Actual quarter Pin domain')
+000130 |                 need(zero(sp.conjugate(psi.subs(x,-x))-phi0*sp.conjugate(f.subs(x,-x))), 'Same longitudinal reflection')
+000131 |                 need(zero(sp.diff(applied,scale)), 'No exterior response to uniform normal scale')
+000132 |                 pure_bridge_checks+=1
+000133 |     # First response of an actual, deck-even conformal metric variation.
+000134 |     # D_eps=e^(-eps*w^2/2) D_0 e^(-eps*w^2/2), in the original L2 density.
+000135 |     kk=sp.symbols('k0', real=True)
+000136 |     eps=sp.symbols('epsilon', real=True)
+000137 |     for b in [-1,1]:
+000138 |         phi0=sp.Matrix([1,b])/2
+000139 |         orth=sp.Matrix([1,-b])/2
+000140 |         psi=phi0*sp.exp(sp.I*kk*x)
+000141 |         u=sp.exp(-eps*w*w/2)
+000142 |         direct=u*(-sp.I)*(sigma1*sp.diff(u*psi,x)+sigma2*sp.diff(u*psi,w))
+000143 |         predicted=b*sp.exp(-eps*w*w)*(kk*phi0+eps*w*orth)*sp.exp(sp.I*kk*x)
+000144 |         need(zero(direct-predicted),'Actual conformal Dirac first response')
+000145 |         variation=sp.diff(direct,eps).subs(eps,0)*sp.exp(-sp.I*kk*x)
+000146 |         compression=sp.integrate((phi0.T*variation)[0],(w,-1,1))
+000147 |         need(zero(compression+b*kk/3),'Geometric input compression')
+000148 |         exterior=sp.simplify(variation-phi0*compression)
+000149 |         exterior_norm=sp.integrate((sp.conjugate(exterior).T*exterior)[0],(w,-1,1))
+000150 |         need(zero(exterior_norm-(4*kk*kk/45+sp.Rational(1,3))), 'All-mode geometric return form')
+000151 |     spectral_sum=4/sp.pi**4*(2*kk**2*sp.zeta(4)+sp.pi**2*sp.zeta(2)/2)
+000152 |     need(zero(spectral_sum-(4*kk**2/45+sp.Rational(1,3))),'Independent full Fourier return sum')
+000153 |     # The coupling law holds for any smooth real even conformal profile.
+000154 |     # Check distinct profiles directly; the accompanying proof uses no ansatz.
+000155 |     phi0=sp.Matrix([1,1])/2;orth=sp.Matrix([1,-1])/2
+000156 |     for fprofile in [sp.Integer(1),w*w,w**4,sp.cos(sp.pi*w)]:
+000157 |         average=sp.integrate(fprofile,(w,-1,1))/2
+000158 |         exterior=-kk*(fprofile-average)*phi0+sp.diff(fprofile,w)*orth/2
+000159 |         actual=sp.integrate((sp.conjugate(exterior).T*exterior)[0],(w,-1,1))
+000160 |         variance=sp.integrate((fprofile-average)**2,(w,-1,1))/2
+000161 |         gradient=sp.integrate(sp.diff(fprofile,w)**2,(w,-1,1))/2
+000162 |         need(zero(actual-kk*kk*variance-gradient/4),'General conformal profile return law')
+000163 |     # Independent Gibbs computation of the neutral negative-frequency witness.
+000164 |     d=[annihilator(i,2) for i in range(2)]
+000165 |     n=[x.T*x for x in d]
+000166 |     c1=sp.symbols('c1', positive=True)
+000167 |     rho=sp.diag((1-c1)/2,(1-c1)/2,c1/2,c1/2)
+000168 |     neutral=d[0].T*d[1]
+000169 |     ham=energy*n[1]
+000170 |     need(zero(ham*neutral-neutral*ham+energy*neutral),'Neutral energy frequency')
+000171 |     need(zero((rho*neutral.T*neutral).trace()-c1/2),'Neutral witness from Gibbs density')
+000172 |     # Actual spectral values: finite numerical validation of the analytic
+000173 |     # infinite-mode formulas. No claim of an infinite cutoff proof here.
+000174 |     finite_modes=[]
+000175 |     for n in range(-8,9):
+000176 |         lam=float(sp.pi*n/2)
+000177 |         rr=np.exp(-lam)
+000178 |         p=np.array([[1,rr],[rr,rr*rr]])/(1+rr*rr)
+000179 |         need(np.linalg.norm(p@p-p)<1e-14,'Numeric original projection')
+000180 |         c=rr*rr/(1+rr*rr)
+000181 |         eps=1e-5
+000182 |         cp=1/(1+np.exp(2*np.exp(-eps)*lam))
+000183 |         cm=1/(1+np.exp(2*np.exp(eps)*lam))
+000184 |         need(abs((cp-cm)/(2*eps)-2*lam*c*(1-c))<1e-9,'Original geometric response')
+000185 |         finite_modes.append(dict(n=n,energy=lam,covariance=c,cross_response=float(p[0,1]),
+000186 |                                  geometric_derivative=float(2*lam*c*(1-c))))
+000187 | 
+000188 |     # A neutral energy-lowering operator already detects that a thermal state
+000189 |     # is not a positive-energy ground state for the SAME H time.
+000190 |     # B=a_0^* a_m: <B^*B>=C_m(1-C_0)>0, frequency=-E_m.
+000191 |     witnesses=[]
+000192 |     for m in [1,2]:
+000193 |         lam=sp.pi*m/2
+000194 |         norm=1/(2*(1+sp.exp(2*lam)))
+000195 |         witnesses.append(dict(m=m,energy_frequency=str(-lam),norm_squared=str(norm),
+000196 |                               norm_squared_numeric=float(norm),
+000197 |                               spatial_J_invariant=(m%2==0)))
+000198 |     result=dict(
+000199 |         analytic_identities='Graph, purity, restriction, NS complement, full return and first geometric response',
+000200 |         exact_four_point_checks=4**4,

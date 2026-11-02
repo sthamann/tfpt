@@ -1,0 +1,108 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-equivariant-active-search-20261024/THEOREMS.md
+Original file SHA-256: 666123fe4881001a342ec762bbe42595033b74a015282f774ef17d05903c5f49
+Inclusive original lines: 5-104
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000005 | ## 1. Fixed source and definitions
+000006 | 
+000007 | Retain the original integral E8 basis, its ordered sign cocycle, and J from
+000008 | `marked-seam-monodromy-20261023` and its upstream sources. Put
+000009 | T0=diag(1,-1,1,-1,1,-1,1,-1). Write j and t0 for the generator normalized
+000010 | field lifts. The original cocycle verifies j^4=t0^2=(t0*j)^2=1 on all lattice
+000011 | generators. Equality on these generators determines these automorphisms of
+000012 | the central lattice extension. These are specific lifts of this subgroup;
+000013 | no splitting of the original global G31 extension follows.
+000014 | 
+000015 | Let V=Hom(E8,F2), with its fixed basis, and D_c the output sign character.
+000016 | Let A=(J^-1)^T and K=(T0^-1)^T on V. In the fixed coordinates their columns,
+000017 | encoded as binary masks with coordinate zero in the least significant bit,
+000018 | are
+000019 | 
+000020 | ```
+000021 | A = [1,253,114,9,185,32,96,129]
+000022 | K = [1,253,250,9,16,32,65,129]
+000023 | ```
+000024 | 
+000025 | They obey A^2=K^2=I and AK=KA. The field automorphisms generated here have
+000026 | faithful normal forms (c,k,e)=D_c j^k t0^e, with c in V, k modulo4, e modulo2.
+000027 | Their product and inverse are
+000028 | 
+000029 | ```
+000030 | (c,k,e)(d,l,f) = (c+A^k K^e d, k+(-1)^e l mod4, e+f mod2),
+000031 | (c,k,e)^-1    = (A^k K^e c, (-1)^(e+1) k mod4, e).
+000032 | ```
+000033 | 
+000034 | The character action is reduced modulo2 in the exponent of A. Projection
+000035 | to the eight distinct dihedral lattice isometries and faithfulness of the
+000036 | characters prove uniqueness. The group has order2048. Its subgroup Gamma
+000037 | over <J> has order1024 and is the previously studied group.
+000038 | 
+000039 | Let X=CP1 minus(1,i,-1,-i), with basepoint0 and positive radial meridians
+000040 | gamma_i in cyclic order, product1. Every lifted meridian is M_i=D_ci j.
+000041 | For a reflection tau_s(z)=i^s conjugate(z), choose the fibre marking
+000042 | T=D_t j^s t0 and require T^2=1 and
+000043 | 
+000044 | ```
+000045 | T M_i T^-1 = M_((s-i) mod4)^-1.
+000046 | ```
+000047 | 
+000048 | For rotation z->iz choose R=D_r j and require R^4=1 and
+000049 | R M_i R^-1=M_(i+1 mod4). With both markings at s=0 also require
+000050 | T R T^-1=R^-1. These are extra declared structures. They do not derive a
+000051 | physical space, state, preferred dimension or physical dynamics from P1.
+000052 | 
+000053 | Morphisms in the first count fix the projected operators and are simultaneous
+000054 | conjugations by D_g. The second count forgets the additional lifts and counts
+000055 | the image in the established meridian moduli modulo all Gamma conjugations.
+000056 | These counts must not be interchanged.
+000057 | 
+000058 | ## 2. Complete equations and finite classification
+000059 | 
+000060 | Put H=A^s K. Normalizing the group words gives precisely these equations:
+000061 | 
+000062 | ```
+000063 | all cases:   c0+A*c1+c2+A*c3 = 0;
+000064 | reflection: (I+H)*t = 0;
+000065 |              (I+A)*t+H*ci+A*c_((s-i) mod4) = 0, for every i;
+000066 | rotation:   (I+A)*r+A*ci+c_(i+1 mod4) = 0, for every i;
+000067 | dihedral:   (I+A)*t+(K+A)*r = 0, in addition to s=0 reflection and rotation.
+000068 | ```
+000069 | 
+000070 | R^4 imposes no extra character equation because I+A+A^2+A^3=0.
+000071 | Necessity and sufficiency follow by the unique normal forms: each original
+000072 | relator has identity lattice projection and is exactly the character displayed.
+000073 | There is no replacement by a dimension or charge count.
+000074 | 
+000075 | | Marking | Binary variables | Constraint rank | Solution dimension | Character gauge rank | Marked classes modulo D_g |
+000076 | |---|---:|---:|---:|---:|---:|
+000077 | | Reflection s=0 | 40 | 20 | 20 | 4 | 65536 |
+000078 | | Reflection s=1 | 40 | 20 | 20 | 4 | 65536 |
+000079 | | Rotation | 40 | 24 | 16 | 4 | 4096 |
+000080 | | Joint rotation and reflection s=0 | 48 | 30 | 18 | 4 | 16384 |
+000081 | 
+000082 | For a projected operator p the gauge translation is (I+p)*g. Simultaneous
+000083 | translations have rank4 in every row of the table and lie in the solution
+000084 | space. Their stabilizer has order16. Thus every orbit has16 elements and
+000085 | the number of classes is 2^(solution dimension-4). This is a complete finite
+000086 | classification with normal forms obtained by reducing a solution by this
+000087 | explicit translation subspace.
+000088 | 
+000089 | On the image obtained by forgetting r,t, Gamma acts by uniform translations
+000090 | (I+A)g on the four ci and the simultaneous involution A. The image has
+000091 | dimensions16,16,12,10 in the table order. After translation reduction the
+000092 | dimensions are12,12,8,6, and the A fixed dimensions are8,10,8,6. Burnside gives
+000093 | 
+000094 | ```
+000095 | reflection s=0: (2^12+2^8)/2  = 2176 underlying Gamma classes;
+000096 | reflection s=1: (2^12+2^10)/2 = 2560 underlying Gamma classes;
+000097 | rotation:      (2^8+2^8)/2    = 256;
+000098 | joint:         (2^6+2^6)/2    = 64.
+000099 | ```
+000100 | 
+000101 | The full projected image and every Gamma orbit were also enumerated separately.
+000102 | This verifies the fixed space calculation without using its Burnside formula.
+000103 | These are images in the existing526336 classes; they are not counts of all
+000104 | possible outer isometries, reflections or physical realizations.

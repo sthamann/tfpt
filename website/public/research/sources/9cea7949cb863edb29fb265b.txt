@@ -1,0 +1,88 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_higgs_heat_consumer.py
+Original file SHA-256: 7eec24138b3ffd463dfe0e69e4d5077c36d46bd61af8e63f15c6a61cd80abf87
+Inclusive original lines: 1-80
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R030/R031: local residue compatibility and conditional original96 consumer.
+000002 | No new physical Y, profile, measure, spacetime, or ledger promotion.
+000003 | """
+000004 | from pathlib import Path
+000005 | import sys, json
+000006 | import numpy as np
+000007 | import sympy as s
+000008 | ROOT=Path(__file__).resolve().parents[4]
+000009 | sys.path.insert(0,str(ROOT/'verification'))
+000010 | import v252_full_finite_triple as original
+000011 | checks={}
+000012 | def need(name, value):
+000013 |     checks[name]=bool(value)
+000014 |     if not value: raise AssertionError(name)
+000015 | R,u,k,l,c,d,chi,A,B,C=s.symbols('R u k l c d chi A B C',real=True)
+000016 | X=s.symbols('X',real=True)
+000017 | # Local scalar-symbol heat identities, valid for each common linear trace.
+000018 | E=-R/s.Integer(4)-X
+000019 | a2=E+R/6
+000020 | a4=E**2/2+R*E/6
+000021 | need('same_linear_trace_mass_curvature_ratio_minus12',s.expand(a2).coeff(X)==-12*s.expand(a4).coeff(R).coeff(X))
+000022 | printed2=-s.Rational(1,48); printedRu=s.Rational(1,96)
+000023 | need('literal_printed_ratio_minus2_not_minus12',printed2/printedRu==-2 and printed2!=-12*printedRu)
+000024 | need('printed_curvature_requires_sixfold_mass_coefficient',(-12*printedRu)/printed2==6)
+000025 | need('mass_kept_requires_sixfold_smaller_curvature',(-printed2/12)/printedRu==s.Rational(1,6))
+000026 | need('projector_quartic_to_mass_ratio_onehalf',s.simplify((k/2)/k)==s.Rational(1,2))
+000027 | need('printed_quartic_to_mass_ratio_three',s.Rational(1,16)/(-printed2)==3)
+000028 | xx=s.symbols('xx',real=True); hh=s.Function('h')(xx)
+000029 | need('displayed_E_derivative_is_total_derivative_not_independent_kinetic',s.expand(s.diff(hh**2,xx,2)-2*s.diff(hh,xx)**2-2*hh*s.diff(hh,xx,2))==0)
+000030 | need('common_weight_and_field_map_preserve_linear_ratio',s.simplify((-k*l)/((k*l)/12))==-12)
+000031 | need('literal_ordinary48_rank2_printed_ED_is_raw_a2_over6',-s.Rational(48,12)/6==-s.Rational(16,24) and -s.Rational(2,1)/6==-s.Rational(16,48))
+000032 | # Explicit Clifford trace independently checks kinetic factor and signs.
+000033 | pa=[s.Matrix([[0,1],[1,0]]),s.Matrix([[0,-s.I],[s.I,0]]),s.diag(1,-1)]
+000034 | gam=[s.kronecker_product(pa[0],p) for p in pa]+[s.kronecker_product(pa[1],s.eye(2))]
+000035 | g5=gam[0]*gam[1]*gam[2]*gam[3]
+000036 | need('euclidean_clifford_and_chirality',all(a*b+b*a==(2*s.eye(4) if i==j else s.zeros(4)) for i,a in enumerate(gam) for j,b in enumerate(gam)) and g5*g5==s.eye(4))
+000037 | need('spin_trace_of_derivative_square_positive4',all(s.trace((s.I*a*g5)*(s.I*b*g5))==(4 if i==j else 0) for i,a in enumerate(gam) for j,b in enumerate(gam)))
+000038 | need('spin_trace_of_derivative_term_zero',all(s.trace(s.I*a*g5)==0 for a in gam))
+000039 | # Actual unmodified original constructor. Integer arithmetic stays exactly
+000040 | # representable in complex128 for these controls; no rounded comparisons.
+000041 | z3=np.zeros((3,3),complex);z2=np.zeros((2,2),complex)
+000042 | Ys=[np.array([[1+1j,2,0],[0,1,1j],[1,-1j,2]],complex),np.array([[2,1j,1],[1,3,-1j],[0,1,1]],complex),np.array([[1,0,1j],[2,1,0],[0,-1j,2]],complex),np.array([[1,1j,0],[1,2,1],[0,1,3j]],complex)]
+000043 | M=np.array([[2,1j,1],[1j,3,2],[1,2,1j]],complex)
+000044 | DY=original.full_D(*Ys,z3); DM=original.full_D(z3,z3,z3,z3,M)
+000045 | P=original.rep(1,z2,z3);K=original.Kswap()
+000046 | def higgs(q):
+000047 |     a=original.rep(0,q,z3);b=a@(DY@P-P@DY);b=b+b.conj().T
+000048 |     return b+K@b.conj()@K+DM
+000049 | def tr(a):return np.trace(a)
+000050 | AA=tr(DY@DY);BB=tr(np.linalg.matrix_power(DY,4));CC=tr(DY@DY@DM@DM)
+000051 | Y2=sum(m*tr(Y.conj().T@Y) for m,Y in zip([3,3,1,1],Ys))
+000052 | Y4=sum(m*tr(np.linalg.matrix_power(Y.conj().T@Y,2)) for m,Y in zip([3,3,1,1],Ys))
+000053 | T=tr(Ys[3].conj().T@Ys[3]@M@M.conj().T)
+000054 | need('original96_A_equals4Y2',AA==4*Y2)
+000055 | need('original96_B_equals4Y4',BB==4*Y4)
+000056 | need('original96_C_equals2Majorana_trace',CC==2*T)
+000057 | need('Majorana_C_is_positive_Frobenius_square',CC==tr((DY@DM).conj().T@(DY@DM)) and CC.real>=0 and CC.imag==0)
+000058 | need('forbidden_original_M_Y_M_path_zero',np.array_equal(DM@DY@DM,np.zeros((96,96))))
+000059 | for i,coords in enumerate([[1,2,2,4],[0,0,2,0],[2,0,0,1]]):
+000060 |     x1,x2,x3,x4=coords;h1=x1+1j*x2;h2=x3+1j*x4
+000061 |     q=np.array([[h2.conjugate(),h1],[-h1.conjugate(),h2]])
+000062 |     F=higgs(q);uu=sum(x*x for x in coords)
+000063 |     need('whole96_second_moment_'+str(i),tr(F@F)-tr(DM@DM)==AA*uu)
+000064 |     need('whole96_fourth_moment_including_Majorana_'+str(i),tr(np.linalg.matrix_power(F,4))-tr(np.linalg.matrix_power(DM,4))==BB*uu**2+4*CC*uu)
+000065 | Q=[np.array([[0,1],[-1,0]],complex),np.array([[0,1j],[1j,0]],complex),np.eye(2),np.diag([-1j,1j])]
+000066 | L=[higgs(q)-DM for q in Q]
+000067 | need('whole_four_real_derivative_Gram_A_identity',all(tr(a@b)==(AA if i==j else 0) for i,a in enumerate(L) for j,b in enumerate(L)))
+000068 | # Conditional standard product Dirac, spin4 separately from internal96.
+000069 | Z=d*A/(8*s.pi**2)
+000070 | quad=-c*chi**2*A/(4*s.pi**2)+d*C/(2*s.pi**2)+d*A*R/(48*s.pi**2)
+000071 | quartic=d*B/(8*s.pi**2)
+000072 | need('canonical_mass_including_curvature_and_Majorana',s.simplify(-quad/Z-(2*c*chi**2/d-4*C/A-R/6))==0)
+000073 | need('canonical_quartic_uses_fourth_moment_not_square_of_second',s.simplify(quartic/Z**2-8*s.pi**2*B/(d*A**2))==0)
+000074 | need('printed_minus6_has_positive_local_quadratic_at_R0',s.expand(quad.subs({c:-6,d:1,R:0}))==3*A*chi**2/(2*s.pi**2)+C/(2*s.pi**2))
+000075 | # Actual two-sheet dictionary must be supplied, not a freely frozen reference.
+000076 | sigma,rr,ff,ss=s.symbols('sigma rr ff ss')
+000077 | need('finite_part_scale_pole_mixing',s.expand(s.series(s.exp(2*sigma*ss)*(rr/ss+ff),ss,0,1).removeO()).coeff(ss,0)==ff+2*sigma*rr)
+000078 | result={'contract':'ORIGINAL-HIGGS-LOCAL-HEAT-CONSUMER-20261031','all_passed':all(checks.values()),'checks':checks,'control_invariants':{'A':str(AA),'B':str(BB),'C':str(CC),'T':str(T)},'required_mass_to_Ru_ratio':-12,'printed_mass_to_Ru_ratio':-2,'mass_factor_if_Ru_kept':6,'scope':'Exact original96 moment/derivative identities; local standard same-trace residue compatibility only. Four-dimensional product Dirac is an explicit conditional consumer, not a derived whole original source, measure, continuation or physical vacuum. No new Yukawa fit or ledger promotion.'}
+000079 | Path(__file__).with_name('ORIGINAL-HIGGS-HEAT.json').write_text(json.dumps(result,indent=2)+'\n')
+000080 | print(json.dumps(result,indent=2))

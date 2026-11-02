@@ -1,0 +1,120 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/audit_full_candidate_space.py
+Original file SHA-256: 5441341a0f39824abdc3db85dd1a1575514277847f986d1965e891c38f257e68
+Inclusive original lines: 1-112
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact linear family certificate for the actual v252 compatibility checks.
+000002 | 
+000003 | This audits the search objective; it does not claim to impose all TFPT physics.
+000004 | """
+000005 | from pathlib import Path
+000006 | import sys,json,time
+000007 | import numpy as np
+000008 | import sympy as s
+000009 | R=Path(__file__).resolve().parents[4]
+000010 | sys.path.insert(0,str(R/'verification'))
+000011 | import v252_full_finite_triple as f
+000012 | start=time.time();z=np.zeros((3,3),complex);I=np.eye(96)
+000013 | g=f.grading();swap=f.Kswap();perm=np.argmax(swap,axis=1)
+000014 | checks={};basis=[];coordinate_labels=[]
+000015 | for sector in range(5):
+000016 |  for i in range(3):
+000017 |   for j in range(3):
+000018 |    if sector==4 and j<i:continue
+000019 |    for phase in (1,1j):
+000020 |     args=[z.copy() for _ in range(5)];args[sector][i,j]=phase
+000021 |     if sector==4:args[sector][j,i]=phase
+000022 |     basis.append(f.full_D(*args));coordinate_labels.append([['Yu','Yd','Ye','Ynu','MR'][sector],i,j,'real' if phase==1 else 'imag'])
+000023 | D=np.array(basis);assert len(basis)==84
+000024 | checks['entire84_family_hermitian']=np.array_equal(D,D.conj().transpose(0,2,1))
+000025 | checks['entire84_family_gamma_odd']=not np.any(D*(np.diag(g)[None,:,None]+np.diag(g)[None,None,:]))
+000026 | checks['entire84_family_J_real']=np.array_equal(D.conj()[:,perm][:,:,perm],D)
+000027 | def coords(mat):
+000028 |  v=[]
+000029 |  for name in ['u','d','e','nu']:
+000030 |   for i in range(3):
+000031 |    for j in range(3):
+000032 |     x=mat[f.IDX[name,'L',0,i],f.IDX[name,'R',0,j]];v.extend([x.real,x.imag])
+000033 |  for i in range(3):
+000034 |   for j in range(i,3):
+000035 |    x=mat[f.IDX['nu','R',0,i],48+f.IDX['nu','R',0,j]];v.extend([x.real,x.imag])
+000036 |  return np.array(v)
+000037 | checks['84_independent_original_coordinates']=np.array_equal(np.array([coords(b) for b in basis]),np.eye(84))
+000038 | # Algebra acts identically on generations. Every ordered family block can
+000039 | # therefore be certified on the actual32-slot module, with no discarded modes.
+000040 | slots=[list(range(16*a,16*(a+1)))+list(range(48+16*a,48+16*(a+1))) for a in range(3)]
+000041 | alg=[]
+000042 | for phase in (1,1j):alg.append(f.rep(phase,np.zeros((2,2)),z))
+000043 | for a,b in [(1,0),(1j,0),(0,1),(0,1j)]:alg.append(f.rep(0,f.quaternion(a,b),z))
+000044 | for i in range(3):
+000045 |  for j in range(3):
+000046 |   for phase in (1,1j):
+000047 |    m=z.copy();m[i,j]=phase;alg.append(f.rep(0,np.zeros((2,2)),m))
+000048 | checks['actual_algebra24_family_diagonal']=all(not np.any(a[np.ix_(slots[i],slots[j])]) for a in alg for i in range(3) for j in range(3) if i!=j)
+000049 | checks['actual_algebra24_family_blind']=all(np.array_equal(a[np.ix_(slots[0],slots[0])],a[np.ix_(slots[j],slots[j])]) for a in alg for j in (1,2))
+000050 | left=np.array([a[np.ix_(slots[0],slots[0])] for a in alg]);right=np.array([(swap@a.conj()@swap)[np.ix_(slots[0],slots[0])] for a in alg])
+000051 | checks['SM_order_zero_all24_by24']=not np.any(left[:,None]@right[None,:]-right[None,:]@left[:,None])
+000052 | unique={}
+000053 | for d in basis:
+000054 |  for si in slots:
+000055 |   for sj in slots:
+000056 |    b=d[np.ix_(si,sj)]
+000057 |    if np.any(b):unique[b.tobytes()]=b
+000058 | violations=[]
+000059 | for n,b in enumerate(unique.values()):
+000060 |  comm=b@left-left@b
+000061 |  residual=comm[:,None]@right[None,:]-right[None,:]@comm[:,None]
+000062 |  if np.any(residual):violations.append(n)
+000063 | checks['SM_order_one_entire84_linear_family']=not violations
+000064 | print('All84 input directions checked, ordered family block types',len(unique),'elapsed',round(time.time()-start,2),flush=True)
+000065 | # All calculations above involve Gaussian integers and sums/products well
+000066 | # within2^53. Certify integrality rather than treating this as tolerance math.
+000067 | checks['original_basis_gaussian_integer_exact']=all(np.array_equal(v.real,np.rint(v.real)) and np.array_equal(v.imag,np.rint(v.imag)) for v in [D,left,right])
+000068 | # Reuse the actual six-multiplet coordinate-frame construction.
+000069 | positive={}
+000070 | for i in range(96):
+000071 |  anti=i>=48;name,ch,col,family=f.P[i%48]
+000072 |  if g[i,i]!=1:continue
+000073 |  label=('Q' if name in ('u','d') else 'L') if not anti else {'u':'uc','d':'dc','e':'ec','nu':'nc'}[name]
+000074 |  positive.setdefault(label,{}).setdefault((name,col),{})[family]=i
+000075 | H=[];Hlabels=[]
+000076 | for i in range(3):
+000077 |  h=z.copy();h[i,i]=1;H.append(h);Hlabels.append(f'diag{i}')
+000078 | for i in range(3):
+000079 |  for j in range(i+1,3):
+000080 |   h=z.copy();h[i,j]=h[j,i]=1;H.append(h);Hlabels.append(f'sym{i}{j}')
+000081 |   h=z.copy();h[i,j]=1j;h[j,i]=-1j;H.append(h);Hlabels.append(f'imag{i}{j}')
+000082 | xgens=[];glabels=[]
+000083 | for label,components in positive.items():
+000084 |  for h,hl in zip(H,Hlabels):
+000085 |   xp=np.zeros((96,96),complex)
+000086 |   for comp,idx in components.items():
+000087 |    for i in range(3):
+000088 |     for j in range(3):xp[idx[i],idx[j]]=1j*h[i,j]
+000089 |   x=xp+xp.conj()[perm][:,perm];xgens.append(x);glabels.append(label+':'+hl)
+000090 | Y=[np.array([[1+1j,2,0],[0,3-1j,1],[1j,0,4]],complex)+j*np.eye(3) for j in range(4)]
+000091 | MR=np.array([[2+1j,1,0],[1,3,1j],[0,1j,4-1j]],complex);point=f.full_D(*Y,MR)
+000092 | deltas=[x@point-point@x for x in xgens];Mnp=np.array([coords(d) for d in deltas]).T
+000093 | checks['orbit_entries_integer_exact']=np.array_equal(Mnp,np.rint(Mnp))
+000094 | checks['orbit_preserves_actual84_family']=all(np.array_equal(sum((c*b for c,b in zip(coords(d),basis)),np.zeros((96,96),complex)),d) for d in deltas)
+000095 | M=s.Matrix(np.rint(Mnp).astype(np.int64).tolist());reduced,pivcols=M.rref(simplify=False);rank=len(pivcols)
+000096 | free=[i for i in range(54) if i not in pivcols];null=[]
+000097 | for k in free:
+000098 |  v=s.zeros(54,1);v[k]=1
+000099 |  for row,col in enumerate(pivcols):v[col]=-reduced[row,k]
+000100 |  null.append(v)
+000101 | checks['generic_orbit_rank53']=rank==53
+000102 | checks['generic_stabilizer_one_dimension']=len(null)==1 and M*null[0]==s.zeros(84,1)
+000103 | # Exhibit the exact nonzero minor, avoiding a numerical rank assertion.
+000104 | _,rows=M[:,list(pivcols)].T.rref(simplify=False)
+000105 | minor=M.extract(list(rows),list(pivcols));det=minor.det(method='domain-ge')
+000106 | checks['exact53_by53_minor_nonzero']=det!=0 and minor.shape==(53,53)
+000107 | checks['null_is_original_baryon_rotation']=len(null)==1 and all(((sum((float(c)*x for c,x in zip(null[0],xgens)),np.zeros((96,96),complex)))[i,i]==(0 if f.P[i%48][0] in ('nu','e') else (1j if i<48 else -1j))*complex((sum((float(c)*x for c,x in zip(null[0],xgens)),np.zeros((96,96),complex)))[f.IDX['u','L',0,0],f.IDX['u','L',0,0]]).imag) for i in range(96))
+000108 | result=dict(contract='FUNDAMENTAL-SEARCH-OBJECTIVE-AUDIT-20261030',all_passed=all(checks.values()),checks={k:bool(v) for k,v in checks.items()},real_parameter_dimension=84,frame_dimension=54,generic_orbit_rank=rank,generic_stabilizer_dimension=len(null),generic_quotient_dimension=84-rank,ordered_family_block_types=len(unique),exact_minor=dict(rows=list(rows),columns=list(pivcols),determinant=str(det)),stabilizer_support=[(lab,str(c)) for lab,c in zip(glabels,null[0]) if c],elapsed_seconds=time.time()-start,search_verdict='NON_SELECTIVE_COMPATIBILITY_CLASS',final_solution_found=False,binary_subfamily_size=str(2**84),binary_subfamily_enumerated=False,coverage_method='Exact basis plus linearity, all real coefficient values',independent_source_selection_equation_supplied=False,scope='All real linear combinations in the ORIGINAL v252 finite-triple family, not all TFPT source/action/continuum constraints. Gaussian-integer finite algebra plus exact rational rank. No final physical solution selected.')
+000109 | out=R/'experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review'
+000110 | (out/'SEARCH-OBJECTIVE-AUDIT.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+000111 | (out/'SEARCH-OBJECTIVE-ORBIT-MATRIX.json').write_text(json.dumps(dict(coordinates=coordinate_labels,generators=glabels,matrix=Mnp.astype(int).tolist()),indent=2)+'\n')
+000112 | print(json.dumps(result,ensure_ascii=False,indent=2));assert result['all_passed']

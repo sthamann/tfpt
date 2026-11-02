@@ -1,0 +1,108 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_collective_higgs_source.py
+Original file SHA-256: 55e0d6a455c4c5a099c80a4e2997638d15affd615f618a09104c4aba5a451fbd
+Inclusive original lines: 1-100
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Actual original Higgs-force source, finite-class test and collective Legendre reader.
+000002 | 
+000003 | No physical H measure, new Yukawas, physical time or KO-doubled Fock space.
+000004 | The control inputs are precisely v252's seed252 arithmetic inputs.
+000005 | """
+000006 | from pathlib import Path
+000007 | import sys,json
+000008 | import numpy as np
+000009 | from scipy.linalg import expm
+000010 | from scipy.special import expit
+000011 | from scipy.optimize import root
+000012 | ROOT=Path(__file__).resolve().parents[4]
+000013 | sys.path.insert(0,str(ROOT/'verification'))
+000014 | import v252_full_finite_triple as original
+000015 | checks={}
+000016 | def need(name,value):
+000017 |  checks[name]=bool(value)
+000018 |  if not value: raise RuntimeError(name)
+000019 | def close(a,b,tol=1e-9):return np.linalg.norm(a-b)<tol
+000020 | def fun(a,f):
+000021 |  e,u=np.linalg.eigh(a);return (u*f(e))@u.conj().T
+000022 | rng=np.random.default_rng(252)
+000023 | Ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000024 | MR0=rng.normal(size=(3,3));MR=MR0+MR0.T
+000025 | D=original.full_D(*Ys,MR);K=original.Kswap();gamma=original.grading()
+000026 | Q=[np.array([[0,1],[-1,0]],complex),np.array([[0,1j],[1j,0]],complex),np.eye(2),np.diag([-1j,1j])]
+000027 | bp=original.rep(1,np.zeros((2,2)),np.zeros((3,3)))
+000028 | V=[]
+000029 | for qa in Q:
+000030 |  a=original.rep(0,qa,np.zeros((3,3)));om=a@(D@bp-bp@D);sa=om+om.conj().T
+000031 |  V.append(sa+K@sa.conj()@K)
+000032 | ix=[i for i,f in enumerate(original.P) if f[0] in ('u','d')]
+000033 | sub=lambda a:a[np.ix_(ix,ix)]
+000034 | v=[sub(a) for a in V];g=sub(gamma);T=[-1j*g@a for a in v]
+000035 | need('actual_nonredundant_quark_particle_carrier_dimension36',len(ix)==36)
+000036 | need('whole96_original_oneform_derivatives_Hermitian_odd_real',all(close(a,a.conj().T) and close(a@gamma+gamma@a,0) and close(K@a.conj()@K,a) for a in V))
+000037 | need('quark_sector_reduces_original_D_and_four_derivatives',all(close(a[np.ix_(ix,[i for i in range(96) if i not in ix])],0) for a in [D,*V]))
+000038 | need('actual_boundary_force_derivatives_Hermitian',all(close(a,a.conj().T) for a in T))
+000039 | def field(x):return sum((z*a for z,a in zip(x,T)),np.zeros((36,36),complex))
+000040 | def quaternion(x):return sum((z*a for z,a in zip(x,Q)),np.zeros((2,2),complex))
+000041 | def coords(q):return np.array([np.trace(a.conj().T@q).real/2 for a in Q])
+000042 | def weak(u):
+000043 |  w=np.eye(48,dtype=complex)
+000044 |  for c in range(3):
+000045 |   for gen in range(3):
+000046 |    at=[original.IDX[(n,'L',c,gen)] for n in ('u','d')];w[np.ix_(at,at)]=u
+000047 |  return sub(w)
+000048 | x=np.array([1.,2.,3.,4.]);x/=np.linalg.norm(x);uq=quaternion(x);U=weak(uq)
+000049 | need('actual_SU2_intertwines_all_four_Higgs_derivatives',all(close(U@a@U.conj().T,field(coords(uq@qa))) for a,qa in zip(T,Q)))
+000050 | theta=.73;charges=np.array([1/6 if original.P[i][1]=='L' else (2/3 if original.P[i][0]=='u' else -1/3) for i in ix])
+000051 | UY=np.diag(np.exp(1j*theta*charges))
+000052 | rot=np.diag([np.exp(-.5j*theta),np.exp(.5j*theta)])
+000053 | need('actual_hypercharge_map_has_H_charge_plus_half',all(close(UY@a@UY.conj().T,field(coords(qa@rot))) for a,qa in zip(T,Q)))
+000054 | color=expm(1j*np.array([[1,2j,0],[-2j,-1,1],[0,1,0]],complex)*.2)
+000055 | UC=np.zeros((36,36),complex)
+000056 | for i,k in enumerate(ix):
+000057 |  name,ch,c,gen=original.P[k]
+000058 |  for j,l in enumerate(ix):
+000059 |   n2,ch2,c2,g2=original.P[l]
+000060 |   if (name,ch,gen)==(n2,ch2,g2):UC[i,j]=color[c,c2]
+000061 | need('all_four_source_derivatives_are_color_singlet',all(close(UC@a@UC.conj().T,a) for a in T))
+000062 | comm=T[2]@T[3]-T[3]@T[2]
+000063 | comm2=float(np.linalg.norm(comm)**2)
+000064 | formula=float(24*sum(np.trace((y.conj().T@y)@(y.conj().T@y)).real for y in Ys[:2]))
+000065 | need('exact_whole_family_commutator_norm_formula',abs(comm2-formula)<1e-9 and formula>0)
+000066 | radius=float(3*sum(np.linalg.svd(y,compute_uv=False).sum() for y in Ys[:2]))
+000067 | for n in [np.eye(4)[k] for k in range(4)]+[x]:
+000068 |  e=np.linalg.eigvalsh(field(n))
+000069 |  need('original_direction_spectrum_and_support_'+str(len(checks)),close(e,np.linalg.eigvalsh(T[2])) and abs(e[e>0].sum()-radius)<1e-9)
+000070 | 
+000071 | # Exactly the already given constant Quarter source: no H or time selected.
+000072 | h=.25*g-1j*g@sub(D);A0=2*h;C=fun(A0,expit);I=np.eye(36)
+000073 | need('given_first_face_C_is_faithful',np.linalg.eigvalsh(C)[0]>0 and np.linalg.eigvalsh(C)[-1]<1)
+000074 | logZ=lambda a:float(np.logaddexp(0,np.linalg.eigvalsh(a)).sum())
+000075 | logZ0=logZ(A0)
+000076 | def read(j):
+000077 |  a=A0+field(j);c=fun(a,expit)
+000078 |  return logZ(a)-logZ0,np.array([np.trace(c@t).real for t in T]),c,a
+000079 | def hessian(a):
+000080 |  e,u=np.linalg.eigh(a);f=expit(e);diff=e[:,None]-e[None,:]
+000081 |  dd=np.divide(f[:,None]-f[None,:],diff,out=np.zeros_like(diff),where=np.abs(diff)>1e-8)
+000082 |  for i in range(len(e)):
+000083 |   for j in range(len(e)):
+000084 |    if abs(diff[i,j])<=1e-8:dd[i,j]=expit((e[i]+e[j])/2)*(1-expit((e[i]+e[j])/2))
+000085 |  mats=[u.conj().T@t@u for t in T]
+000086 |  return np.array([[np.trace(a@(dd*b)).real for b in mats] for a in mats])
+000087 | j=np.array([.1,.2,.3,.4]);W,m,Cj,Aj=read(j);Hess=hessian(Aj)
+000088 | step=1e-5;num=np.column_stack([(read(j+step*np.eye(4)[i])[1]-read(j-step*np.eye(4)[i])[1])/(2*step) for i in range(4)])
+000089 | need('whole_Gibbs_Hessian_matches_native_source_derivative',close(Hess,num,1e-7))
+000090 | need('collective_Hessian_positive_definite',np.linalg.eigvalsh(Hess)[0]>0 and close(Hess,Hess.T))
+000091 | Gamma=float(j@m-W)
+000092 | logc=lambda a:-np.logaddexp(0,-a)
+000093 | log1c=lambda a:-np.logaddexp(0,a)
+000094 | entropy=float(np.trace(Cj@(fun(Aj,logc)-fun(A0,logc))+(I-Cj)@(fun(Aj,log1c)-fun(A0,log1c))).real)
+000095 | need('actual_collective_Legendre_value_equals_relative_entropy',abs(Gamma-entropy)<1e-10 and Gamma>=0)
+000096 | need('collective_mean_within_proved_ball',np.linalg.norm(m)<radius)
+000097 | shifted_D=D+sum((ja/2*va for ja,va in zip(j,V)),np.zeros_like(D))
+000098 | need('actual_original_H_shift_equals_same_single_exponent_source',close(Aj,2*(.25*g-1j*g@sub(shifted_D))))
+000099 | recovered=root(lambda z:read(z)[1]-m,np.zeros(4),jac=lambda z:hessian(read(z)[3]))
+000100 | need('original_H_to_mean_coordinate_is_invertible_with_required_Jacobian',recovered.success and close(recovered.x,j,1e-7) and np.linalg.det(2*Hess)>0)

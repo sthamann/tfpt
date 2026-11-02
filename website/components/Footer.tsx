@@ -53,11 +53,10 @@ export function Footer() {
         <div>
           <Logo size={40} />
           <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-600">
-            Topological Fixed-Point Theory. A discrete compiler that builds E₈
-            from two axioms — the seam constant c₃ = 1/(8π) and the carrier rank
-            g_car = 5 — and reads off the Standard Model, α⁻¹ = 137.0359992, the
-            flavor sector and the scale grammar. No fitted constants; only π is
-            irreducible.
+            Topological Fixed-Point Theory connects seam and carrier inputs to
+            E₈, Standard Model structure, flavour and the electromagnetic fixed
+            point. Every result retains its stated premises. Follow the derivations,
+            inspect the sources and explore the remaining physical connections.
           </p>
           <div className="mt-3">
             <SuiteBadge />
@@ -83,6 +82,8 @@ export function Footer() {
             Explore
           </h3>
           <ul className="mt-4 space-y-2 text-sm">
+            <li><Link prefetch={false} href="/explain" className="text-slate-600 hover:text-slate-950">Understand the theory</Link></li>
+            <li><Link prefetch={false} href="/results" className="text-slate-600 hover:text-slate-950">Complete result library</Link></li>
             <li>
               <Link prefetch={false} href="/verification" className="text-slate-600 hover:text-slate-950">
                 Verification

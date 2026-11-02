@@ -1,0 +1,180 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/F20-BELL-HODGE-DICTIONARY.txt
+Original file SHA-256: bd27e2fca140939a5a0763d9e6e3dabb43d5b9f9a14ec9ca5eb53cd0ac23612b
+Inclusive original lines: 1-172
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | F20 BELL HODGE DICTIONARY
+000002 | =========================
+000003 | 
+000004 | Stand: 2026-10-28
+000005 | Urteil: EXAKTER POSITIVER DARSTELLUNGSANSCHLUSS, MIT EINER NOCH OFFENEN
+000006 | ORIGINALEN TRAEGERIDENTIFIKATION. KEINE KANALGLEICHHEIT.
+000007 | 
+000008 | 1. Der uebersehene alte Operator
+000009 | ---------------------------------
+000010 | 
+000011 | Der fruehere U5 Test betraf nur
+000012 | 
+000013 |   U5=exp(2 pi i X/5),
+000014 | 
+000015 | der auf E und Lambda2 E skalar ist. Er sagt nichts ueber den getrennten
+000016 | nichtzentralen Operator aus
+000017 | 
+000018 |   C5 = Comp(Phi5),
+000019 |   G : zeta5 -> zeta5^2,
+000020 |   G C5 G^-1 = C5^2,   C5^5=G^4=1.                 (1)
+000021 | 
+000022 | Dieser Operator ist wirklich in der alten Quelle vorhanden. v419 konstruiert
+000023 | G in der Basis (1,x,x^2,x^3) durch Reduktion von x^(2k) modulo Phi5. Die
+000024 | erzeugte Gruppe ist
+000025 | 
+000026 |   F20 = C5 semidirect C4.
+000027 | 
+000028 | Die alte Textquelle nennt dies ausdruecklich die Galoiswirkung des
+000029 | Seam Vierteltakts auf dem Carrier Fuenfertakt. Das ist eine andere Operation
+000030 | als die Hyperladungsphase U5 und korrigiert die zu enge vorige Suche.
+000031 | 
+000032 | Originalstellen:
+000033 | 
+000034 | * verification/v419_seam_galois_carrier.py:1-110
+000035 |   SHA256 cc6152ad7ea68c67725020e386e49eec32810ab25bb483c76bae99964399c2fd
+000036 |   Exakte Matrizen C5,G und Relation (1).
+000037 | 
+000038 | * experiments/theory-contracts/universalraum-spin-lift-basics-20260915/
+000039 |   sources/input_4_origin_theory.tex:180-191
+000040 |   SHA256 4a2ac752cf9beb65452d5c1aad3a9dc22b0d3fee24e8247c064ed654f910d95f
+000041 |   Historische Deutung von G als nichtzentraler Carrier Galoisoperator.
+000042 | 
+000043 | 2. Die beiden tatsaechlichen Zehner
+000044 | -----------------------------------
+000045 | 
+000046 | Sei V die vierdimensionale cyclotomische Darstellung aus v419. Der
+000047 | Bell Kandidat ist
+000048 | 
+000049 |   B = Sym2(V).                                         (2)
+000050 | 
+000051 | Auf den fuenf Slots 0,...,4 wirkt dasselbe F20 affin durch
+000052 | 
+000053 |   c:j -> j+1,   g:j -> 2j.
+000054 | 
+000055 | Fuer die Permutationsdarstellung P=C^5 ist der Hodge Traeger
+000056 | 
+000057 |   H = Lambda2(P).                                     (3)
+000058 | 
+000059 | Der alte Bell Zehner als Sym2(C4) ist ebenfalls original:
+000060 | 
+000061 | * documents/TFPT_Universalraum_Sitzungsdokumentation_2026-09-20/sections/
+000062 |   002-section-die-rahmenidentifikation-und-eine-wichtige-verwe.tex:22-37
+000063 |   SHA256 f63c670e7ed5304cd6a9b51c886bf715264049875ed50fe5c8c46100c4c45e22
+000064 |   U_l=Sym2(r_l) und der affine Nachfahrenanschluss.
+000065 | 
+000066 | * experiments/theory-contracts/compiler-current-descendant-20260919/
+000067 |   checker.py:43-64, 143-153
+000068 |   SHA256 b342a8b102d9b1dedf150ccbd4812ccb26fa1b9a4b7cb70401b6cdd8201b4420
+000069 |   Exakte Bellbasis und ihr Typ Sym2(C4).
+000070 | 
+000071 | Diese Stellen setzen allerdings die Bell Grundvier nicht ausdruecklich mit
+000072 | der cyclotomischen v419 Vier gleich. Der folgende Satz prueft genau, was bei
+000073 | dieser bereits naheliegenden, aber noch nicht original hergeleiteten
+000074 | Identifikation passiert.
+000075 | 
+000076 | 3. Exakter F20 Satz
+000077 | -------------------
+000078 | 
+000079 | Sei chi der eindimensionale Viertelcharakter
+000080 | 
+000081 |   chi(C5)=1,   chi(G)=i.                               (4)
+000082 | 
+000083 | Dann gilt als komplexe F20 Darstellung exakt
+000084 | 
+000085 |   chi tensor Sym2(V)  isomorphic  Lambda2(P).          (5)
+000086 | 
+000087 | Dies ist staerker als gleiche Dimension und staerker als ein Vergleich nur
+000088 | der Elementordnungen. Der Checker prueft alle 20 Gruppenelemente. Die
+000089 | Charaktere stimmen nach dem Twist ueberall ueberein. Der einzige unmittelbar
+000090 | sichtbare Unterschied ohne Twist liegt auf der Involutionsklasse G^2:
+000091 | 
+000092 |   tr Sym2(G^2)=+2,
+000093 |   tr Lambda2(P(G^2))=-2,
+000094 |   chi(G^2)=-1.                                        (6)
+000095 | 
+000096 | Der Viertelcharakter repariert also genau das Vorzeichen, an dem die
+000097 | untwisted Darstellungen scheitern.
+000098 | 
+000099 | In den Basen
+000100 | 
+000101 |   Sym2: (00,01,02,03,11,12,13,22,23,33),
+000102 |   Lambda2: (01,02,03,04,12,13,14,23,24,34)
+000103 | 
+000104 | ist ein exakter Intertwiner T:
+000105 | 
+000106 |   [ 0  0  0  0  0  0  0  0  1 -1]
+000107 |   [ 0  0  0  0  i  0 -i  0  0  0]
+000108 |   [ 0  0  0  0  0 -i  0  0  0  0]
+000109 |   [ 0  0  0  0  0 -1  1  1 -1  0]
+000110 |   [ 0  0  0 -1  0  0  0  0  0  0]
+000111 |   [ 0  0 -i  0  0  0  0  i  0  0]
+000112 |   [-i  0  i  i  0  0  0  0 -i  0]
+000113 |   [-1  1  0  0  0  0  0  0  0  0]
+000114 |   [ 0  i  0 -i  0  0 -i  0  0  i]
+000115 |   [ 0  1 -1  0 -1  1  0  0  0  0].                  (7)
+000116 | 
+000117 | Er hat det(T)=3i und erfuellt entryweise
+000118 | 
+000119 |   T Sym2(C5) = Lambda2(P(c)) T,
+000120 |   T [i Sym2(G)] = Lambda2(P(g)) T.                    (8)
+000121 | 
+000122 | Die konjugierte Wahl chi(G)=-i besitzt ebenfalls denselben Charakter. Die
+000123 | hier gezeigte positive Orientierung ist die in (4) verlangte Quarterwahl.
+000124 | Der abstrakte F20 Modulsatz allein waehlt diese Orientierung nicht neu aus.
+000125 | 
+000126 | Ausfuehrbarer Beleg:
+000127 | 
+000128 | * check_f20_twisted_intertwiner.py
+000129 | * f20-twisted-intertwiner-results.json
+000130 | 
+000131 | Der Lauf prueft 30 exakte Identitaeten, darunter die beiden Originalpins,
+000132 | beide Gruppenrelationen, den invertierbaren Intertwiner und alle 20
+000133 | Charakterwerte.
+000134 | 
+000135 | 4. Was dadurch wirklich neu verbunden ist
+000136 | ------------------------------------------
+000137 | 
+000138 | Der bekannte volle S5 Einwand war zu grob. Sym2 der cyclotomischen Vier und
+000139 | Lambda2 der Permutationsfuenf sind als volle S5 Module nicht gleich. Auf der
+000140 | tatsaechlich alten nichtzentralen Untergruppe F20 sind sie nach genau einem
+000141 | Viertelcharakter jedoch isomorph. Damit existiert ein konkretes gemeinsames
+000142 | Clockmodul, das den Carrier Fuenfertakt und die Seam Viertelwirkung zugleich
+000143 | behaelt. Der Anschluss ist nicht aus einer neu gewaehlten abstrakten C5
+000144 | gebaut; seine Generatoren sind die Matrizen aus v419.
+000145 | 
+000146 | Die erste verbleibende Originalfrage ist jetzt klein und typisiert:
+000147 | 
+000148 |   Identifiziert die P1/P2 Quelle die Bell Grundvier mit dem cyclotomischen
+000149 |   V aus v419, einschliesslich der Charakterlinie chi?
+000150 | 
+000151 | Die gelesenen Quellen tun dies noch nicht. Der Bell Grundraum wird dort als
+000152 | vier NS Fermionen beziehungsweise Pauli C4 eingefuehrt. v419 beschriftet
+000153 | seine Vier dagegen mit 1,zeta5,zeta5^2,zeta5^3. Gleichheit der zugrunde
+000154 | liegenden komplexen Dimension liefert diese physische Identifikation nicht.
+000155 | Der Satz (5) liefert aber nun den exakten Kandidaten und den vollstaendigen
+000156 | Generatorentest, den eine solche Originalzuordnung bestehen muss.
+000157 | 
+000158 | 5. Harte Grenze zur Ereignisoperation
+000159 | -------------------------------------
+000160 | 
+000161 | Aus (5) folgt keine Gleichheit der Quantenkanaele. Der alte Bell Kanal hat
+000162 | Choi Rang15, der Hodge Komplementkanal Rang5. Choi Rang bleibt unter jeder
+000163 | invertierbaren beziehungsweise unitaeren Ein und Ausgangskoordinatisierung
+000164 | erhalten. T transportiert das F20 Modul, nicht die Krausfamilie oder das
+000165 | physische Instrument.
+000166 | 
+000167 | Ebenso waehlt blosse natuerliche Markentransportkovarianz den Hodge Kanal
+000168 | nicht aus. Markabhaengige Kommutanten liefern global natuerliche Familien
+000169 | mit denselben Populationen, aber anderen P5 Antworten. Fuer eine
+000170 | Instrumentgleichheit bleibt daher weiterhin eine feste Faser SU5 Symmetrie,
+000171 | Markierungsunabhaengigkeit oder ein direktes originales C_m Amplitudengesetz
+000172 | erforderlich.

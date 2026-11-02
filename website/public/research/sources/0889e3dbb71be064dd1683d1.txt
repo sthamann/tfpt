@@ -1,0 +1,145 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/e-series-source-reconstruction-20261024/native_clock_conjugacy.py
+Original file SHA-256: 93c50855843792bad67ba86b805048a72ba45dd71a9d958250b6232fafc673dc
+Inclusive original lines: 38-174
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000038 | def calculate():
+000039 |     with contextlib.redirect_stdout(io.StringIO()):
+000040 |         old = runpy.run_path(str(HERE.parent/"e-series-joint-source-20261023/joint_clock.py"))
+000041 |     B, Bi = old["B"], old["Bi"]
+000042 |     gram = B.T*B/4
+000043 |     need(gram.det() == 1, "unimodular E8 integral torus coordinates")
+000044 |     need(all(gram[i,i] == 2 for i in range(8)) and
+000045 |          all(gram[i,j] in (0,-1) for i in range(8) for j in range(8) if i != j),
+000046 |          "native basis is an actual simply-laced simple-root basis")
+000047 |     roots = [tuple(int(x) for x in v) for v in old["roots"]]
+000048 |     root_lookup = {v:i for i,v in enumerate(roots)}
+000049 |     root_coords = sp.Matrix(old["coordinates"].T.tolist())
+000050 |     pairings = np.array((gram*root_coords).T.tolist(),dtype=np.int16)
+000051 |     need(np.max(np.abs(pairings)) <= 2, "int16 product bound <=48, no overflow")
+000052 |     candidates = np.array(list(product(range(4),repeat=8)),dtype=np.int16)
+000053 |     phases = (candidates@pairings.T) % 4
+000054 |     characters = np.stack([np.sum(phases == k,axis=1) for k in range(4)],axis=1)
+000055 |     characters[:,0] += 8
+000056 |     target_character = np.array([60,64,60,64])
+000057 |     selected_indices = np.flatnonzero(np.all(characters == target_character,axis=1))
+000058 |     selected = {tuple(map(int,row)) for row in candidates[selected_indices]}
+000059 |     need(len(candidates) == 65536 and len(selected) == 15120, "complete toral census")
+000060 | 
+000061 |     v = sp.Matrix([sp.Rational(1,2)]*5+[0]*3)
+000062 |     # a=4v in L; doubled standard coordinates are 8v.
+000063 |     representative = tuple(int(x) % 4 for x in Bi*(8*v))
+000064 |     need(representative in selected, "actual carrier parity lift kappa")
+000065 |     need(representative == (0,1,3,2,0,2,0,0), "ordered original-basis representative")
+000066 |     integer_gram = [[int(gram[j,k]) for k in range(8)] for j in range(8)]
+000067 |     permutations = []
+000068 |     for j in range(8):
+000069 |         beta = tuple(int(x) for x in B[:,j])
+000070 |         permutation = []
+000071 |         for alpha in roots:
+000072 |             d = sum(x*y for x,y in zip(alpha,beta))
+000073 |             need(d % 4 == 0, "root reflection coefficient")
+000074 |             permutation.append(root_lookup[tuple(x-(d//4)*y for x,y in zip(alpha,beta))])
+000075 |         permutations.append(permutation)
+000076 |     seed_a3 = bitset(i for i,r in enumerate(roots)
+000077 |                     if sum(x != 0 for x in r) == 2 and all(x == 0 for x in r[:5]))
+000078 |     need(seed_a3.bit_count() == 12, "original A3 normal frame")
+000079 |     orbit = {representative:seed_a3}
+000080 |     queue = [representative]
+000081 |     for point in queue:
+000082 |         for j in range(8):
+000083 |             image = list(point)
+000084 |             image[j] = (image[j]-sum(integer_gram[j][k]*point[k] for k in range(8))) % 4
+000085 |             image = tuple(image)
+000086 |             a3 = bitset(permutations[j][i] for i in bits(orbit[point]))
+000087 |             if image not in orbit:
+000088 |                 orbit[image] = a3
+000089 |                 queue.append(image)
+000090 |             else:
+000091 |                 need(orbit[image] == a3, "clock stabilizer preserves actual A3 factor")
+000092 |     need(set(orbit) == selected, "ALL matching toral clocks form ONE actual Weyl orbit")
+000093 |     root_kernels = {}
+000094 |     for row_id in selected_indices:
+000095 |         point = tuple(map(int,candidates[row_id]))
+000096 |         mask = int.from_bytes(np.packbits(phases[row_id] == 0,bitorder="little").tobytes(),"little")
+000097 |         root_kernels.setdefault(mask,[]).append(point)
+000098 |     need(len(root_kernels) == 7560 and {len(a) for a in root_kernels.values()} == {2},
+000099 |          "two primitive clocks per full compiler flag")
+000100 |     dot_matrix = np.array(roots,dtype=np.int16)@np.array(roots,dtype=np.int16).T
+000101 |     orthogonal = [bitset(np.flatnonzero(row == 0).tolist()) for row in dot_matrix]
+000102 |     a3_count = Counter()
+000103 |     for kernel,pair in root_kernels.items():
+000104 |         need(tuple((-x) % 4 for x in pair[0]) == pair[1], "the two clocks are inverses")
+000105 |         a3 = orbit[pair[0]]
+000106 |         need(a3 == orbit[pair[1]], "inverse clocks determine the same A3 frame")
+000107 |         core = (1 << 240)-1
+000108 |         for i in bits(a3):
+000109 |             core &= orthogonal[i]
+000110 |         need(core.bit_count() == 40 and (a3 | core) == kernel,
+000111 |              "actual fixed root kernel is precisely D5 core plus A3 normal")
+000112 |         a3_count[a3] += 1
+000113 |     need(len(a3_count) == 7560 and set(a3_count.values()) == {1},
+000114 |          "bijection of unoriented primitive clocks and all tetrahedron frames")
+000115 | 
+000116 |     def degree(r):
+000117 |         return sum(r[:5]) % 4
+000118 | 
+000119 |     kappa_counts = Counter(degree(r) for r in roots)
+000120 |     kappa_counts[0] += 8
+000121 |     need([kappa_counts[i] for i in range(4)] == [60,64,60,64], "full kappa field spectrum")
+000122 |     for r in roots:
+000123 |         need((2*degree(r)) % 4 == 2*(r[0] % 2), "kappa square is original E8/D8 spinor sign")
+000124 |     need(old["power_basis_phases"](old["J"],0,4) == (1,)*8, "actual Jhat order four on full fields")
+000125 | 
+000126 |     # Retain the WHOLE native cyclic compiler, not just its ninth power.
+000127 |     # Root cycle phases use the actual representative over c, not a fitted
+000128 |     # torus spectrum. Its 4th/9th powers are the inherited sigmahat/Jhat.
+000129 |     cstd = old["J_standard"]*old["sigma_standard"]
+000130 |     c_character = [0]*12
+000131 |     unseen = set(range(240))
+000132 |     c_mask = min(row["c_input_character"] for row in old["solutions"])
+000133 |     c_cycles = Counter()
+000134 |     while unseen:
+000135 |         start = min(unseen)
+000136 |         point, cycle = start, []
+000137 |         while point not in cycle:
+000138 |             cycle.append(point)
+000139 |             point = root_lookup[tuple(cstd*sp.Matrix(roots[point]))]
+000140 |         need(point == start and len(cycle) in (4,12), "actual compiler root cycles")
+000141 |         unseen -= set(cycle)
+000142 |         c_cycles[len(cycle)] += 1
+000143 |         phase, _ = old["power_phase_at"](old["c"],c_mask,len(cycle),
+000144 |                                          tuple(int(x) for x in old["coordinates"][start]))
+000145 |         need(phase == 1, "literal inherited compiler cycle phase")
+000146 |         for k in range(0,12,12//len(cycle)):
+000147 |             c_character[k] += 1
+000148 |     x = sp.Symbol("x")
+000149 |     need(sp.factor(old["c"].charpoly(x).as_expr()) == (x*x+1)**2*(x**4-x*x+1),
+000150 |          "actual Cartan compiler character")
+000151 |     for k in (3,9):
+000152 |         c_character[k] += 2
+000153 |     for k in (1,5,7,11):
+000154 |         c_character[k] += 1
+000155 |     need(c_cycles == {12:19,4:3} and c_character == [22,20,19,24,19,20,22,20,19,24,19,20],
+000156 |          "complete actual C12 field character")
+000157 |     sigma_candidates = np.array(list(product(range(3),repeat=8)),dtype=np.int16)
+000158 |     kappa_degrees = np.array([degree(r) for r in roots],dtype=np.int16)
+000159 |     compiler_phases = (3*kappa_degrees + 4*((sigma_candidates@pairings.T) % 3)) % 12
+000160 |     compiler_characters = np.stack([np.sum(compiler_phases == k,axis=1) for k in range(12)],axis=1)
+000161 |     compiler_characters[:,0] += 8
+000162 |     matching = {tuple(map(int,a)) for a in sigma_candidates[
+000163 |         np.all(compiler_characters == np.array(c_character),axis=1)]}
+000164 |     need(len(sigma_candidates) == 6561 and len(matching) == 480, "complete cubic choice census")
+000165 |     carrier_roots = [i for i,r in enumerate(roots) if degree(r) == 0]
+000166 |     reflection_data = [(tuple(int(t) for t in root_coords[:,i]),
+000167 |                         tuple(int(t) for t in pairings[i])) for i in carrier_roots]
+000168 |     sigma_representative = min(matching)
+000169 |     sigma_orbit, sigma_queue = {sigma_representative}, [sigma_representative]
+000170 |     for a in sigma_queue:
+000171 |         for vector,covector in reflection_data:
+000172 |             d = sum(u*v for u,v in zip(a,covector))
+000173 |             image = tuple((u-d*v) % 3 for u,v in zip(a,vector))
+000174 |             if image not in sigma_orbit:

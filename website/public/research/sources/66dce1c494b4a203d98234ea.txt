@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/NATIVE-SPIN5-FUNCTOR-AND-KRAUS-SPACE.txt
+Original file SHA-256: 3ffcad772d3f0a8fef31ff000cb716b18668f83d013ebe3a55b055d498080050
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | NATIVE SPIN5 FUNCTOR AND KRAUS SPACE
+000002 | =====================================
+000003 | 
+000004 | Stand: 2026-10-28
+000005 | Urteil: NACH WAHL EINER MARKIERTEN NATIVEN F20 UNTERGRUPPE UND IHRER
+000006 | +i KONFORMEN ALTERNIERENDEN EIGENLINIE ENTFERNT DIE DARAUS MATHEMATISCH
+000007 | ERZEUGTE VOLLE SP4 FUNKTORIALITAET DIE F20 MEHRDEUTIGKEIT DES
+000008 | ZEHNERINTERTWINERS. SIE LAESST EINE KOMPLEXE SKALARLINIE, METRISCH EINE
+000009 | PHASE UND AUF DER KOMPAKTEN REELLEN FORM EIN VORZEICHEN. DER DARAUS
+000010 | GEWONNENE HODGE KRAUSRAUM IST BASISUNABHAENGIG. DIE URSPRUENGLICHE
+000011 | DISKRETE QUELLE BEWEIST WEDER DIE KONTINUIERLICHE SP4 SYMMETRIE NOCH DIE
+000012 | PHYSISCHE AUSWAHL DIESES KANALS.
+000013 | 
+000014 | Quellenkorrektur zum Geltungsbereich
+000015 | ------------------------------------
+000016 | 
+000017 | Die in diesem Bericht verwendete volle Sp4 Naturality ist eine kanonische
+000018 | mathematische Fortsetzung der ausgewaehlten Form Omega. Sie ist keine in
+000019 | v783 bewiesene kontinuierliche Symmetrie der physischen Quelle. Die erste
+000020 | zusaetzliche Strukturwahl fuer den Spin5 Funktor ist daher nicht die blosse
+000021 | Existenz einer F20 Untergruppe. Sie ist die Wahl der konformen
+000022 | alternierenden Eigenlinie Omega_+ mit
+000023 | 
+000024 |   C^T Omega_+ C=Omega_+,
+000025 |   G^T Omega_+ G=+i Omega_+,                              (K1)
+000026 | 
+000027 | zusammen mit der positiven Viertelorientierung +i. Fuer das fest gewaehlte
+000028 | native Wortpaar ist diese +i Eigenlinie eindimensional. Auch die -i
+000029 | Eigenlinie ist eindimensional und liefert den konjugierten Zweig. Die
+000030 | Viertelorientierung entscheidet zwischen beiden. Erst danach sind W, q,
+000031 | die kompakte Realform und der Spin5 Funktor kanonisch bestimmt.
+000032 | 
+000033 | 1. Ausgangspunkt
+000034 | ----------------
+000035 | 
+000036 | Der vorherige Quellentest hat auf der tatsaechlichen nativen Pauli Vier V
+000037 | die Matrizen C und G sowie die kompatible alternierende Form Omega gefunden:
+000038 | 
+000039 |   C^T Omega C=Omega,
+000040 |   G^T Omega G=i Omega.                                  (1)
+000041 | 
+000042 | Dabei ist C von Ordnung 5, G von Ordnung 4 und G C G^-1=C^2. Die
+000043 | Standardmetrik auf V ist positiv und Omega ist mit ihr kompatibel.
+000044 | 
+000045 | Belege:
+000046 | 
+000047 |   verification/v783_two_qubit_clifford.py:3-35,496-515,581-651,734-810
+000048 |   SHA256 8f4851634b83f61671b04f3a6211059c40758d21caaf1f779302c799e1e9d6c4
+000049 | 
+000050 |   research-20261028-source-recursion-search/
+000051 |   NATIVE-PAULI-F20-UNITARY-BRIDGE.txt
+000052 |   SHA256 6ddc3238986183aa3ea4b30890dc5e629be25fc00a0364905ee0479834a6ed33
+000053 | 
+000054 | 2. Der Fuenfer ist funktoriell, aber sein Slotchart nicht eindeutig
+000055 | --------------------------------------------------------------------
+000056 | 
+000057 | Die inverse symplektische Form spannt eine nicht isotrope Linie in
+000058 | Lambda2(V). Ihr primitives Komplement ist
+000059 | 
+000060 |   W=(Lambda2(V)/<Omega^-1>) tensor chi^-1,               (2)
+000061 | 
+000062 | mit chi(C)=1 und chi(G)=i. Die Wendepaarung in Lambda2(V) induziert auf W
+000063 | eine nicht ausgeartete symmetrische Form q. In der im Checker verwendeten
+000064 | Hermitesch orthonormalen Basis lautet sie
+000065 | 
+000066 |       [-1  0  0  0  0]
+000067 |       [ 0  0  0  0 -1]
+000068 |   q = [ 0  0  0  1  0]
+000069 |       [ 0  0  1  0  0]
+000070 |       [ 0 -1  0  0  0].                                 (3)
+000071 | 
+000072 | Es gilt q^dagger q=q^2=I. Daher bestimmt
+000073 | 
+000074 |   j_W(w)=q conjugate(w)                                  (4)
+000075 | 
+000076 | eine kanonische kompakte reelle Fuenferform. Die getwisteten C und G
+000077 | Wirkungen sind zugleich Hermitesch unitaer, q orthogonal und j_W reell.
+000078 | 
+000079 | Auf allen zwanzig F20 Elementen stimmt ihr Charakter exakt mit
+000080 | 
+000081 |   sign tensor Perm5                                      (5)
+000082 | 
+000083 | ueberein. Das bestaetigt das funktorielle Fuenferwoerterbuch.
+000084 | 
+000085 | Eine wichtige Restgrenze wird dabei sichtbar. sign tensor Perm5 zerfaellt
+000086 | unter F20 in eine eindimensionale Charakterlinie und einen irreduziblen
+000087 | Vierer. Deshalb hat der Raum der F20 Intertwiner von W zu einem bereits
+000088 | beschrifteten Fuenferslotraum Dimension 2. F20 allein fixiert also das
+000089 | relative Skalarverhaeltnis dieser beiden Summanden nicht. Das ist die
+000090 | praezise verbleibende Slotchart Freiheit. Sie ist kleiner als die fruehere
+000091 | Zehnerfreiheit, aber nicht null.
+000092 | 
+000093 | 3. Die kanonische Spin5 Abbildung
+000094 | ---------------------------------
+000095 | 
+000096 | Fuer einen symmetrischen Tensor S in Sym2(V) setze
+000097 | 
+000098 |   A_S=S Omega.                                           (6)
+000099 | 
+000100 | Dann liegt A_S in sp(V). Seine induzierte Wirkung L_S auf W liegt in
+000101 | so(W,q). Mit der kanonischen Identifikation
+000102 | 
+000103 |   so(W,q) -> Lambda2(W),
+000104 |   L -> L q^-1,                                           (7)
+000105 | 
+000106 | entsteht
+000107 | 
+000108 |   F: Sym2(V) tensor chi^-1 -> Lambda2(W).                (8)
+000109 | 
+000110 | Diese Formel benoetigt weder einen Fuenferslotchart noch einen ausgewaehlten
+000111 | F20 Intertwiner. Sie wird allein aus Omega, der positiven Hermiteschen Form
+000112 | und der primitiven Exteriorpotenz gebildet.
+000113 | 
+000114 | Der exakte Checker findet
+000115 | 
+000116 |   det F=8,
+000117 |   F^dagger F=H_Sym2,                                     (9)
+000118 | 
+000119 | wobei H_Sym2 die von der Standardmetrik auf V induzierte positive Metrik
+000120 | ist. F ist somit bereits ohne nachtraegliche Polarzerlegung metrisch
+000121 | normalisiert.
+000122 | 
+000123 | Noch entscheidender ist der volle Liealgebrentest. Der Raum aller
+000124 | Intertwiner, die nicht nur F20, sondern die gesamte sp4 Wirkung vertraegen,
+000125 | hat Dimension
+000126 | 
+000127 |   dim Hom_sp4(Sym2(V),Lambda2(W))=1.                    (10)
+000128 | 
+000129 | Damit verschwindet die fruehere
+000130 | 
+000131 |   U(2) mal U(1) mal U(1)
+000132 | 
+000133 | Freiheit. Sie war genau die Folge der zu kleinen F20 Symmetrie nach
+000134 | Restriction. Die volle Spin5 Funktorialitaet waehlt eine komplexe Linie.
+000135 | Die positive Metrik fixiert ihren Betrag. Eine gemeinsame Phase bleibt; auf
+000136 | der kompakten reellen Form bleibt ein Vorzeichen. Die explizite Formel (6)
+000137 | bis (8) fixiert auch dieses Vorzeichen, sobald Omega und seine Orientierung
+000138 | festgehalten werden. Diese Eindeutigkeit ist eine Aussage in der aus Omega
+000139 | erzeugten Sp4 Kategorie. Sie ist keine Folgerung aus einer in der Quelle
+000140 | gegebenen kontinuierlichen Sp4 Wirkung.
+000141 | 
+000142 | 4. Basisunabhaengiger Hodge Krausraum
+000143 | -------------------------------------
+000144 | 
+000145 | Sei W_R der Fixraum von j_W. Fuer w in W_R definiert die Hodgeoperation
+000146 | 
+000147 |   C_w: Lambda2(W_R) -> Lambda2(W_R),
+000148 |   C_w(x)=*(w wedge x).                                   (11)
+000149 | 
+000150 | Die lineare Abbildung w -> C_w ist injektiv. Ihr Bild
+000151 | 
+000152 |   K_Hodge={C_w : w in W_R}                               (12)
+000153 | 
+000154 | ist deshalb ein kanonischer reeller fuenfdimensionaler Unterraum von
+000155 | End(Lambda2(W_R)). Einzelne C_m haengen von einer orthonormalen Basis ab.
+000156 | Der Unterraum K_Hodge haengt nicht davon ab.
+000157 | 
+000158 | Fuer jede orientierte orthonormale Basis e_1,...,e_5 gilt exakt
+000159 | 
+000160 |   tr(C_m^dagger C_n)=6 delta_mn,
+000161 |   sum_m C_m^dagger C_m=3 I_10.                           (13)
+000162 | 
+000163 | Folglich ist
+000164 | 
+000165 |   Phi(rho)=(1/3) sum_m C_m rho C_m^dagger               (14)
+000166 | 
+000167 | spurtreu und vollstaendig positiv. Bei einem orthogonalen Basiswechsel
+000168 | e'_a=sum_m O_am e_m gilt C'_a=sum_m O_am C_m. Die Orthogonalitaet von O
+000169 | laesst die Summe in (14) unveraendert. Der Krausraum hat Rang 5 und ist
+000170 | damit minimal.
+000171 | 
+000172 | Ueber den metrischen Spin5 Intertwiner F kann K_Hodge auf den reellen
+000173 | nativen Bell10 Raum Sym2(V)_R zuruecktransportiert werden. Dieser
+000174 | zuruecktransportierte Krausraum ist basisunabhaengig. Eine Wahl einzelner
+000175 | Krausoperatoren ist lediglich eine orthonormale Basiswahl in W_R.
+000176 | 
+000177 | Auch eine Umkehr der Orientierung von W_R aendert alle C_m gemeinsam um
+000178 | ein Vorzeichen und laesst den Kanal (14) unveraendert.
+000179 | 
+000180 | 5. Konjugierte F20 Untergruppen
+000181 | -------------------------------
+000182 | 
+000183 | Sei h eine native unitaere Cliffordtransformation und
+000184 | 
+000185 |   C'=h C h^-1,   G'=h G h^-1.                           (15)
+000186 | 
+000187 | Dann ist die zugehoerige +i Form
+000188 | 
+000189 |   Omega' = h^-T Omega h^-1.                             (16)
+000190 | 
+000191 | Der gesamte Spin5 Funktor ist natuerlich unter diesem Transport. Der neue
+000192 | Krausraum ist daher nicht numerisch derselbe Unterraum in einem fest
+000193 | gehaltenen Bell10 Koordinatenraum, sondern sein konjugiertes Bild:
+000194 | 
+000195 |   K_Omega' = rho_10(h) K_Omega rho_10(h)^-1.             (17)
+000196 | 
+000197 | Entsprechend sind auch die Kanaele unitaer konjugiert. Wenn h nur als
+000198 | Framewechsel gilt, beschreiben sie denselben abstrakten Kanal. Wenn die
+000199 | Bell10 Koordinaten und Quellenmarken physisch festgehalten werden, sind es
+000200 | verschiedene Kandidateninstrumente.

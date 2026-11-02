@@ -1,0 +1,53 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_b1_positive_source_heat.py
+Original file SHA-256: d7b768ba07d67aa45d3d2d343a897624543cf02aeaf12f11937b9a8b4e7d44b2
+Inclusive original lines: 1-45
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Existing AP positive factor, full orientation and squared-variable moments."""
+000002 | from pathlib import Path
+000003 | import sys,json
+000004 | import sympy as s
+000005 | import numpy as np
+000006 | R=Path(__file__).resolve().parents[4];sys.path.insert(0,str(R/'verification'))
+000007 | import v252_full_finite_triple as f
+000008 | u,t=s.symbols('u t',positive=True)
+000009 | F=s.exp(-s.sqrt(u));density=s.exp(-1/(4*t))/(2*s.sqrt(s.pi)*t**s.Rational(3,2))
+000010 | checks={}
+000011 | # The full subordination identity is proved analytically in the report.
+000012 | # Exact point controls and all required scalar moment integrals follow.
+000013 | checks['positive_mixture_mass_one']=s.integrate(density,(t,0,s.oo))==1
+000014 | for j in (1,2):
+000015 |  checks[f'inverse_heat_time_moment_{j}']=s.integrate(density/t**j,(t,0,s.oo))==(2 if j==1 else 12)
+000016 | for point in (1,4):
+000017 |  checks[f'positive_mixture_value_u_{point}']=s.simplify(s.integrate(density*s.exp(-point*t),(t,0,s.oo))-s.exp(-s.sqrt(point)))==0
+000018 | m0=s.Integer(1);m1=s.integrate(F,(u,0,s.oo));m2=s.integrate(u*F,(u,0,s.oo))
+000019 | checks['squared_argument_moment1_is2']=m1==2
+000020 | checks['squared_argument_moment2_is12']=m2==12
+000021 | checks['shape_invariant3']=m0*m2/m1**2==3
+000022 | amp,rate,a0,a1,a2=s.symbols('amp rate a0 a1 a2',positive=True)
+000023 | checks['shape_invariant_preserved_by_units']=s.simplify((amp*a0)*(amp*a2/rate**2)/(amp*a1/rate)**2-a0*a2/a1**2)==0
+000024 | checks['cannot_normalize_all_three_to1']=s.simplify((m0*m2-m1**2))==8
+000025 | Y=[np.array([[1+1j,2,0],[0,3-1j,1],[1j,0,4]],complex)+j*np.eye(3) for j in range(4)]
+000026 | MR=np.array([[2+1j,1,0],[1,3,1j],[0,1j,4-1j]],complex)
+000027 | Phi=f.full_D(*Y,MR);g=f.grading();h=.25*g-1j*g@Phi
+000028 | v,U=np.linalg.eigh(h);beta=1/32;I=np.eye(96)
+000029 | mat=lambda w:(U*w)@U.conj().T
+000030 | C=mat(1/(1+np.exp(beta*v)));X=mat(1/(2*np.cosh(beta*v/2)))
+000031 | Q=mat(np.exp(-beta*np.abs(v)));sign=mat(np.sign(v))
+000032 | ratio=mat(np.exp(-beta*np.abs(v))/(1+np.exp(-beta*np.abs(v))))
+000033 | Cx=(I-sign)/2+sign@ratio;Xx=mat(np.sqrt(np.exp(-beta*np.abs(v)))/(1+np.exp(-beta*np.abs(v))))
+000034 | close=lambda a,b:bool(np.linalg.norm(a-b)<1e-10)
+000035 | checks['actual96_C_rebuilt_from_sign_and_positive_factor']=close(C,Cx)
+000036 | checks['actual96_X_rebuilt_from_positive_factor']=close(X,Xx)
+000037 | checks['actual96_sign_involution']=close(sign@sign,I)
+000038 | checks['actual96_positive_factor_is_contraction']=bool(np.min(np.exp(-beta*np.abs(v)))>0 and np.max(np.exp(-beta*np.abs(v)))<1)
+000039 | checks['actual96_h_and_minus_h_same_positive_factor']=close(mat(np.exp(-beta*np.abs(-v))),Q)
+000040 | checks['actual96_h_and_minus_h_different_C']=close(mat(1/(1+np.exp(-beta*v))),I-C) and bool(np.linalg.norm(C-(I-C))>1e-3)
+000041 | checks['actual96_pair_rebuilds_full_G']=close(np.block([[I-C,X],[X,C]]),np.block([[I-Cx,Xx],[Xx,Cx]]))
+000042 | checks['actual96_square_root_argument_identity']=np.array_equal(np.sqrt((beta*np.abs(v))**2),beta*np.abs(v))
+000043 | result=dict(contract='B1-POSITIVE-SOURCE-HEAT-20261030',checks={k:bool(v) for k,v in checks.items()},all_passed=all(checks.values()),profile='exp(-sqrt(u)) for u=(beta E)^2',moments=[int(m0),int(m1),int(m2)],shape_invariant=3,scope='Existing AP factor and full source polar decomposition; analytic all-spectrum subordination, exact scalar integrals and actual96 controls. No identification with physical Sbos or new source/action selection.')
+000044 | Path(__file__).with_name('B1-POSITIVE-SOURCE-HEAT.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+000045 | print(json.dumps(result,ensure_ascii=False,indent=2));assert result['all_passed']

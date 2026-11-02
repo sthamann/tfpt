@@ -1,0 +1,110 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1008_master_assembly_scaffold.py
+Original file SHA-256: 3c45ac92fabdcb4d572a4f5c1b51d6b33639e6538f30b0168adca12a5d3fcb37
+Inclusive original lines: 386-487
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000386 | def physical_clock_hamiltonian(
+000387 |     dispersion: float,
+000388 |     seam_coupling: float = SEAM_COUPLING,
+000389 |     phi: float = 0.0,
+000390 | ) -> np.ndarray:
+000391 |     physical = edge_cluster_hamiltonian(dispersion, False)
+000392 |     return (
+000393 |         np.kron(physical, IDENTITY_CLOCK)
+000394 |         + np.kron(IDENTITY_EDGE, seam_hamiltonian(phi))
+000395 |         + seam_coupling * np.kron(Q_DENSITY, CLOCK_OBSERVABLE)
+000396 |     )
+000397 | 
+000398 | 
+000399 | def full_assembly_hamiltonian(dispersion: float) -> np.ndarray:
+000400 |     physical_clock = physical_clock_hamiltonian(dispersion)
+000401 |     mirror = edge_cluster_hamiltonian(-dispersion, True)
+000402 |     return (
+000403 |         np.kron(physical_clock, IDENTITY_EDGE)
+000404 |         + np.kron(np.eye(physical_clock.shape[0]), mirror)
+000405 |     )
+000406 | 
+000407 | 
+000408 | def spectral_threshold(matrix: np.ndarray, fields):
+000409 |     eigenvalues, eigenvectors = np.linalg.eigh(matrix)
+000410 |     ground_energy = float(eigenvalues[0])
+000411 |     ground_indices = np.where(np.abs(eigenvalues - ground_energy) < 1.0e-10)[0]
+000412 |     minimum = math.inf
+000413 |     zero_weight = 0.0
+000414 |     for ground_index in ground_indices:
+000415 |         ground = eigenvectors[:, ground_index]
+000416 |         for field in fields:
+000417 |             for operator in (field, field.conj().T):
+000418 |                 weights = np.abs(eigenvectors.conj().T @ (operator @ ground)) ** 2
+000419 |                 for target in np.where(weights > 1.0e-12)[0]:
+000420 |                     cost = float(eigenvalues[target] - ground_energy)
+000421 |                     if cost >= -1.0e-10:
+000422 |                         minimum = min(minimum, max(cost, 0.0))
+000423 |                         if abs(cost) < EDGE_GAP_TOL:
+000424 |                             zero_weight += float(weights[target])
+000425 |     return SpectralThreshold(minimum, zero_weight)
+000426 | 
+000427 | 
+000428 | PHYSICAL_FIELDS = tuple(
+000429 |     np.kron(operator, IDENTITY_CLOCK) for operator in ANNIHILATORS
+000430 | )
+000431 | 
+000432 | 
+000433 | def physical_seam_scan(hopping: float) -> SpectralThreshold:
+000434 |     minimum_gap = math.inf
+000435 |     zero_weight = 0.0
+000436 |     for momentum in MOMENTA:
+000437 |         matrix = physical_clock_hamiltonian(hopping * math.sin(float(momentum)))
+000438 |         threshold = spectral_threshold(matrix, PHYSICAL_FIELDS)
+000439 |         minimum_gap = min(minimum_gap, threshold.gap)
+000440 |         if threshold.gap < EDGE_GAP_TOL:
+000441 |             zero_weight = max(zero_weight, threshold.zero_weight)
+000442 |     return SpectralThreshold(minimum_gap, zero_weight)
+000443 | 
+000444 | 
+000445 | def log_trace_exp(matrix: np.ndarray) -> float:
+000446 |     eigenvalues = np.linalg.eigvalsh(0.5 * (matrix + matrix.conj().T))
+000447 |     maximum = float(np.max(eigenvalues))
+000448 |     return maximum + math.log(float(np.sum(np.exp(eigenvalues - maximum))))
+000449 | 
+000450 | 
+000451 | SEAM_SOURCE_PC = np.kron(IDENTITY_EDGE, CLOCK_OBSERVABLE)
+000452 | PHYSICAL_SOURCE_PC = np.kron(Q_DENSITY, IDENTITY_CLOCK)
+000453 | MIRROR_SOURCE = Q_DENSITY
+000454 | 
+000455 | 
+000456 | def mixed_derivative(function) -> float:
+000457 |     step = SOURCE_STEP
+000458 |     return (
+000459 |         function(+step, +step)
+000460 |         - function(+step, -step)
+000461 |         - function(-step, +step)
+000462 |         + function(-step, -step)
+000463 |     ) / (4.0 * step**2)
+000464 | 
+000465 | 
+000466 | def transduction_pack(seam_coupling: float):
+000467 |     base_pc = physical_clock_hamiltonian(0.0, seam_coupling)
+000468 |     base_mirror = edge_cluster_hamiltonian(0.0, True)
+000469 | 
+000470 |     def physical_w(seam_source: float, physical_source: float) -> float:
+000471 |         exponent = (
+000472 |             -TRANSDUCTION_BETA * base_pc
+000473 |             + seam_source * SEAM_SOURCE_PC
+000474 |             + physical_source * PHYSICAL_SOURCE_PC
+000475 |         )
+000476 |         return log_trace_exp(exponent)
+000477 | 
+000478 |     def mirror_w(seam_source: float, mirror_source: float) -> float:
+000479 |         pc_exponent = (
+000480 |             -TRANSDUCTION_BETA * base_pc + seam_source * SEAM_SOURCE_PC
+000481 |         )
+000482 |         mirror_exponent = (
+000483 |             -TRANSDUCTION_BETA * base_mirror + mirror_source * MIRROR_SOURCE
+000484 |         )
+000485 |         return log_trace_exp(pc_exponent) + log_trace_exp(mirror_exponent)
+000486 | 
+000487 |     return mixed_derivative(physical_w), mixed_derivative(mirror_w)

@@ -1,0 +1,188 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/check_sign_line_cover.py
+Original file SHA-256: 79ceadfaeb6aea66220f316dc6403a850fb48f47cf21d7a3b942568e6b978177
+Inclusive original lines: 1-180
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact checks for the genus-two sign-line source dictionary.
+000003 | 
+000004 | The decisive calculation selects the negative-orbit two-torsion packet by the
+000005 | ramification passport over t=z^4. It also records why the positive-orbit and
+000006 | antipodal packets are not the marked v117 source.
+000007 | """
+000008 | 
+000009 | from __future__ import annotations
+000010 | 
+000011 | import argparse
+000012 | import json
+000013 | from pathlib import Path
+000014 | 
+000015 | import sympy as sp
+000016 | 
+000017 | 
+000018 | def matrix_order(m: sp.Matrix, maximum: int = 24) -> int | None:
+000019 |     identity = sp.eye(m.rows)
+000020 |     power = identity
+000021 |     for n in range(1, maximum + 1):
+000022 |         power *= m
+000023 |         if power == identity:
+000024 |             return n
+000025 |     return None
+000026 | 
+000027 | 
+000028 | def matrix_key(m: sp.Matrix) -> tuple:
+000029 |     return tuple(m)
+000030 | 
+000031 | 
+000032 | def generated_group(generators: list[sp.Matrix]) -> list[sp.Matrix]:
+000033 |     identity = sp.eye(generators[0].rows)
+000034 |     elements = {matrix_key(identity): identity}
+000035 |     frontier = [identity]
+000036 |     while frontier:
+000037 |         x = frontier.pop()
+000038 |         for generator in generators:
+000039 |             y = x * generator
+000040 |             key = matrix_key(y)
+000041 |             if key not in elements:
+000042 |                 elements[key] = y
+000043 |                 frontier.append(y)
+000044 |     return list(elements.values())
+000045 | 
+000046 | 
+000047 | def triangle_genus(degree: int, orders: tuple[int, int, int]) -> int:
+000048 |     correction = sum(sp.Rational(order - 1, order) for order in orders)
+000049 |     two_g_minus_two = -2 * degree + degree * correction
+000050 |     return int((two_g_minus_two + 2) / 2)
+000051 | 
+000052 | 
+000053 | def main() -> int:
+000054 |     parser = argparse.ArgumentParser()
+000055 |     parser.add_argument(
+000056 |         "--out",
+000057 |         type=Path,
+000058 |         default=Path(__file__).with_name("sign-line-cover-results.json"),
+000059 |     )
+000060 |     args = parser.parse_args()
+000061 | 
+000062 |     checks: list[dict[str, object]] = []
+000063 | 
+000064 |     def check(name: str, condition: bool, detail: object) -> None:
+000065 |         ok = bool(condition)
+000066 |         checks.append({"name": name, "ok": ok, "detail": detail})
+000067 |         print(f"[{'PASS' if ok else 'FAIL'}] {name}: {detail}")
+000068 | 
+000069 |     w = sp.symbols("w")
+000070 |     omega = -sp.Rational(1, 2) + sp.sqrt(3) * sp.I / 2
+000071 | 
+000072 |     def root(a: int) -> sp.Expr:
+000073 |         return sp.expand(omega ** (a % 3))
+000074 | 
+000075 |     def q_ratio(a: int) -> sp.Expr:
+000076 |         return sp.cancel((w + root(a)) / (w + root(a + 1)))
+000077 | 
+000078 |     def p_ratio(a: int) -> sp.Expr:
+000079 |         return sp.cancel((w - root(a)) / (w - root(a + 1)))
+000080 | 
+000081 |     def antipodal_ratio(a: int) -> sp.Expr:
+000082 |         return sp.cancel((w - root(a)) / (w + root(a)))
+000083 | 
+000084 |     q_product = sp.simplify(sp.prod(q_ratio(a) for a in range(3)))
+000085 |     p_product = sp.simplify(sp.prod(p_ratio(a) for a in range(3)))
+000086 |     anti_product = sp.factor(sp.prod(antipodal_ratio(a) for a in range(3)))
+000087 |     check("negative-orbit Kummer equations have one product relation", q_product == 1, str(q_product))
+000088 |     check("positive-orbit comparison packet has one product relation", p_product == 1, str(p_product))
+000089 |     check(
+000090 |         "antipodal packet has its exact eta product section",
+000091 |         sp.simplify(anti_product - (w**3 - 1) / (w**3 + 1)) == 0,
+000092 |         str(anti_product),
+000093 |     )
+000094 | 
+000095 |     c_transport_q = [sp.simplify(q_ratio(a).subs(w, omega * w) - q_ratio(a - 1)) == 0 for a in range(3)]
+000096 |     check("c:w->omega w cyclically transports the negative packet", all(c_transport_q), c_transport_q)
+000097 | 
+000098 |     degree_v4 = 4
+000099 |     # Valuations modulo two of the independent square roots h_0,h_1.
+000100 |     # These are derived from h_a^2=(w+omega^a)/(w+omega^(a+1)).
+000101 |     q_inertia = {
+000102 |         b: tuple(
+000103 |             (int(b == a) - int(b == ((a + 1) % 3))) % 2
+000104 |             for a in range(2)
+000105 |         )
+000106 |         for b in range(3)
+000107 |     }
+000108 |     q_branch_support = {b for b, vector in q_inertia.items() if vector != (0, 0)}
+000109 |     q_branch_orders = [2 for _ in sorted(q_branch_support)]
+000110 |     two_g_minus_two_q = -2 * degree_v4 + sum(degree_v4 // e * (e - 1) for e in q_branch_orders)
+000111 |     genus_zq = (two_g_minus_two_q + 2) // 2
+000112 |     check("negative packet V4 cover is rational", genus_zq == 0, genus_zq)
+000113 |     check(
+000114 |         "negative packet has the three distinct nonzero V4 inertia vectors",
+000115 |         set(q_inertia.values()) == {(1, 0), (1, 1), (0, 1)},
+000116 |         q_inertia,
+000117 |     )
+000118 | 
+000119 |     genus_c = 2
+000120 |     genus_yq = 1 + degree_v4 * (genus_c - 1)
+000121 |     check("pullback Y_q -> C is unramified of degree four and genus five", genus_yq == 5, genus_yq)
+000122 | 
+000123 |     z_square = sp.factor((1 + w**3) / (1 - w**3))
+000124 |     t_of_w = sp.factor(z_square**2)
+000125 |     check(
+000126 |         "the exact quotient coordinate is t=z^4",
+000127 |         t_of_w == sp.factor((1 + w**3) ** 2 / (1 - w**3) ** 2),
+000128 |         str(t_of_w),
+000129 |     )
+000130 | 
+000131 |     # The base w->t map has orders 2 at q/t=0, 3 at 0,infinity/t=1,
+000132 |     # and 2 at p/t=infinity.  A square-root branch at q or p doubles
+000133 |     # the corresponding local order.
+000134 |     base_signature = (2, 3, 2)
+000135 |     q_support = {"q"}
+000136 |     p_support = {"p"}
+000137 |     antipodal_support = {"q", "p"}
+000138 | 
+000139 |     def composite_signature(support: set[str]) -> tuple[int, int, int]:
+000140 |         return (
+000141 |             base_signature[0] * (2 if "q" in support else 1),
+000142 |             base_signature[1],
+000143 |             base_signature[2] * (2 if "p" in support else 1),
+000144 |         )
+000145 | 
+000146 |     q_signature = composite_signature(q_support)
+000147 |     p_signature = composite_signature(p_support)
+000148 |     antipodal_signature = composite_signature(antipodal_support)
+000149 |     check("negative packet has the marked v117 passport", q_signature == (4, 3, 2), q_signature)
+000150 |     check("positive packet has the reversed clock passport", p_signature == (2, 3, 4), p_signature)
+000151 |     check("antipodal packet has the hyperbolic wrong passport", antipodal_signature == (4, 3, 4), antipodal_signature)
+000152 | 
+000153 |     degree_triangle = 24
+000154 |     check("negative degree-24 triangle cover has genus zero", triangle_genus(degree_triangle, q_signature) == 0, 0)
+000155 |     check("positive degree-24 triangle cover also has genus zero but wrong marking", triangle_genus(degree_triangle, p_signature) == 0, 0)
+000156 |     check("antipodal degree-24 cover has genus three", triangle_genus(degree_triangle, antipodal_signature) == 3, 3)
+000157 | 
+000158 |     P = sp.Matrix([[0, 0, 1], [1, 0, 0], [0, 1, 0]])
+000159 |     R = sp.Matrix([[1, 0, 0], [0, 0, 1], [0, -1, 0]])
+000160 |     U0 = R.inv()
+000161 |     M1 = P
+000162 |     Uinf = (M1 * U0).inv()
+000163 |     matrix_orders = (matrix_order(U0), matrix_order(M1), matrix_order(Uinf))
+000164 |     check("v117 triangle matrices have the same oriented orders", matrix_orders == q_signature, matrix_orders)
+000165 |     check("triangle matrices have determinant one", all(m.det() == 1 for m in (U0, M1, Uinf)), [int(m.det()) for m in (U0, M1, Uinf)])
+000166 | 
+000167 |     s4_group = generated_group([U0, M1])
+000168 |     check("marked triangle matrices generate S4 of order twenty-four", len(s4_group) == 24, len(s4_group))
+000169 |     commutators = [g * h * g.inv() * h.inv() for g in s4_group for h in s4_group]
+000170 |     derived_group = generated_group(commutators)
+000171 |     check(
+000172 |         "the only nontrivial cyclic quotient is C2 with A4 kernel",
+000173 |         len(derived_group) == 12 and len(s4_group) // len(derived_group) == 2,
+000174 |         {"derived_order": len(derived_group), "abelianization_order": len(s4_group) // len(derived_group)},
+000175 |     )
+000176 | 
+000177 |     eta, z_symbol = sp.symbols("eta z")
+000178 |     curve_identity = sp.simplify((z_square * (1 - w**3) ** 2) - (1 - w**6))
+000179 |     check("C has function field C(w,z) with eta=z(1-w^3)", curve_identity == 0, str(curve_identity))
+000180 |     composite_degree = len(s4_group) // 2

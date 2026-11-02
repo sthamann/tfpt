@@ -1,0 +1,38 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/equivariant-monodromy-20261023/checker.py
+Original file SHA-256: 91927ca2d86a724b387285b8406880df9cca0a46c7931940e5f344a91c230973
+Inclusive original lines: 195-224
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000195 |               'only_clock_power_central': sum(c['only_clock_fourth_power_relaxed_lifts'] for c in clocks),
+000196 |               'central_covariance_strict_clock': sum(c['central_covariance_lifts_with_strict_clock'] for c in clocks),
+000197 |               'central_covariance_central_clock': sum(c['central_covariance_lifts_with_central_clock'] for c in clocks),
+000198 |               'projective_orbifold_with_central_meridian_product': sum(c['projective_orbifold_lifts_with_meridian_product_z2'] for c in clocks)}
+000199 |     need(list(totals.values()) == [0, 0, 960, 1984, 992], 'complete counts for the five explicitly distinct contracts')
+000200 | 
+000201 |     # Explicit collisions for progressively stronger incomplete invariants.
+000202 |     buckets = defaultdict(list)
+000203 |     for c in clocks:
+000204 |         sig = (c['monodromy_id'], c['epsilon_clock'], c['characteristic_polynomial'])
+000205 |         buckets[sig].append([c['monodromy_id'], c['clock_id']])
+000206 |     collisions = [v for v in buckets.values() if len(v) > 1]
+000207 |     need(bool(collisions), 'clock spectrum and obstruction do not classify clock markings')
+000208 |     collision_witness = []
+000209 |     for ci in [3, 5]:
+000210 |         c = d['orbits'][0]['clock_classes'][ci]
+000211 |         C = (np.array(c['matrix_real_twice'], dtype=np.int64),
+000212 |              np.array(c['matrix_imag_twice'], dtype=np.int64))
+000213 |         r = refs[0]
+000214 |         count = sum(key(mul(g, r)) == key(mul(r, g)) and
+000215 |                     key(mul(g, C)) == key(mul(C, g)) for g in full.values())
+000216 |         need(count == c['automorphism_order'], 'independent centralizer count 0/'+str(ci))
+000217 |         collision_witness.append({'monodromy_id': 0, 'clock_id': ci,
+000218 |                                   'automorphism_order': count})
+000219 |     need([x['automorphism_order'] for x in collision_witness] == [64, 128],
+000220 |          'explicit nonisomorphic clocks with matching coarse invariants')
+000221 |     h_buckets = defaultdict(list)
+000222 |     for o in integral:
+000223 |         h_buckets[(o['image_order'], o['H1']['free_rank'],
+000224 |                    tuple(o['H1']['torsion_invariant_factors']))].append(o['id'])

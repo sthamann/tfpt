@@ -1,0 +1,172 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/check_common_cover_compositum.py
+Original file SHA-256: 7b8d14d0db28ab2cce0819ff306007aa4ba17d3673a88cbc0e5e6118343b3fb2
+Inclusive original lines: 1-164
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact finite checks for the canonical D x_C Y_q compositum."""
+000002 | 
+000003 | import itertools
+000004 | import json
+000005 | 
+000006 | 
+000007 | checks = []
+000008 | 
+000009 | 
+000010 | def require(name, condition):
+000011 |     if not condition:
+000012 |         raise RuntimeError(name)
+000013 |     checks.append(name)
+000014 | 
+000015 | 
+000016 | def compose(p, q):
+000017 |     return tuple(p[q[i]] for i in range(4))
+000018 | 
+000019 | 
+000020 | def parity(p):
+000021 |     return sum(p[i] > p[j] for i in range(4) for j in range(i + 1, 4)) % 2
+000022 | 
+000023 | 
+000024 | identity = tuple(range(4))
+000025 | permutations = list(itertools.permutations(range(4)))
+000026 | A4 = [p for p in permutations if parity(p) == 0]
+000027 | V4 = [p for p in A4 if compose(p, p) == identity]
+000028 | c3 = (1, 2, 0, 3)
+000029 | 
+000030 | 
+000031 | def perm_power(p, exponent):
+000032 |     result = identity
+000033 |     for _ in range(exponent):
+000034 |         result = compose(result, p)
+000035 |     return result
+000036 | 
+000037 | 
+000038 | cosets = [
+000039 |     {compose(v, perm_power(c3, exponent)) for v in V4}
+000040 |     for exponent in range(3)
+000041 | ]
+000042 | quotient = {element: exponent for exponent, coset in enumerate(cosets)
+000043 |             for element in coset}
+000044 | require("A4 and its V4 kernel", len(A4) == 12 and len(V4) == 4)
+000045 | require("A4 quotient is the marked C3",
+000046 |         len(quotient) == 12
+000047 |         and all(quotient[compose(a, b)] == (quotient[a] + quotient[b]) % 3
+000048 |                 for a in A4 for b in A4))
+000049 | 
+000050 | 
+000051 | # Gal(D/z)=C12 and Gal(Y_q/z)=A4 have the common quotient Gal(C/z)=C3.
+000052 | fiber_product = [
+000053 |     (n, a) for n in range(12) for a in A4 if n % 3 == quotient[a]
+000054 | ]
+000055 | require("fiber product has degree 48", len(fiber_product) == 48)
+000056 | 
+000057 | 
+000058 | # Chinese remainder gives the exact direct-product dictionary.
+000059 | to_direct = {(n, a): (a, n % 4) for n, a in fiber_product}
+000060 | require("fiber product is bijective with A4 times C4", len(set(to_direct.values())) == 48)
+000061 | require("CRT dictionary preserves multiplication",
+000062 |         all(to_direct[((n + m) % 12, compose(a, b))]
+000063 |             == (compose(to_direct[(n, a)][0], to_direct[(m, b)][0]),
+000064 |                 (to_direct[(n, a)][1] + to_direct[(m, b)][1]) % 4)
+000065 |             for n, a in fiber_product for m, b in fiber_product))
+000066 | 
+000067 | 
+000068 | # Relative degrees and Riemann-Hurwitz.  D/C is C4 and ramifies totally at
+000069 | # the two zeros and two poles of w.  Y_q/C is unramified V4.
+000070 | degree_c_over_z = 3
+000071 | degree_d_over_c = 4
+000072 | degree_y_over_c = 4
+000073 | degree_x_over_c = degree_d_over_c * degree_y_over_c
+000074 | degree_x_over_z = degree_c_over_z * degree_x_over_c
+000075 | require("relative linear-disjoint degree", degree_x_over_c == 16)
+000076 | require("absolute degree", degree_x_over_z == 48)
+000077 | 
+000078 | genus_c = 2
+000079 | branch_points_on_c = 4
+000080 | points_above_each = degree_x_over_c // 4
+000081 | ramification_contribution = branch_points_on_c * points_above_each * (4 - 1)
+000082 | twice_genus_x_minus_two = degree_x_over_c * (2 * genus_c - 2) + ramification_contribution
+000083 | genus_x = (twice_genus_x_minus_two + 2) // 2
+000084 | require("genus 41 by Riemann Hurwitz",
+000085 |         ramification_contribution == 48
+000086 |         and twice_genus_x_minus_two == 80 and genus_x == 41)
+000087 | 
+000088 | 
+000089 | # The original g already generates D over C: g=H^3, w=H^4, so H=w/g.
+000090 | # Exponent pairs are recorded in the free rank-one exponent lattice.
+000091 | require("g and w recover H", (4 - 3) == 1)
+000092 | require("recovered H has fourth power w and third power g",
+000093 |         4 * (4 - 3) == 4 and 3 * (4 - 3) == 3)
+000094 | 
+000095 | 
+000096 | # Actual geometric quarter on D: Q(H)=i/H.  It inverts the C12 deck.
+000097 | # Normal forms delta^n Q^p multiply with Q delta Q^-1=delta^-1.
+000098 | def semidirect_product(left, right):
+000099 |     n, p = left
+000100 |     m, q = right
+000101 |     return ((n + (-1 if p % 2 else 1) * m) % 12, (p + q) % 4)
+000102 | 
+000103 | 
+000104 | delta = (1, 0)
+000105 | quarter = (0, 1)
+000106 | quarter_inverse = (0, 3)
+000107 | conjugated = semidirect_product(semidirect_product(quarter, delta), quarter_inverse)
+000108 | require("actual quarter inverts the D deck", conjugated == (11, 0))
+000109 | 
+000110 | 
+000111 | def pair_order(element, multiply, bound=48):
+000112 |     power = (0, 0)
+000113 |     for order in range(1, bound + 1):
+000114 |         power = multiply(power, element)
+000115 |         if power == (0, 0):
+000116 |             return order
+000117 |     return None
+000118 | 
+000119 | 
+000120 | geometric_combination = semidirect_product(quarter, (4, 0))
+000121 | require("geometric quarter times cubic deck remains order four",
+000122 |         pair_order(geometric_combination, semidirect_product) == 4)
+000123 | 
+000124 | 
+000125 | # In the separate compiler closure Q and Delta commute, so Q Delta^4 has
+000126 | # order lcm(4,3)=12.  This comparison prevents merging the two clocks.
+000127 | def direct_product(left, right):
+000128 |     return ((left[0] + right[0]) % 12, (left[1] + right[1]) % 4)
+000129 | 
+000130 | 
+000131 | compiler_combination = direct_product((4, 0), (0, 1))
+000132 | require("commuting compiler combination has order twelve",
+000133 |         pair_order(compiler_combination, direct_product) == 12)
+000134 | 
+000135 | 
+000136 | # The coefficient quarter matrix from the accepted q-packet result.
+000137 | Aq = ((0, 0, -1), (0, 1, 0), (1, 0, 0))
+000138 | 
+000139 | 
+000140 | def matmul(a, b):
+000141 |     return tuple(tuple(sum(a[i][k] * b[k][j] for k in range(3))
+000142 |                        for j in range(3)) for i in range(3))
+000143 | 
+000144 | 
+000145 | I3 = ((1, 0, 0), (0, 1, 0), (0, 0, 1))
+000146 | Aq2 = matmul(Aq, Aq)
+000147 | Aq4 = matmul(Aq2, Aq2)
+000148 | require("q packet quarter remains one order-four lift",
+000149 |         Aq2 == ((-1, 0, 0), (0, 1, 0), (0, 0, -1)) and Aq4 == I3)
+000150 | 
+000151 | 
+000152 | print(json.dumps({
+000153 |     "verdict": "PASS_EXACT_MINIMAL_COMPOSITUM",
+000154 |     "exact_checks": len(checks),
+000155 |     "checks": checks,
+000156 |     "degree_over_C": degree_x_over_c,
+000157 |     "degree_over_z": degree_x_over_z,
+000158 |     "deck_group_over_z": "A4 x C4",
+000159 |     "genus": genus_x,
+000160 |     "quarter_scope": (
+000161 |         "diagonal geometric Q has order 4; it inverts the D deck and is "
+000162 |         "not the commuting order-12 compiler clock"
+000163 |     ),
+000164 | }, indent=2, sort_keys=True))

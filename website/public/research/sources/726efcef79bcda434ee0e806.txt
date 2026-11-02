@@ -1,0 +1,84 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_metric_form_gap.py
+Original file SHA-256: 8778498e1c246988f13c1ee86fd28d146491ad07bc8a520ac4b22cf2aa8ff737
+Inclusive original lines: 1-76
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R082: diagnostic form-bound counterexamples on the existing v311 transfer.
+000002 | 
+000003 | The auxiliary N and V are chosen tests, not the source's geometric operators.
+000004 | """
+000005 | from pathlib import Path
+000006 | import json
+000007 | import sys
+000008 | 
+000009 | import numpy as np
+000010 | 
+000011 | ROOT = Path(__file__).resolve().parents[4]
+000012 | sys.path.insert(0, str(ROOT / 'verification'))
+000013 | from v311_gap_decoupled_measure import transfer
+000014 | 
+000015 | T, lam2, lam3 = transfer()
+000016 | values, vectors = np.linalg.eigh(T)
+000017 | order = np.argsort(values)[::-1]
+000018 | values, vectors = values[order], vectors[:, order]
+000019 | projectors = [np.outer(vectors[:, i], vectors[:, i]) for i in range(3)]
+000020 | p0, p1, p2 = projectors
+000021 | H = sum(-np.log(values[i]) * projectors[i] for i in range(3))
+000022 | I = np.eye(3)
+000023 | delta = 6 * np.log(1.5)
+000024 | v = 31 / (8 * np.pi ** 2)
+000025 | 
+000026 | def gap(A):
+000027 |     eig = np.linalg.eigvalsh(A)
+000028 |     return float(eig[1] - eig[0])
+000029 | 
+000030 | def form_norm(N, V):
+000031 |     w, U = np.linalg.eigh(N + I)
+000032 |     inv = (U * (w ** -0.5)) @ U.T
+000033 |     return float(np.linalg.norm(inv @ V @ inv, 2))
+000034 | 
+000035 | checks = {}
+000036 | def check(name, condition):
+000037 |     checks[name] = bool(condition)
+000038 |     if not condition:
+000039 |         raise RuntimeError('failed: ' + name)
+000040 | 
+000041 | check('native_transfer_spectrum', np.allclose(values, [1, lam2, lam3], atol=1e-13))
+000042 | check('native_H_gap', abs(gap(H) - delta) < 1e-12)
+000043 | check('native_projectors', np.linalg.norm(sum(projectors) - I) < 1e-12)
+000044 | 
+000045 | # Stronger-than-stated diagnostic assumption N=H, no physical identification.
+000046 | V = v * p0 - v * (1 + delta) * p1
+000047 | bound_gap = gap(H + V)
+000048 | check('same_generator_graph_norm', abs(form_norm(H, V) - v) < 1e-12)
+000049 | check('same_generator_gap_exact', abs(bound_gap - (delta-v*(delta+2))) < 1e-12)
+000050 | check('same_generator_old_bound_fails', bound_gap < delta - 2*v)
+000051 | check('same_generator_gap_positive', bound_gap > 0)
+000052 | 
+000053 | # The ordinary norm bound really does imply the advertised numerical bound.
+000054 | Vordinary = v * (p0 - p1)
+000055 | check('ordinary_norm', abs(np.linalg.norm(Vordinary,2) - v) < 1e-12)
+000056 | check('ordinary_bound_sharp', abs(gap(H + Vordinary) - (delta - 2*v)) < 1e-12)
+000057 | 
+000058 | small_gaps = []
+000059 | for eps in [0.1, 0.01, 0.001]:
+000060 |     t = (delta - eps) / v - 1
+000061 |     N = t * p1
+000062 |     Veps = -(delta-eps) * p1
+000063 |     check('positive_N_' + str(eps), np.linalg.eigvalsh(N)[0] > -1e-12)
+000064 |     check('form_norm_' + str(eps), abs(form_norm(N, Veps) - v) < 1e-12)
+000065 |     check('actual_gap_' + str(eps), abs(gap(H + Veps) - eps) < 1e-12)
+000066 |     small_gaps.append({'epsilon': eps, 'actual_gap': gap(H + Veps),
+000067 |                        'ordinary_norm_V': float(np.linalg.norm(Veps,2)),
+000068 |                        'relative_norm_V': form_norm(N, Veps)})
+000069 | 
+000070 | result = {'scope': 'v311 transfer representative; auxiliary N and V are diagnostic, not original TFPT geometry',
+000071 |           'delta': float(delta), 'v': float(v), 'advertised_delta_minus_2v': float(delta-2*v),
+000072 |           'same_H_form_bound_gap': bound_gap, 'same_H_formula': float(delta-v*(delta+2)),
+000073 |           'small_gaps': small_gaps, 'checks': checks}
+000074 | out = Path(__file__).with_name('metric-form-gap-results.json')
+000075 | out.write_text(json.dumps(result, indent=2, ensure_ascii=False)+'\n')
+000076 | print(json.dumps(result, indent=2, ensure_ascii=False))

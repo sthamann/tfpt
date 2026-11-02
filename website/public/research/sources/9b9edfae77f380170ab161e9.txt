@@ -1,0 +1,102 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/compiler-correlated-event-clock-20260919/synthesis_20261102/check_source_parent.py
+Original file SHA-256: 39c16e9702db4156e25366329215677748df23d99c54a584237c7a92eef092ac
+Inclusive original lines: 1-94
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """R064 original 60-record channel: exact spectrum certificate and parent.
+000003 | 
+000004 | The original source builder is imported unchanged. Integer matrix identities
+000005 | certify the Gram polynomial; a rank over F_101 proves full product span over C.
+000006 | The time and process examples are numerical controls of explicit formulas.
+000007 | This is not the distinct five-Kraus Hodge channel from R088.
+000008 | """
+000009 | import importlib.util
+000010 | from pathlib import Path
+000011 | 
+000012 | import numpy as np
+000013 | 
+000014 | source = Path(__file__).resolve().parents[1] / "source_channel.py"
+000015 | spec = importlib.util.spec_from_file_location("original_source", source)
+000016 | mod = importlib.util.module_from_spec(spec)
+000017 | spec.loader.exec_module(mod)
+000018 | rays = mod.source_rays()
+000019 | U, _, _ = mod.reflection_actions(rays)
+000020 | assert len(U) == 60 and all(np.array_equal(a @ a, np.eye(10)) for a in U)
+000021 | 
+000022 | # Every entry is a Gaussian integer of modulus at most one. The Gram matrix
+000023 | # is real integral. Integer matrix multiplication below has a maximum entry
+000024 | # far below the int64 limit, so the polynomial identity is exact arithmetic.
+000025 | M = np.stack([a.reshape(-1) for a in U], axis=1)
+000026 | Gcomplex = M.conj().T @ M
+000027 | assert np.array_equal(Gcomplex.imag, np.zeros((60, 60)))
+000028 | assert np.array_equal(Gcomplex.real, np.rint(Gcomplex.real))
+000029 | G = Gcomplex.real.astype(np.int64)
+000030 | I = np.eye(60, dtype=np.int64)
+000031 | assert np.max(np.abs(G)) <= 10
+000032 | assert 60**3 * 10 * 18 * 26 * 106 < np.iinfo(np.int64).max
+000033 | P = ((G @ (G - 8 * I)) @ (G - 16 * I)) @ (G - 96 * I)
+000034 | assert np.array_equal(P, np.zeros_like(P))
+000035 | assert np.trace(G) == 600
+000036 | assert np.trace(G @ G) == 14400
+000037 | assert np.trace((G @ G) @ G) == 944640
+000038 | # P has simple roots. The four exact power sums uniquely give multiplicities.
+000039 | assert 0*5 + 8*45 + 16*9 + 96 == np.trace(G)
+000040 | assert 8**2*45 + 16**2*9 + 96**2 == np.trace(G @ G)
+000041 | assert 8**3*45 + 16**3*9 + 96**3 == np.trace((G @ G) @ G)
+000042 | print("Gram eigenvalues and multiplicities: 0^5, 8^45, 16^9, 96^1")
+000043 | print("normalized Choi spectrum: 0^45, (1/75)^45, (2/75)^9, (4/25)^1")
+000044 | 
+000045 | # Mod 101, 10 is a square root of -1. Full row rank in this finite field
+000046 | # certifies full rank over Gaussian rationals and hence over C.
+000047 | def rank_mod_101(a):
+000048 |     a = np.asarray(a, dtype=np.int64) % 101
+000049 |     row = 0
+000050 |     for col in range(a.shape[1]):
+000051 |         candidates = np.flatnonzero(a[row:, col])
+000052 |         if not len(candidates):
+000053 |             continue
+000054 |         pivot = row + int(candidates[0])
+000055 |         a[[row, pivot]] = a[[pivot, row]]
+000056 |         a[row] = a[row] * pow(int(a[row, col]), -1, 101) % 101
+000057 |         if row + 1 < len(a):
+000058 |             a[row+1:] = (a[row+1:] - a[row+1:, col:col+1]*a[row]) % 101
+000059 |         row += 1
+000060 |         if row == len(a):
+000061 |             break
+000062 |     return row
+000063 | 
+000064 | products = np.stack([(a @ b).reshape(-1) for a in U for b in U], axis=1)
+000065 | assert np.array_equal(products.real, np.rint(products.real))
+000066 | assert np.array_equal(products.imag, np.rint(products.imag))
+000067 | assert rank_mod_101(np.rint(products.real).astype(np.int64) +
+000068 |                     10*np.rint(products.imag).astype(np.int64)) == 100
+000069 | print("rank of Choi: 55; product-Kraus rank: 100 (mod 101 certificate)")
+000070 | 
+000071 | # The source mean makes the joint controlled involution's partial trace
+000072 | # a mixture of Id and Phi. No 600-dimensional exponential is required.
+000073 | assert np.array_equal(sum(U), 24*np.eye(10))
+000074 | assert all(np.array_equal(a, a.conj().T) for a in U)
+000075 | rho = np.zeros((10, 10), dtype=np.complex128)
+000076 | rho[0, 0] = 1
+000077 | def phi(r):
+000078 |     return sum(a @ r @ a.conj().T for a in U) / 60
+000079 | 
+000080 | theta = 0.371
+000081 | K = [np.exp(-1j*theta)*(np.cos(theta)*np.eye(10) +
+000082 |                          1j*np.sin(theta)*a)/np.sqrt(60) for a in U]
+000083 | evolved = sum(k @ rho @ k.conj().T for k in K)
+000084 | assert np.allclose(sum(k.conj().T @ k for k in K), np.eye(10), atol=1e-14)
+000085 | assert np.allclose(evolved, np.cos(theta)**2*rho + np.sin(theta)**2*phi(rho), atol=1e-14)
+000086 | K_end = [np.exp(-.5j*np.pi)*(1j*a)/np.sqrt(60) for a in U]
+000087 | assert all(np.allclose(k, a/np.sqrt(60), atol=1e-15) for k, a in zip(K_end, U))
+000088 | reused = sum(a @ a @ rho @ a.conj().T @ a.conj().T for a in U)/60
+000089 | fresh = phi(phi(rho))
+000090 | assert np.allclose(reused, rho, atol=1e-14)
+000091 | distance = np.linalg.norm(fresh - reused, ord="fro")
+000092 | assert distance > 0.1
+000093 | print(f"parent endpoint and reuse versus fresh records: Frobenius distance {distance:.12f}")
+000094 | print("PASS: finite R064 mathematical channel; physical source and timescale not identified")

@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/NATIVE-F20-JOINT-CLOCK-TYPECHECK.txt
+Original file SHA-256: 636378eff2bbc119d856bb416fad3bc8ce5adac790cef2ef46c6e225cec07371
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | NATIVE F20 FOUR VERSUS THE ORIGINAL FAMILY CLOCK
+000002 | 
+000003 | 2026-10-28 | source and exact representation check | no Atlas change
+000004 | 
+000005 | 
+000006 | RESULT
+000007 | 
+000008 | The newly identified irreducible F20 four does not by itself carry the original
+000009 | native family clock.  In the selected native Pauli chart, the actual v634
+000010 | matrix sigma satisfies
+000011 | 
+000012 |     sigma^3=I,
+000013 |     tr(sigma)=1,
+000014 |     char(sigma)=(lambda-1)^2(lambda^2+lambda+1),
+000015 | 
+000016 | but exact matrix multiplication gives
+000017 | 
+000018 |     rank [C5,sigma]                         = 4,
+000019 |     rank (G sigma G^-1-sigma)              = 4,
+000020 |     rank (G sigma G^-1-sigma^-1)           = 4.        (1)
+000021 | 
+000022 | Thus this selected C5,G pair and the frozen sigma satisfy none of the three
+000023 | candidate joint relations.
+000024 | 
+000025 | There is also a basis independent obstruction if one requires the original
+000026 | cyclotomic direct product relation on an irreducible F20 four.  Since C5 has
+000027 | four distinct eigenvalues, [C5,sigma]=0 makes sigma diagonal in the C5
+000028 | eigenbasis.  G cycles the four eigenlines.  If
+000029 | 
+000030 |     G sigma G^-1=sigma,
+000031 | 
+000032 | then all four diagonal entries are equal.  An order-three sigma is scalar and
+000033 | has trace 4, 4 omega, or 4 omega^2.  If instead
+000034 | 
+000035 |     G sigma G^-1=sigma^-1,
+000036 | 
+000037 | the entries alternate a,a^-1,a,a^-1.  Their trace is 4 for a=1 and -2 for
+000038 | a=omega or omega^2.  Neither case has trace 1.  This proves a joint-clock gap
+000039 | for the irreducible F20 four under either stated extra relation.  It is not a
+000040 | no-go for the full TFPT construction.
+000041 | 
+000042 | 
+000043 | 1. WHICH RELATION THE ORIGINAL SOURCES ACTUALLY REQUIRE
+000044 | 
+000045 | The plus relation belongs to the original cyclotomic compositum.
+000046 | 
+000047 | v315 states that the cyclic clock factors as the direct product
+000048 | 
+000049 |     Z/30 = Z/5 x Z/6,
+000050 | 
+000051 | and that Q(zeta30) is the compositum of the carrier field Q(zeta5) and the
+000052 | family field Q(zeta3).  It explicitly distinguishes this arithmetic bridge
+000053 | from dynamical coupling.  See verification/v315_coxeter_coupling.py:1-30,
+000054 | 58-89 and 106-114, SHA256
+000055 | 
+000056 |     490969af0827cf8829f236e3999710bb526396dc9eb2ee0672d8bdd5c6af7b0c.
+000057 | 
+000058 | v419 identifies the carrier Galois generator with the Frobenius
+000059 | zeta5 -> zeta5^2 and proves
+000060 | 
+000061 |     G C5 G^-1=C5^2,
+000062 |     G^4=I.
+000063 | 
+000064 | It also retains the primewise splitting
+000065 | 
+000066 |     Gal(Q(zeta30)/Q)=(Z/5)^x x (Z/3)^x.
+000067 | 
+000068 | See verification/v419_seam_galois_carrier.py:1-33 and 67-103, SHA256
+000069 | 
+000070 |     cc6152ad7ea68c67725020e386e49eec32810ab25bb483c76bae99964399c2fd.
+000071 | 
+000072 | Consequently, the carrier Frobenius element with CRT residues
+000073 | 
+000074 |     7 mod 30 = 2 mod 5 and 1 mod 3
+000075 | 
+000076 | fixes the family unit zeta3.  On the actual cyclotomic module the required
+000077 | relations are therefore
+000078 | 
+000079 |     [C5,sigma_family]=0,
+000080 |     G sigma_family G^-1=sigma_family.                (2)
+000081 | 
+000082 | Equation (2) is required if the F20 four is claimed to be the complete
+000083 | original cyclotomic carrier plus family module.  The source does not require
+000084 | every native four-dimensional realization to obey (2).  In particular, v417
+000085 | contains a separate three-dimensional operator realization in which the seam
+000086 | deck and family rotation do not commute.  See
+000087 | verification/v417_eisenstein_cp_operator.py:34-40 and 126-140, SHA256
+000088 | 
+000089 |     c5f1fe26b9e6fd30bf2ad45354de6819a184c4a86b491f19ab21cb53b21c2b7e.
+000090 | 
+000091 | That separate realization prevents promotion of (2) to a universal TFPT
+000092 | commutation axiom.
+000093 | 
+000094 | The minus relation belongs to another operator.  The marked Theta source
+000095 | requires
+000096 | 
+000097 |     alpha sigma alpha^-1=sigma^-1,
+000098 |     alpha^2=iI.                                      (3)
+000099 | 
+000100 | PAULI-SPIN-CENTRAL-LIFT.txt:23-62, 101-127 and 161-193 constructs an exact
+000101 | native candidate
+000102 | 
+000103 |     alpha_native=zeta8 (XI) U,
+000104 | 
+000105 | and verifies (3), alpha^4=-I and alpha^8=I.  Its SHA256 is
+000106 | 
+000107 |     e5ef50c899eba80dca03e1b7023edf816df3b45a669534fccf2fef215b0ae8e6.
+000108 | 
+000109 | Nothing in that source identifies alpha_native with the F20 generator G.
+000110 | Therefore the minus case above is a valid obstruction to a proposed
+000111 | identification of those two operations, but it is not an original relation
+000112 | imposed on the v419 Frobenius.
+000113 | 
+000114 | 
+000115 | 2. THE TWO QUARTER LIFTS ARE DIFFERENT
+000116 | 
+000117 | The equality of order eight and fourth power -I had hidden a type mismatch.
+000118 | For the marked Theta lift,
+000119 | 
+000120 |     alpha_native^2=iI,
+000121 | 
+000122 | so alpha_native has projective order two.  For the new symplectic normalization
+000123 | 
+000124 |     Ghat=zeta8^-1 G,
+000125 | 
+000126 | the exact square is
+000127 | 
+000128 |               [ 0  1  0  0]
+000129 |               [-1  0  0  0]
+000130 |     Ghat^2 =  [ 0  0  0  i],
+000131 |               [ 0  0  i  0]
+000132 | 
+000133 | which is nonscalar and has trace zero.  Ghat has projective order four.  A
+000134 | central phase does not change scalar versus nonscalar square, so no conjugacy
+000135 | up to central phase can identify these lifts.  The existing
+000136 | check_distinct_quarter_lifts.py proves the same invariant independently.
+000137 | 
+000138 | This correction preserves both positive constructions.  The F20 four and its
+000139 | Spin5 dictionary remain exact.  The marked Theta alpha remains an exact
+000140 | C3 semidirect C8 lift.  They are different group operations until a new
+000141 | generator-level dictionary proves otherwise.
+000142 | 
+000143 | 
+000144 | 3. THE ORIGINAL RANK-EIGHT JOINT MODULE
+000145 | 
+000146 | The original arithmetic carrier and family clocks already coexist on
+000147 | Q(zeta30), which has rational rank eight.  In the basis
+000148 | 
+000149 |     1,zeta30,...,zeta30^7
+000150 | 
+000151 | modulo Phi30, define
+000152 | 
+000153 |     C5       = multiplication by zeta30^6,
+000154 |     sigma_30 = multiplication by zeta30^10,
+000155 |     G_7      = the automorphism zeta30 -> zeta30^7.
+000156 | 
+000157 | Exact reduction modulo Phi30 gives
+000158 | 
+000159 |     C5^5=sigma_30^3=G_7^4=I,
+000160 |     [C5,sigma_30]=0,
+000161 |     G_7 C5 G_7^-1=C5^2,
+000162 |     G_7 sigma_30 G_7^-1=sigma_30.                 (4)
+000163 | 
+000164 | This is the positive original joint-clock carrier.  It is not the native
+000165 | complex four: after complexification sigma_30 has four omega and four omega^2
+000166 | eigenvalues, hence trace -4 rather than 1.  The rank-eight arithmetic module
+000167 | therefore avoids the four-dimensional F20 obstruction by changing the
+000168 | representation and its scalar field, not by embedding the frozen v634 sigma
+000169 | unchanged.
+000170 | 
+000171 | The first remaining bridge is now precise.  One must either construct an
+000172 | explicit typed functor from the original Q(zeta30) arithmetic module to the
+000173 | native/Theta family module that explains the change of character, or keep the
+000174 | F20 carrier dictionary and the Theta family clock as separate compatible
+000175 | operators on a larger object.  Equal quarter order cannot supply this bridge.
+000176 | 
+000177 | 
+000178 | 4. ACTUAL NATIVE SOURCE
+000179 | 
+000180 | v634 defines the E8 complex structure J and the coordinate-pair permutation
+000181 | sigma in one root representation, proves sigma^3=I and [J,sigma]=0, and later
+000182 | proves
+000183 | 
+000184 |     c=J sigma,
+000185 |     sigma=c^4,
+000186 |     J=c^9.
+000187 | 
+000188 | See verification/v634_st31_structure.py:90-152 and 721-749, SHA256
+000189 | 
+000190 |     5ff53ed031ca03103187ac22edf723aabce88bee3df1085c52486ecb0044d37c.
+000191 | 
+000192 | On its frozen complex four, this is the matrix used in (1):
+000193 | 
+000194 |               [0 0 1 0]
+000195 |               [1 0 0 0]
+000196 |     sigma  =  [0 1 0 0].
+000197 |               [0 0 0 1]
+000198 | 
+000199 | 
+000200 | VERIFICATION

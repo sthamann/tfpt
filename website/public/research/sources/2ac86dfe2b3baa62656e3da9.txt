@@ -1,0 +1,131 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_sewing_20261029/check_spectral_weight_rp.py
+Original file SHA-256: 9cf7bc1c265ef42a6e56ce364cfa98f62a48b81e9986e0ac12a13bc2e0d9b8d8
+Inclusive original lines: 1-123
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Decisive countercheck of a spectral-weight RP inference, not a TFPT model.
+000002 | 
+000003 | The analytic sign certificate uses rational inequalities. Matrix exponentials
+000004 | only give an independent numerical reproduction of the explicit finite case.
+000005 | No original verification, paper, ledger, or physical source is modified.
+000006 | """
+000007 | import json
+000008 | from pathlib import Path
+000009 | 
+000010 | import mpmath as mp
+000011 | import sympy as sp
+000012 | 
+000013 | 
+000014 | def require(condition, message):
+000015 |     if not condition:
+000016 |         raise RuntimeError(message)
+000017 | 
+000018 | 
+000019 | def calculate():
+000020 |     q = sp.symbols('q', positive=True)
+000021 |     a, g, z = sp.symbols('a g z', real=True)
+000022 |     D_same = sp.Matrix([[a, g], [g, a]])
+000023 |     D_opposite = sp.Matrix([[a, g], [g, -a]])
+000024 |     require(sp.expand((z*sp.eye(2)-D_same).det()
+000025 |                       - ((z-a)**2-g**2)) == 0, 'same spectrum')
+000026 |     require(D_opposite**2 == (a*a+g*g)*sp.eye(2), 'opposite square')
+000027 |     S_same = q + q**9
+000028 |     S_opposite = 2*q**5
+000029 |     delta = q*(1-q**4)**2
+000030 |     require(sp.expand(S_same-S_opposite-delta) == 0, 'action difference')
+000031 |     base = sp.Matrix([[10, 9], [9, 10]])
+000032 |     require(base.eigenvals() == {19: 1, 1: 1}, 'strict initial RP')
+000033 |     reflection = sp.Matrix([[0, 1], [1, 0]])
+000034 |     gaps = []
+000035 |     for x in [-2, 2]:
+000036 |         for y in [-2, 2]:
+000037 |             D = sp.Matrix([[x, 1], [1, y]])
+000038 |             swapped = sp.Matrix([[y, 1], [1, x]])
+000039 |             require(reflection*D*reflection == swapped, 'reflection covariance')
+000040 |             squares = [(e*e).simplify() for e in D.eigenvals()]
+000041 |             require(all(s >= 1 for s in squares), 'nonzero gap')
+000042 |             gaps.append({'configuration': [x, y],
+000043 |                          'eigenvalues': sorted(str(v) for v in D.eigenvals())})
+000044 | 
+000045 |     # 2 < e < 3 follows from its positive series and a geometric tail bound.
+000046 |     # Hence 1/3 < q=e^-1 < 1/2 and delta > (1/3)(15/16)^2.
+000047 |     e_upper = sp.Rational(5, 2) + sp.Rational(1, 6)/(1-sp.Rational(1, 4))
+000048 |     lower_delta = sp.Rational(1, 3)*(1-sp.Rational(1, 2)**4)**2
+000049 |     require(e_upper == sp.Rational(49, 18) and e_upper < 3, 'e upper bound')
+000050 |     require(sp.Rational(5, 2) > 2, 'e lower bound')
+000051 |     require(lower_delta == sp.Rational(75, 256), 'delta rational lower bound')
+000052 |     require(lower_delta > sp.Rational(1, 9), 'delta exceeds log threshold bound')
+000053 |     # log(1+x)<x at x=1/9; thus delta>log(10/9) analytically.
+000054 | 
+000055 |     mp.mp.dps = 80
+000056 |     weights = mp.matrix(2, 2)
+000057 |     actions = mp.matrix(2, 2)
+000058 |     signs = [-1, 1]
+000059 |     for i, s in enumerate(signs):
+000060 |         for j, t in enumerate(signs):
+000061 |             D = mp.matrix([[2*s, 1], [1, 2*t]])
+000062 |             heat = mp.expm(-(D*D))
+000063 |             action = heat[0, 0]+heat[1, 1]
+000064 |             actions[i, j] = action
+000065 |             weights[i, j] = mp.exp(-action)
+000066 |     same = mp.exp(-1)+mp.exp(-9)
+000067 |     opposite = 2*mp.exp(-5)
+000068 |     require(abs(actions[0, 0]-same) < mp.mpf('1e-70'), 'independent same action')
+000069 |     require(abs(actions[0, 1]-opposite) < mp.mpf('1e-70'), 'independent opposite action')
+000070 |     kernel = mp.matrix([[10*weights[0, 0], 9*weights[0, 1]],
+000071 |                         [9*weights[1, 0], 10*weights[1, 1]]])
+000072 |     normalizer = sum(kernel[i, j] for i in range(2) for j in range(2))
+000073 |     direct_response = sum(signs[i]*signs[j]*kernel[i, j]
+000074 |                           for i in range(2) for j in range(2))/normalizer
+000075 |     eigen_minus = 10*mp.exp(-same)-9*mp.exp(-opposite)
+000076 |     formula_response = eigen_minus/(10*mp.exp(-same)+9*mp.exp(-opposite))
+000077 |     require(normalizer > 0 and min(weights) > 0, 'ordinary positive weights')
+000078 |     require(abs(direct_response-formula_response) < mp.mpf('1e-70'), 'direct observable')
+000079 |     require(direct_response < 0, 'RP violation')
+000080 | 
+000081 |     # A source-independent reference denominator cancels in a normalized state.
+000082 |     x, y, ref = sp.symbols('x y ref', positive=True)
+000083 |     c0, c1, c2, c12 = sp.symbols('c0 c1 c2 c12', real=True)
+000084 |     Z = c0+c1*x+c2*y+c12*x*y
+000085 |     require(sp.simplify((Z/ref)/(c0/ref)-Z/c0) == 0, 'reference normalization')
+000086 |     require(sp.simplify(sp.diff(sp.log(Z/ref), x, y)
+000087 |                          - sp.diff(sp.log(Z), x, y)) == 0, 'connected cross response')
+000088 | 
+000089 |     return {
+000090 |         'verdict': 'POINTWISE_POSITIVE_SPECTRAL_WEIGHT_DOES_NOT_PRESERVE_RP',
+000091 |         'exact_profile': 'f(u)=exp(-u)',
+000092 |         'operator': 'D(x,y)=[[x,1],[1,y]], x,y in {-2,2}',
+000093 |         'base_reflection_kernel': [[10, 9], [9, 10]],
+000094 |         'base_eigenvalues': [19, 1],
+000095 |         'spectra': gaps,
+000096 |         'action_difference': str(delta),
+000097 |         'analytic_sign_certificate': 'Delta>75/256>1/9>log(10/9)',
+000098 |         'action_same': mp.nstr(same, 40),
+000099 |         'action_opposite': mp.nstr(opposite, 40),
+000100 |         'negative_kernel_eigenvalue': mp.nstr(eigen_minus, 40),
+000101 |         'normalized_reflected_response': mp.nstr(direct_response, 40),
+000102 |         'base_normalized_reflected_response': '1/19',
+000103 |         'relative_reference_cancels_in_normalized_state': True,
+000104 |         'general_profile_qualification':
+000105 |             'Every nonconstant finite positive Laplace profile has Delta>0; '
+000106 |             'a general counterexample uses r in (exp(-Delta),1). The fixed '
+000107 |             'ratio 9/10 needs Delta>log(10/9).',
+000108 |         'scope': 'Generic inference in the old measure proof only. This is '
+000109 |                  'not an original P1/P2 source, a physical TFPT prediction, '
+000110 |                  'or a continuum geometric/BRST countermodel.',
+000111 |         'complete_TFPT_solution': False,
+000112 |         'ledger_changed': False,
+000113 |     }
+000114 | 
+000115 | 
+000116 | if __name__ == '__main__':
+000117 |     result = calculate()
+000118 |     destination = Path(__file__).with_name('spectral-weight-rp-results.json')
+000119 |     destination.write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n')
+000120 |     print(result['verdict'])
+000121 |     print('Reflected response:', result['normalized_reflected_response'])
+000122 |     print('Sign proof:', result['analytic_sign_certificate'])
+000123 |     print('Physical P1/P2 source closure: not established')

@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_sewing_20261028/sewing/check_ward_charged_module_selection.py
+Original file SHA-256: 0c86052189d99da72903065035efd576d0e849d6b02d905617aef640166622c8
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact Ward-vector closure test in the existing E8 A4 x A4 chart.
+000002 | 
+000003 | The script imports the canonical A4 response checker and its actual E8 current
+000004 | source.  It adds no embedding, representation matrix, or fitted coefficient.
+000005 | It verifies only the source-pinned Ward vector, its neutral-current orbit, the
+000006 | old D5 x A3 grades, the P2 X charges, and the rank of its single bracket map.
+000007 | """
+000008 | from collections import Counter, deque
+000009 | import hashlib
+000010 | import importlib.util
+000011 | import json
+000012 | from pathlib import Path
+000013 | 
+000014 | 
+000015 | BASE = Path(__file__).resolve().parent
+000016 | [OMITTED: non-scientific conversation or execution metadata]
+000017 | CANON = (REPO / 'experiments/theory-contracts/'
+000018 |          'elliptic-moebius-source-bridge-20261026/'
+000019 |          'hodge_complement_20261028')
+000020 | CANON_CHECKER = CANON / 'check_e8_a4_response.py'
+000021 | CANON_RESULTS = CANON / 'e8-a4-results.json'
+000022 | WARD_SOURCE = (REPO / 'experiments/theory-contracts/'
+000023 |                'seam-joint-ward-state-20261014/PROOF.txt')
+000024 | OUTPUT = BASE / 'ward-charged-module-selection-results.json'
+000025 | 
+000026 | EXPECTED_CANON_CHECKER_SHA256 = (
+000027 |     '9659806dfc92ec5f7d322a066d8e6f5b7b7c80e9a5cc285257d5d44bc57ea1f0'
+000028 | )
+000029 | EXPECTED_CANON_RESULTS_SHA256 = (
+000030 |     '2816fbc59ad82469571831c4ae852753a4a147d07fd247d835b0b8adfb49c334'
+000031 | )
+000032 | EXPECTED_WARD_SOURCE_SHA256 = (
+000033 |     '7c0cd92dfc5eca88260baae0af9edad66f958a27ce0d15d7965414b3971f8da0'
+000034 | )
+000035 | 
+000036 | 
+000037 | def require(condition, name):
+000038 |     if not condition:
+000039 |         raise RuntimeError(name)
+000040 | 
+000041 | 
+000042 | def sha256(path):
+000043 |     return hashlib.sha256(path.read_bytes()).hexdigest()
+000044 | 
+000045 | 
+000046 | def load_canonical_checker():
+000047 |     spec = importlib.util.spec_from_file_location(
+000048 |         'canonical_e8_a4_response', CANON_CHECKER
+000049 |     )
+000050 |     require(spec is not None and spec.loader is not None,
+000051 |             'canonical A4 checker import specification exists')
+000052 |     module = importlib.util.module_from_spec(spec)
+000053 |     spec.loader.exec_module(module)
+000054 |     return module
+000055 | 
+000056 | 
+000057 | def old_d5a3_sector(root):
+000058 |     """The exact classification used by the canonical A4 response checker."""
+000059 |     if sum(x != 0 for x in root) == 2:
+000060 |         carrier_support = sum(x != 0 for x in root[:5])
+000061 |         return 'g0' if carrier_support in (0, 2) else 'g2'
+000062 |     require(all(abs(x) == 1 for x in root),
+000063 |             'non-coordinate E8 root is a doubled halfroot')
+000064 |     return 'g1' if sum(x > 0 for x in root[:5]) % 2 == 0 else 'g3'
+000065 | 
+000066 | 
+000067 | def main():
+000068 |     require(sha256(CANON_CHECKER) == EXPECTED_CANON_CHECKER_SHA256,
+000069 |             'canonical A4 checker source is pinned')
+000070 |     require(sha256(CANON_RESULTS) == EXPECTED_CANON_RESULTS_SHA256,
+000071 |             'canonical A4 result is pinned')
+000072 |     require(sha256(WARD_SOURCE) == EXPECTED_WARD_SOURCE_SHA256,
+000073 |             'original Ward source is pinned')
+000074 | 
+000075 |     ward_text = WARD_SOURCE.read_text()
+000076 |     require("q -> q'=2(e3+e6)" in ward_text,
+000077 |             'Ward source contains the marked q to q-prime dictionary')
+000078 |     require('not a derivation of the raw source map Xi' in ward_text,
+000079 |             'Ward source preserves the conditional raw-Xi boundary')
+000080 | 
+000081 |     canonical = load_canonical_checker()
+000082 |     canonical_result = json.loads(CANON_RESULTS.read_text())
+000083 |     family_simple = tuple(
+000084 |         tuple(root) for root in canonical_result['family_simple_roots']
+000085 |     )
+000086 |     require(len(family_simple) == 4,
+000087 |             'canonical family A4 has four simple roots')
+000088 | 
+000089 |     source = canonical._actual_current_source()
+000090 |     algebra = source['chevalley']
+000091 |     roots = tuple(sorted(algebra.roots))
+000092 |     root_set = set(roots)
+000093 |     require(len(roots) == 240, 'actual E8 current source has 240 roots')
+000094 | 
+000095 |     ward = (0, 0, 2, 0, 0, 2, 0, 0)
+000096 |     require(ward in root_set, 'marked Ward vector is an actual E8 root')
+000097 |     require(canonical.carrier_type(ward) == '5',
+000098 |             'marked Ward vector is in the carrier 5')
+000099 |     carrier_weight = canonical.carrier_weight(ward)
+000100 |     require(carrier_weight == (-2, -2, 8, -2, -2),
+000101 |             'marked Ward vector has the exact carrier weight')
+000102 |     family_weight = tuple(canonical.dot(ward, root)//4
+000103 |                           for root in family_simple)
+000104 |     require(family_weight == (0, 1, 0, 0),
+000105 |             'marked Ward vector has the exact family Lambda2 weight')
+000106 | 
+000107 |     target = {root for root in roots
+000108 |               if canonical.carrier_type(root) == '5'}
+000109 |     require(len(target) == 50, 'target (5,10) sector has 50 roots')
+000110 | 
+000111 |     carrier_neutral = {
+000112 |         root for root in roots
+000113 |         if sum(x != 0 for x in root[:5]) == 2
+000114 |         and all(x == 0 for x in root[5:])
+000115 |         and sum(root[:5]) == 0
+000116 |     }
+000117 |     family_neutral = {
+000118 |         root for root in roots if len(set(root[:5])) == 1
+000119 |     }
+000120 |     neutral = carrier_neutral | family_neutral
+000121 |     require(len(carrier_neutral) == 20 and len(family_neutral) == 20,
+000122 |             'the two neutral A4 factors each have 20 roots')
+000123 |     require(len(neutral) == 40,
+000124 |             'neutral A4 x A4 current set has 40 roots')
+000125 | 
+000126 |     reached = {ward}
+000127 |     pending = deque([ward])
+000128 |     directed_edges = 0
+000129 |     while pending:
+000130 |         current = pending.popleft()
+000131 |         for neutral_root in neutral:
+000132 |             candidate = canonical.add(current, neutral_root)
+000133 |             if candidate in root_set:
+000134 |                 require(candidate in target,
+000135 |                         'neutral current does not leave the target module')
+000136 |                 directed_edges += 1
+000137 |                 if candidate not in reached:
+000138 |                     reached.add(candidate)
+000139 |                     pending.append(candidate)
+000140 |     require(reached == target,
+000141 |             'neutral current closure of the Ward vector is the full (5,10) sector')
+000142 |     require(directed_edges == 500,
+000143 |             'full neutral closure has exactly 500 directed root edges')
+000144 | 
+000145 |     grading = dict(sorted(Counter(old_d5a3_sector(root)
+000146 |                                   for root in target).items()))
+000147 |     require(grading == {'g2': 30, 'g3': 20},
+000148 |             'target sector splits as 30 old-g2 plus 20 old-g3 roots')
+000149 | 
+000150 |     p2_x = (-2, -2, -2, 3, 3)
+000151 |     x_spectrum = dict(sorted(Counter(
+000152 |         p2_x[canonical.carrier_label(root, '5')] for root in target
+000153 |     ).items()))
+000154 |     require(x_spectrum == {-2: 30, 3: 20},
+000155 |             'P2 X spectrum on the insertion sector is 30 plus 20')
+000156 |     require(p2_x[canonical.carrier_label(ward, '5')] == -2,
+000157 |             'marked Ward vector lies in the X=-2 part')
+000158 | 
+000159 |     reflected = tuple(-x for x in ward)
+000160 |     require(reflected in root_set, 'compact reflection is an E8 root')
+000161 |     require(canonical.carrier_type(reflected) == 'bar5',
+000162 |             'compact reflection lies in the conjugate carrier sector')
+000163 |     reflected_family_weight = tuple(canonical.dot(reflected, root)//4
+000164 |                                     for root in family_simple)
+000165 |     require(reflected_family_weight == (0, -1, 0, 0),
+000166 |             'compact reflection has conjugate family weight')
+000167 | 
+000168 |     input_sector = [root for root in roots
+000169 |                     if canonical.carrier_type(root) == '10']
+000170 |     output_sector = {root for root in roots
+000171 |                      if canonical.carrier_type(root) == 'bar10'}
+000172 |     require(len(input_sector) == len(output_sector) == 50,
+000173 |             'single bracket has the canonical 50 by 50 source and target sectors')
+000174 | 
+000175 |     nonzero_columns = []
+000176 |     output_roots = set()
+000177 |     ward_index = algebra.ridx[ward]
+000178 |     for input_root in input_sector:
+000179 |         raw = algebra.bracket(ward_index, algebra.ridx[input_root])
+000180 |         if not raw:
+000181 |             continue
+000182 |         require(len(raw) == 1,
+000183 |                 'root-vector bracket has one root-vector output')
+000184 |         output_index, coefficient = next(iter(raw.items()))
+000185 |         candidate = canonical.add(ward, input_root)
+000186 |         require(candidate in output_sector,
+000187 |                 'nonzero marked bracket lands in the bar10 output sector')
+000188 |         require(output_index == algebra.ridx[candidate],
+000189 |                 'actual Chevalley bracket has the root-sum output')
+000190 |         require(coefficient in (-1, 1),
+000191 |                 'actual Chevalley bracket coefficient is a cocycle sign')
+000192 |         nonzero_columns.append(input_root)
+000193 |         output_roots.add(candidate)
+000194 |     require(len(nonzero_columns) == 12,
+000195 |             'single marked bracket has 12 nonzero input columns')
+000196 |     require(len(output_roots) == 12,
+000197 |             'single marked bracket has rank 12')
+000198 | 
+000199 |     require(canonical_result['kraus_rank'] == 12,
+000200 |             'canonical inclusive response records rank 12 per bracket')

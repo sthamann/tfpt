@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/geometric_source_return/check_primitive_selection.py
+Original file SHA-256: c23357b7b6e4a766885aa0118ae4d7aa488c09368a4526b5144cb56fef826c5d
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact tests of what primitive spectral data determine about a response.
+000002 | 
+000003 | This tests the stated relative spectral formula, not a physical P1 insertion.
+000004 | The 2x2 pair is a counterexample to an inference from finite channel values.
+000005 | It is not substituted for the original geometric source.
+000006 | """
+000007 | from pathlib import Path
+000008 | import json
+000009 | import mpmath as mp
+000010 | import sympy as sp
+000011 | 
+000012 | HERE = Path(__file__).resolve().parent
+000013 | 
+000014 | 
+000015 | def require(condition, message):
+000016 |     if not condition:
+000017 |         raise RuntimeError(message)
+000018 | 
+000019 | 
+000020 | def exact_parity_variation():
+000021 |     """A general real Hermitian 2x2 test of the even/odd variation identities."""
+000022 |     a, b, z, u, v, w = sp.symbols("a b z u v w", real=True)
+000023 |     r = sp.diag(1, -1)
+000024 |     even = sp.diag(a, b)
+000025 |     odd = sp.Matrix([[0, z], [z, 0]])
+000026 |     he = sp.diag(u, v)
+000027 |     ho = sp.Matrix([[0, w], [w, 0]])
+000028 |     d = even + odd
+000029 |     h = he + ho
+000030 |     vd = -(h*d+d*h)/2
+000031 |     va = (vd+r*vd*r)/2
+000032 |     vb = (vd-r*vd*r)/2
+000033 |     expected_a = -(he*even+even*he+ho*odd+odd*ho)/2
+000034 |     expected_b = -(he*odd+odd*he+ho*even+even*ho)/2
+000035 |     require(sp.simplify(va-expected_a) == sp.zeros(2), "even variation")
+000036 |     require(sp.simplify(vb-expected_b) == sp.zeros(2), "odd variation")
+000037 |     return {"split_variation_exact": True,
+000038 |             "reference_variation": "-({h_even,A}+{h_odd,B})/2",
+000039 |             "relative_variation": "-({h_even,B}+{h_odd,A})/2"}
+000040 | 
+000041 | 
+000042 | def same_value_opposite_force():
+000043 |     mp.mp.dps = 90
+000044 |     rational_q = [sp.Rational(1, 2), sp.Rational(2, 3),
+000045 |                   sp.Rational(3, 4), sp.Rational(4, 5)]
+000046 |     moment_matrix = sp.Matrix([[1]*4, rational_q, [q**4 for q in rational_q]])
+000047 |     null = moment_matrix.nullspace()[0]
+000048 |     null /= max(abs(x) for x in null)
+000049 |     require(moment_matrix*null == sp.zeros(3, 1), "exact channel matching")
+000050 |     conv = lambda x: mp.mpf(str(sp.numer(x)))/mp.mpf(str(sp.denom(x)))
+000051 |     q = [conv(x) for x in rational_q]
+000052 |     t = [-mp.log(x) for x in q]
+000053 |     c = [tj*(qj-4*qj**4) for tj, qj in zip(t, q)]
+000054 |     # Exact nonzero certificate using independence of logarithms of primes.
+000055 |     log2,log3,log5 = sp.symbols("log2 log3 log5")
+000056 |     log_q = [-log2,log2-log3,log3-2*log2,2*log2-log5]
+000057 |     exact_force_difference = sp.expand(sum(-lq*(qj-4*qj**4)*vj
+000058 |                                          for lq,qj,vj in zip(log_q,rational_q,null)))
+000059 |     require(exact_force_difference != 0,"nonzero rational prime-log combination")
+000060 |     # A separate outward interval computation certifies the sign.
+000061 |     mp.iv.dps = 45
+000062 |     qi = [mp.iv.mpf(int(sp.numer(x)))/int(sp.denom(x)) for x in rational_q]
+000063 |     ni = [mp.iv.mpf(int(sp.numer(x)))/int(sp.denom(x)) for x in null]
+000064 |     difference_interval = sum(-mp.iv.log(x)*(x-4*x**4)*v for x,v in zip(qi,ni))
+000065 |     require(bool(difference_interval > 0),"certified positive force difference")
+000066 |     # Choose a strictly positive center measure with exactly zero scale force.
+000067 |     weights = [-sum(c[1:])/c[0], mp.mpf(1), mp.mpf(1), mp.mpf(1)]
+000068 |     normalization = sum(weights)
+000069 |     weights = [x/normalization for x in weights]
+000070 |     delta = min(weights)/2
+000071 |     null_numeric = [conv(x) for x in null]
+000072 |     plus = [x+delta*v for x, v in zip(weights, null_numeric)]
+000073 |     minus = [x-delta*v for x, v in zip(weights, null_numeric)]
+000074 |     require(min(plus+minus) > 0, "strictly positive profile measures")
+000075 | 
+000076 |     def profile(measure, eigenvalue):
+000077 |         return sum(wj*mp.exp(-tj*eigenvalue**2) for wj,tj in zip(measure,t))
+000078 | 
+000079 |     def action(measure, scale):
+000080 |         ratio = mp.exp(-scale)
+000081 |         return 2*(profile(measure, ratio)-profile(measure, 2*ratio))
+000082 | 
+000083 |     # A=2I, B=sigma_x, R=diag(1,-1), D=A+B. Scale BOTH pieces.
+000084 |     r = sp.diag(1,-1)
+000085 |     a = 2*sp.eye(2)
+000086 |     b = sp.Matrix([[0,1],[1,0]])
+000087 |     d = a+b
+000088 |     require((d+r*d*r)/2 == a and (d-r*d*r)/2 == b, "original split")
+000089 |     derivative_plus = 4*sum(wj*cj for wj,cj in zip(plus,c))
+000090 |     derivative_minus = 4*sum(wj*cj for wj,cj in zip(minus,c))
+000091 |     exact_equal_error = max(abs(profile(plus,x)-profile(minus,x)) for x in (0,1,2))
+000092 |     require(exact_equal_error < mp.mpf("1e-85"), "same operator channel values")
+000093 |     require(derivative_plus > 0 and derivative_minus < 0, "opposite force")
+000094 |     require(abs(derivative_plus+derivative_minus) < mp.mpf("1e-85"), "opposite centered slopes")
+000095 |     derivative_error = max(abs(mp.diff(lambda s: action(ws,s),0)-slope)
+000096 |                            for ws,slope in ((plus,derivative_plus),(minus,derivative_minus)))
+000097 |     require(derivative_error < mp.mpf("1e-85"), "independent differentiated action")
+000098 |     # The eta phase is held fixed in this algebraic spectral test. No eigenvalue
+000099 |     # of A,B,D crosses zero on the scale path. No physical boundary eta is inferred.
+000100 |     return {"status": "exact_scoped_nonidentifiability",
+000101 |             "pair": {"A":"2 I", "B":"sigma_x", "R":"diag(1,-1)",
+000102 |                      "D":"A+B", "path":"D(s)=exp(-s)D; chi=1"},
+000103 |             "q": [str(x) for x in rational_q],
+000104 |             "heat_times": [float(x) for x in t],
+000105 |             "exact_null_vector": [str(x) for x in null],
+000106 |             "exact_prime_log_difference":str(exact_force_difference),
+000107 |             "positive_difference_interval":str(difference_interval),
+000108 |             "null_vector_annihilates_rows": ["1","q","q^4"],
+000109 |             "weights_plus": [float(x) for x in plus],
+000110 |             "weights_minus": [float(x) for x in minus],
+000111 |             "matched_profile_values": {str(x):float(profile(plus,x)) for x in (0,1,2)},
+000112 |             "same_action_at_s0": float(action(plus,0)),
+000113 |             "derivative_plus": float(derivative_plus),
+000114 |             "derivative_minus": float(derivative_minus),
+000115 |             "profile_equality_error_90_digits": float(exact_equal_error),
+000116 |             "independent_derivative_error_90_digits": float(derivative_error),
+000117 |             "not_implied": ["either measure is the original TFPT transfer profile",
+000118 |                             "finite 2x2 example is the P1 geometry",
+000119 |                             "a specified full transfer channel permits both profiles"],
+000120 |             "curves": [{"s":j/100,
+000121 |                         "S_plus":float(action(plus,mp.mpf(j)/100)),
+000122 |                         "S_minus":float(action(minus,mp.mpf(j)/100))}
+000123 |                        for j in range(-25,26)]}
+000124 | 
+000125 | 
+000126 | def coupled_force_check():
+000127 |     """Independently differentiate the full matrix expression with moving chi."""
+000128 |     mp.mp.dps = 90
+000129 |     r = mp.matrix([[1,0],[0,-1]])
+000130 |     d = mp.matrix([[2,mp.mpf(1)/3],[mp.mpf(1)/3,3]])
+000131 |     h = mp.matrix([[mp.mpf(1)/5,mp.mpf(2)/7],
+000132 |                    [mp.mpf(2)/7,-mp.mpf(1)/4]])
+000133 |     a,b = (d+r*d*r)/2,(d-r*d*r)/2
+000134 |     he,ho = (h+r*h*r)/2,(h-r*h*r)/2
+000135 |     t,chi,kappa = mp.mpf(3)/5,mp.mpf(7)/6,mp.mpf(1)/9
+000136 |     tr = lambda m:sum(m[j,j] for j in range(m.rows))
+000137 |     ea,eb = mp.expm(-t*a*a/chi**2),mp.expm(-t*b*b/chi**2)
+000138 |     even_force = 2*t/chi**2*tr(he*(b*b*eb-a*a*ea))
+000139 |     odd_force = t/chi**2*tr(ho*(a*b*eb+b*eb*a-b*a*ea-a*ea*b))
+000140 |     scale_force = 2*kappa*t/chi**2*tr(b*b*eb-a*a*ea)
+000141 | 
+000142 |     def action(s):
+000143 |         factor = mp.expm(-s*h/2)
+000144 |         ds = factor*d*factor
+000145 |         ac,bc = (ds+r*ds*r)/2,(ds-r*ds*r)/2
+000146 |         cs = chi*mp.exp(kappa*s)
+000147 |         return tr(mp.expm(-t*bc*bc/cs**2)-mp.expm(-t*ac*ac/cs**2))
+000148 | 
+000149 |     derivative = mp.diff(action,0)
+000150 |     error = abs(derivative-even_force-odd_force-scale_force)
+000151 |     require(error < mp.mpf("1e-85"),"coupled force with odd profile and chi variation")
+000152 |     return {"even_force":float(even_force),"odd_force":float(odd_force),
+000153 |             "chi_force":float(scale_force),"full_derivative":float(derivative),
+000154 |             "error_90_digits":float(error),
+000155 |             "scope":"finite independent check of the general trace identity; eta held fixed"}
+000156 | 
+000157 | 
+000158 | def universal_scale_stationarity():
+000159 |     """Proof certificate: Laplace exponentials of distinct positive values separate."""
+000160 |     # For finite positive squared spectra, universal stationarity for every
+000161 |     # atomic positive heat measure implies sum multiplicity*x*exp(-t*x)=0.
+000162 |     # Linear independence forces equal multiplicities at each x>0. The
+000163 |     # zero-eigenvalue counts are invisible to this derivative and stay constant.
+000164 |     x1,x2,x3,t = sp.symbols("x1 x2 x3 t", positive=True)
+000165 |     wronskian = sp.wronskian([sp.exp(-t*x) for x in (x1,x2,x3)],t)
+000166 |     expected = -(x2-x1)*(x3-x1)*(x3-x2)*sp.exp(-t*(x1+x2+x3))
+000167 |     require(sp.simplify(wronskian-expected)==0,"independent heat responses")
+000168 |     return {"finite_spectrum_theorem":
+000169 |             "For a fixed-chi common scaling, stationarity for every positive atomic heat profile forces identical nonzero squared spectral multisets; the action is then constant on that entire scale orbit.",
+000170 |             "zero_eigenvalues": "their multiplicities are not fixed by scale stationarity",
+000171 |             "scope": "finite selfadjoint pair; fixed chi; full common scale path admitted; eta phase fixed; profiles not otherwise fixed by original channel",
+000172 |             "wronskian_three_distinct_values_exact": True}
+000173 | 
+000174 | 
+000175 | def retained_scalar_channel():
+000176 |     q,alpha,delta = sp.symbols("q alpha delta",positive=True)
+000177 |     b = sp.Rational(5,4)
+000178 |     log_t = -b*sp.log(1-q)
+000179 |     derivative_q = sp.diff(log_t,q)
+000180 |     require(sp.simplify(derivative_q-b/(1-q))==0,"fixed channel derivative")
+000181 |     original_q = delta*sp.exp(-2*alpha)
+000182 |     derivative_alpha = derivative_q.subs(q,original_q)*sp.diff(original_q,alpha)
+000183 |     require(sp.simplify(derivative_alpha+2*b*original_q/(1-original_q))==0,
+000184 |             "original conditional alpha derivative")
+000185 |     return {"given_channel":"T(q)=(1-q)^(-5/4), 0<q<1",
+000186 |             "d_logT_dq":"5/[4(1-q)]",
+000187 |             "given_old_weight":"q(alpha)=delta_top exp(-2 alpha)",
+000188 |             "d_logT_dalpha":"-(5/2)q/(1-q)",
+000189 |             "not_missing":"another arbitrary spectral profile for this fixed scalar channel",
+000190 |             "still_required":"actual geometric insertion map to delta q and all retained residual/reference/measure terms"}
+000191 | 
+000192 | 
+000193 | def main():
+000194 |     result = {"parity_variation":exact_parity_variation(),
+000195 |               "same_value_opposite_force":same_value_opposite_force(),
+000196 |               "coupled_force_check":coupled_force_check(),
+000197 |               "retained_scalar_channel":retained_scalar_channel(),
+000198 |               "universal_scale_stationarity":universal_scale_stationarity()}
+000199 |     path = HERE/"runs"/"primitive_selection.json"
+000200 |     path.write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n")

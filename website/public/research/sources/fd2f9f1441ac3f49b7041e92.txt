@@ -1,0 +1,172 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/ORIGINAL-HOLONOMY-E0-SOURCE-REVIEW.txt
+Original file SHA-256: 58933c7051e1b008adecf553a607a93be768e0bbcfec17c6a50428a190f0982b
+Inclusive original lines: 499-662
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000499 | 9. The original Z6/Kstr consumer does not supply a rho observable on F5/96
+000500 | 
+000501 | 9.1 The exact operator chain in the original source
+000502 | 
+000503 | The original discrete phase section defines
+000504 | 
+000505 |   omega=exp(2 pi i/3),
+000506 |   U6=diag(1,omega,omega^2,-1,-omega,-omega^2),               (18)
+000507 |   D_y=y I-delta U6.                                         (19)
+000508 | 
+000509 | It explicitly identifies U6 with the Fourier form of the one-step shift on
+000510 | C6. The structural restriction and kernel are
+000511 | 
+000512 |   P_str=P_Seam,+ P_sing P_Theta,
+000513 |   P_Seam,+=(1+i C)/2,
+000514 |   P_Theta=(1+Q_Theta)/2,
+000515 |   P_sing=(1+Z_c+Z_c^2)/3,                                   (20)
+000516 |   K_f^str=(P_str D_f^dagger D_f P_str)^(-1/2).               (21)
+000517 | 
+000518 | The same source uses (21) in the flavor amplitude
+000519 | 
+000520 |   <e_i,Hol_G_D4(nabla_F^star) K_f^str e_j>.                  (22)
+000521 | 
+000522 | Thus the actual consumer assigned to K_f^str is a positive normalization and
+000523 | residue/hierarchy kernel. The source separately assigns the phase observable
+000524 | to arg tr(Pi_triangle); it even says that this family-holonomy phase is not an
+000525 | additional transport parameter. Equations (18)-(22) do not define a phase
+000526 | expectation value of K_f^str.
+000527 | 
+000528 | Source: documents/archive--tfpt-45--source_extracts--03_em_flavor_source/
+000529 | sections/003-subsection-discrete-phase-operator-and-transport-grammar.tex,
+000530 | especially lines 3-13, 61-125, SHA256
+000531 | 00a2cf1b249b77280dbbf6dfb41c91c77e08aa63e0f30b682d1a8a621f3dd7ec.
+000532 | 
+000533 | 9.2 Decisive orientation test
+000534 | 
+000535 | For the explicit bare source (19), with real y and delta,
+000536 | 
+000537 |   D_y^dagger D_y
+000538 |    =(y^2+delta^2)I-y delta(U6+U6^dagger).                    (23)
+000539 | 
+000540 | Replacing U6 by U6^dagger leaves (23), and therefore every fixed compression
+000541 | P_str D_y^dagger D_y P_str and its positive inverse square root, unchanged.
+000542 | The source itself writes the corresponding regularized Green kernel as a
+000543 | cubic polynomial in
+000544 | 
+000545 |   C=(U6+U6^dagger)/2.                                       (24)
+000546 | 
+000547 | Consequently the supplied bare Kstr consumer is even under reversal of the
+000548 | Z6 orientation. It cannot distinguish rho=exp(i pi/3) from bar(rho), which a
+000549 | CP-odd phase observable must do.
+000550 | 
+000551 | The un-squared resolvent retains oriented powers in Fourier form,
+000552 | 
+000553 |   D_y^(-1)= [sum_(m=0)^5 y^(5-m) delta^m U6^m]
+000554 |              /(y^6-delta^6).                                (25)
+000555 | 
+000556 | But in the site basis used for the source's off-diagonal Yukawa amplitudes,
+000557 | 
+000558 |   <e_i|D_y^(-1)|e_j>
+000559 |     =y^(5-k) delta^k/(y^6-delta^6),  k=(i-j) mod 6,          (26)
+000560 | 
+000561 | which is real. A direct exact replay with the 6 by 6 shift verified both the
+000562 | resolvent identity in (25) and the equality of the two Gram matrices under
+000563 | U6 <-> U6^dagger. All 36 numerators in the site chart are real polynomials.
+000564 | 
+000565 | The source later permits D_f=D_0+V_adm, with [P_str,V_adm]=0 and a norm
+000566 | bound, but gives no matrix for V_adm. Such an unspecified perturbation cannot
+000567 | be used to infer an oriented phase response. The exact conclusion here is
+000568 | about the explicitly supplied bare Z6 kernel and its stated positive
+000569 | consumer, not about every possible admissible completion.
+000570 | 
+000571 | Sources:
+000572 | 
+000573 | * the same original source tree, 004-source.tex:340-389, SHA256
+000574 |   107d525221eb816043dbf4fb1a3c7e8244d3e24a5a5bcbfe1c2c34d8ee192f4a;
+000575 | * the same original source tree, 005-source.tex:1-230, SHA256
+000576 |   786d2619e775775d70adf177794138485b261968042a880b2f0f617bb0111814;
+000577 | * documents/tfpt_2_standard_model/sections/
+000578 |   011-subsection-seam-response-grammar-gravity-is-the-inverse-.tex:162-178,
+000579 |   SHA256 a6ddc0c8bfa566b632b1b3734ea44ab684761310b141bcc05fd895c0c179961b.
+000580 | 
+000581 | 9.3 What v561 actually proves
+000582 | 
+000583 | The v561 checker explicitly labels itself a narrowing result. It inserts
+000584 | 
+000585 |   RHO=exp(i pi/3)                                             (27)
+000586 | 
+000587 | as a declared constant and checks the arithmetic identity
+000588 | 
+000589 |   sum_(d in {2,8,12,14,18,20,24,30}) RHO^d = 4 RHO.          (28)
+000590 | 
+000591 | It then finds two inequivalent scalar diagnostics,
+000592 | 
+000593 |   P2=arg(sum RHO^d),             character (-1,+1),
+000594 |   V5=Im(RHO det)/det,            character (-1,-1).           (29)
+000595 | 
+000596 | Neither (28) nor (29) is a state, an insertion, an operator on the E8
+000597 | adjoint, or an expectation value. The checker says that neither carrier is
+000598 | frame-coupled and leaves the physical choice open. In particular, (28) is
+000599 | not an E8 adjoint trace merely because the summation indices are E8 degrees.
+000600 | 
+000601 | Source: verification/v561_cp_channel_identities.py:1-33,65-106,121-124,
+000602 | SHA256 79e3552c12978093ec248861c1b8d7288e0f4eb51ba3fd4fbced7bb900e5817d.
+000603 | The current Atlas audit classifies RHO in this checker as a declared axiom.
+000604 | 
+000605 | 9.4 Typing against the actual whole F5/96 source
+000606 | 
+000607 | The finite source checker fixes
+000608 | 
+000609 |   H_F=C^96=(particle/antiparticle) x (three generations) x C^16
+000610 | 
+000611 | and builds the complete D_F from 3 by 3 generation matrices Y and the
+000612 | Majorana block, together with the actual J_F, grading and face data. It does
+000613 | not define U6, RHO, K_f^str, a representation C6 -> End(H_F), an embedding of
+000614 | the six phase sites into the generation/particle slots, or an observable O
+000615 | whose expectation is P2 or V5. Its displayed Y matrices are structural test
+000616 | inputs; they are not obtained from (18)-(26).
+000617 | 
+000618 | Therefore the already fixed full source state and time evolution cannot yet
+000619 | measure rho: the operator to evolve and the typed consumer to read are
+000620 | absent before any state or time question arises. Although C^96 can of course
+000621 | host many six-dimensional subspaces, choosing one would be a new phase-fiber
+000622 | embedding rather than a consequence of the original source.
+000623 | 
+000624 | Source: verification/v252_full_finite_triple.py:1-280, SHA256
+000625 | 820254440e178430422e50605067775656236602996307f67c9e69124ba5d163.
+000626 | 
+000627 | There is also a relevant prior exact exclusion. In the original 240-root
+000628 | source Hamiltonian a common multiplication of every source ray by one phase
+000629 | leaves all ray projectors, reflections, overlaps and the full Hamiltonian
+000630 | exactly fixed. Hence inserting rho merely as a common scalar phase cannot
+000631 | make it observable. A relative phase between two independently phased
+000632 | sources is visible through the already defined overlap quadratures, but that
+000633 | is a different, two-source response and does not supply the missing map from
+000634 | the Z6 transport fiber into H_F.
+000635 | 
+000636 | Source: experiments/theory-contracts/
+000637 | common-source-gauge-grade-transfer-20260920/phase_operator/PROOF.md,
+000638 | SHA256 874f2eb2082c0a90de9d35792d8ab3f377a33c92c204d2ac82522a7c4a0746e6.
+000639 | The independent positive-spectrum counterexample in
+000640 | experiments/theory-contracts/phase-origin-yukawa-defect-20260919/PROOF.txt,
+000641 | SHA256 4d3f9e0b24b445e0d72fc7816e6c5aa860c8c8f957cbd997291e704958a154e0,
+000642 | likewise shows that doubled positive data do not select a chiral determinant
+000643 | phase.
+000644 | 
+000645 | 9.5 Verdict and first missing definition
+000646 | 
+000647 | No original rho-carrying operator insertion or response functional on the
+000648 | actual full F5/96 source was found. The explicit Kstr path is a positive,
+000649 | orientation-even magnitude consumer. The bare closed v117 triangle remains
+000650 | real by Section 8. The v561 identity 4 RHO is a scalar character sum with RHO
+000651 | already supplied.
+000652 | 
+000653 | This is a scoped obstruction, not a universal exclusion of coherent phase
+000654 | measurements. The first missing source datum is a typed oriented evaluation
+000655 | or coherence map from the Z6 phase fiber into End(H_F), together with an
+000656 | observable that distinguishes rho from bar(rho) and is compatible with the
+000657 | actual J_F, grading, faces, state and time evolution. The original source
+000658 | must supply that map or an equivalent open-leg/interference insertion. It
+000659 | cannot be obtained by placing a chosen Z6 scalar into the round product
+000660 | Pi_triangle. Until that datum exists, Kstr fixes residue magnitudes while the
+000661 | pi/3 phase remains a separate declared phase fiber rather than a measurable
+000662 | observable of the given whole source.

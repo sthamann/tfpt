@@ -1,0 +1,100 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/check_old_hodge_to_a4.py
+Original file SHA-256: d1278592ee955a229266efdc339c26981d8cb61c11e3404bbd52f394eea9be80
+Inclusive original lines: 1-92
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact comparison of the old five-slot Hodge table with the A4 carrier maps.
+000003 | 
+000004 | This is a finite convention check, not a source or dynamics model.
+000005 | """
+000006 | 
+000007 | from itertools import combinations
+000008 | import json
+000009 | from pathlib import Path
+000010 | 
+000011 | 
+000012 | def perm_sign(word):
+000013 |     if len(set(word)) != len(word):
+000014 |         return 0
+000015 |     inversions = sum(
+000016 |         word[i] > word[j]
+000017 |         for i in range(len(word))
+000018 |         for j in range(i + 1, len(word))
+000019 |     )
+000020 |     return -1 if inversions % 2 else 1
+000021 | 
+000022 | 
+000023 | def require(condition, message):
+000024 |     if not condition:
+000025 |         raise RuntimeError(message)
+000026 | 
+000027 | 
+000028 | slots = tuple(range(5))
+000029 | pairs = tuple(combinations(slots, 2))
+000030 | pair_index = {pair: index for index, pair in enumerate(pairs)}
+000031 | 
+000032 | comparisons = []
+000033 | matrices = []
+000034 | for omitted in slots:
+000035 |     rest = tuple(i for i in slots if i != omitted)
+000036 |     volume_character = perm_sign((omitted,) + rest)
+000037 |     matrix = [[0 for _ in pairs] for _ in pairs]
+000038 |     unordered_factorizations = set()
+000039 |     for input_pair in combinations(rest, 2):
+000040 |         output_pair = tuple(i for i in rest if i not in input_pair)
+000041 |         old_wedge_sign = perm_sign(input_pair + output_pair)
+000042 |         new_epsilon_sign = perm_sign((omitted,) + input_pair + output_pair)
+000043 |         require(
+000044 |             new_epsilon_sign == volume_character * old_wedge_sign,
+000045 |             "old Hodge sign and new epsilon sign disagree",
+000046 |         )
+000047 |         matrix[pair_index[output_pair]][pair_index[input_pair]] = new_epsilon_sign
+000048 |         unordered_factorizations.add(tuple(sorted((input_pair, output_pair))))
+000049 |         comparisons.append(
+000050 |             {
+000051 |                 "omitted": omitted,
+000052 |                 "input_pair": input_pair,
+000053 |                 "output_pair": output_pair,
+000054 |                 "old_wedge_sign": old_wedge_sign,
+000055 |                 "volume_character": volume_character,
+000056 |                 "new_epsilon_sign": new_epsilon_sign,
+000057 |             }
+000058 |         )
+000059 |     require(len(unordered_factorizations) == 3, "wrong doily factorization count")
+000060 |     matrices.append(matrix)
+000061 | 
+000062 | require(len(comparisons) == 30, "expected 30 directed Hodge entries")
+000063 | require(
+000064 |     sum(1 for row in matrices for entries in row for x in entries if x) == 30,
+000065 |     "expected 30 nonzero matrix entries",
+000066 | )
+000067 | 
+000068 | # Exact gain: each carrier pair excludes three of the five slots.
+000069 | gain = [[0 for _ in pairs] for _ in pairs]
+000070 | for matrix in matrices:
+000071 |     for i in range(len(pairs)):
+000072 |         for j in range(len(pairs)):
+000073 |             gain[i][j] += sum(matrix[k][i] * matrix[k][j] for k in range(len(pairs)))
+000074 | require(gain == [[3 if i == j else 0 for j in range(10)] for i in range(10)],
+000075 |         "sum C_m^T C_m is not 3 I_10")
+000076 | 
+000077 | result = {
+000078 |     "status": "PASS",
+000079 |     "scope": "finite sign and support comparison only",
+000080 |     "old_doily_unordered_lines": 15,
+000081 |     "directed_matrix_entries": 30,
+000082 |     "volume_character_by_omitted_slot": [
+000083 |         perm_sign((m,) + tuple(i for i in slots if i != m)) for m in slots
+000084 |     ],
+000085 |     "identity": "epsilon(m,i,j,k,l)=chi(m)*sign((i,j,k,l))",
+000086 |     "gain": "sum_m C_m^T C_m = 3 I_10",
+000087 |     "comparisons": comparisons,
+000088 | }
+000089 | 
+000090 | out = Path(__file__).with_name("old-hodge-to-a4-results.json")
+000091 | out.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+000092 | print(json.dumps({k: v for k, v in result.items() if k != "comparisons"}, sort_keys=True))

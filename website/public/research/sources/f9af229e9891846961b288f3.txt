@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/canonical-seam-fermionization-20261025/check_same_source_affine_defect.py
+Original file SHA-256: 0f51ab119938a05184a3f3e11b364dcb4ee02749487829bf65147bc86647131c
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact charge, cocycle, sector-lift and quarter-time checks for W_ext."""
+000003 | 
+000004 | from __future__ import annotations
+000005 | 
+000006 | from fractions import Fraction as Q
+000007 | from itertools import product
+000008 | import json
+000009 | from pathlib import Path
+000010 | 
+000011 | import sympy as sp
+000012 | 
+000013 | 
+000014 | HERE = Path(__file__).resolve().parent
+000015 | ROOT = HERE.parents[2]
+000016 | I = 1j
+000017 | 
+000018 | 
+000019 | def need(value, label):
+000020 |     if not bool(value):
+000021 |         raise RuntimeError(label)
+000022 | 
+000023 | 
+000024 | def add(a, b):
+000025 |     return tuple(x + y for x, y in zip(a, b))
+000026 | 
+000027 | 
+000028 | def cyclic(vector):
+000029 |     return (vector[-1],) + tuple(vector[:-1])
+000030 | 
+000031 | 
+000032 | def affine(vector):
+000033 |     out = list(cyclic(vector))
+000034 |     out[0] += 1
+000035 |     return tuple(out)
+000036 | 
+000037 | 
+000038 | def eps_z(left, right):
+000039 |     return -1 if sum(left[i] * right[j] for i in range(8) for j in range(i)) % 2 else 1
+000040 | 
+000041 | 
+000042 | def eta_r(vector):
+000043 |     return -1 if vector[7] * sum(vector[:7]) % 2 else 1
+000044 | 
+000045 | 
+000046 | ONES = (1,) * 8
+000047 | ZERO = (0,) * 8
+000048 | E0 = (1,) + (0,) * 7
+000049 | 
+000050 | 
+000051 | def normalize(base, half):
+000052 |     """Unique n+c*s section, c in {0,1}, with 2s=(1,...,1)."""
+000053 |     if half < 2:
+000054 |         return tuple(base), half
+000055 |     return add(base, ONES), half - 2
+000056 | 
+000057 | 
+000058 | def add_labels(left, right):
+000059 |     return normalize(add(left[0], right[0]), left[1] + right[1])
+000060 | 
+000061 | 
+000062 | def eps_ext(left, right):
+000063 |     """Associative section cocycle for E_(n+c*s)=E_n X^c.
+000064 | 
+000065 |     Relations: X E_n X^-1=i^Q(n) E_n and X^2=-E_(1,...,1).
+000066 |     It restricts to the ordered CAR cocycle on Z8 and to the previously
+000067 |     fixed even E8 cocycle on D8 union (D8+s).
+000068 |     """
+000069 |     n, c = left
+000070 |     m, d = right
+000071 |     value = (I ** (c * sum(m))) * eps_z(n, m)
+000072 |     if c and d:
+000073 |         value *= -eps_z(add(n, m), ONES)
+000074 |     return complex(round(value.real), round(value.imag))
+000075 | 
+000076 | 
+000077 | def prior_eps_e8(left, right):
+000078 |     """The fixed even E8 cocycle from SEAM-JOINT-WARD-STATE, section 20.
+000079 | 
+000080 |     This formula is defined on D8 union (D8+s), hence both integer bases
+000081 |     have even coordinate sum in the common n+c*s section.
+000082 |     """
+000083 |     n, c = left
+000084 |     m, d = right
+000085 |     need(sum(n) % 2 == 0 and sum(m) % 2 == 0,
+000086 |          "prior E8 cocycle domain")
+000087 |     sign_exponent = c * (sum(m) // 2) + c * d
+000088 |     value = ((-1) ** sign_exponent) * eps_z(n, m)
+000089 |     if c and d:
+000090 |         value *= eps_z(add(n, m), ONES)
+000091 |     return value
+000092 | 
+000093 | 
+000094 | def sector(label):
+000095 |     n, c = label
+000096 |     return (("0", "v") if c == 0 else ("s", "c"))[sum(n) % 2]
+000097 | 
+000098 | 
+000099 | def r_label(label):
+000100 |     n, c = label
+000101 |     return cyclic(n), c
+000102 | 
+000103 | 
+000104 | def t_label(label):
+000105 |     n, c = label
+000106 |     return affine(n), c
+000107 | 
+000108 | 
+000109 | def eta_ext(label, kappa=I):
+000110 |     n, c = label
+000111 |     return eta_r(n) * (kappa ** c)
+000112 | 
+000113 | 
+000114 | def tau_gauge(label):
+000115 |     """Intertwiner-basis gauge: identity on NS and the E8 vacuum VOA."""
+000116 |     n, c = label
+000117 |     return (-1) ** (c * sum(n))
+000118 | 
+000119 | 
+000120 | def x_action(label):
+000121 |     """Left multiplication by the marked spinor intertwiner X=E_s."""
+000122 |     return eps_ext((ZERO, 1), label), add_labels((ZERO, 1), label)
+000123 | 
+000124 | 
+000125 | def inverse_t_label(label):
+000126 |     n, c = label
+000127 |     shifted = list(n)
+000128 |     shifted[0] -= 1
+000129 |     return tuple(shifted[1:] + shifted[:1]), c
+000130 | 
+000131 | 
+000132 | def w_action(label, kappa):
+000133 |     return eta_ext(label, kappa), t_label(label)
+000134 | 
+000135 | 
+000136 | def w_inverse_action(label, kappa):
+000137 |     source = inverse_t_label(label)
+000138 |     return eta_ext(source, kappa).conjugate(), source
+000139 | 
+000140 | 
+000141 | def x_inverse_action(label, action=x_action):
+000142 |     n, c = label
+000143 |     source = (n, 0) if c == 1 else (tuple(a - 1 for a in n), 1)
+000144 |     phase, target = action(source)
+000145 |     need(target == label, "inverse marked spinor intertwiner")
+000146 |     return phase.conjugate(), source
+000147 | 
+000148 | 
+000149 | def mixed_word(label, kappa, action=x_action):
+000150 |     """Apply W X W^* X^* from right to left."""
+000151 |     phase = 1
+000152 |     current = label
+000153 |     operators = (
+000154 |         lambda y: x_inverse_action(y, action),
+000155 |         lambda y: w_inverse_action(y, kappa),
+000156 |         action,
+000157 |         lambda y: w_action(y, kappa),
+000158 |     )
+000159 |     for operator in operators:
+000160 |         factor, current = operator(current)
+000161 |         phase *= factor
+000162 |     return phase, current
+000163 | 
+000164 | 
+000165 | def main():
+000166 |     # The old ordered CAR lift is exact, including its relative phases.
+000167 |     bits = tuple(product((0, 1), repeat=8))
+000168 |     for n in bits:
+000169 |         for m in bits:
+000170 |             need(eta_r(add(n, m)) * eps_z(n, m)
+000171 |                  == eta_r(n) * eta_r(m) * eps_z(cyclic(n), cyclic(m)),
+000172 |                  "ordered CAR cyclic-lift cocycle")
+000173 | 
+000174 |     # The extension is associative and restricts to both required sublattices.
+000175 |     generators = [(ZERO, 0)] + [
+000176 |         (tuple(1 if i == j else 0 for i in range(8)), 0) for j in range(8)
+000177 |     ] + [(ZERO, 1), (ONES, 0)]
+000178 |     samples = list(generators)
+000179 |     samples += [add_labels(x, y) for x in generators for y in generators]
+000180 |     samples = list(dict.fromkeys(samples))
+000181 |     for x in samples:
+000182 |         for y in samples:
+000183 |             xy = add_labels(x, y)
+000184 |             for z in generators:
+000185 |                 need(eps_ext(x, y) * eps_ext(xy, z)
+000186 |                      == eps_ext(y, z) * eps_ext(x, add_labels(y, z)),
+000187 |                      "extended cocycle associativity")
+000188 |     for n in bits:
+000189 |         for m in bits:
+000190 |             need(eps_ext((n, 0), (m, 0)) == eps_z(n, m),
+000191 |                  "exact ordered CAR restriction")
+000192 |             if sum(n) % 2 == 0 and sum(m) % 2 == 0:
+000193 |                 for c in (0, 1):
+000194 |                     for d in (0, 1):
+000195 |                         need(eps_ext((n, c), (m, d))
+000196 |                              == prior_eps_e8((n, c), (m, d)),
+000197 |                              "exact fixed E8 cocycle restriction")
+000198 | 
+000199 |     # Both kappa choices are the forced square roots on the Ramond modules.
+000200 |     for kappa in (I, -I):

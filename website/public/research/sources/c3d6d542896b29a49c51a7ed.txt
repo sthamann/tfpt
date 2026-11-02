@@ -1,0 +1,44 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_collective_higgs_source.py
+Original file SHA-256: 55e0d6a455c4c5a099c80a4e2997638d15affd615f618a09104c4aba5a451fbd
+Inclusive original lines: 101-136
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000101 | need('zero_source_normalization_retains_same_logZ0',abs(read(np.zeros(4))[0])<1e-12)
+000102 | cov=lambda a,b:np.trace(C@a@(I-C)@b)
+000103 | ordered=cov(T[2],T[3]);reversed_=cov(T[3],T[2])
+000104 | need('actual_ordered_mixed_response_detects_force_noncommutativity',abs(ordered-reversed_)>1e-3 and abs(ordered-reversed_-np.trace(C@comm))<1e-10)
+000105 | time=.3;Ut=expm(1j*time*h);timed=cov(Ut@T[2]@Ut.conj().T,T[3])
+000106 | need('same_given_h_timed_response_conjugation_is_consistent',abs(timed-np.conjugate(cov(T[3],Ut@T[2]@Ut.conj().T)))<1e-10)
+000107 | eqvar=cov(T[2],T[2]).real;kubovar=hessian(A0)[2,2]
+000108 | need('instantaneous_variance_is_not_Gibbs_source_Hessian',eqvar-kubovar>1e-4)
+000109 | 
+000110 | # Independent small Fock trace of four ACTUAL supported quark insertions.
+000111 | # This is an algebra control on a marginal, not a new H truncation/theory.
+000112 | at=[ix.index(original.IDX[(n,ch,0,0)]) for n,ch in [('u','L'),('d','L'),('u','R'),('d','R')]]
+000113 | c4=C[np.ix_(at,at)];t4=[t[np.ix_(at,at)] for t in T]
+000114 | ann=[]
+000115 | for mode in range(4):
+000116 |  a=np.zeros((16,16),complex)
+000117 |  for b in range(16):
+000118 |   if b>>mode&1:a[b^(1<<mode),b]=(-1)**((b&((1<<mode)-1)).bit_count())
+000119 |  ann.append(a)
+000120 | def dg(a):return sum((a[i,j]*ann[i].conj().T@ann[j] for i in range(4) for j in range(4)),np.zeros((16,16),complex))
+000121 | kap=fun(c4,lambda e:np.log((1-e)/e));rho=expm(-dg(kap));rho/=np.trace(rho)
+000122 | ks=[dg(t) for t in t4];ident=np.eye(4)
+000123 | u1=expm(.2j*t4[2]);u2=expm(-.3j*t4[3]);direct=np.trace(rho@expm(.2j*ks[2])@expm(-.3j*ks[3]))
+000124 | determinant=np.linalg.det(ident-c4+c4@u1@u2)
+000125 | need('independent_Fock_trace_checks_original_ordered_determinant',abs(direct-determinant)<1e-12)
+000126 | need('independent_Fock_CAR_commutator_identity',close(ks[2]@ks[3]-ks[3]@ks[2],dg(t4[2]@t4[3]-t4[3]@t4[2])))
+000127 | connected=np.trace(rho@ks[2]@ks[3])-np.trace(rho@ks[2])*np.trace(rho@ks[3])
+000128 | need('independent_Fock_trace_checks_ordered_Wick_covariance',abs(connected-np.trace(c4@t4[2]@(ident-c4)@t4[3]))<1e-12)
+000129 | gibbs=np.log(np.trace(expm(-dg(kap)+.2*ks[2]+.3*ks[3]))/np.trace(expm(-dg(kap))))
+000130 | smalllog=lambda a:float(np.logaddexp(0,np.linalg.eigvalsh(a)).sum())
+000131 | need('independent_Fock_trace_checks_single_exponent_Gibbs_source',abs(gibbs-(smalllog(-kap+.2*t4[2]+.3*t4[3])-smalllog(-kap)))<1e-12)
+000132 | need('product_exponent_source_differs_from_single_exponent_source',abs(np.log(np.linalg.det(ident-c4+c4@expm(.2*t4[2]+.3*t4[3])))-gibbs)>1e-4)
+000133 | pair=lambda z:[float(z.real),float(z.imag)]
+000134 | result={'all_passed':all(checks.values()),'checks':checks,'native_input':'v252 seed252 structural control; all four original Ys and MR retained in constructor; quark reduction only for CAR determinant','quark_modes':36,'implicit_Fock_dimension':2**36,'commutator_hs_squared':comm2,'analytic_commutator_hs_squared':formula,'collective_mean_ball_radius':radius,'log_fermionic_Z0_quark':logZ0,'original_source_j':j.tolist(),'recovered_source_j':recovered.x.tolist(),'H_to_mean_Jacobian_determinant':float(np.linalg.det(2*Hess)),'W_collective':W,'collective_mean':m.tolist(),'Gamma_collective':Gamma,'relative_entropy':entropy,'Gibbs_Hessian_eigenvalues':np.linalg.eigvalsh(Hess).tolist(),'instantaneous_radial_variance':float(eqvar),'Gibbs_radial_Hessian':float(kubovar),'ordered_radial_phase_connected':pair(ordered),'reversed_connected':pair(reversed_),'given_h_time_point3_connected':pair(timed),'scope':'Exact original finite quark force source and collective MEAN effective action; explicit invertible nonlinear H/mean coordinate in given family, not H=force or H=mean. No primitive positive classical H measure, physical time or F1 closure.'}
+000135 | Path(__file__).with_name('COLLECTIVE-HIGGS-SOURCE.json').write_text(json.dumps(result,indent=2)+'\n')
+000136 | print(json.dumps(result,indent=2))

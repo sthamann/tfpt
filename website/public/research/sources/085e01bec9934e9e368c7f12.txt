@@ -1,0 +1,93 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_full_source_regulator.py
+Original file SHA-256: 694718775b75428ce173a281c688881d9e39176c37b217bcfa52a868ae3e2dae
+Inclusive original lines: 1-85
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact controls of full-source preservation; no new physical source model.
+000002 | 
+000003 | Reuse the existing original finite exterior algebra. Generic even densities
+000004 | span every two-mode Grassmann functional, including its quartic interaction.
+000005 | Bosonic Gaussian matrices test a universal regulator implication only.
+000006 | """
+000007 | from pathlib import Path
+000008 | import sys,json
+000009 | import sympy as s
+000010 | ROOT=Path(__file__).resolve().parents[4]
+000011 | sys.path.insert(0,str(ROOT/'experiments/theory-contracts/seam-collar-multifield-20261016'))
+000012 | from joint_source import add,clean,exponential,multiply,scale,variable
+000013 | checks={}
+000014 | def equal(p,q):return not clean({m:s.simplify(p.get(m,0)-q.get(m,0)) for m in set(p)|set(q)})
+000015 | def derivative(p,j):
+000016 |     return clean({m^(1<<j):(-1)**((m&((1<<j)-1)).bit_count())*v for m,v in p.items() if m&(1<<j)})
+000017 | n=4;fields=[variable(n+j) for j in range(n)]
+000018 | pairs=[(i,j) for i in range(n) for j in range(i+1,n)]
+000019 | aa=s.symbols('a0:6');bb=s.symbols('b0:6');t=s.symbols('t')
+000020 | def quadratic(coeffs):
+000021 |     out={}
+000022 |     for a,(i,j) in zip(coeffs,pairs):out=add(out,scale(multiply(fields[i],fields[j]),a))
+000023 |     return out
+000024 | def differential(p,coeffs):
+000025 |     out={}
+000026 |     for a,(i,j) in zip(coeffs,pairs):out=add(out,scale(derivative(derivative(p,j),i),a))
+000027 |     return out
+000028 | def exp_differential(p,coeffs,sign=1):
+000029 |     out=dict(p);term=dict(p)
+000030 |     for k in range(1,n//2+1):
+000031 |         term=scale(differential(term,coeffs),s.Rational(sign,k));out=add(out,term)
+000032 |     return clean(out)
+000033 | def integrate(p):
+000034 |     mask=((1<<n)-1)<<n
+000035 |     return clean({m^mask:v for m,v in p.items() if m&mask==mask})
+000036 | def normalized(p):return scale(p,1/p[0])
+000037 | rho={};cs=s.symbols('c0:8');even=[m for m in range(1<<n) if m.bit_count()%2==0]
+000038 | for c,m in zip(cs,even):rho[m<<n]=c
+000039 | source={}
+000040 | for j in range(n):source=add(source,multiply(variable(j),fields[j]))
+000041 | E=exponential(source,2*n)
+000042 | z0=integrate(multiply(rho,E));V=quadratic(aa)
+000043 | zr=integrate(multiply(multiply(rho,exponential(scale(V,-1),n)),E))
+000044 | checks['generic_even_density_all8_coefficients_retained']=len(cs)==8 and all(any(p.has(c) for p in z0.values()) for c in cs)
+000045 | checks['ordered_Grassmann_direct_integral_equals_source_differential']=equal(zr,exp_differential(z0,aa,-1))
+000046 | checks['entire_quadratic_regulator_inverts_exactly']=equal(z0,exp_differential(zr,aa,1))
+000047 | checks['two_regulator_stages_equal_sum']=equal(exp_differential(exp_differential(z0,aa,-1),bb,-1),exp_differential(z0,[a+b for a,b in zip(aa,bb)],-1))
+000048 | zt=exp_differential(z0,[t*a for a in aa],-1)
+000049 | checks['full_source_linear_RG_equation']=equal({m:s.diff(v,t) for m,v in zt.items()},scale(differential(zt,aa),-1))
+000050 | zh=normalized(zt);Dh=differential(zh,aa)
+000051 | rhs=add(scale(Dh,-1),scale(zh,Dh.get(0,0)))
+000052 | checks['normalized_source_flow_keeps_vacuum_score']=equal({m:s.diff(v,t) for m,v in zh.items()},rhs)
+000053 | checks['vacuum_log_flow_kept']=s.simplify(s.diff(zt[0],t)/zt[0]+Dh.get(0,0))==0
+000054 | checks['normalization_requires_denominator']=equal(normalized(exp_differential(zr,aa,1)),normalized(z0))
+000055 | def retained(p):return {m:v for m,v in p.items() if not m&12}
+000056 | checks['discarding_exterior_source_before_unregulation_is_not_generic']=not equal(normalized(retained(z0)),normalized(retained(zr)))
+000057 | # This is a test of an implication, not a TFPT measure or a new coupling.
+000058 | C0=s.Matrix([[1,s.Rational(1,2)],[s.Rational(1,2),1]])
+000059 | Rbad=s.ones(2);Rgood=s.Matrix([[2,-1],[-1,2]])
+000060 | Cbad=(C0.inv()+Rbad).inv();Cgood=(C0.inv()+Rgood).inv()
+000061 | P_adm=s.eye(2);theta=s.Matrix([[0,1],[1,0]])
+000062 | checks['counterexample_starts_with_RP_gaussian']=C0.is_positive_definite and C0[0,1]>0
+000063 | checks['counterexample_regulator_PSD']=Rbad.is_positive_semidefinite
+000064 | checks['counterexample_structural_commutation']=Rbad*P_adm==P_adm*Rbad
+000065 | checks['counterexample_reflection_covariance']=theta*Rbad*theta==Rbad
+000066 | checks['counterexample_RP_cross_minus_one_over16']=Cbad[0,1]==-s.Rational(1,16)
+000067 | checks['good_negative_cross_regulator_preserves_RP']=Cgood[0,1]>0
+000068 | # Noncommuting same-side/cross matrices: necessity needs no joint diagonalization.
+000069 | A=s.Matrix([[3,1],[1,2]]);B=s.diag(1,s.Rational(1,2));R=A.row_join(-B).col_join((-B).row_join(A))
+000070 | cov=(s.eye(4)+R).inv()
+000071 | checks['noncommuting_block_case']=A*B!=B*A
+000072 | checks['good_full_block_PSD']=R.is_positive_semidefinite
+000073 | checks['good_reflected_cross_covariance_PSD']=cov[:2,2:].is_positive_semidefinite
+000074 | def mat(M):return [[str(x) for x in row] for row in M.tolist()]
+000075 | checks={k:bool(v) for k,v in checks.items()}
+000076 | out={'contract':'ORIGINAL-FULL-SOURCE-REGULATOR-20261030','all_passed':all(checks.values()),'checks':checks,
+000077 |      'Grassmann_even_density_dimension':8,'Grassmann_quadratic_regulator_parameters':6,
+000078 |      'generic_Z0_coefficients':{str(m):str(v) for m,v in z0.items()},
+000079 |      'generic_regulated_scalar':str(zr.get(0,0)),
+000080 |      'counterexample':{'C':mat(C0),'R':mat(Rbad),'P_adm':mat(P_adm),'regulated_C':mat(Cbad)},
+000081 |      'good_regulator':{'R':mat(Rgood),'regulated_C':mat(Cgood)},
+000082 |      'scope':'Generic finite exterior-algebra identities and finite tests of the analytic regulator cone. No original TFPT measure chosen; native68 states are not configuration fields. Whole RP/continuum/source origin not claimed.'}
+000083 | Path(__file__).with_name('FULL-SOURCE-REGULATOR.json').write_text(json.dumps(out,indent=2)+'\n')
+000084 | print(json.dumps(out,indent=2))
+000085 | if not out['all_passed']:raise RuntimeError('Full-source preservation check failed')

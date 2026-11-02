@@ -1,0 +1,178 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/joint-native-algebra-selection-20261016/local_energy_eigenpacket_review.json
+Original file SHA-256: f911f9d9237c8056bb4f8add917682d02f43c0bca40e1da520942bb6c84e150f
+Inclusive original lines: 1-170
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | {
+000002 |   "created_at_utc": "2026-10-18T15:38:07.152168+00:00",
+000003 |   "mode": "Independent read-only analytic/source review; no new model or suite run",
+000004 |   "verdict": "LEMMA_VALID_UNDER_EXPLICIT_FULL_NET_HYPOTHESES",
+000005 |   "lemma": {
+000006 |     "assumptions": [
+000007 |       "H is self-adjoint, H>=0, H Omega=0 in the full given CAR representation.",
+000008 |       "alpha_t(A)=exp(+itH) A exp(-itH) is the chosen mathematical Heisenberg convention.",
+000009 |       "A is bounded and lies in F(I). There exist epsilon>0 and a proper larger interval J with alpha_t(A) in F(J) for every |t|<epsilon. Geometric rotation covariance is sufficient.",
+000010 |       "Omega is separating for F(J), hence for F(I). Proper intervals are nonempty, open, connected and nondense, with I and its small translates contained in J.",
+000011 |       "A Omega is in an exact energy eigenspace E>0 of this same H. Zero vector is allowed and already implies A0 by separation."
+000012 |     ],
+000013 |     "proof_steps": [
+000014 |       "For |t|<epsilon, B_t=alpha_t(A)-exp(itE)A belongs to F(J) and B_t Omega=0. Separation gives B_t=0.",
+000015 |       "For any real t choose integer N with |t/N|<epsilon. The automorphism group law extends alpha_t(A)=exp(itE)A to all t.",
+000016 |       "Taking adjoints and applying to Omega gives exp(itH)A*Omega=exp(-itE)A*Omega. By the spectral theorem A*Omega has energy -E, so positivity forces it to vanish. No differentiation of unbounded H or domain assumption on A*Omega is needed.",
+000017 |       "A* belongs to F(I); separation gives A*=0 and A=0."
+000018 |     ],
+000019 |     "sign_check": "With source U(t)=exp(-itH) and conjugation U A U*, replace exp(itE) by exp(-itE) consistently. The negative-energy conclusion for the adjoint is unchanged.",
+000020 |     "separation_not_separability": "The needed property is that Omega is a separating vector for the local algebra. Separable Hilbert space alone is irrelevant.",
+000021 |     "not_needed": [
+000022 |       "A vacuum unique under H",
+000023 |       "A self-adjoint, even or positive",
+000024 |       "norm differentiability of t->alpha_t(A)",
+000025 |       "a finite-dimensional target eigenspace"
+000026 |     ]
+000027 |   },
+000028 |   "primary_support": {
+000029 |     "authors": "Marcel Bischoff and Yoh Tanimoto",
+000030 |     "paper": "Construction of wedge-local nets of observables through Longo-Witten endomorphisms. II",
+000031 |     "url": "https://arxiv.org/abs/1111.1671",
+000032 |     "pdf": "https://arxiv.org/pdf/1111.1671",
+000033 |     "locations": [
+000034 |       "Section2.1 property(7), PDFpage4: local Reeh-Schlieder property for Fermi nets",
+000035 |       "Section3.2, PDFpages15–16: C(K), standard subspaces, complex free fermion net and positive-energy Fock representation"
+000036 |     ],
+000037 |     "scope": "Supplies cyclic/separating local vacuum structure for the chiral free complex Fermi net. No Minkowski4D, physical P1 or source-selection inference."
+000038 |   },
+000039 |   "quarter_phase_transfer": {
+000040 |     "issue": "The standard NS conformal-vacuum theorem should not simply be relabeled as a quarter-twisted Möbius vacuum theorem.",
+000041 |     "explicit_support_preserving_argument": "On a proper chart, multiplication by exp(-i(alpha-1/2)theta) maps the original C_alpha kernel to the NS kernel and preserves test-function support. The CAR/state isomorphism transfers regional cyclicity/separation. Endpoint transition and the transformed time generator remain part of the dictionary; no globally periodic gauge equivalence is asserted.",
+000042 |     "time_locality": "The actual H_alpha rotates the original circle, with its retained phase/bundle transition; the extra phase is an internal gauge action and does not enlarge support. Its fold transports regions to their actual multi-arc preimages. A proper base interval can also be embedded in a larger proper base interval under sufficiently small source-time translations."
+000043 |   },
+000044 |   "same_source_H32_check": {
+000045 |     "full_source_formula": "H_alpha=sum_j (j+alpha)(n_j-1_(j<0)), with occupied sea j<=-1 and0<alpha<1. Particle j>=0 energies j+alpha>0; hole j<=-1 energies -(j+alpha)>0. Thus H_alpha>=0 and Omega has energy0.",
+000046 |     "normalization": "The source text writes U(t)=exp(-it K_alpha), where H_alpha=8 K_alpha. Its five native inputs have K_alpha4 and H_alpha32, not two different choices of dynamics.",
+000047 |     "construction_inspected": "source_packets() maps a word entry with weighted degree n+1 to original density(v,8(n+1),channel=k). series_response(...,grade4) retains exactly words whose sum of(n+1)=4. Each bilinear shifts occupied index by8(n+1) and preserves every residue charge. Thus every term has original cover excitation32 and all residue charges0, independently of coefficients b.",
+000048 |     "energy_function_caveat": "car.energy(bits) computes sum_j j Delta n_j. It equals the full H_alpha only on total charge0 because H_alpha=car.energy+alpha Q. The constructed packet has Q_k0 for each channel, so this equality is legitimate here. Do not use that finite formula as a proof that the alpha Q term can be discarded on arbitrary charged states.",
+000049 |     "reported_owner_small_call": {
+000050 |       "quarters": [
+000051 |         "1/4",
+000052 |         "3/4"
+000053 |       ],
+000054 |       "support_sizes_per_five_states": [
+000055 |         694,
+000056 |         710,
+000057 |         711,
+000058 |         713,
+000059 |         688
+000060 |       ],
+000061 |       "all_source_energies": 32,
+000062 |       "all_channel_charges": [
+000063 |         0,
+000064 |         0,
+000065 |         0,
+000066 |         0,
+000067 |         0,
+000068 |         0,
+000069 |         0,
+000070 |         0
+000071 |       ],
+000072 |       "Gram_rank": 5,
+000073 |       "execution_attribution": "Reported direct source_packets call by verification_split; independently checked the algebraic weighted-degree/density construction here, not repeated the call."
+000074 |     },
+000075 |     "H_quartic_warning": "The compressed equality K|packet=4I5 (or H|packet=32I5) is not the net time dynamics. The proof uses the full H_alpha and its support-preserving automorphisms, not a finite quartic block or a newly postulated finite source."
+000076 |   },
+000077 |   "limits": [
+000078 |     "Exact preparation by one bounded operator in a proper local algebra is excluded only for this strict positive-energy eigenspace target.",
+000079 |     "This is not a bound on arbitrarily accurate local approximations, preparation probability, norm/cost tradeoffs or general finite-energy packets.",
+000080 |     "No statement follows about every local physical preparation, different admissible outputs, source/state changes or infinite/global protocols.",
+000081 |     "No automatic extension to unbounded point fields, affiliated operators or distributions without domain/control arguments.",
+000082 |     "A bounded global rank-one operator |psi_E><Omega| is a simple nonlocal counterexample if locality is removed.",
+000083 |     "Do not apply the lemma to a finite cutoff CAR model merely by invoking continuum Reeh-Schlieder; the required separating property must actually hold.",
+000084 |     "No raw P1/local odd CAR-E8 identification, physical3+2 selector or whole TFPT no-go is derived."
+000085 |   ],
+000086 |   "source_pins": [
+000087 |     {
+000088 |       "path": "experiments/theory-contracts/joint-native-algebra-selection-20261016/ORIGINAL-ORDERED-CURRENT-KERNEL-AND-SEAM-GRADING.txt",
+000089 |       "line_start": 11,
+000090 |       "line_end": 17,
+000091 |       "sha256": "62a9eeb4519b59d4514445f9d4dd5d2059e29179956a4c97ec94b7bae9ae3094"
+000092 |     },
+000093 |     {
+000094 |       "path": "experiments/theory-contracts/joint-native-algebra-selection-20261016/ORIGINAL-ORDERED-CURRENT-KERNEL-AND-SEAM-GRADING.txt",
+000095 |       "line_start": 33,
+000096 |       "line_end": 67,
+000097 |       "sha256": "62a9eeb4519b59d4514445f9d4dd5d2059e29179956a4c97ec94b7bae9ae3094"
+000098 |     },
+000099 |     {
+000100 |       "path": "experiments/theory-contracts/joint-native-algebra-selection-20261016/ORIGINAL-ORDERED-CURRENT-KERNEL-AND-SEAM-GRADING.txt",
+000101 |       "line_start": 90,
+000102 |       "line_end": 98,
+000103 |       "sha256": "62a9eeb4519b59d4514445f9d4dd5d2059e29179956a4c97ec94b7bae9ae3094"
+000104 |     },
+000105 |     {
+000106 |       "path": "experiments/theory-contracts/joint-native-algebra-selection-20261016/ORIGINAL-ORDERED-CURRENT-KERNEL-AND-SEAM-GRADING.txt",
+000107 |       "line_start": 208,
+000108 |       "line_end": 219,
+000109 |       "sha256": "62a9eeb4519b59d4514445f9d4dd5d2059e29179956a4c97ec94b7bae9ae3094"
+000110 |     },
+000111 |     {
+000112 |       "path": "experiments/theory-contracts/joint-native-algebra-selection-20261016/check_original_current_schur_kernel.py",
+000113 |       "line_start": 96,
+000114 |       "line_end": 119,
+000115 |       "sha256": "7420c0d2221cc9292f498230362445e06e2b7a1614130a9f359c0e2b57034e8d"
+000116 |     },
+000117 |     {
+000118 |       "path": "experiments/theory-contracts/joint-native-algebra-selection-20261016/check_fold_quartic_transport.py",
+000119 |       "line_start": 15,
+000120 |       "line_end": 32,
+000121 |       "sha256": "c8a35f8b986eeae9413ea0243c771959ee744b662d6babd5bbe0b2d4fea5f9b7"
+000122 |     },
+000123 |     {
+000124 |       "path": "experiments/theory-contracts/joint-native-algebra-selection-20261016/check_original_density_current.py",
+000125 |       "line_start": 33,
+000126 |       "line_end": 50,
+000127 |       "sha256": "8507f31059493a061797c28316c038ba0ab8aa4e26b4648eaf067212c45c61d8"
+000128 |     },
+000129 |     {
+000130 |       "path": "experiments/theory-contracts/joint-native-algebra-selection-20261016/FOLD-COVARIANCE-TO-NATIVE-FIELD-RESPONSE.txt",
+000131 |       "line_start": 53,
+000132 |       "line_end": 105,
+000133 |       "sha256": "cd35ac0e65ebf780cc99d3dd8a318255d11251125298d88e88cb676c72b27507"
+000134 |     }
+000135 |   ],
+000136 |   "mutation": "Only this work-area review written; no canonical, science, service, Atlas or cache changes.",
+000137 |   "instrument_corollary_review": {
+000138 |     "reviewed_at_utc": "2026-10-19T05:49:03.181130+00:00",
+000139 |     "review_type": "Independent agent analytic review of the direct corollary; no new numerical or formal proof run",
+000140 |     "verdict": "VALID_FOR_THE_STATED_LOCAL_KRAUS_OPERATION",
+000141 |     "assumptions": [
+000142 |       "All full-net, positive-energy, same-vacuum, bounded-local-operator and local time-covariance/separation hypotheses of the preceding lemma hold.",
+000143 |       "An outcome has finitely or countably many bounded Kraus operators A_j in the same proper interval algebra F(I).",
+000144 |       "sigma=T(|Omega><Omega|)=sum_j |A_j Omega><A_j Omega| is a positive normal output. For a physical outcome this is trace class with finite probability; for example sum_j A_j* A_j<=I ensures trace-nonincreasing normal convergence.",
+000145 |       "The output support is contained in the exact spectral subspace H_E=Ran(1_{E}(H)) for E>0, here E32. Support in the actual finite R_b4 packet is sufficient because that packet is contained in H32."
+000146 |     ],
+000147 |     "proof": [
+000148 |       "Set v_j=A_j Omega, P=1_{E}(H), Q=I-P. The support assumption gives Q sigma Q=0.",
+000149 |       "For a trace-class outcome, normality/monotone convergence of the positive partial sums gives Tr(Q sigma)=sum_j ||Q v_j||^2=0. Every summand is nonnegative, hence Q v_j=0 for every j.",
+000150 |       "Equivalently, even without using a trace, for every xi in Ran Q, normal vector functionals give 0=<xi,sigma xi>=sum_j |<xi,v_j>|^2. Positivity forces every v_j orthogonal to Ran Q. This avoids an unjustified exchange of a nonnormal limit and trace.",
+000151 |       "Thus each A_j Omega lies in the exact E>0 eigenspace. The proved local eigenpacket lemma yields A_j=0 individually, including the zero-vector case by separation.",
+000152 |       "Consequently sigma=0 and its success probability is0. Renormalization cannot produce a pure or mixed exact E32 state with nonzero outcome probability."
+000153 |     ],
+000154 |     "packet_metric_precision": "If a projector onto the five-state R_b4 packet is used, it means the orthogonal projector in the actual full CAR Hilbert-space metric, not a raw coordinate cut assuming Gram I. Only the inclusion Ran(P_packet) subset H32 is needed.",
+000155 |     "projection_in_the_proof_is_not_a_preparation": "The global spectral projector P_E and Q are mathematical support tests. No claim that they themselves belong to the local algebra or are physically available filters is made.",
+000156 |     "normal_convergence_precision": "A normal trace-nonincreasing Kraus outcome has trace-norm convergence of its positive vacuum-output partial sums, sufficient for the displayed norm-square identity. Bare unspecified convergence is not substituted for normality. The vector-functional proof also establishes the conclusion for positive ultraweak limits where a finite trace was not assumed.",
+000157 |     "luders_case": {
+000158 |       "statement": "Applies to a proper-local original Lüders projection P in F(I), with one Kraus operator A=P, or to a finite/countable same-local Kraus outcome of the stated type.",
+000159 |       "independent_consistency_check": "For any orthogonal projection P, <Omega,P Omega>=||P Omega||^2. If P Omega lies entirely at strictly positive energy, it is orthogonal to Omega, so P Omega=0. Local separation then gives P0. This elementary special case agrees with the general Kraus result."
+000160 |     },
+000161 |     "scope_limits": [
+000162 |       "The conclusion allows pure or mixed outputs and finitely/countably many local Kraus terms; positivity prevents cancellations outside the target spectral subspace.",
+000163 |       "It is not a theorem about every abstract normal AQFT CP map: an arbitrary CP map is not assumed to possess bounded Kraus operators inside this same local algebra.",
+000164 |       "No conclusion is drawn about approximate target preparation, quantitative success/energy/norm tradeoffs, different initial states, altered Hamiltonians or enlarged/global preparation procedures.",
+000165 |       "No extension to unbounded field insertions, uncontrolled infinite histories or a physically derived P1 preparation menu is asserted.",
+000166 |       "The result uses the full H_alpha=8K_alpha, not only the compressed quartic matrix. Exact H32 support is essential."
+000167 |     ],
+000168 |     "canonical_mutations": "None; only this existing work-area report was appended."
+000169 |   }
+000170 | }

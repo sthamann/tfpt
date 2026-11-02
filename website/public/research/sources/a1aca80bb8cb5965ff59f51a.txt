@@ -1,0 +1,22 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/joint-native-algebra-selection-20261016/check_mixed_return.py
+Original file SHA-256: 68e2c1a688bff43c193fd812bb585993a189b02072eca509ee726dc112f1ddb1
+Inclusive original lines: 50-63
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000050 | def code():
+000051 |     patterns=[{(i,i,i,i):Q.one for i in range(4)},
+000052 |               {(0,0,1,1):Q.one,(2,2,3,3):Q.one},
+000053 |               {(0,0,2,2):Q.one,(1,1,3,3):Q.one},
+000054 |               {(0,0,3,3):Q.one,(1,1,2,2):Q.one},
+000055 |               {(0,1,2,3):Q.one}]
+000056 |     norms=[96,8,8,8,1];_,supports=_code_basis()
+000057 |     for j,sp in enumerate(supports):
+000058 |         actual=Counter(tuple(sorted(w)) for w in sp)
+000059 |         need(set(actual)==set(patterns[j]),'Actual original code monomials')
+000060 |         cs=set(actual.values());need(len(cs)==1,'Constant support multiplicity')
+000061 |         c=next(iter(cs));need(s.Rational(c*c,24*len(sp))==s.Rational(1,norms[j]),'Original tensor/Fock normalization')
+000062 |         need(inner(patterns[j],patterns[j])==Q(norms[j]),'Fock norm of actual unnormalized code polynomial')
+000063 |     return patterns,norms

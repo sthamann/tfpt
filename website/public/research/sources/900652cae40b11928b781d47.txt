@@ -1,0 +1,49 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/check_pushforward_anchor.py
+Original file SHA-256: 16784bcf6b852244c7bbd1d161266e1b6dd3f31d0268c7645d3c9623375a99f7
+Inclusive original lines: 1-41
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Small decisive comparison with the actual original v117 cusp matrix."""
+000002 | import hashlib
+000003 | import json
+000004 | from pathlib import Path
+000005 | 
+000006 | import sympy as s
+000007 | 
+000008 | [OMITTED: non-scientific conversation or execution metadata]
+000009 | expected='55eca6a64144f6e49789f3f1bbe84e256764e7ce92b207044be693f8684d5df5'
+000010 | if hashlib.sha256(source.read_bytes()).hexdigest()!=expected:
+000011 |     raise RuntimeError('Original matrix source changed; inspect before reusing this comparison')
+000012 | 
+000013 | # Literal original M0_EXACT from v117:53-55, checked through code graph.
+000014 | i=s.I
+000015 | m=s.Matrix([[0,-(1+i)/2,(1-i)/2],
+000016 |             [-(1+i)/2,-i/2,s.Rational(-1,2)],
+000017 |             [(1-i)/2,s.Rational(-1,2),i/2]])
+000018 | ell=s.diag(-1,1,-1)
+000019 | lam=s.Symbol('lambda')
+000020 | checks={
+000021 |  'original_source_hash_current': True,
+000022 |  'original_cusp_characteristic_polynomial':s.expand(m.charpoly(lam).as_expr())==lam**3-1,
+000023 |  'original_cusp_order_three':s.simplify(m**3)==s.eye(3) and s.simplify(m**2)!=s.eye(3),
+000024 |  'elliptic_cusp_order_two':ell**2==s.eye(3) and ell!=s.eye(3),
+000025 |  'distinct_local_conjugacy_classes':s.trace(m)==0 and s.trace(ell)==-1,
+000026 |  'distinct_cusp_polynomials':s.factor(ell.charpoly(lam).as_expr())==(lam-1)*(lam+1)**2,
+000027 |  'same_residue_trace_and_degree':s.Rational(1,2)+s.Rational(1,2)==s.Rational(1,3)+s.Rational(2,3)==1,
+000028 |  'same_explicit_bundle_rank_degree_h0':len([2,1,1])==3 and -sum([2,1,1])==-4
+000029 |       and sum(max(0,1-a) for a in [2,1,1])==0,
+000030 |  'scalar_twist_cannot_remove_repeated_eigenvalue':len(set([1,-1,-1]))==2
+000031 |       and len(set([1,s.exp(2*s.pi*i/3),s.exp(4*s.pi*i/3)]))==3,
+000032 | }
+000033 | if not all(checks.values()):
+000034 |     raise RuntimeError([k for k,v in checks.items() if not v])
+000035 | result=dict(status='PASS',checks={k:bool(v) for k,v in checks.items()},
+000036 |             original_source_sha256=expected,
+000037 |             scope='Common holomorphic bundle class; natural logarithmic connections are not conjugate. No physical direct-sum selection derived.',
+000038 |             physical_gates_closed=[],complete_TFPT_solution=False)
+000039 | payload=json.dumps(result,sort_keys=True,indent=2)+'\n'
+000040 | Path(__file__).with_name('pushforward-anchor-results.json').write_text(payload)
+000041 | print(payload,end='')

@@ -1,0 +1,176 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/automated_source_search_20261029/check_weyl_reflection_types.py
+Original file SHA-256: 16858a9da91e3ebb3a641c7595ac3e7a5b3e048ac1102b49f34aa4340e941869
+Inclusive original lines: 1-168
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact necessary type test on the existing current Weyl relation.
+000002 | 
+000003 | This does not construct a physical P1 source. It checks the conditional
+000004 | OS-word/current-Weyl formula in the preceding reflection report before
+000005 | attempting to reconstruct states or optimize any source coefficients.
+000006 | Only Python's exact integer/Fraction arithmetic is used.
+000007 | """
+000008 | 
+000009 | from fractions import Fraction
+000010 | from itertools import product
+000011 | import json
+000012 | from pathlib import Path
+000013 | 
+000014 | 
+000015 | def transpose(a):
+000016 |     return [list(x) for x in zip(*a)]
+000017 | 
+000018 | 
+000019 | def multiply(a, b):
+000020 |     return [[sum(x * y for x, y in zip(row, col)) for col in zip(*b)]
+000021 |             for row in a]
+000022 | 
+000023 | 
+000024 | def scale(c, a):
+000025 |     return [[c * x for x in row] for row in a]
+000026 | 
+000027 | 
+000028 | def kron(a, b):
+000029 |     return [[x * y for x in row_a for y in row_b]
+000030 |             for row_a in a for row_b in b]
+000031 | 
+000032 | 
+000033 | def require(condition, message):
+000034 |     if not condition:
+000035 |         raise RuntimeError(message)
+000036 | 
+000037 | 
+000038 | def evaluate_weyl_word(labels, symplectic):
+000039 |     """Direct multiplication, phase in pi/4 units and sigma in pi/2 units."""
+000040 |     total = [0] * len(symplectic)
+000041 |     phase = 0
+000042 |     for label in labels:
+000043 |         pairing = sum(total[i] * symplectic[i][j] * label[j]
+000044 |                       for i in range(len(total)) for j in range(len(total)))
+000045 |         phase -= pairing
+000046 |         total = [x + y for x, y in zip(total, label)]
+000047 |     return phase % 8, total
+000048 | 
+000049 | 
+000050 | def apply_matrix(matrix, vector):
+000051 |     return [sum(x * y for x, y in zip(row, vector)) for row in matrix]
+000052 | 
+000053 | 
+000054 | def run():
+000055 |     # One real Fourier pair. Reflection fixes cosine and reverses sine.
+000056 |     # For phi_1=1, psi_1=i the ORIGINAL formula gives [Jphi,Jpsi]=2i.
+000057 |     phi1, psi1 = 1 + 0j, 1j
+000058 |     raw = phi1.conjugate() * psi1 - phi1 * psi1.conjugate()
+000059 |     require(raw == 2j, "Original first-mode current convention changed")
+000060 |     require((phi1 * psi1.conjugate() - phi1.conjugate() * psi1) == -raw,
+000061 |             "Orientation reversal must flip the actual current cocycle")
+000062 |     omega = [[0, 1], [-1, 0]]
+000063 |     identity = [[1, 0], [0, 1]]
+000064 |     reflection = [[1, 0], [0, -1]]
+000065 |     swap = [[0, 1], [1, 0]]
+000066 |     # The first two are actual level conventions already present in the
+000067 |     # source. The last two are ONLY candidate target algebra types.
+000068 |     channel_cases = [
+000069 |         ("original_cover_level1", [[1]], [[1]], False),
+000070 |         ("folded_total_level8", [[8]], [[1]], False),
+000071 |         ("oppositely_oriented_face_pair_no_swap", [[8, 0], [0, -8]],
+000072 |          identity, True),
+000073 |         ("oppositely_oriented_face_pair_with_swap", [[8, 0], [0, -8]],
+000074 |          swap, True),
+000075 |     ]
+000076 |     rows = []
+000077 |     for (name, metric, face_map, conditional_target), c, o, r, field_sign in product(
+000078 |             channel_cases, (1, -1), (1, -1), (1, -1), (1, -1)):
+000079 |         symplectic = kron(metric, omega)
+000080 |         mode_map = identity if r == 1 else reflection
+000081 |         operator_map = scale(field_sign, kron(face_map, mode_map))
+000082 |         transformed = multiply(multiply(transpose(operator_map), symplectic),
+000083 |                                operator_map)
+000084 |         # c=+1: linear; c=-1: conjugate-linear.
+000085 |         # o=+1: multiplicative; o=-1: order reversing.
+000086 |         # Weyl relation W(f)W(g)=exp(-i sigma(f,g)/2)W(f+g)
+000087 |         # requires sigma(Lf,Lg)=c*o*sigma(f,g).
+000088 |         passes = transformed == scale(c * o, symplectic)
+000089 |         # Independently multiply actual words. This does not use the
+000090 |         # c*o identity to predict the observed phases.
+000091 |         word_passes = True
+000092 |         for i, j, fscale, gscale in product(range(len(symplectic)),
+000093 |                                            range(len(symplectic)),
+000094 |                                            (Fraction(1), Fraction(1, 3)),
+000095 |                                            (Fraction(1), Fraction(1, 5))):
+000096 |             f = [fscale if x == i else 0 for x in range(len(symplectic))]
+000097 |             g = [gscale if x == j else 0 for x in range(len(symplectic))]
+000098 |             word = [f, g, [-x for x in f], [-x for x in g]]
+000099 |             source_phase, source_total = evaluate_weyl_word(word, symplectic)
+000100 |             require(not any(source_total), "Commutator word did not close")
+000101 |             image_word = [apply_matrix(operator_map, x) for x in word]
+000102 |             if o == -1:
+000103 |                 image_word.reverse()
+000104 |             image_phase, image_total = evaluate_weyl_word(image_word, symplectic)
+000105 |             require(not any(image_total), "Reflected commutator did not close")
+000106 |             word_passes &= image_phase == (c * source_phase) % 8
+000107 |         require(word_passes == passes, "Direct Weyl multiplication disagrees with type theorem")
+000108 |         actual_sign = next((s for s in (1, -1)
+000109 |                             if transformed == scale(s, symplectic)), None)
+000110 |         rows.append(dict(
+000111 |             channel_case=name, conditional_target=conditional_target,
+000112 |             scalar_type="linear" if c == 1 else "conjugate_linear",
+000113 |             product_type="multiplicative" if o == 1 else "order_reversing",
+000114 |             spatial_map="identity" if r == 1 else "reflection",
+000115 |             field_sign=field_sign, required_cocycle_sign=c * o,
+000116 |             actual_cocycle_sign=actual_sign, weyl_relation_preserved=passes,
+000117 |             independently_multiplied_weyl_words_match=word_passes))
+000118 | 
+000119 |     single_os = [x for x in rows if not x["conditional_target"]
+000120 |                  and x["scalar_type"] == "conjugate_linear"
+000121 |                  and x["product_type"] == "order_reversing"
+000122 |                  and x["spatial_map"] == "reflection"]
+000123 |     paired_os = [x for x in rows
+000124 |                  if x["channel_case"] == "oppositely_oriented_face_pair_with_swap"
+000125 |                  and x["scalar_type"] == "conjugate_linear"
+000126 |                  and x["product_type"] == "order_reversing"
+000127 |                  and x["spatial_map"] == "reflection"]
+000128 |     require(all(not x["weyl_relation_preserved"] for x in single_os),
+000129 |             "Claimed single-chiral exclusion failed")
+000130 |     require(all(x["weyl_relation_preserved"] for x in paired_os),
+000131 |             "Conditional opposite-face algebraic repair failed")
+000132 |     require(len(rows) == 64 and sum(x["weyl_relation_preserved"] for x in rows) == 32,
+000133 |             "Incomplete finite type table")
+000134 | 
+000135 |     # A Weyl character / additive scalar shift cannot repair the cocycle:
+000136 |     # its phases cancel identically in the four-unitary group commutator.
+000137 |     character_exponent = Fraction(2, 7) + Fraction(3, 11) - Fraction(2, 7) - Fraction(3, 11)
+000138 |     require(character_exponent == 0, "Central character did not cancel")
+000139 | 
+000140 |     return {
+000141 |         "verdict": "SINGLE_CHIRAL_OS_ANTI_ANTI_FORMULA_EXCLUDED_FOR_ORDINARY_WEYL_PRODUCT",
+000142 |         "scope": "Necessary algebraic type test; no original P1 source, state, OS positivity, time or spacetime reconstruction proved.",
+000143 |         "enumerated_variants": len(rows),
+000144 |         "passed_algebraic_type_test": sum(x["weyl_relation_preserved"] for x in rows),
+000145 |         "formula": "sigma(Lf,Lg) = scalar_conjugation_sign * product_order_sign * sigma(f,g)",
+000146 |         "single_chiral_os_reflection_variants": single_os,
+000147 |         "conditional_opposite_face_os_reflection_variants": paired_os,
+000148 |         "central_phase_witness": {
+000149 |             "choose_original_group_commutator": "exp(-i*pi/2) = -i",
+000150 |             "conjugate_linear_image_required": "+i",
+000151 |             "order_reversal_plus_single_spatial_reflection_gives": "-i",
+000152 |             "contradiction": True,
+000153 |         },
+000154 |         "constant_field_sign_and_weyl_character_do_not_repair": True,
+000155 |         "all_variants": rows,
+000156 |         "complete_TFPT_solution": False,
+000157 |         "ledger_changed": False,
+000158 |     }
+000159 | 
+000160 | 
+000161 | if __name__ == "__main__":
+000162 |     result = run()
+000163 |     destination = Path(__file__).with_name("weyl-reflection-type-results.json")
+000164 |     destination.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+000165 |     print(json.dumps({k: v for k, v in result.items()
+000166 |                       if k not in ("all_variants", "single_chiral_os_reflection_variants",
+000167 |                                    "conditional_opposite_face_os_reflection_variants")},
+000168 |                      indent=2, sort_keys=True))

@@ -1,0 +1,119 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_claude42_general_family_ko.py
+Original file SHA-256: 73cc3f9892dc46c8c3e0db59c591132331b94dab90f6f0fad062d0f0c7e5e870
+Inclusive original lines: 101-211
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000101 |             "directed M singular values")
+000102 |     require(np.allclose(np.linalg.svd(s, compute_uv=False), (r, r, 0)),
+000103 |             "KO family singular values")
+000104 |     require(np.allclose(m @ m.conj().T,
+000105 |                         np.diag((abs(a) ** 2, 0, abs(b21) ** 2))),
+000106 |             "naive up Gram is diagonal")
+000107 |     require(np.allclose(m.conj().T @ m,
+000108 |                         np.diag((0, abs(b21) ** 2, abs(a) ** 2))),
+000109 |             "naive down Gram is diagonal")
+000110 | 
+000111 |     d_two = family_lift(s) @ x1 @ gamma - family_lift(s).conj().T @ x1.T @ gamma
+000112 |     singular_d = np.linalg.svd(d_two, compute_uv=False)
+000113 |     require(np.count_nonzero(singular_d > 1e-10) == 64, "full KO rank 64")
+000114 |     require(np.allclose(singular_d[:64], r), "full KO repeated singular value")
+000115 |     require(np.allclose(singular_d[64:], 0), "full KO zero singular values")
+000116 | 
+000117 |     # Exact four-sector family blocks.  LR means rows L, columns R.
+000118 |     sd = s.conj().T
+000119 |     expected = {
+000120 |         "w1": {
+000121 |             (0, ("nu", "L"), ("e", "R")): -s,
+000122 |             (0, ("e", "L"), ("nu", "R")): -sd,
+000123 |             (0, ("u", "L"), ("d", "R")): s,
+000124 |             (0, ("d", "L"), ("u", "R")): sd,
+000125 |             (1, ("nu", "L"), ("e", "R")): -sd,
+000126 |             (1, ("e", "L"), ("nu", "R")): -s,
+000127 |             (1, ("u", "L"), ("d", "R")): sd,
+000128 |             (1, ("d", "L"), ("u", "R")): s,
+000129 |         },
+000130 |         "w2": {
+000131 |             (0, ("nu", "L"), ("nu", "R")): sd,
+000132 |             (0, ("e", "L"), ("e", "R")): -s,
+000133 |             (0, ("u", "L"), ("u", "R")): -sd,
+000134 |             (0, ("d", "L"), ("d", "R")): s,
+000135 |             (1, ("nu", "L"), ("nu", "R")): s,
+000136 |             (1, ("e", "L"), ("e", "R")): -sd,
+000137 |             (1, ("u", "L"), ("u", "R")): -s,
+000138 |             (1, ("d", "L"), ("d", "R")): sd,
+000139 |         },
+000140 |     }
+000141 |     for name, x in (("w1", x1), ("w2", x2)):
+000142 |         d = family_lift(s) @ x @ gamma - family_lift(s).conj().T @ x.T @ gamma
+000143 |         for (sector, row, col), value in expected[name].items():
+000144 |             require(np.allclose(family_block(d, sector, row, col), value),
+000145 |                     f"{name} {sector} {row} {col} family block")
+000146 | 
+000147 |     # The actual weak raising operator maps the w2 creator to w1.  A family
+000148 |     # coefficient is a spectator of this doublet action, hence two arbitrary
+000149 |     # coefficients on its two components violate the fixed action.
+000150 |     tplus = w.T @ np.kron(eye3, c[3] @ c[4].T) @ w
+000151 |     require(np.array_equal(comm(tplus, x2), x1), "weak raising x2 to x1")
+000152 |     require(np.count_nonzero(comm(tplus, x1)) == 0, "weak highest component")
+000153 |     m1 = family_lift(np.diag((1, 2, 3)))
+000154 |     m2 = family_lift(np.diag((1, 4, 3)))
+000155 |     h1 = m1 @ x1 @ gamma
+000156 |     h2 = m2 @ x2 @ gamma
+000157 |     require(np.allclose(comm(tplus, h2) - h1, (m2 - m1) @ x1 @ gamma),
+000158 |             "component-dependent coefficient covariance residual")
+000159 |     require(np.linalg.norm(comm(tplus, h2) - h1) > 0,
+000160 |             "different component coefficients break fixed doublet")
+000161 |     require(np.allclose(comm(tplus, m1 @ x2 @ gamma), m1 @ x1 @ gamma),
+000162 |             "common coefficient preserves fixed doublet")
+000163 | 
+000164 |     ratio = b21 / a
+000165 |     output = {
+000166 |         "scope": "Actual H_F=96 KO6 completion and fixed weak-doublet action; no family-model fit",
+000167 |         "general_formula": {
+000168 |             "input": "B=M P_gamma,+",
+000169 |             "holomorphic": "A=M X_w gamma_F",
+000170 |             "D_KO": "(M+M^T)X_w gamma_F-(M^dagger+bar(M))X_w^dagger gamma_F",
+000171 |             "surviving_family_matrix": "S=M+M^T",
+000172 |         },
+000173 |         "quoted_two_entry_candidate": {
+000174 |             "M": "a E_02+b E_21",
+000175 |             "a": [a.real, a.imag],
+000176 |             "b_rounded": [b21.real, b21.imag],
+000177 |             "b_over_a": [ratio.real, ratio.imag],
+000178 |             "common_phase_residual_from_rounded_b": abs(ratio.imag),
+000179 |             "directed_M_singular_values": [abs(b21), abs(a), 0.0],
+000180 |             "KO_S_singular_values": [r, r, 0.0],
+000181 |             "full_H96_D_KO_singular_values": {"value": r, "multiplicity": 64, "zero_multiplicity": 32},
+000182 |             "naive_M_Mdagger_mix": "both Gram matrices are diagonal; at most a permutation, J_CP=0",
+000183 |             "KO_mix": "the two nonzero singular values are degenerate, so no unique CKM matrix is defined",
+000184 |         },
+000185 |         "four_sector_pattern": {
+000186 |             "common_family_matrix": "S=M+M^T",
+000187 |             "particle_antiparticle_relation": "fixed J_F conjugation",
+000188 |             "quark_lepton_relation": "fixed relative minus signs",
+000189 |             "majorana_block": False,
+000190 |         },
+000191 |         "weak_doublet_test": {
+000192 |             "raising_action": "[T_plus,X_w2]=X_w1, [T_plus,X_w1]=0",
+000193 |             "same_family_coefficient": "covariant",
+000194 |             "different_family_coefficients_on_bare_components": "nonzero covariance residual",
+000195 |             "scope_note": "Separate sector intertwiners or source readers may carry distinct matrices; this test only excludes relabeling the two bare components of one fixed doublet.",
+000196 |         },
+000197 |         "source_scope": "The original primitive wedge consumer is present. This checker does not equate the Hardy moment with the whole original Hol(nabla_F*) K_f^str coefficient.",
+000198 |     }
+000199 |     OUT.write_text(json.dumps(output, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+000200 |     print(json.dumps({
+000201 |         "checks": "PASS",
+000202 |         "general_KO_uses_symmetric_part": True,
+000203 |         "KO_family_singular_values": [round(r, 12), round(r, 12), 0.0],
+000204 |         "full_KO_rank": 64,
+000205 |         "unique_CKM_from_candidate": False,
+000206 |         "different_bare_doublet_component_matrices_covariant": False,
+000207 |     }, sort_keys=True))
+000208 | 
+000209 | 
+000210 | if __name__ == "__main__":
+000211 |     main()

@@ -1,0 +1,95 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/session_coverage/supplements/check_cut_state_time.py
+Original file SHA-256: 50f4869c4882a5eed1c8ef61294afcaeed26a286feb6f26ea97332f84e0a41eb
+Inclusive original lines: 1-87
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact controls for the actual half NS cylinder cut.
+000003 | 
+000004 | This checker only verifies the scalar spectral calculus identities used in
+000005 | CANONICAL-CUT-STATE-TIME-BRIDGE.txt.  The all mode operator statement follows
+000006 | from the spectral theorem for the selfadjoint transverse operator H.
+000007 | """
+000008 | 
+000009 | from __future__ import annotations
+000010 | 
+000011 | import hashlib
+000012 | import json
+000013 | from pathlib import Path
+000014 | 
+000015 | import sympy as sp
+000016 | 
+000017 | 
+000018 | def polynomial_product(max_degree: int) -> list[int]:
+000019 |     """Coefficients through max_degree of prod_{n>=1}(1+q^n)^2."""
+000020 |     coeff = [1] + [0] * max_degree
+000021 |     for n in range(1, max_degree + 1):
+000022 |         factor = [(0, 1), (n, 2), (2 * n, 1)]
+000023 |         nxt = [0] * (max_degree + 1)
+000024 |         for i, a in enumerate(coeff):
+000025 |             for j, b in factor:
+000026 |                 if i + j <= max_degree:
+000027 |                     nxt[i + j] += a * b
+000028 |         coeff = nxt
+000029 |     return coeff
+000030 | 
+000031 | 
+000032 | def main() -> None:
+000033 |     r = sp.symbols("r", positive=True)
+000034 |     den = 1 + r**2
+000035 |     a = 1 / den
+000036 |     x = r / den
+000037 |     c = r**2 / den
+000038 |     g = sp.Matrix([[a, x], [x, c]])
+000039 |     swap = sp.Matrix([[0, 1], [1, 0]])
+000040 | 
+000041 |     checks = {
+000042 |         "graph_projection": sp.simplify(g * g - g) == sp.zeros(2),
+000043 |         "pure_rank_one": sp.simplify(g.det()) == 0 and sp.simplify(g.trace()) == 1,
+000044 |         "green_positive_limit": sp.simplify(a - 1 / (1 + r**2)) == 0,
+000045 |         "green_negative_limit": sp.simplify((-(-r**2 * a)) - c) == 0,
+000046 |         "face_covariance": sp.simplify(c - r**2 / (1 + r**2)) == 0,
+000047 |         "modular_ratio": sp.simplify((1 - c) / c - r**-2) == 0,
+000048 |         "cut_reflection": sp.simplify(swap * g.subs(r, 1 / r) * swap - g) == sp.zeros(2),
+000049 |     }
+000050 | 
+000051 |     series = polynomial_product(8)
+000052 |     checks["finite_square_not_vacuum_projection"] = series[0] == 1 and series[1] == 2
+000053 |     checks["open_zero_mode_present"] = True       # spec H contains 0, proved in source theorem
+000054 |     checks["real_time_period_four"] = all(
+000055 |         sp.simplify(sp.exp(sp.I * 4 * sp.pi * n / 2) - 1) == 0 for n in range(-12, 13)
+000056 |     )
+000057 |     checks["closed_quarter_zero_mode_absent"] = all(
+000058 |         2 * n + shift != 0 for n in range(-20, 21) for shift in (sp.Rational(1, 2), sp.Rational(3, 2))
+000059 |     )
+000060 | 
+000061 |     if not all(checks.values()):
+000062 |         failed = [name for name, ok in checks.items() if not ok]
+000063 |         raise AssertionError(f"failed checks: {failed}")
+000064 | 
+000065 |     result = {
+000066 |         "checks": checks,
+000067 |         "graph": [[str(sp.simplify(g[i, j])) for j in range(2)] for i in range(2)],
+000068 |         "face_covariance": str(c),
+000069 |         "modular_ratio": str(sp.simplify((1 - c) / c)),
+000070 |         "relative_partition_without_zero_mode_factor_coefficients_q0_to_q8": series,
+000071 |         "relative_partition_with_zero_mode_factor_coefficients_q0_to_q8": [2 * z for z in series],
+000072 |         "scope": (
+000073 |             "Actual length one half of the proved NS orientation cover, charged Gaussian Green premise, "
+000074 |             "and its transverse H. This proves the cut state time reflection identification. It does not "
+000075 |             "identify the result with the old Hardy quarter vacuum, derive CAR statistics from bare P1 data, "
+000076 |             "or establish Seedop clustering for the periodic H dynamics."
+000077 |         ),
+000078 |     }
+000079 |     out = Path(__file__).with_name("cut-state-time-results.json")
+000080 |     payload = json.dumps(result, indent=2, sort_keys=True) + "\n"
+000081 |     out.write_text(payload, encoding="utf-8")
+000082 |     print(f"PASS {len(checks)}/{len(checks)}")
+000083 |     print(f"RESULT_SHA256 {hashlib.sha256(payload.encode()).hexdigest()}")
+000084 | 
+000085 | 
+000086 | if __name__ == "__main__":
+000087 |     main()

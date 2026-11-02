@@ -1,0 +1,101 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/e_series_role_review/check_roles.py
+Original file SHA-256: 47cd63f5a4668dfb0ce5d4d4e665106c2d24371c9fd32ea97593e9f04e9daa96
+Inclusive original lines: 1-93
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Three decisive exact role tests in the already given native root/source chart.
+000002 | 
+000003 | No new source, metric, coupling or state is chosen. Reuse the existing
+000004 | original eightfold-source root builder; never run its writing main().
+000005 | """
+000006 | from pathlib import Path
+000007 | from fractions import Fraction as F
+000008 | from itertools import combinations
+000009 | import importlib.util
+000010 | import json
+000011 | import sympy as sp
+000012 | 
+000013 | ROOT=Path(__file__).resolve().parents[4]
+000014 | path=ROOT/'experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/dynamic_reconstruction_20261027/check_a7_e7_clock.py'
+000015 | spec=importlib.util.spec_from_file_location('existing_a7_e7_source',path)
+000016 | old=importlib.util.module_from_spec(spec)
+000017 | spec.loader.exec_module(old)
+000018 | 
+000019 | 
+000020 | def need(ok, message):
+000021 |     if not ok:
+000022 |         raise RuntimeError(message)
+000023 | 
+000024 | 
+000025 | def run():
+000026 |     roots=frozenset(tuple(int(2*x) for x in r) for r in old.e8_roots())
+000027 |     dot=lambda a,b:sum(x*y for x,y in zip(a,b))
+000028 |     axes=((1,1,1),(1,-1,-1),(-1,1,-1),(-1,-1,1))
+000029 |     corners=[frozenset(r for r in roots if
+000030 |                       r[5]*a[0]==r[6]*a[1]==r[7]*a[2]) for a in axes]
+000031 |     need(all(len(c)==72 for c in corners),'four E6 corners')
+000032 |     normals=[]
+000033 |     for r in sorted(roots):
+000034 |         if any(r[:5]) or sum(x!=0 for x in r)!=2:
+000035 |             continue
+000036 |         if next(x for x in r if x)!=2:
+000037 |             continue
+000038 |         normals.append(r)
+000039 |     need(len(normals)==6,'six unoriented D3 root normals')
+000040 |     edges=[]
+000041 |     for i,j in combinations(range(4),2):
+000042 |         need(len(corners[i]&corners[j])==40,'common D5')
+000043 |         matches=[n for n in normals if all(dot(n,r)==0 for r in corners[i]|corners[j])]
+000044 |         need(len(matches)==1,'unique E7 edge')
+000045 |         target={r for r in roots if dot(matches[0],r)==0}
+000046 |         closed=set(corners[i]|corners[j]);front=set(closed)
+000047 |         while front:
+000048 |             add={tuple(x+y for x,y in zip(a,b)) for a in front for b in closed}
+000049 |             front=(add&roots)-closed;closed.update(front)
+000050 |         need(closed==target and len(closed)==126,'two E6 generate precisely E7')
+000051 |         edges.append({'vertices':[i,j],'normal':list(matches[0]),
+000052 |                       'intersection_roots':40,'union_roots':104,'closure_roots':126})
+000053 |     need(len({tuple(x['normal']) for x in edges})==6,'whole tetrahedron edge dictionary')
+000054 | 
+000055 |     # A root-current cut is an inclusion of a subalgebra, not a quotient map.
+000056 |     # Removed root alpha has a nonzero retained Cartan projection, so
+000057 |     # P[e_alpha,e_-alpha] != [Pe_alpha,Pe_-alpha]=0, with either bracket sign.
+000058 |     alpha6=[F(1),0,0,0,0,F(1),0,0]
+000059 |     p6=alpha6[:5]+[F(1,3)]*3
+000060 |     alpha7=[F(1),F(1),0,0,0,0,0,0]
+000061 |     p7=[F(x)-F(1,4) for x in alpha7]
+000062 |     need(sum(x*x for x in p6)==F(4,3),'nonzero E6 projected coroot')
+000063 |     need(sum(x*x for x in p7)==F(3,2),'nonzero E7 projected coroot')
+000064 | 
+000065 |     rho2=(7,5,3,1,-1,-3,-5,-7)
+000066 |     neutral={r for r in roots if sum(r)==0}
+000067 |     need(len(neutral)==126,'actual Q neutral E7')
+000068 |     commuting={r for r in neutral if dot(rho2,r)==0}
+000069 |     need(len(commuting)==8 and sp.Matrix(list(commuting)).rank()==4,'four A1 zero-mode roots')
+000070 |     need(all(dot(a,b) in (0,8,-8) for a in commuting for b in commuting),'orthogonal A1 factors')
+000071 |     counter=(2,-2,0,0,0,0,0,0)
+000072 |     need(counter in neutral and -F(dot(rho2,counter),4)==-1,'neutral is not source-time invariant')
+000073 |     for a in (F(1,4),F(3,4)):
+000074 |         all_commuting={r for r in roots if
+000075 |                        -F(dot(rho2,r),4)+(2*a-1)*F(sum(r),4)==0}
+000076 |         need(all_commuting==commuting,'same horizontal source-time centralizer in both quarters')
+000077 |     result={'scope':'given native E8 lattice and original eightfold source H8 only',
+000078 |             'tetrahedron':{'E6_vertices':4,'E7_edges':edges},
+000079 |             'root_cut_projection':{'E6_nonzero_projected_coroot_norm2':str(sum(x*x for x in p6)),
+000080 |                                    'E7_nonzero_projected_coroot_norm2':str(sum(x*x for x in p7)),
+000081 |                                    'is_Lie_homomorphism':False},
+000082 |             'actual_H8':{'Q_neutral_E7_roots':126,
+000083 |                          'ordinary_horizontal_commuting_roots':8,
+000084 |                          'horizontal_root_type':'4A1',
+000085 |                          'neutral_counterexample':'[H8,J_(e0-e1,0)]=-J_(e0-e1,0)',
+000086 |                          'all_affine_commuting_modes_classified':False},
+000087 |             'physical_E8_E7_E6_gauge_or_breaking_rule_derived':False}
+000088 |     Path(__file__).with_name('role-check-results.json').write_text(json.dumps(result,indent=2)+'\n')
+000089 |     print(json.dumps(result,indent=2))
+000090 | 
+000091 | 
+000092 | if __name__=='__main__':
+000093 |     run()

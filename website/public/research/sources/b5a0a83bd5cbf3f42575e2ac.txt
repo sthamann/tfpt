@@ -1,0 +1,126 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/ORIGINAL-BLOCKED-TV-WEIGHT-PRODUCER-REVIEW.txt
+Original file SHA-256: 13ca0b93af3693b0fd6eaa93ffd00eace09d0140cc5c01da152c0af5916ebeca
+Inclusive original lines: 1-118
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | Ursprünglicher blocked T_V Aufruf: Producer, Gewichtstyp und Consumer
+000002 | 2026-10-30. Gezielter Quellenpfad, keine Atlasänderung und kein neuer Lauf.
+000003 | 
+000004 | 1. Der tatsächlich vorhandene Aufruf
+000005 | 
+000006 | QFT4 bezeichnet documents/archive--tfpt-45--source_extracts--04_qft_source/
+000007 | sections/004-source.tex, SHA256
+000008 | a5d1cc26f80d2f1d5af3d89b94cf8ff8912b572040614d4e1c27f1fe3b747126
+000009 | (paper-source:87d8d6e4c79b70b432a7cb68).
+000010 | Zeilen111-155: T_V wird aus lokalen C6 Greenkernen, diagonalen
+000011 | Zulässigkeitsgewichten und dem zweistufigen Padm erhalten. Der Consumer
+000012 | ist der positive Perronvektor; dessen nachfolgende Zustandsverwendung
+000013 | beginnt dort, nicht bei einem neuen Hardyoperator.
+000014 | Zeilen282-299 präzisieren den behaupteten Gewichtsproducer: verschiedene
+000015 | Basisworte unterscheiden sich durch lokalen Transportcount, Carrierlabel
+000016 | oder retained selector weight; die Gewichte seien aus diesen Daten
+000017 | konstruiert. Hier steht weder eine numerische Gewichtsformel d_r(w) noch
+000018 | eine geordnete Tensor-/Kontraktionsformel für T_V.
+000019 | Zeilen302-335 verwenden danach die Separierung dieser diagonalen Familie
+000020 | zur Vollmatrixalgebra. Das setzt die Gewichte bereits als Operatoren ein.
+000021 | 
+000022 | Der ältere Originaltext documents/archive--paper-latex--tfpt-42/sections/
+000023 | 024-source.tex:111-155,282-335 enthält dieselbe Konstruktion und dieselben
+000024 | drei Gewichtsdatentypen, keine zusätzliche ausgewertete Gewichtsregel.
+000025 | SHA256 17571245dcaaa273129e05d9ed04abbcf33a337e051c94a7019d263f3eadad77.
+000026 | 
+000027 | 2. Der positive Padm Producer ist tatsächlich explizit
+000028 | 
+000029 | QFT2 = gleicher Source45 Ordner/
+000030 | 002-section-closure-theorems-from-the-admissibility-complex.tex,
+000031 | SHA256 61ecee7727bdec47936bbffc028d3dbac5260a025b6dbcce30124a60d635fc9c.
+000032 | Zeilen31-53 definieren Pstr und die vier positiven Penalties;
+000033 | Zeilen70-117 liefern
+000034 |  Deltaadm=KΣ²+Kc²+KΘ²+Kg²,
+000035 |  Padm=Pi_kerDeltaadm=Pprim Psing PΘ=Pstr Pgap.
+000036 | Die tatsächlichen Eingaben sind iC, Zc, QΘ und der admissible
+000037 | Dadm samt Gap. Ihre ursprünglichen Typen bleiben erhalten.
+000038 | Zeilen318-333 übersetzen den Compilerpredicate ausdrücklich in
+000039 |  Adm(X)=1 genau dann, wenn Padm X=X.
+000040 | Das ist ein vorhandener ausführbarer Auswahlcontract für gegebene Daten.
+000041 | Es wird hier keine zusätzliche Auswahl des bereits gegebenen vollständigen
+000042 | Seedzustands verlangt.
+000043 | 
+000044 | Kleinster entscheidender Typentest am möglichen Gewichtsproducer:
+000045 | Aus x in RanPadm folgt
+000046 |  sum_r ||K_r x||²=<x,Deltaadm x>=0,
+000047 | also K_r Padm=0 für jedes der vier Penalties. Daher gilt auf diesem Raum
+000048 |  p(KΣ,Kc,KΘ,Kg)Padm=p(0,0,0,0)Padm
+000049 | für jedes unital gebildete Polynom; im ursprünglichen kommutierenden
+000050 | Contract gilt dasselbe für beschränkten gemeinsamen Funktionalkalkül.
+000051 | Insbesondere ist exp(-beta Deltaadm)|RanPadm=I für jedes beta.
+000052 | Die eigentlichen Selektorpenalties allein können also bei retained
+000053 | Dimension>=2 die in QFT4:282-299 verlangten Basisworte nicht trennen.
+000054 | Das widerlegt nicht die QFT4 Gewichte mit zusätzlichen Counts/Carrierlabels.
+000055 | Es identifiziert, welcher der dort genannten Inputs wirklich noch
+000056 | verarbeitet werden muss; Padm ist kein Amplitudenleser innerhalb seines
+000057 | eigenen Bildes. Bei Rang1 ist die Separierungsforderung trivial.
+000058 | 
+000059 | 3. Bereits vorhandene native Verifikationen sind andere konkrete Aufrufe
+000060 | 
+000061 | Codegraph zuerst gelesen, dann tatsächliche Funktionen:
+000062 | verification/v330_qgamb_admissible_measure.py:42-57 erzeugt den expliziten
+000063 | symmetrischen Dreiertransfer mit Spektrum1,(2/3)^6,(1/3)^6 und konstantem
+000064 | Perronvektor. correlator nimmt den Diagonaloperator D bereits als Argument.
+000065 | Das ist ein berechenbarer gegebener Quellencontract; dort entsteht weder
+000066 | die ganze QFT4 Gewichtsmenge noch eine Karte vom neuen Hardyalphabet zu D.
+000067 | Source source:f15dfc8c547c01da89f1.
+000068 | verification/v175_net_existence_full_cone.py:94-121 quantisiert eine
+000069 | gegebene16er Einteilchenkontraktion auf der ganzen CAR Fockquelle.
+000070 | Das bewahrt sämtliche Produkte der gegebenen Quelle; es ist nicht der
+000071 | Compiler von lokalen Counts und Carrierlabels in QFT4 Gewichte.
+000072 | tfpt_explorer/origin_transfer.py:161-756 ist der vorhandene125er
+000073 | Fortsetzungscontract der Überlebensclock. Seine drei zusätzlichen
+000074 | Identifikationen und die unabhängige45er Freiheit sind dort ausdrücklich
+000075 | benannt. Auch das ist nicht ungeprüft der QFT4 blocked T_V.
+000076 | Diese früheren Resultate werden wiederverwendet, nicht neu ausgeschlossen.
+000077 | 
+000078 | Die graphische Suche nach T_V/Padm/Kadm/D_V Gewichtssymbolen in nativen
+000079 | Pythonquellen lieferte keine passende Definition; die begrenzte wörtliche
+000080 | Nachsuche nach den tatsächlichen blocked/diagonal admissibility Begriffen
+000081 | in verification/ und tfpt_explorer/ lieferte keinen anderen Gewichtscompiler.
+000082 | Das ist eine gezielte Abdeckung dieses Aufrufpfads, keine Behauptung einer
+000083 | vollständigen Corpusprüfung oder eines universellen Nichtvorhandenseins.
+000084 | 
+000085 | 4. Inverse Transportbeine sind ausdrücklich schon im Original vorhanden
+000086 | 
+000087 | EM3 = documents/archive--tfpt-45--source_extracts--03_em_flavor_source/
+000088 | sections/003-subsection-discrete-phase-operator-and-transport-grammar.tex:
+000089 | 3-12 definiert den unitären Sechsertransport und D_y=yI-delta U6;
+000090 | 91-108 definiert Kstr aus dem tatsächlichen Gram.
+000091 | EM5 = derselbe Ordner/005-source.tex:114-198 setzt
+000092 |  D_y*D_y+eps²=(y²+delta²+eps²)I-y delta(U6+U6^-1).
+000093 | Damit sind inverse Worte bereits im ursprünglichen Gram, Greenkernel und
+000094 | dessen inverser Quadratwurzel vorhanden, nicht erst eine neue Ergänzung.
+000095 | Im bereits bewiesenen positiven Order3 Foldbranch gilt sogar
+000096 |  K_plus=r(-1/2)I+
+000097 |         [r(1)-r(-1/2)](I+M0+M0^-1)/3.
+000098 | v118 det(I-tM0)=det(I-tM0^-1)=1-t³ erklärt allein die Blindheit des
+000099 | skalaren Determinantenreaders gegenüber dieser Orientierung. Es entfernt
+000100 | das inverse Bein nicht aus dem tatsächlichen ganzen Operator.
+000101 | 
+000102 | 5. Die erste konkrete Verarbeitung für diesen Caller
+000103 | 
+000104 | Der ursprüngliche Compiler liefert den Auswahloperator und die C6 Quelle.
+000105 | QFT4 nennt zusätzlich labelabhängige Gewichte, liefert an den geprüften
+000106 | Producerstellen aber nicht ihren tatsächlichen d_r(w) Aufruf oder ihre
+000107 | Kontraktion zum whole T_V. Unsere fertige endliche Antwort und der
+000108 | primitive Wedgeconsumer liefern eine getypte Einfügung; noch nicht
+000109 | nachgewiesen ist genau die Verarbeitung dieser Einfügung in eines jener
+000110 | labelabhängigen Gewichte beziehungsweise in einen anderen ursprünglichen
+000111 | Sewingsummanden des T_V. Hardy=ganzeY ist dafür keine Voraussetzung.
+000112 | 
+000113 | Sobald der tatsächliche d_r oder whole blocked tensor aus einer originalen
+000114 | weiteren Quelle vorliegt, sind Padm, Greenfaktoren und Quellenfunktor bereits
+000115 | vorhanden und können ohne neue Modellwahl durch denselben Caller getragen
+000116 | werden. Seine Perronfunktion darf nicht vorab als frei gewählte Quelle
+000117 | eingesetzt werden. Der bestehende gegebene operative Seed behält seinen
+000118 | vollständigen Zustand, beide Ränder, Reflexion und Zeit.

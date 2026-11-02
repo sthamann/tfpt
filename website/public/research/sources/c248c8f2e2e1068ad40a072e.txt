@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/ADMISSIBLE-SPACE-HISTORY.txt
+Original file SHA-256: d89f814974cc444eee62765a5106293da42069c0388a321027f70895341e966c
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | # Was `P_adm` tatsächlich projiziert und wo die alte Kreislinie endet
+000002 | 
+000003 | Datum: 2026-10-25  
+000004 | Atlas Stand: `83a57ce00f4418709c838faa`  
+000005 | Status: Originalquellenaudit. Keine Atlas, Index, Ledger oder Paper Änderung.
+000006 | 
+000007 | ## Entscheidung
+000008 | 
+000009 | `P_adm` ist in den Originalpapers weder der positive Spektralprojektor des alten Kreisoperators noch ein Rang eins Projektor. Seine präziseste Fassung in v42 ist ein mehrstufiger Hodge und Constraint Projektor:
+000010 | 
+000011 | \[
+000012 | P_{\rm adm}
+000013 | =P_{\rm prim}P_{\rm sing}P_\Theta
+000014 | =P_{\Sigma,+}P_{\rm gap}P_{\rm sing}P_\Theta,
+000015 | \qquad
+000016 | P_{\Sigma,+}=P_C.
+000017 | \]
+000018 | 
+000019 | Hier ist `P_C` der Calderón Projektor auf Rand Cauchydaten, `P_gap` entfernt den niedrigen Spektralbereich eines admissiblen Sektoroperators, `P_sing` wählt Farbsinguletts und `P_Theta` den Determinantensektor. Erst nach der Osterwalder Schrader Rekonstruktion wird dasselbe Symbol als Selektor des physischen Raums
+000020 | 
+000021 | \[
+000022 | \mathcal H_{\rm adm}=\operatorname{Ran}(P_{\rm adm})\subset\mathcal H_{\rm OS}
+000023 | \]
+000024 | 
+000025 | verwendet. Die Quellen geben keine explizite Transportabbildung an, welche den Randprojektor auf dem einteilchigen Cauchydatenraum in diesen rekonstruierten Hilbertraum oder dessen CAR Fockraum überführt.
+000026 | 
+000027 | Das alte `u=M_z` ist in den älteren Papers ein unitärer Matching beziehungsweise Clutching Operator zwischen den beiden Randkopien. Es ist dort kein Element der späteren lokalen Observablenalgebra. Deshalb widerlegt die fehlende `u*` Invarianz des positiven Hardy Raums nicht die alte Gluing Konstruktion. Sie widerlegt nur die stärkere Identifikation, `u` sei bereits ein zulässiger Operator der späteren Sternalgebra auf `H_adm`.
+000028 | 
+000029 | Die vorhandene positive Abbildung reicht weiter als bisher festgehalten:
+000030 | 
+000031 | \[
+000032 | (\mathcal A_+,\mathcal H_+,D_+,B_\Sigma)
+000033 | \longmapsto P_C
+000034 | \longmapsto P_{\Sigma,+}=P_C
+000035 | \longmapsto P_{\rm prim}=P_CP_{\rm gap}
+000036 | \longmapsto P_{\rm adm}.
+000037 | \]
+000038 | 
+000039 | Sie liefert einen kanonischen admissiblen Sektor aus dem einseitigen Randproblem. Sie liefert jedoch noch keine Abbildung
+000040 | 
+000041 | \[
+000042 | \text{erste Kreislinie}\longmapsto
+000043 | |\psi_\Sigma\rangle\langle\psi_\Sigma|
+000044 | \]
+000045 | 
+000046 | und keine Identität zwischen diesem Rang eins Projektor und dem späteren minimalen EM Transfer.
+000047 | 
+000048 | Es gibt allerdings einen stärkeren kanonischen Anschluss, der weder `H_adm=P_+` noch einen Wärmegrenzwert voraussetzt. Auf dem alten Kreis sei `C=P_-` die negative Spektralpolarisation und `u=M_z`. Dann gilt bei der in Abschnitt 5 verwendeten Orientierung exakt
+000049 | 
+000050 | \[
+000051 | uCu^*=C+\Pi_0,
+000052 | \qquad
+000053 | \Pi_0=|e_0\rangle\langle e_0|.
+000054 | \]
+000055 | 
+000056 | Der relative Kovarianzdefekt ist also die kanonische erste Kreislinie. Weil er Rang eins und damit Hilbert Schmidt ist, sind die beiden CAR Polarisierungen Fock äquivalent; der ladungseins Implementer erzeugt relativ zum `C` Vakuum die Linie von `c_0^*\Omega_C`. Das beseitigt die freie Wahl von `psi_Sigma` mathematisch. Die Originale identifizieren ihren EM Operator jedoch nirgends mit dieser Kovarianzdifferenz und typisieren `psi_Sigma` nicht als Einteilchenvektor oder Fockzustand. Der Anschluss ist deshalb eine direkte Rekonstruktion aus den alten Operatoren, noch keine in den Papers ausgesprochene EM Identität.
+000057 | 
+000058 | ## 1. v31: `P_adm` beginnt als abstrakter Hodge Projektor
+000059 | 
+000060 | Quelle: `paper-source:12323340247079857eb23f60`  
+000061 | Pfad: `documents/archive--paper-latex--tfpt-31/sections/002-subsection-primitive-relative-spectral-dynamics.tex`  
+000062 | Zeilen: 1 bis 109  
+000063 | SHA256: `6d8813b95a1ef4d82ee9cd48a25efff3f9c20066a06b85ad121bc26e5dbaae77`
+000064 | 
+000065 | v31 startet mit
+000066 | 
+000067 | \[
+000068 | \mathcal T_{\min}^{\rm adm}=(\mathcal A,\mathcal H,D,J,\Gamma,\iota,\nu),
+000069 | \qquad
+000070 | D=\gamma_n(\partial_n+B_\Sigma)
+000071 | \]
+000072 | 
+000073 | und nimmt bei Bedarf die Realisierung
+000074 | 
+000075 | \[
+000076 | \mathcal H\cong L^2(\widetilde M,S)\otimes\mathcal H_{\rm int}
+000077 | \]
+000078 | 
+000079 | an. Der tangentiale Operator `B_Sigma` gehört damit zum Randdatum. Er wird nicht mit dem älteren `D_Gamma` identifiziert.
+000080 | 
+000081 | Quelle: `paper-source:c108d5aa4300090790075793`  
+000082 | Pfad: `documents/archive--paper-latex--tfpt-31/sections/011-subsection-transport-side-ingredients-for-the-strong-cp-.tex`  
+000083 | Zeilen: 67 bis 236  
+000084 | SHA256: `67f45f9072363128377e9e48735d24fb1748e504b57c0ab44dc136454e1ed144`
+000085 | 
+000086 | Der damalige admissible Raum wird als Faktorraum
+000087 | 
+000088 | \[
+000089 | \mathcal H=\mathcal H_\Sigma\otimes\mathcal H_c
+000090 | \otimes\mathcal H_\Theta\otimes\mathcal H_t
+000091 | \]
+000092 | 
+000093 | geschrieben. Die vier positiven Strafoperatoren testen Nahtgeradheit, Farbneutralität, Determinantensektor und Transportgap. Dann
+000094 | 
+000095 | \[
+000096 | P_{\rm adm}=\Pi_{\ker\Delta_{\rm adm}}
+000097 | =\operatorname*{s-lim}_{\beta\to\infty}e^{-\beta K_{\rm adm}}
+000098 | \]
+000099 | 
+000100 | und auf dem kommutierenden Zweig
+000101 | 
+000102 | \[
+000103 | P_{\rm adm}=P_{\Sigma,+}P_{\rm sing}P_\Theta P_{\rm gap}.
+000104 | \]
+000105 | 
+000106 | In v31 ist `P_{Sigma,+}=(1+iota)/2`, also ein Geradheitsprojektor der Deckinvolution. Es gibt dort noch keine Formel `P_{Sigma,+}=1_{(0,infty)}(B_Sigma)` und keinen Bezug zu `u=M_z`.
+000107 | 
+000108 | ## 2. v42: der positive Fortschritt ist `P_{Sigma,+}=P_C`
+000109 | 
+000110 | Quelle: `paper-source:543cbb0e445a456e04ec4efc`  
+000111 | Pfad: `documents/archive--paper-latex--tfpt-42/sections/003-subsection-primitive-relative-spectral-dynamics.tex`  
+000112 | Zeilen: 1 bis 214 und 256 bis 292  
+000113 | SHA256: `8683d7459140a06d5e03a06adefd05bf7e6538356e4e4da4397133aa991b8fe4`
+000114 | 
+000115 | v42 beginnt konkreter mit dem einseitigen Randdatum
+000116 | 
+000117 | \[
+000118 | \mathcal T_\partial=(\mathcal A_+,\mathcal H_+,D_+,J,\Gamma,B_\Sigma),
+000119 | \qquad D_+=\gamma_n(\partial_n+B_\Sigma).
+000120 | \]
+000121 | 
+000122 | Nach Verdopplung wird der Calderón Projektor `P_C` auf dem Cauchydatenraum `H_partial` gebildet und
+000123 | 
+000124 | \[
+000125 | \iota_C=2P_C-1
+000126 | \]
+000127 | 
+000128 | gesetzt. Der primitive Nahtselektor ist anschließend
+000129 | 
+000130 | \[
+000131 | P_{\Sigma,+}=\frac{1+\iota_C}{2}=P_C.
+000132 | \]
+000133 | 
+000134 | Der primitive Projektor ist
+000135 | 
+000136 | \[
+000137 | P_{\rm prim}=P_C P_{\rm prim,gap}
+000138 | =\Pi_{\ker\Delta_{\rm prim}}.
+000139 | \]
+000140 | 
+000141 | Dies ist die stärkste in den Quellen vorhandene positive Abbildung vom ursprünglichen Randproblem in die admissible Architektur. Sie ist mehr als ein bloß gleicher Name. Der Projektor wird wirklich aus dem einseitigen Dirac Randproblem über dessen Cauchydatenraum konstruiert.
+000142 | 
+000143 | Die Quelle sagt aber nicht, dass dieser Calderón Projektor gleich dem positiven Spektralprojektor des alten Viertelkreisoperators ist. Es fehlt bereits eine lokale isometrische Einbettung des ursprünglichen reduzierenden Quellsektors, welche die erste Kreislinie in den admissiblen Bildraum trägt. Eine unitäre Identifikation des gesamten Kreisraums,
+000144 | 
+000145 | \[
+000146 | W:L^2(S^1,L_a)\longrightarrow\mathcal H_\partial,
+000147 | \qquad
+000148 | WB_aW^*=B_\Sigma,
+000149 | \qquad
+000150 | WP_+(B_a)W^*=P_C,
+000151 | \]
+000152 | 
+000153 | wäre eine hinreichende, aber deutlich stärkere Alternative. Sie ist für den lokalen Bildnachweis nicht notwendig. Auch diese globale Alternative und die Verträglichkeit der ersten Kreislinie mit `P_prim,gap` werden nicht angegeben.
+000154 | 
+000155 | Die tfpt45 Quellenextraktion wiederholt dieselbe Konstruktion, ohne die fehlende Kreisabbildung zu ergänzen:
+000156 | 
+000157 | Quelle: `paper-source:8027564739689dd02e02f11c`  
+000158 | Pfad: `documents/archive--tfpt-45--source_extracts--01_boundary_kernel_source/sections/001-section-primitive-core-and-carrier-interface-handoff.tex`  
+000159 | Zeilen: 58 bis 314  
+000160 | SHA256: `7d6e673d99c29d950dc601283cd51c1cc0b113567eeb79c8396fec9c82a02c79`
+000161 | 
+000162 | ## 3. Der volle Projektor und sein Raum
+000163 | 
+000164 | Quelle: `paper-source:032c510c1e9343d3edda1ae5`  
+000165 | Pfad: `documents/archive--paper-latex--tfpt-42/sections/022-section-closure-theorems-from-the-admissibility-complex.tex`  
+000166 | Zeilen: 1 bis 123  
+000167 | SHA256: `fe626eb8126375f8e0028914a19e045802478f76f0c9b8e6655b8331b70848b2`
+000168 | 
+000169 | Nach Carrier und Determinantenclosure lautet der volle Projektor
+000170 | 
+000171 | \[
+000172 | P_{\rm adm}=P_{\rm prim}P_{\rm sing}P_\Theta
+000173 | =P_CP_{\rm gap}P_{\rm sing}P_\Theta.
+000174 | \]
+000175 | 
+000176 | Die Faktoren wirken laut Quelle auf den kommutierenden Sektoren
+000177 | `H_Sigma`, `H_c`, `H_Theta`, `H_t`. `P_adm` ist deshalb ein Sektorprojektor auf einem großen Hilbertraum. Seine Definition sagt weder Rang eins noch Einteilchenraum.
+000178 | 
+000179 | Quelle: `paper-source:dc394ac2febb4ca550f4989b`  
+000180 | Pfad: `documents/archive--paper-latex--tfpt-42/sections/039-subsection-residual-readout-and-interface-refinements.tex`  
+000181 | Zeilen: 153 bis 250  
+000182 | SHA256: `0ceca3e9ae667adc17e9d6c44541f7f4b59a49fc68fcefc1b16b7d164c8bd990`
+000183 | 
+000184 | Der Symbolführer bestätigt dieselbe Bedeutung. `Adm(X)=1` heißt `P_adm X=X`; die Kriterien umfassen Domäne, endliche relative Wirkung, Nahtgeradheit, bei Bedarf Farbneutralität sowie Gap und Transportpositivität. Das ist eine physische Sektorauswahl, keine einzelne Nahtmode.
+000185 | 
+000186 | Quelle: `paper-source:543cbb0e445a456e04ec4efc`  
+000187 | Pfad wie oben  
+000188 | Zeilen: 256 bis 292
+000189 | 
+000190 | Erst nach der späteren OS Rekonstruktion definiert der Text
+000191 | 
+000192 | \[
+000193 | \mathcal H_{\rm adm}:=\operatorname{Ran}(P_{\rm adm})
+000194 | \subset\mathcal H_{\rm OS}.
+000195 | \]
+000196 | 
+000197 | Die lokale admissible Algebra besteht aus Einschränkungen jener Minkowski Operatoren `A`, für die sowohl
+000198 | 
+000199 | \[
+000200 | A\mathcal H_{\rm adm}\subset\mathcal H_{\rm adm},

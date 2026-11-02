@@ -1,0 +1,188 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/check_c4_triangle_source.py
+Original file SHA-256: edc60a3c3c556f7a0079eaec11858075e251998e8ad853a79ae956bb9c415375
+Inclusive original lines: 1-180
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact finite certificate for the recovered C4 triangle descent.
+000002 | 
+000003 | The analytic implication from a regular singular three-point connection to
+000004 | its local monodromy classes is proved in C4-DESCENT-FINITE-MONODROMY.txt.
+000005 | This file certifies the rational gauge calculation, residues, local
+000006 | polynomials, marked finite model, source map, and the older D4 obstruction.
+000007 | """
+000008 | 
+000009 | import itertools
+000010 | import json
+000011 | 
+000012 | import sympy as sp
+000013 | 
+000014 | 
+000015 | I = sp.I
+000016 | z, t, lam = sp.symbols("z t lam")
+000017 | rt2, rt5 = sp.sqrt(2), sp.sqrt(5)
+000018 | eye = sp.eye(3)
+000019 | zero = sp.zeros(3)
+000020 | checks = []
+000021 | 
+000022 | 
+000023 | def require(name, condition):
+000024 |     if not bool(condition):
+000025 |         raise RuntimeError(name)
+000026 |     checks.append(name)
+000027 | 
+000028 | 
+000029 | def clean_matrix(matrix):
+000030 |     return sp.simplify(sp.expand(matrix))
+000031 | 
+000032 | 
+000033 | def freeze(matrix):
+000034 |     return tuple(sp.simplify(sp.expand_complex(sp.expand(x))) for x in matrix)
+000035 | 
+000036 | 
+000037 | def enumerate_matrix_group(generators):
+000038 |     elements = {freeze(eye): eye}
+000039 |     frontier = [eye]
+000040 |     while frontier:
+000041 |         following = []
+000042 |         for element in frontier:
+000043 |             for generator in generators:
+000044 |                 product = clean_matrix(generator * element)
+000045 |                 key = freeze(product)
+000046 |                 if key not in elements:
+000047 |                     elements[key] = product
+000048 |                     following.append(product)
+000049 |         frontier = following
+000050 |     return list(elements.values())
+000051 | 
+000052 | 
+000053 | def matrix_order(matrix, bound=24):
+000054 |     power = eye
+000055 |     for order in range(1, bound + 1):
+000056 |         power = clean_matrix(power * matrix)
+000057 |         if power == eye:
+000058 |             return order
+000059 |     return None
+000060 | 
+000061 | 
+000062 | # The actual v117 source.
+000063 | U = sp.diag(1, I, -I)
+000064 | A0 = sp.Matrix([
+000065 |     [sp.Rational(1, 2), rt2 / 6, 0],
+000066 |     [rt2 / 6, sp.Rational(1, 4), rt5 / 12],
+000067 |     [0, rt5 / 12, sp.Rational(1, 4)],
+000068 | ])
+000069 | A = zero
+000070 | for k in range(4):
+000071 |     A += U**k * A0 * U**(-k) / (z - I**k)
+000072 | A = clean_matrix(A)
+000073 | A_expected = sp.Matrix([
+000074 |     [2*z**3, 2*rt2*z**2/3, 0],
+000075 |     [2*rt2/3, z**3, rt5*z/3],
+000076 |     [0, rt5*z/3, z**3],
+000077 | ]) / (z**4 - 1)
+000078 | require("exact four-residue sum", clean_matrix(A - A_expected) == zero)
+000079 | require("exact C4 covariance", clean_matrix(I*A.subs(z, I*z) - U*A*U**-1) == zero)
+000080 | 
+000081 | 
+000082 | # Short meromorphic gauge: Y=z^R X(t), t=z^4, R=diag(0,1,-1).
+000083 | R = sp.diag(0, 1, -1)
+000084 | T = sp.diag(1, z, z**-1)
+000085 | B_direct = clean_matrix((T**-1 * A * T - T**-1 * sp.diff(T, z)) / (4*z**3))
+000086 | B0 = sp.Matrix([
+000087 |     [0, 0, 0],
+000088 |     [-rt2/6, -sp.Rational(1, 4), -rt5/12],
+000089 |     [0, 0, sp.Rational(1, 4)],
+000090 | ])
+000091 | B1 = A0
+000092 | Binf = -B0 - B1
+000093 | B_partial = B0/t + B1/(t - 1)
+000094 | require("exact C4 quotient gauge", clean_matrix(B_direct - B_partial.subs(t, z**4)) == zero)
+000095 | require("Fuchs residue sum", clean_matrix(B0 + B1 + Binf) == zero)
+000096 | 
+000097 | char0 = sp.factor(B0.charpoly(lam).as_expr())
+000098 | char1 = sp.factor(B1.charpoly(lam).as_expr())
+000099 | charinf = sp.factor(Binf.charpoly(lam).as_expr())
+000100 | require("residue characteristic polynomials",
+000101 |         char0 == lam*(4*lam - 1)*(4*lam + 1)/16
+000102 |         and char1 == lam*(3*lam - 2)*(3*lam - 1)/9
+000103 |         and charinf == lam*(2*lam + 1)**2/4)
+000104 | require("infinity is semisimple in the short gauge",
+000105 |         clean_matrix(Binf*(Binf + sp.Rational(1, 2)*eye)) == zero
+000106 |         and Binf != zero and Binf != -sp.Rational(1, 2)*eye)
+000107 | 
+000108 | # The old source gauge R=diag(0,1,3) and the short gauge differ by
+000109 | # diag(1,1,t) on the quotient.  This independently reconciles both formulas.
+000110 | R_old = sp.diag(0, 1, 3)
+000111 | T_old = sp.diag(1, z, z**3)
+000112 | B_old_direct = clean_matrix((T_old**-1*A*T_old - T_old**-1*sp.diff(T_old, z))/(4*z**3))
+000113 | B0_old = sp.Matrix([
+000114 |     [0, 0, 0],
+000115 |     [-rt2/6, -sp.Rational(1, 4), 0],
+000116 |     [0, -rt5/12, -sp.Rational(3, 4)],
+000117 | ])
+000118 | require("recovered September source gauge",
+000119 |         clean_matrix(B_old_direct - (B0_old/t + A0/(t-1)).subs(t, z**4)) == zero)
+000120 | H = sp.diag(1, 1, t)
+000121 | B_from_old = clean_matrix(H*(B0_old/t + A0/(t-1))*H**-1 + sp.diff(H, t)*H**-1)
+000122 | require("old and short quotient gauges agree", clean_matrix(B_from_old - B_partial) == zero)
+000123 | 
+000124 | 
+000125 | # Exact marked S4 model from v117.
+000126 | M = sp.Matrix([
+000127 |     [0, -(1+I)/2, (1-I)/2],
+000128 |     [-(1+I)/2, -I/2, -sp.Rational(1, 2)],
+000129 |     [(1-I)/2, -sp.Rational(1, 2), I/2],
+000130 | ])
+000131 | c0 = U**-1
+000132 | m1 = M
+000133 | binf = clean_matrix(m1*c0)
+000134 | require("marked local orders 4 3 2",
+000135 |         matrix_order(c0) == 4 and matrix_order(m1) == 3 and matrix_order(binf) == 2)
+000136 | require("marked oriented product", clean_matrix(m1*c0*binf) == eye)
+000137 | require("local zero class is inverse deck fibre",
+000138 |         c0 == sp.diag(1, -I, I)
+000139 |         and sp.factor(c0.charpoly(lam).as_expr()) == (lam-1)*(lam**2+1))
+000140 | 
+000141 | extended = enumerate_matrix_group([c0, m1])
+000142 | peripherals = [clean_matrix(U**k*M*U**(-k)) for k in range(4)]
+000143 | ordinary = enumerate_matrix_group(peripherals)
+000144 | require("extended marked image has order 24", len(extended) == 24)
+000145 | require("ordinary four-puncture image has order 12", len(ordinary) == 12)
+000146 | product = eye
+000147 | for peripheral in peripherals:
+000148 |     product = clean_matrix(product*peripheral)
+000149 | require("four peripheral product", product == eye)
+000150 | 
+000151 | 
+000152 | # Unique ordered Nielsen class: a 4-cycle and a 3-cycle whose product is an
+000153 | # involution form one simultaneous-conjugacy orbit of 24 pairs in S4.
+000154 | permutations = list(itertools.permutations(range(4)))
+000155 | 
+000156 | 
+000157 | def compose(p, q):
+000158 |     return tuple(p[q[i]] for i in range(4))
+000159 | 
+000160 | 
+000161 | def inverse(p):
+000162 |     return tuple(p.index(i) for i in range(4))
+000163 | 
+000164 | 
+000165 | def cycle_type(p):
+000166 |     remaining = set(range(4))
+000167 |     lengths = []
+000168 |     while remaining:
+000169 |         current = start = next(iter(remaining))
+000170 |         length = 0
+000171 |         while current in remaining:
+000172 |             remaining.remove(current)
+000173 |             length += 1
+000174 |             current = p[current]
+000175 |         lengths.append(length)
+000176 |     return tuple(sorted(lengths))
+000177 | 
+000178 | 
+000179 | cycles4 = [p for p in permutations if cycle_type(p) == (4,)]
+000180 | cycles3 = [p for p in permutations if cycle_type(p) == (1, 3)]

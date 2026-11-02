@@ -1,0 +1,30 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/source-yukawa-forward-gate-20260921/covariance_compression_review_20260921.md
+Original file SHA-256: 0a460e9272a6da78e2bc199cd512807582c83dbccc4fedf08e51f8ab14c88f22
+Inclusive original lines: 218-239
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000218 | ## Konsequenz für die vorhandene Brücke
+000219 | 
+000220 | - `v210_mark_local_dtn.py:98-103` baut mit \(C=(I+\operatorname{sgn}(h))/2\) einen reinen endlichen Projektorzustand.
+000221 | - `v258_dirac_covariance_induction.py:65-76` prüft korrekt die gegenseitige Inversion zwischen einem **bereits vorgegebenen** endlichen \(D\) und \(C_F=(I+e^{D/\mu})^{-1}\).
+000222 | - `v258_dirac_covariance_induction.py:149-155` konstruiert jedoch weder \(C_\Sigma\) noch \(P_F\); die Gleichung \(C_F=P_FC_\Sigma P_F\) wird dort ausdrücklich nur mit `check(..., True)` registriert.
+000223 | 
+000224 | Für eine tatsächliche Schließung von `PS.DIRAC.03` muss ein Kandidat \((C_\Sigma,P_F)\), mit \(Q=I-P_F\), daher mindestens die exakte Gram-Bedingung
+000225 | 
+000226 | \[
+000227 | (Q C_\Sigma P_F)^\dagger(Q C_\Sigma P_F)
+000228 | =\frac{1}{4\cosh^2(D_F/(2\mu))}
+000229 | \]
+000230 | 
+000231 | und, für einen ungeraden induzierten Diracoperator, die Komplementarität
+000232 | 
+000233 | \[
+000234 | \gamma_F(P_FC_\Sigma P_F)\gamma_F=I-P_FC_\Sigma P_F
+000235 | \]
+000236 | 
+000237 | erfüllen. Wird zusätzlich behauptet, dass derselbe volle Generator \(h\) eine exakt autonome Trägerzeit erzeugt, ist außerdem \(QhP_F=0\) zu prüfen; bei einem reinen Spektralprojektor \(C_\Sigma=\chi_\Delta(h)\) wäre dies mit der treuen Fermi-Kovarianz unvereinbar. Falls \(QhP_F\neq0\), muss die Zeitbehauptung stattdessen über die komprimierte Resolvente und den Feshbach-Term formuliert werden.
+000238 | 
+000239 | **Verdict:** Die lineare Algebra liefert eine echte notwendige Schnittstelle, aber noch keine physische Herleitung des offenen Kompressionspfeils. Die exakte modulare Inversion in `v258` bleibt richtig. Ihre Anwendung auf den `v210`-artigen reinen Zustand verlangt eine explizite, vollrangige Purifikationskopplung und schließt bei demselben \(h\) eine zugleich exakt autonome komprimierte unitäre Zeit aus.

@@ -1,0 +1,40 @@
+TFPT scientific source excerpt
+Original repository path: verification/v988_psi_lambda_reduction.py
+Original file SHA-256: eae02e79be5703ccec67f1f11470e3ffd99895b17575c9ce1d553720bd1752cd
+Inclusive original lines: 75-106
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000075 | def qwz_cylinder(Nx, Ny, M, k_twist):
+000076 |     dim = 2 * Nx * Ny
+000077 |     H = np.zeros((dim, dim), dtype=complex)
+000078 | 
+000079 |     def sl(x, y):
+000080 |         return 2 * ((x % Nx) * Ny + y)
+000081 | 
+000082 |     ph = 1j ** k_twist
+000083 |     for x in range(Nx):
+000084 |         for y in range(Ny):
+000085 |             i = sl(x, y)
+000086 |             H[i:i + 2, i:i + 2] += M * SZ
+000087 |             j = sl(x + 1, y)
+000088 |             amp = ph if x == Nx - 1 else 1.0
+000089 |             H[j:j + 2, i:i + 2] += amp * TX
+000090 |             H[i:i + 2, j:j + 2] += np.conj(amp) * TX.conj().T
+000091 |             if y + 1 < Ny:
+000092 |                 j = sl(x, y + 1)
+000093 |                 H[j:j + 2, i:i + 2] += TY
+000094 |                 H[i:i + 2, j:j + 2] += TY.conj().T
+000095 |     return H
+000096 | 
+000097 | 
+000098 | def occ_frame(Nx, Ny, M, k):
+000099 |     H = qwz_cylinder(Nx, Ny, M, k)
+000100 |     w, v = np.linalg.eigh(H)
+000101 |     return w, v, v[:, :Nx * Ny]
+000102 | 
+000103 | 
+000104 | def fermi_cov(w, v):
+000105 |     n = (w < -1e-12).astype(float) + 0.5 * (np.abs(w) <= 1e-12).astype(float)
+000106 |     return (v * n) @ v.conj().T

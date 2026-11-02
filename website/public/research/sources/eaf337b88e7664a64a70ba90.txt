@@ -1,0 +1,22 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/joint-native-algebra-selection-20261016/check_native_quartic_multilocal_support.py
+Original file SHA-256: c0b4cc1bedf7a396146199fbbb538a7494c4b974cbb46e13cb8c64c07ff9ed3b
+Inclusive original lines: 110-123
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000110 | 
+000111 |     # Small existing-path source check only; do not rerun all-mode suites.
+000112 |     packets, packet_norms = old.source_packets()
+000113 |     m.need(packet_norms == norms, 'Same actual full CAR source packet')
+000114 |     for alpha, states in packets.items():
+000115 |         energies = sorted({old.car.energy(bits) for v in states for bits in v})
+000116 |         charges = sorted({old.car.charges(bits) for v in states for bits in v})
+000117 |         B = s.Matrix(5,5,lambda i,j: old.Q.to_sympy(old.car.inner(states[i], states[j])))
+000118 |         m.need(energies == [32] and charges == [(0,)*8] and B.rank() == 5,
+000119 |                'Full actual source packet is neutral, energy32 and injective')
+000120 |         cases[str(alpha)]['source_packet'] = {
+000121 |             'supports': [len(v) for v in states], 'energies': energies,
+000122 |             'residue_charges': charges, 'gram_rank': B.rank()}
+000123 | 

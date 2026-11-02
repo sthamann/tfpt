@@ -1,0 +1,177 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/admissible_pair_20261028/admissible_pair_source.py
+Original file SHA-256: 108640d5938126a1b610b16c0844a64e14b290a10b612af85eaf7c5af8f854be
+Inclusive original lines: 201-369
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |     phi_left, phi_right = partial_gains(Cs)
+000202 |     require(np.array_equal(phi_left, 3 * np.eye(10)), "Phi unital gain 3I")
+000203 |     require(np.array_equal(phi_right, 3 * np.eye(10)), "Phi trace preserving gain 3I")
+000204 | 
+000205 |     rays = old.source_rays()
+000206 |     bell, raw_six, _ = old.reflection_actions(rays)
+000207 |     six, _ = old.outer_mark_action(raw_six)
+000208 |     mapping = old.find_bell_partition_intertwiner(bell, six)
+000209 |     mark_results = []
+000210 |     for mark in range(6):
+000211 |         groups, kraus = old_kraus_for_mark(old, hodge, mark, bell, six, mapping)
+000212 |         left, right = partial_gains(kraus)
+000213 |         require(np.array_equal(left, 12 * np.eye(10)), f"mark {mark}: Psi unital gain 12I")
+000214 |         require(np.array_equal(right, 12 * np.eye(10)), f"mark {mark}: Psi trace preserving gain 12I")
+000215 | 
+000216 |         event_overlaps = []
+000217 |         for K in kraus:
+000218 |             amplitudes = V.conj().T @ K.reshape(-1, order="F")
+000219 |             event_overlaps.append(int(np.vdot(amplitudes, amplitudes).real))
+000220 |         require(sorted(event_overlaps) == [4] * 18 + [36] * 2,
+000221 |                 f"mark {mark}: exact twenty event P5 overlap distribution")
+000222 |         overlap_sum = sum(event_overlaps)
+000223 |         p_psi = Fraction(overlap_sum, 6 * 12 * 10)
+000224 |         require(overlap_sum == 144, f"mark {mark}: total P5 numerator 144")
+000225 |         require(p_psi == Fraction(1, 5), f"mark {mark}: normalized old Choi witness is one fifth")
+000226 | 
+000227 |         group_sums = [sum(int(np.vdot(V.conj().T @ K.reshape(-1, order="F"),
+000228 |                                          V.conj().T @ K.reshape(-1, order="F")).real)
+000229 |                           for K in groups[m]) for m in range(5)]
+000230 |         require(sorted(group_sums) == [16, 16, 16, 48, 48],
+000231 |                 f"mark {mark}: complement resolved overlap sums")
+000232 | 
+000233 |         unscaled_choi = sum((np.outer(K.reshape(-1, order="F"),
+000234 |                                               K.reshape(-1, order="F").conj()) for K in kraus),
+000235 |                             start=np.zeros((100, 100), dtype=np.complex128))
+000236 |         unscaled_choi = exact_complex_integer(unscaled_choi)
+000237 |         sector_weights = []
+000238 |         projected_ranks = []
+000239 |         kraus_vectors = np.stack([K.reshape(-1, order="F") for K in kraus], axis=1)
+000240 |         for dimension, Q in sector_data:
+000241 |             numerator = np.trace(Q @ unscaled_choi)
+000242 |             require(numerator.imag == 0, f"mark {mark}: P{dimension} weight is real")
+000243 |             sector_weights.append(Fraction(int(numerator.real), 6 * 12 * 10))
+000244 |             projected_ranks.append(int(sp.Matrix(Q @ kraus_vectors).rank()))
+000245 |         require(sector_weights == [Fraction(1, 5), Fraction(2, 5), Fraction(2, 5)],
+000246 |                 f"mark {mark}: actual SU5 twirl weights one fifth two fifths two fifths")
+000247 |         symmetric_rank = int(sp.Matrix((identity100 + swap) @ kraus_vectors).rank())
+000248 |         antisymmetric_rank = int(sp.Matrix((identity100 - swap) @ kraus_vectors).rank())
+000249 |         require([symmetric_rank, antisymmetric_rank] == [9, 6],
+000250 |                 f"mark {mark}: old Choi support has nine symmetric and six antisymmetric directions")
+000251 | 
+000252 |         # The SU5 twirl is sum_d p_d (10/d)P_d.  Its population
+000253 |         # entries depend only on whether two duads are equal, intersecting,
+000254 |         # or disjoint.  Evaluate every one of the hundred entries.
+000255 |         population_values = {"stay": set(), "intersect": set(), "disjoint": set()}
+000256 |         for a, e in enumerate(hodge.PAIRS):
+000257 |             for b, f in enumerate(hodge.PAIRS):
+000258 |                 kind = "stay" if a == b else "disjoint" if set(e).isdisjoint(f) else "intersect"
+000259 |                 coordinate = b + 10 * a
+000260 |                 value = sum((weight * Fraction(10, dimension) * Fraction(int(Q[coordinate, coordinate]), 6)
+000261 |                              for weight, (dimension, Q) in zip(sector_weights, sector_data)),
+000262 |                             start=Fraction(0))
+000263 |                 population_values[kind].add(value)
+000264 |         require(population_values == {
+000265 |                     "stay": {Fraction(2, 25)},
+000266 |                     "intersect": {Fraction(19, 225)},
+000267 |                     "disjoint": {Fraction(31, 225)},
+000268 |                 }, f"mark {mark}: exact SU5 twirl population leakage")
+000269 |         require(Fraction(2, 25) + 6 * Fraction(19, 225) + 3 * Fraction(31, 225) == 1,
+000270 |                 f"mark {mark}: twirled population column normalization")
+000271 |         full_commuting = 0
+000272 |         for _name, X in full_generators:
+000273 |             L = two_leg_generator(X, hodge.PAIRS, hodge.PAIR_INDEX)
+000274 |             full_commuting += int(np.array_equal(L @ unscaled_choi, unscaled_choi @ L))
+000275 |         sm_commuting = 0
+000276 |         for _name, X in sm:
+000277 |             L = two_leg_generator(X, hodge.PAIRS, hodge.PAIR_INDEX)
+000278 |             sm_commuting += int(np.array_equal(L @ unscaled_choi, unscaled_choi @ L))
+000279 |         require(full_commuting < 24, f"mark {mark}: old Choi matrix is not fully SU5 invariant")
+000280 |         require(sm_commuting < 12, f"mark {mark}: old Choi matrix is not invariant under fixed SM subgroup")
+000281 | 
+000282 |         mark_results.append({
+000283 |             "mark": mark,
+000284 |             "p_Psi": "1/5",
+000285 |             "su5_twirl_weights": {"P5": "1/5", "P45": "2/5", "P50": "2/5"},
+000286 |             "projected_kraus_span_ranks": {"P5": projected_ranks[0], "P45": projected_ranks[1], "P50": projected_ranks[2]},
+000287 |             "symmetric_antisymmetric_choi_support_ranks": [symmetric_rank, antisymmetric_rank],
+000288 |             "su5_twirl_population_per_target": {kind: str(next(iter(values)))
+000289 |                                                   for kind, values in population_values.items()},
+000290 |             "su5_twirl_population_total": {
+000291 |                 "stay": "2/25",
+000292 |                 "intersect": "38/75",
+000293 |                 "disjoint": "31/75",
+000294 |             },
+000295 |             "event_overlap_squared_distribution": {"4": 18, "36": 2},
+000296 |             "total_overlap_numerator": overlap_sum,
+000297 |             "complement_group_overlap_sums": group_sums,
+000298 |             "normalized_choi_marginals": "I_10/10 on both legs",
+000299 |             "old_choi_su5_generators_commuting": f"{full_commuting}/24",
+000300 |             "old_choi_fixed_sm_generators_commuting": f"{sm_commuting}/12",
+000301 |         })
+000302 | 
+000303 |     require(all(item["p_Psi"] == "1/5" for item in mark_results), "all six marks give p_Psi one fifth")
+000304 |     result = {
+000305 |         "verdict": [
+000306 |             "P5_IS_A_RANK_FIVE_FULL_SU5_INVARIANT_TWO_LEG_PROJECTOR",
+000307 |             "NORMALIZED_HODGE_CHOI_HAS_P5_PROBABILITY_ONE",
+000308 |             "ACTUAL_OLD_TWENTY_EVENT_CHOI_HAS_P5_PROBABILITY_ONE_FIFTH_FOR_ALL_SIX_MARKS",
+000309 |             "ACTUAL_OLD_CHOI_SU5_TWIRL_WEIGHTS_ARE_ONE_FIFTH_TWO_FIFTHS_TWO_FIFTHS",
+000310 |             "SU5_TWIRL_INTRODUCES_EXACT_STAY_AND_INTERSECTION_POPULATION_LEAKAGE",
+000311 |             "TWO_LEG_SU5_AND_FIXED_SM_NEUTRAL_OBSERVABLES_CAN_DISTINGUISH_PHASE_ERASURE",
+000312 |             "ALL_SINGLE_LEG_OBSERVABLES_HAVE_EQUAL_MAXIMALLY_MIXED_CHOI_MARGINALS",
+000313 |             "OLD_BELL10_TO_DUAD_CHART_IS_NOT_A_PHYSICAL_SU5_MODULE_IDENTIFICATION",
+000314 |             "NO_PREPARATION_OR_EVENT_SELECTION_RULE_IS_DERIVED",
+000315 |         ],
+000316 |         "source_sha256": PINS,
+000317 |         "witness": {
+000318 |             "definition": "P5=(1/6) sum_m |C_m>><<C_m|",
+000319 |             "space_in_fixed_chart": "Lambda^2 C^5 tensor Lambda^2 C^5, equivalently the stated dual bar10 tensor bar10 convention",
+000320 |             "rank": 5,
+000321 |             "projector": True,
+000322 |             "su5_invariant": True,
+000323 |             "su5_generators_checked": 24,
+000324 |             "fixed_sm_invariant": True,
+000325 |             "fixed_sm_generators_checked": 12,
+000326 |         },
+000327 |         "normalized_choi_witness": {
+000328 |             "p_Phi": "1",
+000329 |             "p_Psi_all_six_marks": "1/5",
+000330 |             "derivation_Phi": "J_Phi=(1/3)VV^dagger=2P5 and rho_Phi=J_Phi/10",
+000331 |             "derivation_Psi": "sum_l ||V^dagger vec(K_l)||^2=144, divided by 6*12*10",
+000332 |         },
+000333 |         "actual_old_su5_twirl": {
+000334 |             "weights": {"P5": "1/5", "P45": "2/5", "P50": "2/5"},
+000335 |             "choi_support_ranks_under_swap": {"symmetric": 9, "antisymmetric": 6},
+000336 |             "projected_span_ranks": {"P5": 5, "P45": 6, "P50": 7},
+000337 |             "population_per_target": {"stay": "2/25", "intersect": "19/225", "disjoint": "31/225"},
+000338 |             "population_total_per_input": {"stay": "2/25", "intersect": "38/75", "disjoint": "31/75"},
+000339 |             "interpretation": "twirling the noncovariant old channel preserves the P5 weight but creates non-Petersen stay and intersecting transitions",
+000340 |         },
+000341 |         "commutant_scope": {
+000342 |             "two_leg_full_su5_commutant_restrictions_equal": False,
+000343 |             "two_leg_fixed_sm_commutant_restrictions_equal": False,
+000344 |             "reason": "P5 belongs to both commutants and its two normalized Choi expectations are 1 and 1/5",
+000345 |             "single_leg_restrictions_equal": True,
+000346 |             "single_leg_reason": "both normalized Choi marginals are I_10/10 because both channels are trace preserving and unital",
+000347 |             "old_choi_itself_su5_invariant": False,
+000348 |             "old_choi_itself_fixed_sm_invariant": False,
+000349 |         },
+000350 |         "marks": mark_results,
+000351 |         "scope": {
+000352 |             "operator_claim": "exact in the fixed duad chart used by the old source comparison",
+000353 |             "physical_module_claim": False,
+000354 |             "caveat": "the old Bell10 is Sym^2 C^4; the event label duad chart alone is not a linear SU5 intertwiner",
+000355 |             "preparation_claim": False,
+000356 |         },
+000357 |         "checks": len(checks),
+000358 |     }
+000359 |     if output is not None:
+000360 |         output.parent.mkdir(parents=True, exist_ok=True)
+000361 |         output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+000362 |     return result
+000363 | 
+000364 | 
+000365 | if __name__ == "__main__":
+000366 |     parser = argparse.ArgumentParser()
+000367 |     parser.add_argument("--out", type=Path)
+000368 |     args = parser.parse_args()
+000369 |     print(json.dumps(main(args.out), indent=2, sort_keys=True))

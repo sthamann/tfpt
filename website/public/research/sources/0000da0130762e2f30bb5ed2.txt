@@ -1,0 +1,188 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/STABILITY-INDEPENDENT-REVIEW.txt
+Original file SHA-256: b08594a5e0672e69990fefd794c91df959cfec6e26c548083d40be739f10c576
+Inclusive original lines: 1-180
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | AKTUELLE STATUSKORREKTUR, 26.10.2026
+000002 | ====================================
+000003 | Der im folgenden Arbeitsstand noch als numerisch/offen bezeichnete Anschluss
+000004 | der konkreten A0* ODE ist inzwischen durch den wiedergefundenen exakten
+000005 | C4 Dreiecksbeweis vom 28. September geschlossen. Maßgeblich sind jetzt
+000006 | C4-DESCENT-FINITE-MONODROMY.txt und C4-TRIANGLE-INDEPENDENT-REVIEW.txt.
+000007 | Die Identifikation gilt bis zum gemeinsamen konstanten Basiswechsel und der
+000008 | verbleibenden diagonalen Basiszeichenkonvention. Die tatsächliche Verbindung
+000009 | ist C4 äquivariant, hat aber keinen rationalen z->1/z Lift. Der bedingte echte
+000010 | D4 Satz beschreibt eine andere markierte Verbindung. Die Stabilitäts und
+000011 | Wandargumente unten behalten ihren jeweils ausdrücklich angegebenen Scope.
+000012 | Die frühere Offen Kennzeichnung ist überholt; keine neue ODE Suche nötig.
+000013 | 
+000014 | STABILITY-INDEPENDENT-REVIEW
+000015 | ============================
+000016 | 
+000017 | Datum: 2026-10-26
+000018 | 
+000019 | Geprüfte Frage
+000020 | --------------
+000021 | 
+000022 | Beschreiben der stabile Zweig aus TFPT2 section008 und der strikt
+000023 | polystabile Wandpunkt aus section011 dasselbe markierte parabolische Bündel?
+000024 | Außerdem war zu prüfen, ob für die exakte v117 Darstellung der wirkliche
+000025 | Birkhoff Grothendieck Typ ohne numerischen ODE Vergleich folgt.
+000026 | 
+000027 | Urteil
+000028 | ------
+000029 | 
+000030 | Nein, die beiden Textstellen beschreiben nicht dasselbe parabolische Objekt.
+000031 | 
+000032 | Für die exakte v117 Darstellung folgt der Typ
+000033 | 
+000034 |     E = O(-2) + O(-1) + O(-1)
+000035 | 
+000036 | streng aus endlicher Monodromie, äquivarianten holomorphen Sektionen,
+000037 | Deligne Grad und Birkhoff Grothendieck. Die Darstellung ist irreduzibel und
+000038 | unitär, daher ist ihr Mehta Seshadri Objekt stabil.
+000039 | 
+000040 | Die Matrix W_wall aus section011 setzt dagegen voraus, dass die drei
+000041 | Birkhoff Grothendieck Summanden an allen vier Marken die vollen Flags
+000042 | spalten. Ihre drei Zeilen haben parabolischen Grad null. Sie beschreibt somit
+000043 | eine parabolische direkte Summe und folglich einen reduzierbaren strikt
+000044 | polystabilen Zweig. Sie besitzt dieselben lokalen Gewichtsmengen
+000045 | (0,1/3,2/3), aber nicht dieselben relativen Flags wie das stabile v117
+000046 | Objekt.
+000047 | 
+000048 | Damit ist die Aussage in section008, Zeilen 124 bis 127, als ausdrücklich
+000049 | fixierte stabile D4 linearisierte Prämisse mit v117 vereinbar. Die spätere
+000050 | Identifikation derselben Verbindung mit W_wall in section011, Zeilen 262 bis
+000051 | 297, ist nicht vereinbar. Die analytische Identifikation der konkreten A0*
+000052 | ODE mit der abstrakten v117 Verbindung bleibt davon getrennt und in v117 nur
+000053 | numerisch geprüft.
+000054 | 
+000055 | 1. Exakte endliche Darstellung
+000056 | ------------------------------
+000057 | 
+000058 | Die vorhandenen Matrizen sind
+000059 | 
+000060 |     U = diag(1,i,-i),
+000061 |     M_k = U^k M_0 U^(-k),       k=0,1,2,3.
+000062 | 
+000063 | verification/v117_monodromy_weyl_a3.py beweist exakt
+000064 | 
+000065 |     M_0^3=I,
+000066 |     spec(M_0)={1,omega,omega^2},
+000067 |     product_k M_k=I,
+000068 |     |<U,M_0>|=24,
+000069 | 
+000070 | und identifiziert <U,M_0> mit der vorzeichengetwisteten
+000071 | Standarddarstellung von S4.
+000072 | 
+000073 | Für den Coverbeweis ist eine Typpräzisierung wichtig. Die vier wirklichen
+000074 | Peripherien M_k erzeugen nur A4, Ordnung 12. U ist die zusätzliche
+000075 | Vierteldrehungs Kovarianz und erweitert A4 zu S4. Eine unabhängige exakte
+000076 | Gruppenschließung ergab für <M_0,M_1,M_2,M_3>
+000077 | 
+000078 |     Ordnung 12,
+000079 |     Charakterverteilung 3^1, (-1)^3, 0^8,
+000080 |     Summe der Charakterwerte 3-3=0.
+000081 | 
+000082 | Die Einschränkung auf A4 ist also weiterhin irreduzibel und besitzt keinen
+000083 | invarianten Vektor. Man darf den eigentlichen Monodromiecover deshalb nicht
+000084 | als 24 fachen S4 Cover bezeichnen.
+000085 | 
+000086 | 2. Der endliche Cover bestimmt h0 und den BG Typ
+000087 | ------------------------------------------------
+000088 | 
+000089 | Sei Y der kompaktierte Kerncover der Monodromiedarstellung
+000090 | 
+000091 |     pi_1(P1 minus mu4) -> A4.
+000092 | 
+000093 | Er hat Grad 12. An jeder der vier Marken ist die Trägheitsgruppe zyklisch von
+000094 | Ordnung 3. Riemann Hurwitz liefert
+000095 | 
+000096 |     2g(Y)-2 = 12*(-2) + 4*12*(1-1/3) = 8,
+000097 | 
+000098 | also g(Y)=5.
+000099 | 
+000100 | Auf Y trivialisiert sich das endliche unitäre Lokalsystem. Sein
+000101 | äquivariantes holomorphes Bündel ist O_Y tensor V mit der irreduziblen
+000102 | A4 Wirkung auf V=C^3. Unter der rationalen parabolischen beziehungsweise
+000103 | orbifold Korrespondenz gilt für den zugrunde liegenden Deligne Zweig
+000104 | 
+000105 |     H0(P1,E) = H0(Y,O_Y tensor V)^A4.
+000106 | 
+000107 | Da Y kompakt ist, sind holomorphe V wertige Funktionen konstant. Daher
+000108 | 
+000109 |     H0(P1,E) = V^A4 = 0.
+000110 | 
+000111 | Dies ist der verlangte äquivariante Sektionstest. Er verwendet weder die
+000112 | numerische A0* Monodromie noch einen ODE Fit.
+000113 | 
+000114 | An jeder Marke ist die Summe der kanonischen Deligne Exponenten
+000115 | 
+000116 |     0+1/3+2/3=1.
+000117 | 
+000118 | Vier Marken und parabolischer Grad null ergeben deshalb
+000119 | 
+000120 |     deg E = -4.
+000121 | 
+000122 | Nach Birkhoff Grothendieck schreibe
+000123 | 
+000124 |     E = O(d_1)+O(d_2)+O(d_3),       d_1+d_2+d_3=-4.
+000125 | 
+000126 | Aus H0(E)=0 folgt d_j<=-1 für alle j. Drei negative ganze Zahlen mit Summe
+000127 | -4 sind bis auf Reihenfolge eindeutig
+000128 | 
+000129 |     (d_1,d_2,d_3)=(-2,-1,-1).
+000130 | 
+000131 | Damit ist der erwartete BG Typ exakt bewiesen.
+000132 | 
+000133 | Der Z3 Biswas Cover in verification/v499_p2_weights_deligne_bg.py ist ein
+000134 | anderer Cover. Dort liefert der zerlegte reguläre Charakter
+000135 | O_Y tensor (1+chi+chi^2) das Gegenbeispiel
+000136 | 
+000137 |     O + O(-2) + O(-2),       h0=1.
+000138 | 
+000139 | Das ist ein nützlicher reduzierbarer Kontrollzweig. Er darf weder mit dem
+000140 | Grad 12 Monodromiecover noch mit dem irreduziblen v117 Objekt gleichgesetzt
+000141 | werden.
+000142 | 
+000143 | 3. Stabilität folgt aus der Darstellung
+000144 | ---------------------------------------
+000145 | 
+000146 | Die unabhängige exakte Schließung der Peripheriegruppe gibt
+000147 | 
+000148 |     (1/|A4|) sum_g |tr_V(g)|^2 = 1.
+000149 | 
+000150 | Dieselbe Irreduzibilität wird durch die S4 Charakterrechnung in v117 und
+000151 | v499 nach Erweiterung um U bestätigt. Damit ist V irreduzibel. Die unitäre
+000152 | Darstellung mit den festgelegten
+000153 | regulären Peripheriespektren entspricht nach Mehta Seshadri einem stabilen
+000154 | parabolischen Bündel vom parabolischen Grad null. Ein strikt polystabiles
+000155 | Objekt würde einer vollständig reduzierbaren Darstellung entsprechen. Es
+000156 | kann daher nicht dasselbe markierte Objekt sein.
+000157 | 
+000158 | Für den neuen D4 Starrheitssatz ist dies genau die benötigte
+000159 | Irreduzibilitätsprämisse. Wenn die in section008 fixierte D4 Linearisierung
+000160 | wirklich gegeben ist, macht die Eindeutigkeit der angepassten Metrik den
+000161 | Mehta Seshadri Anschluss funktoriell; der Koprimalitätsschritt
+000162 | H^2(D4,mu_3)=0 beseitigt die projektive Restklasse. Der Starrheitssatz wählt
+000163 | dann abstrakt die v117 Bahn. Dieser Schluss identifiziert noch nicht die
+000164 | hingeschriebene A0* Differentialgleichung mit dieser Bahn.
+000165 | 
+000166 | 4. Wo das Wandargument zu viel annimmt
+000167 | --------------------------------------
+000168 | 
+000169 | Section011 benutzt für die drei festen holomorphen Summanden Gesamtgewichte
+000170 | w_1,w_2,w_3 und setzt
+000171 | 
+000172 |     w_1+w_2+w_3=4.
+000173 | 
+000174 | Diese Additivität gilt, wenn an jeder Marke die drei Summandenfasern die
+000175 | volle Flagge spalten. Für drei beliebige unabhängige Linien in einer
+000176 | gefilterten dreidimensionalen Faser sind ihre induzierten Gewichte dagegen
+000177 | keine Permutation von (0,1/3,2/3). Die relative Lage jeder Linie zur Flagge
+000178 | wird einzeln durch Schnitt mit der Flagge bestimmt.
+000179 | 
+000180 | W_wall macht die zusätzliche Spaltungsannahme ausdrücklich:

@@ -235,6 +235,15 @@ export function PaperSection({ paper, headingLevel = "h2" }: { paper: Paper; hea
                     {s.body}
                   </p>
                 </Expandable>
+                {s.resultLink && (
+                  <Link
+                    prefetch={false}
+                    href={s.resultLink.href}
+                    className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-blue-700 underline underline-offset-4 hover:text-blue-900"
+                  >
+                    {s.resultLink.label}
+                  </Link>
+                )}
                 {s.formulas && s.formulas.length > 0 && (
                   <div className="mt-4 space-y-2 border-t border-slate-200/60 pt-4">
                     {s.formulas.map((f, i) => (

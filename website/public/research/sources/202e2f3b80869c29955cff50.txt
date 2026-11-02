@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/check_record_chart_f20_scope.py
+Original file SHA-256: 31cab4aea7adab2e518b1a84155160ef02cc9fe34a0efaf9526eb9eb61604112
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact scope check for the duad chart used by the two-event Hodge filter."""
+000003 | from __future__ import annotations
+000004 | 
+000005 | import argparse
+000006 | import hashlib
+000007 | import importlib.util
+000008 | import itertools as it
+000009 | import json
+000010 | from pathlib import Path
+000011 | 
+000012 | import numpy as np
+000013 | import sympy as sp
+000014 | 
+000015 | 
+000016 | HERE = Path(__file__).resolve().parent
+000017 | [OMITTED: non-scientific conversation or execution metadata]
+000018 | SOURCE = ROOT / "experiments/theory-contracts/compiler-correlated-event-clock-20260919/source_channel.py"
+000019 | HODGE = ROOT / "experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/hodge_complement_20261028/hodge_complement_channel.py"
+000020 | NATIVE_BRIDGE = HERE / "check_native_pauli_f20_bridge.py"
+000021 | NATIVE_REPORT = HERE / "NATIVE-PAULI-F20-UNITARY-BRIDGE.txt"
+000022 | RECORD_CHECKER = HERE / "source_record_hodge.py"
+000023 | PINS = {
+000024 |     str(SOURCE): "3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593",
+000025 |     str(HODGE): "72b04a5bf8b3bd805568af49dec76bd97926fcff4009a830137e2d318807522b",
+000026 |     str(NATIVE_BRIDGE): "e1200c58403e5854d91a2ad6d20d4844ff077ea2b92d4248ae8b9b1606c32149",
+000027 |     str(NATIVE_REPORT): "6ddc3238986183aa3ea4b30890dc5e629be25fc00a0364905ee0479834a6ed33",
+000028 |     str(RECORD_CHECKER): "5fb344b8ad49a6d85bf97228ba6d5b093576f69164fa3a3139e02eec19683119",
+000029 | }
+000030 | 
+000031 | checks: list[str] = []
+000032 | 
+000033 | 
+000034 | def require(value: bool, label: str) -> None:
+000035 |     if not bool(value):
+000036 |         raise AssertionError(label)
+000037 |     checks.append(label)
+000038 | 
+000039 | 
+000040 | def load(name: str, path: Path):
+000041 |     spec = importlib.util.spec_from_file_location(name, path)
+000042 |     require(spec is not None and spec.loader is not None, "import specification " + name)
+000043 |     module = importlib.util.module_from_spec(spec)
+000044 |     spec.loader.exec_module(module)
+000045 |     return module
+000046 | 
+000047 | 
+000048 | def permutation_matrix(images: tuple[int, ...] | list[int]) -> sp.Matrix:
+000049 |     result = sp.zeros(len(images))
+000050 |     for source, target in enumerate(images):
+000051 |         result[target, source] = 1
+000052 |     return result
+000053 | 
+000054 | 
+000055 | def exterior_square(matrix: sp.Matrix) -> sp.Matrix:
+000056 |     pairs = list(it.combinations(range(matrix.rows), 2))
+000057 |     return sp.Matrix.hstack(*[
+000058 |         sp.Matrix([
+000059 |             matrix[i, a] * matrix[j, b] - matrix[j, a] * matrix[i, b]
+000060 |             for i, j in pairs
+000061 |         ])
+000062 |         for a, b in pairs
+000063 |     ])
+000064 | 
+000065 | 
+000066 | def pauli_basis(bits) -> list[sp.Matrix]:
+000067 |     identity = sp.eye(2)
+000068 |     x = sp.Matrix([[0, 1], [1, 0]])
+000069 |     y = sp.Matrix([[0, -sp.I], [sp.I, 0]])
+000070 |     z = sp.diag(1, -1)
+000071 |     one = {(0, 0): identity, (1, 0): x, (0, 1): z, (1, 1): y}
+000072 |     return [sp.kronecker_product(one[(a, b)], one[(c, d)]) for a, b, c, d in bits]
+000073 | 
+000074 | 
+000075 | def bell_congruence(matrix: sp.Matrix, scale: int, basis: list[sp.Matrix]) -> sp.Matrix:
+000076 |     result = sp.zeros(10)
+000077 |     for source, pauli in enumerate(basis):
+000078 |         image = matrix * pauli * matrix.T
+000079 |         hits = []
+000080 |         for target, candidate in enumerate(basis):
+000081 |             for phase in (1, sp.I, -1, -sp.I):
+000082 |                 if image == scale * phase * candidate:
+000083 |                     hits.append((target, phase))
+000084 |         require(len(hits) == 1, f"unique Bell congruence image {source}")
+000085 |         target, phase = hits[0]
+000086 |         result[target, source] = phase
+000087 |     return result
+000088 | 
+000089 | 
+000090 | def to_sympy_integer(array: np.ndarray) -> sp.Matrix:
+000091 |     require(np.array_equal(array.real, np.rint(array.real)), "Gaussian real coordinates")
+000092 |     require(np.array_equal(array.imag, np.rint(array.imag)), "Gaussian imaginary coordinates")
+000093 |     return sp.Matrix([
+000094 |         [sp.Integer(int(round(z.real))) + sp.I * sp.Integer(int(round(z.imag))) for z in row]
+000095 |         for row in array
+000096 |     ])
+000097 | 
+000098 | 
+000099 | def vector_columns(matrices: list[np.ndarray]) -> np.ndarray:
+000100 |     return np.stack([matrix.reshape(-1, order="F") for matrix in matrices], axis=1)
+000101 | 
+000102 | 
+000103 | def coefficient_gram(bell: list[np.ndarray], chart: sp.Matrix, V: sp.Matrix) -> sp.Matrix:
+000104 |     chart_np = np.array(chart.tolist(), dtype=complex)
+000105 |     unitaries = [chart_np.conj().T @ U @ chart_np for U in bell]
+000106 |     products = [second @ first for first in unitaries for second in unitaries]
+000107 |     A = vector_columns(products)
+000108 |     S = to_sympy_integer(A @ A.conj().T)
+000109 |     require(S.rank() == 100, "two-event frame has full rank")
+000110 |     gram = sp.simplify(V.conjugate().T * S.inv() * V)
+000111 |     return gram
+000112 | 
+000113 | 
+000114 | def main(output: Path | None) -> dict:
+000115 |     checks.clear()
+000116 |     for path, digest in PINS.items():
+000117 |         require(hashlib.sha256(Path(path).read_bytes()).hexdigest() == digest, "source pin " + path)
+000118 | 
+000119 |     old = load("pinned_source", SOURCE)
+000120 |     hodge = load("pinned_hodge", HODGE)
+000121 |     basis = pauli_basis(old.SYMMETRIC_BITS)
+000122 | 
+000123 |     # Twice the normalized C matrix keeps the congruence test integral.
+000124 |     c_twice = sp.Matrix([
+000125 |         [-sp.I, -sp.I, -sp.I, -sp.I],
+000126 |         [-sp.I, sp.I, -sp.I, sp.I],
+000127 |         [1, 1, -1, -1],
+000128 |         [-1, 1, 1, -1],
+000129 |     ])
+000130 |     g_native = sp.Matrix([
+000131 |         [0, 0, 0, sp.I],
+000132 |         [0, 0, -1, 0],
+000133 |         [sp.I, 0, 0, 0],
+000134 |         [0, 1, 0, 0],
+000135 |     ])
+000136 |     bell_c = bell_congruence(c_twice, 4, basis)
+000137 |     bell_g = bell_congruence(g_native, 1, basis)
+000138 |     require(bell_c**5 == sp.eye(10) and bell_g**4 == sp.eye(10),
+000139 |             "native Bell F20 generator orders")
+000140 | 
+000141 |     p5 = permutation_matrix([(j + 1) % 5 for j in range(5)])
+000142 |     pg = permutation_matrix([(2 * j) % 5 for j in range(5)])
+000143 |     hodge_c = exterior_square(p5)
+000144 |     hodge_g = exterior_square(pg)
+000145 | 
+000146 |     rays = old.source_rays()
+000147 |     bell, raw_six, _ = old.reflection_actions(rays)
+000148 |     six, _ = old.outer_mark_action(raw_six)
+000149 |     mapping = old.find_bell_partition_intertwiner(bell, six)
+000150 | 
+000151 |     def infer_six(action: sp.Matrix) -> list[tuple[int, ...]]:
+000152 |         bell_perm = tuple(next(row for row in range(10) if action[row, col] != 0)
+000153 |                           for col in range(10))
+000154 |         return [perm for perm in it.permutations(range(6))
+000155 |                 if all(mapping[bell_perm[b]] == old.act_partition(mapping[b], perm)
+000156 |                        for b in range(10))]
+000157 | 
+000158 |     six_c, six_g = infer_six(bell_c), infer_six(bell_g)
+000159 |     require(six_c == [(4, 3, 0, 2, 1, 5)], "native C outer-six action")
+000160 |     require(six_g == [(2, 3, 1, 0, 4, 5)], "native G outer-six action")
+000161 |     fixed = [mark for mark in range(6) if six_c[0][mark] == mark and six_g[0][mark] == mark]
+000162 |     require(fixed == [5], "native F20 fixes exactly outer mark five")
+000163 | 
+000164 |     chart_np, _ = hodge.duad_chart(5, mapping)
+000165 |     raw_chart = sp.Matrix(chart_np.tolist())
+000166 |     raw_c = raw_chart.T * bell_c * raw_chart
+000167 |     raw_g = raw_chart.T * bell_g * raw_chart
+000168 |     require(raw_c != hodge_c and sp.I * raw_g != hodge_g and -sp.I * raw_g != hodge_g,
+000169 |             "raw mark-five duad chart is not an F20 intertwiner for either quarter orientation")
+000170 | 
+000171 |     # Exhaust the five-slot relabelings. Exactly one aligns both underlying
+000172 |     # permutations, but its phases still fail the generator equations.
+000173 |     relabel_hits = []
+000174 |     for perm in it.permutations(range(5)):
+000175 |         q = exterior_square(permutation_matrix(perm))
+000176 |         c_aligned = q.T * raw_c * q
+000177 |         g_aligned = q.T * raw_g * q
+000178 |         c_support = c_aligned.applyfunc(lambda z: int(z != 0))
+000179 |         g_support = g_aligned.applyfunc(lambda z: int(z != 0))
+000180 |         if c_support == hodge_c.applyfunc(lambda z: int(z != 0)) and \
+000181 |                 g_support == hodge_g.applyfunc(lambda z: int(z != 0)):
+000182 |             relabel_hits.append(perm)
+000183 |     require(relabel_hits == [(4, 1, 3, 2, 0)], "unique slot relabeling aligns F20 permutations")
+000184 |     q = exterior_square(permutation_matrix(relabel_hits[0]))
+000185 |     aligned_c = q.T * raw_c * q
+000186 |     aligned_g = q.T * raw_g * q
+000187 |     require(aligned_c != hodge_c and sp.I * aligned_g != hodge_g and -sp.I * aligned_g != hodge_g,
+000188 |             "slot relabeling alone does not repair Bell phases")
+000189 | 
+000190 |     d_plus = sp.diag(1, -sp.I, sp.I, 1, -sp.I, -1, -sp.I, -sp.I, sp.I, 1)
+000191 |     d_minus = sp.diag(1, sp.I, -sp.I, 1, -sp.I, 1, sp.I, -sp.I, -sp.I, 1)
+000192 |     require(d_plus * aligned_c * d_plus.inv() == hodge_c and
+000193 |             d_plus * (sp.I * aligned_g) * d_plus.inv() == hodge_g,
+000194 |             "positive quarter diagonal phase repair is an exact F20 intertwiner")
+000195 |     require(d_minus * aligned_c * d_minus.inv() == hodge_c and
+000196 |             d_minus * (-sp.I * aligned_g) * d_minus.inv() == hodge_g,
+000197 |             "negative quarter diagonal phase repair is an exact F20 intertwiner")
+000198 | 
+000199 |     bridge_plus = raw_chart * q * d_plus.inv()
+000200 |     bridge_minus = raw_chart * q * d_minus.inv()

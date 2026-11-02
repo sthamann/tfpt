@@ -1,0 +1,87 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/GRADED-DETERMINANT-SOURCE.txt
+Original file SHA-256: 9cadaa53b70ebb666109f9cc7a02c07292a6faacf03eae79bf3d235682bf6952
+Inclusive original lines: 568-646
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000568 | Carrier-plus-complement Schur identity
+000569 | --------------------------------------
+000570 | Let F be any existing finite-dimensional orthogonal carrier projection and
+000571 | Q=I-F. No commutation of F with C or u is assumed. Set
+000572 | 
+000573 |   A=I-zC,
+000574 |   A'=uAu*=I-z uCu*.
+000575 | 
+000576 | For |z|<1, A and A' are invertible. Their Q-compressions
+000577 | 
+000578 |   A_QQ=Q A Q |_Q,
+000579 |   A'_QQ=Q A' Q |_Q
+000580 | 
+000581 | are also invertible because QCQ and Q uCu* Q are positive contractions and the
+000582 | Neumann bound applies. Define the Feshbach/Schur complements on F,
+000583 | 
+000584 |   S_F =A_FF -A_FQ A_QQ^(-1) A_QF,
+000585 |   S'_F=A'_FF-A'_FQ A'_QQ^(-1)A'_QF.
+000586 | 
+000587 | They are invertible because A,A' and their QQ blocks are invertible. Standard
+000588 | block Gaussian factorization gives
+000589 | 
+000590 |   A = L diag(S_F,A_QQ) U,
+000591 | 
+000592 | where L and U are triangular unipotent operators. Since F is finite, L-I and
+000593 | U-I are finite rank and their Fredholm determinants are one. The same holds for
+000594 | A'. Also A'-A is trace class by the calculation above, so
+000595 | A'_QQ-A_QQ is trace class. Multiplicativity then gives the exact identity
+000596 | 
+000597 |   det_rel(A',A)
+000598 |    = det_F(S'_F S_F^(-1))
+000599 |      det_rel(A'_QQ,A_QQ).
+000600 | 
+000601 | Since det_rel(A',A)=det_F R_C=1-z,
+000602 | 
+000603 |   1-z
+000604 |    = det_F(S'_F S_F^(-1))
+000605 |      det_rel(A'_QQ,A_QQ).
+000606 | 
+000607 | Thus every finite carrier projection admits an exact carrier-plus-complement
+000608 | factorization of the old circle index. The factor assigned to F alone is the
+000609 | Schur complement, not the naive compression I_F-z FCF. The naive compression
+000610 | can lose or attenuate the factor because it discards the complement term
+000611 | 
+000612 |   A_FQ A_QQ^(-1) A_QF.
+000613 | 
+000614 | No new carrier choice appears in this statement; it holds for every existing
+000615 | finite orthogonal F for which the displayed block decomposition is taken.
+000616 | 
+000617 | Independent review verdict and remaining source condition
+000618 | ---------------------------------------------------------
+000619 | The proposed continuation is mathematically sufficient:
+000620 | 
+000621 | * every inverse used above exists for |z|<1;
+000622 | * every Fredholm determinant is applied to I plus trace class;
+000623 | * the first and last factors cancel exactly;
+000624 | * C_beta-P is trace class on the actual twisted circle;
+000625 | * C_beta is faithful and has h(C_beta)=beta B;
+000626 | * the Schur product retains the exact 1-z factor across carrier and complement
+000627 |   without assuming [F,C]=0.
+000628 | 
+000629 | It introduces no interaction, coupling, fitted kernel or new carrier projector.
+000630 | It does change the pure ground-state covariance P to a thermal covariance
+000631 | C_beta. That is a state choice unless beta is already fixed by the source under
+000632 | comparison. The active support article
+000633 | `documents/articles--2026-08-29--holomorphic_kms_extension_en/sections/002-subsection-the-frozen-car-covariance.tex:1-46`
+000634 | (SHA-256 afb3b8aa137042aa4829e06b04c177fbb7f21661493ce2a5dbab66e2669c21ea,
+000635 | Atlas paper-source:f7ba3ce74ce4a828b7a83353) explicitly sets beta=1, but for a finite collar
+000636 | Hamiltonian h_collar. That passage alone does not identify h_collar with the old
+000637 | circle B.
+000638 | 
+000639 | Accordingly there are two precise scopes:
+000640 | 
+000641 | 1. Same-circle mathematical continuation: PROVED for any declared beta>0 using
+000642 |    only B,u and functional calculus. No new coupling is required, and the exact
+000643 |    determinant factor is beta-independent.
+000644 | 2. Identification with the active physical KMS source: CONDITIONAL on an
+000645 |    original map beta B = h_active, including the normalization of beta. If that
+000646 |    map is already supplied elsewhere, the theorem is the required sufficient

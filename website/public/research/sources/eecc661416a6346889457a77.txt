@@ -1,0 +1,162 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/joint-native-algebra-selection-20261016/check_native_quartic_multilocal_support.py
+Original file SHA-256: c0b4cc1bedf7a396146199fbbb538a7494c4b974cbb46e13cb8c64c07ff9ed3b
+Inclusive original lines: 1-154
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact highest-CAR support of the EXISTING native quartics under the 8-fold.
+000002 | 
+000003 | Uses the original M/O/current/Schur constructors. This checks a field-support
+000004 | witness, not a P1 intervention, a source selector, or a closed-code axiom.
+000005 | """
+000006 | import argparse
+000007 | import hashlib
+000008 | import itertools
+000009 | import json
+000010 | from pathlib import Path
+000011 | 
+000012 | import sympy as s
+000013 | import check_original_current_schur_kernel as old
+000014 | 
+000015 | m = old.m
+000016 | BASE = Path(__file__).resolve().parent
+000017 | M_PATH = m.R / 'experiments/theory-contracts/v16-operator-pullback-20261014/fold-results.json'
+000018 | M_SHA = '253f370a9c84b70c28169ed0aad83d1866245804227e44aa0189e823382f5639'
+000019 | O_ROWS_SHA = '0788b82fa2886b05c8748f41cab34ce1f37be4bfdf665a543e3173bf3b7c2ff4'
+000020 | 
+000021 | 
+000022 | def rows(A):
+000023 |     return [[str(x) for x in row] for row in A.tolist()]
+000024 | 
+000025 | 
+000026 | def principal_coefficients(polys, V):
+000027 |     """Coefficient of t_K in f_i(V^T t), with each t_k nilpotent.
+000028 | 
+000029 |     n_k=:chi_k^* chi_k: has square zero in the highest fermion-degree
+000030 |     associated graded algebra. A degree-four current monomial contributes
+000031 |     only squarefree K, |K|=4. One common creator-order sign is immaterial.
+000032 |     """
+000033 |     subsets = list(itertools.combinations(range(8), 4))
+000034 |     C = s.Matrix([
+000035 |         [s.simplify(sum(
+000036 |             old.Q.to_sympy(c) * sum(
+000037 |                 s.prod(V[k, a] for k, a in zip(K, perm))
+000038 |                 for perm in itertools.permutations(word))
+000039 |             for word, c in f.items())) for f in polys]
+000040 |         for K in subsets])
+000041 |     return subsets, C
+000042 | 
+000043 | 
+000044 | def main(output):
+000045 |     m.need(hashlib.sha256(M_PATH.read_bytes()).hexdigest() == M_SHA,
+000046 |            'Original Weyl matrix source unchanged')
+000047 |     ld = m._lattice_data()
+000048 |     T = s.Matrix.hstack(*map(s.Matrix, m._TARGET_SIMPLE))
+000049 |     O = old.cl(T * ld['basis'].inv() / s.sqrt(2))
+000050 |     m.need(hashlib.sha256(json.dumps(rows(O), separators=(',', ':')).encode()).hexdigest()
+000051 |            == O_ROWS_SHA, 'Same original O, no fitted isometry')
+000052 |     M = s.Matrix(json.loads(M_PATH.read_text())['explicit_Weyl_matrix'])
+000053 |     m.need(old.cl(O.T * O) == s.eye(8) and M.T * M == s.eye(8),
+000054 |            'Original M/O preserve the supplied metric')
+000055 |     Uplus = s.zeros(8, 4)
+000056 |     for a in range(4):
+000057 |         Uplus[2*a, a] = 1/s.sqrt(2)
+000058 |         Uplus[2*a+1, a] = -s.I/s.sqrt(2)
+000059 |     V = old.cl(M.T * O * Uplus)
+000060 |     polys, norms = m.code()  # Also checks the original tensor/Fock normalization.
+000061 |     m.need(norms == [96, 8, 8, 8, 1], 'Original five polynomial norms')
+000062 |     subsets, C = principal_coefficients(polys, V)
+000063 |     G = old.cl(C.conjugate().T * C)
+000064 |     expected = s.diag(s.Matrix([[s.Rational(243,8), -s.Rational(51,16)],
+000065 |                                 [-s.Rational(51,16), s.Rational(115,32)]]),
+000066 |                       s.Matrix([[s.Rational(13,8), -s.Rational(3,8)],
+000067 |                                 [-s.Rational(3,8), s.Rational(13,8)]]), s.Rational(1,4))
+000068 |     m.need(G == expected and C.rank() == 5 and G.det() == s.Rational(495,8),
+000069 |            'Exact original 70-by-5 principal map is injective')
+000070 |     N = s.diag(*[1/s.sqrt(n) for n in norms])
+000071 |     Gn = old.cl(N * G * N)
+000072 |     m.need(Gn.det() == s.Rational(165,131072), 'Normalized principal Gram determinant')
+000073 | 
+000074 |     # The eigenchannel basis is orthonormal. Contraction of the four creator
+000075 |     # legs with eta_r has disjoint (annihilator K, creator K\{k}) basis labels.
+000076 |     # Every Fourier-matrix entry has squared modulus 1/8. Thus this is the
+000077 |     # exact Gram of the degree-seven commutator witness, not a dimension count.
+000078 |     D = s.Matrix.vstack(*[C[j:j+1, :] for j, K in enumerate(subsets) for _ in K])
+000079 |     arc_gram = old.cl(D.conjugate().T * D / 8)
+000080 |     m.need(arc_gram == G/2 and arc_gram.rank() == 5,
+000081 |            'Every original arc has injective creation-leg CAR contraction')
+000082 | 
+000083 |     h = s.symbols('h0:4')
+000084 |     original = [sum(old.Q.to_sympy(c)*s.prod(h[a] for a in word)
+000085 |                     for word,c in f.items()) for f in polys]
+000086 |     cases = {}
+000087 |     for alpha in (s.Rational(1,4), s.Rational(3,4)):
+000088 |         delta = s.Matrix([(k+alpha)/8-s.Rational(1,2) for k in range(8)])
+000089 |         b = old.cl(V.T * delta)
+000090 |         for f in original:
+000091 |             shifted = s.Poly(s.expand(f.subs(dict(zip(h, [h[a]+b[a] for a in range(4)])),
+000092 |                                             simultaneous=True)), *h)
+000093 |             top = sum(c*s.prod(h[a]**word[a] for a in range(4))
+000094 |                       for word,c in shifted.terms() if sum(word) == 4)
+000095 |             m.need(s.expand(top-f) == 0, 'One original b shift leaves principal CAR map unchanged')
+000096 |         # Exact twisted cyclic deck recurrence: write zeta=exp(i*pi/16).
+000097 |         # U_alpha(r,k)=zeta^((4k+4alpha)r)/sqrt(8), wrap=zeta^(32alpha).
+000098 |         a = int(4*alpha)
+000099 |         for r in range(8):
+000100 |             for k in range(8):
+000101 |                 lhs = (4*k+a)*(r+1) if r < 7 else 8*a
+000102 |                 rhs = (4*k+a)*(r+1)
+000103 |                 m.need((lhs-rhs) % 32 == 0, 'Exact holonomy-aware deck eigenchannel law')
+000104 |         cases[str(alpha)] = {
+000105 |             'b': [str(x) for x in b], 'principal_shift_unchanged': True,
+000106 |             'twisted_deck_covariance': True,
+000107 |             'arc_commutator_principal_ranks': [5]*8,
+000108 |             'arc_commutator_gram': 'raw_principal_gram / 2',
+000109 |         }
+000110 | 
+000111 |     # Small existing-path source check only; do not rerun all-mode suites.
+000112 |     packets, packet_norms = old.source_packets()
+000113 |     m.need(packet_norms == norms, 'Same actual full CAR source packet')
+000114 |     for alpha, states in packets.items():
+000115 |         energies = sorted({old.car.energy(bits) for v in states for bits in v})
+000116 |         charges = sorted({old.car.charges(bits) for v in states for bits in v})
+000117 |         B = s.Matrix(5,5,lambda i,j: old.Q.to_sympy(old.car.inner(states[i], states[j])))
+000118 |         m.need(energies == [32] and charges == [(0,)*8] and B.rank() == 5,
+000119 |                'Full actual source packet is neutral, energy32 and injective')
+000120 |         cases[str(alpha)]['source_packet'] = {
+000121 |             'supports': [len(v) for v in states], 'energies': energies,
+000122 |             'residue_charges': charges, 'gram_rank': B.rank()}
+000123 | 
+000124 |     result = {
+000125 |         'status': 'PASS_SCOPED', 'scientific_status_change': False,
+000126 |         'scope': 'Existing conditional NS/current M/O eightfold dictionary; highest CAR field support and actual source packet only.',
+000127 |         'not_established': ['Physical P1 source/reference or preparation', 'A q selector',
+000128 |                             'No-go for arbitrary unbounded local field products'],
+000129 |         'source_inputs': {'M_path': str(M_PATH.relative_to(m.R)), 'M_file_sha256': M_SHA,
+000130 |                           'O_canonical_rows_sha256': O_ROWS_SHA, 'O': rows(O), 'V': rows(V)},
+000131 |         'polynomial_norms': norms,
+000132 |         'original_polynomials': [
+000133 |             {'terms': [{'word': list(word), 'coefficient': str(old.Q.to_sympy(c))}
+000134 |                        for word,c in sorted(f.items())],
+000135 |              'unit_normalization': '1/sqrt('+str(norms[i])+')'}
+000136 |             for i,f in enumerate(polys)],
+000137 |         'subset_order': [list(K) for K in subsets],
+000138 |         'raw_principal_coefficients': rows(C), 'raw_principal_gram': rows(G),
+000139 |         'raw_principal_rank': C.rank(), 'raw_principal_gram_determinant': str(G.det()),
+000140 |         'normalized_principal_gram': rows(Gn),
+000141 |         'normalized_principal_gram_determinant': str(Gn.det()),
+000142 |         'arc_commutator_principal_gram': rows(arc_gram), 'quarters': cases,
+000143 |         'analytic_boundary': 'Bounded proper-interval eigenstate-preparation lemma is proved separately in NATIVE-QUARTIC-MULTILOCAL-SUPPORT.txt; it is not established by a finite numerical test.'}
+000144 |     output.write_text(json.dumps(result, indent=2, sort_keys=True)+'\n')
+000145 |     print(json.dumps({'status': result['status'], 'principal_rank': 5,
+000146 |                       'every_arc_rank': 5, 'source_energy': 32,
+000147 |                       'quarters': list(cases), 'output': str(output)}))
+000148 | 
+000149 | 
+000150 | if __name__ == '__main__':
+000151 |     parser = argparse.ArgumentParser(description=__doc__)
+000152 |     parser.add_argument('--output', type=Path,
+000153 |                         default=BASE/'native_quartic_multilocal_support_results.json')
+000154 |     main(parser.parse_args().output)

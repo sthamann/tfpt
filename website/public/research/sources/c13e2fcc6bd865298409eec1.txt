@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/hodge_complement_20261028/hodge_complement_channel.py
+Original file SHA-256: 72b04a5bf8b3bd805568af49dec76bd97926fcff4009a830137e2d318807522b
+Inclusive original lines: 401-600
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000401 |     # distinct intersecting pair; the old jump map kills all of them.
+000402 |     witness_count = 0
+000403 |     for a, e in enumerate(PAIRS):
+000404 |         for b, f in enumerate(PAIRS):
+000405 |             if a != b and len(set(e) & set(f)) == 1:
+000406 |                 col = a + 10 * b
+000407 |                 require(np.count_nonzero(Snew[:, col]) == 2, f"mark {mark}: new intersecting coherence has two terms")
+000408 |                 require(not np.any(J[:, col]), f"mark {mark}: old intersecting coherence vanishes")
+000409 |                 witness_count += 1
+000410 |     require(witness_count == 60, f"mark {mark}: sixty ordered intersecting coherence witnesses")
+000411 |     return {
+000412 |         "mark": mark,
+000413 |         "population_equal": True,
+000414 |         "old_superoperator_rank": 40,
+000415 |         "old_trace_preserving": True,
+000416 |         "old_unital": True,
+000417 |         "old_hilbert_schmidt_self_adjoint": True,
+000418 |         "old_superoperator_spectrum_scaled_by_12": {"12": 1, "4": 20, "-8": 4, "-4": 15, "0": 60},
+000419 |         "old_choi_rank": 15,
+000420 |         "old_nonzero_choi_eigenvalue": "2/3 (multiplicity 15)",
+000421 |         "group_sizes": [4] * 5,
+000422 |         "group_choi_ranks": group_ranks,
+000423 |         "group_effects": "P_m/3 after normalization",
+000424 |         "phase_factorization": "R_l=D_l C_m on P_m",
+000425 |         "relative_phase_group": "Klein four projectively; three characters each with multiplicity two",
+000426 |         "conditional_channel_factorization": "old block = outcome-conditioned Klein phase twirl after one Hodge outcome",
+000427 |         "individual_baseline_two_cycle_flux": "trivial and removable with an m-conditioned diagonal gauge",
+000428 |         "common_ten_label_gauge_solutions": gauge_solutions,
+000429 |         "common_edge_flux": "nontrivial: none of 4^5 baseline choices and 2^5 class signs admits one common diagonal gauge",
+000430 |         "full_channel_equal": False,
+000431 |         "intersecting_coherence_witnesses": witness_count,
+000432 |     }
+000433 | 
+000434 | 
+000435 | def fock_annihilators() -> list[np.ndarray]:
+000436 |     """Jordan-Wigner signed annihilators on the 32 subset basis."""
+000437 |     out = []
+000438 |     for m in range(5):
+000439 |         a = np.zeros((32, 32), dtype=np.int64)
+000440 |         for mask in range(32):
+000441 |             if mask & (1 << m):
+000442 |                 target = mask ^ (1 << m)
+000443 |                 sign = -1 if (mask & ((1 << m) - 1)).bit_count() % 2 else 1
+000444 |                 a[target, mask] = sign
+000445 |         out.append(a)
+000446 |     return out
+000447 | 
+000448 | 
+000449 | def verify_full_clifford_path(Cs: list[np.ndarray]):
+000450 |     annihilation = fock_annihilators()
+000451 |     identity32 = np.eye(32, dtype=np.int64)
+000452 |     total = sum((a.T @ a + a @ a.T for a in annihilation), start=np.zeros((32, 32), dtype=np.int64))
+000453 |     require(np.array_equal(total, 5 * identity32), "ten Clifford Kraus effects sum to 5I on Fock space")
+000454 | 
+000455 |     # Keep the two-particle basis in the same lexicographic pair order used by
+000456 |     # the Hodge matrices.  Integer mask order is a different ordering.
+000457 |     grade2 = [sum(1 << i for i in pair) for pair in PAIRS]
+000458 |     grade3 = [mask for mask in range(32) if mask.bit_count() == 3]
+000459 |     grade1 = [mask for mask in range(32) if mask.bit_count() == 1]
+000460 |     E2 = np.eye(32, dtype=np.int64)[:, grade2]
+000461 |     E3 = np.eye(32, dtype=np.int64)[:, grade3]
+000462 |     E1 = np.eye(32, dtype=np.int64)[:, grade1]
+000463 |     create_effect = sum((E2.T @ a @ a.T @ E2 for a in annihilation), start=np.zeros((10, 10), dtype=np.int64))
+000464 |     annihilate_effect = sum((E2.T @ a.T @ a @ E2 for a in annihilation), start=np.zeros((10, 10), dtype=np.int64))
+000465 |     require(np.array_equal(create_effect, 3 * np.eye(10, dtype=np.int64)), "creation branch effect 3I")
+000466 |     require(np.array_equal(annihilate_effect, 2 * np.eye(10, dtype=np.int64)), "annihilation branch effect 2I")
+000467 | 
+000468 |     # Complement triples to pairs.  This is the same epsilon transport as C_m,
+000469 |     # up to one harmless fixed basis-sign convention, checked at CP-map level.
+000470 |     D = np.zeros((10, 10), dtype=np.int64)
+000471 |     for col, mask in enumerate(grade3):
+000472 |         triple = tuple(i for i in range(5) if mask & (1 << i))
+000473 |         pair = tuple(i for i in range(5) if not (mask & (1 << i)))
+000474 |         D[PAIR_INDEX[pair], col] = parity(triple + pair)
+000475 |     require(np.array_equal(D.T @ D, np.eye(10, dtype=np.int64)), "triple-complement isometry")
+000476 |     creation_kraus = [D @ E3.T @ a.T @ E2 for a in annihilation]
+000477 |     creation_super = sum((np.kron(K, K) for K in creation_kraus), start=np.zeros((100, 100), dtype=np.int64))
+000478 |     hodge_super = sum((np.kron(C, C) for C in Cs), start=np.zeros((100, 100), dtype=np.int64))
+000479 |     require(np.array_equal(creation_super, hodge_super), "conditional creation channel equals Hodge complement channel")
+000480 | 
+000481 |     # The ten Kraus population walk toggles one bit uniformly: Q_5/5.
+000482 |     population = np.zeros((32, 32), dtype=np.int64)
+000483 |     for a in annihilation:
+000484 |         for K in (a, a.T):
+000485 |             population += K * K
+000486 |     expected = np.zeros((32, 32), dtype=np.int64)
+000487 |     for mask in range(32):
+000488 |         for m in range(5):
+000489 |             expected[mask ^ (1 << m), mask] = 1
+000490 |     require(np.array_equal(population, expected), "ten Clifford Kraus populations are the five-cube adjacency")
+000491 | 
+000492 |     # Quotient the five-cube by antipodes.  Since complement reverses parity
+000493 |     # in odd dimension, each antipodal class has one even representative.
+000494 |     even = [mask for mask in range(32) if mask.bit_count() % 2 == 0]
+000495 |     even_index = {mask: i for i, mask in enumerate(even)}
+000496 |     quotient = np.zeros((16, 16), dtype=np.int64)
+000497 |     for mask in even:
+000498 |         for m in range(5):
+000499 |             odd_neighbor = mask ^ (1 << m)
+000500 |             representative = odd_neighbor ^ 31
+000501 |             quotient[even_index[representative], even_index[mask]] = 1
+000502 |     require(np.all(quotient.sum(axis=0) == 5), "antipodal five-cube quotient is five-regular")
+000503 |     require(np.array_equal(quotient @ quotient,
+000504 |                            5 * np.eye(16, dtype=np.int64) + 2 * (np.ones((16, 16), dtype=np.int64)
+000505 |                                                                   - np.eye(16, dtype=np.int64) - quotient)),
+000506 |             "antipodal five-cube quotient is Clebsch SRG(16,5,0,2)")
+000507 |     return {
+000508 |         "full_fock_channel": "(1/5) sum_m [Ad(a_m)+Ad(a_m^dagger)]",
+000509 |         "population": "Q5/5 on 32 subset states",
+000510 |         "grade2_creation_probability": "3/5",
+000511 |         "grade2_annihilation_probability": "2/5",
+000512 |         "conditioned_creation_after_complement": "five Hodge channel",
+000513 |         "annihilation_output_dimension": 5,
+000514 |         "old_stay_identification": False,
+000515 |         "antipodal_quotient": "Clebsch SRG(16,5,0,2), the already checked v810 object",
+000516 |     }
+000517 | 
+000518 | 
+000519 | def main(output: Path | None) -> dict:
+000520 |     checks.clear()
+000521 |     for path, digest in PINS.items():
+000522 |         require(hashlib.sha256(Path(path).read_bytes()).hexdigest() == digest, "source pin " + path)
+000523 | 
+000524 |     Cs = hodge_amplitudes()
+000525 |     effects = []
+000526 |     for m, C in enumerate(Cs):
+000527 |         Pm = np.diag([int(m not in pair) for pair in PAIRS]).astype(np.int64)
+000528 |         require(np.array_equal(C, C.T), f"C_{m} symmetric")
+000529 |         require(int(sp.Matrix(C).rank()) == 6, f"C_{m} rank six")
+000530 |         require(np.array_equal(C @ C, Pm), f"C_{m} squared is pair-exclusion projector")
+000531 |         effects.append(C.T @ C)
+000532 |     require(np.array_equal(sum(effects), 3 * np.eye(10, dtype=np.int64)), "sum C_m dagger C_m is 3I")
+000533 |     require(np.array_equal(sum(C @ C.T for C in Cs), 3 * np.eye(10, dtype=np.int64)), "five-Hodge channel unital")
+000534 |     gram = np.array([[np.trace(A.T @ B) for B in Cs] for A in Cs], dtype=np.int64)
+000535 |     require(np.array_equal(gram, 6 * np.eye(5, dtype=np.int64)), "five Hodge Kraus vectors orthogonal")
+000536 | 
+000537 |     Snew = sum((np.kron(C, C) for C in Cs), start=np.zeros((100, 100), dtype=np.int64))
+000538 |     require(np.array_equal(Snew, Snew.T), "five-Hodge superoperator Hilbert-Schmidt self-adjoint")
+000539 |     require(int(sp.Matrix(Snew).rank()) == 100, "five-Hodge superoperator invertible")
+000540 |     roots = (3, 2, 1, -1, -2)
+000541 |     poly = np.eye(100, dtype=np.int64)
+000542 |     for root in roots:
+000543 |         poly = poly @ (Snew - root * np.eye(100, dtype=np.int64))
+000544 |     require(not np.any(poly), "five-Hodge spectral polynomial")
+000545 |     multiplicities = multiplicities_from_moments(Snew, roots)
+000546 |     require(multiplicities == [1, 10, 40, 35, 14], "five-Hodge spectrum multiplicities")
+000547 |     sl5_generators = verify_sl5_covariance(Cs)
+000548 |     su5_sectors = verify_su5_sector_spectrum(Cs, Snew)
+000549 | 
+000550 |     old = load_old_source()
+000551 |     rays = old.source_rays()
+000552 |     bell, raw_six, _ = old.reflection_actions(rays)
+000553 |     six, _ = old.outer_mark_action(raw_six)
+000554 |     mapping = old.find_bell_partition_intertwiner(bell, six)
+000555 |     marks = [old_mark_comparison(old, mark, bell, six, mapping, Cs, Snew) for mark in range(6)]
+000556 |     fock = verify_full_clifford_path(Cs)
+000557 | 
+000558 |     result = {
+000559 |         "verdict": [
+000560 |             "FIVE_SEPARATED_HODGE_AMPLITUDES_DEFINE_A_CANONICAL_CPTP_CHANNEL",
+000561 |             "POPULATION_IS_EXACTLY_PETERSEN_ADJACENCY_OVER_THREE",
+000562 |             "OLD_NORMALIZED_J20_HAS_THE_SAME_FIVE_COARSE_EFFECTS_AND_POPULATIONS",
+000563 |             "FULL_QUANTUM_CHANNELS_AND_OUTCOME_OPERATIONS_ARE_NOT_EQUAL",
+000564 |             "OLD_J20_BLOCKS_ARE_HODGE_OUTCOMES_FOLLOWED_BY_CONDITIONAL_KLEIN4_PHASE_TWIRLS",
+000565 |             "PHI_SQUARED_HAS_THE_EXACT_SU5_PROJECTOR_SPECTRUM_1_PLUS_24_PLUS_75",
+000566 |             "PETERSEN_POPULATIONS_RESTRICT_TO_THE_ACTUAL_RADIAL_SHELLS_1_3_6",
+000567 |             "CHANNEL_IS_THE_NORMALIZED_ONE_PARTICLE_CREATION_OR_DUAL_FERMION_LOSS_CHANNEL",
+000568 |             "PHYSICAL_TFPT_SELECTION_OR_RECORD_OF_THE_COMPLEMENT_INDEX_IS_NOT_DERIVED",
+000569 |         ],
+000570 |         "source_sha256": PINS,
+000571 |         "hodge_channel": {
+000572 |             "space": "Lambda^2 C^5",
+000573 |             "dimension": 10,
+000574 |             "kraus_operators": "K_m=C_m/sqrt(3), m=0,...,4",
+000575 |             "kraus_ranks": [6] * 5,
+000576 |             "effect_sum": "sum C_m^dagger C_m=3 I_10",
+000577 |             "C_m_square": "projector onto pairs not containing m",
+000578 |             "trace_preserving": True,
+000579 |             "unital": True,
+000580 |             "hilbert_schmidt_self_adjoint": True,
+000581 |             "choi_rank": 5,
+000582 |             "choi_spectrum": {"2": 5, "0": 95},
+000583 |             "superoperator_rank": 100,
+000584 |             "superoperator_spectrum": {"1": 1, "2/3": 10, "1/3": 40, "-1/3": 35, "-2/3": 14},
+000585 |             "population": "A_Petersen/3",
+000586 |             "sl5_infinitesimal_generators_checked": sl5_generators,
+000587 |             "covariance": "Phi(conj(Lambda2 U) rho conj(Lambda2 U)^dagger)=Lambda2 U Phi(rho) Lambda2 U^dagger for U in SU(5)",
+000588 |             "su5_sectors": su5_sectors,
+000589 |         },
+000590 |         "old_J20_comparisons": marks,
+000591 |         "full_clifford_fock_comparison": fock,
+000592 |         "checks": len(checks),
+000593 |     }
+000594 |     if output is not None:
+000595 |         output.parent.mkdir(parents=True, exist_ok=True)
+000596 |         output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+000597 |     return result
+000598 | 
+000599 | 
+000600 | if __name__ == "__main__":

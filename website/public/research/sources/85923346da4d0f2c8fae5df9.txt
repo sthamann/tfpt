@@ -1,0 +1,85 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_quantum_octic_completion.py
+Original file SHA-256: fa29425b80c6742e29991c01efdc64ae9bd4728d1ac7ebe7ff06378f9a25a432
+Inclusive original lines: 30-106
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000030 |     h = {n: s.symbols(f'h{n}_0:8') for n in range(1, 8)}
+000031 |     variables = tuple(v for n in range(1, 8) for v in h[n])
+000032 |     x = h[1]
+000033 |     # Sum over the 128 half roots: sign parity kills every exponent
+000034 |     # pattern except all-even exponents and (1,1,1,1,1,1,1,1).
+000035 |     p8 = s.S.Zero
+000036 |     for indices in combinations_with_replacement(range(8), 4):
+000037 |         powers = Counter(indices)
+000038 |         coefficient = s.Rational(factorial(8), 2 * prod(
+000039 |             factorial(2 * powers[j]) for j in range(8)))
+000040 |         p8 += coefficient * prod(x[j] ** (2 * powers[j]) for j in range(8))
+000041 |     p8 += 20160 * prod(x)
+000042 |     # The remaining 112 integer roots are +-e_i +-e_j.
+000043 |     for i, j in combinations(range(8), 2):
+000044 |         for k in (0, 2, 4, 6, 8):
+000045 |             p8 += 4 * s.binomial(8, k) * x[i] ** (8-k) * x[j] ** k
+000046 |     q = sum(v*v for v in x)
+000047 |     H8 = s.expand(p8 - 30*q**4)
+000048 |     need(s.expand(sum(s.diff(H8, v, 2) for v in x)) == 0,
+000049 |          'primitive root moment is not harmonic')
+000050 | 
+000051 |     Q = {(a, b): sum(h[a][j]*h[b][j] for j in range(8))
+000052 |          for a in range(1, 8) for b in range(a, 8) if a+b <= 8}
+000053 |     keys = sorted(Q, key=lambda k: (sum(k), k))
+000054 |     monomials = [ks for n in range(1, 5)
+000055 |                  for ks in combinations_with_replacement(keys, n)
+000056 |                  if sum(a+b for a, b in ks) == 8]
+000057 |     need(len(monomials) == 16, 'the declared ansatz changed')
+000058 |     basis = [H8] + [s.expand(prod(Q[k] for k in ks)) for ks in monomials]
+000059 |     w = s.Symbol('w')
+000060 |     substitution = {h[n][j]: h[n][j] + (1 if j == 1 else -1)*w**n
+000061 |                     for n in range(1, 8) for j in (0, 1)}
+000062 |     exponential = [s.S.One]
+000063 |     for n in range(1, 8):
+000064 |         exponential.append(s.expand(sum(
+000065 |             (h[m][0]-h[m][1])*exponential[n-m] for m in range(1, n+1))/n))
+000066 | 
+000067 |     def screening(polynomial):
+000068 |         shifted = s.Poly(s.expand(polynomial.subs(substitution, simultaneous=True)), w)
+000069 |         return s.expand(sum(shifted.nth(r)*exponential[r-1] for r in range(1, 9)))
+000070 | 
+000071 |     def vir(polynomial, k):
+000072 |         linear = sum((n+k)*h[n][j]*s.diff(polynomial, h[n+k][j])
+000073 |                      for n in range(1, 8-k) for j in range(8))
+000074 |         quadratic = sum(s.Rational(m*(k-m), 2)*s.diff(
+000075 |             polynomial, h[m][j], h[k-m][j])
+000076 |             for m in range(1, k) for j in range(8) if m < 8 and k-m < 8)
+000077 |         return s.expand(linear + quadratic)
+000078 | 
+000079 |     rows = {}
+000080 |     for column, polynomial in enumerate(basis):
+000081 |         for label, expression in (('screen', screening(polynomial)),
+000082 |                                   ('L1', vir(polynomial, 1)),
+000083 |                                   ('L2', vir(polynomial, 2))):
+000084 |             for mon, coefficient in s.Poly(expression, *variables).terms():
+000085 |                 if coefficient:
+000086 |                     rows.setdefault((label, mon), {})[column] = coefficient
+000087 |     entries = {(i, j): value for i, row in enumerate(rows.values())
+000088 |                for j, value in row.items()}
+000089 |     matrix = s.SparseMatrix(len(rows), len(basis), entries)
+000090 |     nullspace = matrix.to_DM().nullspace().to_Matrix()
+000091 |     need(nullspace.rows == 1 and nullspace[0, 0] != 0,
+000092 |          'completion is absent or not unique in the declared ansatz')
+000093 |     coefficients = [s.cancel(nullspace[0, j]/nullspace[0, 0]) for j in range(17)]
+000094 |     expected = [1, *[s.Rational(v, 1333) for v in (
+000095 |         28800, -100800, 201600, -126000, -80640, 201600, -130368,
+000096 |         0, -12096, 34944, -46368, 21924, 40656, -33516, 3024, -2178)]]
+000097 |     need(coefficients == expected, 'exact completion coefficients changed')
+000098 |     state = s.expand(sum(c*p for c, p in zip(coefficients, basis)))
+000099 |     need(screening(state) == 0, 'actual root zero mode does not annihilate W8')
+000100 |     need(all(vir(state, k) == 0 for k in range(1, 9)),
+000101 |          'a positive Virasoro mode does not annihilate W8')
+000102 |     terms = s.Poly(state, *variables).terms()
+000103 |     norm = s.cancel(sum(c*c*prod((1+i//8)**a*factorial(a)
+000104 |                       for i, a in enumerate(mon)) for mon, c in terms))
+000105 |     need(norm == s.Rational(65028096000, 43), 'positive full Fock norm changed')
+000106 | 

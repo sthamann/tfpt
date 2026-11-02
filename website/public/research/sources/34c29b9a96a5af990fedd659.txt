@@ -1,0 +1,103 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_normal_index_transport.py
+Original file SHA-256: c3335673ea0d790002b52f96b039b41a8758deed474b4477cb02c77e6bce81b8
+Inclusive original lines: 1-95
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Small exact checks of the conditional normal-to-circle operator proof."""
+000002 | from __future__ import annotations
+000003 | 
+000004 | import hashlib
+000005 | import json
+000006 | from pathlib import Path
+000007 | 
+000008 | import sympy as sp
+000009 | 
+000010 | 
+000011 | def run():
+000012 |     x, lam, a, theta, eps = sp.symbols("x lam a theta eps", real=True)
+000013 |     z = sp.Symbol("z")
+000014 |     checks = []
+000015 | 
+000016 |     def check(name, ok, **data):
+000017 |         checks.append({"name": name, "ok": bool(ok), **data})
+000018 |         if not ok:
+000019 |             raise AssertionError(name)
+000020 | 
+000021 |     gamma = sp.diag(1, 1, -1)
+000022 |     normal = sp.Matrix([[0, 0, 0], [0, 0, lam], [0, lam, 0]])
+000023 |     v = sp.Matrix([1, 0, 0])
+000024 |     f = v*v.T
+000025 |     product = x*gamma+normal
+000026 |     check("normal_grading_and_product_kernel_intertwining",
+000027 |           gamma*normal+normal*gamma == sp.zeros(3)
+000028 |           and product*v == x*v and product*f == f*product)
+000029 |     block = product[1:3, 1:3]
+000030 |     check("nonzero_pair_has_no_crossing",
+000031 |           block*block == (x*x+lam*lam)*sp.eye(2)
+000032 |           and sp.factor(block.det()) == -x*x-lam*lam)
+000033 | 
+000034 |     def h0(degree):
+000035 |         return max(degree+1, 0)
+000036 | 
+000037 |     def h1(degree):
+000038 |         return max(-degree-1, 0)
+000039 | 
+000040 |     census = [{"k": k, "positive_kernel": h0(k-1)+h0(-k),
+000041 |                "negative_kernel": h1(k-1)+h1(-k)} for k in range(1, 7)]
+000042 |     check("spin_line_one_and_scalar_dolbeault_two_are_distinct",
+000043 |           h0(-1+1) == 1 and h1(-1+1) == 0
+000044 |           and h0(1)-h1(1) == 2)
+000045 |     check("same_rank_two_determinant_keeps_extra_kernel_pairs",
+000046 |           all(r["positive_kernel"] == r["k"]
+000047 |               and r["negative_kernel"] == r["k"]-1 for r in census),
+000048 |           census=census)
+000049 | 
+000050 |     phase = eps*sp.sin(4*theta)
+000051 |     potential = a-sp.diff(phase, theta)
+000052 |     check("induced_connection_gauge_transport_on_all_fourier_modes",
+000053 |           sp.simplify(sp.diff(phase, theta)+potential-a) == 0
+000054 |           and sp.integrate(potential, (theta, 0, 2*sp.pi)) == 2*sp.pi*a
+000055 |           and all(phase.subs(theta, j*sp.pi/2) == 0 for j in range(4)))
+000056 |     check("unchanged_vertical_data_can_keep_distinct_horizontal_phase",
+000057 |           sp.simplify(sp.exp(2*sp.pi*sp.I*sp.Rational(1, 2))) == -1)
+000058 | 
+000059 |     e0, e1 = sp.sqrt(x*x+lam*lam), sp.sqrt((x+1)**2+lam*lam)
+000060 |     unit_dot = (lam*lam+x*(x+1))/(e0*e1)
+000061 |     check("exact_projection_angle_identity_for_trace_norm_bound",
+000062 |           sp.factor(1-unit_dot**2-lam**2/(e0**2*e1**2)) == 0)
+000063 |     ell = sp.Symbol("ell", positive=True)
+000064 |     lower_squared = (2*ell+1)**2/(4*ell*(ell+1))
+000065 |     check("monopole_multiplicities_force_divergent_trace_lower_bound",
+000066 |           sp.factor(lower_squared-1) == 1/(4*ell*(ell+1)))
+000067 | 
+000068 |     positive_channel = sp.cosh(2*sp.pi*lam)-sp.cos(2*sp.pi*a)
+000069 |     derivative = sp.diff(sp.log(positive_channel), a)
+000070 |     check("zero_spectral_flow_channel_retains_positive_response",
+000071 |           sp.simplify(derivative.subs(a, sp.Rational(1, 4))
+000072 |                       -2*sp.pi/sp.cosh(2*sp.pi*lam)) == 0,
+000073 |           derivative_at_quarter=str(derivative.subs(a, sp.Rational(1, 4))))
+000074 | 
+000075 |     root = Path(__file__).resolve().parents[3]
+000076 |     files = [Path(__file__).relative_to(root),
+000077 |              Path(__file__).with_name("NORMAL-INDEX-TRANSPORT.txt").relative_to(root),
+000078 |              Path(__file__).with_name("NORMAL-CLUTCH-TO-SOURCE-PUSHFORWARD.txt").relative_to(root),
+000079 |              Path(__file__).with_name("TRANSVERSE-INDEX-EM-RESPONSE.txt").relative_to(root)]
+000080 |     return {"claims": ["MATH.ORIGINAL-SEAM.NORMAL-INDEX-TRANSPORT.01",
+000081 |                        "MATH.ORIGINAL-SEAM.NORMAL-HOLONOMY-CRITERION.01",
+000082 |                        "MATH.ORIGINAL-SEAM.FULL-PRODUCT-TRACECLASS.01"],
+000083 |             "verdict": "PASS_EXACT_STRUCTURAL_CHECKS",
+000084 |             "scope": "Analytic conditional transport, not a selected original source or physical EM functional.",
+000085 |             "checks": checks,
+000086 |             "sources": [{"path": str(p), "sha256": hashlib.sha256((root/p).read_bytes()).hexdigest()}
+000087 |                         for p in files]}
+000088 | 
+000089 | 
+000090 | if __name__ == "__main__":
+000091 |     result = run()
+000092 |     target = Path(__file__).with_name("normal-index-transport-results.json")
+000093 |     target.write_text(json.dumps(result, indent=2, ensure_ascii=False)+"\n")
+000094 |     print(json.dumps({"verdict": result["verdict"], "passed": len(result["checks"]),
+000095 |                       "result": str(target)}, ensure_ascii=False))

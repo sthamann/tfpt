@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/canonical-seam-fermionization-20261025/LATTICE-AND-SOURCE-FRAME.txt
+Original file SHA-256: 77e0687412cb79bf1d51d079946484b6e8be337adf8a72a85bf2e6079b045ae7
+Inclusive original lines: 201-400
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 | stronger than comparing root-system types.
+000202 | 
+000203 | The earlier fold audit already stated the same structure in a coarser form:
+000204 | the M-transported deck-fixed D8 contains 48 roots which are integer in the
+000205 | old target frame and 64 which are spinor roots in that frame.  Equation (6)
+000206 | now identifies those 48 as the exact intersection with the marked
+000207 | order-two intermediate.
+000208 | 
+000209 | 3. Cartan action
+000210 | ----------------
+000211 | 
+000212 | Both D8s have full rank, so both use the same eight-dimensional target
+000213 | Cartan vector space.  This does not make their charged root actions equal.
+000214 | 
+000215 | The canonical marked D8 is the +1 root sector of
+000216 | 
+000217 |   h_can=e_0,
+000218 |   sigma_can(E_r)=exp(2 pi i h_can.r) E_r.                 (7)
+000219 | 
+000220 | Integer D8 roots have phase +1 and the 128 spinor roots have phase -1.
+000221 | 
+000222 | The folded D8 transported by M is the +1 root sector of
+000223 | 
+000224 |   h_fold=M e_0=(1/2,1/2,0,0,0,1/2,1/2,0),
+000225 |   sigma_fold(E_r)=exp(2 pi i h_fold.r) E_r.               (8)
+000226 | 
+000227 | Both (7) and (8) fix all eight Heisenberg Cartan currents, as every torus
+000228 | character does.  On the 240 charged root currents their joint sign counts
+000229 | are
+000230 | 
+000231 |   (sigma_can,sigma_fold)   root count
+000232 |         (+1,+1)                48
+000233 |         (+1,-1)                64
+000234 |         (-1,+1)                64
+000235 |         (-1,-1)                64.                        (9)
+000236 | 
+000237 | Thus the charged action differs on 128 roots.  The two character vectors
+000238 | are not congruent modulo the self-dual E8 lattice.  Their difference has
+000239 | mixed integral and half-integral coordinates and is not an E8 vector.
+000240 | 
+000241 | At the current level the actual dictionaries are correspondingly
+000242 | 
+000243 |   H_target=O H_Gaussian,
+000244 |   H_target=M j_fold.
+000245 | 
+000246 | M is a half-integral Hadamard-type E8 automorphism, not a signed permutation
+000247 | of the eight elementary CAR charges.  Replacing M by a new rotation which
+000248 | makes (5) equal (2) would change the marked dictionary being tested.
+000249 | 
+000250 | 3a. Coordinate equivalence versus a simultaneous marking
+000251 | ----------------------------------------------------------
+000252 | 
+000253 | Let W be an E8 Weyl automorphism.  If one replaces every target datum by its
+000254 | W transport,
+000255 | 
+000256 |   R_can -> W R_can,       R_fold -> W R_fold,
+000257 |   O -> W O,               M -> W M,
+000258 |   d -> W d,
+000259 | 
+000260 | and transports the D5+A3 flag, charged field labels, cocycle choices and
+000261 | local source inclusion by the same W, then all inner products, OPEs and time
+000262 | pairings are unchanged.  This is a passive coordinate change.  In
+000263 | particular, the statement R_can=R_fold is invariant under such a common
+000264 | transport: if it is false before W, it remains false after W.
+000265 | 
+000266 | A different operation chooses W so that W R_fold=R_can while O, the marked
+000267 | D5+A3 flag or d is kept at its old value.  That changes the relative
+000268 | position of source and compiler data.  Such a map certainly exists here:
+000269 | W=M^T sends R_fold=M R_can back to R_can when it is applied to the source
+000270 | side alone.  This does not prove that the original O/M dictionary contains
+000271 | that re-marking or that the source fields and time intertwine after it.  The
+000272 | negative result in (6) is exactly this relative, simultaneously marked
+000273 | statement.  It is independent of the common global coordinate convention
+000274 | and it does not exclude TFPT as a whole.
+000275 | 
+000276 | 4. The actual quarter-time vector
+000277 | ---------------------------------
+000278 | 
+000279 | In the folded CAR component frame the source shift is
+000280 | 
+000281 |   delta_(alpha,k)=(k+alpha)/8-1/2.
+000282 | 
+000283 | The existing dictionary transports it, without a fit, to
+000284 | 
+000285 |   d_alpha=M delta_alpha.                                  (10)
+000286 | 
+000287 | For the two actual quarters this gives
+000288 | 
+000289 |   alpha=1/4:
+000290 |     delta=(-15,-11,-7,-3,1,5,9,13)/32,
+000291 |     d=(-1/2,0,1/16,-1/2,0,-3/16,-1/4,-1/4);
+000292 | 
+000293 |   alpha=3/4:
+000294 |     delta=(-13,-9,-5,-1,3,7,11,15)/32,
+000295 |     d=(-1/2,0,3/16,-1/2,0,-1/16,-1/4,-1/4).              (11)
+000296 | 
+000297 | Orthogonality of M gives, for every CAR root beta,
+000298 | 
+000299 |   d_alpha.(M beta)=delta_alpha.beta.                      (12)
+000300 | 
+000301 | The checker verifies (12) root by root.  Hence the phase multiset on
+000302 | R_fold is exactly the original folded-source time multiset.
+000303 | 
+000304 | The same d_alpha has a different phase multiset on R_can.  A short part of
+000305 | the exact mod-one census, identical in these displayed multiplicities for
+000306 | both quarter choices, is
+000307 | 
+000308 |   phase       on R_can       on R_fold
+000309 |     0             10              0
+000310 |     1/2           18              8
+000311 |     1/4           17              8
+000312 |     3/4           17              8
+000313 |     3/8            0              8
+000314 |     5/8            0              8.                     (13)
+000315 | 
+000316 | The full phase tables are emitted by the checker.  On the two witness roots,
+000317 | 
+000318 |   alpha        d.r_can        d.r_fold
+000319 |    1/4            7/16           13/16
+000320 |    3/4            5/16           11/16.                  (14)
+000321 | 
+000322 | Equations (11)-(14) rule out rescuing the equality by retaining only the
+000323 | same eight-dimensional Cartan space or the same abstract D8 type.  The
+000324 | actual source time sees the embedding difference.
+000325 | 
+000326 | There is also a precise zero-energy spinor line which must be retained in
+000327 | any state/time comparison.  In the folded source coordinates set
+000328 | 
+000329 |   p=(1/2,1/2,1/2,1/2,-1/2,-1/2,-1/2,-1/2).             (15)
+000330 | 
+000331 | It is an E8 root: p^2=2 and it has four minus signs.  With
+000332 | s=(1/2,...,1/2),
+000333 | 
+000334 |   p-s=(0,0,0,0,-1,-1,-1,-1) in D8,
+000335 | 
+000336 | so p lies in the standard even-parity spinor neighbour D8+s.  It is not an
+000337 | integer CAR charge.  It is also not in the coset called c in
+000338 | ODD-SECTOR-REFIELDING-AND-NAHT.txt, where c was deliberately represented as
+000339 | m+s with sum m odd.  That file uses the other spinor convention.
+000340 | 
+000341 | For either alpha=1/4 or 3/4, the relation
+000342 | 
+000343 |   delta_(k+4)=delta_k+1/2
+000344 | 
+000345 | gives
+000346 | 
+000347 |   delta.p=(1/2)[sum_(k=0)^3 delta_k-sum_(k=4)^7 delta_k]
+000348 |          =-1,
+000349 |   p^2/2+delta.p=1-1=0.                                  (16)
+000350 | 
+000351 | The fixed dictionary M sends this vector to
+000352 | 
+000353 |   q=M p=(1,0,0,1,0,0,0,0)=e_1+e_4                     (17)
+000354 | 
+000355 | in one-based target notation.  By orthogonality and d=M delta,
+000356 | 
+000357 |   q^2/2+d.q=p^2/2+delta.p=0.                             (18)
+000358 | 
+000359 | The root q belongs to R_can but not to R_fold=M(D8_CAR).  Thus this same
+000360 | vector simultaneously exhibits the frame distinction and the extra sector
+000361 | introduced by extending the integer CAR charge lattice to E8.
+000362 | 
+000363 | Thus the M-transported zero-time-ground line is the lattice charge line
+000364 | 
+000365 |   C e^(e_1+e_4).
+000366 | 
+000367 | This is the same equal-energy target root primary already recorded in
+000368 | FOLD-COVARIANCE-TO-NATIVE-FIELD-RESPONSE.txt, not a newly discovered
+000369 | degeneracy.  Equation (15) supplies its exact source-spinor preimage.  The
+000370 | bare folded CAR integer charge lattice does not contain p, whereas the full
+000371 | E8 extension does.  Consequently an E8 extension adds a zero-energy charge
+000372 | line at the actual quarter background.  A claim that the extended theory
+000373 | has the same source state and time therefore needs an explicit sector or
+000374 | ground-state selection rule.  This is a state/time compatibility condition,
+000375 | not a rejection of the E8 extension.
+000376 | 
+000377 | 5. Why the odd-sector continuation stops here
+000378 | ----------------------------------------------
+000379 | 
+000380 | For one fixed D8, write its four discriminant classes as
+000381 | 
+000382 |   0, v, c, v+c.
+000383 | 
+000384 | The quadratic form makes v the unique nonisotropic class and c,v+c the two
+000385 | isotropic spinor classes.  The usual neighbour statements are
+000386 | 
+000387 |   D8 union (D8+v) is the odd unimodular lattice Z8,
+000388 |   D8 union (D8+c) and D8 union (D8+v+c) are E8 neighbours.
+000389 | 
+000390 | This is the standard discriminant-form/overlattice correspondence.  Nikulin's
+000391 | classification of integral symmetric bilinear forms supplies the general
+000392 | theorem that even overlattices correspond to isotropic discriminant
+000393 | subgroups.  Here equations (1) and (2) prove the required special case
+000394 | directly.
+000395 | 
+000396 | The known ODD-SECTOR-REFIELDING-AND-NAHT result starts with the CAR D8 and
+000397 | defines a global unitary which is the identity on that even module and is
+000398 | parity-dependent on its odd vector coset.  It already proves that the pulled
+000399 | back target Cartan observable is not local in the unchanged CAR inclusion.
+000400 | The new comparison adds an earlier obstruction: the even module fixed by

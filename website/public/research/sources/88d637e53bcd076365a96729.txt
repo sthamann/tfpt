@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_sewing_20261028/clock/check_e8_common_clock_carrier.py
+Original file SHA-256: 703143bdd86e65a298a2fdd8c636a6117b6dec9001dc2615fc2c3dfc13fae499
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact E8 common-clock carrier test.
+000003 | 
+000004 | This checker asks one bounded question.  Does the *existing* E8 lattice carry
+000005 | both the Coxeter/Galois clock of v223/v315/v419 and the native compiler clock
+000006 | of v634, and what exact relations hold?  It does not construct a tensor
+000007 | product or identify the two order-three hands.
+000008 | 
+000009 | All calculations use exact SymPy arithmetic.  Completeness of the G-lift
+000010 | census follows from the unimodular cyclic Krylov basis K=(r,W r,...,W^7 r):
+000011 | an integral isometry satisfying G W G^-1=W^7 is uniquely determined by G r,
+000012 | and G r must be one of the 240 E8 roots.
+000013 | """
+000014 | 
+000015 | from collections import Counter, deque
+000016 | import hashlib
+000017 | import json
+000018 | from pathlib import Path
+000019 | 
+000020 | import sympy as sp
+000021 | 
+000022 | 
+000023 | HERE = Path(__file__).resolve().parent
+000024 | RESULT = HERE / "e8-common-clock-results.json"
+000025 | 
+000026 | 
+000027 | def matrix_key(m):
+000028 |     return tuple(int(x) for x in m)
+000029 | 
+000030 | 
+000031 | def matrix_order(m, bound=240):
+000032 |     ident = sp.eye(m.rows)
+000033 |     p = ident
+000034 |     for n in range(1, bound + 1):
+000035 |         p = p * m
+000036 |         if p == ident:
+000037 |             return n
+000038 |     raise RuntimeError("REQUIRE failed: matrix order exceeds bound")
+000039 | 
+000040 | 
+000041 | def require(condition, message):
+000042 |     """Runtime certificate check retained by python -O and -OO."""
+000043 |     if not condition:
+000044 |         raise RuntimeError("REQUIRE failed: " + message)
+000045 | 
+000046 | 
+000047 | def charpoly(m):
+000048 |     x = sp.symbols("x")
+000049 |     return str(sp.factor(m.charpoly(x).as_expr()))
+000050 | 
+000051 | 
+000052 | def main():
+000053 |     I8 = sp.eye(8)
+000054 |     e = sp.eye(8)
+000055 |     h = sp.Rational(1, 2)
+000056 | 
+000057 |     # Bourbaki E8 simple roots, verbatim convention used in v781/v1.
+000058 |     a1 = sp.Matrix([
+000059 |         h * (e[j, 0] - e[j, 1] - e[j, 2] - e[j, 3]
+000060 |              - e[j, 4] - e[j, 5] - e[j, 6] + e[j, 7])
+000061 |         for j in range(8)
+000062 |     ])
+000063 |     simple = [
+000064 |         a1, e[:, 0] + e[:, 1], e[:, 1] - e[:, 0],
+000065 |         e[:, 2] - e[:, 1], e[:, 3] - e[:, 2],
+000066 |         e[:, 4] - e[:, 3], e[:, 5] - e[:, 4],
+000067 |         e[:, 6] - e[:, 5],
+000068 |     ]
+000069 |     B = sp.Matrix.hstack(*simple)
+000070 |     gram = B.T * B
+000071 |     require(B.det() == -1 and gram.det() == 1,
+000072 |             "Bourbaki basis and E8 Gram determinants")
+000073 | 
+000074 |     def reflection_std(a):
+000075 |         return I8 - a * a.T
+000076 | 
+000077 |     refl_std = [reflection_std(a) for a in simple]
+000078 |     W_std = I8
+000079 |     for r in refl_std:
+000080 |         W_std = W_std * r
+000081 |     W = sp.simplify(B.inv() * W_std * B)
+000082 |     require(matrix_order(W) == 30 and W**15 == -I8,
+000083 |             "Coxeter element has order 30 and W^15=-I")
+000084 | 
+000085 |     # Native v634 operators in the same real E8 coordinates.
+000086 |     J_std = sp.zeros(8)
+000087 |     for k in range(0, 8, 2):
+000088 |         J_std[k, k + 1] = -1
+000089 |         J_std[k + 1, k] = 1
+000090 |     sigma_std = sp.zeros(8)
+000091 |     for row, col in enumerate([4, 5, 0, 1, 2, 3, 6, 7]):
+000092 |         sigma_std[row, col] = 1
+000093 |     J = sp.simplify(B.inv() * J_std * B)
+000094 |     sigma = sp.simplify(B.inv() * sigma_std * B)
+000095 |     compiler = J * sigma
+000096 |     require(all(J_std * e[:, k] == e[:, k + 1] and
+000097 |                 J_std * e[:, k + 1] == -e[:, k]
+000098 |                 for k in range(0, 8, 2)),
+000099 |             "v634 J is multiplication by +i in the x+iy convention")
+000100 |     require(J.T * gram * J == gram, "native J preserves the E8 Gram form")
+000101 |     require(sigma.T * gram * sigma == gram,
+000102 |             "native sigma preserves the E8 Gram form")
+000103 |     require(J * sigma == sigma * J, "native J and sigma commute")
+000104 |     require(matrix_order(J) == 4 and matrix_order(sigma) == 3,
+000105 |             "native J and sigma have orders 4 and 3")
+000106 |     require(matrix_order(compiler) == 12, "native compiler has order 12")
+000107 |     require(compiler**4 == sigma and compiler**9 == J,
+000108 |             "compiler powers recover sigma and J")
+000109 | 
+000110 |     # Generate all 240 E8 roots in the simple-root coordinates.
+000111 |     reflections = [sp.simplify(B.inv() * r * B) for r in refl_std]
+000112 |     roots = set()
+000113 |     queue = deque()
+000114 |     for i in range(8):
+000115 |         for sign in (1, -1):
+000116 |             v = tuple(sign * int(x) for x in e[:, i])
+000117 |             roots.add(v)
+000118 |             queue.append(v)
+000119 |     while queue:
+000120 |         v = sp.Matrix(queue.popleft())
+000121 |         for r in reflections:
+000122 |             z = tuple(int(x) for x in r * v)
+000123 |             if z not in roots:
+000124 |                 roots.add(z)
+000125 |                 queue.append(z)
+000126 |     require(len(roots) == 240, "E8 root orbit has 240 roots")
+000127 | 
+000128 |     # Complete census of integral lifts of exponent multiplication m -> 7m.
+000129 |     root0 = e[:, 0]
+000130 |     krylov = sp.Matrix.hstack(*[W**k * root0 for k in range(8)])
+000131 |     require(abs(krylov.det()) == 1, "Coxeter Krylov basis is unimodular")
+000132 |     lifts = []
+000133 |     for image in sorted(roots):
+000134 |         r = sp.Matrix(image)
+000135 |         candidate = sp.simplify(
+000136 |             sp.Matrix.hstack(*[W**(7 * k) * r for k in range(8)])
+000137 |             * krylov.inv()
+000138 |         )
+000139 |         if candidate.T * gram * candidate == gram:
+000140 |             require(candidate * W * candidate.inv() == W**7,
+000141 |                     "enumerated isometry conjugates W to W^7")
+000142 |             lifts.append(candidate)
+000143 |     require(len(lifts) == 30, "complete Galois-lift census has size 30")
+000144 | 
+000145 |     fourth_power = {}
+000146 |     order_counts = Counter()
+000147 |     for g in lifts:
+000148 |         o = matrix_order(g)
+000149 |         order_counts[o] += 1
+000150 |         fourth_power.setdefault(str(o), Counter())
+000151 |         hit = next(k for k in range(30) if g**4 == W**k)
+000152 |         fourth_power[str(o)][str(hit)] += 1
+000153 |     require(order_counts == Counter({8: 10, 24: 20}),
+000154 |             "Galois-lift order census")
+000155 |     require(fourth_power == {
+000156 |         "8": Counter({"15": 10}),
+000157 |         "24": Counter({"5": 10, "25": 10}),
+000158 |     }, "Galois-lift fourth-power census")
+000159 | 
+000160 |     order8 = sorted((g for g in lifts if matrix_order(g) == 8), key=matrix_key)
+000161 |     G = order8[0]  # certificate representative only; no source-canonical choice.
+000162 |     require(G**4 == W**15 and W**15 == -I8,
+000163 |             "order-eight lift has fourth power -I")
+000164 |     require(G * W**6 * G.inv() == W**12,
+000165 |             "order-eight lift acts by Frobenius on C5")
+000166 |     require(G * W**10 * G.inv() == W**10,
+000167 |             "order-eight lift centralizes Coxeter C3")
+000168 |     require(G**2 not in (I8, -I8),
+000169 |             "order-eight lift square is not scalar")
+000170 | 
+000171 |     # The lift does not identify or normalize the native compiler hands.
+000172 |     native_normalizer_counts = {
+000173 |         "J_to_J": 0,
+000174 |         "J_to_J_inverse": 0,
+000175 |         "sigma_to_sigma": 0,
+000176 |         "sigma_to_sigma_inverse": 0,
+000177 |         "sigma_to_coxeter_family": 0,
+000178 |         "sigma_to_coxeter_family_inverse": 0,
+000179 |     }
+000180 |     for g in lifts:
+000181 |         gj = g * J * g.inv()
+000182 |         gs = g * sigma * g.inv()
+000183 |         native_normalizer_counts["J_to_J"] += int(gj == J)
+000184 |         native_normalizer_counts["J_to_J_inverse"] += int(gj == J.inv())
+000185 |         native_normalizer_counts["sigma_to_sigma"] += int(gs == sigma)
+000186 |         native_normalizer_counts["sigma_to_sigma_inverse"] += int(gs == sigma.inv())
+000187 |         native_normalizer_counts["sigma_to_coxeter_family"] += int(gs == W**10)
+000188 |         native_normalizer_counts["sigma_to_coxeter_family_inverse"] += int(gs == W**20)
+000189 |     require(all(v == 0 for v in native_normalizer_counts.values()),
+000190 |             "none of the 30 lifts identifies the native compiler hands")
+000191 | 
+000192 |     def orbit_census(generators):
+000193 |         unseen = set(roots)
+000194 |         census = Counter()
+000195 |         while unseen:
+000196 |             start = next(iter(unseen))
+000197 |             unseen.remove(start)
+000198 |             orb = {start}
+000199 |             q = deque([start])
+000200 |             while q:

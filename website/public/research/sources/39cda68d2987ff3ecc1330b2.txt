@@ -1,0 +1,152 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/D4-ORBIFOLD-RIGIDITY.txt
+Original file SHA-256: 167d26868e5f1c0a09420a8e51168893fd8341e595fb06e964e0053cb88859e4
+Inclusive original lines: 361-504
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000361 |     c^4=I
+000362 | 
+000363 | den eindeutigen skalaren Lift c=-delta. Sein Spektrum ist
+000364 | 
+000365 |     {-i,1,i}={1,i,-i},
+000366 | 
+000367 | also genau die v117-Klasse U. Der bislang als zusätzliche Phasensektion
+000368 | beschriebene Vorzeichentwist ist unter diesen Voraussetzungen die eindeutige
+000369 | SU(3)-Hebung.
+000370 | 
+000371 | Dieser Schluss gilt für den stabilen Zweig. Bei einem strikt polystabilen
+000372 | Bündel ist die angepasste Metrik nur modulo eines größeren
+000373 | Automorphismenkommutanten eindeutig. Dann liefert dieselbe Argumentation
+000374 | weder Irreduzibilität noch automatisch den eindeutigen v117-Punkt.
+000375 | 
+000376 | 6. Abgleich mit den tatsächlichen Originalquellen
+000377 | --------------------------------------------------
+000378 | 
+000379 | Die folgenden Bestandteile sind in den vorhandenen Quellen getrennt belegt.
+000380 | 
+000381 | [E] Basisgeometrie.
+000382 | 
+000383 | * Der Trägertext, sections/006-subsection-family-monodromy-and-occupancy.tex,
+000384 |   Zeilen 74 bis 126, gibt P1 minus mu4 und die treue D4-Wirkung
+000385 |   x->ix, x->1/x an.
+000386 | * verification/v168_qgeo_rigidity.py, Zeilen 62 bis 126, prüft die markierte
+000387 |   D4-Basis und die drei nichttrivialen C4-Charaktere exakt.
+000388 | * verification/v146_moebius_d4.py, Zeilen 70 bis 115, prüft die volle D4-Wirkung
+000389 |   auf den expliziten Kohomologieformen. Der Rotationsoperator dort hat
+000390 |   Spektrum {i,-1,-i} und Determinante -1.
+000391 | * Aus genau diesen Originalgeneratoren folgt die hier berechnete
+000392 |   Quotientenfunktion J. Dieser Schluss brauchte keine neue Geometrie.
+000393 | 
+000394 | [C] Determinantentrivialer unitärer Zweig.
+000395 | 
+000396 | * Der Trägertext, dieselbe Datei, Zeilen 211 bis 235, beweist
+000397 |   Hol(nabla_F) subset SU(3), ausdrücklich unter der Annahme einer flach
+000398 |   trivialen Determinantenlinie und einer sie erhaltenden Verbindung.
+000399 | * Für eine ehrliche determinantentriviale Hebung des geometrischen
+000400 |   Rotationsoperators ist der Vorzeichentwist natürlich: Aus dem geometrischen
+000401 |   Spektrum {i,-1,-i} wird {-i,1,i}={1,i,-i}. Dies ist die v117-Klasse U.
+000402 |   verification/v141_deck_selection.py, Zeilen 78 bis 147, findet denselben
+000403 |   getwisteten Charakterzweig im Integerdeck. Das Skript hält die
+000404 |   Realisierungsprämisse jedoch ausdrücklich offen.
+000405 | 
+000406 | [E innerhalb der gewählten Matrixbahn] Kubische Klasse und Irreduzibilität.
+000407 | 
+000408 | * verification/v117_monodromy_weyl_a3.py, Zeilen 52 bis 182, beweist für die
+000409 |   konkrete Matrix M0 exakt Unitarität, det(M0)=1, spec(M0)={1,omega,omega^2},
+000410 |   die Torsionsrelationen und die S4-Gruppe.
+000411 | * verification/v512_seam_tau_flag.py, Zeilen 741 bis 772, beweist für diese
+000412 |   gewählte Bahn einen skalaren gemeinsamen Kommutanten, also
+000413 |   Irreduzibilität. Zeilen 774 bis 780 sagen zugleich klar, dass die
+000414 |   geometrische Realisierung des Viertelzyklus eine zusätzliche Prämisse ist.
+000415 | 
+000416 | [C/E] Der lineare Abstieg im ausdrücklich stabilen P2-Zweig.
+000417 | 
+000418 | TFPT2, section008, Zeilen 124 bis 127, fixiert ausdrücklich die
+000419 | D4-äquivariante stabile parabolische Struktur und nennt sie bereits das
+000420 | abgestiegene Drei-Orbifoldpunkt-Bündel. Wird dies als genuine Linearisierung
+000421 | mit den angegebenen Coxeterfaserexponenten gelesen, schließt der
+000422 | Funktorialitätsbeweis aus Abschnitt 5 den ehrlichen SU(3)-Abstieg und erzwingt
+000423 | c=U. Unter dieser benannten P2-Prämisse ist die Faserhebung kein weiterer
+000424 | freier Ansatz.
+000425 | 
+000426 | [O/C] Stabilität versus späterer Polystabilitätswall.
+000427 | 
+000428 | Mehta-Seshadri identifiziert stabile parabolische Bündel passenden Grades mit
+000429 | irreduziblen unitären Darstellungen. Die Primärquelle ist
+000430 | 
+000431 |     V. B. Mehta und C. S. Seshadri,
+000432 |     Moduli of vector bundles on curves with parabolic structures,
+000433 |     Math. Ann. 248 (1980), 205-239,
+000434 |     https://doi.org/10.1007/BF01420526
+000435 | 
+000436 | Der Architekturtext documents/tfpt_1_architecture_e8/sections/009-source.tex,
+000437 | Zeilen 154 bis 159, markiert den TFPT-spezifischen Schritt
+000438 | "stable = transport-minimal" als bedingt auf Unitarität und das
+000439 | parabolische Wörterbuch. Noch schärfer ist der Konflikt im aktiven TFPT2:
+000440 | section008, Zeilen 124 bis 127, fixiert ein stabiles abgestiegenes Objekt,
+000441 | während section011, Zeilen 257 bis 268, die konfigurierte Spaltung als
+000442 | strikt polystabilen Wallpunkt beschreibt. Strikte Polystabilität entspricht
+000443 | im Mehta-Seshadri-Wörterbuch einer vollständig reduzierbaren, im Allgemeinen
+000444 | reduziblen unitären Darstellung. Sie liefert daher nicht die in Abschnitt 3
+000445 | benötigte Irreduzibilität.
+000446 | 
+000447 | Die explizite A0*-ODE ist ein dritter, getrennter Typ. v117 beweist ihre
+000448 | Übereinstimmung mit M0 nur numerisch. Um sie ohne numerischen
+000449 | Monodromievergleich mit der kanonischen Mehta-Seshadri-Verbindung zu
+000450 | identifizieren, müsste gezeigt werden, dass A0* dieselbe parabolische
+000451 | holomorphe Struktur und deren angepasste unitäre Verbindung realisiert.
+000452 | 
+000453 | 7. Präzises Verdict
+000454 | -------------------
+000455 | 
+000456 | [E] Exakt bewiesen:
+000457 | 
+000458 | * J ist der kanonische D4-Invariantengenerator und nicht eine neue modulare
+000459 |   Ansatzkarte.
+000460 | * Der punktierte Quotient hat Signatur (infinity,2,4), und die ursprüngliche
+000461 |   Peripherie erfüllt M=a^2.
+000462 | * Unter ehrlichem SU(3)-Abstieg, markiertem c-Spektrum und Irreduzibilität
+000463 |   besitzt M genau eine zulässige Quadratwurzelbahn.
+000464 | * Diese Bahn erfüllt a^3=I und ergibt exakt b=M U^{-1}, also v117 und S4.
+000465 | * Die drei alternativen SU(3)-Wurzeln sind ausgeschlossen: eine durch
+000466 |   p_1=3/2, zwei durch eine gemeinsame invariante Linie.
+000467 | 
+000468 | [C/E] Neue Herkunftskompression:
+000469 | 
+000470 | * Für den in TFPT2 section008 ausdrücklich fixierten genuin D4-linearisierten
+000471 |   stabilen parabolischen Zweig folgt der ehrliche Orbifoldabstieg
+000472 |   funktoriell. Determinantennormierung und die Coxeterprojektivklasse erzwingen
+000473 |   c=U. Dann folgt durch den neuen Starrheitssatz die endliche
+000474 |   Ordnung-3-Halbmeridianwahl. Eine zusätzliche modulare Level-4-Auswahl ist
+000475 |   überflüssig.
+000476 | 
+000477 | [E] Aufgeloeste Quellenunterscheidung und [O] verbleibende Bruecke:
+000478 | 
+000479 | * Der stabile Zweig aus section008 und W_wall aus section011 sind verschiedene
+000480 |   Objekte. W_wall ist der vollstaendig flaggesplittete polystabile Zweig; der
+000481 |   v117 Mehta Seshadri Zweig ist stabil und irreduzibel.
+000482 | * Die explizite A0*-ODE muss noch als genau diese kanonische angepasste
+000483 |   Verbindung identifiziert werden. Ihr bloß numerischer Monodromievergleich in v117
+000484 |   reicht für eine reine Herkunftsherleitung noch nicht.
+000485 | 
+000486 | Gegenprüfung
+000487 | ------------
+000488 | 
+000489 | Eine kleine exakte Sympy-Rechnung bestätigte die vier SU(3)-Wurzelspuren
+000490 | 
+000491 |     {0,2,2omega,2omega^2},
+000492 | 
+000493 | die v117-Identitäten
+000494 | 
+000495 |     b=M0 U^{-1},
+000496 |     b^2=I,
+000497 |     a=(bU)^{-1},
+000498 |     a^2=M0,
+000499 |     a^3=I,
+000500 |     a b U=I,
+000501 | 
+000502 | und den +1-Eigenvektor von b mit Betragsquadraten (1/2,1/4,1/4). Es wurde
+000503 | kein neues Prüfskript angelegt, keine Originalquelle verändert und kein
+000504 | Atlas-Eintrag geschrieben.

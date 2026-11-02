@@ -1,0 +1,115 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/PIN-WINDING-DESCENT.txt
+Original file SHA-256: 55205d7226e878958e7c2ee7c925f291a4d2248bde83407bf4324a4e16fa4c26
+Inclusive original lines: 1-107
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | WINDING TIMES CHARGE CONJUGATION ON A FIXED PIN DOMAIN
+000002 | =====================================================
+000003 | 26 October 2026
+000004 | Claim MATH.ORIGINAL-SEAM.PIN-WINDING-DESCENT.01
+000005 | 
+000006 | The next actual candidate after the recovered quarter comparison is
+000007 | 
+000008 |  A=exp(i pi x) sigma1 K = u_cov C.
+000009 | 
+000010 | Use precisely the flat Moebius family in Chakraborty, arXiv:2610.03745v1:
+000011 |  D=-i(sigma1 partial_x+sigma2 partial_w),
+000012 |  Psi(x+1,-w)=c sigma1 Psi(x,w), c=plus or minus i,
+000013 |  sigma1 Psi(x,plus/minus1)=b Psi(x,plus/minus1), b=plus/minus1.
+000014 | This is a supplied comparison family, not a derivation of all P1 geometry.
+000015 | 
+000016 | 1. Positive fixed-domain result
+000017 | --------------------------------
+000018 | The already given C=sigma1 K sends(c,b) to(conj(c),b)=(-c,b).
+000019 | The cover winding exp(i pi x) changes that lift sign once more. Their
+000020 | composition therefore preserves the SINGLE fixed(c,b) Sobolev domain.
+000021 | A is antiunitary, A²=I, and it preserves support in the cover chart.
+000022 | Thus the two old operations compose to a fixed-domain descent map.
+000023 | 
+000024 | 2. The first operator identity determines its actual scope
+000025 | ----------------------------------------------------------
+000026 | Differentiate the actual phase instead of treating it as a constant:
+000027 | 
+000028 |  D u_cov=u_cov D+pi sigma1 u_cov,
+000029 |  D C=-C D,
+000030 |  D A=-A D+pi sigma1 A,
+000031 |  A D A=-D+pi sigma1.                                  (1)
+000032 | 
+000033 | The nonzero matrix term is essential. A is neither a symmetry nor an exact
+000034 | particle-hole symmetry of the original D. For example,
+000035 |  A exp(-t|D|) A=exp(-t|-D+pi sigma1|),
+000036 | which is not the same positive semigroup. The transverse derivative makes
+000037 | sigma1 fail to commute with D, so a scalar phase cannot remove the term.
+000038 | 
+000039 | The centered operator D_cen=D-(pi/2)sigma1 does anticommute with A. Its
+000040 | centering is an additional flat connection. Multiplication by
+000041 | exp(-i pi x/2) relates it to a different multiplier c'=-ic=plus/minus1.
+000042 | That changes the displayed Pin/flat data and is not an equality for the
+000043 | given fixed Pin-minus realization.
+000044 | 
+000045 | 3. Full two-dimensional sea versus reduced circle
+000046 | -------------------------------------------------
+000047 | For the GIVEN full D negative sea, a particle-hole Fock lift needs the
+000048 | polarization mismatch to be Hilbert-Schmidt. The exact spectrum in the
+000049 | primary paper supplies, for each transverse n>=1, blocks
+000050 | 
+000051 |  H=bq sigma1+mu sigma3, mu=n pi/2,
+000052 |  q=2pi(k+theta_n), theta_n=1/4 or3/4.
+000053 | 
+000054 | By (1), the mismatch has the same Hilbert-Schmidt norm as the difference
+000055 | of the positive projectors of H and H-pi sigma1. Put x=bq. Exactly,
+000056 | 
+000057 |  ||DeltaP||_HS²
+000058 |    =1-[x(x-pi)+mu²]/[sqrt(x²+mu²)sqrt((x-pi)²+mu²)].    (2)
+000059 | 
+000060 | For |x|<=mu and mu>=2pi, the determinant identity
+000061 | 
+000062 |  (x²+mu²)((x-pi)²+mu²)-[x(x-pi)+mu²]²=pi²mu²
+000063 | 
+000064 | rationalizes (2). Since E0²<=2mu² and E1²<=13mu²/4,
+000065 | 
+000066 |  ||DeltaP||_HS² >= pi²/(13mu²)=4/(13n²).
+000067 | 
+000068 | For every n>=4, the longitudinal grid of spacing2pi contains at least
+000069 | n/4 frequencies in |q|<=mu. Each transverse level therefore contributes
+000070 | at least1/(13n). The full Hilbert-Schmidt sum diverges. This is an analytic
+000071 | lower bound, not a numerical extrapolation of a finite truncation.
+000072 | 
+000073 | Consequently A has no particle-hole Fock implementation for this canonical
+000074 | FULL TWO-DIMENSIONAL sea. The transverse zero branch is different: its
+000075 | quarter circle mismatch has only the known finite rank-one defect.
+000076 | The old reduced-circle Fock result remains valid. A general original P1
+000077 | kernel is not excluded by this calculation on the stated comparison class.
+000078 | 
+000079 | 4. Calderon and geometric reflection require their own maps
+000080 | -----------------------------------------------------------
+000081 | For a local bulk D solution, (1) gives D(A Psi)=pi sigma1 A Psi. Thus A is
+000082 | not a bulk D solution intertwiner. This fact alone does NOT decide whether
+000083 | the induced boundary map preserves the Calderon range: another D solution
+000084 | could extend the same transformed boundary trace. The separate identity
+000085 | A_boundary Ran(P_C)=Ran(P_C) has not been proved or disproved here.
+000086 | 
+000087 | A also moves no base point; it is pointwise conjugation and multiplication.
+000088 | Its involution/domain property therefore does not identify it with the
+000089 | original OS collar reflection Theta. State, time, actual boundary Cauchy
+000090 | data and common collar/reference transport remain to be matched.
+000091 | 
+000092 | 5. Checks and primary sources
+000093 | -------------------------------
+000094 | check_pin_winding_descent.py verifies the Pauli/plane-wave identity, fixed
+000095 | Pin multiplier, boundary eigenlines, exact projector determinant identity
+000096 | and250 quarter-grid controls. The infinite conclusion is proved by the
+000097 | lower bound above. Normal and python -OO outputs are byte-identical.
+000098 | DESCENT-CANDIDATE-REVIEW.txt independently reviews the same candidate; its
+000099 | Calderon statement has the precise boundary-range limitation of section4.
+000100 | 
+000101 | Primary source actually read:
+000102 | Anik Chakraborty, Pin Equivariance and Local Dirac Boundary Problems on the
+000103 | Flat Moebius Band, arXiv:2610.03745v1, sections3,6,8.2-8.4:
+000104 | https://arxiv.org/html/2610.03745v1
+000105 | Old exact source dictionary:
+000106 | canonical-seam-fermionization-20261025/MOBIUS-QUARTER-OPERATOR-DICTIONARY.txt.
+000107 | No physical T gate or TFPT.TOE.COMPLETE.01 is closed by this assessment.

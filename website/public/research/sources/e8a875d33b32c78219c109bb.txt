@@ -1,0 +1,140 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/GRADED-DETERMINANT-SOURCE.txt
+Original file SHA-256: 9cadaa53b70ebb666109f9cc7a02c07292a6faacf03eae79bf3d235682bf6952
+Inclusive original lines: 435-566
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000435 | Appendix: faithful relative-determinant continuation
+000436 | ====================================================
+000437 | 
+000438 | Status: PROVED as a sufficient operator theorem. Conditional only at the final
+000439 | source-identification step described below.
+000440 | 
+000441 | Purpose
+000442 | -------
+000443 | The preceding appendix showed that a literal compression of the pure projector
+000444 | covariance cannot simultaneously retain the exact factor 1-z and be strictly
+000445 | faithful. The following construction resolves that mathematical tension without
+000446 | changing the circle operator, the shift, or an existing carrier projection. It
+000447 | uses the relative determinant of the full carrier-plus-complement operator.
+000448 | 
+000449 | Circle assumptions and orientation
+000450 | ----------------------------------
+000451 | Let B be the self-adjoint old circle operator and
+000452 | 
+000453 |   P=1_(B<0),
+000454 |   u=M_z.
+000455 | 
+000456 | Assume the orientation actually used in the old circle dictionary,
+000457 | 
+000458 |   u P u* = P+Pi,
+000459 |   Pi=|psi_0><psi_0|,
+000460 |   P psi_0=0.
+000461 | 
+000462 | For B=-i partial_theta on the twisted Fourier domain with spectrum n+a,
+000463 | 0<a<1, multiplication by z sends n to n+1. Hence uPu* adds exactly the unique
+000464 | mode with eigenvalue a in [0,1), proving this orientation. Reversing B or the
+000465 | shift reverses the index and gives (1-z)^(-1), so the orientation is an essential
+000466 | hypothesis rather than a notation-free fact.
+000467 | 
+000468 | Let C be any covariance satisfying
+000469 | 
+000470 |   0 <= C <= I,
+000471 |   C-P in L^1(H),
+000472 | 
+000473 | and for |z|<1 put
+000474 | 
+000475 |   A_C=I-zC,
+000476 |   A_P=I-zP,
+000477 |   R_C=u A_C u* A_C^(-1).
+000478 | 
+000479 | All inverses exist because ||zC||<1 and ||zP||<1.
+000480 | 
+000481 | Trace-class control
+000482 | -------------------
+000483 | First,
+000484 | 
+000485 |   uCu*-C
+000486 |    = u(C-P)u*-(C-P)+(uPu*-P)
+000487 | 
+000488 | is trace class: the first two terms are trace class by assumption and unitary
+000489 | invariance of L^1, while the last term is Pi of rank one. Therefore
+000490 | 
+000491 |   R_C-I = -z(uCu*-C)A_C^(-1)
+000492 | 
+000493 | is trace class and det_F(R_C) is defined.
+000494 | 
+000495 | The factorization
+000496 | 
+000497 |   R_C
+000498 |    = (u A_C A_P^(-1) u*)
+000499 |      (u A_P u* A_P^(-1))
+000500 |      (A_P A_C^(-1))
+000501 | 
+000502 | is an exact multiplication identity. Each factor is I plus trace class. Indeed,
+000503 | 
+000504 |   A_C A_P^(-1)-I = -z(C-P)A_P^(-1),
+000505 |   A_P A_C^(-1)-I =  z(C-P)A_C^(-1),
+000506 | 
+000507 | and the middle factor differs from I by rank one.
+000508 | 
+000509 | Exact determinant invariance
+000510 | ----------------------------
+000511 | Fredholm-determinant multiplicativity and unitary invariance give
+000512 | 
+000513 |   det_F(u A_C A_P^(-1)u*) = det_F(A_C A_P^(-1)),
+000514 |   det_F(A_P A_C^(-1))     = det_F(A_C A_P^(-1))^(-1).
+000515 | 
+000516 | Thus the first and third determinants cancel. For the middle factor, the old
+000517 | orientation gives
+000518 | 
+000519 |   u A_P u* = I-z(P+Pi)=A_P-zPi.
+000520 | 
+000521 | Since Ppsi_0=0, A_P^(-1)psi_0=psi_0, and hence
+000522 | 
+000523 |   u A_P u* A_P^(-1)=I-zPi,
+000524 |   det_F(u A_P u* A_P^(-1))=1-z.
+000525 | 
+000526 | Therefore, for every |z|<1,
+000527 | 
+000528 |   det_F R_C = det_F R_P = 1-z.
+000529 | 
+000530 | The exact factor is an index/relative-determinant invariant of the trace-class
+000531 | polarization class. It does not require C itself to contain an empty or filled
+000532 | eigenvector.
+000533 | 
+000534 | Faithful thermal representative from the same B
+000535 | -----------------------------------------------
+000536 | For beta>0 define by functional calculus
+000537 | 
+000538 |   C_beta=(I+exp(beta B))^(-1).
+000539 | 
+000540 | Every spectral value lies strictly between zero and one, so C_beta has no 0 or 1
+000541 | eigenvectors. Moreover
+000542 | 
+000543 |   log(I-C_beta)-log C_beta = beta B
+000544 | 
+000545 | on Dom(B). The log-odds operator is therefore densely defined and self-adjoint;
+000546 | it is unbounded because B is unbounded, but it is not singular through a 0 or 1
+000547 | covariance eigenvector.
+000548 | 
+000549 | On the twisted circle, lambda_n=n+a. For lambda_n>0,
+000550 | 
+000551 |   0 <= C_beta(lambda_n) <= exp(-beta lambda_n),
+000552 | 
+000553 | while for lambda_n<0,
+000554 | 
+000555 |   0 <= 1-C_beta(lambda_n) <= exp(-beta |lambda_n|).
+000556 | 
+000557 | These exponential tails are summable over n in Z. Hence
+000558 | 
+000559 |   C_beta-P in L^1(H).
+000560 | 
+000561 | The determinant theorem applies and yields
+000562 | 
+000563 |   det_F[u(I-zC_beta)u*(I-zC_beta)^(-1)] = 1-z
+000564 | 
+000565 | for all |z|<1, while C_beta remains faithful. This resolves the endpoint problem
+000566 | of the literal compressed projector calculation.

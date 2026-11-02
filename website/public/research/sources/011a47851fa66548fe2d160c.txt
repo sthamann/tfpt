@@ -1,0 +1,90 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/e-series-source-reconstruction-20261024/MICROSCOPIC-STATE.txt
+Original file SHA-256: 40359e2205b27adcd96bdbcc61d8adcc1a2788562df85058c076b8aac2d3b209
+Inclusive original lines: 1-82
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | MATH.SEAM.ESERIES.SOURCE-RECONSTRUCTION.06 / finite microscopic state
+000002 | 24 October 2026
+000003 | 
+000004 | Question. In the ORIGINAL finite v988 collar, do its particle-hole
+000005 | symmetric covariance and its half-filled occupied frame define the same
+000006 | state? This is a necessary bookkeeping check for a proposed state-preserving
+000007 | microscopic map, not a substitute for constructing that map.
+000008 | 
+000009 | Object and scope. Use the unchanged qwz_cylinder, occ_frame and fermi_cov
+000010 | functions at Nx=16, Ny=6, M=1 and twists r=0,1,2,3. The algebra is the
+000011 | finite complex matrix CAR algebra on192 one-particle modes. No P1 origin,
+000012 | continuum vacuum, edge-sector selection or physical time is inferred.
+000013 | 
+000014 | 1. Exactly two periodic zero modes
+000015 | 
+000016 | For r=0, on vectors constant in x, the x hoppings cancel the on-site
+000017 | term: M*SZ+TX+TX*=0. The two y-boundary vectors are
+000018 | 
+000019 |     lower boundary: (1,-1),     upper boundary: (1,1),
+000020 | 
+000021 | constant in x, zero on every other y. They obey TY (1,-1)^T=0 and
+000022 | adjoint(TY) (1,1)^T=0.
+000023 | The checker uses the unambiguous matrix equations and verifies both
+000024 | real and imaginary parts over integers, with Gram32*I2.
+000025 | 
+000026 | The doubled matrix2H has entries in Z[i]. Reduction modulo65537 with
+000027 | i mapped to256 is a ring homomorphism, because256^2=-1 modulo65537.
+000028 | Its modular rank190 proves rank over Q(i) at least190. The explicit
+000029 | two-dimensional kernel proves rank at most190. Thus rank(H)=190 and
+000030 | nullity(H)=2 exactly. For each r=1,2,3 modular rank192 proves exact
+000031 | invertibility. These are exact rank certificates, not eigenvalue tolerances.
+000032 | 
+000033 | For periodic H, S=(I tensor sigma_x) obeys S conjugate(H) S=-H.
+000034 | More generally, for EVERY twist the real orthogonal matrix
+000035 | R=I_x tensor(reflection_y tensor i*sigma_y) obeys R H R^T=-H.
+000036 | The checker verifies these identities separately over Gaussian integers.
+000037 | Thus the periodic190 nonzero eigenvalues pair in opposite signs, giving
+000038 | 95 negative,95 positive and2 zero eigenvalues; each other twist has
+000039 | 96 negative and96 positive eigenvalues exactly.
+000040 | 
+000041 | 2. Two distinct state prescriptions
+000042 | 
+000043 | The original fermi_cov uses
+000044 | 
+000045 |     C=1_(H<0)+(1/2)1_(H=0).
+000046 | 
+000047 | The original occ_frame instead chooses the96 lowest orthonormal
+000048 | eigenvectors and gives a projection P. At r=0 it occupies all95 negative
+000049 | modes and one of the two zero modes. Let Pi0 be the rank2 zero projection
+000050 | and Q a rank1 projection in it. Then exactly
+000051 | 
+000052 |     C-P=(1/2)Pi0-Q,
+000053 |     ||C-P||_HS^2=1/2,
+000054 |     ||C-P||_op=1/2,
+000055 |     C-C^2=(1/4)Pi0,
+000056 |     ||C-C^2||_HS^2=1/8.
+000057 | 
+000058 | Thus C and P define different finite gauge-invariant quasifree states.
+000059 | C uses the maximally mixed zero-mode occupations, whereas P makes a pure
+000060 | Slater choice. There is no numerical eigenbasis convention that makes
+000061 | these two covariances equal. At the three nonperiodic twists, the exact
+000062 | negative count96 and exact absence of zero modes make these prescriptions
+000063 | agree. The numerical diagnostics match the displayed exact periodic
+000064 | formulas within1e-10.
+000065 | 
+000066 | 3. Consequence for the current source task
+000067 | 
+000068 | The original code ALREADY distinguishes these functions. This result is
+000069 | not a bug claim against fermi_cov or occ_frame. It rules out silently
+000070 | replacing the stipulated periodic half-zero-mode covariance by an occupied
+000071 | half-filled frame in a purported state-preserving dictionary.
+000072 | 
+000073 | The earlier energy diagnostic used the r=1 Slater state, where both
+000074 | prescriptions agree; its result remains unchanged. A continuum construction
+000075 | can retain the mixed state, choose and justify a sector, or derive another
+000076 | appropriate representation. Which procedure the original B_N uses is part
+000077 | of its required state/sector identification. This finite distinction is
+000078 | not a nonexistence theorem for B_N and not a disproof of the mathematical
+000079 | E8 extension.
+000080 | 
+000081 | Verdict: PASS for this exact finite state comparison; fundamental source
+000082 | identification remains open. No original source, paper or ledger is changed.

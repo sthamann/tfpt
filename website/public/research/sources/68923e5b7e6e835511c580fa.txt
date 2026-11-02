@@ -1,0 +1,98 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_regional_source_partner.py
+Original file SHA-256: 0d4b4979b85c955c9363839950d6209905f8107a7bc800d6e424f29cb1d45b00
+Inclusive original lines: 1-90
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Support-resolved pairing in the actual free elliptic source.
+000002 | No finite Fourier profile is called local; full occupied sea is analytic.
+000003 | """
+000004 | from pathlib import Path
+000005 | import json
+000006 | import mpmath as mp
+000007 | import numpy as np
+000008 | import sympy as sy
+000009 | from scipy.linalg import expm
+000010 | HERE=Path(__file__).resolve().parent
+000011 | checks=[]
+000012 | def need(ok,label):
+000013 |     if not bool(ok):raise RuntimeError(label)
+000014 |     checks.append(dict(label=label,passed=True))
+000015 | 
+000016 | # Algebraic all-mode identities; support strictness is proved analytically.
+000017 | z,c,x,a=sy.symbols('z c x a',real=True)
+000018 | P=sy.Matrix([[1-z,x],[x,z]]);u=sy.Matrix([0,1]);t=sy.Matrix([x/a,(z-c)/a])
+000019 | def red(expr):return sy.factor(sy.expand(expr).subs(x*x,z*(1-z)).subs(a*a,c*(1-c)))
+000020 | need(all(red(e)==0 for e in P*P-P),'Given original full two-face covariance is a projection for every spectral mode')
+000021 | need(all(red(e)==0 for e in P*u-c*u-a*t),'Actual probe partner first projection equation, all Fourier modes')
+000022 | need(all(red(e*a)==0 for e in P*t-a*u-(1-c)*t),'Actual probe partner second projection equation, all Fourier modes')
+000023 | mx,c2=sy.symbols('mx c2',real=True)
+000024 | need(sy.simplify(mx+c2-c*c-c*(1-c)).subs(c2,c-mx)==0,'Entire source-moment normalization of derived partner')
+000025 | F=sy.Matrix([[0,1],[1,0]])
+000026 | need(P.subs(z,1-z)==F*P*F,'Actual geometric quarter complement requires transported face labels')
+000027 | 
+000028 | mp.mp.dps=85;beta=4*mp.pi;cut=32
+000029 | def ur2(r):return mp.mpf('.5') if r==0 else (2/(mp.pi*r)**2 if r%2 else mp.mpf(0))
+000030 | def occ(r,alpha):return 1/(1+mp.exp(beta*(r+alpha)))
+000031 | def thermal(r,alpha):
+000032 |     q=mp.exp(beta*(r+alpha)) if r<0 else mp.exp(-beta*(r+alpha))
+000033 |     return -q/(1+q) if r<0 else q/(1+q)
+000034 | def cross(r,alpha):return 1/(2*mp.cosh(beta*(r+alpha)/2))
+000035 | def tail(alpha,half=False):
+000036 |     b=beta/2 if half else beta
+000037 |     return (mp.exp(-b*(cut+1+alpha))+mp.exp(-b*(cut+1-alpha)))/(1-mp.exp(-b))
+000038 | need(abs(mp.nsum(lambda n:2/(mp.pi*(2*n+1))**2,[0,mp.inf])-mp.mpf('.25'))<mp.mpf('1e-80'),'Whole negative occupied sea gives exact1/4 for actual interval-supported probe')
+000039 | 
+000040 | def ann(j):
+000041 |     A=np.zeros((4,4),complex)
+000042 |     for k in range(4):
+000043 |         if (k>>j)&1:A[k^(1<<j),k]=(-1)**((k&((1<<j)-1)).bit_count())
+000044 |     return A
+000045 | aa=[ann(0),ann(1)];I=np.eye(4)
+000046 | for j in range(2):
+000047 |     for k in range(2):need(np.max(abs(aa[j]@aa[k].conj().T+aa[k].conj().T@aa[j]-(I if j==k else 0)))<1e-14,'Independent two-mode Fock CAR '+str((j,k)))
+000048 | rows=[]
+000049 | for alpha in [mp.mpf(1)/4,mp.mpf(3)/4]:
+000050 |     weights={r:ur2(r) for r in range(-cut,cut+1)}
+000051 |     cp=mp.mpf('.25')+sum(w*thermal(r,alpha) for r,w in weights.items())
+000052 |     xp=sum(w*cross(r,alpha) for r,w in weights.items())
+000053 |     x2=sum(w*cross(r,alpha)**2 for r,w in weights.items())
+000054 |     c2p=mp.mpf('.25')+sum(w*((2*thermal(r,alpha)+thermal(r,alpha)**2) if r<0 else occ(r,alpha)**2) for r,w in weights.items())
+000055 |     A2=cp*(1-cp);ap=mp.sqrt(A2);gap=A2-xp*xp
+000056 |     yC=occ(0,alpha)-cp;yX=cross(0,alpha)-xp;lower=yC*yC+yX*yX
+000057 |     need(tail(alpha)<mp.mpf('1e-175') and tail(alpha,True)<mp.mpf('1e-87'),'Original all-mode geometric tail bounds alpha='+str(alpha))
+000058 |     need(abs(cp-c2p-x2)<mp.mpf('1e-80'),'Entire-source C-C²=X² moment with full sea alpha='+str(alpha))
+000059 |     need(0<cp<1 and xp>0 and gap>0,'Actual physical two-probe source is mixed alpha='+str(alpha))
+000060 |     need(lower>mp.mpf('.05') and lower<gap,'Genuine outside contribution is nonzero and smaller than finite-probe defect alpha='+str(alpha))
+000061 |     need(abs((x2+c2p-cp*cp)/A2-1)<mp.mpf('1e-80'),'Actual derived original-environment partner has norm1 alpha='+str(alpha))
+000062 |     left=x2/A2;right=1-left
+000063 |     need(0<left<1 and 0<right<1,'Derived probe partner uses both original source faces alpha='+str(alpha))
+000064 |     for eps in [mp.mpf('0.001'),mp.mpf('0.000001')]:
+000065 |         factor=ap/mp.sqrt(A2+eps)
+000066 |         need(0<factor<1 and 1-factor<=mp.sqrt(eps)/ap,'Bounded polar approximation error on actual probe alpha='+str(alpha)+' eps='+str(eps))
+000067 |     M=np.array([[float(cp),float(xp)],[float(xp),float(1-cp)]])
+000068 |     vals,V=np.linalg.eigh(M);need(np.all(vals>0) and np.all(vals<1),'Both actual finite covariance endpoints excluded alpha='+str(alpha))
+000069 |     k=(V*(np.log1p(-vals)-np.log(vals)))@V.T
+000070 |     H=sum(k[j,l]*aa[j].conj().T@aa[l] for j in range(2) for l in range(2))
+000071 |     rho=expm(-H);rho/=np.trace(rho)
+000072 |     psi=np.zeros(4,complex);psi[1]=float(mp.sqrt(cp));psi[2]=float(mp.sqrt(1-cp))
+000073 |     pure=np.outer(psi,psi.conj());Q=np.array([[float(cp),float(ap)],[float(ap),float(1-cp)]])
+000074 |     N0=aa[0].conj().T@aa[0];N1=aa[1].conj().T@aa[1]
+000075 |     for label,density,cov,expected_four in [('physical_local_pair',rho,M,float(gap)),('derived_environment_pair',pure,Q,0.)]:
+000076 |         E=lambda A:np.trace(density@A)
+000077 |         for j in range(2):
+000078 |             for l in range(2):need(abs(E(aa[j].conj().T@aa[l])-cov[j,l])<2e-14,'Actual charged two-insertion word '+str((str(alpha),label,j,l)))
+000079 |         need(abs(E(N0@N1)-expected_four)<2e-14,'Full neutral four-field word '+str((str(alpha),label)))
+000080 |         need(abs(E(aa[0]))+abs(E(aa[1]))<2e-14,'Isolated charged odd insertions vanish '+str((str(alpha),label)))
+000081 |         s=.7;t=-.4
+000082 |         word=expm(1j*s*N0)@expm(1j*t*N1)
+000083 |         target=1+np.expm1(1j*s)*cov[0,0]+np.expm1(1j*t)*cov[1,1]+np.expm1(1j*s)*np.expm1(1j*t)*expected_four
+000084 |         need(abs(E(word)-target)<2e-14,'Complete bounded ordered two-number word '+str((str(alpha),label)))
+000085 |     need(np.max(abs(Q@Q-Q))<2e-15 and np.max(abs(M@M-M))>.1,'Actual partner restores pure covariance without modifying global source alpha='+str(alpha))
+000086 |     rows.append(dict(alpha=str(alpha),actual_right_occupation=mp.nstr(cp,40),actual_physical_cross_word=mp.nstr(xp,40),derived_partner_cross_word=mp.nstr(ap,40),actual_four_field_word=mp.nstr(gap,40),derived_partner_four_field_word='0',outside_C_word=mp.nstr(yC,40),outside_X_word=mp.nstr(yX,40),full_interval_defect_lower_bound=mp.nstr(lower,40),derived_probe_partner_left_weight=mp.nstr(left,35),derived_probe_partner_right_remainder_weight=mp.nstr(right,35),derived_probe_partner_outside_weight_lower_bound=mp.nstr(lower/A2,35),occupation_tail_bound=mp.nstr(tail(alpha),14),cross_tail_bound=mp.nstr(tail(alpha,True),14),physical_pair_eigenvalues=vals.tolist()))
+000087 | 
+000088 | out=dict(verdict='EXACT_SCOPED_REGIONAL_PARTNER_IN_ORIGINAL_FREE_SOURCE; PROPER_OTHER_FACE_ONLY_CANONICAL_PARTNER_EXCLUDED; PHYSICAL_ORIGIN_OPEN',all_passed=True,control_count=len(checks),checks=checks,original_beta='4*pi',rows=rows,scope='Full paired-proper-region exclusion and full interval polar map proved analytically using actual X smoothing and bounded polar decomposition. Numerical words use actual single supported L2 probe, entire negative sea and exponentially bounded correction; its one-mode T is not asserted equal to full interval T_I. Existing global GNS and general projection identity reused. No primitive P1 measure, full E8/4D source, local RP violation, physical signalling or Higgs Gaussianization claimed.')
+000089 | (HERE/'REGIONAL-SOURCE-PARTNER.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+000090 | print(json.dumps({k:v for k,v in out.items() if k!='checks'},ensure_ascii=False,indent=2))

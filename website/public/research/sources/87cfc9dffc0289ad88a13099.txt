@@ -1,0 +1,124 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/check_native_pauli_f20_bridge.py
+Original file SHA-256: e1200c58403e5854d91a2ad6d20d4844ff077ea2b92d4248ae8b9b1606c32149
+Inclusive original lines: 201-316
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |     ])
+000202 |     omega_b = sp.Matrix([
+000203 |         [0, 1, 0, 0], [-1, 0, 1, 0],
+000204 |         [0, -1, 0, 1], [0, 0, -1, 0],
+000205 |     ])
+000206 |     omega_plus = ii * omega_a + omega_b
+000207 |     transported = sp.simplify(intertwiner.inv().T * omega_plus * intertwiner.inv())
+000208 |     require(is_zero(transported - (1 - 2*ii) * standard_symplectic / 10),
+000209 |             "intertwiner transports v419 Omega plus to standard form", checks)
+000210 | 
+000211 |     # On chi^(-1) Sym2(V), the ten decomposes as 2V4 + chi_1 + chi_3.
+000212 |     rep10_character: dict[tuple[int, int], sp.Expr] = {}
+000213 |     for b, a in product(range(4), range(5)):
+000214 |         matrix = sp.simplify(c_native**a * g_native**b)
+000215 |         rep10_character[(a, b)] = sp.simplify(ii**(-b) * sym2_character(matrix))
+000216 |     one_dimensional_multiplicities: dict[str, str] = {}
+000217 |     for k in range(4):
+000218 |         multiplicity = sp.simplify(sum(
+000219 |             sp.conjugate(ii**(k*b)) * rep10_character[(a, b)]
+000220 |             for b, a in product(range(4), range(5))) / 20)
+000221 |         one_dimensional_multiplicities[f"chi_{k}"] = str(multiplicity)
+000222 |     four_multiplicity = sp.simplify(sum(
+000223 |         sp.conjugate(sp.trace(c_native**a * g_native**b)) *
+000224 |         rep10_character[(a, b)]
+000225 |         for b, a in product(range(4), range(5))) / 20)
+000226 |     require(one_dimensional_multiplicities == {
+000227 |         "chi_0": "0", "chi_1": "1", "chi_2": "0", "chi_3": "1"
+000228 |     } and four_multiplicity == 2,
+000229 |             "ten decomposes as two fours plus chi one plus chi three", checks)
+000230 |     commutant_dimension = int(four_multiplicity**2 + 1 + 1)
+000231 |     require(commutant_dimension == 6,
+000232 |             "ten dimensional commutant has complex dimension six", checks)
+000233 | 
+000234 |     # The earlier determinant-3i rational ten-intertwiner is algebraic, but it
+000235 |     # is not already an isometry for the field-trace metric. Its canonical
+000236 |     # metric polar correction is governed by a positive commutant element.
+000237 |     old_ten_intertwiner = sp.Matrix([
+000238 |         [0,0,0,0,0,0,0,0,1,-1],
+000239 |         [0,0,0,0,ii,0,-ii,0,0,0],
+000240 |         [0,0,0,0,0,-ii,0,0,0,0],
+000241 |         [0,0,0,0,0,-1,1,1,-1,0],
+000242 |         [0,0,0,-1,0,0,0,0,0,0],
+000243 |         [0,0,-ii,0,0,0,0,ii,0,0],
+000244 |         [-ii,0,ii,ii,0,0,0,0,-ii,0],
+000245 |         [-1,1,0,0,0,0,0,0,0,0],
+000246 |         [0,ii,0,-ii,0,0,-ii,0,0,ii],
+000247 |         [0,1,-1,0,-1,1,0,0,0,0],
+000248 |     ])
+000249 |     sym_gram = induced_symmetric_gram(field_trace_gram)
+000250 |     ten_c = symmetric_square(c_v419)
+000251 |     ten_g = ii * symmetric_square(g_v419)
+000252 |     require(is_zero(ten_c.conjugate().T * sym_gram * ten_c - sym_gram) and
+000253 |             is_zero(ten_g.conjugate().T * sym_gram * ten_g - sym_gram),
+000254 |             "correct induced field trace metric is invariant on twisted ten", checks)
+000255 |     require(not is_zero(old_ten_intertwiner.conjugate().T * old_ten_intertwiner - sym_gram),
+000256 |             "old determinant 3i ten intertwiner is not metric preserving", checks)
+000257 |     polar_square = sp.simplify(sym_gram.inv() *
+000258 |                                old_ten_intertwiner.conjugate().T * old_ten_intertwiner)
+000259 |     require(is_zero(polar_square * ten_c - ten_c * polar_square) and
+000260 |             is_zero(polar_square * ten_g - ten_g * polar_square),
+000261 |             "ten polar square lies in the F20 commutant", checks)
+000262 | 
+000263 |     output = {
+000264 |         "verdict": "EXACT_NATIVE_SOURCE_F20_AND_METRIC_BRIDGE",
+000265 |         "source_words_rightmost_first": {
+000266 |             "C_raw": "(I tensor H) CNOT (S tensor I) (H tensor I)",
+000267 |             "C": "-i C_raw",
+000268 |             "G_raw": "CNOT (I tensor S) (S tensor I)",
+000269 |             "G": "(Y tensor Z) G_raw",
+000270 |         },
+000271 |         "exact_G_lifts": exact_lifts,
+000272 |         "C_native": encode(c_native),
+000273 |         "G_native": encode(g_native),
+000274 |         "v419_Gram": encode(field_trace_gram),
+000275 |         "intertwiner_T": encode(intertwiner),
+000276 |         "intertwiner_determinant": str(intertwiner.det()),
+000277 |         "metric_identity": "T^dagger T = 2 (5 I - J)",
+000278 |         "relative_unitary": "U=T/sqrt(2), U^dagger U=5 I-J",
+000279 |         "intertwiner_space_dimension": 1,
+000280 |         "characters": character_rows,
+000281 |         "conformal_multiplier_G": "i",
+000282 |         "spin_lift": "zeta8^(-1) G, order 8",
+000283 |         "transported_alternating_form": "(1-2i)/10 times J_standard",
+000284 |         "ten_decomposition": "2 V4 + chi_1 + chi_3",
+000285 |         "ten_multiplicities": {
+000286 |             **one_dimensional_multiplicities,
+000287 |             "V4": str(four_multiplicity),
+000288 |         },
+000289 |         "ten_commutant": "M2(C) plus C plus C",
+000290 |         "ten_commutant_dimension": commutant_dimension,
+000291 |         "old_ten_intertwiner": "determinant 3i, not metric preserving",
+000292 |         "ten_polar_repair": (
+000293 |             "P^2=H_sym^(-1) A^dagger A; U=A P^(-1), with P the positive "
+000294 |             "H_sym square root"
+000295 |         ),
+000296 |         "unitary_ten_residual_gauge": "U(2) times U(1) times U(1)",
+000297 |         "checks": checks,
+000298 |         "scope": (
+000299 |             "The F20 is constructed from the frozen v783 native Clifford "
+000300 |             "generators and source-proved Pauli/mu8 kernel. v783 does not "
+000301 |             "designate this Singer normalizer as the v419 Galois clock. The "
+000302 |             "result is a carrier representation bridge, not a physical "
+000303 |             "four-dimensional field or channel identification."
+000304 |         ),
+000305 |     }
+000306 |     out = Path(__file__).with_name("native-pauli-f20-results.json")
+000307 |     out.write_text(json.dumps(output, indent=2, sort_keys=True) + "\n")
+000308 |     print(json.dumps({
+000309 |         "verdict": output["verdict"],
+000310 |         "checks": len(checks),
+000311 |         "ten_commutant_dimension": commutant_dimension,
+000312 |     }, sort_keys=True))
+000313 | 
+000314 | 
+000315 | if __name__ == "__main__":
+000316 |     main()

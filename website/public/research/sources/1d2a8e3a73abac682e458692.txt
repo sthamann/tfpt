@@ -1,0 +1,186 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/HARDY-BMU-KO-AND-FOUR-SECTOR-COMPLETION.txt
+Original file SHA-256: 6548f713daafb6c76d0ba195bbd16a0a0f1d7ac28b235a38854239533d97bb89
+Inclusive original lines: 1-178
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | HARDY B_MU WEAK CLIFFORD BLOCK: ACTUAL KO6 AND FOUR-SECTOR COMPLETION
+000002 | 30 October 2026
+000003 | 
+000004 | Scope
+000005 | 
+000006 | This is a separate supplement to HARDY-BMU-WEAK-CLIFFORD-ODD-LIFT-REVIEW.txt.
+000007 | It does not change that frozen report.  It answers one narrower question on the
+000008 | actual v252 finite Hilbert space H_F=C^96: what the adjoint and KO6 completions
+000009 | of the nonzero Hardy/weak-Clifford block are, and whether the completed matrix
+000010 | already has the type of the existing finite scalar coefficient.  It does not
+000011 | derive an operation which applies the weak Clifford creator to the P1 source.
+000012 | 
+000013 | Inputs and conventions
+000014 | 
+000015 | The exact Hardy entry is
+000016 | 
+000017 |   B_02=kappa E_02 P_gamma,+,
+000018 |   kappa=(4 X_*/pi) I !=0.
+000019 | 
+000020 | Here I is the already computed non-real Hardy integral.  E_02 is the same
+000021 | family matrix on particle and antiparticle sectors.  For a=1,2 let X_a be the
+000022 | actual family-blind weak exterior creator in the signed H_F<->3 copies of
+000023 | Lambda(C^5) dictionary.  The previous exact commutator is
+000024 | 
+000025 |   A_a=[X_a,B_02]=kappa E_02 X_a gamma_F.                 (1)
+000026 | 
+000027 | The actual finite real structure is J_F=K_swap followed by coefficient
+000028 | conjugation.  It obeys J_F^2=1, J_F gamma_F=-gamma_F J_F and epsilon'=+1 in
+000029 | KO dimension 6.  These are the definitions and checks in
+000030 | verification/v252_full_finite_triple.py, especially lines 19-31 and 119-132.
+000031 | The real inner-fluctuation prescription is
+000032 | 
+000033 |   D -> D+A+epsilon' J_F A J_F^-1,
+000034 | 
+000035 | as stated in verification/v254_inner_fluctuations.py, lines 6-12.
+000036 | 
+000037 | 1. Adjoint completion is not yet KO-real
+000038 | 
+000039 | The signed H_F dictionary gives
+000040 | 
+000041 |   K_swap X_a K_swap = X_a^T=X_a^dagger,
+000042 |   K_swap gamma_F K_swap=-gamma_F,
+000043 |   [E_02,X_a]=[E_02,gamma_F]=0.
+000044 | 
+000045 | Consequently
+000046 | 
+000047 |   J_F A_a J_F^-1 = -bar(kappa) E_02 X_a^dagger gamma_F,
+000048 |   A_a^dagger      = -bar(kappa) E_20 X_a^dagger gamma_F. (2)
+000049 | 
+000050 | The different family matrix in the second line is decisive.  Therefore
+000051 | 
+000052 |   D_adj=A_a+A_a^dagger
+000053 | 
+000054 | is selfadjoint and gamma_F-odd, but
+000055 | 
+000056 |   J_F D_adj J_F^-1 != D_adj.                             (3)
+000057 | 
+000058 | For both weak components its exact rank is 32.  Thus selfadjointness does not
+000059 | replace the finite KO condition.
+000060 | 
+000061 | 2. The actual KO6 completion is nonzero and rigid
+000062 | 
+000063 | With epsilon'=+1 the completed block is
+000064 | 
+000065 |   D_KO = D_adj+J_F D_adj J_F^-1
+000066 |        = kappa S_02 X_a gamma_F
+000067 |          -bar(kappa) S_02 X_a^dagger gamma_F,
+000068 |   S_02=E_02+E_20.                                       (4)
+000069 | 
+000070 | It obeys exactly
+000071 | 
+000072 |   D_KO^dagger=D_KO,
+000073 |   {D_KO,gamma_F}=0,
+000074 |   J_F D_KO J_F^-1=D_KO,
+000075 |   D_KO^2=|kappa|^2 (E_00+E_22) tensor I_32.              (5)
+000076 | 
+000077 | Hence rank(D_KO)=64 for each a.  The completion cannot cancel for the actual
+000078 | nonzero kappa.  Equation (5) also shows that no phase or frame adjustment was
+000079 | used: the omitted positive real factor 4 X_*/pi changes only the common scale.
+000080 | 
+000081 | 3. Complete particle, antiparticle, lepton and quark form
+000082 | 
+000083 | The family coefficient is the same symmetric matrix S_02 in every carrier
+000084 | sector.  The carrier coefficient is not identical in the four sectors.  In
+000085 | the ordered weak bases (nu,e) and (u,d), the following are the LR matrix
+000086 | blocks, meaning rows L and columns R.  The RL blocks are their adjoints as
+000087 | required by (4).
+000088 | 
+000089 | For X_1:
+000090 | 
+000091 |   particle lepton  LR: [[0,-kappa],[-bar(kappa),0]],
+000092 |   particle quark   LR: [[0, kappa],[ bar(kappa),0]],
+000093 |   antiparticle lepton:   [[0,-bar(kappa)],[-kappa,0]],
+000094 |   antiparticle quark:    [[0, bar(kappa)],[ kappa,0]].
+000095 | 
+000096 | For X_2:
+000097 | 
+000098 |   particle lepton  LR: [[bar(kappa),0],[0,-kappa]],
+000099 |   particle quark   LR: [[-bar(kappa),0],[0,kappa]],
+000100 |   antiparticle lepton:   [[kappa,0],[0,-bar(kappa)]],
+000101 |   antiparticle quark:    [[-kappa,0],[0,bar(kappa)]].
+000102 | 
+000103 | Thus there is one common family matrix S_02, accompanied by fixed carrier
+000104 | signs and conjugations.  Quark blocks are minus the corresponding lepton
+000105 | blocks.  Antiparticle blocks are the J_F conjugates of particle blocks.  This
+000106 | is a constrained P2/SO(10) carrier pattern.  It is not four freely chosen
+000107 | matrices Y_nu,Y_e,Y_u,Y_d, and it must not be reported as their equality.
+000108 | 
+000109 | The block is colour diagonal.  Its holomorphic component A_a carries the
+000110 | already checked weak-doublet weight and hypercharge +1/2; the adjoint supplies
+000111 | the conjugate component.  It has no particle-antiparticle Majorana block.
+000112 | It therefore fits the algebraic support and quantum numbers of a finite
+000113 | Higgs-doublet coefficient, not the sigma direction.  The old v254 statement
+000114 | that finite gamma_F-odd one-forms are Lorentz-scalar Higgs coefficients is the
+000115 | relevant type comparison.  Membership in the old one-form space still does
+000116 | not follow: that space is generated from a supplied D_F, whereas (1) uses the
+000117 | Hardy block and an additional weak Clifford operation.
+000118 | 
+000119 | 4. C0, Lorentz type and the two meanings of parity
+000120 | 
+000121 | The geometric operator in the collar contract is
+000122 | 
+000123 |   C0=i0 N tensor I_96.
+000124 | 
+000125 | It commutes with D_KO as an old-complex-linear normal operator.  It neither
+000126 | changes E_02 into E_20 nor supplies the missing terms in (4).  The explicit
+000127 | separation of C0 from J_F is already part of FINITE-COUPLED.txt, lines 53-76,
+000128 | and charge_transport/DERIVED-PAIRING.txt, lines 32-60.  J_F supplies the
+000129 | finite KO completion; C0 supplies the field/adjoint slots of the selfdual
+000130 | collar chart.  Combining their roles would double count the completion.
+000131 | 
+000132 | As a bounded selfadjoint gamma_F-odd finite coefficient, D_KO can occupy the
+000133 | same internal slot Phi in the product-collar operator
+000134 | 
+000135 |   B_Phi=Z tensor A-S tensor Phi,
+000136 |   h_Phi=A gamma_F-i0 gamma_F Phi.
+000137 | 
+000138 | This is the exact operator type in FINITE-COUPLED.txt, lines 10-40.  The weak
+000139 | Clifford creator X_a acts on the internal finite carrier.  It is not a
+000140 | spacetime Clifford generator.  Therefore its gamma_F oddness is finite
+000141 | chirality parity.  After second quantization the quadratic background term
+000142 | is CAR-even and bosonic.  It is not an odd CAR field insertion.  These two
+000143 | parities are independent.
+000144 | 
+000145 | 5. What remains open at the original source
+000146 | 
+000147 | The full KO6 completion removes no source gap and introduces no new one.  The
+000148 | previous source test remains exact:
+000149 | 
+000150 | * all 45 D5 current zero modes are even Clifford bilinears and commute with
+000151 |   P_gamma,+, so they cannot produce (1);
+000152 | * a genuine mixed E8 current has the additional family-six leg, whereas X_a
+000153 |   in (1) is family blind;
+000154 | * the old NCG sewing operation a[D_F,b] requires a supplied finite D_F.  At
+000155 |   Y=MR=0 every such one-form vanishes while (1) and (4) remain nonzero.
+000156 | 
+000157 | The completed matrix is therefore a valid nonzero finite scalar candidate if
+000158 | the source applies the weak Clifford operation after the Hardy reader.  No
+000159 | examined original P1, D5-current or old inner-fluctuation rule performs that
+000160 | application.  The first missing statement is still that concrete source
+000161 | operation, not adjointness, KO reality, carrier support or nonvanishing.
+000162 | 
+000163 | Reproducibility
+000164 | 
+000165 | The checker check_hardy_bmu_ko_completion.py imports the actual v252 matrices
+000166 | and the previous signed exterior dictionary.  It verifies (2)-(5), both exact
+000167 | ranks, C0 commutation and every displayed four-sector block.  Normal Python
+000168 | and python -OO produce byte-identical stdout and
+000169 | hardy-bmu-ko-completion-results.json.
+000170 | 
+000171 | Verdict
+000172 | 
+000173 | The naive adjoint block A+A^dagger is insufficient.  The unchanged KO6 rule
+000174 | requires the J_F image.  The resulting block is selfadjoint, gamma_F-odd,
+000175 | J_F-real and rank 64, with one common symmetric family matrix S_02 and fixed
+000176 | sector signs/conjugations.  It has the internal Lorentz-scalar Higgs-doublet
+000177 | type of the finite Phi slot.  This establishes the complete operator typing,
+000178 | but not its execution by the original source.

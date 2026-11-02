@@ -1,0 +1,44 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_joint_lift_native_clock.py
+Original file SHA-256: eea4b77219cd9d3192a64e257e4e69cd57f68137cc1573ef4908bd8c3dbce3e1
+Inclusive original lines: 242-277
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000242 |     types = defaultdict(list)
+000243 |     for m in lift_residues(4):
+000244 |         grades = root_grades(roots, weak, m)
+000245 |         require("quarter branches " + str(m), grades == branch_grades(weak, m))
+000246 |         types[quarter_order(phases(grades, 4))].append(tuple(x % 4 for x in m))
+000247 |     expected_types = {(60, 60, 64, 64): 8, (70, 66, 56, 56): 18,
+000248 |                       (82, 54, 56, 56): 24, (92, 28, 64, 64): 8,
+000249 |                       (134, 2, 56, 56): 6}
+000250 |     require("complete 64-class quarter intersection", {k: len(v) for k, v in types.items()} == expected_types)
+000251 |     native_residues = set(types[quarter_native])
+000252 |     expected_residues = {tuple(0 if i == j else 2 for i in range(4)) for j in range(4)}
+000253 |     expected_residues |= {tuple(3 if i == j else 1 for i in range(4)) for j in range(4)}
+000254 |     require("exact eight native residue classes", native_residues == expected_residues)
+000255 |     minimum_lifts = []
+000256 |     for m in product(range(-3, 3), repeat=4):
+000257 |         if sum(m) != -2 or tuple(x % 4 for x in m) not in native_residues:
+000258 |             continue
+000259 |         norm = sum(x * x for x in cocharacter(weak, m))
+000260 |         if norm <= 12:
+000261 |             minimum_lifts.append({"m": m, "norm_squared": norm})
+000262 |     require("24 norm12 quarter lifts, none smaller", (
+000263 |         len(minimum_lifts) == 24 and {x["norm_squared"] for x in minimum_lifts} == {12}
+000264 |     ))
+000265 |     # C=exp(-2pi i ad(h)/12), C^9=Q and C^4=exp(-2pi i ad(h)/3).
+000266 |     # The fixed D4 gives an unbounded analytic exclusion, not only a scan.
+000267 |     full_types = Counter()
+000268 |     for m in lift_residues(12):
+000269 |         full_types[phases(root_grades(roots, weak, m), 12, -1)] += 1
+000270 |     require("all1728 pure weak classes miss full C12", compiler_native not in full_types)
+000271 |     require("pure weak fixed dimension lower bound32 is attained", min(c[0] for c in full_types) == 32)
+000272 |     weak_only_matches = 0
+000273 |     weak_only_minfixed = 248
+000274 |     for a in range(12):
+000275 |         k = (0, 0, 0, a, 1 - a)
+000276 |         for m in lift_residues(12):
+000277 |             char = phases(root_grades(roots, k, m), 12, -1)

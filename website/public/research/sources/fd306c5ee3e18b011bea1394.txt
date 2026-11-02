@@ -1,0 +1,143 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_original_color_sectors.py
+Original file SHA-256: 947dd4f6547081bc1d953abdacb82e7f052baeac71990e38242717302bd6e4eb
+Inclusive original lines: 1-135
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R069: exact original marked color lattice/field-sector tests, not physical origin."""
+000002 | from pathlib import Path
+000003 | import sys,json,math
+000004 | from collections import Counter,defaultdict
+000005 | from fractions import Fraction as F
+000006 | import sympy as sp
+000007 | from sympy.matrices.normalforms import hermite_normal_form
+000008 | r=Path(__file__).resolve().parents[4];sys.path.insert(0,str(r/'verification'))
+000009 | import v1_e8_glue as v
+000010 | checks=[]
+000011 | def eq(name,actual,expected):
+000012 |  if actual!=expected:raise RuntimeError((name,actual,expected))
+000013 |  checks.append(dict(name=name,value=str(actual)))
+000014 | roots=sorted(tuple(int(2*x) for x in q) for q in v.e8_roots());R=set(roots)
+000015 | eq('unchanged original root constructor',len(R),240)
+000016 | def dot(a,b):return F(sum(x*y for x,y in zip(a,b)),4)
+000017 | def trial(q):
+000018 |  n=q[0]+q[1]-2*q[2];assert n%2==0
+000019 |  return (n//2)%3
+000020 | def root(i,j,si=1,sj=1):
+000021 |  q=[0]*8;q[i]=2*si;q[j]=2*sj;return tuple(q)
+000022 | a=root(0,1,1,-1);bb=root(1,2,1,-1)
+000023 | color={q for q in R if all(x==0 for x in q[3:]) and sum(q[:3])==0}
+000024 | perp={q for q in R if dot(q,a)==dot(q,bb)==0}
+000025 | sector={k:{q for q in R if trial(q)==k} for k in range(3)}
+000026 | eq('ACTUAL first-three color roots',len(color),6)
+000027 | eq('ACTUAL color-orthogonal roots',len(perp),72)
+000028 | eq('neutral root sector equals union E6 and COLOR A2',sector[0],perp|color)
+000029 | eq('three root-sector dimensions',[len(sector[k]) for k in range(3)],[78,81,81])
+000030 | eq('weight-one neutral incl eight original Cartans',len(sector[0])+8,86)
+000031 | def basis(rs):return hermite_normal_form(sp.Matrix(sorted(rs)).T)
+000032 | lb=basis(R);eb=basis(perp);ab=basis(color);nb=basis(sector[0]);prod=eb.row_join(ab)
+000033 | eq('E8 original root lattice rank',lb.rank(),8)
+000034 | eq('color perpendicular rank',eb.rank(),6)
+000035 | eq('color root rank',ab.rank(),2)
+000036 | eq('E8 determinant',sp.det(lb.T*lb/4),1)
+000037 | eq('E6 determinant',sp.det(eb.T*eb/4),3)
+000038 | eq('color A2 determinant',sp.det(ab.T*ab/4),3)
+000039 | eq('neutral root lattice determinant',sp.det(nb.T*nb/4),9)
+000040 | eq('product lattice has original neutral basis',hermite_normal_form(prod),nb)
+000041 | eq('index of neutral lattice in E8',abs(sp.det(nb)/sp.det(lb)),3)
+000042 | # The kernel has index3 by explicit surjective center character; equal index
+000043 | # proves equality for ALL lattice vectors, not just the norm2 root census.
+000044 | ward=root(2,5);higgs=root(3,5)
+000045 | eq('original Ward root exists',ward in R,True)
+000046 | eq('original weak mediator root exists',higgs in R,True)
+000047 | eq('original Ward root triality',trial(ward),1)
+000048 | eq('original weak mediator triality',trial(higgs),0)
+000049 | eq('weak mediator belongs actual color centralizer',higgs in perp,True)
+000050 | d5={q for q in R if all(x==0 for x in q[5:])}
+000051 | eq('original D5 roots',len(d5),40)
+000052 | eq('color-centralizer E6 is NOT old D5-containing E6',len(d5&perp),4)
+000053 | weak={q for q in R if sum(x!=0 for x in q[:5])==1 and any(q[i] for i in [3,4]) and sum(x!=0 for x in q[5:])==1}
+000054 | eq('whole original weak mediator current block has24 roots',len(weak),24)
+000055 | eq('whole weak mediator block is color centralizer',weak<=perp,True)
+000056 | # Project the charged roots onto the ACTUAL color plane; 3 weights x27.
+000057 | weights={}
+000058 | for k in [1,2]:
+000059 |  counts=Counter();norms=Counter();enorms=Counter();groups=defaultdict(set)
+000060 |  for q in sector[k]:
+000061 |   x=[F(t,2) for t in q];avg=sum(x[:3])/3
+000062 |   qc=tuple(x[i]-avg if i<3 else F(0) for i in range(8));qe=tuple(x[i]-qc[i] for i in range(8))
+000063 |   counts[qc]+=1;norms[sum(t*t for t in qc)]+=1;enorms[sum(t*t for t in qe)]+=1;groups[qc].add(qe)
+000064 |  eq(f'charged sector{k} actual color weight multiplicities',sorted(counts.values()),[27,27,27])
+000065 |  eq(f'charged sector{k} color projection norm',dict(norms),{F(2,3):81})
+000066 |  eq(f'charged sector{k} perpendicular norm',dict(enorms),{F(4,3):81})
+000067 |  eq(f'charged sector{k} common27 perpendicular weights',len({frozenset(s) for s in groups.values()}),1)
+000068 |  weights[k]=[dict(color=[str(t) for t in q],multiplicity=n) for q,n in sorted(counts.items())]
+000069 | # Actual group action test: generate weight orbits using E8 root reflections.
+000070 | def orbit(seed,subroots):
+000071 |  seen={seed};todo=[seed]
+000072 |  while todo:
+000073 |   q=todo.pop()
+000074 |   for rr in subroots:
+000075 |    ip=dot(q,rr);assert ip.denominator==1
+000076 |    qq=tuple(x-int(ip)*y for x,y in zip(q,rr));assert qq in R
+000077 |    if qq not in seen:seen.add(qq);todo.append(qq)
+000078 |  return seen
+000079 | for k,seed in [(1,ward),(2,tuple(-x for x in ward))]:
+000080 |  eq(f'actual E6 root action generates charged27 sector{k}',len(orbit(seed,perp)),27)
+000081 |  eq(f'actual COLOR root action generates triplet sector{k}',len(orbit(seed,color)),3)
+000082 | # Check all actual nonzero root brackets respect original triality. Global
+000083 | # all-mode theorem follows from the additive lattice character, not a cutoff.
+000084 | trans=Counter()
+000085 | for q in R:
+000086 |  for s in R:
+000087 |   total=tuple(x+y for x,y in zip(q,s))
+000088 |   if total in R:
+000089 |    assert trial(total)==(trial(q)+trial(s))%3
+000090 |    trans[(trial(q),trial(s),trial(total))]+=1
+000091 | checks.append(dict(name='all original nonzero root bracket sector transitions',value={str(k):n for k,n in sorted(trans.items())}))
+000092 | # Original charged insertion, adjoint and a three-charged balanced root word.
+000093 | neg=tuple(-x for x in ward)
+000094 | eq('adjoint Ward grade',trial(neg),2)
+000095 | eq('Ward root normalization for original level1 vacuum coefficient',dot(ward,ward),2)
+000096 | beta=root(1,5,1,-1);gamma=tuple(-x-y for x,y in zip(ward,beta))
+000097 | eq('three-field balanced root word exists',all(q in R for q in [ward,beta,gamma]),True)
+000098 | eq('three-field balanced root grades',[trial(q) for q in [ward,beta,gamma]],[1,1,1])
+000099 | eq('three-field balanced root total',tuple(sum(t) for t in zip(ward,beta,gamma)),(0,)*8)
+000100 | eq('actual root-string length for charged OPE',dot(ward,beta),-1)
+000101 | eq('neutral color root is NOT a color singlet',dot(a,a),2)
+000102 | # Complete lattice shells through conformal grade3, then ALL8 oscillator colors.
+000103 | N=3;shell=[[0]*(N+1) for _ in range(3)]
+000104 | def walk(q,left,par):
+000105 |  if len(q)==8:
+000106 |   if sum(q)%4==0:
+000107 |    n=sum(t*t for t in q)//8
+000108 |    assert sum(t*t for t in q)%8==0
+000109 |    shell[trial(q)][n]+=1
+000110 |   return
+000111 |  bound=math.isqrt(left)
+000112 |  for x in range(-bound,bound+1):
+000113 |   if x%2==par:walk(q+[x],left-x*x,par)
+000114 | for par in [0,1]:walk([],8*N,par)
+000115 | eq('complete original E8 lattice shell totals',[sum(shell[k][n] for k in range(3)) for n in range(N+1)],[1,240,2160,6720])
+000116 | osc=[1]+[0]*N
+000117 | for m in range(1,N+1):
+000118 |  for _ in range(8):
+000119 |   for n in range(m,N+1):osc[n]+=osc[n-m]
+000120 | chars=[[sum(shell[k][j]*osc[n-j] for j in range(n+1)) for n in range(N+1)] for k in range(3)]
+000121 | eq('complete original E8 character grades0to3',[sum(chars[k][n] for k in range(3)) for n in range(N+1)],[1,248,4124,34752])
+000122 | eq('neutral full-source character grades0to3',chars[0],[1,86,1370,11586])
+000123 | eq('charged full-source characters coincide',chars[1],chars[2])
+000124 | eq('charged full-source character grades0to3',chars[1],[0,81,1377,11583])
+000125 | # Entire discriminant class, not just a candidate search.
+000126 | def frac(x):return x-x.numerator//x.denominator
+000127 | qforms=[(k,l,frac(F(2*k*k+l*l,3))) for k in range(3) for l in range(3)]
+000128 | eq('all9 inherited lattice spin sectors',dict(Counter(q for k,l,q in qforms)),{F(0):5,F(1,3):2,F(2,3):2})
+000129 | eq('no inherited fermionic halfinteger sector',any(q==F(1,2) for k,l,q in qforms),False)
+000130 | eq('diagonal index3 original glue is isotropic',[frac(F(2*k*k+k*k,3)) for k in range(3)],[F(0)]*3)
+000131 | eq('allowed integral overlattice indices from determinant9',[d for d in range(1,4) if 9%(d*d)==0],[1,3])
+000132 | out=dict(verdict='SCOPED_ORIGINAL_COLOR_CENTER_FIXED_SOURCE_AND_CHARGED_FIELD_WORDS',controls=len(checks),checks=checks,lattice_shells=shell,oscillator_coefficients=osc,full_characters=chars,charged_color_weights=weights,
+000133 |  scope='Existing marked E8 source and its original color center; no primitive P1/Padm/96CAR, measure, nativeJ closure or physical3+1/spin2 derivation; generic E6+A2 glue and old J obstruction reused.')
+000134 | Path(__file__).with_name('ORIGINAL-COLOR-SECTORS.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+000135 | print(json.dumps(dict(verdict=out['verdict'],controls=len(checks),full_characters=chars)))

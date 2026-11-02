@@ -1,0 +1,105 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/mixed-current-origin-20261014/check_continuous_time_sector_test.py
+Original file SHA-256: bfab38f6ed057f368a28a037c068b26cfde3aadc856583ee79363de7f2244679
+Inclusive original lines: 1-97
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Finite controls for the written compactness theorem; no new sector claim."""
+000003 | import hashlib
+000004 | import importlib.util
+000005 | import json
+000006 | import math
+000007 | import sys
+000008 | from pathlib import Path
+000009 | 
+000010 | import numpy as np
+000011 | import sympy as s
+000012 | 
+000013 | OUT = Path(__file__).resolve().parent
+000014 | [OMITTED: non-scientific conversation or execution metadata]
+000015 | 
+000016 | 
+000017 | def need(ok, text):
+000018 |     if not bool(ok):
+000019 |         raise RuntimeError(text)
+000020 | 
+000021 | 
+000022 | z = s.symbols('z', real=True)
+000023 | levels = [0, 1, 2, 3, 8]
+000024 | weights = [s.Rational(1, 8), s.Rational(1, 4), s.Rational(1, 4),
+000025 |            s.Rational(1, 8), s.Rational(1, 4)]
+000026 | laplace = sum(w * z ** e for w, e in zip(weights, levels))
+000027 | tail = sum(w for w, e in zip(weights, levels) if e > 2)
+000028 | margin = s.cancel((1 - laplace - (1-z**2)*tail) / (1-z))
+000029 | need(all(c >= 0 for c in s.Poly(margin, z).all_coeffs()),
+000030 |      'spectral tail margin must be positive throughout0<z<1')
+000031 | need(sum(weights) == 1, 'normalized control state')
+000032 | real_window=.4
+000033 | real_average_defect=sum(float(w)*(1-math.sin(real_window*e)/(real_window*e))
+000034 |                         for w,e in zip(weights,levels) if e)
+000035 | real_tail=sum(float(w) for w,e in zip(weights,levels) if e>2/real_window)
+000036 | need(real_tail<=2*real_average_defect,'unitary time sinc-average tail bound')
+000037 | 
+000038 | # Divergent first moment is compatible with norm compactness/continuous time.
+000039 | first_moment_controls = []
+000040 | for n in (4, 16, 64, 256):
+000041 |     mass = s.Rational(1, n)
+000042 |     energy = n ** 2
+000043 |     expectation = mass * energy
+000044 |     norm_dist2 = 2 - 2*s.sqrt(1-mass)
+000045 |     need(expectation == n, 'first moment diverges')
+000046 |     need(norm_dist2 <= 2*mass, 'state still norm-converges to vacuum')
+000047 |     first_moment_controls.append({'N': n, 'mean_energy': str(expectation),
+000048 |                                   'positive_time_norm_defect_bound': str(mass)})
+000049 | 
+000050 | # Off-grade weight identity, no assumption of a homogeneous microscopic field.
+000051 | Z = s.diag(1, s.I, -1, -s.I)
+000052 | v = s.Matrix([s.Rational(1, 3), s.I/s.Integer(4),
+000053 |               -s.Rational(1, 5), (1+s.I)/7])
+000054 | grade_cases = []
+000055 | for r0 in range(4):
+000056 |     defect = (Z - s.I**r0*s.eye(4))*v
+000057 |     lhs = s.expand((defect.H*defect)[0])
+000058 |     rhs = sum(s.Abs(s.I**r-s.I**r0)**2*s.Abs(v[r])**2 for r in range(4))
+000059 |     off_norm = sum(s.Abs(v[r])**2 for r in range(4) if r != r0)
+000060 |     need(s.simplify(lhs-rhs) == 0, 'exact register grade identity')
+000061 |     need(s.simplify(lhs-2*off_norm) >= 0, 'off-grade norm bound')
+000062 |     grade_cases.append({'initial_register': r0, 'commutator_norm2': str(lhs)})
+000063 | 
+000064 | # Closed heat-filtered pair formulas and the noncommuting sharp/time limits.
+000065 | r, u = s.symbols('r u', positive=True)
+000066 | F = ((1+r*u)*(1-r)/((1-r*u)*(1+r)))**4
+000067 | need(s.cancel(F.subs(u, 1)-1) == 0, 'finite heat time has norm1')
+000068 | need(s.limit(F.subs(u, s.Rational(1, 2)), r, 1, dir='-') == 0,
+000069 |      'sharp limit loses all positive-time norm')
+000070 | need(s.limit(F.subs(u, s.Rational(1, 2))/(1-r)**4, r, 1, dir='-')
+000071 |      == s.Rational(81, 16), 'quantitative sharp-limit rate')
+000072 | need(s.cancel((-u*s.diff(F,u)).subs(u,1) + 8*r/(1-r*r)) == 0,
+000073 |      'time derivative gives the energy')
+000074 | heat_controls = []
+000075 | for rv in (s.Rational(1, 2), s.Rational(3, 4), s.Rational(7, 8), s.Rational(15, 16)):
+000076 |     exact_energy = 8*rv/(1-rv*rv)
+000077 |     exact_kernel = s.cancel(F.subs({r:rv,u:s.Rational(1,2)}))
+000078 |     heat_controls.append({'exp_minus_2s': str(rv), 'mean_K': str(exact_energy),
+000079 |                           'F_s_log2': str(exact_kernel)})
+000080 | for stime, d, t in ((0.3, math.pi, 0.4), (0.7, 0.9, 0.2)):
+000081 |     n = np.arange(1, 401, dtype=float)
+000082 |     q = math.exp(-2*stime)
+000083 |     amplitude2 = 4*np.exp(-2*stime*n)*(1-np.cos(n*d))/n
+000084 |     e_sum = float(np.sum(n*amplitude2))
+000085 |     e_closed = 4*(q/(1-q)-(q*np.exp(1j*d)/(1-q*np.exp(1j*d))).real)
+000086 |     b = lambda x: 4*math.log(abs(1-x*np.exp(1j*d))/(1-x))
+000087 |     f_sum = math.exp(-float(np.sum(amplitude2*(1-np.exp(-t*n)))))
+000088 |     f_closed = math.exp(b(q*math.exp(-t))-b(q))
+000089 |     need(abs(e_sum-e_closed) < 1e-11, 'heat energy exact geometric series')
+000090 |     need(abs(f_sum-f_closed) < 1e-11, 'heat time kernel exact logarithmic sum')
+000091 | 
+000092 | # Actual source energies in all four original register backgrounds.
+000093 | sys.path.insert(0, str(REPO/'verification'))
+000094 | src = REPO/'verification/v1033_charged_disorder.py'
+000095 | spec = importlib.util.spec_from_file_location('continuous_sector_v1033', src)
+000096 | mod = importlib.util.module_from_spec(spec)
+000097 | sys.modules[spec.name] = mod

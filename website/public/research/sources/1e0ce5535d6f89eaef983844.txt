@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/check_native_f20_joint_clock.py
+Original file SHA-256: bb219e3eda987571c07161d7e07654b7959c5a6eb8f86e5719f0976dd7b1d46a
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact joint-clock typecheck for the native F20 four and v634 sigma.
+000003 | 
+000004 | This checker keeps three representations separate:
+000005 | 
+000006 | * the selected native Pauli F20 four;
+000007 | * the v634 native/theta family clock sigma on the same complex four;
+000008 | * the original arithmetic Q(zeta30) module, where carrier and family clocks
+000009 |   coexist on rational rank eight.
+000010 | """
+000011 | 
+000012 | from __future__ import annotations
+000013 | 
+000014 | import hashlib
+000015 | import json
+000016 | from itertools import product
+000017 | from pathlib import Path
+000018 | 
+000019 | import sympy as sp
+000020 | 
+000021 | 
+000022 | [OMITTED: non-scientific conversation or execution metadata]
+000023 | HERE = Path(__file__).resolve().parent
+000024 | PINS = {
+000025 |     "verification/v315_coxeter_coupling.py":
+000026 |         "490969af0827cf8829f236e3999710bb526396dc9eb2ee0672d8bdd5c6af7b0c",
+000027 |     "verification/v417_eisenstein_cp_operator.py":
+000028 |         "c5f1fe26b9e6fd30bf2ad45354de6819a184c4a86b491f19ab21cb53b21c2b7e",
+000029 |     "verification/v419_seam_galois_carrier.py":
+000030 |         "cc6152ad7ea68c67725020e386e49eec32810ab25bb483c76bae99964399c2fd",
+000031 |     "verification/v634_st31_structure.py":
+000032 |         "5ff53ed031ca03103187ac22edf723aabce88bee3df1085c52486ecb0044d37c",
+000033 |     "experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/"
+000034 |     "PAULI-SPIN-CENTRAL-LIFT.txt":
+000035 |         "e5ef50c899eba80dca03e1b7023edf816df3b45a669534fccf2fef215b0ae8e6",
+000036 | }
+000037 | 
+000038 | 
+000039 | def encode(matrix: sp.Matrix) -> list[list[str]]:
+000040 |     return [[str(sp.simplify(value)) for value in row] for row in matrix.tolist()]
+000041 | 
+000042 | 
+000043 | def main() -> None:
+000044 |     checks: list[str] = []
+000045 | 
+000046 |     def require(condition: bool, label: str) -> None:
+000047 |         if not bool(condition):
+000048 |             raise AssertionError(label)
+000049 |         checks.append(label)
+000050 | 
+000051 |     for relative, expected in PINS.items():
+000052 |         actual = hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()
+000053 |         require(actual == expected, f"source pin {relative}")
+000054 | 
+000055 |     ii = sp.I
+000056 |     sqrt2 = sp.sqrt(2)
+000057 |     identity2 = sp.eye(2)
+000058 |     identity4 = sp.eye(4)
+000059 |     X = sp.Matrix([[0, 1], [1, 0]])
+000060 |     Y = sp.Matrix([[0, -ii], [ii, 0]])
+000061 |     Z = sp.diag(1, -1)
+000062 |     H = sp.Matrix([[1, 1], [1, -1]]) / sqrt2
+000063 |     S = sp.diag(1, ii)
+000064 |     CNOT = sp.Matrix([
+000065 |         [1, 0, 0, 0],
+000066 |         [0, 1, 0, 0],
+000067 |         [0, 0, 0, 1],
+000068 |         [0, 0, 1, 0],
+000069 |     ])
+000070 |     H1 = sp.kronecker_product(H, identity2)
+000071 |     H2 = sp.kronecker_product(identity2, H)
+000072 |     S1 = sp.kronecker_product(S, identity2)
+000073 |     S2 = sp.kronecker_product(identity2, S)
+000074 | 
+000075 |     c_native = sp.simplify(-ii * H2 * CNOT * S1 * H1)
+000076 |     g_native = sp.simplify(sp.kronecker_product(Y, Z) * CNOT * S2 * S1)
+000077 |     sigma = sp.Matrix([
+000078 |         [0, 0, 1, 0],
+000079 |         [1, 0, 0, 0],
+000080 |         [0, 1, 0, 0],
+000081 |         [0, 0, 0, 1],
+000082 |     ])
+000083 |     require(c_native**5 == identity4, "selected native carrier has order five")
+000084 |     require(g_native**4 == identity4 and
+000085 |             sp.simplify(g_native * c_native * g_native.inv() - c_native**2) ==
+000086 |             sp.zeros(4), "selected native F20 relations")
+000087 |     require(sigma**3 == identity4 and sp.trace(sigma) == 1,
+000088 |             "actual v634 sigma has order three and trace one")
+000089 |     require(sigma.charpoly().as_expr().factor() ==
+000090 |             (sigma.charpoly().gen - 1)**2 *
+000091 |             (sigma.charpoly().gen**2 + sigma.charpoly().gen + 1),
+000092 |             "actual v634 sigma characteristic polynomial")
+000093 | 
+000094 |     commutator = sp.simplify(c_native * sigma - sigma * c_native)
+000095 |     g_plus = sp.simplify(g_native * sigma * g_native.inv() - sigma)
+000096 |     g_minus = sp.simplify(g_native * sigma * g_native.inv() - sigma.inv())
+000097 |     require(commutator.rank() == 4, "actual selected C5 does not commute with sigma")
+000098 |     require(g_plus.rank() == 4, "actual selected G does not fix sigma")
+000099 |     require(g_minus.rank() == 4, "actual selected G does not invert sigma")
+000100 | 
+000101 |     # The two order-eight quarter lifts have different projective type.
+000102 |     zeta8 = (1 + ii) / sqrt2
+000103 |     g_hat = sp.simplify(g_native / zeta8)
+000104 |     g_hat_square = sp.simplify(g_hat**2)
+000105 |     require(g_hat**4 == -identity4 and g_hat**8 == identity4,
+000106 |             "F20 symplectic normalization has order eight")
+000107 |     require(g_hat_square != ii * identity4 and
+000108 |             g_hat_square != -ii * identity4 and
+000109 |             sp.trace(g_hat_square) == 0,
+000110 |             "F20 quarter lift has nonscalar square and projective order four")
+000111 | 
+000112 |     # Abstract four-dimensional obstruction under either extra joint relation.
+000113 |     # In the C5 eigenbasis, G cycles the four one-dimensional eigenspaces.
+000114 |     # A commuting order-three sigma is diag(omega^e_j).  G sigma G^-1=sigma^s
+000115 |     # becomes e_{j+1}=s e_j mod 3, with s=+1 or -1.
+000116 |     allowed: dict[str, list[dict[str, object]]] = {"plus": [], "minus": []}
+000117 |     for label, sign in (("plus", 1), ("minus", -1)):
+000118 |         for exponents in product(range(3), repeat=4):
+000119 |             if all(exponents[(j + 1) % 4] ==
+000120 |                    (sign * exponents[j]) % 3 for j in range(4)):
+000121 |                 counts = [exponents.count(k) for k in range(3)]
+000122 |                 # Trace = n0 + n1 omega + n2 omega^2; omega^2=-1-omega.
+000123 |                 trace_pair = (counts[0] - counts[2], counts[1] - counts[2])
+000124 |                 allowed[label].append({
+000125 |                     "exponents": list(exponents),
+000126 |                     "trace_in_basis_1_omega": list(trace_pair),
+000127 |                 })
+000128 |     require(all(item["trace_in_basis_1_omega"] != [1, 0]
+000129 |                 for rows in allowed.values() for item in rows),
+000130 |             "no commuting F20 four sigma has order three trace one under plus or minus")
+000131 |     require({tuple(item["trace_in_basis_1_omega"])
+000132 |              for item in allowed["plus"]} ==
+000133 |             {(4, 0), (0, 4), (-4, -4)},
+000134 |             "plus relation forces scalar sigma")
+000135 |     require({tuple(item["trace_in_basis_1_omega"])
+000136 |              for item in allowed["minus"]} == {(4, 0), (-2, 0)},
+000137 |             "minus relation gives trace four or minus two")
+000138 | 
+000139 |     # The already original arithmetic joint module Q(zeta30), rational rank 8.
+000140 |     x = sp.symbols("x")
+000141 |     phi30 = sp.cyclotomic_poly(30, x)
+000142 | 
+000143 |     def column(polynomial: sp.Expr) -> sp.Matrix:
+000144 |         remainder = sp.Poly(sp.rem(polynomial, phi30, x), x)
+000145 |         return sp.Matrix([remainder.coeff_monomial(x**j) for j in range(8)])
+000146 | 
+000147 |     def multiplication(exponent: int) -> sp.Matrix:
+000148 |         return sp.Matrix.hstack(*(column(x**(exponent + j)) for j in range(8)))
+000149 | 
+000150 |     c5_q30 = multiplication(6)       # zeta30^6=zeta5
+000151 |     sigma_q30 = multiplication(10)  # zeta30^10=zeta3
+000152 |     g_q30 = sp.Matrix.hstack(*(column(x**(7 * j)) for j in range(8)))
+000153 |     identity8 = sp.eye(8)
+000154 |     require(c5_q30**5 == identity8 and sigma_q30**3 == identity8 and
+000155 |             g_q30**4 == identity8, "Q(zeta30) carrier family and Galois orders")
+000156 |     require(c5_q30 * sigma_q30 == sigma_q30 * c5_q30,
+000157 |             "Q(zeta30) cyclic carrier and family clocks commute")
+000158 |     require(sp.simplify(g_q30 * c5_q30 * g_q30.inv() - c5_q30**2) ==
+000159 |             sp.zeros(8), "Q(zeta30) carrier Frobenius relation")
+000160 |     require(g_q30 * sigma_q30 == sigma_q30 * g_q30,
+000161 |             "Q(zeta30) carrier Galois generator fixes the family clock")
+000162 |     require(sp.trace(sigma_q30) == -4,
+000163 |             "Q(zeta30) family trace is minus four not native trace one")
+000164 | 
+000165 |     result = {
+000166 |         "checks_pass": True,
+000167 |         "checks": checks,
+000168 |         "source_pins": PINS,
+000169 |         "actual_native_four": {
+000170 |             "sigma": encode(sigma),
+000171 |             "sigma_trace": str(sp.trace(sigma)),
+000172 |             "sigma_charpoly": str(sp.factor(sigma.charpoly().as_expr())),
+000173 |             "rank_C5_sigma_commutator": commutator.rank(),
+000174 |             "rank_G_sigma_Ginv_minus_sigma": g_plus.rank(),
+000175 |             "rank_G_sigma_Ginv_minus_sigma_inv": g_minus.rank(),
+000176 |         },
+000177 |         "quarter_lift_distinction": {
+000178 |             "old_theta_alpha_square": "+i I4",
+000179 |             "old_theta_alpha_projective_order": 2,
+000180 |             "new_F20_Ghat_square": encode(g_hat_square),
+000181 |             "new_F20_Ghat_square_trace": str(sp.trace(g_hat_square)),
+000182 |             "new_F20_Ghat_projective_order": 4,
+000183 |         },
+000184 |         "abstract_four_dimensional_joint_relation": allowed,
+000185 |         "original_Qzeta30_rank_eight": {
+000186 |             "minimal_polynomial": str(phi30),
+000187 |             "carrier_family_commute": True,
+000188 |             "G_C5_Ginv_equals_C5_squared": True,
+000189 |             "G_sigma_Ginv_equals_sigma": True,
+000190 |             "sigma_trace": str(sp.trace(sigma_q30)),
+000191 |         },
+000192 |         "verdict": "JOINT_CLOCK_GAP_ON_SELECTED_NATIVE_F20_FOUR",
+000193 |         "scope": (
+000194 |             "The gap is for the selected native F20 four with the actual v634 "
+000195 |             "sigma and for any irreducible F20 four under either stated extra "
+000196 |             "joint relation. The original Q(zeta30) arithmetic rank-eight module "
+000197 |             "does carry the commuting carrier and family clocks. No physical "
+000198 |             "no-go or identification of the theta alpha with the F20 Ghat follows."
+000199 |         ),
+000200 |     }

@@ -1,0 +1,72 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_whole_circle_higgs_measure.py
+Original file SHA-256: 905eb98631e3471ff5cabc65cf7600a38352624ed3dcedbb2599c8ba2b3fe0a3
+Inclusive original lines: 1-64
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R056 uniform whole original circle cutoff/Higgs-volume test.
+000002 | Analytic proof decides all modes/profiles/H; these are constructor controls.
+000003 | """
+000004 | from pathlib import Path
+000005 | import sys,json
+000006 | import numpy as np
+000007 | import sympy as s
+000008 | ROOT=Path(__file__).resolve().parents[4];sys.path.insert(0,str(ROOT/'verification'))
+000009 | import v252_full_finite_triple as v
+000010 | checks={};details={}
+000011 | def need(n,ok):
+000012 |  checks[n]=bool(ok)
+000013 |  if not ok:raise AssertionError(n)
+000014 | rng=np.random.default_rng(252)
+000015 | Ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000016 | mr=rng.normal(size=(3,3));MR=mr+mr.T
+000017 | z3=np.zeros((3,3),complex);z2=np.zeros((2,2),complex)
+000018 | DY=v.full_D(*Ys,z3);DM=v.full_D(z3,z3,z3,z3,MR)
+000019 | P=v.rep(1,z2,z3);K=v.Kswap();gamma=v.grading()
+000020 | def phi(H):
+000021 |  h1,h2=H;q=np.array([[np.conj(h2),h1],[-np.conj(h1),h2]])
+000022 |  a=v.rep(0,q,z3);B=a@(DY@P-P@DY);B=B+B.conj().T
+000023 |  return B+K@B.conj()@K+DM
+000024 | Hs=[(0j,0j),(.6j,.8+0j),(1+2j,3-1j)]
+000025 | ns=np.arange(-30,31);rows=[]
+000026 | for j,H in enumerate(Hs):
+000027 |  ph=phi(H);sq=ph@ph;ev=np.linalg.eigvalsh(sq);ev=np.maximum(ev,0)
+000028 |  need(f'whole96_phi_selfadjoint_{j}',np.max(abs(ph-ph.conj().T))<1e-11)
+000029 |  need(f'whole96_odd_grading_{j}',np.max(abs(gamma@ph+ph@gamma))<1e-11)
+000030 |  for a in [.25,.75]:
+000031 |   for N in [1,4]:
+000032 |    ps=np.arange(-N,N+1)+a
+000033 |    direct=0.;square_error=0.
+000034 |    for pp in ps:
+000035 |     h=pp*gamma-1j*gamma@ph
+000036 |     square_error=max(square_error,float(np.max(abs(h@h-(pp*pp*np.eye(96)+sq)))))
+000037 |     direct+=np.exp(-np.linalg.eigvalsh(h)**2).sum()
+000038 |    need(f'actual_whole_square_{j}_{a}_{N}',square_error<3e-10)
+000039 |    prod=float(np.exp(-ps**2).sum()*np.exp(-ev).sum())
+000040 |    need(f'exact_trace_factorization_{j}_{a}_{N}',abs(direct-prod)<2e-10)
+000041 |    Bheat=float(np.exp(-(ns+a)**2).sum())
+000042 |    # Tail beyond30 is <1e-350; this numeric baseline is only diagnostic.
+000043 |    need(f'whole_uniform_heat_bound_{j}_{a}_{N}',prod<=96*Bheat+1e-10)
+000044 |    pois=float(np.exp(-np.sqrt(ps[:,None]**2+ev[None,:])).sum())
+000045 |    Bpois=(np.exp(-a)+np.exp(-(1-a)))/(1-np.exp(-1))
+000046 |    need(f'whole_uniform_Poisson_bound_{j}_{a}_{N}',pois<=96*Bpois+1e-10)
+000047 |    rows.append(dict(H=str(H),alpha=a,N=N,heat=prod,heat_bound=96*Bheat,even_Poisson=pois,Poisson_bound=96*Bpois))
+000048 | # Exact infinite Poisson baseline and regulator mass bound.
+000049 | q,a=s.symbols('q alpha',positive=True)
+000050 | partial=sum(q**(n+a) for n in range(6))+sum(q**(n-a) for n in range(1,6))
+000051 | tails=(q**(6+a)+q**(6-a))/(1-q)
+000052 | need('infinite_Poisson_partial_plus_exact_tails',s.simplify(partial+tails-(q**a+q**(1-a))/(1-q))==0)
+000053 | need('quarter_conjugate_baseline_equal',s.simplify(((q**a+q**(1-a))/(1-q)).subs(a,s.Rational(1,4))-((q**a+q**(1-a))/(1-q)).subs(a,s.Rational(3,4)))==0)
+000054 | eps,R,C1,C2=s.symbols('epsilon R C1 C2',positive=True)
+000055 | bound=s.exp(C1+C2)*R**4*eps**2/2
+000056 | need('uniform_joint_IR_bound_vanishes',s.limit(bound,eps,0,dir='+')==0)
+000057 | x,y,pp=s.symbols('x y p',real=True)
+000058 | gg=s.diag(1,-1);ph2=s.Matrix([[0,x+s.I*y],[x-s.I*y,0]])
+000059 | hh=pp*gg-s.I*gg*ph2
+000060 | need('exact_odd_Hermitian_square_countercheck',s.simplify(hh-hh.conjugate().T)==s.zeros(2) and s.simplify(hh*hh-pp**2*s.eye(2)-ph2*ph2)==s.zeros(2))
+000061 | details['constructor_controls']=rows
+000062 | out=dict(all_passed=all(checks.values()),checks=checks,details=details,scope='Whole original constant quarter-circle and already given compact product only;uniform positive Laplace trace-class baseline;no actual Higgs measure selected,no general variable-field/fermion joint-limit/no-go claim,no new Lean')
+000063 | Path(__file__).with_name('WHOLE-CIRCLE-HIGGS-MEASURE.json').write_text(json.dumps(out,indent=2)+'\n')
+000064 | print(json.dumps(dict(all_passed=out['all_passed'],controls=len(checks),whole_circle_heat_bound=rows[0]['heat_bound'],whole_circle_Poisson_bound=rows[0]['Poisson_bound'])))

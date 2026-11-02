@@ -1,0 +1,162 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/W8-STRESS-INDEPENDENT-REVIEW.txt
+Original file SHA-256: 9e48cbc532f7c5970dda4ff13d3b8fe64459b86544faa5d3a1c19900a85b371c
+Inclusive original lines: 27-180
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000027 | 1. Level eins des gefalteten c=8 Virasorozyklus
+000028 | -----------------------------------------------
+000029 | 
+000030 | Im gefalteten reellen Achtstrommodul gilt
+000031 | 
+000032 |   h_j(n)^*=h_j(-n),
+000033 |   Lhat_n^*=Lhat_-n,
+000034 |   N=Lhat_0-d^2/2 >=0.
+000035 | 
+000036 | Der normierte Ladungsgrundzustand |d> ist ein Virasoro Höchstgewichtszustand
+000037 | mit Gewicht h_d=d^2/2. Die algebraische Virasoromodulbasis wird nach dem
+000038 | N Level durch Partitionen graduiert. Auf Level eins gibt es nur die Partition
+000039 | (1). Daher ist
+000040 | 
+000041 |   P_1 H_d^(Vir,hat)
+000042 |     =span{Lhat_-1|d>}
+000043 |     =span{(d.h_-1)|d>}.                                   (1)
+000044 | 
+000045 | Die zweite Gleichheit ist die gewöhnliche Heisenberg Sugawara Wirkung auf dem
+000046 | Ladungsgrundzustand. Hier ist d^2=85/128, also ist der Vektor nicht null.
+000047 | 
+000048 | Die Abschließung vergrößert (1) nicht. Der Spektralprojektor P_1 von N ist
+000049 | beschränkt. Er bildet die Abschließung des algebraischen Virasororaums in die
+000050 | Abschließung seines Level eins Anteils ab. Dieser Anteil ist bereits der
+000051 | eindimensionale abgeschlossene Raum in (1). Dass in einer Stresshistorie
+000052 | positive, negative und Nullmoden in beliebiger Reihenfolge vorkommen dürfen,
+000053 | ändert daran nichts: PBW und die Höchstgewichtsrelationen reduzieren sie wieder
+000054 | auf Nachfahren der gefalteten Lhat Moden.
+000055 | 
+000056 | Tragend ist hier die Generatorwahl. Aus der bereits bewiesenen Foldrelation
+000057 | 
+000058 |   Lhat_n=Lcal_(8n)^alpha/8+21/64 delta_(n,0),
+000059 |   N=(Lcal_0^alpha-1/32)/8
+000060 | 
+000061 | folgt, dass gefaltetes N Level eins dem ursprünglichen c=1 Grad acht
+000062 | entspricht. Gleichung (1) beschreibt daher nur den Lhat Unterraum. Sie sagt
+000063 | nichts über den vollen Span aller ursprünglichen Wörter aus Lcal_-m mit
+000064 | Gesamtgrad acht.
+000065 | 
+000066 | 2. Exakte orthogonale Komponente der wirklichen W8 Antwort
+000067 | ----------------------------------------------------------
+000068 | 
+000069 | Die gespeicherte Expansion ist
+000070 | 
+000071 |   z^8 Y_d(W8,z)|d> = sum_(ell>=0) v_ell z^ell.
+000072 | 
+000073 | Auf Level eins schreibt man
+000074 | 
+000075 |   v_1=sum_j (v_1)_j h_j(-1)|d>.
+000076 | 
+000077 | Wegen [h_i(1),h_j(-1)]=delta_ij ist die Fockmetrik auf diesen
+000078 | Koeffizienten die gewöhnliche euklidische Metrik. Der Orthogonalprojektor auf
+000079 | den Virasorostrahl (1) gibt deshalb
+000080 | 
+000081 |   v_parallel=(d.v_1/d^2)d,
+000082 |   v_perp=v_1-v_parallel.                                  (2)
+000083 | 
+000084 | Die primäre Wardidentität im Checker lautet
+000085 | 
+000086 |   d.v_1=8 <W8>_d.
+000087 | 
+000088 | Damit ist
+000089 | 
+000090 |   ||v_parallel||^2=64 <W8>_d^2/d^2.
+000091 | 
+000092 | Direkte exakte Auswertung der beiden gespeicherten Level eins Vektoren ergibt
+000093 | für alpha=1/4 und alpha=3/4 jeweils
+000094 | 
+000095 |   d.v_perp=0,
+000096 | 
+000097 |   ||v_perp||^2
+000098 |     =51311452775625/9345848836096 >0,                     (3)
+000099 | 
+000100 |   ||v_perp||^2/||v_1||^2
+000101 |     =2940380138425680/3194827970344921.                   (4)
+000102 | 
+000103 | Der letzte Anteil ist ungefähr 0.920356. Der Befund ist also weder eine
+000104 | Rundungsabweichung noch nur die bereits bekannte radiale Wardkomponente.
+000105 | 
+000106 | Ich habe (2) bis (4) unabhängig aus den rationalen Vektoren in
+000107 | w8-source-twopoint-results.json nachgerechnet. Beide Quarterfälle geben exakt
+000108 | dieselben Werte.
+000109 | 
+000110 | 3. Rootsumme und Gradientenkonvention
+000111 | -------------------------------------
+000112 | 
+000113 | Im verwendeten Standardchart ist
+000114 | 
+000115 |   H8(x)=sum_(alpha in Phi(E8))(alpha.x)^8-30(x.x)^4.
+000116 | 
+000117 | Mit der euklidischen Fockmetrik ist
+000118 | 
+000119 |   grad H8(d)
+000120 |     =8 sum_alpha (alpha.d)^7 alpha-240(d.d)^3 d.           (5)
+000121 | 
+000122 | Der tangentiale Gradient auf der Sphäre durch d ist
+000123 | 
+000124 |   grad_tan H8(d)
+000125 |     =grad H8(d)-d[d.grad H8(d)]/d^2.                       (6)
+000126 | 
+000127 | Die Level eins Komponente eines Heisenberg Zustands P entsteht durch
+000128 | Ableitung nach h_j(-1) und anschließendes Einsetzen
+000129 | 
+000130 |   h_j(-n) -> (-1)^(n-1)d_j.
+000131 | 
+000132 | Für jedes Q_ab=sum_j h_j(-a)h_j(-b) ist eine Ableitung nach h_j(-1)
+000133 | entweder null oder proportional zu h_j(-b). Am Hintergrund ist dieser Vektor
+000134 | gleich plus oder minus d. Daher ist die Level eins Ableitung jedes der sechzehn
+000135 | Q_ab Kontraktionsmonome rein radial. Ihre Koeffizienten und auch der eine
+000136 | verschwindende Ansatzkoeffizient ändern diese Aussage nicht.
+000137 | 
+000138 | Folglich stammt die ganze tangentiale Komponente aus H8:
+000139 | 
+000140 |   v_perp=grad_tan H8(d).                                  (7)
+000141 | 
+000142 | Ich habe (7) unabhängig mit allen 240 E8 Wurzeln und beiden gespeicherten
+000143 | Quarterladungen exakt geprüft. Beide Seiten stimmen komponentenweise. Die Norm
+000144 | ist jeweils genau (3). Die Konvention in (5) stimmt damit zugleich mit dem
+000145 | Vorzeichen der gespeicherten Feldsubstitution überein: Für n=1 wird h(-1)
+000146 | durch +d ersetzt.
+000147 | 
+000148 | 4. Semigruppenglättung und der geschlossene Raum
+000149 | ------------------------------------------------
+000150 | 
+000151 | Der unbeschränkte Punktfeldvektor bei Radius eins muss für diese Aussage nicht
+000152 | als Hilbertvektor vorausgesetzt werden. Für epsilon>0 setze auf der vorhandenen
+000153 | positiven radialen Quelle
+000154 | 
+000155 |   Psi_epsilon
+000156 |     =sum_(ell>=0) exp(-epsilon ell)v_ell
+000157 |     =exp(-epsilon N)[z^8Y_d(W8,z)|d>]_(z=1)               (8)
+000158 | 
+000159 | im durch die Spektralentwicklung definierten Sinn. Aus dem bereits bewiesenen
+000160 | rationalen Zweipunkt folgt
+000161 | 
+000162 |   ||Psi_epsilon||^2
+000163 |     =sum_(ell>=0) exp(-2epsilon ell)||v_ell||^2 < infinity.
+000164 | 
+000165 | Der positive selbstadjungierte Semigroupoperator exp(-epsilon N) erhält den
+000166 | abgeschlossenen gefalteten Virasorozyklus, weil N=Lhat_0-h_d zu dieser
+000167 | Virasorodarstellung gehört. Der Level eins Anteil von (8) ist
+000168 | 
+000169 |   P_1 Psi_epsilon=exp(-epsilon)v_1.
+000170 | 
+000171 | Seine zu (1) senkrechte Komponente ist exp(-epsilon)v_perp und bleibt nach
+000172 | (3) für jedes endliche epsilon strikt von null verschieden. Daher
+000173 | 
+000174 |   Psi_epsilon notin H_d^(Vir,hat)   für jedes epsilon>0.    (9)
+000175 | 
+000176 | Gleichung (9) schließt die Abschließung und beliebig lange Wörter aus den
+000177 | gefalteten Lhat Moden ein. Sie beruht nicht auf einer endlichen PBW
+000178 | Abschneidung. Allgemeiner gilt dieselbe Folgerung für jede Spektralglättung,
+000179 | deren Multiplikator auf gefaltetem Level eins nicht verschwindet. Sie enthält
+000180 | keine Aussage über den größeren ursprünglichen c=1 Virasororaum.

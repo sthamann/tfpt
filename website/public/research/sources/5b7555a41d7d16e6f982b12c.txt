@@ -1,0 +1,69 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-collar-multifield-20261016/p1_insertion_tangent.py
+Original file SHA-256: 70b3d0790f40a4834644c806db90fc27402967563e6e8888a8f1192ec539ad00
+Inclusive original lines: 116-176
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000116 |     assert sp.simplify(h-2*ell*b) == sp.zeros(2)
+000117 |     return {"transfer_eigenvalues": ["1/4", "1/64"],
+000118 |             "calderon_projection_exact": True,
+000119 |             "own_range_covariance": "I (not in the domain of finite logit induction)",
+000120 |             "mixed_one_face_occupations": list(map(str, occupation.diagonal())),
+000121 |             "one_face_modular_generator": list(map(str, h.diagonal())),
+000122 |             "exact_recovery": "h(1-A)=2*ell*B, ell=8*log(2), B=diag(1/4,3/4)",
+000123 |             "scope": "Retained conditional collar, not a physical P1 field family"}
+000124 | 
+000125 | 
+000126 | def current_action_checks():
+000127 |     roots = e8.roots()
+000128 |     rootset = set(roots)
+000129 |     spinors = tuple(p for p in roots if e8.grade(p) == 1)
+000130 |     targets = set(p for p in roots if e8.grade(p) == 3)
+000131 |     mediators = tuple(r for r in roots if e8.grade(r) == 2)
+000132 |     outgoing, ranks, family_edges = Counter(), Counter(), Counter()
+000133 |     values = Counter()
+000134 |     sample = None
+000135 |     for r in mediators:
+000136 |         images = set()
+000137 |         for p in spinors:
+000138 |             s = e8.add(r, p)
+000139 |             allowed = s in rootset
+000140 |             assert allowed == (e8.dot(r, p) == -1)
+000141 |             if not allowed:
+000142 |                 continue
+000143 |             assert s in targets
+000144 |             # Actual existing three-current reader, not an inserted Yukawa matrix.
+000145 |             response = e8.current_response((r, p, e8.neg(s)), (3, 2, 1))
+000146 |             norm = e8.current_response((s, e8.neg(s)), (2, 1))
+000147 |             coefficient = 2*response/norm
+000148 |             assert coefficient == e8.epsilon(r, p)
+000149 |             assert response != 0
+000150 |             source_family = p[5:]
+000151 |             target_conjugate_family = e8.neg(s)[5:]
+000152 |             assert source_family != target_conjugate_family
+000153 |             family_edges[(source_family, target_conjugate_family)] += 1
+000154 |             outgoing[p] += 1
+000155 |             images.add(s)
+000156 |             values[str(response)] += 1
+000157 |             if sample is None:
+000158 |                 sample = {"r": list(map(str, r)), "p": list(map(str, p)),
+000159 |                           "target": list(map(str, s)), "response_3_2_1": str(response),
+000160 |                           "zero_mode_coefficient": str(coefficient)}
+000161 |         ranks[len(images)] += 1
+000162 |     # Check every possible same-family pairing against all existing grade-two currents.
+000163 |     same_family_pairs = [(p, q) for p in spinors for q in spinors if p[5:] == q[5:]]
+000164 |     for p, q in same_family_pairs:
+000165 |         assert e8.neg(e8.add(p, q)) not in set(mediators)
+000166 |     # One direct existing-reader zero per same-family pair, with each mediator sampled cyclically.
+000167 |     for i, (p, q) in enumerate(same_family_pairs):
+000168 |         assert e8.current_response((mediators[i % len(mediators)], p, q), (3, 2, 1)) == 0
+000169 |     assert len(spinors) == 64 and len(mediators) == 60
+000170 |     assert set(outgoing.values()) == {15} and sum(outgoing.values()) == 960
+000171 |     assert ranks == {16: 60} and len(family_edges) == 12
+000172 |     assert set(family_edges.values()) == {80}
+000173 |     return {"spinor_current_dimension_each": 64, "grade_two_currents": 60,
+000174 |             "candidate_root_pairs": len(spinors)*len(mediators),
+000175 |             "nonzero_root_actions": sum(outgoing.values()),
+000176 |             "outgoing_per_spinor": 15, "rank_each_root_action": 16,

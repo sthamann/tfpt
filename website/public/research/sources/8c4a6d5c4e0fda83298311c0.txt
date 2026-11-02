@@ -1,0 +1,102 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/joint-native-algebra-selection-20261016/check_four_polar_context_algebra.py
+Original file SHA-256: 7e30b0c2738d77b183f51cbb137480f07249a30f763d8b9d3acd824bb4b529cb
+Inclusive original lines: 1-94
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact joint algebra of the actual four polar marks; no physical instrument fit."""
+000002 | from pathlib import Path
+000003 | import hashlib
+000004 | import itertools
+000005 | import json
+000006 | import sympy as s
+000007 | 
+000008 | BASE = Path(__file__).resolve().parent
+000009 | cl = lambda A: A.applyfunc(s.simplify)
+000010 | 
+000011 | 
+000012 | def need(ok, message):
+000013 |     if not ok:
+000014 |         raise ArithmeticError(message)
+000015 | 
+000016 | 
+000017 | def main():
+000018 |     # Literal chart in check_four_starting_points.py, whose intrinsic source
+000019 |     # reconstruction and central OPE metric are separately established.
+000020 |     raw = s.Matrix([[2, 2, -1, -1, -1, -1], [0, 0, -1, -1, 1, 1],
+000021 |                     [0, 0, -1, 1, -1, 1], [0, 0, 1, -1, -1, 1],
+000022 |                     [1, -1, 0, 0, 0, 0]])
+000023 |     N = cl(s.diag(2, s.sqrt(12), s.sqrt(12), s.sqrt(12), s.sqrt(24))*raw/s.sqrt(48))
+000024 |     need(N*N.T == s.eye(5), "Actual simplex normalization")
+000025 |     need(cl(N.T*N) == s.eye(6)-s.ones(6)/6, "Actual six-ray Gram")
+000026 |     a = (s.sqrt(6)-1)/5
+000027 |     e = cl((N[:, 0]-N[:, 1])/s.sqrt(2))
+000028 |     Z = e*e.T
+000029 |     V = cl(s.Matrix.hstack(*[(N[:, 0]+N[:, 1]-2*a*N[:, q])/s.sqrt(2)
+000030 |                             for q in range(2, 6)]))
+000031 |     t = (11+4*s.sqrt(6))/25
+000032 |     need(cl(V.T*V) == (1-t)*s.eye(4)+t*s.ones(4), "Complete exact overlap Gram")
+000033 |     need(cl(e.T*V) == s.zeros(1, 4) and V.rank() == 4, "Actual orthogonal 1+4 vector decomposition")
+000034 |     Ps = []
+000035 |     for j, q in enumerate(range(2, 6)):
+000036 |         A = s.Matrix.hstack(*[N[:, k]-a*N[:, q] for k in (0, 1)])
+000037 |         P = cl(A*A.T)
+000038 |         need(cl(P*P-P) == s.zeros(5) and s.simplify(s.trace(P)) == 2, "Actual rank-two polar mark")
+000039 |         need(cl(P-Z-V[:, j]*V[:, j].T) == s.zeros(5), "Common line and four residual rays")
+000040 |         Ps.append(P)
+000041 |     S = sum(Ps, s.zeros(5))
+000042 |     lp, lm = 1+3*t, 1-t
+000043 |     spectral_Z = cl((S-lp*s.eye(5))*(S-lm*s.eye(5))/((4-lp)*(4-lm)))
+000044 |     need(spectral_Z == Z, "Common line lies in generated algebra, not added by hand")
+000045 |     Qs = [P-Z for P in Ps]
+000046 |     units = []
+000047 |     for j, k in itertools.product(range(4), repeat=2):
+000048 |         A = cl(Qs[j]*Qs[k]/(1 if j == k else t))
+000049 |         need(cl(A-V[:, j]*V[:, k].T) == s.zeros(5), "All residual outer products generated")
+000050 |         units.append(A.reshape(25, 1))
+000051 |     need(s.Matrix.hstack(*units).rank() == 16, "Full M4 and no omitted residual direction")
+000052 |     commutator_norms = []
+000053 |     for j, k in itertools.combinations(range(4), 2):
+000054 |         C = cl(Ps[j]*Ps[k]-Ps[k]*Ps[j])
+000055 |         norm = s.simplify(s.trace(C.H*C))
+000056 |         need(s.simplify(norm-2*t*t*(1-t*t)) == 0 and norm != 0,
+000057 |              "Every pair fails sharp joint measurability")
+000058 |         commutator_norms.append(str(norm))
+000059 |     rays = cl(s.sqrt(s.Rational(6, 5))*N[:, 2:6])
+000060 |     ray_gram = cl(rays.T*rays)
+000061 |     need(ray_gram == s.Rational(6, 5)*s.eye(4)-s.ones(4)/5,
+000062 |          "Four distinct rays are nonorthogonal, not perfectly discriminable")
+000063 |     # Negative control: orthogonal one-dimensional settings do commute.
+000064 |     P0, P1 = s.diag(1, 0, 0, 0, 0), s.diag(0, 1, 0, 0, 0)
+000065 |     need(P0*P1 == P1*P0 == s.zeros(5), "Orthogonal control is compatible")
+000066 |     tensor_path = BASE/'fold_response_tensors_results.json'
+000067 |     original = json.loads(tensor_path.read_text())
+000068 |     expected = {'1/4': s.Rational(7882461, 4398046511104),
+000069 |                 '3/4': s.Rational(3201175, 13194139533312)}
+000070 |     mixed = {}
+000071 |     for alpha, data in original['cases'].items():
+000072 |         D1 = s.Matrix(data['wick_tensors'][1])
+000073 |         need(cl(D1-D1.H) == s.zeros(5), "Original full D1 is Hermitian")
+000074 |         w = cl((s.eye(5)-Z)*D1*e)
+000075 |         n2 = s.simplify((w.H*w)[0])
+000076 |         need(n2 == expected[alpha] and n2 > 0, "Actual source correlation breaks residual central split")
+000077 |         # Together with M4 this cross-block connects e to every residual
+000078 |         # direction. The commutant shrinks from C Z+C(I-Z) to C I; hence M5.
+000079 |         mixed[alpha] = {'cross_block_norm_squared': str(n2),
+000080 |                         'response_algebra': 'M5(C)', 'commutant_dimension': 1}
+000081 |     out = {'status': 'PASS_EXACT_FOUR_POLAR_CONTEXT_ALGEBRA',
+000082 |            'overlap_t': str(t), 'four_ray_gram': [[str(x) for x in row] for row in ray_gram.tolist()],
+000083 |            'polar_generated_algebra': 'C direct_sum M4(C)',
+000084 |            'polar_commutant_dimension': 2, 'polar_algebra_dimension': 17,
+000085 |            'pair_commutator_norm_squared': commutator_norms,
+000086 |            'original_D1_cases': mixed,
+000087 |            'source_tensor_sha256': hashlib.sha256(tensor_path.read_bytes()).hexdigest(),
+000088 |            'scope': 'Actual finite quartic observation space, fixed global S={0,1}, original polar rule and NS current metric. Algebraic classification and conditional sharp-instrument constraint only. No assertion of physical implementation, full-source superselection, unique q, preferred measurement, or complete TFPT solution.'}
+000089 |     (BASE/'four_polar_context_algebra_results.json').write_text(json.dumps(out, indent=2)+'\n')
+000090 |     print(json.dumps(out, indent=2))
+000091 | 
+000092 | 
+000093 | if __name__ == '__main__':
+000094 |     main()

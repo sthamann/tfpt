@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/check_clustering_admissible_sector.py
+Original file SHA-256: 5261ec3aa4ab33d4a0a68d0c7312e57888ccd60ff4cc4a9d2c095fac9220a567
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact color-center test for the two H8 ground charges.
+000003 | 
+000004 | The infinite-lattice ground classification is proved coordinatewise.  The
+000005 | finite enumeration below is used only for the first positive center-neutral
+000006 | energy.  Its cutoff is certified by explicit coordinate lower bounds.
+000007 | """
+000008 | 
+000009 | from __future__ import annotations
+000010 | 
+000011 | from fractions import Fraction as F
+000012 | from itertools import combinations, product
+000013 | from pathlib import Path
+000014 | import hashlib
+000015 | import json
+000016 | 
+000017 | 
+000018 | HERE = Path(__file__).resolve().parent
+000019 | [OMITTED: non-scientific conversation or execution metadata]
+000020 | FOLD_RESULTS = REPO / "experiments/theory-contracts/v16-operator-pullback-20261014/fold-results.json"
+000021 | 
+000022 | ALPHAS = (F(1, 4), F(3, 4))
+000023 | DIM = 8
+000024 | PSTAR = (F(1, 2),) * 4 + (F(-1, 2),) * 4
+000025 | ZERO = (F(0),) * DIM
+000026 | 
+000027 | 
+000028 | def need(condition: bool, message: str) -> None:
+000029 |     if not condition:
+000030 |         raise RuntimeError(message)
+000031 | 
+000032 | 
+000033 | def fstr(value: F) -> str:
+000034 |     return str(value.numerator) if value.denominator == 1 else f"{value.numerator}/{value.denominator}"
+000035 | 
+000036 | 
+000037 | def delta(alpha: F) -> tuple[F, ...]:
+000038 |     return tuple((F(k) + alpha) / 8 - F(1, 2) for k in range(DIM))
+000039 | 
+000040 | 
+000041 | def energy_k(p: tuple[F, ...], alpha: F, oscillator_level: int = 0) -> F:
+000042 |     d = delta(alpha)
+000043 |     return F(oscillator_level) + sum(x * x for x in p) / 2 + sum(x * y for x, y in zip(d, p))
+000044 | 
+000045 | 
+000046 | def matvec(matrix: tuple[tuple[F, ...], ...], vector: tuple[F, ...]) -> tuple[F, ...]:
+000047 |     return tuple(sum(a * b for a, b in zip(row, vector)) for row in matrix)
+000048 | 
+000049 | 
+000050 | def color_triality(carrier_weight: tuple[F, ...]) -> int:
+000051 |     """SU(3) center exponent in the fixed first-three-slot carrier frame.
+000052 | 
+000053 |     The coweight pairing is q1+q2-2*q3 modulo 3.  It is integral on the
+000054 |     restricted E8 weights used below.  On an integral root it agrees with the
+000055 |     sum of the first three coordinates modulo 3.
+000056 |     """
+000057 | 
+000058 |     numerator = carrier_weight[0] + carrier_weight[1] - 2 * carrier_weight[2]
+000059 |     need(numerator.denominator == 1, f"nonintegral SU(3) coweight pairing: {numerator}")
+000060 |     return int(numerator) % 3
+000061 | 
+000062 | 
+000063 | def psing_eigenvalue(triality: int) -> int:
+000064 |     """Exact cyclotomic average (1+omega^t+omega^(2t))/3."""
+000065 | 
+000066 |     return 1 if triality % 3 == 0 else 0
+000067 | 
+000068 | 
+000069 | def e8_roots() -> list[tuple[F, ...]]:
+000070 |     roots: list[tuple[F, ...]] = []
+000071 |     for i, j in combinations(range(DIM), 2):
+000072 |         for si, sj in product((-1, 1), repeat=2):
+000073 |             root = [F(0)] * DIM
+000074 |             root[i], root[j] = F(si), F(sj)
+000075 |             roots.append(tuple(root))
+000076 |     for signs in product((-1, 1), repeat=DIM):
+000077 |         if sum(s < 0 for s in signs) % 2 == 0:
+000078 |             roots.append(tuple(F(s, 2) for s in signs))
+000079 |     need(len(roots) == 240 and len(set(roots)) == 240, "E8 root construction failed")
+000080 |     need(all(sum(x * x for x in root) == 2 for root in roots), "non-root in E8 root list")
+000081 |     return roots
+000082 | 
+000083 | 
+000084 | def main() -> None:
+000085 |     fold = json.loads(FOLD_RESULTS.read_text(encoding="utf-8"))
+000086 |     matrix = tuple(tuple(F(x) for x in row) for row in fold["explicit_Weyl_matrix"])
+000087 |     need(len(matrix) == DIM and all(len(row) == DIM for row in matrix), "Weyl matrix is not 8x8")
+000088 |     need(all(sum(matrix[i][k] * matrix[j][k] for k in range(DIM)) == (i == j)
+000089 |              for i in range(DIM) for j in range(DIM)), "Weyl matrix is not orthogonal")
+000090 | 
+000091 |     pstar_image = matvec(matrix, PSTAR)
+000092 |     expected_image = (F(1), F(0), F(0), F(1), F(0), F(0), F(0), F(0))
+000093 |     need(pstar_image == expected_image, f"unexpected M p*: {pstar_image}")
+000094 | 
+000095 |     # Original 3+2 carrier mark: X=6Y=(-2,-2,-2,3,3).
+000096 |     xmark = (F(-2), F(-2), F(-2), F(3), F(3), F(0), F(0), F(0))
+000097 |     xcharge = sum(a * b for a, b in zip(xmark, pstar_image))
+000098 |     source_charge = tuple(F(x) for x in fold["transported_source_U1_charge"])
+000099 |     source_u1 = sum(a * b for a, b in zip(source_charge, pstar_image))
+000100 |     pstar_triality = color_triality(pstar_image)
+000101 |     need(xcharge == 1, f"unexpected scaled hypercharge X: {xcharge}")
+000102 |     need(source_u1 == 0, f"unexpected transported source U1 charge: {source_u1}")
+000103 |     need(pstar_triality == 1, f"unexpected p* color triality: {pstar_triality}")
+000104 |     need(psing_eigenvalue(pstar_triality) == 0, "P_sing failed to remove colored p*")
+000105 |     need(psing_eigenvalue(color_triality(matvec(matrix, ZERO))) == 1, "P_sing removed vacuum")
+000106 | 
+000107 |     roots = e8_roots()
+000108 |     cases: dict[str, object] = {}
+000109 |     for alpha in ALPHAS:
+000110 |         d = delta(alpha)
+000111 |         need(all(abs(x) < F(1, 2) for x in d), "integer coordinate convexity premise failed")
+000112 |         need(all(x < 0 for x in d[:4]) and all(x > 0 for x in d[4:]),
+000113 |              "half-coordinate minimizer sign pattern changed")
+000114 | 
+000115 |         # Infinite lattice proof: integer coordinates have the unique minimum
+000116 |         # zero; half coordinates have the unique minimum PSTAR.  Both obey the
+000117 |         # required D8 parity condition and both total energies are zero.
+000118 |         integer_unique = all(
+000119 |             (F(n * n, 2) + dk * n > 0)
+000120 |             for dk in d for n in (-3, -2, -1, 1, 2, 3)
+000121 |         )
+000122 |         # The displayed finite n test is accompanied by the sign formula in the
+000123 |         # JSON/report: n(n/2+d)>0 for every nonzero integer n when |d|<1/2.
+000124 |         half_minimizer = tuple(F(1, 2) if x < 0 else F(-1, 2) for x in d)
+000125 |         need(integer_unique and half_minimizer == PSTAR, "ground minimizer classification failed")
+000126 |         need(energy_k(ZERO, alpha) == 0 and energy_k(PSTAR, alpha) == 0,
+000127 |              "ground energies are not zero")
+000128 | 
+000129 |         # E8 is even, so every nonzero non-root lattice vector has norm^2>=4.
+000130 |         # Here ||d||^2=85/128<49/64, hence ||d||<7/8.  Cauchy gives, for
+000131 |         # ||p||>=2, K(p)>=||p||^2/2-||d||||p||>2-7/4=1/4.
+000132 |         # Thus the exact gap <=1/4 is decided by the 240 roots alone.
+000133 |         delta_norm_squared = sum(x * x for x in d)
+000134 |         need(delta_norm_squared == F(85, 128), "delta norm changed")
+000135 |         need(delta_norm_squared < F(49, 64), "radial non-root bound failed")
+000136 | 
+000137 |         root_states = []
+000138 |         for p in roots:
+000139 |             q = matvec(matrix, p)
+000140 |             root_states.append((energy_k(p, alpha), color_triality(q), "root", p, q))
+000141 |         root_states.sort(key=lambda row: (row[0], row[1], row[3]))
+000142 |         zero_states = [(F(0), 0, "vacuum", ZERO, matvec(matrix, ZERO))]
+000143 |         zero_states += [row for row in root_states if row[0] == 0]
+000144 |         neutral_states = [row for row in zero_states + root_states if row[1] == 0]
+000145 |         neutral_zeros = [row for row in zero_states if row[1] == 0]
+000146 |         positive_neutral = [row for row in root_states if row[1] == 0 and row[0] > 0]
+000147 |         need(len(zero_states) == 2 and {row[3] for row in zero_states} == {ZERO, PSTAR},
+000148 |              f"zero-state classification changed: {zero_states}")
+000149 |         need(len(neutral_zeros) == 1 and neutral_zeros[0][3] == ZERO,
+000150 |              "center-neutral zero space is not the vacuum line")
+000151 |         need(positive_neutral, "no positive neutral state in certified window")
+000152 |         gap_k = positive_neutral[0][0]
+000153 |         need(gap_k <= F(1, 4), "root census does not contain the certified neutral gap")
+000154 | 
+000155 |         cases[fstr(alpha)] = {
+000156 |             "delta": [fstr(x) for x in d],
+000157 |             "all_H8_zero_charges": [
+000158 |                 {
+000159 |                     "source_charge": [fstr(x) for x in row[3]],
+000160 |                     "carrier_weight_Mp": [fstr(x) for x in row[4]],
+000161 |                     "color_triality": row[1],
+000162 |                     "P_sing_eigenvalue": psing_eigenvalue(row[1]),
+000163 |                 }
+000164 |                 for row in zero_states
+000165 |             ],
+000166 |             "full_ground_dimension": len(zero_states),
+000167 |             "center_neutral_ground_dimension": len(neutral_zeros),
+000168 |             "center_neutral_gap_K": fstr(gap_k),
+000169 |             "center_neutral_gap_H8_equals_8K": fstr(8 * gap_k),
+000170 |             "first_positive_center_neutral_charge": [fstr(x) for x in positive_neutral[0][3]],
+000171 |             "first_positive_center_neutral_carrier_weight": [fstr(x) for x in positive_neutral[0][4]],
+000172 |             "root_census_size": len(roots),
+000173 |             "delta_norm_squared": fstr(delta_norm_squared),
+000174 |             "nonroot_radial_bound": "For norm(p)>=2, K(p)>=norm(p)^2/2-||delta|| norm(p)>1/4 because ||delta||^2=85/128<49/64.",
+000175 |             "oscillator_levels_in_gap_window": [0],
+000176 |         }
+000177 | 
+000178 |     result = {
+000179 |         "verdict": "PASS_CENTER_PROJECTOR_REMOVES_THE_ONLY_EXTRA_H8_ZERO_STATE",
+000180 |         "sources": {
+000181 |             "fold_results": str(FOLD_RESULTS),
+000182 |             "fold_results_sha256": hashlib.sha256(FOLD_RESULTS.read_bytes()).hexdigest(),
+000183 |             "old_ground_proof": str(REPO / "experiments/theory-contracts/quotient-locality-e8-20261014/checker.py"),
+000184 |             "carrier_action_proof": str(REPO / "experiments/theory-contracts/seam-partner-original-action-20261015/checker.py"),
+000185 |             "original_admissibility_source": str(REPO / "documents/archive--tfpt-45--source_extracts--04_qft_source/sections/002-section-closure-theorems-from-the-admissibility-complex.tex"),
+000186 |         },
+000187 |         "fixed_dictionary": {
+000188 |             "p_star": [fstr(x) for x in PSTAR],
+000189 |             "M_p_star": [fstr(x) for x in pstar_image],
+000190 |             "carrier_name": "e1+e4",
+000191 |             "carrier_representation": "(3,2)_(1/6)",
+000192 |             "scaled_hypercharge_X": fstr(xcharge),
+000193 |             "hypercharge_Y": fstr(xcharge / 6),
+000194 |             "transported_source_U1_charge": fstr(source_u1),
+000195 |             "color_triality": pstar_triality,
+000196 |             "color_center_phase": "omega",
+000197 |             "P_sing_eigenvalue": psing_eigenvalue(pstar_triality),
+000198 |             "vacuum_P_sing_eigenvalue": 1,
+000199 |         },
+000200 |         "exact_projector": "P_sing=(1+Z_c+Z_c^2)/3; on triality t it is delta_(t mod 3,0)",

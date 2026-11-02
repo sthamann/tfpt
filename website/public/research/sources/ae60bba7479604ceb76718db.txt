@@ -1,0 +1,188 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/CUBIC-NATIVE-MARKING-TEST.txt
+Original file SHA-256: 361a7c61680ae2450a3b62a34a71cfe7525d65433f123f0ffea3668d9f44de48
+Inclusive original lines: 1-180
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | THE SOURCE CUBIC MATCHES THE NATIVE PAULI SIGMA, NOT THE CODE LABEL SIGMA
+000002 | The first exact native intertwiner test after spin selection
+000003 | 2026-10-26
+000004 | 
+000005 | VERDICT
+000006 | 
+000007 | PROVED, with a material target correction.  The source object Jac(C)[2] is a
+000008 | theta translation space.  Its native counterpart is the projective Pauli
+000009 | translation module
+000010 | 
+000011 |     P_nat=N64/mu4,
+000012 | 
+000013 | not the Gaussian code label module V_code=L/(1+i)L.  Verification v783 proves
+000014 | that these are two different Sp(4,2) modules: the Gaussian classes correspond
+000015 | to Pauli contexts by point to line duality, and there is no linear module
+000016 | isomorphism between code labels and Pauli translations.
+000017 | 
+000018 | On the correctly typed module P_nat, the original native sigma is fixed point
+000019 | free and has the same characteristic polynomial as the source cubic c_src:
+000020 | 
+000021 |     chi(x)=(x^2+x+1)^2,       fixed dimension 0.                 (1)
+000022 | 
+000023 | An explicit symplectic intertwiner is given below.  Moreover, the native sigma
+000024 | action canonically determines an unordered pair of orthogonal invariant
+000025 | symplectic planes.  This is exactly the type of the source pair {V_q,V_p}.
+000026 | 
+000027 | The earlier fixed dimension mismatch remains true only for the wrongly typed
+000028 | comparison with V_code, where native sigma has fixed dimension two.  It is a
+000029 | diagnostic that forces the target correction, not an obstruction to the
+000030 | theta to Pauli bridge.
+000031 | 
+000032 | 
+000033 | 1. THE SOURCE ACTION
+000034 | 
+000035 | The accepted source result gives
+000036 | 
+000037 |     Jac(C)[2]=V_q direct_sum V_p,                                (2)
+000038 | 
+000039 | an orthogonal sum of symplectic two dimensional F2 planes.  On either plane,
+000040 | c_src cycles the three nonzero elements.  In a symplectic basis
+000041 | 
+000042 |     e_0=L_0,       e_1=L_1,       L_2=e_0+e_1,
+000043 | 
+000044 | the pullback convention c_src^*L_a=L_(a-1) gives
+000045 | 
+000046 |                    [1 1]
+000047 |     C_0         =  [1 0].                                       (3)
+000048 | 
+000049 | Therefore
+000050 | 
+000051 |     C_src=diag(C_0,C_0),
+000052 |     chi_Csrc(x)=(x^2+x+1)^2,
+000053 |     ker(C_src-I)=0.                                              (4)
+000054 | 
+000055 | The inverse pullback convention replaces C_0 by C_0^2 and leaves all
+000056 | conjugacy data unchanged.
+000057 | 
+000058 | 
+000059 | 2. THE TWO NATIVE FOUR BIT MODULES MUST NOT BE IDENTIFIED
+000060 | 
+000061 | The frozen Gaussian chart pairs the four real coordinate pairs into C^4.  The
+000062 | native element sigma cycles the first three complex coordinates and fixes the
+000063 | fourth:
+000064 | 
+000065 |     (z_1,z_2,z_3,z_4) |-> (z_3,z_1,z_2,z_4).                    (5)
+000066 | 
+000067 | On the Gaussian code label quotient V_code, v689 proves that this becomes the
+000068 | family plus anchor action
+000069 | 
+000070 |     F_1 |-> F_2 |-> F_3 |-> F_1,       A |-> A.                 (6)
+000071 | 
+000072 | Thus V_code^sigma has dimension two.  Its characteristic polynomial is
+000073 | 
+000074 |     (x+1)^2 (x^2+x+1).                                          (7)
+000075 | 
+000076 | So there is no c_src to sigma intertwiner from Jac(C)[2] to V_code.  This
+000077 | calculation is correct but it answers the wrong typed question.
+000078 | 
+000079 | Verification v783 gives the decisive distinction.  The projective Pauli group
+000080 | P_nat=N64/mu4 acts trivially on the sixteen Gaussian code labels.  The induced
+000081 | G31 action on V_code and its conjugation action on the Pauli bits have
+000082 | 
+000083 |     dim Hom_F2[G31](V_code,P_nat)=0,
+000084 | 
+000085 | with zero invertible intertwiners.  The fifteen nonzero code labels map to the
+000086 | fifteen Pauli contexts, meaning maximal commuting triples, through the outer
+000087 | point to line duality of W(3,2).  They do not map linearly to the fifteen
+000088 | nonidentity Pauli translations.
+000089 | 
+000090 | The theta group of a genus two Jacobian is instead a central extension of
+000091 | Jac(C)[2] by phases.  Therefore P_nat, the translation quotient of the native
+000092 | Heisenberg group N64, is the first type correct target for the source test.
+000093 | 
+000094 | 
+000095 | 3. ACTUAL NATIVE SIGMA ACTION ON PAULI TRANSLATIONS
+000096 | 
+000097 | Use the v783 Pauli bit order
+000098 | 
+000099 |     (x_1,z_1,x_2,z_2).
+000100 | 
+000101 | In the frozen computational chart, conjugation by the coordinate permutation
+000102 | (5) sends the Pauli generators, with irrelevant signs suppressed, as follows:
+000103 | 
+000104 |     X_1 |-> X_2,
+000105 |     Z_1 |-> Z_1 Z_2,
+000106 |     X_2 |-> X_1 X_2,
+000107 |     Z_2 |-> Z_1.                                                 (8)
+000108 | 
+000109 | Hence its exact symplectic matrix is
+000110 | 
+000111 |                     [0 0 1 0]
+000112 |                     [0 1 0 1]
+000113 |     Sigma_Pauli  =  [1 0 1 0]
+000114 |                     [0 1 0 0].                                  (9)
+000115 | 
+000116 | Direct multiplication gives
+000117 | 
+000118 |     Sigma_Pauli^3=I,
+000119 |     ker(Sigma_Pauli-I)=0,
+000120 |     chi_Sigma(x)=(x^2+x+1)^2.                                  (10)
+000121 | 
+000122 | This also follows from the exact Clifford conjugation map in v783, but (8)
+000123 | and (9) make the relevant marked element explicit rather than relying on a
+000124 | group order census.
+000125 | 
+000126 | 
+000127 | 4. AN EXPLICIT SYMPLECTIC INTERTWINER
+000128 | 
+000129 | Take the source basis
+000130 | 
+000131 |     (e_0^q,e_1^q,e_0^p,e_1^p)
+000132 | 
+000133 | with symplectic Gram matrix diag([[0,1],[1,0]],[[0,1],[1,0]]).  In the native
+000134 | Pauli basis, define Phi by the following columns:
+000135 | 
+000136 |     Phi(e_0^q)=IY =(0,0,1,1),
+000137 |     Phi(e_1^q)=YZ =(1,1,0,1),
+000138 |     Phi(e_0^p)=ZY =(0,1,1,1),
+000139 |     Phi(e_1^p)=YI =(1,1,0,0).                                   (11)
+000140 | 
+000141 | Thus
+000142 | 
+000143 |           [0 1 0 1]
+000144 |           [0 1 1 1]
+000145 |     Phi = [1 0 1 0]
+000146 |           [1 1 1 0].                                            (12)
+000147 | 
+000148 | With Omega the standard Pauli commutator form, exact F2 multiplication gives
+000149 | 
+000150 |     Phi^T Omega Phi=diag(Omega_2,Omega_2),
+000151 |     Sigma_Pauli Phi=Phi C_src.                                  (13)
+000152 | 
+000153 | Therefore Phi is an invertible symplectic c_src to sigma intertwiner.  The
+000154 | first required marked native test passes without a search among 720 frames.
+000155 | 
+000156 | 
+000157 | 5. THE q|p PLANE SPLIT IS VISIBLE NATIVELY
+000158 | 
+000159 | Sigma_Pauli has exactly five invariant two dimensional F2 subspaces.  Three
+000160 | are isotropic.  Exactly two are symplectic:
+000161 | 
+000162 |     W_q={0,IY,YZ,YX},
+000163 |     W_p={0,ZY,XY,YI}.                                            (14)
+000164 | 
+000165 | They are orthogonal complements.  Consequently the native marked sigma
+000166 | action itself selects the unordered pair
+000167 | 
+000168 |     {W_q,W_p}                                                    (15)
+000169 | 
+000170 | as its unique pair of invariant symplectic planes.  Formula (11) sends the
+000171 | source unordered pair {V_q,V_p} onto (15).
+000172 | 
+000173 | The selection is not yet an ordered or fully framed identification.  There
+000174 | are three c equivariant symplectic bases on each plane and two ways to exchange
+000175 | the planes, leaving
+000176 | 
+000177 |     2 * 3 * 3 = 18                                              (16)
+000178 | 
+000179 | symplectic c_src to sigma intertwiners.  The remaining source operations s,
+000180 | Q, and the selected spin lift beta must decide whether one of these eighteen

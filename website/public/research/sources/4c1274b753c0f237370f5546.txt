@@ -1,0 +1,108 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_recursion_20261028/check_native_spin5_functor.py
+Original file SHA-256: 86911d6e7634592fe9e61d232535224e9b8148308433a05a8ccf983e5a110fa2
+Inclusive original lines: 201-300
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |             symmetric_lie_action(lie_element, symmetric_basis, symmetric_pairs)
+000202 |         )
+000203 |         target_lie_actions.append(exterior_lie_action(w_lie, 5, pairs5))
+000204 |     spin5_map = sp.Matrix.hstack(*spin5_columns)
+000205 |     source_metric = sp.diag(*[1 if a == b else 2 for a, b in symmetric_pairs])
+000206 |     require(spin5_map.det() == 8, "canonical Spin5 map determinant eight", checks)
+000207 |     require(spin5_map.conjugate().T * spin5_map == source_metric,
+000208 |             "canonical Spin5 map is exactly metric preserving", checks)
+000209 |     require(all(is_zero(spin5_map * source - target * spin5_map)
+000210 |                 for source, target in zip(source_lie_actions, target_lie_actions)),
+000211 |             "canonical map intertwines the full sp4 Lie algebra", checks)
+000212 | 
+000213 |     # This is the decisive uniqueness test: F20 alone gave dimension six on
+000214 |     # the ten, while full sp4 naturality leaves a single complex line.
+000215 |     variables10 = sp.symbols("u0:100")
+000216 |     unknown10 = sp.Matrix(10, 10, variables10)
+000217 |     equations10 = []
+000218 |     for source_action, target_action in zip(source_lie_actions, target_lie_actions):
+000219 |         equations10 += list(unknown10 * source_action - target_action * unknown10)
+000220 |     coefficient10, _ = sp.linear_eq_to_matrix(equations10, variables10)
+000221 |     require(100 - coefficient10.rank() == 1,
+000222 |             "full sp4 natural intertwiner space has dimension one", checks)
+000223 | 
+000224 |     # Check the finite native F20 equivariance of the same canonical map.
+000225 |     source_c10 = symmetric_action(c_native, symmetric_pairs)
+000226 |     source_g10 = -ii * symmetric_action(g_native, symmetric_pairs)
+000227 |     target_c10 = exterior_action(w_c, pairs5)
+000228 |     target_g10 = exterior_action(w_g, pairs5)
+000229 |     require(is_zero(spin5_map * source_c10 - target_c10 * spin5_map) and
+000230 |             is_zero(spin5_map * source_g10 - target_g10 * spin5_map),
+000231 |             "canonical Spin5 map respects the native F20 actions", checks)
+000232 | 
+000233 |     # Hodge complement Kraus maps on an oriented orthonormal real basis of W.
+000234 |     # Individual matrices depend on the basis; their five-dimensional span and
+000235 |     # the normalized channel do not.
+000236 |     kraus = []
+000237 |     for m in range(5):
+000238 |         operator = sp.zeros(10)
+000239 |         for column, (a, b) in enumerate(pairs5):
+000240 |             if m in (a, b):
+000241 |                 continue
+000242 |             complement = [j for j in range(5) if j not in (m, a, b)]
+000243 |             sequence = [m, a, b] + complement
+000244 |             inversions = sum(sequence[i] > sequence[j]
+000245 |                              for i in range(5) for j in range(i + 1, 5))
+000246 |             operator[pairs5.index(tuple(complement)), column] = (-1) ** inversions
+000247 |         kraus.append(operator)
+000248 |     completeness = sum((operator.conjugate().T * operator for operator in kraus),
+000249 |                        sp.zeros(10))
+000250 |     hilbert_schmidt_gram = sp.Matrix([
+000251 |         [sp.trace(left.conjugate().T * right) for right in kraus]
+000252 |         for left in kraus
+000253 |     ])
+000254 |     kraus_vectors = sp.Matrix.hstack(*[
+000255 |         sp.Matrix(100, 1, list(operator)) for operator in kraus
+000256 |     ])
+000257 |     require(completeness == 3 * sp.eye(10),
+000258 |             "Hodge Kraus completeness sum is three I", checks)
+000259 |     require(hilbert_schmidt_gram == 6 * sp.eye(5) and kraus_vectors.rank() == 5,
+000260 |             "Hodge Kraus space has canonical dimension five", checks)
+000261 | 
+000262 |     output = {
+000263 |         "verdict": "CANONICAL_NATIVE_SPIN5_FUNCTOR_AND_KRAUS_SPACE",
+000264 |         "W5": "primitive Lambda2(V) tensor chi^(-1)",
+000265 |         "W5_q": encode(q5),
+000266 |         "W5_real_structure": "j(w)=q conjugate(w)",
+000267 |         "W5_F20": "sign tensor Perm5",
+000268 |         "W5_character": character_rows,
+000269 |         "F20_slot_intertwiner_dimension": 2,
+000270 |         "spin5_map": encode(spin5_map),
+000271 |         "spin5_map_determinant": str(spin5_map.det()),
+000272 |         "spin5_metric_identity": "F^dagger F=diag(1,2,2,2,1,2,2,1,2,1)",
+000273 |         "full_sp4_intertwiner_dimension": 1,
+000274 |         "metric_residual": "U(1) phase; real compact form leaves a sign",
+000275 |         "kraus_space_dimension": 5,
+000276 |         "kraus_hilbert_schmidt_gram": "6 I5",
+000277 |         "kraus_completeness": "sum C_m^dagger C_m=3 I10",
+000278 |         "normalized_channel": "Phi(rho)=(1/3) sum C_m rho C_m^dagger",
+000279 |         "checks": checks,
+000280 |         "scope": (
+000281 |             "Full Sp4 functoriality selects a unique natural ten-intertwiner "
+000282 |             "line and a basis-independent Hodge Kraus space on the native "
+000283 |             "compact real form. F20 alone still leaves a two-dimensional "
+000284 |             "slot-chart Hom because sign tensor Perm5 decomposes as 1 plus 4. "
+000285 |             "This constructs a canonical mathematical channel; it does not "
+000286 |             "prove that the original physical source uses that channel."
+000287 |         ),
+000288 |     }
+000289 |     out = Path(__file__).with_name("native-spin5-functor-results.json")
+000290 |     out.write_text(json.dumps(output, indent=2, sort_keys=True) + "\n")
+000291 |     print(json.dumps({
+000292 |         "verdict": output["verdict"],
+000293 |         "checks": len(checks),
+000294 |         "sp4_hom_dimension": output["full_sp4_intertwiner_dimension"],
+000295 |         "kraus_dimension": output["kraus_space_dimension"],
+000296 |     }, sort_keys=True))
+000297 | 
+000298 | 
+000299 | if __name__ == "__main__":
+000300 |     main()

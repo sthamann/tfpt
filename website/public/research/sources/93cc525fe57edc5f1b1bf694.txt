@@ -1,0 +1,167 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/theta_lattice_closure_20261027/lattice/check_theta_lattice.py
+Original file SHA-256: a45fcf5c66ebd208a050c30b9297dfca6dfccc28a68398d75cd91285f9e18b5e
+Inclusive original lines: 1-159
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact theta-frame lattice and retained spin-clock check.
+000002 | 
+000003 | Gaussian root coordinates z represent physical vectors z/sqrt(2).
+000004 | No E8 roots are supplied to the construction; the standard shell is compared
+000005 | only after the affine-support generators and their lattice are computed.
+000006 | """
+000007 | import itertools
+000008 | import json
+000009 | from collections import Counter
+000010 | from pathlib import Path
+000011 | 
+000012 | import sympy as s
+000013 | from sympy.matrices.normalforms import hermite_normal_form
+000014 | 
+000015 | 
+000016 | def require(test, message):
+000017 |     if not test:
+000018 |         raise RuntimeError(message)
+000019 | 
+000020 | 
+000021 | def real_tuple(v):
+000022 |     return tuple(int(t) for z in v for t in (s.re(z), s.im(z)))
+000023 | 
+000024 | 
+000025 | def complex_vector(v):
+000026 |     return s.Matrix([v[2*j] + s.I*v[2*j+1] for j in range(4)])
+000027 | 
+000028 | 
+000029 | def integral(M):
+000030 |     return all(t.is_Integer for t in M)
+000031 | 
+000032 | 
+000033 | units = [1, s.I, -1, -s.I]
+000034 | pi = 1 + s.I
+000035 | roots = set()
+000036 | counts = {}
+000037 | for d in range(3):
+000038 |     block = set()
+000039 |     if d == 0:
+000040 |         for j, u in itertools.product(range(4), units):
+000041 |             v = [0]*4
+000042 |             v[j] = u*pi**2
+000043 |             block.add(real_tuple(v))
+000044 |     elif d == 1:
+000045 |         for a, b in itertools.combinations(range(4), 2):
+000046 |             for u, t in itertools.product(units, repeat=2):
+000047 |                 v = [0]*4
+000048 |                 v[a], v[b] = u*pi, u*t*pi
+000049 |                 block.add(real_tuple(v))
+000050 |     else:
+000051 |         for u, a, b, sign in itertools.product(units, units, units, [1, -1]):
+000052 |             block.add(real_tuple([u, u*a, u*b, u*sign*a*b]))
+000053 |     counts[str(d)] = len(block)
+000054 |     roots |= block
+000055 | require(counts == {'0': 16, '1': 96, '2': 128}, 'support counts')
+000056 | require(len(roots) == 240, 'root shell cardinality')
+000057 | require(all(sum(x*x for x in v) == 4 for v in roots), 'root norms')
+000058 | 
+000059 | # Integer basis in z-coordinates; the physical real Gram is B^T B/2.
+000060 | B = hermite_normal_form(s.Matrix.hstack(*(s.Matrix(v) for v in sorted(roots))))
+000061 | require(B.shape == (8, 8), 'rank eight')
+000062 | Gram = B.T*B/2
+000063 | require(integral(Gram), 'integral Gram')
+000064 | require(all(Gram[j, j] % 2 == 0 for j in range(8)), 'even Gram')
+000065 | require(abs(B.det()) == 16 and Gram.det() == 1, 'unimodularity')
+000066 | 
+000067 | # Check the explicit congruence description on Z^8 / 2Z^8.
+000068 | def admitted(v):
+000069 |     residues = [(v[2*j] + v[2*j+1]) % 2 for j in range(4)]
+000070 |     return len(set(residues)) == 1 and sum(v[0::2]) % 2 == 0 and sum(v[1::2]) % 2 == 0
+000071 | 
+000072 | residue_count = sum(admitted(v) for v in itertools.product(range(2), repeat=8))
+000073 | require(residue_count == 16, 'congruence index')
+000074 | require(all(admitted(tuple(B[:, j])) for j in range(8)), 'basis congruences')
+000075 | 
+000076 | # Compare actual roots with the original standard E8 shell after an explicit
+000077 | # orthogonal change of real frame. Outputs below use doubled E8 coordinates.
+000078 | mapped = {tuple(t for j in range(4) for t in (v[2*j]+v[2*j+1], v[2*j]-v[2*j+1])) for v in roots}
+000079 | standard = set()
+000080 | for j, k in itertools.combinations(range(8), 2):
+000081 |     for a, b in itertools.product([-2, 2], repeat=2):
+000082 |         v = [0]*8
+000083 |         v[j], v[k] = a, b
+000084 |         standard.add(tuple(v))
+000085 | for v in itertools.product([-1, 1], repeat=8):
+000086 |     if sum(x < 0 for x in v) % 2 == 0:
+000087 |         standard.add(v)
+000088 | require(mapped == standard, 'literal standard E8 root equality')
+000089 | 
+000090 | def real_matrix(M):
+000091 |     out = s.zeros(8)
+000092 |     for j in range(4):
+000093 |         for k in range(4):
+000094 |             a, b = s.re(M[j, k]), s.im(M[j, k])
+000095 |             out[2*j, 2*k] = a
+000096 |             out[2*j, 2*k+1] = -b
+000097 |             out[2*j+1, 2*k] = b
+000098 |             out[2*j+1, 2*k+1] = a
+000099 |     return out
+000100 | 
+000101 | I2, X, Z = s.eye(2), s.Matrix([[0, 1], [1, 0]]), s.diag(1, -1)
+000102 | S = s.diag(1, s.I)
+000103 | CNOT = s.zeros(4)
+000104 | for x, y in itertools.product(range(2), repeat=2):
+000105 |     CNOT[2*x+(x ^ y), 2*x+y] = 1
+000106 | # zeta8^{-1}H = (1-i)/2 [[1,1],[1,-1]]; all gates are Gaussian rational.
+000107 | Htilde = (1-s.I)*s.Matrix([[1, 1], [1, -1]])/2
+000108 | gates = {'X1':s.kronecker_product(X,I2),'X2':s.kronecker_product(I2,X),
+000109 |          'Z1':s.kronecker_product(Z,I2),'Z2':s.kronecker_product(I2,Z),
+000110 |          'S1':s.kronecker_product(S,I2),'S2':s.kronecker_product(I2,S),
+000111 |          'CNOT':CNOT,'H1_tilde':s.kronecker_product(Htilde,I2),
+000112 |          'H2_tilde':s.kronecker_product(I2,Htilde)}
+000113 | for name, g in gates.items():
+000114 |     A = s.simplify(B.inv()*real_matrix(g)*B)
+000115 |     require(integral(A) and abs(A.det()) == 1, 'lattice gate ' + name)
+000116 |     require(A.T*Gram*A == Gram, 'metric gate ' + name)
+000117 | 
+000118 | # Frozen source-compatible representative: sigma=(0 1 2), fixes 3;
+000119 | # U is the signed permutation in PAULI-SPIN-CENTRAL-LIFT equation (13).
+000120 | sigma = s.zeros(4)
+000121 | for j,k in enumerate([1,2,0,3]):
+000122 |     sigma[k,j] = 1
+000123 | U = s.Matrix([[1,0,0,0],[0,0,0,-1],[0,0,1,0],[0,1,0,0]])
+000124 | V = s.kronecker_product(X,I2)*U
+000125 | require(V*V == s.eye(4), 'rational spin representative square')
+000126 | require(V*sigma*V == sigma**-1, 'retained cubic conjugation')
+000127 | for name,g in [('sigma',sigma),('V',V),('J',s.I*s.eye(4))]:
+000128 |     A = s.simplify(B.inv()*real_matrix(g)*B)
+000129 |     require(integral(A) and abs(A.det())==1, 'retained rational action ' + name)
+000130 | 
+000131 | zeta8 = (1+s.I)/s.sqrt(2)
+000132 | alpha = zeta8*V
+000133 | require(s.simplify(alpha**2) == s.I*s.eye(4), 'alpha square J')
+000134 | require(s.simplify(alpha**4) == -s.eye(4), 'alpha fourth power')
+000135 | require(s.simplify(alpha**8) == s.eye(4), 'alpha eighth power')
+000136 | require(s.simplify(alpha*sigma*alpha.inv()) == sigma**-1, 'alpha conjugation')
+000137 | Aalpha = s.simplify(B.inv()*real_matrix(alpha)*B)
+000138 | require(not integral(Aalpha), 'alpha must not preserve this lattice')
+000139 | # Its two branch transitions are V and iV, both exact lattice maps.
+000140 | for g in [V, s.I*V]:
+000141 |     require(integral(s.simplify(B.inv()*real_matrix(g)*B)), 'two-lattice transition')
+000142 | 
+000143 | c = s.I*sigma
+000144 | require(c**12 == s.eye(4) and all(c**n != s.eye(4) for n in [1,2,3,4,6]), 'C12 order')
+000145 | require(c**4 == sigma and c**9 == s.I*s.eye(4), 'C12 component identities')
+000146 | 
+000147 | out = {'verdict':'EXACT_E8_LATTICE_AND_TWO_BRANCH_SPIN_ACTION',
+000148 |        'input':'level-two Schrodinger frame, affine support phases; no E8 input in generator construction',
+000149 |        'roots_by_support_dimension':counts,'roots':len(roots),'complex_root_lines':len(roots)//4,
+000150 |        'integer_basis_determinant':int(abs(B.det())), 'physical_gram_determinant':int(Gram.det()),
+000151 |        'physical_gram':[[int(t) for t in Gram.row(j)] for j in range(8)],
+000152 |        'congruence_residues_mod_two':residue_count,'standard_e8_shell_equal':True,
+000153 |        'compensated_clifford_generators':list(gates),'all_gates_integral_isometries':True,
+000154 |        'retained_alpha_order':8,'retained_alpha_square':'iI',
+000155 |        'alpha_preserves_single_constructed_lattice':False,
+000156 |        'alpha_exchanges_Lambda_and_zeta8_Lambda':True,
+000157 |        'native_cyclic_clock_order':12,'native_clock_identities':['c^4=sigma','c^9=iI'],
+000158 |        'scope':'abstract integral construction in a theta frame; no physical P1 realization, no uniqueness among every Heisenberg-stable lattice'}
+000159 | print(json.dumps(out,ensure_ascii=False,sort_keys=True,indent=2))

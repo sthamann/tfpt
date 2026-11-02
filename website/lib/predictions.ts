@@ -358,7 +358,7 @@ export const predictions: Prediction[] = [
     ],
     pdf: "/papers/tfpt_1_architecture_e8.pdf",
     description:
-      "The fine-structure constant is the unique positive root of the cubic closure built from c₃ and the abelian coefficient 41 = 10 b₁. Existence and uniqueness are proved; the value lands 2.9×10⁻¹⁰ (1.9σ) from CODATA-2022. Typed [E]: the coefficients are exact identities, the Ward-origin reading of the equation is conditional [C] (ledger EM.FP.01).",
+      "The fine-structure constant is the unique positive root of the self-consistent closure built from c₃, the abelian coefficient 41 = 10 b₁ and the α-dependent seam function. Existence and uniqueness are proved; the value lands 2.9×10⁻¹⁰ (1.9σ) from CODATA-2022. Typed [E]: the coefficients are exact identities, the Ward-origin reading of the equation is conditional [C] (ledger EM.FP.01).",
     category: "Coupling",
     confrontation: {
       derivation: "F_{U(1)}(\\alpha)=0,\\ \\textstyle\\sum L + N_\\Phi = 41 = 10\\,b_1",

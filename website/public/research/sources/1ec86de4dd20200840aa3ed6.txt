@@ -1,0 +1,129 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_ns_cover_dirac_rp.py
+Original file SHA-256: 2eaf564d895d70abf3a2974268de7b178f05196ea784515babcf650e5fa25b21
+Inclusive original lines: 1-121
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact checks of the actual NS cover Dirac Green calculation.
+000003 | 
+000004 | The infinite dimensional positivity proof is in NS-COVER-FULL-DIRAC-RP.txt.
+000005 | No finite calculation is used to infer an unrestricted spectral theorem.
+000006 | """
+000007 | 
+000008 | import argparse
+000009 | import hashlib
+000010 | import json
+000011 | from pathlib import Path
+000012 | 
+000013 | import sympy as s
+000014 | 
+000015 | 
+000016 | def require(value, message):
+000017 |     if not value:
+000018 |         raise ValueError(message)
+000019 | 
+000020 | 
+000021 | def zero(expr):
+000022 |     return s.simplify(expr) == 0
+000023 | 
+000024 | 
+000025 | def main():
+000026 |     parser = argparse.ArgumentParser()
+000027 |     parser.add_argument('--output', type=Path, required=True)
+000028 |     args = parser.parse_args()
+000029 |     r, t, u = s.symbols('r t u', positive=True, real=True)
+000030 |     # r=exp(E), beta=2.  All formulas retain both signs of E.
+000031 |     g_positive = r**(-t) / (1 + r**-2)
+000032 |     g_negative = -r**(-(t + 2)) / (1 + r**-2)
+000033 |     require(zero(g_positive.subs(t, 0) - g_negative.subs(t, 0) - 1), 'jump')
+000034 |     require(zero(g_negative + g_positive.subs(t, t + 2)), 'NS period')
+000035 |     k = -g_negative.subs(t, -t-u)
+000036 |     bt = r**t / s.sqrt(1+r**2)
+000037 |     bu = r**u / s.sqrt(1+r**2)
+000038 |     require(zero(k - bt*bu), 'all real energy Gram identity')
+000039 |     btilde_t = r**(1-t) / s.sqrt(1+r**2)
+000040 |     btilde_u = r**(1-u) / s.sqrt(1+r**2)
+000041 |     require(zero(g_positive.subs(t, t+u) - btilde_t*btilde_u),
+000042 |             'conjugate charge all real energy Gram identity')
+000043 | 
+000044 |     # Spectral finite Gram controls have rational entries by using integer
+000045 |     # quarter-time powers of a=exp(E/4), rather than rounding exponentials.
+000046 |     modes = [s.Rational(1, 3), s.Rational(1, 2), s.Integer(1), s.Integer(2), s.Integer(3)]
+000047 |     times = [1, 2, 3]  # times t_i/4 in (0,1)
+000048 |     gram = s.Matrix([[sum(a**(i+j)/(1+a**8) for a in modes)
+000049 |                       for j in times] for i in times])
+000050 |     minors = [s.factor(gram[:n, :n].det()) for n in range(1, 4)]
+000051 |     require(all(m > 0 for m in minors), 'positive exact finite Gram')
+000052 | 
+000053 |     sx = s.Matrix([[0, 1], [1, 0]])
+000054 |     sz = s.diag(1, -1)
+000055 |     w = s.symbols('w', real=True)
+000056 |     spatial = []
+000057 |     for b in (-1, 1):
+000058 |         v = s.Matrix([1, b]) / s.sqrt(2)
+000059 |         require(sx*v == b*v, 'zero boundary vector')
+000060 |         require((v.conjugate().T*sz*v)[0] == 0, 'isotropic endpoint')
+000061 |         for n in range(-4, 5):
+000062 |             e = n*s.pi/2
+000063 |             phi = s.diag(s.exp(-s.I*e*(w+1)), s.exp(s.I*e*(w+1)))*v
+000064 |             require(all(zero(x) for x in s.I*sz*phi.diff(w)-e*phi), 'spatial eigenvector')
+000065 |             for endpoint in (-1, 1):
+000066 |                 p = phi.subs(w, endpoint)
+000067 |                 require(all(zero(x) for x in sx*p-b*p), 'endpoint line')
+000068 |             reflected = sx*phi.subs(w, -w)
+000069 |             j = b*(-1)**n if n >= 0 else b*(-1)**(-n)
+000070 |             require(all(zero(x) for x in reflected-j*phi), 'transverse parity')
+000071 |             spatial.append({'b': b, 'n': n, 'energy': str(e), 'J_eigenvalue': j})
+000072 | 
+000073 |     # At a pair of deck sectors A has eigenvalues +i,-i.  Linear Clifford
+000074 |     # reflection exchanges them; antiunitary KRx preserves their complex
+000075 |     # eigenspaces because K conjugates the eigenvalue at the same time.
+000076 |     A = s.diag(s.I, -s.I)
+000077 |     reflection = sx
+000078 |     p = (s.eye(2)-s.I*A)/2
+000079 |     q = (s.eye(2)+s.I*A)/2
+000080 |     require(A*A == -s.eye(2), 'deck square')
+000081 |     require(p*p == p and q*q == q and p*q == s.zeros(2), 'Pin projectors')
+000082 |     require(reflection*A*reflection == -A, 'linear reflection deck action')
+000083 |     require(reflection*p*reflection == q, 'linear reflection exchange')
+000084 |     # Here KRx on the sector labels is K: its action on A is bar(A)=-A.
+000085 |     require(p.conjugate() == p and q.conjugate() == q, 'antiunitary sector preservation')
+000086 | 
+000087 |     plus = lambda h: s.simplify(h/(h-1))
+000088 |     minus = lambda h: s.simplify(1/(h-1))
+000089 |     pair = {
+000090 |         '0_to_1': s.simplify((plus(s.I)+plus(-s.I))/2),
+000091 |         '1_to_2': s.simplify((s.I*plus(s.I)-s.I*plus(-s.I))/2),
+000092 |         'minus_1_to_0': s.simplify((minus(s.I)+minus(-s.I))/2),
+000093 |         'minus_2_to_minus_1': s.simplify((-s.I*minus(s.I)+s.I*minus(-s.I))/2),
+000094 |     }
+000095 |     require(pair['0_to_1'] == pair['1_to_2'] == s.Rational(1, 2), 'positive zero pairing')
+000096 |     require(pair['minus_1_to_0'] == pair['minus_2_to_minus_1'] == -s.Rational(1, 2), 'negative zero pairing')
+000097 | 
+000098 |     data = {
+000099 |         'scope': 'given free charged Green field on the actual NS orientation cover',
+000100 |         'beta_in_core_length_units': 2,
+000101 |         'all_energy_green_jump': True,
+000102 |         'all_energy_NS_antiperiodicity': True,
+000103 |         'all_energy_reflected_gram_factorization': True,
+000104 |         'conjugate_charge_all_energy_reflected_gram_factorization': True,
+000105 |         'exact_positive_gram_leading_minors': [str(m) for m in minors],
+000106 |         'transverse_mode_controls': spatial,
+000107 |         'linear_clifford_reflection_exchanges_pin_lifts': True,
+000108 |         'antiunitary_KRx_preserves_pin_lifts': True,
+000109 |         'zero_mode_kernel_pairing': {k: str(v) for k, v in pair.items()},
+000110 |         'thermal_zero_occupation': '1/2',
+000111 |         'thermal_covariance_is_not_a_projection': True,
+000112 |         'physical_gates_closed': [],
+000113 |         'complete_TFPT_solution': False,
+000114 |     }
+000115 |     body = json.dumps(data, indent=2, sort_keys=True)+'\n'
+000116 |     args.output.write_text(body)
+000117 |     print(hashlib.sha256(body.encode()).hexdigest())
+000118 | 
+000119 | 
+000120 | if __name__ == '__main__':
+000121 |     main()

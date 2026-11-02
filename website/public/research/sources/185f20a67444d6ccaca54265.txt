@@ -1,0 +1,56 @@
+TFPT scientific source excerpt
+Original repository path: experiments/lean4-carrier-rigidity/TfptCarrier/SeamStandardPair.lean
+Original file SHA-256: 4bc32e3ea6f613e4c0d29f049e0755c2840d96cdb45c4657aa69a0e766f3269c
+Inclusive original lines: 95-142
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000095 | theorem standard_pair_relations :
+000096 |     (K * P - P * K = P) ∧ (J * J = 1) ∧ (J * K * J = -K) ∧ (J * P * J = Pplus) :=
+000097 |   ⟨boost_translation_comm, reflection_involution,
+000098 |    reflection_reverses_boost, reflection_flips_translation⟩
+000099 | 
+000100 | /-! ### The abstract nodes and the cited Borchers/Wiesbrock step (named axioms). -/
+000101 | 
+000102 | /-- The seam supplies a Longo standard pair: a positive-energy lightlike translation
+000103 |     `P ≥ 0`, a boost `K` with `[K,P] = P`, and a reflection `J` reversing both.  The
+000104 |     finite RELATIONS are the kernel-checked `standard_pair_relations`; the continuum
+000105 |     POSITIVITY `P ≥ 0` (the `sl(2,ℝ)` lowest-weight condition the `c₃` one-sidedness
+000106 |     demands) is the analytic content carried by this Prop. -/
+000107 | axiom SeamHasStandardPair : Prop
+000108 | /-- The seam modular flow is geometric — face (ii) of `SEAM.EQUIV.01`, obtained
+000109 |     intrinsically (without presupposing rotation-covariance of the vacuum). -/
+000110 | axiom GeometricModularFlow : Prop
+000111 | 
+000112 | /-- Borchers/Wiesbrock (cited): a standard pair `(K, P)` with `P ≥ 0`, `[K,P] = P` and a
+000113 |     reflection `J` with `J K J = −K`, `J P J = P₋` is a `+`half-sided modular inclusion,
+000114 |     so by Borchers' theorem the modular flow is geometric.  CITED, not re-proved; the
+000115 |     finite algebra is the kernel-checked `standard_pair_relations`. -/
+000116 | axiom borchers_wiesbrock : SeamHasStandardPair → GeometricModularFlow
+000117 | 
+000118 | /-- The ONE open continuum input: assembling the finite ladder algebra and the
+000119 |     positive-energy representation into a genuine CONTINUUM standard pair (the same
+000120 |     infinite-dimensional existence wall as MMST/NPW26). -/
+000121 | axiom seam_continuum_standard_pair : SeamHasStandardPair
+000122 | 
+000123 | /-! ### The composition: face (ii) closed modulo the cited Borchers step. -/
+000124 | 
+000125 | /-- Intrinsic Bisognano–Wichmann: GIVEN the seam supplies a (continuum) standard pair,
+000126 |     the modular flow is geometric — face (ii) of `SEAM.EQUIV.01` is a STRUCTURE
+000127 |     consequence, not a state condition, and needs no rotation-covariance input. -/
+000128 | theorem geometricModularFlowFromStandardPair : GeometricModularFlow :=
+000129 |   borchers_wiesbrock seam_continuum_standard_pair
+000130 | 
+000131 | /-- Audit-contract check: the composition has exactly the intended conclusion. -/
+000132 | example : GeometricModularFlow := geometricModularFlowFromStandardPair
+000133 | 
+000134 | /-- The boost is genuinely centred / traceless, so a reflection CAN reverse it
+000135 |     (`tr K = 0`): the structural reason `J K J = −K` is possible at all. -/
+000136 | theorem boost_traceless : Matrix.trace K = 0 := by decide
+000137 | 
+000138 | -- The standard-pair RELATIONS are kernel-checked with NO axioms; the residual of
+000139 | -- face (ii) is EXACTLY the cited Borchers/Wiesbrock step + the one continuum standard
+000140 | -- pair (the MMST/NPW26 wall) — no hidden assumption.
+000141 | #print axioms standard_pair_relations
+000142 | #print axioms geometricModularFlowFromStandardPair

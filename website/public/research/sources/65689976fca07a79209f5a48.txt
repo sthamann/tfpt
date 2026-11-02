@@ -1,0 +1,114 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-constructive-search-20261015/continuation/state_expectation/SOURCE_BRIDGE.md
+Original file SHA-256: 501a88a57ad0bc00e4207533e0fd90760df8543135a3402ebbe40dd4c9313664
+Inclusive original lines: 1-106
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | # Source bridge for C11
+000002 | 
+000003 | This note supplies the concrete mathematical bridge between the fixed source
+000004 | relations and the abstract `CrossedData A` used by `StateExpectation.lean`.
+000005 | It is deliberately explicit about what Lean checks and what is transferred by
+000006 | the standard finite-linearity argument.
+000007 | 
+000008 | ## 1. The concrete base star algebra
+000009 | 
+000010 | Let
+000011 | 
+000012 | ```text
+000013 | A = C_c[Z^8]epsilon
+000014 | ```
+000015 | 
+000016 | be the complex vector space of finitely supported functions on `Z^8`, written
+000017 | as finite sums `a = sum_n a_n E_n`.  On basis elements define
+000018 | 
+000019 | ```text
+000020 | E_n E_m = epsilon(n,m) E_(n+m),
+000021 | epsilon(n,m) = (-1)^(sum_(i>j) n_i m_j).
+000022 | ```
+000023 | 
+000024 | Extend the product bilinearly.  Every coefficient in a product is a finite
+000025 | sum because both inputs have finite support.  The ordered exponent is exactly
+000026 | `epsExp` in the Lean file.  Lean proves its cocycle identity for all
+000027 | `n,m,l : Z^8`, hence basis multiplication is associative; bilinearity then
+000028 | gives associativity on every finite sum.
+000029 | 
+000030 | Define
+000031 | 
+000032 | ```text
+000033 | E_n^* = epsilon(-n,n)^(-1) E_(-n)
+000034 | ```
+000035 | 
+000036 | and extend conjugate-linearly.  Since `epsilon` takes values in `{+1,-1}` and
+000037 | `epsilon(-n,n)=epsilon(n,-n)`, Lean's two `basis_unitary` theorems prove
+000038 | `E_n^* E_n = E_n E_n^* = 1` for every integer charge.  The cocycle identity
+000039 | then gives `(ab)^*=b^*a^*` on basis products, and finite conjugate-linearity
+000040 | extends it to all of `A`.
+000041 | 
+000042 | ## 2. The candidate automorphism and the square element
+000043 | 
+000044 | For any accepted candidate set
+000045 | 
+000046 | ```text
+000047 | chi(n) = i^L(n),       L(n) = sum_j chi_exp[j] n_j mod 4,
+000048 | u = i^zeta E_q,        q = (1,1,1,1,1,1,1,1).
+000049 | ```
+000050 | 
+000051 | Define `phi(E_n)=chi(n)E_n` and extend complex-linearly.  Its inverse is the
+000052 | multiplier `chi(n)^(-1)`, so `phi` is bijective.  The following table maps each
+000053 | `CrossedData` field to an already certified source identity or its immediate
+000054 | basis consequence.
+000055 | 
+000056 | | `CrossedData` field | Concrete verification |
+000057 | |---|---|
+000058 | | `phi` multiplicative | Production theorem `chi_add`; on `E_nE_m` both sides have coefficient `chi(n+m)=chi(n)chi(m)`. Extend bilinearly. |
+000059 | | `phi_star` | `chi(-n)=chi(n)^(-1)=conj(chi(n))`, so both sides on `E_n` equal `conj(chi(n)) E_n^*`. Extend conjugate-linearly. |
+000060 | | `uInv` | Set `uInv=u^*=i^(-zeta)E_q^*`. The Lean basis-unitarity identities give `uInv*u=u*uInv=1`; the scalar is a unit-modulus mu4 phase. |
+000061 | | `phi_sq` | Production theorem `conjugation_square_all_charges` proves `chi(n)^2=epsilon(q,n)/epsilon(n,q)` for every `n`. This is exactly `phi^2(E_n)=u E_n uInv`; the scalar `i^zeta` cancels in the adjoint action. Extend linearly. |
+000062 | | `phi_u` | Production theorem `chi_q` gives `chi(q)=1`, hence `phi(u)=u`. |
+000063 | | `u_unitary_left/right` | Follows from the preceding `uInv=u^*` calculation and Lean's two basis-unitarity theorems. |
+000064 | 
+000065 | No candidate branch is fixed in this argument.  It uses only the identities
+000066 | certified for both uniform orientations `chi_exp=1` and `chi_exp=3`.  The
+000067 | arbitrary `zeta` is a unitary scalar gauge, and `kappa=0,2` does not enter C11.
+000068 | Thus the bridge applies to all four orientation-by-P-lift classes and every
+000069 | accepted zeta representative.
+000070 | 
+000071 | ## 3. The crossed algebra and expectation
+000072 | 
+000073 | With these concrete data, the algebraic crossed extension is the vector space
+000074 | 
+000075 | ```text
+000076 | B_alg = A direct_sum A X,
+000077 | ```
+000078 | 
+000079 | with the multiplication and star defined in `StateExpectation.lean`.  The
+000080 | field-by-field verification above provides an actual `CrossedData A`
+000081 | mathematically.  The general Lean theorems therefore apply and give
+000082 | 
+000083 | ```text
+000084 | E0(y^* y) = a0^* a0 + phi^(-1)(a1^* a1)
+000085 | ```
+000086 | 
+000087 | for every algebraic finite word `y=a0+a1 X`.  Consequently `omega0 o E0` is
+000088 | positive whenever `omega0` is positive on `A`.
+000089 | 
+000090 | ## 4. Exact formal boundary
+000091 | 
+000092 | Lean checks the universal coefficient identities, basis associativity and
+000093 | unitarity, the full abstract crossed multiplication/star laws, the SOS formula,
+000094 | positivity, and dual-invariant uniqueness.  This continuation does **not**
+000095 | construct `C_c[Z^8]epsilon` as a Mathlib `Finsupp` ring and instantiate
+000096 | `CrossedData` with it inside the kernel.  The passage from basis identities to
+000097 | finite sums is the ordinary finite bilinear/conjugate-linear extension given
+000098 | above; it is a mathematical proof step, not a hidden Lean axiom.
+000099 | 
+000100 | It also does not prove a C-star completion.  Unconditional `K_alpha` state
+000101 | invariance is separate: the quadratic charge flow is not automatically an
+000102 | endomorphism of the bare span of the `E_n`.  A grading-preserving regular
+000103 | representation with the required Cartan/number operators and an invariant
+000104 | base vacuum must be supplied before the conditional time-invariance theorem
+000105 | can be applied.
+000106 | 

@@ -1,0 +1,81 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/atlas-defect-synthesis-20261024/doily_quartic_bridge.py
+Original file SHA-256: b99af5f633f10e779454a3f8957b126b0aebf36e07ea24dcba1205bcf1ac8584
+Inclusive original lines: 438-510
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000438 |     _, word_sets = process._code_basis()
+000439 |     native_rays = process._hamming_rays()
+000440 |     require(len(native_rays) == 60, "native ray count changed")
+000441 | 
+000442 |     quartic_numerators: list[sp.Matrix] = []
+000443 |     quotient_actions: list[list[list[int]]] = []
+000444 |     native_pauli_actions: list[list[list[int]]] = []
+000445 |     ovoid_permutations: list[list[int]] = []
+000446 |     spread_permutations: list[list[int]] = []
+000447 |     reflection_rows: list[dict[str, Any]] = []
+000448 | 
+000449 |     for reflection_index, ray in enumerate(native_rays):
+000450 |         gaussian_ray: list[Gaussian] = []
+000451 |         for coordinate in ray:
+000452 |             real, imaginary = int(coordinate.real), int(coordinate.imag)
+000453 |             require(
+000454 |                 coordinate.real == real and coordinate.imag == imaginary,
+000455 |                 "native ray left Gaussian integers",
+000456 |             )
+000457 |             gaussian_ray.append((real, imaginary))
+000458 |         root = tuple(component for coordinate in gaussian_ray for component in coordinate)
+000459 |         require(root in roots, "native Gaussian ray is not an E8 root")
+000460 | 
+000461 |         quotient_certificate = twisted._reflection_action_certificate(
+000462 |             representatives,
+000463 |             code,
+000464 |             darboux,
+000465 |             root,
+000466 |         )
+000467 |         quotient_action = quotient_certificate["induced_matrix"]
+000468 |         quotient_actions.append(quotient_action)
+000469 |         require(
+000470 |             quotient_certificate["rank_r_minus_identity"] == 1,
+000471 |             "quotient action is not a transvection",
+000472 |         )
+000473 | 
+000474 |         ovoid_perm = ovoid_permutation(quotient_action)
+000475 |         spread_perm = spread_permutation(quotient_action)
+000476 |         ovoid_permutations.append(ovoid_perm)
+000477 |         spread_permutations.append(spread_perm)
+000478 | 
+000479 |         twice_reflection: list[list[Gaussian]] = []
+000480 |         for row in range(4):
+000481 |             twice_row: list[Gaussian] = []
+000482 |             for column in range(4):
+000483 |                 outer = gaussian_multiply(
+000484 |                     gaussian_ray[row],
+000485 |                     (gaussian_ray[column][0], -gaussian_ray[column][1]),
+000486 |                 )
+000487 |                 twice_row.append(
+000488 |                     (2 * int(row == column) - outer[0], -outer[1])
+000489 |                 )
+000490 |             twice_reflection.append(twice_row)
+000491 |         numerator = exact_quartic_action(twice_reflection, word_sets)
+000492 |         quartic_numerators.append(numerator)
+000493 |         require(numerator * numerator == 256 * sp.eye(5), "quartic action is not an involution")
+000494 | 
+000495 |         pauli_action = pauli_label_actions(gaussian_ray)
+000496 |         native_pauli_actions.append(pauli_action)
+000497 |         reflection_rows.append(
+000498 |             {
+000499 |                 "index": reflection_index,
+000500 |                 "gaussian_ray": [list(coordinate) for coordinate in gaussian_ray],
+000501 |                 "e8_root": list(root),
+000502 |                 "quotient_action": quotient_action,
+000503 |                 "quotient_rank_r_minus_identity": quotient_certificate["rank_r_minus_identity"],
+000504 |                 "ovoid_permutation": ovoid_perm,
+000505 |                 "ovoid_cycle_type": cycle_type(ovoid_perm),
+000506 |                 "spread_permutation": spread_perm,
+000507 |                 "spread_cycle_type": cycle_type(spread_perm),
+000508 |                 "native_pauli_label_action": pauli_action,
+000509 |                 "quartic_numerator": matrix_json(numerator),
+000510 |                 "quartic_trace": rational_json(numerator.trace() / 16),

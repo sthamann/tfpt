@@ -1,0 +1,198 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/EXISTING-C3-SOURCE-DICTIONARY.txt
+Original file SHA-256: 9653148d8235dff822254d2b5be96da73f17c374741e1d6275d0e3e649826817
+Inclusive original lines: 191-380
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000191 | and contains invertible matrices.  For example
+000192 | 
+000193 |   Z0 = [ 1 4 -2]
+000194 |        [-2 1  4]
+000195 |        [ 0 0  9]
+000196 | 
+000197 | satisfies (3.1) and det Z0=81.  This is the expected bare C3 equivalence.
+000198 | 
+000199 | Now retain the original compiler on the same source domain:
+000200 | 
+000201 |   Z P_nat = P_* Z,
+000202 |   Z Q     = Q Z.                                        (3.2)
+000203 | 
+000204 | The combined 18 linear equations have rank 9 in the 9 entries of Z.  Hence
+000205 | 
+000206 |   Z=0.                                                   (3.3)
+000207 | 
+000208 | There is not merely no unitary or integral solution.  There is no nonzero
+000209 | Q equivariant intertwiner at all.
+000210 | 
+000211 | The first commutators already display the mismatch:
+000212 | 
+000213 |   charpoly([Q,P_nat]) = x(x-2)(x+2),       rank 2,
+000214 |   charpoly([Q,P_*])   = x^3-4x-20,         rank 3.
+000215 | 
+000216 | A simultaneous similarity which fixes Q would preserve these data.  Thus a
+000217 | change to a Fourier basis cannot repair the source dictionary while Q is
+000218 | kept fixed.
+000219 | 
+000220 | 
+000221 | 4. Quarter carrier test
+000222 | -----------------------
+000223 | 
+000224 | The marked v117 dictionary sends U to -G.  Retaining this quarter operator
+000225 | and trying to replace P_* by the native P_nat gives
+000226 | 
+000227 |   Z P_nat = P_* Z,
+000228 |   Z G     = G Z.                                        (4.1)
+000229 | 
+000230 | Again the coefficient matrix has rank 9, hence only Z=0.
+000231 | 
+000232 | The intrinsic distinction can also be seen without solving for Z.
+000233 | 
+000234 | For the v117 pullback pair (P_*,-G):
+000235 | 
+000236 |   (P_* (-G))^4=I,
+000237 |   charpoly(P_* (-G))=(x-1)(x^2+1),
+000238 |   the invariant symmetric forms are C N,
+000239 | 
+000240 | where
+000241 | 
+000242 |   N = [1  0  0]
+000243 |       [0  5 -2]
+000244 |       [0 -2  1]
+000245 | 
+000246 | is positive definite.  The generated group is the exact order 24 W(A3).
+000247 | 
+000248 | For the attempted native pair (P_nat,-G):
+000249 | 
+000250 |   charpoly(P_nat (-G))=(x-1)(x+1)^2,
+000251 | 
+000252 | and the -1 eigenspace has dimension one although its algebraic multiplicity
+000253 | is two.  Thus the minimal polynomial also contains (x+1)^2 and the product is
+000254 | not of finite order.  The simultaneous invariant symmetric
+000255 | form equations
+000256 | 
+000257 |   P_nat^T H P_nat=H,
+000258 |   (-G)^T H (-G)=H
+000259 | 
+000260 | have only H=0.  Hence this attempted pair is not a different unitary chart of
+000261 | the v117 S4 representation.
+000262 | 
+000263 | The v417 seam quarter D gives the same qualitative warning in the original
+000264 | native basis: [D,P_nat] is nonzero and v417 explicitly records that these two
+000265 | operators do not form a common mu12 clock.  The exact C12 clock exists on the
+000266 | larger marked cover and Phi12 module, not on this rank three pair by scalar
+000267 | phase repair.
+000268 | 
+000269 | 
+000270 | 5. Direct test of the displayed TFPT45 puncture formula
+000271 | -------------------------------------------------------
+000272 | 
+000273 | The current extract at archive source 03, section 004, lines 2 to 110 sets
+000274 | 
+000275 |   P = [0 1 0]          D=diag(1,omega,omega^2)
+000276 |       [0 0 1]
+000277 |       [1 0 0]
+000278 | 
+000279 | and declares the first three puncture monodromies to be
+000280 | 
+000281 |   D, P D P^{-1}, P^2 D P^{-2},
+000282 | 
+000283 | with the fourth defined as the inverse of their product.  Exact reduction by
+000284 | omega^2+omega+1=0 gives
+000285 | 
+000286 |   P D P^{-1}     = omega D,
+000287 |   P^2 D P^{-2}   = omega^2 D,
+000288 | 
+000289 | up to the equivalent inverse orientation convention, and therefore
+000290 | 
+000291 |   D (PDP^{-1}) (P^2DP^{-2}) = D^3 = I.
+000292 | 
+000293 | Consequently
+000294 | 
+000295 |   rho(gamma_{-i})=I,
+000296 | 
+000297 | whose spectrum is (1,1,1), not the stipulated (1,omega,omega^2).  The same
+000298 | formula also assigns the geometric quarter turn to P although P^3=I.  Four
+000299 | applications act by conjugation with P^4=P, which does not restore D.
+000300 | 
+000301 | This is a literal internal counterexample to that displayed rigidity proof.
+000302 | It does not affect the corrected v117 package: v117 uses the order four U,
+000303 | the noncommuting M, and verifies all four conjugate local classes plus their
+000304 | product identity exactly.
+000305 | 
+000306 | The follow-on claim of a unique flat Hermitian connection in lines 113 to 160
+000307 | therefore does not follow from the displayed D,P construction.  It would need
+000308 | to be restated using the actual v117 matrices and with the recorded analytic
+000309 | identification status retained.
+000310 | 
+000311 | 
+000312 | 6. What is proved, excluded, and still open
+000313 | -------------------------------------------
+000314 | 
+000315 | PROVED
+000316 | 
+000317 |   * Native sigma on the three family slots and the v117 cusp M are isomorphic
+000318 |     as bare regular C3 modules.
+000319 |   * The Fermat deck on natural H10 and full H1 is not that regular module.
+000320 |   * The existing C12 Phi12 bridge is rank four with C3 multiplicities
+000321 |     (0,2,2), not the v117 rank three carrier.
+000322 |   * The exact P_* pullback gives the marked v117 pair and transports Q.
+000323 |   * P_nat cannot replace P_* while Q or the quarter operator -G is retained:
+000324 |     both simultaneous intertwiner spaces are zero.
+000325 |   * The D,P puncture formula printed in the current TFPT45 extract makes the
+000326 |     fourth local monodromy trivial and cannot establish its stated theorem.
+000327 | 
+000328 | EXCLUDED IN THIS SCOPE
+000329 | 
+000330 |   * Identifying all order three operators merely from their eigenvalues.
+000331 |   * Repairing the Fermat deck character with a scalar cubic phase.
+000332 |   * Claiming that the C12 Phi12 intertwiner supplies the rank three P2
+000333 |     connection or the fixed Q action.
+000334 |   * Calling the native slot permutation and v117 M the same marked operator
+000335 |     while the original compiler and quarter action stay fixed.
+000336 | 
+000337 | OPEN, NOW SHARPLY FORMULATED
+000338 | 
+000339 |   A direct origin bridge would have to provide a source map between the
+000340 |   native E8 family slot module and the v117 puncture local system which also
+000341 |   states how Q and the quarter action transform.  For the currently fixed Q
+000342 |   and quarter representatives that map does not exist.  Progress therefore
+000343 |   requires a different source derived action or a proved transport of the
+000344 |   whole marked tuple.  A new scalar phase, an unmarked Fourier transform, or
+000345 |   the existing rank four C12 bridge cannot do it.
+000346 | 
+000347 | 
+000348 | 7. Reproduction and checked sources
+000349 | -----------------------------------
+000350 | 
+000351 | Executed successfully on 26 October 2026:
+000352 | 
+000353 |   python3 -B verification/v117_monodromy_weyl_a3.py
+000354 |     5 passed, 0 failed.
+000355 | 
+000356 |   python3 -B verification/v417_eisenstein_cp_operator.py
+000357 |     5 passed, 0 failed.
+000358 | 
+000359 |   python3 -B experiments/theory-contracts/source-native-clock-flavor-bridge-20260922/checker.py --out /tmp/c3-source-dictionary.json
+000360 |     PASS_SCOPED_NATIVE_CLOCK_FLAVOR_EXACT_AUDIT, group order 24.
+000361 | 
+000362 |   python3 -B experiments/theory-contracts/e-series-compiler-closure-20261023/cover_dictionary.py
+000363 |     ALL COVER DICTIONARY CHECKS PASSED.
+000364 | 
+000365 | The new calculations in Sections 3 to 5 used exact SymPy linear algebra over
+000366 | Q and Q(i), plus polynomial reduction by omega^2+omega+1.  No floating point
+000367 | comparison enters the verdict.
+000368 | 
+000369 | Source locations and current SHA256 pins:
+000370 | 
+000371 |   documents/archive--tfpt-45--source_extracts--03_em_flavor_source/
+000372 |     sections/004-source.tex:2-160
+000373 |     107d525221eb816043dbf4fb1a3c7e8244d3e24a5a5bcbfe1c2c34d8ee192f4a
+000374 | 
+000375 |   verification/v117_monodromy_weyl_a3.py:1-43,52-56,129-182
+000376 |     55eca6a64144f6e49789f3f1bbe84e256764e7ce92b207044be693f8684d5df5
+000377 | 
+000378 |   verification/v417_eisenstein_cp_operator.py:1-40,49-58,77-83,126-140
+000379 |     c5f1fe26b9e6fd30bf2ad45354de6819a184c4a86b491f19ab21cb53b21c2b7e
+000380 | 

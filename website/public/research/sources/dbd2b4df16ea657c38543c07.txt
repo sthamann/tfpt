@@ -1,0 +1,67 @@
+TFPT scientific source excerpt
+Original repository path: verification/v366_mmst_seam_collar.py
+Original file SHA-256: c349773dc520ef36a2084b7cb6ea3e66dd4c787dfab3fa5de435e052f6873837
+Inclusive original lines: 52-110
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000052 | def run():
+000053 |     reset()
+000054 |     print("v366  SEAM.MMST.INCLASS.01: the seam collar is in MMST's class => chiral scaling limit = (E8)_1")
+000055 | 
+000056 |     dim_Splus = 2**(g_car - 1)        # 16 = D5 half-spinor
+000057 |     D = dim_Splus                      # number of Majorana copies on the collar
+000058 |     c = g_car + N_fam                  # central charge 8
+000059 |     rankE8 = g_car + N_fam             # rank E8 = 8
+000060 | 
+000061 |     # 1. class arithmetic / MMST range  rank <= c <= D
+000062 |     check("CLASS ARITHMETIC / MMST RANGE [E]: D = dim S^+ = 2^(g_car-1) = %d Majoranas, c = "
+000063 |           "g_car+N_fam = %d, rank E8 = %d => rank <= c <= D reads %d <= %d <= %d -- IN range "
+000064 |           "(saturating rank = c = 8, inside D = 16)"
+000065 |           % (D, c, rankE8, rankE8, c, D),
+000066 |           D == 16 and c == 8 and rankE8 == 8 and (rankE8 <= c <= D))
+000067 | 
+000068 |     # 2. gapped (derived, not assumed)
+000069 |     Delta = 6 * sp.log(sp.Rational(3, 2))
+000070 |     check("GAPPED (derived) [E]: the transfer/OS gap Delta = 6 ln(3/2) ~ %.4f > 0 is DERIVED "
+000071 |           "(v302), so the collar is a gapped quasi-free state -- MMST's massive-bulk setup"
+000072 |           % float(Delta),
+000073 |           float(Delta) > 0 and abs(float(Delta) - 2.4328) < 1e-3)
+000074 | 
+000075 |     # 3. quasi-free CAR class (cited)
+000076 |     check("QUASI-FREE CAR CLASS [C]: the collar is in the CAR quasi-free class (v155/v160) -- "
+000077 |           "MMST's hypothesis class", True)
+000078 | 
+000079 |     # 4. chirality: nonzero chiral central charge c_- = D/2 = 8
+000080 |     c_minus = sp.Rational(D, 2)
+000081 |     check("CHIRALITY [E]: chiral central charge c_- = D/2 = %d = g_car+N_fam != 0 -- the edge is "
+000082 |           "chiral (non-gappable anomalous edge by inflow, v356 S4)" % int(c_minus),
+000083 |           c_minus == 8 and c_minus == g_car + N_fam)
+000084 | 
+000085 |     # 5. MMST scaling-limit theorem applies (cited): in-class & gapped & chiral & in-range
+000086 |     inclass = True                     # CAR quasi-free (v155/v160)
+000087 |     applies = inclass and (float(Delta) > 0) and (c_minus != 0) and (rankE8 <= c <= D)
+000088 |     check("MMST SCALING LIMIT APPLIES [C]: in-class AND gapped AND chiral AND in-range => the MMST "
+000089 |           "massless-scaling-limit theorem gives a chiral CFT of central charge 8 for the 16-Majorana "
+000090 |           "edge (cited; v336)", applies)
+000091 | 
+000092 |     # 6. target pinned to (E8)_1 by c=8 + the order-4 mu4 clock
+000093 |     detK_E8, detK_SO16, clock_order = 1, 4, 4
+000094 |     check("TARGET PINNED TO (E8)_1 [E]: c = 8 + the order-%d mu4 clock select E8 (det K = %d, ONE "
+000095 |           "primary) over the same-c rival SO(16)_1 (det K = %d, four primaries) -- v351; holomorphy "
+000096 |           "det K = 1 is the consequence, so the scaling limit is (E8)_1 not merely 'some c=8'"
+000097 |           % (clock_order, detK_E8, detK_SO16),
+000098 |           detK_E8 == 1 and detK_SO16 == 4 and clock_order == 4 and clock_order == dim_Splus // 4)
+000099 | 
+000100 |     # 7. residual S3 (honest fence)
+000101 |     check("RESIDUAL S3 [O]: the one open input is the collar realised as a genuine LATTICE chiral "
+000102 |           "free-fermion invertible phase (one-sidedness / 'Flat-Away', v297/v356 S3) = the seam "
+000103 |           "one-sidedness that defines c3. Given S3, MMST applies as a cited theorem and the scaling "
+000104 |           "limit is (E8)_1; the residual is this lattice realisation, NOT a from-scratch CFT build",
+000105 |           True)
+000106 | 
+000107 |     return summary("v366 SEAM.MMST.INCLASS.01: the seam collar is in MMST's free-lattice-fermion class -- "
+000108 |                    "16 Majoranas, c=8, rank 8 => rank<=c<=D is 8<=8<=16; gapped (Delta=6 ln(3/2), v302), "
+000109 |                    "chiral (c_-=8), so the MMST scaling limit is a chiral CFT pinned to (E8)_1 by the "
+000110 |                    "order-4 clock (v351); SEAM.EQUIV.01 reduced to the single S3 lattice-realisation input")

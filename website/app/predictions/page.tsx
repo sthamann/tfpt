@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { PredictionsSection } from "@/components/PredictionsSection";
 import { SITE_URL } from "@/lib/utils";
+import { PredictionRegistryGuide } from "@/components/explain/ResearchSnapshot";
 
 export const metadata: Metadata = pageMetadata("/predictions");
 
@@ -22,6 +23,7 @@ export default function PredictionsPage() {
           Back to start
         </Link>
       </div>
+      <div className="guide-shell mt-8"><PredictionRegistryGuide /></div>
       <PredictionsSection />
     </>
   );

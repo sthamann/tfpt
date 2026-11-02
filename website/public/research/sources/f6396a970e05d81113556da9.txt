@@ -1,0 +1,128 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/FIXED-CAP-STATE.txt
+Original file SHA-256: 072ad02ddf3a1298079647e939f7d74c175421d3dd0c622ee097ce39e0c0e451
+Inclusive original lines: 1-120
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | THE FINITE FIXED CAP IS AN EXACT HEAT-PREPARED COUPLED SOURCE STATE
+000002 | 29 October 2026. Independent all-mode analytic review of the existing source.
+000003 | No new model, physical state selection, cutoff extrapolation, original edit,
+000004 | checker run or Atlas mutation.
+000005 | 
+000006 | Result
+000007 | The previously computed det_F C is exactly the return amplitude of the old
+000008 | sea vector under the positive COUPLED excitation Hamiltonian. Its normalized
+000009 | half-time vector has precisely the symmetric middle-cap projector. At finite
+000010 | positive collar width it is a genuine coupled pure state, generically not
+000011 | stationary under the same coupled source flow. This does not conflict with
+000012 | positivity of the excitation Hamiltonian or with the existing full graph.
+000013 | 
+000014 | 1. Actual data and the one-pair identity
+000015 | Keep the constant quarter source of FIXED-CAP-DETERMINANT.txt:
+000016 |   h0=p gamma, h=h0+V, V=-i gamma Phi, {h0,V}=0,
+000017 |   p=n+alpha, alpha=1/4 or3/4, E=(p^2+Phi^2)^(1/2),
+000018 |   P0=P_-(h0), Ph=P_-(h).
+000019 | For each actual odd singular block choose its harmless internal phase so
+000020 |   h=p sigma_z+m sigma_y, p>0, m>=0, E=sqrt(p^2+m^2).
+000021 | For p<0 the old occupied grading is exchanged and all formulas use |p|.
+000022 | These are singular blocks of the same coefficient, not additional species.
+000023 | 
+000024 | In the sea Fock representation of Ph, the old occupied vector has form
+000025 |   Omega0,p= sqrt(a) Omega_h,p + exp(i theta) sqrt(b) Pair_h,p,
+000026 |   a=(1+|p|/E)/2, b=1-a.
+000027 | Pair_h,p is one particle AND one hole, neutral and even relative to the
+000028 | coupled sea. Its excitation energy is 2E; the sea energy is set to0 in
+000029 | H_exc. Thus
+000030 |   <Omega0,p,exp(-ell H_exc,p)Omega0,p>
+000031 |       =a+b exp(-2ell E)=C_p.
+000032 | This counts one odd pair per occupied singular slot, not two separate
+000033 | copies from the selfdual conjugate test space.
+000034 | 
+000035 | 2. Infinite source, exact scalar and energy domains
+000036 | The existing HS sea result is reused, not rederived as a new source choice:
+000037 |   finding:whole-constant-coupled-source-is-implementable-despite-isolated-insertion-domain,
+000038 |   primitive_insertions_review/UV-INSERTION.txt:55-78.
+000039 | It places the whole old and coupled pure seas in the SAME Fock representation.
+000040 | Indeed sum_(p,j)b_pj<infinity; the infinite product of normalized pair factors
+000041 | defines the old sea vector and product_(p,j)a_pj>0. Internal zero singular
+000042 | values contribute a=1,b=0. There are48 occupied slots per Fourier p for the
+000043 | actual96 component coefficient; no additional conjugate-slot multiplicity.
+000044 | 
+000045 | The positive coupled excitation Hamiltonian is
+000046 |   H_exc=sum_(p,j) E_pj(n_particle,pj+n_hole,pj),
+000047 | with its usual selfadjoint Fock domain and coupled sea energy0. Its commuting
+000048 | pair factors give the exact whole-space identity
+000049 |   <Omega0,exp(-ell H_exc)Omega0>=product_(p,j)C_pj=det_F C>0.
+000050 | Equivalently this is the Laplace transform of the actual nonnegative sum of
+000051 | independent pair excitation energies in the old vector. Since sum b_pj is
+000052 | finite, only finitely many pairs are occupied almost surely. Monotone
+000053 | limits of these commuting positive factors establish the whole expectation;
+000054 | the trace-class cap determinant already proves the same positive product.
+000055 | No uncontrolled cutoff extrapolation is used.
+000056 | 
+000057 | Consequently the exact normalized middle vector is
+000058 |   Omega_mid=exp(-ell H_exc/2)Omega0 / sqrt(det_F C).
+000059 | Its occupation probability for a coupled particle-hole pair is
+000060 |   q_pj=b_pj exp(-2ell E_pj)/C_pj,
+000061 | so its mean coupled excitation energy is sum_(p,j)2E_pj q_pj<infinity.
+000062 | For every ell>0 the vector is in Dom(H_exc^k) for every finite k, including
+000063 | the energy form domain. This follows directly from boundedness of
+000064 | H_exc^k exp(-ell H_exc/2), or from the exponential suppression of q_pj.
+000065 | At ell=0 the existing old vector is still well defined, although its mean
+000066 | coupled energy diverges logarithmically for constant nonzero Phi. That old
+000067 | domain obstruction and this positive-time smoothing are fully compatible.
+000068 | 
+000069 | 3. Exactly the symmetric exterior middle projector
+000070 | At one pair set t=ell/2. The exterior-transferred old occupied vector is
+000071 |   v=exp(-t h)e_old
+000072 |    =(i(m/E)sinh(tE), cosh(tE)+(p/E)sinh(tE))
+000073 | for the displayed p>0 block. Its squared norm is
+000074 |   M=cosh(ell E)+(p/E)sinh(ell E).
+000075 | The positive excitation shift supplies precisely exp(-t E) on this
+000076 | one-occupied-particle exterior sector. Therefore
+000077 |   exp(-2t E)||v||^2=exp(-ell E)M=C_p,
+000078 | and its normalized ray is the same Omega_mid,p just constructed in Fock space.
+000079 | 
+000080 | On the whole circle define this subspace modewise through the isometries
+000081 |   F_t(p)=exp(-t h(p))P0(p)
+000082 |           [P0(p)exp(-2t h(p))P0(p)|RanP0]^-1/2.
+000083 | Then P_mid(p)=F_t(p)F_t(p)*. The direct sum is a bounded orthogonal projector.
+000084 | This formulation supplies the correct normalized graph-domain meaning of
+000085 | exp(-t h)RanP0; the individual exponential is not asserted bounded for
+000086 | unbounded signed h. It is the covariance of the same whole pure heat-cap
+000087 | state. Relative to Ph its projector difference has
+000088 |   ||P_mid(p)-Ph(p)||_HS^2=2 sum_j q_pj,
+000089 | which is summable and exponentially suppressed in the UV at ell>0.
+000090 | 
+000091 | 4. Exact stationarity test and time scope
+000092 | For the displayed single pair,
+000093 |   P_mid=|v><v|/M,
+000094 |   ||[h,P_mid]||_HS^2=2 Var_(v/sqrt(M))(h)=2m^2/M^2.
+000095 | One check uses
+000096 |   <v,hv>=-E sinh(ell E)-p cosh(ell E), h^2=E^2I;
+000097 | the variance numerator is E^2M^2-[E sinh(ell E)+p cosh(ell E)]^2=m^2.
+000098 | Thus for m!=0 and finite ell the cap state is NOT invariant under the
+000099 | already implemented coupled source automorphism exp(is h). Equivalently
+000100 | its coupled Fock-energy variance is positive. As ell tends to infinity it
+000101 | converges to the coupled sea, since the latter has nonzero old-sea overlap.
+000102 | 
+000103 | A positive Hamiltonian does not require every heat-prepared vector to be
+000104 | stationary. The old boundary vector, the finite middle-cap vector and the
+000105 | coupled ground vector are different explicitly determined states of the
+000106 | same given representation. They are not competing new free source inputs.
+000107 | Likewise the pure middle projector is not the one-face thermal marginal
+000108 | of the already established full finite-collar Cauchy graph.
+000109 | 
+000110 | The existing graded field/time dictionary identifies its stated source
+000111 | unitary flow; the heat in this note is its H_exc imaginary-time semigroup.
+000112 | Identification of that mathematical semigroup parameter with ORIGINAL
+000113 | physical radial OS time remains a source-intertwiner question. This note
+000114 | does not assign the original operational Seed's omega or tau again.
+000115 | 
+000116 | Finally H_exc has the declared coupled-sea zero energy. The finite return
+000117 | amplitude det_F C and its normalized vector do not fix an absolute bulk
+000118 | energy shift, determinant-line phase, original Z_adm or spectral-action
+000119 | measure. The logarithmic bulk term and the original source comparison in
+000120 | FIXED-CAP-DETERMINANT.txt remain separately typed.

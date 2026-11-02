@@ -1,0 +1,74 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/charged_source_alternatives_20261027/check_modular_sewing.py
+Original file SHA-256: 9fec3ac832649d79b13fe5d84f198f15e8b1a8a570aab1be6aa3185f59049d87
+Inclusive original lines: 1-66
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact decision test on the existing D5+A3 discriminant modules.
+000002 | 
+000003 | This tests chiral cycle-exchange closure, not a physical P1 sewing law.
+000004 | """
+000005 | import itertools
+000006 | import json
+000007 | import sympy as s
+000008 | 
+000009 | 
+000010 | def require(condition, message):
+000011 |     if not condition:
+000012 |         raise RuntimeError(message)
+000013 | 
+000014 | 
+000015 | labels = list(itertools.product(range(4), repeat=2))
+000016 | idx = {a: i for i, a in enumerate(labels)}
+000017 | S = s.Matrix(16, 16, lambda i, j: s.I ** (-(5*labels[i][0]*labels[j][0]
+000018 |                                            + 3*labels[i][1]*labels[j][1]) % 4) / 4)
+000019 | T = s.diag(*[s.exp(s.pi*s.I*s.Rational(5*a*a+3*b*b, 4)).expand(complex=True)
+000020 |              for a, b in labels])
+000021 | C = s.zeros(16)
+000022 | for a in labels:
+000023 |     C[idx[a], idx[(-a[0] % 4, -a[1] % 4)]] = 1
+000024 | require(S.conjugate().T*S == s.eye(16), 'unitary finite Fourier action')
+000025 | require(S*S == C, 'S squared is charge conjugation')
+000026 | require(s.simplify(T.conjugate().T*T) == s.eye(16), 'unitary twists')
+000027 | 
+000028 | supports = {
+000029 |     'U_D5_A3': [(0, 0)],
+000030 |     'D8': [(0, 0), (2, 2)],
+000031 |     'E8_plus': [(a, a) for a in range(4)],
+000032 |     'E8_minus': [(a, (-a) % 4) for a in range(4)],
+000033 | }
+000034 | out = {}
+000035 | for name, H in supports.items():
+000036 |     v = s.Matrix([int(a in H) for a in labels])
+000037 |     perp = [a for a in labels if all((5*a[0]*h[0]+3*a[1]*h[1]) % 4 == 0 for h in H)]
+000038 |     expected = s.Rational(len(H), 4)*s.Matrix([int(a in perp) for a in labels])
+000039 |     require(S*v == expected, 'Fourier support identity '+name)
+000040 |     require(T*v == v, 'local bosonic support '+name)
+000041 |     fixed = S*v == v
+000042 |     require(fixed == (len(H) == 4), 'closure classification '+name)
+000043 |     out[name] = {
+000044 |         'support': H,
+000045 |         'support_size': len(H),
+000046 |         'orthogonal_support_size': len(perp),
+000047 |         'vacuum_coefficient_after_S': str((S*v)[0]),
+000048 |         'single_chiral_vacuum_fixed': fixed,
+000049 |         'contains_marked_h_1_1': (1, 1) in H,
+000050 |     }
+000051 | 
+000052 | # A complete scalar paired amplitude can be modular invariant without a
+000053 | # one-dimensional chiral block: M=I pairs every module with its conjugate.
+000054 | M = s.eye(16)
+000055 | require(S.conjugate().T*M*S == M, 'paired S covariance')
+000056 | require(s.simplify(T.conjugate().T*M*T) == M, 'paired T covariance')
+000057 | require(M.rank() == 16 and M[0, 0] == 1, 'paired amplitude is not chiral rank one')
+000058 | 
+000059 | print(json.dumps({
+000060 |     'verdict': 'CHIRAL_VACUUM_CYCLE_EXCHANGE_SELECTS_TWO_E8_EXTENSIONS',
+000061 |     'formula': 'S v_H = (|H|/4) v_H_perp',
+000062 |     'extensions': out,
+000063 |     'paired_scalar_control': {'rank': 16, 'vacuum_multiplicity': 1,
+000064 |                              'S_and_T_invariant': True},
+000065 |     'scope': 'existing unitary connected same-conformal extension class; no P1 origin of chiral cycle exchange, no physical countermodel',
+000066 | }, indent=2, sort_keys=True))

@@ -1,0 +1,70 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/equivariant-monodromy-20261023/checker.py
+Original file SHA-256: 91927ca2d86a724b387285b8406880df9cca0a46c7931940e5f344a91c230973
+Inclusive original lines: 83-144
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000083 |     need(len(orbits) == 17, '17 original ordered monodromy classes')
+000084 |     ident = key(power(refs[0], 0))
+000085 |     need(len({p[0] for p in pg}) == 60, 'single generating reflection conjugacy class')
+000086 | 
+000087 |     B = S.Matrix(d['integral_lattice_basis'])
+000088 |     Gram = S.Matrix(d['integral_gram'])
+000089 |     ints = [B.inv()*real_matrix(x)*B for x in refs]
+000090 |     need(all(all(a.q == 1 for a in x) and x.T*Gram*x == Gram for x in ints),
+000091 |          'all 60 original lattice actions are integral isometries')
+000092 |     rows = [list((x-S.eye(8)).row(j)) for x in ints for j in range(8)]
+000093 |     invariant_rank = 8-rank2(rows)
+000094 |     need(invariant_rank == 0, 'no invariant vectors in original lattice modulo two')
+000095 | 
+000096 |     # Explicit isometry from the Gaussian root coordinates into standard E8.
+000097 |     T = S.diag(*([S.Matrix([[1, -1], [1, 1]])/2]*4))
+000098 |     J = S.diag(*([S.Matrix([[0, -1], [1, 0]])]*4))
+000099 |     gaussian_roots = set()
+000100 |     for r in rays:
+000101 |         a = tuple(v for pair in r for v in pair)
+000102 |         for _ in range(4):
+000103 |             gaussian_roots.add(a)
+000104 |             a = tuple(v for j in range(4) for v in (-a[2*j+1], a[2*j]))
+000105 |     standard = set()
+000106 |     for i in range(8):
+000107 |         for j in range(i+1, 8):
+000108 |             for a, b in product((-1, 1), repeat=2):
+000109 |                 x = [S.Integer(0)]*8
+000110 |                 x[i], x[j] = a, b
+000111 |                 standard.add(tuple(x))
+000112 |     for signs in product((-1, 1), repeat=8):
+000113 |         if sum(s < 0 for s in signs) % 2 == 0:
+000114 |             standard.add(tuple(S.Rational(a, 2) for a in signs))
+000115 |     need({tuple(T*S.Matrix(x)) for x in gaussian_roots} == standard,
+000116 |          'explicit isometry identifies all 240 original roots with standard E8')
+000117 |     need(T.T*T == S.eye(8)/2 and T*J == J*T,
+000118 |          'isometry preserves metric and the actual quarterclock')
+000119 | 
+000120 |     order8 = next(x for x in full.values()
+000121 |                   if key(power(x, 8)) == ident and key(power(x, 4)) != ident)
+000122 |     need(key(power(order8, 8)) == ident and key(power(order8, 4)) != ident,
+000123 |          'G31 contains an element of order eight')
+000124 |     positive_r = next(i for i, r in enumerate(refs)
+000125 |                       if key(power(mul(r, order8), 8)) == ident)
+000126 |     need(key(power(mul(refs[positive_r], order8), 8)) == ident,
+000127 |          'positive original G31 example with exact order eight clock')
+000128 |     # Gamma_sign has exponent four from its already proved normal form.
+000129 |     for u, v, k in product(range(16), range(16), range(4)):
+000130 |         x = (u, v, k)
+000131 |         y = (0, 0, 0)
+000132 |         for _ in range(4):
+000133 |             a, b, l = y
+000134 |             y = (a ^ u, b ^ v ^ (u if l % 2 else 0), (l+k) % 4)
+000135 |         if y != (0, 0, 0):
+000136 |             raise RuntimeError('Gamma_sign exponent is not four')
+000137 |     need(True, 'all 1024 sign-lift elements have fourth power one')
+000138 | 
+000139 |     integral = []
+000140 |     for oid, o in enumerate(d['orbits']):
+000141 |         D = S.Matrix.vstack(*[ints[j]-S.eye(8) for j in o['representative'][:3]])
+000142 |         sn = smith_normal_form(D, domain=S.ZZ)
+000143 |         nz = [abs(int(sn[i, i])) for i in range(8) if sn[i, i]]
+000144 |         h1 = {'free_rank': 24-len(nz), 'torsion_invariant_factors': [x for x in nz if x > 1],

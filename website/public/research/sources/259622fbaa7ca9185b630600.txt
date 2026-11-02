@@ -1,0 +1,93 @@
+TFPT scientific source excerpt
+Original repository path: verification/v118_hexagon_family_dictionary.py
+Original file SHA-256: 48b7a05bcd877afe13f0a92cce4087e86c23172823e605cda21c6a8ceafa6e37
+Inclusive original lines: 54-138
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000054 | def run():
+000055 |     reset()
+000056 |     print("v118 hexagon-family dictionary (lepton c's = resolvent dets)")
+000057 | 
+000058 |     # 1. sign-twist lemma
+000059 |     z6 = sp.exp(II * sp.pi / 3)
+000060 |     spec = list(M0.eigenvals().keys())
+000061 |     union = sorted([sp.nsimplify(sp.simplify(x)) for x in spec]
+000062 |                    + [sp.nsimplify(sp.simplify(-x)) for x in spec], key=str)
+000063 |     mu6 = sorted([sp.nsimplify(sp.simplify(z6 ** k)) for k in range(6)],
+000064 |                  key=str)
+000065 |     check("SIGN-TWIST LEMMA: -M0 has order 6 ((-M0)^3 = -1) and "
+000066 |           "spec(M0) u spec(-M0) = mu_6 -- the hypercharge hexagon "
+000067 |           "spectrum IS the family spectrum plus its sheet twist "
+000068 |           "(Z6 = Z2 x Z3 = (-1) x <M0>)",
+000069 |           sp.simplify((-M0) ** 6) == sp.eye(3)
+000070 |           and sp.simplify((-M0) ** 3) == -sp.eye(3)
+000071 |           and all(sp.simplify(a - b) == 0 for a, b in zip(union, mu6)))
+000072 | 
+000073 |     check("HEXAGON DENOMINATORS: for every r, 5/4 - cos(r pi/3) = "
+000074 |           "|1 - zeta_6^r / 2|^2 -- v20's resolvent denominators are the "
+000075 |           "eigen-denominators of the two family resolvents "
+000076 |           "(1 -+ M0/2)^{-1}",
+000077 |           all(sp.simplify(sp.expand_complex(
+000078 |               (sp.Rational(5, 4) - sp.cos(r * sp.pi / 3))
+000079 |               - (1 - z6 ** r / 2) * (1 - sp.conjugate(z6 ** r) / 2))) == 0
+000080 |               for r in range(6)))
+000081 | 
+000082 |     # 2. cyclotomic determinant
+000083 |     t = sp.Symbol('t')
+000084 |     detm = sp.nsimplify(sp.det(sp.eye(3) - M0 / 2))
+000085 |     detp = sp.nsimplify(sp.det(sp.eye(3) + M0 / 2))
+000086 |     check("CYCLOTOMIC DETERMINANT: det(1 - t M0) = 1 - t^3 = "
+000087 |           "(1 - t) Phi_3(t) (the N_fam cyclotomic) => det(1 - M0/2) = "
+000088 |           "7/8 and det(1 + M0/2) = 9/8",
+000089 |           sp.simplify(sp.det(sp.eye(3) - t * M0) - (1 - t ** 3)) == 0
+000090 |           and detm == sp.Rational(7, 8) and detp == sp.Rational(9, 8))
+000091 | 
+000092 |     # 3. lepton coefficients as resolvent determinants
+000093 |     mu4, nfam = 4, 3
+000094 |     c_e = sp.Rational(mu4) / (2 * detm)
+000095 |     c_mu = sp.Rational(nfam) / (2 * detp)
+000096 |     c_tau = mu4 * detm / nfam
+000097 |     check("THE LEPTON COEFFICIENTS ARE RESOLVENT DETERMINANTS: "
+000098 |           "c_e = |mu_4|/(2 det-) = 16/7, c_mu = N_fam/(2 det+) = 4/3, "
+000099 |           "c_tau = |mu_4| det-/N_fam = 7/6, product = |mu_4|/det+ = "
+000100 |           "32/9 -- the lepton 7 and 9 ARE the family-resolvent "
+000101 |           "determinants (x 8); delta = 1/2 = |(M0)_22| is supplied by "
+000102 |           "the matrix itself (v117)",
+000103 |           c_e == sp.Rational(16, 7) and c_mu == sp.Rational(4, 3)
+000104 |           and c_tau == sp.Rational(7, 6)
+000105 |           and sp.Rational(mu4) / detp == sp.Rational(32, 9)
+000106 |           and sp.simplify(c_e * c_mu * c_tau
+000107 |                           - sp.Rational(mu4) / detp) == 0
+000108 |           and sp.Abs(M0[1, 1]) == sp.Rational(1, 2))
+000109 | 
+000110 |     # 4. sheet-extended group
+000111 |     def freeze(m):
+000112 |         return tuple(sp.simplify(x) for x in m)
+000113 | 
+000114 |     elems = {freeze(sp.eye(3)): True}
+000115 |     frontier = [sp.eye(3)]
+000116 |     while frontier:
+000117 |         new = []
+000118 |         for e in frontier:
+000119 |             for g in (U, M0, -sp.eye(3)):
+000120 |                 x = sp.expand(g * e)
+000121 |                 kx = freeze(x)
+000122 |                 if kx not in elems:
+000123 |                     elems[kx] = True
+000124 |                     new.append(x)
+000125 |         frontier = new
+000126 |     check("SHEET-EXTENDED GROUP: <U, M0, -1> has order 48 = Omega_adm "
+000127 |           "= N_fam x dim S+ (the seed's quartic coefficient, v106) = "
+000128 |           "|S4 x Z2| (exact enumeration; audit cross-link)",
+000129 |           len(elems) == 48 and 3 * 16 == 48 and 24 * 2 == 48)
+000130 | 
+000131 |     # 5. residue
+000132 |     check("RESIDUE [P] (recorded): the dictionary's VALUES are exact "
+000133 |           "(hexagon spectrum, denominators, determinants); its ADDRESS "
+000134 |           "TABLE (which hexagon site each fermion occupies; the quark "
+000135 |           "composition) remains v20's established input / open -- "
+000136 |           "nothing re-fished", True)
+000137 | 
+000138 |     return summary("v118 hexagon-family dictionary")

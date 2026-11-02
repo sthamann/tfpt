@@ -1,0 +1,155 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/collective-native-marginal-origin-20261026/check_collective_origin.py
+Original file SHA-256: f05fb2f189f6a7d21a1f423042cef3cc605e2e52aa8c1e64068cb4ba6d4b4218
+Inclusive original lines: 1-147
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact collective-order test on the existing native four-register source.
+000003 | No physical Hamiltonian, bath, intervention or additional register is introduced.
+000004 | """
+000005 | from __future__ import annotations
+000006 | import argparse
+000007 | import hashlib
+000008 | import itertools as it
+000009 | import json
+000010 | import math
+000011 | from pathlib import Path
+000012 | import sys
+000013 | import numpy as np
+000014 | 
+000015 | REPO = Path(__file__).resolve().parents[3]
+000016 | sys.path.insert(0, str(REPO))
+000017 | from tfpt_explorer.process import _code_basis
+000018 | from tfpt_explorer.cartan_source import _roots, _rays
+000019 | 
+000020 | 
+000021 | def need(condition, message):
+000022 |     if not bool(condition):
+000023 |         raise RuntimeError(message)
+000024 | 
+000025 | 
+000026 | def sym_scaled(n):
+000027 |     words = list(it.product(range(4), repeat=n))
+000028 |     index = {w: i for i, w in enumerate(words)}
+000029 |     scale = math.factorial(n)
+000030 |     out = np.zeros((4**n, 4**n), dtype=np.int64)
+000031 |     groups = {}
+000032 |     for w in words:
+000033 |         groups.setdefault(tuple(sorted(w)), []).append(index[w])
+000034 |     for ids in groups.values():
+000035 |         need(scale % len(ids) == 0, "Symmetric orbit denominator")
+000036 |         out[np.ix_(ids, ids)] = scale // len(ids)
+000037 |     return out
+000038 | 
+000039 | 
+000040 | def reduce_four(matrix, keep):
+000041 |     env = tuple(j for j in range(4) if j not in keep)
+000042 |     perm = keep + env
+000043 |     tensor = matrix.reshape((4,)*8).transpose(perm + tuple(j+4 for j in perm))
+000044 |     d, e = 4**len(keep), 4**len(env)
+000045 |     return np.einsum("aibi->ab", tensor.reshape(d, e, d, e))
+000046 | 
+000047 | 
+000048 | def moment_numerator(rays, n):
+000049 |     # Actual unit vector is (a_0+i b_0,...,a_3+i b_3)/2.
+000050 |     # Return Gaussian-integer numerator, denominator 60*4**n.
+000051 |     words = list(it.product(range(4), repeat=n))
+000052 |     real = np.zeros((4**n, 4**n), dtype=np.int64)
+000053 |     imag = np.zeros_like(real)
+000054 |     for root in rays:
+000055 |         z = [(root[2*j], root[2*j+1]) for j in range(4)]
+000056 |         vr, vi = [], []
+000057 |         for word in words:
+000058 |             a, b = 1, 0
+000059 |             for j in word:
+000060 |                 a, b = a*z[j][0]-b*z[j][1], a*z[j][1]+b*z[j][0]
+000061 |             vr.append(a)
+000062 |             vi.append(b)
+000063 |         vr, vi = np.array(vr, dtype=np.int64), np.array(vi, dtype=np.int64)
+000064 |         real += np.outer(vr, vr) + np.outer(vi, vi)
+000065 |         imag += np.outer(vi, vr) - np.outer(vr, vi)
+000066 |     return real, imag
+000067 | 
+000068 | 
+000069 | def main():
+000070 |     parser = argparse.ArgumentParser()
+000071 |     parser.add_argument("--out", type=Path, default=Path(__file__).with_name("results.json"))
+000072 |     args = parser.parse_args()
+000073 |     _, supports = _code_basis()
+000074 |     need([len(s) for s in supports] == [4,12,12,12,24], "Literal original supports")
+000075 |     words = list(it.product(range(4), repeat=4))
+000076 |     index = {w:i for i,w in enumerate(words)}
+000077 |     pc24 = np.zeros((256,256), dtype=np.int64)
+000078 |     for support in supports:
+000079 |         ids = [index[w] for w in support]
+000080 |         pc24[np.ix_(ids, ids)] = 24 // len(support)
+000081 |     ps24 = sym_scaled(4)
+000082 |     identity = np.eye(256, dtype=np.int64)
+000083 |     need(np.array_equal(pc24@pc24, 24*pc24), "Code projector")
+000084 |     need(np.array_equal(ps24@ps24, 24*ps24), "Symmetric projector")
+000085 |     need(np.array_equal(pc24@ps24, 24*pc24), "Actual code is symmetric")
+000086 |     need(int(np.trace(pc24)) == 120 and int(np.trace(ps24)) == 840, "Exact ranks 5 and 35")
+000087 |     # rho_C - rho_S = (7*pc24-ps24)/840.
+000088 |     difference = 7*pc24-ps24
+000089 |     reductions = {}
+000090 |     for n in (1,2,3):
+000091 |         subsets = list(it.combinations(range(4), n))
+000092 |         need(all(not np.any(reduce_four(difference, k)) for k in subsets), "All proper marginals equal")
+000093 |         reductions[str(n)] = {"subsets":len(subsets), "exact_equal":True}
+000094 |     roots = _roots()
+000095 |     rays = _rays(roots)
+000096 |     need(len(roots)==240 and len(rays)==60, "Original roots and native J lines")
+000097 |     low = {}
+000098 |     for n in (1,2,3):
+000099 |         real, imag = moment_numerator(rays, n)
+000100 |         sym = sym_scaled(n)
+000101 |         dim = math.comb(n+3,3)
+000102 |         need(not np.any(imag), "Lower moment real")
+000103 |         need(np.array_equal(math.factorial(n)*dim*real, 60*4**n*sym), "Exact uniform lower moment")
+000104 |         low[str(n)] = {"symmetric_dimension":dim, "uniform_exact":True}
+000105 |     real, imag = moment_numerator(rays, 4)
+000106 |     need(not np.any(imag), "Fourth moment imaginary part vanishes")
+000107 |     need(np.array_equal(real, 16*(pc24+ps24)), "40 M4 = Pi_C + Pi_sym4")
+000108 |     # Recover the original code projector FROM the source moment, no target fit.
+000109 |     need(np.array_equal(real-16*ps24, 16*pc24), "Literal source reconstruction of code projector")
+000110 |     h48 = 48*identity-pc24-ps24
+000111 |     need(not np.any(h48@pc24), "Parent annihilates code")
+000112 |     need(np.array_equal(h48@(ps24-pc24), 24*(ps24-pc24)), "Symmetric complement energy 1/2")
+000113 |     need(np.array_equal(h48@(24*identity-ps24), 48*(24*identity-ps24)), "Nonsymmetric energy 1")
+000114 |     g48 = pc24+ps24
+000115 |     need(np.array_equal(g48@g48, 24*(3*pc24+ps24)), "Square of algebraic filter")
+000116 |     mutant = pc24.copy()
+000117 |     ids = [index[w] for w in supports[0]]
+000118 |     mutant[np.ix_(ids,ids)] = 0
+000119 |     mutant[0,0] = 24
+000120 |     need(np.any(reduce_four(7*mutant-ps24,(0,1,2))), "Wrong-amplitude negative control fires")
+000121 |     wrong_source = real.copy()
+000122 |     wrong_source[0,0] += 1
+000123 |     need(np.any(wrong_source-16*(pc24+ps24)), "Wrong-source moment control fires")
+000124 |     files = ["tfpt_explorer/process.py", "tfpt_explorer/cartan_source.py",
+000125 |              "experiments/theory-contracts/joint-native-algebra-selection-20261016/SOURCE-SELECTION.md"]
+000126 |     result = {
+000127 |         "verdict":"EXACT_SCOPED_COLLECTIVE_ORDER_FOUR; PHYSICAL_ORIGIN_OPEN",
+000128 |         "arithmetic":"Gaussian integer tensor products and exact int64 matrix identities; no tolerances",
+000129 |         "support_sizes":[len(s) for s in supports],
+000130 |         "code_rank":5, "symmetric_rank":35, "proper_marginals":reductions,
+000131 |         "root_count":240, "native_complex_lines":60, "lower_moments":low,
+000132 |         "fourth_moment_identity":"40 M4 = Pi_C + Pi_sym4",
+000133 |         "source_reconstructs_literal_code_projector":True,
+000134 |         "parent_spectrum":{"0":5,"1/2":30,"1":221},
+000135 |         "parent_gap":"1/2", "global_trace_distance":"6/7",
+000136 |         "no_k_local_exact_ground_selection":"For k<=3, ground(C) implies Sym^4(C^4) is ground as well; arbitrary Hermitian terms, frustration allowed, no ancillas",
+000137 |         "algebraic_filter":"(20 M4)^n = Pi_C + 2^(-n)(Pi_sym4-Pi_C), n>=1; no physical execution asserted",
+000138 |         "negative_controls":{"wrong_amplitude":True,"wrong_source_moment":True},
+000139 |         "source_sha256":{f:hashlib.sha256((REPO/f).read_bytes()).hexdigest() for f in files},
+000140 |         "not_derived":["Physical choice of E8/J or interaction", "thermalization or physical dissipative law", "3+2 event or clock selection", "many-cell or continuum origin", "48*c3^4 seed coefficient"]
+000141 |     }
+000142 |     args.out.write_text(json.dumps(result, indent=2, sort_keys=True)+"\n")
+000143 |     print(json.dumps({"code_rank":5,"symmetric_rank":35,"proper_marginals_exact":True,"lower_moments_exact":True,"fourth_moment_exact":True,"parent_spectrum":result["parent_spectrum"],"negative_controls":result["negative_controls"]},sort_keys=True))
+000144 | 
+000145 | 
+000146 | if __name__ == "__main__":
+000147 |     main()

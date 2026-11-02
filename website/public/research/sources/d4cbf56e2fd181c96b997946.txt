@@ -1,0 +1,82 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/check_parabolic_stability.py
+Original file SHA-256: a9962489103f28ae692ca7b53f27f1d12397e579579c2b887b1c0ee65e2f38ee
+Inclusive original lines: 361-434
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000361 |         not pure_shear_holomorphic and matrix_zero(infinity_residue - expected_resonance),
+000362 |         "g=diag(w^2,w,w) leaves the exact residue -(2sqrt(2)/3)E12; pure BG shear is insufficient",
+000363 |     )
+000364 | 
+000365 |     # The previous algebraic stability checks remain valid for the declared
+000366 |     # split bundle plus these flags.  What fails is only the unproved claim that
+000367 |     # the v115 ODE supplies this same affine BG frame without a further
+000368 |     # Levelt/Birkhoff gauge.
+000369 |     overall_pass = not failures
+000370 |     return {
+000371 |         "verdict": "PASS_SCOPED" if overall_pass else "FAIL",
+000372 |         "scope": {
+000373 |             "proved": "stability of the declared split parabolic object with the four raw rotated A0* flags",
+000374 |             "not_proved": "identity of that affine flag object with the Deligne extension of the v115 ODE",
+000375 |             "symmetry": "C4 covariance exact; no D4 reflection linearization inferred",
+000376 |             "v117_relation": "the four peripheral monodromies generate irreducible A4; U extends it to S4 and supplies the covariance data; A0* identification remains numerical",
+000377 |         },
+000378 |         "checks": checks,
+000379 |         "failures": failures,
+000380 |         "rank1": {
+000381 |             "degree_minus2_patterns": 81,
+000382 |             "degree_minus2_feasible_patterns": len(line_feasible),
+000383 |             "sum_at_least_5_patterns": high_line_patterns,
+000384 |             "sum_at_least_5_full_rank": high_line_full_rank,
+000385 |             "maximum_weight_units": line_max,
+000386 |             "degree_minus1_maximum_weight_units": degree_minus_one_max,
+000387 |             "bounds": rank1_bounds,
+000388 |         },
+000389 |         "rank2": {
+000390 |             "degree_minus1_quotient_patterns": 81,
+000391 |             "degree_minus1_feasible_patterns": len(quotient_feasible),
+000392 |             "sum_at_most_3_patterns": low_quotient_patterns,
+000393 |             "sum_at_most_3_full_rank": low_quotient_full_rank,
+000394 |             "minimum_weight_units": quotient_min,
+000395 |             "degree_zero_all_weight_zero_matrix_rank": q0_matrix.rank(),
+000396 |             "bounds": rank2_bounds,
+000397 |         },
+000398 |         "infinity_patch": {
+000399 |             "affine_residue_sum": [2, 1, 1],
+000400 |             "negative_BG_transition": "g(w)=diag(w^2,w,w)",
+000401 |             "finite_flags_unchanged_if_transition_valid": True,
+000402 |             "pure_diagonal_shear_holomorphic": pure_shear_holomorphic,
+000403 |             "remaining_residue": [[sp.sstr(infinity_residue[i, j]) for j in range(3)] for i in range(3)],
+000404 |             "consequence": "a further Levelt/Birkhoff lattice choice is required and may change the affine splitting frame",
+000405 |         },
+000406 |         "monodromy": {
+000407 |             "four_puncture_group": "A4",
+000408 |             "four_puncture_group_order": len(peripheral_group),
+000409 |             "four_puncture_character_distribution": peripheral_characters,
+000410 |             "covariance_extension_group": "S4",
+000411 |             "covariance_extension_group_order": len(covariance_group),
+000412 |             "covariance_character_distribution": covariance_characters,
+000413 |             "kernel_cover": "degree 12 and genus 5 for the compactified four-puncture A4 kernel cover",
+000414 |         },
+000415 |     }
+000416 | 
+000417 | 
+000418 | def main():
+000419 |     parser = argparse.ArgumentParser()
+000420 |     parser.add_argument(
+000421 |         "--output",
+000422 |         type=Path,
+000423 |         default=Path(__file__).with_name("stability-results.json"),
+000424 |     )
+000425 |     args = parser.parse_args()
+000426 |     result = run_check()
+000427 |     encoded = json.dumps(result, indent=2, sort_keys=True) + "\n"
+000428 |     args.output.write_text(encoded, encoding="utf-8")
+000429 |     print(encoded, end="")
+000430 |     return 0 if result["verdict"] == "PASS_SCOPED" else 1
+000431 | 
+000432 | 
+000433 | if __name__ == "__main__":
+000434 |     raise SystemExit(main())

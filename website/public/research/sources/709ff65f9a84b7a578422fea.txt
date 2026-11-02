@@ -1,0 +1,125 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/clock-source-twist-transport-20261015/PROOF.md
+Original file SHA-256: 9d3b3ba713b1a2ef450b5287dc15baf7c29fac224365f6b5ee70f39a261baebc
+Inclusive original lines: 78-194
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000078 | of the original fixed charge operator either.
+000079 | 
+000080 | ## 3. The positive result: one covariant operator family
+000081 | 
+000082 | Retain the entire covariant tuple, rather than identifying its members:
+000083 | 
+000084 |     delta_a=J^a delta,   q_a=J^a q,   a in Z4.
+000085 | 
+000086 | All four delta_a are distinct in either quarter case; delta_2=-delta. For
+000087 | the original source offset j define
+000088 | 
+000089 |     nu_j=((k+j)/8)_k,
+000090 |     tau_(alpha,j)=nu_j+alpha q/8,
+000091 |     t_(alpha,j)=exp(2 pi i H(tau_(alpha,j))_0).
+000092 | 
+000093 | This is the full uncompensated torus transition already retained in the
+000094 | source contract: `exp(2 pi i alpha Q/8) g0`. The alpha term is not discarded
+000095 | or replaced by its square. Put tau_(a,alpha,j)=J^a tau_(alpha,j).
+000096 | 
+000097 | For the phase-corrected unitary U_J constructed below,
+000098 | 
+000099 |     K_(delta_(a+1)) U_J = U_J K_(delta_a),
+000100 |     Q_(q_(a+1)) U_J = U_J Q_(q_a),
+000101 |     t_(a+1,alpha,j) U_J = U_J t_(a,alpha,j),
+000102 |     U_J^4=I.
+000103 | 
+000104 | These equations hold on the full finite-energy core and extend to the
+000105 | corresponding diagonal selfadjoint operators and their unitary groups. The
+000106 | first equality is the exact quadratic identity
+000107 | 
+000108 |     |Jp|²/2+(J delta_a).Jp+N = |p|²/2+delta_a.p+N.
+000109 | 
+000110 | The others follow from equality of the *full* cocharacter pairings, not just
+000111 | their mod-1 or adjoint shadows. On the Heisenberg oscillators U_J acts by J,
+000112 | which preserves the total level N. On charged root currents it acts as
+000113 | 
+000114 |     U_J Y(e^p,z) U_J^-1 = eta_J(p) Y(e^(Jp),z).
+000115 | 
+000116 | The phase eta_J(p) is fixed by the actual source cocycle and the explicitly
+000117 | stated basis convention below. Current central terms and adjoints are
+000118 | preserved. In particular the quarter-transition character of a charged
+000119 | current is transported verbatim. The checker covers both quarter cases,
+000120 | four frames, all eight j offsets, and the lattice basis. Basis equality
+000121 | proves the character relation for every lattice charge; the 240-root
+000122 | comparison is not substituted for an all-charge argument.
+000123 | 
+000124 | The coefficient q must be transported too. If q is held fixed while J is
+000125 | applied, this is not the same tuple and the Q equality fails. Transporting
+000126 | q is a real limitation, not an omitted gauge compensation.
+000127 | 
+000128 | ## 4. The actual ordered CAR/E8 cocycle, not a new sign model
+000129 | 
+000130 | The checker reads the original functions `eps_car`, `split_even_lattice` and
+000131 | `eps_e8` from `seam-joint-ward-state-20261014/operator_transport_check.py`.
+000132 | No replacement Hamming/Pauli cocycle is inserted. The original construction
+000133 | uses the ordered CAR cocycle on D8 and adjoins X=E_s by
+000134 | 
+000135 |     X E_d X^-1=(-1)^(s.d) E_d,   X²=-E_q.
+000136 | 
+000137 | Every p has the unique form d+c s, d in D8 and c in {0,1}. The resulting
+000138 | epsilon restricts exactly to the source ordered CAR cocycle on D8. Its
+000139 | associativity and all-charge commutator were proved in the cited source;
+000140 | here its code and source proof are pinned by SHA-256.
+000141 | 
+000142 | Let b1,...,b8 be the exact original integral E8 basis from that same file.
+000143 | The lifted central group has generators z, t1,...,t8, where z²=1 is central,
+000144 | the ti have unrestricted integer powers, and
+000145 | 
+000146 |     [ti,tj]=z^(bi.bj).
+000147 | 
+000148 | There are no extra finite-order relations on the ti, because Ls is free
+000149 | abelian. The assignment
+000150 | 
+000151 |     z -> z,   E_bi -> E_(Jbi)
+000152 | 
+000153 | preserves all these commutators: J preserves the inner product. Since J is
+000154 | an integral lattice automorphism, this defines an automorphism of the
+000155 | *same* central extension. Negative powers use their actual inverses,
+000156 | `E_b^-1=epsilon(b,-b) E_-b`; ignoring that sign would change the lift.
+000157 | 
+000158 | For n in Z8, multiply the ordered generator powers in the actual source
+000159 | cocycle. Write
+000160 | 
+000161 |     product_i E_bi^ni = c_B(n) E_(Bn),
+000162 |     product_i E_(Jbi)^ni = c_JB(n) E_(JBn).
+000163 | 
+000164 | Then
+000165 | 
+000166 |     eta_J(Bn)=c_JB(n)/c_B(n)
+000167 | 
+000168 | is defined for every lattice charge. The induced operator
+000169 | `U_J|p>=eta_J(p)|Jp>` is unitary on the charge Hilbert space, with the ordinary
+000170 | orthogonal second quantization J on the Heisenberg Fock factor. It fixes the
+000171 | vacuum and preserves adjoints. Its all-charge cocycle identity is
+000172 | 
+000173 |     eta_J(u+v) epsilon(u,v)
+000174 |        = eta_J(u) eta_J(v) epsilon(Ju,Jv).
+000175 | 
+000176 | The identity follows from the generator-extension construction; the 1,024
+000177 | generator-pair checks are regressions of its implementation.
+000178 | 
+000179 | Since J⁴=I, the fourth power of this extension automorphism is a lattice
+000180 | character. The exact calculation gives +1 on each of the eight original
+000181 | basis generators. It is therefore +1 on **every** lattice vector. The
+000182 | oscillator action has fourth power I as well. The vacuum normalization
+000183 | removes a global scalar: U_J⁴=I on the complete stipulated Fock space.
+000184 | 
+000185 | The displayed choice E_bi -> E_(Jbi) is a phase convention, not a physical
+000186 | selection rule. Other cocycle-compatible lifts differ by a torus character
+000187 | chi. Their fourth-power correction is the norm character
+000188 | `product_(a=0)^3 chi(J^a p)`, which is one because
+000189 | `I+J+J²+J³=0`. Thus the order-four result is not achieved by secretly tuning
+000190 | a new physical coupling or replacing the original signs. It does not
+000191 | canonically select the lift's torus character.
+000192 | 
+000193 | ## 5. State, positivity and what the four frames mean
+000194 | 

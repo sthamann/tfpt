@@ -1,0 +1,182 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/ORIGINAL-FUCHS-ALGEBRAIC-FRAME.txt
+Original file SHA-256: 3a57907902631b58e0abee61e9a424c3ac03ff7a8fa074cc4d27e3379b406cf3
+Inclusive original lines: 1-174
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | EXPLICIT ALGEBRAIC FUNDAMENTAL FRAME FOR THE ORIGINAL v117 CONNECTION
+000002 | Independent exact construction, 2026-10-29. No original sources changed.
+000003 | 
+000004 | RESULT
+000005 | The original PLUS-sign equation Psi'=A Psi has the explicit fundamental
+000006 | matrix G below on the ACTUAL negative q Kummer cover Yq. Its determinant,
+000007 | all three differential equations, deck action and signed quarter action
+000008 | are exact. Psi=G G0^-1 is normalized by Psi(0)=I and det Psi=1-z^4.
+000009 | No numerical ODE, fitted coefficient or new geometric cover is used.
+000010 | 
+000011 | 1. ORIGINAL AND DEDUPLICATION CHECK
+000012 | 
+000013 | Direct original read: September28 Gesamtsynthese, sections/
+000014 | 004-subsection-auch-die-skalen-besitzen-einen-gemeinsamen-va.tex:203-340.
+000015 | It proves triangle descent, finite monodromy, the signed-permutation basis,
+000016 | genus2 curve and a marked POINT intertwiner. It explicitly distinguishes
+000017 | that point intertwiner from a field map. Its displayed local Frobenius
+000018 | series is not a full global algebraic fundamental matrix.
+000019 | C4-DESCENT-FINITE-MONODROMY.txt and D4-CONNECTION-LIFT.txt were checked;
+000020 | neither displays the matrix G below. Targeted Atlas search located v117
+000021 | and the finite/triangle records, not this full matrix. The research-state
+000022 | packet was partial and is not being treated as an exhaustive absence proof.
+000023 | The code graph has no indexed whole TFPT project; original non-code sources
+000024 | and the targeted contract texts supplied the fallback. No claim of novelty
+000025 | in the wider literature or exhaustive historical nonexistence is made.
+000026 | 
+000027 | The retained original equation is
+000028 | 
+000029 |  A(z)=1/(z^4-1) [[2z^3,a z^2,0],[a,z^3,b z],[0,b z,z^3]],
+000030 |  a=2sqrt(2)/3, b=sqrt(5)/3, U=diag(1,i,-i).
+000031 | 
+000032 | Its residue at z=1 is exactly the printed original A0 with off-diagonals
+000033 | sqrt(2)/6 and sqrt(5)/12. Summing U^k A0 U^-k/(z-i^k) gives this A.
+000034 | The covariance is i A(i z)=U A(z)U^-1, with Psi'=+A Psi throughout.
+000035 | 
+000036 | 2. FIELD AND ONE EXACT SOLUTION COLUMN
+000037 | 
+000038 | Let omega^2+omega+1=0 and retain
+000039 | 
+000040 |  w^3=(z^2-1)/(z^2+1), eta=z(1-w^3), eta^2=1-w^6,
+000041 |  H_a=(w+omega^a)/(w+omega^(a+1)), h_a^2=H_a,
+000042 |  h0 h1 h2=1.
+000043 | 
+000044 | All indices below are modulo3. Set h=h0 and
+000045 | 
+000046 |  p3(w)=((1+omega)w-omega)/(w+1),
+000047 |  p2(w)=((1+omega)w+omega)/(w+1),
+000048 |  p1(w)=4[-(1+omega)w^3+(1-omega)w^2+(omega+2)w+omega]
+000049 |                               /[9(w^3-1)].
+000050 | 
+000051 | Then the explicit column is
+000052 | 
+000053 |  g(w,h)=( h p1/(a b), h z p2/b, h z p3 )^t.
+000054 | 
+000055 | The two-coefficient RR ansatz in this character was row3=h z(c+d/H0).
+000056 | The exact answer is d=omega c. Normalizing c=1 gives the p_j above.
+000057 | 
+000058 | IMPORTANT SOLVER CORRECTION: an initial intermediate test split both w
+000059 | and omega coefficients while treating c,d as independent rational constants.
+000060 | That incorrectly excluded d=omega c and returned zero. Constants must lie
+000061 | in Q(omega), as the question specified. The corrected solver works modulo
+000062 | omega^2+omega+1, finds the solution above, and checks its residual exactly.
+000063 | That temporary solver error is not counterevidence against any old source.
+000064 | 
+000065 | 3. EXACT DIFFERENTIAL CHECK AND THREE INDEPENDENT COLUMNS
+000066 | 
+000067 | Write s=z^2=(1+w^3)/(1-w^3), D=s^2-1,
+000068 | l=(dz/dw)/z=3w^2/(1-w^6), k=h'/h=H0'/(2H0),
+000069 | and g_e(f)=e f+(f'+k f)/l, where primes here mean d/dw.
+000070 | The three original row equations, after the explicit nonzero factors are
+000071 | removed, are exactly
+000072 | 
+000073 |  D g_0(p1)-s^2(2p1+a^2 p2)=0,
+000074 |  D g_1(p2)-p1-s^2 p2-b^2 s p3=0,
+000075 |  D g_1(p3)-s p2-s^2 p3=0.
+000076 | 
+000077 | Each rational remainder is zero in Q(omega)(w), with a^2=8/9,b^2=5/9.
+000078 | These equations retain the irrational a,b in the actual solution column;
+000079 | they have only been scaled out of the polynomial remainder calculation.
+000080 | 
+000081 | The cubic deck action is c:(w,eta,h_a)->(omega w,eta,h_(a-1)).
+000082 | Since it fixes z, form the three solution columns
+000083 | 
+000084 |  G_j=g(omega^j w,h_(-j)), j=0,1,2,   G=[G0column,G1column,G2column].
+000085 | 
+000086 | Their determinant is
+000087 | 
+000088 |  det G=-27sqrt(2)(2omega+1)(z^4-1)/10.
+000089 | 
+000090 | It is nonzero at every ordinary z. Thus G is a full differential gauge
+000091 | trivialization on the punctured cover, not merely a monodromy count.
+000092 | The Wronskian also agrees with tr A=4z^3/(z^4-1).
+000093 | 
+000094 | 4. BASEPOINT AND Psi(0)=I
+000095 | 
+000096 | Choose the lift over z=0 with w=-1, eta~2z, and write
+000097 | 
+000098 |  h0~rho z, rho^2=2/[3(omega-1)],
+000099 |  h1(0)=tau, tau^2=-omega, h2=(h0h1)^-1.
+000100 | 
+000101 | Put t=2omega+1. Direct limits of the displayed meromorphic expressions give
+000102 | 
+000103 |  Gbase=G(0)=
+000104 |  [[0,0,-3tau t/sqrt(10)],
+000105 |   [-3rho/(2b),t/(3b rho tau),0],
+000106 |   [-3rho t/2,1/(rho tau),0]].
+000107 | 
+000108 | Its determinant is +27sqrt(2)t/10. Therefore
+000109 | 
+000110 |  Psi=G Gbase^-1, Psi(0)=I, det Psi=1-z^4.
+000111 | 
+000112 | The apparent branchpoint poles in individual expressions cancel in these
+000113 | limits; z=0 is an ordinary point of the original ODE. Other consistent
+000114 | base-sheet/root choices merely change the associated constant frame.
+000115 | 
+000116 | 5. ACTUAL DECK AND QUARTER ACTIONS, INCLUDING THEIR SIGNS
+000117 | 
+000118 | For deck V4, h_a->epsilon_a h_a, product epsilon_a=1:
+000119 | 
+000120 |  G -> G diag(epsilon0,epsilon2,epsilon1).
+000121 | 
+000122 | For c, G -> G Pc with Pc=[[0,0,1],[1,0,0],[0,1,0]]. Thus the normalized
+000123 | monodromy matrices are respectively Gbase Depsilon Gbase^-1 and
+000124 | Gbase Pc Gbase^-1. They realize the faithful signed-permutation A4 action.
+000125 | In particular Yq is not only a cover on which an abstract matching group
+000126 | exists: these actual differential solutions transform by that deck action.
+000127 | 
+000128 | For the source quarter map use the calibrated actual Kummer lift
+000129 | 
+000130 |  Q:z->i z, w->1/w, eta->-i eta/w^3,
+000131 |  Qh0=+omega/h2, Qh1=-omega/h1, Qh2=-omega/h0.
+000132 | 
+000133 | Choose tau=i omega^2, so the selected point over z=0 is fixed by this Q.
+000134 | The missing minus signs cannot be dropped. Substitution into each entry
+000135 | of G gives the EXACT identity
+000136 | 
+000137 |  G(Qy)=U G(y) KQ,
+000138 |  KQ=[[0,1,0],[-1,0,0],[0,0,1]]=Gbase^-1 U^-1 Gbase.
+000139 | 
+000140 | All nine reduced Q-entry residuals are zero. Hence
+000141 | 
+000142 |  Psi(Qy)=U Psi(y)U^-1.
+000143 | 
+000144 | The same normalized identity follows independently from ODE uniqueness
+000145 | and the printed square covariance; no new M0 numerical comparison enters.
+000146 | KQ has eigenvalues1,i,-i and the required exchanged-slot square signs.
+000147 | 
+000148 | 6. RR BOUND, METRIC AND LIMITS
+000149 | 
+000150 | On genus5 Yq the pole divisor Dinf=z^-1(infinity) has degree12. Thus
+000151 | h0(O(Dinf))=12-5+1=8. Its explicit basis is
+000152 | 
+000153 |  1,z, z h_a,z/h_a (a=0,1,2).
+000154 | 
+000155 | These functions have no other poles; their different V4 characters and
+000156 | nonconstant H_a prove linear independence. Each nontrivial character
+000157 | therefore has dimension2. The original local exponents0,1/3,2/3 become
+000158 | regular on the order3 cover at finite punctures, and the old no-log infinity
+000159 | analysis bounds rows2,3 by Dinf. The small ansatz is justified rather than
+000160 | fitted to a finite series. The actual positive construction already settles
+000161 | existence; no larger basis or new cover is needed. The separately tested
+000162 | old p alternative gives no solution in its corresponding two-dimensional
+000163 | character ansatz, and is not used to reinterpret the true q result.
+000164 | 
+000165 | The positive flat Hermitian metric can be written explicitly as
+000166 | G^-dagger G^-1. It is single valued because the right A4 deck matrices
+000167 | are unitary. Irreducibility gives uniqueness up to positive overall scale.
+000168 | This recovers the existing finite-unitary-monodromy metric statement in
+000169 | the actual differential frame. It selects neither a physical CAR covariance
+000170 | nor a state, time, field representation or P1/APS domain.
+000171 | 
+000172 | Reproducible small exact script: check_fuchs_algebraic_frame.py in this
+000173 | directory. It uses only rational function operations modulo omega^2+omega+1,
+000174 | prints the sector solution, all row residuals, determinant and Q residuals.

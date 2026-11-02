@@ -1,0 +1,140 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/elliptic_moduli_response/check_elliptic_moduli_response.py
+Original file SHA-256: 9773ded2b64d8aba04808ad13f16ae888e06e8abeede28e44f9979855fb99e29
+Inclusive original lines: 1-132
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact geometric admission and response test of the existing elliptic source.
+000002 | 
+000003 | This changes complex structure, unlike the earlier Weyl probes. It retains
+000004 | the old spin partition and tracks the original real cuts. Fixed-fiber Q is
+000005 | NOT preserved away from the square point. No primitive measure is selected.
+000006 | """
+000007 | from pathlib import Path
+000008 | import json
+000009 | import mpmath as mp
+000010 | import sympy as sp
+000011 | 
+000012 | HERE=Path(__file__).resolve().parent
+000013 | 
+000014 | 
+000015 | def require(condition,message):
+000016 |     if not condition:raise RuntimeError(message)
+000017 | 
+000018 | 
+000019 | def geometry():
+000020 |     a,x,t,u,rho=sp.symbols('a x t u rho',real=True)
+000021 |     f=lambda b,z:z**4+b*z*z-1
+000022 |     require(sp.expand(f(-a,sp.I*x)-f(a,x))==0,'Q acts between a and -a')
+000023 |     obstruction=sp.expand(f(a,sp.I*x)-f(a,x))
+000024 |     require(obstruction==-2*a*x*x,'fixed quarter symmetry requires a=0')
+000025 |     require(sp.simplify(-f(a,x)/x**4-f(-a,1/x))==0,'original inversion acts between a and -a')
+000026 |     e=(1+sp.I)/sp.sqrt(2)
+000027 |     require(sp.simplify(f(sp.I*rho,e*u)+u**4+rho*u*u+1)==0,'first real oval')
+000028 |     require(sp.simplify(f(sp.I*rho,sp.conjugate(e)*u)+u**4-rho*u*u+1)==0,'second real oval')
+000029 |     # Independent cross-ratio derivation of the j invariant.
+000030 |     cross=((t-1)/(t+1))**2
+000031 |     jlambda=256*(1-cross+cross**2)**3/(cross**2*(1-cross)**2)
+000032 |     ja=16*(12-a*a)**3/(a*a+4)**2
+000033 |     require(sp.factor(jlambda-ja.subs(a,-sp.I*(t+1/t)))==0,'j invariant from marked cross-ratio')
+000034 |     marked=(a+2*sp.I)/(a-2*sp.I)
+000035 |     require(sp.simplify(marked.subs(a,-a)-1/marked)==0,'quarter acts by inverse marked cross-ratio')
+000036 |     lam=sp.symbols('lambda')
+000037 |     require(sp.factor(lam*lam-1)==(lam-1)*(lam+1),'fixed quarter has no local marked modulus at lambda=-1')
+000038 |     legendre=1/(1-marked)
+000039 |     require(sp.simplify(legendre-(sp.Rational(1,2)+sp.I*a/4))==0,'actual Legendre parameter')
+000040 |     require(sp.factor(256*(1-marked+marked**2)**3/(marked**2*(1-marked)**2)-ja)==0,
+000041 |             'independent cross-ratio invariant')
+000042 |     # At a0: u_branch=1,v_branch=i and their derivatives -1/4,+i/4.
+000043 |     cross0=((1-sp.I)/(1+sp.I))**2
+000044 |     dcross=sp.simplify(cross0*2*((-sp.Rational(1,4)-sp.I/4)/(1-sp.I)
+000045 |                                               -(-sp.Rational(1,4)+sp.I/4)/(1+sp.I)))
+000046 |     require(sp.simplify(cross0+1)==0 and dcross==sp.I,'nontrivial marked modulus')
+000047 |     return dict(curve='E_rho: y^2=x^4+i rho x^2-1, rho real, |rho|<2',
+000048 |                 fixed_Q_obstruction=str(obstruction),family_Q_action='rho -> -rho',
+000049 |                 marked_cross_ratio='lambda(a)=(a+2i)/(a-2i); lambda(0)=-1; partial_a lambda(0)=i; partial_rho lambda(0)=-1',
+000050 |                 j_invariant='16(12+rho^2)^3/(4-rho^2)^2',
+000051 |                 real_cuts='hQkappa,hQ^3kappa remain dividing real forms; fixed oval equations v^2=u^4 +/- rho u^2+1',
+000052 |                 free_glide='hQ^2:(x,y)->(-x,-y) remains free',
+000053 |                 limitation='Q itself is a map between fibers, not the original fixed-fiber quarter clock')
+000054 | 
+000055 | 
+000056 | def period(rho):
+000057 |     return 2*mp.quad(lambda u:1/mp.sqrt(u**4+rho*u*u+1),[0,1,mp.inf])
+000058 | 
+000059 | 
+000060 | def ratio(rho):return period(-rho)/period(rho)
+000061 | 
+000062 | 
+000063 | def occupation(rho):return 1/(1+mp.exp(mp.pi*ratio(rho)))
+000064 | 
+000065 | 
+000066 | def spin_kernel(a,x,z):
+000067 |     d=mp.sqrt(a*a+4);rp=(-a+d)/2;rm=(-a-d)/2
+000068 |     def g(q):return ((q*q-rp)/(q*q-rm))**mp.mpf('.25')
+000069 |     r=g(x)/g(z)
+000070 |     return (r+1/r)/(2*(x-z))
+000071 | 
+000072 | 
+000073 | def main():
+000074 |     mp.mp.dps=70
+000075 |     result=geometry()
+000076 |     i0=mp.gamma(mp.mpf(1)/4)**2/(2*mp.sqrt(mp.pi))
+000077 |     slope=2*mp.gamma(mp.mpf(3)/4)**2/mp.gamma(mp.mpf(1)/4)**2
+000078 |     require(abs(period(0)-i0)<mp.mpf('1e-60'),'primitive period beta integral')
+000079 |     require(abs(mp.diff(ratio,0)-slope)<mp.mpf('1e-60'),'derived modulus variation')
+000080 |     c0=occupation(0);cp=-mp.pi*slope*c0*(1-c0)
+000081 |     require(abs(mp.diff(occupation,0)-cp)<mp.mpf('1e-60'),'actual boundary covariance derivative')
+000082 |     # Direct derivative of the retained global Szego kernel in the fixed x
+000083 |     # half-density frame. The real CAR comparison above uses normalized periods.
+000084 |     xx,zz=mp.mpf(2),mp.mpf(4)
+000085 |     g=lambda x:((x*x-1)/(x*x+1))**mp.mpf('.25')
+000086 |     rr=g(xx)/g(zz)
+000087 |     expected=(1/(4*(xx**4-1))-1/(4*(zz**4-1)))*(rr-1/rr)/(2*(xx-zz))
+000088 |     derivative=mp.diff(lambda aa:spin_kernel(aa,xx,zz),0)
+000089 |     require(abs(derivative-expected)<mp.mpf('1e-60'),'retained holomorphic spin kernel variation')
+000090 |     # Exact two-mode density comparison, not a substitute Gaussian source.
+000091 |     p,q=sp.symbols('p q',real=True);mean=(p+q)/2
+000092 |     density=lambda c:sp.Matrix([c*(1-c),(1-c)**2,c*c,c*(1-c)])
+000093 |     mixed=(density(p)+density(q))/2
+000094 |     defect=sp.factor(mixed[3]-mean*(1-mean))
+000095 |     require(defect==-(p-q)**2/4,'exact connected neutral four-field defect')
+000096 |     rows=[]
+000097 |     for eps in ['.1','.05','.025','.0125']:
+000098 |         er=mp.mpf(eps);rp=ratio(er);rm=ratio(-er)
+000099 |         legendre=(2-er)/4
+000100 |         require(abs(period(er)-2*mp.ellipk(legendre))<mp.mpf('1e-60'),'independent complete elliptic period')
+000101 |         require(abs(rp-mp.ellipk(1-legendre)/mp.ellipk(legendre))<mp.mpf('1e-60'),'actual marked torus modulus')
+000102 |         require(abs(rp*rm-1)<mp.mpf('1e-60'),'geometric quarter exchanges periods')
+000103 |         p=occupation(er);q=occupation(-er);v=(p-q)**2/4
+000104 |         diag=[(p*(1-p)+q*(1-q))/2,((1-p)**2+(1-q)**2)/2,
+000105 |               (p*p+q*q)/2,(p*(1-p)+q*(1-q))/2]
+000106 |         require(min(diag)>0 and abs(sum(diag)-1)<mp.mpf('1e-60'),'positive normalized mixed CAR state')
+000107 |         rows.append(dict(diagnostic_rho=eps,period_ratio=float(rp),c_plus=float(p),c_minus=float(q),
+000108 |                          connected_four_field=float(-v),coefficient_divided_by_rho_squared=float(-v/er**2),
+000109 |                          density_eigenvalues=[float(x) for x in diag]))
+000110 |     result.update(primitive_period_at_square=float(i0),period_ratio_derivative=float(slope),
+000111 |                   boundary_modulus='r(rho)=I(-rho)/I(rho), W=r/2; I(rho)=2 integral_0^infinity du/sqrt(u^4+rho u^2+1)',
+000112 |                   independent_period='I(rho)=2K((2-rho)/4); tau=i K(1-m)/K(m); Q gives tau -> -1/tau, not modular T',
+000113 |                   covariance='c_n,alpha(rho)=[1+exp(4 pi r(rho)(n+alpha))]^-1, alpha=1/4,3/4',
+000114 |                   derivative_covariance='c_prime=-4 pi r_prime(0)(n+alpha)c(1-c)',
+000115 |                   lowest_positive_mode_at_square=float(c0),lowest_mode_derivative=float(cp),
+000116 |                   spin_kernel_derivative_at_x2_z4=float(derivative),
+000117 |                   exact_mixed_four_field='kappa4=-Var(c); equal diagnostic weights at +/-rho give -(c_plus-c_minus)^2/4',
+000118 |                   leading_four_field_coefficient=float(-cp**2),diagnostic_mixtures=rows,
+000119 |                   new_premise='Complex structure may vary along the stated real marked-spin family; fixed-fiber Q is relaxed to its explicit family action',
+000120 |                   not_derived=['primitive P1 measure support on this parameter','original weight or variance of rho',
+000121 |                                'full ramified marked-equator trace','physical time or EM coupling identification',
+000122 |                                'fixed-fiber Q clock away from rho=0','full interacting native or spacetime theory'],
+000123 |                   source_scope='Existing free elliptic Cauchy quantization; equal-time CAR family, not a replacement of the pure Dirac-sea machine',
+000124 |                   retained_compiler_scope='The supplied marked base mu4 and its fixed-fiber Q exclude rho != 0. This reuses the existing square-rigidity result; primitive P1 identification is still conditional.',
+000125 |                   local_fixed_Q_consequence='Marked genus-one parity-cover deformations have one complex cross-ratio; Q sends lambda to 1/lambda. At lambda=-1 its derivative is -1, so no invariant tangent. With fixed spin/connection all remaining compatible metric variations are Weyl and preserve transported free Cauchy/Wick data.',
+000126 |                   physical_gates_closed=[],complete_TFPT_solution=False)
+000127 |     out=HERE/'runs/elliptic_moduli_response.json';out.parent.mkdir(exist_ok=True)
+000128 |     out.write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
+000129 |     print(json.dumps(result,indent=2,ensure_ascii=False))
+000130 | 
+000131 | 
+000132 | if __name__=='__main__':main()

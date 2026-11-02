@@ -1,0 +1,108 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_c6_whole_word_producer.py
+Original file SHA-256: 6162705c2130f038ddabdc0ece741305eaf4f62e70c361a841d541b952281f64
+Inclusive original lines: 1-100
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Whole original C6 component; no replacement physical stochastic source."""
+000002 | import importlib.util
+000003 | import itertools
+000004 | import json
+000005 | from pathlib import Path
+000006 | import sys
+000007 | import mpmath as mp
+000008 | import sympy as s
+000009 | 
+000010 | repo=Path(__file__).resolve().parents[4]
+000011 | sys.path.insert(0,str(repo/'verification'))
+000012 | spec=importlib.util.spec_from_file_location('native_c6',repo/'verification/v17_hexagonal_resolvent.py')
+000013 | native=importlib.util.module_from_spec(spec);spec.loader.exec_module(native)
+000014 | U=native.U6_power(1);I=s.eye(6);C=(U+U.T)/2
+000015 | checks=[]
+000016 | def need(ok,name):
+000017 |     if not ok:raise AssertionError(name)
+000018 |     checks.append(name)
+000019 | need(U**6==I,'unchanged original U6')
+000020 | need(4*C**4-5*C**2+I==s.zeros(6),'original cosine polynomial')
+000021 | half=s.Rational(1,2)
+000022 | for n in range(11):
+000023 |     need(sum(s.rf(half,k)*s.rf(half,n-k)/(s.factorial(k)*s.factorial(n-k)) for k in range(n+1))==1,f'all splits of fixed length{n}')
+000024 | for n in range(1,9):
+000025 |     counts=[0]*6
+000026 |     for word in itertools.product([-1,1],repeat=n):counts[sum(word)%6]+=1
+000027 |     need(list((C**n)[0,:])==[s.Rational(c,2**n) for c in counts],f'full native endpoint sum length{n}')
+000028 |     need((C**n).trace()==s.Rational(6*counts[0],2**n),f'all based closed words length{n}')
+000029 | def edges(word):
+000030 |     v=0;path=[]
+000031 |     for d in word:
+000032 |         w=(v+d)%6;path.append((v,w));v=w
+000033 |     return path
+000034 | need(sum((a,b)==(1,2) for a,b in edges([1,1,-1,-1]))==1,'ordered word visits marked edge')
+000035 | need(sum((a,b)==(1,2) for a,b in edges([1,-1,1,-1]))==0,'same endpoint different ordered word')
+000036 | y,d,e,nu=s.symbols('y d e nu',positive=True)
+000037 | a=y*y+d*d+e*e;k=(y-d)**2+e*e;q=2*y*d/a
+000038 | mean=nu*q/(1-q)
+000039 | score_abs=-nu*s.diff(a,d)/a+mean*(1/d-s.diff(a,d)/a)
+000040 | need(s.simplify(score_abs+nu*s.diff(k,d)/k)==0,'absolute row derivative retains amplitude')
+000041 | norm_score=s.diff(q,d)*(mean/q-nu/(1-q))
+000042 | need(s.simplify(norm_score)==0,'normalized source score mean0')
+000043 | need(s.simplify(s.diff(q,d)*(s.Symbol('n')/q-nu/(1-q))-nu*s.diff(k,d)/k-(-2*nu*d/a+s.Symbol('n')*(1/d-2*d/a)))==0,'wordwise normalized and absolute derivative relation')
+000044 | # Real original D tangent and a nonuniform edge control, without physical J claim.
+000045 | D=y*I-d*U;Q=D.T*D+e*e*I
+000046 | V=s.zeros(6);V[0,1]=-1
+000047 | L=D.T*V+V.T*D
+000048 | expected=s.zeros(6);expected[0,1]=-y;expected[1,0]=-y;expected[1,1]=2*d
+000049 | need(L==expected,'native edge Gram first derivative ordered correctly')
+000050 | z=s.symbols('z')
+000051 | need(s.diff(-s.log(1+z),z).subs(z,0)==-1,'negative log determinant series sign')
+000052 | 
+000053 | mp.mp.dps=55
+000054 | delta=((mp.mpf(794)-7*mp.sqrt(9961))/2187)**(mp.mpf(1)/6)
+000055 | cos=[mp.cos(mp.pi*j/3) for j in range(6)]
+000056 | records=[]
+000057 | for cusp in [mp.mpf(1),mp.mpf(1)/3,mp.mpf(2)/3]:
+000058 |     av=cusp*cusp+delta*delta;bv=cusp*delta;kv=(cusp-delta)**2;qv=2*bv/av
+000059 |     # Full positive series via six endpoint probabilities, no 2^n enumeration.
+000060 |     row=[mp.mpf(1),mp.mpf(0),mp.mpf(0),mp.mpf(0),mp.mpf(0),mp.mpf(0)]
+000061 |     accum=[mp.mpf(0)]*6;deriv=[mp.mpf(0)]*6
+000062 |     mass=mp.mpf(0);coef=mp.sqrt(1-qv);n=0
+000063 |     while True:
+000064 |         score=-delta/av+n*(1/delta-2*delta/av)
+000065 |         for j in range(6):
+000066 |             accum[j]+=coef*row[j]
+000067 |             deriv[j]+=coef*row[j]*score
+000068 |         mass+=coef
+000069 |         tail=qv**(n+1)/mp.sqrt(1-qv)
+000070 |         if tail<mp.mpf('1e-40'):break
+000071 |         n+=1;coef*=qv*(n-mp.mpf('.5'))/n
+000072 |         row=[(row[(j-1)%6]+row[(j+1)%6])/2 for j in range(6)]
+000073 |     eig=[1/mp.sqrt(av-2*bv*c) for c in cos]
+000074 |     krow=[sum(eig[j]*mp.cos(mp.pi*j*r/3) for j in range(6))/6 for r in range(6)]
+000075 |     error=max(abs(accum[j]/mp.sqrt(kv)-krow[j]) for j in range(6))
+000076 |     need(error<=tail/mp.sqrt(kv)+mp.mpf('1e-48'),f'original cusp{cusp} whole half-word series with tail')
+000077 |     need(abs(mass-1)<=tail+mp.mpf('1e-48'),f'original cusp{cusp} normalized length mass')
+000078 |     drow=[-sum((delta-cusp*cos[j])/(av-2*bv*cos[j])**mp.mpf('1.5')*mp.cos(mp.pi*j*r/3) for j in range(6))/6 for r in range(6)]
+000079 |     dtail=(mp.sqrt(1-qv)/mp.sqrt(kv)*qv**(n+1)*(abs(delta/av)/(1-qv)+abs(1/delta-2*delta/av)*((n+1)-n*qv)/(1-qv)**2))
+000080 |     need(max(abs(deriv[j]/mp.sqrt(kv)-drow[j]) for j in range(6))<=dtail+mp.mpf('1e-45'),'whole absolute delta word derivative matches source operator')
+000081 |     # Independent original cubic Green formula on same native cosine matrix.
+000082 |     Cmp=mp.matrix([[mp.mpf(str(C[i,j])) for j in range(6)] for i in range(6)])
+000083 |     Imp=mp.eye(6)
+000084 |     f=lambda c:1/mp.sqrt(av-2*bv*c)
+000085 |     E1=(f(1)+f(-1))/2;Eh=(f(mp.mpf('.5'))+f(mp.mpf('-.5')))/2
+000086 |     O1=(f(1)-f(-1))/2;Oh=(f(mp.mpf('.5'))-f(mp.mpf('-.5')))/2
+000087 |     oldsqrt=(4*Eh-E1)/3*Imp+(8*Oh-O1)/3*Cmp+4*(E1-Eh)/3*Cmp**2+4*(O1-2*Oh)/3*Cmp**3
+000088 |     need(max(abs(oldsqrt[0,r]-krow[r]) for r in range(6))<mp.mpf('1e-48'),'old whole square-root interpolation independently agrees')
+000089 |     poly=((av**3-5*av*bv*bv)*Imp+2*bv*(av*av-5*bv*bv)*Cmp+4*av*bv*bv*Cmp**2+8*bv**3*Cmp**3)/((av*av-bv*bv)*(av*av-4*bv*bv))
+000090 |     need(max(abs(poly[0,r]-sum(1/(av-2*bv*cos[j])*mp.cos(mp.pi*j*r/3) for j in range(6))/6) for r in range(6))<mp.mpf('1e-46'),'old cubic Green agrees at actual cusp')
+000091 |     # Square literal endpoint row -> Green, retaining original amplitude.
+000092 |     need(max(abs(sum(krow[t]*krow[(r-t)%6] for t in range(6))-poly[0,r]) for r in range(6))<mp.mpf('1e-46'),'two original square-root factors sew to Green')
+000093 |     loop=mp.fsum(qv**m/m*(2+4*mp.power(2,-m)) for m in range(2,n+1,2))
+000094 |     F=-mp.fsum(mp.log(av-2*bv*c) for c in cos)
+000095 |     looptail=6*qv**(n+1)/((n+1)*(1-qv))
+000096 |     need(abs(-6*mp.log(av)+loop-F)<=looptail+mp.mpf('1e-47'),'same original determinant closes all loops with1/n')
+000097 |     records.append({'y':str(cusp),'delta_original':str(delta),'q':str(qv),'kappa':str(kv),'mean_length_half':str(qv/(2*(1-qv))),'terms':n+1,'tail_bound':str(tail),'absolute_K_error':str(error),'half_length_first_120':[float(mp.sqrt(1-qv)*mp.rf(mp.mpf('.5'),j)/mp.factorial(j)*qv**j) for j in range(120)]})
+000098 | out={'result':'PASS','checks':len(checks),'checks_detail':checks,'native_builder':'verification/v17_hexagonal_resolvent.py:U6_power','original_cusps':records,'scope':'Canonical whole-word expansion of bare original component; not primitive physical probability law','complete_TFPT_solution':False,'ledger_changed':False}
+000099 | Path(__file__).with_name('C6-WHOLE-WORD-PRODUCER.json').write_text(json.dumps(out,indent=2)+'\n')
+000100 | print(json.dumps({'result':out['result'],'checks':len(checks),'cusps':[{k:v for k,v in r.items() if k not in ['half_length_first_120','delta_original']} for r in records],'complete_TFPT_solution':False},indent=2))

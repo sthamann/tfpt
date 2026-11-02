@@ -1,0 +1,102 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/theta_lattice_closure_20261027/fields/check_small_vertex_lifts.py
+Original file SHA-256: 5493a6b479c554897eac88a5eea987f1f31f9c462c143f8d4607ef999da0ac42
+Inclusive original lines: 201-294
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |         new = compose(generator, old)
+000202 |         key = operator_key(new)
+000203 |         if key not in group:
+000204 |             group[key] = new
+000205 |             frontier.append(new)
+000206 | require(len(group) == 24, "lifted geometry group order")
+000207 | 
+000208 | # The native clock c=J sigma is an honest order-12 vertex automorphism.
+000209 | [OMITTED: non-scientific conversation or execution metadata]
+000210 | [OMITTED: non-scientific conversation or execution metadata]
+000211 | [OMITTED: non-scientific conversation or execution metadata]
+000212 |         "c exact order")
+000213 | [OMITTED: non-scientific conversation or execution metadata]
+000214 | [OMITTED: non-scientific conversation or execution metadata]
+000215 | 
+000216 | # The weaker two-object construction needs no split of V.  Take the
+000217 | # zero-on-basis cocycle lift T of the lattice isomorphism V between the two
+000218 | # branch coordinate frames.  It deliberately fails the same-frame involution
+000219 | # and commutation requirements.  Transport the second object's marks through
+000220 | # T and define the return branch by beta_0 T^-1.
+000221 | T = (Amat["V"], qzero["V"])
+000222 | Tinv = inverse(T)
+000223 | require(equal(compose(T, Tinv), IDENTITY) and equal(compose(Tinv, T), IDENTITY),
+000224 |         "T inverse")
+000225 | require(not equal(power(T, 2), IDENTITY), "T unexpectedly an involution")
+000226 | require(not equal(compose(T, Jhat), compose(Jhat, T)),
+000227 |         "T unexpectedly commutes with beta zero")
+000228 | 
+000229 | beta0, sigma0 = Jhat, Shat
+000230 | beta1 = compose(compose(T, beta0), Tinv)
+000231 | sigma1 = compose(compose(T, power(sigma0, 2)), Tinv)
+000232 | require(equal(power(beta1, 4), IDENTITY), "transported beta order")
+000233 | require(equal(power(sigma1, 3), IDENTITY), "transported sigma order")
+000234 | require(equal(compose(beta1, sigma1), compose(sigma1, beta1)),
+000235 |         "transported marks commute")
+000236 | 
+000237 | alpha_01 = T
+000238 | alpha_10 = compose(beta0, Tinv)
+000239 | require(equal(compose(alpha_10, alpha_01), Jhat), "alpha^2 on object zero")
+000240 | require(equal(compose(alpha_01, alpha_10), beta1), "alpha^2 on object one")
+000241 | require(equal(power(beta0, 4), IDENTITY) and equal(power(beta1, 4), IDENTITY),
+000242 |         "alpha^8")
+000243 | require(equal(compose(alpha_01, sigma0), compose(power(sigma1, 2), alpha_01)),
+000244 |         "alpha cubic intertwining 0 to 1")
+000245 | require(equal(compose(alpha_10, sigma1), compose(power(sigma0, 2), alpha_10)),
+000246 |         "alpha cubic intertwining 1 to 0")
+000247 | 
+000248 | c1hat = compose(beta1, sigma1)
+000249 | require(equal(power(c1hat, 12), IDENTITY), "branch one c^12")
+000250 | require(equal(power(c1hat, 4), sigma1), "branch one c^4")
+000251 | require(equal(power(c1hat, 9), beta1), "branch one c^9")
+000252 | 
+000253 | out = {
+000254 |     "verdict": "TWO_OBJECT_VERTEX_GROUPOID_EXISTS_AND_STRICT_ORDER24_SECTION_IS_OPTIONAL",
+000255 |     "source_checker": str(LATTICE_CHECK),
+000256 |     "standard_cocycle": "epsilon(m,n)=(-1)^(m^T F n), lower-triangular Gram section",
+000257 |     "characters_enumerated_per_generator": 256,
+000258 |     "power_normalized_candidate_counts": {
+000259 |         "J_order_4": len(candidates["J"]),
+000260 |         "V_order_2": len(candidates["V"]),
+000261 |         "sigma_order_3": len(candidates["sigma"]),
+000262 |     },
+000263 |     "strict_solution_count": len(solutions),
+000264 |     "selected_character_masks": {
+000265 |         "J": f"0x{jbits:02x}",
+000266 |         "V": f"0x{vbits:02x}",
+000267 |         "sigma": f"0x{sbits:02x}",
+000268 |     },
+000269 |     "selected_character_supports_zero_based": {
+000270 |         "J": [i for i in range(8) if (jbits >> i) & 1],
+000271 |         "V": [i for i in range(8) if (vbits >> i) & 1],
+000272 |         "sigma": [i for i in range(8) if (sbits >> i) & 1],
+000273 |     },
+000274 |     "relations": [
+000275 |         "J^4=1", "V^2=1", "[V,J]=1", "sigma^3=1",
+000276 |         "[sigma,J]=1", "V sigma V^-1=sigma^-1",
+000277 |     ],
+000278 |     "lifted_group_order": len(group),
+000279 |     "native_clock": ["order(c)=12", "c^4=sigma", "c^9=J"],
+000280 |     "two_object_alpha": [
+000281 |         "alpha_01=T", "alpha_10=beta0 T^-1",
+000282 |         "alpha^2=diag(beta0,beta1)", "alpha^8=1",
+000283 |         "sigma1=T sigma0^-1 T^-1",
+000284 |     ],
+000285 |     "groupoid_does_not_use": ["T^2=1", "[T,beta0]=1", "full G31 splitting"],
+000286 |     "explicit_T_square_is_identity": False,
+000287 |     "explicit_T_commutes_with_beta0": False,
+000288 |     "canonical_zero_on_basis_J_extends_strictly": False,
+000289 |     "scope": (
+000290 |         "standard cocycle on the actual theta E8 basis; proves the marked order-24 subgroup "
+000291 |         "and two-object alpha groupoid only, not a splitting of the full G31 extension"
+000292 |     ),
+000293 | }
+000294 | print(json.dumps(out, ensure_ascii=False, sort_keys=True, indent=2))

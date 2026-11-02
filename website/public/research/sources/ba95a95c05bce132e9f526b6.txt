@@ -1,0 +1,95 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-collar-multifield-20261016/p1_insertion_tangent.py
+Original file SHA-256: 70b3d0790f40a4834644c806db90fc27402967563e6e8888a8f1192ec539ad00
+Inclusive original lines: 27-113
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000027 |     spec.loader.exec_module(module)
+000028 |     return module.induce
+000029 | 
+000030 | 
+000031 | def logit_tangent(covariance, variation):
+000032 |     """Frechet derivative of h(C)=log(1-C)-log(C), including repeated eigenvalues."""
+000033 |     c, u = np.linalg.eigh(covariance)
+000034 |     if np.any(c <= 0) or np.any(c >= 1):
+000035 |         raise ValueError("Requires a faithful finite covariance, 0<C<I")
+000036 |     h = np.log1p(-c) - np.log(c)
+000037 |     coeff = np.empty((len(c), len(c)))
+000038 |     for i in range(len(c)):
+000039 |         for j in range(len(c)):
+000040 |             if abs(c[i] - c[j]) < 1e-12:
+000041 |                 coeff[i, j] = -1 / (c[i] * (1 - c[i]))
+000042 |             else:
+000043 |                 coeff[i, j] = (h[i] - h[j]) / (c[i] - c[j])
+000044 |     v = u.conj().T @ variation @ u
+000045 |     return u @ (coeff * v) @ u.conj().T, coeff
+000046 | 
+000047 | 
+000048 | def covariance_checks():
+000049 |     induce = existing_induction()
+000050 |     # Distinct and repeated eigenvalues, then a noncommuting complex frame.
+000051 |     unitary = np.array([[1, 1, 1, 1], [1, 1, -1, -1],
+000052 |                         [1, -1, 1, -1], [1, -1, -1, 1]], complex) / 2
+000053 |     unitary = np.diag([1, 1j, -1, -1j]) @ unitary
+000054 |     variation = np.array([[1, 2j, 3, 1j], [-2j, -1, 1+1j, 2],
+000055 |                           [3, 1-1j, 2, -1j], [-1j, 2, 1j, -2]], complex) / 20
+000056 |     errors = []
+000057 |     all_negative = True
+000058 |     step = 1e-5
+000059 |     for eigenvalues in ([.2, .3, .6, .8], [.2, .2, .6, .6]):
+000060 |         cov = unitary @ np.diag(eigenvalues) @ unitary.conj().T
+000061 |         analytic, coeff = logit_tangent(cov, variation)
+000062 |         numerical = (induce(cov + step*variation) - induce(cov - step*variation))/(2*step)
+000063 |         errors.append(float(np.max(np.abs(analytic-numerical))))
+000064 |         all_negative &= bool(np.all(coeff < 0))
+000065 |     # All 16 Hermitian basis directions: exact zero blocks remain zero.
+000066 |     cov = np.diag([.2, .3, .6, .8])
+000067 |     directions = []
+000068 |     for i in range(4):
+000069 |         a = np.zeros((4, 4), complex)
+000070 |         a[i, i] = 1
+000071 |         directions.append(a)
+000072 |         for j in range(i):
+000073 |             for phase in (1, 1j):
+000074 |                 a = np.zeros((4, 4), complex)
+000075 |                 a[i, j], a[j, i] = phase, np.conj(phase)
+000076 |                 directions.append(a)
+000077 |     for a in directions:
+000078 |         da, _ = logit_tangent(cov, a)
+000079 |         assert np.array_equal(np.abs(a) > 0, np.abs(da) > 0)
+000080 |     # Moving carrier embedding: even fixed ambient C can have nonzero compressed jet.
+000081 |     cross = np.diag([1, -1, 2, -2]) / 40
+000082 |     ambient = np.block([[.5*np.eye(4), cross], [cross, .5*np.eye(4)]])
+000083 |     q0 = np.vstack([np.eye(4), np.zeros((4, 4))])
+000084 |     q1 = np.vstack([np.zeros((4, 4)), np.eye(4)])
+000085 |     def compressed(t):
+000086 |         q = np.cos(t)*q0 + np.sin(t)*q1
+000087 |         return q.T @ ambient @ q
+000088 |     exact = q1.T@ambient@q0 + q0.T@ambient@q1
+000089 |     moving_error = float(np.max(np.abs((compressed(step)-compressed(-step))/(2*step)-exact)))
+000090 |     assert max(errors) < 1e-8 and all_negative and moving_error < 1e-8
+000091 |     return {"existing_reader": "verification/v258_dirac_covariance_induction.py:induce",
+000092 |             "noncommuting_derivative_max_errors": errors,
+000093 |             "all_divided_difference_coefficients_negative": all_negative,
+000094 |             "hermitian_support_directions": len(directions),
+000095 |             "moving_embedding_derivative_max_error": moving_error,
+000096 |             "scope": "Derivative controls; no P1 covariance, embedding or Higgs vertex selected"}
+000097 | 
+000098 | 
+000099 | def retained_collar_checks():
+000100 |     """Actual previously retained particle/hole transfer eigenvalues, no new coupling."""
+000101 |     sp = e8.sp
+000102 |     r = sp.diag(sp.Rational(1, 4), sp.Rational(1, 64))
+000103 |     eye = sp.eye(2)
+000104 |     a = (eye+r*r).inv()
+000105 |     graph = eye.col_join(r)
+000106 |     projection = graph*a*graph.T
+000107 |     assert projection*projection == projection
+000108 |     assert projection*graph == graph
+000109 |     # Restriction to its own range is the identity, hence not faithful mixed C.
+000110 |     q = graph*sp.diag(sp.sqrt(sp.Rational(16, 17)), sp.sqrt(sp.Rational(4096, 4097)))
+000111 |     assert q.T*q == eye and sp.simplify(q.T*projection*q) == eye
+000112 |     occupation = eye-a
+000113 |     h = sp.diag(*(sp.log((1-x)/x) for x in occupation.diagonal()))

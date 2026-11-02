@@ -1,0 +1,77 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-joint-source-origin-audit-20261016/PROOF.txt
+Original file SHA-256: f91443b115994302aa3b10d2a6b44131e13c3998b13d47b34aeaa59e25c86315
+Inclusive original lines: 84-152
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000084 | 4. Decisive new control: invariant-ring primitiveness does not fix b=3
+000085 | 
+000086 | S2:2410-2547 defines the graded algebra of invariant trilinears and says its
+000087 | primitive element is indecomposable under lower carrier-degree invariant factors.
+000088 | The proof of the lowest-generator lemma says that r>=4 factors through a
+000089 | spectator bivector; it therefore forces p=1,r=2, and the next theorem reads b=3.
+000090 | Here is a counterexample to that LOCAL invariant-ring inference.
+000091 | 
+000092 | Strictly, the printed direct sum of trilinear Hom spaces has no multiplication
+000093 | defined; multiplying two trilinears is no longer trilinear. The invariant-ring
+000094 | and ideal wording therefore needs an algebraic completion. The counterexample
+000095 | below uses its natural covariant polynomial-invariant interpretation and the
+000096 | printed positive carrier-degree criterion, not an invented replacement for the
+000097 | stronger Lean contraction-isomorphism predicate.
+000098 | 
+000099 | Let V=C^5, W=C^2, G=S(U(V) x U(W)). Define
+000100 |   A=V tensor W, F=Lambda^4 V, H=W.
+000101 | The two fermion legs A and F belong respectively to exterior degrees2 and4
+000102 | of Lambda_even(V direct_sum W), hence obey the stated evenness requirement.
+000103 | The map
+000104 |   B((v tensor w),xi,h)=(v wedge xi) tensor(w wedge h)
+000105 |       in det V tensor det W = C
+000106 | is nonzero and G-invariant: a group element multiplies its value by
+000107 | det(g_V)det(g_W)=1. Its carrier type is (p,q;r,t)=(1,1;4,0), not (1,1;2,0).
+000108 | 
+000109 | Why it is primitive in the relevant covariant carrier grading:
+000110 | for an invariant of total V/W fundamental degrees(d_V,d_W), the SU centers
+000111 | require 5|d_V and2|d_W. The primitive central subgroup
+000112 |   (exp(-2it) I5, exp(5it) I2)
+000113 | requires -2d_V+5d_W=0. Thus(d_V,d_W)=(5m,2m), m a nonnegative integer.
+000114 | There is no invariant of positive carrier degree below7, and B has degree7.
+000115 | No product of strictly smaller positive carrier-degree invariants can equal B.
+000116 | Carrier-degree-zero constants or singlet scalar factors do not change this fact.
+000117 | In particular, a noninvariant spectator bivector is not an invariant-ring factor.
+000118 | 
+000119 | On the three field variables(A,F,H), the central charges are(3,-8,5).
+000120 | No monomial of polynomial degree1 or2 has zero charge; B is a nonzero cubic.
+000121 | It is therefore polynomial-indecomposable as well. Its explicit coefficient
+000122 | tensor has100 entries,10 nonzero. The exact checker annihilates it under all
+000123 | 20 off-diagonal sl5 generators,4 diagonal differences,2 sl2 roots and1 sl2
+000124 | diagonal generator:2700 integer residuals, all zero. A b=3 positive control
+000125 | has36 entries,6 nonzero and396 zero residuals.
+000126 | 
+000127 | The wedge formula and determinant transformation are the proof; these finite
+000128 | controls check the implementation. The same formula works for every odd b>=3
+000129 | with F=Lambda^(b-1)V and W=C^2. No numerical dimension matching is used.
+000130 | 
+000131 | What is NOT excluded: a stronger source-derived restriction on field support,
+000132 | a source-derived degree bound, or an independently justified minimum over all
+000133 | admissible sources/ranks could select b=3. The b=5 control is outside given P2;
+000134 | it is not a counterexample to P1+P2, source minimality with all its conditions,
+000135 | the full physical theory, or the accepted conditional SM algebra.
+000136 | 
+000137 | 5. Exact relationship to the existing Lean theorem
+000138 | 
+000139 | YukawaPrimitive.lean:102-105 defines its primitive coupling by the stronger datum
+000140 |   E equiv_linear (Lambda^2 E)^*.
+000141 | BoundaryYukawaKernelInterface.lean:86-93 requires a specific alternating
+000142 | trilinear form omega AND injective/surjective contraction AND nontrivial E.
+000143 | These hypotheses imply rank3. The accompanying source note:992-1030 explicitly
+000144 | leaves the boundary-kernel -> such a form with both predicates arrow open.
+000145 | 
+000146 | Invariant-ring primitiveness is not this contraction-isomorphism predicate.
+000147 | For the b=5 control the nondegenerate natural pairing is instead
+000148 |   V equiv (Lambda^4 V)^* tensor det V,
+000149 | with the weak determinant completing the trivialization. It cannot be
+000150 | relabelled as V equiv (Lambda^2 V)^*: those dimensions are5 versus10.
+000151 | Thus the counterexample identifies the upstream predicate that must be proved;
+000152 | the correctly conditional Lean implication remains intact.

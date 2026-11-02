@@ -1,0 +1,132 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/local_source_origin_20261028/check_source_sector_response.py
+Original file SHA-256: 3a7f2aff7076395b23e55aef744000747764c4f72c7d56ba9e48a7e90385cd45
+Inclusive original lines: 1-124
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact source-sector test of the existing Ward30 response, not a new model."""
+000002 | from collections import Counter
+000003 | from fractions import Fraction as F
+000004 | from pathlib import Path
+000005 | import hashlib
+000006 | import json
+000007 | import sys
+000008 | import sympy as sp
+000009 | 
+000010 | HERE=Path(__file__).resolve().parent
+000011 | [OMITTED: non-scientific conversation or execution metadata]
+000012 | sys.path.insert(0,str(REPO))
+000013 | from tfpt_explorer.current_block_geometry import _actual_current_source
+000014 | ROOT=REPO/'experiments/theory-contracts'
+000015 | FOLD=ROOT/'v16-operator-pullback-20261014/fold-results.json'
+000016 | PHASE=ROOT/'elliptic-moebius-source-bridge-20261026/hodge_complement_20261028/e8-clifford-response-results.json'
+000017 | CURRENT=REPO/'tfpt_explorer/current_block_geometry.py'
+000018 | CHEVALLEY=REPO/'verification/v498_celestial_wp5b_singular_vector.py'
+000019 | PINS={FOLD:'253f370a9c84b70c28169ed0aad83d1866245804227e44aa0189e823382f5639',
+000020 |       PHASE:'67fe9e3f06140c5c23452e9a7bfaefc02441ff1e7b55708e55409cd0a398e7ee',
+000021 |       CURRENT:'c9efcac4ba33d4ee3dc20f8c3c69a0f6ff6b2084893a5edf4aaae6c204d9056b',
+000022 |       CHEVALLEY:'9f5a2d62523283595b754fea6f70ddc6501a251daf86752cbc67ded252b96180'}
+000023 | checks=[]
+000024 | def need(v,label):
+000025 |     if not v:raise RuntimeError(label)
+000026 |     checks.append(label)
+000027 | def key(r):return ','.join(map(str,r))
+000028 | def ladder(mask,i,create):
+000029 |     if ((mask>>i)&1)==create:return None
+000030 |     return mask^(1<<i),(-1)**((mask&((1<<i)-1)).bit_count())
+000031 | def hist(xs):return {str(k):v for k,v in sorted(Counter(xs).items())}
+000032 | for p,h in PINS.items():need(hashlib.sha256(p.read_bytes()).hexdigest()==h,'source pin '+p.name)
+000033 | M=[[F(x) for x in row] for row in json.loads(FOLD.read_text())['explicit_Weyl_matrix']]
+000034 | def pull(r):return tuple(sum(M[j][i]*F(r[j],2) for j in range(8)) for i in range(8))
+000035 | def grade(r):
+000036 |     p=pull(r)
+000037 |     if all(z.denominator==1 for z in p):return 0
+000038 |     need(all(z.denominator==2 for z in p),'source spinor has uniform half integral charge')
+000039 |     return 1
+000040 | source=_actual_current_source();alg=source['chevalley'];roots=tuple(sorted(alg.roots));R=set(roots)
+000041 | half=[r for r in roots if all(abs(z)==1 for z in r)]
+000042 | masks={r:sum((z>0)<<i for i,z in enumerate(r)) for r in half}
+000043 | hin=[r for r in half if (masks[r]&31).bit_count()==2]
+000044 | hout=[r for r in half if (masks[r]&31).bit_count()==3]
+000045 | creator=[r for r in roots if sum(z!=0 for z in r[:5])==1 and sum(z!=0 for z in r[5:])==1 and sum(r[:5])==2]
+000046 | ns=[r for r in creator if grade(r)==0];spin=[r for r in creator if grade(r)==1]
+000047 | need(len(hin)==len(hout)==40 and len(creator)==30,'actual typed Ward source dimensions')
+000048 | need(Counter(grade(r) for r in hin)==Counter({0:20,1:20}),'input40 raw NS20 plus spinor20')
+000049 | need(Counter(grade(r) for r in hout)==Counter({0:20,1:20}),'output40 raw NS20 plus spinor20')
+000050 | need((len(ns),len(spin))==(14,16),'creation30 raw NS14 plus spinor16')
+000051 | w=tuple(row[0] for row in M)
+000052 | need(w==(F(1,2),F(1,2),0,0,0,F(1,2),F(1,2),0),'raw parity cocharacter in the target chart')
+000053 | for r in hin+hout:
+000054 |     mask=masks[r];pc=((mask&3).bit_count())%2;pf=(((mask>>5)&3).bit_count())%2
+000055 |     need(grade(r)==(pc+pf)%2,'source grading equals carrier parity times family parity')
+000056 | need(hist((mask&3).bit_count()%2 for mask in range(32) if mask.bit_count()==2)=={'0':4,'1':6},'carrier grading has dimensions4 plus6')
+000057 | 
+000058 | ph=json.loads(PHASE.read_text());gains={r:Counter() for r in hin};trans=Counter();columns=[]
+000059 | for b in creator:
+000060 |     m=next(i for i in range(5) if b[i]);j=next(i for i in range(5,8) if b[i])-5
+000061 |     for a in hin:
+000062 |         raw=alg.bracket(alg.ridx[b],alg.ridx[a]);ca=ladder(masks[a]&31,m,True);fa=ladder(masks[a]>>5,j,b[j+5]>0)
+000063 |         if ca is None or fa is None:
+000064 |             need(not raw,'actual bracket zeros equal tensor zeros');continue
+000065 |         g=tuple(x+y for x,y in zip(a,b));need(g in hout,'actual bracket has target output')
+000066 |         need(set(raw)=={alg.ridx[g]},'one signed output per actual root column')
+000067 |         c=raw[alg.ridx[g]];phase=int(ph['state_phases'][key(a)])*int(ph['state_phases'][key(g)])*int(ph['root_phases'][key(b)])
+000068 |         need(c==phase*ca[1]*fa[1],'actual signed bracket equals pinned joint CAR tensor action')
+000069 |         need(grade(g)==(grade(a)+grade(b))%2,'each Kraus has exact source sector covariance')
+000070 |         gains[a][grade(b)]+=1;trans[(grade(a),grade(g),grade(b))]+=1;columns.append((a,b,g,c))
+000071 | need(len(columns)==360,'full30 has360 signed nonzero columns')
+000072 | need(trans==Counter({(0,0,0):84,(1,1,0):84,(0,1,1):96,(1,0,1):96}),'complete source sector transition census')
+000073 | gain_hist=Counter((grade(a),gains[a][0],gains[a][1]) for a in hin)
+000074 | need(gain_hist==Counter({(q,5,4):6 for q in (0,1)})+Counter({(q,4,5):12 for q in (0,1)})+Counter({(q,3,6):2 for q in (0,1)}),'uniform14 restriction has nonconstant effects3,4,5')
+000075 | 
+000076 | # Exact classification of diagonal positive weights on the same NS14 roots.
+000077 | # This is a comparison family, not a claim that P1 chooses those weights.
+000078 | A=sp.Matrix([[int(tuple(x+y for x,y in zip(a,b)) in R) for b in ns] for a in hin])
+000079 | need(A.rank()==12,'NS14 trace-preservation equations have exact rank12')
+000080 | weights=[]
+000081 | for b in ns:
+000082 |     m=next(i for i in range(5) if b[i]);weights.append(F(1,6) if m<2 else F(1,3))
+000083 | need(A*sp.Matrix([sp.Rational(z.numerator,z.denominator) for z in weights])==sp.ones(40,1),'explicit positive NS14 weights give exact TP')
+000084 | for m in range(5):
+000085 |     for fm in (0,3,5,6):
+000086 |         effect=F(0)
+000087 |         for b,weight in zip(ns,weights):
+000088 |             if b[m]!=2:continue
+000089 |             j=next(i for i in range(5,8) if b[i])-5
+000090 |             if ladder(fm,j,b[j+5]>0) is not None:effect+=weight
+000091 |         need(effect==F(1,3),'operator-valued family gain is I4/3 for every carrier Kraus')
+000092 | need(sum(trans[k] for k in trans if k[2]==0)==168,'NS14 witness uses168 actual signed columns')
+000093 | 
+000094 | # The sector label is part of the joint object and can distinguish responses
+000095 | # whose full carrier marginal is the same Hodge channel.
+000096 | beta=(0,2,0,0,0,2,0,0);color=(0,-2,2,0,0,0,0,0);gamma=tuple(x+y for x,y in zip(beta,color))
+000097 | need(beta in ns and gamma in spin and bool(alg.bracket(alg.ridx[color],alg.ridx[beta])),'physical color action takes NS14 support outside itself')
+000098 | need(grade(color)==1,'this physical color current is spinorial in the raw source frame')
+000099 | allowed_marginal=0
+000100 | for a in hin:
+000101 |     if grade(a):continue
+000102 |     for b in hin:
+000103 |         if grade(b) or masks[a]>>5!=masks[b]>>5:continue
+000104 |         need(((masks[a]&3).bit_count()-(masks[b]&3).bit_count())%2==0,'NS-only inputs have carrier block diagonal reduced states')
+000105 | allowed_marginal=4*4+6*6
+000106 | need(allowed_marginal==52,'NS-only carrier observable algebra has52 not100 directions')
+000107 | 
+000108 | result={'verdict':'PASS_SCOPED_SOURCE_SECTOR_RESPONSE_TEST',
+000109 |  'source_sector_dimensions':{'input40':[20,20],'output40':[20,20],'creation30':[14,16]},
+000110 |  'sector_transition_columns':{','.join(map(str,k)):v for k,v in sorted(trans.items())},
+000111 |  'uniform_NS14_input_effect_histogram':{','.join(map(str,k)):v for k,v in sorted(gain_hist.items())},
+000112 |  'actual_signed_columns':360,
+000113 |  'raw_source_grading_target_cocharacter':list(map(str,w)),
+000114 |  'grading_factorization':'(-1)^(N_C,first2) tensor (-1)^(N_F,first2)',
+000115 |  'carrier_parity_dimensions':[4,6],'NS_only_carrier_matrix_directions':allowed_marginal,
+000116 |  'NS14_alternative':{'effect_matrix_rank':12,'affine_weight_parameters':2,
+000117 |    'positive_TP_witness':'1/6 on eight roots with carrier m=1,2; 1/3 on six roots with carrier m=3,4,5',
+000118 |    'carrier_marginal':'exact full Hodge Phi on the stipulated joint40 input, by operator-valued family gain I4/3',
+000119 |    'preserves_raw_source_sector':True,'full_physical_P2_color_covariance':False,
+000120 |    'P1_selection_derived':False},
+000121 |  'scope':'Actual given E8 current response and same pinned Fold/CAR chart. Uniform30 and normalized NS14 have identical full carrier marginal but different joint source-sector transport. NS14 witness is not the unchanged30 process, not a P1-derived weighting, and not an embedding of all40 inputs into the raw NS vacuum Hilbert space. NS-only carrier reduction has a4+6 grading. No general no-go for DHR observable maps or other P1 sources.',
+000122 |  'sources':{str(p.relative_to(REPO)):h for p,h in PINS.items()},'checks':len(checks)}
+000123 | (HERE/'source-sector-response-results.json').write_text(json.dumps(result,indent=2)+'\n')
+000124 | print(json.dumps(result,indent=2))

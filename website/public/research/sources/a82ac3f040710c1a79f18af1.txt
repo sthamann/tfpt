@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/hodge_complement_20261028/hodge_complement_channel.py
+Original file SHA-256: 72b04a5bf8b3bd805568af49dec76bd97926fcff4009a830137e2d318807522b
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact finite checks for the five separated Hodge complement amplitudes.
+000003 | 
+000004 | The calculation compares the resulting CPTP map with the *actual* marked
+000005 | twenty-event jump map reconstructed by the pinned source contract.  It proves
+000006 | finite exterior-algebra and channel identities only; it does not select a
+000007 | physical TFPT instrument.
+000008 | """
+000009 | from __future__ import annotations
+000010 | 
+000011 | import argparse
+000012 | import hashlib
+000013 | import importlib.util
+000014 | import itertools as it
+000015 | import json
+000016 | from fractions import Fraction
+000017 | from pathlib import Path
+000018 | 
+000019 | import numpy as np
+000020 | import sympy as sp
+000021 | 
+000022 | 
+000023 | HERE = Path(__file__).resolve().parent
+000024 | WORK = HERE.parent
+000025 | [OMITTED: non-scientific conversation or execution metadata]
+000026 | OLD_DIR = REPO / "experiments/theory-contracts/compiler-correlated-event-clock-20260919"
+000027 | OLD_SOURCE = OLD_DIR / "source_channel.py"
+000028 | OLD_PROOF = OLD_DIR / "PROOF.txt"
+000029 | PREVIOUS = WORK / "research-20261027-dynamic-reconstruction/HODGE-BORN-SOURCE-TEST.txt"
+000030 | V810 = REPO / "verification/v810_cutcode_moment.py"
+000031 | CURRENT_DESCENDANT_PROOF = REPO / "experiments/theory-contracts/compiler-current-descendant-20260919/PROOF.txt"
+000032 | CURRENT_PRODUCT_PROOF = REPO / "experiments/theory-contracts/compiler-current-product-20260919/PROOF.txt"
+000033 | PINS = {
+000034 |     str(OLD_SOURCE): "3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593",
+000035 |     str(OLD_PROOF): "bf1f85c99f5f89a0a15da1af5e3ff321c2756fda132a9f8d644f9ce0e08c2f5c",
+000036 |     str(PREVIOUS): "49d0c4fe47baa2284e95d5600a8591d614b0ae24266443ea824a8bf98e9d3344",
+000037 |     str(V810): "8dcf729eb9be10b4d51ecdc61f41624f8cf87a991cd5a2c72eaeb2269212afae",
+000038 |     str(CURRENT_DESCENDANT_PROOF): "ad45198c44b84365a862b709e8b7e49af708f2e1a58adff67dc55d7cf4fa459b",
+000039 |     str(CURRENT_PRODUCT_PROOF): "940131acfceba1937d36b44447ecce39b25571ef7c95e870667b838f4e9ae0db",
+000040 | }
+000041 | 
+000042 | PAIRS = list(it.combinations(range(5), 2))
+000043 | PAIR_INDEX = {p: i for i, p in enumerate(PAIRS)}
+000044 | checks: list[str] = []
+000045 | 
+000046 | 
+000047 | def require(ok: bool, name: str) -> None:
+000048 |     if not bool(ok):
+000049 |         raise RuntimeError(name)
+000050 |     checks.append(name)
+000051 | 
+000052 | 
+000053 | def parity(word: tuple[int, ...]) -> int:
+000054 |     inversions = sum(word[i] > word[j] for i in range(len(word)) for j in range(i + 1, len(word)))
+000055 |     return -1 if inversions % 2 else 1
+000056 | 
+000057 | 
+000058 | def hodge_amplitudes() -> list[np.ndarray]:
+000059 |     """C_m(e_i wedge e_j)=epsilon(m,i,j,k,l)e_k wedge e_l."""
+000060 |     out = []
+000061 |     universe = set(range(5))
+000062 |     for m in range(5):
+000063 |         C = np.zeros((10, 10), dtype=np.int64)
+000064 |         for e in PAIRS:
+000065 |             if m in e:
+000066 |                 continue
+000067 |             f = tuple(sorted(universe - {m, *e}))
+000068 |             C[PAIR_INDEX[f], PAIR_INDEX[e]] = parity((m,) + e + f)
+000069 |         out.append(C)
+000070 |     return out
+000071 | 
+000072 | 
+000073 | def exterior_two_differential(X: np.ndarray) -> np.ndarray:
+000074 |     """Differential of Lambda^2 on an integer 5 by 5 matrix."""
+000075 |     r = np.zeros((10, 10), dtype=np.int64)
+000076 |     for col, (i, j) in enumerate(PAIRS):
+000077 |         for a in range(5):
+000078 |             if X[a, i] and a != j:
+000079 |                 pair = tuple(sorted((a, j)))
+000080 |                 sign = 1 if a < j else -1
+000081 |                 r[PAIR_INDEX[pair], col] += sign * int(X[a, i])
+000082 |             if X[a, j] and a != i:
+000083 |                 pair = tuple(sorted((i, a)))
+000084 |                 sign = 1 if i < a else -1
+000085 |                 r[PAIR_INDEX[pair], col] += sign * int(X[a, j])
+000086 |     return r
+000087 | 
+000088 | 
+000089 | def verify_sl5_covariance(Cs: list[np.ndarray]) -> int:
+000090 |     """Check the infinitesimal epsilon-congruence identity on a basis of sl5."""
+000091 |     generators = []
+000092 |     for a in range(5):
+000093 |         for b in range(5):
+000094 |             if a != b:
+000095 |                 X = np.zeros((5, 5), dtype=np.int64)
+000096 |                 X[a, b] = 1
+000097 |                 generators.append(X)
+000098 |     for a in range(4):
+000099 |         X = np.zeros((5, 5), dtype=np.int64)
+000100 |         X[a, a] = 1
+000101 |         X[4, 4] = -1
+000102 |         generators.append(X)
+000103 |     require(len(generators) == 24, "24 element basis of sl5")
+000104 |     for gi, X in enumerate(generators):
+000105 |         r = exterior_two_differential(X)
+000106 |         for m in range(5):
+000107 |             lhs = r @ Cs[m] + Cs[m] @ r.T
+000108 |             rhs = -sum((int(X[m, n]) * Cs[n] for n in range(5)), start=np.zeros((10, 10), dtype=np.int64))
+000109 |             require(np.array_equal(lhs, rhs), f"sl5 epsilon congruence generator {gi} index {m}")
+000110 |     return len(generators)
+000111 | 
+000112 | 
+000113 | def verify_su5_sector_spectrum(Cs: list[np.ndarray], Snew: np.ndarray) -> dict:
+000114 |     """Identify the 1+24+75 decomposition, not merely its dimensions."""
+000115 |     generators = []
+000116 |     for a in range(5):
+000117 |         for b in range(5):
+000118 |             if a != b:
+000119 |                 X = np.zeros((5, 5), dtype=np.int64)
+000120 |                 X[a, b] = 1
+000121 |                 generators.append(X)
+000122 |     for a in range(4):
+000123 |         X = np.zeros((5, 5), dtype=np.int64)
+000124 |         X[a, a] = 1
+000125 |         X[4, 4] = -1
+000126 |         generators.append(X)
+000127 |     adjoint = [exterior_two_differential(X) for X in generators]
+000128 |     adjoint_columns = np.stack([A.reshape(-1, order="F") for A in adjoint], axis=1)
+000129 |     require(int(sp.Matrix(adjoint_columns).rank()) == 24,
+000130 |             "dGamma(sl5) is the actual 24-dimensional adjoint subspace")
+000131 |     identity_vector = np.eye(10, dtype=np.int64).reshape(-1, order="F")
+000132 |     require(all(np.dot(identity_vector, column) == 0 for column in adjoint_columns.T),
+000133 |             "adjoint subspace is traceless and orthogonal to identity")
+000134 |     for i, A in enumerate(adjoint):
+000135 |         image = (Snew @ A.reshape(-1, order="F")).reshape((10, 10), order="F")
+000136 |         require(np.array_equal(image, -2 * A.T),
+000137 |                 f"Phi sends dGamma generator {i} to minus two thirds transpose")
+000138 | 
+000139 |     square = Snew @ Snew
+000140 |     require(np.array_equal(square @ identity_vector, 9 * identity_vector),
+000141 |             "scaled Phi squared eigenvalue nine on identity")
+000142 |     require(all(np.array_equal(square @ column, 4 * column) for column in adjoint_columns.T),
+000143 |             "scaled Phi squared eigenvalue four on actual adjoint")
+000144 |     identity_adjoint = np.column_stack((identity_vector, adjoint_columns))
+000145 |     require(int(sp.Matrix(identity_adjoint).rank()) == 25,
+000146 |             "identity plus actual adjoint has dimension 25")
+000147 |     require(int(sp.Matrix(square - np.eye(100, dtype=np.int64)).rank()) == 25,
+000148 |             "orthogonal complement is the 75-dimensional Phi-squared one-eigenspace")
+000149 | 
+000150 |     # The actual population restriction to distance shells about one Petersen
+000151 |     # vertex has shell sizes 1,3,6 and the signed three-rate quotient.
+000152 |     adjacency = np.zeros((10, 10), dtype=np.int64)
+000153 |     for a, e in enumerate(PAIRS):
+000154 |         for b, f in enumerate(PAIRS):
+000155 |             adjacency[b, a] = int(a != b and set(e).isdisjoint(f))
+000156 |     shell0 = [0]
+000157 |     shell1 = list(np.flatnonzero(adjacency[:, 0]))
+000158 |     shell2 = [i for i in range(10) if i not in shell0 + shell1]
+000159 |     shells = [shell0, shell1, shell2]
+000160 |     require([len(shell) for shell in shells] == [1, 3, 6], "Petersen radial shell sizes 1,3,6")
+000161 |     quotient = np.zeros((3, 3), dtype=np.int64)
+000162 |     for source_shell, source_vertices in enumerate(shells):
+000163 |         reference_counts = None
+000164 |         for vertex in source_vertices:
+000165 |             counts = tuple(int(adjacency[target_shell, vertex].sum()) for target_shell in shells)
+000166 |             if reference_counts is None:
+000167 |                 reference_counts = counts
+000168 |             require(counts == reference_counts, "Petersen radial partition is equitable")
+000169 |         quotient[:, source_shell] = reference_counts
+000170 |     require(np.array_equal(quotient, np.array([[0, 1, 0], [3, 0, 1], [0, 2, 2]], dtype=np.int64)),
+000171 |             "Petersen radial quotient is the exact three-shell transfer")
+000172 |     require(multiplicities_from_moments(quotient, (3, 1, -2)) == [1, 1, 1],
+000173 |             "Petersen radial quotient has scaled rates 3,1,-2")
+000174 |     return {
+000175 |         "endomorphism_decomposition": "End(Lambda^2 C^5)=1+24+75",
+000176 |         "adjoint_identification": "24=dGamma(sl5), with Phi(A)=-(2/3) A^T",
+000177 |         "seventy_five_identification": "orthogonal complement of identity plus dGamma(sl5)",
+000178 |         "Phi_squared": "Pi_1+(4/9)Pi_24+(1/9)Pi_75",
+000179 |         "Phi_sixth_spectrum": {"1": 1, "64/729": 24, "1/729": 75},
+000180 |         "radial_population_shells": [1, 3, 6],
+000181 |         "radial_population_transfer": "(1/3)*[[0,1,0],[3,0,1],[0,2,2]] in shell-mass column convention",
+000182 |         "radial_spectrum": ["1", "1/3", "-2/3"],
+000183 |     }
+000184 | 
+000185 | 
+000186 | def load_old_source():
+000187 |     spec = importlib.util.spec_from_file_location("pinned_correlated_source", OLD_SOURCE)
+000188 |     require(spec is not None and spec.loader is not None, "old source import specification")
+000189 |     module = importlib.util.module_from_spec(spec)
+000190 |     spec.loader.exec_module(module)
+000191 |     return module
+000192 | 
+000193 | 
+000194 | def gaussian_integer(a: np.ndarray) -> np.ndarray:
+000195 |     require(np.array_equal(a.real, np.rint(a.real)), "Gaussian integer real part")
+000196 |     require(np.array_equal(a.imag, np.rint(a.imag)), "Gaussian integer imaginary part")
+000197 |     return np.rint(a.real).astype(np.int64) + 1j * np.rint(a.imag).astype(np.int64)
+000198 | 
+000199 | 
+000200 | def exact_gaussian_matrix(a: np.ndarray) -> sp.Matrix:

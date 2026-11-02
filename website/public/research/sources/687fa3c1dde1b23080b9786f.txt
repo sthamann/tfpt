@@ -1,0 +1,157 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/native-charged-conjugation-20261015/ADDENDUM.md
+Original file SHA-256: 9c29c633efacdd7e7a043f1121076d14cb0f2bf8706d8250f9a734c9d409ad2b
+Inclusive original lines: 1-149
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | # Fixed Peierls phases do not remove the Euclidean charged-pair obstruction
+000002 | 
+000003 | 15 October 2026. Addendum to `UR.NATIVE.CHARGED_CONJUGATION.01`.
+000004 | **Exact conditional antiunitary statement; overall physical verdict PARTIAL.**
+000005 | No source or phase is selected from P1/P2. The original proof/checker and
+000006 | source manifest remain unchanged.
+000007 | 
+000008 | ## 1. The tempting repair and its exact remaining symmetry
+000009 | 
+000010 | [OMITTED: non-scientific conversation or execution metadata]
+000011 | [OMITTED: non-scientific conversation or execution metadata]
+000012 | [OMITTED: non-scientific conversation or execution metadata]
+000013 | 
+000014 |     h_(b,theta)=J_b(2I-exp(i theta_b)W_b-exp(-i theta_b)W_b^*),
+000015 |     H_theta=H_diag+sum_b h_(b,theta),  J_b>=0.
+000016 | 
+000017 | The theta_b may vary by oriented link/channel and may have nonzero flux.
+000018 | They are fixed, not time-dependent. The diagonal/scalar source Hamiltonian
+000019 | is the same original real C-even operator from the parent proof.
+000020 | 
+000021 | Let K be complex conjugation in the original integer-charge and scalar
+000022 | position representation. The cocycle signs are real, so K T_p K=T_p and
+000023 | K W_b K=W_b. The scalar momentum reverses under K, but its original square
+000024 | and the real potential are unchanged. The linear charge conjugation C is
+000025 | real in that basis, hence commutes with K. Define the antiunitary
+000026 | 
+000027 |     A=C K,  A²=I.
+000028 | 
+000029 | The two separate transformations obey
+000030 | 
+000031 |     K H_theta K=H_-theta,
+000032 |     C H_-theta C=H_theta,
+000033 |     A H_theta A^-1=H_theta,
+000034 |     A T_p A^-1=T_-p.
+000035 | 
+000036 | For the hopping this is termwise: antiunitarity conjugates the coefficient
+000037 | exp(i theta_b), while C sends W_b to W_b^*. Their two effects cancel.
+000038 | No gauge transformation, gauge-trivial flux or spatial reflection is
+000039 | assumed. C and K individually can genuinely fail at a quarter phase; A
+000040 | still survives. The checker includes those failures as negative controls.
+000041 | 
+000042 | The onsite adjoint identity remains
+000043 | `T_p^*=(-1)^e(p)T_-p`. Its actual sign is retained in the regression checks;
+000044 | antiunitary conjugation also preserves adjoints.
+000045 | 
+000046 | ## 2. Positive operator and invariant Gibbs starts
+000047 | 
+000048 | Because W_b is the original unitary,
+000049 | 
+000050 |     2I-exp(i theta_b)W_b-exp(-i theta_b)W_b^*
+000051 |       =(I-exp(i theta_b)W_b)^*(I-exp(i theta_b)W_b)>=0.
+000052 | 
+000053 | The hopping has norm at most `4 sum_b J_b`; for the original uniform J this
+000054 | is the original `96 J N` bound. It retains the unchanged diagonal/scalar
+000055 | domain. In particular H_theta is the same type
+000056 | of nonnegative selfadjoint source operator; its A covariance extends
+000057 | from the core to its spectral calculus. The earlier coercivity and
+000058 | trace-class finite-volume Gibbs construction remain applicable.
+000059 | 
+000060 | [OMITTED: non-scientific conversation or execution metadata]
+000061 | [OMITTED: non-scientific conversation or execution metadata]
+000062 | [OMITTED: non-scientific conversation or execution metadata]
+000063 | 
+000064 |     D(n)>=c sum_x |n_x|²,   A(n)>=m² I,
+000065 |     Tr exp(-beta H_diag)
+000066 |       <= [2 sinh(beta m/2)]^(-N)
+000067 |          [sum_(k in Z) exp(-beta c k²)]^(8N) < infinity.
+000068 | 
+000069 | The first bound is the actual quadratic coercivity; the second bounds the
+000070 | N oscillator frequencies below by m. No neutrality constraint is needed
+000071 | for this full integer-profile theta sum. The direct-sum diagonal operator
+000072 | has compact resolvent. Its bounded positive hopping perturbation preserves
+000073 | compact resolvent, and eigenvalue min-max comparison with H_diag bounds
+000074 | `Tr exp(-beta H_theta)` by the displayed finite trace. This supplies the
+000075 | full-space Gibbs statement; restriction to C0 also remains trace class.
+000076 | 
+000077 | An antiunitary conjugates a real spectral function without changing it.
+000078 | Thus A exp(-beta H_theta) A^-1=exp(-beta H_theta). Normalized full Gibbs
+000079 | densities are A invariant. Since A Q_tot A^-1=-Q_tot, its total-zero
+000080 | projector P0 is invariant too, and
+000081 | 
+000082 |     rho_(theta,beta,0)=P0 exp(-beta H_theta)P0/Z0
+000083 | 
+000084 | is invariant. This is an A-invariance statement: a generic quarter-phase
+000085 | Gibbs state need not remain C invariant by itself.
+000086 | 
+000087 | ## 3. All-time Euclidean opposite-charge returns remain equal
+000088 | 
+000089 | For any A-invariant density rho define the same response as in the parent
+000090 | contract,
+000091 | 
+000092 |     G_(rho,p)^theta(t)=Tr[rho T_p^* exp(-tH_theta) T_p], t>=0.
+000093 | 
+000094 | The operator `T_p^* exp(-tH_theta) T_p` is positive, so this finite trace is
+000095 | real and nonnegative (strictly positive for nonzero rho). Antiunitary
+000096 | conjugation of a trace-class operator conjugates its trace. Therefore
+000097 | 
+000098 |     G_(rho,-p)^theta(t)=conjugate(G_(rho,p)^theta(t))
+000099 |                       =G_(rho,p)^theta(t).
+000100 | 
+000101 | This holds for every t, every original integer p and arbitrary fixed link
+000102 | phases/flux, at the stated A-invariant starts. It is not inferred from a
+000103 | few sampled times or a zero-moment comparison. Charged onsite insertion
+000104 | and removal still use the full field space and exterior charge-sector
+000105 | propagation when rho is supported in C0.
+000106 | 
+000107 | It follows that simply putting a fixed quarter Peierls phase into the
+000108 | original W hopping cannot reproduce the asymmetric Euclidean pair ratio
+000109 | of a single fixed chiral delta at those starts. This excludes that proposed
+000110 | repair in its actual original source class. It does not remove the
+000111 | positive local T fields, balanced W dynamics, or their phase/flux-sensitive
+000112 | responses in other channels.
+000113 | 
+000114 | ## 4. Precisely what changes the premise
+000115 | 
+000116 | The result does not assert that all real-time words, all prepared states,
+000117 | all response instruments or every Hamiltonian extension are identical.
+000118 | The argument used the positive Euclidean return to remove the complex
+000119 | conjugation introduced by A. It must not be transferred to an arbitrary
+000120 | complex multitime amplitude without checking its transformation.
+000121 | 
+000122 | Time-dependent phases, an A-breaking start or boundary prescription, an
+000123 | additional A-odd real source term, or a new field dictionary need their
+000124 | own source derivation. For example the uniform chemical term eta.Q_tot
+000125 | with real eta is A odd. The parent proof already shows that this term can
+000126 | alter the charged-corner ratio while vanishing inside C0. That is a
+000127 | conditional discriminator, not a selected physical repair.
+000128 | 
+000129 | No new candidate source world, state mixture, sector-switch process,
+000130 | physical event rate or P1/P2 completion is introduced here. The next
+000131 | original-source question is whether its actual quarter seam supplies the
+000132 | required A-asymmetric marked operator/state/time data, rather than merely
+000133 | a complex number multiplying otherwise symmetric bond hopping.
+000134 | 
+000135 | ## 5. Exact validation and authority
+000136 | 
+000137 | [OMITTED: non-scientific conversation or execution metadata]
+000138 | [OMITTED: non-scientific conversation or execution metadata]
+000139 | [OMITTED: non-scientific conversation or execution metadata]
+000140 | [OMITTED: non-scientific conversation or execution metadata]
+000141 | [OMITTED: non-scientific conversation or execution metadata]
+000142 | [OMITTED: non-scientific conversation or execution metadata]
+000143 | [OMITTED: non-scientific conversation or execution metadata]
+000144 | [OMITTED: non-scientific conversation or execution metadata]
+000145 | 
+000146 | The all-charge/all-time theorem is the analytic argument above. No Gibbs
+000147 | matrix diagonalization, heat-kernel simulation, finite moment inference,
+000148 | GPU experiment or physical-gate promotion is claimed. `peierls_results.json`
+000149 | records the original source pin and checker/addendum hashes.

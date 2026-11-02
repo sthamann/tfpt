@@ -1,0 +1,178 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/INDEPENDENT-REVIEW.txt
+Original file SHA-256: 70ad3761cf9165538022baf5c65af259bf89bef344758d779936dccc5e7aea75
+Inclusive original lines: 191-360
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000191 |   C_n = 1/[2 cosh(W lambda_n)]
+000192 |         [[exp(W lambda_n),1],[1,exp(-W lambda_n)]]
+000193 | 
+000194 | is exactly the orthogonal projection onto this graph. Direct multiplication
+000195 | gives C_n^2=C_n=C_n*, and its off-diagonal entry is nonzero. Therefore the
+000196 | existing geometry supplies a canonical pure two-boundary one-particle
+000197 | polarization with finite-width coupling. It does not equal the one-circle
+000198 | Hardy projection at W=1/2.
+000199 | 
+000200 | This conclusion is stronger than the former nondividing-kappa audit because
+000201 | it finds an actual bordered half inside the original h,Q,kappa group. It is
+000202 | still a one-particle/free geometric statement. It does not identify the v519
+000203 | finite state, the interacting measure, the old quarter Hardy source or the W8
+000204 | field map with this graph.
+000205 | 
+000206 | 6. Relation to the earlier flat cut calculation
+000207 | =================================================
+000208 | 
+000209 | The earlier state-time note uses a flat orientation cover with a reflection
+000210 | in x and a boundary operator R_cut that swaps the two cut faces at the same
+000211 | transverse coordinate. The elliptic annulus uses delta_A, which swaps the
+000212 | faces and shifts s by 1/2. They are different geometric realizations.
+000213 | 
+000214 | After Fourier transform, the half translation is diagonal and commutes with
+000215 | the boundary Hamiltonian. It therefore cancels from the elementary graph
+000216 | covariance test. This explains why both calculations reduce to a block swap
+000217 | plus lambda -> -lambda. It does not supply an intertwiner between the two
+000218 | source geometries. Any later boundary-fold synthesis must retain the half
+000219 | translation and prove that intertwiner separately.
+000220 | 
+000221 | The source-accurate conclusion here is:
+000222 | 
+000223 |   rho supplies the Schottky and OS reflection on the elliptic double;
+000224 |   delta_A supplies the Moebius face exchange with half translation;
+000225 |   sigma_s U_g supplies the complex-linear order-four Pin descent.
+000226 | 
+000227 | 7. Independent checker
+000228 | =======================
+000229 | 
+000230 | check_elliptic_moebius_review.py verifies thirteen exact statements:
+000231 | 
+000232 | * all eight affine formulas and involution squares modulo the lattice;
+000233 | * the two dividing entries and the algebraic component census;
+000234 | * freeness and order of delta_E and delta_A;
+000235 | * Q is not the boundary half translation;
+000236 | * the NS character and the raw central pullback relations;
+000237 | * uniqueness of the Q-invariant, zero-mode-free, order-four spin character;
+000238 | * complex-linear Pin covariance and square;
+000239 | * involutivity after restriction to either c=+/-i quotient sector;
+000240 | * the different square of the anti-linear Real operator;
+000241 | * the reduced two-face graph covariance.
+000242 | 
+000243 | Normal and python -OO executions produce the same result digest.
+000244 | 
+000245 | 8. Review of the boundary continuation
+000246 | =======================================
+000247 | 
+000248 | The coordinate change theta=2pi s is unitary from L2(ds) to
+000249 | L2(dtheta/(2pi)) and carries H1_NS to H1_NS. On that domain,
+000250 | 
+000251 |   R B_Sigma R^-1=2pi B_cov.
+000252 | 
+000253 | The half translation s -> s+1/2 becomes T_pi, and its even and odd NS modes
+000254 | have eigenvalues +i and -i. Writing the two mode classes with the periodic
+000255 | base coordinate x=2theta gives exactly
+000256 | 
+000257 |   B_cov=2(B_1/4 direct_sum B_3/4).
+000258 | 
+000259 | Multiplication by exp(i theta) maps the 1/4 block to the 3/4 block and maps
+000260 | the 3/4 block to the 1/4 block with one base winding. Thus the factor two and
+000261 | the carry matrix in the boundary report are exact operator statements, not a
+000262 | spectral analogy.
+000263 | 
+000264 | For D_+=partial_t+B_Sigma on a strip of width W, the solution graph has
+000265 | transfer T=exp(-W B_Sigma). The compression to its second labeled face is
+000266 | 
+000267 |   T^2(1+T^2)^-1=(1+exp(2W B_Sigma))^-1.
+000268 | 
+000269 | At W=1/2 this becomes
+000270 | 
+000271 |   C_A=(1+exp(2pi B_cov))^-1.
+000272 | 
+000273 | The opposite face has I-C_A. Therefore the sign in the report is correct for
+000274 | the stated second-face orientation. Reversing the face or boundary
+000275 | orientation replaces C_A by its complement and reverses the winding factor.
+000276 | This label must remain part of any later P1 identification.
+000277 | 
+000278 | The trace norm calculation is also correct:
+000279 | 
+000280 |   ||C_A-P_-||_1
+000281 |     =2 sum_(k>=0) 1/(1+exp(2pi(k+1/2)))
+000282 |     =0.0830093523...,
+000283 | 
+000284 | and
+000285 | 
+000286 |   ||C_A-P_-||_1
+000287 |     <2 exp(-pi)/(1-exp(-2pi))
+000288 |     =0.0865895375... <0.086590.
+000289 | 
+000290 | For positive winding u_cov e_n=e_(n+1), the occupations shift as
+000291 | c_n -> c_(n-1). Finite relative products telescope with orientation
+000292 | 
+000293 |   product_(n=-L)^L (1-z c_(n-1))/(1-z c_n)
+000294 |    =(1-z c_(-L-1))/(1-z c_L) -> 1-z.
+000295 | 
+000296 | The squared winding gives (1-z)^2. This agrees with the previously proved
+000297 | pair-index theorem and with the fold carry. The result is an ordinary
+000298 | relative Fredholm determinant of covariances. It is not by itself the
+000299 | original EM, Quillen or susceptibility functional.
+000300 | 
+000301 | The corrected boundary report now also uses the precise scope language:
+000302 | 
+000303 |   * beta_s is the geometric KMS parameter. It is not identified with OS real
+000304 |     time.
+000305 | 
+000306 |   * C_A is a faithful mixed covariance, not a polarization. C_A-P_- being
+000307 |     trace class makes it a trace-class perturbation of the Hardy sea and gives
+000308 |     the quasifree quasi-equivalence statement. It does not produce a
+000309 |     one-particle unitary with C_A=U P_- U*.
+000310 | 
+000311 | The report already preserves the main source boundary: the old fullv21
+000312 | circle tuple is recovered inside the existing C2 annulus, but the primitive
+000313 | P1 data have not yet been identified with this particular dividing annulus,
+000314 | spin line, labeled face and winding. Equation (27) is the correct missing
+000315 | intertwiner contract.
+000316 | 
+000317 | Sources checked
+000318 | ===============
+000319 | 
+000320 | Original elliptic curve and spin computation:
+000321 | 
+000322 | [OMITTED: non-scientific conversation or execution metadata]
+000323 | [OMITTED: non-scientific conversation or execution metadata]
+000324 | [OMITTED: non-scientific conversation or execution metadata]
+000325 | [OMITTED: non-scientific conversation or execution metadata]
+000326 | 
+000327 | Original finite free reflection test:
+000328 | 
+000329 | [OMITTED: non-scientific conversation or execution metadata]
+000330 | [OMITTED: non-scientific conversation or execution metadata]
+000331 | [OMITTED: non-scientific conversation or execution metadata]
+000332 | 
+000333 | Final status
+000334 | ============
+000335 | 
+000336 | PROVED: exactly two of the eight old real forms are dividing and their halves
+000337 | are the Q-paired modulus-1/2 annuli.
+000338 | 
+000339 | PROVED: the existing hQ^2 involution descends to the free Moebius glide with
+000340 | the indispensable boundary half translation.
+000341 | 
+000342 | PROVED: the fixed raw NS pullbacks have U_delta^2=+I, projective commutator
+000343 | -1 and U_g^2=-I. The NS character is uniquely selected among Q-invariant spin
+000344 | characters by nontriviality and the order-four glide.
+000345 | 
+000346 | PROVED: the corrected complex-linear operator A=sigma_s U_g is Dirac
+000347 | covariant, has square -I and has c=+/-i sectors with involutive descent. The
+000348 | anti-linear Real lift remains a separate operator with square +I after the
+000349 | same Clifford factor.
+000350 | 
+000351 | PROVED: on the labeled second boundary the old NS cover tuple is recovered
+000352 | with its exact quarter factor two and carry, and the annulus fixes the
+000353 | dimensionless covariance (1+exp(2pi B_cov))^-1. Its trace distance from the
+000354 | Hardy sea and the relative factors 1-z and (1-z)^2 are correct.
+000355 | 
+000356 | OPEN: an operator, state and local field intertwiner from this annulus graph
+000357 | to the actual v519 or old quarter W8 source. The previous flat R_cut and the
+000358 | elliptic glide are not identified by the common reduced covariance matrix.
+000359 | The same missing primitive P1 intertwiner also prevents calling the relative
+000360 | Fredholm determinant the original physical response.

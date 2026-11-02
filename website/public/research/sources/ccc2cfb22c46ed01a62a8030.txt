@@ -1,0 +1,51 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_regularized_selective_source.py
+Original file SHA-256: 2e280368cedfd909a4f179c00ac59fdbbe06af22f6d33f648e243e550d749957
+Inclusive original lines: 1-43
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R084: det2 of full selectively shifted original R081 singular pair.
+000002 | 
+000003 | Open Fourier cutoffs compress the infinite relative operator; no periodic
+000004 | cutoff shift. This diagnostic is not the original TFPT seam or normalization.
+000005 | """
+000006 | from pathlib import Path
+000007 | import json
+000008 | import numpy as np
+000009 | 
+000010 | rng=np.random.default_rng(252)
+000011 | ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000012 | m=.3*float(np.linalg.svd(ys[0],compute_uv=False)[0]);ell=.2;alpha=.25;z=.3
+000013 | def finite_section(N,mass):
+000014 |  n=np.arange(-N,N+1);p=n+alpha;E=np.sqrt(p*p+mass*mass)
+000015 |  f=.5*np.tanh(ell*E)/E;a=.5+p*f;d=.5-p*f;b=mass*f
+000016 |  pm=p-1;em=np.sqrt(pm*pm+mass*mass);am=.5+pm*.5*np.tanh(ell*em)/em
+000017 |  size=len(n);C=np.zeros((2*size,2*size));D=np.zeros_like(C)
+000018 |  C[:size,:size]=np.diag(a);C[size:,size:]=np.diag(d)
+000019 |  C[:size,size:]=np.diag(b);C[size:,:size]=np.diag(b)
+000020 |  D[:size,:size]=np.diag(am-a)
+000021 |  B=-np.diag(b);B[1:,:-1]+=np.diag(b[:-1])
+000022 |  D[:size,size:]=B;D[size:,:size]=B.T
+000023 |  X=-z*D@np.linalg.inv(np.eye(2*size)-z*C)
+000024 |  sign,logdet=np.linalg.slogdet(np.eye(2*size)+X)
+000025 |  return float(sign*np.exp(logdet-np.trace(X))),float(np.trace(X))
+000026 | 
+000027 | checks={}
+000028 | def need(k,v):
+000029 |  checks[k]=bool(v)
+000030 |  if not v: raise RuntimeError(k)
+000031 | rows=[]
+000032 | for N in [8,24,64,128]:
+000033 |  massive,tr=finite_section(N,m);massless,tr0=finite_section(N,0)
+000034 |  rows.append({'N':N,'massive_det2':massive,'massless_det2':massless,
+000035 |               'massive_finite_trace':tr,'massless_finite_trace':tr0})
+000036 |  need('finite_nonzero_'+str(N),massive>0 and massless>0)
+000037 | need('genuine_mass_dependence',abs(rows[-1]['massive_det2']-rows[-1]['massless_det2'])>.01)
+000038 | need('massive_cutoff_difference_reduces',abs(rows[-1]['massive_det2']-rows[-2]['massive_det2'])<abs(rows[1]['massive_det2']-rows[0]['massive_det2']))
+000039 | need('massless_cutoff_difference_reduces',abs(rows[-1]['massless_det2']-rows[-2]['massless_det2'])<1e-8)
+000040 | out={'scope':'det2 of hypothesized chiral-only shift on actual R081 finite-H singular pair; no physical source or normalization identified',
+000041 |      'z':z,'alpha':alpha,'ell':ell,'mass_control':m,'cutoffs':rows,'checks':checks,'passed':len(checks)}
+000042 | Path(__file__).with_name('REGULARIZED-SELECTIVE-SOURCE.json').write_text(json.dumps(out,indent=2)+'\n')
+000043 | print(json.dumps(out,indent=2))

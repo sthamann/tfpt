@@ -1,0 +1,68 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_original_o1_higgs_law.py
+Original file SHA-256: a19c0b229a610c20c59f52cf9b69ebc682014743e94f2c5e9a40f30e8d41381c
+Inclusive original lines: 1-60
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R057 original O1 covariance versus whole Higgs law, no measure selection."""
+000002 | from pathlib import Path
+000003 | import sys,json,itertools,math
+000004 | import sympy as s
+000005 | import numpy as np
+000006 | ROOT=Path(__file__).resolve().parents[4];sys.path.insert(0,str(ROOT/'verification'))
+000007 | import v252_full_finite_triple as v
+000008 | checks={};details={}
+000009 | def need(n,ok):
+000010 |  checks[n]=bool(ok)
+000011 |  if not ok:raise AssertionError(n)
+000012 | t,u,c,z=s.symbols('t u c z',positive=True);m2=s.symbols('m2',nonnegative=True)
+000013 | def angular(word):
+000014 |  # (component,conjugated), independently integrate both uniform phases.
+000015 |  counts=[0,0];powers=[0,0]
+000016 |  for i,bar in word:counts[i]+=(-1 if bar else 1);powers[i]+=1
+000017 |  if counts!=[0,0]:return s.S.Zero
+000018 |  return s.integrate(t**(s.Rational(powers[0],2))*(1-t)**(s.Rational(powers[1],2)),(t,0,1))
+000019 | for i,j in itertools.product(range(2),repeat=2):
+000020 |  need(f'angular_covariance_{i}{j}',angular([(i,False),(j,True)])==s.Rational(i==j,2))
+000021 |  need(f'anomalous_pair_{i}{j}',angular([(i,False),(j,False)])==0)
+000022 | for i,j,k,l in itertools.product(range(2),repeat=4):
+000023 |  need(f'whole_fourth_tensor_{i}{j}{k}{l}',angular([(i,False),(j,True),(k,False),(l,True)])==s.Rational(int(i==j and k==l)+int(i==l and k==j),6))
+000024 | rho=u*s.exp(-u/c)/c**2
+000025 | for k in range(4):
+000026 |  need(f'Gaussian_radial_moment_{k}',s.simplify(s.integrate(u**k*rho,(u,0,s.oo))-s.factorial(k+1)*c**k)==0)
+000027 | # Exact general moment attainment and Fourier coefficients, no sampled prior.
+000028 | prob=4*c*c/m2;radius2=m2/(2*c)
+000029 | need('all_finite_quartic_moments_same_covariance',s.simplify(prob*radius2-2*c)==0 and s.simplify(prob*radius2**2-m2)==0)
+000030 | for k in range(5):
+000031 |  # x^2 substitution in the exact S3 marginal integral gives a beta value.
+000032 |  ang=s.simplify((2/s.pi*s.beta(s.Rational(2*k+1,2),s.Rational(3,2))).rewrite(s.gamma))
+000033 |  need(f'real_S3_Fourier_coefficient_{k}',s.simplify(ang/s.factorial(2*k)-1/(4**k*s.factorial(k)*s.factorial(k+1)))==0)
+000034 | ker=2*s.besselj(1,z)/z
+000035 | need('exact_Bessel_kernel_series',s.simplify(s.series(ker,z,0,8).removeO()-(1-z*z/8+z**4/192-z**6/9216))==0)
+000036 | char=1-c*z*z/4+m2*z**4/192
+000037 | need('connected_fourth_coefficient',s.expand(s.series(s.log(char),z,0,6).removeO()).coeff(z,4)==(m2-6*c*c)/192)
+000038 | # Native unchanged whole96 original matrix constructor with all Majorana slots.
+000039 | rng=np.random.default_rng(252)
+000040 | Ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000041 | mr=rng.normal(size=(3,3));MR=mr+mr.T;zz=np.zeros((3,3),complex)
+000042 | DY=v.full_D(*Ys,zz);DM=v.full_D(zz,zz,zz,zz,MR)
+000043 | A=np.trace(DY@DY).real;B=np.trace(np.linalg.matrix_power(DY,4)).real
+000044 | C=np.trace(DY@DY@DM@DM).real;M2=np.trace(DM@DM).real;M4=np.trace(np.linalg.matrix_power(DM,4)).real
+000045 | cc=1.5 # diagnostic covariance scale only, not a physical value
+000046 | native={}
+000047 | for uu in [0.,cc,2*cc,3*cc]:
+000048 |  ph=np.sqrt(uu)*DY+DM
+000049 |  q2=float(np.trace(ph@ph).real);q4=float(np.trace(np.linalg.matrix_power(ph,4)).real)
+000050 |  need(f'native96_quadratic_{uu}',abs(q2-(A*uu+M2))<1e-9)
+000051 |  need(f'native96_quartic_Majorana_{uu}',abs(q4-(B*uu*uu+4*C*uu+M4))<1e-8)
+000052 |  native[uu]=(q2,q4)
+000053 | need('same_covariance_same_native_quadratic',abs((native[cc][0]+native[3*cc][0])/2-native[2*cc][0])<1e-9)
+000054 | need('same_covariance_different_native_quartic',abs(((native[cc][1]+native[3*cc][1])/2-native[2*cc][1])-cc*cc*B)<1e-8)
+000055 | need('original_nonzero_Y_quartic_positive',B>0 and C>=0)
+000056 | details['native_covariance_scale_diagnostic']=cc
+000057 | details['native_traces']=dict(A=float(A),B=float(B),C=float(C),M2=float(M2),M4=float(M4))
+000058 | out=dict(all_passed=all(checks.values()),checks=checks,details=details,scope='Given O1 mode isometry/covariance and actual unitary weak-invariant positive constant-fiber marginal only;no primitive source/measure selected,no full fixed-background radial claim,no new Lean')
+000059 | Path(__file__).with_name('ORIGINAL-O1-HIGGS-LAW.json').write_text(json.dumps(out,indent=2)+'\n')
+000060 | print(json.dumps(dict(all_passed=out['all_passed'],controls=len(checks))))

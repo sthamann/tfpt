@@ -1,0 +1,108 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_claude42_general_family_ko.py
+Original file SHA-256: 73cc3f9892dc46c8c3e0db59c591132331b94dab90f6f0fad062d0f0c7e5e870
+Inclusive original lines: 1-100
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | [OMITTED: non-scientific conversation or execution metadata]
+000003 | 
+000004 | from __future__ import annotations
+000005 | 
+000006 | import importlib.util
+000007 | import json
+000008 | from pathlib import Path
+000009 | import sys
+000010 | 
+000011 | import numpy as np
+000012 | 
+000013 | 
+000014 | HERE = Path(__file__).resolve().parent
+000015 | ROOT = HERE.parents[3]
+000016 | [OMITTED: non-scientific conversation or execution metadata]
+000017 | sys.path.insert(0, str(ROOT / "verification"))
+000018 | import v252_full_finite_triple as v252  # noqa: E402
+000019 | 
+000020 | BASE_PATH = HERE / "check_hardy_bmu_weak_clifford_lift.py"
+000021 | SPEC = importlib.util.spec_from_file_location("hardy_weak", BASE_PATH)
+000022 | if SPEC is None or SPEC.loader is None:
+000023 |     raise RuntimeError(f"cannot load {BASE_PATH}")
+000024 | BASE = importlib.util.module_from_spec(SPEC)
+000025 | SPEC.loader.exec_module(BASE)
+000026 | 
+000027 | 
+000028 | def require(ok: object, label: str) -> None:
+000029 |     if not bool(ok):
+000030 |         raise RuntimeError(label)
+000031 | 
+000032 | 
+000033 | def family_lift(m: np.ndarray) -> np.ndarray:
+000034 |     """Lift one 3x3 G-column coefficient identically to all actual 96 slots."""
+000035 |     require(m.shape == (3, 3), "family matrix shape")
+000036 |     out = np.zeros((v252.NH, v252.NH), complex)
+000037 |     for sector in (0, 1):
+000038 |         offset = sector * v252.NP
+000039 |         for name, chirality, color, source_generation in v252.P:
+000040 |             source = offset + v252.IDX[(name, chirality, color, source_generation)]
+000041 |             for target_generation in range(3):
+000042 |                 target = offset + v252.IDX[(name, chirality, color, target_generation)]
+000043 |                 out[target, source] = m[target_generation, source_generation]
+000044 |     return out
+000045 | 
+000046 | 
+000047 | def family_block(d: np.ndarray, sector: int, row: tuple[str, str],
+000048 |                  col: tuple[str, str], color: int = 0) -> np.ndarray:
+000049 |     """Return the 3x3 family block for one fixed carrier matrix entry."""
+000050 |     offset = sector * v252.NP
+000051 |     rows = [offset + v252.IDX[(row[0], row[1], color, g)] for g in range(3)]
+000052 |     cols = [offset + v252.IDX[(col[0], col[1], color, g)] for g in range(3)]
+000053 |     return d[np.ix_(rows, cols)]
+000054 | 
+000055 | 
+000056 | def comm(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+000057 |     return a @ b - b @ a
+000058 | 
+000059 | 
+000060 | def main() -> None:
+000061 |     c = BASE.creators()
+000062 |     w = BASE.whole96_dictionary()
+000063 |     gamma = v252.grading().astype(int)
+000064 |     kswap = v252.Kswap().astype(int)
+000065 |     pplus = (np.eye(96, dtype=int) + gamma) // 2
+000066 |     eye3 = np.eye(3, dtype=int)
+000067 |     x1 = w.T @ np.kron(eye3, c[3]) @ w
+000068 |     x2 = w.T @ np.kron(eye3, c[4]) @ w
+000069 | 
+000070 |     # First prove the formula for a generic non-symmetric complex matrix.
+000071 |     m_generic = np.array([
+000072 |         [1 + 2j, 3 - 1j, 0.5j],
+000073 |         [-2 + 0.25j, 0.75 - 3j, 4],
+000074 |         [1.5, -0.5 + 2j, -1j],
+000075 |     ], complex)
+000076 |     m96 = family_lift(m_generic)
+000077 |     b = m96 @ pplus
+000078 |     a0 = comm(x1, b)
+000079 |     require(np.allclose(a0, m96 @ x1 @ gamma), "generic commutator")
+000080 |     d_adj = a0 + a0.conj().T
+000081 |     d_ko = d_adj + kswap @ d_adj.conj() @ kswap
+000082 |     s_generic = m_generic + m_generic.T
+000083 |     s96 = family_lift(s_generic)
+000084 |     predicted = s96 @ x1 @ gamma - s96.conj().T @ x1.T @ gamma
+000085 |     require(np.allclose(d_ko, predicted), "generic KO symmetric-part formula")
+000086 |     require(np.allclose(d_ko, d_ko.conj().T), "generic KO selfadjoint")
+000087 |     require(np.allclose(kswap @ d_ko.conj() @ kswap, d_ko), "generic KO J-real")
+000088 |     require(np.allclose(gamma @ d_ko + d_ko @ gamma, 0), "generic KO odd")
+000089 | 
+000090 | [OMITTED: non-scientific conversation or execution metadata]
+000091 |     # at the displayed decimal precision and its overall sign is uncalibrated.
+000092 |     a = 0.1258739334853158906973132600522979652656 - 0.4697679151157443151336120497675343216716j
+000093 |     b21 = -0.421375 + 1.572594j
+000094 |     m = np.zeros((3, 3), complex)
+000095 |     m[0, 2] = a
+000096 |     m[2, 1] = b21
+000097 |     s = m + m.T
+000098 |     r = float(np.sqrt(abs(a) ** 2 + abs(b21) ** 2))
+000099 |     require(np.allclose(np.linalg.svd(m, compute_uv=False),
+000100 |                         sorted((abs(a), abs(b21), 0), reverse=True)),

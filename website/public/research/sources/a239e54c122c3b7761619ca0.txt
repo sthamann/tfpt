@@ -1,0 +1,120 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/fermionic_source_type_20261029/check_finite_fermion_type.py
+Original file SHA-256: 00e7c25ef2a0bcce5283ef615183b68be735a5ff8500048db3e6a2e3c2036f07
+Inclusive original lines: 1-112
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Narrow type check on the EXISTING v252 constructor; no new physical source.
+000002 | 
+000003 | Does not call its run(), modify its ledger, or invent spacetime matrices.
+000004 | The general sign proof and the C* state theorem are in PROOF.txt.
+000005 | """
+000006 | from pathlib import Path
+000007 | import json
+000008 | import sys
+000009 | 
+000010 | import numpy as np
+000011 | import sympy as s
+000012 | 
+000013 | ROOT = Path(__file__).resolve().parents[4]
+000014 | sys.path.insert(0, str(ROOT / "verification"))
+000015 | import v252_full_finite_triple as original
+000016 | 
+000017 | 
+000018 | def exact_gaussian(matrix):
+000019 |     rows = []
+000020 |     for row in matrix:
+000021 |         values = []
+000022 |         for z in row:
+000023 |             z = complex(z)
+000024 |             if not (z.real.is_integer() and z.imag.is_integer()):
+000025 |                 raise ValueError("Control inputs must give Gaussian integer entries")
+000026 |             values.append(s.Integer(int(z.real)) + s.I * int(z.imag))
+000027 |         rows.append(values)
+000028 |     return s.Matrix(rows)
+000029 | 
+000030 | 
+000031 | def main():
+000032 |     # Deterministic Gaussian integer data exercise the original complex Yukawa
+000033 |     # and symmetric Majorana construction. They are not a physical calibration.
+000034 |     Y = np.array([[1+1j, 2-1j, 0], [0, 3+2j, -1j], [2, 0, 4-1j]])
+000035 |     MR = np.array([[2, 1+1j, 0], [1+1j, 3, 2j], [0, 2j, 5]])
+000036 |     D = exact_gaussian(original.full_D(Y, 2*Y, 3*Y, 4*Y, MR))
+000037 |     U = exact_gaussian(original.Kswap())
+000038 |     G = exact_gaussian(original.grading())
+000039 |     B = U.conjugate().T * D
+000040 |     plus = [i for i in range(original.NH) if G[i, i] == 1]
+000041 |     Bplus = B.extract(plus, plus)
+000042 |     UG = G * U
+000043 |     BG = UG.conjugate().T * D
+000044 |     checks = {
+000045 |         "original_dimension_96": D.shape == (96, 96),
+000046 |         "selfadjoint": D == D.conjugate().T,
+000047 |         "J_square_plus": U * U.conjugate() == s.eye(96),
+000048 |         "J_commutes_D": U * D.conjugate() == D * U,
+000049 |         "J_anticommutes_grading": U * G.conjugate() == -G * U,
+000050 |         "D_anticommutes_grading": D * G == -G * D,
+000051 |         "finite_bilinear_symmetric": B.T == B,
+000052 |         "chiral_bilinear_nonzero_but_symmetric": Bplus != s.zeros(48) and Bplus.T == Bplus,
+000053 |         "grassmann_quadratic_coefficients_zero": Bplus - Bplus.T == s.zeros(48),
+000054 |         "grading_modified_J_square_minus": UG * UG.conjugate() == -s.eye(96),
+000055 |         "grading_modified_J_anticommutes_D": UG * D.conjugate() == -D * UG,
+000056 |         "grading_modified_bilinear_still_symmetric": BG.T == BG,
+000057 |     }
+000058 |     # Standard real even KO signs. This is a type census, not a metric dimension
+000059 |     # derivation: a nonzero chiral skew pairing needs both columns to pass.
+000060 |     signs = {0: (1, 1, 1), 2: (-1, 1, -1), 4: (-1, 1, 1), 6: (1, 1, -1)}
+000061 |     census = [dict(ko=k, epsilon=e, epsilon_prime=ep, epsilon_doubleprime=epp,
+000062 |                    skew=e*ep == -1, preserves_chiral_pairing=epp == -1)
+000063 |               for k, (e, ep, epp) in signs.items()]
+000064 |     checks["only_KO2_has_both_required_signs"] = [
+000065 |         r["ko"] for r in census if r["skew"] and r["preserves_chiral_pairing"]
+000066 |     ] == [2]
+000067 |     # A second output of that SAME constructor has simple Majorana eigenvalues.
+000068 |     # Kramers' argument then excludes EVERY commuting square-minus antiunitary
+000069 |     # on that output, not only the two explicitly tried J choices.
+000070 |     args = [np.diag(x) for x in ([11,13,17], [19,23,29], [31,37,41],
+000071 |                                  [1,2,3], [1,4,9])]
+000072 |     DM = exact_gaussian(original.full_D(*args))
+000073 |     lam = s.Symbol("lambda")
+000074 |     characteristic = DM.charpoly(lam).as_expr()
+000075 |     q = lam**4 - 3*lam**2 + 1
+000076 |     indices = [original.IDX[("nu", chirality, 0, 0)] + offset
+000077 |                for offset in (0, original.NP) for chirality in ("L", "R")]
+000078 |     block = DM.extract(indices, indices)
+000079 |     checks["actual_neutrino_block_has_q_characteristic"] = block.charpoly(lam).as_expr() == q
+000080 |     checks["q_occurs_in_full_96_characteristic"] = s.rem(characteristic, q, lam) == 0
+000081 |     checks["all_four_q_eigenvalues_are_simple_in_full_96"] = s.gcd(q, s.diff(characteristic, lam)) == 1
+000082 |     Q = s.diag(*([1]*48 + [-1]*48))
+000083 |     Ualt = Q * U
+000084 |     args[-1] = np.zeros((3, 3))
+000085 |     Dzero = exact_gaussian(original.full_D(*args))
+000086 |     checks["no_majorana_control_allows_commuting_square_minus_J"] = (
+000087 |         Ualt * Ualt.conjugate() == -s.eye(96)
+000088 |         and Ualt * Dzero.conjugate() == Dzero * Ualt
+000089 |         and Ualt * G.conjugate() == -G * Ualt)
+000090 |     checks["same_J_fails_commutation_with_majorana_on"] = Ualt * DM.conjugate() != DM * Ualt
+000091 |     for name, passed in checks.items():
+000092 |         if not passed:
+000093 |             raise RuntimeError(name)
+000094 |     result = {
+000095 |         "status": "PASS_SCOPED",
+000096 |         "checks": checks,
+000097 |         "chiral_dimension": len(plus),
+000098 |         "chiral_nonzero_bilinear_entries": sum(x != 0 for x in Bplus),
+000099 |         "ko_sign_census": census,
+000100 |         "majorana_type_control": {
+000101 |             "neutrino_block": str(block),
+000102 |             "q": str(q),
+000103 |             "gcd_q_and_full_characteristic_derivative": str(s.gcd(q, s.diff(characteristic, lam))),
+000104 |             "scope": "An actual v252 constructor output, not the selected physical TFPT masses. A universal internal KO2 repair is excluded; no all-P1 or spacetime theorem.",
+000105 |         },
+000106 |         "scope": "Existing v252 finite constructor only; general identities proved in text. No original local P1 field action, spacetime domain, measure, reflection or full TFPT derived.",
+000107 |     }
+000108 |     print(json.dumps(result, indent=2, sort_keys=True))
+000109 | 
+000110 | 
+000111 | if __name__ == "__main__":
+000112 |     main()

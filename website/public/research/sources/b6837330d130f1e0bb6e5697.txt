@@ -1,0 +1,189 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/boundary_origin_20261027/source/check_three_cabled_seam.py
+Original file SHA-256: 730e457fa4b009dd899a3909ddc1c745db9ed5a28220d3b63b5374c14f026286
+Inclusive original lines: 1-181
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Finite algebraic test for the three-cabled seam and its jet quotient.
+000003 | 
+000004 | The Hardy/Fredholm statement is proved analytically in the accompanying text.
+000005 | This script only checks its finite polynomial truncations and the induced
+000006 | c, Q, and beta characters on the explicit cokernel.
+000007 | """
+000008 | import json
+000009 | from pathlib import Path
+000010 | 
+000011 | import sympy as sp
+000012 | 
+000013 | 
+000014 | SHEETS = 3
+000015 | TRUNCATION_DEGREE = 6
+000016 | WINDINGS = range(1, 9)
+000017 | I = sp.I
+000018 | ZETA8 = (1 + I) / sp.sqrt(2)
+000019 | 
+000020 | 
+000021 | def basis_index(sheet, degree, degree_bound):
+000022 |     return sheet * degree_bound + degree
+000023 | 
+000024 | 
+000025 | def multiplication_matrix(n, degree=TRUNCATION_DEGREE):
+000026 |     """Matrix of z^n: (C[z]_<degree)^3 -> (C[z]_<degree+n)^3."""
+000027 |     rows = SHEETS * (degree + n)
+000028 |     cols = SHEETS * degree
+000029 |     matrix = sp.zeros(rows, cols)
+000030 |     for sheet in range(SHEETS):
+000031 |         for power in range(degree):
+000032 |             matrix[basis_index(sheet, power + n, degree + n),
+000033 |                    basis_index(sheet, power, degree)] = 1
+000034 |     return matrix
+000035 | 
+000036 | 
+000037 | def quotient_basis(n, degree=TRUNCATION_DEGREE):
+000038 |     """Columns for the expected jet quotient z^j on each sheet, 0 <= j < n."""
+000039 |     rows = SHEETS * (degree + n)
+000040 |     quotient = sp.zeros(rows, SHEETS * n)
+000041 |     column = 0
+000042 |     for sheet in range(SHEETS):
+000043 |         for power in range(n):
+000044 |             quotient[basis_index(sheet, power, degree + n), column] = 1
+000045 |             column += 1
+000046 |     return quotient
+000047 | 
+000048 | 
+000049 | def q_action(degree_bound, spin_phase=sp.S.One):
+000050 |     """Q sends sheet a to -a and z^j to i^j z^j."""
+000051 |     action = sp.zeros(SHEETS * degree_bound)
+000052 |     for sheet in range(SHEETS):
+000053 |         target_sheet = (-sheet) % SHEETS
+000054 |         for power in range(degree_bound):
+000055 |             action[basis_index(target_sheet, power, degree_bound),
+000056 |                    basis_index(sheet, power, degree_bound)] = spin_phase * I**power
+000057 |     return action
+000058 | 
+000059 | 
+000060 | def c_action(degree_bound):
+000061 |     """c sends sheet a to a+1 and fixes z."""
+000062 |     action = sp.zeros(SHEETS * degree_bound)
+000063 |     for sheet in range(SHEETS):
+000064 |         target_sheet = (sheet + 1) % SHEETS
+000065 |         for power in range(degree_bound):
+000066 |             action[basis_index(target_sheet, power, degree_bound),
+000067 |                    basis_index(sheet, power, degree_bound)] = 1
+000068 |     return action
+000069 | 
+000070 | 
+000071 | def exact_text(value):
+000072 |     return str(sp.simplify(value))
+000073 | 
+000074 | 
+000075 | w, eta = sp.symbols("w eta", nonzero=True)
+000076 | x = w**3
+000077 | z = eta / (1 - x)
+000078 | z2_reduced = sp.cancel((1 - x**2) / (1 - x)**2)
+000079 | z_q = sp.simplify((-I * eta / x) / (1 - 1 / x))
+000080 | 
+000081 | checks = {
+000082 |     "curve_identity_z_squared": sp.simplify(z2_reduced - (1 + x) / (1 - x)) == 0,
+000083 |     "source_Q_sends_z_to_i_z": sp.simplify(z_q - I * z) == 0,
+000084 | }
+000085 | cases = {}
+000086 | 
+000087 | for n in WINDINGS:
+000088 |     degree = TRUNCATION_DEGREE
+000089 |     mult = multiplication_matrix(n, degree)
+000090 |     jets = quotient_basis(n, degree)
+000091 |     combined = mult.row_join(jets)
+000092 | 
+000093 |     domain_q = q_action(degree)
+000094 |     codomain_q = q_action(degree + n)
+000095 |     domain_c = c_action(degree)
+000096 |     codomain_c = c_action(degree + n)
+000097 | 
+000098 |     quotient_q_ref = q_action(n)
+000099 |     quotient_q_spin = q_action(n, ZETA8)
+000100 |     quotient_c = c_action(n)
+000101 | 
+000102 |     q_ref_det = sp.simplify(quotient_q_ref.det())
+000103 |     q_spin_det = sp.simplify(quotient_q_spin.det())
+000104 |     relative_q = sp.simplify(q_ref_det / q_spin_det)
+000105 |     relative_beta = sp.simplify(relative_q**2)
+000106 |     expected_q = sp.simplify(ZETA8**(-SHEETS * n))
+000107 |     expected_beta = I**n
+000108 | 
+000109 |     case_checks = {
+000110 |         "rank_is_full_domain": mult.rank() == SHEETS * degree,
+000111 |         "kernel_is_zero": len(mult.nullspace()) == 0,
+000112 |         "cokernel_dimension_is_3n": mult.rows - mult.rank() == SHEETS * n,
+000113 |         "jet_columns_complete_the_image": combined.rank() == mult.rows,
+000114 |         "jet_count_is_3n": jets.cols == SHEETS * n,
+000115 |         "Q_covariance_of_z_to_n": codomain_q * mult == I**n * mult * domain_q,
+000116 |         "c_equivariance": codomain_c * mult == mult * domain_c,
+000117 |         "Q_conjugates_c_to_inverse": (
+000118 |             quotient_q_ref * quotient_c * quotient_q_ref.inv() == quotient_c**2
+000119 |         ),
+000120 |         "reference_Q_fourth_power_is_identity": quotient_q_ref**4 == sp.eye(SHEETS * n),
+000121 |         "spin_Q_fourth_power_is_minus_identity": (
+000122 |             quotient_q_spin**4 == -sp.eye(SHEETS * n)
+000123 |         ),
+000124 |         "relative_Q_character": sp.simplify(relative_q - expected_q) == 0,
+000125 |         "relative_beta_character": sp.simplify(relative_beta - expected_beta) == 0,
+000126 |         "c_character_is_n_regular_representations": (
+000127 |             quotient_c.trace() == 0 and (quotient_c**2).trace() == 0
+000128 |         ),
+000129 |         "c_determinant_is_one": quotient_c.det() == 1,
+000130 |     }
+000131 |     for name, passed in case_checks.items():
+000132 |         checks[f"n_{n}_{name}"] = bool(passed)
+000133 | 
+000134 |     cases[str(n)] = {
+000135 |         "matrix_shape": [mult.rows, mult.cols],
+000136 |         "rank": mult.rank(),
+000137 |         "kernel_dimension": len(mult.nullspace()),
+000138 |         "cokernel_dimension": mult.rows - mult.rank(),
+000139 |         "quotient_basis": [
+000140 |             f"sheet_{sheet}:z^{power}"
+000141 |             for sheet in range(SHEETS)
+000142 |             for power in range(n)
+000143 |         ],
+000144 |         "Q_reference_determinant": exact_text(q_ref_det),
+000145 |         "Q_spin_determinant": exact_text(q_spin_det),
+000146 |         "relative_Q_character": exact_text(relative_q),
+000147 |         "expected_relative_Q_character": exact_text(expected_q),
+000148 |         "relative_beta_character": exact_text(relative_beta),
+000149 |         "expected_relative_beta_character": exact_text(expected_beta),
+000150 |         "c_character": {
+000151 |             "identity": SHEETS * n,
+000152 |             "c": int(quotient_c.trace()),
+000153 |             "c_squared": int((quotient_c**2).trace()),
+000154 |             "determinant": int(quotient_c.det()),
+000155 |         },
+000156 |     }
+000157 | 
+000158 | errors = [name for name, passed in checks.items() if not passed]
+000159 | payload = {
+000160 |     "scope": (
+000161 |         "Finite polynomial truncation only. The Hardy/Fredholm and determinant-line "
+000162 |         "statements are analytic results in ORIGINAL-BOUNDARY-NORM-ORIGIN.txt."
+000163 |     ),
+000164 |     "curve": "eta^2=1-w^6",
+000165 |     "map": "z=eta/(1-w^3), z^2=(1+w^3)/(1-w^3)",
+000166 |     "truncation_degree": TRUNCATION_DEGREE,
+000167 |     "sheet_action": {
+000168 |         "c": "(a,j)->(a+1,j)",
+000169 |         "Q_reference": "(a,j)->(-a,j) with phase i^j",
+000170 |         "Q_spin": "(a,j)->(-a,j) with phase zeta8*i^j",
+000171 |     },
+000172 |     "cases": cases,
+000173 |     "checks": checks,
+000174 |     "checks_passed": not errors,
+000175 |     "errors": errors,
+000176 | }
+000177 | 
+000178 | output = json.dumps(payload, indent=2, sort_keys=True) + "\n"
+000179 | Path(__file__).with_name("three-cabled-seam.json").write_text(output)
+000180 | print(output, end="")
+000181 | raise SystemExit(0 if not errors else 1)

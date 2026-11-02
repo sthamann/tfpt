@@ -1,0 +1,188 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/two_face_source_20261029/check_two_face_source.py
+Original file SHA-256: c5075473da6daeb5284cb7d4f16fa4f6c82d53a88945b856c2a8fa348c1549ce
+Inclusive original lines: 1-180
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Check the existing elliptic source, its graded double and correct reflections.
+000002 | 
+000003 | This reuses the old CAR and exterior-source implementation. The symbolic
+000004 | parameter z is exp(-pi/12) in the old square annulus, not a fitted coupling.
+000005 | Finite NS-mode checks supplement the all-mode bounded-operator proof.
+000006 | """
+000007 | import importlib.util
+000008 | import json
+000009 | from pathlib import Path
+000010 | import sys
+000011 | import sympy as s
+000012 | 
+000013 | [OMITTED: non-scientific conversation or execution metadata]
+000014 | OLD = REPO / 'experiments/theory-contracts/seam-collar-multifield-20261016'
+000015 | sys.path.insert(0, str(OLD))
+000016 | from source_sewing import source_lift
+000017 | from boundary_amplitude import graph_projection
+000018 | 
+000019 | spec = importlib.util.spec_from_file_location(
+000020 |     'old_half_period', REPO / 'experiments/theory-contracts/'
+000021 |     'native-arc-charge-source-interface-20261026/check_half_period_gns_sewing.py')
+000022 | half = importlib.util.module_from_spec(spec)
+000023 | spec.loader.exec_module(half)
+000024 | 
+000025 | 
+000026 | def equal(a, b, name):
+000027 |     diff = a-b
+000028 |     entries = list(diff) if isinstance(diff, s.MatrixBase) else [diff]
+000029 |     if any(s.factor(x) != 0 for x in entries):
+000030 |         raise RuntimeError(name)
+000031 | 
+000032 | 
+000033 | def vec(a):
+000034 |     return s.Matrix([a[i,j] for j in range(a.cols) for i in range(a.rows)])
+000035 | 
+000036 | 
+000037 | def run():
+000038 |     z = s.symbols('z', positive=True)
+000039 |     # Two actual positive NS modes lambda=pi,3pi, W=1/2, beta=1.
+000040 |     # z=exp(-pi/12), so Q=exp(-W H), D=exp(-W H/3).
+000041 |     T = s.diag(z**6, z**18)
+000042 |     Q = source_lift(T)
+000043 |     equal(Q, s.diag(1,z**6,z**18,z**24), 'old exterior source lift')
+000044 |     D = s.diag(1,z**2,z**6,z**8)
+000045 |     equal(D**3, Q, 'same source at the three collar substeps')
+000046 |     partition = s.trace(Q**2)
+000047 |     data = half.double_data([Q[i,i]**2 for i in range(4)])
+000048 |     a, rho, root, parity, action, word, ops, adj, P = data
+000049 |     equal(root, Q/s.sqrt(partition), 'same original thermal density')
+000050 |     G = graph_projection(T)
+000051 |     equal(P, G, 'actual graded source double equals old graph')
+000052 |     C = s.diag(z**12/(1+z**12), z**36/(1+z**36))
+000053 |     X = s.diag(z**6/(1+z**12), z**18/(1+z**36))
+000054 |     equal(P, (s.eye(2)-C).row_join(X).col_join(X.row_join(C)),
+000055 |           'all four labelled source covariance blocks')
+000056 | 
+000057 |     def left(A): return s.kronecker_product(s.eye(4), A)
+000058 |     def right(A): return s.kronecker_product(A.T, s.eye(4))
+000059 |     Gamma = left(parity)*right(parity)
+000060 |     Jlinear = s.zeros(16)
+000061 |     for i in range(4):
+000062 |         for j in range(4): Jlinear[j+4*i,i+4*j] = 1
+000063 |     def modular_conjugate(A): return Jlinear*s.conjugate(A)*Jlinear
+000064 |     equal(Jlinear*s.conjugate(vec(root)), vec(root), 'J fixes actual source vector')
+000065 |     aR = [left(A) for A in a]
+000066 |     aL = [-Gamma*right(A) for A in a]
+000067 |     for j in range(2):
+000068 |         equal(modular_conjugate(aR[j]), Gamma*aL[j].H,
+000069 |               'graded odd partner includes the parity operator')
+000070 |         nR, nL = aR[j].H*aR[j], aL[j].H*aL[j]
+000071 |         equal(modular_conjugate(nR), s.eye(16)-nL,
+000072 |               'J sends occupation to partner hole, not bare face swap')
+000073 |         equal((aR[j]-T[j,j]*aL[j])*vec(root), s.zeros(16,1),
+000074 |               'existing first source sewing null relation')
+000075 |         equal((aL[j].H+T[j,j]*aR[j].H)*vec(root), s.zeros(16,1),
+000076 |               'existing adjoint sewing null relation')
+000077 | 
+000078 |     # Source-bounded even unitary insertions. These are not finite matrices
+000079 |     # pretending to realize a nonzero central current CCR.
+000080 |     U = source_lift(s.Matrix([[0,1],[-1,0]]))
+000081 |     V = source_lift(s.diag(1,s.I))
+000082 |     insertions = [s.eye(4), U, V, U*V]
+000083 |     for A in insertions:
+000084 |         equal(A.H*A, s.eye(4), 'bounded source insertion is unitary')
+000085 |         equal(A*parity, parity*A, 'neutral even source insertion')
+000086 |         equal(modular_conjugate(left(A)), right(A.H), 'J acts on bounded insertions')
+000087 |     for A in insertions:
+000088 |         for B in insertions:
+000089 |             equal(right(A.H)*right(B.H), right((A*B).H),
+000090 |                   'partner Weyls are multiplicative as a conjugate representation')
+000091 |             equal(left(A)*right(B.H), right(B.H)*left(A), 'two neutral sides commute')
+000092 |     equal(modular_conjugate(s.I*s.eye(16)), -s.I*s.eye(16),
+000093 |           'J scalar action is conjugate linear')
+000094 | 
+000095 |     # Bounded half-cut pairing from this SAME rho; no freely chosen cross metric.
+000096 |     neutral_gram = s.zeros(len(insertions))
+000097 |     quarter = s.diag(1,z**3,z**9,z**12)/partition**s.Rational(1,4)
+000098 |     for i,A in enumerate(insertions):
+000099 |         for j,B in enumerate(insertions):
+000100 |             joint = (vec(root).H*right(A.H)*left(B)*vec(root))[0]
+000101 |             affinity = s.trace(root*A.H*root*B)
+000102 |             hs = s.trace((quarter*A*quarter).H*(quarter*B*quarter))
+000103 |             equal(joint, affinity, 'actual joint bounded source functional')
+000104 |             equal(affinity, hs, 'half-cut cross response is a positive HS Gram')
+000105 |             neutral_gram[i,j] = s.factor(joint)
+000106 | 
+000107 |     def thermal_word(events):
+000108 |         ordered = sorted(events, reverse=True, key=lambda e:e[0])
+000109 |         total = s.eye(4)
+000110 |         previous = 6
+000111 |         for t,A in ordered:
+000112 |             total = total*(D**(previous-t))*A
+000113 |             previous = t
+000114 |         return s.trace(total*(D**previous))/partition
+000115 | 
+000116 |     histories = [(s.eye(4),s.eye(4)), (U,V), (V,U), (U*V,V*U)]
+000117 |     history_gram = s.zeros(len(histories))
+000118 |     for i,(A1,A2) in enumerate(histories):
+000119 |         KF = D*A2*D*A1*D
+000120 |         for j,(B1,B2) in enumerate(histories):
+000121 |             KG = D*B2*D*B1*D
+000122 |             # Reflection is t -> -t modulo beta, NOT s -> -s.
+000123 |             source_value = thermal_word([(5,A1.H),(4,A2.H),(2,B2),(1,B1)])
+000124 |             gram_value = s.trace(KF.H*KG)/partition
+000125 |             equal(source_value, gram_value, 'ordered reflected thermal history')
+000126 |             history_gram[i,j] = s.factor(source_value)
+000127 | 
+000128 |     charge_values = []
+000129 |     for j,A in enumerate(a):
+000130 |         exponent = (2,6)[j]
+000131 |         psi = thermal_word([(5,A.H),(1,A)])
+000132 |         bar = thermal_word([(5,A),(1,A.H)])
+000133 |         equal(psi,z**(2*exponent)/(1+z**(6*exponent)), 'old positive reflected psi kernel')
+000134 |         equal(bar,z**(4*exponent)/(1+z**(6*exponent)), 'old positive reflected bar kernel')
+000135 |         midpoint = z**(3*exponent)/(1+z**(6*exponent))
+000136 |         equal(midpoint,X[j,j], 'actual Green midpoint is the joint graph cross block')
+000137 |         charge_values.append(dict(psi=str(s.factor(psi)),bar=str(s.factor(bar)),midpoint=str(midpoint)))
+000138 | 
+000139 |     # Neutral bilinear currents on the actual graded double, with the same
+000140 |     # source subtraction, are the negative right action of source currents.
+000141 |     currents = [s.eye(2),s.diag(1,-1),s.Matrix([[0,1],[1,0]]),s.Matrix([[0,-s.I],[s.I,0]])]
+000142 |     for A in currents:
+000143 |         N = sum((A[i,j]*a[i].H*a[j] for i in range(2) for j in range(2)),s.zeros(4))
+000144 |         mean = s.trace(rho*N)
+000145 |         partner = sum((A[i,j]*aL[i].H*aL[j] for i in range(2) for j in range(2)),s.zeros(16))
+000146 |         partner -= (s.trace(A)-mean)*s.eye(16)
+000147 |         equal(partner,-right(N-mean*s.eye(4)), 'opposite current orientation is derived')
+000148 |         equal(modular_conjugate(left(N-mean*s.eye(4))),-partner,
+000149 |               'modular conjugation reverses centered partner current')
+000150 | 
+000151 |     # The actual old product-collar reflection identities, on a +/- mode pair.
+000152 |     paired_T = s.diag(z**6,z**-6)
+000153 |     paired_P = graph_projection(paired_T)
+000154 |     opposite_P = graph_projection(paired_T.inv())
+000155 |     R = s.Matrix([[0,1],[1,0]])
+000156 |     face_swap = s.zeros(2).row_join(s.eye(2)).col_join(s.eye(2).row_join(s.zeros(2)))
+000157 |     fibre_flip = s.diag(R,R)
+000158 |     equal(face_swap*paired_P*face_swap,opposite_P,'bare face swap reverses B')
+000159 |     equal(fibre_flip*paired_P*fibre_flip,opposite_P,'deck fibre action reverses B')
+000160 |     equal(face_swap*fibre_flip*paired_P*fibre_flip*face_swap,paired_P,
+000161 |           'combined inner collar reflection preserves the full graph')
+000162 | 
+000163 |     return dict(
+000164 |         verdict='PASS_EXISTING_TWO_FACE_SOURCE_AND_TYPED_REFLECTION',
+000165 |         actual_symbolic_source='z=exp(-pi/12), W=1/2, beta=1, NS lambda=(pi,3pi)',
+000166 |         original_implementations_reused=['source_sewing.source_lift','boundary_amplitude.graph_projection','check_half_period_gns_sewing.double_data'],
+000167 |         covariance=[[str(s.factor(x)) for x in row] for row in P.tolist()],
+000168 |         cross=[str(X[i,i]) for i in range(2)],
+000169 |         reflected_charge_kernels=charge_values,
+000170 |         neutral_gram=[[str(x) for x in row] for row in neutral_gram.tolist()],
+000171 |         reflected_history_gram=[[str(x) for x in row] for row in history_gram.tolist()],
+000172 |         J_is_conjugate_linear_multiplicative=True,
+000173 |         J_occupation_image='J n_R J = I - n_L',
+000174 |         partner_current_orientation='j_L(A) = -R_(j(A)); opposite Weyl cocycle follows',
+000175 |         correct_OS_coordinate_map='rho(t,s)=(-t,s); no spatial profile reversal',
+000176 |         bounded_Weyl_all_mode_scope='Analytic bounded-operator HS theorem in PROOF.txt; not inferred from finite matrices',
+000177 |         actual_physical_P1_second_boundary_identified=False,
+000178 |         primitive_P1_measure_or_source_coupling_derived=False,
+000179 |         physical_time_identified=False,
+000180 |         complete_TFPT_solution=False,ledger_changed=False)

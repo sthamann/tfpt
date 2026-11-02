@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/e-series-quarter-clock-20261023/checker.py
+Original file SHA-256: 31e9fcf230273955bbf69536c6594255e3c0c53034a87e13ca1d3c56815b0562
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact finite probe of the original E8 roots and Gaussian quarter clock.
+000002 | 
+000003 | Exploratory mathematics; no change to TFPT's verification ledger.
+000004 | Native functions are extracted without executing their module-level suites.
+000005 | """
+000006 | import ast
+000007 | from collections import Counter
+000008 | from fractions import Fraction
+000009 | from hashlib import sha256
+000010 | import itertools
+000011 | import json
+000012 | from pathlib import Path
+000013 | 
+000014 | import numpy as np
+000015 | import sympy as sp
+000016 | from sympy.combinatorics import Permutation, PermutationGroup
+000017 | from sympy.matrices.normalforms import smith_normal_form, hermite_normal_form
+000018 | 
+000019 | [OMITTED: non-scientific conversation or execution metadata]
+000020 | HERE = Path(__file__).resolve().parent
+000021 | PINS = {}
+000022 | 
+000023 | 
+000024 | def native(relative, name):
+000025 |     path = REPO / relative
+000026 |     raw = path.read_bytes()
+000027 |     PINS[relative] = sha256(raw).hexdigest()
+000028 |     tree = ast.parse(raw)
+000029 |     fn = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == name)
+000030 |     namespace = {'np': np, 'itertools': itertools}
+000031 |     exec(compile(ast.Module(body=[fn], type_ignores=[]), str(path), 'exec'), namespace)
+000032 |     return namespace[name]
+000033 | 
+000034 | 
+000035 | def require(condition, message):
+000036 |     if not condition:
+000037 |         raise RuntimeError(message)
+000038 | 
+000039 | 
+000040 | roots = np.array(native('verification/v1_e8_glue.py', 'e8_roots')())
+000041 | require(np.array_equal(2 * roots, np.rint(2 * roots)), 'half-integral roots')
+000042 | R = np.rint(2 * roots).astype(np.int64)
+000043 | Jvec = native('verification/v634_st31_structure.py', 'J_vec')
+000044 | J = np.column_stack([Jvec(v) for v in np.eye(8, dtype=np.int64)])
+000045 | I = np.eye(8, dtype=np.int64)
+000046 | lookup = {tuple(v): i for i, v in enumerate(R)}
+000047 | jp = np.array([lookup[tuple(Jvec(v))] for v in R])
+000048 | G = R @ R.T  # four times the actual inner products
+000049 | require(len(lookup) == 240 and np.all(np.diag(G) == 8), 'E8 shell')
+000050 | require(np.array_equal(J @ J, -I) and np.array_equal(J.T @ J, I), 'native J')
+000051 | 
+000052 | e7_pairs = set()
+000053 | reflection_matrices = set()
+000054 | reflection_permutations = {}
+000055 | intersection_counts = Counter()
+000056 | shells = Counter()
+000057 | for a in range(240):
+000058 |     b = int(jp[a])
+000059 |     require(G[a, b] == 0, 'alpha perpendicular Jalpha')
+000060 |     e7a = frozenset(np.flatnonzero(G[a] == 0))
+000061 |     e7b = frozenset(np.flatnonzero(G[b] == 0))
+000062 |     require(len(e7a) == len(e7b) == 126 and e7a != e7b, 'two E7 slices')
+000063 |     common = e7a & e7b
+000064 |     require(len(common) == 60, 'D6 common roots')
+000065 |     intersection_counts[len(common)] += 1
+000066 |     shells[tuple(sorted(Counter(int(x // 4) for x in G[a]).items()))] += 1
+000067 |     e7_pairs.add(tuple(sorted((tuple(sorted(e7a)), tuple(sorted(e7b))))))
+000068 |     # 4*s_alpha = 4I - (2alpha)(2alpha)^T, exact integer arithmetic.
+000069 |     sa4 = 4 * I - np.outer(R[a], R[a])
+000070 |     sb4 = 4 * I - np.outer(R[b], R[b])
+000071 |     numerator = sa4 @ sb4
+000072 |     require(np.all(numerator % 4 == 0), 'half-integral double-reflection')
+000073 |     refl4 = numerator // 4  # four times s_alpha*s_Jalpha
+000074 |     require(np.array_equal(refl4 @ J, J @ refl4), 'complex linearity')
+000075 |     require(np.array_equal(refl4 @ refl4, 16 * I), 'involution')
+000076 |     require(np.trace(refl4) == 16, 'real trace4, complex trace2')
+000077 |     images4 = R @ refl4.T
+000078 |     require(np.all(images4 % 4 == 0), 'root image integrality in doubled chart')
+000079 |     require(all(tuple(v) in lookup for v in images4 // 4), 'root preservation')
+000080 |     reflection_matrices.add(tuple(int(v) for v in refl4.flat))
+000081 |     reflection_permutations[tuple(int(v) for v in refl4.flat)] = [lookup[tuple(v)] for v in images4 // 4]
+000082 | require(len(e7_pairs) == len(reflection_matrices) == 60, '60 E7 pairs / reflections')
+000083 | reflection_group_order = PermutationGroup([
+000084 |     Permutation(p) for p in reflection_permutations.values()
+000085 | ]).order()
+000086 | require(reflection_group_order == 46080, 'original G31 order')
+000087 | 
+000088 | # The original group acts transitively on the entire60-chart family.
+000089 | lines = sorted({tuple(sorted((i, int(jp[i]), int(jp[jp[i]]), int(jp[jp[jp[i]]]))))
+000090 |                 for i in range(240)})
+000091 | line_id = {root: k for k, line in enumerate(lines) for root in line}
+000092 | line_actions = [[line_id[p[line[0]]] for line in lines]
+000093 |                 for p in reflection_permutations.values()]
+000094 | orbit, frontier = {0}, [0]
+000095 | while frontier:
+000096 |     nxt = {p[x] for x in frontier for p in line_actions} - orbit
+000097 |     orbit.update(nxt)
+000098 |     frontier = list(nxt)
+000099 | require(len(orbit) == 60, 'transitive60-chart family')
+000100 | 
+000101 | # Root brackets of the two E7 slices recover every initially missing root.
+000102 | bracket_closures = Counter()
+000103 | root_sum_table = np.full((240, 240), -1, dtype=np.int64)
+000104 | for u, v in zip(*np.where(G == -4)):
+000105 |     root_sum_table[u, v] = lookup[tuple(R[u] + R[v])]
+000106 | for a in range(240):
+000107 |     b = int(jp[a])
+000108 |     initial = set(np.flatnonzero((G[a] == 0) | (G[b] == 0)))
+000109 |     require(len(initial) == 192, 'E7 pair union192 roots')
+000110 |     generated = initial | set(int(x) for x in np.unique(root_sum_table[np.ix_(sorted(initial), sorted(initial))]) if x >= 0)
+000111 |     require(len(generated) == 240, 'one bracket round generates all E8 roots')
+000112 |     bracket_closures[(len(initial), len(generated))] += 1
+000113 | 
+000114 | # Integral quotient groups retain the actual gluing type, not only its index.
+000115 | B2 = sp.Matrix(np.rint(2 * np.array(native('verification/v1_e8_glue.py', 'e8_simple_roots')())).astype(int))
+000116 | root_coordinates = sp.Matrix(R) * B2.inv()
+000117 | require(all(x.q == 1 for x in root_coordinates), 'integral E8 root coordinates')
+000118 | 
+000119 | 
+000120 | def quotient_group(indices):
+000121 |     generators = sp.Matrix([[int(root_coordinates[i, j]) for j in range(8)] for i in sorted(indices)])
+000122 |     basis = hermite_normal_form(generators.T)
+000123 |     require(basis.shape == (8, 8), 'full-rank sublattice')
+000124 |     sf = smith_normal_form(basis, domain=sp.ZZ)
+000125 |     return [abs(int(sf[i, i])) for i in range(8) if abs(sf[i, i]) != 1]
+000126 | 
+000127 | 
+000128 | qalpha = lookup[(2, 2, 0, 0, 0, 0, 0, 0)]
+000129 | qbeta = int(jp[qalpha])
+000130 | normal4 = {qalpha, qbeta, lookup[tuple(-R[qalpha])], lookup[tuple(-R[qbeta])]}
+000131 | d6 = set(np.flatnonzero((G[qalpha] == 0) & (G[qbeta] == 0)))
+000132 | e7q = set(np.flatnonzero(G[qalpha] == 0))
+000133 | e7j = set(np.flatnonzero(G[qbeta] == 0))
+000134 | d5d3 = set(np.flatnonzero(np.all(R[:, 5:] == 0, axis=1) | np.all(R[:, :5] == 0, axis=1)))
+000135 | glue = {'D6+A1+A1': quotient_group(d6 | normal4),
+000136 |         'E7+A1': quotient_group(e7q | {qalpha, lookup[tuple(-R[qalpha])]}),
+000137 |         'D5+A3': quotient_group(d5d3),
+000138 |         'sum_of_two_E7_root_lattices': quotient_group(e7q | e7j)}
+000139 | require(glue == {'D6+A1+A1': [2, 2], 'E7+A1': [2], 'D5+A3': [4],
+000140 |                  'sum_of_two_E7_root_lattices': []}, 'distinct actual glue groups')
+000141 | 
+000142 | # Every regular A2 subsystem consists of ±alpha, ±beta, ±(alpha+beta).
+000143 | a2s = set()
+000144 | for a, b in zip(*np.where(G == -4)):
+000145 |     s = R[a] + R[b]
+000146 |     a2s.add(tuple(sorted(lookup[tuple(v)] for v in (R[a], -R[a], R[b], -R[b], s, -s))))
+000147 | require(len(a2s) == 1120, 'all A2 subsystems')
+000148 | a2_fixed = 0
+000149 | a2_pairs = set()
+000150 | e6_intersections = Counter()
+000151 | for sub in a2s:
+000152 |     jsub = tuple(sorted(int(jp[i]) for i in sub))
+000153 |     require(jsub in a2s, 'J transports A2')
+000154 |     a2_fixed += int(jsub == sub)
+000155 |     a2_pairs.add(tuple(sorted((sub, jsub))))
+000156 |     e6a = set(np.flatnonzero(np.all(G[list(sub)] == 0, axis=0)))
+000157 |     e6b = set(np.flatnonzero(np.all(G[list(jsub)] == 0, axis=0)))
+000158 |     require(len(e6a) == len(e6b) == 72, 'E6 orthogonal complement')
+000159 |     e6_intersections[len(e6a & e6b)] += 1
+000160 | require(a2_fixed == 0 and len(a2_pairs) == 560, 'no J-fixed regular E6 slice')
+000161 | 
+000162 | # A compatible D5 -> E6 -> E7 -> E8 flag in the actual standard D5+D3 chart.
+000163 | def idx(v):
+000164 |     return lookup[tuple(2 * x for x in v)]
+000165 | 
+000166 | alpha = idx((0, 0, 0, 0, 0, 1, -1, 0))
+000167 | beta = idx((0, 0, 0, 0, 0, 0, 1, -1))
+000168 | e7flag = set(np.flatnonzero(G[alpha] == 0))
+000169 | e6flag = set(np.flatnonzero((G[alpha] == 0) & (G[beta] == 0)))
+000170 | d5flag = set(np.flatnonzero(np.all(R[:, 5:] == 0, axis=1)))
+000171 | require(len(d5flag) == 40 and d5flag < e6flag < e7flag, 'compatible nested flag')
+000172 | a2flag = {alpha, beta, lookup[tuple(-R[alpha])], lookup[tuple(-R[beta])],
+000173 |           lookup[tuple(R[alpha] + R[beta])], lookup[tuple(-R[alpha] - R[beta])]}
+000174 | glue['E6+A2'] = quotient_group(e6flag | a2flag)
+000175 | require(glue['E6+A2'] == [3], 'actual index3 E6 glue')
+000176 | 
+000177 | # Analytic covering statements are checked by their exact finite formulas.
+000178 | cover_data = {}
+000179 | for n in (2, 3, 4):
+000180 |     g = Fraction((n - 1) * 3 - sp.gcd(n, 4) + 1, 2)
+000181 |     cover_data[str(n)] = {'equation': f'w**{n}=x**4-1', 'compact_genus': int(g),
+000182 |                           'ramification_index_at_infinity': int(n // sp.gcd(n, 4))}
+000183 | require([cover_data[str(n)]['compact_genus'] for n in (2, 3, 4)] == [1, 3, 3], 'Riemann-Hurwitz')
+000184 | lam = Fraction(-1)
+000185 | jcurve = 256 * (1 - lam + lam ** 2) ** 3 / (lam ** 2 * (1 - lam) ** 2)
+000186 | require(jcurve == 1728, 'harmonic elliptic j')
+000187 | quarter_lifts = [list(bits) for bits in itertools.product((1, 3), repeat=4) if sum(bits) % 4 == 0]
+000188 | cyclic_lifts = [bits for bits in quarter_lifts if bits[1:] + bits[:1] == bits]
+000189 | require(len(quarter_lifts) == 8 and len(cyclic_lifts) == 2, 'cover does not select quarter orientation')
+000190 | normalization = {name: {'rank': rank, 'lattice_extension_index': index,
+000191 |                          'inverse_rank_coefficient_times_pi': str(Fraction(1, rank)),
+000192 |                          'inverse_twice_index_coefficient_times_pi': str(Fraction(1, 2 * index))}
+000193 |                  for name, rank, index in [('E6+A2', 6, 3), ('E7+A1', 7, 2), ('D5+A3', 8, 4)]}
+000194 | require(normalization['E7+A1']['inverse_rank_coefficient_times_pi'] !=
+000195 |         normalization['E7+A1']['inverse_twice_index_coefficient_times_pi'], 'E7 distinguishes normalization prescriptions')
+000196 | 
+000197 | levels = {name: str(Fraction(dim, 1 + h)) for name, dim, h in
+000198 |           [('E6', 78, 12), ('E7', 133, 18), ('E8', 248, 30)]}
+000199 | result = {
+000200 |     'scope': 'standard regular root subsystems with fixed original Gaussian J; no all-embedding claim',

@@ -1,0 +1,177 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/bracket_process_origin_20261028/closure/check_ward_d5a3_creation_channel.py
+Original file SHA-256: 0ea0b00f8c17d53789b5459979eda319bd475abd92d93ce6f8562a61925ba8fb
+Inclusive original lines: 201-369
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |     need(joint_census == expected_joint_census,
+000202 |          'complete 240-root old-Z4 by U5-residue census')
+000203 |     full_residue3 = {root for root in roots if x_charge(root) % 5 == 3}
+000204 |     joint_creation = {
+000205 |         root for root in full_residue3 if old_internal_z4_grade(root) == 2
+000206 |     }
+000207 |     residue3_remainder = full_residue3 - joint_creation
+000208 |     need(len(full_residue3) == 50,
+000209 |          'U5 residue3 has dimension50 on the full E8 root system')
+000210 |     need(joint_creation == creation and len(residue3_remainder) == 20,
+000211 |          'old internal grade2 intersect U5 residue3 is creation30 plus remainder20')
+000212 |     need({old_internal_z4_grade(root) for root in residue3_remainder} == {3},
+000213 |          'the additional residue3 roots have old internal grade3')
+000214 | 
+000215 |     quarter_result = json.loads(QUARTER_RESULT.read_text())
+000216 |     need(quarter_result['formula'] ==
+000217 |          'g_alpha^2 = exp(2 pi i alpha Q_source/4) C_internal^(-1)',
+000218 |          'charged fold square recovers inverse internal glue after charge removal')
+000219 |     need(quarter_result['full_U5_residue3_dimension'] == 50 and
+000220 |          quarter_result['creation_joint_dimension'] == 30,
+000221 |          'independent charged-fold proof has the same 50 to30 joint filter')
+000222 | 
+000223 |     # Physical fixed-mark SU3 x SU2 plus family D3 does not by itself close
+000224 |     # the 30.  It splits the Ward orbit into the color18 and weak12 blocks.
+000225 |     su3 = {r for r in su5 if all(r[i] == 0 for i in (3, 4))}
+000226 |     su2 = {r for r in su5 if all(r[i] == 0 for i in (0, 1, 2))}
+000227 |     physical_neutral = su3 | su2 | d3
+000228 |     color_orbit, _ = orbit(ward, physical_neutral, root_set)
+000229 |     weak_seed = (0, 0, 0, 2, 0, 2, 0, 0)
+000230 |     weak_orbit, _ = orbit(weak_seed, physical_neutral, root_set)
+000231 |     need(len(color_orbit) == 18 and len(weak_orbit) == 12,
+000232 |          'fixed 3+2 physical gauge splits creation30 into color18 plus weak12')
+000233 |     need(color_orbit | weak_orbit == creation and not color_orbit & weak_orbit,
+000234 |          'the two fixed-mark gauge orbits partition creation30')
+000235 | 
+000236 |     # Reuse the complete signed D8/CAR intertwiner, but test the selected
+000237 |     # 30-root restriction and its actual Chevalley action independently.
+000238 |     canonical = json.loads(CANON_RESULT.read_text())
+000239 |     state_phase = canonical['state_phases']
+000240 |     root_phase = canonical['root_phases']
+000241 |     masks = {r: sum((x > 0) << i for i, x in enumerate(r)) for r in halves}
+000242 |     input_states = {
+000243 |         r for r in halves if (masks[r] & 31).bit_count() == 2
+000244 |     }
+000245 |     output_states = {
+000246 |         r for r in halves if (masks[r] & 31).bit_count() == 3
+000247 |     }
+000248 |     need(len(input_states) == len(output_states) == 40,
+000249 |          'typed source and target are Lambda2 C5 tensor4 and Lambda3 C5 tensor4bar')
+000250 | 
+000251 |     input_gain = Counter()
+000252 |     output_gain = Counter()
+000253 |     signed_columns = 0
+000254 |     color_gain = Counter()
+000255 |     weak_gain = Counter()
+000256 |     for beta in creation:
+000257 |         carrier_i = next(i for i in range(5) if beta[i])
+000258 |         family_j = next(j for j in range(5, 8) if beta[j]) - 5
+000259 |         for alpha in input_states:
+000260 |             raw = algebra.bracket(algebra.ridx[beta], algebra.ridx[alpha])
+000261 |             carrier = ladder(masks[alpha] & 31, carrier_i, True)
+000262 |             family = ladder(masks[alpha] >> 5, family_j, beta[family_j + 5] > 0)
+000263 |             if carrier is None or family is None:
+000264 |                 need(not raw, 'selected tensor ladder and actual bracket have same zeros')
+000265 |                 continue
+000266 |             candidate = add(alpha, beta)
+000267 |             need(candidate in output_states, 'creation bracket has typed Lambda3 output')
+000268 |             need(set(raw) == {algebra.ridx[candidate]},
+000269 |                  'actual selected bracket has one root-vector output')
+000270 |             coefficient = raw[algebra.ridx[candidate]]
+000271 |             need(coefficient in (-1, 1), 'actual selected bracket coefficient is signed unit')
+000272 |             need(masks[candidate] == carrier[0] + (family[0] << 5),
+000273 |                  'selected bracket has exact carrier and family target masks')
+000274 |             phase = (int(state_phase[key(alpha)]) *
+000275 |                      int(state_phase[key(candidate)]) *
+000276 |                      int(root_phase[key(beta)]))
+000277 |             need(coefficient == phase * carrier[1] * family[1],
+000278 |                  'selected current has the pinned signed tensor factorization')
+000279 |             input_gain[alpha] += coefficient * coefficient
+000280 |             output_gain[candidate] += coefficient * coefficient
+000281 |             (color_gain if carrier_i < 3 else weak_gain)[alpha] += 1
+000282 |             signed_columns += 1
+000283 | 
+000284 |     need(signed_columns == 360, '30 selected currents have 360 signed nonzero columns')
+000285 |     need(set(input_gain.values()) == {9} and len(input_gain) == 40,
+000286 |          'selected sum B*B is 9 I40')
+000287 |     need(set(output_gain.values()) == {9} and len(output_gain) == 40,
+000288 |          'selected sum BB* is 9 I40')
+000289 |     need(len(set(color_gain.values())) > 1 and len(set(weak_gain.values())) > 1,
+000290 |          'neither fixed-mark gauge block alone has scalar source gain')
+000291 |     need(all(color_gain[s] + weak_gain[s] == 9 for s in input_states),
+000292 |          'color and weak blocks combine to the scalar gain9')
+000293 | 
+000294 |     # The carrier marginal is already the pure Petersen channel: creation on
+000295 |     # Lambda2 followed by the canonical volume-form complement.  There is no
+000296 |     # annihilation/carry branch in the residue-3 current sector.
+000297 |     petersen_edges = 0
+000298 |     for mask in range(32):
+000299 |         if mask.bit_count() != 2:
+000300 |             continue
+000301 |         targets = set()
+000302 |         for i in range(5):
+000303 |             out = ladder(mask, i, True)
+000304 |             if out is None:
+000305 |                 continue
+000306 |             folded = 31 ^ out[0]
+000307 |             need(folded.bit_count() == 2 and not (mask & folded),
+000308 |                  'creation plus Hodge complement is a Petersen edge')
+000309 |             targets.add(folded)
+000310 |             petersen_edges += 1
+000311 |         need(len(targets) == 3, 'each duad has exactly three Petersen outputs')
+000312 |     need(petersen_edges == 30, 'directed Petersen support has 30 edges')
+000313 | 
+000314 |     # Full root-current closure is much larger and therefore is not the
+000315 |     # permitted event algebra.  This records the need for the U5 sector rule.
+000316 |     full_orbit, _ = orbit(ward, set(roots), root_set)
+000317 |     need(full_orbit == root_set, 'unrestricted E8 root closure leaves the selected sector')
+000318 | 
+000319 |     result = {
+000320 |         'verdict': 'PASS',
+000321 |         'scope': (
+000322 |             'Exact algebraic support theorem in the actual E8 current source. '
+000323 |             'The joint projectors designate a charged field component, not '
+000324 |             'an executed measurement. The check does not derive raw Xi, the '
+000325 |             'local oriented P1 field/process map, an event record, or time.'
+000326 |         ),
+000327 |         'atlas_revision_read': '63fab31610450cc88e168232',
+000328 |         'ward_root_doubled': list(ward),
+000329 |         'mixed_g2': 60,
+000330 |         'selected_creation_currents': len(creation),
+000331 |         'dual_annihilation_currents': len(annihilation),
+000332 |         'neutral_SU5xD3_orbit': len(ward_orbit),
+000333 |         'neutral_orbit_directed_edges': neutral_edges,
+000334 |         'P2_X_creation_spectrum': {str(k): v for k, v in sorted(creation_x.items())},
+000335 |         'P2_X_annihilation_spectrum': {str(k): v for k, v in sorted(annihilation_x.items())},
+000336 |         'U5_current_residue': {'creation': 3, 'annihilation': 2},
+000337 |         'full_240_root_joint_grade_census': {
+000338 |             f'z4_{grade}_u5_{residue}': count
+000339 |             for (grade, residue), count in sorted(joint_census.items())
+000340 |         },
+000341 |         'full_E8_U5_residue3': len(full_residue3),
+000342 |         'joint_old_Z4_grade2_U5_residue3': len(joint_creation),
+000343 |         'residue3_old_Z4_grade3_remainder': len(residue3_remainder),
+000344 |         'charged_fold_glue_identity': quarter_result['formula'],
+000345 |         'fixed_mark_gauge_orbits': {'color': len(color_orbit), 'weak': len(weak_orbit)},
+000346 |         'typed_input_dimension': len(input_states),
+000347 |         'typed_output_dimension': len(output_states),
+000348 |         'signed_columns_checked': signed_columns,
+000349 |         'selected_source_gain': '9 I40',
+000350 |         'normalized_selected_channel': (
+000351 |             '(1/3 sum_m a_m^dagger rho a_m) tensor '
+000352 |             '(1/3 sum_j(b_j rho b_j^dagger+b_j^dagger rho b_j))'
+000353 |         ),
+000354 |         'carrier_marginal': 'full Hodge channel Phi; Petersen A/3 is its population matrix',
+000355 |         'carry_branch': 'absent in U5 residue3; it lies in the conjugate residue2 sector',
+000356 |         'normalization_identity': '1/9 = (5/3)*(1/15), conditioning the old 60-current response on its 3/5 creation branch',
+000357 |         'unrestricted_E8_root_orbit': len(full_orbit),
+000358 |         'sources': [
+000359 |             {'path': source_label(path), 'sha256': sha256(path)}
+000360 |             for path in EXPECTED
+000361 |         ],
+000362 |     }
+000363 |     rendered = json.dumps(result, indent=2, sort_keys=True) + '\n'
+000364 |     OUTPUT.write_text(rendered)
+000365 |     print(rendered, end='')
+000366 | 
+000367 | 
+000368 | if __name__ == '__main__':
+000369 |     main()

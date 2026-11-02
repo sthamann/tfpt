@@ -1,0 +1,140 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_b1_real_structure.py
+Original file SHA-256: 087673fac202066390178c686a5bee453cf75feac4b30548c970ba1ac7700533
+Inclusive original lines: 1-132
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Actual96 real structure, quarter transport and residual frame freedom.
+000002 | 
+000003 | The finite algebra checks supplement the explicit common-domain proof.
+000004 | They do not select the original physical source or add a new quarter copy.
+000005 | """
+000006 | from pathlib import Path
+000007 | import json
+000008 | import sys
+000009 | import numpy as np
+000010 | import sympy as s
+000011 | 
+000012 | ROOT=Path(__file__).resolve().parents[4]
+000013 | sys.path.insert(0,str(ROOT/'verification'))
+000014 | sys.path.insert(0,str(ROOT/'experiments/theory-contracts/seam-constructive-search-20261015/operator_synthesis'))
+000015 | import v252_full_finite_triple as finite
+000016 | from intertwiner_search import equation,restrict
+000017 | 
+000018 | def exact(a):
+000019 |     a=np.asarray(a)
+000020 |     data={}
+000021 |     for i,j in zip(*np.nonzero(a)):
+000022 |         z=complex(a[i,j]);assert z.real.is_integer() and z.imag.is_integer()
+000023 |         data[int(i),int(j)]=s.Integer(int(z.real))+s.I*int(z.imag)
+000024 |     return s.SparseMatrix(a.shape[0],a.shape[1],data)
+000025 | 
+000026 | N=s.Matrix([[0,-1],[1,0]]);Z=s.diag(1,-1);S=N*Z
+000027 | g=exact(finite.grading());k=exact(finite.Kswap());I=s.eye(96)
+000028 | ys=[np.array([[1+1j,2,0],[0,3-1j,1],[1j,0,4]],complex)+j*np.eye(3) for j in range(4)]
+000029 | mr=np.array([[2+1j,1,0],[1,3,1j],[0,1j,4-1j]],complex)
+000030 | phi=exact(finite.full_D(*ys,mr))
+000031 | weak=finite.rep(0,1j*np.array([[0,1],[1,0]]),np.zeros((3,3)))
+000032 | Q=exact(-1j*(weak+finite.Kswap()@weak.conjugate()@finite.Kswap()))
+000033 | checks={'actual_J_real_Phi':k*phi.conjugate()*k==phi,
+000034 |         'actual_J_reverses_real_weak_connection':k*Q.conjugate()*k==-Q}
+000035 | Gamma=s.kronecker_product(Z,g);C0=s.I*s.kronecker_product(N,I);Ical=s.I*Gamma
+000036 | D0=s.kronecker_product(S,Q)+s.kronecker_product(Z,phi)
+000037 | B0=s.kronecker_product(Z,Q)-s.kronecker_product(S,phi)
+000038 | normal=[]
+000039 | representatives={(0,0):S,(1,0):N,(0,1):Z,(1,1):s.eye(2)}
+000040 | for power in (0,1):
+000041 |     for reflection in (0,1):
+000042 |         accepted=[]
+000043 |         for eps in (1,-1):
+000044 |             eqs=[equation(N,(-1)**reflection*eps*N,False),
+000045 |                  equation(S,-eps*S,False),equation(Z,eps*(-1)**power*Z,False)]
+000046 |             basis=restrict(s.eye(4),eqs)
+000047 |             if basis.cols:accepted.append((eps,basis.cols))
+000048 |         M=representatives[power,reflection]
+000049 |         eps=next(e for e,d in accepted)
+000050 |         U=s.kronecker_product(M,g**power*k)
+000051 |         conjugate=lambda a:U*a.conjugate()*U.H
+000052 |         jsq=1 if (power,reflection)!=(1,1) else -1
+000053 |         grade_sign=(-1)**reflection
+000054 |         checks[f'normal_class_{power}_{reflection}_one_dimensional']=len(accepted)==1 and accepted[0][1]==1
+000055 |         checks[f'actual96_Jsquare_{power}_{reflection}']=U*U.conjugate()==jsq*s.eye(192)
+000056 |         checks[f'actual96_D_potential_{power}_{reflection}']=conjugate(D0)==eps*D0
+000057 |         checks[f'actual96_D_normal_derivative_{power}_{reflection}']=(-1)**reflection*conjugate(s.kronecker_product(N,I))==eps*s.kronecker_product(N,I)
+000058 |         checks[f'actual96_D_tangent_derivative_{power}_{reflection}']=conjugate(-s.I*s.kronecker_product(S,I))==eps*(-s.I*s.kronecker_product(S,I))
+000059 |         checks[f'actual96_total_grading_{power}_{reflection}']=conjugate(Gamma)==grade_sign*Gamma
+000060 |         checks[f'actual96_whole_B_{power}_{reflection}']=conjugate(B0)==(-1)**reflection*B0
+000061 |         checks[f'new_complex_type_{power}_{reflection}']=conjugate(Ical)==-grade_sign*Ical
+000062 |         normal.append(dict(internal_gamma_power=power,normal_reflection=reflection,
+000063 |                            D_sign=eps,Gamma_sign=grade_sign,J_square=jsq,
+000064 |                            normal_matrix=str(M),new_complex_type='antilinear' if grade_sign==1 else 'linear'))
+000065 | JS=s.kronecker_product(S,k);JR=s.kronecker_product(Z,k)
+000066 | checks['two_real_maps_compose_to_given_deck_normal_matrix']=JS*JR.conjugate()==s.kronecker_product(N,I)
+000067 | alpha=s.Rational(1,4)
+000068 | Dalpha=D0+alpha*s.kronecker_product(S,I)
+000069 | Balpha=B0+alpha*s.kronecker_product(Z,I)
+000070 | checks['scalar_quarter_JS_D_residual_exact']=JS*Dalpha.conjugate()*JS.H+Dalpha==2*alpha*s.kronecker_product(S,I)
+000071 | checks['scalar_quarter_JS_B_maps_to_minus_alpha']=JS*Balpha.conjugate()*JS.H==B0-alpha*s.kronecker_product(Z,I)
+000072 | checks['quarter_holonomy_inverts_not_fixed']=s.conjugate(s.I)==-s.I and s.conjugate(s.I)!=s.I
+000073 | 
+000074 | theta=s.symbols('theta',real=True)
+000075 | gp=Z;kp=S;pp=(s.eye(2)+gp)/2;pm=(s.eye(2)-gp)/2
+000076 | E=pp.col_join(s.exp(s.I*theta)*pm);Et=s.exp(-s.I*theta/2)*E
+000077 | Jsmall=s.kronecker_product(S,kp)
+000078 | def zero(a):return a.applyfunc(s.simplify)==s.zeros(*a.shape)
+000079 | checks['all_theta_rephased_frame_exact_J_intertwiner']=zero(Jsmall*Et.conjugate()-Et*kp)
+000080 | rotation=s.diag(s.exp(-s.I*theta/2),s.exp(s.I*theta/2))
+000081 | checks['all_theta_axial_rotation_preserves_internal_J']=zero(kp*rotation.conjugate()-rotation*kp)
+000082 | 
+000083 | # All six positive-grade SM multiplets have family multiplicity three.
+000084 | # Schur's lemma supplies necessity; these actual-slot generators verify sufficiency.
+000085 | slots={}
+000086 | for i in range(96):
+000087 |     anti=i>=48;name,ch,colour,family=finite.P[i%48]
+000088 |     if int(g[i,i])!=1:continue
+000089 |     label=('Q' if name in ('u','d') else 'L') if not anti else {'u':'uc','d':'dc','e':'ec','nu':'nc'}[name]
+000090 |     component=(name,colour)
+000091 |     slots.setdefault(label,{}).setdefault(component,{})[family]=i
+000092 | algebra=[]
+000093 | for lam in (1,1j):algebra.append(exact(finite.rep(lam,np.zeros((2,2)),np.zeros((3,3)))))
+000094 | for aa,bb in ((1,0),(1j,0),(0,1),(0,1j)):algebra.append(exact(finite.rep(0,finite.quaternion(aa,bb),np.zeros((3,3)))))
+000095 | for i in range(3):
+000096 |     for j in range(3):
+000097 |         for phase in (1,1j):
+000098 |             m=np.zeros((3,3),complex);m[i,j]=phase
+000099 |             algebra.append(exact(finite.rep(0,np.zeros((2,2)),m)))
+000100 | H=[]
+000101 | for i in range(3):
+000102 |     x=s.zeros(3);x[i,i]=1;H.append(x)
+000103 | for i in range(3):
+000104 |     for j in range(i+1,3):
+000105 |         x=s.zeros(3);x[i,j]=x[j,i]=1;H.append(x)
+000106 |         x=s.zeros(3);x[i,j]=s.I;x[j,i]=-s.I;H.append(x)
+000107 | count=0;all_real=all_even=all_algebra=all_skew=True
+000108 | for label,components in slots.items():
+000109 |     for h in H:
+000110 |         xp=s.MutableSparseMatrix(96,96,{})
+000111 |         for component,indices in components.items():
+000112 |             for f1 in range(3):
+000113 |                 for f2 in range(3):
+000114 |                     if h[f1,f2]:xp[indices[f1],indices[f2]]=s.I*h[f1,f2]
+000115 |         x=xp+k*xp.conjugate()*k
+000116 |         all_skew &= x.H==-x;all_real &= k*x.conjugate()*k==x
+000117 |         all_even &= x*g==g*x
+000118 |         all_algebra &= all(x*a==a*x for a in algebra)
+000119 |         count+=1
+000120 | checks.update(actual54_frame_generators_antihermitian=all_skew,
+000121 |               actual54_frame_generators_preserve_J=all_real,
+000122 |               actual54_frame_generators_preserve_grading=all_even,
+000123 |               actual54_frame_generators_preserve_left_and_opposite_algebra=all_algebra,
+000124 |               six_inequivalent_multiplets=sorted(slots)==sorted(['Q','L','uc','dc','ec','nc']),
+000125 |               family_frame_real_dimension54=count==54)
+000126 | out={'contract':'B1-NORMAL-REAL-AND-FRAME-20261030','checks':checks,'all_passed':all(checks.values()),
+000127 |      'normal_separable_class':normal,'remaining_frame_group':'U(3)^6 with negative grades fixed by J',
+000128 |      'frame_real_dimension':count,'original_left_algebra_basis':len(algebra),
+000129 |      'scope':'Separable normal class; actual96 coefficient controls and formal derivative identities. Quarter maps to existing inverse-holonomy image. Remaining frames are coordinate equivalences, not extra physical source choices.'}
+000130 | Path(__file__).with_name('B1-NORMAL-REAL-AND-FRAME.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+000131 | print(json.dumps(out,ensure_ascii=False,indent=2))
+000132 | assert out['all_passed']

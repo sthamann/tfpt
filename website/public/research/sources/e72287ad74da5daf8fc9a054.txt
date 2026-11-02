@@ -1,0 +1,188 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/STABILITY-SOURCE-RECONCILIATION.txt
+Original file SHA-256: 416ae9572c5f42706796c3a7c4a237aebe33c20f152a25e9b18209ecf60c5b7e
+Inclusive original lines: 1-180
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | AKTUELLE STATUSKORREKTUR, 26.10.2026
+000002 | ====================================
+000003 | Der im folgenden Arbeitsstand noch als numerisch/offen bezeichnete Anschluss
+000004 | der konkreten A0* ODE ist inzwischen durch den wiedergefundenen exakten
+000005 | C4 Dreiecksbeweis vom 28. September geschlossen. Maßgeblich sind jetzt
+000006 | C4-DESCENT-FINITE-MONODROMY.txt und C4-TRIANGLE-INDEPENDENT-REVIEW.txt.
+000007 | Die Identifikation gilt bis zum gemeinsamen konstanten Basiswechsel und der
+000008 | verbleibenden diagonalen Basiszeichenkonvention. Die tatsächliche Verbindung
+000009 | ist C4 äquivariant, hat aber keinen rationalen z->1/z Lift. Der bedingte echte
+000010 | D4 Satz beschreibt eine andere markierte Verbindung. Die Stabilitäts und
+000011 | Wandargumente unten behalten ihren jeweils ausdrücklich angegebenen Scope.
+000012 | Die frühere Offen Kennzeichnung ist überholt; keine neue ODE Suche nötig.
+000013 | 
+000014 | STABILITY-SOURCE-RECONCILIATION
+000015 | ===============================
+000016 | 
+000017 | Datum: 2026-10-26
+000018 | 
+000019 | Entscheidende Frage
+000020 | -------------------
+000021 | 
+000022 | Beschreiben TFPT2 section008 und section011 dasselbe parabolische Objekt, wenn
+000023 | section008 ein stabiles D4 aequivariantes Buendel auf
+000024 | 
+000025 |     E = O(-2) + O(-1) + O(-1)
+000026 | 
+000027 | mit vier vollen Flags und Gewichten (0,1/3,2/3) fixiert, section011 dieselben
+000028 | Daten aber zu einem strikt polystabilen Wandpunkt erklaert?
+000029 | 
+000030 | Ergebnis
+000031 | --------
+000032 | 
+000033 | Nein. Die beiden Aussagen koennen nicht als Aussagen ueber dasselbe markierte
+000034 | parabolische Buendel gelten.
+000035 | 
+000036 | Section011 beweist nur, dass eine besondere, an der
+000037 | Birkhoff Grothendieck Zerlegung vollstaendig gesplittete Flagkonfiguration
+000038 | polystabil ist. Ihre Matrix W_wall weist jedem der drei globalen
+000039 | Liniensummanden an jedem Punkt direkt eines der drei Gewichte zu. Dann sind die
+000040 | drei Summanden parabolische Linien vom Grad null und das Objekt ist
+000041 | reduzibel polystabil.
+000042 | 
+000043 | Bei einem allgemeinen vollen Flag sind die drei festen holomorphen Summanden
+000044 | aber nicht gleichzeitig Flaglinien. Dann bilden ihre induzierten Gewichte an
+000045 | einem Punkt keine Permutation von (0,1/3,2/3). Genau diese unbegruendete
+000046 | Additivitaet wird in section011 Zeilen 262 bis 267 und in v26 Zeilen 60 bis 78
+000047 | benutzt. Das dortige Widerspruchsargument gilt daher nur fuer split parabolic
+000048 | bundles, nicht fuer jedes parabolische Buendel mit dem zugrunde liegenden
+000049 | holomorphen Split O(-2)+O(-1)^2.
+000050 | 
+000051 | Der kleinste direkte Test entscheidet die Stabilitaet des algebraisch
+000052 | deklarierten Flagobjekts. Setzt man die exakten, durch U rotierten Eigenflags
+000053 | des vorhandenen Residuums A0* in die affine Spaltungsbasis von
+000054 | O(-2)+O(-1)^2, sind alle gesaettigten Rang 1 und Rang 2 Unterbuendel strikt von
+000055 | negativem parabolischem Grad. Dieses deklarierte parabolische Objekt ist
+000056 | stabil. Seine Identifikation mit der Deligne Erweiterung der A0* ODE ist jedoch
+000057 | nicht automatisch: der direkte Scherungstest am Punkt unendlich laesst einen
+000058 | resonanten Pol uebrig. Unabhaengig davon ist die
+000059 | exakte v117 Darstellung irreduzibel und unitaer. Mehta Seshadri ordnet ihr
+000060 | deshalb ebenfalls ein stabiles, nicht das in W_wall gesplittete polystabile,
+000061 | parabolisches Buendel zu.
+000062 | 
+000063 | Die saubere Vereinbarung lautet daher:
+000064 | 
+000065 |     section008 stable branch = nicht gesplittete, rotierte Flags;
+000066 |     section011 W_wall         = anderer, reduzierbarer Wandpunkt.
+000067 | 
+000068 | Die Bezeichnung des W_wall Punktes als dasselbe physische nabla_F* ist nicht
+000069 | belegt und widerspricht der exakten Irreduzibilitaet von v117. Offen bleibt nur
+000070 | die bereits korrekt markierte analytische Identifikation der A0* ODE
+000071 | Monodromie mit der exakten v117 Darstellung. v117 prueft diese Identifikation
+000072 | numerisch auf etwa 1e-7, nicht algebraisch.
+000073 | 
+000074 | 1. Was die Originalstellen tatsaechlich sagen
+000075 | ---------------------------------------------
+000076 | 
+000077 | TFPT2 section008:
+000078 | 
+000079 | * Zeilen 52 bis 59: vier volle Flags mit Gewichten (0,1/3,2/3) geben
+000080 |   pardeg(E)=deg(E)+4=0 und damit deg(E)=-4. Als zugrunde liegende Spaltung
+000081 |   wird O(-2)+O(-1)^2 genannt.
+000082 | * Zeilen 89 bis 103: M_k=R^k C R^-k, R mit Spektrum (i,-1,-i), und voller D4
+000083 |   Abstieg werden als Familienzweig beschrieben.
+000084 | * Zeilen 124 bis 127: der D4 aequivariante stabile parabolische Zweig wird
+000085 |   ausdruecklich fixiert. Die Coxeterdaten an 0 und unendlich sind Daten der
+000086 |   drei Orbifoldpunkte des Quotienten. Auf der Pullbackkurve P1 minus mu4 sind
+000087 |   sie keine zwei weiteren parabolischen Gewichtsbeitraege.
+000088 | * Zeilen 152 bis 170: der Text bemerkt selbst, dass ein einzelner fester
+000089 |   Faservergleich die globalen Unterbuendelgewichte nicht bestimmt. Gerade
+000090 |   deshalb darf man die Gewichte nicht zeilenweise auf die drei globalen
+000091 |   Summanden verteilen.
+000092 | 
+000093 | TFPT2 section011:
+000094 | 
+000095 | * Zeilen 202 bis 210 nennen weiterhin einen stabilen Zweig und die
+000096 |   Mehta Seshadri Korrespondenz mit irreduziblen unitaeren Darstellungen.
+000097 | * Zeilen 262 bis 268 behaupten danach, die Summe der induzierten Gewichte der
+000098 |   drei festen Summanden sei 4 und folgern aus w1<2, w2,w3<1 einen Widerspruch.
+000099 | * Zeilen 278 bis 297 geben
+000100 | 
+000101 |       W_wall = (1/3) [[2,1,2,1],
+000102 |                       [1,0,0,2],
+000103 |                       [0,2,1,0]]
+000104 | 
+000105 |   an. Jede Spalte ist eine Permutation von (0,1,2), jede Zeile hebt genau den
+000106 |   Grad des zugeordneten globalen Liniensummanden auf.
+000107 | 
+000108 | Damit beschreibt W_wall definitionsgemaess die parabolische direkte Summe
+000109 | 
+000110 |     L1_* + L2_* + L3_*,      pardeg(Lj_*)=0.
+000111 | 
+000112 | Sie ist polystabil und reduzierbar. Das ist ein gueltiger Wandpunkt, aber kein
+000113 | stabiler Punkt und nicht die irreduzible v117 Korrespondenz.
+000114 | 
+000115 | Das zugehoerige Skript v27 prueft nur die Spaltenpermutationen, Zeilensummen
+000116 | und diskreten Matrizeninvarianten. Die Behauptung der eindeutigen Auswahl wird
+000117 | in Zeilen 62 bis 64 durch check(..., True) aufgenommen. Sie wird dort nicht
+000118 | hergeleitet. Der Atlas fuehrt GATE.UWALL.01 entsprechend als historischen,
+000119 | offenen Selektor mit 144 Wandmatrizen in fuenf Orbits. Der Atlas fuehrt v117
+000120 | dagegen getrennt als exakte irreduzible S4 Darstellung; nur ihr Anschluss an
+000121 | die analytische A0* Monodromie ist numerisch.
+000122 | 
+000123 | 2. Der Konventionsfehler bei induzierten Gewichten
+000124 | --------------------------------------------------
+000125 | 
+000126 | Mehta und Seshadri definieren am markierten Punkt eine absteigende Flagge
+000127 | 
+000128 |     E_p = F_1 superset F_2 superset F_3 superset 0,
+000129 |     0 <= alpha_1 < alpha_2 < alpha_3 < 1.
+000130 | 
+000131 | Fuer ein Unterbuendel wird die Flagge durch Schnitte induziert. Fuer eine
+000132 | Linie L ist ihr Gewicht alpha_j, wobei j der groesste Index mit
+000133 | 
+000134 |     L_p subset F_j
+000135 | 
+000136 | ist. Das ist Definition 1.7 des Originalartikels. Bei den Gewichten
+000137 | (0,1/3,2/3) erhaelt daher eine generische Linie Gewicht 0, eine Linie in
+000138 | F_2 Gewicht mindestens 1/3 und nur die hoechste Flaglinie Gewicht 2/3.
+000139 | 
+000140 | Section008 Zeilen 153 bis 156 listet dagegen eine aufsteigende Folge
+000141 | 
+000142 |     <e1> subset <e1,e2> subset E
+000143 | 
+000144 | mit aufsteigenden Gewichten und weist einer generischen Linie ueber die erste
+000145 | enthaltende Stufe das Gewicht 2/3 zu. Das ist nicht die induzierte
+000146 | Unterbuendelkonvention aus Mehta Seshadri. Man kann diese aufsteigende
+000147 | Schreibweise fuer Eigenraumlabels verwenden. Fuer Stabilitaetsungleichungen
+000148 | muss sie jedoch in die absteigende MS Flagge uebersetzt werden. Section011
+000149 | mischt die beiden Lesarten.
+000150 | 
+000151 | Noch elementarer sieht man den Fehler an drei beliebigen unabhaengigen Linien
+000152 | in einer gefilterten dreidimensionalen Faser: Sind sie nicht gleichzeitig an
+000153 | die Flagge adaptiert, sind ihre induzierten Gewichte nicht additiv. Nur fuer
+000154 | eine Flagspaltung ist ihre Summe 0+1/3+2/3. W_wall setzt genau diese
+000155 | zusaetzliche Flagspaltung voraus.
+000156 | 
+000157 | Primaerquelle:
+000158 | 
+000159 | V. B. Mehta und C. S. Seshadri, Moduli of vector bundles on curves with
+000160 | parabolic structures, Math. Ann. 248 (1980), 205 bis 239, Definitionen 1.5
+000161 | und 1.7, DOI 10.1007/BF01420526. Dort werden die absteigende Flagge, die
+000162 | Gewichte und die durch Schnitte induzierte Unterbuendelstruktur explizit
+000163 | definiert. Derselbe Satz identifiziert stabile Grad null Objekte mit
+000164 | irreduziblen unitaeren Darstellungen und polystabile mit vollstaendig
+000165 | reduziblen unitaeren Darstellungen.
+000166 | 
+000167 | 3. Exakte A0* Flags und die affine BG Praemisse
+000168 | -----------------------------------------------
+000169 | 
+000170 | Aus verification/v115_anchor_residue.py Zeilen 28 bis 32 stammt
+000171 | 
+000172 |           [ 1/2       sqrt(2)/6       0        ]
+000173 |     A0* = [ sqrt(2)/6  1/4             sqrt(5)/12]
+000174 |           [ 0          sqrt(5)/12      1/4      ].
+000175 | 
+000176 | Seine Eigenwerte sind exakt 0,1/3,2/3. Geeignete Eigenvektoren sind
+000177 | 
+000178 |     v_0   = ( sqrt(10)/5, -3 sqrt(5)/5, 1),
+000179 |     v_1   = (-sqrt(10)/5,    sqrt(5)/5, 1),
+000180 |     v_2   = ( sqrt(10),      sqrt(5),   1),

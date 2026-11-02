@@ -1,0 +1,115 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-constructive-search-20261015/operator_synthesis/README.md
+Original file SHA-256: db453a12d7a64e1a30988b61c6ff20ad80863ac8471a3c5a6eb735e876bc76e5
+Inclusive original lines: 1-107
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | # Automatische Operatorsynthese
+000002 | 
+000003 | Hier wird nach einer **Bauvorschrift für eine Abbildung** gesucht. Die frühere
+000004 | Suche nach zehn Phasenexponenten bleibt abgeschlossen. Ihre Zeit- und
+000005 | Zustandsannahmen werden nicht als neue Suchvariablen ausgegeben.
+000006 | 
+000007 | ## Zwei ausführbare Suchverfahren
+000008 | 
+000009 | **1. Operatorprogramme mit lernenden Gegenbeispielen (`clifford_search.py`).**
+000010 | Der Generator bildet Wörter aus den zehn Majorana-Generatoren des gegebenen
+000011 | Fünf-Moden-CAR-Trägers. Wortlänge, beteiligte Generatoren und linearer bzw.
+000012 | antilinearer Typ sind variabel. Die CAR-Regeln entfernen äquivalente Wörter,
+000013 | bevor sie Rechenzeit verbrauchen. Ein Prüfer untersucht alle Feldgeneratoren,
+000014 | Ladung, die korrekte Viertelwirkung und eine vollständige reelle Basis aller
+000015 | hermiteschen Einteilchenoperatoren. Eine verletzte Beziehung wird automatisch
+000016 | zur zusätzlichen Bedingung. Gespeicherte Bewertungen werden bei geänderten
+000017 | Bedingungen oder geändertem Programm verworfen.
+000018 | 
+000019 | Der erste Lauf ist eine **Wiedergewinnungskontrolle eines bekannten Ergebnisses**:
+000020 | 2048 selbst erzeugte Wort-/Typ-Klassen lassen zunächst zwei Kandidaten übrig.
+000021 | Eine automatisch gefundene imaginäre Mischkomponente unterscheidet sie und
+000022 | liefert genau `gamma_0 gamma_2 gamma_4 gamma_6 gamma_8 K`. Die Zielmatrix und
+000023 | dieses Wort werden nicht vorgegeben. Die zugrunde liegende CAR-Darstellung,
+000024 | ihre Besetzungsbasis und die geforderten Transportgleichungen sind Eingaben.
+000025 | 
+000026 | **2. Inverse gemeinsame Operatorsynthese (`intertwiner_search.py`).**
+000027 | Dieser Löser braucht kein vorgegebenes Wort. Aus beliebig vielen zusammen
+000028 | gehörenden Operatorpaaren sucht er eine gemeinsame Matrix `S` mit
+000029 | `S A_j = B_j S` bzw. `S conjugate(A_j) = B_j S`. Er löst die Gleichungen exakt
+000030 | über den gaußschen rationalen Zahlen. Ein Gegenbeispiel ergänzt die ganze
+000031 | verletzte Operatorgleichung. Adjungierte werden ausdrücklich mit geprüft.
+000032 | Ein invertierbarer Treffer kann durch seine positive Gram-Matrix polar
+000033 | normalisiert werden; bei skalarer Gram-Matrix wird die unitäre Matrix direkt
+000034 | ausgegeben. Die berechnete Dimension des gesamten Intertwinerraums enthält
+000035 | alle Gleichungen, auch wenn schon ein früher Kandidat erfolgreich war.
+000036 | 
+000037 | Ein Nullraum der Dimension null liefert einen konkreten, durch Entfernen
+000038 | einzelner Bedingungen minimalen Konfliktsatz. Ein erfolgloser begrenzter
+000039 | Koeffizientenversuch heißt dagegen `full_rank_search_inconclusive`, nicht
+000040 | Unmöglichkeitsbeweis. Die aktuelle generische Implementierung ist auf gleiche
+000041 | Dimensionen bis 16 begrenzt; der spezialisierte CAR-Löser arbeitet auf 32
+000042 | Dimensionen. Neue unendliche Felddarstellungen sind dadurch nicht abgedeckt.
+000043 | 
+000044 | ## Ausführen
+000045 | 
+000046 | Im Repository:
+000047 | 
+000048 | ```sh
+000049 | python3 experiments/theory-contracts/seam-constructive-search-20261015/operator_synthesis/clifford_search.py --run-dir experiments/theory-contracts/seam-constructive-search-20261015/operator_synthesis/runs/recovery-seed7 --seed 7
+000050 | python3 experiments/theory-contracts/seam-constructive-search-20261015/operator_synthesis/intertwiner_search.py experiments/theory-contracts/seam-constructive-search-20261015/operator_synthesis/example_operators.json --output /tmp/tfpt-inverse-result.json
+000051 | ```
+000052 | 
+000053 | Das JSON enthält Operatorpaare und erklärte Voraussetzungen, **keine Zielabbildung**.
+000054 | Einträge sind ganze Zahlen, Brüche als Strings oder `[Realteil, Imaginärteil]`.
+000055 | Beliebige Python-Ausdrücke und Fließkommazahlen werden nicht ausgeführt bzw.
+000056 | nicht als exakte Eingaben akzeptiert. Das beigefügte Beispiel ist ein kleiner
+000057 | synthetischer Funktionstest, kein zusätzliches TFPT-Modell.
+000058 | 
+000059 | ## Drei weitere, sachlich unterschiedliche Suchrichtungen
+000060 | 
+000061 | 1. **Vollständige positive Wortkerne vervollständigen.** Statt einen Hamiltonoperator
+000062 |    zu raten, unbekannte gemeinsame Korrelationswerte suchen. Positivität,
+000063 |    Adjungierung, die ursprünglichen Operatorrelationen und Reflexionsbedingungen
+000064 |    werden gekoppelte Constraints. Eine konsistente, fortsetzungsstabile Lösung
+000065 |    erlaubt die vorhandene GNS-Rekonstruktion. Markierung, Zustand und Zeit sollen
+000066 |    aus demselben Kern kommen. Eine endliche positive Momentmatrix allein genügt
+000067 |    nicht; erforderlich sind Erweiterbarkeit, die tatsächliche Zeit-/Feldwirkung
+000068 |    und später der kontrollierte Grenzübergang. **Noch nicht implementiert.**
+000069 | 2. **Nichtkommutative Gleichungen statt Zahlen regressieren.** Die Wortgrammatik um
+000070 |    dünne Summen, Kommutatoren und lokale Kopplungsterme erweitern. Auf H200 viele
+000071 |    Strukturen vorsortieren; nur exakt normalgeordnete Identitäten oder belastbare
+000072 |    Fehlergrenzen zählen anschließend. Die jetzige inverse Matrixsuche kann
+000073 |    Abbildungen auch außerhalb einzelner Clifford-Wörter finden, ist aber keine
+000074 |    symbolische Summen- oder Kontinuumssuche. **Diese Erweiterung ist offen.**
+000075 | 3. **Unterscheidungsversuche aktiv synthetisieren.** Überlebende Konstruktionen
+000076 |    nach dem kleinsten Feldwort suchen lassen, bei dem ihre tatsächlichen Antworten
+000077 |    auseinandergehen. Das priorisiert die nächste Rechnung. In der CAR-Kontrolle
+000078 |    ist diese Funktion auf die feste vollständige Einteilchenbasis begrenzt;
+000079 |    eine freie Suche nach längeren Versuchswörtern ist noch zu ergänzen.
+000080 | 
+000081 | Für die fundamentale Quellenauswahl ist Richtung 1 am unmittelbarsten.
+000082 | Die beiden jetzt laufenden Löser dienen der automatischen Konstruktion und
+000083 | Prüfung ihrer Operatorabbildungen. Sie wählen die positive Quelle nicht selbst.
+000084 | Die methodischen Grundlagen sind CEGIS
+000085 | ([Solar-Lezama](https://people.csail.mit.edu/asolar/papers/thesis.pdf)) und für
+000086 | die geplante Kernsuche nichtkommutative Momenthierarchien
+000087 | ([Pironio, Navascués, Acín](https://arxiv.org/abs/0903.4368)). Deren allgemeine
+000088 | Konvergenzaussagen übertragen sich nur unter den jeweiligen Voraussetzungen,
+000089 | nicht automatisch auf eine unbeschränkte TFPT-Feldtheorie.
+000090 | 
+000091 | ## Beweisgrenze und Ressourcen
+000092 | 
+000093 | `lean/OperatorTransport.lean` beweist zwölf allgemeine Transportlemmata über
+000094 | Summen, Produkte, Potenzen, Adjungierte und explizite Konjugation. Der
+000095 | Lean-Receipt belegt diese Lemmas; konkrete Matrizen prüft der unabhängige exakte
+000096 | Python-Pfad. Die Analytik eines Logarithmus oder eines unbeschränkten Operators
+000097 | ist damit nicht formalisiert. Kein Lean-Satz erklärt einen numerischen Treffer
+000098 | automatisch zur physischen Quelle.
+000099 | 
+000100 | Die kleine Kalibrierung ist auf der CPU bereits unter einer Sekunde fertig.
+000101 | Auf den zwei verfügbaren H200 wurde deshalb **kein Scheinlanglauf** gestartet.
+000102 | Sie werden erst für große Wort-/Kopplungsfamilien bzw. eine geeignete numerische
+000103 | Vorsuche gebraucht; der abschließende exakte Prüfer bleibt davon getrennt.
+000104 | 
+000105 | **Verdict:** funktionierende Suchwerkzeuge und bekannte Quelle als Kontrollfall.
+000106 | Keine neue P1/P2-Herleitung, kein ausgewählter ursprünglicher Zustand und kein
+000107 | physisches Ereignisgesetz. Keine Änderung an Ledger, Verifikationen oder Paper.

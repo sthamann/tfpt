@@ -1,0 +1,174 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/paper-source-reconstruction-20261025/microscopic_octic_composition.py
+Original file SHA-256: 83fc8bb552b6118645b9f38a812dffced5278b6815f916115c7c8b2983ad47ca
+Inclusive original lines: 1-166
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Check the actual QWZ modes and their neutral folded Ward dictionary.
+000003 | 
+000004 | The all-mode statements are symbolic identities.  Floating strip calculations
+000005 | are diagnostics of the existing QWZ source, not a proof of a scaling limit.
+000006 | No full old suite is declared green: its transitive source pin has drifted.
+000007 | """
+000008 | 
+000009 | from __future__ import annotations
+000010 | 
+000011 | import ast
+000012 | import hashlib
+000013 | import importlib.util
+000014 | import itertools
+000015 | import json
+000016 | from pathlib import Path
+000017 | import sys
+000018 | 
+000019 | import numpy as np
+000020 | import sympy as sp
+000021 | 
+000022 | 
+000023 | HERE = Path(__file__).resolve().parent
+000024 | REPO = HERE.parents[2]
+000025 | sys.path.insert(0, str(REPO))
+000026 | sys.path.insert(0, str(REPO / "verification"))
+000027 | 
+000028 | 
+000029 | def need(condition, message):
+000030 |     if not condition:
+000031 |         raise ArithmeticError(message)
+000032 | 
+000033 | 
+000034 | def load(name, relative):
+000035 |     spec = importlib.util.spec_from_file_location(name, REPO / relative)
+000036 |     module = importlib.util.module_from_spec(spec)
+000037 |     sys.modules[name] = module
+000038 |     spec.loader.exec_module(module)
+000039 |     return module
+000040 | 
+000041 | 
+000042 | def sha(relative):
+000043 |     return hashlib.sha256((REPO / relative).read_bytes()).hexdigest()
+000044 | 
+000045 | 
+000046 | def source_nodes(relative, names):
+000047 |     tree = ast.parse((REPO / relative).read_text())
+000048 |     found = {}
+000049 |     for node in tree.body:
+000050 |         if isinstance(node, ast.FunctionDef) and node.name in names:
+000051 |             found[node.name] = ast.dump(node, include_attributes=False)
+000052 |         if isinstance(node, ast.Assign):
+000053 |             for target in node.targets:
+000054 |                 if isinstance(target, ast.Name) and target.id in names:
+000055 |                     found[target.id] = ast.dump(node.value, include_attributes=False)
+000056 |     need(set(found) == set(names), "source symbol absent")
+000057 |     return found
+000058 | 
+000059 | 
+000060 | def main():
+000061 |     actual_path = "verification/v1033_charged_disorder.py"
+000062 |     historical_path = "verification/historical_replay/v1033_original.py"
+000063 |     names = {"strip_at_momentum", "SX", "SY", "SZ", "TX", "TY"}
+000064 |     need(source_nodes(actual_path, names) == source_nodes(historical_path, names),
+000065 |          "the actual QWZ strip or its hopping constants changed")
+000066 |     source = load("paper_actual_qwz", actual_path)
+000067 |     linear = load("paper_existing_linearization",
+000068 |                   "experiments/theory-contracts/microscopic-energy-linearization/checker.py")
+000069 |     charged = load("paper_existing_car",
+000070 |                    "experiments/theory-contracts/microscopic-charged-car-limit/checker.py")
+000071 |     native = load("paper_existing_octic",
+000072 |                   "experiments/theory-contracts/native-octic-seam-origin-20261025/native_folded_octic_origin.py")
+000073 | 
+000074 |     # The first original-CAR identification, before a bosonic dictionary:
+000075 |     # K = Lcal_-8/8 = sum_r c(r) :a*_(r+8) a_r:.
+000076 |     r, n = sp.symbols("r n", integer=True)
+000077 |     alpha = sp.Rational(1, 4)
+000078 |     coefficient = lambda index: (index + alpha + 4) / 8
+000079 |     need(sp.expand(coefficient(r + 8 * n) - coefficient(r)) == n,
+000080 |          "CAR commutator does not give the full current-mode derivation")
+000081 |     delta = sp.Matrix([(k + alpha) / 8 - sp.Rational(1, 2) for k in range(8)])
+000082 |     need(sp.Matrix([coefficient(k - 8) for k in range(8)]) == delta,
+000083 |          "actual sea-crossing pairs do not carry the original delta")
+000084 |     need(all(-((k + sp.Rational(3, 4)) / 8 - sp.Rational(1, 2))
+000085 |              == delta[7 - k] for k in range(8)),
+000086 |          "orientation/counterterm convention mismatch")
+000087 |     j = sp.symbols("j", integer=True)
+000088 |     need(sp.expand((-j + alpha) - (sp.Rational(1, 4) - j)) == 0,
+000089 |          "orientation changes the physical one-particle generator")
+000090 | 
+000091 |     _, orthogonal, positive, fold = native.original_transport()
+000092 |     a_map = native.clean(positive.T * orthogonal.T * fold)
+000093 |     b = native.clean(a_map * delta)
+000094 |     i8_value = sp.expand(sum(z ** 8 for z in b)
+000095 |         + 14 * sum(b[u] ** 4 * b[v] ** 4
+000096 |                    for u, v in itertools.combinations(range(4), 2))
+000097 |         + 168 * sp.prod(z ** 2 for z in b))
+000098 |     amplitude = sp.simplify(sp.factorial(8) * sp.conjugate(i8_value)
+000099 |                             / (96 * sp.sqrt(140)))
+000100 |     expected = sp.sqrt(35) * (16250979 + 56071008 * sp.I) / 128
+000101 |     need(sp.simplify(8 ** 8 * amplitude - expected) == 0,
+000102 |          "microscopic source normalization changes the Ward amplitude")
+000103 | 
+000104 |     # Reuse the actual source strip and the existing analytic mode adapter.
+000105 |     # The old inherited() pin is not bypassed or reported as passed.  These
+000106 |     # two functions are called explicitly with this identified source, whose
+000107 |     # relevant AST is checked against the preserved historical source above.
+000108 |     rows = []
+000109 |     row = charged.row_spinor()
+000110 |     for lattice_n in (4096, 8192):
+000111 |         maxima = dict(raw_generator_residual=0., projected_generator_residual=0.,
+000112 |                       row_to_polarized_mode=0., wrong_sea_occupation=0.)
+000113 |         for label in range(-64, 65):
+000114 |             data = linear.source_strip(lattice_n, label, source)
+000115 |             p, rho = data["p"], data["rho"]
+000116 |             k = label - .25
+000117 |             scale = lattice_n / (2 * np.pi)
+000118 |             raw = np.linalg.norm((scale * data["h"] + k * np.eye(16)) @ row)
+000119 |             raw_cap = np.pi * k ** 2 / lattice_n + 2 * np.pi ** 2 * abs(k) ** 3 / (3 * lattice_n ** 2)
+000120 |             projected = np.linalg.norm((scale * data["h"] + k * np.eye(16)) @ data["j"])
+000121 |             projected_cap = scale * (2 * rho ** 8 + abs(p) ** 3 / 6)
+000122 |             distance = np.linalg.norm(data["j"] - row)
+000123 |             occupation = np.vdot(row, data["negative"] @ row).real
+000124 |             wrong = abs(occupation - int(label >= 1))
+000125 |             need(raw <= raw_cap + 1e-10, "actual top-row generator cap failed")
+000126 |             need(projected <= projected_cap + 1e-10, "polarized generator cap failed")
+000127 |             need(distance <= 4 * rho + 1e-12, "same-sea mode estimate failed")
+000128 |             need(wrong <= 9 * rho ** 2 + 1e-12, "actual filled-sea covariance estimate failed")
+000129 |             for key, value in zip(maxima, (raw, projected, distance, wrong)):
+000130 |                 maxima[key] = max(maxima[key], float(value))
+000131 |         rows.append({"N": lattice_n, "labels": [-64, 64], "modes_checked": 129,
+000132 |                      "maxima": maxima, "interval_arithmetic": False})
+000133 | 
+000134 |     report = {
+000135 |         "status": "PASS_ACTUAL_QWZ_NEUTRAL_OCTIC_COMPOSITION",
+000136 |         "exact": {
+000137 |             "source_hopping_and_strip_equal_preserved_original_ast": True,
+000138 |             "K_commutator_all_modes": "[K,h_(k,-n)]=n*h_(k,-n-1)",
+000139 |             "K_vacuum_coefficients": [str(z) for z in delta],
+000140 |             "QWZ_orientation_and_counterterm_identity": True,
+000141 |             "charge": 0, "original_source_excitation_energy": 64,
+000142 |             "ward_amplitude_folded": str(amplitude),
+000143 |             "ward_amplitude_original_Lcal": str(expected),
+000144 |         },
+000145 |         "actual_source_diagnostics": rows,
+000146 |         "source_hashes": {p: sha(p) for p in [actual_path, historical_path,
+000147 |             "experiments/theory-contracts/microscopic-energy-linearization/checker.py",
+000148 |             "experiments/theory-contracts/microscopic-charged-car-limit/README.md",
+000149 |             "experiments/theory-contracts/native-octic-seam-origin-20261025/native_folded_octic_origin.py"]},
+000150 |         "scope": {
+000151 |             "fixed_original_QWZ_and_fold": True,
+000152 |             "new_independent_sources": 0,
+000153 |             "simultaneous_lattice_UV_limit_proved": False,
+000154 |             "microscopic_full_stress_unitary_limit_proved": False,
+000155 |             "P1_source_selection_proved": False,
+000156 |             "all_old_source_pin_tests_passed": False,
+000157 |             "complete_TFPT_proved": False,
+000158 |         },
+000159 |     }
+000160 |     (HERE / "composition-results.json").write_text(json.dumps(report, indent=2) + "\n")
+000161 |     print(report["status"])
+000162 |     print("Exact original-CAR Ward identification and 258 actual source modes checked.")
+000163 | 
+000164 | 
+000165 | if __name__ == "__main__":
+000166 |     main()

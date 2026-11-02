@@ -1,0 +1,188 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/D4-CONNECTION-LIFT.txt
+Original file SHA-256: d3647a78636a3d9d465c52ff17ed578b4961a097a7256a04638c6e4b2c2ba6a4
+Inclusive original lines: 1-180
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | EXACT INVERSION TEST FOR THE v117 FUCHSIAN CONNECTION
+000002 | =====================================================
+000003 | 
+000004 | 26 October 2026. Exact rational-gauge obstruction. No Atlas, paper, ledger
+000005 | or verification source was changed.
+000006 | 
+000007 | POSITIVE CONTINUATION AND SCOPE CORRECTION
+000008 | ==========================================
+000009 | 
+000010 | The negative D4 theorem in this file remains valid.  A subsequently
+000011 | recovered original source proves that the same connection already has a
+000012 | finite C4 triangle descent.  Therefore the absence of an inversion lift does
+000013 | not leave the analytic v117 monodromy open: the C4 quotient proves that its
+000014 | extended orbifold image is S4 and identifies the marked representation with
+000015 | (U^(-1),M0) up to constant conjugacy.  See
+000016 | C4-DESCENT-FINITE-MONODROMY.txt and its exact checker.  Statements below
+000017 | that formerly called the analytic identification open are superseded by
+000018 | that positive continuation; the rational inversion calculation itself is
+000019 | unchanged.
+000020 | 
+000021 | Question and answer
+000022 | ===================
+000023 | 
+000024 | Consider the actual connection
+000025 | 
+000026 |   Y'(z)=A(z)Y(z),
+000027 |   A(z)=sum_(k=0)^3 A_k/(z-i^k),
+000028 |   A_k=U^k A0* U^(-k),
+000029 | 
+000030 | with
+000031 | 
+000032 |   U=diag(1,i,-i),
+000033 | 
+000034 |   A0*=[[1/2,sqrt(2)/6,0],
+000035 |        [sqrt(2)/6,1/4,sqrt(5)/12],
+000036 |        [0,sqrt(5)/12,1/4]].
+000037 | 
+000038 | Does it admit a rational lift of the original inversion s:z->1/z,
+000039 | 
+000040 |   Y(z)=G(z)Y(1/z),
+000041 | 
+000042 | so that
+000043 | 
+000044 |   G'=A(z)G+z^(-2)G A(1/z),                            (1)
+000045 |   G(z)G(1/z)=I                                        (2)
+000046 | 
+000047 | up to an allowed constant scalar cocycle?
+000048 | 
+000049 | No. Equation (1) has no nonzero rational matrix solution at all. Therefore
+000050 | the concrete A0* differential equation is exactly C4 equivariant but is not
+000051 | a genuinely D4 linearized connection for the marked inversion. The cocycle
+000052 | condition (2) is never reached.
+000053 | 
+000054 | This closes the proposed D4 route.  It does not obstruct the actual C4
+000055 | route.  The existing exact matrix M0 and the finite group <U,M0>=S4 are now
+000056 | identified with the analytic monodromy by the recovered C4 triangle proof.
+000057 | The D4 orbifold rigidity theorem still cannot be used, because its required
+000058 | connection-level D4 premise fails for the displayed ODE.
+000059 | 
+000060 | 1. Existing result used and changed premise
+000061 | ============================================
+000062 | 
+000063 | The Atlas at revision 1511caef8fbd449e2b24c859 records the correct split:
+000064 | 
+000065 |   * v116 makes the residue normal form and the a13=0 infinity resonance
+000066 |     cancellation exact inside the C4 equivariant ansatz;
+000067 | 
+000068 |   * v117 makes the candidate matrix M0, its order-three class and the finite
+000069 |     group <U,M0>=S4 exact;
+000070 | 
+000071 |   * v117 itself still labels equality with the unitarized ODE monodromy
+000072 |     numerical, but the older September source closes the marked local system
+000073 |     analytically through its C4 triangle descent.
+000074 | 
+000075 | The new premise tested here is stronger than a13=0: the same A0* connection
+000076 | must carry a rational inversion linearization. This is exactly the missing
+000077 | connection-level hypothesis needed to apply D4-ORBIFOLD-RIGIDITY.txt.
+000078 | 
+000079 | 2. The connection in one exact rational formula
+000080 | ================================================
+000081 | 
+000082 | Summing the four residues gives
+000083 | 
+000084 |                1                 [ 2z^3       2sqrt(2)z^2/3       0          ]
+000085 |   A(z)= -----------------          [ 2sqrt(2)/3 z^3               sqrt(5)z/3 ] .  (3)
+000086 |           z^4-1                   [ 0          sqrt(5)z/3         z^3        ]
+000087 | 
+000088 | Equation (3) proves the rotation covariance directly:
+000089 | 
+000090 |   i A(i z)=U A(z)U^(-1).                              (4)
+000091 | 
+000092 | Thus the actual ODE has the advertised C4 lift. The issue is specifically
+000093 | the reflection completing C4 to D4.
+000094 | 
+000095 | The residue polynomial is
+000096 | 
+000097 |   det(lambda I-A0*)=lambda(3lambda-1)(3lambda-2)/9,    (5)
+000098 | 
+000099 | so every finite residue has the distinct eigenvalues 0,1/3,2/3. At infinity
+000100 | 
+000101 |   A(z)=B0/z+O(z^(-2)),       B0=diag(2,1,1).           (6)
+000102 | 
+000103 | The vanishing a13 entry is precisely what removes the level-one resonance
+000104 | obstruction in v116. Equations (5)-(6) now also give a complete degree bound
+000105 | for every possible rational inversion lift.
+000106 | 
+000107 | 3. Any rational lift would have to be a tiny polynomial
+000108 | ========================================================
+000109 | 
+000110 | Let G be a rational solution of (1).
+000111 | 
+000112 | At an ordinary point, a pole of order m>=1 is impossible: G' would have a
+000113 | term of order m+1 while both coefficient matrices in (1) are regular there.
+000114 | 
+000115 | At a puncture z=i^k, the residue operator acting on a leading matrix C is
+000116 | 
+000117 |   L_k(C)=A_k C-C A_(-k).                               (7)
+000118 | 
+000119 | Since the two residues in (7) are conjugate Hermitian matrices with spectrum
+000120 | (5), the spectrum of L_k consists of their pairwise differences
+000121 | 
+000122 |   {0,+/-1/3,+/-2/3}.
+000123 | 
+000124 | A pole C t^(-m) would require L_k(C)=-m C. No negative integer occurs, so G
+000125 | has no pole at any of the four punctures.
+000126 | 
+000127 | Near z=0 the transformed infinity term is
+000128 | 
+000129 |   z^(-2)A(1/z)=B0/z+O(1).                              (8)
+000130 | 
+000131 | The same leading-order argument excludes a pole because B0 has only the
+000132 | positive eigenvalues 2,1,1. It also gives G(0)=0. If
+000133 | 
+000134 |   G=sum_(n>=0) G_n z^n,
+000135 | 
+000136 | then the indicial equation is
+000137 | 
+000138 |   n G_n=G_n B0                                       (9)
+000139 | 
+000140 | at the first nonzero order. Consequently the first column begins at order
+000141 | z^2, while the second and third columns begin at order z.
+000142 | 
+000143 | Finally, at infinity the leading part of (1) is
+000144 | 
+000145 |   G'=(B0/z)G+O(z^(-2)G).                              (10)
+000146 | 
+000147 | For a polynomial leading term z^d C, equation (10) says dC=B0 C. Hence the
+000148 | first row has degree at most two and the second and third rows degree at most
+000149 | one. Every rational solution of (1) must therefore have exactly the bounded
+000150 | form
+000151 | 
+000152 |          [ a z^2   b z+c z^2   d z+e z^2 ]
+000153 |   G(z)= [ 0       f z           g z       ].           (11)
+000154 |          [ 0       h z           j z       ]
+000155 | 
+000156 | This is not a guessed truncation. Regularity, (5), the 0-infinity exchange
+000157 | and the Birkhoff-Grothendieck exponents (2,1,1) force (11).
+000158 | 
+000159 | 4. Nine coefficients, rank nine
+000160 | =================================
+000161 | 
+000162 | Insert (11) and (3) into (1), and multiply the result by (z^4-1)/z. A small
+000163 | triangular subset of the resulting coefficient equations already gives
+000164 | 
+000165 |   E_11=(2sqrt(2)/3) z^2(b+c z)=0
+000166 |        => b=c=0,
+000167 | 
+000168 |   E_13=-d z^3-e-(2sqrt(2)/3)g z^2=0
+000169 |        => d=e=g=0,
+000170 | 
+000171 |   E_12=(2sqrt(2)/3)(a z-f z^2)=0
+000172 |        => a=f=0,
+000173 | 
+000174 |   E_31=(2sqrt(2)/3)h z^2=0
+000175 |        => h=0,
+000176 | 
+000177 |   E_32=(sqrt(5)/3)j z=0
+000178 |        => j=0.                                        (12)
+000179 | 
+000180 | Thus G=0. Equivalently, the complete exact linear coefficient matrix has

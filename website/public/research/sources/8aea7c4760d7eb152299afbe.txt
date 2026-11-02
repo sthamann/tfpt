@@ -1,0 +1,164 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_higgs_color_holonomy.py
+Original file SHA-256: ec02f418064ef31e83a1abe0c762df45f0b761ff1d3b7c8b207d094eafd98494
+Inclusive original lines: 1-156
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R067: original builder and independent Fock diagnostics, not physical Y fits."""
+000002 | from pathlib import Path
+000003 | import sys,json
+000004 | from fractions import Fraction
+000005 | import numpy as np
+000006 | import mpmath as mp
+000007 | from scipy.linalg import expm,eigh,block_diag
+000008 | 
+000009 | repo=Path(__file__).resolve().parents[4]
+000010 | sys.path.insert(0,str(repo/'verification'))
+000011 | import v252_full_finite_triple as v
+000012 | mp.mp.dps=90
+000013 | b=4*mp.pi
+000014 | tests=[]
+000015 | def need(name,error,tol):
+000016 |     if abs(error)>=tol:raise RuntimeError(f'{name}: {error} >= {tol}')
+000017 |     tests.append(dict(name=name,error=str(abs(error)),tolerance=str(tol)))
+000018 | 
+000019 | # Reuse the ORIGINAL constructor's seed252 diagnostic inputs, not measured
+000020 | # or newly optimized Yukawas. The proof covers any fixed given matrices.
+000021 | rng=np.random.default_rng(252)
+000022 | ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000023 | mr0=rng.normal(size=(3,3));mr=mr0+mr0.T
+000024 | zero=np.zeros((3,3),complex)
+000025 | dy=v.full_D(*ys,zero);dm=v.full_D(zero,zero,zero,zero,mr)
+000026 | gamma=v.grading()
+000027 | quark=[i for i,(name,ch,c,g) in enumerate(v.P) if name in ['u','d']]
+000028 | need('actual particle quark restriction dimension',len(quark)-36,1e-20)
+000029 | tfull=np.zeros(v.NH)
+000030 | for i,(name,ch,c,g) in enumerate(v.P):
+000031 |     if name in ['u','d']:tfull[i]=[1,-1,0][c];tfull[v.NP+i]=-tfull[i]
+000032 | t=np.diag(tfull[quark]);gam=gamma[np.ix_(quark,quark)]
+000033 | need('actual quark Tr t2',np.trace(t@t)-24,1e-20)
+000034 | need('actual chiral plus coefficient',np.trace((np.eye(36)+gam)/2@t@t)-12,1e-20)
+000035 | need('actual chiral minus coefficient',np.trace((np.eye(36)-gam)/2@t@t)-12,1e-20)
+000036 | sing=np.r_[np.linalg.svd(ys[0],compute_uv=False),np.linalg.svd(ys[1],compute_uv=False)]
+000037 | 
+000038 | def phi(h):
+000039 |     h1,h2=h;rr=np.sqrt(abs(h1)**2+abs(h2)**2)
+000040 |     if rr==0:return dm.copy()
+000041 |     q=np.array([[np.conj(h2),h1],[-np.conj(h1),h2]],complex)/rr
+000042 |     unit=np.eye(v.NH,dtype=complex)
+000043 |     for g in range(3):
+000044 |         for names,colors in [(('nu','e'),[0]),(('u','d'),range(3))]:
+000045 |             for c in colors:
+000046 |                 ii=[v.IDX[(name,'L',c,g)] for name in names]
+000047 |                 unit[np.ix_(ii,ii)]=q
+000048 |                 jj=[i+v.NP for i in ii];unit[np.ix_(jj,jj)]=q.conj()
+000049 |     return unit@(rr*dy+dm)@unit.conj().T
+000050 | 
+000051 | def group36(g):
+000052 |     ug=np.zeros((36,36),complex)
+000053 |     for i,oi in enumerate(quark):
+000054 |         name,ch,c,gen=v.P[oi]
+000055 |         for j,oj in enumerate(quark):
+000056 |             name2,ch2,c2,gen2=v.P[oj]
+000057 |             if (name,ch,gen)==(name2,ch2,gen2):ug[i,j]=g[c,c2]
+000058 |     return ug
+000059 | 
+000060 | herm=np.array([[.2,.3+.1j,0],[.3-.1j,-.1,.2j],[0,-.2j,-.1]])
+000061 | gg=expm(1j*herm)
+000062 | cart=expm(1j*.7*np.diag([1,-1,0]))
+000063 | for gi,g in enumerate([cart,gg,np.diag([-1,-1,1])]):
+000064 |     raw=v.rep(1,np.eye(2),g.conj());ks=v.Kswap()
+000065 |     actual=raw@ks@raw.conj()@ks
+000066 |     need(f'original real color gauge lift G{gi}',np.linalg.norm(actual[np.ix_(quark,quark)]-group36(g)),1e-13)
+000067 | cases=[(0,0),(.12,.23j),(.23j,.12),(.4+.1j,-.2+.3j)]
+000068 | for k,higgs in enumerate(cases):
+000069 |     ph=phi(higgs);u=sum(abs(z)**2 for z in higgs)
+000070 |     need(f'original whole Phi odd case{k}',np.linalg.norm(gamma@ph+ph@gamma),2e-12)
+000071 |     phq=ph[np.ix_(quark,quark)]
+000072 |     need(f'original color commutes Phi case{k}',np.linalg.norm(t@phq-phq@t),1e-13)
+000073 |     for p in [.25,-.75]:
+000074 |         h=p*gam-1j*gam@phq
+000075 |         ev,vec=eigh(h)
+000076 |         occ=np.exp(-np.logaddexp(0,float(b)*ev))
+000077 |         cov=(vec*occ)@vec.conj().T
+000078 |         ee=np.sqrt(p*p+sing**2*u)
+000079 |         ss=1/(4*np.cosh(float(b)*ee/2)**2)
+000080 |         direct_var=np.trace(t@t@cov@(np.eye(36)-cov)).real
+000081 |         need(f'actual36 forward variance H{k} p{p}',direct_var-4*ss.sum(),3e-13)
+000082 |         for gi,g in enumerate([cart,gg]):
+000083 |             ug=group36(g)
+000084 |             direct=np.linalg.det(np.eye(36)-cov+cov@ug)
+000085 |             expected=np.prod([np.linalg.det(np.eye(3)-s*(2*np.eye(3)-g-g.conj().T)) for s in ss])
+000086 |             need(f'actual36 full SU3 determinant H{k} p{p} G{gi}',direct-expected,2e-13)
+000087 | 
+000088 | # Independent six-CAR/64-state Fock computation for a single flavor,
+000089 | # with nondiagonal SU3 action, no one-particle determinant evaluator.
+000090 | def annihilator(i,m=6):
+000091 |     z=np.zeros((2**m,2**m),complex)
+000092 |     for state in range(2**m):
+000093 |         if state>>i&1:z[state^(1<<i),state]=(-1)**((state&((1<<i)-1)).bit_count())
+000094 |     return z
+000095 | aa=[annihilator(i) for i in range(6)]
+000096 | def second(mat):
+000097 |     out=np.zeros((64,64),complex)
+000098 |     for i in range(6):
+000099 |         for j in range(6):out+=mat[i,j]*(aa[i].conj().T@aa[j])
+000100 |     return out
+000101 | qop=second(block_diag(np.diag([1,-1,0]),np.diag([1,-1,0])))
+000102 | ufock=expm(1j*second(block_diag(herm,herm)))
+000103 | for mass in [0,.15,.6]:
+000104 |     p=.25
+000105 |     h=np.block([[p*np.eye(3),-1j*mass*np.eye(3)],[1j*mass*np.eye(3),-p*np.eye(3)]])
+000106 |     val,vec=eigh(second(h));ww=np.exp(-float(b)*(val-val.min()))
+000107 |     rho=(vec*ww)@vec.conj().T/ww.sum()
+000108 |     ss=1/(4*np.cosh(float(b)*np.sqrt(p*p+mass*mass)/2)**2)
+000109 |     expect=np.linalg.det(np.eye(3)-ss*(2*np.eye(3)-gg-gg.conj().T))
+000110 |     need(f'independent64 Fock group trace mass{mass}',np.trace(rho@ufock)-expect,4e-13)
+000111 |     need(f'independent64 zero color mean mass{mass}',np.trace(rho@qop),3e-13)
+000112 |     need(f'independent64 color variance mass{mass}',np.trace(rho@qop@qop)-4*ss,4e-13)
+000113 | 
+000114 | # An exact rational Fock trace at a nontrivial group element.
+000115 | f=Fraction(1,5);rational=Fraction()
+000116 | for state in range(64):
+000117 |     prob=Fraction(1);charge=0
+000118 |     for i in range(6):
+000119 |         occ=f if i<3 else 1-f
+000120 |         bit=state>>i&1
+000121 |         prob*=occ if bit else 1-occ
+000122 |         charge+=[1,-1,0,1,-1,0][i]*bit
+000123 |     rational+=prob*((-1)**abs(charge))
+000124 | if rational!=Fraction(81,625):raise RuntimeError('rational sixCAR trace mismatch')
+000125 | tests.append(dict(name='exact rational sixCAR trace',value=str(rational)))
+000126 | 
+000127 | # Whole original tower. These u values are constructor diagnostics only.
+000128 | def sfun(e):return 1/(4*mp.cosh(b*e/2)**2)
+000129 | def variance(a,u):
+000130 |     return 4*sum(sfun(mp.sqrt((mp.mpf(n)+a)**2+mp.mpf(str(y*y))*u)) for n in range(-24,25) for y in sing)
+000131 | def xi(a,u,theta):
+000132 |     return mp.exp(2*sum(mp.log1p(-4*sfun(mp.sqrt((mp.mpf(n)+a)**2+mp.mpf(str(y*y))*u))*mp.sin(theta/2)**2)
+000133 |                        for n in range(-24,25) for y in sing))
+000134 | a1,a2=mp.mpf(1)/4,mp.mpf(3)/4
+000135 | for a in [a1,a2]:
+000136 |     need(f'free original tower variance a{a}',variance(a,0)-3/mp.pi,mp.mpf('1e-80'))
+000137 | theta=mp.mpf('.7');vprobe=theta/(2*mp.pi)
+000138 | norm=(mp.jtheta(3,mp.pi*vprobe,mp.exp(-mp.pi))/mp.jtheta(3,0,mp.exp(-mp.pi)))**2
+000139 | need('whole free pair Quillen power12',xi(a1,0,theta)*xi(a2,0,theta)-norm**12,mp.mpf('1e-80'))
+000140 | need('exact free quarter color parity1/8',xi(a1,0,mp.pi)-mp.mpf(1)/8,mp.mpf('1e-80'))
+000141 | need('exact free pair color parity1/64',xi(a1,0,mp.pi)*xi(a2,0,mp.pi)-mp.mpf(1)/64,mp.mpf('1e-80'))
+000142 | values=[]
+000143 | for u in [mp.mpf(0),mp.mpf('.01'),mp.mpf('.1'),mp.mpf(1)]:
+000144 |     values.append(dict(u=str(u),variance_pair=str(variance(a1,u)+variance(a2,u)),xi_pair=str(xi(a1,u,theta)*xi(a2,u,theta))))
+000145 | for i in range(1,len(values)):
+000146 |     if not mp.mpf(values[i]['variance_pair'])<mp.mpf(values[i-1]['variance_pair']):raise RuntimeError('variance monotonicity diagnostic')
+000147 |     if not mp.mpf(values[i]['xi_pair'])>mp.mpf(values[i-1]['xi_pair']):raise RuntimeError('bounded group response monotonicity diagnostic')
+000148 |     tests.append(dict(name=f'whole tower mixed source ordering {i}',passed=True))
+000149 | 
+000150 | out=Path(__file__).with_name('HIGGS-COLOR-HOLONOMY.json')
+000151 | result=dict(verdict='EXACT_SCOPED_JOINT_HIGGS_COLOR_RESPONSE',controls=len(tests),tests=tests,diagnostic_values=values,
+000152 |             original_quark_dimension=36,quark_t_squared_trace=24,chiral_coefficients=[12,12],
+000153 |             diagnostic_inputs='Unchanged seed252 constructor controls, not physical Yukawa fits or H weights',
+000154 |             scope='Given constant original conditional quarter CAR source; no primitive measure, local4D or EM identification')
+000155 | out.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+000156 | print(json.dumps(dict(verdict=result['verdict'],controls=len(tests),output=str(out))))

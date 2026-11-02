@@ -1,0 +1,188 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_einstein_noether_hypotheses.py
+Original file SHA-256: 2ee04ee70a4cdf8f5af60dc31e6e7229f1bd589420b1c31007579d18e180bf66
+Inclusive original lines: 1-180
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R081: decisive tests of four origin hypotheses on the existing source.
+000002 | 
+000003 | Native seed252 is a reproducible constructor control, not fitted physical Ys.
+000004 | This does not construct the primitive measure, spacetime or a graviton.
+000005 | """
+000006 | from pathlib import Path
+000007 | import sys, json
+000008 | import numpy as np
+000009 | from scipy.linalg import expm
+000010 | from scipy.special import expit
+000011 | 
+000012 | ROOT = Path(__file__).resolve().parents[4]
+000013 | sys.path.insert(0, str(ROOT / 'verification'))
+000014 | import v252_full_finite_triple as original
+000015 | 
+000016 | checks = {}
+000017 | metrics = {}
+000018 | def need(name, condition):
+000019 |     checks[name] = bool(condition)
+000020 |     if not condition:
+000021 |         raise RuntimeError(name)
+000022 | def small(name, residual, tolerance=1e-8):
+000023 |     metrics[name] = float(abs(residual))
+000024 |     need(name, abs(residual) < tolerance)
+000025 | def matrix_function(a, f):
+000026 |     e,u = np.linalg.eigh(a)
+000027 |     return (u*f(e)) @ u.conj().T
+000028 | def divided_difference(e, f, df):
+000029 |     delta=e[:,None]-e[None,:]
+000030 |     numerator=f(e)[:,None]-f(e)[None,:]
+000031 |     same=abs(delta)<1e-9
+000032 |     out=np.zeros_like(delta)
+000033 |     np.divide(numerator,delta,out=out,where=~same)
+000034 |     out[same]=np.broadcast_to(df(e)[:,None],delta.shape)[same]
+000035 |     return out
+000036 | def frechet(a, b, f, df):
+000037 |     e,u=np.linalg.eigh(a)
+000038 |     return u@(divided_difference(e,f,df)*(u.conj().T@b@u))@u.conj().T
+000039 | 
+000040 | rng=np.random.default_rng(252)
+000041 | ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000042 | mr=rng.normal(size=(3,3))
+000043 | D=original.full_D(*ys,mr+mr.T)
+000044 | gamma=original.grading(); swap=original.Kswap()
+000045 | quaternions=[np.array([[0,1],[-1,0]],complex),
+000046 |              np.array([[0,1j],[1j,0]],complex),np.eye(2),np.diag([-1j,1j])]
+000047 | bp=original.rep(1,np.zeros((2,2)),np.zeros((3,3)))
+000048 | V=[]
+000049 | for q in quaternions:
+000050 |     a=original.rep(0,q,np.zeros((3,3)))
+000051 |     om=a@(D@bp-bp@D); sa=om+om.conj().T
+000052 |     V.append(sa+swap@sa.conj()@swap)
+000053 | ix=[i for i,f in enumerate(original.P) if f[0] in ('u','d')]
+000054 | sub=lambda a:a[np.ix_(ix,ix)]
+000055 | g=sub(gamma); T=[-1j*g@sub(v) for v in V]
+000056 | need('actual_nondoubled_quark_sector_36',len(ix)==36)
+000057 | need('original_force_tuple_hermitian_and_odd',all(
+000058 |     np.linalg.norm(t-t.conj().T)<1e-10 and np.linalg.norm(t@g+g@t)<1e-10 for t in T))
+000059 | 
+000060 | # A. One given mode. Full CAR log partition, no classical force substitution.
+000061 | ell=.2; p=.25; radius=.3; point=np.array([0.,0.,radius,0.])
+000062 | B=[2*ell*t for t in T]
+000063 | def generator(x):return 2*ell*p*g+sum((x[a]*B[a] for a in range(4)),np.zeros((36,36),complex))
+000064 | def W(x):return float(np.logaddexp(0,np.linalg.eigvalsh(generator(x))).sum())
+000065 | K=generator(point); C=matrix_function(K,expit)
+000066 | derivs=[frechet(K,b,expit,lambda z:expit(z)*(1-expit(z))) for b in B]
+000067 | gradient=np.array([np.trace(C@b).real for b in B])
+000068 | hessian=np.array([[np.trace(derivs[a]@B[b]).real for b in range(4)] for a in range(4)])
+000069 | ordinary=np.array([[np.trace(C@B[a]@(np.eye(36)-C)@B[b]).real for b in range(4)] for a in range(4)])
+000070 | small('noether_tangent_first_ward',gradient[0])
+000071 | small('noether_orbit_second_ward',radius**2*hessian[0,0]-radius*gradient[2])
+000072 | small('gibbs_BKM_hessian_is_symmetric',np.linalg.norm(hessian-hessian.T))
+000073 | need('gibbs_BKM_hessian_is_positive',np.linalg.eigvalsh(hessian).min()>0)
+000074 | need('instantaneous_variance_is_not_BKM_hessian',np.linalg.norm(ordinary-hessian)>1e-3)
+000075 | need('naive_variance_breaks_second_orbit_ward',abs(radius**2*ordinary[0,0]-radius*gradient[2])>1e-4)
+000076 | small('whole_partition_is_constant_on_actual_higgs_rotation',W([radius*np.sin(.37),0,radius*np.cos(.37),0])-W(point))
+000077 | eps=2e-4; unit=np.eye(4)[0]
+000078 | small('BKM_hessian_matches_independent_partition_difference',
+000079 |       (W(point+eps*unit)-2*W(point)+W(point-eps*unit))/eps**2-hessian[0,0],3e-6)
+000080 | metrics['BKM_tangent']=float(hessian[0,0]);metrics['instantaneous_tangent_variance']=float(ordinary[0,0])
+000081 | need('spectral_orbit_invariance_does_not_force_radial_stationarity',abs(gradient[2])>.01)
+000082 | X=T[0]; orbit_tangent=1j*(X@K-K@X)
+000083 | small('unitary_orbit_partition_derivative_is_identity',np.trace(C@orbit_tangent))
+000084 | need('odd_force_as_unitary_generator_changes_principal_symbol',np.linalg.norm(X@g-g@X)>1)
+000085 | metrics['radial_W_gradient']=float(gradient[2])
+000086 | metrics['odd_force_principal_symbol_change_norm']=float(np.linalg.norm(X@g-g@X))
+000087 | 
+000088 | # B. Entanglement first law is exact at the chosen reference, not an equilibrium selector.
+000089 | I=np.eye(36)
+000090 | def entropy(c):
+000091 |     e=np.linalg.eigvalsh(c)
+000092 |     return float(np.sum(-e*np.log(e)-(1-e)*np.log1p(-e)))
+000093 | dc=derivs[2]
+000094 | predicted=-np.trace(K@dc).real
+000095 | cp=matrix_function(generator(point+eps*np.eye(4)[2]),expit)
+000096 | cm=matrix_function(generator(point-eps*np.eye(4)[2]),expit)
+000097 | small('native_entropy_first_law', (entropy(cp)-entropy(cm))/(2*eps)-predicted,2e-6)
+000098 | def relative_entropy(c,c0):
+000099 |     lc=matrix_function(c,np.log);lc0=matrix_function(c0,np.log)
+000100 |     lq=matrix_function(I-c,np.log);lq0=matrix_function(I-c0,np.log)
+000101 |     return float(np.trace(c@(lc-lc0)+(I-c)@(lq-lq0)).real)
+000102 | changed=matrix_function(generator(point+.05*np.eye(4)[2]),expit)
+000103 | need('first_law_allows_distinct_positive_relative_entropy_state',relative_entropy(changed,C)>1e-5)
+000104 | metrics['relative_entropy_to_distinct_radial_state']=relative_entropy(changed,C)
+000105 | 
+000106 | # C. Genuine native chiral marginal. P is diagnostic original grading+, not asserted P_F/Padm.
+000107 | keep=np.where(np.diag(g).real>0)[0]
+000108 | take=lambda a:a[np.ix_(keep,keep)]
+000109 | logit=lambda z:np.log(z)-np.log1p(-z)
+000110 | dlogit=lambda z:1/(z*(1-z))
+000111 | CP=take(C); Keff=matrix_function(CP,logit); Kbare=take(K)
+000112 | need('native_chiral_keep_space_18',len(keep)==18)
+000113 | need('bare_higgs_vertex_compresses_to_zero',np.linalg.norm(take(B[2]))<1e-10)
+000114 | need('native_marginal_differs_from_bare_compressed_gibbs',np.linalg.norm(CP-matrix_function(Kbare,expit))>1e-4)
+000115 | dKeff=frechet(CP,take(dc),logit,dlogit)
+000116 | need('integrating_original_partner_retains_higgs_response',np.linalg.norm(dKeff)>1e-3)
+000117 | small('retained_vertex_reconstructs_full_marginal_derivative',np.linalg.norm(
+000118 |     frechet(Keff,dKeff,expit,lambda z:expit(z)*(1-expit(z)))-take(dc)))
+000119 | effective=lambda x:matrix_function(take(matrix_function(generator(x),expit)),logit)
+000120 | small('effective_vertex_matches_independent_logit_difference',np.linalg.norm(
+000121 |     (effective(point+eps*np.eye(4)[2])-effective(point-eps*np.eye(4)[2]))/(2*eps)-dKeff),2e-6)
+000122 | metrics['native_marginal_covariance_defect']=float(np.linalg.norm(CP-matrix_function(Kbare,expit)))
+000123 | metrics['native_effective_higgs_vertex_norm']=float(np.linalg.norm(dKeff))
+000124 | 
+000125 | # Independent 4-state Fock trace using an actual singular-pair subblock of this same source.
+000126 | svals=np.linalg.svd(ys[0],compute_uv=False); s=float(svals[0])
+000127 | kpair=2*ell*np.array([[p,radius*s],[radius*s,-p]])
+000128 | a0=np.array([[0,1],[0,0]],complex); z=np.diag([1,-1])
+000129 | ann=[np.kron(a0,np.eye(2)),np.kron(z,a0)]
+000130 | dk=sum((kpair[i,j]*(ann[i].conj().T@ann[j]) for i in range(2) for j in range(2)),np.zeros((4,4),complex))
+000131 | R=expm(dk); Z=float(np.trace(R).real)
+000132 | marginal=R.reshape(2,2,2,2).trace(axis1=1,axis2=3)
+000133 | cpair=matrix_function(kpair,expit); ce=float(cpair[0,0].real); ke=float(logit(ce))
+000134 | Zkeep=1+np.exp(ke); scalar=Z/Zkeep
+000135 | small('independent_fock_full_partition',Z-np.linalg.det(np.eye(2)+expm(kpair)).real)
+000136 | small('independent_fock_full_unnormalized_marginal',np.linalg.norm(marginal-scalar*np.diag([1,np.exp(ke)])))
+000137 | small('independent_fock_all_retained_words_via_density',np.linalg.norm(marginal/Z-np.diag([1-ce,ce])))
+000138 | need('dropping_partition_ratio_changes_absolute_source',abs(scalar-1)>1e-2)
+000139 | metrics['one_actual_singular_pair_absolute_trace_ratio']=scalar
+000140 | # A requested independent review proposed sigmaX as a false counterexample.
+000141 | false_counter=np.array([[0.,1.],[1.,0.]])
+000142 | small('review_sigmaX_actually_has_half_diagonal',matrix_function(false_counter,expit)[0,0]-.5)
+000143 | need('commutation_is_sufficient_not_necessary_for_compressed_logit_equality',
+000144 |      abs(logit(matrix_function(false_counter,expit)[0,0].real))<1e-12
+000145 |      and np.linalg.norm(false_counter@np.diag([1,0])-np.diag([1,0])@false_counter)>1)
+000146 | E=np.sqrt(p*p+radius*radius*s*s)
+000147 | small('actual_singular_pair_matches_exact_retained_occupation',ce-(1+(p/E)*np.tanh(ell*E))/2)
+000148 | time=.7
+000149 | physical_amplitude=expm(1j*time*kpair/(2*ell))[0,0]
+000150 | need('exact_static_marginal_is_not_autonomous_original_physical_time',abs(physical_amplitude)<.999)
+000151 | small('original_retained_time_amplitude_matches_full_partner_memory',
+000152 |       physical_amplitude-(np.cos(E*time)+1j*p/E*np.sin(E*time)))
+000153 | metrics['retained_physical_time_amplitude_modulus']=float(abs(physical_amplitude))
+000154 | 
+000155 | # D. Same original circle principal symbol and full finite internal fibre.
+000156 | Phi=-1j*gamma@D
+000157 | small('native_full96_Phi_is_hermitian',np.linalg.norm(Phi-Phi.conj().T))
+000158 | small('native_full96_Phi_is_odd',np.linalg.norm(gamma@Phi+Phi@gamma))
+000159 | mass2=np.linalg.eigvalsh(Phi@Phi)
+000160 | times=[1e-3,2.5e-4,6.25e-5,1.5625e-5]
+000161 | heats=[]; dimensions=[]
+000162 | for t in times:
+000163 |     ps=np.arange(-3000,3001)+.25
+000164 |     theta=np.exp(-t*ps**2).sum()
+000165 |     need('tail_control_at_t_'+str(t),np.exp(-t*3000**2)<1e-55)
+000166 |     heat=float(theta*np.exp(-t*mass2).sum());heats.append(heat)
+000167 |     poisson=np.sqrt(np.pi/t)*sum(np.exp(-np.pi**2*k*k/t)*np.cos(2*np.pi*k*.25) for k in range(-3,4))
+000168 |     small('poisson_circle_heat_t_'+str(t),theta/poisson-1,2e-12)
+000169 |     d=1+2*t*float(np.sum(mass2*np.exp(-t*mass2))/np.sum(np.exp(-t*mass2)))
+000170 |     dimensions.append(d)
+000171 | need('finite_internal_fibre_leaves_dimension_one',abs(dimensions[-1]-1)<.002)
+000172 | need('finite_internal_multiplicity_does_not_give_dimension_three',abs(dimensions[-1]-3)>1.9)
+000173 | metrics['heat_times']=times;metrics['spatial_spectral_dimensions']=dimensions
+000174 | metrics['hypothesis_scope']='Given circle + fixed finite internal fibre only; no exclusion of other emergent or holographic spacetime maps.'
+000175 | 
+000176 | out={'date':'2026-11-02','result_id':'R081','checks':checks,'metrics':metrics,
+000177 |      'passed':len(checks),'failed':0,'ledger_changed':False,'new_lean_run':False,
+000178 |      'primitive_field_measure_derived':False,'physical_3plus1_or_spin2_derived':False}
+000179 | Path(__file__).with_name('EINSTEIN-NOETHER-HYPOTHESES.json').write_text(json.dumps(out,indent=2)+'\n')
+000180 | print(json.dumps(out,indent=2))

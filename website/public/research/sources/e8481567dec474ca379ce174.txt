@@ -1,0 +1,188 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/check_parabolic_stability.py
+Original file SHA-256: a9962489103f28ae692ca7b53f27f1d12397e579579c2b887b1c0ee65e2f38ee
+Inclusive original lines: 1-180
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact finite stability check for the four rotated A0* flags.
+000003 | 
+000004 | This checks the algebraic parabolic object obtained by putting the A0* flags
+000005 | in the affine splitting frame of O(-2)+O(-1)^2.  It separately checks whether
+000006 | the diagonal infinity shear used to motivate that frame actually makes the
+000007 | A0* connection form regular.  No assertion controls program behaviour, so
+000008 | python and python -OO produce the same JSON.
+000009 | """
+000010 | 
+000011 | from __future__ import annotations
+000012 | 
+000013 | import argparse
+000014 | import json
+000015 | from itertools import product
+000016 | from pathlib import Path
+000017 | 
+000018 | import sympy as sp
+000019 | 
+000020 | 
+000021 | I = sp.I
+000022 | SQ2 = sp.sqrt(2)
+000023 | SQ5 = sp.sqrt(5)
+000024 | SQ10 = sp.sqrt(10)
+000025 | U = sp.diag(1, I, -I)
+000026 | POINTS = (sp.Integer(1), I, sp.Integer(-1), -I)
+000027 | A0 = sp.Matrix([
+000028 |     [sp.Rational(1, 2), SQ2 / 6, 0],
+000029 |     [SQ2 / 6, sp.Rational(1, 4), SQ5 / 12],
+000030 |     [0, SQ5 / 12, sp.Rational(1, 4)],
+000031 | ])
+000032 | V0 = sp.Matrix([SQ10 / 5, -3 * SQ5 / 5, 1])
+000033 | V1 = sp.Matrix([-SQ10 / 5, SQ5 / 5, 1])
+000034 | V2 = sp.Matrix([SQ10, SQ5, 1])
+000035 | N = sp.diag(2, 1, 1)
+000036 | M0 = sp.Matrix([
+000037 |     [0, -(1 + I) / 2, (1 - I) / 2],
+000038 |     [-(1 + I) / 2, -I / 2, sp.Rational(-1, 2)],
+000039 |     [(1 - I) / 2, sp.Rational(-1, 2), I / 2],
+000040 | ])
+000041 | 
+000042 | 
+000043 | def zero(x: sp.Expr) -> bool:
+000044 |     return sp.simplify(x) == 0
+000045 | 
+000046 | 
+000047 | def matrix_zero(m: sp.Matrix) -> bool:
+000048 |     return all(zero(x) for x in m)
+000049 | 
+000050 | 
+000051 | def enumerate_group(generators):
+000052 |     def freeze(matrix):
+000053 |         return tuple(sp.expand(x) for x in matrix)
+000054 | 
+000055 |     elements = {freeze(sp.eye(3)): sp.eye(3)}
+000056 |     frontier = [sp.eye(3)]
+000057 |     while frontier:
+000058 |         following = []
+000059 |         for element in frontier:
+000060 |             for generator in generators:
+000061 |                 candidate = sp.expand(generator * element)
+000062 |                 key = freeze(candidate)
+000063 |                 if key not in elements:
+000064 |                     elements[key] = candidate
+000065 |                     following.append(candidate)
+000066 |         frontier = following
+000067 |     return list(elements.values())
+000068 | 
+000069 | 
+000070 | def character_distribution(elements):
+000071 |     distribution = {}
+000072 |     for element in elements:
+000073 |         character = str(sp.simplify(element.trace()))
+000074 |         distribution[character] = distribution.get(character, 0) + 1
+000075 |     return dict(sorted(distribution.items()))
+000076 | 
+000077 | 
+000078 | def linear_system(equations, variables):
+000079 |     matrix, _ = sp.linear_eq_to_matrix(equations, variables)
+000080 |     return matrix, matrix.nullspace()
+000081 | 
+000082 | 
+000083 | def polynomial_nonzero_on_space(nullspace, polynomial, variables) -> bool:
+000084 |     if not nullspace:
+000085 |         return False
+000086 |     parameters = sp.symbols("t0:%d" % len(nullspace))
+000087 |     vector = sum(
+000088 |         (parameter * basis for parameter, basis in zip(parameters, nullspace)),
+000089 |         sp.zeros(len(variables), 1),
+000090 |     )
+000091 |     restricted = sp.expand(polynomial.subs(dict(zip(variables, vector))))
+000092 |     return restricted != 0
+000093 | 
+000094 | 
+000095 | def line_pattern_equations(pattern, variables):
+000096 |     a, b, c, d, e = variables
+000097 |     equations = []
+000098 |     for k, (point, threshold) in enumerate(zip(POINTS, pattern)):
+000099 |         value = sp.Matrix([a, b * point + c, d * point + e])
+000100 |         middle = U**k * V1
+000101 |         high = U**k * V2
+000102 |         if threshold >= 1:
+000103 |             equations.append(sp.det(sp.Matrix.hstack(middle, high, value)))
+000104 |         if threshold >= 2:
+000105 |             equations.extend([
+000106 |                 value[0] * high[1] - value[1] * high[0],
+000107 |                 value[0] * high[2] - value[2] * high[0],
+000108 |             ])
+000109 |     return equations
+000110 | 
+000111 | 
+000112 | def saturated_degree_minus_two_exists(nullspace, variables) -> bool:
+000113 |     if not nullspace:
+000114 |         return False
+000115 |     if any(not zero(basis[0]) for basis in nullspace):
+000116 |         return True
+000117 |     _, b, c, d, e = variables
+000118 |     return polynomial_nonzero_on_space(nullspace, b * e - c * d, variables)
+000119 | 
+000120 | 
+000121 | def quotient_pattern_equations(pattern, variables):
+000122 |     a, b, c, d = variables
+000123 |     equations = []
+000124 |     for k, (point, upper_weight) in enumerate(zip(POINTS, pattern)):
+000125 |         functional = sp.Matrix([[a * point + b, c, d]])
+000126 |         middle = U**k * V1
+000127 |         high = U**k * V2
+000128 |         if upper_weight <= 1:
+000129 |             equations.append((functional * high)[0])
+000130 |         if upper_weight <= 0:
+000131 |             equations.append((functional * middle)[0])
+000132 |     return equations
+000133 | 
+000134 | 
+000135 | def surjective_degree_minus_one_exists(nullspace) -> bool:
+000136 |     return any(not zero(basis[2]) or not zero(basis[3]) for basis in nullspace)
+000137 | 
+000138 | 
+000139 | def actual_line_weights(a, b, c, d, e):
+000140 |     weights = []
+000141 |     normal0 = sp.Matrix([[-SQ10, 3 * SQ5, -5]])
+000142 |     for k, point in enumerate(POINTS):
+000143 |         value = sp.Matrix([a, b * point + c, d * point + e])
+000144 |         high = U**k * V2
+000145 |         proportional = (
+000146 |             zero(value[0] * high[1] - value[1] * high[0])
+000147 |             and zero(value[0] * high[2] - value[2] * high[0])
+000148 |         )
+000149 |         in_middle = zero((normal0 * U ** (-k) * value)[0])
+000150 |         weights.append(2 if proportional else (1 if in_middle else 0))
+000151 |     return tuple(weights)
+000152 | 
+000153 | 
+000154 | def actual_quotient_weights(a, b, c, d):
+000155 |     weights = []
+000156 |     for k, point in enumerate(POINTS):
+000157 |         functional = sp.Matrix([[a * point + b, c, d]])
+000158 |         middle = U**k * V1
+000159 |         high = U**k * V2
+000160 |         weights.append(
+000161 |             2 if not zero((functional * high)[0])
+000162 |             else (1 if not zero((functional * middle)[0]) else 0)
+000163 |         )
+000164 |     return tuple(weights)
+000165 | 
+000166 | 
+000167 | def run_check():
+000168 |     checks = []
+000169 |     failures = []
+000170 | 
+000171 |     def check(check_id, condition, detail):
+000172 |         passed = bool(condition)
+000173 |         checks.append({"id": check_id, "passed": passed, "detail": detail})
+000174 |         if not passed:
+000175 |             failures.append(check_id)
+000176 | 
+000177 |     lam = sp.symbols("lambda")
+000178 |     check(
+000179 |         "A0_SPECTRUM",
+000180 |         zero(A0.charpoly(lam).as_expr() - lam * (lam - sp.Rational(1, 3))

@@ -1,0 +1,117 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_current_odd_reader.py
+Original file SHA-256: 18cc066ff1ac58c0ddc1e33543f87e2b7be39f18abbb4126aeac97d6736f849d
+Inclusive original lines: 1-109
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Execute actual v252 -> two-face covariance -> original v258 -> odd reader.
+000002 | 
+000003 | Diagnostic integer couplings only; this is not a derivation of their values.
+000004 | The original mu_geo and collar length remain separate symbols in the proof.
+000005 | Numerical tests use ell=1/4, mu_geo=3/2 without calibrating their product.
+000006 | """
+000007 | from pathlib import Path
+000008 | import hashlib
+000009 | import json
+000010 | import sys
+000011 | import numpy as np
+000012 | import sympy as sy
+000013 | 
+000014 | ROOT = Path(__file__).resolve().parents[4]
+000015 | sys.path.insert(0, str(ROOT / 'verification'))
+000016 | import v252_full_finite_triple as finite
+000017 | import v258_dirac_covariance_induction as reader
+000018 | 
+000019 | ys = [np.diag(x).astype(complex) for x in
+000020 |       ([1, 2, 3], [2, 3, 4], [3, 4, 5], [4, 5, 6])]
+000021 | mr = np.array([[2, 1, 0], [1, 3, 1], [0, 1, 4]], complex)
+000022 | phi0 = finite.full_D(*ys, mr)
+000023 | dy = finite.full_D(*ys, np.zeros((3, 3)))
+000024 | dmr = phi0 - dy
+000025 | gamma = finite.grading()
+000026 | K = finite.Kswap()
+000027 | n = gamma.shape[0]
+000028 | ident = np.eye(n)
+000029 | Z = np.diag([1., -1.])
+000030 | S = np.array([[0., 1.], [1., 0.]])
+000031 | E = np.vstack(((ident + gamma)/2, 1j*(ident - gamma)/2))
+000032 | U = (ident - 1j*gamma)/np.sqrt(2)
+000033 | 
+000034 | def exact(a):
+000035 |     def cv(z):
+000036 |         z = complex(z)
+000037 |         if not z.real.is_integer() or not z.imag.is_integer():
+000038 |             raise ValueError('not exact Gaussian integers')
+000039 |         return sy.Integer(int(z.real)) + sy.I*sy.Integer(int(z.imag))
+000040 |     return sy.SparseMatrix(sy.Matrix(a.tolist()).applyfunc(cv))
+000041 | 
+000042 | g, y, m, k = map(exact, (gamma, dy, dmr, K))
+000043 | p, s, ell_s, mu_s = sy.symbols('p s ell mu', real=True)
+000044 | phi = (1+s)*y + m
+000045 | h = p*g - sy.I*g*phi
+000046 | odd = (h-g*h*g)/2
+000047 | unitary_numerator = sy.eye(n) - sy.I*g
+000048 | checks = {
+000049 |     'actual_96_coefficient': n == 96,
+000050 |     'phi_odd_for_symbolic_s': g*phi+phi*g == sy.zeros(n),
+000051 |     'odd_reader_removes_all_symbolic_momentum': odd == -sy.I*g*phi,
+000052 |     'quarter_rotation_preserves_whole_phi':
+000053 |         sy.expand(unitary_numerator*phi*unitary_numerator.H/2 + sy.I*g*phi) == sy.zeros(n),
+000054 |     'charge_J_commutes_with_U_antilinearly':
+000055 |         k*unitary_numerator.conjugate() == unitary_numerator*k,
+000056 |     'reader_keeps_actual_yukawa_jet': odd.diff(s) == -sy.I*g*y,
+000057 |     'reader_keeps_majorana': odd.subs(s,-1) == -sy.I*g*m,
+000058 | }
+000059 | 
+000060 | ell, mu = 0.25, 1.5
+000061 | 
+000062 | def execute(sval, momentum):
+000063 |     coeff = (1+sval)*dy + dmr
+000064 |     B = np.kron(Z, momentum*ident) - np.kron(S, coeff)
+000065 |     w, v = np.linalg.eigh(B)
+000066 |     # Compute the actual full normal coefficient covariance before compression.
+000067 |     a = (v * ((1+np.tanh(ell*w))/2)) @ v.conj().T
+000068 |     x = (v * (1/(2*np.cosh(ell*w)))) @ v.conj().T
+000069 |     G = np.block([[a,x],[x,np.eye(2*n)-a]])
+000070 |     c22 = E.conj().T @ G[2*n:,2*n:] @ E
+000071 |     ev = np.linalg.eigvalsh(c22)
+000072 |     if not (ev.min()>1e-10 and ev.max()<1-1e-10):
+000073 |         raise RuntimeError('v258 clipping would invalidate this diagnostic')
+000074 |     induced = reader.induce(c22)
+000075 |     extracted = mu*(induced-gamma@induced@gamma)/2
+000076 |     target = 2*ell*mu*U@coeff@U.conj().T
+000077 |     return extracted, {
+000078 |         's':sval, 'p':momentum,
+000079 |         'covariance_min':float(ev.min()),'covariance_max':float(ev.max()),
+000080 |         'projector_error':float(np.linalg.norm(G@G-G)),
+000081 |         'reader_error':float(np.linalg.norm(extracted-target)),
+000082 |         'unprojected_reader_error':float(np.linalg.norm(induced-2*ell*(momentum*gamma-1j*gamma@coeff))),
+000083 |     }
+000084 | 
+000085 | cases = []
+000086 | for sval in (-0.2,0.,0.3):
+000087 |     for momentum in (-0.75,0.25,0.75,1.25):
+000088 |         _, row = execute(sval,momentum)
+000089 |         cases.append(row)
+000090 | step=1e-4
+000091 | plus,_=execute(step,0.25)
+000092 | minus,_=execute(-step,0.25)
+000093 | jet_error=float(np.linalg.norm((plus-minus)/(2*step)-2*ell*mu*U@dy@U.conj().T))
+000094 | checks['entire_actual_numeric_reader'] = max(r['reader_error'] for r in cases)<1e-10
+000095 | checks['numeric_projector_before_reader'] = max(r['projector_error'] for r in cases)<1e-11
+000096 | checks['actual_yukawa_jet_numeric'] = jet_error<1e-8
+000097 | if not all(checks.values()):
+000098 |     raise RuntimeError(checks)
+000099 | result={
+000100 |     'all_pass':True,'checks':checks,'cases':cases,'jet_error':jet_error,
+000101 |     'ell_diagnostic':ell,'mu_geo_diagnostic':mu,'two_ell_mu':2*ell*mu,
+000102 |     'formula':'mu_geo Pi_odd logodds(E* G22(B_s) E) = 2 ell mu_geo U Phi_s U*',
+000103 |     'scope':'Exact symbolic coefficient proof and numerical actual-constructor/reader test. No P_F source selection, original mass or scale derivation, or physical time identification.',
+000104 |     'source_sha256':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest()
+000105 |        for p in (ROOT/'verification/v252_full_finite_triple.py',ROOT/'verification/v258_dirac_covariance_induction.py')},
+000106 | }
+000107 | out=Path(__file__).with_name('CURRENT-ODD-READER-CHECK.json')
+000108 | out.write_text(json.dumps(result,indent=2)+'\n')
+000109 | print(json.dumps({'all_pass':True,'checks':checks,'max_reader_error':max(r['reader_error'] for r in cases),'jet_error':jet_error,'output':str(out)}))

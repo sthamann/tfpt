@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/primitive-seam-operator-reconstruction-20261025/REVIEW.txt
+Original file SHA-256: 3e103349852b57a7e53af3148986ab0d9418a073b89b9d94d9168877d377bc88
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | INDEPENDENT REVIEW: SPECTRAL SEAM OPERATOR RECONSTRUCTION
+000002 | =========================================================
+000003 | 
+000004 | 25 October 2026. Review of the proposed positive reconstruction from the
+000005 | original operator pair (B,u). No Atlas, index, ledger or original source was
+000006 | changed.
+000007 | 
+000008 | Verdict
+000009 | -------
+000010 | 
+000011 | PROVED from the displayed operator hypotheses:
+000012 | 
+000013 |   * B is self-adjoint on the original Hilbert space H;
+000014 |   * u is the original seam unitary on the same H;
+000015 |   * exp(itB) u exp(-itB)=exp(it)u strongly for every real t;
+000016 |   * 0 is not in sigma(B);
+000017 |   * S=P_B u P_B on P_B H is Fredholm with ind(S)=-1, where
+000018 |     P_B=1_(0,infinity)(B).
+000019 | 
+000020 | These hypotheses reconstruct the whole pair, not merely an embedded summand:
+000021 | 
+000022 |   (H,B,u,P_B) is unitarily equivalent to
+000023 |   (L2(S1),-i partial_theta+epsilon,M_z,P_Hardy)
+000024 | 
+000025 | for one epsilon in (0,1). If exp(2 pi i B)=i I, then epsilon=1/4. No free
+000026 | rank-one bundle, external Hardy space, Calderon projector or CAR covariance is
+000027 | used in this operator theorem.
+000028 | 
+000029 | The remaining original-source obligation is equally precise: the source's
+000030 | symbol SF(U_Sigma)=1 must be proved to be the spectral-flow/index pairing of
+000031 | this same displayed B and u, with the stated orientation. An abstract K1
+000032 | generator or an unnamed seam loop does not supply ind(P_B u P_B)=-1.
+000033 | 
+000034 | 1. Covariance, domains and the positive projection
+000035 | ---------------------------------------------------
+000036 | 
+000037 | The strong unitary covariance is the correct domain-safe hypothesis. By the
+000038 | functional calculus it implies
+000039 | 
+000040 |   u Dom(B)=Dom(B),
+000041 |   B u xi=u(B+1)xi                         for xi in Dom(B),
+000042 |   u E_B(Delta) u*=E_B(Delta+1).                         (1)
+000043 | 
+000044 | In particular,
+000045 | 
+000046 |   u P_B u*=E_B((1,infinity)) <=P_B.                     (2)
+000047 | 
+000048 | Therefore S=P_BuP_B|_(P_BH)=u|_(P_BH) is an isometry,
+000049 | 
+000050 |   S*S=I_(P_BH),
+000051 |   SS*=E_B((1,infinity)),
+000052 |   Pi=P_B-SS*=E_B((0,1]).                                (3)
+000053 | 
+000054 | No formal commutator on an unspecified core is needed. Conversely, a bare
+000055 | formula [B,u]=u without common-domain invariance would not justify (1).
+000056 | 
+000057 | 2. Index sign and the canonical line
+000058 | ------------------------------------
+000059 | 
+000060 | Since S is an isometry, ker(S)=0. Hence
+000061 | 
+000062 |   ind(S)=-dim ker(S*)=-rank(Pi).                         (4)
+000063 | 
+000064 | The explicit hypothesis ind(S)=-1 therefore gives rank(Pi)=1 with the usual
+000065 | Hardy orientation. Let psi be any unit vector in Ran(Pi). Since Pi is a
+000066 | rank-one spectral projection of B,
+000067 | 
+000068 |   B psi=epsilon psi,             0<epsilon<=1.           (5)
+000069 | 
+000070 | The gap excludes epsilon=1 as well: covariance would make u^(-1)psi a
+000071 | nonzero zero eigenvector of B. Thus 0<epsilon<1. The vector is unique only up
+000072 | to phase, while its line and projector are canonical.
+000073 | 
+000074 | If the original spectral-flow convention uses the opposite orientation, the
+000075 | corresponding Toeplitz operator is formed with u* and the index sign reverses.
+000076 | This convention must be fixed before importing the original value +1.
+000077 | 
+000078 | 3. Orthonormality, completeness and the self-adjoint domain
+000079 | -----------------------------------------------------------
+000080 | 
+000081 | Put e_n=u^n psi for n in Z. Equations (1) and (5) give
+000082 | 
+000083 |   B e_n=(epsilon+n)e_n,
+000084 |   e_n in E_B((n,n+1])H.                                 (6)
+000085 | 
+000086 | The vectors have norm one and distinct spectral intervals are orthogonal.
+000087 | Moreover,
+000088 | 
+000089 |   E_B((n,n+1])=u^n Pi u^(-n).                            (7)
+000090 | 
+000091 | The half-open intervals (n,n+1] partition R, so countable additivity of the
+000092 | spectral measure gives the strong identity
+000093 | 
+000094 |   sum_(n in Z) E_B((n,n+1])=I.                           (8)
+000095 | 
+000096 | Each summand has rank one by (7). Hence {e_n} is an orthonormal basis of all
+000097 | H, not only of a cyclic subspace.
+000098 | 
+000099 | Under the Fourier unitary e_n maps to exp(in theta). Then u maps to
+000100 | multiplication by exp(i theta), and the spectral theorem maps B, including
+000101 | its domain, to
+000102 | 
+000103 |   -i partial_theta+epsilon,
+000104 |   Dom(B)={sum_n c_n exp(in theta):
+000105 |           sum_n |n+epsilon|^2 |c_n|^2<infinity}=H1(S1).  (9)
+000106 | 
+000107 | Because 0<epsilon<1, P_B is exactly the Hardy projection onto n>=0.
+000108 | 
+000109 | 4. Quarter monodromy and localization scope
+000110 | --------------------------------------------
+000111 | 
+000112 | If the original operator additionally satisfies
+000113 | 
+000114 |   exp(2 pi i B)=i I,                                     (10)
+000115 | 
+000116 | then (6) yields exp(2 pi i epsilon)=i. The interval 0<epsilon<1 fixes
+000117 | epsilon=1/4 uniquely. The index alone does not fix this offset.
+000118 | 
+000119 | The reconstruction supplies the circle algebra C*(u) and its ordinary arc
+000120 | subalgebras inside the original H. It does not identify those arcs with a
+000121 | spacetime net. It also does not by itself second-quantize the one-particle
+000122 | pair, identify the original physical time, select the observable subalgebra,
+000123 | or prove the required OS state and reflection statements.
+000124 | 
+000125 | No condition P_C=P_B is needed. The relation J P_C J=1-P_C belongs only to a
+000126 | separate self-dual/real polarization setup; it is not an axiom of ordinary
+000127 | complex CAR quantization and plays no role in (1)--(10).
+000128 | 
+000129 | 5. Exact missing relation to the archived spectral flow
+000130 | -------------------------------------------------------
+000131 | 
+000132 | The archived primitive seam theorem states only
+000133 | 
+000134 |   [u_Sigma]=1 in K1(S1),
+000135 |   SF(U_Sigma)=1.
+000136 | 
+000137 | See
+000138 | 
+000139 |   documents/archive--tfpt-45--source_extracts--03_em_flavor_source/
+000140 |   sections/001-section-kernel-numerics-and-electromagnetic-closure.tex:
+000141 |   9--45.
+000142 | 
+000143 | It does not name B in that spectral-flow definition or prove the strong
+000144 | covariance used above. To apply the positive theorem, the source must supply
+000145 | on the same original H:
+000146 | 
+000147 |   (i)  B=B_Sigma and u=u_Sigma with (1) and 0 not in sigma(B);
+000148 | 
+000149 |   (ii) the actual Fredholm pairing
+000150 | 
+000151 |        ind(P_B u P_B)=-1;                                (11)
+000152 | 
+000153 |   (iii) an equality tying its sign to the archived spectral flow, for example
+000154 | 
+000155 |        SF({B+t:0<=t<=1})=1,
+000156 |        u* B u=B+1,
+000157 |        ind(P_B u P_B)=-SF({B+t})=-1.                     (12)
+000158 | 
+000159 | An equivalent convention using the conjugate path is acceptable if all signs
+000160 | are reversed consistently. What is insufficient is the inference
+000161 | 
+000162 |   abstract seam class +1  therefore  (11).
+000163 | 
+000164 | The collar source presently says that the nontrivial seam class induces a
+000165 | spectral-flow class and separately supplies an adapted B_Sigma. It does not
+000166 | display (12). This is the first remaining original identification. The new
+000167 | operator theorem removes the earlier free Hardy/rank-one choice once (11)--
+000168 | (12) and the strong covariance are proved; it does not manufacture those
+000169 | relations from topological spectral flow alone.
+000170 | 
+000171 | 6. Check of the stored SPECTRAL-SEAM-RECONSTRUCTION.txt
+000172 | ------------------------------------------------------
+000173 | 
+000174 | The final stored proof was read directly after the preceding review. Its
+000175 | SHA-256 at review time was
+000176 | 
+000177 |   bf7a4142f948412ecff9620d30640876765639757f62b0fa3b42fb283e134808.
+000178 | 
+000179 | It matches the theorem proved above in every load-bearing point:
+000180 | 
+000181 |   * Section 3 uses the Hardy sign ind(S)=-1 and derives rank(Pi)=1 from the
+000182 |     already proved isometry. It does not infer the cokernel from an abstract
+000183 |     spectral-flow integer.
+000184 | 
+000185 |   * Section 4 states the spectral identity
+000186 | 
+000187 |       E_B((n,n+1])=u^n Pi u^(-n)
+000188 | 
+000189 |     and the strong sum over all n. Hence its conclusion concerns the entire
+000190 |     original H and leaves no unproved Wold summand.
+000191 | 
+000192 |   * Section 8 explicitly says that P_C is unused and that neither P_C=P_B nor
+000193 |     an antiunitary complement identity for P_C is required. This is the
+000194 |     correct scope for ordinary complex CAR.
+000195 | 
+000196 |   * Section 7 records the actual remaining same-pair statement with the
+000197 |     correct sign:
+000198 | 
+000199 |       SF({B+t})=+1,
+000200 |       ind(P_B u P_B)=-SF({B+t})=-1.

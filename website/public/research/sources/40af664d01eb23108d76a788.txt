@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/dynamic_reconstruction_20261027/PETERSEN-POLAR-DECK-INTERTWINER.txt
+Original file SHA-256: 0d2f283a3c6568bd77cc24f081c61dc706a7faef209138335336a1fbbd8007cd
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | PETERSEN POLAR DECK INTERTWINER
+000002 | ================================
+000003 | 
+000004 | 27 October 2026
+000005 | 
+000006 | Question
+000007 | --------
+000008 | 
+000009 | Does the signed Petersen radial transfer from v808 admit a natural marked
+000010 | intertwiner with the actual lazy family operator from v486/v487 when the shell
+000011 | charges and the existing deck involution are carried along?
+000012 | 
+000013 | Answer
+000014 | ------
+000015 | 
+000016 | Yes for the positive transfer, and no for the literal v487 deck marking.
+000017 | 
+000018 | The reversible Petersen operator has a canonical polar decomposition
+000019 | 
+000020 |       P = J_P |P|.
+000021 | 
+000022 | There is an explicit isometry W with
+000023 | 
+000024 |       W |P| W^{-1} = M_lazy.
+000025 | 
+000026 | It maps the stationary shell mark to the family vacuum, the hypercharge mode
+000027 | to the 2/3 even family mode, and the third v808 mode to the 1/3 odd family
+000028 | mode.  But under this same forced spectral mapping,
+000029 | 
+000030 |       W J_P W^{-1} = K = Z Delta,
+000031 | 
+000032 | where Delta is the v487 deck swap and
+000033 | 
+000034 |       Z = diag(1,-1,-1)
+000035 | 
+000036 | is the canonical reflection across the Perron line.  Consequently no static
+000037 | or time dependent isometric intertwiner can carry both the positive transfer
+000038 | and the literal deck marking Delta.  The obstruction already occurs on the
+000039 | one dimensional 2/3 eigenspace.
+000040 | 
+000041 | There are two exact surviving constructions:
+000042 | 
+000043 | 1. a signed static correspondence
+000044 | 
+000045 |       W P W^{-1} = K M_lazy;
+000046 | 
+000047 | 2. a period two correspondence to the positive lazy walk,
+000048 | 
+000049 |       W_n = K^n W,
+000050 |       W_{n+1} P W_n^{-1} = M_lazy.
+000051 | 
+000052 | The period two frame transports the hypercharge sign rather than discarding
+000053 | it.  Equivalently, the canonical bipartite double cover turns P into the
+000054 | positive lazy walk by a fixed six dimensional isometry.  Its deck exchange is
+000055 | transported to a K twisted exchange, not to the plain v487 deck.
+000056 | 
+000057 | This is stronger than the old equality after six powers.  The two transfers
+000058 | are exactly equivalent at every even time.  Their odd steps differ by K.
+000059 | The transported shell multiplication operator is not conserved: its exact
+000060 | one step defect has rank two.  Also, Z has an older source candidate: v409
+000061 | sets the same matrix as the seam sheet involution.  What remains absent is a
+000062 | source intertwiner proving that this involution and the v487 deck use the same
+000063 | marked basis.
+000064 | 
+000065 | 1. Atlas and source boundary
+000066 | ----------------------------
+000067 | 
+000068 | The active Atlas at revision 4d210a8bebd5c91c7ee7ad75 records
+000069 | `CARRIER.PETERSEN.RADIAL.01` as exact only for the finite Petersen geometry and
+000070 | the sixth power spectrum.  It explicitly says that the corpus freezes the
+000071 | spectrum rather than a common basis and contains no deployed ten dimensional
+000072 | operator or shells to cusp intertwiner.  No reviewed finding already solves
+000073 | the signed one step problem.
+000074 | 
+000075 | The concrete sources used here are the existing finite machinery:
+000076 | 
+000077 | * `verification/v808_petersen_sixthroot.py`, lines 478 to 583, for the
+000078 |   charge pure shells, the quotient and its three marked eigenvectors;
+000079 | * `verification/v487_transfer_clock_rungs.py`, lines 73 to 119, for the
+000080 |   actual lazy operator and the even/odd deck assignment;
+000081 | * `verification/v409_coxeter_prime2_lemma.py`, lines 10 to 40 and 61 to 76,
+000082 |   for the named sheet involution `diag(1,-1,-1)` and its prime two parity
+000083 |   scope;
+000084 | * `verification/v97_sheet_conjugation_bridge.py`, lines 48 to 53 and 61 to
+000085 |   110, for the distinct generation coordinate basis, cusp eigenvectors and
+000086 |   the still proposed lattice grading dictionary.
+000087 | 
+000088 | No field quantization or new state is introduced.
+000089 | 
+000090 | 2. Reversible radial Hilbert space
+000091 | ----------------------------------
+000092 | 
+000093 | The shell sizes are 1, 3 and 6.  The radial Markov operator is
+000094 | 
+000095 |           [ 0    1    0  ]
+000096 |       P = [1/3   0   2/3 ],
+000097 |           [ 0   1/3  2/3 ]
+000098 | 
+000099 | with stationary measure
+000100 | 
+000101 |       pi = (1,3,6)/10.
+000102 | 
+000103 | Detailed balance holds entry by entry:
+000104 | 
+000105 |       pi_i P_ij = pi_j P_ji.
+000106 | 
+000107 | Thus P is selfadjoint on H_pi = R^3 with scalar product
+000108 | 
+000109 |       <f,g>_pi = sum_i pi_i f_i g_i.
+000110 | 
+000111 | The three source marked eigenfunctions from v808 are
+000112 | 
+000113 |       f0 = (1,1,1),                 eigenvalue  1,
+000114 |       q  = (6,-4,1),                eigenvalue -2/3,
+000115 |       r  = (3,1,-1),                eigenvalue  1/3.
+000116 | 
+000117 | The second vector is literally the shell hypercharge observable evaluated on
+000118 | the charge pure classes e^c, u^c and Q.  Their squared H_pi norms are 1, 9 and
+000119 | 9/5 respectively.  Hence
+000120 | 
+000121 |       b0 = f0,
+000122 |       bY = q/3,
+000123 |       br = sqrt(5) r/3
+000124 | 
+000125 | is an orthonormal marked basis.
+000126 | 
+000127 | Conjugating by D^(1/2), D = diag(pi), gives the ordinary symmetric matrix
+000128 | 
+000129 |                [ 0       1/sqrt(3)       0       ]
+000130 |       P_sym =  [1/sqrt(3)    0         sqrt(2)/3 ],
+000131 |                [ 0        sqrt(2)/3       2/3     ]
+000132 | 
+000133 | with the same marked spectrum.
+000134 | 
+000135 | 3. Canonical polar decomposition
+000136 | --------------------------------
+000137 | 
+000138 | Since P is invertible and selfadjoint on H_pi, its polar factors are unique.
+000139 | Interpolation on the three simple eigenvalues gives coordinate free formulas
+000140 | 
+000141 |       |P| = (4/5)P^2 - (1/15)P + (4/15)I,
+000142 |       J_P = -(6/5)P^2 + (8/5)P + (3/5)I.
+000143 | 
+000144 | In the original shell coordinates these are
+000145 | 
+000146 |             [ 8/15  -1/15   8/15]
+000147 |       |P| = [-1/45  32/45  14/45],
+000148 |             [ 4/45   7/45  34/45]
+000149 | 
+000150 | and
+000151 | 
+000152 |             [ 1/5    8/5   -4/5]
+000153 |       J_P = [ 8/15  -1/15   8/15].
+000154 |             [-2/15   4/15  13/15]
+000155 | 
+000156 | Direct multiplication gives
+000157 | 
+000158 |       J_P^2 = I,       J_P |P| = |P| J_P,       P = J_P |P|.
+000159 | 
+000160 | Both factors are selfadjoint for the pi weighted scalar product.  Their action
+000161 | on the marked basis is
+000162 | 
+000163 |              b0    bY    br
+000164 |       |P|     1    2/3   1/3,
+000165 |       J_P     1     -1    1.
+000166 | 
+000167 | The negative sign is therefore attached canonically to the hypercharge mode.
+000168 | 
+000169 | 4. Concrete intertwiner to M_lazy
+000170 | ---------------------------------
+000171 | 
+000172 | Write the target family basis as
+000173 | 
+000174 |       e0 = (1,0,0),
+000175 |       e+ = (0,1,1)/sqrt(2),
+000176 |       e- = (0,1,-1)/sqrt(2).
+000177 | 
+000178 | Then
+000179 | 
+000180 |       M_lazy e0 = e0,
+000181 |       M_lazy e+ = (2/3)e+,
+000182 |       M_lazy e- = (1/3)e-.
+000183 | 
+000184 | Define the isometry W by
+000185 | 
+000186 |       W b0 = e0,       W bY = e+,       W br = e-.
+000187 | 
+000188 | This definition transports all three v808 markings and fixes W up to the
+000189 | irrelevant simultaneous sign conventions of the one dimensional marked
+000190 | lines.  It proves immediately that
+000191 | 
+000192 |       W |P| W^{-1} = M_lazy.
+000193 | 
+000194 | For a literal matrix, first send H_pi to the standard Euclidean shell frame by
+000195 | D^(1/2).  In that frame the orthogonal matrix U of W is
+000196 | 
+000197 |       [ 1/sqrt(10),       sqrt(30)/10,                sqrt(15)/5              ]
+000198 |       [ 1/2+sqrt(5)/5,   -2sqrt(15)/15+sqrt(3)/6,   -sqrt(6)/6+sqrt(30)/30 ]
+000199 |       [-1/2+sqrt(5)/5,   -2sqrt(15)/15-sqrt(3)/6,    sqrt(30)/30+sqrt(6)/6 ].
+000200 | 

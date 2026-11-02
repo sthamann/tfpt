@@ -1,0 +1,98 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_transfer_field_source.py
+Original file SHA-256: 9ffe815270c4c29e32f3c8e6c2a1a4686e02cd301a7f16e5dab791ddd93a8786
+Inclusive original lines: 1-90
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact implication controls; no invented TFPT tensor or physical gap fit."""
+000002 | from pathlib import Path
+000003 | import itertools
+000004 | import json
+000005 | import sympy as s
+000006 | 
+000007 | checks = []
+000008 | def need(condition, name):
+000009 |     if not condition:
+000010 |         raise AssertionError(name)
+000011 |     checks.append(name)
+000012 | 
+000013 | def equal(a, b):
+000014 |     return (a-b).applyfunc(s.simplify) == s.zeros(*a.shape)
+000015 | 
+000016 | I = s.eye(2)
+000017 | X = s.Matrix([[0,1],[1,0]])
+000018 | Y = s.Matrix([[0,-s.I],[s.I,0]])
+000019 | Z = s.diag(1,-1)
+000020 | A = [I/s.sqrt(2),X/s.sqrt(6),Y/s.sqrt(6),Z/s.sqrt(6)]
+000021 | B = [(A[0]+A[1])/s.sqrt(2),(A[0]-A[1])/s.sqrt(2),A[2],A[3]]
+000022 | def E(tensor, m):
+000023 |     return sum((a*m*a.adjoint() for a in tensor), s.zeros(2))
+000024 | for j, m in enumerate([I,X,Y,Z]):
+000025 |     need(equal(E(A,m),E(B,m)), f'whole CP map unchanged on basis{j}')
+000026 |     need(equal(E(A,m),m if j==0 else m/3), f'exact transfer eigenvalue{j}')
+000027 | need(s.simplify(s.trace(A[0]*A[0].adjoint())/2)==s.Rational(1,2),'marked response A=1/2')
+000028 | need(s.simplify(s.trace(B[0]*B[0].adjoint())/2)==s.Rational(1,3),'marked response B=1/3')
+000029 | 
+000030 | e = s.symbols('e',positive=True)
+000031 | P = s.Matrix([[1-e,e],[e,1-e]])
+000032 | need(s.simplify((P-s.eye(2)).det())==0,'Perron eigenvalue1 all e')
+000033 | need(equal(P*s.Matrix([1,-1]),(1-2*e)*s.Matrix([1,-1])),'other eigenvalue1-2e')
+000034 | units=[s.diag(1,0),s.diag(0,1)]
+000035 | need(s.Matrix.hstack(*[s.Matrix(u*P*v).reshape(4,1) for u in units for v in units]).det()!=0,'Burnside matrix units all e nonzero')
+000036 | 
+000037 | # A rational member; analytic proof covers the entire 0<e<1/2 family.
+000038 | a,b=s.Rational(12,13),s.Rational(5,13)
+000039 | eps=b*b
+000040 | lam=a*a-b*b
+000041 | T=[s.Matrix([[a,b],[0,0]]),s.Matrix([[0,0],[b,a]])]
+000042 | need(a*a+b*b==1,'tensor normalization')
+000043 | need(equal(E(T,I),I),'MPS CP unital')
+000044 | l=s.Matrix([[s.Rational(1,2),a*b],[a*b,s.Rational(1,2)]])
+000045 | need(equal(sum((m.adjoint()*l*m for m in T),s.zeros(2)),l),'MPS faithful stationary density')
+000046 | need(l.det()>0,'stationary density faithful')
+000047 | products=[T[i]*T[j] for i,j in itertools.product(range(2),repeat=2)]
+000048 | need(s.Matrix.hstack(*[p.reshape(4,1) for p in products]).det()!=0,'length2 injective')
+000049 | words=list(itertools.product(range(2),repeat=3))
+000050 | V=s.Matrix([list((T[i]*T[j]*T[k]).reshape(4,1)) for i,j,k in words])
+000051 | need(V.rank()==4,'length3 image rank4')
+000052 | h=s.eye(8)-V*(V.adjoint()*V).inv()*V.adjoint()
+000053 | need(equal(h,h.adjoint()) and equal(h*h,h),'local parent orthogonal projector norm1')
+000054 | L=6
+000055 | bits=list(itertools.product(range(2),repeat=L))
+000056 | amplitudes=[]
+000057 | for w in bits:
+000058 |     prod=I
+000059 |     for i in w: prod=prod*T[i]
+000060 |     amplitudes.append(s.trace(prod))
+000061 | psi=s.Matrix(amplitudes)
+000062 | norm=(psi.adjoint()*psi)[0]
+000063 | need(norm==1+lam**L,'full periodic source partition1+lambda^L')
+000064 | mag=s.Matrix([sum(1-2*i for i in w)*v for w,v in zip(bits,amplitudes)])
+000065 | need((psi.adjoint()*mag)[0]==0,'magnetization trial orthogonal')
+000066 | var=(mag.adjoint()*mag)[0]/norm
+000067 | need(s.simplify(var-L*(1+lam)/(1-lam)*(1-lam**L)/(1+lam**L))==0,'exact whole ring variance')
+000068 | for r in [1,2,3]:
+000069 |     corr=sum(v*v*(1-2*w[0])*(1-2*w[r]) for w,v in zip(bits,amplitudes))/norm
+000070 |     need(s.simplify(corr-(lam**r+lam**(L-r))/(1+lam**L))==0,f'whole ring correlation r{r}')
+000071 | energy=s.S.Zero
+000072 | for j in range(L):
+000073 |     support=[(j+k)%L for k in range(3)]
+000074 |     env=[k for k in range(L) if k not in support]
+000075 |     for ew in itertools.product(range(2),repeat=L-3):
+000076 |         pv=[];mv=[]
+000077 |         for sw in words:
+000078 |             w=[0]*L
+000079 |             for k,i in zip(env,ew):w[k]=i
+000080 |             for k,i in zip(support,sw):w[k]=i
+000081 |             ix=bits.index(tuple(w));pv.append(psi[ix]);mv.append(mag[ix])
+000082 |         need(equal(h*s.Matrix(pv),s.zeros(8,1)),f'actual local parent annihilates source{j},{ew}')
+000083 |         hv=h*s.Matrix(mv)
+000084 |         energy+=(hv.adjoint()*hv)[0]
+000085 | rayleigh=s.factor(energy/(mag.adjoint()*mag)[0])
+000086 | bound=9*(1-lam)/(1+lam)*(1+lam**L)/(1-lam**L)
+000087 | need(rayleigh<=bound,'direct parent variational energy bound')
+000088 | out={'result':'PASS','checks':len(checks),'checks_detail':checks,'cp_marked_responses':['1/2','1/3'],'transfer_lambda':str(lam),'direct_parent_trial_rayleigh':str(rayleigh),'parent_gap_bound':str(bound),'proof_scope':'Implication counterexamples only; original physical tensor and its gap not determined','complete_TFPT_solution':False,'ledger_changed':False}
+000089 | Path(__file__).with_name('TRANSFER-FIELD-SOURCE.json').write_text(json.dumps(out,indent=2)+'\n')
+000090 | print(json.dumps({k:v for k,v in out.items() if k!='checks_detail'},indent=2))

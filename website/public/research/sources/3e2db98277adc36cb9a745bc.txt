@@ -1,0 +1,192 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_hardy_bmu_ko_completion.py
+Original file SHA-256: 4b4702bf9911db2e100c4db18799e0145efcbcc0c7c4a4faf84a7a67f8c61204
+Inclusive original lines: 1-184
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact KO6 completion of the Hardy Bmu weak-Clifford block on H_F=96."""
+000003 | 
+000004 | from __future__ import annotations
+000005 | 
+000006 | import hashlib
+000007 | import importlib.util
+000008 | import json
+000009 | from pathlib import Path
+000010 | import sys
+000011 | 
+000012 | import numpy as np
+000013 | 
+000014 | 
+000015 | HERE = Path(__file__).resolve().parent
+000016 | ROOT = HERE.parents[3]
+000017 | OUT = HERE / "hardy-bmu-ko-completion-results.json"
+000018 | sys.path.insert(0, str(ROOT / "verification"))
+000019 | import v252_full_finite_triple as v252  # noqa: E402
+000020 | 
+000021 | BASE_PATH = HERE / "check_hardy_bmu_weak_clifford_lift.py"
+000022 | SPEC = importlib.util.spec_from_file_location("hardy_weak", BASE_PATH)
+000023 | if SPEC is None or SPEC.loader is None:
+000024 |     raise RuntimeError(f"cannot load {BASE_PATH}")
+000025 | BASE = importlib.util.module_from_spec(SPEC)
+000026 | SPEC.loader.exec_module(BASE)
+000027 | 
+000028 | 
+000029 | def require(ok: object, label: str) -> None:
+000030 |     if not bool(ok):
+000031 |         raise RuntimeError(label)
+000032 | 
+000033 | 
+000034 | def sha256(path: Path) -> str:
+000035 |     return hashlib.sha256(path.read_bytes()).hexdigest()
+000036 | 
+000037 | 
+000038 | def pair_matrix(p: np.ndarray, q: np.ndarray, rows: list[int], cols: list[int]) -> list[list[str]]:
+000039 |     """Render exact p*kappa+q*bar(kappa) coefficients."""
+000040 |     out = []
+000041 |     for i in rows:
+000042 |         row = []
+000043 |         for j in cols:
+000044 |             a, b = int(p[i, j]), int(q[i, j])
+000045 |             terms = []
+000046 |             if a:
+000047 |                 terms.append("kappa" if a == 1 else "-kappa")
+000048 |             if b:
+000049 |                 terms.append("bar(kappa)" if b == 1 else "-bar(kappa)")
+000050 |             row.append(" + ".join(terms).replace("+ -", "- ") if terms else "0")
+000051 |         out.append(row)
+000052 |     return out
+000053 | 
+000054 | 
+000055 | def main() -> None:
+000056 |     creators = BASE.creators()
+000057 |     w = BASE.whole96_dictionary()
+000058 |     e02 = BASE.family_02()
+000059 |     e20 = e02.T
+000060 |     family_real = e02 + e20
+000061 |     family_support = e02 @ e20 + e20 @ e02
+000062 |     gamma = v252.grading().astype(int)
+000063 |     kswap = v252.Kswap().astype(int)
+000064 | 
+000065 |     # The positive real Hardy prefactor does not affect any identity.  Use its
+000066 |     # printed complex I to test the actual non-real phase.
+000067 |     kappa = complex(
+000068 |         0.1258739334853158906973132600522979652656,
+000069 |         -0.4697679151157443151336120497675343216716,
+000070 |     )
+000071 |     require(kappa != 0, "actual Hardy phase is nonzero")
+000072 | 
+000073 |     weak = {}
+000074 |     for k, name in ((3, "w1"), (4, "w2")):
+000075 |         x = w.T @ np.kron(np.eye(3, dtype=int), creators[k]) @ w
+000076 |         a0 = e02 @ x @ gamma
+000077 |         a = kappa * a0
+000078 |         adj = a.conj().T
+000079 |         d_adj = a + adj
+000080 |         j_a = kswap @ a.conj() @ kswap
+000081 |         j_d_adj = kswap @ d_adj.conj() @ kswap
+000082 |         d_ko = d_adj + j_d_adj  # epsilon'=+1 in the actual KO6 convention
+000083 | 
+000084 |         predicted_j_a = -np.conjugate(kappa) * e02 @ x.T @ gamma
+000085 |         predicted_ko = (kappa * family_real @ x @ gamma
+000086 |                         - np.conjugate(kappa) * family_real @ x.T @ gamma)
+000087 |         require(np.allclose(j_a, predicted_j_a), f"{name} exact J action")
+000088 |         require(np.allclose(d_ko, predicted_ko), f"{name} compact KO formula")
+000089 |         require(np.allclose(d_adj, d_adj.conj().T), f"{name} adjoint selfadjoint")
+000090 |         require(np.allclose(gamma @ d_adj + d_adj @ gamma, 0), f"{name} adjoint odd")
+000091 |         require(not np.allclose(j_d_adj, d_adj), f"{name} adjoint is not J-real")
+000092 |         require(np.allclose(d_ko, d_ko.conj().T), f"{name} KO selfadjoint")
+000093 |         require(np.allclose(gamma @ d_ko + d_ko @ gamma, 0), f"{name} KO odd")
+000094 |         require(np.allclose(kswap @ d_ko.conj() @ kswap, d_ko), f"{name} KO J-real")
+000095 |         require(np.linalg.matrix_rank(d_adj) == 32, f"{name} adjoint rank")
+000096 |         require(np.linalg.matrix_rank(d_ko) == 64, f"{name} KO rank")
+000097 |         require(np.allclose(d_ko @ d_ko, abs(kappa) ** 2 * family_support),
+000098 |                 f"{name} KO square")
+000099 | 
+000100 |         # Old-complex-linear geometric C0 acts only on the normal two-space.
+000101 |         normal_n = np.array([[0, -1], [1, 0]], complex)
+000102 |         c0 = 1j * np.kron(normal_n, np.eye(96))
+000103 |         embedded = np.kron(np.eye(2), d_ko)
+000104 |         require(np.allclose(c0 @ embedded, embedded @ c0), f"{name} C0 finite commutation")
+000105 | 
+000106 |         p_coeff = x @ gamma
+000107 |         q_coeff = -x.T @ gamma
+000108 |         sectors = {}
+000109 |         for sector, offset in (("particle", 0), ("antiparticle", v252.NP)):
+000110 |             for kind, species in (("lepton", ("nu", "e")), ("quark", ("u", "d"))):
+000111 |                 color = 0
+000112 |                 left = [offset + v252.IDX[(s, "L", color, 0)] for s in species]
+000113 |                 right = [offset + v252.IDX[(s, "R", color, 0)] for s in species]
+000114 |                 sectors[f"{sector}_{kind}_LR"] = pair_matrix(p_coeff, q_coeff, left, right)
+000115 |                 sectors[f"{sector}_{kind}_RL"] = pair_matrix(p_coeff, q_coeff, right, left)
+000116 | 
+000117 |         expected_sectors = {
+000118 |             "w1": {
+000119 |                 "particle_lepton_LR": [["0", "-kappa"], ["-bar(kappa)", "0"]],
+000120 |                 "particle_lepton_RL": [["0", "-kappa"], ["-bar(kappa)", "0"]],
+000121 |                 "particle_quark_LR": [["0", "kappa"], ["bar(kappa)", "0"]],
+000122 |                 "particle_quark_RL": [["0", "kappa"], ["bar(kappa)", "0"]],
+000123 |                 "antiparticle_lepton_LR": [["0", "-bar(kappa)"], ["-kappa", "0"]],
+000124 |                 "antiparticle_lepton_RL": [["0", "-bar(kappa)"], ["-kappa", "0"]],
+000125 |                 "antiparticle_quark_LR": [["0", "bar(kappa)"], ["kappa", "0"]],
+000126 |                 "antiparticle_quark_RL": [["0", "bar(kappa)"], ["kappa", "0"]],
+000127 |             },
+000128 |             "w2": {
+000129 |                 "particle_lepton_LR": [["bar(kappa)", "0"], ["0", "-kappa"]],
+000130 |                 "particle_lepton_RL": [["kappa", "0"], ["0", "-bar(kappa)"]],
+000131 |                 "particle_quark_LR": [["-bar(kappa)", "0"], ["0", "kappa"]],
+000132 |                 "particle_quark_RL": [["-kappa", "0"], ["0", "bar(kappa)"]],
+000133 |                 "antiparticle_lepton_LR": [["kappa", "0"], ["0", "-bar(kappa)"]],
+000134 |                 "antiparticle_lepton_RL": [["bar(kappa)", "0"], ["0", "-kappa"]],
+000135 |                 "antiparticle_quark_LR": [["-kappa", "0"], ["0", "bar(kappa)"]],
+000136 |                 "antiparticle_quark_RL": [["-bar(kappa)", "0"], ["0", "kappa"]],
+000137 |             },
+000138 |         }
+000139 |         require(sectors == expected_sectors[name], f"{name} exact four-sector blocks")
+000140 | 
+000141 |         weak[name] = {
+000142 |             "J_A_J_inverse": "-bar(kappa) E_02 X_wa^dagger gamma_F",
+000143 |             "A_adjoint": "-bar(kappa) E_20 X_wa^dagger gamma_F",
+000144 |             "D_adjoint_rank": 32,
+000145 |             "D_adjoint_J_real": False,
+000146 |             "D_KO": "kappa(E_02+E_20)X_wa gamma_F - bar(kappa)(E_02+E_20)X_wa^dagger gamma_F",
+000147 |             "D_KO_rank": 64,
+000148 |             "D_KO_square": "|kappa|^2(E_00+E_22) tensor I_32",
+000149 |             "D_KO_selfadjoint": True,
+000150 |             "D_KO_gamma_F_odd": True,
+000151 |             "D_KO_J_F_real": True,
+000152 |             "four_sector_carrier_blocks": sectors,
+000153 |         }
+000154 | 
+000155 |     sources = [
+000156 |         ROOT / "verification/v252_full_finite_triple.py",
+000157 |         ROOT / "verification/v254_inner_fluctuations.py",
+000158 |         HERE / "HARDY-BMU-FIRST-NONZERO-ENTRY.txt",
+000159 |         HERE / "HARDY-BMU-WEAK-CLIFFORD-ODD-LIFT-REVIEW.txt",
+000160 |         BASE_PATH,
+000161 |         ROOT / "experiments/theory-contracts/tfpt-unified-source-derivation-20261029/graded_boundary_functor/FINITE-COUPLED.txt",
+000162 |         ROOT / "experiments/theory-contracts/tfpt-unified-source-derivation-20261029/graded_boundary_functor/charge_transport/DERIVED-PAIRING.txt",
+000163 |     ]
+000164 |     result = {
+000165 |         "scope": "Exact KO6/adjoint completion on actual H_F=96; no source execution",
+000166 |         "epsilon_prime": 1,
+000167 |         "kappa_phase_input": [kappa.real, kappa.imag],
+000168 |         "kappa_note": "The omitted factor 4 X_*/pi is positive real and changes only scale.",
+000169 |         "C0_note": "Geometric C0=iN tensor I_96 commutes with the finite coefficient in the old complex type; it is distinct from J_F and supplies no finite KO completion.",
+000170 |         "CAR_parity_note": "gamma_F oddness is finite internal grading; the quadratic CAR background insertion remains CAR-even.",
+000171 |         "weak_components": weak,
+000172 |         "source_sha256": {str(path.relative_to(ROOT)): sha256(path) for path in sources},
+000173 |     }
+000174 |     OUT.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+000175 |     print(json.dumps({
+000176 |         "checks": "PASS",
+000177 |         "D_adjoint_ranks": {name: data["D_adjoint_rank"] for name, data in weak.items()},
+000178 |         "D_KO_ranks": {name: data["D_KO_rank"] for name, data in weak.items()},
+000179 |         "J_completion_required": True,
+000180 |     }, sort_keys=True))
+000181 | 
+000182 | 
+000183 | if __name__ == "__main__":
+000184 |     main()

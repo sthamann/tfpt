@@ -1,0 +1,135 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_dynamical_higgs_source.py
+Original file SHA-256: 086aa116dae06dc02ec2f50fcf1058375337c399fe8dfb6e7fad8ecb1925cf4c
+Inclusive original lines: 1-127
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Original real Higgs one-form and complete finite boson-source sewing.
+000002 | 
+000003 | Y coefficients label supplied matrices; none are fitted or interpreted as new
+000004 | physical inputs. Boson moments remain those of the original unchosen source.
+000005 | """
+000006 | from pathlib import Path
+000007 | import sys, json
+000008 | import sympy as s
+000009 | import numpy as np
+000010 | ROOT=Path(__file__).resolve().parents[4]
+000011 | sys.path[:0]=[str(ROOT/'verification'),str(ROOT/'experiments/theory-contracts/seam-collar-multifield-20261016')]
+000012 | import v252_full_finite_triple as original
+000013 | from joint_source import add, scale, multiply, exponential, variable, clean
+000014 | checks={}
+000015 | def need(name, value):
+000016 |     checks[name]=bool(value)
+000017 |     if not value: raise RuntimeError(name)
+000018 | def eq(a,b):
+000019 |     return not clean({m:s.expand(a.get(m,0)-b.get(m,0)) for m in set(a)|set(b)})
+000020 | 
+000021 | # Four REAL coordinates of the original H=(h1,h2), no 1/sqrt(2) inserted.
+000022 | Q=[np.array([[0,1],[-1,0]],complex),np.array([[0,1j],[1j,0]],complex),np.eye(2,dtype=complex),np.diag([-1j,1j])]
+000023 | zero3=np.zeros((3,3),complex); zero2=np.zeros((2,2),complex)
+000024 | bp=original.rep(1,zero2,zero3)
+000025 | K=original.Kswap(); gamma=original.grading()
+000026 | I=original.IDX
+000027 | def expected(Qa,Ys):
+000028 |     S=np.zeros((48,48),complex)
+000029 |     for up,down,nc,Yup,Ydown in [('nu','e',1,Ys[3],Ys[2]),('u','d',3,Ys[0],Ys[1])]:
+000030 |       for color in range(nc):
+000031 |        for g in range(3):
+000032 |         for k in range(3):
+000033 |          for row,left in enumerate([up,down]):
+000034 |           for col,right,Y in [(0,up,Yup),(1,down,Ydown)]:
+000035 |            i=I[(left,'L',color,g)]; j=I[(right,'R',color,k)]
+000036 |            S[i,j]=Qa[row,col]*Y[g,k];S[j,i]=np.conjugate(S[i,j])
+000037 |     out=np.zeros((96,96),complex);out[:48,:48]=S;out[48:,48:]=np.conjugate(S)
+000038 |     return out
+000039 | count=0
+000040 | for species in range(4):
+000041 |  for g in range(3):
+000042 |   for k in range(3):
+000043 |    for phase in [1,1j]:
+000044 |     Ys=[zero3.copy() for _ in range(4)];Ys[species][g,k]=phase
+000045 |     D=original.full_D(*Ys,zero3)
+000046 |     for Qa in Q:
+000047 |      a=original.rep(0,Qa,zero3)
+000048 |      om=a@(D@bp-bp@D)
+000049 |      A=om+om.conjugate().T
+000050 |      T=A+K@A.conjugate()@K
+000051 |      if not np.array_equal(T,expected(Qa,Ys)):raise RuntimeError('actual oneform basis mismatch')
+000052 |      if not np.array_equal(T,T.conjugate().T):raise RuntimeError('Hermitian')
+000053 |      if np.any(T@gamma+gamma@T):raise RuntimeError('odd')
+000054 |      if np.any(K@T.conjugate()@K-T):raise RuntimeError('KO reality')
+000055 |      count+=1
+000056 | need('all288_original_real_basis_images_equal_whole96_Higgs_derivatives',count==288)
+000057 | need('all288_images_Hermitian_odd_and_JF_real',True)
+000058 | 
+000059 | # Generic quaternion factor, entire family matrices follow entrywise.
+000060 | x=s.symbols('x1:5',real=True)
+000061 | h1=x[0]+s.I*x[1];h2=x[2]+s.I*x[3]
+000062 | qh=s.Matrix([[s.conjugate(h2),h1],[-s.conjugate(h1),h2]])
+000063 | need('four_real_components_reconstruct_original_quaternion',qh==sum((x[i]*s.Matrix(Q[i]).applyfunc(s.nsimplify) for i in range(4)),s.zeros(2)))
+000064 | need('quaternion_norm_keeps_whole_H_direction',s.simplify(qh.conjugate().T*qh-(sum(z*z for z in x))*s.eye(2))==s.zeros(2))
+000065 | 
+000066 | # Select four disjoint ORIGINAL directed bilinears (nu,e,u,d) solely to
+000067 | # extract their coefficients. Other original legs are not declared absent.
+000068 | y=s.symbols('Ynu Ye Yu Yd')
+000069 | j={}
+000070 | for k in range(4):j=add(j,scale(multiply(variable(2*k),variable(2*k+1)),y[k]))
+000071 | H=s.symbols('h',real=True);mu=s.symbols('mu0:5');mom={0:s.Integer(1),1:mu[1],2:mu[2],3:mu[3],4:mu[4]}
+000072 | def average(poly):
+000073 |  out={}
+000074 |  for mask,value in poly.items():
+000075 |   p=s.Poly(s.expand(value),H)
+000076 |   out[mask]=s.expand(sum(co*mom[power[0]] for power,co in p.terms()))
+000077 |  return clean(out)
+000078 | F=average(exponential(scale(j,-H),8))
+000079 | u=add(F,{0:-s.Integer(1)})
+000080 | logF={};power={0:s.Integer(1)}
+000081 | for k in range(1,5):
+000082 |  power=multiply(power,u);logF=add(logF,scale(power,s.Rational((-1)**(k+1),k)))
+000083 | kappa=[None,mu[1],mu[2]-mu[1]**2,mu[3]-3*mu[2]*mu[1]+2*mu[1]**3,mu[4]-4*mu[3]*mu[1]-3*mu[2]**2+12*mu[2]*mu[1]**2-6*mu[1]**4]
+000084 | expected_log={};power={0:s.Integer(1)}
+000085 | for k in range(1,5):
+000086 |  power=multiply(power,j);expected_log=add(expected_log,scale(power,(-1)**k*kappa[k]/s.factorial(k)))
+000087 | need('all_moments_to8fermions_equal_full_cumulant_source',eq(logF,expected_log))
+000088 | need('first_induced_nu_up_fourfermion_is_minus_covariance_times_given_Ys',s.expand(-logF[51]+kappa[2]*y[0]*y[2])==0)
+000089 | need('sixfermion_retains_third_boson_cumulant',s.expand(-logF[63]-kappa[3]*y[0]*y[1]*y[2])==0)
+000090 | need('eightfermion_retains_fourth_boson_cumulant',s.expand(-logF[255]+kappa[4]*s.prod(y))==0)
+000091 | 
+000092 | # Same original complex h2 direction: bar(nu_L)nu_R bar(u_R)u_L.
+000093 | hu,hb=s.symbols('h2 h2bar');yn,yuc,G=s.symbols('Ynu conjugateYu G_h2_h2bar')
+000094 | Bnu=scale(multiply(variable(0),variable(1)),yn)
+000095 | Bu=scale(multiply(variable(2),variable(3)),yuc)
+000096 | Fcomplex=exponential(scale(add(scale(Bnu,hb),scale(Bu,hu)),-1),4)
+000097 | weight={m:s.expand(v).subs(hu*hb,G).subs({hu:0,hb:0}) for m,v in Fcomplex.items()}
+000098 | need('complex_H2_cross_fourfermion_has_no_extra_factor_two',s.expand(weight[15]-G*yn*yuc)==0)
+000099 | 
+000100 | # Finite complete Pfaffian polynomial remains valid at singular K.
+000101 | a,b,c,d=s.symbols('a b c d');M=s.Matrix([[a,b],[c,d]])
+000102 | askew=s.zeros(4);askew[:2,2:]=-M.T;askew[2:,:2]=M
+000103 | pf=askew[0,1]*askew[2,3]-askew[0,2]*askew[1,3]+askew[0,3]*askew[1,2]
+000104 | need('old_charged_skew_pair_Pfaffian_equals_oriented_single_determinant',s.expand(pf+M.det())==0)
+000105 | need('Pfaffian_not_squared_determinant',s.expand(pf**2-M.det())!=0)
+000106 | need('singular_case_keeps_source_coefficients_without_inverse',pf.subs({a:1,b:0,c:0,d:0})==0 and s.diff(pf,d).subs({a:1,b:0,c:0,d:0})==-1)
+000107 | 
+000108 | # Logical control on the ORIGINAL proof step: commuting positive marginal
+000109 | # reflected forms do not suffice for a joint reflected form.
+000110 | from itertools import product
+000111 | r=s.Rational(1,2);total=s.Integer(0);xx=s.Integer(0);yy=s.Integer(0);mixed=s.Integer(0);minimum=1
+000112 | for xm,xp,ym,yp in product([-1,1],repeat=4):
+000113 |  w=(1-r*xm*xp*ym*yp)/16;minimum=min(minimum,w)
+000114 |  total+=w;xx+=w*xm*xp;yy+=w*ym*yp;mixed+=w*xm*xp*ym*yp
+000115 | need('commuting_marginal_control_has_positive_normalized_measure',total==1 and minimum>0)
+000116 | need('separate_marginal_reflected_forms_are_product_positive',xx==0 and yy==0)
+000117 | need('mixed_reflected_form_is_negative_despite_commutation',mixed==-r)
+000118 | 
+000119 | # All-order even half-action factorization needed by the repaired RP proof.
+000120 | A=add(scale(multiply(variable(0),variable(1)),s.Symbol('a')),scale(multiply(variable(2),variable(3)),s.Symbol('b')))
+000121 | B=add(scale(multiply(variable(4),variable(5)),s.Symbol('c')),scale(multiply(variable(6),variable(7)),s.Symbol('d')))
+000122 | need('even_half_actions_commute',eq(multiply(A,B),multiply(B,A)))
+000123 | need('whole_even_interaction_exponential_sews_exactly',eq(exponential(scale(add(A,B),-1),8),multiply(exponential(scale(A,-1),8),exponential(scale(B,-1),8))))
+000124 | 
+000125 | result={'contract':'ORIGINAL-DYNAMICAL-HIGGS-SOURCE-20261031','all_passed':all(checks.values()),'checks':checks,'original_basis_images':count,'Yukawa_coordinates':'72 real coefficient basis directions of supplied four 3x3 matrices, no search or selection','first_common_cross_action_coefficient':'-G_h2_h2bar * Ynu[a,b] * conjugate(Yu[d,c])','counterexample_mixed_reflected_form':str(mixed),'scope':'Actual full96 original real Higgs consumer; complete induced finite source at given original boson moments. No physical boson measure chosen, joint original reflection not inferred from JF, no continuum/TOE promotion.'}
+000126 | Path(__file__).with_name('DYNAMICAL-HIGGS-SOURCE.json').write_text(json.dumps(result,indent=2)+'\n')
+000127 | print(json.dumps(result,indent=2))

@@ -1,0 +1,60 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-state-dynamics-injectivity-20260918/README.md
+Original file SHA-256: 9b3d02af286051e4476b2bf079ae01abd97fe5634a10728521b09e8739c02e91
+Inclusive original lines: 55-106
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000055 | ```text
+000056 | rho0 = diag(i,-i,-i,i),       C = diag(1,1,0,0),
+000057 | H_a = diag(1,a,-1,-a),        a > 0,
+000058 | ```
+000059 | 
+000060 | the cases `a=2` and `a=3` have the same `rho0` and exactly the same sign
+000061 | projector `C`, but different positive energies and the exact observable ratio
+000062 | `H_a[1,1]/H_a[0,0] = a` (2 versus 3). More generally, any strictly positive
+000063 | `H_plus` and `H_minus` in `H=H_plus direct_sum (-H_minus)` produce the same
+000064 | sign state while retaining arbitrary positive magnitude data. This is state
+000065 | noninjectivity, not a construction of a competing physical TFPT source.
+000066 | 
+000067 | ## Relation to existing contracts
+000068 | 
+000069 | The pinned `v199_seam_state_invariance.py` run was replayed once before this
+000070 | contract: `4 passed, 0 failed`. It checks the finite carrier-clock setup,
+000071 | the finite character-block criterion for `H`, and the principal-symbol
+000072 | commutator. It prints the overstrong sign-projector equivalence without
+000073 | constructing `C` or testing that equivalence. Its bounded sub-principal
+000074 | continuum residual remains open. Its exact source hash and the exact `QGEO.STATE.01`
+000075 | ledger-row hash are checked by `checker.py`.
+000076 | 
+000077 | The positive-temperature/KMS repair is different and is pinned to
+000078 | `verification/v258_dirac_covariance_induction.py:10-21,149-155`:
+000079 | 
+000080 | ```text
+000081 | C_beta = (I + exp(beta H))^-1,
+000082 | H = beta^-1 log((I-C_beta) C_beta^-1).
+000083 | ```
+000084 | 
+000085 | For known nonzero `beta` and faithful finite covariance `0<C_beta<I`, this map
+000086 | is injective and retains the magnitudes. The identity is exact; v258 checks it
+000087 | numerically. Its tests first prescribe `Dblk` or the mass entries in `Dmass`,
+000088 | construct `C=kms_cov(D)`, and recover `D` with `induce(C)`. The physical
+000089 | identification `C_F = P_F C_Sigma P_F` is a recorded conditional statement
+000090 | (`check(..., True)`), not a construction of an independent raw covariance.
+000091 | 
+000092 | There is a second conditional reconstruction if an actual one-particle
+000093 | transfer operator is available on the same space. If `0 < T < I` on the
+000094 | moving sector, a known `tau > 0` satisfies `T = exp(-tau |H|)`, and `T`
+000095 | commutes with the sign projector `Q=2C-I`, then
+000096 | 
+000097 | ```text
+000098 | H = Q (-log T) / tau
+000099 | ```
+000100 | 
+000101 | reconstructs the gapped operator uniquely on that sector. This is an operator
+000102 | identity and requires the full transfer operator, not only its population
+000103 | spectrum. The TFPT rates `6 log(3/2)` and `6 log(3)` can enter such a formula
+000104 | only after the compiler transfer has independently been identified with this
+000105 | physical `T`; that identification is not supplied here. A fixed `T=I` sector
+000106 | is a zero-mode/state case and is outside this sign-projector lemma.

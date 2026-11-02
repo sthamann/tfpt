@@ -1,0 +1,79 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_cartan_family_dictionary.py
+Original file SHA-256: 91344d5d71b4fd7c163b7648460ab5127d5c026cd1927faa4510c126f3a02c4b
+Inclusive original lines: 88-158
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000088 |             "torus_isogeny_degree": int(abs((sp.eye(8)-lattice_j).det()))}
+000089 | 
+000090 | 
+000091 | def all_native_family_characters(roots):
+000092 |     matches = []
+000093 |     for residues in product(range(3), repeat=8):
+000094 |         b = list(residues)
+000095 |         if sum(b) % 2:
+000096 |             b[5] += 3
+000097 |         h = [(6 if i < 5 else 0)+4*b[i] for i in range(8)]
+000098 |         counts = [0]*12
+000099 |         counts[0] = 8
+000100 |         for r in roots:
+000101 |             value = sum(x*y for x, y in zip(r, h))
+000102 |             if value % 2:
+000103 |                 raise RuntimeError("nonintegral E8 current phase")
+000104 |             counts[(value//2) % 12] += 1
+000105 |         if tuple(counts) != TARGET:
+000106 |             continue
+000107 |         parity = sum(b[5:]) % 2
+000108 |         family = []
+000109 |         for signs in SIGNS:
+000110 |             numerator = -sum(x*y for x, y in zip(signs, b[5:]))+3*parity
+000111 |             if numerator % 2:
+000112 |                 raise RuntimeError("nonintegral canonical order-three family lift")
+000113 |             family.append((numerator//2) % 3)
+000114 |         spin = Counter(x % 3 for q in b[:5] for x in (q, -q))
+000115 |         matches.append({"b_mod3": list(residues),
+000116 |                         "family_order3_residues": family,
+000117 |                         "family_multiplicities": [family.count(k) for k in range(3)],
+000118 |                         "Spin10_vector_multiplicities": [spin[k] for k in range(3)]})
+000119 |     require(len(matches) == 480, "reused complete native class has 480 toral thirds")
+000120 |     require(all(m["family_multiplicities"] == [0, 2, 2] for m in matches),
+000121 |             "every native third has family character 0,2,2")
+000122 |     require(all(m["Spin10_vector_multiplicities"] == [4, 3, 3] for m in matches),
+000123 |             "every native third has Spin10 vector character 4,3,3")
+000124 |     patterns = Counter(tuple(m["family_order3_residues"]) for m in matches)
+000125 |     require(len(patterns) == 6 and set(patterns.values()) == {80},
+000126 |             "all six family two-plus-two patterns occur eighty times")
+000127 |     return {"toral_thirds_examined": 3**8, "native_matches": len(matches),
+000128 |             "family_character": [0, 2, 2], "Spin10_vector_character": [4, 3, 3],
+000129 |             "family_patterns": [{"residues": list(k), "count": v}
+000130 |                                 for k, v in sorted(patterns.items())],
+000131 |             "matching_residues": matches}
+000132 | 
+000133 | 
+000134 | def tensor_comparison():
+000135 |     gaussian, family = (0, 0, 1, 2), (1, 1, 2, 2)
+000136 |     symmetric, exterior = [], []
+000137 |     for n in range(11):
+000138 |         a, b = phase_counts(gaussian, n, True), phase_counts(family, n, True)
+000139 |         require((a == b) == (n % 3 != 1), f"symmetric character degree {n}")
+000140 |         symmetric.append({"degree": n, "Gaussian": a, "family": b})
+000141 |     for n in range(5):
+000142 |         exterior.append({"degree": n, "Gaussian": phase_counts(gaussian, n, False),
+000143 |                          "family": phase_counts(family, n, False)})
+000144 |     require(exterior[2]["Gaussian"] == (2, 2, 2) and
+000145 |             exterior[2]["family"] == (4, 1, 1), "exterior square detects mismatch")
+000146 |     t = sp.Symbol("t")
+000147 |     trace_gaussian = 1/((1-t)*(1-t**3))
+000148 |     trace_family = (1-t)**2/(1-t**3)**2
+000149 |     require(sp.cancel(trace_gaussian-trace_family-3*t/(1-t**3)**2) == 0,
+000150 |             "all-degree symmetric trace difference identity")
+000151 |     return {"symmetric_powers": symmetric, "exterior_powers": exterior,
+000152 |             "all_degree_trace_difference": "3t/(1-t^3)^2",
+000153 |             "direct_C3_intertwiner_isomorphism": False}
+000154 | 
+000155 | 
+000156 | def main():
+000157 |     roots = roots_doubled()
+000158 |     require(len(roots) == len(set(roots)) == 240, "original E8 root inventory")

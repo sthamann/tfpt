@@ -1,0 +1,142 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/native-arc-charge-source-interface-20261026/check_elliptic_current_source.py
+Original file SHA-256: f754d9f025e4a7823734d3ca617de762fd874b29bd1264e9d7976da786442412
+Inclusive original lines: 1-134
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Current source functional of the existing elliptic Gaussian boundary.
+000002 | No fitted temperature/state/coupling. Original Hardy source remains distinct.
+000003 | """
+000004 | import argparse,hashlib,json
+000005 | from pathlib import Path
+000006 | import mpmath as mp
+000007 | import numpy as np
+000008 | from scipy.linalg import expm
+000009 | from scipy.special import expit
+000010 | import sympy as s
+000011 | [OMITTED: non-scientific conversation or execution metadata]
+000012 | SRC=REPO/'experiments/theory-contracts/elliptic-moebius-source-bridge-20261026'
+000013 | def need(ok,msg):
+000014 |  if not bool(ok):raise RuntimeError(msg)
+000015 | def multiply(a,b,cut):
+000016 |  out={}
+000017 |  for (e,q),v in a.items():
+000018 |   for (f,r),w in b.items():
+000019 |    if e+f<=cut:out[e+f,q+r]=out.get((e+f,q+r),0)+v*w
+000020 |  return out
+000021 | 
+000022 | def charge_partition(sign,cut=80):
+000023 |  fermion={(0,0):1}
+000024 |  for r in range(cut//4+1):
+000025 |   for power,charge in [(4*r+2-sign,1),(4*r+2+sign,-1)]:
+000026 |    if power<=cut:fermion=multiply(fermion,{(0,0):1,(power,charge):1},cut)
+000027 |  osc={(0,0):1}
+000028 |  for n in range(1,cut//4+1):osc=multiply(osc,{(4*n*k,0):1 for k in range(cut//(4*n)+1)},cut)
+000029 |  qs={}
+000030 |  for q in range(-cut,cut+1):
+000031 |   e=2*q*q-sign*q
+000032 |   if e<=cut:qs[e,q]=1
+000033 |  boson=multiply(osc,qs,cut)
+000034 |  need(fermion==boson,'Exact charge-resolved elliptic fermion/boson partition polynomial')
+000035 |  return len(fermion)
+000036 | 
+000037 | def symbolic_identities():
+000038 |  x,y=s.symbols('x y',positive=True)
+000039 |  c=1/(1+x);d=1/(1+x*y)
+000040 |  need(s.factor(c*(1-d)-(c-d)/(1-1/y))==0,'Fermi telescoping positive mode identity')
+000041 |  need(s.factor(d*(1-c)-(c-d)/(y-1))==0,'Fermi telescoping negative mode identity')
+000042 |  r=s.symbols('r',integer=True)
+000043 |  for epsilon in (0,1):
+000044 |   alpha=s.Rational(2*epsilon+1,4)
+000045 |   need(s.expand(2*s.pi*(2*r+epsilon+s.Rational(1,2))-4*s.pi*(r+alpha))==0,'Actual NS cover to quarter inverse temperature')
+000046 | 
+000047 | def main():
+000048 |  parser=argparse.ArgumentParser();parser.add_argument('--out',type=Path,default=Path(__file__).with_name('elliptic_current_source_results.json'));args=parser.parse_args()
+000049 |  mp.mp.dps=140;b=4*mp.pi
+000050 |  symbolic_identities();formal=[charge_partition(sign) for sign in (1,-1)]
+000051 |  rows=[]
+000052 |  for alpha in (mp.mpf(1)/4,mp.mpf(3)/4):
+000053 |   C=lambda r:1/(1+mp.exp(b*(r+alpha)))
+000054 |   theta=sum(mp.exp(-b*(mp.mpf(q*q)/2+(alpha-mp.mpf('.5'))*q)) for q in range(-12,13))
+000055 |   mean=sum(q*mp.exp(-b*(mp.mpf(q*q)/2+(alpha-mp.mpf('.5'))*q)) for q in range(-12,13))/theta
+000056 |   fermionZ=mp.fprod(1+mp.exp(-b*(r+alpha)) for r in range(40))*mp.fprod(1+mp.exp(-b*(r-alpha)) for r in range(1,41))
+000057 |   bosonZ=theta/mp.fprod(1-mp.exp(-b*n) for n in range(1,41))
+000058 |   need(abs(fermionZ-bosonZ)<mp.mpf('1e-85'),'Actual geometric partition product')
+000059 |   need(abs(sum(C(r)-(1 if r<0 else 0) for r in range(-40,41))-mean)<mp.mpf('1e-85'),'Actual sea-relative charge mean')
+000060 |   for m in (1,2,5,10):
+000061 |    positive=sum(C(r)*(1-C(r+m)) for r in range(-40,41))
+000062 |    negative=sum(C(r+m)*(1-C(r)) for r in range(-40,41))
+000063 |    target=mp.mpf(m)/(mp.exp(b*m)-1)
+000064 |    need(abs(negative-target)<mp.mpf('1e-85'),'Neutral thermal current norm from original covariance')
+000065 |    need(abs(positive-negative-m)<mp.mpf('1e-85'),'Unchanged level-one current commutator')
+000066 |   rows.append({'alpha':str(alpha),'partition':mp.nstr(fermionZ,45),'mean_original_charge':mp.nstr(mean,45),'Jminus1_Jplus1':mp.nstr(1/(mp.exp(b)-1),45)})
+000067 |  # Independent finite fermionic determinant for actual Weyl histories.
+000068 |  # This is a convergence diagnostic, not a proof from a finite determinant.
+000069 |  f={0:.37,1:.5+.2j,3:-.13j,5:.08};g={0:-.21,1:-.11+.33j,2:.17,3:.09j}
+000070 |  profiles=[f,g];fg={k:f.get(k,0)+g.get(k,0) for k in set(f)|set(g)}
+000071 |  def current_weyl(profile,alpha):
+000072 |   zero=mp.mpf(str(profile.get(0,0)))
+000073 |   weights=[mp.exp(-b*(mp.mpf(q*q)/2+(alpha-mp.mpf('.5'))*q)) for q in range(-12,13)]
+000074 |   charge=sum(w*mp.exp(1j*zero*q) for w,q in zip(weights,range(-12,13)))/sum(weights)
+000075 |   variance=sum(mp.mpf(n)*mp.coth(b*n/2)*mp.mpf(str(abs(v)**2)) for n,v in profile.items() if n)
+000076 |   return complex(charge*mp.exp(-variance/2))
+000077 |  def matrix(profile,rs):
+000078 |   A=np.zeros((len(rs),len(rs)),complex)
+000079 |   for i,r in enumerate(rs):
+000080 |    for j,t in enumerate(rs):
+000081 |     k=t-r
+000082 |     A[i,j]=profile.get(0,0) if k==0 else np.conj(profile.get(k,0)) if k>0 else profile.get(-k,0)
+000083 |   need(np.max(abs(A-A.conj().T))<1e-14,'Real source profile is Hermitian')
+000084 |   return A
+000085 |  cocycle=sum(n*(np.conj(f.get(n,0))*g.get(n,0)-f.get(n,0)*np.conj(g.get(n,0))) for n in set(f)|set(g) if n)
+000086 |  dets=[]
+000087 |  for alpha in (.25,.75):
+000088 |   for cut in (16,32):
+000089 |    rs=np.arange(-cut,cut);cov=expit(-float(b)*(rs+alpha));I=np.eye(len(rs))
+000090 |    Af,Ag=[matrix(p,rs) for p in profiles]
+000091 |    Uf,Ug=expm(1j*Af),expm(1j*Ag)
+000092 |    def determinant(U,profile0):
+000093 |     sign,log=np.linalg.slogdet(I-cov[:,None]*I+cov[:,None]*U)
+000094 |     return sign*np.exp(log-1j*cut*profile0)
+000095 |    single=determinant(Uf,f[0]);ordered=determinant(Uf@Ug,f[0]+g[0])
+000096 |    expected=current_weyl(f,mp.mpf(str(alpha)))
+000097 |    expected_order=np.exp(-cocycle/2)*current_weyl(fg,mp.mpf(str(alpha)))
+000098 |    need(abs(single-expected)<1e-11,'Weyl functional matches independent fermion determinant')
+000099 |    need(abs(ordered-expected_order)<1e-11,'Full ordered current source with original central phase')
+000100 |    need(abs(ordered-current_weyl(fg,mp.mpf(str(alpha))))>1e-3,'Omitting current cocycle is detected')
+000101 |    dets.append({'alpha':alpha,'mode_cut':cut,'single_error':float(abs(single-expected)),'ordered_error':float(abs(ordered-expected_order)),'ordered_value':[float(ordered.real),float(ordered.imag)]})
+000102 |  # Independent charged Wick determinants versus the all-word current
+000103 |  # vertex reconstruction. Global charge theta factor is essential.
+000104 |  vertex=[]
+000105 |  for alpha in (mp.mpf(1)/4,mp.mpf(3)/4):
+000106 |   weights={q:mp.exp(-b*(mp.mpf(q*q)/2+(alpha-mp.mpf('.5'))*q)) for q in range(-12,13)}
+000107 |   theta=sum(weights.values())
+000108 |   def kernel(z,w):
+000109 |    R=z/w
+000110 |    # Sum the infinite occupied Hardy sea analytically. Only its
+000111 |    # exponentially decaying thermal correction is numerically cut.
+000112 |    def delta(r):
+000113 |     x=mp.exp(b*(r+alpha))
+000114 |     return -x/(1+x) if r<0 else 1/(1+x)
+000115 |    return R**alpha*(1/(R-1)+sum(R**r*delta(r) for r in range(-80,81)))
+000116 |   for pairs in (1,2,4,8):
+000117 |    zs=[mp.mpf('.5')+mp.mpf(k)/32 for k in range(pairs)]
+000118 |    ws=[mp.mpf(k+1)/64 for k in range(pairs)]
+000119 |    R=mp.fprod(zs)/mp.fprod(ws)
+000120 |    K=mp.matrix([[kernel(z,w) for w in ws] for z in zs])
+000121 |    C0=mp.matrix([[w/(z-w) for w in ws] for z in zs])
+000122 |    exponent=sum(sum(z**n-w**n for z,w in zip(zs,ws))*
+000123 |                 sum(w**(-n)-z**(-n) for z,w in zip(zs,ws))/
+000124 |                 (n*(mp.exp(b*n)-1)) for n in range(1,81))
+000125 |    predicted=R**alpha*mp.det(C0)*sum(w*R**q for q,w in weights.items())/theta*mp.exp(exponent)
+000126 |    actual=mp.det(K)
+000127 |    relative=abs((actual-predicted)/predicted)
+000128 |    need(relative<mp.mpf('1e-55'),f'Full neutral Wick word alpha={alpha},pairs={pairs},relative={mp.nstr(relative,15)}')
+000129 |    vertex.append({'alpha':str(alpha),'pairs':pairs,'relative_error':mp.nstr(relative,8)})
+000130 |  n1=1/(mp.exp(b)-1);need(n1>0,'Even Q0 current state differs from Hardy vacuum')
+000131 |  need(abs(n1-1/(mp.exp(2*mp.pi)-1))>mp.mpf('.001'),'Wrong cover-to-quarter scale is detected')
+000132 |  result={'verdict':'EXACT_SCOPED_ELLIPTIC_CURRENT_FUNCTIONAL; NEUTRAL_STATE_DIFFERS_FROM_HARDY; ORIGINAL_P1_MEASURE_OPEN','inverse_temperature_quarter':'4*pi','formal_partition_cut':80,'formal_partition_monomials':formal,'quarter_current_rows':rows,'finite_determinant_diagnostics':dets,'neutral_vertex_word_diagnostics':vertex,'neutral_Q0_Jminus1_Jplus1':mp.nstr(n1,45),'source_sha256':{str((SRC/name).relative_to(REPO)):hashlib.sha256((SRC/name).read_bytes()).hexdigest() for name in ['BOUNDARY-SOURCE.txt','ELLIPTIC-GREEN-RP.txt','UPDATE-REAL-SLOTS-AND-SOURCE.txt']},'scope':'Existing same-E free Gaussian quantization. All-profile formula proved separately; finite determinants are diagnostics. No physical temperature,time or primitive P1 measure selected. Old Hardy native source is preserved as a different state.'}
+000133 |  args.out.write_text(json.dumps(result,indent=2,sort_keys=True)+'\n');print(json.dumps(result,indent=2))
+000134 | if __name__=='__main__':main()

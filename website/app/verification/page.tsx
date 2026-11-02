@@ -107,7 +107,7 @@ const REVIEWER_MAP: { label: string; marker: string; tone: string; items: string
     items: [
       "Anchor a = (1,1,2); the E₈ glue D₅⊕A₃+μ₄ ⇒ E₈",
       "Gauge group, 3 families, hypercharge (Lean-formalised)",
-      "α⁻¹ = 137.0359992 — unique root of the explicit cubic F_U(1)=0",
+      "α⁻¹ = 137.0359992 — unique root of the self-consistent closure F_U(1)=0",
       "Flavor operator ladder (Q,K,R,L), quark/lepton ratios",
       "θ_QCD = 0, Higgs uniqueness, the order-30 Coxeter cycle",
     ],

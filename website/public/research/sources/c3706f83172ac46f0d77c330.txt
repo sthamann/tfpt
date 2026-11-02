@@ -1,0 +1,93 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_local_weyl_compression.py
+Original file SHA-256: e9c887ced2f3327c5403fef788dbeebf016214767df4e1898aa3f7bc280678ab
+Inclusive original lines: 1-85
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Actual native-code compression of bounded proper-local current Weyls.
+000002 | 
+000003 | Exact finite degree extraction; no truncation of the Weyl exponential or
+000004 | of the actual smooth local profile. All unused modes give a nonzero scalar.
+000005 | """
+000006 | from pathlib import Path
+000007 | import sys,json,math,itertools
+000008 | import sympy as s
+000009 | [OMITTED: non-scientific conversation or execution metadata]
+000010 | BASE=R/'experiments/theory-contracts/joint-native-algebra-selection-20261016'
+000011 | sys.path.insert(0,str(BASE))
+000012 | import check_mixed_return as original
+000013 | 
+000014 | def main():
+000015 |     raw,norms=original.code()
+000016 |     z=s.symbols('z0:4');a,b=s.symbols('a b',real=True)
+000017 |     fs=[sum(original.Q.to_sympy(v)*s.prod(z[k] for k in mon) for mon,v in f.items()) for f in raw]
+000018 |     monomials=[s.Poly(f,*z).terms() for f in fs]
+000019 |     checks=[]
+000020 |     def check(name,condition):
+000021 |         if not condition:raise ArithmeticError(name)
+000022 |         checks.append(name)
+000023 |     def ip(left,right):
+000024 |         q=s.Poly(s.expand(right),*z)
+000025 |         return s.expand(sum(s.conjugate(v)*q.coeff_monomial(s.prod(z[k]**p[k] for k in range(4)))*math.prod(math.factorial(x) for x in p) for p,v in s.Poly(left,*z).terms()))
+000026 |     gram=s.Matrix(5,5,lambda i,j:ip(fs[i],fs[j]))
+000027 |     check('Unchanged original native Fock Gram',gram==s.diag(*norms))
+000028 |     def compressed(alpha):
+000029 |         # P exp(alpha.z) f(z-conj(alpha)) has EXACT degree4 part.
+000030 |         shifted=[s.Poly(s.expand(f.subs({z[k]:z[k]-s.conjugate(alpha[k]) for k in range(4)},simultaneous=True)),*z) for f in fs]
+000031 |         images=[];linear=sum(alpha[k]*z[k] for k in range(4))
+000032 |         for f in shifted:
+000033 |             image=0
+000034 |             for powers,coef in f.terms():
+000035 |                 degree=sum(powers);image+=coef*s.prod(z[k]**powers[k] for k in range(4))*linear**(4-degree)/math.factorial(4-degree)
+000036 |             images.append(s.expand(image))
+000037 |         return s.Matrix(5,5,lambda i,j:s.factor(ip(fs[i],images[j])/norms[i]))
+000038 |     def coefficient_formula(alpha):
+000039 |         # Independent product of four one-oscillator exact raw matrix elements.
+000040 |         def entry(p,q):
+000041 |             ans=1
+000042 |             for k in range(4):
+000043 |                 ans*=sum(s.binomial(q[k],h)*(-s.conjugate(alpha[k]))**(q[k]-h)*alpha[k]**(p[k]-h)*math.factorial(p[k])/math.factorial(p[k]-h) for h in range(min(p[k],q[k])+1))
+000044 |             return ans
+000045 |         return s.Matrix(5,5,lambda i,j:s.factor(sum(s.conjugate(u)*v*entry(p,q) for p,u in monomials[i] for q,v in monomials[j])/norms[i]))
+000046 |     A=compressed([a,0,0,0]);B=compressed([b,b,0,0])
+000047 |     for name,M,alpha in [('A',A,[a,0,0,0]),('B',B,[b,b,0,0])]:
+000048 |         N=coefficient_formula(alpha)
+000049 |         for i,j in itertools.product(range(5),repeat=2):check(f'{name} independent exact oscillator coefficient {i}{j}',s.simplify(M[i,j]-N[i,j])==0)
+000050 |         check(f'{name} Hermitian in original metric',s.simplify(gram*M-M.T*gram)==s.zeros(5))
+000051 |     comm=(A*B-B*A).applyfunc(s.factor)
+000052 |     expected=a**4*b**4*(a*a-4)*(a*a-12)*(b*b-2)*(b*b-6)/4608
+000053 |     target=s.zeros(5);target[0,1]=expected;target[1,0]=-12*expected
+000054 |     check('Whole two-strength commutator identity',s.simplify(comm-target)==s.zeros(5))
+000055 |     check('No false low-order effect: leading coefficient degree8',s.Poly(expected,a,b).coeff_monomial(a**4*b**4)==s.Rational(1,8))
+000056 |     check('Exact witness a=b=1',comm.subs({a:1,b:1})[0,1]==s.Rational(55,1536))
+000057 |     check('Actual witness rank2',comm.subs({a:1,b:1}).rank()==2)
+000058 |     hs=s.factor(s.trace(gram.inv()*comm.T*gram*comm))
+000059 |     check('Metric-correct positive commutator norm',s.simplify(hs-24*expected**2)==0)
+000060 |     check('Witness squared Hilbert Schmidt norm',hs.subs({a:1,b:1})==s.Rational(3025,98304))
+000061 |     # The exact complete product uses alpha+beta and its whole Weyl phase;
+000062 |     # disjoint smooth profiles make that phase zero. P between operations
+000063 |     # is never inserted into the true source product.
+000064 |     S,T=s.symbols('S T',positive=True)
+000065 |     lam=s.exp(-(S+T)/2)
+000066 |     check('Full omitted modes cannot remove nonzero witness',lam.is_positive is True)
+000067 |     out=dict(verdict='EXACT_SCOPED_NONLOCALITY_OF_BARE_NATIVE_COMPRESSION',
+000068 |         all_passed=True,checks=checks,source='Unchanged original native code in full given E8 Cartan Fock source',
+000069 |         raw_gram=[str(x) for x in norms],
+000070 |         displacement_A=['a','0','0','0'],displacement_B=['b','b','0','0'],
+000071 |         normalized_by_whole_vacuum_Weyl_scalars=True,
+000072 |         matrix_A=[[str(x) for x in row] for row in A.tolist()],matrix_B=[[str(x) for x in row] for row in B.tolist()],
+000073 |         commutator_01=str(s.factor(expected)),commutator_10='-12*commutator_01',
+000074 |         witness_raw_01='55/1536',witness_orthonormal_01='55*sqrt(3)/768',witness_rank=2,
+000075 |         witness_HS_squared_without_nonzero_profile_scalars='3025/98304',
+000076 |         whole_class_zero_locus='a=0 or b=0 or a^2 in {4,12} or b^2 in {2,6}',
+000077 |         first_joint_nonzero_strength_order=8,
+000078 |         actual_profile_requirement='Disjoint nonempty proper intervals; smooth real vector profiles realizing indicated mode1 displacements and zero complementary mode1 components. Exact compact-support moment construction in proof; all higher modes retained in finite positive norm scalar.',
+000079 |         full_operator_commutator='0 by exact local current Weyl relation for disjoint supports',
+000080 |         lost_intermediate_identity='[PAP,PBP]=PBQAP-PAQBP when [A,B]=0',
+000081 |         scope='Probe only in given full source. No physical coupling or new geometry selected. Bare compression is not a local algebra homomorphism; lossless full-word readout retains original commutation. No physical signalling claim,4D reconstruction or global TFPT exclusion.')
+000082 |     Path(__file__).with_name('LOCAL-WEYL-COMPRESSION.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+000083 |     print(json.dumps(dict(verdict=out['verdict'],checks=len(checks),commutator_01=out['commutator_01'],witness=out['witness_raw_01'],HS_squared=out['witness_HS_squared_without_nonzero_profile_scalars'])))
+000084 | 
+000085 | if __name__=='__main__':main()

@@ -1,0 +1,115 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/admissible_pair_20261028/check_p5_phase_range.py
+Original file SHA-256: 0cb713cf339edd6f8c6a0b30a887f3235c4c4a583c8afaa0e3377fd8a4646927
+Inclusive original lines: 1-107
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact P5 interval on the previously defined SM phase family, not a P1 source."""
+000003 | from pathlib import Path
+000004 | import importlib.util
+000005 | import json
+000006 | import sympy as s
+000007 | 
+000008 | HERE = Path(__file__).resolve().parent
+000009 | source = HERE.parent / 'hodge_complement_20261028' / 'hodge_complement_channel.py'
+000010 | spec = importlib.util.spec_from_file_location('original_hodge', source)
+000011 | h = importlib.util.module_from_spec(spec)
+000012 | spec.loader.exec_module(h)
+000013 | C = [s.Matrix(x.tolist()) for x in h.hodge_amplitudes()]
+000014 | pairs = h.PAIRS
+000015 | 
+000016 | # Formal phases and their conjugates make the full result a polynomial identity.
+000017 | a,b,c,A,B,Cc = s.symbols('a b c A B C')
+000018 | z = [a if max(p)<3 else c if min(p)>=3 else b for p in pairs]
+000019 | zc = [A if max(p)<3 else Cc if min(p)>=3 else B for p in pairs]
+000020 | U, Uc = s.diag(*z),s.diag(*zc)
+000021 | assert all((C[i].T*C[j]).trace()==6*(i==j) for i in range(5) for j in range(5))
+000022 | # 1/18 = (1/6 for P5) * (1/3 for Kraus-normalized Choi).
+000023 | response = s.expand(sum((C[i].T*C[j]*U).trace()*(C[i].T*C[j]*Uc).trace()
+000024 |                         for i in range(5) for j in range(5))/18)
+000025 | formula = ((a+4*b+c)*(A+4*B+Cc)/6 + (a+b)*(A+B))
+000026 | assert s.expand(response-formula)==0
+000027 | # Whole phase family preserves every individual event effect exactly.
+000028 | for x in C:
+000029 |     assert (Uc*x.T*x*U - x.T*x).subs({a*A:1,b*B:1,c*Cc:1}) == s.zeros(10)
+000030 | # Actual normalization and all ten diagonal transition probabilities survive.
+000031 | for v in [s.eye(10),s.diag(*[-1 if max(p)<3 else 1 for p in pairs]),
+000032 |           s.diag(*[-1 if max(p)<3 or min(p)>=3 else 1 for p in pairs])]:
+000033 |     assert sum((v.T*x.T*x*v for x in C),s.zeros(10))==3*s.eye(10)
+000034 |     for x in C:
+000035 |         for i in range(10):
+000036 |             for j in range(10):
+000037 |                 assert (x*v)[i,j]**2 == x[i,j]**2
+000038 | assert response.subs({a:1,b:1,c:1,A:1,B:1,Cc:1})==10
+000039 | assert response.subs({a:-1,b:1,c:-1,A:-1,B:1,Cc:-1})==s.Rational(2,3)
+000040 | assert response.subs({a:-1,b:1,c:1,A:-1,B:1,Cc:1})==s.Rational(8,3)
+000041 | result = {
+000042 |  'carrier': 'Lambda2(C5) in original PAIRS basis; original E8 Cm and P5',
+000043 |  'family': 'Phi o Ad(a P_CC + b P_CW + c P_WW), |a|=|b|=|c|=1',
+000044 |  'objective': 'Tr(P5 J) = |a+4b+c|^2/6 + |a+b|^2',
+000045 |  'normalization': 'unnormalized Choi trace 10; divide objective by 10 for normalized probability',
+000046 |  'exact_min': '2/3', 'min_phases': ['-1','1','-1'],
+000047 |  'exact_max':'10', 'max_phases':['1','1','1'],
+000048 |  'proof':'Gauge b=1. Put t=Re(a), s=|a+4|=sqrt(17+8t), 3<=s<=5. Minimizing over c gives (s-1)^2/6+(s^2-9)/4, strictly increasing for s>=3; hence 2/3 at s=3. Triangle bounds give 10; equal phases attain it. Continuous domain gives full interval.',
+000049 |  'legacy_one_sided_control':'8/3 (normalized probability 4/15)',
+000050 |  'coverage':'only this phase family, not all SM-covariant channels and not all processes',
+000051 |  'source_bridge':'P5 embedding into local P1 A_adm and operational sewing rule remain unproved; none of these phase channels is thereby selected',
+000052 |  'clock':'original U5 is scalar on Lambda2 C5 and cannot distinguish this family',
+000053 | }
+000054 | (HERE/'p5-phase-range-results.json').write_text(json.dumps(result,indent=2)+'\n')
+000055 | print(json.dumps(result,indent=2))
+000056 | # Exact full-Petersen-population search, no SM covariance imposed.
+000057 | # Every original Cm is a signed partial permutation with 6 nonzero entries.
+000058 | # Flip exactly three; no cross-Cm overlap exists.
+000059 | D=[]
+000060 | for x in C:
+000061 |     y=x.copy()
+000062 |     nonzero=[(i,j) for i in range(10) for j in range(10) if x[i,j]!=0]
+000063 |     assert len(nonzero)==6
+000064 |     for i,j in nonzero[:3]: y[i,j] = -y[i,j]
+000065 |     assert y.T*y == x.T*x
+000066 |     D.append(y)
+000067 | assert all((x.T*y).trace()==0 for x in C for y in D)
+000068 | assert sum((y.T*y for y in D),s.zeros(10)) == 3*s.eye(10)
+000069 | assert sum((y*y.T for y in D),s.zeros(10)) == 3*s.eye(10)
+000070 | # Same full conditional populations, not only aggregated counts.
+000071 | assert all(sum(y[i,j]**2 for y in D)==sum(x[i,j]**2 for x in C)
+000072 |            for i in range(10) for j in range(10))
+000073 | assert sum((x.T*y).trace()**2 for x in C for y in D)==0
+000074 | # Positivity and trace 10 force 0 <= Tr(P5 J) <= 10 for any CPTP J.
+000075 | # Convex mixtures between D and C achieve all values of that interval.
+000076 | result['all_petersen_cptp']={
+000077 |  'exact_min':'0','exact_max':'10',
+000078 |  'construction':'Dm flips 3 of the 6 nonzero entries of each original Cm, with all other entries unchanged. J0 = (1/3) sum |Dm>><<Dm|.',
+000079 |  'controls':'Exact orthogonality to all Cm, every individual Dm effect = Cm effect, TP, unital, every one of 100 populations unchanged.',
+000080 |  'interval_proof':'0<=P5<=I and Tr(J)=10. Endpoints J0 and Jphi meet bounds; all convex mixtures preserve the full population and yield the interval.',
+000081 |  'scope':'All CPTP channels with full fixed Petersen population; the exhibited zero-construction is not SM-covariant.'}
+000082 | # Match Psi P5 value 2 with a different process in original SM phase family.
+000083 | w=(1+2*s.sqrt(2)*s.I)/3
+000084 | S=s.diag(*[-1 if max(p)<3 else w if min(p)>=3 else 1 for p in pairs])
+000085 | Sc=s.conjugate(S)
+000086 | assert s.simplify(sum((x.T*y*S).trace()*(x.T*y*Sc).trace() for x in C for y in C)/18)==2
+000087 | # Swap-odd projector P45=(I-F)/2; obtain a second independent Choi response.
+000088 | # P45 weight = (1/6) sum ||xS-(xS)^T||_HS^2 / 2.
+000089 | anti=s.simplify(sum(sum(s.conjugate(q)*q for q in (x*S-(x*S).T)) for x in C)/12)
+000090 | result['same_p5_as_psi']={'phases':['-1','1','(1+2i sqrt(2))/3'], 'P5': '2', 'P45':str(anti), 'psi_P45':'4 (prior exact six-mark original-source check)'}
+000091 | assert anti != 4
+000092 | (HERE/'p5-phase-range-results.json').write_text(json.dumps(result,indent=2)+'\n')
+000093 | print(json.dumps({'all_petersen_cptp':result['all_petersen_cptp'],'same_p5_as_psi':result['same_p5_as_psi']},indent=2))
+000094 | # Distinguish the unrestricted zero construction from SM-covariant channels.
+000095 | # Under the actual real SU(3) generator E01-E10, dual acts by the same real
+000096 | # skew matrix in this fixed chart. We use unnormalized M0=3 J0.
+000097 | X=s.zeros(5); X[0,1]=1; X[1,0]=-1
+000098 | r=s.Matrix(h.exterior_two_differential(__import__('numpy').array(X.tolist(),dtype=int)).tolist())
+000099 | L=s.kronecker_product(r,s.eye(10))+s.kronecker_product(s.eye(10),r)
+000100 | vec=lambda x:s.Matrix([x[i,j] for j in range(10) for i in range(10)])
+000101 | M0=sum((vec(y)*vec(y).T for y in D),s.zeros(100))
+000102 | comm=L*M0-M0*L
+000103 | comm_norm2=sum(q*q for q in comm)
+000104 | assert comm_norm2==576
+000105 | result['all_petersen_cptp']['zero_candidate_sm_covariance']='fails: SU3 E01-E10 commutator of M0=3J0 has exact HS norm squared 576'
+000106 | (HERE/'p5-phase-range-results.json').write_text(json.dumps(result,indent=2)+'\n')
+000107 | print('Exact SU3 commutator norm^2 of M0=3J0:',comm_norm2)

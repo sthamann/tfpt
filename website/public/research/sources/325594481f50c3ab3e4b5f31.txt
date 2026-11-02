@@ -1,0 +1,52 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-joint-source-origin-audit-20261016/process_reconstruction.py
+Original file SHA-256: 2398a46a57942ff8fc54f8735101dc1f271cd748eb25f85595bfed5308e75ad5
+Inclusive original lines: 45-88
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000045 |             "two_coherent_pulses_vs_dephased_probability": ["1", "1/2"],
+000046 |             "pulse_derived_from_P1": False}
+000047 | 
+000048 | 
+000049 | def quartic_stationary():
+000050 |     records=[]
+000051 |     for k in range(1,5):
+000052 |         q=s.Rational((5-k)**3+k**3,25*k*(5-k))
+000053 |         records.append({"multiplicities":[k,5-k],"quartic":q})
+000054 |     for m in range(1,4):
+000055 |         for n in range(1,5-m):
+000056 |             p=5-m-n
+000057 |             if p < 1: continue
+000058 |             mult=(m,n,p)
+000059 |             values=(n-p,p-m,m-n)
+000060 |             assert sum(a*b for a,b in zip(mult,values)) == 0
+000061 |             assert sum(values) == 0
+000062 |             if len(set(values)) != 3: continue
+000063 |             norm=sum(a*b*b for a,b in zip(mult,values))
+000064 |             q=s.Rational(sum(a*b**4 for a,b in zip(mult,values)),norm**2)
+000065 |             records.append({"multiplicities":list(mult),"quartic":q})
+000066 |     qmin=min(r['quartic'] for r in records)
+000067 |     qmax=max(r['quartic'] for r in records)
+000068 |     assert (qmin,qmax)==(s.Rational(7,30),s.Rational(13,20))
+000069 |     triples=sorted(set(r['quartic'] for r in records if len(r['multiplicities'])==3))
+000070 |     assert triples==[s.Rational(1,4),s.Rational(1,2)]
+000071 |     # Competing even invariant polynomial controls, BOTH bounded below.
+000072 |     # V_sigma=-r^2 + r^4(1+sigma*q), sigma=+/-1.
+000073 |     assert 1-qmax > 0
+000074 |     return {"stationary_spectra": [{**r,"quartic":str(r['quartic'])} for r in records],
+000075 |             "minimum":str(qmin), "maximum":str(qmax),
+000076 |             "positive_quartic_selected_split":[2,3],
+000077 |             "negative_quartic_selected_split":[1,4],
+000078 |             "both_polynomials_bounded_below":True,
+000079 |             "field_trace_constraint_sign_derived_from_P1":False}
+000080 | 
+000081 | 
+000082 | if __name__ == '__main__':
+000083 |     result={"verdict":"SCOPED_RECONSTRUCTION_TESTS_ONLY",
+000084 |             "operational":operational_checks(),"quartic":quartic_stationary(),
+000085 |             "physical_algebra_selected":False,"raw_P1_32_derivation":False}
+000086 |     target=Path(sys.argv[1]) if len(sys.argv)>1 else Path(__file__).with_name('process_reconstruction_results.json')
+000087 |     target.write_text(json.dumps(result,indent=2)+'\n')
+000088 |     print(json.dumps(result,indent=2))

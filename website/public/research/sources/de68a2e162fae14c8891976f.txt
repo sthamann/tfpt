@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/canonical-seam-fermionization-20261025/check_lattice_source_frame.py
+Original file SHA-256: 0a1e2e607b07a71b35ec44ef6ea9245cf40c8c66988960cb4220f2536b8863bb
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact frame test for the canonical D5+A3 halfway lattice and folded CAR D8."""
+000003 | 
+000004 | from __future__ import annotations
+000005 | 
+000006 | from collections import Counter
+000007 | from fractions import Fraction as Q
+000008 | from itertools import combinations, product
+000009 | import hashlib
+000010 | import json
+000011 | from pathlib import Path
+000012 | import sys
+000013 | 
+000014 | import sympy as sp
+000015 | 
+000016 | 
+000017 | HERE = Path(__file__).resolve().parent
+000018 | ROOT = HERE.parents[2]
+000019 | sys.path.insert(0, str(ROOT))
+000020 | 
+000021 | from tfpt_explorer import cartan_source as cs  # noqa: E402
+000022 | 
+000023 | 
+000024 | def need(value: bool, label: str) -> None:
+000025 |     if not value:
+000026 |         raise RuntimeError(label)
+000027 | 
+000028 | 
+000029 | def mat_vec(matrix, vector):
+000030 |     return tuple(sum(a * b for a, b in zip(row, vector)) for row in matrix)
+000031 | 
+000032 | 
+000033 | def dot(left, right):
+000034 |     return sum(a * b for a, b in zip(left, right))
+000035 | 
+000036 | 
+000037 | def fstr(value: Q) -> str:
+000038 |     return str(value.numerator) if value.denominator == 1 else f"{value.numerator}/{value.denominator}"
+000039 | 
+000040 | 
+000041 | def vecstr(vector) -> list[str]:
+000042 |     return [fstr(Q(value)) for value in vector]
+000043 | 
+000044 | 
+000045 | def counterstr(counter: Counter) -> dict[str, int]:
+000046 |     return {fstr(Q(key)): counter[key] for key in sorted(counter)}
+000047 | 
+000048 | 
+000049 | def standard_d8_roots() -> set[tuple[Q, ...]]:
+000050 |     roots = set()
+000051 |     for i, j in combinations(range(8), 2):
+000052 |         for a, b in product((-1, 1), repeat=2):
+000053 |             vector = [Q(0)] * 8
+000054 |             vector[i], vector[j] = Q(a), Q(b)
+000055 |             roots.add(tuple(vector))
+000056 |     need(len(roots) == 112, "standard D8 root count")
+000057 |     return roots
+000058 | 
+000059 | 
+000060 | def e8_roots() -> set[tuple[Q, ...]]:
+000061 |     integer = standard_d8_roots()
+000062 |     spinor = {
+000063 |         tuple(Q(sign, 2) for sign in signs)
+000064 |         for signs in product((-1, 1), repeat=8)
+000065 |         if sum(sign < 0 for sign in signs) % 2 == 0
+000066 |     }
+000067 |     need(len(spinor) == 128 and len(integer | spinor) == 240, "standard E8 roots")
+000068 |     return integer | spinor
+000069 | 
+000070 | 
+000071 | def phase_sign(h, root) -> int:
+000072 |     twice = 2 * dot(h, root)
+000073 |     need(twice.denominator == 1, "defect character is a sign")
+000074 |     return 1 if int(twice) % 2 == 0 else -1
+000075 | 
+000076 | 
+000077 | def calculate() -> dict:
+000078 |     lattice = cs._lattice_data()
+000079 |     source_basis = lattice["basis"]
+000080 |     target_basis = sp.Matrix.hstack(*(sp.Matrix(root) for root in cs._TARGET_SIMPLE))
+000081 |     O = target_basis * source_basis.inv() / sp.sqrt(2)
+000082 |     need(sp.simplify(O.T * O) == sp.eye(8), "original O is orthogonal")
+000083 | 
+000084 |     mapped_doubled = {
+000085 |         tuple(int(value) for value in target_basis * sp.Matrix(coordinates))
+000086 |         for coordinates in lattice["root_coordinates"]
+000087 |     }
+000088 |     need(mapped_doubled == cs._standard_doubled_roots(), "O maps all original E8 roots")
+000089 | 
+000090 |     # In the marked D5+A3 frame, the glue degree is the first-five sum mod 4.
+000091 |     grade = lambda root: sum(root[:5]) % 4
+000092 |     grade_counts = Counter(grade(root) for root in mapped_doubled)
+000093 |     need([grade_counts[k] for k in range(4)] == [52, 64, 60, 64],
+000094 |          "marked C4 root grading")
+000095 |     canonical_roots = {
+000096 |         tuple(Q(value, 2) for value in root)
+000097 |         for root in mapped_doubled if grade(root) in (0, 2)
+000098 |     }
+000099 |     d8 = standard_d8_roots()
+000100 |     need(canonical_roots == d8, "order-two glue intermediate is standard target D8")
+000101 | 
+000102 |     # Lattice-level parity identity K union (K+2g)=D8, not only a root count.
+000103 |     def in_k(bits):
+000104 |         return sum(bits[:5]) % 2 == 0 and sum(bits[5:]) % 2 == 0
+000105 | 
+000106 |     def in_k_plus_2g(bits):
+000107 |         shifted = tuple(bit ^ 1 for bit in bits)
+000108 |         return in_k(shifted)
+000109 | 
+000110 |     for bits in product((0, 1), repeat=8):
+000111 |         need((in_k(bits) or in_k_plus_2g(bits)) == (sum(bits) % 2 == 0),
+000112 |              "K plus the unique order-two glue coset equals D8")
+000113 |     # Parentheses make the intended equivalence explicit after the direct check.
+000114 |     parity_identity = all(
+000115 |         (in_k(bits) or in_k_plus_2g(bits)) == (sum(bits) % 2 == 0)
+000116 |         for bits in product((0, 1), repeat=8)
+000117 |     )
+000118 |     need(parity_identity, "full parity identity")
+000119 | 
+000120 |     fold_data = json.loads((ROOT / "experiments/theory-contracts/"
+000121 |         "v16-operator-pullback-20261014/fold-results.json").read_text())
+000122 |     M = tuple(tuple(Q(value) for value in row)
+000123 |               for row in fold_data["explicit_Weyl_matrix"])
+000124 |     MT = tuple(zip(*M))
+000125 |     need(all(dot(M[i], M[j]) == (1 if i == j else 0)
+000126 |              for i in range(8) for j in range(8)), "original M is orthogonal")
+000127 |     e8 = e8_roots()
+000128 |     need({mat_vec(M, root) for root in e8} == e8, "original M preserves E8 roots")
+000129 | 
+000130 |     folded_roots = {mat_vec(M, root) for root in d8}
+000131 |     intersection = canonical_roots & folded_roots
+000132 |     need(len(folded_roots) == 112 and len(intersection) == 48,
+000133 |          "two exact D8 frames meet in 48 roots")
+000134 |     need(canonical_roots != folded_roots, "decisive D8 equality must fail")
+000135 | 
+000136 |     canonical_only = min(canonical_roots - folded_roots)
+000137 |     folded_only = min(folded_roots - canonical_roots)
+000138 |     need(mat_vec(MT, canonical_only) not in d8, "canonical-only witness")
+000139 |     need(mat_vec(MT, folded_only) in d8, "fold-only witness")
+000140 | 
+000141 |     # The two D8s are the +1 root sectors of two distinct torus characters.
+000142 |     h_canonical = tuple([Q(1)] + [Q(0)] * 7)
+000143 |     h_folded = tuple(row[0] for row in M)  # M e_0
+000144 |     joint = Counter((phase_sign(h_canonical, root), phase_sign(h_folded, root))
+000145 |                     for root in e8)
+000146 |     need(joint == {(1, 1): 48, (1, -1): 64, (-1, 1): 64, (-1, -1): 64},
+000147 |          "distinct charged-root actions")
+000148 |     need({root for root in e8 if phase_sign(h_canonical, root) == 1} == canonical_roots,
+000149 |          "canonical defect fixes canonical D8")
+000150 |     need({root for root in e8 if phase_sign(h_folded, root) == 1} == folded_roots,
+000151 |          "fold defect fixes transported CAR D8")
+000152 | 
+000153 |     # The source-frame spinor singled out by the quarter shift. It belongs
+000154 |     # to the standard E8 spinor neighbour D8+s, but not to the opposite
+000155 |     # odd-parity convention called c in ODD-SECTOR-REFIELDING-AND-NAHT.
+000156 |     p_spinor = tuple([Q(1, 2)] * 4 + [Q(-1, 2)] * 4)
+000157 |     s_spinor = tuple([Q(1, 2)] * 8)
+000158 |     p_minus_s = tuple(a - b for a, b in zip(p_spinor, s_spinor))
+000159 |     need(p_spinor in e8 and p_spinor not in d8, "source spinor is an E8 root outside CAR D8")
+000160 |     need(all(value.denominator == 1 for value in p_minus_s), "spinor coset representative")
+000161 |     need(sum(p_minus_s) % 2 == 0, "source spinor lies in the even-parity E8 spinor coset")
+000162 |     q_target = mat_vec(M, p_spinor)
+000163 |     q_expected = tuple([Q(1), Q(0), Q(0), Q(1)] + [Q(0)] * 4)
+000164 |     need(q_target == q_expected, "fixed M sends p to the already known e1+e4 line")
+000165 |     need(q_target in canonical_roots and q_target not in folded_roots,
+000166 |          "the transported spinor is a canonical-only D8 root")
+000167 | 
+000168 |     time_cases = {}
+000169 |     for alpha in (Q(1, 4), Q(3, 4)):
+000170 |         delta = tuple(Q(k, 8) + alpha / 8 - Q(1, 2) for k in range(8))
+000171 |         d = mat_vec(M, delta)
+000172 |         canonical_phases = Counter(dot(d, root) % 1 for root in canonical_roots)
+000173 |         folded_phases = Counter(dot(d, root) % 1 for root in folded_roots)
+000174 |         source_phases = Counter(dot(delta, root) % 1 for root in d8)
+000175 |         need(folded_phases == source_phases, "M transports the actual quarter time")
+000176 |         need(canonical_phases != folded_phases, "quarter time distinguishes the two D8 frames")
+000177 |         source_spinor_energy = dot(p_spinor, p_spinor) / 2 + dot(delta, p_spinor)
+000178 |         target_root_energy = dot(q_target, q_target) / 2 + dot(d, q_target)
+000179 |         need(dot(delta, p_spinor) == -1, "quarter shift pairing with p")
+000180 |         need(source_spinor_energy == 0 and target_root_energy == 0,
+000181 |              "M transports the zero-energy spinor line")
+000182 |         time_cases[fstr(alpha)] = {
+000183 |             "delta_in_folded_CAR_frame": vecstr(delta),
+000184 |             "d_equals_M_delta_in_target_frame": vecstr(d),
+000185 |             "canonical_D8_phase_counts": counterstr(canonical_phases),
+000186 |             "transported_fold_D8_phase_counts": counterstr(folded_phases),
+000187 |             "canonical_only_witness_pairing": fstr(dot(d, canonical_only)),
+000188 |             "fold_only_witness_pairing": fstr(dot(d, folded_only)),
+000189 |             "source_spinor_p_pairing": fstr(dot(delta, p_spinor)),
+000190 |             "source_spinor_shifted_energy": fstr(source_spinor_energy),
+000191 |             "target_root_q_pairing": fstr(dot(d, q_target)),
+000192 |             "target_root_shifted_energy": fstr(target_root_energy),
+000193 |         }
+000194 | 
+000195 |     return {
+000196 |         "status": "SCOPED_FALSE_CANONICAL_D8_IS_NOT_THE_M_TRANSPORTED_CAR_D8",
+000197 |         "marked_C4_glue": {
+000198 |             "generator": "g=(1/2)^8 modulo K=D5+A3",
+000199 |             "unique_order_two_subgroup": "<2g>",
+000200 |             "lattice_identity": "K union (K+2g)=D8",

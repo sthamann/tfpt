@@ -1,0 +1,82 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_flavor_cartan_lifts.py
+Original file SHA-256: 9fb16be910bc38a13a44689a3b2836e0215c50201dbe9d56eef83091ba797c6a
+Inclusive original lines: 1-74
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | [OMITTED: non-scientific conversation or execution metadata]
+000002 | from itertools import combinations, permutations, product
+000003 | from collections import Counter
+000004 | import json
+000005 | from pathlib import Path
+000006 | 
+000007 | 
+000008 | def roots():
+000009 |     result = set()
+000010 |     for i, j in combinations(range(8), 2):
+000011 |         for a, b in product((-2, 2), repeat=2):
+000012 |             v = [0] * 8
+000013 |             v[i], v[j] = a, b
+000014 |             result.add(tuple(v))
+000015 |     result.update(v for v in product((-1, 1), repeat=8) if v.count(-1) % 2 == 0)
+000016 |     return result
+000017 | 
+000018 | 
+000019 | def transform(v, permutation, signs, square=False):
+000020 |     first = tuple(signs[i] * v[permutation[i]] for i in range(5))
+000021 |     last = (-v[5], -v[6], v[7]) if square else (-v[6], v[5], v[7])
+000022 |     return first + last
+000023 | 
+000024 | 
+000025 | root_set = roots()
+000026 | w64 = {v for v in root_set if all(abs(t) == 1 for t in v)
+000027 |        and v[:5].count(-1) % 2 == 1 and v[5:].count(-1) % 2 == 1}
+000028 | w64_conjugate = {tuple(-t for t in v) for v in w64}
+000029 | charge = (-2, -2, -2, 3, 3, 0, 0, 0)
+000030 | counts = Counter()
+000031 | sm_signs = Counter()
+000032 | for permutation in permutations(range(5)):
+000033 |     for signs in product((-1, 1), repeat=5):
+000034 |         counts['signed_D5_candidates'] += 1
+000035 |         image = {transform(v, permutation, signs) for v in root_set}
+000036 |         preserves = image == root_set
+000037 |         odd = signs.count(-1) % 2 == 1
+000038 |         if preserves != odd:
+000039 |             raise RuntimeError('Root test disagrees with sign parity theorem')
+000040 |         if not preserves:
+000041 |             continue
+000042 |         counts['E8_lifts'] += 1
+000043 |         if {transform(v, permutation, signs) for v in w64} != w64_conjugate:
+000044 |             raise RuntimeError('Fixed W64 not exchanged with conjugate')
+000045 |         counts['W64_to_conjugate'] += 1
+000046 |         block_preserving = set(permutation[:3]) == {0, 1, 2}
+000047 |         if block_preserving:
+000048 |             charge_image = transform(charge, permutation, signs)
+000049 |             for sign in (-1, 1):
+000050 |                 if charge_image == tuple(sign * t for t in charge):
+000051 |                     counts['SM_root_blocks_and_Y_line'] += 1
+000052 |                     sm_signs[str(sign)] += 1
+000053 | 
+000054 | identity = tuple(range(5))
+000055 | positive = (1,) * 5
+000056 | square_preserves = {transform(v, identity, positive, True) for v in root_set} == root_set
+000057 | square_preserves_w64 = {transform(v, identity, positive, True) for v in w64} == w64
+000058 | if counts != Counter(signed_D5_candidates=3840, E8_lifts=1920,
+000059 |                      W64_to_conjugate=1920, SM_root_blocks_and_Y_line=12):
+000060 |     raise RuntimeError(dict(counts))
+000061 | if sm_signs != Counter({'-1': 12}) or not square_preserves or not square_preserves_w64:
+000062 |     raise RuntimeError('Control failed')
+000063 | result = {
+000064 |     'roots': len(root_set), 'W64': len(w64), 'counts': dict(counts),
+000065 |     'SM_X_line_signs': dict(sm_signs),
+000066 |     'square_with_identity_D5_preserves_E8': square_preserves,
+000067 |     'square_with_identity_D5_preserves_W64': square_preserves_w64,
+000068 |     'scope': 'Fixed orthogonal Cartan identification; quarter is (-y,x,z). '
+000069 |              'Not the separate slot SU3 embedding, original flavor action, '
+000070 |              'physical chirality, OS reflection, or native full-clock identity.'
+000071 | }
+000072 | path = Path(__file__).with_name('FLAVOR-CARTAN-LIFT-CHECK.json')
+000073 | path.write_text(json.dumps(result, indent=2) + '\n')
+000074 | print(json.dumps(result))

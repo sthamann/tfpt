@@ -1,0 +1,92 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_recursive_word_source.py
+Original file SHA-256: af0dd6b4f6a50a98eebc132c2b85946c867c5290be98e22a82f3d111a8ff0824
+Inclusive original lines: 1-84
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Source-derived, exact reachable process for original return and native J.
+000002 | 
+000003 | No new Hamiltonian or physical history is chosen. The alphabet is explicitly
+000004 | the already existing single-beta response L and original Cartan quarter J.
+000005 | """
+000006 | from pathlib import Path
+000007 | import sys,json,time
+000008 | import sympy as s
+000009 | ROOT=Path(__file__).resolve().parents[4]
+000010 | sys.path.insert(0,str(ROOT/'experiments/theory-contracts/joint-native-algebra-selection-20261016'))
+000011 | import check_source_return_memory as src
+000012 | m=src.m;Q=m.Q
+000013 | start=time.time()
+000014 | b=[Q.zero,Q.zero,Q(0,-1),Q.zero];c=[Q.zero,Q.zero,Q.zero,Q(4,-4)]
+000015 | source=src.full_source(b,c);neut=src.basis(4);inverse={}
+000016 | for mon in neut:
+000017 |  for n,value in source({mon:Q.one}).items():
+000018 |   inverse.setdefault(n,[]).append((mon,m.conj(value)*Q(m.weight(n))/m.weight(mon)))
+000019 | def adj(f):
+000020 |  out={}
+000021 |  for n,value in f.items():
+000022 |   for mon,z in inverse.get(n,[]):out[mon]=out.get(mon,Q.zero)+z*value
+000023 |  return {mon:z for mon,z in out.items() if z}
+000024 | def L(f):return adj(source(f))
+000025 | def clock(f,inverse=False):
+000026 |  return {mon:a*Q(0,1)**((-1 if inverse else 1)*sum(1 if k%8<4 else -1 for k in mon)) for mon,a in f.items()}
+000027 | ops=[L,clock,lambda f:clock(f,True)]
+000028 | polys,nn=m.code();vectors=[];norms=[];provenance=[]
+000029 | def add_vector(v,label):
+000030 |  for u,n in zip(vectors,norms):
+000031 |   z=m.inner(u,v)/n
+000032 |   if z:v=m.add((Q.one,v),(-z,u))
+000033 |  if not v:return False
+000034 |  norm=m.inner(v,v);m.need(norm!=Q.zero,'Nonzero exact positive Fock norm')
+000035 |  vectors.append(v);norms.append(norm);provenance.append(label)
+000036 |  return True
+000037 | for j,p in enumerate(polys):add_vector(p,['code',j])
+000038 | # Source-derived first exterior layer, retained for the nested-elimination test.
+000039 | for j,p in enumerate(polys):add_vector(L(p),['first_return',j])
+000040 | first_layer=len(vectors)
+000041 | index=0
+000042 | while index<len(vectors):
+000043 |  for a,op in enumerate(ops):add_vector(op(vectors[index]),[a,index])
+000044 |  index+=1
+000045 |  if index%10==0:print('processed',index,'actual reachable',len(vectors),'seconds',round(time.time()-start,2),flush=True)
+000046 | d=len(vectors);G=s.diag(*[Q.to_sympy(n) for n in norms]);matrices=[];checks={}
+000047 | for a,op in enumerate(ops):
+000048 |  cols=[]
+000049 |  for j,v in enumerate(vectors):
+000050 |   out=op(v);coords=[m.inner(u,out)/n for u,n in zip(vectors,norms)]
+000051 |   remainder=m.add((Q.one,out),*[(-z,u) for z,u in zip(coords,vectors) if z])
+000052 |   m.need(not remainder,'Exact original-vector invariant closure')
+000053 |   cols.append(s.Matrix([Q.to_sympy(x) for x in coords]))
+000054 |  matrices.append(s.Matrix.hstack(*cols))
+000055 | A,C,Ci=matrices
+000056 | checks['actual_full726_source_used']=len(neut)==726
+000057 | checks['actual_reachable_Gram_strictly_positive']=all(Q.to_sympy(n)>0 for n in norms)
+000058 | checks['first_source_layer_has_dimension10']=first_layer==10
+000059 | checks['original_L_selfadjoint_in_actual_metric']=A.H*G==G*A
+000060 | checks['native_J_unitary_in_actual_metric']=C.H*G*C==G
+000061 | checks['native_J_fourth_power_identity']=C**4==s.eye(d)
+000062 | checks['native_J_adjoint_kept']=Ci*C==s.eye(d) and C.H*G==G*Ci
+000063 | checks['original_code_native_J_identity']=C[:,:5]==s.eye(d)[:,:5]
+000064 | checks['all_original_generators_exactly_closed']=True
+000065 | def schur(M,k):
+000066 |  return M[:k,:k]-M[:k,k:]*M[k:,k:].inv(method='DM')*M[k:,:k] if k<len(M) else M
+000067 | # A negative spectral point gives invertible compressions since L>=0.
+000068 | M=s.eye(d)+A
+000069 | direct=schur(M,5);stage1=schur(M,first_layer);nested=schur(stage1,5)
+000070 | checks['two_stage_equals_direct_full_source_elimination']=nested==direct
+000071 | checks['coarse_inverse_is_actual_full_source_resolvent']=direct.inv(method='DM')==M.inv(method='DM')[:5,:5]
+000072 | checks['memory_term_is_nonzero']=direct!=M[:5,:5]
+000073 | # Clock-bearing ordered histories, not just scalar repetitions of L.
+000074 | word_defect=(A*C*A-A*A)[:5,:5]
+000075 | word_commutator=A*C-C*A
+000076 | checks['clock_and_return_act_noncommutatively']=word_commutator!=s.zeros(d)
+000077 | checks['intermediate_native_clock_is_detected']=word_defect!=s.zeros(5)
+000078 | actual_moment=(A*A)[:5,:5]
+000079 | naive_moment=A[:5,:5]**2
+000080 | checks['source_memory_witness_reused']=s.simplify(actual_moment[0,0]-naive_moment[0,0])==s.Rational(203312,9)
+000081 | payload=dict(contract='ORIGINAL-RECURSIVE-WORD-SOURCE-20261030',all_passed=all(checks.values()),checks=checks,original_input_dimension=726,reachable_dimension=d,first_source_layer_dimension=first_layer,generator_alphabet=['original single-beta L=Sdagger S','native Cartan J','native Cartan Jdagger'],metric_diagonal=[str(x) for x in G.diagonal()],operators={label:src.mat(M) for label,M in zip(['L','J','Jdagger'],matrices)},original_vector_basis=[{'provenance':p,'polynomial':[[list(mon),str(Q.to_sympy(v))] for mon,v in sorted(f.items())]} for p,f in zip(provenance,vectors)],clock_ordered_word_defect=src.mat(word_defect),direct_coarse_I_plus_L_schur=src.mat(direct),elapsed_seconds=time.time()-start,scope='Exact complete reachable/observable word process for the specified original L,J,Jdagger alphabet in the full neutral grade4 block. General all-word and nested-composition proofs are separate. This is not all E8 current operations, a physical time law, or a full TFPT origin/space-time theorem.')
+000082 | Path(__file__).with_name('RECURSIVE-WORD-SOURCE.json').write_text(json.dumps(payload,ensure_ascii=False,indent=2)+'\n')
+000083 | print(json.dumps({k:v for k,v in payload.items() if k not in ['operators','original_vector_basis','metric_diagonal','clock_ordered_word_defect','direct_coarse_I_plus_L_schur']},ensure_ascii=False,indent=2),flush=True)
+000084 | if not payload['all_passed']:raise RuntimeError('Exact source check failed')

@@ -1,0 +1,95 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_w8_stress_cyclic.py
+Original file SHA-256: 5caccc07fb478f1e68c756b4312619b015582968bb5e3a441c637d951b4f7923
+Inclusive original lines: 200-286
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000200 | def main():
+000201 |     parser = argparse.ArgumentParser()
+000202 |     parser.add_argument('--source-dir', type=Path, default=Path(
+000203 | [OMITTED: non-scientific conversation or execution metadata]
+000204 |         'original-admissible-source-closure-20261025'))
+000205 |     parser.add_argument('--output', type=Path)
+000206 |     args = parser.parse_args()
+000207 |     inputs = {name: (args.source_dir / name).read_bytes() for name in (
+000208 |         'w8-source-twopoint-results.json', 'quantum-octic-completion-results.json')}
+000209 |     fold_path = args.source_dir.parent / 'v16-operator-pullback-20261014/fold-results.json'
+000210 |     fold_bytes = fold_path.read_bytes()
+000211 |     fold = sp.Matrix(json.loads(fold_bytes)['explicit_Weyl_matrix'])
+000212 |     need(fold.T * fold == sp.eye(8), 'old M is not orthogonal')
+000213 |     old = json.loads(inputs['w8-source-twopoint-results.json'])
+000214 |     completion = json.loads(inputs['quantum-octic-completion-results.json'])
+000215 |     coefficients = list(map(F, completion['coefficients']))
+000216 |     pairs = completion['basis_after_H8']
+000217 |     need(len(coefficients) == 17 and len(pairs) == 16 and coefficients[0] == 1,
+000218 |          'the declared old W8 ansatz changed')
+000219 |     roots = roots_e8()
+000220 |     cases = {}
+000221 |     for quarter, case in old['cases'].items():
+000222 |         d = tuple(map(F, case['d_standard']))
+000223 |         d2 = dot(d, d)
+000224 |         h8 = sum((dot(a, d)**8 for a in roots), F(0)) - 30 * d2**4
+000225 |         gradient = tuple(sum((8 * dot(a, d)**7 * a[j] for a in roots), F(0))
+000226 |                          - 240 * d2**3 * d[j] for j in range(8))
+000227 |         need(dot(d, gradient) == 8 * h8, 'Euler identity for H8')
+000228 |         onepoint, radial_correction = h8, F(0)
+000229 |         for coefficient, monomial in zip(coefficients[1:], pairs):
+000230 |             constant, first = contraction_constant_and_first(monomial, d)
+000231 |             onepoint += coefficient * constant
+000232 |             radial_correction += coefficient * first
+000233 |         v1 = tuple(x + radial_correction * y for x, y in zip(gradient, d))
+000234 |         need(onepoint == F(case['onepoint']), 'onepoint differs from sparse PBW')
+000235 |         need(v1 == tuple(map(F, case['level_1_vector'])), 'v1 differs from sparse PBW')
+000236 |         need(dot(d, v1) == 8 * onepoint, 'primary Ward identity')
+000237 |         norm = dot(v1, v1)
+000238 |         need(norm == F(case['level_1_norm_squared']), 'first spectral norm')
+000239 |         perpendicular = tangential(v1, d)
+000240 |         need(perpendicular == tangential(gradient, d), 'intrinsic tangent gradient')
+000241 |         need(dot(perpendicular, d) == 0, 'orthogonality')
+000242 |         residual = dot(perpendicular, perpendicular)
+000243 |         parallel = dot(d, v1)**2 / d2
+000244 |         need(norm == parallel + residual, 'orthogonal norm decomposition')
+000245 |         need(residual == F(51311452775625, 9345848836096) > 0,
+000246 |              'the expected nonzero transverse response')
+000247 |         need(residual == F(case['level_1_excess_over_cauchy_bound']),
+000248 |              'old Cauchy excess differs')
+000249 |         # A purely radial comparison polynomial has no such component.
+000250 |         radial_control = tuple(8 * d2**3 * x for x in d)
+000251 |         need(tangential(radial_control, d) == (F(0),) * 8, 'radial control')
+000252 |         cases[quarter] = {
+000253 |             'd_squared': str(d2), 'h_d': str(d2 / 2),
+000254 |             'H8_value': str(h8), 'H8_gradient': list(map(str, gradient)),
+000255 |             'all_16_Q_corrections_radial': True,
+000256 |             'quantum_radial_correction': str(radial_correction),
+000257 |             'onepoint': str(onepoint), 'level_one_vector': list(map(str, v1)),
+000258 |             'level_one_norm_squared': str(norm),
+000259 |             'folded_c8_Virasoro_level_one_space': 'span{Lhat_-1^d Omega_d}=span{d.h_-1 Omega_d}',
+000260 |             'folded_c8_projection_norm_squared': str(parallel),
+000261 |             'transverse_vector': list(map(str, perpendicular)),
+000262 |             'transverse_norm_squared': str(residual),
+000263 |             'transverse_fraction_of_level_one_norm': str(residual / norm),
+000264 |             'not_a_TFPT_completion_fraction': True,
+000265 |             'full_original_c1_stress_reconstruction': reconstruct_in_original_stress(
+000266 |                 quarter, v1, fold, d),
+000267 |         }
+000268 |     need(cases['1/4']['transverse_norm_squared'] == cases['3/4']['transverse_norm_squared'],
+000269 |          'quarter norm comparison')
+000270 |     result = {
+000271 |         'claim': 'MATH.ORIGINAL-SEAM.W8-ORIGINAL-STRESS-RECONSTRUCTION.01',
+000272 |         'status': 'EXACT_ORIGINAL_C1_RECONSTRUCTION_AND_SCOPED_FOLDED_C8_EXCLUSION',
+000273 |         'input_sha256': {name: sha256(data).hexdigest() for name, data in inputs.items()},
+000274 |         'original_fold_sha256': sha256(fold_bytes).hexdigest(),
+000275 |         'root_count': len(roots), 'cases': cases,
+000276 |         'analytic_consequence': 'The full ORIGINAL c1 Virasoro cycle equals the entire fixed '
+000277 |             'CAR charge sector because h=1/32 is not a c1 Kac weight m^2/4. All W8 insertion '
+000278 |             'levels and their positive-semigroup-smoothed response are in its closure. Only '
+000279 |             'the smaller folded c8 cycle misses the tangential first-level direction.',
+000280 |         'scope': 'No local P1 operator identification or single implemented stress pulse. '
+000281 |             'No new source or state, no all-P1 exclusion, no absolute physical time calibration.'}
+000282 |     encoded = json.dumps(result, indent=2, sort_keys=True) + '\n'
+000283 |     if args.output:
+000284 |         args.output.write_text(encoded)
+000285 |     else:
+000286 |         print(encoded, end='')

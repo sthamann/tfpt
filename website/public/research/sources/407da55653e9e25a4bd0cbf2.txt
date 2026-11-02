@@ -1,0 +1,139 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_unification_20261027/check_defect_orientation.py
+Original file SHA-256: 3d15b59cc28c11fabd70256711ba0cbf6ef9b28e725d9d27255848679f8d6d4f
+Inclusive original lines: 1-131
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact three-mode CAR orientation test; not a physical source model.
+000002 | 
+000003 | All matrices act on the complete exterior algebra of the given three-point
+000004 | defect. Phases are exponents of zeta_8, so no floating-point tolerance enters.
+000005 | The infinite Hardy argument is separate from this finite action check.
+000006 | """
+000007 | import json
+000008 | from pathlib import Path
+000009 | 
+000010 | N = 3
+000011 | DIM = 1 << N
+000012 | 
+000013 | 
+000014 | def need(ok, message):
+000015 |     if not ok:
+000016 |         raise RuntimeError(message)
+000017 | 
+000018 | 
+000019 | def create(j, mask):
+000020 |     if mask & (1 << j):
+000021 |         return None
+000022 |     sign = (mask & ((1 << j) - 1)).bit_count() % 2
+000023 |     return (mask | (1 << j), 4 * sign)
+000024 | 
+000025 | 
+000026 | def annihilate(j, mask):
+000027 |     if not mask & (1 << j):
+000028 |         return None
+000029 |     sign = (mask & ((1 << j) - 1)).bit_count() % 2
+000030 |     return (mask ^ (1 << j), 4 * sign)
+000031 | 
+000032 | 
+000033 | def compose_action(first, second, mask):
+000034 |     intermediate = second(mask)
+000035 |     if intermediate is None:
+000036 |         return None
+000037 |     result = first(intermediate[0])
+000038 |     if result is None:
+000039 |         return None
+000040 |     return result[0], (result[1] + intermediate[1]) % 8
+000041 | 
+000042 | 
+000043 | def exterior(permutation, phase):
+000044 |     output = []
+000045 |     for mask in range(DIM):
+000046 |         occupied = [j for j in range(N) if mask & (1 << j)]
+000047 |         image = [permutation[j] for j in occupied]
+000048 |         inversions = sum(image[i] > image[j] for i in range(len(image)) for j in range(i + 1, len(image)))
+000049 |         output.append((sum(1 << j for j in image), (phase * len(image) + 4 * inversions) % 8))
+000050 |     return output
+000051 | 
+000052 | 
+000053 | def multiply(left, right):
+000054 |     return [(left[t][0], (e + left[t][1]) % 8) for t, e in right]
+000055 | 
+000056 | 
+000057 | def inverse(matrix):
+000058 |     output = [None] * DIM
+000059 |     for m, (t, e) in enumerate(matrix):
+000060 |         output[t] = (m, -e % 8)
+000061 |     return output
+000062 | 
+000063 | 
+000064 | identity = [(m, 0) for m in range(DIM)]
+000065 | c = exterior([1, 2, 0], 0)
+000066 | q = exterior([0, 2, 1], 1)
+000067 | beta = exterior([0, 1, 2], 2)
+000068 | parity = exterior([0, 1, 2], 4)
+000069 | need(multiply(multiply(c, c), c) == identity, 'c^3')
+000070 | need(multiply(q, q) == beta, 'Q^2=beta on full exterior algebra')
+000071 | need(multiply(beta, beta) == parity, 'beta^2=fermion parity')
+000072 | need(multiply(multiply(q, c), inverse(q)) == inverse(c), 'Q c Q^-1=c^-1')
+000073 | 
+000074 | car_tests = 0
+000075 | for i in range(N):
+000076 |     for j in range(N):
+000077 |         for mask in range(DIM):
+000078 |             t1 = compose_action(lambda m: annihilate(i, m), lambda m: create(j, m), mask)
+000079 |             t2 = compose_action(lambda m: create(j, m), lambda m: annihilate(i, m), mask)
+000080 |             if i == j:
+000081 |                 nonzero = [x for x in (t1, t2) if x is not None]
+000082 |                 need(nonzero == [(mask, 0)], 'CAR diagonal')
+000083 |             else:
+000084 |                 need((t1 is None and t2 is None) or
+000085 |                      (t1 is not None and t2 is not None and t1[0] == t2[0] and (t1[1] - t2[1]) % 8 == 4), 'CAR off diagonal')
+000086 |             car_tests += 1
+000087 | 
+000088 | for matrix, perm, phase in [(q, [0, 2, 1], 1), (c, [1, 2, 0], 0)]:
+000089 |     inv = inverse(matrix)
+000090 |     for j in range(N):
+000091 |         for mask in range(DIM):
+000092 |             t, e = inv[mask]
+000093 |             result = create(j, t)
+000094 |             expected = create(perm[j], mask)
+000095 |             if result is None:
+000096 |                 need(expected is None, 'zero covariance')
+000097 |             else:
+000098 |                 out, finalphase = matrix[result[0]]
+000099 |                 actual = out, (e + result[1] + finalphase) % 8
+000100 |                 need(actual == (expected[0], (expected[1] + phase) % 8), 'creation covariance')
+000101 | 
+000102 | full = DIM - 1
+000103 | need(beta[full] == (full, 6), 'filled determinant line beta=-i')
+000104 | need(q[full] == (full, 7), 'filled determinant Q=zeta8^-1')
+000105 | need(c[full] == (full, 0), 'filled determinant c=1')
+000106 | need(parity[full] == (full, 4), 'filled determinant odd')
+000107 | need((-beta[full][1]) % 8 == 2, 'dual determinant beta=+i')
+000108 | need((-q[full][1]) % 8 == 1, 'dual determinant Q=zeta8')
+000109 | 
+000110 | # A state sees no ray phase; charged transition amplitudes can retain it.
+000111 | need(all((matrix[full][1] - matrix[full][1]) % 8 == 0 for matrix in (c, q, beta)), 'density phase cancellation')
+000112 | state = (0, 0)
+000113 | for j in range(N):
+000114 |     nxt = create(j, state[0])
+000115 |     state = nxt[0], (state[1] + nxt[1]) % 8
+000116 | need(state[0] == full, 'three-particle excitation')
+000117 | for j in range(N):
+000118 |     need(annihilate(j, 0) is None and create(j, full) is None, 'empty/filled covariance')
+000119 | 
+000120 | result = {
+000121 |     'verdict': 'EXACT_THREE_MODE_KET_AND_FREDHOLM_DUAL_DISTINCT_WITH_SAME_ODD_PARITY',
+000122 |     'source_scope': 'Given three-dimensional defect representation; no P1 physical source identification.',
+000123 |     'dimension_defect': N, 'dimension_full_exterior_algebra': DIM,
+000124 |     'car_basis_checks': car_tests, 'phases': 'exponents modulo 8 of zeta_8',
+000125 |     'ket': {'c': c[full][1], 'Q': q[full][1], 'beta': beta[full][1], 'parity': 'odd'},
+000126 |     'dual': {'c': -c[full][1] % 8, 'Q': -q[full][1] % 8, 'beta': -beta[full][1] % 8, 'parity': 'odd'},
+000127 |     'beta_square_equals_full_fermion_parity': True,
+000128 |     'all_creation_operators_covariant': True,
+000129 |     'density_matrix_forgets_ray_phase': True,
+000130 | }
+000131 | print(json.dumps(result, sort_keys=True, indent=2))

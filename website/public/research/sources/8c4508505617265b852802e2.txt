@@ -1,0 +1,128 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/FLAVOR-PATH-TRANSPORT-SOURCE-TYPE-REVIEW.txt
+Original file SHA-256: 23e11fb0309b5260c8cf9049b438a567724ab8342e77d18940289f5017257067
+Inclusive original lines: 1-120
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | FLAVOR PATH TRANSPORT: UNABHÄNGIGE QUELLEN UND TYPPRÜFUNG
+000002 | Stand: 2026-10-30
+000003 | 
+000004 | Fragestellung
+000005 | 
+000006 | Die Prüfung betrifft ausschließlich
+000007 | 
+000008 |   tfpt_explorer/flavor_path_transport.py::integrate_path_transport
+000009 |   tfpt_explorer/flavor_path_transport.py::exact_clock_dictionary
+000010 |   tfpt_explorer/flavor_path_transport.py::finite_kernel_comparison
+000011 | 
+000012 | und die Frage, ob deren Identität J† T^{-1} J = U6 bereits das vollständige ursprüngliche Holonomie und Quellenwörterbuch ist.
+000013 | 
+000014 | Urteil
+000015 | 
+000016 | Der Code beweist zwei starke und kompatible Aussagen:
+000017 | 
+000018 | 1. Zwei konkret integrierte Wege derselben ursprünglichen v117 Fuchsverbindung ergeben einen echten zweifaserigen Operator mit Periode sechs und dem richtigen kubischen Monodromiespektrum.
+000019 | 
+000020 | 2. Im separat gegebenen exakt unitären v117 Vertreter gilt die vollständige Operatoridentität J† T^{-1} J = M plus (minus M). Deshalb werden D, D†D, der regulierte Greenoperator und seine positive inverse Quadratwurzel auf allen sechs Richtungen isometrisch transportiert.
+000021 | 
+000022 | Er beweist gegenwärtig nicht, dass das euklidische Adjungierte des roh integrierten Wegoperators derselbe Operator ist. Die numerische Wegdarstellung und der exakte unitäre Vertreter werden im Modul bewusst getrennt. Daher ist die Identität eine exakte endliche Darstellungsidentität und ein belastbarer Kandidat für den Holonomietransport. Sie ist noch kein vollständiges globales G, W, Fuchs, CAR, Reflexions und Zeitwörterbuch der Quelle.
+000023 | 
+000024 | Der erste entscheidende Typcheck
+000025 | 
+000026 | Die Wegrechnung liefert P:E_x nach E_{1/x}, Q:E_{1/x} nach E_x und H=QP. In den Rohkoordinaten ist
+000027 | 
+000028 |   T_raw = [[0,Q],[P,0]].
+000029 | 
+000030 | Nach dem parallelen Rahmenwechsel diag(I,P) wird daraus
+000031 | 
+000032 |   T_based = [[0,H],[I,0]].
+000033 | 
+000034 | Die Rechnung prüft H^3=I, das Spektrum {1,omega,omega^2}, T_raw^6=I und die primitive Determinantenwindung. Sie konstruiert aber in diesem Modul weder die positive flache Metrik noch einen expliziten Intertwiner C mit C^{-1}HC=M.
+000035 | 
+000036 | Ein direkter Lauf mit den gespeicherten Funktionen ergibt:
+000037 | 
+000038 |   ||T_raw† T_raw-I||                         = 12.637302088378227
+000039 |   ||T_raw†-T_raw^{-1}||                      =  5.680110521627282
+000040 |   ||T_based† T_based-I||                     =  0.4563384974729355
+000041 |   ||T_based†-T_based^{-1}||                  =  0.4454254220989308
+000042 |   ||H-M|| im jeweils ausgegebenen Rahmen      =  0.5267391498201609
+000043 |   ||J† T_based^{-1} J-U6||                   =  0.5267391498200324
+000044 | 
+000045 | Diese Werte sind kein Fehler der Monodromie. Sie zeigen genau den dokumentierten Rahmenunterschied. v117 rekonstruiert für seine basierten Schleifen eine invariante positive Metrik und unitarisiert die Monodromie. flavor_path_transport.py gibt diese Metrik für P und Q nicht zurück und setzt sie in finite_kernel_comparison nicht ein.
+000046 | 
+000047 | finite_kernel_comparison liest überhaupt keinen Output aus integrate_path_transport. Es erzeugt T, J und U6 neu aus exact_clock_dictionary. Dort ist T unitär, also T†=T^{-1}, und die gesamte Funktionalkalkül Identität ist korrekt. Die Aussage
+000048 | 
+000049 |   J† f(T^{-1}) J = f(U6)
+000050 | 
+000051 | gilt damit für die exakte unitäre Darstellung, insbesondere für D, D†D, Green und K. Sie darf nicht ohne den fehlenden Metrikintertwiner als Identität mit dem gewöhnlichen euklidischen Adjungierten von T_raw gelesen werden.
+000052 | 
+000053 | Was am Original wirklich angeschlossen ist
+000054 | 
+000055 | Die Originalverbindung ist echt. original_fuchs_connection ist exakt die vierresiduale v117 Verbindung. Die Halbwege bilden zusammen eine primitive Schleife um +1; ihre Umkehr liefert die inverse Monodromie. Der Testlauf tfpt_explorer/tests/test_flavor_path_transport.py besteht mit neun Tests.
+000056 | 
+000057 | Auch der endliche Consumer ist original belegt. Die archivierte Flavorquelle definiert
+000058 | 
+000059 |   D_y = y I - delta_ph U6,
+000060 |   Y_y^(epsilon) = (D_y†D_y+epsilon^2)^{-1}
+000061 | 
+000062 | und den Yukawa Consumer durch Matrixelemente von Hol(nabla_F*) K_f^str auf der kanonischen Familienbasis. Damit ist die endliche U6 Funktionalkalkül keine neue Hilfskonstruktion.
+000063 | 
+000064 | Der aktuell integrierte Halbweg ist jedoch nur eine ausgewählte primitive Schleife um eine Punktur. Er ist weder die vollständige D4 invariante geodätische Spine noch die ganze Tabelle der kanonischen Kanten Gamma_ij^min. finite_kernel_comparison benutzt außerdem den vollen sechsdimensionalen positiven Operator und ausdrücklich keine Kompression des unendlichen Quellraums. Das genügt für einen wirklichen Holonomiesummanden und für die endliche Kernelidentität. Es genügt nicht für die Gleichheit mit dem gesamten operatorwertigen Produkt Hol_G K_f^str.
+000065 | 
+000066 | Basis, e0 und Norm
+000067 | 
+000068 | In den drei geprüften Funktionen wird kein e0 gewählt. Die konkrete Matrix J ist durch den angegebenen Blockrahmen und M eine natürliche zweifaserige Fouriertransformation. Aus der bloßen Konjugationsgleichung ist sie dennoch nicht eindeutig: bei einfachem U6 Spektrum kann J rechts mit jeder unitären Matrix im Kommutanten von U6 multipliziert werden. Das sind sechs Eigenphasen. v118 hält entsprechend die physische Bein und Seitenzuordnung ausdrücklich als bestehende Eingabe offen.
+000069 | 
+000070 | Die flache Hermitesche Metrik ist bei irreduzibler Monodromie bis auf einen positiven Skalar festgelegt. Dieser Skalar ändert das Adjungierte nicht. Die fehlende Stelle ist daher keine neue frei anzupassende physische Norm. Es fehlt im vorliegenden Wegmodul die konkrete Übertragung dieser Metrik und ihrer Phasen auf genau die beiden integrierten Fasern sowie deren Abgleich mit der kanonischen Basis e_i des Holonomieconsumers. Ein spezielles e0 oder ein Matrixelement des Yukawa Consumers folgt aus der Sechserkonjugation nicht.
+000071 | 
+000072 | Globale Typgrenzen
+000073 | 
+000074 | Fuchs und Weginversion:
+000075 | 
+000076 | Die komplexlineare Fuchsmonodromie und die Orientierung umkehrende inverse Monodromie sind geprüft. Eine antiunitäre Pin oder OS Reflexion, deren Faserphase und deren Wirkung auf das Adjungierte werden hier nicht konstruiert.
+000077 | 
+000078 | G, W und ganze Quelle:
+000079 | 
+000080 | Das Modul enthält keine 96er F5 Quelle, keine ganze W oder G Feldkarte, keine Domänen und keinen Referenztransport. Der spätere source_spin_lift.py Anschluss bestätigt selbst, dass sein interner SU4 Spinlift ohne weiteres Wörterbuch nicht U6=M plus (minus M) ist.
+000081 | 
+000082 | CAR:
+000083 | 
+000084 | Es wird kein CAR Einteilchenraum, kein quasifreier Zustand und kein Kokyklus transportiert. Andere Sourcemodule bauen solche Wörterbücher separat. Aus der endlichen Sechserdarstellung folgt kein universelles CAR Gate für K_f^str.
+000085 | 
+000086 | Zeit:
+000087 | 
+000088 | Die sechs Schritte sind Wegkompositionen. Es gibt hier keinen Hamiltonoperator und keine Identität mit physischer oder OS Zeit. Die Oberfläche bezeichnet die Schritte ebenfalls ausdrücklich als Halbwege und nicht als Zeit.
+000089 | 
+000090 | Quellenbeitrag:
+000091 | 
+000092 | Die vorhandene gemeinsame Regel trägt einen echten Summanden: ursprüngliche Fuchsverbindung, primitive Punkturschleife, exakte endliche Monodromiedarstellung und der originale U6 Kernelconsumer. Eine konkrete Variation oder ein Quellenmatrixelement kann diesen Summanden verwenden, sobald Spine, Metrikrahmen, Pstr beziehungsweise K_f^str und e_i gemeinsam transportiert sind. Die endliche Konjugation allein wählt diesen Consumer oder seine Zustandsantwort nicht.
+000093 | 
+000094 | Kleinster verbleibender Beweis
+000095 | 
+000096 | Der engste fehlende Pfeil ist nicht eine neue Clockrechnung. Er ist ein einziges kommutatives Diagramm im vorhandenen Originalrahmen:
+000097 | 
+000098 |   integrierte Fasern mit flacher Metrik  --C plus C-->  exakter M Rahmen
+000099 |               |                                         |
+000100 |        Hol_G K_f^str und e_i                      U6 Consumer
+000101 |               |                                         |
+000102 |          ursprüngliches Matrixelement  =  dasselbe Matrixelement.
+000103 | 
+000104 | Dazu muss C für die tatsächlich verwendeten P und Q angegeben oder aus der vorhandenen v117 Unitarisierung und dem Paralleltransport abgeleitet werden. Anschließend müssen die originale Spine beziehungsweise Gamma_ij^min und die feste Kompression Pstr in denselben Rahmen eingesetzt werden. Erst dann ist T† nachweislich das Quellenadjungierte und nicht nur das Adjungierte des separat gewählten exakten Vertreters.
+000105 | 
+000106 | Geprüfte Quellen
+000107 | 
+000108 |   tfpt_explorer/flavor_path_transport.py:1-282
+000109 |   tfpt_explorer/tests/test_flavor_path_transport.py:16-103
+000110 |   verification/v117_monodromy_weyl_a3.py:53-145
+000111 |   verification/v118_hexagon_family_dictionary.py:1-41
+000112 |   documents/archive--tfpt-45--source_extracts--03_em_flavor_source/sections/004-source.tex:180-239
+000113 |   documents/archive--tfpt-45--source_extracts--03_em_flavor_source/sections/004-source.tex:340-389
+000114 |   tfpt_explorer/source_flavor_correlator.py:66-87
+000115 |   tfpt_explorer/source_mass_transport.py:210-286
+000116 |   tfpt_explorer/source_spin_lift.py:446-456
+000117 | 
+000118 | Atlasabgleich
+000119 | 
+000120 | Der Befund stimmt mit finding:original-z6-positive-structural-kernel-does-not-supply-oriented-phase-observable überein. Der tatsächliche positive Consumer hängt von U6+U6† ab und liefert allein keinen orientierten Phasenleser. Die hier gefundene zusätzliche Präzisierung ist der vorgelagerte Rahmentyp: Der exakte T† Kernel benutzt bereits den unitären Vertreter, während der integrierte Rohweg seine flache Metrik nicht mitliefert.

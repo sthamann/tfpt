@@ -1,0 +1,56 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_asymmetric_shift_class.py
+Original file SHA-256: c4db267183046fcfdc6a1e2d5636a4858de5913148ccf9a8457364150b3a4ab0
+Inclusive original lines: 1-48
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R084 original Higgs singular pair: asymmetrically shifted chirality.
+000002 | 
+000003 | Diagnostic U_plus is not asserted to be the original seam action. Test the
+000004 | actual Schatten-class issue before taking an ordinary Fredholm determinant.
+000005 | """
+000006 | from pathlib import Path
+000007 | import json
+000008 | import numpy as np
+000009 | from scipy.special import expit
+000010 | 
+000011 | rng=np.random.default_rng(252)
+000012 | ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000013 | s=float(np.linalg.svd(ys[0],compute_uv=False)[0]);m=.3*s;ell=.2;alpha=.25
+000014 | def cross(n, mass=m):
+000015 |  p=n+alpha; E=np.sqrt(p*p+mass*mass)
+000016 |  return .5*mass/E*np.tanh(ell*E)
+000017 | def full(n):
+000018 |  p=n+alpha; E=np.sqrt(p*p+m*m);fac=.5*np.tanh(ell*E)/E
+000019 |  return np.eye(2)/2+fac*np.array([[p,m],[m,-p]])
+000020 | checks={}
+000021 | def need(name,cond):
+000022 |  checks[name]=bool(cond)
+000023 |  if not cond: raise RuntimeError(name)
+000024 | 
+000025 | # Finite sections of S diag(b)-diag(b), with no cyclic wrap-around.
+000026 | def partial_section(N,mass=m):
+000027 |  n=np.arange(-N,N+1,dtype=float);b=cross(n,mass);A=-np.diag(b)
+000028 |  A[1:,:-1]+=np.diag(b[:-1])
+000029 |  return A,b
+000030 | samples=[]
+000031 | for N in [20,80,320]:
+000032 |  A,b=partial_section(N)
+000033 |  trace_norm=float(np.linalg.norm(A,ord='nuc'))
+000034 |  diag_lower=float(np.sum(abs(b)))
+000035 |  hs=float(np.linalg.norm(A,ord='fro'))
+000036 |  need('pinching_lower_'+str(N),trace_norm+1e-10>=diag_lower)
+000037 |  samples.append({'N':N,'trace_norm':trace_norm,'diagonal_lower_bound':diag_lower,'HS_norm':hs})
+000038 | need('asymmetric_trace_lower_bound_grows',samples[-1]['diagonal_lower_bound']>samples[0]['diagonal_lower_bound'])
+000039 | need('asymmetric_HS_bounded',samples[-1]['HS_norm']<2*samples[0]['HS_norm'])
+000040 | need('massless_offdiagonal_is_zero',np.linalg.norm(partial_section(20,0)[0])==0)
+000041 | small=cross(10000);need('asymptotic_coefficient',abs(10000*small-m/2)<1e-4)
+000042 | full_diffs=[np.linalg.norm(full(n)-full(n-1),ord='nuc') for n in [80,160,320]]
+000043 | need('common_shift_tail_summable',all(3.5<full_diffs[i]/full_diffs[i+1]<4.5 for i in range(2)))
+000044 | out={'scope':'R081 Yu singular pair with hypothesized shift on gamma+ only; not an actual TFPT selector',
+000045 |      'seed':252,'mass':m,'ell':ell,'alpha':alpha,'samples':samples,
+000046 |      'common_shift_tail':full_diffs,'checks':checks,'passed':len(checks)}
+000047 | Path(__file__).with_name('ASYMMETRIC-SHIFT-CLASS.json').write_text(json.dumps(out,indent=2)+'\n')
+000048 | print(json.dumps(out,indent=2))

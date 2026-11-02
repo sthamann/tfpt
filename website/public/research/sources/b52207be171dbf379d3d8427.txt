@@ -1,0 +1,61 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/foundational-process-classification-20261016/observability_models.py
+Original file SHA-256: bc57e8c166f9b4ccd43d7cebd60202f0b7ef0e847e469c86503eb0e24ee7c5ee
+Inclusive original lines: 218-270
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000218 |             assert mass > 0
+000219 |             for measurement in "XZ":
+000220 |                 for outcome in SIGNS:
+000221 |                     next_state = d_branch(measurement, outcome, state)
+000222 |                     conditional = next_state[0] / mass
+000223 |                     transitions[(settings, outcomes, measurement, outcome)] = conditional
+000224 |                     if next_state[0] > 0:
+000225 |                         next_key = (settings + measurement, outcomes + (outcome,))
+000226 |                         existing = states.get(next_key)
+000227 |                         if existing is not None:
+000228 |                             assert existing == next_state
+000229 |                         else:
+000230 |                             states[next_key] = next_state
+000231 |                             next_frontier.append((settings + measurement, outcomes + (outcome,), next_state))
+000232 |         frontier = next_frontier
+000233 |     return states, transitions
+000234 | 
+000235 | 
+000236 | def history_tree_distribution(
+000237 |     word: str,
+000238 |     transitions: Mapping[Tuple[str, Tuple[Sign, ...], str, Sign], Q],
+000239 | ) -> OutcomeTable:
+000240 |     active: Dict[Tuple[Sign, ...], Q] = {(): Q(1)}
+000241 |     for index, measurement in enumerate(word):
+000242 |         settings = word[:index]
+000243 |         next_active: Dict[Tuple[Sign, ...], Q] = {}
+000244 |         for outcomes, path_probability in active.items():
+000245 |             if not path_probability:
+000246 |                 continue
+000247 |             for outcome in SIGNS:
+000248 |                 conditional = transitions[(settings, outcomes, measurement, outcome)]
+000249 |                 next_probability = path_probability * conditional
+000250 |                 if next_probability:
+000251 |                     next_active[outcomes + (outcome,)] = next_probability
+000252 |         active = next_active
+000253 |     return active
+000254 | 
+000255 | 
+000256 | def main() -> None:
+000257 |     words = all_words(4)
+000258 |     assert len(words) == 30
+000259 | 
+000260 |     # R: only identity and nondisturbing selective reads on two fixed labels.
+000261 |     r_reports: Dict[str, Dict[str, str]] = {}
+000262 |     for initial in (0, 1):
+000263 |         assert r_selective_read(initial, initial) == initial
+000264 |         assert r_selective_read(initial, 1 - initial) is None
+000265 |         r_reports[str(initial)] = {
+000266 |             str(length): str(initial) * length for length in range(1, 5)
+000267 |         }
+000268 | 
+000269 |     # Shared named preparations.
+000270 |     d_corners: Dict[str, Vector] = {

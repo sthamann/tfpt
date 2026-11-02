@@ -1,0 +1,103 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-positive-kernel-search-20261015/charged-clock-relation-control-20261102/reproduce.py
+Original file SHA-256: 1fb76c78140083a20f86753661376db39cbea0007ca1f0248a539ec7ebf1e020
+Inclusive original lines: 1-95
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Reproduce the bounded original charged-pair control, not a TFPT selection."""
+000002 | import argparse
+000003 | import json
+000004 | import sys
+000005 | from fractions import Fraction
+000006 | from pathlib import Path
+000007 | import sympy as sp
+000008 | 
+000009 | HERE = Path(__file__).resolve().parent
+000010 | SEARCH = HERE.parent
+000011 | COLLAR = SEARCH.parent / 'seam-collar-multifield-20261016'
+000012 | sys.path[:0] = [str(SEARCH), str(COLLAR)]
+000013 | 
+000014 | from charged_pair_control import moment, source_lift, RESPONSE
+000015 | from finite_completion import complete
+000016 | from kernel_search import load_source_control
+000017 | from run_search import campaign
+000018 | 
+000019 | 
+000020 | def write(path, value):
+000021 |     path.write_text(json.dumps(value, indent=2, ensure_ascii=False)+'\n')
+000022 | 
+000023 | 
+000024 | def matrix(value):
+000025 |     def number(entry):
+000026 |         return sp.Rational(*entry['re']) + sp.I*sp.Rational(*entry['im'])
+000027 |     return sp.Matrix([[number(entry) for entry in row] for row in value])
+000028 | 
+000029 | 
+000030 | def main():
+000031 |     parser = argparse.ArgumentParser()
+000032 |     parser.add_argument('--out', type=Path, required=True, help='fresh output directory')
+000033 |     out = parser.parse_args().out
+000034 |     out.mkdir(parents=True, exist_ok=False)
+000035 |     original = json.loads((COLLAR/'results/charged-pair-control.json').read_text())
+000036 |     source_values = {tuple(row['word']): (Fraction(row['re']), Fraction(row['im']))
+000037 |                      for row in original['fixed_moments']}
+000038 |     control = load_source_control(HERE/'source-control.json')
+000039 |     for row in control['fixed_moments']:
+000040 |         if source_values[tuple(row['word'])] != (Fraction(row['re']), Fraction(row['im'])):
+000041 |             raise ValueError('Declared initial moment differs from original source')
+000042 |     a, b = source_values[(0,-1,0)][0], source_values[(2,-1,2)][0]
+000043 |     if a != Fraction(1,4) or b != Fraction(1,64) or a-16*b:
+000044 |         raise ValueError('Original source does not satisfy declared relation')
+000045 | 
+000046 |     summary = campaign(out/'campaign',m=2,degree=2,**control)
+000047 |     rows = [{'word': [], 're': 1.0, 'im': 0.0}]
+000048 |     rows += [{'word': row['word'], 're': float(Fraction(row['re'])),
+000049 |               'im': float(Fraction(row['im']))}
+000050 |              for row in original['fixed_moments'] if len(row['word']) <= 4]
+000051 |     payload = {'m': 2, 'degree': 2, 'transfer_floor': 0, 'moments': rows,
+000052 |                'linear_relations': control['linear_relations']}
+000053 |     write(out/'exact-control-input.json', payload)
+000054 |     certificate = complete(payload,'min-trace')
+000055 |     write(out/'exact-completion.json', certificate)
+000056 |     if not certificate['ok']:
+000057 |         raise RuntimeError('Exact completion did not pass: '+str(certificate))
+000058 | 
+000059 |     word = [0,2,-1,2,0]
+000060 |     original_calculated = moment(word,source_lift(RESPONSE))
+000061 |     original_stored = source_values[tuple(word)][0]
+000062 |     candidate = next(row for row in certificate['candidate_predictions'] if row['word'] == word)
+000063 |     candidate_value = Fraction(candidate['value']['re'])
+000064 |     exact = certificate['exact_matrices']
+000065 |     omega = matrix(exact['Omega'])
+000066 |     gammas = [matrix(gamma) for gamma in exact['gammas']]
+000067 |     transfer = matrix(exact['T'])
+000068 |     operation = sp.eye(transfer.rows)
+000069 |     for token in word:
+000070 |         operation *= transfer if token == -1 else gammas[token]
+000071 |     independently_calculated = sp.expand((omega.adjoint()*operation*omega)[0])
+000072 |     if (original_calculated != original_stored or original_stored != Fraction(1,256)
+000073 |             or candidate_value != 0 or independently_calculated != candidate_value):
+000074 |         raise AssertionError('Independent source/candidate word comparison failed')
+000075 |     write(out/'result.json', {
+000076 |         'scope': 'Conditional given alpha=1/4 and declared ell=4log4 single-chiral particle/hole source; no P1/P2 physical-source selection.',
+000077 |         'solver_status': summary['solver_status'],
+000078 |         'campaign_verdict': summary['verdict'],
+000079 |         'campaign_completions': summary['completions'],
+000080 |         'exact_control_result': certificate['verdict'],
+000081 |         'exact_control_input_original_moments': len(rows)-1,
+000082 |         'normalization_moments': 1,
+000083 |         'all_degree_four_words_asserted_equal': False,
+000084 |         'distinguishing_word': word,
+000085 |         'original_word_computed_from_source_operator': str(original_calculated),
+000086 |         'original_word_stored_source': str(original_stored),
+000087 |         'exact_completion_word': str(candidate_value),
+000088 |         'exact_completion_word_recomputed_from_certificate_matrices': str(independently_calculated),
+000089 |         'notes': 'Original single-field values are supplied for exact control; unequal degree-five value proves those inputs do not determine the whole original kernel. Internal quarter is distinct from charged physical quarter.',
+000090 |     })
+000091 |     print(json.dumps(json.loads((out/'result.json').read_text()),indent=2))
+000092 | 
+000093 | 
+000094 | if __name__ == '__main__':
+000095 |     main()

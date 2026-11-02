@@ -1,0 +1,141 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/paper-source-reconstruction-20261025/MICROSCOPIC-TO-OCTIC-COMPOSITION.txt
+Original file SHA-256: eb0d6d436abeab7ace1ff094740c4b0d4748d3599331bfb3454dcb21e328ef5a
+Inclusive original lines: 201-333
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 | phases.  This is the finite restriction of the unitary F, within the single
+000202 | microscopic one-particle space.  Its second quantization introduces no new
+000203 | Fock factor.  The unitary fold and the fixed finite matrices in (9) preserve
+000204 | the strong convergence (1), including adjoints and timed words.
+000205 | 
+000206 | A nonzero point split does not by itself turn an unsmeared fermion field
+000207 | into a bounded CAR operator. The first draft of this section incorrectly
+000208 | used the elementary finite-word theorem at that step. The independent review
+000209 | identified the gap. SMEARED-OCTIC-ENERGY-BOUND.txt supplies its repair.
+000210 | 
+000211 | For the actual shifted current polynomial and its actual adjoint it proves
+000212 | 
+000213 |   ||F8_m P_E|| <= C(1+E+|m|)^11,
+000214 |   ||F8(rho) P_E|| <= C_rho(1+E)^11,                       (11)
+000215 | 
+000216 | on the true positive-source-energy cutoff. Smooth rho makes the mode sum
+000217 | absolute in Hilbert norm, and the adjoint estimate proves closability.
+000218 | Every fixed output/internal/fermion mode cutoff is a finite original CAR
+000219 | polynomial. Replacing its elementary Fourier modes by the actual QWZ fields
+000220 | and first taking N->infinity therefore gives a strong transported limit;
+000221 | removing those cutoffs afterwards yields the full smeared F8 and its
+000222 | adjoint. These Fourier approximants have global support.
+000223 | 
+000224 | The local route instead separately smooths every elementary fermion with
+000225 | a compactly supported mollifier of scale sigma. The original subtractions
+000226 | must first be combined into the finite Wick/divided-difference expression,
+000227 | including the derivative counterterms. At fixed sigma,epsilon>0 the smooth
+000228 | CAR kernel has an absolutely summable Fourier-word expansion. The proof
+000229 | then gives, for the field and its adjoint, the ordered local limit
+000230 | 
+000231 |   first N->infinity at fixed sigma,epsilon,
+000232 |   then sigma->0 at fixed epsilon,
+000233 |   finally epsilon->0.                                     (12)
+000234 | 
+000235 | The finite Wick expression has at most sixteen elementary fermions and
+000236 | total conformal weight eight. The corresponding mode bound has polynomial
+000237 | degree at most fifteen, absorbed by smooth rho. Fixed-regulator support lies
+000238 | in shrinking neighborhoods of the same eight original preimage arcs.
+000239 | No simultaneous lattice/ultraviolet limit or bounded point field is asserted.
+000240 | 
+000241 | 5. The decisive energy-64 Ward test
+000242 | -----------------------------------
+000243 | 
+000244 | The fold retains the exact source-mode relation
+000245 | 
+000246 |   Lhat_n=Lcal_(8n)^alpha/8+21/64 delta_(n,0),
+000247 |   L_-1^d=Lhat_-1=Lcal_-8^alpha/8.                         (13)
+000248 | 
+000249 | The state
+000250 | 
+000251 |   |F8;d>=F8hat(a_+,-1) Omega_d
+000252 | 
+000253 | has folded oscillator level eight.  By (13) its original source excitation
+000254 | energy is 8*8=64.  The Ward vector (L_-1^d)^8 Omega_d has the same folded
+000255 | level eight and the same original energy 64.  Both vectors are charge zero:
+000256 | F8 is a current polynomial and L_-1^d is built from the neutral shifted
+000257 | stress tensor.  Thus the test never leaves the neutral source-energy-64
+000258 | sector of the original QWZ scaling representation.
+000259 | 
+000260 | For any homogeneous degree-eight oscillator polynomial P,
+000261 | 
+000262 |   <P(a_+,-1)Omega_d,(L_-1^d)^8 Omega_d>
+000263 |       =8! conjugate(P(b)).                                (14)
+000264 | 
+000265 | For the normalized F8 and the QWZ-equivalent negative-sea alpha=1/4 chart,
+000266 | 
+000267 |   A_(1/4)
+000268 |     =3 sqrt(35)(5416993+18690336 i)/2^31 != 0.            (15)
+000269 | 
+000270 | In original source normalization, (13) gives the actual amplitude
+000271 | 
+000272 |   <F8;d|(Lcal_-8^(1/4))^8 Omega_d>
+000273 |     =8^8 A_(1/4)
+000274 |     =sqrt(35)(16250979+56071008 i)/128.                   (16)
+000275 | 
+000276 | At energy at most 64 the truncation Gamma(Pi_M) in V_N is eventually the
+000277 | identity.  The finite polarized mode intertwiner I_N therefore reproduces
+000278 | the finite oscillator polynomial entering (14) exactly for all sufficiently
+000279 | large N.  Replacing its polarized edge modes by the actual local top-edge
+000280 | QWZ modes changes each fixed mode by the proved vanishing residual.  Since
+000281 | (14) contains a fixed finite-degree word, the actual microscopic amplitude
+000282 | converges in the ordered limit (12) to (15), or to (16) with the unscaled
+000283 | source mode.  This is an amplitude of the full QWZ filled-sea Fock space,
+000284 | not a value obtained only after an energy compression.
+000285 | 
+000286 | The exact arithmetic certificate
+000287 | 
+000288 |   native_folded_octic_origin.py
+000289 | 
+000290 | returns PASS_EXACT_ORIGINAL_FOLDED_OCTIC_OVERLAP and independently checks
+000291 | (9), (13)-(16), all oscillator partitions in the Ward descendant, and the
+000292 | nonzero values in both quarter sectors.
+000293 | 
+000294 | 6. Exact remaining primitive-source question
+000295 | ---------------------------------------------
+000296 | 
+000297 | The neutral microscopic chain is now complete after its boundary data and
+000298 | the original fold/current dictionary have been fixed:
+000299 | 
+000300 |   P1/P2 boundary data
+000301 |     -> width-eight, mass-one, holonomy-r=1 QWZ collar
+000302 |     -> negative-energy projector P_N and filled sea Omega_N
+000303 |     -> top-edge chirality chi_+ and boundary orientation/reflection
+000304 |     -> the quotient localization and unitary fold (4)
+000305 |     -> the fixed original matrices M, O and U_+
+000306 |     -> the neutral field (10), state, time and Ward amplitude (16).
+000307 | 
+000308 | The primitive step not derived by this composition is the first source
+000309 | identification: the original seed must contain the appropriate local CAR
+000310 | image and induce the same one-particle time, seam and reflection, with the
+000311 | required collar domains and relative action. A microscopic regulator's
+000312 | specific width and mass need not themselves be fundamental constants.
+000313 | If the full graded CAR image lies in the original reconstructed vacuum
+000314 | representation, its given positive energy and the same gapped time law force
+000315 | the filled-sea state; that state is not another independent assumption.
+000316 | An even-algebra image alone does not force it.
+000317 | 
+000318 | P1 scalar source and preceding explicitly conditional premise merge:
+000319 | 
+000320 |   documents/tfpt_1_architecture_e8/sections/004-source.tex:190-243.
+000321 | 
+000322 | The registered paper-source:7b58a2b8767cacd98fa2feb4 covers the preceding
+000323 | context at lines1-200; the continuation at201-243 was also read in the actual
+000324 | source. The former research_contracts path in this note was incorrect.
+000325 | 
+000326 | This is narrower than a missing generic source-field map.  The QWZ-to-CAR
+000327 | field/state/time map and the one-CAR-to-neutral-F8 map are explicit and
+000328 | compose.  The separate eight-identical-copy synthesis remains a different
+000329 | route for its stated pair-kernel result.  It is neither used nor selected by
+000330 | the present neutral-octic construction.  Charged E8 root/spinor fields and
+000331 | microscopic exhaustion remain separate questions and are not premises for
+000332 | the result proved here.
+000333 | 

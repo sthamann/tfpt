@@ -1,0 +1,94 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_original_spin_current_insertion.py
+Original file SHA-256: 43e3d4a95637aedc9afd8136233ebf8fcc6bd1f8901fc089583f4af13b252d48
+Inclusive original lines: 1-86
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R072: the actual arc/residue insertion, with the original fixed fold."""
+000002 | from pathlib import Path
+000003 | import json
+000004 | import sympy as s
+000005 | 
+000006 | HERE = Path(__file__).resolve().parent
+000007 | REPO = HERE.parents[3]
+000008 | data = json.loads((REPO / "experiments/theory-contracts/v16-operator-pullback-20261014/fold-results.json").read_text())
+000009 | M = s.Matrix([[s.Rational(x) for x in row] for row in data["explicit_Weyl_matrix"]])
+000010 | zeta = (1 + s.I) / s.sqrt(2)
+000011 | U = s.Matrix(8, 8, lambda r, k: s.expand_complex(zeta ** (r*k)) / s.sqrt(8))
+000012 | checks = []
+000013 | 
+000014 | 
+000015 | def require(name, condition):
+000016 |     if not bool(condition):
+000017 |         raise AssertionError(name)
+000018 |     checks.append(name)
+000019 | 
+000020 | 
+000021 | def simp(A):
+000022 |     return A.applyfunc(s.simplify)
+000023 | 
+000024 | 
+000025 | def hs2(A):
+000026 |     return s.simplify(s.trace(A.conjugate().T * A))
+000027 | 
+000028 | 
+000029 | require("actual fold is orthogonal", M.T*M == s.eye(8))
+000030 | require("DFT core is unitary", simp(U.conjugate().T*U) == s.eye(8))
+000031 | e = [s.eye(8)[:, j] for j in range(8)]
+000032 | a, b = e[0]-e[1], e[1]-e[2]
+000033 | rows = []
+000034 | for index, root in enumerate([b, -b, a+b, -a-b]):
+000035 |     q = M.T*root
+000036 |     D = s.diag(*q)
+000037 |     A = simp(U*D*U.conjugate().T)
+000038 |     mean = sum(q)/8
+000039 |     off = A-s.diag(*A.diagonal())
+000040 |     require(f"{index}: all actual coordinates half signed", set(q) == {s.Rational(-1,2), s.Rational(1,2)})
+000041 |     require(f"{index}: multiplicities2and6", sorted([list(q).count(s.Rational(-1,2)), list(q).count(s.Rational(1,2))]) == [2,6])
+000042 |     require(f"{index}: level2", (q.T*q)[0] == 2)
+000043 |     require(f"{index}: diagonal mean", A.diagonal() == s.ones(1,8)*mean)
+000044 |     require(f"{index}: actual generator has offdiagonal norm3/2", hs2(off) == s.Rational(3,2))
+000045 |     require(f"{index}: adjoint correct", A.conjugate().T == A)
+000046 |     require(f"{index}: A squared onequarter", simp(A*A) == s.eye(8)/4)
+000047 |     Vpi = -2*s.I*A
+000048 |     require(f"{index}: pi source is unitary", simp(Vpi.conjugate().T*Vpi) == s.eye(8))
+000049 |     require(f"{index}: pi offdiagonal norm6", hs2(Vpi-s.diag(*Vpi.diagonal())) == 6)
+000050 |     # All alpha phases are diagonal row phases and preserve the entry moduli.
+000051 |     for alpha in [s.Rational(1,4), s.Rational(3,4)]:
+000052 |         phases = s.diag(*[s.exp(2*s.pi*s.I*alpha*r/8) for r in range(8)])
+000053 |         Ap = phases*A*phases.conjugate().T
+000054 |         require(f"{index},{alpha}: phased DFT diagonal mean", all(s.simplify(Ap[r,r]-mean) == 0 for r in range(8)))
+000055 |         require(f"{index},{alpha}: phased offdiagonal norm3/2", hs2(Ap-s.diag(*Ap.diagonal())) == s.Rational(3,2))
+000056 |     nonzero = [(r,t) for r in range(8) for t in range(8) if r != t and A[r,t] != 0]
+000057 |     r,t = nonzero[0]
+000058 |     P = e[t]*e[t].T
+000059 |     require(f"{index}: actual cover singlearc support changes", simp(A*P-P*A) != s.zeros(8))
+000060 |     R = s.eye(8)-2*P
+000061 |     require(f"{index}: actual branch parity commutant test", simp(R*Vpi-Vpi*R) != s.zeros(8))
+000062 |     rows.append({"root":list(map(str,root)), "q":list(map(str,q)), "sum_q":str(sum(q)),
+000063 |                  "generator_offdiagonal_hs2":"3/2", "loop_pi_offdiagonal_hs2":"6",
+000064 |                  "first_offdiagonal_entry":[r,t,str(A[r,t])], "nonzero_offdiagonal_entries":len(nonzero)})
+000065 | 
+000066 | # Exact all-profile formula, derived using q_j in {+1/2,-1/2}.
+000067 | x = s.symbols("x", real=True)
+000068 | for m in [s.Rational(-1,4),s.Rational(1,4)]:
+000069 |     diagonal = s.cos(x/2)-2*s.I*m*s.sin(x/2)
+000070 |     require(f"whole loop class at mean{m}", s.trigsimp(8*(1-s.expand_complex(diagonal*s.conjugate(diagonal)))-6*s.sin(x/2)**2) == 0)
+000071 | 
+000072 | # The scalar cover algebra and the residue Cartan algebra intersect in scalars.
+000073 | # Independent symbolic Fourier reconstruction, without testing a sample profile.
+000074 | d = s.symbols("d0:8")
+000075 | B = U*s.diag(*d)*U.conjugate().T
+000076 | linear_rows = [s.expand(B[r,t]) for r in range(8) for t in range(8) if r != t]
+000077 | K,_ = s.linear_eq_to_matrix(linear_rows,d)
+000078 | require("double diagonal equations rank7", K.rank() == 7)
+000079 | require("double diagonal nullspace constant", K.nullspace() == [s.ones(8,1)])
+000080 | 
+000081 | result = {"result":"R072", "scope":"original fixed fold; smooth closed Cartan insertions, not sharp spinor vertex construction",
+000082 |           "actual_roots":rows, "whole_class_offdiagonal_hs2":"6*sin(b/2)^2",
+000083 |           "scalar_implementation_iff":"b in 2*pi*Z pointwise",
+000084 |           "double_diagonal_rank":7, "passed":len(checks), "checks":checks}
+000085 | (HERE/"ORIGINAL-SPIN-CURRENT-INSERTION.json").write_text(json.dumps(result,indent=2)+"\n")
+000086 | print(json.dumps({"passed":len(checks),"roots":4,"double_diagonal_rank":7,"result":"R072"}))

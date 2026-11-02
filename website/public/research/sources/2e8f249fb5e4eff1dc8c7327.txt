@@ -1,0 +1,155 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/CLAUDE18-CANDIDATE.txt
+Original file SHA-256: 7ab8de802d24df2eea6c2e6ca05d365cdc882f27867fb51c50d6f43dc6e22c04
+Inclusive original lines: 1-147
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | [OMITTED: non-scientific conversation or execution metadata]
+000002 | [OMITTED: non-scientific conversation or execution metadata]
+000003 | 
+000004 | Fortsetzung 18: Die fermionische Antwort des Orbitbündels und ihr ursprünglicher Anker
+000005 | Kurzfassung
+000006 | 
+000007 | Ich baue auf dem jetzt gesicherten Orbitbündel E = (O_N(1)⊠L_w) ⊕ (O_N⊠Q_w) ⊕ C³ und dem natürlichen Lift W_m = Λ^even E ⊗ ⊕_j D^{m_j} (Σm_j = −2, Sept22) auf. Ohne neue Wahl folgen vier Ergebnisse:
+000008 | 
+000009 | Ursprünglicher Anker der Bahn. Die Energiebemerkung des v42-Originals τ₂|wind det Φ₂| ist genau die Bott-Untergrenze der Verklebungsenergie. Ihre Minimierer sind die Bahn CP¹_w, bis auf eine relative Rahmung. Die Bahn ist damit das Minimierergebilde einer originalen Kostenfunktion, keine frei eingesetzte Quantisierungsregel.
+000010 | Fermionische Familienantwort. Es gilt ∫_N ch(W_m) = −16y für jede Wahl mit Σm_j = −2. Das 4D-Indexbündel über N × CP¹_w hat Index −16, und die Klasse ist c₂(E) = xy.
+000011 | Ward-Identität am Saum. Für jede ungebrochene Eichladung hat das Spektrum der Saummoden (normale Nullmoden längs der Naht) die Anomalie 4·tr₁₆(h q²) + (Σβ_j)·tr₁₆ q². Der erste Term ist null, weil so(10) keine kubische Invariante hat. Der zweite ist genau dann null, wenn Σm_j = −2. Die Liftbedingung ist also zugleich die Bedingung für einen anomaliefreien Saum.
+000012 | Nicht vorgegebener Wert. Mit m_A = (0,0,−1,−1) tragen die beiden Kopien mit m = 0 als eine Saumchiralität den Down-Sektor (d_L, d^c, e_L, e^c). Die beiden Kopien mit m = −1 tragen als andere Chiralität den Up-Sektor (u_L, u^c, ν_L, ν^c). Das ist dasselbe Richtungsmuster, das für Fermion-Nullmoden auf elektroschwachen Z-Strings bekannt ist, obwohl der Mechanismus ein anderer ist.
+000013 | 
+000014 | Alles ist exakt nachgerechnet (orbit_fermion_index.py, bott_bound.py). Einen Abschluss mit Zustand und Zeit behaupte ich weiterhin nicht.
+000015 | 
+000016 | 1. Übernommene Korrekturen aus den Reviews
+000017 | 
+000018 | Ich übernehme ohne Einschränkung:
+000019 | 
+000020 | die Duale über H⁰(L*)* = V, mit der Ladungszuordnung Y = ±½ getrennt nach Spalten;
+000021 | dass die Viertelphase der Wurzel nicht die native Uhr ist (Multiplizitäten 134/56/2/56 gegen 60/64/60/64);
+000022 | die Zählung 8+4 bei fest markiertem Träger j₆;
+000023 | die originale Chiralität: ungerade Minusparität, familiäre Grade (−¾, ¼, ¼, ¼);
+000024 | dass Multiplizitäten verschiedener Operatoren keinen Widerspruch ergeben;
+000025 | den bereits klassifizierten Sept22-Lift.
+000026 | 
+000027 | Die Wurzel-Halbklebung aus Fortsetzung 17 verfolge ich nicht weiter. Für den Paar-Wärmeleser ist der Spurklassenbeweis über Min-Max korrekt. Ich verwende ihn nur als Klassenaussage und setze keinen Wärmeparameter als Zeit ein.
+000028 | 
+000029 | 2. Ursprünglicher Anker: Die Bahn ist das Bott-Minimum der v42-Kostenfunktion
+000030 | 
+000031 | Die Bemerkung im v42-Original bewertet eine Verklebung mit τ₂|wind(det Φ₂)|. Dazu gehört folgender Satz.
+000032 | 
+000033 | Satz B (Bott-Schranke). Für jede glatte Schleife g: S¹ → U(V) mit Determinantenwindung k, |k| ≤ dim V, gilt
+000034 | 
+000035 | E(g) := (1/2π)∫‖g⁻¹∂_φ g‖² dφ ≥ |k|.
+000036 | 
+000037 | Gleichheit tritt genau für g = h·e^{iφP} ein, mit konstantem h ∈ U(V) und einem Projektor P vom Rang |k|.
+000038 | 
+000039 | Beweis.
+000040 | 
+000041 | In jeder freien Homotopieklasse einer kompakten Mannigfaltigkeit existiert ein energieminimierender geschlossener Geodät.
+000042 | Für die biinvariante Metrik auf U(n) sind das Linkstranslate h·e^{iφA}. Geschlossenheit verlangt Spec A ⊂ Z.
+000043 | Es gilt E = tr A² = Σk_i² ≥ Σ|k_i| ≥ |Σk_i| = |k|.
+000044 | Gleichheit verlangt k_i ∈ {0, sign k}. ∎
+000045 | 
+000046 | Die Morse-Theorie geodätischer Schleifen und die Bott-Periodizität zitiere ich aus Fachwissen und habe sie hier nicht neu gelesen. Numerisch liegen 30 gestörte Schleifen mit Windung 1 bei E ≥ 1,066, während die Geodäte genau 1 ergibt.
+000047 | 
+000048 | Folgerungen für k = 1.
+000049 | 
+000050 | Die Minimierer modulo h bilden genau P(V) = CP¹_w. Die Bahn aus Fortsetzung 17 ist also die Kritikalmannigfaltigkeit der originalen Kosten τ₂|wind det|, und τ₂ ist die Energie pro Bahnpunkt.
+000051 | Alle Minimierer liegen in einer Bahn der Klebeeichung (a, b) ↦ a g b⁻¹. Der Stabilisator ist U(1)×U(1).
+000052 | Die Diagonale a = b, also ein gleichzeitiger Rahmenwechsel beider Hemisphären, bewegt P über CP¹_w. Das Linkstranslat h ist die relative Rahmung.
+000053 | 
+000054 | Das ist die präzise erste offene Voraussetzung. Die Bahn ist physisch genau dann, wenn mindestens eine Hemisphärenrahmung festgehalten wird. Das wäre etwa der Fall, wenn das gegebene D_coll beziehungsweise B_Σ die Klebelinie als Operator fixiert und nicht nur die Klasse [u_Σ].
+000055 | 
+000056 | In der Literatur entspricht das genau Barriola–Vachaspati–Bucher (hep-th/9306120, nur Abstract gelesen): Die W(α)-Stringfamilie ist für einen einzelnen String eichäquivalent, aber in Mehrstring-Konfigurationen physikalisch verschieden.
+000057 | 
+000058 | 3. Neu: fermionische Familienantwort auf demselben Bündel
+000059 | 
+000060 | Es gelten x² = y² = 0, ch(Λ^even E) = 4(1+e^{x−y})(1+e^{y}) = 16 + 8x − 4xy und ch D^m = 1 + mx. Daraus folgt
+000061 | 
+000062 | ch(W_m) = 64 + (32 + 16Σm_j)x − 16xy.
+000063 | 
+000064 | Satz F.
+000065 | 
+000066 | Der normale Nettoindex pro Kopie ist 8 + 16m_j. Die Summe verschwindet genau für Σm_j = −2.
+000067 | Das Familienindexbündel über CP¹_w hat ch = −16y, für jeden natürlichen Lift gleich.
+000068 | Der 4D-Index über N × CP¹_w ist −16. Er entsteht aus c₂(E) = xy, einer schwachen Einheitsinstanton-Klasse, mit genau einer Mode pro Dublett: 4 Kopien × (3 Q + 1 L).
+000069 | 
+000070 | Komponentenweise für m_A = (0,0,−1,−1) (exakt ausgezählt):
+000071 | 
+000072 | Kopien	Saumchiralität	Nullmoden	Berry-Linie
+000073 | m = 0 (β = +½), 2 Kopien	+	Dublettkomponente längs der Klebelinie L_w von Q (×3 Farben) und L	L_w
+000074 | 	+	Singuletts mit beiden schwachen Indizes: Y = 1, ⅓ (e^c, d^c)	trivial
+000075 | m = −1 (β = −½), 2 Kopien	−	Dublettkomponente längs L_w^⊥ von Q und L	L_w*
+000076 | 	−	Singuletts ohne schwachen Index: Y = 0, −⅔ (ν^c, u^c)	trivial
+000077 | 
+000078 | Damit ist das Indexbündel 8([L_w] − [L_w*]).
+000079 | 
+000080 | Was ohne Wörterbuch gilt und was nicht.
+000081 | 
+000082 | Ohne Wörterbuch: Die Singulettsortierung (d^c, e^c gegen u^c, ν^c) folgt allein aus m_A und dem Vorzeichen der Verklebung.
+000083 | Mit dem kanonischen Wörterbuch aus dem Review (L_w = Strahl von H, H als zweite Spalte mit Y = +½) hat die Komponente längs L_w die Ladung T₃ = −½. Dann ist die +-Seite {d_L, e_L, d^c, e^c}, also genau die Felder der H†-Yukawas Q d^c Φ† und L e^c Φ†. Die −-Seite ist {u_L, ν_L, u^c, ν^c}, die H-Yukawas.
+000084 | Die beiden Spalten von q = (H̃, H) werden damit über den A3-Lift den beiden Saumchiralitäten zugeordnet. Das ist eine nicht vorgegebene Querverbindung zwischen bosonischem Orbit, fermionischer Fluktuation und Familienträger.
+000085 | 
+000086 | Externe Prüfung. Für elektroschwache Z-Strings ist publiziert, dass Elektron und d-Quark in eine Richtung laufen, Neutrino und u-Quark in die andere (Vachaspati, hep-ph/9411348; ebenso Naculich, hep-ph/9501388; beides nur als Ausschnitt gelesen). Das Muster stimmt überein, der Mechanismus nicht:
+000087 | 
+000088 | Mechanismus: Dort entstehen die Moden über Yukawa-Paarung nach Jackiw–Rossi, hier über den Eichfluss-Index auf kompaktem N mit A3-Lift.
+000089 | Zählung: Dort gibt es eine 2D-Mode pro Dirac-Fermion, hier eine pro Weyl-Komponente und Kopie.
+000090 | Fluss: Der Z-String-Fluss diag(−cos 2θ_W, 1) (hep-ph/9507466) ist nur bei θ_W = π/4 die geschlossene Projektorklebung.
+000091 | 
+000092 | Ich behaupte deshalb nicht, dass die Naht ein Z-String ist.
+000093 | 
+000094 | 4. Ward-Identität: Saumanomalie = Liftbedingung
+000095 | 
+000096 | Für eine Ladung q, die mit der Klebung kommutiert, gilt mit h = n_{w₁} − ½ (Spin(10)-Gewicht des Klebegenerators auf der 16) und β_j = m_j + ½:
+000097 | 
+000098 | A_q = Σ_j Σ_S (n_{w₁}(S) + m_j) q_S² = 4·tr₁₆(h q²) + (Σ_j β_j)·tr₁₆(q²).
+000099 | 
+000100 | Der erste Term verschwindet, weil so(10) keine kubische Casimir-Invariante hat. Exakt geprüft: A_Y = 5/3 + (10/3)m, A_{T₃} = 1 + 2m, A_{SU(3)} = 1 + 2m, Gravitation 8 + 16m. Der m-freie Teil ist jeweils die Hälfte der vollen Spur.
+000101 | Für alle Ladungen zugleich gilt daher: Saum anomaliefrei ⇔ Σβ_j = 0 ⇔ Σm_j = −2.
+000102 | 
+000103 | Die algebraische Bedingung des Sept22-Lifts (Determinante 1 im SU(4)-Faktor) ist also physikalisch die Anomaliefreiheit der Saummoden. m_A wird dadurch nicht ausgewählt; die Normminimalität bleibt ein eigener Vertrag.
+000104 | 
+000105 | Diese Identität ist der von dir geforderte konkrete Ward-Wert, der aus derselben Operation folgt: dieselbe Verklebung, derselbe Lift, normaler Index und 2D-Anomaliezufluss.
+000106 | 
+000107 | 5. Zweiter konkreter Wert: Verdrillung der Bahn
+000108 | 
+000109 | Läuft die Bahnrichtung w: Σ → CP¹_w über die Saumweltfläche mit Grad d, so ist N × Σ eine echte euklidische 4D-Umgebung mit c₂ = d. Atiyah–Singer liefert unabhängig vom Zusammenhang den Index −16d, also ΔB = ΔL = 4d. Pro Kopie ist das ein QQQL-Vertex, mit B − L erhalten.
+000110 | 
+000111 | Im Standardmodell ist der entsprechende ‘t-Hooft-Wert n_f = 3. Die vier A3-Trägerkopien als volle chirale Materie widersprechen dem. Das ist ein scharfer Test der Familienzuordnung (origin_theory 1210–1218: SU(3)-Flavor auf dem dreidimensionalen Homologieraum). Eine Trägerkopie muss physikalisch anders zählen, sonst scheitert die Gleichsetzung von Träger und Familien.
+000112 | 
+000113 | Die Literaturparallele (nur Abstracts gelesen): Verdrillte W-String-Schleifen kollabieren zum Sphaleron (hep-th/9306120). Der Z-String ist das 2D-Sphaleron auf einer nichtkontrahierbaren Sphäre (Klinkhamer–Olesen, hep-ph/9402207). Verschlungene Z-Schleifen tragen B = 2N_F cos 2θ_W (Garriga–Vachaspati, hep-ph/9411375).
+000114 | 
+000115 | 6. Reflexionsprobe (bestanden)
+000116 | 
+000117 | Ein antilinearer, ladungskonjugierender Reflexionsoperator Θ nach OS-Art bildet W_m auf W_m* ≅ Λ^odd E ⊗ ⊕ D^{−1−m_j} ab, also (16, β) auf (16̄, −β). Damit gehen +-Saummoden in die Antiteilchen mit umgekehrter Laufrichtung über. Das Saumspektrum ist ohne zusätzliches A3-Weyl-Element Θ-abgeschlossen; benutzt wird nur (Λ^k E)* ≅ Λ^{5−k}E ⊗ D⁻¹.
+000118 | 
+000119 | 7. Bilanz
+000120 | 
+000121 | Wiedergefunden:
+000122 | 
+000123 | Orbitbündel und Indexlinie L_w.
+000124 | Der Sept22-Lift W_m und Σm_j = −2.
+000125 | Die Yukawaliste aus v42 als qM.
+000126 | 
+000127 | Neu bewiesen:
+000128 | 
+000129 | Satz B: Die Bahn ist das Bott-Minimum der v42-Kosten τ₂|wind det|.
+000130 | Satz F: ch(W_m), der 4D-Index −16 und die komponentenweise Zuordnung zu den Yukawa-Sektoren.
+000131 | Die Saum-Ward-Identität A_q = 4·tr(hq²) + Σβ_j·tr q², verschwindend genau bei Σm_j = −2.
+000132 | Der Verdrillungswert ΔB = ΔL = 4d.
+000133 | Die Θ-Abgeschlossenheit des Saumspektrums.
+000134 | 
+000135 | Noch zusätzliche Voraussetzungen:
+000136 | 
+000137 | Ob die Rahmung physisch ist, also ob D_coll die Klebelinie fixiert.
+000138 | Das Wörterbuch L_w = Strahl von H (nur für die Namen der Dublettkomponenten).
+000139 | Die Minimalität von m_A.
+000140 | Die Identifikation der normalen Geometrie.
+000141 | Kein Zustand und keine ursprüngliche Zeit. Die Saummoden haben E = ±p längs der Naht, aber das ist Translation in der Nahtkoordinate, keine hergeleitete Zeit.
+000142 | 8. Nächster entscheidender Test
+000143 | Rahmung am Original. Am Original lesen, ob D_coll oder B_Σ die Klebelinie als Operator festlegen oder nur die Klasse [u_Σ]. Davon hängt ab, ob die Bahn kollektive Koordinate oder reine Redundanz ist.
+000144 | Familienzählung. Die ‘t-Hooft-Zählung 4 gegen 3 an der originalen Familienzuordnung prüfen.
+000145 | Hypothese H-Saum (ausdrücklich nur Test). Prüfen, ob die bestehende longitudinale Struktur B_cov = 2(B_{1/4} ⊕ B_{3/4}) den zwei Kopien je Saumchiralität entspricht, also Down-Sektor gegen Up-Sektor mit konjugierten Phasen ¼ und ¾. Der Atlas liest diese Summanden bisher als gerade/ungerade Moden einer NS-Quelle; das muss am Original verglichen werden, bevor es mehr als ein Test ist.
+000146 | 
+000147 | Bildlich: Die Naht ist mit einem einzigen Knick der schwachen Richtung verklebt, und dieser Knick ist der billigste mögliche (Bott). Fermionen spüren ihn so, dass die Down-Familie in die eine Richtung längs der Naht läuft und die Up-Familie in die andere. Genau so heben sich alle Ladungsbilanzen auf, und genau das verlangt auch der A3-Lift.

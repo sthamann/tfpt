@@ -1,0 +1,96 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/CUBIC-NATIVE-MARKING-INDEPENDENT-REVIEW.txt
+Original file SHA-256: ff809d45f859504918dd87b55b5f2a44da101caf21c2d4ed514cd01dfb4d31fb
+Inclusive original lines: 1-88
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | INDEPENDENT REVIEW: CUBIC NATIVE MARKING TEST
+000002 | 2026-10-26
+000003 | 
+000004 | Reviewed source
+000005 | 
+000006 |   CUBIC-NATIVE-MARKING-TEST.txt
+000007 |   SHA-256 361a7c61680ae2450a3b62a34a71cfe7525d65433f123f0ffea3668d9f44de48
+000008 | 
+000009 | VERDICT
+000010 | 
+000011 | ACCEPTED.  The corrected theorem uses the type-correct native theta target
+000012 | N64/mu4.  The earlier fixed-space obstruction remains valid only for the
+000013 | distinct Gaussian code and Pauli-context module V=L/(1+i)L.
+000014 | 
+000015 | 1. TARGET TYPE AND ORDER-THREE ACTION
+000016 | 
+000017 | Verification v783 distinguishes two four-bit Sp(4,2) modules.  N64/mu4 is the
+000018 | Pauli translation space.  The fifteen nonzero classes of V=L/(1+i)L label the
+000019 | fifteen maximal commuting Pauli contexts.  Their relation is the outer
+000020 | point-line duality of W(3,2), and v783 finds no invertible linear module
+000021 | intertwiner.  A genus-two theta translation space must therefore first be
+000022 | compared with N64/mu4.
+000023 | 
+000024 | On Jac(C)[2]=V_q direct-sum V_p, the source cubic has matrix
+000025 | diag(C_0,C_0), with C_0=[[1,1],[1,0]].  Its characteristic polynomial is
+000026 | (x^2+x+1)^2 and its fixed space is zero.
+000027 | 
+000028 | In Pauli bit order (x_1,z_1,x_2,z_2), the four conjugation formulas in the
+000029 | report give the columns of
+000030 | 
+000031 |   Sigma=[[0,0,1,0],
+000032 |          [0,1,0,1],
+000033 |          [1,0,1,0],
+000034 |          [0,1,0,0]].
+000035 | 
+000036 | Direct F2 multiplication confirms Sigma^3=I, ker(Sigma-I)=0 and
+000037 | chi_Sigma=(x^2+x+1)^2.  This also agrees with the character check:
+000038 | tr_C(sigma)=1 implies tr_End(Ad_sigma)=1, and an order-three Clifford element
+000039 | cannot fix a projective Pauli with negative sign.  Thus only the identity
+000040 | Pauli is fixed.
+000041 | 
+000042 | 2. EXPLICIT INTERTWINER
+000043 | 
+000044 | For the columns stated in the report,
+000045 | 
+000046 |   Phi=[[0,1,0,1],
+000047 |        [0,1,1,1],
+000048 |        [1,0,1,0],
+000049 |        [1,1,1,0]],
+000050 | 
+000051 | exact multiplication gives
+000052 | 
+000053 |   Phi^T Omega Phi=diag(Omega_2,Omega_2),
+000054 |   Sigma Phi=Phi diag(C_0,C_0).
+000055 | 
+000056 | Hence Phi is invertible, symplectic and intertwines the actual marked source
+000057 | cubic with conjugation by the frozen native sigma on Pauli translations.
+000058 | 
+000059 | 3. INVARIANT PLANES AND RESIDUAL COUNT
+000060 | 
+000061 | An exhaustive enumeration of the 35 two-dimensional subspaces of F2^4 gives
+000062 | exactly five Sigma-invariant planes.  Three are isotropic and exactly two are
+000063 | symplectic.  The two symplectic planes are precisely
+000064 | 
+000065 |   W_q={0,IY,YZ,YX},
+000066 |   W_p={0,ZY,XY,YI}.
+000067 | 
+000068 | Their mutual pairing is zero, so they are orthogonal complements.  Therefore
+000069 | Sigma canonically selects the unordered pair {W_q,W_p}, and Phi maps the
+000070 | source unordered pair {V_q,V_p} to it.
+000071 | 
+000072 | On either symplectic plane the centralizer of the order-three action has order
+000073 | three.  The planes may also be exchanged, giving 3*3*2=18 symplectic
+000074 | intertwiners.  Equivalently, an independent enumeration of Sp(4,2) gives
+000075 | centralizer order 18.  The source cubic alone does not choose one of them.
+000076 | 
+000077 | 4. PRECISE SCOPE
+000078 | 
+000079 | The code-label calculation with fixed-space dimension two is still correct,
+000080 | but it concerns the context module and is not a theta-to-Pauli obstruction.
+000081 | The present result proves the first generator and unordered plane-pair match
+000082 | on the correct translation modules.  It does not yet show that one of the
+000083 | eighteen maps also intertwines s, Q, the selected projective spin lift beta,
+000084 | the central theta extension, and the four-dimensional Schrodinger module.
+000085 | 
+000086 | The comparison with v796 is correctly retained as an explanation of the
+000087 | outer context-versus-translation class swap.  The present Phi is instead a
+000088 | direct internal symplectic map for this curve and does not import v784.

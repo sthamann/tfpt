@@ -1,0 +1,120 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/dynamic_reconstruction_20261027/check_petersen_polar_deck_intertwiner.py
+Original file SHA-256: f626ef1d1889c926ba80dc7fb357e2857986ef97b321d0230ea33617ed495479
+Inclusive original lines: 1-112
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact narrow reproduction of the Petersen polar/deck dictionary."""
+000003 | 
+000004 | import sympy as sp
+000005 | 
+000006 | 
+000007 | R = sp.Rational
+000008 | 
+000009 | 
+000010 | def check(name, condition):
+000011 |     if condition is not True and condition != True:
+000012 |         raise RuntimeError("FAIL: " + name)
+000013 |     print("PASS", name)
+000014 | 
+000015 | 
+000016 | def block(a, b, c, d):
+000017 |     return a.row_join(b).col_join(c.row_join(d))
+000018 | 
+000019 | 
+000020 | def main():
+000021 |     P = sp.Matrix([
+000022 |         [0, 1, 0],
+000023 |         [R(1, 3), 0, R(2, 3)],
+000024 |         [0, R(1, 3), R(2, 3)],
+000025 |     ])
+000026 |     D = sp.diag(R(1, 10), R(3, 10), R(6, 10))
+000027 |     sqrt_D = sp.diag(sp.sqrt(R(1, 10)), sp.sqrt(R(3, 10)),
+000028 |                      sp.sqrt(R(6, 10)))
+000029 | 
+000030 |     f0 = sp.Matrix([1, 1, 1])
+000031 |     q = sp.Matrix([6, -4, 1])
+000032 |     r = sp.Matrix([3, 1, -1])
+000033 |     B = sp.Matrix.hstack(f0, q / 3, sp.sqrt(5) * r / 3)
+000034 |     check("marked source basis is H_pi orthonormal", B.T * D * B == sp.eye(3))
+000035 | 
+000036 |     e0 = sp.Matrix([1, 0, 0])
+000037 |     ep = sp.Matrix([0, 1, 1]) / sp.sqrt(2)
+000038 |     em = sp.Matrix([0, 1, -1]) / sp.sqrt(2)
+000039 |     E = sp.Matrix.hstack(e0, ep, em)
+000040 | 
+000041 |     # U acts between Euclidean frames.  W = U sqrt(D) is the actual map
+000042 |     # H_pi -> R^3 and satisfies W^T W = D.
+000043 |     U = sp.simplify(E * (sqrt_D * B).T)
+000044 |     W = sp.simplify(U * sqrt_D)
+000045 |     check("U is orthogonal", sp.simplify(U * U.T) == sp.eye(3))
+000046 |     check("W is an isometry H_pi to Euclidean R3", sp.simplify(W.T * W) == D)
+000047 |     check("W sends q/3 to e+", sp.simplify(W * (q / 3) - ep) == sp.zeros(3, 1))
+000048 | 
+000049 |     abs_P = R(4, 5) * P**2 - R(1, 15) * P + R(4, 15) * sp.eye(3)
+000050 |     J_P = -R(6, 5) * P**2 + R(8, 5) * P + R(3, 5) * sp.eye(3)
+000051 |     M = sp.Matrix([
+000052 |         [1, 0, 0],
+000053 |         [0, R(1, 2), R(1, 6)],
+000054 |         [0, R(1, 6), R(1, 2)],
+000055 |     ])
+000056 |     Delta = sp.Matrix([[1, 0, 0], [0, 0, 1], [0, 1, 0]])
+000057 |     Z = sp.diag(1, -1, -1)
+000058 |     K = Z * Delta
+000059 | 
+000060 |     check("polar decomposition", J_P**2 == sp.eye(3) and J_P * abs_P == P)
+000061 |     check("positive transfer conjugacy", sp.simplify(W * abs_P * W.inv()) == M)
+000062 |     check("polar sign becomes K=Z Delta", sp.simplify(W * J_P * W.inv()) == K)
+000063 |     check("literal deck differs on the 2/3 line", K * ep == -ep and Delta * ep == ep)
+000064 |     check("signed one-step dictionary", sp.simplify(W * P * W.inv()) == K * M)
+000065 | 
+000066 |     Y_shell = sp.diag(6, -4, 1)
+000067 |     Y_target = sp.simplify(W * Y_shell * W.inv())
+000068 |     check("charge spectrum 6,-4,1 is retained",
+000069 |           sp.factor(Y_target.charpoly().as_expr()) ==
+000070 |           (sp.Symbol("lambda") - 6) * (sp.Symbol("lambda") - 1) *
+000071 |           (sp.Symbol("lambda") + 4))
+000072 |     charge_commutator = Y_shell * P - P * Y_shell
+000073 |     expected_commutator = sp.Matrix([
+000074 |         [0, 10, 0],
+000075 |         [-R(10, 3), 0, -R(10, 3)],
+000076 |         [0, R(5, 3), 0],
+000077 |     ])
+000078 |     check("shell charge commutator has rank two",
+000079 |           charge_commutator == expected_commutator and
+000080 |           charge_commutator.rank() == 2)
+000081 | 
+000082 |     even_defect = sp.simplify(K * W * charge_commutator * W.inv())
+000083 |     odd_defect = sp.simplify(W * charge_commutator * W.inv() * K)
+000084 |     expected_even_defect = sp.Matrix([
+000085 |         [0, -5 * sp.sqrt(2) / 2, -5 * sp.sqrt(2) / 2],
+000086 |         [-5 * sp.sqrt(2) / 2, -5 * sp.sqrt(5) / 3, 0],
+000087 |         [-5 * sp.sqrt(2) / 2, 0, 5 * sp.sqrt(5) / 3],
+000088 |     ])
+000089 |     check("moving charge defect alternates sign",
+000090 |           even_defect == expected_even_defect and odd_defect == -even_defect)
+000091 |     check("moving charge defect rank and Frobenius norm",
+000092 |           even_defect.rank() == 2 and
+000093 |           sp.trace(even_defect.T * even_defect) == R(700, 9))
+000094 | 
+000095 |     zero = sp.zeros(3)
+000096 |     ident = sp.eye(3)
+000097 |     P_hat = block(zero, P, P, zero)
+000098 |     G = block(ident, zero, zero, J_P)
+000099 |     W_hat = sp.diag(W, W) * G
+000100 |     target = block(zero, M, M, zero)
+000101 |     tau = block(zero, ident, ident, zero)
+000102 |     tau_K = block(zero, K, K, zero)
+000103 |     check("double-cover block conjugacy",
+000104 |           sp.simplify(W_hat * P_hat * W_hat.inv()) == target)
+000105 |     check("transported sheet exchange is K twisted",
+000106 |           sp.simplify(W_hat * tau * W_hat.inv()) == tau_K)
+000107 | 
+000108 |     print("PASS_EXACT_PETERSEN_POLAR_DECK_REVIEW")
+000109 | 
+000110 | 
+000111 | if __name__ == "__main__":
+000112 |     main()

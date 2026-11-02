@@ -1,0 +1,25 @@
+TFPT scientific source excerpt
+Original repository path: tfpt_explorer/process.py
+Original file SHA-256: e8db5fcd999c9d4c34fbee548aa2c85e1a515cf03663a62355533439ae0f1c94
+Inclusive original lines: 242-258
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000242 | def _code_basis() -> tuple[np.ndarray, list[list[tuple[int, ...]]]]:
+000243 |     word_sets: list[list[tuple[int, ...]]] = [
+000244 |         [(i, i, i, i) for i in range(4)]
+000245 |     ]
+000246 |     pairs = [
+000247 |         ((0, 0, 1, 1), (2, 2, 3, 3)),
+000248 |         ((0, 0, 2, 2), (1, 1, 3, 3)),
+000249 |         ((0, 0, 3, 3), (1, 1, 2, 2)),
+000250 |     ]
+000251 |     for one, two in pairs:
+000252 |         word_sets.append(sorted(set(it.permutations(one)) | set(it.permutations(two))))
+000253 |     word_sets.append(sorted(it.permutations(range(4))))
+000254 |     v = np.zeros((256, 5))
+000255 |     for column, words in enumerate(word_sets):
+000256 |         for word in words:
+000257 |             v[np.ravel_multi_index(word, (4, 4, 4, 4)), column] = 1 / math.sqrt(len(words))
+000258 |     return v, word_sets

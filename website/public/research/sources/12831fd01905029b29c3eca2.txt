@@ -1,0 +1,128 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1000_spin2_sk_witnesses.py
+Original file SHA-256: 80e90cd79c3db8f4a0a5691c47392ec800536175e21c34264508d4a3b438342d
+Inclusive original lines: 204-323
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000204 | def run_spin2():
+000205 |     print("=" * 96)
+000206 |     print("spin2_hamiltonian_lattice_probe -- Hamiltonian-first free graviton")
+000207 |     print("EXPLORATION ONLY; quadratic lattice witness, no contract status move")
+000208 |     print("=" * 96)
+000209 | 
+000210 |     symbolic_projectors = symbolic_projector_matrices()
+000211 |     symbolic_identity = sp.eye(6)
+000212 |     symbolic_zero = sp.zeros(6)
+000213 |     expected_ranks = {"TT": 2, "V": 2, "ST": 1, "L": 1}
+000214 |     symbolic_algebra_ok = (
+000215 |         all(projector * projector == projector
+000216 |             for projector in symbolic_projectors.values())
+000217 |         and all(
+000218 |             symbolic_projectors[left] * symbolic_projectors[right]
+000219 |             == symbolic_zero
+000220 |             for left, right in itertools.permutations(
+000221 |                 symbolic_projectors, 2)
+000222 |         )
+000223 |         and sum(symbolic_projectors.values(), sp.zeros(6))
+000224 |         == symbolic_identity
+000225 |         and {
+000226 |             name: int(projector.rank())
+000227 |             for name, projector in symbolic_projectors.items()
+000228 |         } == expected_ranks
+000229 |     )
+000230 |     report(
+000231 |         "exact tensor-projector algebra",
+000232 |         symbolic_algebra_ok,
+000233 |         "P_a P_b=delta_ab P_a, sum P_a=I_6; ranks %s"
+000234 |         % expected_ranks,
+000235 |     )
+000236 | 
+000237 |     q_squared = sp.symbols("q_lat_sq", positive=True)
+000238 |     physical_projector = symbolic_projectors["TT"]
+000239 |     phase_hessian = sp.diag(
+000240 |         q_squared * physical_projector, physical_projector)
+000241 |     symbolic_spectrum = phase_hessian.eigenvals()
+000242 |     expected_spectrum = {
+000243 |         sp.Integer(0): 8,
+000244 |         sp.Integer(1): 2,
+000245 |         q_squared: 2,
+000246 |     }
+000247 |     report(
+000248 |         "exact reduced-Hamiltonian spectrum",
+000249 |         symbolic_spectrum == expected_spectrum,
+000250 |         "spec(K_q)={0 x8, q_lat^2 x2, 1 x2}; H=1/2 X^T K_q X",
+000251 |     )
+000252 | 
+000253 |     polarization_rows = []
+000254 |     worst_projector_deviation = 0.0
+000255 |     worst_negative_eigenvalue = 0.0
+000256 |     smallest_positive_h_eigenvalue = np.inf
+000257 |     largest_constraint_inclusion_error = 0.0
+000258 |     all_numeric_ranks_ok = True
+000259 |     all_numeric_spectra_ok = True
+000260 |     all_constraint_counts_ok = True
+000261 |     wrong_sign_minimum = np.inf
+000262 |     wrong_sign_negative_counts = set()
+000263 |     minimum_massive_frequency = np.inf
+000264 | 
+000265 |     for size in LATTICE_SIZES:
+000266 |         wave_numbers = wrapped_wave_numbers(size)
+000267 |         total_modes = size ** 3
+000268 |         rank_two_modes = 0
+000269 |         rank_exceptions = 0
+000270 |         boundary_modes = 0
+000271 | 
+000272 |         for momentum_tuple in itertools.product(wave_numbers, repeat=3):
+000273 |             continuum_momentum = np.array(momentum_tuple)
+000274 |             if np.all(continuum_momentum == 0.0):
+000275 |                 continue
+000276 | 
+000277 |             if np.any(np.isclose(
+000278 |                     np.abs(continuum_momentum), np.pi, atol=1.0e-14)):
+000279 |                 boundary_modes += 1
+000280 | 
+000281 |             lattice_momentum = 2.0 * np.sin(continuum_momentum / 2.0)
+000282 |             lattice_norm_squared = float(
+000283 |                 lattice_momentum @ lattice_momentum)
+000284 |             projectors = projector_matrices(lattice_momentum)
+000285 |             ranks = {
+000286 |                 name: int(np.linalg.matrix_rank(
+000287 |                     projector, tol=RANK_TOL))
+000288 |                 for name, projector in projectors.items()
+000289 |             }
+000290 |             if ranks["TT"] == 2:
+000291 |                 rank_two_modes += 1
+000292 |             else:
+000293 |                 rank_exceptions += 1
+000294 |             all_numeric_ranks_ok &= ranks == expected_ranks
+000295 | 
+000296 |             projector_sum = sum(projectors.values())
+000297 |             worst_projector_deviation = max(
+000298 |                 worst_projector_deviation,
+000299 |                 float(np.max(np.abs(projector_sum - np.eye(6)))),
+000300 |             )
+000301 |             for left_name, left_projector in projectors.items():
+000302 |                 worst_projector_deviation = max(
+000303 |                     worst_projector_deviation,
+000304 |                     float(np.max(np.abs(
+000305 |                         left_projector @ left_projector - left_projector))),
+000306 |                 )
+000307 |                 for right_name, right_projector in projectors.items():
+000308 |                     if left_name != right_name:
+000309 |                         worst_projector_deviation = max(
+000310 |                             worst_projector_deviation,
+000311 |                             float(np.max(np.abs(
+000312 |                                 left_projector @ right_projector))),
+000313 |                         )
+000314 | 
+000315 |             tt_projector = projectors["TT"]
+000316 |             numeric_hessian = np.block([
+000317 |                 [lattice_norm_squared * tt_projector, np.zeros((6, 6))],
+000318 |                 [np.zeros((6, 6)), tt_projector],
+000319 |             ])
+000320 |             hessian_eigenvalues = np.linalg.eigvalsh(numeric_hessian)
+000321 |             positive_eigenvalues = hessian_eigenvalues[
+000322 |                 hessian_eigenvalues > RANK_TOL]
+000323 |             all_numeric_spectra_ok &= (

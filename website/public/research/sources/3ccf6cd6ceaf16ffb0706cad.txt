@@ -1,0 +1,84 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/em-positive-root-convexity-20261013/PROOF.txt
+Original file SHA-256: c1ad319037418e7745c287132c4065cf6d963af797c5a4c81f12273e486d7b50
+Inclusive original lines: 1-76
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | EM.FP.POSITIVE_ROOT.CONVEXITY.01 — 13 October 2026
+000002 | Verdict PARTIAL: the mathematical uniqueness lemma for the fixed EM function
+000003 | is proved on the full positive half-line. Its physical selection is not proved.
+000004 | 
+000005 | Original fixed function
+000006 | ----------------------
+000007 | verification/v3_em_alpha.py, make_F with its original defaults, and
+000008 | tfpt_1_architecture_e8.tex, lemma emclosure, specify
+000009 |     c=1/(8 pi), p=1/(6 pi), d=48c^4, s=5/4, M=41,
+000010 |     q(x)=d exp(-2x), u(x)=q(x)(1-q(x))^(-s), phi(x)=p+u(x),
+000011 |     C=(4/5)c^6 M>0,
+000012 |     F(x)=x^3-2c^3 x^2+C log(phi(x)).
+000013 | These inputs and the form of F are fixed assumptions. make_F's c3v argument
+000014 | is unused in the source; its default Nfac=8 selects c as stated here.
+000015 | This proof does not silently vary c3v or infer its provenance.
+000016 | 
+000017 | The script contains a corrected-endpoint finite-difference/findroot check.
+000018 | The manuscript asserts global derivative signs around its numerical critical
+000019 | point. The following proof needs neither that critical point nor a sign scan.
+000020 | 
+000021 | 1. Domain and sign before the cubic becomes positive
+000022 | ----------------------------------------------------
+000023 | Since pi>3, c<1/24, d<48/24^4=1/6912<1/1000 and p<1/18.
+000024 | For x>=0, 0<q<=d<1/1000. Since s=5/4<2,
+000025 |     (1-q)^(-s)<(1000/999)^2<2,
+000026 | so 0<phi(x)<1/18+1/500<1. Thus F is smooth for x>=0,
+000027 | and log(phi)<0 throughout. Set t=2c^3. For 0<x<=t,
+000028 |     F(x)=x^2(x-t)+C log(phi(x))<0.
+000029 | No root is omitted near x=0. In particular F(t)<0.
+000030 | 
+000031 | 2. Exact log-convexity of the specified seam response
+000032 | ----------------------------------------------------
+000033 | Put ell=log(u), w=u/(p+u), so 0<w<1. Direct differentiation gives
+000034 |     ell'=-2-2s q/(1-q),
+000035 |     ell''=4s q/(1-q)^2>0,
+000036 |     (log(phi))''=w ell''+w(1-w)(ell')^2>0.
+000037 | This identity follows by differentiating log(p+exp(ell)); it invokes no
+000038 | asymptotic estimate of a 'small' term. The checker verifies both identities
+000039 | symbolically. Equivalently phi is a positive sum of decaying exponentials.
+000040 | 
+000041 | 3. Exactly one positive root, and it is simple
+000042 | ---------------------------------------------
+000043 | For x>=t,
+000044 |     F''(x)=6x-4c^3+C(log(phi))'' > 8c^3 >0.
+000045 | Hence F is strictly convex on [t,infinity). As x tends to infinity,
+000046 | phi tends to p>0, so the logarithm stays finite while the cubic tends to
+000047 | infinity. Continuity and F(t)<0 imply a root r>t.
+000048 | At ANY root r>t, the increasing derivative satisfies
+000049 |     F'(r) > (F(r)-F(t))/(r-t) = -F(t)/(r-t) >0.
+000050 | After the first root the derivative is positive and increasing, so a second
+000051 | root is impossible. Equivalently strict convexity and the negative left
+000052 | endpoint permit only one crossing into positive values.
+000053 | Therefore exactly one positive root exists and it is simple.
+000054 | 
+000055 | 4. Location and scope
+000056 | ---------------------
+000057 | The existing interval implementation F_iv verifies opposite definite signs at
+000058 |     0.0072973525622097 and 0.0072973525622100.
+000059 | Together with the analytic proof this brackets the unique positive root.
+000060 | The checker calls the ORIGINAL F_iv, not a replacement numerical equation.
+000061 | Its reciprocal is approximately 137.0359992168407. Approximate digits and the
+000062 | interval enclosure are separate from the global analytic uniqueness proof.
+000063 | 
+000064 | This closes the mathematical existence/uniqueness question for the stated
+000065 | function, conditional on that function and its inputs. It does not derive
+000066 | M=41, c=1/(8pi), exponent -5/4, injection48c^4, the seam response form, or the
+000067 | identification of this root with the physical fine-structure constant.
+000068 | No empirical comparison, new global TFPT claim, or physical T1–T8 closure is
+000069 | inferred. Ledger status remains Numerical; no automatic promotion is made.
+000070 | 
+000071 | The argument uses only M>0, not its integrality or the particular value41.
+000072 | Consequently every positive M has its own unique simple positive root in the
+000073 | same formula family. Implicit differentiation gives
+000074 |     dr/dM = -[(4/5)c^6 log(phi(r))]/F'(r) >0.
+000075 | Uniqueness and neighboring-budget ablations therefore do not select M=41.
+000076 | The latter compare distinct, individually well-defined outputs; their physical

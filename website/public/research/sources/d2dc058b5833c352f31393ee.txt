@@ -1,0 +1,205 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/mixed-current-origin-20261014/check_gauge_locality_completion.py
+Original file SHA-256: 00a825e406e510e445034e7b7b6aee68196bef709932c5a39beae47abbbeb69c
+Inclusive original lines: 1-197
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact control of a CONDITIONAL locality change, not its P1 derivation.
+000002 | 
+000003 | Question: can a fermion-parity Gauss completion make the existing half flux
+000004 | endpoint-local while preserving the full even physical Hilbert space and
+000005 | the original register Hamiltonian? The proof is all-size; this small exact
+000006 | CAR control checks its signs with the actual v1033 hopping coefficients.
+000007 | The first new premise is the Gauss/local-observable rule, not a new energy.
+000008 | """
+000009 | from pathlib import Path
+000010 | import hashlib
+000011 | import importlib
+000012 | import json
+000013 | import sys
+000014 | import numpy as np
+000015 | import sympy as s
+000016 | 
+000017 | [OMITTED: non-scientific conversation or execution metadata]
+000018 | sys.path.insert(0,str(ROOT/'verification'))
+000019 | v1033=importlib.import_module('v1033_charged_disorder')
+000020 | 
+000021 | 
+000022 | def need(value,label):
+000023 |     if not value:raise ValueError(label)
+000024 | 
+000025 | 
+000026 | def zero(matrix):
+000027 |     return all(s.expand(x)==0 for x in matrix.todok().values())
+000028 | 
+000029 | 
+000030 | def annihilator(m,k):
+000031 |     out=s.MutableSparseMatrix(2**m,2**m,{})
+000032 |     for bits in range(2**m):
+000033 |         if bits&(1<<k):
+000034 |             out[bits^(1<<k),bits]=(-1)**((bits&((1<<k)-1)).bit_count())
+000035 |     return out
+000036 | 
+000037 | 
+000038 | def exact_matrix(np_matrix):
+000039 |     return s.SparseMatrix([[s.nsimplify(x) for x in row] for row in np_matrix])
+000040 | 
+000041 | 
+000042 | def second_quantize(h,ops):
+000043 |     out=s.zeros(ops[0].rows)
+000044 |     for j in range(h.rows):
+000045 |         for k in range(h.cols):
+000046 |             if h[j,k]:out+=h[j,k]*ops[j].T*ops[k]
+000047 |     return s.SparseMatrix(out)
+000048 | 
+000049 | 
+000050 | # Three columns, one transverse site, both actual QWZ orbital components.
+000051 | # This is solely an exact group/CAR/sign control, not the physical width8
+000052 | # source or a new source model. The analytic isometry works for arbitrary
+000053 | # column Hilbert spaces, onsite terms and original hopping coefficients.
+000054 | L,ny=(int(sys.argv[1]) if len(sys.argv)>1 else 3),1
+000055 | m=2*L*ny
+000056 | dim=2**m
+000057 | ops=[annihilator(m,k) for k in range(m)]
+000058 | even=[n for n in range(dim) if n.bit_count()%2==0]
+000059 | states=[(r,n) for r in range(4) for n in even]
+000060 | pos={a:i for i,a in enumerate(states)}
+000061 | 
+000062 | 
+000063 | def col_parity(n,j):
+000064 |     mask=((1<<(2*ny))-1)<<(2*ny*j)
+000065 |     return (n&mask).bit_count()%2
+000066 | 
+000067 | 
+000068 | def ext_index(b,z,n):
+000069 |     return (b*2**L+z)*dim+n
+000070 | 
+000071 | 
+000072 | extended=2*2**L*dim
+000073 | E=s.MutableSparseMatrix(extended,len(states),{})
+000074 | for (r,n),col in pos.items():
+000075 |     b,w=r%2,r//2
+000076 |     for tbits in range(2**(L-1)):
+000077 |         t=[0]+[(tbits>>(j-1))&1 for j in range(1,L)]
+000078 |         z=sum((((w if j==L-1 else 0)+t[j]+t[(j+1)%L])%2)<<j for j in range(L))
+000079 |         phase=(-1)**sum(t[j]*col_parity(n,j) for j in range(1,L))
+000080 |         E[ext_index(b,z,n),col]=phase/s.sqrt(2**(L-1))
+000081 | E=s.SparseMatrix(E)
+000082 | need(E.T*E==s.eye(len(states)),'isometry on FULL even register-matter carrier')
+000083 | 
+000084 | gauss=[]
+000085 | electric=[]
+000086 | for j in range(L):
+000087 |     G=s.MutableSparseMatrix(extended,extended,{})
+000088 |     X=s.MutableSparseMatrix(extended,extended,{})
+000089 |     for b in range(2):
+000090 |         for z in range(2**L):
+000091 |             for n in range(dim):
+000092 |                 col=ext_index(b,z,n)
+000093 |                 G[ext_index(b,z^(1<<j)^(1<<((j-1)%L)),n),col]=(-1)**col_parity(n,j)
+000094 |                 X[ext_index(b,z^(1<<j),n),col]=1
+000095 |     G,X=s.SparseMatrix(G),s.SparseMatrix(X)
+000096 |     need(G*E==E,'all Gauss constraints, including anchor, on even carrier')
+000097 |     gauss.append(G);electric.append(X)
+000098 | 
+000099 | # Assemble the exact original dGamma(h_r) from the current builder.
+000100 | Hblocks=[second_quantize(exact_matrix(v1033.qwz_cylinder(L,ny,1.,r)),ops) for r in range(4)]
+000101 | H_old=s.MutableSparseMatrix(len(states),len(states),{})
+000102 | for r in range(4):
+000103 |     for n in even:
+000104 |         for nprime in even:
+000105 |             value=Hblocks[r][nprime,n]
+000106 |             if value:H_old[pos[r,nprime],pos[r,n]]=value
+000107 | H_old=s.SparseMatrix(H_old)
+000108 | 
+000109 | # The gauged hopping is obtained from the SAME coefficients: link signs z_j
+000110 | # multiply the forward QWZ hopping at every j; i^b remains at the seam.
+000111 | H_new=s.MutableSparseMatrix(extended,extended,{})
+000112 | TX=exact_matrix(v1033.TX)
+000113 | for b in range(2):
+000114 |     for z in range(2**L):
+000115 |         h=exact_matrix(v1033.qwz_cylinder(L,ny,1.,b))
+000116 |         for x in range(L):
+000117 |             amp=(s.I**b if x==L-1 else 1)
+000118 |             change=((-1)**((z>>x)&1)-1)*amp
+000119 |             if change:
+000120 |                 for a in range(2):
+000121 |                     for c in range(2):
+000122 |                         i,j=2*((x+1)%L)+a,2*x+c
+000123 |                         h[i,j]+=change*TX[a,c]
+000124 |                         h[j,i]+=s.conjugate(change*TX[a,c])
+000125 |         block=second_quantize(h,ops)
+000126 |         for n in range(dim):
+000127 |             for nprime in range(dim):
+000128 |                 if block[nprime,n]:H_new[ext_index(b,z,nprime),ext_index(b,z,n)]=block[nprime,n]
+000129 | H_new=s.SparseMatrix(H_new)
+000130 | need(zero(H_new*E-E*H_old),'EXACT original physical Hamiltonian and all time words')
+000131 | need(all(H_new*G==G*H_new for G in gauss),'local Gauss constraints commute with Hamiltonian')
+000132 | 
+000133 | W=s.diag(*[s.I**b*(-1)**z.bit_count() for b in range(2) for z in range(2**L) for n in range(dim)])
+000134 | Zold=s.diag(*[s.I**r for r,n in states])
+000135 | need(W*E==E*Zold,'old local register Z becomes global Wilson loop')
+000136 | 
+000137 | for endpoint in range(L):
+000138 |     F=s.MutableSparseMatrix(len(states),len(states),{})
+000139 |     for (r,n),col in pos.items():
+000140 |         parity=sum(col_parity(n,x) for x in range(endpoint+1))%2
+000141 |         F[pos[(r+2)%4,n],col]=(-1)**parity
+000142 |     need(electric[endpoint]*E==E*F,'existing half string becomes LOCAL electric endpoint')
+000143 | 
+000144 | # Any nontrivial register-grade q continues to obstruct old local inclusion.
+000145 | X4=s.zeros(4)
+000146 | for r in range(4):X4[(r+1)%4,r]=1
+000147 | Z4=s.diag(1,s.I,-1,-s.I)
+000148 | need(all(Z4*X4**q*Z4.conjugate().T==s.I**q*X4**q for q in range(4)),
+000149 |      'all register grades survive arbitrary matter dressing and homogeneous words')
+000150 | 
+000151 | # Independently check the one-particle gauge covariance at the ACTUAL width8.
+000152 | # All values are binary rationals times powers of i, so these identities are
+000153 | # exact in floating representation, not tolerance-based spectral checks.
+000154 | def signed_cylinder(nx,ny,b,z):
+000155 |     h=v1033.qwz_cylinder(nx,ny,1.,b).copy()
+000156 |     for x in range(nx):
+000157 |         if (z>>x)&1:
+000158 |             change=-2*(1j**b if x==nx-1 else 1)
+000159 |             for y in range(ny):
+000160 |                 i=2*((x+1)%nx*ny+y)
+000161 |                 j=2*(x*ny+y)
+000162 |                 h[i:i+2,j:j+2]+=change*v1033.TX
+000163 |                 h[j:j+2,i:i+2]+=np.conj(change)*v1033.TX.conj().T
+000164 |     return h
+000165 | 
+000166 | width8_cases=0
+000167 | for b in range(2):
+000168 |     for z in range(8):
+000169 |         h=signed_cylinder(3,8,b,z)
+000170 |         for x in range(3):
+000171 |             u=np.ones(48)
+000172 |             u[16*x:16*(x+1)]=-1
+000173 |             znew=z^(1<<x)^(1<<((x-1)%3))
+000174 |             need(np.array_equal(u[:,None]*h*u[None,:],signed_cylinder(3,8,b,znew)),
+000175 |                  'actual width8 QWZ gauge covariance with SAME coefficients')
+000176 |             width8_cases+=1
+000177 | 
+000178 | result={
+000179 |     'date':'2026-10-22',
+000180 |     'verdict':'EXACT_GAUSS_LOCALITY_COMPLETION_CONDITIONAL_NOT_P1_DERIVED',
+000181 |     'control_columns':L,'control_transverse_sites':ny,
+000182 |     'original_even_physical_dimension':len(states),
+000183 |     'extended_redundant_dimension':extended,
+000184 |     'isometry_and_all_Gauss_constraints_exact':True,
+000185 |     'same_original_QWZ_hopping_coefficients_and_physical_H_exact':True,
+000186 |     'half_flux_maps_to_local_electric_link_operator_exact':True,
+000187 |     'old_register_Z_maps_to_GLOBAL_Wilson_loop_exact':True,
+000188 |     'actual_width8_one_body_gauge_covariance_cases':width8_cases,
+000189 |     'no_new_physical_dimension_or_energy_coefficient':True,
+000190 |     'first_new_assumption':'Local Gauss constraints and gauge-invariant local observable assignment; not supplied by original P1.',
+000191 |     'full_Dirac_chiral_measure_selected':False,
+000192 |     'second_edge_removed':False,
+000193 |     'E8_spinor_origin_derived':False,
+000194 |     'source_sha256':hashlib.sha256((ROOT/'verification/v1033_charged_disorder.py').read_bytes()).hexdigest(),
+000195 | }
+000196 | Path(__file__).with_name('gauge-locality-completion-results.json').write_text(json.dumps(result,indent=2)+'\n')
+000197 | print(json.dumps(result,indent=2))

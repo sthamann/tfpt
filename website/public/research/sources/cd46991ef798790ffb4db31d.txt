@@ -1,0 +1,151 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/GRADED-DETERMINANT-SOURCE.txt
+Original file SHA-256: 9cadaa53b70ebb666109f9cc7a02c07292a6faacf03eae79bf3d235682bf6952
+Inclusive original lines: 652-794
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000652 | Independent review of KMS-AND-CARRIER-TRANSPORT
+000653 | ================================================
+000654 | 
+000655 | Reviewed artifacts
+000656 | ------------------
+000657 | 
+000658 | * `KMS-AND-CARRIER-TRANSPORT.txt`
+000659 |   SHA-256: 9ce5e1b546392a82fe5f0d81bc55c5f41441e8c000ac792f3f15ccb2b1adc8bb
+000660 | * `check_kms_carrier_transport.py`
+000661 |   SHA-256: fbab52d3f3f93130a9fda6dd5015de5ff863e7ebd11a2283a28175674891bc34
+000662 | 
+000663 | The checker was copied to a temporary directory and run with `python3 -B -OO`,
+000664 | so no Root-owned result file was rewritten. Verdict: PASS. The run reported 12
+000665 | cover/reverse-winding controls and PASS for finite cyclic compensation, pure
+000666 | partial retention and EM reference normalization.
+000667 | 
+000668 | Review verdict
+000669 | --------------
+000670 | 
+000671 | PROVED under the operator assumptions stated in Sections 2-7. The physical KMS
+000672 | source identification and the positive relative Dirac determinant identity in
+000673 | Section 9 remain CONDITIONAL exactly where the report marks them conditional.
+000674 | No error was found in the four requested points.
+000675 | 
+000676 | Section 6: universal finite-rank compression loss
+000677 | -------------------------------------------------
+000678 | For the thermal circle covariance,
+000679 | 
+000680 |   D_beta=u C_beta u*-C_beta
+000681 | 
+000682 | is diagonal in the Fourier basis with strictly positive entries d_n and
+000683 | Tr D_beta=1. Thus D_beta is positive, trace class and injective. Let F be any
+000684 | finite-rank orthogonal projection and Q=I-F. Since the circle Hilbert space is
+000685 | infinite dimensional, Q is nonzero. Trace cyclicity for a trace-class operator
+000686 | and the orthogonal decomposition give
+000687 | 
+000688 |   Tr D_beta=Tr(F D_beta F)+Tr(Q D_beta Q).
+000689 | 
+000690 | The second compression is a nonzero positive trace-class operator: for every
+000691 | nonzero q in Ran Q,
+000692 | 
+000693 |   <q,D_beta q>>0.
+000694 | 
+000695 | Hence Tr(QD_beta Q)>0 and therefore
+000696 | 
+000697 |   0<=Tr(FD_beta F)<1.
+000698 | 
+000699 | No commutation between F and D_beta is used. If F is nonzero, the lower bound is
+000700 | also strict; allowing the zero projection explains the report's weak lower
+000701 | bound.
+000702 | 
+000703 | For the finite-dimensional compressed relative determinant,
+000704 | 
+000705 |   D_F(z)=det[(I_F-z F C'_beta F)(I_F-z F C_beta F)^(-1)],
+000706 | 
+000707 | Jacobi's formula at z=0 gives
+000708 | 
+000709 |   D_F'(0)=-Tr(F(C'_beta-C_beta)F)=-Tr(FD_beta F)>-1.
+000710 | 
+000711 | Since (1-z)' at zero is -1, D_F cannot equal 1-z on any open z domain. Moreover
+000712 | C_beta and I-C_beta have trivial kernel. On the unit sphere of a finite F this
+000713 | implies strictly positive minima for both compressed quadratic forms, so
+000714 | 
+000715 |   0<F C_beta F<I_F,
+000716 |   0<F C'_beta F<I_F.
+000717 | 
+000718 | Their relative determinant is therefore finite and nonzero at z=1, whereas
+000719 | 1-z vanishes. Both arguments in Section 6 are valid. The scope exclusion for an
+000720 | infinite-rank spacetime projection with only finite internal rank is necessary
+000721 | and correctly stated.
+000722 | 
+000723 | Section 7: exact Schur transport
+000724 | --------------------------------
+000725 | For |z|<1, A,A' and their QQ compressions are invertible by the Neumann bound.
+000726 | Invertibility of the Schur complements follows from the standard block
+000727 | factorization. Because F is finite dimensional, every off-diagonal unipotent
+000728 | factor differs from I by finite rank, is nilpotent off the diagonal and has
+000729 | Fredholm determinant one. Since A'-A is trace class, its QQ compression is trace
+000730 | class, so
+000731 | 
+000732 |   det_rel(A'_QQ,A_QQ)
+000733 | 
+000734 | exists. Ordinary Fredholm multiplicativity gives exactly
+000735 | 
+000736 |   det_rel(A',A)
+000737 |    =det(S'_F S_F^(-1)) det_rel(A'_QQ,A_QQ).
+000738 | 
+000739 | There is no zeta-determinant multiplicative anomaly in this calculation. The
+000740 | covariance formula
+000741 | 
+000742 |   S_F=I_F-zC_F-z^2 C_FQ(I_Q-zC_QQ)^(-1)C_QF
+000743 | 
+000744 | has the correct sign and power of z. Thus carrier Schur factor plus complement
+000745 | retains 1-z for every finite orthogonal F, while naive FCF generally does not.
+000746 | 
+000747 | Section 5: full NS cover
+000748 | ------------------------
+000749 | On the antiperiodic cover, modes k+1/2 split by parity as
+000750 | 
+000751 |   2(m+1/4),  2(m+3/4),
+000752 | 
+000753 | which gives
+000754 | 
+000755 |   B_cov=2(B_(1/4) direct_sum B_(3/4)).
+000756 | 
+000757 | Multiplication by the cover coordinate swaps parity sectors and has the stated
+000758 | matrix
+000759 | 
+000760 |   u_cov=[[0,u_base],[I,0]],
+000761 |   u_cov^2=diag(u_base,u_base).
+000762 | 
+000763 | The primitive cover shift crosses one Fermi level, so its relative determinant
+000764 | is 1-z. Its square crosses two and gives (1-z)^2. Functional calculus must be
+000765 | applied to the full B_cov before the parity decomposition, as the report says;
+000766 | this introduces no selector of one quarter sector. Section 5 is correct.
+000767 | 
+000768 | Section 9: EM reference normalization
+000769 | -------------------------------------
+000770 | With q(alpha)=delta_top exp(-2alpha),
+000771 | 
+000772 |   q(0)=delta_top !=0.
+000773 | 
+000774 | Therefore normalization at alpha_*=0 divides by 1-delta_top. It cannot be
+000775 | replaced by the seam-free reference q_ref=0. The checker's exact example,
+000776 | 
+000777 |   delta_top=1/16,
+000778 |   q(alpha)=1/32,
+000779 |   (1-q(alpha))/(1-q(0))=31/30,
+000780 | 
+000781 | correctly detects the missing denominator. Section 9 also keeps the needed
+000782 | boundaries: b=5/4 and the physical EM identification are not consequences of
+000783 | the Fredholm index theorem; the positive Dirac relative determinant, local
+000784 | counterterms and complete-sector residual normalization remain required.
+000785 | 
+000786 | Final precision
+000787 | ---------------
+000788 | The combined document proves an exact mathematical transport on the old circle
+000789 | and on its full NS cover. It does not yet prove that the active finite collar
+000790 | Hamiltonian is beta B_cov, that the active carrier projection is a finite-rank
+000791 | circle projection, or that the physical charged Dirac measure satisfies the
+000792 | relative determinant identity in equation (13). These are explicit conditions,
+000793 | not hidden defects in the operator proof. Under them, the continuation is
+000794 | sufficient; without them, the physical source identification remains open.

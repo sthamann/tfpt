@@ -1,0 +1,56 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/root_verify_fuchs_frame.py
+Original file SHA-256: 540e727b364c984f6e2755799af8f9344466362148ba0ad27ccf01a5a971b9bd
+Inclusive original lines: 1-48
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Independent substitution of the explicit v117 frame, over Q(omega)(w).
+000002 | 
+000003 | Checks all three ORIGINAL equations and the determinant.  Does not fit a
+000004 | target matrix, derive row2/row1 recursively, or use the candidate solver.
+000005 | """
+000006 | import json
+000007 | from pathlib import Path
+000008 | import sympy as S
+000009 | 
+000010 | w, om = S.symbols('w om')
+000011 | K = S.QQ.frac_field(w)
+000012 | mod = S.Poly(om**2 + om + 1, om, domain=K)
+000013 | 
+000014 | def r(x):
+000015 |     n, d = S.fraction(S.cancel(x))
+000016 |     n = S.Poly(n, om, domain=K).rem(mod)
+000017 |     d = S.Poly(d, om, domain=K).rem(mod)
+000018 |     return S.cancel((n*S.invert(d, mod)).rem(mod).as_expr())
+000019 | 
+000020 | s = (1+w**3)/(1-w**3)  # z^2
+000021 | ell = 3*w**2/(1-w**6)  # z'/z in w coordinate
+000022 | D = r(s*s-1)
+000023 | H = (w+1)/(w+om)
+000024 | k = r(S.diff(H, w)/(2*H))
+000025 | p1 = 4*(-(1+om)*w**3+(1-om)*w**2+(om+2)*w+om)/(9*(w**3-1))
+000026 | p2 = ((1+om)*w+om)/(w+1)
+000027 | p3 = ((1+om)*w-om)/(w+1)
+000028 | residual = [
+000029 |     r(S.diff(p1,w)+k*p1-ell*s*s/D*(2*p1+S.Rational(8,9)*p2)),
+000030 |     r(S.diff(p2,w)+(k+ell)*p2-ell/D*(p1+s*s*p2+S.Rational(5,9)*s*p3)),
+000031 |     r(S.diff(p3,w)+(k+ell)*p3-ell/D*(s*p2+s*s*p3)),
+000032 | ]
+000033 | P = S.Matrix([[r(p.subs(w,om**j*w)) for j in range(3)]
+000034 |               for p in (p1,p2,p3)])
+000035 | det_scaled = r(s*P.det()/D)
+000036 | answer = {
+000037 |     'original_three_equation_residuals': [str(x) for x in residual],
+000038 |     's_detP_over_z4_minus_1': str(det_scaled),
+000039 |     'determinant_expected_residual': str(r(det_scaled+2*(2*om+1))),
+000040 |     'detG': '-27*sqrt(2)*(2*omega+1)*(z^4-1)/10',
+000041 |     'det_normalized_Psi': '1-z^4',
+000042 |     'method': 'exact direct substitution over Q(omega)(w), no fitted coefficients',
+000043 | }
+000044 | if any(x != 0 for x in residual) or r(det_scaled+2*(2*om+1)) != 0:
+000045 |     raise ArithmeticError(answer)
+000046 | Path(__file__).with_name('ROOT-FUCHS-FRAME-CHECK.json').write_text(
+000047 |     json.dumps(answer, indent=2)+'\n')
+000048 | print(json.dumps(answer, indent=2))

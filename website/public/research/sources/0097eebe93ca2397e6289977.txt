@@ -1,0 +1,183 @@
+TFPT scientific source excerpt
+Original repository path: documents/archive--paper-latex--tfpt-42/sections/013-subsection-canonical-spectral-einstein-functional-and-ge.tex
+Original file SHA-256: cf8d7223809483d73e3326f62cee6fadc08dcf81175902637b9053152a3b79ee
+Inclusive original lines: 1-175
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | \subsection{Canonical spectral Einstein functional and geometric Hodge closure}
+000002 | 
+000003 | The local target action is written as the low-curvature expansion of a canonical spectral
+000004 | Einstein functional:
+000005 | \begin{equation}
+000006 | \label{eq:chi-effective-action}
+000007 | \begin{aligned}
+000008 | \Gammaeff
+000009 | =
+000010 | \int d^4x\sqrt{-g}\,
+000011 | \Big[
+000012 | c_R\chigeo^2R
+000013 | +Z_\chi(\partial\chigeo)^2
+000014 | -\mu_\Phi^2(\chigeo)\,\Phi^\dagger\Phi
+000015 | +\lambda_\Phi(\Phi^\dagger\Phi)^2
+000016 | +\frac{1}{6M^2}R^2
+000017 | +\cdots
+000018 | \Big].
+000019 | \end{aligned}
+000020 | \end{equation}
+000021 | The relative bosonic endomorphism used below is
+000022 | \begin{equation}
+000023 | \label{eq:relative-bosonic-endomorphism}
+000024 | E_{\mathrm{rel}}
+000025 | =
+000026 | -\frac14 R\,\mathbf 1_{48}
+000027 | -
+000028 | (\Phi^\dagger\Phi)\,P_2
+000029 | +
+000030 | \frac12\gamma^{\mu\nu}\mathbb F_{\mu\nu},
+000031 | \end{equation}
+000032 | and the resulting low-curvature residue decomposition is summarized in
+000033 | \Cref{tab:heat-kernel-map}.
+000034 | 
+000035 | \begin{table}[t]
+000036 | \centering
+000037 | \scriptsize
+000038 | \setlength{\tabcolsep}{3pt}
+000039 | \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.15\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.14\linewidth}>{\raggedright\arraybackslash}p{0.14\linewidth}@{}}
+000040 | \toprule
+000041 | Residue term & Operator sector & Generated term & $\chigeo$ scaling & Role \\
+000042 | \midrule
+000043 | $a_0$ & relative bulk trace & vacuum-energy bookkeeping & $\chigeo^4$ & Hard \\
+000044 | $a_2$ & seam-even bosonic bulk term & $\chigeo^2R$, $\chigeo^2\Phi^\dagger\Phi$ & $\chigeo^2$ & Closure \\
+000045 | $a_4$ & local bosonic sector & $|D\Phi|^2$, $(\Phi^\dagger\Phi)^2$, $R\,\Phi^\dagger\Phi$, $\tr\mathbb F^2$, $R^2$ & $\chigeo^0$ & Closure \\
+000046 | boundary/defect term & seam correction and parity data & local defect counterterms, seam-even selection & $\Delta_{\Seam}$ & Closure \\
+000047 | $\eta$ term & APS spectral asymmetry & sign and spectral-flow control & scale free & Closure \\
+000048 | \bottomrule
+000049 | \end{tabular}
+000050 | \caption{Low-curvature residue map for the canonical spectral Einstein functional.}
+000051 | \label{tab:heat-kernel-map}
+000052 | \end{table}
+000053 | 
+000054 | The resulting geometric logic is displayed in \Cref{fig:chi-bifurcation}. The canonical spectral
+000055 | residue fixes the Einstein term first; the low-curvature expansion then yields the Higgs
+000056 | normalization, the Higgs vacuum relation, and the retained curvature/gauge side terms. This is
+000057 | why the local spectral-scale sector is the principal geometric closure channel of the manuscript
+000058 | rather than just one more scalar parameter.
+000059 | 
+000060 | \begin{figure}[t]
+000061 | \centering
+000062 | \scriptsize
+000063 | \begin{tikzpicture}[
+000064 |     >=Latex,
+000065 |     node distance=8mm and 11mm,
+000066 |     a2/.style={draw=blue!60!black, fill=blue!6, rounded corners, align=center, text width=2.4cm, minimum height=0.9cm},
+000067 |     a4/.style={draw=purple!70!black, fill=purple!7, rounded corners, align=center, text width=2.4cm, minimum height=0.9cm},
+000068 |     flow/.style={draw=orange!75!black, fill=orange!8, rounded corners, align=center, text width=2.35cm, minimum height=0.95cm},
+000069 |     outbox/.style={draw=green!50!black, fill=green!8, rounded corners, align=center, text width=2.6cm, minimum height=0.95cm}
+000070 | ]
+000071 | \node[a2] (a2node) {canonical spectral residue\\Einstein seed};
+000072 | \node[a4, right=24mm of a2node] (a4node) {low-curvature expansion\\Higgs / curvature terms};
+000073 | 
+000074 | \node[flow, below=of a2node] (ein0) {$\chigeo^2R$\\Einstein term first};
+000075 | \node[flow, below=of a4node] (kin0) {$|D\Phi|^2,\ (\Phi^\dagger\Phi)^2$\\$\tr\mathbb F^2,\ R^2$};
+000076 | \node[flow, below=of $(ein0)!0.5!(kin0)$, yshift=-3mm] (chi) {same seam-even $\chigeo$ channel\\canonical spectral functional};
+000077 | 
+000078 | \node[outbox, below left=of chi] (mpl) {$\Mpl^2=\chigeozero^2/(2\pi^2)$\\Einstein branch};
+000079 | \node[outbox, below=of chi] (zh) {$Z_H=1/(16\pi^2)$\\canonical Higgs normalization};
+000080 | \node[outbox, below right=of chi] (vev) {$\vgeo^2=Z_H\,\mu_\Phi^2(\chigeozero)/\lambda_\Phi$\\Higgs vacuum branch};
+000081 | \node[flow, right=18mm of vev] (curv) {$R^2/M^2,\ \tr\mathbb F^2$\\higher-curvature / gauge branch};
+000082 | 
+000083 | \draw[->, thick] (a2node) -- (ein0);
+000084 | \draw[->, thick] (a4node) -- (kin0);
+000085 | \draw[->, thick] (ein0) -- (chi);
+000086 | \draw[->, thick] (kin0) -- (chi);
+000087 | \draw[->, thick] (chi) -- (mpl);
+000088 | \draw[->, thick] (chi) -- (zh);
+000089 | \draw[->, thick] (chi) -- (vev);
+000090 | \draw[->, thick] (kin0.east) -- (curv.west);
+000091 | \draw[->, thick] (zh) -- (vev);
+000092 | \end{tikzpicture}
+000093 | \caption{Canonical spectral flow of the local spectral-scale channel. The spectral residue fixes the
+000094 | Einstein term first; the low-curvature expansion then yields Higgs normalization, the Higgs
+000095 | vacuum branch, and the retained $R^2$/gauge side terms.}
+000096 | \label{fig:chi-bifurcation}
+000097 | \end{figure}
+000098 | 
+000099 | \begin{theorem}[Canonical spectral Einstein functional and scalaron seed]
+000100 | \label{prop:canonical-bosonic-normalization}
+000101 | \label{thm:canonical-einstein-residue}
+000102 | In four dimensions the seam-even relative residue expansion gives
+000103 | \[
+000104 | \mathcal E_D
+000105 | =
+000106 | -\int d^4x\sqrt g
+000107 | \left(
+000108 | \frac{1}{24\pi^2}R
+000109 | +
+000110 | \frac{1}{48\pi^2}\Phi^\dagger\Phi
+000111 | \right)
+000112 | +
+000113 | \mathcal E_\Sigma,
+000114 | \]
+000115 | and
+000116 | \[
+000117 | \begin{aligned}
+000118 | \Gamma_D^{(4)}
+000119 | ={}&
+000120 | \int d^4x\sqrt g
+000121 | \Big(
+000122 | \frac{1}{16\pi^2}|D\Phi|^2
+000123 | +\frac{1}{16\pi^2}(\Phi^\dagger\Phi)^2
+000124 | +\frac{1}{96\pi^2}R\,\Phi^\dagger\Phi
+000125 | \\
+000126 | &\qquad
+000127 | +\frac{1}{192\pi^2}\tr\mathbb F^2
+000128 | +\frac{1}{6M^2}R^2
+000129 | +\cdots
+000130 | \Big)
+000131 | +\mathcal A_\Sigma.
+000132 | \end{aligned}
+000133 | \]
+000134 | The seam-even scale channel $\chigeo$ is the unique scalar geometric mode on the retained branch;
+000135 | together with the retained $R^2$ term it forms a positive scalaron block, so no independent
+000136 | conformal negative mode survives as a separate physical degree of freedom.
+000137 | Therefore
+000138 | \[
+000139 | \Gamma_{\mathrm{grav}}
+000140 | :=
+000141 | -6\chigeo^2\mathcal E_D+\Gamma_D^{(4)}
+000142 | \]
+000143 | has low-curvature form
+000144 | \[
+000145 | \Gamma_{\mathrm{grav}}
+000146 | =
+000147 | \int d^4x\sqrt g
+000148 | \left(
+000149 | \frac{\Mpl^2}{2}R
+000150 | +
+000151 | \frac{\Mpl^2}{12M^2}R^2
+000152 | +
+000153 | |D\Phi|^2
+000154 | -V(\Phi,\chigeo)
+000155 | -\sum_a \frac{1}{4g_a^2}\tr F_a^2
+000156 | +\cdots
+000157 | \right),
+000158 | \]
+000159 | with
+000160 | \[
+000161 | \Mpl^2=\frac{\chigeozero^2}{2\pi^2},
+000162 | \qquad
+000163 | Z_H=\frac{1}{16\pi^2},
+000164 | \qquad
+000165 | \Phi_{\mathrm{can}}:=\sqrt{Z_H}\,\Phi=\frac{\Phi}{4\pi},
+000166 | \]
+000167 | and therefore
+000168 | \begin{equation}
+000169 | \label{eq:induced-einstein}
+000170 | \Mpl^2=\frac{\chigeozero^2}{2\pi^2},
+000171 | \qquad
+000172 | \vgeo^2=Z_H\,\frac{\mu_\Phi^2(\chigeozero)}{\lambda_\Phi}.
+000173 | \end{equation}
+000174 | After \Cref{thm:absolute-spectral-planck-closure}, the first identity is equivalently
+000175 | \[

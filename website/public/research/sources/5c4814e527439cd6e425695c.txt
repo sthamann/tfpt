@@ -1,0 +1,76 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_b1_graded_charge_transport.py
+Original file SHA-256: 5ddadb584e44a922c029e8e2095def3611329ce1af5ce1223029cde2fb8d6875
+Inclusive original lines: 1-68
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Decisive invariant for the existing actual v252 real-gauge dictionary.
+000002 | 
+000003 | Compare the specified grading/charge tuples, not all conceivable physical
+000004 | carrier maps. No anomaly-free condition is substituted for source derivation.
+000005 | """
+000006 | from pathlib import Path
+000007 | import json
+000008 | import sys
+000009 | import numpy as np
+000010 | import sympy as s
+000011 | 
+000012 | ROOT=Path(__file__).resolve().parents[4]
+000013 | sys.path.insert(0,str(ROOT/'verification'))
+000014 | import v252_full_finite_triple as finite
+000015 | K=finite.Kswap()
+000016 | # Infinitesimal original connected unimodular lift:
+000017 | # lambda=exp(it/2), m=exp(-it/6)I3, q=I2.
+000018 | # Evaluate its derivative multiplied by 6, using Gaussian integers.
+000019 | left6=finite.rep(3j,np.zeros((2,2)), -1j*np.eye(3)).imag
+000020 | Y6=left6-K@left6@K
+000021 | assert np.all(Y6==np.round(Y6))
+000022 | charges6=[int(x) for x in np.diag(Y6)]
+000023 | g=s.diag(*[int(x) for x in np.diag(finite.grading())])
+000024 | q48=[int(name in ('u','d')) for name,ch,colour,family in finite.P]
+000025 | q=s.diag(*(q48+q48))
+000026 | gp=g*(2*q-s.eye(96))
+000027 | Y=s.diag(*[s.Rational(x,6) for x in charges6])
+000028 | def trace_power(grading,k):
+000029 |     return sum(grading[i,i]*Y[i,i]**k for i in range(96))
+000030 | def spectrum(grading):
+000031 |     counts={}
+000032 |     for i in range(96):
+000033 |         key=f'grade={grading[i,i]},Y={Y[i,i]}'
+000034 |         counts[key]=counts.get(key,0)+1
+000035 |     return counts
+000036 | actual=trace_power(g,3)
+000037 | alternative=trace_power(gp,3)
+000038 | sign_class=[]
+000039 | for sq,sl in ((1,1),(1,-1),(-1,1),(-1,-1)):
+000040 |     grading=g*(sq*q+sl*(s.eye(96)-q))
+000041 |     sign_class.append({'quark_sign':sq,'lepton_sign':sl,
+000042 |                        'trace3':str(trace_power(grading,3)),
+000043 |                        'trace5':str(trace_power(grading,5)),
+000044 |                        'same_joint_multiplicities_as_original':spectrum(grading)==spectrum(g)})
+000045 | expected_particle=[]
+000046 | for name,ch,colour,family in finite.P:
+000047 |     expected_particle.append(({'nu':-3,'e':-3,'u':1,'d':1} if ch=='L' else {'nu':0,'e':-6,'u':4,'d':-2})[name])
+000048 | checks={
+000049 |     'original_real_gauge_charge_diagonal':s.Matrix([[int(x) for x in row] for row in Y6])==6*Y,
+000050 |     'original_real_gauge_matches_actual_SM_field_charges':charges6==expected_particle+[-x for x in expected_particle],
+000051 |     'original_total_cubic_graded_trace_zero':actual==0,
+000052 |     'quark_cubic_trace_minus_9_over_2':s.trace(q*g*Y**3)==-s.Rational(9,2),
+000053 |     'lepton_cubic_trace_plus_9_over_2':s.trace((s.eye(96)-q)*g*Y**3)==s.Rational(9,2),
+000054 |     'alternative_cubic_graded_trace_minus_9':alternative==-9,
+000055 |     'no_unitary_simultaneously_intertwines_specified_grading_and_charge':actual!=alternative,
+000056 |     'joint_graded_charge_multiplicities_different':spectrum(g)!=spectrum(gp),
+000057 |     'original_fifth_graded_trace_10_over_3':trace_power(g,5)==s.Rational(10,3),
+000058 |     'only_original_sign_choice_preserves_fixed_joint_dictionary':sum(x['same_joint_multiplicities_as_original'] for x in sign_class)==1 and sign_class[0]['same_joint_multiplicities_as_original'],
+000059 | }
+000060 | result={'contract':'B1-GRADED-CHARGE-TRANSPORT-20261030','checks':checks,
+000061 |         'original_cubic_graded_trace':str(actual),'alternative_cubic_graded_trace':str(alternative),
+000062 |         'original_joint_multiplicities':spectrum(g),'alternative_joint_multiplicities':spectrum(gp),
+000063 |         'complete_four_sector_sign_class':sign_class,
+000064 |         'scope':'No unitary U with U*Y U=Y and U*gamma U=gamma(2q-I). Applies to the specified graded charge tuple only. Does not exclude alternate source maps with another transported intrinsic grading, extra sectors or inflow. Does not derive physical P_F.',
+000065 |         'all_passed':all(checks.values())}
+000066 | Path(__file__).with_name('B1-GRADED-CHARGE-TRANSPORT.json').write_text(json.dumps(result,indent=2)+'\n')
+000067 | print(json.dumps(result,indent=2))
+000068 | assert result['all_passed']

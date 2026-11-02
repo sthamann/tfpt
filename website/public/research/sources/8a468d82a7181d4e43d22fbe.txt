@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/admissible_pair_20261028/admissible_pair_source.py
+Original file SHA-256: 108640d5938126a1b610b16c0844a64e14b290a10b612af85eaf7c5af8f854be
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact two leg Choi witness for the Hodge and old twenty event channels.
+000003 | 
+000004 | The old Kraus matrices are reconstructed by the pinned original source.  The
+000005 | Hodge matrices and the six duad charts come from the pinned preceding local
+000006 | checker.  This file tests an operator statement in that common chart.  It
+000007 | does not add an instrument, a preparation rule, or a physical identification
+000008 | of the old Bell module with an SU(5) module.
+000009 | """
+000010 | from __future__ import annotations
+000011 | 
+000012 | import argparse
+000013 | import hashlib
+000014 | import importlib.util
+000015 | import itertools as it
+000016 | import json
+000017 | from fractions import Fraction
+000018 | from pathlib import Path
+000019 | 
+000020 | import numpy as np
+000021 | import sympy as sp
+000022 | 
+000023 | 
+000024 | HERE = Path(__file__).resolve().parent
+000025 | WORK = HERE.parent
+000026 | [OMITTED: non-scientific conversation or execution metadata]
+000027 | OLD_SOURCE = REPO / "experiments/theory-contracts/compiler-correlated-event-clock-20260919/source_channel.py"
+000028 | OLD_PROOF = REPO / "experiments/theory-contracts/compiler-correlated-event-clock-20260919/PROOF.txt"
+000029 | HODGE_DIR = WORK / "research-20261028-hodge-complement-channel"
+000030 | if not HODGE_DIR.is_dir():
+000031 |     HODGE_DIR = REPO / "experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/hodge_complement_20261028"
+000032 | HODGE_CHECKER = HODGE_DIR / "hodge_complement_channel.py"
+000033 | HODGE_RESULT = HODGE_DIR / "result.json"
+000034 | A4_REVIEW = HODGE_DIR / "E8-A4-PARENT-REVIEW.txt"
+000035 | PINS = {
+000036 |     str(OLD_SOURCE): "3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593",
+000037 |     str(OLD_PROOF): "bf1f85c99f5f89a0a15da1af5e3ff321c2756fda132a9f8d644f9ce0e08c2f5c",
+000038 |     str(HODGE_CHECKER): "72b04a5bf8b3bd805568af49dec76bd97926fcff4009a830137e2d318807522b",
+000039 |     str(HODGE_RESULT): "811d82cbc63efee9551887ba3ddecb70c7330934d322069ae19f10de25025062",
+000040 |     str(A4_REVIEW): "7199b91ec2f24c4d17a5519758c49e19a11a4bac7fd59b34f134a38de15eb221",
+000041 | }
+000042 | 
+000043 | checks: list[str] = []
+000044 | 
+000045 | 
+000046 | def require(ok: bool, name: str) -> None:
+000047 |     if not bool(ok):
+000048 |         raise RuntimeError(name)
+000049 |     checks.append(name)
+000050 | 
+000051 | 
+000052 | def load_module(name: str, path: Path):
+000053 |     spec = importlib.util.spec_from_file_location(name, path)
+000054 |     require(spec is not None and spec.loader is not None, f"import specification {name}")
+000055 |     module = importlib.util.module_from_spec(spec)
+000056 |     spec.loader.exec_module(module)
+000057 |     return module
+000058 | 
+000059 | 
+000060 | def exterior_two_differential(X: np.ndarray, pairs, pair_index) -> np.ndarray:
+000061 |     """Differential of Lambda squared on a Gaussian integer matrix."""
+000062 |     out = np.zeros((10, 10), dtype=np.complex128)
+000063 |     for col, (i, j) in enumerate(pairs):
+000064 |         for a in range(5):
+000065 |             if X[a, i] and a != j:
+000066 |                 pair = tuple(sorted((a, j)))
+000067 |                 out[pair_index[pair], col] += (1 if a < j else -1) * X[a, i]
+000068 |             if X[a, j] and a != i:
+000069 |                 pair = tuple(sorted((i, a)))
+000070 |                 out[pair_index[pair], col] += (1 if i < a else -1) * X[a, j]
+000071 |     return out
+000072 | 
+000073 | 
+000074 | def su5_generators() -> list[tuple[str, np.ndarray]]:
+000075 |     """A Gaussian integer anti Hermitian basis of su(5)."""
+000076 |     generators = []
+000077 |     for a, b in it.combinations(range(5), 2):
+000078 |         X = np.zeros((5, 5), dtype=np.complex128)
+000079 |         X[a, b], X[b, a] = 1, -1
+000080 |         generators.append((f"A{a}{b}", X))
+000081 |         X = np.zeros((5, 5), dtype=np.complex128)
+000082 |         X[a, b], X[b, a] = 1j, 1j
+000083 |         generators.append((f"S{a}{b}", X))
+000084 |     for a in range(4):
+000085 |         X = np.zeros((5, 5), dtype=np.complex128)
+000086 |         X[a, a], X[4, 4] = 1j, -1j
+000087 |         generators.append((f"D{a}", X))
+000088 |     require(len(generators) == 24, "24 anti Hermitian su5 generators")
+000089 |     return generators
+000090 | 
+000091 | 
+000092 | def sm_generators() -> list[tuple[str, np.ndarray]]:
+000093 |     """One fixed su(3)+su(2)+u(1) inside su(5)."""
+000094 |     generators = []
+000095 |     for a, b in it.combinations(range(3), 2):
+000096 |         X = np.zeros((5, 5), dtype=np.complex128)
+000097 |         X[a, b], X[b, a] = 1, -1
+000098 |         generators.append((f"su3-A{a}{b}", X))
+000099 |         X = np.zeros((5, 5), dtype=np.complex128)
+000100 |         X[a, b], X[b, a] = 1j, 1j
+000101 |         generators.append((f"su3-S{a}{b}", X))
+000102 |     X = np.zeros((5, 5), dtype=np.complex128)
+000103 |     X[3, 4], X[4, 3] = 1, -1
+000104 |     generators.append(("su2-A34", X))
+000105 |     X = np.zeros((5, 5), dtype=np.complex128)
+000106 |     X[3, 4], X[4, 3] = 1j, 1j
+000107 |     generators.append(("su2-S34", X))
+000108 |     generators.extend([
+000109 |         ("su3-D0", np.diag([1j, 0, -1j, 0, 0]).astype(np.complex128)),
+000110 |         ("su3-D1", np.diag([0, 1j, -1j, 0, 0]).astype(np.complex128)),
+000111 |         ("su2-D", np.diag([0, 0, 0, 1j, -1j]).astype(np.complex128)),
+000112 |         ("Y", np.diag([-2j, -2j, -2j, 3j, 3j]).astype(np.complex128)),
+000113 |     ])
+000114 |     require(len(generators) == 12, "12 generators of one fixed SM subgroup")
+000115 |     return generators
+000116 | 
+000117 | 
+000118 | def two_leg_generator(X: np.ndarray, pairs, pair_index) -> np.ndarray:
+000119 |     r = exterior_two_differential(X, pairs, pair_index)
+000120 |     eye = np.eye(10, dtype=np.complex128)
+000121 |     return np.kron(r, eye) + np.kron(eye, r)
+000122 | 
+000123 | 
+000124 | def exact_complex_integer(a: np.ndarray) -> np.ndarray:
+000125 |     require(np.array_equal(a.real, np.rint(a.real)), "Gaussian integer real part")
+000126 |     require(np.array_equal(a.imag, np.rint(a.imag)), "Gaussian integer imaginary part")
+000127 |     return np.rint(a.real).astype(np.int64) + 1j * np.rint(a.imag).astype(np.int64)
+000128 | 
+000129 | 
+000130 | def old_kraus_for_mark(old, hodge, mark, bell, six, mapping):
+000131 |     idx, *_ = old.marked_data(mark, bell, six, mapping)
+000132 |     chart, rename = hodge.duad_chart(mark, mapping)
+000133 |     groups = {m: [] for m in range(5)}
+000134 |     all_kraus = []
+000135 |     for k in idx:
+000136 |         U = bell[k]
+000137 |         permutation = old.bell_permutation(U)
+000138 |         jump_support = np.eye(10) - np.diag([int(permutation[a] == a) for a in range(10)])
+000139 |         K = exact_complex_integer(chart.T @ (U @ jump_support) @ chart)
+000140 |         m = rename[six[k][mark]]
+000141 |         groups[m].append(K)
+000142 |         all_kraus.append(K)
+000143 |     require(len(all_kraus) == 20, f"mark {mark}: twenty actual old Kraus matrices")
+000144 |     require(all(len(groups[m]) == 4 for m in range(5)), f"mark {mark}: four lifts per complement")
+000145 |     return groups, all_kraus
+000146 | 
+000147 | 
+000148 | def partial_gains(kraus: list[np.ndarray]) -> tuple[np.ndarray, np.ndarray]:
+000149 |     left = sum((K @ K.conj().T for K in kraus), start=np.zeros((10, 10), dtype=np.complex128))
+000150 |     right = sum((K.conj().T @ K for K in kraus), start=np.zeros((10, 10), dtype=np.complex128))
+000151 |     return exact_complex_integer(left), exact_complex_integer(right)
+000152 | 
+000153 | 
+000154 | def main(output: Path | None) -> dict:
+000155 |     checks.clear()
+000156 |     for path, digest in PINS.items():
+000157 |         require(hashlib.sha256(Path(path).read_bytes()).hexdigest() == digest, "source pin " + path)
+000158 | 
+000159 |     old = load_module("pinned_old_source", OLD_SOURCE)
+000160 |     hodge = load_module("pinned_hodge_checker", HODGE_CHECKER)
+000161 |     Cs = hodge.hodge_amplitudes()
+000162 |     V = np.stack([C.reshape(-1, order="F") for C in Cs], axis=1)
+000163 |     require(np.array_equal(V.T @ V, 6 * np.eye(5, dtype=np.int64)), "Hodge Choi vectors have Gram 6I5")
+000164 |     P5_numerator = V @ V.T
+000165 |     require(np.array_equal(P5_numerator @ P5_numerator, 6 * P5_numerator), "P5 is a projector after division by six")
+000166 |     require(int(sp.Matrix(P5_numerator).rank()) == 5, "P5 has rank five")
+000167 |     identity100 = np.eye(100, dtype=np.int64)
+000168 |     swap = np.zeros((100, 100), dtype=np.int64)
+000169 |     for a in range(10):
+000170 |         for b in range(10):
+000171 |             swap[b + 10 * a, a + 10 * b] = 1
+000172 |     # Q_d=6P_d keeps every check integral.
+000173 |     Q5 = P5_numerator
+000174 |     Q45 = 3 * (identity100 - swap)
+000175 |     Q50 = 3 * (identity100 + swap) - Q5
+000176 |     sector_data = [(5, Q5), (45, Q45), (50, Q50)]
+000177 |     for dimension, Q in sector_data:
+000178 |         require(np.array_equal(Q @ Q, 6 * Q), f"P{dimension} exact projector")
+000179 |         require(int(np.trace(Q)) == 6 * dimension, f"P{dimension} exact rank")
+000180 |     require(np.array_equal(Q5 + Q45 + Q50, 6 * identity100), "P5 plus P45 plus P50 is identity")
+000181 |     require(not np.any(Q5 @ Q45) and not np.any(Q5 @ Q50) and not np.any(Q45 @ Q50),
+000182 |             "three SU5 projectors are pairwise orthogonal")
+000183 | 
+000184 |     full_generators = su5_generators()
+000185 |     for name, X in full_generators:
+000186 |         L = two_leg_generator(X, hodge.PAIRS, hodge.PAIR_INDEX)
+000187 |         require(np.array_equal(L @ P5_numerator, P5_numerator @ L), f"P5 commutes with su5 generator {name}")
+000188 |     sm = sm_generators()
+000189 |     for name, X in sm:
+000190 |         L = two_leg_generator(X, hodge.PAIRS, hodge.PAIR_INDEX)
+000191 |         require(np.array_equal(L @ P5_numerator, P5_numerator @ L), f"P5 commutes with fixed SM generator {name}")
+000192 | 
+000193 |     # J_Phi=(1/3)VV^dagger=2P5 and rho_Phi=J_Phi/10.
+000194 |     # Therefore Tr(P5 rho_Phi)=Tr(P5)/5=1.
+000195 |     require(np.trace(P5_numerator) == 30, "trace P5 numerator is thirty")
+000196 |     p_phi = Fraction(int(np.trace(P5_numerator @ P5_numerator)), 6 * 3 * 10)
+000197 |     require(p_phi == 1, "normalized Hodge Choi witness is one")
+000198 |     phi_sector_weights = [Fraction(int(np.trace(Q @ P5_numerator)), 6 * 3 * 10)
+000199 |                           for _dimension, Q in sector_data]
+000200 |     require(phi_sector_weights == [1, 0, 0], "Hodge Choi lies entirely in P5")

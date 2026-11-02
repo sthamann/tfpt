@@ -1,0 +1,93 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_actual_weak_source_moment.py
+Original file SHA-256: 7731669986a50e583c71de6066d97e8bbd4c5affc0603ca160cb02c02ddb7cd7
+Inclusive original lines: 1-85
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact source moment from the actual v252 weak lift and finite Dirac.
+000002 | 
+000003 | Diagnostic coefficients test orientation sensitivity, not mass selection.
+000004 | No original source, verification suite or physical parameters are changed.
+000005 | """
+000006 | import json
+000007 | import sys
+000008 | from pathlib import Path
+000009 | 
+000010 | import numpy as np
+000011 | import sympy as s
+000012 | 
+000013 | HERE = Path(__file__).resolve().parent
+000014 | sys.path.insert(0, str(HERE.parents[3] / "verification"))
+000015 | import v252_full_finite_triple as v
+000016 | 
+000017 | 
+000018 | def exact(a):
+000019 |     return s.MutableSparseMatrix(a.shape[0], a.shape[1], {
+000020 |         (i, j): s.Rational(str(a[i, j].real)) + s.I*s.Rational(str(a[i, j].imag))
+000021 |         for i, j in zip(*np.nonzero(a))
+000022 |     })
+000023 | 
+000024 | 
+000025 | def main():
+000026 |     z = np.zeros((3, 3), complex)
+000027 |     sx = np.array([[0, 1], [1, 0]], complex)
+000028 |     # Real gauge lift acts on the antihermitian generator before multiplying
+000029 |     # by -i. Antilinearity therefore gives MINUS on the antiparticle Q block.
+000030 |     T = v.rep(0, 1j*sx, z)
+000031 |     K = v.Kswap()
+000032 |     Q = exact(-1j*(T + K@T.conj()@K))
+000033 |     gamma = exact(v.grading())
+000034 |     yu = np.diag([1, 2, 3]).astype(complex)
+000035 |     yd = np.diag([4, 5, 6]).astype(complex)
+000036 |     perm = np.eye(3)[[2, 1, 0]]
+000037 |     # Same, nonzero lepton/Majorana data in both controls; these do not
+000038 |     # interact with quark flavour in this original weak representation.
+000039 |     ye, yn = np.diag([2, 3, 4]), np.diag([1, 3, 5])
+000040 |     mr = np.array([[2, 1, 0], [1, 3, 1], [0, 1, 4]])
+000041 |     outputs = []
+000042 |     checks = {"Q_selfadjoint": Q == Q.H,
+000043 |               "Q_even": Q*gamma == gamma*Q}
+000044 |     for label, down in (("aligned", yd), ("left_rotated_down", perm@yd)):
+000045 |         D = exact(v.full_D(yu, down, ye, yn, mr))
+000046 |         checks[label+"_D_odd"] = gamma*D + D*gamma == s.zeros(96)
+000047 |         H0 = gamma - 4*s.I*gamma*D
+000048 |         H1 = 4*Q*gamma
+000049 |         checks[label+"_h_selfadjoint"] = H0 == H0.H and H1 == H1.H
+000050 |         # H0+tH1 = 4h at the existing quarter mode p=1/4.
+000051 |         poly = [s.eye(96)]
+000052 |         moments = {}
+000053 |         for n in range(1, 7):
+000054 |             new = [s.zeros(96) for _ in range(len(poly)+1)]
+000055 |             for k, coefficient in enumerate(poly):
+000056 |                 new[k] += coefficient*H0
+000057 |                 new[k+1] += coefficient*H1
+000058 |             poly = new
+000059 |             if n in (2, 4, 6):
+000060 |                 moments[n] = [s.expand(s.trace(c)/4**n) for c in poly]
+000061 |         outputs.append(moments)
+000062 |     differences = {n: [s.expand(a-b) for a, b in zip(outputs[0][n], outputs[1][n])]
+000063 |                    for n in (2, 4, 6)}
+000064 |     checks["second_and_fourth_moments_agree"] = all(x == 0 for n in (2, 4) for x in differences[n])
+000065 |     checks["sixth_moment_difference_exact"] = differences[6] == [0, 0, 5760, 0, 0, 0, 0]
+000066 |     checks["same_down_singular_data"] = exact(yd).H*exact(yd) == exact(perm@yd).H*exact(perm@yd)
+000067 |     result = {
+000068 |         "verdict": "ACTUAL_GAUGE_COUPLED_SOURCE_RETAINS_RELATIVE_FAMILY_ORIENTATION",
+000069 |         "operator": "h(t)=(I/4+tQ)gamma-i gamma D_F, Q=-i(T+J_F T J_F^-1), T=rep(0,i sigma_x,0)",
+000070 |         "moments_t_coefficients": [{str(n): [str(c) for c in rows] for n, rows in out.items()} for out in outputs],
+000071 |         "difference_t_coefficients": {str(n): [str(c) for c in rows] for n, rows in differences.items()},
+000072 |         "cross_face_trace_difference_leading_ell6": "-244*t**2",
+000073 |         "cross_face_logdet_difference_leading_ell6": "-128*t**2",
+000074 |         "checks": {k: bool(vv) for k, vv in checks.items()},
+000075 |         "all_checks_pass": all(checks.values()),
+000076 |         "scope": "Finite p=1/4 block of the existing source. Arbitrary formal weak field t; fixed diagnostic Yukawas and nonzero fixed MR. No selected gauge background, Yukawa variation, sum over circle modes, or complete Gamma_ren coefficient is asserted."
+000077 |     }
+000078 |     raw = json.dumps(result, indent=2, sort_keys=True)+"\n"
+000079 |     (HERE/"actual-weak-source-moment-results.json").write_text(raw)
+000080 |     print(raw, end="")
+000081 |     return 0 if result["all_checks_pass"] else 1
+000082 | 
+000083 | 
+000084 | if __name__ == "__main__":
+000085 |     raise SystemExit(main())

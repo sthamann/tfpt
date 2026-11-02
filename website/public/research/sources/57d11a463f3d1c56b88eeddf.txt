@@ -1,0 +1,193 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/EM-MEASURE-AND-QUILLEN.txt
+Original file SHA-256: a08abf23cab682b6c4733fb2403293b1de0245973864f77447544cde53422c65
+Inclusive original lines: 444-628
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000444 | 10. DER TATSAECHLICHE v258 PFAD: RUECKINVERSION STATT KOMPRESSION
+000445 | -----------------------------------------------------------------
+000446 | 
+000447 | Primaerquelle:
+000448 | 
+000449 |   verification/v258_dirac_covariance_induction.py
+000450 |   Zeilen 1 bis 58, 65 bis 76 und 79 bis 157
+000451 |   SHA256: 16c60e831dceba773f3629466895f1009654827286e5b760ae01bd755fd5c0b1
+000452 | 
+000453 | Aktiver Statusspiegel:
+000454 | 
+000455 |   paper-source:547b1d3f3e8f984b03f960cc
+000456 |   documents/changelog/sections/018-source.tex
+000457 |   Zeilen 268 bis 310, besonders 270 bis 279
+000458 |   SHA256: 36836f668474303dc1b7b2aece910da4390b122ffe85f50e551d56a9eb749daa
+000459 | 
+000460 | Zugehoerige endliche Konstruktion:
+000461 | 
+000462 |   verification/v252_full_finite_triple.py
+000463 |   Zeilen 1 bis 57 und 63 bis 116
+000464 |   SHA256: 820254440e178430422e50605067775656236602996307f67c9e69124ba5d163
+000465 | 
+000466 | Der ausgefuehrte Datenfluss ist eindeutig. v252 baut zuerst den
+000467 | 96 dimensionalen Raum H_F und D_F aus vorgegebenen Yukawamatrizen und dem
+000468 | Majoranablock. v258 baut ebenfalls zuerst einen zufaelligen Yukawablock
+000469 | Dblk beziehungsweise den schon festgelegten Massenblock Dmass. Danach gilt
+000470 | im Code
+000471 | 
+000472 |   D_F  --kms_cov-->  C_F=(1+exp(D_F/mu))^(-1)
+000473 |        --induce-->   mu log((1-C_F) C_F^(-1))=D_F.               (13)
+000474 | 
+000475 | Die Funktionen in Zeilen 65 bis 76 pruefen damit die exakte inverse
+000476 | Funktionalrechnung. Sie lesen keine Nahtdaten. In Zeilen 149 bis 155 wird
+000477 | die physische Gleichung C_F=P_F C_Sigma P_F ausschliesslich als
+000478 | check(..., True) registriert. Weder P_F noch C_Sigma treten als Matrix,
+000479 | Operator oder Eingabe auf. Der aktuelle Lauf endet deshalb zwar korrekt mit
+000480 | 6 passed, 0 failed; keiner dieser sechs Checks berechnet eine Kompression.
+000481 | Der Codegraph bestaetigt denselben Datenfluss: run ruft induce und kms_cov
+000482 | auf, aber keinen der genannten Nahtpfade v155, v160 oder v175. induce wird
+000483 | ausserhalb dieses Skripts nur noch als derselbe Log Odds Leser im bereits
+000484 | begrenzten P1 Insertionstest verwendet. Der aktive Changelog fuehrt die
+000485 | Inversion als [E] und C_F=P_F C_Sigma P_F weiterhin getrennt als [C].
+000486 | 
+000487 | Das Skript benennt diese Trennung selbst: Die Punkte 1 bis 5 in Zeilen 29
+000488 | bis 46 sind [E], die physische Identifikation in Zeilen 47 bis 58 ist [C].
+000489 | P_F ist daher im aktiven Pfad kein aus der alten Kreisquelle konstruierter
+000490 | Projektor. Es ist die noch zu realisierende Carrier beziehungsweise
+000491 | Morita/Kasparov Identifikation. v252 liefert eine explizite Basis von H_F,
+000492 | aber keine Isometrie aus dem Naht Hilbertraum in diese Basis. Auch der noch
+000493 | offene Kernel Satz benennt genau die vorgelagerte Luecke:
+000494 | 
+000495 |   verification/v177_seam_marking_kernel.py
+000496 |   Zeilen 35 bis 42 und 130 bis 135
+000497 |   SHA256: bf6ad1e0d4dd21ca3b66790b004c2d202a67ea1e94a249c4f09437cc4b6a1c09
+000498 | 
+000499 | Dort bleibt die Operatorgleichheit des rohen Calderon Kerns mit der freien
+000500 | gegappten Nahtkontraktion als QGEO.KERNEL.01 offen. Somit wird C_F im
+000501 | ausgefuehrten v258 Pfad aus dem gewaehlten D_F per Fermi Funktion
+000502 | zurueckgebaut und anschliessend wieder invertiert. Es wird nicht aus einem
+000503 | vorhandenen C_Sigma komprimiert.
+000504 | 
+000505 | 10.1 IST P_F Pi P_F BERECHENBAR?
+000506 | 
+000507 | Noch nicht als Operator des vorhandenen Pfads. Der alte kanonische Defekt
+000508 | Pi lebt auf dem alten Kreisraum, waehrend P_F nach (12) auf dem bislang nicht
+000509 | konstruierten gemeinsamen Naht Hilbertraum leben soll. Der Ausdruck
+000510 | P_F Pi P_F ist ohne eine urspruengliche lokale Abbildung
+000511 | 
+000512 |   T:H_Kreis -> H_Sigma
+000513 | 
+000514 | sogar untypisiert. Mit einer solchen Isometrie T und einer Carrier Isometrie
+000515 | 
+000516 |   V_F:H_F -> H_Sigma,       P_F=V_F V_F^*,
+000517 | 
+000518 | waere die tatsaechliche endliche Kompression
+000519 | 
+000520 |   delta C_F=V_F^* T Pi T^* V_F=|V_F^* T psi><V_F^* T psi|.       (14)
+000521 | 
+000522 | Auf dem grossen Raum lautet sie P_F T Pi T^* P_F=|v><v| mit
+000523 | v=P_F T psi. Ihr Rang ist null fuer v=0 und sonst eins. Sie ist genau dann
+000524 | ein Rang eins Projektor, wenn ||v||=1, also wenn die kanonische Defektlinie
+000525 | vollstaendig im Carrierbild liegt. Diese Aussage ist exakt; die benoetigten
+000526 | Matrizen T und V_F fehlen jedoch im aktiven Pfad. Daher kann der gegenwaertige
+000527 | Quellstand weder den Rang noch die Richtung oder die admissible Aufnahme von
+000528 | P_F Pi P_F numerisch auswerten.
+000529 | 
+000530 | Dieser Befund bestaetigt den bereits vorhandenen Quellenaudit, statt einen
+000531 | neuen Modellzweig zu eroeffnen:
+000532 | 
+000533 |   experiments/theory-contracts/source-yukawa-forward-gate-20260921/
+000534 |     yukawa_source_provenance_20260921.md
+000535 |   Zeilen 8 bis 31, 44 bis 55 und 131 bis 190
+000536 |   SHA256: 631b122c6c8269f2be29850dcc903dd2ffd909fe9222c3377a32387390e5c86c
+000537 | 
+000538 |   experiments/theory-contracts/seam-collar-multifield-20261016/
+000539 |     P1-INSERTION-TANGENT.txt
+000540 |   Zeilen 53 bis 74 und 175 bis 188
+000541 |   SHA256: b49aa4ec77bc22029545c4f8f2584e80e63fd8bb6b8a0ce8536baf4137d3ea55
+000542 | 
+000543 | 10.2 BEHAELT D_F UNTER DEM ALTEN DEFEKT SEINEN DEFINITIONSBEREICH?
+000544 | 
+000545 | Nein, nicht unter der woertlichen Identifikation mit der alten reinen
+000546 | Kreispolarisation. Dort sind
+000547 | 
+000548 |   C=P_- ,       Pi=|psi><psi| ,       C Pi=0,
+000549 |   C'=C+Pi
+000550 | 
+000551 | beide Projektionen. Der exakte Log Odds Operator
+000552 | 
+000553 |   h(C)=log((1-C)C^(-1))
+000554 | 
+000555 | ist an den Eigenwerten 0 und 1 singulaer. Auf der Defektlinie springt die
+000556 | Besetzung von 0 auf 1 und der Log Odds Grenzwert von plus unendlich auf
+000557 | minus unendlich. Der endliche, ueberall definierte v258 Operator verlangt
+000558 | dagegen eine treue Kovarianz 0<C_F<I. Er behaelt unter der alten reinen
+000559 | Identifikation also nicht denselben Definitionsbereich.
+000560 | 
+000561 | Die Eigenwertbeschneidung in v258, Zeilen 67 bis 69, ersetzt 0 und 1
+000562 | numerisch durch 10^(-15) und 1-10^(-15). Das produziert eine beschraenkte
+000563 | Testmatrix, ist an den Endpunkten aber eine Regularisierung und keine exakte
+000564 | modulare Gleichheit. Auch das direkte Addieren eines normierten Pi zu einer
+000565 | treuen Kovarianz C_F ist keine Loesung: In Richtung psi gilt
+000566 | 
+000567 |   <psi,(C_F+Pi)psi>=<psi,C_F psi>+1>1,
+000568 | 
+000569 | also ist C_F+Pi keine Kovarianz mehr.
+000570 | 
+000571 | Nach einer tatsaechlichen Kompression kann ein abgeschwaechter Defekt
+000572 | delta C_F=|v><v| zulaessig sein. Fuer ein endliches treues C_F gilt exakt
+000573 | 
+000574 |   C_F+|v><v|<I
+000575 |   genau dann, wenn <v,(I-C_F)^(-1)v><1.                    (15)
+000576 | 
+000577 | Bei Gleichheit erreicht eine Eigenrichtung den Wert 1 und der Log Odds
+000578 | Operator verliert dort seine endliche Domain; bei einem Wert groesser eins
+000579 | ist die Summe keine positive Kontraktion. (15) ist der kleinste entscheidende
+000580 | Domain Test. Ohne T, V_F und das vorwaerts berechnete C_F kann er im jetzigen
+000581 | Pfad nicht ausgewertet werden.
+000582 | 
+000583 | Die strukturelle Alternative ist bereits exakt dokumentiert:
+000584 | 
+000585 |   experiments/theory-contracts/source-yukawa-forward-gate-20260921/
+000586 |     covariance_compression_review_20260921.md
+000587 |   Zeilen 18 bis 68, 145 bis 167 und 218 bis 239
+000588 |   SHA256: 0a460e9272a6da78e2bc199cd512807582c83dbccc4fedf08e51f8ab14c88f22
+000589 | 
+000590 | Fuer eine reine globale Projektion kann eine nichtreduzierende Kompression
+000591 | durch Leckage treu werden; ihr Defekt erfuellt
+000592 | 
+000593 |   C_F-C_F^2=(Q C_Sigma P_F)^*(Q C_Sigma P_F).
+000594 | 
+000595 | Reduziert P_F dagegen denselben Generator und damit C_Sigma exakt, bleibt
+000596 | die Kompression eine Projektion und ihr Log Odds Operator singulaer. Das ist
+000597 | eine Domain Aussage, keine Widerlegung der Kompressionsidee.
+000598 | 
+000599 | 10.3 URTEIL FUER DEN EM ANSCHLUSS
+000600 | 
+000601 |   * Bewiesen: v258 invertiert eine aus dem vorgegebenen D_F erzeugte treue
+000602 |     Fermi Kovarianz exakt. Der aktuelle Lauf reproduziert 6 passed.
+000603 | 
+000604 |   * Bedingt: C_F=P_F C_Sigma P_F ist die richtige vorhandene
+000605 |     Schnittstellenformel, aber weder P_F noch C_Sigma werden im aktiven Pfad
+000606 |     konstruiert. Der dort ausgegebene PASS ist fuer diesen Punkt ein literal
+000607 |     True und keine Operatorpruefung.
+000608 | 
+000609 |   * Nicht typisiert im aktuellen Pfad: P_F Pi P_F. Seine kanonische Form ist
+000610 |     erst (14), nachdem die urspruenglichen Abbildungen T und V_F vorliegen.
+000611 | 
+000612 |   * Widerlegt fuer die woertliche reine Gleichsetzung: Der alte
+000613 |     Projektionsdefekt behaelt nicht die volle endliche Domain des v258 Log
+000614 |     Odds Operators. Eine echte abgeschwaechte Carrierkompression muss zuerst
+000615 |     (15) und die bereits bekannte Gram Bedingung erfuellen.
+000616 | 
+000617 | Der vorhandene relative Rang eins Faktor det_F(1-qPi)=1-q bleibt davon
+000618 | unberuehrt. Er ist die exakte Antwort des reinen Defektoperators. Was dieser
+000619 | Test ausschliesst, ist nur seine unbewiesene Umdeutung als additive
+000620 | ungekuerzte KMS Kovarianzaenderung im v258 Carrier. Die bereits bekannte
+000621 | thermische volle Stromformel mit coth(ell m) wird hier weder neu abgeleitet
+000622 | noch veraendert.
+000623 | 
+000624 | Der erste belastbare verbleibende Schritt ist damit scharf: Konstruiere aus
+000625 | den Originaldaten T und V_F, berechne C_F=V_F^* C_Sigma V_F vorwaerts und
+000626 | pruefe fuer v=V_F^*T psi zuerst (15). Nur bei bestandenem Domain Test ist die
+000627 | relative Variation des reellen Dirac Determinanten auf diesem Carrier
+000628 | definiert und mit dem bereits geschlossenen Faktor 1-q vergleichbar.

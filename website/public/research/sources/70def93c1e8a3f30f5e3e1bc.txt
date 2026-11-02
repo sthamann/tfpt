@@ -1,0 +1,46 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-state-dynamics-injectivity-20260918/README.md
+Original file SHA-256: 9b3d02af286051e4476b2bf079ae01abd97fe5634a10728521b09e8739c02e91
+Inclusive original lines: 11-48
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000011 | when the state covariance is the zero-temperature sign projector
+000012 | `C = (I + sgn(H))/2`. The contract verdict is `PARTIAL`: the reverse
+000013 | implication is **REFUTED** by an exact finite witness, while the forward route
+000014 | `[rho,H]=0 => [rho,C]=0` and the mark-local implication remain in scope and are
+000015 | not challenged. No verification, ledger, paper, website, or scorecard status
+000016 | is changed, and no gate is closed.
+000017 | 
+000018 | ## Exact certificate
+000019 | 
+000020 | The checker uses SymPy integers and Gaussian integers only. Set
+000021 | 
+000022 | ```text
+000023 | S = [[0,1],[1,0]],       A = diag(1,2),
+000024 | H = diag(A,-A) = diag(1,2,-1,-2),
+000025 | rho = diag(i S, -i S),   C = diag(1,1,0,0).
+000026 | ```
+000027 | 
+000028 | `H` is Hermitian and gapped. `rho` is unitary and has exact order four. With
+000029 | the antiunitary particle-hole operation `Gamma(X)=J0 conjugate(X) J0`, where
+000030 | `J0` swaps the two 2-dimensional blocks, the exact relations are
+000031 | 
+000032 | ```text
+000033 | Gamma H Gamma = -H,       Gamma C Gamma = I-C,
+000034 | Gamma rho Gamma = rho,     [rho,C] = 0,
+000035 | ||[rho,H]||_F^2 = 4.
+000036 | ```
+000037 | 
+000038 | Thus the state projector and its particle-hole symmetry are unchanged while
+000039 | the dynamics is not invariant. The checker verifies this witness; the general
+000040 | repair follows analytically. Writing `Q=sgn(H)` and `H=Q|H|`, the hypothesis
+000041 | `[rho,C]=0` gives `[rho,Q]=0`. Thus `[rho,H]=Q[rho,|H|]`; since a gapped
+000042 | `H` has `Q^2=I`,
+000043 | 
+000044 | ```text
+000045 | [rho,H] = 0  <=>  [rho, |H|] = 0       (provided [rho,Q]=0).
+000046 | ```
+000047 | 
+000048 | The missing premise is the commutation of `rho` with the positive magnitude

@@ -1,0 +1,126 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_w8_stress_cyclic.py
+Original file SHA-256: 5caccc07fb478f1e68c756b4312619b015582968bb5e3a441c637d951b4f7923
+Inclusive original lines: 80-197
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000080 | def fermion_move(mask, source, target):
+000081 |     if not (mask >> source) & 1 or (mask >> target) & 1:
+000082 |         return None
+000083 |     sign = (-1) ** (mask & ((1 << source) - 1)).bit_count()
+000084 |     intermediate = mask ^ (1 << source)
+000085 |     sign *= (-1) ** (intermediate & ((1 << target) - 1)).bit_count()
+000086 |     return intermediate | (1 << target), sign
+000087 | 
+000088 | 
+000089 | def original_stress_action(vector, n, alpha):
+000090 |     """Literal old CAR mode Lcal_-n=sum_r(r+alpha+n/2):a*_(r+n)a_r:."""
+000091 |     out = {}
+000092 |     for mask, coefficient in vector.items():
+000093 |         for i in range(16 - n):
+000094 |             moved = fermion_move(mask, i, i + n)
+000095 |             if moved is not None:
+000096 |                 state, sign = moved
+000097 |                 factor = F(i - 8) + alpha + F(n, 2)
+000098 |                 out[state] = out.get(state, F(0)) + coefficient * sign * factor
+000099 |     return {key: value for key, value in out.items() if value}
+000100 | 
+000101 | 
+000102 | def boson_stress_action(vector, n, p):
+000103 |     """Independent c1 Sugawara action in the one-current PBW basis."""
+000104 |     out = {}
+000105 |     def add(key, value):
+000106 |         key = tuple(sorted(key, reverse=True))
+000107 |         out[key] = out.get(key, F(0)) + value
+000108 |     for key, coefficient in vector.items():
+000109 |         add(key + (n,), coefficient * p)
+000110 |         for k in range(1, n):
+000111 |             add(key + (k, n - k), coefficient / 2)
+000112 |         for k, count in Counter(key).items():
+000113 |             remainder = list(key)
+000114 |             remainder.remove(k)
+000115 |             add(tuple(remainder) + (k + n,), coefficient * k * count)
+000116 |     return {key: value for key, value in out.items() if value}
+000117 | 
+000118 | 
+000119 | def rank_mod_prime(matrix, prime):
+000120 |     rows = [[int(v.p) * pow(int(v.q), -1, prime) % prime for v in row]
+000121 |             for row in matrix.tolist()]
+000122 |     rank = 0
+000123 |     for column in range(matrix.cols):
+000124 |         pivot = next((i for i in range(rank, matrix.rows) if rows[i][column]), None)
+000125 |         if pivot is None:
+000126 |             continue
+000127 |         rows[rank], rows[pivot] = rows[pivot], rows[rank]
+000128 |         inverse = pow(rows[rank][column], -1, prime)
+000129 |         rows[rank] = [v * inverse % prime for v in rows[rank]]
+000130 |         for i in range(rank + 1, matrix.rows):
+000131 |             factor = rows[i][column]
+000132 |             rows[i] = [(a - factor * b) % prime for a, b in zip(rows[i], rows[rank])]
+000133 |         rank += 1
+000134 |     return rank
+000135 | 
+000136 | 
+000137 | def reconstruct_in_original_stress(quarter, source_vector, fold, d_standard):
+000138 |     alpha = F(quarter)
+000139 |     sea = (1 << 8) - 1
+000140 |     car_basis = []
+000141 |     for occupied in combinations(range(16), 8):
+000142 |         if sum(i - 8 for i in occupied) - sum(range(-8, 0)) == 8:
+000143 |             car_basis.append(sum(1 << i for i in occupied))
+000144 |     words = partitions(8)
+000145 |     need(len(car_basis) == len(words) == 22, 'actual grade8 dimensions')
+000146 |     car_columns, boson_columns = [], []
+000147 |     for word in words:
+000148 |         car, boson = {sea: F(1)}, {(): F(1)}
+000149 |         for n in reversed(word):
+000150 |             car = original_stress_action(car, n, alpha)
+000151 |             boson = boson_stress_action(boson, n, alpha - F(1, 2))
+000152 |         need(set(car) <= set(car_basis), 'energy escapes the exact grade8 sector')
+000153 |         car_columns.append(sp.Matrix([sp.Rational(car.get(mask, F(0))) for mask in car_basis]))
+000154 |         boson_columns.append(sp.Matrix([sp.Rational(boson.get(key, F(0))) for key in words]))
+000155 |     car_matrix = sp.Matrix.hstack(*car_columns)
+000156 |     boson_matrix = sp.Matrix.hstack(*boson_columns)
+000157 |     boson_norms = []
+000158 |     for key in words:
+000159 |         norm = 1
+000160 |         for k, multiplicity in Counter(key).items():
+000161 |             norm *= k**multiplicity * factorial(multiplicity)
+000162 |         boson_norms.append(norm)
+000163 |     need(car_matrix.T * car_matrix ==
+000164 |          boson_matrix.T * sp.diag(*boson_norms) * boson_matrix,
+000165 |          'original CAR and independent c1 Sugawara Gram matrices differ')
+000166 |     target_source = fold.T * sp.Matrix(source_vector)
+000167 |     actual_delta = sp.Matrix([sp.Rational(F(k) + alpha, 8) - sp.Rational(1, 2)
+000168 |                               for k in range(8)])
+000169 |     need(fold.T * sp.Matrix(d_standard) == actual_delta, 'original source chart changed')
+000170 |     target, folded_stress_target = {}, {}
+000171 |     for k in range(8):
+000172 |         mask, sign = fermion_move(sea, k, k + 8)
+000173 |         target[mask] = sign * target_source[k]
+000174 |         folded_stress_target[mask] = sign * actual_delta[k]
+000175 |     target_vector = sp.Matrix([target.get(mask, 0) for mask in car_basis])
+000176 |     need(car_columns[0] / 8 == sp.Matrix([folded_stress_target.get(mask, 0)
+000177 |                                          for mask in car_basis]),
+000178 |          'Lhat_-1=Lcal_-8/8 fails on the actual sea')
+000179 |     solution = car_matrix.inv(method='DM') * target_vector
+000180 |     need(car_matrix * solution == target_vector, 'exact original stress reconstruction')
+000181 |     need((target_vector.T * target_vector)[0] == sum(x*x for x in source_vector),
+000182 |          'CAR chart lost the W8 response norm')
+000183 |     ranks = {str(prime): rank_mod_prime(car_matrix, prime)
+000184 |              for prime in (65537, 65539, 1000003)}
+000185 |     need(all(rank == 22 for rank in ranks.values()), 'original stress not full rank')
+000186 |     determinant = car_matrix.det(method='domain-ge')
+000187 |     need(determinant != 0, 'zero original stress determinant')
+000188 |     return {'original_c': 1, 'original_momentum': str(alpha-F(1, 2)),
+000189 |             'original_ground_weight': '1/32', 'source_grade': 8,
+000190 |             'neutral_car_basis_masks': car_basis, 'dimension': 22,
+000191 |             'literal_CAR_and_boson_Sugawara_Grams_equal': True,
+000192 |             'rank_certificates_mod_prime': ranks,
+000193 |             'CAR_coefficient_matrix_determinant': str(determinant),
+000194 |             'W8_first_response_in_source_channel_chart': list(map(str, target_source)),
+000195 |             'stress_words': [list(word) for word in words],
+000196 |             'exact_W8_first_response_coefficients': list(map(str, solution)),
+000197 |             'reconstruction_residual': '0', 'same_state_time_and_adjoint': True}

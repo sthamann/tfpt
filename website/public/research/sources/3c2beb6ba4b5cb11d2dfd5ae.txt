@@ -1,0 +1,75 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_time_compatibility_20261027/check_source_compatibility.py
+Original file SHA-256: 9f120bbcd240969d9f908e5fe46edfde5255df5aa06d4a7e6c11ac2ab0468d02
+Inclusive original lines: 1-67
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact algebraic checks accompanying the analytic source compatibility proofs.
+000002 | 
+000003 | The symbolic polynomial check covers arbitrary charges and real a. Local net
+000004 | membership, convergence and clustering are proved in the companion texts;
+000005 | the finite matrices below are not substitutes for those arguments.
+000006 | """
+000007 | import argparse
+000008 | import json
+000009 | from pathlib import Path
+000010 | import sympy as s
+000011 | 
+000012 | parser = argparse.ArgumentParser()
+000013 | parser.add_argument('--output', type=Path, required=True)
+000014 | args = parser.parse_args()
+000015 | checks = {}
+000016 | 
+000017 | def require(name, condition):
+000018 |     if not condition:
+000019 |         raise RuntimeError(name)
+000020 |     checks[name] = True
+000021 | 
+000022 | a = s.symbols('a', real=True)
+000023 | p = s.Matrix(s.symbols('p0:8', real=True))
+000024 | delta = s.Matrix([(j+a)/8-s.Rational(1, 2) for j in range(8)])
+000025 | star = s.Matrix([s.Rational(1, 2)]*4+[-s.Rational(1, 2)]*4)
+000026 | q = s.ones(8, 1)
+000027 | A = s.zeros(8)
+000028 | for j in range(8):
+000029 |     A[j, (j+4) % 8] = 1
+000030 | 
+000031 | def energy(v):
+000032 |     return s.expand(8*(v.dot(v)/2+delta.dot(v)))
+000033 | 
+000034 | Tp = A*p+star
+000035 | require('A_orthogonal_involution', A.T*A == s.eye(8) and A*A == s.eye(8))
+000036 | require('affine_delta_identity', A*delta == delta+star)
+000037 | require('star_reverses', A*star == -star)
+000038 | require('T_involution_all_charges', A*Tp+star == p)
+000039 | require('H_polynomial_identity_all_charges', s.simplify(energy(Tp)-energy(p)) == 0)
+000040 | require('Q_polynomial_identity_all_charges', s.simplify(q.dot(Tp-p)) == 0)
+000041 | require('source_star_zero', energy(star) == 0)
+000042 | require('conformal_star_weight_one', star.dot(star)/2 == 1)
+000043 | e0, e7 = s.eye(8)[:, 0], s.eye(8)[:, 7]
+000044 | require('vector_minimum_candidates', energy(e0) == a and energy(-e7) == 1-a)
+000045 | require('spinor_minimum_candidates', energy(A*e0+star) == a and energy(-A*e7+star) == 1-a)
+000046 | require('Cartan_discriminator', e0[0] == 1 and (A*e0+star)[0] == s.Rational(1, 2))
+000047 | require('L0_not_preserved', (Tp.dot(Tp)-p.dot(p)).expand() != 0)
+000048 | u = s.Matrix(s.symbols('u0:8'))
+000049 | require('refined_fugacity_transport', s.expand(u.dot(Tp)-u.dot(star)-(A*u).dot(p)) == 0)
+000050 | require('twice_root_marking_in_s', int(sum(q/2)) % 2 == 0 and (q/2).dot(q/2) == 2)
+000051 | 
+000052 | # These matrices describe only the already proved two-dimensional H kernel.
+000053 | Omega = s.Matrix([1, 0])
+000054 | psi = s.Matrix([0, 1])
+000055 | Cartan = s.diag(0, 2)
+000056 | X = s.Matrix([[s.sqrt(2)/2, s.I*s.sqrt(2)/2],
+000057 |               [s.I*s.sqrt(2)/2, s.sqrt(2)/2]])
+000058 | require('doublet_unitary_control', X.H*X == s.eye(2))
+000059 | connected = (Omega.H*X.H*X*Omega)[0] - s.Abs((Omega.H*X*Omega)[0])**2
+000060 | require('constant_connected_control', connected == s.Rational(1, 2))
+000061 | require('ward_distinguishes_without_transition',
+000062 |         (psi.H*Cartan*psi)[0] == 2 and (psi.H*Cartan*Omega)[0] == 0)
+000063 | 
+000064 | result = {'verdict': 'EXACT_ALGEBRA_PASS', 'checks': checks,
+000065 |           'scope': 'Symbolic H,Q identity and ground controls. Full lattice minima, bounded local witness, simple-current locality and P1 typing are established or audited in the proof texts, not inferred from finite checks.'}
+000066 | args.output.write_text(json.dumps(result, indent=2, sort_keys=True)+'\n')
+000067 | print(json.dumps({'verdict': result['verdict'], 'checks': len(checks)}))

@@ -1,0 +1,98 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/mixed-current-origin-20261014/check_half_flux_audit.py
+Original file SHA-256: fe487e44b56d4ca278bf51b299df0c529eafa3a34b2c5dae8403260a5860bb06
+Inclusive original lines: 1-90
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Independent controls of the pasted half-flux argument, not its missing package.
+000002 | Analytic local nonnormality is proved in the accompanying review, not inferred
+000003 | from this finite census. Original verification modules are only imported/read.
+000004 | """
+000005 | from pathlib import Path
+000006 | from fractions import Fraction as F
+000007 | import hashlib, importlib, json, sys
+000008 | import numpy as np
+000009 | import sympy as S
+000010 | 
+000011 | [OMITTED: non-scientific conversation or execution metadata]
+000012 | sys.path.insert(0,str(REPO/'verification'))
+000013 | v746=importlib.import_module('v746_phys_gnet_local_functor')
+000014 | v1033=importlib.import_module('v1033_charged_disorder')
+000015 | 
+000016 | def need(b,label):
+000017 |     if not b:raise ValueError(label)
+000018 | 
+000019 | # Actual Z4 Weyl convention from v1033 symbolic_construction.
+000020 | Z=S.diag(1,S.I,-1,-S.I)
+000021 | X=S.zeros(4)
+000022 | for j in range(4):X[(j+1)%4,j]=1
+000023 | need(X**2*Z*(X**2).T==-Z,'register clock remains a half-flux witness')
+000024 | need(X**4==S.eye(4),'actual order-four register')
+000025 | 
+000026 | # The v746 paired-window witness, using the CURRENT original shift/window.
+000027 | clock_cases=[]
+000028 | for N in [8,16,48]:
+000029 |     H=np.linalg.matrix_power(v746.shift(N),N//2)
+000030 |     sigma=np.diag(np.where(np.arange(N)<N//2,-1.,1.))
+000031 |     need(np.array_equal(H@H,-np.eye(N)),'NS clock square')
+000032 |     for j in range(N//2):
+000033 |         pair=v746.window(N,j,1)
+000034 |         need(pair==[j,j+N//2],'actual doubled window')
+000035 |         K=np.zeros((N,N),complex)
+000036 |         K[j,j+N//2]=1j;K[j+N//2,j]=-1j
+000037 |         need(np.array_equal(H@K@H.T,K),'clock-invariant pair current')
+000038 |         need(np.array_equal(sigma@K@sigma,-K),'half-flux flips invariant pair current')
+000039 |     clock_cases.append({'N':N,'all_base_pair_windows':N//2,'passed':True})
+000040 | 
+000041 | # Current actual half-filled cylinder state convention, not a pure zero sea.
+000042 | strip=[]
+000043 | for sector in [0,2]:
+000044 |     h=v1033.qwz_cylinder(8,8,1.,sector)
+000045 |     _,C,zero,k=v1033.half_filled_ground_space(h)
+000046 |     d=zero.shape[1]
+000047 |     need((d,k)==((2,1) if sector==0 else (0,0)),'actual R/NS zero-mode census')
+000048 |     strip.append({'sector':sector,'zero_modes':d,'zero_occupied':k,
+000049 |                   'covariance_idempotence_defect':float(np.linalg.norm(C@C-C))})
+000050 | 
+000051 | rho=S.diag(0,S.Rational(1,2),S.Rational(1,2),0)
+000052 | quasi=S.eye(4)/4
+000053 | pair=S.diag(0,0,0,1)
+000054 | need(S.trace(rho*pair)==0 and S.trace(quasi*pair)==S.Rational(1,4),'quartic state distinction')
+000055 | need(S.trace(rho*rho)==S.Rational(1,2) and rho.rank()==2,'mixed R state purity')
+000056 | for d in range(1,8):
+000057 |     for k in range(d+1):
+000058 |         for m in range(d+1):
+000059 |             lhs=F(int(S.binomial(d-m,k-m)),int(S.binomial(d,k))) if k>=m else F(0)
+000060 |             rhs=F(1)
+000061 |             for i in range(m):rhs*=F(k-i,d-i)
+000062 |             need(lhs==rhs,'fixed-filling full normally ordered moment')
+000063 | 
+000064 | # Exact analytic cutoff identity; divergence follows by delta ->0.
+000065 | delta,eps=S.symbols('delta eps',positive=True)
+000066 | # Integrate first in v, then u, using the elementary antiderivatives.
+000067 | boundary=2*S.log(eps+delta)-S.log(2*eps)-S.log(2*delta)
+000068 | claimed=S.log((eps+delta)**2/(4*eps*delta))
+000069 | need(S.simplify(S.expand_log(boundary-claimed,force=True))==0,'cutoff logarithm')
+000070 | 
+000071 | # Favorable J=C counterexample: R is real-linear but not complex-linear.
+000072 | I2=S.Matrix([[0,-1],[1,0]])
+000073 | complex_i=S.diag(I2,I2)
+000074 | real_R=S.diag(1,1,1,-1)
+000075 | gamma=S.diag(1,1,-1,-1)
+000076 | need(real_R*complex_i*real_R==gamma*complex_i,'sector-selective conjugation changes complex scalar')
+000077 | need(real_R*complex_i!=complex_i*real_R,'not complex linear')
+000078 | need(real_R*complex_i!=-complex_i*real_R,'not globally antilinear')
+000079 | 
+000080 | files=['verification/v746_phys_gnet_local_functor.py','verification/v1033_charged_disorder.py']
+000081 | out={'date':'2026-10-22','verdict':'SHARP_HALF_FLUX_EXCLUSION_CONFIRMED_IN_STATED_NETS',
+000082 |      'register_obstruction_exact':True,'quotient_clock_witness_cases':clock_cases,
+000083 |      'original_strip_controls':strip,'R_fixed_filling_state_purity':'1/2',
+000084 |      'R_zero_mode_pair_moment':'0','same_covariance_quasifree_pair_moment':'1/4',
+000085 |      'local_cutoff_HS_integral':'log((eps+delta)^2/(4 eps delta)) -> infinity',
+000086 |      'selective_antiunitary_candidate_complex_linear':False,
+000087 |      'finite_or_analytic_control_scope':'No replay of unavailable 18+38 report package; analytic proof reviewed separately.',
+000088 |      'all_P1_no_go':False,'source_hashes':{f:hashlib.sha256((REPO/f).read_bytes()).hexdigest() for f in files}}
+000089 | Path(__file__).with_name('half-flux-audit-results.json').write_text(json.dumps(out,indent=2)+'\n')
+000090 | print(json.dumps(out,indent=2))

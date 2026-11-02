@@ -1,0 +1,123 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/PAULI-SPIN-CENTRAL-LIFT-INDEPENDENT-REVIEW.txt
+Original file SHA-256: 81b238c1ff40cbd5804fc13841d0762fcb4ece53a8cc0189719aea4f3fc3632f
+Inclusive original lines: 1-115
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | INDEPENDENT REVIEW: PAULI SPIN CENTRAL LIFT
+000002 | 2026-10-26
+000003 | 
+000004 | Reviewed sources
+000005 | 
+000006 |   PAULI-SPIN-CENTRAL-LIFT.txt
+000007 |   SHA-256 e5ef50c899eba80dca03e1b7023edf816df3b45a669534fccf2fef215b0ae8e6
+000008 | 
+000009 |   check_pauli_spin_central_lift.py
+000010 |   SHA-256 984143297e98ebcc91185f642fb3946c31f53da7035fb6e5c8b4dc589d3d832b
+000011 | 
+000012 | VERDICT
+000013 | 
+000014 | ACCEPTED AT THE FINITE CLIFFORD LEVEL, WITH THE CENTRAL SOURCE MAP
+000015 | CONDITIONAL AS STATED IN THE REVIEWED REPORT.
+000016 | 
+000017 | 1. FIBER AND CENTRAL-SQUARE CENSUS
+000018 | 
+000019 | The checker uses the exact v783 Clifford generators and enumerates all 720
+000020 | symplectic actions.  It finds the nine involutions preserving both native
+000021 | source-matched symplectic planes and conjugating the frozen cubic action to
+000022 | its inverse.  Each chosen Q(i)-rational representative has the full 64-element
+000023 | G31 fiber mu4 times Pauli16.
+000024 | 
+000025 | For every one of the nine fibers the square census is
+000026 | 
+000027 |   +I: 8,  -I: 8,  nonscalar: 48.
+000028 | 
+000029 | After multiplication by zeta8 it becomes
+000030 | 
+000031 |   +iI: 8,  -iI: 8,  nonscalar: 48.
+000032 | 
+000033 | If the sought global theta-extension dictionary maps beta to J=+iI, then a
+000034 | corresponding alpha cannot lie in G31 and does lie in the odd zeta8 G31
+000035 | Clifford coset.  The selected local +i phase at q0 makes this identification a
+000036 | compatible candidate, but does not prove it globally on H0(2Theta).  The
+000037 | actual theta functor must still decide whether the fiber phase survives or
+000038 | cancels in cohomology.
+000039 | 
+000040 | 2. FULL CUBIC-QUARTER RELATION
+000041 | 
+000042 | The square condition alone leaves four Pauli factors modulo overall sign.
+000043 | The corrected checker additionally applies the exact matrix filter
+000044 | 
+000045 |   alpha sigma alpha^(-1)=sigma^(-1).
+000046 | 
+000047 | In every one of the nine Q fibers exactly two elements survive.  They are
+000048 | alpha and -alpha, so the lift is unique modulo the source sign once the
+000049 | quotient Q action is fixed.
+000050 | 
+000051 | For the displayed Q action the square-only factors are ZI, ZZ, XI and XZ.
+000052 | Only XI satisfies the cubic conjugation relation.  The explicit matrix
+000053 | 
+000054 |   alpha=zeta8 (XI) U
+000055 | 
+000056 | obeys alpha^2=iI, alpha^4=-I, alpha^8=I and
+000057 | alpha sigma alpha^(-1)=sigma^(-1).  This corrects the earlier square-only ZI
+000058 | candidate.
+000059 | 
+000060 | The generated group has order 24.  Indeed alpha has order eight, sigma has
+000061 | order three, their cyclic subgroups have trivial intersection, and conjugation
+000062 | by alpha acts on <sigma> by inversion.  It is C3 semidirect C8, with the C8
+000063 | action factoring through C2 and alpha^2 generating the central C4.
+000064 | 
+000065 | 3. CENTRALIZER ORBIT
+000066 | 
+000067 | The exact Sp(4,2) enumeration gives a centralizer of order 18 for the frozen
+000068 | Pauli action of sigma, and conjugation by this centralizer is transitive on all
+000069 | nine quotient Q actions.
+000070 | 
+000071 | The independent v634 group census gives |C_G31(J sigma)|=72.  Since J is
+000072 | central, this is also |C_G31(sigma)|.  Its kernel over the symplectic
+000073 | centralizer is exactly mu4: a kernel element commuting with sigma would define
+000074 | a sigma-fixed Pauli translation, and the fixed space on N64/mu4 is zero.
+000075 | Thus
+000076 | 
+000077 |   C_G31(sigma)/mu4 = C_Sp4(2)(Sigma),
+000078 | 
+000079 | and every quotient conjugator has an actual lift commuting with sigma and J.
+000080 | Conjugation transports the unique sign class over one Q action to the unique
+000081 | sign class over the conjugate action.  Hence the nine alpha sign classes form
+000082 | one conjugacy orbit under the actual native centralizer.  Calling that orbit a
+000083 | physical gauge class would additionally require the full centralizer to be an
+000084 | allowed gauge group.
+000085 | 
+000086 | 4. REPLAY
+000087 | 
+000088 | Both commands pass:
+000089 | 
+000090 |   python3 check_pauli_spin_central_lift.py
+000091 |   python3 -OO check_pauli_spin_central_lift.py
+000092 | 
+000093 | Their complete standard outputs are byte-identical with SHA-256
+000094 | 
+000095 |   823edd5914789f231ebb765f0f7e685ba55c09a96b3629176897e5c857532977.
+000096 | 
+000097 | 5. PRECISE SCOPE
+000098 | 
+000099 | The result constructs a finite four-dimensional Clifford candidate for the
+000100 | central phase and the joint cubic-quarter relations after beta->J and the
+000101 | lifted cubic relation are imposed.  It removes the
+000102 | fourfold Pauli-factor ambiguity for each fixed quotient Q action.  The nine
+000103 | quotient representatives are one native centralizer conjugacy orbit when only
+000104 | sigma, J and the Pauli translation structure are held fixed.
+000105 | 
+000106 | This orbit statement does not identify a preferred representative after adding
+000107 | P1, P2, ordered q-versus-p, anchor, state, or readout data.  Those markings are
+000108 | outside the centralizer contract checked here.
+000109 | 
+000110 | This is not yet the geometric isomorphism from the source theta or
+000111 | Schrodinger module to the native Gaussian lattice module.  That conclusion
+000112 | still requires a marked isomorphism of the complete theta and N64 central
+000113 | extensions and the induced four-dimensional representations.  No physical
+000114 | state, local field, or P1 source identification follows from the finite lift
+000115 | census alone.

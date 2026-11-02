@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/bracket_process_origin_20261028/closure/REVIEW-WARD-U5-CREATION.txt
+Original file SHA-256: 689479e440ecc891d9351688bc10e14463b2e4bc409d8cb25ac5266a41a17c38
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | UNABHAENGIGER REVIEW: WARD U5 ERZEUGUNGSKANAL
+000002 | =============================================
+000003 | 
+000004 | 28. Oktober 2026
+000005 | 
+000006 | Gepruefte Dateien
+000007 | -----------------
+000008 | 
+000009 | * WARD-U5-CREATION-CHANNEL.txt
+000010 | * check_ward_d5a3_creation_channel.py
+000011 | * ward-d5a3-creation-channel-results.json
+000012 | * ../original/SOURCE-CHARGE-GLUE-QUARTER-IDENTITY.txt
+000013 | * ../source-charge-glue-quarter-results.json
+000014 | * ../process/OPERATOR-VALUED-BRANCH-RIGIDITY.txt
+000015 | 
+000016 | 
+000017 | Urteil
+000018 | ------
+000019 | 
+000020 | Der neue algebraische Satz ist richtig:
+000021 | 
+000022 | * Im tatsaechlichen gemischten E8 Sektor g2=(10,6) zerlegt die
+000023 |   adjungierte U5 Wirkung die 60 Wurzelstroeme exakt in 30 Carrier
+000024 |   Erzeugungsstroeme mit Rest3 und 30 Vernichtungsstroeme mit Rest2.
+000025 | * Fuer die festgelegte Wardwurzel lambda_A=e3+e6 ist der Orbit unter der
+000026 |   neutralen SU5_C mal D3_F Stromalgebra genau der Rest3 Dreissiger (5,6).
+000027 | * Die wirklichen Chevalleyklammern auf
+000028 | 
+000029 |       Lambda2 C5 tensor 4  ->  Lambda3 C5 tensor bar4
+000030 | 
+000031 |   faktorisieren nach dem bereits gepinnten gemeinsamen Phasentransport als
+000032 |   Carrier Erzeugung mal Familien Cliffordwirkung.
+000033 | * Alle 360 nichtverschwindenden Spalten haben die richtigen Vorzeichen und
+000034 | 
+000035 |       sum B_beta^dagger B_beta = 9 I40,
+000036 |       sum B_beta B_beta^dagger = 9 I40.
+000037 | 
+000038 |   Die Killing gemittelte inklusive Antwort ist daher CPTP und bistochastisch.
+000039 |   Nach der festen Volumendualitaet Lambda3 C5 nach Lambda2(C5)* ist ihr
+000040 |   Carrierrand der volle Hodge Kanal Phi, nicht nur dieselbe Petersen
+000041 |   Population.
+000042 | 
+000043 | Zwei Formulierungen muessen im weiteren Gebrauch erhalten bleiben:
+000044 | 
+000045 | 1. U5 Rest3 waehlt den Dreissiger nur INNERHALB von g2 beziehungsweise nach
+000046 |    der vorhandenen internen Z4 Grade 2 Einschraenkung. Auf der gesamten E8
+000047 |    Stromalgebra hat Rest3 fuenfzig Wurzelraeume. Fuer den gegebenen E8 Fold
+000048 |    ist diese Einschraenkung inzwischen durch die exakte Charge Glue Quarter
+000049 |    Identitaet aus denselben Foldoperatoren abgeleitet.
+000050 | 2. Die Original Wardquelle erzwingt die gemischte (10,6) Klasse, waehlt aber
+000051 |    noch keine konkrete signierte Wurzel. Die Entscheidung Erzeugung statt
+000052 |    Vernichtung bleibt deshalb an die festgelegte Ward und
+000053 |    Reflexionsorientierung gebunden.
+000054 | 
+000055 | Mit diesen Grenzen ist der neue 30er Pfad ein echter kleinerer algebraischer
+000056 | Anschluss. Er ist noch keine ausgefuehrte P1 Nahtoperation.
+000057 | 
+000058 | 
+000059 | 1. U5 Typ: S+ Filter und adjungierte Stromwirkung
+000060 | -------------------------------------------------
+000061 | 
+000062 | Die originale P2 Stelle definiert auf dem geraden Spintraeger S+
+000063 | 
+000064 |     X=3N2-2N3,
+000065 |     U5=exp(2 pi i X/5),
+000066 | 
+000067 | und die Fourierprojektoren fuer die geraden Grade Lambda0, Lambda2 und
+000068 | Lambda4. Auf dem hier verwendeten festen Lambda2 Carrierteil ist U5 nur der
+000069 | Skalar zeta5. Er mischt keine der fuenf Carrierstellen und ist kein
+000070 | Slotfuenferzyklus. Dort kommen nur die Reste0,1,2 vor. Der im neuen Satz benutzte
+000071 | Rest3 Projektor ist daher nicht woertlich einer dieser urspruenglichen
+000072 | S+ Projektoren.
+000073 | 
+000074 | Nach Annahme der bereits gegebenen E8 Stromdarstellung besitzt X aber eine
+000075 | eindeutige Cartanwirkung auf jedem Wurzelstrom:
+000076 | 
+000077 |     Ad(U5) E_beta = zeta5^(X(beta)) E_beta.
+000078 | 
+000079 | Fuer die verdoppelten Wurzelkoordinaten ist
+000080 | 
+000081 |     X(beta)=(-2,-2,-2,3,3).beta_C / 2.
+000082 | 
+000083 | Die Rechnung ergibt im gemischten g2 Sektor exakt
+000084 | 
+000085 |     positive Carrierwurzel: X=-2 [18] oder +3 [12], Rest3,
+000086 |     negative Carrierwurzel: X=+2 [18] oder -3 [12], Rest2.
+000087 | 
+000088 | Damit ist die Fortsetzung mathematisch keine frei gewaehlte neue
+000089 | Darstellung. Sie ist die adjungierte Wirkung desselben Cartanelements.
+000090 | Ihre physische Anwendung als P1 Ereignisfilter ist in der Originalstelle
+000091 | jedoch nicht behauptet.
+000092 | 
+000093 | Ein zusaetzlicher direkter Vollraumtest ist wichtig. Auf allen 240 E8
+000094 | Wurzelraeumen hat Ad(U5) Rest3 die Multiplizitaet
+000095 | 
+000096 |     50 = 30 alte g2 Wurzeln + 20 alte g3 Halbwurzeln.
+000097 | 
+000098 | Der Satz darf deshalb nicht als
+000099 | 
+000100 |     Pi3 auf allen E8 Stroemen = M30
+000101 | 
+000102 | formuliert werden. Korrekt sind entweder
+000103 | 
+000104 |     Pi_(old internal Z4 grade2) Pi3 = M30
+000105 | 
+000106 | oder der im Checker ebenfalls bewiesene neutrale Orbit der Wardwurzel.
+000107 | 
+000108 | Die inzwischen unabhaengig gepruefte Identitaet
+000109 | 
+000110 |     g_alpha^2 exp(-2 pi i alpha Q_source/4) = C_int^(-1)
+000111 | 
+000112 | schliesst genau die vorher offene algebraische Verbindung. Auf dem bereits
+000113 | gegebenen markierten E8 Fold ist die interne Gluegradierung der kompensierte
+000114 | geladene Quartercharakter. Gemeinsam mit U5 Rest3 waehlt sein Eigenwert -1
+000115 | exakt Creation30 aus den globalen fuenfzig Rest3 Wurzelraeumen. Das ist eine
+000116 | Operatoridentitaet auf dem ganzen E8 Gitter VOA, nicht nur ein Rootcensus.
+000117 | Sie beweist weiterhin keinen physischen P1 Vollzug dieses gemeinsamen
+000118 | Projektors, keine lokale Feldkarte Xi und keine Responsepolicy.
+000119 | Der Bericht sagt an seiner ersten entscheidenden Stelle bereits
+000120 | `innerhalb von g2`. Spaetere Kurzfassungen muessen diese Einschraenkung
+000121 | beibehalten.
+000122 | 
+000123 | 
+000124 | 2. Wardorientierung und Reflexion
+000125 | ---------------------------------
+000126 | 
+000127 | Der alte Wardbeweis erzwingt aus q/2 eine gemischte Wurzel
+000128 | 
+000129 |     lambda in (10,6),
+000130 | 
+000131 | und prueft den konkreten Vergleichsvertreter lambda_A=e3+e6. Derselbe
+000132 | Originaltext sagt ausdruecklich, dass damit keine bestimmte signierte Wurzel
+000133 | physisch ausgewaehlt ist. Im Checker besitzt lambda_A positiven
+000134 | Carrieranteil und liegt im Erzeugungsdreissiger. Seine Reflexion -lambda_A
+000135 | liegt im Vernichtungsdreissiger.
+000136 | 
+000137 | Der vorliegende getypte Kanal braucht auf dem festen Eingang
+000138 | Lambda2 C5 nur die vorwaerts gerichteten Erzeugungskrausoperatoren. Eine
+000139 | adjungiert abgeschlossene Operation auf dem vollen direkten Summenraum muss
+000140 | den dualen Rueckpfeil oder weitere Sektoren mitfuehren. Das zwingt nicht beide
+000141 | Haelften in denselben vorwaerts gerichteten Kanal. Es verhindert aber, die
+000142 | einseitige Auswahl bereits als aus der rohen P1 Reflexion hergeleitet
+000143 | darzustellen.
+000144 | 
+000145 | 
+000146 | 3. CAR Konvention und Chiralitaet
+000147 | ---------------------------------
+000148 | 
+000149 | Die Maskenkonvention ist konsistent mit dem gepinnten D5 plus A3
+000150 | Intertwiner:
+000151 | 
+000152 | * Eingabe: Carrierbesetzung2 und gerade Familienbesetzung0 oder2,
+000153 |   insgesamt40 Zustaende.
+000154 | * Ausgabe: Carrierbesetzung3 und ungerade Familienbesetzung1 oder3,
+000155 |   insgesamt40 Zustaende.
+000156 | * Jeder positive Carrierwurzelstrom wirkt als a_m^dagger.
+000157 | * Auf jedem der drei Familienmodi wirkt je nach Wurzelvorzeichen b_j oder
+000158 |   b_j^dagger. Beide wechseln die Familienchiralitaet.
+000159 | 
+000160 | Fuer jeden Carrier Zweizustand sind drei Erzeuger moeglich. Fuer jeden
+000161 | Familien Spinorzustand sind genau drei der sechs Leiter moeglich. Das gibt
+000162 | den Gain3 mal3 gleich9. Auf der Ausgabe gilt derselbe Gain.
+000163 | 
+000164 | Die anschliessende Volumendualitaet sendet
+000165 | 
+000166 |     a_m^dagger : Lambda2 -> Lambda3
+000167 | 
+000168 | mit dem Keilvorzeichen genau auf die Hodge Komplementmatrix C_m. Daher folgt
+000169 | der volle Kanal
+000170 | 
+000171 |     Phi(rho)=(1/3) sum_m C_m rho C_m^dagger.
+000172 | 
+000173 | Die Petersenpopulation ist nur seine Diagonale.
+000174 | 
+000175 | 
+000176 | 4. Phasen und partielle Spur
+000177 | ----------------------------
+000178 | 
+000179 | Der Checker benutzt nicht die rohe Chevalleybasis fuer die Tensorpartialspur.
+000180 | Er uebernimmt die gepinnten Zustands und Wurzelphasen des vollstaendigen
+000181 | E8 Clifford Intertwiners und prueft fuer jede der360 Spalten
+000182 | 
+000183 |     Chevalley Vorzeichen
+000184 |       = gemeinsame Phase mal Carrier CAR Vorzeichen mal Familien CAR Vorzeichen.
+000185 | 
+000186 | Diese gemeinsame Phase muss nicht in eine reine Carrier und Familienphase
+000187 | zerfallen. Nach dem dadurch definierten gemeinsamen Tensorchart ist die
+000188 | Faktorisierung exakt und die Familienpartialspur typisiert. Eine rohe
+000189 | Partialspur vor diesem Transport waere weiterhin unzulaessig. Der neue
+000190 | Checker begeht diesen Fehler nicht.
+000191 | 
+000192 | 
+000193 | 5. Physischer Scope und kleinere Herkunftsforderung
+000194 | ---------------------------------------------------
+000195 | 
+000196 | E_lambda ist im vorhandenen E8 Netz ein bosonischer Strom vom konformen
+000197 | Gewicht1 und traegt im alten Quellenchart die Ladung4. Seine urspruengliche
+000198 | Quellenenergie ist H_source=7 oder9 fuer die beiden Quarter. Weder diese
+000199 | Energie noch das konforme Gewicht liefert eine Ereigniszeit. Die Bezeichnung
+000200 | a_m^dagger beschreibt seine bereits verifizierte Zielchartwirkung. Sie

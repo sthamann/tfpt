@@ -1,0 +1,57 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_quarter_stress_current.py
+Original file SHA-256: 9e0378b16674598c99b08c19e633cc3108c84ba33c1ae14d5235f695f1544007
+Inclusive original lines: 51-99
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000051 |     need(p1**2 / 2 == p3**2 / 2 == sp.Rational(1, 32), 'ground terms')
+000052 | 
+000053 |     # The existing full-cover sectors must NOT be silently identified. For
+000054 |     # independent c1 factors, the same subtraction has a Virasoro cubic term.
+000055 |     k = sp.Symbol('k', positive=True, integer=True)
+000056 |     h = sp.Rational(1, 32)
+000057 |     independent_norm = sp.expand(4 * (4 * k * h + 2 * k * (k**2 - 1) / 12))
+000058 |     need(sp.expand(independent_norm - k * (4*k**2 - 1) / 6) == 0,
+000059 |          'two-factor Virasoro norm')
+000060 |     independent_values = [independent_norm.subs(k, j) for j in range(1, 5)]
+000061 |     need(independent_values[:2] == [sp.Rational(1, 2), sp.Integer(5)],
+000062 |          'first two independent-factor tests')
+000063 |     scales = [sp.cancel(j / independent_values[j-1]) for j in (1, 2)]
+000064 |     need(scales[0] != scales[1], 'a common rescaling unexpectedly fits')
+000065 |     # For any real self-adjoint combination aL+ + bL-, its vacuum norm is
+000066 |     # (a²+b²)(2kh+k(k²-1)/12). A nonzero Heisenberg level would require
+000067 |     # a²+b²=0 to remove the cubic term, hence a=b=0 over the reals.
+000068 |     aa, bb = sp.symbols('aa bb', real=True)
+000069 |     independent_general = (aa**2 + bb**2) * (2*k*h + k*(k**2-1)/12)
+000070 |     need(sp.Poly(sp.expand(independent_general), k).coeff_monomial(k**3)
+000071 |          == (aa**2 + bb**2) / 12, 'independent-factor cubic coefficient')
+000072 | 
+000073 |     # Old actual comparison: u_cov W0=W1 and u_cov W1=W0 u_base.
+000074 |     # Cover indices move as 2m -> 2m+1 -> 2m+2. Pull back the odd-sector
+000075 |     # matrix units using the FIRST arrow, retaining the full wrap carry.
+000076 |     m, step = sp.symbols('m step', integer=True)
+000077 |     need(sp.expand((2*m+1)-1-2*m) == 0, 'source generator pullback')
+000078 |     need(sp.expand((2*(m+step)+1)-1-2*(m+step)) == 0,
+000079 |          'target generator pullback')
+000080 |     for mm in range(-100, 101):
+000081 |         need((2*mm+1 < 0) == (2*mm < 0), 'first-arrow sea mismatch')
+000082 |     wrap_changes = [mm for mm in range(-100, 101)
+000083 |                     if (2*mm+1 < 0) != (2*mm+2 < 0)]
+000084 |     need(wrap_changes == [-1], 'winding carry was lost')
+000085 | 
+000086 |     # Replay the real old CAR moves, with the original common sea and ALL
+000087 |     # intermediate states. Tests do not project to the folded residue sector.
+000088 |     def action(vector, step, alpha=None):
+000089 |         if alpha is not None and step > 0:
+000090 |             return module.original_stress_action(vector, step, alpha)
+000091 |         result = {}
+000092 |         for mask, value in vector.items():
+000093 |             for i in range(16):
+000094 |                 j = i + step
+000095 |                 if not 0 <= j < 16:
+000096 |                     continue
+000097 |                 moved = module.fermion_move(mask, i, j)
+000098 |                 if moved is None:
+000099 |                     continue

@@ -1,0 +1,140 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/ACTUAL-WEAK-SOURCE-MOMENT-INDEPENDENT-REVIEW.txt
+Original file SHA-256: 908779d625fdde3cb553d6def231ddb205f8181ae3b0fa259b2095ebe37b4f44
+Inclusive original lines: 1-132
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | INDEPENDENT REVIEW: ACTUAL WEAK CONNECTION IN THE GIVEN JOINT SOURCE
+000002 | 30 October 2026. Targeted analytical and exact-checker review.
+000003 | Verdict: CORRECT_IN_THE_STATED_FINITE_MODE_SCOPE. No Atlas or original edit.
+000004 | 
+000005 | 1. Operator types and signs
+000006 | The checker uses the actual v252 representation. With
+000007 | 
+000008 |   T=pi(0,i sigma_x,0)
+000009 | 
+000010 | the particle block is i tx. Since J_F is antiunitary,
+000011 | 
+000012 |   J_F T J_F^-1=-i J_F tx J_F^-1.
+000013 | 
+000014 | Therefore the infinitesimal real gauge lift and its Hermitian coefficient are
+000015 | 
+000016 |   L=T+J_F T J_F^-1=i(tx-J_F tx J_F^-1),
+000017 |   Q=-iL=tx-J_F tx J_F^-1.                              (1)
+000018 | 
+000019 | The minus sign on the antiparticle block is correct. The exact checker verifies
+000020 | Q=Q* and [Q,gamma_F]=0. For A(t)=pI+tQ,
+000021 | 
+000022 |   h(t)=A(t)gamma_F-i gamma_F D_F
+000023 | 
+000024 | is selfadjoint because A commutes with gamma_F, D_F is selfadjoint and
+000025 | {D_F,gamma_F}=0. Direct multiplication gives
+000026 | 
+000027 |   h(t)^2=A(t)^2+D_F^2-i[A(t),D_F].                    (2)
+000028 | 
+000029 | Thus the construction retains the noncommuting weak response. In the code,
+000030 | H0+tH1=4h at p=1/4 is exact:
+000031 | 
+000032 |   H0=gamma_F-4i gamma_F D_F,
+000033 |   H1=4Q gamma_F.
+000034 | 
+000035 | The polynomial update multiplies these matrices in their actual order and does
+000036 | not replace them by commuting symbols.
+000037 | 
+000038 | 2. Independent factor check
+000039 | Suppress colour and the conjugate block for one moment. On one particle colour
+000040 | block order the states as (u_L,d_L,u_R,d_R). Q is sigma_x on the left doublet
+000041 | and zero on the right singlets. Exact block multiplication gives for two down
+000042 | matrices with the same singular values
+000043 | 
+000044 |   Delta [t^2] Tr h^6
+000045 |     =6 Delta Tr((Y_dY_d*) (Y_uY_u*)).                 (3)
+000046 | 
+000047 | The factor6 is the cyclic sixth-word multiplicity. The actual v252 quark sector
+000048 | has three identical colours, and its J_F conjugate block gives the same real
+000049 | trace. Consequently
+000050 | 
+000051 |   Delta [t^2] Tr_96 h^6
+000052 |     =36 Delta Tr((Y_dY_d*) (Y_uY_u*)).                (4)
+000053 | 
+000054 | For the checker's data the family traces are440 and280. Equation(4) yields
+000055 | 
+000056 |   36(440-280)=5760,
+000057 | 
+000058 | which independently reproduces the saved symbolic result. The identical,
+000059 | nonzero Ye, Ynu and MR blocks contribute equally to both controls and cancel in
+000060 | the difference. They were nevertheless retained in the exact96 construction.
+000061 | 
+000062 | The checker also obtains Delta Tr h^2=Delta Tr h^4=0 and
+000063 | 
+000064 |   Delta Tr h^6=5760 t^2
+000065 | 
+000066 | as a polynomial identity, not at a selected numerical value of t. The down
+000067 | singular data agree exactly. I found no sign, order or normalization error in
+000068 | this calculation.
+000069 | 
+000070 | 3. Cross-face coefficients
+000071 | For the actual finite cross block
+000072 | 
+000073 |   X=(2 cosh(ell h))^-1
+000074 | 
+000075 | the exact even expansion is
+000076 | 
+000077 |   X=I/2-ell^2h^2/4+5ell^4h^4/48-61ell^6h^6/1440+O(ell^8).
+000078 | 
+000079 | Using the moment differences above gives
+000080 | 
+000081 |   Delta Tr X
+000082 |     =-(61/1440) 5760 ell^6 t^2+O(ell^8)
+000083 |     =-244 ell^6 t^2+O(ell^8).                         (5)
+000084 | 
+000085 | Moreover
+000086 | 
+000087 |   log det X=-96 log2-Tr log cosh(ell h),
+000088 |   log cosh z=z^2/2-z^4/12+z^6/45+O(z^8),
+000089 | 
+000090 | so
+000091 | 
+000092 |   Delta log det X=-(5760/45)ell^6t^2+O(ell^8)
+000093 |                  =-128 ell^6t^2+O(ell^8).             (6)
+000094 | 
+000095 | Both reported coefficients are correct. These are finite p=1/4 asymptotics;
+000096 | they do not exchange the ell expansion with an infinite circle-mode sum.
+000097 | 
+000098 | 4. Stronger statement for every fixed positive width
+000099 | For t nonzero, equation(4) says that the third power sums of the eigenvalues of
+000100 | h(t)^2 differ. Hence the two h(t)^2 eigenvalue multisets differ. On u>=0 the map
+000101 | 
+000102 |   u -> 1/(2 cosh(ell sqrt(u)))
+000103 | 
+000104 | is injective for every fixed ell>0. Functional calculus therefore sends the two
+000105 | different h^2 multisets to different X eigenvalue multisets for every such ell.
+000106 | An individual scalar trace can coincide at an isolated ell, but the complete
+000107 | cross-block spectra cannot.
+000108 | 
+000109 | The full unlabelled two-face G remains an orthogonal projection of the same rank
+000110 | in both cases, so its spectrum is still only0 and1. The conclusion concerns its
+000111 | labelled face and crossing blocks, equivalently the retained logit data. The
+000112 | root report states this distinction correctly.
+000113 | 
+000114 | 5. Exact scope
+000115 | This strengthens the earlier permitted-word observation into a response of the
+000116 | already specified finite source operator h(t) and its actual cross-face block.
+000117 | The formal t probe records an available weak connection direction. It does not
+000118 | select a physical gauge background or coupling. The calculation covers one
+000119 | quarter mode p=1/4 and does not supply the all-mode determinant, S_prim,
+000120 | S_adm or Gamma_ren coefficient. It also does not turn the fixed diagnostic
+000121 | Yukawa inputs into dynamical variables or a mass-selection principle.
+000122 | 
+000123 | FILES REVIEWED
+000124 |   aps_source_review/ACTUAL-WEAK-CONNECTION-AND-JOINT-SOURCE.txt
+000125 |   aps_source_review/check_actual_weak_source_moment.py
+000126 |   aps_source_review/actual-weak-source-moment-results.json
+000127 |   verification/v252_full_finite_triple.py
+000128 | 
+000129 | The targeted checker replay passed. Reviewed file hashes at that replay:
+000130 |   checker 7731669986a50e583c71de6066d97e8bbd4c5affc0603ca160cb02c02ddb7cd7
+000131 |   result  c68d755ca5e32b332d300e0b0f628e3c245ead4ca00490e0f9ae23bdb3e2cdd8
+000132 |   report  705850cdc2e54ccb0edffbaf3c6dfd38446bca31c5bfffda0b21d424ab58cad3

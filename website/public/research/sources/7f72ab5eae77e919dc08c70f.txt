@@ -1,0 +1,97 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/e-series-source-reconstruction-20261024/microscopic_state_audit.py
+Original file SHA-256: eb8dad78cc685d2951f9aec22966a622773c0d50e1ebd1706ef86a71320a9b6f
+Inclusive original lines: 20-108
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000020 | def modular_rank(matrix, prime=65537):
+000021 |     a = matrix.copy() % prime
+000022 |     row = 0
+000023 |     for col in range(a.shape[1]):
+000024 |         choices = np.flatnonzero(a[row:, col])
+000025 |         if not len(choices):
+000026 |             continue
+000027 |         pivot = row + int(choices[0])
+000028 |         a[[row, pivot]] = a[[pivot, row]]
+000029 |         a[row] = a[row] * pow(int(a[row, col]), -1, prime) % prime
+000030 |         if row + 1 < len(a):
+000031 |             a[row+1:] = (a[row+1:] - a[row+1:, col, None] * a[row]) % prime
+000032 |         row += 1
+000033 |         if row == len(a):
+000034 |             break
+000035 |     return row
+000036 | 
+000037 | 
+000038 | def calculate():
+000039 |     relative = 'verification/v988_psi_lambda_reduction.py'
+000040 |     path = REPO / relative
+000041 |     raw = path.read_bytes()
+000042 |     tree = ast.parse(raw)
+000043 |     chosen = []
+000044 |     for node in tree.body:
+000045 |         if isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id in
+000046 |                 {'SX', 'SY', 'SZ', 'TX', 'TY'} for t in node.targets):
+000047 |             chosen.append(node)
+000048 |         if isinstance(node, ast.FunctionDef) and node.name in {'qwz_cylinder', 'occ_frame', 'fermi_cov'}:
+000049 |             chosen.append(node)
+000050 |     original = {'np': np}
+000051 |     exec(compile(ast.Module(body=chosen, type_ignores=[]), str(path), 'exec'), original)
+000052 |     Nx, Ny = 16, 6
+000053 |     y_reflection = np.fliplr(np.eye(Ny, dtype=np.int64))
+000054 |     chiral = np.kron(np.eye(Nx, dtype=np.int64), np.kron(
+000055 |         y_reflection, np.array([[0,1],[-1,0]], dtype=np.int64)))
+000056 |     cases = []
+000057 |     for twist in range(4):
+000058 |         h = original['qwz_cylinder'](Nx, Ny, 1, twist)
+000059 |         real = np.rint(2*h.real).astype(np.int64)
+000060 |         imag = np.rint(2*h.imag).astype(np.int64)
+000061 |         need(np.array_equal(2*h, real + 1j*imag), 'exact Gaussian-integer doubled input')
+000062 |         need(np.array_equal(chiral@real@chiral.T, -real) and
+000063 |              np.array_equal(chiral@imag@chiral.T, -imag), 'exact sign-pairing symmetry for every twist')
+000064 |         # 256^2=-1 modulo65537 gives a valid Z[i] ring homomorphism.
+000065 |         rank = modular_rank((real + 256*imag) % 65537)
+000066 |         if twist == 0:
+000067 |             vectors = np.zeros((len(h), 2), dtype=np.int64)
+000068 |             for x in range(Nx):
+000069 |                 vectors[2*x*Ny:2*x*Ny+2, 0] = [1, -1]
+000070 |                 start = 2*(x*Ny+Ny-1)
+000071 |                 vectors[start:start+2, 1] = [1, 1]
+000072 |             need(np.array_equal(real@vectors, np.zeros((len(h),2), dtype=np.int64)) and
+000073 |                  np.array_equal(imag@vectors, np.zeros((len(h),2), dtype=np.int64)),
+000074 |                  'two exact independent boundary zero modes')
+000075 |             need(np.array_equal(vectors.T@vectors, 2*Nx*np.eye(2, dtype=np.int64)), 'independence')
+000076 |             need(rank == len(h)-2, 'modular lower bound plus exact kernel give exact rank190')
+000077 |             particle_hole = np.kron(np.eye(Nx*Ny, dtype=np.int64), np.array([[0,1],[1,0]], dtype=np.int64))
+000078 |             need(np.array_equal(particle_hole@real@particle_hole, -real) and
+000079 |                  np.array_equal(particle_hole@imag@particle_hole, imag), 'exact particle-hole symmetry')
+000080 |         else:
+000081 |             need(rank == len(h), 'full modular rank proves exact invertibility')
+000082 |         w, v, frame = original['occ_frame'](Nx, Ny, 1, twist)
+000083 |         covariance = original['fermi_cov'](w, v)
+000084 |         projector = frame@frame.conj().T
+000085 |         distance = float(np.linalg.norm(covariance-projector, 'fro')**2)
+000086 |         defect = float(np.linalg.norm(covariance@covariance-covariance, 'fro')**2)
+000087 |         need(abs(distance-(0.5 if twist == 0 else 0)) < 1e-10, 'state distinction diagnostic')
+000088 |         need(abs(defect-(0.125 if twist == 0 else 0)) < 1e-10, 'covariance idempotency diagnostic')
+000089 |         cases.append({'twist':twist, 'exact_rank':rank, 'exact_nullity':len(h)-rank,
+000090 |                       'covariance_vs_half_filled_projector_squared_HS':round(distance,12),
+000091 |                       'covariance_idempotency_squared_HS':round(defect,12)})
+000092 |     need(path.read_bytes() == raw, 'unchanged original input')
+000093 |     return {'research_id':'MATH.SEAM.ESERIES.SOURCE-RECONSTRUCTION.06.STATE',
+000094 |             'finite_certificate':'PASS', 'case':{'Nx':Nx,'Ny':Ny,'M':1,'one_particle_dimension':192},
+000095 |             'cases':cases, 'periodic_negative_positive_zero_counts':[95,95,2],
+000096 |             'exact_periodic_squared_HS_distance':'1/2',
+000097 |             'exact_periodic_squared_HS_idempotency_defect':'1/8',
+000098 |             'scope':'Finite unchanged original case; two state prescriptions differ at periodic zero modes. No obstruction to every scaling map or to E8 reconstruction is claimed.',
+000099 |             'source_sha256':{relative:sha256(raw).hexdigest()},'promotion':False}
+000100 | 
+000101 | 
+000102 | if __name__ == '__main__':
+000103 |     parser = argparse.ArgumentParser()
+000104 |     parser.add_argument('--output', type=Path, default=HERE/'microscopic-state-results.json')
+000105 |     args = parser.parse_args()
+000106 |     data = calculate()
+000107 |     args.output.write_text(json.dumps(data, indent=2)+'\n')
+000108 |     print(json.dumps(data, indent=2))

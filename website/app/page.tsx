@@ -16,6 +16,8 @@ import { Overview } from "@/components/Overview";
 import { PathChooser } from "@/components/PathChooser";
 import { DownloadsTeaser } from "@/components/DownloadsTeaser";
 import { LegacyAnchorRedirect } from "@/components/LegacyAnchorRedirect";
+import { TheoryMap } from "@/components/explain/TheoryGuide";
+import { ResearchSnapshot } from "@/components/explain/ResearchSnapshot";
 
 export default function HomePage() {
   return (
@@ -25,6 +27,10 @@ export default function HomePage() {
           /predictions, /architecture, /verification, /orientation). */}
       <LegacyAnchorRedirect />
       <Hero />
+      <div className="guide-shell"><TheoryMap compact /><ResearchSnapshot /></div>
+      <div className="guide-shell py-8"><details className="guide-details">
+      <summary>Open the detailed publication overview and historical film</summary>
+      <p>The following sections preserve the publication narrative and its dated comparisons. The current result library also includes later source reviewed research and scope corrections. Script totals describe an inventory; they do not announce a new suite run.</p>
       <IntroVideo />
       <InOneBreath />
       <WhyThisMatters />
@@ -38,6 +44,7 @@ export default function HomePage() {
       <Overview />
       <PathChooser />
       <DownloadsTeaser />
+      </details></div>
     </>
   );
 }

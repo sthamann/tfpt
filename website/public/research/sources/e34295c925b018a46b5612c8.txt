@@ -1,0 +1,141 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_original_higgs_fiber.py
+Original file SHA-256: 638797cd24a9ae1b2e17ccafe3923bd73e69c0ff5fb784b1cd656727ad5eeb33
+Inclusive original lines: 1-133
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact original full96 Higgs orbit and positive-z determinant reduction.
+000002 | No physical Y, source measure, profile, or new model is selected.
+000003 | """
+000004 | from pathlib import Path
+000005 | import sys,json
+000006 | import numpy as np
+000007 | import sympy as s
+000008 | ROOT=Path(__file__).resolve().parents[4]
+000009 | sys.path.insert(0,str(ROOT/'verification'))
+000010 | import v252_full_finite_triple as original
+000011 | checks={}
+000012 | def need(k,b):
+000013 |  checks[k]=bool(b)
+000014 |  if not b: raise AssertionError(k)
+000015 | I=original.IDX; z3=np.zeros((3,3),complex); z2=np.zeros((2,2),complex)
+000016 | Q=[np.array([[0,1],[-1,0]],complex),np.array([[0,1j],[1j,0]],complex),np.eye(2,dtype=complex),np.diag([-1j,1j])]
+000017 | P=original.rep(1,z2,z3);K=original.Kswap()
+000018 | def higgs(q,Ys,MR):
+000019 |  D=original.full_D(*Ys,z3);a=original.rep(0,q,z3)
+000020 |  b=a@(D@P-P@D);b=b+b.conj().T
+000021 |  return b+K@b.conj()@K+original.full_D(z3,z3,z3,z3,MR)
+000022 | def scaled_lift(q,r):
+000023 |  V=np.eye(48,dtype=complex)*r
+000024 |  for up,dn,nc in [('nu','e',1),('u','d',3)]:
+000025 |   for color in range(nc):
+000026 |    for gen in range(3):
+000027 |     ix=[I[(up,'L',color,gen)],I[(dn,'L',color,gen)]]
+000028 |     V[np.ix_(ix,ix)]=q
+000029 |  W=np.zeros((96,96),complex);W[:48,:48]=V;W[48:,48:]=V.conj()
+000030 |  return W
+000031 | x=s.symbols('x1:5',real=True);h1=x[0]+s.I*x[1];h2=x[2]+s.I*x[3]
+000032 | q=s.Matrix([[s.conjugate(h2),h1],[-s.conjugate(h1),h2]]);u=sum(a*a for a in x)
+000033 | need('generic_quaternion_norm_and_determinant',s.simplify(q.conjugate().T*q-u*s.eye(2))==s.zeros(2) and s.expand(q.det()-u)==0)
+000034 | # One exact integral quaternion, r=5; full class proof is block multiplication.
+000035 | qn=np.array([[2-4j,1+2j],[-1+2j,2+4j]],complex);r=5;W=scaled_lift(qn,r)
+000036 | need('actual_full96_scaled_lift_is_unitary',np.array_equal(W.conj().T@W,25*np.eye(96)))
+000037 | count=0
+000038 | for sp in range(4):
+000039 |  for a in range(3):
+000040 |   for b in range(3):
+000041 |    for phase in [1,1j]:
+000042 |     Ys=[z3.copy() for _ in range(4)];Ys[sp][a,b]=phase
+000043 |     radial=original.full_D(*[r*Y for Y in Ys],z3)
+000044 |     need_result=np.array_equal(W@radial@W.conj().T,25*higgs(qn,Ys,z3))
+000045 |     if not need_result:raise AssertionError('Y orbit basis')
+000046 |     count+=1
+000047 | for a in range(3):
+000048 |  for b in range(a,3):
+000049 |   for phase in [1,1j]:
+000050 |    M=z3.copy();M[a,b]=M[b,a]=phase
+000051 |    D=original.full_D(z3,z3,z3,z3,M)
+000052 |    if not np.array_equal(W@D@W.conj().T,25*D):raise AssertionError('Majorana orbit basis')
+000053 |    count+=1
+000054 | need('all84_original_real_coefficient_directions_transform_with_same_left_lift',count==84)
+000055 | need('weak_lift_preserves_internal_grading_and_real_structure',np.array_equal(W@original.grading(),original.grading()@W) and np.array_equal(K@W.conj()@K,W))
+000056 | 
+000057 | # Dense Gaussian-integer coefficient control, independent original constructor.
+000058 | Ys=[np.array([[1+1j,2,0],[0,1,1j],[1,-1j,2]],complex),np.array([[2,1j,1],[1,3,-1j],[0,1,1]],complex),np.array([[1,0,1j],[2,1,0],[0,-1j,2]],complex),np.array([[1,1j,0],[1,2,1],[0,1,3j]],complex)]
+000059 | M=np.array([[2,1j,1],[1j,3,2],[1,2,1j]],complex)
+000060 | rr=2;D=original.full_D(*[rr*Y for Y in Ys],M)
+000061 | ixplus=[I[('nu','L',0,g)] for g in range(3)]+[48+I[('nu','R',0,g)] for g in range(3)]
+000062 | ixminus=[I[('nu','R',0,g)] for g in range(3)]+[48+I[('nu','L',0,g)] for g in range(3)]
+000063 | B=np.block([[rr*Ys[3],z3],[M.conj().T,rr*Ys[3].T]])
+000064 | need('original_neutrino_chiral_block_is_exact6x6',np.array_equal(D[np.ix_(ixplus,ixminus)],B))
+000065 | D2=D@D;det_checks=[]
+000066 | def mat(a):return s.Matrix(a).applyfunc(s.nsimplify)
+000067 | # Whole determinant is reconstructed from original disjoint invariant blocks;
+000068 | # exact SymPy determinants on blocks, not floating det on a96 matrix.
+000069 | nu=ixplus+ixminus
+000070 | allslots=set(nu);direct_nu=mat(D2[np.ix_(nu,nu)])
+000071 | for zz in [1,3]:
+000072 |  left=direct_nu+zz*s.eye(12)
+000073 |  right=mat(B.conj().T@B)+zz*s.eye(6)
+000074 |  need('exact_neutrino_squared_determinant_z'+str(zz),left.det()==right.det()**2)
+000075 |  det_checks.append(str(right.det()))
+000076 |  Ymat=mat(Ys[3]);Mmat=mat(M);AA=zz*s.eye(3)+rr**2*s.conjugate(Ymat)*Ymat.T
+000077 |  EE=zz*s.eye(3)+rr**2*Ymat.conjugate().T*Ymat+Mmat*Mmat.conjugate().T-rr**2*Mmat*Ymat.T*AA.inv()*s.conjugate(Ymat)*Mmat.conjugate().T
+000078 |  need('exact_neutrino3x3_Schur_determinant_z'+str(zz),s.simplify(AA.det()*EE.det()-right.det())==0)
+000079 | for sp,nc,j in [('u',3,0),('d',3,1),('e',1,2)]:
+000080 |  for color in range(nc):
+000081 |   ix=[I[(sp,ch,color,g)]+offset for offset in [0,48] for ch in ['L','R'] for g in range(3)]
+000082 |   allslots.update(ix);block=mat(D2[np.ix_(ix,ix)])
+000083 |   qsmall=mat(rr**2*Ys[j].conj().T@Ys[j])
+000084 |   for zz in [1,3]:
+000085 |    if (block+zz*s.eye(12)).det()!=(qsmall+zz*s.eye(3)).det()**4:raise AssertionError('charged det')
+000086 | need('whole96_is_partitioned_with_color12_and_lepton4_multiplicities',allslots==set(range(96)))
+000087 | need('all14_exact_charged_block_determinant_controls_passed',True)
+000088 | # Coefficient of u=r² in log det(Phi(r)²+z), entire symmetric-MR class.
+000089 | Ynu=mat(Ys[3]);Mm=mat(M);Yzero=original.full_D(*Ys,z3);Dzero=original.full_D(z3,z3,z3,z3,M)
+000090 | Qzero=mat(Dzero@Yzero+Yzero@Dzero);YY=mat(Yzero@Yzero);DD=mat(Dzero@Dzero)
+000091 | jet_controls=[]
+000092 | for zz in [1,3]:
+000093 |  R=(DD+zz*s.eye(96)).inv()
+000094 |  exact=s.trace(R*YY)-s.trace(R*Qzero*R*Qzero)/2
+000095 |  charged=4*sum(mult*s.trace(mat(Ys[j].conj().T@Ys[j]))/zz for j,mult in [(0,3),(1,3),(2,1)])
+000096 |  neutral=4*s.trace((zz*s.eye(3)+Mm*Mm.conjugate().T).inv()*Ynu.conjugate().T*Ynu)
+000097 |  need('whole96_first_mass_jet_reduces_to_positive3x3_resolvents_z'+str(zz),s.simplify(exact-charged-neutral)==0)
+000098 |  jet_controls.append(str(s.simplify(exact)))
+000099 | z=s.symbols('z',positive=True);a,b,c,d,m=s.symbols('a b c d m',real=True)
+000100 | # 1-family algebra control of the all-family Schur identity.
+000101 | Y=s.Matrix([[a+s.I*b]]);MM=s.Matrix([[m+s.I*d]]);tt=s.symbols('t',real=True);uu=tt**2
+000102 | Bn=s.BlockMatrix([[tt*Y,s.zeros(1)],[MM.conjugate().T,tt*Y.T]]).as_explicit()
+000103 | Kn=z*s.eye(2)+Bn.conjugate().T*Bn
+000104 | need('generic_neutrino_polynomial_has_no_odd_radial_power',s.expand(Kn.det().subs(tt,-tt)-Kn.det())==0)
+000105 | need('one_family_neutrino_determinant_closed_polynomial',s.expand(Kn.det()-((z+uu*(a*a+b*b))**2+z*(m*m+d*d)))==0)
+000106 | 
+000107 | # Fixed literal original bulk coefficients; this is a SOURCE MATCH test.
+000108 | chi,w,Z=s.symbols('chi w Z',positive=True);U=s.symbols('u',nonnegative=True)
+000109 | ED=-U/(48*s.pi**2);G4=U**2/(16*s.pi**2)
+000110 | printed=s.expand(-6*chi**2*ED+G4)
+000111 | target=-chi**2*w**2*U/(8*s.pi**2)+U**2/(16*s.pi**2)
+000112 | need('printed_relative_bulk_has_positive_quadratic_and_quartic',s.diff(printed,U).subs(U,0)==chi**2/(8*s.pi**2) and s.diff(printed,U,2)==1/(8*s.pi**2))
+000113 | need('literal_bulk_differs_from_stated_broken_higgs_potential',s.factor(printed-target)==chi**2*U*(1+w*w)/(8*s.pi**2))
+000114 | need('literal_bulk_also_differs_from_minusV_Lagrangian',s.expand(-target-printed)==s.expand(chi**2*(w*w-1)*U/(8*s.pi**2)-U**2/(8*s.pi**2)))
+000115 | need('relative_coefficient_sign_is_invariant_under_common_action_sign',s.sign(s.diff(printed,U).subs(U,0)*s.diff(printed,U,2))==1 and s.sign(s.diff(target,U).subs(U,0)*s.diff(target,U,2))==-1)
+000116 | need('positive_field_rescaling_does_not_remove_sign_mismatch',s.diff(printed.subs(U,U/Z),U).subs(U,0)==chi**2/(8*s.pi**2*Z))
+000117 | need('zero_higgs_bulk_tadpole_but_positive_radial_curvature',s.diff(printed.subs(U,tt*tt),tt).subs(tt,0)==0 and s.diff(printed.subs(U,tt*tt),tt,2).subs(tt,0)==chi**2/(4*s.pi**2))
+000118 | 
+000119 | # Real-coordinate derivative convention, no spurious factor1/2.
+000120 | F=s.Function('F');f=F(u);grad=s.Matrix([s.diff(f,a) for a in x]);H=s.hessian(f,x)
+000121 | # Substitute a separate scalar symbol to differentiate F without d/d(sum x²).
+000122 | scalar=s.symbols('v');Fp=s.Subs(s.diff(F(scalar),scalar),scalar,u);Fpp=s.Subs(s.diff(F(scalar),scalar,2),scalar,u)
+000123 | need('whole_four_real_Hessian_has_correct_coordinate_factors',s.simplify(H-2*Fp*s.eye(4)-4*Fpp*s.Matrix(x)*s.Matrix(x).T)==s.zeros(4))
+000124 | # Independent all-mode-sum control; analytic convergence and identity in proof.
+000125 | import math
+000126 | NN=10000
+000127 | for alpha in [0.25,0.75]:
+000128 |  for vv in [1.,4.]:
+000129 |   partial=math.fsum(1/((n+alpha)**2+vv) for n in range(-NN,NN+1))
+000130 |   closed=math.pi/math.sqrt(vv)*math.sinh(2*math.pi*math.sqrt(vv))/(math.cosh(2*math.pi*math.sqrt(vv))-math.cos(2*math.pi*alpha))
+000131 |   need('quarter_circle_closed_sum_with_positive_tail_'+str(alpha)+'_'+str(vv),0<=closed-partial<=2/(NN-1))
+000132 | result={'contract':'ORIGINAL-HIGGS-FIBER-AND-RESIDUE-MATCH-20261031','all_passed':all(checks.values()),'checks':checks,'actual_original_coefficient_basis_images':count,'exact_neutrino_det_z1_z3':det_checks,'exact_full96_logdet_mass_jet_z1_z3':jet_controls,'literal_bulk_potential':str(printed),'target_potential_minus_literal':str(s.factor(target-printed)),'target_minusV_Lagrangian_minus_literal':str(s.expand(-target-printed)),'scope':'Whole constant original96 Higgs family, covariant internal lift with given Y and symmetric MR; conditional common-domain spectral consequence. Literal archived local residue match only; no replacement of full S_adm, no full Higgs covariance or physical instability verdict.'}
+000133 | Path(__file__).with_name('ORIGINAL-HIGGS-FIBER.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))

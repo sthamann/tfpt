@@ -1,0 +1,102 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/global-g31-lattice-lift-20261023/THEOREMS.txt
+Original file SHA-256: a5db41f218483476fe623f0fc7353df5bfabf5f79af4a3eda58d7e05e0715fc0
+Inclusive original lines: 203-296
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000203 | 6. Vollständige Normalformen und unbasierte Klassifikation
+000204 | 
+000205 | Die folgende Rechnung gilt zugleich für zwei konische Generatoren und
+000206 | für drei freie Generatoren. Sei v=(l_1,...,l_k) in F2^(8k).
+000207 | Konjugation durch einen Kernelcharakter alpha übersetzt v um
+000208 |   d(alpha)_s=(I+M_s^t)alpha.
+000209 | Dies ist der übliche Raum der1 Koränder. Sei T dessen Bild.
+000210 | Eine festgelegte binäre Zeilenreduktion liefert eine eindeutige Reduktion
+000211 | red_T(v) jedes T Nebenraums, auch auf dem affinen Potenzlösungsraum S.
+000212 | 
+000213 | Nach Festlegen des ursprünglichen Monodromievertreters bleiben genau die
+000214 | h in Z_G(g_1,...,g_k) als Basiswechsel. Sei P=M_h. Ein beliebiger Lift
+000215 | von h mit Kernelkoordinate alpha wirkt durch
+000216 |   l_s' = P^(-t)[l_s+(I+M_s^t)alpha+t(h,g_s)],
+000217 |   t(h,g_s)_i=h_h(M_s e_i)+h_s(P e_i).
+000218 | Beweis: phi_h phi_s=phi_s' phi_h auf jedem Basisargument auswerten.
+000219 | Nach Quotientieren durch T entfällt alpha. Die verbleibende affine
+000220 | Zentralisatorwirkung ist dadurch vollständig und explizit angegeben.
+000221 | 
+000222 | Eine vollständige kanonische Normalform ist
+000223 |   (ursprünglicher Monodromievertreter,
+000224 |    min_lex {red_T(h.v): h im gemeinsamen Zentralisator}).
+000225 | Für Clockobjekte wird der kanonische Clockvertreter mitgeführt.
+000226 | Notwendigkeit folgt aus der eben berechneten Wirkung. Hinlänglichkeit
+000227 | folgt daraus, dass jede verwendete Translation oder Zentralisatorwirkung
+000228 | von einer tatsächlichen Konjugation in Gtilde stammt. Damit klassifizieren
+000229 | die Normalformen genau die verlangten Isomorphismen.
+000230 | 
+000231 | quarter_lifts.py enumeriert diese Normalformen für alle62 ursprünglichen
+000232 | Clockklassen vollständig. quarter-lifts.json enthält jede einzelne der
+000233 | 11356 Normalformen und ihre Automorphismenordnung. Die Summen lauten
+000234 |   6856 +4272 +228 =11356.
+000235 | Vor dem letzten Zentralisatorquotienten liegt für jede Clockklasse ein
+000236 | Torsor über H1(Pi,A) vor. Seine Größen und alle weiteren Quotienten stehen
+000237 | in CLOCK_LIFTS.tsv. Die vorhandene nichttriviale Modulwirkung bleibt erhalten.
+000238 | 
+000239 | Die Stabilisatorordnung eines Clocklifts ist exakt
+000240 |   256*|Z_G(r,C)| / (|T|*|Orbit in S/T|).
+000241 | Auch diese Ordnungen sind für sämtliche Normalformen ausgegeben.
+000242 | 
+000243 | 7. Zweiter unabhängiger Zählweg und alle17 freien Monodromien
+000244 | 
+000245 | Für Burnside kann die Summe über die256 Kernelcharaktere zusammengefasst
+000246 | werden. Fixiere h im gemeinsamen Zentralisator und schreibe P=M_h.
+000247 | Ein Lift v wird von einem Lift(h,alpha) fixiert genau dann, wenn
+000248 |   (I+P^t)l_s+(I+M_s^t)alpha=t(h,g_s)
+000249 | für alle s gilt. Hinzu kommen gegebenenfalls die konischen Potenzgleichungen.
+000250 | Dies ist ein affines binäres System in8(k+1) Variablen(v,alpha).
+000251 | Es besitzt entweder0 oder2^(8(k+1)-Rang) Lösungen. Also lautet die
+000252 | Isomorphieklassenzahl
+000253 |   [sum_(h im Zentralisator) Anzahl Lösungen(v,alpha)]
+000254 |       / [256*|Zentralisator|].
+000255 | Dies ist Burnside für das volle Urbild des Zentralisators; kein Kernelquotient
+000256 | wird dabei vergessen. Der Ausdruck gilt für affine und nicht nur lineare
+000257 | Wirkungen. audit_lifts.py berechnet alle62 Zahlen unabhängig von der
+000258 | Orbitzerlegung erneut. Jede einzelne stimmt überein. Die Konjugationsformel
+000259 | wird außerdem durch direkte Komposition und Inversion der vollständigen
+000260 | 256 Argumente umfassenden Phasenfunktionen an den Basisgeneratoren geprüft.
+000261 | 
+000262 | Für ungeclockte Monodromien ist Pi=F3. Es gibt keine Potenzgleichungen,
+000263 | also pro festem basierten rho genau256^3=16777216 Lifts. Derselbe vollständige
+000264 | Zentralisatorquotient ergibt für die17 ursprünglichen Vertreter:
+000265 |   ID0:16752
+000266 |   ID1:41024   ID2:91864   ID3:26128   ID4:42240
+000267 |   ID5:41024   ID6:41024   ID7:41024   ID8:41024
+000268 |   ID9:91864   ID10:91864  ID11:91864  ID12:26128
+000269 |   ID13:41024  ID14:26128  ID15:42240  ID16:42240.
+000270 | Die Summe ist835456. ORDINARY_LIFTS.tsv enthält die17 Zeilen samt
+000271 | ursprünglichen Reflexionsindizes und Zentralisatoren. Die Normalform aus
+000272 | Abschnitt6 gilt auch hier und liefert ein vollständiges Isomorphiekriterium,
+000273 | ohne Millionen basierter Lifts als unbasierte Klassen auszugeben.
+000274 | 
+000275 | 8. Verbindung mit den bisherigen Invarianten
+000276 | 
+000277 | Die beiden ursprünglichen V4 Einbettungen besitzen in der integralen
+000278 | Kohomologie H1=Z20+Z/2 beziehungsweise Z20. Die neue Liftklassenzahl über
+000279 | jedem ihrer drei geordneten Monodromieorbits beträgt26128 beziehungsweise
+000280 | 42240. Hier wirkt dieselbe originale integrale Gitterdarstellung in der
+000281 | Kohomologie und über ihr Vorzeichenmodul, ohne angepasste Einbettung.
+000282 | 
+000283 | Die zuvor untersuchten Clockmarkierungen0/3 und0/5 haben dieselbe
+000284 | Meridianmonodromie, dasselbe Clockspektrum und dieselbe Gitterkohomologie.
+000285 | Die neue Gitterliftklassifikation liefert212 beziehungsweise176 Klassen.
+000286 | Sie unterscheidet diese beiden markierten Objekte damit ebenfalls.
+000287 | 
+000288 | Die bereits abgeschlossenen verschiedenen Erweiterungsverträge bleiben:
+000289 |   Vorzeichenurbild von<J>, alle vier Projektionen J:526336 Klassen.
+000290 |   Zentrale Z4 Erweiterung über Reflexionsvierern:1088 ungeclockte Klassen,
+000291 |     keine strikten Clocklifts.
+000292 |   Ursprüngliche charakterwertige Erweiterung über denselben Reflexionsvierern:
+000293 |     835456 ungeclockte Klassen und11356 strikte Clockliftklassen.
+000294 | Die zugrunde liegende Gruppe, die Koeffizientenwirkung und die Markierungen
+000295 | sind jeweils Bestandteil der Aussage. Gleiche Basismonodromie bedeutet
+000296 | keine Gleichheit dieser drei Erweiterungsprobleme.

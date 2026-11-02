@@ -1,0 +1,94 @@
+TFPT scientific source excerpt
+Original repository path: documents/archive--paper-latex--tfpt-theory-fullv28/sections/004-subsection-geometric-self-consistency-backreaction.tex
+Original file SHA-256: e2aa38f61b269e4c907559084ac6df3bf811961516c0cc72dd70d3285fd59081
+Inclusive original lines: 17-102
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000017 | \textbf{Step 2: Defect sector reweighting in the Euclidean partition function.}
+000018 | We treat the discrete correction as a defect sector weight. An additive deformation of the
+000019 | defect action by $\alpha$ implies exact exponential reweighting:
+000020 | \begin{lemma}{Defect Sector Reweighting}{defectreweight}
+000021 | Let the Euclidean partition function split into sectors
+000022 | \begin{equation}
+000023 |     Z(\alpha)=Z_{\mathrm{triv}}(\alpha)+Z_{\mathrm{def}}(\alpha),
+000024 | \end{equation}
+000025 | with defect weight $\delta_{\mathrm{top}}(\alpha)=Z_{\mathrm{def}}(\alpha)/Z_{\mathrm{triv}}(\alpha)$.
+000026 | If the defect action is deformed additively,
+000027 | \begin{equation}
+000028 |     S_{\mathrm{def}}(\alpha)=S_{\mathrm{def}}(0)+\alpha\,\mathcal{J},
+000029 | \end{equation}
+000030 | then
+000031 | \begin{equation}
+000032 |     \delta_{\mathrm{top}}(\alpha)=\delta_{\mathrm{top}}\,e^{-\alpha\mathcal{J}}.
+000033 | \end{equation}
+000034 | For a degree-$d$ cover with identical sheet contributions, $\mathcal{J}=d\,\mathcal{J}_1$.
+000035 | We identify the per-sheet normalization with the spectral-flow unit, $\mathcal{J}_1=\mathrm{SF}$,
+000036 | so $\mathcal{J}=d\,\mathrm{SF}$. For the orientable double cover, $d=2$ and $\mathrm{SF}=1$,
+000037 | so the exponent is fixed to $k=2$ and
+000038 | $\delta_{\mathrm{top}}(\alpha)=\delta_{\mathrm{top}}\,e^{-2\alpha}$. If $\mathrm{SF}\neq 1$,
+000039 | this corresponds to a different topological sector with a different $k$. \hfill QED
+000040 | \end{lemma}
+000041 | \textbf{Evidence:} \texttt{backreaction\_index\_anchor\_audit}.
+000042 | 
+000043 | \begin{tcolorbox}[colback=blue!3, colframe=blue!40, 
+000044 |     title={\textbf{Lemma (Cover-Degree Scaling of Deck-Invariant Response)}}, fonttitle=\bfseries\small]
+000045 | Let $p:\widetilde{M}\to M$ be a degree-$d$ covering and let $\mathcal{J}$ be a deck-invariant
+000046 | source functional. Then
+000047 | \begin{equation}
+000048 |     \int_{\widetilde{M}}\mathcal{J} = d \int_{M}\mathcal{J}.
+000049 | \end{equation}
+000050 | If the response of $\phiz$ is built from such an integrated source, the effective
+000051 | weight acquires a factor $d$. For the orientable double cover, $d=2$.
+000052 | \end{tcolorbox}
+000053 | 
+000054 | \textbf{Step 3: Double cover fixes the exponent.}
+000055 | The defect-sector lemma and cover-degree scaling fix the exponent to $2$ for the
+000056 | orientable double cover. Adding the baseline yields the exact response:
+000057 | \begin{equation}
+000058 |     \phiz(\alpha) = \phitree + \deltatop\,e^{-2\alpha}.
+000059 | \end{equation}
+000060 | 
+000061 | \begin{remark}
+000062 | \textbf{Series control (no new parameters):} The exact form implies
+000063 | \begin{equation}
+000064 |     \phiz(\alpha)=\phitree+\deltatop\left(1-2\alpha+2\alpha^2-\frac{4}{3}\alpha^3+\cdots\right),
+000065 | \end{equation}
+000066 | so all higher coefficients are fixed (e.g.\ $c_2=2$). Numerically, even the
+000067 | $\alpha^2$ term shifts $\phiz$ by $\lesssim 10^{-8}$ since
+000068 | $\alpha\approx 0.0073$ and $\deltatop\approx 1.2\times10^{-4}$.
+000069 | \end{remark}
+000070 | 
+000071 | \begin{theorem}{Self-Consistent $\alpha$ with Derived Two-Defect Partition}{selfconsistent}
+000072 | Including the minimal backreaction response on the orientable double cover \emph{and} the derived two-defect occupancy weight anchored by holonomy degeneracy $g=5$:
+000073 | \begin{align}
+000074 |     \phiz(\alpha) &= \phitree + \deltatop e^{-2\alpha} + \delta_2 e^{-4\alpha} + \cdots,
+000075 |     \label{eq:backreaction}\\
+000076 |     \delta_2 &= \frac{g}{4}\,(\delta_{\mathrm{top}})^2 = \frac54\,(\delta_{\mathrm{top}})^2,
+000077 |     \qquad (g=5),
+000078 | \end{align}
+000079 | where $g$ is fixed by SU(5) holonomy degeneracy prior to any $\alpha$ comparison (see theoryv3 audit chain).
+000080 | The prefactor $g/4$ follows from the two-defect cluster expansion with the pair symmetry
+000081 | factor $1/2$ and the two-sheet pairing factor $2$ (Appendix~\ref{app:repro}).
+000082 | \textbf{Evidence:} \texttt{two\_defect\_cluster\_expansion\_audit}, \texttt{g5\_independence\_audit}, \texttt{g5\_trace\_completeness\_audit}.
+000083 | the self-consistent solution of the CFE yields the headline value:
+000084 | \begin{equation}
+000085 |     \boxed{\alpha^{-1}_{\text{TFPT}}(0) = \num[round-mode=places,round-precision=12]{\TFPTalphaInvGOverFourNum}}
+000086 | \end{equation}
+000087 | with CODATA 2022 diagnostic $z=\num[round-mode=places,round-precision=3]{\TFPTalphaZGOverFourNum}$ (see theoryv3 module \texttt{defect\_partition\_g5\_audit}; artifacts in Appendix~\ref{app:repro}).
+000088 | \end{theorem}
+000089 | 
+000090 | \begin{tcolorbox}[colback=blue!3, colframe=blue!40,
+000091 |     title={\textbf{Two-Defect Bookkeeping}}, fonttitle=\bfseries\small]
+000092 | The prefactor $g/4$ in $\delta_2 = (g/4)(\delta_{\mathrm{top}})^2$ follows from
+000093 | enumeration of all 30 defect-pair configurations across $g=5$ holonomy sectors
+000094 | and 2 sheets:
+000095 | \begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+000096 |     \item Pair symmetry factor: $1/2$
+000097 |     \item Sheet pairing factor: $2$
+000098 |     \item Holonomy degeneracy: $g=5$
+000099 |     \item Combined: $\frac{1}{2}\times 2\times g \times \frac{1}{2} = g/4$
+000100 | \end{itemize}
+000101 | Total: $\sum_{\text{configs}} w_i = g/4 = 5/4$.\quad
+000102 | \textbf{Certificate:} \texttt{two\_defect\_enumeration\_certificate} (30 configs, sum check passed).

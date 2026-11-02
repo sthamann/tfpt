@@ -1,0 +1,97 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_joint_lift_native_clock.py
+Original file SHA-256: eea4b77219cd9d3192a64e257e4e69cd57f68137cc1573ef4908bd8c3dbce3e1
+Inclusive original lines: 103-191
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000103 |     return tuple(character[j] for j in (0, 2, 1, 3))
+000104 | 
+000105 | 
+000106 | def toral_character(roots, h, modulus):
+000107 |     values = [sum(x * y for x, y in zip(root, h)) for root in roots]
+000108 |     if any(x % 2 for x in values):
+000109 |         raise RuntimeError("nonintegral toral cocharacter")
+000110 |     counter = Counter(x // 2 for x in values)
+000111 |     counter[0] += 8
+000112 |     return phases(counter, modulus)
+000113 | 
+000114 | 
+000115 | def parallel_split_clock(roots, target):
+000116 |     """Whole native compiler commuting with EVERY supplied split connection.
+000117 | 
+000118 |     This clock is a separate bundle automorphism, not a clutch evaluation.
+000119 |     All243 toral thirds centralizing fixed U3xU2 are classified, not all
+000120 |     possible marked field maps or physical connections.
+000121 |     """
+000122 |     matches = []
+000123 |     for color, weak, x, y, z in product(range(3), repeat=5):
+000124 |         b = [color, color, color, weak, weak, x, y, z]
+000125 |         if sum(b) % 2:
+000126 |             b[5] += 3  # unique E8 lattice class with these standard mod3 residues
+000127 |         h12 = tuple((6 if i < 5 else 0) + 4 * value for i, value in enumerate(b))
+000128 |         if toral_character(roots, h12, 12) == target:
+000129 |             matches.append(tuple(b))
+000130 |     expected = {
+000131 |         (color, color, color, 0, 0) + tuple(phase if i == axis else 0 for i in range(3))
+000132 |         for color in (1, 2) for axis in range(3) for phase in (1, 2)
+000133 |     }
+000134 |     require("12 of243 split-connection centralizing thirds match native compiler", (
+000135 |         len(matches) == 12 and {tuple(v % 3 for v in b) for b in matches} == expected
+000136 |     ))
+000137 |     b = (1, 1, 1, 0, 0, 0, 0, 1)
+000138 |     h12 = tuple((6 if i < 5 else 0) + 4 * value for i, value in enumerate(b))
+000139 |     kappa4 = (2, 2, 2, 2, 2, 0, 0, 0)
+000140 |     require("simple globally split-compatible compiler matches actual whole character", (
+000141 |         b in matches and toral_character(roots, h12, 12) == target
+000142 |     ))
+000143 |     require("actual ninth/fourth powers on all root fields", all(
+000144 |         (9 * sum(a * x for a, x in zip(r, h12)) - 3 * sum(a * x for a, x in zip(r, kappa4))) % 24 == 0
+000145 |         and (4 * sum(a * x for a, x in zip(r, h12)) - 4 * sum(a * x for a, x in zip(r, b))) % 24 == 0
+000146 |         for r in roots
+000147 |     ))
+000148 |     split_generators = []
+000149 |     for block in ((0, 1, 2), (3, 4)):
+000150 |         for i, j in combinations(block, 2):
+000151 |             r = [0] * 8
+000152 |             r[i], r[j] = 1, -1
+000153 |             split_generators.append(tuple(r))
+000154 |     require("sigma centralizes actual U3xU2 root generators", all(
+000155 |         sum(x * y for x, y in zip(b, r)) % 3 == 0 for r in split_generators
+000156 |     ))
+000157 |     tetrahedron = ((1, 1, 1), (1, -1, -1), (-1, 1, -1), (-1, -1, 1))
+000158 |     family_phases = (1, 2, 2, 1)
+000159 |     correct_field_weights = True
+000160 |     for count in (0, 2, 4):
+000161 |         for subset in combinations(range(5), count):
+000162 |             eps = tuple(1 if i in subset else -1 for i in range(5))
+000163 |             nc = len(set(subset) & {0, 1, 2})
+000164 |             for j, t in enumerate(tetrahedron):
+000165 |                 doubled_root = eps + tuple(-s for s in t)
+000166 |                 q2 = sum(x * y for x, y in zip(doubled_root, b))
+000167 |                 correct_field_weights &= doubled_root in roots and q2 % 2 == 0
+000168 |                 correct_field_weights &= (q2 // 2 - nc - family_phases[j]) % 3 == 0
+000169 |     require("sigma literal W_m action is color center times two-plus-two family matrix", correct_field_weights)
+000170 |     require("kappa is trivial on ALL K adjoint root currents", all(
+000171 |         sum(x * y for x, y in zip(r, kappa4)) % 8 == 0
+000172 |         for r in roots if all(x == 0 for x in r[:5]) or all(x == 0 for x in r[5:])
+000173 |     ))
+000174 |     return {
+000175 |         "toral_thirds_checked": 243, "native_matches": 12, "matching_b": matches,
+000176 |         "simple_b": b, "simple_c_h12": h12,
+000177 |         "sigma_on_Wm": "Lambda-even(diag(omega I3,I2)) tensor diag(omega,omega^2,omega^2,omega)",
+000178 |         "connection_scope": "Every GIVEN U3xU2 connection and its natural determinant-family connection, for every m. No independent nonabelian family connection assumed.",
+000179 |         "globality": "kappa and sigma commute with all natural split transition functions; they are global parallel bundle automorphisms.",
+000180 |         "not_identified": "Clutch angle, geometric base transport, physical time, Phi, source domain and source-state map remain separate.",
+000181 |     }
+000182 | 
+000183 | 
+000184 | def bounded_color_weak_clutches(roots, target):
+000185 |     """Complete minimum proof in the stated integer toral class.
+000186 | 
+000187 |     An explicit match has norm squared 100. All lower norms have |k_i|<=10
+000188 |     and |m_j+1/2|<=10. Sorting only uses S3 color, S2 weak and S4 family.
+000189 |     No bound on an unknown minimizer is assumed.
+000190 |     """
+000191 |     families = [

@@ -1,0 +1,143 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/check_elliptic_moebius_review.py
+Original file SHA-256: 980cf9a8a6638cf1940e8969800bc61cd000e00916834bef9227547a16db4deb
+Inclusive original lines: 91-225
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000091 |     dividing = [key for key, count in components.items() if count == 2]
+000092 | 
+000093 |     delta = (I2, T)
+000094 |     d2m, d2v = affine_pow(delta, 2)
+000095 |     delta_free_order_two = d2m == I2 and tuple(d2v) == (1, 1) and not integral_vector(T)
+000096 |     commutes = True
+000097 |     for key in dividing:
+000098 |         a, b = key
+000099 |         rho = affine_comp(affine_pow(h, a), affine_comp(affine_pow(q, b), kappa))
+000100 |         left = affine_comp(rho, delta)
+000101 |         right = affine_comp(delta, rho)
+000102 |         commutes &= left[0] == right[0] and integral_vector(left[1] - right[1])
+000103 | 
+000104 |     t, s = sp.symbols("t s", real=True)
+000105 |     glide_once = (sp.Rational(1, 2) - t, s + sp.Rational(1, 2))
+000106 |     glide_twice = (
+000107 |         sp.simplify(sp.Rational(1, 2) - glide_once[0]),
+000108 |         sp.simplify(glide_once[1] + sp.Rational(1, 2)),
+000109 |     )
+000110 |     glide_square = glide_twice == (t, s + 1)
+000111 |     glide_free = sp.simplify(glide_once[1] - s - sp.Rational(1, 2)) == 0
+000112 | 
+000113 |     # Q rotates the two cuts.  It is not the half translation around a fixed boundary.
+000114 |     witness = sp.Matrix([sp.Rational(1, 4), 0])
+000115 |     q_witness = J * witness
+000116 |     boundary_half_witness = witness + sp.Matrix([0, sp.Rational(1, 2)])
+000117 |     q_not_boundary_half_translation = q_witness != boundary_half_witness
+000118 | 
+000119 |     def chi(m, n):
+000120 |         return -1 if (m + n) % 2 else 1
+000121 | 
+000122 |     character_ok = chi(1, 0) == -1 and chi(0, 1) == -1 and chi(1, 1) == 1
+000123 | 
+000124 |     # Raw pullbacks in the displayed automorphy trivialization.  The two
+000125 |     # universal affine composites differ by the A-cycle, so chi(A)=-1 is the
+000126 |     # commutator.  The glide squares to the B-cycle, so chi(B)=-1.
+000127 |     raw_delta_square = chi(1, 1)
+000128 |     raw_rho_delta_commutator = chi(1, 0)
+000129 |     raw_glide_square = chi(0, 1)
+000130 | 
+000131 |     # Q sends A to B and B to -A.  Of the four flat spin characters, exactly
+000132 |     # one is simultaneously nontrivial, Q fixed, zero-mode free and gives the
+000133 |     # order-four glide.  This is the selected NS--NS line, not a fitted phase.
+000134 |     spin_rows = []
+000135 |     selected_spin_rows = []
+000136 |     for eps_a in (1, -1):
+000137 |         for eps_b in (1, -1):
+000138 |             row = {
+000139 |                 "chi_A": eps_a,
+000140 |                 "chi_B": eps_b,
+000141 |                 "Q_fixed": eps_a == eps_b,
+000142 |                 "has_constant_zero_mode": eps_a == 1 and eps_b == 1,
+000143 |                 "raw_glide_square": eps_b,
+000144 |             }
+000145 |             spin_rows.append(row)
+000146 |             if row["Q_fixed"] and not row["has_constant_zero_mode"] and eps_b == -1:
+000147 |                 selected_spin_rows.append(row)
+000148 | 
+000149 |     sigma_t = sp.Matrix([[0, 1], [1, 0]])
+000150 |     sigma_s = sp.Matrix([[0, -sp.I], [sp.I, 0]])
+000151 |     # g has derivative diag(-1,+1).  A=sigma_s U_g commutes with D
+000152 |     # coefficientwise.  U_g is complex linear here.
+000153 |     linear_pin_covariant = (
+000154 |         sp.simplify(-sigma_t * sigma_s - sigma_s * sigma_t) == sp.zeros(2)
+000155 |         and sp.simplify(sigma_s * sigma_s - sigma_s * sigma_s) == sp.zeros(2)
+000156 |     )
+000157 |     linear_pin_square = sp.simplify(sigma_s**2 * (-I2))
+000158 |     quotient_sector_squares = {
+000159 |         str(c): sp.simplify((1 / c) ** 2 * linear_pin_square)
+000160 |         for c in (sp.I, -sp.I)
+000161 |     }
+000162 |     # The anti-linear Real lift is a different operator: scalars and sigma_s
+000163 |     # are conjugated, so sigma_s J_g has square +I.
+000164 |     anti_pin_square = sp.simplify(sigma_s * sigma_s.conjugate() * (-I2))
+000165 |     lift_type_separation = (
+000166 |         linear_pin_square == -I2
+000167 |         and anti_pin_square == I2
+000168 |         and all(x == I2 for x in quotient_sector_squares.values())
+000169 |     )
+000170 | 
+000171 |     r = sp.symbols("r", positive=True)
+000172 |     graph = sp.Matrix([[1 / (1 + r**2), r / (1 + r**2)],
+000173 |                        [r / (1 + r**2), r**2 / (1 + r**2)]])
+000174 |     swap = sp.Matrix([[0, 1], [1, 0]])
+000175 |     graph_glide_invariance = sp.simplify(swap * graph.subs(r, 1 / r) * swap - graph) == sp.zeros(2)
+000176 | 
+000177 |     # The boundary compression and the old quarter-cover dictionary.
+000178 |     x = sp.symbols("x", real=True)
+000179 |     transfer = sp.exp(-x)
+000180 |     graph_from_transfer = sp.Matrix([
+000181 |         [1, transfer], [transfer, transfer**2]
+000182 |     ]) / (1 + transfer**2)
+000183 |     second_face_covariance = sp.simplify(
+000184 |         graph_from_transfer[1, 1] - 1 / (1 + sp.exp(2 * x))
+000185 |     ) == 0
+000186 | 
+000187 |     fold_and_carry = True
+000188 |     for m in range(-4, 5):
+000189 |         fold_and_carry &= (
+000190 |             2 * m + sp.Rational(1, 2) == 2 * (m + sp.Rational(1, 4))
+000191 |             and 2 * m + sp.Rational(3, 2) == 2 * (m + sp.Rational(3, 4))
+000192 |             and (2 * m) + 1 == 2 * m + 1
+000193 |             and (2 * m + 1) + 1 == 2 * (m + 1)
+000194 |         )
+000195 | 
+000196 |     # Finite telescoping identity behind the Fredholm factor.  The endpoint
+000197 |     # limits c_{-infinity}=1 and c_{+infinity}=0 give 1-z.
+000198 |     z = sp.symbols("z")
+000199 |     labels = list(range(-4, 5))
+000200 |     c = {j: sp.symbols(f"c_{j + 5}") for j in range(-5, 5)}
+000201 |     finite_relative_product = sp.prod(
+000202 |         (1 - z * c[j - 1]) / (1 - z * c[j]) for j in labels
+000203 |     )
+000204 |     telescoping = sp.simplify(
+000205 |         finite_relative_product - (1 - z * c[-5]) / (1 - z * c[4])
+000206 |     ) == 0
+000207 | 
+000208 |     q = sp.exp(-sp.pi)
+000209 |     trace_upper = 2 * q / (1 - q**2)
+000210 |     trace_bound = bool(sp.N(trace_upper, 60) < sp.Rational(86590, 10**6))
+000211 | 
+000212 |     checks = {
+000213 |         "eight_affine_forms": bool(affine_ok),
+000214 |         "all_are_involutions_mod_lattice": bool(involution_ok),
+000215 |         "exactly_two_dividing": dividing == [(1, 1), (1, 3)],
+000216 |         "delta_free_two_torsion": bool(delta_free_order_two),
+000217 |         "delta_commutes_with_dividing_forms_on_torus": bool(commutes),
+000218 |         "annulus_glide_free_and_square_identity_on_base": bool(glide_square and glide_free),
+000219 |         "Q_is_not_boundary_half_translation": bool(q_not_boundary_half_translation),
+000220 |         "NS_NS_character": bool(character_ok),
+000221 |         "raw_pullback_central_relations": bool(
+000222 |             raw_delta_square == 1
+000223 |             and raw_rho_delta_commutator == -1
+000224 |             and raw_glide_square == -1
+000225 |         ),

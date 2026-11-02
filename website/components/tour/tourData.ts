@@ -40,7 +40,11 @@ export const ALPHA = {
 } as const;
 
 export const PREDICTIONS = {
-  frozenCount: 27,
+  mainCount: 16,
+  assignedCount: 2,
+  bandCount: 2,
+  variantCount: 2,
+  freezeDate: "2026-06-09",
   examples: [
     {
       id: "alpha",
@@ -179,7 +183,7 @@ export const TOUR_STEPS: readonly TourStepMeta[] = [
     short: "What comes out",
     title: "Concrete numbers you can argue with",
     plain:
-      "Among the outputs: α⁻¹, mass and mixing structure, and 27 frozen predictions — three examples below with the actual figures.",
+      "Among the outputs: α⁻¹, mass and mixing structure. The frozen register separates 16 main values, two assigned textures and two conditional bands. Three examples follow.",
   },
   {
     id: "not-numerology",
@@ -187,7 +191,7 @@ export const TOUR_STEPS: readonly TourStepMeta[] = [
     short: "Not numerology",
     title: "Why this is not AI slop or curve-fitting",
     plain:
-      "Predictions were frozen before decisive data; null Monte Carlos and look-elsewhere discipline are enforced; every claim carries an honest [E]/[C]/[O]/[X] grade.",
+      "The register records a dated formula freeze. Already known measurements are comparisons, while future tests must be assessed against their actual commitment dates. Claims carry [E]/[C]/[O]/[X] markers.",
   },
   {
     id: "seam",

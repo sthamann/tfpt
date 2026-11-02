@@ -1,0 +1,140 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/older-paper-source-recovery-20261025/check_older_circle_heat.py
+Original file SHA-256: 24f2940da3861c155ce2ff953ae13f5a529f5f0c14a64b05a716ae70048076a0
+Inclusive original lines: 1-132
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact controls for recovered original circle and full heat determinant.
+000002 | 
+000003 | Infinite-dimensional statements are proved in HEAT-TRANSFER-IR-CLOSURE.txt.
+000004 | No chosen physical source, parameter identification or finite Fredholm
+000005 | approximation is asserted by these algebraic controls.
+000006 | """
+000007 | 
+000008 | import json
+000009 | from fractions import Fraction as F
+000010 | from pathlib import Path
+000011 | 
+000012 | 
+000013 | def need(condition, message):
+000014 |     if not condition:
+000015 |         raise RuntimeError(message)
+000016 | 
+000017 | 
+000018 | def mul(left, right, degree):
+000019 |     out = [F(0) for _ in range(degree + 1)]
+000020 |     for i, x in enumerate(left):
+000021 |         for j, y in enumerate(right):
+000022 |             if i + j <= degree:
+000023 |                 out[i + j] += x * y
+000024 |     return out
+000025 | 
+000026 | 
+000027 | degree = 20
+000028 | b = F(5, 4)
+000029 | direct = [F(1)] + [F(0)] * degree
+000030 | for odd in range(1, degree + 1, 2):
+000031 |     factor = [F(0)] * (degree + 1)
+000032 |     coefficient = F(1)
+000033 |     factor[0] = coefficient
+000034 |     for k in range(1, degree // odd + 1):
+000035 |         coefficient *= (b + k - 1) / k
+000036 |         factor[odd * k] = coefficient
+000037 |     direct = mul(direct, factor, degree)
+000038 | 
+000039 | sigma = [0] + [sum(d for d in range(1, n + 1, 2) if n % d == 0)
+000040 |                for n in range(1, degree + 1)]
+000041 | recursive = [F(1)] + [F(0)] * degree
+000042 | for n in range(1, degree + 1):
+000043 |     recursive[n] = b * sum(F(sigma[k]) * recursive[n - k]
+000044 |                            for k in range(1, n + 1)) / n
+000045 | need(direct == recursive, "odd product and all-order recurrence disagree")
+000046 | 
+000047 | rank_one = [F(1)]
+000048 | for n in range(1, degree + 1):
+000049 |     rank_one.append(rank_one[-1] * (b + n - 1) / n)
+000050 | first_difference = next(n + 1 for n in range(degree + 1)
+000051 |                         if direct[n] != rank_one[n])
+000052 | need(first_difference == 4, "first opening difference must be fourth order")
+000053 | need(direct[:4] == [F(1), F(5, 4), F(45, 32), F(355, 128)],
+000054 |      "full opening coefficients")
+000055 | need(rank_one[3] == F(195, 128), "rank-one fourth opening coefficient")
+000056 | need(direct[3] - rank_one[3] == F(5, 4), "fourth opening correction")
+000057 | 
+000058 | halves = []
+000059 | for residue in (1, 3):
+000060 |     half = [F(1)] + [F(0)] * degree
+000061 |     for exponent in range(residue, degree + 1, 4):
+000062 |         factor = [F(0)] * (degree + 1)
+000063 |         coefficient = F(1)
+000064 |         factor[0] = coefficient
+000065 |         for k in range(1, degree // exponent + 1):
+000066 |             coefficient *= (b + k - 1) / k
+000067 |             factor[exponent * k] = coefficient
+000068 |         half = mul(half, factor, degree)
+000069 |     half_recursive = [F(1)] + [F(0)] * degree
+000070 |     half_sigma = [0] + [sum(d for d in range(1, n + 1)
+000071 |                             if n % d == 0 and d % 4 == residue)
+000072 |                         for n in range(1, degree + 1)]
+000073 |     for n in range(1, degree + 1):
+000074 |         half_recursive[n] = b * sum(F(half_sigma[k]) * half_recursive[n-k]
+000075 |                                     for k in range(1, n+1)) / n
+000076 |     need(half == half_recursive, "half product and recurrence disagree")
+000077 |     halves.append(half)
+000078 | need(mul(halves[0], halves[1], degree) == direct,
+000079 |      "positive/negative determinant factorization")
+000080 | positive_first_difference = next(n+1 for n in range(degree+1)
+000081 |                                  if halves[0][n] != rank_one[n])
+000082 | need(positive_first_difference == 6, "positive-half opening degree")
+000083 | need(halves[0][5] - rank_one[5] == b, "positive-half sixth-order correction")
+000084 | for a in (F(1, 10), F(1, 4), F(1, 2), F(3, 4), F(9, 10)):
+000085 |     need(all((n+a)-a == n for n in range(degree)),
+000086 |          "positive-half normalized spectrum for every interior twist")
+000087 | 
+000088 | quarter_data = []
+000089 | for a in (F(1, 4), F(3, 4)):
+000090 |     pairs = sorted((abs(n + a), n) for n in range(-degree, degree + 1))
+000091 |     need([p[0] for p in pairs[:degree]] == [F(2 * m + 1, 4)
+000092 |                                            for m in range(degree)],
+000093 |          "quarter absolute spectrum")
+000094 |     gap_label = pairs[0][1]
+000095 |     need(gap_label == (0 if a == F(1, 4) else -1), "gap branch")
+000096 |     for n in range(-degree, degree + 1):
+000097 |         need((n + 1 + a) - (n + a) == 1, "oriented Ward sign")
+000098 |         need((-(n + 1 + a)) - (-(n + a)) == -1, "printed i-partial sign")
+000099 |     quarter_data.append({"twist": str(a), "gap_label": gap_label,
+000100 |                          "positive_toeplitz_defect_label": 0})
+000101 | 
+000102 | # Exact geometric-series control of the trace norm at one rational r.
+000103 | r, Q = F(1, 3), F(1, 2)
+000104 | trace_tail = r / (1 - r)
+000105 | for cutoff in (1, 2, 7):
+000106 |     partial = sum(r**m for m in range(1, cutoff + 1))
+000107 |     tail = r**(cutoff + 1) / (1 - r)
+000108 |     need(partial + tail == trace_tail, "infinite geometric tail identity")
+000109 | log_bound = Q * r / ((1 - r) * (1 - Q * r))
+000110 | need(trace_tail == F(1, 2) and log_bound == F(3, 10), "IR bounds")
+000111 | 
+000112 | result = {
+000113 |     "verdict": "PASS",
+000114 |     "scope": "exact spectral signs, gap lines, formal coefficients and geometric tails",
+000115 |     "coefficient_degree_compared": degree,
+000116 |     "full_opening_coefficients_q1_to_q8": [str(x) for x in direct[:8]],
+000117 |     "rank_one_opening_coefficients_q1_to_q8": [str(x) for x in rank_one[:8]],
+000118 |     "first_different_opening_degree": first_difference,
+000119 |     "first_difference": str(direct[3] - rank_one[3]),
+000120 |     "positive_half_opening_coefficients_q1_to_q8": [str(x) for x in halves[0][:8]],
+000121 |     "positive_half_first_different_opening_degree": positive_first_difference,
+000122 |     "positive_half_first_difference": str(halves[0][5]-rank_one[5]),
+000123 |     "positive_negative_factorization": "PASS",
+000124 |     "quarters": quarter_data,
+000125 |     "trace_norm_tail_at_r_one_third": str(trace_tail),
+000126 |     "log_bound_at_Q_one_half_r_one_third": str(log_bound),
+000127 |     "original_admissible_sector_and_EM_parameter_identification": "OPEN",
+000128 |     "physical_TFPT_completion_claimed": False,
+000129 | }
+000130 | payload = json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+000131 | Path(__file__).with_name("older-circle-heat-results.json").write_text(payload)
+000132 | print(payload, end="")

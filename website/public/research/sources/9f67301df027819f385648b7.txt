@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/primitive-seam-operator-reconstruction-20261025/SPECTRAL-SEAM-RECONSTRUCTION.txt
+Original file SHA-256: 45c472819667e7a981f7da4246d74d31e15104335e941cde0e0893808d674654
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | SPECTRAL SEAM RECONSTRUCTION FROM THE ORIGINAL OPERATOR PAIR
+000002 | ==========================================================
+000003 | Date: 2026-10-25
+000004 | Contract: primitive-seam-operator-reconstruction-20261025
+000005 | Verdict: PROVED under the explicit operator hypotheses below.
+000006 | Original TFPT application: CONDITIONAL; the same-pair covariance and index
+000007 | identification are not supplied by the original passages reviewed here.
+000008 | 
+000009 | Purpose
+000010 | -------
+000011 | The archived primitive seam theorem fixes a winding number and a spectral-flow
+000012 | class. The electromagnetic closure later invokes a normalized seam vector as
+000013 | if that theorem had already selected its line. The following theorem gives a
+000014 | positive repair: construct the line and its whole circle channel from the
+000015 | already supplied self-adjoint boundary operator B and seam unitary u.
+000016 | 
+000017 | No external Hardy space, chosen rank-one bundle, new source profile, or
+000018 | identification of the Calderon projection with a quantum covariance is used.
+000019 | The theorem concerns one-particle operators; second quantization and the
+000020 | physical interpretation of the original time remain separate interfaces.
+000021 | 
+000022 | 1. Hypotheses on the SAME original Hilbert space
+000023 | ------------------------------------------------
+000024 | Let H be a complex Hilbert space, B a self-adjoint operator on H and u a
+000025 | unitary operator on H. Assume:
+000026 | 
+000027 |  (H1) Strong time covariance, for every real t,
+000028 | 
+000029 |       exp(itB) u exp(-itB) = exp(it) u.                  (1)
+000030 | 
+000031 |  (H2) 0 is not in the spectrum of B.
+000032 | 
+000033 |  (H3) With P_B = 1_(0,infinity)(B), the compression
+000034 | 
+000035 |       S = P_B u P_B : P_B H -> P_B H
+000036 | 
+000037 |       is Fredholm and ind(S) = -1.
+000038 | 
+000039 | Units are chosen so that the shift in (1) is one. If the actual source uses a
+000040 | positive shift omega, the rescaling B/omega must be declared and justified
+000041 | using that same source; this is not a choice of a new physical clock.
+000042 | 
+000043 | Conclusion: for exactly one epsilon in (0,1), the pair is unitarily equivalent
+000044 | to
+000045 | 
+000046 |       H = L2(S1,dtheta/(2 pi)),
+000047 |       B = -i partial_theta + epsilon,   Dom(B) = H1(S1),
+000048 |       u = multiplication by exp(i theta),
+000049 |       P_B = projection onto the Fourier modes n >= 0.    (2)
+000050 | 
+000051 | The canonical primitive seam line is
+000052 | 
+000053 |       Pi = P_B - u P_B u* = 1_(0,1](B),
+000054 |       rank(Pi) = 1.                                   (3)
+000055 | 
+000056 | Choosing a unit vector psi in this line only fixes an irrelevant common phase
+000057 | for the basis u^n psi. Both Pi and every subspace in the construction are
+000058 | independent of that phase. The conclusion classifies this operator class;
+000059 | it does not assert that every primitive TFPT boundary must satisfy (H1)--(H3).
+000060 | 
+000061 | 2. Domain-safe covariance and the compression
+000062 | ---------------------------------------------
+000063 | From (1),
+000064 | 
+000065 |       u* exp(itB) u = exp(it) exp(itB) = exp(it(B+1)).
+000066 | 
+000067 | Uniqueness of the self-adjoint generator implies
+000068 | 
+000069 |       u Dom(B) = Dom(B),
+000070 |       u* B u = B+1,
+000071 |       B u xi = u(B+1)xi       for xi in Dom(B).          (4)
+000072 | 
+000073 | Thus the spectral functional calculus gives, for every Borel set Delta,
+000074 | 
+000075 |       u E_B(Delta) u* = E_B(Delta+1).                   (5)
+000076 | 
+000077 | In particular,
+000078 | 
+000079 |       u P_B u* = E_B((1,infinity)) <= P_B.              (6)
+000080 | 
+000081 | Therefore u leaves P_B H invariant and S is simply u restricted to P_B H.
+000082 | It is an isometry, with
+000083 | 
+000084 |       S* S = I_(P_B H),
+000085 |       S S* = E_B((1,infinity))|_(P_B H).
+000086 | 
+000087 | The defect projection in (3) is consequently an orthogonal spectral
+000088 | projection. A formal commutator [B,u]=u on an unspecified set of vectors is
+000089 | not a replacement for (1) or a proven equivalent common-core theorem.
+000090 | 
+000091 | 3. The index constructs the line, with its sign fixed
+000092 | ----------------------------------------------------
+000093 | An isometry has zero kernel and closed range. Hence
+000094 | 
+000095 |       ind(S) = -dim ker(S*) = -rank(Pi).
+000096 | 
+000097 | Hypothesis (H3) yields rank(Pi)=1. Since Pi is a rank-one spectral projection
+000098 | on the bounded interval (0,1], its range lies in Dom(B), and B acts there by
+000099 | one scalar epsilon with 0 < epsilon <= 1. Let psi be any unit vector in it:
+000100 | 
+000101 |       B psi = epsilon psi.
+000102 | 
+000103 | The endpoint epsilon=1 would give B u^(-1)psi=0 by (4), contradicting (H2).
+000104 | Thus 0 < epsilon < 1.
+000105 | 
+000106 | The sign in (H3) is the usual Hardy orientation: multiplication by z has
+000107 | zero kernel and a one-dimensional cokernel on the nonnegative Fourier modes.
+000108 | An oppositely oriented original seam must be paired with u* and the
+000109 | correspondingly reversed spectral-flow convention. An orientation convention
+000110 | cannot supply the missing relation between B and u.
+000111 | 
+000112 | 4. Completeness on the original H, not an added model space
+000113 | ----------------------------------------------------------
+000114 | Define e_n=u^n psi for all n in Z. Equations (4)--(5) imply
+000115 | 
+000116 |       B e_n = (n+epsilon)e_n,
+000117 |       E_B((n,n+1]) = u^n Pi u^(-n).                    (7)
+000118 | 
+000119 | These projections have pairwise orthogonal ranges and each has rank one.
+000120 | Since the half-open intervals (n,n+1] partition the real line, countable
+000121 | additivity of the spectral measure gives
+000122 | 
+000123 |       sum_(n in Z) E_B((n,n+1]) = I    strongly.         (8)
+000124 | 
+000125 | Consequently {e_n:n in Z} is an orthonormal basis of the ENTIRE H. There is
+000126 | no unseen unitary Wold summand and no extra sector to be removed. The Fourier
+000127 | map W e_n = exp(in theta) is unitary, W u W* = M_z, and the spectral theorem
+000128 | gives exactly
+000129 | 
+000130 |       Dom(W B W*)
+000131 |         = {sum c_n exp(in theta): sum |n+epsilon|^2 |c_n|^2 < infinity}
+000132 |         = H1(S1),
+000133 | 
+000134 |       W B W* = -i partial_theta+epsilon.                (9)
+000135 | 
+000136 | This proves (2), including the unbounded operator domain. Compact resolvent,
+000137 | a one-dimensional base manifold, a preselected scalar bundle, and purity of
+000138 | an independently supplied projection were not assumed. In this particular
+000139 | operator class they follow, or become unnecessary, after (H1)--(H3).
+000140 | 
+000141 | 5. What selects the quarter offset
+000142 | -----------------------------------
+000143 | If the SAME original B additionally satisfies
+000144 | 
+000145 |       exp(2 pi i B) = i I,                              (10)
+000146 | 
+000147 | then exp(2 pi i epsilon)=i and 0<epsilon<1 uniquely give epsilon=1/4.
+000148 | The value -i instead selects epsilon=3/4. Neither value is a consequence of
+000149 | the winding number, Fredholm index, or the covariance (1) alone.
+000150 | 
+000151 | The determinant clutching function exp(i phi) on a normal two-sphere, the
+000152 | normal spinor half-angle exp(i phi/2), and (10) have different full-turn
+000153 | phases. They cannot be equated without the actual bundle/representation map.
+000154 | In particular a four-step bookkeeping clock is not by itself the monodromy
+000155 | of B. This theorem requires the latter if the quarter offset is claimed.
+000156 | 
+000157 | 6. Relation to the existing electromagnetic rank-one formula
+000158 | ------------------------------------------------------------
+000159 | Once (H1)--(H3) are proved on the original pair, Pi in (3) can replace a freely
+000160 | named |psi_Sigma><psi_Sigma|. For |q|<1 the trace is then well-defined:
+000161 | 
+000162 |       Tr log(I-q Pi) = log(1-q),
+000163 |       exp[-(5/4) Tr log(I-q Pi)] = (1-q)^(-5/4).        (11)
+000164 | 
+000165 | Equation (11) proves only the rank-one trace evaluation from the operator
+000166 | data. It does not derive the factor 5/4, the interpretation of q, the physical
+000167 | normalization, or the full electromagnetic generating functional; those need
+000168 | the existing independent TFPT arguments. The trace alone cannot distinguish
+000169 | two different rays of equal rank. Equation (3), rather than the scalar trace,
+000170 | is what would remove that ambiguity.
+000171 | 
+000172 | 7. How to test the ORIGINAL spectral-flow claim
+000173 | -----------------------------------------------
+000174 | Original source:
+000175 | 
+000176 |  documents/archive--tfpt-45--source_extracts--03_em_flavor_source/sections/
+000177 |  001-section-kernel-numerics-and-electromagnetic-closure.tex:9-45
+000178 | 
+000179 | gives [u_Sigma]=1 in K1(S1), SF(U_Sigma)=1, Delta_Sigma=2 pi and the numerical
+000180 | c3 and phi_base evaluations. At lines 94-122 it subsequently calls a
+000181 | normalized primitive seam mode 'singled out' by that theorem. The theorem
+000182 | does not exhibit a vector, spectral projector or a Fredholm compression of
+000183 | the displayed tangential operator B_Sigma.
+000184 | 
+000185 | The boundary-core source separately supplies B_Sigma and a Calderon
+000186 | projection. It does not display the strong covariance (1) or the actual
+000187 | same-pair index in (H3). A sufficient repair would identify, with all domains
+000188 | and signs, the original path with
+000189 | 
+000190 |       B_t=B+t, 0<=t<=1,       B_1=u* B u,
+000191 |       SF(B_t)=+1,
+000192 |       ind(P_B u P_B)=-SF(B_t)=-1.                     (12)
+000193 | 
+000194 | The displayed path uses the same B and u as (1); a different representative
+000195 | having the same abstract K1 class is not enough. One may prove (H3) directly
+000196 | instead of using (12). In the reconstructed model, exactly the eigenvalue
+000197 | epsilon-1 crosses zero upward along B+t, so the signs in (12) agree.
+000198 | 
+000199 | The new premise relative to earlier scalar-circle studies is the direct
+000200 | operator relation on the original Hilbert space, rather than choosing the

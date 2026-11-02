@@ -1,0 +1,201 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_hardy_bmu_weak_clifford_lift.py
+Original file SHA-256: 5e2cbc4cda9dfd3ccbb35df45b13b796861e42545e3c6b9729c666925b7787e8
+Inclusive original lines: 1-193
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact whole-96 type check for the Hardy Bmu weak-Clifford odd lift."""
+000003 | 
+000004 | from __future__ import annotations
+000005 | 
+000006 | import hashlib
+000007 | import json
+000008 | from pathlib import Path
+000009 | import sys
+000010 | 
+000011 | import numpy as np
+000012 | 
+000013 | 
+000014 | HERE = Path(__file__).resolve().parent
+000015 | ROOT = HERE.parents[3]
+000016 | OUT = HERE / "hardy-bmu-weak-clifford-odd-lift-results.json"
+000017 | sys.path.insert(0, str(ROOT / "verification"))
+000018 | import v252_full_finite_triple as v252  # noqa: E402
+000019 | 
+000020 | 
+000021 | def require(ok: object, label: str) -> None:
+000022 |     if not bool(ok):
+000023 |         raise RuntimeError(label)
+000024 | 
+000025 | 
+000026 | def sha256(path: Path) -> str:
+000027 |     return hashlib.sha256(path.read_bytes()).hexdigest()
+000028 | 
+000029 | 
+000030 | def creators() -> list[np.ndarray]:
+000031 |     out = []
+000032 |     for k in range(5):
+000033 |         c = np.zeros((32, 32), dtype=int)
+000034 |         for mask in range(32):
+000035 |             if not ((mask >> k) & 1):
+000036 |                 sign = (-1) ** ((mask & ((1 << k) - 1)).bit_count())
+000037 |                 c[mask | (1 << k), mask] = sign
+000038 |         out.append(c)
+000039 |     return out
+000040 | 
+000041 | 
+000042 | def compact_conjugation() -> np.ndarray:
+000043 |     compact = np.zeros((32, 32), dtype=int)
+000044 |     for mask in range(32):
+000045 |         complement = 31 ^ mask
+000046 |         source = [i for i in range(5) if (mask >> i) & 1]
+000047 |         target = [i for i in range(5) if (complement >> i) & 1]
+000048 |         inversions = sum(i > j for i in source for j in target)
+000049 |         sign = (-1) ** (inversions + len(target) * (len(target) - 1) // 2)
+000050 |         compact[complement, mask] = sign
+000051 |     return compact
+000052 | 
+000053 | 
+000054 | def whole96_dictionary() -> np.ndarray:
+000055 |     compact = compact_conjugation()
+000056 |     w = np.zeros((v252.NH, v252.NH), dtype=int)
+000057 |     for i, (name, chirality, color, generation) in enumerate(v252.P):
+000058 |         if chirality == "L":
+000059 |             if name == "nu":
+000060 |                 mask, sign = 15, 1
+000061 |             elif name == "e":
+000062 |                 mask, sign = 23, 1
+000063 |             else:
+000064 |                 mask, sign = (1 << color) | (8 if name == "u" else 16), 1
+000065 |             column = i
+000066 |         else:
+000067 |             if name == "nu":
+000068 |                 mask, sign = 0, 1
+000069 |             elif name == "e":
+000070 |                 mask, sign = 24, 1
+000071 |             else:
+000072 |                 mask, sign = 7 ^ (1 << color), (-1) ** color
+000073 |                 if name == "d":
+000074 |                     mask |= 24
+000075 |             column = v252.NP + i
+000076 |         w[32 * generation + mask, column] = sign
+000077 |         paired = (column + v252.NP) % v252.NH
+000078 |         w[32 * generation:32 * (generation + 1), paired] = compact[:, mask] * sign
+000079 |     require(np.array_equal(w.T @ w, np.eye(96, dtype=int)), "whole96 signed unitary")
+000080 |     return w
+000081 | 
+000082 | 
+000083 | def family_02() -> np.ndarray:
+000084 |     """G-column row 0, column 2, with all actual finite labels retained."""
+000085 |     e02 = np.zeros((96, 96), dtype=int)
+000086 |     for sector in (0, 1):
+000087 |         offset = sector * v252.NP
+000088 |         for local, (name, chirality, color, generation) in enumerate(v252.P):
+000089 |             if generation == 2:
+000090 |                 source = offset + local
+000091 |                 target = offset + v252.IDX[(name, chirality, color, 0)]
+000092 |                 e02[target, source] = 1
+000093 |     return e02
+000094 | 
+000095 | 
+000096 | def label(index: int) -> str:
+000097 |     sector = "particle" if index < v252.NP else "antiparticle"
+000098 |     name, chirality, color, generation = v252.P[index % v252.NP]
+000099 |     return f"{sector}:{name}_{chirality}:c{color}:G{generation}"
+000100 | 
+000101 | 
+000102 | def main() -> None:
+000103 |     c = creators()
+000104 |     w = whole96_dictionary()
+000105 |     gamma = v252.grading().astype(int)
+000106 |     pplus = (np.eye(96, dtype=int) + gamma) // 2
+000107 |     e02 = family_02()
+000108 |     require(np.array_equal(e02 @ gamma, gamma @ e02), "family coefficient is neutral/even")
+000109 | 
+000110 |     parity32 = np.diag([(-1) ** mask.bit_count() for mask in range(32)])
+000111 |     gammas = []
+000112 |     for k in range(5):
+000113 |         gammas.extend((c[k] + c[k].T, 1j * (c[k] - c[k].T)))
+000114 |     d5 = [(gammas[i] @ gammas[j] - gammas[j] @ gammas[i]) / 4
+000115 |           for i in range(10) for j in range(i + 1, 10)]
+000116 |     require(len(d5) == 45, "forty-five D5 bilinears")
+000117 |     require(all(np.array_equal(m @ parity32, parity32 @ m) for m in d5),
+000118 |             "all D5 bilinears commute with parity")
+000119 | 
+000120 |     six_y_ext = np.diag([
+000121 |         sum((-2, -2, -2, 3, 3)[i] for i in range(5) if (mask >> i) & 1)
+000122 |         for mask in range(32)
+000123 |     ] * 3)
+000124 |     two_t3_ext = np.diag([
+000125 |         ((mask >> 3) & 1) - ((mask >> 4) & 1) for mask in range(32)
+000126 |     ] * 3)
+000127 |     color_ext = [
+000128 |         np.diag([((mask >> i) & 1) - ((mask >> j) & 1) for mask in range(32)] * 3)
+000129 |         for i, j in ((0, 1), (1, 2))
+000130 |     ]
+000131 |     six_y = w.T @ six_y_ext @ w
+000132 |     two_t3 = w.T @ two_t3_ext @ w
+000133 |     color = [w.T @ h @ w for h in color_ext]
+000134 | 
+000135 |     results = {}
+000136 |     for k, weak_name, t3_weight in ((3, "w1", 1), (4, "w2", -1)):
+000137 |         x = w.T @ np.kron(np.eye(3, dtype=int), c[k]) @ w
+000138 |         block = x @ (e02 @ pplus) - (e02 @ pplus) @ x
+000139 |         expected = e02 @ x @ gamma
+000140 |         require(np.array_equal(block, expected), f"{weak_name} commutator identity")
+000141 |         require(np.count_nonzero(block) == 16, f"{weak_name} sixteen entries")
+000142 |         require(np.linalg.matrix_rank(block) == 16, f"{weak_name} rank sixteen")
+000143 |         require(np.array_equal(gamma @ block + block @ gamma, np.zeros((96, 96), dtype=int)),
+000144 |                 f"{weak_name} gamma odd")
+000145 |         require(np.array_equal(six_y @ block - block @ six_y, 3 * block),
+000146 |                 f"{weak_name} hypercharge plus one half")
+000147 |         require(np.array_equal(two_t3 @ block - block @ two_t3, t3_weight * block),
+000148 |                 f"{weak_name} weak weight")
+000149 |         require(all(np.array_equal(h @ block, block @ h) for h in color),
+000150 |                 f"{weak_name} color neutral")
+000151 |         mappings = [
+000152 |             {"input": label(int(j)), "output": label(int(i)), "sign": int(block[i, j])}
+000153 |             for i, j in zip(*np.nonzero(block))
+000154 |         ]
+000155 |         results[weak_name] = {
+000156 |             "rank": 16,
+000157 |             "nonzero_entries": 16,
+000158 |             "six_times_hypercharge": 3,
+000159 |             "two_times_T3": t3_weight,
+000160 |             "gamma_F_odd": True,
+000161 |             "color_neutral": True,
+000162 |             "mappings": mappings,
+000163 |         }
+000164 | 
+000165 |     zero = np.zeros((3, 3), complex)
+000166 |     d_zero = v252.full_D(zero, zero, zero, zero, zero)
+000167 |     require(np.count_nonzero(d_zero) == 0, "zero Yukawa gives zero finite Dirac")
+000168 | 
+000169 |     source_files = [
+000170 |         ROOT / "verification/v252_full_finite_triple.py",
+000171 |         ROOT / "verification/v474_entropic_hodge_carrier.py",
+000172 |         HERE / "HARDY-BMU-FIRST-NONZERO-ENTRY.txt",
+000173 |         HERE / "check_actual_chiral_dictionary.py",
+000174 |     ]
+000175 |     output = {
+000176 |         "scope": "Exact actual-v252/P2 operator type; no source execution or Higgs identification",
+000177 |         "hardy_coefficient": "kappa E_02 P_gamma,+ with kappa=(4 X_*/pi) I != 0",
+000178 |         "d5_zero_mode_result": "all 45 bilinears commute with P_gamma,+",
+000179 |         "weak_clifford_identity": "[X_wa,E_02 P_gamma,+]=E_02 X_wa gamma_F",
+000180 |         "zero_yukawa_one_forms": "zero because D_F=0, while both weak blocks retain rank 16",
+000181 |         "weak_blocks": results,
+000182 |         "source_sha256": {str(path.relative_to(ROOT)): sha256(path) for path in source_files},
+000183 |     }
+000184 |     OUT.write_text(json.dumps(output, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+000185 |     print(json.dumps({
+000186 |         "d5_bilinears": 45,
+000187 |         "weak_ranks": {key: value["rank"] for key, value in results.items()},
+000188 |         "checks": "PASS",
+000189 |     }, sort_keys=True))
+000190 | 
+000191 | 
+000192 | if __name__ == "__main__":
+000193 |     main()

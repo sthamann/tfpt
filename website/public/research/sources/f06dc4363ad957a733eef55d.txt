@@ -1,0 +1,134 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/hodge_complement_20261028/check_e8_a4_response.py
+Original file SHA-256: 9659806dfc92ec5f7d322a066d8e6f5b7b7c80e9a5cc285257d5d44bc57ea1f0
+Inclusive original lines: 401-526
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000401 |     need(set(ranks.values()) == {12} and len(ranks) == 50,
+000402 |          'all50 actual insertion maps have rank12')
+000403 |     need(set(input_gain.values()) == {12} and len(input_gain) == 50,
+000404 |          'sum Bdagger B is12 I50')
+000405 |     need(set(output_gain.values()) == {12} and len(output_gain) == 50,
+000406 |          'sum B Bdagger is12 I50')
+000407 |     need(signed_factor_edges == 600, 'all600 signed factors verified')
+000408 |     need(dual_coordinate_edges == 600,
+000409 |          'all600 fixed dual-coordinate amplitudes verified')
+000410 | 
+000411 |     # Independent finite channel counts: C_m/sqrt3 is Petersen, while
+000412 |     # A_ab/2 is the complete-graph wedge/contraction channel on five states.
+000413 |     carrier_population = {}
+000414 |     for ij in sorted({carrier_label(r, '10') for r in inputs}):
+000415 |         targets = Counter()
+000416 |         for m in range(5):
+000417 |             if m not in ij:
+000418 |                 kl = tuple(sorted(all_five-set(ij)-{m}))
+000419 |                 targets[kl] += 1
+000420 |         need(len(targets) == 3 and set(targets.values()) == {1},
+000421 |              'Hodge channel has three Petersen neighbours')
+000422 |         need(all(set(ij).isdisjoint(kl) for kl in targets),
+000423 |              'Hodge population is Petersen disjointness')
+000424 |         carrier_population[','.join(map(str, ij))] = [','.join(map(str, kl))
+000425 |                                                      for kl in sorted(targets)]
+000426 |     family_population = {}
+000427 |     for q in range(5):
+000428 |         targets = Counter()
+000429 |         for a in range(5):
+000430 |             for b in range(a+1, 5):
+000431 |                 if q in (a, b):
+000432 |                     targets[b if q == a else a] += 1
+000433 |         need(len(targets) == 4 and set(targets.values()) == {1},
+000434 |              'family wedge channel has four neighbours')
+000435 |         family_population[str(q)] = sorted(targets)
+000436 | 
+000437 |     result = {
+000438 |         'scope': ('Actual weight-one E8 current response in the given carrier '
+000439 |                   'SU5 frame; no physical source selection or time law.'),
+000440 |         'root_partition': {
+000441 |             'carrier_A4_roots': len(carrier_roots),
+000442 |             'centralizer_A4_roots': len(family_roots),
+000443 |             'input_(10,bar5)': len(inputs),
+000444 |             'insertion_(5,10)': len(insertions),
+000445 |             'output_(bar10,5)': len(outputs),
+000446 |             'conjugate_sector_(bar5,bar10)': len(sectors['bar5']),
+000447 |         },
+000448 |         'overlap_with_old_D5xA3_grading': old_sector_overlap,
+000449 |         'family_simple_roots': [list(r) for r in family_simple],
+000450 |         'family_cartan': cartan,
+000451 |         'bracket_signed_edges': bracket_equations,
+000452 |         'literal_epsilon_dual_coordinate_edges': dual_coordinate_edges,
+000453 |         'neutral_A4xA4_signed_edges': covariance_edges,
+000454 |         'phase_variables': len(phase_roots),
+000455 |         'phase_rank': len(pivots),
+000456 |         'kraus_count': len(insertions),
+000457 |         'kraus_rank': 12,
+000458 |         'source_gain': '12 I50',
+000459 |         'source_response_denominator': 12,
+000460 |         'factorization': ('E8 response = Hodge Petersen channel tensor '
+000461 |                           'family wedge channel in the joint cocycle chart'),
+000462 |         'carrier_channel': '1/3 sum_m C_m rho C_m*; population A_Petersen/3',
+000463 |         'family_channel': '1/4 sum_ab A_ab rho A_ab*; population (J-I)/4 on five',
+000464 |         'p2_X': list(X),
+000465 |         'p2_X_convention': ('q_input=X_i+X_j, q_insertion=X_m, '
+000466 |                             'q_output=-(X_k+X_l); equivalently '
+000467 |                             'q_output+q_environment=q_input with '
+000468 |                             'q_environment=-X_m'),
+000469 |         'p2_X_charge_edge_counts': {
+000470 |             ','.join(map(str, key)): value
+000471 |             for key, value in sorted(xcharge_edges.items())
+000472 |         },
+000473 |         'carrier_population': carrier_population,
+000474 |         'family_population': family_population,
+000475 |         'chart_caveat': ('The diagonal cocycle transport is a joint tensor '
+000476 |                          'chart; no product phase gauge or raw-coordinate '
+000477 |                          'partial trace is asserted.'),
+000478 |         'dual_coordinate_conversion': {
+000479 |             'input_bar5': 'h_q = sign(complement(q),q)',
+000480 |             'output_bar10': 'h_kl = sign(complement(kl),k,l)',
+000481 |             'verified_amplitude': 'h_kl * B_wedge * h_q = epsilon(m,i,j,k,l) A_ab',
+000482 |         },
+000483 |         'state_phases': {
+000484 |             ','.join(map(str, r)): str((-1)**((solution >> phase_index[r]) & 1))
+000485 |             for r in inputs + insertions + outputs
+000486 |         },
+000487 |         'input_bar5_phase_chart': {
+000488 |             ','.join(map(str, r)): str(
+000489 |                 (-1)**((solution >> phase_index[r]) & 1)
+000490 |                 * perm_sign(tuple(sorted(all_five-{labels[r][1]}))+(labels[r][1],))
+000491 |             )
+000492 |             for r in inputs
+000493 |         },
+000494 |         'insertion_phase_chart': {
+000495 |             ','.join(map(str, r)): str((-1)**((solution >> phase_index[r]) & 1))
+000496 |             for r in insertions
+000497 |         },
+000498 |         'output_bar10_phase_chart': {
+000499 |             ','.join(map(str, r)): str(
+000500 |                 (-1)**((solution >> phase_index[r]) & 1)
+000501 |                 * perm_sign(tuple(sorted(all_five-set(labels[r][0])))+labels[r][0])
+000502 |             )
+000503 |             for r in outputs
+000504 |         },
+000505 |         'neutral_root_phases': {
+000506 |             ','.join(map(str, r)): str((-1)**((solution >> phase_index[r]) & 1))
+000507 |             for r in carrier_roots + family_roots
+000508 |         },
+000509 |         'sources': [
+000510 |             source_hash('tfpt_explorer/current_block_geometry.py'),
+000511 |             source_hash('verification/v498_celestial_wp5b_singular_vector.py'),
+000512 |         ],
+000513 |     }
+000514 |     output_path = Path(__file__).with_name('e8-a4-results.json')
+000515 |     output_path.write_text(json.dumps(result, indent=2)+'\n')
+000516 |     print(json.dumps({k: v for k, v in result.items()
+000517 |                       if k not in ('state_phases', 'input_bar5_phase_chart',
+000518 |                                    'insertion_phase_chart',
+000519 |                                    'output_bar10_phase_chart',
+000520 |                                    'neutral_root_phases',
+000521 |                                    'carrier_population', 'family_population')},
+000522 |                      indent=2))
+000523 | 
+000524 | 
+000525 | if __name__ == '__main__':
+000526 |     main()

@@ -1,0 +1,119 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/native-arc-charge-source-interface-20261026/check_arc_current_completion.py
+Original file SHA-256: 452e5bdc0d4c259d052e1d5e8fa4284328d29a0bc7a21cf998c965d741b785fa
+Inclusive original lines: 1-111
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Actual native source: relative-arc charge test and modular diagnostic.
+000003 | 
+000004 | No extra state, source weighting, coupling, spatial lattice or physical clock.
+000005 | The finite ring is a regulator diagnostic of the retained one-circle sea.
+000006 | """
+000007 | import hashlib
+000008 | import argparse
+000009 | import itertools as it
+000010 | import json
+000011 | from pathlib import Path
+000012 | import sys
+000013 | 
+000014 | import numpy as np
+000015 | import sympy as s
+000016 | 
+000017 | [OMITTED: non-scientific conversation or execution metadata]
+000018 | SOURCE=REPO/'experiments/theory-contracts/joint-native-algebra-selection-20261016'
+000019 | sys.path[:0]=[str(SOURCE),str(REPO)]
+000020 | import check_native_quartic_multilocal_support as source
+000021 | old=source.old
+000022 | m=source.m
+000023 | 
+000024 | def need(ok,message):
+000025 |     if not bool(ok):raise RuntimeError(message)
+000026 | 
+000027 | def main():
+000028 |     parser=argparse.ArgumentParser()
+000029 |     parser.add_argument('--out',type=Path,default=Path(__file__).with_name('arc_current_completion_results.json'))
+000030 |     args=parser.parse_args()
+000031 |     need(hashlib.sha256(source.M_PATH.read_bytes()).hexdigest()==source.M_SHA,'Original M source')
+000032 |     ld=m._lattice_data()
+000033 |     T=s.Matrix.hstack(*map(s.Matrix,m._TARGET_SIMPLE))
+000034 |     O=old.cl(T*ld['basis'].inv()/s.sqrt(2))
+000035 |     M=s.Matrix(json.loads(source.M_PATH.read_text())['explicit_Weyl_matrix'])
+000036 |     U=s.zeros(8,4)
+000037 |     for a in range(4):U[2*a,a]=1/s.sqrt(2);U[2*a+1,a]=-s.I/s.sqrt(2)
+000038 |     V=old.cl(M.T*O*U)
+000039 |     need(old.cl(V.conjugate().T*V)==s.eye(4),'Original metric')
+000040 |     need(old.cl(V.T*V)==s.zeros(4),'Original isotropy')
+000041 |     polys,norms=m.code()
+000042 |     subsets,C=source.principal_coefficients(polys,V)
+000043 |     need(C.rank()==5,'Actual principal map')
+000044 |     # For each original arc r, E_r=U_alpha^*|r><r|U_alpha.
+000045 |     # On exterior^4 C8 the offdiagonal entries of dGamma(E_r) have
+000046 |     # modulus 1/8 exactly when two four-subsets differ by one index.
+000047 |     # The fourth-current highest-CAR coefficient is diag(C[:,i]).
+000048 |     # Hence this Gram is the EXACT [N_r,T_i] principal coefficient Gram.
+000049 |     edges=[(a,b) for a,K in enumerate(subsets) for b,L in enumerate(subsets)
+000050 |            if len(set(K).symmetric_difference(L))==2]
+000051 |     need(len(edges)==1120,'Johnson graph directed edge count')
+000052 |     d=s.Matrix([list(C[a,:]-C[b,:]) for a,b in edges])
+000053 |     G=old.cl(d.conjugate().T*d/64)
+000054 |     rank=G.rank()
+000055 |     principal_gram=old.cl(C.conjugate().T*C)
+000056 |     total=s.Matrix([sum(C[:,i]) for i in range(5)])
+000057 |     N=s.diag(*[1/s.sqrt(n) for n in norms])
+000058 |     Gn=old.cl(N*G*N)
+000059 |     # Direct agreement of one arc using the actual 8-Fourier phase,
+000060 |     # without 70-by-70 floating tensor diagonalization. The phase for
+000061 |     # r=0 is 1 and wedge replacement signs are +/-1.
+000062 |     B=s.zeros(70,70)
+000063 |     for a,K in enumerate(subsets):
+000064 |         for j,k in enumerate(K):
+000065 |             for ell in range(8):
+000066 |                 if ell in K:continue
+000067 |                 dest=list(K);dest[j]=ell
+000068 |                 inversions=sum(dest[x]>dest[y] for x in range(4) for y in range(x+1,4))
+000069 |                 b=subsets.index(tuple(sorted(dest)))
+000070 |                 B[b,a]=s.Rational((-1)**inversions,8)
+000071 |         B[a,a]=s.Rational(1,2)
+000072 |     direct=s.Matrix([[sum(s.conjugate(B[a,b]*(C[b,i]-C[a,i]))*
+000073 |                           B[a,b]*(C[b,j]-C[a,j])
+000074 |                           for a,b in edges) for j in range(5)] for i in range(5)])
+000075 |     need(old.cl(direct)==G,'Direct actual arc zero exterior commutator')
+000076 |     need(G==G.conjugate().T,'Hermitian charge witness')
+000077 |     need(rank==5,'Every nonzero native quartic has relative-arc charge response')
+000078 |     need(G.det()==s.Rational(498159,262144),'Exact reconstructed charge determinant')
+000079 |     need(all(G[:k,:k].det()>0 for k in range(1,6)),'Positive definite exact witness')
+000080 |     difference_classes=[]
+000081 |     for step in range(1,5):
+000082 |         chosen=[]
+000083 |         for a,b in edges:
+000084 |             removed=next(iter(set(subsets[a])-set(subsets[b])))
+000085 |             added=next(iter(set(subsets[b])-set(subsets[a])))
+000086 |             if (added-removed)%8 in {step,8-step}:chosen.append((a,b))
+000087 |         ds=s.Matrix([list(C[a,:]-C[b,:]) for a,b in chosen])
+000088 |         gs=old.cl(ds.conjugate().T*ds)
+000089 |         need(gs.rank()==5,'Every nonconstant real relative phase detects every native quartic')
+000090 |         difference_classes.append({'step':step,'directed_edges':len(chosen),'rank':gs.rank()})
+000091 |     # Source-independent negative control: total density polynomial
+000092 |     # e4(n_0,...,n_7) has constant principal vector and no relative charge.
+000093 |     control=s.ones(70,1)
+000094 |     dc=s.Matrix([control[a]-control[b] for a,b in edges])
+000095 |     need(dc==s.zeros(1120,1),'Total-density invariant control')
+000096 | 
+000097 |     # Original local scalar one-particle potential is diagonal in the arc
+000098 |     # chart. The positive native Cartan is A(v)=U_alpha diag(Vv)U_alpha^*.
+000099 |     # Offdiagonal HS Gram is V*V - V*11^TV/8; independent of alpha.
+000100 |     linear=old.cl(V.conjugate().T*V-V.conjugate().T*s.ones(8,8)*V/8)
+000101 |     need(linear.rank()==4,'No positive native Cartan tangent is an arc-local scalar potential')
+000102 | 
+000103 |     diagnostics=[]
+000104 |     for length in (64,128):
+000105 |         # Eight disjoint equal arcs, each angle width pi/16, fixed as N grows.
+000106 |         per=length//32
+000107 |         ids=np.array([r*length//8+j for r in range(8) for j in range(per)])
+000108 |         theta=2*np.pi*ids/length
+000109 |         modes=np.arange(-length//2,0)
+000110 |         for alpha in (0.25,0.75):
+000111 |             F=np.exp(1j*np.outer(theta,modes+alpha))/np.sqrt(length)

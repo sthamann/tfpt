@@ -1,0 +1,148 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_claude44_quarter_character_consumer.py
+Original file SHA-256: cfc76253cd2a116204435354bdb8676092b8734efd7316fb486ce273cd80c5a0
+Inclusive original lines: 1-140
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | [OMITTED: non-scientific conversation or execution metadata]
+000003 | 
+000004 | from __future__ import annotations
+000005 | 
+000006 | import importlib.util
+000007 | import json
+000008 | from pathlib import Path
+000009 | import sys
+000010 | 
+000011 | import numpy as np
+000012 | import sympy as sp
+000013 | 
+000014 | 
+000015 | HERE = Path(__file__).resolve().parent
+000016 | ROOT = HERE.parents[3]
+000017 | [OMITTED: non-scientific conversation or execution metadata]
+000018 | sys.path.insert(0, str(ROOT / "verification"))
+000019 | import v252_full_finite_triple as v252  # noqa: E402
+000020 | 
+000021 | BASE_PATH = HERE / "check_hardy_bmu_weak_clifford_lift.py"
+000022 | SPEC = importlib.util.spec_from_file_location("hardy_weak", BASE_PATH)
+000023 | if SPEC is None or SPEC.loader is None:
+000024 |     raise RuntimeError(f"cannot load {BASE_PATH}")
+000025 | BASE = importlib.util.module_from_spec(SPEC)
+000026 | SPEC.loader.exec_module(BASE)
+000027 | 
+000028 | 
+000029 | def require(ok: object, label: str) -> None:
+000030 |     if not bool(ok):
+000031 |         raise RuntimeError(label)
+000032 | 
+000033 | 
+000034 | def smat(a: sp.Matrix) -> list[list[str]]:
+000035 |     return [[str(sp.simplify(x)) for x in a.row(i)] for i in range(a.rows)]
+000036 | 
+000037 | 
+000038 | def sseq(a: list[sp.Expr]) -> list[str]:
+000039 |     return [str(sp.simplify(x)) for x in a]
+000040 | 
+000041 | 
+000042 | def dft(sequence: list[sp.Expr]) -> list[sp.Expr]:
+000043 | [OMITTED: non-scientific conversation or execution metadata]
+000044 |     return [sp.simplify(sum(sp.I ** (m * k) * sequence[k] for k in range(4)))
+000045 |             for m in range(4)]
+000046 | 
+000047 | 
+000048 | def main() -> None:
+000049 |     I = sp.I
+000050 |     kq = sp.Matrix([[0, 1, 0], [-1, 0, 0], [0, 0, 1]])
+000051 |     cs = sp.Matrix([[0, 0, 1], [-1, 0, 0], [0, -1, 0]])
+000052 |     e02 = sp.zeros(3)
+000053 |     e02[0, 2] = 1
+000054 |     e20 = e02.T
+000055 |     e22 = sp.diag(0, 0, 1)
+000056 |     require(kq ** 2 == sp.diag(-1, -1, 1), "KQ square")
+000057 |     require(kq ** 4 == sp.eye(3), "KQ order four")
+000058 | 
+000059 |     cycles = [sp.simplify(kq ** (-k) * cs * kq ** k) for k in range(4)]
+000060 |     require(all(c ** 3 == sp.eye(3) for c in cycles), "four order-three cycles")
+000061 | 
+000062 | [OMITTED: non-scientific conversation or execution metadata]
+000063 |     even = [sp.trace(c ** 2 * e02) for c in cycles]
+000064 |     kernel = [sp.trace((c + c ** 2) * e02) for c in cycles]
+000065 |     require(even == [1, 0, -1, 0], "even-word trace sequence")
+000066 |     require(kernel == [1, 1, -1, -1], "kernel-word trace sequence")
+000067 |     require(dft(even) == [0, 2, 0, 2], "even-word Fourier characters")
+000068 |     require(dft(kernel) == [0, 2 + 2 * I, 0, 2 - 2 * I],
+000069 |             "kernel-word Fourier characters")
+000070 | 
+000071 |     # The actual endomorphism orbit has only odd quarter characters.
+000072 |     orbit = [sp.simplify(kq ** (-k) * e02 * kq ** k) for k in range(4)]
+000073 |     projections = [sp.simplify(sum(
+000074 |         (I ** (m * k) * orbit[k] for k in range(4)), sp.zeros(3)) / 4)
+000075 |                    for m in range(4)]
+000076 |     require(projections[0] == sp.zeros(3) and projections[2] == sp.zeros(3),
+000077 |             "no even character in E02 orbit")
+000078 |     require(projections[1] != sp.zeros(3) and projections[3] != sp.zeros(3),
+000079 |             "both odd characters present")
+000080 | 
+000081 |     # Check the already fixed common marked Bstar map at the same time.
+000082 |     bstar = sp.Matrix([[0, 0, -1 + I], [1, I, 0], [I, 1, 0]]) / sp.sqrt(2)
+000083 |     u = sp.diag(1, I, -I)
+000084 |     p0 = (sp.eye(3) + u ** 2) / 2
+000085 |     m0 = sp.simplify(bstar * cs * bstar.H)
+000086 |     require(sp.simplify(bstar * bstar.H) == sp.eye(3), "Bstar unitary")
+000087 |     require(sp.simplify(bstar * kq.inv() * bstar.H) == u, "marked quarter map")
+000088 |     require(sp.simplify(bstar * e02 * bstar.H) == m0 * p0,
+000089 |             "Hardy open word M0P0")
+000090 |     require(sp.simplify(bstar * e22 * bstar.H) == p0, "marked endpoint P0")
+000091 | 
+000092 |     # Actual whole-96 operator test.  Native kappa=-i gamma_F is used by
+000093 |     # conjugation on End(H_F); its scalar phase cannot be used as a left-only
+000094 |     # state-vector weight for this operator-valued coefficient.
+000095 |     gamma = v252.grading().astype(complex)
+000096 |     one96 = np.eye(96, dtype=complex)
+000097 |     pplus = (one96 + gamma) / 2
+000098 |     e02_96 = BASE.family_02().astype(complex)
+000099 |     b02 = e02_96 @ pplus
+000100 |     knat = -1j * gamma
+000101 |     knat_inv = 1j * gamma
+000102 |     require(np.allclose(knat @ b02 @ knat_inv, b02),
+000103 |             "native clock fixes B02 under adjoint action")
+000104 |     require(np.allclose(knat @ b02, -1j * b02),
+000105 |             "left action alone has the state-vector phase")
+000106 |     require(np.allclose(b02 @ knat_inv, 1j * b02),
+000107 |             "right action cancels the state-vector phase")
+000108 | 
+000109 |     creators = BASE.creators()
+000110 |     w = BASE.whole96_dictionary()
+000111 |     weak = {}
+000112 |     for index, name in ((3, "w1"), (4, "w2")):
+000113 |         x = w.T @ np.kron(np.eye(3), creators[index]) @ w
+000114 |         a = x @ b02 - b02 @ x
+000115 |         predicted = e02_96 @ x @ gamma
+000116 |         require(np.allclose(a, predicted), f"{name} Hardy weak commutator")
+000117 |         require(np.linalg.matrix_rank(a) == 16, f"{name} rank")
+000118 |         require(np.allclose(knat @ a @ knat_inv, -a),
+000119 |                 f"{name} native adjoint character minus one")
+000120 |         weak[name] = {
+000121 |             "rank": 16,
+000122 |             "Ad_kappa_nat_on_A": "-A",
+000123 |             "quarter_character": 2,
+000124 |         }
+000125 | 
+000126 |     # Multiplying the family orbit by the gamma-odd adjoint sign merely swaps
+000127 |     # odd characters 1 and 3.  It creates no invariant character 0.
+000128 |     combined_average = sp.simplify(sum(
+000129 |         ((-1) ** k * orbit[k] for k in range(4)), sp.zeros(3)) / 4)
+000130 |     require(combined_average == sp.zeros(3), "no invariant combined adjoint average")
+000131 | 
+000132 |     result = {
+000133 |         "scope": (
+000134 |             "Exact family character and actual H_F=96 operator-adjoint test; "
+000135 |             "no claim about a separately supplied charged Hom consumer"
+000136 |         ),
+000137 |         "KQ_squared": smat(kq ** 2),
+000138 |         "trace_sequences": {
+000139 |             "Tr(Ck_squared_E02)": sseq(even),
+000140 |             "Tr((Ck+Ck_squared)_E02)": sseq(kernel),

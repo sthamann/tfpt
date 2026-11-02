@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/hodge_complement_20261028/check_e8_clifford_response.py
+Original file SHA-256: 75ce80dbec9d943573ba96e64eaf85088c0cbc47577673cbe99673ba34957aa9
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Compare the actual E8 current bracket to the complete CAR response.
+000002 | 
+000003 | No stochastic time law or source insertion is selected by this check.
+000004 | All source D8 root actions, including their Chevalley signs, are compared.
+000005 | """
+000006 | from collections import Counter
+000007 | from fractions import Fraction as F
+000008 | import hashlib
+000009 | import json
+000010 | from pathlib import Path
+000011 | import sys
+000012 | 
+000013 | [OMITTED: non-scientific conversation or execution metadata]
+000014 | sys.path.insert(0, str(REPO))
+000015 | from tfpt_explorer.current_block_geometry import _actual_current_source
+000016 | 
+000017 | 
+000018 | def need(condition, name):
+000019 |     if not condition:
+000020 |         raise RuntimeError(name)
+000021 | 
+000022 | 
+000023 | def ladder(mask, i, create):
+000024 |     occupied = (mask >> i) & 1
+000025 |     if occupied == create:
+000026 |         return None
+000027 |     sign = -1 if (mask & ((1 << i)-1)).bit_count() % 2 else 1
+000028 |     return mask ^ (1 << i), sign
+000029 | 
+000030 | 
+000031 | def bilinear(mask, root):
+000032 |     axes = [i for i, x in enumerate(root) if x]
+000033 |     i, j = axes
+000034 |     first = ladder(mask, j, root[j] > 0)
+000035 |     if first is None:
+000036 |         return None
+000037 |     second = ladder(first[0], i, root[i] > 0)
+000038 |     if second is None:
+000039 |         return None
+000040 |     return second[0], first[1] * second[1]
+000041 | 
+000042 | 
+000043 | def source_hash(path):
+000044 |     return {'path': path, 'sha256': hashlib.sha256((REPO/path).read_bytes()).hexdigest()}
+000045 | 
+000046 | 
+000047 | def main():
+000048 |     source = _actual_current_source()
+000049 |     algebra = source['chevalley']
+000050 |     roots = list(algebra.roots)
+000051 |     halves = sorted(r for r in roots if all(abs(x) == 1 for x in r))
+000052 |     d8 = sorted(r for r in roots if sum(x != 0 for x in r) == 2)
+000053 |     cross = [r for r in d8 if sum(x != 0 for x in r[:5]) == 1]
+000054 |     masks = {r: sum((x > 0) << i for i, x in enumerate(r)) for r in halves}
+000055 |     need(len(halves) == 128 and len(d8) == 112 and len(cross) == 60,
+000056 |          'root sectors 128,112,60')
+000057 |     need(all(mask.bit_count() % 2 == 0 for mask in masks.values()), 'even eight-Fock parent')
+000058 | 
+000059 |     # A diagonal weight-space phase is the only allowed state-basis freedom.
+000060 |     # Root phases are harmless orthonormal Kraus-coordinate choices.
+000061 |     hindex = {r: i for i, r in enumerate(halves)}
+000062 |     bindex = {r: len(halves)+i for i, r in enumerate(d8)}
+000063 |     nvars = len(halves)+len(d8)
+000064 |     equations = []
+000065 |     actions = {}
+000066 |     for beta in d8:
+000067 |         action = {}
+000068 |         for alpha in halves:
+000069 |             raw = algebra.bracket(algebra.ridx[beta], algebra.ridx[alpha])
+000070 |             candidate = tuple(a+b for a, b in zip(alpha, beta))
+000071 |             expected = bilinear(masks[alpha], beta)
+000072 |             if candidate not in hindex:
+000073 |                 need(not raw and expected is None, 'zero action matches actual source')
+000074 |                 continue
+000075 |             need(set(raw) == {algebra.ridx[candidate]}, 'actual root action has no omitted component')
+000076 |             coefficient = raw[algebra.ridx[candidate]]
+000077 |             need(coefficient in (1, -1) and expected is not None, 'unit coefficient and CAR support')
+000078 |             need(expected[0] == masks[candidate], 'all Cartan charges match')
+000079 |             rhs = int(coefficient != expected[1])
+000080 |             row = (1 << hindex[alpha]) ^ (1 << hindex[candidate]) ^ (1 << bindex[beta])
+000081 |             equations.append((row, rhs))
+000082 |             action[alpha] = (candidate, int(coefficient))
+000083 |         actions[beta] = action
+000084 | 
+000085 |     pivots = {}
+000086 |     for row, rhs in equations:
+000087 |         while row:
+000088 |             pivot = row.bit_length()-1
+000089 |             if pivot not in pivots:
+000090 |                 pivots[pivot] = (row, rhs)
+000091 |                 break
+000092 |             other, val = pivots[pivot]
+000093 |             row ^= other
+000094 |             rhs ^= val
+000095 |         need(bool(row) or rhs == 0, 'source/CAR phase equations consistent')
+000096 |     solution = 0
+000097 |     for pivot in sorted(pivots):
+000098 |         row, rhs = pivots[pivot]
+000099 |         value = rhs ^ ((row & solution).bit_count() % 2)
+000100 |         if value:
+000101 |             solution |= 1 << pivot
+000102 |     need(all((row & solution).bit_count() % 2 == rhs for row, rhs in equations),
+000103 |          'complete source-root intertwiner including all cocycle signs')
+000104 | 
+000105 |     carrier_parity = lambda r: (masks[r] & 31).bit_count() % 2
+000106 |     g1 = [r for r in halves if carrier_parity(r) == 0]
+000107 |     g3 = [r for r in halves if carrier_parity(r) == 1]
+000108 |     need(len(g1) == len(g3) == 64, 'two full source modules64+64')
+000109 |     input_gain = Counter()
+000110 |     output_gain = Counter()
+000111 |     for beta in cross:
+000112 |         for alpha, (target, coef) in actions[beta].items():
+000113 |             if alpha in g1:
+000114 |                 need(target in g3, 'g2 maps entire g1 into g3')
+000115 |                 input_gain[alpha] += coef*coef
+000116 |                 output_gain[target] += coef*coef
+000117 |     need(set(input_gain.values()) == {15} and len(input_gain) == 64, 'sum B*B=15I64')
+000118 |     need(set(output_gain.values()) == {15} and len(output_gain) == 64, 'sum BB*=15I64')
+000119 | 
+000120 |     # Compare every source Kraus column, with its solved phases, to the
+000121 |     # tensor product of the actual carrier and family CAR ladders.
+000122 |     factor_columns = 0
+000123 |     for beta in cross:
+000124 |         i = next(i for i in range(5) if beta[i])
+000125 |         j = next(j for j in range(5, 8) if beta[j])
+000126 |         for alpha in g1:
+000127 |             cm = masks[alpha] & 31
+000128 |             fm = masks[alpha] >> 5
+000129 |             a = ladder(cm, i, beta[i] > 0)
+000130 |             b = ladder(fm, j-5, beta[j] > 0)
+000131 |             actual = actions[beta].get(alpha)
+000132 |             if a is None or b is None:
+000133 |                 need(actual is None, 'tensor ladder has exact zero support')
+000134 |                 continue
+000135 |             target, coef = actual
+000136 |             need(masks[target] == a[0]+(b[0] << 5), 'tensor target charges')
+000137 |             phase = (-1) ** (((solution >> hindex[alpha]) ^
+000138 |                              (solution >> hindex[target]) ^
+000139 |                              (solution >> bindex[beta])) & 1)
+000140 |             need(coef == phase*a[1]*b[1], 'entire signed Kraus factorization')
+000141 |             factor_columns += 1
+000142 |     need(factor_columns == 960, '60 Kraus maps with16 source columns each')
+000143 | 
+000144 |     # The complete carrier response keeps both chiralities and all sectors.
+000145 |     even = [m for m in range(32) if m.bit_count() % 2 == 0]
+000146 |     odd = [m for m in range(32) if m.bit_count() % 2]
+000147 |     population = {}
+000148 |     for m in even+odd:
+000149 |         targets = Counter()
+000150 |         for i in range(5):
+000151 |             for create in (False, True):
+000152 |                 out = ladder(m, i, create)
+000153 |                 if out:
+000154 |                     targets[out[0]] += F(out[1]*out[1], 5)
+000155 |         need(sum(targets.values()) == 1, 'complete Clifford carrier channel is TP')
+000156 |         population[m] = targets
+000157 |     shell_matrix = [[F(0) for _ in range(3)] for _ in range(3)]
+000158 |     for m in even:
+000159 |         shell_in = {0:0,4:1,2:2}[m.bit_count()]
+000160 |         folded = Counter({31 ^ out: val for out, val in population[m].items()})
+000161 |         bins = Counter()
+000162 |         for out, val in folded.items():
+000163 |             bins[{0:0,4:1,2:2}[out.bit_count()]] += val
+000164 |         need(sum(bins.values()) == 1, 'folded Clebsch step TP')
+000165 |         if not any(shell_matrix[shell_in]):
+000166 |             shell_matrix[shell_in] = [bins[j] for j in range(3)]
+000167 |         need(shell_matrix[shell_in] == [bins[j] for j in range(3)], 'exact shell lumping')
+000168 |         if m.bit_count() == 2:
+000169 |             jump = {out:val for out,val in folded.items() if out.bit_count() == 2}
+000170 |             carry = {out:val for out,val in folded.items() if out.bit_count() == 4}
+000171 |             need(len(jump) == 3 and sum(jump.values()) == F(3,5), 'Petersen jump3/5')
+000172 |             need(all(not (m & out) and val == F(1,5) for out,val in jump.items()),
+000173 |                  'Petersen exact disjoint matrix A/5')
+000174 |             need(len(carry) == 2 and sum(carry.values()) == F(2,5), 'genuine carry2/5 retained')
+000175 | 
+000176 |     result = {
+000177 |         'scope':'Actual weight-one E8 current response under the given D5+A3 frame; no physical event/time selection.',
+000178 |         'source_modules': {'g1':len(g1),'g2_root_kraus':len(cross),'g3':len(g3)},
+000179 |         'all_D8_root_intertwiner_equations':len(equations),
+000180 |         'phase_rank':len(pivots),'phase_variables':nvars,
+000181 |         'signed_tensor_columns_checked':factor_columns,
+000182 |         'source_gain':'15 I64','source_response_denominator':15,
+000183 |         'carrier_channel':'1/5 sum_i (a_i rho a_i* + a_i* rho a_i)',
+000184 |         'family_channel':'1/3 sum_j (b_j rho b_j* + b_j* rho b_j)',
+000185 |         'factorization':'E8_g2_response = carrier_channel tensor family_channel in the full signed D8 source intertwiner',
+000186 |         'carrier_population':'Q5 on32 parity-alternating words; Clebsch16 after antipodal complement labels',
+000187 |         'Clebsch_shell_order':['0','weight4','weight2'],
+000188 |         'Clebsch_shell_row_matrix':[[str(x) for x in row] for row in shell_matrix],
+000189 |         'Petersen_jump':'A/5 with probability3/5',
+000190 |         'retained_carry':'Lambda1 before complement label; five states, weight2/5; not reset2I/5',
+000191 |         'state_phases':{','.join(map(str,r)):str((-1)**((solution>>hindex[r])&1)) for r in halves},
+000192 |         'root_phases':{','.join(map(str,r)):str((-1)**((solution>>bindex[r])&1)) for r in d8},
+000193 |         'sources':[source_hash('tfpt_explorer/current_block_geometry.py'),
+000194 |                    source_hash('verification/v498_celestial_wp5b_singular_vector.py'),
+000195 |                    source_hash('verification/v810_cutcode_moment.py')],
+000196 |     }
+000197 |     Path(__file__).with_name('e8-clifford-response-results.json').write_text(json.dumps(result,indent=2)+'\n')
+000198 |     print(json.dumps({k:v for k,v in result.items() if k not in ('state_phases','root_phases')},indent=2))
+000199 | 
+000200 | 

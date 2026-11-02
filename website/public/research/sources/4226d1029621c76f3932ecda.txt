@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_sewing_20261028/clock/check_native_six_ovoid_clock_bundle.py
+Original file SHA-256: 003259b0ecb7d3b47007a0b36b3b5e16c826d9efae2927acfa1c2206548af4b3
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact native six-ovoid clock-bundle test.
+000003 | 
+000004 | The earlier four-dimensional obstruction required one symplectic form to be
+000005 | fixed by both the native family clock and a selected native F20.  Here the
+000006 | six *existing* antisymmetric two-qubit Pauli forms are retained as fibers.
+000007 | The test uses the actual frozen v783 sigma, the actual compatible theta alpha,
+000008 | and the exact native F20 matrices already intertwined with v419.
+000009 | """
+000010 | 
+000011 | from collections import Counter, deque
+000012 | import hashlib
+000013 | import itertools
+000014 | import json
+000015 | from pathlib import Path
+000016 | 
+000017 | import sympy as sp
+000018 | 
+000019 | 
+000020 | HERE = Path(__file__).resolve().parent
+000021 | RESULT = HERE / "native-six-ovoid-clock-bundle-results.json"
+000022 | 
+000023 | 
+000024 | def canonical(x):
+000025 |     return sp.simplify(sp.expand_complex(x))
+000026 | 
+000027 | 
+000028 | def is_zero(m):
+000029 |     return all(canonical(x) == 0 for x in m)
+000030 | 
+000031 | 
+000032 | def matrix_order(m, bound=120):
+000033 |     ident = sp.eye(m.rows)
+000034 |     p = ident
+000035 |     for n in range(1, bound + 1):
+000036 |         p = (p * m).applyfunc(canonical)
+000037 |         if p == ident:
+000038 |             return n
+000039 |     raise RuntimeError("REQUIRE failed: matrix order exceeds bound")
+000040 | 
+000041 | 
+000042 | def require(condition, message):
+000043 |     """Runtime certificate check retained by python -O and -OO."""
+000044 |     if not condition:
+000045 |         raise RuntimeError("REQUIRE failed: " + message)
+000046 | 
+000047 | 
+000048 | def compose(p, q):
+000049 |     """Permutation p after q."""
+000050 |     return tuple(p[q[i]] for i in range(len(p)))
+000051 | 
+000052 | 
+000053 | def generated_group(generators):
+000054 |     ident = tuple(range(len(generators[0])))
+000055 |     seen = {ident}
+000056 |     queue = deque([ident])
+000057 |     while queue:
+000058 |         x = queue.popleft()
+000059 |         for g in generators:
+000060 |             y = compose(g, x)
+000061 |             if y not in seen:
+000062 |                 seen.add(y)
+000063 |                 queue.append(y)
+000064 |     return seen
+000065 | 
+000066 | 
+000067 | def permutation_order(p):
+000068 |     ident = tuple(range(len(p)))
+000069 |     x = ident
+000070 |     for n in range(1, 61):
+000071 |         x = compose(p, x)
+000072 |         if x == ident:
+000073 |             return n
+000074 |     raise RuntimeError("REQUIRE failed: permutation order exceeds bound")
+000075 | 
+000076 | 
+000077 | def conjugate_permutation(p, relabel):
+000078 |     inv = [0] * len(relabel)
+000079 |     for old, new in enumerate(relabel):
+000080 |         inv[new] = old
+000081 |     return tuple(relabel[p[inv[i]]] for i in range(len(p)))
+000082 | 
+000083 | 
+000084 | def pgl2_five_group():
+000085 |     """Exact PGL(2,5) action on P^1(F5), labeled 0..4,infinity=5."""
+000086 |     perms = set()
+000087 |     for a, b, c, d in itertools.product(range(5), repeat=4):
+000088 |         if (a * d - b * c) % 5 == 0:
+000089 |             continue
+000090 |         image = []
+000091 |         for x in range(6):
+000092 |             if x == 5:
+000093 |                 image.append(5 if c == 0 else (a * pow(c, -1, 5)) % 5)
+000094 |             else:
+000095 |                 den = (c * x + d) % 5
+000096 |                 image.append(5 if den == 0 else
+000097 |                              ((a * x + b) * pow(den, -1, 5)) % 5)
+000098 |         perms.add(tuple(image))
+000099 |     require(len(perms) == 120, "PGL(2,5) projective action has order 120")
+000100 |     return perms
+000101 | 
+000102 | 
+000103 | def main():
+000104 |     ii = sp.I
+000105 |     sqrt2 = sp.sqrt(2)
+000106 |     I2 = sp.eye(2)
+000107 |     X = sp.Matrix(((0, 1), (1, 0)))
+000108 |     Y = sp.Matrix(((0, -ii), (ii, 0)))
+000109 |     Z = sp.diag(1, -1)
+000110 |     one = {"I": I2, "X": X, "Y": Y, "Z": Z}
+000111 |     pauli = {
+000112 |         a + b: sp.kronecker_product(one[a], one[b])
+000113 |         for a in "IXYZ" for b in "IXYZ"
+000114 |     }
+000115 | 
+000116 |     # Exactly the six invertible alternating Pauli forms on the frozen C^4.
+000117 |     forms = sorted(name for name, m in pauli.items() if m.T == -m)
+000118 |     require(forms == ["IY", "XY", "YI", "YX", "YZ", "ZY"],
+000119 |             "six alternating Pauli forms")
+000120 | 
+000121 |     # Actual native F20 selected in the earlier v783 subgroup census.
+000122 |     C = sp.Matrix((
+000123 |         (-ii/2, -ii/2, -ii/2, -ii/2),
+000124 |         (-ii/2, ii/2, -ii/2, ii/2),
+000125 |         (sp.Rational(1, 2), sp.Rational(1, 2), -sp.Rational(1, 2), -sp.Rational(1, 2)),
+000126 |         (-sp.Rational(1, 2), sp.Rational(1, 2), sp.Rational(1, 2), -sp.Rational(1, 2)),
+000127 |     ))
+000128 |     G = sp.Matrix((
+000129 |         (0, 0, 0, ii),
+000130 |         (0, 0, -1, 0),
+000131 |         (ii, 0, 0, 0),
+000132 |         (0, 1, 0, 0),
+000133 |     ))
+000134 |     require(matrix_order(C) == 5 and matrix_order(G) == 4,
+000135 |             "native F20 generators have orders 5 and 4")
+000136 |     require(is_zero(G * C * G.inv() - C**2),
+000137 |             "native F20 Frobenius relation")
+000138 | 
+000139 |     # Original frozen v783 family clock and the reviewed theta alpha lift.
+000140 |     sigma = sp.Matrix(((0, 0, 1, 0), (1, 0, 0, 0),
+000141 |                        (0, 1, 0, 0), (0, 0, 0, 1)))
+000142 |     U = sp.Matrix(((1, 0, 0, 0), (0, 0, 0, -1),
+000143 |                    (0, 0, 1, 0), (0, 1, 0, 0)))
+000144 |     zeta8 = (1 + ii) / sqrt2
+000145 |     alpha = (zeta8 * sp.kronecker_product(X, I2) * U).applyfunc(canonical)
+000146 |     J = ii * sp.eye(4)
+000147 |     require(matrix_order(sigma) == 3, "native sigma has order 3")
+000148 |     require(sp.trace(sigma) == 1,
+000149 |             "native sigma has complex trace 1 on C^4")
+000150 |     require(is_zero(alpha**2 - ii * sp.eye(4)), "theta alpha squares to iI")
+000151 |     require(is_zero(alpha * sigma * alpha.conjugate().T - sigma**2),
+000152 |             "theta alpha inverts native sigma")
+000153 |     require(J * sigma == sigma * J and J * C == C * J and J * G == G * J,
+000154 |             "central J commutes with sigma and F20")
+000155 | 
+000156 |     phase_set = (sp.Integer(1), -sp.Integer(1), ii, -ii)
+000157 | 
+000158 |     def form_action(operator):
+000159 |         perm = []
+000160 |         phases = []
+000161 |         for name in forms:
+000162 |             image = (operator * pauli[name] * operator.T).applyfunc(canonical)
+000163 |             hits = [
+000164 |                 (phase, target)
+000165 |                 for target in forms for phase in phase_set
+000166 |                 if is_zero(image - phase * pauli[target])
+000167 |             ]
+000168 |             require(len(hits) == 1,
+000169 |                     "operator has a unique projective image on each form")
+000170 |             phase, target = hits[0]
+000171 |             perm.append(forms.index(target))
+000172 |             phases.append(str(phase))
+000173 |         return tuple(perm), phases
+000174 | 
+000175 |     actions = {}
+000176 |     for name, op in (("C", C), ("G", G), ("sigma", sigma),
+000177 |                      ("alpha", alpha), ("J", J)):
+000178 |         perm, phases = form_action(op)
+000179 |         actions[name] = {
+000180 |             "images": {forms[i]: forms[perm[i]] for i in range(6)},
+000181 |             "phases": {forms[i]: phases[i] for i in range(6)},
+000182 |             "permutation": list(perm),
+000183 |         }
+000184 | 
+000185 |     pC = tuple(actions["C"]["permutation"])
+000186 |     pG = tuple(actions["G"]["permutation"])
+000187 |     pS = tuple(actions["sigma"]["permutation"])
+000188 |     pA = tuple(actions["alpha"]["permutation"])
+000189 |     pJ = tuple(actions["J"]["permutation"])
+000190 | 
+000191 |     group_f20 = generated_group([pC, pG])
+000192 |     group_s5 = generated_group([pC, pG, pS])
+000193 |     group_s6 = generated_group([pC, pG, pS, pA])
+000194 |     require(len(group_f20) == 20, "C,G induce F20 of order 20")
+000195 |     require(len(group_s5) == 120, "C,G,sigma group has order 120")
+000196 |     require(len(group_s6) == 720, "C,G,sigma,alpha group has order 720")
+000197 |     s5_order_census = {
+000198 |         str(k): v for k, v in sorted(
+000199 |             Counter(permutation_order(p) for p in group_s5).items()
+000200 |         )

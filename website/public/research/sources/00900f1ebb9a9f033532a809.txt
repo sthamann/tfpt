@@ -1,0 +1,44 @@
+TFPT scientific source excerpt
+Original repository path: verification/v474_entropic_hodge_carrier.py
+Original file SHA-256: 4058bc3b6da2939ca9555804fb36d6044837c036403949e1262ec32d29e23505
+Inclusive original lines: 91-126
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000091 |     A_DAG = [adag(k) for k in range(N)]
+000092 |     A = [m.conj().T for m in A_DAG]
+000093 |     ID = np.eye(DIM)
+000094 | 
+000095 |     # 1. CAR => Clifford: ten gammas, {Gamma_a, Gamma_b} = 2 delta_ab
+000096 |     G = []
+000097 |     for k in range(N):
+000098 |         G.append(A_DAG[k] + A[k])
+000099 |         G.append(1j * (A_DAG[k] - A[k]))
+000100 |     max_err = 0.0
+000101 |     for i in range(10):
+000102 |         for j in range(10):
+000103 |             anti = G[i] @ G[j] + G[j] @ G[i]
+000104 |             max_err = max(max_err, float(np.abs(anti - 2 * (i == j) * ID).max()))
+000105 |     check("CAR => CLIFFORD [E]: ten Gamma's from the CAR pair (a_k^dag, a_k) on "
+000106 |           "Lambda^* C^5 (dim 2^g_car = %d) satisfy {Gamma_a, Gamma_b} = 2 delta_ab "
+000107 |           "for all 100 pairs (max residual %.1e, exact integer arithmetic) -- the "
+000108 |           "so(10) = D5 Clifford algebra acts on the carrier exterior algebra"
+000109 |           % (DIM, max_err), max_err == 0.0)
+000110 | 
+000111 |     # 2. so(10) bilinears: parity-preserving, 45-dim span, Lambda^even invariant
+000112 |     parity = np.diag([(-1.0) ** len(s) for s in SUBSETS])
+000113 |     bilinears = [(G[i] @ G[j] - G[j] @ G[i]) / 4 for i in range(10) for j in range(i + 1, 10)]
+000114 |     commute_par = max(float(np.abs(M @ parity - parity @ M).max()) for M in bilinears)
+000115 |     stack = np.array([np.concatenate([M.real.ravel(), M.imag.ravel()]) for M in bilinears])
+000116 |     span_dim = int(np.linalg.matrix_rank(stack, tol=1e-9))
+000117 |     even_idx = [IDX[s] for s in SUBSETS if len(s) % 2 == 0]
+000118 |     odd_idx = [IDX[s] for s in SUBSETS if len(s) % 2 == 1]
+000119 |     leak = max(float(np.abs(M[np.ix_(odd_idx, even_idx)]).max()) for M in bilinears)
+000120 |     check("S+ = LAMBDA^EVEN AS D5-MODULE [E]: the 45 bilinears [Gamma_a,Gamma_b]/4 "
+000121 |           "all commute with gamma = (-1)^N (max residual %.1e), span a %d-dim Lie "
+000122 |           "algebra = dim so(10) = 45, and leak NOTHING from the 16-dim even "
+000123 |           "subspace (max %.1e) -- the carrier half-spinor IS the even exterior "
+000124 |           "algebra with its spinor structure (operator level of v2/v44/v197)"
+000125 |           % (commute_par, span_dim, leak),
+000126 |           commute_par == 0.0 and span_dim == 45 and leak == 0.0 and len(even_idx) == 16)

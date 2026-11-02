@@ -1,0 +1,79 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_quantum_octic_completion.py
+Original file SHA-256: fa29425b80c6742e29991c01efdc64ae9bd4728d1ac7ebe7ff06378f9a25a432
+Inclusive original lines: 107-177
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000107 |     # Check the actual old lattice chart, not just an abstract E8 name.
+000108 |     old_path = ROOT/'experiments/theory-contracts/native-octic-seam-origin-20261025/native_folded_octic_origin.py'
+000109 |     spec = importlib.util.spec_from_file_location('old_octic_source', old_path)
+000110 |     old = importlib.util.module_from_spec(spec)
+000111 |     spec.loader.exec_module(old)
+000112 |     lattice, O, U, M = old.original_transport()
+000113 |     from tfpt_explorer import cartan_source as cs
+000114 |     T = s.Matrix.hstack(*map(s.Matrix, cs._TARGET_SIMPLE))
+000115 |     original_roots2 = {tuple(T*s.Matrix(r)) for r in lattice['root_coordinates']}
+000116 |     standard_roots2 = set()
+000117 |     for i, j in combinations(range(8), 2):
+000118 |         for a, b in product((-2, 2), repeat=2):
+000119 |             root = [0]*8
+000120 |             root[i], root[j] = a, b
+000121 |             standard_roots2.add(tuple(root))
+000122 |     standard_roots2.update(r for r in product((-1, 1), repeat=8)
+000123 |                            if sum(v < 0 for v in r) % 2 == 0)
+000124 |     need(original_roots2 == standard_roots2 and len(original_roots2) == 240,
+000125 |          'original root isometry no longer reaches this exact root set')
+000126 | 
+000127 |     z = s.symbols('z0:4')
+000128 |     i8 = sum(v**8 for v in z) + 14*sum(z[a]**4*z[b]**4
+000129 |           for a, b in combinations(range(4), 2)) + 168*prod(v*v for v in z)
+000130 |     native_moment = s.expand(sum(
+000131 |         sum((U.T*s.Matrix(r)/s.sqrt(2))[j]*z[j] for j in range(4))**8
+000132 |         for r in lattice['roots']))
+000133 |     need(s.expand(native_moment-s.Rational(15, 2)*i8) == 0,
+000134 |          'the original Gaussian octic restriction was lost')
+000135 |     native_norm = sum(c*c*prod(factorial(a) for a in mon)
+000136 |                       for mon, c in s.Poly(i8, *z).terms())
+000137 |     need(native_norm == 96**2*140, 'original octic norm changed')
+000138 |     overlap_squared = s.Rational(15, 2)**2 * native_norm
+000139 |     need(overlap_squared/norm == s.Rational(43, 896), 'native overlap changed')
+000140 | 
+000141 |     # The old complete S8 root OPE coefficient is not replaced by W8.
+000142 |     # Pairing a state with its full root coherent exponential evaluates
+000143 |     # each h_j(-n) at beta_j; all 22 partitions are retained by that identity.
+000144 |     beta = [s.Integer(1), s.Integer(-1), *[s.Integer(0)]*6]
+000145 |     evaluation = {h[n][j]: beta[j] for n in range(1, 8) for j in range(8)}
+000146 |     overlap_s8 = s.cancel(240*state.subs(evaluation, simultaneous=True))
+000147 |     need(overlap_s8 == s.Rational(48384000, 1333), 'full root OPE overlap changed')
+000148 |     need(overlap_s8/norm == s.Rational(1, 41664), 'S8 component coefficient changed')
+000149 | 
+000150 |     # Actual original quarter folds: no direction, profile or coupling fit.
+000151 |     source_cases = {}
+000152 |     for alpha in (s.Rational(1, 4), s.Rational(3, 4)):
+000153 |         delta = s.Matrix([(j+alpha)/8-s.Rational(1, 2) for j in range(8)])
+000154 |         d = s.simplify(O.T*M*delta)
+000155 |         length2 = s.simplify((d.T*d)[0])
+000156 |         moment = s.simplify(sum(((s.Matrix(r).T*d)[0]/s.sqrt(2))**8
+000157 |                                for r in lattice['roots']))
+000158 |         # Y(h(-n),z)=partial^(n-1)h(z)/(n-1)!; at h(z)=d/z
+000159 |         # every contraction monomial has total sign + at weight eight.
+000160 |         charge = s.factor(moment-30*length2**4 + sum(
+000161 |             c*length2**len(ks) for c, ks in zip(coefficients[1:], monomials)))
+000162 |         need(charge == s.Rational(25123488075, 357824462848),
+000163 |              'the given source one-point value vanished or changed')
+000164 |         source_cases[str(alpha)] = {'d_squared': str(length2),
+000165 |             'root_moment_8': str(moment), 'W8_onepoint_times_z8': str(charge)}
+000166 | 
+000167 |     print(json.dumps({
+000168 |         'claim': 'MATH.ORIGINAL-SEAM.QUANTUM-OCTIC-COMPLETION.01',
+000169 |         'status': 'PASS_EXACT_IN_GIVEN_SOURCE_AND_DECLARED_ANSATZ',
+000170 |         'leading_harmonic': 'H8=sum_roots(alpha.h1)^8-30(h1.h1)^4',
+000171 |         'basis_after_H8': [[list(k) for k in ks] for ks in monomials],
+000172 |         'coefficients': [str(c) for c in coefficients],
+000173 |         'constraint_rows': len(rows), 'ansatz_dimension': 17,
+000174 |         'solution_dimension': nullspace.rows, 'constraint_rank': 17-nullspace.rows,
+000175 |         'positive_Virasoro_modes_checked': list(range(1, 9)),
+000176 |         'root_zero_mode': 'e_(e0-e1),0 W8=0; all roots follow by Weyl covariance',
+000177 |         'old_root_chart_isometry': 'all 240 original roots match exactly',

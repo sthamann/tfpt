@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/hodge_complement_20261028/check_e8_a4_response.py
+Original file SHA-256: 9659806dfc92ec5f7d322a066d8e6f5b7b7c80e9a5cc285257d5d44bc57ea1f0
+Inclusive original lines: 201-400
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |         if {family_charge(r, simple) for r in sectors['10']} == bar5_set
+000202 |     ]
+000203 |     need(len(orientations) == 1, 'family chain orientation names input as bar5 uniquely')
+000204 |     family_simple = orientations[0]
+000205 |     cartan = [[dot(a, b)//4 for b in family_simple] for a in family_simple]
+000206 |     need(cartan == [[2, -1, 0, 0], [-1, 2, -1, 0],
+000207 |                     [0, -1, 2, -1], [0, 0, -1, 2]],
+000208 |          'derived family Cartan is standard A4')
+000209 | 
+000210 |     std_index = {w: i for i, w in enumerate(standard5)}
+000211 |     bar_index = {tuple(-x for x in w): i for i, w in enumerate(standard5)}
+000212 |     pair_index = {
+000213 |         tuple(standard5[a][k]+standard5[b][k] for k in range(4)): (a, b)
+000214 |         for a in range(5) for b in range(a+1, 5)
+000215 |     }
+000216 | 
+000217 |     def family_label(root, representation):
+000218 |         charge = family_charge(root, family_simple)
+000219 |         if representation == '5':
+000220 |             return std_index[charge]
+000221 |         if representation == 'bar5':
+000222 |             return bar_index[charge]
+000223 |         if representation == '10':
+000224 |             return pair_index[charge]
+000225 |         if representation == 'bar10':
+000226 |             return pair_index[tuple(-x for x in charge)]
+000227 |         raise RuntimeError('unknown family representation')
+000228 | 
+000229 |     inputs = sectors['10']
+000230 |     insertions = sectors['5']
+000231 |     outputs = sectors['bar10']
+000232 |     modules = {
+000233 |         'input': inputs,
+000234 |         'insertion': insertions,
+000235 |         'output': outputs,
+000236 |     }
+000237 |     state_module = {r: name for name, values in modules.items() for r in values}
+000238 | 
+000239 |     labels = {}
+000240 |     subsets = {}
+000241 |     all_five = set(range(5))
+000242 |     for root in inputs:
+000243 |         ij = carrier_label(root, '10')
+000244 |         q = family_label(root, 'bar5')
+000245 |         labels[root] = (ij, q)
+000246 |         subsets[root] = (ij, tuple(sorted(all_five-{q})))
+000247 |     for root in insertions:
+000248 |         m = carrier_label(root, '5')
+000249 |         ab = family_label(root, '10')
+000250 |         labels[root] = (m, ab)
+000251 |         subsets[root] = ((m,), ab)
+000252 |     for root in outputs:
+000253 |         kl = carrier_label(root, 'bar10')
+000254 |         r = family_label(root, '5')
+000255 |         labels[root] = (kl, r)
+000256 |         subsets[root] = (tuple(sorted(all_five-set(kl))), (r,))
+000257 |     need(all(len({labels[r] for r in values}) == 50 for values in modules.values()),
+000258 |          'all three tensor weight charts are bijective')
+000259 | 
+000260 |     # Joint cocycle variables are phases on the 150 sector roots and on the
+000261 |     # 40 neutral A4 roots.  No factorized state gauge is assumed.
+000262 |     phase_roots = inputs + insertions + outputs + carrier_roots + family_roots
+000263 |     need(len(set(phase_roots)) == 190, 'phase roots are disjoint')
+000264 |     phase_index = {r: i for i, r in enumerate(phase_roots)}
+000265 |     equations = []
+000266 |     bracket_actions = {}
+000267 | 
+000268 |     for beta in insertions:
+000269 |         m, ab = labels[beta]
+000270 |         action = {}
+000271 |         for alpha in inputs:
+000272 |             ij, q = labels[alpha]
+000273 |             candidate = add(alpha, beta)
+000274 |             raw = algebra.bracket(algebra.ridx[beta], algebra.ridx[alpha])
+000275 |             expected_nonzero = m not in ij and q in ab
+000276 |             if not expected_nonzero:
+000277 |                 need(not raw and candidate not in outputs,
+000278 |                      'zero bracket equals tensor support zero')
+000279 |                 continue
+000280 |             need(candidate in outputs and set(raw) == {algebra.ridx[candidate]},
+000281 |                  'nonzero bracket has the expected output root only')
+000282 |             kl, family_out = labels[candidate]
+000283 |             need(set(kl) == all_five-set(ij)-{m}, 'carrier complement target')
+000284 |             need(family_out == (ab[1] if q == ab[0] else ab[0]),
+000285 |                  'family antisymmetric target')
+000286 |             coefficient = int(raw[algebra.ridx[candidate]])
+000287 |             # In the covariance chart bar10 is represented directly as
+000288 |             # Lambda^3, so the carrier sign is the wedge sign.  The input
+000289 |             # bar5 is represented as Lambda^4; converting its complement
+000290 |             # word to a covector contributes the displayed Hodge sign.
+000291 |             carrier_sign = perm_sign((m,)+ij)
+000292 |             family_word = tuple(sorted(all_five-{q}))
+000293 |             hodge_sign = perm_sign(family_word+(q,))
+000294 |             family_sign = hodge_sign*(1 if q == ab[0] else -1)
+000295 |             expected_sign = carrier_sign*family_sign
+000296 |             rhs = int(coefficient != expected_sign)
+000297 |             row = ((1 << phase_index[alpha]) ^ (1 << phase_index[beta])
+000298 |                    ^ (1 << phase_index[candidate]))
+000299 |             equations.append((row, rhs))
+000300 |             action[alpha] = (candidate, coefficient, expected_sign)
+000301 |         bracket_actions[beta] = action
+000302 | 
+000303 |     bracket_equations = len(equations)
+000304 |     need(bracket_equations == 600, '50 rank12 brackets give600 signed edges')
+000305 | 
+000306 |     # Add both neutral A4 actions on all three modules.  This proves that the
+000307 |     # same phase chart transports the full representation action, including
+000308 |     # Cartan through the root commutators.
+000309 |     carrier_root_label = {}
+000310 |     for beta in carrier_roots:
+000311 |         plus = [i for i, x in enumerate(beta[:5]) if x == 2]
+000312 |         minus = [i for i, x in enumerate(beta[:5]) if x == -2]
+000313 |         need(len(plus) == len(minus) == 1, 'carrier root is E_uv')
+000314 |         carrier_root_label[beta] = (plus[0], minus[0])
+000315 | 
+000316 |     standard_root_label = {
+000317 |         tuple(standard5[u][k]-standard5[v][k] for k in range(4)): (u, v)
+000318 |         for u in range(5) for v in range(5) if u != v
+000319 |     }
+000320 |     family_root_label = {
+000321 |         beta: standard_root_label[family_charge(beta, family_simple)]
+000322 |         for beta in family_roots
+000323 |     }
+000324 | 
+000325 |     covariance_edges = 0
+000326 |     for beta in carrier_roots + family_roots:
+000327 |         is_carrier = beta in carrier_root_label
+000328 |         u, v = (carrier_root_label if is_carrier else family_root_label)[beta]
+000329 |         for alpha in inputs + insertions + outputs:
+000330 |             carrier_subset, family_subset = subsets[alpha]
+000331 |             moved = wedge_action(carrier_subset if is_carrier else family_subset, u, v)
+000332 |             candidate = add(alpha, beta)
+000333 |             raw = algebra.bracket(algebra.ridx[beta], algebra.ridx[alpha])
+000334 |             if moved is None:
+000335 |                 need(not raw and candidate not in state_module,
+000336 |                      'neutral A4 zero action equals exterior support')
+000337 |                 continue
+000338 |             moved_subset, expected_sign = moved
+000339 |             expected_subsets = ((moved_subset, family_subset) if is_carrier
+000340 |                                 else (carrier_subset, moved_subset))
+000341 |             need(candidate in state_module
+000342 |                  and state_module[candidate] == state_module[alpha],
+000343 |                  'neutral A4 action stays in its module')
+000344 |             need(subsets[candidate] == expected_subsets,
+000345 |                  'neutral A4 action has exact tensor target')
+000346 |             need(set(raw) == {algebra.ridx[candidate]},
+000347 |                  'neutral A4 action has one actual target')
+000348 |             coefficient = int(raw[algebra.ridx[candidate]])
+000349 |             rhs = int(coefficient != expected_sign)
+000350 |             row = ((1 << phase_index[alpha]) ^ (1 << phase_index[candidate])
+000351 |                    ^ (1 << phase_index[beta]))
+000352 |             equations.append((row, rhs))
+000353 |             covariance_edges += 1
+000354 |     need(covariance_edges == 1500, 'both A4 actions contribute1500 signed edges')
+000355 | 
+000356 |     solve_f2(equations[:bracket_equations], len(phase_roots))
+000357 |     solve_f2(equations[bracket_equations:], len(phase_roots))
+000358 |     solution, pivots = solve_f2(equations, len(phase_roots))
+000359 | 
+000360 |     input_gain = Counter()
+000361 |     output_gain = Counter()
+000362 |     ranks = {}
+000363 |     signed_factor_edges = 0
+000364 |     dual_coordinate_edges = 0
+000365 |     xcharge_edges = Counter()
+000366 |     X = (-2, -2, -2, 3, 3)
+000367 |     for beta, action in bracket_actions.items():
+000368 |         m, unused_ab = labels[beta]
+000369 |         ranks[beta] = len(action)
+000370 |         for alpha, (target, coefficient, expected_sign) in action.items():
+000371 |             phase = (-1) ** (((solution >> phase_index[alpha])
+000372 |                              ^ (solution >> phase_index[beta])
+000373 |                              ^ (solution >> phase_index[target])) & 1)
+000374 |             need(coefficient*phase == expected_sign,
+000375 |                  'actual bracket equals C_m tensor A_ab after cocycle transport')
+000376 |             # The covariance test uses Lambda^4 for the input bar5 and
+000377 |             # Lambda^3 for the output bar10.  Convert both to the fixed dual
+000378 |             # coordinates.  This must turn the wedge coefficient literally
+000379 |             # into epsilon(m,i,j,k,l) times the antisymmetric A_ab entry.
+000380 |             ij, q = labels[alpha]
+000381 |             kl, unused_r = labels[target]
+000382 |             input_family_word = tuple(sorted(all_five-{q}))
+000383 |             h_q = perm_sign(input_family_word+(q,))
+000384 |             output_carrier_word = tuple(sorted(all_five-set(kl)))
+000385 |             h_kl = perm_sign(output_carrier_word+kl)
+000386 |             converted = h_kl*coefficient*phase*h_q
+000387 |             epsilon_sign = perm_sign((m,)+ij+kl)
+000388 |             family_dual_sign = 1 if q == unused_ab[0] else -1
+000389 |             need(converted == epsilon_sign*family_dual_sign,
+000390 |                  'dual coordinate amplitude is literal epsilon tensor A_ab')
+000391 |             dual_coordinate_edges += 1
+000392 |             input_gain[alpha] += coefficient*coefficient
+000393 |             output_gain[target] += coefficient*coefficient
+000394 |             signed_factor_edges += 1
+000395 |             qin = sum(X[i] for i in ij)
+000396 |             qinsert = X[m]
+000397 |             qout = -sum(X[k] for k in kl)
+000398 |             need(qout == qin+qinsert, 'original P2 X charge is conserved')
+000399 |             xcharge_edges[(qin, qinsert, qout)] += 1
+000400 | 

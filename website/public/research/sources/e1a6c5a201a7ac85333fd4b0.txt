@@ -1,0 +1,48 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-positive-kernel-search-20261015/test_kernel_search.py
+Original file SHA-256: 2c58e8f3f83f03a83190f26d60574c10175ef7e6e62c7ea278b5bc714344fc89
+Inclusive original lines: 71-110
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000071 |     def test_scaled_source_reference_preserves_all_moments_without_claiming_absolute_Z(self):
+000072 |         # Declared integer vacuum shift at ell=4log2 gives lambda=1/16;
+000073 |         # the integer shift leaves the full-period operator phase unchanged.
+000074 |         lam=Fraction(1,16)
+000075 |         matrices=majoranas(1);matrices[T]=np.diag([float(lam),float(lam/4)])
+000076 |         reference=vacuum(1)
+000077 |         controls=[]
+000078 |         for word in WordAlgebra(1).words(4):
+000079 |             value=evaluate(word,matrices,reference)
+000080 |             controls.append({'word':list(word),'re':str(Fraction(float(value.real))),
+000081 |                              'im':str(Fraction(float(value.imag)))})
+000082 |         scaled=MomentSearch(1,2,transfer_kind='bounded_positive',transfer_ceiling=float(lam),
+000083 |                             reference_eigenvalue=float(lam),fixed_moments=controls)
+000084 |         assign(scaled,matrices,reference)
+000085 |         self.assertLess(violation(scaled),1e-12)
+000086 |         self.assertEqual(scaled.moment((T,T)).value,float(lam**2))
+000087 |         self.assertEqual(scaled.moment((T,0,T,0)).value,float(lam**2/4))
+000088 |         self.assertEqual(scaled.moment((0,T,0,T)).value,float(lam**2/4))
+000089 |         old=MomentSearch(1,2,transfer_kind='bounded_positive',fixed_moments=controls)
+000090 |         assign(old,matrices,reference)
+000091 |         self.assertGreater(violation(old),.9)
+000092 |         result=scaled.solve(solver='SCS',tolerance=1e-8)
+000093 |         self.assertIn(result['solver_status'],('optimal','optimal_inaccurate'))
+000094 |         self.assertEqual(old.solve(solver='SCS')['solver_status'],'infeasible')
+000095 |         self.assertEqual(result['reference_eigenvalue'],float(lam))
+000096 |         self.assertTrue(result['conditional_normalized_state'])
+000097 |         self.assertFalse(result['absolute_partition_function_recovered'])
+000098 |         self.assertIn('not a recovered Z(0)',result['state_normalization_scope'])
+000099 |         self.assertIn('not a value derived from P1',result['reference_eigenvalue_scope'])
+000100 | 
+000101 |     def test_reference_eigenvalue_and_general_bounds_validation(self):
+000102 |         for eigenvalue in (0,-1,float('nan'),float('inf')):
+000103 |             with self.assertRaises(ValueError):MomentSearch(1,2,reference_eigenvalue=eigenvalue)
+000104 |         for lower,upper,eigenvalue in ((.1,.2,.05),(0,.1,.2),(float('nan'),1,1),(0,float('inf'),1)):
+000105 |             with self.assertRaises(ValueError):MomentSearch(1,2,lower,transfer_ceiling=upper,
+000106 |                 reference_eigenvalue=eigenvalue,transfer_kind='bounded_positive')
+000107 |         with self.assertRaises(ValueError):MomentSearch(1,2,reference_eigenvalue=.5)
+000108 |         # Neither bound is tied to 1 in the declared general bounded class.
+000109 |         search=MomentSearch(1,2,1.5,transfer_ceiling=3,reference_eigenvalue=2,transfer_kind='bounded_positive')
+000110 |         self.assertEqual(search.reference_eigenvalue,2)

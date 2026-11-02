@@ -1,0 +1,112 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_claude48_pauli_ph.py
+Original file SHA-256: 51ad2b474ed6397dd0b0c0f56b33b59aa2d6bbac9a72805b4b6650588f92ecbc
+Inclusive original lines: 1-104
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | [OMITTED: non-scientific conversation or execution metadata]
+000002 | from __future__ import annotations
+000003 | 
+000004 | import json
+000005 | import sys
+000006 | from pathlib import Path
+000007 | 
+000008 | import sympy as sp
+000009 | 
+000010 | 
+000011 | HERE = Path(__file__).resolve().parent
+000012 | REPO = Path(__file__).resolve().parents[4]
+000013 | sys.path.insert(0, str(REPO))
+000014 | sys.path.insert(0, str(REPO / "verification"))
+000015 | 
+000016 | from verification import v252_full_finite_triple as v252  # noqa: E402
+000017 | 
+000018 | 
+000019 | a = sp.symbols("a", positive=True)
+000020 | c = sp.sqrt(a)
+000021 | d = sp.sqrt(1 - a)
+000022 | V = sp.Matrix([c, d])
+000023 | Vh = sp.Matrix([-d, c])
+000024 | Swap = sp.Matrix([[0, 1], [1, 0]])
+000025 | 
+000026 | face = {
+000027 |     "pp": sp.simplify((V.T * Swap * V)[0]),
+000028 |     "hp": sp.simplify((Vh.T * Swap * V)[0]),
+000029 |     "ph": sp.simplify((V.T * Swap * Vh)[0]),
+000030 |     "hh": sp.simplify((Vh.T * Swap * Vh)[0]),
+000031 | }
+000032 | assert face == {
+000033 |     "pp": 2 * sp.sqrt(a) * sp.sqrt(1 - a),
+000034 |     "hp": 2 * a - 1,
+000035 |     "ph": 2 * a - 1,
+000036 |     "hh": -2 * sp.sqrt(a) * sp.sqrt(1 - a),
+000037 | }
+000038 | 
+000039 | ell = sp.symbols("ell", positive=True)
+000040 | aell = 1 / (1 + sp.exp(-ell))
+000041 | def exp_simplify(expr: sp.Expr) -> sp.Expr:
+000042 |     return sp.simplify(sp.together(expr.rewrite(sp.exp)))
+000043 | 
+000044 | assert exp_simplify(face["pp"].subs(a, aell) ** 2
+000045 |                     - 1 / sp.cosh(ell / 2) ** 2) == 0
+000046 | assert exp_simplify(face["ph"].subs(a, aell) - sp.tanh(ell / 2)) == 0
+000047 | assert exp_simplify((face["ph"].subs(a, aell) / face["pp"].subs(a, aell)) ** 2
+000048 |                     - sp.sinh(ell / 2) ** 2) == 0
+000049 | 
+000050 | u, v = sp.symbols("I02 I21", nonzero=True)
+000051 | ii = sp.I
+000052 | def E(r: int, s: int) -> sp.Matrix:
+000053 |     out = sp.zeros(3)
+000054 |     out[r, s] = 1
+000055 |     return out
+000056 | 
+000057 | mF = u * E(0, 2) + v * E(2, 1)
+000058 | mN = -ii * (u * E(1, 2) + v * E(2, 0))
+000059 | traces = {
+000060 |     "FF": sp.simplify(sp.trace(mF * mF)),
+000061 |     "NN": sp.simplify(sp.trace(mN * mN)),
+000062 |     "FN": sp.simplify(sp.trace(mF * mN)),
+000063 |     "NF": sp.simplify(sp.trace(mN * mF)),
+000064 | }
+000065 | assert traces == {"FF": 0, "NN": 0, "FN": -2 * ii * u * v,
+000066 |                   "NF": -2 * ii * u * v}
+000067 | 
+000068 | gamma = v252.grading()
+000069 | rank_plus_full_96 = int(((gamma.diagonal() + 1) / 2).sum())
+000070 | assert gamma.shape == (96, 96)
+000071 | assert rank_plus_full_96 == 48
+000072 | assert v252.NG == 3
+000073 | rank_plus_per_family = rank_plus_full_96 // v252.NG
+000074 | assert rank_plus_per_family == 16
+000075 | 
+000076 | out = {
+000077 |     "scope": (
+000078 |         "Finite Pi/Pi_h contribution for the existing Phi=0 NS graph source. "
+000079 |         "No selection of this compression as the whole original kernel."
+000080 |     ),
+000081 |     "face_blocks": {k: str(v) for k, v in face.items()},
+000082 |     "at_half_mode": {
+000083 |         "a": "1/(1+exp(-ell_NS))",
+000084 |         "pp": "sech(ell_NS/2)",
+000085 |         "ph": "hp=tanh(ell_NS/2)",
+000086 |         "ratio_ph_to_pp": "sinh(ell_NS/2)",
+000087 |     },
+000088 |     "family_traces": {k: str(v) for k, v in traces.items()},
+000089 |     "actual_v252": {
+000090 |         "dimension": int(gamma.shape[0]),
+000091 |         "families": int(v252.NG),
+000092 |         "rank_P_gamma_plus_full": rank_plus_full_96,
+000093 |         "rank_P_gamma_plus_per_family": rank_plus_per_family,
+000094 |     },
+000095 |     "normalization": {
+000096 |         "per_Pgamma_component": "(2/pi)^2 tanh(ell_NS/2)^2 Tr_family(m_mu m_nu)",
+000097 |         "ordinary_full_finite_trace": "16 times the per-component expression",
+000098 |         "note": "A selfdual second-quantization convention may add its stated global 1/2, but cannot remove the carrier multiplicity without an explicit normalized trace.",
+000099 |     },
+000100 |     "passed": True,
+000101 | }
+000102 | [OMITTED: non-scientific conversation or execution metadata]
+000103 | target.write_text(json.dumps(out, indent=2) + "\n")
+000104 | print(json.dumps(out, indent=2))

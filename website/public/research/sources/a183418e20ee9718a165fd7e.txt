@@ -1,0 +1,144 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/native-arc-charge-source-interface-20261026/check_half_period_gns_sewing.py
+Original file SHA-256: c26c50125ef471e5f6f48675fc96c8a4971e97aebb5893e5086f063de4904215
+Inclusive original lines: 1-136
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact graded HS/CAR connection and existing interaction countercontrol."""
+000002 | import argparse
+000003 | import itertools
+000004 | import json
+000005 | from pathlib import Path
+000006 | import sympy as S
+000007 | 
+000008 | 
+000009 | def require(ok, name):
+000010 |     if not ok:
+000011 |         raise RuntimeError(name)
+000012 | 
+000013 | 
+000014 | def equal(x, y, name):
+000015 |     if isinstance(x, S.MatrixBase):
+000016 |         require(all(S.simplify(z) == 0 for z in x-y), name)
+000017 |     else:
+000018 |         require(S.simplify(x-y) == 0, name)
+000019 | 
+000020 | 
+000021 | def annihilators(n):
+000022 |     mats = []
+000023 |     for j in range(n):
+000024 |         a = S.zeros(2**n)
+000025 |         for k in range(2**n):
+000026 |             if k & (1 << j):
+000027 |                 a[k ^ (1 << j), k] = (-1)**((k & ((1 << j)-1)).bit_count())
+000028 |         mats.append(a)
+000029 |     return mats
+000030 | 
+000031 | 
+000032 | def double_data(weights):
+000033 |     n = len(weights).bit_length()-1
+000034 |     a = annihilators(n)
+000035 |     rho = S.diag(*weights)/sum(weights)
+000036 |     root = S.diag(*(S.sqrt(x/sum(weights)) for x in weights))
+000037 |     parity = S.diag(*((-1)**k.bit_count() for k in range(2**n)))
+000038 |     def action(op, X):
+000039 |         side, j, star = op
+000040 |         A = a[j].T if star else a[j]
+000041 |         if side == 'R':
+000042 |             return A*X
+000043 |         return (1 if star else -1)*parity*X*A*parity
+000044 |     def word(ops):
+000045 |         X = root
+000046 |         for op in reversed(ops):
+000047 |             X = action(op, X)
+000048 |         return S.simplify(S.trace(root*X))
+000049 |     ops = [('L',j,False) for j in range(n)]+[('R',j,False) for j in range(n)]
+000050 |     def adj(op):
+000051 |         return op[0], op[1], not op[2]
+000052 |     covariance = S.Matrix(2*n,2*n,lambda i,j:word([adj(ops[i]),ops[j]]))
+000053 |     return a, rho, root, parity, action, word, ops, adj, covariance
+000054 | 
+000055 | 
+000056 | def run():
+000057 |     z = S.symbols('z', positive=True)
+000058 |     equal(z/(1+z*z), 1/(z+1/z), 'half period identity')
+000059 |     # One physical temporal evaluation cannot be an independent CAR copy.
+000060 |     a = annihilators(1)[0]
+000061 |     equal((z*a)*a.T+a.T*(z*a), z*S.eye(2), 'raw temporal anticommutator')
+000062 |     require(z*S.eye(2) != S.zeros(2), 'wrong temporal identification rejected')
+000063 |     free = double_data([S.Rational(8,15),S.Rational(2,15),S.Rational(4,15),S.Rational(1,15)])
+000064 |     a,rho,root,parity,act,word,ops,adj,P = free
+000065 |     units = []
+000066 |     for i,j in itertools.product(range(4),repeat=2):
+000067 |         E = S.zeros(4); E[i,j] = 1; units.append(E)
+000068 |     tested = 0
+000069 |     for i,j in itertools.product(range(4),repeat=2):
+000070 |         for E in units:
+000071 |             equal(act(ops[i],act(ops[j],E))+act(ops[j],act(ops[i],E)), S.zeros(4), 'double annihilator CAR')
+000072 |             equal(act(ops[i],act(adj(ops[j]),E))+act(adj(ops[j]),act(ops[i],E)), E if i==j else S.zeros(4), 'double star CAR')
+000073 |             tested += 2
+000074 |     C = S.diag(S.Rational(1,5),S.Rational(1,3))
+000075 |     X = S.diag(S.Rational(2,5),S.sqrt(2)/3)
+000076 |     equal(P, (S.eye(2)-C).row_join(X).col_join(X.row_join(C)), 'geometric free graph covariance')
+000077 |     equal(P*P, P, 'complete projector')
+000078 |     # All grouped four-field matrix elements, independently from the 2pt determinant.
+000079 |     grouped = 0
+000080 |     for (i,j),(k,l) in itertools.product(itertools.combinations(range(4),2),repeat=2):
+000081 |         actual = word([adj(ops[i]),adj(ops[j]),ops[l],ops[k]])
+000082 |         equal(actual, P[i,k]*P[j,l]-P[i,l]*P[j,k], 'joint grouped four point')
+000083 |         grouped += 1
+000084 |     wrong = []
+000085 |     for j in range(2):
+000086 |         wrong.append(S.simplify(S.trace(root*a[j].T*parity*root*a[j])))
+000087 |     equal(wrong[0], S.Rational(2,15), 'spectator parity wrong control0')
+000088 |     equal(wrong[1], S.sqrt(2)/5, 'spectator parity wrong control1')
+000089 |     require(wrong != [X[0,0],X[1,1]], 'wrong Klein factor detected')
+000090 |     # Reuse precisely the old explicit quarter-clock interaction control.
+000091 |     inter = double_data([S.Integer(1),S.Rational(1,4),S.Rational(1,64),S.Rational(1,65536)])
+000092 |     a,rho,root,parity,act,word,ops,adj,D = inter
+000093 |     c = [S.trace(rho*A.T*A) for A in a]
+000094 |     m = [S.simplify(S.trace(root*A.T*root*A)) for A in a]
+000095 |     equal(S.Matrix(c),S.Matrix([S.Rational(16385,82945),S.Rational(1025,82945)]),'old interaction occupations')
+000096 |     equal(S.Matrix(m),S.Matrix([S.Rational(32800,82945),S.Rational(8320,82945)]),'old interaction cross')
+000097 |     deficits = [S.factor(cj*(1-cj)-mj*mj) for cj,mj in zip(c,m)]
+000098 |     for gap in deficits:
+000099 |         equal(gap,S.Rational(14745600,82945**2),'strict saturation defect')
+000100 |         require(gap>0,'nonfree source detected')
+000101 |     require(D*D != D,'pure HS vector does not force projection covariance')
+000102 |     # The two spectator sectors carry different modular half factors.
+000103 |     factors = []
+000104 |     for A in a:
+000105 |         row=[]
+000106 |         for i,j in itertools.product(range(4),repeat=2):
+000107 |             if A[i,j]:
+000108 |                 row.append(S.simplify(root[i,i]/root[j,j]))
+000109 |         factors.append(row)
+000110 |     require(factors==[[S.Integer(2),S.Integer(32)],[S.Integer(8),S.Integer(128)]],'operator-valued modular factors')
+000111 |     n0,n1 = (A.T*A for A in a)
+000112 |     kappa = S.factor(S.trace(rho*n0*n1)-c[0]*c[1])
+000113 |     equal(kappa,-S.Rational(16711680,82945**2),'old interaction fourpoint')
+000114 |     return dict(claim='UR.NATIVE.ARCCHARGE.HALF-PERIOD-SEWING.01',
+000115 |         verdict='PASS_EXACT_HALF_PERIOD_GRADED_GNS_AND_SATURATION_CONTROLS',
+000116 |         half_period_is_existing_geometric_cross=True,
+000117 |         raw_temporal_copy_rejected=True,
+000118 |         independent_double_car_matrix_unit_checks=tested,
+000119 |         grouped_joint_four_field_checks=grouped,
+000120 |         free_cross=[str(X[i,i]) for i in range(2)],
+000121 |         wrong_left_only_parity_cross=[str(v) for v in wrong],
+000122 |         interaction_covariance=[str(v) for v in c],
+000123 |         interaction_cross=[str(v) for v in m],
+000124 |         interaction_saturation_deficits=[str(v) for v in deficits],
+000125 |         interaction_half_modular_factors=[[str(v) for v in row] for row in factors],
+000126 |         interaction_fourpoint_defect=str(kappa),
+000127 |         finite_saturation_iff_proof='HALF-PERIOD-GNS-SEWING.txt Section5',
+000128 |         infinite_iff_inferred_from_finite_proof=False,
+000129 |         actual_primitive_p1_sewing_identified=False,promotion=False)
+000130 | 
+000131 | 
+000132 | if __name__=='__main__':
+000133 |     p=argparse.ArgumentParser();p.add_argument('--out',type=Path);args=p.parse_args()
+000134 |     result=json.dumps(run(),indent=2,ensure_ascii=False)+'\n'
+000135 |     if args.out:args.out.write_text(result)
+000136 |     print(result,end='')

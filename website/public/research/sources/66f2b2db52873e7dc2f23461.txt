@@ -1,0 +1,72 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-collar-multifield-20261016/action_intervention_sewing.py
+Original file SHA-256: 57e55143cbe07cafbc07c4b4214677e29a34ef4580f6d7d2db58b5f4f3956f3d
+Inclusive original lines: 1-64
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact checks of source propagation vs response-kernel sewing.
+000002 | 
+000003 | No intervention law is installed. Infinite shift products are checked by
+000004 | their coefficients, with no finite/cyclic replacement of the circle shift.
+000005 | """
+000006 | import json
+000007 | import sys
+000008 | from pathlib import Path
+000009 | import sympy as s
+000010 | from boundary_operation_response import occupation_chart, ratio
+000011 | 
+000012 | 
+000013 | def check():
+000014 |     rows=[]
+000015 |     for n in range(-3,4):
+000016 |         a=occupation_chart(n)
+000017 |         raw_plus=a*occupation_chart(n+1)
+000018 |         raw_minus=a*occupation_chart(n-1)
+000019 |         sewn_plus=s.cancel(raw_plus/occupation_chart(n+1))
+000020 |         sewn_minus=s.cancel(raw_minus/occupation_chart(n-1))
+000021 |         assert sewn_plus==a and sewn_minus==a
+000022 |         assert raw_plus!=raw_minus
+000023 |         r=ratio(n)
+000024 |         a_double=1/(1+r**4)
+000025 |         assert r*r==ratio(n)**2
+000026 |         assert a_double != a*a
+000027 |         rows.append({'n':n,'ordinary_Lstar_L':str(raw_plus),
+000028 |                      'ordinary_L_Lstar':str(raw_minus),
+000029 |                      'inverse_Gram_sewn_both_orders':str(a),
+000030 |                      'A_double_length':str(a_double),
+000031 |                      'A_squared':str(a*a)})
+000032 |     # Identity kernel fixes the sewing matrix in an exact finite regulator.
+000033 |     a=s.diag(*(occupation_chart(n) for n in (-1,0,1)))
+000034 |     variables=s.symbols('w:9');w=s.Matrix(3,3,variables)
+000035 |     solution=s.solve(list(a*w*a-a),variables)
+000036 |     solved=w.subs(solution)
+000037 |     assert solved==a.inv()
+000038 |     t,lam=s.symbols('t lam',real=True)
+000039 |     scalar=1/(1+s.exp(-2*t*lam))
+000040 |     derivative=s.simplify(s.diff(s.log(scalar),t,2).subs(t,0))
+000041 |     assert derivative==-lam**2
+000042 |     curvatures=[derivative.subs(lam,x) for x in (s.Rational(1,4),s.Rational(5,4))]
+000043 |     assert curvatures==[-s.Rational(1,16),-s.Rational(25,16)]
+000044 |     # A domain-safe all-bounded identity also records the form sewing:
+000045 |     # F^-1 K_g = M_g F; no raw unbounded A^-1 is required in the proof.
+000046 |     return {'verdict':'LF_NOT_DERIVED_AS_ACTUAL_INTERVENTION',
+000047 |             'ordinary_response_noncommutativity_retained':True,
+000048 |             'inverse_Gram_sewing_conditional_on_kernel_frame_interpretation':True,
+000049 |             'inverse_Gram_sewing_selected_as_physical_law':False,
+000050 |             'same_side_scalar_insertions_commute_under_that_sewing':True,
+000051 |             'identity_sewing_matrix_regulator':str(solved),
+000052 |             'log_A_second_derivative_at_zero':str(derivative),
+000053 |             'quarter_source_two_mode_curvatures':[str(x) for x in curvatures],
+000054 |             'scalar_normalization_of_A_to_source_semigroup_possible':False,
+000055 |             'source_response_mode_checks':rows,
+000056 |             'physical_source_perturbation_rule_derived':False,
+000057 |             'measurement_projection_or_coupling_assumed':False}
+000058 | 
+000059 | 
+000060 | if __name__=='__main__':
+000061 |     result=check()
+000062 |     target=Path(sys.argv[1]) if len(sys.argv)>1 else Path(__file__).with_name('action_intervention_sewing_results.json')
+000063 |     target.write_text(json.dumps(result,indent=2)+'\n')
+000064 |     print(json.dumps(result,indent=2))

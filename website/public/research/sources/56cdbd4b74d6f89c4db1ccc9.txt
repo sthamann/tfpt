@@ -1,0 +1,109 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/compiler-correlated-event-clock-20260919/source_channel.py
+Original file SHA-256: 3852fabaf10c143fe20238b67406df6396f85c931dfd4834fe91a2d7ef900593
+Inclusive original lines: 49-149
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000049 | def source_rays() -> list[np.ndarray]:
+000050 |     supports = [tuple(sorted((2*i, 2*i+1, 2*j, 2*j+1)))
+000051 |                 for i, j in it.combinations(range(4), 2)]
+000052 |     supports += [tuple(2*k+d[k] for k in range(4))
+000053 |                  for d in it.product((0, 1), repeat=4) if sum(d) % 2 == 0]
+000054 |     roots = []
+000055 |     for k, sign in it.product(range(8), (-1, 1)):
+000056 |         x = [0]*8
+000057 |         x[k] = 2*sign
+000058 |         roots.append(x)
+000059 |     for support in supports:
+000060 |         for signs in it.product((-1, 1), repeat=4):
+000061 |             x = [0]*8
+000062 |             for k, sign in zip(support, signs):
+000063 |                 x[k] = sign
+000064 |             roots.append(x)
+000065 |     require(len({tuple(x) for x in roots}) == 240, "240 Gaussian-code roots")
+000066 |     keys = sorted({canonical_mu4(np.array(x[::2]) + 1j*np.array(x[1::2])) for x in roots})
+000067 |     require(len(keys) == 60, "60 mu4 rays")
+000068 |     return [np.array([complex(a, b) for a, b in key], dtype=np.complex128) for key in keys]
+000069 | 
+000070 | 
+000071 | I2 = np.eye(2, dtype=np.complex128)
+000072 | X2 = np.array([[0, 1], [1, 0]], dtype=np.complex128)
+000073 | Y2 = np.array([[0, -1j], [1j, 0]], dtype=np.complex128)
+000074 | Z2 = np.diag([1, -1]).astype(np.complex128)
+000075 | 
+000076 | 
+000077 | def pauli_from_bits(v: tuple[int, int, int, int]) -> np.ndarray:
+000078 |     x1, z1, x2, z2 = v
+000079 |     one = {(0, 0): I2, (1, 0): X2, (0, 1): Z2, (1, 1): Y2}
+000080 |     return np.kron(one[x1, z1], one[x2, z2])
+000081 | 
+000082 | 
+000083 | V4 = list(it.product((0, 1), repeat=4))
+000084 | PAULIS = [pauli_from_bits(v) for v in V4]
+000085 | SYMMETRIC_BITS = [v for v in V4 if (v[0]*v[1] + v[2]*v[3]) % 2 == 0]
+000086 | SYMMETRIC_PAULIS = [pauli_from_bits(v) for v in SYMMETRIC_BITS]
+000087 | 
+000088 | 
+000089 | def phase_match(a: np.ndarray, targets: list[np.ndarray], scale: int) -> tuple[int, complex]:
+000090 |     for j, b in enumerate(targets):
+000091 |         for phase in (1, 1j, -1, -1j):
+000092 |             if np.array_equal(a, scale*phase*b):
+000093 |                 return j, phase
+000094 |     raise RuntimeError("no exact phase match")
+000095 | 
+000096 | 
+000097 | def symp(v: tuple[int, ...], w: tuple[int, ...]) -> int:
+000098 |     return (v[0]*w[1] + v[1]*w[0] + v[2]*w[3] + v[3]*w[2]) % 2
+000099 | 
+000100 | 
+000101 | def q0(v: tuple[int, ...]) -> int:
+000102 |     return (v[0]*v[1] + v[2]*v[3]) % 2
+000103 | 
+000104 | 
+000105 | def q_u(u: tuple[int, ...], v: tuple[int, ...]) -> int:
+000106 |     return (q0(v) + symp(v, u)) % 2
+000107 | 
+000108 | 
+000109 | ODD_FORMS = [u for u in V4 if q0(u) == 1]
+000110 | 
+000111 | 
+000112 | def reflection_actions(rays: list[np.ndarray]):
+000113 |     bell = []
+000114 |     six = []
+000115 |     symp_maps = []
+000116 |     for z in rays:
+000117 |         r2 = 2*np.eye(4, dtype=np.complex128) - np.outer(z, z.conj())
+000118 |         require(np.array_equal(r2 @ r2, 4*np.eye(4)), "native reflection involution")
+000119 |         U = np.zeros((10, 10), dtype=np.complex128)
+000120 |         for a, p in enumerate(SYMMETRIC_PAULIS):
+000121 |             b, phase = phase_match(r2 @ p @ r2.T, SYMMETRIC_PAULIS, 4)
+000122 |             U[b, a] = phase
+000123 |         require(np.array_equal(U.conj().T @ U, np.eye(10)), "Bell10 monomial unitary")
+000124 |         require(np.array_equal(U @ U, np.eye(10)), "Bell10 reflection involution")
+000125 |         bell.append(U)
+000126 | 
+000127 |         image = {}
+000128 |         for v, p in zip(V4, PAULIS):
+000129 |             j, _phase = phase_match(r2 @ p @ r2.conj().T, PAULIS, 4)
+000130 |             image[v] = V4[j]
+000131 |         require(len(set(image.values())) == 16, "symplectic Pauli permutation")
+000132 |         require(all(symp(image[v], image[w]) == symp(v, w) for v in V4 for w in V4),
+000133 |                 "Pauli action preserves symplectic form")
+000134 |         inverse = {w: v for v, w in image.items()}
+000135 |         perm6 = []
+000136 |         for u in ODD_FORMS:
+000137 |             vals = tuple(q_u(u, inverse[v]) for v in V4)
+000138 |             hits = [j for j, u2 in enumerate(ODD_FORMS)
+000139 |                     if vals == tuple(q_u(u2, v) for v in V4)]
+000140 |             require(len(hits) == 1, "odd quadratic-form action")
+000141 |             perm6.append(hits[0])
+000142 |         require(sum(int(i != j) for i, j in enumerate(perm6)) == 6 and
+000143 |                 all(perm6[perm6[i]] == i for i in range(6)),
+000144 |                 "each native reflection is a triple transposition on six odd forms")
+000145 |         six.append(tuple(perm6))
+000146 |         symp_maps.append(image)
+000147 |     require(len(set(six)) == 15 and all(six.count(p) == 4 for p in set(six)),
+000148 |             "15 synthemes with four native lifts each")
+000149 |     return bell, six, symp_maps

@@ -1,0 +1,110 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/mixed-current-origin-20261014/HALBFLUSS-UND-CLAUDE-REVIEW.md
+Original file SHA-256: 2132c27bf458130c0c184636256f709a6806c46471ac2c3e6593bce051a7014f
+Inclusive original lines: 1-102
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | # Halbfluss und lokale Spinorsektoren: unabhängige Prüfung
+000002 | 
+000003 | 22. Oktober 2026. Fortsetzung von UR.SEAM.MIXED_CURRENT_ORIGIN.01.
+000004 | **Verdikt: Der direkte unveränderte Halbflussweg ist unter den angegebenen Netz- und Zustandsverträgen ausgeschlossen. Eine mikroskopische P1-Herkunft des lokalen Spinorsektors ist weiterhin nicht bewiesen.**
+000005 | 
+000006 | [OMITTED: non-scientific conversation or execution metadata]
+000007 | 
+000008 | ## 1. Herkunft, Register und endliche Transporter
+000009 | 
+000010 | Der aktuelle MMST-Originaltext sagt ausdrücklich, dass v1033 ein lokales vierstufiges Fluxregister zum Naht-Hamiltonoperator hinzufügt. Quelle: documents/articles--2026-08-30--mmst_charged_scaling_limit_en/sections/005-subsection-the-neutral-net-and-its-index.tex, Zeilen332–356. Damit ist der Operator im erweiterten Modell vorhanden; seine Herkunft aus der primitiven P1-Quelle ist nicht mitbewiesen.
+000011 | 
+000012 | Der aktuelle v1033-Code bestätigt die Weylkonvention in symbolic_construction, Zeilen194–233, und den gemeinsamen Register-Hamiltonoperator in register_hamiltonian, Zeilen310–324. Für X als Vorwärtsschritt und Z=diag(1,i,-1,-i) gilt exakt X² Z X⁻²=−Z. Materieparität entfernt Z nicht: In M4 tensor CAR bleibt das Register unter dieser Parität vollständig gerade.
+000013 | 
+000014 | Folglich kann Ad F_A nicht ausschließlich in einem vom Register entfernten Endpunktintervall lokalisiert sein. Diese Aussage setzt den im Bericht angegebenen Registerort und das unveränderte physikalische Observable Z voraus. Sie verbietet keine größere Lokalisierungsregion, die Register und String enthält; diese wäre aber kein einzelner entfernter Spinorendpunkt.
+000015 | 
+000016 | Die Transporterrechnung stimmt: F_B F_A*=I tensor P_(A symmetricdiff B). Multiplikation der Intervallparitäten beweist Adjunktion, Kokettenrelation und Fusionsquadrat exakt. Auf dem endlichen Materienetz ist P_A selbst gerade und die Wirkung inner. Triviale Klasse und positives Austauschzeichen sind daher ein Gegenbeispiel gegen die Suffizienz dieser algebraischen Tests als Spinornachweis.
+000017 | 
+000018 | Auch das angegebene Kreuzproduktresultat ist korrekt: Ist alpha=Ad P mit P=P*=P⁻¹ in A, wird Pt im Kreuzprodukt zentral und hat Quadrat eins. Deshalb A crossed Z2 isomorph A tensor C*(Z2) isomorph A directsum A. Ein äußerer Grenzwert ist davon nicht ausgeschlossen.
+000019 | 
+000020 | ## 2. Gegenzeuge im tatsächlichen v746-Quotientnetz
+000021 | 
+000022 | Die Originalfunktion window in verification/v746_phys_gnet_local_functor.py, Zeilen110–112, verwendet tatsächlich das gesamte verdoppelte Fenster I union(I+N/2). main, Zeilen204ff., erzeugt darin die volle CAR und die vierfache lokale Clockmittelung.
+000023 | 
+000024 | Mit der tatsächlichen NS-Verschiebung S gilt H=S^(N/2), H²=−I. Die hermitesche Zweimodenmatrix zu
+000025 | 
+000026 | K_j=i(c_j* c_(j+N/2)−c_(j+N/2)* c_j)
+000027 | 
+000028 | wird von H invariant gelassen und vom Halbkreis-Vorzeichen sigma umgekehrt. Das lässt sich schon am Zweierblock H=(0,−1;1,0) ablesen: K_j ist dessen hermitescher Generator, während sigma die beiden Komponenten mit entgegengesetzten Vorzeichen versieht. Damit bleibt K_j bei Clockmittelung erhalten.
+000029 | 
+000030 | Die aktuelle Originalimplementierung wurde für jedes Basispaar bei N=8,16,48 verwendet: 4,8,24 Paare, ohne numerische Residuen bei den Matrixidentitäten. Das ist ein endlicher Kontrolllauf des blockweisen Beweises, keine Extrapolation zum Kontinuum. Die gerade, clockinvariante Wirkung ist in jeder Quotient-Basisregion nachweisbar. Ein Ausschluss dieses K_j durch separat gerade Fensteralgebren würde den geprüften Netzvertrag ändern.
+000031 | 
+000032 | ## 3. Lokale Nichtnormalität des scharfen Grenzwerts
+000033 | 
+000034 | Dieser Beweis trägt. Er betrifft die direkte Automorphie durch den scharfen Vorzeichenmultiplizierer auf dem angegebenen freien chiralen CAR-Netz.
+000035 | 
+000036 | Auf einem Intervall J, das den Sprung enthält, sind S=E_J P_NS E_J und T=sigma S sigma. Auf gegenüberliegenden Seiten des Sprungs ist der Differenzkern −2P_NS. Der führende NS-Cauchykern hat dort Betrag proportional zu 1/(u+v). Ein beschränkter glatter Rest kann diese nicht-Hilbert-Schmidt-Singularität nicht aufheben. Es gilt exakt
+000037 | 
+000038 | ∫_[delta,eps]² du dv/(u+v)² = log((eps+delta)²/(4 eps delta)) → ∞.
+000039 | 
+000040 | Der entscheidende logische Schritt verwendet das Quasiäquivalenzkriterium für quasifreie CAR-Zustände, nicht nur globale Implementierbarkeit. Wäre sqrt(S)−sqrt(T) Hilbert-Schmidt, wäre auch
+000041 | 
+000042 | S−T = sqrt(S)(sqrt(S)−sqrt(T))+(sqrt(S)−sqrt(T))sqrt(T)
+000043 | 
+000044 | Hilbert-Schmidt. Der lokale Kern widerspricht dieser notwendigen Bedingung. In der geladenen CAR-Formulierung gibt es zusätzlich die entsprechende Bedingung für I−S; bereits die erste scheitert. Die lokalen GNS-Darstellungen sind die zyklischen lokalen Einschränkungen des freien Quellenzustands; diese Voraussetzungen dürfen bei anderen Netzen nicht übersprungen werden.
+000045 | 
+000046 | Primärquelle: Böckenhauer, *An Algebraic Formulation of Level One Wess–Zumino–Witten Models*, [Theorem3.1](https://arxiv.org/html/hep-th/9507047), mit Arakis Kriterium. Der präzise Ausschluss betrifft Intervalle, die den Sprung enthalten. HS-Endlichkeit auf dem Komplement allein wäre keine hinreichende Prüfung.
+000047 | 
+000048 | ## 4. Warum die gerade Einschränkung den scharfen Fehler nicht repariert
+000049 | 
+000050 | Sei M die lokale volle CAR-von-Neumann-Algebra in der üblichen freien NS-Darstellung und N ihr gerader Fixpunkt. Wähle einen ungeraden lokalen selbstadjungierten unitären Majorana w. Die normale Paritätserwartung E liefert für jedes A in M eindeutig
+000051 | 
+000052 | A=a+bw, a=E(A), b=E(Aw), a,b in N.
+000053 | 
+000054 | Die scharfe Wirkung erhält den lokalen algebraischen CAR-Bereich und seine Parität. Hätte ihre Einschränkung auf N eine normale Fortsetzung phi, wäre
+000055 | 
+000056 | Phi(A)=phi(a)+phi(b) alpha_sigma(w)
+000057 | 
+000058 | normal. Die Kreuzproduktrelationen, zunächst auf der schwach dichten CAR-Algebra, gelten durch normale Fortsetzung; die Involutionseigenschaft gibt die normale Inverse. Dies ergäbe die volle lokale normale Automorphie und damit die gerade ausgeschlossene lokale Quasiäquivalenz.
+000059 | 
+000060 | Das Argument gilt für die im Bericht verwendete volle lokale freie Darstellung. Beim Übergang zur geraden Vakuum-Hilbertdarstellung verwendet man zusätzlich die bekannte lokale Normalität/Quasiäquivalenz der freien geraden Vakuum- und Vektordarstellungen. Eine bloße Aussage über globale Focksektoren wäre hier kein Ersatz. Unter diesem üblichen freien Netzvertrag bleibt die scharfe Wirkung somit auch auf der geraden Algebra nicht lokal normal.
+000061 | 
+000062 | ## 5. Ramond-Zustand und beide Ränder
+000063 | 
+000064 | Die aktuelle Originalfunktion v1033.half_filled_ground_space, Zeilen424–451, definiert ausdrücklich die uniforme Mischung über feste Füllungen des Nullraums. Sie bezeichnet deren Kovarianz nicht als reinen Slaterzustand.
+000065 | 
+000066 | Der tatsächliche Builder qwz_cylinder wurde für Nx=8, Ny=8, M=1 in Registersektor0 und2 ausgeführt. Die Ergebnisse lauten (Nullraumdimension, dortige Füllung)=(2,1) beziehungsweise(0,0). Die Kovarianz des ersten Falls ist nicht idempotent; die des zweiten ist bis auf Rundungsfehler ein Projektor.
+000067 | 
+000068 | Für die uniforme k-Füllung im d-dimensionalen Nullraum folgt aus Abzählen der erlaubten Besetzungen
+000069 | 
+000070 | <n_i1 ... n_im> = binom(d−m,k−m)/binom(d,k) = (k)_m/(d)_m.
+000071 | 
+000072 | Antisymmetrisierung gibt die angegebene Determinante für normalgeordnete Wörter. Im Fall d2,k1 ist die Dichte diag(0,1/2,1/2,0), Reinheit1/2 und <n_L n_R>=0. Die quasifreie Kovarianzfortsetzung gibt1/4. Die unveränderte unitäre Fluxoperation kann einen reinen NS-Zustand daher nicht in genau diese vorgeschriebene endliche Mischung abbilden. Das schließt weder geladene Anregungen noch einen lokalen Grenzzustand aus; Reinheit kann bei Einschränkung oder Grenzübergang verloren gehen.
+000073 | 
+000074 | Der Register-Hamiltonoperator setzt denselben Sektor r für den gesamten Streifen ein. Das begründet keinen einseitigen Rückwechsel. Die Hom(s,1)=0-Aussage ist korrekt für verschiedene irreduzible Sektoren im unveränderten rechten neutralen Vertrag. Eine mögliche Randrepräsentation beta mit Hom(s tensor beta,beta) ungleich null wäre eine eigene Konstruktion. Sie ist vom geladenen Feld einer links/rechts nicht absorbierenden Erweiterung zu unterscheiden.
+000075 | 
+000076 | ## 6. Was die Ausschlüsse ausdrücklich offenlassen
+000077 | 
+000078 | Ein glatter Vertreter auf dem **punktierten** Kreis mit Außenwerten +I und−I ist nicht automatisch ein global glatter periodischer Loop auf dem ursprünglichen Kreis. Lokale Normalität kann mit global inequivalenten NS/R-Sektoren zusammenbestehen. Das ist Teil der bekannten positiven Sektorkonstruktion, kein Widerspruch zum scharfen Ausschluss.
+000079 | 
+000080 | Die weitere Behauptung „global implementierbar, also sektoriell trivial auf der geraden Algebra“ wäre ebenfalls falsch: Ein ungerader CAR-Implementer kann auf dem geraden Observable-Netz einen nichttrivialen Vektorsektor erzeugen. Auch eine geladene Erweiterung ist kein nichtnull Hom(s,1) innerhalb der unveränderten neutralen Kategorie. Ein gesonderter rechter Absorber braucht den im Bericht genannten beta-Vertrag.
+000081 | 
+000082 | Die bekannte lokale Spinorkonstruktion ist in Böckenhauers Definition5.3/Theorem5.4 und der anschließenden lokalen Normalitätsanalyse beschrieben; ihr Anschluss an die ursprüngliche TFPT-Quelle bleibt eine zusätzliche Aufgabe. Das ersetzt keinen mikroskopischen FE-GEN-/ALG-EXH-Satz.
+000083 | 
+000084 | Der neue Phi-Gegenzeuge in ODD-SECTOR-REFIELDING-AND-NAHT.txt und der scharfe Halbfluss betreffen verschiedene Operatorabbildungen. Ohne deren Identifikation subsumiert der eine Beweis den anderen nicht. Sie schließen zwei unterschiedliche direkte Versuche aus, bei gleichzeitig positiver globaler Energie-/Ladungsabbildung.
+000085 | 
+000086 | [OMITTED: non-scientific conversation or execution metadata]
+000087 | 
+000088 | [OMITTED: non-scientific conversation or execution metadata]
+000089 | 
+000090 | [OMITTED: non-scientific conversation or execution metadata]
+000091 | 
+000092 | Bestätigt sind der begrenzte scharfe Halbfluss-Ausschluss, die Register-/Quotientzeugen und der vollständige Zustandsunterschied. Neu konstruiert ist eine exakte **globale**, H/Q/Vakuum-erhaltende Abbildung in die ungerade Spinor-Konvention samt Transport von Quellwindung eins. Sie ist keine lokale P1-Spinorerzeugung.
+000093 | 
+000094 | **Die noch fehlende Struktur ist konkret:** eine aus ursprünglichen mikroskopischen Operationen bestimmte, regularisierte geladene Sektor-/Feldabbildung, deren lokale Normalität auch am Einsatzort, Symmetriewirkung, Statistik, vollständige Wortkerne, physikalische Zeit und Zweirand-/Registervertrag zusammen nachgewiesen sind. Die Existenz eines passenden abstrakten E8-Q-Systems oder eine frei gewählte glatte Rotation liefert diese Herkunft nicht.
+000095 | 
+000096 | ## Reproduktion
+000097 | 
+000098 | python3 -B -OO check_half_flux_audit.py
+000099 | 
+000100 | python3 -B -OO check_odd_refielding.py
+000101 | 
+000102 | [OMITTED: non-scientific conversation or execution metadata]

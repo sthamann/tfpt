@@ -1,0 +1,198 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/PUSHFORWARD-ANCHOR.txt
+Original file SHA-256: cbe5383c9df7b8f1b1095566f909ce3a357d10e9b3cd1bd15c89b8c72af870a2
+Inclusive original lines: 1-190
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | ELLIPTIC PUSHFORWARD AND THE P2 ANCHOR
+000002 | ======================================
+000003 | 26 October 2026. Bounded original source audit and exact local monodromy test.
+000004 | Atlas audit frame: revision 4a17a404b58c05f460121df8.
+000005 | 
+000006 | Verdict
+000007 | -------
+000008 | 
+000009 | There is an exact and useful common bundle statement. On the already present
+000010 | double cover
+000011 | 
+000012 |   p:E -> P1,             E: y^2=x^4-1,
+000013 | 
+000014 | and for the already identified nontrivial Q-fixed two-torsion spin line alpha,
+000015 | 
+000016 |   p_*O_E = O + O(-2),              p_*alpha = O(-1) + O(-1).
+000017 | 
+000018 | Therefore
+000019 | 
+000020 |   V_ell := (p_*O_E/O) + p_*alpha = O(-2) + O(-1)^2.             (1)
+000021 | 
+000022 | This is exactly the holomorphic P2 anchor with splitting exponents {1,1,2},
+000023 | rank 3, degree -4 and h0=0. It is a real convergence of the existing elliptic
+000024 | bosonic and spin data on the same marked base. It is stronger than the earlier
+000025 | observation that several constructions merely produce the number 3.
+000026 | 
+000027 | The natural connection does not agree with the original P2 flavor connection.
+000028 | Its local conjugacy class at every branch mark has order 2, whereas P2 fixes an
+000029 | order 3 cusp class. Thus (1) identifies the underlying holomorphic bundle only.
+000030 | It supplies neither the P2 Deligne connection nor its irreducible flavor
+000031 | representation. No change to AX.P2.01 or QGEO.SYM follows.
+000032 | 
+000033 | 1. Why the bundle equality is exact
+000034 | -----------------------------------
+000035 | 
+000036 | The prior curve calculation gives p_*O_E=O+O(-2) and, for a nontrivial
+000037 | elliptic two-torsion alpha, p_*alpha=O(-1)+O(-1). See
+000038 | 
+000039 |   experiments/theory-contracts/original-admissible-source-closure-20261025/
+000040 |   ORIGINAL-BASES-AND-ELLIPTIC-SPIN.txt:55-65
+000041 |   SHA256 bf6b2336e24a39aef26b9907c24f033a47a8a1318f8f19ae561e4c477680ce67.
+000042 | 
+000043 | Removing the invariant scalar O from p_*O_E leaves the trace-free deck line
+000044 | O(-2). Adding the full rank 2 spin pushforward yields (1). Consequently
+000045 | 
+000046 |   rank V_ell = 3,
+000047 |   deg V_ell = -2-1-1 = -4,
+000048 |   h0(V_ell) = 0,
+000049 |   a(V_ell) = (1,1,2).
+000050 | 
+000051 | This matches the Birkhoff-Grothendieck object in P2.TYPING exactly. v491 proves
+000052 | that three positive integral splitting exponents summing to four have the
+000053 | unique multiset {1,1,2}; v499 types the P2 anchor as the Deligne extension
+000054 | O(-2)+O(-1)^2 under its stated rank, cusp, irreducibility and unitarity
+000055 | premises. The matching object is the bundle, not the parabolic weights.
+000056 | 
+000057 | 2. Smallest decisive connection test
+000058 | -------------------------------------
+000059 | 
+000060 | Let x=t^2 near one branch mark. The odd local function t spans the trace-free
+000061 | part of p_*O_E and obeys
+000062 | 
+000063 |   dt = (1/2)(dx/x)t.
+000064 | 
+000065 | Its canonical exponent is 1/2 and its local monodromy is -1. A flat
+000066 | two-torsion line alpha is locally trivial near the ramification point because
+000067 | the lifted small loop contracts on E. Its pushforward has an even and an odd
+000068 | sheet combination. Their exponents are 0 and 1/2 and their monodromies are
+000069 | +1 and -1. Hence the natural direct-sum pushforward has, at each of the four
+000070 | marks,
+000071 | 
+000072 |   residues       {0, 1/2, 1/2},
+000073 |   monodromy spec {1,-1,-1},
+000074 |   chi_ell(lam)   = (lam-1)(lam+1)^2,
+000075 |   trace          = -1,
+000076 |   order          = 2.                                      (2)
+000077 | 
+000078 | The residue trace is one per mark. Deligne bookkeeping therefore gives
+000079 | 
+000080 |   deg V_ell = -4(0+1/2+1/2) = -4,
+000081 | 
+000082 | which explains why the same underlying bundle type appears.
+000083 | 
+000084 | The original P2 local class is different. v117 fixes an exact matrix M0 with
+000085 | 
+000086 |   chi_P2(lam)=lam^3-1,
+000087 |   spec M0={1,omega,omega^2},
+000088 |   trace M0=0,
+000089 |   M0^3=I.
+000090 | 
+000091 | Its canonical Deligne exponents are {0,1/3,2/3}, again with trace one per
+000092 | mark and degree -4. The two local matrices cannot be conjugate because their
+000093 | characteristic polynomials, traces and orders differ. The equality of degree
+000094 | and splitting therefore cannot be promoted to equality of logarithmic
+000095 | connections.
+000096 | 
+000097 | There is a second independent obstruction. The connection naturally induced
+000098 | on (1) preserves the explicit rank 1 summand p_*O_E/O, so it is reducible.
+000099 | v117 proves that the intended representation generated by U and M0 is the
+000100 | irreducible three-dimensional standard-times-sign representation of S4. P2
+000101 | uses precisely this irreducibility to obtain stability. A connection
+000102 | intertwiner cannot turn the reducible pushforward representation into that
+000103 | irreducible representation.
+000104 | 
+000105 | One can put another irreducible logarithmic connection with the P2 cusp class
+000106 | on the same holomorphic bundle. That connection is additional data. It is not
+000107 | the natural connection induced from O_E and alpha and therefore does not give
+000108 | the requested source derivation.
+000109 | 
+000110 | 3. A notation trap resolved
+000111 | ---------------------------
+000112 | 
+000113 | v117 calls (0,1/2,1/2) the harmonic diagonal and proves
+000114 | 
+000115 |   diag M0 = (0,-i/2,+i/2).
+000116 | 
+000117 | Those are diagonal entries and the associated amplitude delta=1/2. They are
+000118 | not the eigenvalues of the Deligne residue. The residue spectrum in v499 and
+000119 | the active P2 setup is {0,1/3,2/3}. Thus the phrase harmonic diagonal does not
+000120 | repair the mismatch in (2).
+000121 | 
+000122 | 4. Was the boson-spin pushforward already the original construction?
+000123 | --------------------------------------------------------------------
+000124 | 
+000125 | No such identification occurs in the bounded original set requested here or
+000126 | in the targeted Atlas search for the combined pushforward. The original chain
+000127 | does establish the same bundle type by another route:
+000128 | 
+000129 |   four marks + rank 3 + cusp residues + unitarity and irreducibility
+000130 |   -> degree -4 + h0=0
+000131 |   -> O(-2)+O(-1)^2.
+000132 | 
+000133 | It does not form (p_*O_E/O)+p_*alpha. v499 explicitly separates the genus 1
+000134 | Z2 pillowcase cover from the genus 2 Z3 Biswas weight cover. The denominator
+000135 | of the flavor weights is 3, not the deck order 2. Its explicit decomposable
+000136 | Z3 regular-representation model yields O+O(-2)^2 and is rejected as unstable.
+000137 | The surviving {1,1,2} bundle is selected through stability of the original
+000138 | cusp representation, not through the elliptic direct sum.
+000139 | 
+000140 | There is a canonical mathematical reason to inspect (1): both terms already
+000141 | exist on the same C2 cover, the first is the nontrivial scalar deck sector,
+000142 | and the second is the unique Q-fixed nontrivial spin pushforward. Removing the
+000143 | trivial scalar gives exactly one plus two dimensions with no fitted degree.
+000144 | There is no original physical rule in the checked sources that declares this
+000145 | boson-spin direct sum to be the generation carrier or couples its natural
+000146 | connection to the flavor field. v499 records this precise module
+000147 | identification as residual R1. Therefore selecting both terms as one physical
+000148 | module would still be an added premise.
+000149 | 
+000150 | 5. Executable finite certificate
+000151 | --------------------------------
+000152 | 
+000153 | The comparison was replayed with exact SymPy arithmetic and no floats:
+000154 | 
+000155 |   M_ell = diag(-1,1,-1)
+000156 |     trace=-1, det=1,
+000157 |     charpoly=(lambda-1)(lambda+1)^2,
+000158 |     M_ell^2=I, M_ell^3!=I.
+000159 | 
+000160 |   M0 = the exact v117 matrix
+000161 |     trace=0, det=1,
+000162 |     charpoly=(lambda-1)(lambda^2+lambda+1),
+000163 |     M0^2!=I, M0^3=I.
+000164 | 
+000165 |   sum{0,1/2,1/2}=sum{0,1/3,2/3}=1,
+000166 |   -4 times either sum = -4.
+000167 | 
+000168 | This is the smallest decisive test. It retains the positive bundle match and
+000169 | excludes the stronger connection identification before any new model is built.
+000170 | 
+000171 | 6. Original sources and status
+000172 | ------------------------------
+000173 | 
+000174 | P2 exact cusp matrix and irreducible S4 representation:
+000175 | 
+000176 |   verification/v117_monodromy_weyl_a3.py:1-43,129-182
+000177 |   SHA256 55eca6a64144f6e49789f3f1bbe84e256764e7ce92b207044be693f8684d5df5.
+000178 | 
+000179 | The matrix properties are exact [I]. Its identification with the analytic
+000180 | A0* ODE monodromy remains numerical [N], as v117 itself states at lines
+000181 | 184-200. The active P2 target independently prescribes the order 3 cusp
+000182 | conjugacy class, so the local-class obstruction is exact for that target.
+000183 | 
+000184 | P2 Deligne residues, degree and honest module residual:
+000185 | 
+000186 |   verification/v499_p2_weights_deligne_bg.py:1-89,184-229,408-484
+000187 |   SHA256 73098e62b3148d1cddb31e60c16a424159f985b874aa0dee1737260fb81017b9.
+000188 | 
+000189 |   documents/changelog/sections/007-source.tex:47-94
+000190 |   Atlas paper-source:d9dbc0d2c52e1775385a984c

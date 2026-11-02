@@ -1,0 +1,100 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/paper-source-reconstruction-20261025/ORIGINAL-CAR-WARD-IDENTIFICATION.txt
+Original file SHA-256: c4ac90ce9f44039ebcf16c289e1b8d2ef661fafa266a8d5e42678b4ed60f8ed0
+Inclusive original lines: 9-100
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000009 | Use the actual negative-energy-filled quarter representation, with CAR modes
+000010 | a_r, r in Z, and occupation r<=-1.  The orientation of the original QWZ top
+000011 | edge is transported by r=-j, so r+1/4=1/4-j.  This retains the physical
+000012 | one-particle generator and the physical charge; it is not a replacement of
+000013 | the state by an independently selected bosonic vacuum.
+000014 | 
+000015 | For a residue k=0,...,7 and integer n>=1 put
+000016 | 
+000017 |   h_(k,-n) = sum_(r congruent k mod8) :a*_(r+8n) a_r:.
+000018 | 
+000019 | The actual source stress mode, in folded normalization, is
+000020 | 
+000021 |   K = Lcal_-8/8
+000022 |     = sum_r c(r) :a*_(r+8) a_r:,
+000023 |   c(r)=(r+alpha+4)/8.
+000024 | 
+000025 | On any fixed finite-energy vector these raising sums have only finitely many
+000026 | nonzero terms.  The CAR bilinear commutator therefore gives, without a
+000027 | cutoff boundary term,
+000028 | 
+000029 |   [K,h_(k,-n)]
+000030 |     = sum_(r congruent k mod8) [c(r+8n)-c(r)]
+000031 |                               :a*_(r+8n+8) a_r:
+000032 |     = n h_(k,-n-1).                                      (1)
+000033 | 
+000034 | There is no central term in (1), since both indices are raising indices.
+000035 | On the actual sea, only r=k-8 crosses from an occupied to an empty level
+000036 | in the first stress step.  Hence
+000037 | 
+000038 |   K Omega = sum_k delta_k h_(k,-1) Omega,
+000039 |   delta_k=c(k-8)=(k+alpha)/8-1/2.                         (2)
+000040 | 
+000041 | Equations (1)--(2) derive the shifted oscillator recursion directly from the
+000042 | original CAR operators.  They do not infer it from a matching dimension or
+000043 | from a free choice of a Cartan vector.  With y_n=sum_k delta_k h_(k,-n),
+000044 | 
+000045 |   K^s Omega = s! [z^s] exp(sum_(n>=1) y_n z^n/n) Omega.  (3)
+000046 | 
+000047 | This follows by induction using [K,y_n]=n y_(n+1).  Every oscillator partition
+000048 | at each level is retained.  In particular, the pure mode-minus-one term of
+000049 | K^8 Omega has coefficient one and is y_1^8 Omega.
+000050 | 
+000051 | 2. The fixed original octic and its normalization
+000052 | ------------------------------------------------
+000053 | 
+000054 | Retain exactly A=U_+^T O^T M from the existing original dictionary.  Its
+000055 | rows are Hermitian orthonormal and bilinearly isotropic.  Put b=A delta and
+000056 | 
+000057 |   I8(x)=sum_a x_a^8
+000058 |        +14 sum_(a<b) x_a^4 x_b^4+168 product_a x_a^2,
+000059 |   F8hat=I8/(96 sqrt(140)).
+000060 | 
+000061 | The state F8hat(a_(+,-1))Omega has norm one and oscillator level eight.
+000062 | All terms of (3) containing an oscillator mode of index at least two are
+000063 | orthogonal to this state.  The ordinary Heisenberg Fock scalar product,
+000064 | linear in the second argument, consequently gives
+000065 | 
+000066 |   <F8;d,K^8 Omega> = 8! conjugate(F8hat(b)).              (4)
+000067 | 
+000068 | For alpha=1/4 the original, unfitted matrices give
+000069 | 
+000070 |   I8(b)=5416993/2^32 - i 584073/2^27,
+000071 | 
+000072 | and therefore
+000073 | 
+000074 |   <F8;d,(Lcal_-8)^8 Omega>
+000075 |     =sqrt(35)(16250979+56071008 i)/128 != 0.             (5)
+000076 | 
+000077 | Both vectors in (5) have zero charge and original excitation energy64.
+000078 | The factor relating (4) and (5) is exactly 8^8.  Equation (5) is a response
+000079 | component, not a statement that the stress history prepares a pure F8 state.
+000080 | 
+000081 | 3. The microscopic sector used by this proof
+000082 | --------------------------------------------
+000083 | 
+000084 | The existing QWZ theorem uses epsilon_j=1/4-j.  Any excitation of energy at
+000085 | most64 can involve only -63<=j<=64.  Its coarse particle-plus-hole count is
+000086 | at most256, since the smallest excitation energy is1/4.  The existing window
+000087 | 
+000088 |   M_N=min(floor(N/8),floor(sqrt(N)))
+000089 | 
+000090 | contains all these modes once N>=4096.  On that entire energy sector the
+000091 | projection Gamma(Pi_M) in the comparison contraction V_N is the identity.
+000092 | The remaining map is an actual isometry into the original filled QWZ Fock
+000093 | space and intertwines its finite particle/hole CAR words and adjoints.
+000094 | 
+000095 | Each current or stress mode entering (1)--(5), acting on the relevant
+000096 | finite-energy vectors, reduces to such a finite CAR word sum.  The original
+000097 | mode-convergence theorem therefore transports the energy64 Ward matrix
+000098 | element.  This claim does not depend on an unbounded point-field limit.
+000099 | It also does not assert that a finite microscopic stress unitary has already
+000100 | been shown to converge to every exponentiated continuum geometry history.

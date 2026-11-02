@@ -1,0 +1,186 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/older-paper-source-recovery-20261025/POSITIVE-HALF-REVIEW.txt
+Original file SHA-256: 7c0b671b3606bb1ce376e163e4573a1c9e2dfeb0a87d86189ae8bdd4332c8a0b
+Inclusive original lines: 1-178
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | INDEPENDENT REVIEW: POSITIVE-HALF HEAT TRANSFER
+000002 | ================================================
+000003 | 
+000004 | 25 October 2026. Exact analytic addendum to the recovered old circle source.
+000005 | No Atlas, index, paper or other contract file was changed.
+000006 | 
+000007 | Verdict
+000008 | -------
+000009 | 
+000010 | PROVED as a direct consequence of the already fixed circle pair
+000011 | 
+000012 |   H=L2(S1),
+000013 |   B_alpha=-i partial_theta on D_alpha,
+000014 |   u=M_z,                         0<alpha<1.
+000015 | 
+000016 | The positive spectral compression of the heat operator has a canonical
+000017 | rank-one infrared limit for every interior twist. At alpha=1/4 its full
+000018 | Fredholm product contains only exponents congruent to one modulo four. Its
+000019 | first correction to the rank-one electromagnetic-shaped series occurs at
+000020 | order q^6, not q^4.
+000021 | 
+000022 | The earlier q^4 correction for the uncompressed full circle remains correct:
+000023 | it comes from the negative spectral line with heat weight q^3. The two results
+000024 | refer to different operators.
+000025 | 
+000026 | Nothing in this calculation proves that the historical admissible projector
+000027 | P_adm equals the circle projector P_+.
+000028 | 
+000029 | 1. Spectrum and trace-norm convergence
+000030 | --------------------------------------
+000031 | 
+000032 | Let
+000033 | 
+000034 |   psi_n(theta)=exp(i(n+alpha)theta),
+000035 |   B_alpha psi_n=(n+alpha)psi_n.
+000036 | 
+000037 | For 0<alpha<1,
+000038 | 
+000039 |   P_+=1_(0,infinity)(B_alpha)
+000040 | 
+000041 | projects exactly onto psi_n with n>=0, and
+000042 | 
+000043 |   Pi=P_+-uP_+u*=|psi_0><psi_0|.
+000044 | 
+000045 | Define, for t>0,
+000046 | 
+000047 |   T_t^+=P_+ exp(-t|B_alpha|)P_+,
+000048 |   R_t^+=exp(t alpha)T_t^+,
+000049 |   s=exp(-t).
+000050 | 
+000051 | On P_+H their eigenvalues are
+000052 | 
+000053 |   T_t^+: exp[-t(n+alpha)],       n=0,1,2,...,
+000054 |   R_t^+: 1,s,s^2,s^3,... .                              (1)
+000055 | 
+000056 | On the complementary subspace (1-P_+)H both compressed operators vanish.
+000057 | Therefore, as operators on the whole H,
+000058 | 
+000059 |   ||R_t^+-Pi||_1=sum_(n>=1)s^n=s/(1-s),                 (2)
+000060 | 
+000061 | and the operator-norm error is s. The infinite zero block adds no trace norm
+000062 | and no nonzero Fredholm eigenvalues. Thus (2) is exact on H, not only after
+000063 | silently replacing H by P_+H.
+000064 | 
+000065 | 2. Fredholm determinant and the null block
+000066 | ------------------------------------------
+000067 | 
+000068 | For every t>0, T_t^+ and R_t^+ are positive trace-class operators. If z is a
+000069 | Fredholm parameter, then
+000070 | 
+000071 |   det_H(I-zT_t^+)
+000072 |     =det_(P_+H)(I-zT_t^+|_(P_+H)).                       (3)
+000073 | 
+000074 | Indeed the complementary zero eigenvalues of T_t^+ contribute factors one
+000075 | to I-zT_t^+. They do not create extra zeros or divergent multiplicities in
+000076 | the Fredholm determinant.
+000077 | 
+000078 | Equation (2), together with continuity of the Fredholm determinant in trace
+000079 | norm, gives
+000080 | 
+000081 |   det(I-zR_t^+) -> det(I-zPi)=1-z                       (4)
+000082 | 
+000083 | for fixed z. Hence the same canonical projector obtained from the positive
+000084 | Toeplitz defect is also the ground-mode limit of the positive heat
+000085 | compression.
+000086 | 
+000087 | 3. Quarter products and the origin of the two gradings
+000088 | ------------------------------------------------------
+000089 | 
+000090 | Now set alpha=1/4 and
+000091 | 
+000092 |   q=exp(-t/4).
+000093 | 
+000094 | Since exp[-t(n+1/4)]=q^(4n+1),
+000095 | 
+000096 |   D_+(q):=det(I-T_t^+)
+000097 |          =product_(m>=0)(1-q^(4m+1)).                    (5)
+000098 | 
+000099 | The negative spectral half has eigenvalues
+000100 | 
+000101 |   |n+1/4|=m+3/4,        n=-m-1,
+000102 | 
+000103 | and therefore
+000104 | 
+000105 |   D_-(q)=product_(m>=0)(1-q^(4m+3)).                     (6)
+000106 | 
+000107 | The full circle determinant factors exactly as
+000108 | 
+000109 |   D_full(q)=D_+(q)D_-(q)
+000110 |            =product_(k>=0)(1-q^(2k+1)).                  (7)
+000111 | 
+000112 | Thus the congruence-one and congruence-three products are the positive and
+000113 | negative spectral halves of the same quarter circle. The factor 1-q^3, which
+000114 | caused the q^4 correction in the preceding full-circle review, is absent from
+000115 | D_+.
+000116 | 
+000117 | 4. First positive-half correction
+000118 | ---------------------------------
+000119 | 
+000120 | Let b=5/4. Compare
+000121 | 
+000122 |   Phi_+(q)=q D_+(q)^(-b)
+000123 | 
+000124 | with its rank-one truncation
+000125 | 
+000126 |   Phi_1(q)=q(1-q)^(-b).
+000127 | 
+000128 | The first omitted positive-half factor is 1-q^5. Hence
+000129 | 
+000130 |   D_+(q)^(-b)
+000131 |     =(1-q)^(-b)(1+bq^5+O(q^9)),
+000132 | 
+000133 | and consequently
+000134 | 
+000135 |   Phi_+(q)-Phi_1(q)=bq^6+O(q^7)
+000136 |                    =(5/4)q^6+O(q^7).                    (8)
+000137 | 
+000138 | An exact formal expansion confirms equality of all coefficients through q^5
+000139 | and gives at q^6
+000140 | 
+000141 |   [q^6]Phi_+=24163/8192,
+000142 |   [q^6]Phi_1=13923/8192,
+000143 |   [q^6](Phi_+-Phi_1)=5/4.                               (9)
+000144 | 
+000145 | This does not modify the previously proved full-circle formula
+000146 | 
+000147 |   Phi_full(q)-Phi_1(q)=(5/4)q^4+O(q^5),                 (10)
+000148 | 
+000149 | because (10) retains D_- and its leading factor 1-q^3.
+000150 | 
+000151 | 5. Exact scope
+000152 | --------------
+000153 | 
+000154 | The positive result is intrinsic to the existing circle operators:
+000155 | 
+000156 |   * P_+ is the canonical positive spectral projector of B_alpha;
+000157 |   * Pi is both its Toeplitz defect and the trace-norm ground limit of R_t^+;
+000158 |   * the zero block on (1-P_+)H is harmless for trace norms and Fredholm
+000159 |     determinants;
+000160 |   * the modulo-four products and the q^6 correction follow exactly from the
+000161 |     quarter spectrum.
+000162 | 
+000163 | The first missing physical identification is still
+000164 | 
+000165 |   P_adm on the historical EM Hilbert space = P_+ on this circle sector,
+000166 | 
+000167 | implemented by a state, trace and operator preserving intertwiner. Without
+000168 | that map, D_+(q) is the canonical positive-half circle determinant, not the
+000169 | original admissible EM determinant. Identifying its q with
+000170 | delta_top exp(-2 alpha_EM), importing b=5/4, or treating exp(-t|B|) as charged
+000171 | CAR or physical OS time are further independent steps.
+000172 | 
+000173 | Exact check
+000174 | -----------
+000175 | 
+000176 | The spectrum, factorization and rational series coefficients through q^9
+000177 | were recomputed independently. The positive-half q^6 coefficient difference
+000178 | is exactly 5/4. Status: PASS.

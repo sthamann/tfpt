@@ -1,0 +1,190 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_sewing_20261028/polarization/check_spin5_quartic_polarization.py
+Original file SHA-256: 50f7a3c52f24b1a434b9f1175997c312159b07801921bfe8f541d1bede3b93c5
+Inclusive original lines: 201-382
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |     spin5_map = sp.Matrix.hstack(*spin5_columns)
+000202 |     source_metric = sp.diag(*[1 if a == b else 2 for a, b in sym_pairs])
+000203 |     require(spin5_map.conjugate().T * spin5_map == source_metric,
+000204 |             "Spin5 map has the actual Sym2 metric")
+000205 |     spin5_real = sp.simplify(exterior_action(real_frame, pairs5).conjugate().T * spin5_map)
+000206 | 
+000207 |     # The five congruences are bilinear forms on Sym2(V), not channel
+000208 |     # conjugations on End(Bell10).
+000209 |     hodge = hodge_amplitudes()
+000210 |     relations_raw = [sp.simplify(spin5_real.T * operator * spin5_real)
+000211 |                      for operator in hodge]
+000212 |     require(all(matrix.T == matrix for matrix in relations_raw),
+000213 |             "all five F transpose C F congruences are symmetric bilinear forms")
+000214 | 
+000215 |     # q_A=z^A/sqrt(A!) is the normalized Sym2 Fock basis used by the original
+000216 |     # 2+2 quartic flattenings.
+000217 |     pair_factorials = [factorial_multi(multiindex(pair)) for pair in sym_pairs]
+000218 |     raw_from_normalized = sp.diag(*[sp.sqrt(value) for value in pair_factorials])
+000219 |     relations = [sp.simplify(raw_from_normalized * matrix * raw_from_normalized)
+000220 |                  for matrix in relations_raw]
+000221 |     relation_vectors = sp.Matrix.hstack(*[symmetric_vector(matrix) for matrix in relations])
+000222 |     require(relation_vectors.rank() == 5, "Spin5 congruences span a five-dimensional relation space")
+000223 | 
+000224 |     # Multiplication Sym2(Sym2 V)->Sym4 V in normalized monomial bases.
+000225 |     domain_pairs = list(combinations_with_replacement(range(10), 2))
+000226 |     quartic_tuples = list(combinations_with_replacement(range(4), 4))
+000227 |     quartic_exponents = [multiindex(item, 4) for item in quartic_tuples]
+000228 |     multiplication = sp.zeros(35, 55)
+000229 |     for column, (a, b) in enumerate(domain_pairs):
+000230 |         exponent = tuple(x + y for x, y in zip(multiindex(sym_pairs[a]),
+000231 |                                                 multiindex(sym_pairs[b])))
+000232 |         row = quartic_exponents.index(exponent)
+000233 |         multiplication[row, column] = sp.sqrt(
+000234 |             sp.Rational(factorial_multi(exponent), pair_factorials[a] * pair_factorials[b])
+000235 |         )
+000236 |     require(multiplication.rank() == 35 and len(multiplication.nullspace()) == 20,
+000237 |             "Sym2 Sym2 multiplication has image 35 and Schur22 kernel 20")
+000238 |     relation_coefficients = sp.Matrix.hstack(*[quadratic_coefficients(matrix)
+000239 |                                                for matrix in relations])
+000240 |     require(multiplication * relation_coefficients == sp.zeros(35, 5),
+000241 |             "all five Spin5 congruences lie in the Schur22 multiplication kernel")
+000242 | 
+000243 |     z = sp.symbols("z0:4")
+000244 |     rank_one_sym2 = sp.Matrix([
+000245 |         z[a] * z[b] / sp.sqrt(pair_factorials[index])
+000246 |         for index, (a, b) in enumerate(sym_pairs)
+000247 |     ])
+000248 |     restricted = [sp.expand((rank_one_sym2.T * matrix * rank_one_sym2)[0])
+000249 |                   for matrix in relations]
+000250 |     require(restricted == [0] * 5,
+000251 |             "all five Pluecker quadrics vanish identically on S equals z z transpose")
+000252 | 
+000253 |     # The scalar relation tr((S Omega)^2) supplies the Sp4 singlet in the
+000254 |     # same 20-dimensional kernel. The five is invariant under all ten sp4
+000255 |     # generators and independent of that line, leaving dimension 14.
+000256 |     qvars = sp.symbols("q0:10")
+000257 |     raw_coordinates = raw_from_normalized * sp.Matrix(qvars)
+000258 |     S_matrix = sp.zeros(4)
+000259 |     for coordinate, (a, b) in zip(raw_coordinates, sym_pairs):
+000260 |         S_matrix[a, b] = S_matrix[b, a] = coordinate
+000261 |     scalar_relation = matrix_from_quadratic(sp.trace((S_matrix * omega) ** 2), qvars)
+000262 |     require(multiplication * quadratic_coefficients(scalar_relation) == sp.zeros(35, 1),
+000263 |             "symplectic scalar relation lies in the Schur22 kernel")
+000264 |     require(relation_vectors.row_join(symmetric_vector(scalar_relation)).rank() == 6,
+000265 |             "Spin5 five is independent of the symplectic scalar relation")
+000266 |     for lie_raw in source_lie_actions:
+000267 |         lie = sp.simplify(raw_from_normalized.inv() * lie_raw * raw_from_normalized)
+000268 |         require(sp.simplify(lie.T * scalar_relation + scalar_relation * lie) == sp.zeros(10),
+000269 |                 "scalar relation is sp4 invariant")
+000270 |         for relation in relations:
+000271 |             image = sp.simplify(lie.T * relation + relation * lie)
+000272 |             require(relation_vectors.row_join(symmetric_vector(image)).rank() == 5,
+000273 |                     "Spin5 relation five is sp4 invariant")
+000274 | 
+000275 |     # Reconstruct the literal original quartics from process._code_basis.
+000276 |     original_from_words = []
+000277 |     for words in word_sets:
+000278 |         original_from_words.append(sp.expand(sum(sp.prod(z[j] for j in word) for word in words)))
+000279 |     P = [
+000280 |         sum(value**4 for value in z),
+000281 |         z[0]**2*z[1]**2 + z[2]**2*z[3]**2,
+000282 |         z[0]**2*z[2]**2 + z[1]**2*z[3]**2,
+000283 |         z[0]**2*z[3]**2 + z[1]**2*z[2]**2,
+000284 |         sp.prod(z),
+000285 |     ]
+000286 |     require(original_from_words == [P[0], 6*P[1], 6*P[2], 6*P[3], 24*P[4]],
+000287 |             "literal process word sets give the five original quartic polynomials")
+000288 |     normalizations = [96, 8, 8, 8, 1]
+000289 |     original_hessians = []
+000290 |     for polynomial, normalization in zip(P, normalizations):
+000291 |         normalized = sp.Poly(polynomial / sp.sqrt(normalization), *z)
+000292 |         hessian = sp.zeros(10)
+000293 |         for a, exponent_a in enumerate(map(multiindex, sym_pairs)):
+000294 |             for b, exponent_b in enumerate(map(multiindex, sym_pairs)):
+000295 |                 total = tuple(x + y for x, y in zip(exponent_a, exponent_b))
+000296 |                 derivative = normalized.coeff_monomial(sp.prod(z[j]**total[j] for j in range(4)))
+000297 |                 derivative *= factorial_multi(total)
+000298 |                 hessian[a, b] = sp.simplify(
+000299 |                     derivative / sp.sqrt(6 * pair_factorials[a] * pair_factorials[b])
+000300 |                 )
+000301 |         original_hessians.append(hessian)
+000302 |     hessian_vectors = sp.Matrix.hstack(*[symmetric_vector(matrix) for matrix in original_hessians])
+000303 |     require(hessian_vectors.rank() == 5, "original quartic 2+2 Hessians span dimension five")
+000304 |     require(relation_vectors.row_join(hessian_vectors).rank() == 10,
+000305 |             "Spin5 relation five and original quartic Hessian five have zero intersection")
+000306 |     hessian_images = sp.Matrix.hstack(*[
+000307 |         multiplication * quadratic_coefficients(matrix) for matrix in original_hessians
+000308 |     ])
+000309 |     require(hessian_images.rank() == 5,
+000310 |             "all five original Hessians have independent nonzero Sym4 images")
+000311 | 
+000312 |     # Exact original CAR transport. AA^T=0 means the positive holomorphic
+000313 |     # currents have no mutual singular OPE, so their normal product preserves
+000314 |     # every polynomial identity, including the five zero relations above.
+000315 |     _, orthogonal, positive, fold = octic.original_transport()
+000316 |     source_to_positive = sp.simplify(positive.T * orthogonal.T * fold)
+000317 |     require(sp.simplify(source_to_positive * source_to_positive.conjugate().T) == sp.eye(4),
+000318 |             "original CAR transport retains the positive metric")
+000319 |     require(sp.simplify(source_to_positive * source_to_positive.T) == sp.zeros(4),
+000320 |             "original positive current OPE is mutually regular")
+000321 | 
+000322 |     result = {
+000323 |         "verdict": [
+000324 |             "SPIN5_HODGE_FIVE_IS_A_PLUECKER_RELATION_FIVE",
+000325 |             "ALL_FIVE_CONGRUENCES_VANISH_ON_RANK_ONE_SYM2_TENSORS",
+000326 |             "ORIGINAL_NATIVE_QUARTIC_HESSIAN_FIVE_HAS_ZERO_INTERSECTION_WITH_K5",
+000327 |             "ORIGINAL_HOLOMORPHIC_POINT_SPLITTING_CANNOT_LIFT_THE_ZERO_RELATION",
+000328 |             "MIXED_OR_ASYMMETRIC_DERIVATIVE_OPE_REQUIRES_AN_ADDITIONAL_TYPED_CHOICE",
+000329 |         ],
+000330 |         "typed_map": "D_m=F_real^T C_m F_real in Sym2(Sym2 V)^*",
+000331 |         "multiplication": {
+000332 |             "domain_dimension": 55,
+000333 |             "sym4_image_dimension": multiplication.rank(),
+000334 |             "schur22_kernel_dimension": len(multiplication.nullspace()),
+000335 |             "spin5_relation_dimension": relation_vectors.rank(),
+000336 |             "sp4_invariant_scalar_dimension": 1,
+000337 |             "sp4_invariant_spin5_relation_dimension": 5,
+000338 |             "remaining_kernel_quotient_dimension": 14,
+000339 |             "rank_one_restrictions": [str(value) for value in restricted],
+000340 |         },
+000341 |         "original_quartics": {
+000342 |             "polynomials": [str(value) for value in P],
+000343 |             "fock_normalizations": normalizations,
+000344 |             "hessian_span_dimension": hessian_vectors.rank(),
+000345 |             "hessian_sym4_image_rank": hessian_images.rank(),
+000346 |             "intersection_with_spin5_relation_five": 0,
+000347 |         },
+000348 |         "original_point_splitting": {
+000349 |             "source_to_positive_isometry": "A A^dagger=I4",
+000350 |             "positive_isotropy": "A A^T=0",
+000351 |             "consequence": (
+000352 |                 "The four positive holomorphic currents have no mutual singular contractions. "
+000353 |                 "Their bosonic-current normal products preserve the five polynomial zero identities. "
+000354 |                 "The retained fermionic point splitting and its finite counterterms realize the same "
+000355 |                 "zero field; they do not turn K5 into the original Sym4 quartics."
+000356 |             ),
+000357 |             "remaining_typed_route": (
+000358 |                 "A mixed adjoint OPE or a nonuniform derivative assignment can leave the holomorphic "
+000359 |                 "multiplication map, but selecting its pole, Taylor order and conjugate leg is extra "
+000360 |                 "data. No source-reviewed original identity currently identifies such a component "
+000361 |                 "with the canonical Spin5 K5."
+000362 |             ),
+000363 |         },
+000364 |         "scope": (
+000365 |             "This excludes ordinary quartic polarization, the original 2+2 Hessian five, and the "
+000366 |             "unchanged holomorphic CAR point-splitting realization as sources of the canonical K5. "
+000367 |             "It is not a no-go theorem for all mixed, derivative or separated OPE components."
+000368 |         ),
+000369 |         "source_sha256": PINS,
+000370 |         "checks": len(checks),
+000371 |     }
+000372 |     if output is not None:
+000373 |         output.parent.mkdir(parents=True, exist_ok=True)
+000374 |         output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+000375 |     return result
+000376 | 
+000377 | 
+000378 | if __name__ == "__main__":
+000379 |     parser = argparse.ArgumentParser()
+000380 |     parser.add_argument("--out", type=Path)
+000381 |     args = parser.parse_args()
+000382 |     print(json.dumps(main(args.out), indent=2, sort_keys=True))

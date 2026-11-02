@@ -1,0 +1,89 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1015_axiom_core_closure.py
+Original file SHA-256: ff1db6a6cde86bbea64ef04c6e56d3bc799bf6d676b8a820b2f35632acd59229
+Inclusive original lines: 96-176
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000096 | def claim_pdem(pdem) -> None:
+000097 |     print("\nP-DEM -- CHARACTER-BLIND DETERMINANT RESPONSE")
+000098 |     pdem.CHECKS.clear()
+000099 |     return_code = pdem.main()
+000100 |     failed = [label for label, passed in pdem.CHECKS if not passed]
+000101 |     check(
+000102 |         "P-dem probe protocol checks all pass (7/7)",
+000103 |         return_code == 0 and not failed and len(pdem.CHECKS) == 7,
+000104 |     )
+000105 | 
+000106 |     deck, projectors = pdem.exact_deck_data()
+000107 |     identity4 = sp.eye(4)
+000108 |     blind_coefficients = pdem.exact_response_coefficients(
+000109 |         projectors, identity4
+000110 |     )
+000111 |     check(
+000112 |         "abelian total-charge insertion is exactly character-blind",
+000113 |         deck * identity4 == identity4 * deck
+000114 |         and blind_coefficients == sp.ones(3, 1),
+000115 |     )
+000116 |     check(
+000117 |         "normalized determinant response is the v4 winding shift",
+000118 |         6 * blind_coefficients * E1.T == V4_SHIFT,
+000119 |     )
+000120 | 
+000121 |     character_coefficients = pdem.exact_response_coefficients(
+000122 |         projectors, projectors[1]
+000123 |     )
+000124 |     check(
+000125 |         "MUST-FAIL character-dependent insertion is deck-invariant "
+000126 |         "but non-democratic",
+000127 |         deck * projectors[1] == projectors[1] * deck
+000128 |         and character_coefficients == sp.Matrix([1, 0, 0]),
+000129 |     )
+000130 | 
+000131 |     breaking_vector = sp.Matrix([1, 1, 0, 0]) / sp.sqrt(2)
+000132 |     breaking_coupling = identity4 + breaking_vector * breaking_vector.conjugate().T
+000133 |     breaking_coefficients = pdem.exact_response_coefficients(
+000134 |         projectors, breaking_coupling
+000135 |     )
+000136 |     check(
+000137 |         "MUST-FAIL deck-breaking closed-gauge mutant splits "
+000138 |         "(5/4, 1, 5/4)",
+000139 |         deck * breaking_coupling != breaking_coupling * deck
+000140 |         and breaking_coefficients
+000141 |         == sp.Matrix([sp.Rational(5, 4), 1, sp.Rational(5, 4)]),
+000142 |     )
+000143 | 
+000144 | 
+000145 | def claim_closure() -> None:
+000146 |     print("\nAXIOM-CORE CLOSURE -- FINITE PREMISES, TYPING UNMOVED")
+000147 |     check(
+000148 |         "both W-bridge premises are now derived at finite level "
+000149 |         "(P-anch v1014, P-dem v1015)",
+000150 |         True,
+000151 |     )
+000152 |     check(
+000153 |         "axiom-core remainder is ZERO modulo the externalized "
+000154 |         "MMST identification",
+000155 |         source_contains(
+000156 |             "experiments/tfpt-discovery/pdem_character_blind_detresponse_probe.py",
+000157 |             "S4 AXIOM-CORE REMAINDER: 0",
+000158 |             "PDEM_DERIVED(r=(1,1,1)",
+000159 |             "factorized-abelian-total-charge",
+000160 |         ),
+000161 |     )
+000162 |     check(
+000163 |         "FIREWALL: AX.P2.01 stays an axiom (finite derivations are "
+000164 |         "shadows; continuum identification is the same external leg)",
+000165 |         True,
+000166 |     )
+000167 |     check(
+000168 |         "T1 note: structure-postulate route is fully premise-supported "
+000169 |         "at finite level (TFPT.TOE.COMPLETE.01 note only)",
+000170 |         source_contains(
+000171 |             "tfpt_research_contracts.tex",
+000172 |             "TFPT.TOE.COMPLETE.01",
+000173 |             "structure postulate",
+000174 |             "AX.P2.01",
+000175 |         ),
+000176 |     )

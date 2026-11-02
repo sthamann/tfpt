@@ -1,0 +1,97 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_whole_quark_shift_balance.py
+Original file SHA-256: 331c5c2526eb56aa27d1d69ff6818ee62e2fca6236011b2db2e4fd2417461305
+Inclusive original lines: 1-89
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """R084: full original quark covariance under a conditional common shift.
+000002 | 
+000003 | The scalar shift on this carrier is a hypothesis; no Majorana Pfaffian,
+000004 | complete E8 source, physical spacetime, or H-integrated state is computed.
+000005 | """
+000006 | from pathlib import Path
+000007 | import json,sys
+000008 | import numpy as np
+000009 | from scipy.special import expit
+000010 | 
+000011 | ROOT=Path(__file__).resolve().parents[4]
+000012 | sys.path.insert(0,str(ROOT/'verification'))
+000013 | import v252_full_finite_triple as original
+000014 | 
+000015 | rng=np.random.default_rng(252)
+000016 | ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000017 | mr=rng.normal(size=(3,3));D=original.full_D(*ys,mr+mr.T)
+000018 | gamma=original.grading();swap=original.Kswap()
+000019 | bp=original.rep(1,np.zeros((2,2)),np.zeros((3,3)))
+000020 | a=original.rep(0,np.eye(2),np.zeros((3,3)))
+000021 | om=a@(D@bp-bp@D);sa=om+om.conj().T;V=sa+swap@sa.conj()@swap
+000022 | ix=[i for i,f in enumerate(original.P) if f[0] in ('u','d')]
+000023 | g=gamma[np.ix_(ix,ix)];t=-1j*g@V[np.ix_(ix,ix)]
+000024 | I=np.eye(len(ix));keep=np.where(np.diag(g).real>0)[0];drop=np.where(np.diag(g).real<0)[0]
+000025 | mass=.3*np.linalg.svd(t[np.ix_(keep,drop)],compute_uv=False)
+000026 | ell=.2;z=.3; alpha=.25;checks={};metrics={}
+000027 | def need(name,condition):
+000028 |  checks[name]=bool(condition)
+000029 |  if not condition: raise RuntimeError(name)
+000030 | def covariance(p,r=.3):
+000031 |  h=p*g+r*t
+000032 |  e,u=np.linalg.eigh(h)
+000033 |  return (u*expit(2*ell*e))@u.conj().T
+000034 | def logblock(p):
+000035 |  e=np.sqrt(p*p+mass*mass)
+000036 |  a=expit(2*ell*e)
+000037 |  return float(np.log1p(-z*a).sum()+np.log1p(-z*(1-a)).sum())
+000038 | need('actual_quark_and_grading_dimensions',len(ix)==36 and len(keep)==len(drop)==18)
+000039 | need('actual_force_is_hermitian_odd',np.linalg.norm(t-t.conj().T)<1e-10 and np.linalg.norm(t@g+g@t)<1e-10)
+000040 | for p in [.25,1.25,-.75]:
+000041 |  C=covariance(p)
+000042 |  e=np.linalg.eigvalsh(C)
+000043 |  need('actual_full_block_spectrum_'+str(p),np.max(abs(e[:18]+e[18:][::-1]-1))<1e-12)
+000044 |  sign,ld=np.linalg.slogdet(I-z*C)
+000045 |  need('actual_full_block_formula_'+str(p),abs(ld-logblock(p))<1e-11 and abs(sign-1)<1e-12)
+000046 |  Cplus=C[np.ix_(keep,keep)];Cminus=C[np.ix_(drop,drop)]
+000047 |  blockprod=np.linalg.slogdet(np.eye(18)-z*Cplus)[1]+np.linalg.slogdet(np.eye(18)-z*Cminus)[1]
+000048 |  metrics['nonfactorizing_offdiagonal_'+str(p)]=float(abs(ld-blockprod))
+000049 |  need('full_covariance_cannot_be_replaced_by_both_marginals_'+str(p),abs(ld-blockprod)>1e-5)
+000050 | 
+000051 | # Show the local Higgs dependence remains present in the same full source.
+000052 | dynamic=np.linalg.norm(covariance(.25)-covariance(.25,0))
+000053 | need('actual_full_quark_covariance_changes_with_H',dynamic>1e-3)
+000054 | metrics['actual_covariance_H_response_norm']=float(dynamic)
+000055 | 
+000056 | # Direct actual 36x36 tails: raw polarization is O(1/n), shift difference
+000057 | # is O(1/n^2). These samples illustrate; the accompanying proof is analytic.
+000058 | raw=[];shift=[]
+000059 | for n in [80,160,320]:
+000060 |  C=covariance(n+alpha);Cm=covariance(n+alpha-1)
+000061 |  P=(I+g)/2
+000062 |  raw.append(float(np.linalg.norm(C-P,ord='nuc')))
+000063 |  shift.append(float(np.linalg.norm(C-Cm,ord='nuc')))
+000064 | need('raw_polarization_has_one_over_n_tail',1.8<raw[0]/raw[1]<2.2 and 1.8<raw[1]/raw[2]<2.2)
+000065 | need('shift_difference_has_one_over_n_squared_tail',3.6<shift[0]/shift[1]<4.4 and 3.6<shift[1]/shift[2]<4.4)
+000066 | metrics['raw_trace_norms']=raw;metrics['shift_trace_norms']=shift
+000067 | 
+000068 | # Relative determinant of the 36x36 BLOCKS. Open Fourier restriction, not a
+000069 | # fictitious cyclic shift at the cutoff. Telescope first, then take N→∞.
+000070 | samples={}
+000071 | for alpha in [.25,.75]:
+000072 |  ratios=[]
+000073 |  for N in [4,10,40]:
+000074 |   blocksum=sum(logblock(n+alpha-1)-logblock(n+alpha) for n in range(-N,N+1))
+000075 |   endpoint=logblock(-N+alpha-1)-logblock(N+alpha)
+000076 |   need('full_telescope_'+str(alpha)+'_'+str(N),abs(blocksum-endpoint)<1e-10)
+000077 |   ratios.append(float(np.exp(blocksum)))
+000078 |  need('whole_relative_determinant_tends_one_'+str(alpha),abs(ratios[-1]-1)<1e-5)
+000079 |  samples[str(alpha)]=ratios
+000080 | metrics['whole_relative_determinant_samples']=samples
+000081 | 
+000082 | # A strictly diagonal chirality consumer has opposite index powers; the
+000083 | # full interacting determinant was computed independently above.
+000084 | need('two_chiral_ranks_match',len(keep)-len(drop)==0)
+000085 | out={'scope':'actual finite 36-quark constant-H source with stipulated same scalar circle shift; ordinary relative determinant; no full E8/physical Pfaffian',
+000086 |      'checks':checks,'passed':len(checks),'failed':0,'metrics':metrics,
+000087 |      'source_seed':252,'ell_control':ell,'z_control':z,'ledger_changed':False}
+000088 | Path(__file__).with_name('WHOLE-QUARK-SHIFT-BALANCE.json').write_text(json.dumps(out,indent=2)+'\n')
+000089 | print(json.dumps(out,indent=2))

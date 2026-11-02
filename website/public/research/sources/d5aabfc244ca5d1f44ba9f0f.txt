@@ -1,0 +1,133 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/e-series-source-reconstruction-20261024/ANALYTIC-DOMAIN.txt
+Original file SHA-256: 6e25cece95f34c2711a142fa482aa901d6a894551bc4b63b0d71d99e3f065e11
+Inclusive original lines: 1-125
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | MATH.SEAM.ESERIES.SOURCE-RECONSTRUCTION.06 / analytic-domain audit and repair
+000002 | 24 October 2026
+000003 | 
+000004 | Verdict
+000005 | 
+000006 | The universal infinitesimal-boundedness assertion in the original
+000007 | thm:well-posed-primitive-dynamics is FALSE. A valid same-domain theorem
+000008 | requires the actual relative bound to be smaller than1, or a verified
+000009 | bounded zeroth-order perturbation. No conclusion is made here that the
+000010 | intended special TFPT operator has no valid realization.
+000011 | 
+000012 | 1. The original assertion and the invalid step
+000013 | 
+000014 | Boundary-source section001, lines353-376, chooses a compact self-adjoint
+000015 | Dirac anchor A with a self-adjoint elliptic modified APS boundary condition.
+000016 | It asserts that every symmetric bounded-coefficient differential B of
+000017 | order<=1 is infinitesimally A-bounded. The proof continues at section002,
+000018 | lines1-30. Its valid estimates are
+000019 | 
+000020 |   ||psi||_H1 <= C(||A psi||+||psi||),
+000021 |   ||B psi|| <= C1 ||psi||_H1+C0||psi||.
+000022 | 
+000023 | They imply only
+000024 | 
+000025 |   ||B psi|| <= C1*C ||A psi||+(C1*C+C0)||psi||.
+000026 | 
+000027 | The coefficient C1*C is fixed. It cannot be replaced by an arbitrary
+000028 | epsilon>0. Same differential order gives graph boundedness, not relative
+000029 | bound zero.
+000030 | 
+000031 | 2. Counterexample within the stated modified APS boundary class
+000032 | 
+000033 | On H=L2([0,2*pi]), let
+000034 | 
+000035 |   A=-i*d/dx,
+000036 |   Dom(A)={f in H1([0,2*pi]): f(0)=f(2*pi)}.
+000037 | 
+000038 | Integration by parts shows that the adjoint has exactly the same periodic
+000039 | trace condition, so A=A*. Its orthonormal eigenbasis is
+000040 | 
+000041 |   e_n=(2*pi)^(-1/2) exp(i*n*x),  A e_n=n e_n, n in Z.
+000042 | 
+000043 | The tangential boundary operator in this one-dimensional example is0 on
+000044 | the two endpoints. Its kernel is the complete C2 boundary space. The
+000045 | periodic trace line L={(z,z)} is Lagrangian for the Green boundary form,
+000046 | so this is precisely a self-adjoint modified APS condition. It is also
+000047 | the elliptic transmission condition obtained by cutting the circle.
+000048 | 
+000049 | Take B=-A on the same domain. It is symmetric, first order, and has
+000050 | constant bounded coefficients. Its exact A-relative bound is1: any bound
+000051 | with coefficient a gives |n|<=a|n|+b, so a>=1, while a=1,b=0 works.
+000052 | In particular the estimate with epsilon=1/2 is impossible.
+000053 | 
+000054 | Moreover A+B is zero on the proper dense domain Dom(A), whereas its
+000055 | adjoint is zero on all of H. It is not self-adjoint on the original
+000056 | domain and is not closed there. Thus the theorem's general same-domain
+000057 | conclusion also fails, not just the proof of relative bound zero.
+000058 | 
+000059 | This is a counterexample to the generic mathematical theorem. It is not
+000060 | presented as a full P1/P2 physical model.
+000061 | 
+000062 | 3. Reflection oddness does not lower the differential order
+000063 | 
+000064 | The original split is D_rel=(D-U_tau D U_tau^-1)/2. Once a unitary bundle
+000065 | lift of the geometric reflection is actually specified, its principal
+000066 | symbol satisfies
+000067 | 
+000068 |   sigma1(D_rel)=1/2(sigma1(D)-sigma1(U_tau D U_tau^-1)).
+000069 | 
+000070 | Thus D_rel has order zero iff the two first-order symbols agree. Projecting
+000071 | onto the reflection-odd part alone proves no such equality.
+000072 | 
+000073 | For example, on the doubled circle let D=-i*d/dx and U_tau f(x)=f(-x).
+000074 | Then U_tau D U_tau^-1=-D, so D_ref=0 and D_rel=D is first order. The fixed
+000075 | set is{0,pi} and the quotient is an interval. A different specified bundle
+000076 | or Pin lift may change the symbol parity. The source does not specify
+000077 | that lift or a principal-symbol equivariance identity; the actual intended
+000078 | special case therefore needs this check.
+000079 | 
+000080 | Formal symmetry also does not fix the operator domain. If a reflection is
+000081 | used to compare two closed realizations, it must preserve or explicitly
+000082 | transport the APS boundary subspace, including the kernel Lagrangian.
+000083 | 
+000084 | 4. Correct conditional replacement
+000085 | 
+000086 | Let A be a self-adjoint compact elliptic anchor with the chosen self-adjoint
+000087 | D-elliptic boundary condition. Suppose Dom(A) is contained in Dom(B), B is
+000088 | symmetric on Dom(A), and
+000089 | 
+000090 |   ||B psi|| <= a ||A psi||+b||psi||,  a<1.
+000091 | 
+000092 | Then A+B is self-adjoint on Dom(A) by Kato-Rellich. The two graph norms are
+000093 | equivalent, hence the compact inclusion of Dom(A) into H persists and the
+000094 | sum has compact resolvent as well.
+000095 | 
+000096 | A reflection-specific sufficient condition is:
+000097 | 
+000098 |   (i) a specified unitary reflection lift preserves the chosen domain;
+000099 |   (ii) sigma1(D)=sigma1(U_tau D U_tau^-1);
+000100 |   (iii) the resulting order-zero D_rel has bounded self-adjoint coefficients.
+000101 | 
+000102 | Then B=D_rel is bounded symmetric on H, so a=0 and the same-domain result
+000103 | follows. If the first-order symbols do not cancel, an actual a<1 estimate
+000104 | must instead be derived. The graph estimate by itself is insufficient.
+000105 | 
+000106 | There is a second notation check before applying any replacement: the
+000107 | carrier-source section006, lines271-273, later defines D_geo=D_ref+D_rel=D.
+000108 | Thus D_geo+D_rel is not simply the reconstructed D. One must name whether
+000109 | the anchor is D_ref, D_geo, or a separately declared operator, and apply
+000110 | the estimate to that actual pair. Renaming the operator cannot remove the
+000111 | domain and relative-bound requirement.
+000112 | 
+000113 | References checked at the originals
+000114 | 
+000115 | Gerald Teschl, Mathematical Methods in Quantum Mechanics, Theorem6.4:
+000116 |   https://www.mat.univie.ac.at/~gerald/ftp/book-schroe/schroe.pdf
+000117 | Bär and Ballmann, Boundary Value Problems for Elliptic Differential
+000118 | Operators of First Order (elliptic/transmission conditions, graph norms):
+000119 |   https://arxiv.org/abs/1101.1196
+000120 | Bär and Ballmann, Guide to Boundary Value Problems for Dirac-Type
+000121 | Operators, Theorems4.11-4.12 (self-adjoint domains and kernel normal form):
+000122 |   https://arxiv.org/html/1307.3021
+000123 | 
+000124 | The infinite eigenvalue argument above is the proof. The finite
+000125 | discriminant/current checks in checker.py do not test this analytic claim.

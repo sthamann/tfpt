@@ -1,0 +1,23 @@
+TFPT scientific source excerpt
+Original repository path: verification/v252_full_finite_triple.py
+Original file SHA-256: 820254440e178430422e50605067775656236602996307f67c9e69124ba5d163
+Inclusive original lines: 85-99
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000085 | 
+000086 | def dirac_block(Yu, Yd, Ye, Ynu):
+000087 |     """particle 48x48 Yukawa block S (Hermitian): L<->R per field/colour."""
+000088 |     S = np.zeros((NP, NP), complex)
+000089 |     table = {"u": Yu, "d": Yd, "e": Ye, "nu": Ynu}
+000090 |     for (name, ch, c, g) in P:
+000091 |         if ch != "L":
+000092 |             continue
+000093 |         Y = table[name]
+000094 |         for gj in range(NG):
+000095 |             i = IDX[(name, "L", c, g)]
+000096 |             j = IDX[(name, "R", c, gj)]
+000097 |             S[i, j] = Y[g, gj]
+000098 |             S[j, i] = np.conjugate(Y[g, gj])
+000099 |     return S

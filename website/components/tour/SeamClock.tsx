@@ -14,7 +14,7 @@ export function SeamClock() {
 
   return (
     <figure
-      className="mt-6 overflow-hidden rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4 sm:p-5"
+      className="mt-6 overflow-x-auto rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4 sm:p-5"
       aria-label="Seam clock with four marks and Hawking temperature"
     >
       <svg
@@ -28,7 +28,7 @@ export function SeamClock() {
           cy={cy}
           r={r}
           fill="rgba(59,130,246,0.06)"
-          stroke="rgba(96,165,250,0.7)"
+          stroke="rgb(37,99,235)"
           strokeWidth="2"
         />
 
@@ -45,7 +45,7 @@ export function SeamClock() {
               key={start}
               d={`M ${x0} ${y0} A ${r - 14} ${r - 14} 0 0 1 ${x1} ${y1}`}
               fill="none"
-              stroke="rgba(52,211,153,0.35)"
+              stroke="rgb(5,150,105)"
               strokeWidth="3"
               strokeLinecap="round"
             />
@@ -67,7 +67,7 @@ export function SeamClock() {
                 y1={y1}
                 x2={x2}
                 y2={y2}
-                stroke="rgba(251,146,60,0.9)"
+                stroke="rgb(154,52,18)"
                 strokeWidth="2.4"
                 strokeLinecap="round"
               />
@@ -77,7 +77,7 @@ export function SeamClock() {
                 textAnchor="middle"
                 fontSize="12"
                 fontFamily="ui-monospace, monospace"
-                fill="rgb(253,186,116)"
+                fill="rgb(154,52,18)"
               >
                 {m.label}
               </text>
@@ -91,18 +91,18 @@ export function SeamClock() {
           y1={cy}
           x2={cx + r * 0.55}
           y2={cy}
-          stroke="rgba(226,232,240,0.85)"
+          stroke="rgb(30,41,59)"
           strokeWidth="2"
           strokeLinecap="round"
         />
-        <circle cx={cx} cy={cy} r="5" fill="rgb(226,232,240)" />
+        <circle cx={cx} cy={cy} r="5" fill="rgb(15,23,42)" />
 
         <text
           x={cx}
           y={cy - 18}
           textAnchor="middle"
           fontSize="12"
-          fill="rgb(148,163,184)"
+          fill="rgb(71,85,105)"
         >
           μ₄ clock
         </text>
@@ -112,7 +112,7 @@ export function SeamClock() {
           textAnchor="middle"
           fontSize="13"
           fontFamily="ui-monospace, monospace"
-          fill="rgb(110,231,183)"
+          fill="rgb(4,120,87)"
         >
           T_seam = 4c₃
         </text>

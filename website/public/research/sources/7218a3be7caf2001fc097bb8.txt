@@ -1,0 +1,102 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/collective-native-marginal-origin-20261026/baseline_machine_evidence/experiments.py
+Original file SHA-256: 1784ad193492d2763e3909431e1ea8aa56fd31d3c63c2e0d9f6f5a3e237f556d
+Inclusive original lines: 1-94
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Run the machine, compare causal controls, and verify actual save/restore."""
+000002 | import json
+000003 | from pathlib import Path
+000004 | import tempfile
+000005 | 
+000006 | import numpy as np
+000007 | 
+000008 | from machine import Config, Machine
+000009 | 
+000010 | HERE = Path(__file__).resolve().parent
+000011 | 
+000012 | 
+000013 | def require(condition, message):
+000014 |     if not condition:
+000015 |         raise RuntimeError(message)
+000016 | 
+000017 | 
+000018 | def run():
+000019 |     checks = []
+000020 |     m = Machine()
+000021 |     eig = np.linalg.eigvalsh(m.native['kernel'])
+000022 |     require(np.max(abs(eig - np.array([0]*25 + [1.5]*30 + [3]*5))) < 1e-11, 'Native spectrum')
+000023 |     checks.append('Original signed Gram spectrum: 0^25, 1.5^30, 3^5')
+000024 |     m.advance(137)
+000025 |     with tempfile.TemporaryDirectory() as directory:
+000026 |         path = Path(directory) / 'state.npz'
+000027 |         m.save(path)
+000028 |         restored = Machine.load(path)
+000029 |         m.perturb(.1)
+000030 |         restored.perturb(.1)
+000031 |         m.advance(123)
+000032 |         restored.advance(123)
+000033 |         require(np.array_equal(m.x, restored.x) and np.array_equal(m.memory, restored.memory), 'Restore trajectory')
+000034 |         require(m.history == restored.history and m.events == restored.events, 'Restore metadata')
+000035 |     checks.append('Save, cold load, random perturbation and continuation reproduce the exact state')
+000036 |     a = Machine(Config(feedback=0))
+000037 |     b = Machine(Config(feedback=0, learning=0))
+000038 |     a.advance(200)
+000039 |     b.advance(200)
+000040 |     require(np.array_equal(a.x, b.x), 'Memory leaks into disabled feedback')
+000041 |     checks.append('With feedback=0, learning cannot affect the signal trajectory')
+000042 |     require(np.max(abs(np.linalg.norm(m.x, axis=1)-1)) < 1e-12, 'Signal normalization')
+000043 |     checks.append('All 60 signal vectors retain unit norm after perturbation and recursion')
+000044 |     cases = [('recursive', {}), ('no_feedback', {'feedback': 0}),
+000045 |              ('frozen_memory', {'learning': 0}), ('no_interaction', {'kernel': 'none'}),
+000046 |              ('absolute', {'kernel': 'absolute'}), ('exact_start', {'initial_noise': 0})]
+000047 |     comparisons = []
+000048 |     for name, options in cases:
+000049 |         machine = Machine(Config(**options))
+000050 |         machine.advance(10000, measure_every=100)
+000051 |         machine.save(HERE / 'runs' / (name + '.npz'))
+000052 |         comparisons.append(dict(name=name, config=machine.public_state()['config'],
+000053 |                                 history=machine.history, final=machine.history[-1]))
+000054 |         print(name, json.dumps(machine.history[-1]), flush=True)
+000055 |     seeds = []
+000056 |     for seed in range(20):
+000057 |         machine = Machine(Config(seed=seed))
+000058 |         machine.advance(5000, measure_every=250)
+000059 |         seeds.append(dict(seed=seed, **machine.history[-1]))
+000060 |     # Check microscopic recurrence rather than infer fixed points from stable plots.
+000061 |     machine = Machine.load(HERE / 'runs' / 'recursive.npz')
+000062 |     states = []
+000063 |     for _ in range(128):
+000064 |         machine.advance(1, measure_every=1000)
+000065 |         states.append(machine.x.copy())
+000066 |     lags = [dict(lag=lag, rms_distance=float(np.linalg.norm(states[-1]-states[-1-lag])/np.sqrt(60)))
+000067 |             for lag in range(1, 65)]
+000068 |     baseline = Machine.load(HERE / 'runs' / 'recursive.npz')
+000069 |     perturbed = Machine.load(HERE / 'runs' / 'recursive.npz')
+000070 |     perturbed.perturb(.1)
+000071 |     recovery = []
+000072 |     for steps in [0, 1, 10, 100, 1000, 5000]:
+000073 |         baseline.advance(steps - (baseline.step_number - 10000), measure_every=100)
+000074 |         perturbed.advance(steps - (perturbed.step_number - 10000), measure_every=100)
+000075 |         rho_a = baseline.x.T @ baseline.x.conj() / 60
+000076 |         rho_b = perturbed.x.T @ perturbed.x.conj() / 60
+000077 |         recovery.append(dict(after_perturbation=steps,
+000078 |             population_distance=float(np.linalg.norm(rho_a-rho_b)),
+000079 |             signal_rms_distance=float(np.linalg.norm(baseline.x-perturbed.x)/np.sqrt(60)),
+000080 |             code_weight=perturbed.history[-1]['code_weight'],
+000081 |             effective_rank=perturbed.history[-1]['effective_rank']))
+000082 |     report = dict(checks=checks, comparisons=comparisons, seeds=seeds, lag_distances=lags,
+000083 |                   perturbation=recovery, scope='Finite experiment of the declared feedback rule')
+000084 |     (HERE / 'runs' / 'experiment_results.json').write_text(json.dumps(report, indent=2)+'\n')
+000085 |     ranks = [r['effective_rank'] for r in seeds]
+000086 |     codes = [r['code_weight'] for r in seeds]
+000087 |     print('20 seeds: ranks', min(ranks), max(ranks), 'code weights', min(codes), max(codes), flush=True)
+000088 |     print('Best lag:', min(lags, key=lambda item: item['rms_distance']), flush=True)
+000089 |     print('Perturbation:', json.dumps(recovery), flush=True)
+000090 |     print('Checks:', json.dumps(checks), flush=True)
+000091 | 
+000092 | 
+000093 | if __name__ == '__main__':
+000094 |     run()

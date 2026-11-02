@@ -1,0 +1,186 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/canonical-seam-fermionization-20261025/QUARTER-ORIGIN-INDEPENDENT-REVIEW.txt
+Original file SHA-256: a894cf9311408d7c7e043b105cc845fee34c192db1d9249675672e5e1644fca5
+Inclusive original lines: 1-178
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | INDEPENDENT REVIEW: ORIGIN OF THE QUARTER PAIR
+000002 | ================================================
+000003 | 
+000004 | 25 October 2026. Read only review of
+000005 | MOBIUS-QUARTER-OPERATOR-DICTIONARY.txt and its exact checker. This review does
+000006 | not change an original source, the Atlas, the ledger, or the contract index.
+000007 | 
+000008 | Verdict
+000009 | -------
+000010 | 
+000011 | ACCEPTED for the longitudinal core, with one sign clarification and one
+000012 | necessary scope interpretation.
+000013 | 
+000014 | The operator identity
+000015 | 
+000016 |   B_cov = 2 (B_1/4 direct-sum B_3/4)
+000017 | 
+000018 | is exact, including the self-adjoint H1 domains. The two shifted summands are
+000019 | the two characters of one Pin-minus order-four half-deck action. They are not
+000020 | two separately selected sources. The sign of the Pin lift exchanges the labels
+000021 | 1/4 and 3/4 and leaves the unordered pair fixed.
+000022 | 
+000023 | The primary geometric result supports precisely this statement once the
+000024 | contract is read as a longitudinal core reduction. On the full Moebius pinor
+000025 | space the one-step operator is not scalar translation alone. It is cJ, with
+000026 | 
+000027 |   J phi(w) = sigma_1 phi(-w).
+000028 | 
+000029 | The shifts 1/4 and 3/4 belong to the J=+1 and J=-1 reducing spaces. Thus the
+000030 | contract's scalar H_cov is the reduced core after this J decomposition. The
+000031 | bare equation f(theta+2 pi)=-f(theta) determines the half-integer cover
+000032 | spectrum, but the assignment of the two quarter shifts to full pinor
+000033 | components additionally uses J. The contract states this in its verdict; it
+000034 | must remain part of every later use of the dictionary.
+000035 | 
+000036 | Primary comparison:
+000037 | 
+000038 |   Anik Chakraborty, Pin Equivariance and Local Dirac Boundary Problems on the
+000039 |   Flat Moebius Band, arXiv:2610.03745v1, Sections 2.2, 3, and 4,
+000040 |   https://arxiv.org/html/2610.03745v1
+000041 | 
+000042 | Theorem 2.1 gives the two Pin lifts and the square delta of the lifted deck
+000043 | generator. Theorem 3.2 gives antiperiodicity on the orientation double for
+000044 | Pin-minus and explicitly says that this is not yet the full one-step Fourier
+000045 | condition. Theorem 4.1 supplies the missing cJ eigenspace decomposition and
+000046 | the phase table. No boundary condition or spectral result from the later
+000047 | sections is needed here.
+000048 | 
+000049 | 1. Exact Fourier and domain calculation
+000050 | ---------------------------------------
+000051 | 
+000052 | Put normalized measure on both circles and write
+000053 | 
+000054 |   e_m(x)=exp(i m x),
+000055 |   W_0 e_m=exp(i(2m+1/2)theta),
+000056 |   W_1 e_m=exp(i(2m+3/2)theta).
+000057 | 
+000058 | These are disjoint even and odd parts of the full antiperiodic Fourier basis.
+000059 | For each j,
+000060 | 
+000061 |   ||W_j g||^2
+000062 |     = integral_0^(2pi) |g(2 theta)|^2 dtheta/(2pi)
+000063 |     = ||g||^2.
+000064 | 
+000065 | The second equality includes the two traversals of the x circle. Hence W_0 and
+000066 | W_1 are isometries with orthogonal, jointly complete ranges, and
+000067 | 
+000068 |   W=W_0 direct-sum W_1
+000069 | 
+000070 | is unitary. Fourier weights also show that W maps H1_per direct-sum H1_per
+000071 | onto the antiperiodic H1 domain. Direct differentiation gives
+000072 | 
+000073 |   B_cov W_0 = 2 W_0(D+1/4),
+000074 |   B_cov W_1 = 2 W_1(D+3/4).
+000075 | 
+000076 | Thus the equality is an unbounded self-adjoint operator identity, not merely a
+000077 | spectral list. W_0 and W_1 have norm one. Multiplication by exp(i theta),
+000078 | multiplication by exp(i x), and half translation all have norm one and preserve
+000079 | the stated Sobolev domains.
+000080 | 
+000081 | The orientation repair B_cov=-i partial_theta is consistent with the printed
+000082 | eigenvalues n+1/2. It should be understood as the repaired orientation of the
+000083 | older circle formula, not as a literal use of an older i partial_theta formula
+000084 | with unchanged eigenvalue signs.
+000085 | 
+000086 | 2. Half-deck and winding action
+000087 | -------------------------------
+000088 | 
+000089 | On the reduced core,
+000090 | 
+000091 |   T_pi=exp(i pi B_cov),
+000092 |   T_pi W_0= i W_0,
+000093 |   T_pi W_1=-i W_1,
+000094 |   T_pi^2=-I.
+000095 | 
+000096 | Changing the Pin lift sign swaps the two eigenspace labels. It supplies no
+000097 | canonical choice of one of them.
+000098 | 
+000099 | For u_cov=exp(i theta), direct substitution gives
+000100 | 
+000101 |   u_cov W_0 g=W_1 g,
+000102 |   u_cov W_1 g=W_0(u_base g),
+000103 | 
+000104 | and therefore, in the common periodic coefficient basis,
+000105 | 
+000106 |             [ 0  u_base ]
+000107 |   u_cov  =  [           ],
+000108 |             [ I    0    ]
+000109 | 
+000110 |   u_cov^2=diag(u_base,u_base).
+000111 | 
+000112 | This matrix is correct. It also makes the selection boundary especially
+000113 | clear: each quarter space reduces B_cov and T_pi, but neither quarter space is
+000114 | invariant under the original winding-one u_cov. Only u_cov squared preserves
+000115 | the two quarter spaces separately. Choosing one quarter as the operational
+000116 | source therefore still needs an additional source, state, or OS time rule.
+000117 | 
+000118 | 3. Spectral flow and Fredholm sign
+000119 | ----------------------------------
+000120 | 
+000121 | With the path convention used in the dictionary,
+000122 | 
+000123 |   B_cov(t)=B_cov+t,
+000124 | 
+000125 | the crossing counts are
+000126 | 
+000127 |   SF(u_cov)=+1,
+000128 |   SF(u_cov^2)=+2,
+000129 |   SF_1/4(u_base)=SF_3/4(u_base)=+1.
+000130 | 
+000131 | There are no endpoint crossings, so no endpoint convention enters. The
+000132 | non-double-counting conclusion is correct: the sum of the two base quarter
+000133 | flows represents u_cov squared, not u_cov.
+000134 | 
+000135 | The word "index" needs a sign convention whenever it means the compressed
+000136 | Toeplitz operator. For the positive spectral projection P_+ and the multiplier
+000137 | u used here,
+000138 | 
+000139 |   ind(P_+ u P_+)=-1,
+000140 |   ind(P_+ u^2 P_+)=-2,
+000141 | 
+000142 | whereas the displayed spectral flows are +1 and +2. Thus
+000143 | 
+000144 |   SF(B to u^* B u) = - ind(P_+ u P_+)
+000145 | 
+000146 | in this convention. The dictionary's numerical equations are correct as
+000147 | spectral-flow equations. Phrases such as "the same index value" and
+000148 | "Fredholm or spectral-flow class" must not be read as equality with the same
+000149 | signed Fredholm index. The original d SF=2 comparison is a comparison of the
+000150 | positive spectral-flow normalization unless an explicit sign convention says
+000151 | otherwise.
+000152 | 
+000153 | 4. What is established and what remains
+000154 | ---------------------------------------
+000155 | 
+000156 | Established:
+000157 | 
+000158 |   * the Pin-minus lift produces the unordered pair {1/4,3/4};
+000159 |   * the unitary Fourier split, domains, deck characters, and winding matrices
+000160 |     are exact;
+000161 |   * one cover winding has spectral flow one, while its square is the direct
+000162 |     sum of the two quarter windings and has spectral flow two;
+000163 |   * the two quarters are one source-cover decomposition and must not be counted
+000164 |     as independent physical sources.
+000165 | 
+000166 | Still separate:
+000167 | 
+000168 |   * a rule selecting one reducing quarter channel;
+000169 |   * identification of B_cov with the original OS or physical time generator;
+000170 |   * identification of the original d=2 response insertion with u_cov squared
+000171 |     or with the diagonal base operator;
+000172 |   * any equality between this geometric deck clock and an internal E8 clock;
+000173 |   * the full transverse pinor, boundary, local-net, and Arf data.
+000174 | 
+000175 | The exact checker correctly verifies the finite Fourier-label identities and
+000176 | crossing counts. The unitary and unbounded-domain statements above are the
+000177 | analytic argument behind those finite checks. No additional holonomy, second
+000178 | source copy, or boundary model is required for the quarter-pair origin.

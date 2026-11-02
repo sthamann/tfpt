@@ -1,0 +1,49 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/joint-native-algebra-selection-20261016/PROOF.md
+Original file SHA-256: dd94d9a85e61618bfabbfd462e0fca9f8ecc58e5b961c09a9c8656886793b5e8
+Inclusive original lines: 58-98
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000058 | ## 2. Gemeinsame Algebra und Eindeutigkeit
+000059 | 
+000060 | V4 ist irreduzibel, denn die 16 projektiven Paulis spannen M4. Auf V5 ist P trivial und S6 wirkt standard-irreduzibel. Auf V20 wirkt P als I5 tensor conjugate(P), daher ist sein Kommutant M5 tensor I4. Die zusätzliche S6-Wirkung reduziert ihn auf C I20. Folglich ist auch V20 irreduzibel. Ihre unterschiedlichen Dimensionen machen die drei Darstellungen paarweise nichtisomorph.
+000061 | 
+000062 | Für H=V4 directsum V5 directsum V20 folgt mittels Burnside/Artin-Wedderburn
+000063 | 
+000064 |     A_joint = image(C[G] -> End(H)) = M4 directsum M5 directsum M20,
+000065 |     A_joint' = C directsum C directsum C.
+000066 | 
+000067 | Die Dimension der Algebra ist 16+25+400=441. Der 29-dimensionale Summenraum ist Buchhaltung der drei Darstellungen, keine hergeleitete Raumzeit- oder Teilchenzahl. A_joint ist der kleinste Quotient der Gruppenalgebra, der genau diese drei Wortdarstellungen erhält: Sein Kern ist der Schnitt ihrer drei Gruppenalgebra-Kerne. Das ist eine präzise universelle Minimalität für diese vorgegebenen Ansichten, keine globale Minimalität über alle denkbaren TFPT-Ursprünge.
+000068 | 
+000069 | Dieser Quotient allein ist außerdem nicht tensorabgeschlossen: Andere Tensorgrade können weitere Irreduzible enthalten. Die volle gemeinsame Ursache bleibt das Gruppen-/Darstellungsobjekt mit seinen Tensoroperationen.
+000070 | 
+000071 | ### 2.0 Gemeinsame Zustandsnormierung
+000072 | 
+000073 | Der berechnete Kommutant beantwortet auch eine Zustandsfrage. Jede unter der gesamten nativen Gruppe invariante Dichtematrix auf H hat notwendig die Form
+000074 | 
+000075 |     rho = w4 I4/4 directsum w5 I5/5 directsum w20 I20/20,
+000076 |     wd>=0, w4+w5+w20=1.
+000077 | 
+000078 | Treue verlangt wd>0, wählt die Gewichte aber nicht aus. Innerhalb jedes einzelnen irreduziblen Blocks ist der gruppeninvariante Zustand eindeutig; die relative Gewichtung der drei Ansichten ist es unter dieser Bedingung nicht. Diese Aussage betrifft Gruppeninvarianz, nicht automatisch alle stationären Zustände eines gegebenen anisotropen Prozesses. Insbesondere liefert ein bloßer Dimensionsquotient5/4 noch keine physische relative Suszeptibilität oder Wirkungsnormierung.
+000079 | 
+000080 | ### 2.1 Normalisatoren: zwei unterschiedliche Fragen
+000081 | 
+000082 | Der unitäre Normalisator der ASSOCIATIVEN Algebra ist U4 x U5 x U20. Er ist viel größer als der Normalisator der ursprünglichen Ereignisgruppe. Da P=O2(G) charakteristisch ist, normalisiert jeder U in N_U4(G) auch P. Dessen unitärer Normalisator ist die Zwei-Qubit-Cliffordgruppe bis auf Phasen. Projektiv ist dies genau G, also
+000083 | 
+000084 |     N_U4(G)=U(1) G.
+000085 | 
+000086 | Auf der Dreierdirektsumme können die ungleich großen einfachen Blöcke nicht vertauscht werden. Die treue Viererdarstellung legt den induzierten Gruppenautomorphismus fest; Schurs Lemma bestimmt die anderen Blöcke bis auf Phasen. Daher
+000087 | 
+000088 |     N_U(H)(rho(G)) = U(1)^3 rho(G).
+000089 | 
+000090 | Dies ist eine neue Folgerung aus den vorhandenen Gruppenfakten, kein hier behaupteter bereits formal bewiesener Lean-Satz. Antiunitäre Normalisatoren werden nicht klassifiziert.
+000091 | 
+000092 | ### 2.2 Was daraus zu 3+2 folgt
+000093 | 
+000094 | Irreduzibilität von V5 verbietet einen einzelnen nichttrivialen G-invarianten Projektor. Das verbietet KEINE kanonische Familie von Projektoren, die G untereinander vertauscht. Eine solche Familie existiert tatsächlich: Für die 15 vollständigen Paarungen der sechs S6-Punkte sei t=(ab)(cd)(ef). Auf dem sechsdimensionalen Permutationsraum hat t die Eigenwerte +1 dreimal und -1 dreimal. Nach Entfernen des konstanten Vektors bleiben auf V5 die Vielfachheiten +1 zweimal, -1 dreimal. Somit ist
+000095 | 
+000096 |     Q_t=(I5+rho5(t))/2
+000097 | 
+000098 | ein Rang-zwei-Projektor mit einem Rang-drei-Komplement. Dies ist die vorhandene 15er-Familie von nativen 2+3-Antworträumen; eine weitergehende Zuordnung zu den Pauli-Kontexten benötigt die tatsächlichen Originaloperatoren und folgt nicht aus der gemeinsamen Anzahl15. Sie ist ein positiver Strukturzusammenhang, keine Auswahl eines bestimmten schwachen bzw. farbigen Sektors. Die Gruppe permutiert diese15 Möglichkeiten transitiv. Der entscheidende Vergleich mit dem tatsächlich vorhandenen P2=(6Y5+2I)/5 wurde jedoch zusätzlich ausgeführt: KEINER der15Projektoren Q_t ist P2. Das ist exakt und strukturell bewiesen. P2 kommutiert mit Farb-S3_(234). Wäre P2=Q_t, so müsste die zugehörige feste-punktfreie Involution t im Zentralisator S3_(015) dieser Farbgruppe liegen. Dort gibt es keine feste-punktfreie Involution. Die native15er-Antwortfamilie reproduziert die bestehende physikalische Markierung daher nicht. Ihre gleiche Rangaufteilung ist keine zulässige Operatoridentifikation. Ein beliebiger U5-Basiswechsel würde dieses Problem nur durch eine neue, die ursprünglichen Gruppenwirkungen verändernde Einbettung überdecken. Für die bestehende Markierung benötigt man die tatsächliche zusätzliche Quellwirkung, nicht die Auswahl eines der15Antwortprojektoren.

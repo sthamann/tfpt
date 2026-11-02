@@ -1,0 +1,36 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1030_alg2_sector_frame.py
+Original file SHA-256: a51fdbb734ead5d27f4120806c81ad46e7386874d5d6cb7a87a3aac2f4009fa5
+Inclusive original lines: 110-137
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000110 | def run() -> int:
+000111 |     reset()
+000112 |     print("v1030 -- finite sector connectivity and conditional joint-adjoint frame bridge")
+000113 |     sector_connectivity_certificate()
+000114 |     frame_and_cutoff_firewalls()
+000115 |     dimension, word_bound, sigma, epsilon = sp.symbols(
+000116 |         "D M sigma epsilon", positive=True
+000117 |     )
+000118 |     report = {
+000119 |         "conditional_uniform_section_bound": str(
+000120 |             uniform_section_bound(dimension, word_bound, sigma)
+000121 |         ),
+000122 |         "joint_adjoint_map": "L_N(y)=(P_F y P_E, P_F y* P_E), real-linear",
+000123 |         "required_tail_data": ["x", "x*", "y", "y*"],
+000124 |         "conditional_one_sided_error_bound": str(3*epsilon),
+000125 |         "claim_boundary": {
+000126 |             "proved": ["finite connected-sector generation criterion",
+000127 |                        "conditional non-collapsing-frame norm estimate",
+000128 |                        "parity, compression, conditioning and escape firewalls"],
+000129 |             "not_proved": ["microscopic neutral block generation",
+000130 |                            "nonzero charged corners in the TFPT collar",
+000131 |                            "uniform local word bounds and joint y/y* frame",
+000132 |                            "high-output tails", "FE-GEN, ALG-EXH, T2 or TOE"],
+000133 |         },
+000134 |     }
+000135 |     print(json.dumps(report, indent=2, sort_keys=True))
+000136 |     print("VERDICT: CONDITIONAL_SECTOR_AND_FRAME_LEMMAS_PROVED; MICROSCOPIC_FE_GEN_AND_ALG2_OPEN")
+000137 |     return summary("v1030 ALG2 sector frame")

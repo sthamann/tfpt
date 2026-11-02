@@ -1,0 +1,188 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/C4-TRIANGLE-INDEPENDENT-REVIEW.txt
+Original file SHA-256: b589f7d063cc2e7a48549bd5c4d4895f99ab4a103449eae29b28b3dae2fe323f
+Inclusive original lines: 1-180
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | C4-TRIANGLE-INDEPENDENT-REVIEW
+000002 | ==============================
+000003 | 
+000004 | Datum: 2026-10-26
+000005 | 
+000006 | Geprüfte Frage
+000007 | --------------
+000008 | 
+000009 | Schließt der direkte C4 Quotient der tatsächlich in v115 verwendeten
+000010 | Differentialgleichung die bisher nur numerische Identifikation ihrer
+000011 | Monodromie mit der exakten v117 Darstellung? Zu prüfen waren die Residuen,
+000012 | Logarithmen, Clockorientierung, markierte Paaridentifikation und die
+000013 | Abgrenzung vom älteren modularen Phi Pullback.
+000014 | 
+000015 | Urteil
+000016 | ------
+000017 | 
+000018 | Ja. Die konkrete v115 Gleichung steigt exakt zu einem starren sphärischen
+000019 | Dreipunktsystem vom Typ (4,3,2) ab. In der kurzen R=(0,1,-1) Gauge sind alle
+000020 | drei Residuen semisimpel; es gibt keine positive ganzzahlige Resonanz. In der
+000021 | älteren R=(0,1,3) Gauge verschwindet der einzige resonante
+000022 | Rekursionskoeffizient exakt. Die lokalen
+000023 | Monodromien haben deshalb exakt die Ordnungen
+000024 | 4,3,2 und erzeugen treu S4 in dessen determinantentrivialer
+000025 | dreidimensionaler Darstellung. Nach Fixierung der Clockmarkierung ist das
+000026 | geordnete Monodromiepaar bis auf den diagonalen Zentralisator eindeutig die
+000027 | v117 Bahn.
+000028 | 
+000029 | Dieser Schluss ist bereits in einer Originalarchivquelle vom 28. September
+000030 | 2026 vollständig bewiesen:
+000031 | 
+000032 | [OMITTED: non-scientific conversation or execution metadata]
+000033 | [OMITTED: non-scientific conversation or execution metadata]
+000034 | [OMITTED: non-scientific conversation or execution metadata]
+000035 | [OMITTED: non-scientific conversation or execution metadata]
+000036 | [OMITTED: non-scientific conversation or execution metadata]
+000037 | 
+000038 | Der heutige direkte Quotient ist daher als wiederverwendeter und unabhängig
+000039 | validierter Beweis zu führen. Die in v115/v117 noch stehende Kennzeichnung
+000040 | des ODE Anschlusses als nur numerisch ist gegenüber dieser späteren Quelle
+000041 | veraltet.
+000042 | 
+000043 | Die Clockorientierung ist dabei wesentlich:
+000044 | 
+000045 |     geometrische Deckwirkung auf Y:       U,
+000046 |     positive t-Monodromie auf X=z^(-R)Y:  U^(-1).
+000047 | 
+000048 | Das ältere Phi Pullback aus MODULAR-ORBIFOLD-SOURCE.txt hat dagegen am
+000049 | zweiten Spitzenpunkt Ordnung 4. Die tatsächliche v115 C4 Verbindung hat dort
+000050 | Ordnung 2. Beide besitzen zwar dasselbe unmarkierte endliche Gruppenbild S4,
+000051 | sind aber nicht dieselbe markierte flache Verbindung.
+000052 | 
+000053 | 1. Die ursprüngliche Gleichung
+000054 | ------------------------------
+000055 | 
+000056 | Setze
+000057 | 
+000058 |     alpha = 2 sqrt(2)/3,
+000059 |     beta  = sqrt(5)/3,
+000060 | 
+000061 | und
+000062 | 
+000063 |                 [ 2z^3   alpha z^2      0    ]
+000064 |     A(z)=1/(z^4-1) [ alpha      z^3      beta z ].
+000065 |                 [   0        beta z      z^3  ]
+000066 | 
+000067 | Dies ist exakt die Fuchsform aus v115. Mit
+000068 | 
+000069 |     A0 = [[1/2, sqrt(2)/6, 0],
+000070 |           [sqrt(2)/6, 1/4, sqrt(5)/12],
+000071 |           [0, sqrt(5)/12, 1/4]],
+000072 |     U  = diag(1,i,-i)
+000073 | 
+000074 | ergibt eine direkte Partialbruchrechnung
+000075 | 
+000076 |     A(z)=sum_(k=0)^3 U^k A0 U^(-k)/(z-i^k).
+000077 | 
+000078 | Die oben ausgeschriebene Zählermatrix wurde unabhängig symbolisch aus dieser
+000079 | Summe zurückgewonnen. Es wird also dieselbe konkrete v115 Quelle geprüft und
+000080 | kein neues Fuchsmodell eingeführt.
+000081 | 
+000082 | 2. Zwei äquivalente exakte C4 Gauges
+000083 | -----------------------------------
+000084 | 
+000085 | Setze
+000086 | 
+000087 |     R=diag(0,1,-1),       t=z^4,       Y=z^R X(t).
+000088 | 
+000089 | Aus
+000090 | 
+000091 |     dY/dz=A(z)Y
+000092 | 
+000093 | folgt
+000094 | 
+000095 |     dX/dt=B(t)X,
+000096 |     B(t)=1/(4z^3) z^(-R) A(z) z^R - R/(4t).
+000097 | 
+000098 | Alle z Potenzen heben sich zu rationalen Funktionen von t. In Partialbrüchen
+000099 | ist
+000100 | 
+000101 |     B(t)=B0/t+B1/(t-1)
+000102 | 
+000103 | mit
+000104 | 
+000105 |          [ 0             0              0          ]
+000106 |     B0 = [ -sqrt(2)/6   -1/4          -sqrt(5)/12 ],
+000107 |          [ 0             0              1/4        ]
+000108 | 
+000109 | und
+000110 | 
+000111 |          [ 1/2          sqrt(2)/6       0          ]
+000112 |     B1 = [ sqrt(2)/6    1/4             sqrt(5)/12 ],
+000113 |          [ 0            sqrt(5)/12      1/4        ]
+000114 | 
+000115 | also B1=A0. Das Residuum am unendlichen Punkt ist
+000116 | 
+000117 |     Binf=-B0-B1
+000118 | 
+000119 |          [ -1/2        -sqrt(2)/6       0          ]
+000120 |        = [  0            0              0          ].
+000121 |          [  0          -sqrt(5)/12     -1/2        ]
+000122 | 
+000123 | Eine direkte Rückaddition gibt B0+B1+Binf=0.
+000124 | 
+000125 | Die Archivquelle benutzt stattdessen
+000126 | 
+000127 |     Psi=diag(1,z,z^3)v(t).
+000128 | 
+000129 | Ihre Residuen sind
+000130 | 
+000131 |     B0_old = [[0,0,0],
+000132 |               [-sqrt(2)/6,-1/4,0],
+000133 |               [0,-sqrt(5)/12,-3/4]],
+000134 | 
+000135 |     B1_old = A0,
+000136 | 
+000137 |     Binf_old = [[-1/2,-sqrt(2)/6,0],
+000138 |                 [0,0,-sqrt(5)/12],
+000139 |                 [0,0,1/2]].
+000140 | 
+000141 | Beide Fassungen sind durch die meromorphe ganzzahlige Gauge
+000142 | 
+000143 |     X=diag(1,1,t)v
+000144 | 
+000145 | verbunden, denn z^(-1)X_3=z^3v_3. Sie besitzen daher exakt dieselbe
+000146 | Monodromie. Die kürzere heutige Gauge verschiebt lediglich einen lokalen
+000147 | Exponenten um eine ganze Zahl.
+000148 | 
+000149 | 3. Spektren, Semisimplizität und fehlende Logarithmen
+000150 | ----------------------------------------------------
+000151 | 
+000152 | Die charakteristischen Polynome sind exakt
+000153 | 
+000154 |     chi_B0(lambda)   = lambda(lambda-1/4)(lambda+1/4),
+000155 |     chi_B1(lambda)   = lambda(lambda-1/3)(lambda-2/3),
+000156 |     chi_Binf(lambda) = lambda(lambda+1/2)^2.
+000157 | 
+000158 | B0 und B1 haben einfache Spektren. Für Binf gilt sogar die quadratische
+000159 | Identität
+000160 | 
+000161 |     Binf(Binf+I/2)=0.
+000162 | 
+000163 | Das Minimalpolynom ist damit quadratfrei und Binf besitzt einen
+000164 | zweidimensionalen Eigenraum zum Eigenwert -1/2. Es gibt keinen Jordanblock.
+000165 | 
+000166 | Die nicht verschwindenden Exponentendifferenzen sind
+000167 | 
+000168 |     bei 0:        1/4,1/2,
+000169 |     bei 1:        1/3,2/3,
+000170 |     bei infinity: 1/2.
+000171 | 
+000172 | Keine davon ist eine ganze Zahl. In der Frobenius beziehungsweise Levelt
+000173 | Rekursion tritt deshalb keine positive ganzzahlige Resonanz auf. Die
+000174 | wiederholte Differenz null bei infinity erzeugt wegen der semisimplen
+000175 | Residuenmatrix keinen logarithmischen Nilpotententeil. Alle lokalen
+000176 | Monodromien sind zu exp(2 pi i Bp) konjugiert.
+000177 | 
+000178 | Auch der anspruchsvollere Resonanztest der Archivgauge ist korrekt. Dort
+000179 | lauten die Spektren bei 0 und infinity
+000180 | 

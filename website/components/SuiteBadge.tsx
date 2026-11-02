@@ -14,12 +14,12 @@ export function SuiteBadge({
   className?: string;
   href?: string;
 }) {
-  const label = `suite green · ${SCRIPT_TOTAL}/${SCRIPT_TOTAL} · synced ${SITE_DATE}`;
+  const label = `${SCRIPT_TOTAL} registered scripts · publication ${SITE_DATE}`;
   return (
     <Link
       prefetch={false}
       href={href}
-      title="Verification suite status for this site release (static, not live)"
+      title="Registered script inventory for the publication snapshot. This badge does not report a new test execution."
       className={cn(
         "inline-flex items-center gap-1.5 border border-slate-400/50 bg-slate-50/70 px-2 py-0.5 font-mono text-[10px] tracking-wide text-slate-700 transition-colors hover:border-slate-500 hover:text-slate-900",
         className,

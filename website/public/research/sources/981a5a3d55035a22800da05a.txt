@@ -1,0 +1,99 @@
+TFPT scientific source excerpt
+Original repository path: verification/v330_qgamb_admissible_measure.py
+Original file SHA-256: 21cbeb2b96d9ee581da3a9c45be400d77d232730ba37bbb19cb4cec07fb5e5be
+Inclusive original lines: 42-132
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000042 | def symmetric_transfer():
+000043 |     """The gapped seam transfer (v311): symmetric PSD with spectrum {1,(2/3)^6,(1/3)^6},
+000044 |     stationary (eigenvalue-1) vector = the democratic v1 = (1,1,1)/sqrt3."""
+000045 |     v1 = np.ones(3) / np.sqrt(3.0)
+000046 |     u2 = np.array([1.0, -1.0, 0.0]); u2 /= np.linalg.norm(u2)
+000047 |     u3 = np.array([1.0, 1.0, -2.0]); u3 /= np.linalg.norm(u3)
+000048 |     lam2, lam3 = (2 / 3) ** 6, (1 / 3) ** 6
+000049 |     T = (np.outer(v1, v1) + lam2 * np.outer(u2, u2) + lam3 * np.outer(u3, u3))
+000050 |     return T, v1, lam2, lam3
+000051 | 
+000052 | 
+000053 | def correlator(T, v1, D, n):
+000054 |     """Connected 2-pt at separation n in the stationary measure: C(n) = <v1|D T^n D|v1>
+000055 |     - <v1|D|v1>^2, with T normalized (top eigenvalue 1)."""
+000056 |     Tn = np.linalg.matrix_power(T, n)
+000057 |     return float(v1 @ (D @ Tn @ D) @ v1) - float(v1 @ D @ v1) ** 2
+000058 | 
+000059 | 
+000060 | def run():
+000061 |     reset()
+000062 |     print("v330  QGAMB.MEASURE.01: the ambient measure on the gap-decoupled admissible sector")
+000063 | 
+000064 |     T, v1, lam2, lam3 = symmetric_transfer()
+000065 |     Delta = 6 * np.log(3 / 2)
+000066 |     D = np.diag([1.0, -1.0, 0.0])                      # a trace-zero observable, <D>_v1 = 0
+000067 | 
+000068 |     # 1. reflection positivity: T symmetric PSD
+000069 |     evals = np.linalg.eigvalsh(T)
+000070 |     check("REFLECTION POSITIVITY [E]: the seam transfer T is symmetric and PSD "
+000071 |           "(eigenvalues %s >= 0), so the finite-volume transfer-matrix measures are "
+000072 |           "reflection-positive (OS-0)" % np.round(np.sort(evals)[::-1], 5).tolist(),
+000073 |           np.allclose(T, T.T) and evals.min() > -1e-12)
+000074 | 
+000075 |     # 2. exponential clustering at the gap rate
+000076 |     Cn = [correlator(T, v1, D, n) for n in range(1, 12)]
+000077 |     ratios = [Cn[i + 1] / Cn[i] for i in range(len(Cn) - 1) if abs(Cn[i]) > 1e-15]
+000078 |     rate_ok = all(abs(r - lam2) < 1e-6 for r in ratios)
+000079 |     check("EXPONENTIAL CLUSTERING [E]: the connected 2-pt C(n) decays at the gap rate "
+000080 |           "C(n)/C(n-1) -> lambda_2 = (2/3)^6 = %.5f (corr. length xi = 1/Delta, "
+000081 |           "Delta = 6 ln(3/2) = %.4f) -- OS clustering / unique vacuum"
+000082 |           % (lam2, Delta), rate_ok)
+000083 | 
+000084 |     # 3. tightness => projective limit: Var(S_Lambda)/Lambda converges to finite chi
+000085 |     C0 = float(v1 @ (D @ D) @ v1) - float(v1 @ D @ v1) ** 2
+000086 |     full = [C0] + [correlator(T, v1, D, n) for n in range(1, 4000)]
+000087 |     def var_per_site(L):
+000088 |         return (L * full[0] + 2 * sum((L - n) * full[n] for n in range(1, L))) / L
+000089 |     vps = [var_per_site(L) for L in (50, 200, 800, 3200)]
+000090 |     chi_closed = full[0] + 2 * sum(full[1:])
+000091 |     # Var(S_L)/L -> chi from below at rate O(1/L); the honest claim is convergence to the
+000092 |     # FINITE chi (bounded sequence), which is the tightness criterion.
+000093 |     converged = (np.isfinite(chi_closed) and abs(vps[-1] - chi_closed) < 1e-3
+000094 |                  and vps[0] < vps[-1] <= chi_closed + 1e-9
+000095 |                  and all(0 < v < 2 * chi_closed for v in vps))
+000096 |     check("TIGHTNESS => PROJECTIVE LIMIT [E]: the susceptibility chi = sum_n C(n) is "
+000097 |           "FINITE (%.5f), so Var(S_Lambda)/Lambda -> chi (%.5f at Lambda=3200) converges "
+000098 |           "=> the finite-volume measures are uniformly tight and the projective limit "
+000099 |           "mu = lim mu_Lambda EXISTS on the admissible sector" % (chi_closed, vps[-1]),
+000100 |           converged and np.isfinite(chi_closed))
+000101 | 
+000102 |     # 4. OS reconstruction: H_OS = -log T >= 0 with gap
+000103 |     H_OS = -np.log(np.array([1.0, lam2, lam3]))
+000104 |     gap = sorted(H_OS)[1] - sorted(H_OS)[0]
+000105 |     check("OS RECONSTRUCTION [E]: H_OS = -log T >= 0 (energies %s) with a unique vacuum "
+000106 |           "and gap = %.5f = 6 ln(3/2) (v240) -- mu is a genuine OS measure on the "
+000107 |           "admissible sector, reconstructing a positive-energy QFT"
+000108 |           % (np.round(np.sort(H_OS), 4).tolist(), gap),
+000109 |           H_OS.min() >= -1e-12 and abs(gap - Delta) < 1e-9)
+000110 | 
+000111 |     # 5. neg control: an ungapped transfer breaks tightness
+000112 |     eps = 1e-3
+000113 |     Tbad = (np.outer(v1, v1) + (1 - eps) * np.outer(np.array([1, -1, 0]) / np.sqrt(2),
+000114 |                                                     np.array([1, -1, 0]) / np.sqrt(2)))
+000115 |     full_bad = [float(v1 @ (D @ D) @ v1) - float(v1 @ D @ v1) ** 2] + \
+000116 |                [correlator(Tbad, v1, D, n) for n in range(1, 4000)]
+000117 |     chi_bad = full_bad[0] + 2 * sum(full_bad[1:])
+000118 |     check("NEG CONTROL [E]: an ungapped transfer (lambda_2 -> 1) sends chi -> infinity "
+000119 |           "(chi_gapped=%.3f vs chi_ungapped=%.1f) and tightness FAILS -- the construction "
+000120 |           "IS the gap, not generic" % (chi_closed, chi_bad),
+000121 |           chi_bad > 50 * chi_closed)
+000122 | 
+000123 |     # 6. the open residual: the metric / non-admissible sector
+000124 |     margin = Delta - 31 / (4 * np.pi ** 2)             # v76 gap-decoupling margin
+000125 |     check("THE FULL AMBIENT MEASURE [O]: what is NOT built is the non-admissible (metric) "
+000126 |           "sector -- the full 4D QG.AMB.01 needs the metric-direction measure + its "
+000127 |           "coupling; by the gap-decoupling margin Delta - 31/(4 pi^2) = %.4f > 0 "
+000128 |           "(v76/v275) the physical readouts do NOT need it, but the complete ambient "
+000129 |           "measure stays open (NOT a closure)" % margin,
+000130 |           margin > 0)
+000131 | 
+000132 |     return summary("v330 QGAMB.MEASURE.01 (admissible-sector OS measure built; metric sector open)")

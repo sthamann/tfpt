@@ -1,0 +1,180 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/canonical-seam-fermionization-20261025/check_same_source_affine_defect.py
+Original file SHA-256: 0f51ab119938a05184a3f3e11b364dcb4ee02749487829bf65147bc86647131c
+Inclusive original lines: 201-372
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |         need(abs(kappa * kappa + 1) == 0, "Ramond lift kappa squared")
+000202 |         for x in samples:
+000203 |             for y in generators:
+000204 |                 need(eta_ext(add_labels(x, y), kappa) * eps_ext(x, y)
+000205 |                      == eta_ext(x, kappa) * eta_ext(y, kappa)
+000206 |                      * eps_ext(r_label(x), r_label(y)),
+000207 |                      "extended cyclic lift")
+000208 | 
+000209 |     reps = {
+000210 |         "0": (ZERO, 0),
+000211 |         "v": (E0, 0),
+000212 |         "s": (ZERO, 1),
+000213 |         "c": (E0, 1),
+000214 |     }
+000215 |     sector_map = {name: sector(t_label(label)) for name, label in reps.items()}
+000216 |     need(sector_map == {"0": "v", "v": "0", "s": "c", "c": "s"},
+000217 |          "four-sector affine action")
+000218 | 
+000219 |     # The two kappa representatives are related by a basis gauge which is
+000220 |     # pointwise the identity on both supplied local subtheories 0+v and 0+s.
+000221 |     for label in samples:
+000222 |         n, c = label
+000223 |         if c == 0 or sum(n) % 2 == 0:
+000224 |             need(tau_gauge(label) == 1,
+000225 |                  "tau is identity on NS and E8 vacuum subtheories")
+000226 |         for kappa in (I, -I):
+000227 |             conjugated = (tau_gauge(label) * eta_ext(label, kappa)
+000228 |                            * tau_gauge(t_label(label)))
+000229 |             need(conjugated == eta_ext(label, -kappa),
+000230 |                  "tau conjugates W_kappa to W_minus_kappa")
+000231 | 
+000232 |         x_phase, x_target = x_action(label)
+000233 |         transported_x_phase = (tau_gauge(label) * x_phase
+000234 |                                * tau_gauge(x_target))
+000235 |         expected_ratio = -1 if sector(label) in ("v", "c") else 1
+000236 |         need(transported_x_phase == expected_ratio * x_phase,
+000237 |              "tau changes X only on the v-to-c intertwiner channel")
+000238 | 
+000239 |     # A simultaneous basis transport leaves every mixed word invariant.  If
+000240 |     # X is instead held fixed as an extra marking, W X W^* X^*=-i*kappa I
+000241 |     # distinguishes the two representatives relative to that marking.
+000242 |     for kappa in (I, -I):
+000243 |         def transported_x(label):
+000244 |             phase, target = x_action(label)
+000245 |             return (tau_gauge(label) * phase * tau_gauge(target), target)
+000246 | 
+000247 |         for label in samples:
+000248 |             fixed_phase, fixed_target = mixed_word(label, kappa)
+000249 |             moved_phase, moved_target = mixed_word(label, -kappa, transported_x)
+000250 |             need(fixed_target == label and fixed_phase == -I * kappa,
+000251 |                  "fixed-X mixed word")
+000252 |             need((moved_phase, moved_target) == (fixed_phase, fixed_target),
+000253 |                  "fully transported mixed word is gauge invariant")
+000254 | 
+000255 |     # W_ext^8 is the genuine integer carry E_q on every sector, including
+000256 |     # its ordered cocycle phase. It is never collapsed to a finite register.
+000257 |     for kappa in (I, -I):
+000258 |         for label in samples:
+000259 |             start = label
+000260 |             current = label
+000261 |             phase = 1
+000262 |             for _ in range(8):
+000263 |                 phase *= eta_ext(current, kappa)
+000264 |                 current = t_label(current)
+000265 |             expected_label = add_labels(start, (ONES, 0))
+000266 |             expected_phase = eps_ext((ONES, 0), start)
+000267 |             need(current == expected_label and phase == expected_phase,
+000268 |                  "eighth power is exact integer charge translation")
+000269 | 
+000270 |     # The two lifts of the same E8 g-character differ only on the twisted
+000271 |     # module. The distinction is observable once W1 is fixed.
+000272 |     def g_cartan(label):
+000273 |         return (-1) ** label[1]                    # NS+, R-
+000274 | 
+000275 |     def g_standard(label):
+000276 |         n, c = label
+000277 |         return (-1) ** (sum(n) + c)               # 0+,v-,s-,c+
+000278 | 
+000279 |     cartan_signs = {name: g_cartan(label) for name, label in reps.items()}
+000280 |     standard_signs = {name: g_standard(label) for name, label in reps.items()}
+000281 |     need(cartan_signs == {"0": 1, "v": 1, "s": -1, "c": -1},
+000282 |          "Cartan lift signs")
+000283 |     need(standard_signs == {"0": 1, "v": -1, "s": -1, "c": 1},
+000284 |          "standard spin-sector lift signs")
+000285 |     need(all(g_cartan(t_label(x)) == g_cartan(x) for x in reps.values()),
+000286 |          "Cartan lift commutes with W1")
+000287 |     need(all(g_standard(t_label(x)) == -g_standard(x) for x in reps.values()),
+000288 |          "standard spin-sector lift anticommutes with W1")
+000289 |     need(all(g_cartan(x) == 1 for name, x in reps.items() if name in ("0", "v")),
+000290 |          "retained original Cartan holonomy is identity on NS")
+000291 | 
+000292 |     # Charge and quarter-time covariance are polynomial identities, hence
+000293 |     # they hold for integer and half-integer charges alike.
+000294 |     p = sp.Matrix(sp.symbols("p0:8", real=True))
+000295 |     R = sp.zeros(8)
+000296 |     for k in range(8):
+000297 |         R[k, (k - 1) % 8] = 1
+000298 |     e0 = sp.eye(8)[:, 0]
+000299 |     one = sp.ones(8, 1)
+000300 |     quarter_states = {}
+000301 |     pstar = sp.Matrix([sp.Rational(1, 2)] * 4 + [-sp.Rational(1, 2)] * 4)
+000302 |     for alpha in (sp.Rational(1, 4), sp.Rational(3, 4)):
+000303 |         delta = sp.Matrix([(k + alpha) / 8 - sp.Rational(1, 2) for k in range(8)])
+000304 |         K = lambda x: sp.expand(x.dot(x) / 2 + delta.dot(x))
+000305 |         Tp = R * p + e0
+000306 |         need(sp.expand(K(Tp) - K(p) - (one.dot(p) + alpha) / 8) == 0,
+000307 |              "quarter Ward identity for arbitrary charge")
+000308 |         need(K(pstar) == 0 and K(R * pstar + e0) == alpha / 8,
+000309 |              "half-charge quarter-state transport")
+000310 |         need(K(sp.zeros(8, 1)) == 0 and K(e0) == alpha / 8,
+000311 |              "vacuum quarter-state transport")
+000312 |         quarter_states[str(alpha)] = {
+000313 |             "K_vacuum": "0", "K_T_vacuum": str(alpha / 8),
+000314 |             "K_pstar": "0", "K_T_pstar": str(alpha / 8),
+000315 |         }
+000316 | 
+000317 |     # Conjugate the entire construction by the already fixed M. This is the
+000318 |     # actual D8_F frame, not the canonical compiler D8 audit frame.
+000319 |     fold = json.loads((ROOT / "experiments/theory-contracts/"
+000320 |         "v16-operator-pullback-20261014/fold-results.json").read_text())
+000321 |     M = sp.Matrix([[sp.Rational(x) for x in row] for row in fold["explicit_Weyl_matrix"]])
+000322 |     RF = M * R * M.T
+000323 |     hF = M * e0
+000324 |     need(M.T * M == sp.eye(8) and RF.T * RF == sp.eye(8), "fixed M-frame orthogonality")
+000325 |     x = sp.Matrix(sp.symbols("x0:8", real=True))
+000326 |     for alpha in (sp.Rational(1, 4), sp.Rational(3, 4)):
+000327 |         delta = sp.Matrix([(k + alpha) / 8 - sp.Rational(1, 2) for k in range(8)])
+000328 |         d = M * delta
+000329 |         KF = lambda y: sp.expand(y.dot(y) / 2 + d.dot(y))
+000330 |         QF = (M * one).dot(x)
+000331 |         need(sp.expand(KF(RF * x + hF) - KF(x) - (QF + alpha) / 8) == 0,
+000332 |              "actual M-frame Ward identity")
+000333 | 
+000334 |     result = {
+000335 |         "verdict": "FULL_FOUR_MODULE_AFFINE_DEFECT_UNIQUE_UP_TO_INTERTWINER_BASIS",
+000336 |         "sector_order": ["0", "v", "s", "c"],
+000337 |         "T1_sector_map": sector_map,
+000338 |         "E8_untwisted_to_g_twist": {"0+s": "v+c"},
+000339 |         "fermion_NS_preserved": "0+v",
+000340 |         "Ramond_sum_preserved": "s+c",
+000341 |         "ordered_CAR_phase": "eta_R(n)=(-1)^(n_7 sum_(j<7)n_j)",
+000342 |         "extended_cocycle": {
+000343 |             "relations": ["X E_n X^-1=i^Q(n) E_n", "X^2=-E_(1,...,1)"],
+000344 |             "restriction_to_Z8": "exact ordered CAR cocycle",
+000345 |             "restriction_to_E8": "existing even E8 cocycle",
+000346 |             "ordinary_cross_locality": False,
+000347 |         },
+000348 |         "Ramond_R8_lift_kappa_choices": ["i", "-i"],
+000349 |         "kappa_relation": "intertwiner-basis gauge U_tau; not an independent physical choice",
+000350 |         "tau_gauge": "U_tau|n+c*s>=(-1)^(c*Q(n)); identity on 0+v and 0+s",
+000351 |         "fixed_X_word": "W_kappa X W_kappa^* X^*=-i*kappa I",
+000352 |         "fully_transported_mixed_words": "unchanged under U_tau",
+000353 |         "W_ext_eighth_power": "E_(1,...,1) with its cocycle phase",
+000354 |         "Cartan_lift_signs": cartan_signs,
+000355 |         "standard_spin_sector_lift_signs": standard_signs,
+000356 |         "Cartan_lift_W1_relation": "commutes; retained NS Cartan four-word is +I",
+000357 |         "standard_lift_W1_relation": "anticommutes; corresponding four-word is -I",
+000358 |         "twisted_module_lift_phase_fixed_by_E8_character": False,
+000359 |         "quarter_states": quarter_states,
+000360 |         "source_Ward": "W_ext^* Q W_ext=Q+1; W_ext^* (8K_delta) W_ext=8K_delta+Q+alpha",
+000361 |         "actual_target_frame": {
+000362 |             "D8": "D8_F=M(D8_CAR)",
+000363 |             "linear_part": "R_F=M R8 M^-1",
+000364 |             "carry": [str(x) for x in hF],
+000365 |             "canonical_compiler_D8_identified": False,
+000366 |         },
+000367 |     }
+000368 |     print(json.dumps(result, indent=2, sort_keys=True))
+000369 | 
+000370 | 
+000371 | if __name__ == "__main__":
+000372 |     main()

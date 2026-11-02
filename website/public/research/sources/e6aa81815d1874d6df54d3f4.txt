@@ -1,0 +1,124 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_pair_index_determinant.py
+Original file SHA-256: cf944975609e83c78ae089f0e70d1b3fad9f9d2edda613a763af5f0babcb1904
+Inclusive original lines: 1-116
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact algebra checks for the infinite-circle pair-index proof.
+000002 | 
+000003 | All finite supports below sit inside the original bilateral circle. There is
+000004 | no periodic wrap identification at the cutoff.
+000005 | """
+000006 | from __future__ import annotations
+000007 | 
+000008 | import hashlib
+000009 | import json
+000010 | from pathlib import Path
+000011 | 
+000012 | import sympy as sp
+000013 | 
+000014 | 
+000015 | def run() -> dict:
+000016 |     z = sp.Symbol("z")
+000017 |     checks = []
+000018 | 
+000019 |     def check(name, ok, **detail):
+000020 |         checks.append({"name": name, "ok": bool(ok), **detail})
+000021 |         if not ok:
+000022 |             raise AssertionError(name)
+000023 | 
+000024 |     c, s = sp.Rational(3, 5), sp.Rational(4, 5)
+000025 |     rotation = sp.Matrix([[c, -s], [s, c]])
+000026 |     p = sp.diag(0, 1, 0)
+000027 |     q = sp.diag(1, 0, 0)
+000028 |     q[1:3, 1:3] = rotation * sp.diag(1, 0) * rotation.T
+000029 |     identity = sp.eye(3)
+000030 |     relative = (identity-z*q)*(identity-z*p).inv()
+000031 |     check("noncommuting_pair_is_orthogonal_projections",
+000032 |           p*p == p and q*q == q and p.T == p and q.T == q
+000033 |           and p*q != q*p)
+000034 |     check("indefinite_rank_three_index_one",
+000035 |           (q-p).rank() == 3 and sp.trace(q-p) == 1
+000036 |           and set((q-p).eigenvals()) == {sp.Integer(1), s, -s},
+000037 |           eigenvalues=[str(x) for x in (q-p).eigenvals()])
+000038 |     check("pair_relative_determinant_is_one_minus_z",
+000039 |           sp.factor(relative.det()) == 1-z,
+000040 |           determinant=str(sp.factor(relative.det())))
+000041 |     derivative = relative.diff(z)*relative.inv()
+000042 |     expected = (identity-z*q)*(p-q)*(identity-z*q).inv()/(1-z)
+000043 |     check("exact_operator_log_derivative",
+000044 |           (derivative-expected).applyfunc(sp.factor) == sp.zeros(3))
+000045 | 
+000046 |     # P is the negative sea on the whole bilateral circle. Only this window
+000047 |     # supports C-P and UCU*-C. The shift takes -1->0 and 1->2 without wrap.
+000048 |     modes = [-2, -1, 0, 1, 2]
+000049 |     idx = {mode: j for j, mode in enumerate(modes)}
+000050 |     sea = sp.diag(*[int(mode < 0) for mode in modes])
+000051 |     cov = sea.copy()
+000052 |     block = rotation*sp.diag(sp.Rational(2, 3), sp.Rational(1, 4))*rotation.T
+000053 |     for i, ni in enumerate([-1, 1]):
+000054 |         for j, nj in enumerate([-1, 1]):
+000055 |             cov[idx[ni], idx[nj]] = block[i, j]
+000056 |     delta = cov-sea
+000057 |     shifted_delta = sp.zeros(5)
+000058 |     for i, ni in enumerate(modes):
+000059 |         for j, nj in enumerate(modes):
+000060 |             if delta[i, j] != 0:
+000061 |                 shifted_delta[idx[ni+1], idx[nj+1]] = delta[i, j]
+000062 |     mix = sp.eye(5)
+000063 |     for i, ni in enumerate([-2, 2]):
+000064 |         for j, nj in enumerate([-2, 2]):
+000065 |             mix[idx[ni], idx[nj]] = rotation[i, j]
+000066 |     pi0 = sp.zeros(5)
+000067 |     pi0[idx[0], idx[0]] = 1
+000068 |     shifted_cov = mix*(sea+pi0+shifted_delta)*mix.T
+000069 |     # Outside this window the covariances equal the same sea, so this is
+000070 |     # precisely the full relative Fredholm determinant of their difference.
+000071 |     ratio = sp.factor((sp.eye(5)-z*shifted_cov).det()
+000072 |                       / (sp.eye(5)-z*cov).det())
+000073 |     check("nonprojective_covariance_is_positive_contraction",
+000074 |           cov*cov != cov
+000075 |           and all(0 <= value <= 1 for value in cov.eigenvals())
+000076 |           and all(0 <= value <= 1 for value in shifted_cov.eigenvals()))
+000077 |     check("same_bilateral_source_nonprojective_factor", ratio == 1-z,
+000078 |           determinant=str(ratio),
+000079 |           shifted_eigenvalues={str(k): v for k, v in shifted_cov.eigenvals().items()})
+000080 | 
+000081 |     weak = sp.diag(z, 1)
+000082 |     scalar_weak = z*sp.eye(2)
+000083 |     full_special = sp.diag(1/z, 1, 1, z, 1)
+000084 |     check("carrier_clutch_degree_is_not_rank",
+000085 |           weak.det() == z and scalar_weak.det() == z*z
+000086 |           and full_special.det() == 1,
+000087 |           weak_determinant=str(weak.det()),
+000088 |           scalar_determinant=str(scalar_weak.det()),
+000089 |           full_special_determinant=str(full_special.det()))
+000090 | 
+000091 |     root = Path(__file__).resolve().parents[3]
+000092 |     source_paths = [
+000093 |         Path(__file__).relative_to(root),
+000094 |         Path(__file__).with_name("PAIR-INDEX-DETERMINANT.txt").relative_to(root),
+000095 |         Path("documents/archive--paper-latex--tfpt-42/sections/005-subsection-internal-carrier-stabilizer-and-one-family-pa.tex"),
+000096 |         Path("documents/archive--paper-latex--tfpt-42/sections/007-subsection-carrier-form-of-the-electromagnetic-closure.tex"),
+000097 |         Path("documents/archive--paper-latex--tfpt-42/sections/012-subsection-bosonic-relative-index-and-higgs-selection.tex"),
+000098 |         Path("documents/archive--paper-latex--tfpt-31/sections/007-subsection-occupancy-and-boundary-to-bulk-bridge.tex"),
+000099 |         Path("documents/archive--paper-latex--tfpt-32/sections/007-subsection-occupancy-and-boundary-to-bulk-bridge.tex"),
+000100 |     ]
+000101 |     sources = [{"path": str(path),
+000102 |                 "sha256": hashlib.sha256((root/path).read_bytes()).hexdigest()}
+000103 |                for path in source_paths]
+000104 |     return {"claim": "MATH.ORIGINAL-SEAM.PAIR-INDEX.01",
+000105 |             "verdict": "PASS_EXACT_ALGEBRA",
+000106 |             "scope": "Infinite analytic theorem plus exact finite-support checks; no physical source selection or EM Ward proof.",
+000107 |             "checks": checks, "sources": sources}
+000108 | 
+000109 | 
+000110 | if __name__ == "__main__":
+000111 |     result = run()
+000112 |     target = Path(__file__).with_name("pair-index-results.json")
+000113 |     target.write_text(json.dumps(result, indent=2, ensure_ascii=False)+"\n")
+000114 |     print(json.dumps({"verdict": result["verdict"],
+000115 |                       "passed": len(result["checks"]),
+000116 |                       "result": str(target)}, ensure_ascii=False))

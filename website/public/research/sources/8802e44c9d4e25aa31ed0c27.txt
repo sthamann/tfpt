@@ -1,0 +1,102 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/atlas-defect-synthesis-20261024/PROVENANCE-AND-ORIGIN.txt
+Original file SHA-256: 53fe5a1345544d0d864c339115f8be7e12fc49e741300fa4559fdf1d05a300a2
+Inclusive original lines: 15-108
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000015 | 1. The doily POVM is an additional logical measurement channel
+000016 | ---------------------------------------------------------------
+000017 | 
+000018 | Let
+000019 | 
+000020 |     V : H5 -> (C^4)^(tensor 4)
+000021 | 
+000022 | be the original normalized quartic-code isometry and let
+000023 | 
+000024 |     A_a = (<a| tensor I_64) V,       a=0,1,2,3,
+000025 | 
+000026 | be the four Kraus operators obtained by losing the first register in the
+000027 | stored computational basis.  Direct reconstruction from the five original
+000028 | word supports gives the exact Knill-Laflamme identity
+000029 | 
+000030 |     A_a^* A_b = delta_ab I5/4.                              (1.1)
+000031 | 
+000032 | The same identity holds for any of the four tensor slots.  Consequently the
+000033 | four effects of the original labelled erasure instrument are
+000034 | 
+000035 |     F_a = A_a^* A_a = I5/4.                                (1.2)
+000036 | 
+000037 | An exact trace-preserving recovery with branch Kraus operators R_(a,mu) does
+000038 | not change branch probabilities, because its composed logical effect is
+000039 | 
+000040 |     sum_mu A_a^* R_(a,mu)^* R_(a,mu) A_a = A_a^* A_a = I5/4.
+000041 | 
+000042 | Thus the recovered effects are still F_a.  Equivalently, in the existing
+000043 | decoded coordinates the erased state is
+000044 | 
+000045 |     E(rho) = rho tensor I4/4,
+000046 | 
+000047 | and every measurement {M_b} confined to the erased/gauge factor induces the
+000048 | logical effect Tr(M_b) I5/4.  Thus even changing the four-outcome basis or
+000049 | coarse-graining the outcomes keeps the whole logical effect space scalar.
+000050 | 
+000051 | Exact signature of the original effects:
+000052 | 
+000053 |     number of displayed branches             4
+000054 |     rank(F_a)                                 5
+000055 |     trace(F_a)                                5/4
+000056 |     linear span dimension                     1
+000057 |     common commutant dimension in End(H5)    25
+000058 |     action of all native G31 words             each F_a is fixed
+000059 | 
+000060 | The doily-quartic theorem instead gives, in the original unnormalised quartic
+000061 | word basis,
+000062 | 
+000063 |     G = diag(1,3,3,3,6),
+000064 |     E_r = q_r q_r^T G / 12,                  r=1,...,6,       (1.3)
+000065 | 
+000066 | for the six displayed primitive rays q_r.  Reconstructing these exact
+000067 | rational matrices from the current checker gives
+000068 | 
+000069 |     sum_r E_r = I5,
+000070 |     rank(E_r) = 1,
+000071 |     trace(E_r) = 5/6,
+000072 |     E_r^2 = (5/6) E_r,
+000073 |     trace(E_r E_s) = 1/36                    for r != s.      (1.4)
+000074 | 
+000075 | The six effects are linearly independent, so their span has dimension six.
+000076 | No distinct pair commutes.  Solving X E_r = E_r X for all six r gives the
+000077 | one-dimensional commutant C I5.  All sixty native quartic reflections permute
+000078 | the six effects by the standard six-point action.
+000079 | 
+000080 | Therefore (1.2) and (1.3) are not two presentations of one instrument.  Their
+000081 | ranks, effect-space dimensions, commutants and marked group actions differ.
+000082 | The new doily POVM is a concrete covariant measurement on the already existing
+000083 | H5.  To realize it after erasure one must additionally measure or couple to
+000084 | the logical H5 factor; the original erasure/recovery map does not contain that
+000085 | measurement.
+000086 | 
+000087 | Original paths for this comparison:
+000088 | 
+000089 | * tfpt_explorer/process.py:242-258 constructs the normalized five codewords.
+000090 | * _newest2/TFPT_Gesamtdokumentation2_20260927.md:8506-8568 reconstructs the
+000091 |   code and checks (1.1), including observation ranks 1,10,25.
+000092 | * experiments/theory-contracts/joint-native-algebra-selection-20261016/
+000093 |   PROOF.md:42-54 states the actual erasure intertwiner and
+000094 |   E(rho)=rho tensor I4/4, R(X)=Tr_4 X.
+000095 | * experiments/theory-contracts/joint-native-algebra-selection-20261016/
+000096 |   operator_audit.md:72-90 states W^*W=I20 and the physical preparation
+000097 |   W(rho tensor I4/4)W^*.
+000098 | * experiments/theory-contracts/atlas-defect-synthesis-20261024/
+000099 |   doily_quartic_bridge.py:638-669 constructs G and the six native effects;
+000100 |   lines 671-693 check all sixty covariances.
+000101 | * experiments/theory-contracts/atlas-defect-synthesis-20261024/
+000102 |   DOILY-QUARTIC.txt:141-180 states the representation-level POVM verdict.
+000103 | 
+000104 | 
+000105 | 2. The P1/P2 loop is a closure check, not a P1-only selection of five
+000106 | ---------------------------------------------------------------------
+000107 | 
+000108 | The current split original source says explicitly that

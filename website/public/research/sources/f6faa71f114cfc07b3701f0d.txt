@@ -1,0 +1,84 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/charged-sector-readout-clock-20261013/checker.py
+Original file SHA-256: bf949d11034c1d17322971b58c712c0bef01bb6a3d0e6aa63aeca6d7d41b45d6
+Inclusive original lines: 42-117
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000042 | def run():
+000043 |     here=Path(__file__).parent
+000044 |     manifest=json.loads((here/'source_manifest.json').read_text())
+000045 |     for entry in manifest['sources']:
+000046 |         if hashlib.sha256((ROOT/entry['path']).read_bytes()).hexdigest()!=entry['sha256']:
+000047 |             raise RuntimeError('Source changed: '+entry['path'])
+000048 |     native=_native_neutral_branch()
+000049 |     P=native['P5']; I=s.eye(8)
+000050 |     roots=[s.Matrix(r)/2 for r in sorted(native['retained'])]
+000051 |     chevalley=_actual_current_source()['chevalley']
+000052 |     all_roots={root for root in chevalley.roots if chevalley.ridx[root] in native['closure']}
+000053 |     clock=json.loads((ROOT/'experiments/theory-contracts/compiler-integral-triality-20260918/certificate.json').read_text())
+000054 |     C=s.Matrix(clock['clock_matrices']['C']['vector'])
+000055 |     J=s.Matrix(clock['clock_matrices']['J']['vector'])
+000056 |     checks=[]
+000057 |     def check(name, value):
+000058 |         checks.append({'name':name,'ok':bool(value)})
+000059 |     check('original 48 marked roots and full 240 closure',len(roots)==48 and len(all_roots)==240)
+000060 |     check('original P5 orthogonal rank five',P==s.diag(1,1,1,1,1,0,0,0) and P*P==P and P.trace()==5)
+000061 |     check('every retained charge has D5 norm5/4 A3 norm3/4 and total2',
+000062 |           all((b.T*P*b)[0]==s.Rational(5,4) and (b.T*(I-P)*b)[0]==s.Rational(3,4) and (b.T*b)[0]==2 for b in roots))
+000063 |     check('old neutral response contains no D5 component',P*native['R_matrix']==s.zeros(8))
+000064 |     z,w1,w2=s.symbols('z w1 w2')
+000065 |     # Actual current Ward contraction, not an imposed fractional pair function.
+000066 |     current=1/(z-w1)-1/(z-w2)
+000067 |     check('Wick sector-stress insertion gives normalized Ward kernel',
+000068 |           s.factor(s.Rational(5,8)*current**2-s.Rational(5,8)*(w1-w2)**2/((z-w1)**2*(z-w2)**2))==0)
+000069 |     coeffs={str(a):partition_coefficients(a,12) for a in [s.Rational(5,4),s.Rational(3,4),s.Integer(2)]}
+000070 |     check('oscillator partitions generate carrier exponent5/4 through degree12',
+000071 |           coeffs['5/4']==[s.rf(s.Rational(5,4),n)/s.factorial(n) for n in range(13)])
+000072 |     check('convolution restores full local exponent2 through degree12',
+000073 |           [sum(coeffs['5/4'][k]*coeffs['3/4'][n-k] for k in range(n+1)) for n in range(13)]==coeffs['2']==list(map(s.Integer,range(1,14))))
+000074 |     u,q=s.symbols('u q',positive=True)
+000075 |     a=s.Rational(5,4)
+000076 |     G=((1-u)/(1-u*q))**a
+000077 |     check('normalized carrier response at q1',G.subs(q,1)==1)
+000078 |     check('zero-grade probability retains nonzero normalization',G.subs(q,0)==(1-u)**a)
+000079 |     # Use positive u in (0,1); fourth powers remove fractional-power simplification ambiguity.
+000080 |     check('reference-ratio matches target analytic factor on physical branch',
+000081 |           s.factor((G/G.subs(q,0))**4-(1-u*q)**-5)==0)
+000082 |     check('mean energy grade differs in carrier and full readout',
+000083 |           s.simplify(s.diff(G,q).subs(q,1)-s.Rational(5,4)*u/(1-u))==0)
+000084 |     clock_results={}
+000085 |     for name,g,rank,norm in [('C',C,4,s.Rational(23,8)),('J',J,2,s.Integer(2))]:
+000086 |         d=g.T*P*g-P
+000087 |         check(name+' is orthogonal and preserves original closed root set',g.T*g==I and {tuple(g*s.Matrix(r)) for r in all_roots}==all_roots)
+000088 |         check(name+' does not preserve the fixed carrier projector',d.rank()==rank and s.trace(d*d)==norm)
+000089 |         check(name+' transports marked response covariantly',all(s.simplify(((g*b).T*(g*P*g.T)*(g*b))[0]-(b.T*P*b)[0])==0 for b in roots))
+000090 |         clock_results[name]={'difference_rank':d.rank(),'difference_squared_norm':str(s.trace(d*d)),
+000091 |                              'retained_carrier_norms_after_action':dict(Counter(str(((g*b).T*P*(g*b))[0]) for b in roots))}
+000092 |     columns=[]
+000093 |     for i in range(8):
+000094 |         for j in range(i,8):
+000095 |             B=s.zeros(8); B[i,j]=B[j,i]=1
+000096 |             columns.append(s.Matrix([x for g in (C,J) for x in g.T*B*g-B]))
+000097 |     rank=modular_rank(s.Matrix.hstack(*columns))
+000098 |     # Rank mod101 gives the lower bound35 over Q. Identity gives upper bound35.
+000099 |     check('actual common clock invariant symmetric space one dimensional',rank==35 and all(g.T*I*g==I for g in(C,J)))
+000100 |     avg=s.Rational(5,8)*I
+000101 |     check('unique invariant trace5 quadratic coefficient is5/8I',avg.trace()==5 and all(g.T*avg*g==avg for g in(C,J)))
+000102 |     spin=s.ones(8,1)/2
+000103 |     check('explicit spinor clock changes carrier charge norm', (spin.T*P*spin)[0]==s.Rational(5,4) and ((C*spin).T*P*C*spin)[0]==1)
+000104 |     # At fixed u>0, scaled common flow produces q^(5/8), not a carrier exponent5/4.
+000105 |     check('scaled total and carrier flows have unequal second cumulants',
+000106 |           (s.Rational(5,8)**2*2-s.Rational(5,4))==-s.Rational(15,32))
+000107 |     result={'verdict':'PARTIAL','mathematical_verdict':'MARKED_RESPONSE_CONSTRUCTED_CLOCK_IDENTIFICATION_REJECTED',
+000108 |       'passed':sum(x['ok'] for x in checks),'total':len(checks),'checks':checks,
+000109 |       'clock_results':clock_results,'clock_symmetric_constraint_rank':rank,
+000110 |       'carrier_coefficients_0_to_5':list(map(str,coeffs['5/4'][:6])),
+000111 |       'joint_response':'((1-u)/(1-u*q5))^(5/4) * ((1-u)/(1-u*q3))^(3/4)',
+000112 |       'common_time_H_delta':'exp(-t*(1-delta.dot(beta)))*((1-u)/(1-u*exp(-t)))^2',
+000113 |       'scope':'Chosen native E8 lattice-VOA vacuum, marked D5/A3 splitting, regularized charged vector; oscillator conformal grade, not particle number.',
+000114 |       'physical_gates_closed':[], 'complete_TFPT_solution':False}
+000115 |     (here/'results.json').write_text(json.dumps(result,indent=2)+'\n')
+000116 |     print(json.dumps(result,indent=2))
+000117 |     if result['passed']!=result['total']: raise SystemExit(1)

@@ -1,0 +1,102 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/bracket_process_origin_20261028/check_source_charge_glue_quarter.py
+Original file SHA-256: 4bd24bb6514cf8ab9d4b65140ad07b78b3eb7709fe461d671bd8421f39b4af85
+Inclusive original lines: 1-94
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact relation of the given charged fold holonomy and internal E8 glue clock."""
+000002 | from collections import Counter
+000003 | from fractions import Fraction as F
+000004 | from itertools import combinations, product
+000005 | from pathlib import Path
+000006 | import hashlib
+000007 | import json
+000008 | 
+000009 | HERE=Path(__file__).resolve().parent
+000010 | [OMITTED: non-scientific conversation or execution metadata]
+000011 | FOLD=REPO/'experiments/theory-contracts/v16-operator-pullback-20261014/fold-results.json'
+000012 | WARD=REPO/'experiments/theory-contracts/seam-joint-ward-state-20261014/PROOF.txt'
+000013 | PINS={FOLD:'253f370a9c84b70c28169ed0aad83d1866245804227e44aa0189e823382f5639',
+000014 |       WARD:'7c0cd92dfc5eca88260baae0af9edad66f958a27ce0d15d7965414b3971f8da0'}
+000015 | checks=[]
+000016 | def need(value,label):
+000017 |     if not value:raise RuntimeError(label)
+000018 |     checks.append(label)
+000019 | def dot(a,b):return sum(x*y for x,y in zip(a,b))
+000020 | def mv(A,x):return tuple(dot(row,x) for row in A)
+000021 | def ine8(x):
+000022 |     integral=all(z.denominator==1 for z in x)
+000023 |     half=all(z.denominator==2 for z in x)
+000024 |     return (integral or half) and sum(x)%2==0
+000025 | def counter(values):return {str(k):v for k,v in sorted(Counter(values).items())}
+000026 | 
+000027 | for path,pin in PINS.items():need(hashlib.sha256(path.read_bytes()).hexdigest()==pin,'source pin '+path.name)
+000028 | fold=json.loads(FOLD.read_text())
+000029 | M=tuple(tuple(F(z) for z in row) for row in fold['explicit_Weyl_matrix'])
+000030 | MT=tuple(zip(*M))
+000031 | need(all(dot(M[i],M[j])==int(i==j) for i in range(8) for j in range(8)),'given M is orthogonal')
+000032 | roots=[]
+000033 | for i,j in combinations(range(8),2):
+000034 |     for a,b in product((-1,1),repeat=2):
+000035 |         root=[F(0)]*8;root[i]=F(a);root[j]=F(b);roots.append(tuple(root))
+000036 | for signs in product((-1,1),repeat=8):
+000037 |     if signs.count(-1)%2==0:roots.append(tuple(F(z,2) for z in signs))
+000038 | rootset=set(roots)
+000039 | need(len(rootset)==240 and all(ine8(r) and dot(r,r)==2 for r in roots),'standard E8 roots')
+000040 | need({mv(M,r) for r in roots}==rootset,'given M preserves the entire E8 root lattice')
+000041 | q=mv(M,(F(1),)*8)
+000042 | ward=(F(0),F(0),F(1),F(0),F(0),F(1),F(0),F(0))
+000043 | need(q==tuple(2*z for z in ward),'same-source charge q maps to twice the Ward root')
+000044 | need(ward in rootset and dot(q,ward)==4,'Ward field has original source charge four')
+000045 | v=(F(0),)*5+(F(1,2),)*3
+000046 | c0=mv(M,tuple(F(j,4) for j in range(8)))
+000047 | need(c0==tuple(map(F,(-1,0,2,-1,0,F(3,2),F(-1,2),F(-1,2)))),'explicit geometric-quarter cocharacter')
+000048 | integer_error=tuple(a+b for a,b in zip(c0,v))
+000049 | need(integer_error==tuple(map(F,(-1,0,2,-1,0,2,0,0))) and ine8(integer_error),
+000050 |      'c0 plus internal glue cocharacter is an E8 lattice vector')
+000051 | need(all((dot(c0,r)+dot(v,r))%1==0 for r in roots),'C0 equals inverse internal glue clock on all roots')
+000052 | need(sum((dot(c0,r)-dot(v,r))%1!=0 for r in roots)==128,'C0 differs from internal clock on all128 halfroots')
+000053 | need(ine8(tuple(4*z for z in v)) and not ine8(tuple(2*z for z in v)),'internal clock has exact order four')
+000054 | x=tuple(map(F,(-2,-2,-2,3,3,0,0,0)))
+000055 | res3={r for r in roots if dot(x,r)%5==3}
+000056 | creation={r for r in res3 if dot(v,r)%1==F(1,2)}
+000057 | need(len(res3)==50 and len(creation)==30,'full U5 sector50 has joint glue-grade-two subspace30')
+000058 | need({r for r in res3 if dot(c0,r)%1==F(1,2)}==creation,'geometric-quarter joint field component is exactly creation30')
+000059 | need(counter(dot(c0,r)%1 for r in res3)=={'1/4':20,'1/2':30},'source geometric quarter separates30 and20')
+000060 | cases=[]
+000061 | for alpha in (F(1,4),F(3,4)):
+000062 |     mu=mv(M,tuple((F(j)+alpha)/8 for j in range(8)))
+000063 |     need(ine8(tuple(16*z for z in mu)) and not ine8(tuple(8*z for z in mu)),
+000064 |          'given charged fold holonomy has order16 '+str(alpha))
+000065 |     difference=tuple(2*mu[i]-alpha*q[i]/4-c0[i] for i in range(8))
+000066 |     need(all(z==0 for z in difference),'exact charged/charge/geometric factorization '+str(alpha))
+000067 |     # No state, time, background or holonomy is changed. This is a relation
+000068 |     # among commuting characters already defined on the stipulated module.
+000069 |     need(all((2*dot(mu,r)-alpha*dot(q,r)/4+dot(v,r))%1==0 for r in roots),
+000070 |          'g_alpha squared equals charge phase times inverse glue on every root '+str(alpha))
+000071 |     raw_ward=(2*dot(mu,ward))%1
+000072 |     raw={r for r in res3 if (2*dot(mu,r))%1==raw_ward}
+000073 |     correct={r for r in res3 if (2*dot(mu,r)-alpha*dot(q,r)/4)%1==F(1,2)}
+000074 |     need(correct==creation,'joint actual holonomy and charge recovers creation component '+str(alpha))
+000075 |     need(raw!=creation,'discarding source charge phase gives a different component '+str(alpha))
+000076 |     cases.append({'alpha':str(alpha),'raw_g2_ward_phase_exponent':str(raw_ward),
+000077 |                   'raw_g2_ward_eigenspace_inside_U5_residue3':len(raw),
+000078 |                   'raw_selected_creation_roots':len(raw&creation),
+000079 |                   'retained_charge_joint_selection':len(correct),
+000080 |                   'source_charge_histogram_on_creation30':counter(dot(q,r) for r in creation)})
+000081 | need([x['raw_g2_ward_eigenspace_inside_U5_residue3'] for x in cases]==[1,11],
+000082 |      'raw quarter comparison has exact one and eleven dimensional components')
+000083 | result={'verdict':'GIVEN_CHARGED_FOLD_CLOCK_AND_SOURCE_CHARGE_RECOVER_INVERSE_INTERNAL_GLUE',
+000084 |         'formula':'g_alpha^2 = exp(2 pi i alpha Q_source/4) C_internal^(-1)',
+000085 |         'geometric_cocharacter_target':list(map(str,c0)),
+000086 |         'lattice_error_c0_plus_v':list(map(str,integer_error)),
+000087 |         'proof_for_all_lattice_states':'c0+v belongs to E8=E8*, not only a finite root test',
+000088 |         'creation_field_component':'U5 residue3 and (g_alpha^2 exp(-2 pi i alpha Q_source/4)) eigenvalue -1',
+000089 |         'full_U5_residue3_dimension':50,'creation_joint_dimension':30,'cases':cases,
+000090 |         'checks':len(checks),'check_names':checks,
+000091 |         'sources':{str(p.relative_to(REPO)):pin for p,pin in PINS.items()},
+000092 |         'scope':'Characters of the given marked E8 Fock/vertex representation. Full charged g_alpha is retained. No new physical clock, modified state, dropped phase, affine winding operator, NS/R transition, local P1 field map, executed measurement or physical OS time is inferred.'}
+000093 | (HERE/'source-charge-glue-quarter-results.json').write_text(json.dumps(result,indent=2)+'\n')
+000094 | print(json.dumps(result,indent=2))

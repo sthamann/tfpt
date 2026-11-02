@@ -1,0 +1,104 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/C4-DESCENT-FINITE-MONODROMY.txt
+Original file SHA-256: b707e2d720a6dad3a74115b62f16d76077dfda3fe0d3eb8f0f8f76edaf5d7bd5
+Inclusive original lines: 181-276
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000181 | The four ordinary z-plane peripheral matrices are
+000182 | 
+000183 |   Mk=U^k M0 U^(-k),       k=0,1,2,3.
+000184 | 
+000185 | They multiply to I and generate a group of order 12, namely A4.  Adding the
+000186 | C4 deck fiber action U^(-1) extends this to S4 of order 24.  Cover degree,
+000187 | ordinary puncture monodromy, and extended orbifold monodromy are therefore
+000188 | three distinct quantities.
+000189 | 
+000190 | 4. The actual quotient coordinate is C4, not D4
+000191 | =================================================
+000192 | 
+000193 | In t=z^4 the three orbifold points have orders
+000194 | 
+000195 |   t=0: 4,       t=1: 3,       t=infinity: 2.
+000196 | 
+000197 | Normalize the finite S4 target coordinate J so that its orders 3, 2, 4 lie
+000198 | at J=0,1,infinity.  The unique required Mobius relabeling is
+000199 | 
+000200 |   J=1-1/t,
+000201 | 
+000202 | and consequently the actual degree four source map is
+000203 | 
+000204 |   J_actual(z)=1-z^(-4).                                 (8)
+000205 | 
+000206 | It sends the four points mu4 to J=0, sends z=0 to J=infinity with
+000207 | ramification four, and sends z=infinity to J=1 with ramification four.
+000208 | Equation (8) is invariant under z->iz and is not invariant under z->1/z.
+000209 | It uses the C4 quotient already present in the connection.  No additional
+000210 | degree two map Phi is required in this analytic class.
+000211 | 
+000212 | The target in this argument is the finite spherical (3,2,4) quotient.  If
+000213 | one instead retains the full modular cusp of PSL(2,Z), its monodromy is
+000214 | infinite and fourth power ramification does not make it trivial.  Thus (8)
+000215 | does not prove that the full modular connection has finite monodromy.  It
+000216 | identifies the already finite level four image carried by the actual ODE.
+000217 | 
+000218 | The previously studied D4 invariant map
+000219 | 
+000220 |   -(z^4-1)^2/(4z^4)
+000221 | 
+000222 | belongs to a different marked pullback.  Its inversion symmetry cannot be
+000223 | promoted to this connection, in agreement with the exact rank nine
+000224 | obstruction below.
+000225 | 
+000226 | 5. Relation to the negative inversion result
+000227 | =============================================
+000228 | 
+000229 | D4-CONNECTION-LIFT.txt proves that the rational equation
+000230 | 
+000231 |   G'=A(z)G+z^(-2)G A(1/z)
+000232 | 
+000233 | has no nonzero solution.  Its local and degree analysis reduces every
+000234 | possible rational solution to nine coefficients, and the exact coefficient
+000235 | system has rank nine.  The new certificate replays this rank computation.
+000236 | 
+000237 | There is no conflict:
+000238 | 
+000239 |   * the C4 descent uses only the symmetry already visible in A(z);
+000240 |   * the finite triangle proof needs no inversion linearization;
+000241 |   * the absent D4 lift excludes the stronger marked D4 connection, while
+000242 |     the actual C4 orbifold monodromy is finite S4.
+000243 | 
+000244 | The older report's negative theorem stands.  Only its former statement that
+000245 | the analytic v117 identification remained open is superseded by the
+000246 | recovered September proof.
+000247 | 
+000248 | 6. Executable certificate
+000249 | ==========================
+000250 | 
+000251 |   research-20261026-real-boundary/check_c4_triangle_source.py
+000252 |   research-20261026-real-boundary/c4-triangle-results.json
+000253 | 
+000254 | The checker performs 19 exact symbolic and finite checks:
+000255 | 
+000256 |   * the four-residue sum and C4 covariance;
+000257 |   * both quotient gauges and their meromorphic equivalence;
+000258 |   * all residue characteristic and minimal polynomial identities;
+000259 |   * the local marked orders and oriented product;
+000260 |   * exact orders 24 and 12 for the extended and ordinary images;
+000261 |   * the unique marked Nielsen orbit;
+000262 |   * the C4 properties and labels of (8);
+000263 |   * the rank nine rational inversion obstruction.
+000264 | 
+000265 | Normal Python and Python -OO produce byte identical JSON.  The finite
+000266 | checker certifies the algebra.  The regular singular Frobenius step and the
+000267 | faithfulness argument are the analytic proof given in Sections 2 and 3.
+000268 | 
+000269 | Status for the larger TFPT program
+000270 | ==================================
+000271 | 
+000272 | This closes the exact analytic ODE to finite monodromy link that v117 still
+000273 | labels numerical.  It does not identify the S4 fiber representation with a
+000274 | physical seam state, field measure, or Calderon projector.  The older source
+000275 | itself keeps that field action as the next open bridge.  No such physical
+000276 | identification is inferred here from the finite group result.

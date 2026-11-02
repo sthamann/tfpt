@@ -1,0 +1,174 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/PAIR-INDEX-DETERMINANT-REVIEW.txt
+Original file SHA-256: f85695ecf75c5935e469a4fedb9e72fa0920ea90d9189a33c5715526bc11acc6
+Inclusive original lines: 1-166
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | PAIR INDEX AND THE RELATIVE SEAM DETERMINANT
+000002 | ============================================
+000003 | 
+000004 | 25 October 2026. Independent analytic review. No Atlas, index, paper or
+000005 | existing contract was changed. This note reviews only the ordinary Fredholm
+000006 | determinant and its precise TFPT scope.
+000007 | 
+000008 | Verdict
+000009 | -------
+000010 | 
+000011 | The proposed theorem is correct after making its hypotheses and orientation
+000012 | explicit.
+000013 | 
+000014 | Let P and Q be orthogonal projections on the same Hilbert space, assume
+000015 | Q-P is trace class, and put
+000016 | 
+000017 |   k=Tr(Q-P).                                                (1)
+000018 | 
+000019 | Then k is an integer pair index with the sign convention in (1), and for
+000020 | every |z|<1,
+000021 | 
+000022 |   det_F[(I-zQ)(I-zP)^(-1)] = (1-z)^k.                      (2)
+000023 | 
+000024 | The difference Q-P need not be positive or finite rank. In particular, a
+000025 | primitive value k=1 fixes the scalar factor 1-z without selecting a primitive
+000026 | line, a defect vector or a rank-one transfer operator.
+000027 | 
+000028 | If Q=UPU* for a unitary U satisfying Q-P trace class and if C is a positive
+000029 | contraction with C-P trace class, the exact three-factor cancellation gives
+000030 | 
+000031 |   det_F[(I-z UCU*)(I-zC)^(-1)] = (1-z)^k.                  (3)
+000032 | 
+000033 | Thus the existing faithful KMS theorem extends from the old unit shift and its
+000034 | integer powers to every unitary in the same restricted polarization class.
+000035 | This is a genuine strengthening of the present contract. It weakens the need
+000036 | for the specially named primitive ray only when the requested output is the
+000037 | single scalar determinant response.
+000038 | 
+000039 | It does not reconstruct the primitive vector, transfer spectrum, state
+000040 | preparation or the operator U_Sigma^min. It also does not derive the original
+000041 | coefficient 5/4. An ordinary pair index is integral. The original formula uses
+000042 | the already separate carrier weight B gamma=5/4 multiplying the logarithm.
+000043 | 
+000044 | 1. Projection-pair proof and sign
+000045 | ---------------------------------
+000046 | 
+000047 | Write
+000048 | 
+000049 |   A_Q(z)=I-zQ,       A_P(z)=I-zP,
+000050 |   R(z)=A_Q(z) A_P(z)^(-1).                                (4)
+000051 | 
+000052 | For |z|<1 both inverses exist. Moreover
+000053 | 
+000054 |   R(z)-I=-z(Q-P)A_P(z)^(-1)                               (5)
+000055 | 
+000056 | is trace class, so its ordinary Fredholm determinant is defined.
+000057 | 
+000058 | Direct differentiation gives
+000059 | 
+000060 |   R'(z)R(z)^(-1)
+000061 |     =A_Q(z) [(P-Q)/(1-z)] A_Q(z)^(-1).                    (6)
+000062 | 
+000063 | For completeness, differentiate A_Q A_P^(-1), multiply on the right by
+000064 | A_P A_Q^(-1), and use
+000065 | 
+000066 |   A_P^(-1)P=P/(1-z),       QA_Q^(-1)=Q/(1-z).
+000067 | 
+000068 | Since P-Q is trace class, cyclicity against the bounded invertible A_Q gives
+000069 | 
+000070 |   Tr[R'R^(-1)]
+000071 |     =Tr(P-Q)/(1-z)
+000072 |     =-k/(1-z).                                             (7)
+000073 | 
+000074 | The Fredholm Jacobi formula and det_F R(0)=1 now imply on the analytic branch
+000075 | in the unit disk
+000076 | 
+000077 |   log det_F R(z)=k log(1-z),                               (8)
+000078 | 
+000079 | which is (2).
+000080 | 
+000081 | The sign is fixed by the stated order of the relative pair. On the actual old
+000082 | negative sea
+000083 | 
+000084 |   P=1_(B_a<0),       u=M_z,       uPu*=P+Pi_0,
+000085 | 
+000086 | one has Q-P=Pi_0 and k=+1, hence 1-z. For the complementary positive Hardy
+000087 | projection the same u gives k=-1 and the ordered factor is (1-z)^(-1).
+000088 | Reversing U or reversing the ordered determinant also reverses k.
+000089 | 
+000090 | The integrality in (1) is the standard index theorem for a trace-class pair
+000091 | of projections. With the Avron, Seiler and Simon convention
+000092 | ind(P,Q)=Tr(P-Q), the present k equals -ind(P,Q). The bibliographic source is
+000093 | 
+000094 |   J. Avron, R. Seiler, B. Simon,
+000095 |   The Index of a Pair of Projections,
+000096 |   Journal of Functional Analysis 120 (1994), 220-237,
+000097 |   DOI 10.1006/jfan.1994.1031.
+000098 | 
+000099 | The determinant identity itself follows from the short calculation above and
+000100 | does not require a separate finite-rank reduction.
+000101 | 
+000102 | 2. Exact extension from P to any trace-class covariance
+000103 | --------------------------------------------------------
+000104 | 
+000105 | Assume now
+000106 | 
+000107 |   0 <= C <= I,       C-P in L1,
+000108 |   Q=UPU*,            Q-P in L1.                            (9)
+000109 | 
+000110 | The phrase any U below always means a unitary satisfying the second condition
+000111 | in (9). It does not mean every unitary on the Hilbert space.
+000112 | 
+000113 | Put
+000114 | 
+000115 |   A_C=I-zC,       A_UC=I-zUCU*.
+000116 | 
+000117 | Then UCU*-C is trace class because
+000118 | 
+000119 |   UCU*-C=U(C-P)U*+(Q-P)+(P-C).                            (10)
+000120 | 
+000121 | The relative operator has the exact factorization
+000122 | 
+000123 |   A_UC A_C^(-1)
+000124 |    =[A_UC A_Q^(-1)]
+000125 |     [A_Q A_P^(-1)]
+000126 |     [A_P A_C^(-1)].                                      (11)
+000127 | 
+000128 | Every factor is identity plus trace class. The first factor is the unitary
+000129 | conjugate of
+000130 | 
+000131 |   A_C A_P^(-1),
+000132 | 
+000133 | while the third factor is its inverse. Fredholm determinant multiplicativity
+000134 | and unitary invariance cancel their determinants exactly. The middle factor is
+000135 | the projection pair in (2). This proves (3) without commutativity of C with P
+000136 | or U and without a sign assumption on UCU*-C.
+000137 | 
+000138 | Positivity of C is the natural covariance hypothesis and ensures the displayed
+000139 | inverses for |z|<1. Algebraically, the same proof only needs bounded C and an
+000140 | open z domain on which the inverses exist.
+000141 | 
+000142 | 3. Smooth scalar winding on the actual circle
+000143 | ----------------------------------------------
+000144 | 
+000145 | Let P=P_- be the negative Fourier projection on L2(S1), and let U=M_u for a
+000146 | smooth scalar function u:S1->U(1). Write
+000147 | 
+000148 |   u(theta)=sum_j u_j exp(i j theta).
+000149 | 
+000150 | For one Fourier monomial, [P,M_(z^j)] is a partial isometry of rank |j|.
+000151 | Consequently
+000152 | 
+000153 |   ||[P,M_u]||_1 <= sum_j |j| |u_j|.                       (12)
+000154 | 
+000155 | The right side is finite for smooth u. Since
+000156 | 
+000157 |   UPU*-P=[U,P]U*,                                         (13)
+000158 | 
+000159 | the projection pair is trace class. The Toeplitz pair-index theorem, with the
+000160 | negative-sea orientation used here, gives
+000161 | 
+000162 |   Tr(UPU*-P)=wind(u).                                      (14)
+000163 | 
+000164 | Equations (3) and (14) therefore yield
+000165 | 
+000166 |   det_F[(I-z UCU*)(I-zC)^(-1)]

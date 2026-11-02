@@ -1,0 +1,101 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/compiler-current-descendant-20260919/checker.py
+Original file SHA-256: b342a8b102d9b1dedf150ccbd4812ccb26fa1b9a4b7cb70401b6cdd8201b4420
+Inclusive original lines: 26-118
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000026 | def main(out):
+000027 |     require(hashlib.sha256(SOURCE.read_bytes()).hexdigest()==PIN,'pinned original sixty-ray source')
+000028 |     spec=importlib.util.spec_from_file_location('native_source_16',SOURCE)
+000029 |     src=importlib.util.module_from_spec(spec);spec.loader.exec_module(src)
+000030 |     rays=src.source_rays();bell,_,_=src.reflection_actions(rays)
+000031 |     I4=s.eye(4);I16=s.eye(16);I28=s.eye(28)
+000032 |     swap=s.Matrix(16,16,lambda i,j:int(i//4==j%4 and i%4==j//4))
+000033 |     plus=(I16+swap)/2;minus=(I16-swap)/2
+000034 |     # Two NS creation levels: a_i=psi_i,-3/2 and b_i=psi_i,-1/2.
+000035 |     pairs=list(it.combinations(range(8),2));lookup={p:k for k,p in enumerate(pairs)}
+000036 |     masks=[(1<<i)|(1<<j) for i,j in pairs];mlookup={m:k for k,m in enumerate(masks)}
+000037 |     def current(X):
+000038 |         """dGamma(diag(X,X)) with CAR signs, on the two-fermion sector."""
+000039 |         Z=s.zeros(28)
+000040 |         for shift in [0,4]:
+000041 |             for i in range(4):
+000042 |                 for j in range(4):
+000043 |                     if X[i,j]==0:continue
+000044 |                     p,q=i+shift,j+shift
+000045 |                     for col,m in enumerate(masks):
+000046 |                         if not (m>>q)&1:continue
+000047 |                         after=m^(1<<q);sign=(-1)**((m&((1<<q)-1)).bit_count())
+000048 |                         if (after>>p)&1:continue
+000049 |                         sign*=(-1)**((after&((1<<p)-1)).bit_count())
+000050 |                         row=mlookup[after|(1<<p)];Z[row,col]+=sign*X[i,j]
+000051 |         return Z
+000052 |     T=s.zeros(28,16)
+000053 |     for i,j in it.product(range(4),repeat=2):T[lookup[(i,j+4)],4*i+j]=1
+000054 |     B=s.Matrix.hstack(*[s.Matrix(gaussian(p)).reshape(16,1)/2 for p in src.SYMMETRIC_PAULIS])
+000055 |     E=T*B
+000056 |     require(T.H*T==I16,'one-a one-b CAR isometry')
+000057 |     require(B.H*B==s.eye(10) and B*B.H==plus,'native Bell basis spans symmetric tensor sector')
+000058 |     require(E.H*E==s.eye(10),'explicit Bell-to-two-mode-fermion isometry')
+000059 |     J1=s.zeros(28)
+000060 |     for col,m in enumerate(masks):
+000061 |         for i in range(4):
+000062 |             if not (m>>i)&1:continue
+000063 |             after=m^(1<<i);sign=(-1)**((m&((1<<i)-1)).bit_count())
+000064 |             if (after>>(i+4))&1:continue
+000065 |             sign*=(-1)**((after&((1<<(i+4))-1)).bit_count())
+000066 |             J1[mlookup[after|(1<<(i+4))],col]+=sign
+000067 |     require(J1*E==s.zeros(28,10),'U1 positive current J1 annihilates entire symmetric Bell image')
+000068 |     require((J1*T).rank()==6,'antisymmetric partner has nonzero U1 descendant map')
+000069 |     Qtotal=current(I4)
+000070 |     Lferm=s.diag(*[sum(s.Rational(3,2) if k<4 else s.Rational(1,2) for k in pair) for pair in pairs])
+000071 |     require(Qtotal*E==2*E,'charge two highest-weight U1 sector')
+000072 |     require(Lferm*E==2*E,'fermion conformal weight two')
+000073 |     hu1=s.Rational(2**2,8);hsu=2-hu1
+000074 |     require(hsu==s.Rational(3,2),'SU4 descendant conformal weight three halves')
+000075 |     for i,j in it.product(range(4),repeat=2):
+000076 |         X=s.zeros(4);X[i,j]=1
+000077 |         dx=s.kronecker_product(X,I4)+s.kronecker_product(I4,X)
+000078 |         require(current(X)*E==E*(B.H*dx*B),'all horizontal matrix-unit current actions intertwine')
+000079 |     require(-I28*E==E*(-s.eye(10)),'central iI acts as minus one in charge-two sector')
+000080 |     # Current Casimir in exact Pauli normalization t_a=P_a/(2 sqrt2).
+000081 |     paulis=[gaussian(p) for v,p in zip(src.V4,src.PAULIS) if any(v)]
+000082 |     Omega=sum((s.kronecker_product(p,p) for p in paulis),s.zeros(16))/8
+000083 |     require(Omega==(swap-I16/4)/2,'normalized SU4 Casimir tensor')
+000084 |     casimir=s.Rational(15,4)*I16+2*Omega
+000085 |     require(casimir*plus==s.Rational(9,2)*plus and casimir*minus==s.Rational(5,2)*minus,'symmetric and antisymmetric Casimirs')
+000086 |     mean=s.zeros(16);meanJ2=s.zeros(16)
+000087 |     for ell,z in enumerate(rays):
+000088 |         P=gaussian(np.outer(z,z.conj()))/4;r=I4-2*P
+000089 |         G=s.kronecker_product(r,r);h=I16-G
+000090 |         q=P-I4/4;j=s.kronecker_product(q,I4)+s.kronecker_product(I4,q)
+000091 |         require(h==s.Rational(3,2)*I16+2*j-2*j*j,'each tagged generator is a quadratic collective-current polynomial on two copies')
+000092 |         mean+=h/60;meanJ2+=j*j/60
+000093 |         require(s.kronecker_product(P,P)*minus==s.zeros(16),'rank-one double occupation vanishes on antisymmetric six')
+000094 |         require((2*(s.kronecker_product(P,I4)+s.kronecker_product(I4,P))-h)*minus==s.zeros(16),'joint and local paths agree on antisymmetric six')
+000095 |         jq=current(q);hcur=s.Rational(3,2)*I28+2*jq-2*jq*jq
+000096 |         hb=s.eye(10)-gaussian(bell[ell])
+000097 |         require(hcur*E==E*hb,'tagged current polynomial intertwines full native Bell generator')
+000098 |         D=s.diag(r,r)
+000099 |         wedge=s.Matrix(28,28,lambda row,col:D[pairs[row][0],pairs[col][0]]*D[pairs[row][1],pairs[col][1]]-D[pairs[row][0],pairs[col][1]]*D[pairs[row][1],pairs[col][0]])
+000100 |         U=-s.I*wedge # wedge^2 of e^(-i*pi/4) diag(r,r)
+000101 |         require(r.det()==-1 and U*U==-I28,'determinant-cleaned SU4 lift and central square')
+000102 |         require(U*E==E*(-s.I*gaussian(bell[ell])),'phase-faithful sixty-event current lift')
+000103 |         V=s.I*U
+000104 |         require(V.H==V and V*V==I28,'sector-phase-corrected event is Hermitian involution')
+000105 |         require((I28-V)*E==E*hb,'bounded affine event restriction agrees with polynomial and source')
+000106 |     require(mean==(4*I16-swap)/5,'exact mean from sixty native directions')
+000107 |     require(meanJ2==casimir/10,'native mean quadratic current equals Casimir divided by ten')
+000108 |     Rkz=2*Omega/5
+000109 |     require(mean==s.Rational(3,4)*I16-Rkz,'mean is scalar minus level-one KZ pair residue')
+000110 |     require(mean*plus==s.Rational(3,5)*plus and mean*minus==minus,'mean spectrum three-fifths on ten and one on six')
+000111 |     # The actual current grade and the formal nonintegrable primary differ.
+000112 |     h_primary10=s.Rational(9,2)/5
+000113 |     require(h_primary10==s.Rational(9,10) and hsu!=h_primary10,'do not use nonintegrable primary conformal weight for the descendant')
+000114 |     require(s.Rational(1,2)+hsu==2,'D5-vector companion makes integer E8 conformal grade two')
+000115 |     require((-1)*(-1)==1,'diagonal Z4 glue center cancels on D5-vector times A3 ten')
+000116 |     # Full source response cannot be replaced by its invariant mean.
+000117 |     C=gaussian(src.superoperator_integer(bell))/60;eye=s.eye(100)
+000118 |     roots=[s.Rational(1),s.Rational(1,3),s.Rational(1,5),s.Rational(1,15)]

@@ -1,0 +1,62 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_recovered_native_source.py
+Original file SHA-256: 288dccaa76b723fb01ea5f7b1eebda4e258f1705b13e12476107de3f3634e773
+Inclusive original lines: 1-54
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Execute old native v990 caller; preserve its parameters and actual local builders."""
+000002 | from pathlib import Path
+000003 | import sys,io,contextlib,json
+000004 | import numpy as np
+000005 | repo=Path(__file__).resolve().parents[4]
+000006 | sys.path.insert(0,str(repo/'verification'))
+000007 | import v990_wj_transduction_mechanism as v
+000008 | locals990={}
+000009 | def capture(frame,event,arg):
+000010 |     if event=='return' and frame.f_code.co_name=='run' and frame.f_code.co_filename==v.__file__:
+000011 |         locals990.update(frame.f_locals)
+000012 | old=sys.getprofile();log=io.StringIO()
+000013 | try:
+000014 |     sys.setprofile(capture)
+000015 |     with contextlib.redirect_stdout(log):v.run()
+000016 | finally:sys.setprofile(old)
+000017 | if '[FAIL]' in log.getvalue() or '13 passed, 0 failed' not in log.getvalue():
+000018 |     raise RuntimeError('Original v990 checks failed')
+000019 | H=locals990['H_W0'];O=locals990['O_Z'];beta=v.BETA
+000020 | E,V=np.linalg.eigh(H);Oe=V.conj().T@O@V
+000021 | Es=E-E.min();rawp=np.exp(-beta*Es);p=rawp/rawp.sum()
+000022 | mean=np.dot(p,np.diag(Oe));equal=np.dot(p,np.diag(Oe@Oe))-mean**2
+000023 | kubo=v.kubo_connected(Oe,Oe,p,E)
+000024 | def connected(tau):
+000025 |     return np.sum(p[:,None]*np.exp(tau*(E[:,None]-E[None,:]))*Oe*Oe.T)-mean**2
+000026 | def full_word(times,ops):
+000027 |     if len(times)!=len(ops) or any(times[j]>times[j+1] for j in range(len(times)-1)):
+000028 |         raise ValueError('ordered times/fields required')
+000029 |     if not times:return 1.+0j
+000030 |     if times[0]<0 or times[-1]>beta:raise ValueError('original thermal interval')
+000031 |     out=np.diag(np.exp(-(beta-times[-1])*Es)).astype(complex)
+000032 |     for j in range(len(times)-1,-1,-1):
+000033 |         dt=times[j]-(times[j-1] if j else 0)
+000034 |         out=out@(V.conj().T@ops[j]@V)@np.diag(np.exp(-dt*Es))
+000035 |     return np.trace(out)/rawp.sum()
+000036 | checks=[]
+000037 | def need(ok,name):
+000038 |     if not ok:raise RuntimeError(name)
+000039 |     checks.append(name)
+000040 | Ps=[v.w_ferm(i,4,6) for i in range(4)]
+000041 | need(max(np.linalg.norm(a@b.conj().T+b.conj().T@a-(np.eye(96) if i==j else 0)) for i,a in enumerate(Ps) for j,b in enumerate(Ps))<1e-12,'actual four-mode CAR representation')
+000042 | vac=np.eye(96,dtype=complex)
+000043 | for a in Ps:vac=vac@(np.eye(96)-a.conj().T@a)
+000044 | need(np.linalg.matrix_rank(vac,tol=1e-10)==6 and np.linalg.norm(vac@vac-vac)<1e-12,'native CAR vacuum multiplicity6')
+000045 | nodes,weights=np.polynomial.legendre.leggauss(64)
+000046 | integrated=sum(w*connected(beta*(x+1)/2)/2 for x,w in zip(nodes,weights))
+000047 | need(abs(integrated-kubo)<1e-12,'original Kubo equals full time integral')
+000048 | need(abs(equal-kubo)>1e-6,'instantaneous covariance is not original Hessian')
+000049 | need(max(abs(full_word([0,t],[O,O])-mean**2-connected(t)) for t in [0,beta/3,beta/2,beta])<1e-12,'actual full timed trace matches original spectral reader')
+000050 | need(abs(connected(beta/3)-connected(2*beta/3))<1e-12,'whole original thermal two-point symmetry')
+000051 | data={'result':'PASS','native_v990_checks':13,'additional_controls':len(checks),'checks':checks,'space':'C6_link tensor Fock(C4),not internal96 one-particle SM','common_CAR_vacuum_rank':6,'beta':beta,'mean_OZ':float(mean.real),'equal_time_connected':float(equal.real),'integrated_Kubo_connected':float(kubo.real),'gap_equal_vs_integrated':float((equal-kubo).real),'direct_integral_error':float(abs(integrated-kubo)),'midtime_connected':float(connected(beta/2).real),'noncommuting_H_OZ_HS':float(np.linalg.norm(H@O-O@H)),'full_four_word_at_original_beta_quarters':float(full_word([0,beta/4,beta/2,3*beta/4],[O]*4).real),'time_curve':[[float(t/beta),float(connected(t).real)] for t in np.linspace(0,beta,81)],'complete_TFPT_solution':False,'ledger_changed':False}
+000052 | Path(__file__).with_name('RECOVERED-NATIVE-SOURCE.json').write_text(json.dumps(data,indent=2)+'\n')
+000053 | Path(__file__).with_name('RECOVERED-NATIVE-SOURCE-v990-run.txt').write_text(log.getvalue())
+000054 | print(json.dumps({k:z for k,z in data.items() if k!='time_curve'},indent=2))

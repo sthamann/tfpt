@@ -1,0 +1,127 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/canonical-seam-fermionization-20261025/check_mobius_quarter_operator_dictionary.py
+Original file SHA-256: 6c2a4e3c57aa2a5bab830b651340f9590b954bd068fdd6ac92cc89038e702912
+Inclusive original lines: 1-119
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | #!/usr/bin/env python3
+000002 | """Exact reduced-longitudinal checks for the Moebius NS-cover quarters.
+000003 | 
+000004 | The full one-step Pin-minus monodromy is cJ with J including transverse
+000005 | reflection. This checker begins after projection to the two J eigenspaces;
+000006 | it does not replace the full pinor bundle action by a scalar translation.
+000007 | """
+000008 | 
+000009 | from fractions import Fraction
+000010 | 
+000011 | 
+000012 | def need(condition: bool, label: str) -> None:
+000013 |     if not condition:
+000014 |         raise AssertionError(label)
+000015 |     print(f"PASS {label}")
+000016 | 
+000017 | 
+000018 | def cover_label(epsilon: int, m: int) -> int:
+000019 |     return 2 * m + epsilon
+000020 | 
+000021 | 
+000022 | def cover_eigenvalue(n: int) -> Fraction:
+000023 |     return Fraction(n, 1) + Fraction(1, 2)
+000024 | 
+000025 | 
+000026 | def quarter_eigenvalue(epsilon: int, m: int) -> Fraction:
+000027 |     a = Fraction(1, 4) if epsilon == 0 else Fraction(3, 4)
+000028 |     return Fraction(m, 1) + a
+000029 | 
+000030 | 
+000031 | def u_action(epsilon: int, m: int) -> tuple[int, int]:
+000032 |     # [[0,u_base],[I,0]] in the ordered (1/4,3/4) coefficient basis.
+000033 |     return (1, m) if epsilon == 0 else (0, m + 1)
+000034 | 
+000035 | 
+000036 | def crossing_count(values: list[Fraction], shift: Fraction) -> int:
+000037 |     return sum(1 for value in values if value < 0 < value + shift)
+000038 | 
+000039 | 
+000040 | def run() -> None:
+000041 |     labels = [(epsilon, m) for epsilon in (0, 1) for m in range(-8, 9)]
+000042 | 
+000043 |     need(
+000044 |         all(
+000045 |             cover_eigenvalue(cover_label(epsilon, m))
+000046 |             == 2 * quarter_eigenvalue(epsilon, m)
+000047 |             for epsilon, m in labels
+000048 |         ),
+000049 |         "B_cov = 2(B_1/4 direct-sum B_3/4)",
+000050 |     )
+000051 | 
+000052 |     need(
+000053 |         all(
+000054 |             ((1 if cover_label(epsilon, m) % 2 == 0 else -1)
+000055 |              == (1 if epsilon == 0 else -1))
+000056 |             for epsilon, m in labels
+000057 |         ),
+000058 |         "half-deck eigenphases are +i on 1/4 and -i on 3/4",
+000059 |     )
+000060 | 
+000061 |     need(
+000062 |         all(
+000063 |             cover_label(*u_action(epsilon, m))
+000064 |             == cover_label(epsilon, m) + 1
+000065 |             for epsilon, m in labels
+000066 |         ),
+000067 |         "u_cov has block action [[0,u_base],[I,0]]",
+000068 |     )
+000069 | 
+000070 |     need(
+000071 |         all(
+000072 |             u_action(*u_action(epsilon, m)) == (epsilon, m + 1)
+000073 |             for epsilon, m in labels
+000074 |         ),
+000075 |         "u_cov squared is diag(u_base,u_base)",
+000076 |     )
+000077 | 
+000078 |     # Each W_epsilon maps an orthonormal Fourier basis to a disjoint parity
+000079 |     # subset of the NS-cover Fourier basis.  A coefficient norm is therefore
+000080 |     # preserved exactly, and the two images are orthogonal.
+000081 |     coeffs = {
+000082 |         (0, -2): Fraction(3, 5),
+000083 |         (0, 1): Fraction(-7, 11),
+000084 |         (1, -1): Fraction(5, 13),
+000085 |         (1, 3): Fraction(2, 7),
+000086 |     }
+000087 |     source_norm = sum(value * value for value in coeffs.values())
+000088 |     cover_coeffs = {
+000089 |         cover_label(epsilon, m): value
+000090 |         for (epsilon, m), value in coeffs.items()
+000091 |     }
+000092 |     target_norm = sum(value * value for value in cover_coeffs.values())
+000093 |     need(
+000094 |         len(cover_coeffs) == len(coeffs) and source_norm == target_norm,
+000095 |         "quarter-to-cover map is isometric and sector images are orthogonal",
+000096 |     )
+000097 | 
+000098 |     cover_values = [cover_eigenvalue(n) for n in range(-8, 9)]
+000099 |     need(
+000100 |         crossing_count(cover_values, Fraction(1, 1)) == 1,
+000101 |         "u_cov winding one has full-cover spectral flow one",
+000102 |     )
+000103 |     need(
+000104 |         crossing_count(cover_values, Fraction(2, 1)) == 2,
+000105 |         "u_cov squared has full-cover spectral flow two",
+000106 |     )
+000107 | 
+000108 |     for epsilon, name in ((0, "1/4"), (1, "3/4")):
+000109 |         quarter_values = [quarter_eigenvalue(epsilon, m) for m in range(-8, 9)]
+000110 |         need(
+000111 |             crossing_count(quarter_values, Fraction(1, 1)) == 1,
+000112 |             f"u_base has spectral flow one on the {name} domain",
+000113 |         )
+000114 | 
+000115 |     print("RESULT exact Moebius quarter operator dictionary verified")
+000116 | 
+000117 | 
+000118 | if __name__ == "__main__":
+000119 |     run()

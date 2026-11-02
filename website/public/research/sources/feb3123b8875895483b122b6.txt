@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/atlas-defect-synthesis-20261024/COVARIANT-INSTRUMENTS.txt
+Original file SHA-256: 858d770e27f80aadb347194c4a9d1a8c869b12163d6cfe8433e4b12b1275ab10
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | COMPLETE COVARIANT INSTRUMENTS FOR THE NATIVE SIX-SIMPLEX POVM
+000002 | ================================================================
+000003 | 
+000004 | Scope
+000005 | -----
+000006 | 
+000007 | This theorem stays on the original native H5 and uses the six rank-one ovoid
+000008 | effects and the sixty marked G31 actions already reconstructed by
+000009 | doily_quartic_bridge.py.  An instrument means six completely positive maps
+000010 | 
+000011 |     I_a : End(H5) -> End(H5)
+000012 | 
+000013 | whose effects are the fixed operators E_a and which obey the actual outcome
+000014 | covariance
+000015 | 
+000016 |     I_{pi_g(a)}(rho_g X rho_g^dagger)
+000017 |       = rho_g I_a(X) rho_g^dagger.
+000018 | 
+000019 | The result classifies every such finite instrument.  It does not add a new
+000020 | carrier, select a physical value of its parameter, or turn the instrument into
+000021 | physical time evolution.
+000022 | 
+000023 | Why rank one forces measure and prepare
+000024 | ---------------------------------------
+000025 | 
+000026 | For one outcome let J_a be the positive Choi matrix of I_a.  Its input
+000027 | partial trace is E_a^T.  Since E_a has rank one, positivity forces J_a to have
+000028 | support only on
+000029 | 
+000030 |     support(E_a^T) tensor H5.
+000031 | 
+000032 | Indeed, for x in the kernel of E_a^T,
+000033 | 
+000034 |     Tr[(|x><x| tensor I) J_a] = <x|E_a^T|x> = 0.
+000035 | 
+000036 | A positive matrix with zero expectation on that whole subspace has no row or
+000037 | column there.  Therefore there is a unique density matrix sigma_a such that
+000038 | 
+000039 |     J_a = E_a^T tensor sigma_a,
+000040 | 
+000041 | or equivalently
+000042 | 
+000043 |     I_a(rho) = Tr(E_a rho) sigma_a.
+000044 | 
+000045 | This is a theorem for every completely positive operation with the fixed
+000046 | rank-one effect.  It is not a chosen Kraus ansatz.
+000047 | 
+000048 | Exact stabilizer commutant
+000049 | --------------------------
+000050 | 
+000051 | Write
+000052 | 
+000053 |     P_a = (6/5) E_a.
+000054 | 
+000055 | Each P_a is a rank-one orthogonal projector.  The sixty original marked
+000056 | actions are transitive on the six labels.  For a fixed label a, forty marked
+000057 | reflections fix a; their outcome permutations contain the ten transpositions
+000058 | of the other five labels.  Solving the full rational commutator system on
+000059 | End(H5) gives rank 23 and hence
+000060 | 
+000061 |     dim_C Comm(Stab(a)) = 2.
+000062 | 
+000063 | Both I5 and P_a lie in this commutant and are independent, so they form its
+000064 | complete basis.  Covariance makes sigma_a stabilizer invariant.  Positivity
+000065 | and trace one therefore give exactly
+000066 | 
+000067 |     sigma_a(p) = p P_a + (1-p)/4 (I5-P_a),
+000068 |     0 <= p <= 1.
+000069 | 
+000070 | Transitivity forces the same p for all six outcomes.  Conversely the checker
+000071 | verifies this family against every one of the sixty native actions.  Thus the
+000072 | displayed interval is the complete covariant instrument space.
+000073 | 
+000074 | Kraus ranks and the extra minimality rule
+000075 | -----------------------------------------
+000076 | 
+000077 | Because J_a=E_a^T tensor sigma_a, the minimal Kraus rank of one outcome is
+000078 | rank(sigma_a):
+000079 | 
+000080 |     p=1:       rank 1,
+000081 |     p=0:       rank 4,
+000082 |     0<p<1:     rank 5.
+000083 | 
+000084 | With the classical outcome retained, the six blocks have total minimal Kraus
+000085 | ranks 6, 24, and 30 respectively.  Requiring one Kraus operator per outcome,
+000086 | pure prepared output, or minimal tagged environment dimension selects p=1
+000087 | uniquely.  Each is an additional instrument principle.  None is implied by
+000088 | the word primitive in the P1 source.
+000089 | 
+000090 | Channel after forgetting the outcome
+000091 | ------------------------------------
+000092 | 
+000093 | Let Phi_p=sum_a I_a and let Phi_L be the square-root Lueders channel of the
+000094 | same POVM.  Since E_a=(5/6)P_a and P_a rho P_a=Tr(P_a rho)P_a,
+000095 | 
+000096 |     Phi_L(rho) = sum_a Tr(E_a rho) P_a.
+000097 | 
+000098 | Expanding sigma_a(p) now gives the exact identity
+000099 | 
+000100 |     Phi_p = (5p-1)/4 Phi_L + (1-p)/4 Tr(rho) I5.
+000101 | 
+000102 | The existing Lueders decomposition of End(H5) has dimensions 1+5+19 and
+000103 | eigenvalues 1,4/5,0.  The replacement term acts only on the identity line.
+000104 | Consequently
+000105 | 
+000106 |     spec(Phi_p) = 1^1, (p-1/5)^5, 0^19.
+000107 | 
+000108 | For 0<=p<=1 the second eigenvalue lies in [-1/5,4/5].  The unique stationary
+000109 | density is therefore I5/5 for every member of the classified family.
+000110 | 
+000111 | The Choi matrix of the forgotten-outcome channel is
+000112 | 
+000113 |     J_p = (5p-1)/4 J_L + (1-p)/4 I25.
+000114 | 
+000115 | For this real symmetric rank-one POVM the numeric J_L array equals the
+000116 | Lueders Liouville array, although their tensor-index meanings differ.  Its
+000117 | exact Choi spectrum is
+000118 | 
+000119 |     p^1, ((15p+1)/20)^5, ((1-p)/4)^19.
+000120 | 
+000121 | Thus the forgotten-outcome channel has Choi rank 6 at p=1, rank 24 at p=0,
+000122 | and rank 25 for 0<p<1.  These ranks differ from the tagged instrument ranks
+000123 | 6,24,30 because forgetting the classical label can merge Kraus spans.
+000124 | 
+000125 | Repeated outcome statistics
+000126 | ---------------------------
+000127 | 
+000128 | After observing a, the prepared state is sigma_a(p).  A second use of the
+000129 | same POVM is therefore the six-state Markov chain
+000130 | 
+000131 |     Pr(b=a | a) = 5p/6,
+000132 |     Pr(b!=a | a) = (6-5p)/30.
+000133 | 
+000134 | The transition matrix is doubly stochastic, so its stationary distribution
+000135 | is uniform.  The stationary two-step law has
+000136 | 
+000137 |     Pr(a,a) = 5p/36,
+000138 |     Pr(a,b) = (6-5p)/180,  a!=b.
+000139 | 
+000140 | At p=1 these numbers are 5/36 and 1/180, the same numbers obtained from the
+000141 | Omega state in RELATIONAL-CHANNEL.txt.  Here they arise from a separable
+000142 | measure-and-prepare time sequence.  Equality of these two tables is therefore
+000143 | not evidence for entanglement or for a common physical preparation.
+000144 | 
+000145 | Exact failure of state tomography
+000146 | ---------------------------------
+000147 | 
+000148 | The six effects span a six dimensional subspace of the full 25 dimensional
+000149 | operator space.  Repeating the instrument does not recover the missing
+000150 | coherences.  This is witnessed by two explicit positive states in the real
+000151 | isometric H5 chart.
+000152 | 
+000153 | Let
+000154 | 
+000155 |     X = i(|0><1| - |1><0|),
+000156 |     rho_+ = I5/5 + X/10,
+000157 |     rho_- = I5/5 - X/10.
+000158 | 
+000159 | X is Hermitian and traceless.  Both density matrices have the exact spectrum
+000160 | 
+000161 |     {1/10, 1/5, 1/5, 1/5, 3/10},
+000162 | 
+000163 | so they are distinct strictly positive states.  Every E_a is real symmetric,
+000164 | while X is imaginary antisymmetric.  Therefore
+000165 | 
+000166 |     Tr(E_a X) = 0
+000167 | 
+000168 | for all six outcomes and
+000169 | 
+000170 |     Tr(E_a rho_+) = Tr(E_a rho_-) = 1/6.
+000171 | 
+000172 | The measure-and-prepare classification gives the probability of every finite
+000173 | outcome word directly:
+000174 | 
+000175 |     Pr(a_1...a_n | rho)
+000176 |       = Tr(E_{a_1} rho)
+000177 |         product_{k=2}^n T_p[a_{k-1},a_k].
+000178 | 
+000179 | The two states have the same first factor, and the transition matrix is fixed
+000180 | by p and the previous outcome.  Induction in n proves that rho_+ and rho_-
+000181 | have identical probabilities for every finite outcome word.  Thus this
+000182 | instrument family is not informationally complete and cannot reconstruct the
+000183 | unmeasured GNS coherences or a complete GNS crossword from its outcome history.
+000184 | This is an explicit counterexample, rather than a dimension-only inference.
+000185 | 
+000186 | Rational endpoint Choi certificates
+000187 | ------------------------------------
+000188 | 
+000189 | The checker also represents the same native H5 as the zero-sum subspace of
+000190 | Q^6.  This is a redundant rational frame for the existing six rays, not a new
+000191 | Hilbert space.  With
+000192 | 
+000193 |     Q = I6 - (1/6) 11^T,
+000194 |     u_a = e_a - (1/6)1,
+000195 | 
+000196 | one has exactly
+000197 | 
+000198 |     Gram(u_a) = Gram(q_a)/12,
+000199 |     E_a = u_a u_a^T,
+000200 |     P_a = (6/5)u_a u_a^T.

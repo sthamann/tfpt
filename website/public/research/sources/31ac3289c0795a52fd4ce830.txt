@@ -1,0 +1,81 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_actual_spine_fourier_consumers.py
+Original file SHA-256: 605a9d0c83ebb7ec12f932375e5efc2ff06d0868937393ddba745b200c9d1746
+Inclusive original lines: 1-73
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact decomposition of the already computed original four-edge transport.
+000002 | 
+000003 | No physical sum prescription or source insertion is selected.
+000004 | """
+000005 | from pathlib import Path
+000006 | import hashlib
+000007 | import json
+000008 | import sympy as s
+000009 | 
+000010 | ROOT = Path(__file__).resolve().parent
+000011 | INPUT = ROOT / 'ACTUAL-DIAGONAL-SPINE-ENDPOINT-TRANSPORT-CHECK.json'
+000012 | EXPECTED = '46787929dff0f7517949d225263fb4301bb4d3fe553b7bdfb4b937c6b6beae7d'
+000013 | if hashlib.sha256(INPUT.read_bytes()).hexdigest() != EXPECTED:
+000014 |     raise RuntimeError('Actual original endpoint input changed')
+000015 | a = json.loads(INPUT.read_text())
+000016 | def mat(x):
+000017 |     return s.Matrix([[s.sympify(v) for v in row] for row in x])
+000018 | def zero(x):
+000019 |     return all(s.simplify(v) == 0 for v in x)
+000020 | def check(ok, name):
+000021 |     if not ok:
+000022 |         raise RuntimeError(name)
+000023 | T = [mat(x) for x in a['T_source_normalized_four']]
+000024 | M = [mat(x) for x in a['M_four']]
+000025 | H = mat(a['H_infinity'])
+000026 | U = mat(a['U0'])
+000027 | V = mat(a['U_infinity'])
+000028 | P0 = mat(a['P0'])
+000029 | E10 = s.zeros(3); E10[1,0] = 1
+000030 | E01 = E10.T
+000031 | S = sum(T,s.zeros(3))
+000032 | check(zero(S + 6*s.sqrt(30)/5*E10), 'actual unweighted sum')
+000033 | check(zero(S.adjoint()*H*S-8*P0), 'source-metric sum Gram')
+000034 | check(all(zero(T[k]*M[k]-T[(k-1)%4]) for k in range(4)), 'absorption of actual based loop')
+000035 | check(zero(sum((T[k]*M[k]*P0 for k in range(4)),s.zeros(3))-S), 'covariant word sum equals edge sum')
+000036 | F = [s.simplify(sum((s.I**(-m*k)*T[k] for k in range(4)),s.zeros(3))/4) for m in range(4)]
+000037 | ranks = [x.rank() for x in F]
+000038 | weights = [s.simplify(s.trace(x.adjoint()*H*x)) for x in F]
+000039 | check(ranks==[1,2,1,2], 'all four character channels survive')
+000040 | check(weights==[s.Rational(1,2),1,s.Rational(1,2),1], 'physical source-metric character weights')
+000041 | check(all(zero(T[k]-sum((s.I**(m*k)*F[m] for m in range(4)),s.zeros(3))) for k in range(4)), 'full Fourier reconstruction')
+000042 | check(all(zero(V*F[m]*U.inv()-s.I**m*F[m]) for m in range(4)), 'typed quarter characters')
+000043 | check(all(zero(F[m].adjoint()*H*F[n]) or s.simplify(s.trace(F[m].adjoint()*H*F[n]))==0 for m in range(4) for n in range(4) if m!=n), 'Hilbert-Schmidt character orthogonality')
+000044 | 
+000045 | # The first nontrivial inverse-square-root response need not be a holonomy
+000046 | # tangent.  The Hermitian unitary-holonomy tangency test is independent of
+000047 | # any later choice of a bounded additive V_adm field slot.
+000048 | x,y=s.symbols('x y',real=True)
+000049 | c=x+s.I*y
+000050 | B=c*M[0]*P0
+000051 | unitarity_tangent=s.simplify(M[0].adjoint()*B+B.adjoint()*M[0])
+000052 | check(zero(unitarity_tangent-2*x*P0), 'raw Hardy word is not a generic unitary holonomy tangent')
+000053 | check(s.simplify(s.trace(M[0].inv()*B)-c)==0, 'SU3 determinant tangent')
+000054 | # A concrete original-loop packaging retains the loop after forgetting an
+000055 | # unweighted edge sum.  All four returned loops have order3 and rank3.
+000056 | check(all(zero(M[k]**3-s.eye(3)) and M[k].rank()==3 for k in range(4)), 'all actual loop channels retained')
+000057 | result={
+000058 |  'scope':'Actual four-edge algebra only. Edge average not promoted to original P1 consumer; V_adm not selected.',
+000059 |  'input_sha256':EXPECTED,
+000060 |  'unweighted_sum_rank':S.rank(),
+000061 |  'unweighted_sum_source_metric_gram':'8 P0',
+000062 |  'actual_loop_absorption':[True]*4,
+000063 |  'fourier_channel_ranks':ranks,
+000064 |  'fourier_source_metric_squared_norms':[str(w) for w in weights],
+000065 |  'all_four_characters_reconstruct_actual_edges':True,
+000066 |  'unitary_holonomy_tangent_defect':'2 Re(kappa) P0',
+000067 |  'su3_determinant_tangent':'kappa; nonzero for any nonzero Hardy coefficient',
+000068 |  'meaning':'Invariant scalar/linear compression loses channels. Whole covariant path/loop functor is not this compression.',
+000069 |  'checks_passed':12,
+000070 | }
+000071 | output=ROOT/'actual-spine-fourier-consumers-results.json'
+000072 | output.write_text(json.dumps(result,indent=2)+'\n')
+000073 | print(json.dumps(result,indent=2))

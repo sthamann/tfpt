@@ -1,0 +1,119 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_actual_ph_car_corner.py
+Original file SHA-256: 9cd164589093a48b4f571c78c684baabd08573d774c8d801d2e3aa179d209862
+Inclusive original lines: 1-111
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Independent CAR replay of the actual finite E/Eh source summand."""
+000002 | from pathlib import Path
+000003 | import json
+000004 | import sympy as s
+000005 | 
+000006 | n, size = 6, 64
+000007 | ann = []
+000008 | for j in range(n):
+000009 |     entries = {}
+000010 |     for k in range(size):
+000011 |         if k & (1 << j):
+000012 |             entries[(k ^ (1 << j), k)] = (-1) ** (
+000013 |                 (k & ((1 << j) - 1)).bit_count())
+000014 |     ann.append(s.SparseMatrix(size, size, entries))
+000015 | 
+000016 | 
+000017 | def lift(matrix):
+000018 |     out = s.zeros(size)
+000019 |     for i in range(n):
+000020 |         for j in range(n):
+000021 |             if matrix[i, j] != 0:
+000022 |                 out += matrix[i, j] * (ann[i].T * ann[j])
+000023 |     return out
+000024 | 
+000025 | 
+000026 | def unit(i, j):
+000027 |     return s.eye(3)[:, i] * s.eye(3)[j, :]
+000028 | 
+000029 | 
+000030 | def zero(value):
+000031 |     return s.simplify(s.expand_complex(value)) == 0
+000032 | 
+000033 | 
+000034 | a, b = s.symbols('a b', real=True, nonzero=True)
+000035 | sech, tanh = s.symbols('sech tanh', real=True)
+000036 | phase = (s.sqrt(6) - s.sqrt(2)
+000037 |          - s.I * (s.sqrt(6) + s.sqrt(2))) / 4
+000038 | forward = phase * (a * unit(0, 2) + b * unit(2, 1))
+000039 | reverse = -s.I * phase * (a * unit(1, 2) + b * unit(2, 0))
+000040 | face = s.Matrix([[sech, tanh], [tanh, -sech]])
+000041 | of = lift(s.kronecker_product(face, forward))
+000042 | on = lift(s.kronecker_product(face, reverse))
+000043 | omega = s.zeros(size, 1)
+000044 | omega[7] = 1  # The three original occupied modes; complements are empty.
+000045 | 
+000046 | 
+000047 | def expectation(operator):
+000048 |     return s.simplify((omega.T * operator * omega)[0])
+000049 | 
+000050 | 
+000051 | checks = {
+000052 |     'exact_CAR': all(
+000053 |         ann[i] * ann[j].T + ann[j].T * ann[i]
+000054 |         == (s.eye(size) if i == j else s.zeros(size))
+000055 |         for i in range(n) for j in range(n)),
+000056 |     'filled_defect_Pauli':
+000057 |         lift(s.diag(forward, s.zeros(3))) * omega == s.zeros(size, 1),
+000058 |     'FF_unadjointed': zero(expectation(of * of)),
+000059 |     'NN_unadjointed': zero(expectation(on * on)),
+000060 |     'FN_connected': zero(expectation(of * on)
+000061 |                          - tanh ** 2 * s.trace(forward * reverse)),
+000062 |     'NF_connected': zero(expectation(on * of)
+000063 |                          - tanh ** 2 * s.trace(reverse * forward)),
+000064 |     'positive_F_adjoint': zero(expectation(of.conjugate().T * of)
+000065 |                                - tanh ** 2 * (a * a + b * b)),
+000066 |     'positive_N_adjoint': zero(expectation(on.conjugate().T * on)
+000067 |                                - tanh ** 2 * (a * a + b * b)),
+000068 |     'positive_FN_cross_orthogonal':
+000069 |         zero(expectation(of.conjugate().T * on)),
+000070 | }
+000071 | quadratures = [
+000072 |     (of + of.conjugate().T) / s.sqrt(2),
+000073 |     (of - of.conjugate().T) / (s.I * s.sqrt(2)),
+000074 |     (on + on.conjugate().T) / s.sqrt(2),
+000075 |     (on - on.conjugate().T) / (s.I * s.sqrt(2)),
+000076 | ]
+000077 | covariance = s.Matrix(4, 4, lambda i, j: expectation(
+000078 |     (quadratures[i] * quadratures[j]
+000079 |      + quadratures[j] * quadratures[i]) / 2))
+000080 | z = s.simplify(s.trace(forward * reverse))
+000081 | h = a * a + b * b
+000082 | zr, zi = s.re(s.expand_complex(z)), s.im(s.expand_complex(z))
+000083 | real_cov = s.Matrix([[h, 0, zr, zi], [0, h, zi, -zr],
+000084 |                      [zr, zi, h, 0], [zi, -zr, 0, h]])
+000085 | checks['four_selfadjoint_quadratures'] = all(
+000086 |     zero(covariance[i, j] - tanh ** 2 * real_cov[i, j])
+000087 |     for i in range(4) for j in range(4))
+000088 | q = s.symbols('q')
+000089 | checks['positive_covariance_polynomial'] = s.factor(
+000090 |     (covariance - q * s.eye(4)).det()
+000091 |     - ((tanh ** 2 * h - q) ** 2 - tanh ** 4 * 4 * a * a * b * b) ** 2
+000092 | ) == 0
+000093 | out = {
+000094 |     'scope': 'Actual canonical finite E/Eh summand, one Pgamma+ carrier. '
+000095 |              'Ordinary full retained trace multiplies by16 and (2/pi)^2. '
+000096 |              'Not the whole unsmoothed Z response or a full JF-real observable.',
+000097 |     'checks': checks, 'passed': all(checks.values()),
+000098 |     'directed_FN_trace': str(z),
+000099 |     'hermitian_covariance_without_common_factor': str(real_cov),
+000100 |     'covariance_eigenvalues_without_common_factor': [
+000101 |         '(abs(a)+abs(b))**2, multiplicity2',
+000102 |         '(abs(a)-abs(b))**2, multiplicity2'],
+000103 |     'finite_CAR_dimension': size,
+000104 |     'face_parameters': 'symbolic sech and tanh; all expectations verified '
+000105 |                        'before substituting ell_NS',
+000106 | }
+000107 | if not out['passed']:
+000108 |     raise RuntimeError('Independent CAR replay failed')
+000109 | Path(__file__).with_name('ROOT-ACTUAL-PH-CAR-AND-ADJOINT-REPLAY.json').write_text(
+000110 |     json.dumps(out, indent=2) + '\n')
+000111 | print(json.dumps(out))

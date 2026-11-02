@@ -1,0 +1,56 @@
+TFPT scientific source excerpt
+Original repository path: verification/v258_dirac_covariance_induction.py
+Original file SHA-256: 16c60e831dceba773f3629466895f1009654827286e5b760ae01bd755fd5c0b1
+Inclusive original lines: 29-76
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000029 |   [E] 1. INVERSION IDENTITY.  For any Hermitian H, with C = (1+e^H)^{-1} one has
+000030 |         log((1-C)C^{-1}) = H EXACTLY (machine-checked on random Hermitian H and on
+000031 |         the actual v252 charged Dirac block).  The induction is the exact inverse
+000032 |         of the KMS occupation -- no fitting, no free function.
+000033 |   [E] 2. COVARIANCE IS A LEGAL STATE.  C_F = (1+e^{D/mu})^{-1} is a positive
+000034 |         contraction (spec in (0,1)) -- a bona fide quasi-free two-point function;
+000035 |         the carrier Dirac data ARE the data of a boundary Gaussian state.
+000036 |   [E] 3. CHIRALITY-ODD = A DIRAC OPERATOR.  the induced operator anticommutes with
+000037 |         gamma_F (D_F^ind gamma = -gamma D_F^ind): the modular Hamiltonian of a
+000038 |         chirality-graded covariance is automatically an odd (Dirac-type) operator.
+000039 |   [E] 4. UNITARY EQUIVALENCE TO v252.  spec(D_F^ind) = spec(D_F^v252) up to the
+000040 |         scale mu_geo: building C_F from the v252 charged spectrum and inducing
+000041 |         returns the SAME mass spectrum (D_F^ind ~_U D_F).  The built operator and
+000042 |         the covariance readout are the same operator.
+000043 |   [E] 5. MAJORANA = OFF-DIAGONAL COVARIANCE.  the type-I seesaw block is the
+000044 |         particle<->antiparticle off-diagonal of C_F; inducing it reproduces the
+000045 |         seesaw eigenvalue m_D^2/M_R -- the sigma/Majorana term is a covariance
+000046 |         entry, not an extra postulate.
+000047 |   [C] 6. PHYSICAL IDENTIFICATION.  C_F = P_F C_Sigma P_F: the carrier covariance is
+000048 |         the compression of the seam Calderon/KMS two-point function (the boundary
+000049 |         quasi-free state, v155/v160/v175) to the finite carrier P_F.  Under it, the
+000050 |         v252 D_F is the KK-theoretic shadow [D_Sigma] (x)_{(E8)_1} [K_car] of the
+000051 |         boundary geometry; the v18 Yukawa numbers are the READOUT of C_Sigma, not
+000052 |         an independent input.  This is the constructive content of "carrier gauged"
+000053 |         once the seam realisation (the one [O] premise) is granted.
+000054 | 
+000055 | Status: [E] for the exact modular inversion + contraction + chirality-odd +
+000056 | unitary-equivalence + Majorana-as-covariance (items 1-5); [C] for the seam-side
+000057 | identification C_F = P_F C_Sigma P_F (item 6), which rests on the same open seam
+000058 | realisation as the rest of the QFT layer.  Python-only (numpy linear algebra).
+000059 | """
+000060 | import numpy as np
+000061 | 
+000062 | from tfpt_constants import check, summary, reset
+000063 | 
+000064 | 
+000065 | def induce(C):
+000066 |     """one-particle modular Hamiltonian H = log((1-C) C^{-1}) of a covariance C."""
+000067 |     w, V = np.linalg.eigh(C)
+000068 |     w = np.clip(w, 1e-15, 1 - 1e-15)
+000069 |     return V @ np.diag(np.log((1 - w) / w)) @ V.conj().T
+000070 | 
+000071 | 
+000072 | def kms_cov(H, mu=1.0):
+000073 |     """Fermi-Dirac / KMS covariance C = (1 + e^{H/mu})^{-1} of a Hermitian H."""
+000074 |     w, V = np.linalg.eigh(H)
+000075 |     occ = 1.0 / (1.0 + np.exp(np.clip(w / mu, -700.0, 700.0)))   # stable Fermi function
+000076 |     return V @ np.diag(occ) @ V.conj().T

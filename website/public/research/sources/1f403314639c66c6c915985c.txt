@@ -1,0 +1,48 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1_e8_glue.py
+Original file SHA-256: 1978d66a85974e5fa189cf4dec507f9be4c4dcc113e90eb1b33a9aae9259a0d7
+Inclusive original lines: 1-40
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """v1 -- The mu4 glue theorem:  E8 = (D5 + A3) + mu4-glue.
+000002 | 
+000003 | Backs the claim "Glue theorem (proved)" in
+000004 |   introduction.tex  (architecture, before/after, plausibility tables)
+000005 |   tfpt_1_architecture_e8.tex  (Part II: the D5(+)A3+mu4 construction)
+000006 |   tfpt_3_e8_audit_bootstrap.tex (the load-bearing derived results).
+000007 | 
+000008 | It checks, from the Cartan matrices alone, that D5 and A3 share the
+000009 | discriminant group Z4, that their discriminant-form norms 5/4 and 3/4 sum to
+000010 | the E8 root norm 2, and that the glued rank-8 even lattice has 240 roots and
+000011 | dimension 248.
+000012 | 
+000013 | [OMITTED: non-scientific conversation or execution metadata]
+000014 | constructs all 240 E8 roots, verifies they all have norm^2 = 2, builds the
+000015 | Bourbaki simple-root Z-basis, and certifies the lattice is EVEN (integer Gram,
+000016 | even diagonal) and UNIMODULAR (det of the simple-root Gram = 1), with every
+000017 | root integral over the basis -- i.e. the constructed overlattice IS the even
+000018 | unimodular E8 lattice, not merely a matching of the arithmetic tail.
+000019 | """
+000020 | import itertools
+000021 | import numpy as np
+000022 | from tfpt_constants import check, summary, reset, dim_Splus, g_car, N_fam
+000023 | 
+000024 | 
+000025 | def e8_roots():
+000026 |     """The 240 roots of E8 in the standard coordinates (norm^2 = 2)."""
+000027 |     roots = []
+000028 |     # 112 integer roots: +-e_i +- e_j, i<j
+000029 |     for i, j in itertools.combinations(range(8), 2):
+000030 |         for si in (1, -1):
+000031 |             for sj in (1, -1):
+000032 |                 v = [0] * 8
+000033 |                 v[i] = si
+000034 |                 v[j] = sj
+000035 |                 roots.append(tuple(v))
+000036 |     # 128 half-integer roots: (+-1/2)^8 with an even number of minus signs
+000037 |     for signs in itertools.product((1, -1), repeat=8):
+000038 |         if signs.count(-1) % 2 == 0:
+000039 |             roots.append(tuple(s * 0.5 for s in signs))
+000040 |     return [np.array(r, float) for r in roots]

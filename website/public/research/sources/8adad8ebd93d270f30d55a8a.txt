@@ -1,0 +1,112 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/NS-CONTINUUM-WINDING-LIMIT.txt
+Original file SHA-256: 4a61f9604bb51f0d13419606d7d8c64fa2cfc840b417a7297403db7d6706f916
+Inclusive original lines: 201-304
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |   J_N u_N J_N^* - P_{H_N} u P_{H_N}
+000202 |     = |psi_{-M}><psi_{M-1}|.                             (12)
+000203 | 
+000204 | This rank-one wrap has operator norm one for every N, but annihilates every
+000205 | fixed finite Fourier core once N is large. Hence the map is locally exact and
+000206 | converges strongly, while it cannot converge in norm as a full finite cyclic
+000207 | representation.
+000208 | 
+000209 | The same distinction controls the determinant. Under the continuum embedding,
+000210 | 
+000211 |   |psi_{-M}><psi_{-M}| -> 0 strongly,
+000212 | 
+000213 | but every such projector has trace norm one. Therefore (4) is exact. The trace
+000214 | cannot jump from zero to one under trace-norm convergence, so no theorem about
+000215 | Fredholm determinant continuity can turn (3) into 1-z. The continuum factor is
+000216 | obtained by the old directed relative pair
+000217 | 
+000218 |   (I-z u C u^*)(I-zC)^{-1}=I-zPi_0,
+000219 |   det_F=1-z,                                             (13)
+000220 | 
+000221 | not by taking the numerical limit of the finite ordinary determinant.
+000222 | 
+000223 | Three cancellations that must remain distinct
+000224 | ---------------------------------------------
+000225 | 
+000226 | 1. Finite NS cyclic cancellation
+000227 | 
+000228 | The two factors in (3) live on one finite chiral circle. The second factor is
+000229 | the Fourier alias at the cutoff. It escapes strongly as N grows, but it is
+000230 | present with unit trace weight for every finite N.
+000231 | 
+000232 | 2. Finite carrier compression of an infinite source
+000233 | 
+000234 | KMS-AND-CARRIER-TRANSPORT.txt:194-220 begins with the infinite source. A naive
+000235 | finite compression loses part of its trace-class response. The exact Schur
+000236 | complement plus the unchanged complement restores the original factor 1-z.
+000237 | This is not the cyclic determinant (3), whose winding has index zero at every
+000238 | finite N.
+000239 | 
+000240 | 3. Reflected face or full Dirac cancellation
+000241 | 
+000242 | RELATIVE-PAIRING-REVIEW.txt:66-115,466-475 has two continuum faces with inverse
+000243 | directed factors (1-z) and (1-z)^{-1}. That cancellation survives the continuum
+000244 | limit and the Quillen norm. Its partner is a reflected physical sector, not the
+000245 | UV alias in (2). Removing the finite alias therefore does not remove the
+000246 | full-Dirac partner.
+000247 | 
+000248 | Small decisive certificate
+000249 | ---------------------------
+000250 | 
+000251 | The following is the executed Fourier form of the actual sampled v519 data. It
+000252 | uses no fitted matrix. The geometric-sum identity (6) identifies P with the
+000253 | v519 Q_N before this finite calculation.
+000254 | 
+000255 |   import numpy as np
+000256 |   for N in (8,16,32):
+000257 |       M=N//2
+000258 |       modes=np.arange(-M,M)
+000259 |       P=np.diag((modes>=0).astype(complex))
+000260 |       U=np.zeros((N,N),complex)
+000261 |       for j,n in enumerate(modes):
+000262 |           target=n+1 if n<M-1 else -M
+000263 |           U[np.where(modes==target)[0][0],j]=1
+000264 |       D=U@P@U.conj().T-P
+000265 |       z=1/3
+000266 |       ratio=(np.linalg.det(np.eye(N)-z*U@P@U.conj().T)
+000267 |              /np.linalg.det(np.eye(N)-z*P))
+000268 |       print(N, [(int(modes[j]),int(round(D[j,j].real)))
+000269 |                 for j in range(N) if abs(D[j,j])>1e-12],
+000270 |             np.linalg.matrix_rank(D), np.trace(D), ratio)
+000271 | 
+000272 | Executed output:
+000273 | 
+000274 |   8  [(-4,+1),(0,-1)]   rank2 trace0  ratio1
+000275 |   16 [(-8,+1),(0,-1)]   rank2 trace0  ratio1
+000276 |   32 [(-16,+1),(0,-1)]  rank2 trace0  ratio1
+000277 | 
+000278 | The actual v519 kernel was also evaluated directly before Fourier replacement:
+000279 | for N=8 and16, Q_N^2-Q_N had numerical norms 1.19e-16 and6.87e-16, and its
+000280 | Fourier occupation list was exactly 0 on -M,...,-1 and1 on0,...,M-1 to twelve
+000281 | decimal places. v519 proves the N=8 projector identity exactly; equation (6)
+000282 | proves the general even-N statement analytically.
+000283 | 
+000284 | Consequence for the requested forward map
+000285 | -----------------------------------------
+000286 | 
+000287 | The old and new sources now have an explicit common operator dictionary:
+000288 | 
+000289 |   old twisted circle at a=1/2
+000290 |        --sample at theta_j=2 pi j/N-->
+000291 |   v519 finite NS one-particle space,
+000292 | 
+000293 |   old spectral polarization               -> Q_N or I-Q_N by convention,
+000294 |   old u=M_z                                -> diagonal site phase u_N,
+000295 |   old Fourier shift n->n+1                 -> cyclic shift plus one UV alias,
+000296 |   old rank-one spectral-flow defect        -> IR defect plus inverse UV defect.
+000297 | 
+000298 | This map does not require P1 to select another free state. It uses the v519
+000299 | state already supplied and the fullv21 operation already supplied. What it does
+000300 | not provide is a finite OS prescription whose ordinary determinant equals the
+000301 | infinite directed determinant. The smallest remaining source question is
+000302 | therefore sharply typed: does an original continuum OS or admissible functional
+000303 | explicitly invoke the fullv21 polarized relative Fredholm pair (13)? The finite
+000304 | v519/v524/v526 construction itself answers no.

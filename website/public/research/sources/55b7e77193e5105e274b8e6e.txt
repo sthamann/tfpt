@@ -1,0 +1,61 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-source-functional-audit-20261013/UV_MAP_PROOF.txt
+Original file SHA-256: 5360c2102abd10ccde4eca90ca049f02e832161fc33cecc6fbfe556e9996c33d
+Inclusive original lines: 1-53
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | # Independent audit: UV fixed-point measure map
+000002 | 
+000003 | ## Verdict
+000004 | 
+000005 | The stated theorem is false as written, before any question of Birkhoff contraction or moment matching: its proposed `T` does not map any nonzero finite input measure to a finite output measure.
+000006 | 
+000007 | ## Exact source premise and scope
+000008 | 
+000009 | In `_archive/tfpt-45/source_extracts/05_metrology_source.tex:1619-1688` (same text in `_archive/paper-latex/tfpt-42.tex:5366+`), the admissible cone consists of finite measures on `[0,∞)`, with `f_ν(t)=∫_0^∞ e^{-st}dν(s)`. The map is explicitly
+000010 | 
+000011 | `(Tν)(dt) = [∫_0^∞ K(s,t)dν(s) / ∫_0^∞ ψ(s)dν(s)] dt`,
+000012 | 
+000013 | and the premise says `ψ(s)>0` and `0<m_ker≤K(s,t)≤M_ker<∞` uniformly on the branch-matching slice. The output reference is written `dt`; no compact t-domain or alternate finite weighted base measure is stated in source05, in the full-text duplicate, or elsewhere in the extracted source clauses matching `K(s,t)`.
+000014 | 
+000015 | For nonzero finite `ν`, assume first that `0<Zν:=∫ψ dν<∞`; this is necessary for the displayed normalization to define a finite positive denominator. Then for every `t≥0`,
+000016 | 
+000017 | `d(Tν)/dt ≥ m_ker ν([0,∞))/Zν =: cν > 0`,
+000018 | 
+000019 | so `(Tν)([0,∞)) ≥ ∫_0^∞ cν dt = ∞`. Therefore `Tν` is not in the stated finite-measure cone. If `Zν=∞`, the stated normalization is not defined as a positive finite scalar; if `Zν=0`, positivity and `ψ>0` imply `ν=0`, for which the ratio is again undefined. Hence there is no fixed measure in the declared domain under these premises. The contradiction is internal to the written formula and does not depend on any physical interpretation.
+000020 | 
+000021 | This disproves the claimed endomorphism and thus the ensuing fixed-measure/profile existence-and-uniqueness conclusion. It does not rule out a corrected UV map with a different, integrable kernel or a declared finite base measure; neither is part of the current statement.
+000022 | 
+000023 | ## Positivity does not preserve the closed moment slice
+000024 | 
+000025 | Let the slice impose `∫a_j(s)dν(s)=b_j` (including mass if appropriate), and let
+000026 | `(K^*a_j)(s):=∫_0^∞ a_j(t)K(s,t)dt`.
+000027 | Whenever these integrals exist,
+000028 | 
+000029 | `∫a_j(t)d(Tν)(t) = [∫(K^*a_j)(s)dν(s)]/[∫ψ(s)dν(s)]`.
+000030 | 
+000031 | Thus slice preservation requires the actual moment identities
+000032 | 
+000033 | `∫[(K^*a_j)(s)-b_j ψ(s)]dν(s)=0` for every `ν` in the slice,
+000034 | 
+000035 | not merely `K,ψ>0`. The written proof asserts preservation from positivity alone, which establishes only positivity of the output density. In a sufficiently rich moment slice, the displayed integrand must annihilate all admissible tangent measures; equivalently it must lie in the span of the constrained moment functions (with the constants chosen to vanish on the slice). This is an additional checkable kernel condition.
+000036 | 
+000037 | ## Contraction bound caveat
+000038 | 
+000039 | Even after fixing integrability and the moment identities, entrywise bounds `m≤K≤M` on an integral kernel give the cross-ratio bound
+000040 | `K(s,t)K(s',u)/(K(s,u)K(s',t)) ≤ (M/m)^2`,
+000041 | so the general projective-diameter estimate is `Δ(T)≤2 log(M/m)`, not `log(M/m)`. The sharper value in the theorem would require a direct stronger cross-ratio premise `sup K(s,t)K(s',u)/(K(s,u)K(s',t))≤M/m` (or another argument). A 2×2 checkerboard kernel with entries `M,m;m,M` saturates the squared ratio. This is secondary: the infinite-mass contradiction already prevents applying Birkhoff to the declared finite-measure cone.
+000042 | 
+000043 | ## Minimal repair conditions on the same integral-map form
+000044 | 
+000045 | Keep the source map form but require, at minimum:
+000046 | 
+000047 | 1. `k_0(s):=∫K(s,t)dt<∞` for input-almost every `s`, with `∫k_0dν<∞` on the full declared domain (e.g. via a stated common integrable envelope in `t`). This replaces the impossible uniform positive lower bound on an infinite Lebesgue domain. Alternatively, explicitly declare a finite base measure/domain, which changes the source clause and must be justified.
+000048 | 2. For every fixed moment `a_j`, require `K^*a_j` integrable and the slice identities above; positivity is separate from moment preservation.
+000049 | 3. For the stated Birkhoff constant, state a direct cross-ratio bound; pointwise bounds alone support at most the squared-ratio bound in general.
+000050 | 
+000051 | These are necessary source-map conditions, not a proposal for a new physical kernel. The decisive immediate test is just the mass (`a_0=1`) integral: it diverges under the literal hypotheses.
+000052 | 
+000053 | No repository files changed and no code/test suite was run.

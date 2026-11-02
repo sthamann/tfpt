@@ -1,0 +1,164 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/CARRIER-MODULE-FORWARD-MAP.txt
+Original file SHA-256: 947987a1bdff497d899c1921c2fe2e0098a4b3a30b0b837d849195c8544c28b6
+Inclusive original lines: 63-218
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000063 | ## 2. Der Hilbertraumtyp im Original
+000064 | 
+000065 | Die historische fastkommutative Stelle ist eindeutig:
+000066 | 
+000067 | * `documents/archive--paper-latex--tfpt-31/sections/
+000068 |   002-subsection-primitive-relative-spectral-dynamics.tex:32-40` führt
+000069 | 
+000070 |       H = L^2(M_tilde,S) tensor H_int
+000071 | 
+000072 |   mit endlichem `H_int` ein.
+000073 | * Dieselbe Quelle sagt in Zeilen 65-70 ausdrücklich, dass diese Faktorisierung
+000074 |   zusätzlich gewählt wird und `S` sowie `H_int` keine Rekonstruktionsoutputs
+000075 |   des dortigen Satzes sind.
+000076 | * Die spätere Fassung wiederholt die Typgrenze in
+000077 |   `documents/archive--paper-latex--tfpt-42/sections/
+000078 |   003-subsection-primitive-relative-spectral-dynamics.tex:26-35,94-96`:
+000079 |   Die fastkommutative Realisierung ist eine analytische Wahl und kein Teil des
+000080 |   einseitigen Randdatums.
+000081 | 
+000082 | Damit leben die Faktoren in verschiedenen Rollen:
+000083 | 
+000084 |     H_circle = L^2(S^1, spin line or spinor fibre),       dim = infinity,
+000085 |     E = E_3 direct-sum E_2,                               dim = 5,
+000086 |     S^+ = Lambda^even E,                                  dim = 16,
+000087 |     S^+ tensor F_family,                                  dim = 48,
+000088 |     H_F = particles direct-sum antiparticles,             dim = 96.
+000089 | 
+000090 | Die letzten vier Räume sind innere endliche Module. Sie sind keine Menge von
+000091 | fünf, sechzehn, achtundvierzig oder sechsundneunzig Fouriermoden des ersten
+000092 | Raums.
+000093 | 
+000094 | Dies ist auch direkt an v252 sichtbar. In
+000095 | `verification/v252_full_finite_triple.py:1-24,63-83` wird `H_F` durch eine
+000096 | endliche Liste von Feld, Chiralitäts, Farb und Generationenlabels gebaut. Die
+000097 | Yukawamatrizen werden in Zeilen 86-116 als Eingaben in `D_F` eingesetzt. Weder
+000098 | ein Fourierindex noch `B_Sigma`, ein Calderonprojektor oder eine
+000099 | Kreisfunktionsbasis tritt in diesem Konstruktor auf.
+000100 | 
+000101 | ## 3. Was v175, v177 und v210 tatsächlich abbilden
+000102 | 
+000103 | ### v175
+000104 | 
+000105 | `verification/v175_net_existence_full_cone.py:10-23,94-120` prüft die
+000106 | Exteriorpotenzen einer Liste von sechzehn Einteilcheneigenwerten und deren
+000107 | endliche Fockdimension `2^16`. Derselbe Text beruft sich in Zeilen 24-35 auf
+000108 | das konforme Netz von sechzehn freien Majoranafeldern auf `S^1`.
+000109 | 
+000110 | Diese zwei Ebenen dürfen nicht identifiziert werden. Sechzehn Majoranaarten
+000111 | bilden einen endlichen **Speziesfaktor**. Das Einteilchenfeld auf dem Kreis hat
+000112 | zusätzlich unendlich viele Fouriermoden. Der im Skript vollständig
+000113 | enumerierte Raum `2^16` ist daher kein vollständiger Kreis Fockraum und liefert
+000114 | keine endlichrangige Carrierprojektion aus diesem Kreisraum. v175 beweist die
+000115 | Exterioralgebra Identität für sein endliches Einteilchenmodell und reduziert
+000116 | die physische Identifikation selbst auf `QGEO.REALIZE.01` beziehungsweise in
+000117 | Zeilen 36-50 auf den offenen tatsächlichen Seam Operator.
+000118 | 
+000119 | ### v177
+000120 | 
+000121 | `verification/v177_seam_marking_kernel.py:26-34,85-112` konstruiert die
+000122 | eindeutige `mu4` äquivariante Abbildung
+000123 | 
+000124 |     H^1(P^1 minus mu4)  ->  generation space,
+000125 | 
+000126 | mit den drei Charakteren `i,-1,-i`. Das ist eine Rang drei Abbildung zum
+000127 | **Generationenraum**. Sie ist keine Abbildung in den Rang fünf Carrier `E`,
+000128 | keine Abbildung nach `S^+` und keine Projektion auf `H_F`.
+000129 | 
+000130 | Außerdem lässt v177 in Zeilen 35-42 und 130-136 gerade die Operatorgleichheit
+000131 | 
+000132 |     C_Sigma = U^(-1) C_mu4 U
+000133 | 
+000134 | als `QGEO.KERNEL.01` offen. Die jetzt vorgegebene Schließung des historischen
+000135 | Kreises kann dieses Operatorproblem auf der Kreisseite ersetzen. Sie erzeugt
+000136 | aber weiterhin kein `U` vom Kreis oder Seam Hilbertraum zum inneren Carrier.
+000137 | 
+000138 | ### v210
+000139 | 
+000140 | `verification/v210_mark_local_dtn.py:83-103,110-140` arbeitet auf der
+000141 | Fouriertrunkierung `n=-48,...,48`, also auf einem 97 dimensionalen
+000142 | Kreisnäherungsraum. Die vier Marken erzwingen Fourierunterstützung in den
+000143 | Klassen `0 mod 4`; die Kovarianz wird als Spektralprojektor
+000144 | 
+000145 |     C = 1/2 (I + sgn(Lambda-mu))
+000146 | 
+000147 | gebildet. Das ist eine Kreis beziehungsweise DtN Aussage. Es gibt dort keinen
+000148 | fünfdimensionalen Unterraum, kein `E_3 direct-sum E_2`, kein `S^+`, kein
+000149 | `H_F` und keine Carrierisometrie. Die Dimension 97 ist außerdem
+000150 | trunkierungsabhängig. v210 kann deshalb nicht der gesuchte Forward Map sein.
+000151 | 
+000152 | ## 4. Was P2 und die Markmoden tatsächlich festlegen
+000153 | 
+000154 | Die aktuelle Originalformulierung ist besonders klar:
+000155 | 
+000156 | * `documents/tfpt_1_architecture_e8/sections/001-source.tex:81-92` nennt die
+000157 |   Aussage, dass die Naht durch einen fünfteiligen Carrier ausgelesen wird,
+000158 |   ausdrücklich `P2_interface` und Axiom. Nur die algebraischen Konsequenzen
+000159 |   des gegebenen Carriers sind Theoreme.
+000160 | * `documents/tfpt_1_architecture_e8/sections/004-source.tex:31-73` sagt, dass
+000161 |   die vier Marken zusammen mit der Deligne und
+000162 |   Birkhoff Grothendieck Typisierung die Zahl fünf schärfen, dass die
+000163 |   Modulidentifikation und die dynamische Realisierung jedoch bedingt bleiben.
+000164 | * `verification/v499_p2_weights_deligne_bg.py:10-29` beginnt mit einem bereits
+000165 |   identifizierten dreidimensionalen Generationenmodul. Seine Zeilen 50-58
+000166 |   trennen ausdrücklich drei verschiedene Kohomologien. Zeilen 70-89 lassen
+000167 |   die Identifikation des Generationenraums mit genau diesem `H^1` samt
+000168 |   Connection als bedingten Rest stehen.
+000169 | * v499 Zeilen 176-182 berechnen
+000170 | 
+000171 |       h^1(O(-4)) = 3,
+000172 |       h^0(Omega^1(log D)) = 3,
+000173 |       h^0(O(4)) = 5.
+000174 | 
+000175 |   Dies ist eine Dimensions und Bündelrechnung. Sie gibt keine isometrische
+000176 |   Einbettung von `H^0(O(4))` in `L^2(S^1)` und keine Wirkung von `C_Sigma` auf
+000177 |   diesem Fünferraum an.
+000178 | 
+000179 | Die fünf Markmoden sind somit nicht als fünf ausgewählte Kreis Fouriermoden
+000180 | definiert. Die Zahl fünf entsteht als `h^0(O(4))` beziehungsweise als
+000181 | elementarsymmetrische Zahl der Splittingexponenten. Der `3+2` Schnitt entsteht
+000182 | später als innere Ladungs beziehungsweise Carrierzerlegung. Eine Gleichsetzung
+000183 | dieser Objekte wäre genau der noch fehlende Schnittstellenpfeil.
+000184 | 
+000185 | Die stärkste scheinbar positive Gegenstelle wurde ebenfalls geprüft.
+000186 | `documents/archive--paper-latex--tfpt-42/sections/
+000187 | 027-subsection-primitive-completion-from-the-boundary-kernel.tex:23-66`
+000188 | formuliert den kompatiblen diskreten Datensatz des Boundary Kernel als
+000189 | Singleton und listet `E_3 direct-sum E_2`, `Y` und `S^+` auf. Der Beweis
+000190 | bestimmt in Zeilen 121-139 die Ränge jedoch über einen bereits geschlossenen
+000191 | bosonischen Index und den „actual branch Yukawa tensor“. Selbst wenn man diese
+000192 | diskrete Eindeutigkeit vollständig akzeptiert, bestimmt sie die
+000193 | **Isomorphieklasse** des inneren Pakets. Sie schreibt keine Einbettung dieses
+000194 | Pakets in den Boundary Hilbertraum hin, keine Darstellung von `B_Sigma` darauf
+000195 | und keine Fortsetzung von `C_Sigma`. Der Satz beantwortet daher die
+000196 | algebraische Carrierselektion, aber nicht den hier gesuchten Operatorpfeil.
+000197 | 
+000198 | Auch die im Suchraum auftretende positive holomorphe Sektion schließt ihn
+000199 | nicht. `documents/tfpt_research_contracts/sections/012-source.tex:102-116`
+000200 | behandelt die eindeutige reell positive Quillen Sektion des verdrehten
+000201 | Faserdeterminanten und den festen Gewichtsfaktor `1/det_j`. Sie liefert einen
+000202 | Skalar in einer Determinantenlinie, keinen fünfdimensionalen Carrierraum und
+000203 | keinen Intertwiner der Kreiskovarianz.
+000204 | 
+000205 | ## 5. Exakter Vorwärtstest in der vorhandenen Faktorform
+000206 | 
+000207 | Die fastkommutative Faktorform erlaubt einen kleinen entscheidenden Test, ohne
+000208 | einen neuen Carrier oder neue Dynamik zu wählen.
+000209 | 
+000210 | Sei
+000211 | 
+000212 |     H = H_circle tensor K,
+000213 |     B = B_circle tensor I_K,
+000214 |     C = C_beta(B_circle) tensor I_K,
+000215 | 
+000216 | und sei `p` ein bereits vorhandener innerer Carrierprojektor von endlichem Rang
+000217 | `r>0`. Der zugehörige Projektor auf dem vollen Hilbertraum ist
+000218 | 

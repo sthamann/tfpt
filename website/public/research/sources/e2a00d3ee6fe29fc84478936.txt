@@ -1,0 +1,107 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_common_curvature_response.py
+Original file SHA-256: d7886c7858a0a90a169cb40506b495e154421281995e01bc90fc2f57497aedd4
+Inclusive original lines: 1-99
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Whole Spin4 curvature trace and given Higgs radial source response.
+000002 | Conditional original R031 consumer; no added physical operator or R² term.
+000003 | """
+000004 | from pathlib import Path
+000005 | import json,itertools
+000006 | import sympy as s
+000007 | checks={}
+000008 | def need(k,v):
+000009 |  checks[k]=bool(v)
+000010 |  if not v:raise AssertionError(k)
+000011 | def eq(k,x,y):need(k,s.simplify(x-y)==0)
+000012 | I=s.I;one=s.eye(2);sx=s.Matrix([[0,1],[1,0]]);sy=s.Matrix([[0,-I],[I,0]]);sz=s.diag(1,-1)
+000013 | ga=[s.kronecker_product(sx,one),s.kronecker_product(sy,sx),s.kronecker_product(sy,sy),s.kronecker_product(sy,sz)]
+000014 | need('same_full_Euclidean_Spin4_Clifford_algebra',all(ga[i]*ga[j]+ga[j]*ga[i]==2*(i==j)*s.eye(4) for i in range(4) for j in range(4)))
+000015 | # All algebraic 4D curvature tensors: symmetric6x6 pair matrix (21 entries),
+000016 | # one Bianchi relation R0123-R0213+R0312=0 gives dimension20.
+000017 | pairs=list(itertools.combinations(range(4),2));lookup={p:i for i,p in enumerate(pairs)}
+000018 | coords=list(itertools.combinations_with_replacement(range(6),2));removed=(lookup[(0,3)],lookup[(1,2)])
+000019 | coords.remove(removed)
+000020 | def tensor(mat):
+000021 |  out={}
+000022 |  for a,b,c,d in itertools.product(range(4),repeat=4):
+000023 |   if a==b or c==d:out[a,b,c,d]=s.S(0);continue
+000024 |   out[a,b,c,d]=(1 if a<b else -1)*(1 if c<d else -1)*mat[lookup[tuple(sorted((a,b)))],lookup[tuple(sorted((c,d)))]]
+000025 |  return out
+000026 | ts=[];oms=[]
+000027 | for i,j in coords:
+000028 |  mat=s.zeros(6);mat[i,j]=mat[j,i]=1
+000029 |  aa=mat[lookup[(0,1)],lookup[(2,3)]];bb=mat[lookup[(0,2)],lookup[(1,3)]]
+000030 |  mat[removed[0],removed[1]]=mat[removed[1],removed[0]]=bb-aa
+000031 |  t=tensor(mat);ts.append(t)
+000032 |  oms.append([sum((t[mu,nu,a,b]*ga[a]*ga[b]/4 for a,b in itertools.product(range(4),repeat=2)),s.zeros(4)) for mu,nu in itertools.product(range(4),repeat=2)])
+000033 | need('whole20_curvature_basis_obeys_all_Bianchi_identities',len(ts)==20 and all(t[a,b,c,d]+t[a,c,d,b]+t[a,d,b,c]==0 for t in ts for a,b,c,d in itertools.product(range(4),repeat=4)))
+000034 | gram=s.Matrix([[sum(ts[i][k]*ts[j][k] for k in ts[i]) for j in range(20)] for i in range(20)])
+000035 | need('whole20_curvature_basis_is_independent',gram.rank()==20)
+000036 | spin=s.Matrix([[s.simplify(sum(s.trace(x*y) for x,y in zip(oms[i],oms[j]))) for j in range(20)] for i in range(20)])
+000037 | need('whole_polarized_spin_connection_curvature_identity',spin==-gram/2)
+000038 | N,R,Ric2,Riem2,W2,Eu=s.symbols('N R Ric2 Riem2 W2 Euler',real=True)
+000039 | # Pure spin gravity:TrI=4N,TrE=-NR,TrE²=NR²/4,TrOmega²=-N Riem²/2.
+000040 | poly=s.expand(4*N*(5*R**2-2*Ric2+2*Riem2)-60*N*R**2+45*N*R**2-15*N*Riem2)
+000041 | eq('full_spin_gravity_polynomial',poly,N*(5*R**2-8*Ric2-7*Riem2))
+000042 | solution=s.solve([Eu-(Riem2-4*Ric2+R**2),W2-(Riem2-2*Ric2+R**2/3)],[Ric2,Riem2])
+000043 | eq('whole_invariant_dictionary_has_no_independent_R_squared',poly.subs(solution),N*(11*Eu-18*W2))
+000044 | eq('same_geometry_rank_reference_cancels_full_pure_a4_gravity',poly-poly,0)
+000045 | eq('conformally_flat_constant_curvature_can_mislead_R_squared_fit',poly.subs({Ric2:R**2/4,Riem2:R**2/6}),s.Rational(11,6)*N*R**2)
+000046 | # Execute the OTHER original curvature consumer v475 on the same WHOLE space.
+000047 | # Its Bianconi blocks are R, Ricci and 2R_abcd on unordered2form pairs.
+000048 | rr=[s.Matrix(4,4,lambda a,c:sum(t[a,b,c,b] for b in range(4))) for t in ts]
+000049 | sc=[s.trace(q) for q in rr]
+000050 | xx2=[s.Matrix(6,6,lambda a,b:2*t[(*pairs[a],*pairs[b])]) for t in ts]
+000051 | need('original_entropic_whole_curvature_trace_is_3R',all(sc[i]+s.trace(rr[i])+s.trace(xx2[i])==3*sc[i] for i in range(20)))
+000052 | need('original_entropic_whole_polarized_square_trace',all(s.trace(xx2[i]*xx2[j])==gram[i,j] for i in range(20) for j in range(20)))
+000053 | beta,Mbar=s.symbols('beta Mbar',positive=True)
+000054 | ent=beta**2*(R**2+Ric2+Riem2)/2
+000055 | eq('entropic_full_independent_invariant_coefficients',ent.subs(solution),beta**2*(s.Rational(5,6)*R**2+s.Rational(5,4)*W2-s.Rational(3,4)*Eu))
+000056 | eq('entropic_maximally_symmetric_17_over24_is_retained',ent.subs({Ric2:R**2/4,Riem2:R**2/6}),s.Rational(17,24)*beta**2*R**2)
+000057 | # Independent conformal plane wave: Hessian(sigma)=-k_a k_b sigma.
+000058 | ks=s.symbols('k0:4',real=True);hs=-s.Matrix(ks)*s.Matrix(ks).T
+000059 | delta=lambda a,b:s.S(int(a==b))
+000060 | rt={(a,b,c,d):delta(a,d)*hs[b,c]+delta(b,c)*hs[a,d]-delta(a,c)*hs[b,d]-delta(b,d)*hs[a,c] for a,b,c,d in itertools.product(range(4),repeat=4)}
+000061 | rp=s.Matrix(4,4,lambda a,c:sum(rt[a,b,c,b] for b in range(4)));rs=s.trace(rp)
+000062 | ricplane=s.trace(rp*rp);riemplane=sum(q*q for q in rt.values())
+000063 | eq('independent_all_momenta_scalar_response_is_5_over3_R_squared',rs**2+ricplane+riemplane,s.Rational(5,3)*rs**2)
+000064 | eq('scalar_plane_wave_Euler_piece_is_pure_boundary',riemplane-4*ricplane+rs**2,0)
+000065 | c3=1/(8*s.pi);bval=c3/(6*8*s.pi*Mbar**2)
+000066 | mass_full=s.simplify(3/(5*bval));mass_ms=s.simplify(12/(17*bval))
+000067 | eq('same_original_entropic_Einstein_pin',((8*s.pi*Mbar**2)**2)*3*bval,Mbar**2/2)
+000068 | eq('full_quadratic_scalar_coefficient_scale',mass_full,s.Rational(1152,5)*s.pi**2*Mbar**2)
+000069 | eq('old_max_symmetric_mass_ratio_is_not_full_scalar_coefficient',mass_full/mass_ms,s.Rational(17,20))
+000070 | eq('full_entropic_to_existing_TFPT_scale_mismatch',mass_full/(c3**7*Mbar**2),s.Rational(18,5)*(8*s.pi)**9)
+000071 | # All original H traces retained; c2,d are actual common moment weights only.
+000072 | A,B,C,chi,c2,d=s.symbols('A B C chi c2 d',positive=True)
+000073 | lam=8*s.pi**2*B/(d*A**2);mu2=2*c2*chi**2/d-4*C/A;xi=s.Rational(1,6)
+000074 | u=s.symbols('u',real=True);V=lam*u**2-(mu2-xi*R)*u
+000075 | us=(mu2-xi*R)/(2*lam)
+000076 | eq('given_whole_Higgs_stationary_branch',s.diff(V,u).subs(u,us),0)
+000077 | Vs=s.factor(V.subs(u,us))
+000078 | eq('whole_Higgs_algebraic_curvature_susceptibility',Vs,-(mu2-xi*R)**2/(4*lam))
+000079 | eq('induced_local_R_squared_from_given_Higgs',s.diff(Vs,R,2)/2,-d*A**2/(1152*s.pi**2*B))
+000080 | v,rho,m2,la,xx=s.symbols('v rho m2 lambda xi',positive=True)
+000081 | UU=(v+rho/s.sqrt(2))**2;Vrad=la*UU**2-m2*UU+xx*R*UU
+000082 | Vbroken=s.expand(Vrad.subs(m2,2*la*v**2))
+000083 | eq('original_Higgs_radial_mass_squared',s.diff(Vbroken,rho,2).subs({rho:0,R:0}),4*la*v**2)
+000084 | g=s.diff(Vbroken,rho,R).subs(rho,0)
+000085 | eq('actual_mixed_curvature_radial_vertex',g,s.sqrt(2)*xx*v)
+000086 | k,mrad=s.symbols('k mrad',nonnegative=True)
+000087 | response=-g**2/(2*(k**2+mrad**2))
+000088 | eq('whole_quadratic_response_keeps_radial_propagator',response,-xx**2*v**2/(k**2+mrad**2))
+000089 | eq('same_low_momentum_R_squared_from_own_radial_pole',response.subs(k,0).subs(mrad**2,4*la*v**2),-xx**2/(4*la))
+000090 | eq('Poisson_original_Higgs_radial_mass',2*mu2.subs({c2:2,d:1}),8*chi**2-8*C/A)
+000091 | # Exact quadratic finite Gaussian source includes determinant and every J leg.
+000092 | kap,j=s.symbols('K J',positive=True);src=s.symbols('source',real=True)
+000093 | logZ=-s.log(kap)/2+(src-g*R)**2/(2*kap)
+000094 | eq('whole_quadratic_source_retains_shifted_mean',s.diff(logZ,src),(src-g*R)/kap)
+000095 | eq('whole_quadratic_source_retains_covariance',s.diff(logZ,src,2),1/kap)
+000096 | eq('absolute_zero_source_weight_retains_determinant',logZ.subs(src,0),-s.log(kap)/2+g**2*R**2/(2*kap))
+000097 | result={'contract':'COMMON-CURVATURE-RESPONSE-20261031','all_passed':all(checks.values()),'checks':checks,'values':{'pure_spin_a4_numerator':str(poly),'invariant_form':'N(11Euler-18Weyl²), no independentR²','whole_algebraic_curvature_space_dimension':20,'polarized_identity_entries':400,'original_entropic_invariants':'beta²(5R²/6+5Weyl²/4-3Euler/4)','original_entropic_full_scalar_mass_squared':str(mass_full),'original_entropic_original_max_symmetric_mass_squared':str(mass_ms),'original_entropic_required_enhancement':str(s.Rational(18,5)*(8*s.pi)**9),'Higgs_local_R_squared':str(-d*A**2/(1152*s.pi**2*B)),'Higgs_nonlocal_response':'-xi²v² R(-Delta+m_rad²)^-1R','scope':'Existing conditional ordinary Spin4x96 Dirac consumer and separate original v475 entropic vacuum functional, never identified with each other. Closed/interior geometry, actual matching reference. Entropic mass parameter follows its quadratic metric matching, not complete Lorentzian/RP/measure theorem. Higgs response is fixed-background tree/quadratic stationary branch, not full H integration or new scalaron/physical prediction. Retain determinant, higher vertices, source and Z0.'}}
+000098 | Path(__file__).with_name('COMMON-CURVATURE-RESPONSE.json').write_text(json.dumps(result,indent=2)+'\n')
+000099 | print(json.dumps({'all_passed':result['all_passed'],'checks':len(checks),'curvature_basis':20,'polarized_entries':400,'local_Higgs_R_squared':result['values']['Higgs_local_R_squared']}))

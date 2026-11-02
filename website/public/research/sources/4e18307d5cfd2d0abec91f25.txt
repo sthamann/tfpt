@@ -1,0 +1,88 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/compiler-origin-audit-20260913/RECORD_COMPOSITION.md
+Original file SHA-256: 4315e685767b41b987d6b323825f971bf130ea379be2b50296ebb6dfa3357b6d
+Inclusive original lines: 1-80
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | # Was dahintersteckt: kontrollierte Phasen, Aufzeichnungen und ihre Zusammensetzung
+000002 | 
+000003 | 13. September 2026. Fortsetzung von [CONTEXT_INSTRUMENT.md](CONTEXT_INSTRUMENT.md).
+000004 | NON-RH. Exakte endliche Quantenkonstruktion unter benannten zusätzlichen
+000005 | Ausführungsprämissen; keine Herleitung der mikroskopischen TFPT-Dynamik.
+000006 | 
+000007 | ## 1. Eine Korrektur der Aussage „Die Matrizen sind schon vorhanden“
+000008 | 
+000009 | Die Einzelspiegelungen R_j=I-2 Pi_j und der Registerbasiswechsel
+000010 | W=J4/2-I liegen im Quellbaukasten. Daraus folgt **nicht**, dass die
+000011 | kontrollierte gemeinsame Operation zwischen zwei Registern schon verfügbar ist.
+000012 | Sie lautet
+000013 | 
+000014 | \[
+000015 | Q_C=\sum_j |j\rangle\langle j|_A\otimes R_{C,j}
+000016 | =I-2P_{\rm gleich},\qquad
+000017 | P_{\rm gleich}=\sum_j|j\rangle\langle j|_A\otimes\Pi_{C,j}.
+000018 | \]
+000019 | 
+000020 | P_gleich ist ein Rang-vier-Projektor auf dem 16-dimensionalen gemeinsamen
+000021 | Raum. Q_C gibt genau den passenden Register/System-Basispositionen ein
+000022 | Minuszeichen. Es ist eine echte Wechselwirkung zwischen den Registern,
+000023 | nicht nur eine andere Schreibweise für getrennte Einzeloperationen.
+000024 | 
+000025 | Im rechnerischen Kontext hat Q_C Operator-Schmidt-Rang vier. Jede reine
+000026 | Produktoperation U_A tensor U_S hat dagegen Rang eins; auch jede endliche
+000027 | Folge ausschließlich solcher lokalen Operationen bleibt ein Produkt.
+000028 | Damit ist die bisher offene Interregister-Kopplung präzise identifiziert.
+000029 | Dass sie einfach ist, beweist noch nicht ihre Herkunft.
+000030 | 
+000031 | ## 2. Die Kopplung besitzt eine überraschend kurze Gate-Zerlegung
+000032 | 
+000033 | Für zwei Zwei-Bit-Register a=(a0,a1), b=(b0,b1) ist das Vorzeichen
+000034 | 
+000035 | \[
+000036 | (-1)^{\delta_{a,b}},\qquad
+000037 | \delta_{a,b}=(1+a_0+b_0)(1+a_1+b_1)\pmod2.
+000038 | \]
+000039 | 
+000040 | Dies ist ein quadratisches Binärpolynom. Die exakte Gate-Zerlegung lautet,
+000041 | bis auf die ausdrücklich eingeschlossene globale Phase,
+000042 | 
+000043 | \[
+000044 | Q=-Z_{a0}Z_{a1}Z_{b0}Z_{b1}
+000045 | \,CZ_{a0,a1}CZ_{b0,b1}
+000046 | \,CZ_{a0,b1}CZ_{a1,b0}.
+000047 | \]
+000048 | 
+000049 | Nur die letzten beiden CZ-Gates verbinden verschiedene Register.
+000050 | Die anderen Faktoren sind registerlokale Clifford-Operationen. Die
+000051 | Vorzeichenwahrheitstabelle wird für alle 16 Basiszustände exakt geprüft.
+000052 | 
+000053 | **Der Gate-Typ selbst ist nicht neu:** CZ=I4-2|11><11| ist eine der
+000054 | ursprünglichen Koordinaten-Wurzelspiegelungen. Neu vorausgesetzt wird seine
+000055 | Anwendung auf ein Qubit des ersten und eines des zweiten Registers.
+000056 | Wenn ein skalierbarer Compiler solche registerübergreifenden Verbindungen
+000057 | bereits zulässt, kann er Q daraus bauen. Genau diese Freiheit der Verbindung
+000058 | ist aber nicht durch das Vorhandensein eines isolierten Viererträgers
+000059 | bewiesen. Die Herkunftslücke betrifft hier die erlaubte Zusammensetzung
+000060 | und physische Kopplung der Träger, nicht eine noch unbekannte Einzelmatrix.
+000061 | 
+000062 | Für alle 15 ursprünglichen, aus den E8-Wurzeln rekonstruierten Kontexte
+000063 | wurde außerdem die zugehörige vollständige Vor-Messoperation direkt auf
+000064 | den acht Pauli-Generatoren der vier Qubits geprüft: Jede Konjugation ergibt
+000065 | wieder ein Pauli-Wort bis auf Vorzeichen. Die Konstruktion ist damit eine
+000066 | Clifford-Schaltung, nicht nur numerisch ähnlich zu einer solchen.
+000067 | 
+000068 | **Einordnung:** Unter Stabilizer-Präparationen, solchen Gates und
+000069 | Pauli-/Stabilizer-Messungen bleibt dieser Teil klassisch effizient
+000070 | simulierbar. Das ist etablierte Quanteninformatik, keine neue universelle
+000071 | Rechenmethode; siehe [Aaronson–Gottesman](https://arxiv.org/abs/quant-ph/0406196).
+000072 | Hier bleibt die Auswahl der nächsten Kontexte eine klassische Steuerung
+000073 | nach K. Eine kohärente Sieben-Wege-Auswahl wird nicht hergeleitet oder
+000074 | stillschweigend in den Clifford-Nachweis aufgenommen. Beliebige
+000075 | Nicht-Stabilizer-Eingaben oder zusätzliche Gates liegen außerhalb dieser
+000076 | Simulierbarkeitsaussage. Keine Aussage über universelle TFPT-Physik folgt daraus.
+000077 | 
+000078 | ## 3. Ein exakt reversibler Messbaustein
+000079 | 
+000080 | Mit R0=I-2|0><0| auf dem Register und A=R0 W gilt A|0>=|+4>.

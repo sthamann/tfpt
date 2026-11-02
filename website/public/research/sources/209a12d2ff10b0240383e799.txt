@@ -1,0 +1,140 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/collar-current-source-bridge-20261021/checker.py
+Original file SHA-256: c7eb757690bd4ae238812f47bb99449f939a946f74dc89ce00ff5011fad6770a
+Inclusive original lines: 1-132
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Original two-face graph -> face currents, with exact finite controls.
+000002 | 
+000003 | Infinite statements are proved in the companion proof. Finite matrices here
+000004 | are controls of that same graph, never finite CCR representations or a new
+000005 | physical model.
+000006 | """
+000007 | from pathlib import Path
+000008 | import hashlib
+000009 | import importlib.util
+000010 | import json
+000011 | import sympy as s
+000012 | 
+000013 | ROOT=Path(__file__).resolve().parents[3]
+000014 | SOURCE=ROOT/'experiments/theory-contracts/seam-full-collar-reconstruction-20261015/checker.py'
+000015 | spec=importlib.util.spec_from_file_location('original_full_collar_checker',SOURCE)
+000016 | original=importlib.util.module_from_spec(spec);spec.loader.exec_module(original)
+000017 | OUT=Path(__file__).resolve().parent
+000018 | OUT.mkdir(exist_ok=True)
+000019 | 
+000020 | def occupation(r,alpha):
+000021 |     # Original ell=4 log2, beta=2ell; both quarter spectra are unchanged.
+000022 |     return 1/(1+s.Integer(2)**(8*(r+alpha)))
+000023 | 
+000024 | def central(G,A,B):
+000025 |     Q=s.eye(G.rows)-G
+000026 |     return s.simplify(s.trace(G*A*Q*B*G-G*B*Q*A*G))
+000027 | 
+000028 | rows={}
+000029 | for alpha in (s.Rational(1,4),s.Rational(3,4)):
+000030 |     N=2;rs=list(range(-N,N+1));d=len(rs)
+000031 |     T=s.diag(*[s.Integer(2)**(-4*(r+alpha)) for r in rs])
+000032 |     A,C,G=original.graph(T)
+000033 |     n=s.eye(d)-A
+000034 |     assert G*G==G and G.T==G
+000035 |     assert n==s.diag(*[occupation(r,alpha) for r in rs])
+000036 |     S=s.zeros(d)
+000037 |     for k in range(d-1):S[k+1,k]=1
+000038 |     F=(S+S.T)/2;H=(-s.I*S+s.I*S.T)/2
+000039 |     Z=s.zeros(d)
+000040 |     a0=s.diag(F,Z);b0=s.diag(H,Z)
+000041 |     a1=s.diag(Z,F);b1=s.diag(Z,H)
+000042 |     c0=central(G,a0,b0);c1=central(G,a1,b1)
+000043 |     total=central(G,a0+a1,b0+b1)
+000044 |     assert total==0 and c0+c1==0
+000045 |     assert central(G,a0,b1)==central(G,a1,b0)==0
+000046 |     endpoint=n[0,0]-n[-1,-1]
+000047 |     assert c1==-s.I*endpoint/2
+000048 |     # Already on the actual fixed source, a common gauge and a one-face
+000049 |     # unitary move different full covariances, even with equal face1 marginals.
+000050 |     U=s.eye(d);U[0,0]=s.I
+000051 |     joint=s.diag(U,U);face=s.diag(s.eye(d),U)
+000052 |     Gj=joint*G*joint.conjugate().T
+000053 |     Gf=face*G*face.conjugate().T
+000054 |     assert Gj[d:,d:]==Gf[d:,d:] and Gj!=Gf
+000055 |     assert Gj[:d,d:]==U*C*U.conjugate().T
+000056 |     assert Gf[:d,d:]==C*U.conjugate().T
+000057 |     # General orthogonal-graph identity for a relative endpoint transport.
+000058 |     V=s.eye(d).col_join(U*T)
+000059 |     relative=V*(V.conjugate().T*V).inv()*V.conjugate().T
+000060 |     assert relative==Gf
+000061 |     controls=[]
+000062 |     for window in (2,4,8):
+000063 |         for mode in (1,2,3):
+000064 |             pp=sum(occupation(r,alpha)*(1-occupation(r+mode,alpha))
+000065 |                    for r in range(-window,window-mode+1))
+000066 |             mm=sum(occupation(r+mode,alpha)*(1-occupation(r,alpha))
+000067 |                    for r in range(-window,window-mode+1))
+000068 |             ratio=s.Rational(1,256)**mode
+000069 |             assert s.factor(mm-ratio*pp)==0
+000070 |             end=sum(occupation(r,alpha)-occupation(r+mode,alpha)
+000071 |                     for r in range(-window,window-mode+1))
+000072 |             assert s.factor(pp-mm-end)==0
+000073 |             target=s.Integer(mode)/(1-ratio)
+000074 |             controls.append({'window':window,'mode':mode,'exact_KMS_ratio':str(ratio),
+000075 |                              'abs_error_to_infinite_two_point':float(abs(pp-target))})
+000076 |     rows[str(alpha)]={'graph_projector_reused':True,
+000077 |       'finite_source_face1_cocycle':str(c1),'common_two_face_cocycle':str(total),
+000078 |       'infinite_face1_limit':'-I/2','infinite_face0_limit':'+I/2',
+000079 |       'different_full_lifts_same_reduced_covariance':True,
+000080 |       'relative_endpoint_graph_identity':True,'KMS_controls':controls}
+000081 | 
+000082 | # Actual scalar transport block, before attaching any full Dirac/real structure.
+000083 | r,theta,z=s.symbols('r theta z',real=True)
+000084 | alpha=s.symbols('alpha',real=True)
+000085 | chi=s.Function('chi')(r);phi=s.Function('phi')(theta);psi=s.Function('psi')(r,theta)
+000086 | g=s.exp(s.I*z*chi*phi)
+000087 | transport=s.simplify(g*(s.diff(psi/g,r)-s.I*s.diff(psi/g,theta)+alpha*psi/g))
+000088 | expected=s.diff(psi,r)-s.I*s.diff(psi,theta)+alpha*psi-z*(s.I*s.diff(chi,r)*phi+chi*s.diff(phi,theta))*psi
+000089 | assert s.simplify(transport-expected)==0
+000090 | assert s.diff(expected,z,2)==0
+000091 | 
+000092 | # A closed-loop diagnostic that fixes all four original circle marks.
+000093 | f=s.sin(4*theta);h=1-s.cos(4*theta)
+000094 | assert all(f.subs(theta,s.pi*k/2)==h.subs(theta,s.pi*k/2)==0 for k in range(4))
+000095 | assert s.simplify(f.subs(theta,theta+s.pi/2)-f)==0
+000096 | assert s.simplify(h.subs(theta,theta+s.pi/2)-h)==0
+000097 | fk=-s.I/2;hk=-s.Rational(1,2)
+000098 | marked_cocycle=s.simplify(4*(s.conjugate(fk)*hk-fk*s.conjugate(hk)))
+000099 | assert marked_cocycle==-2*s.I
+000100 | 
+000101 | # Genuine source partition functions, retaining the entire charge carry in
+000102 | # the infinite formulas. Finite products/sums below only check their identity.
+000103 | q=s.Rational(1,256);partitions={}
+000104 | for alpha in (s.Rational(1,4),s.Rational(3,4)):
+000105 |     product=s.prod((1+q**(r+alpha))*(1+q**(r+1-alpha)) for r in range(12))
+000106 |     charge=sum(q**(s.Rational(k*(k-1),2)+alpha*k) for k in range(-12,13))
+000107 |     oscillator=s.prod(1/(1-q**m) for m in range(1,13))
+000108 |     error=float(abs(product-charge*oscillator))
+000109 |     assert error<1e-25
+000110 |     current_mean=sum(occupation(r,alpha)-(1 if r<0 else 0) for r in range(-12,13))
+000111 |     charge_mean=sum(k*q**(s.Rational(k*(k-1),2)+alpha*k) for k in range(-12,13))/charge
+000112 |     mean_error=float(abs(current_mean-charge_mean))
+000113 |     assert mean_error<1e-25
+000114 |     partitions[str(alpha)]={'finite_product_charge_oscillator_error':error,
+000115 |                             'original_sea_zero_mode_matches_charge_sum_error':mean_error}
+000116 | 
+000117 | result={'verdict':'EXACT_CONDITIONAL_TWO_FACE_TO_CURRENT_BRIDGE_WITH_DIFFERENT_SOURCE_LIFTS',
+000118 |  'source_graph_constructor':str(SOURCE.relative_to(ROOT)),
+000119 |  'source_graph_sha256':hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
+000120 |  'statistical_premise':'Given charged CAR and pure quasifree graph state; not derived from P1.',
+000121 |  'analytic_scope':'All smooth real scalar source profiles, all Fourier modes, all ell>0. Infinite formulas require the companion proof; finite checks are controls only.',
+000122 |  'cases':rows,'charge_partition_controls':partitions,
+000123 |  'relative_endpoint_transport_block':'g_chi (partial_r+B_alpha) g_chi^* = partial_r+B_alpha-i chi_prime phi-chi phi_prime',
+000124 |  'four_mark_loop':{'profiles':['sin(4 theta)','1-cos(4 theta)'],
+000125 |                    'both_zero_at_all_four_marks':True,'both_quarter_periodic':True,
+000126 |                    'face1_cocycle':str(marked_cocycle),'face1_Weyl_rectangle_phase':'exp(2 I s t)',
+000127 |                    'common_two_face_rectangle_phase':'1'},
+000128 |  'original_time_scale':'K_alpha from original source; [K_alpha,J_-m]=m J_-m/8. Normal length is not physical time.',
+000129 |  'not_derived':['CAR/statistics from primitive P1','physical execution of a one-face intervention','original global P1 to E8 field identification','event menu/rates, pointer and record selection','3+1D chirality, coupling selection and gravity'],
+000130 |  'complete_solution':False}
+000131 | (OUT/'results.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
+000132 | print(json.dumps(result,ensure_ascii=False,indent=2))

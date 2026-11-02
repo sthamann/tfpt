@@ -1,0 +1,67 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/atlas-defect-synthesis-20261024/COVARIANT-INSTRUMENTS.txt
+Original file SHA-256: 858d770e27f80aadb347194c4a9d1a8c869b12163d6cfe8433e4b12b1275ab10
+Inclusive original lines: 127-185
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000127 | 
+000128 | After observing a, the prepared state is sigma_a(p).  A second use of the
+000129 | same POVM is therefore the six-state Markov chain
+000130 | 
+000131 |     Pr(b=a | a) = 5p/6,
+000132 |     Pr(b!=a | a) = (6-5p)/30.
+000133 | 
+000134 | The transition matrix is doubly stochastic, so its stationary distribution
+000135 | is uniform.  The stationary two-step law has
+000136 | 
+000137 |     Pr(a,a) = 5p/36,
+000138 |     Pr(a,b) = (6-5p)/180,  a!=b.
+000139 | 
+000140 | At p=1 these numbers are 5/36 and 1/180, the same numbers obtained from the
+000141 | Omega state in RELATIONAL-CHANNEL.txt.  Here they arise from a separable
+000142 | measure-and-prepare time sequence.  Equality of these two tables is therefore
+000143 | not evidence for entanglement or for a common physical preparation.
+000144 | 
+000145 | Exact failure of state tomography
+000146 | ---------------------------------
+000147 | 
+000148 | The six effects span a six dimensional subspace of the full 25 dimensional
+000149 | operator space.  Repeating the instrument does not recover the missing
+000150 | coherences.  This is witnessed by two explicit positive states in the real
+000151 | isometric H5 chart.
+000152 | 
+000153 | Let
+000154 | 
+000155 |     X = i(|0><1| - |1><0|),
+000156 |     rho_+ = I5/5 + X/10,
+000157 |     rho_- = I5/5 - X/10.
+000158 | 
+000159 | X is Hermitian and traceless.  Both density matrices have the exact spectrum
+000160 | 
+000161 |     {1/10, 1/5, 1/5, 1/5, 3/10},
+000162 | 
+000163 | so they are distinct strictly positive states.  Every E_a is real symmetric,
+000164 | while X is imaginary antisymmetric.  Therefore
+000165 | 
+000166 |     Tr(E_a X) = 0
+000167 | 
+000168 | for all six outcomes and
+000169 | 
+000170 |     Tr(E_a rho_+) = Tr(E_a rho_-) = 1/6.
+000171 | 
+000172 | The measure-and-prepare classification gives the probability of every finite
+000173 | outcome word directly:
+000174 | 
+000175 |     Pr(a_1...a_n | rho)
+000176 |       = Tr(E_{a_1} rho)
+000177 |         product_{k=2}^n T_p[a_{k-1},a_k].
+000178 | 
+000179 | The two states have the same first factor, and the transition matrix is fixed
+000180 | by p and the previous outcome.  Induction in n proves that rho_+ and rho_-
+000181 | have identical probabilities for every finite outcome word.  Thus this
+000182 | instrument family is not informationally complete and cannot reconstruct the
+000183 | unmeasured GNS coherences or a complete GNS crossword from its outcome history.
+000184 | This is an explicit counterexample, rather than a dimension-only inference.
+000185 | 

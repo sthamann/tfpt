@@ -1,0 +1,77 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_clutch_clock.py
+Original file SHA-256: d8dfe68c483e9dd9faaeed0a1325256f3f09bdfdc66788d46e918d863314729b
+Inclusive original lines: 1-69
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | [OMITTED: non-scientific conversation or execution metadata]
+000002 | from collections import Counter
+000003 | from fractions import Fraction
+000004 | from itertools import combinations, product
+000005 | import json
+000006 | 
+000007 | roots = []
+000008 | for i, j in combinations(range(8), 2):
+000009 |     for a, b in product((-2, 2), repeat=2):
+000010 |         v = [0] * 8
+000011 |         v[i], v[j] = a, b
+000012 |         roots.append(tuple(v))
+000013 | roots += [v for v in product((-1, 1), repeat=8) if v.count(-1) % 2 == 0]
+000014 | if len(set(roots)) != 240:
+000015 |     raise RuntimeError("Root reconstruction failed")
+000016 | 
+000017 | lk = (-1, -1, -1, 1, -1, 1, 1, 1)
+000018 | ld = (0, 0, 0, 2, 0, 2, 0, 0)
+000019 | native = (1, 1, 1, 1, 1, 0, 0, 0)
+000020 | 
+000021 | def ip(v, w):
+000022 |     return Fraction(sum(a * b for a, b in zip(v, w)), 4)
+000023 | 
+000024 | def scalar_clock_spectrum(v):
+000025 |     out = Counter({0: 8})  # Cartan, phase i^0
+000026 |     for r in roots:
+000027 |         k = ip(r, v)
+000028 |         if k.denominator != 1:
+000029 |             raise RuntimeError("Nonintegral root-cocharacter pairing")
+000030 |         out[int(k) % 4] += 1
+000031 |     return dict(sorted(out.items()))
+000032 | 
+000033 | def carrier_degrees(v, j):
+000034 |     return tuple(Fraction(v[i] + v[j], 2) for i in range(5))
+000035 | 
+000036 | def allowed(v, j):
+000037 |     d = carrier_degrees(v, j)
+000038 |     return d[:3] == (0, 0, 0) and sorted(d[3:]) == [0, 1]
+000039 | 
+000040 | def kinds(seq):
+000041 |     return dict(Counter("D8" if 0 in v else "half" for v in seq))
+000042 | 
+000043 | conjugate64 = [r for r in roots if 0 not in r and r[:5].count(-1) % 2 == 0]
+000044 | actual64 = [r for r in roots if 0 not in r and r[:5].count(-1) % 2 == 1]
+000045 | raw_phase = Counter({0: 8})
+000046 | for r in roots:
+000047 |     raw_phase[sum(a * b for a, b in zip(r, native)) % 4] += 1
+000048 | 
+000049 | out = {
+000050 |     "source": "Independent full E8 enumeration, integer roots scaled by2; no physical input fitted",
+000051 |     "lambda_kappa_is_root": lk in roots,
+000052 |     "lambda_D8_is_root": ld in roots,
+000053 |     "lambda_kappa_selected_carrier_j6": list(map(str, carrier_degrees(lk, 5))),
+000054 |     "lambda_D8_carrier_j6": list(map(str, carrier_degrees(ld, 5))),
+000055 |     "lambda_D8_carrier_j7": list(map(str, carrier_degrees(ld, 6))),
+000056 |     "fixed_j6_clutch_roots": kinds([v for v in roots if allowed(v, 5)]),
+000057 |     "some_j_clutch_roots": kinds([v for v in roots if any(allowed(v, j) for j in (5, 6, 7))]),
+000058 |     "lambda_kappa_conjugate64_grades_used_by_Claude": dict(sorted(Counter(str(ip(r, lk)) for r in conjugate64).items())),
+000059 |     "lambda_kappa_actual_exterior_even_64_grades": dict(sorted(Counter(str(ip(r, lk)) for r in actual64).items())),
+000060 |     "chirality_source": "JOINT-LIFT-NATIVE-CLOCK-CONNECTION.txt:63-87: Lambda_even uses odd minus parity on D5 and paired family -sigma/2",
+000061 |     "lambda_kappa_full_quarter_i_powers": scalar_clock_spectrum(lk),
+000062 |     "all_root_full_quarter_spectrum_classes": len({tuple(scalar_clock_spectrum(v).items()) for v in roots}),
+000063 |     "native_kappa_full_i_powers": dict(sorted(raw_phase.items())),
+000064 |     "full_quarter_trace": scalar_clock_spectrum(lk)[0] - scalar_clock_spectrum(lk)[2],
+000065 |     "native_kappa_trace": raw_phase[0] - raw_phase[2],
+000066 |     "full_loop_exp2pii_lambda": "identity on all248 directions; all root pairings integral",
+000067 |     "scope": "Root quarter != native kappa by full adjoint spectrum. Separate D5 endpoint kappa remains valid. Fixed marked j versus freely varying j counts are distinct.",
+000068 | }
+000069 | print(json.dumps(out, indent=2))

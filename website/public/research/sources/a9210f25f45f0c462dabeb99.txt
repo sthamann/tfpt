@@ -1,0 +1,48 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/check_w8_stress_cyclic.py
+Original file SHA-256: 5caccc07fb478f1e68c756b4312619b015582968bb5e3a441c637d951b4f7923
+Inclusive original lines: 30-69
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000030 | def roots_e8():
+000031 |     roots = []
+000032 |     for i, j in combinations(range(8), 2):
+000033 |         for a, b in product((-1, 1), repeat=2):
+000034 |             root = [F(0)] * 8
+000035 |             root[i], root[j] = F(a), F(b)
+000036 |             roots.append(tuple(root))
+000037 |     for signs in product((-1, 1), repeat=8):
+000038 |         if sum(x < 0 for x in signs) % 2 == 0:
+000039 |             roots.append(tuple(F(x, 2) for x in signs))
+000040 |     need(len(set(roots)) == 240, 'E8 root count')
+000041 |     need(all(dot(a, a) == 2 for a in roots), 'root norm')
+000042 |     return roots
+000043 | 
+000044 | 
+000045 | def tangential(vector, d):
+000046 |     multiple = dot(d, vector) / dot(d, d)
+000047 |     return tuple(x - multiple * y for x, y in zip(vector, d))
+000048 | 
+000049 | 
+000050 | def contraction_constant_and_first(pairs, d):
+000051 |     """Q_ab -> (-1)^(a+b-2)d²; only a=1 or b=1 creates level1."""
+000052 |     d2 = dot(d, d)
+000053 |     constants = [F((-1) ** (a + b - 2)) * d2 for a, b in pairs]
+000054 |     first_multiples = [F(((-1) ** (b - 1) if a == 1 else 0)
+000055 |                          + ((-1) ** (a - 1) if b == 1 else 0))
+000056 |                        for a, b in pairs]
+000057 |     constant = F(1)
+000058 |     for value in constants:
+000059 |         constant *= value
+000060 |     first_multiple = F(0)
+000061 |     for i, value in enumerate(first_multiples):
+000062 |         term = value
+000063 |         for j, other in enumerate(constants):
+000064 |             if i != j:
+000065 |                 term *= other
+000066 |         first_multiple += term
+000067 |     first = tuple(first_multiple * value for value in d)
+000068 |     need(tangential(first, d) == (F(0),) * 8, 'nonradial contraction')
+000069 |     return constant, first_multiple

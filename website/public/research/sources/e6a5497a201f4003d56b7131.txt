@@ -1,0 +1,174 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_higgs_color_modular_source.py
+Original file SHA-256: c88ef52dbf22acb9ae654197479b001732ac72c65ccc279b3988fe615035eaf9
+Inclusive original lines: 1-166
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Original right-quark color marginal and its actual nonlinear state log.
+000002 | Original96 structural controls, independent finite CAR, exact moment readout.
+000003 | """
+000004 | from pathlib import Path
+000005 | import json,sys,itertools,math
+000006 | import numpy as np
+000007 | import sympy as s
+000008 | ROOT=Path(__file__).resolve().parents[4];sys.path.insert(0,str(ROOT/'verification'))
+000009 | import v252_full_finite_triple as v
+000010 | checks=[]
+000011 | def need(ok,label):
+000012 |  if not bool(ok):raise RuntimeError(label)
+000013 |  checks.append(dict(label=label,passed=True))
+000014 | 
+000015 | # Original builder, unchanged seed252 data, no physical Yukawa fit.
+000016 | rng=np.random.default_rng(252);Ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000017 | mr=rng.normal(size=(3,3));MR=mr+mr.T;z3=np.zeros((3,3),complex);z2=np.zeros((2,2),complex)
+000018 | DY=v.full_D(*Ys,z3);DM=v.full_D(z3,z3,z3,z3,MR);Kswap=v.Kswap();P=v.rep(1,z2,z3);gamma=v.grading()
+000019 | eig,V=np.linalg.eigh(Ys[0].conj().T@Ys[0]);y2=float(eig[-1]);vec=V[:,-1]
+000020 | p=.25;ell=1.;embed=np.zeros((96,3),complex)
+000021 | for color in range(3):
+000022 |  for fam in range(3):embed[v.IDX[('u','R',color,fam)],color]=vec[fam]
+000023 | need(np.max(abs(embed.conj().T@embed-np.eye(3)))<2e-14,'Same original fixed rightup familyvector in all three colors')
+000024 | need(np.max(abs(gamma@embed+embed))<2e-14,'Original rightup grading is minus1')
+000025 | def phi(H):
+000026 |  h1,h2=H;q=np.array([[np.conj(h2),h1],[-np.conj(h1),h2]])
+000027 |  a=v.rep(0,q,z3);b=a@(DY@P-P@DY);b=b+b.conj().T
+000028 |  return b+Kswap@b.conj()@Kswap+DM
+000029 | def tval(u):
+000030 |  E=np.sqrt(p*p+y2*u);return .5+p*np.tanh(ell*E)/(2*E)
+000031 | Hs=[(0j,0j),(0j,1+0j),(.6+0j,.8+0j),(.6j,.8+0j),(0j,2+0j)]
+000032 | actual=[]
+000033 | for H in Hs:
+000034 |  ph=phi(H);h=p*gamma-1j*gamma@ph
+000035 |  need(np.max(abs(h-h.conj().T))<2e-12,'Original whole96 h is Hermitian '+str(H))
+000036 |  E,U=np.linalg.eigh(h);C=(U*(1/(1+np.exp(2*ell*E))))@U.conj().T
+000037 |  sub=embed.conj().T@C@embed;target=tval(sum(abs(z)**2 for z in H))
+000038 |  need(np.max(abs(sub-target*np.eye(3)))<4e-13,'Actual whole96 rightup triplet matches scalar formula and zero cross-color '+str(H))
+000039 |  actual.append(float(np.trace(sub).real/3))
+000040 | need(actual[0]>actual[1]>actual[-1]>.5,'Actual rightup radial occupation decreases with H')
+000041 | need(max(abs(actual[j]-actual[1]) for j in [2,3])<4e-13,'Complex/real H direction independence uses same fixed rightvector')
+000042 | 
+000043 | # Independent8state CAR matrices and actual two-H source restriction.
+000044 | dim=8;aa=[]
+000045 | for j in range(3):
+000046 |  a=np.zeros((dim,dim),complex)
+000047 |  for bits in range(dim):
+000048 |   if (bits>>j)&1:a[bits^(1<<j),bits]=(-1)**((bits&((1<<j)-1)).bit_count())
+000049 |  aa.append(a)
+000050 | ns=[a.conj().T@a for a in aa];N=sum(ns);eye=np.eye(dim);ks=np.array([b.bit_count() for b in range(dim)])
+000051 | for j in range(3):
+000052 |  for k in range(3):need(np.max(abs(aa[j]@aa[k].conj().T+aa[k].conj().T@aa[j]-(eye if j==k else 0)))<1e-14,'Independent Fock CAR '+str((j,k)))
+000053 | w=1/3;ts=[actual[0],actual[-1]]
+000054 | rho=sum(weight*np.diag([t**k*(1-t)**(3-k) for k in ks]) for weight,t in zip([w,1-w],ts))
+000055 | ds=np.array([sum(weight*t**k*(1-t)**(3-k) for weight,t in zip([w,1-w],ts)) for k in range(4)])
+000056 | need(np.max(abs(rho-np.diag(ds[ks])))<2e-15 and abs(np.trace(rho)-1)<2e-15,'Actual marginal per-configuration weights have correct color-sector degeneracies')
+000057 | k0=-np.log(ds[0]);J1=np.log(ds[0]/ds[1]);J2=np.log(ds[1]**2/(ds[0]*ds[2]));J3=np.log(ds[0]*ds[2]**3/(ds[1]**3*ds[3]))
+000058 | K=-np.diag(np.log(np.diag(rho)));Kpoly=k0*eye+J1*N+J2*(N@(N-eye)/2)+J3*(N@(N-eye)@(N-2*eye)/6)
+000059 | need(np.max(abs(K-Kpoly))<2e-14,'Whole actual state logarithm retains constant,quadratic,quartic,sextic terms')
+000060 | for j in range(3):
+000061 |  for k in range(3):need(np.max(abs(K@(aa[j].conj().T@aa[k])-(aa[j].conj().T@aa[k])@K))<2e-14,'Actual nonlinear state log preserves constant color U3 '+str((j,k)))
+000062 | delta=np.log(ds[:-1]/ds[1:]);need(J2<0 and delta[0]>delta[1]>delta[2] and np.all(delta<0),'Actual original-source mixture has strict ordered spectator-dependent flip phases')
+000063 | sqrtR=np.diag(np.sqrt(np.diag(rho)));tau=.37;Utime=np.diag(np.exp(1j*tau*np.log(np.diag(rho))))
+000064 | for j in range(3):
+000065 |  rest=ks-np.diag(ns[j]).real.astype(int);projs=[np.diag((rest==m).astype(float)) for m in range(3)]
+000066 |  Qhalf=sum(np.sqrt(ds[m]/ds[m+1])*projs[m] for m in range(3))
+000067 |  mod=sum(np.exp(1j*tau*delta[m])*projs[m]@aa[j] for m in range(3))
+000068 |  need(np.max(abs(Utime@aa[j]@Utime.conj().T-mod))<2e-14,'Direct actual modular action on charged color '+str(j))
+000069 |  need(np.max(abs(sqrtR@aa[j]-Qhalf@aa[j]@sqrtR))<2e-14,'Direct actual half-modular identity without density inverse color '+str(j))
+000070 | moms=[sum(weight*t**k for weight,t in zip([w,1-w],ts)) for k in range(4)]
+000071 | E=lambda A:np.trace(rho@A)
+000072 | need(abs(E(ns[0]@ns[1])-moms[2])<2e-15 and moms[2]>moms[1]**2,'Actual two-color four-field response has strict positive variance defect')
+000073 | need(abs(E(ns[0]@ns[1]@ns[2])-moms[3])<2e-15,'Actual six-field response equals third occupation moment')
+000074 | queries=[E(np.diag((1j**j)**ks)) for j in range(4)]
+000075 | recover=[sum((1j)**(-j*k)*queries[j] for j in range(4))/(4*math.comb(3,k)) for k in range(4)]
+000076 | need(np.max(abs(np.array(recover)-ds))<3e-16,'Four bounded source number-phase queries reconstruct complete actual triplet state')
+000077 | 
+000078 | # Exact identities and admissible class countercontrols, no physical H law.
+000079 | t,z,m1,m2,m3=s.symbols('t z m1 m2 m3',real=True)
+000080 | dx=[1-3*m1+3*m2-m3,m1-2*m2+m3,m2-m3,m3]
+000081 | F=sum(s.binomial(3,k)*dx[k]*z**k for k in range(4))
+000082 | need(s.expand(F-(1+3*m1*(z-1)+3*m2*(z-1)**2+m3*(z-1)**3))==0,'Exact all-measure moment and full number-source polynomial')
+000083 | for k in range(4):
+000084 |  dft=s.expand(sum(s.I**(-j*k)*F.subs(z,s.I**j) for j in range(4))/(4*s.binomial(3,k))-dx[k])
+000085 |  need(dft==0,'Exact all-class Fourier readout coefficient '+str(k))
+000086 | sign_controls=[]
+000087 | for wt in [s.Rational(1,10),s.Rational(9,10)]:
+000088 |  tt=[s.Rational(11,20),s.Rational(3,5)];dk=[sum(ww*x**k*(1-x)**(3-k) for ww,x in zip([wt,1-wt],tt)) for k in range(4)]
+000089 |  r2=s.factor(dk[1]**2/(dk[0]*dk[2]));r3=s.factor(dk[0]*dk[2]**3/(dk[1]**3*dk[3]))
+000090 |  need(r2<1 and dk[1]*dk[3]>dk[2]**2,'Exact strict weighted-moment inequalities '+str(wt))
+000091 |  sign_controls.append(dict(weight=str(wt),J2_exponential=str(r2),J3_exponential=str(r3)))
+000092 | need(s.Rational(sign_controls[0]['J3_exponential'])>1 and s.Rational(sign_controls[1]['J3_exponential'])<1,'Sextic state-log coefficient sign is not fixed by positive nonconstant Higgs mixture')
+000093 | points=[s.Rational(11,20)+s.Rational(j,100) for j in range(4)];direction=[-1,3,-3,1]
+000094 | laws=[[s.Rational(1,4)+sign*s.Rational(q,24) for q in direction] for sign in [1,-1]]
+000095 | mom=[[sum(wt*x**k for wt,x in zip(law,points)) for k in range(4)] for law in laws]
+000096 | need(all(x>0 for law in laws for x in law) and all(sum(law)==1 for law in laws),'Exact fourth-moment ambiguity controls are positive admissible occupation laws')
+000097 | need(mom[0][:3]==mom[1][:3] and mom[0][3]!=mom[1][3],'Same two/four-field moments but different six-field word in entire stated class')
+000098 | # Symmetry reader: actual color generators plus parity, not Gaussianity.
+000099 | Ecolor=[s.Matrix((aa[j].conj().T@aa[k]).real.astype(int)) for j in range(3) for k in range(3) if j!=k]
+000100 | Ecolor += [s.Matrix((ns[0]-ns[1]).real.astype(int)),s.Matrix((ns[1]-ns[2]).real.astype(int))]
+000101 | parity=s.diag(*[(-1)**int(k) for k in ks]);Id=s.eye(dim)
+000102 | def comm_stack(gens):return s.Matrix.vstack(*[s.kronecker_product(Id,g)-s.kronecker_product(g.T,Id) for g in gens])
+000103 | need(comm_stack(Ecolor).rank()==58,'Exact color SU3 commutant has dimension6 including both singlet coherences')
+000104 | need(comm_stack(Ecolor+[parity]).rank()==60,'Exact color SU3 plus fermion parity commutant has dimension4, precisely d_N')
+000105 | # Exact identities for the entire finite-H marginal moment class.
+000106 | Gx=s.Matrix([[1,m1],[m1,m2]]);Xx=s.Matrix([[m1,m2],[m2,m3]]);e0=s.Matrix([1,0]);e1=s.Matrix([0,1]);Tx=Gx.inv()*Xx
+000107 | need(s.simplify(Tx*e0-e1)==s.zeros(2,1),'Exact whole-class moment operator sends e0 to e1')
+000108 | for j,expected in enumerate([1,m1,m2,m3]):
+000109 |  need(s.simplify((e0.T*Gx*Tx**j*e0)[0]-expected)==0,'Exact Gauss spectral measure matches original moment '+str(j))
+000110 | a0=s.Rational(1,2);b0=float(tval(0))
+000111 | def moment_blocks(mm):
+000112 |  G=np.array([[1,mm[1]],[mm[1],mm[2]]],float);X=np.array([[mm[1],mm[2]],[mm[2],mm[3]]],float)
+000113 |  return G,X,X-.5*G,b0*G-X
+000114 | from scipy.linalg import eigh
+000115 | from scipy.optimize import brentq
+000116 | quad=[]
+000117 | for label,pts,weights in [('actual_H0_H2',ts,[w,1-w]),('interior_four_node',list(map(float,points)),[.1,.2,.3,.4])]:
+000118 |  mm=np.array([sum(wt*t**j for wt,t in zip(weights,pts)) for j in range(4)])
+000119 |  G,X,A,B=moment_blocks(mm)
+000120 |  need(np.linalg.eigvalsh(G)[0]>1e-6 and np.linalg.eigvalsh(A)[0]>1e-6 and np.linalg.eigvalsh(B)[0]>-2e-16,'Original interval moment matrix criterion on '+label)
+000121 |  nodes,vv=eigh(X,G);qw=(vv.T@G@np.array([1.,0.]))**2
+000122 |  need(np.all(nodes>.5) and np.all(nodes<=b0+2e-13) and np.all(qw>0) and abs(sum(qw)-1)<2e-13,'Constructive positive two-node witness stays in original finite-H range '+label)
+000123 |  need(max(abs(sum(qw*nodes**j)-mm[j]) for j in range(4))<2e-13,'Two-node witness replays all four original marginal moments '+label)
+000124 |  radial=[]
+000125 |  for node in nodes:
+000126 |   if abs(node-b0)<2e-13:u=0.
+000127 |   else:
+000128 |    hi=1.
+000129 |    while tval(hi)>node:hi*=2
+000130 |    u=brentq(lambda u:tval(u)-node,0,hi,xtol=1e-13)
+000131 |   radial.append(u)
+000132 |  need(max(abs(tval(u)-node) for u,node in zip(radial,nodes))<2e-13,'Witness nodes invert actual original Yukawa radial occupation '+label)
+000133 |  quad.append(dict(label=label,nodes=nodes.tolist(),weights=qw.tolist(),finite_radial_u=radial,physical_law_selected=False))
+000134 | # Crucial endpoint is exact, not a floating epsilon acceptance assertion.
+000135 | aa0,bb0,xx,ww=s.symbols('a b x w',real=True)
+000136 | bdry=[ww*xx**j+(1-ww)*bb0**j for j in range(4)]
+000137 | GB=s.Matrix([[1,bdry[1]],[bdry[1],bdry[2]]]);XB=s.Matrix([[bdry[1],bdry[2]],[bdry[2],bdry[3]]])
+000138 | need(s.factor((bb0*GB-XB).det())==0,'Exact actual H0 endpoint permits singular upper matrix')
+000139 | need(s.factor((XB-aa0*GB).det()-ww*(1-ww)*(xx-aa0)*(bb0-aa0)*(xx-bb0)**2)==0,'Exact strict lower matrix on any two finite interior or upper-endpoint nodes')
+000140 | forbidden=[s.Rational(1,2)*(a0**j+s.Rational(3,5)**j) for j in range(4)]
+000141 | GF=s.Matrix([[1,forbidden[1]],[forbidden[1],forbidden[2]]]);XF=s.Matrix([[forbidden[1],forbidden[2]],[forbidden[2],forbidden[3]]]);AF=XF-a0*GF
+000142 | need(GF.det()>0 and AF.det()==0 and AF[0,0]>0,'Exact positive nonconstant endpoint law rejected: lower matrix singular forces unattainable H infinity')
+000143 | # A valid faithful color/parity state need not belong to the positive-H class.
+000144 | badD=list(map(s.Rational,['1/20','1/20','1/4','1/20']))
+000145 | badM=[1,badD[1]+2*badD[2]+badD[3],badD[2]+badD[3],badD[3]]
+000146 | need(sum(s.binomial(3,k)*badD[k] for k in range(4))==1 and min(badD)>0,'Rejected mixture diagnostic remains a valid faithful even color-invariant quantum state')
+000147 | need(a0<badM[1]<b0 and badM[2]-badM[1]**2<0,'Valid color state with admissible mean fails mixture variance; covariance alone insufficient')
+000148 | def classify_exact_moments(mm,a,b):
+000149 |  # Exact real inputs: unresolved symbolic sign must raise, never be accepted.
+000150 |  variance=s.factor(mm[2]-mm[1]**2)
+000151 |  if variance<0:return 'negative_variance'
+000152 |  if variance==0:
+000153 |   return 'single_finite_node' if bool(a<mm[1]<=b and mm[3]==mm[1]**3) else 'invalid_degenerate_branch'
+000154 |  GG=s.Matrix([[1,mm[1]],[mm[1],mm[2]]]);XX=s.Matrix([[mm[1],mm[2]],[mm[2],mm[3]]]);A=XX-a*GG;B=b*GG-XX
+000155 |  return 'two_node_witness_exists' if bool(A[0,0]>0 and A.det()>0 and B[0,0]>=0 and B[1,1]>=0 and B.det()>=0) else 'interval_matrix_rejection'
+000156 | bexact=(1+s.tanh(s.Rational(1,4)))/2;const=s.Rational(11,20)
+000157 | need(classify_exact_moments([const**j for j in range(4)],a0,bexact)=='single_finite_node','Exact automatic classifier accepts constant finite-H law')
+000158 | need(classify_exact_moments([a0**j for j in range(4)],a0,bexact)=='invalid_degenerate_branch','Exact automatic classifier rejects constant infinite-H endpoint')
+000159 | need(classify_exact_moments([1,const,const**2,const**3+s.Rational(1,1000)],a0,bexact)=='invalid_degenerate_branch','Exact classifier rejects inconsistent zero-variance third moment')
+000160 | need(classify_exact_moments(badM,a0,bexact)=='negative_variance','Exact classifier rejects valid quantum state only from positive-H mixture class')
+000161 | need(classify_exact_moments(forbidden,a0,bexact)=='interval_matrix_rejection','Exact classifier rejects lower-endpoint atom without floating tolerance')
+000162 | need(classify_exact_moments(mom[0],a0,bexact)=='two_node_witness_exists' and classify_exact_moments(mom[1],a0,bexact)=='two_node_witness_exists','Exact classifier accepts both same-two/four different-six finite-H moment laws')
+000163 | 
+000164 | out=dict(verdict='EXACT_SCOPED_ORIGINAL_COLOR_MARGINAL_NONLINEAR_MODULAR_LAW; PHYSICAL_SOURCE_OPEN',all_passed=True,control_count=len(checks),checks=checks,original_constructor=dict(seed=252,right_Y_squared_eigenvalue=y2,radial_occupations=actual,physical_Y_values_selected=False),actual_source_diagnostic=dict(H_controls=[str(Hs[0]),str(Hs[-1])],positive_weights=[w,1-w],physical_H_weight_selected=False,d_per_configuration=ds.tolist(),state_log_coefficients=dict(k0=k0,J1=J1,J2=J2,J3=J3),spectator_flip_phases=delta.tolist(),moments=moms,number_phase_queries=[[float(q.real),float(q.imag)] for q in queries]),exact_sign_controls=sign_controls,quadrature_witness_diagnostics=quad,two_four_same_six_different=dict(moment_law_plus=[str(x) for x in mom[0]],moment_law_minus=[str(x) for x in mom[1]]),scope='Actual rightup fixed-family triplet restriction of original96 conditional source;whole positive normalized nonconstant radial H mixture class. Modular law is for this marginal,not restriction of fullsource flow orphysicaltime. Source mu/d/Pf/ref/eta/Z0 remain to be produced;no physicalcoupling/Y/measure chosen. Fourierqueries are an algebraic reader,not nativeC4 identification. No newLean/paper/ledger/4D claim.')
+000165 | Path(__file__).with_name('HIGGS-COLOR-MODULAR-SOURCE.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+000166 | print(json.dumps({k:v for k,v in out.items() if k!='checks'},ensure_ascii=False,indent=2))

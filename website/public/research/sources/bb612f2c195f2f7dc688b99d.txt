@@ -1,0 +1,122 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/ACTUAL-KERNEL-FORWARD-MAP.txt
+Original file SHA-256: f94c5faee612af1deed8a1516b01fb9aa48f3c21196af825b070c6dab084f4ab
+Inclusive original lines: 52-165
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000052 | beta>0; siehe dort:69-138. Gesucht wird hier deshalb keine Gleichheit mit
+000053 | einer bestimmten Fermi Funktion. Der kleinste belastbare Test ist:
+000054 | 
+000055 |   (A) gemeinsamer Hilbertraum und gemeinsamer Definitionsbereich,
+000056 |   (B) C_Sigma-P spurklassig,
+000057 |   (C) ein tatsaechlicher Operatortransport des alten u mit
+000058 |       u C_Sigma u* - C_Sigma als Index-eins Defekt.
+000059 | 
+000060 | Gleiche Dimension, Clockinvarianz oder eine endliche KMS Darstellung ersetzen
+000061 | diese drei Angaben nicht.
+000062 | 
+000063 | 
+000064 | 2. Graph zuerst: Was die fruehe Kette wirklich aufruft
+000065 | ------------------------------------------------------
+000066 | 
+000067 | Der Codegraph zeigt keine Aufrufkette v155 -> v160 -> v175 -> v177 -> v210
+000068 | -> v239. Jeder run Block ruft nur seine lokalen Hilfsfunktionen auf. Die
+000069 | inhaltlichen Verweise sind Voraussetzungen und Ergebnisverweise, keine
+000070 | Datenleitung eines gemeinsamen C_Sigma.
+000071 | 
+000072 | v155_quasifree_boundary.py:62-68,71-134
+000073 |   _pure_cov erzeugt Q per Zufallsorthogonalmatrix aus einem Seed. run prueft
+000074 |   endliche Einschraenkungen und Wick Identitaeten. Die Aussage, der Nahtbulk
+000075 |   sei ein reflexionspositives freies Feld, wird als die verbleibende physische
+000076 |   Praemisse ausgegeben. Es gibt keine Randdomaene, Reflexion oder u Abbildung.
+000077 | 
+000078 | v160_seam_gaussianity_from_pf.py:84-91,163-268
+000079 |   Auch hier stammt die 8 mal 8 Kovarianz aus einer Zufallsorthogonalmatrix.
+000080 |   Der dreidimensionale Transfersatz wird als zu klein fuer den vollen
+000081 |   Schwingerkegel erkannt. Der primitive RP Transport auf diesem vollen Kegel
+000082 |   bleibt ausdruecklich Praemisse.
+000083 | 
+000084 | v175_net_existence_full_cone.py:90-160
+000085 |   Das Einteilchenspektrum wird als Liste eingesetzt und zweitquantisiert.
+000086 |   Der eigene Schluss nennt genau die offene Identifikation: Der tatsaechliche
+000087 |   Naht Calderon Kern muesse der gapped contraction auf P1 minus mu4 sein.
+000088 | 
+000089 | v177_seam_marking_kernel.py:65-138 und
+000090 | v178_marks_kernel_attempt.py:74-148
+000091 |   v177 formuliert C_Sigma=U^-1 C_mu4 U als offene Operatoridentitaet. v178
+000092 |   beweist auf dem dreidimensionalen H1 Block nur die diagonale Schurform und
+000093 |   laesst die Reduktion des vollen L2 Randoperators auf diesen Block plus die
+000094 |   Rang acht Polarisation offen. Weder U noch C_Sigma wird konstruiert.
+000095 | 
+000096 | v199_seam_state_invariance.py:46-96
+000097 |   Fuer ein beliebig erzeugtes, mu4 blockdiagonales H wird die Bedingung
+000098 |   [rho,H]=0 getestet. Das ist ein korrektes Symmetriekriterium, liefert aber
+000099 |   weder H aus der Naht noch die alte Windung u.
+000100 | 
+000101 | v210_mark_local_dtn.py:58-103,106-187
+000102 |   Dies ist der erste konkrete vorwaerts berechnete Operator der Kette:
+000103 | 
+000104 |     Lambda_N=diag(|n|)+Toeplitz(f),
+000105 |     C_N=1/2(1+sgn(Lambda_N-mu_N)).
+000106 | 
+000107 |   Das Markenprofil f ist eine gewaehlte Summe von vier von Mises Buckeln und
+000108 |   mu_N ist die Mitte des sortierten endlichen Spektrums. Der Aufruf beweist
+000109 |   die mu4 Clockinvarianz dieses gewaehlten Profils. Er erklaert selbst die
+000110 |   physische mark local Praemisse fuer offen. Er enthaelt weder die gedrehte
+000111 |   Domaene von B_a noch eine CAR Spinstruktur noch den Transport von u=M_z.
+000112 | 
+000113 | v239_kms_thermal_time.py:46-116
+000114 |   Der Aufruf beginnt mit Lambda=diag(0.4,1.1,2.0), bildet die endliche
+000115 |   Gibbsdichte und prueft die KMS Identitaet. Die Identifikation der modularen
+000116 |   Zeit mit dem geometrischen Boost bleibt offen. Das ist keine Ausgabe aus
+000117 |   v210 und kein Naht Calderon Operator.
+000118 | 
+000119 | v366_mmst_seam_collar.py:52-110
+000120 |   Die spaetere MMST Rechnung setzt die Zugehoerigkeit zur freien chiralen
+000121 |   Gitterfermionklasse voraus. Ihr eigener Rest S3 ist gerade die wirkliche
+000122 |   Gitterrealisierung des Kragens. Sie konstruiert daher keinen fehlenden
+000123 |   Vorwaertspfeil zu C_Sigma.
+000124 | 
+000125 | 
+000126 | 3. Positiver Fund: v519/v526 besitzen einen wirklichen endlichen Kern
+000127 | --------------------------------------------------------------------
+000128 | 
+000129 | v519_woit_theta_rp_free.py:1-86,97-106,727-766 konstruiert auf N=16
+000130 | Majorana Standorten den freien chiralen NS Kern
+000131 | 
+000132 |   c_N(d)=(2/N) sum_(p in NS+) sin(pd)
+000133 |         =(2/N)/sin(pi d/N) fuer d ungerade,
+000134 |   c_N(d)=0 fuer d gerade.
+000135 | 
+000136 | Der zugehoerige quasifreie Zustand ist rein. Der Code gibt eine konkrete NS
+000137 | Antiperiodizitaet, die Standort CAR Algebra, die Reflexion j -> k-j samt
+000138 | Spinzeichen, den OS Phasenfaktor eta=+i und den Viertelschritt der Kreisclock.
+000139 | Die Tests in v519:844-898 pruefen Zustand, Reflexion und Clockwirkung.
+000140 | 
+000141 | v526_seam_thermal_kms_nariai_bridge.py:61-120,301-330,495-519 fuehrt genau
+000142 | diesen Kern fuer N=8 und N=16 weiter. Der ausgefuehrte Pfad rekonstruiert die
+000143 | OS Halbseitenalgebra, den treuen endlichen modularen Zustand und die
+000144 | Transferzeit. Eine Kreisstufe ist 2 pi/N, beta=N Stufen und daher
+000145 | beta_angle=2 pi. Der aktuelle Lauf bestand 22/22 Checks.
+000146 | 
+000147 | Das ist ein tragfaehiger positiver Zwischenanschluss:
+000148 | 
+000149 |   gewaehlter freier chiraler NS Zustand
+000150 |     -> expliziter endlicher Zweipunktkern
+000151 |     -> explizite OS Reflexion und Halbseitenalgebra
+000152 |     -> expliziter modularer Zustand und endliche Zeit.
+000153 | 
+000154 | Er beginnt jedoch bei der Auswahl NS+, also bei der All Right Movers
+000155 | Polarisation. v519 nennt sie selbst den freien NS Vakuumkern. Der fruehe
+000156 | Originalpfad leitet diese Auswahl nicht aus P1 her. Das stimmt mit dem
+000157 | September Audit source-conformal-kernel-selection-20260921/PROOF.md:8-34 und
+000158 | :270-289 ueberein: P1 enthaelt orientierte Naht, RP Randkern, Einheitswindung
+000159 | und c3, aber keine vollstaendige geladene Feldalgebra mit Zweipunktfunktion
+000160 | und Zeitwirkung.
+000161 | 
+000162 | 
+000163 | 4. Der kleinste entscheidende Test: Clockzeit ist nicht die alte Windung
+000164 | -----------------------------------------------------------------------
+000165 | 

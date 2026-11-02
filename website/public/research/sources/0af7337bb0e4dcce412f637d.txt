@@ -1,0 +1,128 @@
+TFPT scientific source excerpt
+Original repository path: documents/archive--paper-latex--tfpt-theory-fullv27-final/sections/009-section-summary-of-claims-and-status.tex
+Original file SHA-256: a75bf150c35d2a7044750cb759fdba572346a7ee36d04d35c765df4ff76808eb
+Inclusive original lines: 201-320
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 | \section{Coefficient Policy Sketch for the CFE}
+000202 | %=============================================================================
+000203 | 
+000204 | This appendix records the coefficient bookkeeping used in the suite and provides a
+000205 | heuristic motivation for the CFE coefficient policy. It is not presented as a full
+000206 | background-field derivation. In the declared scheme, the one-loop effective potential
+000207 | for the electromagnetic coupling modulus is taken to have the form:
+000208 | \begin{equation}
+000209 |     U(\alpha) = \frac{1}{4}(F_{\mu\nu}F^{\mu\nu})_{\text{eff}} 
+000210 |         + \text{quantum corrections}
+000211 | \end{equation}
+000212 | 
+000213 | The adopted structure, including the Chern--Simons contribution from 11D reduction, is:
+000214 | \begin{equation}
+000215 |     U(\alpha) = \frac{A}{4}\alpha^4 - \frac{2}{3}A\cthree^3\alpha^3 
+000216 |         - 8A\bone\cthree^6 L\,\alpha + \mathcal{O}(\alpha^5)
+000217 |     \label{eq:potential}
+000218 | \end{equation}
+000219 | where $L = \ln(1/\phiz)$ encodes the geometric scale.
+000220 | 
+000221 | The modulus-closure condition $\delta\Gamma_{\mathrm{eff}}/\delta\sigma=0$ reduces to
+000222 | $\partial U/\partial\alpha = 0$ (monotonic $\alpha(\sigma)$), giving:
+000223 | \begin{equation}
+000224 |     \frac{\partial U}{\partial\alpha} = A\alpha^3 - 2A\cthree^3\alpha^2 
+000225 |         - 8A\bone\cthree^6 L = 0
+000226 |     \label{eq:stationarity}
+000227 | \end{equation}
+000228 | 
+000229 | Dividing by $A$ (which is nonzero):
+000230 | \begin{equation}
+000231 |     \alpha^3 - 2\cthree^3\alpha^2 - 8\bone\cthree^6 L = 0
+000232 |     \label{eq:CFE-appendix}
+000233 | \end{equation}
+000234 | 
+000235 | This is the CFE under the declared policy. The combinatorial factors are motivated by
+000236 | the following diagrammatic bookkeeping:
+000237 | 
+000238 | \textbf{(i) Factor 2 in $2\cthree^3\alpha^2$:}
+000239 | 
+000240 | The cubic term in the effective potential comes from the vacuum polarization 
+000241 | (``bubble'') diagram with axion insertion:
+000242 | \begin{center}
+000243 | \begin{tikzpicture}[scale=0.8]
+000244 |     \draw[thick, photon] (0,0) -- (1.5,0);
+000245 |     \draw[thick] (1.5,0) arc (180:0:0.75);
+000246 |     \draw[thick] (1.5,0) arc (-180:0:0.75);
+000247 |     \draw[thick, photon] (3,0) -- (4.5,0);
+000248 |     \draw[thick, dashed] (2.25,0.75) -- (2.25,1.5);
+000249 |     \node at (2.25,1.8) {\small $a$};
+000250 |     \node at (0,-0.3) {\small $\gamma$};
+000251 |     \node at (4.5,-0.3) {\small $\gamma$};
+000252 | \end{tikzpicture}
+000253 | \end{center}
+000254 | The $\varepsilon^{\mu\nu\rho\sigma}\varepsilon_{\alpha\beta\gamma\delta}$ contraction from two 
+000255 | $F\tilde{F}$ vertices produces a factor 2 from the antisymmetric tensor algebra:
+000256 | \begin{equation}
+000257 |     \varepsilon^{\mu\nu\rho\sigma}\varepsilon_{\mu\nu\alpha\beta} = -2(\delta^\rho_\alpha\delta^\sigma_\beta - \delta^\rho_\beta\delta^\sigma_\alpha)
+000258 | \end{equation}
+000259 | 
+000260 | \textbf{(ii) Factor 8 and $\cthree^6$ in $8\bone\cthree^6 L$:}
+000261 | 
+000262 | The log-dependent term has two components:
+000263 | 
+000264 | \textbf{Origin of $\cthree^6$:} The factor $\cthree^6$ arises from the product structure 
+000265 | of the effective action. With $A = 2\cthree^3$ as the overall amplitude:
+000266 | \begin{equation}
+000267 |     8\bone\cthree^6 L = 8\bone \cdot \cthree^3 \cdot \cthree^3 \cdot L
+000268 |     = 4 \cdot A \cdot \cthree^3 \cdot \bone L
+000269 | \end{equation}
+000270 | The factorization proceeds as follows:
+000271 | \begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+000272 |     \item One factor of $\cthree^3$ comes from three $\cthree\, aF\tilde{F}$ vertices 
+000273 |         in the anomaly chain (triangle diagram).
+000274 |     \item The second factor of $\cthree^3$ comes from the amplitude normalization $A/2 = \cthree^3$.
+000275 |     \item The coefficient 8 decomposes as $8 = 4 \times 2$, where 4 is from $|D_2|^2$ 
+000276 |         (two $\mathbb{Z}_2$ reflections) and 2 is from the double cover sheets.
+000277 | \end{itemize}
+000278 | \textbf{Consistency check:} $8\cthree^6 = 8 \times (8\pi)^{-6} = 8/(8\pi)^6$, which matches 
+000279 | the numerical coefficient in the CFE.
+000280 | 
+000281 | \textbf{Origin of factor 8:} The dihedral symmetry $D_4$ of the 4-point amplitude 
+000282 | contributes $|D_4| = 8$. This arises from the 4 rotations and 4 reflections that 
+000283 | leave the fermion loop topology invariant:
+000284 | \begin{center}
+000285 | \begin{tikzpicture}[scale=0.8]
+000286 |     \draw[thick] (0,0) rectangle (2,2);
+000287 |     \draw[thick, photon] (-0.8,0) -- (0,0);
+000288 |     \draw[thick, photon] (-0.8,2) -- (0,2);
+000289 |     \draw[thick, photon] (2,0) -- (2.8,0);
+000290 |     \draw[thick, photon] (2,2) -- (2.8,2);
+000291 |     \node at (1,-0.5) {\small fermion loop};
+000292 |     \node at (1,1) {\small $D_4$};
+000293 | \end{tikzpicture}
+000294 | \end{center}
+000295 | 
+000296 | \textbf{The $\bone$ factor:} $\bone = \frac{3}{5}b_Y = 41/10$ is the GUT-normalized
+000297 | hypercharge trace with explicit Weyl/scalar weights:
+000298 | $b_Y=\frac{2}{3}\sum_{\text{Weyl}} d_3 d_2\,Y^2+\frac{1}{3}\sum_{\text{scalars}} d_3 d_2\,Y^2$.
+000299 | 
+000300 | \textbf{(iii) Factor 2/3 in potential:}
+000301 | 
+000302 | We choose the coefficient $2/3$ in the cubic term of \eqref{eq:potential} so that
+000303 | differentiation produces the factor 2 in \eqref{eq:stationarity}:
+000304 | \begin{equation}
+000305 |     \frac{d}{d\alpha}\left(-\frac{2}{3}A\cthree^3\alpha^3\right) = -2A\cthree^3\alpha^2
+000306 | \end{equation}
+000307 | This choice is consistent with the integral representation used in the suite
+000308 | bookkeeping: the cubic term is motivated by a triangle subgraph.
+000309 | 
+000310 | \textbf{Why no $\alpha^2$ term?}
+000311 | 
+000312 | The absence of an $\alpha^2$ term in the CFE is enforced by a declared renormalization
+000313 | condition: the quadratic coefficient is absorbed into a counterterm fixed at the reference
+000314 | point of the chosen scheme. The toy one-loop calculation shows that an $\alpha^2$ term is
+000315 | generic, so the condition must be stated explicitly rather than implied by Ward identities.
+000316 | The toy calculation is a structure check only (the toy $\beta$-prefactor mismatch is flagged),
+000317 | not a Standard Model one-loop derivation. The resulting precision requirement is strong
+000318 | ($|\epsilon_2|\lesssim 1.58\times 10^{-10}$ for 1 ppm), and is treated as a formal constraint
+000319 | of the kernel EFT policy (see \texttt{alpha2\_term\_robustness\_scan}).
+000320 | 

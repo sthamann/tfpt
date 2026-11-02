@@ -1,0 +1,67 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/graded_boundary_functor/check_typing.py
+Original file SHA-256: 350daa181c62e541cd4960120f92e731ccff15093a74fbb3dc5439264bec7ec3
+Inclusive original lines: 1-59
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact normal-fiber controls; read PROOF.txt for domains and full scope."""
+000002 | import json
+000003 | from pathlib import Path
+000004 | import sympy as s
+000005 | 
+000006 | I=s.I
+000007 | Z=s.diag(1,-1)
+000008 | N=s.Matrix([[0,-1],[1,0]])
+000009 | Ic=I*Z
+000010 | C=I*N
+000011 | b=s.symbols('b',real=True)
+000012 | B=b*Z
+000013 | q=s.symbols('q',positive=True)
+000014 | a,c=q*q/(1+q*q),q/(1+q*q)
+000015 | Ap=s.diag(a,1-a)
+000016 | G=Ap.row_join(c*s.eye(2)).col_join((c*s.eye(2)).row_join(s.eye(2)-Ap))
+000017 | Cf=s.kronecker_product(Z,C)
+000018 | If=s.kronecker_product(s.eye(2),Ic)
+000019 | T=s.zeros(4)
+000020 | T[0,0]=T[2,1]=1
+000021 | T[1,2]=I
+000022 | T[3,3]=-I
+000023 | scalar=s.Matrix([[a,c],[c,1-a]])
+000024 | target=s.diag(1,1,1,1)
+000025 | target[:2,:2]=scalar
+000026 | target[2:,2:]=s.eye(2)-scalar
+000027 | flip=s.zeros(4)
+000028 | flip[:2,2:]=flip[2:,:2]=s.eye(2)
+000029 | R=s.kronecker_product(s.Matrix([[0,1],[1,0]]),N*Z)
+000030 | 
+000031 | def eq(x,y):
+000032 |     return all(s.cancel(e)==0 for e in x-y)
+000033 | 
+000034 | checks={
+000035 |  'new_complex_structure':Ic*Ic==-s.eye(2),
+000036 |  'real_structure_square':C*C==s.eye(2),
+000037 |  'new_antilinearity':C*Ic==-Ic*C,
+000038 |  'selfdual_B':C*B*C==-B,
+000039 |  'field_embedding_is_fixed_by_real_structure':eq(C*s.Matrix([1,I]),s.Matrix([1,I])),
+000040 |  'circle_generator_is_original_scalar':Ic*B==I*b*s.eye(2),
+000041 |  'circle_action_preserves_real_form':C*Ic*B==Ic*B*C,
+000042 |  'old_B_time_differs':C*I*B != I*B*C,
+000043 |  'whole_graph_is_projection':eq(G*G,G),
+000044 |  'oriented_graph_is_selfdual':eq(Cf*G*Cf,s.eye(4)-G),
+000045 |  'charged_chart_is_unitary':T.conjugate().T*T==s.eye(4),
+000046 |  'charged_chart_new_complex_linearity':If*T==T*I*s.diag(1,1,-1,-1),
+000047 |  'charged_chart_real_flip':Cf*T==T*flip,
+000048 |  'whole_graph_equals_scalar_charged_covariance':eq(T.conjugate().T*G*T,target),
+000049 |  'reflection_is_involution':R*R==s.eye(4),
+000050 |  'reflection_new_antilinearity':R*If*R==-If,
+000051 |  'reflection_preserves_real_structure':R*Cf*R==Cf,
+000052 |  'reflection_preserves_whole_graph':eq(R*G*R,G),
+000053 | }
+000054 | if not all(checks.values()):
+000055 |     raise RuntimeError(checks)
+000056 | result={'all_pass':True,'checks':checks,'scope':
+000057 |  'Free original product collar in canonical graded Clifford typing; no original physical quantization selection or OS time theorem.'}
+000058 | Path(__file__).with_name('results.json').write_text(json.dumps(result,indent=2)+'\n')
+000059 | print(json.dumps(result))

@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/e-series-compiler-closure-20261023/COVERS.txt
+Original file SHA-256: cdd04f5f38819b60ddd8488eb1c3c316c6849829387205e78ec5e4bf767f80bf
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | MATH.SEAM.ESERIES.COVERS.04
+000002 | 23 October 2026
+000003 | 
+000004 | Question and object class
+000005 | 
+000006 | Fix the marked base
+000007 | 
+000008 |   B° = P1 minus {1,i,-1,-i,infinity},       f(x)=x^4-1,
+000009 | 
+000010 | with the four finite meridians ordered positively and the base quarter
+000011 | rotation q(x)=i x.  Infinity is punctured because the existing degree-three
+000012 | curve is ramified there.  This puts all covers below in the same unbranched
+000013 | marked-cover category.  Their compactifications are used only for genus and
+000014 | branch data.
+000015 | 
+000016 | For n in {2,3,4,6,12}, let
+000017 | 
+000018 |   C_n : u_n^n=f(x),                         Delta_n(x,u_n)=(x,zeta_n u_n),
+000019 | 
+000020 | where zeta_n=exp(2 pi i/n).  A morphism is over the fixed x-coordinate,
+000021 | preserves the ordered finite marks, and sends the chosen deck generator to
+000022 | the chosen deck generator.  Deck inversion is therefore not silently
+000023 | quotiented out.  This is the required marking for comparing the existing
+000024 | omega sheet with the original compiler sigma.
+000025 | 
+000026 | The supplied predecessors are:
+000027 | 
+000028 |   C_2 : y^2=x^4-1, the parity cover of the given all-J monodromy;
+000029 |   C_3 : w^3=x^4-1, the existing native mu3 curve;
+000030 |   C_4 : z^4=x^4-1, the kernel cover of the given C4 monodromy J.
+000031 | 
+000032 | No new modulus, metric, coupling, state rule or physical identification is
+000033 | introduced.
+000034 | 
+000035 | 1. Minimal common covers
+000036 | 
+000037 | The normalization of C_2 times_B C_3 is the connected curve
+000038 | 
+000039 |   C_6 : t^6=f(x),
+000040 |   C_6 -> C_2,   y=t^3,
+000041 |   C_6 -> C_3,   w=t^2.
+000042 | 
+000043 | It is the minimal common marked cover.  Indeed the two cyclic monodromy
+000044 | characters are reduction of the same winding exponent modulo 2 and modulo 3.
+000045 | Their kernel intersection is the kernel modulo lcm(2,3)=6.  Equivalently,
+000046 | Z/6 -> Z/2 times Z/3 is the Chinese-remainder isomorphism.  Hence any connected
+000047 | cover dominating both has degree divisible by 6.  The displayed C_6 attains
+000048 | that degree.
+000049 | 
+000050 | C_6 does not dominate the full C_4 kernel cover.  Adding that requirement
+000051 | gives the connected normalization
+000052 | 
+000053 |   C_12 : s^12=f(x),
+000054 |   C_12 -> C_2,   y=s^6,
+000055 |   C_12 -> C_3,   w=s^4,
+000056 |   C_12 -> C_4,   z=s^3,
+000057 |   C_12 -> C_6,   t=s^2.
+000058 | 
+000059 | This time the kernel intersection is the kernel modulo lcm(4,3)=12, so degree
+000060 | 12 is minimal.  The degree-six and degree-twelve curves are forced fibre
+000061 | products of already supplied marked covers.  They are not freely chosen
+000062 | auxiliary models.
+000063 | 
+000064 | 2. Peripheral monodromy, branching and genus
+000065 | 
+000066 | With positive meridians (gamma_1,...,gamma_4,gamma_infinity), the C_n deck
+000067 | exponents are
+000068 | 
+000069 |   rho_n = (1,1,1,1,-4) mod n.
+000070 | 
+000071 | Their sum is zero modulo n, as required by the sphere relation.  At each
+000072 | finite mark there is one point with ramification index n.  Over infinity
+000073 | there are gcd(n,4) points, each of ramification index n/gcd(n,4).  Thus
+000074 | 
+000075 |   n    peripheral exponents       infinity                 compact genus
+000076 |   2    (1,1,1,1,0)               2 points, e=1             1
+000077 |   3    (1,1,1,1,2)               1 point,  e=3             3
+000078 |   4    (1,1,1,1,0)               4 points, e=1             3
+000079 |   6    (1,1,1,1,2)               2 points, e=3             7
+000080 |  12    (1,1,1,1,8)               4 points, e=3            15
+000081 | 
+000082 | Riemann-Hurwitz gives, uniformly,
+000083 | 
+000084 |   g(C_n)=(3n-gcd(n,4)-2)/2.
+000085 | 
+000086 | Every displayed morphism reduces the peripheral exponent vector modulo its
+000087 | target degree.  In particular the nontrivial infinity monodromy of C_3 is
+000088 | retained on C_6 and C_12; it is not erased by the fact that C_2 and C_4 are
+000089 | unramified at infinity.
+000090 | 
+000091 | 3. Plain lifts and the existing mu3 lift
+000092 | 
+000093 | Because f(i x)=f(x), every algebraic lift of q to C_n is
+000094 | 
+000095 |   Q_{n,k}(x,u_n)=(i x,zeta_n^k u_n),        k in Z/n.
+000096 | 
+000097 | The plain lift is Q_n=Q_{n,0}.  On C_2 the two lifts (i x,+/-y) both have
+000098 | order 4.  On C_4 all four lifts have order 4.  This is the exact finite
+000099 | ambiguity already isolated in the predecessor.  The cover by itself does
+000100 | not select a lift.
+000101 | 
+000102 | The existing mu3 rotation is different from the plain lift:
+000103 | 
+000104 |   D_3=Delta_3=(x,omega w),
+000105 |   R_3=Q_3 D_3=(i x,omega w).
+000106 | 
+000107 | It satisfies
+000108 | 
+000109 |   R_3^4=D_3,            R_3^9=Q_3,          ord(R_3)=12,
+000110 | 
+000111 | whereas Q_3 has order 4.  This is the algebraic marked-cover realization of
+000112 | the existing Burau and covered-seam relation r^4=omega.  The relation uses
+000113 | the non-plain lift.  Merely writing x -> i x selects Q_3 and loses the deck
+000114 | factor.
+000115 | 
+000116 | 4. Exact compiler dictionary
+000117 | 
+000118 | The original lattice chart has commuting operators
+000119 | 
+000120 |   J(x0,x1,...)=(-x1,x0,...),                ord(J)=4,
+000121 |   sigma(x)=x[4,5,0,1,2,3,6,7],             ord(sigma)=3,
+000122 |   c=J sigma,                                ord(c)=12,
+000123 | 
+000124 | and the actual checked identities
+000125 | 
+000126 |   c^4=sigma,                                c^9=J.
+000127 | 
+000128 | The cover clock has the same marked factorization, not only the same order:
+000129 | 
+000130 |   J       <-> Q_3       plain base-quarter lift,
+000131 |   sigma   <-> D_3       oriented mu3 deck,
+000132 |   c=J sigma <-> R_3=Q_3 D_3.
+000133 | 
+000134 | This preserves the generator, the distinguished C3 kernel, the C4 quotient,
+000135 | the embedded plain C4 splitting, and both power identities.  Hence
+000136 | 
+000137 |   <c; sigma=c^4, J=c^9>  ->  <R_3; D_3=R_3^4, Q_3=R_3^9>
+000138 | 
+000139 | is an isomorphism of marked cyclic clock groups.  Equality of order is only
+000140 | one consequence of this stronger dictionary.
+000141 | 
+000142 | On the common covers, let Delta_n remain the chosen deck generator.  The
+000143 | compiler-marked lifts are
+000144 | 
+000145 |   R_6  = Q_6  Delta_6^4 = (i x,omega_bar t),
+000146 |   R_12 = Q_12 Delta_12^4 = (i x,omega s).
+000147 | 
+000148 | Both have exact order 12, fourth power Delta_n^4 of order 3, and ninth power
+000149 | the plain lift Q_n.  Their descents are
+000150 | 
+000151 |   C_12 -> C_6 :  R_12 -> R_6,
+000152 |   C_12 -> C_4 :  R_12 -> Q_4,
+000153 |   C_12 -> C_3 :  R_12 -> R_3,
+000154 |   C_12 -> C_2 :  R_12 -> Q_2,
+000155 |   C_6  -> C_3 :  R_6  -> R_3,
+000156 |   C_6  -> C_2 :  R_6  -> Q_2.
+000157 | 
+000158 | Here omega_bar on t is not a reversed mu3 marking: squaring t to w sends
+000159 | omega_bar^2=omega, so the C_3 deck orientation is the fixed original one.
+000160 | 
+000161 | 5. Uniqueness and the no-free-parameter conclusion
+000162 | 
+000163 | A lift of R_3 to C_6 is Q_6 Delta_6^k with k=1 or 4.  A lift to C_12 has
+000164 | k=1,4,7 or 10.  These are exactly the solutions of k=1 mod 3.  Requiring the
+000165 | existing compiler marking J=c^9 to be the plain base lift adds
+000166 | 
+000167 |   9k=0 mod n.
+000168 | 
+000169 | It selects k=4 uniquely for n=6 and n=12.  Thus the complete data already in
+000170 | the program
+000171 | 
+000172 |   finite peripheral weight +1,
+000173 |   oriented sigma deck,
+000174 |   plain compiler-J lift,
+000175 |   c=J sigma,
+000176 | 
+000177 | force the common-cover clock.  There is no continuous parameter and no new
+000178 | discrete choice.  If the J=c^9 marking is forgotten, the two or four lifts
+000179 | above reappear.  If the conjugate mu3 sheet is chosen, sigma is replaced by
+000180 | sigma^{-1} and the marked compiler generator becomes J sigma^{-1}=c^5.  That
+000181 | is a different explicit marking, not an unrecorded freedom in this result.
+000182 | 
+000183 | 6. Actual carrier characters
+000184 | 
+000185 | The actual matrices give a sharper statement than equality of clock order.
+000186 | Write Phi_d for the d-th cyclotomic polynomial and X for the spectral
+000187 | variable.  On the original real E8 coordinate chart,
+000188 | 
+000189 |   chi_c,real8 = Phi_4^2 Phi_12,
+000190 |   m_c,real8   = Phi_4 Phi_12.                         (6.1)
+000191 | 
+000192 | In the native complex chart V4, z_j=x_(2j)+i x_(2j+1), the same matrix is
+000193 | 
+000194 |   c=i P,   P(z0,z1,z2,z3)=(z2,z0,z1,z3),
+000195 |   chi_c,V4=(X-i)^2 (X^2+iX-1),
+000196 |   m_c,V4  =(X-i)   (X^2+iX-1).                       (6.2)
+000197 | 
+000198 | Its literal realification is the matrix used in (6.1).  Applying that same
+000199 | matrix to the retained native descendants gives
+000200 | 

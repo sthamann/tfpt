@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/atlas-defect-synthesis-20261024/NATIVE-ERASURE-READOUT.txt
+Original file SHA-256: 5be50c2142b498e91350c011c904a13ce823d7a0eef1ff490d89469187e72357
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | NATIVE ERASURE READOUT
+000002 | =======================
+000003 | 
+000004 | Verdict
+000005 | -------
+000006 | 
+000007 | PASS, exact.
+000008 | 
+000009 | The six doily effects define a concrete additional POVM on the original
+000010 | twenty-dimensional erasure output.  This does not identify that POVM with the
+000011 | original erasure/recovery instrument.  No new dynamics and no auxiliary
+000012 | Hilbert space are introduced.
+000013 | 
+000014 | 
+000015 | 1. Original decoder, reconstructed rather than assumed
+000016 | --------------------------------------------------------
+000017 | 
+000018 | Let S_i, i=0,...,4, be the five original quartic word supports from
+000019 | tfpt_explorer/process.py:242-258.  Their sizes are
+000020 | 
+000021 |     |S_i| = (4,12,12,12,24).
+000022 | 
+000023 | After erasing tensor slot x0, define the gauge-first isometry
+000024 | 
+000025 |     W : C4_gauge tensor H5 -> C4 tensor C4 tensor C4
+000026 | 
+000027 | by
+000028 | 
+000029 |     W[(x1,x2,x3),(a,i)] = 2/sqrt(|S_i|)
+000030 | 
+000031 | when (a,x1,x2,x3) belongs to S_i, and zero otherwise.  In integer row and
+000032 | column indices this is
+000033 | 
+000034 |     row = 16*x1 + 4*x2 + x3,
+000035 |     column = 5*a + i.
+000036 | 
+000037 | The checker reconstructs all 64 nonzero entries.  Exact algebra gives
+000038 | 
+000039 |     W* W = I20,
+000040 |     Pi20 = W W*,
+000041 |     rank(Pi20) = 20,
+000042 |     Pi20^2 = Pi20.
+000043 | 
+000044 | Thus the actual decoder on its physical carrier is U_dec=W*.  The earlier
+000045 | original checker uses columns 4*i+a, hence H5 tensor C4 order.  The present
+000046 | columns 5*a+i are the requested C4 tensor H5 order and differ only by the
+000047 | explicit factor-swap permutation.  The complete sparse W and U_dec matrices
+000048 | are stored in native_erasure_readout_results.json.
+000049 | 
+000050 | This exactly reuses the original constructor in
+000051 | experiments/theory-contracts/joint-native-algebra-selection-20261016/
+000052 | operator_checker.py:85-94.  Its original isometry and selected intertwiner
+000053 | checks are at lines 169-178.
+000054 | 
+000055 | 
+000056 | 2. Six effects on H5 and H20
+000057 | ----------------------------
+000058 | 
+000059 | In the unnormalised original word basis the invariant metric and six rays are
+000060 | 
+000061 |     G = diag(1,3,3,3,6),
+000062 |     q_r^T G q_r = 10,
+000063 |     E5_native,r = q_r q_r^T G / 12.
+000064 | 
+000065 | The normalized original quartic code basis is obtained with
+000066 | 
+000067 |     D = diag(1,sqrt(3),sqrt(3),sqrt(3),sqrt(6)).
+000068 | 
+000069 | Consequently the orthonormal H5 effects are
+000070 | 
+000071 |     E5_r = D E5_native,r D^-1
+000072 |          = (D q_r)(D q_r)^T / 12.
+000073 | 
+000074 | They obey
+000075 | 
+000076 |     sum_r E5_r = I5,
+000077 |     rank(E5_r) = 1,
+000078 |     E5_r^2 = (5/6) E5_r.
+000079 | 
+000080 | The requested twenty-dimensional effects are the explicit matrices
+000081 | 
+000082 |     E20_r = I4 tensor E5_r.
+000083 | 
+000084 | Therefore
+000085 | 
+000086 |     sum_r E20_r = I20,
+000087 |     rank(E20_r) = 4.
+000088 | 
+000089 | On the actual three-register physical carrier they are
+000090 | 
+000091 |     Ephys_r = W E20_r W*.
+000092 | 
+000093 | All six 20 by 20 matrices and all six sparse 64 by 64 physical matrices are
+000094 | stored in the result JSON.  Their physical sum is Pi20, which is the identity
+000095 | on H20 inside the ambient C64.
+000096 | 
+000097 | 
+000098 | 3. Exact probabilities on the original erasure output
+000099 | ------------------------------------------------------
+000100 | 
+000101 | For an arbitrary symbolic 5 by 5 matrix rho5, define the original erasure
+000102 | state in the physical three-register space by
+000103 | 
+000104 |     rho_out = W (I4/4 tensor rho5) W*.
+000105 | 
+000106 | Using W*W=I20 gives, for every r,
+000107 | 
+000108 |     Tr(rho_out Ephys_r)
+000109 |       = Tr[(I4/4 tensor rho5)(I4 tensor E5_r)]
+000110 |       = Tr(rho5 E5_r).
+000111 | 
+000112 | The checker verifies this as a polynomial identity in all 25 symbolic entries
+000113 | of rho5 for each of the six outcomes.  Positivity or unit trace is not needed
+000114 | for the algebraic check, so the result covers every density matrix by
+000115 | specialisation.
+000116 | 
+000117 | 
+000118 | 4. Actual native action on all twenty output directions
+000119 | -------------------------------------------------------
+000120 | 
+000121 | For each of the 60 original Gaussian reflections, let R4 be its exact native
+000122 | four-dimensional matrix and C5 its action on the normalized original quartic
+000123 | code.  The checker verifies the full 64 by 20 identity
+000124 | 
+000125 |     R4^tensor3 W = W [conjugate(R4) tensor C5].
+000126 | 
+000127 | Thus the gauge-first twenty-dimensional action is the actual matrix
+000128 | 
+000129 |     rho20(g) = conjugate(R4(g)) tensor C5(g).
+000130 | 
+000131 | It is not inferred from matching dimensions.  It is checked entry by entry
+000132 | against the explicit W for all 60 reflections.  The six effects obey
+000133 | 
+000134 |     rho20(g) E20_r rho20(g)* = E20_{g.r}
+000135 | 
+000136 | for all 60 times 6 cases.  The result JSON records every induced permutation,
+000137 | both exact verdicts, and a hash of each concrete 20 by 20 action matrix.
+000138 | 
+000139 | The C5 matrices are independently reconstructed from the fourth tensor power
+000140 | of the same R4 in doily_quartic_bridge.py:49-102 and 438-510.  Their invariant
+000141 | metric and six-ray covariance are proved there at lines 638-693.
+000142 | 
+000143 | 
+000144 | 5. The 120-word stabilizer average
+000145 | ----------------------------------
+000146 | 
+000147 | The 60 native reflections induce the 15 transpositions of the six ovoids,
+000148 | each four times.  Selecting the first native representative for each distinct
+000149 | transposition gives 15 actual reflection generators.  Exact breadth-first
+000150 | closure produces all 720 elements of S6 together with a word in those native
+000151 | reflection indices.
+000152 | 
+000153 | For each ray r, its stabilizer has exactly 120 elements.  Averaging their
+000154 | original H5 matrices in the native word basis gives
+000155 | 
+000156 |     (1/120) sum_{g in Stab_S6(r)} C5_native(g)
+000157 |        = q_r q_r^T G / 10
+000158 |        = (6/5) E5_native,r.
+000159 | 
+000160 | After the fixed D conversion this is precisely
+000161 | 
+000162 |     P_r = (6/5) E5_r.
+000163 | 
+000164 | So P_r is the invariant projector onto the one-dimensional fixed space of the
+000165 | actual S5 stabilizer.  This is the representation-theoretic normalization of
+000166 | the doily effect, not merely a rank or trace coincidence.  The JSON contains
+000167 | all six lists of 120 group words.  Each word is a list of original native
+000168 | reflection indices; the certificates found with the 15 transposition
+000169 | generators have maximum length four.
+000170 | 
+000171 | 
+000172 | 6. Meaning of the connection
+000173 | ----------------------------
+000174 | 
+000175 | The previous instrument comparison remains unchanged: the original recovered
+000176 | erasure branch effects are scalar on H5, whereas these six effects are
+000177 | rank-one and noncommuting.  The positive statement proved here is narrower and
+000178 | concrete.  The existing decoder transports the new logical POVM to an actual
+000179 | observable on the already present twenty-dimensional output register:
+000180 | 
+000181 |     E5_r  ->  I4 tensor E5_r  ->  W(I4 tensor E5_r)W*.
+000182 | 
+000183 | The native E8/G31 conjugation words act on this observable through the already
+000184 | verified original decoder intertwiner.  This supplies an observable readout
+000185 | on the existing erasure consumer without claiming a new preparation,
+000186 | Hamiltonian, recovery rule, or equality with the original erasure instrument.
+000187 | 
+000188 | 
+000189 | Machine certificate
+000190 | -------------------
+000191 | 
+000192 | Run from the repository root:
+000193 | 
+000194 |     python3 -B experiments/theory-contracts/atlas-defect-synthesis-20261024/native_erasure_readout.py
+000195 | 
+000196 | Observed result:
+000197 | 
+000198 |     PASS: W=64x20 exact; six H20 effects rank 4 and sum I20;
+000199 |     60 native actions covariant; six S5 stabilizers have 120 words.
+000200 | 

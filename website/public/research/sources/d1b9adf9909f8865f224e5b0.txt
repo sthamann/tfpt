@@ -1,0 +1,41 @@
+TFPT scientific source excerpt
+Original repository path: verification/v330_qgamb_admissible_measure.py
+Original file SHA-256: 21cbeb2b96d9ee581da3a9c45be400d77d232730ba37bbb19cb4cec07fb5e5be
+Inclusive original lines: 42-74
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000042 | def symmetric_transfer():
+000043 |     """The gapped seam transfer (v311): symmetric PSD with spectrum {1,(2/3)^6,(1/3)^6},
+000044 |     stationary (eigenvalue-1) vector = the democratic v1 = (1,1,1)/sqrt3."""
+000045 |     v1 = np.ones(3) / np.sqrt(3.0)
+000046 |     u2 = np.array([1.0, -1.0, 0.0]); u2 /= np.linalg.norm(u2)
+000047 |     u3 = np.array([1.0, 1.0, -2.0]); u3 /= np.linalg.norm(u3)
+000048 |     lam2, lam3 = (2 / 3) ** 6, (1 / 3) ** 6
+000049 |     T = (np.outer(v1, v1) + lam2 * np.outer(u2, u2) + lam3 * np.outer(u3, u3))
+000050 |     return T, v1, lam2, lam3
+000051 | 
+000052 | 
+000053 | def correlator(T, v1, D, n):
+000054 |     """Connected 2-pt at separation n in the stationary measure: C(n) = <v1|D T^n D|v1>
+000055 |     - <v1|D|v1>^2, with T normalized (top eigenvalue 1)."""
+000056 |     Tn = np.linalg.matrix_power(T, n)
+000057 |     return float(v1 @ (D @ Tn @ D) @ v1) - float(v1 @ D @ v1) ** 2
+000058 | 
+000059 | 
+000060 | def run():
+000061 |     reset()
+000062 |     print("v330  QGAMB.MEASURE.01: the ambient measure on the gap-decoupled admissible sector")
+000063 | 
+000064 |     T, v1, lam2, lam3 = symmetric_transfer()
+000065 |     Delta = 6 * np.log(3 / 2)
+000066 |     D = np.diag([1.0, -1.0, 0.0])                      # a trace-zero observable, <D>_v1 = 0
+000067 | 
+000068 |     # 1. reflection positivity: T symmetric PSD
+000069 |     evals = np.linalg.eigvalsh(T)
+000070 |     check("REFLECTION POSITIVITY [E]: the seam transfer T is symmetric and PSD "
+000071 |           "(eigenvalues %s >= 0), so the finite-volume transfer-matrix measures are "
+000072 |           "reflection-positive (OS-0)" % np.round(np.sort(evals)[::-1], 5).tolist(),
+000073 |           np.allclose(T, T.T) and evals.min() > -1e-12)
+000074 | 

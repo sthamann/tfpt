@@ -1,0 +1,140 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/mixed-current-origin-20261014/check_odd_refielding.py
+Original file SHA-256: cdf152af1b8ad56a2a0ce46a847324e523cc779d2b65f7f6f35f25acd1781b5e
+Inclusive original lines: 1-132
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact controls for the old-rho, parity-conditioned odd-sector re-fielding.
+000002 | 
+000003 | This is a source/time-compatible representation candidate, not a P1 local
+000004 | field construction. Its locality failure is part of the controlled result.
+000005 | """
+000006 | from fractions import Fraction as F
+000007 | from collections import defaultdict
+000008 | from pathlib import Path
+000009 | import json
+000010 | import sympy as S
+000011 | 
+000012 | 
+000013 | def need(value, label):
+000014 |     if not value:
+000015 |         raise ValueError(label)
+000016 | 
+000017 | 
+000018 | def theta_charge(alpha, half, cutoff=128):
+000019 |     state={(0,0,F(0)):1}
+000020 |     for k in range(8):
+000021 |         delta=(F(k)+alpha)/8-F(1,2)
+000022 |         base=F(1,2) if delta<0 else F(-1,2)
+000023 |         baseline=16*base*base+32*delta*base if half else 0
+000024 |         options=[]
+000025 |         for m in range(-4,5):
+000026 |             q=F(m)+F(1,2) if half else F(m)
+000027 |             e=16*q*q+32*delta*q-baseline
+000028 |             if 0<=e<=cutoff:
+000029 |                 need(e.denominator==1,'integral quarter-energy exponent')
+000030 |                 options.append((int(e),m%2,q))
+000031 |         nxt=defaultdict(int)
+000032 |         for (energy,parity,charge),count in state.items():
+000033 |             for e,p,q in options:
+000034 |                 if energy+e<=cutoff:
+000035 |                     nxt[energy+e,(parity+p)%2,charge+q]+=count
+000036 |         state=dict(nxt)
+000037 |     return state
+000038 | 
+000039 | 
+000040 | P=S.zeros(8)
+000041 | for k in range(8):P[k,(k+4)%8]=1
+000042 | r=S.Matrix([S.Rational(1,2)]*4+[-S.Rational(1,2)]*4)
+000043 | R=S.zeros(8)
+000044 | for k in range(8):R[k,(k-1)%8]=1
+000045 | A=P*R
+000046 | unit0=S.eye(8)[:,0]
+000047 | lam=P*unit0+r
+000048 | need(R*P==P*R and R*r+unit0==lam,'same primitive winding map on both parities')
+000049 | need(lam.dot(lam)==2 and sum(lam)==1,'primitive winding spinor root and unit total charge')
+000050 | need(A**8==S.eye(8),'primitive winding permutation order8')
+000051 | need(sum((A**j*lam for j in range(8)),S.zeros(8,1))==S.ones(8,1),
+000052 |      'eight primitive steps retain integer charge carry')
+000053 | checks=[]
+000054 | for alpha in [S.Rational(1,4),S.Rational(3,4)]:
+000055 |     delta=S.Matrix([(k+alpha)/8-S.Rational(1,2) for k in range(8)])
+000056 |     need(P*P==S.eye(8) and P*r==-r,'rho involution')
+000057 |     need(P*delta==delta+r,'full energy linear coefficient')
+000058 |     need(r.dot(r)/2+delta.dot(r)==0,'full energy constant')
+000059 |     need(sum(r)==0,'total charge preserved')
+000060 |     symbols=S.Matrix(S.symbols('p0:8'))
+000061 |     K=lambda v:v.dot(v)/2+delta.dot(v)
+000062 |     transformed=A*symbols+lam
+000063 |     need(S.expand(K(transformed)-K(symbols)-(sum(symbols)+alpha)/8)==0,
+000064 |          'primitive W1 exact source Ward energy increment')
+000065 |     a=theta_charge(F(int(alpha.p),int(alpha.q)),False)
+000066 |     b=theta_charge(F(int(alpha.p),int(alpha.q)),True)
+000067 |     need(a==b,'all exact parity/energy/total-charge coefficients through128')
+000068 |     checks.append({'alpha':str(alpha),'all_energy_Q_parity_coefficients_equal_through_quarter_units':128,
+000069 |                    'coefficient_keys':len(a)})
+000070 | 
+000071 | # The changed current's failure of original microscopic locality has a
+000072 | # bounded exact three-mode CAR witness. Modes0,1 local;mode2 remote.
+000073 | def annihilator(k):
+000074 |     out=S.zeros(8)
+000075 |     for bits in range(8):
+000076 |         if bits&(1<<k):
+000077 |             out[bits^(1<<k),bits]=(-1)**((bits&((1<<k)-1)).bit_count())
+000078 |     return out
+000079 | a=[annihilator(k) for k in range(3)]
+000080 | n=[x.T*x for x in a]
+000081 | parity=S.diag(*[(-1)**bits.bit_count() for bits in range(8)])
+000082 | positive=(S.eye(8)+parity)/2
+000083 | negative=(S.eye(8)-parity)/2
+000084 | j=n[0]-n[1]
+000085 | W=S.diag(*[S.exp(S.I*S.pi*j[k,k]/2) for k in range(8)])
+000086 | B=a[2]+a[2].T
+000087 | changed=positive*W+negative*W.conjugate().T
+000088 | need(W*B==B*W,'original local even operation commutes with remote CAR')
+000089 | comm=changed*B-B*changed
+000090 | need(comm!=S.zeros(8),'parity-conditioned re-fielding fails remote locality')
+000091 | need(comm==parity*B*(W-W.conjugate().T),'integrated remote commutator identity')
+000092 | need(set((comm.conjugate().T*comm).eigenvals())=={S.Integer(0),S.Integer(4)},
+000093 |      'nonzero commutator operator norm exactly2')
+000094 | need(changed.conjugate().T*changed==S.eye(8),'locality mutant is still unitary')
+000095 | 
+000096 | # Original finite Arf compiler: iota=(f1,f2,f3,a,f1+f2+f3+a),
+000097 | # chi_NSR=a is n4 in the original even exterior carrier.
+000098 | basis=[m for m in range(32) if m.bit_count()%2==0]
+000099 | index={m:i for i,m in enumerate(basis)}
+000100 | chi=S.diag(*[(-1)**((m>>3)&1) for m in basis])
+000101 | root=S.zeros(16)
+000102 | for m in basis:
+000103 |     if m&(1<<4) and not m&(1<<3):
+000104 |         sign=(-1)**((m&((1<<4)-1)).bit_count())
+000105 |         t=m^(1<<4)
+000106 |         sign*=(-1)**((t&((1<<3)-1)).bit_count())
+000107 |         t|=1<<3
+000108 |         root[index[t],index[m]]=sign
+000109 | anchor_comm=chi*root-root*chi
+000110 | need(anchor_comm.rank()==4,'finite anchor sign is not invariant under D5 root E45')
+000111 | need(S.trace(anchor_comm.T*anchor_comm)==16,'finite anchor commutator HS square')
+000112 | 
+000113 | result={'date':'2026-10-22','result':'EXACT_TIME_Q_COMPATIBLE_ODD_REFIELDING_BUT_NOT_ORIGINAL_LOCAL_NET',
+000114 |         'rho_involution_Q_and_energy_preserved':True,
+000115 |         'theta_controls':checks,
+000116 |         'proof_of_all_energy_equality':'rho(p)=Pp+r,Pr=-r,Pdelta=delta+r,r²/2+delta.r=0',
+000117 |         'even_sector_unchanged':True,
+000118 |         'primitive_W1_target_action':'q -> A q+lambda, A=P R=R^5, lambda=(1/2)^5(-1/2)^3',
+000119 |         'primitive_W1_charge_increment':1,
+000120 |         'primitive_W1_K_increment':'(Q+alpha)/8',
+000121 |         'primitive_W1_eighth_power':'q -> q+(1)^8; charge increases8',
+000122 |         'primitive_W1_is_local_spinor_field':False,
+000123 |         'odd_Cartan_beta_pullback':'H_beta becomes1-H_beta for beta=e0-e4',
+000124 |         'proper_locality_obstruction':'For mean-zero localized beta-current and Pbeta=-beta,Wprime=Pi_even W+Pi_odd W*. For an odd remote CAR unitary B,[Wprime,B]=parity B(W-W*),nonzero.',
+000125 |         'exact_finite_CAR_commutator_norm':2,
+000126 |         'finite_Arf_anchor_sign_D5_root_commutator_rank':4,
+000127 |         'finite_Arf_anchor_sign_D5_root_commutator_HS_squared':16,
+000128 |         'finite_Arf_scope':'Excludes literal D5-equivariant identification of the existing anchor-bit sign with a uniform central NS/R boundary label; no refutation of the finite Arf theorem or all geometric Pfaffian maps.',
+000129 |         'microscopic_P1_spinor_origin_derived':False,
+000130 |         'new_energy_or_source_copy_chosen':False}
+000131 | Path(__file__).with_name('odd-refielding-results.json').write_text(json.dumps(result,indent=2)+'\n')
+000132 | print(json.dumps(result,indent=2))

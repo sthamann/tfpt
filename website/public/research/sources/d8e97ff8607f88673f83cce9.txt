@@ -1,0 +1,87 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/source_sewing_20261028/clock/check_e8_common_clock_carrier.py
+Original file SHA-256: 703143bdd86e65a298a2fdd8c636a6117b6dec9001dc2615fc2c3dfc13fae499
+Inclusive original lines: 201-279
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000201 |                 x = sp.Matrix(q.popleft())
+000202 |                 for gen in generators:
+000203 |                     y = tuple(int(v) for v in gen * x)
+000204 |                     if y not in orb:
+000205 |                         orb.add(y)
+000206 |                         unseen.remove(y)
+000207 |                         q.append(y)
+000208 |             census[len(orb)] += 1
+000209 |         return dict(sorted(census.items()))
+000210 | 
+000211 |     spectra = {}
+000212 |     for name, matrix in [
+000213 |         ("native_J", J),
+000214 |         ("native_sigma", sigma),
+000215 |         ("native_compiler", compiler),
+000216 |         ("coxeter_W", W),
+000217 |         ("coxeter_carrier_C5", W**6),
+000218 |         ("coxeter_family_C3", W**10),
+000219 |         ("galois_lift_G8", G),
+000220 |         ("galois_lift_G8_square", G**2),
+000221 |     ]:
+000222 |         spectra[name] = {
+000223 |             "order": matrix_order(matrix),
+000224 |             "trace": int(sp.trace(matrix)),
+000225 |             "charpoly": charpoly(matrix),
+000226 |         }
+000227 | 
+000228 |     # This character mismatch is the decisive typed obstruction.
+000229 |     require(spectra["native_sigma"] != spectra["coxeter_family_C3"],
+000230 |             "native and Coxeter C3 spectra differ")
+000231 |     require(sp.trace(sigma) == 2 and sp.trace(W**10) == -4,
+000232 |             "native and Coxeter C3 real traces are 2 and -4")
+000233 | 
+000234 |     result = {
+000235 |         "verdict": "COMMON_E8_CARRIER_WITH_DISTINCT_CLOCK_SUBALGEBRAS",
+000236 |         "exact_arithmetic": True,
+000237 |         "root_count": len(roots),
+000238 |         "gram_det": int(gram.det()),
+000239 |         "krylov_det": int(krylov.det()),
+000240 |         "galois_lift_census": {
+000241 |             "total": len(lifts),
+000242 |             "orders": {str(k): v for k, v in sorted(order_counts.items())},
+000243 |             "fourth_power_W_exponents": {
+000244 |                 o: dict(sorted(c.items())) for o, c in fourth_power.items()
+000245 |             },
+000246 |         },
+000247 |         "canonical_selection": False,
+000248 |         "representative_G8_matrix": [
+000249 |             [int(G[r, c]) for c in range(8)] for r in range(8)
+000250 |         ],
+000251 |         "relations": {
+000252 |             "G_W_Ginv": "W^7",
+000253 |             "G_C5_Ginv": "C5^2",
+000254 |             "G_C3_Ginv": "C3",
+000255 |             "G4": "W^15=-I",
+000256 |             "compiler": "c=J*sigma, c^4=sigma, c^9=J",
+000257 |             "native_J_coordinate_sign": "J(x,y)=(-y,x), multiplication by +i",
+000258 |         },
+000259 |         "native_normalizer_counts_among_30_lifts": native_normalizer_counts,
+000260 |         "spectra": spectra,
+000261 |         "root_orbits": {
+000262 |             "compiler_and_coxeter": orbit_census([compiler, W]),
+000263 |             "all_named_operators": orbit_census([J, sigma, W, G]),
+000264 |         },
+000265 |         "scope": [
+000266 |             "common integral E8 lattice and 240-root carrier",
+000267 |             "no equality of native and cyclotomic order-three clocks",
+000268 |             "no source-derived P1/P2 sewing functor",
+000269 |             "no identification of the scalar-square theta alpha with G8",
+000270 |         ],
+000271 |     }
+000272 |     payload = json.dumps(result, indent=2, sort_keys=True) + "\n"
+000273 |     RESULT.write_text(payload)
+000274 |     print(payload, end="")
+000275 |     print("RESULT_SHA256", hashlib.sha256(payload.encode()).hexdigest())
+000276 | 
+000277 | 
+000278 | if __name__ == "__main__":
+000279 |     main()

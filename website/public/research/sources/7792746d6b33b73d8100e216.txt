@@ -1,0 +1,188 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/D4-ORBIFOLD-RIGIDITY.txt
+Original file SHA-256: 167d26868e5f1c0a09420a8e51168893fd8341e595fb06e964e0053cb88859e4
+Inclusive original lines: 1-180
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | AKTUELLE STATUSKORREKTUR, 26.10.2026
+000002 | ====================================
+000003 | Der im folgenden Arbeitsstand noch als numerisch/offen bezeichnete Anschluss
+000004 | der konkreten A0* ODE ist inzwischen durch den wiedergefundenen exakten
+000005 | C4 Dreiecksbeweis vom 28. September geschlossen. Maßgeblich sind jetzt
+000006 | C4-DESCENT-FINITE-MONODROMY.txt und C4-TRIANGLE-INDEPENDENT-REVIEW.txt.
+000007 | Die Identifikation gilt bis zum gemeinsamen konstanten Basiswechsel und der
+000008 | verbleibenden diagonalen Basiszeichenkonvention. Die tatsächliche Verbindung
+000009 | ist C4 äquivariant, hat aber keinen rationalen z->1/z Lift. Der bedingte echte
+000010 | D4 Satz beschreibt eine andere markierte Verbindung. Die Stabilitäts und
+000011 | Wandargumente unten behalten ihren jeweils ausdrücklich angegebenen Scope.
+000012 | Die frühere Offen Kennzeichnung ist überholt; keine neue ODE Suche nötig.
+000013 | 
+000014 | D4-ORBIFOLD-RIGIDITY
+000015 | ====================
+000016 | 
+000017 | Datum: 2026-10-26
+000018 | 
+000019 | Nachtrag nach dem exakten Stabilitaetstest
+000020 | ------------------------------------------
+000021 | 
+000022 | Die unten noch als offener Widerspruch beschriebene stable versus polystable
+000023 | Frage ist durch STABILITY-SOURCE-RECONCILIATION.txt aufgeloest. Section008 und
+000024 | section011 beschreiben zwei verschiedene parabolische Objekte. Der stabile
+000025 | Zweig hat gemischte Flags auf dem zugrunde liegenden
+000026 | O(-2)+O(-1)^2. W_wall setzt dagegen voraus, dass die drei globalen
+000027 | Birkhoff Grothendieck Summanden die Flags an allen vier Punkten simultan
+000028 | splitten; seine drei Zeilen haben jeweils Parabolgrad null. W_wall ist damit
+000029 | ein anderer, reduzierbarer, strikt polystabiler Charakterzweig und kein
+000030 | Gegenargument gegen den stabilen v117 Mehta Seshadri Zweig.
+000031 | 
+000032 | Die vier v117 Peripherien erzeugen A4 von Ordnung 12 und sind bereits
+000033 | irreduzibel. U erweitert diese Monodromiedarstellung zur signgetwisteten
+000034 | Standarddarstellung von S4. S4 ist hier die Kovarianzerweiterung, nicht die
+000035 | vierpunktige Monodromiegruppe.
+000036 | 
+000037 | Die aktuelle Restgrenze betrifft A0*: Seine rotierten Rohflags sind auf dem
+000038 | algebraisch deklarierten splitten Buendel exakt stabil und C4 kovariant. Die
+000039 | reine diagonale Infinity Scherung g=diag(w^2,w,w) laesst jedoch den resonanten
+000040 | Residuenpol -(2 sqrt(2)/3)E_12 uebrig. Die Identitaet dieses Rohflagobjekts mit
+000041 | der Deligne Erweiterung der A0* ODE und seine D4 Reflexionslinearisierung sind
+000042 | daher weiterhin getrennt offen. Die nachfolgenden Passagen zum angeblichen
+000043 | stable polystable Konflikt sind durch diesen Nachtrag ersetzt.
+000044 | 
+000045 | Frage
+000046 | -----
+000047 | 
+000048 | Folgt die endliche v117-Auswahl bereits aus der ursprünglichen markierten
+000049 | D4-Geometrie, sobald das Familienlokalsystem wirklich auf den D4-Quotienten
+000050 | absteigt? Entscheidend ist die bisher fehlende Wahl zwischen den vier
+000051 | SU(3)-Quadratwurzeln des regulären kubischen Monodromieblocks M.
+000052 | 
+000053 | Kurzes Ergebnis
+000054 | ---------------
+000055 | 
+000056 | Ja, als exakter bedingter Starrheitssatz. Die Basiskarte
+000057 | 
+000058 |     J(x) = 1/2 - (x^4+x^{-4})/4
+000059 |          = -(x^4-1)^2/(4x^4)
+000060 | 
+000061 | ist der Invariantengenerator C(x)^{D4}. Nach Entfernung der vier Punkte mu4
+000062 | hat der Quotient die Orbifoldsignatur
+000063 | 
+000064 |     (infinity,2,4).
+000065 | 
+000066 | Für positiv orientierte Generatoren a,b,c mit
+000067 | 
+000068 |     a b c = I,
+000069 |     b^2 = I,
+000070 |     c^4 = I
+000071 | 
+000072 | ist a die Schleife um das Bild der vier entfernten Marken, b der
+000073 | Ordnung-2-Punkt und c der Ordnung-4-Punkt. Die lokale Verzweigung an jeder
+000074 | Marke hat Index 2. Daher ist die ursprüngliche Peripheriemonodromie exakt
+000075 | 
+000076 |     M = a^2.
+000077 | 
+000078 | Nimmt man nun einen ehrlichen unitären, determinantentrivialen Rang-3-Abstieg
+000079 | mit
+000080 | 
+000081 |     spec(M) = {1,omega,omega^2},
+000082 |     c = U = diag(1,i,-i)
+000083 | 
+000084 | und irreduzibler Wirkung an, dann ist die Darstellung bis auf den diagonalen
+000085 | SU(3)-Zentralisator von c eindeutig. Die drei Ordnung-6-Wurzeln von M werden
+000086 | exakt ausgeschlossen. Übrig bleibt
+000087 | 
+000088 |     a^3 = I,
+000089 |     a = M^2,
+000090 |     b = M U^{-1},
+000091 | 
+000092 | also genau das v117-Paar und die endliche S4-Darstellung.
+000093 | 
+000094 | Damit ist die frühere modulare Level-4-Auswahl mathematisch nicht mehr nötig,
+000095 | wenn der im aktiven TFPT2-Text ausdrücklich fixierte D4-äquivariante stabile
+000096 | parabolische Rang-3-Bündelzweig wörtlich als Prämisse gilt. Für ein solches
+000097 | genuin linearisiertes stabiles Objekt erzeugt Mehta-Seshadri die eindeutige
+000098 | irreduzible unitäre Verbindung funktoriell; ihre D4-Äquivarianz und ihr
+000099 | Orbifoldabstieg folgen aus der Eindeutigkeit der angepassten Metrik. Es wird
+000100 | also keine weitere freie flache Verbindung benötigt.
+000101 | 
+000102 | Historischer, inzwischen aufgeloester Quellenbefund: Die aktuelle Quelle
+000103 | verwendet zwei verschiedene Statusaussagen. In
+000104 | TFPT2, section008, Zeilen 124 bis 127 wird der stabile, bereits abgestiegene
+000105 | D4-Zweig fixiert. TFPT2, section011, Zeilen 257 bis 268 erklärt dieselben
+000106 | Gewichte und dieselbe Spaltung dagegen zum strikt polystabilen Wallpunkt mit
+000107 | positivdimensionalem D4-Fixort. Auf einem strikt polystabilen Punkt folgt
+000108 | Irreduzibilität nicht aus Mehta-Seshadri. STABILITY-SOURCE-RECONCILIATION.txt
+000109 | zeigt inzwischen, dass W_wall ein anderer flaggespaltener Zweig ist und daher
+000110 | nicht mit der irreduziblen v117-Verbindung vereinbart werden muss. Die
+000111 | explizite A0*-ODE ist weiterhin nur numerisch mit dieser
+000112 | kanonischen Verbindung identifiziert.
+000113 | 
+000114 | 1. Die Quotientenkarte ist bereits original
+000115 | --------------------------------------------
+000116 | 
+000117 | Setze
+000118 | 
+000119 |     Q(x)=i x,
+000120 |     s(x)=1/x.
+000121 | 
+000122 | Dann gilt unmittelbar
+000123 | 
+000124 |     J(Qx)=J(x),
+000125 |     J(sx)=J(x).
+000126 | 
+000127 | Als rationale Abbildung P1_x -> P1_J hat J Grad 8. Die von Q und s erzeugte
+000128 | Gruppe hat ebenfalls Ordnung 8. Deshalb ist
+000129 | 
+000130 |     C(x)^{<Q,s>} = C(J).
+000131 | 
+000132 | Dies beweist mehr als eine zufällige Invarianz: J ist bis auf eine
+000133 | Möbiustransformation des Ziels die Quotientenkarte P1 -> P1/D4.
+000134 | 
+000135 | Das vollständige Ramifikationsgesetz ist
+000136 | 
+000137 |     J=0:        x^4=1,   vier Punkte mit e=2,
+000138 |     J=1:        x^4=-1,  vier Punkte mit e=2,
+000139 |     J=infinity: x=0,inf, zwei Punkte mit e=4.
+000140 | 
+000141 | Die Riemann-Hurwitz-Summe lautet
+000142 | 
+000143 |     4(2-1)+4(2-1)+2(4-1)=14=2*8-2.
+000144 | 
+000145 | Der kompakte Quotient hat daher Signatur (2,2,4). Nach Entfernung der
+000146 | ursprünglichen Marken x in mu4 wird der erste Ordnung-2-Punkt zur Spitze. Der
+000147 | für das Familienlokalsystem relevante Quotient hat Signatur
+000148 | (infinity,2,4).
+000149 | 
+000150 | Auf dem ursprünglichen Einheitskreis x=e^{i theta} gilt außerdem
+000151 | 
+000152 |     J(e^{i theta})
+000153 |       = 1/2 - cos(4 theta)/2
+000154 |       = sin^2(2 theta).
+000155 | 
+000156 | Damit ist auch die reelle Nahtabbildung dieselbe kanonische Quotientenfunktion.
+000157 | Es wurde keine neue Moduligeometrie gewählt.
+000158 | 
+000159 | 2. Warum die Peripherie M=a^2 ist
+000160 | ---------------------------------
+000161 | 
+000162 | Sei a eine positive Schleife um J=0. In einer lokalen Koordinate z=x-zeta an
+000163 | einer Marke zeta in mu4 hat J die Form
+000164 | 
+000165 |     J = lambda z^2 + O(z^3), lambda != 0.
+000166 | 
+000167 | Eine positive Schleife um z=0 läuft deshalb zweimal um J=0. Für den Pullback
+000168 | eines Orbifoldlokalsystems ist die Monodromie der ursprünglichen
+000169 | Peripherieschleife daher
+000170 | 
+000171 |     M = a^2.
+000172 | 
+000173 | Die beiden anderen Zielschleifen b,c haben die echten isotropen Relationen
+000174 | 
+000175 |     b^2=I,
+000176 |     c^4=I.
+000177 | 
+000178 | Mit der üblichen positiven Orientierung gilt a b c=I, also
+000179 | 
+000180 |     a=(bc)^{-1}.

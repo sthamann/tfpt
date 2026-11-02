@@ -1,0 +1,79 @@
+TFPT scientific source excerpt
+Original repository path: verification/v1018_e8_directed_readout.py
+Original file SHA-256: 25f541903f01621990cf317372f1349be22a495b1594eb12c77c64db151dc9db
+Inclusive original lines: 710-780
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000710 | def cell7_e6_a2(roots: tuple, basis_L: list[tuple[int, ...]]) -> None:
+000711 |     print("\nCELL 7  E6 ⊕ A2 ⊂ E8 glue")
+000712 |     alpha = None
+000713 |     beta = None
+000714 |     for r in roots:
+000715 |         if r == (2, 0, 0, 0, 0, 0, 0, 0) or r == (-2, 0, 0, 0, 0, 0, 0, 0):
+000716 |             alpha = r
+000717 |             break
+000718 |     if alpha is None:
+000719 |         alpha = roots[0]
+000720 |     for r in roots:
+000721 |         ip = sum(a * b for a, b in zip(alpha, r))
+000722 |         if ip == -2:
+000723 |             beta = r
+000724 |             break
+000725 |     check("C8.A2 pair", alpha is not None and beta is not None,
+000726 |           "alpha=%s beta=%s" % (alpha, beta))
+000727 |     a2_roots = []
+000728 |     for s in (1, -1):
+000729 |         a2_roots.append(tuple(s * x for x in alpha))
+000730 |         a2_roots.append(tuple(s * x for x in beta))
+000731 |         a2_roots.append(tuple(s * (alpha[i] + beta[i]) for i in range(8)))
+000732 |     a2_roots = tuple(sorted(set(a2_roots)))
+000733 |     e6_roots = []
+000734 |     for r in roots:
+000735 |         if (sum(a * b for a, b in zip(r, alpha)) == 0
+000736 |                 and sum(a * b for a, b in zip(r, beta)) == 0):
+000737 |             e6_roots.append(r)
+000738 |     in_a2 = set(a2_roots)
+000739 |     e6_set = set(e6_roots)
+000740 |     glue_roots = [r for r in roots if r not in in_a2 and r not in e6_set]
+000741 |     split = (len(e6_roots), len(a2_roots), len(glue_roots))
+000742 |     check("C8.root split 72+6+162", split == (72, 6, 162),
+000743 |           "got %s" % (split,))
+000744 |     e6_basis = zspan_hnf_rows(e6_roots)
+000745 |     a2_basis = zspan_hnf_rows(list(a2_roots))
+000746 |     check("C8.ranks E6,A2",
+000747 |           len(e6_basis) == 6 and len(a2_basis) == 2,
+000748 |           "rk E6=%d rk A2=%d" % (len(e6_basis), len(a2_basis)))
+000749 |     m_basis = zspan_hnf_rows(e6_basis + a2_basis)
+000750 |     check("C8.M=E6⊕A2 rank 8", len(m_basis) == 8, "rk M=%d" % len(m_basis))
+000751 |     gram_m = gram_int(m_basis)
+000752 |     gram_l = gram_int(basis_L)
+000753 |     det_m = int(gram_m.det())
+000754 |     det_l = int(gram_l.det())
+000755 |     ratio = sp.Rational(det_m, det_l)
+000756 |     index = int(sp.sqrt(ratio)) if ratio > 0 and sp.sqrt(ratio).is_integer else -1
+000757 |     check("C8.index 3 (det 9 scaled)",
+000758 |           index == 3 and ratio == 9,
+000759 |           "det Gram_M=%d det Gram_L=%d  [L:M]=%s" % (det_m, det_l, index))
+000760 |     even_m = all(int(gram_m[i, j]) % 2 == 0 for i in range(8) for j in range(8))
+000761 |     gram_scaled = sp.Matrix(8, 8, lambda i, j: int(gram_m[i, j]) // 2)
+000762 |     inv = smith_diag(gram_scaled) if even_m else []
+000763 |     inv_abs = [abs(d) for d in inv if d not in (0,)]
+000764 |     check("C8.Smith (1^6,3,3)",
+000765 |           even_m and sorted(inv_abs) == [1, 1, 1, 1, 1, 1, 3, 3],
+000766 |           "Smith(Gram_M/2)=%s" % (inv,))
+000767 |     b = sp.Matrix([list(v) for v in m_basis])
+000768 |     binv = b.inv()
+000769 |     class_count: dict[tuple, int] = defaultdict(int)
+000770 |     for r in roots:
+000771 |         xi = (sp.Matrix(list(r)).T * binv).tolist()[0]
+000772 |         frac = []
+000773 |         for t in xi:
+000774 |             t = sp.nsimplify(t)
+000775 |             frac.append(t - sp.floor(t))
+000776 |         class_count[tuple(frac)] += 1
+000777 |     sizes = sorted(class_count.values(), reverse=True)
+000778 |     check("C8.glue classes 78/81/81",
+000779 |           len(class_count) == 3 and sizes == [81, 81, 78],
+000780 |           "#classes=%d  sizes=%s" % (len(class_count), sizes))

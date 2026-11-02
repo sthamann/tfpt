@@ -1,0 +1,152 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/check_spin_transport_and_cusp.py
+Original file SHA-256: 590c83f4347957009aca9ccbbd5eefe848425f0b5c26b0a7ba0e5fbf99eaac6a
+Inclusive original lines: 1-144
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Exact ramified spin kernel and literal archived cusp formula checks.
+000002 | 
+000003 | Analytic uniqueness of the Szego kernel is proved in GLOBAL-SPIN-KERNEL.txt.
+000004 | The three theta comparisons below are diagnostics, not that proof.
+000005 | """
+000006 | import json
+000007 | import sympy as s
+000008 | import mpmath as mp
+000009 | 
+000010 | checks = []
+000011 | 
+000012 | 
+000013 | def check(name, value):
+000014 |     if not bool(value):
+000015 |         raise RuntimeError(name)
+000016 |     checks.append(name)
+000017 | 
+000018 | 
+000019 | I = s.I
+000020 | eye = s.eye(2)
+000021 | J = s.Matrix([[0, I], [-I, 0]])
+000022 | plus = (eye + J) / 2
+000023 | minus = (eye - J) / 2
+000024 | check('constant orthogonal spectral projectors',
+000025 |       J.H == J and J**2 == eye and plus * minus == s.zeros(2))
+000026 | a = s.symbols('a', nonzero=True)
+000027 | full = s.Matrix([[a + 1/a, I*(a - 1/a)],
+000028 |                  [-I*(a - 1/a), a + 1/a]]) / 2
+000029 | check('full two sheet algebraic kernel diagonalization',
+000030 |       s.simplify(full - a * plus - minus/a) == s.zeros(2))
+000031 | q, r = s.symbols('q r', positive=True)
+000032 | local = s.Matrix([[1/(q-r), I/(q+r)],
+000033 |                   [-I/(q+r), 1/(q-r)]])/(2*s.sqrt(q*r))
+000034 | diag = (s.sqrt(q/r)*plus + s.sqrt(r/q)*minus)/(q*q-r*r)
+000035 | check('ramified local Cauchy identity', s.simplify(local-diag) == s.zeros(2))
+000036 | x = s.symbols('x')
+000037 | ratio = (x*x-1)/(x*x+1)
+000038 | eta = x/(x**4-1)
+000039 | check('global logarithmic derivative', s.simplify(s.diff(ratio, x)/(4*ratio)-eta) == 0)
+000040 | check('quarter clock interchanges the two character lines',
+000041 |       s.simplify(ratio.subs(x, I*x)*ratio-1) == 0
+000042 |       and s.simplify(I*eta.subs(x, I*x)+eta) == 0)
+000043 | res = [s.residue(eta, x, z) for z in (1, I, -1, -I)]
+000044 | check('four actual residues', res == [s.Rational(1,4), -s.Rational(1,4),
+000045 |                                        s.Rational(1,4), -s.Rational(1,4)])
+000046 | spin_meridians = [s.diag(I, -I), s.diag(-I, I)] * 2
+000047 | prod = eye
+000048 | for m in spin_meridians:
+000049 |     prod *= m
+000050 | check('global spin meridian product and central squares',
+000051 |       prod == eye and all(m*m == -eye for m in spin_meridians))
+000052 | P = s.Matrix([[0, 1], [1, 0]])
+000053 | check('two radial resolutions have flat total holonomy one',
+000054 |       P**4 == eye and (I*P)**2 == -eye)
+000055 | 
+000056 | # Literal matrices from archived TFPT45 section004, lines18-44.
+000057 | w = (-1 + I*s.sqrt(3))/2
+000058 | D = s.diag(1, w, w*w)
+000059 | P3 = s.Matrix([[0,1,0], [0,0,1], [1,0,0]])
+000060 | bad = s.simplify(D*(P3*D*P3.inv())*(P3**2*D*P3**-2))
+000061 | check('archived printed fourth cusp is identity', bad == s.eye(3))
+000062 | 
+000063 | # Unchanged verification/v117_monodromy_weyl_a3.py:52-56.
+000064 | M = s.Matrix([[0, -(1+I)/2, (1-I)/2],
+000065 |               [-(1+I)/2, -I/2, -s.Rational(1,2)],
+000066 |               [(1-I)/2, -s.Rational(1,2), I/2]])
+000067 | U = s.diag(1, I, -I)
+000068 | prod = s.eye(3)
+000069 | for k in range(4):
+000070 |     mk = U**k*M*U**(-k)
+000071 |     check('v117 cusp spectrum '+str(k),
+000072 |           s.expand(mk.charpoly(x).as_expr()) == x**3-1)
+000073 |     prod = s.simplify(prod*mk)
+000074 | check('existing v117 repairs the four cusp product',
+000075 |       prod == s.eye(3) and U**4 == s.eye(3) and (M*U)**4 == s.eye(3))
+000076 | 
+000077 | # Actual theta-square modular matrices, with the scalar factors retained.
+000078 | AS = s.Matrix([[0,0,1], [0,1,0], [1,0,0]])
+000079 | AT = s.Matrix([[I,0,0], [0,0,1], [0,1,0]])
+000080 | UT, MT = -I*AT, I*AS*AT
+000081 | X = s.Matrix([[-1-I,0,0], [0,I,-I], [0,1,1]])/s.sqrt(2)
+000082 | check('theta raw modular central relation', AS**2 == s.eye(3) and (AS*AT)**3 == I*s.eye(3))
+000083 | check('explicit theta v117 unitary dictionary',
+000084 |       s.simplify(X.H*X) == s.eye(3)
+000085 |       and s.simplify(X*UT*X.H-U) == s.zeros(3)
+000086 |       and s.simplify(X*MT*X.H-M) == s.zeros(3))
+000087 | 
+000088 | 
+000089 | def group(generators):
+000090 |     ident = s.eye(3)
+000091 |     seen, todo = {tuple(ident)}, [ident]
+000092 |     while todo:
+000093 |         cur = todo.pop()
+000094 |         for gen in generators:
+000095 |             nxt = s.expand(cur*gen)
+000096 |             key = tuple(nxt)
+000097 |             if key not in seen:
+000098 |                 seen.add(key)
+000099 |                 todo.append(nxt)
+000100 |                 if len(seen) > 200:
+000101 |                     raise RuntimeError('unexpected theta group growth')
+000102 |     return seen
+000103 | 
+000104 | 
+000105 | raw, normalized = group([AS,AT]), group([UT,MT])
+000106 | check('theta raw group has 96 elements and four scalar elements',
+000107 |       len(raw) == 96 and sum(tuple(a*s.eye(3)) in raw for a in [1,I,-1,-I]) == 4)
+000108 | check('normalized theta group has 24 elements', len(normalized) == 24)
+000109 | check('same geometric Q cannot be the v117 quarter mark',
+000110 |       (-AS)**2 == s.eye(3) and (-AS).eigenvals() == {1:1, -1:2}
+000111 |       and U.eigenvals() == {1:1, I:1, -I:1})
+000112 | 
+000113 | # Independent numerical diagnostics on the same square torus, in a single
+000114 | # analytic chart. Decimal strings avoid introducing machine precision.
+000115 | mp.mp.dps = 70
+000116 | c = 2*mp.ellipk(-1)*(1+1j)
+000117 | nome = mp.exp(-mp.pi)
+000118 | pairs = [('0.02 0.01','0.09 0.03'), ('0.07 0.02','0.03 0.06'),
+000119 |          ('0.09 -0.04','0.04 -0.02')]
+000120 | errors = []
+000121 | for za, wa in pairs:
+000122 |     z, v = mp.mpc(*za.split()), mp.mpc(*wa.split())
+000123 | 
+000124 |     def chart(t):
+000125 |         u = c*t
+000126 |         xx = mp.ellipfun('sn', u, -1)
+000127 |         yy = 1j*mp.ellipfun('cn', u, -1)*mp.ellipfun('dn', u, -1)
+000128 |         aa = 1j*mp.sqrt(1-xx*xx)
+000129 |         return xx, aa, yy/aa
+000130 | 
+000131 |     xx, aa, bb = chart(z)
+000132 |     vv, cc, dd = chart(v)
+000133 |     alg = -1j*c*(aa*dd+bb*cc)/(2*(xx-vv))
+000134 |     theta = mp.pi*mp.jtheta(3, mp.pi*(z-v), nome)*mp.jtheta(1,0,nome,1)/(mp.jtheta(3,0,nome)*mp.jtheta(1,mp.pi*(z-v),nome))
+000135 |     err = abs(alg-theta)
+000136 |     if err >= mp.mpf('1e-60'):
+000137 |         raise RuntimeError('same-E theta diagnostic')
+000138 |     errors.append(mp.nstr(err, 8))
+000139 | 
+000140 | print(json.dumps(dict(verdict='PASS_SCOPED', exact_checks=len(checks),
+000141 |                       checks=checks, theta_diagnostic_errors=errors,
+000142 |                       analytic_proof='GLOBAL-SPIN-KERNEL.txt',
+000143 |                       positive_equal_time_CAR_claimed=False,
+000144 |                       complete_TFPT_solution=False), indent=2))

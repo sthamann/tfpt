@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/hodge_complement_20261028/SOURCE-ORIGIN-AUDIT.txt
+Original file SHA-256: dec7b57e75326a222c777f081fcfa91614a1ef9b760dfbf9d04613f136476a82
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | SOURCE ORIGIN AUDIT: HODGE COMPLEMENT CHANNEL
+000002 | ==============================================
+000003 | 
+000004 | Stand: 2026-10-28
+000005 | Atlasrahmen: b6c9d7fa8fb2cb6e4b7a6c9a
+000006 | 
+000007 | Urteil
+000008 | ------
+000009 | 
+000010 | Die gesuchte Algebra ist bereits in den Originaldaten vorhanden. Der
+000011 | entscheidende Anschluss ist jedoch der volle zehnteilige Cliffordkanal und
+000012 | nicht allein die Familie der fuenf Komplementoperatoren.
+000013 | 
+000014 | Aus der vorhandenen E8 Z4 Graduierung
+000015 | 
+000016 |     g1 = (16_s, 4),    g2 = (10, 6),    g3 = (16_c, 4bar)
+000017 | 
+000018 | und dem E8 Klammerprodukt folgt bis auf die durch die Killingform gemeinsam
+000019 | fixierte Normierung die eindeutige Abbildung
+000020 | 
+000021 |     [g2,g1] -> g3,
+000022 |     (10 tensor 6) tensor (16_s tensor 4)
+000023 |         -> 16_c tensor 4bar.
+000024 | 
+000025 | Sie faktorisiert als Cliffordmultiplikation
+000026 | 
+000027 |     gamma : 10 tensor 16_s -> 16_c
+000028 | 
+000029 | und als SU4 Keilabbildung
+000030 | 
+000031 |     epsilon : 6 tensor 4 -> 4bar.
+000032 | 
+000033 | Werden alle 60 g2 Richtungen mit der invarianten Metrik gleich normiert
+000034 | eingesetzt und wird der ausgehende SU4 Index vergessen, so ist die reduzierte
+000035 | Antwort auf 16_s exakt
+000036 | 
+000037 |     Phi_Cl(rho) = (1/10) sum_{A=1}^{10} Gamma_A rho Gamma_A^dagger
+000038 |                 = (1/5) sum_{m=1}^{5}
+000039 |                     (a_m rho a_m^dagger + a_m^dagger rho a_m).
+000040 | 
+000041 | Das ist ein vollstaendig positiver, spurtreuer Kanal S+ -> S-. Er benoetigt
+000042 | weder einen freien Vektor v noch eine ausgewaehlte Richtung im
+000043 | Fuenftraeger. Die Quellen liefern damit einen konkreten und kanonischen
+000044 | algebraischen Herkunftspfad fuer den vollen Cliffordkanal.
+000045 | 
+000046 | Die Originalquellen legen bisher keine physische Nahtoperation fest, welche
+000047 | alle g2 Richtungen mit genau dieser isotropen Gewichtung als Ereignisse
+000048 | einsetzt und den SU4 Ausgangsindex verwirft. Ebenso wenig waehlen sie den
+000049 | reinen Erzeugungszweig aus. Diese Ereignisregel ist der erste verbleibende
+000050 | Pfeil. Ohne sie ist der Kanal eine aus der vorhandenen Algebra kanonisch
+000051 | verfuegbare Antwortabbildung, aber noch keine hergeleitete Nahtdynamik.
+000052 | 
+000053 | 
+000054 | 1. Typ des fuenfteiligen Komplementoperators
+000055 | --------------------------------------------
+000056 | 
+000057 | Sei V = C^5 mit der bereits benutzten Volumenform. Die lineare,
+000058 | basisunabhaengige Abbildung ist
+000059 | 
+000060 |     K : Lambda^2 V -> Lambda^2 V* tensor V*,
+000061 |     K(alpha)(v) = iota_{v wedge alpha} vol.
+000062 | 
+000063 | In einer orientierten Orthonormalbasis ist ihre m te Komponente
+000064 | 
+000065 |     C_m(alpha) = iota_{e_m wedge alpha} vol.
+000066 | 
+000067 | und
+000068 | 
+000069 |     sum_m C_m^dagger C_m = 3 I_{Lambda^2 V}.
+000070 | 
+000071 | Darum ist
+000072 | 
+000073 |     Phi_+(rho) = (1/3) sum_m C_m rho C_m^dagger
+000074 | 
+000075 | ein spurtreuer Kanal Lambda^2 V -> Lambda^2 V*. Seine Population ist exakt
+000076 | A_Petersen/3: ein Paar {i,j} geht gleichgewichtet in die drei zu ihm
+000077 | disjunkten Paare. Dies ist der im Auftrag formulierte Komplementkanal.
+000078 | 
+000079 | Die Dualsterne sind tragend. Fuer X=(-2,-2,-2,3,3) hat ein Uebergang mit
+000080 | {i,j,m,k,l}={1,...,5}
+000081 | 
+000082 |     q_in = X_i + X_j,
+000083 |     q_out = -(X_k + X_l),
+000084 |     q_env = -X_m,
+000085 | 
+000086 | und daher q_out + q_env = q_in. Werden Ziel und Register ohne Dualisierung
+000087 | als zwei weitere Kopien von V gelesen, kehrt sich die Ladung um. Die
+000088 | Komplementformel ist also ladungserhaltend genau in ihrer natuerlichen
+000089 | dualen Typisierung. Eine lineare Identifikation V* = V waere eine weitere
+000090 | Wahl. Eine Hermitesche Metrik liefert nur die uebliche antilineare
+000091 | Identifikation.
+000092 | 
+000093 | Der fuenfteilige Kanal ist aber kein selbststaendiger neuer Originaloperator.
+000094 | Er ist der konditionierte Erzeugungszweig des bereits vorhandenen
+000095 | Cliffordkanals:
+000096 | 
+000097 |     Lambda^2 V --a_m^dagger--> Lambda^3 V
+000098 |         --Hodge--> Lambda^2 V*.
+000099 | 
+000100 | 
+000101 | 2. Voller Cliffordkanal und die genaue Petersen Zerlegung
+000102 | --------------------------------------------------------
+000103 | 
+000104 | Auf Lambda^* V gelten die bereits in v474 definierten Operatoren
+000105 | 
+000106 |     Gamma_{2m}   = a_m^dagger + a_m,
+000107 |     Gamma_{2m+1} = i(a_m^dagger - a_m).
+000108 | 
+000109 | Die zehn Krausoperatoren Gamma_A/sqrt(10) sind spurtreu, weil
+000110 | 
+000111 |     sum_A Gamma_A^dagger Gamma_A = 10 I.
+000112 | 
+000113 | Paarweise ergibt sich dieselbe Abbildung in CAR Schreibweise:
+000114 | 
+000115 |     (Gamma_{2m} rho Gamma_{2m}^dagger
+000116 |       + Gamma_{2m+1} rho Gamma_{2m+1}^dagger)/10
+000117 |       = (a_m rho a_m^dagger + a_m^dagger rho a_m)/5.
+000118 | 
+000119 | Auf einem Zustand der Schale Lambda^2 V hat der Kanal zwei wirkliche
+000120 | Ausgangsschalen:
+000121 | 
+000122 |     Erzeugung:  Lambda^2 -> Lambda^3,  drei moegliche m, Gewicht 3/5.
+000123 |     Vernichtung: Lambda^2 -> Lambda^1, zwei moegliche m, Gewicht 2/5.
+000124 | 
+000125 | Nach der Hodge Identifikation Lambda^3 V = Lambda^2 V* ist die
+000126 | Populationsmatrix des Erzeugungszweigs A_Petersen/5. Der andere Zweig ist ein
+000127 | echter Carry nach Lambda^1 mit Gesamtgewicht 2/5. Der unbedingte Kanal setzt
+000128 | diesen Anteil nicht auf einen Stay Zustand zurueck.
+000129 | 
+000130 | Die reine Petersen Dynamik A_Petersen/3 entsteht erst durch Messung oder
+000131 | Konditionierung auf den Erzeugungszweig und anschliessende Normierung mit
+000132 | 5/3. Keine gelesene Originalstelle bestimmt diese Konditionierung als
+000133 | physisches Ereignis.
+000134 | 
+000135 | Auf dem vollen 32 dimensionalen Fockraum ist der Populationsgraph des
+000136 | zehnteiligen Kanals der Fuenfwuerfel Q5. Der Petersen Graph ist die
+000137 | Lambda^2 zu Lambda^3 Komplementschale. Die alte Clebsch16 Konstruktion und
+000138 | der Petersen Untergraph sind bereits in CARRIER.CUTCODE.01 dokumentiert;
+000139 | dieser Bericht beansprucht dafuer keine neue Entdeckung.
+000140 | 
+000141 | 
+000142 | 3. Exakter E8 Anschluss
+000143 | -----------------------
+000144 | 
+000145 | v511 prueft die Z4 Klammer auf allen 6720 addierbaren Wurzelpaaren und gibt
+000146 | die irreduziblen g0 = so10 + su4 Sektoren als
+000147 | 
+000148 |     g1=(16_s,4), g2=(10,6), g3=(16_c,4bar)
+000149 | 
+000150 | an. Die neutrale Trilinearform vom Typ {1,1,2} ist eindimensional und in den
+000151 | beiden g1 Beinen antisymmetrisch. Zusammen mit der nicht ausgearteten
+000152 | Killingpaarung g1 x g3 folgt derselbe eindeutige Tensor fuer
+000153 | [g2,g1] -> g3. In Standardbasen ist er gamma_10 tensor epsilon_6.
+000154 | 
+000155 | Seien E_p : 4 -> 4bar die sechs Keilabbildungen, p in Lambda^2 C^4. Dann
+000156 | 
+000157 |     sum_p E_p^dagger E_p = 3 I_4,
+000158 |     sum_A Gamma_A^dagger Gamma_A = 10 I_16.
+000159 | 
+000160 | Die 60 Operatoren
+000161 | 
+000162 |     L_{A,p} = (Gamma_A tensor E_p)/sqrt(30)
+000163 | 
+000164 | bilden deshalb einen spurtreuen Kanal 16_s tensor 4 -> 16_c tensor 4bar.
+000165 | Fuer ein Produkt mit festem Flavorzustand und nach Trace ueber den
+000166 | ausgehenden Flavorfaktor gilt
+000167 | 
+000168 |     Tr_4bar sum_{A,p} L_{A,p} (rho tensor |f><f|) L_{A,p}^dagger
+000169 |       = (3/30) sum_A Gamma_A rho Gamma_A^dagger
+000170 |       = Phi_Cl(rho).
+000171 | 
+000172 | Die Faktoren 3, 10 und 30 wurden direkt in den vorhandenen Basen geprueft.
+000173 | Eine andere gemeinsame Skalierung der E8 Klammer aendert das Ergebnis nach
+000174 | Spurtreunormierung nicht. v511 fixiert diese gemeinsame Skala ausserdem durch
+000175 | die E8 Killingform. Der reduzierte Kanal ist daher kein Dimensionsvergleich,
+000176 | sondern die tatsaechliche eindeutige g0 aequivariante Klammerantwort.
+000177 | 
+000178 | Was daraus nicht folgt: Ein Lieprodukt ist noch keine Wahrscheinlichkeitsregel
+000179 | fuer Nahtereignisse. Die CP Abbildung entsteht, wenn die volle orthonormale
+000180 | g2 Familie als nicht beobachtetes Ereignisregister eingesetzt wird. Genau
+000181 | diese Instrumenteninterpretation muss die physische Quelle liefern.
+000182 | 
+000183 | 
+000184 | 4. Was die Originalquellen bereits sagen
+000185 | ----------------------------------------
+000186 | 
+000187 | * v474 konstruiert a_m, a_m^dagger und alle zehn Gamma_A auf Lambda^* C^5,
+000188 |   prueft die Cliffordrelationen, die Halbspinoren und den notwendigen
+000189 |   Hodgefold. Es sagt zugleich ausdruecklich, dass die physische Zuweisung des
+000190 |   relevanten Traegers offen ist. Es definiert keinen CP Kanal und keine
+000191 |   Ereignisverteilung.
+000192 | 
+000193 | * v810 CARRIER.CUTCODE.01 beweist bereits den Clebsch Graph, die Schalen
+000194 |   1+5bar+10 und den Petersen Graph auf der Zehnerschale. Der Text grenzt die
+000195 |   Zahlenlesungen selbst als Auditfingerprints ohne Physikbehauptung ein.
+000196 | 
+000197 | * Der P1/P2 Architekturtext postuliert einen reflexionspositiven Randkern und
+000198 |   die Auslese durch einen Fuenfslottraeger. P2 Algebra folgt erst nach dieser
+000199 |   Schnittstelle. Die Stelle nennt weder fuenf oder zehn Krausereignisse noch
+000200 |   einen Trace ueber ein Komplementregister.

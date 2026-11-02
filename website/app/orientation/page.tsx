@@ -11,6 +11,7 @@ import { OrientationDownload } from "@/components/orientation/OrientationDownloa
 import { RosettaLexicon } from "@/components/RosettaLexicon";
 import { SITE_VERSION } from "@/lib/version";
 import { SITE_URL } from "@/lib/utils";
+import Link from "next/link";
 
 export const metadata: Metadata = pageMetadata("/orientation");
 
@@ -78,6 +79,7 @@ export default function OrientationPage() {
       />
 
       <OrientationHero />
+      <div className="guide-shell my-6"><p className="leading-relaxed">For a guided explanation with interactive charges, alpha and clocks, <Link className="guide-link" href="/explain">start with the construction</Link>. The <Link className="guide-link" href="/results">complete result library</Link> also includes the later source reviewed research and corrections beyond this publication guide.</p></div>
       <OrientationFrontBox />
       <WhatTfptClaims />
       <Decoders />

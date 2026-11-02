@@ -1,0 +1,110 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-positive-kernel-search-20261015/charged-clock-relation-control-20261102/generator_relations.py
+Original file SHA-256: 453eb226fddb8028d3f35fe91b40c5cf2fccf842bc1ff6a76d23504f3153590b
+Inclusive original lines: 1-102
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Original two-mode exterior-transfer relations as source-word constraints.
+000002 | 
+000003 | Conditional finite alpha=1/4 particle/hole control, not a physical source law.
+000004 | """
+000005 | import json
+000006 | import sys
+000007 | from pathlib import Path
+000008 | 
+000009 | import cvxpy as cp
+000010 | import sympy as s
+000011 | 
+000012 | HERE = Path(__file__).resolve().parent
+000013 | SEARCH = HERE.parent
+000014 | COLLAR = SEARCH.parent / 'seam-collar-multifield-20261016'
+000015 | sys.path[:0] = [str(SEARCH), str(COLLAR)]
+000016 | 
+000017 | from charged_pair_control import RESPONSE, majoranas, moment, source_lift
+000018 | from kernel_search import MomentSearch
+000019 | from linear_relations import normalize_linear_relations
+000020 | from source_sewing import creator
+000021 | 
+000022 | 
+000023 | def need(condition, message):
+000024 |     if not condition:
+000025 |         raise ArithmeticError(message)
+000026 | 
+000027 | 
+000028 | def relation_terms(left, right, mode, a):
+000029 |     """Twice <Omega| left (T c_i^* - a_i c_i^* T) right |Omega>."""
+000030 |     terms = []
+000031 |     for g, coefficient in ((2 * mode, s.Integer(1)), (2 * mode + 1, -s.I)):
+000032 |         for middle, c in (((-1, g), coefficient), ((g, -1), -a * coefficient)):
+000033 |             terms.append({'word': list(left + middle + right),
+000034 |                           're': str(s.re(c)), 'im': str(s.im(c))})
+000035 |     return {'terms': terms, 're': '0'}
+000036 | 
+000037 | 
+000038 | def residual(row, transfer):
+000039 |     return s.expand(sum((s.Rational(t['re']) + s.I*s.Rational(t['im'])) *
+000040 |                         moment(t['word'], transfer) for t in row['terms']))
+000041 | 
+000042 | 
+000043 | def main():
+000044 |     # Relative filled-sea creators: gamma_0, gamma_2 generate the two
+000045 |     # orthonormal one-particle vectors. The double state is gamma_2 gamma_0 Ω.
+000046 |     ket_words = [(), (0,), (2,), (2, 0)]
+000047 |     relations = [relation_terms(tuple(reversed(bra)), ket, i, RESPONSE[i, i])
+000048 |                  for i in range(2) for bra in ket_words for ket in ket_words]
+000049 |     relations = normalize_linear_relations(2, 3, relations)
+000050 |     original = source_lift(RESPONSE)
+000051 |     certificate = json.loads((HERE/'run-20261102-verified/exact-completion.json').read_text())
+000052 |     def exact_entry(x):
+000053 |         return s.Rational(*x['re']) + s.I*s.Rational(*x['im'])
+000054 |     prior = s.Matrix([[exact_entry(x) for x in row] for row in certificate['exact_matrices']['T']])
+000055 |     need(prior == s.diag(1, s.Rational(1, 4), s.Rational(1, 64), 0), 'stored prior candidate mismatch')
+000056 |     need(original == s.diag(1, s.Rational(1, 4), s.Rational(1, 64), s.Rational(1, 256)), 'original source mismatch')
+000057 |     source_residual = [residual(r, original) for r in relations]
+000058 |     prior_residual = [residual(r, prior) for r in relations]
+000059 |     need(all(v == 0 for v in source_residual), 'source violates relation')
+000060 |     need(sum(v != 0 for v in prior_residual) == 2, 'prior violation count mismatch')
+000061 | 
+000062 |     # Completeness in the exact four-dimensional source representation:
+000063 |     # the 32 basis sandwiches are exactly both full matrix equations.
+000064 |     unknown = s.Matrix(4, 4, s.symbols('t0:16'))
+000065 |     omega = s.Matrix([1, 0, 0, 0])
+000066 |     equations = list(unknown*omega-omega)
+000067 |     for i in range(2):
+000068 |         c = creator(2, i)
+000069 |         equations.extend(list(unknown*c - RESPONSE[i, i]*c*unknown))
+000070 |     solution = s.linsolve(equations, list(unknown))
+000071 |     need(solution == s.FiniteSet(tuple(original)), 'symbolic source uniqueness mismatch')
+000072 | 
+000073 |     # Same search as R085: only the two vacuum CAR moments and these operator
+000074 |     # relations are supplied. Its internal quarter is not the charged clock.
+000075 |     search = MomentSearch(m=2, degree=3, transfer_floor=0,
+000076 |                           fixed_moments=[{'word':[0,1], 're':'0', 'im':'1'},
+000077 |                                          {'word':[2,3], 're':'0', 'im':'1'}],
+000078 |                           linear_relations=relations,
+000079 |                           source_observables={'scope':'declared free alpha=1/4 particle/hole control'})
+000080 |     probe = cp.real(search.moment((0,2,-1,2,0)))
+000081 |     bounds = []
+000082 |     for objective in (cp.Minimize(probe), cp.Maximize(probe)):
+000083 |         problem = cp.Problem(objective, search.constraints)
+000084 |         value = problem.solve(solver='SCS', eps=1e-8, max_iters=50000)
+000085 |         bounds.append({'status': problem.status, 'value': value})
+000086 | 
+000087 |     output = {'scope':'Fixed two-mode free particle/hole control; not an interacting or integrated-H source; absolute Z0 and physical origin remain open.',
+000088 |               'basis_kets': [list(x) for x in ket_words], 'relations': relations,
+000089 |               'independent_matrix_equations': 2, 'basis_sandwiches':len(relations),
+000090 |               'source_nonzero_residuals':sum(x != 0 for x in source_residual),
+000091 |               'prior_nonzero_residuals':sum(x != 0 for x in prior_residual),
+000092 |               'prior_residuals': [str(x) for x in prior_residual if x != 0],
+000093 |               'relation_normalization': 'twice the creator equation; divide these residuals by two for creator-equation residuals',
+000094 |               'prior_source': 'run-20261102-verified/exact-completion.json',
+000095 |               'exact_matrix_solution': [str(original[i,i]) for i in range(4)],
+000096 |               'exact_target_value': '1/256', 'numerical_min_max':bounds}
+000097 |     (HERE/'generator-relations-result.json').write_text(json.dumps(output, indent=2)+'\n')
+000098 |     print(json.dumps({k:v for k,v in output.items() if k!='relations'},indent=2))
+000099 | 
+000100 | 
+000101 | if __name__ == '__main__':
+000102 |     main()

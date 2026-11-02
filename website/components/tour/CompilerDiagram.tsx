@@ -4,12 +4,12 @@
 export function CompilerDiagram() {
   return (
     <figure
-      className="mt-6 overflow-hidden rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4 sm:p-5"
+      className="mt-6 overflow-x-auto rounded-2xl border border-slate-300/40 bg-slate-50/40 p-4 sm:p-5"
       aria-label="Compiler pipeline from two axioms to Standard Model readouts"
     >
       <svg
         viewBox="0 0 640 160"
-        className="mx-auto h-auto w-full max-w-3xl"
+        className="mx-auto h-auto w-full min-w-[36rem] max-w-3xl"
         role="img"
         aria-label="c3 and g_car enter a discrete compiler; D5 plus A3 with mu4 close into E8; SM readouts exit"
       >
@@ -24,7 +24,7 @@ export function CompilerDiagram() {
           stroke="rgba(96,165,250,0.55)"
           strokeWidth="1.4"
         />
-        <text x="67" y="52" textAnchor="middle" fontSize="11" fill="rgb(147,197,253)">
+        <text x="67" y="52" textAnchor="middle" fontSize="11" fill="rgb(29,78,216)">
           axioms
         </text>
         <text
@@ -33,7 +33,7 @@ export function CompilerDiagram() {
           textAnchor="middle"
           fontSize="13"
           fontFamily="ui-monospace, monospace"
-          fill="rgb(226,232,240)"
+          fill="rgb(15,23,42)"
         >
           c₃ = 1/(8π)
         </text>
@@ -43,14 +43,14 @@ export function CompilerDiagram() {
           textAnchor="middle"
           fontSize="13"
           fontFamily="ui-monospace, monospace"
-          fill="rgb(226,232,240)"
+          fill="rgb(15,23,42)"
         >
           g_car = 5
         </text>
 
         <path
           d="M132 80 H168"
-          stroke="rgba(148,163,184,0.7)"
+          stroke="rgb(71,85,105)"
           strokeWidth="1.6"
           markerEnd="url(#tourArrow)"
         />
@@ -66,7 +66,7 @@ export function CompilerDiagram() {
           stroke="rgba(52,211,153,0.5)"
           strokeWidth="1.4"
         />
-        <text x="247" y="52" textAnchor="middle" fontSize="11" fill="rgb(110,231,183)">
+        <text x="247" y="52" textAnchor="middle" fontSize="11" fill="rgb(4,120,87)">
           discrete compiler
         </text>
         <text
@@ -75,7 +75,7 @@ export function CompilerDiagram() {
           textAnchor="middle"
           fontSize="13"
           fontFamily="ui-monospace, monospace"
-          fill="rgb(226,232,240)"
+          fill="rgb(15,23,42)"
         >
           D₅ ⊕ A₃
         </text>
@@ -85,14 +85,14 @@ export function CompilerDiagram() {
           textAnchor="middle"
           fontSize="12"
           fontFamily="ui-monospace, monospace"
-          fill="rgb(203,213,225)"
+          fill="rgb(51,65,85)"
         >
           + μ₄ clock
         </text>
 
         <path
           d="M328 80 H364"
-          stroke="rgba(148,163,184,0.7)"
+          stroke="rgb(71,85,105)"
           strokeWidth="1.6"
           markerEnd="url(#tourArrow)"
         />
@@ -108,7 +108,7 @@ export function CompilerDiagram() {
           stroke="rgba(251,146,60,0.55)"
           strokeWidth="1.4"
         />
-        <text x="423" y="72" textAnchor="middle" fontSize="11" fill="rgb(253,186,116)">
+        <text x="423" y="72" textAnchor="middle" fontSize="11" fill="rgb(154,52,18)">
           audit hull
         </text>
         <text
@@ -118,14 +118,14 @@ export function CompilerDiagram() {
           fontSize="18"
           fontFamily="ui-monospace, monospace"
           fontWeight="600"
-          fill="rgb(254,215,170)"
+          fill="rgb(154,52,18)"
         >
           E₈
         </text>
 
         <path
           d="M484 80 H520"
-          stroke="rgba(148,163,184,0.7)"
+          stroke="rgb(71,85,105)"
           strokeWidth="1.6"
           markerEnd="url(#tourArrow)"
         />
@@ -141,7 +141,7 @@ export function CompilerDiagram() {
           stroke="rgba(129,140,248,0.5)"
           strokeWidth="1.4"
         />
-        <text x="578" y="58" textAnchor="middle" fontSize="11" fill="rgb(165,180,252)">
+        <text x="578" y="58" textAnchor="middle" fontSize="11" fill="rgb(67,56,202)">
           readouts
         </text>
         <text
@@ -149,7 +149,7 @@ export function CompilerDiagram() {
           y="86"
           textAnchor="middle"
           fontSize="12"
-          fill="rgb(226,232,240)"
+          fill="rgb(15,23,42)"
         >
           SM structure
         </text>
@@ -158,7 +158,7 @@ export function CompilerDiagram() {
           y="108"
           textAnchor="middle"
           fontSize="11"
-          fill="rgb(203,213,225)"
+          fill="rgb(51,65,85)"
         >
           α, mixings…
         </text>
@@ -175,7 +175,7 @@ export function CompilerDiagram() {
             <path
               d="M0,0 L6,3 L0,6"
               fill="none"
-              stroke="rgba(148,163,184,0.9)"
+              stroke="rgb(71,85,105)"
               strokeWidth="1.2"
             />
           </marker>

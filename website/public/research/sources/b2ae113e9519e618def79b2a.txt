@@ -1,0 +1,135 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/clock-jordan-response-reconstruction-20261015/PROOF.md
+Original file SHA-256: dd062d2017de70d3b858452a41a7b9089d3b8cb8dd3984af9cec89a6524cdbc0
+Inclusive original lines: 1-127
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | # Joint clock probes close neutral quadratic response reconstruction
+000002 | 
+000003 | 15 October 2026. Research result, not verification-ledger promotion.
+000004 | Overall verdict **PARTIAL**. Algebraic verdict: complete reconstruction in the
+000005 | specified real symmetric quadratic current sector. No complete TFPT solution.
+000006 | 
+000007 | ## Question and reused source
+000008 | 
+000009 | The original `neutral-response-tomography-20261013/PROOF.txt` solves the
+000010 | three-block scalar problem, but explicitly leaves arbitrary off-diagonal
+000011 | quadratic matrices open. Its self-correlators cannot distinguish isospectral
+000012 | matrices with different carrier alignment. Separately,
+000013 | `native-mark-memory-20261014/clock_probe.py` proves a scalar joint commutant for
+000014 | four actual clock transports of the same carrier projector. We combine these
+000015 | two results through the native free-current algebra, without changing a
+000016 | Hamiltonian or fitting a new source.
+000017 | 
+000018 | Use `tfpt_explorer/neutral_source_response.py`, its original vacuum contraction
+000019 | `h_i(z) h_j(w) ~ delta_ij/(z-w)^2`, and
+000020 | 
+000021 |     P = diag(1,1,1,1,1,0,0,0),
+000022 |     Q0=P, Q1=C P C^T, Q2=J P J^T, Q3=C^2 P (C^2)^T.
+000023 | 
+000024 | C and J are the actual `clock_matrices.*.vector` in
+000025 | `compiler-integral-triality-20260918/certificate.json`. The checker verifies
+000026 | the source fingerprint, imports the native P, and checks that C and J preserve
+000027 | the same 240 E8 roots in this basis. Eight indices are not eight physical
+000028 | quantum states; these clocks are not assumed to be time symmetries.
+000029 | 
+000030 | ## 1. Actual current products supply Jordan multiplication
+000031 | 
+000032 | For real symmetric A, define the existing local field
+000033 | 
+000034 |     T_A(z) = (1/2) sum_ij A_ij :h_i(z) h_j(z):.
+000035 | 
+000036 | The standard vacuum Wick rule gives
+000037 | 
+000038 |     T_A(z) T_B(w) = (Tr(AB)/2)/(z-w)^4
+000039 |                    + 2 T_(A o B)(w)/(z-w)^2 + O((z-w)^(-1)),
+000040 |     A o B = (AB+BA)/2.
+000041 | 
+000042 | Proof: two complete pairings give Tr(AB)/2. The four single contractions
+000043 | cancel the prefactor 1/4, leaving h(z)^T AB h(w). At the double pole the fields
+000044 | are evaluated at w and their symmetric normal product kills the antisymmetric
+000045 | part of AB. Thus h^T(AB+BA)h/2 = 2 T_(A o B). This holds for arbitrary A,B,
+000046 | not only for the checked projectors. The simple pole is intentionally not
+000047 | identified with just a derivative: for noncommuting matrices it can contain
+000048 | additional antisymmetric weight-three terms.
+000049 | 
+000050 | This uses standard free-boson Wick algebra, not a new general theorem. A
+000051 | primary reference for the normalizations is Paul Ginsparg, *Applied Conformal
+000052 | Field Theory*, section 2.3, equations (2.16)-(2.17):
+000053 | https://arxiv.org/pdf/hep-th/9108028.
+000054 | 
+000055 | Consequently repeated extraction of the weight-two double-pole coefficient
+000056 | generates exactly the corresponding iterated Jordan products as local fields
+000057 | in this stipulated source algebra. This is a field/OPE identity, not the claim
+000058 | that multiplying scalar measurement outputs implements an OPE.
+000059 | 
+000060 | ## 2. Four source fields generate all 36 symmetric directions
+000061 | 
+000062 | Start only with Q0,Q1,Q2,Q3. Iteratively adjoin B o Qj when linearly independent.
+000063 | The explicit rational certificate contains 36 matrices, with degree histogram
+000064 | 
+000065 |     degree 1: 4; degree 2: 6; degree 3: 16; degree 4: 10.
+000066 | 
+000067 | Every matrix is symmetric. Their coordinate matrix is nonsingular over Q:
+000068 | the checker gives an exact rational two-sided inverse. Full rank modulo 101
+000069 | is a second algebraic certificate, not a floating-point singular-value test.
+000070 | An independent reconstruction without the identity seed also attained rank
+000071 | 36 modulo 103; the traceless projections attained rank 35 modulo 107.
+000072 | 
+000073 | The vector space of real symmetric 8 by 8 matrices has dimension 36. These
+000074 | 36 independent Jordan words therefore span the entire space. Identity is
+000075 | already in their span and is not required as a fifth generator. No theorem
+000076 | that every irreducible associative algebra has full Jordan closure is assumed;
+000077 | the explicit certificate resolves this question for the actual four Q here.
+000078 | 
+000079 | The displayed degree-four construction is sufficient. We make no universal
+000080 | minimality claim about probe count, correlator order, or experimental cost.
+000081 | 
+000082 | ## 3. Explicit inverse from mixed responses
+000083 | 
+000084 | Let B_l be the certificate basis. The native mixed two-point coefficient is
+000085 | 
+000086 |     m_l = coefficient of <T_(B_l)(z) T_A(w)> = Tr(B_l A)/2.
+000087 | 
+000088 | Writing a_(ij)=A_ij for i<=j, we obtain m=W a, where
+000089 | 
+000090 |     W_(l,ii)=B_(l,ii)/2;  W_(l,ij)=B_(l,ij) for i<j.
+000091 | 
+000092 | The stored `response_inverse` gives a=W^(-1)m. The checker verifies both
+000093 | inverse products and reconstructs all 36 canonical symmetric input matrices,
+000094 | so linearity proves recovery for EVERY real symmetric A, not just a sampled
+000095 | matrix. The original R is also recovered exactly. If Tr A is prescribed,
+000096 | the unknown subspace has dimension 35, and 35 independent functionals on that
+000097 | subspace can be selected. The certificate uses 36 for the general case.
+000098 | 
+000099 | This closes the earlier algebraic off-diagonal reconstruction problem with
+000100 | an explicit source-defined probe family. Four generator fields are not four
+000101 | scalar measurements: the inverse uses the generated family of mixed responses.
+000102 | 
+000103 | ## 4. Implication for the common-source search
+000104 | 
+000105 | A candidate claiming the SAME marked neutral quadratic source can now be
+000106 | compared against a complete response vector instead of just norm, spectrum,
+000107 | or carrier trace. Equal vectors force equal A within this precise class.
+000108 | This removes an avoidable ambiguity when linking Clock, carrier and neutral
+000109 | response calculations. It does not create a D5 component in the selected R:
+000110 | Tr(P5 R)=0 remains exactly unchanged. It does not derive the physical 5/4
+000111 | susceptibility or repair an excluded scalar P0-only identification.
+000112 | 
+000113 | The extra premise is access to these mixed vacuum/OPE coefficients. Original
+000114 | P1/P2 have not selected a detector, its instrument, state-transfer map, or
+000115 | this complete menu. Interacting charged fields, odd CAR/spin sectors,
+000116 | multitime instruments, unnormalized geometric response and arbitrary
+000117 | operators are outside the reconstruction theorem. No complete source,
+000118 | initial state, physical dynamics, or T1-T8 gate is claimed.
+000119 | 
+000120 | ## Reproduction and independent review
+000121 | 
+000122 | Run `python3 experiments/theory-contracts/clock-jordan-response-reconstruction-20261015/checker.py`.
+000123 | `results.json` records original source hashes and exact checks;
+000124 | `certificate.json` stores the explicit expressions, matrices and inverse.
+000125 | Independent review checked the OPE coefficient, exact inverse, separate
+000126 | prime-field ranks, native root-coordinate agreement and the access premise.
+000127 | The analytic Wick identity and finite certificate have distinct roles.

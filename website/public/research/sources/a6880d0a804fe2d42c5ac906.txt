@@ -1,0 +1,198 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/SPIN-TRACE-LOCAL-KERNEL.txt
+Original file SHA-256: 591051be956f8bb3c464d039dca502ba66b1274b8faf84c73c411be10c84d0f7
+Inclusive original lines: 1-190
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | SPIN TRACE OF THE ELLIPTIC SZEGO KERNEL AT THE FOUR BRANCH MARKS
+000002 | 26 October 2026
+000003 | 
+000004 | Question and verdict
+000005 | ====================
+000006 | 
+000007 | Let
+000008 | 
+000009 |   p:E -> P1,  E:y^2=x^4-1,
+000010 | 
+000011 | and retain the actual Q-invariant nontrivial spin line alpha and its NS--NS
+000012 | Szego Green kernel. The coefficient pushforward p_*alpha has the familiar
+000013 | local deck exponents 0 and 1/2. The ramified spin trace contains an additional
+000014 | half-density Jacobian. At every simple branch mark its two exponents are
+000015 | 
+000016 |   -1/4 and +1/4,
+000017 | 
+000018 | with spin-frame monodromy -i and +i. Thus the old quarter pair occurs
+000019 | naturally as the LOCAL conjugacy class of the spin-trace kernel in the
+000020 | central spin lift of the branch meridian. It was invisible in the raw
+000021 | coefficient pushforward because that calculation deliberately computed the
+000022 | ordinary rank-two coefficient bundle, not the ramified spin frame.
+000023 | 
+000024 | This does not yet identify the old smooth quarter circle. The actual marked
+000025 | equator pullback is the ramified V4/E8 graph, and the spin trace has four
+000026 | regular-singular branch points. The old B_1/4 direct-sum B_3/4 system is a
+000027 | smooth circle domain with one global quarter holonomy. The two systems are
+000028 | conjugate on a punctured neighborhood of one mark, but no bounded smooth
+000029 | conjugacy extends through all four marked vertices. The missing datum is now
+000030 | precise: an original trace or vertex-domain map selecting a smooth carrier,
+000031 | not a missing quarter phase.
+000032 | 
+000033 | 1. Raw coefficient trace versus spin trace
+000034 | ===========================================
+000035 | 
+000036 | Near one branch point a in mu4 choose local coordinates
+000037 | 
+000038 |   X=x-a=q^2.                                             (1)
+000039 | 
+000040 | The flat line alpha is locally trivial on E because a small loop in the q
+000041 | disk contracts. A local coefficient section has the unique form
+000042 | 
+000043 |   f(q)=f_0(X)+q f_1(X).                                  (2)
+000044 | 
+000045 | For raw coefficient functions, the two summands in (2) have exponents
+000046 | 
+000047 |   0, 1/2
+000048 | 
+000049 | and monodromy +1,-1 around X=0. This is the order-two connection previously
+000050 | computed for p_*alpha.
+000051 | 
+000052 | A chiral spinor on E is instead
+000053 | 
+000054 |   f(q)(dq)^(1/2).
+000055 | 
+000056 | In the base half-density frame,
+000057 | 
+000058 |   (dq)^(1/2)=(dq/dX)^(1/2)(dX)^(1/2)
+000059 |              =(2q)^(-1/2)(dX)^(1/2).                   (3)
+000060 | 
+000061 | Equations (2)-(3) give the two spin-trace frames
+000062 | 
+000063 |   e_-(X)=q^(-1/2)(dX)^(1/2),
+000064 |   e_+(X)=q^(+1/2)(dX)^(1/2).                            (4)
+000065 | 
+000066 | Up to the harmless constant 2^(-1/2), their exponents in X are -1/4 and
+000067 | +1/4. Analytic continuation once around X=0 sends q to -q and therefore
+000068 | 
+000069 |   e_- -> -i e_-,
+000070 |   e_+ -> +i e_+.                                        (5)
+000071 | 
+000072 | No scalar phase was inserted. The quarter phases are forced by the simple
+000073 | ramification and the spin half-density.
+000074 | 
+000075 | There is an essential type distinction here. The raw pushforward has
+000076 | 
+000077 |   M_coeff=diag(1,-1),       M_coeff^2=I,
+000078 | 
+000079 | whereas the frames (4) have
+000080 | 
+000081 |   M_spin=diag(-i,+i),       M_spin^2=-I.                 (5a)
+000082 | 
+000083 | Thus M_spin is not an ordinary representation of the order-two branch
+000084 | stabilizer. It is its central order-four spin lift, equivalently a projective
+000085 | or ramified spin-frame action. On the punctured q disk the factor q^(-1/2)
+000086 | itself changes sign around q=0, even though alpha is locally trivial there.
+000087 | It must not be described as a single-valued gauge of the ordinary flat bundle
+000088 | p_*alpha.
+000089 | 
+000090 | The underlying ordinary holomorphic bundle statement remains unchanged:
+000091 | 
+000092 |   p_*alpha=O(-1) direct-sum O(-1).
+000093 | 
+000094 | Factoring the base spin line K_P1^(1/2)=O(-1) is a local calculation on the
+000095 | punctured base. Equations (4)-(5a) describe the ramified spin trace in the
+000096 | central extension of the branch group. They do not replace the ordinary flat
+000097 | connection on p_*alpha by a new connection with order-four holonomy.
+000098 | 
+000099 | 2. Exact pushed-forward local Cauchy kernel
+000100 | ===========================================
+000101 | 
+000102 | Write Y=r^2 at the second point. The singular part of the cover Szego kernel
+000103 | is
+000104 | 
+000105 |   S_E(q,r)=c (dq)^(1/2)(dr)^(1/2)/(q-r)+regular,         (6)
+000106 | 
+000107 | where c=i/(2pi) in the normalization of ELLIPTIC-GREEN-RP.txt. Choose the two
+000108 | sheet half-density factors
+000109 | 
+000110 |   h_+(q)=(2q)^(-1/2),
+000111 |   h_-(q)=i(2q)^(-1/2).                                  (7)
+000112 | 
+000113 | The factor i is not fitted: it is the analytic square root of
+000114 | d(-q)/dX=-1/(2q). In the ordered sheet basis (+,-), pushing (6) to the base
+000115 | is an exact operation on the actual elliptic covariance. More explicitly,
+000116 | write
+000117 | 
+000118 |   S_E(u,v)=s_E(u,v)(du dv)^(1/2).
+000119 | 
+000120 | Then the complete local pushforward is
+000121 | 
+000122 |   K_full(X,Y)_(epsilon,eta)
+000123 |     =h_epsilon(q) h_eta(r) s_E(epsilon q,eta r)
+000124 |       (dX dY)^(1/2),                                    (7a)
+000125 | 
+000126 | for epsilon,eta in {+1,-1}, with the square-root branches fixed by (7).
+000127 | Its universal singular part is the rank-two matrix
+000128 | 
+000129 |   K_sheet(X,Y)=c/[2 sqrt(qr)]
+000130 |     [[1/(q-r),  i/(q+r)],
+000131 |      [-i/(q+r), 1/(q-r)]] (dX dY)^(1/2)
+000132 |     +regular.                                            (8)
+000133 | 
+000134 | The constant unitary which diagonalizes
+000135 | 
+000136 |   [[0,i],[-i,0]]
+000137 | 
+000138 | turns (8) into
+000139 | 
+000140 |   K_spin(X,Y)=c/(X-Y)
+000141 |     diag((X/Y)^(1/4),(Y/X)^(1/4)) (dX dY)^(1/2)
+000142 |     +regular.                                            (9)
+000143 | 
+000144 | Indeed,
+000145 | 
+000146 |   1/(q-r)+1/(q+r)=2q/(X-Y),
+000147 |   1/(q-r)-1/(q+r)=2r/(X-Y).
+000148 | 
+000149 | Equation (9) is the smallest decisive kernel identity. Away from X=0 its
+000150 | diagonal singularity is the ordinary identity Cauchy kernel. Moving one
+000151 | argument around the branch point produces the two phases +i and -i. The
+000152 | regular part of the actual s_E in (7a) changes global correlations but cannot
+000153 | change these local exponents.
+000154 | 
+000155 | 3. Comparison with the old quarter circle
+000156 | ==========================================
+000157 | 
+000158 | On a punctured disk, after passing to the central spin lift of the branch
+000159 | meridian, the two diagonal factors in (9) are the standard regular-singular
+000160 | quarter systems
+000161 | 
+000162 |   d+(1/4)dX/X,
+000163 |   d-(1/4)dX/X.                                           (10)
+000164 | 
+000165 | Their scalar Cauchy kernels have the same local form
+000166 | 
+000167 |   K_a(X,Y)=c (X/Y)^a (dX dY)^(1/2)/(X-Y),
+000168 | 
+000169 | with a=+1/4 and a=-1/4. This is precisely the pair displayed in (9), up to
+000170 | the order of the two diagonal entries.
+000171 | 
+000172 | This is the exact positive local match to the old B_1/4 and B_3/4 conjugacy
+000173 | class in the ramified spin category. It is stronger than matching the numbers
+000174 | +i,-i: the Cauchy principal part, the half-density normalization and the
+000175 | central-lift monodromy are all carried together. It is not an isomorphism of
+000176 | the ordinary flat bundles, because M_coeff has order two and M_spin has order
+000177 | four.
+000178 | 
+000179 | The global domains are nevertheless different.
+000180 | 
+000181 |   * The old quarter pair lives on one smooth circle. Its +i,-i are the
+000182 |     holonomies of that circle generator.
+000183 | 
+000184 |   * The elliptic spin trace lives on P1 minus the four branch marks. Each
+000185 |     branch meridian has the local pair (-i,+i). The product of the four local
+000186 |     monodromies is compatible with the trivial total loop on P1.
+000187 | 
+000188 |   * The original marked equator |x|=1 passes through all four branch points.
+000189 |     Its full inverse image is the connected V4/E8 graph of local valence four,
+000190 |     not a smooth circle. At a vertex, smoothness in q imposes the canonical

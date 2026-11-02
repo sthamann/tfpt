@@ -1,0 +1,96 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/TWO-FACE-STRIP-RESPONSE-20261102.txt
+Original file SHA-256: 94b45d936dfde1949fc0cb7f630811e5cb0e781f7498c57e6741fbec689bb47c
+Inclusive original lines: 1-88
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | TWO-FACE RESPONSE OF THE GIVEN FREE QUARTER GRAPH
+000002 | 2 November 2026. A conditional source calculation, not a physical F1 closure.
+000003 | 
+000004 | The source is the original geometric Cauchy graph used in R074, on two
+000005 | labelled faces, G(p)=[[1-C(p),X(p)],[X(p),C(p)]], p=n+alpha, n in Z,
+000006 | C(p)=1/(1+exp(beta*p)), X(p)=1/(2 cosh(beta*p/2)). The graph is a
+000007 | projection. Its identification with a full physical covariance remains
+000008 | an additional premise. It is not the Higgs-coupled matrix graph.
+000009 | 
+000010 | For two scalar face functions a,b, let A=diag(M_a,M_b). Fourier conventions
+000011 | are normalized so that Parseval has no extra 2pi factor. The full response
+000012 | Q(a,b)=||[A,G]||_HS^2 is sum_k (a_k,b_k)^* N_k (a_k,b_k). For k!=0,
+000013 | 
+000014 |  N_k=|k| [[coth(beta|k|/2), -csch(beta|k|/2)],
+000015 |           [-csch(beta|k|/2), coth(beta|k|/2)]].                 (1)
+000016 | 
+000017 | Proof for k>0; k<0 follows by shifting the summation index. Put
+000018 | C=C(p), C'=C(p-k), X=X(p), X'=X(p-k). Direct block expansion gives
+000019 | 
+000020 |  N11=sum_n[(C-C')^2+X^2+X'^2], N12=-2 sum_n X X'.          (2)
+000021 | 
+000022 | Using X^2=C(1-C), the two exact pointwise identities are
+000023 | 
+000024 |  (C-C')^2+X^2+X'^2=coth(beta*k/2)(C'-C),
+000025 |  2XX'=csch(beta*k/2)(C'-C).                                (3)
+000026 | 
+000027 | They hold for every beta>0, real alpha and k>0. The total sum telescopes:
+000028 | sum_n(C(n+alpha-k)-C(n+alpha))=k, since the Fermi tails are 1 and 0.
+000029 | All summands in (2) decay at both ends. Thus (1) is an infinite-mode
+000030 | identity; finite numerical windows in the accompanying checker are controls.
+000031 | 
+000032 | For k=0, N_0=d[[1,-1],[-1,1]], d=2 sum_n C_n(1-C_n).       (4)
+000033 | The previously derived R066 quarter charge variance gives sum C_n(1-C_n)
+000034 | =1/(8pi) at beta=4pi and alpha=1/4 or 3/4. Therefore d=1/(4pi) there.
+000035 | This special identity is not asserted for arbitrary alpha or beta.
+000036 | 
+000037 | The harmonic Dirichlet-to-Neumann operator of a flat strip of width
+000038 | L=beta/2, with outward derivatives and the same boundary normalization,
+000039 | has (1) for k!=0, and N_strip,0=L^-1[[1,-1],[-1,1]]. At the original
+000040 | beta=4pi its zero mode is twice (4). Thus, with the normalized orthogonal
+000041 | projector Pi_0,-=1/2[[1,-1],[-1,1]] on the constant relative face vector,
+000042 | 
+000043 |  N_source = N_strip - (1/(2pi)) Pi_0,-,
+000044 |  (1/2) N_strip <= N_source <= N_strip.                      (5)
+000045 | 
+000046 | The inequalities are quadratic-form inequalities: nonzero-mode matrices
+000047 | are identical and positive; on the zero mode the common direction is zero
+000048 | for both, and the positive relative eigenvalue is halved. For a selfadjoint
+000049 | generator, its normal-ordered variance is Q/2, not Q. This does not assert
+000050 | that the physical action equals either form. It reuses R066 and R074, does
+000051 | not provide a new independent prediction or derive a spatial dimension.
+000052 | 
+000053 | Primary repository sources: ELLIPTIC-LOCAL-INSERTION-PROOF.txt sections 3-4;
+000054 | CALDERON-OPERATION-SOURCE-PROOF.txt sections 1 and 4; original graph builder
+000055 | seam-collar-multifield-20261016/boundary_amplitude.py:graph_projection.
+000056 | The latter is called in the companion checker. Changing the Higgs coupling
+000057 | changes the graph; equation (5) is not transferred to that case by analogy.
+000058 | 
+000059 | Coupled diagnostic and tail control. Use the given block h_p=p sigma_z+
+000060 | m sigma_x, E_p=sqrt(p^2+m^2), beta=4pi, alpha=1/4, and set
+000061 | C_p=(I-h_p tanh(beta E_p/2)/E_p)/2, X_p=I/(2 cosh(beta E_p/2)).
+000062 | This defines another two-face projection through G=[[I-C,X],[X,C]].
+000063 | It is a fixed-background comparison, not a derivation of the shared
+000064 | physical source, its state, its Higgs measure or its carrier map.
+000065 | 
+000066 | For two internal components, the very same (2) is evaluated with traces
+000067 | over the internal 2x2 matrices. At |n|<=80 the checker gives:
+000068 | 
+000069 |  k   N11(m=0)       N11(m=.3)       N12(m=0)         N12(m=.3)
+000070 |  0   .159154943092  .029293149215   -.159154943092   -.029293149215
+000071 |  1  2.000013949418  1.545807121543  -.007469796977   -.002239511278
+000072 |  2  4.000000000097  3.640706254598  -.000027898739   -.000012860350
+000073 | 
+000074 | These include both internal components. To bound the omitted diagonal
+000075 | tail, let j0=N-|k|>0 and beta=4pi. On each omitted path interval,
+000076 | |p| >= j0 and
+000077 |  ||C'(p)||_HS <= (m/|p|^2+4 beta exp(-beta|p|))/sqrt(2).
+000078 | The sum of all omitted N11 terms is bounded by
+000079 |  2 k^2 [m^2(j0^-4+1/(3 j0^3))
+000080 |         +16 beta^2 exp(-2 beta j0)/(1-exp(-2 beta))]
+000081 |  +8 exp(-beta j0)/(1-exp(-beta)).                           (6)
+000082 | For m=.3 the displayed N11 tail bound is 1.26e-7 for k=1 and
+000083 | 5.25e-7 for k=2; it is exponentially small for k=0 and m=0. Since each
+000084 | summand is nonnegative and the differences are much larger, the nonzero
+000085 | mode response changes as well as the zero mode. Calculations are ordinary
+000086 | floating point, not interval-certified arithmetic. This compares source
+000087 | graphs with the same explicitly declared scalar face operations; it does
+000088 | not evaluate the concurrently transported clock or its physical locality.

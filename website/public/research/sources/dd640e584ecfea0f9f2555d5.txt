@@ -1,0 +1,203 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/elliptic-moebius-source-bridge-20261026/fermionic_source_type_20261029/PROOF.txt
+Original file SHA-256: 46af047b5d8f80d7cfab5eb9f4aaac964f116b9e03fea63a99fc07ed2de35d68
+Inclusive original lines: 1-195
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | ORIGINAL FERMIONIC SOURCE TYPE AND THE FULL PROJECTOR TEST
+000002 | 29 October 2026. Scoped continuation; complete TFPT is NOT proved.
+000003 | 
+000004 | 1. The exact source question
+000005 | 
+000006 | The task is to derive the original local joint source, not to reconstruct a
+000007 | known free source from its supplied moments. The geometric operator, its
+000008 | internal chirality, Grassmann parity, physical time and CAR covariance are
+000009 | different data until an original field map identifies them.
+000010 | 
+000011 | The primitive paper explicitly permits a spinor product realization as an
+000012 | analytic CHOICE: boundary_kernel_source/001, lines83-91. Its primitive action,
+000013 | lines302-316, is a relative spectral trace plus eta term. Its local algebra,
+000014 | lines319-343, starts with local field insertions and retains operators through
+000015 | A/A* invariance. None of those definitions alone is a Grassmann bilinear.
+000016 | 
+000017 | 2. Recovered original operators, not new invented matrices
+000018 | 
+000019 | verification/v250_dirac_triple_contract.py:6-10 gives the almost-commutative
+000020 | product D_M tensor1 + gamma5 tensor D_F as a TARGET. v252_full_finite_triple.py
+000021 | constructs the96-dimensional finite block, including J_F=U_F conjugation,
+000022 | U_F=particle/antiparticle swap, and the opposite antiparticle grading.
+000023 | Its exact signs are J_F^2=+I, J_F D_F=D_F J_F, J_F Gamma_F=-Gamma_F J_F.
+000024 | The constructor full_D is at102-116, grading119-121, U_F124-128.
+000025 | 
+000026 | v254_inner_fluctuations.py:9-25 explicitly calls the finite chirality-odd
+000027 | fluctuations BOSONIC SCALARS. It locates gauge vectors in the continuum
+000028 | commutators [D_M,a]. Internal chirality-odd is not Grassmann-odd.
+000029 | The older tfpt32/sections/013-subsection-rg-map-for-compiler-outputs.tex,
+000030 | lines184-201, includes fermion kinetic/Yukawa terms. An operator basis alone
+000031 | does not specify a local source integration law. The explicitly written
+000032 | bar(psi) D_GW[U,Phi] psi term in tfpt_research_contracts/sections/017-source.tex,
+000033 | lines153-191, is part of an OPEN lattice action contract, not its solution.
+000034 | 
+000035 | The tempting v258_dirac_covariance_induction.py:118-155 route constructs a
+000036 | covariance from supplied masses and induces that operator back. Its physical
+000037 | identification C_F=P_F C_Sigma P_F is explicitly registered as conditional
+000038 | with check(...,True). This does not establish the missing original map.
+000039 | This source audit is not a replay or complete review of the v258 module.
+000040 | 
+000041 | 3. General sign theorem and its application to that actual finite block
+000042 | 
+000043 | Let J=U conjugation be antiunitary on a complex Hilbert space, J^2=epsilon I,
+000044 | JD=epsilon_prime DJ, D self-adjoint, with a common invariant core/domain.
+000045 | For the inner product antilinear in the first entry, define
+000046 |     B(x,y)=<Jx,Dy>,   B_matrix=U*D.
+000047 | Then
+000048 |     B(y,x)=epsilon epsilon_prime B(x,y).
+000049 | In a finite orthonormal basis, U^T=epsilon U, and the displayed identity also
+000050 | follows by transposing U*D and using U conjugate(D)=epsilon_prime D U.
+000051 | 
+000052 | For v252 epsilon epsilon_prime=+1. B_F is symmetric. For anticommuting
+000053 | components xi_i, the quadratic expression
+000054 |     (1/2)sum_ij xi_i B_ij xi_j
+000055 | uses only (B-B^T)/2 and therefore vanishes, including after restriction to
+000056 | the finite chirality+ subspace. Its skew Grassmann Hessian is zero.
+000057 | This excludes ONLY the proposed direct standalone self-dual Pfaffian action
+000058 | from this finite J_F,D_F pairing. It does not invalidate D_F, a complex
+000059 | independent bar(psi)D_F psi action, or the usual spacetime product action.
+000060 | 
+000061 | Neither a phase J->e^(i phi)J nor the tempting J->Gamma_F J fixes this.
+000062 | A phase does not change either sign. Gamma_F J changes both epsilon and
+000063 | epsilon_prime to their negatives, so their product remains+1. A negative
+000064 | square of J by itself is insufficient. The actual v252 constructor is
+000065 | checked for these assertions with Gaussian integer inputs and exact SymPy
+000066 | arithmetic; its run()/ledger are not invoked. This finite replay supplements
+000067 | the general block/sign proof; it is not a sampled proof of all domains.
+000068 | 
+000069 | There is a stronger obstruction to a UNIVERSAL internal change of J while
+000070 | retaining the same D_F. An antiunitary J' commuting with a self-adjoint D and
+000071 | satisfying J'^2=-I requires even multiplicity of every real eigenvalue.
+000072 | If a simple eigenvector obeyed J'v=cv, then -v=J'^2v=|c|^2v, impossible.
+000073 | 
+000074 | The SAME actual v252 constructor, with diagonal Gaussian integer parameters
+000075 | Yu=(11,13,17), Yd=(19,23,29), Ye=(31,37,41), Ynu=(1,2,3), MR=(1,4,9),
+000076 | has the first-generation neutrino block
+000077 |     [[0,1,0,0],[1,0,0,1],[0,0,0,1],[0,1,1,0]].
+000078 | Its characteristic polynomial q=lambda^4-3lambda^2+1 divides the FULL96
+000079 | characteristic p and gcd(q,p')=1 exactly. Thus all four q eigenvalues are
+000080 | simple even in the full block: NO such J' exists on this unchanged output.
+000081 | Independent analytic crosscheck: the other neutrino factors are
+000082 | q2=lambda^4-24lambda^2+16 and q3=lambda^4-99lambda^2+81. A common root of
+000083 | q,q2 would have lambda^2=5/7, but q=-31/49 there; for q,q3 it would have
+000084 | lambda^2=5/6, but q=-29/36 there. Charged eigenvalues are integers with
+000085 | absolute value>=11, whereas all q roots have absolute value<2. Together
+000086 | with the distinct roots of q this proves simplicity without numerical ranks.
+000087 | These parameters test the published builder class, not physical TFPT values.
+000088 | For a single real Dirac/Majorana block m,M>0 the four eigenvalues
+000089 |     +/-(sqrt(M^2+4m^2)+M)/2, +/-(sqrt(M^2+4m^2)-M)/2
+000090 | are distinct; extending the obstruction to a particular full physical D_F
+000091 | requires absence of matching degeneracies elsewhere. With MR=0 the explicit
+000092 | J_alt=diag(I48,-I48)J_F does have square-minus, commutes with D_F and flips
+000093 | Gamma_F; the Majorana-on control breaks its commutation. This identifies the
+000094 | relevant mechanism, rather than rejecting all finite fermionic bilinears.
+000095 | 
+000096 | 4. The constructive product bridge, with its original inputs visible
+000097 | 
+000098 | For a genuinely supplied4D spin geometry with J_M^2=-I, J_M D_M=D_M J_M,
+000099 | J_M gamma5=gamma5 J_M and the finite KO6 block, the standard product has
+000100 |     D=D_M tensor1 + gamma5 tensor D_F,
+000101 |     J=J_M tensor J_F,   Gamma=gamma5 tensor Gamma_F.
+000102 | It has J^2=-I, JD=DJ, JGamma=-Gamma J. Hence B is skew and can be nonzero
+000103 | on H+=ker(Gamma-I), since JD commutes with Gamma. This supplies the correct
+000104 | TYPE for the Grassmann action (1/2)<Jxi,D_A xi> and its Pfaffian.
+000105 | 
+000106 | Primary source: Alain Connes, Noncommutative geometry and the spectral model
+000107 | of space-time, Seminaire Poincare X(2007), section7, proposition7.1 and
+000108 | theorem7.2, pp190-191:
+000109 | https://seminaire-poincare.pages.math.cnrs.fr/connes2.pdf
+000110 | The bosonic spectral trace and the fermionic bilinear are distinct terms
+000111 | of the displayed action. A trace or its eta phase alone is not that bilinear.
+000112 | 
+000113 | Among the STANDARD REAL EVEN KO signs, a nonzero same-chirality skew pairing
+000114 | requires epsilon epsilon_prime=-1 AND epsilon_doubleprime=-1. Only KO2
+000115 | has both. Internal KO6 therefore requires an external KO4 class for this
+000116 | specific ordinary product construction. This gives a dimension class modulo8,
+000117 | not a derivation of metric dimension4, Lorentz signature, original spinor
+000118 | bundle, source statistics, physical time, or boundary reflection positivity.
+000119 | The signs must hold on the SAME realized local domain, not just in finite
+000120 | matrices. The actual P1 collar/field/domain identification remains to prove.
+000121 | Independent complex sources and direct neutral local OS sources remain
+000122 | valid alternatives; this product route is not an extra universal requirement.
+000123 | 
+000124 | 5. A new necessary restriction on the FULL free projector target
+000125 | 
+000126 | Reuse the already proved full-projector CAR theorem in
+000127 | native-arc-charge-source-interface-20261026/PROJECTOR-STATE-RIGIDITY.txt:
+000128 | a positive state on the FULL actual CAR algebra with covariance P=P*=P^2
+000129 | is the unique pure Fock/Slater state omega_P, without a separate Wick axiom.
+000130 | 
+000131 | Let A be that unital CAR algebra, B any unital C* algebra commuting with ALL
+000132 | of A, and omega a positive normalized joint state. If omega|A=omega_P, then
+000133 |     omega(ab)=omega_P(a) omega(b)  for every a in A,b in B.
+000134 | Proof: for b>=0, phi_b(a)=omega(ab) is positive and
+000135 |     0<=phi_b<=||b|| omega_P.
+000136 | If ||b||>0, decompose omega_P into the normalized positive functionals
+000137 | phi_b and ||b||omega_P-phi_b. Purity forces phi_b=omega(b)omega_P;
+000138 | zero coefficients are harmless. Extend to every b by linearity.
+000139 | No tensor factorization, faithful density matrix or positive path integral
+000140 | measure is required for this C* state statement.
+000141 | 
+000142 | Consequently every equal-time connected bounded mixed correlation vanishes:
+000143 |     omega(ab)-omega(a)omega(b)=0.
+000144 | This is a restriction on the SAME joint state and the specified commuting
+000145 | algebras. It does NOT forbid Hamiltonian couplings or future entanglement;
+000146 | e.g. an interaction can annihilate this particular vacuum. Nor does it follow
+000147 | from a thermal one-face marginal or incomplete neutral data. The general
+000148 | proof above uses commutation with all of A. This is not a claim that
+000149 | commutation with the FULL even CAR subalgebra is always insufficient: in a
+000150 | finite full Slater block its rank1 support p is itself even; [b,p]=0 and
+000151 | p a p=omega_P(a)p already imply the same factorization. Local subregions can
+000152 | have mixed marginals. No whole-theory decoupling is claimed.
+000153 | 
+000154 | A useful corollary: if positive normalized conditional CAR states omega_x
+000155 | are averaged with a probability law and the FULL averaged covariance is P,
+000156 | then omega_x=omega_P almost everywhere (finite mode, or separable CAR with
+000157 | a measurable disintegration). For f in kerP, positivity and the zero average
+000158 | of omega_x(a*(f)a(f)) force that value to vanish almost everywhere; use
+000159 | a countable dense family and the analogous hole occupations on ranP.
+000160 | Each conditional covariance is P, and the old rigidity theorem applies.
+000161 | This corollary needs a genuinely positive conditional state decomposition;
+000162 | an eta-weighted complex formal integral is not automatically one.
+000163 | 
+000164 | 6. Consequence for automated ORIGINAL source discovery
+000165 | 
+000166 | The full free two-face projector is a sufficient reference-source certificate.
+000167 | It must not be imposed on an unknown interacting physical source without
+000168 | checking section5. If the original source has a nonzero equal-time connected
+000169 | correlation with a commuting bosonic insertion, then THAT full fixed free
+000170 | CAR projector target is excluded for that source. Compare its full joint
+000171 | neutral functional, or identify a genuinely independent source subalgebra.
+000172 | Do not suppress physical correlations to make the free reference fit.
+000173 | 
+000174 | The same principle is visible directly in the finite-regulator source
+000175 | identity, conditional on an ACTUAL original complex bilinear with commuting
+000176 | background variables phi, K(phi), and a specified integration law permitting
+000177 | the displayed source derivatives. The inverse form assumes invertible K
+000178 | on the integration range, or its polynomial Berezin/minor continuation:
+000179 |     Z[J,eta,bareta]=int dnu(phi) e^(J.phi) detK(phi)
+000180 |                     exp(bareta K(phi)^(-1) eta).
+000181 | For K(phi)=K0+sum_a phi_a V_a, the exact left-Grassmann identity is
+000182 |     [K0+sum_a V_a partial_(J_a)] partial^L_bareta Z = eta Z.
+000183 | For polynomial nonlinear K retain all corresponding J derivatives;
+000184 | otherwise keep the original integral identity with K(phi). This equation
+000185 | does not justify inserting a free K0 or factorizing bosons and fermions.
+000186 | Existence, normalization, phases, boundary/Theta and source selection remain
+000187 | part of the actual original-source problem. The equation is an implication
+000188 | of the specified bilinear law, not a derivation of that law from P1.
+000189 | 
+000190 | NEXT: derive the actual local original action/insertion on the original
+000191 | collar and its joint real/chiral domain, or the direct neutral OS functional.
+000192 | For a Pfaffian claim test the total pairing, not just J^2; for a full free
+000193 | projector claim test actual mixed connected correlations. Preserve all
+000194 | existing geometric/clock/E8 source results and the common T1-T8 goal.
+000195 | No claim of a complete automatic TFPT proof discoverer or physical closure.

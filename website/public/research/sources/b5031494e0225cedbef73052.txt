@@ -1,0 +1,80 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-admissible-source-closure-20261025/geometric_source_return/check_geometric_arc_transfer.py
+Original file SHA-256: 5e2f7c3bba8a0613f1f83a7512c024f30b93cb4034109c19591f79e554224262
+Inclusive original lines: 1-72
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Same geometric source: second-order exterior resolvent has arc transfer.
+000002 | 
+000003 | The nonlocal Schur term is a spectral response at z=0, not an autonomous
+000004 | physical generator or the missing native quartic/P1 field identification.
+000005 | """
+000006 | import json
+000007 | from pathlib import Path
+000008 | import argparse
+000009 | 
+000010 | import numpy as np
+000011 | import sympy as sp
+000012 | 
+000013 | from source_geometric_machine import profile_values
+000014 | 
+000015 | 
+000016 | def need(condition,message):
+000017 |     if not condition:raise RuntimeError(message)
+000018 | 
+000019 | 
+000020 | def main():
+000021 |     parser=argparse.ArgumentParser(description=__doc__)
+000022 |     parser.add_argument('--output',type=Path,default=Path(__file__).resolve().parent/'runs/geometric_arc_transfer.json')
+000023 |     args=parser.parse_args()
+000024 |     k,a,z,hm=sp.symbols('k a z h_m',real=True)
+000025 |     for b in [-1,1]:
+000026 |         D=b*sp.Matrix([[0,k+sp.I*a],[k-sp.I*a,0]])
+000027 |         B=-b*hm*sp.Matrix([k+sp.I*a/2,k-sp.I*a/2])/2
+000028 |         actual=(sp.conjugate(B).T*(z*sp.eye(2)-D).inv()*B)[0]
+000029 |         expected=hm**2*(z*(2*k*k+a*a/2)+b*(2*k**3+3*k*a*a/2))/(4*(z*z-k*k-a*a))
+000030 |         need(sp.factor(actual-expected)==0,'Actual exterior source Schur block')
+000031 |         static=-b*hm**2*k/2+b*hm**2*a*a*k/(8*(k*k+a*a))
+000032 |         need(sp.factor(actual.subs(z,0)-static)==0,'Local plus nonlocal response split')
+000033 |     # Same collar-preserving diagnostic geometry as the executed source.
+000034 |     nodes,weights=np.polynomial.legendre.leggauss(1024)
+000035 |     w=(nodes+1)/2;weights=weights/2
+000036 |     h,_=profile_values(w,'collar_bump')
+000037 |     m=np.arange(1,129);energies=np.pi*m
+000038 |     coefficients=2*np.cos(energies[:,None]*w[None,:])@(weights*h)
+000039 |     # Proper preimages of the base interval (1/4,3/4), with disjoint closures.
+000040 |     length=1/16
+000041 |     r=np.exp(-energies)
+000042 |     positive_weights=(np.exp(-energies/2)*(1+r)/(1+r*r)
+000043 |                       *np.sinh(energies*length/2)**2/(4*length))
+000044 |     analytic=(1-1j)*np.sum(coefficients**2*positive_weights)
+000045 |     need(abs(analytic)>1e-6,'Opposite native-arc transfer absent')
+000046 |     trials=[]
+000047 |     for nmax in [64,128,256,512,1024]:
+000048 |         momenta=2*np.pi*(np.arange(-nmax,nmax+1)+.25)
+000049 |         symbol=momenta/8*np.sum(coefficients[:,None]**2*energies[:,None]**2/
+000050 |                   (momenta[None,:]**2+energies[:,None]**2),axis=0)
+000051 |         value=np.sum(length*np.sinc(momenta*length/(2*np.pi))**2*
+000052 |                      np.exp(-.5j*momenta)*symbol)
+000053 |         trials.append(dict(longitudinal_bound=nmax,value=[float(value.real),float(value.imag)],
+000054 |                            difference_from_analytic=float(abs(value-analytic))))
+000055 |     need(trials[-1]['difference_from_analytic']<2e-11,'Independent Fourier/images source test')
+000056 |     result=dict(actual_source='Original b=+1,c=+i quarter circle, same normal conformal probe',
+000057 |                 profile='Same collar_bump as source_geometric_machine',
+000058 |                 order='epsilon^2 coefficient of exterior Schur response at z=0',
+000059 |                 operator_symbol='R_h(k)=k/8 sum_m h_m^2 (pi*m)^2/(k^2+(pi*m)^2)',
+000060 |                 arcs={'I':[1/32,3/32],'J':[17/32,19/32],'smears':'normalized indicator functions on proper native preimage arcs; bounded nonlocal term only'},
+000061 |                 analytic_cross_arc_amplitude=[float(analytic.real),float(analytic.imag)],
+000062 |                 all_profile_fact='For q=i and opposite equal arcs each nonzero cosine coefficient contributes a positive multiple of (1-i); no cancellation for any nonconstant smooth even profile',
+000063 |                 compactness='The nonlocal remainder is compact: |R_h(k)| <= sum_m h_m^2 (pi*m)^2/(8 |k|). It cannot itself equal a nonzero folded local multiplication current.',
+000064 |                 trials=trials,
+000065 |                 limitation='An actual inter-arc transfer is necessary data; no native quartic composite/P1 insertion identification or profile selection is proved',
+000066 |                 physical_gates_closed=[])
+000067 |     args.output.parent.mkdir(parents=True,exist_ok=True)
+000068 |     args.output.write_text(json.dumps(result,indent=2)+'\n')
+000069 |     print(json.dumps(result,indent=2))
+000070 | 
+000071 | 
+000072 | if __name__=='__main__':main()

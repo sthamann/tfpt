@@ -1,0 +1,73 @@
+TFPT scientific source excerpt
+Original repository path: experiments/lean4-carrier-rigidity/TfptCarrier/SeamResidualAxiom.lean
+Original file SHA-256: 922acee44e0b007905cf80371020b2a09df9f0ae9ae122ed597a3a25b5b62f8c
+Inclusive original lines: 220-284
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000220 | axiom CollarRealizedAsLatticePhase : Prop
+000221 | /-- The scaling-limit net is the `(E₈)₁` net.  This is `SEAM.EQUIV.01`. -/
+000222 | axiom SeamIsE8 : Prop
+000223 | 
+000224 | /-- The single TFPT-side residual: the collar realization (S3). -/
+000225 | axiom collar_realizes : CollarRealizedAsLatticePhase
+000226 | 
+000227 | /-- The SINGLE combined CITED realization theorem (the merge of the former
+000228 |     `mmst_existence` ∘ `agt_lattice_extension`, dropping the intermediate `ChiralCFT_c8`):
+000229 |     a realized collar in the MMST range `rank ≤ c ≤ D` whose holomorphy discriminator
+000230 |     selects `E₈` has scaling-limit net `(E₈)₁`.  It packages the two cited published
+000231 |     theorems into ONE external input — existence (Osborne–Stottmeister,
+000232 |     arXiv:2107.13834, CMP 398 (2023); legacy token "MMST": 16 decoupled `c = 1/2` copies → free `c = 8` `SO(16)₁`) ∘ holomorphic
+000233 |     extension (Adamo–Giorgetti–Tanimoto arXiv:2506.01008 + OS arXiv:2407.18222: the lattice
+000234 |     net `A_Q(E₈)` supplies the 128 spinor, `248 = 120 + 128`). -/
+000235 | axiom seam_realisation_theorem :
+000236 |     CollarRealizedAsLatticePhase →
+000237 |     (rankE8 ≤ cMinus ∧ cMinus ≤ D) →
+000238 |     (detK_E8 = 1 ∧ detK_SO16 ≠ detK_E8) →
+000239 |     SeamIsE8
+000240 | 
+000241 | /-- `SEAM.EQUIV.01` follows from the SINGLE realization axiom (`collar_realizes`), the
+000242 |     *provable* MMST range (`mmst_range`) and holomorphy discriminator
+000243 |     (`holomorphic_discriminator`), and the SINGLE combined cited theorem. -/
+000244 | theorem seamResidualClosed : SeamIsE8 :=
+000245 |   seam_realisation_theorem collar_realizes mmst_range holomorphic_discriminator
+000246 | 
+000247 | example : SeamIsE8 := seamResidualClosed
+000248 | 
+000249 | /-! ### v469 — the invariant-level realization (R1′) and the peer-reviewed route. -/
+000250 | 
+000251 | /-- R1′: the collar carries the INVARIANTS {quasi-free, gapped, class D, `c₋ = 8`}
+000252 |     — each TFPT-derived (gap `v302`, chirality from P1 `v456`; quasi-freeness the
+000253 |     one `[C]` hypothesis, `v155`/`v160`).  An invariant-level statement replacing
+000254 |     the model-level fiat of `CollarRealizedAsLatticePhase`: by the class-D phase
+000255 |     classification any realization with these invariants is phase-equivalent to
+000256 |     the `v367` stack, hence has the same edge scaling limit. -/
+000257 | axiom CollarHasInvariants : Prop
+000258 | /-- The single TFPT-side residual of the v469 route: the collar invariants. -/
+000259 | axiom collar_invariants : CollarHasInvariants
+000260 | 
+000261 | /-- The combined PEER-REVIEWED route theorem (v469, replacing the 2024/2025
+000262 |     preprint leg): phase classification (Kitaev Ann. Phys. 321 (2006) 16-fold way
+000263 |     + periodic table 2009; `c₋` a phase invariant: Kapustin–Spodyneiko PRB 101
+000264 |     (2020), Kim et al. PRL 129 (2022)) ∘ scaling limit (MMST CMP 397 (2023); the
+000265 |     level-1 `so(N)` net with DHR sectors from even-CAR: Böckenhauer RMP 8 (1996))
+000266 |     ∘ the LOCAL `ℤ₂` simple-current crossed product (Longo–Rehren RMP 7 (1995);
+000267 |     Böckenhauer–Evans CMP 197 (1998); KLM CMP 219 (2001)) ∘ holomorphic `c = 8`
+000268 |     uniqueness (Dong–Mason; v463): a collar with the R1′ invariants, in the MMST
+000269 |     range, with the LR locality integer and the holomorphy discriminator, has
+000270 |     scaling-limit net `(E₈)₁`.  The AGT/AMT lattice-VOA route stays available as
+000271 |     an independent second witness (`seam_realisation_theorem` above). -/
+000272 | axiom crossedproduct_route_theorem :
+000273 |     CollarHasInvariants →
+000274 |     (rankE8 ≤ cMinus ∧ cMinus ≤ D) →
+000275 |     hSpinorSixteenths % 16 = 0 →
+000276 |     (detK_E8 = 1 ∧ detK_SO16 ≠ detK_E8) →
+000277 |     SeamIsE8
+000278 | 
+000279 | /-- `SEAM.EQUIV.01` via the v469 route: the invariant-level axiom, the *provable*
+000280 |     range/locality/holomorphy joints, and ONE combined peer-reviewed package. -/
+000281 | theorem seamResidualClosed' : SeamIsE8 :=
+000282 |   crossedproduct_route_theorem collar_invariants mmst_range lr_locality_integer
+000283 |     holomorphic_discriminator
+000284 | 

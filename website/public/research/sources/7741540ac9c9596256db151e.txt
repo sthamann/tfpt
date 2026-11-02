@@ -1,0 +1,24 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-positive-kernel-search-20261015/test_finite_completion.py
+Original file SHA-256: 05f57c2b06c1327fd0b940144d1f4641fa5800482d8aecfb3b8fec692d587eb0
+Inclusive original lines: 25-40
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000025 |     def test_direct_completion_rejects_unsupported_source_metadata(self):
+000026 |         for metadata in [
+000027 |             {'transfer_kind':'bounded_positive'},
+000028 |             {'reference_eigenvalue':1/16},
+000029 |             {'transfer_ceiling':4},
+000030 |             {'transfer_kind':'bounded_positive','reference_eigenvalue':1/16,'transfer_ceiling':1/16},
+000031 |             {'reference_eigenvalue':float('nan')},
+000032 |         ]:
+000033 |             with self.subTest(metadata=metadata):
+000034 |                 payload=fixture();payload.update(metadata)
+000035 |                 result=complete(payload)
+000036 |                 self.assertFalse(result['ok'])
+000037 |                 self.assertFalse(result['complete_finite_kernel_certificate'])
+000038 |                 self.assertEqual(result['verdict'],'INCONCLUSIVE_FINITE_FOCK_COMPLETION')
+000039 |                 self.assertIn('supports only vacuum_effect',result['reason'])
+000040 | 

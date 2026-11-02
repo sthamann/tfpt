@@ -1,0 +1,132 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_local_source_modular_time.py
+Original file SHA-256: 6caeca452b19ea1b1cd010273b3cd7842748ee591e0b9673819fcb3078e7c7e6
+Inclusive original lines: 1-124
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Actual elliptic local source; all-mode proof is in the adjacent text.
+000002 | Finite CAR slice checks are not a lattice replacement or full-k convergence.
+000003 | """
+000004 | from pathlib import Path
+000005 | import json
+000006 | import mpmath as mp
+000007 | import numpy as np
+000008 | import sympy as sy
+000009 | from scipy.linalg import expm
+000010 | 
+000011 | HERE=Path(__file__).resolve().parent
+000012 | checks=[]
+000013 | def need(ok,label):
+000014 |     if not bool(ok):raise RuntimeError(label)
+000015 |     checks.append(dict(label=label,passed=True))
+000016 | 
+000017 | mp.mp.dps=85
+000018 | beta=4*mp.pi;q=mp.exp(-beta);delta=mp.pi/16;theta0=mp.pi/4
+000019 | def bump_integral(n):
+000020 |     return mp.quad(lambda y:mp.exp(-1/(1-y*y))*mp.cos(n*delta*y/2),[-1,0,1])
+000021 | b0=bump_integral(0)
+000022 | bn=[bump_integral(n)/b0 for n in range(11)]
+000023 | chi=[x*x for x in bn]
+000024 | need(all(x>0 for x in bn[:3]),'Actual compact autocorrelation has positive first two Fourier coefficients')
+000025 | need(theta0+delta<mp.pi/2 and theta0-delta>-mp.pi/2,'Entire actual smooth probe support lies inside I')
+000026 | def cothdiff(n):
+000027 |     return 2*(q**n/(1-q**n)-q**(n+1)/(1-q**(n+1)))
+000028 | M=8
+000029 | terms=[-mp.sin(theta0)*(n*(n+1))**2*cothdiff(n)*chi[n]*chi[n+1] for n in range(1,M+1)]
+000030 | derivative=sum(terms)
+000031 | N=M+1
+000032 | tail=2*(N*(N+1))**2*q**N/((1-q)*(1-q*((mp.mpf(N+2)/N)**2)))
+000033 | need(all(t<0 for t in terms),'All evaluated exact-sign summands are negative')
+000034 | need(abs(derivative)>tail*mp.mpf('1e35'),'Certified analytic all-mode tail cannot change the strict local witness sign')
+000035 | f=lambda n:1j*n*chi[abs(n)]*mp.exp(-1j*n*theta0)
+000036 | g=lambda n:-.5j*((n-1)*f(n-1)+(n+1)*f(n+1))
+000037 | # Different evaluation: direct variation of only the thermal correction.
+000038 | # The full vacuum part is analytically invariant, not Fourier truncated.
+000039 | direct=sum(2*mp.re(mp.conj(f(n))*g(n))*2*n*q**n/(1-q**n) for n in range(1,M+1))
+000040 | need(abs(direct-derivative)<tail,'Direct Fourier transport matches collected covariance derivative within analytic tail')
+000041 | n,z=sy.symbols('n z',real=True)
+000042 | need(sy.expand((n+1)*n-n*(n+1))==0,'Vacuum covariance derivative coefficient cancels identically')
+000043 | need(sy.simplify((1/(1+sy.exp(z)))+(1/(1+sy.exp(-z)))-1)==0,'Quarter particle-hole occupation complement identity')
+000044 | # Independent Laurent expansion of the necessary geometric-flow identity.
+000045 | d,a0,a2=sy.symbols('d a0 a2');v1,v3,v5=sy.symbols('v1 v3 v5')
+000046 | kernel=-d**-2+a0+a2*d*d
+000047 | lie=sy.expand((d*v1+d**3*v3/24+d**5*v5/1920)*sy.diff(kernel,d)+(2*v1+d*d*v3/4+d**4*v5/192)*kernel)
+000048 | need(sy.expand(lie).coeff(d,0)==-v3/6+2*a0*v1,'Whole geometric-flow class: constant Laurent coefficient')
+000049 | need(sy.expand(lie).coeff(d,2)==-v5/240+a0*v3/4+4*a2*v1,'Whole geometric-flow class: quadratic Laurent coefficient')
+000050 | need(sy.expand(lie.coeff(d,2).subs({v3:12*a0*v1,v5:144*a0*a0*v1})-sy.Rational(4,5)*(5*a2+3*a0*a0)*v1)==0,'Whole class integrability coefficient after third-order condition')
+000051 | x=sy.Rational(1,20)
+000052 | bound=(x+x**3)/(1-x**4)+2*x**4/(1-x**4)**3
+000053 | need(bound<sy.Rational(1,12),'Exact rational all-mode charge and oscillator bound at BOTH original quarters')
+000054 | # Evaluate the scalar resolvent formula independently, without a matrix log.
+000055 | for lam in [mp.mpf('0.1'),mp.mpf('0.4'),mp.mpf('0.8')]:
+000056 |     integ=mp.quad(lambda s:1/(lam+s)-1/(1-lam+s),[0,1,mp.inf])
+000057 |     need(abs(integ-mp.log((1-lam)/lam))<mp.mpf('1e-75'),'Occupation-log resolvent sign at lambda='+str(lam))
+000058 | 
+000059 | alphas=[mp.mpf(1)/4,mp.mpf(3)/4]
+000060 | def occupation(r,a):return 1/(1+mp.exp(beta*(r+a)))
+000061 | def dc(r,a):
+000062 |     x=mp.exp(beta*(r+a)) if r<0 else mp.exp(-beta*(r+a))
+000063 |     return -x/(1+x) if r<0 else x/(1+x)
+000064 | def overlap(r,j):
+000065 |     k=2*j-r
+000066 |     return 1/mp.sqrt(2) if k==0 else (mp.mpf(0) if k%2==0 else mp.sqrt(2)*mp.sin(k*mp.pi/2)/(mp.pi*k))
+000067 | def sea(j,k):
+000068 |     a=mp.mpf(j)+mp.mpf('.5');b=mp.mpf(k)+mp.mpf('.5')
+000069 |     s=mp.polygamma(1,a) if j==k else (mp.digamma(b)-mp.digamma(a))/(b-a)
+000070 |     return (-1)**(j+k)*s/(2*mp.pi**2)
+000071 | need(abs(sea(0,0)-mp.mpf(1)/4)<mp.mpf('1e-80'),'Entire Hardy sea gives exactly1/4 on the normalized interval constant')
+000072 | for j in range(3):
+000073 |     for k in range(3):
+000074 |         independent=2*(-1)**(j+k)/mp.pi**2*mp.nsum(lambda l:1/((2*j+2*l+1)*(2*k+2*l+1)),[0,mp.inf])
+000075 |         need(abs(independent-sea(j,k))<mp.mpf('1e-75'),'Independent infinite negative-odd sea sum '+str((j,k)))
+000076 | def annihilator(j,m=3):
+000077 |     A=np.zeros((2**m,2**m),complex)
+000078 |     for bits in range(2**m):
+000079 |         if (bits>>j)&1:A[bits^(1<<j),bits]=(-1)**((bits&((1<<j)-1)).bit_count())
+000080 |     return A
+000081 | aa=[annihilator(j) for j in range(3)];ident=np.eye(8)
+000082 | for j in range(3):
+000083 |     for k in range(3):need(np.max(abs(aa[j]@aa[k].conj().T+aa[k].conj().T@aa[j]-(ident if j==k else 0)))<1e-14,'Independent Fock CAR '+str((j,k)))
+000084 | rows=[];R=16
+000085 | for alpha in alphas:
+000086 |     weights={r:dc(r,alpha) for r in range(-R,R+1)}
+000087 |     Cmp=mp.matrix(3)
+000088 |     for j in range(3):
+000089 |         for k in range(3):Cmp[j,k]=sea(j,k)+sum(overlap(r,j)*overlap(r,k)*weights[r] for r in weights)
+000090 |     eps=(mp.exp(-beta*(R+1+alpha))+mp.exp(-beta*(R+1-alpha)))/(1-q)
+000091 |     need(eps<mp.mpf('1e-88'),'Actual source thermal correction norm tail bound alpha='+str(alpha))
+000092 |     C=np.array(Cmp.tolist(),float);ev,V=np.linalg.eigh(C)
+000093 |     need(ev[0]>0 and ev[-1]<1,'Actual spatial3mode CAR restriction is faithful alpha='+str(alpha))
+000094 |     kval=np.log1p(-ev)-np.log(ev);K=(V*kval)@V.T
+000095 |     H=sum(K[j,k]*aa[j].conj().T@aa[k] for j in range(3) for k in range(3))
+000096 |     rho=expm(-H);rho/=np.trace(rho)
+000097 |     obs=lambda A:np.trace(rho@A)
+000098 |     for j in range(3):
+000099 |         for k in range(3):need(abs(obs(aa[j].conj().T@aa[k])-C[j,k])<2e-14,'Original source two-point vs independent finite density '+str((str(alpha),j,k)))
+000100 |     A=aa[0].conj().T@aa[1].conj().T@aa[1]@aa[0]
+000101 |     det=C[0,0]*C[1,1]-C[0,1]*C[1,0]
+000102 |     need(abs(obs(A)-det)<2e-14,'Actual supported four-field word from full sea covariance alpha='+str(alpha))
+000103 |     N0=aa[0].conj().T@aa[0];N1=aa[1].conj().T@aa[1];s=.7;t=-.4
+000104 |     word=expm(1j*s*N0)@expm(1j*t*N1)
+000105 |     target=1+np.expm1(1j*s)*C[0,0]+np.expm1(1j*t)*C[1,1]+np.expm1(1j*s)*np.expm1(1j*t)*det
+000106 |     need(abs(obs(word)-target)<2e-14,'Whole supported two-number-unitary word alpha='+str(alpha))
+000107 |     tau=.31;U=expm(-1j*tau*H)
+000108 |     need(abs(obs(U@word@U.conj().T)-obs(word))<2e-14,'Actual finite-subalgebra modular action preserves source state alpha='+str(alpha))
+000109 |     one=expm(-1j*tau*K)
+000110 |     for j in range(3):
+000111 |         rhs=sum(np.conj(one[k,j])*aa[k] for k in range(3))
+000112 |         need(np.max(abs(U@aa[j]@U.conj().T-rhs))<2e-14,'Canonical modular sign with antilinear annihilation alpha='+str(alpha)+' j='+str(j))
+000113 |     theta=lambda z:sum(mp.exp(-beta*(mp.mpf(a*a)/2+(alpha-mp.mpf('.5'))*a))*mp.exp(1j*z*a) for a in range(-12,13))
+000114 |     mean=sum(a*mp.exp(-beta*(mp.mpf(a*a)/2+(alpha-mp.mpf('.5'))*a)) for a in range(-12,13))/theta(0)
+000115 |     need(abs(mp.re(1j*mean))==0,'Full charge factor cannot cancel first derivative of Weyl modulus alpha='+str(alpha))
+000116 |     varQ=sum(occupation(r,alpha)*(1-occupation(r,alpha)) for r in range(-30,31))
+000117 |     S1=sum(n*q**n/(1-q**n) for n in range(1,21));S3=sum(n**3*q**n/(1-q**n) for n in range(1,21))
+000118 |     a0val=varQ-mp.mpf(1)/12+2*S1;a2val=-mp.mpf(1)/240-S3
+000119 |     need(-mp.mpf(1)/12<a0val<0 and 5*a2val+3*a0val*a0val<0,'Full connected source, including charge variance, has nonzero geometric-class obstruction alpha='+str(alpha))
+000120 |     rows.append(dict(alpha=str(alpha),occupation_covariance=[[mp.nstr(Cmp[j,k],28) for k in range(3)] for j in range(3)],eigenvalues=ev.tolist(),finite_subalgebra_k=K.tolist(),thermal_correction_tail_bound=mp.nstr(eps,12),four_field_word=float(det),two_number_word=[float(target.real),float(target.imag)],charge_variance=mp.nstr(varQ,35),connected_kernel_a0=mp.nstr(a0val,35),connected_kernel_a2=mp.nstr(a2val,35),geometric_class_obstruction=mp.nstr(5*a2val+3*a0val*a0val,35)))
+000121 | 
+000122 | result=dict(verdict='EXACT_SCOPED_LOCAL_TIME_WITNESS_AND_GIVEN_FREE_CAR_READOUT; GEOMETRIC_CURRENT_POINT_FLOW_CLASS_EXCLUDED_AT_ACTUAL_QUARTERS; PHYSICAL_ORIGIN_OPEN',all_passed=True,checks=checks,control_count=len(checks),original_beta='4*pi',probe=dict(delta='pi/16',theta0='pi/4',b='normalized exp[-1/(1-(2x/delta)^2)] on |x|<delta/2',chi='b*tilde b',f='translated derivative of chi',b_fourier_first=[mp.nstr(x,25) for x in bn[:4]],f_zero_mode=0),local_covariance_derivative=mp.nstr(derivative,40),analytic_derivative_tail_bound=mp.nstr(tail,15),direct_thermal_derivative=mp.nstr(direct,40),log_weyl_modulus_derivative_per_s_squared=mp.nstr(-derivative/2,40),geometric_class=dict(regularity='C5 real v, continuous at fixed interval endpoints',action='unchanged weight1 current point transport plus arbitrary scalar shifts',exact_upper_bound_charge_variance_plus_2S1=str(bound),strict_upper_limit='1/12',decision='only v=0 is state preserving at either original quarter'),actual_interval_car_rows=rows,scope='Exact supported all-mode Mobius witness for every finite beta. Whole stated C5 geometric point-transport class excluded at actual fixed beta4pi and both quarter alphas using full connected charge covariance. Entire negative sea summed analytically. Finite3mode CAR subalgebra is only a restriction check, not a full interval modular approximation, full E8 replacement, primitive measure or physical4D result. No assertion that given current subnet equals local U1 fixed-point algebra; no full CAR nonlocal-kernel conclusion.')
+000123 | (HERE/'LOCAL-SOURCE-MODULAR-TIME.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+000124 | print(json.dumps({k:v for k,v in result.items() if k not in ['checks','actual_interval_car_rows']},ensure_ascii=False,indent=2))

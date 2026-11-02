@@ -1,0 +1,208 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/primitive-seam-operator-reconstruction-20261025/TOEPLITZ-SEAM-RECONSTRUCTION.txt
+Original file SHA-256: 0ca3b6733b10723eb97caba84f2426396dab98120852cdbf4d2364df8e8a65c4
+Inclusive original lines: 1-200
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | TOEPLITZ SEAM RECONSTRUCTION FROM THE ORIGINAL OPERATORS
+000002 | Date: 2026-10-25
+000003 | Verdict: conditional positive embedded circle reconstruction, but the required Toeplitz and time-covariance lemmas are not proved by the original source
+000004 | 
+000005 | Question
+000006 | ========
+000007 | 
+000008 | Can the previously free primitive seam vector be removed by forming
+000009 | 
+000010 |     H_C = Ran(P_C),             S = P_C u_Sigma P_C | H_C,
+000011 |     Pi_Sigma = P_C - S S*,
+000012 | 
+000013 | and deriving a multiplicity one Hardy shift directly from the original
+000014 | Calderon projector P_C and seam unitary u_Sigma?
+000015 | 
+000016 | Exact conditional theorem
+000017 | =========================
+000018 | 
+000019 | Let P be an orthogonal projection on H, let u be unitary, and put
+000020 | S = P u P on PH. Then
+000021 | 
+000022 |     S* S = P - P u* (1-P) u P.                              (1)
+000023 | 
+000024 | Consequently S is an isometry exactly when
+000025 | 
+000026 |     (1-P) u P = 0, equivalently u(PH) is contained in PH.   (2)
+000027 | 
+000028 | Assume (2) and assume S is Fredholm with ind(S) = -1.  Then Pi=P-SS*
+000029 | is the orthogonal projector onto ker(S*) and
+000030 | 
+000031 |     rank(Pi) = dim ker(S*) = 1.                              (3)
+000032 | 
+000033 | No purity assumption is needed for this conclusion.  The Wold decomposition
+000034 | gives a canonical orthogonal sum
+000035 | 
+000036 |     PH = H_shift direct_sum H_unitary,
+000037 |     H_shift = direct sum over n >= 0 of S^n Ran(Pi).         (4)
+000038 | 
+000039 | The line Ran(Pi) and the unilateral multiplicity one shift H_shift are
+000040 | canonical functions of the supplied pair (P,u).  A normalized vector in that
+000041 | line is still defined only up to phase, but every such vector gives the same
+000042 | projector and the same subspace.
+000043 | 
+000044 | Because u itself is already unitary on the original H, no external unitary
+000045 | dilation is required.  For any unit psi in Ran(Pi), put
+000046 | 
+000047 |     e_n = u^n psi, n in Z.                                  (5)
+000048 | 
+000049 | The vectors e_n are orthonormal.  For n>=0 they lie in PH, while for n<0
+000050 | they lie in (1-P)H.  Their bilateral span
+000051 | 
+000052 |     H_circle = closure span{e_n : n in Z}                    (6)
+000053 | 
+000054 | reduces both u and P.  On H_circle, u is the bilateral shift and P is exactly
+000055 | the Hardy cut onto n>=0.  Changing psi by a phase changes no operator or
+000056 | subspace.  This is a canonical embedded rank-one circle sector in the
+000057 | original Hilbert space.
+000058 | 
+000059 | The additional purity condition
+000060 | 
+000061 |     intersection over n >= 0 of S^n(PH) = {0}                (7)
+000062 | 
+000063 | is needed only for the stronger assertion H_shift=PH, namely that the whole
+000064 | Calderon range is this multiplicity one Hardy space.  It is not needed to
+000065 | remove the free psi_Sigma direction or to obtain H_circle.
+000066 | 
+000067 | The sign convention is harmless but must be stated.  In the standard Hardy
+000068 | orientation, wind(u)=+1 gives ind(PuP)=-1.  If the source spectral-flow
+000069 | convention has the opposite sign, replace u by u*.  This orientation change
+000070 | does not supply (2) or (3).
+000071 | 
+000072 | What the original source actually proves
+000073 | ========================================
+000074 | 
+000075 | 1. paper-source:2c00b99902dffffff710a671, corresponding to
+000076 |    documents/archive--tfpt-45--source_extracts--01_boundary_kernel_source/
+000077 |    sections/001-section-primitive-core-and-carrier-interface-handoff.tex,
+000078 |    lines 105-166, constructs P_C as the Calderon projector and identifies
+000079 |    Ran(P_C) with the even boundary Cauchy data.  It gives no displayed
+000080 |    relation between P_C and u_Sigma.
+000081 | 
+000082 | 2. paper-source:c439790c9d6f51b9bcaa037f, corresponding to
+000083 |    documents/archive--tfpt-45--source_extracts--03_em_flavor_source/
+000084 |    sections/001-section-kernel-numerics-and-electromagnetic-closure.tex,
+000085 |    lines 9-45, proves only
+000086 | 
+000087 |        [u_Sigma]=1 in K^1(S^1),  SF(U_Sigma)=1,  Delta_Sigma=2 pi.
+000088 | 
+000089 |    The wider original datum already contains a unitary u_Sigma, so no new
+000090 |    unitary or dilation has to be chosen.  The displayed primitive theorem,
+000091 |    however, records only its K^1 class and spectral flow.  It does not prove
+000092 |    the decisive relation (1-P_C)u_Sigma P_C=0.
+000093 | 
+000094 | 3. paper-source:575dd43392a0abd5fa5c93ab, corresponding to
+000095 |    documents/archive--tfpt-45--source_extracts--01_boundary_kernel_source/
+000096 |    sections/002-section-intrinsic-closed-branch-and-canonical-rigid-obje.tex,
+000097 |    lines 166-182 and 281-305, defines
+000098 | 
+000099 |        d0 = |SF(U_Sigma)|,
+000100 |        d1 = essential rank of the finite primitive carrier,
+000101 |        d3 = h_Sigma^red, the residual boundary nullity after Calderon normal form.
+000102 | 
+000103 |    These are different typed quantities from dim ker(S*), dim ker(S), and the
+000104 |    Wold unitary summand.  Lexicographic minimality of d1 and h_Sigma^red=0
+000105 |    therefore supplies neither the isometry condition (2), the defect rank,
+000106 |    nor purity (7).  No source theorem identifies these quantities.
+000107 | 
+000108 | 4. paper-source:c439790c9d6f51b9bcaa037f, lines 94-122, subsequently says
+000109 |    that the primitive seam theorem has singled out a normalized psi_Sigma and
+000110 |    defines |psi_Sigma><psi_Sigma|.  The cited theorem in lines 9-45 does not
+000111 |    construct that vector.  Hence this is exactly the gap that the conditional
+000112 |    Wold construction would repair, but its isometry and index hypotheses are
+000113 |    absent.
+000114 | 
+000115 | No occurrence of a Toeplitz, Hardy, or Wold condition was found in these
+000116 | original boundary and electromagnetic source sections.  In particular, the
+000117 | collar identity D_+=gamma_n(partial_n+B_Sigma) gives an adapted tangential
+000118 | operator.  It does not give a covariance relation between B_Sigma and
+000119 | u_Sigma.
+000120 | 
+000121 | Why index one is insufficient
+000122 | =============================
+000123 | 
+000124 | The Fredholm formula is
+000125 | 
+000126 |     ind(S) = dim ker(S) - dim ker(S*).
+000127 | 
+000128 | It yields rank ker(S*)=1 only after injectivity, which follows here from the
+000129 | separate isometry hypothesis.  For example
+000130 | 
+000131 |     S0 = unilateral_shift direct_sum 0_C
+000132 | 
+000133 | has ind(S0)=-1, but it is not an isometry and its cokernel has dimension two.
+000134 | 
+000135 | Even isometry plus one dimensional defect does not prove that the whole
+000136 | Calderon range is pure:
+000137 | 
+000138 |     S1 = unilateral_shift direct_sum identity_C
+000139 | 
+000140 | is an isometry, has ind(S1)=-1 and rank(1-S1 S1*)=1, but its one dimensional
+000141 | unitary Wold summand survives in every S1^n H.  Its canonical rank-one shift
+000142 | part still exists, exactly as in (4).
+000143 | 
+000144 | The smallest index counterprobe can be made with one fixed bilateral unitary.
+000145 | Let H=l2(Z), let u e_n=e_(n+1), and let P_A project onto
+000146 | 
+000147 |     span{e_0,e_2,e_3,e_4,...}.
+000148 | 
+000149 | For S_A=P_A u P_A on P_A H,
+000150 | 
+000151 |     ker(S_A)=span{e_0},
+000152 |     coker(S_A)=span{e_0,e_2},
+000153 |     ind(S_A)=1-2=-1.
+000154 | 
+000155 | Yet S_A e_0=0, so S_A is not an isometry.  The incoming defect has dimension
+000156 | one while the outgoing defect has dimension two.  This uses the same full
+000157 | unitary u and shows directly that index -1 does not imply leakage zero.  It
+000158 | is an operator counterprobe only, not a claim that P_A is the physical TFPT
+000159 | Calderon projector.
+000160 | 
+000161 | There is also a counterprobe inside the exact scalar circle setting.  Take
+000162 | the standard Hardy projector C and, for 0<a<1/3,
+000163 | 
+000164 |     b_a(z) = (z-a)/(1-a z),        u_a(z) = z^2/b_a(z).
+000165 | 
+000166 | The symbol u_a is smooth, unimodular, strictly orientation preserving, and
+000167 | has winding one.  Nevertheless
+000168 | 
+000169 |     ||(1-C) u_a e_0||^2 = a^4(1-a^2),
+000170 | 
+000171 | which is 15/4096 at a=1/4.  Thus C M_{u_a} C is not an isometry although all
+000172 | index and orientation data agree.  This exact control is recorded in
+000173 | research-source:10843ef87f7062e60e223846, lines 69-128.  It is the smallest
+000174 | decisive counterprobe to the inference
+000175 | 
+000176 |     positive generator plus Calderon projection implies isometric shift.
+000177 | 
+000178 | The smallest decisive original-source test is therefore the leakage operator
+000179 | 
+000180 |     L_Sigma = P_C u_Sigma* (1-P_C) u_Sigma P_C.             (12)
+000181 | 
+000182 | Equation (1) says S is isometric exactly when L_Sigma=0.  If (12) is nonzero,
+000183 | the proposed repair stops immediately.  If it vanishes, the next independent
+000184 | test is strong convergence S*^n -> 0, equivalently (7), if one wants to
+000185 | identify all of P_C H with the Hardy sector.  Neither test can be replaced by
+000186 | spectral flow.
+000187 | 
+000188 | Clock dictionary and the missing quarter offset
+000189 | ================================================
+000190 | 
+000191 | Suppose leakage zero and index -1 are proved for the original pair.  To
+000192 | reconstruct the claimed first order clock from the supplied tangential
+000193 | operator B_Sigma, the clean sufficient condition is the strong covariance
+000194 | 
+000195 |     exp(it B_Sigma) u_Sigma exp(-it B_Sigma)
+000196 |       = exp(it) u_Sigma for every real t,                    (8)
+000197 | 
+000198 | together with strong commutation [B_Sigma,P_C]=0.  The infinitesimal form is
+000199 | [B_Sigma,u_Sigma]=u_Sigma on a common invariant core, but the domain statement
+000200 | must be supplied rather than inferred formally.

@@ -1,0 +1,44 @@
+TFPT scientific source excerpt
+Original repository path: verification/v252_full_finite_triple.py
+Original file SHA-256: 820254440e178430422e50605067775656236602996307f67c9e69124ba5d163
+Inclusive original lines: 86-121
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000086 | def dirac_block(Yu, Yd, Ye, Ynu):
+000087 |     """particle 48x48 Yukawa block S (Hermitian): L<->R per field/colour."""
+000088 |     S = np.zeros((NP, NP), complex)
+000089 |     table = {"u": Yu, "d": Yd, "e": Ye, "nu": Ynu}
+000090 |     for (name, ch, c, g) in P:
+000091 |         if ch != "L":
+000092 |             continue
+000093 |         Y = table[name]
+000094 |         for gj in range(NG):
+000095 |             i = IDX[(name, "L", c, g)]
+000096 |             j = IDX[(name, "R", c, gj)]
+000097 |             S[i, j] = Y[g, gj]
+000098 |             S[j, i] = np.conjugate(Y[g, gj])
+000099 |     return S
+000100 | 
+000101 | 
+000102 | def full_D(Yu, Yd, Ye, Ynu, MR):
+000103 |     """D_F = [[S, T],[T^dag, conj S]] ; T = Majorana on nu_R (particle<->antiparticle)."""
+000104 |     S = dirac_block(Yu, Yd, Ye, Ynu)
+000105 |     T = np.zeros((NP, NP), complex)
+000106 |     for g in range(NG):
+000107 |         for gj in range(NG):
+000108 |             i = IDX[("nu", "R", 0, g)]
+000109 |             j = IDX[("nu", "R", 0, gj)]
+000110 |             T[i, j] = MR[g, gj]
+000111 |     D = np.zeros((NH, NH), complex)
+000112 |     D[:NP, :NP] = S
+000113 |     D[NP:, NP:] = np.conjugate(S)
+000114 |     D[:NP, NP:] = T
+000115 |     D[NP:, :NP] = T.conj().T
+000116 |     return D
+000117 | 
+000118 | 
+000119 | def grading():
+000120 |     gp = np.array([1.0 if ch == "L" else -1.0 for (_, ch, _, _) in P])
+000121 |     return np.diag(np.concatenate([gp, -gp]))      # antiparticles: opposite chirality

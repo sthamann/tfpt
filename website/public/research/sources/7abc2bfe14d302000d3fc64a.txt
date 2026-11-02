@@ -1,0 +1,68 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/check_original_admissibility_source.py
+Original file SHA-256: 2386c8851836eecdb3efb1d4ce5de4eeaa2632c0790109214b95f708fe3b3adc
+Inclusive original lines: 1-60
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Actual four-generator admissibility complex, not a chosen spacetime model."""
+000002 | from pathlib import Path
+000003 | import json
+000004 | import sympy as s
+000005 | 
+000006 | checks=[]
+000007 | def need(name, value):
+000008 |     good=bool(value)
+000009 |     checks.append({'name':name,'passed':good})
+000010 |     if not good: raise AssertionError(name)
+000011 | 
+000012 | n=4; dim=1<<n; I=s.eye(dim); zero=s.zeros(dim)
+000013 | cre=[]
+000014 | for j in range(n):
+000015 |     a=s.zeros(dim)
+000016 |     for mask in range(dim):
+000017 |         if not (mask>>j)&1:
+000018 |             a[mask|(1<<j),mask]=(-1)**((mask&((1<<j)-1)).bit_count())
+000019 |     cre.append(a)
+000020 | ann=[a.T for a in cre]
+000021 | need('all creation anticommutators',all(cre[i]*cre[j]+cre[j]*cre[i]==zero for i in range(n) for j in range(n)))
+000022 | need('all mixed CAR anticommutators',all(ann[i]*cre[j]+cre[j]*ann[i]==(I if i==j else zero) for i in range(n) for j in range(n)))
+000023 | k=s.symbols('k0:4',real=True); z,u=s.symbols('z u')
+000024 | Q=sum((k[j]*cre[j] for j in range(n)),zero); Qt=Q.T
+000025 | K=sum(a*a for a in k); D=Q+Qt
+000026 | need('whole four-penalty differential is nilpotent',Q*Q==zero)
+000027 | need('whole Laplacian equals sum squares on every ghost grade',Q*Qt+Qt*Q==K*I)
+000028 | need('actual selfadjoint odd source square',D*D==K*I)
+000029 | need('contracting homotopy numerator on every positive joint fiber',Q*Qt+Qt*Q==K*I)
+000030 | need('zero-penalty fiber keeps all sixteen ghosts',D.subs(dict.fromkeys(k,0))==zero)
+000031 | grades=[mask.bit_count() for mask in range(dim)]
+000032 | mult=[grades.count(j) for j in range(n+1)]
+000033 | need('actual grade multiplicities 1 4 6 4 1',mult==[1,4,6,4,1])
+000034 | need('whole degree character',(s.expand(sum(u**a for a in grades)-(1+u)**4))==0)
+000035 | need('index supertrace vanishes',sum((-1)**a for a in grades)==0)
+000036 | need('degree weighted supertrace vanishes',sum((-1)**a*a for a in grades)==0)
+000037 | need('two equal parity sectors',sum(a%2==0 for a in grades)==8 and sum(a%2==1 for a in grades)==8)
+000038 | need('whole energy resolvent numerator',(D-z*I)*(D+z*I)==(K-z*z)*I)
+000039 | need('whole degree-weighted resolvent trace',s.expand(sum(u**grades[a]*(D+z*I)[a,a] for a in range(dim))-z*(1+u)**4)==0)
+000040 | need('all original constraint insertions survive in off-diagonal source',all((D+z*I)[1<<j,0]==k[j] for j in range(n)))
+000041 | need('ghost grade zero resolvent diagonal retains energy denominator',(D+z*I)[0,0]==z)
+000042 | need('ordinary source trace has no unsquared constraint direction',s.trace(D)==0)
+000043 | 
+000044 | # Exact joint spectral projection calculation: every commuting projection pattern.
+000045 | lam=s.symbols('lambda0:4',positive=True)
+000046 | patterns=[tuple((mask>>j)&1 for j in range(n)) for mask in range(dim)]
+000047 | costs=[sum(lam[j]*e[j] for j in range(n)) for e in patterns]
+000048 | need('only joint zero pattern is harmonic',all((cost==0)==(mask==0) for mask,cost in enumerate(costs)))
+000049 | need('every positive pattern is bounded below by a realized positive penalty',all(cost==0 or any(s.simplify(cost-lam[j]).is_nonnegative for j in range(n) if patterns[mask][j]) for mask,cost in enumerate(costs)))
+000050 | need('at most sixteen fixed finite penalty eigenvalues',len(costs)==16 and all(s.simplify(sum(lam)-cost).is_nonnegative for cost in costs))
+000051 | need('positive penalty reweighting preserves the whole joint kernel',all((sum((j+2)*lam[j]*e[j] for j in range(n))==0)==(mask==0) for mask,e in enumerate(patterns)))
+000052 | 
+000053 | # Resolvent source variation identity, with independent variations in every K_j.
+000054 | v=s.symbols('v0:4'); dD=sum((v[j]*(cre[j]+ann[j]) for j in range(n)),zero)
+000055 | dK=2*sum(k[j]*v[j] for j in range(n))
+000056 | need('full energy-source variation including off-diagonal insertions',s.simplify((dD*(K-z*z)-(D+z*I)*dK)+(D+z*I)*dD*(D+z*I))==zero)
+000057 | 
+000058 | out={'date':'2026-10-31','results':['R049','R050'],'scope':'Actual original four-ghost Koszul admissibility operator; no physical ghost measure or normal-sphere to spacetime identification. Symbolic scalar joint fibers encode the whole commuting spectral family.','all_passed':all(x['passed'] for x in checks),'checks':checks,'grade_multiplicities':mult}
+000059 | Path(__file__).with_name('ORIGINAL-ADMISSIBILITY-SOURCE.json').write_text(json.dumps(out,indent=2)+'\n')
+000060 | print(json.dumps({'all_passed':out['all_passed'],'checks':len(checks),'grade_multiplicities':mult}))
