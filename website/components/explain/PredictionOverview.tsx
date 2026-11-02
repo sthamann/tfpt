@@ -43,9 +43,9 @@ const registerGroups = [
   {title:"Inflation and the next tests",note:"The scalaron scale and two conditional bands. The bands use the external reheating range N★ = 50–60.",ids:["MSCAL_OVER_MBAR","R_TENSOR","N_S"]},
 ];
 
-export function PredictionOverview() {
+export function PredictionOverview({anchored=true}:{anchored?:boolean}) {
   const all = [...frozenRegistry.predictions, ...frozenRegistry.assigned_texture_values, ...frozenRegistry.conditional_bands];
-  return <section className={`experience-shell ${styles.overview}`} id="prediction-accuracy" aria-labelledby="prediction-overview-title">
+  return <section className={`experience-shell ${styles.overview}`} id={anchored?"prediction-accuracy":undefined} aria-labelledby="prediction-overview-title">
     <header className={styles.heading}><h2 id="prediction-overview-title">What does TFPT predict, and how close are the numbers?</h2><p>Compare the fixed outputs with measurements before following their derivations. The same inputs connect electromagnetic strength, particle mixing and cosmological readouts.</p></header>
     <div className={styles.legend}><span><i/>TFPT output</span><span><i/>Measurement ±1σ</span><span>Zero = measured central value</span></div>
     <p className={styles.note}>Values frozen 9 June 2026; primary sources checked 2 November 2026. Distances use the stated measurement or fit uncertainty, with the corresponding side for asymmetric errors. They include no theory error and are not a combined significance. Known measurements retain their comparison status.</p>

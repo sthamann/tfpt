@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, RotateCcw } from "lucide-react";
 import { Math } from "@/components/Math";
+import { BellRayExplorer } from "./BellRayExplorer";
 import styles from "./PatternConnections.module.css";
 
 // RM(1,3): evaluations of all affine functions on the eight points of F₂³.
@@ -13,7 +14,7 @@ const distance = (a: number[], b: number[]) => a.reduce((n, bit, i) => n + Numbe
 const source = (path: string) => `/documentation?source=${encodeURIComponent(path)}`;
 
 function CodeExperiment() {
-  const [word, setWord] = useState(6);
+  const [word, setWord] = useState(13);
   const [error, setError] = useState<number | null>(2);
   const sent = code[word];
   const received = sent.map((bit, i) => i === error ? 1 - bit : bit);
@@ -34,19 +35,11 @@ function CodeExperiment() {
       <div className={styles.miniBits} aria-label={bits.join("")}>{bits.map((bit, j) => <span key={j} data-one={bit === 1} />)}</div><span>{distances[i]} {distances[i] === 1 ? "bit" : "bits"} away</span>
     </div>)}</div>
     <p className={styles.caption}>All sixteen valid words are shown. Any two differ in at least four positions, so their one bit neighbourhoods cannot overlap.</p>
-    <details><summary>How does this become E₈?</summary><p>Allow every integer vector whose eight parities form one of these words, then rescale by √2. This gives an infinite lattice, rather than just sixteen points.</p><Math block>{String.raw`L=\{x/\sqrt2:x\in\mathbb Z^8,\ x\bmod2\in C\}`}</Math><p>The code is self dual and its word weights are multiples of four. Construction A therefore gives an even unimodular lattice of rank eight, which is E₈. Its shortest vectors number 240: sixteen coordinate vectors and 224 lifts of the fourteen weight four words.</p><p>This is classical binary error correction. The stronger proposal that root operators form the required syndrome algebra was excluded in its stated class.</p><Link href="/results?claim=E8.CODE.01">Code theorem and verification</Link><Link href="/results?claim=E8.SYNDROME.ALGEBRA.01">The stronger proposal and its exclusion</Link></details>
+    <details><summary>How does this become E₈?</summary><p>Allow every integer vector whose eight parities form one of these words, then rescale by √2. This gives an infinite lattice, rather than just sixteen points.</p><Math block>{String.raw`L=\{x/\sqrt2:x\in\mathbb Z^8,\ x\bmod2\in C\}`}</Math><p>The code is self dual and its word weights are multiples of four. Construction A therefore gives an even unimodular lattice of rank eight, which is E₈. Its shortest vectors number 240: sixteen coordinate vectors and 224 lifts of the fourteen weight four words.</p><p>The sixteen binary codewords and the sixteen complex carrier components are different objects. Equal totals do not identify them. This construction uses the actual code, its parity lift and the lattice theorem. This is classical binary error correction. The stronger proposal that root operators form the required syndrome algebra was excluded in its stated class.</p><Link href="/results?claim=E8.CODE.01">Code theorem and verification</Link><Link href="/results?claim=E8.SYNDROME.ALGEBRA.01">The stronger proposal and its exclusion</Link></details>
   </div>;
 }
 
-function QuantumFigure() {
-  return <figure className={styles.quantumFigure}>
-    <p>A ray represents one pure quantum state with its overall phase ignored. A basis here contains four mutually orthogonal states. A context names the commuting observables whose joint eigenstates form that basis.</p>
-    <div className={styles.flow}><div><strong>E₈ roots</strong><span>Vectors in the same lattice</span></div><ArrowRight aria-hidden/><div><strong>Complex lines</strong><span>Identify v, iv, −v, −iv</span></div><ArrowRight aria-hidden/><div><strong>Quantum rays</strong><span>Apply the specified chart</span></div></div>
-    <div className={styles.bases} aria-label="Fifteen orthogonal stabilizer bases, each containing four rays">{Array.from({length:15}, (_, i) => <div key={i}><span>{i + 1}</span>{[0,1,2,3].map(j => <i key={j}/>)}</div>)}</div>
-    <figcaption>Each column represents one nonzero Gaussian quotient class: sixteen roots, four phase orbits. In the specified chart, these four rays form the eigenbasis of one Pauli context. The fifteen columns account for all sixty stabilizer rays.</figcaption>
-    <details><summary>How does each quotient class become a quantum basis?</summary><Math block>{String.raw`L/(1+i)L\cong\mathbb F_2^4`}</Math><p>With the compiler compatible complex structure J, each of the fifteen nonzero quotient classes contains sixteen roots, giving four Gaussian lines after identifying the four phases. In the specified chart, those four lines form one orthogonal stabilizer basis: the joint eigenstates of a maximal commuting Pauli triple. The fifteen classes map bijectively to the fifteen contexts.</p><p>The projective G₃₁ action matches the two qubit Clifford action in the named representation. Clifford structure alone does not provide universal quantum computation.</p><Link href="/documentation?evidence=python_verification%3Averification%2Fv783_two_qubit_clifford.py">Read the explicit context correspondence</Link></details>
-  </figure>;
-}
+function QuantumFigure() { return <figure className={styles.quantumFigure}><BellRayExplorer/><details><summary>From the worked ray to all sixty rays and fifteen contexts</summary><p>The compiler compatible complex structure makes E₈ a Gaussian lattice. Each nonzero class of L/(1+i)L contains sixteen roots, or four phase orbits. In the specified chart those four rays form one Pauli context. The fifteen classes map bijectively to fifteen orthogonal stabilizer bases.</p><Math block>{String.raw`L/(1+i)L\cong\mathbb F_2^4`}</Math><p>The projective G₃₁ action matches the two qubit Clifford action in the named representation. Physical instruments and universal computation are separate constructions.</p><Link href="/documentation?section=section%3A6c4044608163b007c4c2">Read the exact finite correspondence</Link></details></figure>; }
 
 function ClockFigure() {
   const [step, setStep] = useState(0);
@@ -93,6 +86,27 @@ const stories = [
 
 export function PatternConnections({ embedded = false }: { embedded?: boolean }) {
   const [active,setActive] = useState("code");
+  useEffect(() => {
+    const selectHash = (hashValue: string) => {
+      const hash = hashValue.slice(1);
+      const selected = hash === "quantum" ? "quantum" : hash.startsWith("pattern-") ? hash.slice(8) : null;
+      if (selected && stories.some(story => story.id === selected)) {
+        setActive(selected);
+        if (hash.startsWith("pattern-")) requestAnimationFrame(() => document.getElementById("pattern-detail")?.scrollIntoView({ block: "start" }));
+      }
+    };
+    const reveal = () => selectHash(window.location.hash);
+    const click = (event: MouseEvent) => {
+      const anchor = event.target instanceof Element ? event.target.closest("a[href]") : null;
+      if (!anchor) return;
+      const url = new URL(anchor.getAttribute("href")!, window.location.href);
+      if (url.origin === window.location.origin && url.pathname === window.location.pathname) selectHash(url.hash);
+    };
+    reveal();
+    window.addEventListener("hashchange", reveal);
+    document.addEventListener("click", click, true);
+    return () => { window.removeEventListener("hashchange", reveal); document.removeEventListener("click", click, true); };
+  }, []);
   const story = stories.find(s => s.id === active)!;
   const Figure = story.Figure;
   return <section className={`${embedded ? "" : "experience-shell"} ${styles.section}`} id="discoveries" aria-labelledby="pattern-heading">

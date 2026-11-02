@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { ChargeExplorer, ClockExplorer } from "./InteractiveReadouts";
 import { Math } from "@/components/Math";
-import { BudgetBridge, LeptonLadder } from "./DerivationFigures";
+import { AbelianBudgetDerivation } from "./AbelianBudgetDerivation";
+import { SharedStructureBridge } from "./SharedStructureBridge";
+import { SharedSeedDerivation,CosmologyDerivation } from "./ReadoutDerivations";
+import { FlavorDerivation } from "./FlavorDerivation";
+import { CommonSourcePath } from "./CommonSourcePath";
+import { TheoryInputAccount } from "./TheoryInputAccount";
 import { GuideNav } from "./GuideNav";
 import { StartingStructures } from "./StartingStructures";
 import { PatternConnections } from "./PatternConnections";
@@ -42,38 +47,37 @@ function Scope({ achieved, given, open }: { achieved: string; given: string; ope
 export function TheoryGuide() {
   return <article className="guide-shell">
     <header className="guide-introduction">
-      <h1>Work one connection all the way through.</h1>
-      <p className="guide-lead">Understand the two starting principles. Build one family of charges, follow the alpha equation and explore the structural connections.</p><Link className="guide-link inline-flex min-h-11 items-center mt-3" href="/#outcomes">Start with the overall results and connections</Link>
+      <h1>From particle structure to a calculated coupling.</h1>
+      <p className="guide-lead">Follow the actual operations, then carry their outputs into the next calculation. Build the carrier representation, compute charges and transport lengths, and see the same lattice norms and matter budget enter alpha. The connected cosmological and quantum examples follow the same discipline.</p><Link className="guide-link inline-flex min-h-11 items-center mt-3" href="/#outcomes">Start with the overall results and connections</Link>
     </header>
+    <p className="figure-note">An accepted starting principle, a mathematical consequence, a physical readout under hypotheses and a measured value play different roles. Each step below says which role its inputs and result have.</p>
     <GuideNav />
     <StartingStructures embedded />
     <section className="guide-section" id="matter">
       <h2>Build the charges of one family</h2><p className="guide-lead">Select one colour slot and one weak slot. Their hypercharges add to 1/6: a quark component. Every even selection has a place in the family.</p>
       <p className="figure-note">Given here: the marked five slot carrier, normalized hypercharge and the even exterior representation. <a className="guide-link" href="#inputs">Inspect the starting inputs</a>.</p>
+      <p>The marked split also determines which transformations preserve the interface. Unitary rotations within the three colour slots and within the two weak slots, with total determinant one, form S(U(3) × U(2)). Their Lie algebra is su(3) ⊕ su(2) ⊕ u(1). This is the structure preserving gauge algebra in the stated carrier construction.</p>
+      <p>The remaining block phase must be traceless. If its weights are x_c and x_w, then 3x_c + 2x_w = 0. The primitive integer pair is (−2,3), up to the common orientation. In the stated charge convention X = 6Y, that fixes the two slot hypercharges:</p>
+      <Math block>{String.raw`Y=\frac16\operatorname{diag}(-2,-2,-2,3,3)`}</Math>
+      <p>On an exterior state the occupied slot charges add. That one rule produces the six quark and lepton sectors below. The relation Q_em = T₃ + Y then separates the two components of each weak doublet.</p>
       <ChargeExplorer />
-      <details className="guide-details mt-6"><summary>Gauge structure and the three families</summary>
+      <details className="guide-details mt-6"><summary>Check the gauge anomalies and the family interpretation</summary>
+      <p>The full sixteen component charge list has Tr Y = 0 and Tr Y³ = 0. Its mixed gauge anomaly coefficients also cancel:</p>
+      <Math block>{String.raw`\begin{aligned}SU(3)^2U(1):&\quad\frac16-\frac13+\frac16=0,\\SU(2)^2U(1):&\quad\frac14-\frac14=0.\end{aligned}`}</Math>
+      <p>Each term includes the appropriate multiplicity and fundamental representation index. This is a consistency check on the given Weyl spectrum. The field interactions and their physical source use the common action and reconstruction route.</p>
+      <p><Link className="guide-link" href="/documentation?evidence=python_verification%3Averification%2Fv310_carrier_sm_anomaly.py">Read the actual spectrum and anomaly calculation</Link></p>
+
       <p className="mt-6">The two weak components then have electric charges 2/3 and −1/3. The other even selections give the conjugate quark and lepton sectors. The subgroup preserving the normalized 3+2 structure supplies the familiar SU(3), SU(2) and U(1) Lie algebra, with its central quotient handled separately.</p>
       <h3 className="mt-8 text-2xl">Where do the three families enter?</h3><p className="mt-3">A sphere with four marked punctures has three independent one cycle directions: a loop around all four punctures gives one relation. Its family lattice is the A₃ side of the construction. Relating those three directions to physical families is part of the specified dictionary. Three colours and three families play different roles.</p>
       <SourceLine query="family" label="Family geometry, representations and anomalies" />
       </details>
     </section>
-    <BudgetBridge />
+    <SharedStructureBridge />
+    <SharedSeedDerivation />
+    <FlavorDerivation />
+    <AbelianBudgetDerivation />
     <AlphaDerivation />
-    <section className="guide-section" id="e8">
-      <h2>Why E₈ appears</h2><p className="guide-lead">The carrier and family sides have compatible lattice data. The matching is an operation that can be checked.</p>
-      <ol className="guide-steps"><li><strong>Build the two sides.</strong> D₅ has rank 5; A₃ has rank 3. Each has discriminant group ℤ₄.</li><li><strong>Check the glue.</strong> The two discriminant norms add to 5/4 + 3/4 = 2. The index 4 extension has determinant (4 × 4)/4² = 1.</li><li><strong>Identify the result.</strong> The positive even unimodular lattice of rank 8 is E₈, with 240 roots. Its Lie algebra has dimension 248.</li></ol>
-      <Scope achieved="A lattice construction under the specified glue data." given="The carrier, family lattice, matching and positive lattice setting." open="E₈ is the closure and consistency object here. Its appearance does not by itself identify E₈ as the unbroken physical gauge group." />
-      <SourceLine query="glue" label="The lattice and bootstrap results" />
-    </section>
-    <section className="guide-section" id="flavor">
-      <h2>A common ladder for masses and mixing</h2><p className="guide-lead">The charged flavour construction already contains fixed word lengths, amplitudes and mass ratios. Its achievements should stay visible alongside the remaining source and scale questions.</p>
-      <div className="formula-sequence"><Math block>{String.raw`\varphi_0=\frac1{6\pi}+\frac3{256\pi^4}`}</Math><Math block>{String.raw`\lambda_Y=\sqrt{\varphi_0(1-\varphi_0)}`}</Math><Math block>{String.raw`\widehat m_{f,j}=\frac{v_{\rm geo}}{\sqrt2}\lambda_Y^{L_{f,j}}\Lambda_{f,j}`}</Math></div>
-      <LeptonLadder />
-      <ol className="guide-steps"><li><strong>One seed:</strong> φ₀ ≈ 0.053172 gives λY ≈ 0.224376. Powers of a number smaller than one produce a hierarchy.</li><li><strong>Fixed steps:</strong> the residue and winding operators supply L = R + 6W, with det R = 8. The exponent for each component is a compiler output.</li><li><strong>Closed readouts:</strong> charged lepton amplitudes and quark ratios are worked out. For example, the derived selector stratum gives cᵤ/c_d = 55/117.</li><li><strong>Shared dependencies:</strong> the same seed enters mixing, the boundary response and conditional cosmological readouts. These are correlated theoretical outputs.</li></ol>
-      <Scope achieved="The stated charged flavour branch, lepton amplitudes and quark ratio readouts; explicit mixing and neutrino constructions with individual statuses." given="The residue/transport construction, its selected stratum and source scale conventions." open="Absolute calibration, transfer to observed mass schemes and the full common physical source remain distinct from the closed dimensionless relations. Neutrino candidates retain their own assumptions and history." />
-      <SourceLine query="flavor-ratio-closed" label="Closed flavour ratios and the remaining absolute anchor" />
-      <Link className="guide-link inline-block mt-3" href="/predictions">Compare the registered textures, bands and later candidates</Link>
-    </section>
+    <CosmologyDerivation />
     <section className="guide-section" id="clocks">
       <h2>Several clocks, connected by actual actions</h2><p className="guide-lead">The clock network is part of the construction. Each operator acts on a particular space; an order or a recurring number does not identify two operators.</p>
       <ClockExplorer />
@@ -88,14 +92,17 @@ export function TheoryGuide() {
     <PatternConnections embedded />
     <section className="guide-section" id="source">
       <h2>From connected mathematics to a common physical source</h2><p className="guide-lead">The original papers already provide a common conditional route from the boundary source to fields, state and positive time. Read its actual reconstruction hypotheses alongside the later source and event results.</p>
-      <h3 className="mt-7 text-2xl">Local fields and the Higgs source</h3><p className="mt-3">The source route is structured P1/P2 → admissible carrier → action and partition functional → full field moments → OS/CAR reconstruction → the common renormalized action → physical readers. Under reflection positivity, temperedness, graded Euclidean covariance and symmetry, clustering and the named measure and limit conditions, the reconstruction supplies the Hilbert space, vacuum, local net and positive time together. Later dynamical Higgs responses and the specified 1+1 dimensional cylinder construction retain their own geometry and premises.</p>
-      <p className="mt-4"><Link className="guide-link" href="/documentation?section=section%3A591993c8c68b37136f0d">Read the original common OS/CAR reconstruction theorem</Link></p>
+      <CommonSourcePath/>
+      <details className="guide-details mt-7"><summary>Related local Higgs, event and gravitational results</summary>
+      <p>Later dynamical Higgs responses and the specified 1+1 dimensional cylinder construction retain their own geometry and premises.</p>
       <h3 className="mt-7 text-2xl">E₈ events and continuous time</h3><p className="mt-3">The original epsilon bracket constrains the Hodge response even for correlated inputs under the stated complete, trace preserving operation assumptions. That finite event response cannot by itself be a continuous evolution beginning at a unitary identity. Event branches, records, additional time branches and their original source realization have to be distinguished.</p>
       <h3 className="mt-7 text-2xl">Gravity, cosmology and units</h3><p className="mt-3">The conditional entanglement and boundary channels connect c₃⁻¹ = 8π to the Einstein normalization; the scale grammar and cosmological branches have explicit readouts. A dimensionless construction still needs dimensional calibration. Applications to local geometry, spin 2 and dynamical gravity retain the hypotheses of the corresponding source and continuum construction.</p>
       <details className="guide-details mt-5"><summary>A later correction to an earlier gap argument</summary><p>The later source review shows that the specified Dirichlet to Neumann form bound alone does not imply the printed transfer gap Δ−2v. A comparison with the actual transfer operator is still required. Earlier broad “gap decoupled” summaries must be read with this correction.</p><Link href={evidence("metric-dtn-form-bound-needs-transfer-comparison-for-gap")}>Read the corrected scope and counterexample</Link></details>
       <SourceLine query="Higgs" label="Local and dynamical Higgs source results" /><SourceLine query="hodge" label="E₈ events, time and records" /><SourceLine query="gravity" label="Gravitational channels and their conditions" />
+      </details>
     </section>
-    <TheoryMap />
+    <TheoryInputAccount/>
+    <details className="guide-details my-8"><summary>Explore the wider result map</summary><TheoryMap /></details>
     <section className="guide-section" id="status">
       <h2>What does “established” mean here?</h2><p className="guide-lead">Read the precise statement together with its premises. A mathematical result, a numerical calculation and a physical identification answer different questions.</p>
       <dl className="scope-list"><div><dt>[E] Established in its stated scope</dt><dd>The accompanying type distinguishes a formal theorem, lattice result, identity or numerical readout. An [E] marker does not certify all of physics.</dd></div><div><dt>[C] Conditional</dt><dd>A specified physical interpretation or construction depends on named hypotheses. The conditions travel with the result.</dd></div><div><dt>[O] Open or supplied</dt><dd>An unproved connection or declared input. Inputs and research tasks are described separately in the record.</dd></div><div><dt>[X] Test or exclusion</dt><dd>A test has a defined target. A counterexample rules out its stated class, rather than every possible realization.</dd></div></dl>

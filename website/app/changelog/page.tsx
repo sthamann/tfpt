@@ -1,3 +1,4 @@
+import { PublicationArchive } from "@/components/PublicationArchive";
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -242,7 +243,8 @@ export default async function ChangelogPage({
             <nav className="reference-links" aria-label={"Reviewed entry points for " + question.titleEN}>
               {related.map((finding) => <Link key={finding.id} href={"/results?record=" + encodeURIComponent(finding.id)}>{finding.titleEN}</Link>)}
             </nav>
-          </article>;
+            <PublicationArchive/>
+  </article>;
         })}
       </div>
       <nav className="reference-links" aria-label="Research snapshot sources">
@@ -268,7 +270,8 @@ export default async function ChangelogPage({
               <Link href={"/results?tab=history&search=" + encodeURIComponent(attempt.id)}>Read the historical record and original sources</Link>
               {related.map((finding) => <Link key={finding.id} href={"/results?record=" + encodeURIComponent(finding.id)}>{finding.titleEN}</Link>)}
             </nav>
-          </article>;
+            <PublicationArchive/>
+  </article>;
         })}
       </div> : <p>No original attempt in this snapshot carries an explicit calendar date. The reviewed questions above remain the entry points to current research.</p>}
     </section>
@@ -292,5 +295,6 @@ export default async function ChangelogPage({
         />
       </details>
     </section>
+    <PublicationArchive/>
   </article>;
 }

@@ -9,13 +9,16 @@ import { useRouter } from "next/navigation";
  * from landing on a missing fragment.
  */
 const MAP: Record<string, string> = {
+  inputs: "/explain#inputs",
+  discoveries: "/explain#discoveries",
+  downloads: "/changelog#publication-presentation",
   papers: "/papers",
   predictions: "/predictions",
   "open-gates": "/verification#open-gates",
   chain: "/architecture#chain",
   gravity: "/architecture#gravity",
   rosetta: "/orientation#rosetta",
-  ecosystem: "/#downloads",
+  ecosystem: "/changelog#publication-presentation",
 };
 
 export function LegacyAnchorRedirect() {

@@ -2,27 +2,13 @@ import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 export const metadata: Metadata = pageMetadata("/");
 import { Hero } from "@/components/Hero";
-import { IntroVideo } from "@/components/IntroVideo";
-import { InOneBreath } from "@/components/InOneBreath";
-import { WhyThisMatters } from "@/components/WhyThisMatters";
-import { TrustContract } from "@/components/TrustContract";
-import { ClaimStack } from "@/components/ClaimStack";
-import { GeometryArc } from "@/components/GeometryArc";
-import { CodePrimesBand } from "@/components/CodePrimesBand";
-import { HonestyBand } from "@/components/HonestyBand";
-import { MethodBand } from "@/components/MethodBand";
-import { Safeguards } from "@/components/Safeguards";
-import { Overview } from "@/components/Overview";
-import { PathChooser } from "@/components/PathChooser";
-import { DownloadsTeaser } from "@/components/DownloadsTeaser";
 import { LegacyAnchorRedirect } from "@/components/LegacyAnchorRedirect";
-import { TheoryMap } from "@/components/explain/TheoryGuide";
 import { ResearchSnapshot } from "@/components/explain/ResearchSnapshot";
-import { OutcomeAtlas, ConnectionStory } from "@/components/explain/TheoryExperience";
-import { StartingStructures } from "@/components/explain/StartingStructures";
-import { PatternConnections } from "@/components/explain/PatternConnections";
+import { OutcomeAtlas } from "@/components/explain/TheoryExperience";
+import Link from "next/link";
+import { SharedStructureBridge } from "@/components/explain/SharedStructureBridge";
+import { HomeComparisonDetails } from "@/components/explain/HomeComparisonDetails";
 import { PredictionOverview } from "@/components/explain/PredictionOverview";
-import { DerivationPreview } from "@/components/explain/DerivationPreview";
 
 export default function HomePage() {
   return (
@@ -32,31 +18,11 @@ export default function HomePage() {
           /predictions, /architecture, /verification, /orientation). */}
       <LegacyAnchorRedirect />
       <Hero />
-      <PredictionOverview />
       <OutcomeAtlas />
-      <StartingStructures />
-      <ConnectionStory />
-      <PatternConnections />
-      <div className="guide-shell"><ResearchSnapshot />
-      <details className="guide-details my-8"><summary>Work through a concrete derivation: charges, the family and the alpha budget</summary><DerivationPreview /></details>
-      <details className="guide-details my-8"><summary>Explore the full theory map and its source links</summary><TheoryMap compact /></details></div>
-      <div className="guide-shell py-8"><details className="guide-details">
-      <summary>Open the detailed publication overview and historical film</summary>
-      <p>The following sections preserve the publication narrative and its dated comparisons. The current result library also includes later source reviewed research and scope corrections. Script totals describe an inventory; they do not announce a new suite run.</p>
-      <IntroVideo />
-      <InOneBreath />
-      <WhyThisMatters />
-      <TrustContract />
-      <ClaimStack />
-      <GeometryArc />
-      <CodePrimesBand />
-      <HonestyBand />
-      <MethodBand />
-      <Safeguards compact />
-      <Overview />
-      <PathChooser />
-      <DownloadsTeaser />
-      </details></div>
+      <SharedStructureBridge compact />
+      <HomeComparisonDetails><PredictionOverview anchored={false}/></HomeComparisonDetails>
+      <section className="experience-shell guide-section" id="worked-paths"><h2>Follow a construction, rather than a list of correspondences.</h2><p className="guide-lead">The detailed guide works through the operations: an exterior operator changes a carrier state; the family matrices produce mass powers; one common seed feeds four observations; one lattice root becomes a Bell ray in the specified chart.</p><div className="flex flex-wrap gap-5 mt-6"><Link className="guide-link" href="/explain#inputs">Carrier and lattice construction</Link><Link className="guide-link" href="/explain#flavor">Calculate a mass relation</Link><Link className="guide-link" href="/explain#seed">Test the common seed</Link><Link className="guide-link" href="/explain#quantum">Follow code into quantum geometry</Link></div></section>
+      <div className="guide-shell"><ResearchSnapshot/><p className="my-8"><Link className="guide-link" href="/changelog#publication-presentation">Read the earlier film and presentation in the publication archive</Link></p></div>
     </>
   );
 }
