@@ -1,7 +1,6 @@
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, FileText, Github } from "lucide-react";
 import {
   ChangelogBrowser,
   type ChangelogDayEntry,
@@ -14,8 +13,10 @@ import {
   CHANGELOG_MACROS,
   type ChangelogNode,
 } from "@/lib/changelog";
-import { REPO_URL, SITE_URL } from "@/lib/utils";
+import { REPO_URL } from "@/lib/utils";
 import { SITE_VERSION } from "@/lib/version";
+import { semanticAtlas } from "@/lib/semantic";
+import summary from "@/lib/research-summary.json";
 
 const latest = CHANGELOG[0]?.date ?? "";
 const earliest = CHANGELOG[CHANGELOG.length - 1]?.date ?? "";
@@ -150,6 +151,15 @@ function deriveEntry(entry: (typeof CHANGELOG)[number], gi: number): DerivedEntr
   };
 }
 
+/** Calendar dates come only from the attempt metadata, never an identifier or filename. */
+function recordedDate(value: string | null): string | null {
+  const match = value?.match(/^(\d{4})-?(\d{2})-?(\d{2})(?:T.*)?$/);
+  if (!match) return null;
+  const iso = [match[1], match[2], match[3]].join("-");
+  const parsed = new Date(iso + "T00:00:00Z");
+  return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === iso ? iso : null;
+}
+
 export default async function ChangelogPage({
   searchParams,
 }: {
@@ -196,119 +206,91 @@ export default async function ChangelogPage({
     area: e.area,
   }));
 
-  return (
-    <>
-      <section className="relative isolate overflow-hidden pt-12 pb-8 sm:pt-16">
-        <div aria-hidden className="absolute inset-0 grid-bg pointer-events-none" />
-        <div
-          aria-hidden
-          className="absolute -top-40 left-1/2 -z-10 h-[460px] w-[1000px] -translate-x-1/2 rounded-full opacity-30 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(closest-side, rgba(59,130,246,0.3), rgba(139,92,246,0.25), transparent)",
-          }}
+  const atlas = semanticAtlas();
+  const currentQuestions = [
+    "problem:atlas-clock-defect-and-operational-reconstruction",
+    "problem:automated-operator-source-synthesis",
+    "problem:marked-seam-monodromy-and-lattice-lifts",
+  ].flatMap((id) => {
+    const question = atlas.problems.find((item) => item.id === id);
+    return question ? [question] : [];
+  });
+  const datedAttempts = atlas.attempts.flatMap((attempt) => {
+    const date = recordedDate(attempt.date);
+    return date ? [{ ...attempt, recordedDate: date }] : [];
+  }).sort((a, b) => b.recordedDate.localeCompare(a.recordedDate) || a.id.localeCompare(b.id)).slice(0, 8);
+
+  return <article className="reference-page">
+    <header className="reference-header">
+      <h1>Research and publication history</h1>
+      <p>Follow the current research snapshot alongside the dated publication log. An original attempt, a reviewed finding and a published change are distinct records, each with its own date and scope.</p>
+    </header>
+
+    <section className="reference-section" id="research-snapshot">
+      <h2>The current research snapshot</h2>
+      <p>The snapshot generated <time dateTime={summary.generatedAt}>{summary.generatedAt.slice(0, 10)}</time> contains {summary.counts.reviewedFindings.toLocaleString("en-US")} source reviewed findings and {summary.counts.ledgerActive.toLocaleString("en-US")} active published ledger claims. These records retain their original premises and status. The snapshot date describes this export; it does not date every discovery.</p>
+      <p className="reference-note">{summary.counts.findingStatuses.established_scoped.toLocaleString("en-US")} findings established in scope, {summary.counts.findingStatuses.conditional.toLocaleString("en-US")} conditional findings and {summary.counts.findingStatuses.excluded_scoped.toLocaleString("en-US")} scoped exclusions. The inventory is separate from a fresh verification run.</p>
+      <div className="reference-rows">
+        {currentQuestions.map((question) => {
+          const related = question.findingIds.slice(-2).flatMap((id) => {
+            const finding = atlas.findings.find((item) => item.id === id);
+            return finding ? [finding] : [];
+          });
+          return <article key={question.id}>
+            <h3><Link href={"/results?question=" + encodeURIComponent(question.id)}>{question.titleEN}</Link></h3>
+            <p>{question.questionEN}</p>
+            <nav className="reference-links" aria-label={"Reviewed entry points for " + question.titleEN}>
+              {related.map((finding) => <Link key={finding.id} href={"/results?record=" + encodeURIComponent(finding.id)}>{finding.titleEN}</Link>)}
+            </nav>
+          </article>;
+        })}
+      </div>
+      <nav className="reference-links" aria-label="Research snapshot sources">
+        <Link href="/results">Explore the questions and reviewed results</Link>
+        <a href="/research/coverage.json">Inspect the snapshot coverage record</a>
+      </nav>
+    </section>
+
+    <section className="reference-section" id="dated-attempts">
+      <h2>Recent dated attempt records</h2>
+      <p>These dates are stored on the original attempt records. Related findings may have been reviewed later. The date of an attempt is not assigned to every result connected to it.</p>
+      <p className="reference-note">Recorded verdicts describe historical attempts. A reported PASS is separate from a reviewed theorem, a fresh run or completion of the parent physical goal.</p>
+      {datedAttempts.length ? <div className="reference-rows">
+        {datedAttempts.map((attempt) => {
+          const related = attempt.reviewedFindingIds.slice(-2).flatMap((id) => {
+            const finding = atlas.findings.find((item) => item.id === id);
+            return finding ? [finding] : [];
+          });
+          return <article key={attempt.id}>
+            <p className="reference-note">Recorded attempt date: <time dateTime={attempt.recordedDate}>{attempt.recordedDate}</time></p>
+            <h3>{attempt.titleEN.replace(/[-_]\d{8}$/, "").replace(/[-_]/g, " ")}</h3>
+            <nav className="reference-links" aria-label={"Evidence for " + attempt.titleEN}>
+              <Link href={"/results?tab=history&search=" + encodeURIComponent(attempt.id)}>Read the historical record and original sources</Link>
+              {related.map((finding) => <Link key={finding.id} href={"/results?record=" + encodeURIComponent(finding.id)}>{finding.titleEN}</Link>)}
+            </nav>
+          </article>;
+        })}
+      </div> : <p>No original attempt in this snapshot carries an explicit calendar date. The reviewed questions above remain the entry points to current research.</p>}
+    </section>
+
+    <section className="reference-section" id="publication-history">
+      <h2>The dated publication log</h2>
+      <p>This log covers {earliest} through {latest}: {CHANGELOG_COUNT.toLocaleString("en-US")} entries across {days.length.toLocaleString("en-US")} recorded days in the TFPT {SITE_VERSION} publication history. Its source is <code>changelog.tex</code>. Later research can appear in the reviewed snapshot above before a new publication entry is written.</p>
+      <p className="reference-note">Original entries retain their dated wording, including statuses and numerical inventories from that period. Use the current result record to inspect subsequent revisions or scope corrections.</p>
+      <nav className="reference-links" aria-label="Publication log sources">
+        <a href="/papers/changelog.pdf">Read the publication log PDF</a>
+        <a href={REPO_URL + "/blob/main/changelog.tex"}>Inspect the original publication source</a>
+      </nav>
+      <details open={Boolean(sp.day)} className="mt-6">
+        <summary>Browse the original publication entries by day</summary>
+        <ChangelogBrowser
+          days={days}
+          index={index}
+          selectedDay={selectedDay}
+          entries={dayEntries}
+          macros={CHANGELOG_MACROS}
         />
-        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <nav aria-label="Breadcrumb" className="mb-6">
-            <Link
-              prefetch={false}
-              href="/"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-600 transition-colors hover:text-slate-800"
-            >
-              <ArrowLeft size={14} />
-              Back to overview
-            </Link>
-          </nav>
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-blue-800">
-            <span className="uppercase">Changelog</span>
-            <span aria-hidden className="text-blue-700/60">·</span>
-            <span className="font-mono">{CHANGELOG_COUNT} entries</span>
-            <span aria-hidden className="text-blue-700/60">·</span>
-            <span className="font-mono">{days.length} days</span>
-          </span>
-          <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-slate-950 sm:text-5xl">
-            Every change and new result,{" "}
-            <span className="text-gradient-blue">by date</span>.
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-700">
-            The canonical, dated record of the TFPT development: new
-            verification modules (<code className="font-mono text-slate-800">vN</code>),
-            status changes, editorial passes and infrastructure. Browse one day
-            at a time, step between days, or filter across every entry. This page
-            is generated directly from the repository&rsquo;s{" "}
-            <code className="font-mono text-slate-800">changelog.tex</code>, so it
-            never drifts from the source. Module numbers refer to{" "}
-            <code className="font-mono text-slate-800">verification/vN_*.py</code>;
-            claim IDs refer to rows of the status ledger.
-          </p>
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <Link
-              prefetch={false}
-              href="/papers/changelog.pdf"
-              target="_blank"
-              rel="noopener"
-              className="inline-flex items-center gap-2 rounded-full bg-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-transform hover:scale-105"
-            >
-              <FileText size={15} aria-hidden />
-              Changelog (PDF)
-            </Link>
-            <Link
-              prefetch={false}
-              href={REPO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-slate-700 ring-1 ring-slate-300/50 transition-colors hover:bg-slate-900/5 hover:text-slate-950"
-            >
-              <Github size={15} aria-hidden />
-              Repository
-            </Link>
-            {latest && (
-              <span className="font-mono text-xs text-slate-600">
-                TFPT {SITE_VERSION} · {earliest} → {latest}
-              </span>
-            )}
-          </div>
-
-          <dl className="mt-6 flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-slate-600">
-            <div className="flex items-center gap-1.5">
-              <span className="rounded bg-emerald-500/10 px-1 font-mono font-semibold text-emerald-700 ring-1 ring-emerald-400/30">
-                [E]
-              </span>
-              <dd>exact / proven</dd>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span className="rounded bg-amber-500/10 px-1 font-mono font-semibold text-amber-700 ring-1 ring-amber-400/30">
-                [C]
-              </span>
-              <dd>conditional</dd>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span className="rounded bg-slate-500/10 px-1 font-mono font-semibold text-slate-700 ring-1 ring-slate-600/30">
-                [O]
-              </span>
-              <dd>open / axiom</dd>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span className="rounded bg-rose-500/10 px-1 font-mono font-semibold text-rose-700 ring-1 ring-rose-400/30">
-                [X]
-              </span>
-              <dd>kill test</dd>
-            </div>
-          </dl>
-        </div>
-      </section>
-
-      <section className="relative py-8 sm:py-12">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <ChangelogBrowser
-            days={days}
-            index={index}
-            selectedDay={selectedDay}
-            entries={dayEntries}
-            macros={CHANGELOG_MACROS}
-          />
-        </div>
-      </section>
-    </>
-  );
+      </details>
+    </section>
+  </article>;
 }

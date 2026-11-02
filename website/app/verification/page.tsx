@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import foundation from "@/lib/foundation-index.json";
+import { ModuleCatalog } from "@/components/verification/ModuleCatalog";
 import { pageMetadata } from "@/lib/seo";
 import { REPO_URL } from "@/lib/utils";
 import summary from "@/lib/research-summary.json";
@@ -9,16 +11,19 @@ import styles from "./verification.module.css";
 
 export const metadata: Metadata = pageMetadata("/verification");
 
-export default function VerificationPage() {
+export default async function VerificationPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  const params = await searchParams;
+  const single = (value: string | string[] | undefined) => typeof value === "string" ? value : "";
   return (
-    <div className={styles.page}>
+    <div className={`reference-page ${styles.page}`}>
       <header className={styles.header}>
         <Link href="/explain" className={styles.back}>Back to the connections</Link>
         <h1>Follow a result back to its evidence.</h1>
         <p className={styles.lead}>Choose a result, inspect its assumptions, then run the calculation that supports it. Each check answers a specific question. The original status and the scope of that answer stay attached.</p>
         <nav className={styles.actions} aria-label="Verification sections">
           <a href="#first-check" className={styles.primary}>Try one check <ArrowRight size={17} aria-hidden /></a>
-          <a href="#reproduce" className={styles.secondary}>Reproduce locally</a>
+          <a href="#module-catalog" className={styles.secondary}>Find a verification module</a>
+          <a href="#reproduce" className={styles.textLink}>Reproduce locally</a>
           <a href="#dag" className={styles.textLink}>All technical tools</a>
         </nav>
       </header>
@@ -29,6 +34,10 @@ export default function VerificationPage() {
         </div>
         <VerificationTools mode="check" />
         <p className={styles.note}>This is a mathematical lattice check. Identifying that lattice with a physical system requires additional arguments and retains its own status.</p>
+      </section>
+      <section id="module-catalog" className={styles.section}>
+        <div className={styles.sectionIntro}><h2>Find the source behind a check.</h2></div>
+        <ModuleCatalog modules={foundation.modules} query={single(params.moduleQuery)} cluster={single(params.moduleCluster)} requestedPage={single(params.catalogPage)} />
       </section>
       <section className={styles.section}>
         <div className={styles.sectionIntro}>

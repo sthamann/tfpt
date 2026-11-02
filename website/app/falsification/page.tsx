@@ -1,162 +1,69 @@
-import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { SectionHeader } from "@/components/SectionHeader";
-import { KillBoard } from "@/components/falsification/KillBoard";
-import { FalsificationTable } from "@/components/falsification/FalsificationTable";
-import { KillCriteria } from "@/components/falsification/KillCriteria";
-import { NoKnobsAudit } from "@/components/falsification/NoKnobsAudit";
-import { SITE_VERSION } from "@/lib/version";
 import { SITE_URL } from "@/lib/utils";
+import { frozenRegistry, predictionGroups, predictionById, predictionLabel, type FrozenPrediction } from "@/lib/frozen-predictions";
 
-export const metadata: Metadata = pageMetadata("/falsification");
-
-const articleJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ScholarlyArticle",
-  headline: "How to kill TFPT — Falsification Surface and No-Knobs Audit",
-  alternateName: `TFPT ${SITE_VERSION} Falsification Map`,
-  url: `${SITE_URL}/falsification`,
-  inLanguage: "en",
-  isPartOf: {
-    "@type": "PublicationIssue",
-    name: `TFPT ${SITE_VERSION} compiler-closure document set`,
-  },
-  author: [
-    { "@type": "Person", name: "Stefan Hamann" },
-    { "@type": "Person", name: "Alessandro Rizzo" },
-  ],
-  abstract:
-    `An explicit falsification surface for the TFPT ${SITE_VERSION} compiler closure. For every output the page lists allowed inputs, forbidden inputs, free-knob count, and a committed kill criterion that, if satisfied, falsifies the construction.`,
-  about: [
-    "Falsification",
-    "No-knobs audit",
-    "Topological Fixed-Point Theory",
-    "Strong-CP problem",
-    "Solar neutrino angle",
-    "Inflation tensor ratio",
-  ],
+export const metadata: Metadata = {
+  title: "Failure Criteria: What Would Falsify Each TFPT Statement?",
+  description: "Read the exact frozen failure criteria for TFPT statements with their assumptions. Distinguish a mathematical counterexample, a failed physical branch and the remaining goal of a complete theory.",
+  alternates: { canonical: `${SITE_URL}/falsification` },
 };
 
+function CriterionRow({ row }: { row: FrozenPrediction }) {
+  return <article id={row.id} className="scroll-mt-24 border-b border-slate-300 py-6">
+    <h3 className="font-serif text-xl font-semibold text-slate-950">{predictionLabel(row.id)}</h3>
+    <p className="mt-3 max-w-3xl leading-relaxed text-slate-800">{row.kill_criterion}</p>
+    <details className="mt-3">
+      <summary className="cursor-pointer py-2 font-medium text-blue-800">Assumptions and scope of this criterion</summary>
+      <p className="mt-3 max-w-3xl text-sm leading-relaxed">{row.conditional_on || (row.band_min ? "The formula uses an external reheating input N★ in [50, 60]." : row.layer === "assigned" ? "This is an assigned texture. Its failure tests the assigned branch." : "The registry classifies this as a core numerical readout. An empirical test still needs the stated physical observable and comparison convention.")}</p>
+      <p className="mt-3 max-w-3xl text-sm leading-relaxed">The criterion above is reproduced verbatim from the register frozen on 9 June 2026. Conditions such as combined error, transport corrections and subleading budgets remain part of that statement. This page does not replace them with measurement uncertainty alone.</p>
+      <nav className="reference-links" aria-label={`${predictionLabel(row.id)} context`}><Link href={`/predictions#${row.id}`}>Exact formula and frozen value</Link><Link href="/results?topic=topic%3Avalidation">Read the research context</Link></nav>
+    </details>
+  </article>;
+}
+
 export default function FalsificationPage() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
-
-      <section className="relative isolate overflow-hidden pt-12 pb-12 sm:pt-16">
-        <div aria-hidden className="absolute inset-0 grid-bg pointer-events-none" />
-        <div
-          aria-hidden
-          className="absolute -top-40 left-1/2 -z-10 h-[500px] w-[1000px] -translate-x-1/2 rounded-full opacity-30 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(closest-side, rgba(244,63,94,0.4), rgba(168,85,247,0.2), transparent)",
-          }}
-        />
-        <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <nav aria-label="Breadcrumb" className="mb-6">
-            <Link
-              prefetch={false}
-              href="/"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-600 transition-colors hover:text-slate-800"
-            >
-              <ArrowLeft size={14} />
-              Back to overview
-            </Link>
-          </nav>
-          <span className="inline-flex items-center gap-2 rounded-full border border-rose-400/20 bg-rose-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-rose-800">
-            <span className="uppercase">Falsification surface · 2026</span>
-          </span>
-          <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-slate-950 sm:text-5xl md:text-6xl">
-            How to <span className="text-blue-700">kill</span> TFPT.
-          </h1>
-          <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-700">
-            A theory that cannot fail explains nothing. This page lists the
-            committed kill criteria of the TFPT {SITE_VERSION} compiler closure — frozen in
-            advance in the freeze file — together with the experiment or
-            structural argument that would{" "}
-            <span className="font-semibold text-slate-900">
-              kill the construction
-            </span>
-            . The no-knobs audit underneath records what the theory may
-            consume as input and what it may not.
-          </p>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600">
-            Each output is killed by{" "}
-            <em>any single</em> satisfied criterion. The construction does not
-            survive on most outputs being right.
-          </p>
-        </div>
-      </section>
-
-      <section
-        id="kill-board-section"
-        className="relative scroll-mt-20 py-12 sm:py-16"
-        aria-labelledby="kill-board-heading"
-      >
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            id="kill-board-heading"
-            eyebrow="The kill board"
-            title="Published failure criteria and recorded comparisons"
-            description="Each card preserves its published value, failure criterion and original empirical comparison. These are historical source records. The dated empirical audit linked below provides the updated primary comparisons; data proximity does not promote a claim."
-          />
-          <KillBoard />
-        </div>
-      </section>
-
-      <section
-        id="confrontation-table-section"
-        className="relative scroll-mt-20 border-t border-slate-200/60 py-12 sm:py-16"
-        aria-labelledby="confrontation-table-heading"
-      >
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            id="confrontation-table-heading"
-            eyebrow="The confrontation table"
-            title="The published comparison record"
-            description="This historical table preserves the published prediction surface, dated source labels and original forecasts. The dates in each row identify its evidence; they are not a statement that every measurement or forecast remains current."
-          />
-          <p className="mb-6 mt-4 max-w-3xl leading-relaxed text-slate-700">For primary measurements checked on 2 November 2026, read the <Link href="/empirical-audit" className="font-semibold text-blue-700 underline underline-offset-4">current dated empirical audit</Link>. The frozen formulas and failure criteria are unchanged.</p>
-          <FalsificationTable />
-        </div>
-      </section>
-
-      <section
-        id="kill-criteria-section"
-        className="relative scroll-mt-20 border-t border-slate-200/60 py-12 sm:py-16"
-        aria-labelledby="kill-criteria-heading"
-      >
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            id="kill-criteria-heading"
-            eyebrow="Committed kill criteria"
-            title="Each output has a single sufficient kill condition"
-            description="The solar angle θ₁₂ (JUNO), the tensor ratio r (CMB-S4), neutrino ordering, the strong-CP null, dark-energy w, the EM fixed point, the E₈ glue, the flavor invariants, and no second Higgs — each row is sufficient on its own to falsify the construction. m_p/m_e is listed for honesty: it is explicitly not claimed as a compiler power."
-          />
-          <KillCriteria />
-        </div>
-      </section>
-
-      <section
-        id="no-knobs-section"
-        className="relative scroll-mt-20 border-t border-slate-200/60 py-12 sm:py-16"
-        aria-labelledby="no-knobs-heading"
-      >
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            id="no-knobs-heading"
-            eyebrow="No-knobs audit"
-            title="Inputs allowed, inputs forbidden, free knobs"
-            description="A claim of 'no fitted constants' is only as strong as the audit table behind it. For each TFPT output the matrix records the inputs the construction may use (the two axioms and their consequences), the inputs it explicitly may not use, the number of free parameters available for absorption, the single condition that would falsify the row, and a link to run the check live. The free-knob count is the bar to clear."
-          />
-          <NoKnobsAudit />
-        </div>
-      </section>
-    </>
-  );
+  return <article className="reference-page">
+    <header className="reference-header">
+      <h1>What would falsify each statement?</h1>
+      <p>A failed comparison bears on the statement that connects a formula to an observable. Read the committed failure criterion together with that statement’s assumptions and scope.</p>
+      <nav className="reference-links" aria-label="Failure criteria context"><Link href="/predictions">The frozen register</Link><Link href="/empirical-audit">Dated measurement comparisons</Link><a href="/research/predictions-frozen.json">Read the original criteria</a></nav>
+    </header>
+    <section id="kill-criteria" className="reference-section" aria-labelledby="scope-heading">
+      <span id="kill-criteria-section" className="scroll-mt-24" />
+      <h2 id="scope-heading">Three different ways a statement can fail</h2>
+      <dl className="reference-rows">
+        <div><dt>Mathematical counterexample</dt><dd>An error in a proof or an explicit counterexample under the same hypotheses refutes that mathematical statement. For example, a lattice construction must actually satisfy the evenness, determinant and root conditions it asserts. <Link href="/verification">Inspect and run the lattice check.</Link></dd></div>
+        <div><dt>Conditional physical failure</dt><dd>A measurement satisfying a committed failure criterion rules out the associated physical readout or branch under its stated assumptions. It does not erase separate lattice identities or prove that every other branch fails.</dd></div>
+        <div><dt>The full physical goal</dt><dd>A common source for the mathematical pieces, physical observables, dynamics, spacetime and gravity is still a research task. A successful numerical comparison does not establish that complete construction. <Link href="/results">Follow the current questions and findings.</Link></dd></div>
+      </dl>
+    </section>
+    <section id="kill-board" className="reference-section" aria-labelledby="criteria-heading">
+      <span id="kill-board-section" className="scroll-mt-24" />
+      <h2 id="criteria-heading">The sixteen registered criteria</h2>
+      <p>These are the original criteria, grouped by observable. Their wording has not been updated to match later measurements.</p>
+      <nav className="reference-links" aria-label="Failure criteria groups">{predictionGroups.map(group => <a key={group.id} href={`#${group.id}`}>{group.title}</a>)}</nav>
+      {predictionGroups.map(group => <section key={group.id} id={group.id} className="mt-9 scroll-mt-24" aria-labelledby={`${group.id}-heading`}>
+        <h3 id={`${group.id}-heading`} className="font-serif text-2xl font-semibold text-slate-950">{group.title}</h3>
+        {group.ids.map(id => <CriterionRow key={id} row={predictionById(id)} />)}
+      </section>)}
+    </section>
+    <section id="textures-and-bands" className="reference-section" aria-labelledby="textures-heading">
+      <h2 id="textures-heading">Assigned textures and conditional bands</h2>
+      <p>These four entries retain their separate register classes. A failed texture or reheating dependent branch has that scope.</p>
+      {[...frozenRegistry.assigned_texture_values, ...frozenRegistry.conditional_bands].map(row => <CriterionRow key={row.id} row={row} />)}
+    </section>
+    <section id="no-knobs" className="reference-section" aria-labelledby="inputs-heading">
+      <span id="no-knobs-section" className="scroll-mt-24" />
+      <h2 id="inputs-heading">Keep the assumptions fixed</h2>
+      <p>Apply each comparison to the declared equation, branch and measurement convention. Source mass ratios require their transport map; inflation bands require a reheating input. A revised formula is a new statement with its own history, rather than a replacement for the frozen test.</p>
+      <nav className="reference-links" aria-label="Inputs and method"><Link href="/explain#inputs">Starting assumptions</Link><Link href="/method">Sources, controls and review</Link><Link href="/predictions#variants">Why the solar variants are not new predictions</Link></nav>
+    </section>
+    <section id="confrontation" className="reference-section" aria-labelledby="comparison-heading">
+      <span id="confrontation-table-section" className="scroll-mt-24" />
+      <h2 id="comparison-heading">Compare with data, then return to the criterion</h2>
+      <p>The empirical audit gives four dated comparisons with named primary sources. Its measurement uncertainty distances are descriptive; a register criterion that specifies combined error or a correction budget needs that additional information before a failure verdict.</p>
+      <nav className="reference-links" aria-label="Comparison and historical sources"><Link href="/empirical-audit">Open the dated empirical audit</Link><Link href="/papers">Historical 27 readout publication surface</Link><Link href="/results?topic=topic%3Avalidation">Reviewed results and recorded exclusions</Link></nav>
+    </section>
+  </article>;
 }

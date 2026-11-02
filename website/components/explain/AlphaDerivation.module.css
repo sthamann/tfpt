@@ -1,0 +1,31 @@
+.alpha > p { max-width: 73ch; }
+.sequence { margin: 2.5rem 0; padding: 0; list-style: none; counter-reset: alpha-step; }
+.sequence > li { position: relative; padding: 2rem 0 2rem 3.25rem; border-top: 1px solid var(--guide-line, #c8d3df); counter-increment: alpha-step; }
+.sequence > li::before { content: counter(alpha-step); position: absolute; top: 2.1rem; left: 0; font-family: var(--font-serif), Georgia, serif; font-size: 1.6rem; color: var(--guide-accent, #164c76); line-height: 1; }
+.sequence h3 { margin: 0 0 1rem; font-family: var(--font-serif), Georgia, serif; font-size: clamp(1.4rem, 2.2vw, 1.9rem); line-height: 1.25; text-wrap: balance; }
+.sequence p { max-width: 73ch; margin: 1rem 0; line-height: 1.75; }
+.source { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; font-size: .875rem; }
+.source a, .tableWrap a { color: var(--guide-accent, #164c76); text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+.source a:hover, .tableWrap a:hover { color: #092e4b; text-decoration-thickness: 2px; }
+.source a:focus-visible, .tableWrap a:focus-visible { outline: 2px solid #164c76; outline-offset: 4px; }
+.ingredients, .precision { margin-top: 1.5rem; }
+.tableWrap { overflow-x: auto; margin-top: 1.5rem; scrollbar-color: #849aae #f7f4ed; }
+.tableWrap table { width: 100%; min-width: 740px; border-collapse: collapse; font-size: .9rem; line-height: 1.6; }
+.tableWrap caption { text-align: left; font-family: var(--font-serif), Georgia, serif; font-size: 1.2rem; padding-bottom: 1rem; }
+.tableWrap th, .tableWrap td { padding: 1rem .85rem; border-bottom: 1px solid #c8d3df; text-align: left; vertical-align: top; }
+.tableWrap thead th { color: #164c76; font-size: .85rem; font-weight: 600; }
+.tableWrap tbody th { width: 22%; font-weight: 400; }
+.precision p { max-width: 73ch; line-height: 1.75; }
+.alpha ::selection { background: #c4dceb; color: #102c42; }
+@media (max-width: 640px) {
+  .sequence > li { padding-left: 1.9rem; }
+  .sequence > li::before { font-size: 1.25rem; }
+  .sequence h3 { font-size: 1.4rem; }
+  .tableWrap table { min-width: 0; }
+  .tableWrap thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .tableWrap tbody, .tableWrap tr, .tableWrap th, .tableWrap td { display: block; width: auto; }
+  .tableWrap tr { padding: 1rem 0; border-bottom: 1px solid #c8d3df; }
+  .tableWrap tbody th, .tableWrap td { width: auto; padding: .4rem 0; border: 0; }
+}
+
+.tableWrap th :global(.katex){display:inline-block;max-width:100%;overflow-x:auto;vertical-align:middle}.alpha :global(.katex-display){font-size:1em}.alpha :global(.formula-scroll){scrollbar-color:#849aae #f7f4ed}

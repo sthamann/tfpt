@@ -7,33 +7,26 @@ import { ChevronDown, Github, Menu, X } from "lucide-react";
 import { cn, REPO_URL, PRIME_FRONT_URL } from "@/lib/utils";
 import { SITE_VERSION, SITE_DATE, SITE_REV } from "@/lib/version";
 import { Logo } from "./Logo";
+import { siteSections } from "@/lib/site-sections";
 import researchSummary from "@/lib/research-summary.json";
 
 const primaryLinks = [
   { href: "/", label: "Start" },
   { href: "/explain", label: "Understand" },
-  { href: "/results", label: "Research atlas" },
-  { href: "/papers", label: "Papers" },
+  { href: "/results", label: "Knowledge atlas" },
+  { href: "/documentation", label: "Sources" },
   { href: "/verification", label: "Verification" },
 ];
 
 const moreLinks = [
-  { href: "/empirical-audit", label: "Empirical audit" },
-  { href: "/tour", label: "Guided tour" },
-  { href: "/method", label: "Method" },
-  { href: "/falsification", label: "Kill board" },
-  { href: "/replication", label: "Replication" },
-  { href: "/faq", label: "FAQ" },
-  { href: PRIME_FRONT_URL, label: "Prime Front ↗" },
-  { href: "/orientation", label: "Reading guide" },
-  { href: "/documentation", label: "Document library" },
-  { href: "/predictions", label: "Predictions" },
-  { href: "/architecture", label: "Architecture" },
-  { href: "/compiler", label: "Compiler" },
-  { href: "/review", label: "For reviewers" },
-  { href: "/objections", label: "Objections" },
-  { href: "/changelog", label: "Changelog" },
-  { href: "/orientation#rosetta", label: "Glossary / Rosetta" },
+  ...["Understand", "Test", "Evidence", "Reference"].flatMap(group =>
+    siteSections.filter(section => section.group === group && !primaryLinks.some(link => link.href === section.href))
+      .map((section,index) => ({href:section.href,label:section.title,group:index===0?group:""}))),
+  {href:"/papers",label:"Complete papers",group:"Sources"},
+  {href:"/orientation#rosetta",label:"Glossary",group:""},
+  {href:"/review",label:"For reviewers",group:""},
+  {href:"/objections",label:"Objection ledger",group:""},
+  {href:PRIME_FRONT_URL,label:"Prime Front ↗",group:"Adjacent research"},
 ];
 
 export function Navbar() {
@@ -142,6 +135,7 @@ export function Navbar() {
               <ul id="more-menu" className="absolute right-0 top-full mt-1 max-h-[calc(100dvh-5rem)] min-w-[12rem] overflow-y-auto overscroll-contain border border-slate-300/50 bg-slate-50/95 py-1 shadow-xl backdrop-blur">
                 {moreLinks.map((l) => (
                   <li key={l.href}>
+                    {l.group&&<p className="navigation-group">{l.group}</p>}
                     <Link
                       prefetch={false}
                       href={l.href}
@@ -210,6 +204,7 @@ export function Navbar() {
             </li>
             {moreLinks.map((l) => (
               <li key={l.href}>
+                {l.group&&<p className="navigation-group">{l.group}</p>}
                 <Link
                   prefetch={false}
                   href={l.href}

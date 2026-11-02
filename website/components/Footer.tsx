@@ -6,6 +6,7 @@ import { Logo } from "./Logo";
 import { REPO_URL, PRIME_FRONT_URL } from "@/lib/utils";
 import { trackPdfInteraction, type DownloadKind } from "@/lib/track";
 import { SITE_VERSION } from "@/lib/version";
+import { siteSections } from "@/lib/site-sections";
 import { SuiteBadge } from "./SuiteBadge";
 
 interface FooterLink {
@@ -81,98 +82,7 @@ export function Footer() {
           <h3 className="font-serif text-sm font-semibold uppercase tracking-wider text-slate-800">
             Explore
           </h3>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li><Link prefetch={false} href="/explain" className="text-slate-600 hover:text-slate-950">Understand the theory</Link></li>
-            <li><Link prefetch={false} href="/results" className="text-slate-600 hover:text-slate-950">Research knowledge atlas</Link></li>
-            <li>
-              <Link prefetch={false} href="/verification" className="text-slate-600 hover:text-slate-950">
-                Verification
-              </Link>
-            </li>
-            <li><Link prefetch={false} href="/empirical-audit" className="text-slate-600 hover:text-slate-950">Empirical audit</Link></li>
-            <li>
-              <Link prefetch={false} href="/falsification" className="text-slate-600 hover:text-slate-950">
-                Kill board
-              </Link>
-            </li>
-            <li>
-              <Link prefetch={false} href="/replication" className="text-slate-600 hover:text-slate-950">
-                Replication
-              </Link>
-            </li>
-            <li>
-              <Link prefetch={false} href="/papers" className="text-slate-600 hover:text-slate-950">
-                Papers
-              </Link>
-            </li>
-            <li>
-              <Link prefetch={false} href="/predictions" className="text-slate-600 hover:text-slate-950">
-                Predictions
-              </Link>
-            </li>
-            <li>
-              <Link prefetch={false} href="/architecture" className="text-slate-600 hover:text-slate-950">
-                Architecture
-              </Link>
-            </li>
-            <li>
-              <Link prefetch={false} href="/orientation" className="text-slate-600 hover:text-slate-950">
-                Reading guide
-              </Link>
-            </li>
-            <li>
-              <Link prefetch={false} href="/compiler" className="text-slate-600 hover:text-slate-950">
-                Compiler
-              </Link>
-            </li>
-            <li>
-              <Link prefetch={false} href="/review" className="text-slate-600 hover:text-slate-950">
-                For reviewers
-              </Link>
-            </li>
-            <li>
-              <Link prefetch={false} href="/objections" className="text-slate-600 hover:text-slate-950">
-                Objection ledger
-              </Link>
-            </li>
-            <li>
-              <Link prefetch={false} href="/faq" className="text-slate-600 hover:text-slate-950">
-                FAQ
-              </Link>
-            </li>
-            <li>
-              <Link prefetch={false} href="/changelog" className="text-slate-600 hover:text-slate-950">
-                Changelog
-              </Link>
-            </li>
-            <li>
-              <Link
-                prefetch={false}
-                href={REPO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-slate-600 hover:text-slate-950"
-              >
-                <Github size={13} aria-hidden />
-                GitHub
-              </Link>
-            </li>
-            <li>
-              <a href={PRIME_FRONT_URL} className="text-slate-600 hover:text-slate-950">
-                Prime Front — primes &amp; RH ↗
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.hylaean.ai/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-600 hover:text-slate-700"
-              >
-                Adjacent: Hylaean
-              </a>
-            </li>
-          </ul>
+          <ul className="footer-sections mt-4 text-sm">{siteSections.map(section=><li key={section.href}><Link prefetch={false} href={section.href}>{section.title}</Link></li>)}<li><a href={PRIME_FRONT_URL}>Prime Front: primes and RH</a></li></ul>
         </div>
 
         <div>

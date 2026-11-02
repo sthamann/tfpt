@@ -10,13 +10,13 @@ export const metadata: Metadata = pageMetadata("/compiler");
 export default function CompilerPage() {
   return <div className={styles.page}>
     <header className={styles.header}>
-      <Link href="/explain" className={styles.back}>Back to the connections</Link>
-      <h1>Inspect the compiler, one connection at a time.</h1>
-      <p className={styles.lead}>TFPT connects declared starting assumptions to a mathematical construction, then to candidate physical readouts. Start with what comes out. Trace the construction behind it and inspect what each step establishes.</p>
+      <Link href="/explain" className={styles.back}>Back to the worked derivations</Link>
+      <h1>Inspect a concrete construction.</h1>
+      <p className={styles.lead}>Explore the E₈ lattice: inspect its root coordinates, follow its stated construction and run the lattice check. The system map shows the wider dependencies; the knowledge atlas records the claims and their scope.</p>
     </header>
     <CompilerExplorer />
     <section className={styles.section}>
-      <h2>Follow a connection into the research.</h2>
+      <h2>Connect the example to the wider theory.</h2>
       <p>The compiler gives a common mathematical language for lattice structure, clock operations and readouts. Each claimed physical connection has its own premises and evidence.</p>
       <nav className={styles.reading} aria-label="Compiler reading routes">
         <Link href="/papers/architecture-e8"><strong>Architecture and the E₈ construction</strong><span>The inputs, glue and electromagnetic closure <ArrowRight size={17} aria-hidden /></span></Link>

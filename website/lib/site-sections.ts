@@ -1,0 +1,16 @@
+export const siteSections = [
+ {href:"/explain",title:"Understand the construction",purpose:"Work through the charges, E₈, alpha, masses and clocks.",group:"Understand",next:["/architecture","/results"]},
+ {href:"/architecture",title:"System map",purpose:"See which structures connect, under which assumptions, and where the physical bridges remain.",group:"Understand",next:["/compiler","/results"]},
+ {href:"/compiler",title:"Construction lab",purpose:"Inspect a concrete lattice construction and its calculated outputs.",group:"Understand",next:["/architecture","/verification"]},
+ {href:"/results",title:"Knowledge atlas",purpose:"Explore foundational results, research questions, attempts and their evidence.",group:"Research",next:["/documentation","/verification"]},
+ {href:"/predictions",title:"Frozen prediction register",purpose:"Read the committed values, assigned textures and conditional bands.",group:"Test",next:["/empirical-audit","/falsification"]},
+ {href:"/empirical-audit",title:"Compare with data",purpose:"Compare selected frozen values with dated measurements.",group:"Test",next:["/predictions","/falsification"]},
+ {href:"/falsification",title:"Failure criteria",purpose:"Identify which observation or counterexample would defeat a particular statement.",group:"Test",next:["/empirical-audit","/method"]},
+ {href:"/verification",title:"Run a verification",purpose:"Find a registered module, inspect its source and reproduce a calculation.",group:"Evidence",next:["/replication","/documentation"]},
+ {href:"/method",title:"Research method",purpose:"Understand how inputs, proof, computation and physical interpretation are assessed.",group:"Evidence",next:["/verification","/results"]},
+ {href:"/replication",title:"Independent reproduction",purpose:"Reproduce a scoped result and report the exact environment, output and disagreement.",group:"Evidence",next:["/verification","/method"]},
+ {href:"/documentation",title:"Source library",purpose:"Search the paper sections and follow their original claims and verification references.",group:"Sources",next:["/papers","/results"]},
+ {href:"/papers",title:"Complete papers",purpose:"Read the complete publication documents and PDFs.",group:"Sources",next:["/documentation","/results"]},
+ {href:"/faq",title:"Questions and answers",purpose:"Find short answers with links to the exact subject and evidence.",group:"Reference",next:["/explain","/results"]},
+ {href:"/changelog",title:"Research and publication history",purpose:"Distinguish the current research snapshot from the dated publication log.",group:"Reference",next:["/results","/documentation"]},
+] as const;

@@ -18,9 +18,12 @@ PUBLIC = WEBSITE / 'public/research'
 DATA = WEBSITE / 'lib/research-inventory.json'
 SUMMARY = WEBSITE / 'lib/research-summary.json'
 ATLAS = WEBSITE / 'lib/semantic-atlas.json'
+FOUNDATION = WEBSITE / 'lib/foundation-index.json'
 SNAPSHOT = PUBLIC / 'research-snapshot.json'
 APPROVED = ('experiments/theory-contracts/', 'experiments/lean4-carrier-rigidity/',
             'documents/', 'verification/', 'docs/research/', 'tex-artefacts/', 'tfpt_explorer/')
+# Reviewed original public mathematical note; this is not approval of the archive tree.
+APPROVED_FILES = {'_archive/paper-latex/old/improvedcubic.tex'}
 ADMIN_IDS = {
  'finding:four-session-summaries-remain-covered-with-superseded-norm-selection-task':
  'Administrative continuity and private session-map coverage; scientific Hardy result remains covered by its own reviewed records.'
@@ -38,6 +41,7 @@ def write(p, data):
  p.parent.mkdir(parents=True, exist_ok=True); p.write_bytes(data)
 def english(v): return v.get('en') or v.get('de') or ''
 def historical(path): return bool(re.search(r'(?i)(?:archive|historical)', path))
+def science_allowed(path): return path.startswith(APPROVED) or path in APPROVED_FILES
 
 def safe_text(value):
  """Omit personal/agent attributions in a public *derived* display field.
@@ -244,6 +248,137 @@ def semantic_snapshot(root, program, findings, premises, source_refs):
   if (root/path).read_bytes()!=body:raise ValueError(f'Semantic authoring source changed during freeze: {path}')
  return sem
 
+def module_publication_snapshot(root, snap, foundation):
+ """Add source documents for older executable mirrors, without changing science.
+
+ This also supports augmentation of an existing coherent snapshot. Only the
+ bytes already identified by its frozen module source digest may be read in.
+ """
+ older=[]
+ for module in foundation['modules']:
+  mirror=WEBSITE/'public/verification'/module['filename']
+  assert mirror.is_file(),f'Missing public module mirror: {module["id"]}'
+  mirror_hash=sha(mirror.read_bytes());matches=mirror_hash==module['sourceSha256']
+  module.update(pubMirrorHref='/verification/'+module['filename'],pubMirrorHash=mirror_hash,
+   pubMirrorMatchesSnapshot=matches,snapshotSourceHref='/verification/'+module['filename'])
+  if matches:continue
+  raw=(root/module['path']).read_bytes()
+  assert sha(raw)==module['sourceSha256'],f'Original module changed since freeze: {module["id"]}; cannot augment snapshot'
+  a,b=1,len(raw.splitlines());payload,omitted=excerpt_bytes(module['path'],raw,a,b)
+  filename='sources/module-'+module['sourceSha256'][:24]+'.txt';write(PUBLIC/filename,payload)
+  module.update(snapshotSourceHref='/research/'+filename,snapshotSourceLineStart=a,snapshotSourceLineEnd=b,
+   snapshotExcerptSha256=sha(payload),snapshotOmittedOriginalLines=omitted,
+   publicationNotice='The executable publication mirror is older than the frozen source. The line-numbered text is an inert source document, not an executed or newly validated checker.')
+  artifact={'path':filename,'sha256':sha(payload)}
+  snap['artifacts']=[x for x in snap['artifacts'] if x['path']!=filename]+[artifact]
+  older.append(module['id'])
+ foundation['coverage']['modulePublication']={'moduleCount':len(foundation['modules']),
+  'matchingPublicationMirrorCount':len(foundation['modules'])-len(older),'olderPublicationMirrorCount':len(older),
+  'olderPublicationMirrorIds':older,
+  'notice':'Publication source correspondence only. Matching bytes and inert source documents do not assert successful execution or promote scientific status.'}
+
+def foundation_snapshot(root, snap):
+ """Literal public citation joins and authored navigation, never inferred science."""
+ paths=['docs/registry/registry.json','semantic_explorer/orientation.json',
+        'semantic_explorer/corpus_aspects.json','semantic_explorer/theory_map.json']
+ raw={p:(root/p).read_bytes() for p in paths}
+ registry,orientation,aspects,theory=[json.loads(raw[p]) for p in paths]
+ assert registry['publication_scope']=='public_authored_sources'
+ active={r['id']:r for r in snap['ledger'] if r['active']}
+ sections={s['id']:s for s in registry['sections']}
+ evidence={e['id']:e for e in registry['evidence']}
+ active_sections={i for d in registry['documents'] if d.get('role')=='active' for i in d['ordered_section_ids']}
+ cited=collections.defaultdict(set)
+ for r in registry['relations']:
+  if r['relation_type'] in ('explicit_claim_identifier','explicit_file_citation','explicit_script_identifier'):
+   assert r['from'] in sections and r['to'] in evidence
+   cited[r['to']].add(r['from'])
+ links=[]
+ def memberships(record,basis,path):
+  topics=record.get('topic_ids',[])+[i for i in record.get('related_ids',[]) if i.startswith('topic:')]
+  claims=record.get('claim_ids',[])+[i.removeprefix('claim:') for i in record.get('related_ids',[]) if i.startswith('claim:')]
+  for topic in dict.fromkeys(topics):
+   for claim in dict.fromkeys(claims):
+    if claim in active:links.append({'topicId':topic,'claimId':claim,'basis':basis,'authoringRecordId':record['id'],'authoringPath':path})
+ for r in orientation['structures']:memberships(r,'authored_structure',paths[1])
+ for r in aspects['aspects']:memberships(r,'source_reviewed_aspect',paths[2])
+ for r in theory['nodes']+theory.get('patterns',[]):memberships(r,'authored_map_membership',paths[3])
+ topicclaims=collections.defaultdict(set)
+ for r in links:topicclaims[r['topicId']].add(r['claimId'])
+ modules=[];source_checks=[]
+ for s in snap['scripts']:
+  path='verification/'+s['id']+'.py';eid='python_verification:'+path;e=evidence[eid]
+  actual=sha((root/path).read_bytes());source_checks.append({'id':s['id'],'path':path,'expectedSha256':e['sha256'],'actualSha256':actual,'current':actual==e['sha256']})
+  assert actual==e['sha256'],f'Public registry module source is stale: {path}'
+  synopsis,edits=safe_text({'en':s['descriptionEN']})
+  if PRIVATE.search(synopsis) or NARRATIVE.search(synopsis):synopsis='';edits.append('Non-scientific synopsis omitted.')
+  ids=sorted(cited[eid])
+  modules.append({'id':s['id'],'filename':Path(path).name,'path':path,'cluster':s['cluster'],
+   'synopsis':synopsis,'publicationNotes':edits,'sourceHref':'/documentation?evidence='+quote(eid,safe=''),
+   'sourceSha256':actual,'linkedClaimIds':[i for i in e.get('claim_ids',[]) if i in active],
+   'sectionIds':ids,'activeSectionIds':sorted(set(ids)&active_sections),'evidenceId':eid,
+   'reviewState':'registered-source-not-executed'})
+ modulemap={m['id']:m for m in modules};claims=[]
+ for ident,r in active.items():
+  mids=[m['id'] for m in modules if ident in m['linkedClaimIds']]
+  direct=set(cited['claim:'+ident]);shared={i for m in mids for i in modulemap[m]['sectionIds']}
+  ids=direct|shared;topics=sorted(t for t,c in topicclaims.items() if ident in c)
+  claims.append({'id':ident,'topicIds':topics,'moduleIds':mids,'sectionIds':sorted(ids),
+   'activeSectionIds':sorted(ids&active_sections),'explicitClaimSectionIds':sorted(direct),
+   'sharedScriptSectionIds':sorted(shared-direct),'topicMappingState':'authored' if topics else 'unmapped'})
+ source_refs={};omissions=[]
+ def refs(items):
+  result=[]
+  for s in items:
+   path=s.get('path','')
+   if Path(path).is_absolute():
+    try:path=str(Path(path).relative_to(root))
+    except ValueError:path=''
+   if not path or '..' in Path(path).parts or not science_allowed(path):
+    omissions.append({'reason':'Outside public scientific provenance roots','path':path or '[non-public path omitted]'});continue
+   a,b=s.get('line_start'),s.get('line_end');expected=s.get('sha256')
+   ident=s.get('source_id') or 'foundation-source:'+sha(f'{path}:{expected}:{a}:{b}'.encode())[:24]
+   body=(root/path).read_bytes();actual=sha(body)
+   state='source-stale' if expected and expected!=actual else 'invalid-range' if a is not None and not (isinstance(a,int) and isinstance(b,int) and 1<=a<=b<=len(body.splitlines())) else 'current-at-snapshot' if expected else 'unhashed-navigation'
+   source_refs[ident]={'id':ident,'path':path,'sha256':expected,'actualSha256':actual,'lineStart':a,'lineEnd':b,'freshness':state,
+    'href':'/documentation?source='+quote(path,safe=''),'publicationState':'public-provenance-metadata'}
+   result.append(ident)
+  return list(dict.fromkeys(result))
+ def text(v):
+  if isinstance(v,dict):v=v.get('label_en') or v.get('en') or v.get('label_de') or v.get('de') or ''
+  value=safe_text({'en':v or ''})[0]
+  return '' if PRIVATE.search(value) or NARRATIVE.search(value) else value
+ nodes=[{'id':n['id'],'labelEN':text(n.get('label_en')),'state':n.get('state'),'summaryEN':text(n.get('summary_en')),
+  'stage':n.get('stage'),'lane':n.get('lane'),'relatedIDs':n.get('related_ids',[]),'scopeNote':text(n.get('scope_note')),
+  'sourceRefIDs':refs(n.get('source_refs',[])),'reviewState':'authored-navigation'} for n in theory['nodes']]
+ edges=[{'id':'map-edge:'+sha(f'{i}:{e["from"]}:{e["to"]}:{e["kind"]}'.encode())[:24],
+  'from':e['from'],'to':e['to'],'labelEN':text(e.get('label_en')),'kind':e['kind'],
+  'conditions':[text(c) for c in e.get('conditions',[])],'sourceRefIDs':refs(e.get('source_refs',[])),
+  'reviewState':'authored-navigation'} for i,e in enumerate(theory['edges'])]
+ topics=[{'id':t['id'],'titleEN':t.get('label_en') or t['label'],'claimIds':sorted(topicclaims[t['id']]),
+  'researchFindingCount':sum(t['id'] in f['topicIds'] for f in snap['findings'])} for t in orientation['topics']]
+ mapped={i for v in topicclaims.values() for i in v}
+ coverage={'activeClaims':len(active),'registeredModules':len(modules),'authoredTopicMappedClaims':len(mapped),
+  'unmappedClaimIds':sorted(set(active)-mapped),'explicitClaimCitationCount':sum(bool(c['explicitClaimSectionIds']) for c in claims),
+  'activeDocumentExplicitClaimCitationCount':sum(bool(set(c['explicitClaimSectionIds'])&active_sections) for c in claims),
+  'claimsWithPaperNavigation':sum(bool(c['sectionIds']) for c in claims),
+  'modulesWithPaperNavigation':sum(bool(m['sectionIds']) for m in modules),
+  'publicPaperRegistry':registry['coverage'],'semanticReviewedPaperSections':0,'proofsChecked':False,
+  'moduleSourceChecks':source_checks,'sourceOmissions':omissions,
+  'notice':'Exact authored topic memberships and literal public citations. Shared script joins are navigation, not theorem equivalence, causality, proof execution or a reviewed assignment of all claims to topics.'}
+ result={'schemaVersion':1,'topics':topics,'topicClaimLinks':links,'claims':claims,'modules':modules,
+  'theoryMap':{'nodes':nodes,'edges':edges,'sourceRefs':list(source_refs.values()),
+   **{k:[{'id':v['id'],'labelEN':v.get('label_en') or v.get('label_de')} for v in theory[k]] for k in ('stages','lanes','states')}},
+  'coverage':coverage,'inputHashes':{p:sha(b) for p,b in raw.items()},
+  'registryHref':'/documentation/registry.json','registrySha256':sha(raw[paths[0]])}
+ module_publication_snapshot(root,snap,result)
+ for filename in ('registry.json','summary.json'):
+  body=raw[paths[0]] if filename=='registry.json' else (root/'docs/registry'/filename).read_bytes()
+  write(WEBSITE/'public/documentation'/filename,body)
+  snap['artifacts'].append({'path':'../documentation/'+filename,'sha256':sha(body)})
+ for path,body in raw.items():assert (root/path).read_bytes()==body,f'Foundation authoring changed during snapshot: {path}'
+ return result
+
 def freeze(root):
  previous=load(SNAPSHOT) if SNAPSHOT.exists() else None
  program_raw=(root/'semantic_explorer/research/program.json').read_bytes(); program=json.loads(program_raw)
@@ -262,7 +397,7 @@ def freeze(root):
   ident='source:'+sha(key.encode())[:24]
   if ident in sources:return sources[ident]
   q=Path(path)
-  if q.is_absolute() or '..' in q.parts or not path.startswith(APPROVED):
+  if q.is_absolute() or '..' in q.parts or not science_allowed(path):
    errors.append({'sourceId':ident,'path':path,'reason':'outside approved scientific publication roots'})
    item={'id':ident,'path':path,'sha256':s['sha256'],'lineStart':a,'lineEnd':b,'href':None,'freshness':'not-published','publicationState':'withheld-root'}
    sources[ident]=item;return item
@@ -345,6 +480,7 @@ def freeze(root):
   'scripts':[{'id':r['script'],'cluster':r['cluster'],'descriptionEN':r['what_web']} for r in registry],
   'sourceRefs':list(sources.values()),'expectedCoverage':manifest,'artifacts':artifacts}
  snap['semanticAtlas']=semantic_snapshot(root,program,findings,premises,list(sources.values()))
+ snap['foundationIndex']=foundation_snapshot(root,snap)
  snap['expectedCoverage']['semanticExpectedIds']={k:[r['id'] for r in snap['semanticAtlas'][k]] for k in
   ('topics','goals','structures','problems','findings','tasks','strategies','connections','patterns','attempts','relations','sourceRefs')}
  # No read after this point may mix a later authoring revision into this snapshot.
@@ -378,6 +514,12 @@ def build_semantics(snap, meta):
   'notice':'Reviewed findings, authored navigation and historical unreviewed attempts retain distinct reviewState values. Typed edges are not automatic proofs.'}
  return sem
 
+def build_foundations(snap,meta):
+ result=dict(snap['foundationIndex'])
+ result['meta']={k:meta[k] for k in ('generatedAt','sourceRevision','sourceCommit','publicSourceCommit')}
+ result['meta']['notice']='Public authored foundation navigation and original registered source synopsis. Current ledger statuses are separate. No fresh proof execution.'
+ return result
+
 def validate(snap, data):
  m=snap['expectedCoverage']
  for key,expected in [('ledger','allLedgerIds'),('findings','eligibleFindingIds'),('problems','problemIds'),('premises','premiseIds'),('sourceRefs','sourceRefIds')]:
@@ -399,7 +541,7 @@ def validate(snap, data):
   assert r['id']==original['claim_id'] and r['claim']==original['claim'] and r['status']==original['status'] and r['canonicalStatus']==original['canonical_status'] and r['dependencies']==original['dependencies'] and r['script']==original['script'],'ledger original text/status changed'
   assert r['sourceHref']
  for ref in data['sourceRefs']:
-  assert ref['path'].startswith(APPROVED) and ref['freshness'] in ('current-at-snapshot','source-stale') and ref.get('excerptSha256')
+  assert science_allowed(ref['path']) and ref['freshness'] in ('current-at-snapshot','source-stale') and ref.get('excerptSha256')
   if ref['freshness']=='source-stale':
    assert ref['publicationState']=='retained-previously-validated-excerpt' and ref.get('previouslyValidatedAt') and ref.get('lastValidatedRevision')
    assert ref.get('actualSha256') and ref['actualSha256']!=ref['sha256']
@@ -421,18 +563,58 @@ def validate(snap, data):
  assert not any('/Users/' in str(r) or '/home/' in str(r) or 'local_private' in str(r) or 'relations_llm' in str(r) for r in [sem])
  for group in ('topics','findings','goals','structures','patterns','attempts'):
   for r in sem[group]:assert set(r.get('sourceRefIds',[]))<={s['id'] for s in sem['sourceRefs']}
+ foundation=snap['foundationIndex'];active={r['id'] for r in data['ledger'] if r['active']}
+ for group in ('topics','claims','modules'):
+  ids=[r['id'] for r in foundation[group]];assert len(ids)==len(set(ids)),f'Foundation duplicate {group}'
+ assert {r['id'] for r in foundation['claims']}==active
+ assert {r['id'] for r in foundation['modules']}=={r['id'] for r in snap['scripts']}
+ mapped={r['claimId'] for r in foundation['topicClaimLinks']}
+ assert mapped|set(foundation['coverage']['unmappedClaimIds'])==active
+ assert not mapped&set(foundation['coverage']['unmappedClaimIds'])
+ registry_bytes=(WEBSITE/'public/documentation/registry.json').read_bytes()
+ assert sha(registry_bytes)==foundation['registrySha256'],'Public source library differs from frozen foundation registry'
+ registry=json.loads(registry_bytes);section_ids={s['id'] for s in registry['sections']}
+ for r in foundation['claims']+foundation['modules']:
+  assert set(r['sectionIds'])<=section_ids and set(r['activeSectionIds'])<=set(r['sectionIds'])
+ assert all(c['current'] for c in foundation['coverage']['moduleSourceChecks'])
+ older=[]
+ for module in foundation['modules']:
+  body=(WEBSITE/'public'/module['pubMirrorHref'].lstrip('/')).read_bytes()
+  assert sha(body)==module['pubMirrorHash'],f'Changed publication mirror: {module["id"]}'
+  assert module['pubMirrorMatchesSnapshot']==(module['pubMirrorHash']==module['sourceSha256'])
+  assert module['snapshotSourceHref']
+  if module['pubMirrorMatchesSnapshot']:
+   assert module['snapshotSourceHref']==module['pubMirrorHref']
+  else:
+   older.append(module['id'])
+   body=(WEBSITE/'public'/module['snapshotSourceHref'].lstrip('/')).read_bytes()
+   assert sha(body)==module['snapshotExcerptSha256']
+   assert not PRIVATE.search('\n'.join(body.decode().splitlines()[8:])),f'Private metadata in module source excerpt: {module["id"]}'
+   assert 1==module['snapshotSourceLineStart']<=module['snapshotSourceLineEnd']
+   assert module['sourceSha256'] in body.decode().splitlines()[2]
+ assert older==foundation['coverage']['modulePublication']['olderPublicationMirrorIds']
+ assert len(older)==foundation['coverage']['modulePublication']['olderPublicationMirrorCount']
+ assert not any('/Users/' in str(r) or '/home/' in str(r) or 'local_private' in str(r) for r in [foundation])
 
 def main():
- ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--source-root',type=Path);ap.add_argument('--frozen-input',type=Path,default=SNAPSHOT);ap.add_argument('--check',action='store_true');args=ap.parse_args()
- if args.source_root and not args.check:
+ ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--source-root',type=Path);ap.add_argument('--frozen-input',type=Path,default=SNAPSHOT);ap.add_argument('--check',action='store_true');ap.add_argument('--augment-module-publication',action='store_true',help='Add only frozen-digest-matching module source documents, without refreshing the research snapshot');args=ap.parse_args()
+ if args.augment_module_publication:
+  assert args.source_root and not args.check,'Module publication augmentation requires --source-root and is separate from --check'
+  snap=load(args.frozen_input);before=encode(snap['meta'])
+  module_publication_snapshot(args.source_root.resolve(),snap,snap['foundationIndex'])
+  assert encode(snap['meta'])==before,'Research cutoff changed during publication augmentation'
+  write(SNAPSHOT,encode(snap))
+ elif args.source_root and not args.check:
   snap=freeze(args.source_root.resolve());write(SNAPSHOT,encode(snap))
  else:snap=load(args.frozen_input)
- data,coverage=build(snap);validate(snap,data);semantics=build_semantics(snap,data['meta'])
+ data,coverage=build(snap);validate(snap,data);semantics=build_semantics(snap,data['meta']);foundations=build_foundations(snap,data['meta'])
  if args.check:
   assert DATA.read_bytes()==encode(data),'generated inventory differs from frozen input'
   assert SUMMARY.read_bytes()==encode(data['meta']),'generated summary differs from frozen meta'
   assert ATLAS.read_bytes()==encode(semantics),'generated semantic atlas differs from frozen input'
   assert (PUBLIC/'semantic-atlas.json').read_bytes()==encode(semantics),'semantic download differs from frozen input'
+  assert FOUNDATION.read_bytes()==encode(foundations),'foundation index differs from frozen input'
+  assert (PUBLIC/'foundation-index.json').read_bytes()==encode(foundations),'foundation download differs from frozen input'
   assert (PUBLIC/'inventory.json').read_bytes()==encode(data),'download differs from UI inventory'
   assert (PUBLIC/'coverage.json').read_bytes()==encode(coverage),'coverage differs from frozen input'
   if args.source_root:
@@ -442,6 +624,7 @@ def main():
  else:
   write(DATA,encode(data));write(SUMMARY,encode(data['meta']));write(PUBLIC/'inventory.json',encode(data));write(PUBLIC/'coverage.json',encode(coverage))
   write(ATLAS,encode(semantics));write(PUBLIC/'semantic-atlas.json',encode(semantics))
+  write(FOUNDATION,encode(foundations));write(PUBLIC/'foundation-index.json',encode(foundations))
  print(json.dumps({'ok':True,'mode':'check' if args.check else 'build','revision':data['meta']['sourceRevision'],'counts':data['meta']['counts']}))
 if __name__=='__main__':
  try:main()

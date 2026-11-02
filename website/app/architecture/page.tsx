@@ -1,56 +1,11 @@
-import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { ReconstructionChain } from "@/components/ReconstructionChain";
-import { HorizonStory } from "@/components/HorizonStory";
-import { GravityEmergence } from "@/components/GravityEmergence";
-import { ThermalSeamLegs } from "@/components/ThermalSeamLegs";
-import { SectionHeader } from "@/components/SectionHeader";
-import { SITE_URL } from "@/lib/utils";
-
-export const metadata: Metadata = pageMetadata("/architecture");
-
-export default function ArchitecturePage() {
-  return (
-    <>
-      <div className="mx-auto max-w-5xl px-4 pt-10 sm:px-6 lg:px-8">
-        <Link
-          prefetch={false}
-          href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-slate-600 transition-colors hover:text-slate-800"
-        >
-          <ArrowLeft size={14} aria-hidden />
-          Back to start
-        </Link>
-        <div className="mt-6 mb-4">
-          <SectionHeader
-          as="h1"
-          id="architecture-heading"
-            eyebrow="Architecture"
-            title="How the pieces lock"
-            description="The dependency chain from two axioms to the Standard-Model skeleton, the seam=horizon identification, and the classical covariant field equation that carries no free dimensionless Newton coupling under the named QFT/entanglement premises [C] — archived here so the homepage stays a narrative, not a museum."
-          />
-        </div>
-      </div>
-      <ReconstructionChain />
-      <HorizonStory />
-      <section
-        id="gravity"
-        aria-labelledby="gravity-heading"
-        className="relative border-t border-slate-200/60 py-16 sm:py-20"
-      >
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <SectionHeader
-            id="gravity-heading"
-            eyebrow="Gravity [C]"
-            title="The Einstein equation falls out — no free dimensionless Newton coupling"
-            description="The entanglement first law, run with TFPT's atoms, gives the full covariant Einstein equation Gₐᵦ + Λgₐᵦ = c₃⁻¹Tₐᵦ; the seam constant c₃ arrives by three independent routes that all agree — and its temperature leg is now measured on the seam itself (T_seam = 4c₃, v526)."
-          />
-          <GravityEmergence />
-          <ThermalSeamLegs />
-        </div>
-      </section>
-    </>
-  );
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { pageMetadata } from "@/lib/seo";
+import { ArchitectureMap,type ArchitectureData } from "@/components/explain/ArchitectureMap";
+export const metadata:Metadata=pageMetadata("/architecture");
+export default function ArchitecturePage(){
+ const data=JSON.parse(readFileSync(join(process.cwd(),"lib/foundation-index.json"),"utf8")) as {theoryMap:ArchitectureData;meta:{generatedAt:string}};
+ return <div className="reference-page architecture-page"><header className="reference-header"><h1>See how the construction holds together.</h1><p>TFPT has connected mathematical branches, shared inputs and physical interpretation steps. This map shows their dependencies. The construction lab works through a concrete example; the knowledge atlas provides the statements and evidence.</p></header><ArchitectureMap map={data.theoryMap}/><section className="reference-section" id="gravity"><h2>The physical branches have their own obligations.</h2><div className="reference-rows"><article><h3>From lattice and charges to interacting fields</h3><p>A representation or lattice identity fixes a mathematical structure. Selecting local fields, a state, dynamics and a controlled spacetime limit requires additional arguments.</p><div className="reference-links"><Link href="/results?topic=topic%3Aquantum">Quantum and boundary research</Link><Link href="/explain#source">The common source question</Link></div></article><article><h3>From boundary identities to gravity</h3><p>The entanglement and boundary calculations carry their QFT, state, geometric flow and area normalization premises. Those steps are visible as conditional and open connections in the map.</p><div className="reference-links"><Link href="/results?topic=topic%3Agravity">Gravity results and premises</Link><Link href="/documentation?document=document%3Atfpt_horizon_readouts">Read the horizon argument</Link></div></article></div></section><section className="reference-section"><h2>Choose the depth you need.</h2><div className="reference-links"><Link href="/explain">Learn a worked derivation</Link><Link href="/compiler">Inspect the E₈ construction</Link><Link href="/results?coverage=1">Inspect the knowledge coverage</Link></div><p className="reference-note">Authored map captured {data.meta.generatedAt.slice(0,10)}. Node presence and recorded relationships are separate from proof execution.</p></section></div>;
 }

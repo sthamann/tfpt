@@ -6,10 +6,13 @@ import "./figures.css";
 import "./experience.css";
 import "./atlas.css";
 import "./learning.css";
+import "./reference.css";
+import "./foundation.css";
 import "./katex.css";
 import "./math-fonts.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SectionConnections } from "@/components/SectionConnections";
 import { ReproducerProvider } from "@/components/Reproducer";
 import { REPO_URL, SITE_URL } from "@/lib/utils";
 import { SITE_VERSION } from "@/lib/version";
@@ -205,7 +208,7 @@ export default function RootLayout({
         </a>
         <Navbar />
         <main id="main" className="pt-16">
-          <ReproducerProvider>{children}</ReproducerProvider>
+          <ReproducerProvider>{children}<SectionConnections /></ReproducerProvider>
         </main>
         <Footer />
         <Analytics />

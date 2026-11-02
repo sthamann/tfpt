@@ -8,8 +8,8 @@ export const PAGE_SEARCH = {
     "Work through TFPT charge assignments and the alpha equation. Follow the connected E8, flavour, clock and physical source results with their inputs and limits."
   ],
   "/results": [
-    "TFPT Knowledge Atlas: Questions, Results & Research History",
-    "Explore TFPT by research question and topic. Follow reviewed results, approaches, historical attempts, assumptions, exclusions and remaining tasks into original evidence."
+    "TFPT Knowledge Atlas: Foundational Results, Questions & Evidence",
+    "Explore foundational TFPT claims alongside current research. Follow the paper sections, registered verification modules, assumptions, attempts and remaining physical connections."
   ],
   "/": [
     "Topological Fixed-Point Theory (TFPT): Research & Papers",
@@ -32,8 +32,8 @@ export const PAGE_SEARCH = {
     "Follow TFPT from its two starting assumptions through E₈ and the alpha fixed point to testable readouts. See what is established and how to check it."
   ],
   "/compiler": [
-    "Interactive Compiler: From TFPT Inputs to E₈",
-    "Explore how TFPT connects its seam constant and carrier rank to E₈ and Standard Model readouts. An interactive explanation with the assumptions visible."
+    "TFPT Construction Lab: Inspect the E₈ Lattice",
+    "Inspect an explicit E₈ root construction, its inputs and checks. Use the system map for dependencies and the knowledge atlas for the full recorded claim."
   ],
   "/falsification": [
     "Falsification: How to Test TFPT Predictions",
@@ -56,11 +56,11 @@ export const PAGE_SEARCH = {
     "Find the TFPT code, documents and reproduction steps. See the current replication status and how independent checks can confirm or challenge a result."
   ],
   "/predictions": [
-    "TFPT Predictions: Alpha, Neutrinos & Cosmology",
-    "Explore TFPT readouts for the fine-structure constant, neutrinos and cosmology. Each entry states its value, assumptions, status and experimental comparison."
+    "TFPT Frozen Prediction Register: Values, Formulas & Conditions",
+    "Read the immutable prediction register with its main values, assigned textures, conditional bands and original failure criteria. Dated measurement comparisons have their own audit."
   ],
   "/architecture": [
-    "TFPT Architecture: E₈, Clocks & Physical Interfaces",
+    "TFPT System Map: Structures, Dependencies & Physical Bridges",
     "Trace the TFPT architecture from seam and carrier inputs to E₈, clocks, Standard Model readouts and conditional gravity interfaces, with sources and status."
   ],
   "/faq": [
@@ -68,11 +68,11 @@ export const PAGE_SEARCH = {
     "What is TFPT? Why does it use E₈? Is its alpha value a fit? Read direct answers about the research programme, its assumptions, evidence and open questions."
   ],
   "/changelog": [
-    "Research Changelog: Dated TFPT Updates",
-    "Follow dated changes to TFPT papers, calculations and claim status. Historical entries retain their original scope and link to the publication record."
+    "TFPT Research and Publication History",
+    "Browse the dated publication log alongside the current Atlas snapshot and recorded research attempts. Historical entries retain their original scope."
   ],
   "/documentation": [
-    "Document Library: TFPT Topics & Original Sources",
+    "TFPT Source Library: Search Papers, Sections & Evidence",
     "Find TFPT papers by topic, open the reading guide and trace arguments to original LaTeX sources, verification scripts, claim status and formal references."
   ]
 } as const;

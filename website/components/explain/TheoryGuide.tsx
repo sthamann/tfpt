@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { ChargeExplorer, AlphaExplorer, ClockExplorer } from "./InteractiveReadouts";
+import { ChargeExplorer, ClockExplorer } from "./InteractiveReadouts";
 import { Math } from "@/components/Math";
-import { BudgetBridge, AlphaComparison, LeptonLadder } from "./DerivationFigures";
+import { BudgetBridge, LeptonLadder } from "./DerivationFigures";
 import { GuideNav } from "./GuideNav";
+import { AlphaDerivation } from "./AlphaDerivation";
 
 const evidence = (q: string) => `/results?search=${encodeURIComponent(q)}`;
 const areas = [
@@ -54,15 +55,7 @@ export function TheoryGuide() {
       </details>
     </section>
     <BudgetBridge />
-    <section className="guide-section" id="alpha">
-      <h2>Why does a number near 137 appear?</h2><p className="guide-lead">Alpha measures electromagnetic coupling strength. TFPT specifies a self consistent boundary equation whose positive root gives α⁻¹ = 137.0359992168407… . Solving this equation and deriving its complete physical origin are separate claims.</p>
-      <Math block plain="The specified electromagnetic closure balances a cubic term, a quadratic term and an alpha dependent boundary response.">{String.raw`F(\alpha)=\alpha^3-2c_3^3\alpha^2-\frac45\,41c_3^6\log\frac1{\varphi_s(\alpha)}=0`}</Math>
-      <details className="guide-details"><summary>Open the ingredients and their connections</summary><p>q(α) = 48c₃⁴ exp(−2α), and φs(α) = 1/(6π) + q(1−q)^(−5/4). The 48 is the three family carrier count; 5/4 is the D₅ discriminant norm; the 41 connects the flavour and Higgs budget with b₁ = 41/10. These identities explain the specified coefficients. Their common physical source still has a separate obligation.</p><p>The later source work also reconstructs the original circle defect line and the marked D₅ response (1−uq)^(−5/4). The remaining EM question is the actual local response, measure and Quillen/Thomson identification, rather than another arbitrary choice of a defect projector.</p></details>
-      <AlphaExplorer />
-      <AlphaComparison />
-      <ol className="guide-steps"><li><strong>Existence and uniqueness:</strong> for the specified function, an analytic argument shows F &lt; 0 up to 2c₃³, strict convexity afterwards and growth to infinity. Hence there is exactly one simple positive root.</li><li><strong>Location:</strong> the source interval calculation encloses that root. The interactive plot illustrates it; the plot is not the proof.</li><li><strong>Data comparison:</strong> the published comparison uses CODATA 2022, 137.035999177(21), about 1.9 experimental standard deviations away. Alpha was measured before this formula was frozen.</li><li><strong>Physical origin:</strong> exact coefficient identities and the mathematical root do not alone prove that this is the actual electromagnetic response functional of nature.</li></ol>
-      <details className="guide-details mt-6"><summary>Proof, coefficient origins and the remaining physical connection</summary><SourceLine query="alpha-global-positive-root" label="The analytic root theorem" /><SourceLine query="EM.WARD" label="Coefficient identities and the Ward origin" /><SourceLine query="defect" label="The reconstructed defect and response" /></details>
-    </section>
+    <AlphaDerivation />
     <section className="guide-section" id="inputs">
       <h2>First, what is supplied?</h2>
       <p className="guide-lead">A seam is the oriented boundary structure used to define a response. A carrier is the internal space on which the algebra acts. A compiler is the collection of specified mathematical maps taking these data to representations, operators and numerical readouts.</p>

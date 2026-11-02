@@ -43,12 +43,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
-      url: `${SITE_URL}/tour`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
       url: `${SITE_URL}/compiler`,
       lastModified,
       changeFrequency: "monthly",
@@ -142,7 +136,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
 
   // These visible editorial pages changed independently of the PDF release.
-  const updatedPages = new Set([SITE_URL, ...["papers", "faq", "orientation", "predictions", "tour", "verification", "review"].map((path) => `${SITE_URL}/${path}`)]);
+  const updatedPages = new Set([SITE_URL, ...["papers", "faq", "orientation", "predictions", "verification", "review", "architecture", "compiler", "documentation", "empirical-audit", "method", "replication", "falsification", "changelog"].map((path) => `${SITE_URL}/${path}`)]);
   return [...pages.map((page) => updatedPages.has(page.url)
     ? { ...page, lastModified: new Date("2026-11-02") }
     : page), ...paperPages, ...releaseFiles];

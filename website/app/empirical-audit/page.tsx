@@ -2,23 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { ArrowLeft, ArrowRight, Download, ExternalLink } from "lucide-react";
 import { SITE_URL } from "@/lib/utils";
-import summary from "@/lib/research-summary.json";
+import { formatMeasurement, groupDecimal } from "@/lib/format-number";
+import { predictionById } from "@/lib/frozen-predictions";
 
 export const metadata: Metadata = {
-  title: "TFPT Empirical Audit: Dated Data, Frozen Values & Limits",
-  description: "Compare frozen TFPT readouts with dated primary measurements. Inspect the prediction classes, failure criteria and historical search records without conflating numerical agreement with physical validation.",
+  title: "Dated Measurement Comparisons: TFPT Empirical Audit",
+  description: "Four frozen TFPT values compared with dated CODATA, JUNO, NuFIT and ACT measurements, with normalized differences, original assumptions and primary sources.",
   alternates: { canonical: `${SITE_URL}/empirical-audit` },
 };
 
-type FrozenRow = { id: string; observable: string; formula: string; frozen_value?: string; conditional_on?: string | null; kill_criterion?: string; band_min?: string; band_max?: string };
-type Registry = { freeze_date: string; predictions: FrozenRow[]; assigned_texture_values: FrozenRow[]; conditional_bands: FrozenRow[]; derived_variants_not_predictions: FrozenRow[] };
-type Attempt = { id: string; titleEN: string; kind: string; status?: string; verdictRaw?: string; domain?: string; reviewState: string };
+type Attempt = { kind: string; status?: string; verdictRaw?: string };
 type Atlas = { attempts: Attempt[]; coverage: { attemptInventoryDate: string } };
-const registry = JSON.parse(readFileSync(join(process.cwd(), "public/research/predictions-frozen.json"), "utf8")) as Registry;
 const atlas = JSON.parse(readFileSync(join(process.cwd(), "public/research/semantic-atlas.json"), "utf8")) as Atlas;
-const frozen = new Map(registry.predictions.map((r) => [r.id, r]));
 const checkedDate = "2 November 2026";
 const comparisons = [
   {
@@ -54,94 +50,94 @@ const comparisons = [
   },
 ];
 
+const comparisonPositions: Record<string, number> = {
+  ALPHA_INV: 1.90, SIN2_THETA12_SEED: 0.49, SIN2_THETA13: 1.08, BETA_BIREFRINGENCE_DEG: 0.37,
+};
+
+function DifferencePlot({ id, title, distance }: { id: string; title: string; distance: number }) {
+  const position = (value: number) => 32 + ((value + 2) / 5) * 296;
+  return <figure className="my-5 max-w-lg">
+    <svg viewBox="0 0 360 116" role="img" aria-labelledby={`${id}-plot-title ${id}-plot-description`} className="block h-auto w-full overflow-visible">
+      <title id={`${id}-plot-title`}>{`${title}: frozen value at +${distance.toFixed(2)} measurement standard uncertainties`}</title>
+      <desc id={`${id}-plot-description`}>The measurement center is zero. The shaded band extends from minus one to plus one stated measurement standard uncertainty. The blue point is the frozen value. No theory uncertainty is included.</desc>
+      <rect x={position(-1)} y="39" width={position(1)-position(-1)} height="28" fill="#dbe5ef" />
+      <line x1={position(-2)} x2={position(3)} y1="53" y2="53" stroke="#61778c" strokeWidth="1" />
+      <line x1={position(0)} x2={position(0)} y1="33" y2="72" stroke="#273e53" strokeWidth="1.5" />
+      {[-2,-1,0,1,2,3].map(tick => <g key={tick}>
+        <line x1={position(tick)} x2={position(tick)} y1="68" y2="74" stroke="#61778c" />
+        <text x={position(tick)} y="91" textAnchor="middle" fill="#364f65" fontSize="13">{tick > 0 ? `+${tick}` : tick === 0 ? "0" : `−${Math.abs(tick)}`}</text>
+      </g>)}
+      <circle cx={position(distance)} cy="53" r="6" fill="#315b84" stroke="#faf9f6" strokeWidth="2" />
+      <text x={position(distance)} y="24" textAnchor="middle" fill="#24466a" fontSize="14" fontWeight="600">+{distance.toFixed(2)}</text>
+      <text x="180" y="113" textAnchor="middle" fill="#465d72" fontSize="12">Difference / stated measurement uncertainty</text>
+    </svg>
+  </figure>;
+}
+
 export default function EmpiricalAuditPage() {
-  const historical = atlas.attempts.filter((a) => a.kind === "scorecard");
+  const historical = atlas.attempts.filter(a => a.kind === "scorecard");
   const statuses = historical.reduce<Record<string, number>>((all, a) => {
     const key = a.status || a.verdictRaw || "unclassified";
     all[key] = (all[key] || 0) + 1;
     return all;
   }, {});
-  return (
-    <div className="guide-shell py-10 sm:py-16">
-      <nav aria-label="Breadcrumb" className="mb-10">
-        <Link href="/predictions" className="inline-flex items-center gap-2 text-sm text-blue-700 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4">
-          <ArrowLeft size={16} aria-hidden /> Predictions and readouts
-        </Link>
-      </nav>
-      <header className="max-w-3xl">
-        <h1 className="font-serif text-4xl font-semibold leading-tight text-slate-950 sm:text-6xl">TFPT against the data</h1>
-        <p className="mt-6 text-lg leading-relaxed text-slate-700">TFPT has frozen numerical readouts and a record of empirical searches. Here each comparison states the data release, the formula being tested and the conclusion that the evidence supports.</p>
-        <p className="mt-4 text-sm leading-relaxed text-slate-600">Primary sources checked {checkedDate}. The selected comparisons below are dated observations, not a new global fit. The scientific inventory was captured {new Date(summary.generatedAt).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })} at revision <code className="break-all text-xs">{summary.sourceRevision}</code>.</p>
-      </header>
-
-      <section aria-labelledby="registry-heading" className="mt-12 border-y border-slate-300 py-7">
-        <h2 id="registry-heading" className="font-serif text-2xl font-semibold text-slate-950">What was frozen on 9 June 2026</h2>
-        <p className="mt-3 max-w-3xl leading-relaxed text-slate-700">The register contains 16 main values, 2 assigned textures and 2 conditional bands. Two additional variants are explicitly excluded from the prediction count. A freeze preserves the formulas and criteria; it does not turn already available measurements into prospective tests.</p>
-        <a href="/research/predictions-frozen.json" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-700 underline underline-offset-4"><Download size={16} aria-hidden /> Download the unchanged frozen register</a>
-      </section>
-
-      <section aria-labelledby="comparisons-heading" className="mt-12">
-        <h2 id="comparisons-heading" className="font-serif text-3xl font-semibold text-slate-950">Four dated comparisons</h2>
-        <p className="mt-3 max-w-3xl leading-relaxed text-slate-700">Distances below divide the frozen value minus the measured central value by the stated measurement uncertainty. They use no added theory error and are not a combined probability for TFPT.</p>
-        <div className="mt-8 divide-y divide-slate-300 border-y border-slate-300">
-          {comparisons.map((c) => {
-            const row = frozen.get(c.id)!;
-            return <article key={c.id} className="grid gap-5 py-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] lg:gap-12">
-              <div>
-                <h3 className="font-serif text-2xl font-semibold leading-snug text-slate-950">{c.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{c.date}</p>
-                <a href={c.href} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-sm text-blue-700 underline underline-offset-4">{c.source}<ExternalLink size={13} aria-hidden /></a>
-              </div>
-              <div>
-                <dl className="grid gap-4 text-sm sm:grid-cols-2">
-                  <div><dt className="text-slate-600">Frozen TFPT value</dt><dd className="mt-1 break-words font-mono text-base text-slate-950">{row.frozen_value}{c.id === "BETA_BIREFRINGENCE_DEG" ? "°" : ""}</dd></div>
-                  <div><dt className="text-slate-600">Selected measurement</dt><dd className="mt-1 break-words font-mono text-base text-slate-950">{c.measured}</dd></div>
-                </dl>
-                <p className="mt-4 font-semibold leading-relaxed text-slate-900">{c.result}.</p>
-                <p className="mt-2 leading-relaxed text-slate-700">{c.meaning}</p>
-                <details className="mt-4 text-sm">
-                  <summary className="cursor-pointer py-2 font-semibold text-blue-700 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4">Formula, physical premise and failure criterion</summary>
-                  <dl className="mt-3 space-y-3 leading-relaxed text-slate-700">
-                    <div><dt className="font-semibold text-slate-900">Formula</dt><dd className="break-words">{row.formula}</dd></div>
-                    <div><dt className="font-semibold text-slate-900">Physical premise</dt><dd>{row.conditional_on || "The formula is a core numerical readout in the frozen registry. Physical source selection remains a separate research question."}</dd></div>
-                    <div><dt className="font-semibold text-slate-900">Committed criterion</dt><dd>{row.kill_criterion}</dd></div>
-                    <div><dt className="font-semibold text-slate-900">Timing and comparison scope</dt><dd>{c.history}</dd></div>
-                  </dl>
-                </details>
-              </div>
-            </article>;
-          })}
-        </div>
-      </section>
-
-      <section aria-labelledby="assignments-heading" className="mt-14 grid gap-10 lg:grid-cols-2">
-        <div>
-          <h2 id="assignments-heading" className="font-serif text-2xl font-semibold text-slate-950">Assignments retain their own status</h2>
-          <ul className="mt-4 space-y-5">
-            {registry.assigned_texture_values.map((r) => <li key={r.id}><h3 className="font-semibold text-slate-900">{r.observable}</h3><p className="mt-1 text-slate-700">{r.formula}. This is an assigned texture value.</p></li>)}
-          </ul>
-        </div>
-        <div>
-          <h2 className="font-serif text-2xl font-semibold text-slate-950">Inflation bands need a reheating input</h2>
-          <ul className="mt-4 space-y-5">
-            {registry.conditional_bands.map((r) => <li key={r.id}><h3 className="font-semibold text-slate-900">{r.observable}</h3><p className="mt-1 text-slate-700">{r.band_min} to {r.band_max}. {r.formula}.</p></li>)}
-          </ul>
-          <p className="mt-4 text-sm leading-relaxed text-slate-600">These bands share N* and are correlated. They are not two independent parameters derived by the compiler.</p>
-        </div>
-      </section>
-
-      <section aria-labelledby="searches-heading" className="mt-14 border-t border-slate-300 pt-8">
-        <h2 id="searches-heading" className="font-serif text-3xl font-semibold text-slate-950">The historical search record</h2>
-        <p className="mt-4 max-w-3xl leading-relaxed text-slate-700">The source inventory dated {new Date(atlas.coverage.attemptInventoryDate).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })} retains {historical.length} scorecard records. Their original labels describe different tests and evidence classes. A consistency result, a null and a data limited search answer different questions; none alone establishes the physical theory.</p>
-        <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-4">
-          {Object.entries(statuses).map(([status, count]) => <div key={status}><dt className="text-sm text-slate-600">{status.replaceAll("_", " ")}</dt><dd className="mt-1 font-mono text-lg text-slate-900">{count}</dd></div>)}
-        </dl>
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-600">The catalogue preserves historical, unreviewed attempt metadata. It is distinct from the current source reviewed findings and from a newly executed verification suite. FRB, GW and EHT searches test specified boundary recovery patterns. Downstream scale and cosmological interfaces retain their additional premises.</p>
-        <div className="mt-6 flex flex-wrap gap-5 text-sm font-semibold">
-          <Link href="/results" className="inline-flex items-center gap-2 text-blue-700 underline underline-offset-4">Explore findings and research history<ArrowRight size={16} aria-hidden /></Link>
-          <a href="/research/semantic-atlas.json" className="inline-flex items-center gap-2 text-blue-700 underline underline-offset-4"><Download size={16} aria-hidden /> Download the typed public Atlas</a>
-        </div>
-      </section>
-    </div>
-  );
+  return <article className="reference-page">
+    <header className="reference-header">
+      <h1>TFPT against dated measurements</h1>
+      <p>Compare four frozen readouts with named measurements. Each comparison keeps the data release, physical premise and original failure criterion attached.</p>
+      <p className="reference-note">Primary sources checked {checkedDate}. The formulas remain those in the register frozen on 9 June 2026. Measurements already available at the freeze retain their comparison status.</p>
+      <nav className="reference-links" aria-label="Measurement comparison context"><Link href="/predictions">Read the complete frozen register</Link><Link href="/falsification">Inspect the failure criteria</Link></nav>
+    </header>
+    <section className="reference-section" aria-labelledby="comparison-heading">
+      <h2 id="comparison-heading">How far is each frozen value from the measurement?</h2>
+      <p>Every plot uses the same scale: the measured central value is zero, the pale band spans its stated ±1 standard uncertainty, and the blue point marks the frozen readout.</p>
+      <p className="reference-note">The distance is (frozen value − measured value) / measurement uncertainty alone. It includes no theory error. These four distances are not a combined theory significance or a global fit.</p>
+      <nav className="reference-links" aria-label="Dated comparisons">{comparisons.map(c => <a key={c.id} href={`#${c.id}`}>{c.title}</a>)}</nav>
+      {comparisons.map(c => {
+        const row = predictionById(c.id);
+        return <section key={c.id} id={c.id} className="scroll-mt-24 border-t border-slate-300 py-8 mt-6" aria-labelledby={`${c.id}-heading`}>
+          <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-12">
+            <div>
+              <h3 id={`${c.id}-heading`} className="font-serif text-2xl font-semibold text-slate-950">{c.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-slate-700">{c.date}</p>
+              <p className="mt-4 text-slate-900"><span className="block text-sm text-slate-600">Selected measurement</span><span className="tabular-nums">{formatMeasurement(c.measured)}</span></p>
+              <a href={c.href} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block py-2 text-sm text-blue-800 underline underline-offset-4">{c.source}</a>
+            </div>
+            <div>
+              <DifferencePlot id={c.id} title={c.title} distance={comparisonPositions[c.id]} />
+              <p className="font-semibold leading-relaxed text-slate-900">{c.result}.</p>
+              <p className="mt-2 leading-relaxed text-slate-700">{c.meaning}</p>
+            </div>
+          </div>
+          <details className="mt-5">
+            <summary className="cursor-pointer py-2 font-medium text-blue-800">Exact frozen value, assumptions and comparison history</summary>
+            <dl className="mt-4 grid gap-4 text-sm leading-relaxed sm:grid-cols-[11rem_minmax(0,1fr)]">
+              <dt className="font-semibold">Exact frozen value</dt><dd className="break-all font-mono">{row.frozen_value && groupDecimal(row.frozen_value)}{c.id === "BETA_BIREFRINGENCE_DEG" ? "°" : ""}</dd>
+              <dt className="font-semibold">Formula</dt><dd className="break-words font-mono">{row.formula}</dd>
+              <dt className="font-semibold">Physical premise</dt><dd>{row.conditional_on || "The formula is a core numerical readout in the frozen registry. Physical source selection remains a separate research question."}</dd>
+              <dt className="font-semibold">Committed criterion</dt><dd>{row.kill_criterion}</dd>
+              <dt className="font-semibold">Timing and scope</dt><dd>{c.history}</dd>
+            </dl>
+            <Link href={`/falsification#${c.id}`} className="mt-4 inline-block py-2 text-sm text-blue-800 underline underline-offset-4">Read the criterion in context</Link>
+          </details>
+        </section>;
+      })}
+    </section>
+    <section className="reference-section" aria-labelledby="register-scope-heading">
+      <h2 id="register-scope-heading">Use the right kind of statement</h2>
+      <p>The complete register distinguishes main values, assigned textures and conditional inflation bands. Assigned phases are not derivations; the two inflation bands share the external reheating input N★. Their exact values and criteria are kept together on the register page.</p>
+      <nav className="reference-links" aria-label="Register classes"><Link href="/predictions#assigned">Assigned textures</Link><Link href="/predictions#bands">Conditional bands</Link></nav>
+    </section>
+    <section id="searches-heading" className="reference-section" aria-labelledby="search-history-title">
+      <h2 id="search-history-title">Historical searches have a separate record</h2>
+      <p>The dated search catalogue preserves original attempt metadata. A consistency result, a null and a data limited search answer different questions. Their labels are not new experimental confirmations or source reviewed findings.</p>
+      <details className="mt-5">
+        <summary className="cursor-pointer py-2 font-medium text-blue-800">Inspect the dated search inventory</summary>
+        <p className="mt-4 text-sm leading-relaxed">The inventory dated {new Date(atlas.coverage.attemptInventoryDate).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })} contains {historical.length} scorecard records. These counts describe that catalogue, not a newly executed suite.</p>
+        <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-4">{Object.entries(statuses).map(([status,count]) => <div key={status}><dt className="text-sm text-slate-600">{status.replaceAll("_", " ")}</dt><dd className="tabular-nums text-slate-900">{count}</dd></div>)}</dl>
+        <a href="/research/semantic-atlas.json" className="mt-4 inline-block py-2 text-sm text-blue-800 underline underline-offset-4">Download the typed public atlas</a>
+      </details>
+      <Link href="/results?tab=history" className="mt-4 inline-block py-2 text-blue-800 underline underline-offset-4">Explore the research history</Link>
+    </section>
+  </article>;
 }

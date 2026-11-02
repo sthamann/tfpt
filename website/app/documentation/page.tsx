@@ -1,65 +1,40 @@
-import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { readFileSync } from "node:fs";
-import path from "node:path";
-import { ArrowRight, BookOpen, Download, FileCode2, Network } from "lucide-react";
-import { REPO_URL, SITE_URL } from "@/lib/utils";
-
-export const dynamic = "force-static";
-export const metadata: Metadata = pageMetadata("/documentation");
-
-type Document = { id: string; entry_point: string; canonical_source: string; role: string; title: string; topic_ids?: string[]; ordered_section_ids: string[] };
-type Topic = { id: string; title: string };
-type Registry = { documents: Document[]; topics: Topic[]; sources: unknown[]; sections: unknown[]; reverse_indexes: { by_topic?: Record<string, unknown[]> } };
-
-export default function DocumentationPage() {
-  const registry: Registry = JSON.parse(readFileSync(path.join(process.cwd(), "public/documentation/registry.json"), "utf8"));
-  const active = registry.documents.filter((document) => document.role === "active");
-  return (
-    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-widest text-blue-700">TFPT document library</p>
-        <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">Find the argument. Follow its sources.</h1>
-        <p className="mt-6 text-lg leading-relaxed text-slate-600">Read a compact guide, open a particular document, or trace a topic to the LaTeX module and verification sources that discuss it.</p>
-      </div>
-      <section aria-labelledby="reading-editions" className="mt-12 grid gap-5 md:grid-cols-3">
-        <h2 id="reading-editions" className="sr-only">Reading editions</h2>
-        {[
-          { title: "Compact reading guide", href: "/papers/introduction_guide.pdf", icon: BookOpen, description: "The introduction’s core chapters, with its computational reference appendix and dated history available separately." },
-          { title: "Verification catalog", href: "/papers/verification_catalog.pdf", icon: Network, description: "The complete registered module index as a separate reference volume. Descriptions retain their stated scope." },
-          { title: "Complete document set", href: "/papers", icon: Download, description: "The original complete PDFs, research contracts and publication history remain available under their established names." },
-        ].map(({ title, href, icon: Icon, description }) => (
-          <Link key={href} href={href} prefetch={false} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-blue-300 hover:shadow-md">
-            <Icon size={25} className="text-blue-700" aria-hidden />
-            <h3 className="mt-5 font-serif text-xl font-semibold text-slate-950">{title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600">{description}</p>
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">Open <ArrowRight size={15} aria-hidden /></span>
-          </Link>
-        ))}
-      </section>
-      <section aria-labelledby="registry-heading" className="mt-16 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
-        <h2 id="registry-heading" className="font-serif text-2xl font-semibold text-slate-950">One source registry</h2>
-        <p className="mt-4 max-w-4xl leading-relaxed text-slate-600">The registry inventories {registry.sources.length} authored LaTeX source files, {registry.documents.length} document entry points and {registry.sections.length} section records. It connects physical source locations, topics, Python checks, ledger claims, and explicit Lean or Wolfram references. Historical and generated material is identified separately.</p>
-        <p className="mt-3 max-w-4xl text-sm leading-relaxed text-slate-600">A citation identifies a source; it does not establish that source’s mathematical or physical conclusion. Suggested topic matches are navigation hints. Original statements, assumptions and the status ledger remain authoritative.</p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          {[
-            { href: `${REPO_URL}/blob/main/docs/registry/INDEX.md`, label: "Browse the registry" },
-            { href: "/documentation/registry.json", label: "Download JSON" },
-            { href: `${REPO_URL}/blob/main/docs/LATEX_MAINTENANCE.md`, label: "Maintenance guide" },
-            { href: "/documentation/SEMANTIC_NAVIGATION.md", label: "Semantic coverage and research navigation" },
-          ].map(({ href, label }) => <a key={href} href={href} className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:border-blue-400 hover:text-blue-800">{label}</a>)}
-        </div>
-      </section>
-      <section aria-labelledby="topics-heading" className="mt-16">
-        <h2 id="topics-heading" className="font-serif text-2xl font-semibold text-slate-950">Navigate by topic</h2>
-        <p className="mt-3 text-slate-600">Topic suggestions help locate relevant sections. Consult each registry record for explicit evidence links and its original scope.</p>
-        <div className="mt-6 flex flex-wrap gap-3">{registry.topics.map((topic) => <a key={topic.id} href={`${REPO_URL}/blob/main/docs/registry/topics/${topic.id}.md`} className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 hover:border-blue-300 hover:text-blue-800">{topic.title}</a>)}</div>
-      </section>
-      <section aria-labelledby="sources-heading" className="mt-16">
-        <h2 id="sources-heading" className="font-serif text-2xl font-semibold text-slate-950">Active documents and editable sources</h2>
-        <div className="mt-6 divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white">{active.map((document) => <a key={document.id} href={`${REPO_URL}/blob/main/${document.canonical_source}`} className="flex items-start gap-4 p-5 transition hover:bg-slate-50"><FileCode2 size={20} className="mt-1 shrink-0 text-blue-700" aria-hidden /><div><h3 className="font-semibold text-slate-900">{document.title}</h3><p className="mt-1 break-all font-mono text-xs leading-relaxed text-slate-500">{document.canonical_source}</p><p className="mt-2 text-xs text-slate-500">{document.ordered_section_ids.length} section records · entry point {document.entry_point}</p></div><ArrowRight size={16} className="ml-auto mt-1 shrink-0 text-slate-400" aria-hidden /></a>)}</div>
-      </section>
-    </div>
-  );
+import { join } from "node:path";
+import { pageMetadata } from "@/lib/seo";
+import { foundationIndex } from "@/lib/foundation";
+import { semanticAtlas } from "@/lib/semantic";
+import { sourceLibrary,repositorySource,documentPdf,type SourceSection } from "@/lib/source-library";
+export const metadata:Metadata=pageMetadata("/documentation");
+export const dynamic="force-dynamic";
+const link=(p:Record<string,string|undefined>)=>`/documentation?${new URLSearchParams(Object.entries(p).filter((v):v is [string,string]=>Boolean(v[1])))}`;
+export default async function DocumentationPage({searchParams}:{searchParams:Promise<Record<string,string|undefined>>}){
+ const original=await searchParams;const params=Object.fromEntries(Object.entries(original).filter((entry):entry is [string,string]=>typeof entry[1]==="string"));const data=sourceLibrary();const query=(params.search||"").slice(0,250),needle=query.toLowerCase();
+ const active=data.documents.filter(d=>d.role==="active");const chosen=data.sections.find(s=>s.id===params.section);
+ const foundation=foundationIndex();
+ const evidence=params.evidence?data.evidence.find(e=>e.id===params.evidence):undefined;
+ const reference=params.source?foundation.theoryMap.sourceRefs.find(s=>s.path===params.source):undefined;
+ const registeredPath=params.source&&data.sources.some(s=>typeof s==="object"&&s!==null&&"path" in s&&(s as {path:unknown}).path===params.source)?params.source:undefined;
+ const selectedPath=evidence?.path||reference?.path||registeredPath;
+ const selectedModule=foundation.modules.find(m=>m.path===selectedPath);
+ let codePreview="";
+ if(selectedModule){try{codePreview=readFileSync(join(process.cwd(),"public/verification",selectedModule.filename),"utf8");}catch{codePreview="";}}
+ const sourceSections=selectedPath?data.sections.filter(s=>s.source===selectedPath):[];
+ const excerpts=selectedPath?semanticAtlas().sourceRefs.filter(s=>s.path===selectedPath&&s.href?.startsWith("/research/sources/")).slice(0,8):[];
+ const topicIds=params.topic?new Set(data.reverse_indexes.by_topic[params.topic]||[]):undefined;
+ const rank=(section:SourceSection)=>/^20\d{2}-\d{2}-\d{2}/.test(section.title)||section.source.includes("/changelog/")?0:section.owner_documents.some(id=>active.some(d=>d.id===id&&!["document:changelog","document:verification_catalog"].includes(d.id)))?3:section.owner_documents.some(id=>active.some(d=>d.id===id))?1:2;
+ const filtered=data.sections.filter(s=>(!topicIds||topicIds.has(s.id))&&(!params.document||s.owner_documents.includes(params.document))&&(!needle||`${s.title} ${s.summary_excerpt} ${s.source} ${s.id}`.toLowerCase().includes(needle))).sort((a,b)=>rank(b)-rank(a));
+ const page=Math.min(Math.max(1,Math.ceil(filtered.length/20)),Math.max(1,parseInt(params.page||"1")||1));
+ function Section({section,expanded=false}:{section:SourceSection;expanded?:boolean}){
+  const owners=data.documents.filter(d=>section.owner_documents.includes(d.id));const refs=data.relations.filter(r=>r.from===section.id);
+  return <article id={section.id}><h3><Link href={link({section:section.id})}>{section.title||"Untitled source section"}</Link></h3><p className="reference-note">{owners.map(d=>d.title).join(" · ")}</p>{section.summary_excerpt&&<p>{section.summary_excerpt}</p>}<p className="reference-note">Opening source excerpt. Formulas and the full argument remain in the original document.</p><div className="reference-links"><a href={repositorySource(section.source,section.line_start)}>Read the original section</a>{owners.map(d=>documentPdf(d)&&<a key={d.id} href={documentPdf(d)}>Read the paper: {d.title}</a>)}</div><details open={expanded}><summary>Source location and explicit evidence links</summary><p className="reference-source-path">{section.source} · lines {section.line_start} to {section.line_end}</p><p className="reference-note">These are recorded citation relations. A source citation or topic match does not establish a mathematical or physical result.</p>{refs.length?<ul>{refs.map(r=>{const e=data.evidence.find(e=>e.id===r.to);return <li key={r.id}><strong>{r.relation_type.replaceAll("_"," ")}</strong>{e?.path?<a href={repositorySource(e.path)}> {e.path.split("/").at(-1)}</a>:<span> {r.to}</span>}<p className="reference-note">{r.match_basis}</p></li>})}</ul>:<p>No explicit verification citation is attached to this section in the registry.</p>}</details></article>;
+ }
+ return <div className="reference-page"><header className="reference-header"><h1>{selectedPath?"Follow the source behind the result.":"Find the original argument."}</h1><p>Search the paper sections, open their original context and follow the checks they actually cite. The knowledge atlas explains the result; this library locates its source.</p></header>
+ {!selectedPath&&<form className="reference-form" action="/documentation" role="search"><div><label htmlFor="source-search">Search titles, opening text and source locations</label><input id="source-search" name="search" defaultValue={query} placeholder="Alpha, three families, clocks, Higgs…"/></div><div><label htmlFor="source-document">Document</label><select id="source-document" name="document" defaultValue={params.document||""}><option value="">All public documents</option>{active.map(d=><option value={d.id} key={d.id}>{d.title}</option>)}</select></div>{params.topic&&<input name="topic" type="hidden" value={params.topic}/>}<button type="submit">Find sources</button></form>}
+ {selectedPath?<section className="reference-section"><h2>{selectedPath.split("/").at(-1)}</h2><p className="reference-source-path">{selectedPath}</p><p>{selectedModule?"This is a registered verification module. Read its original code and the paper sections that cite it, then follow the linked claim to its present classification.":"This source is recorded in the public registry or the authored system map. Read its original context and distinguish that source reference from a scientific verdict."}</p><div className="reference-links">{selectedModule&&<a href={(selectedModule as typeof selectedModule & {snapshotSourceHref?:string}).snapshotSourceHref||`/verification/${selectedModule.filename}`}>{(selectedModule as typeof selectedModule & {pubMirrorMatchesSnapshot?:boolean}).pubMirrorMatchesSnapshot===false?"Read the frozen research source":"Read the published Python source"}</a>}<a href={repositorySource(selectedPath)}>Open the repository source</a>{selectedModule&&<Link href={`/verification?moduleQuery=${encodeURIComponent(selectedModule.id)}#module-catalog`}>Find this module in the catalogue</Link>}</div>{selectedModule&&(selectedModule as typeof selectedModule & {pubMirrorMatchesSnapshot?:boolean}).pubMirrorMatchesSnapshot===false&&<div className="reference-rule"><strong>The executable publication is an older version.</strong><p>The frozen research source above matches this snapshot’s original hash. It is published as a source document, without asserting a new execution or status change.</p><a href={`/verification/${selectedModule.filename}`}>Inspect the older executable publication</a><details><summary>Compare the source fingerprints</summary><p className="reference-source-path">Frozen research source: {selectedModule.sourceSha256}</p><p className="reference-source-path">Executable publication: {selectedModule.pubMirrorHash}</p></details></div>}{codePreview&&<details><summary>Read the publication code on this page</summary><p className="reference-note">{(selectedModule as typeof selectedModule & {pubMirrorMatchesSnapshot?:boolean})?.pubMirrorMatchesSnapshot===false?"This preview is the older executable publication, kept separate from the frozen research source linked above.":"The registered Python source is shown as text. Displaying it does not execute the code."}</p><pre><code>{codePreview}</code></pre></details>}{reference&&<p className="reference-note">Authored map reference: {reference.freshness.replaceAll("-"," ")}. Its recorded source pin and line range remain attached; a source reference does not report a new proof run.</p>}{(evidence?.sha256||reference?.sha256)&&<details><summary>Recorded source fingerprint</summary><p className="reference-source-path">{evidence?.sha256||reference?.sha256}</p>{reference&&<p>Original lines {reference.lineStart} to {reference.lineEnd}.</p>}</details>}{excerpts.length>0&&<div className="reference-rows"><h3>Bounded scientific source excerpts</h3><p className="reference-note">Each excerpt retains its own original lines, fingerprint and source freshness. These are separate recorded ranges, not a replacement for the complete document.</p>{excerpts.map(e=><article key={e.id}><a href={e.href||undefined}>Read lines {e.lineStart} to {e.lineEnd}</a><p className="reference-note">{e.freshness.replaceAll("-"," ")}</p></article>)}</div>}{sourceSections.length>0&&<div className="reference-rows"><h3>Sections in this source</h3>{sourceSections.slice(0,20).map(section=><Section section={section} key={section.id}/>)}{sourceSections.length>20&&<p>{sourceSections.length} sections are indexed in this file. Use the document filter or source search to narrow the selection.</p>}</div>}{selectedModule&&<section className="reference-section"><h3>Paper sections that cite this module</h3><div className="reference-rows">{selectedModule.sectionIds.slice(0,12).map(id=>{const section=data.sections.find(s=>s.id===id);return section&&<article key={id}><Link href={link({section:id})}>{section.title}</Link></article>})}</div>{selectedModule.sectionIds.length>12&&<p className="reference-note">The module’s catalogue entry retains all {selectedModule.sectionIds.length} section references.</p>}</section>}</section>:params.evidence||params.source?<section className="reference-section"><h2>This source reference was not found.</h2><p>Search the public source library or return to the knowledge atlas. Only registered public sources are available here.</p><div className="reference-links"><Link href="/documentation">Search the library</Link><Link href="/results">Open the knowledge atlas</Link></div></section>:chosen?<section className="reference-section"><Section section={chosen} expanded/></section>:query||params.topic||params.document?<section className="reference-section"><h2>{params.topic?data.topics.find(t=>t.id===params.topic)?.title||"Topic sources":"Matching source sections"}</h2>{params.topic&&<p className="reference-note">This topic filter uses the registry’s labelled lexical suggestions. Read the actual section and citations to establish relevance.</p>}<p className="reference-note">{filtered.length} sections found. Current publication documents are listed before historical material.</p><div className="reference-rows">{filtered.slice((page-1)*20,page*20).map(s=><Section section={s} key={s.id}/>)}</div>{filtered.length===0&&<p>No section matches. Try a shorter term or <Link href="/results">search the knowledge atlas</Link>.</p>}<nav className="reference-pagination" aria-label="Source result pages">{page>1?<Link href={link({...params,page:String(page-1)})}>Previous</Link>:<span/>}<span>Page {page} of {Math.max(1,Math.ceil(filtered.length/20))}</span>{page*20<filtered.length?<Link href={link({...params,page:String(page+1)})}>Next</Link>:<span/>}</nav></section>:<>
+ <section className="reference-section"><h2>Choose a subject.</h2><p>Start with a paper, then narrow to the section and its evidence.</p><nav className="reference-links" aria-label="Paper subjects">{data.topics.filter(t=>t.id!=="history").map(t=><Link key={t.id} href={link({topic:t.id})}>{t.title}</Link>)}</nav></section>
+ <section className="reference-section"><h2>Read the publication set.</h2><div className="reference-rows">{active.filter(d=>!['document:changelog','document:verification_catalog'].includes(d.id)).map(d=><article key={d.id}><h3>{d.title}</h3><div className="reference-links"><Link href={link({document:d.id})}>Browse its sections</Link><a href={documentPdf(d)}>Read the PDF</a><a href={repositorySource(d.canonical_source)}>Original source</a></div></article>)}</div><div className="reference-links"><a href="/papers/introduction_guide.pdf">Compact reading edition</a><Link href="/verification#module-catalog">Search all verification modules</Link><Link href="/papers">All PDFs and publication details</Link></div></section>
+ </>}
+ <section className="reference-section"><details><summary>What this source index covers</summary><p>The public registry includes {data.documents.length} document views, {data.sections.length.toLocaleString("en-US")} section records and {data.sources.length} physical LaTeX sources. Active publication documents, research material and archives retain their recorded roles. This is source navigation, not a new semantic review or proof run.</p><div className="reference-links"><a href="/documentation/registry.json">Complete structured registry</a><a href="/documentation/SEMANTIC_NAVIGATION.md">How source relations are recorded</a><Link href="/results?coverage=1">Knowledge and evidence coverage</Link></div></details></section></div>;
 }
