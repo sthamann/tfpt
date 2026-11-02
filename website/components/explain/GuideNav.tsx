@@ -8,13 +8,25 @@ export function GuideNav() {
   const [active, setActive] = useState("inputs");
   const navRef = useRef<HTMLElement>(null);
   useEffect(() => {
-    const initial = window.location.hash.slice(1);
-    if (chapters.some(([id]) => id === initial)) setActive(initial);
-    const observer = new IntersectionObserver(entries => {
-      for (const entry of entries) if (entry.isIntersecting) setActive(entry.target.id);
-    }, { rootMargin: "-145px 0px -65% 0px" });
-    chapters.map(([id]) => id).forEach(id => { const element = document.getElementById(id); if (element) observer.observe(element); });
-    return () => observer.disconnect();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      let current = chapters[0][0];
+      for (const [id] of chapters) {
+        const element = document.getElementById(id);
+        if (element && element.getBoundingClientRect().top <= 160) current = id;
+      }
+      setActive(current);
+    };
+    const schedule = () => { if (!frame) frame = window.requestAnimationFrame(update); };
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
   }, []);
   useEffect(() => {
     const nav = navRef.current;
