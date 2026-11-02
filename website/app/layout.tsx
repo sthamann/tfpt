@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Newsreader, JetBrains_Mono } from "next/font/google";
+import "./site-fonts.css";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import "katex/dist/katex.min.css";
+import "./katex.css";
 import "./math-fonts.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -10,9 +10,6 @@ import { ReproducerProvider } from "@/components/Reproducer";
 import { REPO_URL, SITE_URL } from "@/lib/utils";
 import { SITE_VERSION } from "@/lib/version";
 
-const inter = Inter({ subsets: ["latin"], display: "optional", variable: "--font-inter" });
-const newsreader = Newsreader({ subsets: ["latin"], display: "optional", variable: "--font-newsreader", preload: false });
-const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], display: "optional", variable: "--font-jetbrains", preload: false });
 
 const SITE_NAME = "TFPT — Topological Fixed-Point Theory";
 const SITE_DESCRIPTION = "Explore Topological Fixed-Point Theory (TFPT): research papers, testable predictions and an open verification suite by Stefan Hamann and Alessandro Rizzo.";
@@ -179,8 +176,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${newsreader.variable} ${mono.variable}`}>
+    <html lang="en">
       <head>
+        <link rel="preload" href="/fonts/e4af272ccee01ff0-s.p.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
