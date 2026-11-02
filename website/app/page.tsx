@@ -21,6 +21,7 @@ import { ResearchSnapshot } from "@/components/explain/ResearchSnapshot";
 import { OutcomeAtlas, ConnectionStory } from "@/components/explain/TheoryExperience";
 import { StartingStructures } from "@/components/explain/StartingStructures";
 import { PatternConnections } from "@/components/explain/PatternConnections";
+import { PredictionOverview } from "@/components/explain/PredictionOverview";
 import { DerivationPreview } from "@/components/explain/DerivationPreview";
 
 export default function HomePage() {
@@ -31,6 +32,7 @@ export default function HomePage() {
           /predictions, /architecture, /verification, /orientation). */}
       <LegacyAnchorRedirect />
       <Hero />
+      <PredictionOverview />
       <OutcomeAtlas />
       <StartingStructures />
       <ConnectionStory />

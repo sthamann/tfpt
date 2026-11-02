@@ -4,61 +4,25 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { SITE_URL } from "@/lib/utils";
 import { formatMeasurement, groupDecimal } from "@/lib/format-number";
+import { measurementComparisons as comparisons, measurementCheckedDate as checkedDate, signedSigma } from "@/lib/measurement-comparisons";
+import { PredictionBandTests } from "@/components/explain/PredictionOverview";
 import { predictionById } from "@/lib/frozen-predictions";
 
 export const metadata: Metadata = {
   title: "Dated Measurement Comparisons: TFPT Empirical Audit",
-  description: "Four frozen TFPT values compared with dated CODATA, JUNO, NuFIT and ACT measurements, with normalized differences, original assumptions and primary sources.",
+  description: "Ten frozen TFPT values compared with dated NIST, JUNO, NuFIT, PDG, ACT and Planck results, with normalized differences, original assumptions and primary sources.",
   alternates: { canonical: `${SITE_URL}/empirical-audit` },
 };
 
 type Attempt = { kind: string; status?: string; verdictRaw?: string };
 type Atlas = { attempts: Attempt[]; coverage: { attemptInventoryDate: string } };
 const atlas = JSON.parse(readFileSync(join(process.cwd(), "public/research/semantic-atlas.json"), "utf8")) as Atlas;
-const checkedDate = "2 November 2026";
-const comparisons = [
-  {
-    id: "ALPHA_INV", title: "Inverse fine structure constant", measured: "137.035999177 ± 0.000000021",
-    date: "CODATA 2022 adjustment", result: "1.90 measurement standard uncertainties above the recommended value",
-    meaning: "The difference uses the CODATA standard uncertainty alone. It is a numerical comparison, not a combined theory significance or a derivation of the physical coupling.",
-    source: "NIST: 2022 CODATA constants", href: "https://physics.nist.gov/cuu/Constants/Table/allascii.txt",
-    history: "The CODATA adjustment predates the registry freeze.",
-  },
-  {
-    id: "SIN2_THETA12_SEED", title: "Solar neutrino mixing, sin² θ₁₂", measured: "0.3036 ± 0.0064",
-    date: "JUNO 207.2 live days; collaboration preprint, 29 September 2026",
-    result: "0.49 measurement standard uncertainties above the JUNO central value",
-    meaning: "This comparison uses the normal mass ordering result. The precision does not distinguish the conditional TFPT value from the measured interval.",
-    source: "JUNO Collaboration: 207.2 day oscillation analysis", href: "https://arxiv.org/abs/2609.37895",
-    history: "The cited collaboration preprint appeared on 29 September 2026. The earlier 59.1 day result, 0.3092 ± 0.0087, was already public on 18 November 2025, before the registry freeze. A prospective test must be assessed against the first public disclosure of the tested value, not its journal date alone.",
-  },
-  {
-    id: "SIN2_THETA13", title: "Reactor neutrino mixing, sin² θ₁₃", measured: "0.02249 ± 0.00057",
-    date: "NuFIT 6.1, November 2025 data; normal ordering, IC23 without SK atmospheric data",
-    result: "1.08 measurement standard uncertainties above this fit",
-    meaning: "The selected fit is stated explicitly because the result depends on ordering and the data combination. The older approximate two sigma label is not used for this comparison.",
-    source: "NuFIT 6.1 parameter table", href: "https://www.nu-fit.org/sites/default/files/v61.tbl-parameters.pdf",
-    history: "The global fit predates the registry freeze and shares neutrino data with other comparison rows.",
-  },
-  {
-    id: "BETA_BIREFRINGENCE_DEG", title: "Cosmic birefringence, β", measured: "0.215° ± 0.074°",
-    date: "ACT DR6 analysis, submitted 17 September 2025; revised 14 April 2026",
-    result: "0.37 measurement standard uncertainties above this analysis",
-    meaning: "The authors retain unresolved instrumental systematics. The published analysis does not establish a cosmological detection or identify a TFPT mechanism.",
-    source: "Diego Palazuelos and Komatsu: ACT DR6", href: "https://arxiv.org/abs/2509.13654",
-    history: "This constant rotation comparison is distinct from later searches for anisotropic or time dependent birefringence.",
-  },
-];
-
-const comparisonPositions: Record<string, number> = {
-  ALPHA_INV: 1.90, SIN2_THETA12_SEED: 0.49, SIN2_THETA13: 1.08, BETA_BIREFRINGENCE_DEG: 0.37,
-};
 
 function DifferencePlot({ id, title, distance }: { id: string; title: string; distance: number }) {
   const position = (value: number) => 32 + ((value + 2) / 5) * 296;
   return <figure className="my-5 max-w-lg">
     <svg viewBox="0 0 360 116" role="img" aria-labelledby={`${id}-plot-title ${id}-plot-description`} className="block h-auto w-full overflow-visible">
-      <title id={`${id}-plot-title`}>{`${title}: frozen value at +${distance.toFixed(2)} measurement standard uncertainties`}</title>
+      <title id={`${id}-plot-title`}>{`${title}: frozen value at ${signedSigma(distance)} measurement standard uncertainties`}</title>
       <desc id={`${id}-plot-description`}>The measurement center is zero. The shaded band extends from minus one to plus one stated measurement standard uncertainty. The blue point is the frozen value. No theory uncertainty is included.</desc>
       <rect x={position(-1)} y="39" width={position(1)-position(-1)} height="28" fill="#dbe5ef" />
       <line x1={position(-2)} x2={position(3)} y1="53" y2="53" stroke="#61778c" strokeWidth="1" />
@@ -68,7 +32,7 @@ function DifferencePlot({ id, title, distance }: { id: string; title: string; di
         <text x={position(tick)} y="91" textAnchor="middle" fill="#364f65" fontSize="13">{tick > 0 ? `+${tick}` : tick === 0 ? "0" : `−${Math.abs(tick)}`}</text>
       </g>)}
       <circle cx={position(distance)} cy="53" r="6" fill="#315b84" stroke="#faf9f6" strokeWidth="2" />
-      <text x={position(distance)} y="24" textAnchor="middle" fill="#24466a" fontSize="14" fontWeight="600">+{distance.toFixed(2)}</text>
+      <text x={position(distance)} y="24" textAnchor="middle" fill="#24466a" fontSize="14" fontWeight="600">{signedSigma(distance)}</text>
       <text x="180" y="113" textAnchor="middle" fill="#465d72" fontSize="12">Difference / stated measurement uncertainty</text>
     </svg>
   </figure>;
@@ -84,14 +48,14 @@ export default function EmpiricalAuditPage() {
   return <article className="reference-page">
     <header className="reference-header">
       <h1>TFPT against dated measurements</h1>
-      <p>Compare four frozen readouts with named measurements. Each comparison keeps the data release, physical premise and original failure criterion attached.</p>
+      <p>Compare ten frozen readouts with named measurements. Each comparison keeps the data release, physical premise and original failure criterion attached.</p>
       <p className="reference-note">Primary sources checked {checkedDate}. The formulas remain those in the register frozen on 9 June 2026. Measurements already available at the freeze retain their comparison status.</p>
       <nav className="reference-links" aria-label="Measurement comparison context"><Link href="/predictions">Read the complete frozen register</Link><Link href="/falsification">Inspect the failure criteria</Link></nav>
     </header>
     <section className="reference-section" aria-labelledby="comparison-heading">
       <h2 id="comparison-heading">How far is each frozen value from the measurement?</h2>
       <p>Every plot uses the same scale: the measured central value is zero, the pale band spans its stated ±1 standard uncertainty, and the blue point marks the frozen readout.</p>
-      <p className="reference-note">The distance is (frozen value − measured value) / measurement uncertainty alone. It includes no theory error. These four distances are not a combined theory significance or a global fit.</p>
+      <p className="reference-note">The distance is (frozen value − measured value) / measurement uncertainty alone. It includes no theory error. These ten distances are not a combined theory significance or a global fit.</p>
       <nav className="reference-links" aria-label="Dated comparisons">{comparisons.map(c => <a key={c.id} href={`#${c.id}`}>{c.title}</a>)}</nav>
       {comparisons.map(c => {
         const row = predictionById(c.id);
@@ -104,7 +68,7 @@ export default function EmpiricalAuditPage() {
               <a href={c.href} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block py-2 text-sm text-blue-800 underline underline-offset-4">{c.source}</a>
             </div>
             <div>
-              <DifferencePlot id={c.id} title={c.title} distance={comparisonPositions[c.id]} />
+              <DifferencePlot id={c.id} title={c.title} distance={c.sigma} />
               <p className="font-semibold leading-relaxed text-slate-900">{c.result}.</p>
               <p className="mt-2 leading-relaxed text-slate-700">{c.meaning}</p>
             </div>
@@ -114,7 +78,7 @@ export default function EmpiricalAuditPage() {
             <dl className="mt-4 grid gap-4 text-sm leading-relaxed sm:grid-cols-[11rem_minmax(0,1fr)]">
               <dt className="font-semibold">Exact frozen value</dt><dd className="break-all font-mono">{row.frozen_value && groupDecimal(row.frozen_value)}{c.id === "BETA_BIREFRINGENCE_DEG" ? "°" : ""}</dd>
               <dt className="font-semibold">Formula</dt><dd className="break-words font-mono">{row.formula}</dd>
-              <dt className="font-semibold">Physical premise</dt><dd>{row.conditional_on || "The formula is a core numerical readout in the frozen registry. Physical source selection remains a separate research question."}</dd>
+              <dt className="font-semibold">Physical premise</dt><dd>{row.conditional_on || "The frozen numerical readout retains the source and physical transfer conditions of its branch."}</dd>
               <dt className="font-semibold">Committed criterion</dt><dd>{row.kill_criterion}</dd>
               <dt className="font-semibold">Timing and scope</dt><dd>{c.history}</dd>
             </dl>
@@ -123,6 +87,7 @@ export default function EmpiricalAuditPage() {
         </section>;
       })}
     </section>
+    <PredictionBandTests />
     <section className="reference-section" aria-labelledby="register-scope-heading">
       <h2 id="register-scope-heading">Use the right kind of statement</h2>
       <p>The complete register distinguishes main values, assigned textures and conditional inflation bands. Assigned phases are not derivations; the two inflation bands share the external reheating input N★. Their exact values and criteria are kept together on the register page.</p>

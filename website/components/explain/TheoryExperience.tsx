@@ -1,8 +1,9 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowDown, ArrowRight } from "lucide-react";
-import { OutputPlate, MechanismWalkthrough } from "./LearningFigures";
+import { MechanismWalkthrough } from "./LearningFigures";
+
+import { PredictionHeroPlate } from "./PredictionOverview";
+import predictionStyles from "./PredictionOverview.module.css";
 
 const outcomes = [
   { title: "Particles & charges", short: "Particles", second: "& charges", text: "The representations and charges of one Standard Model family, with a separate geometric construction for three families.", scope: "Representation and charge results", query: "hypercharge", href: "/explain#matter" },
@@ -14,13 +15,13 @@ const outcomes = [
 ];
 
 export function BigPictureHero() {
-  return <section className="big-picture-hero learning-hero" aria-labelledby="big-picture-title"><div className="experience-shell big-picture-layout">
-    <div className="big-picture-copy"><h1 id="big-picture-title">From a common structure to particles and constants.</h1>
-      <p className="big-picture-lead">TFPT studies whether the particle content and constants of nature can be explained together. Its construction already fixes charge assignments, mass relations and a boundary equation for the electromagnetic coupling.</p>
-      <p className="big-picture-route">Start with the outputs. Then inspect the actual maps, shared inputs and calculations that connect them.</p>
-      <div className="experience-actions"><a href="#outcomes" className="experience-primary">Explore the results <ArrowDown size={18} aria-hidden /></a><a href="#inputs" className="experience-secondary">See how it works <ArrowRight size={18} aria-hidden /></a></div>
+  return <section className="big-picture-hero learning-hero" aria-labelledby="big-picture-title"><div className={`experience-shell big-picture-layout ${predictionStyles.heroGrid}`}>
+    <div className={predictionStyles.heroIntroCopy}><h1 id="big-picture-title">From a common structure to particles and constants.</h1>
+      <p className="big-picture-lead">TFPT connects particle charges, mass relations, mixing angles and cosmological readouts through one specified construction. Start with its numerical predictions and their comparison with data, then follow the shared ingredients.</p>
+    </div><PredictionHeroPlate/><div className={predictionStyles.heroNext}>
+      <div className="experience-actions"><a href="#prediction-accuracy" className="experience-primary">Predictions and accuracy <ArrowDown size={18} aria-hidden /></a><a href="#inputs" className="experience-secondary">See how it works <ArrowRight size={18} aria-hidden /></a></div>
       <p className="experience-byline">Topological Fixed-Point Theory · Stefan Hamann & Alessandro Rizzo</p>
-    </div><OutputPlate/>
+    </div>
   </div></section>;
 }
 
