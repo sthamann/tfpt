@@ -2,7 +2,7 @@
 
 Generated source-navigation diagnostics; unresolved means no unique local target was asserted. Historical/moved-project references may be intentional. Absence of a citation is not absence of a proof.
 
-Unresolved explicit citation groups: **4103**. Evidence entities without incoming indexed citation: **817**.
+Unresolved explicit citation groups: **4097**. Evidence entities without incoming indexed citation: **817**.
 
 The full precise list (section IDs, physical lines, tokens, candidates) is in `registry.json` → `diagnostics`. This page groups repeated tokens for readability.
 
@@ -861,12 +861,6 @@ The full precise list (section IDs, physical lines, tokens, candidates) is in `r
 | unmatched_file_citation | `e8_directed_readout_probe.py` | 1 |
 | unmatched_file_citation | `errorterm_demand_curve_probe.py` | 2 |
 | unmatched_file_citation | `experiments/tfpt-discovery/pruefer_compensation_probe.py` | 2 |
-| unmatched_file_citation | `experiments/theory-contracts/constant-triangulation-20261103/CONSTANT-TRIANGULATION.txt` | 1 |
-| unmatched_file_citation | `experiments/theory-contracts/craig-original-source-bridge-20261103/ACTUAL-PRODUCT-PAIRING.txt` | 1 |
-| unmatched_file_citation | `experiments/theory-contracts/craig-original-source-bridge-20261103/COLOR-PROJECTED-KERNEL.txt` | 1 |
-| unmatched_file_citation | `experiments/theory-contracts/cyclic-genesis-literature-20261103/GENESIS-CYCLIC.txt` | 1 |
-| unmatched_file_citation | `experiments/theory-contracts/original-local-source-variable-background-20261102/ADMISSIBLE-ACTION-DERIVATION-20261103.txt` | 1 |
-| unmatched_file_citation | `experiments/theory-contracts/original-local-source-variable-background-20261102/PROJECTED-JOINT-SOURCE-GENERATOR-20261103.txt` | 1 |
 | unmatched_file_citation | `freetail_case_bridge_probe.py` | 2 |
 | unmatched_file_citation | `full-plank/beschreibung.txt` | 2 |
 | unmatched_file_citation | `fullsource_quasidefiniteness_probe.py` | 2 |

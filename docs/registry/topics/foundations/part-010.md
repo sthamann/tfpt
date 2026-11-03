@@ -246,6 +246,7 @@ Explicit source references:
 
 - [experiments/theory-contracts/original-local-source-variable-background-20261102/VARIABLE-BACKGROUND-PROOF.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/VARIABLE-BACKGROUND-PROOF.txt#L1) · explicit_file_citation
 - [experiments/theory-contracts/original-local-source-variable-background-20261102/GROUND-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/GROUND-SOURCE.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/cyclic-genesis-literature-20261103/GENESIS-CYCLIC.txt](../../../../experiments/theory-contracts/cyclic-genesis-literature-20261103/GENESIS-CYCLIC.txt#L1) · explicit_file_citation
 - [experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt](../../../../experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt#L1) · explicit_file_citation
 - [experiments/theory-contracts/original-local-source-variable-background-20261102/LARGER-CHARGED-SOURCE-EVALUATION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/LARGER-CHARGED-SOURCE-EVALUATION.txt#L1) · explicit_file_citation
 - [experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-JOINT.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-JOINT.txt#L1) · explicit_file_citation
@@ -258,13 +259,18 @@ Explicit source references:
 - [experiments/theory-contracts/original-local-source-variable-background-20261102/FULL-SOURCE-CORRECTION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/FULL-SOURCE-CORRECTION.txt#L1) · explicit_file_citation
 - [verification/v1027_signed_det_car_wall.py](../../../../verification/v1027_signed_det_car_wall.py#L1) · explicit_file_citation
 - [experiments/theory-contracts/original-local-source-variable-background-20261102/PHYSICAL-THERMAL-SOURCE.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PHYSICAL-THERMAL-SOURCE.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/craig-original-source-bridge-20261103/ACTUAL-PRODUCT-PAIRING.txt](../../../../experiments/theory-contracts/craig-original-source-bridge-20261103/ACTUAL-PRODUCT-PAIRING.txt#L1) · explicit_file_citation
 - [experiments/theory-contracts/original-local-source-variable-background-20261102/TRANSFER-EXTRACTION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/TRANSFER-EXTRACTION.txt#L1) · explicit_file_citation
 - [verification/v1002_spin10_mirror_projector.py](../../../../verification/v1002_spin10_mirror_projector.py#L1) · explicit_file_citation
 - [experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-ORIGIN.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ZERO-FREE-ORIGIN.txt#L1) · explicit_file_citation
 - [verification/v252_full_finite_triple.py](../../../../verification/v252_full_finite_triple.py#L1) · explicit_file_citation
 - [experiments/theory-contracts/original-local-source-variable-background-20261102/PAIRED-DYSON-PROOF.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PAIRED-DYSON-PROOF.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/PROJECTED-JOINT-SOURCE-GENERATOR-20261103.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/PROJECTED-JOINT-SOURCE-GENERATOR-20261103.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/original-local-source-variable-background-20261102/ADMISSIBLE-ACTION-DERIVATION-20261103.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/ADMISSIBLE-ACTION-DERIVATION-20261103.txt#L1) · explicit_file_citation
 - [experiments/theory-contracts/original-local-source-variable-background-20261102/REFERENCE-SOURCE-COMPLETION.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/REFERENCE-SOURCE-COMPLETION.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/craig-original-source-bridge-20261103/COLOR-PROJECTED-KERNEL.txt](../../../../experiments/theory-contracts/craig-original-source-bridge-20261103/COLOR-PROJECTED-KERNEL.txt#L1) · explicit_file_citation
 - [experiments/theory-contracts/original-local-source-variable-background-20261102/SOURCE-GENERATOR-RESIDUAL-20261103.txt](../../../../experiments/theory-contracts/original-local-source-variable-background-20261102/SOURCE-GENERATOR-RESIDUAL-20261103.txt#L1) · explicit_file_citation
+- [experiments/theory-contracts/constant-triangulation-20261103/CONSTANT-TRIANGULATION.txt](../../../../experiments/theory-contracts/constant-triangulation-20261103/CONSTANT-TRIANGULATION.txt#L1) · explicit_file_citation
 
 Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
 
