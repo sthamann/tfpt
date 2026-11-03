@@ -348,6 +348,12 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 At fixed [formula in source] , extend the covariance symbols by zero at [formula in source] . The estimates [formula in source] show that all symbols are continuous on the compact Brillouin torus. A finite-support smearing has a trigonometric-polynomial Fourier transform. Consequently every entry of (7) and (10) is a Riemann sum of a continuous periodic function. As [formula in source] it converges to the correspondi
 
+## Internal relaxation and physical cyclic time (GENESIS20261103)
+
+[tex-artefacts/toe_source_completion_20261103.tex:586-603](../../../../tex-artefacts/toe_source_completion_20261103.tex#L586) · `section:4c11a45464a1c6e91f1a` · subsection
+
+The original family transfer has eigenvalues [formula in source] . It relaxes in its two nonstationary directions and has no positive integer power equal to the identity. Under the additional identification [formula in source] , [formula in source] , the two positive energies are [formula in source] and [formula in source] . Their ratio is irrational by unique prime factorization, so this conditional Hamiltonian has
+
 ## Interpretation : the self-reproducing cosmic cycle
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_4_origin_theory.tex:1026-1100](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_4_origin_theory.tex#L1026) · `section:824af218b156f48374d8` · section

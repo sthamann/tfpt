@@ -228,7 +228,10 @@ def run():
         kub = kubo_connected(Oe[a], Ke, p0, evals0)
         diff = abs(mixed - kub.real)
         mix_ok &= diff < 5e-5
-        mixed_vals.append(mixed)
+        # Kubo is the independently checked mixed derivative. Use it for the
+        # zero control: subtracting four O(1) log traces amplifies roundoff by
+        # 1/(4*EPS_J*EPS_TH), obscuring an exactly decoupled response.
+        mixed_vals.append(kub.real)
         print("   mixed d2W/dJ[%d]dtheta = %.4e  (Kubo diff %.1e)"
               % (a, mixed, diff))
     check("W(c) KUBO [N]: mixed d2W/dJ dtheta = Kubo(O, -beta dH/dtheta)",
@@ -302,7 +305,9 @@ def run():
                  ) / (4.0 * EPS_J * EPS_TH)
         kub = kubo_connected(FOe[a], Kef, fp, fevals)
         f_ok &= abs(mixed - kub.real) < 5e-5
-        f_mixed.append(mixed)
+        # Keep the finite-difference/Kubo comparison above; test the zero
+        # response with the stable derivative rather than cancellation noise.
+        f_mixed.append(kub.real)
     check("W(c-frozen) KUBO [N]: frozen mixed = Kubo", f_ok)
     check("W(c-frozen) TRANSDUCTION [N]: Q-staggered mixed != 0 "
           "(%.3e) while e^c CONTROL = 0 (%.3e) -- the "

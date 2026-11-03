@@ -539,6 +539,18 @@ Only the [formula in source] and [formula in source] components of the product D
 
 The following repair is included to make the result actionable, not to present a new source claim. On a bond let It obeys [formula in source] . For the flavour-diagonal hopping [formula in source] with unit coefficient, [formula in source] exactly. Therefore On a graph of maximum degree [formula in source] , replacing ordinary hopping by its projected version yields For the newly chosen periodic-1D bond analogue [for
 
+## The actual product pairing and the Craig comparison (CRAIG20261103B)
+
+[tex-artefacts/toe_source_completion_20261103.tex:528-553](../../../../tex-artefacts/toe_source_completion_20261103.tex#L528) · `section:698050fdcedcbfc5c455` · subsection
+
+For the existing ordinary four-dimensional product branch with the whole original internal matrix [formula in source] , the total spin/finite real structure gives an antisymmetric Grassmann kernel on each total chiral fiber. Its mass block satisfies [formula in source] It is nonzero for nonzero Hermitian [formula in source] . The isolated finite KO6 pairing cannot be substituted for this full product pairing. At the
+
+## A joint Einstein and vacuum test (CONST20261103)
+
+[tex-artefacts/toe_source_completion_20261103.tex:554-585](../../../../tex-artefacts/toe_source_completion_20261103.tex#L554) · `section:9e7a72c157343bf5a789` · subsection
+
+Take the explicitly conditional ordinary four-dimensional Dirac product with constant selfadjoint internal mass [formula in source] , an equal-rank reference on the same geometry, and the single heat profile [formula in source] , [formula in source] . Assume its classical relative bulk trace alone supplies the vacuum and Einstein coefficients. With [formula in source] the complete constant-mass dependence gives [form
+
 ## Honest status
 
 [universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_4_origin_theory.tex:1632-1947](../../../../universal_room/new-3/TFPT_Universalraum_Spinlift_Pruefpaket_2026-09-15_v1.6.10/sources/input_4_origin_theory.tex#L1632) · `section:b93e6ae7b00f32ee1201` · section

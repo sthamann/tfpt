@@ -3119,3 +3119,160 @@ Die ganze endliche Gaussian Blockingformel inklusive detKp/detalpha und Quellkon
 Die konkrete ursprüngliche4D Hessian, ihre physische Paarung/Projektion und der ganze dynamische Linien/Bosonvergleich sind nicht ausgewertet. Vorhandener R111 Befund zur ursprünglichen Gesamtfaser wurde anschließend gelesen und bleibt erhalten. Die ganze alte Cliffordkarte ist kein fehlender generischer Reader; sie wird nicht automatisch zur ursprünglichen wechselwirkenden Quelle erklärt. Keine neue freie Zustands, Referenz oder Koeffizientenwahl und keine CHIRAL4D/TOE/Ledgerpromotion. Aktive Owner, F1 next_action und alle vorherigen Erledigungen bleiben erhalten.
 
 Beleg: experiments/theory-contracts/craig-original-source-bridge-20261103/SOURCE-BRIDGE.txt; exact_check.py, overlap_check.py und beide Ergebnisdateien.
+
+
+## CRAIG20261103B und GENESIS20261103: angeforderte konkrete Anschlussprüfungen
+
+Der ganze symbolische ursprüngliche v252 Massenblock ist im vorhandenen gewöhnlichen Spin4 Produktzweig ausgewertet. Die volle Paarung ist schief und für Phi ungleich null nicht null;26 exakte Kontrollen bestehen. Im festgelegten freien Vergleich p=pi/2 stimmen die chiralen singulären Werte des gewöhnlichen Produktkerns und Craigs Operators nicht überein. Die Produktvorschrift bleibt bedingt: keine Gleichsetzung mit der ganzen ursprünglichen S_adm Hessian, keine Maßgleichheit und kein globales TFPT NoGo. Beleg: craig-original-source-bridge-20261103/ACTUAL-PRODUCT-PAIRING.txt.
+
+Der Hinweis auf zyklische Universen passt zum Oktober Presseecho von Carroll/Diachenko/Dulani2605.30405. Die bestehende v395 Rekursion hat die Eigenwerte1,2/3,1/3 und liefert keinen unitären Umlauf. Auch unter der ausdrücklich zusätzlichen Lesart H=-logM/tau sind die zwei nichttrivialen Raten inkommensurabel; eindeutige Primfaktorzerlegung schließt die volle exakte Periode dieses H aus. Kein Ausschluss einer anderen tatsächlichen physisch hergeleiteten TFPT Dynamik. Beleg: cyclic-genesis-literature-20261103/GENESIS-CYCLIC.txt.
+
+Beide Resultate bleiben scoped. R109/L/R111, aktive Owner, F1 next_action und sämtliche bisherigen Erledigungen unverändert; kein physischer Unterauftrag als geschlossen, keine Paper oder Ledgerpromotion.
+
+
+## R112, 3. November 2026: Wirkungsherleitung am tatsächlichen Operator
+
+Auf ausdrücklichen Auftrag die konkrete Wirkung hergeleitet, statt eine
+weitere Quellenlücke oder einen Vergleichsparent zu untersuchen.
+
+Am vorhandenen bedingten PS Zweig folgt aus der ursprünglichen zweifachen
+Eichwirkung Dcorr=D+A1+A1tilde+A2=UDU*. Der Koeffizient des quadratischen
+Kreuzterms ist eins. Sein tatsächlicher ganzer Majoranablock lautet
+((qR-I)e_nu)((qR-I)e_nu)^T tensor M_R, alle übrigen A2 Blöcke verschwinden.
+Alle ursprünglichen Yukawas bleiben. Ohne A2 ändern sich bereits TrD²
+und TrD⁴ unter derselben vorhandenen Quaterniondrehung. Die vollständige
+relative spektrale Invarianz erfordert gemeinsame tatsächliche Selektor,
+Deck, Referenz und Domainabbildung; kein ganzer S/Z Schluss nur aus dem
+finiten Orbit. Allgemeiner CCvS Satz wird angewandt, nicht neu beansprucht.
+
+Auf der vorhandenen Cliffordfeldkarte ist die inverse Variationswirkung
+explizit: 1/2 Psi^T M_b Psi. Der ursprüngliche offene Randabschluss gibt
+integral barpsi(partial_r+h_b)psi-barpsi_out psi_out. Auf Lösungen ist der
+Randwert genau -barpsi_out R_b psi_in mit dem ganzen ursprünglichen R_b.
+Keine neue CARannahme für diese klassische Variationsrechnung. Der exakte
+off shell Euleroperator über die passende schiefe Paarung/Domain ist ihre
+Prämisse; gleiche klassische Lösungen allein sind schwächer. Die reale
+physische Quantenquelle ist dadurch noch nicht identifiziert.
+
+Der ursprüngliche unintegrierte Nullfermionwert bindet unter seiner
+tatsächlichen Identifikation den bosonischen Rest. Die gekoppelte Variation
+liefert den Fermionrückstrom 1/2 Psi^T delta_b M_b Psi. Genau eine passende
+Berezinintegration liefert delta_b S_B-1/2 Tr(M_b^-1 delta_b M_b), mit
+ursprünglicher Referenz, Etaphase und Nullmoden. Die effektiven höheren
+Fermionterme ergeben sich aus den Kumulanten derselben ursprünglichen
+Bosonen. Keine freien zusätzlichen Kopplungen, keine Doppelpfaffianen.
+
+Eigener Lauf der unveränderten originalen v252 Funktionen über alle84
+reellen Koeffizientenrichtungen und fünf symbolische Identitäten. Korrigierte
+Operatoridentitäten haben Residuum0, numerische Spurkontrollen nur Rundung.
+Unabhängige Prüfung des vollständigen Majoranablocks und des quartischen
+Defekts sowie gesonderte Variations und Randvorzeichenprüfung. Diese Checks
+begründen keine neue physische Quellengleichheit.
+
+Verdict PARTIAL_ACTION_DERIVATION_WITH_FORCED_PS_COVARIANT_TERM.
+Die zwei vorhandenen Zweige sind nicht durch neue J oder Feldidentifikation
+gleichgesetzt. Vollständige primitive S_adm, ihr physischer Generator und
+gemeinsames Spektrum sind nicht hergeleitet. F1, alle bisherigen jeweils
+scoped Erledigungen und Owner bleiben. Keine Paper oder Ledgerpromotion.
+Belege im bestehenden original-local-source-variable-background-20261102:
+ADMISSIBLE-ACTION-DERIVATION-20261103.txt,derive_original_action_covariance.py,
+original-action-covariance-results.json.
+
+R112 Atlasrücklese: Revision a8081a28d2a0de8e352f29ac, neuer Variationsbefund source_state=current. Planrevision 107. Primitive Wirkung und physisches Spektrum nicht hochgestuft.
+
+
+## CONST20261103, 3. November 2026: Naturkonstanten als gemeinsame Quellenbedingungen
+
+Auf aktuellen Nutzerauftrag einen anderen Ansatz über Naturkonstanten und die
+gesamten vorhandenen TFPT Befunde geprüft. Für c,hbar,G,kB,e,me,epsilon0 und
+rho_energy besitzt die Dimensionsmatrix exakt Rang5 und drei unabhängige
+dimensionslose Antworten. Abgeleitete Planckgrößen und die aus Alpha/Vakuum
+umgeschriebene de Sitter Entropie sind keine zusätzlichen unabhängigen Treffer.
+
+Neue bedingte Klassenprüfung: Im gewöhnlichen 4D Spin Dirac Produktzweig mit
+beliebigen konstanten selbstadjungierten inneren M und Mref, gleicher Metrik,
+Spur und RangN sowie EINEM Wärmeprofil m0 exp(-D²/chi²) gilt exakt in allen
+Massen T=Tr exp(-M²/chi²)-Tr exp(-Mref²/chi²)<=N. Aus derselben relativen
+klassischen Quelle allein folgen V=m0 chi⁴T/(4pi²) und
+Mbar²=m0 chi²T/(24pi²). Positive Einsteinantwort verlangt T>0 und damit
+V/Mbar⁴>=144pi²/(m0N). Bei N96,m0=1 beträgt die Untergrenze14.8044;
+TFPT COSMO.LAM.01 ergibt7.12533e-121. Diese Klasse scheidet aus.
+
+Das ist eine neue kosmologische Anwendung mit voller konstanter Massenantwort,
+keine Wiederholung oder Aufhebung von R044/R045. Gewöhnliche Geometrie,
+Wärmeprofil und direkte klassische Zuordnung sind erklärte Zusatzprämissen.
+Dynamische Bosonen, andere tatsächliche Referenzkarten und Quantenbeiträge
+sind davon nicht ausgeschlossen. Ein numerischer relativer Poisson Gegenfall
+mit DeltaA2=0 und DeltaA1>0 begrenzt den Ausschluss; seine frei gewählten
+Spektren sind kein physischer TFPT Kandidat und kein Selektor.
+
+Ausgeführt: exakter Dimensionsrang, symbolische Koeffizienten und unabhängige
+Radialintegrale,70stellige gemeinsame SI/Alpha/Vakuum/Horizontrechnung.
+Planck2018 Zahlen nur als datierter LambdaCDM Vergleich, kein aktueller Fit.
+Vollständiger Beweis und Voraussetzungen:
+experiments/theory-contracts/constant-triangulation-20261103/CONSTANT-TRIANGULATION.txt.
+Reproduktion check.py, results.json. Keine Lean/Wolfram/Vollsuite oder
+Paper/Ledgerpromotion. Keine vollständige fundamentale Lösung.
+
+Nächster Quellenabgleich: aus der tatsächlichen ursprünglichen S_adm/Z_rel/Gamma
+Quelle gemeinsam Volumen, Krümmung und Eichantwort samt gebundener Referenz,
+Eta, Domain, Feldintegration und Zeit auswerten. Keine passende Referenz oder
+ein anderes Profil frei wählen. R112 und die ganze bisherige Fortsetzung,
+aktive Owner und alle abgeschlossenen Unteraufgaben bleiben erhalten.
+
+CONST20261103 Atlasrücklese: Revision99862da8eb0d32c59a20fb66; beide neuen Befunde source_state=current, gemeinsamer physischer Quellenabschluss weiterhin offen. Planrevision109.
+
+
+## CRAIG20261103C: Ganzer Centertransfer und korrekter Quellensektorvergleich
+
+Die ausdrückliche Fortsetzung zum vollständigen TFPT Kern übernimmt R112s klassische Wirkung samt Rand und Bosonrückstrom. Der tatsächliche Centerselektor ist auf der bestehenden Halbspinor CAR Darstellung ganz ausgewertet: rank21856 im65536D Raum,Grad1 rank4 undGrad2 rank42;der Exteriorlift der Grad1 Projektion hätte nur16 Zustände. Daher keine primitive Padm/Weyl Gleichsetzung oder Entfernung aller geladenen Felder. Auf dem bedingten ursprünglichen quadratischen Transfer ist der ganze Centerkern exakt ein Drittel der Summe exp(barv z^k R u),mit expliziten verdrehten Randkernen. Dies behauptet nicht die fehlende physische Identität mit der ganzen ursprünglichen Padm Quelle.
+
+Alle84 tatsächlichen v252 Richtungen erhalten den Colorcenter. Am tatsächlichen flachen periodischen Einpunkt Craig Operator sind die drei geladenen Sektorwerte0,3/2+i sqrt3 gamma4/2,3/2-i sqrt3 gamma4/2. Ein bloßes Operator oder Chiralitätsmittel verletzt GW beziehungsweise Projektoreigenschaft. Ganze Quellen samt ihren Maßen und übrigen Selektoren sektorenweise mitführen.29 Kontrollen bestehen. Kein neuer fermionischer Bulkvertex aus den Randselektorkoeffizienten abgeleitet.
+
+F1,alle bisherigen scoped Erledigungen,R109/L/R111/R112 und aktive Owner unverändert. Ganzer primitiver S_adm Kern und Quellengenerator nicht berechnet;Nutzerziel nicht als erreicht markiert. Beleg: craig-original-source-bridge-20261103/COLOR-PROJECTED-KERNEL.txt sowie color_projected_kernel.py und color-projected-kernel-results.json.
+
+
+## R113, 3. November 2026: Gemeinsamer markierter Generator und ursprüngliche Selektorkontakte
+
+Auf Auftrag zur vollständigen Lösung die R112 Quellenidentifikation weiter
+bearbeitet. Der alte Masterauswahl und Faktorisationsbefund wurde als bereits
+vorhandene Nebenrechnung übernommen, nicht als neuer Fortschritt eingetragen.
+
+Im vorhandenen vollständigen Cliffordquellenzweig bleibt die tatsächliche
+geordnete Bosonintegration unnormiert. Der ursprüngliche markierte Kurzzeitjet
+liefert unter tatsächlicher gemeinsamer Semigruppenzeit V_ji=Q0[h_ji] und
+[H,c_i†]=sum c_j† V_ji. Auf dem kompatiblen endlichen gemeinsamen Raum bindet
+der ganze CAR Kommutant H=H_B+sum V_ji c_j†c_i. H_B folgt aus dem ursprünglichen
+leeren Fermionmatrixbein als ganzem BOSONoperator, nicht aus einem getracten
+Z[0] oder neuer Vakuumwahl. Bosonen werden nicht eingefroren oder gemittelt.
+Unbeschränkte Fortsetzung verlangt echte starke Domainreduktion; kein
+allgemeiner Kontinuumsabschluss aus der endlichen Algebra behauptet.
+
+Der ganze ursprüngliche P_adm bleibt außerhalb des Bosonintegrals. Exakt:
+A[1]c_i†-sum c_j†A[R_ji]=P Q[1][P,c_i†]+sum[P,c_j†]Q[R_ji]P.
+Die zwei Selektorkontakte, volle Markierung und geladenen Zwischenwege
+bleiben erhalten. Keine faserweise P_b oder Paritätsersatzprojektion.
+Der ursprüngliche Farbselektor liefert P_r c_q†=c_q†P_(r-q).
+Nur bei tatsächlicher Reduktion des ganzen H ist die physische Einschränkung
+eine Semigruppe. Andernfalls sind der exakt hergeleitete Rückkehrterm und
+die Gedächtnisgleichung zu behalten, statt zwischen alle Buchstaben zu
+projizieren. Dies ist keine neu identifizierte primitive Quelle.
+
+Die originale Wardregel ist Gauge/BRST. Ihre regulären Fermionrichtungen
+v(Psi)=T Psi erhalten das Fermionideal, ebenso ihre regulären Kombinationen
+und Superkommutatoren. Grassmanntranslationen erhalten es nicht. Daher
+erzwingt diese Wardregel die volle lineare R112 Fermionkontaktidentität
+nicht. Das schließt diesen Herleitungsweg, nicht die ganze physische Quelle
+aus. Die ganze zulässige Wortquelle bestimmt ihren OS Generator bereits;
+kein universeller ambienter CAR Zugriff wird zusätzlich verlangt.
+
+Zwei unabhängige analytische Prüfungen der Kontaktformel und gesonderte
+Prüfung des gemeinsamen Generator und Bodykernelanschlusses. Kein neuer
+Lauf, Vergleichsparent, gefitteter Kopplungswert, Paper oder Ledgerpromotion.
+Die Identität des tatsächlichen ursprünglichen ganzen S/Z Callers mit
+diesem gemeinsam markierten Caller bleibt nachzuweisen. Primitive S_adm,
+H_tr,pos und gemeinsames physisches Spektrum sind nicht berechnet.
+Alle bisher begrenzten Erledigungen und aktiven Owner bleiben erhalten.
+Beleg: PROJECTED-JOINT-SOURCE-GENERATOR-20261103.txt im bestehenden Contract.
+
+R113 Atlasbindung: 85a73be77d6a100b54e15e8b, Planrevision 112. Ganze markierte Generatorherleitung bleibt bedingt; primitive physische Quelle und Spektrum nicht hochgestuft.

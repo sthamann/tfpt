@@ -1,0 +1,363 @@
+TFPT scientific source excerpt
+Original repository path: verification/v878_ledger_integrity.py
+Original file SHA-256: be2293a121bf0b3b7291d1579cfc67aee4fa724f3f4e76a2653cc4033e4106db
+Inclusive original lines: 1-355
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """v878 -- GATE.LEDGER.01: the status-ledger integrity guard (a CI sentinel, no
+000002 | [OMITTED: non-scientific conversation or execution metadata]
+000003 | status_ledger.csv: the claim_id FORM.QGEO.03 had been double-booked on
+000004 | 2026-06-18 (the flat-metric all-orders SeamDeckClosure formalisation) while the
+000005 | id already belonged to the CohomologyGrading formalisation (2026-06-15).  The
+000006 | fix (this round): the SeamDeckClosure row is RENAMED FORM.QGEO.04 with a dated
+000007 | QA note in its claim text, and every flat-closure reference (papers, scripts,
+000008 | registry, website, the two 2026-06-18 changelog mentions) is updated.  This
+000009 | module makes the whole class of bookkeeping errors impossible to reintroduce:
+000010 | 
+000011 |   [I] S1 SCHEMA: the 10-column header is exact; every row has a nonempty
+000012 |       claim_id matching the id grammar; active in {true, false}.
+000013 |   [I] S2 PRIMARY KEY: claim_id is globally unique (all rows -- hence a fortiori
+000014 |       unique among active rows); the round-36 fix is pinned (FORM.QGEO.03
+000015 |       occurs exactly once, FORM.QGEO.04 exists and carries the QA note).
+000016 |   [I] S3 SUPERSESSION: every supersedes target exists in the ledger; the
+000017 |       supersession graph is ACYCLIC (Tarjan) with no self-supersession.
+000018 |   [I] S4 UNIQUE ACTIVE SUPERSESSION TARGETS: no target is superseded by more
+000019 |       than one active row, modulo the FROZEN remove-only allowlist of the two
+000020 |       legitimate 2026-06 joint closures (FLAV.UGATE.01 <- FLAV.RIGID.01 +
+000021 |       FLAV.RIGID.02; GATE.QGEO.01 <- FLAV.QGEO.02 + FLAV.QGEO.03) -- any NEW
+000022 |       multi-supersession fails the suite.
+000023 |   [I] S5 DEPENDENCY CROSS-REFERENCES (typed honestly): the dependencies column
+000024 |       is a semicolon-separated CROSS-REFERENCE field (evidence pointers, often
+000025 |       mutual), NOT a build DAG -- the measured graph contains 13 strongly
+000026 |       connected components (265 ids) of mutual references, all historical.
+000027 |       Explicit retained references to claims moved to Prime Front resolve to
+000028 |       that external owner, not to a local TFPT claim or proof dependency.
+000029 |       The guard freezes that census REMOVE-ONLY: claim-like tokens that do not
+000030 |       resolve to a ledger row must stay within the frozen 37-token legacy list
+000031 |       (renamed/compressed ids and range notations like FLAV.QGEO.01-03), the
+000032 |       set of ids participating in reference cycles must stay a subset of the
+000033 |       frozen 265, the SCC count must not grow beyond 13, and no row may
+000034 |       reference itself.  Acyclicity is thereby enforced as NO NEW CYCLES; the
+000035 |       frozen baseline may only shrink (audit_baseline.json precedent).
+000036 | 
+000037 |   Python-only (stdlib csv/re over verification/status_ledger.csv).
+000038 | """
+000039 | import csv
+000040 | import os
+000041 | import re
+000042 | import sys
+000043 | 
+000044 | from tfpt_constants import check, summary, reset
+000045 | 
+000046 | HERE = os.path.dirname(os.path.abspath(__file__))
+000047 | LEDGER = os.path.join(HERE, "status_ledger.csv")
+000048 | 
+000049 | EXPECT_HEADER = ["claim_id", "claim", "status", "location", "dependencies",
+000050 |                  "script", "external_data", "supersedes", "canonical_status",
+000051 |                  "active"]
+000052 | 
+000053 | # id grammar: dotted upper-case tokens ending in a number (optional letter
+000054 | # suffix), hyphens allowed inside segments (SEAM.S3.FROM-P1.01).
+000055 | ID_RE = re.compile(r"^[A-Z][A-Z0-9_.\-]*[0-9][a-z]?$")
+000056 | 
+000057 | [OMITTED: non-scientific conversation or execution metadata]
+000058 | # joint closures where two active theorems supersede one gate together.
+000059 | ALLOWED_MULTI_SUPERSEDE = {
+000060 |     "FLAV.UGATE.01": frozenset({"FLAV.RIGID.01", "FLAV.RIGID.02"}),
+000061 |     "GATE.QGEO.01": frozenset({"FLAV.QGEO.02", "FLAV.QGEO.03"}),
+000062 | }
+000063 | 
+000064 | [OMITTED: non-scientific conversation or execution metadata]
+000065 | # that do not resolve to a ledger row -- historical renames/compressions and
+000066 | # range notations.  New dangling references fail the suite.
+000067 | LEGACY_DANGLING_DEPS = frozenset({
+000068 |     "ARCH.HEXRES.01", "ARCH.QBL.01", "ARCH.RR.01", "BND.GLUE.01",
+000069 |     "CASCADE.BRIDGE.01", "COX.TOTATIVE.01", "DIAMOND.CENTER.01",
+000070 |     "E8.CAS.01", "EM.B1.01", "FLAV.DIAMOND.01-02", "FLAV.LEPTON.01",
+000071 |     "FLAV.QGEO.01-03", "FLAV.SELECTOR.01", "FLAV.SHEET.01-03",
+000072 |     "FR.POLE.01", "FTR.IHARA.01", "GATE.METRIC.05-07",
+000073 |     "GATE.METRIC.XI.01", "HOR.DUALANCHOR.01", "HOR.PAGE.01",
+000074 |     "MARKS.GB.01", "NOUNIT.01", "PRIME.FALSIFIER.01",
+000075 |     "PRIME.RELATION.MANGOLDT.01", "QBL.GATE.01", "QGEO.CAR.01",
+000076 |     "QGEO.COHOM.01", "QGEO.NET.01", "QGEO.ORBIFOLD.01",
+000077 |     "QGEO.UNIFORM.01", "REDTEAM.A.01-E.01", "SEAM.ATTRACT.01",
+000078 |     "SEAM.COX.01", "SEAM.TRANSFER.01", "THETA13.PRESSURE.01",
+000079 |     "TRANSPORT.SIXTHROOT.01", "WITNESS.INDEP.01",
+000080 | })
+000081 | 
+000082 | # Exact historical cross-references whose owner moved in split commit c5135cf4.
+000083 | # Every id exists in that commit's predecessor ledger. QGEO.CONEDYN.01 was
+000084 | # v699's PRIME determinant-coordinate cone experiment, despite its prefix.
+000085 | # These are external provenance pointers, not local claims, runtime inputs or
+000086 | # additions to the frozen dangling-reference baseline. Do not allow a prefix
+000087 | # wildcard: an unregistered new PRIME.* reference must still fail.
+000088 | EXTERNAL_CLAIM_OWNERS = dict.fromkeys({
+000089 |     "PRIME.FLOOR.RATIO.01", "PRIME.HECKEMODRAM.01",
+000090 |     "PRIME.HECKEPOLARITY.01", "PRIME.KEYSTONE.01", "PRIME.MOONSHOT.01",
+000091 |     "PRIME.POSITIVE_DESCENT.01", "PRIME.RELATION.MULT.01",
+000092 |     "PRIME.SHADOW.01", "PRIME.UNIFC.01", "PRIME.WEIL.OPERATOR.01",
+000093 |     "QGEO.CONEDYN.01",
+000094 | }, "https://github.com/sthamann/prime-front")
+000095 | 
+000096 | [OMITTED: non-scientific conversation or execution metadata]
+000097 | # mutual-reference cycles of the dependencies cross-reference field (13 SCCs,
+000098 | # 265 ids -- all historical, none added after this freeze).
+000099 | FROZEN_CYCLE_SCC_MAX = 13
+000100 | FROZEN_CYCLE_IDS = frozenset({
+000101 |     'ARCH.K3.01', 'ARCH.RRCAR.01', 'ARCH.RRCAR.02', 'AX.P1.01',
+000102 |     'AX.P2.01', 'CAR.COUNT.01', 'CAR.LADDER.01', 'CAR.PAIR.01',
+000103 |     'CAR.PAIR.02', 'CAR.PASCAL.01', 'CAR.QFREE.01', 'CAR.QTRANS.01',
+000104 |     'CELEST.DTERM.NONDERIV.01', 'CELEST.SEAM.01', 'CELEST.WP1.01',
+000105 |     'CELEST.WP2.01', 'CELEST.WP3.01', 'CELEST.WP4.01', 'CELEST.WP5A.01',
+000106 |     'CELEST.WP5B.01', 'CELEST.WP5C.01', 'CELEST.WP5D.01',
+000107 |     'CELEST.WP5DB.01', 'CELEST.WP5E.ALPHA.01', 'CELEST.WP5E.BETA.01',
+000108 |     'CELEST.WP5E.DELTA1.01', 'CELEST.WP5E.DELTA2.01',
+000109 |     'CELEST.WP5E.EPS1.01', 'CELEST.WP5E.EPS2.01', 'CELEST.WP5E.GAMMA.01',
+000110 |     'CELEST.WP5E.M1.01', 'CELEST.WP5E.M2.01', 'CELEST.WP5E.M3.01',
+000111 |     'CONTRACT.G.01', 'CONTRACT.QFT4D.01', 'CONTRACT.QFT4D.DIRAC.01',
+000112 |     'DHR.MODULAR.01', 'DHR.SECTORS.01', 'DHR.SMATRIX.01', 'DYN.GNS.01',
+000113 |     'DYN.KMS.01', 'DYN.SEMIGROUP.01', 'E8.GRADE.01', 'E8.PROJHAMMING.01',
+000114 |     'FLATAWAY.A2.01', 'FLATAWAY.HEAT.01', 'FLATAWAY.RIGID.01',
+000115 |     'FLATAWAY.RP.01', 'FLATAWAY.SPEC.01', 'FORM.CAR.01',
+000116 |     'FORM.FLATAWAY.01', 'FORM.GLUE.01', 'FORM.LADDER.01', 'FORM.P2.02',
+000117 |     'FORM.PRIME.EXCESS.SKELETON.01', 'FORM.PRIME.GRADE.NO_GO.01',
+000118 |     'FORM.PRIME.KREIN.DEFECT.01', 'FORM.QGEO.01', 'FORM.QGEO.02',
+000119 |     'FORM.QGEO.04', 'FORM.SEAM.MMST.01', 'FORM.SEAM.RESIDUAL.01',
+000120 |     'GATE.HOLO.01', 'GATE.HOLO.02', 'GATE.HOLO.03', 'GATE.METRIC.01',
+000121 |     'GATE.METRIC.02', 'GATE.METRIC.03', 'GATE.METRIC.04',
+000122 |     'GATE.METRIC.05', 'GATE.METRIC.06', 'GATE.METRIC.07',
+000123 |     'GATE.METRIC.08', 'GATE.METRIC.09', 'GATE.METRIC.10',
+000124 |     'GATE.METRIC.11', 'GATE.METRIC.12', 'GATE.METRIC.13',
+000125 |     'GATE.METRIC.14', 'GATE.METRIC.15', 'GATE.METRIC.16',
+000126 |     'GATE.METRIC.17', 'GATE.METRIC.18', 'GATE.METRIC.19',
+000127 |     'GNET.RAMIFIED.01', 'GRAV.ENTROPY.EQUILIBRIUM.01', 'GRAV.FR.01',
+000128 |     'GRAV.NONLINEAR.01', 'MARKLOCAL.RAW.01', 'MCKAY.E8.01',
+000129 |     'P2.PARTITION.01', 'P2.TYPING.01', 'PRIME.ABELPAIR.01',
+000130 |     'PRIME.ANTIALIAS.01', 'PRIME.BAEZDUARTE.01',
+000131 |     'PRIME.CORNER.CHARACTER.01', 'PRIME.CORNER.EXPECTATION.01',
+000132 |     'PRIME.CORNER.OPENDOORS.01', 'PRIME.DETECTOR.WINDOW.01',
+000133 |     'PRIME.EULER.SCHUR.SEMIGROUP.01', 'PRIME.EXCLUSION.BATTERY2.01',
+000134 |     'PRIME.EXCLUSION.LADDER.01', 'PRIME.EXCLUSION.LOCATOR.01',
+000135 |     'PRIME.EXCLUSION.WINDOW.01', 'PRIME.FLOOR.ALIASMOMENT.01',
+000136 |     'PRIME.FLOOR.BRIDGEMAP.01', 'PRIME.FLOOR.BUDGET.01',
+000137 |     'PRIME.FLOOR.DEPTHKILL.01', 'PRIME.FLOOR.GUEABLATION.01',
+000138 |     'PRIME.FLOOR.LAGRANGE.01', 'PRIME.FLOOR.PAIRCORR.01',
+000139 |     'PRIME.FLOOR.RATIO.01', 'PRIME.FLOOR.SKELETON.01', 'PRIME.GATE0.01',
+000140 |     'PRIME.GRAM.DIAGONAL.01', 'PRIME.GROUNDTRUTH.01',
+000141 |     'PRIME.HANDOFFBULK.01', 'PRIME.HANDOFFGRAM.01',
+000142 |     'PRIME.HANDOFFREDTEAM.01', 'PRIME.HANDOFFRES.01',
+000143 |     'PRIME.HANDOFFTAIL.01', 'PRIME.HECKEMODRAM.01',
+000144 |     'PRIME.HECKEPOLARITY.01', 'PRIME.HECKESOS.01',
+000145 |     'PRIME.HECKETWOSTEP.01', 'PRIME.KEIPERLI.01', 'PRIME.KEYSTONE.01',
+000146 |     'PRIME.KMS.INDUCTIVE_STATE.01', 'PRIME.KMS.INDUCTIVE_STATE.02',
+000147 |     'PRIME.KMSEXT.01', 'PRIME.KMSSTINESPRING.01', 'PRIME.KMSTOEPLITZ.01',
+000148 |     'PRIME.KREIN.CONTRACTOR.01', 'PRIME.KREIN.DEFECT_ONE.01',
+000149 |     'PRIME.KREIN.NORMALFORM.01', 'PRIME.L1IDENT.01', 'PRIME.L1MONTAGE.01',
+000150 |     'PRIME.LKSPLIT.01', 'PRIME.MARGIN.LAW.01', 'PRIME.MOONSHOT.01',
+000151 |     'PRIME.MOONSHOT.02', 'PRIME.MOONSHOT.03', 'PRIME.MOONSHOT.04',
+000152 |     'PRIME.MOONSHOT.05', 'PRIME.MOONSHOT.06', 'PRIME.PD.PERSISTENCE.01',
+000153 |     'PRIME.QFBUNDLE.01', 'PRIME.QFCENSUS.01', 'PRIME.QFCOCYCLE.01',
+000154 |     'PRIME.QFFESHBACH.01', 'PRIME.QFGAUGE.01', 'PRIME.RELATION.MULT.01',
+000155 |     'PRIME.RELATION.SKELETON.01', 'PRIME.S1CANON.01', 'PRIME.SCHURREC.01',
+000156 |     'PRIME.SOFTPORT.FESHBACH.01', 'PRIME.SOURCECONTRACTOR.NORM.01',
+000157 |     'PRIME.TOWERNEST.01', 'PRIME.TURINGCERT.01', 'PRIME.UCPLIMIT.01',
+000158 |     'PRIME.UNIFPOS.01', 'PRIME.W3LAND.01', 'PRIME.YOSIDAQF.01',
+000159 |     'PRIME.Z1.MOONSHOT.01', 'PRIME.Z1.OPERATOR.01', 'PRIME.Z1JACOBI.01',
+000160 |     'PRIME.Z1MEASURE.01', 'PRIME.Z1UVAROV.01', 'PS.ALGEBRA.01',
+000161 |     'PS.DIRAC.01', 'PS.DIRAC.02', 'PS.DIRAC.03', 'PS.E8BRANCH.01',
+000162 |     'PS.KAPPA.01', 'PS.RGTEST.01', 'PS.SPECACT.01', 'PS.SPECACT.02',
+000163 |     'QFT.MSC.01', 'QFT.NETRP.01', 'QFT4D.FORK.01', 'QFT4D.MATTER.01',
+000164 |     'QFT4D.RGTEST.01', 'QFT4D.SPERT.01', 'QG.AMB.01', 'QG.G2.01',
+000165 |     'QG.GAPDEC.01', 'QGAMB.CONFORMAL.01', 'QGAMB.IDG.01',
+000166 |     'QGAMB.MEASURE.01', 'QGAMB.METRIC.01', 'QGAMB.MODULAR.01',
+000167 |     'QGAMB.ROADMAP.01', 'QGAMB.ROUTEII.01', 'QGAMB.TIERB.01',
+000168 |     'QGAMB.UNIFY.01', 'QGEO.BW.01', 'QGEO.CONF.01', 'QGEO.DECKSECTOR.01',
+000169 |     'QGEO.DTN.01', 'QGEO.EMERGE.LIGHT.01', 'QGEO.ENERGY.01',
+000170 |     'QGEO.ENERGY.02', 'QGEO.ENERGY.03', 'QGEO.ISO.01', 'QGEO.KERNEL.01',
+000171 |     'QGEO.KILL.01', 'QGEO.MARKLOCAL.01', 'QGEO.MARKS.01', 'QGEO.MARKS.02',
+000172 |     'QGEO.MARKS.03', 'QGEO.MODHAM.01', 'QGEO.MODULAR.01', 'QGEO.OBLIG.01',
+000173 |     'QGEO.PILLOW.01', 'QGEO.REALIZE.01', 'QGEO.REALIZE.02',
+000174 |     'QGEO.REDUCE.01', 'QGEO.ROUTEI.01', 'QGEO.STATE.01',
+000175 |     'QGEO.STEKLOV.01', 'QGEO.SUBPRIN.01', 'QGEO.SYM.01', 'QGEO.SYM.02',
+000176 |     'QGEO.SYM.03', 'QGEO.TREE.01', 'QGEO.VARI.01', 'REDTEAM.A.01',
+000177 |     'REDTEAM.B.01', 'SEAM.ADVERSARY.01', 'SEAM.BIT.FREEDOM.01',
+000178 |     'SEAM.BIT.ORIGIN.01', 'SEAM.BIT.TWISTCLASS.01', 'SEAM.CCC.01',
+000179 |     'SEAM.CLOCK.RIGIDITY.01', 'SEAM.CLOCK.SILVER.01', 'SEAM.EQUIV.01',
+000180 |     'SEAM.EQUIV.A.INV.01', 'SEAM.EQUIV.A.LIT.01', 'SEAM.EQUIV.A01',
+000181 |     'SEAM.EQUIV.B01', 'SEAM.EQUIV.CHAIN.01', 'SEAM.EQUIV.CONTINUUM.03',
+000182 |     'SEAM.EQUIV.CROSSEDPRODUCT.01', 'SEAM.EQUIV.GAP.01',
+000183 |     'SEAM.EQUIV.LATTICEVOA.01', 'SEAM.EQUIV.MMST.01',
+000184 |     'SEAM.EQUIV.MMST.AUDIT.01', 'SEAM.EQUIV.TWISTOR.01',
+000185 |     'SEAM.INT.FKTOY.01', 'SEAM.KHALF.01', 'SEAM.MMST.INCLASS.01',
+000186 |     'SEAM.MU.01', 'SEAM.S3.CENTRALCHARGE.01', 'SEAM.S3.E8CHARACTER.01',
+000187 |     'SEAM.S3.INFLOW.01', 'SEAM.S3.LATTICE.01', 'SEAM.S3.MODULAR.01',
+000188 |     'SEAM.S3.RP.01', 'SEAM.TAU.FLAG.01', 'SEAM.THERMAL.KMS.01',
+000189 |     'SECTOR.FLOORATTACK.01', 'SYNTH.INVENTORY.02',
+000190 |     'TFPT.POSITIVE_DESCENT.MASTER.01', 'TOPO.E8.01', 'WOIT.OS.TWISTOR.01',
+000191 | })
+000192 | 
+000193 | 
+000194 | def _split(field):
+000195 |     return [x.strip() for x in field.split(";")
+000196 |             if x.strip() and x.strip() != "-"]
+000197 | 
+000198 | 
+000199 | def _claimlike(tok):
+000200 |     return "." in tok and ID_RE.match(tok) is not None
+000201 | 
+000202 | 
+000203 | def _sccs(graph):
+000204 |     """Tarjan strongly connected components (iterative)."""
+000205 |     idx, low, on, order = {}, {}, {}, []
+000206 |     stack, out = [], []
+000207 |     for root in graph:
+000208 |         if root in idx:
+000209 |             continue
+000210 |         work = [(root, 0)]
+000211 |         while work:
+000212 |             v, pi = work.pop()
+000213 |             if pi == 0:
+000214 |                 idx[v] = low[v] = len(idx)
+000215 |                 order.append(v)
+000216 |                 on[v] = True
+000217 |             recurse = False
+000218 |             nbrs = graph.get(v, [])
+000219 |             for i in range(pi, len(nbrs)):
+000220 |                 w = nbrs[i]
+000221 |                 if w not in idx:
+000222 |                     work.append((v, i + 1))
+000223 |                     work.append((w, 0))
+000224 |                     recurse = True
+000225 |                     break
+000226 |                 if on.get(w):
+000227 |                     low[v] = min(low[v], idx[w])
+000228 |             if recurse:
+000229 |                 continue
+000230 |             if low[v] == idx[v]:
+000231 |                 comp = []
+000232 |                 while True:
+000233 |                     w = order.pop()
+000234 |                     on[w] = False
+000235 |                     comp.append(w)
+000236 |                     if w == v:
+000237 |                         break
+000238 |                 if len(comp) > 1:
+000239 |                     out.append(sorted(comp))
+000240 |             if work:
+000241 |                 parent = work[-1][0]
+000242 |                 low[parent] = min(low[parent], low[v])
+000243 |     return out
+000244 | 
+000245 | 
+000246 | def run():
+000247 |     reset()
+000248 |     print("v878 ledger integrity guard: primary key, supersession, "
+000249 |           "cross-reference census of status_ledger.csv")
+000250 | 
+000251 |     with open(LEDGER, newline="", encoding="utf-8") as fh:
+000252 |         rdr = csv.reader(fh)
+000253 |         header = next(rdr)
+000254 |         raw = list(rdr)
+000255 |     rows = [dict(zip(header, r)) for r in raw]
+000256 |     ids = [r["claim_id"] for r in rows]
+000257 |     idset = set(ids)
+000258 |     active = [r for r in rows if r["active"] == "true"]
+000259 | 
+000260 |     # ---- S1 schema
+000261 |     check("S1.1 SCHEMA [I]: header is the exact 10-column contract %s"
+000262 |           % (EXPECT_HEADER,), header == EXPECT_HEADER)
+000263 |     bad_width = [i for i, r in enumerate(raw) if len(r) != len(EXPECT_HEADER)]
+000264 |     bad_gram = [i for i in ids if not _claimlike(i)]
+000265 |     bad_act = sorted({r["active"] for r in rows} - {"true", "false"})
+000266 |     check("S1.2 SCHEMA [I]: %d rows, every row 10 fields (bad: %s), every "
+000267 |           "claim_id nonempty + id grammar (bad: %s), active in {true, false} "
+000268 |           "(bad: %s)" % (len(rows), bad_width[:5], bad_gram[:5], bad_act),
+000269 |           not bad_width and not bad_gram and not bad_act)
+000270 | 
+000271 |     # ---- S2 primary key
+000272 |     dup_all = sorted({i for i in idset if ids.count(i) > 1})
+000273 |     act_ids = [r["claim_id"] for r in active]
+000274 |     dup_act = sorted({i for i in set(act_ids) if act_ids.count(i) > 1})
+000275 |     check("S2.1 PRIMARY KEY [I]: claim_id globally unique -- %d rows, %d "
+000276 |           "distinct ids, duplicates: %s (hence unique among the %d active "
+000277 |           "rows too: %s)" % (len(rows), len(idset), dup_all or "none",
+000278 |                              len(active), dup_act or "none"),
+000279 |           not dup_all and not dup_act)
+000280 |     q3 = [r for r in rows if r["claim_id"] == "FORM.QGEO.03"]
+000281 |     q4 = [r for r in rows if r["claim_id"] == "FORM.QGEO.04"]
+000282 |     check("S2.2 THE ROUND-36 FIX PINNED [I]: FORM.QGEO.03 occurs exactly "
+000283 |           "once (the CohomologyGrading row) and FORM.QGEO.04 exists (the "
+000284 |           "renamed SeamDeckClosure flat all-orders closure, dated QA note "
+000285 |           "in the claim text)",
+000286 |           len(q3) == 1 and "CohomologyGrading" in q3[0]["claim"]
+000287 |           and len(q4) == 1 and "SeamDeckClosure" in q4[0]["claim"]
+000288 |           and "QA NOTE (2026-08-08" in q4[0]["claim"])
+000289 | 
+000290 |     # ---- S3 supersession
+000291 |     sup = {r["claim_id"]: [t for t in _split(r["supersedes"])] for r in rows}
+000292 |     dangling = sorted({t for ts in sup.values() for t in ts
+000293 |                        if t not in idset})
+000294 |     check("S3.1 SUPERSESSION TARGETS EXIST [I]: every supersedes entry "
+000295 |           "resolves to a ledger row (dangling: %s)" % (dangling or "none"),
+000296 |           not dangling)
+000297 |     sgraph = {k: [t for t in ts if t in idset] for k, ts in sup.items()}
+000298 |     scycles = _sccs(sgraph)
+000299 |     selfsup = sorted(k for k, ts in sgraph.items() if k in ts)
+000300 |     check("S3.2 SUPERSESSION ACYCLIC [I]: the supersedes graph has no "
+000301 |           "cycles (SCCs > 1: %s) and no self-supersession (%s)"
+000302 |           % (scycles or "none", selfsup or "none"),
+000303 |           not scycles and not selfsup)
+000304 | 
+000305 |     # ---- S4 unique active supersession targets (frozen allowlist)
+000306 |     by_target = {}
+000307 |     for r in active:
+000308 |         for t in _split(r["supersedes"]):
+000309 |             by_target.setdefault(t, []).append(r["claim_id"])
+000310 |     multi = {t: sorted(v) for t, v in by_target.items() if len(v) > 1}
+000311 |     new_multi = {t: v for t, v in multi.items()
+000312 |                  if set(v) != ALLOWED_MULTI_SUPERSEDE.get(t, frozenset())}
+000313 |     check("S4.1 UNIQUE ACTIVE SUPERSESSION TARGETS [I]: no target is "
+000314 |           "superseded by more than one active row beyond the FROZEN "
+000315 |           "remove-only allowlist of the two 2026-06 joint closures "
+000316 |           "(measured multi: %s; violations: %s)"
+000317 |           % (multi or "none", new_multi or "none"), not new_multi)
+000318 | 
+000319 |     # ---- S5 dependency cross-references (frozen census, remove-only)
+000320 |     dep_tokens = {r["claim_id"]: _split(r["dependencies"]) for r in rows}
+000321 |     external = sorted({t for ts in dep_tokens.values() for t in ts
+000322 |                        if t in EXTERNAL_CLAIM_OWNERS and t not in idset})
+000323 |     unknown = sorted({t for ts in dep_tokens.values() for t in ts
+000324 |                       if _claimlike(t) and t not in idset
+000325 |                       and t not in EXTERNAL_CLAIM_OWNERS})
+000326 |     new_unknown = sorted(set(unknown) - LEGACY_DANGLING_DEPS)
+000327 |     print("  External dependency provenance (Prime Front, not local claims): "
+000328 |           "%s" % (external or "none"))
+000329 |     check("S5.1 DEPENDENCY REFERENCES [I]: %d claim-like tokens do not "
+000330 |           "resolve to a ledger row, ALL within the frozen 37-token legacy "
+000331 |           "list (new dangling: %s)" % (len(unknown), new_unknown or "none"),
+000332 |           not new_unknown and len(unknown) <= len(LEGACY_DANGLING_DEPS))
+000333 |     dgraph = {k: [t for t in ts if t in idset]
+000334 |               for k, ts in dep_tokens.items()}
+000335 |     selfdep = sorted(k for k, ts in dgraph.items() if k in ts)
+000336 |     check("S5.2 NO SELF-DEPENDENCY [I]: no row lists itself in its own "
+000337 |           "dependencies (%s)" % (selfdep or "none"), not selfdep)
+000338 |     dcycles = _sccs(dgraph)
+000339 |     in_cyc = sorted({x for c in dcycles for x in c})
+000340 |     new_cyc = sorted(set(in_cyc) - FROZEN_CYCLE_IDS)
+000341 |     check("S5.3 NO NEW REFERENCE CYCLES [I]: the dependencies column is a "
+000342 |           "cross-reference field (typed: mutual evidence pointers, not a "
+000343 |           "build DAG); measured %d SCCs / %d ids in cycles, both within "
+000344 |           "the frozen remove-only baseline (<= %d SCCs, subset of the "
+000345 |           "frozen %d ids; NEW cycle members: %s)"
+000346 |           % (len(dcycles), len(in_cyc), FROZEN_CYCLE_SCC_MAX,
+000347 |              len(FROZEN_CYCLE_IDS), new_cyc or "none"),
+000348 |           len(dcycles) <= FROZEN_CYCLE_SCC_MAX and not new_cyc)
+000349 | 
+000350 |     return summary("v878 ledger integrity guard (primary key + supersession "
+000351 |                    "+ frozen cross-reference census)")
+000352 | 
+000353 | 
+000354 | if __name__ == "__main__":
+000355 |     sys.exit(1 if run() else 0)

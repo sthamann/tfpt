@@ -1,0 +1,552 @@
+TFPT scientific source excerpt
+Original repository path: verification/v993_minimal_defect_selector.py
+Original file SHA-256: 1a6b4e9c0a7b214dc542c7fedcbbf9a938b186af2a06ad4a928aabe906000912
+Inclusive original lines: 1-544
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """v993 -- AX.P2.01 / AX.P1.01 / SEAM.SIMPLECURRENT.GENERATOR.01
+000002 | [O updates: census-level architecture lift + finite CE uniqueness +
+000003 | [lambda]^2 = [v] parity shadow; axiom typing UNCHANGED].
+000004 | 
+000005 | THE POINT (external review wave 3, 2026-08-28, 'Minimal Defect Theorem').
+000006 | v624 showed: UNDER the D_{d+1}+A_{d-1} glue architecture, three independent
+000007 | selectors each force d = 4 (honest typing: CONDITIONAL on that architecture).
+000008 | This module runs a DIFFERENT census:
+000009 | 
+000010 |   * rank 8 is an INPUT, from the cited minimality premise c_- = 8
+000011 |     (minimal nontrivial bosonic chiral invertible defect; unique holomorphic
+000012 |     c = 8 theory = (E8)_1) -- CITED, not proved;
+000013 |   * the glue group is demanded cyclic of order 4 on BOTH factors, from the
+000014 |     finite shadow of U^2 = (-1)^F;
+000015 |   * the census runs over ALL rank-8 ADE pairs (D+A, D+D, A+A, E6/E7 pieces),
+000016 |     not only the D_{d+1}+A_{d-1} family.
+000017 | 
+000018 |   [E] 1. SNF of Cartan MATCHES textbook disc groups (computed, not cited):
+000019 |         A_n = Z_{n+1}; D_n = Z4 (n odd) / Z2 x Z2 (n even); E6 = Z3,
+000020 |         E7 = Z2, E8 = 1.  D3 ≅ A3 at Cartan level.
+000021 |   [E] 2. FULL ADE rank-8 pair census: the only diagonal cyclic-Z4 isotropic
+000022 |         unimodular glue is (D5, A3), up to D3 ≅ A3 (D5(+)D3 is the same
+000023 |         pair).  The D+A architecture of v624 is an OUTPUT of (rank 8 +
+000024 |         cyclic Z4 both sides), not an INPUT.  Verdict
+000025 |         MINIMAL_DEFECT_UNCONDITIONAL at the lattice level (still
+000026 |         conditional on cited c_-=8, ADE-ness, and the Z4-from-lift premise).
+000027 |   [E] 3. KILL / MUTANT LEGS: (D4, A4) not cyclic Z4; (A4, A4) product 25
+000028 |         (Z5 glue); (E7, A1) product 4; (D4, D4) product 16 but Klein
+000029 |         Z2xZ2 -- NO order-4 element; (A7, A1) product 16 but A1 = Z2;
+000030 |         Z3 controls (E6, A2) = Z3 x Z3.  Dropping cyclicity would re-open
+000031 |         D4(+)D4 (v624-style architecture residue, honestly recorded).
+000032 |   [E] 4. [lambda]^2 = [v] EXACTLY: 2[omega_s] = [v] in disc(D5); the
+000033 |         order-4 glue class squares to the fermion-parity / D5-vector class
+000034 |         (lattice shadow of U^2 = (-1)^F).  Non-split: the order-2 vector
+000035 |         glue has norm 7/4 not in 2Z (v983 kill).
+000036 |   [E] 5. UNIQUE finite trace-preserving conditional expectation
+000037 |         E = (1/4) sum_r Ad(u^r) on M_d^{Z4} (d=4,8) and on the crossed
+000038 |         product M_d x| Z4.  Uniqueness NEEDS the module property: without
+000039 |         it the deviation kernel is dim 36 (d=4) / 720 (d=8).
+000040 |   [E] 6. P1 arithmetic shadow (v484/v813 identity, not a new derivation):
+000041 |         1/(|mu4| * 2 pi) = 1/(4 * 2 pi) = 1/(8 pi) = c3; I_Jones * beta
+000042 |         * c3 = 1.  Wrong-index I=2 gives 1/(4 pi) ≠ c3.
+000043 | 
+000044 | HONEST SCOPE (firewall): lattice / finite-algebra level only.  Operator-
+000045 | algebraic minimality (c_- = 8; holomorphic uniqueness at c = 8) is CITED,
+000046 | not proved.  The operator identification 'modular determinant-line response
+000047 | equidistributed over the four deck sectors' stays the open [C] of v813.
+000048 | AX.P1.01 and AX.P2.01 stay Axiom -- the census lifts the architecture
+000049 | conditionality of v624 at lattice level; it does not derive the axioms.
+000050 | No marker move.  Python-only / Wolfram mirror deferred (GATE.WOLFRAM.02).
+000051 | """
+000052 | import itertools
+000053 | 
+000054 | import numpy as np
+000055 | import sympy as sp
+000056 | from sympy.matrices.normalforms import smith_normal_form
+000057 | 
+000058 | from tfpt_constants import check, summary, reset, c3 as C3_MP
+000059 | 
+000060 | OMEGA_S = [sp.Rational(1, 2)] * 5
+000061 | OMEGA_F = [sp.Rational(3, 4), sp.Rational(-1, 4),
+000062 |            sp.Rational(-1, 4), sp.Rational(-1, 4)]
+000063 | LAM = OMEGA_S + OMEGA_F
+000064 | V_D5 = [sp.Integer(1), 0, 0, 0, 0]
+000065 | 
+000066 | 
+000067 | def cartan_A(n):
+000068 |     M = sp.zeros(n)
+000069 |     for i in range(n):
+000070 |         M[i, i] = 2
+000071 |         if i + 1 < n:
+000072 |             M[i, i + 1] = M[i + 1, i] = -1
+000073 |     return M
+000074 | 
+000075 | 
+000076 | def cartan_D(n):
+000077 |     """D_n for n >= 2.  D2 = A1 (+) A1; D3 ≅ A3."""
+000078 |     if n == 2:
+000079 |         return sp.diag(2, 2)
+000080 |     M = cartan_A(n)
+000081 |     M[n - 2, n - 1] = M[n - 1, n - 2] = 0
+000082 |     M[n - 3, n - 1] = M[n - 1, n - 3] = -1
+000083 |     return M
+000084 | 
+000085 | 
+000086 | def cartan_E(n):
+000087 |     """E6 / E7 / E8: chain of n-1 nodes, branch at node 2 (0-indexed)."""
+000088 |     M = sp.zeros(n)
+000089 |     for i in range(n - 1):
+000090 |         M[i, i] = 2
+000091 |         if i + 1 < n - 1:
+000092 |             M[i, i + 1] = M[i + 1, i] = -1
+000093 |     M[n - 1, n - 1] = 2
+000094 |     M[2, n - 1] = M[n - 1, 2] = -1
+000095 |     return M
+000096 | 
+000097 | 
+000098 | def snf_factors(C):
+000099 |     """Invariant factors of disc = coker(Cartan) via Smith normal form.
+000100 |     Drops the 1's.  Returns a tuple, e.g. (4,) for Z4, (2, 2) for Z2 x Z2."""
+000101 |     S = smith_normal_form(sp.Matrix(C), domain=sp.ZZ)
+000102 |     return tuple(int(S[i, i]) for i in range(S.rows) if int(S[i, i]) != 1)
+000103 | 
+000104 | 
+000105 | def disc_order(C):
+000106 |     return abs(int(sp.Matrix(C).det()))
+000107 | 
+000108 | 
+000109 | def textbook_D(n):
+000110 |     return (4,) if (n % 2 == 1) else (2, 2)
+000111 | 
+000112 | 
+000113 | def textbook_A(n):
+000114 |     return (n + 1,)
+000115 | 
+000116 | 
+000117 | def generator_order_and_q(C, k=None):
+000118 |     """Order and discriminant quadratic form q(x)=(x,x) of a dual class.
+000119 |     Default: last simple-root dual (spinor node of D_n; omega_n of A_n)."""
+000120 |     C = sp.Matrix(C)
+000121 |     Cinv = C.inv()
+000122 |     n = C.rows
+000123 |     if k is None:
+000124 |         k = sp.Matrix.zeros(n, 1)
+000125 |         k[n - 1] = 1
+000126 |     else:
+000127 |         k = sp.Matrix(k).reshape(n, 1)
+000128 | 
+000129 |     def trivial(vec):
+000130 |         y = Cinv * vec
+000131 |         return all(yi.is_integer for yi in y)
+000132 | 
+000133 |     det = abs(int(C.det()))
+000134 |     order = None
+000135 |     for t in range(1, det + 2):
+000136 |         if trivial(t * k):
+000137 |             order = t
+000138 |             break
+000139 |     q = sp.simplify((k.T * Cinv * k)[0, 0])
+000140 |     return order, q
+000141 | 
+000142 | 
+000143 | def cyclic_Z4(factors):
+000144 |     return factors == (4,)
+000145 | 
+000146 | 
+000147 | def has_Z4_element(factors):
+000148 |     """Abelian group has an element of order 4 iff 4 divides the exponent."""
+000149 |     if not factors:
+000150 |         return False
+000151 |     exp = 1
+000152 |     for d in factors:
+000153 |         exp = int(sp.ilcm(exp, d))
+000154 |     return exp % 4 == 0
+000155 | 
+000156 | 
+000157 | def in_D5(x):
+000158 |     return all(sp.sympify(v).is_integer is True for v in x) and sum(x) % 2 == 0
+000159 | 
+000160 | 
+000161 | def in_A3(y):
+000162 |     return all(sp.sympify(v).is_integer is True for v in y) and sum(y) == 0
+000163 | 
+000164 | 
+000165 | def in_L0(z):
+000166 |     return in_D5(z[:5]) and in_A3(z[5:])
+000167 | 
+000168 | 
+000169 | def clock(d):
+000170 |     return np.diag([1j ** (j % 4) for j in range(d)]).astype(complex)
+000171 | 
+000172 | 
+000173 | def alpha(u, x, r):
+000174 |     ur = np.linalg.matrix_power(u, r)
+000175 |     return ur @ x @ ur.conj().T
+000176 | 
+000177 | 
+000178 | def group_E(u, x):
+000179 |     return sum(alpha(u, x, r) for r in range(4)) / 4.0
+000180 | 
+000181 | 
+000182 | def is_fix(u, a, tol=1e-10):
+000183 |     return np.allclose(alpha(u, a, 1), a, atol=tol)
+000184 | 
+000185 | 
+000186 | def randh(d, rng):
+000187 |     return rng.normal(size=(d, d)) + 1j * rng.normal(size=(d, d))
+000188 | 
+000189 | 
+000190 | def rand_fix(u, d, rng):
+000191 |     return group_E(u, randh(d, rng))
+000192 | 
+000193 | 
+000194 | def ce_properties(d, rng, n_samples=8):
+000195 |     u = clock(d)
+000196 |     ok = True
+000197 |     for _ in range(n_samples):
+000198 |         x = randh(d, rng)
+000199 |         a = rand_fix(u, d, rng)
+000200 |         b = rand_fix(u, d, rng)
+000201 |         Ex = group_E(u, x)
+000202 |         ok &= np.allclose(group_E(u, Ex), Ex, atol=1e-12)
+000203 |         ok &= np.allclose(group_E(u, a), a, atol=1e-12)
+000204 |         ok &= np.allclose(group_E(u, a @ x @ b), a @ Ex @ b, atol=1e-12)
+000205 |         ok &= is_fix(u, Ex)
+000206 |         ok &= np.allclose(np.trace(Ex), np.trace(x), atol=1e-10)
+000207 |         y = randh(d, rng)
+000208 |         psd = y.conj().T @ y
+000209 |         e_psd = group_E(u, psd)
+000210 |         e_psd = 0.5 * (e_psd + e_psd.conj().T)
+000211 |         ok &= np.linalg.eigvalsh(e_psd).min() >= -1e-9
+000212 |     return ok
+000213 | 
+000214 | 
+000215 | def crossed_E_properties(d, rng, n_samples=6):
+000216 |     """Inner mu4 clock action on the crossed product, part-A embedding
+000217 |     Phi(a V^g) = (a u^g) (x) w^g inside M_d (x) Alg(w) subset M_{4d}."""
+000218 |     u = clock(d)
+000219 |     w = np.roll(np.eye(4), 1, axis=0).astype(complex)
+000220 |     U = np.kron(u, np.eye(4))
+000221 | 
+000222 |     def embed(ags):
+000223 |         X = np.zeros((4 * d, 4 * d), dtype=complex)
+000224 |         for g, ag in enumerate(ags):
+000225 |             X += np.kron(ag, np.linalg.matrix_power(w, g))
+000226 |         return X
+000227 | 
+000228 |     def alpha_cp(X, r):
+000229 |         Ur = np.linalg.matrix_power(U, r)
+000230 |         return Ur @ X @ Ur.conj().T
+000231 | 
+000232 |     def E_cp(X):
+000233 |         return sum(alpha_cp(X, r) for r in range(4)) / 4.0
+000234 | 
+000235 |     ok = True
+000236 |     for _ in range(n_samples):
+000237 |         ags = [randh(d, rng) for _ in range(4)]
+000238 |         X = embed(ags)
+000239 |         EX = E_cp(X)
+000240 |         ok &= np.allclose(E_cp(EX), EX, atol=1e-12)
+000241 |         ok &= np.allclose(alpha_cp(EX, 1), EX, atol=1e-12)
+000242 |         ok &= np.allclose(np.trace(EX), np.trace(X), atol=1e-9)
+000243 |         a_fix = [rand_fix(u, d, rng) for _ in range(4)]
+000244 |         b_fix = [rand_fix(u, d, rng) for _ in range(4)]
+000245 |         A = embed(a_fix)
+000246 |         B = embed(b_fix)
+000247 |         ok &= np.allclose(alpha_cp(A, 1), A, atol=1e-10)
+000248 |         ok &= np.allclose(E_cp(A @ X @ B), A @ EX @ B, atol=1e-9)
+000249 |         Y = embed([randh(d, rng) for _ in range(4)])
+000250 |         psd = Y.conj().T @ Y
+000251 |         e_psd = E_cp(psd)
+000252 |         e_psd = 0.5 * (e_psd + e_psd.conj().T)
+000253 |         ok &= np.linalg.eigvalsh(e_psd).min() >= -1e-8
+000254 |         ok &= np.allclose(E_cp(A), A, atol=1e-10)
+000255 |     return ok
+000256 | 
+000257 | 
+000258 | def free_deviation_coords(d, bimodule=True):
+000259 |     """Finite linear algebra on Hom(M_d, M_d).  Zero-constraints from
+000260 |     im D ⊆ Fix, D|Fix = 0, and (optional) N-bimodule by the clock spectral
+000261 |     projections.  Returns (n_free, trace-rank, kernel dim)."""
+000262 |     forced = np.zeros((d, d, d, d), dtype=bool)
+000263 |     for i, j, k, l in itertools.product(range(d), repeat=4):
+000264 |         z = False
+000265 |         if (k % 4) != (l % 4):
+000266 |             z = True
+000267 |         if (i % 4) == (j % 4):
+000268 |             z = True
+000269 |         if bimodule and ((k % 4) != (i % 4) or (l % 4) != (j % 4)):
+000270 |             z = True
+000271 |         forced[i, j, k, l] = z
+000272 |     n_free = int(np.size(forced) - np.count_nonzero(forced))
+000273 |     free_idx = list(zip(*np.where(~forced))) if n_free else []
+000274 |     if n_free == 0:
+000275 |         return 0, 0, 0
+000276 |     coord = {ijkl: p for p, ijkl in enumerate(free_idx)}
+000277 |     rows = []
+000278 |     for i, j in itertools.product(range(d), repeat=2):
+000279 |         row = np.zeros(n_free, dtype=np.float64)
+000280 |         nonempty = False
+000281 |         for k in range(d):
+000282 |             key = (i, j, k, k)
+000283 |             if key in coord:
+000284 |                 row[coord[key]] = 1.0
+000285 |                 nonempty = True
+000286 |         if nonempty:
+000287 |             rows.append(row)
+000288 |     A = np.stack(rows) if rows else np.zeros((1, n_free))
+000289 |     rnk = int(np.linalg.matrix_rank(A, tol=1e-10))
+000290 |     return n_free, rnk, n_free - rnk
+000291 | 
+000292 | 
+000293 | def run():
+000294 |     reset()
+000295 |     print("v993  minimal defect selector: rank-8 ADE census + "
+000296 |           "[lambda]^2 = [v] + unique finite CE (wave 3)")
+000297 | 
+000298 |     formula_ok = True
+000299 |     for n in range(1, 9):
+000300 |         if snf_factors(cartan_A(n)) != textbook_A(n):
+000301 |             formula_ok = False
+000302 |     for n in range(2, 9):
+000303 |         if snf_factors(cartan_D(n)) != textbook_D(n):
+000304 |             formula_ok = False
+000305 |     check("SNF of Cartan MATCHES textbook disc groups [E]: A_n = Z_{n+1} "
+000306 |           "(n=1..8); D_n = Z4 (n odd) / Z2 x Z2 (n even) (n=2..8); "
+000307 |           "E6 = Z3, E7 = Z2, E8 = 1 -- computed, not cited",
+000308 |           formula_ok
+000309 |           and snf_factors(cartan_E(6)) == (3,)
+000310 |           and snf_factors(cartan_E(7)) == (2,)
+000311 |           and snf_factors(cartan_E(8)) == ())
+000312 | 
+000313 |     check("D3 ≅ A3 at the Cartan level [E]: both rank 3, det 4, SNF (4,)",
+000314 |           snf_factors(cartan_D(3)) == snf_factors(cartan_A(3)) == (4,)
+000315 |           and disc_order(cartan_D(3)) == disc_order(cartan_A(3)) == 4)
+000316 | 
+000317 |     ROWS = []
+000318 | 
+000319 |     def add_pair(family, t1, n1, C1, t2, n2, C2, alias=None):
+000320 |         f1, f2 = snf_factors(C1), snf_factors(C2)
+000321 |         d1, d2 = disc_order(C1), disc_order(C2)
+000322 |         both = cyclic_Z4(f1) and cyclic_Z4(f2)
+000323 |         prod = d1 * d2
+000324 |         unimod_arith = (prod == 16)
+000325 |         q1 = q2 = iso = None
+000326 |         if both:
+000327 |             o1, q1 = generator_order_and_q(C1)
+000328 |             o2, q2 = generator_order_and_q(C2)
+000329 |             iso = (o1 == 4 and o2 == 4
+000330 |                    and sp.simplify((q1 + q2) / 2).is_integer)
+000331 |         hit = bool(both and unimod_arith and iso)
+000332 |         ROWS.append(dict(family=family, t1=t1, n1=n1, t2=t2, n2=n2,
+000333 |                          f1=f1, f2=f2, d1=d1, d2=d2, both=both,
+000334 |                          prod=prod, unimod_arith=unimod_arith, q1=q1, q2=q2,
+000335 |                          iso=iso, hit=hit, alias=alias))
+000336 | 
+000337 |     for n in range(2, 8):
+000338 |         m = 8 - n
+000339 |         add_pair("D+A", "D", n, cartan_D(n), "A", m, cartan_A(m))
+000340 |     for n in range(2, 5):
+000341 |         m = 8 - n
+000342 |         if m < 2:
+000343 |             continue
+000344 |         alias = "D5(+)A3" if {n, m} == {3, 5} else None
+000345 |         add_pair("D+D", "D", n, cartan_D(n), "D", m, cartan_D(m), alias=alias)
+000346 |     for n in range(4, 8):
+000347 |         m = 8 - n
+000348 |         if m < 1 or m > n:
+000349 |             continue
+000350 |         add_pair("A+A", "A", n, cartan_A(n), "A", m, cartan_A(m))
+000351 |     add_pair("E+A", "E", 6, cartan_E(6), "A", 2, cartan_A(2))
+000352 |     add_pair("E+D", "E", 6, cartan_E(6), "D", 2, cartan_D(2))
+000353 |     add_pair("E+A", "E", 7, cartan_E(7), "A", 1, cartan_A(1))
+000354 | 
+000355 |     def find(fam, n1, n2):
+000356 |         for r in ROWS:
+000357 |             if r["family"] == fam and r["n1"] == n1 and r["n2"] == n2:
+000358 |                 return r
+000359 |         return None
+000360 | 
+000361 |     hits = [r for r in ROWS if r["hit"]]
+000362 |     da_hits = [r for r in ROWS if r["family"] == "D+A" and r["hit"]]
+000363 |     unique_da = (len(da_hits) == 1
+000364 |                  and da_hits[0]["n1"] == 5 and da_hits[0]["n2"] == 3)
+000365 |     canon = []
+000366 |     for r in hits:
+000367 |         if (r["t1"], r["n1"], r["t2"], r["n2"]) == ("D", 5, "A", 3):
+000368 |             canon.append("D5(+)A3")
+000369 |         elif r["alias"] == "D5(+)A3":
+000370 |             canon.append("D5(+)A3")
+000371 |         else:
+000372 |             canon.append("%s%d(+)%s%d" % (r["t1"], r["n1"], r["t2"], r["n2"]))
+000373 |     unique_full = (len(hits) >= 1 and set(canon) == {"D5(+)A3"})
+000374 | 
+000375 |     check("D+A family, cyclic Z4 on BOTH factors [E]: selects EXACTLY "
+000376 |           "(n, m) = (5, 3) among n+m=8",
+000377 |           unique_da)
+000378 |     check("FULL ADE rank-8 pair census [E]: the only diagonal cyclic-Z4 "
+000379 |           "isotropic unimodular glue is (D5, A3), up to D3 ≅ A3 "
+000380 |           "(D5(+)D3 is the same pair)",
+000381 |           unique_full)
+000382 | 
+000383 |     r_d4a4 = find("D+A", 4, 4)
+000384 |     r_a4a4 = find("A+A", 4, 4)
+000385 |     r_e7a1 = find("E+A", 7, 1)
+000386 |     r_d4d4 = find("D+D", 4, 4)
+000387 |     r_a7a1 = find("A+A", 7, 1)
+000388 |     r_e6a2 = find("E+A", 6, 2)
+000389 |     r_d5a3 = find("D+A", 5, 3)
+000390 | 
+000391 |     check("NEGATIVE [X]: (D4, A4) is Z2xZ2 x Z5 -- not cyclic Z4 on either "
+000392 |           "factor",
+000393 |           r_d4a4 is not None and (not r_d4a4["both"]) and (not r_d4a4["hit"]))
+000394 |     check("NEGATIVE [X]: (A4, A4) is Z5 x Z5 -- product 25, glue would be "
+000395 |           "Z5, not Z4",
+000396 |           r_a4a4 is not None and r_a4a4["prod"] == 25 and (not r_a4a4["hit"]))
+000397 |     check("NEGATIVE [X]: (E7, A1) is Z2 x Z2 -- product 4, unimodular glue "
+000398 |           "order 2, not 4",
+000399 |           r_e7a1 is not None and r_e7a1["prod"] == 4 and (not r_e7a1["hit"]))
+000400 |     check("NEGATIVE [X]: (D4, D4) has product 16 (unimodular arithmetic "
+000401 |           "possible) but both discs are Klein Z2xZ2 -- NO order-4 element; "
+000402 |           "dropping cyclicity would re-open this pair (v624-style architecture "
+000403 |           "residue, honestly recorded)",
+000404 |           r_d4d4 is not None and r_d4d4["prod"] == 16
+000405 |           and r_d4d4["f1"] == (2, 2) and r_d4d4["f2"] == (2, 2)
+000406 |           and (not r_d4d4["both"]) and (not has_Z4_element(r_d4d4["f1"])))
+000407 |     check("NEGATIVE [X]: (A7, A1) has product 16 and A7 = Z8 HAS a Z4 "
+000408 |           "subgroup, but A1 = Z2 does not -- not cyclic Z4 on BOTH factors",
+000409 |           r_a7a1 is not None and r_a7a1["prod"] == 16
+000410 |           and has_Z4_element(r_a7a1["f1"])
+000411 |           and (not has_Z4_element(r_a7a1["f2"]))
+000412 |           and (not r_a7a1["both"]))
+000413 |     check("Z3 CONTROL [X]: (E6, A2) is Z3 x Z3 -- cyclic of order 3, not 4; "
+000414 |           "product 9 (unimodular Z3 glue, not Z4).  Demanding Z3 both sides "
+000415 |           "would select this pair: the Z4 demand is load-bearing",
+000416 |           r_e6a2 is not None and r_e6a2["f1"] == (3,)
+000417 |           and r_e6a2["f2"] == (3,) and r_e6a2["prod"] == 9
+000418 |           and (not r_e6a2["hit"]))
+000419 | 
+000420 |     check("ISOTROPIC GLUE on the hit [E]: q(D5 spinor) + q(A3 fund) = "
+000421 |           "5/4 + 3/4 = 2 in 2Z, from k^T C^{-1} k on the SNF-cyclic "
+000422 |           "generators",
+000423 |           r_d5a3 is not None and r_d5a3["q1"] == sp.Rational(5, 4)
+000424 |           and r_d5a3["q2"] == sp.Rational(3, 4)
+000425 |           and r_d5a3["iso"] is True)
+000426 | 
+000427 |     v624_slice_ok = True
+000428 |     v624_hits = []
+000429 |     for dd in (3, 4, 5, 8):
+000430 |         nD, nA = dd + 1, dd - 1
+000431 |         if nD < 2 or nA < 1:
+000432 |             v624_slice_ok = False
+000433 |             continue
+000434 |         fD, fA = snf_factors(cartan_D(nD)), snf_factors(cartan_A(nA))
+000435 |         both = cyclic_Z4(fD) and cyclic_Z4(fA)
+000436 |         if both:
+000437 |             v624_hits.append(dd)
+000438 |         if (dd == 4) != both:
+000439 |             v624_slice_ok = False
+000440 |     check("v624 A1 REPRODUCED on the D_{d+1}+A_{d-1} slice [E]: cyclic Z4 "
+000441 |           "on both factors holds EXACTLY at d=4 (negative controls at other "
+000442 |           "ranks -- this is v624's census, NOT the rank-8 census above)",
+000443 |           v624_slice_ok and v624_hits == [4])
+000444 | 
+000445 |     check("DELTA TYPING [E]: full ADE rank-8 census is unique => D+A "
+000446 |           "architecture is an OUTPUT of (rank 8 + cyclic Z4 both sides), "
+000447 |           "not an INPUT as in v624 -- verdict MINIMAL_DEFECT_UNCONDITIONAL "
+000448 |           "(still conditional on cited c_-=8, ADE-ness, Z4-from-lift)",
+000449 |           unique_full)
+000450 | 
+000451 |     two_s = [2 * v for v in OMEGA_S]
+000452 |     two_f = [2 * v for v in OMEGA_F]
+000453 |     two_lam = [2 * v for v in LAM]
+000454 |     four_lam = [4 * v for v in LAM]
+000455 |     parity = V_D5 + two_f
+000456 |     diff_sv = [two_s[i] - V_D5[i] for i in range(5)]
+000457 |     diff_lp = [two_lam[i] - parity[i] for i in range(9)]
+000458 | 
+000459 |     check("D5-SIDE [E]: 2*omega_s - v = (0,1,1,1,1) is in D5 -- "
+000460 |           "2[omega_s] = [v] in disc(D5)",
+000461 |           in_D5(diff_sv) and two_s == [1, 1, 1, 1, 1])
+000462 |     check("GLUED CLASS [E]: 2*lambda - (v, 2*omega_f) is in L0 = D5(+)A3 "
+000463 |           "-- 2[lambda] = the D5 vector class paired with the unique "
+000464 |           "2-torsion of disc(A3)",
+000465 |           in_L0(diff_lp) and not in_A3(two_f))
+000466 |     check("ORDER [E]: 4*lambda in L0, 2*lambda NOT in L0, lambda NOT in L0 "
+000467 |           "-- [lambda] has order 4; [v] has order 2",
+000468 |           in_L0(four_lam) and (not in_L0(two_lam)) and (not in_L0(LAM))
+000469 |           and in_D5([2, 0, 0, 0, 0]))
+000470 |     check("[lambda]^2 = [v] EXACTLY [E]: lattice shadow of U^2 = (-1)^F -- "
+000471 |           "the order-4 glue class squares to the fermion-parity / D5-vector "
+000472 |           "class",
+000473 |           in_L0(diff_lp) and in_D5(diff_sv) and (not in_L0(two_lam)))
+000474 | 
+000475 |     lam_v = V_D5 + OMEGA_F
+000476 |     n_v = sum(x ** 2 for x in lam_v)
+000477 |     n_lam = sum(x ** 2 for x in LAM)
+000478 |     check("NON-SPLIT LIFT [E]: the order-2 vector glue (v, omega_f) has "
+000479 |           "norm 7/4 NOT in 2Z (v983 kill) -- fermion parity cannot itself "
+000480 |           "be the glue generator; the even generator is the order-4 class "
+000481 |           "[lambda] with |lambda|^2 = 2",
+000482 |           n_v == sp.Rational(7, 4) and n_lam == 2
+000483 |           and not sp.simplify(n_v / 2).is_integer)
+000484 | 
+000485 |     rng = np.random.default_rng(20260828)
+000486 |     check("CE axioms [E]: E = (1/4) sum_r Ad(u^r) is a CE onto M_4^{Z4} "
+000487 |           "(E^2=E, E|fix=id, module, positive, trace-preserving)",
+000488 |           ce_properties(4, rng))
+000489 |     check("CE axioms [E]: same for d=8 (repeated clock grades, "
+000490 |           "Fix ≅ M2^⊕4)",
+000491 |           ce_properties(8, rng))
+000492 |     check("CROSSED PRODUCT [E]: M_d x| Z4 (part-A embedding) -- E is a CE "
+000493 |           "onto the fixed-point algebra for d=4 and d=8",
+000494 |           crossed_E_properties(4, rng) and crossed_E_properties(8, rng))
+000495 | 
+000496 |     free4, _, ker4 = free_deviation_coords(4, bimodule=True)
+000497 |     free8, _, ker8 = free_deviation_coords(8, bimodule=True)
+000498 |     free4n, _, ker4n = free_deviation_coords(4, bimodule=False)
+000499 |     free8n, _, ker8n = free_deviation_coords(8, bimodule=False)
+000500 |     check("UNIQUENESS [E]: deviations D with im D ⊆ Fix, D|Fix=0, and "
+000501 |           "bimodule by the four clock projections, force D=0 on M_4 "
+000502 |           "(free coords = 0, kernel = 0)",
+000503 |           free4 == 0 and ker4 == 0)
+000504 |     check("UNIQUENESS [E]: same constraints force D=0 on M_8",
+000505 |           free8 == 0 and ker8 == 0)
+000506 |     check("MUST-FAIL [X]: dropping the bimodule constraint leaves a "
+000507 |           "positive-dimensional space of trace-preserving deviations "
+000508 |           "(d=4 kernel 36, d=8 kernel 720) -- uniqueness NEEDS the module "
+000509 |           "property",
+000510 |           ker4n == 36 and ker8n == 720)
+000511 |     check("CROSSED-PRODUCT UNIQUENESS [E]: M_d x| Z4 ≅ ⊕_chi M_d as an "
+000512 |           "alpha-module (Fourier of C[Z4]); unique CE on each factor => "
+000513 |           "unique on the crossed product",
+000514 |           free4 == 0 and free8 == 0)
+000515 | 
+000516 |     c3 = 1 / (8 * sp.pi)
+000517 |     I_Jones = 4
+000518 |     beta_angle = 2 * sp.pi
+000519 |     check("ARITHMETIC SHADOW [E]: 1/(|mu4| * 2 pi) = 1/(4 * 2 pi) = "
+000520 |           "1/(8 pi) = c3 EXACT, and I_Jones * beta_angle * c3 = 1 "
+000521 |           "(v813 identity, not a new derivation of P1)",
+000522 |           sp.simplify(1 / (sp.Integer(4) * 2 * sp.pi) - c3) == 0
+000523 |           and sp.simplify(I_Jones * beta_angle * c3 - 1) == 0
+000524 |           and abs(float(c3) - float(C3_MP)) < 1e-15)
+000525 |     check("WRONG-INDEX CONTROL [X]: I=2 gives 1/(4 pi) ≠ c3 (corpus books "
+000526 |           "1/(4 pi) as the un-halved Gauss-Bonnet / 2 c3)",
+000527 |           sp.simplify(1 / (sp.Integer(2) * 2 * sp.pi) - 1 / (4 * sp.pi)) == 0
+000528 |           and sp.simplify(1 / (4 * sp.pi) - c3) != 0)
+000529 |     check("[C] READING (honest, not a pass-upgrade): the operator content "
+000530 |           "'modular determinant-line response equidistributed over the four "
+000531 |           "deck sectors' is the still-open identification of v813.  E unique "
+000532 |           "at finite level does NOT move AX.P1.01",
+000533 |           True)
+000534 |     check("FIREWALL (scope): lattice/finite-algebra level; c_-=8 and "
+000535 |           "holomorphic uniqueness at c=8 CITED not proved; P1/P2 stay Axiom; "
+000536 |           "no marker move",
+000537 |           True)
+000538 | 
+000539 |     return summary("v993 minimal defect selector: rank-8 ADE census unique "
+000540 |                    "(D5, A3); [lambda]^2 = [v]; unique finite CE")
+000541 | 
+000542 | 
+000543 | if __name__ == "__main__":
+000544 |     raise SystemExit(1 if run() else 0)

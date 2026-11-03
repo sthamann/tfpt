@@ -24,6 +24,8 @@ module makes the whole class of bookkeeping errors impossible to reintroduce:
       is a semicolon-separated CROSS-REFERENCE field (evidence pointers, often
       mutual), NOT a build DAG -- the measured graph contains 13 strongly
       connected components (265 ids) of mutual references, all historical.
+      Explicit retained references to claims moved to Prime Front resolve to
+      that external owner, not to a local TFPT claim or proof dependency.
       The guard freezes that census REMOVE-ONLY: claim-like tokens that do not
       resolve to a ledger row must stay within the frozen 37-token legacy list
       (renamed/compressed ids and range notations like FLAV.QGEO.01-03), the
@@ -76,6 +78,20 @@ LEGACY_DANGLING_DEPS = frozenset({
     "SEAM.COX.01", "SEAM.TRANSFER.01", "THETA13.PRESSURE.01",
     "TRANSPORT.SIXTHROOT.01", "WITNESS.INDEP.01",
 })
+
+# Exact historical cross-references whose owner moved in split commit c5135cf4.
+# Every id exists in that commit's predecessor ledger. QGEO.CONEDYN.01 was
+# v699's PRIME determinant-coordinate cone experiment, despite its prefix.
+# These are external provenance pointers, not local claims, runtime inputs or
+# additions to the frozen dangling-reference baseline. Do not allow a prefix
+# wildcard: an unregistered new PRIME.* reference must still fail.
+EXTERNAL_CLAIM_OWNERS = dict.fromkeys({
+    "PRIME.FLOOR.RATIO.01", "PRIME.HECKEMODRAM.01",
+    "PRIME.HECKEPOLARITY.01", "PRIME.KEYSTONE.01", "PRIME.MOONSHOT.01",
+    "PRIME.POSITIVE_DESCENT.01", "PRIME.RELATION.MULT.01",
+    "PRIME.SHADOW.01", "PRIME.UNIFC.01", "PRIME.WEIL.OPERATOR.01",
+    "QGEO.CONEDYN.01",
+}, "https://github.com/sthamann/prime-front")
 
 # FROZEN (2026-08-08, round 36; REMOVE-ONLY): the ids participating in
 # mutual-reference cycles of the dependencies cross-reference field (13 SCCs,
@@ -302,9 +318,14 @@ def run():
 
     # ---- S5 dependency cross-references (frozen census, remove-only)
     dep_tokens = {r["claim_id"]: _split(r["dependencies"]) for r in rows}
+    external = sorted({t for ts in dep_tokens.values() for t in ts
+                       if t in EXTERNAL_CLAIM_OWNERS and t not in idset})
     unknown = sorted({t for ts in dep_tokens.values() for t in ts
-                      if _claimlike(t) and t not in idset})
+                      if _claimlike(t) and t not in idset
+                      and t not in EXTERNAL_CLAIM_OWNERS})
     new_unknown = sorted(set(unknown) - LEGACY_DANGLING_DEPS)
+    print("  External dependency provenance (Prime Front, not local claims): "
+          "%s" % (external or "none"))
     check("S5.1 DEPENDENCY REFERENCES [I]: %d claim-like tokens do not "
           "resolve to a ledger row, ALL within the frozen 37-token legacy "
           "list (new dangling: %s)" % (len(unknown), new_unknown or "none"),

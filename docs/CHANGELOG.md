@@ -18,6 +18,15 @@ and website update. Scientific content and its limitations are recorded in the
 modular paper changelog and its single shared authored source supplement.
 Private Atlas caches and unrelated local working changes are not included.
 
+The scheduled follow-up incorporates the later R112, Craig, Genesis and
+constant-response reports. Two exploratory checkers resolve their original
+inputs from their own checkout. The CI repairs preserve exact lattice
+integrality across Python versions, identify eleven historical Prime Front
+cross-references by their external owner, and use the independently checked
+Kubo derivative for strict zero-response controls. The finite-difference
+comparison, unknown-reference rejection and all scientific claim statuses
+remain unchanged.
+
 ## 2026-10-18 — Paper navigation in the shared Atlas
 
 The maintained local Atlas now imports the registry's exact document/section

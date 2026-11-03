@@ -106,13 +106,13 @@ Explicit source references:
 
 ## Dated continuation: the actual residual time form (R111)
 
-[tex-artefacts/toe_source_completion_20261103.tex:430-488](../../../../tex-artefacts/toe_source_completion_20261103.tex#L430) · `section:0f8ee3912de706f173b8` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:431-489](../../../../tex-artefacts/toe_source_completion_20261103.tex#L431) · `section:0f8ee3912de706f173b8` · subsection
 
 The literal original positive-parent clause leaves its residual [formula in source] unspecified. Once the parent and the actual reducing physical/source map have been supplied, the original annihilating admissibility penalties vanish on their admitted range. The remaining binding equation is the whole source-time form minus the represented parent form. If one realization of the printed parent clause exists, its state
 
 ## Source and reproducibility route
 
-[tex-artefacts/toe_source_completion_20261103.tex:489-532](../../../../tex-artefacts/toe_source_completion_20261103.tex#L489) · `section:5a9ea639ada21fb1a3c4` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:645-700](../../../../tex-artefacts/toe_source_completion_20261103.tex#L645) · `section:5a9ea639ada21fb1a3c4` · subsection
 
 The dated report labels resolve through docs/research/fundamental-plan/RESULTS.md and the synthesis docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md. The main proof owners are: A and B: experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt and experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt. C: experiments/theory-contracts/original-paper-source-
 

@@ -1,0 +1,78 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/seam-collar-multifield-20261016/PROOF.txt
+Original file SHA-256: 3537a2b080df0bb8b5d30c73da7dd83dc8e1ae5a6cfea4bb48a8b99f0080dfce
+Inclusive original lines: 59-128
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000059 | 3. A projection CAR covariance forces all state moments
+000060 | 
+000061 | Let c(f) obey CAR on a finite-dimensional one-particle space, and suppose the
+000062 | ACTUAL state has covariance C_ij=omega(c_j^* c_i)=G_ij with G=G*=G^2.
+000063 | For f in Ker G, positivity gives ||c(f)Omega||^2=0. For g in Ran G, CAR gives
+000064 | ||c^*(g)Omega||^2=0. These annihilation conditions and CAR determine all moments
+000065 | by normal ordering. In finite Fock space their common solution space is one
+000066 | dimension, the occupied Slater state for Ran G. Thus an independent assumption
+000067 | that this SAME state is quasifree is redundant.
+000068 | 
+000069 | state_from_projection implements these linear annihilation constraints and
+000070 | checks every entry of the supplied covariance. It does not start with a Wick
+000071 | formula or choose a vacuum occupation by minimizing a function.
+000072 | 
+000073 | IMPORTANT: the classical Cauchy projector being G does not prove that the
+000074 | physical state's CAR covariance is G. That identification remains a substantive
+000075 | source/field premise. A mixed subface covariance alone also does not satisfy
+000076 | this projection argument.
+000077 | 
+000078 | 4. Oriented boundary-state pairing determines the full operator ray
+000079 | 
+000080 | On two labeled m-dimensional faces (input first, output second), let V=[I;R] and
+000081 | G=V(V*V)^(-1)V*. Its forced boundary state ray is
+000082 |   wedge_j (e_in,j + sum_i R_ij e_out,i).
+000083 | Use the fixed ordered exterior input dual: an input subset J-complement is
+000084 | paired with input index J, with sign (-1)^inv(J), where inv(J) counts pairs
+000085 | j in J, k not in J, k>j. Expanding the wedge gives
+000086 |   Q_(I,J) / Q_(empty,empty) = det R_(I,J)   if |I|=|J|,
+000087 | and zero otherwise. Therefore Q is proportional to direct_sum_n Lambda^n R.
+000088 | boundary_amplitude reconstructs the state from G, performs this oriented
+000089 | unvectorization, and independently agrees with the creator-covariance recurrence.
+000090 | Complex nondiagonal controls verify the signs and avoid an unnoticed transpose
+000091 | or conjugation. Independent frame changes U_in,V_out give exactly
+000092 | Q'=Gamma(V_out) Q Gamma(U_in^*). An internal quarter iI gives phases i^n on
+000093 | n-field products. Projection of G alone does not imply positivity of Q:
+000094 | R=-1 gives Q=diag(1,-1). A positive amplitude additionally uses the actual
+000095 | selfadjoint collar transfer R=exp(-lB)>0.
+000096 | 
+000097 | The oriented operator-state identification is part of this specified fermionic
+000098 | quantization. It is not deduced just by observing that a matrix has matching
+000099 | dimension. This construction does not equate the internal CAR rotation with
+000100 | the physical chiral quarter domain, which remains separately labeled.
+000101 | 
+000102 | Only an OPERATOR RAY is determined by normalized G. Its overall complex factor,
+000103 | vacuum determinant and unnormalized source partition function are not recovered.
+000104 | The chart Q_(empty,empty)=1 is a normalization of that ray, not a physical
+000105 | derivation of the scalar, its seam phase, or a gravitational area coefficient.
+000106 | 
+000107 | 5. Complete multi-field covariance and chronological sewing
+000108 | 
+000109 | Equivalently suppose Q Omega=Omega and the FULL operator relations hold:
+000110 |   Q c_j^* = sum_i R_ij c_i^* Q.
+000111 | Pushing Q past a word of creators determines its value on every Fock basis
+000112 | vector. These vectors span, so the result is unique and equals the exterior
+000113 | lift above. It follows for all words, not only vacuum matrix elements. For two
+000114 | successive source maps,
+000115 |   Q(R2 R1)=Q(R2)Q(R1).
+000116 | This is verified for noncommuting R1,R2 so chronological order is actually tested.
+000117 | For a source semigroup R_(s+t)=R_s R_t this gives the normalized free multi-field
+000118 | sewing rule at every particle number; amplitudes are minors, not fitted factors.
+000119 | 
+000120 | For positive Euclidean R, this is NOT a CAR *-automorphism. The adjoint relation
+000121 | is c_j Q = Q sum_i conjugate(R_ij)c_i, not Q c_j=sum_i conjugate(R_ij)c_i Q.
+000122 | For unitary real-time source maps the exterior lift is unitary and conjugation
+000123 | does define the corresponding CAR *-automorphism.
+000124 | 
+000125 | An interaction can have the same reference and one-particle sector while
+000126 | violating this full covariance. For instance a different two-particle diagonal
+000127 | entry in diag(1,r,r,b) passes the vacuum creator relation but fails the full
+000128 | relation unless b=r^2. This is the adversarial test, not a proposed new TFPT model.

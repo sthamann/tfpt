@@ -148,19 +148,19 @@ The csc-squared finite product identity and trigamma recurrence for the original
 
 ## Shared source and transfer update: 3 November 2026
 
-[tex-artefacts/toe_source_completion_20261103.tex:4-26](../../../../tex-artefacts/toe_source_completion_20261103.tex#L4) · `section:5bb11b878db66b765225` · section
+[tex-artefacts/toe_source_completion_20261103.tex:4-27](../../../../tex-artefacts/toe_source_completion_20261103.tex#L4) · `section:5bb11b878db66b765225` · section
 
 The original structured boundary source, its common action and the [formula in source] chain are retained. Several complete source calls, field maps and transfer kernels have now been evaluated in their stated classes. These results include conditional charge and metric selection, physical Gauss-sector sources, vacuum and ground-source reconstruction, and a complete fixed-background Clifford kernel. The primitive spa
 
 ## The common source and the corrected starting point (C, F, G)
 
-[tex-artefacts/toe_source_completion_20261103.tex:27-75](../../../../tex-artefacts/toe_source_completion_20261103.tex#L27) · `section:066fe20f4d09268f3d38` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:28-76](../../../../tex-artefacts/toe_source_completion_20261103.tex#L28) · `section:066fe20f4d09268f3d38` · subsection
 
 P1 is a structured reflection-positive boundary kernel, not merely the number [formula in source] . The operational seed already supplies its local algebra, state, time, reflection and collar operator. The original source route is [formula in source] Each arrow retains its actual hypotheses and operator domains. A particular eightfold CAR/native-clock reconstruction is an available conditional route, not a global ext
 
 ## Variable fields, ordered sources and retained reference factors (D, E)
 
-[tex-artefacts/toe_source_completion_20261103.tex:128-152](../../../../tex-artefacts/toe_source_completion_20261103.tex#L128) · `section:1f0121fb70d3450e5fe9` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:129-153](../../../../tex-artefacts/toe_source_completion_20261103.tex#L129) · `section:1f0121fb70d3450e5fe9` · subsection
 
 The original local source reader no longer needs constant Higgs backgrounds in its stated circle class. The smooth bounded variable one-form has the required Hilbert–Schmidt control, entire ordered [formula in source] source, trace correction and all local response orders. The actual Galerkin calls converge to that same source operator. This is an analytic application to the existing coefficient family; it is not a p
 
@@ -174,13 +174,13 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Physical source existence, ground words and common geometry (H, I, J)
 
-[tex-artefacts/toe_source_completion_20261103.tex:153-220](../../../../tex-artefacts/toe_source_completion_20261103.tex#L153) · `section:206a9bd3daad77367425` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:154-221](../../../../tex-artefacts/toe_source_completion_20261103.tex#L154) · `section:206a9bd3daad77367425` · subsection
 
 The given finite-range uniformly local Hamiltonian class has its thermodynamic real-time norm dynamics and ground/KMS states. Restrictions of one limiting state are compatible. Independently restarted small bare Gibbs weights need not be projective. Exact elimination carries the effective fiber weights, exterior determinants, higher vertices and memory, rather than imposing the original bare ansatz again at each cut.
 
 ## The complete transfer comparison and its field requirements (K, R104–R108)
 
-[tex-artefacts/toe_source_completion_20261103.tex:221-309](../../../../tex-artefacts/toe_source_completion_20261103.tex#L221) · `section:2bbc10475616c74f0d3b` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:222-310](../../../../tex-artefacts/toe_source_completion_20261103.tex#L222) · `section:2bbc10475616c74f0d3b` · subsection
 
 The complete original word source gives its actual pairing and time kernel, [formula in source] Its first derivative defines the generator form on the actual quotient. Equal full pairings and closed forms, with actual autonomous sewing, determine the whole transfer. A discrete source can instead be compared at its whole fixed step. In general [formula in source] is not [formula in source] ; a nonreducing compression
 
@@ -196,19 +196,49 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Larger charged sources and the remaining actual insertion (R109, R110)
 
-[tex-artefacts/toe_source_completion_20261103.tex:400-429](../../../../tex-artefacts/toe_source_completion_20261103.tex#L400) · `section:2168da76f91bd76c19e5` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:401-430](../../../../tex-artefacts/toe_source_completion_20261103.tex#L401) · `section:2168da76f91bd76c19e5` · subsection
 
 The larger integral odd spinor vertices have their explicit original spatial vectors, cocycle and all sixteen [formula in source] time weights. Their separately supplied collective [formula in source] is not substituted for [formula in source] . A concrete original vertex-mode anticommutator is nonzero between two distinct components, so those components are not directly independent elementary CAR. This does not excl
 
 ## Dated continuation: the actual residual time form (R111)
 
-[tex-artefacts/toe_source_completion_20261103.tex:430-488](../../../../tex-artefacts/toe_source_completion_20261103.tex#L430) · `section:0f8ee3912de706f173b8` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:431-489](../../../../tex-artefacts/toe_source_completion_20261103.tex#L431) · `section:0f8ee3912de706f173b8` · subsection
 
 The literal original positive-parent clause leaves its residual [formula in source] unspecified. Once the parent and the actual reducing physical/source map have been supplied, the original annihilating admissibility penalties vanish on their admitted range. The remaining binding equation is the whole source-time form minus the represented parent form. If one realization of the printed parent clause exists, its state
 
+## Covariant action and its variational scope (R112)
+
+[tex-artefacts/toe_source_completion_20261103.tex:490-527](../../../../tex-artefacts/toe_source_completion_20261103.tex#L490) · `section:36cb2b808681993cd807` · subsection
+
+On the existing conditional PS branch, the actual two-sided unitary orbit [formula in source] forces the quadratic fluctuation with coefficient one in the known https://arxiv.org/abs/1304.7583CCvS construction: [formula in source] For the original right-quaternion subgroup its only nonzero correction is the Majorana block [formula in source] and its adjoint, where [formula in source] . The full original [formula in s
+
+## The actual product pairing and the Craig comparison (CRAIG20261103B)
+
+[tex-artefacts/toe_source_completion_20261103.tex:528-553](../../../../tex-artefacts/toe_source_completion_20261103.tex#L528) · `section:698050fdcedcbfc5c455` · subsection
+
+For the existing ordinary four-dimensional product branch with the whole original internal matrix [formula in source] , the total spin/finite real structure gives an antisymmetric Grassmann kernel on each total chiral fiber. Its mass block satisfies [formula in source] It is nonzero for nonzero Hermitian [formula in source] . The isolated finite KO6 pairing cannot be substituted for this full product pairing. At the
+
+## Internal relaxation and physical cyclic time (GENESIS20261103)
+
+[tex-artefacts/toe_source_completion_20261103.tex:586-603](../../../../tex-artefacts/toe_source_completion_20261103.tex#L586) · `section:4c11a45464a1c6e91f1a` · subsection
+
+The original family transfer has eigenvalues [formula in source] . It relaxes in its two nonstationary directions and has no positive integer power equal to the identity. Under the additional identification [formula in source] , [formula in source] , the two positive energies are [formula in source] and [formula in source] . Their ratio is irrational by unique prime factorization, so this conditional Hamiltonian has
+
+## Whole color projection (CRAIG20261103C).
+
+[tex-artefacts/toe_source_completion_20261103.tex:604-622](../../../../tex-artefacts/toe_source_completion_20261103.tex#L604) · `section:f57b990a3d04ecc15b6e` · paragraph
+
+On the compatible existing CAR representation, average the three whole exterior lifts of the original color-center action. Its neutral sector has rank [formula in source] on the full sixteen-mode exterior space; the exterior lift of the neutral one-particle projector has rank only [formula in source] . The whole coherent transfer kernel is [formula in source] It retains neutral composite words with charged intermedia
+
+## Joint marked source and selector contacts (R113).
+
+[tex-artefacts/toe_source_completion_20261103.tex:623-644](../../../../tex-artefacts/toe_source_completion_20261103.tex#L623) · `section:77ed29ad0e1de1f8daa9` · paragraph
+
+For the same conditional whole Clifford caller, assume its actual semigroup time, justified short-time product rule, compatible finite CAR factor and Hermitian boson/rest coefficient operators. The resulting joint generator is [formula in source] Here each [formula in source] is the original zero-time marked operator [formula in source] , not a normalized mean. The original Fock-vacuum matrix leg fixes [formula in so
+
 ## Source and reproducibility route
 
-[tex-artefacts/toe_source_completion_20261103.tex:489-532](../../../../tex-artefacts/toe_source_completion_20261103.tex#L489) · `section:5a9ea639ada21fb1a3c4` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:645-700](../../../../tex-artefacts/toe_source_completion_20261103.tex#L645) · `section:5a9ea639ada21fb1a3c4` · subsection
 
 The dated report labels resolve through docs/research/fundamental-plan/RESULTS.md and the synthesis docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md. The main proof owners are: A and B: experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt and experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt. C: experiments/theory-contracts/original-paper-source-
 

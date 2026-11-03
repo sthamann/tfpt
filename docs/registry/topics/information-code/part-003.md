@@ -705,7 +705,7 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Physical source existence, ground words and common geometry (H, I, J)
 
-[tex-artefacts/toe_source_completion_20261103.tex:153-220](../../../../tex-artefacts/toe_source_completion_20261103.tex#L153) · `section:206a9bd3daad77367425` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:154-221](../../../../tex-artefacts/toe_source_completion_20261103.tex#L154) · `section:206a9bd3daad77367425` · subsection
 
 The given finite-range uniformly local Hamiltonian class has its thermodynamic real-time norm dynamics and ground/KMS states. Restrictions of one limiting state are compatible. Independently restarted small bare Gibbs weights need not be projective. Exact elimination carries the effective fiber weights, exterior determinants, higher vertices and memory, rather than imposing the original bare ansatz again at each cut.
 

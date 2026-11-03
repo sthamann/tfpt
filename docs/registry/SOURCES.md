@@ -968,7 +968,7 @@
 | [tex-artefacts/toe_round7_parent_mirror.tex](../../tex-artefacts/toe_round7_parent_mirror.tex) | shared_support | 16 | 3 |
 | [tex-artefacts/toe_round7_proofs.tex](../../tex-artefacts/toe_round7_proofs.tex) | research_fragment | 2 | 3 |
 | [tex-artefacts/toe_round7_quantum_tensor_curvature.tex](../../tex-artefacts/toe_round7_quantum_tensor_curvature.tex) | shared_support | 9 | 3 |
-| [tex-artefacts/toe_source_completion_20261103.tex](../../tex-artefacts/toe_source_completion_20261103.tex) | research_fragment | 11 | 6 |
+| [tex-artefacts/toe_source_completion_20261103.tex](../../tex-artefacts/toe_source_completion_20261103.tex) | research_fragment | 17 | 6 |
 | [tex-artefacts/toe_universalraum_synthesis_20260912.tex](../../tex-artefacts/toe_universalraum_synthesis_20260912.tex) | research_fragment | 19 | 2 |
 | [tex-artefacts/verification.tex](../../tex-artefacts/verification.tex) | generated | 1 | 2 |
 | [tex-artefacts/version.tex](../../tex-artefacts/version.tex) | shared_support | 1 | 21 |

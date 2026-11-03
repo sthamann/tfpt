@@ -1,0 +1,110 @@
+TFPT scientific source excerpt
+Original repository path: verification/v990_wj_transduction_mechanism.py
+Original file SHA-256: 98de224f6b70d2abb376acb36e9acd3a1b62b485923b043bdad04984f69818a0
+Inclusive original lines: 1-102
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """v990 -- FTRANSFER.GENERATING.01 + OBS.TRANSDUCTION.01 [O update:
+000002 | content shadow + finite W[J] derivative identities + transduction
+000003 | shadow executed; contracts stay Open].
+000004 | 
+000005 | [OMITTED: non-scientific conversation or execution metadata]
+000006 | content of tfpt4d_content_candidate_probe (not imported):
+000007 | 
+000008 |   [E] Z6-CENTRE 6Y TABLE: Q -> 1, u^c -> 2, d^c -> 2, L -> 3,
+000009 |         e^c -> 0 (6Y mod 6); T4 anomaly bookkeeping exact on the
+000010 |         real one-generation content; drop-L mutant fires.
+000011 | 
+000012 |   [E/N] W[J] AT DIM 96 (2 sites, 1 quantum Z6, species Q + e^c):
+000013 |         dW/dJ = <O> (thermal mean); Hessian = Kubo connected
+000014 |         correlator.  Probe diffs ~6e-11 / ~1e-7.
+000015 | 
+000016 |   [N] TRANSDUCTION SHADOW d2W/dJ dtheta: dynamical-link mixed is
+000017 |         nonzero on the seam-coupled link (~-9e-3 in the probe);
+000018 |         decoupled e^c control is EXACTLY 0.  Frozen-link companion:
+000019 |         Q-staggered transduces, e^c control stays 0.
+000020 | 
+000021 | HONEST SCOPE (firewall): 1+1D 2-site Hamiltonian ring; Z6 centre
+000022 | shadow (u^c and d^c share charge 2); finite W[J], not the 4D
+000023 | generating functional.  Contracts stay [O].  No marker move.
+000024 | Python-only / Wolfram mirror deferred.
+000025 | 
+000026 | Provenance: experiments/tfpt-discovery/tfpt4d_content_candidate_probe.py
+000027 | (ALL PASS; not imported).
+000028 | """
+000029 | from fractions import Fraction as F
+000030 | 
+000031 | import numpy as np
+000032 | 
+000033 | from tfpt_constants import check, summary, reset
+000034 | 
+000035 | GEN = [
+000036 |     ("Q",   3, 2, F(1, 6)),
+000037 |     ("u^c", 3, 1, F(-2, 3)),
+000038 |     ("d^c", 3, 1, F(1, 3)),
+000039 |     ("L",   1, 2, F(-1, 2)),
+000040 |     ("e^c", 1, 1, F(1, 1)),
+000041 | ]
+000042 | CHARGES = [int(6 * g[3]) % 6 for g in GEN]
+000043 | 
+000044 | NS = 2
+000045 | DL = 6
+000046 | OMEGA = np.exp(2j * np.pi / 6)
+000047 | Z1 = np.diag(OMEGA ** np.arange(6)).astype(complex)
+000048 | X1 = np.roll(np.eye(6), 1, axis=0).astype(complex)
+000049 | LAM_E, W_HOP, MASS = 1.0, 0.7, 0.5
+000050 | BETA, THETA0, MU_Q = 0.35, 0.7, 0.5
+000051 | EPS_J, EPS_TH = 1.0e-4, 1.0e-4
+000052 | W_SZ = np.diag([1.0, -1.0])
+000053 | W_ANN = np.array([[0.0, 1.0], [0.0, 0.0]], dtype=complex)
+000054 | 
+000055 | 
+000056 | def anomaly_sums(fields):
+000057 |     y3 = sum(c * w * y ** 3 for _, c, w, y in fields)
+000058 |     su2y = sum(c * y for _, c, w, y in fields if w == 2)
+000059 |     su3y = sum(w * y for _, c, w, y in fields if c == 3)
+000060 |     grav = sum(c * w * y for _, c, w, y in fields)
+000061 |     witten = sum(c for _, c, w, y in fields if w == 2)
+000062 |     return y3, su2y, su3y, grav, witten
+000063 | 
+000064 | 
+000065 | def w_ferm(alpha, n_modes, dl):
+000066 |     out = np.array([[1.0]], dtype=complex)
+000067 |     for j in range(n_modes):
+000068 |         if j < alpha:
+000069 |             out = np.kron(out, W_SZ)
+000070 |         elif j == alpha:
+000071 |             out = np.kron(out, W_ANN)
+000072 |         else:
+000073 |             out = np.kron(out, np.eye(2))
+000074 |     return np.kron(np.eye(dl), out)
+000075 | 
+000076 | 
+000077 | def log_tr_exp(A):
+000078 |     ev = np.linalg.eigvalsh(0.5 * (A + A.conj().T))
+000079 |     m = float(ev.max())
+000080 |     return m + float(np.log(np.sum(np.exp(ev - m))))
+000081 | 
+000082 | 
+000083 | def kubo_connected(Xe, Ye, p, evals):
+000084 |     lam = -BETA * evals
+000085 |     dlam = lam[None, :] - lam[:, None]
+000086 |     psi = np.ones_like(dlam, dtype=complex)
+000087 |     mask = np.abs(dlam) > 1e-12
+000088 |     psi[mask] = (np.exp(dlam[mask]) - 1.0) / dlam[mask]
+000089 |     x_mean = complex(np.dot(p, np.diag(Xe)))
+000090 |     y_mean = complex(np.dot(p, np.diag(Ye)))
+000091 |     acc = np.sum(p[:, None] * psi * Xe * Ye.T)
+000092 |     return acc - x_mean * y_mean
+000093 | 
+000094 | 
+000095 | def thermal_pack(Hm):
+000096 |     evals, evecs = np.linalg.eigh(0.5 * (Hm + Hm.conj().T))
+000097 |     lam = -BETA * evals
+000098 |     lam_s = lam - lam.max()
+000099 |     ww = np.exp(lam_s)
+000100 |     p = ww / ww.sum()
+000101 |     return evals, evecs, p
+000102 | 

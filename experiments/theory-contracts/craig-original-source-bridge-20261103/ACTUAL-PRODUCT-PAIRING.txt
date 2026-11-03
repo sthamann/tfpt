@@ -1,0 +1,169 @@
+TFPT UND CRAIG: AUSGEWERTETER KERN UND CHIRALE PAARUNG
+3. November 2026. Result ID CRAIG20261103B.
+Verdict: CONDITIONAL_PRODUCT_KERNEL_EVALUATED_DIRECT_EQUALITY_FAILS.
+
+Der vorhandene gewöhnliche 4D Produktzweig ist mit seiner vollständigen
+ursprünglichen 96 dimensionalen internen Matrix ausgewertet. Seine
+Grassmannpaarung ist antisymmetrisch und bei nichtverschwindender
+Massenmatrix nicht null. Sein gewöhnlicher kinetischer Kern ist bei
+endlichem Gitterabstand nicht direkt mit Craigs Operator identisch.
+Die Hessian des vollständigen ursprünglichen S_adm ist damit noch nicht
+ausgewertet. Diese Unterscheidung bestimmt den gesamten Geltungsbereich.
+
+1. Originale und erste noch nicht gebundene Identifikation
+
+Repo: /Users/stefanhamann/Projekte/tfpt-theoryv4.
+
+Die primitive Originalwirkung, Boundary001:302-316, lautet
+ S_prim = Tr f(D_rel/chi) - Tr f(D_ref/chi) + i pi Delta eta/2.
+Bei festem bosonischem Operatorargument enthält dieser Ausdruck keine
+unabhängigen Grassmannkoordinaten xi. Seine Ableitung nach zusätzlich
+eingeführten xi ist null. Das ist keine Berechnung des Fermionkerns der
+ganzen S_adm und keine Aussage, TFPT besitze keine Fermionen.
+
+QFT007:5-29 und119-145 führt S_adm als Eingabe des vollständigen Integrals
+und seiner Hessian. Die ursprüngliche RG Operatorbasis enthält bereits
+barpsi i slashD psi und barpsi Phi psi. Sie bindet dort aber keine komplette
+Weyl/Selbstdual Feldkoordinatenkarte und keine ganze ursprüngliche
+Berezinpaarung an S_prim. Die vorhandene S/Z/OS/Gamma Kette bleibt bestehen.
+R111 SOURCE-GENERATOR-RESIDUAL-20261103.txt:1-44 bestätigt genau diesen
+Unterschied zwischen der ganzen ursprünglichen Quelle und einem gewählten
+Produkt oder Clifford Verbraucher.
+
+Die erste zusätzliche Identifikation im hier ausführbar vorliegenden
+Produktzweig ist
+ S_F = 1/2 <J xi, D_product xi>, xi in H_epsilon.
+Das ist die bekannte fermionische Produktvorschrift. Sie muss als derselbe
+Fermionanteil von S_adm nachgewiesen werden. Sie folgt nicht durch
+Differenzieren des bosonischen Spektraltraces. Auch die bekannte externe
+Spektralwirkung führt den Fermionterm separat hinzu:
+Alain Connes, hep-th/0608226, Abschnitt5,
+https://arxiv.org/html/hep-th/0608226 .
+Sein dortiger chiraler Übergang zur traditionellen euklidischen Konvention
+ist ebenfalls mit seinem Maß zu transportieren. Eine Operatorphase allein
+beweist keine Quantenmaßidentität.
+
+2. Vollständige ursprüngliche interne Matrix
+
+Verwendet wurden die wirklichen Indexlisten, grading und Kswap aus
+verification/v252_full_finite_triple.py. Alle vier komplexen3x3 Yukawa
+Matrizen und die komplex symmetrische3x3 Majoranamatrix bleiben symbolisch.
+Keine Massenwerte und keine neuen Kopplungen wurden angepasst.
+
+ H_F = C^48_particle directsum C^48_antiparticle,
+ K_F = [[0,I48],[I48,0]], J_F=K_F conjugation,
+ Phi = [[S,T],[T^dagger,bar S]].
+S trägt die ursprünglichen LR Yukawablöcke; T den nu_R Majoranablock.
+Die exakten ganzen Relationen sind
+ Phi^dagger=Phi, {gamma_F,Phi}=0,
+ K_F bar Phi=Phi K_F, J_F^2=+1, J_F gamma_F=-gamma_F J_F.
+Daraus folgt (K_F Phi)^T=K_F Phi.
+Die isolierte endliche Paarung ist symmetrisch. Dieser alte Befund wird
+nicht auf die vollständige Raumzeitpaarung übertragen.
+
+3. Ausgerechnete vollständige Produktpaarung
+
+Mit hermiteschen euklidischen gamma Matrizen wähle
+ gamma_(1,2,3)=sigma1 tensor sigma_(1,2,3),
+ gamma4=sigma2 tensor I2, gamma5=gamma1 gamma2 gamma3 gamma4,
+ C4=gamma1 gamma3, J4=C4 conjugation.
+Dann J4^2=-1, J4 gamma5=gamma5 J4 und
+ C4 bar gamma_mu=-gamma_mu C4.
+
+Der vorhandene gewöhnliche Produktoperator ist
+ D_product=-i gamma^mu nabla_mu tensor I96 + gamma5 tensor Phi.
+Seine Verbindungs und Realitätskonventionen müssen gemeinsam verwendet
+werden. Die ausgeführte Transpositionskontrolle betrifft den freien
+Ableitungskoeffizienten und den ganzen Massenblock; sie ist kein neuer
+Beweis für eine beliebige noch nicht identifizierte Eichverbindung.
+
+ J=(C4 tensor K_F) conjugation,
+ Gamma=gamma5 tensor gamma_F,
+ E_epsilon: H_epsilon -> H4 tensor H_F,
+ M_epsilon=E_epsilon^T (C4 tensor K_F)^dagger D_product E_epsilon.
+
+Beide totalen Chiralitätsfasern haben komplexen Rang192. Diese Zahl ist
+keine Zahl von Teilchensorten. C4^dagger gamma_mu ist symmetrisch; zusammen
+mit partial_mu^T=-partial_mu ergibt das einen schiefen kinetischen Kern.
+C4^dagger gamma5 ist schief, K_F Phi symmetrisch. Deshalb ist auch der
+vollständige Massenkern schief. Exakt symbolisch gilt für epsilon=+1,-1
+ M_mass,epsilon^T=-M_mass,epsilon,
+ ||M_mass,epsilon||_F^2=2 Tr96(Phi^2).
+Für jede nichtnull hermitesche Phi ist dieser Block nicht null. Die
+Raumzeitstruktur beseitigt also den falschen Schluss, die ganze
+Grassmannwirkung müsse wegen des isolierten KO6 Befunds verschwinden.
+
+4. Kleinster entscheidender Vergleich mit Craigs tatsächlichem Operator
+
+Craig, https://arxiv.org/html/2610.09093v1 , Gleichung16.
+Gitterabstand a=1, freier Hintergrund, masseloser geladener Weylblock,
+p=(pi/2,0,0,0). Der Vergleich liest den gewöhnlichen Produktzweig in
+traditioneller euklidischer Konvention am selben Impuls aus. Ein hier noch
+nicht hergeleitetes Blocking wird nicht stillschweigend vorausgesetzt.
+
+ K_product=i gamma1 pi/2,
+ D_C=I+i gamma1,
+ A=I-D_C/2=(I-i gamma1)/2,
+ K_req=D_C A^-1=2 i gamma1.
+Die Karte A trägt Craigs erlaubte hatP_minus Faser auf die gewöhnliche
+P_minus Faser. Aber K_product A != D_C.
+
+Auch ein bloßer unitärer Basiswechsel rettet diese feste Identifikation
+nicht. Auf den jeweiligen erlaubten zweidimensionalen Weylfasern sind
+die singulären Werte des Produktkerns pi/2 und von D_C sqrt2. Der exakte
+Defekt ihrer Quadrate ist pi^2/4-2 !=0. Ein zweiseitiger unitärer Transport
+erhält singuläre Werte. Dieses Ergebnis schließt weder ein tatsächlich
+hergeleitetes nichtunitäres Blocking noch einen anderen Regulator oder
+eine passende Kontinuumsäquivalenz aus. Der Gegenfall ist kein Ausschluss
+aller TFPT Anschlüsse und kein Vergleich einer bereits erzeugten
+ursprünglichen TFPT Gitterwirkung.
+
+5. Tatsächlicher Maßfaktor und fehlender ganzer Vergleich
+
+Auf derselben freien Weylfaser gilt
+ A_-^dagger A_- = I2/2,
+ |det A_-|=1/2.
+Bei psi_T=A_- psi_C und unverändertem Antifermionbein ist der Betrag des
+Berezin Jacobians daher2 pro zweidimensionaler komplexer Weylfaser.
+Pro unabhängiger komplexer Koordinate ist er sqrt2. Die Phase erfordert
+die ursprünglichen geordneten Basen. Multiplizitäten sind erst nach der
+tatsächlichen Feldidentifikation einzusetzen.
+
+Für ganze unabhängige Grassmannkoordinaten mit xi_T=B xi_C lautet die
+entsprechende Identität
+ M_C=B^T M_T B, dxi_T=(det B)^-1 dxi_C,
+ Pf(M_C)=det B Pf(M_T).
+Sie erhält die Quelle nur dann vollständig, wenn auch alle höheren
+Fermionterme, Quellbeine, ursprünglichen Referenzen und Bosongewichte
+gemeinsam transportiert werden. Ein zusätzlich eingesetzter voller96
+Determinant wäre ein anderer Quellenaufruf.
+
+Der bereits hergeleitete Gaussian Blocking Vergleich bleibt
+ D_a=alpha-alpha B(K_T+barB alpha B)^-1 barB alpha.
+Die Rechnung hier liefert keinen aus der ursprünglichen Quelle
+hergeleiteten B,barB,alpha mit D_a=D_C. Da die direkte feste Operatorabbildung
+scheitert, ist auch eine direkte Maßgleichheit über sie nicht bewiesen.
+Craigs Eichinvarianzsatz allein bindet seine Maßsektion nicht an die
+ursprüngliche Pfaffianlinie, deren Phase und Komponentenfaktoren.
+
+6. Erfülltes Ergebnis und präziser verbleibender Nachweis
+
+Ausgeführt:26 exakte symbolische Kontrollen des vorhandenen Produktzweigs,
+einschließlich der ganzen ursprünglichen Yukawa/Majoranafamilie, beider
+totalen chiralen Fasern und des echten freien Craig Operators.
+Belege: actual_product_pairing.py und actual-product-results.json.
+Keine Leanprüfung und keine physische Claim Promotion.
+
+Nicht ausgeführt: M_adm[b]=delta_xi delta_xi S_adm[b,xi]|xi=0 auf der
+tatsächlich ursprünglichen physisch zugelassenen Feldkarte. Die konkrete
+fehlende Bindung ist die Gleichheit dieses Kerns mit M_epsilon samt allen
+höheren ursprünglichen Fermiontermen und Integration über die dynamischen
+Bosonen. Ohne diese Gleichung wäre die Bezeichnung der Produktrechnung als
+tatsächliche ganze ursprüngliche TFPT Hessian falsch.
+
+Originalstellen zusätzlich:
+documents/archive--paper-latex--tfpt-32/sections/013-subsection-rg-map-for-compiler-outputs.tex:184-201
+documents/archive--paper-latex--tfpt-31/sections/007-subsection-occupancy-and-boundary-to-bulk-bridge.tex:44-141
+experiments/theory-contracts/tfpt-unified-source-derivation-20261029/graded_boundary_functor/charge_transport/DERIVED-PAIRING.txt
+experiments/theory-contracts/tfpt-unified-source-derivation-20261029/pfaff_source_review/NORMAL-KINETIC-PAIRING.txt
+experiments/theory-contracts/tfpt-unified-source-derivation-20261029/aps_source_review/CURRENT-ACTION-ARGUMENT-PROOF.txt

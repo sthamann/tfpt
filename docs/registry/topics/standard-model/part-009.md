@@ -750,7 +750,7 @@ The bare theorem above makes no Gauss-sector claim. For the [formula in source] 
 
 ## Variable fields, ordered sources and retained reference factors (D, E)
 
-[tex-artefacts/toe_source_completion_20261103.tex:128-152](../../../../tex-artefacts/toe_source_completion_20261103.tex#L128) · `section:1f0121fb70d3450e5fe9` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:129-153](../../../../tex-artefacts/toe_source_completion_20261103.tex#L129) · `section:1f0121fb70d3450e5fe9` · subsection
 
 The original local source reader no longer needs constant Higgs backgrounds in its stated circle class. The smooth bounded variable one-form has the required Hilbert–Schmidt control, entire ordered [formula in source] source, trace correction and all local response orders. The actual Galerkin calls converge to that same source operator. This is an analytic application to the existing coefficient family; it is not a p
 
@@ -761,6 +761,12 @@ Explicit source references:
 Navigation joins (both sources name the same Python identifier; statement equivalence is not inferred):
 
 - [(* ==== v237: closing step as physics -- no topological degeneracy <=> det K=1 <=> SRE ==== *) Module[{cartanA, cartanD, e8edges, E8, D8, A3, D5, carrier, gsd}, cartanA[n_] := SparseArray[{{i_, i_} -> 2, {i_, j_} /; Abs[i - j] == 1 -> -1}, {n, n}] // Normal; cartanD[n_] := Module[{K}, K = 2 IdentityMatrix[n]; Do[K[[i, i + 1]] = K[[i + 1, i]] = -1, {i, n - 2}]; K[[n - 2, n]] = K[[n, n - 2]] = -1; K]; e8edges = {{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {5, 8}}; E8 = 2 IdentityMatrix[8] - Table[If[i != j && MemberQ[e8edges, Sort[{i, j}]], 1, 0], {i, 8}, {j, 8}]; A3 = cartanA[3]; D5 = cartanD[5]; D8 = cartanD[8]; carrier = ArrayFlatten[{{D5, 0}, {0, A3}}]; gsd[K_, g_] := Abs[Det[K]]^g; checkExact["v237 GATE.HOLO.03: the closing step as a physical condition -- the abelian K-matrix " <> "ground-state degeneracy on a genus-g surface is |det K|^g (torus: carrier D5(+)A3 -> 16, D8 -> 4, " <> "E8 -> 1), so 'no topological ground-state degeneracy on any closed surface' <=> det K = 1 <=> the " <> "seam bulk is short-range-entangled (the unique bosonic SRE c=8 phase = the Kitaev E8 state, edge " <> "holomorphic). A unique vacuum on the plane (genus 0, always 1) is necessary but not sufficient; the " <> "torus sees |det K|. NEG: an LRE bulk (D8, det 4) has 4-fold torus degeneracy + non-holomorphic edge.", gsd[carrier, 1] == 16 && gsd[D8, 1] == 4 && gsd[E8, 1] == 1 && gsd[carrier, 2] == 256 && gsd[E8, 2] == 1 && gsd[carrier, 0] == 1 && gsd[E8, 0] == 1 && Det[E8] == 1 && (5 + 3 == 8)]; ]; (* ==== v259: the modular/KMS spectral-action cutoff fixes f_2/f_0 = 1 (PS.SPECACT.02) ==== v258 (Dirac as covariance induction) is numerical matrix-log linear algebra -> Python-only. *)](../../../../verification/wolfram/tfpt_readouts_extension.wl#L1991)
+
+## The actual product pairing and the Craig comparison (CRAIG20261103B)
+
+[tex-artefacts/toe_source_completion_20261103.tex:528-553](../../../../tex-artefacts/toe_source_completion_20261103.tex#L528) · `section:698050fdcedcbfc5c455` · subsection
+
+For the existing ordinary four-dimensional product branch with the whole original internal matrix [formula in source] , the total spin/finite real structure gives an antisymmetric Grassmann kernel on each total chiral fiber. Its mass block satisfies [formula in source] It is nonzero for nonzero Hermitian [formula in source] . The isolated finite KO6 pairing cannot be substituted for this full product pairing. At the
 
 ## F1: Freeze the elementary grammar.
 

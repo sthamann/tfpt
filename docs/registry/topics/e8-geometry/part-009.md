@@ -432,7 +432,7 @@ Take the thermodynamic limit first. For [formula in source] in [formula in sourc
 
 ## Charge geometry and the actual clock completion (A, B)
 
-[tex-artefacts/toe_source_completion_20261103.tex:76-127](../../../../tex-artefacts/toe_source_completion_20261103.tex#L76) · `section:5d7a3f5da35a8ba21a7a` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:77-128](../../../../tex-artefacts/toe_source_completion_20261103.tex#L77) · `section:5d7a3f5da35a8ba21a7a` · subsection
 
 For the four-punctured family surface, [formula in source] With the declared root normalization, the meridians form the [formula in source] side, their differences the [formula in source] root side. All four meridians have the same discriminant class. A cyclic permutation of the marked points therefore acts trivially on that discriminant; it is not translation through the four glue classes. The earlier literal fourfo
 

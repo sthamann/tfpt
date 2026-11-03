@@ -188,21 +188,33 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Shared source and transfer update: 3 November 2026
 
-[tex-artefacts/toe_source_completion_20261103.tex:4-26](../../../../tex-artefacts/toe_source_completion_20261103.tex#L4) · `section:5bb11b878db66b765225` · section
+[tex-artefacts/toe_source_completion_20261103.tex:4-27](../../../../tex-artefacts/toe_source_completion_20261103.tex#L4) · `section:5bb11b878db66b765225` · section
 
 The original structured boundary source, its common action and the [formula in source] chain are retained. Several complete source calls, field maps and transfer kernels have now been evaluated in their stated classes. These results include conditional charge and metric selection, physical Gauss-sector sources, vacuum and ground-source reconstruction, and a complete fixed-background Clifford kernel. The primitive spa
 
 ## The common source and the corrected starting point (C, F, G)
 
-[tex-artefacts/toe_source_completion_20261103.tex:27-75](../../../../tex-artefacts/toe_source_completion_20261103.tex#L27) · `section:066fe20f4d09268f3d38` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:28-76](../../../../tex-artefacts/toe_source_completion_20261103.tex#L28) · `section:066fe20f4d09268f3d38` · subsection
 
 P1 is a structured reflection-positive boundary kernel, not merely the number [formula in source] . The operational seed already supplies its local algebra, state, time, reflection and collar operator. The original source route is [formula in source] Each arrow retains its actual hypotheses and operator domains. A particular eightfold CAR/native-clock reconstruction is an available conditional route, not a global ext
 
 ## Physical source existence, ground words and common geometry (H, I, J)
 
-[tex-artefacts/toe_source_completion_20261103.tex:153-220](../../../../tex-artefacts/toe_source_completion_20261103.tex#L153) · `section:206a9bd3daad77367425` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:154-221](../../../../tex-artefacts/toe_source_completion_20261103.tex#L154) · `section:206a9bd3daad77367425` · subsection
 
 The given finite-range uniformly local Hamiltonian class has its thermodynamic real-time norm dynamics and ground/KMS states. Restrictions of one limiting state are compatible. Independently restarted small bare Gibbs weights need not be projective. Exact elimination carries the effective fiber weights, exterior determinants, higher vertices and memory, rather than imposing the original bare ansatz again at each cut.
+
+## Covariant action and its variational scope (R112)
+
+[tex-artefacts/toe_source_completion_20261103.tex:490-527](../../../../tex-artefacts/toe_source_completion_20261103.tex#L490) · `section:36cb2b808681993cd807` · subsection
+
+On the existing conditional PS branch, the actual two-sided unitary orbit [formula in source] forces the quadratic fluctuation with coefficient one in the known https://arxiv.org/abs/1304.7583CCvS construction: [formula in source] For the original right-quaternion subgroup its only nonzero correction is the Majorana block [formula in source] and its adjoint, where [formula in source] . The full original [formula in s
+
+## Whole color projection (CRAIG20261103C).
+
+[tex-artefacts/toe_source_completion_20261103.tex:604-622](../../../../tex-artefacts/toe_source_completion_20261103.tex#L604) · `section:f57b990a3d04ecc15b6e` · paragraph
+
+On the compatible existing CAR representation, average the three whole exterior lifts of the original color-center action. Its neutral sector has rank [formula in source] on the full sixteen-mode exterior space; the exterior lift of the neutral one-particle projector has rank only [formula in source] . The whole coherent transfer kernel is [formula in source] It retains neutral composite words with charged intermedia
 
 ## Universalraum synthesis: source selection, reconstruction and accessible dynamics
 

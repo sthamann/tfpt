@@ -122,25 +122,25 @@ Navigation joins (both sources name the same Python identifier; statement equiva
 
 ## Shared source and transfer update: 3 November 2026
 
-[tex-artefacts/toe_source_completion_20261103.tex:4-26](../../../../tex-artefacts/toe_source_completion_20261103.tex#L4) · `section:5bb11b878db66b765225` · section
+[tex-artefacts/toe_source_completion_20261103.tex:4-27](../../../../tex-artefacts/toe_source_completion_20261103.tex#L4) · `section:5bb11b878db66b765225` · section
 
 The original structured boundary source, its common action and the [formula in source] chain are retained. Several complete source calls, field maps and transfer kernels have now been evaluated in their stated classes. These results include conditional charge and metric selection, physical Gauss-sector sources, vacuum and ground-source reconstruction, and a complete fixed-background Clifford kernel. The primitive spa
 
 ## The common source and the corrected starting point (C, F, G)
 
-[tex-artefacts/toe_source_completion_20261103.tex:27-75](../../../../tex-artefacts/toe_source_completion_20261103.tex#L27) · `section:066fe20f4d09268f3d38` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:28-76](../../../../tex-artefacts/toe_source_completion_20261103.tex#L28) · `section:066fe20f4d09268f3d38` · subsection
 
 P1 is a structured reflection-positive boundary kernel, not merely the number [formula in source] . The operational seed already supplies its local algebra, state, time, reflection and collar operator. The original source route is [formula in source] Each arrow retains its actual hypotheses and operator domains. A particular eightfold CAR/native-clock reconstruction is an available conditional route, not a global ext
 
 ## Charge geometry and the actual clock completion (A, B)
 
-[tex-artefacts/toe_source_completion_20261103.tex:76-127](../../../../tex-artefacts/toe_source_completion_20261103.tex#L76) · `section:5d7a3f5da35a8ba21a7a` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:77-128](../../../../tex-artefacts/toe_source_completion_20261103.tex#L77) · `section:5d7a3f5da35a8ba21a7a` · subsection
 
 For the four-punctured family surface, [formula in source] With the declared root normalization, the meridians form the [formula in source] side, their differences the [formula in source] root side. All four meridians have the same discriminant class. A cyclic permutation of the marked points therefore acts trivially on that discriminant; it is not translation through the four glue classes. The earlier literal fourfo
 
 ## Source and reproducibility route
 
-[tex-artefacts/toe_source_completion_20261103.tex:489-532](../../../../tex-artefacts/toe_source_completion_20261103.tex#L489) · `section:5a9ea639ada21fb1a3c4` · subsection
+[tex-artefacts/toe_source_completion_20261103.tex:645-700](../../../../tex-artefacts/toe_source_completion_20261103.tex#L645) · `section:5a9ea639ada21fb1a3c4` · subsection
 
 The dated report labels resolve through docs/research/fundamental-plan/RESULTS.md and the synthesis docs/research/fundamental-plan/CONSOLIDATION-R110-20261103.md. The main proof owners are: A and B: experiments/theory-contracts/puncture-metric-joint-completion-20261102/PROOF.txt and experiments/theory-contracts/joint-source-clock-field-closure-20261102/PROOF.txt. C: experiments/theory-contracts/original-paper-source-
 

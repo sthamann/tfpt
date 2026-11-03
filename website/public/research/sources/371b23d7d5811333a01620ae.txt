@@ -1,0 +1,114 @@
+TFPT scientific source excerpt
+Original repository path: experiments/theory-contracts/original-local-source-variable-background-20261102/derive_original_action_covariance.py
+Original file SHA-256: efad7de9614f6a726cbf6f8f27b110b5d64989fc767efe845a753856ff2553c3
+Inclusive original lines: 1-106
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000001 | """Original v252 96-component action: covariance forces the quadratic fluctuation.
+000002 | 
+000003 | The group element is a diagnostic exact rational rotation, not physical input.
+000004 | All original Yukawa and symmetric Majorana coefficient directions are retained.
+000005 | """
+000006 | import sys
+000007 | import json
+000008 | import pathlib
+000009 | import numpy as np
+000010 | import sympy as sp
+000011 | 
+000012 | repo = pathlib.Path(__file__).resolve().parents[3]
+000013 | sys.path.insert(0, str(repo/'verification'))
+000014 | import v252_full_finite_triple as t
+000015 | 
+000016 | c, s = sp.symbols('c s', real=True)
+000017 | q = sp.Matrix([[c,s],[-s,c]])
+000018 | p = sp.diag(1,0)
+000019 | delta = q-sp.eye(2)
+000020 | full = q*p*q.T
+000021 | linear = p+delta*p+p*delta.T
+000022 | quadratic = delta*p*delta.T
+000023 | circle = lambda x: sp.rem(sp.Poly(sp.expand(x),s), sp.Poly(s*s+c*c-1,s)).as_expr().factor()
+000024 | symbolic = {
+000025 |     'majorana_block_identity': all(sp.expand(x)==0 for x in full-linear-quadratic),
+000026 |     'quadratic_norm_identity': circle(sum(x*x for x in quadratic)-4*(1-c)**2)==0,
+000027 |     'linear_trace_square_defect': circle(sp.trace(linear.T*linear)-sp.trace(p)-2*(1-c)**2)==0,
+000028 | }
+000029 | restored_linear=sp.Matrix([[0,1],[1,-1]])
+000030 | aa=restored_linear*restored_linear.T
+000031 | symbolic['fourth_trace_majorana_factor']=sp.trace(aa*aa)-sp.trace(p)==6
+000032 | symbolic['fourth_trace_yukawa_diagonal_factor']=list((aa-p).diagonal())==[0,2]
+000033 | assert all(symbolic.values())
+000034 | 
+000035 | cg, sg = 0,1  # the ORIGINAL quaternion(0,1) already present in v254.ps_basis
+000036 | ur = t.quaternion(cg,sg)
+000037 | u = t.rep_PS(np.eye(2),ur,np.eye(3))
+000038 | j = t.Kswap()
+000039 | hu = j@u.conj()@j
+000040 | physical = u@hu
+000041 | zero = np.zeros((3,3),complex)
+000042 | directions=[]
+000043 | for f in range(4):
+000044 |     for row in range(3):
+000045 |         for col in range(3):
+000046 |             for phase in [1,1j]:
+000047 |                 ys=[zero.copy() for _ in range(4)]
+000048 |                 ys[f][row,col]=phase
+000049 |                 directions.append(('Y',t.full_D(*ys,zero),zero))
+000050 | for row in range(3):
+000051 |     for col in range(row,3):
+000052 |         for phase in [1,1j]:
+000053 |             mr=zero.copy();mr[row,col]=phase;mr[col,row]=phase
+000054 |             directions.append(('MR',t.full_D(zero,zero,zero,zero,mr),mr))
+000055 | max_corrected=max_no_majorana=max_majorana_formula=max_norm=max_trace=max_sm=0.0
+000056 | usm=t.rep(1j,np.eye(2),np.eye(3))
+000057 | husm=j@usm.conj()@j
+000058 | leptons=[t.IDX[('nu','R',0,g)] for g in range(3)]+[t.IDX[('e','R',0,g)] for g in range(3)]
+000059 | anti=[t.NP+x for x in leptons]
+000060 | coeff=np.array([[ (cg-1)**2,-sg*(cg-1)],[-sg*(cg-1),sg**2]])
+000061 | for kind,d,mr in directions:
+000062 |     a1=u@d@u.conj().T-d
+000063 |     ah=hu@d@hu.conj().T-d
+000064 |     a2=hu@a1@hu.conj().T-a1
+000065 |     linear_d=d+a1+ah
+000066 |     target=physical@d@physical.conj().T
+000067 |     max_corrected=max(max_corrected,float(np.linalg.norm(linear_d+a2-target)))
+000068 |     if kind=='Y':max_no_majorana=max(max_no_majorana,float(np.linalg.norm(a2)))
+000069 |     block=a2[np.ix_(leptons,anti)]
+000070 |     max_majorana_formula=max(max_majorana_formula,float(np.linalg.norm(block-np.kron(coeff,mr))))
+000071 |     max_norm=max(max_norm,abs(float(np.linalg.norm(a2)**2)-8*(1-cg)**2*float(np.linalg.norm(mr)**2)))
+000072 |     trace_error=float(np.trace(linear_d@linear_d-d@d).real)
+000073 |     max_trace=max(max_trace,abs(trace_error-4*(1-cg)**2*float(np.linalg.norm(mr)**2)))
+000074 |     sm_a1=usm@d@usm.conj().T-d
+000075 |     max_sm=max(max_sm,float(np.linalg.norm(husm@sm_a1@husm.conj().T-sm_a1)))
+000076 | assert len(directions)==84
+000077 | assert max(max_corrected,max_no_majorana,max_majorana_formula,max_norm,max_trace,max_sm)<1e-12
+000078 | rng=np.random.default_rng(252) # ORIGINAL v252.run fixture, not selected physical inputs
+000079 | ys=[rng.normal(size=(3,3))+1j*rng.normal(size=(3,3)) for _ in range(4)]
+000080 | mr0=rng.normal(size=(3,3));mr=mr0+mr0.T
+000081 | d=t.full_D(*ys,mr)
+000082 | a1=u@d@u.conj().T-d
+000083 | ah=hu@d@hu.conj().T-d
+000084 | a2=hu@a1@hu.conj().T-a1
+000085 | dl=d+a1+ah
+000086 | dd=mr@mr.conj().T
+000087 | fourth_expected=12*np.trace(dd@dd).real+16*np.trace(ys[2].conj().T@ys[2]@dd).real
+000088 | fourth_actual=np.trace((dl@dl)@(dl@dl)-(d@d)@(d@d)).real
+000089 | fourth_relerr=abs(fourth_actual-fourth_expected)/max(1,abs(fourth_expected))
+000090 | assert fourth_relerr<1e-12
+000091 | out={
+000092 |   'verdict':'PASS_SCOPED_ORIGINAL_COVARIANCE_DERIVATION',
+000093 |   'source_operator':'verification/v252_full_finite_triple.py:full_D,rep_PS,Kswap',
+000094 |   'original_parameter_basis':{'real_Yukawa_directions':72,'real_symmetric_Majorana_directions':12,'total':84},
+000095 |   'diagnostic_group_element':'Original v254 quaternion(0,1); cos(theta)=0,sin(theta)=1',
+000096 |   'symbolic_exact_identities':symbolic,
+000097 |   'native_max_residuals':{'full_covariance':max_corrected,'A2_without_MR':max_no_majorana,
+000098 |     'Majorana_block_formula':max_majorana_formula,'A2_norm_formula':max_norm,'TrD2_defect_formula':max_trace,
+000099 |     'SM_control_A2':max_sm,'original_v252_fixture_TrD4_relative_error':float(fourth_relerr)},
+000100 |   'derived_formulas':{'A2':'hat(u) [ A1, hat(u)^* ]','Majorana_A2':'((qR-I)e_nu)((qR-I)e_nu)^T tensor M_R',
+000101 |     'A2_HS_norm_squared':'8*(1-cos(theta))^2*||M_R||_HS^2',
+000102 |     'linear_TrD2_gauge_defect':'4*(1-cos(theta))^2*||M_R||_HS^2',
+000103 |     'linear_TrD4_gauge_defect_at_original_group_element':'12*Tr[(MR MR*)^2]+16*Tr[(Ye* Ye)(MR MR*)]'},
+000104 |   'scope':'Original PS representation and its gauge orbit; group rotation is diagnostic, no new physical coupling. Covariance is necessary and does not uniquely specify arbitrary gauge-invariant additions to the action.',
+000105 |   'new_physical_fields':False,'full_Sadm_derived':False,'physical_spectrum_computed':False}
+000106 | print(json.dumps(out,indent=2))

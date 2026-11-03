@@ -1,0 +1,121 @@
+TFPT scientific source excerpt
+Original repository path: verification/v990_wj_transduction_mechanism.py
+Original file SHA-256: 98de224f6b70d2abb376acb36e9acd3a1b62b485923b043bdad04984f69818a0
+Inclusive original lines: 104-216
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000104 | def run():
+000105 |     reset()
+000106 |     print("v990  FTRANSFER.GENERATING.01 / OBS.TRANSDUCTION.01: "
+000107 |           "content shadow + W[J] + transduction")
+000108 | 
+000109 |     check("6Y TABLE [E]: 6Y mod 6 = [Q:1, u^c:2, d^c:2, L:3, e^c:0]",
+000110 |           CHARGES == [1, 2, 2, 3, 0])
+000111 |     xzx = X1 @ Z1 @ X1.conj().T
+000112 |     check("Z6 WEYL [E]: X Z X^dag = omega^{-1} Z",
+000113 |           float(np.max(np.abs(xzx - (OMEGA ** (-1)) * Z1))) < 1e-14)
+000114 | 
+000115 |     y3, su2y, su3y, grav, witten = anomaly_sums(GEN)
+000116 |     check("T4 [E]: [U(1)]^3 = [SU(2)]^2 U(1) = [SU(3)]^2 U(1) = "
+000117 |           "grav^2 U(1) = 0",
+000118 |           y3 == su2y == su3y == grav == 0)
+000119 |     check("T4 WITTEN [E]: %d SU(2) doublets even" % witten,
+000120 |           witten % 2 == 0)
+000121 |     y3m, su2ym, su3ym, gravm, wittenm = anomaly_sums(
+000122 |         [f for f in GEN if f[0] != "L"])
+000123 |     check("T4 MUTANT [E]: dropping L breaks [U(1)]^3, [SU(2)]^2 U(1), "
+000124 |           "grav and makes Witten odd",
+000125 |           y3m != 0 and su2ym != 0 and gravm != 0 and wittenm % 2 == 1)
+000126 | 
+000127 |     W_CHARGES = [1, 0]
+000128 |     W_NMODES = 4
+000129 |     W_DF = 16
+000130 |     W_PSI = [w_ferm(a, W_NMODES, DL) for a in range(W_NMODES)]
+000131 |     W_NUM = [p.conj().T @ p for p in W_PSI]
+000132 |     W_X = np.kron(X1, np.eye(W_DF))
+000133 |     W_Z = np.kron(Z1, np.eye(W_DF))
+000134 | 
+000135 |     def build_H_W(theta, lam_e=LAM_E, w=W_HOP, m=MASS, mu_q=MU_Q):
+000136 |         Hm = -lam_e * (W_X + W_X.conj().T)
+000137 |         for s, q in enumerate(W_CHARGES):
+000138 |             a0, a1 = s * NS + 0, s * NS + 1
+000139 |             Zq = np.linalg.matrix_power(W_Z, int(q) % 6)
+000140 |             hop = W_PSI[a0].conj().T @ Zq @ W_PSI[a1]
+000141 |             Hm = Hm + w * (hop + hop.conj().T)
+000142 |             seam = (np.exp(1j * theta) ** q) * (
+000143 |                 W_PSI[a1].conj().T @ W_PSI[a0])
+000144 |             Hm = Hm + w * (seam + seam.conj().T)
+000145 |             Hm = Hm + m * (W_NUM[a0] - W_NUM[a1])
+000146 |         Hm = Hm + mu_q * (W_NUM[0] + W_NUM[1])
+000147 |         return Hm
+000148 | 
+000149 |     def dH_dtheta(theta, w=W_HOP):
+000150 |         q = 1
+000151 |         phase = np.exp(1j * theta) ** q
+000152 |         dseam = (1j * q) * phase * (W_PSI[1].conj().T @ W_PSI[0])
+000153 |         return w * (dseam + dseam.conj().T)
+000154 | 
+000155 |     O_Q = W_NUM[0] + W_NUM[1]
+000156 |     O_Z = 0.5 * (W_Z + W_Z.conj().T)
+000157 |     O_C = W_NUM[2] + W_NUM[3]
+000158 |     OPS = [O_Q, O_Z, O_C]
+000159 |     N_O = 3
+000160 |     H_W0 = build_H_W(THETA0)
+000161 |     check("W[J] HERMITIAN [E]: H = H^dag at theta0 (dim 96)",
+000162 |           float(np.max(np.abs(H_W0 - H_W0.conj().T))) < 1e-12)
+000163 | 
+000164 |     def W_gen(Js, theta):
+000165 |         A = -BETA * build_H_W(theta)
+000166 |         for j, O in zip(Js, OPS):
+000167 |             A = A + j * O
+000168 |         return log_tr_exp(A)
+000169 | 
+000170 |     evals0, evecs0, p0 = thermal_pack(H_W0)
+000171 |     Oe = [evecs0.conj().T @ O @ evecs0 for O in OPS]
+000172 |     means = [complex(np.dot(p0, np.diag(Oe[a]))) for a in range(N_O)]
+000173 |     dw_ok = True
+000174 |     dw_max = 0.0
+000175 |     for a in range(N_O):
+000176 |         Jp = [0.0] * N_O
+000177 |         Jm = [0.0] * N_O
+000178 |         Jp[a] = EPS_J
+000179 |         Jm[a] = -EPS_J
+000180 |         dW = (W_gen(Jp, THETA0) - W_gen(Jm, THETA0)) / (2.0 * EPS_J)
+000181 |         diff = abs(dW - means[a].real)
+000182 |         dw_max = max(dw_max, diff)
+000183 |         dw_ok &= diff < 1e-6
+000184 |     print("   max |dW/dJ - <O>| = %.2e" % dw_max)
+000185 |     check("W(a) [E/N]: dW/dJ = <O> (max diff %.1e; probe ~6e-11)"
+000186 |           % dw_max, dw_ok)
+000187 | 
+000188 |     hess_ok = True
+000189 |     hess_max = 0.0
+000190 |     for a in range(N_O):
+000191 |         for b in range(a, N_O):
+000192 |             if a == b:
+000193 |                 hess = (W_gen([EPS_J if i == a else 0.0
+000194 |                                for i in range(N_O)], THETA0)
+000195 |                         - 2.0 * W_gen([0.0] * N_O, THETA0)
+000196 |                         + W_gen([-EPS_J if i == a else 0.0
+000197 |                                  for i in range(N_O)], THETA0)
+000198 |                         ) / (EPS_J ** 2)
+000199 |             else:
+000200 |                 def Jpair(sa, sb, aa=a, bb=b):
+000201 |                     Js = [0.0] * N_O
+000202 |                     Js[aa] = sa * EPS_J
+000203 |                     Js[bb] = sb * EPS_J
+000204 |                     return W_gen(Js, THETA0)
+000205 |                 hess = (Jpair(1, 1) - Jpair(1, -1) - Jpair(-1, 1)
+000206 |                         + Jpair(-1, -1)) / (4.0 * EPS_J * EPS_J)
+000207 |             kub = kubo_connected(Oe[a], Oe[b], p0, evals0)
+000208 |             diff = abs(hess - kub.real)
+000209 |             hess_max = max(hess_max, diff)
+000210 |             hess_ok &= diff < 5e-5
+000211 |     print("   max |Hess - Kubo| = %.2e" % hess_max)
+000212 |     check("W(b) [E/N]: Hessian = Kubo connected (max diff %.1e; "
+000213 |           "probe ~1e-7)" % hess_max, hess_ok)
+000214 | 
+000215 |     Kseam = -BETA * dH_dtheta(THETA0)
+000216 |     Ke = evecs0.conj().T @ Kseam @ evecs0

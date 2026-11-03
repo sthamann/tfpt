@@ -1,0 +1,64 @@
+TFPT scientific source excerpt
+Original repository path: verification/v252_full_finite_triple.py
+Original file SHA-256: 820254440e178430422e50605067775656236602996307f67c9e69124ba5d163
+Inclusive original lines: 63-118
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000063 | NG = 3                      # generations
+000064 | # one-generation field list: (name, chirality, colour)   colour 0 for leptons
+000065 | GEN_FIELDS = (
+000066 |     [("nu", "L", 0), ("nu", "R", 0), ("e", "L", 0), ("e", "R", 0)]
+000067 |     + [(f, ch, c) for c in range(3) for f in ("u", "d") for ch in ("L", "R")]
+000068 | )
+000069 | # -> nu,e (4) + (u/d)x(L/R)x3colour (12) = 16 per generation
+000070 | 
+000071 | 
+000072 | def build_index():
+000073 |     P = []
+000074 |     for g in range(NG):
+000075 |         for (name, ch, c) in GEN_FIELDS:
+000076 |             P.append((name, ch, c, g))
+000077 |     idx = {f: i for i, f in enumerate(P)}
+000078 |     return P, idx
+000079 | 
+000080 | 
+000081 | P, IDX = build_index()
+000082 | NP = len(P)                 # 48 particle states
+000083 | NH = 2 * NP                 # 96 full
+000084 | 
+000085 | 
+000086 | def dirac_block(Yu, Yd, Ye, Ynu):
+000087 |     """particle 48x48 Yukawa block S (Hermitian): L<->R per field/colour."""
+000088 |     S = np.zeros((NP, NP), complex)
+000089 |     table = {"u": Yu, "d": Yd, "e": Ye, "nu": Ynu}
+000090 |     for (name, ch, c, g) in P:
+000091 |         if ch != "L":
+000092 |             continue
+000093 |         Y = table[name]
+000094 |         for gj in range(NG):
+000095 |             i = IDX[(name, "L", c, g)]
+000096 |             j = IDX[(name, "R", c, gj)]
+000097 |             S[i, j] = Y[g, gj]
+000098 |             S[j, i] = np.conjugate(Y[g, gj])
+000099 |     return S
+000100 | 
+000101 | 
+000102 | def full_D(Yu, Yd, Ye, Ynu, MR):
+000103 |     """D_F = [[S, T],[T^dag, conj S]] ; T = Majorana on nu_R (particle<->antiparticle)."""
+000104 |     S = dirac_block(Yu, Yd, Ye, Ynu)
+000105 |     T = np.zeros((NP, NP), complex)
+000106 |     for g in range(NG):
+000107 |         for gj in range(NG):
+000108 |             i = IDX[("nu", "R", 0, g)]
+000109 |             j = IDX[("nu", "R", 0, gj)]
+000110 |             T[i, j] = MR[g, gj]
+000111 |     D = np.zeros((NH, NH), complex)
+000112 |     D[:NP, :NP] = S
+000113 |     D[NP:, NP:] = np.conjugate(S)
+000114 |     D[:NP, NP:] = T
+000115 |     D[NP:, :NP] = T.conj().T
+000116 |     return D
+000117 | 
+000118 | 

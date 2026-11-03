@@ -4,6 +4,46 @@
 
 Exact ledger statuses remain at the linked original rows and in registry.json. Citations are source links, not proof certification.
 
+## Universalraum synthesis: source selection, reconstruction and accessible dynamics
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:2-4](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L2) · `section:6e1860c8f024840a2d59` · section
+
+No opening prose excerpt; see the source.
+
+## Scope and evidence, 12 September 2026.
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:5-21](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L5) · `section:fc47ee16ddf59584c3f6` · paragraph
+
+This section consolidates the local primitive-transfer investigation and the latest two available answers from each of four ChatGPT research tasks. It is not an independent rerun of all external certificates, an exhaustive conversation archive, or a derivation of a theory of everything. All T1–T8 and TFPT.TOE.COMPLETE.01 remain open. The local checkout base is 66b91e40e245569f06ab440ead80f446c9be0ee5; additional loca
+
+Explicit source references:
+
+- [TFPT.TOE.COMPLETE.01](../../../../verification/status_ledger.csv#L764) · explicit_claim_identifier · original status at linked ledger row
+
+## Typed objects and prior local results
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:22-69](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L22) · `section:ba5e47e21501fa900096` · subsection
+
+The integral compiler commutant, its positive cone, the sixteen-real-mode quadratic candidate, the seventy-state interacting chain, the filled QWZ strip and the compact-U(1) rotor parent are different objects. In particular, the quadratic candidate has eight complex modes and a 256-dimensional full Fock space. The designated [formula in source] is a fixed-four-particle sector of an open four-site, eight-mode model; i
+
+## Results reported by the four parallel tasks
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:70-129](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L70) · `section:05986b2011d3791e7ee4` · subsection
+
+The following are attributed task reports; their original finite-field and rank certificates have not all been independently rerun in this consolidation. The archived excerpts retain exact task identifiers and retrieval limitations.
+
+## Reconstruction contracts that must remain distinct
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:130-172](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L130) · `section:1843ffffee2452937787` · subsection
+
+For a pure eigenstate and a specified Hermitian family [formula in source] , the covariance form obeys [formula in source] A one-dimensional nonconstant kernel identifies one generator direction, not the origin of the family or state. For a faithful mixed state, [formula in source] instead forces [formula in source] to be scalar. Thermal reconstruction therefore needs its own stationarity-response contract. Adding se
+
+## Exact access results in the local quadratic candidate
+
+[tex-artefacts/toe_universalraum_synthesis_20260912.tex:173-215](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L173) · `section:aa533949572e21b4b89f` · subsection
+
+For the pinned real matrices, [formula in source] the real ranks are ten and six and [formula in source] . The original boundary cyclic space equals [formula in source] . The induced Fock decomposition is [formula in source] ; with the unchanged split dynamics, finite adaptive boundary protocols depend only on the accessible marginal. Hidden occupation cannot be read out by such protocols, even if other initial corre
+
 ## A covariant event channel with an actual boundary response
 
 [tex-artefacts/toe_universalraum_synthesis_20260912.tex:216-252](../../../../tex-artefacts/toe_universalraum_synthesis_20260912.tex#L216) · `section:2b3701d613b9b04d510e` · subsection

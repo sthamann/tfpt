@@ -1,0 +1,53 @@
+TFPT scientific source excerpt
+Original repository path: verification/v252_full_finite_triple.py
+Original file SHA-256: 820254440e178430422e50605067775656236602996307f67c9e69124ba5d163
+Inclusive original lines: 170-214
+Line numbers below refer to the original source.
+This bounded excerpt is source evidence; it is not a new proof/checker run.
+Conversation metadata and personal execution details are omitted where indicated.
+
+000170 | 
+000171 | def rep_PS(qL, qR, m):
+000172 |     """Pati-Salam left action: q_L on LEFT doublets and q_R on RIGHT doublets
+000173 |     (the SU(2)_R that pairs nu_R with e_R, u_R with d_R), colour-trivial on particles;
+000174 |     antiparticle/right action via colour m -- the enlargement of A_F = C(+)H(+)M_3."""
+000175 |     pi = np.zeros((NH, NH), complex)
+000176 |     for g in range(NG):
+000177 |         for (na, nb, q) in [(("nu", "L", 0, g), ("e", "L", 0, g), qL),
+000178 |                             (("nu", "R", 0, g), ("e", "R", 0, g), qR)]:
+000179 |             i, j = IDX[na], IDX[nb]
+000180 |             pi[i, i], pi[i, j], pi[j, i], pi[j, j] = q[0, 0], q[0, 1], q[1, 0], q[1, 1]
+000181 |         for c in range(3):
+000182 |             for (na, nb, q) in [(("u", "L", c, g), ("d", "L", c, g), qL),
+000183 |                                 (("u", "R", c, g), ("d", "R", c, g), qR)]:
+000184 |                 i, j = IDX[na], IDX[nb]
+000185 |                 pi[i, i], pi[i, j], pi[j, i], pi[j, j] = q[0, 0], q[0, 1], q[1, 0], q[1, 1]
+000186 |     off = NP
+000187 |     for g in range(NG):
+000188 |         for (name, ch, c, gg) in [f for f in P if f[3] == g]:
+000189 |             i = off + IDX[(name, ch, c, g)]
+000190 |             if name in ("nu", "e"):
+000191 |                 pi[i, i] = 1.0
+000192 |             else:
+000193 |                 for c2 in range(3):
+000194 |                     pi[i, off + IDX[(name, ch, c2, g)]] = m[c, c2]
+000195 |     return pi
+000196 | 
+000197 | 
+000198 | def run():
+000199 |     reset()
+000200 |     print("v252  full 96-dim finite spectral triple (A_F,H_F,D_F,J,gamma): NCG axioms verified")
+000201 | 
+000202 |     rng = np.random.default_rng(252)
+000203 |     K = Kswap()
+000204 |     gamma = grading()
+000205 | 
+000206 |     # tidy O(1) data for the (value-independent) structural axiom checks
+000207 |     def randY():
+000208 |         return rng.normal(size=(NG, NG)) + 1j * rng.normal(size=(NG, NG))
+000209 |     Yu, Yd, Ye, Ynu = randY(), randY(), randY(), randY()
+000210 |     MR0 = rng.normal(size=(NG, NG)); MR = MR0 + MR0.T          # symmetric Majorana
+000211 |     D = full_D(Yu, Yd, Ye, Ynu, MR)
+000212 |     D_noM = full_D(Yu, Yd, Ye, Ynu, np.zeros((NG, NG)))
+000213 | 
+000214 |     # 1. dimension

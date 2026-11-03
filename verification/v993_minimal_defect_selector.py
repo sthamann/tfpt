@@ -155,11 +155,11 @@ def has_Z4_element(factors):
 
 
 def in_D5(x):
-    return all(v.is_integer for v in x) and sum(x) % 2 == 0
+    return all(sp.sympify(v).is_integer is True for v in x) and sum(x) % 2 == 0
 
 
 def in_A3(y):
-    return all(v.is_integer for v in y) and sum(y) == 0
+    return all(sp.sympify(v).is_integer is True for v in y) and sum(y) == 0
 
 
 def in_L0(z):
